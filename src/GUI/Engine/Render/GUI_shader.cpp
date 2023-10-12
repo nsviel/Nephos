@@ -115,13 +115,8 @@ void GUI_shader::shader_command(){
   ImGui::SameLine();
 
   if(ImGui::Button("Save to file")){
-    EDL_shader* edl_shader = shaderManager->get_edl_shader();
-    vector<Shader_info*> vec_shader_info = edl_shader->get_vec_shader_info();
-    string title   = vec_shader_info[ID_subclass]->title;
-    string file_vs = vec_shader_info[ID_subclass]->path_vs;
-    string file_fs = vec_shader_info[ID_subclass]->path_fs;
-    string path_vs = "../src/Engine/Shader/EDL/glsl/" + file_vs + ".vert";
-    string path_fs = "../src/Engine/Shader/EDL/glsl/" + file_fs + ".frag";
+    string path_vs = get_path_vs_from_selection();
+    string path_fs = get_path_fs_from_selection();
     editor_vs->save_to_file(path_vs);
     editor_fs->save_to_file(path_fs);
   }
@@ -155,33 +150,7 @@ void GUI_shader::shader_tabs(){
   //---------------------------
 }
 
-//Shader specific
-void GUI_shader::shader_EDL_parameter(){
-  EDL_shader* edl_shader = shaderManager->get_edl_shader();
-  EDL_param* edl_param = edl_shader->get_edl_param();
-  //---------------------------
-
-  //if(ImGui::CollapsingHeader("Parameter")){
-    ImGui::SetNextItemWidth(item_width);
-    if(ImGui::Checkbox("Activated", &edl_param->activated)){
-      edl_shader->update_shader();
-    }
-
-    ImGui::SetNextItemWidth(item_width);
-    if(ImGui::SliderFloat("Radius", &edl_param->radius, 1.0f, 5.0f)){
-      edl_shader->update_shader();
-    }
-
-    ImGui::SetNextItemWidth(item_width);
-    if(ImGui::SliderFloat("Strength", &edl_param->strength, 1.0f, 100.0f)){
-      edl_shader->update_shader();
-    }
-  //}
-
-  //---------------------------
-}
-
-//Subfunction
+//File selection
 void GUI_shader::retrieve_shader_subclasses(){
   //---------------------------
 
@@ -212,34 +181,84 @@ void GUI_shader::retrieve_shader_subclasses(){
 void GUI_shader::shader_file_selection(){
   //---------------------------
 
-  string selection = vec_shader_class[ID_class];
-  string path_vs = "";
-  string path_fs = "";
-
-  if(selection == "EDL"){
-    EDL_shader* edl_shader = shaderManager->get_edl_shader();
-    path_vs = edl_shader->get_glsl_path_vs(ID_subclass);
-    path_fs = edl_shader->get_glsl_path_fs(ID_subclass);
-    this->with_parameter = true;
-  }
-  else if(selection == "Scene"){
-    SCE_shader* sce_shader = shaderManager->get_sce_shader();
-    path_vs = sce_shader->get_glsl_path_vs(ID_subclass);
-    path_fs = sce_shader->get_glsl_path_fs(ID_subclass);
-    this->with_parameter = false;
-  }
-  else if(selection == "Canvas"){
-    CAN_shader* can_shader = shaderManager->get_can_shader();
-    path_vs = can_shader->get_glsl_path_vs(ID_subclass);
-    path_fs = can_shader->get_glsl_path_fs(ID_subclass);
-    this->with_parameter = false;
-  }
+  string path_vs = get_path_vs_from_selection();
+  string path_fs = get_path_fs_from_selection();
 
   //Load shader into editors
   if(path_vs != "" && path_fs != ""){
     editor_vs->load_from_file(path_vs);
     editor_fs->load_from_file(path_fs);
   }
+
+  //---------------------------
+}
+string GUI_shader::get_path_vs_from_selection(){
+  //---------------------------
+
+  string selection = vec_shader_class[ID_class];
+  string path_vs = "";
+
+  if(selection == "EDL"){
+    EDL_shader* edl_shader = shaderManager->get_edl_shader();
+    path_vs = edl_shader->get_glsl_path_vs(ID_subclass);
+  }
+  else if(selection == "Scene"){
+    SCE_shader* sce_shader = shaderManager->get_sce_shader();
+    path_vs = sce_shader->get_glsl_path_vs(ID_subclass);
+  }
+  else if(selection == "Canvas"){
+    CAN_shader* can_shader = shaderManager->get_can_shader();
+    path_vs = can_shader->get_glsl_path_vs(ID_subclass);
+  }
+
+  //---------------------------
+  return path_vs;
+}
+string GUI_shader::get_path_fs_from_selection(){
+  //---------------------------
+
+  string selection = vec_shader_class[ID_class];
+  string path_fs = "";
+
+  if(selection == "EDL"){
+    EDL_shader* edl_shader = shaderManager->get_edl_shader();
+    path_fs = edl_shader->get_glsl_path_fs(ID_subclass);
+  }
+  else if(selection == "Scene"){
+    SCE_shader* sce_shader = shaderManager->get_sce_shader();
+    path_fs = sce_shader->get_glsl_path_fs(ID_subclass);
+  }
+  else if(selection == "Canvas"){
+    CAN_shader* can_shader = shaderManager->get_can_shader();
+    path_fs = can_shader->get_glsl_path_fs(ID_subclass);
+  }
+
+  //---------------------------
+  return path_fs;
+}
+
+//Shader specific
+void GUI_shader::shader_EDL_parameter(){
+  EDL_shader* edl_shader = shaderManager->get_edl_shader();
+  EDL_param* edl_param = edl_shader->get_edl_param();
+  //---------------------------
+
+  //if(ImGui::CollapsingHeader("Parameter")){
+    ImGui::SetNextItemWidth(item_width);
+    if(ImGui::Checkbox("Activated", &edl_param->activated)){
+      edl_shader->update_shader();
+    }
+
+    ImGui::SetNextItemWidth(item_width);
+    if(ImGui::SliderFloat("Radius", &edl_param->radius, 1.0f, 5.0f)){
+      edl_shader->update_shader();
+    }
+
+    ImGui::SetNextItemWidth(item_width);
+    if(ImGui::SliderFloat("Strength", &edl_param->strength, 1.0f, 100.0f)){
+      edl_shader->update_shader();
+    }
+  //}
 
   //---------------------------
 }

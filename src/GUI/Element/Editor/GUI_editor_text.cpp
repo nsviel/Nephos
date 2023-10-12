@@ -44,14 +44,19 @@ void GUI_editor_text::load_from_file(string path){
 void GUI_editor_text::save_to_file(string path){
   //---------------------------
 
-  cout<<"[ok] Saving shader at "<<path<<endl;
-
   string new_text = editor->GetText();
 
   ofstream file;
   file.open (path);
-  //file << new_text;
+  file << new_text;
   file.close();
+
+  //---------------------------
+}
+string GUI_editor_text::get_text(){
+  //---------------------------
+
+  return new_text = editor->GetText();
 
   //---------------------------
 }

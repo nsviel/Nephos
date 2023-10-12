@@ -19,6 +19,7 @@ public:
   //Subfunction
   void load_from_file(string path);
   void save_to_file(string path);
+  string get_text();
 
 private:
   TextEditor* editor;

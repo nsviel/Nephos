@@ -34,6 +34,8 @@ public:
   //Subfunction
   void retrieve_shader_subclasses();
   void shader_file_selection();
+  string get_path_vs_from_selection();
+  string get_path_fs_from_selection();
 
 private:
   VK_reload* vk_reload;
