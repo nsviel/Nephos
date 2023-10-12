@@ -1,0 +1,37 @@
+#ifndef GUI_PROFILING_H
+#define GUI_PROFILING_H
+
+#include <Specific/common.h>
+#include <imgui/profiler/ImGuiProfilerRenderer.h>
+
+class GUI;
+
+class VK_engine;
+class VK_struct;
+
+
+class GUI_profiling
+{
+public:
+  //Constructor / Destructor
+  GUI_profiling(GUI* gui);
+  ~GUI_profiling();
+
+public:
+  //Main function
+  void design_panel();
+
+  //Subfunctions
+  void design_profiling();
+
+private:
+  GUI* gui;
+  VK_engine* vk_engine;
+  VK_struct* vk_struct;
+  Timer timer;
+
+  int width;
+  ImGuiUtils::ProfilersWindow* profiler;
+};
+
+#endif
