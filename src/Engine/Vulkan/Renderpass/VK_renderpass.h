@@ -34,6 +34,8 @@ public:
   void create_renderpass(Struct_renderpass* renderpass);
   void create_renderpass_obj(Struct_renderpass* renderpass);
 
+  inline RP_edl* get_rp_edl(){return rp_edl;}
+
 private:
   VK_engine* vk_engine;
   VK_struct* vk_struct;

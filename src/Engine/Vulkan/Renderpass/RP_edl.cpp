@@ -1,6 +1,8 @@
 #include "RP_edl.h"
 
 #include <Engine.h>
+#include <Shader/Shader.h>
+#include <Shader/EDL/EDL_shader.h>
 #include <Shader/EDL/EDL_param.h>
 #include <Vulkan/Renderpass/VK_renderpass.h>
 #include <Vulkan/Pipeline/VK_subpass.h>
@@ -8,8 +10,7 @@
 #include <Vulkan/VK_engine.h>
 #include <Vulkan/VK_struct.h>
 #include <Vulkan/Camera/VK_viewport.h>
-#include <Shader/Shader.h>
-#include <Shader/EDL/EDL_shader.h>
+
 
 
 //Constructor / Destructor
@@ -37,17 +38,20 @@ void RP_edl::init_renderpass(Struct_renderpass* renderpass){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
+  //Pipeline creation
+  Struct_pipeline* pipeline_edl = create_pipeline_edl(renderpass);
+
   //Renderpass
   renderpass->name = "edl";
   vk_subpass->create_subpass_shader(renderpass);
-  this->create_pipeline_edl(renderpass);
+  renderpass->vec_pipeline.push_back(pipeline_edl);
 
   //---------------------------
   vk_renderpass->create_renderpass(renderpass);
 }
 
 //Pipeline
-void RP_edl::create_pipeline_edl(Struct_renderpass* renderpass){
+Struct_pipeline* RP_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   //---------------------------
 
   Engine* engine = vk_engine->get_engine();
@@ -64,7 +68,23 @@ void RP_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_color", 0, 1, TYPE_SAMPLER, STAGE_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_depth", 0, 4, TYPE_SAMPLER, STAGE_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("EDL_param", sizeof(EDL_param), 5, TYPE_UNIFORM, STAGE_FS));
-  renderpass->vec_pipeline.push_back(pipeline);
+
+  //---------------------------
+  return pipeline;
+}
+void RP_edl::recreate_pipeline_edl(){
+  //---------------------------
+
+  Struct_pipeline* pipeline_new = create_pipeline_edl(&vk_struct->renderpass_edl);
+  vk_pipeline->create_pipeline(&vk_struct->renderpass_edl, pipeline_new);
+
+  vkDeviceWaitIdle(vk_struct->device.device);
+
+  Struct_pipeline* pipeline_old = vk_pipeline->get_pipeline_byName(&vk_struct->renderpass_edl, "triangle_EDL");
+  vk_pipeline->clean_pipeline(pipeline_old);
+
+  vk_struct->renderpass_edl.vec_pipeline.clear();
+  vk_struct->renderpass_edl.vec_pipeline.push_back(pipeline_new);
 
   //---------------------------
 }

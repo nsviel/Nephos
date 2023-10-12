@@ -74,8 +74,8 @@ VK_engine::VK_engine(Engine* engine){
   this->vk_swapchain = new VK_swapchain(this);
   this->vk_shader = new VK_shader(this);
   this->vk_pipeline = new VK_pipeline(this);
-  this->vk_reload = new VK_reload(this);
   this->vk_renderpass = new VK_renderpass(this);
+  this->vk_reload = new VK_reload(this);
   this->vk_framebuffer = new VK_framebuffer(this);
   this->vk_frame = new VK_frame(this);
   this->vk_camera = new VK_camera(this);

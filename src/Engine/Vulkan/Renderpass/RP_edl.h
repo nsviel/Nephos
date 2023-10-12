@@ -25,7 +25,8 @@ public:
   void init_renderpass(Struct_renderpass* renderpass);
 
   //Pipeline
-  void create_pipeline_edl(Struct_renderpass* renderpass);
+  Struct_pipeline* create_pipeline_edl(Struct_renderpass* renderpass);
+  void recreate_pipeline_edl();
 
 private:
   VK_engine* vk_engine;

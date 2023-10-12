@@ -52,7 +52,7 @@ void VK_pipeline::create_pipeline(Struct_renderpass* renderpass){
 
   for(int i=0; i<renderpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
-    vk_descriptor->create_layout_from_required(&pipeline->binding);
+
     this->create_pipeline(renderpass, pipeline);
   }
 
@@ -80,6 +80,7 @@ void VK_pipeline::create_pipeline_graphics(Struct_pipeline* pipeline, Struct_ren
   pipeline->info.dynamic_state_object.push_back(VK_DYNAMIC_STATE_LINE_WIDTH);
 
   //Pipeline elements
+  vk_descriptor->create_layout_from_required(&pipeline->binding);
   this->check_struct_pipeline_input(pipeline);
   vk_shader->create_pipeline_shader(pipeline);
   vk_data->create_data_description(pipeline);
