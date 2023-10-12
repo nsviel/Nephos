@@ -30,9 +30,6 @@ public:
 
   //Shader specific
   void shader_EDL_parameter();
-  void shader_EDL_file();
-  void shader_Scene_file();
-  void shader_Canvas_file();
 
   //Subfunction
   void retrieve_shader_subclasses();

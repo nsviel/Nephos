@@ -180,39 +180,6 @@ void GUI_shader::shader_EDL_parameter(){
 
   //---------------------------
 }
-void GUI_shader::shader_EDL_file(){
-  EDL_shader* edl_shader = shaderManager->get_edl_shader();
-  //---------------------------
-
-  string path_vs = edl_shader->get_glsl_path_vs(ID_subclass);
-  string path_fs = edl_shader->get_glsl_path_fs(ID_subclass);
-  editor_vs->load_from_file(path_vs);
-  editor_fs->load_from_file(path_fs);
-
-  //---------------------------
-}
-void GUI_shader::shader_Scene_file(){
-  SCE_shader* sce_shader = shaderManager->get_sce_shader();
-  //---------------------------
-
-  string path_vs = sce_shader->get_glsl_path_vs(ID_subclass);
-  string path_fs = sce_shader->get_glsl_path_fs(ID_subclass);
-  editor_vs->load_from_file(path_vs);
-  editor_fs->load_from_file(path_fs);
-
-  //---------------------------
-}
-void GUI_shader::shader_Canvas_file(){
-  CAN_shader* can_shader = shaderManager->get_can_shader();
-  //---------------------------
-
-  string path_vs = can_shader->get_glsl_path_vs(ID_subclass);
-  string path_fs = can_shader->get_glsl_path_fs(ID_subclass);
-  editor_vs->load_from_file(path_vs);
-  editor_fs->load_from_file(path_fs);
-
-  //---------------------------
-}
 
 //Subfunction
 void GUI_shader::retrieve_shader_subclasses(){
@@ -246,18 +213,32 @@ void GUI_shader::shader_file_selection(){
   //---------------------------
 
   string selection = vec_shader_class[ID_class];
+  string path_vs = "";
+  string path_fs = "";
 
   if(selection == "EDL"){
-    this->shader_EDL_file();
+    EDL_shader* edl_shader = shaderManager->get_edl_shader();
+    path_vs = edl_shader->get_glsl_path_vs(ID_subclass);
+    path_fs = edl_shader->get_glsl_path_fs(ID_subclass);
     this->with_parameter = true;
   }
   else if(selection == "Scene"){
-    this->shader_Scene_file();
+    SCE_shader* sce_shader = shaderManager->get_sce_shader();
+    path_vs = sce_shader->get_glsl_path_vs(ID_subclass);
+    path_fs = sce_shader->get_glsl_path_fs(ID_subclass);
     this->with_parameter = false;
   }
   else if(selection == "Canvas"){
-    this->shader_Canvas_file();
+    CAN_shader* can_shader = shaderManager->get_can_shader();
+    path_vs = can_shader->get_glsl_path_vs(ID_subclass);
+    path_fs = can_shader->get_glsl_path_fs(ID_subclass);
     this->with_parameter = false;
+  }
+
+  //Load shader into editors
+  if(path_vs != "" && path_fs != ""){
+    editor_vs->load_from_file(path_vs);
+    editor_fs->load_from_file(path_fs);
   }
 
   //---------------------------
