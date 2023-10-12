@@ -20,7 +20,7 @@ void GUI_editor_text::run_editor(){
 }
 
 //Subfunction
-void GUI_editor_text::load_file(string path){
+void GUI_editor_text::load_from_file(string path){
   //---------------------------
 
   //Open file
@@ -38,6 +38,20 @@ void GUI_editor_text::load_file(string path){
   }
 
   editor->SetText(buffer);
+
+  //---------------------------
+}
+void GUI_editor_text::save_to_file(string path){
+  //---------------------------
+
+  cout<<"[ok] Saving shader at "<<path<<endl;
+
+  string new_text = editor->GetText();
+
+  ofstream file;
+  file.open (path);
+  //file << new_text;
+  file.close();
 
   //---------------------------
 }

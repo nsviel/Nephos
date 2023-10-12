@@ -17,7 +17,8 @@ public:
   void run_editor();
 
   //Subfunction
-  void load_file(string path);
+  void load_from_file(string path);
+  void save_to_file(string path);
 
 private:
   TextEditor* editor;

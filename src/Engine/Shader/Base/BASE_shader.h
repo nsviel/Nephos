@@ -26,7 +26,9 @@ public:
   ~BASE_shader();
 
   Shader_info* get_shader_info(string title);
-
+  string get_glsl_path_vs(int ID_subclass);
+  string get_glsl_path_fs(int ID_subclass);
+  
   inline std::vector<Shader_info*> get_vec_shader_info(){return vec_shader_info;}
 
 protected:

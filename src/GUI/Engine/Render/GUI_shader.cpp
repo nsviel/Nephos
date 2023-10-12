@@ -112,6 +112,24 @@ void GUI_shader::shader_command(){
     string shader_2 = vec_shader_subclass[ID_subclass];
     vk_reload->hot_shader_reload(shader_1, shader_2);
   }
+  ImGui::SameLine();
+
+  if(ImGui::Button("Save to file")){
+    EDL_shader* edl_shader = shaderManager->get_edl_shader();
+    vector<Shader_info*> vec_shader_info = edl_shader->get_vec_shader_info();
+    string title   = vec_shader_info[ID_subclass]->title;
+    string file_vs = vec_shader_info[ID_subclass]->path_vs;
+    string file_fs = vec_shader_info[ID_subclass]->path_fs;
+    string path_vs = "../src/Engine/Shader/EDL/glsl/" + file_vs + ".vert";
+    string path_fs = "../src/Engine/Shader/EDL/glsl/" + file_fs + ".frag";
+    editor_vs->save_to_file(path_vs);
+    editor_fs->save_to_file(path_fs);
+  }
+  ImGui::SameLine();
+
+  if(ImGui::Button("Save to save")){
+
+  }
 
   //---------------------------
 }
@@ -164,18 +182,12 @@ void GUI_shader::shader_EDL_parameter(){
 }
 void GUI_shader::shader_EDL_file(){
   EDL_shader* edl_shader = shaderManager->get_edl_shader();
-  EDL_param* edl_param = edl_shader->get_edl_param();
   //---------------------------
 
-  vector<Shader_info*> vec_shader_info = edl_shader->get_vec_shader_info();
-  string title   = vec_shader_info[ID_subclass]->title;
-  string file_vs = vec_shader_info[ID_subclass]->path_vs;
-  string file_fs = vec_shader_info[ID_subclass]->path_fs;
-  string path_vs = "../src/Engine/Shader/EDL/glsl/" + file_vs + ".vert";
-  string path_fs = "../src/Engine/Shader/EDL/glsl/" + file_fs + ".frag";
-
-  editor_vs->load_file(path_vs);
-  editor_fs->load_file(path_fs);
+  string path_vs = edl_shader->get_glsl_path_vs(ID_subclass);
+  string path_fs = edl_shader->get_glsl_path_fs(ID_subclass);
+  editor_vs->load_from_file(path_vs);
+  editor_fs->load_from_file(path_fs);
 
   //---------------------------
 }
@@ -183,15 +195,10 @@ void GUI_shader::shader_Scene_file(){
   SCE_shader* sce_shader = shaderManager->get_sce_shader();
   //---------------------------
 
-  vector<Shader_info*> vec_shader_info = sce_shader->get_vec_shader_info();
-  string title   = vec_shader_info[ID_subclass]->title;
-  string file_vs = vec_shader_info[ID_subclass]->path_vs;
-  string file_fs = vec_shader_info[ID_subclass]->path_fs;
-  string path_vs = "../src/Engine/Shader/Scene/glsl/" + file_vs + ".vert";
-  string path_fs = "../src/Engine/Shader/Scene/glsl/" + file_fs + ".frag";
-
-  editor_vs->load_file(path_vs);
-  editor_fs->load_file(path_fs);
+  string path_vs = sce_shader->get_glsl_path_vs(ID_subclass);
+  string path_fs = sce_shader->get_glsl_path_fs(ID_subclass);
+  editor_vs->load_from_file(path_vs);
+  editor_fs->load_from_file(path_fs);
 
   //---------------------------
 }
@@ -199,15 +206,10 @@ void GUI_shader::shader_Canvas_file(){
   CAN_shader* can_shader = shaderManager->get_can_shader();
   //---------------------------
 
-  vector<Shader_info*> vec_shader_info = can_shader->get_vec_shader_info();
-  string title   = vec_shader_info[ID_subclass]->title;
-  string file_vs = vec_shader_info[ID_subclass]->path_vs;
-  string file_fs = vec_shader_info[ID_subclass]->path_fs;
-  string path_vs = "../src/Engine/Shader/Canvas/glsl/" + file_vs + ".vert";
-  string path_fs = "../src/Engine/Shader/Canvas/glsl/" + file_fs + ".frag";
-
-  editor_vs->load_file(path_vs);
-  editor_fs->load_file(path_fs);
+  string path_vs = can_shader->get_glsl_path_vs(ID_subclass);
+  string path_fs = can_shader->get_glsl_path_fs(ID_subclass);
+  editor_vs->load_from_file(path_vs);
+  editor_fs->load_from_file(path_fs);
 
   //---------------------------
 }
