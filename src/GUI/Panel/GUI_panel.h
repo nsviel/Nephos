@@ -16,6 +16,7 @@ class GUI_database;
 class GUI_camera;
 class GUI_object;
 class GUI_set;
+class GUI_capture;
 
 
 class GUI_panel
@@ -45,6 +46,7 @@ private:
   GUI_database* gui_database;
   GUI_object* gui_object;
   GUI_camera* gui_camera;
+  GUI_capture* gui_capture;
   GUI_set* gui_set;
 
   bool show_camera;

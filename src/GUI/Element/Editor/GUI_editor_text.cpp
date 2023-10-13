@@ -56,7 +56,8 @@ void GUI_editor_text::save_to_file(string path){
 string GUI_editor_text::get_text(){
   //---------------------------
 
-  return new_text = editor->GetText();
+  string new_text = editor->GetText();
 
   //---------------------------
+  return new_text;
 }

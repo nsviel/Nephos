@@ -1,18 +1,15 @@
 #include "GUI.h"
 #include "GPU/GUI_gpu.h"
-
 #include "Panel/Panel.h"
 #include "Panel/GUI_panel.h"
-
 #include "Element/Editor/GUI_editor_node.h"
 #include "Element/Initialization/GUI_init.h"
-
+#include "Element/Capture/GUI_capture.h"
 #include "Window/Window.h"
 #include "Window/Menu/GUI_mainmenubar.h"
 #include "Window/Menu/GUI_option.h"
 #include "Window/Control/GUI_control.h"
 #include "Style/GUI_style.h"
-
 #include "Engine/GUI_engine.h"
 #include "Engine/Camera/GUI_camera.h"
 #include "Engine/Data/GUI_object.h"
@@ -22,7 +19,6 @@
 #include "Engine/Data/GUI_scene.h"
 
 #include <Engine.h>
-
 #include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
 
@@ -47,7 +43,7 @@ GUI::GUI(Engine* engine){
   this->gui_control = new GUI_control(this);
   this->gui_engine = new GUI_engine(this);
   this->gui_style = new GUI_style(this);
-  //this->gui_editor_node = new GUI_editor_node(this);
+  this->gui_capture = new GUI_capture(this, &panel->show_capture, "Capture");
   this->gui_camera = new GUI_camera(this, &panel->show_camera, "Camera");
   this->gui_panel = new GUI_panel(this);
   this->gui_gpu = new GUI_gpu(engine);

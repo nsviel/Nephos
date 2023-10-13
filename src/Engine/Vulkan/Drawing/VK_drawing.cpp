@@ -44,6 +44,8 @@ void VK_drawing::draw_frame(){
 
   //Drawing operations
   dr_scene->draw_scene(&vk_struct->renderpass_scene);
+
+
   dr_edl->draw_edl(&vk_struct->renderpass_edl);
   dr_ui->draw_ui(&vk_struct->renderpass_ui);
 

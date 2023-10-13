@@ -23,7 +23,7 @@ class GUI_camera;
 class GUI_object;
 class GUI_set;
 class GUI_gpu;
-
+class GUI_capture;
 
 
 class GUI
@@ -56,6 +56,7 @@ public:
   inline GUI_object* get_gui_object(){return gui_object;}
   inline GUI_set* get_gui_set(){return gui_set;}
   inline GUI_camera* get_gui_camera(){return gui_camera;}
+  inline GUI_capture* get_gui_capture(){return gui_capture;}
 
 private:
   Engine* engine;
@@ -76,6 +77,7 @@ private:
   GUI_editor_node* gui_editor_node;
   GUI_object* gui_object;
   GUI_camera* gui_camera;
+  GUI_capture* gui_capture;
   GUI_set* gui_set;
   GUI_gpu* gui_gpu;
 };

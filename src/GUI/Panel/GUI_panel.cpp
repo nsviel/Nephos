@@ -1,13 +1,9 @@
 #include "GUI_panel.h"
 #include "Panel.h"
-
-
-#include "../GUI.h"
-#include <Panel/Panel.h>
-
 #include "../Engine/GUI_engine.h"
 #include "../Element/Editor/GUI_editor_node.h"
 #include "../Element/Data/GUI_database.h"
+#include "../Element/Capture/GUI_capture.h"
 #include "../Style/GUI_indicator.h"
 #include "../Window/Menu/GUI_mainmenubar.h"
 #include "../Engine/Profiler/GUI_timing.h"
@@ -16,7 +12,9 @@
 #include "../Engine/Camera/GUI_camera.h"
 #include "../Engine/Data/GUI_object.h"
 #include "../Engine/Data/GUI_set.h"
+#include "../GUI.h"
 
+#include <Panel/Panel.h>
 #include <GUI.h>
 #include <Engine.h>
 #include <Data/Load/Loader.h>
@@ -37,6 +35,7 @@ GUI_panel::GUI_panel(GUI* gui){
   this->gui_camera = gui->get_gui_camera();
   this->gui_object = gui->get_gui_object();
   this->gui_set = gui->get_gui_set();
+  this->gui_capture = gui->get_gui_capture();
   this->gui_database = new GUI_database(gui);
 
   //---------------------------
@@ -57,6 +56,7 @@ void GUI_panel::draw_panels(){
   gui_camera->run_panel();
   gui_object->run_panel();
   gui_set->run_panel();
+  gui_capture->run_panel();
 
   //---------------------------
 }
