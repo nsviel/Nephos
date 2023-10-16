@@ -1,5 +1,6 @@
 #include "GUI.h"
 #include "GPU/GUI_gpu.h"
+#include "GPU/GUI_image.h"
 #include "Panel/Panel.h"
 #include "Panel/GUI_panel.h"
 #include "Element/Editor/GUI_editor_node.h"
@@ -32,6 +33,7 @@ GUI::GUI(Engine* engine){
   this->data_node = engine->get_data();
   this->panel = new Panel();
 
+  this->gui_image = new GUI_image(engine);
   this->gui_timing = new GUI_timing(this);
   this->gui_shader = new GUI_shader(this, &panel->show_shader, "Shader");
   this->gui_option = new GUI_option(this);

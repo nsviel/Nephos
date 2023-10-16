@@ -7,6 +7,7 @@ class Window;
 class Camera;
 class VK_engine;
 class GPU_data;
+class GPU_texture;
 class Shader;
 
 
@@ -30,6 +31,7 @@ public:
   inline Window* get_window(){return window;}
   inline VK_engine* get_vk_engine(){return vk_engine;}
   inline GPU_data* get_gpu_data(){return gpu_data;}
+  inline GPU_texture* get_gpu_texture(){return gpu_texture;}
   inline Shader* get_shaderManager(){return shaderManager;}
 
 private:
@@ -38,8 +40,9 @@ private:
   Data* data;
   Window* window;
   GPU_data* gpu_data;
+  GPU_texture* gpu_texture;
   VK_engine* vk_engine;
-  Shader* shaderManager;;
+  Shader* shaderManager;
 };
 
 #endif

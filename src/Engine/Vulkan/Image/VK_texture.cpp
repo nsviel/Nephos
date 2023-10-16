@@ -26,17 +26,17 @@ VK_texture::VK_texture(VK_engine* vk_engine){
 VK_texture::~VK_texture(){}
 
 //Main function
-void VK_texture::load_texture(Struct_data* data, string path){
+Struct_image*  VK_texture::load_texture(string path){
   //---------------------------
 
-  Struct_image* image = new Struct_image();
-  image->path = path;
-  image->format = VK_FORMAT_R8G8B8A8_SRGB;
-  image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  this->create_texture(image);
-  data->list_texture.push_back(image);
+  Struct_image* texture = new Struct_image();
+  texture->path = path;
+  texture->format = VK_FORMAT_R8G8B8A8_SRGB;
+  texture->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  this->create_texture(texture);
 
   //---------------------------
+  return texture;
 }
 void VK_texture::clean_texture(Struct_data* data){
   //---------------------------
@@ -45,6 +45,13 @@ void VK_texture::clean_texture(Struct_data* data){
     Struct_image* texture = *next(data->list_texture.begin(), i);
     vk_image->clean_image(texture);
   }
+
+  //---------------------------
+}
+void VK_texture::clean_texture(Struct_image* texture){
+  //---------------------------
+
+  vk_image->clean_image(texture);
 
   //---------------------------
 }

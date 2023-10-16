@@ -5,6 +5,7 @@
 #include <Specific/common.h>
 
 class GUI;
+class GUI_image;
 class Panel;
 
 
@@ -22,6 +23,7 @@ public:
   void capture_command();
 
 private:
+  GUI_image* gui_image;
   Panel* panel;
 
   int item_width;

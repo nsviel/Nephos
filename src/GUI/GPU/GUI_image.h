@@ -3,21 +3,23 @@
 
 #include <Specific/common.h>
 
-class GUI;
+class Engine;
+class GPU_texture;
 
 
 class GUI_image
 {
 public:
   //Constructor / Destructor
-  GUI_image(GUI* gui);
+  GUI_image(Engine* engine);
   ~GUI_image();
 
 public:
   //Main function
-
+  void display_image(string path);
 
 private:
+  GPU_texture* gpu_texture;
 };
 
 

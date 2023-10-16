@@ -3,6 +3,7 @@
 
 #include <Specific/common.h>
 
+class VK_engine;
 class VK_data;
 
 
@@ -10,7 +11,7 @@ class GPU_data
 {
 public:
   //Constructor / Destructor
-  GPU_data(VK_data* vk_data);
+  GPU_data(VK_engine* vk_engine);
   ~GPU_data();
 
 public:

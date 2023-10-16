@@ -21,8 +21,9 @@ public:
 
 public:
   //Main functions
-  void load_texture(Struct_data* object, string path);
+  Struct_image* load_texture(string path);
   void clean_texture(Struct_data* object);
+  void clean_texture(Struct_image* texture);
 
   //Texture creation
   void create_texture(Struct_image* texture);

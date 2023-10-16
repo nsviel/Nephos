@@ -1,5 +1,6 @@
 #include "GUI_capture.h"
 
+#include <GPU/GUI_image.h>
 #include <GUI.h>
 
 
@@ -7,6 +8,7 @@
 GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
+  this->gui_image = gui->get_gui_image();
 
   //---------------------------
 }
@@ -25,7 +27,9 @@ void GUI_capture::design_panel(){
 void GUI_capture::capture_command(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
-  
+
+  gui_image->display_image("/home/aeter/Desktop/Dev/Nephos/media/vulkano.jpg");
+
 /*
   ImTextureID my_tex_id = io.Fonts->TexID;
   float my_tex_w = (float)io.Fonts->TexWidth;

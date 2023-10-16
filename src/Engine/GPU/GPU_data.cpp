@@ -1,13 +1,14 @@
 #include "GPU_data.h"
 
+#include <Vulkan/VK_engine.h>
 #include <Vulkan/Data/VK_data.h>
 
 
 //Constructor / Destructor
-GPU_data::GPU_data(VK_data* vk_data){
+GPU_data::GPU_data(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_data = vk_data;
+  this->vk_data = vk_engine->get_vk_data();;
 
   //---------------------------
 }
