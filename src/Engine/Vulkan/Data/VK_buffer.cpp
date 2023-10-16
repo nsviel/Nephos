@@ -1,6 +1,4 @@
 #include "VK_buffer.h"
-
-#include "../Image/VK_texture.h"
 #include "../Binding/VK_descriptor.h"
 #include "../VK_engine.h"
 #include "../VK_struct.h"

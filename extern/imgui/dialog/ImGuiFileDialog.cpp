@@ -33,10 +33,6 @@ SOFTWARE.
 
 #pragma endregion
 
-#ifndef IMGUI_DEFINE_MATH_OPERATORS
-#define IMGUI_DEFINE_MATH_OPERATORS
-#endif
-
 #include "ImGuiFileDialog.h"
 
 #ifdef __cplusplus
@@ -1367,28 +1363,17 @@ IGFD_API void IGFD::FilterManager::SetDefaultFilterIfNotDefined() {
 IGFD::FileType::FileType() = default;
 IGFD::FileType::FileType(const ContentType& vContentType, const bool& vIsSymlink)
     : m_Content(vContentType), m_Symlink(vIsSymlink) {}
-
 void IGFD::FileType::SetContent(const ContentType& vContentType) { m_Content = vContentType; }
-
 void IGFD::FileType::SetSymLink(const bool& vIsSymlink) { m_Symlink = vIsSymlink; }
-
 bool IGFD::FileType::isValid() const { return m_Content != ContentType::Invalid; }
-
 bool IGFD::FileType::isDir() const { return m_Content == ContentType::Directory; }
-
 bool IGFD::FileType::isFile() const { return m_Content == ContentType::File; }
-
 bool IGFD::FileType::isLinkToUnknown() const { return m_Content == ContentType::LinkToUnknown; }
-
 bool IGFD::FileType::isSymLink() const { return m_Symlink; }
-
 // Comparisons only care about the content type, ignoring whether it's a symlink or not.
 bool IGFD::FileType::operator==(const FileType& rhs) const { return m_Content == rhs.m_Content; }
-
 bool IGFD::FileType::operator!=(const FileType& rhs) const { return m_Content != rhs.m_Content; }
-
 bool IGFD::FileType::operator<(const FileType& rhs) const { return m_Content < rhs.m_Content; }
-
 bool IGFD::FileType::operator>(const FileType& rhs) const { return m_Content > rhs.m_Content; }
 
 #pragma endregion
@@ -1411,10 +1396,11 @@ IGFD_API bool IGFD::FileInfos::SearchForTag(const std::string& vTag) const {
 IGFD_API bool IGFD::FileInfos::SearchForExt(
     const std::string& vExt, const bool& vIsCaseInsensitive, const size_t& vMaxLevel) const {
     if (!vExt.empty()) {
+        const auto& ext_to_check = vIsCaseInsensitive ? Utils::LowerCaseString(vExt) : vExt;
         const auto& ext_levels = vIsCaseInsensitive ? fileExtLevels_optimized : fileExtLevels;
         if (vMaxLevel >= 1 && countExtDot >= vMaxLevel) {
             for (const auto& ext : ext_levels) {
-                if (!ext.empty() && ext == vExt) {
+                if (!ext.empty() && ext == ext_to_check) {
                     return true;
                 }
             }
@@ -1829,22 +1815,8 @@ IGFD_API void IGFD::FileManager::ScanDir(const FileDialogInternal& vFileDialogIn
                 switch (ent->d_type) {
                     case DT_DIR: fileType.SetContent(FileType::ContentType::Directory); break;
                     case DT_REG: fileType.SetContent(FileType::ContentType::File); break;
-#if DT_LNK != DT_UNKNOWN
-                    case DT_LNK: {
-                        fileType.SetSymLink(true);
-                        fileType.SetContent(FileType::ContentType::LinkToUnknown);  // by default if we can't figure out
-                                                                                    // the target type.
-                        struct stat statInfos = {};
-                        int result = stat((path + PATH_SEP + ent->d_name).c_str(), &statInfos);
-                        if (result == 0) {
-                            if (statInfos.st_mode & S_IFREG) {
-                                fileType.SetContent(FileType::ContentType::File);
-                            } else if (statInfos.st_mode & S_IFDIR) {
-                                fileType.SetContent(FileType::ContentType::Directory);
-                            }
-                        }
-                        break;
-                    }
+#if defined(_IGFD_UNIX_) || (DT_LNK != DT_UNKNOWN)
+                    case DT_LNK:
 #endif
                     case DT_UNKNOWN: {
                         struct stat sb = {};
@@ -1930,7 +1902,7 @@ IGFD_API void IGFD::FileManager::ScanDirForPathSelection(
             for (i = 0; i < n; i++) {
                 struct dirent* ent = files[i];
                 struct stat sb = {};
-                int result;
+                int result = 0;
                 if (ent->d_type == DT_UNKNOWN) {
 #ifdef _IGFD_WIN_
                     auto filePath = path + ent->d_name;
@@ -3317,6 +3289,7 @@ IGFD_API void IGFD::KeyExplorerFeature::prExploreWithkeys(
         }
     }
 }
+
  IGFD_API bool IGFD::KeyExplorerFeature::prFlashableSelectable(
     const char* label, bool selected, ImGuiSelectableFlags flags, bool vFlashing, const ImVec2& size_arg) {
     using namespace ImGui;

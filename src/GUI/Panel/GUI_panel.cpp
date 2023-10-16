@@ -4,7 +4,7 @@
 #include "../Element/Editor/GUI_editor_node.h"
 #include "../Element/Data/GUI_database.h"
 #include "../Element/Capture/GUI_capture.h"
-#include "../Style/GUI_indicator.h"
+#include "../Style/Widget/GUI_indicator.h"
 #include "../Window/Menu/GUI_mainmenubar.h"
 #include "../Engine/Profiler/GUI_timing.h"
 #include "../Engine/Render/GUI_shader.h"

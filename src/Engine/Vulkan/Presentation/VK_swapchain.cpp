@@ -1,12 +1,10 @@
 #include "VK_swapchain.h"
 #include "VK_frame.h"
-
 #include "../VK_engine.h"
 #include "../VK_struct.h"
 #include "../Camera/VK_viewport.h"
 #include "../Presentation/VK_framebuffer.h"
 #include "../Image/VK_depth.h"
-#include "../Image/VK_texture.h"
 #include "../Device/VK_physical_device.h"
 #include "../Window/VK_surface.h"
 

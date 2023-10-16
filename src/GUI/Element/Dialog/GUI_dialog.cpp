@@ -1,19 +1,20 @@
-#include "GUI_capture.h"
+#include "GUI_dialog.h"
 
 #include <GUI.h>
+#include <imgui/dialog/ImGuiFileDialog.h>
 
 
 //Constructor / Destructor
-GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+GUI_dialog::GUI_dialog(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
 
   //---------------------------
 }
-GUI_capture::~GUI_capture(){}
+GUI_dialog::~GUI_dialog(){}
 
 //Main function
-void GUI_capture::design_panel(){
+void GUI_dialog::design_panel(){
   //---------------------------
 
   this->capture_command();
@@ -22,10 +23,30 @@ void GUI_capture::design_panel(){
 }
 
 //Subfunction
-void GUI_capture::capture_command(){
+void GUI_dialog::capture_command(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
-  
+
+  // open Dialog Simple
+if (ImGui::Button("Open File Dialog"))
+  ImGuiFileDialog::Instance()->OpenDialog("ChooseFileDlgKey", "Choose File", ".cpp,.h,.hpp", ".");
+
+// display
+if (ImGuiFileDialog::Instance()->Display("ChooseFileDlgKey"))
+{
+  // action if OK
+  if (ImGuiFileDialog::Instance()->IsOk())
+  {
+    std::string filePathName = ImGuiFileDialog::Instance()->GetFilePathName();
+    std::string filePath = ImGuiFileDialog::Instance()->GetCurrentPath();
+    // action
+  }
+
+  // close
+  ImGuiFileDialog::Instance()->Close();
+}
+
+
 /*
   ImTextureID my_tex_id = io.Fonts->TexID;
   float my_tex_w = (float)io.Fonts->TexWidth;
