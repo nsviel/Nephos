@@ -18,6 +18,7 @@ public:
 public:
   //Main functions
   Struct_image* load_texture(string path);
+  void clean_texture(Struct_image* texture);
 
 private:
   VK_struct* vk_struct;

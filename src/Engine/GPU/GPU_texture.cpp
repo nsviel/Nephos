@@ -22,8 +22,14 @@ GPU_texture::~GPU_texture(){}
 Struct_image* GPU_texture::load_texture(string path){
   //---------------------------
 
-  Struct_image* image = vk_texture->load_texture(path);
+  Struct_image* texture = vk_texture->load_texture(path);
 
   //---------------------------
-  return image;
+  return texture;
+}
+void GPU_texture::clean_texture(Struct_image* texture){
+  //---------------------------
+
+
+  //---------------------------
 }

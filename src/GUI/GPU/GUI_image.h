@@ -2,9 +2,9 @@
 #define GUI_IMAGE_H
 
 #include <Specific/common.h>
+#include <GPU/GPU_texture.h>
 
 class Engine;
-class GPU_texture;
 
 
 class GUI_image
@@ -20,6 +20,8 @@ public:
 
 private:
   GPU_texture* gpu_texture;
+  Struct_image* image_current;
+  VkDescriptorSet descriptor;
 };
 
 

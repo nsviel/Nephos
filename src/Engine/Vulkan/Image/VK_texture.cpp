@@ -34,6 +34,7 @@ Struct_image*  VK_texture::load_texture(string path){
   texture->format = VK_FORMAT_R8G8B8A8_SRGB;
   texture->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   this->create_texture(texture);
+  this->vec_texture.push_back(texture);
 
   //---------------------------
   return texture;
@@ -48,10 +49,12 @@ void VK_texture::clean_texture(Struct_data* data){
 
   //---------------------------
 }
-void VK_texture::clean_texture(Struct_image* texture){
+void VK_texture::clean_textures(){
   //---------------------------
 
-  vk_image->clean_image(texture);
+  for(int i=0; i<vec_texture.size(); i++){
+    vk_image->clean_image(vec_texture[i]);
+  }
 
   //---------------------------
 }

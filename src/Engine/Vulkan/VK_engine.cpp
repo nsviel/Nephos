@@ -143,6 +143,7 @@ void VK_engine::clean_vulkan(){
   //---------------------------
 
   //gpu_render->clean_gui();
+  vk_texture->clean_textures();
   vk_renderpass->clean_renderpass();
   vk_swapchain->clean_swapchain();
   vk_canvas->clean_canvas();

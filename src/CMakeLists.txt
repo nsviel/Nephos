@@ -12,6 +12,7 @@ find_package(Vulkan REQUIRED)
 set(ALL_LIBS
   ${GLFW_LIBRARY}
   ${Vulkan_LIBRARIES}
+  ${VLC_LIBRARIES}
 
   Eigen3::Eigen #Eigen library
   stdc++fs #STD filesystem experimental
@@ -24,6 +25,14 @@ set(ALL_LIBS
   -lXxf86vm
   -lXrandr
   -lXi
+  -lvlc
+
+  #FFMPEG
+ -lavformat
+ -lavcodec
+ -lswresample
+ -lswscale
+ -lavutil
 )
 
 # Source files
@@ -57,5 +66,6 @@ target_include_directories(executable PUBLIC
   "${PROJECT_BINARY_DIR}"
   "${PROJECT_SOURCE_DIR}/extern"
   ${Vulkan_INCLUDE_DIRS}
+  ${VLC_INCLUDE_DIRS}
 )
 link_libraries(${Vulkan_LIBRARY})

@@ -23,7 +23,7 @@ public:
   //Main functions
   Struct_image* load_texture(string path);
   void clean_texture(Struct_data* object);
-  void clean_texture(Struct_image* texture);
+  void clean_textures();
 
   //Texture creation
   void create_texture(Struct_image* texture);
@@ -35,6 +35,8 @@ private:
   VK_struct* vk_struct;
   VK_buffer* vk_buffer;
   VK_image* vk_image;
+
+  vector<Struct_image*> vec_texture;
 };
 
 #endif

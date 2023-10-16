@@ -6,6 +6,7 @@
 
 class GUI;
 class GUI_image;
+class GUI_video;
 class Panel;
 
 
@@ -23,6 +24,7 @@ public:
   void capture_command();
 
 private:
+  GUI_video* gui_video;
   GUI_image* gui_image;
   Panel* panel;
 
