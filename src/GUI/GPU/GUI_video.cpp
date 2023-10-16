@@ -41,26 +41,25 @@ void GUI_video::display_video_vlc(string path){
 void GUI_video::display_video_ffmpeg(string path){
   //---------------------------
 
-
   AVFormatContext* formatContext = avformat_alloc_context();
   if (avformat_open_input(&formatContext, path.c_str(), nullptr, nullptr) != 0) {
-      // Handle error
+    cout<<"[error] Problem reading video file"<<endl;
   }
 
   if (avformat_find_stream_info(formatContext, nullptr) < 0) {
-      // Handle error
+    cout<<"[error] Problem finding video stream"<<endl;
   }
 
   int videoStream = -1;
   for (int i = 0; i < formatContext->nb_streams; i++) {
-      if (formatContext->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
-          videoStream = i;
-          break;
-      }
+    if (formatContext->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
+      videoStream = i;
+      break;
+    }
   }
 
   if (videoStream == -1) {
-      // Handle error: No video stream found
+    cout<<"[error] No video stream found"<<endl;
   }
 
   AVCodecParameters* codecParameters = formatContext->streams[videoStream]->codecpar;
@@ -71,20 +70,20 @@ void GUI_video::display_video_ffmpeg(string path){
 
   AVPacket packet;
   AVFrame* frame = av_frame_alloc();
-
+/*
   while (av_read_frame(formatContext, &packet) >= 0) {
-      if (packet.stream_index == videoStream) {
-          avcodec_send_packet(codecContext, &packet);
-          avcodec_receive_frame(codecContext, frame);
+    if (packet.stream_index == videoStream) {
+      avcodec_send_packet(codecContext, &packet);
+      avcodec_receive_frame(codecContext, frame);
 
-          // Process and render the frame with Vulkan and ImGui
-          // Use frame->data for the frame data
+      // Process and render the frame with Vulkan and ImGui
+      // Use frame->data for the frame data
 sayHello();
-          av_frame_unref(frame);
-      }
-      av_packet_unref(&packet);
+      av_frame_unref(frame);
+    }
+    av_packet_unref(&packet);
   }
-
+*/
   av_frame_free(&frame);
   avcodec_free_context(&codecContext);
   avformat_close_input(&formatContext);
