@@ -16,10 +16,10 @@ GUI_mainmenubar::GUI_mainmenubar(GUI* gui){
 
   Data* data_node = gui->get_data();
   this->gui = gui;
-  this->panel = gui->get_panel();
   this->gui_option = gui->get_gui_option();
   this->gui_init = gui->get_gui_init();
   this->gui_panel = gui->get_gui_panel();
+  this->panel = gui_panel->get_panel();
   this->loaderManager = data_node->get_loaderManager();
 
   this->show_demo = false;

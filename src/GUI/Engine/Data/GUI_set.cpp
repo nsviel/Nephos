@@ -10,8 +10,6 @@
 GUI_set::GUI_set(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  this->panel = gui->get_panel();
-
   this->item_width = 150;
 
   //---------------------------

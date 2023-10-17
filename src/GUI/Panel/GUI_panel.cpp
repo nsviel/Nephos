@@ -10,14 +10,14 @@
 #include "../Engine/Render/GUI_shader.h"
 #include "../Engine/Data/GUI_scene.h"
 #include "../Engine/Camera/GUI_camera.h"
-#include "../Engine/Data/GUI_object.h"
-#include "../Engine/Data/GUI_set.h"
-#include "../GUI.h"
 
 #include <Panel/Panel.h>
 #include <GUI.h>
 #include <Engine.h>
 #include <Data/Load/Loader.h>
+#include <Engine/Data/GUI_object.h>
+#include <Engine/Data/GUI_set.h>
+#include <Engine/GUI_engine.h>
 
 
 //Constructor / Destructor
@@ -25,17 +25,15 @@ GUI_panel::GUI_panel(GUI* gui){
   //---------------------------
 
   this->gui = gui;
-  this->panel = gui->get_panel();
-
-  this->gui_scene = gui->get_gui_scene();
-  this->gui_profiler = gui->get_gui_profiling();
-  this->gui_menubar = gui->get_gui_menubar();
-  this->gui_shader = gui->get_gui_shader();
-  this->gui_engine = gui->get_gui_engine();
-  this->gui_camera = gui->get_gui_camera();
-  this->gui_object = gui->get_gui_object();
-  this->gui_set = gui->get_gui_set();
-  this->gui_capture = gui->get_gui_capture();
+  this->panel = new Panel();
+  this->gui_object = new GUI_object(gui, &panel->show_object, "Object");
+  this->gui_set = new GUI_set(gui, &panel->show_set, "Set");
+  this->gui_engine = new GUI_engine(gui);
+  this->gui_profiler = new GUI_profiler(gui, &panel->show_profiler, "Profiler");
+  this->gui_shader = new GUI_shader(gui, &panel->show_shader, "Shader");
+  this->gui_scene = new GUI_scene(gui, &panel->show_scene, "Scene");
+  this->gui_capture = new GUI_capture(gui, &panel->show_capture, "Capture");
+  this->gui_camera = new GUI_camera(gui, &panel->show_camera, "Camera");
   this->gui_database = new GUI_database(gui, &panel->show_database, "Database##4323");
 
   //---------------------------

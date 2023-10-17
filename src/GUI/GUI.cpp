@@ -32,23 +32,13 @@ GUI::GUI(Engine* engine){
   this->engine = engine;
   this->window = window;
   this->data_node = engine->get_data();
-  this->panel = new Panel();
 
   this->gui_image = new GUI_image(engine);
   this->gui_video = new GUI_video(engine);
-
   this->gui_option = new GUI_option(this);
-  this->gui_profiler = new GUI_profiler(this, &panel->show_profiler, "Profiler");
-  this->gui_shader = new GUI_shader(this, &panel->show_shader, "Shader");
-  this->gui_object = new GUI_object(this, &panel->show_object, "Object");
-  this->gui_set = new GUI_set(this, &panel->show_set, "Set");
-  this->gui_scene = new GUI_scene(this, &panel->show_scene, "Scene");
   this->gui_init = new GUI_init(this);
   this->gui_control = new GUI_control(this);
-  this->gui_engine = new GUI_engine(this);
   this->gui_style = new GUI_style(this);
-  this->gui_capture = new GUI_capture(this, &panel->show_capture, "Capture");
-  this->gui_camera = new GUI_camera(this, &panel->show_camera, "Camera");
   this->gui_panel = new GUI_panel(this);
   this->gui_menubar = new GUI_mainmenubar(this);
   this->gui_gpu = new GUI_gpu(engine);
@@ -58,7 +48,6 @@ GUI::GUI(Engine* engine){
 GUI::~GUI(){
   //---------------------------
 
-  delete panel;
   delete gui_panel;
   delete gui_control;
   delete gui_option;

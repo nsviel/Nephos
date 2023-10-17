@@ -31,6 +31,16 @@ public:
   void draw_panels();
   void open_panels();
 
+  inline Panel* get_panel(){return panel;}
+  inline GUI_shader* get_gui_shader(){return gui_shader;}
+  inline GUI_profiler* get_gui_profiling(){return gui_profiler;}
+  inline GUI_object* get_gui_object(){return gui_object;}
+  inline GUI_set* get_gui_set(){return gui_set;}
+  inline GUI_camera* get_gui_camera(){return gui_camera;}
+  inline GUI_capture* get_gui_capture(){return gui_capture;}
+  inline GUI_scene* get_gui_scene(){return gui_scene;}
+  inline GUI_engine* get_gui_engine(){return gui_engine;}
+
 private:
   GUI* gui;
   Panel* panel;

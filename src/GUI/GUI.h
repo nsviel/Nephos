@@ -6,7 +6,7 @@
 class Engine;
 class Data;
 class Window;
-class Panel;
+
 
 class GUI_panel;
 class GUI_control;
@@ -46,22 +46,12 @@ public:
   inline Engine* get_engine(){return engine;}
   inline Data* get_data(){return data_node;}
   inline Window* get_window(){return window;}
-
-  inline Panel* get_panel(){return panel;}
   inline GUI_panel* get_gui_panel(){return gui_panel;}
   inline GUI_control* get_gui_control(){return gui_control;}
   inline GUI_option* get_gui_option(){return gui_option;}
-  inline GUI_scene* get_gui_scene(){return gui_scene;}
   inline GUI_mainmenubar* get_gui_menubar(){return gui_menubar;}
-  inline GUI_shader* get_gui_shader(){return gui_shader;}
-  inline GUI_profiler* get_gui_profiling(){return gui_profiler;}
   inline GUI_style* get_gui_style(){return gui_style;}
   inline GUI_init* get_gui_init(){return gui_init;}
-  inline GUI_engine* get_gui_engine(){return gui_engine;}
-  inline GUI_object* get_gui_object(){return gui_object;}
-  inline GUI_set* get_gui_set(){return gui_set;}
-  inline GUI_camera* get_gui_camera(){return gui_camera;}
-  inline GUI_capture* get_gui_capture(){return gui_capture;}
   inline GUI_image* get_gui_image(){return gui_image;}
   inline GUI_video* get_gui_video(){return gui_video;}
 
@@ -69,7 +59,6 @@ private:
   Engine* engine;
   Data* data_node;
   Window* window;
-  Panel* panel;
 
   GUI_panel* gui_panel;
   GUI_control* gui_control;

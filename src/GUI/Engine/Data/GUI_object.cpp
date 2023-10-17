@@ -12,7 +12,6 @@ GUI_object::GUI_object(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   //---------------------------
 
   Data* data_node = gui->get_data();
-  this->panel = gui->get_panel();
   this->sceneManager = data_node->get_sceneManager();
 
   this->item_width = 150;
@@ -51,7 +50,7 @@ void GUI_object::object_parameter(Object* object){
     ImGui::SameLine();
     if(ImGui::Button(ICON_FA_TRASH "##4567")){
       sceneManager->delete_scene_object(object);
-      panel->show_object = false;
+      this->object_selected = nullptr;
     }
   }
   ImGui::NextColumn();

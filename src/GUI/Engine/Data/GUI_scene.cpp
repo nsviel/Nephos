@@ -2,6 +2,7 @@
 
 #include <GUI.h>
 #include <Panel/Panel.h>
+#include <Panel/GUI_panel.h>
 #include <Data/Data.h>
 #include <Data/Scene/Database.h>
 #include <Engine/Data/GUI_object.h>
@@ -13,10 +14,9 @@ GUI_scene::GUI_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
   //---------------------------
 
   Data* data_node = gui->get_data();
-  this->dataManager = data_node->get_dataManager();
-  this->panel = gui->get_panel();
-  this->gui_object = gui->get_gui_object();
-  this->gui_set = gui->get_gui_set();
+  this->gui_panel = gui->get_gui_panel();
+  this->dataManager = data_node->get_dataManager();sayHello();
+  this->panel = gui_panel->get_panel();sayHello();
 
   //---------------------------
 }
@@ -118,6 +118,7 @@ int GUI_scene::data_node_tree(Set* set){
 
   //If item double-clicked
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
+    GUI_set* gui_set = gui_panel->get_gui_set();
     gui_set->set_selected_set(set);
     panel->show_set = true;
   }
@@ -148,6 +149,7 @@ int GUI_scene::data_node_tree(Set* set){
 
       //If item double-clicked
       if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
+        GUI_object* gui_object = gui_panel->get_gui_object();
         gui_object->set_selected_object(object);
         panel->show_object = true;
       }
