@@ -18,6 +18,7 @@
 #include <Engine/Data/GUI_object.h>
 #include <Engine/Data/GUI_set.h>
 #include <Engine/GUI_engine.h>
+#include <Window/Menu/GUI_option.h>
 
 
 //Constructor / Destructor
@@ -27,6 +28,7 @@ GUI_panel::GUI_panel(GUI* gui){
   this->gui = gui;
   this->panel = new Panel();
   this->gui_engine = new GUI_engine(gui);
+  this->gui_option = new GUI_option(gui, &panel->show_option, "Option");
   this->gui_object = new GUI_object(gui, &panel->show_object, "Object");
   this->gui_set = new GUI_set(gui, &panel->show_set, "Set");
   this->gui_profiler = new GUI_profiler(gui, &panel->show_profiler, "Profiler");
@@ -52,6 +54,7 @@ void GUI_panel::draw_panels(){
   gui_capture->run_panel();
   gui_scene->run_panel();
   gui_profiler->run_panel();
+  gui_option->run_panel();
 
   gui_engine->design_panel();
 
@@ -60,6 +63,7 @@ void GUI_panel::draw_panels(){
 void GUI_panel::open_panels(){
   //---------------------------
 
+  ImGui::Checkbox("Option##456", &panel->show_option);
   ImGui::Checkbox("Scene##456", &panel->show_scene);
   ImGui::Checkbox("Database##456", &panel->show_database);
   ImGui::Checkbox("Profiler##456", &panel->show_profiler);

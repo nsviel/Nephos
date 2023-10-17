@@ -16,9 +16,9 @@ GUI_mainmenubar::GUI_mainmenubar(GUI* gui){
 
   Data* data = gui->get_data();
   this->gui = gui;
-  this->gui_option = gui->get_gui_option();
   this->gui_init = gui->get_gui_init();
   this->gui_panel = gui->get_gui_panel();
+  this->gui_option = gui_panel->get_gui_option();
   this->panel = gui_panel->get_panel();
   this->loaderManager = data->get_loaderManager();
 
@@ -57,9 +57,8 @@ void GUI_mainmenubar::menu(){
   if(show_demo){
     ImGui::ShowDemoWindow(&show_demo);
   }
-  if(ImGui::BeginMenu(ICON_FA_COG, "Option")){
-    gui_option->design_option();
-    ImGui::EndMenu();
+  if(ImGui::MenuItem(ICON_FA_COG, "Option")){
+    panel->show_option = !panel->show_option;
   }
   if(ImGui::MenuItem(ICON_FA_CAMERA, "Camera##111")){
     panel->show_camera = !panel->show_camera;

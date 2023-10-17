@@ -9,7 +9,7 @@
 #include "Element/Capture/GUI_capture.h"
 #include "Window/Window.h"
 #include "Window/Menu/GUI_mainmenubar.h"
-#include "Window/Menu/GUI_option.h"
+
 #include "Window/Control/GUI_control.h"
 #include "Style/GUI_style.h"
 #include "Engine/GUI_engine.h"
@@ -35,7 +35,6 @@ GUI::GUI(Window* window, Engine* engine){
 
   this->gui_image = new GUI_image(engine);
   this->gui_video = new GUI_video(engine);
-  this->gui_option = new GUI_option(this);
   this->gui_init = new GUI_init(this);
   this->gui_control = new GUI_control(this);
   this->gui_style = new GUI_style(this);
@@ -50,7 +49,6 @@ GUI::~GUI(){
 
   delete gui_panel;
   delete gui_control;
-  delete gui_option;
   delete gui_scene;
   delete gui_profiler;
 

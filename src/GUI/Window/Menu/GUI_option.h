@@ -2,6 +2,7 @@
 #define GUI_OPION_H
 
 #include <Specific/common.h>
+#include <Panel/BASE_panel.h>
 
 class GUI;
 class Param;
@@ -9,16 +10,16 @@ class VK_engine;
 class VK_struct;
 
 
-class GUI_option
+class GUI_option : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_option(GUI* gui);
+  GUI_option(GUI* gui, bool* show_window, string name);
   ~GUI_option();
 
 public:
   //Main function
-  void design_option();
+  void design_panel();
 
   //Subfunctions
   void option_color();

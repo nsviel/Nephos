@@ -11,7 +11,7 @@ class GUI_scene;
 class GUI_mainmenubar;
 class GUI_shader;
 class GUI_engine;
-class GUI;
+class GUI_option;
 class GUI_database;
 class GUI_camera;
 class GUI_object;
@@ -40,6 +40,7 @@ public:
   inline GUI_capture* get_gui_capture(){return gui_capture;}
   inline GUI_scene* get_gui_scene(){return gui_scene;}
   inline GUI_engine* get_gui_engine(){return gui_engine;}
+  inline GUI_option* get_gui_option(){return gui_option;}
 
 private:
   GUI* gui;
@@ -55,6 +56,7 @@ private:
   GUI_camera* gui_camera;
   GUI_capture* gui_capture;
   GUI_set* gui_set;
+  GUI_option* gui_option;
 
   bool show_camera;
   bool show_object;

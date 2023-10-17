@@ -21,6 +21,7 @@ struct Panel{
   bool show_database = false;
   bool show_profiler = true;
   bool show_scene    = true;
+  bool show_option   = false;
 
   //---------------------------
 };

@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-GUI_option::GUI_option(GUI* gui){
+GUI_option::GUI_option(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->gui = gui;
@@ -24,7 +24,7 @@ GUI_option::GUI_option(GUI* gui){
 GUI_option::~GUI_option(){}
 
 //Main function
-void GUI_option::design_option(){
+void GUI_option::design_panel(){
   //---------------------------
 
   this->option_font();
