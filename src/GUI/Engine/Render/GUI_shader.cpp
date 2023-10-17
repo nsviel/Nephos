@@ -60,7 +60,6 @@ void GUI_shader::design_panel(){
 void GUI_shader::shader_combo_class(){
   //---------------------------
 
-  //Table list combo
   if(ImGui::BeginCombo("##shader_combo_class", vec_shader_class[ID_class].c_str())){
     for(int i=0; i<vec_shader_class.size(); ++i){
       const bool is_selected = (ID_class == i);

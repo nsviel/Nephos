@@ -4,7 +4,7 @@
 
 
 //Constructor / Destructor
-GUI_database::GUI_database(GUI* gui){
+GUI_database::GUI_database(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->database = new Database_sqlite("../media/database/database.db3");
@@ -18,12 +18,7 @@ GUI_database::~GUI_database(){}
 void GUI_database::design_panel(){
   //---------------------------
 
-  ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-  ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
-  ImGui::Begin("Database");
   this->design_database();
-  ImGui::End();
-  ImGui::PopStyleVar();
 
   //---------------------------
 }

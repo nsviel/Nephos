@@ -7,6 +7,7 @@
 class GUI;
 class GUI_image;
 class GUI_video;
+class GUI_panel;
 class Panel;
 
 
@@ -26,6 +27,7 @@ public:
 private:
   GUI_video* gui_video;
   GUI_image* gui_image;
+  GUI* gui;
   Panel* panel;
 
   int item_width;

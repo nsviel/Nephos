@@ -1,6 +1,7 @@
 #ifndef GUI_DATABASE_H
 #define GUI_DATABASE_H
 
+#include <Panel/BASE_panel.h>
 #include <Specific/common.h>
 
 class GUI;
@@ -9,11 +10,11 @@ class GUI_control;
 class Database_sqlite;
 
 
-class GUI_database
+class GUI_database : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_database(GUI* gui);
+  GUI_database(GUI* gui, bool* show_window, string name);
   ~GUI_database();
 
 public:

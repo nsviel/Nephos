@@ -23,6 +23,7 @@ public:
 private:
   GPU_texture* gpu_texture;
 
+  VkDescriptorSet descriptor;
   libvlc_media_player_t* mediaPlayer;
 };
 

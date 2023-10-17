@@ -12,6 +12,7 @@
 #include <image/stb_image.h>
 
 
+
 //Constructor / Destructor
 VK_texture::VK_texture(VK_engine* vk_engine){
   //---------------------------
@@ -112,6 +113,52 @@ void VK_texture::create_texture_from_file(Struct_image* image){
   vkDestroyBuffer(vk_struct->device.device, staging_buffer, nullptr);
   vkFreeMemory(vk_struct->device.device, staging_mem, nullptr);
 
+  //---------------------------
+}
+void VK_texture::create_texture_from_frame(){
+  VK_command* vk_command = vk_engine->get_vk_command();
+  //---------------------------
+
+//GENERALISER la fonction précédente pour que lon charge la texture qqsoit la data en entré
+/*
+  //Load image
+  stbi_uc* tex_data = frame;
+  VkDeviceSize tex_size = width * height * 4;
+  if(!tex_data){
+    throw std::runtime_error("failed to load texture image!");
+  }
+
+  //Create stagging buffer
+  VkBuffer staging_buffer;
+  VkDeviceMemory staging_mem;
+  vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
+  vk_buffer->bind_buffer_memory(MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+
+  //Copy data to stagging buffer
+  void* data;
+  vkMapMemory(vk_struct->device.device, staging_mem, 0, tex_size, 0, &data);
+  memcpy(data, tex_data, static_cast<size_t>(tex_size));
+  vkUnmapMemory(vk_struct->device.device, staging_mem);
+
+  //Create image
+  image->width = width;
+  image->height = height;
+  image->format = VK_FORMAT_R8G8B8A8_SRGB;
+  image->tiling = VK_IMAGE_TILING_OPTIMAL;
+  image->image_usage = IMAGE_USAGE_TRANSFERT | IMAGE_USAGE_SAMPLER;
+  image->properties = MEMORY_GPU;
+  vk_image->create_image(image);
+
+  //Image transition from undefined layout to read only layout
+  vk_command->image_layout_transition_single(image, IMAGE_LAYOUT_EMPTY, IMAGE_LAYOUT_TRANSFER_DST);
+  this->copy_buffer_to_image(image, staging_buffer);
+  vk_command->image_layout_transition_single(image, IMAGE_LAYOUT_TRANSFER_DST, IMAGE_LAYOUT_SHADER_READONLY);
+
+  //Free memory
+  stbi_image_free(tex_data);
+  vkDestroyBuffer(vk_struct->device.device, staging_buffer, nullptr);
+  vkFreeMemory(vk_struct->device.device, staging_mem, nullptr);
+*/
   //---------------------------
 }
 void VK_texture::copy_buffer_to_image(Struct_image* image, VkBuffer buffer){

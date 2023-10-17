@@ -31,7 +31,6 @@ public:
   void draw_panels();
 
   //Subfunction
-  void docker_space_main();
   void set_initial_panel_focus();
 
 private:

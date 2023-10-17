@@ -2,6 +2,7 @@
 
 #include <GPU/GUI_video.h>
 #include <GPU/GUI_image.h>
+#include <Panel/GUI_panel.h>
 #include <GUI.h>
 
 
@@ -11,6 +12,7 @@ GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
 
   this->gui_image = gui->get_gui_image();
   this->gui_video = gui->get_gui_video();
+  this->gui = gui;
 
   //---------------------------
 }
@@ -30,8 +32,9 @@ void GUI_capture::capture_command(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  gui_video->display_video_ffmpeg("/home/aeter/Desktop/Dev/Nephos/media/vulkano.mp4");
-  gui_image->display_image("/home/aeter/Desktop/Dev/Nephos/media/vulkano.jpg");
+
+  //gui_video->display_video_ffmpeg("/home/aeter/Desktop/Dev/Nephos/media/vulkano.mp4");
+  //gui_image->display_image("/home/aeter/Desktop/Dev/Nephos/media/vulkano.jpg");
 
 /*
   ImTextureID my_tex_id = io.Fonts->TexID;

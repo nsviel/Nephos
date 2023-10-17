@@ -17,7 +17,6 @@ GUI_engine::GUI_engine(GUI* gui){
   VK_engine* vk_engine = engine->get_vk_engine();
   this->vk_struct = vk_engine->get_vk_struct();
   this->gui_control = gui->get_gui_control();
-  this->gui_menubar = gui->get_gui_menubar();
 
   //---------------------------
 }

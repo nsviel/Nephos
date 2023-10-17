@@ -6,6 +6,7 @@
 #include "../Struct/typedef.h"
 #include <Specific/common.h>
 
+
 class VK_engine;
 class VK_struct;
 class VK_buffer;
@@ -28,6 +29,7 @@ public:
   //Texture creation
   void create_texture(Struct_image* texture);
   void create_texture_from_file(Struct_image* texture);
+  void create_texture_from_frame();
   void copy_buffer_to_image(Struct_image* image, VkBuffer buffer);
 
 private:

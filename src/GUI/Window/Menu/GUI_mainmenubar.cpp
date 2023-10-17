@@ -3,11 +3,10 @@
 #include "../../Element/Initialization/GUI_init.h"
 
 #include <GUI.h>
+#include <Panel/GUI_panel.h>
 #include <Panel/Panel.h>
-
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
-
 #include <image/IconsFontAwesome5.h>
 
 
@@ -20,6 +19,7 @@ GUI_mainmenubar::GUI_mainmenubar(GUI* gui){
   this->panel = gui->get_panel();
   this->gui_option = gui->get_gui_option();
   this->gui_init = gui->get_gui_init();
+  this->gui_panel = gui->get_gui_panel();
   this->loaderManager = data_node->get_loaderManager();
 
   this->show_demo = false;
@@ -64,6 +64,14 @@ void GUI_mainmenubar::menu(){
   if(ImGui::MenuItem(ICON_FA_CAMERA, "Camera##111")){
     panel->show_camera = !panel->show_camera;
   }
+  if(ImGui::BeginMenu("Panel##111")){
+    ImGui::Checkbox("Camera##456", &panel->show_camera);
+    ImGui::Checkbox("Shader##456", &panel->show_shader);
+    ImGui::Checkbox("Capture##456", &panel->show_capture);
+    ImGui::Checkbox("Database##456", &panel->show_database);
+    ImGui::EndMenu();
+  }
+
 
   //---------------------------
 }

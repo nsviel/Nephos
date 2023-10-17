@@ -40,6 +40,9 @@ public:
   void loop();
   void exit();
 
+  //Subfunction
+  void docker_space_main();
+
   inline Engine* get_engine(){return engine;}
   inline Data* get_data(){return data_node;}
   inline Window* get_window(){return window;}
