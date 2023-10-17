@@ -16,6 +16,7 @@
 #include <Engine.h>
 #include <Data/Load/Loader.h>
 #include <Engine/Data/GUI_object.h>
+#include <Engine/Data/GUI_scene.h>
 #include <Engine/Data/GUI_set.h>
 #include <Engine/GUI_engine.h>
 #include <Window/Menu/GUI_option.h>
@@ -27,13 +28,21 @@ GUI_panel::GUI_panel(GUI* gui){
 
   this->gui = gui;
   this->panel = new Panel();
+
+  //---------------------------
+}
+GUI_panel::~GUI_panel(){}
+
+//Main function
+void GUI_panel::create_panels(){
+  //---------------------------
+
   this->gui_engine = new GUI_engine(gui);
   this->gui_option = new GUI_option(gui, &panel->show_option, "Option");
   this->gui_object = new GUI_object(gui, &panel->show_object, "Object");
   this->gui_set = new GUI_set(gui, &panel->show_set, "Set");
   this->gui_profiler = new GUI_profiler(gui, &panel->show_profiler, "Profiler");
   this->gui_shader = new GUI_shader(gui, &panel->show_shader, "Shader");
-
   this->gui_scene = new GUI_scene(gui, &panel->show_scene, "Scene");
   this->gui_capture = new GUI_capture(gui, &panel->show_capture, "Capture");
   this->gui_camera = new GUI_camera(gui, &panel->show_camera, "Camera");
@@ -41,9 +50,6 @@ GUI_panel::GUI_panel(GUI* gui){
 
   //---------------------------
 }
-GUI_panel::~GUI_panel(){}
-
-//Main function
 void GUI_panel::draw_panels(){
   //---------------------------
 

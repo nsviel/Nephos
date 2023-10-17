@@ -14,21 +14,12 @@ GUI_scene::GUI_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
   //---------------------------
 
   Data* data = gui->get_data();
-  this->gui_panel = gui->get_gui_panel();
+  GUI_panel* gui_panel = gui->get_gui_panel();
   this->dataManager = data->get_dataManager();
   this->panel = gui_panel->get_panel();
   this->show_window = show_window;
-
-
-   GUI_engine* truc = gui_panel->get_gui_engine();
-   GUI_shader* gui_shader = gui_panel->get_gui_shader();
-
-say(truc);
-say(gui_shader);
-  say(gui_panel);
-
   this->gui_set = gui_panel->get_gui_set();
-  say(gui_set);
+  this->gui_object = gui_panel->get_gui_object();
 
   //---------------------------
 }
@@ -179,7 +170,6 @@ int GUI_scene::data_node_tree(Set* set){
 
       //If item double-clicked
       if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
-        GUI_object* gui_object = gui_panel->get_gui_object();
         gui_object->set_selected_object(object);
         panel->show_object = true;
       }

@@ -7,23 +7,12 @@ class Engine;
 class Data;
 class Window;
 
-
 class GUI_panel;
 class GUI_control;
-class GUI_option;
-class GUI_scene;
 class GUI_mainmenubar;
-class GUI_shader;
-class GUI_profiler;
 class GUI_style;
 class GUI_init;
-class GUI_editor_node;
-class GUI_engine;
-class GUI_camera;
-class GUI_object;
-class GUI_set;
 class GUI_gpu;
-class GUI_capture;
 class GUI_image;
 class GUI_video;
 
@@ -62,19 +51,9 @@ private:
 
   GUI_panel* gui_panel;
   GUI_control* gui_control;
-
-  GUI_scene* gui_scene;
   GUI_mainmenubar* gui_menubar;
-  GUI_shader*gui_shader;
-  GUI_profiler* gui_profiler;
   GUI_style* gui_style;
   GUI_init* gui_init;
-  GUI_engine* gui_engine;
-  GUI_editor_node* gui_editor_node;
-  GUI_object* gui_object;
-  GUI_camera* gui_camera;
-  GUI_capture* gui_capture;
-  GUI_set* gui_set;
   GUI_gpu* gui_gpu;
   GUI_image* gui_image;
   GUI_video* gui_video;

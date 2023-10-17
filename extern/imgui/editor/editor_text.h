@@ -265,6 +265,7 @@ public:
 	void Undo(int aSteps = 1);
 	void Redo(int aSteps = 1);
 
+	static const Palette& get_editor_style();
 	static const Palette& get_custom_palette();
 	static const Palette& GetDarkPalette();
 	static const Palette& GetLightPalette();

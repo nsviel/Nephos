@@ -1,4 +1,5 @@
 #include "GUI_editor_text.h"
+#include "../../Style/Editor_style.h"
 
 
 //Constructor / Destructor
@@ -6,6 +7,8 @@ GUI_editor_text::GUI_editor_text(){
   //---------------------------
 
   this->editor = new TextEditor();
+  editor->SetPalette(editor->get_editor_style());
+
   //---------------------------
 }
 GUI_editor_text::~GUI_editor_text(){}
@@ -14,7 +17,12 @@ GUI_editor_text::~GUI_editor_text(){}
 void GUI_editor_text::run_editor(){
   //---------------------------
 
+  ImGuiIO& io = ImGui::GetIO();
+  ImFont* font = io.Fonts->Fonts[io.Fonts->Fonts.Size - 1];
+
+  ImGui::PushFont(font);
   editor->Render("Editor");
+  ImGui::PopFont();
 
   //---------------------------
 }

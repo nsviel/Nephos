@@ -4,7 +4,6 @@
 #include "GPU/GUI_video.h"
 #include "Panel/Panel.h"
 #include "Panel/GUI_panel.h"
-#include "Element/Editor/GUI_editor_node.h"
 #include "Element/Initialization/GUI_init.h"
 #include "Element/Capture/GUI_capture.h"
 #include "Window/Window.h"
@@ -49,8 +48,6 @@ GUI::~GUI(){
 
   delete gui_panel;
   delete gui_control;
-  delete gui_scene;
-  delete gui_profiler;
 
   //---------------------------
 }
@@ -59,6 +56,7 @@ GUI::~GUI(){
 void GUI::init(){
   //---------------------------
 
+  gui_panel->create_panels();
   gui_gpu->init_gui();
   gui_style->gui_style();
 

@@ -8,7 +8,6 @@ class GUI;
 class Panel;
 class GUI_object;
 class GUI_set;
-class GUI_panel;
 class Database;
 
 
@@ -33,7 +32,6 @@ private:
   Panel* panel;
   GUI_object* gui_object;
   GUI_set* gui_set;
-  GUI_panel* gui_panel;
   Database* dataManager;
 
   bool* show_window;

@@ -7,7 +7,6 @@ class GUI;
 class Panel;
 
 class GUI_profiler;
-class GUI_scene;
 class GUI_mainmenubar;
 class GUI_shader;
 class GUI_engine;
@@ -16,6 +15,7 @@ class GUI_database;
 class GUI_camera;
 class GUI_object;
 class GUI_set;
+class GUI_scene;
 class GUI_capture;
 
 
@@ -28,6 +28,7 @@ public:
 
 public:
   //Main functions
+  void create_panels();
   void draw_panels();
   void open_panels();
 

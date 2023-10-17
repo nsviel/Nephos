@@ -24,7 +24,7 @@ bool equals(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, Bi
 }
 
 TextEditor::TextEditor()
-	: mLineSpacing(1.0f)
+	: mLineSpacing(1.2f)
 	, mUndoIndex(0)
 	, mTabSize(4)
 	, mOverwrite(false)

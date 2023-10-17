@@ -29,10 +29,13 @@ public:
   void render_frame();
   void render_command(VkCommandBuffer command_buffer);
 
+  inline ImFont* get_font_editor(){return font_editor;}
+
 private:
   VK_struct* vk_struct;
   DR_ui* ui_drawing;
 
+  ImFont* font_editor;
   VkDescriptorPool imguiPool;
   ImDrawData* draw_data;
 };

@@ -107,6 +107,13 @@ void GUI_gpu::gui_select_font(){
   ImFontConfig config_text;
   config_text.GlyphExtraSpacing.x = 1.0f;
 
+  //Configuration - texte
+  ImFontConfig config_editor;
+  config_editor.GlyphExtraSpacing.x = 1.5f;
+  config_editor.GlyphExtraSpacing.y = 2.0f;
+  config_editor.OversampleH = 4.0f;
+  config_editor.OversampleV = 4.0f;
+
   //Configuration - icon
   ImFontConfig config_icon;
   config_icon.MergeMode = true;
@@ -115,10 +122,11 @@ void GUI_gpu::gui_select_font(){
   //Load all droidsans font with size from 13 to 23
   float font_size = 13.0f;
   for(int i=0; i<10; i++){
-    io.Fonts->AddFontFromFileTTF("../src/GUI/Style/Font/DroidSans.ttf", font_size, &config_text);
-    io.Fonts->AddFontFromFileTTF("../src/GUI/Style/Font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
+    io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_text);
+    io.Fonts->AddFontFromFileTTF("../media/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
     font_size += 1.0f;
   }
+  this->font_editor = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", 15.0f, &config_editor);
 
   //Buid the font database
   io.Fonts->Build();
