@@ -1,5 +1,5 @@
-#ifndef WIN_SET_H
-#define WIN_SET_H
+#ifndef GUI_SET_H
+#define GUI_SET_H
 
 #include <Panel/BASE_panel.h>
 #include <Specific/common.h>

@@ -33,6 +33,7 @@ GUI_panel::GUI_panel(GUI* gui){
   this->gui_set = new GUI_set(gui, &panel->show_set, "Set");
   this->gui_profiler = new GUI_profiler(gui, &panel->show_profiler, "Profiler");
   this->gui_shader = new GUI_shader(gui, &panel->show_shader, "Shader");
+
   this->gui_scene = new GUI_scene(gui, &panel->show_scene, "Scene");
   this->gui_capture = new GUI_capture(gui, &panel->show_capture, "Capture");
   this->gui_camera = new GUI_camera(gui, &panel->show_camera, "Camera");

@@ -1,5 +1,5 @@
-#ifndef GUI_OBJECT_H
-#define GUI_OBJECT_H
+#ifndef GUI_SCENE_H
+#define GUI_SCENE_H
 
 #include <Panel/BASE_panel.h>
 #include <Specific/common.h>

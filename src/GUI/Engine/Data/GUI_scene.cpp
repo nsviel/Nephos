@@ -19,6 +19,17 @@ GUI_scene::GUI_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
   this->panel = gui_panel->get_panel();
   this->show_window = show_window;
 
+
+   GUI_engine* truc = gui_panel->get_gui_engine();
+   GUI_shader* gui_shader = gui_panel->get_gui_shader();
+
+say(truc);
+say(gui_shader);
+  say(gui_panel);
+
+  this->gui_set = gui_panel->get_gui_set();
+  say(gui_set);
+
   //---------------------------
 }
 GUI_scene::~GUI_scene(){}
@@ -91,8 +102,9 @@ void GUI_scene::tree_view(){
   flag_tree |= ImGuiTableFlags_NoBordersInBody;
   flag_tree |= ImGuiTableFlags_SizingFixedSame;
 
-
+  ImGui::SetNextWindowSize(ImVec2(400, 400));
   if(ImGui::BeginTable("data_view", 1)){
+    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch);
 
     //Database
     for(int row_i=0; row_i<list_data->size(); row_i++){
@@ -137,7 +149,6 @@ int GUI_scene::data_node_tree(Set* set){
 
   //If item double-clicked
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
-    GUI_set* gui_set = gui_panel->get_gui_set();
     gui_set->set_selected_set(set);
     panel->show_set = true;
   }
