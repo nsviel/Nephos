@@ -1,20 +1,20 @@
 #ifndef GUI_TIMING_H
 #define GUI_TIMING_H
 
+#include <Panel/BASE_panel.h>
 #include <Specific/common.h>
 
 class GUI;
-
 class VK_engine;
 class VK_struct;
 
 
-class GUI_timing
+class GUI_profiler : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_timing(GUI* gui);
-  ~GUI_timing();
+  GUI_profiler(GUI* gui, bool* show_window, string name);
+  ~GUI_profiler();
 
 public:
   //Main function

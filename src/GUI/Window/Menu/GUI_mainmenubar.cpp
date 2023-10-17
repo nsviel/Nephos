@@ -65,10 +65,7 @@ void GUI_mainmenubar::menu(){
     panel->show_camera = !panel->show_camera;
   }
   if(ImGui::BeginMenu("Panel##111")){
-    ImGui::Checkbox("Camera##456", &panel->show_camera);
-    ImGui::Checkbox("Shader##456", &panel->show_shader);
-    ImGui::Checkbox("Capture##456", &panel->show_capture);
-    ImGui::Checkbox("Database##456", &panel->show_database);
+    gui_panel->open_panels();
     ImGui::EndMenu();
   }
 

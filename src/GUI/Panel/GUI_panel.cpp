@@ -6,7 +6,7 @@
 #include "../Element/Capture/GUI_capture.h"
 #include "../Style/Widget/GUI_indicator.h"
 #include "../Window/Menu/GUI_mainmenubar.h"
-#include "../Engine/Profiler/GUI_timing.h"
+#include "../Engine/Profiler/GUI_profiler.h"
 #include "../Engine/Render/GUI_shader.h"
 #include "../Engine/Data/GUI_scene.h"
 #include "../Engine/Camera/GUI_camera.h"
@@ -28,7 +28,7 @@ GUI_panel::GUI_panel(GUI* gui){
   this->panel = gui->get_panel();
 
   this->gui_scene = gui->get_gui_scene();
-  this->gui_timing = gui->get_gui_profiling();
+  this->gui_profiler = gui->get_gui_profiling();
   this->gui_menubar = gui->get_gui_menubar();
   this->gui_shader = gui->get_gui_shader();
   this->gui_engine = gui->get_gui_engine();
@@ -46,25 +46,28 @@ GUI_panel::~GUI_panel(){}
 void GUI_panel::draw_panels(){
   //---------------------------
 
-
   gui_shader->run_panel();
-  gui_timing->design_panel();
-  gui_engine->design_panel();
   gui_database->run_panel();
-  gui_scene->design_panel();
   gui_camera->run_panel();
   gui_object->run_panel();
   gui_set->run_panel();
   gui_capture->run_panel();
+  gui_scene->run_panel();
+  gui_profiler->run_panel();
+
+  gui_engine->design_panel();
 
   //---------------------------
 }
-
-//Subfunction
-void GUI_panel::set_initial_panel_focus(){
+void GUI_panel::open_panels(){
   //---------------------------
 
-  ImGui::SetWindowFocus("Object");
+  ImGui::Checkbox("Scene##456", &panel->show_scene);
+  ImGui::Checkbox("Database##456", &panel->show_database);
+  ImGui::Checkbox("Profiler##456", &panel->show_profiler);
+  ImGui::Checkbox("Camera##456", &panel->show_camera);
+  ImGui::Checkbox("Shader##456", &panel->show_shader);
+  ImGui::Checkbox("Capture##456", &panel->show_capture);
 
   //---------------------------
 }

@@ -6,7 +6,7 @@
 class GUI;
 class Panel;
 
-class GUI_timing;
+class GUI_profiler;
 class GUI_scene;
 class GUI_mainmenubar;
 class GUI_shader;
@@ -29,15 +29,13 @@ public:
 public:
   //Main functions
   void draw_panels();
-
-  //Subfunction
-  void set_initial_panel_focus();
+  void open_panels();
 
 private:
   GUI* gui;
   Panel* panel;
 
-  GUI_timing* gui_timing;
+  GUI_profiler* gui_profiler;
   GUI_scene* gui_scene;
   GUI_mainmenubar* gui_menubar;
   GUI_shader* gui_shader;

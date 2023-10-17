@@ -1,6 +1,7 @@
 #ifndef GUI_OBJECT_H
 #define GUI_OBJECT_H
 
+#include <Panel/BASE_panel.h>
 #include <Specific/common.h>
 
 class GUI;
@@ -10,11 +11,11 @@ class GUI_set;
 class Database;
 
 
-class GUI_scene
+class GUI_scene : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_scene(GUI* gui);
+  GUI_scene(GUI* gui, bool* show_window, string name);
   ~GUI_scene();
 
 public:

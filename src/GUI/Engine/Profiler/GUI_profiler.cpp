@@ -1,4 +1,4 @@
-#include "GUI_timing.h"
+#include "GUI_profiler.h"
 
 #include <GUI.h>
 #include <Vulkan/VK_engine.h>
@@ -7,7 +7,7 @@
 
 
 //Constructor / Destructor
-GUI_timing::GUI_timing(GUI* gui){
+GUI_profiler::GUI_profiler(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->gui = gui;
@@ -19,24 +19,19 @@ GUI_timing::GUI_timing(GUI* gui){
 
   //---------------------------
 }
-GUI_timing::~GUI_timing(){}
+GUI_profiler::~GUI_profiler(){}
 
 //Main function
-void GUI_timing::design_panel(){
+void GUI_profiler::design_panel(){
   //---------------------------
 
-  ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-  ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
-  ImGui::Begin("Profiling");
   this->design_profiling();
-  ImGui::End();
-  ImGui::PopStyleVar();
 
   //---------------------------
 }
 
 //Subfunctions
-void GUI_timing::design_profiling(){
+void GUI_profiler::design_profiling(){
   ImGui::BeginChild("Profiling", ImVec2(0, 150), false);
   //---------------------------
 
@@ -51,7 +46,7 @@ void GUI_timing::design_profiling(){
   //---------------------------
   ImGui::EndChild();
 }
-void GUI_timing::device_model(){
+void GUI_profiler::device_model(){
   //---------------------------
 
   ImGui::Text("Device model ");
@@ -60,7 +55,7 @@ void GUI_timing::device_model(){
 
   //---------------------------
 }
-bool GUI_timing::time_update(){
+bool GUI_profiler::time_update(){
   //---------------------------
 
   static timer_time t1 = timer.start_t();
@@ -73,7 +68,7 @@ bool GUI_timing::time_update(){
   //---------------------------
   return false;
 }
-void GUI_timing::time_drawig(bool update){
+void GUI_profiler::time_drawig(bool update){
   ImGuiIO io = ImGui::GetIO();
   //---------------------------
 
@@ -117,7 +112,7 @@ void GUI_timing::time_drawig(bool update){
 
   //---------------------------
 }
-void GUI_timing::time_general(bool update){
+void GUI_profiler::time_general(bool update){
   ImGuiIO io = ImGui::GetIO();
   //---------------------------
 

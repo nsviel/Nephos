@@ -14,7 +14,7 @@ class GUI_option;
 class GUI_scene;
 class GUI_mainmenubar;
 class GUI_shader;
-class GUI_timing;
+class GUI_profiler;
 class GUI_style;
 class GUI_init;
 class GUI_editor_node;
@@ -54,7 +54,7 @@ public:
   inline GUI_scene* get_gui_scene(){return gui_scene;}
   inline GUI_mainmenubar* get_gui_menubar(){return gui_menubar;}
   inline GUI_shader* get_gui_shader(){return gui_shader;}
-  inline GUI_timing* get_gui_profiling(){return gui_timing;}
+  inline GUI_profiler* get_gui_profiling(){return gui_profiler;}
   inline GUI_style* get_gui_style(){return gui_style;}
   inline GUI_init* get_gui_init(){return gui_init;}
   inline GUI_engine* get_gui_engine(){return gui_engine;}
@@ -77,7 +77,7 @@ private:
   GUI_scene* gui_scene;
   GUI_mainmenubar* gui_menubar;
   GUI_shader*gui_shader;
-  GUI_timing* gui_timing;
+  GUI_profiler* gui_profiler;
   GUI_style* gui_style;
   GUI_init* gui_init;
   GUI_engine* gui_engine;

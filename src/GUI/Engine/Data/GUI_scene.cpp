@@ -9,7 +9,7 @@
 
 
 //Constructor / Destructor
-GUI_scene::GUI_scene(GUI* gui){
+GUI_scene::GUI_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Data* data_node = gui->get_data();
@@ -26,13 +26,8 @@ GUI_scene::~GUI_scene(){}
 void GUI_scene::design_panel(){
   //---------------------------
 
-  ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-  ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
-  ImGui::Begin("Object");
   this->draw_window_background();
   this->tree_view();
-  ImGui::End();
-  ImGui::PopStyleVar();
 
   //---------------------------
 }

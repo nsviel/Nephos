@@ -16,7 +16,7 @@
 #include "Engine/Camera/GUI_camera.h"
 #include "Engine/Data/GUI_object.h"
 #include "Engine/Data/GUI_set.h"
-#include "Engine/Profiler/GUI_timing.h"
+#include "Engine/Profiler/GUI_profiler.h"
 #include "Engine/Render/GUI_shader.h"
 #include "Engine/Data/GUI_scene.h"
 
@@ -36,12 +36,13 @@ GUI::GUI(Engine* engine){
 
   this->gui_image = new GUI_image(engine);
   this->gui_video = new GUI_video(engine);
-  this->gui_timing = new GUI_timing(this);
-  this->gui_shader = new GUI_shader(this, &panel->show_shader, "Shader");
+
   this->gui_option = new GUI_option(this);
+  this->gui_profiler = new GUI_profiler(this, &panel->show_profiler, "Profiler");
+  this->gui_shader = new GUI_shader(this, &panel->show_shader, "Shader");
   this->gui_object = new GUI_object(this, &panel->show_object, "Object");
   this->gui_set = new GUI_set(this, &panel->show_set, "Set");
-  this->gui_scene = new GUI_scene(this);
+  this->gui_scene = new GUI_scene(this, &panel->show_scene, "Scene");
   this->gui_init = new GUI_init(this);
   this->gui_control = new GUI_control(this);
   this->gui_engine = new GUI_engine(this);
@@ -62,7 +63,7 @@ GUI::~GUI(){
   delete gui_control;
   delete gui_option;
   delete gui_scene;
-  delete gui_timing;
+  delete gui_profiler;
 
   //---------------------------
 }
@@ -73,7 +74,6 @@ void GUI::init(){
 
   gui_gpu->init_gui();
   gui_style->gui_style();
-  gui_panel->set_initial_panel_focus();
 
   //---------------------------
 }
