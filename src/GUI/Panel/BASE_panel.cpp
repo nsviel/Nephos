@@ -24,7 +24,6 @@ void BASE_panel::run_panel(){
 
     this->design_panel();
 
-    ImGui::Separator();
     ImGui::End();
     ImGui::PopStyleColor();
   }

@@ -21,6 +21,7 @@ public:
 
 public:
   //Main function
+  void run_panel();
   void design_panel();
 
   //Subfunction
@@ -34,6 +35,8 @@ private:
   GUI_set* gui_set;
   GUI_panel* gui_panel;
   Database* dataManager;
+
+  bool* show_window;
 };
 
 #endif

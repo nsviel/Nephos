@@ -15,14 +15,33 @@ GUI_scene::GUI_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
 
   Data* data = gui->get_data();
   this->gui_panel = gui->get_gui_panel();
-  this->dataManager = data->get_dataManager();sayHello();
-  this->panel = gui_panel->get_panel();sayHello();
+  this->dataManager = data->get_dataManager();
+  this->panel = gui_panel->get_panel();
+  this->show_window = show_window;
 
   //---------------------------
 }
 GUI_scene::~GUI_scene(){}
 
 //Main function
+void GUI_scene::run_panel(){
+  //---------------------------
+
+  if(*show_window){
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    ImGui::SetNextWindowSizeConstraints(ImVec2(200, 100), ImVec2(1000, 1000));
+    ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize);
+
+    this->design_panel();
+
+    ImGui::End();
+    ImGui::PopStyleColor();
+    ImGui::PopStyleVar();
+  }
+
+  //---------------------------
+}
 void GUI_scene::design_panel(){
   //---------------------------
 
@@ -66,7 +85,7 @@ void GUI_scene::draw_window_background(){
 void GUI_scene::tree_view(){
   list<Set*>* list_data = dataManager->get_list_data_scene();
   //---------------------------
-//say("----");
+
   static ImGuiTableFlags flag_tree;
   flag_tree |= ImGuiTableFlags_SizingFixedFit;
   flag_tree |= ImGuiTableFlags_NoBordersInBody;
