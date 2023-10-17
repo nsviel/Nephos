@@ -1,10 +1,13 @@
 #include "Window.h"
 
+#include <../config.h>
+
 
 //Constructor / Destructor
-Window::Window(){
+Window::Window(Config* config){
   //---------------------------
 
+  this-> config = config;
   this->has_been_resized = false;
 
   //---------------------------
@@ -12,8 +15,12 @@ Window::Window(){
 Window::~Window(){}
 
 //Main function
-void Window::create_window(int width, int height, string title){
+void Window::create_window(){
   //---------------------------
+
+  int width  = config->window_dim.x;
+  int height = config->window_dim.y;
+  string title = config->window_title;
 
   glfwInit();
   glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);

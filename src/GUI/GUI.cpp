@@ -26,12 +26,12 @@
 
 
 //Constructor / Destructor
-GUI::GUI(Engine* engine){
+GUI::GUI(Window* window, Engine* engine){
   //---------------------------
 
   this->engine = engine;
   this->window = window;
-  this->data_node = engine->get_data();
+  this->data = engine->get_data();
 
   this->gui_image = new GUI_image(engine);
   this->gui_video = new GUI_video(engine);

@@ -32,7 +32,7 @@ class GUI
 {
 public:
   //Constructor / Destructor
-  GUI(Engine* engine);
+  GUI(Window* window, Engine* engine);
   ~GUI();
 
 public:
@@ -44,8 +44,9 @@ public:
   void docker_space_main();
 
   inline Engine* get_engine(){return engine;}
-  inline Data* get_data(){return data_node;}
+  inline Data* get_data(){return data;}
   inline Window* get_window(){return window;}
+
   inline GUI_panel* get_gui_panel(){return gui_panel;}
   inline GUI_control* get_gui_control(){return gui_control;}
   inline GUI_option* get_gui_option(){return gui_option;}
@@ -57,7 +58,7 @@ public:
 
 private:
   Engine* engine;
-  Data* data_node;
+  Data* data;
   Window* window;
 
   GUI_panel* gui_panel;

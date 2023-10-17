@@ -9,12 +9,12 @@
 
 
 //ConsScenetor / DesScenetor
-Scene::Scene(Data* data_node){
+Scene::Scene(Data* data){
   //---------------------------
 
-  Engine* engine = data_node->get_engine();
-  this->data_node = data_node;
-  this->dataManager = data_node->get_dataManager();
+  Engine* engine = data->get_engine();
+  this->data = data;
+  this->dataManager = data->get_dataManager();
   this->gpu_data = engine->get_gpu_data();
   this->attributManager = new Attribut();
 
@@ -40,7 +40,7 @@ void Scene::init_set(){
   //---------------------------
 }
 void Scene::init_scene(){
-  Loader* loaderManager = data_node->get_loaderManager();
+  Loader* loaderManager = data->get_loaderManager();
   //---------------------------
 
   //Load init object

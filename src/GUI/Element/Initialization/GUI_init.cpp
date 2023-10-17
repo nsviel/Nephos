@@ -16,10 +16,10 @@
 GUI_init::GUI_init(GUI* gui){
   //---------------------------
 
-  Data* data_node = gui->get_data();
+  Data* data = gui->get_data();
 
-  this->sceneManager = data_node->get_sceneManager();
-  this->loaderManager = data_node->get_loaderManager();
+  this->sceneManager = data->get_sceneManager();
+  this->loaderManager = data->get_loaderManager();
   this->transformManager = new Transformation();
   this->gui_tree = new GUI_tree(this);
 

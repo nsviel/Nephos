@@ -12,7 +12,7 @@ class Glyphs
 {
 public:
   //Constructor / Destructor
-  Glyphs(Data* data_node);
+  Glyphs(Data* data);
   ~Glyphs();
 
 public:
@@ -21,7 +21,7 @@ public:
   Glyph_source* get_glyph_src_byName(string name);
 
 private:
-  Data* data_node;
+  Data* data;
   Scene* sceneManager;
 
   vector<Glyph_source*> vec_glyph_src;

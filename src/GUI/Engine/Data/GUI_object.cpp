@@ -11,8 +11,8 @@
 GUI_object::GUI_object(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  Data* data_node = gui->get_data();
-  this->sceneManager = data_node->get_sceneManager();
+  Data* data = gui->get_data();
+  this->sceneManager = data->get_sceneManager();
 
   this->item_width = 150;
 

@@ -26,9 +26,9 @@ GUI_panel::GUI_panel(GUI* gui){
 
   this->gui = gui;
   this->panel = new Panel();
+  this->gui_engine = new GUI_engine(gui);
   this->gui_object = new GUI_object(gui, &panel->show_object, "Object");
   this->gui_set = new GUI_set(gui, &panel->show_set, "Set");
-  this->gui_engine = new GUI_engine(gui);
   this->gui_profiler = new GUI_profiler(gui, &panel->show_profiler, "Profiler");
   this->gui_shader = new GUI_shader(gui, &panel->show_shader, "Shader");
   this->gui_scene = new GUI_scene(gui, &panel->show_scene, "Scene");

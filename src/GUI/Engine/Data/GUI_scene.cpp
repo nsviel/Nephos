@@ -13,9 +13,9 @@
 GUI_scene::GUI_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  Data* data_node = gui->get_data();
+  Data* data = gui->get_data();
   this->gui_panel = gui->get_gui_panel();
-  this->dataManager = data_node->get_dataManager();sayHello();
+  this->dataManager = data->get_dataManager();sayHello();
   this->panel = gui_panel->get_panel();sayHello();
 
   //---------------------------

@@ -4,7 +4,7 @@
 
 
 //Constructor / Destructor
-Database::Database(Data* data_node){
+Database::Database(Data* data){
   //---------------------------
 
   this->ID_obj = 0;

@@ -14,17 +14,19 @@
 using namespace std;
 using namespace glm;
 
+class Config;
+
 
 class Window
 {
 public:
   //Constructor / Destructor
-  Window();
+  Window(Config* config);
   ~Window();
 
 public:
   //Main functions
-  void create_window(int width, int height, string title);
+  void create_window();
   void close_window();
   void destroy_window();
 
@@ -52,6 +54,7 @@ public:
   inline void set_window_center(vec2 value){this->window_center = value;}
 
 private:
+  Config* config;
   GLFWwindow* window;
 
   vec2 window_dim;

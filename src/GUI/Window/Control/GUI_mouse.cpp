@@ -16,12 +16,12 @@ GUI_mouse::GUI_mouse(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  Data* data_node = gui->get_data();
+  Data* data = gui->get_data();
   this->param = engine->get_param();
   this->window = engine->get_window();
   this->cameraManager = engine->get_cameraManager();
   this->transformManager = new Transformation();
-  this->sceneManager = data_node->get_sceneManager();
+  this->sceneManager = data->get_sceneManager();
 
   //---------------------------
 }

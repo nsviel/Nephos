@@ -10,7 +10,7 @@ class Database
 {
 public:
   //Constructor / Destructor
-  Database(Data* data_node);
+  Database(Data* data);
   ~Database();
 
 public:

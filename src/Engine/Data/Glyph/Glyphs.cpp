@@ -9,10 +9,10 @@
 
 
 //Constructor / Destructor
-Glyphs::Glyphs(Data* data_node){
+Glyphs::Glyphs(Data* data){
   //---------------------------
 
-  this->sceneManager = data_node->get_sceneManager();
+  this->sceneManager = data->get_sceneManager();
 
   this->vec_glyph_src.push_back(new Grid());
   this->vec_glyph_src.push_back(new Axis_world());

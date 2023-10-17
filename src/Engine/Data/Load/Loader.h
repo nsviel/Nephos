@@ -17,7 +17,7 @@ class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(Data* data_node);
+  Loader(Data* data);
   ~Loader();
 
 public:

@@ -1,6 +1,7 @@
 #ifndef LOOP_H
 #define LOOP_H
 
+class Config;
 class Window;
 class Engine;
 class GUI;
@@ -23,6 +24,7 @@ public:
   void end();
 
 private:
+  Config* config;
   Engine* engine;
   Window* window;
   GUI* gui;

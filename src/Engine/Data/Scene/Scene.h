@@ -13,7 +13,7 @@ class Scene
 {
 public:
   //ConsScenetor / DesScenetor
-  Scene(Data* data_node);
+  Scene(Data* data);
   ~Scene();
 
 public:
@@ -36,7 +36,7 @@ public:
   inline Object* get_selected_object(){return set_scene->selected_obj;}
 
 private:
-  Data* data_node;
+  Data* data;
   Database* dataManager;
   GPU_data* gpu_data;
   Attribut* attributManager;

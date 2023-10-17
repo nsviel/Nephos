@@ -5,10 +5,10 @@
 
 
 //Constructor / Destructor
-Loader::Loader(Data* data_node){
+Loader::Loader(Data* data){
   //---------------------------
 
-  this->sceneManager = data_node->get_sceneManager();
+  this->sceneManager = data->get_sceneManager();
   this->formatManager = new Format();
 
   this->ID = 0;
