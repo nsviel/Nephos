@@ -1,19 +1,15 @@
+#include "editor_text.h"
+#include "editor_text_theme.h"
+//#include "language_cpp.h"
+
+#define IMGUI_DEFINE_MATH_OPERATORS
+#include <imgui/core/imgui.h>
 #include <algorithm>
 #include <chrono>
 #include <string>
 #include <regex>
 #include <cmath>
 
-#include "editor_text.h"
-#include "editor_text_theme.h"
-//#include "language_cpp.h"
-
-#define IMGUI_DEFINE_MATH_OPERATORS
-
-#include <imgui/core/imgui.h>
-
-// TODO
-// - multiline comments vs single-line: latter is blocking start of a ML
 
 template<class InputIt1, class InputIt2, class BinaryPredicate>
 bool equals(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, BinaryPredicate p){
@@ -42,17 +38,18 @@ TextEditor::TextEditor()
 	, mColorRangeMin(0)
 	, mColorRangeMax(0)
 	, mSelectionMode(SelectionMode::Normal)
-	, mCheckComments(true)
-	, mLastClick(-1.0f)
-	, mHandleKeyboardInputs(true)
-	, mHandleMouseInputs(true)
-	, mIgnoreImGuiChild(false)
-	, mShowWhitespaces(true)
 	, mStartTime(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
 {
 	SetPalette(get_custom_palette());
 	SetLanguageDefinition(LanguageDefinition::HLSL());
 	mLines.push_back(Line());
+
+	this->mShowWhitespaces = true;
+	this->mCheckComments = true;
+	this->mLastClick = -1.0f;
+	this->mHandleKeyboardInputs = true;
+	this->mHandleMouseInputs = true;
+	this->mIgnoreImGuiChild = false;
 }
 TextEditor::~TextEditor(){
 }
