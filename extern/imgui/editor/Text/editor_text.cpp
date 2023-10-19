@@ -5,10 +5,12 @@
 #include <cmath>
 
 #include "editor_text.h"
-#include "theme.h"
+#include "editor_text_theme.h"
+//#include "language_cpp.h"
 
 #define IMGUI_DEFINE_MATH_OPERATORS
-#include "../core/imgui.h"
+
+#include <imgui/core/imgui.h>
 
 // TODO
 // - multiline comments vs single-line: latter is blocking start of a ML
@@ -2367,36 +2369,36 @@ void TextEditor::UndoRecord::Redo(TextEditor * aEditor){
 
 static bool TokenizeCStyleString(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end){
 	const char * p = in_begin;
+	//---------------------------
 
-	if (*p == '"')
-	{
+	if (*p == '"'){
 		p++;
 
-		while (p < in_end)
-		{
+		while (p < in_end){
 			// handle end of string
-			if (*p == '"')
-			{
+			if (*p == '"'){
 				out_begin = in_begin;
 				out_end = p + 1;
 				return true;
 			}
 
 			// handle escape character for "
-			if (*p == '\\' && p + 1 < in_end && p[1] == '"')
+			if (*p == '\\' && p + 1 < in_end && p[1] == '"'){
 				p++;
+			}
 
 			p++;
 		}
 	}
 
+	//---------------------------
 	return false;
 }
 static bool TokenizeCStyleCharacterLiteral(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end){
 	const char * p = in_begin;
+	//---------------------------
 
-	if (*p == '\'')
-	{
+	if (*p == '\''){
 		p++;
 
 		// handle escape characters
@@ -2415,13 +2417,14 @@ static bool TokenizeCStyleCharacterLiteral(const char * in_begin, const char * i
 		}
 	}
 
+	//---------------------------
 	return false;
 }
 static bool TokenizeCStyleIdentifier(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end){
 	const char * p = in_begin;
+	//---------------------------
 
-	if ((*p >= 'a' && *p <= 'z') || (*p >= 'A' && *p <= 'Z') || *p == '_')
-	{
+	if ((*p >= 'a' && *p <= 'z') || (*p >= 'A' && *p <= 'Z') || *p == '_'){
 		p++;
 
 		while ((p < in_end) && ((*p >= 'a' && *p <= 'z') || (*p >= 'A' && *p <= 'Z') || (*p >= '0' && *p <= '9') || *p == '_'))
@@ -2432,36 +2435,37 @@ static bool TokenizeCStyleIdentifier(const char * in_begin, const char * in_end,
 		return true;
 	}
 
+	//---------------------------
 	return false;
 }
 static bool TokenizeCStyleNumber(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end){
 	const char * p = in_begin;
+	//---------------------------
 
 	const bool startsWithNumber = *p >= '0' && *p <= '9';
 
-	if (*p != '+' && *p != '-' && !startsWithNumber)
+	if (*p != '+' && *p != '-' && !startsWithNumber){
 		return false;
+	}
 
 	p++;
 
 	bool hasNumber = startsWithNumber;
-
-	while (p < in_end && (*p >= '0' && *p <= '9'))
-	{
+	while (p < in_end && (*p >= '0' && *p <= '9')){
 		hasNumber = true;
 
 		p++;
 	}
 
-	if (hasNumber == false)
+	if (hasNumber == false){
 		return false;
+	}
 
 	bool isFloat = false;
 	bool isHex = false;
 	bool isBinary = false;
 
-	if (p < in_end)
-	{
+	if (p < in_end){
 		if (*p == '.')
 		{
 			isFloat = true;
@@ -2494,9 +2498,7 @@ static bool TokenizeCStyleNumber(const char * in_begin, const char * in_end, con
 				p++;
 		}
 	}
-
-	if (isHex == false && isBinary == false)
-	{
+	if (isHex == false && isBinary == false){
 		// floating point exponent
 		if (p < in_end && (*p == 'e' || *p == 'E'))
 		{
@@ -2524,9 +2526,7 @@ static bool TokenizeCStyleNumber(const char * in_begin, const char * in_end, con
 		if (p < in_end && *p == 'f')
 			p++;
 	}
-
-	if (isFloat == false)
-	{
+	if (isFloat == false){
 		// integer size type
 		while (p < in_end && (*p == 'u' || *p == 'U' || *p == 'l' || *p == 'L'))
 			p++;
@@ -2534,13 +2534,15 @@ static bool TokenizeCStyleNumber(const char * in_begin, const char * in_end, con
 
 	out_begin = in_begin;
 	out_end = p;
+
+	//---------------------------
 	return true;
 }
 static bool TokenizeCStylePunctuation(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end){
 	(void)in_end;
+	//---------------------------
 
-	switch (*in_begin)
-	{
+	switch (*in_begin){
 	case '[':
 	case ']':
 	case '{':
@@ -2570,14 +2572,16 @@ static bool TokenizeCStylePunctuation(const char * in_begin, const char * in_end
 		return true;
 	}
 
+	//---------------------------
 	return false;
 }
 
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::CPlusPlus(){
 	static bool inited = false;
 	static LanguageDefinition langDef;
-	if (!inited)
-	{
+	//---------------------------
+
+	if (!inited){
 		static const char* const cppKeywords[] = {
 			"alignas", "alignof", "and", "and_eq", "asm", "atomic_cancel", "atomic_commit", "atomic_noexcept", "auto", "bitand", "bitor", "bool", "break", "case", "catch", "char", "char16_t", "char32_t", "class",
 			"compl", "concept", "const", "constexpr", "const_cast", "continue", "decltype", "default", "delete", "do", "double", "dynamic_cast", "else", "enum", "explicit", "export", "extern", "false", "float",
@@ -2585,44 +2589,48 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::CPlusPlus(
 			"register", "reinterpret_cast", "requires", "return", "short", "signed", "sizeof", "static", "static_assert", "static_cast", "struct", "switch", "synchronized", "template", "this", "thread_local",
 			"throw", "true", "try", "typedef", "typeid", "typename", "union", "unsigned", "using", "virtual", "void", "volatile", "wchar_t", "while", "xor", "xor_eq"
 		};
-		for (auto& k : cppKeywords)
+		for (auto& k : cppKeywords){
 			langDef.mKeywords.insert(k);
+		}
 
 		static const char* const identifiers[] = {
 			"abort", "abs", "acos", "asin", "atan", "atexit", "atof", "atoi", "atol", "ceil", "clock", "cosh", "ctime", "div", "exit", "fabs", "floor", "fmod", "getchar", "getenv", "isalnum", "isalpha", "isdigit", "isgraph",
 			"ispunct", "isspace", "isupper", "kbhit", "log10", "log2", "log", "memcmp", "modf", "pow", "printf", "sprintf", "snprintf", "putchar", "putenv", "puts", "rand", "remove", "rename", "sinh", "sqrt", "srand", "strcat", "strcmp", "strerror", "time", "tolower", "toupper",
 			"std", "string", "vector", "map", "unordered_map", "set", "unordered_set", "min", "max"
 		};
-		for (auto& k : identifiers)
-		{
+		for (auto& k : identifiers){
 			Identifier id;
 			id.mDeclaration = "Built-in function";
 			langDef.mIdentifiers.insert(std::make_pair(std::string(k), id));
 		}
 
-		langDef.mTokenize = [](const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end, PaletteIndex & paletteIndex) -> bool
-		{
+		langDef.mTokenize = [](const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end, PaletteIndex & paletteIndex) -> bool{
 			paletteIndex = PaletteIndex::Max;
 
-			while (in_begin < in_end && isascii(*in_begin) && isblank(*in_begin))
+			while (in_begin < in_end && isascii(*in_begin) && isblank(*in_begin)){
 				in_begin++;
+			}
 
-			if (in_begin == in_end)
-			{
+			if (in_begin == in_end){
 				out_begin = in_end;
 				out_end = in_end;
 				paletteIndex = PaletteIndex::Default;
 			}
-			else if (TokenizeCStyleString(in_begin, in_end, out_begin, out_end))
+			else if (TokenizeCStyleString(in_begin, in_end, out_begin, out_end)){
 				paletteIndex = PaletteIndex::String;
-			else if (TokenizeCStyleCharacterLiteral(in_begin, in_end, out_begin, out_end))
+			}
+			else if (TokenizeCStyleCharacterLiteral(in_begin, in_end, out_begin, out_end)){
 				paletteIndex = PaletteIndex::CharLiteral;
-			else if (TokenizeCStyleIdentifier(in_begin, in_end, out_begin, out_end))
+			}
+			else if (TokenizeCStyleIdentifier(in_begin, in_end, out_begin, out_end)){
 				paletteIndex = PaletteIndex::Identifier;
-			else if (TokenizeCStyleNumber(in_begin, in_end, out_begin, out_end))
+			}
+			else if (TokenizeCStyleNumber(in_begin, in_end, out_begin, out_end)){
 				paletteIndex = PaletteIndex::Number;
-			else if (TokenizeCStylePunctuation(in_begin, in_end, out_begin, out_end))
+			}
+			else if (TokenizeCStylePunctuation(in_begin, in_end, out_begin, out_end)){
 				paletteIndex = PaletteIndex::Punctuation;
+			}
 
 			return paletteIndex != PaletteIndex::Max;
 		};
@@ -2630,21 +2638,21 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::CPlusPlus(
 		langDef.mCommentStart = "/*";
 		langDef.mCommentEnd = "*/";
 		langDef.mSingleLineComment = "//";
-
 		langDef.mCaseSensitive = true;
 		langDef.mAutoIndentation = true;
-
 		langDef.mName = "C++";
-
 		inited = true;
 	}
+
+	//---------------------------
 	return langDef;
 }
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL(){
 	static bool inited = false;
 	static LanguageDefinition langDef;
-	if (!inited)
-	{
+	//---------------------------
+
+	if (!inited){
 		static const char* const keywords[] = {
 			"AppendStructuredBuffer", "asm", "asm_fragment", "BlendState", "bool", "break", "Buffer", "ByteAddressBuffer", "case", "cbuffer", "centroid", "class", "column_major", "compile", "compile_fragment",
 			"CompileShader", "const", "continue", "ComputeShader", "ConsumeStructuredBuffer", "default", "DepthStencilState", "DepthStencilView", "discard", "do", "double", "DomainShader", "dword", "else",
@@ -2662,8 +2670,9 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL(){
 			"half1x1","half2x1","half3x1","half4x1","half1x2","half2x2","half3x2","half4x2",
 			"half1x3","half2x3","half3x3","half4x3","half1x4","half2x4","half3x4","half4x4",
 		};
-		for (auto& k : keywords)
+		for (auto& k : keywords){
 			langDef.mKeywords.insert(k);
+		}
 
 		static const char* const identifiers[] = {
 			"abort", "abs", "acos", "all", "AllMemoryBarrier", "AllMemoryBarrierWithGroupSync", "any", "asdouble", "asfloat", "asin", "asint", "asint", "asuint",
@@ -2680,8 +2689,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL(){
 			"tan", "tanh", "tex1D", "tex1D", "tex1Dbias", "tex1Dgrad", "tex1Dlod", "tex1Dproj", "tex2D", "tex2D", "tex2Dbias", "tex2Dgrad", "tex2Dlod", "tex2Dproj",
 			"tex3D", "tex3D", "tex3Dbias", "tex3Dgrad", "tex3Dlod", "tex3Dproj", "texCUBE", "texCUBE", "texCUBEbias", "texCUBEgrad", "texCUBElod", "texCUBEproj", "transpose", "trunc"
 		};
-		for (auto& k : identifiers)
-		{
+		for (auto& k : identifiers){
 			Identifier id;
 			id.mDeclaration = "Built-in function";
 			langDef.mIdentifiers.insert(std::make_pair(std::string(k), id));
@@ -2708,13 +2716,16 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL(){
 
 		inited = true;
 	}
+
+	//---------------------------
 	return langDef;
 }
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::GLSL(){
 	static bool inited = false;
 	static LanguageDefinition langDef;
-	if (!inited)
-	{
+	//---------------------------
+
+	if (!inited){
 		static const char* const keywords[] = {
 			"auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "inline", "int", "long", "register", "restrict", "return", "short",
 			"signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "_Alignas", "_Alignof", "_Atomic", "_Bool", "_Complex", "_Generic", "_Imaginary",
@@ -2755,13 +2766,14 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::GLSL(){
 
 		inited = true;
 	}
+
+	//---------------------------
 	return langDef;
 }
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::C(){
 	static bool inited = false;
 	static LanguageDefinition langDef;
-	if (!inited)
-	{
+	if (!inited){
 		static const char* const keywords[] = {
 			"auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "inline", "int", "long", "register", "restrict", "return", "short",
 			"signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "_Alignas", "_Alignof", "_Atomic", "_Bool", "_Complex", "_Generic", "_Imaginary",
@@ -2824,8 +2836,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::C(){
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::SQL(){
 	static bool inited = false;
 	static LanguageDefinition langDef;
-	if (!inited)
-	{
+	if (!inited){
 		static const char* const keywords[] = {
 			"ADD", "EXCEPT", "PERCENT", "ALL", "EXEC", "PLAN", "ALTER", "EXECUTE", "PRECISION", "AND", "EXISTS", "PRIMARY", "ANY", "EXIT", "PRINT", "AS", "FETCH", "PROC", "ASC", "FILE", "PROCEDURE",
 			"AUTHORIZATION", "FILLFACTOR", "PUBLIC", "BACKUP", "FOR", "RAISERROR", "BEGIN", "FOREIGN", "READ", "BETWEEN", "FREETEXT", "READTEXT", "BREAK", "FREETEXTTABLE", "RECONFIGURE",
@@ -2886,8 +2897,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::SQL(){
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::AngelScript(){
 	static bool inited = false;
 	static LanguageDefinition langDef;
-	if (!inited)
-	{
+	if (!inited){
 		static const char* const keywords[] = {
 			"and", "abstract", "auto", "bool", "break", "case", "cast", "class", "const", "continue", "default", "do", "double", "else", "enum", "false", "final", "float", "for",
 			"from", "funcdef", "function", "get", "if", "import", "in", "inout", "int", "interface", "int8", "int16", "int32", "int64", "is", "mixin", "namespace", "not",
@@ -2934,8 +2944,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::AngelScrip
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Lua(){
 	static bool inited = false;
 	static LanguageDefinition langDef;
-	if (!inited)
-	{
+	if (!inited){
 		static const char* const keywords[] = {
 			"and", "break", "do", "", "else", "elseif", "end", "false", "for", "function", "if", "in", "", "local", "nil", "not", "or", "repeat", "return", "then", "true", "until", "while"
 		};

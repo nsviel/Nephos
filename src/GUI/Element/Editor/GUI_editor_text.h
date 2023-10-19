@@ -2,7 +2,7 @@
 #define GUI_EDITOR_TEXT_H
 
 #include <Specific/common.h>
-#include <imgui/editor/editor_text.h>
+#include <imgui/editor/Text/editor_text.h>
 
 
 class GUI_editor_text

@@ -1,5 +1,4 @@
 #include "GUI_editor_text.h"
-#include "../../Style/Editor_style.h"
 
 
 //Constructor / Destructor
@@ -7,7 +6,7 @@ GUI_editor_text::GUI_editor_text(){
   //---------------------------
 
   this->editor = new TextEditor();
-  editor->SetPalette(editor->get_editor_style());
+  editor->SetPalette(editor->get_custom_palette());
 
   //---------------------------
 }

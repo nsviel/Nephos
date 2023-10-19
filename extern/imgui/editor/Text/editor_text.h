@@ -1,8 +1,6 @@
 #ifndef TEXT_EDITOR_H
 #define TEXT_EDITOR_H
 
-#pragma once
-
 #include <string>
 #include <vector>
 #include <array>
@@ -11,7 +9,7 @@
 #include <unordered_map>
 #include <map>
 #include <regex>
-#include "../core/imgui.h"
+#include <imgui/core/imgui.h>
 
 class TextEditor
 {
@@ -265,7 +263,6 @@ public:
 	void Undo(int aSteps = 1);
 	void Redo(int aSteps = 1);
 
-	static const Palette& get_editor_style();
 	static const Palette& get_custom_palette();
 	static const Palette& GetDarkPalette();
 	static const Palette& GetLightPalette();
