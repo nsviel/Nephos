@@ -28,15 +28,7 @@ TextEditor::TextEditor()
 	, mOverwrite(false)
 	, mReadOnly(false)
 	, mWithinRender(false)
-	, mScrollToCursor(false)
-	, mScrollToTop(false)
-	, mTextChanged(false)
-	, mColorizerEnabled(true)
-	, mTextStart(20.0f)
-	, mLeftMargin(10)
-	, mCursorPositionChanged(false)
-	, mColorRangeMin(0)
-	, mColorRangeMax(0)
+
 	, mSelectionMode(SelectionMode::Normal)
 	, mStartTime(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
 {
@@ -50,6 +42,15 @@ TextEditor::TextEditor()
 	this->mHandleKeyboardInputs = true;
 	this->mHandleMouseInputs = true;
 	this->mIgnoreImGuiChild = false;
+	this->mScrollToCursor = false;
+	this->mScrollToTop = false;
+	this->mTextChanged = false;
+	this->mColorizerEnabled = true;
+	this->mTextStart = 20.0f;
+	this->mLeftMargin = 10;
+	this->mCursorPositionChanged = false;
+	this->mColorRangeMin = 0;
+	this->mColorRangeMax = 0;
 }
 TextEditor::~TextEditor(){
 }
