@@ -214,11 +214,11 @@ public:
 	inline void SetHandleMouseInputs    (bool aValue){ mHandleMouseInputs    = aValue;}
 	inline void SetHandleKeyboardInputs (bool aValue){ mHandleKeyboardInputs = aValue;}
 	inline void SetImGuiChildIgnored    (bool aValue){ mIgnoreImGuiChild     = aValue;}
-	inline void SetShowWhitespaces(bool aValue) { mShowWhitespaces = aValue; }
+	inline void SetShowWhitespaces(bool aValue) { show_whitespaces = aValue; }
 	inline bool IsHandleMouseInputsEnabled() const { return mHandleKeyboardInputs; }
 	inline bool IsHandleKeyboardInputsEnabled() const { return mHandleKeyboardInputs; }
 	inline bool IsImGuiChildIgnored() const { return mIgnoreImGuiChild; }
-	inline bool IsShowingWhitespaces() const { return mShowWhitespaces; }
+	inline bool IsShowingWhitespaces() const { return show_whitespaces; }
 	inline int GetTabSize() const { return mTabSize; }
 
 	void MoveUp(int aAmount = 1, bool aSelect = false);
@@ -329,7 +329,7 @@ private:
 	ErrorMarkers mErrorMarkers;
 	Coordinates mInteractiveStart, mInteractiveEnd;
 
-	std::string mLineBuffer;
+	std::string line_buffer;
 	uint64_t mStartTime;
 	ImVec2 mCharAdvance;
 	float mLastClick;
@@ -350,8 +350,8 @@ private:
 	bool mHandleKeyboardInputs;
 	bool mHandleMouseInputs;
 	bool mIgnoreImGuiChild;
-	bool mShowWhitespaces;
-	bool mCheckComments;
+	bool show_whitespaces;
+	bool check_comments;
 };
 
 #endif

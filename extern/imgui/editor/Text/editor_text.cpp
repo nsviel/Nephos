@@ -29,11 +29,11 @@ TextEditor::TextEditor(){
 	//---------------------------
 
 	SetPalette(get_custom_palette());
-	SetLanguageDefinition(LanguageDefinition::HLSL());
+	SetLanguageDefinition(LanguageDefinition::Cpp());
 	mLines.push_back(Line());
 
-	this->mShowWhitespaces = true;
-	this->mCheckComments = true;
+	this->show_whitespaces = true;
+	this->check_comments = true;
 	this->mLastClick = -1.0f;
 	this->mHandleKeyboardInputs = true;
 	this->mHandleMouseInputs = true;
@@ -1148,21 +1148,19 @@ void TextEditor::Render(){
 	mCharAdvance = ImVec2(fontSize, ImGui::GetTextLineHeightWithSpacing() * mLineSpacing);
 
 	/* Update palette with the current alpha from style */
-	for (int i = 0; i < (int)PaletteIndex::Max; ++i)
-	{
+	for (int i = 0; i < (int)PaletteIndex::Max; ++i){
 		auto color = ImGui::ColorConvertU32ToFloat4(mPaletteBase[i]);
 		color.w *= ImGui::GetStyle().Alpha;
 		mPalette[i] = ImGui::ColorConvertFloat4ToU32(color);
 	}
 
-	assert(mLineBuffer.empty());
+	assert(line_buffer.empty());
 
 	auto contentSize = ImGui::GetWindowContentRegionMax();
 	auto drawList = ImGui::GetWindowDrawList();
 	float longest(mTextStart);
 
-	if (mScrollToTop)
-	{
+	if (mScrollToTop){
 		mScrollToTop = false;
 		ImGui::SetScrollY(0.f);
 	}
@@ -1180,12 +1178,10 @@ void TextEditor::Render(){
 	snprintf(buf, 16, " %d ", globalLineMax);
 	mTextStart = ImGui::GetFont()->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f, buf, nullptr, nullptr).x + mLeftMargin;
 
-	if (!mLines.empty())
-	{
+	if (!mLines.empty()){
 		float spaceSize = ImGui::GetFont()->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f, " ", nullptr, nullptr).x;
 
-		while (lineNo <= lineMax)
-		{
+		while (lineNo <= lineMax){
 			ImVec2 lineStartScreenPos = ImVec2(cursorScreenPos.x, cursorScreenPos.y + lineNo * mCharAdvance.y);
 			ImVec2 textScreenPos = ImVec2(lineStartScreenPos.x + mTextStart, lineStartScreenPos.y);
 
@@ -1200,16 +1196,16 @@ void TextEditor::Render(){
 			float ssend = -1.0f;
 
 			assert(mState.mSelectionStart <= mState.mSelectionEnd);
-			if (mState.mSelectionStart <= lineEndCoord)
+			if (mState.mSelectionStart <= lineEndCoord){
 				sstart = mState.mSelectionStart > lineStartCoord ? TextDistanceToLineStart(mState.mSelectionStart) : 0.0f;
-			if (mState.mSelectionEnd > lineStartCoord)
+			}
+			if (mState.mSelectionEnd > lineStartCoord){
 				ssend = TextDistanceToLineStart(mState.mSelectionEnd < lineEndCoord ? mState.mSelectionEnd : lineEndCoord);
-
-			if (mState.mSelectionEnd.mLine > lineNo)
+			}
+			if (mState.mSelectionEnd.mLine > lineNo){
 				ssend += mCharAdvance.x;
-
-			if (sstart != -1 && ssend != -1 && sstart < ssend)
-			{
+			}
+			if (sstart != -1 && ssend != -1 && sstart < ssend){
 				ImVec2 vstart(lineStartScreenPos.x + mTextStart + sstart, lineStartScreenPos.y);
 				ImVec2 vend(lineStartScreenPos.x + mTextStart + ssend, lineStartScreenPos.y + mCharAdvance.y);
 				drawList->AddRectFilled(vstart, vend, mPalette[(int)PaletteIndex::Selection]);
@@ -1218,16 +1214,14 @@ void TextEditor::Render(){
 			// Draw breakpoints
 			auto start = ImVec2(lineStartScreenPos.x + scrollX, lineStartScreenPos.y);
 
-			if (mBreakpoints.count(lineNo + 1) != 0)
-			{
+			if (mBreakpoints.count(lineNo + 1) != 0){
 				auto end = ImVec2(lineStartScreenPos.x + contentSize.x + 2.0f * scrollX, lineStartScreenPos.y + mCharAdvance.y);
 				drawList->AddRectFilled(start, end, mPalette[(int)PaletteIndex::Breakpoint]);
 			}
 
 			// Draw error markers
 			auto errorIt = mErrorMarkers.find(lineNo + 1);
-			if (errorIt != mErrorMarkers.end())
-			{
+			if (errorIt != mErrorMarkers.end()){
 				auto end = ImVec2(lineStartScreenPos.x + contentSize.x + 2.0f * scrollX, lineStartScreenPos.y + mCharAdvance.y);
 				drawList->AddRectFilled(start, end, mPalette[(int)PaletteIndex::ErrorMarker]);
 
@@ -1251,8 +1245,7 @@ void TextEditor::Render(){
 			auto lineNoWidth = ImGui::GetFont()->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f, buf, nullptr, nullptr).x;
 			drawList->AddText(ImVec2(lineStartScreenPos.x + mTextStart - lineNoWidth, lineStartScreenPos.y), mPalette[(int)PaletteIndex::LineNumber], buf);
 
-			if (mState.mCursorPosition.mLine == lineNo)
-			{
+			if (mState.mCursorPosition.mLine == lineNo){
 				auto focused = ImGui::IsWindowFocused();
 
 				// Highlight the current line (where the cursor is)
@@ -1303,29 +1296,25 @@ void TextEditor::Render(){
 			auto prevColor = line.empty() ? mPalette[(int)PaletteIndex::Default] : GetGlyphColor(line[0]);
 			ImVec2 bufferOffset;
 
-			for (int i = 0; i < line.size();)
-			{
+			for (int i = 0; i < line.size();){
 				auto& glyph = line[i];
 				auto color = GetGlyphColor(glyph);
 
-				if ((color != prevColor || glyph.mChar == '\t' || glyph.mChar == ' ') && !mLineBuffer.empty())
-				{
+				if ((color != prevColor || glyph.mChar == '\t' || glyph.mChar == ' ') && !line_buffer.empty()){
 					const ImVec2 newOffset(textScreenPos.x + bufferOffset.x, textScreenPos.y + bufferOffset.y);
-					drawList->AddText(newOffset, prevColor, mLineBuffer.c_str());
-					auto textSize = ImGui::GetFont()->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f, mLineBuffer.c_str(), nullptr, nullptr);
+					drawList->AddText(newOffset, prevColor, line_buffer.c_str());
+					auto textSize = ImGui::GetFont()->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f, line_buffer.c_str(), nullptr, nullptr);
 					bufferOffset.x += textSize.x;
-					mLineBuffer.clear();
+					line_buffer.clear();
 				}
 				prevColor = color;
 
-				if (glyph.mChar == '\t')
-				{
+				if (glyph.mChar == '\t'){
 					auto oldX = bufferOffset.x;
 					bufferOffset.x = (1.0f + std::floor((1.0f + bufferOffset.x) / (float(mTabSize) * spaceSize))) * (float(mTabSize) * spaceSize);
 					++i;
 
-					if (mShowWhitespaces)
-					{
+					if (show_whitespaces){
 						const auto s = ImGui::GetFontSize();
 						const auto x1 = textScreenPos.x + oldX + 1.0f;
 						const auto x2 = textScreenPos.x + bufferOffset.x - 1.0f;
@@ -1339,10 +1328,8 @@ void TextEditor::Render(){
 						drawList->AddLine(p2, p4, 0x90909090);
 					}
 				}
-				else if (glyph.mChar == ' ')
-				{
-					if (mShowWhitespaces)
-					{
+				else if (glyph.mChar == ' '){
+					if (show_whitespaces){
 						const auto s = ImGui::GetFontSize();
 						const auto x = textScreenPos.x + bufferOffset.x + spaceSize * 0.5f;
 						const auto y = textScreenPos.y + bufferOffset.y + s * 0.5f;
@@ -1351,28 +1338,25 @@ void TextEditor::Render(){
 					bufferOffset.x += spaceSize;
 					i++;
 				}
-				else
-				{
+				else{
 					auto l = UTF8CharLength(glyph.mChar);
 					while (l-- > 0)
-						mLineBuffer.push_back(line[i++].mChar);
+						line_buffer.push_back(line[i++].mChar);
 				}
 				++columnNo;
 			}
 
-			if (!mLineBuffer.empty())
-			{
+			if (!line_buffer.empty()){
 				const ImVec2 newOffset(textScreenPos.x + bufferOffset.x, textScreenPos.y + bufferOffset.y);
-				drawList->AddText(newOffset, prevColor, mLineBuffer.c_str());
-				mLineBuffer.clear();
+				drawList->AddText(newOffset, prevColor, line_buffer.c_str());
+				line_buffer.clear();
 			}
 
 			++lineNo;
 		}
 
 		// Draw a tooltip on known identifiers/preprocessor symbols
-		if (ImGui::IsMousePosValid())
-		{
+		if (ImGui::IsMousePosValid()){
 			auto id = GetWordAt(ScreenPosToCoordinates(ImGui::GetMousePos()));
 			if (!id.empty())
 			{
@@ -1414,17 +1398,16 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder){
 
 	ImGui::PushStyleColor(ImGuiCol_ChildBg, ImGui::ColorConvertU32ToFloat4(mPalette[(int)PaletteIndex::Background]));
 	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0.0f, 0.0f));
-	if (!mIgnoreImGuiChild)
+	if (!mIgnoreImGuiChild){
 		ImGui::BeginChild(aTitle, aSize, aBorder, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_AlwaysHorizontalScrollbar | ImGuiWindowFlags_NoMove);
-
-	if (mHandleKeyboardInputs)
-	{
+	}
+	if (mHandleKeyboardInputs){
 		HandleKeyboardInputs();
 		ImGui::PushAllowKeyboardFocus(true);
 	}
-
-	if (mHandleMouseInputs)
+	if (mHandleMouseInputs){
 		HandleMouseInputs();
+	}
 
 	ColorizeInternal();
 	Render();
@@ -2218,27 +2201,27 @@ void TextEditor::Colorize(int aFromLine, int aLines){
 	mColorRangeMax = std::max(mColorRangeMax, toLine);
 	mColorRangeMin = std::max(0, mColorRangeMin);
 	mColorRangeMax = std::max(mColorRangeMin, mColorRangeMax);
-	mCheckComments = true;
+	check_comments = true;
 }
 void TextEditor::ColorizeRange(int aFromLine, int aToLine){
-	if (mLines.empty() || aFromLine >= aToLine)
+	if (mLines.empty() || aFromLine >= aToLine){
 		return;
+	}
 
 	std::string buffer;
 	std::cmatch results;
 	std::string id;
 
 	int endLine = std::max(0, std::min((int)mLines.size(), aToLine));
-	for (int i = aFromLine; i < endLine; ++i)
-	{
+	for (int i = aFromLine; i < endLine; ++i){
 		auto& line = mLines[i];
 
-		if (line.empty())
+		if (line.empty()){
 			continue;
+		}
 
 		buffer.resize(line.size());
-		for (size_t j = 0; j < line.size(); ++j)
-		{
+		for (size_t j = 0; j < line.size(); ++j){
 			auto& col = line[j];
 			buffer[j] = col.mChar;
 			col.mColorIndex = PaletteIndex::Default;
@@ -2249,22 +2232,18 @@ void TextEditor::ColorizeRange(int aFromLine, int aToLine){
 
 		auto last = bufferEnd;
 
-		for (auto first = bufferBegin; first != last; )
-		{
+		for (auto first = bufferBegin; first != last; ){
 			const char * token_begin = nullptr;
 			const char * token_end = nullptr;
 			PaletteIndex token_color = PaletteIndex::Default;
-
 			bool hasTokenizeResult = false;
 
-			if (mLanguageDefinition.mTokenize != nullptr)
-			{
-				if (mLanguageDefinition.mTokenize(first, last, token_begin, token_end, token_color))
+			if (mLanguageDefinition.mTokenize != nullptr){
+				if (mLanguageDefinition.mTokenize(first, last, token_begin, token_end, token_color)){
 					hasTokenizeResult = true;
+				}
 			}
-
-			if (hasTokenizeResult == false)
-			{
+			if (hasTokenizeResult == false){
 				// todo : remove
 				//printf("using regex for %.*s\n", first + 10 < last ? 10 : int(last - first), first);
 
@@ -2282,17 +2261,13 @@ void TextEditor::ColorizeRange(int aFromLine, int aToLine){
 					}
 				}
 			}
-
-			if (hasTokenizeResult == false)
-			{
+			if (hasTokenizeResult == false){
 				first++;
 			}
-			else
-			{
+			else{
 				const size_t token_length = token_end - token_begin;
 
-				if (token_color == PaletteIndex::Identifier)
-				{
+				if (token_color == PaletteIndex::Identifier){
 					id.assign(token_begin, token_end);
 
 					// todo : allmost all language definitions use lower case to specify keywords, so shouldn't this use ::tolower ?
@@ -2328,11 +2303,11 @@ void TextEditor::ColorizeRange(int aFromLine, int aToLine){
 	}
 }
 void TextEditor::ColorizeInternal(){
-	if (mLines.empty() || !mColorizerEnabled)
+	if (mLines.empty() || !mColorizerEnabled){
 		return;
+	}
 
-	if (mCheckComments)
-	{
+	if (check_comments){
 		auto endLine = mLines.size();
 		auto endIndex = 0;
 		auto commentStartLine = endLine;
@@ -2344,12 +2319,10 @@ void TextEditor::ColorizeInternal(){
 		auto concatenate = false;		// '\' on the very end of the line
 		auto currentLine = 0;
 		auto currentIndex = 0;
-		while (currentLine < endLine || currentIndex < endIndex)
-		{
+		while (currentLine < endLine || currentIndex < endIndex){
 			auto& line = mLines[currentLine];
 
-			if (currentIndex == 0 && !concatenate)
-			{
+			if (currentIndex == 0 && !concatenate){
 				withinSingleLineComment = false;
 				withinPreproc = false;
 				firstChar = true;
@@ -2357,21 +2330,21 @@ void TextEditor::ColorizeInternal(){
 
 			concatenate = false;
 
-			if (!line.empty())
-			{
+			if (!line.empty()){
 				auto& g = line[currentIndex];
 				auto c = g.mChar;
 
-				if (c != mLanguageDefinition.mPreprocChar && !isspace(c))
+				if (c != mLanguageDefinition.mPreprocChar && !isspace(c)){
 					firstChar = false;
+				}
 
-				if (currentIndex == (int)line.size() - 1 && line[line.size() - 1].mChar == '\\')
+				if (currentIndex == (int)line.size() - 1 && line[line.size() - 1].mChar == '\\'){
 					concatenate = true;
+				}
 
 				bool inComment = (commentStartLine < currentLine || (commentStartLine == currentLine && commentStartIndex <= currentIndex));
 
-				if (withinString)
-				{
+				if (withinString){
 					line[currentIndex].mMultiLineComment = inComment;
 
 					if (c == '\"')
@@ -2392,18 +2365,16 @@ void TextEditor::ColorizeInternal(){
 							line[currentIndex].mMultiLineComment = inComment;
 					}
 				}
-				else
-				{
-					if (firstChar && c == mLanguageDefinition.mPreprocChar)
+				else{
+					if (firstChar && c == mLanguageDefinition.mPreprocChar){
 						withinPreproc = true;
+					}
 
-					if (c == '\"')
-					{
+					if (c == '\"'){
 						withinString = true;
 						line[currentIndex].mMultiLineComment = inComment;
 					}
-					else
-					{
+					else{
 						auto pred = [](const char& a, const Glyph& b) { return a == b.mChar; };
 						auto from = line.begin() + currentIndex;
 						auto& startStr = mLanguageDefinition.mCommentStart;
@@ -2438,30 +2409,26 @@ void TextEditor::ColorizeInternal(){
 				}
 				line[currentIndex].mPreprocessor = withinPreproc;
 				currentIndex += UTF8CharLength(c);
-				if (currentIndex >= (int)line.size())
-				{
+				if (currentIndex >= (int)line.size()){
 					currentIndex = 0;
 					++currentLine;
 				}
 			}
-			else
-			{
+			else{
 				currentIndex = 0;
 				++currentLine;
 			}
 		}
-		mCheckComments = false;
+		check_comments = false;
 	}
 
-	if (mColorRangeMin < mColorRangeMax)
-	{
+	if (mColorRangeMin < mColorRangeMax){
 		const int increment = (mLanguageDefinition.mTokenize == nullptr) ? 10 : 10000;
 		const int to = std::min(mColorRangeMin + increment, mColorRangeMax);
 		ColorizeRange(mColorRangeMin, to);
 		mColorRangeMin = to;
 
-		if (mColorRangeMax == mColorRangeMin)
-		{
+		if (mColorRangeMax == mColorRangeMin){
 			mColorRangeMin = std::numeric_limits<int>::max();
 			mColorRangeMax = 0;
 		}
@@ -2620,7 +2587,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Cpp(){
 
 	if (!inited){
 		static const char* const cppKeywords[] = {
-			"alignas", "alignof", "and", "and_eq", "asm", "atomic_cancel", "atomic_commit", "atomic_noexcept", "auto", "bitand", "bitor", "bool", "break", "case", "catch", "char", "char16_t", "char32_t", "class",
+			"alignas", "vec2", "vec3", "vec4", "mat4", "alignof", "and", "and_eq", "asm", "atomic_cancel", "atomic_commit", "atomic_noexcept", "auto", "bitand", "bitor", "bool", "break", "case", "catch", "char", "char16_t", "char32_t", "class",
 			"compl", "concept", "const", "constexpr", "const_cast", "continue", "decltype", "default", "delete", "do", "double", "dynamic_cast", "else", "enum", "explicit", "export", "extern", "false", "float",
 			"for", "friend", "goto", "if", "import", "inline", "int", "long", "module", "mutable", "namespace", "new", "noexcept", "not", "not_eq", "nullptr", "operator", "or", "or_eq", "private", "protected", "public",
 			"register", "reinterpret_cast", "requires", "return", "short", "signed", "sizeof", "static", "static_assert", "static_cast", "struct", "switch", "synchronized", "template", "this", "thread_local",

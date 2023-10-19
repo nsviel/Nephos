@@ -5,7 +5,7 @@
 const TextEditor::Palette & TextEditor::get_custom_palette(){
 	const static Palette p = { {
 		0xff7f7f7f,	// Default
-		0xffD69f56,	// Keyword - drityblue
+		0xfffcbc65,	// Keyword - drityblue 65bcfc
 		0xff84CCAF,	// Number - vert pale
 		0xff6ad169,	// String - vert
 		0xffCE9178, // Char literal
