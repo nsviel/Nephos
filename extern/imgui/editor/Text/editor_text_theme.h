@@ -9,7 +9,7 @@ const TextEditor::Palette & TextEditor::get_custom_palette(){
 		0xff84CCAF,	// Number - vert pale
 		0xff6ad169,	// String - vert
 		0xffCE9178, // Char literal
-		0xffD4D4D4, // Punctuation
+		0xffffffff, // Punctuation - white
 		0xffffffff,	// Preprocessor - ex include - white
 		0xffffffff, // Identifier
 		0xffffffff, // Known identifier

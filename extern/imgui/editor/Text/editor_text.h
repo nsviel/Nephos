@@ -154,7 +154,7 @@ public:
 		{
 		}
 
-		static const LanguageDefinition& CPlusPlus();
+		static const LanguageDefinition& Cpp();
 		static const LanguageDefinition& HLSL();
 		static const LanguageDefinition& GLSL();
 		static const LanguageDefinition& C();
@@ -293,9 +293,9 @@ private:
 	void HandleKeyboardInputs();
 	void HandleMouseInputs();
 	void Render();
-	
-	int GetPageSize() const;
 	int InsertTextAt(Coordinates& aWhere, const char* aValue);
+
+	int GetPageSize() const;
 	int GetCharacterIndex(const Coordinates& aCoordinates) const;
 	int GetCharacterColumn(int aLine, int aIndex) const;
 	int GetLineCharacterCount(int aLine) const;
