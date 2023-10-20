@@ -47,10 +47,6 @@ void GUI_control_engine::control_keyboard_oneAction(){
   //----------------------------
 
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
-    if(ImGui::IsKeyPressed(ImGuiKey_Escape)){
-      window->close_window();
-    }
-
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
       sceneManager->selected_object_next();
