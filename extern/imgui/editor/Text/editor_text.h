@@ -135,24 +135,24 @@ public:
 		typedef std::vector<TokenRegexString> TokenRegexStrings;
 		typedef bool(*TokenizeCallback)(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end, PaletteIndex & paletteIndex);
 
-		std::string mName;
-		std::string mCommentStart;
-		std::string mCommentEnd;
-		std::string mSingleLineComment;
-		char mPreprocChar;
-		bool mAutoIndentation;
-		bool mCaseSensitive;
-		Keywords mKeywords;
+		std::string name;
+		std::string comment_start;
+		std::string comment_end;
+		std::string single_line_comment;
+		char preproc_char;
+		bool auto_indentation;
+		bool case_sensitive;
+		Keywords keywords;
 		Identifiers mIdentifiers;
 		Identifiers mPreprocIdentifiers;
 		TokenizeCallback mTokenize;
 		TokenRegexStrings mTokenRegexStrings;
-		
+
 		LanguageDefinition(){
-			this->mPreprocChar = '#';
-			this->mAutoIndentation = true;
+			this->preproc_char = '#';
+			this->auto_indentation = true;
 			this->mTokenize = nullptr;
-			this->mCaseSensitive = true;
+			this->case_sensitive = true;
 		}
 
 		static const LanguageDefinition& Cpp();

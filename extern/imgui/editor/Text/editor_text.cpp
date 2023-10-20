@@ -1591,7 +1591,7 @@ void TextEditor::EnterCharacter(ImWchar aChar, bool aShift){
 		auto& line = lines[coord.mLine];
 		auto& newLine = lines[coord.mLine + 1];
 
-		if (language_definition.mAutoIndentation)
+		if (language_definition.auto_indentation)
 			for (size_t it = 0; it < line.size() && isascii(line[it].mChar) && isblank(line[it].mChar); ++it)
 				newLine.push_back(line[it]);
 
@@ -2269,12 +2269,12 @@ void TextEditor::ColorizeRange(int aFromLine, int aToLine){
 					id.assign(token_begin, token_end);
 
 					// todo : allmost all language definitions use lower case to specify keywords, so shouldn't this use ::tolower ?
-					if (!language_definition.mCaseSensitive){
+					if (!language_definition.case_sensitive){
 						std::transform(id.begin(), id.end(), id.begin(), ::toupper);
 					}
 
 					if (!line[first - bufferBegin].mPreprocessor){
-						if (language_definition.mKeywords.count(id) != 0){
+						if (language_definition.keywords.count(id) != 0){
 							token_color = PaletteIndex::Keyword;
 						}
 						else if (language_definition.mIdentifiers.count(id) != 0){
@@ -2332,7 +2332,7 @@ void TextEditor::ColorizeInternal(){
 				auto& g = line[currentIndex];
 				auto c = g.mChar;
 
-				if (c != language_definition.mPreprocChar && !isspace(c)){
+				if (c != language_definition.preproc_char && !isspace(c)){
 					firstChar = false;
 				}
 
@@ -2364,7 +2364,7 @@ void TextEditor::ColorizeInternal(){
 					}
 				}
 				else{
-					if (firstChar && c == language_definition.mPreprocChar){
+					if (firstChar && c == language_definition.preproc_char){
 						withinPreproc = true;
 					}
 
@@ -2375,8 +2375,8 @@ void TextEditor::ColorizeInternal(){
 					else{
 						auto pred = [](const char& a, const Glyph& b) { return a == b.mChar; };
 						auto from = line.begin() + currentIndex;
-						auto& startStr = language_definition.mCommentStart;
-						auto& singleStartStr = language_definition.mSingleLineComment;
+						auto& startStr = language_definition.comment_start;
+						auto& singleStartStr = language_definition.single_line_comment;
 
 						if (singleStartStr.size() > 0 &&
 							currentIndex + singleStartStr.size() <= line.size() &&
@@ -2396,7 +2396,7 @@ void TextEditor::ColorizeInternal(){
 						line[currentIndex].mMultiLineComment = inComment;
 						line[currentIndex].mComment = withinSingleLineComment;
 
-						auto& endStr = language_definition.mCommentEnd;
+						auto& endStr = language_definition.comment_end;
 						if (currentIndex + 1 >= (int)endStr.size() &&
 							equals(endStr.begin(), endStr.end(), from + 1 - endStr.size(), from + 1, pred))
 						{
@@ -2591,7 +2591,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Cpp(){
 			"throw", "true", "try", "typedef", "typeid", "typename", "union", "unsigned", "using", "virtual", "void", "volatile", "wchar_t", "while", "xor", "xor_eq"
 		};
 		for (auto& k : cppKeywords){
-			langDef.mKeywords.insert(k);
+			langDef.keywords.insert(k);
 		}
 
 		static const char* const identifiers[] = {
@@ -2636,12 +2636,12 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Cpp(){
 			return paletteIndex != PaletteIndex::Max;
 		};
 
-		langDef.mCommentStart = "/*";
-		langDef.mCommentEnd = "*/";
-		langDef.mSingleLineComment = "//";
-		langDef.mCaseSensitive = true;
-		langDef.mAutoIndentation = true;
-		langDef.mName = "C++";
+		langDef.comment_start = "/*";
+		langDef.comment_end = "*/";
+		langDef.single_line_comment = "//";
+		langDef.case_sensitive = true;
+		langDef.auto_indentation = true;
+		langDef.name = "C++";
 		inited = true;
 	}
 
@@ -2672,7 +2672,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL(){
 			"half1x3","half2x3","half3x3","half4x3","half1x4","half2x4","half3x4","half4x4",
 		};
 		for (auto& k : keywords){
-			langDef.mKeywords.insert(k);
+			langDef.keywords.insert(k);
 		}
 
 		static const char* const identifiers[] = {
@@ -2706,14 +2706,14 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL(){
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
 
-		langDef.mCommentStart = "/*";
-		langDef.mCommentEnd = "*/";
-		langDef.mSingleLineComment = "//";
+		langDef.comment_start = "/*";
+		langDef.comment_end = "*/";
+		langDef.single_line_comment = "//";
 
-		langDef.mCaseSensitive = true;
-		langDef.mAutoIndentation = true;
+		langDef.case_sensitive = true;
+		langDef.auto_indentation = true;
 
-		langDef.mName = "HLSL";
+		langDef.name = "HLSL";
 
 		inited = true;
 	}
@@ -2733,7 +2733,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::GLSL(){
 			"_Noreturn", "_Static_assert", "_Thread_local"
 		};
 		for (auto& k : keywords)
-			langDef.mKeywords.insert(k);
+			langDef.keywords.insert(k);
 
 		static const char* const identifiers[] = {
 			"abort", "abs", "acos", "asin", "atan", "atexit", "atof", "atoi", "atol", "ceil", "clock", "cosh", "ctime", "div", "exit", "fabs", "floor", "fmod", "getchar", "getenv", "isalnum", "isalpha", "isdigit", "isgraph",
@@ -2756,14 +2756,14 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::GLSL(){
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
 
-		langDef.mCommentStart = "/*";
-		langDef.mCommentEnd = "*/";
-		langDef.mSingleLineComment = "//";
+		langDef.comment_start = "/*";
+		langDef.comment_end = "*/";
+		langDef.single_line_comment = "//";
 
-		langDef.mCaseSensitive = true;
-		langDef.mAutoIndentation = true;
+		langDef.case_sensitive = true;
+		langDef.auto_indentation = true;
 
-		langDef.mName = "GLSL";
+		langDef.name = "GLSL";
 
 		inited = true;
 	}
@@ -2781,7 +2781,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::C(){
 			"_Noreturn", "_Static_assert", "_Thread_local"
 		};
 		for (auto& k : keywords)
-			langDef.mKeywords.insert(k);
+			langDef.keywords.insert(k);
 
 		static const char* const identifiers[] = {
 			"abort", "abs", "acos", "asin", "atan", "atexit", "atof", "atoi", "atol", "ceil", "clock", "cosh", "ctime", "div", "exit", "fabs", "floor", "fmod", "getchar", "getenv", "isalnum", "isalpha", "isdigit", "isgraph",
@@ -2821,14 +2821,14 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::C(){
 			return paletteIndex != PaletteIndex::Max;
 		};
 
-		langDef.mCommentStart = "/*";
-		langDef.mCommentEnd = "*/";
-		langDef.mSingleLineComment = "//";
+		langDef.comment_start = "/*";
+		langDef.comment_end = "*/";
+		langDef.single_line_comment = "//";
 
-		langDef.mCaseSensitive = true;
-		langDef.mAutoIndentation = true;
+		langDef.case_sensitive = true;
+		langDef.auto_indentation = true;
 
-		langDef.mName = "C";
+		langDef.name = "C";
 
 		inited = true;
 	}
@@ -2852,7 +2852,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::SQL(){
 		};
 
 		for (auto& k : keywords)
-			langDef.mKeywords.insert(k);
+			langDef.keywords.insert(k);
 
 		static const char* const identifiers[] = {
 			"ABS",  "ACOS",  "ADD_MONTHS",  "ASCII",  "ASCIISTR",  "ASIN",  "ATAN",  "ATAN2",  "AVG",  "BFILENAME",  "BIN_TO_NUM",  "BITAND",  "CARDINALITY",  "CASE",  "CAST",  "CEIL",
@@ -2882,14 +2882,14 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::SQL(){
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
 
-		langDef.mCommentStart = "/*";
-		langDef.mCommentEnd = "*/";
-		langDef.mSingleLineComment = "//";
+		langDef.comment_start = "/*";
+		langDef.comment_end = "*/";
+		langDef.single_line_comment = "//";
 
-		langDef.mCaseSensitive = false;
-		langDef.mAutoIndentation = false;
+		langDef.case_sensitive = false;
+		langDef.auto_indentation = false;
 
-		langDef.mName = "SQL";
+		langDef.name = "SQL";
 
 		inited = true;
 	}
@@ -2907,7 +2907,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::AngelScrip
 		};
 
 		for (auto& k : keywords)
-			langDef.mKeywords.insert(k);
+			langDef.keywords.insert(k);
 
 		static const char* const identifiers[] = {
 			"cos", "sin", "tab", "acos", "asin", "atan", "atan2", "cosh", "sinh", "tanh", "log", "log10", "pow", "sqrt", "abs", "ceil", "floor", "fraction", "closeTo", "fpFromIEEE", "fpToIEEE",
@@ -2929,14 +2929,14 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::AngelScrip
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
 
-		langDef.mCommentStart = "/*";
-		langDef.mCommentEnd = "*/";
-		langDef.mSingleLineComment = "//";
+		langDef.comment_start = "/*";
+		langDef.comment_end = "*/";
+		langDef.single_line_comment = "//";
 
-		langDef.mCaseSensitive = true;
-		langDef.mAutoIndentation = true;
+		langDef.case_sensitive = true;
+		langDef.auto_indentation = true;
 
-		langDef.mName = "AngelScript";
+		langDef.name = "AngelScript";
 
 		inited = true;
 	}
@@ -2951,7 +2951,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Lua(){
 		};
 
 		for (auto& k : keywords)
-			langDef.mKeywords.insert(k);
+			langDef.keywords.insert(k);
 
 		static const char* const identifiers[] = {
 			"assert", "collectgarbage", "dofile", "error", "getmetatable", "ipairs", "loadfile", "load", "loadstring",  "next",  "pairs",  "pcall",  "print",  "rawequal",  "rawlen",  "rawget",  "rawset",
@@ -2980,14 +2980,14 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Lua(){
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
 
-		langDef.mCommentStart = "--[[";
-		langDef.mCommentEnd = "]]";
-		langDef.mSingleLineComment = "--";
+		langDef.comment_start = "--[[";
+		langDef.comment_end = "]]";
+		langDef.single_line_comment = "--";
 
-		langDef.mCaseSensitive = true;
-		langDef.mAutoIndentation = false;
+		langDef.case_sensitive = true;
+		langDef.auto_indentation = false;
 
-		langDef.mName = "Lua";
+		langDef.name = "Lua";
 
 		inited = true;
 	}
