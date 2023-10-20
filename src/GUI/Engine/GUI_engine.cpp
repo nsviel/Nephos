@@ -2,8 +2,8 @@
 
 #include <Engine.h>
 #include <GUI.h>
-#include <Control/GUI_control_engine.h>
 #include <Window/Menu/GUI_mainmenubar.h>
+#include <Control/GUI_control_engine.h>
 #include <Vulkan/VK_engine.h>
 #include <Vulkan/VK_struct.h>
 #include <image/IconsFontAwesome5.h>
@@ -16,7 +16,7 @@ GUI_engine::GUI_engine(GUI* gui){
   Engine* engine = gui->get_engine();
   VK_engine* vk_engine = engine->get_vk_engine();
   this->vk_struct = vk_engine->get_vk_struct();
-  this->gui_control = gui->get_gui_control();
+  this->gui_control = new GUI_control_engine(gui);
 
   //---------------------------
 }

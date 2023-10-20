@@ -16,7 +16,7 @@ public:
 
 public:
   //Main function
-  void run_control(ImVec2 center);
+  void run_control();
 
   //Keyboard
   void control_keyboard_oneAction();

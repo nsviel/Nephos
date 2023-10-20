@@ -17,7 +17,7 @@ GUI_control_gui::GUI_control_gui(GUI* gui){
 GUI_control_gui::~GUI_control_gui(){}
 
 //Main function
-void GUI_control_gui::run_control(ImVec2 center){
+void GUI_control_gui::run_control(){
   //---------------------------
 
   this->control_keyboard_oneAction();
