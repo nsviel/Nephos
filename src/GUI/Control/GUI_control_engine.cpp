@@ -67,52 +67,6 @@ void GUI_control_engine::control_keyboard_oneAction(){
       //node->reset();
       break;
     }
-
-    /*
-
-
-    //Fin key - Delete all
-    if (ImGui::IsKeyPressed(269)){
-      sceneManager->remove_collection_all();
-      break;
-    }
-
-    //H key - Heatmap
-    if (ImGui::IsKeyPressed(72)){
-      heatmapManager->make_col_heatmap(collection);
-      break;
-    }
-
-    //C key - Centering
-    if (ImGui::IsKeyPressed(67)){
-      this->key_c();
-      break;
-    }
-
-    //Enter - Validation
-    if(ImGui::IsKeyPressed(257)){
-      selectionManager->validate();
-      break;
-    }
-
-    //N key - Save all & remove all & load new
-    if(ImGui::IsKeyPressed(78)){
-      //pathManager->saving_allCloud();
-      //sceneManager->remove_collection_all();
-    }
-
-    //o key - Open options
-    if(ImGui::IsKeyPressed(79)){
-      modal_tab.show_loading = !modal_tab.show_loading;
-      break;
-    }
-
-    //space key - Start / Pause player
-    if(ImGui::IsKeyPressed(32)){
-      GUI_Player* gui_player = gui->get_gui_player();
-      gui_player->player_pause();
-      break;
-    }*/
   }
 
   //----------------------------
