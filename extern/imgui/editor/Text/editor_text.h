@@ -117,14 +117,19 @@ public:
 	typedef uint8_t Char;
 
 	struct Glyph{
-		Char mChar;
-		PaletteIndex mColorIndex = PaletteIndex::Default;
-		bool mComment : 1;
-		bool mMultiLineComment : 1;
-		bool mPreprocessor : 1;
+		Glyph(Char aChar, PaletteIndex aColorIndex){
+			this->mChar = aChar;
+			this->color_index = aColorIndex;
+			this->preprocessor = false;
+			this->comment = false;
+			this->multiline_comment = false;
+		}
 
-		Glyph(Char aChar, PaletteIndex aColorIndex) : mChar(aChar), mColorIndex(aColorIndex),
-			mComment(false), mMultiLineComment(false), mPreprocessor(false) {}
+		PaletteIndex color_index = PaletteIndex::Default;
+		Char mChar;
+		bool comment : 1;
+		bool multiline_comment : 1;
+		bool preprocessor : 1;
 	};
 
 	typedef std::vector<Glyph> Line;
@@ -135,6 +140,13 @@ public:
 		typedef std::vector<TokenRegexString> TokenRegexStrings;
 		typedef bool(*TokenizeCallback)(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end, PaletteIndex & paletteIndex);
 
+		LanguageDefinition(){
+			this->preproc_char = '#';
+			this->auto_indentation = true;
+			this->tokenize = nullptr;
+			this->case_sensitive = true;
+		}
+		
 		std::string name;
 		std::string comment_start;
 		std::string comment_end;
@@ -143,17 +155,10 @@ public:
 		bool auto_indentation;
 		bool case_sensitive;
 		Keywords keywords;
-		Identifiers mIdentifiers;
-		Identifiers mPreprocIdentifiers;
-		TokenizeCallback mTokenize;
-		TokenRegexStrings mTokenRegexStrings;
-
-		LanguageDefinition(){
-			this->preproc_char = '#';
-			this->auto_indentation = true;
-			this->mTokenize = nullptr;
-			this->case_sensitive = true;
-		}
+		Identifiers identifiers;
+		Identifiers preproc_dentifiers;
+		TokenizeCallback tokenize;
+		TokenRegexStrings token_regex_strings;
 
 		static const LanguageDefinition& Cpp();
 		static const LanguageDefinition& HLSL();
