@@ -3,8 +3,6 @@
 #include "GPU/GUI_font.h"
 #include "GPU/GUI_image.h"
 #include "GPU/GUI_video.h"
-#include "Panel/Panel.h"
-#include "Panel/GUI_panel.h"
 #include "Element/Initialization/GUI_init.h"
 #include "Element/Capture/GUI_capture.h"
 #include "Window/Window.h"
@@ -23,6 +21,8 @@
 #include <Engine.h>
 #include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
+#include <Tab/Engine/Panel.h>
+#include <Tab/Engine/GUI_panel.h>
 
 
 //Constructor / Destructor

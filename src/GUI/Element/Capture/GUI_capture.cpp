@@ -2,7 +2,7 @@
 
 #include <GPU/GUI_video.h>
 #include <GPU/GUI_image.h>
-#include <Panel/GUI_panel.h>
+#include <Tab/Engine/GUI_panel.h>
 #include <GUI.h>
 
 

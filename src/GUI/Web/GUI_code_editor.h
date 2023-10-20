@@ -2,7 +2,7 @@
 #define GUI_CODE_EDITOR_H
 
 #include <Specific/common.h>
-#include <Panel/BASE_panel.h>
+#include <Tab/Base/BASE_panel.h>
 
 class GUI;
 class GUI_editor_text;

@@ -1,25 +1,28 @@
 #include "GUI_panel.h"
 #include "Panel.h"
-#include "../Engine/GUI_engine.h"
-#include "../Element/Editor/GUI_editor_node.h"
-#include "../Element/Data/GUI_database.h"
-#include "../Element/Capture/GUI_capture.h"
-#include "../Style/Widget/GUI_indicator.h"
-#include "../Window/Menu/GUI_mainmenubar.h"
-#include "../Engine/Profiler/GUI_profiler.h"
-#include "../Engine/Render/GUI_shader.h"
-#include "../Engine/Data/GUI_scene.h"
-#include "../Engine/Camera/GUI_camera.h"
 
-#include <Panel/Panel.h>
 #include <GUI.h>
-#include <Engine.h>
+#include <Tab/Engine/Panel.h>
 #include <Data/Load/Loader.h>
+#include <Style/Widget/GUI_indicator.h>
+
+#include <Window/Menu/GUI_mainmenubar.h>
+#include <Window/Menu/GUI_option.h>
+
+#include <Element/Editor/GUI_editor_node.h>
+#include <Element/Data/GUI_database.h>
+#include <Element/Capture/GUI_capture.h>
+
+#include <Engine.h>
+#include <Engine/GUI_engine.h>
 #include <Engine/Data/GUI_object.h>
 #include <Engine/Data/GUI_scene.h>
 #include <Engine/Data/GUI_set.h>
 #include <Engine/GUI_engine.h>
-#include <Window/Menu/GUI_option.h>
+#include <Engine/Profiler/GUI_profiler.h>
+#include <Engine/Render/GUI_shader.h>
+#include <Engine/Data/GUI_scene.h>
+#include <Engine/Camera/GUI_camera.h>
 
 
 //Constructor / Destructor

@@ -25,6 +25,7 @@ public:
   //Subfunctions
   void menu();
   void menu_demo();
+  void main_tab();
 
 private:
   GUI* gui;
