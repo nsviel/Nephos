@@ -30,6 +30,8 @@ public:
 
   //Shader specific
   void shader_EDL_parameter();
+  void check_reload();
+  void display_reload();
 
   //Subfunction
   void retrieve_shader_subclasses();
@@ -45,7 +47,11 @@ private:
 
   vector<string> vec_shader_class;
   vector<string> vec_shader_subclass;
+  string active_editor;
+  string reload;
+  string current_status;
   bool with_parameter;
+  bool has_been_reloaded;
   int item_width;
   int ID_class;
   int ID_subclass;

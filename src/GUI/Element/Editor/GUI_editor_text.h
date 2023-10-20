@@ -19,16 +19,22 @@ public:
   void run_editor();
 
   //Subfunction
+  void check_status();
+  void display_status();
   void load_from_file(string path);
   void save_to_file(string path);
   void save_to_current_file();
   string get_text();
 
+  inline string get_status(){return status;}
+
 private:
   GUI_control_editor* control;
   TextEditor* editor;
 
+  string status;
   string current_file_path;
+  bool has_been_saved;
 };
 
 #endif

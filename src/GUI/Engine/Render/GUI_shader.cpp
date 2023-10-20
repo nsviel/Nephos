@@ -26,6 +26,7 @@ GUI_shader::GUI_shader(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   this->item_width = 100;
   this->ID_class = 0;
   this->ID_subclass = 0;
+  this->has_been_reloaded = true;
 
   //---------------------------
   this->init_panel();
@@ -107,9 +108,9 @@ void GUI_shader::shader_command(){
   //---------------------------
 
   if(ImGui::Button("Reload")){
-    string shader_1 = vec_shader_class[ID_class];
-    string shader_2 = vec_shader_subclass[ID_subclass];
-    vk_reload->hot_shader_reload(shader_1, shader_2);
+    string shader_class = vec_shader_class[ID_class];
+    string shader_subclass = vec_shader_subclass[ID_subclass];
+    vk_reload->hot_shader_reload(shader_class, shader_subclass);
   }
   ImGui::SameLine();
 
@@ -125,6 +126,18 @@ void GUI_shader::shader_command(){
 
   }
 
+  if(active_editor == "Vertex"){
+    this->current_status = editor_vs->get_status();
+    editor_vs->display_status();
+  }
+  else if(active_editor == "Fragment"){
+    this->current_status = editor_fs->get_status();
+    editor_fs->display_status();
+  }
+
+  ImGui::SameLine();
+  this->display_reload();
+
   //---------------------------
 }
 void GUI_shader::shader_tabs(){
@@ -133,10 +146,12 @@ void GUI_shader::shader_tabs(){
   if (ImGui::BeginTabBar("shader_editor")){
     if (ImGui::BeginTabItem("Vertex")){
         editor_vs->run_editor();
+        this->active_editor = "Vertex";
         ImGui::EndTabItem();
     }
     if (ImGui::BeginTabItem("Fragment")){
         editor_fs->run_editor();
+        this->active_editor = "Fragment";
         ImGui::EndTabItem();
     }
     if (with_parameter && ImGui::BeginTabItem("Parameter")){
@@ -237,6 +252,38 @@ string GUI_shader::get_path_fs_from_selection(){
 }
 
 //Shader specific
+void GUI_shader::check_reload(){
+  //---------------------------
+
+  if(current_status == "Saved" && has_been_reloaded){
+
+  }
+  else if(current_status == "Modified" && has_been_reloaded == false){
+
+  }
+
+  //---------------------------
+}
+void GUI_shader::display_reload(){
+  //---------------------------
+
+  string status;
+  ImVec4 color;
+  if(has_been_reloaded){
+    color = ImVec4(0.4f,1.0f,0.4f,1.0f);
+    status = "OK";
+  }
+  else if(has_been_reloaded == false){
+    color = ImVec4(1.0f,0.4f,0.4f,1.0f);
+    status = "Not";
+  }
+
+  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Reload: ");
+  ImGui::SameLine();
+  ImGui::TextColored(color, "%s", status.c_str());
+
+  //---------------------------
+}
 void GUI_shader::shader_EDL_parameter(){
   EDL_shader* edl_shader = shaderManager->get_edl_shader();
   EDL_param* edl_param = edl_shader->get_edl_param();
