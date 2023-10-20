@@ -13,6 +13,7 @@ GUI_editor_text::GUI_editor_text(){
 
   this->current_file_path = "";
   this->has_been_saved = true;
+  this->status = "Saved";
 
   //---------------------------
 }
@@ -94,6 +95,7 @@ void GUI_editor_text::load_from_file(string path){
   this->current_file_path = path;
 
   //---------------------------
+  editor->set_is_text_changed(false);
 }
 void GUI_editor_text::save_to_file(string path){
   //---------------------------

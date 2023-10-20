@@ -27,6 +27,7 @@ public:
   string get_text();
 
   inline string get_status(){return status;}
+  inline bool is_text_changed(){return editor->IsTextChanged();}
 
 private:
   GUI_control_editor* control;

@@ -49,10 +49,12 @@ void GUI_shader::init_panel(){
 void GUI_shader::design_panel(){
   //---------------------------
 
+  this->check_reload();
   this->shader_combo_class();
   this->shader_combo_subclass();
   this->shader_command();
   this->shader_tabs();
+  this->shader_control();
 
   //---------------------------
 }
@@ -108,9 +110,7 @@ void GUI_shader::shader_command(){
   //---------------------------
 
   if(ImGui::Button("Reload")){
-    string shader_class = vec_shader_class[ID_class];
-    string shader_subclass = vec_shader_subclass[ID_subclass];
-    vk_reload->hot_shader_reload(shader_class, shader_subclass);
+    this->reload_vulkan_shader();
   }
   ImGui::SameLine();
 
@@ -119,11 +119,7 @@ void GUI_shader::shader_command(){
     string path_fs = get_path_fs_from_selection();
     editor_vs->save_to_file(path_vs);
     editor_fs->save_to_file(path_fs);
-  }
-  ImGui::SameLine();
-
-  if(ImGui::Button("Save to save")){
-
+    this->reload_vulkan_shader();
   }
 
   if(active_editor == "Vertex"){
@@ -255,11 +251,10 @@ string GUI_shader::get_path_fs_from_selection(){
 void GUI_shader::check_reload(){
   //---------------------------
 
-  if(current_status == "Saved" && has_been_reloaded){
-
-  }
-  else if(current_status == "Modified" && has_been_reloaded == false){
-
+  bool has_vs_changed = editor_vs->is_text_changed();
+  bool has_fs_changed = editor_fs->is_text_changed();
+  if(has_vs_changed || has_fs_changed){
+    has_been_reloaded = false;
   }
 
   //---------------------------
@@ -305,6 +300,31 @@ void GUI_shader::shader_EDL_parameter(){
       edl_shader->update_shader();
     }
   //}
+
+  //---------------------------
+}
+void GUI_shader::shader_control(){
+  ImGuiIO io = ImGui::GetIO();
+  //----------------------------
+
+  for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
+    //CTRL + S - save to file
+    if(io.KeysDown[527] && ImGui::IsKeyPressed(ImGuiKey_S)){
+      this->reload_vulkan_shader();
+      break;
+    }
+
+  }
+
+  //----------------------------
+}
+void GUI_shader::reload_vulkan_shader(){
+  //---------------------------
+
+  string shader_class = vec_shader_class[ID_class];
+  string shader_subclass = vec_shader_subclass[ID_subclass];
+  vk_reload->hot_shader_reload(shader_class, shader_subclass);
+  this->has_been_reloaded = true;
 
   //---------------------------
 }

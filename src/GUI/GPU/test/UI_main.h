@@ -20,7 +20,7 @@ public:
 public:
   //Main functions
   void init_gui();
-  void clean_gui();
+  void clean_gui_vulkan();
   void run_gui_main();
 
 private:

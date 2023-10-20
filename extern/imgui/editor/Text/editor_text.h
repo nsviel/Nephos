@@ -171,24 +171,24 @@ public:
 	void Cut();
 	void Paste();
 	void Delete();
-	void InsertText(const std::string& aValue);
-	void InsertText(const char* aValue);
+	void InsertText(const std::string& value);
+	void InsertText(const char* value);
 
 	bool CanUndo() const;
 	bool CanRedo() const;
 	void Undo(int aSteps = 1);
 	void Redo(int aSteps = 1);
 
-	void SetReadOnly(bool aValue);
+	void SetReadOnly(bool value);
 	void SetLanguageDefinition(const LanguageDefinition& aLanguageDef);
-	void SetPalette(const Palette& aValue);
+	void SetPalette(const Palette& value);
 	void SetErrorMarkers(const ErrorMarkers& aMarkers) { error_markers = aMarkers; }
 	void SetBreakpoints(const Breakpoints& aMarkers) { breakpoint = aMarkers; }
 	void SetText(const std::string& aText);
 	void SetTextLines(const std::vector<std::string>& aLines);
-	void SetColorizerEnable(bool aValue);
+	void SetColorizerEnable(bool value);
 	void SetCursorPosition(const Coordinates& aPosition);
-	void SetTabSize(int aValue);
+	void SetTabSize(int value);
 	void SetSelectionStart(const Coordinates& aPosition);
 	void SetSelectionEnd(const Coordinates& aPosition);
 	void SetSelection(const Coordinates& aStart, const Coordinates& aEnd, SelectionMode aMode = SelectionMode::Normal);
@@ -211,10 +211,11 @@ public:
 	bool IsColorizerEnabled() const { return colorizer_enabled; }
 	bool HasSelection() const;
 
-	inline void SetHandleMouseInputs    (bool aValue){ handle_mouse_inputs    = aValue;}
-	inline void SetHandleKeyboardInputs (bool aValue){ handle_keyboard_inputs = aValue;}
-	inline void SetImGuiChildIgnored    (bool aValue){ ignore_imgui_child     = aValue;}
-	inline void SetShowWhitespaces(bool aValue) { show_whitespaces = aValue; }
+	inline void set_is_text_changed     (bool value){ text_changed    = value;}
+	inline void SetHandleMouseInputs    (bool value){ handle_mouse_inputs    = value;}
+	inline void SetHandleKeyboardInputs (bool value){ handle_keyboard_inputs = value;}
+	inline void SetImGuiChildIgnored    (bool value){ ignore_imgui_child     = value;}
+	inline void SetShowWhitespaces(bool value) { show_whitespaces = value; }
 	inline bool IsHandleMouseInputsEnabled() const { return handle_keyboard_inputs; }
 	inline bool IsHandleKeyboardInputsEnabled() const { return handle_keyboard_inputs; }
 	inline bool IsImGuiChildIgnored() const { return ignore_imgui_child; }
@@ -283,7 +284,7 @@ private:
 	void EnsureCursorVisible();
 	void Advance(Coordinates& aCoordinates) const;
 	void DeleteRange(const Coordinates& aStart, const Coordinates& aEnd);
-	void AddUndo(UndoRecord& aValue);
+	void AddUndo(UndoRecord& value);
 	void RemoveLine(int aStart, int aEnd);
 	void RemoveLine(int aIndex);
 	void EnterCharacter(ImWchar aChar, bool aShift);
@@ -292,7 +293,7 @@ private:
 	void HandleKeyboardInputs();
 	void HandleMouseInputs();
 	void Render();
-	int InsertTextAt(Coordinates& aWhere, const char* aValue);
+	int InsertTextAt(Coordinates& aWhere, const char* value);
 
 	int GetPageSize() const;
 	int GetCharacterIndex(const Coordinates& aCoordinates) const;
@@ -305,7 +306,7 @@ private:
 	std::string GetWordAt(const Coordinates& aCoords) const;
 
 	Coordinates GetActualCursorCoordinates() const;
-	Coordinates SanitizeCoordinates(const Coordinates& aValue) const;
+	Coordinates SanitizeCoordinates(const Coordinates& value) const;
 	Coordinates ScreenPosToCoordinates(const ImVec2& aPosition) const;
 	Coordinates FindWordStart(const Coordinates& aFrom) const;
 	Coordinates FindWordEnd(const Coordinates& aFrom) const;

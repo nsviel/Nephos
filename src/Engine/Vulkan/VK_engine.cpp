@@ -142,7 +142,7 @@ void VK_engine::device_wait_idle() {
 void VK_engine::clean_vulkan(){
   //---------------------------
 
-  //gpu_render->clean_gui();
+  //gpu_render->clean_gui_vulkan();
   vk_texture->clean_textures();
   vk_renderpass->clean_renderpass();
   vk_swapchain->clean_swapchain();

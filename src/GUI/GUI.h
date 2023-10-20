@@ -7,6 +7,7 @@ class Engine;
 class Data;
 class Window;
 
+class GUI_font;
 class GUI_panel;
 class GUI_control_gui;
 class GUI_mainmenubar;
@@ -56,6 +57,7 @@ private:
   GUI_init* gui_init;
   GUI_gpu* gui_gpu;
   GUI_image* gui_image;
+  GUI_font* gui_font;
   GUI_video* gui_video;
 };
 

@@ -1,5 +1,6 @@
 #include "GUI.h"
 #include "GPU/GUI_gpu.h"
+#include "GPU/GUI_font.h"
 #include "GPU/GUI_image.h"
 #include "GPU/GUI_video.h"
 #include "Panel/Panel.h"
@@ -40,6 +41,7 @@ GUI::GUI(Window* window, Engine* engine){
   this->gui_panel = new GUI_panel(this);
   this->gui_menubar = new GUI_mainmenubar(this);
   this->gui_gpu = new GUI_gpu(engine);
+  this->gui_font = new GUI_font(engine);
 
   //---------------------------
 }
@@ -57,7 +59,8 @@ void GUI::init(){
   //---------------------------
 
   gui_panel->create_panels();
-  gui_gpu->init_gui();
+  gui_gpu->init_gui_vulkan();
+  gui_font->init_gui_font();
   gui_style->gui_style();
 
   //---------------------------
@@ -83,7 +86,7 @@ void GUI::loop(){
 void GUI::exit(){
   //---------------------------
 
-  gui_gpu->clean_gui();
+  gui_gpu->clean_gui_vulkan();
 
   //---------------------------
 }

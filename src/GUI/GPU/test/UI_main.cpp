@@ -121,7 +121,7 @@ void UI_main::init_gui(){
 
   //---------------------------
 }
-void UI_main::clean_gui(){
+void UI_main::clean_gui_vulkan(){
   //---------------------------
 
   // Cleanup
@@ -222,5 +222,5 @@ void UI_main::run_gui_main(){
   }
 
   //---------------------------
-  //out loop -> this->clean_gui();
+  //out loop -> this->clean_gui_vulkan();
 }

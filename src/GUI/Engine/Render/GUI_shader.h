@@ -32,6 +32,8 @@ public:
   void shader_EDL_parameter();
   void check_reload();
   void display_reload();
+  void shader_control();
+  void reload_vulkan_shader();
 
   //Subfunction
   void retrieve_shader_subclasses();
