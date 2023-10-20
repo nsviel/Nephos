@@ -55,9 +55,9 @@ public:
 		// Represents a character coordinate from the user's point of view,
 		// i. e. consider an uniform grid (assuming fixed-width font) on the
 		// screen as it is rendered, and each cell has its own coordinate, starting from 0.
-		// Tabs are counted as [1..mTabSize] count empty spaces, depending on
+		// Tabs are counted as [1..tab_size] count empty spaces, depending on
 		// how many space is necessary to reach the next tab stop.
-		// For example, coordinate (1, 5) represents the character 'B' in a line "\tABC", when mTabSize = 4,
+		// For example, coordinate (1, 5) represents the character 'B' in a line "\tABC", when tab_size = 4,
 		// because it is rendered as "    ABC" on the screen.
 		int mLine, mColumn;
 		Coordinates() : mLine(0), mColumn(0) {}
@@ -182,8 +182,8 @@ public:
 	void SetReadOnly(bool aValue);
 	void SetLanguageDefinition(const LanguageDefinition& aLanguageDef);
 	void SetPalette(const Palette& aValue);
-	void SetErrorMarkers(const ErrorMarkers& aMarkers) { mErrorMarkers = aMarkers; }
-	void SetBreakpoints(const Breakpoints& aMarkers) { mBreakpoints = aMarkers; }
+	void SetErrorMarkers(const ErrorMarkers& aMarkers) { error_markers = aMarkers; }
+	void SetBreakpoints(const Breakpoints& aMarkers) { breakpoint = aMarkers; }
 	void SetText(const std::string& aText);
 	void SetTextLines(const std::vector<std::string>& aLines);
 	void SetColorizerEnable(bool aValue);
@@ -195,31 +195,31 @@ public:
 	void SelectWordUnderCursor();
 	void SelectAll();
 
-	const LanguageDefinition& GetLanguageDefinition() const { return mLanguageDefinition; }
-	const Palette& GetPalette() const { return mPaletteBase; }
+	const LanguageDefinition& GetLanguageDefinition() const { return language_definition; }
+	const Palette& GetPalette() const { return palette_base; }
 	std::vector<std::string> GetTextLines() const;
 	std::string GetText() const;
 	std::string GetSelectedText() const;
 	std::string GetCurrentLineText()const;
-	int GetTotalLines() const { return (int)mLines.size(); }
+	int GetTotalLines() const { return (int)lines.size(); }
 	Coordinates GetCursorPosition() const { return GetActualCursorCoordinates(); }
 
-	bool IsOverwrite() const { return mOverwrite; }
-	bool IsReadOnly() const { return mReadOnly; }
-	bool IsTextChanged() const { return mTextChanged; }
-	bool IsCursorPositionChanged() const { return mCursorPositionChanged; }
-	bool IsColorizerEnabled() const { return mColorizerEnabled; }
+	bool IsOverwrite() const { return overwrite; }
+	bool IsReadOnly() const { return read_only; }
+	bool IsTextChanged() const { return text_changed; }
+	bool IsCursorPositionChanged() const { return cursor_position_changed; }
+	bool IsColorizerEnabled() const { return colorizer_enabled; }
 	bool HasSelection() const;
 
-	inline void SetHandleMouseInputs    (bool aValue){ mHandleMouseInputs    = aValue;}
-	inline void SetHandleKeyboardInputs (bool aValue){ mHandleKeyboardInputs = aValue;}
-	inline void SetImGuiChildIgnored    (bool aValue){ mIgnoreImGuiChild     = aValue;}
+	inline void SetHandleMouseInputs    (bool aValue){ handle_mouse_inputs    = aValue;}
+	inline void SetHandleKeyboardInputs (bool aValue){ handle_keyboard_inputs = aValue;}
+	inline void SetImGuiChildIgnored    (bool aValue){ ignore_imgui_child     = aValue;}
 	inline void SetShowWhitespaces(bool aValue) { show_whitespaces = aValue; }
-	inline bool IsHandleMouseInputsEnabled() const { return mHandleKeyboardInputs; }
-	inline bool IsHandleKeyboardInputsEnabled() const { return mHandleKeyboardInputs; }
-	inline bool IsImGuiChildIgnored() const { return mIgnoreImGuiChild; }
+	inline bool IsHandleMouseInputsEnabled() const { return handle_keyboard_inputs; }
+	inline bool IsHandleKeyboardInputsEnabled() const { return handle_keyboard_inputs; }
+	inline bool IsImGuiChildIgnored() const { return ignore_imgui_child; }
 	inline bool IsShowingWhitespaces() const { return show_whitespaces; }
-	inline int GetTabSize() const { return mTabSize; }
+	inline int GetTabSize() const { return tab_size; }
 
 	void MoveUp(int aAmount = 1, bool aSelect = false);
 	void MoveDown(int aAmount = 1, bool aSelect = false);
@@ -241,7 +241,6 @@ private:
 		Coordinates mSelectionEnd;
 		Coordinates mCursorPosition;
 	};
-
 	class UndoRecord{
 	public:
 		UndoRecord() {}
@@ -317,39 +316,41 @@ private:
 	ImU32 GetGlyphColor(const Glyph& aGlyph) const;
 	float TextDistanceToLineStart(const Coordinates& aFrom) const;
 
-	Lines mLines;
-	EditorState mState;
-	UndoBuffer mUndoBuffer;
-	SelectionMode mSelectionMode;
-	Palette mPaletteBase;
-	Palette mPalette;
-	LanguageDefinition mLanguageDefinition;
-	RegexList mRegexList;
-	Breakpoints mBreakpoints;
-	ErrorMarkers mErrorMarkers;
-	Coordinates mInteractiveStart, mInteractiveEnd;
+	Lines lines;
+	EditorState state;
+	UndoBuffer undo_buffer;
+	SelectionMode selection_mode;
+	Palette palette_base;
+	Palette palette;
+	LanguageDefinition language_definition;
+	RegexList regex_list;
+	Breakpoints breakpoint;
+	ErrorMarkers error_markers;
+	Coordinates interactive_start;
+	Coordinates interactive_end;
 
 	std::string line_buffer;
-	uint64_t mStartTime;
-	ImVec2 mCharAdvance;
-	float mLastClick;
-	float mLineSpacing;
-	float mTextStart; // position (in pixels) where a code line starts relative to the left of the TextEditor.
-	int mUndoIndex;
-	int mTabSize;
-	int mLeftMargin;
-	int mColorRangeMin, mColorRangeMax;
-	bool mOverwrite;
-	bool mReadOnly;
-	bool mWithinRender;
-	bool mScrollToCursor;
-	bool mScrollToTop;
-	bool mTextChanged;
-	bool mColorizerEnabled;
-	bool mCursorPositionChanged;
-	bool mHandleKeyboardInputs;
-	bool mHandleMouseInputs;
-	bool mIgnoreImGuiChild;
+	uint64_t start_time;
+	ImVec2 char_advance;
+	float last_click;
+	float line_spacing;
+	float text_start; // position (in pixels) where a code line starts relative to the left of the TextEditor.
+	int undo_index;
+	int tab_size;
+	int left_margin;
+	int color_range_min;
+	int color_range_max;
+	bool overwrite;
+	bool read_only;
+	bool within_render;
+	bool scroll_to_cursor;
+	bool scroll_to_top;
+	bool text_changed;
+	bool colorizer_enabled;
+	bool cursor_position_changed;
+	bool handle_keyboard_inputs;
+	bool handle_mouse_inputs;
+	bool ignore_imgui_child;
 	bool show_whitespaces;
 	bool check_comments;
 };

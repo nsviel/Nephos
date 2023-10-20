@@ -8,7 +8,7 @@ class Data;
 class Window;
 
 class GUI_panel;
-class GUI_control;
+class GUI_control_engine;
 class GUI_mainmenubar;
 class GUI_style;
 class GUI_init;
@@ -37,7 +37,7 @@ public:
   inline Window* get_window(){return window;}
 
   inline GUI_panel* get_gui_panel(){return gui_panel;}
-  inline GUI_control* get_gui_control(){return gui_control;}
+  inline GUI_control_engine* get_gui_control(){return gui_control;}
   inline GUI_mainmenubar* get_gui_menubar(){return gui_menubar;}
   inline GUI_style* get_gui_style(){return gui_style;}
   inline GUI_init* get_gui_init(){return gui_init;}
@@ -50,7 +50,7 @@ private:
   Window* window;
 
   GUI_panel* gui_panel;
-  GUI_control* gui_control;
+  GUI_control_engine* gui_control;
   GUI_mainmenubar* gui_menubar;
   GUI_style* gui_style;
   GUI_init* gui_init;

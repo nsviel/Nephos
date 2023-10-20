@@ -1,5 +1,5 @@
-#ifndef GUI_KEYBOARD_H
-#define GUI_KEYBOARD_H
+#ifndef CONTROL_ENGINE_H
+#define CONTROL_ENGINE_H
 
 #include <Specific/common.h>
 
@@ -9,25 +9,31 @@ class Camera;
 class Window;
 class Scene;
 class Transformation;
+class Param;
 
 
-class GUI_keyboard
+class GUI_control_engine
 {
 public:
   //Constructor / Destructor
-  GUI_keyboard(GUI* gui);
-  ~GUI_keyboard();
+  GUI_control_engine(GUI* gui);
+  ~GUI_control_engine();
 
 public:
   //Main function
-  void run_control();
+  void run_control(ImVec2 center);
 
-  //Keyboard function
+  //Keyboard
   void control_keyboard_oneAction();
   void control_keyboard_camMove();
   void control_keyboard_translation();
 
+  //Mouse
+  void control_mouse(ImVec2 center);
+  void control_mouse_wheel();
+
 private:
+  Param* param;
   Window* window;
   Scene* sceneManager;
   Camera* cameraManager;

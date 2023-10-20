@@ -1,38 +1,43 @@
-#ifndef GUI_MOUSE_H
-#define GUI_MOUSE_H
+#ifndef GUI_CONTROL_H
+#define GUI_CONTROL_H
 
 #include <Specific/common.h>
 
-class Param;
 class GUI;
 class Window;
 class Camera;
 class Window;
-class Transformation;
 class Scene;
+class Transformation;
+class Param;
 
 
-class GUI_mouse
+class GUI_control_engine
 {
 public:
   //Constructor / Destructor
-  GUI_mouse(GUI* gui);
-  ~GUI_mouse();
+  GUI_control_engine(GUI* gui);
+  ~GUI_control_engine();
 
 public:
   //Main function
   void run_control(ImVec2 center);
 
-  //Mouse function
+  //Keyboard
+  void control_keyboard_oneAction();
+  void control_keyboard_camMove();
+  void control_keyboard_translation();
+
+  //Mouse
   void control_mouse(ImVec2 center);
   void control_mouse_wheel();
 
 private:
   Param* param;
   Window* window;
+  Scene* sceneManager;
   Camera* cameraManager;
   Transformation* transformManager;
-  Scene* sceneManager;
 };
 
 #endif

@@ -6,7 +6,7 @@
 
 class GUI;
 class VK_struct;
-class GUI_control;
+class GUI_control_engine;
 class Database_sqlite;
 
 

@@ -9,7 +9,7 @@
 #include "Window/Window.h"
 #include "Window/Menu/GUI_mainmenubar.h"
 
-#include "Window/Control/GUI_control.h"
+#include "Control/GUI_control_engine.h"
 #include "Style/GUI_style.h"
 #include "Engine/GUI_engine.h"
 #include "Engine/Camera/GUI_camera.h"
@@ -35,7 +35,7 @@ GUI::GUI(Window* window, Engine* engine){
   this->gui_image = new GUI_image(engine);
   this->gui_video = new GUI_video(engine);
   this->gui_init = new GUI_init(this);
-  this->gui_control = new GUI_control(this);
+  this->gui_control = new GUI_control_engine(this);
   this->gui_style = new GUI_style(this);
   this->gui_panel = new GUI_panel(this);
   this->gui_menubar = new GUI_mainmenubar(this);

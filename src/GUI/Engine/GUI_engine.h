@@ -5,7 +5,7 @@
 
 class GUI;
 class VK_struct;
-class GUI_control;
+class GUI_control_engine;
 class GUI_mainmenubar;
 
 class GUI_engine
@@ -25,7 +25,7 @@ public:
 
 private:
   VK_struct* vk_struct;
-  GUI_control* gui_control;
+  GUI_control_engine* gui_control;
   GUI_mainmenubar* gui_menubar;
 
   VkDescriptorSet descriptor;

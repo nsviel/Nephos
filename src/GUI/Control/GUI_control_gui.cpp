@@ -1,7 +1,8 @@
-#include "GUI_keyboard.h"
+#include "GUI_control_gui.h"
 
 #include <GUI.h>
 #include <Engine.h>
+#include <Param.h>
 #include <Window/Window.h>
 #include <Data/Data.h>
 #include <Specific/Function/fct_math.h>
@@ -12,33 +13,36 @@
 
 
 //Constructor / Destructor
-GUI_keyboard::GUI_keyboard(GUI* gui){
+GUI_control_gui::GUI_control_gui(GUI* gui){
   //---------------------------
 
   Data* data = gui->get_data();
   Engine* engine = gui->get_engine();
   this->window = engine->get_window();
+  this->param = engine->get_param();
   this->cameraManager = engine->get_cameraManager();
   this->sceneManager = data->get_sceneManager();
   this->transformManager = new Transformation();
 
   //---------------------------
 }
-GUI_keyboard::~GUI_keyboard(){}
+GUI_control_gui::~GUI_control_gui(){}
 
 //Main function
-void GUI_keyboard::run_control(){
+void GUI_control_gui::run_control(ImVec2 center){
   //---------------------------
 
   this->control_keyboard_oneAction();
   this->control_keyboard_camMove();
   this->control_keyboard_translation();
+  this->control_mouse(center);
+  this->control_mouse_wheel();
 
   //---------------------------
 }
 
-//Keyboard function
-void GUI_keyboard::control_keyboard_oneAction(){
+//Keyboard
+void GUI_control_gui::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -117,7 +121,7 @@ void GUI_keyboard::control_keyboard_oneAction(){
 
   //----------------------------
 }
-void GUI_keyboard::control_keyboard_camMove(){
+void GUI_control_gui::control_keyboard_camMove(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -154,7 +158,7 @@ void GUI_keyboard::control_keyboard_camMove(){
 
   //---------------------------
 }
-void GUI_keyboard::control_keyboard_translation(){
+void GUI_control_gui::control_keyboard_translation(){
   Set* set = sceneManager->get_set_scene();
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
@@ -229,6 +233,71 @@ void GUI_keyboard::control_keyboard_translation(){
 
       //transCoef = cloud_trans_speed;
     }
+  }
+
+  //----------------------------
+}
+
+//Mouse
+void GUI_control_gui::control_mouse(ImVec2 center){
+  ImGuiIO io = ImGui::GetIO();
+  Struct_camera* camera = &param->camera;
+  //----------------------------
+
+  window->set_window_center(vec2(center.x, center.y));
+
+  //Right click - Camera movement
+  static vec2 cursorPos;
+  if(ImGui::IsMouseClicked(1)){
+    cursorPos = window->get_mouse_pose();
+
+    ImGui::GetIO().MouseDrawCursor = false;
+    window->set_mouse_pose(vec2(center.x, center.y));
+    camera->cam_move = true;
+  }
+  //Release - back to normal
+  if(ImGui::IsMouseReleased(1) && camera->cam_move){
+    window->set_mouse_pose(cursorPos);
+    camera->cam_move = false;
+  }
+
+  //---------------------------
+}
+void GUI_control_gui::control_mouse_wheel(){
+  static int wheel_mode = 0;
+  ImGuiIO io = ImGui::GetIO();
+  //----------------------------
+
+  //Wheel + right clicked - Camera zoom
+  if(io.MouseWheel && io.MouseDownDuration[1] >= 0.0f){
+    cameraManager->compute_zoom(io.MouseWheel);
+  }
+
+  //Wheel click - Change mouse wheel mode
+  if(ImGui::IsMouseClicked(2)){
+    wheel_mode++;
+    if(wheel_mode >= 3) wheel_mode = 0;
+  }
+
+  //Wheel actions
+  if(io.MouseWheel && io.MouseDownDuration[1] == -1){
+    //Rotation quantity
+    float radian = 5 * M_PI/180;
+    vec3 R;
+    if(wheel_mode == 0){
+      R = vec3(0, 0, fct_sign(io.MouseWheel) * radian);
+    }
+    else if(wheel_mode == 1){
+      R = vec3(0, fct_sign(io.MouseWheel) * radian, 0);
+    }
+    else if(wheel_mode == 2){
+      R = vec3(fct_sign(io.MouseWheel) * radian, 0, 0);
+    }
+
+    //Apply rotation
+    Set* set = sceneManager->get_set_scene();
+    Object* object = set->selected_obj;
+    transformManager->make_rotation(object, object->COM, R);
   }
 
   //----------------------------
