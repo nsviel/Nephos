@@ -19,12 +19,12 @@ class GUI_scene;
 class GUI_capture;
 
 
-class GUI_panel
+class GUI_panel_engine
 {
 public:
   //Constructor / Destructor
-  GUI_panel(GUI* gui);
-  ~GUI_panel();
+  GUI_panel_engine(GUI* gui);
+  ~GUI_panel_engine();
 
 public:
   //Main functions

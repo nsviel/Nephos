@@ -7,7 +7,7 @@
 class GUI;
 class GUI_image;
 class GUI_video;
-class GUI_panel;
+class GUI_panel_engine;
 class Panel;
 
 

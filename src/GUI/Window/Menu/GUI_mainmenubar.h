@@ -8,7 +8,7 @@ class Loader;
 class Panel;
 class GUI_init;
 class GUI_option;
-class GUI_panel;
+class GUI_panel_engine;
 
 
 class GUI_mainmenubar
@@ -33,7 +33,7 @@ private:
   GUI_init* gui_init;
   Panel* panel;
   GUI_option* gui_option;
-  GUI_panel* gui_panel;
+  GUI_panel_engine* gui_panel_engine;
 
   bool show_demo;
 

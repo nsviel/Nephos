@@ -3,7 +3,7 @@
 #include "../../Element/Initialization/GUI_init.h"
 
 #include <GUI.h>
-#include <Tab/Engine/GUI_panel.h>
+#include <Tab/Engine/GUI_panel_engine.h>
 #include <Tab/Engine/Panel.h>
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
@@ -17,9 +17,9 @@ GUI_mainmenubar::GUI_mainmenubar(GUI* gui){
   Data* data = gui->get_data();
   this->gui = gui;
   this->gui_init = gui->get_gui_init();
-  this->gui_panel = gui->get_gui_panel();
-  this->gui_option = gui_panel->get_gui_option();
-  this->panel = gui_panel->get_panel();
+  this->gui_panel_engine = gui->get_gui_panel_engine();
+  this->gui_option = gui_panel_engine->get_gui_option();
+  this->panel = gui_panel_engine->get_panel();
   this->loaderManager = data->get_loaderManager();
 
   this->show_demo = false;
@@ -65,7 +65,7 @@ void GUI_mainmenubar::menu(){
     panel->show_camera = !panel->show_camera;
   }
   if(ImGui::BeginMenu("Panel##111")){
-    gui_panel->open_panels();
+    gui_panel_engine->open_panels();
     ImGui::EndMenu();
   }
 

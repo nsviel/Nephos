@@ -1,4 +1,4 @@
-#include "GUI_panel.h"
+#include "GUI_panel_engine.h"
 #include "Panel.h"
 
 #include <GUI.h>
@@ -26,7 +26,7 @@
 
 
 //Constructor / Destructor
-GUI_panel::GUI_panel(GUI* gui){
+GUI_panel_engine::GUI_panel_engine(GUI* gui){
   //---------------------------
 
   this->gui = gui;
@@ -34,10 +34,10 @@ GUI_panel::GUI_panel(GUI* gui){
 
   //---------------------------
 }
-GUI_panel::~GUI_panel(){}
+GUI_panel_engine::~GUI_panel_engine(){}
 
 //Main function
-void GUI_panel::create_panels(){
+void GUI_panel_engine::create_panels(){
   //---------------------------
 
   this->gui_engine = new GUI_engine(gui);
@@ -53,7 +53,7 @@ void GUI_panel::create_panels(){
 
   //---------------------------
 }
-void GUI_panel::draw_panels(){
+void GUI_panel_engine::draw_panels(){
   //---------------------------
 
   gui_shader->run_panel();
@@ -70,7 +70,7 @@ void GUI_panel::draw_panels(){
 
   //---------------------------
 }
-void GUI_panel::open_panels(){
+void GUI_panel_engine::open_panels(){
   //---------------------------
 
   ImGui::Checkbox("Option##456", &panel->show_option);

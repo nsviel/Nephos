@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Tab/Engine/Panel.h>
-#include <Tab/Engine/GUI_panel.h>
+#include <Tab/Engine/GUI_panel_engine.h>
 #include <Data/Data.h>
 #include <Data/Scene/Database.h>
 #include <Engine/Data/GUI_object.h>
@@ -14,12 +14,12 @@ GUI_scene::GUI_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
   //---------------------------
 
   Data* data = gui->get_data();
-  GUI_panel* gui_panel = gui->get_gui_panel();
+  GUI_panel_engine* gui_panel_engine = gui->get_gui_panel_engine();
   this->dataManager = data->get_dataManager();
-  this->panel = gui_panel->get_panel();
+  this->panel = gui_panel_engine->get_panel();
   this->show_window = show_window;
-  this->gui_set = gui_panel->get_gui_set();
-  this->gui_object = gui_panel->get_gui_object();
+  this->gui_set = gui_panel_engine->get_gui_set();
+  this->gui_object = gui_panel_engine->get_gui_object();
 
   //---------------------------
 }

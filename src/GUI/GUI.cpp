@@ -22,7 +22,7 @@
 #include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
 #include <Tab/Engine/Panel.h>
-#include <Tab/Engine/GUI_panel.h>
+#include <Tab/Engine/GUI_panel_engine.h>
 
 
 //Constructor / Destructor
@@ -38,7 +38,7 @@ GUI::GUI(Window* window, Engine* engine){
   this->gui_init = new GUI_init(this);
   this->gui_control = new GUI_control_gui(this);
   this->gui_style = new GUI_style(this);
-  this->gui_panel = new GUI_panel(this);
+  this->gui_panel_engine = new GUI_panel_engine(this);
   this->gui_menubar = new GUI_mainmenubar(this);
   this->gui_gpu = new GUI_gpu(engine);
   this->gui_font = new GUI_font(engine);
@@ -48,7 +48,7 @@ GUI::GUI(Window* window, Engine* engine){
 GUI::~GUI(){
   //---------------------------
 
-  delete gui_panel;
+  delete gui_panel_engine;
   delete gui_control;
 
   //---------------------------
@@ -58,7 +58,7 @@ GUI::~GUI(){
 void GUI::init(){
   //---------------------------
 
-  gui_panel->create_panels();
+  gui_panel_engine->create_panels();
   gui_gpu->init_gui_vulkan();
   gui_font->init_gui_font();
   gui_style->gui_style();
@@ -76,7 +76,7 @@ void GUI::loop(){
 
   this->docker_space_main();
   gui_menubar->design_menubar();
-  gui_panel->draw_panels();
+  gui_panel_engine->draw_panels();
   gui_control->run_control();
 
   gui_gpu->render_frame();
