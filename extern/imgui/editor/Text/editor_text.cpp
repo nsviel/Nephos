@@ -226,7 +226,6 @@ static bool TokenizeCStyleNumber(const char * in_begin, const char * in_end, con
 	bool hasNumber = startsWithNumber;
 	while (p < in_end && (*p >= '0' && *p <= '9')){
 		hasNumber = true;
-
 		p++;
 	}
 
@@ -239,70 +238,64 @@ static bool TokenizeCStyleNumber(const char * in_begin, const char * in_end, con
 	bool isBinary = false;
 
 	if (p < in_end){
-		if (*p == '.')
-		{
+		if (*p == '.'){
 			isFloat = true;
-
 			p++;
 
-			while (p < in_end && (*p >= '0' && *p <= '9'))
+			while (p < in_end && (*p >= '0' && *p <= '9')){
 				p++;
+			}
 		}
-		else if (*p == 'x' || *p == 'X')
-		{
+		else if (*p == 'x' || *p == 'X'){
 			// hex formatted integer of the type 0xef80
-
 			isHex = true;
-
 			p++;
 
-			while (p < in_end && ((*p >= '0' && *p <= '9') || (*p >= 'a' && *p <= 'f') || (*p >= 'A' && *p <= 'F')))
+			while (p < in_end && ((*p >= '0' && *p <= '9') || (*p >= 'a' && *p <= 'f') || (*p >= 'A' && *p <= 'F'))){
 				p++;
+			}
 		}
-		else if (*p == 'b' || *p == 'B')
-		{
+		else if (*p == 'b' || *p == 'B'){
 			// binary formatted integer of the type 0b01011101
-
 			isBinary = true;
-
 			p++;
 
-			while (p < in_end && (*p >= '0' && *p <= '1'))
+			while (p < in_end && (*p >= '0' && *p <= '1')){
 				p++;
+			}
 		}
 	}
 	if (isHex == false && isBinary == false){
 		// floating point exponent
-		if (p < in_end && (*p == 'e' || *p == 'E'))
-		{
+		if (p < in_end && (*p == 'e' || *p == 'E')){
 			isFloat = true;
-
 			p++;
 
-			if (p < in_end && (*p == '+' || *p == '-'))
-				p++;
-
-			bool hasDigits = false;
-
-			while (p < in_end && (*p >= '0' && *p <= '9'))
-			{
-				hasDigits = true;
-
+			if (p < in_end && (*p == '+' || *p == '-')){
 				p++;
 			}
 
-			if (hasDigits == false)
+			bool hasDigits = false;
+			while (p < in_end && (*p >= '0' && *p <= '9')){
+				hasDigits = true;
+				p++;
+			}
+
+			if (hasDigits == false){
 				return false;
+			}
 		}
 
 		// single precision floating point type
-		if (p < in_end && *p == 'f')
+		if (p < in_end && *p == 'f'){
 			p++;
+		}
 	}
 	if (isFloat == false){
 		// integer size type
-		while (p < in_end && (*p == 'u' || *p == 'U' || *p == 'l' || *p == 'L'))
+		while (p < in_end && (*p == 'u' || *p == 'U' || *p == 'l' || *p == 'L')){
 			p++;
+		}
 	}
 
 	out_begin = in_begin;

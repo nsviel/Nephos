@@ -45,11 +45,14 @@ public:
 	};
 
 	struct Breakpoint{
-		int mLine;
-		bool mEnabled;
-		std::string mCondition;
+		Breakpoint(){
+			this->mLine = -1;
+			this->mEnabled = false;
+		}
 
-		Breakpoint() : mLine(-1), mEnabled(false){}
+		std::string mCondition;
+		bool mEnabled;
+		int mLine;
 	};
 	struct Coordinates{
 		// Represents a character coordinate from the user's point of view,
@@ -146,7 +149,7 @@ public:
 			this->tokenize = nullptr;
 			this->case_sensitive = true;
 		}
-		
+
 		std::string name;
 		std::string comment_start;
 		std::string comment_end;
