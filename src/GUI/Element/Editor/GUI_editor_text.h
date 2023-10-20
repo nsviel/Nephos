@@ -28,6 +28,7 @@ public:
 
   inline string get_status(){return status;}
   inline bool is_text_changed(){return editor->IsTextChanged();}
+  inline void set_read_only(bool value){editor->SetReadOnly(value);}
 
 private:
   GUI_control_editor* control;

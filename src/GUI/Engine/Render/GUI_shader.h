@@ -32,8 +32,10 @@ public:
   void shader_EDL_parameter();
   void check_reload();
   void display_reload();
+  void display_status();
   void shader_control();
   void reload_vulkan_shader();
+  void check_read_only();
 
   //Subfunction
   void retrieve_shader_subclasses();
@@ -54,6 +56,8 @@ private:
   string current_status;
   bool with_parameter;
   bool has_been_reloaded;
+  bool read_only;
+  bool read_only_forced;
   int item_width;
   int ID_class;
   int ID_subclass;

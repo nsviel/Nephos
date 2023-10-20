@@ -27,6 +27,8 @@ GUI_shader::GUI_shader(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   this->ID_class = 0;
   this->ID_subclass = 0;
   this->has_been_reloaded = true;
+  this->read_only = false;
+  this->read_only_forced = false;
 
   //---------------------------
   this->init_panel();
@@ -49,6 +51,7 @@ void GUI_shader::init_panel(){
 void GUI_shader::design_panel(){
   //---------------------------
 
+  this->check_read_only();
   this->check_reload();
   this->shader_combo_class();
   this->shader_combo_subclass();
@@ -121,17 +124,15 @@ void GUI_shader::shader_command(){
     editor_fs->save_to_file(path_fs);
     this->reload_vulkan_shader();
   }
-
-  if(active_editor == "Vertex"){
-    this->current_status = editor_vs->get_status();
-    editor_vs->display_status();
-  }
-  else if(active_editor == "Fragment"){
-    this->current_status = editor_fs->get_status();
-    editor_fs->display_status();
-  }
-
   ImGui::SameLine();
+
+  if(ImGui::Checkbox("Read only##111", &read_only)){
+    this->read_only_forced = read_only;
+  }
+
+  this->display_status();
+  ImGui::SameLine();
+
   this->display_reload();
 
   //---------------------------
@@ -279,6 +280,20 @@ void GUI_shader::display_reload(){
 
   //---------------------------
 }
+void GUI_shader::display_status(){
+  //---------------------------
+
+  if(active_editor == "Vertex"){
+    this->current_status = editor_vs->get_status();
+    editor_vs->display_status();
+  }
+  else if(active_editor == "Fragment"){
+    this->current_status = editor_fs->get_status();
+    editor_fs->display_status();
+  }
+
+  //---------------------------
+}
 void GUI_shader::shader_EDL_parameter(){
   EDL_shader* edl_shader = shaderManager->get_edl_shader();
   EDL_param* edl_param = edl_shader->get_edl_param();
@@ -325,6 +340,25 @@ void GUI_shader::reload_vulkan_shader(){
   string shader_subclass = vec_shader_subclass[ID_subclass];
   vk_reload->hot_shader_reload(shader_class, shader_subclass);
   this->has_been_reloaded = true;
+
+  //---------------------------
+}
+void GUI_shader::check_read_only(){
+  //---------------------------
+
+  bool window_hovered = ImGui::IsWindowHovered(ImGuiHoveredFlags_ChildWindows|ImGuiHoveredFlags_AllowWhenBlockedByActiveItem);
+  if(window_hovered == false || read_only_forced){
+    this->read_only = true;
+  }
+  else if(window_hovered && read_only_forced == false){
+    this->read_only = false;
+  }
+  else if(window_hovered && read_only_forced){
+    this->read_only = true;
+  }
+
+  editor_vs->set_read_only(read_only);
+  editor_fs->set_read_only(read_only);
 
   //---------------------------
 }
