@@ -3,6 +3,8 @@
 
 
 const TextEditor::Palette & TextEditor::get_custom_palette(){
+	//---------------------------
+
 	const static Palette p = { {
 		0xff7f7f7f,	// Default
 		0xfffcbc65,	// Keyword - drityblue 65bcfc
@@ -12,7 +14,7 @@ const TextEditor::Palette & TextEditor::get_custom_palette(){
 		0xffffffff, // Punctuation - white
 		0xffffffff,	// Preprocessor - ex include - white
 		0xffffffff, // Identifier
-		0xffffffff, // Known identifier
+		0xffbfd472, // Known identifier 72d4bf
 		0xffffffff, // Preproc identifier
 		0xff579336, // Comment (single line) - green
 		0xffa3a3a3, // Comment (multi line)
@@ -25,7 +27,9 @@ const TextEditor::Palette & TextEditor::get_custom_palette(){
 		0x40404040, // Current line fill - grey
 		0x40808080, // Current line fill (inactive)
 		0x40a0a0a0, // Current line edge
-		} };
+	} };
+
+	//---------------------------
 	return p;
 }
 

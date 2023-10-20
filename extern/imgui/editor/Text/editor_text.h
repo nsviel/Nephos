@@ -73,32 +73,27 @@ public:
 		bool operator ==(const Coordinates& o) const{
 			return	mLine == o.mLine &&	mColumn == o.mColumn;
 		}
-
 		bool operator !=(const Coordinates& o) const{
 			return mLine != o.mLine ||	mColumn != o.mColumn;
 		}
-
 		bool operator <(const Coordinates& o) const{
 			if (mLine != o.mLine){
 				return mLine < o.mLine;
 			}
 			return mColumn < o.mColumn;
 		}
-
 		bool operator >(const Coordinates& o) const{
 			if (mLine != o.mLine){
 				return mLine > o.mLine;
 			}
 			return mColumn > o.mColumn;
 		}
-
 		bool operator <=(const Coordinates& o) const{
 			if (mLine != o.mLine){
 				return mLine < o.mLine;
 			}
 			return mColumn <= o.mColumn;
 		}
-
 		bool operator >=(const Coordinates& o) const{
 			if (mLine != o.mLine){
 				return mLine > o.mLine;

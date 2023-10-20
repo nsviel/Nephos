@@ -112,12 +112,12 @@ void GUI_shader::shader_combo_subclass(){
 void GUI_shader::shader_command(){
   //---------------------------
 
-  if(ImGui::Button("Reload")){
+  //Button commands
+  if(ImGui::Button("Reload", ImVec2(item_width, 0))){
     this->reload_vulkan_shader();
   }
   ImGui::SameLine();
-
-  if(ImGui::Button("Save to file")){
+  if(ImGui::Button("Save to file", ImVec2(item_width, 0))){
     string path_vs = get_path_vs_from_selection();
     string path_fs = get_path_fs_from_selection();
     editor_vs->save_to_file(path_vs);
@@ -125,15 +125,14 @@ void GUI_shader::shader_command(){
     this->reload_vulkan_shader();
   }
   ImGui::SameLine();
-
   if(ImGui::Checkbox("Read only##111", &read_only)){
     this->read_only_forced = read_only;
   }
 
-  this->display_status();
-  ImGui::SameLine();
-
+  //Display status
   this->display_reload();
+  ImGui::SameLine();
+  this->display_status();
 
   //---------------------------
 }
