@@ -39,8 +39,7 @@ void GUI_font::gui_select_font(){
 
   //Configuration - texte
   ImFontConfig config_editor;
-  config_editor.GlyphExtraSpacing.x = 1.5f;
-  config_editor.GlyphExtraSpacing.y = 2.0f;
+  config_editor.GlyphExtraSpacing.x = 2.0f;
   config_editor.OversampleH = 4.0f;
   config_editor.OversampleV = 4.0f;
 

@@ -136,22 +136,23 @@ public:
 		typedef bool(*TokenizeCallback)(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end, PaletteIndex & paletteIndex);
 
 		std::string mName;
+		std::string mCommentStart;
+		std::string mCommentEnd;
+		std::string mSingleLineComment;
+		char mPreprocChar;
+		bool mAutoIndentation;
+		bool mCaseSensitive;
 		Keywords mKeywords;
 		Identifiers mIdentifiers;
 		Identifiers mPreprocIdentifiers;
-		std::string mCommentStart, mCommentEnd, mSingleLineComment;
-		char mPreprocChar;
-		bool mAutoIndentation;
-
 		TokenizeCallback mTokenize;
-
 		TokenRegexStrings mTokenRegexStrings;
-
-		bool mCaseSensitive;
-
-		LanguageDefinition()
-			: mPreprocChar('#'), mAutoIndentation(true), mTokenize(nullptr), mCaseSensitive(true)
-		{
+		
+		LanguageDefinition(){
+			this->mPreprocChar = '#';
+			this->mAutoIndentation = true;
+			this->mTokenize = nullptr;
+			this->mCaseSensitive = true;
 		}
 
 		static const LanguageDefinition& Cpp();
