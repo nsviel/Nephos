@@ -1,7 +1,7 @@
 #include "GUI_scene.h"
 
 #include <GUI.h>
-#include <Tab/Engine/Panel.h>
+#include <Tab/Engine/Panel_engine.h>
 #include <Tab/Engine/GUI_panel_engine.h>
 #include <Data/Data.h>
 #include <Data/Scene/Database.h>

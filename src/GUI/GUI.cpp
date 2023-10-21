@@ -21,7 +21,8 @@
 #include <Engine.h>
 #include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
-#include <Tab/Engine/Panel.h>
+#include <Tab/GUI_tab.h>
+#include <Tab/Engine/Panel_engine.h>
 #include <Tab/Engine/GUI_panel_engine.h>
 
 
@@ -42,6 +43,7 @@ GUI::GUI(Window* window, Engine* engine){
   this->gui_menubar = new GUI_mainmenubar(this);
   this->gui_gpu = new GUI_gpu(engine);
   this->gui_font = new GUI_font(engine);
+  this->gui_tab = new GUI_tab(this);
 
   //---------------------------
 }

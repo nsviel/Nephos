@@ -1,8 +1,8 @@
 #include "GUI_panel_engine.h"
-#include "Panel.h"
+#include "Panel_engine.h"
 
 #include <GUI.h>
-#include <Tab/Engine/Panel.h>
+#include <Tab/Engine/Panel_engine.h>
 #include <Data/Load/Loader.h>
 #include <Style/Widget/GUI_indicator.h>
 
@@ -30,7 +30,7 @@ GUI_panel_engine::GUI_panel_engine(GUI* gui){
   //---------------------------
 
   this->gui = gui;
-  this->panel = new Panel();
+  this->panel = new Panel_engine();
 
   //---------------------------
 }

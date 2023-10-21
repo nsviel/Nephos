@@ -5,7 +5,7 @@
 #include <Specific/common.h>
 
 class GUI;
-class Panel;
+class Panel_engine;
 
 
 class GUI_dialog : public BASE_panel
@@ -22,7 +22,7 @@ public:
   void capture_command();
 
 private:
-  Panel* panel;
+  Panel_engine* panel;
 
   int item_width;
 };

@@ -5,7 +5,7 @@
 
 class GUI;
 class Loader;
-class Panel;
+class Panel_engine;
 class GUI_init;
 class GUI_option;
 class GUI_panel_engine;
@@ -31,7 +31,7 @@ private:
   GUI* gui;
   Loader* loaderManager;
   GUI_init* gui_init;
-  Panel* panel;
+  Panel_engine* panel;
   GUI_option* gui_option;
   GUI_panel_engine* gui_panel_engine;
 

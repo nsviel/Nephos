@@ -5,7 +5,7 @@
 #include <Specific/common.h>
 
 class GUI;
-class Panel;
+class Panel_engine;
 class GUI_object;
 class GUI_set;
 class Database;
@@ -29,7 +29,7 @@ public:
   int data_node_tree(Set* set);
 
 private:
-  Panel* panel;
+  Panel_engine* panel;
   GUI_object* gui_object;
   GUI_set* gui_set;
   Database* dataManager;

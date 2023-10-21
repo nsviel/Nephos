@@ -4,7 +4,7 @@
 #include <Specific/common.h>
 
 class GUI;
-class Panel;
+class Panel_engine;
 
 class GUI_profiler;
 class GUI_mainmenubar;
@@ -32,7 +32,7 @@ public:
   void draw_panels();
   void open_panels();
 
-  inline Panel* get_panel(){return panel;}
+  inline Panel_engine* get_panel(){return panel;}
   inline GUI_shader* get_gui_shader(){return gui_shader;}
   inline GUI_profiler* get_gui_profiling(){return gui_profiler;}
   inline GUI_object* get_gui_object(){return gui_object;}
@@ -45,7 +45,7 @@ public:
 
 private:
   GUI* gui;
-  Panel* panel;
+  Panel_engine* panel;
 
   GUI_profiler* gui_profiler;
   GUI_scene* gui_scene;

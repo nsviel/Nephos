@@ -4,7 +4,7 @@
 
 #include <GUI.h>
 #include <Tab/Engine/GUI_panel_engine.h>
-#include <Tab/Engine/Panel.h>
+#include <Tab/Engine/Panel_engine.h>
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
 #include <image/IconsFontAwesome5.h>
