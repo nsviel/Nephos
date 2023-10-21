@@ -50,7 +50,7 @@ add_executable(executable
 # Library linking
 target_link_libraries(executable
   LIBRARY_EXTERN
-  LIBRARY_STATIC
+  LIBRARY_ELEMENT
   LIBRARY_ENGINE
   LIBRARY_GUI
   ${ALL_LIBS}

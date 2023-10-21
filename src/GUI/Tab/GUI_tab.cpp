@@ -46,6 +46,11 @@ void GUI_tab::draw_tabs(){
     this->menu_demo();
     ImGui::EndMenu();
   }
+  if(show_demo){
+    ImGui::ShowDemoWindow(&show_demo);
+  }
+
+  ImGui::Separator();
 
   if (ImGui::BeginTabBar("main_tab")){
     ImGui::SetNextItemWidth(100);
