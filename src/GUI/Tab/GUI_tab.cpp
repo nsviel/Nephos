@@ -43,7 +43,7 @@ void GUI_tab::draw_tabs(){
   if (ImGui::BeginTabBar("main_tab")){
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Render")){
-
+      gui_render_panel->draw_panels();
       this->active_tab = "Render";
       ImGui::EndTabItem();
     }
@@ -58,7 +58,7 @@ void GUI_tab::draw_tabs(){
   ImGui::EndMainMenuBar();
 
   if(active_tab == "Render"){
-          gui_render_panel->draw_panels();
+          //gui_render_panel->draw_panels();
   }
 
   //---------------------------
