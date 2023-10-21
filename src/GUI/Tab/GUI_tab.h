@@ -4,6 +4,7 @@
 #include <Specific/common.h>
 
 class GUI;
+class GUI_panel_engine;
 class Panel_engine;
 
 
@@ -17,10 +18,12 @@ public:
 public:
   //Main functions
 
+  inline GUI_panel_engine* get_gui_panel_engine(){return gui_panel_engine;}
+  
 private:
   GUI* gui;
   Panel_engine* panel;
-
+  GUI_panel_engine* gui_panel_engine;
 };
 
 #endif

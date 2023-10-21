@@ -22,8 +22,6 @@
 #include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
 #include <Tab/GUI_tab.h>
-#include <Tab/Engine/Panel_engine.h>
-#include <Tab/Engine/GUI_panel_engine.h>
 
 
 //Constructor / Destructor
@@ -39,7 +37,6 @@ GUI::GUI(Window* window, Engine* engine){
   this->gui_init = new GUI_init(this);
   this->gui_control = new GUI_control_gui(this);
   this->gui_style = new GUI_style(this);
-  this->gui_panel_engine = new GUI_panel_engine(this);
   this->gui_menubar = new GUI_mainmenubar(this);
   this->gui_gpu = new GUI_gpu(engine);
   this->gui_font = new GUI_font(engine);
