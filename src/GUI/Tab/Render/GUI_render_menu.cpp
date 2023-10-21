@@ -1,5 +1,4 @@
 #include "GUI_render_menu.h"
-#include "GUI_option.h"
 #include "../../Element/Initialization/GUI_init.h"
 
 #include <GUI.h>
@@ -8,6 +7,7 @@
 #include <Tab/Render/Struct_render_panel.h>
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
+#include <Window/Menu/GUI_option.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -34,10 +34,9 @@ GUI_render_menu::~GUI_render_menu(){}
 void GUI_render_menu::design_menubar(){
   //------------------------
 
-  ImGui::BeginMenuBar();
+  ImGui::BeginMainMenuBar();
   this->menu();
-  this->main_tab();
-  ImGui::EndMenuBar();
+  ImGui::EndMainMenuBar();
 
   //-------------------------
 }
@@ -83,25 +82,6 @@ void GUI_render_menu::menu_demo(){
 
   //Demo window
   ImGui::Checkbox("Demo window", &show_demo);
-
-  //---------------------------
-}
-void GUI_render_menu::main_tab(){
-  //---------------------------
-
-  if (ImGui::BeginTabBar("main_tab")){
-    ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("Engine")){
-
-        ImGui::EndTabItem();
-    }
-    ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("Dev")){
-
-        ImGui::EndTabItem();
-    }
-    ImGui::EndTabBar();
-  }
 
   //---------------------------
 }

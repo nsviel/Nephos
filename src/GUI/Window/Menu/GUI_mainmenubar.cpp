@@ -35,8 +35,8 @@ void GUI_mainmenubar::design_menubar(){
   //------------------------
 
   //ImGui::BeginMainMenuBar();
-  this->menu();
-  this->main_tab();
+  //this->menu();
+  //this->main_tab();
   //ImGui::EndMainMenuBar();
 
   //-------------------------

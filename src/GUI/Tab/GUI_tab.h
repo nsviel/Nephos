@@ -5,6 +5,7 @@
 
 class GUI;
 class GUI_render_panel;
+class GUI_dev_panel;
 class Struct_render_panel;
 
 
@@ -26,6 +27,9 @@ private:
   GUI* gui;
   Struct_render_panel* struct_render_panel;
   GUI_render_panel* gui_render_panel;
+  GUI_dev_panel* gui_dev_panel;
+
+  string active_tab;
 };
 
 #endif

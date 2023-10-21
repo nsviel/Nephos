@@ -1,5 +1,5 @@
-#ifndef GUI_PANEL_H
-#define GUI_PANEL_H
+#ifndef GUI_RENDER_PANEL_H
+#define GUI_RENDER_PANEL_H
 
 #include <Specific/common.h>
 
@@ -17,6 +17,7 @@ class GUI_object;
 class GUI_set;
 class GUI_scene;
 class GUI_capture;
+class GUI_render_menu;
 
 
 class GUI_render_panel
@@ -58,6 +59,7 @@ private:
   GUI_capture* gui_capture;
   GUI_set* gui_set;
   GUI_option* gui_option;
+  GUI_render_menu* gui_render_menu;
 
   bool show_camera;
   bool show_object;

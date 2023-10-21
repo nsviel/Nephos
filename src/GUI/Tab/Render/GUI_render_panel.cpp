@@ -1,4 +1,5 @@
 #include "GUI_render_panel.h"
+#include "GUI_render_menu.h"
 #include "Struct_render_panel.h"
 
 #include <GUI.h>
@@ -50,12 +51,14 @@ void GUI_render_panel::create_panels(){
   this->gui_capture = new GUI_capture(gui, &struct_render_panel->show_capture, "Capture");
   this->gui_camera = new GUI_camera(gui, &struct_render_panel->show_camera, "Camera");
   this->gui_database = new GUI_database(gui, &struct_render_panel->show_database, "Database##4323");
+  this->gui_render_menu = new GUI_render_menu(gui);
 
   //---------------------------
 }
 void GUI_render_panel::draw_panels(){
   //---------------------------
 
+  gui_render_menu->design_menubar();
   gui_shader->run_panel();
   gui_database->run_panel();
   gui_camera->run_panel();

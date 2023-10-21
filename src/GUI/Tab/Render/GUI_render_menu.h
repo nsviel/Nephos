@@ -1,5 +1,5 @@
-#ifndef GUI_MENUBAR_H
-#define GUI_MENUBAR_H
+#ifndef GUI_RENDER_MENU_H
+#define GUI_RENDER_MENU_H
 
 #include <Specific/common.h>
 
@@ -25,7 +25,6 @@ public:
   //Subfunctions
   void menu();
   void menu_demo();
-  void main_tab();
 
 private:
   GUI* gui;
