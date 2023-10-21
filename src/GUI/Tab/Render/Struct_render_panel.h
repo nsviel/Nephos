@@ -1,5 +1,5 @@
-#ifndef GUI_PARAM_H
-#define GUI_PARAM_H
+#ifndef STRUCT_RENDER_PANEL_H
+#define STRUCT_RENDER_PANEL_H
 
 #include <Specific/Struct/struct_object.h>
 #include <Specific/Struct/struct_set.h>
