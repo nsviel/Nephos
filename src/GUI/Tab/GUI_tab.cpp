@@ -4,6 +4,7 @@
 #include "Dev/GUI_dev_panel.h"
 
 #include <GUI.h>
+#include <image/IconsFontAwesome5.h>
 
 
 //Constructor / Destructor
@@ -41,7 +42,7 @@ void GUI_tab::draw_tabs(){
   //Draw main menu bar
   ImGui::BeginMainMenuBar();
 
-  if(ImGui::BeginMenu("Demo")){
+  if(ImGui::BeginMenu(ICON_FA_BOOK, "Demo")){
     this->menu_demo();
     ImGui::EndMenu();
   }

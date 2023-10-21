@@ -4,6 +4,7 @@
 #include <Specific/common.h>
 
 class GUI;
+class GUI_code_editor;
 class Struct_dev_panel;
 
 
@@ -25,6 +26,7 @@ public:
 private:
   GUI* gui;
   Struct_dev_panel* struct_dev_panel;
+  GUI_code_editor* gui_code_editor;
 };
 
 #endif
