@@ -45,15 +45,15 @@ void GUI_render_menu::design_menubar(){
 void GUI_render_menu::menu(){
   //---------------------------
 
+  if(ImGui::BeginMenu("Panel##111")){
+    gui_render_panel->open_panels();
+    ImGui::EndMenu();
+  }
   if(ImGui::MenuItem("Load")){
     loaderManager->load_by_zenity();
   }
   if(ImGui::BeginMenu("Init")){
     gui_init->design_init();
-    ImGui::EndMenu();
-  }
-  if(ImGui::BeginMenu("Demo")){
-    this->menu_demo();
     ImGui::EndMenu();
   }
   if(show_demo){
@@ -64,10 +64,6 @@ void GUI_render_menu::menu(){
   }
   if(ImGui::MenuItem(ICON_FA_CAMERA, "Camera##111")){
     struct_render_panel->show_camera = !struct_render_panel->show_camera;
-  }
-  if(ImGui::BeginMenu("Panel##111")){
-    gui_render_panel->open_panels();
-    ImGui::EndMenu();
   }
 
   //---------------------------

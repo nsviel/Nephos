@@ -20,6 +20,7 @@ public:
   //Main functions
   void create_panels();
   void draw_tabs();
+  void menu_demo();
 
   inline GUI_render_panel* get_gui_render_panel(){return gui_render_panel;}
 
@@ -30,6 +31,7 @@ private:
   GUI_dev_panel* gui_dev_panel;
 
   string active_tab;
+  bool show_demo;
 };
 
 #endif
