@@ -5,7 +5,7 @@
 #include <Specific/common.h>
 
 class GUI;
-class Panel_engine;
+class Struct_render_panel;
 
 
 class GUI_set : public BASE_panel
@@ -25,7 +25,7 @@ public:
   inline void set_selected_set(Set* set){this->set_selected = set;}
 
 private:
-  Panel_engine* panel;
+  Struct_render_panel* struct_render_panel;
 
   Set* set_selected;
   int item_width;

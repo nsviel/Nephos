@@ -6045,7 +6045,7 @@ static void ShowDemoWindowInputs()
                 ImGui::SetNextItemWidth(ImGui::GetFontSize() * 15);
                 ImGui::SliderInt("SetNextFrameWantCaptureKeyboard() on hover", &capture_override_keyboard, -1, +1, capture_override_desc[capture_override_keyboard + 1], ImGuiSliderFlags_AlwaysClamp);
 
-                ImGui::ColorButton("##panel", ImVec4(0.7f, 0.1f, 0.7f, 1.0f), ImGuiColorEditFlags_NoTooltip | ImGuiColorEditFlags_NoDragDrop, ImVec2(128.0f, 96.0f)); // Dummy item
+                ImGui::ColorButton("##struct_render_panel", ImVec4(0.7f, 0.1f, 0.7f, 1.0f), ImGuiColorEditFlags_NoTooltip | ImGuiColorEditFlags_NoDragDrop, ImVec2(128.0f, 96.0f)); // Dummy item
                 if (ImGui::IsItemHovered() && capture_override_mouse != -1)
                     ImGui::SetNextFrameWantCaptureMouse(capture_override_mouse == 1);
                 if (ImGui::IsItemHovered() && capture_override_keyboard != -1)

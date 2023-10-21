@@ -1,7 +1,7 @@
 #include "GUI_set.h"
 
 #include <GUI.h>
-#include <Tab/Engine/Panel_engine.h>
+#include <Tab/Render/Struct_render_panel.h>
 
 #include <Operation/Transformation/Attribut.h>
 

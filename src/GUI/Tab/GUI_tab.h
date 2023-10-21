@@ -4,8 +4,8 @@
 #include <Specific/common.h>
 
 class GUI;
-class GUI_panel_engine;
-class Panel_engine;
+class GUI_render_panel;
+class Struct_render_panel;
 
 
 class GUI_tab
@@ -17,13 +17,15 @@ public:
 
 public:
   //Main functions
+  void create_panels();
+  void draw_tabs();
 
-  inline GUI_panel_engine* get_gui_panel_engine(){return gui_panel_engine;}
-  
+  inline GUI_render_panel* get_gui_render_panel(){return gui_render_panel;}
+
 private:
   GUI* gui;
-  Panel_engine* panel;
-  GUI_panel_engine* gui_panel_engine;
+  Struct_render_panel* struct_render_panel;
+  GUI_render_panel* gui_render_panel;
 };
 
 #endif

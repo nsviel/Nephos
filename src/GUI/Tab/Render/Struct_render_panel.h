@@ -10,7 +10,7 @@
 #include <iostream>
 
 
-struct Panel_engine{
+struct Struct_render_panel{
   //---------------------------
 
   bool show_camera   = false;

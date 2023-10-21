@@ -43,6 +43,7 @@ public:
   inline GUI_init* get_gui_init(){return gui_init;}
   inline GUI_image* get_gui_image(){return gui_image;}
   inline GUI_video* get_gui_video(){return gui_video;}
+  inline GUI_tab* get_gui_tab(){return gui_tab;}
 
 private:
   Engine* engine;

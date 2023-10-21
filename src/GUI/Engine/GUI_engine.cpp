@@ -56,7 +56,7 @@ void GUI_engine::engine_menubar(){
       ImGui::EndMenu();
     }
     if(ImGui::MenuItem(ICON_FA_CAMERA, "Camera##111")){
-      //panel->show_camera = !panel->show_camera;
+      //struct_render_panel->show_camera = !struct_render_panel->show_camera;
     }
     ImGui::EndMenuBar();
   }

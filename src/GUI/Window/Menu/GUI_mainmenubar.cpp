@@ -3,8 +3,9 @@
 #include "../../Element/Initialization/GUI_init.h"
 
 #include <GUI.h>
-#include <Tab/Engine/GUI_panel_engine.h>
-#include <Tab/Engine/Panel_engine.h>
+#include <Tab/GUI_tab.h>
+#include <Tab/Render/GUI_render_panel.h>
+#include <Tab/Render/Struct_render_panel.h>
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
 #include <image/IconsFontAwesome5.h>
@@ -15,11 +16,12 @@ GUI_mainmenubar::GUI_mainmenubar(GUI* gui){
   //---------------------------
 
   Data* data = gui->get_data();
+  GUI_tab* gui_tab = gui->get_gui_tab();
   this->gui = gui;
   this->gui_init = gui->get_gui_init();
-  this->gui_panel_engine = gui->get_gui_panel_engine();
-  this->gui_option = gui_panel_engine->get_gui_option();
-  this->panel = gui_panel_engine->get_panel();
+  this->gui_render_panel = gui_tab->get_gui_render_panel();
+  this->gui_option = gui_render_panel->get_gui_option();
+  this->struct_render_panel = gui_render_panel->get_panel();
   this->loaderManager = data->get_loaderManager();
 
   this->show_demo = false;
@@ -32,10 +34,10 @@ GUI_mainmenubar::~GUI_mainmenubar(){}
 void GUI_mainmenubar::design_menubar(){
   //------------------------
 
-  ImGui::BeginMainMenuBar();
+  //ImGui::BeginMainMenuBar();
   this->menu();
   this->main_tab();
-  ImGui::BeginMainMenuBar();
+  //ImGui::EndMainMenuBar();
 
   //-------------------------
 }
@@ -59,13 +61,13 @@ void GUI_mainmenubar::menu(){
     ImGui::ShowDemoWindow(&show_demo);
   }
   if(ImGui::MenuItem(ICON_FA_COG, "Option")){
-    panel->show_option = !panel->show_option;
+    struct_render_panel->show_option = !struct_render_panel->show_option;
   }
   if(ImGui::MenuItem(ICON_FA_CAMERA, "Camera##111")){
-    panel->show_camera = !panel->show_camera;
+    struct_render_panel->show_camera = !struct_render_panel->show_camera;
   }
   if(ImGui::BeginMenu("Panel##111")){
-    gui_panel_engine->open_panels();
+    gui_render_panel->open_panels();
     ImGui::EndMenu();
   }
 

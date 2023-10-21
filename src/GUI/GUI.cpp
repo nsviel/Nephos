@@ -37,17 +37,17 @@ GUI::GUI(Window* window, Engine* engine){
   this->gui_init = new GUI_init(this);
   this->gui_control = new GUI_control_gui(this);
   this->gui_style = new GUI_style(this);
+  this->gui_tab = new GUI_tab(this);
   this->gui_menubar = new GUI_mainmenubar(this);
   this->gui_gpu = new GUI_gpu(engine);
   this->gui_font = new GUI_font(engine);
-  this->gui_tab = new GUI_tab(this);
 
   //---------------------------
 }
 GUI::~GUI(){
   //---------------------------
 
-  delete gui_panel_engine;
+  delete gui_tab;
   delete gui_control;
 
   //---------------------------
@@ -57,7 +57,7 @@ GUI::~GUI(){
 void GUI::init(){
   //---------------------------
 
-  gui_panel_engine->create_panels();
+  gui_tab->create_panels();
   gui_gpu->init_gui_vulkan();
   gui_font->init_gui_font();
   gui_style->gui_style();
@@ -75,7 +75,7 @@ void GUI::loop(){
 
   this->docker_space_main();
   gui_menubar->design_menubar();
-  gui_panel_engine->draw_panels();
+  gui_tab->draw_tabs();
   gui_control->run_control();
 
   gui_gpu->render_frame();

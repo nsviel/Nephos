@@ -5,7 +5,7 @@
 #include <Specific/common.h>
 
 class GUI;
-class Panel_engine;
+class Struct_render_panel;
 class Scene;
 
 
@@ -30,7 +30,7 @@ public:
   inline void set_selected_object(Object* object){this->object_selected = object;}
 
 private:
-  Panel_engine* panel;
+  Struct_render_panel* struct_render_panel;
   Scene* sceneManager;
 
   Object* object_selected;
