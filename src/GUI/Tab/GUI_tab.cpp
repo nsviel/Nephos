@@ -1,7 +1,7 @@
 #include "GUI_tab.h"
 #include "Render/GUI_render.h"
 #include "Render/GUI_render_panel.h"
-#include "Dev/GUI_dev_panel.h"
+#include "Dev/GUI_dev.h"
 
 #include <GUI.h>
 #include <Style/GUI_font.h>
@@ -17,7 +17,7 @@ GUI_tab::GUI_tab(GUI* gui){
   this->gui_font = gui->get_gui_font();
   this->gui_render_panel = new GUI_render_panel();
   this->gui_render = new GUI_render(gui);
-  this->gui_dev_panel = new GUI_dev_panel(gui);
+  this->gui_dev = new GUI_dev(gui);
 
   //---------------------------
 }
@@ -25,7 +25,7 @@ GUI_tab::~GUI_tab(){
   //---------------------------
 
   delete gui_render;
-  delete gui_dev_panel;
+  delete gui_dev;
 
   //---------------------------
 }
@@ -35,7 +35,7 @@ void GUI_tab::create_panels(){
   //---------------------------
 
   gui_render->create_panels();
-  gui_dev_panel->create_panels();
+  gui_dev->create_panels();
 
   //---------------------------
 }
@@ -114,12 +114,15 @@ void GUI_tab::menu_tabs(){
       ImGui::EndTabItem();
     }
     ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("Dev")){
+    bool truc =true;
+    if (ImGui::BeginTabItem("Dev", &truc, ImGuiTabItemFlags_SetSelected)){ImGui::SetKeyboardFocusHere();
       this->active_tab = "Dev";
       ImGui::EndTabItem();
     }
     ImGui::EndTabBar();
   }
+
+
 
   //---------------------------
 }
@@ -131,7 +134,7 @@ void GUI_tab::draw_panels(){
     gui_render->draw_panels();
   }
   else if(active_tab == "Dev"){
-    gui_dev_panel->draw_panels();
+    gui_dev->draw_panels();
   }
 
   //---------------------------
