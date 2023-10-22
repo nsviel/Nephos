@@ -19,8 +19,12 @@ public:
 public:
   //Main functions
   void create_panels();
-  void draw_tabs();
+  void run_tab();
+
+  //Subfunction
   void menu_demo();
+  void menu_tabs();
+  void draw_panels();
 
   inline GUI_render* get_gui_render(){return gui_render;}
 

@@ -32,7 +32,7 @@ public:
   void draw_panels();
   void open_panels();
 
-  inline GUI_render_panel* get_panel(){return gui_render_panel;}
+  inline GUI_render_panel* get_render_panel(){return gui_render_panel;}
   inline GUI_shader* get_gui_shader(){return gui_shader;}
   inline GUI_profiler* get_gui_profiling(){return gui_profiler;}
   inline GUI_object* get_gui_object(){return gui_object;}
@@ -46,6 +46,8 @@ public:
 private:
   GUI* gui;
   GUI_render_panel* gui_render_panel;
+  GUI_render_option* gui_render_option;
+  GUI_render_menu* gui_render_menu;
 
   GUI_profiler* gui_profiler;
   GUI_scene* gui_scene;
@@ -56,12 +58,6 @@ private:
   GUI_camera* gui_camera;
   GUI_capture* gui_capture;
   GUI_set* gui_set;
-  GUI_render_option* gui_render_option;
-  GUI_render_menu* gui_render_menu;
-
-  bool show_camera;
-  bool show_object;
-  bool show_set;
 };
 
 #endif

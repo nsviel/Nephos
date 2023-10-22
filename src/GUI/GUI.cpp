@@ -72,7 +72,7 @@ void GUI::loop(){
   ImGui::NewFrame();
 
   this->docker_space_main();
-  gui_tab->draw_tabs();
+  gui_tab->run_tab();
   gui_control->run_control();
 
   gui_gpu->render_frame();

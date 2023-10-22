@@ -18,7 +18,7 @@ GUI_scene::GUI_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
   GUI_tab* gui_tab = gui->get_gui_tab();
   GUI_render* gui_render_panel = gui_tab->get_gui_render();
   this->dataManager = data->get_dataManager();
-  this->gui_render_panel = gui_render_panel->get_panel();
+  this->gui_render_panel = gui_render_panel->get_render_panel();
   this->show_window = show_window;
   this->gui_set = gui_render_panel->get_gui_set();
   this->gui_object = gui_render_panel->get_gui_object();

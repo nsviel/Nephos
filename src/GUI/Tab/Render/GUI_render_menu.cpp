@@ -21,7 +21,7 @@ GUI_render_menu::GUI_render_menu(GUI* gui){
   this->gui_init = gui->get_gui_init();
   this->gui_render = gui_tab->get_gui_render();
   this->gui_render_option = gui_render->get_gui_option();
-  this->gui_render_panel = gui_render->get_panel();
+  this->gui_render_panel = gui_render->get_render_panel();
   this->loaderManager = data->get_loaderManager();
 
   this->show_demo = false;

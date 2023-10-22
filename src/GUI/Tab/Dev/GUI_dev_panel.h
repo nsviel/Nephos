@@ -21,7 +21,7 @@ public:
   void draw_panels();
   void open_panels();
 
-  inline Struct_dev_panel* get_panel(){return struct_dev_panel;}
+  inline Struct_dev_panel* get_render_panel(){return struct_dev_panel;}
 
 private:
   GUI* gui;

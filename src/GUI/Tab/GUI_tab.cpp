@@ -37,21 +37,44 @@ void GUI_tab::create_panels(){
 
   //---------------------------
 }
-void GUI_tab::draw_tabs(){
+void GUI_tab::run_tab(){
   //---------------------------
 
   //Draw main menu bar
   ImGui::BeginMainMenuBar();
+  this->menu_demo();
+  ImGui::Separator();
+  this->menu_tabs();
+  ImGui::Dummy(ImVec2(100.0f, 0.0f)); // empty space
+  ImGui::EndMainMenuBar();
+  this->draw_panels();
+
+  //---------------------------
+}
+
+//Subfunction
+void GUI_tab::menu_demo(){
+  //---------------------------
 
   if(ImGui::BeginMenu(ICON_FA_BOOK, "Demo")){
-    this->menu_demo();
+    //Demo file
+    if(ImGui::Button("Demo file")){
+      int ret = system("xed ../extern/imgui/core/imgui_demo.cpp");
+    }
+
+    //Demo window
+    ImGui::Checkbox("Demo window", &show_demo);
     ImGui::EndMenu();
   }
+
   if(show_demo){
     ImGui::ShowDemoWindow(&show_demo);
   }
 
-  ImGui::Separator();
+  //---------------------------
+}
+void GUI_tab::menu_tabs(){
+  //---------------------------
 
   if (ImGui::BeginTabBar("main_tab")){
     ImGui::SetNextItemWidth(100);
@@ -67,8 +90,10 @@ void GUI_tab::draw_tabs(){
     ImGui::EndTabBar();
   }
 
-  ImGui::Dummy(ImVec2(100.0f, 0.0f)); // empty space
-  ImGui::EndMainMenuBar();
+  //---------------------------
+}
+void GUI_tab::draw_panels(){
+  //---------------------------
 
   //Draw selected tab panels
   if(active_tab == "Render"){
@@ -77,19 +102,6 @@ void GUI_tab::draw_tabs(){
   else if(active_tab == "Dev"){
     gui_dev_panel->draw_panels();
   }
-
-  //---------------------------
-}
-void GUI_tab::menu_demo(){
-  //---------------------------
-
-  //Demo file
-  if(ImGui::Button("Demo file")){
-    int ret = system("xed ../extern/imgui/core/imgui_demo.cpp");
-  }
-
-  //Demo window
-  ImGui::Checkbox("Demo window", &show_demo);
 
   //---------------------------
 }
