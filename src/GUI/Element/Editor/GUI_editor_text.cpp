@@ -1,12 +1,15 @@
 #include "GUI_editor_text.h"
 
+#include <GUI.h>
+#include <Style/GUI_font.h>
 #include <Control/GUI_control_editor.h>
 
 
 //Constructor / Destructor
-GUI_editor_text::GUI_editor_text(){
+GUI_editor_text::GUI_editor_text(GUI* gui){
   //---------------------------
 
+  this->gui_font = gui->get_gui_font();
   this->editor = new TextEditor();
   this->control = new GUI_control_editor(this);
   editor->SetPalette(editor->get_custom_palette());
@@ -32,7 +35,7 @@ void GUI_editor_text::run_editor(){
 
   //Draw control
   ImGuiIO& io = ImGui::GetIO();
-  ImFont* font = io.Fonts->Fonts[io.Fonts->Fonts.Size - 1];
+  ImFont* font = gui_font->get_font_editor();
 
   ImGui::PushFont(font);
   editor->Render("Editor");

@@ -19,8 +19,8 @@ GUI_shader::GUI_shader(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   VK_engine* vk_engine = engine->get_vk_engine();
   this->vk_reload = vk_engine->get_vk_reload();
   this->shaderManager = engine->get_shaderManager();
-  this->editor_vs = new GUI_editor_text();
-  this->editor_fs = new GUI_editor_text();
+  this->editor_vs = new GUI_editor_text(gui);
+  this->editor_fs = new GUI_editor_text(gui);
 
   this->with_parameter = false;
   this->item_width = 100;

@@ -36,9 +36,9 @@ GUI::GUI(Window* window, Engine* engine){
   this->gui_init = new GUI_init(this);
   this->gui_control = new GUI_control_gui(this);
   this->gui_style = new GUI_style(this);
+  this->gui_font = new GUI_font(engine);
   this->gui_tab = new GUI_tab(this);
   this->gui_gpu = new GUI_gpu(engine);
-  this->gui_font = new GUI_font(engine);
 
   //---------------------------
 }

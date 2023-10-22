@@ -103,3 +103,22 @@ void GUI_font::gui_load_font(){
 
   //---------------------------
 }
+ImFont* GUI_font::gui_combo_font(string title, ImFont* font_current){
+  ImGuiIO& io = ImGui::GetIO();
+  ImFont* selected_font = nullptr;
+  //---------------------------
+
+  if (ImGui::BeginCombo(title.c_str(), font_current->GetDebugName())){
+    for (ImFont* font : io.Fonts->Fonts){
+      ImGui::PushID((void*)font);
+      if (ImGui::Selectable(font->GetDebugName(), font == font_current)){
+        selected_font = font;
+      }
+      ImGui::PopID();
+    }
+    ImGui::EndCombo();
+  }
+
+  //---------------------------
+  return selected_font;
+}

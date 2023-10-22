@@ -87,19 +87,17 @@ void GUI_tab::menu_font(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  if(ImGui::BeginMenu(ICON_FA_COG, "Main font")){
+  if(ImGui::BeginMenu(ICON_FA_COG, "Main_font")){
 
+    //Font main gui
     ImFont* font_current = ImGui::GetFont();
-    if (ImGui::BeginCombo("Main", font_current->GetDebugName())){
-      for (ImFont* font : io.Fonts->Fonts){
-        ImGui::PushID((void*)font);
-        if (ImGui::Selectable(font->GetDebugName(), font == font_current)){
-          io.FontDefault = font;
-        }
-        ImGui::PopID();
-      }
-      ImGui::EndCombo();
-    }
+    ImFont* font_selected = gui_font->gui_combo_font("Main##Font", font_current);
+    gui_font->set_current_font(font_selected);
+
+    //Font editor
+    ImFont* font_editor = gui_font->get_font_editor();
+    ImFont* font_editor_selected = gui_font->gui_combo_font("Editor##Font", font_editor);
+    gui_font->set_editor_font(font_editor_selected);
 
     ImGui::EndMenu();
   }

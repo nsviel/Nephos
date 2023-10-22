@@ -8,8 +8,8 @@
 GUI_code_editor::GUI_code_editor(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  this->editor = new GUI_editor_text();
-  
+  this->editor = new GUI_editor_text(gui);
+
   //---------------------------
 }
 GUI_code_editor::~GUI_code_editor(){}
