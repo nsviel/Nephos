@@ -30,7 +30,7 @@ void GUI_set::design_panel(){
 void GUI_set::set_info(Set* set){
   //---------------------------
 
-  this->name = "Set " + set->name;
+  this->set_name("Set " + set->name);
 
   //---------------------------
 }

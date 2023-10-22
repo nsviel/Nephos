@@ -22,7 +22,9 @@ public:
   void run_tab();
 
   //Subfunction
+  void main_menu();
   void menu_demo();
+  void menu_font();
   void menu_tabs();
   void draw_panels();
 

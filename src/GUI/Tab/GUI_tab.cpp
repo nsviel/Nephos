@@ -42,7 +42,7 @@ void GUI_tab::run_tab(){
 
   //Draw main menu bar
   ImGui::BeginMainMenuBar();
-  this->menu_demo();
+  this->main_menu();
   ImGui::Separator();
   this->menu_tabs();
   ImGui::Dummy(ImVec2(100.0f, 0.0f)); // empty space
@@ -53,6 +53,14 @@ void GUI_tab::run_tab(){
 }
 
 //Subfunction
+void GUI_tab::main_menu(){
+  //---------------------------
+
+  this->menu_demo();
+  this->menu_font();
+
+  //---------------------------
+}
 void GUI_tab::menu_demo(){
   //---------------------------
 
@@ -69,6 +77,29 @@ void GUI_tab::menu_demo(){
 
   if(show_demo){
     ImGui::ShowDemoWindow(&show_demo);
+  }
+
+  //---------------------------
+}
+void GUI_tab::menu_font(){
+  ImGuiIO& io = ImGui::GetIO();
+  //---------------------------
+
+  if(ImGui::BeginMenu(ICON_FA_COG, "Font")){
+
+    ImFont* font_current = ImGui::GetFont();
+    if (ImGui::BeginCombo("Font", font_current->GetDebugName())){
+      for (ImFont* font : io.Fonts->Fonts){
+        ImGui::PushID((void*)font);
+        if (ImGui::Selectable(font->GetDebugName(), font == font_current)){
+          io.FontDefault = font;
+        }
+        ImGui::PopID();
+      }
+      ImGui::EndCombo();
+    }
+
+    ImGui::EndMenu();
   }
 
   //---------------------------

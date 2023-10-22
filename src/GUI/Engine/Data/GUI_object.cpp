@@ -34,7 +34,7 @@ void GUI_object::design_panel(){
 void GUI_object::object_info(Object* object){
   //---------------------------
 
-  this->name = "Object " + object->name;
+  this->set_name("Object " + object->name);
 
   //---------------------------
 }

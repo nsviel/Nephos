@@ -23,7 +23,6 @@ public:
 
   //Subfunctions
   void option_color();
-  void option_font();
   void option_fps();
 
 private:

@@ -27,7 +27,6 @@ GUI_render_option::~GUI_render_option(){}
 void GUI_render_option::design_panel(){
   //---------------------------
 
-  this->option_font();
   this->option_color();
   this->option_fps();
 
@@ -35,25 +34,6 @@ void GUI_render_option::design_panel(){
 }
 
 //Subfunctions
-void GUI_render_option::option_font(){
-  ImGuiIO& io = ImGui::GetIO();
-  //---------------------------
-
-  ImFont* font_current = ImGui::GetFont();
-  if (ImGui::BeginCombo("Font", font_current->GetDebugName())){
-    for (ImFont* font : io.Fonts->Fonts){
-      ImGui::PushID((void*)font);
-      if (ImGui::Selectable(font->GetDebugName(), font == font_current)){
-        io.FontDefault = font;
-      }
-      ImGui::PopID();
-    }
-    ImGui::EndCombo();
-  }
-
-  //---------------------------
-  ImGui::Separator();
-}
 void GUI_render_option::option_color(){
   if(ImGui::CollapsingHeader("Colors")){
     //---------------------------

@@ -35,7 +35,7 @@ void GUI_scene::run_panel(){
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::SetNextWindowSizeConstraints(ImVec2(200, 100), ImVec2(1000, 1000));
-    ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::Begin(get_name().c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize);
 
     this->design_panel();
 
