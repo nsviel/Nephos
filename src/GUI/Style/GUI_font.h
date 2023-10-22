@@ -23,6 +23,7 @@ public:
   void gui_load_font();
 
   inline ImFont* get_font_editor(){return font_editor;}
+  inline ImFont* get_font_current(){return ImGui::GetFont();}
 
 private:
   VK_struct* vk_struct;

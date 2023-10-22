@@ -4,6 +4,7 @@
 #include <Specific/common.h>
 
 class GUI;
+class GUI_font;
 class GUI_render;
 class GUI_dev_panel;
 class GUI_render_panel;
@@ -35,6 +36,7 @@ private:
   GUI_render_panel* gui_render_panel;
   GUI_render* gui_render;
   GUI_dev_panel* gui_dev_panel;
+  GUI_font* gui_font;
 
   string active_tab;
   bool show_demo;

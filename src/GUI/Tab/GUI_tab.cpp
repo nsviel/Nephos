@@ -4,6 +4,7 @@
 #include "Dev/GUI_dev_panel.h"
 
 #include <GUI.h>
+#include <Style/GUI_font.h>
 #include <image/IconsFontAwesome5.h>
 //#include <Python.h>
 
@@ -13,6 +14,7 @@ GUI_tab::GUI_tab(GUI* gui){
   //---------------------------
 
   this->gui = gui;
+  this->gui_font = gui->get_gui_font();
   this->gui_render_panel = new GUI_render_panel();
   this->gui_render = new GUI_render(gui);
   this->gui_dev_panel = new GUI_dev_panel(gui);
@@ -85,10 +87,10 @@ void GUI_tab::menu_font(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  if(ImGui::BeginMenu(ICON_FA_COG, "Font")){
+  if(ImGui::BeginMenu(ICON_FA_COG, "Main font")){
 
     ImFont* font_current = ImGui::GetFont();
-    if (ImGui::BeginCombo("Font", font_current->GetDebugName())){
+    if (ImGui::BeginCombo("Main", font_current->GetDebugName())){
       for (ImFont* font : io.Fonts->Fonts){
         ImGui::PushID((void*)font);
         if (ImGui::Selectable(font->GetDebugName(), font == font_current)){

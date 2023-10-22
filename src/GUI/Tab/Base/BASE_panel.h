@@ -26,8 +26,6 @@ private:
   string name;
   int item_width;
   bool* show_window;
-  vec2 size_constrainst_min;
-  vec2 size_constrainst_max;
 };
 
 #endif

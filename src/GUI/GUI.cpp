@@ -1,6 +1,5 @@
 #include "GUI.h"
 #include "GPU/GUI_gpu.h"
-#include "GPU/GUI_font.h"
 #include "GPU/GUI_image.h"
 #include "GPU/GUI_video.h"
 #include "Element/Initialization/GUI_init.h"
@@ -9,6 +8,7 @@
 
 #include "Control/GUI_control_gui.h"
 #include "Style/GUI_style.h"
+#include "Style/GUI_font.h"
 #include "Engine/GUI_engine.h"
 #include "Engine/Camera/GUI_camera.h"
 #include "Engine/Data/GUI_object.h"
