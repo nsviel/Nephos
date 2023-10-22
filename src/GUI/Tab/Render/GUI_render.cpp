@@ -70,16 +70,17 @@ void GUI_render::draw_panels(){
 
   //---------------------------
 }
+#include <image/IconsFontAwesome5.h>
 void GUI_render::open_panels(){
   //---------------------------
 
-  ImGui::Checkbox("Option##456", &gui_render_panel->show_option);
-  ImGui::Checkbox("Scene##456", &gui_render_panel->show_scene);
-  ImGui::Checkbox("Database##456", &gui_render_panel->show_database);
-  ImGui::Checkbox("Profiler##456", &gui_render_panel->show_profiler);
-  ImGui::Checkbox("Camera##456", &gui_render_panel->show_camera);
-  ImGui::Checkbox("Shader##456", &gui_render_panel->show_shader);
-  ImGui::Checkbox("Capture##456", &gui_render_panel->show_capture);
+  ImGui::Checkbox(ICON_FA_COG " Option##456", &gui_render_panel->show_option);
+  ImGui::Checkbox(ICON_FA_PLAY " Scene##456", &gui_render_panel->show_scene);
+  ImGui::Checkbox(ICON_FA_KEY " Database##456", &gui_render_panel->show_database);
+  ImGui::Checkbox(ICON_FA_REFRESH " Profiler##456", &gui_render_panel->show_profiler);
+  ImGui::Checkbox(ICON_FA_CAMERA " Camera##456", &gui_render_panel->show_camera);
+  ImGui::Checkbox(ICON_FA_ROAD " Shader##456", &gui_render_panel->show_shader);
+  ImGui::Checkbox(ICON_FA_FILM " Capture##456", &gui_render_panel->show_capture);
 
   //---------------------------
 }

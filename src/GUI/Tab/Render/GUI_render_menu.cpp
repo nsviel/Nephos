@@ -56,28 +56,6 @@ void GUI_render_menu::menu(){
     gui_init->design_init();
     ImGui::EndMenu();
   }
-  if(show_demo){
-    ImGui::ShowDemoWindow(&show_demo);
-  }
-  if(ImGui::MenuItem(ICON_FA_COG, "Option")){
-    gui_render_panel->show_option = !gui_render_panel->show_option;
-  }
-  if(ImGui::MenuItem(ICON_FA_CAMERA, "Camera##111")){
-    gui_render_panel->show_camera = !gui_render_panel->show_camera;
-  }
-
-  //---------------------------
-}
-void GUI_render_menu::menu_demo(){
-  //---------------------------
-
-  //Demo file
-  if(ImGui::Button("Demo file")){
-    int ret = system("xed ../extern/imgui/core/imgui_demo.cpp");
-  }
-
-  //Demo window
-  ImGui::Checkbox("Demo window", &show_demo);
 
   //---------------------------
 }

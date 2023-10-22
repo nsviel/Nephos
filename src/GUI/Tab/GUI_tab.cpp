@@ -91,7 +91,7 @@ void GUI_tab::menu_font(){
 
     //Font main gui
     ImFont* font_current = ImGui::GetFont();
-    ImFont* font_selected = gui_font->gui_combo_font("Main##Font", font_current);
+    ImFont* font_selected = gui_font->gui_combo_font("GUI##Font", font_current);
     gui_font->set_current_font(font_selected);
 
     //Font editor
