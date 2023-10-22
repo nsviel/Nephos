@@ -4,9 +4,9 @@
 #include <Specific/common.h>
 
 class GUI;
-class GUI_render_panel;
+class GUI_render;
 class GUI_dev_panel;
-class Struct_render_panel;
+class GUI_render_panel;
 
 
 class GUI_tab
@@ -22,12 +22,12 @@ public:
   void draw_tabs();
   void menu_demo();
 
-  inline GUI_render_panel* get_gui_render_panel(){return gui_render_panel;}
+  inline GUI_render* get_gui_render(){return gui_render;}
 
 private:
   GUI* gui;
-  Struct_render_panel* struct_render_panel;
   GUI_render_panel* gui_render_panel;
+  GUI_render* gui_render;
   GUI_dev_panel* gui_dev_panel;
 
   string active_tab;

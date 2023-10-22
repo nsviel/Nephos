@@ -5,7 +5,7 @@
 #include <Specific/common.h>
 
 class GUI;
-class Struct_render_panel;
+class GUI_render_panel;
 
 
 class GUI_dialog : public BASE_panel
@@ -22,7 +22,7 @@ public:
   void capture_command();
 
 private:
-  Struct_render_panel* struct_render_panel;
+  GUI_render_panel* gui_render_panel;
 
   int item_width;
 };

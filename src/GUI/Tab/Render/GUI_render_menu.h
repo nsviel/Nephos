@@ -5,10 +5,10 @@
 
 class GUI;
 class Loader;
-class Struct_render_panel;
-class GUI_init;
-class GUI_option;
 class GUI_render_panel;
+class GUI_init;
+class GUI_render_option;
+class GUI_render;
 
 
 class GUI_render_menu
@@ -30,9 +30,9 @@ private:
   GUI* gui;
   Loader* loaderManager;
   GUI_init* gui_init;
-  Struct_render_panel* struct_render_panel;
-  GUI_option* gui_option;
   GUI_render_panel* gui_render_panel;
+  GUI_render_option* gui_render_option;
+  GUI_render* gui_render;
 
   bool show_demo;
 

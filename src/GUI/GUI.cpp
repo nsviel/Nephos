@@ -6,7 +6,6 @@
 #include "Element/Initialization/GUI_init.h"
 #include "Element/Capture/GUI_capture.h"
 #include "Window/Window.h"
-#include "Window/Menu/GUI_mainmenubar.h"
 
 #include "Control/GUI_control_gui.h"
 #include "Style/GUI_style.h"
@@ -38,7 +37,6 @@ GUI::GUI(Window* window, Engine* engine){
   this->gui_control = new GUI_control_gui(this);
   this->gui_style = new GUI_style(this);
   this->gui_tab = new GUI_tab(this);
-  this->gui_menubar = new GUI_mainmenubar(this);
   this->gui_gpu = new GUI_gpu(engine);
   this->gui_font = new GUI_font(engine);
 
@@ -74,7 +72,6 @@ void GUI::loop(){
   ImGui::NewFrame();
 
   this->docker_space_main();
-  gui_menubar->design_menubar();
   gui_tab->draw_tabs();
   gui_control->run_control();
 

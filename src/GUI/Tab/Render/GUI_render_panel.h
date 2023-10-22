@@ -1,69 +1,21 @@
 #ifndef GUI_RENDER_PANEL_H
 #define GUI_RENDER_PANEL_H
 
-#include <Specific/common.h>
 
-class GUI;
-class Struct_render_panel;
+struct GUI_render_panel{
+  //---------------------------
 
-class GUI_profiler;
-class GUI_mainmenubar;
-class GUI_shader;
-class GUI_engine;
-class GUI_option;
-class GUI_database;
-class GUI_camera;
-class GUI_object;
-class GUI_set;
-class GUI_scene;
-class GUI_capture;
-class GUI_render_menu;
+  bool show_camera   = false;
+  bool show_object   = false;
+  bool show_set      = false;
+  bool show_shader   = true;
+  bool show_capture  = true;
+  bool show_database = false;
+  bool show_profiler = true;
+  bool show_scene    = true;
+  bool show_option   = false;
 
-
-class GUI_render_panel
-{
-public:
-  //Constructor / Destructor
-  GUI_render_panel(GUI* gui);
-  ~GUI_render_panel();
-
-public:
-  //Main functions
-  void create_panels();
-  void draw_panels();
-  void open_panels();
-
-  inline Struct_render_panel* get_panel(){return struct_render_panel;}
-  inline GUI_shader* get_gui_shader(){return gui_shader;}
-  inline GUI_profiler* get_gui_profiling(){return gui_profiler;}
-  inline GUI_object* get_gui_object(){return gui_object;}
-  inline GUI_set* get_gui_set(){return gui_set;}
-  inline GUI_camera* get_gui_camera(){return gui_camera;}
-  inline GUI_capture* get_gui_capture(){return gui_capture;}
-  inline GUI_scene* get_gui_scene(){return gui_scene;}
-  inline GUI_engine* get_gui_engine(){return gui_engine;}
-  inline GUI_option* get_gui_option(){return gui_option;}
-
-private:
-  GUI* gui;
-  Struct_render_panel* struct_render_panel;
-
-  GUI_profiler* gui_profiler;
-  GUI_scene* gui_scene;
-  GUI_mainmenubar* gui_menubar;
-  GUI_shader* gui_shader;
-  GUI_engine* gui_engine;
-  GUI_database* gui_database;
-  GUI_object* gui_object;
-  GUI_camera* gui_camera;
-  GUI_capture* gui_capture;
-  GUI_set* gui_set;
-  GUI_option* gui_option;
-  GUI_render_menu* gui_render_menu;
-
-  bool show_camera;
-  bool show_object;
-  bool show_set;
+  //---------------------------
 };
 
 #endif

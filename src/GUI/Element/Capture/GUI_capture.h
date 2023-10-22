@@ -7,8 +7,8 @@
 class GUI;
 class GUI_image;
 class GUI_video;
+class GUI_render;
 class GUI_render_panel;
-class Struct_render_panel;
 
 
 class GUI_capture : public BASE_panel
@@ -28,7 +28,7 @@ private:
   GUI_video* gui_video;
   GUI_image* gui_image;
   GUI* gui;
-  Struct_render_panel* struct_render_panel;
+  GUI_render_panel* gui_render_panel;
 
   int item_width;
 };

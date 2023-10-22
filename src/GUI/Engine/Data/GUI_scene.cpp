@@ -2,8 +2,8 @@
 
 #include <GUI.h>
 #include <Tab/GUI_tab.h>
-#include <Tab/Render/Struct_render_panel.h>
 #include <Tab/Render/GUI_render_panel.h>
+#include <Tab/Render/GUI_render.h>
 #include <Data/Data.h>
 #include <Data/Scene/Database.h>
 #include <Engine/Data/GUI_object.h>
@@ -16,9 +16,9 @@ GUI_scene::GUI_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
 
   Data* data = gui->get_data();
   GUI_tab* gui_tab = gui->get_gui_tab();
-  GUI_render_panel* gui_render_panel = gui_tab->get_gui_render_panel();
+  GUI_render* gui_render_panel = gui_tab->get_gui_render();
   this->dataManager = data->get_dataManager();
-  this->struct_render_panel = gui_render_panel->get_panel();
+  this->gui_render_panel = gui_render_panel->get_panel();
   this->show_window = show_window;
   this->gui_set = gui_render_panel->get_gui_set();
   this->gui_object = gui_render_panel->get_gui_object();
@@ -143,7 +143,7 @@ int GUI_scene::data_node_tree(Set* set){
   //If item double-clicked
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
     gui_set->set_selected_set(set);
-    struct_render_panel->show_set = true;
+    gui_render_panel->show_set = true;
   }
 
   //Set elements leaf nodes
@@ -173,7 +173,7 @@ int GUI_scene::data_node_tree(Set* set){
       //If item double-clicked
       if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
         gui_object->set_selected_object(object);
-        struct_render_panel->show_object = true;
+        gui_render_panel->show_object = true;
       }
 
     }

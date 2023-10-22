@@ -1,4 +1,4 @@
-#include "GUI_option.h"
+#include "GUI_render_option.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-GUI_option::GUI_option(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+GUI_render_option::GUI_render_option(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->gui = gui;
@@ -21,10 +21,10 @@ GUI_option::GUI_option(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   //---------------------------
 }
-GUI_option::~GUI_option(){}
+GUI_render_option::~GUI_render_option(){}
 
 //Main function
-void GUI_option::design_panel(){
+void GUI_render_option::design_panel(){
   //---------------------------
 
   this->option_font();
@@ -35,7 +35,7 @@ void GUI_option::design_panel(){
 }
 
 //Subfunctions
-void GUI_option::option_font(){
+void GUI_render_option::option_font(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
@@ -54,7 +54,7 @@ void GUI_option::option_font(){
   //---------------------------
   ImGui::Separator();
 }
-void GUI_option::option_color(){
+void GUI_render_option::option_color(){
   if(ImGui::CollapsingHeader("Colors")){
     //---------------------------
 
@@ -67,7 +67,7 @@ void GUI_option::option_color(){
     ImGui::Separator();
   }
 }
-void GUI_option::option_fps(){
+void GUI_render_option::option_fps(){
   //---------------------------
 
   //FPS max value

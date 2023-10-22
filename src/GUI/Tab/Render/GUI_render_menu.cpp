@@ -3,11 +3,11 @@
 
 #include <GUI.h>
 #include <Tab/GUI_tab.h>
+#include <Tab/Render/GUI_render.h>
 #include <Tab/Render/GUI_render_panel.h>
-#include <Tab/Render/Struct_render_panel.h>
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
-#include <Window/Menu/GUI_option.h>
+#include <Tab/Render/GUI_render_option.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -19,9 +19,9 @@ GUI_render_menu::GUI_render_menu(GUI* gui){
   GUI_tab* gui_tab = gui->get_gui_tab();
   this->gui = gui;
   this->gui_init = gui->get_gui_init();
-  this->gui_render_panel = gui_tab->get_gui_render_panel();
-  this->gui_option = gui_render_panel->get_gui_option();
-  this->struct_render_panel = gui_render_panel->get_panel();
+  this->gui_render = gui_tab->get_gui_render();
+  this->gui_render_option = gui_render->get_gui_option();
+  this->gui_render_panel = gui_render->get_panel();
   this->loaderManager = data->get_loaderManager();
 
   this->show_demo = false;
@@ -46,7 +46,7 @@ void GUI_render_menu::menu(){
   //---------------------------
 
   if(ImGui::BeginMenu("Panel##111")){
-    gui_render_panel->open_panels();
+    gui_render->open_panels();
     ImGui::EndMenu();
   }
   if(ImGui::MenuItem("Load")){
@@ -60,10 +60,10 @@ void GUI_render_menu::menu(){
     ImGui::ShowDemoWindow(&show_demo);
   }
   if(ImGui::MenuItem(ICON_FA_COG, "Option")){
-    struct_render_panel->show_option = !struct_render_panel->show_option;
+    gui_render_panel->show_option = !gui_render_panel->show_option;
   }
   if(ImGui::MenuItem(ICON_FA_CAMERA, "Camera##111")){
-    struct_render_panel->show_camera = !struct_render_panel->show_camera;
+    gui_render_panel->show_camera = !gui_render_panel->show_camera;
   }
 
   //---------------------------

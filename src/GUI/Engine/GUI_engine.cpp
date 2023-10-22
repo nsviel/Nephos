@@ -2,7 +2,6 @@
 
 #include <Engine.h>
 #include <GUI.h>
-#include <Window/Menu/GUI_mainmenubar.h>
 #include <Control/GUI_control_engine.h>
 #include <Vulkan/VK_engine.h>
 #include <Vulkan/VK_struct.h>
@@ -52,11 +51,11 @@ void GUI_engine::engine_menubar(){
       ImGui::EndMenu();
     }
     if(ImGui::BeginMenu(ICON_FA_COG, "Option")){
-      //gui_option->design_option();
+      //gui_render_option->design_option();
       ImGui::EndMenu();
     }
     if(ImGui::MenuItem(ICON_FA_CAMERA, "Camera##111")){
-      //struct_render_panel->show_camera = !struct_render_panel->show_camera;
+      //gui_render_panel->show_camera = !gui_render_panel->show_camera;
     }
     ImGui::EndMenuBar();
   }

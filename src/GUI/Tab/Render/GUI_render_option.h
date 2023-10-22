@@ -10,12 +10,12 @@ class VK_engine;
 class VK_struct;
 
 
-class GUI_option : public BASE_panel
+class GUI_render_option : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_option(GUI* gui, bool* show_window, string name);
-  ~GUI_option();
+  GUI_render_option(GUI* gui, bool* show_window, string name);
+  ~GUI_render_option();
 
 public:
   //Main function
