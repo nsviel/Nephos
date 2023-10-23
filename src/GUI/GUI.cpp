@@ -18,7 +18,7 @@
 #include <Render/Capture/GUI_capture.h>
 
 #include <Engine.h>
-#include <GPU/GPU_render.h>
+#include <Element/GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
 #include <Tab/GUI_tab.h>
 

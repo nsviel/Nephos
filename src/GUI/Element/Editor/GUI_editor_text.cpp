@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Style/GUI_font.h>
-#include <Control/GUI_control_editor.h>
+#include <Element/Control/GUI_control_editor.h>
 
 
 //Constructor / Destructor
