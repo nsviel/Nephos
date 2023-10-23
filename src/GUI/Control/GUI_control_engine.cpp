@@ -122,13 +122,6 @@ void GUI_control_engine::control_keyboard_translation(){
         //transCoef = cloud_trans_speed * 5;
       }
 
-
-      //---------------------------
-
-
-
-
-
       // Z key
       if(io.KeysDown[571]){
         vec3 translation = vec3(transCoef, 0, 0);
@@ -165,23 +158,6 @@ void GUI_control_engine::control_keyboard_translation(){
         transformManager->make_translation(set->selected_obj, translation);
         break;
       }
-      /*
-      // 7 key
-      if(io.KeysDown[327]){
-        float r = cloud_rotat_degree*M_PI/180;
-        vec3 rotation = vec3(0,0,r);
-        this->key_rotation(rotation);
-        break;
-      }
-      // 9 key
-      if(io.KeysDown[329]){
-        float r = cloud_rotat_degree*M_PI/180;
-        vec3 rotation = vec3(0,0,-r);
-        this->key_rotation(rotation);
-        break;
-      }*/
-
-      //transCoef = cloud_trans_speed;
     }
   }
 

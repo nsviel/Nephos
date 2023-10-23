@@ -49,13 +49,23 @@ void GUI_font::gui_select_font(){
   config_icon.GlyphMinAdvanceX = 15.0f; //Monospace icons
 
   //Load all droidsans font with size from 13 to 23
-  float font_size = 13.0f;
+  float font_size;
+  font_size = 13.0f;
   for(int i=0; i<10; i++){
-    io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_text);
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_text);
     io.Fonts->AddFontFromFileTTF("../media/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
+    if(i == 0) this->font_gui = font;
     font_size += 1.0f;
+    this->vec_font_gui.push_back(font);
   }
-  this->font_editor = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", 13.0f, &config_editor);
+
+  font_size = 13.0f;
+  for(int i=0; i<10; i++){
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_editor);
+    if(i == 0) this->font_editor = font;
+    font_size += 1.0f;
+    this->vec_font_editor.push_back(font);
+  }
 
   //Buid the font database
   io.Fonts->Build();
@@ -103,16 +113,17 @@ void GUI_font::gui_load_font(){
 
   //---------------------------
 }
-ImFont* GUI_font::gui_combo_font(string title, ImFont* font_current){
+void GUI_font::combo_font_gui(){
   ImGuiIO& io = ImGui::GetIO();
-  ImFont* selected_font = nullptr;
   //---------------------------
 
-  if (ImGui::BeginCombo(title.c_str(), font_current->GetDebugName())){
-    for (ImFont* font : io.Fonts->Fonts){
+  if (ImGui::BeginCombo("GUI##Font", font_gui->GetDebugName())){
+    for(int i=0; i<vec_font_gui.size(); i++){
+      ImFont* font = vec_font_gui[i];
       ImGui::PushID((void*)font);
-      if (ImGui::Selectable(font->GetDebugName(), font == font_current)){
-        selected_font = font;
+      if (ImGui::Selectable(font->GetDebugName(), font == font_gui)){
+        ImGui::GetIO().FontDefault = font;
+        this->font_gui = font;
       }
       ImGui::PopID();
     }
@@ -120,5 +131,22 @@ ImFont* GUI_font::gui_combo_font(string title, ImFont* font_current){
   }
 
   //---------------------------
-  return selected_font;
+}
+void GUI_font::combo_font_editor(){
+  ImGuiIO& io = ImGui::GetIO();
+  //---------------------------
+
+  if (ImGui::BeginCombo("Editor##Font", font_editor->GetDebugName())){
+    for(int i=0; i<vec_font_editor.size(); i++){
+      ImFont* font = vec_font_editor[i];
+      ImGui::PushID((void*)font);
+      if (ImGui::Selectable(font->GetDebugName(), font == font_editor)){
+        this->font_editor = font;
+      }
+      ImGui::PopID();
+    }
+    ImGui::EndCombo();
+  }
+
+  //---------------------------
 }

@@ -19,18 +19,25 @@ public:
   void init_gui_font();
 
   //Subfunction
-  ImFont* gui_combo_font(string title, ImFont* font_current);
+  void combo_font_gui();
+  void combo_font_editor();
   void gui_select_font();
   void gui_load_font();
 
   inline ImFont* get_font_editor(){return font_editor;}
-  inline ImFont* get_font_current(){return ImGui::GetFont();}
+  inline ImFont* get_font_current(){return font_gui;}
+  inline vector<ImFont*> get_vec_font_editor(){return vec_font_editor;}
+  inline vector<ImFont*> get_vec_font_gui(){return vec_font_gui;}
   inline void set_current_font(ImFont* font){if(font!=nullptr)ImGui::GetIO().FontDefault = font;}
   inline void set_editor_font(ImFont* font){if(font!=nullptr)this->font_editor = font;}
+
 private:
   VK_struct* vk_struct;
 
+  vector<ImFont*> vec_font_editor;
+  vector<ImFont*> vec_font_gui;
   ImFont* font_editor;
+  ImFont* font_gui;
 };
 
 #endif

@@ -93,17 +93,8 @@ void GUI_tab::menu_font(){
   //---------------------------
 
   if(ImGui::BeginMenu(ICON_FA_COG, "Main_font")){
-
-    //Font main gui
-    ImFont* font_current = ImGui::GetFont();
-    ImFont* font_selected = gui_font->gui_combo_font("GUI##Font", font_current);
-    gui_font->set_current_font(font_selected);
-
-    //Font editor
-    ImFont* font_editor = gui_font->get_font_editor();
-    ImFont* font_editor_selected = gui_font->gui_combo_font("Editor##Font", font_editor);
-    gui_font->set_editor_font(font_editor_selected);
-
+    gui_font->combo_font_gui();
+    gui_font->combo_font_editor();
     ImGui::EndMenu();
   }
 
