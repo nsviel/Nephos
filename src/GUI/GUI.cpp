@@ -1,13 +1,13 @@
 #include "GUI.h"
-#include "GPU/GUI_gpu.h"
-#include "GPU/GUI_image.h"
-#include "GPU/GUI_video.h"
+#include "Element/GPU/GUI_gpu.h"
+#include "Element/GPU/GUI_image.h"
+#include "Element/GPU/GUI_video.h"
 #include "Window/Window.h"
 
-#include "Control/GUI_control_gui.h"
+#include "Element/Control/GUI_control_gui.h"
 #include "Style/GUI_style.h"
 #include "Style/GUI_font.h"
-#include "Render/GUI_engine.h"
+#include "Render/Engine/GUI_engine.h"
 #include "Render/Camera/GUI_camera.h"
 #include "Render/Data/GUI_object.h"
 #include "Render/Data/GUI_set.h"
@@ -18,7 +18,7 @@
 #include <Render/Capture/GUI_capture.h>
 
 #include <Engine.h>
-#include <Element/GPU/GPU_render.h>
+#include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
 #include <Tab/GUI_tab.h>
 

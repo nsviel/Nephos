@@ -2,7 +2,7 @@
 #define GUI_VIDEO_H
 
 #include <Specific/common.h>
-#include <Element/GPU/GPU_texture.h>
+#include <GPU/GPU_texture.h>
 #include <vlc/vlc.h>
 
 class Engine;

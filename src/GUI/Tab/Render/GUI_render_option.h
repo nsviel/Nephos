@@ -2,7 +2,7 @@
 #define GUI_OPION_H
 
 #include <Specific/common.h>
-#include <Tab/Base/BASE_panel.h>
+#include <Element/Base/BASE_panel.h>
 
 class GUI;
 class Param;

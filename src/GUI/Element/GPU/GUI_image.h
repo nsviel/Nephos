@@ -2,7 +2,7 @@
 #define GUI_IMAGE_H
 
 #include <Specific/common.h>
-#include <Element/GPU/GPU_texture.h>
+#include <GPU/GPU_texture.h>
 
 class Engine;
 

@@ -6,8 +6,8 @@
 #include <Camera/Camera.h>
 #include <Window/Window.h>
 #include <Shader/Shader.h>
-#include <Element/GPU/GPU_data.h>
-#include <Element/GPU/GPU_texture.h>
+#include <GPU/GPU_data.h>
+#include <GPU/GPU_texture.h>
 
 
 //Constructor / Destructor

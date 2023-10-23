@@ -13,11 +13,10 @@
 #include <Render/Capture/GUI_capture.h>
 
 #include <Engine.h>
-#include <Render/GUI_engine.h>
+#include <Render/Engine/GUI_engine.h>
 #include <Render/Data/GUI_object.h>
 #include <Render/Data/GUI_scene.h>
 #include <Render/Data/GUI_set.h>
-#include <Render/GUI_engine.h>
 #include <Render/Profiler/GUI_profiler.h>
 #include <Render/Shader/GUI_shader.h>
 #include <Render/Data/GUI_scene.h>

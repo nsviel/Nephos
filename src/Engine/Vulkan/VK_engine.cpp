@@ -16,7 +16,7 @@
 #include "Device/VK_device.h"
 #include "Device/VK_physical_device.h"
 #include "Window/VK_surface.h"
-#include <Element/GPU/GPU_render.h>
+#include <GPU/GPU_render.h>
 #include "Window/VK_error.h"
 #include "Instance/VK_instance.h"
 #include "Instance/VK_validation.h"

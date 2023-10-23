@@ -1,7 +1,7 @@
 #ifndef GUI_TIMING_H
 #define GUI_TIMING_H
 
-#include <Tab/Base/BASE_panel.h>
+#include <Element/Base/BASE_panel.h>
 #include <Specific/common.h>
 
 class GUI;

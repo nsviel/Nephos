@@ -1,7 +1,7 @@
 #ifndef GUI_DIALOG_H
 #define GUI_DIALOG_H
 
-#include <Tab/Base/BASE_panel.h>
+#include <Element/Base/BASE_panel.h>
 #include <Specific/common.h>
 
 class GUI;

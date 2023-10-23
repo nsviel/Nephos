@@ -1,7 +1,7 @@
 #ifndef WIN_CAMERA_H
 #define WIN_CAMERA_H
 
-#include <Tab/Base/BASE_panel.h>
+#include <Element/Base/BASE_panel.h>
 #include <Specific/common.h>
 
 class GUI;
