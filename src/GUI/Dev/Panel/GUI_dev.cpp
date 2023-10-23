@@ -2,7 +2,7 @@
 #include "GUI_dev_panel.h"
 
 #include <GUI.h>
-#include <Dev/GUI_code_editor.h>
+#include <Dev/Editor/GUI_code_editor.h>
 #include <Dev/Command/GUI_dev_command.h>
 
 

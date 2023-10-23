@@ -1,29 +1,24 @@
-#add_subdirectory(Dev)
-
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
 
 # Source files
 file(GLOB_RECURSE ALL_SOURCES
-  Dev/*.cpp
-  Element/*.cpp
-  Render/*.cpp
-  Tab/*.cpp
-  GUI.cpp
+  *.cpp
 )
 
 # Define the library target
-add_library(LIBRARY_GUI STATIC
+add_library(LIBRARY_GUI_DEV STATIC
   ${ALL_SOURCES}
 )
 
 # Specify include directories
-target_include_directories(LIBRARY_GUI PUBLIC
+target_include_directories(LIBRARY_GUI_DEV PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<INSTALL_INTERFACE:include>
 )
 
 # Link any external libraries that this library depends on
-target_link_libraries(LIBRARY_GUI PUBLIC
+target_link_libraries(LIBRARY_GUI_DEV PUBLIC
   Eigen3::Eigen #Eigen library
   LIBRARY_EXTERN
   LIBRARY_ELEMENT
