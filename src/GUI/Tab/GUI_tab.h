@@ -28,6 +28,7 @@ public:
   void menu_font();
   void menu_tabs();
   void draw_panels();
+  void next_tab();
 
   inline GUI_render* get_gui_render(){return gui_render;}
 
@@ -38,7 +39,9 @@ private:
   GUI_dev* gui_dev;
   GUI_font* gui_font;
 
+  vector<string> vec_tab;
   string active_tab;
+  string tab_to_open;
   bool show_demo;
 };
 

@@ -55,7 +55,7 @@ void GUI_font::gui_select_font(){
     io.Fonts->AddFontFromFileTTF("../media/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
     font_size += 1.0f;
   }
-  this->font_editor = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", 15.0f, &config_editor);
+  this->font_editor = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", 13.0f, &config_editor);
 
   //Buid the font database
   io.Fonts->Build();

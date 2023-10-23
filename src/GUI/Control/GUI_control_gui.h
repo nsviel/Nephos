@@ -4,6 +4,7 @@
 #include <Specific/common.h>
 
 class GUI;
+class GUI_tab;
 class Window;
 
 
@@ -25,6 +26,7 @@ public:
 
 private:
   Window* window;
+  GUI_tab* gui_tab;
 };
 
 #endif

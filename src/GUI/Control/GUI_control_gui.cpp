@@ -3,6 +3,7 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <Window/Window.h>
+#include <Tab/GUI_tab.h>
 
 
 //Constructor / Destructor
@@ -11,6 +12,7 @@ GUI_control_gui::GUI_control_gui(GUI* gui){
 
   Engine* engine = gui->get_engine();
   this->window = engine->get_window();
+  this->gui_tab = gui->get_gui_tab();
 
   //---------------------------
 }
@@ -33,6 +35,10 @@ void GUI_control_gui::control_keyboard_oneAction(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     if(ImGui::IsKeyPressed(ImGuiKey_Escape)){
       window->close_window();
+    }
+
+    if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
+      gui_tab->next_tab();
     }
   }
 

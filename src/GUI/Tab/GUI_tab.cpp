@@ -19,6 +19,11 @@ GUI_tab::GUI_tab(GUI* gui){
   this->gui_render = new GUI_render(gui);
   this->gui_dev = new GUI_dev(gui);
 
+  this->active_tab = "Render";
+  this->tab_to_open = "";
+  this->vec_tab.push_back("Render");
+  this->vec_tab.push_back("Dev");
+
   //---------------------------
 }
 GUI_tab::~GUI_tab(){
@@ -105,24 +110,25 @@ void GUI_tab::menu_font(){
   //---------------------------
 }
 void GUI_tab::menu_tabs(){
+  ImGuiTabItemFlags flag;
   //---------------------------
 
   if (ImGui::BeginTabBar("main_tab")){
-    ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("Render")){
-      this->active_tab = "Render";
-      ImGui::EndTabItem();
-    }
-    ImGui::SetNextItemWidth(100);
-    bool truc =true;
-    if (ImGui::BeginTabItem("Dev", &truc, ImGuiTabItemFlags_SetSelected)){ImGui::SetKeyboardFocusHere();
-      this->active_tab = "Dev";
-      ImGui::EndTabItem();
+    for(int i=0; i<vec_tab.size(); i++){
+      if(tab_to_open == vec_tab[i]){
+        flag = ImGuiTabItemFlags_SetSelected;
+        this->tab_to_open = "";
+      }else{
+        flag = 0;
+      }
+      ImGui::SetNextItemWidth(100);
+      if (ImGui::BeginTabItem(vec_tab[i].c_str(), NULL, flag)){
+        this->active_tab = vec_tab[i];
+        ImGui::EndTabItem();
+      }
     }
     ImGui::EndTabBar();
   }
-
-
 
   //---------------------------
 }
@@ -136,6 +142,22 @@ void GUI_tab::draw_panels(){
   else if(active_tab == "Dev"){
     gui_dev->draw_panels();
   }
+
+  //---------------------------
+}
+void GUI_tab::next_tab(){
+  //---------------------------
+
+  for(int i=0; i<vec_tab.size(); i++){
+    if(vec_tab[i] == active_tab){
+      if(i == vec_tab.size()-1){
+        this->tab_to_open = vec_tab[0];
+      }else{
+        this->tab_to_open = vec_tab[i+1];
+      }
+    }
+  }
+
 
   //---------------------------
 }
