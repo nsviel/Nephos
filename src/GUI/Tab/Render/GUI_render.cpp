@@ -10,18 +10,18 @@
 
 #include <Element/Editor/GUI_editor_node.h>
 #include <Element/Data/GUI_database.h>
-#include <Element/Capture/GUI_capture.h>
+#include <Render/Capture/GUI_capture.h>
 
 #include <Engine.h>
-#include <Engine/GUI_engine.h>
-#include <Engine/Data/GUI_object.h>
-#include <Engine/Data/GUI_scene.h>
-#include <Engine/Data/GUI_set.h>
-#include <Engine/GUI_engine.h>
-#include <Engine/Profiler/GUI_profiler.h>
-#include <Engine/Render/GUI_shader.h>
-#include <Engine/Data/GUI_scene.h>
-#include <Engine/Camera/GUI_camera.h>
+#include <Render/GUI_engine.h>
+#include <Render/Data/GUI_object.h>
+#include <Render/Data/GUI_scene.h>
+#include <Render/Data/GUI_set.h>
+#include <Render/GUI_engine.h>
+#include <Render/Profiler/GUI_profiler.h>
+#include <Render/Shader/GUI_shader.h>
+#include <Render/Data/GUI_scene.h>
+#include <Render/Camera/GUI_camera.h>
 
 
 //Constructor / Destructor

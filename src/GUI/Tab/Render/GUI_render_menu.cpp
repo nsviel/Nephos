@@ -1,5 +1,4 @@
 #include "GUI_render_menu.h"
-#include "../../Element/Initialization/GUI_init.h"
 
 #include <GUI.h>
 #include <Tab/GUI_tab.h>
@@ -9,6 +8,7 @@
 #include <Data/Load/Loader.h>
 #include <Tab/Render/GUI_render_option.h>
 #include <image/IconsFontAwesome5.h>
+#include <Render/Initialization/GUI_init.h>
 
 
 //Constructor / Destructor

@@ -6,8 +6,8 @@
 #include <Tab/Render/GUI_render.h>
 #include <Data/Data.h>
 #include <Data/Scene/Database.h>
-#include <Engine/Data/GUI_object.h>
-#include <Engine/Data/GUI_set.h>
+#include <Render/Data/GUI_object.h>
+#include <Render/Data/GUI_set.h>
 
 
 //Constructor / Destructor

@@ -3,6 +3,7 @@
 
 #include <GUI.h>
 #include <Dev/GUI_code_editor.h>
+#include <Tab/Dev/GUI_dev_command.h>
 
 
 //Constructor / Destructor
@@ -10,7 +11,7 @@ GUI_dev::GUI_dev(GUI* gui){
   //---------------------------
 
   this->gui = gui;
-  this->struct_dev_panel = new GUI_dev_panel();
+  this->gui_dev_panel = new GUI_dev_panel();
 
   //---------------------------
 }
@@ -22,6 +23,7 @@ void GUI_dev::create_panels(){
 
   static bool truc = true;
   this->vec_editor.push_back(new GUI_code_editor(gui, &truc, "Editor"));
+  this->gui_dev_command = new GUI_dev_command(gui);
 
   //---------------------------
 }
@@ -32,6 +34,7 @@ void GUI_dev::draw_panels(){
     GUI_code_editor* editor = vec_editor[i];
     editor->run_panel();
   }
+  gui_dev_command->run_panel();
 
   //---------------------------
 }

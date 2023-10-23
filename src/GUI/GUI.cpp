@@ -2,20 +2,20 @@
 #include "GPU/GUI_gpu.h"
 #include "GPU/GUI_image.h"
 #include "GPU/GUI_video.h"
-#include "Element/Initialization/GUI_init.h"
-#include "Element/Capture/GUI_capture.h"
 #include "Window/Window.h"
 
 #include "Control/GUI_control_gui.h"
 #include "Style/GUI_style.h"
 #include "Style/GUI_font.h"
-#include "Engine/GUI_engine.h"
-#include "Engine/Camera/GUI_camera.h"
-#include "Engine/Data/GUI_object.h"
-#include "Engine/Data/GUI_set.h"
-#include "Engine/Profiler/GUI_profiler.h"
-#include "Engine/Render/GUI_shader.h"
-#include "Engine/Data/GUI_scene.h"
+#include "Render/GUI_engine.h"
+#include "Render/Camera/GUI_camera.h"
+#include "Render/Data/GUI_object.h"
+#include "Render/Data/GUI_set.h"
+#include "Render/Profiler/GUI_profiler.h"
+#include "Render/Shader/GUI_shader.h"
+#include "Render/Data/GUI_scene.h"
+#include <Render/Initialization/GUI_init.h>
+#include <Render/Capture/GUI_capture.h>
 
 #include <Engine.h>
 #include <GPU/GPU_render.h>
