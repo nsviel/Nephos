@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Render/Panel/GUI_render_panel.h>
 #include <Data/Load/Loader.h>
-#include <Style/Widget/GUI_indicator.h>
+#include <Element/Widget/GUI_indicator.h>
 #include <Render/Menu/GUI_render_option.h>
 
 #include <Element/Editor/GUI_editor_node.h>

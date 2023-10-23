@@ -20,7 +20,7 @@
 #include <Engine.h>
 #include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
-#include <Tab/GUI_tab.h>
+#include <GUI_tab.h>
 
 
 //Constructor / Destructor

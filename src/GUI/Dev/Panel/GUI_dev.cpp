@@ -3,7 +3,7 @@
 
 #include <GUI.h>
 #include <Dev/GUI_code_editor.h>
-#include <Tab/Dev/GUI_dev_command.h>
+#include <Dev/Command/GUI_dev_command.h>
 
 
 //Constructor / Destructor
