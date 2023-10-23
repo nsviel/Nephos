@@ -1,16 +1,16 @@
 #include "GUI_render.h"
-#include "GUI_render_menu.h"
-#include "GUI_render_panel.h"
 
 #include <GUI.h>
-#include <Tab/Render/GUI_render_panel.h>
+#include <Render/Panel/GUI_render_panel.h>
 #include <Data/Load/Loader.h>
 #include <Style/Widget/GUI_indicator.h>
-#include <Tab/Render/GUI_render_option.h>
+#include <Render/Menu/GUI_render_option.h>
 
 #include <Element/Editor/GUI_editor_node.h>
 #include <Element/Data/GUI_database.h>
 #include <Render/Capture/GUI_capture.h>
+#include <Render/Menu/GUI_render_menu.h>
+#include <Render/Panel/GUI_render_panel.h>
 
 #include <Engine.h>
 #include <Render/Engine/GUI_engine.h>
@@ -21,6 +21,7 @@
 #include <Render/Shader/GUI_shader.h>
 #include <Render/Data/GUI_scene.h>
 #include <Render/Camera/GUI_camera.h>
+#include <image/IconsFontAwesome5.h>
 
 
 //Constructor / Destructor
@@ -55,7 +56,7 @@ void GUI_render::create_panels(){
 void GUI_render::draw_panels(){
   //---------------------------
 
-  gui_render_menu->design_menubar();
+  gui_render_menu->run_tab_menu();
   gui_shader->run_panel();
   gui_database->run_panel();
   gui_camera->run_panel();
@@ -69,7 +70,6 @@ void GUI_render::draw_panels(){
 
   //---------------------------
 }
-#include <image/IconsFontAwesome5.h>
 void GUI_render::open_panels(){
   //---------------------------
 

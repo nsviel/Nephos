@@ -20,10 +20,9 @@ public:
 
 public:
   //Main function
-  void design_menubar();
+  void run_tab_menu();
 
   //Subfunctions
-  void menu();
 
 private:
   GUI* gui;

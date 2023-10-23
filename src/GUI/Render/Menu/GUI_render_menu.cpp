@@ -2,11 +2,11 @@
 
 #include <GUI.h>
 #include <Tab/GUI_tab.h>
-#include <Tab/Render/GUI_render.h>
-#include <Tab/Render/GUI_render_panel.h>
+#include <Render/Panel/GUI_render.h>
+#include <Render/Panel/GUI_render_panel.h>
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
-#include <Tab/Render/GUI_render_option.h>
+#include <Render/Menu/GUI_render_option.h>
 #include <image/IconsFontAwesome5.h>
 #include <Render/Initialization/GUI_init.h>
 
@@ -31,20 +31,10 @@ GUI_render_menu::GUI_render_menu(GUI* gui){
 GUI_render_menu::~GUI_render_menu(){}
 
 //Main function
-void GUI_render_menu::design_menubar(){
-  //------------------------
-
-  ImGui::BeginMainMenuBar();
-  this->menu();
-  ImGui::EndMainMenuBar();
-
-  //-------------------------
-}
-
-//Subfunctions
-void GUI_render_menu::menu(){
+void GUI_render_menu::run_tab_menu(){
   //---------------------------
 
+  ImGui::BeginMainMenuBar();
   if(ImGui::BeginMenu("Panel##111")){
     gui_render->open_panels();
     ImGui::EndMenu();
@@ -56,6 +46,9 @@ void GUI_render_menu::menu(){
     gui_init->design_init();
     ImGui::EndMenu();
   }
+  ImGui::EndMainMenuBar();
 
   //---------------------------
 }
+
+//Subfunctions

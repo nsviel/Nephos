@@ -1,12 +1,11 @@
 #include "GUI_tab.h"
-#include "Render/GUI_render.h"
-#include "Render/GUI_render_panel.h"
 #include "Dev/GUI_dev.h"
 
 #include <GUI.h>
 #include <Style/GUI_font.h>
 #include <image/IconsFontAwesome5.h>
-//#include <Python.h>
+#include <Render/Panel/GUI_render.h>
+#include <Render/Panel/GUI_render_panel.h>
 
 
 //Constructor / Destructor
