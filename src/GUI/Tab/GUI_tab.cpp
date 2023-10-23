@@ -1,7 +1,7 @@
 #include "GUI_tab.h"
 
 #include <GUI.h>
-#include <Style/GUI_font.h>
+#include <Element/Style/GUI_font.h>
 #include <image/IconsFontAwesome5.h>
 #include <Render/Panel/GUI_render.h>
 #include <Render/Panel/GUI_render_panel.h>

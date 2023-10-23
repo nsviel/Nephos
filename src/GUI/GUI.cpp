@@ -4,9 +4,9 @@
 #include "Element/GPU/GUI_video.h"
 #include "Window/Window.h"
 
-#include "Element/Control/GUI_control_gui.h"
-#include "Style/GUI_style.h"
-#include "Style/GUI_font.h"
+#include "Tab/Control/GUI_control_gui.h"
+#include <Element/Style/GUI_style.h>
+#include <Element/Style/GUI_font.h>
 #include "Render/Engine/GUI_engine.h"
 #include "Render/Camera/GUI_camera.h"
 #include "Render/Data/GUI_object.h"
@@ -20,7 +20,7 @@
 #include <Engine.h>
 #include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
-#include <GUI_tab.h>
+#include <Tab/GUI_tab.h>
 
 
 //Constructor / Destructor
