@@ -36,6 +36,10 @@ void GUI_dev_command::design_panel(){
     int err = system(command.c_str());
   }
 
+  if(ImGui::Button("New editor")){
+    string command = "firefox -P Dev google.fr";
+    int err = system(command.c_str());
+  }
 
   //---------------------------
 }
