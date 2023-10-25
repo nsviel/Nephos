@@ -1,12 +1,11 @@
-#add_subdirectory(Dev)
+add_subdirectory(Dev)
+add_subdirectory(Render)
 
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 # Source files
 file(GLOB_RECURSE ALL_SOURCES
-  Dev/*.cpp
   Element/*.cpp
-  Render/*.cpp
   Tab/*.cpp
   GUI.cpp
 )
@@ -28,4 +27,6 @@ target_link_libraries(LIBRARY_GUI PUBLIC
   LIBRARY_EXTERN
   LIBRARY_ELEMENT
   LIBRARY_ENGINE
+  LIBRARY_GUI_DEV
+  LIBRARY_GUI_RENDER
 )

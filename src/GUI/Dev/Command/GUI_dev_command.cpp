@@ -1,6 +1,7 @@
 #include "GUI_dev_command.h"
 
 #include <GUI.h>
+#include <image/IconsFontAwesome5.h>
 
 
 //Constructor / Destructor
@@ -30,6 +31,10 @@ void GUI_dev_command::run_panel(){
 void GUI_dev_command::design_panel(){
   //---------------------------
 
+  if(ImGui::Button(ICON_FA_PLAY)){
+    string command = "firefox -P Dev google.fr";
+    int err = system(command.c_str());
+  }
 
 
   //---------------------------
