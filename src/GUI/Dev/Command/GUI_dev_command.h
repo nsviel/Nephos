@@ -4,6 +4,7 @@
 #include <Specific/common.h>
 
 class GUI;
+class GUI_dev_panel;
 
 
 class GUI_dev_command
@@ -22,6 +23,7 @@ public:
 
 private:
   GUI* gui;
+  GUI_dev_panel* gui_dev_panel;
 };
 
 #endif

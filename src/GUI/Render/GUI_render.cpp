@@ -1,7 +1,7 @@
 #include "GUI_render.h"
 
 #include <GUI.h>
-#include <Render/Panel/GUI_render_panel.h>
+#include <Render/GUI_render_panel.h>
 #include <Data/Load/Loader.h>
 #include <Element/Widget/GUI_indicator.h>
 #include <Render/Menu/GUI_render_option.h>
@@ -10,7 +10,7 @@
 #include <Element/Data/GUI_database.h>
 #include <Render/Capture/GUI_capture.h>
 #include <Render/Menu/GUI_render_menu.h>
-#include <Render/Panel/GUI_render_panel.h>
+#include <Render/GUI_render_panel.h>
 
 #include <Engine.h>
 #include <Render/Engine/GUI_engine.h>

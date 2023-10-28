@@ -49,9 +49,9 @@ void Loop::loop(){
 
   auto start_time = std::chrono::steady_clock::now();
   while(!window->window_should_close()){
-    window->manage_input();
     gui->loop();
     engine->loop();
+    window->manage_input();
   }
   engine->wait_for_gpu_idle();
 

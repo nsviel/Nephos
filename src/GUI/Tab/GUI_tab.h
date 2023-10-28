@@ -31,6 +31,7 @@ public:
   void next_tab();
 
   inline GUI_render* get_gui_render(){return gui_render;}
+  inline GUI_dev* get_gui_dev(){return gui_dev;}
 
 private:
   GUI* gui;

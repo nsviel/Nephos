@@ -1,7 +1,7 @@
 #include "GUI_set.h"
 
 #include <GUI.h>
-#include <Render/Panel/GUI_render_panel.h>
+#include <Render/GUI_render_panel.h>
 
 #include <Operation/Transformation/Attribut.h>
 

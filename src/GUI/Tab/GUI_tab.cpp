@@ -3,8 +3,8 @@
 #include <GUI.h>
 #include <Element/Style/GUI_font.h>
 #include <image/IconsFontAwesome5.h>
-#include <Render/Panel/GUI_render.h>
-#include <Render/Panel/GUI_render_panel.h>
+#include <Render/GUI_render.h>
+#include <Render/GUI_render_panel.h>
 #include <Dev/Panel/GUI_dev.h>
 
 

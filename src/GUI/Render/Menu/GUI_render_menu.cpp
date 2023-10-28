@@ -2,8 +2,8 @@
 
 #include <GUI.h>
 #include <Tab/GUI_tab.h>
-#include <Render/Panel/GUI_render.h>
-#include <Render/Panel/GUI_render_panel.h>
+#include <Render/GUI_render.h>
+#include <Render/GUI_render_panel.h>
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
 #include <Render/Menu/GUI_render_option.h>

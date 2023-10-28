@@ -1,5 +1,5 @@
 #include "GUI_object.h"
-#include <Render/Panel/GUI_render_panel.h>
+#include <Render/GUI_render_panel.h>
 
 #include <GUI.h>
 #include <Data/Data.h>

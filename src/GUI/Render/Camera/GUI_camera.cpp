@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <Param.h>
-#include <Render/Panel/GUI_render_panel.h>
+#include <Render/GUI_render_panel.h>
 #include <Camera/struct_camera.h>
 
 

@@ -22,7 +22,7 @@ void GUI_dev::create_panels(){
   //---------------------------
 
   static bool truc = true;
-  this->vec_editor.push_back(new GUI_code_editor(gui, &truc, "Editor"));
+  gui_dev_panel->vec_editor.push_back(new GUI_code_editor(gui, &truc, "Editor"));
   this->gui_dev_command = new GUI_dev_command(gui);
 
   //---------------------------
@@ -30,10 +30,7 @@ void GUI_dev::create_panels(){
 void GUI_dev::draw_panels(){
   //---------------------------
 
-  for(int i=0; i<vec_editor.size(); i++){
-    GUI_code_editor* editor = vec_editor[i];
-    editor->run_panel();
-  }
+  gui_dev_panel->run_editors();
   gui_dev_command->run_panel();
 
   //---------------------------
