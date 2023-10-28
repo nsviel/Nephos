@@ -17,14 +17,13 @@ public:
 
 public:
   //Main function
-  void display_video_vlc(string path);
   void display_video_ffmpeg(string path);
 
 private:
   GPU_texture* gpu_texture;
 
   VkDescriptorSet descriptor;
-  libvlc_media_player_t* mediaPlayer;
+  string path;
 };
 
 

@@ -16,7 +16,6 @@ include_directories(${Python_INCLUDE_DIRS})
 set(ALL_LIBS
   ${GLFW_LIBRARY}
   ${Vulkan_LIBRARIES}
-  ${VLC_LIBRARIES}
   ${Python_LIBRARIES}
 
   Eigen3::Eigen #Eigen library
@@ -30,7 +29,6 @@ set(ALL_LIBS
   -lXxf86vm
   -lXrandr
   -lXi
-  -lvlc
   Python::Python
   python3.10
   -lpython3.10
@@ -74,7 +72,6 @@ target_include_directories(executable PUBLIC
   "${PROJECT_BINARY_DIR}"
   "${PROJECT_SOURCE_DIR}/extern"
   ${Vulkan_INCLUDE_DIRS}
-  ${VLC_INCLUDE_DIRS}
   ${Python_LIBRARY_DIRS}
   ${PYTHON_INCLUDE_DIRS}
 )
