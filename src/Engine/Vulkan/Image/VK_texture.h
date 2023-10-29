@@ -6,6 +6,11 @@
 #include "../Struct/typedef.h"
 #include <Specific/common.h>
 
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libswscale/swscale.h>
+}
 
 class VK_engine;
 class VK_struct;
@@ -29,7 +34,12 @@ public:
   //Texture creation
   void create_texture(Struct_image* texture);
   void create_texture_from_file(Struct_image* texture);
-  void create_texture_from_frame();
+
+  //Video creation
+  void create_texture_from_frame(AVFrame* frame);
+
+  //Subfunction
+  void create_vulkan_texture(Struct_image* image);
   void copy_buffer_to_image(Struct_image* image, VkBuffer buffer);
 
 private:

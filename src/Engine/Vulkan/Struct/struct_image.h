@@ -17,6 +17,8 @@ struct Struct_image{
   uint32_t height = 0;
   uint32_t mip_level_max = 1;
   uint32_t mip_level = 1;
+  uint8_t* data;
+  int size_bytes = 0;
 
   //Image info
   VkImage image;

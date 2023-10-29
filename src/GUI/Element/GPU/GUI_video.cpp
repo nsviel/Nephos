@@ -25,77 +25,82 @@ GUI_video::~GUI_video(){}
 void GUI_video::display_video_ffmpeg(string path_video){
   //---------------------------
 
-
-  avformat_network_init(); // Initialize network components (if needed)
-
-  AVFormatContext* formatContext = avformat_alloc_context();
-
-  if (avformat_open_input(&formatContext, path.c_str(), NULL, NULL) != 0) {
-      // Handle error
-      cout << "[error] ffmped video decoder" << endl;
+  //Open video
+  AVFormatContext* format_context = avformat_alloc_context();
+  bool ok = avformat_open_input(&format_context, path.c_str(), NULL, NULL);
+  if(ok != 0){
+    cout << "[error] ffmpeg - video not open" << endl;
   }
 
-  if (avformat_find_stream_info(formatContext, NULL) < 0) {
-      // Handle error
-      cout << "[error] ffmped video decoder" << endl;
+  //Try to read and decode a few frames to find missing information
+  int result = avformat_find_stream_info(format_context, NULL);
+  if(result < 0){
+    cout << "[error] ffmpeg - video information" << endl;
   }
 
-  int videoStream = -1;
-  for (unsigned int i = 0; i < formatContext->nb_streams; i++) {
-      if (formatContext->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
-          videoStream = i;
-          break;
-      }
+  //Retrieve video stream index
+  int video_stream = -1;
+  for(int i=0; i<format_context->nb_streams; i++){
+    if(format_context->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO){
+      video_stream = i;
+      break;
+    }
+  }
+  if (video_stream == -1) {
+    cout << "[error] ffmpeg - do not find video stream index" << endl;
   }
 
-  if (videoStream == -1) {
-      // Handle error
-      cout << "[error] ffmped video decoder" << endl;
+  //Some stuff coding / decoding video
+  AVCodec* codec = avcodec_find_decoder(format_context->streams[video_stream]->codecpar->codec_id);
+  AVCodecContext* codec_context = avcodec_alloc_context3(codec);
+
+  //Copy the essential codec parameters (e.g., codec ID, width, height, pixel format, sample format)
+  result = avcodec_parameters_to_context(codec_context, format_context->streams[video_stream]->codecpar);
+  if(result < 0){
+    cout << "[error] ffmpeg - parameter to context" << endl;
   }
 
-  AVCodec* codec = avcodec_find_decoder(formatContext->streams[videoStream]->codecpar->codec_id);
-  AVCodecContext* codecContext = avcodec_alloc_context3(codec);
-
-  if (avcodec_parameters_to_context(codecContext, formatContext->streams[videoStream]->codecpar) < 0) {
-      // Handle error
-      cout << "[error] ffmped video decoder" << endl;
+  result = avcodec_open2(codec_context, codec, NULL);
+  if(result < 0){
+    // Handle error
+    cout << "[error] ffmpeg video decoder" << endl;
   }
 
-  if (avcodec_open2(codecContext, codec, NULL) < 0) {
-      // Handle error
-      cout << "[error] ffmped video decoder" << endl;
-  }
+  //---------------
 
+  //Allocate AV packet
   AVPacket* packet = av_packet_alloc();
-
-  if (!packet) {
-      // Handle memory allocation error
-      cout << "[error] ffmped video decoder" << endl;
+  if(!packet){
+    cout << "[error] ffmpeg - AV packet allocation" << endl;
   }
 
-  while (av_read_frame(formatContext, packet) >= 0) {
-      if (packet->stream_index == videoStream) {
-          AVFrame* frame = av_frame_alloc();
-
-          if (!frame) {
-              // Handle memory allocation error
-              break;
-          }
-
-          int frameFinished;
-          if (avcodec_receive_frame(codecContext, frame) >= 0) {
-              // Process or display the video frame here
-          }
-
-          av_frame_free(&frame);
+  //Video loop
+  while(av_read_frame(format_context, packet) >= 0){
+    if(packet->stream_index == video_stream){
+      //Allocate AV frame
+      AVFrame* frame = av_frame_alloc();
+      if(!frame){
+        cout << "[error] ffmpeg - frame memory allocation" << endl;
+        break;
       }
 
-      av_packet_unref(packet);
+      //Process or display the video frame
+      int frameFinished;
+      if(avcodec_receive_frame(codec_context, frame) >= 0){
+        // Process or display the video frame here
+      }
+
+      //Free AV frame
+      av_frame_free(&frame);
+    }
+
+    av_packet_unref(packet);
   }
 
+  //Clean all AV stuff
   av_packet_free(&packet);
-  avcodec_close(codecContext);
-  avformat_close_input(&formatContext);
+  avcodec_close(codec_context);
+  avformat_close_input(&format_context);
 
   say("video with ffmpeg ok");
 
