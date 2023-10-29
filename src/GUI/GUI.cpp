@@ -4,7 +4,7 @@
 #include "Element/GPU/GUI_video.h"
 #include "Window/Window.h"
 
-#include "Tab/Control/GUI_control_gui.h"
+#include "Element/Control/GUI_control_gui.h"
 #include <Element/Style/GUI_style.h>
 #include <Element/Style/GUI_font.h>
 #include "Render/Engine/GUI_engine.h"

@@ -8,12 +8,12 @@
 #sudo dnf install glfw-devel libXi-devel libXxf86vm-devel
 #sudo dnf install glm-devel
 
-#Arch linux 
+#Arch linux
 #sudo pacman -S vulkan-devel
 #sudo pacman -S glfw-wayland libxi libxxf86vm # glfw-x11 for X11 users
 #sudo pacman -S glm
 
-echo -ne "[\e[92m#\e[0m] Installation for ubuntu related OS..."
+echo -ne "[\e[92m#\e[0m] Run installation for Ubuntu related OS..."
 
 # Ubuntu
 sudo apt install vulkan-tools libvulkan-dev vulkan-validationlayers-dev spirv-tools

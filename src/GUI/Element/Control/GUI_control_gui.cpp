@@ -33,11 +33,13 @@ void GUI_control_gui::control_keyboard_oneAction(){
   //----------------------------
 
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
+    //Esc key - Close program
     if(ImGui::IsKeyPressed(ImGuiKey_Escape)){
       window->close_window();
     }
 
-    if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
+    //1 key - Next main tab
+    if(ImGui::IsKeyPressed(ImGuiKey_1)){
       gui_tab->next_tab();
     }
   }
