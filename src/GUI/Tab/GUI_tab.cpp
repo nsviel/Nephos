@@ -2,6 +2,7 @@
 
 #include <GUI.h>
 #include <Element/Style/GUI_font.h>
+#include <Element/git/GUI_git.h>
 #include <image/IconsFontAwesome5.h>
 #include <Render/GUI_render.h>
 #include <Render/GUI_render_panel.h>
@@ -14,9 +15,9 @@ GUI_tab::GUI_tab(GUI* gui){
 
   this->gui = gui;
   this->gui_font = gui->get_gui_font();
-  this->gui_render_panel = new GUI_render_panel();
   this->gui_render = new GUI_render(gui);
   this->gui_dev = new GUI_dev(gui);
+  this->gui_git = new GUI_git(gui);
 
   this->active_tab = "Render";
   this->tab_to_open = "";
@@ -48,9 +49,9 @@ void GUI_tab::run_tab(){
 
   //Draw main menu bar
   ImGui::BeginMainMenuBar();
-  this->main_menu();
+  this->menu();
   ImGui::Separator();
-  this->menu_tabs();
+  this->tabs();
   ImGui::Dummy(ImVec2(100.0f, 0.0f)); // empty space
   ImGui::EndMainMenuBar();
   this->draw_panels();
@@ -58,12 +59,13 @@ void GUI_tab::run_tab(){
   //---------------------------
 }
 
-//Subfunction
-void GUI_tab::main_menu(){
+//Menu function
+void GUI_tab::menu(){
   //---------------------------
 
   this->menu_demo();
   this->menu_font();
+  this->menu_git();
 
   //---------------------------
 }
@@ -99,7 +101,20 @@ void GUI_tab::menu_font(){
 
   //---------------------------
 }
-void GUI_tab::menu_tabs(){
+void GUI_tab::menu_git(){
+  ImGuiIO& io = ImGui::GetIO();
+  //---------------------------
+
+  if(ImGui::BeginMenu(ICON_FA_COG, "Main_font")){
+
+    ImGui::EndMenu();
+  }
+
+  //---------------------------
+}
+
+//Tab function
+void GUI_tab::tabs(){
   ImGuiTabItemFlags flag;
   //---------------------------
 

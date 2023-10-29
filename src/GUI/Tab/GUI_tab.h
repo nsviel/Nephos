@@ -8,6 +8,7 @@ class GUI_font;
 class GUI_render;
 class GUI_dev;
 class GUI_render_panel;
+class GUI_git;
 
 
 class GUI_tab
@@ -22,11 +23,14 @@ public:
   void create_panels();
   void run_tab();
 
-  //Subfunction
-  void main_menu();
+  //Menu function
+  void menu();
   void menu_demo();
   void menu_font();
-  void menu_tabs();
+  void menu_git();
+  
+  //Tab function
+  void tabs();
   void draw_panels();
   void next_tab();
 
@@ -35,10 +39,10 @@ public:
 
 private:
   GUI* gui;
-  GUI_render_panel* gui_render_panel;
   GUI_render* gui_render;
   GUI_dev* gui_dev;
   GUI_font* gui_font;
+  GUI_git* gui_git;
 
   vector<string> vec_tab;
   string active_tab;
