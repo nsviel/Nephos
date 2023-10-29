@@ -16,12 +16,19 @@ public:
 
 public:
   //Main function
-  void display_image(string path);
+  void draw_image(string path);
+
+  //Subfunction
+  void load_image(string path);
+  void display_image();
+
+  inline voird reload_image(){this->image = nullptr;}
 
 private:
   GPU_texture* gpu_texture;
-  Struct_image* image_current;
   VkDescriptorSet descriptor;
+
+  Struct_image* image;
 };
 
 
