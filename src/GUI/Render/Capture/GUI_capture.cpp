@@ -33,7 +33,7 @@ void GUI_capture::capture_command(){
   //---------------------------
 
 
-  //gui_video->display_video_ffmpeg("/home/aeter/Desktop/Dev/Nephos/media/vulkano.mp4");
+  gui_video->display_video_ffmpeg("/home/aeter/Desktop/Dev/Nephos/media/vulkano.mp4");
   gui_image->draw_image("/home/aeter/Desktop/Dev/Nephos/media/vulkano.jpg");
 
 /*

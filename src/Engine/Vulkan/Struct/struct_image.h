@@ -10,7 +10,6 @@ struct Struct_image{
 
   //General info
   std::string name;
-  std::string path;
 
   //Dimension
   uint32_t width = 0;

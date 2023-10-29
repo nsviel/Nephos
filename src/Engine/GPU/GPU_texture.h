@@ -4,6 +4,12 @@
 #include <Specific/common.h>
 #include <Vulkan/Image/VK_texture.h>
 
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libswscale/swscale.h>
+}
+
 class VK_engine;
 class VK_struct;
 
@@ -17,8 +23,8 @@ public:
 
 public:
   //Main functions
-  Struct_image* load_texture(string path);
-  void clean_texture(Struct_image* texture);
+  Struct_image* load_texture_from_file(string path);
+  Struct_image* load_texture_from_frame(AVFrame* frame);
 
 private:
   VK_struct* vk_struct;

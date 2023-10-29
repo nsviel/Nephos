@@ -19,17 +19,19 @@ GPU_texture::GPU_texture(VK_engine* vk_engine){
 GPU_texture::~GPU_texture(){}
 
 //Main function
-Struct_image* GPU_texture::load_texture(string path){
+Struct_image* GPU_texture::load_texture_from_file(string path){
   //---------------------------
 
-  Struct_image* texture = vk_texture->load_texture(path);
+  Struct_image* texture = vk_texture->load_texture_from_file(path);
 
   //---------------------------
   return texture;
 }
-void GPU_texture::clean_texture(Struct_image* texture){
+Struct_image* GPU_texture::load_texture_from_frame(AVFrame* frame){
   //---------------------------
 
+  Struct_image* texture = vk_texture->load_texture_from_frame(frame);
 
   //---------------------------
+  return texture;
 }

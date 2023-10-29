@@ -84,10 +84,19 @@ void GUI_video::display_video_ffmpeg(string path_video){
         break;
       }
 
-      //Process or display the video frame
+      //Process or display the video frame here
       int frameFinished;
-      if(avcodec_receive_frame(codec_context, frame) >= 0){
-        // Process or display the video frame here
+      result = avcodec_receive_frame(codec_context, frame);
+
+      if(result >= -100){
+
+        Struct_image* image = gpu_texture->load_texture_from_frame(frame);
+        VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+        ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+        ImGui::Image(descriptor, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
+        
+
+        sayHello();
       }
 
       //Free AV frame

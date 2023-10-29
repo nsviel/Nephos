@@ -29,7 +29,7 @@ void GUI_image::load_image(string path){
   //---------------------------
 
   if(image == nullptr){
-    this->image = gpu_texture->load_texture(path);
+    this->image = gpu_texture->load_texture_from_file(path);
     this->descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   }
 

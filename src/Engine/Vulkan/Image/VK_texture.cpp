@@ -11,6 +11,11 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <image/stb_image.h>
 
+/*
+  VK_texture is a upper level class from VK_image
+  It allows to build a texture by creatig a vk_image and all associated elements
+*/
+
 
 //Constructor / Destructor
 VK_texture::VK_texture(VK_engine* vk_engine){
@@ -26,56 +31,38 @@ VK_texture::VK_texture(VK_engine* vk_engine){
 VK_texture::~VK_texture(){}
 
 //Main function
-Struct_image*  VK_texture::load_texture(string path){
+Struct_image* VK_texture::load_texture_from_file(string path){
   //---------------------------
 
-  Struct_image* texture = new Struct_image();
-  texture->path = path;
-  texture->format = VK_FORMAT_R8G8B8A8_SRGB;
-  texture->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  this->create_texture(texture);
-  this->vec_texture.push_back(texture);
+  Struct_image* image = new Struct_image();
 
-  //---------------------------
-  return texture;
-}
-void VK_texture::clean_texture(Struct_data* data){
-  //---------------------------
-
-  for(int i=0; i<data->list_texture.size(); i++){
-    Struct_image* texture = *next(data->list_texture.begin(), i);
-    vk_image->clean_image(texture);
-  }
-
-  //---------------------------
-}
-void VK_texture::clean_textures(){
-  //---------------------------
-
-  for(int i=0; i<vec_texture.size(); i++){
-    vk_image->clean_image(vec_texture[i]);
-  }
-
-  //---------------------------
-}
-
-//Texture creation
-void VK_texture::create_texture(Struct_image* image){
-  //---------------------------
-
-  this->create_texture_from_file(image);
+  this->create_texture_from_file(image, path);
   vk_image->create_image_view(image);
   vk_image->create_image_sampler(image);
 
+  this->vec_texture.push_back(image);
+
   //---------------------------
+  return image;
 }
-void VK_texture::create_texture_from_file(Struct_image* image){
+Struct_image* VK_texture::load_texture_from_frame(AVFrame* frame){
+  //---------------------------
+
+  Struct_image* image = new Struct_image();
+  this->create_texture_from_frame(image, frame);
+
+  //---------------------------
+  return image;
+}
+
+//Texture creation
+void VK_texture::create_texture_from_file(Struct_image* image, string path){
   VK_command* vk_command = vk_engine->get_vk_command();
   //---------------------------
 
   //Load image
   int tex_width, tex_height, tex_channel;
-  image->data = stbi_load(image->path.c_str(), &tex_width, &tex_height, &tex_channel, STBI_rgb_alpha);
+  image->data = stbi_load(path.c_str(), &tex_width, &tex_height, &tex_channel, STBI_rgb_alpha);
   image->width = tex_width;
   image->height = tex_height;
   image->size_bytes = tex_width * tex_height * 4;
@@ -91,19 +78,39 @@ void VK_texture::create_texture_from_file(Struct_image* image){
 
   //---------------------------
 }
-
-//Video creation
-void VK_texture::create_texture_from_frame(AVFrame* frame){
+void VK_texture::create_texture_from_frame(Struct_image* image, AVFrame* frame){
   VK_command* vk_command = vk_engine->get_vk_command();
   //---------------------------
 
   //Create image structure
-  Struct_image* image = new Struct_image();
   image->size_bytes = frame->linesize[0] * frame->height;
   image->data = frame->data[0];
-
+  image->width = 100;
+  image->height = 100;
+say(image->size_bytes);
   //Create vulkan texture
   this->create_vulkan_texture(image);
+
+  //---------------------------
+}
+
+//Texture cleaning
+void VK_texture::clean_texture(Struct_data* data){
+  //---------------------------
+
+  for(int i=0; i<data->list_texture.size(); i++){
+    Struct_image* image = *next(data->list_texture.begin(), i);
+    vk_image->clean_image(image);
+  }
+
+  //---------------------------
+}
+void VK_texture::clean_textures(){
+  //---------------------------
+
+  for(int i=0; i<vec_texture.size(); i++){
+    vk_image->clean_image(vec_texture[i]);
+  }
 
   //---------------------------
 }
@@ -129,6 +136,7 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
   //Create image
   image->format = VK_FORMAT_R8G8B8A8_SRGB;
   image->tiling = VK_IMAGE_TILING_OPTIMAL;
+  image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   image->image_usage = IMAGE_USAGE_TRANSFERT | IMAGE_USAGE_SAMPLER;
   image->properties = MEMORY_GPU;
   vk_image->create_image(image);

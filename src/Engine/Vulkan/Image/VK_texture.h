@@ -27,16 +27,16 @@ public:
 
 public:
   //Main functions
-  Struct_image* load_texture(string path);
-  void clean_texture(Struct_data* object);
-  void clean_textures();
+  Struct_image* load_texture_from_file(string path);
+  Struct_image* load_texture_from_frame(AVFrame* frame);
 
   //Texture creation
-  void create_texture(Struct_image* texture);
-  void create_texture_from_file(Struct_image* texture);
+  void create_texture_from_file(Struct_image* texture, string path);
+  void create_texture_from_frame(Struct_image* image, AVFrame* frame);
 
-  //Video creation
-  void create_texture_from_frame(AVFrame* frame);
+  //Texture cleaning
+  void clean_texture(Struct_data* object);
+  void clean_textures();
 
   //Subfunction
   void create_vulkan_texture(Struct_image* image);

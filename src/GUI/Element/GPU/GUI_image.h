@@ -22,7 +22,7 @@ public:
   void load_image(string path);
   void display_image();
 
-  inline voird reload_image(){this->image = nullptr;}
+  inline void reload_image(){this->image = nullptr;}
 
 private:
   GPU_texture* gpu_texture;
