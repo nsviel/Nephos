@@ -17,13 +17,24 @@ public:
 
 public:
   //Main function
-  void display_video_ffmpeg(string path);
+  void draw_video(string path);
+
+  //Subfunction
+  void acquire_next_frame();
+  void load_video(string path);
+  void clean_video();
+  void reboot_video();
+  void display_frame();
 
 private:
   GPU_texture* gpu_texture;
 
   VkDescriptorSet descriptor;
-  string path;
+  AVFormatContext* format_context;
+  AVCodecContext* codec_context;
+  AVPacket* packet;
+  bool video_loaded;
+  int video_stream_idx;
 };
 
 

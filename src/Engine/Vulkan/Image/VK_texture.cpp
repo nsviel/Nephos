@@ -16,6 +16,43 @@
   It allows to build a texture by creatig a vk_image and all associated elements
 */
 
+void convertYUVtoRGB(int Y, int U, int V, int& R, int& G, int& B) {
+    R = Y + 1.13983 * (V - 128);
+    G = Y - 0.39465 * (U - 128) - 0.58060 * (V - 128);
+    B = Y + 2.03211 * (U - 128);
+
+    // Clamp RGB values to [0, 255]
+    R = std::min(255, std::max(0, R));
+    G = std::min(255, std::max(0, G));
+    B = std::min(255, std::max(0, B));
+}
+
+// Function to convert YUV420P frame to RGB
+void convertYUV420PtoRGB(AVFrame* frame, uint8_t* output_data, int output_stride) {
+    int width = frame->width;
+    int height = frame->height;
+    int Y_stride = frame->linesize[0];
+    int U_stride = frame->linesize[1];
+    int V_stride = frame->linesize[2];
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int Y = frame->data[0][y * Y_stride + x];
+            int U = frame->data[1][y / 2 * U_stride + x / 2];
+            int V = frame->data[2][y / 2 * V_stride + x / 2];
+
+            int R, G, B;
+            convertYUVtoRGB(Y, U, V, R, G, B);
+
+            // Merge channels into VK_FORMAT_R8G8B8A8_UNORM
+            uint8_t* pixel = &output_data[y * output_stride + x * 4];
+            pixel[0] = static_cast<uint8_t>(R);
+            pixel[1] = static_cast<uint8_t>(G);
+            pixel[2] = static_cast<uint8_t>(B);
+            pixel[3] = 255; // Fully opaque
+        }
+    }
+}
 
 //Constructor / Destructor
 VK_texture::VK_texture(VK_engine* vk_engine){
@@ -50,6 +87,10 @@ Struct_image* VK_texture::load_texture_from_frame(AVFrame* frame){
 
   Struct_image* image = new Struct_image();
   this->create_texture_from_frame(image, frame);
+  vk_image->create_image_view(image);
+  vk_image->create_image_sampler(image);
+
+  this->vec_texture.push_back(image);
 
   //---------------------------
   return image;
@@ -63,12 +104,14 @@ void VK_texture::create_texture_from_file(Struct_image* image, string path){
   //Load image
   int tex_width, tex_height, tex_channel;
   image->data = stbi_load(path.c_str(), &tex_width, &tex_height, &tex_channel, STBI_rgb_alpha);
-  image->width = tex_width;
-  image->height = tex_height;
-  image->size_bytes = tex_width * tex_height * 4;
   if(!image->data){
     throw std::runtime_error("failed to load texture image!");
   }
+
+  image->width = tex_width;
+  image->height = tex_height;
+  image->size_bytes = tex_width * tex_height * 4;
+  image->format = VK_FORMAT_R8G8B8A8_SRGB;
 
   //Create vulkan texture
   this->create_vulkan_texture(image);
@@ -83,11 +126,20 @@ void VK_texture::create_texture_from_frame(Struct_image* image, AVFrame* frame){
   //---------------------------
 
   //Create image structure
-  image->size_bytes = frame->linesize[0] * frame->height;
-  image->data = frame->data[0];
-  image->width = 100;
-  image->height = 100;
-say(image->size_bytes);
+  image->size_bytes = frame->width * frame->height * 4;
+  image->width = frame->width;
+  image->height = frame->height;
+  image->format = VK_FORMAT_R8G8B8A8_SRGB;
+
+
+int output_stride = frame->width * 4;
+uint8_t* output_data = new uint8_t[output_stride * frame->height];
+convertYUV420PtoRGB(frame, output_data, output_stride);
+image->data=output_data;
+
+
+
+//say(frame->linesize[0]);
   //Create vulkan texture
   this->create_vulkan_texture(image);
 
@@ -134,7 +186,6 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
   vkUnmapMemory(vk_struct->device.device, staging_mem);
 
   //Create image
-  image->format = VK_FORMAT_R8G8B8A8_SRGB;
   image->tiling = VK_IMAGE_TILING_OPTIMAL;
   image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   image->image_usage = IMAGE_USAGE_TRANSFERT | IMAGE_USAGE_SAMPLER;
@@ -178,6 +229,35 @@ void VK_texture::copy_buffer_to_image(Struct_image* image, VkBuffer buffer){
   vkCmdCopyBufferToImage(command_buffer, buffer, image->image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 
   vk_command->singletime_command_end(command_buffer);
+
+  //---------------------------
+}
+void VK_texture::check_frame_format(AVFrame* frame){
+  //---------------------------
+
+  switch(frame->format){
+    case AV_PIX_FMT_YUV420P:
+      say("AV_PIX_FMT_YUV420P");
+      break;
+    case AV_PIX_FMT_YUV422P:
+      say("AV_PIX_FMT_YUV422P");
+      break;
+    case AV_PIX_FMT_YUV444P:
+      say("AV_PIX_FMT_YUV444P");
+      break;
+    case AV_PIX_FMT_YUYV422:
+      say("AV_PIX_FMT_YUYV422");
+      break;
+    case AV_PIX_FMT_RGB24:
+      say("AV_PIX_FMT_RGB24");
+      break;
+    case AV_PIX_FMT_RGBA:
+      say("AV_PIX_FMT_RGBA");
+      break;
+    default:
+      say("format not found");
+      break;
+  }
 
   //---------------------------
 }

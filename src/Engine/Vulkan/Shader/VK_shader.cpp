@@ -41,7 +41,7 @@ void VK_shader::create_pipeline_shader_module(Struct_pipeline* pipeline){
     if(result != 0){
       cout<<"[error] Shader compilation GLSL -> SPIR-V"<<endl;
     }
-    say(result);
+    //say(result);
   }
 
   //Load spir format shaders

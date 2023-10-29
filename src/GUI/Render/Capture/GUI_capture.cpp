@@ -32,8 +32,8 @@ void GUI_capture::capture_command(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-
-  gui_video->display_video_ffmpeg("/home/aeter/Desktop/Dev/Nephos/media/vulkano.mp4");
+//sayHello();
+  gui_video->draw_video("/home/aeter/Desktop/Dev/Nephos/media/vulkano.mp4");
   gui_image->draw_image("/home/aeter/Desktop/Dev/Nephos/media/vulkano.jpg");
 
 /*

@@ -41,6 +41,7 @@ public:
   //Subfunction
   void create_vulkan_texture(Struct_image* image);
   void copy_buffer_to_image(Struct_image* image, VkBuffer buffer);
+  void check_frame_format(AVFrame* frame);
 
 private:
   VK_engine* vk_engine;
