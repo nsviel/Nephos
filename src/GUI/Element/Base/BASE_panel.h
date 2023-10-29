@@ -22,7 +22,6 @@ public:
   inline bool get_show_window(){return *show_window;}
   inline string get_name(){return name;}
 
-private:
   string name;
   int item_width;
   bool* show_window;

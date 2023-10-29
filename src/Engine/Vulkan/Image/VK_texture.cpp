@@ -16,43 +16,6 @@
   It allows to build a texture by creatig a vk_image and all associated elements
 */
 
-void convertYUVtoRGB(int Y, int U, int V, int& R, int& G, int& B) {
-    R = Y + 1.13983 * (V - 128);
-    G = Y - 0.39465 * (U - 128) - 0.58060 * (V - 128);
-    B = Y + 2.03211 * (U - 128);
-
-    // Clamp RGB values to [0, 255]
-    R = std::min(255, std::max(0, R));
-    G = std::min(255, std::max(0, G));
-    B = std::min(255, std::max(0, B));
-}
-
-// Function to convert YUV420P frame to RGB
-void convertYUV420PtoRGB(AVFrame* frame, uint8_t* output_data, int output_stride) {
-    int width = frame->width;
-    int height = frame->height;
-    int Y_stride = frame->linesize[0];
-    int U_stride = frame->linesize[1];
-    int V_stride = frame->linesize[2];
-
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            int Y = frame->data[0][y * Y_stride + x];
-            int U = frame->data[1][y / 2 * U_stride + x / 2];
-            int V = frame->data[2][y / 2 * V_stride + x / 2];
-
-            int R, G, B;
-            convertYUVtoRGB(Y, U, V, R, G, B);
-
-            // Merge channels into VK_FORMAT_R8G8B8A8_UNORM
-            uint8_t* pixel = &output_data[y * output_stride + x * 4];
-            pixel[0] = static_cast<uint8_t>(R);
-            pixel[1] = static_cast<uint8_t>(G);
-            pixel[2] = static_cast<uint8_t>(B);
-            pixel[3] = 255; // Fully opaque
-        }
-    }
-}
 
 //Constructor / Destructor
 VK_texture::VK_texture(VK_engine* vk_engine){
@@ -101,16 +64,16 @@ void VK_texture::create_texture_from_file(Struct_image* image, string path){
   VK_command* vk_command = vk_engine->get_vk_command();
   //---------------------------
 
-  //Load image
+  //File data
   int tex_width, tex_height, tex_channel;
   image->data = stbi_load(path.c_str(), &tex_width, &tex_height, &tex_channel, STBI_rgb_alpha);
   if(!image->data){
     throw std::runtime_error("failed to load texture image!");
   }
 
+  //Image parameters
   image->width = tex_width;
   image->height = tex_height;
-  image->size_bytes = tex_width * tex_height * 4;
   image->format = VK_FORMAT_R8G8B8A8_SRGB;
 
   //Create vulkan texture
@@ -125,21 +88,16 @@ void VK_texture::create_texture_from_frame(Struct_image* image, AVFrame* frame){
   VK_command* vk_command = vk_engine->get_vk_command();
   //---------------------------
 
-  //Create image structure
-  image->size_bytes = frame->width * frame->height * 4;
+  //Frame data
+  int output_stride = frame->width * 4;
+  image->data = new uint8_t[output_stride * frame->height];
+  convert_YUV420P_to_RGB(frame, image->data, output_stride);
+
+  //Image parameters
   image->width = frame->width;
   image->height = frame->height;
   image->format = VK_FORMAT_R8G8B8A8_SRGB;
 
-
-int output_stride = frame->width * 4;
-uint8_t* output_data = new uint8_t[output_stride * frame->height];
-convertYUV420PtoRGB(frame, output_data, output_stride);
-image->data=output_data;
-
-
-
-//say(frame->linesize[0]);
   //Create vulkan texture
   this->create_vulkan_texture(image);
 
@@ -175,7 +133,7 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
   //Create stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
-  VkDeviceSize tex_size = image->size_bytes;
+  VkDeviceSize tex_size = image->width * image->height * 4;
   vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_buffer->bind_buffer_memory(MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
@@ -257,6 +215,49 @@ void VK_texture::check_frame_format(AVFrame* frame){
     default:
       say("format not found");
       break;
+  }
+
+  //---------------------------
+}
+void VK_texture::convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B){
+  //---------------------------
+
+  R = Y + 1.13983 * (V - 128);
+  G = Y - 0.39465 * (U - 128) - 0.58060 * (V - 128);
+  B = Y + 2.03211 * (U - 128);
+
+  // Clamp RGB values to [0, 255]
+  R = std::min(255, std::max(0, R));
+  G = std::min(255, std::max(0, G));
+  B = std::min(255, std::max(0, B));
+
+  //---------------------------
+}
+void VK_texture::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride){
+  //---------------------------
+
+  int width = frame->width;
+  int height = frame->height;
+  int Y_stride = frame->linesize[0];
+  int U_stride = frame->linesize[1];
+  int V_stride = frame->linesize[2];
+
+  for (int y = 0; y < height; y++){
+    for (int x = 0; x < width; x++) {
+      int Y = frame->data[0][y * Y_stride + x];
+      int U = frame->data[1][y / 2 * U_stride + x / 2];
+      int V = frame->data[2][y / 2 * V_stride + x / 2];
+
+      int R, G, B;
+      convert_YUV_to_RGB(Y, U, V, R, G, B);
+
+      // Merge channels into VK_FORMAT_R8G8B8A8_UNORM
+      uint8_t* pixel = &output_data[y * output_stride + x * 4];
+      pixel[0] = static_cast<uint8_t>(R);
+      pixel[1] = static_cast<uint8_t>(G);
+      pixel[2] = static_cast<uint8_t>(B);
+      pixel[3] = 255; // Fully opaque
+    }
   }
 
   //---------------------------

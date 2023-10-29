@@ -161,7 +161,7 @@ void GUI_video::display_frame(){
   //---------------------------
 
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-  ImGui::Image(descriptor, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
+  ImGui::Image(descriptor, ImVec2{200,200});
 
   //---------------------------
 }

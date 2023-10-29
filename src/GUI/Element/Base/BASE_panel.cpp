@@ -19,11 +19,12 @@ void BASE_panel::run_panel(){
 
   if(*show_window){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
-    ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize);
+    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-    this->design_panel();
+      this->design_panel();
 
-    ImGui::End();
+      ImGui::End();
+    }
     ImGui::PopStyleColor();
   }
 

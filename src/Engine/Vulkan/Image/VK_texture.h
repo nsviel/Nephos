@@ -42,6 +42,8 @@ public:
   void create_vulkan_texture(Struct_image* image);
   void copy_buffer_to_image(Struct_image* image, VkBuffer buffer);
   void check_frame_format(AVFrame* frame);
+  void convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B);
+  void convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride);
 
 private:
   VK_engine* vk_engine;
