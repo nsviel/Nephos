@@ -45,7 +45,7 @@ void Engine::init(){
 void Engine::loop(){
   //---------------------------
 
-  //cameraManager->input_cam_mouse();
+  cameraManager->input_cam_mouse();
   vk_engine->draw_frame();
 
   //---------------------------
