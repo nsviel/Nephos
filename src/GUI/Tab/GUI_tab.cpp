@@ -72,7 +72,7 @@ void GUI_tab::menu(){
 void GUI_tab::menu_demo(){
   //---------------------------
 
-  if(ImGui::BeginMenu(ICON_FA_BOOK, "Demo")){
+  if(ImGui::BeginMenu(ICON_FA_BOOK, "menu_demo")){
     //Demo file
     if(ImGui::Button("Demo file")){
       int ret = system("xed ../extern/imgui/core/imgui_demo.cpp");
@@ -93,7 +93,7 @@ void GUI_tab::menu_font(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  if(ImGui::BeginMenu(ICON_FA_COG, "Main_font")){
+  if(ImGui::BeginMenu(ICON_FA_COG, "menu_font")){
     gui_font->combo_font_gui();
     gui_font->combo_font_editor();
     ImGui::EndMenu();
@@ -105,7 +105,10 @@ void GUI_tab::menu_git(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  if(ImGui::BeginMenu(ICON_FA_COG, "Main_font")){
+  if(ImGui::BeginMenu(ICON_FA_GITHUB_ALT, "menu_git")){
+    if(ImGui::Button("Branch")){
+      gui_git->retrieve_all_branch();
+    }
 
     ImGui::EndMenu();
   }

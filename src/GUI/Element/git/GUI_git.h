@@ -16,7 +16,7 @@ public:
 
 public:
   //Main functions
-  void design_panel();
+  void retrieve_all_branch();
 
   //Subfunction
 

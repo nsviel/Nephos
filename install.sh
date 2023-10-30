@@ -18,7 +18,7 @@ echo -ne "[\e[92m#\e[0m] Run installation for Ubuntu related OS..."
 # Ubuntu
 sudo apt install vulkan-tools libvulkan-dev vulkan-validationlayers-dev spirv-tools
 sudo apt install libglfw3-dev libxxf86vm-dev libxi-dev
-sudo apt install libglm-dev
+sudo apt install libglm-dev libgit2-dev
 
 # LunarG SDK
 wget -qO- https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo tee /etc/apt/trusted.gpg.d/lunarg.asc

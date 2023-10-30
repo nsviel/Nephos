@@ -10,6 +10,7 @@ find_package(Vulkan REQUIRED)
 find_package(Python REQUIRED COMPONENTS Interpreter Development)
 
 include_directories(${Python_INCLUDE_DIRS})
+include_directories(${LIBGIT2_INCLUDE_DIRS})
 
 
 # Denpendancies
@@ -39,6 +40,9 @@ set(ALL_LIBS
  -lswresample
  -lswscale
  -lavutil
+
+ #GIT
+ -lgit2
 )
 
 # Source files
@@ -74,5 +78,6 @@ target_include_directories(executable PUBLIC
   ${Vulkan_INCLUDE_DIRS}
   ${Python_LIBRARY_DIRS}
   ${PYTHON_INCLUDE_DIRS}
+  ${LIBGIT2_LIBRARY_DIRS}
 )
 link_libraries(${Vulkan_LIBRARY})
