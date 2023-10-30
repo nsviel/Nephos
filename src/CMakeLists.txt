@@ -8,16 +8,18 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(glfw3 REQUIRED)
 find_package(Vulkan REQUIRED)
 find_package(Python REQUIRED COMPONENTS Interpreter Development)
+find_package(SQLite3 REQUIRED)
 
 include_directories(${Python_INCLUDE_DIRS})
 include_directories(${LIBGIT2_INCLUDE_DIRS})
-
+include_directories(${SQLITE3_INCLUDE_DIRS})
 
 # Denpendancies
 set(ALL_LIBS
   ${GLFW_LIBRARY}
   ${Vulkan_LIBRARIES}
   ${Python_LIBRARIES}
+  ${SQLITE3_LIBRARIES}
 
   Eigen3::Eigen #Eigen library
   stdc++fs #STD filesystem experimental
@@ -33,6 +35,8 @@ set(ALL_LIBS
   Python::Python
   python3.10
   -lpython3.10
+  sqlite3
+  SQLite::SQLite3
 
   #FFMPEG
  -lavformat
@@ -79,5 +83,6 @@ target_include_directories(executable PUBLIC
   ${Python_LIBRARY_DIRS}
   ${PYTHON_INCLUDE_DIRS}
   ${LIBGIT2_LIBRARY_DIRS}
+  ${SQLite3_LIBRARIES}
 )
 link_libraries(${Vulkan_LIBRARY})
