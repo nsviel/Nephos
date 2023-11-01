@@ -1,5 +1,5 @@
 # CMakeLists childs
-add_subdirectory(Element)
+add_subdirectory(Ressource)
 add_subdirectory(Engine)
 add_subdirectory(GUI)
 
@@ -61,7 +61,7 @@ add_executable(executable
 # Library linking
 target_link_libraries(executable
   LIBRARY_EXTERN
-  LIBRARY_ELEMENT
+  LIBRARY_RESSOURCE
   LIBRARY_ENGINE
   LIBRARY_GUI
   ${ALL_LIBS}

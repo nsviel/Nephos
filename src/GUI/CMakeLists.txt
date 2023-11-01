@@ -25,7 +25,7 @@ target_include_directories(LIBRARY_GUI PUBLIC
 target_link_libraries(LIBRARY_GUI PUBLIC
   Eigen3::Eigen #Eigen library
   LIBRARY_EXTERN
-  LIBRARY_ELEMENT
+  LIBRARY_RESSOURCE
   LIBRARY_ENGINE
   LIBRARY_GUI_DEV
   LIBRARY_GUI_RENDER
