@@ -50,8 +50,8 @@ void GUI_font::gui_select_font(){
 
   //Load all droidsans font with size from 13 to 23
   float font_size;
-  font_size = 13.0f;
-  for(int i=0; i<10; i++){
+  font_size = 10.0f;
+  for(int i=0; i<15; i++){
     ImFont* font = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_text);
     io.Fonts->AddFontFromFileTTF("../media/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
     if(i == 0) this->font_gui = font;
@@ -69,6 +69,11 @@ void GUI_font::gui_select_font(){
 
   //Buid the font database
   io.Fonts->Build();
+
+  //Setup fonts
+  this->font_gui = vec_font_gui[3];
+  this->font_small = vec_font_gui[0];
+  ImGui::GetIO().FontDefault = font_gui;
 
   //---------------------------
 }

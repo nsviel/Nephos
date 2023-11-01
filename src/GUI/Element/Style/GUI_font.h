@@ -26,6 +26,7 @@ public:
 
   inline ImFont* get_font_editor(){return font_editor;}
   inline ImFont* get_font_current(){return font_gui;}
+  inline ImFont* get_font_small(){return font_small;}
   inline vector<ImFont*> get_vec_font_editor(){return vec_font_editor;}
   inline vector<ImFont*> get_vec_font_gui(){return vec_font_gui;}
   inline void set_current_font(ImFont* font){if(font!=nullptr)ImGui::GetIO().FontDefault = font;}
@@ -38,6 +39,7 @@ private:
   vector<ImFont*> vec_font_gui;
   ImFont* font_editor;
   ImFont* font_gui;
+  ImFont* font_small;
 };
 
 #endif
