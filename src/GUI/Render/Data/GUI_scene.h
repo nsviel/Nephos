@@ -1,7 +1,7 @@
 #ifndef GUI_SCENE_H
 #define GUI_SCENE_H
 
-#include <Element/Base/BASE_panel.h>
+#include <Ressource/Base/BASE_panel.h>
 #include <Specific/common.h>
 
 class GUI;

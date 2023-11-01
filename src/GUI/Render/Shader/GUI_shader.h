@@ -3,7 +3,7 @@
 
 #include <Specific/common.h>
 #include <Shader/Base/BASE_shader.h>
-#include <Element/Base/BASE_panel.h>
+#include <Ressource/Base/BASE_panel.h>
 
 class GUI;
 class GUI_editor_text;

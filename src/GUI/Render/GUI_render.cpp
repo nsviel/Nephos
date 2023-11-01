@@ -3,10 +3,10 @@
 #include <GUI.h>
 #include <Render/GUI_render_panel.h>
 #include <Data/Load/Loader.h>
-#include <Element/Widget/GUI_indicator.h>
+#include <Ressource/Widget/GUI_indicator.h>
 #include <Render/Menu/GUI_render_option.h>
 
-#include <Element/Editor/GUI_editor_node.h>
+#include <Ressource/Editor/GUI_editor_node.h>
 #include <Element/Data/GUI_database.h>
 #include <Render/Capture/GUI_capture.h>
 #include <Render/Menu/GUI_render_menu.h>

@@ -1,47 +1,22 @@
-#include "GUI_console.h"
+#ifndef GUI_CONSOLE_H
+#define GUI_CONSOLE_H
+
+#include <Specific/common.h>
 
 
-struct ExampleAppConsole
+class GUI_console
 {
-  char                  InputBuf[256];
-  ImVector<char*>       Items;
-  ImVector<const char*> Commands;
-  ImVector<char*>       History;
-  int                   HistoryPos;    // -1: new line, 0..History.Size-1 browsing history.
-  ImGuiTextFilter       Filter;
-  bool                  AutoScroll;
-  bool                  ScrollToBottom;
+public:
+  //Constructor / Destructor
+  GUI_console();
+  ~GUI_console();
 
-  ExampleAppConsole(){
-      ClearLog();
-      memset(InputBuf, 0, sizeof(InputBuf));
-      HistoryPos = -1;
-
-      // "CLASSIFY" is here to provide the test case where "C"+[tab] completes to "CL" and display multiple matches.
-      Commands.push_back("HELP");
-      Commands.push_back("HISTORY");
-      Commands.push_back("CLEAR");
-      Commands.push_back("CLASSIFY");
-      AutoScroll = true;
-      ScrollToBottom = false;
-      AddLog("Welcome to Dear ImGui!");
-  }
-  ~ExampleAppConsole(){
-      ClearLog();
-      for (int i = 0; i < History.Size; i++)
-          free(History[i]);
-  }
-
-  // Portable helpers
-  static int   Stricmp(const char* s1, const char* s2)         { int d; while ((d = toupper(*s2) - toupper(*s1)) == 0 && *s1) { s1++; s2++; } return d; }
-  static int   Strnicmp(const char* s1, const char* s2, int n) { int d = 0; while (n > 0 && (d = toupper(*s2) - toupper(*s1)) == 0 && *s1) { s1++; s2++; n--; } return d; }
-  static char* Strdup(const char* s)                           { IM_ASSERT(s); size_t len = strlen(s) + 1; void* buf = malloc(len); IM_ASSERT(buf); return (char*)memcpy(buf, (const void*)s, len); }
-  static void  Strtrim(char* s)                                { char* str_end = s + strlen(s); while (str_end > s && str_end[-1] == ' ') str_end--; *str_end = 0; }
-
+public:
+  //Main function
   void ClearLog(){
-      for (int i = 0; i < Items.Size; i++)
-          free(Items[i]);
-      Items.clear();
+    for (int i = 0; i < Items.Size; i++)
+      free(Items[i]);
+    Items.clear();
   }
   void AddLog(const char* fmt, ...) IM_FMTARGS(2){
     // FIXME-OPT
@@ -53,7 +28,6 @@ struct ExampleAppConsole
     va_end(args);
     Items.push_back(Strdup(buf));
   }
-
   void Draw(const char* title, bool* p_open){
       ImGui::SetNextWindowSize(ImVec2(520, 600), ImGuiCond_FirstUseEver);
       if (!ImGui::Begin(title, p_open))
@@ -233,9 +207,13 @@ struct ExampleAppConsole
       ScrollToBottom = true;
   }
 
-  // In C++11 you'd be better off using lambdas for this sort of forwarding callbacks
+  // Portable helpers
+  static int   Stricmp(const char* s1, const char* s2)         { int d; while ((d = toupper(*s2) - toupper(*s1)) == 0 && *s1) { s1++; s2++; } return d; }
+  static int   Strnicmp(const char* s1, const char* s2, int n) { int d = 0; while (n > 0 && (d = toupper(*s2) - toupper(*s1)) == 0 && *s1) { s1++; s2++; n--; } return d; }
+  static char* Strdup(const char* s)                           { IM_ASSERT(s); size_t len = strlen(s) + 1; void* buf = malloc(len); IM_ASSERT(buf); return (char*)memcpy(buf, (const void*)s, len); }
+  static void  Strtrim(char* s)                                { char* str_end = s + strlen(s); while (str_end > s && str_end[-1] == ' ') str_end--; *str_end = 0; }
   static int TextEditCallbackStub(ImGuiInputTextCallbackData* data){
-      ExampleAppConsole* console = (ExampleAppConsole*)data->UserData;
+      GUI_console* console = (GUI_console*)data->UserData;
       return console->TextEditCallback(data);
   }
   int TextEditCallback(ImGuiInputTextCallbackData* data){
@@ -337,4 +315,16 @@ struct ExampleAppConsole
         }
         return 0;
     }
+
+private:
+  char                  InputBuf[256];
+  ImVector<char*>       Items;
+  ImVector<const char*> Commands;
+  ImVector<char*>       History;
+  int                   HistoryPos;    // -1: new line, 0..History.Size-1 browsing history.
+  ImGuiTextFilter       Filter;
+  bool                  AutoScroll;
+  bool                  ScrollToBottom;
 };
+
+#endif
