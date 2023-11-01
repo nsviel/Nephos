@@ -26,7 +26,7 @@ void GUI_console::add_log(const char* fmt, ...){
 
   //---------------------------
 }
-void GUI_console::add_file(string path){
+void GUI_console::add_file(string prefix, string path){
   //---------------------------
 
   //Retrieve file content
@@ -38,6 +38,14 @@ void GUI_console::add_file(string path){
   std::string content((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
   inputFile.close();
 
+  //Add content into console
+  if(content != ""){
+    if(prefix == "error"){
+      this->add_log("[error]");
+    }
+    this->add_log(content.c_str());
+  }
+
   //Clear file
   std::ofstream outputFile(path.c_str(), std::ofstream::out);
   if (outputFile.is_open()) {
@@ -48,7 +56,6 @@ void GUI_console::add_file(string path){
   }
 
   //---------------------------
-  this->add_log(content.c_str());
 }
 void GUI_console::clear_log(){
   //---------------------------

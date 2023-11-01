@@ -63,7 +63,7 @@ void GUI_shader::design_panel(){
   this->shader_tabs();
   this->shader_control();
 
-  gui_console->add_file("output.txt");
+  gui_console->add_file("error", "output.txt");
   gui_console->draw_console("truc");
 
   //---------------------------
@@ -353,6 +353,7 @@ void GUI_shader::shader_control(){
 void GUI_shader::reload_vulkan_shader(){
   //---------------------------
 
+  gui_console->clear_log();
   string shader_class = vec_shader_class[ID_class];
   string shader_subclass = vec_shader_subclass[ID_subclass];
   vk_reload->hot_shader_reload(shader_class, shader_subclass);

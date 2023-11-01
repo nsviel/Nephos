@@ -15,7 +15,7 @@ public:
   //Main function
   void clear_log();
   void add_log(const char* fmt, ...);
-  void add_file(string file);
+  void add_file(string prefixe, string path);
   void draw_console(string title);
   void draw_command_line();
   void ExecCommand(const char* command_line);
