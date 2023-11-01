@@ -2,6 +2,7 @@
 #define GUI_SHADER_H
 
 #include <Specific/common.h>
+#include <Shader/Base/BASE_shader.h>
 #include <Element/Base/BASE_panel.h>
 
 class GUI;
@@ -28,8 +29,11 @@ public:
   void shader_command();
   void shader_tabs();
 
+  //Parameter
+  void show_parameter();
+  void parameter_EDL();
+
   //Shader specific
-  void shader_EDL_parameter();
   void check_reload();
   void display_reload();
   void display_status();
@@ -54,7 +58,8 @@ private:
   string active_editor;
   string reload;
   string current_status;
-  bool with_parameter;
+  string current_class;
+  string current_subclass;
   bool has_been_reloaded;
   bool read_only;
   bool read_only_forced;

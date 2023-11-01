@@ -826,6 +826,33 @@ TextEditor::Line& TextEditor::InsertLine(int aIndex){
 	return result;
 }
 
+void TextEditor::set_language_definition(std::string language){
+	//---------------------------
+
+	if(language == "cpp"){
+		this->SetLanguageDefinition(LanguageDefinition::Cpp());
+	}
+	else if(language == "hlsl"){
+		this->SetLanguageDefinition(LanguageDefinition::HLSL());
+	}
+	else if(language == "glsl"){
+		this->SetLanguageDefinition(LanguageDefinition::GLSL());
+	}
+	else if(language == "c"){
+		this->SetLanguageDefinition(LanguageDefinition::C());
+	}
+	else if(language == "sql"){
+		this->SetLanguageDefinition(LanguageDefinition::SQL());
+	}
+	else if(language == "anglelscript"){
+		this->SetLanguageDefinition(LanguageDefinition::AngelScript());
+	}
+	else if(language == "lua"){
+		this->SetLanguageDefinition(LanguageDefinition::Lua());
+	}
+
+	//---------------------------
+}
 void TextEditor::SetLanguageDefinition(const LanguageDefinition & aLanguageDef){
 	//---------------------------
 
@@ -846,6 +873,124 @@ void TextEditor::SetPalette(const Palette & aValue){
 
 	//---------------------------
 }
+void TextEditor::SetText(const std::string & aText){
+	lines.clear();
+	lines.emplace_back(Line());
+	for (auto chr : aText)
+	{
+		if (chr == '\r')
+		{
+			// ignore the carriage return character
+		}
+		else if (chr == '\n')
+			lines.emplace_back(Line());
+		else
+		{
+			lines.back().emplace_back(Glyph(chr, PaletteIndex::Default));
+		}
+	}
+
+	text_changed = true;
+	scroll_to_top = true;
+
+	undo_buffer.clear();
+	undo_index = 0;
+
+	Colorize();
+}
+void TextEditor::SetTextLines(const std::vector<std::string> & aLines){
+	lines.clear();
+
+	if (aLines.empty())
+	{
+		lines.emplace_back(Line());
+	}
+	else
+	{
+		lines.resize(aLines.size());
+
+		for (size_t i = 0; i < aLines.size(); ++i)
+		{
+			const std::string & aLine = aLines[i];
+
+			lines[i].reserve(aLine.size());
+			for (size_t j = 0; j < aLine.size(); ++j)
+				lines[i].emplace_back(Glyph(aLine[j], PaletteIndex::Default));
+		}
+	}
+
+	text_changed = true;
+	scroll_to_top = true;
+
+	undo_buffer.clear();
+	undo_index = 0;
+
+	Colorize();
+}
+void TextEditor::SetReadOnly(bool aValue){
+	read_only = aValue;
+}
+void TextEditor::SetColorizerEnable(bool aValue){
+	colorizer_enabled = aValue;
+}
+void TextEditor::SetCursorPosition(const Coordinates & aPosition){
+	if (state.mCursorPosition != aPosition)
+	{
+		state.mCursorPosition = aPosition;
+		cursor_position_changed = true;
+		EnsureCursorVisible();
+	}
+}
+void TextEditor::SetSelectionStart(const Coordinates & aPosition){
+	state.mSelectionStart = SanitizeCoordinates(aPosition);
+	if (state.mSelectionStart > state.mSelectionEnd)
+		std::swap(state.mSelectionStart, state.mSelectionEnd);
+}
+void TextEditor::SetSelectionEnd(const Coordinates & aPosition){
+	state.mSelectionEnd = SanitizeCoordinates(aPosition);
+	if (state.mSelectionStart > state.mSelectionEnd)
+		std::swap(state.mSelectionStart, state.mSelectionEnd);
+}
+void TextEditor::SetSelection(const Coordinates & aStart, const Coordinates & aEnd, SelectionMode aMode){
+	auto oldSelStart = state.mSelectionStart;
+	auto oldSelEnd = state.mSelectionEnd;
+
+	state.mSelectionStart = SanitizeCoordinates(aStart);
+	state.mSelectionEnd = SanitizeCoordinates(aEnd);
+	if (state.mSelectionStart > state.mSelectionEnd)
+		std::swap(state.mSelectionStart, state.mSelectionEnd);
+
+	switch (aMode)
+	{
+	case TextEditor::SelectionMode::Normal:
+		break;
+	case TextEditor::SelectionMode::Word:
+	{
+		state.mSelectionStart = FindWordStart(state.mSelectionStart);
+		if (!IsOnWordBoundary(state.mSelectionEnd))
+			state.mSelectionEnd = FindWordEnd(FindWordStart(state.mSelectionEnd));
+		break;
+	}
+	case TextEditor::SelectionMode::Line:
+	{
+		const auto lineNo = state.mSelectionEnd.mLine;
+		const auto lineSize = (size_t)lineNo < lines.size() ? lines[lineNo].size() : 0;
+		state.mSelectionStart = Coordinates(state.mSelectionStart.mLine, 0);
+		state.mSelectionEnd = Coordinates(lineNo, GetLineMaxColumn(lineNo));
+		break;
+	}
+	default:
+		break;
+	}
+
+	if (state.mSelectionStart != oldSelStart ||
+		state.mSelectionEnd != oldSelEnd)
+		cursor_position_changed = true;
+}
+void TextEditor::SetTabSize(int aValue){
+	tab_size = std::max(0, std::min(32, aValue));
+}
+
 void TextEditor::Advance(Coordinates & aCoordinates) const{
 	//---------------------------
 
@@ -1416,60 +1561,6 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder){
 
 	within_render = false;
 }
-void TextEditor::SetText(const std::string & aText){
-	lines.clear();
-	lines.emplace_back(Line());
-	for (auto chr : aText)
-	{
-		if (chr == '\r')
-		{
-			// ignore the carriage return character
-		}
-		else if (chr == '\n')
-			lines.emplace_back(Line());
-		else
-		{
-			lines.back().emplace_back(Glyph(chr, PaletteIndex::Default));
-		}
-	}
-
-	text_changed = true;
-	scroll_to_top = true;
-
-	undo_buffer.clear();
-	undo_index = 0;
-
-	Colorize();
-}
-void TextEditor::SetTextLines(const std::vector<std::string> & aLines){
-	lines.clear();
-
-	if (aLines.empty())
-	{
-		lines.emplace_back(Line());
-	}
-	else
-	{
-		lines.resize(aLines.size());
-
-		for (size_t i = 0; i < aLines.size(); ++i)
-		{
-			const std::string & aLine = aLines[i];
-
-			lines[i].reserve(aLine.size());
-			for (size_t j = 0; j < aLine.size(); ++j)
-				lines[i].emplace_back(Glyph(aLine[j], PaletteIndex::Default));
-		}
-	}
-
-	text_changed = true;
-	scroll_to_top = true;
-
-	undo_buffer.clear();
-	undo_index = 0;
-
-	Colorize();
-}
 void TextEditor::EnterCharacter(ImWchar aChar, bool aShift){
 	//---------------------------
 
@@ -1638,69 +1729,6 @@ void TextEditor::EnterCharacter(ImWchar aChar, bool aShift){
 	EnsureCursorVisible();
 
 	//---------------------------
-}
-void TextEditor::SetReadOnly(bool aValue){
-	read_only = aValue;
-}
-void TextEditor::SetColorizerEnable(bool aValue){
-	colorizer_enabled = aValue;
-}
-void TextEditor::SetCursorPosition(const Coordinates & aPosition){
-	if (state.mCursorPosition != aPosition)
-	{
-		state.mCursorPosition = aPosition;
-		cursor_position_changed = true;
-		EnsureCursorVisible();
-	}
-}
-void TextEditor::SetSelectionStart(const Coordinates & aPosition){
-	state.mSelectionStart = SanitizeCoordinates(aPosition);
-	if (state.mSelectionStart > state.mSelectionEnd)
-		std::swap(state.mSelectionStart, state.mSelectionEnd);
-}
-void TextEditor::SetSelectionEnd(const Coordinates & aPosition){
-	state.mSelectionEnd = SanitizeCoordinates(aPosition);
-	if (state.mSelectionStart > state.mSelectionEnd)
-		std::swap(state.mSelectionStart, state.mSelectionEnd);
-}
-void TextEditor::SetSelection(const Coordinates & aStart, const Coordinates & aEnd, SelectionMode aMode){
-	auto oldSelStart = state.mSelectionStart;
-	auto oldSelEnd = state.mSelectionEnd;
-
-	state.mSelectionStart = SanitizeCoordinates(aStart);
-	state.mSelectionEnd = SanitizeCoordinates(aEnd);
-	if (state.mSelectionStart > state.mSelectionEnd)
-		std::swap(state.mSelectionStart, state.mSelectionEnd);
-
-	switch (aMode)
-	{
-	case TextEditor::SelectionMode::Normal:
-		break;
-	case TextEditor::SelectionMode::Word:
-	{
-		state.mSelectionStart = FindWordStart(state.mSelectionStart);
-		if (!IsOnWordBoundary(state.mSelectionEnd))
-			state.mSelectionEnd = FindWordEnd(FindWordStart(state.mSelectionEnd));
-		break;
-	}
-	case TextEditor::SelectionMode::Line:
-	{
-		const auto lineNo = state.mSelectionEnd.mLine;
-		const auto lineSize = (size_t)lineNo < lines.size() ? lines[lineNo].size() : 0;
-		state.mSelectionStart = Coordinates(state.mSelectionStart.mLine, 0);
-		state.mSelectionEnd = Coordinates(lineNo, GetLineMaxColumn(lineNo));
-		break;
-	}
-	default:
-		break;
-	}
-
-	if (state.mSelectionStart != oldSelStart ||
-		state.mSelectionEnd != oldSelEnd)
-		cursor_position_changed = true;
-}
-void TextEditor::SetTabSize(int aValue){
-	tab_size = std::max(0, std::min(32, aValue));
 }
 void TextEditor::InsertText(const std::string & aValue){
 	InsertText(aValue.c_str());
@@ -2723,17 +2751,23 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::GLSL(){
 		static const char* const keywords[] = {
 			"auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "inline", "int", "long", "register", "restrict", "return", "short",
 			"signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "_Alignas", "_Alignof", "_Atomic", "_Bool", "_Complex", "_Generic", "_Imaginary",
-			"_Noreturn", "_Static_assert", "_Thread_local"
+			"_Noreturn", "_Static_assert", "_Thread_local",
+			"alignas", "vec2", "vec3", "vec4", "mat4", "alignof", "and", "and_eq", "asm", "atomic_cancel", "atomic_commit", "atomic_noexcept", "auto", "bitand", "bitor", "bool", "break", "case", "catch", "char", "char16_t", "char32_t", "class",
+			"compl", "concept", "const", "constexpr", "const_cast", "continue", "decltype", "default", "delete", "do", "double", "dynamic_cast", "else", "enum", "explicit", "export", "extern", "false", "float",
+			"for", "friend", "goto", "if", "import", "inline", "int", "long", "module", "mutable", "namespace", "new", "noexcept", "not", "not_eq", "nullptr", "operator", "or", "or_eq", "private", "protected", "public",
+			"register", "reinterpret_cast", "requires", "return", "short", "signed", "sizeof", "static", "static_assert", "static_cast", "struct", "switch", "synchronized", "template", "this", "thread_local",
+			"throw", "vector", "set", "unordered_set", "map", "string", "true", "try", "typedef", "typeid", "typename", "union", "unsigned", "using", "virtual", "void", "volatile", "wchar_t", "while", "xor", "xor_eq"
 		};
-		for (auto& k : keywords)
+		for (auto& k : keywords){
 			langDef.keywords.insert(k);
+		}
 
 		static const char* const identifiers[] = {
-			"abort", "abs", "acos", "asin", "atan", "atexit", "atof", "atoi", "atol", "ceil", "clock", "cosh", "ctime", "div", "exit", "fabs", "floor", "fmod", "getchar", "getenv", "isalnum", "isalpha", "isdigit", "isgraph",
-			"ispunct", "isspace", "isupper", "kbhit", "log10", "log2", "log", "memcmp", "modf", "pow", "putchar", "putenv", "puts", "rand", "remove", "rename", "sinh", "sqrt", "srand", "strcat", "strcmp", "strerror", "time", "tolower", "toupper"
+			"abort", "abs", "acos", "cos", "asin", "sin", "atan", "tan", "atexit", "atof", "atoi", "atol", "ceil", "clock", "cosh", "ctime", "div", "exit", "fabs", "floor", "fmod", "getchar", "getenv", "isalnum", "isalpha", "isdigit", "isgraph",
+			"ispunct", "isspace", "isupper", "kbhit", "log10", "log2", "log", "memcmp", "modf", "pow", "printf", "sprintf", "snprintf", "putchar", "putenv", "puts", "rand", "remove", "rename", "sinh", "sqrt", "srand", "strcat", "strcmp", "strerror", "time", "tolower", "toupper",
+			"std", "unordered_map", "min", "max"
 		};
-		for (auto& k : identifiers)
-		{
+		for (auto& k : identifiers){
 			Identifier id;
 			id.mDeclaration = "Built-in function";
 			langDef.identifiers.insert(std::make_pair(std::string(k), id));

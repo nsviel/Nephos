@@ -19,6 +19,7 @@ void SCE_shader::init_shader(){
   Shader_info* shader_info;
   //---------------------------
 
+  //Add shader info - Line
   shader_info = new Shader_info();
   shader_info->title = "Line";
   shader_info->folder = "Scene";
@@ -28,6 +29,7 @@ void SCE_shader::init_shader(){
   shader_info->with_depth_test = true;
   this->vec_shader_info.push_back(shader_info);
 
+  //Add shader info - Point
   shader_info = new Shader_info();
   shader_info->title = "Point";
   shader_info->folder = "Scene";

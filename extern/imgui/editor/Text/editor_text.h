@@ -183,6 +183,7 @@ public:
 	void Undo(int aSteps = 1);
 	void Redo(int aSteps = 1);
 
+	void set_language_definition(std::string language);
 	void SetReadOnly(bool value);
 	void SetLanguageDefinition(const LanguageDefinition& aLanguageDef);
 	void SetPalette(const Palette& value);

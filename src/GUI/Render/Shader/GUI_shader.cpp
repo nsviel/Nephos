@@ -22,13 +22,15 @@ GUI_shader::GUI_shader(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   this->editor_vs = new GUI_editor_text(gui);
   this->editor_fs = new GUI_editor_text(gui);
 
-  this->with_parameter = false;
   this->item_width = 100;
   this->ID_class = 0;
   this->ID_subclass = 0;
   this->has_been_reloaded = true;
   this->read_only = false;
   this->read_only_forced = false;
+
+  editor_vs->set_language("glsl");
+  editor_fs->set_language("glsl");
 
   //---------------------------
   this->init_panel();
@@ -72,6 +74,7 @@ void GUI_shader::shader_combo_class(){
       if(ImGui::Selectable(vec_shader_class[i].c_str(), is_selected)){
         this->ID_class = i;
         this->ID_subclass = 0;
+        this->current_class = vec_shader_class[i];
         this->retrieve_shader_subclasses();
         this->shader_file_selection();
       }
@@ -94,6 +97,7 @@ void GUI_shader::shader_combo_subclass(){
         const bool is_selected = (ID_subclass == i);
         if(ImGui::Selectable(vec_shader_subclass[i].c_str(), is_selected)){
           this->ID_subclass = i;
+          this->current_subclass = vec_shader_subclass[i];
           this->shader_file_selection();
         }
 
@@ -150,8 +154,8 @@ void GUI_shader::shader_tabs(){
         this->active_editor = "Fragment";
         ImGui::EndTabItem();
     }
-    if (with_parameter && ImGui::BeginTabItem("Parameter")){
-        this->shader_EDL_parameter();
+    if (ImGui::BeginTabItem("Parameter")){
+        this->show_parameter();
         ImGui::EndTabItem();
     }
     ImGui::EndTabBar();
@@ -247,6 +251,39 @@ string GUI_shader::get_path_fs_from_selection(){
   return path_fs;
 }
 
+//Parameter
+void GUI_shader::show_parameter(){
+  //---------------------------
+
+  if(current_class == "EDL"){
+    this->parameter_EDL();
+  }
+
+  //---------------------------
+}
+void GUI_shader::parameter_EDL(){
+  EDL_shader* edl_shader = shaderManager->get_edl_shader();
+  EDL_param* edl_param = edl_shader->get_edl_param();
+  //---------------------------
+
+  ImGui::SetNextItemWidth(item_width);
+  if(ImGui::Checkbox("Activated", &edl_param->activated)){
+    edl_shader->update_shader();
+  }
+
+  ImGui::SetNextItemWidth(item_width);
+  if(ImGui::SliderFloat("Radius", &edl_param->radius, 1.0f, 5.0f)){
+    edl_shader->update_shader();
+  }
+
+  ImGui::SetNextItemWidth(item_width);
+  if(ImGui::SliderFloat("Strength", &edl_param->strength, 1.0f, 100.0f)){
+      edl_shader->update_shader();
+    }
+
+  //---------------------------
+}
+
 //Shader specific
 void GUI_shader::check_reload(){
   //---------------------------
@@ -290,30 +327,6 @@ void GUI_shader::display_status(){
     this->current_status = editor_fs->get_status();
     editor_fs->display_status();
   }
-
-  //---------------------------
-}
-void GUI_shader::shader_EDL_parameter(){
-  EDL_shader* edl_shader = shaderManager->get_edl_shader();
-  EDL_param* edl_param = edl_shader->get_edl_param();
-  //---------------------------
-
-  //if(ImGui::CollapsingHeader("Parameter")){
-    ImGui::SetNextItemWidth(item_width);
-    if(ImGui::Checkbox("Activated", &edl_param->activated)){
-      edl_shader->update_shader();
-    }
-
-    ImGui::SetNextItemWidth(item_width);
-    if(ImGui::SliderFloat("Radius", &edl_param->radius, 1.0f, 5.0f)){
-      edl_shader->update_shader();
-    }
-
-    ImGui::SetNextItemWidth(item_width);
-    if(ImGui::SliderFloat("Strength", &edl_param->strength, 1.0f, 100.0f)){
-      edl_shader->update_shader();
-    }
-  //}
 
   //---------------------------
 }

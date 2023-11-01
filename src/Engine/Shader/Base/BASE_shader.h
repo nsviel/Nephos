@@ -13,6 +13,7 @@ struct Shader_info{
 
   bool compile_shader = false;
   bool with_depth_test = false;
+  bool has_parameter = false;
 
   //---------------------------
 };
@@ -28,7 +29,7 @@ public:
   Shader_info* get_shader_info(string title);
   string get_glsl_path_vs(int ID_subclass);
   string get_glsl_path_fs(int ID_subclass);
-  
+
   inline std::vector<Shader_info*> get_vec_shader_info(){return vec_shader_info;}
 
 protected:

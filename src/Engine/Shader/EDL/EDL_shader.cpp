@@ -21,10 +21,12 @@ EDL_shader::~EDL_shader(){}
 void EDL_shader::init_shader(){
   //---------------------------
 
+  //Set parameter values
   edl_param->activated = true;
   edl_param->strength = 15.0;
   edl_param->radius = 1.0;
 
+  //Add shader info
   Shader_info* shader_info = new Shader_info();
   shader_info->title = "EDL";
   shader_info->folder = "EDL";
@@ -32,6 +34,7 @@ void EDL_shader::init_shader(){
   shader_info->path_fs = "shader_edl_fs";
   shader_info->compile_shader = true;
   shader_info->with_depth_test = true;
+  shader_info->has_parameter = true;
   this->vec_shader_info.push_back(shader_info);
 
   //---------------------------

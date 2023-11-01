@@ -26,26 +26,15 @@ GUI_editor_text::~GUI_editor_text(){}
 void GUI_editor_text::run_editor(){
   //---------------------------
 
-  this->check_status();
-
-  //Editor control
-  if(ImGui::IsWindowHovered(ImGuiHoveredFlags_ChildWindows)){
-    control->run_control();
-  }
-
-  //Draw control
-  ImGuiIO& io = ImGui::GetIO();
-  ImFont* font = gui_font->get_font_editor();
-
-  ImGui::PushFont(font);
-  editor->Render("Editor");
-  ImGui::PopFont();
+  this->editor_status();
+  this->editor_control();
+  this->editor_render();
 
   //---------------------------
 }
 
 //Subfunction
-void GUI_editor_text::check_status(){
+void GUI_editor_text::editor_status(){
   //---------------------------
 
   bool has_text_changed = editor->IsTextChanged();
@@ -59,6 +48,28 @@ void GUI_editor_text::check_status(){
 
   //---------------------------
 }
+void GUI_editor_text::editor_control(){
+  //---------------------------
+
+  if(ImGui::IsWindowHovered(ImGuiHoveredFlags_ChildWindows)){
+    control->run_control();
+  }
+
+  //---------------------------
+}
+void GUI_editor_text::editor_render(){
+  //---------------------------
+
+  ImGuiIO& io = ImGui::GetIO();
+  ImFont* font = gui_font->get_font_editor();
+  ImGui::PushFont(font);
+  editor->Render("Editor");
+  ImGui::PopFont();
+
+  //---------------------------
+}
+
+//Optionnal function
 void GUI_editor_text::display_status(){
   //---------------------------
 

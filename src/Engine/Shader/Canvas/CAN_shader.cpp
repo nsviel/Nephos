@@ -18,6 +18,7 @@ CAN_shader::~CAN_shader(){}
 void CAN_shader::init_shader(){
   //---------------------------
 
+  //Add shader info
   Shader_info* shader_info = new Shader_info();
   shader_info->title = "Canvas";
   shader_info->folder = "Canvas";
