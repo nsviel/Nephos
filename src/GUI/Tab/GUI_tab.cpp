@@ -106,9 +106,7 @@ void GUI_tab::menu_git(){
   //---------------------------
 
   if(ImGui::BeginMenu(ICON_FA_GITHUB_ALT, "menu_git")){
-    if(ImGui::Button("Branch")){
-      gui_git->retrieve_all_branch();
-    }
+    gui_git->design_panel();
 
     ImGui::EndMenu();
   }

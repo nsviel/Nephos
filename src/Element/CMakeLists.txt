@@ -19,9 +19,10 @@ target_include_directories(LIBRARY_ELEMENT PUBLIC
 # Link any external libraries that this library depends on
 target_link_libraries(LIBRARY_ELEMENT PUBLIC
   LIBRARY_EXTERN
-  Eigen3::Eigen #Eigen library
-  -lSQLiteCpp #sqlitecpp
-  -lpthread #sqlitecpp
-  -ldl #sqlitecpp
-  -lsqlite3
+  Eigen3::Eigen # Eigen library
+  -lSQLiteCpp   # sqlitecpp
+  -lpthread     # sqlitecpp
+  -ldl          # sqlitecpp
+  -lsqlite3     # sqlite
+  -lgit2        # GIT
 )

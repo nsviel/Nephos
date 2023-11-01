@@ -18,20 +18,13 @@ GUI_database::~GUI_database(){}
 void GUI_database::design_panel(){
   //---------------------------
 
-  this->design_database();
-
-  //---------------------------
-}
-
-//Subfunction
-void GUI_database::design_database(){
-  //---------------------------
-
   this->display_option();
   this->display_data();
 
   //---------------------------
 }
+
+//Subfunction
 void GUI_database::display_option(){
   //---------------------------
 

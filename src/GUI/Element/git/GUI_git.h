@@ -1,10 +1,10 @@
-#ifndef GUI_EDITOR_HEXA_H
-#define GUI_EDITOR_HEXA_H
+#ifndef GUI_GIT_H
+#define GUI_GIT_H
 
 #include <Specific/common.h>
-#include <imgui/editor/editor_memory.h>
 
 class GUI;
+class Git;
 
 
 class GUI_git
@@ -16,11 +16,13 @@ public:
 
 public:
   //Main functions
-  void retrieve_all_branch();
+  void design_panel();
 
   //Subfunction
+  void draw_branches();
 
 private:
+  Git* git;
 };
 
 #endif

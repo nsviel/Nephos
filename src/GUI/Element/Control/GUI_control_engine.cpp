@@ -178,12 +178,12 @@ void GUI_control_engine::control_mouse(ImVec2 center){
     cursorPos = window->get_mouse_pose();
 
     ImGui::GetIO().MouseDrawCursor = false;
-    //window->set_mouse_pose(vec2(center.x, center.y));
+    window->set_mouse_pose(vec2(center.x, center.y));
     camera->cam_move = true;
   }
   //Release - back to normal
   if(ImGui::IsMouseReleased(1) && camera->cam_move){
-    //window->set_mouse_pose(cursorPos);
+    window->set_mouse_pose(cursorPos);
     camera->cam_move = false;
   }
 

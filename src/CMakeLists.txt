@@ -44,9 +44,6 @@ set(ALL_LIBS
  -lswresample
  -lswscale
  -lavutil
-
- #GIT
- -lgit2
 )
 
 # Source files

@@ -1,0 +1,13 @@
+1/ Telecharger code source
+2/ create build & bin directories
+    mkdir build bin
+3/ dans build run 
+    cmake .. -DCMAKE_TOOLCHAIN_FILE=path/to/toolchain.cmake
+4/ run
+    make -j4
+5/ run
+    make install DESTDIR=bin
+6/ copy files from bin to the set of cross-compiled files
+7/ Add to the target program CMakeLists.txt 
+    include_directories(bin/lib/what)
+    link_directories(bin/lib/what)

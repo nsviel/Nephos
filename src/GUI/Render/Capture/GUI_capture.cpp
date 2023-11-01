@@ -33,8 +33,8 @@ void GUI_capture::capture_command(){
   //---------------------------
 
 //sayHello();
-  gui_video->draw_video("/home/aether/Desktop/Dev/Nephos/media/vulkano.mp4");
-  gui_image->draw_image("/home/aether/Desktop/Dev/Nephos/media/vulkano.jpg");
+  gui_video->draw_video("/home/aether/Desktop/Nephos/media/vulkano.mp4");
+  gui_image->draw_image("/home/aether/Desktop/Nephos/media/vulkano.jpg");
 
 /*
   ImTextureID my_tex_id = io.Fonts->TexID;

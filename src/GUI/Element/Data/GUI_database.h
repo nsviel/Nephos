@@ -21,7 +21,6 @@ public:
   void design_panel();
 
   //Subfunction
-  void design_database();
   void display_option();
   void display_data();
 
