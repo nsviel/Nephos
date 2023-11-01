@@ -19,6 +19,7 @@ public:
 
   //Git function
   void retrieve_all_branch();
+  void retrieve_last_tag();
 
   //Subfunction
   void format_branch();
