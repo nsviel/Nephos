@@ -7,6 +7,7 @@
 
 class GUI;
 class GUI_editor_text;
+class GUI_console;
 class Shader;
 class VK_reload;
 
@@ -52,6 +53,7 @@ private:
   Shader* shaderManager;
   GUI_editor_text* editor_vs;
   GUI_editor_text* editor_fs;
+  GUI_console* gui_console;
 
   vector<string> vec_shader_class;
   vector<string> vec_shader_subclass;

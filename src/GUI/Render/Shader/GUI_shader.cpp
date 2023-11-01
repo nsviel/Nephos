@@ -9,6 +9,7 @@
 #include <Shader/Canvas/CAN_shader.h>
 #include <Shader/Scene/SCE_shader.h>
 #include <Ressource/Editor/GUI_editor_text.h>
+#include <Ressource/Console/GUI_console.h>
 
 
 //Constructor / Destructor
@@ -21,6 +22,7 @@ GUI_shader::GUI_shader(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   this->shaderManager = engine->get_shaderManager();
   this->editor_vs = new GUI_editor_text(gui);
   this->editor_fs = new GUI_editor_text(gui);
+  this->gui_console = new GUI_console();
 
   this->item_width = 100;
   this->ID_class = 0;
@@ -60,6 +62,9 @@ void GUI_shader::design_panel(){
   this->shader_command();
   this->shader_tabs();
   this->shader_control();
+
+  gui_console->add_file("output.txt");
+  gui_console->draw_console("truc");
 
   //---------------------------
 }
