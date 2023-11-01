@@ -48,7 +48,7 @@ void GUI_git::draw_branches(){
       ImGui::TableNextColumn();
       ImGui::Text("%s", branch.second.c_str());
     }
-
+   
     ImGui::EndTable();
   }
 
