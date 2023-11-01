@@ -29,6 +29,8 @@ public:
 private:
   VK_struct* vk_struct;
   VK_device* vk_device;
+
+  string path_output;
 };
 
 #endif

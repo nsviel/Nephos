@@ -25,4 +25,5 @@ target_link_libraries(LIBRARY_RESSOURCE PUBLIC
   -ldl          # sqlitecpp
   -lsqlite3     # sqlite
   -lgit2        # GIT
+  -lstdc++fs    # std::experimental::filesystem
 )

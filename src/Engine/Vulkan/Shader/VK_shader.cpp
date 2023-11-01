@@ -1,8 +1,9 @@
 #include "VK_shader.h"
-
 #include "../VK_engine.h"
 #include "../VK_struct.h"
 #include "../Device/VK_device.h"
+
+#include <Specific/File/File.h>
 
 
 //Constructor / Destructor
@@ -11,6 +12,9 @@ VK_shader::VK_shader(VK_engine* vk_engine){
 
   this->vk_device = vk_engine->get_vk_device();
   this->vk_struct = vk_engine->get_vk_struct();
+
+  this->path_output = "output.txt";
+  clear_file(path_output);
 
   //---------------------------
 }
@@ -36,7 +40,7 @@ void VK_shader::create_pipeline_shader_module(Struct_pipeline* pipeline){
     string folder = pipeline->shader_info->folder;
     string vs = pipeline->shader_info->path_vs;
     string fs = pipeline->shader_info->path_fs;
-    string command = path_shader + "compile.sh " + folder + " " + vs + " " + fs;
+    string command = path_shader + "compile.sh " + folder + " " + vs + " " + fs + " >> " + path_output +" 2>&1";
     int result = system(command.c_str());
     if(result != 0){
       cout<<"[error] Shader compilation GLSL -> SPIR-V"<<endl;

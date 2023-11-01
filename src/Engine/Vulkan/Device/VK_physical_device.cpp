@@ -62,7 +62,7 @@ void VK_physical_device::select_physical_device(){
 
     VkPhysicalDeviceProperties deviceProperties;
     vkGetPhysicalDeviceProperties(vk_struct->device.physical_device, &deviceProperties);
-    say(deviceProperties.deviceName);
+    //say(deviceProperties.deviceName);
 
   }else {
     throw std::runtime_error("failed to find a suitable GPU!");
@@ -245,7 +245,7 @@ int VK_physical_device::rate_device_suitability(VkPhysicalDevice physical_device
   }
 
   // Check if integrated GPU
-  if(deviceProperties.deviceType != VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
+  if(deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
     score += 100000;
   }
 

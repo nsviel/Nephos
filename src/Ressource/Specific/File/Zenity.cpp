@@ -1,6 +1,6 @@
 #include "Zenity.h"
 #include "Directory.h"
-#include "Path.h"
+#include "File.h"
 
 
 std::vector<std::string> zenity_file_vec(std::string title, std::string& path_dir){
