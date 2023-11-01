@@ -30,7 +30,9 @@ public:
   //Specific info retrieval
   int find_queue_family_graphics(VkPhysicalDevice physical_device);
   int find_queue_family_presentation(VkPhysicalDevice physical_device);
+  int rate_device_suitability(VkPhysicalDevice device);
 
+  //Find specific properties
   VkSurfaceCapabilitiesKHR find_surface_capability(VkPhysicalDevice physical_device);
   vector<VkSurfaceFormatKHR> find_surface_format(VkPhysicalDevice physical_device);
   vector<VkPresentModeKHR> find_presentation_mode(VkPhysicalDevice physical_device);
@@ -41,6 +43,8 @@ private:
   VK_struct* vk_struct;
   VK_surface* vk_surface;
   VK_instance* vk_instance;
+
+  vector<string> vec_device_name;
 };
 
 #endif

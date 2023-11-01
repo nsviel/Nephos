@@ -48,15 +48,40 @@ void VK_physical_device::select_physical_device(){
   //List all available GPU and take suitable one
   std::vector<VkPhysicalDevice> vec_physical_device(nb_device);
   vkEnumeratePhysicalDevices(vk_struct->instance.instance, &nb_device, vec_physical_device.data());
-  for(const auto& physical_device : vec_physical_device){
-    if(is_device_suitable(physical_device)){
-      vk_struct->device.physical_device = physical_device;
-      break;
-    }
+
+  // Use an ordered map to automatically sort candidates by increasing score
+  std::multimap<int, VkPhysicalDevice> candidates;
+  for(VkPhysicalDevice& device : vec_physical_device){
+    int score = rate_device_suitability(device);
+    candidates.insert(std::make_pair(score, device));
+  }
+
+  //Select adequat GPU physical device
+  if(candidates.rbegin()->first > 0){
+    vk_struct->device.physical_device = candidates.rbegin()->second;
+
+    VkPhysicalDeviceProperties deviceProperties;
+    vkGetPhysicalDeviceProperties(vk_struct->device.physical_device, &deviceProperties);
+    say(deviceProperties.deviceName);
+
+  }else {
+    throw std::runtime_error("failed to find a suitable GPU!");
   }
   if(vk_struct->device.physical_device == VK_NULL_HANDLE){
     throw std::runtime_error("[error] failed to find a suitable GPU!");
   }
+
+  //Store device names
+  for(VkPhysicalDevice device : vec_physical_device){
+    VkPhysicalDeviceProperties deviceProperties;
+    vkGetPhysicalDeviceProperties(device, &deviceProperties);
+    vec_device_name.push_back(deviceProperties.deviceName);
+  }
+
+
+
+
+
 
   //---------------------------
 }
@@ -121,7 +146,8 @@ bool VK_physical_device::is_device_suitable(VkPhysicalDevice physical_device){
   vkGetPhysicalDeviceFeatures(physical_device, &supportedFeatures);
   bool msaa_ok = supportedFeatures.samplerAnisotropy;
   bool line_ok = supportedFeatures.wideLines;
-  if(msaa_ok == false || line_ok == false){
+  bool geom_ok = supportedFeatures.geometryShader;
+  if(msaa_ok == false || line_ok == false || geom_ok == false){
     return false;
   }
 
@@ -206,7 +232,36 @@ int VK_physical_device::find_queue_family_presentation(VkPhysicalDevice physical
   //---------------------------
   return -1;
 }
+int VK_physical_device::rate_device_suitability(VkPhysicalDevice physical_device){
+  int score = 0;
+  //---------------------------
 
+  VkPhysicalDeviceProperties deviceProperties;
+  vkGetPhysicalDeviceProperties(physical_device, &deviceProperties);
+
+  // Get rid of llvmpipe
+  if(deviceProperties.vendorID == 65541){
+    return 0;
+  }
+
+  // Check if integrated GPU
+  if(deviceProperties.deviceType != VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
+    score += 100000;
+  }
+
+  // Check if physical device is suitable
+  if(is_device_suitable(physical_device) == false){
+    return 0;
+  }
+
+  // Maximum possible size of textures affects graphics quality
+  score += deviceProperties.limits.maxImageDimension2D;
+
+  //---------------------------
+  return score;
+}
+
+//Find specific properties
 VkSurfaceCapabilitiesKHR VK_physical_device::find_surface_capability(VkPhysicalDevice physical_device){
   //---------------------------
 
