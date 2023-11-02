@@ -58,7 +58,7 @@ void FPS_counter::control_max_fps(){
 
   if (sleepTime > 0) {
     std::this_thread::sleep_for(std::chrono::microseconds(sleepTime));
-  }
+  } 
 
   //---------------------------
 }
