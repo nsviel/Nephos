@@ -9,7 +9,6 @@ add_subdirectory(Element)
 add_subdirectory(Ressource)
 
 file(GLOB_RECURSE ALL_SOURCES
-  Element/*.cpp
   GUI.cpp
 )
 
