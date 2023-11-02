@@ -10,7 +10,7 @@
 #include <Style/GUI_style.h>
 #include <Style/GUI_font.h>
 #include <TAB_render/Engine/GUI_engine.h>
-#include <TAB_render/Camera/GUI_camera.h>
+#include <TAB_render/Engine/GUI_camera.h>
 #include <TAB_render/Data/GUI_object.h>
 #include <TAB_render/Data/GUI_set.h>
 #include <TAB_render/Profiler/GUI_profiler.h>

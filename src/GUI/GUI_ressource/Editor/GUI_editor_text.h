@@ -6,7 +6,6 @@
 
 class GUI;
 class GUI_font;
-class GUI_control_editor;
 
 
 class GUI_editor_text
@@ -39,7 +38,6 @@ public:
 
 private:
   GUI_font* gui_font;
-  GUI_control_editor* control;
   TextEditor* editor;
 
   string status;

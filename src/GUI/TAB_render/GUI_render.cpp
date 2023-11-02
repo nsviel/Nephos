@@ -1,26 +1,24 @@
 #include "GUI_render.h"
+#include "Engine/GUI_camera.h"
+#include "Menu/GUI_render_menu.h"
+#include "GUI_render_panel.h"
+#include "Engine/GUI_engine.h"
+#include "Data/GUI_object.h"
+#include "Data/GUI_scene.h"
+#include "Data/GUI_set.h"
+#include "Profiler/GUI_profiler.h"
+#include "Shader/GUI_shader.h"
+#include "Data/GUI_scene.h"
+#include "Menu/GUI_render_option.h"
+#include "GUI_render_panel.h"
 
 #include <GUI.h>
-#include <TAB_render/GUI_render_panel.h>
+#include <Engine.h>
 #include <Data/Load/Loader.h>
 #include <Widget/GUI_indicator.h>
-#include <TAB_render/Menu/GUI_render_option.h>
-
 #include <Editor/GUI_editor_node.h>
 #include <Data/GUI_database.h>
 #include <Capture/GUI_capture.h>
-#include <TAB_render/Menu/GUI_render_menu.h>
-#include <TAB_render/GUI_render_panel.h>
-
-#include <Engine.h>
-#include <TAB_render/Engine/GUI_engine.h>
-#include <TAB_render/Data/GUI_object.h>
-#include <TAB_render/Data/GUI_scene.h>
-#include <TAB_render/Data/GUI_set.h>
-#include <TAB_render/Profiler/GUI_profiler.h>
-#include <TAB_render/Shader/GUI_shader.h>
-#include <TAB_render/Data/GUI_scene.h>
-#include <TAB_render/Camera/GUI_camera.h>
 #include <image/IconsFontAwesome5.h>
 
 

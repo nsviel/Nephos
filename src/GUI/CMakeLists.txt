@@ -8,15 +8,12 @@ add_subdirectory(TAB_render)
 add_subdirectory(GUI_element)
 add_subdirectory(GUI_ressource)
 
-file(GLOB_RECURSE ALL_SOURCES
-  GUI_element/*.cpp
-  GUI.cpp
-)
-
 #-----------------
 # Compilation
 #-----------------
-add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
+add_library(${LIBRARY_NAME} STATIC
+  GUI.cpp
+)
 
 #-----------------
 # Dependencies
@@ -26,10 +23,10 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_RESSOURCE
   LIBRARY_ENGINE
 
-  LIBRARY_GUI_TAB_DEV
-  LIBRARY_GUI_TAB_RENDER
   LIBRARY_GUI_ELEMENT
   LIBRARY_GUI_RESSOURCE
+  LIBRARY_GUI_TAB_DEV
+  LIBRARY_GUI_TAB_RENDER
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

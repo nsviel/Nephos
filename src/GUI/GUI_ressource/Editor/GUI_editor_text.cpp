@@ -2,7 +2,6 @@
 
 #include <GUI.h>
 #include <Style/GUI_font.h>
-#include <Control/GUI_control_editor.h>
 
 
 //Constructor / Destructor
@@ -11,7 +10,6 @@ GUI_editor_text::GUI_editor_text(GUI* gui){
 
   this->gui_font = gui->get_gui_font();
   this->editor = new TextEditor();
-  this->control = new GUI_control_editor(this);
   editor->SetPalette(editor->get_custom_palette());
 
   this->current_file_path = "";
@@ -52,7 +50,14 @@ void GUI_editor_text::editor_control(){
   //---------------------------
 
   if(ImGui::IsWindowHovered(ImGuiHoveredFlags_ChildWindows)){
-    control->run_control();
+    ImGuiIO io = ImGui::GetIO();
+    for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
+      //CTRL + S - save to file
+      if(io.KeysDown[527] && ImGui::IsKeyPressed(ImGuiKey_S)){
+        this->save_to_current_file();
+        break;
+      }
+    }
   }
 
   //---------------------------
