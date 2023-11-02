@@ -1,9 +1,9 @@
 #ifndef VK_TEXTURE_H
 #define VK_TEXTURE_H
 
-#include "../Struct/struct_image.h"
-#include "../Struct/struct_data.h"
-#include "../Struct/typedef.h"
+#include "../VK_struct/struct_image.h"
+#include "../VK_struct/struct_data.h"
+#include "../VK_struct/typedef.h"
 #include <Specific/common.h>
 
 extern "C" {

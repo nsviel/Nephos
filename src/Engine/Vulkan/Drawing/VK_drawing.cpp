@@ -11,7 +11,7 @@
 #include <Vulkan/Command/VK_submit.h>
 #include <Vulkan/Command/VK_command.h>
 #include <Vulkan/Presentation/VK_canvas.h>
-#include <Vulkan/Binding/VK_descriptor.h>
+#include <Vulkan/VK_binding/VK_descriptor.h>
 
 
 //Constructor / Destructor

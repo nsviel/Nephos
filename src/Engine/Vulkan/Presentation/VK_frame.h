@@ -1,9 +1,9 @@
 #ifndef VK_FRAME_H
 #define VK_FRAME_H
 
-#include "../Struct/struct_frame.h"
-#include "../Struct/struct_renderpass.h"
-#include "../Struct/struct_swapchain.h"
+#include "../VK_struct/struct_frame.h"
+#include "../VK_struct/struct_renderpass.h"
+#include "../VK_struct/struct_swapchain.h"
 #include <Specific/common.h>
 
 class VK_engine;

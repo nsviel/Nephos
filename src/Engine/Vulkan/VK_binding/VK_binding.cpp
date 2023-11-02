@@ -2,7 +2,7 @@
 #include "VK_uniform.h"
 #include "VK_sampler.h"
 
-#include "../Binding/VK_descriptor.h"
+#include "../VK_binding/VK_descriptor.h"
 
 #include "../VK_engine.h"
 #include "../VK_struct.h"

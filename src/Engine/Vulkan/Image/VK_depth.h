@@ -1,7 +1,7 @@
 #ifndef VK_DEPTH_H
 #define VK_DEPTH_H
 
-#include "../Struct/struct_frame.h"
+#include "../VK_struct/struct_frame.h"
 #include <Specific/common.h>
 
 class VK_engine;

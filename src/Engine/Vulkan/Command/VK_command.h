@@ -1,9 +1,9 @@
 #ifndef VK_COMMAND_H
 #define VK_COMMAND_H
 
-#include "../Struct/struct_frame.h"
-#include "../Struct/struct_data.h"
-#include "../Struct/struct_renderpass.h"
+#include "../VK_struct/struct_frame.h"
+#include "../VK_struct/struct_data.h"
+#include "../VK_struct/struct_renderpass.h"
 #include <Specific/common.h>
 
 class Param;

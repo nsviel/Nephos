@@ -1,7 +1,7 @@
 #ifndef VK_COLOR_H
 #define VK_COLOR_H
 
-#include "../Struct/struct_frame.h"
+#include "../VK_struct/struct_frame.h"
 #include <Specific/common.h>
 
 class VK_engine;

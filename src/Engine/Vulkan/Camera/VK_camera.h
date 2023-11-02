@@ -1,7 +1,7 @@
 #ifndef VK_CAMERA_H
 #define VK_CAMERA_H
 
-#include "../Struct/struct_binding.h"
+#include "../VK_struct/struct_binding.h"
 #include <Specific/common.h>
 
 class VK_engine;

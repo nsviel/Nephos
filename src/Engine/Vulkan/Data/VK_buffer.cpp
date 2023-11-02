@@ -1,5 +1,5 @@
 #include "VK_buffer.h"
-#include "../Binding/VK_descriptor.h"
+#include "../VK_binding/VK_descriptor.h"
 #include "../VK_engine.h"
 #include "../VK_struct.h"
 #include "../Command/VK_command.h"

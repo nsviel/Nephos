@@ -1,8 +1,8 @@
 #ifndef VK_SAMPLER_H
 #define VK_SAMPLER_H
 
-#include "../Struct/struct_binding.h"
-#include "../Struct/struct_pipeline.h"
+#include "../VK_struct/struct_binding.h"
+#include "../VK_struct/struct_pipeline.h"
 #include <Specific/common.h>
 
 class VK_engine;

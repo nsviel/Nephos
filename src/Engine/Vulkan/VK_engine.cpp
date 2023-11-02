@@ -15,15 +15,15 @@
 
 #include "Device/VK_device.h"
 #include "Device/VK_physical_device.h"
-#include "Window/VK_surface.h"
-#include "Window/VK_error.h"
+#include "VK_window/VK_surface.h"
+#include "VK_window/VK_error.h"
 #include "Instance/VK_instance.h"
 #include "Instance/VK_validation.h"
 
 #include "Presentation/VK_canvas.h"
-#include "Binding/VK_descriptor.h"
-#include "Binding/VK_binding.h"
-#include "Binding/VK_uniform.h"
+#include "VK_binding/VK_descriptor.h"
+#include "VK_binding/VK_binding.h"
+#include "VK_binding/VK_uniform.h"
 
 #include "Image/VK_depth.h"
 #include "Image/VK_color.h"
@@ -35,8 +35,8 @@
 #include "Camera/VK_viewport.h"
 #include "Camera/VK_camera.h"
 
-#include "Shader/VK_shader.h"
-#include "Shader/VK_reload.h"
+#include "VK_shader/VK_shader.h"
+#include "VK_shader/VK_reload.h"
 
 #include <Engine.h>
 #include <Param.h>

@@ -6,7 +6,7 @@
 #include "../Presentation/VK_framebuffer.h"
 #include "../Image/VK_depth.h"
 #include "../Device/VK_physical_device.h"
-#include "../Window/VK_surface.h"
+#include "../VK_window/VK_surface.h"
 
 #include <Window/Window.h>
 

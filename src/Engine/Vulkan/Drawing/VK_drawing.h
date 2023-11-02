@@ -1,9 +1,9 @@
 #ifndef VK_DRAWING_H
 #define VK_DRAWING_H
 
-#include <Vulkan/Struct/struct_frame.h>
-#include <Vulkan/Struct/struct_renderpass.h>
-#include <Vulkan/Struct/struct_command.h>
+#include <Vulkan/VK_struct/struct_frame.h>
+#include <Vulkan/VK_struct/struct_renderpass.h>
+#include <Vulkan/VK_struct/struct_command.h>
 #include <Specific/common.h>
 
 class VK_engine;

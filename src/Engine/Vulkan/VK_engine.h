@@ -1,7 +1,7 @@
 #ifndef VK_ENGINE_H
 #define VK_ENGINE_H
 
-#include "Struct/typedef.h"
+#include "VK_struct/typedef.h"
 #include <Specific/common.h>
 
 class Engine;

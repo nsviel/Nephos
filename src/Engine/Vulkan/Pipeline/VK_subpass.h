@@ -1,7 +1,7 @@
 #ifndef VK_SUBPASS_H
 #define VK_SUBPASS_H
 
-#include "../Struct/struct_renderpass.h"
+#include "../VK_struct/struct_renderpass.h"
 #include <Specific/common.h>
 
 class VK_engine;

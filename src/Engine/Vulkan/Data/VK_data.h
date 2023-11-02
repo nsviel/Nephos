@@ -1,8 +1,8 @@
 #ifndef VK_DATA_H
 #define VK_DATA_H
 
-#include "../Struct/struct_pipeline.h"
-#include "../Struct/struct_data.h"
+#include "../VK_struct/struct_pipeline.h"
+#include "../VK_struct/struct_data.h"
 #include <Specific/common.h>
 
 class VK_engine;

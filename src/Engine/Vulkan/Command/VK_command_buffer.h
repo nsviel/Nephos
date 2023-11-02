@@ -1,8 +1,8 @@
 #ifndef VK_COMMAND_BUFFER_H
 #define VK_COMMAND_BUFFER_H
 
-#include "../Struct/struct_renderpass.h"
-#include "../Struct/struct_data.h"
+#include "../VK_struct/struct_renderpass.h"
+#include "../VK_struct/struct_data.h"
 #include <Specific/common.h>
 
 class VK_engine;

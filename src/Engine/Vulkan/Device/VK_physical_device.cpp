@@ -1,7 +1,7 @@
 #include "VK_physical_device.h"
 
 #include "../Instance/VK_instance.h"
-#include "../Window/VK_surface.h"
+#include "../VK_window/VK_surface.h"
 
 #include "../VK_engine.h"
 #include "../VK_struct.h"

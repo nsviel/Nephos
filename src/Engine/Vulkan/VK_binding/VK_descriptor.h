@@ -1,11 +1,11 @@
 #ifndef VK_DESCRIPTOR_H
 #define VK_DESCRIPTOR_H
 
-#include "../Struct/struct_binding.h"
-#include "../Struct/struct_frame.h"
-#include "../Struct/struct_pipeline.h"
-#include "../Struct/struct_data.h"
-#include "../Struct/struct_renderpass.h"
+#include "../VK_struct/struct_binding.h"
+#include "../VK_struct/struct_frame.h"
+#include "../VK_struct/struct_pipeline.h"
+#include "../VK_struct/struct_data.h"
+#include "../VK_struct/struct_renderpass.h"
 #include <Specific/common.h>
 
 class VK_engine;

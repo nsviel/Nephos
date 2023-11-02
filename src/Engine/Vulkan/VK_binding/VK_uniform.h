@@ -1,8 +1,8 @@
 #ifndef VK_UNIFORM_H
 #define VK_UNIFORM_H
 
-#include "../Struct/struct_binding.h"
-#include "../Struct/struct_pipeline.h"
+#include "../VK_struct/struct_binding.h"
+#include "../VK_struct/struct_pipeline.h"
 #include <Shader/EDL/EDL_param.h>
 #include <Specific/common.h>
 

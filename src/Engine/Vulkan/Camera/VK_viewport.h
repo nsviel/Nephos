@@ -1,7 +1,7 @@
 #ifndef VK_VIEWPORT_H
 #define VK_VIEWPORT_H
 
-#include "../Struct/struct_viewport.h"
+#include "../VK_struct/struct_viewport.h"
 #include <Specific/common.h>
 
 class VK_engine;

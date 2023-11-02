@@ -5,9 +5,9 @@
 #include "../VK_struct.h"
 #include "../Command/VK_command.h"
 #include "../Presentation/VK_swapchain.h"
-#include "../Window/VK_surface.h"
+#include "../VK_window/VK_surface.h"
 #include "../Presentation/VK_canvas.h"
-#include "../Binding/VK_descriptor.h"
+#include "../VK_binding/VK_descriptor.h"
 
 
 //Constructor / Destructor

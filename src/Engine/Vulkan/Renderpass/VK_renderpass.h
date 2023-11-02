@@ -1,8 +1,8 @@
 #ifndef VK_RENDERPASS_H
 #define VK_RENDERPASS_H
 
-#include <Vulkan/Struct/struct_renderpass.h>
-#include <Vulkan/Struct/struct_pipeline.h>
+#include <Vulkan/VK_struct/struct_renderpass.h>
+#include <Vulkan/VK_struct/struct_pipeline.h>
 #include <Specific/common.h>
 
 class VK_engine;

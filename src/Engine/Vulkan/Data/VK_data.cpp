@@ -4,8 +4,8 @@
 #include "../VK_struct.h"
 #include "../Image/VK_texture.h"
 #include "../Command/VK_command_buffer.h"
-#include "../Binding/VK_binding.h"
-#include "../Binding/VK_descriptor.h"
+#include "../VK_binding/VK_binding.h"
+#include "../VK_binding/VK_descriptor.h"
 
 #include <GPU/GPU_data.h>
 

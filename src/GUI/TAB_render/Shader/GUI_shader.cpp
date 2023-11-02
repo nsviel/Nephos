@@ -2,8 +2,8 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <Vulkan/Shader/VK_reload.h>
-#include <Vulkan/Struct/struct_instance.h>
+#include <Vulkan/VK_shader/VK_reload.h>
+#include <Vulkan/VK_struct/struct_instance.h>
 #include <Vulkan/VK_engine.h>
 #include <Shader/Shader.h>
 #include <Shader/EDL/EDL_shader.h>

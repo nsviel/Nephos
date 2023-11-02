@@ -7,7 +7,7 @@
 #include <Vulkan/VK_struct.h>
 #include <Vulkan/Command/VK_command.h>
 #include <Vulkan/Presentation/VK_canvas.h>
-#include <Vulkan/Binding/VK_descriptor.h>
+#include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/Camera/VK_viewport.h>
 #include <Shader/PSR/PSR_param.h>
 
