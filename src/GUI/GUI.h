@@ -39,8 +39,6 @@ public:
   inline GUI_control_gui* get_gui_control(){return gui_control;}
   inline GUI_style* get_gui_style(){return gui_style;}
   inline GUI_init* get_gui_init(){return gui_init;}
-  inline GUI_image* get_gui_image(){return gui_image;}
-  inline GUI_video* get_gui_video(){return gui_video;}
   inline GUI_tab* get_gui_tab(){return gui_tab;}
   inline GUI_font* get_gui_font(){return gui_font;}
 
@@ -53,9 +51,7 @@ private:
   GUI_style* gui_style;
   GUI_init* gui_init;
   GUI_gpu* gui_gpu;
-  GUI_image* gui_image;
   GUI_font* gui_font;
-  GUI_video* gui_video;
   GUI_tab* gui_tab;
 };
 

@@ -4,14 +4,14 @@
 #include <Specific/common.h>
 #include <GPU/GPU_texture.h>
 
-class Engine;
+class GUI;
 
 
 class GUI_image
 {
 public:
   //Constructor / Destructor
-  GUI_image(Engine* engine);
+  GUI_image(GUI* gui);
   ~GUI_image();
 
 public:

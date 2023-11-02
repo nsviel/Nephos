@@ -3,7 +3,7 @@
 
 #include <Specific/common.h>
 
-class Engine;
+class GUI;
 class VK_struct;
 class DR_ui;
 
@@ -12,7 +12,7 @@ class GUI_gpu
 {
 public:
   //Constructor / Destructor
-  GUI_gpu(Engine* engine);
+  GUI_gpu(GUI* gui);
   ~GUI_gpu();
 
 public:

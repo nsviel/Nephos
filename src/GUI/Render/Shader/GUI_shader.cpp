@@ -3,6 +3,7 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <Vulkan/Shader/VK_reload.h>
+#include <Vulkan/Struct/struct_instance.h>
 #include <Vulkan/VK_engine.h>
 #include <Shader/Shader.h>
 #include <Shader/EDL/EDL_shader.h>
@@ -63,6 +64,8 @@ void GUI_shader::design_panel(){
   this->shader_tabs();
   this->shader_control();
 
+string message = Shader_logger::get_instance().get_shader_printf();
+  gui_console->add_log(message);
   gui_console->add_file("error", "output.txt");
   gui_console->draw_console("truc");
 

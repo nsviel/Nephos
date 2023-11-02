@@ -1,5 +1,6 @@
 #include "GUI_font.h"
 
+#include <GUI.h>
 #include <Engine.h>
 #include <Vulkan/VK_engine.h>
 #include <Vulkan/VK_struct.h>
@@ -7,9 +8,10 @@
 
 
 //Constructor / Destructor
-GUI_font::GUI_font(Engine* engine){
+GUI_font::GUI_font(GUI* gui){
   //---------------------------
 
+  Engine* engine = gui->get_engine();
   VK_engine* vk_engine = engine->get_vk_engine();
   this->vk_struct = vk_engine->get_vk_struct();
 

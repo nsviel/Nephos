@@ -1,26 +1,23 @@
 #include "GUI.h"
-#include "Element/GPU/GUI_gpu.h"
-#include "Element/GPU/GUI_image.h"
-#include "Element/GPU/GUI_video.h"
 #include "Window/Window.h"
-
-#include "Element/Control/GUI_control_gui.h"
-#include <Element/Style/GUI_style.h>
-#include <Element/Style/GUI_font.h>
-#include "Render/Engine/GUI_engine.h"
-#include "Render/Camera/GUI_camera.h"
-#include "Render/Data/GUI_object.h"
-#include "Render/Data/GUI_set.h"
-#include "Render/Profiler/GUI_profiler.h"
-#include "Render/Shader/GUI_shader.h"
-#include "Render/Data/GUI_scene.h"
-#include <Render/Initialization/GUI_init.h>
-#include <Render/Capture/GUI_capture.h>
 
 #include <Engine.h>
 #include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
 #include <Tab/GUI_tab.h>
+#include <Element/GPU/GUI_gpu.h>
+#include <Element/Control/GUI_control_gui.h>
+#include <Element/Style/GUI_style.h>
+#include <Element/Style/GUI_font.h>
+#include <Render/Engine/GUI_engine.h>
+#include <Render/Camera/GUI_camera.h>
+#include <Render/Data/GUI_object.h>
+#include <Render/Data/GUI_set.h>
+#include <Render/Profiler/GUI_profiler.h>
+#include <Render/Shader/GUI_shader.h>
+#include <Render/Data/GUI_scene.h>
+#include <Render/Initialization/GUI_init.h>
+#include <Element/Capture/GUI_capture.h>
 
 
 //Constructor / Destructor
@@ -31,13 +28,11 @@ GUI::GUI(Window* window, Engine* engine){
   this->window = window;
   this->data = engine->get_data();
 
-  this->gui_image = new GUI_image(engine);
-  this->gui_video = new GUI_video(engine);
   this->gui_init = new GUI_init(this);
   this->gui_style = new GUI_style(this);
-  this->gui_font = new GUI_font(engine);
+  this->gui_font = new GUI_font(this);
   this->gui_tab = new GUI_tab(this);
-  this->gui_gpu = new GUI_gpu(engine);
+  this->gui_gpu = new GUI_gpu(this);
   this->gui_control = new GUI_control_gui(this);
 
   //---------------------------

@@ -1,5 +1,6 @@
 #include "GUI_gpu.h"
 
+#include <GUI.h>
 #include <Engine.h>
 #include <Vulkan/VK_struct.h>
 #include <Vulkan/VK_engine.h>
@@ -9,9 +10,10 @@
 
 
 //Constructor / Destructor
-GUI_gpu::GUI_gpu(Engine* engine){
+GUI_gpu::GUI_gpu(GUI* gui){
   //---------------------------
 
+  Engine* engine = gui->get_engine();
   VK_engine* vk_engine = engine->get_vk_engine();
   VK_drawing* vk_drawing = vk_engine->get_vk_drawing();
   this->vk_struct = vk_engine->get_vk_struct();

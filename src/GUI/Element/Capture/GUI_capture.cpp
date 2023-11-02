@@ -10,8 +10,8 @@
 GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  this->gui_image = gui->get_gui_image();
-  this->gui_video = gui->get_gui_video();
+  this->gui_image = new GUI_image(gui);
+  this->gui_video = new GUI_video(gui);
   this->gui = gui;
 
   //---------------------------

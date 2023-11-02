@@ -12,65 +12,8 @@ GUI_console::GUI_console(){
 GUI_console::~GUI_console(){}
 
 //Main function
-void GUI_console::add_log(const char* fmt, ...){
-  //---------------------------
-
-  // FIXME-OPT
-  char buf[1024];
-  va_list args;
-  va_start(args, fmt);
-  vsnprintf(buf, IM_ARRAYSIZE(buf), fmt, args);
-  buf[IM_ARRAYSIZE(buf)-1] = 0;
-  va_end(args);
-  Items.push_back(Strdup(buf));
-
-  //---------------------------
-}
-void GUI_console::add_file(string prefix, string path){
-  //---------------------------
-
-  //Retrieve file content
-  std::ifstream inputFile(path.c_str());
-  if (!inputFile.is_open()) {
-    std::cerr << "Failed to open the file for reading." << std::endl;
-    return;
-  }
-  std::string content((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
-  inputFile.close();
-
-  //Add content into console
-  if(content != ""){
-    if(prefix == "error"){
-      this->add_log("[error]");
-    }
-    this->add_log(content.c_str());
-  }
-
-  //Clear file
-  std::ofstream outputFile(path.c_str(), std::ofstream::out);
-  if (outputFile.is_open()) {
-    outputFile.close();
-  } else {
-    std::cerr << "Failed to open the file for clearing." << std::endl;
-    return;
-  }
-
-  //---------------------------
-}
-void GUI_console::clear_log(){
-  //---------------------------
-
-  for (int i = 0; i < Items.Size; i++){
-    free(Items[i]);
-  }
-  Items.clear();
-
-  //---------------------------
-}
 void GUI_console::draw_console(string title){
   //---------------------------
-
-
 
   // Reserve enough left-over height for 1 separator + 1 input text
   const float footer_height_to_reserve = ImGui::GetFrameHeightWithSpacing();
@@ -136,10 +79,75 @@ void GUI_console::draw_console(string title){
   }
   ImGui::EndChild();
 
+  //---------------------------
+}
 
+//Add / clear function
+void GUI_console::add_log(const char* fmt, ...){
+  //---------------------------
+
+  // FIXME-OPT
+  char buf[1024];
+  va_list args;
+  va_start(args, fmt);
+  vsnprintf(buf, IM_ARRAYSIZE(buf), fmt, args);
+  buf[IM_ARRAYSIZE(buf)-1] = 0;
+  va_end(args);
+  Items.push_back(Strdup(buf));
 
   //---------------------------
 }
+void GUI_console::add_log(string& log){
+  //---------------------------
+
+  char* copy = ImStrdup(log.c_str());
+  Items.push_back(copy);
+
+  //---------------------------
+}
+void GUI_console::add_file(string prefix, string path){
+  //---------------------------
+
+  //Retrieve file content
+  std::ifstream inputFile(path.c_str());
+  if (!inputFile.is_open()) {
+    std::cerr << "Failed to open the file for reading." << std::endl;
+    return;
+  }
+  std::string content((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
+  inputFile.close();
+
+  //Add content into console
+  if(content != ""){
+    if(prefix == "error"){
+      this->add_log("[error]");
+    }
+    this->add_log(content.c_str());
+  }
+
+  //Clear file
+  std::ofstream outputFile(path.c_str(), std::ofstream::out);
+  if (outputFile.is_open()) {
+    outputFile.close();
+  } else {
+    std::cerr << "Failed to open the file for clearing." << std::endl;
+    return;
+  }
+
+  //---------------------------
+}
+void GUI_console::clear_log(){
+  //---------------------------
+
+  for (int i = 0; i < Items.Size; i++){
+    free(Items[i]);
+  }
+  Items.clear();
+
+  //---------------------------
+}
+
+//Subfunction
 void GUI_console::draw_command_line(){
   //---------------------------
 

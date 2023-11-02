@@ -3,7 +3,7 @@
 
 #include <Specific/common.h>
 
-class Engine;
+class GUI;
 class VK_struct;
 
 
@@ -11,7 +11,7 @@ class GUI_font
 {
 public:
   //Constructor / Destructor
-  GUI_font(Engine* engine);
+  GUI_font(GUI* gui);
   ~GUI_font();
 
 public:

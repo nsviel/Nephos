@@ -8,7 +8,7 @@
 
 #include <Ressource/Editor/GUI_editor_node.h>
 #include <Element/Data/GUI_database.h>
-#include <Render/Capture/GUI_capture.h>
+#include <Element/Capture/GUI_capture.h>
 #include <Render/Menu/GUI_render_menu.h>
 #include <Render/GUI_render_panel.h>
 

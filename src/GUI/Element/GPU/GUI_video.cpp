@@ -1,18 +1,14 @@
 #include "GUI_video.h"
 
+#include <GUI.h>
 #include <Engine.h>
-
-extern "C" {
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libswscale/swscale.h>
-}
 
 
 //Constructor / Destructor
-GUI_video::GUI_video(Engine* engine){
+GUI_video::GUI_video(GUI* gui){
   //---------------------------
 
+  Engine* engine = gui->get_engine();
   this->gpu_texture = engine->get_gpu_texture();
 
   this->video_loaded = false;

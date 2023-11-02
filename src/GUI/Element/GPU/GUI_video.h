@@ -3,16 +3,21 @@
 
 #include <Specific/common.h>
 #include <GPU/GPU_texture.h>
-#include <vlc/vlc.h>
 
-class Engine;
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libswscale/swscale.h>
+}
+
+class GUI;
 
 
 class GUI_video
 {
 public:
   //Constructor / Destructor
-  GUI_video(Engine* engine);
+  GUI_video(GUI* gui);
   ~GUI_video();
 
 public:

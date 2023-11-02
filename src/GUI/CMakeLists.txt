@@ -30,4 +30,10 @@ target_link_libraries(LIBRARY_GUI PUBLIC
   LIBRARY_ENGINE
   LIBRARY_GUI_DEV
   LIBRARY_GUI_RENDER
+  #FFMPEG
+ -lavformat
+ -lavcodec
+ -lswresample
+ -lswscale
+ -lavutil
 )

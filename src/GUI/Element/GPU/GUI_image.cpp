@@ -1,13 +1,16 @@
 #include "GUI_image.h"
 
+#include <GUI.h>
 #include <Engine.h>
 
 
 //Constructor / Destructor
-GUI_image::GUI_image(Engine* engine){
+GUI_image::GUI_image(GUI* gui){
   //---------------------------
 
+  Engine* engine = gui->get_engine();
   this->gpu_texture = engine->get_gpu_texture();
+
   this->image = nullptr;
 
   //---------------------------
