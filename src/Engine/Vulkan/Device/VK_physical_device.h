@@ -45,6 +45,8 @@ private:
   VK_instance* vk_instance;
 
   vector<string> vec_device_name;
+  int nb_queue_graphics;
+  int nb_queue_presentation;
 };
 
 #endif

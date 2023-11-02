@@ -1,20 +1,9 @@
-set(LIBRARY_NAME LIBRARY_ENGINE)
+set(LIBRARY_NAME LIBRARY_VULKAN)
 
 #-----------------
 # Source files
 #-----------------
-#add_subdirectory(Vulkan)
-
-file(GLOB_RECURSE ALL_SOURCES
-  Camera/*.cpp
-  Data/*.cpp
-  GPU/*.cpp
-  Operation/*.cpp
-  Shader/*.cpp
-  Vulkan/*.cpp
-  Engine.cpp
-  Param.cpp
-)
+file(GLOB_RECURSE ALL_SOURCES *.cpp)
 
 #-----------------
 # Compilation
@@ -30,7 +19,6 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
   LIBRARY_RESSOURCE
-  #LIBRARY_VULKAN
 
   ${Vulkan_LIBRARIES}
 

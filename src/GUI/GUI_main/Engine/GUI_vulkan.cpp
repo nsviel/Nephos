@@ -1,34 +1,34 @@
-#include "UI_vulkan.h"
+#include "GUI_vulkan.h"
 
 // All the ImGui_ImplVulkanH_XXX structures/functions are optional helpers used by the demo.
 // Your real engine/app may not use them.
 
 //Constructor / Destructor
-UI_vulkan::UI_vulkan(){
+GUI_vulkan::GUI_vulkan(){
   //---------------------------
 
   //---------------------------
 }
-UI_vulkan::~UI_vulkan(){}
+GUI_vulkan::~GUI_vulkan(){}
 
 //Main function
-void UI_vulkan::glfw_error_callback(int error, const char* description){
+void GUI_vulkan::glfw_error_callback(int error, const char* description){
     fprintf(stderr, "GLFW Error %d: %s\n", error, description);
 }
-void UI_vulkan::check_vk_result(VkResult err){
+void GUI_vulkan::check_vk_result(VkResult err){
     if (err == 0)
         return;
     fprintf(stderr, "[vulkan] Error: VkResult = %d\n", err);
     if (err < 0)
         abort();
 }
-bool UI_vulkan::IsExtensionAvailable(const ImVector<VkExtensionProperties>& properties, const char* extension){
+bool GUI_vulkan::IsExtensionAvailable(const ImVector<VkExtensionProperties>& properties, const char* extension){
     for (const VkExtensionProperties& p : properties)
         if (strcmp(p.extensionName, extension) == 0)
             return true;
     return false;
 }
-VkPhysicalDevice UI_vulkan::SetupVulkan_SelectPhysicalDevice(){
+VkPhysicalDevice GUI_vulkan::SetupVulkan_SelectPhysicalDevice(){
     uint32_t gpu_count;
     VkResult err = vkEnumeratePhysicalDevices(g_Instance, &gpu_count, nullptr);
     check_vk_result(err);
@@ -55,7 +55,7 @@ VkPhysicalDevice UI_vulkan::SetupVulkan_SelectPhysicalDevice(){
         return gpus[0];
     return VK_NULL_HANDLE;
 }
-void UI_vulkan::SetupVulkan(ImVector<const char*> instance_extensions){
+void GUI_vulkan::SetupVulkan(ImVector<const char*> instance_extensions){
     VkResult err;
 
     // Create Vulkan Instance
@@ -180,7 +180,7 @@ void UI_vulkan::SetupVulkan(ImVector<const char*> instance_extensions){
         check_vk_result(err);
     }
 }
-void UI_vulkan::SetupVulkanWindow(ImGui_ImplVulkanH_Window* wd, VkSurfaceKHR surface, int width, int height){
+void GUI_vulkan::SetupVulkanWindow(ImGui_ImplVulkanH_Window* wd, VkSurfaceKHR surface, int width, int height){
     wd->Surface = surface;
 
     // Check for WSI support
@@ -210,7 +210,7 @@ void UI_vulkan::SetupVulkanWindow(ImGui_ImplVulkanH_Window* wd, VkSurfaceKHR sur
     IM_ASSERT(g_MinImageCount >= 2);
     ImGui_ImplVulkanH_CreateOrResizeWindow(g_Instance, g_PhysicalDevice, g_Device, wd, g_QueueFamily, g_Allocator, width, height, g_MinImageCount);
 }
-void UI_vulkan::CleanupVulkan(){
+void GUI_vulkan::CleanupVulkan(){
     vkDestroyDescriptorPool(g_Device, g_DescriptorPool, g_Allocator);
 
 #ifdef IMGUI_VULKAN_DEBUG_REPORT
@@ -222,10 +222,10 @@ void UI_vulkan::CleanupVulkan(){
     vkDestroyDevice(g_Device, g_Allocator);
     vkDestroyInstance(g_Instance, g_Allocator);
 }
-void UI_vulkan::CleanupVulkanWindow(){
+void GUI_vulkan::CleanupVulkanWindow(){
     ImGui_ImplVulkanH_DestroyWindow(g_Instance, g_Device, &g_MainWindowData, g_Allocator);
 }
-void UI_vulkan::FrameRender(ImGui_ImplVulkanH_Window* wd, ImDrawData* draw_data){
+void GUI_vulkan::FrameRender(ImGui_ImplVulkanH_Window* wd, ImDrawData* draw_data){
     VkResult err;
 
     VkSemaphore image_acquired_semaphore  = wd->FrameSemaphores[wd->SemaphoreIndex].ImageAcquiredSemaphore;
@@ -290,7 +290,7 @@ void UI_vulkan::FrameRender(ImGui_ImplVulkanH_Window* wd, ImDrawData* draw_data)
         check_vk_result(err);
     }
 }
-void UI_vulkan::FramePresent(ImGui_ImplVulkanH_Window* wd){
+void GUI_vulkan::FramePresent(ImGui_ImplVulkanH_Window* wd){
     if (g_SwapChainRebuild)
         return;
     VkSemaphore render_complete_semaphore = wd->FrameSemaphores[wd->SemaphoreIndex].RenderCompleteSemaphore;

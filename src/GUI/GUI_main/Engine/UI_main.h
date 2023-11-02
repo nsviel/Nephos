@@ -6,7 +6,7 @@
 #include <imgui/core/imgui_internal.h>
 #include <imgui/vulkan/imgui_impl_vulkan.h>
 
-class UI_vulkan;
+class GUI_vulkan;
 class Window;
 
 
@@ -25,7 +25,7 @@ public:
 
 private:
   Window* window;
-  UI_vulkan* ui_vulkan;
+  GUI_vulkan* gui_vulkan;
 
   ImGui_ImplVulkanH_Window* wd;
 };

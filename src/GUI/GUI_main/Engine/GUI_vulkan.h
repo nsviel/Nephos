@@ -11,12 +11,12 @@
 #include <imgui/vulkan/imgui_impl_vulkan.h>
 
 
-class UI_vulkan
+class GUI_vulkan
 {
 public:
   //Constructor / Destructor
-  UI_vulkan();
-  ~UI_vulkan();
+  GUI_vulkan();
+  ~GUI_vulkan();
 
 public:
   //Main functions

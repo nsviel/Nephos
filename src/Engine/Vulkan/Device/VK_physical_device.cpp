@@ -180,15 +180,16 @@ int VK_physical_device::find_queue_family_graphics(VkPhysicalDevice physical_dev
   //---------------------------
 
   //Get queue family number
-  uint32_t nb_queueFamily = 0;
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queueFamily, nullptr);
-  if(nb_queueFamily == 0) {
+  uint32_t nb_queue_family = 0;
+  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queue_family, nullptr);
+  if(nb_queue_family == 0) {
     throw std::runtime_error("[error] No queue families on selected GPU");
   }
+  this->nb_queue_graphics = nb_queue_family;
 
   //List queue families
-  std::vector<VkQueueFamilyProperties> vec_queueFamily(nb_queueFamily);
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queueFamily, vec_queueFamily.data());
+  std::vector<VkQueueFamilyProperties> vec_queueFamily(nb_queue_family);
+  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queue_family, vec_queueFamily.data());
 
   //Search for specific properties (e.g, graphics)
   int i = 0;
@@ -207,15 +208,16 @@ int VK_physical_device::find_queue_family_presentation(VkPhysicalDevice physical
   //---------------------------
 
   //Get queue family number
-  uint32_t nb_queueFamily = 0;
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queueFamily, nullptr);
-  if(nb_queueFamily == 0) {
+  uint32_t nb_queue_family = 0;
+  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queue_family, nullptr);
+  if(nb_queue_family == 0) {
     throw std::runtime_error("[error] No queue families on selected GPU");
   }
+  this->nb_queue_graphics = nb_queue_family;
 
   //List queue families
-  std::vector<VkQueueFamilyProperties> vec_queueFamily(nb_queueFamily);
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queueFamily, vec_queueFamily.data());
+  std::vector<VkQueueFamilyProperties> vec_queueFamily(nb_queue_family);
+  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queue_family, vec_queueFamily.data());
 
   //Search for specific properties (e.g, graphics)
   int i = 0;

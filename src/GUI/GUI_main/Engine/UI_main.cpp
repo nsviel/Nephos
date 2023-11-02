@@ -1,5 +1,5 @@
 #include "UI_main.h"
-#include "UI_vulkan.h"
+#include "GUI_vulkan.h"
 
 #define GLFW_INCLUDE_NONE
 #define GLFW_INCLUDE_VULKAN
@@ -21,7 +21,7 @@ UI_main::UI_main(Window* window){
   //---------------------------
 
   this->window = window;
-  this->ui_vulkan = new UI_vulkan();
+  this->gui_vulkan = new GUI_vulkan();
 
   //---------------------------
 }
@@ -38,20 +38,20 @@ void UI_main::init_gui(){
   for (uint32_t i = 0; i < extensions_count; i++){
     extensions.push_back(glfw_extensions[i]);
   }
-  ui_vulkan->SetupVulkan(extensions);
+  gui_vulkan->SetupVulkan(extensions);
 
   // Create Window Surface
   VkSurfaceKHR surface;
-  window->create_window_surface(ui_vulkan->g_Instance, surface);
+  window->create_window_surface(gui_vulkan->g_Instance, surface);
 
-  //VkResult err = glfwCreateWindowSurface(ui_vulkan->g_Instance, window->get_window(), ui_vulkan->g_Allocator, &surface);
-  //ui_vulkan->check_vk_result(err);
+  //VkResult err = glfwCreateWindowSurface(gui_vulkan->g_Instance, window->get_window(), gui_vulkan->g_Allocator, &surface);
+  //gui_vulkan->check_vk_result(err);
 
   // Create Framebuffers
   int w, h;
   glfwGetFramebufferSize(window->get_window(), &w, &h);
-  this->wd = &ui_vulkan->g_MainWindowData;
-  ui_vulkan->SetupVulkanWindow(wd, surface, w, h);
+  this->wd = &gui_vulkan->g_MainWindowData;
+  gui_vulkan->SetupVulkanWindow(wd, surface, w, h);
 
   // Setup Dear ImGui context
   IMGUI_CHECKVERSION();
@@ -77,18 +77,18 @@ void UI_main::init_gui(){
   // Setup Platform/Renderer backends
   //ImGui_ImplGlfw_InitForVulkan(window->get_window(), true);
   ImGui_ImplVulkan_InitInfo init_info = {};
-  init_info.Instance = ui_vulkan->g_Instance;
-  init_info.PhysicalDevice = ui_vulkan->g_PhysicalDevice;
-  init_info.Device = ui_vulkan->g_Device;
-  init_info.QueueFamily = ui_vulkan->g_QueueFamily;
-  init_info.Queue = ui_vulkan->g_Queue;
-  init_info.PipelineCache = ui_vulkan->g_PipelineCache;
-  init_info.DescriptorPool = ui_vulkan->g_DescriptorPool;
+  init_info.Instance = gui_vulkan->g_Instance;
+  init_info.PhysicalDevice = gui_vulkan->g_PhysicalDevice;
+  init_info.Device = gui_vulkan->g_Device;
+  init_info.QueueFamily = gui_vulkan->g_QueueFamily;
+  init_info.Queue = gui_vulkan->g_Queue;
+  init_info.PipelineCache = gui_vulkan->g_PipelineCache;
+  init_info.DescriptorPool = gui_vulkan->g_DescriptorPool;
   init_info.Subpass = 0;
-  init_info.MinImageCount = ui_vulkan->g_MinImageCount;
+  init_info.MinImageCount = gui_vulkan->g_MinImageCount;
   init_info.ImageCount = wd->ImageCount;
   init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
-  init_info.Allocator = ui_vulkan->g_Allocator;
+  init_info.Allocator = gui_vulkan->g_Allocator;
   ImGui_ImplVulkan_Init(&init_info, wd->RenderPass);
 
   // Upload Fonts
@@ -96,13 +96,13 @@ void UI_main::init_gui(){
   VkCommandPool command_pool = wd->Frames[wd->FrameIndex].CommandPool;
   VkCommandBuffer command_buffer = wd->Frames[wd->FrameIndex].CommandBuffer;
 
-  VkResult err = vkResetCommandPool(ui_vulkan->g_Device, command_pool, 0);
-  ui_vulkan->check_vk_result(err);
+  VkResult err = vkResetCommandPool(gui_vulkan->g_Device, command_pool, 0);
+  gui_vulkan->check_vk_result(err);
   VkCommandBufferBeginInfo begin_info = {};
   begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
   begin_info.flags |= VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
   err = vkBeginCommandBuffer(command_buffer, &begin_info);
-  ui_vulkan->check_vk_result(err);
+  gui_vulkan->check_vk_result(err);
 
   ImGui_ImplVulkan_CreateFontsTexture(command_buffer);
 
@@ -111,12 +111,12 @@ void UI_main::init_gui(){
   end_info.commandBufferCount = 1;
   end_info.pCommandBuffers = &command_buffer;
   err = vkEndCommandBuffer(command_buffer);
-  ui_vulkan->check_vk_result(err);
-  err = vkQueueSubmit(ui_vulkan->g_Queue, 1, &end_info, VK_NULL_HANDLE);
-  ui_vulkan->check_vk_result(err);
+  gui_vulkan->check_vk_result(err);
+  err = vkQueueSubmit(gui_vulkan->g_Queue, 1, &end_info, VK_NULL_HANDLE);
+  gui_vulkan->check_vk_result(err);
 
-  err = vkDeviceWaitIdle(ui_vulkan->g_Device);
-  ui_vulkan->check_vk_result(err);
+  err = vkDeviceWaitIdle(gui_vulkan->g_Device);
+  gui_vulkan->check_vk_result(err);
   ImGui_ImplVulkan_DestroyFontUploadObjects();
 
   //---------------------------
@@ -125,14 +125,14 @@ void UI_main::clean_gui_vulkan(){
   //---------------------------
 
   // Cleanup
-  VkResult err = vkDeviceWaitIdle(ui_vulkan->g_Device);
-  ui_vulkan->check_vk_result(err);
+  VkResult err = vkDeviceWaitIdle(gui_vulkan->g_Device);
+  gui_vulkan->check_vk_result(err);
   ImGui_ImplVulkan_Shutdown();
   ImGui_ImplGlfw_Shutdown();
   ImGui::DestroyContext();
 
-  ui_vulkan->CleanupVulkanWindow();
-  ui_vulkan->CleanupVulkan();
+  gui_vulkan->CleanupVulkanWindow();
+  gui_vulkan->CleanupVulkan();
 
   glfwDestroyWindow(window->get_window());
   glfwTerminate();
@@ -149,14 +149,14 @@ void UI_main::run_gui_main(){
   ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
   // Resize swap chain?
-  if (ui_vulkan->g_SwapChainRebuild){
+  if (gui_vulkan->g_SwapChainRebuild){
     int width, height;
     glfwGetFramebufferSize(window->get_window(), &width, &height);
     if (width > 0 && height > 0){
-      ImGui_ImplVulkan_SetMinImageCount(ui_vulkan->g_MinImageCount);
-      ImGui_ImplVulkanH_CreateOrResizeWindow(ui_vulkan->g_Instance, ui_vulkan->g_PhysicalDevice, ui_vulkan->g_Device, &ui_vulkan->g_MainWindowData, ui_vulkan->g_QueueFamily, ui_vulkan->g_Allocator, width, height, ui_vulkan->g_MinImageCount);
-      ui_vulkan->g_MainWindowData.FrameIndex = 0;
-      ui_vulkan->g_SwapChainRebuild = false;
+      ImGui_ImplVulkan_SetMinImageCount(gui_vulkan->g_MinImageCount);
+      ImGui_ImplVulkanH_CreateOrResizeWindow(gui_vulkan->g_Instance, gui_vulkan->g_PhysicalDevice, gui_vulkan->g_Device, &gui_vulkan->g_MainWindowData, gui_vulkan->g_QueueFamily, gui_vulkan->g_Allocator, width, height, gui_vulkan->g_MinImageCount);
+      gui_vulkan->g_MainWindowData.FrameIndex = 0;
+      gui_vulkan->g_SwapChainRebuild = false;
     }
   }
 
@@ -207,7 +207,7 @@ void UI_main::run_gui_main(){
   wd->ClearValue.color.float32[2] = clear_color.z * clear_color.w;
   wd->ClearValue.color.float32[3] = clear_color.w;
   if (!main_is_minimized){
-    ui_vulkan->FrameRender(wd, main_draw_data);
+    gui_vulkan->FrameRender(wd, main_draw_data);
   }
 
   // Update and Render additional Platform Windows
@@ -218,7 +218,7 @@ void UI_main::run_gui_main(){
 
   // Present Main Platform Window
   if (!main_is_minimized){
-    ui_vulkan->FramePresent(wd);
+    gui_vulkan->FramePresent(wd);
   }
 
   //---------------------------
