@@ -2,6 +2,8 @@
 
 
 int main_python() {
+  //---------------------------
+
   // Initialize the Python interpreter
   Py_Initialize();
 
@@ -12,5 +14,6 @@ int main_python() {
   // Finalize the Python interpreter
   Py_Finalize();
 
+  //---------------------------
   return 0;
 }
