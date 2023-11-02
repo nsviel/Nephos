@@ -12,7 +12,7 @@ add_subdirectory(GUI_ressource)
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC
-  GUI.cpp
+  #GUI.cpp
 )
 
 #-----------------
