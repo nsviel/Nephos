@@ -3,21 +3,10 @@ set(LIBRARY_NAME LIBRARY_GUI)
 #-----------------
 # Source files
 #-----------------
-<<<<<<< HEAD
-add_subdirectory(Dev)
-add_subdirectory(Render)
-add_subdirectory(Element)
-add_subdirectory(Ressource)
-
-file(GLOB_RECURSE ALL_SOURCES
-  GUI.cpp
-)
-=======
 add_subdirectory(TAB_dev)
 add_subdirectory(TAB_render)
 add_subdirectory(GUI_main)
 add_subdirectory(GUI_ressource)
->>>>>>> tmp
 
 #-----------------
 # Compilation

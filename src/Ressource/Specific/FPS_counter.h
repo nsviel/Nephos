@@ -18,7 +18,7 @@ public:
   void update_moving_average();
   void control_max_fps();
 
-  inline float get_fps() const { return average_fps;}
+  inline float get_fps() const { return fps;}
 
 private:
   int history_size;
@@ -27,6 +27,7 @@ private:
   std::vector<int> frame_times;
   int currentIndex_ = 0;
   int64_t average_fps = 0;
+  float fps;
   std::chrono::time_point<std::chrono::steady_clock> lastUpdateTime_;
 };
 

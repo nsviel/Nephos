@@ -35,17 +35,22 @@ void FPS_counter::update(){
   cpt_frame++;
 }
 void FPS_counter::update_moving_average(){
-  if(cpt_frame < history_size) average_fps = 0;
   //---------------------------
 
-  average_fps = 0;
-  for (int i = 0; i < history_size; ++i){
-    average_fps += frame_times[i];
+  if(cpt_frame > history_size){
+    average_fps = 0;
+    for (int i = 0; i < history_size; ++i){
+      average_fps += frame_times[i];
+    }
+    average_fps /= history_size;
+    average_fps = 1000000.0f / average_fps;
   }
-  average_fps /= history_size;
-  average_fps = 1000000.0f / average_fps;
+  else{
+    average_fps = 0;
+  }
 
   //---------------------------
+  this->fps = average_fps;
 }
 void FPS_counter::control_max_fps(){
   if(cpt_frame < history_size) return;
@@ -58,7 +63,7 @@ void FPS_counter::control_max_fps(){
 
   if (sleepTime > 0) {
     std::this_thread::sleep_for(std::chrono::microseconds(sleepTime));
-  } 
+  }
 
   //---------------------------
 }
