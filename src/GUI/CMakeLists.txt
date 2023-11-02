@@ -5,11 +5,11 @@ set(LIBRARY_NAME LIBRARY_GUI)
 #-----------------
 add_subdirectory(TAB_dev)
 add_subdirectory(TAB_render)
-add_subdirectory(Element)
-add_subdirectory(Ressource)
+add_subdirectory(GUI_element)
+add_subdirectory(GUI_ressource)
 
 file(GLOB_RECURSE ALL_SOURCES
-  Element/*.cpp
+  GUI_element/*.cpp
   GUI.cpp
 )
 
