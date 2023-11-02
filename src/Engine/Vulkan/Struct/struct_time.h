@@ -8,8 +8,8 @@ struct Struct_time{
   //---------------------------
 
   float engine_init;
-
-  vector<float> engine_fps;
+  float engine_fps;
+  
   vector<float> draw_frame;
   vector<float> renderpass_scene;
   vector<float> renderpass_edl;

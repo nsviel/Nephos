@@ -5,11 +5,11 @@
 #include <Specific/common.h>
 
 class Engine;
-
-class VK_struct;
 class Param;
 class Window;
+class FPS_counter;
 
+class VK_struct;
 class VK_surface;
 class VK_instance;
 class VK_device;
@@ -57,10 +57,6 @@ public:
   void loop_draw_frame();
   void device_wait_idle();
 
-  //Subfunction
-  void fps_control(const std::chrono::time_point<std::chrono::steady_clock>& start);
-  void fps_calcul(std::chrono::steady_clock::time_point& start_time);
-
   inline Engine* get_engine(){return engine;}
   inline Param* get_param(){return param;}
   inline Window* get_window(){return window;}
@@ -103,6 +99,7 @@ private:
   Param* param;
   Window* window;
   Timer timer;
+  FPS_counter* fps_counter;
 
   VK_struct* vk_struct;
   VK_surface* vk_surface;

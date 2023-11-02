@@ -41,6 +41,7 @@
 #include <Engine.h>
 #include <Param.h>
 #include <Window/Window.h>
+#include <Specific/FPS_counter.h>
 
 
 //Constructor / Destructor
@@ -50,6 +51,7 @@ VK_engine::VK_engine(Engine* engine){
   this->engine = engine;
   this->param = engine->get_param();
   this->window = engine->get_window();
+  this->fps_counter = new FPS_counter(100);
 
   this->vk_struct = new VK_struct();
   this->vk_instance = new VK_instance(this);
@@ -115,19 +117,14 @@ void VK_engine::init(){
   //---------------------------
   vk_struct->time.engine_init = timer.stop_us(t1) / 1000;
 }
-void VK_engine::loop_draw_frame() {
+void VK_engine::loop_draw_frame(){
   //---------------------------
-
 
   vk_drawing->draw_frame();
 
-  //auto start_time = std::chrono::steady_clock::now();
-  //auto start = std::chrono::steady_clock::now();
-
-  //this->fps_control(start);
-  //this->fps_calcul(start_time);
-
   //---------------------------
+  fps_counter->update();
+  vk_struct->time.engine_fps = fps_counter->get_fps();
 }
 void VK_engine::device_wait_idle() {
   //---------------------------
@@ -150,39 +147,6 @@ void VK_engine::clean(){
   vk_surface->clean_surface();
   vk_validation->clean_layer();
   vk_instance->clean_instance();
-
-  //---------------------------
-}
-void VK_engine::fps_control(const std::chrono::time_point<std::chrono::steady_clock>& start){
-  //---------------------------
-
-  int fps_max = param->max_fps;
-
-  auto end = std::chrono::steady_clock::now();
-  auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
-
-  // Calculate the time to sleep to achieve the desired FPS
-  auto time_to_sleep = (1000000 / fps_max) - elapsed;
-
-  if(time_to_sleep > 0){
-    std::this_thread::sleep_for(std::chrono::microseconds(time_to_sleep));
-  }
-
-  //---------------------------
-}
-void VK_engine::fps_calcul(std::chrono::steady_clock::time_point& start_time){
-  //---------------------------
-
-  static int num_frames = 0;
-  num_frames++;
-
-  if(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - start_time).count() >= 500){
-    auto end_time = std::chrono::steady_clock::now();
-    auto elapsed_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
-    vk_struct->time.engine_fps.push_back(num_frames / (elapsed_time / 1000000.0));
-    num_frames = 0;
-    start_time = end_time;
-  }
 
   //---------------------------
 }

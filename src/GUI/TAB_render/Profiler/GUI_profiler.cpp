@@ -118,7 +118,7 @@ void GUI_profiler::time_general(bool update){
 
   static float mean_engine_fps;
   if(update){
-    mean_engine_fps = fct_mean_and_clear(vk_struct->time.engine_fps);
+    mean_engine_fps = vk_struct->time.engine_fps;
   }
 
   //Time init
