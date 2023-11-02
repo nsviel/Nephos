@@ -22,9 +22,8 @@ add_executable(executable
 #-----------------
 target_link_libraries(${EXECUTABLE_NAME}
   LIBRARY_APPLICATION
-  LIBRARY_EXTERN
-  LIBRARY_RESSOURCE
   LIBRARY_ENGINE
   LIBRARY_GUI
+  LIBRARY_RESSOURCE
   LIBRARY_SPLATTING
 )
