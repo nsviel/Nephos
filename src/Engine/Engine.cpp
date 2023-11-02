@@ -21,14 +21,20 @@ Engine::Engine(Window* window){
   this->vk_engine = new VK_engine(this);
   this->gpu_data = new GPU_data(vk_engine);
   this->gpu_texture = new GPU_texture(vk_engine);
-  this->data = new Data(this);
+  this->dataManager = new Data(this);
 
   //---------------------------
 }
 Engine::~Engine(){
   //---------------------------
 
-  delete data;
+  delete param;
+  delete cameraManager;
+  delete shaderManager;
+  delete vk_engine;
+  delete gpu_data;
+  delete gpu_texture;
+  delete dataManager;
 
   //---------------------------
 }
@@ -36,25 +42,23 @@ Engine::~Engine(){
 void Engine::init(){
   //---------------------------
 
-  vk_engine->init_vulkan();
-  window->compute_window_dim();
-  data->init();
+  vk_engine->init();
+  dataManager->init();
 
   //---------------------------
 }
 void Engine::loop(){
   //---------------------------
 
-  cameraManager->input_cam_mouse();
-  vk_engine->draw_frame();
+  cameraManager->loop_cam_mouse();
+  vk_engine->loop_draw_frame();
 
   //---------------------------
 }
 void Engine::exit(){
   //---------------------------
 
-  //vk_engine->device_wait_idle();
-  vk_engine->clean_vulkan();
+  vk_engine->clean();
 
   //---------------------------
 }
@@ -68,8 +72,8 @@ void Engine::wait_for_gpu_idle(){
 void Engine::reset(){
   //---------------------------
 
-  cameraManager->reset_camera();
-  data->reset();
+  cameraManager->reset();
+  dataManager->reset();
 
   //---------------------------
 }

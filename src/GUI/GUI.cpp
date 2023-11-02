@@ -2,22 +2,21 @@
 #include "Window/Window.h"
 
 #include <Engine.h>
-#include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
-#include <Element/Tab/GUI_tab.h>
-#include <Element/GPU/GUI_gpu.h>
-#include <Element/Control/GUI_control_gui.h>
-#include <Element/Style/GUI_style.h>
-#include <Element/Style/GUI_font.h>
-#include <Render/Engine/GUI_engine.h>
-#include <Render/Camera/GUI_camera.h>
-#include <Render/Data/GUI_object.h>
-#include <Render/Data/GUI_set.h>
-#include <Render/Profiler/GUI_profiler.h>
-#include <Render/Shader/GUI_shader.h>
-#include <Render/Data/GUI_scene.h>
-#include <Render/Initialization/GUI_init.h>
-#include <Element/Capture/GUI_capture.h>
+#include <Tab/GUI_tab.h>
+#include <GPU/GUI_gpu.h>
+#include <Control/GUI_control_gui.h>
+#include <Style/GUI_style.h>
+#include <Style/GUI_font.h>
+#include <TAB_render/Engine/GUI_engine.h>
+#include <TAB_render/Engine/GUI_camera.h>
+#include <TAB_render/Data/GUI_object.h>
+#include <TAB_render/Data/GUI_set.h>
+#include <TAB_render/Profiler/GUI_profiler.h>
+#include <TAB_render/Shader/GUI_shader.h>
+#include <TAB_render/Data/GUI_scene.h>
+#include <TAB_render/Initialization/GUI_init.h>
+#include <Capture/GUI_capture.h>
 
 
 //Constructor / Destructor
@@ -26,7 +25,7 @@ GUI::GUI(Window* window, Engine* engine){
 
   this->engine = engine;
   this->window = window;
-  this->data = engine->get_data();
+  this->data = engine->get_dataManager();
 
   this->gui_init = new GUI_init(this);
   this->gui_style = new GUI_style(this);
@@ -59,7 +58,6 @@ void GUI::init(){
 }
 void GUI::loop(){
   VK_engine* vk_engine = engine->get_vk_engine();
-  GPU_render* gpu_render = vk_engine->get_gpu_gui();
   //---------------------------
 
   ImGui_ImplVulkan_NewFrame();

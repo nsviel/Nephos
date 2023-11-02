@@ -3,7 +3,7 @@ set(LIBRARY_NAME LIBRARY_RESSOURCE)
 #-----------------
 # Source files
 #-----------------
-file(GLOB_RECURSE ALL_SOURCES *.cpp)
+file(GLOB_RECURSE ALL_SOURCES *.cpp *.h)
 
 #-----------------
 # Compilation

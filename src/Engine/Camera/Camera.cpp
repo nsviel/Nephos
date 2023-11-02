@@ -33,6 +33,51 @@ Camera::~Camera(){
   //---------------------------
 }
 
+//Main function
+void Camera::control(string what, bool fast){
+  Struct_camera* camera = &param->camera;
+  //---------------------------
+
+  //Compute camera movment speed value
+  float cam_speed = camera->speed_move * 0.000016;
+  if(fast){
+    cam_speed *= 5;
+  }
+
+  if(what == "up"){
+    camera->cam_P += camera->cam_F * cam_speed;
+  }
+  else if(what == "down"){
+    camera->cam_P -= camera->cam_F * cam_speed;
+  }
+  else if(what == "right"){
+    if(camera->mode == "first_person"){
+      camera->cam_P += camera->cam_R * cam_speed;
+    }else if(camera->mode == "arcball"){
+      vec2 angle =vec2(-cam_speed/10, 0);
+      cam_arcball->arcball_viewport_angle(camera, angle);
+    }
+  }
+  else if(what == "left"){
+    if(camera->mode == "first_person"){
+      camera->cam_P -= camera->cam_R * cam_speed;
+    }else if(camera->mode == "arcball"){
+      vec2 angle =vec2(cam_speed/10, 0);
+      cam_arcball->arcball_viewport_angle(camera, angle);
+    }
+  }
+
+  //---------------------------
+}
+void Camera::reset(){
+  Struct_camera* camera = &param->camera;
+  //---------------------------
+
+  camera->reset();
+
+  //---------------------------
+}
+
 //MVP Matrix
 mat4 Camera::compute_cam_view(){
   Struct_camera* camera = &param->camera;
@@ -103,7 +148,7 @@ void Camera::compute_zoom(float value){
 
   //---------------------------
 }
-void Camera::input_cam_mouse(){
+void Camera::loop_cam_mouse(){
   Struct_camera* camera = &param->camera;
   //---------------------------
 
@@ -169,50 +214,6 @@ void Camera::set_mode_view(int mode){
       break;
     }
   }
-
-  //---------------------------
-}
-
-void Camera::control(string what, bool fast){
-  Struct_camera* camera = &param->camera;
-  //---------------------------
-
-  //Compute camera movment speed value
-  float cam_speed = camera->speed_move * 0.000016;
-  if(fast){
-    cam_speed *= 5;
-  }
-
-  if(what == "up"){
-    camera->cam_P += camera->cam_F * cam_speed;
-  }
-  else if(what == "down"){
-    camera->cam_P -= camera->cam_F * cam_speed;
-  }
-  else if(what == "right"){
-    if(camera->mode == "first_person"){
-      camera->cam_P += camera->cam_R * cam_speed;
-    }else if(camera->mode == "arcball"){
-      vec2 angle =vec2(-cam_speed/10, 0);
-      cam_arcball->arcball_viewport_angle(camera, angle);
-    }
-  }
-  else if(what == "left"){
-    if(camera->mode == "first_person"){
-      camera->cam_P -= camera->cam_R * cam_speed;
-    }else if(camera->mode == "arcball"){
-      vec2 angle =vec2(cam_speed/10, 0);
-      cam_arcball->arcball_viewport_angle(camera, angle);
-    }
-  }
-
-  //---------------------------
-}
-void Camera::reset_camera(){
-  Struct_camera* camera = &param->camera;
-  //---------------------------
-
-  camera->reset();
 
   //---------------------------
 }
