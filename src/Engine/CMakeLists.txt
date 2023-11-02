@@ -3,13 +3,12 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 #-----------------
 # Source files
 #-----------------
-file(GLOB_RECURSE ALL_SOURCES
-  *.cpp
-)
+file(GLOB_RECURSE ALL_SOURCES *.cpp)
 
-add_library(${LIBRARY_NAME} STATIC
-  ${ALL_SOURCES}
-)
+#-----------------
+# Compilation
+#-----------------
+add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 
 #-----------------
 # Dependencies
@@ -25,11 +24,13 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
 
   Eigen3::Eigen # Eigen
   tins          # Sniffer
+  -lavformat     #ffmpeg
+  -lavcodec      #ffmpeg
+  -lswresample   #ffmpeg
+  -lswscale      #ffmpeg
+  -lavutil       #ffmpeg
 )
 
-#-----------------
-# Compilation
-#-----------------
 target_include_directories(${LIBRARY_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<INSTALL_INTERFACE:include>
