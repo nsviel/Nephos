@@ -1,7 +1,7 @@
 #include "GUI_scene.h"
 
 #include <GUI.h>
-#include <Tab/GUI_tab.h>
+#include <Element/Tab/GUI_tab.h>
 #include <Render/GUI_render_panel.h>
 #include <Render/GUI_render.h>
 #include <Data/Data.h>

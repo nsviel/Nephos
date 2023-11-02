@@ -33,6 +33,4 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-  $<INSTALL_INTERFACE:include>
-  ${Vulkan_INCLUDE_DIRS}
 )

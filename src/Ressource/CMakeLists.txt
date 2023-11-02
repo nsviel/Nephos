@@ -8,9 +8,7 @@ file(GLOB_RECURSE ALL_SOURCES *.cpp)
 #-----------------
 # Compilation
 #-----------------
-add_library(${LIBRARY_NAME} STATIC
-  ${ALL_SOURCES}
-)
+add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 
 #-----------------
 # Dependencies
