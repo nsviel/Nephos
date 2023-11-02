@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Tab/GUI_tab.h>
-#include <TAB_render/GUI_render.h>
+#include <TAB_render/GUI_tab_render.h>
 #include <TAB_render/GUI_render_panel.h>
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
@@ -19,9 +19,9 @@ GUI_render_menu::GUI_render_menu(GUI* gui){
   GUI_tab* gui_tab = gui->get_gui_tab();
   this->gui = gui;
   this->gui_init = gui->get_gui_init();
-  this->gui_render = gui_tab->get_gui_render();
-  this->gui_render_option = gui_render->get_gui_option();
-  this->gui_render_panel = gui_render->get_render_panel();
+  this->gui_tab_render = gui_tab->get_gui_render();
+  this->gui_render_option = gui_tab_render->get_gui_option();
+  this->gui_render_panel = gui_tab_render->get_render_panel();
   this->loaderManager = data->get_loaderManager();
 
   this->show_demo = false;
@@ -36,7 +36,7 @@ void GUI_render_menu::run_tab_menu(){
 
   ImGui::BeginMainMenuBar();
   if(ImGui::BeginMenu("Panel##111")){
-    gui_render->open_panels();
+    gui_tab_render->open_panels();
     ImGui::EndMenu();
   }
   if(ImGui::MenuItem("Load")){

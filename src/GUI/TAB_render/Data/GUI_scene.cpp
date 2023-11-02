@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Tab/GUI_tab.h>
 #include <TAB_render/GUI_render_panel.h>
-#include <TAB_render/GUI_render.h>
+#include <TAB_render/GUI_tab_render.h>
 #include <Data/Data.h>
 #include <Data/Scene/Database.h>
 #include <TAB_render/Data/GUI_object.h>
@@ -16,7 +16,7 @@ GUI_scene::GUI_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
 
   Data* data = gui->get_data();
   GUI_tab* gui_tab = gui->get_gui_tab();
-  GUI_render* gui_render_panel = gui_tab->get_gui_render();
+  GUI_tab_render* gui_render_panel = gui_tab->get_gui_render();
   this->dataManager = data->get_dataManager();
   this->gui_render_panel = gui_render_panel->get_render_panel();
   this->show_window = show_window;

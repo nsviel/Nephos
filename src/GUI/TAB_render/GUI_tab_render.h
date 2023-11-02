@@ -19,12 +19,12 @@ class GUI_capture;
 class GUI_render_menu;
 
 
-class GUI_render
+class GUI_tab_render
 {
 public:
   //Constructor / Destructor
-  GUI_render(GUI* gui);
-  ~GUI_render();
+  GUI_tab_render(GUI* gui);
+  ~GUI_tab_render();
 
 public:
   //Main functions

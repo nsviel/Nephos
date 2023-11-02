@@ -1,4 +1,4 @@
-#include "GUI_dev.h"
+#include "GUI_tab_dev.h"
 #include "GUI_dev_panel.h"
 
 #include <GUI.h>
@@ -7,7 +7,7 @@
 
 
 //Constructor / Destructor
-GUI_dev::GUI_dev(GUI* gui){
+GUI_tab_dev::GUI_tab_dev(GUI* gui){
   //---------------------------
 
   this->gui = gui;
@@ -15,10 +15,10 @@ GUI_dev::GUI_dev(GUI* gui){
 
   //---------------------------
 }
-GUI_dev::~GUI_dev(){}
+GUI_tab_dev::~GUI_tab_dev(){}
 
 //Main function
-void GUI_dev::create_panels(){
+void GUI_tab_dev::create_panels(){
   //---------------------------
 
   static bool truc = true;
@@ -27,7 +27,7 @@ void GUI_dev::create_panels(){
 
   //---------------------------
 }
-void GUI_dev::draw_panels(){
+void GUI_tab_dev::draw_panels(){
   //---------------------------
 
   gui_dev_panel->run_editors();
@@ -35,7 +35,7 @@ void GUI_dev::draw_panels(){
 
   //---------------------------
 }
-void GUI_dev::open_panels(){
+void GUI_tab_dev::open_panels(){
   //---------------------------
 
 

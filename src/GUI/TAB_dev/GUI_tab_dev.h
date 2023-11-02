@@ -9,12 +9,12 @@ class GUI_dev_panel;
 class GUI_dev_command;
 
 
-class GUI_dev
+class GUI_tab_dev
 {
 public:
   //Constructor / Destructor
-  GUI_dev(GUI* gui);
-  ~GUI_dev();
+  GUI_tab_dev(GUI* gui);
+  ~GUI_tab_dev();
 
 public:
   //Main functions

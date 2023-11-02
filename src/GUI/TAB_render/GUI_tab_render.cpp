@@ -1,4 +1,4 @@
-#include "GUI_render.h"
+#include "GUI_tab_render.h"
 #include "Engine/GUI_camera.h"
 #include "Menu/GUI_render_menu.h"
 #include "GUI_render_panel.h"
@@ -23,7 +23,7 @@
 
 
 //Constructor / Destructor
-GUI_render::GUI_render(GUI* gui){
+GUI_tab_render::GUI_tab_render(GUI* gui){
   //---------------------------
 
   this->gui = gui;
@@ -31,10 +31,10 @@ GUI_render::GUI_render(GUI* gui){
 
   //---------------------------
 }
-GUI_render::~GUI_render(){}
+GUI_tab_render::~GUI_tab_render(){}
 
 //Main function
-void GUI_render::create_panels(){
+void GUI_tab_render::create_panels(){
   //---------------------------
 
   this->gui_engine = new GUI_engine(gui);
@@ -51,7 +51,7 @@ void GUI_render::create_panels(){
 
   //---------------------------
 }
-void GUI_render::draw_panels(){
+void GUI_tab_render::draw_panels(){
   //---------------------------
 
   gui_render_menu->run_tab_menu();
@@ -68,7 +68,7 @@ void GUI_render::draw_panels(){
 
   //---------------------------
 }
-void GUI_render::open_panels(){
+void GUI_tab_render::open_panels(){
   //---------------------------
 
   ImGui::Checkbox(ICON_FA_COG " Option##456", &gui_render_panel->show_option);

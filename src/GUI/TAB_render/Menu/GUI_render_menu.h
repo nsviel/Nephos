@@ -8,7 +8,7 @@ class Loader;
 class GUI_render_panel;
 class GUI_init;
 class GUI_render_option;
-class GUI_render;
+class GUI_tab_render;
 
 
 class GUI_render_menu
@@ -30,7 +30,7 @@ private:
   GUI_init* gui_init;
   GUI_render_panel* gui_render_panel;
   GUI_render_option* gui_render_option;
-  GUI_render* gui_render;
+  GUI_tab_render* gui_tab_render;
 
   bool show_demo;
 

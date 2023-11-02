@@ -4,9 +4,9 @@
 #include <Style/GUI_font.h>
 #include <git/GUI_git.h>
 #include <image/IconsFontAwesome5.h>
-#include <TAB_render/GUI_render.h>
+#include <TAB_render/GUI_tab_render.h>
 #include <TAB_render/GUI_render_panel.h>
-#include <TAB_dev/Panel/GUI_dev.h>
+#include <TAB_dev/GUI_tab_dev.h>
 
 
 //Constructor / Destructor
@@ -15,8 +15,8 @@ GUI_tab::GUI_tab(GUI* gui){
 
   this->gui = gui;
   this->gui_font = gui->get_gui_font();
-  this->gui_render = new GUI_render(gui);
-  this->gui_dev = new GUI_dev(gui);
+  this->gui_tab_render = new GUI_tab_render(gui);
+  this->gui_tab_dev = new GUI_tab_dev(gui);
   this->gui_git = new GUI_git(gui);
 
   this->active_tab = "Render";
@@ -29,8 +29,8 @@ GUI_tab::GUI_tab(GUI* gui){
 GUI_tab::~GUI_tab(){
   //---------------------------
 
-  delete gui_render;
-  delete gui_dev;
+  delete gui_tab_render;
+  delete gui_tab_dev;
 
   //---------------------------
 }
@@ -39,8 +39,8 @@ GUI_tab::~GUI_tab(){
 void GUI_tab::create_panels(){
   //---------------------------
 
-  gui_render->create_panels();
-  gui_dev->create_panels();
+  gui_tab_render->create_panels();
+  gui_tab_dev->create_panels();
 
   //---------------------------
 }
@@ -143,10 +143,10 @@ void GUI_tab::draw_panels(){
 
   //Draw selected tab panels
   if(active_tab == "Render"){
-    gui_render->draw_panels();
+    gui_tab_render->draw_panels();
   }
   else if(active_tab == "Dev"){
-    gui_dev->draw_panels();
+    gui_tab_dev->draw_panels();
   }
 
   //---------------------------

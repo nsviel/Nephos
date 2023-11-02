@@ -2,8 +2,8 @@
 
 #include <GUI.h>
 #include <Tab/GUI_tab.h>
-#include <TAB_dev/Panel/GUI_dev.h>
-#include <TAB_dev/Panel/GUI_dev_panel.h>
+#include <TAB_dev/GUI_tab_dev.h>
+#include <TAB_dev/GUI_dev_panel.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -12,9 +12,9 @@ GUI_dev_command::GUI_dev_command(GUI* gui){
   //---------------------------
 
   GUI_tab* gui_tab = gui->get_gui_tab();
-  GUI_dev* gui_dev = gui_tab->get_gui_dev();
+  GUI_tab_dev* gui_tab_dev = gui_tab->get_gui_dev();
   this->gui = gui;
-  this->gui_dev_panel = gui_dev->get_dev_panel();
+  this->gui_dev_panel = gui_tab_dev->get_dev_panel();
 
   //---------------------------
 }
