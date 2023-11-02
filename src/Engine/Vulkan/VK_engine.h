@@ -28,7 +28,6 @@ class VK_texture;
 class VK_depth;
 class VK_data;
 class VK_viewport;
-class GPU_render;
 class VK_camera;
 class VK_shader;
 class VK_reload;
@@ -53,9 +52,9 @@ public:
 
 public:
   //Main functions
-  void init_vulkan();
-  void draw_frame();
-  void clean_vulkan();
+  void init();
+  void clean();
+  void loop_draw_frame();
   void device_wait_idle();
 
   //Subfunction
@@ -84,7 +83,6 @@ public:
   inline VK_color* get_vk_color(){return vk_color;}
   inline VK_data* get_vk_data(){return vk_data;}
   inline VK_viewport* get_vk_viewport(){return vk_viewport;}
-  inline GPU_render* get_gpu_gui(){return gpu_render;}
   inline VK_camera* get_vk_camera(){return vk_camera;}
   inline VK_shader* get_vk_shader(){return vk_shader;}
   inline VK_reload* get_vk_reload(){return vk_reload;}
@@ -129,7 +127,6 @@ private:
   VK_texture* vk_texture;
   VK_data* vk_data;
   VK_viewport* vk_viewport;
-  GPU_render* gpu_render;
   VK_camera* vk_camera;
   VK_shader* vk_shader;
   VK_reload* vk_reload;

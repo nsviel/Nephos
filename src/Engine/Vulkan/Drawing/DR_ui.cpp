@@ -21,7 +21,6 @@ DR_ui::DR_ui(VK_engine* vk_engine){
   this->vk_cmd = vk_engine->get_vk_cmd();
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_submit = vk_engine->get_vk_submit();
-  this->gpu_render = vk_engine->get_gpu_gui();
   this->vk_uniform = vk_engine->get_vk_uniform();
   this->vk_data = vk_engine->get_vk_data();
   this->vk_canvas = vk_engine->get_vk_canvas();

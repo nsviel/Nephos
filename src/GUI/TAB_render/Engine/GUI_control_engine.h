@@ -4,6 +4,7 @@
 #include <Specific/common.h>
 
 class GUI;
+class Engine;
 class Window;
 class Camera;
 class Window;
@@ -33,6 +34,7 @@ public:
   void control_mouse_wheel();
 
 private:
+  Engine* engine;
   Param* param;
   Window* window;
   Scene* sceneManager;

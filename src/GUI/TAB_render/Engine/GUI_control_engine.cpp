@@ -17,7 +17,7 @@ GUI_control_engine::GUI_control_engine(GUI* gui){
   //---------------------------
 
   Data* data = gui->get_data();
-  Engine* engine = gui->get_engine();
+  this->engine = gui->get_engine();
   this->window = engine->get_window();
   this->param = engine->get_param();
   this->cameraManager = engine->get_cameraManager();
@@ -64,7 +64,7 @@ void GUI_control_engine::control_keyboard_oneAction(){
 
     //R key - Reset
     if(ImGui::IsKeyPressed(ImGuiKey_R)){
-      //node->reset();
+      engine->reset();
       break;
     }
   }

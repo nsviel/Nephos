@@ -39,7 +39,7 @@ void GUI_control_gui::control_keyboard_oneAction(){
     }
 
     //1 key - Next main tab
-    if(ImGui::IsKeyPressed(ImGuiKey_1)){
+    if(ImGui::IsKeyPressed(ImGuiKey_LeftAlt)){
       gui_tab->next_tab();
     }
   }

@@ -12,7 +12,6 @@ class VK_command;
 class VK_cmd;
 class VK_descriptor;
 class VK_submit;
-class GPU_render;
 class VK_data;
 class VK_uniform;
 class VK_canvas;
@@ -44,7 +43,6 @@ private:
   VK_cmd* vk_cmd;
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;
-  GPU_render* gpu_render;
   VK_data* vk_data;
   VK_uniform* vk_uniform;
   VK_canvas* vk_canvas;

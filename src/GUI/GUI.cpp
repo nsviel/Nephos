@@ -2,7 +2,6 @@
 #include "Window/Window.h"
 
 #include <Engine.h>
-#include <GPU/GPU_render.h>
 #include <Vulkan/VK_engine.h>
 #include <Tab/GUI_tab.h>
 #include <GPU/GUI_gpu.h>
@@ -26,7 +25,7 @@ GUI::GUI(Window* window, Engine* engine){
 
   this->engine = engine;
   this->window = window;
-  this->data = engine->get_data();
+  this->data = engine->get_dataManager();
 
   this->gui_init = new GUI_init(this);
   this->gui_style = new GUI_style(this);
@@ -59,7 +58,6 @@ void GUI::init(){
 }
 void GUI::loop(){
   VK_engine* vk_engine = engine->get_vk_engine();
-  GPU_render* gpu_render = vk_engine->get_gpu_gui();
   //---------------------------
 
   ImGui_ImplVulkan_NewFrame();

@@ -16,7 +16,6 @@
 #include "Device/VK_device.h"
 #include "Device/VK_physical_device.h"
 #include "Window/VK_surface.h"
-#include <GPU/GPU_render.h>
 #include "Window/VK_error.h"
 #include "Instance/VK_instance.h"
 #include "Instance/VK_validation.h"
@@ -81,7 +80,6 @@ VK_engine::VK_engine(Engine* engine){
   this->vk_camera = new VK_camera(this);
   this->vk_canvas = new VK_canvas(this);
   this->vk_command = new VK_command(this);
-  this->gpu_render = new GPU_render(this);
   this->vk_cmd = new VK_cmd(this);
   this->vk_submit = new VK_submit(this);
   this->vk_drawing = new VK_drawing(this);
@@ -91,7 +89,7 @@ VK_engine::VK_engine(Engine* engine){
 VK_engine::~VK_engine(){}
 
 //Main function
-void VK_engine::init_vulkan(){
+void VK_engine::init(){
   timer_time t1 = timer.start_t();
   //---------------------------
 
@@ -113,12 +111,11 @@ void VK_engine::init_vulkan(){
 
   //Specific
   vk_viewport->init_viewport();
-  //gpu_render->init_gui();
 
   //---------------------------
   vk_struct->time.engine_init = timer.stop_us(t1) / 1000;
 }
-void VK_engine::draw_frame() {
+void VK_engine::loop_draw_frame() {
   //---------------------------
 
 
@@ -139,10 +136,9 @@ void VK_engine::device_wait_idle() {
 
   //---------------------------
 }
-void VK_engine::clean_vulkan(){
+void VK_engine::clean(){
   //---------------------------
 
-  //gpu_render->clean_gui_vulkan();
   vk_texture->clean_textures();
   vk_renderpass->clean_renderpass();
   vk_swapchain->clean_swapchain();
