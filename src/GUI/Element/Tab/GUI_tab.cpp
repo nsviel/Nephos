@@ -1,12 +1,12 @@
 #include "GUI_tab.h"
 
 #include <GUI.h>
-#include <Element/Style/GUI_font.h>
-#include <Ressource/git/GUI_git.h>
+#include <Style/GUI_font.h>
+#include <git/GUI_git.h>
 #include <image/IconsFontAwesome5.h>
-#include <Render/GUI_render.h>
-#include <Render/GUI_render_panel.h>
-#include <Dev/Panel/GUI_dev.h>
+#include <TAB_render/GUI_render.h>
+#include <TAB_render/GUI_render_panel.h>
+#include <TAB_dev/Panel/GUI_dev.h>
 
 
 //Constructor / Destructor

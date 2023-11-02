@@ -3,8 +3,8 @@ set(LIBRARY_NAME LIBRARY_GUI)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Dev)
-add_subdirectory(Render)
+add_subdirectory(TAB_dev)
+add_subdirectory(TAB_render)
 add_subdirectory(Element)
 add_subdirectory(Ressource)
 
@@ -22,8 +22,8 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_GUI_DEV
-  LIBRARY_GUI_RENDER
+  LIBRARY_GUI_TAB_DEV
+  LIBRARY_GUI_TAB_RENDER
   LIBRARY_GUI_ELEMENT
   LIBRARY_GUI_RESSOURCE
 )

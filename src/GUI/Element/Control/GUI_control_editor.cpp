@@ -1,6 +1,6 @@
 #include "GUI_control_editor.h"
 
-#include <Ressource/Editor/GUI_editor_text.h>
+#include <Editor/GUI_editor_text.h>
 
 
 //Constructor / Destructor

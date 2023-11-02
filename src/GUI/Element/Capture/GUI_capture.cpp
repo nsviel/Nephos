@@ -1,8 +1,8 @@
 #include "GUI_capture.h"
 
-#include <Element/GPU/GUI_video.h>
-#include <Element/GPU/GUI_image.h>
-#include <Render/GUI_render.h>
+#include <GPU/GUI_video.h>
+#include <GPU/GUI_image.h>
+#include <TAB_render/GUI_render.h>
 #include <GUI.h>
 
 

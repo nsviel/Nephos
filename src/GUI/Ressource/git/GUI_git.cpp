@@ -1,7 +1,7 @@
 #include "GUI_git.h"
 
 #include <GUI.h>
-#include <Element/Style/GUI_font.h>
+#include <Style/GUI_font.h>
 #include <Git/Git.h>
 #include <image/IconsFontAwesome5.h>
 

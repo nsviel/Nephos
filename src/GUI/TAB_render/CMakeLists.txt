@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_GUI_RESSOURCE)
+set(LIBRARY_NAME LIBRARY_GUI_TAB_RENDER)
 
 #-----------------
 # Source files
@@ -18,7 +18,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_RESSOURCE
   LIBRARY_ENGINE
   LIBRARY_GUI
-  LIBRARY_GUI_ELEMENT
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
