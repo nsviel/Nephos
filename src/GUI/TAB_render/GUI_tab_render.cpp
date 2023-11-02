@@ -1,7 +1,7 @@
 #include "GUI_tab_render.h"
 #include "Engine/GUI_camera.h"
 #include "Menu/GUI_render_menu.h"
-#include "GUI_render_panel.h"
+#include "Config/GUI_render_panel.h"
 #include "Engine/GUI_engine.h"
 #include "Data/GUI_object.h"
 #include "Data/GUI_scene.h"
@@ -10,7 +10,6 @@
 #include "Shader/GUI_shader.h"
 #include "Data/GUI_scene.h"
 #include "Menu/GUI_render_option.h"
-#include "GUI_render_panel.h"
 
 #include <GUI.h>
 #include <Engine.h>

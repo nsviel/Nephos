@@ -5,7 +5,7 @@
 #include <git/GUI_git.h>
 #include <image/IconsFontAwesome5.h>
 #include <TAB_render/GUI_tab_render.h>
-#include <TAB_render/GUI_render_panel.h>
+#include <TAB_render/Config/GUI_render_panel.h>
 #include <TAB_dev/GUI_tab_dev.h>
 
 

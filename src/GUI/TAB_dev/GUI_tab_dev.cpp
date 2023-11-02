@@ -1,5 +1,5 @@
 #include "GUI_tab_dev.h"
-#include "GUI_dev_panel.h"
+#include "Config/GUI_dev_panel.h"
 
 #include <GUI.h>
 #include <TAB_dev/Editor/GUI_code_editor.h>

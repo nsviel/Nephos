@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Tab/GUI_tab.h>
 #include <TAB_dev/GUI_tab_dev.h>
-#include <TAB_dev/GUI_dev_panel.h>
+#include <TAB_dev/Config/GUI_dev_panel.h>
 #include <image/IconsFontAwesome5.h>
 
 

@@ -1,5 +1,5 @@
 #include "GUI_object.h"
-#include <TAB_render/GUI_render_panel.h>
+#include <TAB_render/Config/GUI_render_panel.h>
 
 #include <GUI.h>
 #include <Data/Data.h>

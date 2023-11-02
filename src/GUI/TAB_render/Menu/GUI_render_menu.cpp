@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Tab/GUI_tab.h>
 #include <TAB_render/GUI_tab_render.h>
-#include <TAB_render/GUI_render_panel.h>
+#include <TAB_render/Config/GUI_render_panel.h>
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
 #include <TAB_render/Menu/GUI_render_option.h>
