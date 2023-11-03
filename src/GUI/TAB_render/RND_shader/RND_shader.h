@@ -2,11 +2,11 @@
 #define GUI_SHADER_H
 
 #include <Specific/common.h>
-#include <Shader/Base/BASE_shader.h>
+#include <ENG_shader/Base/BASE_shader.h>
 #include <RES_base/BASE_panel.h>
 
 class GUI;
-class GUI_editor_text;
+class EDI_text;
 class GUI_console;
 class Shader;
 class VK_reload;
@@ -51,8 +51,8 @@ public:
 private:
   VK_reload* vk_reload;
   Shader* shaderManager;
-  GUI_editor_text* editor_vs;
-  GUI_editor_text* editor_fs;
+  EDI_text* editor_vs;
+  EDI_text* editor_fs;
   GUI_console* gui_console;
 
   vector<string> vec_shader_class;

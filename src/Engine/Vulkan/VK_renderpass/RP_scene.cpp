@@ -7,8 +7,8 @@
 #include <Vulkan/VK_engine.h>
 #include <Vulkan/VK_struct.h>
 #include <Vulkan/VK_camera/VK_viewport.h>
-#include <Shader/Shader.h>
-#include <Shader/Scene/SCE_shader.h>
+#include <ENG_shader/Shader.h>
+#include <ENG_shader/Scene/SCE_shader.h>
 
 
 //Constructor / Destructor

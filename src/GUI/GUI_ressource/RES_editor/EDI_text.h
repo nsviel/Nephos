@@ -8,12 +8,12 @@ class GUI;
 class GUI_font;
 
 
-class GUI_editor_text
+class EDI_text
 {
 public:
   //Constructor / Destructor
-  GUI_editor_text(GUI* gui);
-  ~GUI_editor_text();
+  EDI_text(GUI* gui);
+  ~EDI_text();
 
 public:
   //Main functions

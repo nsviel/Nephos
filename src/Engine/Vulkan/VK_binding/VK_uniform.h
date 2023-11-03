@@ -3,7 +3,7 @@
 
 #include "../VK_struct/struct_binding.h"
 #include "../VK_struct/struct_pipeline.h"
-#include <Shader/EDL/EDL_param.h>
+#include <ENG_shader/EDL/EDL_param.h>
 #include <Specific/common.h>
 
 class VK_engine;

@@ -2,7 +2,7 @@
 #define GUI_VIDEO_H
 
 #include <Specific/common.h>
-#include <GPU/GPU_texture.h>
+#include <ENG_gpu/GPU_texture.h>
 
 extern "C" {
 #include <libavcodec/avcodec.h>

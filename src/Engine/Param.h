@@ -1,7 +1,7 @@
 #ifndef PARAM_ENGINE_H
 #define PARAM_ENGINE_H
 
-#include "Camera/struct_camera.h"
+#include "ENG_camera/struct_camera.h"
 
 #include <string>
 #include <vector>

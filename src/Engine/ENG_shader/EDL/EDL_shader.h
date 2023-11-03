@@ -1,8 +1,8 @@
 #ifndef SHADER_EDL_H
 #define SHADER_EDL_H
 
-#include <Shader/EDL/EDL_param.h>
-#include <Shader/Base/BASE_shader.h>
+#include <ENG_shader/EDL/EDL_param.h>
+#include <ENG_shader/Base/BASE_shader.h>
 #include <Specific/common.h>
 
 class Engine;

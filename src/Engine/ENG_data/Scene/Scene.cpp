@@ -4,8 +4,8 @@
 #include "../Load/Loader.h"
 
 #include <Engine.h>
-#include <GPU/GPU_data.h>
-#include <Operation/Transformation/Attribut.h>
+#include <ENG_gpu/GPU_data.h>
+#include <ENG_operation/Transformation/Attribut.h>
 
 
 //ConsScenetor / DesScenetor

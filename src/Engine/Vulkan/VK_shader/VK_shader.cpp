@@ -32,7 +32,7 @@ void VK_shader::create_pipeline_shader(Struct_pipeline* pipeline){
 
 //Subfunction
 void VK_shader::create_pipeline_shader_module(Struct_pipeline* pipeline){
-  string path_shader = "../src/Engine/Shader/";
+  string path_shader = "../src/Engine/ENG_shader/";
   //---------------------------
 
   //Compile shader from GLSL to SPIR-V

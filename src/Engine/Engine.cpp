@@ -1,13 +1,13 @@
 #include "Engine.h"
 #include "Param.h"
 
-#include <Data/Data.h>
+#include <ENG_data/Data.h>
 #include <Vulkan/VK_engine.h>
-#include <Camera/Camera.h>
+#include <ENG_camera/Camera.h>
 #include <Window/Window.h>
-#include <Shader/Shader.h>
-#include <GPU/GPU_data.h>
-#include <GPU/GPU_texture.h>
+#include <ENG_shader/Shader.h>
+#include <ENG_gpu/GPU_data.h>
+#include <ENG_gpu/GPU_texture.h>
 
 
 //Constructor / Destructor

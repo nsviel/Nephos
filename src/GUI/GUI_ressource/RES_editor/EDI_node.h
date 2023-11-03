@@ -4,15 +4,15 @@
 #include <Specific/common.h>
 #include <imgui/node/imgui_node_editor.h>
 
-class GUI_editor_node;
+class EDI_node;
 
 
-class GUI_editor_node
+class EDI_node
 {
 public:
   //Constructor / Destructor
-  GUI_editor_node(GUI_editor_node* gui);
-  ~GUI_editor_node();
+  EDI_node(EDI_node* gui);
+  ~EDI_node();
 
 public:
   //Main functions

@@ -9,7 +9,7 @@
 #include <Vulkan/VK_presentation/VK_canvas.h>
 #include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/VK_camera/VK_viewport.h>
-#include <Shader/PSR/PSR_param.h>
+#include <ENG_shader/PSR/PSR_param.h>
 
 
 //Constructor / Destructor

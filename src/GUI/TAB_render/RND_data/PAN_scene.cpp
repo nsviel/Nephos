@@ -4,8 +4,8 @@
 #include <GUI_tab/GUI_tab.h>
 #include <TAB_render/RND_config/RND_panel.h>
 #include <TAB_render/TAB_render.h>
-#include <Data/Data.h>
-#include <Data/Scene/Database.h>
+#include <ENG_data/Data.h>
+#include <ENG_data/Scene/Database.h>
 #include <TAB_render/RND_data/PAN_object.h>
 #include <TAB_render/RND_data/PAN_set.h>
 

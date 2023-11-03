@@ -1,11 +1,11 @@
-#include "GUI_editor_text.h"
+#include "EDI_text.h"
 
 #include <GUI.h>
 #include <GUI_style/GUI_font.h>
 
 
 //Constructor / Destructor
-GUI_editor_text::GUI_editor_text(GUI* gui){
+EDI_text::EDI_text(GUI* gui){
   //---------------------------
 
   this->gui_font = gui->get_gui_font();
@@ -18,10 +18,10 @@ GUI_editor_text::GUI_editor_text(GUI* gui){
 
   //---------------------------
 }
-GUI_editor_text::~GUI_editor_text(){}
+EDI_text::~EDI_text(){}
 
 //Main function
-void GUI_editor_text::run_editor(){
+void EDI_text::run_editor(){
   //---------------------------
 
   this->editor_status();
@@ -32,7 +32,7 @@ void GUI_editor_text::run_editor(){
 }
 
 //Subfunction
-void GUI_editor_text::editor_status(){
+void EDI_text::editor_status(){
   //---------------------------
 
   bool has_text_changed = editor->IsTextChanged();
@@ -46,7 +46,7 @@ void GUI_editor_text::editor_status(){
 
   //---------------------------
 }
-void GUI_editor_text::editor_control(){
+void EDI_text::editor_control(){
   //---------------------------
 
   if(ImGui::IsWindowHovered(ImGuiHoveredFlags_ChildWindows)){
@@ -62,7 +62,7 @@ void GUI_editor_text::editor_control(){
 
   //---------------------------
 }
-void GUI_editor_text::editor_render(){
+void EDI_text::editor_render(){
   //---------------------------
 
   ImGuiIO& io = ImGui::GetIO();
@@ -75,7 +75,7 @@ void GUI_editor_text::editor_render(){
 }
 
 //Optionnal function
-void GUI_editor_text::display_status(){
+void EDI_text::display_status(){
   //---------------------------
 
   ImVec4 color;
@@ -92,7 +92,7 @@ void GUI_editor_text::display_status(){
 
   //---------------------------
 }
-void GUI_editor_text::load_from_file(string path){
+void EDI_text::load_from_file(string path){
   //---------------------------
 
   //Open file
@@ -116,7 +116,7 @@ void GUI_editor_text::load_from_file(string path){
   //---------------------------
   editor->set_is_text_changed(false);
 }
-void GUI_editor_text::save_to_file(string path){
+void EDI_text::save_to_file(string path){
   //---------------------------
 
   string new_text = editor->GetText();
@@ -130,7 +130,7 @@ void GUI_editor_text::save_to_file(string path){
   this->has_been_saved = true;
   this->status = "Saved";
 }
-void GUI_editor_text::save_to_current_file(){
+void EDI_text::save_to_current_file(){
   //---------------------------
 
   string new_text = editor->GetText();
@@ -144,7 +144,7 @@ void GUI_editor_text::save_to_current_file(){
   this->has_been_saved = true;
   this->status = "Saved";
 }
-string GUI_editor_text::get_text(){
+string EDI_text::get_text(){
   //---------------------------
 
   string new_text = editor->GetText();

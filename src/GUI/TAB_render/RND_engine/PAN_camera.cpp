@@ -4,7 +4,7 @@
 #include <Engine.h>
 #include <Param.h>
 #include <TAB_render/RND_config/RND_panel.h>
-#include <Camera/struct_camera.h>
+#include <ENG_camera/struct_camera.h>
 
 
 //Constructor / Destructor

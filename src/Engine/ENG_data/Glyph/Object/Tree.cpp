@@ -1,8 +1,8 @@
 #include "Tree.h"
 
 #include <Specific/Function/fct_math.h>
-#include <Operation/Color/Color.h>
-#include <Operation/Tree/Octree.h>
+#include <ENG_operation/Color/Color.h>
+#include <ENG_operation/Tree/Octree.h>
 
 
 //Constructor / destructor

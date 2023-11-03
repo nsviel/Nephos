@@ -7,12 +7,12 @@
 class GUI;
 
 
-class GUI_editor_hexa
+class EDI_hexa
 {
 public:
   //Constructor / Destructor
-  GUI_editor_hexa(GUI* gui);
-  ~GUI_editor_hexa();
+  EDI_hexa(GUI* gui);
+  ~EDI_hexa();
 
 public:
   //Main functions

@@ -13,9 +13,9 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <Data/Load/Loader.h>
+#include <ENG_data/Load/Loader.h>
 #include <RES_widget/GUI_indicator.h>
-#include <RES_editor/GUI_editor_node.h>
+#include <RES_editor/EDI_node.h>
 #include <RES_data/GUI_database.h>
 #include <RES_capture/GUI_capture.h>
 #include <image/IconsFontAwesome5.h>

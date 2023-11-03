@@ -5,11 +5,11 @@
 #include <Vulkan/VK_shader/VK_reload.h>
 #include <Vulkan/VK_struct/struct_instance.h>
 #include <Vulkan/VK_engine.h>
-#include <Shader/Shader.h>
-#include <Shader/EDL/EDL_shader.h>
-#include <Shader/Canvas/CAN_shader.h>
-#include <Shader/Scene/SCE_shader.h>
-#include <RES_editor/GUI_editor_text.h>
+#include <ENG_shader/Shader.h>
+#include <ENG_shader/EDL/EDL_shader.h>
+#include <ENG_shader/Canvas/CAN_shader.h>
+#include <ENG_shader/Scene/SCE_shader.h>
+#include <RES_editor/EDI_text.h>
 #include <RES_console/GUI_console.h>
 
 
@@ -21,8 +21,8 @@ RND_shader::RND_shader(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   VK_engine* vk_engine = engine->get_vk_engine();
   this->vk_reload = vk_engine->get_vk_reload();
   this->shaderManager = engine->get_shaderManager();
-  this->editor_vs = new GUI_editor_text(gui);
-  this->editor_fs = new GUI_editor_text(gui);
+  this->editor_vs = new EDI_text(gui);
+  this->editor_fs = new EDI_text(gui);
   this->gui_console = new GUI_console();
 
   this->item_width = 100;

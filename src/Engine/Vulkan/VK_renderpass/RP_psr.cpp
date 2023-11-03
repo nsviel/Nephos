@@ -7,7 +7,7 @@
 #include <Vulkan/VK_engine.h>
 #include <Vulkan/VK_struct.h>
 #include <Vulkan/VK_camera/VK_viewport.h>
-#include <Shader/PSR/PSR_param.h>
+#include <ENG_shader/PSR/PSR_param.h>
 
 
 //Constructor / Destructor

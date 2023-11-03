@@ -4,12 +4,12 @@
 #include <Engine.h>
 #include <Param.h>
 #include <Window/Window.h>
-#include <Data/Data.h>
+#include <ENG_data/Data.h>
 #include <Specific/Function/fct_math.h>
-#include <Data/Scene/Scene.h>
-#include <Data/Data.h>
-#include <Camera/Camera.h>
-#include <Operation/Transformation/Transformation.h>
+#include <ENG_data/Scene/Scene.h>
+#include <ENG_data/Data.h>
+#include <ENG_camera/Camera.h>
+#include <ENG_operation/Transformation/Transformation.h>
 
 
 //Constructor / Destructor

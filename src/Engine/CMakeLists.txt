@@ -6,11 +6,11 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 #add_subdirectory(Vulkan)
 
 file(GLOB_RECURSE ALL_SOURCES
-  Camera/*.cpp
-  Data/*.cpp
-  GPU/*.cpp
-  Operation/*.cpp
-  Shader/*.cpp
+  ENG_camera/*.cpp
+  ENG_data/*.cpp
+  ENG_gpu/*.cpp
+  ENG_operation/*.cpp
+  ENG_shader/*.cpp
   Vulkan/*.cpp
   Engine.cpp
   Param.cpp

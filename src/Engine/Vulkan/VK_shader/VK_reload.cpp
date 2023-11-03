@@ -1,8 +1,8 @@
 #include "VK_reload.h"
 
 #include <Engine.h>
-#include <Shader/Shader.h>
-#include <Shader/EDL/EDL_shader.h>
+#include <ENG_shader/Shader.h>
+#include <ENG_shader/EDL/EDL_shader.h>
 #include <Vulkan/VK_engine.h>
 #include <Vulkan/VK_struct.h>
 #include <Vulkan/VK_pipeline/VK_pipeline.h>

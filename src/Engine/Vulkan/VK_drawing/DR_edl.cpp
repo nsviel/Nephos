@@ -10,8 +10,8 @@
 #include <Vulkan/VK_presentation/VK_canvas.h>
 #include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/VK_binding/VK_uniform.h>
-#include <Shader/Shader.h>
-#include <Shader/EDL/EDL_shader.h>
+#include <ENG_shader/Shader.h>
+#include <ENG_shader/EDL/EDL_shader.h>
 
 
 //Constructor / Destructor

@@ -5,7 +5,7 @@
 #include <RES_base/BASE_panel.h>
 
 class GUI;
-class GUI_editor_text;
+class EDI_text;
 
 
 class DEV_code_editor : public BASE_panel
@@ -20,7 +20,7 @@ public:
   void design_panel();
 
 private:
-  GUI_editor_text* editor;
+  EDI_text* editor;
 };
 
 #endif
