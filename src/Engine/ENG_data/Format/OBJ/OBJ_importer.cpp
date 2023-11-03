@@ -10,7 +10,7 @@ Data_file* OBJ_importer::Loader(std::string path){
   //---------------------------
 
   Data_file* data = new Data_file();
-  data->name = get_name_from_path(path);
+  data->name = info::get_name_from_path(path);
   data->path_file = path;
 
   //Init
@@ -138,7 +138,7 @@ void OBJ_importer::parse_mtl(std::string path_obj){
   //---------------------------
 
   // Retrieve mtl file path
-  std::string path = get_path_from_filepath(path_obj);
+  std::string path = info::get_path_from_filepath(path_obj);
   std::string path_mtl = path + file_mtl;
 
   //Open mtl file

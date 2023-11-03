@@ -50,7 +50,6 @@ void VK_renderpass::init_renderpass(){
 
   rp_scene->init_renderpass(&vk_struct->renderpass_scene);
   rp_edl->init_renderpass(&vk_struct->renderpass_edl);
-  //rp_psr->init_renderpass(&vk_struct->renderpass_psr);
   rp_ui->init_renderpass(&vk_struct->renderpass_ui);
 
   //---------------------------
@@ -60,7 +59,6 @@ void VK_renderpass::clean_renderpass(){
 
   this->clean_renderpass_object(&vk_struct->renderpass_scene);
   this->clean_renderpass_object(&vk_struct->renderpass_edl);
-  //this->clean_renderpass_object(&vk_struct->renderpass_psr);
   this->clean_renderpass_object(&vk_struct->renderpass_ui);
 
   //---------------------------

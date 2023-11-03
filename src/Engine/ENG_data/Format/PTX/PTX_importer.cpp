@@ -24,7 +24,7 @@ Data_file* PTX_importer::Loader(std::string path){
   //---------------------------
 
   data = new Data_file();
-  data->name = get_name_from_path(path);
+  data->name = info::get_name_from_path(path);
   data->path_file = path;
 
   //Open file

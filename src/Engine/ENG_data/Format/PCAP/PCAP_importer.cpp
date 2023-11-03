@@ -64,7 +64,7 @@ Data_file* PCAP_importer::Loader(std::string path){
   //---------------------------
 
   Data_file* data = new Data_file();
-  data->name = get_name_from_path(path);
+  data->name = info::get_name_from_path(path);
   data->path_file = path;
 
   //Set up parameters

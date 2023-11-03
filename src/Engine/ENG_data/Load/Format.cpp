@@ -41,7 +41,7 @@ Data_file* Format::get_data_from_file(std::string path){
   Data_file* data;
   //---------------------------
 
-  std::string format = get_format_from_path(path);
+  std::string format = info::get_format_from_path(path);
   if     (format == "ply"){
     data = ply_import->Loader(path);
   }

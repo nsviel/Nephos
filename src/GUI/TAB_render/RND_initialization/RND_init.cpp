@@ -130,9 +130,7 @@ void RND_init::build_custom_scene(vector<vector<Tree_node*>>& nodes_path_vec){
 void RND_init::build_scene_1(){
   //---------------------------
 
-  //Object* rock = loaderManager->load_collection("/home/aether/Desktop/Point_cloud/obj/rock/rock.obj");
-  //transformManager->make_translation(rock, vec3(2-4*i, 0, 0));
-  //sceneManager->update_collection_location(rock);
+
 
   //---------------------------
 }

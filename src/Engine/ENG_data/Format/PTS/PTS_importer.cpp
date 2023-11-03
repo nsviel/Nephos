@@ -21,7 +21,7 @@ Data_file* PTS_importer::Loader(std::string path){
   Data_file* data = new Data_file();
   //---------------------------
 
-  data->name = get_name_from_path(path);
+  data->name = info::get_name_from_path(path);
   data->path_file = path;
 
   //Initialization
@@ -568,7 +568,7 @@ int PTS_importer::check_configuration(std::string path){
 int PTS_importer::check_size(std::string path, bool FILE_hasHeader){
   //---------------------------
 
-  int FILE_size = get_file_nbPoint(path);
+  int FILE_size = info::get_file_nbPoint(path);
   if(FILE_size > nbptMax){
     std::cout << "Too much points : "<< FILE_size << ">"<< nbptMax << std::endl;
   }

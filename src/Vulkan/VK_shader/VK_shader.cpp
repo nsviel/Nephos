@@ -14,7 +14,7 @@ VK_shader::VK_shader(VK_engine* vk_engine){
   this->vk_struct = vk_engine->get_vk_struct();
 
   this->path_output = "output.txt";
-  clear_file(path_output);
+  file::clear_file(path_output);
 
   //---------------------------
 }

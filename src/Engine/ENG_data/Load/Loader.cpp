@@ -3,6 +3,9 @@
 #include "../Data.h"
 #include "../Scene/Scene.h"
 
+#include <ELE_specific/File/Directory.h>
+#include <ELE_specific/File/File.h>
+
 
 //Constructor / Destructor
 Loader::Loader(Data* data){
@@ -28,7 +31,7 @@ Loader::~Loader(){
 Object* Loader::load_object(std::string path){
   //---------------------------
 
-  if(is_file_exist(path) == false){
+  if(file::is_file_exist(path) == false){
     cout<<"[error] File doesn't exists at "<<path<<endl;
     return nullptr;
   }
@@ -65,7 +68,7 @@ void Loader::load_by_zenity(){
   //---------------------------
 
   //Select files to load
-  std::vector<std::string> path_vec = zenity_file_vec("Load", path_current_dir);
+  std::vector<std::string> path_vec = zenity::zenity_file_vec("Load", path_current_dir);
 
   //Add object in engine
   this->load_objects(path_vec);

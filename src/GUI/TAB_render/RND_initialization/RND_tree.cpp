@@ -71,10 +71,10 @@ void RND_tree::construct_node(string path, vector<Tree_node*>& nodes){
 
     //Save root
     Tree_node* node = new Tree_node();
-    node->name = get_filename_from_path(path);
-    node->type = get_type_from_path(path);
+    node->name = info::get_filename_from_path(path);
+    node->type = info::get_type_from_path(path);
     node->path = path;
-    node->size = get_file_size(path);
+    node->size = info::get_file_size(path);
     nodes.push_back(node);
 
     //Recussively check all child leafs
@@ -90,10 +90,10 @@ void RND_tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>&
     if(vec_path[i] != ""){
       Tree_node* node = new Tree_node();
 
-      node->name = get_filename_from_path(vec_path[i]);
-      node->type = get_type_from_path(vec_path[i]);
+      node->name = info::get_filename_from_path(vec_path[i]);
+      node->type = info::get_type_from_path(vec_path[i]);
       node->path = vec_path[i];
-      node->size = get_file_size(vec_path[i]);
+      node->size = info::get_file_size(vec_path[i]);
       node->leaf_nb = 1;
       node->leaf_idx = 1;
       node->already_open = true;
@@ -106,7 +106,7 @@ void RND_tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>&
   //---------------------------
 }
 void RND_tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* parent){
-  vector<string> list_path = list_all_path(path);
+  vector<string> list_path = directory::list_all_path(path);
   //---------------------------
 
   bool is_sub_folder = false;
@@ -119,14 +119,14 @@ void RND_tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node
     string path_file = list_path[i];
 
     Tree_node* node = new Tree_node();
-    node->name = get_filename_from_path(path_file);
-    node->type = get_type_from_path(path_file);
+    node->name = info::get_filename_from_path(path_file);
+    node->type = info::get_type_from_path(path_file);
     node->path = path_file;
 
     if(node->type != "Folder"){
       if(check_display_file_format(path_file)){
         node->leaf_nb = 0;
-        node->size = get_file_size(path_file);
+        node->size = info::get_file_size(path_file);
         nodes.push_back(node);
       }else{
         parent->leaf_nb--;
@@ -216,7 +216,7 @@ void RND_tree::display_node_root(vector<Tree_node*>& all_nodes){
   //---------------------------
 }
 bool RND_tree::check_display_file_format(string path){
-  string format = get_format_from_path(path);
+  string format = info::get_format_from_path(path);
   //---------------------------
 
   for(int i=0; i<init->accepted_format.size(); i++){
