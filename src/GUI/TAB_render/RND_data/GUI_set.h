@@ -5,7 +5,7 @@
 #include <Specific/common.h>
 
 class GUI;
-class GUI_render_panel;
+class RND_panel;
 
 
 class GUI_set : public BASE_panel
@@ -25,7 +25,7 @@ public:
   inline void set_selected_set(Set* set){this->set_selected = set;}
 
 private:
-  GUI_render_panel* gui_render_panel;
+  RND_panel* gui_render_panel;
 
   Set* set_selected;
   int item_width;

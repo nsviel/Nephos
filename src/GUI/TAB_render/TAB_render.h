@@ -5,7 +5,7 @@
 #include <Specific/common.h>
 
 class GUI;
-class GUI_render_panel;
+class RND_panel;
 
 class GUI_profiler;
 class GUI_shader;
@@ -33,7 +33,7 @@ public:
   void draw_panels();
   void open_panels();
 
-  inline GUI_render_panel* get_render_panel(){return gui_render_panel;}
+  inline RND_panel* get_render_panel(){return gui_render_panel;}
   inline GUI_shader* get_gui_shader(){return gui_shader;}
   inline GUI_profiler* get_gui_profiling(){return gui_profiler;}
   inline GUI_object* get_gui_object(){return gui_object;}
@@ -46,7 +46,7 @@ public:
 
 private:
   GUI* gui;
-  GUI_render_panel* gui_render_panel;
+  RND_panel* gui_render_panel;
   GUI_render_option* gui_render_option;
   GUI_render_menu* gui_render_menu;
 

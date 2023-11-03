@@ -7,7 +7,7 @@ class GUI;
 class GUI_font;
 class TAB_render;
 class GUI_tab_dev;
-class GUI_render_panel;
+class RND_panel;
 class GUI_git;
 
 

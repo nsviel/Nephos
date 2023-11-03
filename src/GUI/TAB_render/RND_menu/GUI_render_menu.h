@@ -5,7 +5,7 @@
 
 class GUI;
 class Loader;
-class GUI_render_panel;
+class RND_panel;
 class GUI_init;
 class GUI_render_option;
 class TAB_render;
@@ -28,7 +28,7 @@ private:
   GUI* gui;
   Loader* loaderManager;
   GUI_init* gui_init;
-  GUI_render_panel* gui_render_panel;
+  RND_panel* gui_render_panel;
   GUI_render_option* gui_render_option;
   TAB_render* gui_tab_render;
 

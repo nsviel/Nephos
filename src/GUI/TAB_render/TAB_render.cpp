@@ -1,7 +1,7 @@
 #include "TAB_render.h"
 #include "RND_engine/GUI_camera.h"
 #include "RND_menu/GUI_render_menu.h"
-#include "RND_config/GUI_render_panel.h"
+#include "RND_config/RND_panel.h"
 #include "RND_engine/GUI_engine.h"
 #include "RND_data/GUI_object.h"
 #include "RND_data/GUI_scene.h"
@@ -26,7 +26,7 @@ TAB_render::TAB_render(GUI* gui){
   //---------------------------
 
   this->gui = gui;
-  this->gui_render_panel = new GUI_render_panel();
+  this->gui_render_panel = new RND_panel();
 
   //---------------------------
 }

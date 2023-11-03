@@ -5,7 +5,7 @@
 #include <Specific/common.h>
 
 class GUI;
-class GUI_render_panel;
+class RND_panel;
 class Struct_camera;
 
 
@@ -25,7 +25,7 @@ public:
   void cam_definedPosition();
 
 private:
-  GUI_render_panel* gui_render_panel;
+  RND_panel* gui_render_panel;
   Struct_camera* camera;
 
   int item_width;

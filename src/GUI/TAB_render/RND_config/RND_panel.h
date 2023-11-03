@@ -2,7 +2,7 @@
 #define GUI_RENDER_PANEL_H
 
 
-struct GUI_render_panel{
+struct RND_panel{
   //---------------------------
 
   bool show_camera   = false;
