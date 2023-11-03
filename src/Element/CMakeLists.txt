@@ -1,9 +1,9 @@
-set(LIBRARY_NAME LIBRARY_VULKAN)
+set(LIBRARY_NAME LIBRARY_ELEMENT)
 
 #-----------------
 # Source files
 #-----------------
-file(GLOB_RECURSE ALL_SOURCES *.cpp)
+file(GLOB_RECURSE ALL_SOURCES *.cpp *.h)
 
 #-----------------
 # Compilation
@@ -13,22 +13,22 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
-find_package(Vulkan REQUIRED)
+find_package(glfw3 REQUIRED)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+find_package(SQLite3 REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
-  LIBRARY_ELEMENT
-
-  ${Vulkan_LIBRARIES}
 
   Eigen3::Eigen # Eigen
-  tins          # Sniffer
-  -lavformat    # ffmpeg
-  -lavcodec     # ffmpeg
-  -lswresample  # ffmpeg
-  -lswscale     # ffmpeg
-  -lavutil      # ffmpeg
+  -lSQLiteCpp   # sqlitecpp
+  -lpthread     # sqlitecpp
+  -ldl          # sqlitecpp
+  -lsqlite3     # sqlite
+  -lgit2        # git
+  -lstdc++fs    # std::experimental::filesystem
+  -lglfw        # glfw
+  -lsqlite3     # sqlite
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

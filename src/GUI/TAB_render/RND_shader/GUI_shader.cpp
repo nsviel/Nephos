@@ -9,8 +9,8 @@
 #include <Shader/EDL/EDL_shader.h>
 #include <Shader/Canvas/CAN_shader.h>
 #include <Shader/Scene/SCE_shader.h>
-#include <Editor/GUI_editor_text.h>
-#include <Console/GUI_console.h>
+#include <RES_editor/GUI_editor_text.h>
+#include <RES_console/GUI_console.h>
 
 
 //Constructor / Destructor

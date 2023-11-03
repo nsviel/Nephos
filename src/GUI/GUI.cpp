@@ -3,20 +3,20 @@
 
 #include <Engine.h>
 #include <Vulkan/VK_engine.h>
-#include <Tab/GUI_tab.h>
-#include <GPU/GUI_gpu.h>
-#include <Control/GUI_control_gui.h>
-#include <Style/GUI_style.h>
-#include <Style/GUI_font.h>
-#include <TAB_render/RND_engine/GUI_engine.h>
-#include <TAB_render/RND_engine/GUI_camera.h>
+#include <GUI_tab/GUI_tab.h>
+#include <RES_gpu/GUI_gpu.h>
+#include <GUI_control/GUI_control_gui.h>
+#include <GUI_style/GUI_style.h>
+#include <GUI_style/GUI_font.h>
+#include <TAB_render/RND_engine/RND_engine.h>
+#include <TAB_render/RND_engine/RND_camera.h>
 #include <TAB_render/RND_data/GUI_object.h>
 #include <TAB_render/RND_data/GUI_set.h>
 #include <TAB_render/RND_profiler/GUI_profiler.h>
 #include <TAB_render/RND_shader/GUI_shader.h>
 #include <TAB_render/RND_data/GUI_scene.h>
 #include <TAB_render/RND_initialization/GUI_init.h>
-#include <Capture/GUI_capture.h>
+#include <RES_capture/GUI_capture.h>
 
 
 //Constructor / Destructor

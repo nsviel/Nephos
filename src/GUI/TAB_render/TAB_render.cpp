@@ -1,8 +1,8 @@
 #include "TAB_render.h"
-#include "RND_engine/GUI_camera.h"
+#include "RND_engine/RND_camera.h"
 #include "RND_menu/GUI_render_menu.h"
 #include "RND_config/RND_panel.h"
-#include "RND_engine/GUI_engine.h"
+#include "RND_engine/RND_engine.h"
 #include "RND_data/GUI_object.h"
 #include "RND_data/GUI_scene.h"
 #include "RND_data/GUI_set.h"
@@ -14,10 +14,10 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <Data/Load/Loader.h>
-#include <Widget/GUI_indicator.h>
-#include <Editor/GUI_editor_node.h>
-#include <Data/GUI_database.h>
-#include <Capture/GUI_capture.h>
+#include <RES_widget/GUI_indicator.h>
+#include <RES_editor/GUI_editor_node.h>
+#include <RES_data/GUI_database.h>
+#include <RES_capture/GUI_capture.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -36,7 +36,7 @@ TAB_render::~TAB_render(){}
 void TAB_render::create_panels(){
   //---------------------------
 
-  this->gui_engine = new GUI_engine(gui);
+  this->gui_engine = new RND_engine(gui);
   this->gui_render_option = new GUI_render_option(gui, &gui_render_panel->show_option, "Option");
   this->gui_object = new GUI_object(gui, &gui_render_panel->show_object, "Object");
   this->gui_set = new GUI_set(gui, &gui_render_panel->show_set, "Set");
@@ -44,7 +44,7 @@ void TAB_render::create_panels(){
   this->gui_shader = new GUI_shader(gui, &gui_render_panel->show_shader, "Shader");
   this->gui_scene = new GUI_scene(gui, &gui_render_panel->show_scene, "Scene");
   this->gui_capture = new GUI_capture(gui, &gui_render_panel->show_capture, "Capture");
-  this->gui_camera = new GUI_camera(gui, &gui_render_panel->show_camera, "Camera");
+  this->gui_camera = new RND_camera(gui, &gui_render_panel->show_camera, "Camera");
   this->gui_database = new GUI_database(gui, &gui_render_panel->show_database, "Database##4323");
   this->gui_render_menu = new GUI_render_menu(gui);
 
