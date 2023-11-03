@@ -7,7 +7,7 @@
 class GUI;
 class GUI_image;
 class GUI_video;
-class GUI_tab_render;
+class TAB_render;
 class GUI_render_panel;
 
 

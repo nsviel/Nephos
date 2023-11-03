@@ -4,8 +4,8 @@
 #include <Style/GUI_font.h>
 #include <git/GUI_git.h>
 #include <image/IconsFontAwesome5.h>
-#include <TAB_render/GUI_tab_render.h>
-#include <TAB_render/Config/GUI_render_panel.h>
+#include <TAB_render/TAB_render.h>
+#include <TAB_render/RND_config/GUI_render_panel.h>
 #include <TAB_dev/GUI_tab_dev.h>
 
 
@@ -15,7 +15,7 @@ GUI_tab::GUI_tab(GUI* gui){
 
   this->gui = gui;
   this->gui_font = gui->get_gui_font();
-  this->gui_tab_render = new GUI_tab_render(gui);
+  this->gui_tab_render = new TAB_render(gui);
   this->gui_tab_dev = new GUI_tab_dev(gui);
   this->gui_git = new GUI_git(gui);
 

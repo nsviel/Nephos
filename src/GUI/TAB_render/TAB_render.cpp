@@ -1,15 +1,15 @@
-#include "GUI_tab_render.h"
-#include "Engine/GUI_camera.h"
-#include "Menu/GUI_render_menu.h"
-#include "Config/GUI_render_panel.h"
-#include "Engine/GUI_engine.h"
-#include "Data/GUI_object.h"
-#include "Data/GUI_scene.h"
-#include "Data/GUI_set.h"
-#include "Profiler/GUI_profiler.h"
-#include "Shader/GUI_shader.h"
-#include "Data/GUI_scene.h"
-#include "Menu/GUI_render_option.h"
+#include "TAB_render.h"
+#include "RND_engine/GUI_camera.h"
+#include "RND_menu/GUI_render_menu.h"
+#include "RND_config/GUI_render_panel.h"
+#include "RND_engine/GUI_engine.h"
+#include "RND_data/GUI_object.h"
+#include "RND_data/GUI_scene.h"
+#include "RND_data/GUI_set.h"
+#include "RND_profiler/GUI_profiler.h"
+#include "RND_shader/GUI_shader.h"
+#include "RND_data/GUI_scene.h"
+#include "RND_menu/GUI_render_option.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -22,7 +22,7 @@
 
 
 //Constructor / Destructor
-GUI_tab_render::GUI_tab_render(GUI* gui){
+TAB_render::TAB_render(GUI* gui){
   //---------------------------
 
   this->gui = gui;
@@ -30,10 +30,10 @@ GUI_tab_render::GUI_tab_render(GUI* gui){
 
   //---------------------------
 }
-GUI_tab_render::~GUI_tab_render(){}
+TAB_render::~TAB_render(){}
 
 //Main function
-void GUI_tab_render::create_panels(){
+void TAB_render::create_panels(){
   //---------------------------
 
   this->gui_engine = new GUI_engine(gui);
@@ -50,7 +50,7 @@ void GUI_tab_render::create_panels(){
 
   //---------------------------
 }
-void GUI_tab_render::draw_panels(){
+void TAB_render::draw_panels(){
   //---------------------------
 
   gui_render_menu->run_tab_menu();
@@ -67,7 +67,7 @@ void GUI_tab_render::draw_panels(){
 
   //---------------------------
 }
-void GUI_tab_render::open_panels(){
+void TAB_render::open_panels(){
   //---------------------------
 
   ImGui::Checkbox(ICON_FA_COG " Option##456", &gui_render_panel->show_option);

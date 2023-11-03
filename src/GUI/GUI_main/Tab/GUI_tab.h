@@ -5,7 +5,7 @@
 
 class GUI;
 class GUI_font;
-class GUI_tab_render;
+class TAB_render;
 class GUI_tab_dev;
 class GUI_render_panel;
 class GUI_git;
@@ -34,12 +34,12 @@ public:
   void draw_panels();
   void next_tab();
 
-  inline GUI_tab_render* get_gui_render(){return gui_tab_render;}
+  inline TAB_render* get_gui_render(){return gui_tab_render;}
   inline GUI_tab_dev* get_gui_dev(){return gui_tab_dev;}
 
 private:
   GUI* gui;
-  GUI_tab_render* gui_tab_render;
+  TAB_render* gui_tab_render;
   GUI_tab_dev* gui_tab_dev;
   GUI_font* gui_font;
   GUI_git* gui_git;

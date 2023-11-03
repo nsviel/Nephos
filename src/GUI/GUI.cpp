@@ -8,14 +8,14 @@
 #include <Control/GUI_control_gui.h>
 #include <Style/GUI_style.h>
 #include <Style/GUI_font.h>
-#include <TAB_render/Engine/GUI_engine.h>
-#include <TAB_render/Engine/GUI_camera.h>
-#include <TAB_render/Data/GUI_object.h>
-#include <TAB_render/Data/GUI_set.h>
-#include <TAB_render/Profiler/GUI_profiler.h>
-#include <TAB_render/Shader/GUI_shader.h>
-#include <TAB_render/Data/GUI_scene.h>
-#include <TAB_render/Initialization/GUI_init.h>
+#include <TAB_render/RND_engine/GUI_engine.h>
+#include <TAB_render/RND_engine/GUI_camera.h>
+#include <TAB_render/RND_data/GUI_object.h>
+#include <TAB_render/RND_data/GUI_set.h>
+#include <TAB_render/RND_profiler/GUI_profiler.h>
+#include <TAB_render/RND_shader/GUI_shader.h>
+#include <TAB_render/RND_data/GUI_scene.h>
+#include <TAB_render/RND_initialization/GUI_init.h>
 #include <Capture/GUI_capture.h>
 
 

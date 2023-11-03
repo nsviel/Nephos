@@ -1,3 +1,4 @@
+
 #ifndef GUI_RENDER_H
 #define GUI_RENDER_H
 
@@ -19,12 +20,12 @@ class GUI_capture;
 class GUI_render_menu;
 
 
-class GUI_tab_render
+class TAB_render
 {
 public:
   //Constructor / Destructor
-  GUI_tab_render(GUI* gui);
-  ~GUI_tab_render();
+  TAB_render(GUI* gui);
+  ~TAB_render();
 
 public:
   //Main functions
