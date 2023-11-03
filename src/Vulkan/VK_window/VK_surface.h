@@ -26,13 +26,10 @@ public:
   void get_required_extensions();
 
   inline Window* get_window(){return window;}
-  inline vec2 get_window_dim(){return window_dim;}
 
 private:
   Window* window;
   Struct_vulkan* struct_vulkan;
-
-  vec2 window_dim;
 };
 
 #endif

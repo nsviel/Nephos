@@ -5,7 +5,7 @@
 
 class VK_engine;
 class Struct_vulkan;
-class VK_surface;
+class Window;
 
 
 class VK_physical_device
@@ -39,7 +39,7 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_surface* vk_surface;
+  Window* window;
 
   vector<string> vec_device_name;
   int nb_queue_graphics;

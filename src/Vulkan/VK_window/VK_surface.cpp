@@ -42,6 +42,7 @@ void VK_surface::create_window_surface(){
   //---------------------------
 }
 void VK_surface::check_for_resizing(){
+  static vec2 window_dim;
   bool is_resized = false;
   //---------------------------
 
@@ -50,9 +51,6 @@ void VK_surface::check_for_resizing(){
   if(dim.x != window_dim.x || dim.y != window_dim.y){
     is_resized = true;
     window_dim = dim;
-
-    //update dimension
-    //dimManager->update();
   }
 
   //---------------------------
