@@ -3,9 +3,8 @@
 #include "../VK_pipeline/VK_pipeline.h"
 #include "../VK_engine.h"
 #include "../VK_struct/struct_vulkan.h"
-#include "../VK_command/VK_command.h"
 #include "../VK_presentation/VK_swapchain.h"
-#include "../VK_window/VK_surface.h"
+#include "../VK_presentation/VK_surface.h"
 #include "../VK_presentation/VK_canvas.h"
 #include "../VK_binding/VK_descriptor.h"
 
@@ -14,13 +13,9 @@
 VK_submit::VK_submit(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_swapchain = vk_engine->get_vk_swapchain();
   this->vk_surface = vk_engine->get_vk_surface();
-  this->vk_command = vk_engine->get_vk_command();
-  this->vk_cmd = vk_engine->get_vk_cmd();
-  this->vk_descriptor = vk_engine->get_vk_descriptor();
 
   //---------------------------
 }

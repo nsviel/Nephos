@@ -3,7 +3,6 @@
 #include "../VK_engine.h"
 #include "../VK_struct/struct_vulkan.h"
 #include "../VK_data/VK_buffer.h"
-#include "../VK_window/VK_error.h"
 
 
 //Constructor / Destructor
@@ -12,7 +11,6 @@ VK_uniform::VK_uniform(VK_engine* vk_engine){
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_buffer = vk_engine->get_vk_buffer();
-  this->vk_error = vk_engine->get_vk_error();
 
   //---------------------------
 }
@@ -82,7 +80,17 @@ void VK_uniform::update_uniform_mat4(string uniform_name, Struct_binding* bindin
   }
 
   if(has_been_found == false){
-    vk_error->uniform_name_not_recognized(binding, uniform_name);
+    cout<<"------------------------"<<endl;
+    cout<<"[error] Update uniform -> name not recognized \033[1;31m"<<uniform_name<<"\033[0m"<<endl;
+    cout<<"Existing uniform names: "<<endl;
+
+    for(int i=0; i<binding->vec_uniform.size(); i++){
+      Struct_uniform* uniform = binding->vec_uniform[i];
+      cout<<"\033[1;32m"<<uniform->name<<"\033[0m"<<endl;
+    }
+
+    cout<<"------------------------"<<endl;
+    exit(0);
   }
 
   //---------------------------
@@ -101,7 +109,17 @@ void VK_uniform::update_uniform_int(string uniform_name, Struct_binding* binding
   }
 
   if(has_been_found == false){
-    vk_error->uniform_name_not_recognized(binding, uniform_name);
+    cout<<"------------------------"<<endl;
+    cout<<"[error] Update uniform -> name not recognized \033[1;31m"<<uniform_name<<"\033[0m"<<endl;
+    cout<<"Existing uniform names: "<<endl;
+
+    for(int i=0; i<binding->vec_uniform.size(); i++){
+      Struct_uniform* uniform = binding->vec_uniform[i];
+      cout<<"\033[1;32m"<<uniform->name<<"\033[0m"<<endl;
+    }
+
+    cout<<"------------------------"<<endl;
+    exit(0);
   }
 
   //---------------------------
@@ -120,7 +138,17 @@ void VK_uniform::update_uniform_edl(string uniform_name, Struct_binding* binding
   }
 
   if(has_been_found == false){
-    vk_error->uniform_name_not_recognized(binding, uniform_name);
+    cout<<"------------------------"<<endl;
+    cout<<"[error] Update uniform -> name not recognized \033[1;31m"<<uniform_name<<"\033[0m"<<endl;
+    cout<<"Existing uniform names: "<<endl;
+
+    for(int i=0; i<binding->vec_uniform.size(); i++){
+      Struct_uniform* uniform = binding->vec_uniform[i];
+      cout<<"\033[1;32m"<<uniform->name<<"\033[0m"<<endl;
+    }
+
+    cout<<"------------------------"<<endl;
+    exit(0);
   }
 
   //---------------------------

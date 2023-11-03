@@ -23,7 +23,7 @@ DR_scene::DR_scene(VK_engine* vk_engine){
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_submit = vk_engine->get_vk_submit();
   this->vk_uniform = vk_engine->get_vk_uniform();
-  this->vk_camera = vk_engine->get_vk_camera();
+  this->vk_camera = new VK_camera(vk_engine);
   this->vk_data = vk_engine->get_vk_data();
 
   //---------------------------

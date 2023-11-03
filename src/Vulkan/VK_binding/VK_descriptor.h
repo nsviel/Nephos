@@ -10,7 +10,6 @@
 
 class VK_engine;
 class Struct_vulkan;
-class VK_error;
 
 
 class VK_descriptor
@@ -44,7 +43,6 @@ public:
 private:
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
-  VK_error* vk_error;
 
   VkDescriptorPool descriptor_pool;
   int pool_nb_uniform;

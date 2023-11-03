@@ -2,7 +2,6 @@
 
 #include "../VK_engine.h"
 #include "../VK_struct/struct_vulkan.h"
-#include "../VK_window/VK_error.h"
 
 
 //Constructor / Destructor
@@ -11,7 +10,6 @@ VK_descriptor::VK_descriptor(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_error = vk_engine->get_vk_error();
 
   this->pool_nb_descriptor = 1000;
   this->pool_nb_uniform = 1000;
@@ -134,7 +132,17 @@ void VK_descriptor::update_descriptor_sampler(Struct_binding* binding, Struct_im
     }
   }
   if(sampler == nullptr){
-    vk_error->sampler_name_not_recognized(binding, image->name);
+    cout<<"------------------------"<<endl;
+    cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<image->name<<"\033[0m"<<endl;
+    cout<<"Existing uniform names: "<<endl;
+
+    for(int i=0; i<binding->vec_sampler.size(); i++){
+      Struct_sampler* sampler = binding->vec_sampler[i];
+      cout<<"\033[1;32m"<<sampler->name<<"\033[0m"<<endl;
+    }
+
+    cout<<"------------------------"<<endl;
+    exit(0);
   }
 
   VkDescriptorImageInfo image_info = {};

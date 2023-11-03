@@ -27,7 +27,6 @@ class VK_texture;
 class VK_depth;
 class VK_data;
 class VK_viewport;
-class VK_camera;
 class VK_shader;
 class VK_reload;
 class VK_physical_device;
@@ -38,7 +37,6 @@ class VK_binding;
 class VK_image;
 class VK_drawing;
 class VK_command_buffer;
-class VK_error;
 
 
 class VK_engine
@@ -77,7 +75,6 @@ public:
   inline VK_color* get_vk_color(){return vk_color;}
   inline VK_data* get_vk_data(){return vk_data;}
   inline VK_viewport* get_vk_viewport(){return vk_viewport;}
-  inline VK_camera* get_vk_camera(){return vk_camera;}
   inline VK_shader* get_vk_shader(){return vk_shader;}
   inline VK_reload* get_vk_reload(){return vk_reload;}
   inline VK_physical_device* get_vk_physical_device(){return vk_physical_device;}
@@ -89,7 +86,6 @@ public:
   inline VK_drawing* get_vk_drawing(){return vk_drawing;}
   inline VK_uniform* get_vk_uniform(){return vk_uniform;}
   inline VK_command_buffer* get_vk_command_buffer(){return vk_command_buffer;}
-  inline VK_error* get_vk_error(){return vk_error;}
 
 private:
   Engine* engine;
@@ -110,7 +106,6 @@ private:
   VK_image* vk_image;
   VK_command* vk_command;
   VK_cmd* vk_cmd;
-  VK_error* vk_error;
   VK_binding* vk_binding;
   VK_synchronization* vk_synchronization;
   VK_submit* vk_submit;
@@ -120,7 +115,6 @@ private:
   VK_texture* vk_texture;
   VK_data* vk_data;
   VK_viewport* vk_viewport;
-  VK_camera* vk_camera;
   VK_shader* vk_shader;
   VK_reload* vk_reload;
   VK_physical_device* vk_physical_device;

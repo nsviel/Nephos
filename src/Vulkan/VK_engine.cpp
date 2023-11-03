@@ -16,8 +16,7 @@
 
 #include "VK_device/VK_device.h"
 #include "VK_device/VK_physical_device.h"
-#include "VK_window/VK_surface.h"
-#include "VK_window/VK_error.h"
+#include "VK_presentation/VK_surface.h"
 #include "VK_instance/VK_instance.h"
 #include "VK_instance/VK_validation.h"
 
@@ -33,7 +32,6 @@
 #include "VK_presentation/VK_swapchain.h"
 #include "VK_presentation/VK_frame.h"
 #include "VK_camera/VK_viewport.h"
-#include "VK_camera/VK_camera.h"
 
 #include "VK_shader/VK_shader.h"
 #include "VK_shader/VK_reload.h"
@@ -55,7 +53,6 @@ VK_engine::VK_engine(Engine* engine){
 
   this->struct_vulkan = new Struct_vulkan();
   this->vk_instance = new VK_instance(this);
-  this->vk_error = new VK_error(this);
   this->vk_viewport = new VK_viewport(this);
   this->vk_surface = new VK_surface(this);
   this->vk_physical_device = new VK_physical_device(this);
@@ -77,7 +74,6 @@ VK_engine::VK_engine(Engine* engine){
   this->vk_renderpass = new VK_renderpass(this);
   this->vk_reload = new VK_reload(this);
   this->vk_frame = new VK_frame(this);
-  this->vk_camera = new VK_camera(this);
   this->vk_canvas = new VK_canvas(this);
   this->vk_command = new VK_command(this);
   this->vk_cmd = new VK_cmd(this);

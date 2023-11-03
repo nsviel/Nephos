@@ -1,7 +1,6 @@
 #include "VK_shader.h"
 #include "../VK_engine.h"
 #include "../VK_struct/struct_vulkan.h"
-#include "../VK_device/VK_device.h"
 
 #include <ELE_specific/File/File.h>
 
@@ -10,7 +9,6 @@
 VK_shader::VK_shader(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_device = vk_engine->get_vk_device();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   this->path_output = "output.txt";

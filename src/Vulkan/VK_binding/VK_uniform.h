@@ -9,7 +9,6 @@
 class VK_engine;
 class Struct_vulkan;
 class VK_buffer;
-class VK_error;
 
 
 class VK_uniform
@@ -33,7 +32,6 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
-  VK_error* vk_error;
 };
 
 #endif

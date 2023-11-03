@@ -11,9 +11,6 @@ class VK_engine;
 class Struct_vulkan;
 class VK_surface;
 class VK_swapchain;
-class VK_command;
-class VK_cmd;
-class VK_descriptor;
 
 
 class VK_submit
@@ -35,13 +32,9 @@ public:
   void submit_presentation(Struct_swapchain* swapchain);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_surface* vk_surface;
   VK_swapchain* vk_swapchain;
-  VK_command* vk_command;
-  VK_cmd* vk_cmd;
-  VK_descriptor* vk_descriptor;
 
   vector<Struct_renderpass*> vec_renderpass;
 };

@@ -6,7 +6,6 @@
 
 class VK_engine;
 class Struct_vulkan;
-class VK_device;
 
 
 class VK_shader
@@ -28,7 +27,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_device* vk_device;
 
   string path_output;
 };
