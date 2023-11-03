@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class VK_struct;
+class struct_vulkan;
 
 
 class GUI_font
@@ -33,7 +33,7 @@ public:
   inline void set_editor_font(ImFont* font){if(font!=nullptr)this->font_editor = font;}
 
 private:
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
 
   vector<ImFont*> vec_font_editor;
   vector<ImFont*> vec_font_gui;

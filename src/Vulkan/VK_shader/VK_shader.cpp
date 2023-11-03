@@ -1,6 +1,6 @@
 #include "VK_shader.h"
 #include "../VK_engine.h"
-#include "../VK_struct.h"
+#include "../VK_struct/struct_vulkan.h"
 #include "../VK_device/VK_device.h"
 
 #include <ELE_specific/File/File.h>

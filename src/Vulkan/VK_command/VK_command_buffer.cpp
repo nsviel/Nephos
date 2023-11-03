@@ -1,7 +1,7 @@
 #include "VK_command_buffer.h"
 #include "../VK_command/VK_cmd.h"
 
-#include "../VK_struct.h"
+#include "../VK_struct/struct_vulkan.h"
 #include "../VK_engine.h"
 #include "../VK_device/VK_physical_device.h"
 

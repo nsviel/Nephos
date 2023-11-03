@@ -9,7 +9,7 @@ class Param;
 class Window;
 class FPS_counter;
 
-class VK_struct;
+class struct_vulkan;
 class VK_surface;
 class VK_instance;
 class VK_device;
@@ -61,7 +61,7 @@ public:
   inline Param* get_param(){return param;}
   inline Window* get_window(){return window;}
 
-  inline VK_struct* get_vk_struct(){return vk_struct;}
+  inline struct_vulkan* get_vk_struct(){return vk_struct;}
   inline VK_device* get_vk_device(){return vk_device;}
   inline VK_framebuffer* get_vk_framebuffer(){return vk_framebuffer;}
   inline VK_surface* get_vk_surface(){return vk_surface;}
@@ -101,7 +101,7 @@ private:
   Timer timer;
   FPS_counter* fps_counter;
 
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_surface* vk_surface;
   VK_instance* vk_instance;
   VK_command_buffer* vk_command_buffer;

@@ -8,7 +8,7 @@
 
 class Param;
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 class VK_command_buffer;
 
 
@@ -40,7 +40,7 @@ public:
 private:
   Param* param;
   VK_engine* vk_engine;
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_command_buffer* vk_command_buffer;
 };
 

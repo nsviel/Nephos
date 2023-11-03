@@ -2,7 +2,7 @@
 
 #include <Engine.h>
 #include <VK_engine.h>
-#include <VK_struct.h>
+#include <VK_struct/struct_vulkan.h>
 #include <GUI.h>
 
 

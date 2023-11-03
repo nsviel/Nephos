@@ -5,7 +5,7 @@
 #include "../VK_struct/struct_image.h"
 
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 class VK_command;
 class VK_buffer;
 class VK_physical_device;
@@ -38,7 +38,7 @@ public:
 private:
   VK_physical_device* vk_physical_device;
   VK_engine* vk_engine;
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_command* vk_command;
   VK_buffer* vk_buffer;
 };

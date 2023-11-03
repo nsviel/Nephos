@@ -1,7 +1,7 @@
 #include "VK_cmd.h"
 
 #include "../VK_engine.h"
-#include "../VK_struct.h"
+#include "../VK_struct/struct_vulkan.h"
 #include "../VK_camera/VK_viewport.h"
 
 #include <ELE_specific/Function/fct_math.h>

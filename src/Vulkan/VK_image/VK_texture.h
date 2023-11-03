@@ -13,7 +13,7 @@ extern "C" {
 }
 
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 class VK_buffer;
 class VK_image;
 
@@ -47,7 +47,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_buffer* vk_buffer;
   VK_image* vk_image;
 

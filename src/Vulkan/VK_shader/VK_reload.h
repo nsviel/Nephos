@@ -5,7 +5,7 @@
 
 class VK_engine;
 class VK_pipeline;
-class VK_struct;
+class struct_vulkan;
 class VK_renderpass;
 
 
@@ -23,7 +23,7 @@ public:
 private:
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_renderpass* vk_renderpass;
 };
 

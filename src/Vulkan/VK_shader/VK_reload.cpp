@@ -4,7 +4,7 @@
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>
 #include <VK_engine.h>
-#include <VK_struct.h>
+#include <VK_struct/struct_vulkan.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_renderpass/VK_renderpass.h>
 #include <VK_renderpass/RP_edl.h>

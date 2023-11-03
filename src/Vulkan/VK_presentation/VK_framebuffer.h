@@ -6,7 +6,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 class VK_renderpass;
 
 
@@ -25,7 +25,7 @@ public:
   void clean_framebuffer(Frame* image);
 
 private:
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_renderpass* vk_renderpass;
 };
 

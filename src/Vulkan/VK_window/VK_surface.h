@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 class Window;
 
 
@@ -30,7 +30,7 @@ public:
 
 private:
   Window* window;
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
 
   vec2 window_dim;
 };

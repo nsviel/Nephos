@@ -5,7 +5,7 @@
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_command/VK_submit.h>
 #include <VK_engine.h>
-#include <VK_struct.h>
+#include <VK_struct/struct_vulkan.h>
 #include <VK_command/VK_command.h>
 #include <VK_presentation/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>

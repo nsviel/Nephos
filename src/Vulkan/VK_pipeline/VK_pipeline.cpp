@@ -1,7 +1,7 @@
 #include "VK_pipeline.h"
 
 #include "../VK_engine.h"
-#include "../VK_struct.h"
+#include "../VK_struct/struct_vulkan.h"
 #include "../VK_binding/VK_descriptor.h"
 #include "../VK_data/VK_data.h"
 #include "../VK_camera/VK_viewport.h"

@@ -7,7 +7,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 class VK_descriptor;
 class VK_uniform;
 class VK_sampler;
@@ -30,7 +30,7 @@ public:
   inline VK_uniform* get_vk_uniform(){return vk_uniform;}
 
 private:
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_uniform* vk_uniform;
   VK_descriptor* vk_descriptor;
   VK_sampler* vk_sampler;

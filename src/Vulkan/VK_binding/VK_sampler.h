@@ -6,7 +6,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 class VK_buffer;
 
 
@@ -23,7 +23,7 @@ public:
   Struct_sampler* create_sampler_obj(string name, int binding, VkDescriptorType type);
 
 private:
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_buffer* vk_buffer;
 };
 

@@ -5,7 +5,7 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class VK_struct;
+class struct_vulkan;
 class Database_sqlite;
 
 

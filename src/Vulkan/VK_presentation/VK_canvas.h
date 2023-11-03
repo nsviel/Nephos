@@ -5,7 +5,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 class VK_buffer;
 class VK_data;
 class VK_texture;
@@ -27,7 +27,7 @@ public:
   inline Struct_data* get_data_canvas(){return canvas;}
 
 private:
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_buffer* vk_buffer;
   VK_data* vk_data;
   VK_texture* vk_texture;

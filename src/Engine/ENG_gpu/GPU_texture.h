@@ -11,7 +11,7 @@ extern "C" {
 }
 
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 
 
 class GPU_texture
@@ -27,7 +27,7 @@ public:
   Struct_image* load_texture_from_frame(AVFrame* frame);
 
 private:
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_texture* vk_texture;
 };
 

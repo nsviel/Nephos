@@ -1,7 +1,7 @@
 #include "VK_sampler.h"
 
 #include "../VK_engine.h"
-#include "../VK_struct.h"
+#include "../VK_struct/struct_vulkan.h"
 #include "../VK_data/VK_buffer.h"
 
 

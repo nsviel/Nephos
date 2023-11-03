@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 class VK_physical_device;
 
 
@@ -21,7 +21,7 @@ public:
   void clean_logical_device();
 
 private:
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_physical_device* vk_physical_device;
 };
 

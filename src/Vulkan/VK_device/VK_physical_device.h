@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class VK_struct;
+class struct_vulkan;
 class VK_surface;
 class VK_instance;
 
@@ -40,7 +40,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  VK_struct* vk_struct;
+  struct_vulkan* vk_struct;
   VK_surface* vk_surface;
   VK_instance* vk_instance;
 

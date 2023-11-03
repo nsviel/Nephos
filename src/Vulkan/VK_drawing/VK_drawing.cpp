@@ -2,7 +2,7 @@
 
 #include <VK_command/VK_cmd.h>
 #include <VK_engine.h>
-#include <VK_struct.h>
+#include <VK_struct/struct_vulkan.h>
 #include <VK_drawing/DR_scene.h>
 #include <VK_drawing/DR_edl.h>
 #include <VK_drawing/DR_psr.h>

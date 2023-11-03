@@ -8,7 +8,7 @@
 #include <VK_pipeline/VK_subpass.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_engine.h>
-#include <VK_struct.h>
+#include <VK_struct/struct_vulkan.h>
 #include <VK_camera/VK_viewport.h>
 
 

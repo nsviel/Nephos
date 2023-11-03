@@ -1,7 +1,7 @@
 #include "VK_subpass.h"
 
 #include "../VK_engine.h"
-#include "../VK_struct.h"
+#include "../VK_struct/struct_vulkan.h"
 #include "../VK_image/VK_color.h"
 #include "../VK_image/VK_depth.h"
 
