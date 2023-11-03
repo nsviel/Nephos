@@ -8,6 +8,7 @@ add_subdirectory(Element)
 add_subdirectory(Engine)
 add_subdirectory(GUI)
 add_subdirectory(Splatting)
+add_subdirectory(Vulkan)
 
 #-----------------
 # Compilation

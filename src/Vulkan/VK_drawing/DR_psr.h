@@ -1,9 +1,9 @@
-#ifndef VK_DRAW_UI_H
-#define VK_DRAW_UI_H
+#ifndef VK_DRAW_PSR_H
+#define VK_DRAW_PSR_H
 
-#include <Vulkan/VK_struct/struct_frame.h>
-#include <Vulkan/VK_struct/struct_renderpass.h>
-#include <Vulkan/VK_struct/struct_command.h>
+#include <VK_struct/struct_frame.h>
+#include <VK_struct/struct_renderpass.h>
+#include <VK_struct/struct_command.h>
 #include <ELE_specific/common.h>
 
 class VK_engine;
@@ -12,27 +12,27 @@ class VK_command;
 class VK_cmd;
 class VK_descriptor;
 class VK_submit;
-class VK_data;
-class VK_uniform;
-class VK_canvas;
+class VK_viewport;
 
 
-class DR_ui
+class DR_psr
 {
 public:
   //Constructor / Destructor
-  DR_ui(VK_engine* vk_engine);
-  ~DR_ui();
+  DR_psr(VK_engine* vk_engine);
+  ~DR_psr();
 
 public:
   //Main functions
-  void draw_ui(Struct_renderpass* renderpass);
+  void draw_psr(Struct_renderpass* renderpass);
 
   //Subfunction
+  void update_descriptor(Struct_renderpass* renderpass);
   void record_command(Struct_renderpass* renderpass);
   void submit_command(Struct_renderpass* renderpass);
 
-  inline void set_imgui_drawdata(ImDrawData* value){this->draw_data = value;}
+  //Command function
+  void cmd_draw(Struct_renderpass* renderpass);
 
 private:
   Timer timer;
@@ -43,11 +43,8 @@ private:
   VK_cmd* vk_cmd;
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;
-  VK_data* vk_data;
-  VK_uniform* vk_uniform;
-  VK_canvas* vk_canvas;
+  VK_viewport* vk_viewport;
 
-  ImDrawData* draw_data;
 };
 
 #endif

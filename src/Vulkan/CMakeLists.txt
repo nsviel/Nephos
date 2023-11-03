@@ -19,6 +19,7 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
   LIBRARY_ELEMENT
+  LIBRARY_ENGINE
 
   ${Vulkan_LIBRARIES}
 

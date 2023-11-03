@@ -3,8 +3,8 @@
 
 #include <Engine.h>
 #include <GUI.h>
-#include <Vulkan/VK_engine.h>
-#include <Vulkan/VK_struct.h>
+#include <VK_engine.h>
+#include <VK_struct.h>
 #include <image/IconsFontAwesome5.h>
 
 

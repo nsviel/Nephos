@@ -1,8 +1,8 @@
 #include "GPU_texture.h"
 
-#include <Vulkan/VK_window/VK_surface.h>
-#include <Vulkan/VK_engine.h>
-#include <Vulkan/VK_struct.h>
+#include <VK_window/VK_surface.h>
+#include <VK_engine.h>
+#include <VK_struct.h>
 #include <image/IconsFontAwesome5.h>
 #include <ELE_window/Window.h>
 

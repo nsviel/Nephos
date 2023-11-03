@@ -1,15 +1,15 @@
 #include "DR_edl.h"
 
 #include <Engine.h>
-#include <Vulkan/VK_command/VK_cmd.h>
-#include <Vulkan/VK_pipeline/VK_pipeline.h>
-#include <Vulkan/VK_command/VK_submit.h>
-#include <Vulkan/VK_engine.h>
-#include <Vulkan/VK_struct.h>
-#include <Vulkan/VK_command/VK_command.h>
-#include <Vulkan/VK_presentation/VK_canvas.h>
-#include <Vulkan/VK_binding/VK_descriptor.h>
-#include <Vulkan/VK_binding/VK_uniform.h>
+#include <VK_command/VK_cmd.h>
+#include <VK_pipeline/VK_pipeline.h>
+#include <VK_command/VK_submit.h>
+#include <VK_engine.h>
+#include <VK_struct.h>
+#include <VK_command/VK_command.h>
+#include <VK_presentation/VK_canvas.h>
+#include <VK_binding/VK_descriptor.h>
+#include <VK_binding/VK_uniform.h>
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>
 

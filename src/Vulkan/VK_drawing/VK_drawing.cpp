@@ -1,17 +1,17 @@
 #include "VK_drawing.h"
 
-#include <Vulkan/VK_command/VK_cmd.h>
-#include <Vulkan/VK_engine.h>
-#include <Vulkan/VK_struct.h>
-#include <Vulkan/VK_drawing/DR_scene.h>
-#include <Vulkan/VK_drawing/DR_edl.h>
-#include <Vulkan/VK_drawing/DR_psr.h>
-#include <Vulkan/VK_drawing/DR_ui.h>
-#include <Vulkan/VK_pipeline/VK_pipeline.h>
-#include <Vulkan/VK_command/VK_submit.h>
-#include <Vulkan/VK_command/VK_command.h>
-#include <Vulkan/VK_presentation/VK_canvas.h>
-#include <Vulkan/VK_binding/VK_descriptor.h>
+#include <VK_command/VK_cmd.h>
+#include <VK_engine.h>
+#include <VK_struct.h>
+#include <VK_drawing/DR_scene.h>
+#include <VK_drawing/DR_edl.h>
+#include <VK_drawing/DR_psr.h>
+#include <VK_drawing/DR_ui.h>
+#include <VK_pipeline/VK_pipeline.h>
+#include <VK_command/VK_submit.h>
+#include <VK_command/VK_command.h>
+#include <VK_presentation/VK_canvas.h>
+#include <VK_binding/VK_descriptor.h>
 
 
 //Constructor / Destructor

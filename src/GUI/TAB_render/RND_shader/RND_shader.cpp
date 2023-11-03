@@ -2,9 +2,9 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <Vulkan/VK_shader/VK_reload.h>
-#include <Vulkan/VK_struct/struct_instance.h>
-#include <Vulkan/VK_engine.h>
+#include <VK_shader/VK_reload.h>
+#include <VK_struct/struct_instance.h>
+#include <VK_engine.h>
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>
 #include <ENG_shader/Canvas/CAN_shader.h>

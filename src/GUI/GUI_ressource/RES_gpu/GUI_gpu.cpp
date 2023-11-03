@@ -2,10 +2,10 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <Vulkan/VK_struct.h>
-#include <Vulkan/VK_engine.h>
-#include <Vulkan/VK_drawing/VK_drawing.h>
-#include <Vulkan/VK_drawing/DR_ui.h>
+#include <VK_struct.h>
+#include <VK_engine.h>
+#include <VK_drawing/VK_drawing.h>
+#include <VK_drawing/DR_ui.h>
 #include <ELE_window/Window.h>
 
 

@@ -1,8 +1,8 @@
 #include "GUI_profiler.h"
 
 #include <GUI.h>
-#include <Vulkan/VK_engine.h>
-#include <Vulkan/VK_struct.h>
+#include <VK_engine.h>
+#include <VK_struct.h>
 #include <Engine.h>
 
 

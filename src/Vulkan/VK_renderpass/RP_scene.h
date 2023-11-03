@@ -1,8 +1,8 @@
-#ifndef RP_UI_H
-#define RP_UI_H
+#ifndef RP_SCENE_H
+#define RP_SCENE_H
 
-#include <Vulkan/VK_struct/struct_renderpass.h>
-#include <Vulkan/VK_struct/struct_pipeline.h>
+#include <VK_struct/struct_renderpass.h>
+#include <VK_struct/struct_pipeline.h>
 #include <ELE_specific/common.h>
 
 class VK_engine;
@@ -12,19 +12,20 @@ class VK_subpass;
 class VK_viewport;
 
 
-class RP_ui
+class RP_scene
 {
 public:
   //Constructor / Destructor
-  RP_ui(VK_engine* vk_engine);
-  ~RP_ui();
+  RP_scene(VK_engine* vk_engine);
+  ~RP_scene();
 
 public:
   //Main functions
   void init_renderpass(Struct_renderpass* renderpass);
 
   //Pipeline
-  void create_pipeline_canvas(Struct_renderpass* renderpass);
+  void create_pipeline_point(Struct_renderpass* renderpass);
+  void create_pipeline_line(Struct_renderpass* renderpass);
 
 private:
   VK_engine* vk_engine;

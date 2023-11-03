@@ -3,11 +3,11 @@
 #include <Engine.h>
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>
-#include <Vulkan/VK_engine.h>
-#include <Vulkan/VK_struct.h>
-#include <Vulkan/VK_pipeline/VK_pipeline.h>
-#include <Vulkan/VK_renderpass/VK_renderpass.h>
-#include <Vulkan/VK_renderpass/RP_edl.h>
+#include <VK_engine.h>
+#include <VK_struct.h>
+#include <VK_pipeline/VK_pipeline.h>
+#include <VK_renderpass/VK_renderpass.h>
+#include <VK_renderpass/RP_edl.h>
 
 
 //Constructor / Destructor

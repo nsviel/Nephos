@@ -1,7 +1,7 @@
 #include "GPU_data.h"
 
-#include <Vulkan/VK_engine.h>
-#include <Vulkan/VK_data/VK_data.h>
+#include <VK_engine.h>
+#include <VK_data/VK_data.h>
 
 
 //Constructor / Destructor

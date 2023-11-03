@@ -2,7 +2,7 @@
 #define GPU_TEXTURE_H
 
 #include <ELE_specific/common.h>
-#include <Vulkan/VK_image/VK_texture.h>
+#include <VK_image/VK_texture.h>
 
 extern "C" {
 #include <libavcodec/avcodec.h>
