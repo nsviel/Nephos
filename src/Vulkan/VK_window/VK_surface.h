@@ -30,7 +30,7 @@ public:
 
 private:
   Window* window;
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
 
   vec2 window_dim;
 };

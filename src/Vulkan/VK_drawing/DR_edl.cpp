@@ -23,7 +23,7 @@ DR_edl::DR_edl(VK_engine* vk_engine){
   this->edl_shader = shaderManager->get_edl_shader();
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_command = vk_engine->get_vk_command();
   this->vk_cmd = vk_engine->get_vk_cmd();
   this->vk_descriptor = vk_engine->get_vk_descriptor();
@@ -45,14 +45,14 @@ void DR_edl::draw_edl(Struct_renderpass* renderpass){
   this->submit_command(renderpass);
 
   //---------------------------
-  vk_struct->time.renderpass_edl.push_back(timer.stop_ms(t1));
+  struct_vulkan->time.renderpass_edl.push_back(timer.stop_ms(t1));
 }
 
 //Subfunction
 void DR_edl::update_descriptor(Struct_renderpass* renderpass){
   //---------------------------
 
-  Frame* frame_scene = vk_struct->renderpass_scene.get_rendering_frame();
+  Frame* frame_scene = struct_vulkan->renderpass_scene.get_rendering_frame();
   Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle_EDL");
   vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);
   vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->depth);
@@ -74,7 +74,7 @@ void DR_edl::record_command(Struct_renderpass* renderpass){
 void DR_edl::submit_command(Struct_renderpass* renderpass){
   //---------------------------
 
-  Frame* frame_swap = vk_struct->swapchain.get_frame_inflight();
+  Frame* frame_swap = struct_vulkan->swapchain.get_frame_inflight();
   renderpass->semaphore_to_wait = frame_swap->semaphore_scene_ready;
   renderpass->semaphore_to_run = frame_swap->semaphore_edl_ready;
   renderpass->fence = VK_NULL_HANDLE;

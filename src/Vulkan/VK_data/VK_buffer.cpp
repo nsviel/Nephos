@@ -10,7 +10,7 @@ VK_buffer::VK_buffer(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   //---------------------------
 }
@@ -40,19 +40,19 @@ void VK_buffer::clean_buffer(Struct_data* data){
   //---------------------------
 
   //Location buffer
-  vkDestroyBuffer(vk_struct->device.device, data->xyz.vbo, nullptr);
-  vkFreeMemory(vk_struct->device.device, data->xyz.mem, nullptr);
+  vkDestroyBuffer(struct_vulkan->device.device, data->xyz.vbo, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, data->xyz.mem, nullptr);
 
   //Location buffer
   if(data->has_rgb){
-    vkDestroyBuffer(vk_struct->device.device, data->rgb.vbo, nullptr);
-    vkFreeMemory(vk_struct->device.device, data->rgb.mem, nullptr);
+    vkDestroyBuffer(struct_vulkan->device.device, data->rgb.vbo, nullptr);
+    vkFreeMemory(struct_vulkan->device.device, data->rgb.mem, nullptr);
   }
 
   //Location buffer
   if(data->has_uv){
-    vkDestroyBuffer(vk_struct->device.device, data->uv.vbo, nullptr);
-    vkFreeMemory(vk_struct->device.device, data->uv.mem, nullptr);
+    vkDestroyBuffer(struct_vulkan->device.device, data->uv.vbo, nullptr);
+    vkFreeMemory(struct_vulkan->device.device, data->uv.mem, nullptr);
   }
 
   //---------------------------
@@ -71,16 +71,16 @@ void VK_buffer::create_buffer_xyz(Struct_data* data){
 
   //Copy the vertex data from the CPU to the GPU
   void* data_map;
-  vkMapMemory(vk_struct->device.device, staging_buffer_memory, 0, size, 0, &data_map);
+  vkMapMemory(struct_vulkan->device.device, staging_buffer_memory, 0, size, 0, &data_map);
   memcpy(data_map, vertices.data(), (size_t)size);
-  vkUnmapMemory(vk_struct->device.device, staging_buffer_memory);
+  vkUnmapMemory(struct_vulkan->device.device, staging_buffer_memory);
 
   this->create_gpu_buffer(size, BUFFER_USAGE_DST_VERTEX, data->xyz.vbo);
   this->bind_buffer_memory(MEMORY_GPU, data->xyz.vbo, data->xyz.mem);
   this->copy_buffer_to_gpu(staging_buffer, data->xyz.vbo, size);
 
-  vkDestroyBuffer(vk_struct->device.device, staging_buffer, nullptr);
-  vkFreeMemory(vk_struct->device.device, staging_buffer_memory, nullptr);
+  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, staging_buffer_memory, nullptr);
 
   //---------------------------
 }
@@ -96,16 +96,16 @@ void VK_buffer::create_buffer_rgb(Struct_data* data){
 
   //Filling the vertex buffer
   void* data_map;
-  vkMapMemory(vk_struct->device.device, staging_buffer_memory, 0, size, 0, &data_map);
+  vkMapMemory(struct_vulkan->device.device, staging_buffer_memory, 0, size, 0, &data_map);
   memcpy(data_map, vertices.data(), (size_t)size);
-  vkUnmapMemory(vk_struct->device.device, staging_buffer_memory);
+  vkUnmapMemory(struct_vulkan->device.device, staging_buffer_memory);
 
   this->create_gpu_buffer(size, BUFFER_USAGE_DST_VERTEX, data->rgb.vbo);
   this->bind_buffer_memory(MEMORY_GPU, data->rgb.vbo, data->rgb.mem);
   this->copy_buffer_to_gpu(staging_buffer, data->rgb.vbo, size);
 
-  vkDestroyBuffer(vk_struct->device.device, staging_buffer, nullptr);
-  vkFreeMemory(vk_struct->device.device, staging_buffer_memory, nullptr);
+  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, staging_buffer_memory, nullptr);
 
   //---------------------------
 }
@@ -122,9 +122,9 @@ void VK_buffer::create_buffer_uv(Struct_data* data){
 
   //Fill the created sized stagging buffer
   void* data_map;
-  vkMapMemory(vk_struct->device.device, staging_buffer_memory, 0, size, 0, &data_map);
+  vkMapMemory(struct_vulkan->device.device, staging_buffer_memory, 0, size, 0, &data_map);
   memcpy(data_map, vertices.data(), (size_t)size);
-  vkUnmapMemory(vk_struct->device.device, staging_buffer_memory);
+  vkUnmapMemory(struct_vulkan->device.device, staging_buffer_memory);
 
   //Copy from stagged buffer to GPU buffer
   this->create_gpu_buffer(size, BUFFER_USAGE_DST_VERTEX, data->uv.vbo);
@@ -132,8 +132,8 @@ void VK_buffer::create_buffer_uv(Struct_data* data){
   this->copy_buffer_to_gpu(staging_buffer, data->uv.vbo, size);
 
   //Destroy created stagging memory
-  vkDestroyBuffer(vk_struct->device.device, staging_buffer, nullptr);
-  vkFreeMemory(vk_struct->device.device, staging_buffer_memory, nullptr);
+  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, staging_buffer_memory, nullptr);
 
   //---------------------------
 }
@@ -150,7 +150,7 @@ void VK_buffer::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, V
   bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
   //Create the GPU buffer
-  VkResult result = vkCreateBuffer(vk_struct->device.device, &bufferInfo, nullptr, &buffer);
+  VkResult result = vkCreateBuffer(struct_vulkan->device.device, &bufferInfo, nullptr, &buffer);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create buffer!");
   }
@@ -162,7 +162,7 @@ void VK_buffer::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& b
 
   //Get buffer memory requirement
   VkMemoryRequirements buffer_mem_requirement;
-  vkGetBufferMemoryRequirements(vk_struct->device.device, buffer, &buffer_mem_requirement);
+  vkGetBufferMemoryRequirements(struct_vulkan->device.device, buffer, &buffer_mem_requirement);
 
   //Buffer allocation info
   VkMemoryAllocateInfo buffer_allocation_info{};
@@ -171,13 +171,13 @@ void VK_buffer::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& b
   buffer_allocation_info.memoryTypeIndex = findMemoryType(buffer_mem_requirement.memoryTypeBits, properties);
 
   //Allocate buffer memory on the GPU
-  VkResult result = vkAllocateMemory(vk_struct->device.device, &buffer_allocation_info, nullptr, &buffer_memory);
+  VkResult result = vkAllocateMemory(struct_vulkan->device.device, &buffer_allocation_info, nullptr, &buffer_memory);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate buffer memory!");
   }
 
   //Bind the buffer with memory on the GPU side
-  vkBindBufferMemory(vk_struct->device.device, buffer, buffer_memory, 0);
+  vkBindBufferMemory(struct_vulkan->device.device, buffer, buffer_memory, 0);
 
   //---------------------------
 }
@@ -201,7 +201,7 @@ uint32_t VK_buffer::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags pr
   //---------------------------
 
   VkPhysicalDeviceMemoryProperties memProperties;
-  vkGetPhysicalDeviceMemoryProperties(vk_struct->device.physical_device, &memProperties);
+  vkGetPhysicalDeviceMemoryProperties(struct_vulkan->device.physical_device, &memProperties);
 
   for(uint32_t i=0; i<memProperties.memoryTypeCount; i++){
     if((typeFilter &(1<<i)) && (memProperties.memoryTypes[i].propertyFlags & properties) == properties){

@@ -16,7 +16,7 @@ VK_swapchain::VK_swapchain(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_surface = vk_engine->get_vk_surface();
   this->vk_physical_device = vk_engine->get_vk_physical_device();
 
@@ -39,29 +39,29 @@ void VK_swapchain::recreate_swapChain(){
     glfwWaitEvents();
   }
 
-  vkDeviceWaitIdle(vk_struct->device.device);
+  vkDeviceWaitIdle(struct_vulkan->device.device);
 
   //Clean old values
-  vk_frame->clean_frame_swapchain(&vk_struct->swapchain);
-  vk_frame->clean_frame_renderpass(&vk_struct->renderpass_scene);
-  vk_frame->clean_frame_renderpass(&vk_struct->renderpass_edl);
+  vk_frame->clean_frame_swapchain(&struct_vulkan->swapchain);
+  vk_frame->clean_frame_renderpass(&struct_vulkan->renderpass_scene);
+  vk_frame->clean_frame_renderpass(&struct_vulkan->renderpass_edl);
   this->clean_swapchain();
 
   //Recreate values
   this->create_swapchain();
-  vk_frame->create_frame_swapchain(&vk_struct->swapchain);
-  vk_frame->create_frame_renderpass(&vk_struct->renderpass_scene);
-  vk_frame->create_frame_renderpass(&vk_struct->renderpass_edl);
+  vk_frame->create_frame_swapchain(&struct_vulkan->swapchain);
+  vk_frame->create_frame_renderpass(&struct_vulkan->renderpass_scene);
+  vk_frame->create_frame_renderpass(&struct_vulkan->renderpass_edl);
 
   //---------------------------
 }
 void VK_swapchain::clean_swapchain(){
   //---------------------------
 
-  vkDestroySwapchainKHR(vk_struct->device.device, vk_struct->swapchain.swapchain, nullptr);
+  vkDestroySwapchainKHR(struct_vulkan->device.device, struct_vulkan->swapchain.swapchain, nullptr);
 
   VK_frame* vk_frame = vk_engine->get_vk_frame();
-  vk_frame->clean_frame_swapchain(&vk_struct->swapchain);
+  vk_frame->clean_frame_swapchain(&struct_vulkan->swapchain);
 
   //---------------------------
 }
@@ -78,12 +78,12 @@ void VK_swapchain::create_swapchain(){
   this->create_swapchain_presentation(createInfo);
 
   //Create swap chain
-  VkResult result = vkCreateSwapchainKHR(vk_struct->device.device, &createInfo, nullptr, &vk_struct->swapchain.swapchain);
+  VkResult result = vkCreateSwapchainKHR(struct_vulkan->device.device, &createInfo, nullptr, &struct_vulkan->swapchain.swapchain);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create swap chain!");
   }
 
-  this->create_swapchain_image(vk_struct->swapchain.swapchain, createInfo.minImageCount);
+  this->create_swapchain_image(struct_vulkan->swapchain.swapchain, createInfo.minImageCount);
   vk_viewport->update_viewport();
 
   //---------------------------
@@ -91,8 +91,8 @@ void VK_swapchain::create_swapchain(){
 void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& createInfo){
   //---------------------------
 
-  VkSurfaceCapabilitiesKHR surface_capability = vk_physical_device->find_surface_capability(vk_struct->device.physical_device);
-  vector<VkSurfaceFormatKHR> surface_format = vk_physical_device->find_surface_format(vk_struct->device.physical_device);
+  VkSurfaceCapabilitiesKHR surface_capability = vk_physical_device->find_surface_capability(struct_vulkan->device.physical_device);
+  vector<VkSurfaceFormatKHR> surface_format = vk_physical_device->find_surface_format(struct_vulkan->device.physical_device);
   VkSurfaceFormatKHR surfaceFormat = swapchain_surface_format(surface_format);
   vk_physical_device->compute_extent();
 
@@ -101,14 +101,14 @@ void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& createInfo
   if(surface_capability.maxImageCount > 0 && nb_image > surface_capability.maxImageCount){
     nb_image = surface_capability.maxImageCount;
   }
-  vk_struct->nb_frame = nb_image;
+  struct_vulkan->nb_frame = nb_image;
 
   createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
   createInfo.minImageCount = nb_image;
-  createInfo.surface = vk_struct->window.surface;
+  createInfo.surface = struct_vulkan->window.surface;
   createInfo.imageFormat = surfaceFormat.format;
   createInfo.imageColorSpace = surfaceFormat.colorSpace;
-  createInfo.imageExtent = vk_struct->window.extent;
+  createInfo.imageExtent = struct_vulkan->window.extent;
   createInfo.imageArrayLayers = 1;
   createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT; //VK_IMAGE_USAGE_TRANSFER_DST_BIT for post-processing
 
@@ -120,8 +120,8 @@ void VK_swapchain::create_swapchain_family(VkSwapchainCreateInfoKHR& createInfo)
   //---------------------------
 
   //Link with queue families
-  int family_graphics = vk_physical_device->find_queue_family_graphics(vk_struct->device.physical_device);
-  int family_presentation = vk_physical_device->find_queue_family_presentation(vk_struct->device.physical_device);
+  int family_graphics = vk_physical_device->find_queue_family_graphics(struct_vulkan->device.physical_device);
+  int family_presentation = vk_physical_device->find_queue_family_presentation(struct_vulkan->device.physical_device);
   uint32_t queueFamilyIndices[] = {(unsigned int)family_graphics, (unsigned int)family_presentation};
 
   if(family_graphics != family_presentation){
@@ -139,7 +139,7 @@ void VK_swapchain::create_swapchain_family(VkSwapchainCreateInfoKHR& createInfo)
 void VK_swapchain::create_swapchain_presentation(VkSwapchainCreateInfoKHR& createInfo){
   //---------------------------
 
-  vector<VkPresentModeKHR> dev_presentation_mode = vk_physical_device->find_presentation_mode(vk_struct->device.physical_device);
+  vector<VkPresentModeKHR> dev_presentation_mode = vk_physical_device->find_presentation_mode(struct_vulkan->device.physical_device);
   VkPresentModeKHR presentation_mode = swapchain_presentation_mode(dev_presentation_mode);
 
   createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; //Ignore alpha channel
@@ -156,11 +156,11 @@ void VK_swapchain::create_swapchain_image(VkSwapchainKHR swapchain, unsigned int
   //to get the correct image which are managed by the presentation engine
 
   //Empty swapchain image
-  vkGetSwapchainImagesKHR(vk_struct->device.device, swapchain, &min_image_count, nullptr);
+  vkGetSwapchainImagesKHR(struct_vulkan->device.device, swapchain, &min_image_count, nullptr);
 
   //Fill swapchain image
-  vk_struct->swapchain.vec_swapchain_image.resize(min_image_count);
-  vkGetSwapchainImagesKHR(vk_struct->device.device, swapchain, &min_image_count, vk_struct->swapchain.vec_swapchain_image.data());
+  struct_vulkan->swapchain.vec_swapchain_image.resize(min_image_count);
+  vkGetSwapchainImagesKHR(struct_vulkan->device.device, swapchain, &min_image_count, struct_vulkan->swapchain.vec_swapchain_image.data());
 
   //---------------------------
 }
@@ -171,7 +171,7 @@ VkSurfaceFormatKHR VK_swapchain::swapchain_surface_format(const std::vector<VkSu
 
   //Check if standar RGB is available
   for(const auto& format : dev_format){
-    if(format.format == vk_struct->required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
+    if(format.format == struct_vulkan->required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
       return format;
     }
   }

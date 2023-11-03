@@ -61,7 +61,7 @@ public:
   inline Window* get_window(){return window;}
 
   inline Struct_param* get_param(){return struct_param;}
-  inline Struct_vulkan* get_vk_struct(){return vk_struct;}
+  inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
 
   inline VK_device* get_vk_device(){return vk_device;}
   inline VK_framebuffer* get_vk_framebuffer(){return vk_framebuffer;}
@@ -102,7 +102,7 @@ private:
   Timer timer;
   FPS_counter* fps_counter;
 
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_surface* vk_surface;
   VK_instance* vk_instance;
   VK_command_buffer* vk_command_buffer;

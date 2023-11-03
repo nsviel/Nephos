@@ -54,7 +54,7 @@ VK_engine::VK_engine(Engine* engine){
   this->fps_counter = new FPS_counter(100);
   this->struct_param = new Struct_param();
 
-  this->vk_struct = new Struct_vulkan();
+  this->struct_vulkan = new Struct_vulkan();
   this->vk_instance = new VK_instance(this);
   this->vk_validation = new VK_validation(this);
   this->vk_error = new VK_error(this);
@@ -110,13 +110,13 @@ void VK_engine::init(){
   //Pipeline
   vk_swapchain->create_swapchain();
   vk_renderpass->init_renderpass();
-  vk_frame->create_frame_swapchain(&vk_struct->swapchain);
+  vk_frame->create_frame_swapchain(&struct_vulkan->swapchain);
 
   //Specific
   vk_viewport->init_viewport();
 
   //---------------------------
-  vk_struct->time.engine_init = timer.stop_us(t1) / 1000;
+  struct_vulkan->time.engine_init = timer.stop_us(t1) / 1000;
 }
 void VK_engine::loop_draw_frame(){
   //---------------------------
@@ -125,12 +125,12 @@ void VK_engine::loop_draw_frame(){
 
   //---------------------------
   fps_counter->update();
-  vk_struct->time.engine_fps = fps_counter->get_fps();
+  struct_vulkan->time.engine_fps = fps_counter->get_fps();
 }
 void VK_engine::device_wait_idle() {
   //---------------------------
 
-  vkDeviceWaitIdle(vk_struct->device.device);
+  vkDeviceWaitIdle(struct_vulkan->device.device);
 
   //---------------------------
 }

@@ -38,7 +38,7 @@ public:
 private:
   VK_physical_device* vk_physical_device;
   VK_engine* vk_engine;
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_buffer* vk_buffer;
 };

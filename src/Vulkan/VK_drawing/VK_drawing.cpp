@@ -19,7 +19,7 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_command = vk_engine->get_vk_command();
   this->vk_cmd = vk_engine->get_vk_cmd();
   this->vk_descriptor = vk_engine->get_vk_descriptor();
@@ -40,19 +40,19 @@ void VK_drawing::draw_frame(){
   //---------------------------
 
   //Next image to draw
-  vk_submit->acquire_next_image(&vk_struct->swapchain);
+  vk_submit->acquire_next_image(&struct_vulkan->swapchain);
 
   //Drawing operations
-  dr_scene->draw_scene(&vk_struct->renderpass_scene);
+  dr_scene->draw_scene(&struct_vulkan->renderpass_scene);
 
 
-  dr_edl->draw_edl(&vk_struct->renderpass_edl);
-  dr_ui->draw_ui(&vk_struct->renderpass_ui);
+  dr_edl->draw_edl(&struct_vulkan->renderpass_edl);
+  dr_ui->draw_ui(&struct_vulkan->renderpass_ui);
 
   //Submit drawn image
-  vk_submit->submit_presentation(&vk_struct->swapchain);
-  vk_submit->set_next_frame_ID(&vk_struct->swapchain);
+  vk_submit->submit_presentation(&struct_vulkan->swapchain);
+  vk_submit->set_next_frame_ID(&struct_vulkan->swapchain);
 
   //---------------------------
-  vk_struct->time.draw_frame.push_back(timer.stop_ms(t1));
+  struct_vulkan->time.draw_frame.push_back(timer.stop_ms(t1));
 }

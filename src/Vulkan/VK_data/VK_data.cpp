@@ -15,7 +15,7 @@ VK_data::VK_data(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_buffer = vk_engine->get_vk_buffer();
   this->vk_texture = vk_engine->get_vk_texture();
   this->vk_binding = vk_engine->get_vk_binding();
@@ -78,7 +78,7 @@ void VK_data::insert_glyph_object(Object* object){
 void VK_data::clean_data(Struct_data* data){
   //---------------------------
 
-  vkDeviceWaitIdle(vk_struct->device.device);
+  vkDeviceWaitIdle(struct_vulkan->device.device);
 
   vk_buffer->clean_buffer(data);
   vk_texture->clean_texture(data);

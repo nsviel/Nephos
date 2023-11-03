@@ -27,7 +27,7 @@ public:
   Struct_image* load_texture_from_frame(AVFrame* frame);
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_texture* vk_texture;
 };
 

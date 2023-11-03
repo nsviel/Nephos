@@ -13,7 +13,7 @@ GUI_profiler::GUI_profiler(GUI* gui, bool* show_window, string name) : BASE_pane
   this->gui = gui;
   Engine* engine = gui->get_engine();
   this->vk_engine = engine->get_vk_engine();
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   this->width = 150;
 
@@ -51,7 +51,7 @@ void GUI_profiler::device_model(){
 
   ImGui::Text("Device model ");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", vk_struct->device.model.c_str());
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", struct_vulkan->device.model.c_str());
 
   //---------------------------
 }
@@ -77,10 +77,10 @@ void GUI_profiler::time_drawig(bool update){
   static float mean_renderpass_edl;
   static float mean_renderpass_ui;
   if(update){
-    mean_draw_frame = fct_mean_and_clear(vk_struct->time.draw_frame);
-    mean_renderpass_scene = fct_mean_and_clear(vk_struct->time.renderpass_scene);
-    mean_renderpass_edl = fct_mean_and_clear(vk_struct->time.renderpass_edl);
-    mean_renderpass_ui = fct_mean_and_clear(vk_struct->time.renderpass_ui);
+    mean_draw_frame = fct_mean_and_clear(struct_vulkan->time.draw_frame);
+    mean_renderpass_scene = fct_mean_and_clear(struct_vulkan->time.renderpass_scene);
+    mean_renderpass_edl = fct_mean_and_clear(struct_vulkan->time.renderpass_edl);
+    mean_renderpass_ui = fct_mean_and_clear(struct_vulkan->time.renderpass_ui);
   }
 
   ImGui::Text("Time draw frame ");
@@ -118,13 +118,13 @@ void GUI_profiler::time_general(bool update){
 
   static float mean_engine_fps;
   if(update){
-    mean_engine_fps = vk_struct->time.engine_fps;
+    mean_engine_fps = struct_vulkan->time.engine_fps;
   }
 
   //Time init
   ImGui::Text("Time initialization ");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", vk_struct->time.engine_init);
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", struct_vulkan->time.engine_init);
   ImGui::SameLine();
   ImGui::Text(" ms");
 

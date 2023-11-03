@@ -12,7 +12,7 @@
 VK_canvas::VK_canvas(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_buffer = vk_engine->get_vk_buffer();
   this->vk_data = vk_engine->get_vk_data();
   this->vk_texture = vk_engine->get_vk_texture();

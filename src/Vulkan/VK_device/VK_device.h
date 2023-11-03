@@ -21,7 +21,7 @@ public:
   void clean_logical_device();
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_physical_device* vk_physical_device;
 };
 

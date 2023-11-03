@@ -11,7 +11,7 @@ VK_shader::VK_shader(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_device = vk_engine->get_vk_device();
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   this->path_output = "output.txt";
   file::clear_file(path_output);
@@ -49,8 +49,8 @@ void VK_shader::create_pipeline_shader_module(Struct_pipeline* pipeline){
   }
 
   //Load spir format shaders
-  //string path_vs = vk_struct->instance.path_shader + pipeline->path_shader_vs + ".spv";
-  //string path_fs = vk_struct->instance.path_shader + pipeline->path_shader_fs + ".spv";
+  //string path_vs = struct_vulkan->instance.path_shader + pipeline->path_shader_vs + ".spv";
+  //string path_fs = struct_vulkan->instance.path_shader + pipeline->path_shader_fs + ".spv";
 
   string path_vs = path_shader + pipeline->shader_info->folder + "/spir/" + pipeline->shader_info->path_vs + ".spv";
   string path_fs = path_shader + pipeline->shader_info->folder + "/spir/" + pipeline->shader_info->path_fs + ".spv";
@@ -109,7 +109,7 @@ VkShaderModule VK_shader::create_shader_module(const std::vector<char>& code){
 
   //Shader module creation
   VkShaderModule shaderModule;
-  VkResult result = vkCreateShaderModule(vk_struct->device.device, &createInfo, nullptr, &shaderModule);
+  VkResult result = vkCreateShaderModule(struct_vulkan->device.device, &createInfo, nullptr, &shaderModule);
   if (result != VK_SUCCESS) {
     throw std::runtime_error("[error] failed to create shader module!");
   }

@@ -35,7 +35,7 @@ private:
   Timer timer;
 
   VK_engine* vk_engine;
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_cmd* vk_cmd;
   VK_descriptor* vk_descriptor;

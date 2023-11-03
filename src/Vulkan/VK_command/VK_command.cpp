@@ -13,7 +13,7 @@ VK_command::VK_command(VK_engine* vk_engine){
   Engine* engine = vk_engine->get_engine();
   this->param = engine->get_param();
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   //---------------------------
 }
@@ -94,7 +94,7 @@ void VK_command::start_render_pass(Struct_renderpass* renderpass, Frame* frame, 
   renderpass_info.renderPass = renderpass->renderpass;
   renderpass_info.framebuffer = frame->fbo;
   renderpass_info.renderArea.offset = {0, 0};
-  renderpass_info.renderArea.extent = vk_struct->window.extent;
+  renderpass_info.renderArea.extent = struct_vulkan->window.extent;
   renderpass_info.clearValueCount = static_cast<uint32_t>(clear_value.size());
   renderpass_info.pClearValues = clear_value.data();
 
@@ -177,11 +177,11 @@ VkCommandBuffer VK_command::singletime_command_begin(){
   VkCommandBufferAllocateInfo allocInfo{};
   allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
   allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-  allocInfo.commandPool = vk_struct->command_pool;
+  allocInfo.commandPool = struct_vulkan->command_pool;
   allocInfo.commandBufferCount = 1;
 
   VkCommandBuffer command_buffer;
-  vkAllocateCommandBuffers(vk_struct->device.device, &allocInfo, &command_buffer);
+  vkAllocateCommandBuffers(struct_vulkan->device.device, &allocInfo, &command_buffer);
 
   VkCommandBufferBeginInfo begin_info{};
   begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
@@ -202,10 +202,10 @@ void VK_command::singletime_command_end(VkCommandBuffer command_buffer){
   submitInfo.commandBufferCount = 1;
   submitInfo.pCommandBuffers = &command_buffer;
 
-  vkQueueSubmit(vk_struct->device.queue_graphics, 1, &submitInfo, VK_NULL_HANDLE);
-  vkQueueWaitIdle(vk_struct->device.queue_graphics);
+  vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submitInfo, VK_NULL_HANDLE);
+  vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
 
-  vkFreeCommandBuffers(vk_struct->device.device, vk_struct->command_pool, 1, &command_buffer);
+  vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->command_pool, 1, &command_buffer);
 
   //---------------------------
 }

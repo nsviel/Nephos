@@ -9,7 +9,7 @@ VK_synchronization::VK_synchronization(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_device = vk_engine->get_vk_device();
 
   //---------------------------
@@ -47,7 +47,7 @@ void VK_synchronization::create_semaphore(VkSemaphore& semaphore){
   VkSemaphoreCreateInfo semaphoreInfo{};
   semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
 
-  VkResult result = vkCreateSemaphore(vk_struct->device.device, &semaphoreInfo, nullptr, &semaphore);
+  VkResult result = vkCreateSemaphore(struct_vulkan->device.device, &semaphoreInfo, nullptr, &semaphore);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create semaphores!");
   }
@@ -61,7 +61,7 @@ void VK_synchronization::create_fence(VkFence& fence){
   fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
   fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
 
-  VkResult result = vkCreateFence(vk_struct->device.device, &fenceInfo, nullptr, &fence);
+  VkResult result = vkCreateFence(struct_vulkan->device.device, &fenceInfo, nullptr, &fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create fence!");
   }
@@ -73,14 +73,14 @@ void VK_synchronization::create_fence(VkFence& fence){
 void VK_synchronization::clean_semaphore(VkSemaphore& semaphore){
   //---------------------------
 
-  vkDestroySemaphore(vk_struct->device.device, semaphore, nullptr);
+  vkDestroySemaphore(struct_vulkan->device.device, semaphore, nullptr);
 
   //---------------------------
 }
 void VK_synchronization::clean_fence(VkFence& fence){
   //---------------------------
 
-  vkDestroyFence(vk_struct->device.device, fence, nullptr);
+  vkDestroyFence(struct_vulkan->device.device, fence, nullptr);
 
   //---------------------------
 }

@@ -15,7 +15,7 @@ VK_submit::VK_submit(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_swapchain = vk_engine->get_vk_swapchain();
   this->vk_surface = vk_engine->get_vk_surface();
   this->vk_command = vk_engine->get_vk_command();
@@ -32,11 +32,11 @@ void VK_submit::acquire_next_image(Struct_swapchain* swapchain){
   //---------------------------
 
   //Wait and reset fence
-  vkWaitForFences(vk_struct->device.device, 1, &frame_inflight->fence, VK_TRUE, UINT64_MAX);
-  vkResetFences(vk_struct->device.device, 1, &frame_inflight->fence);
+  vkWaitForFences(struct_vulkan->device.device, 1, &frame_inflight->fence, VK_TRUE, UINT64_MAX);
+  vkResetFences(struct_vulkan->device.device, 1, &frame_inflight->fence);
 
   //Acquiring an image from the swap chain
-  VkResult result = vkAcquireNextImageKHR(vk_struct->device.device, swapchain->swapchain, UINT64_MAX, frame_inflight->semaphore_image_ready, VK_NULL_HANDLE, &swapchain->frame_current_ID);
+  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.device, swapchain->swapchain, UINT64_MAX, frame_inflight->semaphore_image_ready, VK_NULL_HANDLE, &swapchain->frame_current_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     vk_swapchain->recreate_swapChain();
     return;
@@ -60,7 +60,7 @@ void VK_submit::set_next_frame_ID(Struct_swapchain* swapchain){
   //---------------------------
 
   int current_ID = swapchain->frame_current_ID;
-  current_ID = (current_ID + 1) % vk_struct->instance.max_frame_inflight;
+  current_ID = (current_ID + 1) % struct_vulkan->instance.max_frame_inflight;
   swapchain->frame_current_ID = current_ID;
 
   //---------------------------
@@ -81,7 +81,7 @@ void VK_submit::submit_graphics_command(Struct_submit_command* command){
   submit_info.pCommandBuffers = &command->command_buffer;
 
   //Very slow operation, need as low command as possible
-  VkResult result = vkQueueSubmit(vk_struct->device.queue_graphics, 1, &submit_info, command->fence);
+  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, command->fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to submit draw command buffer!");
   }
@@ -91,7 +91,7 @@ void VK_submit::submit_graphics_command(Struct_submit_command* command){
 void VK_submit::submit_graphics_command(Struct_renderpass* renderpass){
   //---------------------------
 
-  Frame* frame_swap = vk_struct->swapchain.get_frame_inflight();
+  Frame* frame_swap = struct_vulkan->swapchain.get_frame_inflight();
   Struct_submit_command command;
   command.command_buffer = renderpass->command_buffer;
   command.semaphore_to_wait = renderpass->semaphore_to_wait;
@@ -110,7 +110,7 @@ void VK_submit::submit_graphics_command(Struct_renderpass* renderpass){
   submit_info.pCommandBuffers = &command.command_buffer;
 
   //Very slow operation, need as low command as possible
-  VkResult result = vkQueueSubmit(vk_struct->device.queue_graphics, 1, &submit_info, command.fence);
+  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, command.fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to submit draw command buffer!");
   }
@@ -131,7 +131,7 @@ void VK_submit::submit_graphics_commands(Struct_submit_commands* commands){
   submit_info.pCommandBuffers = commands->vec_command_buffer.data();
 
   //Very slow operation, need as low command as possible
-  VkResult result = vkQueueSubmit(vk_struct->device.queue_graphics, 1, &submit_info, commands->fence);
+  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, commands->fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to submit draw command buffer!");
   }
@@ -151,8 +151,8 @@ void VK_submit::submit_presentation(Struct_swapchain* swapchain){
   presentation_info.pImageIndices = &swapchain->frame_current_ID;
   presentation_info.pResults = nullptr; // Optional
 
-  VkResult result = vkQueuePresentKHR(vk_struct->device.queue_presentation, &presentation_info);
-  if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || vk_struct->window.is_resized){
+  VkResult result = vkQueuePresentKHR(struct_vulkan->device.queue_presentation, &presentation_info);
+  if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || struct_vulkan->window.is_resized){
     vk_swapchain->recreate_swapChain();
   }else if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to present swap chain image!");

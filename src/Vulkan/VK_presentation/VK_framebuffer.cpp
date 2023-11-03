@@ -13,7 +13,7 @@
 VK_framebuffer::VK_framebuffer(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_renderpass = vk_engine->get_vk_renderpass();
 
   //---------------------------
@@ -34,12 +34,12 @@ void VK_framebuffer::create_framebuffer(Struct_renderpass* renderpass, Frame* im
   framebufferInfo.renderPass = renderpass->renderpass;
   framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
   framebufferInfo.pAttachments = attachments.data();
-  framebufferInfo.width = vk_struct->window.extent.width;
-  framebufferInfo.height = vk_struct->window.extent.height;
+  framebufferInfo.width = struct_vulkan->window.extent.width;
+  framebufferInfo.height = struct_vulkan->window.extent.height;
   framebufferInfo.layers = 1;
 
   VkFramebuffer fbo;
-  VkResult result = vkCreateFramebuffer(vk_struct->device.device, &framebufferInfo, nullptr, &fbo);
+  VkResult result = vkCreateFramebuffer(struct_vulkan->device.device, &framebufferInfo, nullptr, &fbo);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create framebuffer!");
   }
@@ -52,7 +52,7 @@ void VK_framebuffer::create_framebuffer(Struct_renderpass* renderpass, Frame* im
 void VK_framebuffer::clean_framebuffer(Frame* image){
   //---------------------------
 
-  vkDestroyFramebuffer(vk_struct->device.device, image->fbo, nullptr);
+  vkDestroyFramebuffer(struct_vulkan->device.device, image->fbo, nullptr);
 
   //---------------------------
 }

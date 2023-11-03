@@ -13,7 +13,7 @@ GUI_data::GUI_data(GUI* gui){
   this->gui = gui;
   Engine* engine = gui->get_engine();
   this->vk_engine = engine->get_vk_engine();
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   this->width = 150;
 

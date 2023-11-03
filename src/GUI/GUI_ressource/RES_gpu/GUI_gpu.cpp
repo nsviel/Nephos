@@ -16,7 +16,7 @@ GUI_gpu::GUI_gpu(GUI* gui){
   Engine* engine = gui->get_engine();
   VK_engine* vk_engine = engine->get_vk_engine();
   VK_drawing* vk_drawing = vk_engine->get_vk_drawing();
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->ui_drawing = vk_drawing->get_ui_drawing();
 
   //---------------------------
@@ -25,9 +25,9 @@ GUI_gpu::~GUI_gpu(){}
 
 //Main function
 void GUI_gpu::init_gui_vulkan(){
-  Window* window = vk_struct->window.windowManager;
-  VkSurfaceKHR surface = vk_struct->window.surface;
-  VkRenderPass renderPass = vk_struct->renderpass_ui.renderpass;
+  Window* window = struct_vulkan->window.windowManager;
+  VkSurfaceKHR surface = struct_vulkan->window.surface;
+  VkRenderPass renderPass = struct_vulkan->renderpass_ui.renderpass;
   //---------------------------
 
   // Setup Dear ImGui context
@@ -56,7 +56,7 @@ void GUI_gpu::init_gui_vulkan(){
   pool_info.poolSizeCount = (uint32_t)IM_ARRAYSIZE(pool_sizes);
   pool_info.pPoolSizes = pool_sizes;
 
-  VkResult result = vkCreateDescriptorPool(vk_struct->device.device, &pool_info, nullptr, &imguiPool);
+  VkResult result = vkCreateDescriptorPool(struct_vulkan->device.device, &pool_info, nullptr, &imguiPool);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create gui");
   }
@@ -64,10 +64,10 @@ void GUI_gpu::init_gui_vulkan(){
   // Setup Platform/Renderer bindings
   ImGui_ImplGlfw_InitForVulkan(window->get_window(), true);
   ImGui_ImplVulkan_InitInfo init_info = {};
-  init_info.Instance = vk_struct->instance.instance;
-  init_info.PhysicalDevice = vk_struct->device.physical_device;
-  init_info.Device = vk_struct->device.device;
-  init_info.Queue = vk_struct->device.queue_graphics;
+  init_info.Instance = struct_vulkan->instance.instance;
+  init_info.PhysicalDevice = struct_vulkan->device.physical_device;
+  init_info.Device = struct_vulkan->device.device;
+  init_info.Queue = struct_vulkan->device.queue_graphics;
   init_info.DescriptorPool = imguiPool;
   init_info.PipelineCache = VK_NULL_HANDLE;
   init_info.MinImageCount = 3;
@@ -80,7 +80,7 @@ void GUI_gpu::init_gui_vulkan(){
 void GUI_gpu::clean_gui_vulkan(){
   //---------------------------
 
-  vkDestroyDescriptorPool(vk_struct->device.device, imguiPool, nullptr);
+  vkDestroyDescriptorPool(struct_vulkan->device.device, imguiPool, nullptr);
 
   ImGui_ImplVulkan_Shutdown();
   ImGui_ImplGlfw_Shutdown();

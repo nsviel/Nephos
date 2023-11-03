@@ -10,9 +10,9 @@ VK_instance::VK_instance(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
-  vk_struct->instance.extension.push_back(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
+  struct_vulkan->instance.extension.push_back(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
 
   //---------------------------
 }
@@ -37,14 +37,14 @@ void VK_instance::create_instance(){
   VkInstanceCreateInfo createInfo{};
   createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
   createInfo.pApplicationInfo = &appInfo;
-  createInfo.enabledExtensionCount = static_cast<uint32_t>(vk_struct->instance.extension.size());
-  createInfo.ppEnabledExtensionNames = vk_struct->instance.extension.data();
+  createInfo.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->instance.extension.size());
+  createInfo.ppEnabledExtensionNames = struct_vulkan->instance.extension.data();
   createInfo.enabledLayerCount = static_cast<uint32_t>(validation_layers.size());
   createInfo.ppEnabledLayerNames = validation_layers.data();
   createInfo.pNext = vk_validation->find_validation_extension();
 
   //Create instance
-  VkResult result = vkCreateInstance(&createInfo, nullptr, &vk_struct->instance.instance);
+  VkResult result = vkCreateInstance(&createInfo, nullptr, &struct_vulkan->instance.instance);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create instance!");
   }
@@ -54,7 +54,7 @@ void VK_instance::create_instance(){
 void VK_instance::clean_instance(){
   //---------------------------
 
-  vkDestroyInstance(vk_struct->instance.instance, nullptr);
+  vkDestroyInstance(struct_vulkan->instance.instance, nullptr);
 
   //---------------------------
 }

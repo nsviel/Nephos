@@ -9,7 +9,7 @@
 VK_sampler::VK_sampler(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_buffer = vk_engine->get_vk_buffer();
 
   //---------------------------

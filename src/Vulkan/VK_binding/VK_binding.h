@@ -30,7 +30,7 @@ public:
   inline VK_uniform* get_vk_uniform(){return vk_uniform;}
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_uniform* vk_uniform;
   VK_descriptor* vk_descriptor;
   VK_sampler* vk_sampler;

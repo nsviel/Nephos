@@ -23,7 +23,7 @@ public:
   Struct_sampler* create_sampler_obj(string name, int binding, VkDescriptorType type);
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
 };
 

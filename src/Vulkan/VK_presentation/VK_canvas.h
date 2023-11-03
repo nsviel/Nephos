@@ -27,7 +27,7 @@ public:
   inline Struct_data* get_data_canvas(){return canvas;}
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_data* vk_data;
   VK_texture* vk_texture;

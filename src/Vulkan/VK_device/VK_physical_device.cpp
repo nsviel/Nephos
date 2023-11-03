@@ -12,12 +12,12 @@ VK_physical_device::VK_physical_device(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_surface = vk_engine->get_vk_surface();
   this->vk_instance = vk_engine->get_vk_instance();
 
-  vk_struct->device.extension.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
-  vk_struct->device.extension.push_back(VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME);
+  struct_vulkan->device.extension.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
+  struct_vulkan->device.extension.push_back(VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME);
 
   //---------------------------
 }
@@ -36,18 +36,18 @@ void VK_physical_device::init_physical_device(){
 void VK_physical_device::select_physical_device(){
   //---------------------------
 
-  vk_struct->device.physical_device = VK_NULL_HANDLE;
+  struct_vulkan->device.physical_device = VK_NULL_HANDLE;
 
   //Find how many GPU are available
   uint32_t nb_device = 0;
-  vkEnumeratePhysicalDevices(vk_struct->instance.instance, &nb_device, nullptr);
+  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, nullptr);
   if(nb_device == 0){
     throw std::runtime_error("[error] failed to find GPUs with Vulkan support!");
   }
 
   //List all available GPU and take suitable one
   std::vector<VkPhysicalDevice> vec_physical_device(nb_device);
-  vkEnumeratePhysicalDevices(vk_struct->instance.instance, &nb_device, vec_physical_device.data());
+  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, vec_physical_device.data());
 
   // Use an ordered map to automatically sort candidates by increasing score
   std::multimap<int, VkPhysicalDevice> candidates;
@@ -58,16 +58,16 @@ void VK_physical_device::select_physical_device(){
 
   //Select adequat GPU physical device
   if(candidates.rbegin()->first > 0){
-    vk_struct->device.physical_device = candidates.rbegin()->second;
+    struct_vulkan->device.physical_device = candidates.rbegin()->second;
 
     VkPhysicalDeviceProperties deviceProperties;
-    vkGetPhysicalDeviceProperties(vk_struct->device.physical_device, &deviceProperties);
+    vkGetPhysicalDeviceProperties(struct_vulkan->device.physical_device, &deviceProperties);
     //say(deviceProperties.deviceName);
 
   }else {
     throw std::runtime_error("failed to find a suitable GPU!");
   }
-  if(vk_struct->device.physical_device == VK_NULL_HANDLE){
+  if(struct_vulkan->device.physical_device == VK_NULL_HANDLE){
     throw std::runtime_error("[error] failed to find a suitable GPU!");
   }
 
@@ -89,20 +89,20 @@ void VK_physical_device::compute_extent(){
   //Resolution of the swap chain image
   //---------------------------
 
-  VkSurfaceCapabilitiesKHR capabilities = find_surface_capability(vk_struct->device.physical_device);
+  VkSurfaceCapabilitiesKHR capabilities = find_surface_capability(struct_vulkan->device.physical_device);
 
   if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
-    vk_struct->window.extent = capabilities.currentExtent;
+    struct_vulkan->window.extent = capabilities.currentExtent;
   }else{
     glm::vec2 fbo_dim = vk_surface->get_window_dim();
 
-    vk_struct->window.extent = {
+    struct_vulkan->window.extent = {
       static_cast<uint32_t>(fbo_dim.x),
       static_cast<uint32_t>(fbo_dim.y)
     };
 
-    vk_struct->window.extent.width = std::clamp(vk_struct->window.extent.width, capabilities.minImageExtent.width, capabilities.maxImageExtent.width);
-    vk_struct->window.extent.height = std::clamp(vk_struct->window.extent.height, capabilities.minImageExtent.height, capabilities.maxImageExtent.height);
+    struct_vulkan->window.extent.width = std::clamp(struct_vulkan->window.extent.width, capabilities.minImageExtent.width, capabilities.maxImageExtent.width);
+    struct_vulkan->window.extent.height = std::clamp(struct_vulkan->window.extent.height, capabilities.minImageExtent.height, capabilities.maxImageExtent.height);
   }
 
   //---------------------------
@@ -110,8 +110,8 @@ void VK_physical_device::compute_extent(){
 void VK_physical_device::retrieve_device_name(){
   //---------------------------
 
-  VkPhysicalDeviceProperties property = find_device_property(vk_struct->device.physical_device);
-  vk_struct->device.model = property.deviceName;
+  VkPhysicalDeviceProperties property = find_device_property(struct_vulkan->device.physical_device);
+  struct_vulkan->device.model = property.deviceName;
 
   //---------------------------
 }
@@ -166,7 +166,7 @@ bool VK_physical_device::check_extension_support(VkPhysicalDevice physical_devic
   vkEnumerateDeviceExtensionProperties(physical_device, nullptr, &nb_extension, vec_extension.data());
 
   //Check if all required extension are in the list
-  std::set<std::string> requiredExtensions(vk_struct->device.extension.begin(), vk_struct->device.extension.end());
+  std::set<std::string> requiredExtensions(struct_vulkan->device.extension.begin(), struct_vulkan->device.extension.end());
   for(const auto& extension : vec_extension){
     requiredExtensions.erase(extension.extensionName);
   }
@@ -224,7 +224,7 @@ int VK_physical_device::find_queue_family_presentation(VkPhysicalDevice physical
   for(const auto& queueFamily : vec_queueFamily) {
     //Querying for presentation family
     VkBool32 presentSupport = false;
-    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device, i, vk_struct->window.surface, &presentSupport);
+    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device, i, struct_vulkan->window.surface, &presentSupport);
     if(presentSupport){
       return i;
     }
@@ -269,7 +269,7 @@ VkSurfaceCapabilitiesKHR VK_physical_device::find_surface_capability(VkPhysicalD
 
   //Get basic surface capabilities
   VkSurfaceCapabilitiesKHR capabilities;
-  vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device, vk_struct->window.surface, &capabilities);
+  vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device, struct_vulkan->window.surface, &capabilities);
 
   //---------------------------
   return capabilities;
@@ -280,12 +280,12 @@ vector<VkSurfaceFormatKHR> VK_physical_device::find_surface_format(VkPhysicalDev
 
   //Get supported surface format number
   uint32_t nb_format;
-  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, vk_struct->window.surface, &nb_format, nullptr);
+  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, struct_vulkan->window.surface, &nb_format, nullptr);
 
   //Get supported surface format list
   if(nb_format != 0){
     formats.resize(nb_format);
-    vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, vk_struct->window.surface, &nb_format, formats.data());
+    vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, struct_vulkan->window.surface, &nb_format, formats.data());
   }
 
   //---------------------------
@@ -297,12 +297,12 @@ vector<VkPresentModeKHR> VK_physical_device::find_presentation_mode(VkPhysicalDe
 
   //Get presentation mode number
   uint32_t nb_mode_presentation;
-  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, vk_struct->window.surface, &nb_mode_presentation, nullptr);
+  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, struct_vulkan->window.surface, &nb_mode_presentation, nullptr);
 
   //Get presentation mode list
   if(nb_mode_presentation != 0){
     presentation_mode.resize(nb_mode_presentation);
-    vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, vk_struct->window.surface, &nb_mode_presentation, presentation_mode.data());
+    vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, struct_vulkan->window.surface, &nb_mode_presentation, presentation_mode.data());
   }
 
   //---------------------------
@@ -312,7 +312,7 @@ VkPhysicalDeviceProperties VK_physical_device::find_device_property(VkPhysicalDe
   //---------------------------
 
   VkPhysicalDeviceProperties property{};
-  vkGetPhysicalDeviceProperties(vk_struct->device.physical_device, &property);
+  vkGetPhysicalDeviceProperties(struct_vulkan->device.physical_device, &property);
 
   //---------------------------
   return property;

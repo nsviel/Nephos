@@ -14,7 +14,7 @@ RND_engine::RND_engine(GUI* gui){
 
   Engine* engine = gui->get_engine();
   VK_engine* vk_engine = engine->get_vk_engine();
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->gui_control = new RND_control(gui);
 
   //---------------------------
@@ -76,15 +76,15 @@ void RND_engine::engine_window(){
   }
 
   if(has_been_initialized == false){
-    for(int i=0; i<vk_struct->nb_frame; i++){
-      Frame* frame_edl = vk_struct->renderpass_edl.get_rendering_frame();
+    for(int i=0; i<struct_vulkan->nb_frame; i++){
+      Frame* frame_edl = struct_vulkan->renderpass_edl.get_rendering_frame();
       Struct_image* image = &frame_edl->color;
       this->descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     }
     has_been_initialized = true;
   }
 
-  Frame* frame_edl = vk_struct->renderpass_edl.get_rendering_frame();
+  Frame* frame_edl = struct_vulkan->renderpass_edl.get_rendering_frame();
   Struct_image* image = &frame_edl->color;
   this->descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 

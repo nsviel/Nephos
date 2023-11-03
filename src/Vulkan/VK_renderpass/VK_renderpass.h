@@ -38,7 +38,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_color* vk_color;
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;

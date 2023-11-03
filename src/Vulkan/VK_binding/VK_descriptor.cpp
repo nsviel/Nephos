@@ -10,7 +10,7 @@ VK_descriptor::VK_descriptor(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_error = vk_engine->get_vk_error();
 
   this->pool_nb_descriptor = 1000;
@@ -25,7 +25,7 @@ VK_descriptor::~VK_descriptor(){}
 void VK_descriptor::clean_descriptor_pool(){
   //---------------------------
 
-  vkDestroyDescriptorPool(vk_struct->device.device, descriptor_pool, nullptr);
+  vkDestroyDescriptorPool(struct_vulkan->device.device, descriptor_pool, nullptr);
 
   //---------------------------
 }
@@ -40,7 +40,7 @@ void VK_descriptor::allocate_descriptor_set(Struct_binding* binding){
   allocation_info.descriptorSetCount = 1;
   allocation_info.pSetLayouts = &binding->descriptor.layout;
 
-  VkResult result = vkAllocateDescriptorSets(vk_struct->device.device, &allocation_info, &binding->descriptor.set);
+  VkResult result = vkAllocateDescriptorSets(struct_vulkan->device.device, &allocation_info, &binding->descriptor.set);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate descriptor sets!");
   }
@@ -80,7 +80,7 @@ void VK_descriptor::update_descriptor_uniform(Struct_binding* binding){
 
   //Update descriptor
   if(vec_descriptor_write.size() != 0){
-    vkUpdateDescriptorSets(vk_struct->device.device, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
+    vkUpdateDescriptorSets(struct_vulkan->device.device, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
   }
 
   //---------------------------
@@ -119,7 +119,7 @@ void VK_descriptor::update_descriptor_sampler(Struct_binding* binding, vector<St
   }
 
   if(vec_descriptor_write.size() != 0){
-    vkUpdateDescriptorSets(vk_struct->device.device, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
+    vkUpdateDescriptorSets(struct_vulkan->device.device, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
   }
 
   //---------------------------
@@ -151,7 +151,7 @@ void VK_descriptor::update_descriptor_sampler(Struct_binding* binding, Struct_im
   write_sampler.descriptorCount = 1;
   write_sampler.pImageInfo = &image_info;
 
-  vkUpdateDescriptorSets(vk_struct->device.device, 1, &write_sampler, 0, nullptr);
+  vkUpdateDescriptorSets(struct_vulkan->device.device, 1, &write_sampler, 0, nullptr);
 
   //---------------------------
 }
@@ -205,7 +205,7 @@ VkDescriptorSetLayout VK_descriptor::create_layout(vector<VkDescriptorSetLayoutB
 
   //Descriptor set layout creation
   VkDescriptorSetLayout descriptor_layout;
-  VkResult result = vkCreateDescriptorSetLayout(vk_struct->device.device, &layoutInfo, nullptr, &descriptor_layout);
+  VkResult result = vkCreateDescriptorSetLayout(struct_vulkan->device.device, &layoutInfo, nullptr, &descriptor_layout);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create descriptor set layout!");
   }
@@ -230,7 +230,7 @@ void VK_descriptor::create_descriptor_pool(){
   pool_info.pPoolSizes = vec_pool_size.data();
   pool_info.maxSets = static_cast<uint32_t>(pool_nb_descriptor);
 
-  VkResult result = vkCreateDescriptorPool(vk_struct->device.device, &pool_info, nullptr, &descriptor_pool);
+  VkResult result = vkCreateDescriptorPool(struct_vulkan->device.device, &pool_info, nullptr, &descriptor_pool);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create descriptor pool!");
   }

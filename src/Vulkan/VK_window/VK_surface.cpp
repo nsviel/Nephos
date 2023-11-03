@@ -9,9 +9,9 @@
 VK_surface::VK_surface(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->window = vk_engine->get_window();
-  vk_struct->window.windowManager = window;
+  struct_vulkan->window.windowManager = window;
 
   //---------------------------
 }
@@ -28,7 +28,7 @@ void VK_surface::init_window(){
 void VK_surface::clean_surface(){
   //---------------------------
 
-  vkDestroySurfaceKHR(vk_struct->instance.instance, vk_struct->window.surface, nullptr);
+  vkDestroySurfaceKHR(struct_vulkan->instance.instance, struct_vulkan->window.surface, nullptr);
 
   //---------------------------
 }
@@ -37,7 +37,7 @@ void VK_surface::clean_surface(){
 void VK_surface::create_window_surface(){
   //---------------------------
 
-  window->create_window_surface(vk_struct->instance.instance, vk_struct->window.surface);
+  window->create_window_surface(struct_vulkan->instance.instance, struct_vulkan->window.surface);
 
   //---------------------------
 }
@@ -56,7 +56,7 @@ void VK_surface::check_for_resizing(){
   }
 
   //---------------------------
-  vk_struct->window.is_resized = is_resized;
+  struct_vulkan->window.is_resized = is_resized;
 }
 void VK_surface::get_required_extensions(){
   //---------------------------
@@ -64,7 +64,7 @@ void VK_surface::get_required_extensions(){
   vector<const char*> extensions = window->get_required_extensions();
 
   for(int i=0; i<extensions.size(); i++){
-    vk_struct->instance.extension.push_back(extensions[i]);
+    struct_vulkan->instance.extension.push_back(extensions[i]);
   }
 
   //---------------------------

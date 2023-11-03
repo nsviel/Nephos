@@ -36,7 +36,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_surface* vk_surface;
   VK_swapchain* vk_swapchain;
   VK_command* vk_command;

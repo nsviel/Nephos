@@ -27,7 +27,7 @@ public:
   std::vector<char> read_file(const std::string& filename);
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_device* vk_device;
 
   string path_output;

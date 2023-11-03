@@ -43,7 +43,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_texture* vk_texture;
   VK_binding* vk_binding;

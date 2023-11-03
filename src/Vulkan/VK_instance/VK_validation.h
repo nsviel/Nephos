@@ -34,7 +34,7 @@ public:
   inline vector<const char*> get_validation_layers(){return validation_layers;};
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_instance* vk_instance;
 
   vector<const char*> validation_layers;

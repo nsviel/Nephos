@@ -22,7 +22,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
 
 };
 

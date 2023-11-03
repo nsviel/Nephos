@@ -9,7 +9,7 @@
 VK_device::VK_device(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_physical_device = vk_engine->get_vk_physical_device();
 
   //---------------------------
@@ -22,8 +22,8 @@ void VK_device::create_logical_device(){
   //---------------------------
 
   //Get GPU queue families
-  int family_graphics = vk_physical_device->find_queue_family_graphics(vk_struct->device.physical_device);
-  int family_presentation = vk_physical_device->find_queue_family_presentation(vk_struct->device.physical_device);
+  int family_graphics = vk_physical_device->find_queue_family_graphics(struct_vulkan->device.physical_device);
+  int family_presentation = vk_physical_device->find_queue_family_presentation(struct_vulkan->device.physical_device);
   std::set<uint32_t> uniqueQueueFamilies = {(unsigned int)family_graphics, (unsigned int)family_presentation};
 
   //Create queue on device
@@ -49,26 +49,26 @@ void VK_device::create_logical_device(){
   createInfo.pQueueCreateInfos = queueCreateInfos.data();
   createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
   createInfo.pEnabledFeatures = &deviceFeatures;
-  createInfo.enabledExtensionCount = static_cast<uint32_t>(vk_struct->device.extension.size());
-  createInfo.ppEnabledExtensionNames = vk_struct->device.extension.data();
+  createInfo.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->device.extension.size());
+  createInfo.ppEnabledExtensionNames = struct_vulkan->device.extension.data();
   createInfo.enabledLayerCount = 0;
 
   //Creating the logical device
-  VkResult result = vkCreateDevice(vk_struct->device.physical_device, &createInfo, nullptr, &vk_struct->device.device);
+  VkResult result = vkCreateDevice(struct_vulkan->device.physical_device, &createInfo, nullptr, &struct_vulkan->device.device);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create logical device!");
   }
 
   //Get queue family handles
-  vkGetDeviceQueue(vk_struct->device.device, family_graphics, 0, &vk_struct->device.queue_graphics);
-  vkGetDeviceQueue(vk_struct->device.device, family_presentation, 0, &vk_struct->device.queue_presentation);
+  vkGetDeviceQueue(struct_vulkan->device.device, family_graphics, 0, &struct_vulkan->device.queue_graphics);
+  vkGetDeviceQueue(struct_vulkan->device.device, family_presentation, 0, &struct_vulkan->device.queue_presentation);
 
   //---------------------------
 }
 void VK_device::clean_logical_device(){
   //---------------------------
 
-  vkDestroyDevice(vk_struct->device.device, nullptr);
+  vkDestroyDevice(struct_vulkan->device.device, nullptr);
 
   //---------------------------
 }

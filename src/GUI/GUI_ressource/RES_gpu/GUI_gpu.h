@@ -25,7 +25,7 @@ public:
   void render_command(VkCommandBuffer command_buffer);
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   DR_ui* ui_drawing;
 
   VkDescriptorPool imguiPool;

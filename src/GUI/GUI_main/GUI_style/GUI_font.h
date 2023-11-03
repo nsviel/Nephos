@@ -33,7 +33,7 @@ public:
   inline void set_editor_font(ImFont* font){if(font!=nullptr)this->font_editor = font;}
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
 
   vector<ImFont*> vec_font_editor;
   vector<ImFont*> vec_font_gui;

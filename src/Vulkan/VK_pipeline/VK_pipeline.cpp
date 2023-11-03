@@ -14,7 +14,7 @@ VK_pipeline::VK_pipeline(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_viewport = vk_engine->get_vk_viewport();
   this->vk_shader = vk_engine->get_vk_shader();
@@ -39,8 +39,8 @@ void VK_pipeline::clean_pipeline(Struct_renderpass* renderpass){
 void VK_pipeline::clean_pipeline(Struct_pipeline* pipeline){
   //---------------------------
 
-  vkDestroyPipeline(vk_struct->device.device, pipeline->pipeline, nullptr);
-  vkDestroyPipelineLayout(vk_struct->device.device, pipeline->layout, nullptr);
+  vkDestroyPipeline(struct_vulkan->device.device, pipeline->pipeline, nullptr);
+  vkDestroyPipelineLayout(struct_vulkan->device.device, pipeline->layout, nullptr);
   vk_binding->clean_binding(&pipeline->binding);
 
   //---------------------------
@@ -114,7 +114,7 @@ void VK_pipeline::create_pipeline_graphics(Struct_pipeline* pipeline, Struct_ren
   pipeline_info.basePipelineIndex = -1; // Optional
 
   //Create pipeline graphics
-  VkResult result = vkCreateGraphicsPipelines(vk_struct->device.device, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->pipeline);
+  VkResult result = vkCreateGraphicsPipelines(struct_vulkan->device.device, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->pipeline);
   if(result != VK_SUCCESS){
       throw std::runtime_error("[error] failed to create graphics pipeline!");
     }
@@ -122,8 +122,8 @@ void VK_pipeline::create_pipeline_graphics(Struct_pipeline* pipeline, Struct_ren
   //Destroy shader modules
   for(int i=0; i<pipeline->info.vec_shader_couple.size(); i++){
     pair<VkShaderModule, VkShaderModule> shader_couple = pipeline->info.vec_shader_couple[i];
-    vkDestroyShaderModule(vk_struct->device.device, shader_couple.first, nullptr);
-    vkDestroyShaderModule(vk_struct->device.device, shader_couple.second, nullptr);
+    vkDestroyShaderModule(struct_vulkan->device.device, shader_couple.first, nullptr);
+    vkDestroyShaderModule(struct_vulkan->device.device, shader_couple.second, nullptr);
   }
   pipeline->info.vec_shader_couple.clear();
   pipeline->info.shader_stage.clear();
@@ -174,7 +174,7 @@ void VK_pipeline::create_pipeline_ui(Struct_pipeline* pipeline, Struct_renderpas
   pipeline_info.basePipelineIndex = -1; // Optional
 
   //Create pipeline graphics
-  VkResult result = vkCreateGraphicsPipelines(vk_struct->device.device, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->pipeline);
+  VkResult result = vkCreateGraphicsPipelines(struct_vulkan->device.device, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->pipeline);
   if(result != VK_SUCCESS){
       throw std::runtime_error("[error] failed to create graphics pipeline!");
     }
@@ -182,8 +182,8 @@ void VK_pipeline::create_pipeline_ui(Struct_pipeline* pipeline, Struct_renderpas
   //Destroy shader modules
   for(int i=0; i<pipeline->info.vec_shader_couple.size(); i++){
     pair<VkShaderModule, VkShaderModule> shader_couple = pipeline->info.vec_shader_couple[i];
-    vkDestroyShaderModule(vk_struct->device.device, shader_couple.first, nullptr);
-    vkDestroyShaderModule(vk_struct->device.device, shader_couple.second, nullptr);
+    vkDestroyShaderModule(struct_vulkan->device.device, shader_couple.first, nullptr);
+    vkDestroyShaderModule(struct_vulkan->device.device, shader_couple.second, nullptr);
   }
 
   //---------------------------
@@ -207,7 +207,7 @@ void VK_pipeline::create_pipeline_layout(Struct_pipeline* pipeline){
   //pipeline_layout_info.pPushConstantRanges = &pushconstant_range;
 
   //Pipeline layout creation
-  VkResult result = vkCreatePipelineLayout(vk_struct->device.device, &pipeline_layout_info, nullptr, &pipeline->layout);
+  VkResult result = vkCreatePipelineLayout(struct_vulkan->device.device, &pipeline_layout_info, nullptr, &pipeline->layout);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create pipeline layout!");
   }

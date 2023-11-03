@@ -22,7 +22,7 @@ VK_texture::VK_texture(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_buffer = vk_engine->get_vk_buffer();
   this->vk_image = vk_engine->get_vk_image();
 
@@ -139,9 +139,9 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
 
   //Copy data to stagging buffer
   void* data;
-  vkMapMemory(vk_struct->device.device, staging_mem, 0, tex_size, 0, &data);
+  vkMapMemory(struct_vulkan->device.device, staging_mem, 0, tex_size, 0, &data);
   memcpy(data, image->data, static_cast<size_t>(tex_size));
-  vkUnmapMemory(vk_struct->device.device, staging_mem);
+  vkUnmapMemory(struct_vulkan->device.device, staging_mem);
 
   //Create image
   image->tiling = VK_IMAGE_TILING_OPTIMAL;
@@ -156,8 +156,8 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
   vk_command->image_layout_transition_single(image, IMAGE_LAYOUT_TRANSFER_DST, IMAGE_LAYOUT_SHADER_READONLY);
 
   //Free memory
-  vkDestroyBuffer(vk_struct->device.device, staging_buffer, nullptr);
-  vkFreeMemory(vk_struct->device.device, staging_mem, nullptr);
+  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
 
   //---------------------------
 }

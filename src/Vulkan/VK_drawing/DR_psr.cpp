@@ -17,7 +17,7 @@ DR_psr::DR_psr(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_command = vk_engine->get_vk_command();
   this->vk_cmd = vk_engine->get_vk_cmd();
   this->vk_descriptor = vk_engine->get_vk_descriptor();
@@ -37,14 +37,14 @@ void DR_psr::draw_psr(Struct_renderpass* renderpass){
   //this->submit_command(renderpass);
 
   //---------------------------
-  vk_struct->time.renderpass_psr.push_back(timer.stop_ms(t1));
+  struct_vulkan->time.renderpass_psr.push_back(timer.stop_ms(t1));
 }
 
 //Subfunction
 void DR_psr::update_descriptor(Struct_renderpass* renderpass){
   //---------------------------
 
-  Frame* frame_edl = vk_struct->renderpass_edl.get_rendering_frame();
+  Frame* frame_edl = struct_vulkan->renderpass_edl.get_rendering_frame();
   Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle");
   vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_edl->color);
   vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_edl->depth);
@@ -68,7 +68,7 @@ void DR_psr::record_command(Struct_renderpass* renderpass){
 void DR_psr::submit_command(Struct_renderpass* renderpass){
   //---------------------------
 
-  Frame* frame_swap = vk_struct->swapchain.get_frame_inflight();
+  Frame* frame_swap = struct_vulkan->swapchain.get_frame_inflight();
   Struct_submit_command command;
   command.command_buffer = renderpass->command_buffer;
   command.semaphore_to_wait = frame_swap->semaphore_edl_ready;

@@ -12,7 +12,7 @@ VK_viewport::VK_viewport(VK_engine* vk_engine){
   Engine* engine = vk_engine->get_engine();
   this->window = engine->get_window();
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   //---------------------------
 }
@@ -34,7 +34,7 @@ void VK_viewport::init_viewport(){
   //Full viewport scissor
   scissor = {};
   scissor.offset = {0, 0};
-  scissor.extent = vk_struct->window.extent;
+  scissor.extent = struct_vulkan->window.extent;
 
   //---------------------------
 }
@@ -49,7 +49,7 @@ void VK_viewport::update_viewport(){
   viewport.height = win_dim.y;
 
   //Scissor
-  scissor.extent = vk_struct->window.extent;
+  scissor.extent = struct_vulkan->window.extent;
 
   //---------------------------
 }
@@ -71,7 +71,7 @@ Struct_viewport* VK_viewport::create_viewport(){
   //Full viewport scissor
   viewport->scissor = {};
   viewport->scissor.offset = {0, 0};
-  viewport->scissor.extent = vk_struct->window.extent;
+  viewport->scissor.extent = struct_vulkan->window.extent;
 
   //---------------------------
   return viewport;

@@ -20,7 +20,7 @@ VK_renderpass::VK_renderpass(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_color = vk_engine->get_vk_color();
   this->vk_pipeline = vk_engine->get_vk_pipeline();
   this->vk_subpass = new VK_subpass(vk_engine);
@@ -48,18 +48,18 @@ VK_renderpass::~VK_renderpass(){
 void VK_renderpass::init_renderpass(){
   //---------------------------
 
-  rp_scene->init_renderpass(&vk_struct->renderpass_scene);
-  rp_edl->init_renderpass(&vk_struct->renderpass_edl);
-  rp_ui->init_renderpass(&vk_struct->renderpass_ui);
+  rp_scene->init_renderpass(&struct_vulkan->renderpass_scene);
+  rp_edl->init_renderpass(&struct_vulkan->renderpass_edl);
+  rp_ui->init_renderpass(&struct_vulkan->renderpass_ui);
 
   //---------------------------
 }
 void VK_renderpass::clean_renderpass(){
   //---------------------------
 
-  this->clean_renderpass_object(&vk_struct->renderpass_scene);
-  this->clean_renderpass_object(&vk_struct->renderpass_edl);
-  this->clean_renderpass_object(&vk_struct->renderpass_ui);
+  this->clean_renderpass_object(&struct_vulkan->renderpass_scene);
+  this->clean_renderpass_object(&struct_vulkan->renderpass_edl);
+  this->clean_renderpass_object(&struct_vulkan->renderpass_ui);
 
   //---------------------------
 }
@@ -70,7 +70,7 @@ void VK_renderpass::clean_renderpass_object(Struct_renderpass* renderpass){
   //---------------------------
 
   vk_frame->clean_frame_renderpass(renderpass);
-  vkDestroyRenderPass(vk_struct->device.device, renderpass->renderpass, nullptr);
+  vkDestroyRenderPass(struct_vulkan->device.device, renderpass->renderpass, nullptr);
   vk_pipeline->clean_pipeline(renderpass);
 
   //---------------------------
@@ -115,7 +115,7 @@ void VK_renderpass::create_renderpass_obj(Struct_renderpass* renderpass){
   renderpass_info.pDependencies = vec_dependency.data();
 
   //Render pass creation
-  VkResult result = vkCreateRenderPass(vk_struct->device.device, &renderpass_info, nullptr, &renderpass->renderpass);
+  VkResult result = vkCreateRenderPass(struct_vulkan->device.device, &renderpass_info, nullptr, &renderpass->renderpass);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create render pass!");
   }

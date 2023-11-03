@@ -15,7 +15,7 @@ RND_option::RND_option(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   Engine* engine = gui->get_engine();
   this->param = engine->get_param();
   this->vk_engine = engine->get_vk_engine();
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   this->width = 150;
 

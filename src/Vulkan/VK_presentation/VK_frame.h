@@ -35,7 +35,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_physical_device* vk_physical_device;
   VK_image* vk_image;
   VK_synchronization* vk_synchronization;

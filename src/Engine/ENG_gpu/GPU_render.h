@@ -18,7 +18,7 @@ public:
   //Main functions
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
 };
 
 #endif

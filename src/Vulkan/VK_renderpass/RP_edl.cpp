@@ -18,7 +18,7 @@ RP_edl::RP_edl(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_pipeline = vk_engine->get_vk_pipeline();
   this->vk_viewport = vk_engine->get_vk_viewport();
   this->vk_subpass = new VK_subpass(vk_engine);
@@ -75,16 +75,16 @@ Struct_pipeline* RP_edl::create_pipeline_edl(Struct_renderpass* renderpass){
 void RP_edl::recreate_pipeline_edl(){
   //---------------------------
 
-  Struct_pipeline* pipeline_new = create_pipeline_edl(&vk_struct->renderpass_edl);
-  vk_pipeline->create_pipeline(&vk_struct->renderpass_edl, pipeline_new);
+  Struct_pipeline* pipeline_new = create_pipeline_edl(&struct_vulkan->renderpass_edl);
+  vk_pipeline->create_pipeline(&struct_vulkan->renderpass_edl, pipeline_new);
 
-  vkDeviceWaitIdle(vk_struct->device.device);
+  vkDeviceWaitIdle(struct_vulkan->device.device);
 
-  Struct_pipeline* pipeline_old = vk_pipeline->get_pipeline_byName(&vk_struct->renderpass_edl, "triangle_EDL");
+  Struct_pipeline* pipeline_old = vk_pipeline->get_pipeline_byName(&struct_vulkan->renderpass_edl, "triangle_EDL");
   vk_pipeline->clean_pipeline(pipeline_old);
 
-  vk_struct->renderpass_edl.vec_pipeline.clear();
-  vk_struct->renderpass_edl.vec_pipeline.push_back(pipeline_new);
+  struct_vulkan->renderpass_edl.vec_pipeline.clear();
+  struct_vulkan->renderpass_edl.vec_pipeline.push_back(pipeline_new);
 
   //---------------------------
 }

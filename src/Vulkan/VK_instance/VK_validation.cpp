@@ -9,11 +9,11 @@
 VK_validation::VK_validation(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_instance = vk_engine->get_vk_instance();
 
-  this->vk_struct->instance.extension.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
-  this->vk_struct->instance.extension.push_back(VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME);
+  this->struct_vulkan->instance.extension.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+  this->struct_vulkan->instance.extension.push_back(VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME);
   this->validation_layers = {"VK_LAYER_KHRONOS_validation"};
   this->with_validation_layer = true;
   this->with_best_practice = false;
@@ -41,7 +41,7 @@ void VK_validation::create_validation_layer(){
     VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
   create_info.pfnUserCallback = callback_debug;
 
-  VkResult result = create_debug_EXT(vk_struct->instance.instance, &create_info, nullptr, &EXT_debug);
+  VkResult result = create_debug_EXT(struct_vulkan->instance.instance, &create_info, nullptr, &EXT_debug);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to set up debug messenger!");
   }
@@ -52,7 +52,7 @@ void VK_validation::clean_layer(){
   //---------------------------
 
   if(with_validation_layer){
-    destroy_debug_EXT(vk_struct->instance.instance, EXT_debug, nullptr);
+    destroy_debug_EXT(struct_vulkan->instance.instance, EXT_debug, nullptr);
   }
 
   //---------------------------

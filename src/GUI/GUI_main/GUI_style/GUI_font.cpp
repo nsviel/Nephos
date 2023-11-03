@@ -13,7 +13,7 @@ GUI_font::GUI_font(GUI* gui){
 
   Engine* engine = gui->get_engine();
   VK_engine* vk_engine = engine->get_vk_engine();
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   //---------------------------
 }
@@ -82,7 +82,7 @@ void GUI_font::gui_select_font(){
 void GUI_font::gui_load_font(){
   //---------------------------
 
-  VkResult result = vkResetCommandPool(vk_struct->device.device, vk_struct->command_pool, 0);
+  VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->command_pool, 0);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }
@@ -90,28 +90,28 @@ void GUI_font::gui_load_font(){
   VkCommandBufferBeginInfo begin_info = {};
   begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
   begin_info.flags |= VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-  result = vkBeginCommandBuffer(vk_struct->renderpass_ui.command_buffer, &begin_info);
+  result = vkBeginCommandBuffer(struct_vulkan->renderpass_ui.command_buffer, &begin_info);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }
 
-  ImGui_ImplVulkan_CreateFontsTexture(vk_struct->renderpass_ui.command_buffer);
+  ImGui_ImplVulkan_CreateFontsTexture(struct_vulkan->renderpass_ui.command_buffer);
 
   VkSubmitInfo end_info = {};
   end_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   end_info.commandBufferCount = 1;
-  end_info.pCommandBuffers = &vk_struct->renderpass_ui.command_buffer;
-  result = vkEndCommandBuffer(vk_struct->renderpass_ui.command_buffer);
+  end_info.pCommandBuffers = &struct_vulkan->renderpass_ui.command_buffer;
+  result = vkEndCommandBuffer(struct_vulkan->renderpass_ui.command_buffer);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }
 
-  result = vkQueueSubmit(vk_struct->device.queue_graphics, 1, &end_info, VK_NULL_HANDLE);
+  result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &end_info, VK_NULL_HANDLE);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }
 
-  result = vkDeviceWaitIdle(vk_struct->device.device);
+  result = vkDeviceWaitIdle(struct_vulkan->device.device);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }

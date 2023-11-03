@@ -49,7 +49,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_descriptor* vk_descriptor;
   VK_viewport* vk_viewport;
   VK_shader* vk_shader;

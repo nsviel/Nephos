@@ -17,7 +17,7 @@ VK_frame::VK_frame(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_physical_device = vk_engine->get_vk_physical_device();
   this->vk_image = vk_engine->get_vk_image();
   this->vk_synchronization = vk_engine->get_vk_synchronization();
@@ -34,7 +34,7 @@ VK_frame::~VK_frame(){}
 void VK_frame::create_frame_renderpass(Struct_renderpass* renderpass){
   //---------------------------
 
-  for(int i=0; i<vk_struct->swapchain.vec_swapchain_image.size(); i++){
+  for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
     Frame* frame = new Frame();
 
     frame->ID = i;
@@ -84,7 +84,7 @@ void VK_frame::create_frame_swapchain(Struct_swapchain* swapchain){
 
     vk_image->create_image_view(&frame->color);
     vk_depth->create_depth_attachment(frame);
-    vk_framebuffer->create_framebuffer(&vk_struct->renderpass_ui, frame);
+    vk_framebuffer->create_framebuffer(&struct_vulkan->renderpass_ui, frame);
     vk_synchronization->init_frame_sync(frame);
 
     swapchain->vec_frame.push_back(frame);
@@ -99,7 +99,7 @@ void VK_frame::clean_frame_swapchain(Struct_swapchain* swapchain){
   //Vec images
   for(int i=0; i<vec_frame.size(); i++){
     Frame* frame = vec_frame[i];
-    vkDestroyImageView(vk_struct->device.device, frame->color.view, nullptr);
+    vkDestroyImageView(struct_vulkan->device.device, frame->color.view, nullptr);
     vk_image->clean_image(&frame->depth);
     vk_framebuffer->clean_framebuffer(frame);
     vk_synchronization->clean_frame_sync(frame);

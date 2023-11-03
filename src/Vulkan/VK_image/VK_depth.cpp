@@ -10,7 +10,7 @@ VK_depth::VK_depth(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->vk_struct = vk_engine->get_vk_struct();
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_image = vk_engine->get_vk_image();
 
   //---------------------------
@@ -24,8 +24,8 @@ void VK_depth::create_depth_attachment(Frame* frame){
   //Create frame depth image
   frame->depth.name = "tex_depth";
   frame->depth.format = find_depth_format();
-  frame->depth.width = vk_struct->window.extent.width;
-  frame->depth.height = vk_struct->window.extent.height;
+  frame->depth.width = struct_vulkan->window.extent.width;
+  frame->depth.height = struct_vulkan->window.extent.height;
   frame->depth.tiling = VK_IMAGE_TILING_OPTIMAL;
   frame->depth.properties = MEMORY_GPU;
   frame->depth.aspect = VK_IMAGE_ASPECT_DEPTH_BIT;
@@ -39,9 +39,9 @@ void VK_depth::create_depth_attachment(Frame* frame){
 void VK_depth::clean_depth_attachment(Frame* image){
   //---------------------------
 
-  vkDestroyImageView(vk_struct->device.device, image->depth.view, nullptr);
-  vkDestroyImage(vk_struct->device.device, image->depth.image, nullptr);
-  vkFreeMemory(vk_struct->device.device, image->depth.mem, nullptr);
+  vkDestroyImageView(struct_vulkan->device.device, image->depth.view, nullptr);
+  vkDestroyImage(struct_vulkan->device.device, image->depth.image, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, image->depth.mem, nullptr);
 
   //---------------------------
 }
@@ -68,7 +68,7 @@ VkFormat VK_depth::find_supported_format(const std::vector<VkFormat>& format_can
 
   for(VkFormat format : format_candidates){
     VkFormatProperties property;
-    vkGetPhysicalDeviceFormatProperties(vk_struct->device.physical_device, format, &property);
+    vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.physical_device, format, &property);
 
     //tiling
     bool tiling_ok;

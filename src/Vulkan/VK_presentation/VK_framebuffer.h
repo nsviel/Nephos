@@ -25,7 +25,7 @@ public:
   void clean_framebuffer(Frame* image);
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_renderpass* vk_renderpass;
 };
 

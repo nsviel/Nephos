@@ -31,7 +31,7 @@ public:
   void update_uniform_edl(string uniform_name, Struct_binding* binding, EDL_param value);
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_error* vk_error;
 };

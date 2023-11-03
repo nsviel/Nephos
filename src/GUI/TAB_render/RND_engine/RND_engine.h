@@ -24,7 +24,7 @@ public:
   void engine_menubar();
 
 private:
-  Struct_vulkan* vk_struct;
+  Struct_vulkan* struct_vulkan;
   RND_control* gui_control;
 
   VkDescriptorSet descriptor;
