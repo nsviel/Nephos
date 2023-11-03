@@ -2,7 +2,7 @@
 
 #include "../VK_engine.h"
 #include "../VK_struct.h"
-#include "../Data/VK_buffer.h"
+#include "../VK_data/VK_buffer.h"
 
 
 //Constructor / Destructor

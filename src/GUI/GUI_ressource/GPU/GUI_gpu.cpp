@@ -4,8 +4,8 @@
 #include <Engine.h>
 #include <Vulkan/VK_struct.h>
 #include <Vulkan/VK_engine.h>
-#include <Vulkan/Drawing/VK_drawing.h>
-#include <Vulkan/Drawing/DR_ui.h>
+#include <Vulkan/VK_drawing/VK_drawing.h>
+#include <Vulkan/VK_drawing/DR_ui.h>
 #include <Window/Window.h>
 
 

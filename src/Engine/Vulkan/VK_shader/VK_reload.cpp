@@ -5,9 +5,9 @@
 #include <Shader/EDL/EDL_shader.h>
 #include <Vulkan/VK_engine.h>
 #include <Vulkan/VK_struct.h>
-#include <Vulkan/Pipeline/VK_pipeline.h>
-#include <Vulkan/Renderpass/VK_renderpass.h>
-#include <Vulkan/Renderpass/RP_edl.h>
+#include <Vulkan/VK_pipeline/VK_pipeline.h>
+#include <Vulkan/VK_renderpass/VK_renderpass.h>
+#include <Vulkan/VK_renderpass/RP_edl.h>
 
 
 //Constructor / Destructor

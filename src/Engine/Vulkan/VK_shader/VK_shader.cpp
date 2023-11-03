@@ -1,7 +1,7 @@
 #include "VK_shader.h"
 #include "../VK_engine.h"
 #include "../VK_struct.h"
-#include "../Device/VK_device.h"
+#include "../VK_device/VK_device.h"
 
 #include <Specific/File/File.h>
 
