@@ -1,7 +1,7 @@
 #ifndef GUI_NODE_H
 #define GUI_NODE_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class Engine;
 class Data;

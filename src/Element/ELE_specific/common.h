@@ -36,16 +36,16 @@ using namespace std;
 using namespace glm;
 
 //Function
-#include <Specific/Function/fct_terminal.h>
-#include <Specific/Function/fct_math.h>
-#include <Specific/Function/fct_chrono.h> //For debuging
-#include <Specific/Function/fct_timer.h>  //For time profilling
+#include <ELE_specific/Function/fct_terminal.h>
+#include <ELE_specific/Function/fct_math.h>
+#include <ELE_specific/Function/fct_chrono.h> //For debuging
+#include <ELE_specific/Function/fct_timer.h>  //For time profilling
 
 //Data
-#include <Specific/Struct/struct_object.h>
-#include <Specific/Struct/struct_set.h>
-#include <Specific/Struct/struct_data_file.h>
-#include <Specific/Struct/struct_glyph.h>
+#include <ELE_specific/Struct/struct_object.h>
+#include <ELE_specific/Struct/struct_set.h>
+#include <ELE_specific/Struct/struct_data_file.h>
+#include <ELE_specific/Struct/struct_glyph.h>
 
 //GUI
 #include <imgui/core/imgui.h>

@@ -1,7 +1,7 @@
 #ifndef GUI_GIT_H
 #define GUI_GIT_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class GUI_font;
 class GUI;

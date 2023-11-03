@@ -1,7 +1,7 @@
 #ifndef GUI_GPU_H
 #define GUI_GPU_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class GUI;
 class VK_struct;

@@ -1,7 +1,7 @@
 #ifndef GUI_PROFILING_H
 #define GUI_PROFILING_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 #include <imgui/profiler/ImGuiProfilerRenderer.h>
 
 class GUI;

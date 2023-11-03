@@ -1,7 +1,7 @@
 #ifndef GUI_VIDEO_H
 #define GUI_VIDEO_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 #include <ENG_gpu/GPU_texture.h>
 
 extern "C" {

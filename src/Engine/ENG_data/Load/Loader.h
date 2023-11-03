@@ -1,10 +1,10 @@
 #ifndef LOADER_H
 #define LOADER_H
 
-#include <Specific/Struct/struct_data_file.h>
-#include <Specific/Struct/struct_object.h>
-#include <Specific/File/Directory.h>
-#include <Specific/File/Zenity.h>
+#include <ELE_specific/Struct/struct_data_file.h>
+#include <ELE_specific/Struct/struct_object.h>
+#include <ELE_specific/File/Directory.h>
+#include <ELE_specific/File/Zenity.h>
 #include <string>
 #include <vector>
 

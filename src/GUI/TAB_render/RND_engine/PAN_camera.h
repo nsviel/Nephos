@@ -2,7 +2,7 @@
 #define WIN_CAMERA_H
 
 #include <RES_base/BASE_panel.h>
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class GUI;
 class RND_panel;

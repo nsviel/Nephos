@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <GUI_style/GUI_font.h>
-#include <Git/Git.h>
+#include <ELE_git/Git.h>
 #include <image/IconsFontAwesome5.h>
 
 

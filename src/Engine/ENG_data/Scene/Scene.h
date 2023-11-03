@@ -1,7 +1,7 @@
 #ifndef SCENE_GG_H
 #define SCENE_GG_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class Data;
 class Database;

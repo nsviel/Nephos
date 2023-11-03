@@ -1,7 +1,7 @@
 #ifndef GUI_TAB_H
 #define GUI_TAB_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class GUI;
 class GUI_font;

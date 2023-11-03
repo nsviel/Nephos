@@ -1,7 +1,7 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class Engine;
 class EDL_shader;

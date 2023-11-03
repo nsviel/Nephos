@@ -1,7 +1,7 @@
 #ifndef STRUCT_INSTANCE_H
 #define STRUCT_INSTANCE_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 
 //Singleton class to store Shader printf output

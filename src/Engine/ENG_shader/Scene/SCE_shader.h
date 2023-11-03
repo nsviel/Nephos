@@ -1,7 +1,7 @@
 #ifndef SHADER_SCENE_H
 #define SHADER_SCENE_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 #include <ENG_shader/Base/BASE_shader.h>
 
 class Engine;

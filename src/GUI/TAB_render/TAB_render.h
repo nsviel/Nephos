@@ -2,7 +2,7 @@
 #ifndef GUI_RENDER_H
 #define GUI_RENDER_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class GUI;
 class RND_panel;

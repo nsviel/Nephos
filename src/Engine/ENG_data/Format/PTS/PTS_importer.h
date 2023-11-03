@@ -1,9 +1,9 @@
 #ifndef PTS_IMPORTER_H
 #define PTS_IMPORTER_H
 
-#include <Specific/Struct/struct_data_file.h>
-#include <Specific/Struct/struct_object.h>
-#include <Specific/File/Info.h>
+#include <ELE_specific/Struct/struct_data_file.h>
+#include <ELE_specific/Struct/struct_object.h>
+#include <ELE_specific/File/Info.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>

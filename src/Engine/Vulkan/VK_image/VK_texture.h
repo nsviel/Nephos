@@ -4,7 +4,7 @@
 #include "../VK_struct/struct_image.h"
 #include "../VK_struct/struct_data.h"
 #include "../VK_struct/typedef.h"
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 extern "C" {
 #include <libavcodec/avcodec.h>

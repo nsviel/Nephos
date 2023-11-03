@@ -1,7 +1,7 @@
 #ifndef GUI_DEV_COMMAND_H
 #define GUI_DEV_COMMAND_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class GUI;
 class DEV_panel;

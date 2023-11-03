@@ -1,7 +1,7 @@
 #ifndef GIT_FUNCTION_H
 #define GIT_FUNCTION_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 #include <git2.h>
 
 

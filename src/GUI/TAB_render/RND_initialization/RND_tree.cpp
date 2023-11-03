@@ -6,8 +6,8 @@
 #include <ENG_data/Scene/Scene.h>
 #include <ENG_data/Load/Loader.h>
 #include <ENG_operation/Transformation/Transformation.h>
-#include <Specific/File/Directory.h>
-#include <Specific/File/Info.h>
+#include <ELE_specific/File/Directory.h>
+#include <ELE_specific/File/Info.h>
 
 
 //Constructor / Destructor

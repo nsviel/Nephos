@@ -1,7 +1,7 @@
 #ifndef CONTROL_ENGINE_H
 #define CONTROL_ENGINE_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class GUI;
 class Engine;

@@ -5,7 +5,7 @@
 #include "../VK_struct/struct_renderpass.h"
 #include "../VK_struct/struct_command.h"
 #include "../VK_struct/struct_swapchain.h"
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class VK_engine;
 class VK_struct;

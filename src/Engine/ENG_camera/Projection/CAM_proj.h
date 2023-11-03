@@ -2,7 +2,7 @@
 #define CAM_PROJ_H
 
 #include "../struct_camera.h"
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class Window;
 

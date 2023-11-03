@@ -1,8 +1,8 @@
 #ifndef STRUCT_WINDOW_H
 #define STRUCT_WINDOW_H
 
-#include <Specific/common.h>
-#include <Window/Window.h>
+#include <ELE_specific/common.h>
+#include <ELE_window/Window.h>
 
 
 struct Struct_window{

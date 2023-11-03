@@ -40,8 +40,8 @@
 
 #include <Engine.h>
 #include <Param.h>
-#include <Window/Window.h>
-#include <Specific/FPS_counter.h>
+#include <ELE_window/Window.h>
+#include <ELE_specific/FPS_counter.h>
 
 
 //Constructor / Destructor

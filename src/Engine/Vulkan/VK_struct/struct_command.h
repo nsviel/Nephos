@@ -1,7 +1,7 @@
 #ifndef STRUCT_COMMAND_H
 #define STRUCT_COMMAND_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 
 struct Struct_submit_command{

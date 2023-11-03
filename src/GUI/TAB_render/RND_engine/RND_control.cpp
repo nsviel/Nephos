@@ -3,9 +3,9 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <Param.h>
-#include <Window/Window.h>
+#include <ELE_window/Window.h>
 #include <ENG_data/Data.h>
-#include <Specific/Function/fct_math.h>
+#include <ELE_specific/Function/fct_math.h>
 #include <ENG_data/Scene/Scene.h>
 #include <ENG_data/Data.h>
 #include <ENG_camera/Camera.h>

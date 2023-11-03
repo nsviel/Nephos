@@ -4,7 +4,7 @@
 #include "../VK_struct/struct_frame.h"
 #include "../VK_struct/struct_data.h"
 #include "../VK_struct/struct_renderpass.h"
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class Param;
 class VK_engine;

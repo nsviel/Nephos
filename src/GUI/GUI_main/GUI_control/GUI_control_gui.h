@@ -1,7 +1,7 @@
 #ifndef CONTROL_GUI_H
 #define CONTROL_GUI_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 class GUI;
 class GUI_tab;

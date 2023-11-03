@@ -1,7 +1,7 @@
 #include "SCE_shader.h"
 
 #include <Engine.h>
-#include <Window/Window.h>
+#include <ELE_window/Window.h>
 
 
 SCE_shader::SCE_shader(Engine* engine){

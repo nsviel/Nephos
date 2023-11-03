@@ -1,7 +1,7 @@
 #ifndef GUI_CODE_EDITOR_H
 #define GUI_CODE_EDITOR_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 #include <RES_base/BASE_panel.h>
 
 class GUI;

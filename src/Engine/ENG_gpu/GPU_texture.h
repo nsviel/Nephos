@@ -1,7 +1,7 @@
 #ifndef GPU_TEXTURE_H
 #define GPU_TEXTURE_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 #include <Vulkan/VK_image/VK_texture.h>
 
 extern "C" {

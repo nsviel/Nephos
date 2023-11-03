@@ -1,7 +1,7 @@
 #ifndef STRUCT_DEVICE_H
 #define STRUCT_DEVICE_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 
 
 struct Struct_device{

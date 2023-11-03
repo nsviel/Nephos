@@ -1,7 +1,7 @@
 #ifndef STRUCT_IMAGE_H
 #define STRUCT_IMAGE_H
 
-#include <Specific/common.h>
+#include <ELE_specific/common.h>
 #include "struct_image.h"
 
 
