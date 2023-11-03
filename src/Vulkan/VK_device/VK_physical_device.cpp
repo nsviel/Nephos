@@ -1,8 +1,5 @@
 #include "VK_physical_device.h"
-
-#include "../VK_instance/VK_instance.h"
 #include "../VK_window/VK_surface.h"
-
 #include "../VK_engine.h"
 #include "../VK_struct/struct_vulkan.h"
 
@@ -11,10 +8,8 @@
 VK_physical_device::VK_physical_device(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_surface = vk_engine->get_vk_surface();
-  this->vk_instance = vk_engine->get_vk_instance();
 
   struct_vulkan->device.extension.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
   struct_vulkan->device.extension.push_back(VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME);
@@ -94,7 +89,8 @@ void VK_physical_device::compute_extent(){
   if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
     struct_vulkan->window.extent = capabilities.currentExtent;
   }else{
-    glm::vec2 fbo_dim = vk_surface->get_window_dim();
+    Window* window = vk_surface->get_window();
+    glm::vec2 fbo_dim = window->get_window_dim();
 
     struct_vulkan->window.extent = {
       static_cast<uint32_t>(fbo_dim.x),

@@ -6,7 +6,6 @@
 class VK_engine;
 class Struct_vulkan;
 class VK_surface;
-class VK_instance;
 
 
 class VK_physical_device
@@ -39,10 +38,8 @@ public:
   VkPhysicalDeviceProperties find_device_property(VkPhysicalDevice physical_device);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_surface* vk_surface;
-  VK_instance* vk_instance;
 
   vector<string> vec_device_name;
   int nb_queue_graphics;
