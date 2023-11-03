@@ -12,9 +12,9 @@ VK_cmd::VK_cmd(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_viewport = vk_engine->get_vk_viewport();
-
+  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  
   //---------------------------
 }
 VK_cmd::~VK_cmd(){}

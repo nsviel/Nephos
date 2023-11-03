@@ -19,7 +19,7 @@ VK_pipeline::VK_pipeline(VK_engine* vk_engine){
   this->vk_viewport = vk_engine->get_vk_viewport();
   this->vk_shader = vk_engine->get_vk_shader();
   this->vk_data = vk_engine->get_vk_data();
-  this->vk_binding = vk_engine->get_vk_binding();
+  this->vk_binding = new VK_binding(vk_engine);
 
   //---------------------------
 }

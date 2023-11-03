@@ -27,8 +27,8 @@ public:
 
 private:
   VK_engine* vk_engine;
-  Struct_vulkan* struct_vulkan;
   VK_viewport* vk_viewport;
+  Struct_vulkan* struct_vulkan;
 };
 
 #endif

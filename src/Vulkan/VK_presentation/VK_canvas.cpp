@@ -16,7 +16,7 @@ VK_canvas::VK_canvas(VK_engine* vk_engine){
   this->vk_buffer = vk_engine->get_vk_buffer();
   this->vk_data = vk_engine->get_vk_data();
   this->vk_texture = vk_engine->get_vk_texture();
-  this->vk_binding = vk_engine->get_vk_binding();
+  this->vk_binding = new VK_binding(vk_engine);
 
   //---------------------------
 }

@@ -33,7 +33,6 @@ class VK_physical_device;
 class VK_frame;
 class VK_canvas;
 class VK_color;
-class VK_binding;
 class VK_image;
 class VK_drawing;
 class VK_command_buffer;
@@ -81,7 +80,6 @@ public:
   inline VK_frame* get_vk_frame(){return vk_frame;}
   inline VK_submit* get_vk_submit(){return vk_submit;}
   inline VK_canvas* get_vk_canvas(){return vk_canvas;}
-  inline VK_binding* get_vk_binding(){return vk_binding;}
   inline VK_image* get_vk_image(){return vk_image;}
   inline VK_drawing* get_vk_drawing(){return vk_drawing;}
   inline VK_uniform* get_vk_uniform(){return vk_uniform;}
@@ -106,7 +104,6 @@ private:
   VK_image* vk_image;
   VK_command* vk_command;
   VK_cmd* vk_cmd;
-  VK_binding* vk_binding;
   VK_synchronization* vk_synchronization;
   VK_submit* vk_submit;
   VK_buffer* vk_buffer;

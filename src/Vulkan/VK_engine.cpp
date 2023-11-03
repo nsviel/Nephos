@@ -22,7 +22,6 @@
 
 #include "VK_presentation/VK_canvas.h"
 #include "VK_binding/VK_descriptor.h"
-#include "VK_binding/VK_binding.h"
 #include "VK_binding/VK_uniform.h"
 
 #include "VK_image/VK_depth.h"
@@ -64,7 +63,6 @@ VK_engine::VK_engine(Engine* engine){
   this->vk_depth = new VK_depth(this);
   this->vk_color = new VK_color(this);
   this->vk_descriptor = new VK_descriptor(this);
-  this->vk_binding = new VK_binding(this);
   this->vk_command_buffer = new VK_command_buffer(this);
   this->vk_data = new VK_data(this);
   this->vk_synchronization = new VK_synchronization(this);

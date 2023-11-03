@@ -18,7 +18,7 @@ VK_data::VK_data(VK_engine* vk_engine){
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_buffer = vk_engine->get_vk_buffer();
   this->vk_texture = vk_engine->get_vk_texture();
-  this->vk_binding = vk_engine->get_vk_binding();
+  this->vk_binding = new VK_binding(vk_engine);
   this->vk_command_buffer = vk_engine->get_vk_command_buffer();
   this->vk_descriptor = vk_engine->get_vk_descriptor();
 
