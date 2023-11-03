@@ -7,7 +7,6 @@
 
 class VK_engine;
 class Struct_vulkan;
-class VK_renderpass;
 
 
 class VK_framebuffer
@@ -26,7 +25,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_renderpass* vk_renderpass;
 };
 
 #endif

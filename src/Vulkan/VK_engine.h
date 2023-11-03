@@ -16,7 +16,6 @@ class VK_device;
 class VK_swapchain;
 class VK_renderpass;
 class VK_pipeline;
-class VK_framebuffer;
 class VK_command;
 class VK_cmd;
 class VK_synchronization;
@@ -33,7 +32,6 @@ class VK_shader;
 class VK_reload;
 class VK_physical_device;
 class VK_frame;
-class VK_validation;
 class VK_canvas;
 class VK_color;
 class VK_binding;
@@ -64,7 +62,6 @@ public:
   inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
 
   inline VK_device* get_vk_device(){return vk_device;}
-  inline VK_framebuffer* get_vk_framebuffer(){return vk_framebuffer;}
   inline VK_surface* get_vk_surface(){return vk_surface;}
   inline VK_swapchain* get_vk_swapchain(){return vk_swapchain;}
   inline VK_synchronization* get_vk_synchronization(){return vk_synchronization;}
@@ -85,7 +82,6 @@ public:
   inline VK_reload* get_vk_reload(){return vk_reload;}
   inline VK_physical_device* get_vk_physical_device(){return vk_physical_device;}
   inline VK_frame* get_vk_frame(){return vk_frame;}
-  inline VK_validation* get_vk_validation(){return vk_validation;}
   inline VK_submit* get_vk_submit(){return vk_submit;}
   inline VK_canvas* get_vk_canvas(){return vk_canvas;}
   inline VK_binding* get_vk_binding(){return vk_binding;}
@@ -110,7 +106,6 @@ private:
   VK_swapchain* vk_swapchain;
   VK_renderpass* vk_renderpass;
   VK_pipeline* vk_pipeline;
-  VK_framebuffer* vk_framebuffer;
   VK_uniform* vk_uniform;
   VK_image* vk_image;
   VK_command* vk_command;
@@ -130,7 +125,6 @@ private:
   VK_reload* vk_reload;
   VK_physical_device* vk_physical_device;
   VK_frame* vk_frame;
-  VK_validation* vk_validation;
   VK_canvas* vk_canvas;
   VK_color* vk_color;
   VK_drawing* vk_drawing;

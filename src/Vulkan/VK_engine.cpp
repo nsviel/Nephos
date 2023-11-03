@@ -31,7 +31,6 @@
 #include "VK_image/VK_texture.h"
 #include "VK_image/VK_image.h"
 #include "VK_presentation/VK_swapchain.h"
-#include "VK_presentation/VK_framebuffer.h"
 #include "VK_presentation/VK_frame.h"
 #include "VK_camera/VK_viewport.h"
 #include "VK_camera/VK_camera.h"
@@ -56,7 +55,6 @@ VK_engine::VK_engine(Engine* engine){
 
   this->struct_vulkan = new Struct_vulkan();
   this->vk_instance = new VK_instance(this);
-  this->vk_validation = new VK_validation(this);
   this->vk_error = new VK_error(this);
   this->vk_viewport = new VK_viewport(this);
   this->vk_surface = new VK_surface(this);
@@ -78,7 +76,6 @@ VK_engine::VK_engine(Engine* engine){
   this->vk_pipeline = new VK_pipeline(this);
   this->vk_renderpass = new VK_renderpass(this);
   this->vk_reload = new VK_reload(this);
-  this->vk_framebuffer = new VK_framebuffer(this);
   this->vk_frame = new VK_frame(this);
   this->vk_camera = new VK_camera(this);
   this->vk_canvas = new VK_canvas(this);
@@ -98,8 +95,7 @@ void VK_engine::init(){
 
   //Instance
   vk_surface->init_window();
-  vk_instance->create_instance();
-  vk_validation->create_validation_layer();
+  vk_instance->init_instance();
   vk_surface->create_window_surface();
   vk_physical_device->init_physical_device();
   vk_device->create_logical_device();
@@ -146,7 +142,6 @@ void VK_engine::clean(){
   vk_command_buffer->clean_command_pool();
   vk_device->clean_logical_device();
   vk_surface->clean_surface();
-  vk_validation->clean_layer();
   vk_instance->clean_instance();
 
   //---------------------------

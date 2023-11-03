@@ -4,6 +4,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
+class VK_validation;
 class Struct_vulkan;
 
 
@@ -16,11 +17,15 @@ public:
 
 public:
   //Main functions
-  void create_instance();
+  void init_instance();
   void clean_instance();
+
+  //Subfunction
+  void create_instance();
 
 private:
   VK_engine* vk_engine;
+  VK_validation* vk_validation;
   Struct_vulkan* struct_vulkan;
 };
 

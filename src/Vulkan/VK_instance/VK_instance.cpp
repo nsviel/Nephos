@@ -11,6 +11,7 @@ VK_instance::VK_instance(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->vk_validation = new VK_validation(vk_engine);
 
   struct_vulkan->instance.extension.push_back(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
 
@@ -19,8 +20,25 @@ VK_instance::VK_instance(VK_engine* vk_engine){
 VK_instance::~VK_instance(){}
 
 //Main function
+void VK_instance::init_instance(){
+  //---------------------------
+
+  this->create_instance();
+  vk_validation->create_validation_layer();
+
+  //---------------------------
+}
+void VK_instance::clean_instance(){
+  //---------------------------
+
+  vk_validation->clean_layer();
+  vkDestroyInstance(struct_vulkan->instance.instance, nullptr);
+
+  //---------------------------
+}
+
+//Subfunction
 void VK_instance::create_instance(){
-  VK_validation* vk_validation = vk_engine->get_vk_validation();
   //---------------------------
 
   //Application info
@@ -48,13 +66,6 @@ void VK_instance::create_instance(){
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create instance!");
   }
-
-  //---------------------------
-}
-void VK_instance::clean_instance(){
-  //---------------------------
-
-  vkDestroyInstance(struct_vulkan->instance.instance, nullptr);
 
   //---------------------------
 }

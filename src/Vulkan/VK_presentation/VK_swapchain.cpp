@@ -6,7 +6,6 @@
 #include "../VK_presentation/VK_framebuffer.h"
 #include "../VK_image/VK_depth.h"
 #include "../VK_device/VK_physical_device.h"
-#include "../VK_window/VK_surface.h"
 
 #include <ELE_window/Window.h>
 
@@ -17,7 +16,7 @@ VK_swapchain::VK_swapchain(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_surface = vk_engine->get_vk_surface();
+  this->window = vk_engine->get_window();
   this->vk_physical_device = vk_engine->get_vk_physical_device();
 
   //---------------------------
@@ -28,8 +27,6 @@ VK_swapchain::~VK_swapchain(){}
 void VK_swapchain::recreate_swapChain(){
   VK_depth* vk_depth = vk_engine->get_vk_depth();
   VK_frame* vk_frame = vk_engine->get_vk_frame();
-  VK_framebuffer* vk_framebuffer = vk_engine->get_vk_framebuffer();
-  Window* window = vk_surface->get_window();
   //---------------------------
 
   //Minimization managment

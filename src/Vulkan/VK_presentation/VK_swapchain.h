@@ -3,9 +3,9 @@
 
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
-class VK_surface;
+class Window;
+class VK_engine;
 class VK_physical_device;
 
 
@@ -35,7 +35,7 @@ public:
 private:
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
-  VK_surface* vk_surface;
+  Window* window;
   VK_physical_device* vk_physical_device;
 };
 

@@ -11,7 +11,6 @@ VK_surface::VK_surface(VK_engine* vk_engine){
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->window = vk_engine->get_window();
-  struct_vulkan->window.windowManager = window;
 
   //---------------------------
 }
@@ -21,7 +20,15 @@ VK_surface::~VK_surface(){}
 void VK_surface::init_window(){
   //---------------------------
 
+  struct_vulkan->window.windowManager = window;
   this->get_required_extensions();
+
+  //---------------------------
+}
+void VK_surface::create_window_surface(){
+  //---------------------------
+
+  window->create_window_surface(struct_vulkan->instance.instance, struct_vulkan->window.surface);
 
   //---------------------------
 }
@@ -34,13 +41,6 @@ void VK_surface::clean_surface(){
 }
 
 //Subfunction
-void VK_surface::create_window_surface(){
-  //---------------------------
-
-  window->create_window_surface(struct_vulkan->instance.instance, struct_vulkan->window.surface);
-
-  //---------------------------
-}
 void VK_surface::check_for_resizing(){
   static vec2 window_dim;
   bool is_resized = false;

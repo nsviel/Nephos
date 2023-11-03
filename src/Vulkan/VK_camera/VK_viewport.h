@@ -25,7 +25,6 @@ public:
   inline VkRect2D get_scissor(){return scissor;}
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   Window* window;
 

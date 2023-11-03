@@ -3,15 +3,13 @@
 #include "../VK_struct/struct_vulkan.h"
 
 #include <ELE_window/Window.h>
-#include <Engine.h>
+
 
 //Constructor / Destructor
 VK_viewport::VK_viewport(VK_engine* vk_engine){
   //---------------------------
 
-  Engine* engine = vk_engine->get_engine();
-  this->window = engine->get_window();
-  this->vk_engine = vk_engine;
+  this->window = vk_engine->get_window();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   //---------------------------

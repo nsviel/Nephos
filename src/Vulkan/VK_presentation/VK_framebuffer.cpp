@@ -14,7 +14,6 @@ VK_framebuffer::VK_framebuffer(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_renderpass = vk_engine->get_vk_renderpass();
 
   //---------------------------
 }

@@ -11,7 +11,6 @@ VK_camera::VK_camera(VK_engine* vk_engine){
   //---------------------------
 
   Engine* engine = vk_engine->get_engine();
-
   this->cameraManager = engine->get_cameraManager();
 
   //---------------------------
