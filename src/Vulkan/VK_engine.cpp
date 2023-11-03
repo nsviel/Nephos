@@ -1,5 +1,6 @@
 #include "VK_engine.h"
 #include "VK_struct/struct_vulkan.h"
+#include "VK_struct/struct_param.h"
 
 #include "VK_data/VK_buffer.h"
 #include "VK_data/VK_data.h"
@@ -49,11 +50,11 @@ VK_engine::VK_engine(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->param = engine->get_param();
   this->window = engine->get_window();
   this->fps_counter = new FPS_counter(100);
+  this->struct_param = new Struct_param();
 
-  this->vk_struct = new struct_vulkan();
+  this->vk_struct = new Struct_vulkan();
   this->vk_instance = new VK_instance(this);
   this->vk_validation = new VK_validation(this);
   this->vk_error = new VK_error(this);

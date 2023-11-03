@@ -5,7 +5,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class struct_vulkan;
+class Struct_vulkan;
 class VK_device;
 
 
@@ -27,7 +27,7 @@ public:
   std::vector<char> read_file(const std::string& filename);
 
 private:
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
   VK_device* vk_device;
 
   string path_output;

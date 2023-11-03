@@ -7,7 +7,7 @@
 class GUI;
 class Param;
 class VK_engine;
-class struct_vulkan;
+class Struct_vulkan;
 
 
 class RND_option : public BASE_panel
@@ -29,7 +29,7 @@ private:
   GUI* gui;
   Param* param;
   VK_engine* vk_engine;
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
 
   int width;
 };

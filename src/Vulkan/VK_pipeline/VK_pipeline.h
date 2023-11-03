@@ -6,7 +6,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class struct_vulkan;
+class Struct_vulkan;
 class VK_descriptor;
 class VK_viewport;
 class VK_shader;
@@ -49,7 +49,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
   VK_descriptor* vk_descriptor;
   VK_viewport* vk_viewport;
   VK_shader* vk_shader;

@@ -16,7 +16,7 @@
 #include <iostream>
 
 
-struct struct_vulkan{
+struct Struct_vulkan{
   //---------------------------
 
   int nb_frame;

@@ -7,7 +7,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class struct_vulkan;
+class Struct_vulkan;
 class VK_buffer;
 class VK_error;
 
@@ -31,7 +31,7 @@ public:
   void update_uniform_edl(string uniform_name, Struct_binding* binding, EDL_param value);
 
 private:
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
   VK_buffer* vk_buffer;
   VK_error* vk_error;
 };

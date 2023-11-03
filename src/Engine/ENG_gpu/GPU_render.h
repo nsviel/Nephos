@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class struct_vulkan;
+class Struct_vulkan;
 
 
 class GPU_render
@@ -18,7 +18,7 @@ public:
   //Main functions
 
 private:
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
 };
 
 #endif

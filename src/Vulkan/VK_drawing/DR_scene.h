@@ -7,7 +7,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class struct_vulkan;
+class Struct_vulkan;
 class VK_command;
 class VK_cmd;
 class VK_descriptor;
@@ -40,7 +40,7 @@ private:
   Timer timer;
 
   VK_engine* vk_engine;
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
   VK_command* vk_command;
   VK_cmd* vk_cmd;
   VK_descriptor* vk_descriptor;

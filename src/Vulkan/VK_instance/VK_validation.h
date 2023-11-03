@@ -5,7 +5,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class struct_vulkan;
+class Struct_vulkan;
 class VK_instance;
 
 
@@ -34,7 +34,7 @@ public:
   inline vector<const char*> get_validation_layers(){return validation_layers;};
 
 private:
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
   VK_instance* vk_instance;
 
   vector<const char*> validation_layers;

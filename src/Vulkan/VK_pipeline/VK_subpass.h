@@ -5,7 +5,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class struct_vulkan;
+class Struct_vulkan;
 class VK_color;
 
 
@@ -28,7 +28,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
   VK_color* vk_color;
 };
 

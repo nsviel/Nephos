@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class struct_vulkan;
+class Struct_vulkan;
 class DR_ui;
 
 
@@ -25,7 +25,7 @@ public:
   void render_command(VkCommandBuffer command_buffer);
 
 private:
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
   DR_ui* ui_drawing;
 
   VkDescriptorPool imguiPool;

@@ -1,5 +1,4 @@
 #include "VK_command.h"
-#include "VK_command_buffer.h"
 #include "../VK_struct/struct_vulkan.h"
 #include "../VK_engine.h"
 
@@ -15,7 +14,6 @@ VK_command::VK_command(VK_engine* vk_engine){
   this->param = engine->get_param();
   this->vk_engine = vk_engine;
   this->vk_struct = vk_engine->get_vk_struct();
-  this->vk_command_buffer = vk_engine->get_vk_command_buffer();
 
   //---------------------------
 }

@@ -3,8 +3,6 @@
 #include "../VK_engine.h"
 #include "../VK_struct/struct_vulkan.h"
 #include "../VK_command/VK_command.h"
-#include "../VK_device/VK_device.h"
-#include "../VK_device/VK_physical_device.h"
 
 
 //Constructor / Destructor
@@ -13,8 +11,6 @@ VK_buffer::VK_buffer(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->vk_struct = vk_engine->get_vk_struct();
-  this->vk_device = vk_engine->get_vk_device();
-  this->vk_physical_device = vk_engine->get_vk_physical_device();
 
   //---------------------------
 }

@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class struct_vulkan;
+class Struct_vulkan;
 class RND_control;
 
 
@@ -24,7 +24,7 @@ public:
   void engine_menubar();
 
 private:
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
   RND_control* gui_control;
 
   VkDescriptorSet descriptor;

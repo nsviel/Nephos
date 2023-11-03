@@ -5,8 +5,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
-class struct_vulkan;
-class VK_device;
+class Struct_vulkan;
 class VK_physical_device;
 
 
@@ -37,9 +36,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  struct_vulkan* vk_struct;
-  VK_device* vk_device;
-  VK_physical_device* vk_physical_device;
+  Struct_vulkan* vk_struct;
 };
 
 #endif

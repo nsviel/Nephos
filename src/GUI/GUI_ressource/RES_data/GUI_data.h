@@ -6,7 +6,7 @@
 class GUI;
 
 class VK_engine;
-class struct_vulkan;
+class Struct_vulkan;
 
 
 class GUI_data
@@ -26,7 +26,7 @@ public:
 private:
   GUI* gui;
   VK_engine* vk_engine;
-  struct_vulkan* vk_struct;
+  Struct_vulkan* vk_struct;
 
   int width;
 };
