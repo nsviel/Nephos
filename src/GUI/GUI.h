@@ -10,7 +10,7 @@ class Window;
 class GUI_font;
 class GUI_control_gui;
 class GUI_style;
-class GUI_init;
+class RND_init;
 class GUI_gpu;
 class GUI_image;
 class GUI_video;
@@ -38,7 +38,7 @@ public:
 
   inline GUI_control_gui* get_gui_control(){return gui_control;}
   inline GUI_style* get_gui_style(){return gui_style;}
-  inline GUI_init* get_gui_init(){return gui_init;}
+  inline RND_init* get_gui_init(){return gui_init;}
   inline GUI_tab* get_gui_tab(){return gui_tab;}
   inline GUI_font* get_gui_font(){return gui_font;}
 
@@ -49,7 +49,7 @@ private:
 
   GUI_control_gui* gui_control;
   GUI_style* gui_style;
-  GUI_init* gui_init;
+  RND_init* gui_init;
   GUI_gpu* gui_gpu;
   GUI_font* gui_font;
   GUI_tab* gui_tab;

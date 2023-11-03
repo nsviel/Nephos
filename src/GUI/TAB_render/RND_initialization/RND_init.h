@@ -9,15 +9,15 @@ class GUI;
 class Scene;
 class Loader;
 class Transformation;
-class GUI_tree;
+class RND_tree;
 
 
-class GUI_init
+class RND_init
 {
 public:
   //Constructor / Destructor
-  GUI_init(GUI* gui);
-  ~GUI_init();
+  RND_init(GUI* gui);
+  ~RND_init();
 
 public:
   //Main funxtion
@@ -37,7 +37,7 @@ private:
   Scene* sceneManager;
   Loader* loaderManager;
   Transformation* transformManager;
-  GUI_tree* gui_tree;
+  RND_tree* gui_tree;
 
   vector<Tree_node*> nodes_root;
   vector<vector<Tree_node*>> nodes_path_vec;

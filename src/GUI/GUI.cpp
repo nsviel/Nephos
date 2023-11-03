@@ -9,13 +9,13 @@
 #include <GUI_style/GUI_style.h>
 #include <GUI_style/GUI_font.h>
 #include <TAB_render/RND_engine/RND_engine.h>
-#include <TAB_render/RND_engine/RND_camera.h>
-#include <TAB_render/RND_data/GUI_object.h>
-#include <TAB_render/RND_data/GUI_set.h>
+#include <TAB_render/RND_engine/PAN_camera.h>
+#include <TAB_render/RND_data/PAN_object.h>
+#include <TAB_render/RND_data/PAN_set.h>
 #include <TAB_render/RND_profiler/GUI_profiler.h>
-#include <TAB_render/RND_shader/GUI_shader.h>
-#include <TAB_render/RND_data/GUI_scene.h>
-#include <TAB_render/RND_initialization/GUI_init.h>
+#include <TAB_render/RND_shader/RND_shader.h>
+#include <TAB_render/RND_data/PAN_scene.h>
+#include <TAB_render/RND_initialization/RND_init.h>
 #include <RES_capture/GUI_capture.h>
 
 
@@ -27,7 +27,7 @@ GUI::GUI(Window* window, Engine* engine){
   this->window = window;
   this->data = engine->get_dataManager();
 
-  this->gui_init = new GUI_init(this);
+  this->gui_init = new RND_init(this);
   this->gui_style = new GUI_style(this);
   this->gui_font = new GUI_font(this);
   this->gui_tab = new GUI_tab(this);

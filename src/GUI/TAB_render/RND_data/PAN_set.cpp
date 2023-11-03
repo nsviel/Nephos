@@ -1,4 +1,4 @@
-#include "GUI_set.h"
+#include "PAN_set.h"
 
 #include <GUI.h>
 #include <TAB_render/RND_config/RND_panel.h>
@@ -7,17 +7,17 @@
 
 
 //Constructor / Destructor
-GUI_set::GUI_set(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+PAN_set::PAN_set(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->item_width = 150;
 
   //---------------------------
 }
-GUI_set::~GUI_set(){}
+PAN_set::~PAN_set(){}
 
 //Main function
-void GUI_set::design_panel(){
+void PAN_set::design_panel(){
   //---------------------------
 
   this->set_info(set_selected);
@@ -27,14 +27,14 @@ void GUI_set::design_panel(){
 }
 
 //Subfunction
-void GUI_set::set_info(Set* set){
+void PAN_set::set_info(Set* set){
   //---------------------------
 
   this->set_name("Set " + set->name);
 
   //---------------------------
 }
-void GUI_set::set_parameter(Set* set){
+void PAN_set::set_parameter(Set* set){
   ImGui::Columns(2);
   //---------------------------
 

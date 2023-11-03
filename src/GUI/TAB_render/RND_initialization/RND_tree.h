@@ -5,15 +5,15 @@
 #include "struct_init.h"
 #include <Specific/common.h>
 
-class GUI_init;
+class RND_init;
 
 
-class GUI_tree
+class RND_tree
 {
 public:
   //Constructor / Destructor
-  GUI_tree(GUI_init* gui_init);
-  ~GUI_tree();
+  RND_tree(RND_init* gui_init);
+  ~RND_tree();
 
 public:
   //Main function
@@ -30,7 +30,7 @@ public:
   void open_selection(Tree_node* node);
 
 private:
-  GUI_init* gui_init;
+  RND_init* gui_init;
 
   vector<Tree_node*> nodes_root;
   vector<vector<Tree_node*>> nodes_path_vec;

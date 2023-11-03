@@ -1,5 +1,5 @@
-#include "GUI_tree.h"
-#include "GUI_init.h"
+#include "RND_tree.h"
+#include "RND_init.h"
 
 
 #include <Data/Data.h>
@@ -11,17 +11,17 @@
 
 
 //Constructor / Destructor
-GUI_tree::GUI_tree(GUI_init* gui_init){
+RND_tree::RND_tree(RND_init* gui_init){
   //---------------------------
 
   this->gui_init = gui_init;
 
   //---------------------------
 }
-GUI_tree::~GUI_tree(){}
+RND_tree::~RND_tree(){}
 
 //Tree view
-void GUI_tree::design_tree(){
+void RND_tree::design_tree(){
   //---------------------------
 
   static ImGuiTableFlags flags = ImGuiTableFlags_BordersV | ImGuiTableFlags_BordersOuterH | ImGuiTableFlags_Resizable | ImGuiTableFlags_RowBg | ImGuiTableFlags_NoBordersInBody;
@@ -43,7 +43,7 @@ void GUI_tree::design_tree(){
 
   //---------------------------
 }
-void GUI_tree::construct_tree(Struct_init* init){
+void RND_tree::construct_tree(Struct_init* init){
   this->nodes_path_vec.clear();
   this->init = init;
   //---------------------------
@@ -65,7 +65,7 @@ void GUI_tree::construct_tree(Struct_init* init){
 }
 
 //subfunction
-void GUI_tree::construct_node(string path, vector<Tree_node*>& nodes){
+void RND_tree::construct_node(string path, vector<Tree_node*>& nodes){
   if(path != ""){
     //---------------------------
 
@@ -83,7 +83,7 @@ void GUI_tree::construct_node(string path, vector<Tree_node*>& nodes){
     //---------------------------
   }
 }
-void GUI_tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>& nodes){
+void RND_tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>& nodes){
   //---------------------------
 
   for(int i=0; i<vec_path.size(); i++){
@@ -105,7 +105,7 @@ void GUI_tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>&
 
   //---------------------------
 }
-void GUI_tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* parent){
+void RND_tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* parent){
   vector<string> list_path = list_all_path(path);
   //---------------------------
 
@@ -147,7 +147,7 @@ void GUI_tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node
 
   //---------------------------
 }
-void GUI_tree::display_node(Tree_node* node, vector<Tree_node*>& all_nodes){
+void RND_tree::display_node(Tree_node* node, vector<Tree_node*>& all_nodes){
   if(all_nodes.size() != 0){
     //---------------------------
 
@@ -193,7 +193,7 @@ void GUI_tree::display_node(Tree_node* node, vector<Tree_node*>& all_nodes){
     //---------------------------
   }
 }
-void GUI_tree::display_node_root(vector<Tree_node*>& all_nodes){
+void RND_tree::display_node_root(vector<Tree_node*>& all_nodes){
   //---------------------------
 
   for(int i=0; i<all_nodes.size(); i++){
@@ -215,7 +215,7 @@ void GUI_tree::display_node_root(vector<Tree_node*>& all_nodes){
 
   //---------------------------
 }
-bool GUI_tree::check_display_file_format(string path){
+bool RND_tree::check_display_file_format(string path){
   string format = get_format_from_path(path);
   //---------------------------
 
@@ -228,7 +228,7 @@ bool GUI_tree::check_display_file_format(string path){
   //---------------------------
   return false;
 }
-void GUI_tree::open_selection(Tree_node* node){
+void RND_tree::open_selection(Tree_node* node){
   //---------------------------
 
   if(node->type == "File"){

@@ -1,4 +1,4 @@
-#include "GUI_shader.h"
+#include "RND_shader.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -14,7 +14,7 @@
 
 
 //Constructor / Destructor
-GUI_shader::GUI_shader(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+RND_shader::RND_shader(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -38,10 +38,10 @@ GUI_shader::GUI_shader(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   //---------------------------
   this->init_panel();
 }
-GUI_shader::~GUI_shader(){}
+RND_shader::~RND_shader(){}
 
 //Main function
-void GUI_shader::init_panel(){
+void RND_shader::init_panel(){
   //---------------------------
 
   vec_shader_class.push_back("Scene");
@@ -53,7 +53,7 @@ void GUI_shader::init_panel(){
 
   //---------------------------
 }
-void GUI_shader::design_panel(){
+void RND_shader::design_panel(){
   //---------------------------
 
   this->check_read_only();
@@ -73,7 +73,7 @@ string message = Shader_logger::get_instance().get_shader_printf();
 }
 
 //Design fnunction
-void GUI_shader::shader_combo_class(){
+void RND_shader::shader_combo_class(){
   //---------------------------
 
   if(ImGui::BeginCombo("##shader_combo_class", vec_shader_class[ID_class].c_str())){
@@ -96,7 +96,7 @@ void GUI_shader::shader_combo_class(){
 
   //---------------------------
 }
-void GUI_shader::shader_combo_subclass(){
+void RND_shader::shader_combo_subclass(){
   //---------------------------
 
   if(vec_shader_subclass.size() != 1){
@@ -121,7 +121,7 @@ void GUI_shader::shader_combo_subclass(){
 
   //---------------------------
 }
-void GUI_shader::shader_command(){
+void RND_shader::shader_command(){
   //---------------------------
 
   //Button commands
@@ -148,7 +148,7 @@ void GUI_shader::shader_command(){
 
   //---------------------------
 }
-void GUI_shader::shader_tabs(){
+void RND_shader::shader_tabs(){
   //---------------------------
 
   if (ImGui::BeginTabBar("shader_editor")){
@@ -173,7 +173,7 @@ void GUI_shader::shader_tabs(){
 }
 
 //File selection
-void GUI_shader::retrieve_shader_subclasses(){
+void RND_shader::retrieve_shader_subclasses(){
   //---------------------------
 
   string selection = vec_shader_class[ID_class];
@@ -200,7 +200,7 @@ void GUI_shader::retrieve_shader_subclasses(){
 
   //---------------------------
 }
-void GUI_shader::shader_file_selection(){
+void RND_shader::shader_file_selection(){
   //---------------------------
 
   string path_vs = get_path_vs_from_selection();
@@ -214,7 +214,7 @@ void GUI_shader::shader_file_selection(){
 
   //---------------------------
 }
-string GUI_shader::get_path_vs_from_selection(){
+string RND_shader::get_path_vs_from_selection(){
   //---------------------------
 
   string selection = vec_shader_class[ID_class];
@@ -236,7 +236,7 @@ string GUI_shader::get_path_vs_from_selection(){
   //---------------------------
   return path_vs;
 }
-string GUI_shader::get_path_fs_from_selection(){
+string RND_shader::get_path_fs_from_selection(){
   //---------------------------
 
   string selection = vec_shader_class[ID_class];
@@ -260,7 +260,7 @@ string GUI_shader::get_path_fs_from_selection(){
 }
 
 //Parameter
-void GUI_shader::show_parameter(){
+void RND_shader::show_parameter(){
   //---------------------------
 
   if(current_class == "EDL"){
@@ -269,7 +269,7 @@ void GUI_shader::show_parameter(){
 
   //---------------------------
 }
-void GUI_shader::parameter_EDL(){
+void RND_shader::parameter_EDL(){
   EDL_shader* edl_shader = shaderManager->get_edl_shader();
   EDL_param* edl_param = edl_shader->get_edl_param();
   //---------------------------
@@ -293,7 +293,7 @@ void GUI_shader::parameter_EDL(){
 }
 
 //Shader specific
-void GUI_shader::check_reload(){
+void RND_shader::check_reload(){
   //---------------------------
 
   bool has_vs_changed = editor_vs->is_text_changed();
@@ -304,7 +304,7 @@ void GUI_shader::check_reload(){
 
   //---------------------------
 }
-void GUI_shader::display_reload(){
+void RND_shader::display_reload(){
   //---------------------------
 
   string status;
@@ -324,7 +324,7 @@ void GUI_shader::display_reload(){
 
   //---------------------------
 }
-void GUI_shader::display_status(){
+void RND_shader::display_status(){
   //---------------------------
 
   if(active_editor == "Vertex"){
@@ -338,7 +338,7 @@ void GUI_shader::display_status(){
 
   //---------------------------
 }
-void GUI_shader::shader_control(){
+void RND_shader::shader_control(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -353,7 +353,7 @@ void GUI_shader::shader_control(){
 
   //----------------------------
 }
-void GUI_shader::reload_vulkan_shader(){
+void RND_shader::reload_vulkan_shader(){
   //---------------------------
 
   gui_console->clear_log();
@@ -364,7 +364,7 @@ void GUI_shader::reload_vulkan_shader(){
 
   //---------------------------
 }
-void GUI_shader::check_read_only(){
+void RND_shader::check_read_only(){
   //---------------------------
 
   bool window_hovered = ImGui::IsWindowHovered(ImGuiHoveredFlags_ChildWindows|ImGuiHoveredFlags_AllowWhenBlockedByActiveItem);

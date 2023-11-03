@@ -1,4 +1,4 @@
-#include "GUI_render_option.h"
+#include "RND_option.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-GUI_render_option::GUI_render_option(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+RND_option::RND_option(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->gui = gui;
@@ -21,10 +21,10 @@ GUI_render_option::GUI_render_option(GUI* gui, bool* show_window, string name) :
 
   //---------------------------
 }
-GUI_render_option::~GUI_render_option(){}
+RND_option::~RND_option(){}
 
 //Main function
-void GUI_render_option::design_panel(){
+void RND_option::design_panel(){
   //---------------------------
 
   this->option_color();
@@ -34,7 +34,7 @@ void GUI_render_option::design_panel(){
 }
 
 //Subfunctions
-void GUI_render_option::option_color(){
+void RND_option::option_color(){
   if(ImGui::CollapsingHeader("Colors")){
     //---------------------------
 
@@ -47,7 +47,7 @@ void GUI_render_option::option_color(){
     ImGui::Separator();
   }
 }
-void GUI_render_option::option_fps(){
+void RND_option::option_fps(){
   //---------------------------
 
   //FPS max value

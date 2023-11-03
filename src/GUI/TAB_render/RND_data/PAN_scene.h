@@ -6,17 +6,17 @@
 
 class GUI;
 class RND_panel;
-class GUI_object;
-class GUI_set;
+class PAN_object;
+class PAN_set;
 class Database;
 
 
-class GUI_scene : public BASE_panel
+class PAN_scene : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_scene(GUI* gui, bool* show_window, string name);
-  ~GUI_scene();
+  PAN_scene(GUI* gui, bool* show_window, string name);
+  ~PAN_scene();
 
 public:
   //Main function
@@ -30,8 +30,8 @@ public:
 
 private:
   RND_panel* gui_render_panel;
-  GUI_object* gui_object;
-  GUI_set* gui_set;
+  PAN_object* gui_object;
+  PAN_set* gui_set;
   Database* dataManager;
 
   bool* show_window;

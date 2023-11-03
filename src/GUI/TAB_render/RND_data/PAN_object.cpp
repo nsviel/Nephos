@@ -1,4 +1,4 @@
-#include "GUI_object.h"
+#include "PAN_object.h"
 #include <TAB_render/RND_config/RND_panel.h>
 
 #include <GUI.h>
@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-GUI_object::GUI_object(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+PAN_object::PAN_object(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Data* data = gui->get_data();
@@ -18,10 +18,10 @@ GUI_object::GUI_object(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   //---------------------------
 }
-GUI_object::~GUI_object(){}
+PAN_object::~PAN_object(){}
 
 //Main function
-void GUI_object::design_panel(){
+void PAN_object::design_panel(){
   //---------------------------
 
   this->object_info(object_selected);
@@ -31,14 +31,14 @@ void GUI_object::design_panel(){
 }
 
 //Subfunction
-void GUI_object::object_info(Object* object){
+void PAN_object::object_info(Object* object){
   //---------------------------
 
   this->set_name("Object " + object->name);
 
   //---------------------------
 }
-void GUI_object::object_parameter(Object* object){
+void PAN_object::object_parameter(Object* object){
   ImGui::Columns(2);
   //---------------------------
 
@@ -118,7 +118,7 @@ void GUI_object::object_parameter(Object* object){
 }
 
 //Primitive size
-void GUI_object::width_line(Object* object){
+void PAN_object::width_line(Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -147,7 +147,7 @@ void GUI_object::width_line(Object* object){
 
   //---------------------------
 }
-void GUI_object::size_point(Object* object){
+void PAN_object::size_point(Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

@@ -6,17 +6,17 @@
 class GUI;
 class Loader;
 class RND_panel;
-class GUI_init;
-class GUI_render_option;
+class RND_init;
+class RND_option;
 class TAB_render;
 
 
-class GUI_render_menu
+class RND_menu
 {
 public:
   //Constructor / Destructor
-  GUI_render_menu(GUI* gui);
-  ~GUI_render_menu();
+  RND_menu(GUI* gui);
+  ~RND_menu();
 
 public:
   //Main function
@@ -27,9 +27,9 @@ public:
 private:
   GUI* gui;
   Loader* loaderManager;
-  GUI_init* gui_init;
+  RND_init* gui_init;
   RND_panel* gui_render_panel;
-  GUI_render_option* gui_render_option;
+  RND_option* gui_render_option;
   TAB_render* gui_tab_render;
 
   bool show_demo;

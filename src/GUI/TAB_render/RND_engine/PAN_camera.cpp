@@ -1,4 +1,4 @@
-#include "RND_camera.h"
+#include "PAN_camera.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-RND_camera::RND_camera(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+PAN_camera::PAN_camera(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -17,10 +17,10 @@ RND_camera::RND_camera(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   //---------------------------
 }
-RND_camera::~RND_camera(){}
+PAN_camera::~PAN_camera(){}
 
 //Main function
-void RND_camera::design_panel(){
+void PAN_camera::design_panel(){
   //---------------------------
 
   this->cam_parameter();
@@ -30,7 +30,7 @@ void RND_camera::design_panel(){
 }
 
 //Subfunction
-void RND_camera::cam_parameter(){
+void PAN_camera::cam_parameter(){
   //---------------------------
 
   //Camera parameters
@@ -64,7 +64,7 @@ void RND_camera::cam_parameter(){
 
   //---------------------------
 }
-void RND_camera::cam_info(){
+void PAN_camera::cam_info(){
   //---------------------------
 
   //Camera position

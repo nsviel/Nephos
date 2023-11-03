@@ -12,12 +12,12 @@ class Shader;
 class VK_reload;
 
 
-class GUI_shader : public BASE_panel
+class RND_shader : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_shader(GUI* gui, bool* show_window, string name);
-  ~GUI_shader();
+  RND_shader(GUI* gui, bool* show_window, string name);
+  ~RND_shader();
 
 public:
   //Main function

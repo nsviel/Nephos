@@ -1,4 +1,4 @@
-#include "GUI_render_menu.h"
+#include "RND_menu.h"
 
 #include <GUI.h>
 #include <GUI_tab/GUI_tab.h>
@@ -6,13 +6,13 @@
 #include <TAB_render/RND_config/RND_panel.h>
 #include <Data/Data.h>
 #include <Data/Load/Loader.h>
-#include <TAB_render/RND_menu/GUI_render_option.h>
+#include <TAB_render/RND_menu/RND_option.h>
 #include <image/IconsFontAwesome5.h>
-#include <TAB_render/RND_initialization/GUI_init.h>
+#include <TAB_render/RND_initialization/RND_init.h>
 
 
 //Constructor / Destructor
-GUI_render_menu::GUI_render_menu(GUI* gui){
+RND_menu::RND_menu(GUI* gui){
   //---------------------------
 
   Data* data = gui->get_data();
@@ -28,10 +28,10 @@ GUI_render_menu::GUI_render_menu(GUI* gui){
 
   //---------------------------
 }
-GUI_render_menu::~GUI_render_menu(){}
+RND_menu::~RND_menu(){}
 
 //Main function
-void GUI_render_menu::run_tab_menu(){
+void RND_menu::run_tab_menu(){
   //---------------------------
 
   ImGui::BeginMainMenuBar();
