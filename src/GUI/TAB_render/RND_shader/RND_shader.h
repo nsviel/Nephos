@@ -9,7 +9,7 @@ class GUI;
 class EDI_text;
 class GUI_console;
 class Shader;
-class VK_reload;
+class VK_engine;
 
 
 class RND_shader : public BASE_panel
@@ -49,7 +49,7 @@ public:
   string get_path_fs_from_selection();
 
 private:
-  VK_reload* vk_reload;
+  VK_engine* vk_engine;
   Shader* shaderManager;
   EDI_text* editor_vs;
   EDI_text* editor_fs;

@@ -30,6 +30,7 @@ void RND_engine::design_panel(){
   if(ImGui::Begin("Engine", NULL)){ //ImGuiWindowFlags_MenuBar
     //this->engine_menubar();
     this->engine_window();
+    this->engine_control();
     ImGui::End();
   }
   ImGui::PopStyleVar();
@@ -90,6 +91,11 @@ void RND_engine::engine_window(){
 
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(descriptor, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
+
+  //---------------------------
+}
+void RND_engine::engine_control(){
+  //---------------------------
 
   if(ImGui::IsItemHovered()){
     ImVec2 windowPos = ImGui::GetWindowPos();

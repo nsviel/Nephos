@@ -17,6 +17,7 @@
 #include "VK_presentation/VK_frame.h"
 #include "VK_camera/VK_viewport.h"
 #include "VK_shader/VK_reload.h"
+#include "VK_main/VK_imgui.h"
 
 #include <Engine.h>
 #include <Param.h>
@@ -32,8 +33,9 @@ VK_engine::VK_engine(Engine* engine){
   this->window = engine->get_window();
   this->fps_counter = new FPS_counter(100);
   this->struct_param = new Struct_param();
-
   this->struct_vulkan = new Struct_vulkan();
+
+  this->vk_imgui = new VK_imgui(this);
   this->vk_instance = new VK_instance(this);
   this->vk_viewport = new VK_viewport(this);
   this->vk_surface = new VK_surface(this);
@@ -109,6 +111,34 @@ void VK_engine::clean(){
   vk_device->clean_logical_device();
   vk_surface->clean_surface();
   vk_instance->clean_instance();
+
+  //---------------------------
+}
+void VK_engine::reload_shader(string shader, string subshader){
+  //---------------------------
+
+  vk_reload->hot_shader_reload(shader, subshader);
+
+  //---------------------------
+}
+void VK_engine::imgui_init(){
+  //---------------------------
+
+  vk_imgui->init();
+
+  //---------------------------
+}
+void VK_engine::imgui_load_font(){
+  //---------------------------
+
+  vk_imgui->load_font();
+
+  //---------------------------
+}
+void VK_engine::imgui_clean(){
+  //---------------------------
+
+  vk_imgui->clean();
 
   //---------------------------
 }

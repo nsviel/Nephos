@@ -18,8 +18,7 @@ RND_shader::RND_shader(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  VK_engine* vk_engine = engine->get_vk_engine();
-  this->vk_reload = vk_engine->get_vk_reload();
+  this->vk_engine = engine->get_vk_engine();
   this->shaderManager = engine->get_shaderManager();
   this->editor_vs = new EDI_text(gui);
   this->editor_fs = new EDI_text(gui);
@@ -359,7 +358,7 @@ void RND_shader::reload_vulkan_shader(){
   gui_console->clear_log();
   string shader_class = vec_shader_class[ID_class];
   string shader_subclass = vec_shader_subclass[ID_subclass];
-  vk_reload->hot_shader_reload(shader_class, shader_subclass);
+  vk_engine->reload_shader(shader_class, shader_subclass);
   this->has_been_reloaded = true;
 
   //---------------------------

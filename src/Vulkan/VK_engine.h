@@ -25,6 +25,7 @@ class VK_frame;
 class VK_canvas;
 class VK_drawing;
 class VK_command_buffer;
+class VK_imgui;
 
 
 class VK_engine
@@ -40,6 +41,10 @@ public:
   void clean();
   void loop_draw_frame();
   void device_wait_idle();
+  void reload_shader(string shader, string subshader);
+  void imgui_load_font();
+  void imgui_clean();
+  void imgui_init();
 
   inline Engine* get_engine(){return engine;}
   inline Window* get_window(){return window;}
@@ -62,6 +67,7 @@ public:
   inline VK_canvas* get_vk_canvas(){return vk_canvas;}
   inline VK_drawing* get_vk_drawing(){return vk_drawing;}
   inline VK_command_buffer* get_vk_command_buffer(){return vk_command_buffer;}
+  inline VK_imgui* get_vk_imgui(){return vk_imgui;}
 
 private:
   Engine* engine;
@@ -69,8 +75,9 @@ private:
   Window* window;
   Timer timer;
   FPS_counter* fps_counter;
-
   Struct_vulkan* struct_vulkan;
+
+  VK_imgui* vk_imgui;
   VK_surface* vk_surface;
   VK_instance* vk_instance;
   VK_command_buffer* vk_command_buffer;

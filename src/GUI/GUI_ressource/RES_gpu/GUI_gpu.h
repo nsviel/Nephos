@@ -6,6 +6,7 @@
 class GUI;
 class Struct_vulkan;
 class DR_ui;
+class VK_engine;
 
 
 class GUI_gpu
@@ -22,9 +23,9 @@ public:
 
   //Render functions
   void render_frame();
-  void render_command(VkCommandBuffer command_buffer);
 
 private:
+  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   DR_ui* ui_drawing;
 

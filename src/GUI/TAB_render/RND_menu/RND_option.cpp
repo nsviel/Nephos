@@ -3,8 +3,6 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <Param.h>
-#include <VK_engine.h>
-#include <VK_struct/struct_vulkan.h>
 
 
 //Constructor / Destructor
@@ -14,8 +12,6 @@ RND_option::RND_option(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   this->gui = gui;
   Engine* engine = gui->get_engine();
   this->param = engine->get_param();
-  this->vk_engine = engine->get_vk_engine();
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   this->width = 150;
 

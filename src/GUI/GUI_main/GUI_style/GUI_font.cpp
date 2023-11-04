@@ -12,8 +12,7 @@ GUI_font::GUI_font(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  VK_engine* vk_engine = engine->get_vk_engine();
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->vk_engine = engine->get_vk_engine();
 
   //---------------------------
 }
@@ -24,7 +23,7 @@ void GUI_font::init_gui_font(){
   //---------------------------
 
   this->gui_select_font();
-  this->gui_load_font();
+  vk_engine->imgui_load_font();
 
   //---------------------------
 }
@@ -76,47 +75,6 @@ void GUI_font::gui_select_font(){
   this->font_gui = vec_font_gui[3];
   this->font_small = vec_font_gui[0];
   ImGui::GetIO().FontDefault = font_gui;
-
-  //---------------------------
-}
-void GUI_font::gui_load_font(){
-  //---------------------------
-
-  VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->command_pool, 0);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
-  }
-
-  VkCommandBufferBeginInfo begin_info = {};
-  begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-  begin_info.flags |= VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-  result = vkBeginCommandBuffer(struct_vulkan->renderpass_ui.command_buffer, &begin_info);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
-  }
-
-  ImGui_ImplVulkan_CreateFontsTexture(struct_vulkan->renderpass_ui.command_buffer);
-
-  VkSubmitInfo end_info = {};
-  end_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  end_info.commandBufferCount = 1;
-  end_info.pCommandBuffers = &struct_vulkan->renderpass_ui.command_buffer;
-  result = vkEndCommandBuffer(struct_vulkan->renderpass_ui.command_buffer);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
-  }
-
-  result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &end_info, VK_NULL_HANDLE);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
-  }
-
-  result = vkDeviceWaitIdle(struct_vulkan->device.device);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
-  }
-
-  ImGui_ImplVulkan_DestroyFontUploadObjects();
 
   //---------------------------
 }

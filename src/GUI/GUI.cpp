@@ -57,7 +57,6 @@ void GUI::init(){
   //---------------------------
 }
 void GUI::loop(){
-  VK_engine* vk_engine = engine->get_vk_engine();
   //---------------------------
 
   ImGui_ImplVulkan_NewFrame();

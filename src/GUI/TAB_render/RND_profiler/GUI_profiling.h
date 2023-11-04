@@ -6,9 +6,6 @@
 
 class GUI;
 
-class VK_engine;
-class Struct_vulkan;
-
 
 class GUI_profiling
 {
@@ -26,8 +23,6 @@ public:
 
 private:
   GUI* gui;
-  VK_engine* vk_engine;
-  Struct_vulkan* struct_vulkan;
   Timer timer;
 
   int width;

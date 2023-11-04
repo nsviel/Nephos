@@ -22,6 +22,7 @@ public:
   //Subfunction
   void engine_window();
   void engine_menubar();
+  void engine_control();
 
 private:
   Struct_vulkan* struct_vulkan;
