@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class VK_engine;
+class VK_imgui;
 
 
 class GUI_font
@@ -32,7 +32,7 @@ public:
   inline void set_editor_font(ImFont* font){if(font!=nullptr)this->font_editor = font;}
 
 private:
-  VK_engine* vk_engine;
+  VK_imgui* vk_imgui;
 
   vector<ImFont*> vec_font_editor;
   vector<ImFont*> vec_font_gui;

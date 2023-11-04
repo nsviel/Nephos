@@ -121,31 +121,3 @@ void VK_engine::reload_shader(string shader, string subshader){
 
   //---------------------------
 }
-void VK_engine::imgui_init(){
-  //---------------------------
-
-  vk_imgui->init();
-
-  //---------------------------
-}
-void VK_engine::imgui_load_font(){
-  //---------------------------
-
-  vk_imgui->load_font();
-
-  //---------------------------
-}
-void VK_engine::imgui_clean(){
-  //---------------------------
-
-  vk_imgui->clean();
-
-  //---------------------------
-}
-ImTextureID VK_engine::imgui_texture(){
-  //---------------------------
-
-  return vk_imgui->engine_texture();
-
-  //---------------------------
-}

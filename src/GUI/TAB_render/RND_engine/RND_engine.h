@@ -5,7 +5,7 @@
 
 class GUI;
 class RND_control;
-class VK_engine;
+class VK_imgui;
 
 
 class RND_engine
@@ -24,7 +24,7 @@ public:
   void engine_control();
 
 private:
-  VK_engine* vk_engine;
+  VK_imgui* vk_imgui;
   RND_control* gui_control;
 
   VkDescriptorSet descriptor;

@@ -7,6 +7,7 @@ Vulkan::Vulkan(Engine* engine){
   //---------------------------
 
   this->vk_engine = new VK_engine(engine);
+  this->vk_imgui = vk_engine->get_vk_imgui();
 
   //---------------------------
 }
@@ -20,17 +21,10 @@ void Vulkan::init(){
 
   //---------------------------
 }
-void Vulkan::loop_draw_frame(){
+void Vulkan::loop(){
   //---------------------------
 
   vk_engine->loop_draw_frame();
-
-  //---------------------------
-}
-void Vulkan::device_wait_idle() {
-  //---------------------------
-
-  vk_engine->device_wait_idle();
 
   //---------------------------
 }
@@ -38,6 +32,13 @@ void Vulkan::clean(){
   //---------------------------
 
   vk_engine->clean();
+
+  //---------------------------
+}
+void Vulkan::wait_idle() {
+  //---------------------------
+
+  vk_engine->device_wait_idle();
 
   //---------------------------
 }

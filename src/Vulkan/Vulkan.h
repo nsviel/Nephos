@@ -5,6 +5,7 @@
 
 class Engine;
 class VK_engine;
+class VK_imgui;
 
 
 class Vulkan
@@ -18,11 +19,14 @@ public:
   //Main functions
   void init();
   void clean();
-  void loop_draw_frame();
-  void device_wait_idle();
+  void loop();
+  void wait_idle();
+
+  inline VK_imgui* get_vk_imgui(){return vk_imgui;}
 
 private:
   VK_engine* vk_engine;
+  VK_imgui* vk_imgui;
 };
 
 #endif

@@ -42,10 +42,6 @@ public:
   void loop_draw_frame();
   void device_wait_idle();
   void reload_shader(string shader, string subshader);
-  void imgui_load_font();
-  void imgui_clean();
-  void imgui_init();
-  ImTextureID imgui_texture();
 
   inline Engine* get_engine(){return engine;}
   inline Window* get_window(){return window;}

@@ -3,6 +3,7 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <VK_main/VK_engine.h>
+#include <VK_main/VK_imgui.h>
 #include <VK_struct/struct_vulkan.h>
 #include <image/IconsFontAwesome5.h>
 
@@ -12,7 +13,8 @@ GUI_font::GUI_font(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  this->vk_engine = engine->get_vk_engine();
+  VK_engine* vk_engine = engine->get_vk_engine();
+  this->vk_imgui = vk_engine->get_vk_imgui();
 
   //---------------------------
 }
@@ -23,7 +25,7 @@ void GUI_font::init_gui_font(){
   //---------------------------
 
   this->gui_select_font();
-  vk_engine->imgui_load_font();
+  vk_imgui->load_font();
 
   //---------------------------
 }

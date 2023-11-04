@@ -6,7 +6,7 @@
 class GUI;
 class Struct_vulkan;
 class DR_ui;
-class VK_engine;
+class VK_imgui;
 
 
 class GUI_gpu
@@ -25,7 +25,7 @@ public:
   void render_frame();
 
 private:
-  VK_engine* vk_engine;
+  VK_imgui* vk_imgui;
   Struct_vulkan* struct_vulkan;
   DR_ui* ui_drawing;
 

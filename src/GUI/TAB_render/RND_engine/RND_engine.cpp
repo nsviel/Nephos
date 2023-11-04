@@ -4,6 +4,7 @@
 #include <Engine.h>
 #include <GUI.h>
 #include <VK_main/VK_engine.h>
+#include <VK_main/VK_imgui.h>
 #include <VK_struct/struct_vulkan.h>
 #include <image/IconsFontAwesome5.h>
 
@@ -13,7 +14,8 @@ RND_engine::RND_engine(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  this->vk_engine = engine->get_vk_engine();
+  VK_engine* vk_engine = engine->get_vk_engine();
+  this->vk_imgui = vk_engine->get_vk_imgui();
   this->gui_control = new RND_control(gui);
 
   //---------------------------
@@ -40,7 +42,7 @@ void RND_engine::design_panel(){
 void RND_engine::engine_window(){
   //---------------------------
 
-  ImTextureID texture = vk_engine->imgui_texture();
+  ImTextureID texture = vk_imgui->engine_texture();
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
 
