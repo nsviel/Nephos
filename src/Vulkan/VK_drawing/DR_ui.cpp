@@ -1,6 +1,5 @@
 #include "DR_ui.h"
 
-#include <VK_command/VK_cmd.h>
 #include <VK_command/VK_submit.h>
 #include <VK_engine.h>
 #include <VK_struct/struct_vulkan.h>
@@ -18,7 +17,6 @@ DR_ui::DR_ui(VK_engine* vk_engine){
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_command = vk_engine->get_vk_command();
-  this->vk_cmd = vk_engine->get_vk_cmd();
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_submit = vk_engine->get_vk_submit();
   this->vk_uniform = vk_engine->get_vk_uniform();

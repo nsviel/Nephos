@@ -11,7 +11,6 @@
 #include "VK_command/VK_synchronization.h"
 #include "VK_command/VK_submit.h"
 #include "VK_command/VK_command_buffer.h"
-#include "VK_command/VK_cmd.h"
 #include "VK_drawing/VK_drawing.h"
 
 #include "VK_device/VK_device.h"
@@ -74,7 +73,6 @@ VK_engine::VK_engine(Engine* engine){
   this->vk_frame = new VK_frame(this);
   this->vk_canvas = new VK_canvas(this);
   this->vk_command = new VK_command(this);
-  this->vk_cmd = new VK_cmd(this);
   this->vk_submit = new VK_submit(this);
   this->vk_drawing = new VK_drawing(this);
 

@@ -1,6 +1,5 @@
 #include "DR_psr.h"
 
-#include <VK_command/VK_cmd.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_command/VK_submit.h>
 #include <VK_engine.h>
@@ -8,6 +7,7 @@
 #include <VK_command/VK_command.h>
 #include <VK_presentation/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
+#include <VK_camera/VK_viewport.h>
 #include <VK_camera/VK_viewport.h>
 #include <ENG_shader/PSR/PSR_param.h>
 
@@ -19,9 +19,9 @@ DR_psr::DR_psr(VK_engine* vk_engine){
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_command = vk_engine->get_vk_command();
-  this->vk_cmd = vk_engine->get_vk_cmd();
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_submit = vk_engine->get_vk_submit();
+  this->vk_viewport = vk_engine->get_vk_viewport();
 
   //---------------------------
 }
@@ -58,7 +58,7 @@ void DR_psr::record_command(Struct_renderpass* renderpass){
   vkResetCommandBuffer(renderpass->command_buffer, 0);
   vk_command->start_command_buffer_primary(renderpass->command_buffer);
   vk_command->start_render_pass(renderpass, frame, false);
-  vk_cmd->cmd_viewport(renderpass);
+  vk_viewport->cmd_viewport(renderpass);
   this->cmd_draw(renderpass);
   vk_command->stop_render_pass(renderpass);
   vk_command->stop_command_buffer(renderpass->command_buffer);

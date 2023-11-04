@@ -10,11 +10,13 @@ class EDL_shader;
 class VK_engine;
 class Struct_vulkan;
 class VK_command;
-class VK_cmd;
 class VK_descriptor;
 class VK_submit;
 class VK_uniform;
 class VK_canvas;
+class VK_viewport;
+class VK_pipeline;
+class VK_drawing;
 
 
 class DR_edl
@@ -44,10 +46,12 @@ private:
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
-  VK_cmd* vk_cmd;
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;
   VK_uniform* vk_uniform;
+  VK_viewport* vk_viewport;
+  VK_pipeline* vk_pipeline;
+  VK_drawing* vk_drawing;
 };
 
 #endif

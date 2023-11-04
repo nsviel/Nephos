@@ -16,6 +16,7 @@ VK_viewport::VK_viewport(VK_engine* vk_engine){
 }
 VK_viewport::~VK_viewport(){}
 
+//Main function
 void VK_viewport::init_viewport(){
   vec2 win_dim = window->get_window_dim();
   //---------------------------
@@ -36,6 +37,17 @@ void VK_viewport::init_viewport(){
 
   //---------------------------
 }
+void VK_viewport::cmd_viewport(Struct_renderpass* renderpass){
+  //---------------------------
+
+  //Viewport
+  vkCmdSetViewport(renderpass->command_buffer, 0, 1, &viewport);
+
+  //Scissor
+  vkCmdSetScissor(renderpass->command_buffer, 0, 1, &scissor);
+
+  //---------------------------
+}
 void VK_viewport::update_viewport(){
   vec2 win_dim = window->get_window_dim();
   //---------------------------
@@ -52,6 +64,7 @@ void VK_viewport::update_viewport(){
   //---------------------------
 }
 
+//Subfunction
 Struct_viewport* VK_viewport::create_viewport(){
   vec2 win_dim = window->get_window_dim();
   //---------------------------

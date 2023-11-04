@@ -1,6 +1,5 @@
 #include "VK_drawing.h"
 
-#include <VK_command/VK_cmd.h>
 #include <VK_engine.h>
 #include <VK_struct/struct_vulkan.h>
 #include <VK_drawing/DR_scene.h>
@@ -21,7 +20,6 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_command = vk_engine->get_vk_command();
-  this->vk_cmd = vk_engine->get_vk_cmd();
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_submit = vk_engine->get_vk_submit();
   this->dr_scene = new DR_scene(vk_engine);
@@ -55,4 +53,28 @@ void VK_drawing::draw_frame(){
 
   //---------------------------
   struct_vulkan->time.draw_frame.push_back(timer.stop_ms(t1));
+}
+void VK_drawing::cmd_draw_data(Struct_renderpass* renderpass, Struct_data* data){
+  //---------------------------
+
+  VkDeviceSize offsets[] = {0};
+  if(data->xyz.vbo != VK_NULL_HANDLE){
+    vkCmdBindVertexBuffers(renderpass->command_buffer, 0, 1, &data->xyz.vbo, offsets);
+  }
+  if(data->rgb.vbo != VK_NULL_HANDLE){
+    vkCmdBindVertexBuffers(renderpass->command_buffer, 1, 1, &data->rgb.vbo, offsets);
+  }
+  if(data->uv.vbo != VK_NULL_HANDLE){
+    vkCmdBindVertexBuffers(renderpass->command_buffer, 2, 1, &data->uv.vbo, offsets);
+  }
+  vkCmdDraw(renderpass->command_buffer, data->object->xyz.size(), 1, 0, 0);
+
+  //---------------------------
+}
+void VK_drawing::cmd_line_with(Struct_renderpass* renderpass, Struct_data* data){
+  //---------------------------
+
+  vkCmdSetLineWidth(renderpass->command_buffer, data->object->draw_line_width);
+
+  //---------------------------
 }

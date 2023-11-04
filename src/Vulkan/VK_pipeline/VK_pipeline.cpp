@@ -25,6 +25,15 @@ VK_pipeline::VK_pipeline(VK_engine* vk_engine){
 }
 VK_pipeline::~VK_pipeline(){}
 
+void VK_pipeline::cmd_bind_pipeline(Struct_renderpass* renderpass, string pipeline_name){
+  //---------------------------
+
+  Struct_pipeline* pipeline = renderpass->get_pipeline_byName(pipeline_name);
+  vkCmdBindPipeline(renderpass->command_buffer, PIPELINE_GRAPHICS, pipeline->pipeline);
+
+  //---------------------------
+}
+
 //Clean function
 void VK_pipeline::clean_pipeline(Struct_renderpass* renderpass){
   //---------------------------

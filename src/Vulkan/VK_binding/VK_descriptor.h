@@ -21,6 +21,7 @@ public:
 
 public:
   //Main functions
+  void cmd_bind_descriptor(Struct_renderpass* renderpass, string pipeline_name, VkDescriptorSet set);
   void clean_descriptor_pool();
 
   //Descriptor set allocation

@@ -4,12 +4,12 @@
 #include <VK_struct/struct_frame.h>
 #include <VK_struct/struct_renderpass.h>
 #include <VK_struct/struct_command.h>
+#include <VK_struct/struct_data.h>
 #include <ELE_specific/common.h>
 
 class VK_engine;
 class Struct_vulkan;
 class VK_command;
-class VK_cmd;
 class VK_descriptor;
 class VK_submit;
 class DR_scene;
@@ -28,6 +28,8 @@ public:
 public:
   //Main functions
   void draw_frame();
+  void cmd_draw_data(Struct_renderpass* renderpass, Struct_data* data);
+  void cmd_line_with(Struct_renderpass* renderpass, Struct_data* data);
 
   inline DR_ui* get_ui_drawing(){return dr_ui;}
 
@@ -37,7 +39,6 @@ private:
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
-  VK_cmd* vk_cmd;
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;
   DR_psr* dr_psr;

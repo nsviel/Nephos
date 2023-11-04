@@ -2,6 +2,7 @@
 #define VK_VIEWPORT_H
 
 #include "../VK_struct/struct_viewport.h"
+#include "../VK_struct/struct_renderpass.h"
 #include <ELE_specific/common.h>
 
 class VK_engine;
@@ -16,9 +17,12 @@ public:
   ~VK_viewport();
 
 public:
+  //Main function
   void init_viewport();
+  void cmd_viewport(Struct_renderpass* renderpass);
   void update_viewport();
 
+  //Subfunction
   Struct_viewport* create_viewport();
 
   inline VkViewport get_viewport(){return viewport;}
