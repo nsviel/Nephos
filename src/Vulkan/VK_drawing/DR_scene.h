@@ -13,7 +13,6 @@ class VK_descriptor;
 class VK_submit;
 class VK_data;
 class VK_uniform;
-class VK_camera;
 class VK_viewport;
 class VK_pipeline;
 class VK_drawing;
@@ -48,7 +47,6 @@ private:
   VK_submit* vk_submit;
   VK_data* vk_data;
   VK_uniform* vk_uniform;
-  VK_camera* vk_camera;
   VK_viewport* vk_viewport;
   VK_pipeline* vk_pipeline;
   VK_drawing* vk_drawing;

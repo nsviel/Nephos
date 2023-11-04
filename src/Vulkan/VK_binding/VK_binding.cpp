@@ -44,7 +44,7 @@ void VK_binding::clean_binding(Struct_binding* binding){
 void VK_binding::update_uniform(Struct_binding* binding, mat4 mvp){
   //---------------------------
 
-  vk_uniform->update_uniform_mat4("mvp", binding, mvp);
+  vk_uniform->update_uniform("mvp", binding, mvp);
 
   //---------------------------
 }

@@ -92,7 +92,7 @@ void DR_psr::cmd_draw(Struct_renderpass* renderpass){
   EDL_param* edl_param = edl_shader->get_edl_param();
 
   //Descriptor
-  vk_uniform->update_uniform_edl("PSR_param", &pipeline->binding, *edl_param);
+  vk_uniform->update_uniform("PSR_param", &pipeline->binding, *edl_param);
   vkCmdBindDescriptorSets(renderpass->command_buffer, PIPELINE_GRAPHICS, pipeline->layout, 0, 1, &pipeline->binding.descriptor.set, 0, nullptr);
 
   Struct_data* data = vk_canvas->get_data_canvas();

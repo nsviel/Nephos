@@ -5,6 +5,7 @@
 
 #include <Engine.h>
 #include <ENG_gpu/GPU_data.h>
+#include <ENG_camera/Camera.h>
 #include <ENG_operation/Transformation/Attribut.h>
 
 
@@ -14,8 +15,9 @@ Scene::Scene(Data* data){
 
   Engine* engine = data->get_engine();
   this->data = data;
-  this->dataManager = data->get_dataManager();
+  this->database = data->get_dataManager();
   this->gpu_data = engine->get_gpu_data();
+  this->cameraManager = engine->get_cameraManager();
   this->attributManager = new Attribut();
 
   this->ID_obj = 0;
@@ -26,7 +28,7 @@ Scene::~Scene(){}
 
 //Scene function
 void Scene::init_set(){
-  list<Set*>* list_data = dataManager->get_list_data_scene();
+  list<Set*>* list_data = database->get_list_data_scene();
   //---------------------------
 
   //Glyph set
@@ -136,6 +138,31 @@ void Scene::selected_object_next(){
       }
 
       set_scene->selected_obj = selection;
+    }
+  }
+
+  //----------------------------
+}
+
+//Loop function
+void Scene::loop(){
+  list<Set*>* list_data = database->get_list_data_scene();
+  list<Set*>* list_glyph = database->get_list_data_glyph();
+  //----------------------------
+
+  this->loop_list(list_data);
+  this->loop_list(list_glyph);
+
+  //----------------------------
+}
+void Scene::loop_list(list<Set*>* list_data){
+  //----------------------------
+
+  for(int i=0; i<list_data->size(); i++){
+    Set* set = *next(list_data->begin(), i);
+    for(int j=0; j<set->list_obj.size(); j++){
+      Object* object = *next(set->list_obj.begin(), j);
+      cameraManager->compute_cam_mvp(object);
     }
   }
 

@@ -7,6 +7,7 @@ class Data;
 class Database;
 class GPU_data;
 class Attribut;
+class Camera;
 
 
 class Scene
@@ -31,15 +32,20 @@ public:
   //Object
   void selected_object_next();
 
+  //Loop
+  void loop();
+  void loop_list(list<Set*>* list_data);
+
   inline Set* get_set_scene(){return set_scene;}
   inline Set* get_set_glyph(){return set_glyph;}
   inline Object* get_selected_object(){return set_scene->selected_obj;}
 
 private:
   Data* data;
-  Database* dataManager;
+  Database* database;
   GPU_data* gpu_data;
   Attribut* attributManager;
+  Camera* cameraManager;
 
   int ID_obj;
   Set* set_scene;

@@ -96,7 +96,7 @@ void DR_edl::cmd_draw(Struct_renderpass* renderpass){
 
   vk_pipeline->cmd_bind_pipeline(renderpass, "triangle_EDL");
   edl_shader->update_shader();
-  vk_uniform->update_uniform_edl("EDL_param", &pipeline->binding, *edl_param);
+  vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
   vk_descriptor->cmd_bind_descriptor(renderpass, "triangle_EDL", pipeline->binding.descriptor.set);
   vk_drawing->cmd_draw_data(renderpass, canvas);
 

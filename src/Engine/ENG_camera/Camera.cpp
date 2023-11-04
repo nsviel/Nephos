@@ -69,6 +69,22 @@ void Camera::control(string what, bool fast){
 
   //---------------------------
 }
+void Camera::loop_cam_mouse(){
+  Struct_camera* camera = &param->camera;
+  //---------------------------
+
+  if(camera->cam_move){
+    if(camera->mode == "first_person"){
+      cam_fp->fp_cam_mouse(camera);
+      ImGui::SetMouseCursor(ImGuiMouseCursor_None);
+    }else if(camera->mode == "arcball"){
+      cam_arcball->arcball_cam_mouse(camera);
+      ImGui::SetMouseCursor(ImGuiMouseCursor_None);
+    }
+  }
+
+  //---------------------------
+}
 void Camera::reset(){
   Struct_camera* camera = &param->camera;
   //---------------------------
@@ -114,53 +130,23 @@ mat4 Camera::compute_cam_proj(){
 mat4 Camera::compute_cam_mvp(){
   //---------------------------
 
-  mat4 cam_mode = mat4(1);
+  mat4 cam_modl = mat4(1);
   mat4 cam_view = compute_cam_view();
   mat4 cam_proj = compute_cam_proj();
 
-  mat4 mvpMatrix = cam_proj * cam_view * cam_mode;
+  mat4 mvpMatrix = cam_proj * cam_view * cam_modl;
 
   //---------------------------
   return mvpMatrix;
 }
-mat4 Camera::compute_cam_world_pose(){
-  Struct_camera* camera = &param->camera;
+void Camera::compute_cam_mvp(Object* object){
   //---------------------------
 
-  vec3 zaxis = normalize(camera->cam_F);
-  vec3 xaxis = normalize(cross(camera->cam_U, zaxis));
-  vec3 yaxis = cross(zaxis, xaxis);
+  mat4 cam_modl = glm::transpose(object->model);
+  mat4 cam_view = compute_cam_view();
+  mat4 cam_proj = compute_cam_proj();
 
-  mat4 absPose(
-         xaxis[0], yaxis[0], zaxis[0], camera->cam_P[0],
-         xaxis[1], yaxis[1], zaxis[1], camera->cam_P[1],
-         xaxis[2], yaxis[2], zaxis[2], camera->cam_P[2],
-           0,       0,       0,     1);
-
-  //---------------------------
-  return absPose;
-}
-void Camera::compute_zoom(float value){
-  Struct_camera* camera = &param->camera;
-  //---------------------------
-
-  cam_zoom->compute_zoom_position(camera, value);
-
-  //---------------------------
-}
-void Camera::loop_cam_mouse(){
-  Struct_camera* camera = &param->camera;
-  //---------------------------
-
-  if(camera->cam_move){
-    if(camera->mode == "first_person"){
-      cam_fp->fp_cam_mouse(camera);
-      ImGui::SetMouseCursor(ImGuiMouseCursor_None);
-    }else if(camera->mode == "arcball"){
-      cam_arcball->arcball_cam_mouse(camera);
-      ImGui::SetMouseCursor(ImGuiMouseCursor_None);
-    }
-  }
+  object->mvp = cam_proj * cam_view * cam_modl;
 
   //---------------------------
 }
@@ -214,6 +200,33 @@ void Camera::set_mode_view(int mode){
       break;
     }
   }
+
+  //---------------------------
+}
+
+//Specific function
+mat4 Camera::compute_cam_world_pose(){
+  Struct_camera* camera = &param->camera;
+  //---------------------------
+
+  vec3 zaxis = normalize(camera->cam_F);
+  vec3 xaxis = normalize(cross(camera->cam_U, zaxis));
+  vec3 yaxis = cross(zaxis, xaxis);
+
+  mat4 absPose(
+         xaxis[0], yaxis[0], zaxis[0], camera->cam_P[0],
+         xaxis[1], yaxis[1], zaxis[1], camera->cam_P[1],
+         xaxis[2], yaxis[2], zaxis[2], camera->cam_P[2],
+           0,       0,       0,     1);
+
+  //---------------------------
+  return absPose;
+}
+void Camera::compute_zoom(float value){
+  Struct_camera* camera = &param->camera;
+  //---------------------------
+
+  cam_zoom->compute_zoom_position(camera, value);
 
   //---------------------------
 }

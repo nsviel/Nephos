@@ -18,6 +18,7 @@ public:
 public:
   void init();
   void reset();
+  void loop();
 
   inline Engine* get_engine(){return engine;}
   inline Scene* get_sceneManager(){return sceneManager;}

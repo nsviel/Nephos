@@ -25,9 +25,7 @@ public:
   void clean_uniform(Struct_binding* binding);
 
   //uniform update
-  void update_uniform_mat4(string uniform_name, Struct_binding* binding, glm::mat4& value);
-  void update_uniform_int(string uniform_name, Struct_binding* binding, int value);
-  void update_uniform_edl(string uniform_name, Struct_binding* binding, EDL_param value);
+  template <typename T> void update_uniform(string uniform_name, Struct_binding* binding, T value);
 
 private:
   Struct_vulkan* struct_vulkan;
