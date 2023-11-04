@@ -7,6 +7,7 @@
 class VK_engine;
 class Struct_vulkan;
 class VK_physical_device;
+class VK_command;
 
 
 class VK_buffer
@@ -36,6 +37,7 @@ public:
 
 private:
   VK_engine* vk_engine;
+  VK_command* vk_command;
   Struct_vulkan* struct_vulkan;
 };
 

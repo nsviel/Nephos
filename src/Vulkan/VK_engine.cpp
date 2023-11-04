@@ -4,10 +4,7 @@
 #include "VK_data/VK_data.h"
 
 #include "VK_renderpass/VK_renderpass.h"
-#include "VK_pipeline/VK_pipeline.h"
-#include "VK_command/VK_command.h"
 #include "VK_command/VK_synchronization.h"
-#include "VK_command/VK_submit.h"
 #include "VK_command/VK_command_buffer.h"
 #include "VK_drawing/VK_drawing.h"
 
@@ -60,13 +57,11 @@ VK_engine::VK_engine(Engine* engine){
   this->vk_synchronization = new VK_synchronization(this);
   this->vk_swapchain = new VK_swapchain(this);
   this->vk_shader = new VK_shader(this);
-  this->vk_pipeline = new VK_pipeline(this);
+
   this->vk_renderpass = new VK_renderpass(this);
   this->vk_reload = new VK_reload(this);
   this->vk_frame = new VK_frame(this);
   this->vk_canvas = new VK_canvas(this);
-  this->vk_command = new VK_command(this);
-  this->vk_submit = new VK_submit(this);
   this->vk_drawing = new VK_drawing(this);
 
   //---------------------------

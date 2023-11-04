@@ -16,6 +16,7 @@ class VK_engine;
 class Struct_vulkan;
 class VK_buffer;
 class VK_image;
+class VK_command;
 
 
 class VK_texture
@@ -50,6 +51,7 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_image* vk_image;
+  VK_command* vk_command;
 
   vector<Struct_image*> vec_texture;
 };

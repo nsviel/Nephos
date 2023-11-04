@@ -25,6 +25,7 @@ VK_texture::VK_texture(VK_engine* vk_engine){
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_buffer = new VK_buffer(vk_engine);
   this->vk_image = vk_engine->get_vk_image();
+  this->vk_command = new VK_command(vk_engine);
 
   //---------------------------
 }
@@ -61,7 +62,6 @@ Struct_image* VK_texture::load_texture_from_frame(AVFrame* frame){
 
 //Texture creation
 void VK_texture::create_texture_from_file(Struct_image* image, string path){
-  VK_command* vk_command = vk_engine->get_vk_command();
   //---------------------------
 
   //File data
@@ -85,7 +85,6 @@ void VK_texture::create_texture_from_file(Struct_image* image, string path){
   //---------------------------
 }
 void VK_texture::create_texture_from_frame(Struct_image* image, AVFrame* frame){
-  VK_command* vk_command = vk_engine->get_vk_command();
   //---------------------------
 
   //Frame data
@@ -127,7 +126,6 @@ void VK_texture::clean_textures(){
 
 //Subfunction
 void VK_texture::create_vulkan_texture(Struct_image* image){
-  VK_command* vk_command = vk_engine->get_vk_command();
   //---------------------------
 
   //Create stagging buffer
@@ -162,7 +160,6 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
   //---------------------------
 }
 void VK_texture::copy_buffer_to_image(Struct_image* image, VkBuffer buffer){
-  VK_command* vk_command = vk_engine->get_vk_command();
   //---------------------------
 
   VkCommandBuffer command_buffer = vk_command->singletime_command_begin();

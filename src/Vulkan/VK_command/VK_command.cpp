@@ -160,7 +160,6 @@ void VK_command::image_layout_transition(VkCommandBuffer command_buffer, Struct_
   //---------------------------
 }
 void VK_command::image_layout_transition_single(Struct_image* image, VkImageLayout old_layout, VkImageLayout new_layout){
-  VK_command* vk_command = vk_engine->get_vk_command();
   //---------------------------
 
   VkCommandBuffer command_buffer = singletime_command_begin();

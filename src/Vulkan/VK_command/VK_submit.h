@@ -35,8 +35,6 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_surface* vk_surface;
   VK_swapchain* vk_swapchain;
-
-  vector<Struct_renderpass*> vec_renderpass;
 };
 
 #endif

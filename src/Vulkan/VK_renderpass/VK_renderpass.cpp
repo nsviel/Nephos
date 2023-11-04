@@ -22,7 +22,7 @@ VK_renderpass::VK_renderpass(VK_engine* vk_engine){
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_color = new VK_color(vk_engine);
-  this->vk_pipeline = vk_engine->get_vk_pipeline();
+  this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_subpass = new VK_subpass(vk_engine);
 
   this->rp_scene = new RP_scene(vk_engine);

@@ -19,9 +19,9 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_command = vk_engine->get_vk_command();
+  this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = vk_engine->get_vk_descriptor();
-  this->vk_submit = vk_engine->get_vk_submit();
+  this->vk_submit = new VK_submit(vk_engine);
   this->dr_scene = new DR_scene(vk_engine);
   this->dr_edl = new DR_edl(vk_engine);
   this->dr_psr = new DR_psr(vk_engine);

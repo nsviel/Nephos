@@ -20,14 +20,14 @@ DR_scene::DR_scene(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_command = vk_engine->get_vk_command();
+  this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = vk_engine->get_vk_descriptor();
-  this->vk_submit = vk_engine->get_vk_submit();
+  this->vk_submit = new VK_submit(vk_engine);
   this->vk_uniform = vk_engine->get_vk_uniform();
   this->vk_camera = new VK_camera(vk_engine);
   this->vk_data = vk_engine->get_vk_data();
   this->vk_viewport = vk_engine->get_vk_viewport();
-  this->vk_pipeline = vk_engine->get_vk_pipeline();
+  this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_drawing = vk_engine->get_vk_drawing();
 
   //---------------------------

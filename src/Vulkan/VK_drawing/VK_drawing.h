@@ -45,7 +45,6 @@ private:
   DR_ui* dr_ui;
   DR_scene* dr_scene;
   DR_edl* dr_edl;
-
 };
 
 #endif

@@ -11,6 +11,7 @@ VK_buffer::VK_buffer(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->vk_command = new VK_command(vk_engine);
 
   //---------------------------
 }
@@ -182,7 +183,6 @@ void VK_buffer::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& b
   //---------------------------
 }
 void VK_buffer::copy_buffer_to_gpu(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size){
-  VK_command* vk_command = vk_engine->get_vk_command();
   //---------------------------
 
   VkCommandBuffer command_buffer = vk_command->singletime_command_begin();

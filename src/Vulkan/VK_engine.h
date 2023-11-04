@@ -15,10 +15,7 @@ class VK_instance;
 class VK_device;
 class VK_swapchain;
 class VK_renderpass;
-class VK_pipeline;
-class VK_command;
 class VK_synchronization;
-class VK_submit;
 class VK_descriptor;
 class VK_uniform;
 class VK_texture;
@@ -58,10 +55,8 @@ public:
   inline VK_surface* get_vk_surface(){return vk_surface;}
   inline VK_swapchain* get_vk_swapchain(){return vk_swapchain;}
   inline VK_synchronization* get_vk_synchronization(){return vk_synchronization;}
-  inline VK_command* get_vk_command(){return vk_command;}
   inline VK_instance* get_vk_instance(){return vk_instance;}
   inline VK_renderpass* get_vk_renderpass(){return vk_renderpass;}
-  inline VK_pipeline* get_vk_pipeline(){return vk_pipeline;}
   inline VK_descriptor* get_vk_descriptor(){return vk_descriptor;}
   inline VK_texture* get_vk_texture(){return vk_texture;}
   inline VK_data* get_vk_data(){return vk_data;}
@@ -70,7 +65,6 @@ public:
   inline VK_reload* get_vk_reload(){return vk_reload;}
   inline VK_physical_device* get_vk_physical_device(){return vk_physical_device;}
   inline VK_frame* get_vk_frame(){return vk_frame;}
-  inline VK_submit* get_vk_submit(){return vk_submit;}
   inline VK_canvas* get_vk_canvas(){return vk_canvas;}
   inline VK_image* get_vk_image(){return vk_image;}
   inline VK_drawing* get_vk_drawing(){return vk_drawing;}
@@ -91,12 +85,9 @@ private:
   VK_device* vk_device;
   VK_swapchain* vk_swapchain;
   VK_renderpass* vk_renderpass;
-  VK_pipeline* vk_pipeline;
   VK_uniform* vk_uniform;
   VK_image* vk_image;
-  VK_command* vk_command;
   VK_synchronization* vk_synchronization;
-  VK_submit* vk_submit;
   VK_descriptor* vk_descriptor;
   VK_texture* vk_texture;
   VK_data* vk_data;
