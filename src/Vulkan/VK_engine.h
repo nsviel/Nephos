@@ -15,18 +15,14 @@ class VK_instance;
 class VK_device;
 class VK_swapchain;
 class VK_renderpass;
-class VK_synchronization;
 class VK_descriptor;
-class VK_uniform;
 class VK_texture;
 class VK_data;
 class VK_viewport;
-class VK_shader;
 class VK_reload;
 class VK_physical_device;
 class VK_frame;
 class VK_canvas;
-class VK_image;
 class VK_drawing;
 class VK_command_buffer;
 
@@ -54,21 +50,17 @@ public:
   inline VK_device* get_vk_device(){return vk_device;}
   inline VK_surface* get_vk_surface(){return vk_surface;}
   inline VK_swapchain* get_vk_swapchain(){return vk_swapchain;}
-  inline VK_synchronization* get_vk_synchronization(){return vk_synchronization;}
   inline VK_instance* get_vk_instance(){return vk_instance;}
   inline VK_renderpass* get_vk_renderpass(){return vk_renderpass;}
   inline VK_descriptor* get_vk_descriptor(){return vk_descriptor;}
   inline VK_texture* get_vk_texture(){return vk_texture;}
   inline VK_data* get_vk_data(){return vk_data;}
   inline VK_viewport* get_vk_viewport(){return vk_viewport;}
-  inline VK_shader* get_vk_shader(){return vk_shader;}
   inline VK_reload* get_vk_reload(){return vk_reload;}
   inline VK_physical_device* get_vk_physical_device(){return vk_physical_device;}
   inline VK_frame* get_vk_frame(){return vk_frame;}
   inline VK_canvas* get_vk_canvas(){return vk_canvas;}
-  inline VK_image* get_vk_image(){return vk_image;}
   inline VK_drawing* get_vk_drawing(){return vk_drawing;}
-  inline VK_uniform* get_vk_uniform(){return vk_uniform;}
   inline VK_command_buffer* get_vk_command_buffer(){return vk_command_buffer;}
 
 private:
@@ -85,14 +77,10 @@ private:
   VK_device* vk_device;
   VK_swapchain* vk_swapchain;
   VK_renderpass* vk_renderpass;
-  VK_uniform* vk_uniform;
-  VK_image* vk_image;
-  VK_synchronization* vk_synchronization;
   VK_descriptor* vk_descriptor;
   VK_texture* vk_texture;
   VK_data* vk_data;
   VK_viewport* vk_viewport;
-  VK_shader* vk_shader;
   VK_reload* vk_reload;
   VK_physical_device* vk_physical_device;
   VK_frame* vk_frame;

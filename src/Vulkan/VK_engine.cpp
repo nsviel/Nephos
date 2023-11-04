@@ -2,29 +2,20 @@
 #include "VK_struct/struct_vulkan.h"
 #include "VK_struct/struct_param.h"
 #include "VK_data/VK_data.h"
-
 #include "VK_renderpass/VK_renderpass.h"
-#include "VK_command/VK_synchronization.h"
 #include "VK_command/VK_command_buffer.h"
 #include "VK_drawing/VK_drawing.h"
-
 #include "VK_device/VK_device.h"
 #include "VK_device/VK_physical_device.h"
 #include "VK_presentation/VK_surface.h"
 #include "VK_instance/VK_instance.h"
 #include "VK_instance/VK_validation.h"
-
 #include "VK_presentation/VK_canvas.h"
 #include "VK_binding/VK_descriptor.h"
-#include "VK_binding/VK_uniform.h"
-
 #include "VK_image/VK_texture.h"
-#include "VK_image/VK_image.h"
 #include "VK_presentation/VK_swapchain.h"
 #include "VK_presentation/VK_frame.h"
 #include "VK_camera/VK_viewport.h"
-
-#include "VK_shader/VK_shader.h"
 #include "VK_shader/VK_reload.h"
 
 #include <Engine.h>
@@ -48,16 +39,11 @@ VK_engine::VK_engine(Engine* engine){
   this->vk_surface = new VK_surface(this);
   this->vk_physical_device = new VK_physical_device(this);
   this->vk_device = new VK_device(this);
-  this->vk_uniform = new VK_uniform(this);
-  this->vk_image = new VK_image(this);
   this->vk_texture = new VK_texture(this);
   this->vk_descriptor = new VK_descriptor(this);
   this->vk_command_buffer = new VK_command_buffer(this);
   this->vk_data = new VK_data(this);
-  this->vk_synchronization = new VK_synchronization(this);
   this->vk_swapchain = new VK_swapchain(this);
-  this->vk_shader = new VK_shader(this);
-
   this->vk_renderpass = new VK_renderpass(this);
   this->vk_reload = new VK_reload(this);
   this->vk_frame = new VK_frame(this);

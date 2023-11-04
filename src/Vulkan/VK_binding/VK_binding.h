@@ -27,8 +27,6 @@ public:
 
   void update_uniform(Struct_binding* binding, mat4 mvp);
 
-  inline VK_uniform* get_vk_uniform(){return vk_uniform;}
-
 private:
   Struct_vulkan* struct_vulkan;
   VK_uniform* vk_uniform;
