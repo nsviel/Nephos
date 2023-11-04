@@ -6,7 +6,7 @@
 #include <VK_command/VK_command.h>
 #include <VK_presentation/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
-#include <VK_camera/VK_viewport.h>
+#include <VK_main/VK_viewport.h>
 #include <VK_binding/VK_uniform.h>
 #include <VK_data/VK_data.h>
 #include <VK_pipeline/VK_pipeline.h>

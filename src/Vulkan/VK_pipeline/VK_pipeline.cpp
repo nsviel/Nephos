@@ -4,7 +4,7 @@
 #include "../VK_struct/struct_vulkan.h"
 #include "../VK_binding/VK_descriptor.h"
 #include "../VK_data/VK_data.h"
-#include "../VK_camera/VK_viewport.h"
+#include <VK_main/VK_viewport.h>
 #include "../VK_shader/VK_shader.h"
 #include "../VK_binding/VK_binding.h"
 

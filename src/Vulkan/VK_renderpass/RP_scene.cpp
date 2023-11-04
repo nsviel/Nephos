@@ -6,7 +6,7 @@
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
 #include <VK_struct/struct_vulkan.h>
-#include <VK_camera/VK_viewport.h>
+#include <VK_main/VK_viewport.h>
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/Scene/SCE_shader.h>
 

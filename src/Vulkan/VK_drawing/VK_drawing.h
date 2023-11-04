@@ -14,7 +14,6 @@ class VK_descriptor;
 class VK_submit;
 class DR_scene;
 class DR_edl;
-class DR_psr;
 class DR_ui;
 
 
@@ -41,7 +40,6 @@ private:
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;
-  DR_psr* dr_psr;
   DR_ui* dr_ui;
   DR_scene* dr_scene;
   DR_edl* dr_edl;

@@ -5,7 +5,6 @@
 #include <VK_struct/struct_vulkan.h>
 #include <VK_renderpass/RP_scene.h>
 #include <VK_renderpass/RP_edl.h>
-#include <VK_renderpass/RP_psr.h>
 #include <VK_renderpass/RP_ui.h>
 #include <VK_command/VK_command_buffer.h>
 #include <VK_pipeline/VK_pipeline.h>
@@ -27,7 +26,6 @@ VK_renderpass::VK_renderpass(VK_engine* vk_engine){
 
   this->rp_scene = new RP_scene(vk_engine);
   this->rp_edl = new RP_edl(vk_engine);
-  this->rp_psr = new RP_psr(vk_engine);
   this->rp_ui = new RP_ui(vk_engine);
 
   //---------------------------
@@ -38,7 +36,6 @@ VK_renderpass::~VK_renderpass(){
   delete vk_subpass;
   delete rp_scene;
   delete rp_edl;
-  delete rp_psr;
   delete rp_ui;
 
   //---------------------------

@@ -10,7 +10,7 @@
 #include <VK_drawing/VK_drawing.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_binding/VK_uniform.h>
-#include <VK_camera/VK_viewport.h>
+#include <VK_main/VK_viewport.h>
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>
 
@@ -25,14 +25,15 @@ DR_edl::DR_edl(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_command = new VK_command(vk_engine);
+
   this->vk_descriptor = vk_engine->get_vk_descriptor();
-  this->vk_submit = new VK_submit(vk_engine);
-  this->vk_uniform = new VK_uniform(vk_engine);
+  this->vk_drawing = vk_engine->get_vk_drawing();
   this->vk_canvas = vk_engine->get_vk_canvas();
   this->vk_viewport = vk_engine->get_vk_viewport();
+  this->vk_submit = new VK_submit(vk_engine);
+  this->vk_uniform = new VK_uniform(vk_engine);
+  this->vk_command = new VK_command(vk_engine);
   this->vk_pipeline = new VK_pipeline(vk_engine);
-  this->vk_drawing = vk_engine->get_vk_drawing();
 
   //---------------------------
 }

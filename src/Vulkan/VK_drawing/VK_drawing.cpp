@@ -4,7 +4,6 @@
 #include <VK_struct/struct_vulkan.h>
 #include <VK_drawing/DR_scene.h>
 #include <VK_drawing/DR_edl.h>
-#include <VK_drawing/DR_psr.h>
 #include <VK_drawing/DR_ui.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_command/VK_submit.h>
@@ -24,7 +23,6 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
   this->vk_submit = new VK_submit(vk_engine);
   this->dr_scene = new DR_scene(vk_engine);
   this->dr_edl = new DR_edl(vk_engine);
-  this->dr_psr = new DR_psr(vk_engine);
   this->dr_ui = new DR_ui(vk_engine);
 
   //---------------------------

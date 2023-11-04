@@ -13,7 +13,6 @@ class VK_subpass;
 
 class RP_scene;
 class RP_edl;
-class RP_psr;
 class RP_ui;
 
 
@@ -45,7 +44,6 @@ private:
 
   RP_scene* rp_scene;
   RP_edl* rp_edl;
-  RP_psr* rp_psr;
   RP_ui* rp_ui;
 };
 

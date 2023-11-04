@@ -25,8 +25,6 @@ public:
   void create_binding(Struct_binding* binding);
   void clean_binding(Struct_binding* binding);
 
-  void update_uniform(Struct_binding* binding, mat4 mvp);
-
 private:
   Struct_vulkan* struct_vulkan;
   VK_uniform* vk_uniform;
