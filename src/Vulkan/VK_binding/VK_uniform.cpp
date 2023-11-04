@@ -10,7 +10,7 @@ VK_uniform::VK_uniform(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_buffer = vk_engine->get_vk_buffer();
+  this->vk_buffer = new VK_buffer(vk_engine);
 
   //---------------------------
 }
