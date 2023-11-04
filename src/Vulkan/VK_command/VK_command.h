@@ -6,7 +6,7 @@
 #include "../VK_struct/struct_renderpass.h"
 #include <ELE_specific/common.h>
 
-class Param;
+class Struct_param;
 class VK_engine;
 class Struct_vulkan;
 
@@ -37,8 +37,7 @@ public:
   void singletime_command_end(VkCommandBuffer command_buffer);
 
 private:
-  Param* param;
-  VK_engine* vk_engine;
+  Struct_param* struct_param;
   Struct_vulkan* struct_vulkan;
 };
 

@@ -1,18 +1,15 @@
 #include "VK_command.h"
-#include "../VK_struct/struct_vulkan.h"
-#include <VK_main/VK_engine.h>
 
-#include <Engine.h>
-#include <Param.h>
+#include <VK_struct/struct_vulkan.h>
+#include <VK_struct/struct_param.h>
+#include <VK_main/VK_engine.h>
 
 
 //Constructor / Destructor
 VK_command::VK_command(VK_engine* vk_engine){
   //---------------------------
 
-  Engine* engine = vk_engine->get_engine();
-  this->param = engine->get_param();
-  this->vk_engine = vk_engine;
+  this->struct_param = vk_engine->get_struct_param();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   //---------------------------
@@ -83,10 +80,10 @@ void VK_command::start_render_pass(Struct_renderpass* renderpass, Frame* frame, 
 
   std::array<VkClearValue, 2> clear_value{};
   clear_value[0].color = {{
-    param->background_color.x,
-    param->background_color.y,
-    param->background_color.z,
-    param->background_color.w}};
+    struct_param->background_color.x,
+    struct_param->background_color.y,
+    struct_param->background_color.z,
+    struct_param->background_color.w}};
   clear_value[1].depthStencil = {1.0f, 0};
 
   VkRenderPassBeginInfo renderpass_info{};

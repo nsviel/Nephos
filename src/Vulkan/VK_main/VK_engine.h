@@ -50,7 +50,7 @@ public:
   inline Engine* get_engine(){return engine;}
   inline Window* get_window(){return window;}
 
-  inline Struct_param* get_param(){return struct_param;}
+  inline Struct_param* get_struct_param(){return struct_param;}
   inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
 
   inline VK_device* get_vk_device(){return vk_device;}
