@@ -1,8 +1,6 @@
 #include "VK_engine.h"
 #include "VK_struct/struct_vulkan.h"
 #include "VK_struct/struct_param.h"
-
-#include "VK_data/VK_buffer.h"
 #include "VK_data/VK_data.h"
 
 #include "VK_renderpass/VK_renderpass.h"
@@ -23,8 +21,6 @@
 #include "VK_binding/VK_descriptor.h"
 #include "VK_binding/VK_uniform.h"
 
-#include "VK_image/VK_depth.h"
-#include "VK_image/VK_color.h"
 #include "VK_image/VK_texture.h"
 #include "VK_image/VK_image.h"
 #include "VK_presentation/VK_swapchain.h"
@@ -55,12 +51,9 @@ VK_engine::VK_engine(Engine* engine){
   this->vk_surface = new VK_surface(this);
   this->vk_physical_device = new VK_physical_device(this);
   this->vk_device = new VK_device(this);
-  this->vk_buffer = new VK_buffer(this);
   this->vk_uniform = new VK_uniform(this);
   this->vk_image = new VK_image(this);
   this->vk_texture = new VK_texture(this);
-  this->vk_depth = new VK_depth(this);
-  this->vk_color = new VK_color(this);
   this->vk_descriptor = new VK_descriptor(this);
   this->vk_command_buffer = new VK_command_buffer(this);
   this->vk_data = new VK_data(this);

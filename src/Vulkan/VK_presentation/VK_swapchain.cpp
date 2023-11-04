@@ -18,6 +18,7 @@ VK_swapchain::VK_swapchain(VK_engine* vk_engine){
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->window = vk_engine->get_window();
   this->vk_physical_device = vk_engine->get_vk_physical_device();
+  this->vk_depth = new VK_depth(vk_engine);
 
   //---------------------------
 }
@@ -25,7 +26,6 @@ VK_swapchain::~VK_swapchain(){}
 
 //Swap chain function
 void VK_swapchain::recreate_swapChain(){
-  VK_depth* vk_depth = vk_engine->get_vk_depth();
   VK_frame* vk_frame = vk_engine->get_vk_frame();
   //---------------------------
 

@@ -19,11 +19,9 @@ class VK_pipeline;
 class VK_command;
 class VK_synchronization;
 class VK_submit;
-class VK_buffer;
 class VK_descriptor;
 class VK_uniform;
 class VK_texture;
-class VK_depth;
 class VK_data;
 class VK_viewport;
 class VK_shader;
@@ -31,7 +29,6 @@ class VK_reload;
 class VK_physical_device;
 class VK_frame;
 class VK_canvas;
-class VK_color;
 class VK_image;
 class VK_drawing;
 class VK_command_buffer;
@@ -65,11 +62,8 @@ public:
   inline VK_instance* get_vk_instance(){return vk_instance;}
   inline VK_renderpass* get_vk_renderpass(){return vk_renderpass;}
   inline VK_pipeline* get_vk_pipeline(){return vk_pipeline;}
-  inline VK_buffer* get_vk_buffer(){return vk_buffer;}
   inline VK_descriptor* get_vk_descriptor(){return vk_descriptor;}
   inline VK_texture* get_vk_texture(){return vk_texture;}
-  inline VK_depth* get_vk_depth(){return vk_depth;}
-  inline VK_color* get_vk_color(){return vk_color;}
   inline VK_data* get_vk_data(){return vk_data;}
   inline VK_viewport* get_vk_viewport(){return vk_viewport;}
   inline VK_shader* get_vk_shader(){return vk_shader;}
@@ -103,9 +97,7 @@ private:
   VK_command* vk_command;
   VK_synchronization* vk_synchronization;
   VK_submit* vk_submit;
-  VK_buffer* vk_buffer;
   VK_descriptor* vk_descriptor;
-  VK_depth* vk_depth;
   VK_texture* vk_texture;
   VK_data* vk_data;
   VK_viewport* vk_viewport;
@@ -114,7 +106,6 @@ private:
   VK_physical_device* vk_physical_device;
   VK_frame* vk_frame;
   VK_canvas* vk_canvas;
-  VK_color* vk_color;
   VK_drawing* vk_drawing;
 };
 

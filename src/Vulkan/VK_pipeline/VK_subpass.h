@@ -7,6 +7,7 @@
 class VK_engine;
 class Struct_vulkan;
 class VK_color;
+class VK_depth;
 
 
 class VK_subpass
@@ -30,6 +31,7 @@ private:
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_color* vk_color;
+  VK_depth* vk_depth;
 };
 
 #endif

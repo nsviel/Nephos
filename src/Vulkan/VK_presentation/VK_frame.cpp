@@ -21,10 +21,10 @@ VK_frame::VK_frame(VK_engine* vk_engine){
   this->vk_physical_device = vk_engine->get_vk_physical_device();
   this->vk_image = vk_engine->get_vk_image();
   this->vk_synchronization = vk_engine->get_vk_synchronization();
-  this->vk_color = vk_engine->get_vk_color();
+  this->vk_color = new VK_color(vk_engine);
   this->vk_swapchain = vk_engine->get_vk_swapchain();
   this->vk_framebuffer = new VK_framebuffer(vk_engine);
-  this->vk_depth = vk_engine->get_vk_depth();
+  this->vk_depth = new VK_depth(vk_engine);
 
   //---------------------------
 }

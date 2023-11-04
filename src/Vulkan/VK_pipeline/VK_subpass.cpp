@@ -12,7 +12,8 @@ VK_subpass::VK_subpass(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_color = vk_engine->get_vk_color();
+  this->vk_color = new VK_color(vk_engine);
+  this->vk_depth = new VK_depth(vk_engine);
 
   //---------------------------
 }
@@ -94,7 +95,6 @@ void VK_subpass::create_color_attachment(Struct_subpass* subpass){
   //---------------------------
 }
 void VK_subpass::create_depth_attachment(Struct_subpass* subpass){
-  VK_depth* vk_depth = vk_engine->get_vk_depth();
   //---------------------------
 
   VkAttachmentDescription depth_attachment{};

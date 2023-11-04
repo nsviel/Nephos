@@ -7,6 +7,7 @@ class Struct_vulkan;
 class Window;
 class VK_engine;
 class VK_physical_device;
+class VK_depth;
 
 
 class VK_swapchain
@@ -37,6 +38,7 @@ private:
   Struct_vulkan* struct_vulkan;
   Window* window;
   VK_physical_device* vk_physical_device;
+  VK_depth* vk_depth;
 };
 
 #endif
