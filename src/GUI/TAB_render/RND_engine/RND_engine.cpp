@@ -3,7 +3,7 @@
 
 #include <Engine.h>
 #include <GUI.h>
-#include <VK_engine.h>
+#include <VK_main/VK_engine.h>
 #include <VK_struct/struct_vulkan.h>
 #include <image/IconsFontAwesome5.h>
 
@@ -13,8 +13,7 @@ RND_engine::RND_engine(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  VK_engine* vk_engine = engine->get_vk_engine();
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->vk_engine = engine->get_vk_engine();
   this->gui_control = new RND_control(gui);
 
   //---------------------------
@@ -27,8 +26,7 @@ void RND_engine::design_panel(){
 
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
   ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
-  if(ImGui::Begin("Engine", NULL)){ //ImGuiWindowFlags_MenuBar
-    //this->engine_menubar();
+  if(ImGui::Begin("Engine", NULL)){
     this->engine_window();
     this->engine_control();
     ImGui::End();
@@ -39,58 +37,12 @@ void RND_engine::design_panel(){
 }
 
 //Subfunction
-void RND_engine::engine_menubar(){
-  //---------------------------
-
-  if(ImGui::BeginMenuBar()){
-    if(ImGui::BeginMenu("Load")){
-      //loaderManager->load_by_zenity();
-      ImGui::EndMenu();
-    }
-    if(ImGui::BeginMenu("Init")){
-      //gui_init->design_init();
-      ImGui::EndMenu();
-    }
-    if(ImGui::BeginMenu(ICON_FA_COG, "Option")){
-      //gui_render_option->design_option();
-      ImGui::EndMenu();
-    }
-    if(ImGui::MenuItem(ICON_FA_CAMERA, "Camera##111")){
-      //gui_render_panel->show_camera = !gui_render_panel->show_camera;
-    }
-    ImGui::EndMenuBar();
-  }
-
-
-
-  //---------------------------
-}
 void RND_engine::engine_window(){
   //---------------------------
 
-  //Vraiment deguelasse,a changer au plus vite !!
-  static ImVec2 previous_size;
-  ImVec2 current_size = ImGui::GetWindowSize();
-  if (current_size.x != previous_size.x || current_size.y != previous_size.y){
-    has_been_initialized = false;
-    previous_size = current_size;
-  }
-
-  if(has_been_initialized == false){
-    for(int i=0; i<struct_vulkan->nb_frame; i++){
-      Frame* frame_edl = struct_vulkan->renderpass_edl.get_rendering_frame();
-      Struct_image* image = &frame_edl->color;
-      this->descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-    }
-    has_been_initialized = true;
-  }
-
-  Frame* frame_edl = struct_vulkan->renderpass_edl.get_rendering_frame();
-  Struct_image* image = &frame_edl->color;
-  this->descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-
+  ImTextureID texture = vk_engine->imgui_texture();
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-  ImGui::Image(descriptor, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
+  ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
 
   //---------------------------
 }

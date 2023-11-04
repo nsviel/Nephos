@@ -19,7 +19,7 @@ public:
   void init();
   void load_font();
   void clean();
-  void engine_texture();
+  ImTextureID engine_texture();
 
 private:
   Struct_vulkan* struct_vulkan;

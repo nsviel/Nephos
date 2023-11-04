@@ -1,7 +1,5 @@
 #include "Vulkan.h"
-#include "VK_engine.h"
-
-#include <Engine.h>
+#include "VK_main/VK_engine.h"
 
 
 //Constructor / Destructor

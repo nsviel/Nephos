@@ -1,7 +1,7 @@
 #include "VK_imgui.h"
 #include "../VK_struct/struct_vulkan.h"
 
-#include <VK_engine.h>
+#include <VK_main/VK_engine.h>
 
 
 //Constructor / Destructor
@@ -116,32 +116,14 @@ void VK_imgui::clean(){
 
   //---------------------------
 }
-void VK_imgui::engine_texture(){
+ImTextureID VK_imgui::engine_texture(){
   //---------------------------
-/*
-  //Vraiment deguelasse,a changer au plus vite !!
-  static ImVec2 previous_size;
-  ImVec2 current_size = ImGui::GetWindowSize();
-  if (current_size.x != previous_size.x || current_size.y != previous_size.y){
-    has_been_initialized = false;
-    previous_size = current_size;
-  }
-
-  if(has_been_initialized == false){
-    for(int i=0; i<struct_vulkan->nb_frame; i++){
-      Frame* frame_edl = struct_vulkan->renderpass_edl.get_rendering_frame();
-      Struct_image* image = &frame_edl->color;
-      this->descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-    }
-    has_been_initialized = true;
-  }
 
   Frame* frame_edl = struct_vulkan->renderpass_edl.get_rendering_frame();
   Struct_image* image = &frame_edl->color;
-  this->descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  VkDescriptorSet descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  ImTextureID texture = reinterpret_cast<ImTextureID>(descriptor);
 
-  ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-  ImGui::Image(descriptor, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
-*/
   //---------------------------
+  return texture;
 }

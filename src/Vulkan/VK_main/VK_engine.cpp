@@ -142,3 +142,10 @@ void VK_engine::imgui_clean(){
 
   //---------------------------
 }
+ImTextureID VK_engine::imgui_texture(){
+  //---------------------------
+
+  return vk_imgui->engine_texture();
+
+  //---------------------------
+}

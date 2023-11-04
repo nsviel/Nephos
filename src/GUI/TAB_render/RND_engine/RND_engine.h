@@ -4,8 +4,8 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class Struct_vulkan;
 class RND_control;
+class VK_engine;
 
 
 class RND_engine
@@ -21,11 +21,10 @@ public:
 
   //Subfunction
   void engine_window();
-  void engine_menubar();
   void engine_control();
 
 private:
-  Struct_vulkan* struct_vulkan;
+  VK_engine* vk_engine;
   RND_control* gui_control;
 
   VkDescriptorSet descriptor;

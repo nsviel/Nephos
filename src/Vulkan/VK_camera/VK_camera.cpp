@@ -1,6 +1,6 @@
 #include "VK_camera.h"
 
-#include "../VK_engine.h"
+#include <VK_main/VK_engine.h>
 
 #include <ENG_camera/Camera.h>
 #include <Engine.h>
