@@ -44,11 +44,6 @@ public:
 private:
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
-
-  VkDescriptorPool descriptor_pool;
-  int pool_nb_uniform;
-  int pool_nb_sampler;
-  int pool_nb_descriptor;
 };
 
 #endif

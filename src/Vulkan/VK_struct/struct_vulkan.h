@@ -23,6 +23,7 @@ struct Struct_vulkan{
   int nb_frame;
   VkFormat required_image_format = VK_FORMAT_B8G8R8A8_UNORM; //VK_FORMAT_B8G8R8A8_SRGB
   VkCommandPool command_pool;
+  VkDescriptorPool descriptor_pool;
 
   Struct_window window;
   Struct_instance instance;

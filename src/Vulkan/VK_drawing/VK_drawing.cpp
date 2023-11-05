@@ -24,7 +24,7 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
   
   this->vk_engine = vk_engine;
   this->vk_command = new VK_command(vk_engine);
-  this->vk_descriptor = vk_engine->get_vk_descriptor();
+  this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_submit = new VK_submit(vk_engine);
   this->vk_swapchain = vk_engine->get_vk_swapchain();
   this->rp_scene = new ENG_scene(vk_engine);

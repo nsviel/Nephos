@@ -65,7 +65,6 @@ public:
   inline VK_data* get_vk_data(){return vk_data;}
   inline VK_viewport* get_vk_viewport(){return vk_viewport;}
   inline VK_reload* get_vk_reload(){return vk_reload;}
-  inline VK_physical_device* get_vk_physical_device(){return vk_physical_device;}
   inline VK_frame* get_vk_frame(){return vk_frame;}
   inline VK_canvas* get_vk_canvas(){return vk_canvas;}
   inline VK_drawing* get_vk_drawing(){return vk_drawing;}

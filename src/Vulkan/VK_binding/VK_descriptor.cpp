@@ -11,10 +11,6 @@ VK_descriptor::VK_descriptor(VK_engine* vk_engine){
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
 
-  this->pool_nb_descriptor = 1000;
-  this->pool_nb_uniform = 1000;
-  this->pool_nb_sampler = 100;
-
   //---------------------------
 }
 VK_descriptor::~VK_descriptor(){}
@@ -31,7 +27,7 @@ void VK_descriptor::cmd_bind_descriptor(Struct_renderpass* renderpass, string pi
 void VK_descriptor::clean_descriptor_pool(){
   //---------------------------
 
-  vkDestroyDescriptorPool(struct_vulkan->device.device, descriptor_pool, nullptr);
+  vkDestroyDescriptorPool(struct_vulkan->device.device, struct_vulkan->descriptor_pool, nullptr);
 
   //---------------------------
 }
@@ -42,7 +38,7 @@ void VK_descriptor::allocate_descriptor_set(Struct_binding* binding){
 
   VkDescriptorSetAllocateInfo allocation_info{};
   allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-  allocation_info.descriptorPool = descriptor_pool;
+  allocation_info.descriptorPool = struct_vulkan->descriptor_pool;
   allocation_info.descriptorSetCount = 1;
   allocation_info.pSetLayouts = &binding->descriptor.layout;
 
@@ -234,6 +230,10 @@ VkDescriptorSetLayout VK_descriptor::create_layout(vector<VkDescriptorSetLayoutB
 void VK_descriptor::create_descriptor_pool(){
   //---------------------------
 
+  int pool_nb_uniform = 1000;
+  int pool_nb_sampler = 1000;
+  int pool_nb_descriptor = 1000;
+
   //Maximum number of descriptor per type
   vector<VkDescriptorPoolSize> vec_pool_size;
   vec_pool_size.push_back(add_descriptor_type(TYPE_UNIFORM, pool_nb_uniform));
@@ -246,7 +246,7 @@ void VK_descriptor::create_descriptor_pool(){
   pool_info.pPoolSizes = vec_pool_size.data();
   pool_info.maxSets = static_cast<uint32_t>(pool_nb_descriptor);
 
-  VkResult result = vkCreateDescriptorPool(struct_vulkan->device.device, &pool_info, nullptr, &descriptor_pool);
+  VkResult result = vkCreateDescriptorPool(struct_vulkan->device.device, &pool_info, nullptr, &struct_vulkan->descriptor_pool);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create descriptor pool!");
   }
