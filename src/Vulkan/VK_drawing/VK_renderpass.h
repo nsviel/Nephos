@@ -10,6 +10,7 @@ class Struct_vulkan;
 class VK_color;
 class VK_pipeline;
 class VK_subpass;
+class VK_command_buffer;
 
 class ENG_scene;
 class ENG_edl;
@@ -41,6 +42,7 @@ private:
   VK_color* vk_color;
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
+  VK_command_buffer* vk_command_buffer;
 
   ENG_scene* rp_scene;
   ENG_edl* rp_edl;
