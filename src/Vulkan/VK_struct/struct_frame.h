@@ -19,14 +19,6 @@ struct Frame{
   Struct_image normal;
   Struct_image depth;
 
-  //Synchronisation
-  VkSemaphore semaphore_image_ready;
-  VkSemaphore semaphore_scene_ready;
-  VkSemaphore semaphore_edl_ready;
-  VkSemaphore semaphore_psr_ready;
-  VkSemaphore semaphore_ui_ready;
-  VkFence fence;
-
   //---------------------------
 };
 

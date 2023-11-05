@@ -23,12 +23,6 @@ VK_synchronization::~VK_synchronization(){}
 void VK_synchronization::init_frame_sync(Frame* frame){
   //---------------------------
 
-  this->create_semaphore(frame->semaphore_image_ready);
-  this->create_semaphore(frame->semaphore_edl_ready);
-  this->create_semaphore(frame->semaphore_scene_ready);
-  this->create_semaphore(frame->semaphore_ui_ready);
-  this->create_fence(frame->fence);
-
   //Create semaphore - Renderpass
   for(int i=0; i<4; i++){
     VkSemaphore semaphore;
@@ -56,23 +50,10 @@ void VK_synchronization::init_frame_sync(Frame* frame){
 void VK_synchronization::clean_frame_sync(Frame* frame){
   //---------------------------
 
-  this->clean_semaphore(frame->semaphore_image_ready);
-  this->clean_semaphore(frame->semaphore_scene_ready);
-  this->clean_semaphore(frame->semaphore_edl_ready);
-  this->clean_semaphore(frame->semaphore_ui_ready);
-  this->clean_fence(frame->fence);
-
-  //Clean semaphore
   this->clean_vec_semaphore(struct_synchro->vec_semaphore_render);
   this->clean_vec_semaphore(struct_synchro->vec_semaphore_image);
   this->clean_vec_semaphore(struct_synchro->vec_semaphore_presen);
-
-  //Clean fence
-  for(int i=0; i<struct_synchro->vec_fence.size(); i++){
-    VkFence& fence = struct_synchro->vec_fence[i];
-    this->clean_fence(fence);
-  }
-  struct_synchro->vec_fence.clear();
+  this->clean_vec_fence(struct_synchro->vec_fence);
 
   //---------------------------
 }
@@ -86,7 +67,7 @@ void VK_synchronization::create_semaphore(VkSemaphore& semaphore){
 
   VkResult result = vkCreateSemaphore(struct_vulkan->device.device, &semaphoreInfo, nullptr, &semaphore);
   if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create semaphores!");
+    throw std::runtime_error("[error] failed to create semaphore");
   }
 
   //---------------------------
@@ -100,35 +81,32 @@ void VK_synchronization::create_fence(VkFence& fence){
 
   VkResult result = vkCreateFence(struct_vulkan->device.device, &fenceInfo, nullptr, &fence);
   if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create fence!");
+    throw std::runtime_error("[error] failed to create fence");
   }
 
   //---------------------------
 }
 
 //Deletetion function
-void VK_synchronization::clean_semaphore(VkSemaphore& semaphore){
-  //---------------------------
-
-  vkDestroySemaphore(struct_vulkan->device.device, semaphore, nullptr);
-
-  //---------------------------
-}
-void VK_synchronization::clean_fence(VkFence& fence){
-  //---------------------------
-
-  vkDestroyFence(struct_vulkan->device.device, fence, nullptr);
-
-  //---------------------------
-}
 void VK_synchronization::clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore){
   //---------------------------
 
   for(int i=0; i<vec_semaphore.size(); i++){
     VkSemaphore& semaphore = vec_semaphore[i];
-    this->clean_semaphore(semaphore);
+    vkDestroySemaphore(struct_vulkan->device.device, semaphore, nullptr);
   }
   vec_semaphore.clear();
+
+  //---------------------------
+}
+void VK_synchronization::clean_vec_fence(vector<VkFence>& vec_fence){
+  //---------------------------
+
+  for(int i=0; i<vec_fence.size(); i++){
+    VkFence& fence = vec_fence[i];
+    vkDestroyFence(struct_vulkan->device.device, fence, nullptr);
+  }
+  vec_fence.clear();
 
   //---------------------------
 }
