@@ -1,4 +1,4 @@
-#include "RP_ui.h"
+#include "ENG_gui.h"
 
 #include <Engine.h>
 #include <VK_drawing/VK_renderpass.h>
@@ -12,7 +12,7 @@
 
 
 //Constructor / Destructor
-RP_ui::RP_ui(VK_engine* vk_engine){
+ENG_gui::ENG_gui(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
@@ -23,7 +23,7 @@ RP_ui::RP_ui(VK_engine* vk_engine){
 
   //---------------------------
 }
-RP_ui::~RP_ui(){
+ENG_gui::~ENG_gui(){
   //---------------------------
 
   delete vk_subpass;
@@ -32,7 +32,7 @@ RP_ui::~RP_ui(){
 }
 
 //Main function
-void RP_ui::init_renderpass(Struct_renderpass* renderpass){
+void ENG_gui::init_renderpass(Struct_renderpass* renderpass){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
@@ -45,7 +45,7 @@ void RP_ui::init_renderpass(Struct_renderpass* renderpass){
 }
 
 //Pipeline
-void RP_ui::create_pipeline_canvas(Struct_renderpass* renderpass){
+void ENG_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
   //---------------------------
 
   Engine* engine = vk_engine->get_engine();

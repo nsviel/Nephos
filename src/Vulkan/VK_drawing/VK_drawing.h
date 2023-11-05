@@ -14,7 +14,7 @@ class VK_command;
 class VK_descriptor;
 class VK_swapchain;
 class VK_submit;
-class DR_scene;
+class ENG_scene;
 class ENG_edl;
 
 
@@ -41,7 +41,7 @@ private:
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;
   VK_swapchain* vk_swapchain;
-  DR_scene* dr_scene;
+  ENG_scene* rp_scene;
   ENG_edl* rp_edl;
 };
 

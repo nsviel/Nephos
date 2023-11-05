@@ -11,9 +11,9 @@ class VK_color;
 class VK_pipeline;
 class VK_subpass;
 
-class RP_scene;
+class ENG_scene;
 class ENG_edl;
-class RP_ui;
+class ENG_gui;
 
 
 class VK_renderpass
@@ -42,9 +42,9 @@ private:
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
 
-  RP_scene* rp_scene;
+  ENG_scene* rp_scene;
   ENG_edl* rp_edl;
-  RP_ui* rp_ui;
+  ENG_gui* rp_ui;
 };
 
 #endif

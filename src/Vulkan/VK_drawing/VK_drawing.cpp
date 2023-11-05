@@ -11,7 +11,7 @@
 #include <VK_presentation/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
 
-#include <ENG_vulkan/DR_scene.h>
+#include <ENG_vulkan/ENG_scene.h>
 #include <ENG_vulkan/ENG_edl.h>
 
 
@@ -26,7 +26,7 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_submit = new VK_submit(vk_engine);
   this->vk_swapchain = vk_engine->get_vk_swapchain();
-  this->dr_scene = new DR_scene(vk_engine);
+  this->rp_scene = new ENG_scene(vk_engine);
   this->rp_edl = new ENG_edl(vk_engine);
 
   //---------------------------
@@ -52,7 +52,7 @@ void VK_drawing::draw_frame(){
   renderpass->semaphore_wait = struct_synchro->vec_semaphore_image[0];
   renderpass->semaphore_done = struct_synchro->vec_semaphore_render[0];
   renderpass->fence = VK_NULL_HANDLE;
-  dr_scene->draw_scene(renderpass);
+  rp_scene->draw_scene(renderpass);
   vk_submit->submit_graphics_command(renderpass);
 
   //EDL

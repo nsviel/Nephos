@@ -10,9 +10,9 @@
 #include <VK_image/VK_color.h>
 #include <VK_image/VK_depth.h>
 
-#include <ENG_vulkan/RP_scene.h>
+#include <ENG_vulkan/ENG_scene.h>
 #include <ENG_vulkan/ENG_edl.h>
-#include <ENG_vulkan/RP_ui.h>
+#include <ENG_vulkan/ENG_gui.h>
 
 
 //Constructor / Destructor
@@ -25,9 +25,9 @@ VK_renderpass::VK_renderpass(VK_engine* vk_engine){
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_subpass = new VK_subpass(vk_engine);
 
-  this->rp_scene = new RP_scene(vk_engine);
+  this->rp_scene = new ENG_scene(vk_engine);
   this->rp_edl = new ENG_edl(vk_engine);
-  this->rp_ui = new RP_ui(vk_engine);
+  this->rp_ui = new ENG_gui(vk_engine);
 
   //---------------------------
 }
