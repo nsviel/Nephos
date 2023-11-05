@@ -7,8 +7,7 @@
 #include <ENG_camera/Camera.h>
 #include <ELE_window/Window.h>
 #include <ENG_shader/Shader.h>
-#include <ENG_gpu/GPU_data.h>
-#include <ENG_gpu/GPU_texture.h>
+#include <VK_main/GPU_data.h>
 
 
 //Constructor / Destructor
@@ -21,7 +20,6 @@ Engine::Engine(Window* window){
   this->shaderManager = new Shader(this);
   this->vk_engine = new VK_engine(this);
   this->gpu_data = new GPU_data(vk_engine);
-  this->gpu_texture = new GPU_texture(vk_engine);
   this->dataManager = new Data(this);
 
   //---------------------------
@@ -34,7 +32,6 @@ Engine::~Engine(){
   delete shaderManager;
   delete vk_engine;
   delete gpu_data;
-  delete gpu_texture;
   delete dataManager;
 
   //---------------------------

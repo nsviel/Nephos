@@ -8,7 +8,6 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 file(GLOB_RECURSE ALL_SOURCES
   ENG_camera/*.cpp
   ENG_data/*.cpp
-  ENG_gpu/*.cpp
   ENG_operation/*.cpp
   ENG_shader/*.cpp
   ENG_vulkan/*.cpp

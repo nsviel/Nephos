@@ -7,7 +7,7 @@
 #include "../VK_binding/VK_binding.h"
 #include "../VK_binding/VK_descriptor.h"
 
-#include <ENG_gpu/GPU_data.h>
+#include <VK_main/GPU_data.h>
 
 
 //Constructor / Destructor

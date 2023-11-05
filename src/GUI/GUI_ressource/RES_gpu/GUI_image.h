@@ -2,9 +2,9 @@
 #define GUI_IMAGE_H
 
 #include <ELE_specific/common.h>
-#include <ENG_gpu/GPU_texture.h>
 
 class GUI;
+class VK_render;
 
 
 class GUI_image
@@ -22,13 +22,9 @@ public:
   void load_image(string path);
   void display_image();
 
-  inline void reload_image(){this->image = nullptr;}
-
 private:
-  GPU_texture* gpu_texture;
+  VK_render* vk_render;
   VkDescriptorSet descriptor;
-
-  Struct_image* image;
 };
 
 

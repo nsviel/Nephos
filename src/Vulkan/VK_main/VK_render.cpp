@@ -10,6 +10,7 @@ VK_render::VK_render(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_drawing = vk_engine->get_vk_drawing();
+  this->vk_texture = vk_engine->get_vk_texture();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->fps_counter = new FPS_counter(100);
 
@@ -26,4 +27,22 @@ void VK_render::loop_draw_frame(){
   //---------------------------
   fps_counter->update();
   struct_vulkan->time.engine_fps = fps_counter->get_fps();
+}
+
+//Texture function
+Struct_image* VK_render::load_texture_from_file(string path){
+  //---------------------------
+
+  Struct_image* texture = vk_texture->load_texture_from_file(path);
+
+  //---------------------------
+  return texture;
+}
+Struct_image* VK_render::load_texture_from_frame(AVFrame* frame){
+  //---------------------------
+
+  Struct_image* texture = vk_texture->load_texture_from_frame(frame);
+
+  //---------------------------
+  return texture;
 }

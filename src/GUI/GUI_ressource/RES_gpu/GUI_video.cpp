@@ -2,6 +2,8 @@
 
 #include <GUI.h>
 #include <Engine.h>
+#include <VK_main/VK_engine.h>
+#include <VK_main/VK_render.h>
 
 
 //Constructor / Destructor
@@ -9,7 +11,8 @@ GUI_video::GUI_video(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  this->gpu_texture = engine->get_gpu_texture();
+  VK_engine* vk_engine = engine->get_vk_engine();
+  this->vk_render = vk_engine->get_vk_render();
 
   this->video_loaded = false;
 
@@ -56,7 +59,7 @@ void GUI_video::acquire_next_frame(){
     int frameFinished;
     result = avcodec_receive_frame(codec_context, frame);
     if(result == 0){
-      Struct_image* image = gpu_texture->load_texture_from_frame(frame);
+      Struct_image* image = vk_render->load_texture_from_frame(frame);
       this->descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     }
 

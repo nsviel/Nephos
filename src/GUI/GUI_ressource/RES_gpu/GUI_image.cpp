@@ -2,6 +2,8 @@
 
 #include <GUI.h>
 #include <Engine.h>
+#include <VK_main/VK_engine.h>
+#include <VK_main/VK_render.h>
 
 
 //Constructor / Destructor
@@ -9,9 +11,8 @@ GUI_image::GUI_image(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  this->gpu_texture = engine->get_gpu_texture();
-
-  this->image = nullptr;
+  VK_engine* vk_engine = engine->get_vk_engine();
+  this->vk_render = vk_engine->get_vk_render();
 
   //---------------------------
 }
@@ -29,10 +30,11 @@ void GUI_image::draw_image(string path){
 
 //Subfunction
 void GUI_image::load_image(string path){
+  static Struct_image* image;
   //---------------------------
 
   if(image == nullptr){
-    this->image = gpu_texture->load_texture_from_file(path);
+    image = vk_render->load_texture_from_file(path);
     this->descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   }
 

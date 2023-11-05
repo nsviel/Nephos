@@ -2,7 +2,6 @@
 #define GUI_VIDEO_H
 
 #include <ELE_specific/common.h>
-#include <ENG_gpu/GPU_texture.h>
 
 extern "C" {
 #include <libavcodec/avcodec.h>
@@ -11,6 +10,7 @@ extern "C" {
 }
 
 class GUI;
+class VK_render;
 
 
 class GUI_video
@@ -32,7 +32,7 @@ public:
   void display_frame();
 
 private:
-  GPU_texture* gpu_texture;
+  VK_render* vk_render;
 
   VkDescriptorSet descriptor;
   AVFormatContext* format_context;
