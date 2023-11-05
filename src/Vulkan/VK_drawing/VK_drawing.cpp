@@ -1,4 +1,5 @@
 #include "VK_drawing.h"
+#include "VK_renderpass.h"
 #include "../VK_presentation/VK_swapchain.h"
 
 #include <VK_main/VK_engine.h>
@@ -11,7 +12,7 @@
 #include <VK_binding/VK_descriptor.h>
 
 #include <ENG_vulkan/DR_scene.h>
-#include <ENG_vulkan/DR_edl.h>
+#include <ENG_vulkan/ENG_edl.h>
 
 
 //Constructor / Destructor
@@ -26,7 +27,7 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
   this->vk_submit = new VK_submit(vk_engine);
   this->vk_swapchain = vk_engine->get_vk_swapchain();
   this->dr_scene = new DR_scene(vk_engine);
-  this->dr_edl = new DR_edl(vk_engine);
+  this->rp_edl = new ENG_edl(vk_engine);
 
   //---------------------------
 }
@@ -59,7 +60,7 @@ void VK_drawing::draw_frame(){
   renderpass->semaphore_wait = struct_synchro->vec_semaphore_render[0];
   renderpass->semaphore_done = struct_synchro->vec_semaphore_render[1];
   renderpass->fence = VK_NULL_HANDLE;
-  dr_edl->draw_edl(&struct_vulkan->renderpass_edl);
+  rp_edl->draw_edl(&struct_vulkan->renderpass_edl);
   vk_submit->submit_graphics_command(renderpass);
 
   //GUI

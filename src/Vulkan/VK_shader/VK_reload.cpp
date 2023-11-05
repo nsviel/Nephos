@@ -7,7 +7,7 @@
 #include <VK_struct/struct_vulkan.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_drawing/VK_renderpass.h>
-#include <ENG_vulkan/RP_edl.h>
+#include <ENG_vulkan/ENG_edl.h>
 
 
 //Constructor / Destructor
@@ -28,7 +28,7 @@ void VK_reload::hot_shader_reload(string shader_1, string shader_2){
   //---------------------------
 
   if(shader_1 == "EDL"){
-    RP_edl* rp_edl = vk_renderpass->get_rp_edl();
+    ENG_edl* rp_edl = vk_renderpass->get_rp_edl();
     rp_edl->recreate_pipeline_edl();
   }
 

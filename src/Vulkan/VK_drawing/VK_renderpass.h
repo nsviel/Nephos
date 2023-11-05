@@ -12,7 +12,7 @@ class VK_pipeline;
 class VK_subpass;
 
 class RP_scene;
-class RP_edl;
+class ENG_edl;
 class RP_ui;
 
 
@@ -33,7 +33,7 @@ public:
   void create_renderpass(Struct_renderpass* renderpass);
   void create_renderpass_obj(Struct_renderpass* renderpass);
 
-  inline RP_edl* get_rp_edl(){return rp_edl;}
+  inline ENG_edl* get_rp_edl(){return rp_edl;}
 
 private:
   VK_engine* vk_engine;
@@ -43,7 +43,7 @@ private:
   VK_subpass* vk_subpass;
 
   RP_scene* rp_scene;
-  RP_edl* rp_edl;
+  ENG_edl* rp_edl;
   RP_ui* rp_ui;
 };
 

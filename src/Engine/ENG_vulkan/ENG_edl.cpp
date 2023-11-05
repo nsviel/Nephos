@@ -1,4 +1,4 @@
-#include "RP_edl.h"
+#include "ENG_edl.h"
 
 #include <Engine.h>
 #include <ENG_shader/Shader.h>
@@ -11,10 +11,24 @@
 #include <VK_struct/struct_vulkan.h>
 #include <VK_main/VK_viewport.h>
 
+#include <Engine.h>
+#include <VK_pipeline/VK_pipeline.h>
+#include <VK_command/VK_submit.h>
+#include <VK_main/VK_engine.h>
+#include <VK_struct/struct_vulkan.h>
+#include <VK_command/VK_command.h>
+#include <VK_presentation/VK_canvas.h>
+#include <VK_drawing/VK_drawing.h>
+#include <VK_binding/VK_descriptor.h>
+#include <VK_binding/VK_uniform.h>
+#include <VK_main/VK_viewport.h>
+#include <ENG_shader/Shader.h>
+#include <ENG_shader/EDL/EDL_shader.h>
+
 
 
 //Constructor / Destructor
-RP_edl::RP_edl(VK_engine* vk_engine){
+ENG_edl::ENG_edl(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_engine = vk_engine;
@@ -23,9 +37,20 @@ RP_edl::RP_edl(VK_engine* vk_engine){
   this->vk_viewport = vk_engine->get_vk_viewport();
   this->vk_subpass = new VK_subpass(vk_engine);
 
+  Engine* engine = vk_engine->get_engine();
+  Shader* shaderManager = engine->get_shaderManager();
+  this->edl_shader = shaderManager->get_edl_shader();
+
+  this->vk_descriptor = vk_engine->get_vk_descriptor();
+  this->vk_drawing = vk_engine->get_vk_drawing();
+  this->vk_canvas = vk_engine->get_vk_canvas();
+  this->vk_submit = new VK_submit(vk_engine);
+  this->vk_uniform = new VK_uniform(vk_engine);
+  this->vk_command = new VK_command(vk_engine);
+
   //---------------------------
 }
-RP_edl::~RP_edl(){
+ENG_edl::~ENG_edl(){
   //---------------------------
 
   delete vk_subpass;
@@ -34,7 +59,7 @@ RP_edl::~RP_edl(){
 }
 
 //Main function
-void RP_edl::init_renderpass(Struct_renderpass* renderpass){
+void ENG_edl::init_renderpass(Struct_renderpass* renderpass){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
@@ -51,7 +76,7 @@ void RP_edl::init_renderpass(Struct_renderpass* renderpass){
 }
 
 //Pipeline
-Struct_pipeline* RP_edl::create_pipeline_edl(Struct_renderpass* renderpass){
+Struct_pipeline* ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   //---------------------------
 
   Engine* engine = vk_engine->get_engine();
@@ -72,7 +97,7 @@ Struct_pipeline* RP_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   //---------------------------
   return pipeline;
 }
-void RP_edl::recreate_pipeline_edl(){
+void ENG_edl::recreate_pipeline_edl(){
   //---------------------------
 
   Struct_pipeline* pipeline_new = create_pipeline_edl(&struct_vulkan->renderpass_edl);
@@ -85,6 +110,47 @@ void RP_edl::recreate_pipeline_edl(){
 
   struct_vulkan->renderpass_edl.vec_pipeline.clear();
   struct_vulkan->renderpass_edl.vec_pipeline.push_back(pipeline_new);
+
+  //---------------------------
+}
+
+//Main function
+void ENG_edl::draw_edl(Struct_renderpass* renderpass){
+  timer_time t1 = timer.start_t();
+  //---------------------------
+
+  //Update descriptor
+  Frame* frame_scene = struct_vulkan->renderpass_scene.get_rendering_frame();
+  for(int i=0; i<renderpass->vec_pipeline.size(); i++){
+    Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
+    vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);
+    vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->depth);
+  }
+
+  //Record command
+  Frame* frame = renderpass->get_rendering_frame();
+  vk_command->start_render_pass(renderpass, frame, false);
+  vk_viewport->cmd_viewport(renderpass);
+  this->cmd_draw(renderpass);
+  vk_command->stop_render_pass(renderpass);
+
+  //---------------------------
+  struct_vulkan->time.renderpass_edl.push_back(timer.stop_ms(t1));
+}
+
+//Command function
+void ENG_edl::cmd_draw(Struct_renderpass* renderpass){
+  //---------------------------
+
+  Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle_EDL");
+  EDL_param* edl_param = edl_shader->get_edl_param();
+  Struct_data* canvas = vk_canvas->get_data_canvas();
+
+  vk_pipeline->cmd_bind_pipeline(renderpass, "triangle_EDL");
+  edl_shader->update_shader();
+  vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
+  vk_descriptor->cmd_bind_descriptor(renderpass, "triangle_EDL", pipeline->binding.descriptor.set);
+  vk_drawing->cmd_draw_data(renderpass, canvas);
 
   //---------------------------
 }

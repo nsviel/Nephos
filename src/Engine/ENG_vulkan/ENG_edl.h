@@ -1,51 +1,54 @@
-#ifndef VK_EDL_DRAWING_H
-#define VK_EDL_DRAWING_H
+#ifndef VK_EDL_RENDERPASS_H
+#define VK_EDL_RENDERPASS_H
 
-#include <VK_struct/struct_frame.h>
 #include <VK_struct/struct_renderpass.h>
-#include <VK_struct/struct_command.h>
+#include <VK_struct/struct_pipeline.h>
+#include <ENG_shader/Shader.h>
 #include <ELE_specific/common.h>
 
-class EDL_shader;
 class VK_engine;
 class Struct_vulkan;
+class VK_pipeline;
+class VK_subpass;
+class VK_viewport;
+
+class VK_canvas;
 class VK_command;
 class VK_descriptor;
 class VK_submit;
 class VK_uniform;
-class VK_canvas;
-class VK_viewport;
-class VK_pipeline;
 class VK_drawing;
 
 
-class DR_edl
+class ENG_edl
 {
 public:
   //Constructor / Destructor
-  DR_edl(VK_engine* vk_engine);
-  ~DR_edl();
+  ENG_edl(VK_engine* vk_engine);
+  ~ENG_edl();
 
 public:
   //Main functions
+  void init_renderpass(Struct_renderpass* renderpass);
+  Struct_pipeline* create_pipeline_edl(Struct_renderpass* renderpass);
+  void recreate_pipeline_edl();
   void draw_edl(Struct_renderpass* renderpass);
-
-  //Command function
   void cmd_draw(Struct_renderpass* renderpass);
 
 private:
   Timer timer;
+  VK_engine* vk_engine;
+  Struct_vulkan* struct_vulkan;
+  VK_pipeline* vk_pipeline;
+  VK_subpass* vk_subpass;
+  VK_viewport* vk_viewport;
   EDL_shader* edl_shader;
 
   VK_canvas* vk_canvas;
-  VK_engine* vk_engine;
-  Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;
   VK_uniform* vk_uniform;
-  VK_viewport* vk_viewport;
-  VK_pipeline* vk_pipeline;
   VK_drawing* vk_drawing;
 };
 
