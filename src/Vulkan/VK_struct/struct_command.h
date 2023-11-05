@@ -24,7 +24,7 @@ struct Struct_submit_commands{
   std::vector<VkPipelineStageFlags> vec_wait_stage;
 
   std::vector<VkSemaphore> vec_semaphore_rp_wait;
-  std::vector<VkSemaphore> vec_semaphore_rp_done;
+  std::vector<VkSemaphore> vec_semaphore_render;
 
   VkFence fence = VK_NULL_HANDLE;
 

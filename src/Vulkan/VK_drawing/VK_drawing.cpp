@@ -37,45 +37,38 @@ VK_drawing::~VK_drawing(){}
 void VK_drawing::draw_frame(){
   Struct_submit_commands commands;
   VkSemaphore semaphore;
+  VkFence fence;
   timer_time t1 = timer.start_t();
   //---------------------------
 
   //Next image to draw
   Frame* frame_inflight = struct_vulkan->swapchain.get_frame_inflight();
-  //semaphore = frame_inflight->semaphore_image_ready;
   semaphore = struct_synchro->vec_semaphore_image[0];
-  vk_submit->acquire_next_image(&struct_vulkan->swapchain, semaphore, frame_inflight->fence);
+  fence = struct_synchro->vec_fence[0];
+  vk_submit->acquire_next_image(&struct_vulkan->swapchain, semaphore, fence);
 
   //Drawing operations
   Struct_renderpass* renderpass;
   renderpass = &struct_vulkan->renderpass_scene;
   renderpass->semaphore_wait = struct_synchro->vec_semaphore_image[0];
-  renderpass->semaphore_done = struct_synchro->vec_semaphore_rp_done[0];
-  //renderpass->semaphore_wait = frame_inflight->semaphore_image_ready;
-  //renderpass->semaphore_done = frame_inflight->semaphore_scene_ready;
+  renderpass->semaphore_done = struct_synchro->vec_semaphore_render[0];
   renderpass->fence = VK_NULL_HANDLE;
   dr_scene->draw_scene(renderpass);
 
   renderpass = &struct_vulkan->renderpass_edl;
-  renderpass->semaphore_wait = struct_synchro->vec_semaphore_rp_done[0];
-  renderpass->semaphore_done = struct_synchro->vec_semaphore_rp_done[1];
-  //renderpass->semaphore_wait = frame_inflight->semaphore_scene_ready;
-  //renderpass->semaphore_done = frame_inflight->semaphore_edl_ready;
+  renderpass->semaphore_wait = struct_synchro->vec_semaphore_render[0];
+  renderpass->semaphore_done = struct_synchro->vec_semaphore_render[1];
   renderpass->fence = VK_NULL_HANDLE;
   dr_edl->draw_edl(&struct_vulkan->renderpass_edl);
 
   renderpass = &struct_vulkan->renderpass_ui;
-  renderpass->semaphore_wait = struct_synchro->vec_semaphore_rp_done[1];
-  renderpass->semaphore_done = struct_synchro->vec_semaphore_rp_done[2];
-  //renderpass->fence = struct_synchro->vec_fence[0];
-  //renderpass->semaphore_wait = frame_inflight->semaphore_edl_ready;
-  //renderpass->semaphore_done = frame_inflight->semaphore_ui_ready;
-  renderpass->fence = frame_inflight->fence;
+  renderpass->semaphore_wait = struct_synchro->vec_semaphore_render[1];
+  renderpass->semaphore_done = struct_synchro->vec_semaphore_render[2];
+  renderpass->fence = struct_synchro->vec_fence[0];
   dr_ui->draw_ui(&struct_vulkan->renderpass_ui);
 
   //Submit drawn image
-  //semaphore = frame_inflight->semaphore_ui_ready;
-  semaphore = struct_synchro->vec_semaphore_rp_done[2];
+  semaphore = struct_synchro->vec_semaphore_render[2];
   vk_submit->submit_presentation(&struct_vulkan->swapchain, semaphore);
   vk_submit->set_next_frame_ID(&struct_vulkan->swapchain);
 

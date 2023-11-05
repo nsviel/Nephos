@@ -116,8 +116,8 @@ void VK_submit::submit_graphics_commands(Struct_submit_commands* commands){
   submit_info.waitSemaphoreCount = commands->vec_semaphore_rp_wait.size();
   submit_info.pWaitSemaphores = commands->vec_semaphore_rp_wait.data();
   submit_info.pWaitDstStageMask = commands->vec_wait_stage.data();
-  submit_info.signalSemaphoreCount = commands->vec_semaphore_rp_done.size();
-  submit_info.pSignalSemaphores = commands->vec_semaphore_rp_done.data();
+  submit_info.signalSemaphoreCount = commands->vec_semaphore_render.size();
+  submit_info.pSignalSemaphores = commands->vec_semaphore_render.data();
   submit_info.commandBufferCount = commands->vec_command_buffer.size();
   submit_info.pCommandBuffers = commands->vec_command_buffer.data();
 

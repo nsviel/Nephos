@@ -8,9 +8,8 @@ struct Struct_synchro{
   //---------------------------
 
   std::vector<VkSemaphore> vec_semaphore_image;
-  std::vector<VkSemaphore> vec_semaphore_rp_wait;
-  std::vector<VkSemaphore> vec_semaphore_rp_done;
-  std::vector<VkSemaphore> vec_semaphore_present;
+  std::vector<VkSemaphore> vec_semaphore_render;
+  std::vector<VkSemaphore> vec_semaphore_presen;
   std::vector<VkFence> vec_fence;
 
   //---------------------------
