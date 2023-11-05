@@ -17,7 +17,7 @@ VK_swapchain::VK_swapchain(VK_engine* vk_engine){
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->window = vk_engine->get_window();
-  this->vk_physical_device = vk_engine->get_vk_physical_device();
+  this->vk_physical_device = new VK_physical_device(vk_engine);
   this->vk_depth = new VK_depth(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
 

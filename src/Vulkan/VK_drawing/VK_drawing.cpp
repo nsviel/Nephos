@@ -19,9 +19,10 @@
 VK_drawing::VK_drawing(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->struct_synchro = vk_engine->get_struct_synchro();
+  
+  this->vk_engine = vk_engine;
   this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_submit = new VK_submit(vk_engine);

@@ -15,7 +15,7 @@ VK_image::VK_image(VK_engine* vk_engine){
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_buffer = new VK_buffer(vk_engine);
   this->vk_command = new VK_command(vk_engine);
-  this->vk_physical_device = vk_engine->get_vk_physical_device();
+  this->vk_physical_device = new VK_physical_device(vk_engine);
 
   //---------------------------
 }

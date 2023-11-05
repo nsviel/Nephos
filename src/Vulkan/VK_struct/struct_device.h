@@ -14,6 +14,10 @@ struct Struct_device{
   VkQueue queue_presentation;
   vector<const char*> extension;
 
+  vector<string> vec_device_name;
+  int nb_queue_graphics;
+  int nb_queue_presentation;
+
   //---------------------------
 };
 

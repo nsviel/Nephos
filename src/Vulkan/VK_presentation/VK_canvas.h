@@ -24,16 +24,12 @@ public:
   void create_canvas();
   void clean_canvas();
 
-  inline Struct_data* get_data_canvas(){return canvas;}
-
 private:
   Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_data* vk_data;
   VK_texture* vk_texture;
   VK_binding* vk_binding;
-
-  Struct_data* canvas;
 };
 
 #endif

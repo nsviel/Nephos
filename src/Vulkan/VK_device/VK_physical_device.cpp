@@ -70,7 +70,7 @@ void VK_physical_device::select_physical_device(){
   for(VkPhysicalDevice device : vec_physical_device){
     VkPhysicalDeviceProperties deviceProperties;
     vkGetPhysicalDeviceProperties(device, &deviceProperties);
-    vec_device_name.push_back(deviceProperties.deviceName);
+    struct_vulkan->device.vec_device_name.push_back(deviceProperties.deviceName);
   }
 
   //---------------------------
@@ -175,7 +175,7 @@ int VK_physical_device::find_queue_family_graphics(VkPhysicalDevice physical_dev
   if(nb_queue_family == 0) {
     throw std::runtime_error("[error] No queue families on selected GPU");
   }
-  this->nb_queue_graphics = nb_queue_family;
+  struct_vulkan->device.nb_queue_graphics = nb_queue_family;
 
   //List queue families
   std::vector<VkQueueFamilyProperties> vec_queueFamily(nb_queue_family);
@@ -203,7 +203,7 @@ int VK_physical_device::find_queue_family_presentation(VkPhysicalDevice physical
   if(nb_queue_family == 0) {
     throw std::runtime_error("[error] No queue families on selected GPU");
   }
-  this->nb_queue_graphics = nb_queue_family;
+  struct_vulkan->device.nb_queue_presentation = nb_queue_family;
 
   //List queue families
   std::vector<VkQueueFamilyProperties> vec_queueFamily(nb_queue_family);

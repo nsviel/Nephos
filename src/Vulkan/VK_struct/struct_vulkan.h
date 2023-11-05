@@ -7,6 +7,7 @@
 #include "VK_struct/struct_swapchain.h"
 #include "VK_struct/struct_renderpass.h"
 #include "VK_struct/struct_time.h"
+#include "VK_struct/struct_data.h"
 
 #include <string>
 #include <vector>
@@ -28,6 +29,7 @@ struct Struct_vulkan{
   Struct_device device;
   Struct_swapchain swapchain;
   Struct_time time;
+  Struct_data canvas;
 
   VkViewport viewport;
   VkRect2D scissor;

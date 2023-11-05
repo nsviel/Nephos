@@ -7,12 +7,10 @@
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
-
 class VK_engine;
 class VK_pipeline;
 class VK_subpass;
 class VK_viewport;
-class VK_canvas;
 class VK_command;
 class VK_descriptor;
 class VK_uniform;
@@ -43,7 +41,6 @@ private:
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
   VK_viewport* vk_viewport;
-  VK_canvas* vk_canvas;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
   VK_uniform* vk_uniform;

@@ -10,7 +10,7 @@ VK_device::VK_device(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_physical_device = vk_engine->get_vk_physical_device();
+  this->vk_physical_device = new VK_physical_device(vk_engine);
 
   //---------------------------
 }

@@ -40,10 +40,6 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
   Window* window;
-
-  vector<string> vec_device_name;
-  int nb_queue_graphics;
-  int nb_queue_presentation;
 };
 
 #endif

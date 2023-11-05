@@ -8,7 +8,6 @@
 #include <VK_struct/struct_vulkan.h>
 #include <VK_drawing/VK_viewport.h>
 #include <VK_command/VK_command.h>
-#include <VK_presentation/VK_canvas.h>
 #include <VK_drawing/VK_drawing.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_binding/VK_uniform.h>
@@ -34,7 +33,6 @@ ENG_edl::ENG_edl(VK_engine* vk_engine){
   this->vk_subpass = new VK_subpass(vk_engine);
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_drawing = vk_engine->get_vk_drawing();
-  this->vk_canvas = vk_engine->get_vk_canvas();
   this->vk_uniform = new VK_uniform(vk_engine);
   this->vk_command = new VK_command(vk_engine);
 
@@ -118,13 +116,12 @@ void ENG_edl::cmd_draw(Struct_renderpass* renderpass){
 
   Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle_EDL");
   EDL_param* edl_param = edl_shader->get_edl_param();
-  Struct_data* canvas = vk_canvas->get_data_canvas();
 
   vk_pipeline->cmd_bind_pipeline(renderpass, "triangle_EDL");
   edl_shader->update_shader();
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
   vk_descriptor->cmd_bind_descriptor(renderpass, "triangle_EDL", pipeline->binding.descriptor.set);
-  vk_drawing->cmd_draw_data(renderpass, canvas);
+  vk_drawing->cmd_draw_data(renderpass, &struct_vulkan->canvas);
 
   //---------------------------
 }

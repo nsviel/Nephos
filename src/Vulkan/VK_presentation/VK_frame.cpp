@@ -18,7 +18,7 @@ VK_frame::VK_frame(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_physical_device = vk_engine->get_vk_physical_device();
+  this->vk_physical_device = new VK_physical_device(vk_engine);
   this->vk_image = new VK_image(vk_engine);
   this->vk_synchronization = new VK_synchronization(vk_engine);
   this->vk_color = new VK_color(vk_engine);
