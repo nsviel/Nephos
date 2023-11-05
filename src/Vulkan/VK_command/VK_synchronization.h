@@ -33,10 +33,6 @@ private:
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_device* vk_device;
-
-  std::vector<VkSemaphore> semvec_image_available;
-  std::vector<VkSemaphore> semvec_render_finish;
-  std::vector<VkFence> fenvec_inFlight;
 };
 
 #endif

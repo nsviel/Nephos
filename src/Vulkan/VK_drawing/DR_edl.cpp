@@ -46,9 +46,11 @@ void DR_edl::draw_edl(Struct_renderpass* renderpass){
 
   //Update descriptor
   Frame* frame_scene = struct_vulkan->renderpass_scene.get_rendering_frame();
-  Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle_EDL");
-  vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);
-  vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->depth);
+  for(int i=0; i<renderpass->vec_pipeline.size(); i++){
+    Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
+    vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);
+    vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->depth);
+  }
 
   //Record command
   Frame* frame = renderpass->get_rendering_frame();
