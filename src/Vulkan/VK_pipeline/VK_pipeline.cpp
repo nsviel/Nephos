@@ -16,7 +16,7 @@ VK_pipeline::VK_pipeline(VK_engine* vk_engine){
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_descriptor = vk_engine->get_vk_descriptor();
-  this->vk_viewport = vk_engine->get_vk_viewport();
+  this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_shader = new VK_shader(vk_engine);
   this->vk_data = vk_engine->get_vk_data();
   this->vk_binding = new VK_binding(vk_engine);
@@ -241,17 +241,13 @@ void VK_pipeline::create_dynamic_state(Struct_pipeline* pipeline){
 void VK_pipeline::create_viewport(Struct_pipeline* pipeline){
   //---------------------------
 
-  //Viewport
-  VkViewport viewport = vk_viewport->get_viewport();
-  VkRect2D scissor = vk_viewport->get_scissor();
-
   //Viewport info
   VkPipelineViewportStateCreateInfo viewport_state{};
   viewport_state.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
   viewport_state.viewportCount = 1;
-  viewport_state.pViewports = &viewport;
+  viewport_state.pViewports = &struct_vulkan->viewport;
   viewport_state.scissorCount = 1;
-  viewport_state.pScissors = &scissor;
+  viewport_state.pScissors = &struct_vulkan->scissor;
 
   //---------------------------
   pipeline->info.viewport_state = viewport_state;

@@ -24,16 +24,10 @@ public:
 
   //Subfunction
   Struct_viewport* create_viewport();
-
-  inline VkViewport get_viewport(){return viewport;}
-  inline VkRect2D get_scissor(){return scissor;}
-
+  
 private:
   Struct_vulkan* struct_vulkan;
   Window* window;
-
-  VkViewport viewport;
-  VkRect2D scissor;
 };
 
 #endif

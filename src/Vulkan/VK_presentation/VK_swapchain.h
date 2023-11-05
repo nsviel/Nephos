@@ -8,6 +8,7 @@ class Window;
 class VK_engine;
 class VK_physical_device;
 class VK_depth;
+class VK_viewport;
 
 
 class VK_swapchain
@@ -35,6 +36,7 @@ public:
 
 private:
   VK_engine* vk_engine;
+  VK_viewport* vk_viewport;
   Struct_vulkan* struct_vulkan;
   Window* window;
   VK_physical_device* vk_physical_device;

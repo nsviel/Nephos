@@ -19,6 +19,7 @@ VK_swapchain::VK_swapchain(VK_engine* vk_engine){
   this->window = vk_engine->get_window();
   this->vk_physical_device = vk_engine->get_vk_physical_device();
   this->vk_depth = new VK_depth(vk_engine);
+  this->vk_viewport = new VK_viewport(vk_engine);
 
   //---------------------------
 }
@@ -65,7 +66,6 @@ void VK_swapchain::clean_swapchain(){
 
 //Swap chain creation
 void VK_swapchain::create_swapchain(){
-  VK_viewport* vk_viewport = vk_engine->get_vk_viewport();
   //---------------------------
 
   //Create swap chain info
