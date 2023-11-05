@@ -22,13 +22,13 @@ void VK_viewport::init_viewport(){
   //---------------------------
 
   //Viewport
-  viewport = {};
-  viewport.x = 0;
-  viewport.y = 0;
-  viewport.width  = win_dim.x;
-  viewport.height = win_dim.y;
-  viewport.minDepth = 0.0f;
-  viewport.maxDepth = 1.0f;
+  struct_vulkan->viewport = {};
+  struct_vulkan->viewport.x = 0;
+  struct_vulkan->viewport.y = 0;
+  struct_vulkan->viewport.width  = win_dim.x;
+  struct_vulkan->viewport.height = win_dim.y;
+  struct_vulkan->viewport.minDepth = 0.0f;
+  struct_vulkan->viewport.maxDepth = 1.0f;
 
   //Full viewport scissor
   scissor = {};
@@ -41,7 +41,7 @@ void VK_viewport::cmd_viewport(Struct_renderpass* renderpass){
   //---------------------------
 
   //Viewport
-  vkCmdSetViewport(renderpass->command_buffer, 0, 1, &viewport);
+  vkCmdSetViewport(renderpass->command_buffer, 0, 1, &struct_vulkan->viewport);
 
   //Scissor
   vkCmdSetScissor(renderpass->command_buffer, 0, 1, &scissor);
@@ -53,10 +53,10 @@ void VK_viewport::update_viewport(){
   //---------------------------
 
   //Viewport scene
-  viewport.x = 0;
-  viewport.y = 0;
-  viewport.width  = win_dim.x;
-  viewport.height = win_dim.y;
+  struct_vulkan->viewport.x = 0;
+  struct_vulkan->viewport.y = 0;
+  struct_vulkan->viewport.width  = win_dim.x;
+  struct_vulkan->viewport.height = win_dim.y;
 
   //Scissor
   scissor.extent = struct_vulkan->window.extent;

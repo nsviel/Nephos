@@ -29,6 +29,9 @@ struct Struct_vulkan{
   Struct_swapchain swapchain;
   Struct_time time;
 
+  VkViewport viewport;
+  VkRect2D scissor;
+
   Struct_renderpass renderpass_scene;
   Struct_renderpass renderpass_edl;
   Struct_renderpass renderpass_ui;
