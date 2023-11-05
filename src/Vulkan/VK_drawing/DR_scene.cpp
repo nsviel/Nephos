@@ -37,29 +37,15 @@ void DR_scene::draw_scene(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
-  this->record_command(renderpass);
-  this->submit_command(renderpass);
-
-  //---------------------------
-  struct_vulkan->time.renderpass_scene.push_back(timer.stop_ms(t1));
-}
-
-//Subfunction
-void DR_scene::record_command(Struct_renderpass* renderpass){
+  //Record command
   Frame* frame = renderpass->get_rendering_frame();
-  //---------------------------
-
   vk_command->start_render_pass(renderpass, frame, false);
   vk_viewport->cmd_viewport(renderpass);
   this->cmd_draw_scene(renderpass);
   this->cmd_draw_glyph(renderpass);
   vk_command->stop_render_pass(renderpass);
 
-  //---------------------------
-}
-void DR_scene::submit_command(Struct_renderpass* renderpass){
-  //---------------------------
-
+  //Submit command
   Frame* frame_swap = struct_vulkan->swapchain.get_frame_inflight();
   renderpass->semaphore_to_wait = frame_swap->semaphore_image_ready;
   renderpass->semaphore_to_run = frame_swap->semaphore_scene_ready;
@@ -67,6 +53,7 @@ void DR_scene::submit_command(Struct_renderpass* renderpass){
   vk_submit->submit_graphics_command(renderpass);
 
   //---------------------------
+  struct_vulkan->time.renderpass_scene.push_back(timer.stop_ms(t1));
 }
 
 //Command function

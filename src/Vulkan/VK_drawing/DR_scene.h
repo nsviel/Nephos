@@ -29,10 +29,6 @@ public:
   //Main functions
   void draw_scene(Struct_renderpass* renderpass);
 
-  //Subfunction
-  void record_command(Struct_renderpass* renderpass);
-  void submit_command(Struct_renderpass* renderpass);
-
   //Command function
   void cmd_draw_scene(Struct_renderpass* renderpass);
   void cmd_draw_glyph(Struct_renderpass* renderpass);

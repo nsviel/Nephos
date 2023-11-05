@@ -32,27 +32,13 @@ void DR_ui::draw_ui(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
-  this->record_command(renderpass);
-  this->submit_command(renderpass);
-
-  //---------------------------
-  struct_vulkan->time.renderpass_ui.push_back(timer.stop_ms(t1));
-}
-
-//Subfunction
-void DR_ui::record_command(Struct_renderpass* renderpass){
+  //Record command
   Frame* frame = struct_vulkan->swapchain.get_frame_current();
-  //---------------------------
-
   vk_command->start_render_pass(renderpass, frame, false);
   ImGui_ImplVulkan_RenderDrawData(draw_data, renderpass->command_buffer);
   vk_command->stop_render_pass(renderpass);
 
-  //---------------------------
-}
-void DR_ui::submit_command(Struct_renderpass* renderpass){
-  //---------------------------
-
+  //Submit command
   Frame* frame_swap = struct_vulkan->swapchain.get_frame_inflight();
   renderpass->semaphore_to_wait = frame_swap->semaphore_edl_ready;
   renderpass->semaphore_to_run = frame_swap->semaphore_ui_ready;
@@ -60,4 +46,5 @@ void DR_ui::submit_command(Struct_renderpass* renderpass){
   vk_submit->submit_graphics_command(renderpass);
 
   //---------------------------
+  struct_vulkan->time.renderpass_ui.push_back(timer.stop_ms(t1));
 }

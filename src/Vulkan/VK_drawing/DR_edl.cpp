@@ -44,40 +44,20 @@ void DR_edl::draw_edl(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
-  this->update_descriptor(renderpass);
-  this->record_command(renderpass);
-  this->submit_command(renderpass);
-
-  //---------------------------
-  struct_vulkan->time.renderpass_edl.push_back(timer.stop_ms(t1));
-}
-
-//Subfunction
-void DR_edl::update_descriptor(Struct_renderpass* renderpass){
-  //---------------------------
-
+  //Update descriptor
   Frame* frame_scene = struct_vulkan->renderpass_scene.get_rendering_frame();
   Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle_EDL");
   vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);
   vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->depth);
 
-  //---------------------------
-}
-void DR_edl::record_command(Struct_renderpass* renderpass){
+  //Record command
   Frame* frame = renderpass->get_rendering_frame();
-  //---------------------------
-
-
   vk_command->start_render_pass(renderpass, frame, false);
   vk_viewport->cmd_viewport(renderpass);
   this->cmd_draw(renderpass);
   vk_command->stop_render_pass(renderpass);
 
-  //---------------------------
-}
-void DR_edl::submit_command(Struct_renderpass* renderpass){
-  //---------------------------
-
+  //Submit command
   Frame* frame_swap = struct_vulkan->swapchain.get_frame_inflight();
   renderpass->semaphore_to_wait = frame_swap->semaphore_scene_ready;
   renderpass->semaphore_to_run = frame_swap->semaphore_edl_ready;
@@ -85,6 +65,7 @@ void DR_edl::submit_command(Struct_renderpass* renderpass){
   vk_submit->submit_graphics_command(renderpass);
 
   //---------------------------
+  struct_vulkan->time.renderpass_edl.push_back(timer.stop_ms(t1));
 }
 
 //Command function

@@ -27,10 +27,6 @@ public:
   //Main functions
   void draw_ui(Struct_renderpass* renderpass);
 
-  //Subfunction
-  void record_command(Struct_renderpass* renderpass);
-  void submit_command(Struct_renderpass* renderpass);
-
   inline void set_imgui_drawdata(ImDrawData* value){this->draw_data = value;}
 
 private:
