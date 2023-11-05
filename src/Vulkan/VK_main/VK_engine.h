@@ -42,6 +42,11 @@ public:
   void device_wait_idle();
   void reload_shader(string shader, string subshader);
 
+  //Data function
+  void insert_object_in_engine(Object* object);
+  void insert_glyph_in_engine(Object* object);
+  void remove_object_in_engine(Object* object);
+
   inline Engine* get_engine(){return engine;}
   inline Window* get_window(){return window;}
 
@@ -92,6 +97,9 @@ private:
   VK_frame* vk_frame;
   VK_canvas* vk_canvas;
   VK_drawing* vk_drawing;
+
+  std::list<Object*> list_scene;
+  std::list<Object*> list_glyph;
 };
 
 #endif

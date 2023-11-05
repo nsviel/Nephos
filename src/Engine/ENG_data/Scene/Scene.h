@@ -5,7 +5,7 @@
 
 class Data;
 class Database;
-class GPU_data;
+class VK_engine;
 class Attribut;
 class Camera;
 
@@ -43,7 +43,7 @@ public:
 private:
   Data* data;
   Database* database;
-  GPU_data* gpu_data;
+  VK_engine* vk_engine;
   Attribut* attributManager;
   Camera* cameraManager;
 

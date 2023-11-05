@@ -7,8 +7,6 @@
 #include "../VK_binding/VK_binding.h"
 #include "../VK_binding/VK_descriptor.h"
 
-#include <VK_main/GPU_data.h>
-
 
 //Constructor / Destructor
 VK_data::VK_data(VK_engine* vk_engine){

@@ -4,7 +4,7 @@
 #include "../Load/Loader.h"
 
 #include <Engine.h>
-#include <VK_main/GPU_data.h>
+#include <VK_main/VK_engine.h>
 #include <ENG_camera/Camera.h>
 #include <ENG_operation/Transformation/Attribut.h>
 
@@ -16,7 +16,7 @@ Scene::Scene(Data* data){
   Engine* engine = data->get_engine();
   this->data = data;
   this->database = data->get_dataManager();
-  this->gpu_data = engine->get_gpu_data();
+  this->vk_engine = engine->get_vk_engine();
   this->cameraManager = engine->get_cameraManager();
   this->attributManager = new Attribut();
 
@@ -69,7 +69,7 @@ void Scene::insert_glyph_object(Object* object){
 
   object->ID = ID_obj++;
   object->is_suppressible = false;
-  gpu_data->insert_glyph_in_engine(object);
+  vk_engine->insert_glyph_in_engine(object);
   set_glyph->list_obj.push_back(object);
   set_glyph->selected_obj = object;
   set_glyph->nb_object++;
@@ -81,7 +81,7 @@ void Scene::insert_scene_object(Object* object){
 
   //Set new object functions
   object->ID = ID_obj++;
-  gpu_data->insert_object_in_engine(object);
+  vk_engine->insert_object_in_engine(object);
   attributManager->compute_MinMax(object);
 
   //Insert it into database
@@ -99,7 +99,7 @@ void Scene::delete_scene_object(Object* object){
     Object* object_list = *next(set_scene->list_obj.begin(),i);
     if(object->ID == object_list->ID){
       set_scene->list_obj.remove(object);
-      gpu_data->remove_object_in_engine(object);
+      vk_engine->remove_object_in_engine(object);
       set_scene->nb_object--;
     }
   }
@@ -113,7 +113,7 @@ void Scene::empty_scene_set(){
     Object* object = *next(set_scene->list_obj.begin(),i);
 
     set_scene->list_obj.remove(object);
-    gpu_data->remove_object_in_engine(object);
+    vk_engine->remove_object_in_engine(object);
     set_scene->nb_object--;
   }
 

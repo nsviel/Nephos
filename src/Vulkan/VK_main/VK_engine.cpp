@@ -22,7 +22,7 @@
 #include <Engine.h>
 #include <Param.h>
 #include <ELE_window/Window.h>
-#include <VK_main/VK_viewport.h>
+#include <VK_drawing/VK_viewport.h>
 #include <VK_main/VK_render.h>
 
 
@@ -111,6 +111,62 @@ void VK_engine::reload_shader(string shader, string subshader){
   //---------------------------
 
   vk_reload->hot_shader_reload(shader, subshader);
+
+  //---------------------------
+}
+
+//Data function
+void VK_engine::insert_object_in_engine(Object* object){
+  //---------------------------
+
+  //Check if object already in engine
+  bool is_in_list = false;
+  for(int i=0; i<list_scene.size(); i++){
+    Object* object_list = *next(list_scene.begin(),i);
+    if(object->ID == object_list->ID){
+      is_in_list = true;
+    }
+  }
+
+  //If not, insert it
+  if(is_in_list == false){
+    list_scene.push_back(object);
+    vk_data->insert_scene_object(object);
+  }
+
+  //---------------------------
+}
+void VK_engine::insert_glyph_in_engine(Object* object){
+  //---------------------------
+
+  //Check if object already in engine
+  bool is_in_list = false;
+  for(int i=0; i<list_glyph.size(); i++){
+    Object* object_list = *next(list_glyph.begin(),i);
+    if(object->ID == object_list->ID){
+      is_in_list = true;
+    }
+  }
+
+  //If not, insert it
+  if(is_in_list == false){
+    list_glyph.push_back(object);
+    vk_data->insert_glyph_object(object);
+  }
+
+  //---------------------------
+}
+void VK_engine::remove_object_in_engine(Object* object){
+  //---------------------------
+
+  bool is_in_list = false;
+  for(int i=0; i<list_scene.size(); i++){
+    Object* object_list = *next(list_scene.begin(),i);
+    if(object->ID == object_list->ID){
+      list_scene.remove(object_list);
+      vk_data->clean_data_scene(object->ID);
+    }
+  }
 
   //---------------------------
 }
