@@ -16,7 +16,6 @@ class VK_swapchain;
 class VK_submit;
 class DR_scene;
 class DR_edl;
-class DR_ui;
 
 
 class VK_drawing
@@ -32,8 +31,6 @@ public:
   void cmd_draw_data(Struct_renderpass* renderpass, Struct_data* data);
   void cmd_line_with(Struct_renderpass* renderpass, Struct_data* data);
 
-  inline DR_ui* get_ui_drawing(){return dr_ui;}
-
 private:
   Timer timer;
 
@@ -44,7 +41,6 @@ private:
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;
   VK_swapchain* vk_swapchain;
-  DR_ui* dr_ui;
   DR_scene* dr_scene;
   DR_edl* dr_edl;
 };

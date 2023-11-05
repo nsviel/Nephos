@@ -5,7 +5,6 @@
 
 class GUI;
 class Struct_vulkan;
-class DR_ui;
 class VK_imgui;
 
 
@@ -27,7 +26,6 @@ public:
 private:
   VK_imgui* vk_imgui;
   Struct_vulkan* struct_vulkan;
-  DR_ui* ui_drawing;
 
   VkDescriptorPool imguiPool;
   ImDrawData* draw_data;

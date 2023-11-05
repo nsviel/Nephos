@@ -6,8 +6,8 @@
 #include <VK_main/VK_engine.h>
 #include <VK_struct/struct_vulkan.h>
 #include <VK_pipeline/VK_pipeline.h>
-#include <VK_renderpass/VK_renderpass.h>
-#include <VK_renderpass/RP_edl.h>
+#include <VK_drawing/VK_renderpass.h>
+#include <ENG_vulkan/RP_edl.h>
 
 
 //Constructor / Destructor

@@ -5,8 +5,6 @@
 #include <VK_struct/struct_vulkan.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_imgui.h>
-#include <VK_drawing/VK_drawing.h>
-#include <VK_drawing/DR_ui.h>
 #include <ELE_window/Window.h>
 
 
@@ -17,9 +15,7 @@ GUI_gpu::GUI_gpu(GUI* gui){
   Engine* engine = gui->get_engine();
   VK_engine* vk_engine = engine->get_vk_engine();
   this->vk_imgui = vk_engine->get_vk_imgui();
-  VK_drawing* vk_drawing = vk_engine->get_vk_drawing();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->ui_drawing = vk_drawing->get_ui_drawing();
 
   //---------------------------
 }
@@ -50,8 +46,6 @@ void GUI_gpu::render_frame(){
   //---------------------------
 
   ImGui::Render();
-  this->draw_data = ImGui::GetDrawData();
-  ui_drawing->set_imgui_drawdata(draw_data);
 
   //---------------------------
 }

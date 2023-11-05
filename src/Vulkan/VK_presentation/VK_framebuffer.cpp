@@ -6,7 +6,7 @@
 #include "../VK_presentation/VK_frame.h"
 #include "../VK_image/VK_depth.h"
 #include "../VK_device/VK_device.h"
-#include "../VK_renderpass/VK_renderpass.h"
+#include "../VK_drawing/VK_renderpass.h"
 
 
 //Constructor / Destructor

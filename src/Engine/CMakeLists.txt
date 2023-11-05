@@ -11,6 +11,7 @@ file(GLOB_RECURSE ALL_SOURCES
   ENG_gpu/*.cpp
   ENG_operation/*.cpp
   ENG_shader/*.cpp
+  ENG_vulkan/*.cpp
   Engine.cpp
   Param.cpp
 )

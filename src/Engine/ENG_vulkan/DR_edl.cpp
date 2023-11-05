@@ -59,9 +59,6 @@ void DR_edl::draw_edl(Struct_renderpass* renderpass){
   this->cmd_draw(renderpass);
   vk_command->stop_render_pass(renderpass);
 
-  //Submit command
-  vk_submit->submit_graphics_command(renderpass);
-
   //---------------------------
   struct_vulkan->time.renderpass_edl.push_back(timer.stop_ms(t1));
 }

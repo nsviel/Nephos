@@ -31,8 +31,8 @@ struct Struct_vulkan{
 
   Struct_renderpass renderpass_scene;
   Struct_renderpass renderpass_edl;
-  Struct_renderpass renderpass_psr;
   Struct_renderpass renderpass_ui;
+  std::vector<Struct_renderpass> vec_renderpass;
 
   //---------------------------
 };

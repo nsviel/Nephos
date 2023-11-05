@@ -37,16 +37,12 @@ void DR_scene::draw_scene(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
-  //Record command
   Frame* frame = renderpass->get_rendering_frame();
   vk_command->start_render_pass(renderpass, frame, false);
   vk_viewport->cmd_viewport(renderpass);
   this->cmd_draw_scene(renderpass);
   this->cmd_draw_glyph(renderpass);
   vk_command->stop_render_pass(renderpass);
-
-  //Submit command
-  vk_submit->submit_graphics_command(renderpass);
 
   //---------------------------
   struct_vulkan->time.renderpass_scene.push_back(timer.stop_ms(t1));
