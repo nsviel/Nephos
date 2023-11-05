@@ -11,6 +11,7 @@ VK_physical_device::VK_physical_device(VK_engine* vk_engine){
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->window = vk_engine->get_window();
 
+  struct_vulkan->device.extension.clear();
   struct_vulkan->device.extension.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
   struct_vulkan->device.extension.push_back(VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME);
 

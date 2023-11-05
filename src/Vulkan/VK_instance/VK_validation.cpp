@@ -1,5 +1,4 @@
 #include "VK_validation.h"
-#include "VK_instance.h"
 
 #include <VK_main/VK_engine.h>
 #include "../VK_struct/struct_vulkan.h"
@@ -10,8 +9,8 @@ VK_validation::VK_validation(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_instance = vk_engine->get_vk_instance();
 
+  this->struct_vulkan->instance.extension.clear();
   this->struct_vulkan->instance.extension.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
   this->struct_vulkan->instance.extension.push_back(VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME);
   this->validation_layers = {"VK_LAYER_KHRONOS_validation"};

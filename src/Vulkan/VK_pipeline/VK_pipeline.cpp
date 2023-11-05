@@ -18,7 +18,7 @@ VK_pipeline::VK_pipeline(VK_engine* vk_engine){
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_shader = new VK_shader(vk_engine);
-  this->vk_data = vk_engine->get_vk_data();
+  this->vk_data = new VK_data(vk_engine);
   this->vk_binding = new VK_binding(vk_engine);
 
   //---------------------------

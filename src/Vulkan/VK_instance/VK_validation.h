@@ -6,7 +6,6 @@
 
 class VK_engine;
 class Struct_vulkan;
-class VK_instance;
 
 
 class VK_validation
@@ -35,7 +34,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_instance* vk_instance;
 
   vector<const char*> validation_layers;
   bool with_validation_layer;
