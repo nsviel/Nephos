@@ -5,15 +5,13 @@
 #include <VK_struct/struct_pipeline.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
+class VK_engine;
 class VK_pipeline;
 class VK_subpass;
 class VK_viewport;
-
 class VK_command;
 class VK_descriptor;
-class VK_submit;
 class VK_data;
 class VK_uniform;
 class VK_drawing;
@@ -37,16 +35,13 @@ public:
 
 private:
   Timer timer;
-
+  Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
-  VK_submit* vk_submit;
   VK_data* vk_data;
   VK_uniform* vk_uniform;
   VK_drawing* vk_drawing;
-
   VK_engine* vk_engine;
-  Struct_vulkan* struct_vulkan;
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
   VK_viewport* vk_viewport;

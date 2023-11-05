@@ -1,50 +1,40 @@
 #include "ENG_edl.h"
 
 #include <Engine.h>
-#include <ENG_shader/Shader.h>
-#include <ENG_shader/EDL/EDL_shader.h>
-#include <ENG_shader/EDL/EDL_param.h>
 #include <VK_drawing/VK_renderpass.h>
 #include <VK_pipeline/VK_subpass.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
 #include <VK_struct/struct_vulkan.h>
 #include <VK_main/VK_viewport.h>
-
-#include <Engine.h>
-#include <VK_pipeline/VK_pipeline.h>
-#include <VK_command/VK_submit.h>
-#include <VK_main/VK_engine.h>
-#include <VK_struct/struct_vulkan.h>
 #include <VK_command/VK_command.h>
 #include <VK_presentation/VK_canvas.h>
 #include <VK_drawing/VK_drawing.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_binding/VK_uniform.h>
-#include <VK_main/VK_viewport.h>
+
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>
-
+#include <ENG_shader/EDL/EDL_param.h>
 
 
 //Constructor / Destructor
 ENG_edl::ENG_edl(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
+  Engine* engine = vk_engine->get_engine();
+  Shader* shaderManager = engine->get_shaderManager();
+
   this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->edl_shader = shaderManager->get_edl_shader();
+
+  this->vk_engine = vk_engine;
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = vk_engine->get_vk_viewport();
   this->vk_subpass = new VK_subpass(vk_engine);
-
-  Engine* engine = vk_engine->get_engine();
-  Shader* shaderManager = engine->get_shaderManager();
-  this->edl_shader = shaderManager->get_edl_shader();
-
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_drawing = vk_engine->get_vk_drawing();
   this->vk_canvas = vk_engine->get_vk_canvas();
-  this->vk_submit = new VK_submit(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
   this->vk_command = new VK_command(vk_engine);
 
@@ -53,7 +43,6 @@ ENG_edl::ENG_edl(VK_engine* vk_engine){
 ENG_edl::~ENG_edl(){
   //---------------------------
 
-  delete vk_subpass;
 
   //---------------------------
 }
@@ -74,14 +63,8 @@ void ENG_edl::init_renderpass(Struct_renderpass* renderpass){
   //---------------------------
   vk_renderpass->create_renderpass(renderpass);
 }
-
-//Pipeline
 Struct_pipeline* ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   //---------------------------
-
-  Engine* engine = vk_engine->get_engine();
-  Shader* shaderManager = engine->get_shaderManager();
-  EDL_shader* edl_shader = shaderManager->get_edl_shader();
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->name = "triangle_EDL";
@@ -113,8 +96,6 @@ void ENG_edl::recreate_pipeline_edl(){
 
   //---------------------------
 }
-
-//Main function
 void ENG_edl::draw_edl(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------
@@ -137,8 +118,6 @@ void ENG_edl::draw_edl(Struct_renderpass* renderpass){
   //---------------------------
   struct_vulkan->time.renderpass_edl.push_back(timer.stop_ms(t1));
 }
-
-//Command function
 void ENG_edl::cmd_draw(Struct_renderpass* renderpass){
   //---------------------------
 

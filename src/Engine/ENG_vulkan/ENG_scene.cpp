@@ -10,15 +10,14 @@
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/Scene/SCE_shader.h>
 #include <VK_command/VK_submit.h>
-#include <VK_main/VK_engine.h>
-#include <VK_struct/struct_vulkan.h>
+
 #include <VK_command/VK_command.h>
 #include <VK_presentation/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
-#include <VK_main/VK_viewport.h>
+
 #include <VK_binding/VK_uniform.h>
 #include <VK_data/VK_data.h>
-#include <VK_pipeline/VK_pipeline.h>
+
 #include <VK_drawing/VK_drawing.h>
 
 
@@ -26,15 +25,14 @@
 ENG_scene::ENG_scene(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
+
+  this->vk_engine = vk_engine;
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = vk_engine->get_vk_viewport();
   this->vk_subpass = new VK_subpass(vk_engine);
-
   this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = vk_engine->get_vk_descriptor();
-  this->vk_submit = new VK_submit(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
   this->vk_data = vk_engine->get_vk_data();
   this->vk_drawing = vk_engine->get_vk_drawing();

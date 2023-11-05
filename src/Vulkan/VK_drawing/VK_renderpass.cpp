@@ -31,16 +31,7 @@ VK_renderpass::VK_renderpass(VK_engine* vk_engine){
 
   //---------------------------
 }
-VK_renderpass::~VK_renderpass(){
-  //---------------------------
-
-  delete vk_subpass;
-  delete rp_scene;
-  delete rp_edl;
-  delete rp_ui;
-
-  //---------------------------
-}
+VK_renderpass::~VK_renderpass(){}
 
 //Main function
 void VK_renderpass::init_renderpass(){

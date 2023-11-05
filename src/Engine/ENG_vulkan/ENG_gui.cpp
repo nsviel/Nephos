@@ -15,21 +15,16 @@
 ENG_gui::ENG_gui(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_pipeline = new VK_pipeline(vk_engine);
+
+  this->vk_engine = vk_engine;
   this->vk_viewport = vk_engine->get_vk_viewport();
+  this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_subpass = new VK_subpass(vk_engine);
 
   //---------------------------
 }
-ENG_gui::~ENG_gui(){
-  //---------------------------
-
-  delete vk_subpass;
-
-  //---------------------------
-}
+ENG_gui::~ENG_gui(){}
 
 //Main function
 void ENG_gui::init_renderpass(Struct_renderpass* renderpass){
@@ -43,8 +38,6 @@ void ENG_gui::init_renderpass(Struct_renderpass* renderpass){
   //---------------------------
   vk_renderpass->create_renderpass(renderpass);
 }
-
-//Pipeline
 void ENG_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
   //---------------------------
 

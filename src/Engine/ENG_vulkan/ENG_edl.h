@@ -6,16 +6,15 @@
 #include <ENG_shader/Shader.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
+
+class VK_engine;
 class VK_pipeline;
 class VK_subpass;
 class VK_viewport;
-
 class VK_canvas;
 class VK_command;
 class VK_descriptor;
-class VK_submit;
 class VK_uniform;
 class VK_drawing;
 
@@ -37,17 +36,16 @@ public:
 
 private:
   Timer timer;
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
+  EDL_shader* edl_shader;
+
+  VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
   VK_viewport* vk_viewport;
-  EDL_shader* edl_shader;
-
   VK_canvas* vk_canvas;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
-  VK_submit* vk_submit;
   VK_uniform* vk_uniform;
   VK_drawing* vk_drawing;
 };
