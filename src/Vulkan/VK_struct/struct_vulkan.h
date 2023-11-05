@@ -20,11 +20,15 @@
 struct Struct_vulkan{
   //---------------------------
 
+  //Element
   int nb_frame;
   VkFormat required_image_format = VK_FORMAT_B8G8R8A8_UNORM; //VK_FORMAT_B8G8R8A8_SRGB
   VkCommandPool command_pool;
   VkDescriptorPool descriptor_pool;
+  VkViewport viewport;
+  VkRect2D scissor;
 
+  //Structure
   Struct_window window;
   Struct_instance instance;
   Struct_device device;
@@ -32,15 +36,13 @@ struct Struct_vulkan{
   Struct_time time;
   Struct_data canvas;
 
-  VkViewport viewport;
-  VkRect2D scissor;
-
   Struct_renderpass renderpass_scene;
   Struct_renderpass renderpass_edl;
   Struct_renderpass renderpass_ui;
+
+  //Data
   std::vector<Struct_renderpass> vec_renderpass;
   std::vector<Struct_image*> vec_texture;
-
   std::list<Struct_data*> list_data_scene;
   std::list<Struct_data*> list_data_glyph;
 

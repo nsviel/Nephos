@@ -38,8 +38,8 @@ private:
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;
   VK_swapchain* vk_swapchain;
-  ENG_scene* rp_scene;
-  ENG_edl* rp_edl;
+  ENG_scene* eng_scene;
+  ENG_edl* eng_edl;
 
   Timer timer;
 };

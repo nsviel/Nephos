@@ -32,7 +32,7 @@ ENG_edl::ENG_edl(VK_engine* vk_engine){
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_subpass = new VK_subpass(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);
-  this->vk_drawing = new VK_drawing(vk_engine);
+  this->vk_drawing = vk_engine->get_vk_drawing();
   this->vk_uniform = new VK_uniform(vk_engine);
   this->vk_command = new VK_command(vk_engine);
 

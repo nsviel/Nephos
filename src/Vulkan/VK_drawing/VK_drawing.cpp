@@ -21,13 +21,13 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->struct_synchro = vk_engine->get_struct_synchro();
-  
+
   this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_submit = new VK_submit(vk_engine);
   this->vk_swapchain = new VK_swapchain(vk_engine);
-  this->rp_scene = new ENG_scene(vk_engine);
-  this->rp_edl = new ENG_edl(vk_engine);
+  this->eng_scene = new ENG_scene(vk_engine);
+  this->eng_edl = new ENG_edl(vk_engine);
 
   //---------------------------
 }
@@ -52,7 +52,7 @@ void VK_drawing::draw_frame(){
   renderpass->semaphore_wait = struct_synchro->vec_semaphore_image[0];
   renderpass->semaphore_done = struct_synchro->vec_semaphore_render[0];
   renderpass->fence = VK_NULL_HANDLE;
-  rp_scene->draw_scene(renderpass);
+  eng_scene->draw_scene(renderpass);
   vk_submit->submit_graphics_command(renderpass);
 
   //EDL
@@ -60,7 +60,7 @@ void VK_drawing::draw_frame(){
   renderpass->semaphore_wait = struct_synchro->vec_semaphore_render[0];
   renderpass->semaphore_done = struct_synchro->vec_semaphore_render[1];
   renderpass->fence = VK_NULL_HANDLE;
-  rp_edl->draw_edl(&struct_vulkan->renderpass_edl);
+  eng_edl->draw_edl(&struct_vulkan->renderpass_edl);
   vk_submit->submit_graphics_command(renderpass);
 
   //GUI
