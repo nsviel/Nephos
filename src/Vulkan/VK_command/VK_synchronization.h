@@ -29,6 +29,7 @@ public:
   //Deletion function
   void clean_semaphore(VkSemaphore& semaphore);
   void clean_fence(VkFence& fence);
+  void clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore);
 
 private:
   VK_engine* vk_engine;

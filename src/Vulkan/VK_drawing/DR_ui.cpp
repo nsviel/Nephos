@@ -39,10 +39,6 @@ void DR_ui::draw_ui(Struct_renderpass* renderpass){
   vk_command->stop_render_pass(renderpass);
 
   //Submit command
-  Frame* frame_swap = struct_vulkan->swapchain.get_frame_inflight();
-  renderpass->semaphore_to_wait = frame_swap->semaphore_edl_ready;
-  renderpass->semaphore_to_run = frame_swap->semaphore_ui_ready;
-  renderpass->fence = frame_swap->fence;
   vk_submit->submit_graphics_command(renderpass);
 
   //---------------------------

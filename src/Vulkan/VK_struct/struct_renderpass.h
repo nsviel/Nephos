@@ -41,8 +41,8 @@ struct Struct_renderpass{
   std::vector<Struct_pipeline*> vec_pipeline;
   std::vector<Struct_subpass*> vec_subpass;
 
-  VkSemaphore semaphore_to_wait;
-  VkSemaphore semaphore_to_run;
+  VkSemaphore semaphore_wait;
+  VkSemaphore semaphore_done;
   VkFence fence;
 
   //---------------------------

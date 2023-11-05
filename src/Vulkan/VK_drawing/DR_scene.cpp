@@ -46,10 +46,6 @@ void DR_scene::draw_scene(Struct_renderpass* renderpass){
   vk_command->stop_render_pass(renderpass);
 
   //Submit command
-  Frame* frame_swap = struct_vulkan->swapchain.get_frame_inflight();
-  renderpass->semaphore_to_wait = frame_swap->semaphore_image_ready;
-  renderpass->semaphore_to_run = frame_swap->semaphore_scene_ready;
-  renderpass->fence = VK_NULL_HANDLE;
   vk_submit->submit_graphics_command(renderpass);
 
   //---------------------------

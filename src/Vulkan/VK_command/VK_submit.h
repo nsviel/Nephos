@@ -22,14 +22,14 @@ public:
 
 public:
   //Main functions
-  void acquire_next_image(Struct_swapchain* swapchain);
+  void acquire_next_image(Struct_swapchain* swapchain, VkSemaphore& semaphore, VkFence& fence);
   void set_next_frame_ID(Struct_swapchain* swapchain);
 
   //Queue submission
   void submit_graphics_command(Struct_submit_command* command);
   void submit_graphics_command(Struct_renderpass* renderpass);
   void submit_graphics_commands(Struct_submit_commands* commands);
-  void submit_presentation(Struct_swapchain* swapchain);
+  void submit_presentation(Struct_swapchain* swapchain, VkSemaphore& semaphore);
 
 private:
   Struct_vulkan* struct_vulkan;

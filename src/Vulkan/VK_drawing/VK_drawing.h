@@ -12,6 +12,7 @@ class Struct_vulkan;
 class Struct_synchro;
 class VK_command;
 class VK_descriptor;
+class VK_swapchain;
 class VK_submit;
 class DR_scene;
 class DR_edl;
@@ -42,6 +43,7 @@ private:
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;
+  VK_swapchain* vk_swapchain;
   DR_ui* dr_ui;
   DR_scene* dr_scene;
   DR_edl* dr_edl;

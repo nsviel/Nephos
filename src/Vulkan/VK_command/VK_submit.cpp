@@ -21,23 +21,21 @@ VK_submit::VK_submit(VK_engine* vk_engine){
 VK_submit::~VK_submit(){}
 
 //Main function
-void VK_submit::acquire_next_image(Struct_swapchain* swapchain){
-  Frame* frame_inflight = swapchain->get_frame_inflight();
+void VK_submit::acquire_next_image(Struct_swapchain* swapchain, VkSemaphore& semaphore, VkFence& fence){
   //---------------------------
 
   //Wait and reset fence
-  vkWaitForFences(struct_vulkan->device.device, 1, &frame_inflight->fence, VK_TRUE, UINT64_MAX);
-  vkResetFences(struct_vulkan->device.device, 1, &frame_inflight->fence);
+  vkWaitForFences(struct_vulkan->device.device, 1, &fence, VK_TRUE, UINT64_MAX);
+  vkResetFences(struct_vulkan->device.device, 1, &fence);
 
   //Acquiring an image from the swap chain
-  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.device, swapchain->swapchain, UINT64_MAX, frame_inflight->semaphore_image_ready, VK_NULL_HANDLE, &swapchain->frame_current_ID);
+  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.device, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_current_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     vk_swapchain->recreate_swapChain();
     return;
   }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
     throw std::runtime_error("[error] failed to acquire swap chain image!");
   }
-
 
   //Window resizing
   vk_surface->check_for_resizing();
@@ -67,10 +65,10 @@ void VK_submit::submit_graphics_command(Struct_submit_command* command){
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   submit_info.waitSemaphoreCount = 1;
-  submit_info.pWaitSemaphores = &command->semaphore_to_wait;
+  submit_info.pWaitSemaphores = &command->semaphore_wait;
   submit_info.pWaitDstStageMask = &command->wait_stage;
   submit_info.signalSemaphoreCount = 1;
-  submit_info.pSignalSemaphores = &command->semaphore_to_run;
+  submit_info.pSignalSemaphores = &command->semaphore_done;
   submit_info.commandBufferCount = 1;
   submit_info.pCommandBuffers = &command->command_buffer;
 
@@ -85,21 +83,20 @@ void VK_submit::submit_graphics_command(Struct_submit_command* command){
 void VK_submit::submit_graphics_command(Struct_renderpass* renderpass){
   //---------------------------
 
-  Frame* frame_swap = struct_vulkan->swapchain.get_frame_inflight();
   Struct_submit_command command;
   command.command_buffer = renderpass->command_buffer;
-  command.semaphore_to_wait = renderpass->semaphore_to_wait;
-  command.semaphore_to_run = renderpass->semaphore_to_run;
+  command.semaphore_wait = renderpass->semaphore_wait;
+  command.semaphore_done = renderpass->semaphore_done;
   command.fence = renderpass->fence;
   command.wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
 
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   submit_info.waitSemaphoreCount = 1;
-  submit_info.pWaitSemaphores  = &command.semaphore_to_wait;
+  submit_info.pWaitSemaphores  = &command.semaphore_wait;
   submit_info.pWaitDstStageMask = &command.wait_stage;
   submit_info.signalSemaphoreCount = 1;
-  submit_info.pSignalSemaphores = &command.semaphore_to_run;
+  submit_info.pSignalSemaphores = &command.semaphore_done;
   submit_info.commandBufferCount = 1;
   submit_info.pCommandBuffers = &command.command_buffer;
 
@@ -116,11 +113,11 @@ void VK_submit::submit_graphics_commands(Struct_submit_commands* commands){
 
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  submit_info.waitSemaphoreCount = commands->vec_semaphore_to_wait.size();
-  submit_info.pWaitSemaphores = commands->vec_semaphore_to_wait.data();
+  submit_info.waitSemaphoreCount = commands->vec_semaphore_rp_wait.size();
+  submit_info.pWaitSemaphores = commands->vec_semaphore_rp_wait.data();
   submit_info.pWaitDstStageMask = commands->vec_wait_stage.data();
-  submit_info.signalSemaphoreCount = commands->vec_semaphore_to_run.size();
-  submit_info.pSignalSemaphores = commands->vec_semaphore_to_run.data();
+  submit_info.signalSemaphoreCount = commands->vec_semaphore_rp_done.size();
+  submit_info.pSignalSemaphores = commands->vec_semaphore_rp_done.data();
   submit_info.commandBufferCount = commands->vec_command_buffer.size();
   submit_info.pCommandBuffers = commands->vec_command_buffer.data();
 
@@ -132,14 +129,13 @@ void VK_submit::submit_graphics_commands(Struct_submit_commands* commands){
 
   //---------------------------
 }
-void VK_submit::submit_presentation(Struct_swapchain* swapchain){
-  Frame* frame_inflight = swapchain->get_frame_inflight();
+void VK_submit::submit_presentation(Struct_swapchain* swapchain, VkSemaphore& semaphore){
   //---------------------------
 
   VkPresentInfoKHR presentation_info{};
   presentation_info.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
   presentation_info.waitSemaphoreCount = 1;
-  presentation_info.pWaitSemaphores = &frame_inflight->semaphore_ui_ready;
+  presentation_info.pWaitSemaphores = &semaphore;
   presentation_info.swapchainCount = 1;
   presentation_info.pSwapchains = &swapchain->swapchain;
   presentation_info.pImageIndices = &swapchain->frame_current_ID;

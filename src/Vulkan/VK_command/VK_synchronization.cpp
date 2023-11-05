@@ -29,14 +29,30 @@ void VK_synchronization::init_frame_sync(Frame* frame){
   this->create_semaphore(frame->semaphore_ui_ready);
   this->create_fence(frame->fence);
 
+  //Create semaphore - Renderpass
   for(int i=0; i<4; i++){
     VkSemaphore semaphore_beg;
     VkSemaphore semaphore_end;
     this->create_semaphore(semaphore_beg);
     this->create_semaphore(semaphore_end);
-    struct_synchro->vec_semaphore_beg.push_back(semaphore_beg);
-    struct_synchro->vec_semaphore_end.push_back(semaphore_end);
+    struct_synchro->vec_semaphore_rp_wait.push_back(semaphore_beg);
+    struct_synchro->vec_semaphore_rp_done.push_back(semaphore_end);
   }
+
+  //Create semaphore - Presentation
+  VkSemaphore semaphore_present;
+  this->create_semaphore(semaphore_present);
+  struct_synchro->vec_semaphore_present.push_back(semaphore_present);
+
+  //Create semaphore - Image acquisition
+  VkSemaphore semaphore_image;
+  this->create_semaphore(semaphore_image);
+  struct_synchro->vec_semaphore_image.push_back(semaphore_image);
+
+  //Create fence
+  VkFence fence;
+  this->create_fence(fence);
+  struct_synchro->vec_fence.push_back(fence);
 
   //---------------------------
 }
@@ -49,14 +65,18 @@ void VK_synchronization::clean_frame_sync(Frame* frame){
   this->clean_semaphore(frame->semaphore_ui_ready);
   this->clean_fence(frame->fence);
 
-  for(int i=0; i<struct_synchro->vec_semaphore_beg.size(); i++){
-    VkSemaphore& semaphore_beg = struct_synchro->vec_semaphore_beg[i];
-    VkSemaphore& semaphore_end = struct_synchro->vec_semaphore_end[i];
-    this->clean_semaphore(semaphore_beg);
-    this->clean_semaphore(semaphore_end);
+  //Clean semaphore
+  this->clean_vec_semaphore(struct_synchro->vec_semaphore_rp_wait);
+  this->clean_vec_semaphore(struct_synchro->vec_semaphore_rp_done);
+  this->clean_vec_semaphore(struct_synchro->vec_semaphore_image);
+  this->clean_vec_semaphore(struct_synchro->vec_semaphore_present);
+
+  //Clean fence
+  for(int i=0; i<struct_synchro->vec_fence.size(); i++){
+    VkFence& fence = struct_synchro->vec_fence[i];
+    this->clean_fence(fence);
   }
-  struct_synchro->vec_semaphore_beg.clear();
-  struct_synchro->vec_semaphore_end.clear();
+  struct_synchro->vec_fence.clear();
 
   //---------------------------
 }
@@ -102,6 +122,17 @@ void VK_synchronization::clean_fence(VkFence& fence){
   //---------------------------
 
   vkDestroyFence(struct_vulkan->device.device, fence, nullptr);
+
+  //---------------------------
+}
+void VK_synchronization::clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore){
+  //---------------------------
+
+  for(int i=0; i<vec_semaphore.size(); i++){
+    VkSemaphore& semaphore = vec_semaphore[i];
+    this->clean_semaphore(semaphore);
+  }
+  vec_semaphore.clear();
 
   //---------------------------
 }
