@@ -32,6 +32,7 @@ VK_engine::VK_engine(Engine* engine){
 
   this->engine = engine;
   this->window = engine->get_window();
+  
   this->struct_param = new Struct_param();
   this->struct_vulkan = new Struct_vulkan();
   this->struct_synchro = new Struct_synchro();
