@@ -34,7 +34,7 @@ public:
   void create_renderpass(Struct_renderpass* renderpass);
   void create_renderpass_obj(Struct_renderpass* renderpass);
 
-  inline ENG_edl* get_rp_edl(){return rp_edl;}
+  inline ENG_edl* get_eng_edl(){return eng_edl;}
 
 private:
   VK_engine* vk_engine;
@@ -44,9 +44,9 @@ private:
   VK_subpass* vk_subpass;
   VK_command_buffer* vk_command_buffer;
 
-  ENG_scene* rp_scene;
-  ENG_edl* rp_edl;
-  ENG_gui* rp_ui;
+  ENG_scene* eng_scene;
+  ENG_edl* eng_edl;
+  ENG_gui* eng_gui;
 };
 
 #endif

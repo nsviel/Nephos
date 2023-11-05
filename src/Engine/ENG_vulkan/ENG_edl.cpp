@@ -41,9 +41,11 @@ ENG_edl::ENG_edl(VK_engine* vk_engine){
 ENG_edl::~ENG_edl(){}
 
 //Main function
-void ENG_edl::init_renderpass(Struct_renderpass* renderpass){
+void ENG_edl::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
+
+  Struct_renderpass* renderpass = &struct_vulkan->renderpass_edl;
 
   //Pipeline creation
   Struct_pipeline* pipeline_edl = create_pipeline_edl(renderpass);
@@ -109,7 +111,7 @@ void ENG_edl::draw_edl(Struct_renderpass* renderpass){
   vk_command->stop_render_pass(renderpass);
 
   //---------------------------
-  struct_vulkan->time.renderpass_edl.push_back(timer.stop_ms(t1));
+  struct_vulkan->time.time_rp_edl.push_back(timer.stop_ms(t1));
 }
 void ENG_edl::cmd_draw(Struct_renderpass* renderpass){
   //---------------------------

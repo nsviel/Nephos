@@ -27,9 +27,11 @@ ENG_gui::ENG_gui(VK_engine* vk_engine){
 ENG_gui::~ENG_gui(){}
 
 //Main function
-void ENG_gui::init_renderpass(Struct_renderpass* renderpass){
+void ENG_gui::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
+
+  Struct_renderpass* renderpass = &struct_vulkan->renderpass_ui;
 
   renderpass->name = "ui";
   vk_subpass->create_subpass_presentation(renderpass);

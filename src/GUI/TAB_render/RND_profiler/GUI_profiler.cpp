@@ -73,14 +73,14 @@ void GUI_profiler::time_drawig(bool update){
   //---------------------------
 
   static float mean_draw_frame;
-  static float mean_renderpass_scene;
-  static float mean_renderpass_edl;
-  static float mean_renderpass_ui;
+  static float meanr_rp_scene;
+  static float meanr_rp_edl;
+  static float meanr_rp_gui;
   if(update){
     mean_draw_frame = fct_mean_and_clear(struct_vulkan->time.draw_frame);
-    mean_renderpass_scene = fct_mean_and_clear(struct_vulkan->time.renderpass_scene);
-    mean_renderpass_edl = fct_mean_and_clear(struct_vulkan->time.renderpass_edl);
-    mean_renderpass_ui = fct_mean_and_clear(struct_vulkan->time.renderpass_ui);
+    meanr_rp_scene = fct_mean_and_clear(struct_vulkan->time.time_rp_scene);
+    meanr_rp_edl = fct_mean_and_clear(struct_vulkan->time.time_rp_edl);
+    meanr_rp_gui = fct_mean_and_clear(struct_vulkan->time.time_rp_gui);
   }
 
   ImGui::Text("Time draw frame ");
@@ -92,21 +92,21 @@ void GUI_profiler::time_drawig(bool update){
   //Time init
   ImGui::Text("Time renderpass scene ");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", mean_renderpass_scene);
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", meanr_rp_scene);
   ImGui::SameLine();
   ImGui::Text(" ms");
 
   //Time init
   ImGui::Text("Time renderpass EDL ");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", mean_renderpass_edl);
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", meanr_rp_edl);
   ImGui::SameLine();
   ImGui::Text(" ms");
 
   //Time init
   ImGui::Text("Time renderpass ui ");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", mean_renderpass_ui);
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", meanr_rp_gui);
   ImGui::SameLine();
   ImGui::Text(" ms");
 

@@ -26,9 +26,9 @@ VK_renderpass::VK_renderpass(VK_engine* vk_engine){
   this->vk_subpass = new VK_subpass(vk_engine);
   this->vk_command_buffer = new VK_command_buffer(vk_engine);
 
-  this->rp_scene = new ENG_scene(vk_engine);
-  this->rp_edl = new ENG_edl(vk_engine);
-  this->rp_ui = new ENG_gui(vk_engine);
+  this->eng_scene = new ENG_scene(vk_engine);
+  this->eng_edl = new ENG_edl(vk_engine);
+  this->eng_gui = new ENG_gui(vk_engine);
 
   //---------------------------
 }
@@ -38,9 +38,9 @@ VK_renderpass::~VK_renderpass(){}
 void VK_renderpass::init_renderpass(){
   //---------------------------
 
-  rp_scene->init_renderpass(&struct_vulkan->renderpass_scene);
-  rp_edl->init_renderpass(&struct_vulkan->renderpass_edl);
-  rp_ui->init_renderpass(&struct_vulkan->renderpass_ui);
+  eng_scene->init_renderpass();
+  eng_edl->init_renderpass();
+  eng_gui->init_renderpass();
 
   //---------------------------
 }

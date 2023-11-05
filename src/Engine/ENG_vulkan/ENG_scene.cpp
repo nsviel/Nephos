@@ -43,9 +43,11 @@ ENG_scene::~ENG_scene(){
 }
 
 //Main function
-void ENG_scene::init_renderpass(Struct_renderpass* renderpass){
+void ENG_scene::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
+
+  Struct_renderpass* renderpass = &struct_vulkan->renderpass_scene;
 
   renderpass->name = "scene";
   vk_subpass->create_subpass_shader(renderpass);
@@ -106,7 +108,7 @@ void ENG_scene::draw_scene(Struct_renderpass* renderpass){
   vk_command->stop_render_pass(renderpass);
 
   //---------------------------
-  struct_vulkan->time.renderpass_scene.push_back(timer.stop_ms(t1));
+  struct_vulkan->time.time_rp_scene.push_back(timer.stop_ms(t1));
 }
 void ENG_scene::cmd_draw_scene(Struct_renderpass* renderpass){
   list<Struct_data*> list_data_scene = vk_engine->get_list_data_scene();

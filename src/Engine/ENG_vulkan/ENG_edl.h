@@ -26,7 +26,7 @@ public:
 
 public:
   //Main functions
-  void init_renderpass(Struct_renderpass* renderpass);
+  void init_renderpass();
   Struct_pipeline* create_pipeline_edl(Struct_renderpass* renderpass);
   void recreate_pipeline_edl();
   void draw_edl(Struct_renderpass* renderpass);

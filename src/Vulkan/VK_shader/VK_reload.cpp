@@ -28,8 +28,8 @@ void VK_reload::hot_shader_reload(string shader_1, string shader_2){
   //---------------------------
 
   if(shader_1 == "EDL"){
-    ENG_edl* rp_edl = vk_renderpass->get_rp_edl();
-    rp_edl->recreate_pipeline_edl();
+    ENG_edl* eng_edl = vk_renderpass->get_eng_edl();
+    eng_edl->recreate_pipeline_edl();
   }
 
   //---------------------------
