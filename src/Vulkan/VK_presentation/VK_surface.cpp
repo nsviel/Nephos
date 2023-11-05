@@ -42,7 +42,7 @@ void VK_surface::clean_surface(){
 
 //Subfunction
 void VK_surface::check_for_resizing(){
-  static vec2 window_dim;
+  static vec2 window_dim = window->compute_window_dim();
   bool is_resized = false;
   //---------------------------
 

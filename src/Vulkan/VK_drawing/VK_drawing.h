@@ -9,6 +9,7 @@
 
 class VK_engine;
 class Struct_vulkan;
+class Struct_synchro;
 class VK_command;
 class VK_descriptor;
 class VK_submit;
@@ -37,6 +38,7 @@ private:
 
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
+  Struct_synchro* struct_synchro;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
   VK_submit* vk_submit;

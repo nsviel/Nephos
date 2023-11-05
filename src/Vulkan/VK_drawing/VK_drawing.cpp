@@ -2,6 +2,7 @@
 
 #include <VK_main/VK_engine.h>
 #include <VK_struct/struct_vulkan.h>
+#include <VK_struct/struct_synchro.h>
 #include <VK_drawing/DR_scene.h>
 #include <VK_drawing/DR_edl.h>
 #include <VK_drawing/DR_ui.h>
@@ -18,6 +19,7 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->struct_synchro = vk_engine->get_struct_synchro();
   this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = vk_engine->get_vk_descriptor();
   this->vk_submit = new VK_submit(vk_engine);
@@ -39,7 +41,11 @@ void VK_drawing::draw_frame(){
   vk_submit->acquire_next_image(&struct_vulkan->swapchain);
 
   //Drawing operations
-  dr_scene->draw_scene(&struct_vulkan->renderpass_scene);
+  Struct_renderpass* renderpass;
+  renderpass = &struct_vulkan->renderpass_scene;
+  renderpass->semaphore_to_wait = struct_synchro->vec_semaphore_beg[0];
+  renderpass->semaphore_to_run = struct_synchro->vec_semaphore_end[0];
+  dr_scene->draw_scene(renderpass);
   dr_edl->draw_edl(&struct_vulkan->renderpass_edl);
   dr_ui->draw_ui(&struct_vulkan->renderpass_ui);
 

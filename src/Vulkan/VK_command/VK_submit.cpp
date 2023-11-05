@@ -96,7 +96,7 @@ void VK_submit::submit_graphics_command(Struct_renderpass* renderpass){
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   submit_info.waitSemaphoreCount = 1;
-  submit_info.pWaitSemaphores = &command.semaphore_to_wait;
+  submit_info.pWaitSemaphores  = &command.semaphore_to_wait;
   submit_info.pWaitDstStageMask = &command.wait_stage;
   submit_info.signalSemaphoreCount = 1;
   submit_info.pSignalSemaphores = &command.semaphore_to_run;

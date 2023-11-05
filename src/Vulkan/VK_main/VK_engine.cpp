@@ -1,6 +1,7 @@
 #include "VK_engine.h"
 #include "VK_struct/struct_vulkan.h"
 #include "VK_struct/struct_param.h"
+#include <VK_struct/struct_synchro.h>
 #include "VK_data/VK_data.h"
 #include "VK_renderpass/VK_renderpass.h"
 #include "VK_command/VK_command_buffer.h"
@@ -33,6 +34,7 @@ VK_engine::VK_engine(Engine* engine){
   this->window = engine->get_window();
   this->struct_param = new Struct_param();
   this->struct_vulkan = new Struct_vulkan();
+  this->struct_synchro = new Struct_synchro();
 
   this->vk_imgui = new VK_imgui(this);
   this->vk_instance = new VK_instance(this);

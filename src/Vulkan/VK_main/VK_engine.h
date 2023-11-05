@@ -7,7 +7,7 @@
 class Engine;
 class Window;
 class Struct_param;
-
+class Struct_synchro;
 class Struct_vulkan;
 class VK_surface;
 class VK_instance;
@@ -47,6 +47,7 @@ public:
 
   inline Struct_param* get_struct_param(){return struct_param;}
   inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
+  inline Struct_synchro* get_struct_synchro(){return struct_synchro;}
 
   inline VK_render* get_vk_render(){return vk_render;}
   inline VK_device* get_vk_device(){return vk_device;}
@@ -69,6 +70,7 @@ public:
 private:
   Engine* engine;
   Struct_param* struct_param;
+  Struct_synchro* struct_synchro;
   Window* window;
   Timer timer;
   Struct_vulkan* struct_vulkan;
