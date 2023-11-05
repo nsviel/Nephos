@@ -12,9 +12,9 @@ class VK_subpass;
 class VK_viewport;
 class VK_command;
 class VK_descriptor;
-class VK_data;
 class VK_uniform;
 class VK_drawing;
+class VK_renderpass;
 
 
 class ENG_scene
@@ -38,13 +38,13 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
-  VK_data* vk_data;
   VK_uniform* vk_uniform;
   VK_drawing* vk_drawing;
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
   VK_viewport* vk_viewport;
+  VK_renderpass* vk_renderpass;
 };
 
 #endif

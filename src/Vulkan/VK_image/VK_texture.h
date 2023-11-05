@@ -52,8 +52,6 @@ private:
   VK_buffer* vk_buffer;
   VK_image* vk_image;
   VK_command* vk_command;
-
-  vector<Struct_image*> vec_texture;
 };
 
 #endif

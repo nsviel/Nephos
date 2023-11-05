@@ -41,7 +41,7 @@ Struct_image* VK_texture::load_texture_from_file(string path){
   vk_image->create_image_view(image);
   vk_image->create_image_sampler(image);
 
-  this->vec_texture.push_back(image);
+  struct_vulkan->vec_texture.push_back(image);
 
   //---------------------------
   return image;
@@ -54,7 +54,7 @@ Struct_image* VK_texture::load_texture_from_frame(AVFrame* frame){
   vk_image->create_image_view(image);
   vk_image->create_image_sampler(image);
 
-  this->vec_texture.push_back(image);
+  struct_vulkan->vec_texture.push_back(image);
 
   //---------------------------
   return image;
@@ -117,8 +117,8 @@ void VK_texture::clean_texture(Struct_data* data){
 void VK_texture::clean_textures(){
   //---------------------------
 
-  for(int i=0; i<vec_texture.size(); i++){
-    vk_image->clean_image(vec_texture[i]);
+  for(int i=0; i<struct_vulkan->vec_texture.size(); i++){
+    vk_image->clean_image(struct_vulkan->vec_texture[i]);
   }
 
   //---------------------------

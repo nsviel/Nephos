@@ -10,7 +10,7 @@ VK_render::VK_render(VK_engine* vk_engine){
   //---------------------------
 
   this->vk_drawing = new VK_drawing(vk_engine);
-  this->vk_texture = vk_engine->get_vk_texture();
+  this->vk_texture = new VK_texture(vk_engine);
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->fps_counter = new FPS_counter(100);
 

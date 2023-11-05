@@ -39,9 +39,6 @@ public:
   void combine_description(Struct_pipeline* pipeline);
   void check_for_attribut(Struct_data* data);
 
-  inline std::list<Struct_data*> get_list_data_scene(){return struct_vulkan->list_data_scene;}
-  inline std::list<Struct_data*> get_list_data_glyph(){return struct_vulkan->list_data_glyph;}
-
 private:
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;

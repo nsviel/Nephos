@@ -2,6 +2,8 @@
 #define VK_ENGINE_H
 
 #include "VK_struct/typedef.h"
+#include "VK_struct/struct_data.h"
+#include "VK_struct/struct_vulkan.h"
 #include <ELE_specific/common.h>
 
 class Engine;
@@ -70,6 +72,9 @@ public:
   inline VK_drawing* get_vk_drawing(){return vk_drawing;}
   inline VK_command_buffer* get_vk_command_buffer(){return vk_command_buffer;}
   inline VK_imgui* get_vk_imgui(){return vk_imgui;}
+
+  inline std::list<Struct_data*> get_list_data_scene(){return struct_vulkan->list_data_scene;}
+  inline std::list<Struct_data*> get_list_data_glyph(){return struct_vulkan->list_data_glyph;}
 
 private:
   Engine* engine;

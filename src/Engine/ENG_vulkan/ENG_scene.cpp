@@ -10,14 +10,10 @@
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/Scene/SCE_shader.h>
 #include <VK_command/VK_submit.h>
-
 #include <VK_command/VK_command.h>
 #include <VK_presentation/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
-
 #include <VK_binding/VK_uniform.h>
-#include <VK_data/VK_data.h>
-
 #include <VK_drawing/VK_drawing.h>
 
 
@@ -34,7 +30,6 @@ ENG_scene::ENG_scene(VK_engine* vk_engine){
   this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
-  this->vk_data = vk_engine->get_vk_data();
   this->vk_drawing = vk_engine->get_vk_drawing();
 
   //---------------------------
@@ -114,7 +109,7 @@ void ENG_scene::draw_scene(Struct_renderpass* renderpass){
   struct_vulkan->time.renderpass_scene.push_back(timer.stop_ms(t1));
 }
 void ENG_scene::cmd_draw_scene(Struct_renderpass* renderpass){
-  list<Struct_data*> list_data_scene = vk_data->get_list_data_scene();
+  list<Struct_data*> list_data_scene = vk_engine->get_list_data_scene();
   //---------------------------
 
   vk_pipeline->cmd_bind_pipeline(renderpass, "point");
@@ -135,7 +130,7 @@ void ENG_scene::cmd_draw_scene(Struct_renderpass* renderpass){
   //---------------------------
 }
 void ENG_scene::cmd_draw_glyph(Struct_renderpass* renderpass){
-  list<Struct_data*> list_data_glyph = vk_data->get_list_data_glyph();
+  list<Struct_data*> list_data_glyph = vk_engine->get_list_data_glyph();
   //---------------------------
 
   vk_pipeline->cmd_bind_pipeline(renderpass, "line");
