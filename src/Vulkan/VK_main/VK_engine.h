@@ -6,7 +6,6 @@
 
 class Engine;
 class Window;
-class FPS_counter;
 class Struct_param;
 
 class Struct_vulkan;
@@ -26,6 +25,7 @@ class VK_canvas;
 class VK_drawing;
 class VK_command_buffer;
 class VK_imgui;
+class VK_render;
 
 
 class VK_engine
@@ -39,7 +39,6 @@ public:
   //Main functions
   void init();
   void clean();
-  void loop_draw_frame();
   void device_wait_idle();
   void reload_shader(string shader, string subshader);
 
@@ -49,6 +48,7 @@ public:
   inline Struct_param* get_struct_param(){return struct_param;}
   inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
 
+  inline VK_render* get_vk_render(){return vk_render;}
   inline VK_device* get_vk_device(){return vk_device;}
   inline VK_surface* get_vk_surface(){return vk_surface;}
   inline VK_swapchain* get_vk_swapchain(){return vk_swapchain;}
@@ -71,9 +71,9 @@ private:
   Struct_param* struct_param;
   Window* window;
   Timer timer;
-  FPS_counter* fps_counter;
   Struct_vulkan* struct_vulkan;
 
+  VK_render* vk_render;
   VK_imgui* vk_imgui;
   VK_surface* vk_surface;
   VK_instance* vk_instance;

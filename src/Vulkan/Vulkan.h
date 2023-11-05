@@ -6,6 +6,7 @@
 class Engine;
 class VK_engine;
 class VK_imgui;
+class VK_render;
 
 
 class Vulkan
@@ -27,6 +28,7 @@ public:
 private:
   VK_engine* vk_engine;
   VK_imgui* vk_imgui;
+  VK_render* vk_render;
 };
 
 #endif

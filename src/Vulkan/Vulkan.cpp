@@ -1,5 +1,7 @@
 #include "Vulkan.h"
 #include "VK_main/VK_engine.h"
+#include "VK_main/VK_imgui.h"
+#include "VK_main/VK_render.h"
 
 
 //Constructor / Destructor
@@ -8,6 +10,7 @@ Vulkan::Vulkan(Engine* engine){
 
   this->vk_engine = new VK_engine(engine);
   this->vk_imgui = vk_engine->get_vk_imgui();
+  this->vk_render = vk_engine->get_vk_render();
 
   //---------------------------
 }
@@ -24,7 +27,7 @@ void Vulkan::init(){
 void Vulkan::loop(){
   //---------------------------
 
-  vk_engine->loop_draw_frame();
+  vk_render->loop_draw_frame();
 
   //---------------------------
 }

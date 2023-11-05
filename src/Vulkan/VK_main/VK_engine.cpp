@@ -15,14 +15,14 @@
 #include "VK_image/VK_texture.h"
 #include "VK_presentation/VK_swapchain.h"
 #include "VK_presentation/VK_frame.h"
-#include <VK_main/VK_viewport.h>
 #include "VK_shader/VK_reload.h"
 #include "VK_main/VK_imgui.h"
 
 #include <Engine.h>
 #include <Param.h>
 #include <ELE_window/Window.h>
-#include <ELE_specific/FPS_counter.h>
+#include <VK_main/VK_viewport.h>
+#include <VK_main/VK_render.h>
 
 
 //Constructor / Destructor
@@ -31,7 +31,6 @@ VK_engine::VK_engine(Engine* engine){
 
   this->engine = engine;
   this->window = engine->get_window();
-  this->fps_counter = new FPS_counter(100);
   this->struct_param = new Struct_param();
   this->struct_vulkan = new Struct_vulkan();
 
@@ -51,6 +50,7 @@ VK_engine::VK_engine(Engine* engine){
   this->vk_frame = new VK_frame(this);
   this->vk_canvas = new VK_canvas(this);
   this->vk_drawing = new VK_drawing(this);
+  this->vk_render = new VK_render(this);
 
   //---------------------------
 }
@@ -81,15 +81,6 @@ void VK_engine::init(){
 
   //---------------------------
   struct_vulkan->time.engine_init = timer.stop_us(t1) / 1000;
-}
-void VK_engine::loop_draw_frame(){
-  //---------------------------
-
-  vk_drawing->draw_frame();
-
-  //---------------------------
-  fps_counter->update();
-  struct_vulkan->time.engine_fps = fps_counter->get_fps();
 }
 void VK_engine::device_wait_idle() {
   //---------------------------

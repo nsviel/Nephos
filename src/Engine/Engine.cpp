@@ -3,6 +3,7 @@
 
 #include <ENG_data/Data.h>
 #include <VK_main/VK_engine.h>
+#include <VK_main/VK_render.h>
 #include <ENG_camera/Camera.h>
 #include <ELE_window/Window.h>
 #include <ENG_shader/Shader.h>
@@ -48,10 +49,11 @@ void Engine::init(){
   //---------------------------
 }
 void Engine::loop(){
+  VK_render* vk_render = vk_engine->get_vk_render();
   //---------------------------
 
   cameraManager->loop_cam_mouse();
-  vk_engine->loop_draw_frame();
+  vk_render->loop_draw_frame();
   dataManager->loop();
 
   //---------------------------
