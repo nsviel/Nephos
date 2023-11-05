@@ -45,7 +45,7 @@ void VK_data::insert_scene_object(Object* object){
   vk_binding->create_binding(&data->binding);
 
   //Insert data struct into set
-  this->list_data_scene.push_back(data);
+  struct_vulkan->list_data_scene.push_back(data);
 
   //---------------------------
 }
@@ -67,7 +67,7 @@ void VK_data::insert_glyph_object(Object* object){
   vk_binding->create_binding(&data->binding);
 
   //Insert data struct into set
-  this->list_data_glyph.push_back(data);
+  struct_vulkan->list_data_glyph.push_back(data);
 
   //---------------------------
 }
@@ -88,14 +88,14 @@ void VK_data::clean_data_all(){
   //---------------------------
 
   //Data list Scene
-  for(int i=0; i<list_data_scene.size(); i++){
-    Struct_data* data = *next(list_data_scene.begin(),i);
+  for(int i=0; i<struct_vulkan->list_data_scene.size(); i++){
+    Struct_data* data = *next(struct_vulkan->list_data_scene.begin(),i);
     this->clean_data(data);
   }
 
   //Data list Glyph
-  for(int i=0; i<list_data_glyph.size(); i++){
-    Struct_data* data = *next(list_data_glyph.begin(),i);
+  for(int i=0; i<struct_vulkan->list_data_glyph.size(); i++){
+    Struct_data* data = *next(struct_vulkan->list_data_glyph.begin(),i);
     this->clean_data(data);
   }
 
@@ -104,11 +104,11 @@ void VK_data::clean_data_all(){
 void VK_data::clean_data_scene(int ID){
   //---------------------------
 
-  for(int i=0; i<list_data_scene.size(); i++){
-    Struct_data* data = *next(list_data_scene.begin(),i);
+  for(int i=0; i<struct_vulkan->list_data_scene.size(); i++){
+    Struct_data* data = *next(struct_vulkan->list_data_scene.begin(),i);
     if(data->object->ID == ID){
       this->clean_data(data);
-      list_data_scene.remove(data);
+      struct_vulkan->list_data_scene.remove(data);
     }
   }
 

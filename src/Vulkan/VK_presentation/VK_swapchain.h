@@ -35,10 +35,10 @@ public:
   VkPresentModeKHR swapchain_presentation_mode(const std::vector<VkPresentModeKHR>& availablePresentModes);
 
 private:
-  VK_engine* vk_engine;
-  VK_viewport* vk_viewport;
   Struct_vulkan* struct_vulkan;
   Window* window;
+  VK_engine* vk_engine;
+  VK_viewport* vk_viewport;
   VK_physical_device* vk_physical_device;
   VK_depth* vk_depth;
 };

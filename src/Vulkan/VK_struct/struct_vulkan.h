@@ -40,6 +40,9 @@ struct Struct_vulkan{
   Struct_renderpass renderpass_ui;
   std::vector<Struct_renderpass> vec_renderpass;
 
+  std::list<Struct_data*> list_data_scene;
+  std::list<Struct_data*> list_data_glyph;
+
   //---------------------------
 };
 

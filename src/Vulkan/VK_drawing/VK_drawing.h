@@ -32,9 +32,6 @@ public:
   void cmd_line_with(Struct_renderpass* renderpass, Struct_data* data);
 
 private:
-  Timer timer;
-
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   Struct_synchro* struct_synchro;
   VK_command* vk_command;
@@ -43,6 +40,8 @@ private:
   VK_swapchain* vk_swapchain;
   ENG_scene* rp_scene;
   ENG_edl* rp_edl;
+
+  Timer timer;
 };
 
 #endif

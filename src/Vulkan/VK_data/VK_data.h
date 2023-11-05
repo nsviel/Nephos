@@ -3,6 +3,7 @@
 
 #include "../VK_struct/struct_pipeline.h"
 #include "../VK_struct/struct_data.h"
+#include "../VK_struct/struct_vulkan.h"
 #include <ELE_specific/common.h>
 
 class VK_engine;
@@ -38,8 +39,8 @@ public:
   void combine_description(Struct_pipeline* pipeline);
   void check_for_attribut(Struct_data* data);
 
-  inline std::list<Struct_data*> get_list_data_scene(){return list_data_scene;}
-  inline std::list<Struct_data*> get_list_data_glyph(){return list_data_glyph;}
+  inline std::list<Struct_data*> get_list_data_scene(){return struct_vulkan->list_data_scene;}
+  inline std::list<Struct_data*> get_list_data_glyph(){return struct_vulkan->list_data_glyph;}
 
 private:
   VK_engine* vk_engine;
@@ -49,9 +50,6 @@ private:
   VK_binding* vk_binding;
   VK_command_buffer* vk_command_buffer;
   VK_descriptor* vk_descriptor;
-
-  std::list<Struct_data*> list_data_scene;
-  std::list<Struct_data*> list_data_glyph;
 };
 
 #endif
