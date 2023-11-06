@@ -48,7 +48,7 @@ void VK_drawing::draw_frame(){
 
   //SCENE
   Struct_renderpass* renderpass;
-  renderpass = &struct_vulkan->renderpass_scene;
+  renderpass = &struct_vulkan->vec_renderpass[0];
   renderpass->semaphore_wait = struct_synchro->vec_semaphore_image[0];
   renderpass->semaphore_done = struct_synchro->vec_semaphore_render[0];
   renderpass->fence = VK_NULL_HANDLE;
@@ -56,15 +56,15 @@ void VK_drawing::draw_frame(){
   vk_submit->submit_graphics_command(renderpass);
 
   //EDL
-  renderpass = &struct_vulkan->renderpass_edl;
+  renderpass = &struct_vulkan->vec_renderpass[1];
   renderpass->semaphore_wait = struct_synchro->vec_semaphore_render[0];
   renderpass->semaphore_done = struct_synchro->vec_semaphore_render[1];
   renderpass->fence = VK_NULL_HANDLE;
-  eng_edl->draw_edl(&struct_vulkan->renderpass_edl);
+  eng_edl->draw_edl(&struct_vulkan->vec_renderpass[1]);
   vk_submit->submit_graphics_command(renderpass);
 
   //GUI
-  renderpass = &struct_vulkan->renderpass_ui;
+  renderpass = &struct_vulkan->vec_renderpass[2];
   renderpass->semaphore_wait = struct_synchro->vec_semaphore_render[1];
   renderpass->semaphore_done = struct_synchro->vec_semaphore_render[2];
   renderpass->fence = struct_synchro->vec_fence[0];

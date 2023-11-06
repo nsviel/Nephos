@@ -7,6 +7,7 @@ class Window;
 class Camera;
 class VK_engine;
 class Shader;
+class ENG_renderpass;
 
 
 class Engine
@@ -37,6 +38,7 @@ private:
   Window* window;
   VK_engine* vk_engine;
   Shader* shaderManager;
+  ENG_renderpass* eng_renderpass;
 };
 
 #endif

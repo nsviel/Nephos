@@ -47,9 +47,10 @@ void VK_renderpass::init_renderpass(){
 void VK_renderpass::clean_renderpass(){
   //---------------------------
 
-  this->clean_renderpass_object(&struct_vulkan->renderpass_scene);
-  this->clean_renderpass_object(&struct_vulkan->renderpass_edl);
-  this->clean_renderpass_object(&struct_vulkan->renderpass_ui);
+  for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
+    Struct_renderpass* renderpass = &struct_vulkan->vec_renderpass[i];
+    this->clean_renderpass_object(renderpass);
+  }
 
   //---------------------------
 }
@@ -69,20 +70,21 @@ void VK_renderpass::create_renderpass(Struct_renderpass* renderpass){
   VK_frame* vk_frame = vk_engine->get_vk_frame();
   //---------------------------
 
-  renderpass->color_image_usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-  renderpass->color_sampler_layout = IMAGE_LAYOUT_SHADER_READONLY;
-  renderpass->depth_image_usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-  renderpass->depth_sampler_layout = IMAGE_LAYOUT_DEPTH_READONLY;
-
   this->create_renderpass_obj(renderpass);
   vk_command_buffer->allocate_command_buffer_primary(renderpass);
   vk_pipeline->create_pipeline(renderpass);
   vk_frame->create_frame_renderpass(renderpass);
 
   //---------------------------
+  struct_vulkan->vec_renderpass.push_back(*renderpass);
 }
 void VK_renderpass::create_renderpass_obj(Struct_renderpass* renderpass){
   //---------------------------
+
+  renderpass->color_image_usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+  renderpass->color_sampler_layout = IMAGE_LAYOUT_SHADER_READONLY;
+  renderpass->depth_image_usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+  renderpass->depth_sampler_layout = IMAGE_LAYOUT_DEPTH_READONLY;
 
   Struct_subpass* subpass_ref = renderpass->vec_subpass[0];
 

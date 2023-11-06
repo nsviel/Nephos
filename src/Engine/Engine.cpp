@@ -7,6 +7,7 @@
 #include <ENG_camera/Camera.h>
 #include <ELE_window/Window.h>
 #include <ENG_shader/Shader.h>
+#include <ENG_vulkan/ENG_renderpass.h>
 
 
 //Constructor / Destructor
@@ -19,6 +20,7 @@ Engine::Engine(Window* window){
   this->shaderManager = new Shader(this);
   this->vk_engine = new VK_engine(this);
   this->dataManager = new Data(this);
+  this->eng_renderpass = new ENG_renderpass(this);
 
   //---------------------------
 }

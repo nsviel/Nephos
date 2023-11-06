@@ -32,7 +32,7 @@ VK_engine::VK_engine(Engine* engine){
 
   this->engine = engine;
   this->window = engine->get_window();
-  
+
   this->struct_param = new Struct_param();
   this->struct_vulkan = new Struct_vulkan();
   this->struct_synchro = new Struct_synchro();
@@ -76,11 +76,9 @@ void VK_engine::init(){
 
   //Pipeline
   vk_swapchain->create_swapchain();
+  vk_viewport->init_viewport();
   vk_renderpass->init_renderpass();
   vk_frame->create_frame_swapchain(&struct_vulkan->swapchain);
-
-  //Specific
-  vk_viewport->init_viewport();
 
   //---------------------------
   struct_vulkan->time.engine_init = timer.stop_us(t1) / 1000;

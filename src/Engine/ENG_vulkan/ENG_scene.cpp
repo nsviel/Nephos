@@ -47,7 +47,7 @@ void ENG_scene::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
-  Struct_renderpass* renderpass = &struct_vulkan->renderpass_scene;
+  Struct_renderpass* renderpass = new Struct_renderpass();
 
   renderpass->name = "scene";
   vk_subpass->create_subpass_shader(renderpass);

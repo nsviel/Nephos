@@ -36,10 +36,6 @@ struct Struct_vulkan{
   Struct_time time;
   Struct_data canvas;
 
-  Struct_renderpass renderpass_scene;
-  Struct_renderpass renderpass_edl;
-  Struct_renderpass renderpass_ui;
-
   //Data
   std::vector<Struct_renderpass> vec_renderpass;
   std::vector<Struct_image*> vec_texture;
