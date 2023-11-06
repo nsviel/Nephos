@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-class Data;
+class ENG_data;
 class Format;
 class Scene;
 
@@ -17,7 +17,7 @@ class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(Data* data);
+  Loader(ENG_data* eng_data);
   ~Loader();
 
 public:
@@ -27,7 +27,7 @@ public:
   void load_by_zenity();
 
   //Subfunctions
-  void transfert_data(Object* object, Data_file* data);
+  void transfert_data(Object* object, Data_file* eng_data);
 
 private:
   Format* formatManager;

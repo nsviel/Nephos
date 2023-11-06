@@ -1,23 +1,23 @@
 #include "Scene.h"
 #include "Database.h"
-#include "../Data.h"
+#include "../ENG_data.h"
 #include "../Load/Loader.h"
 
 #include <Engine.h>
 #include <VK_main/VK_engine.h>
-#include <ENG_camera/Camera.h>
+#include <ENG_camera/ENG_camera.h>
 #include <ENG_operation/Transformation/Attribut.h>
 
 
 //ConsScenetor / DesScenetor
-Scene::Scene(Data* data){
+Scene::Scene(ENG_data* eng_data){
   //---------------------------
 
-  Engine* engine = data->get_engine();
-  this->data = data;
-  this->database = data->get_dataManager();
+  Engine* engine = eng_data->get_engine();
+  this->eng_data = eng_data;
+  this->database = eng_data->get_dataManager();
   this->vk_engine = engine->get_vk_engine();
-  this->cameraManager = engine->get_cameraManager();
+  this->eng_camera = engine->get_eng_camera();
   this->attributManager = new Attribut();
 
   this->ID_obj = 0;
@@ -42,7 +42,7 @@ void Scene::init_set(){
   //---------------------------
 }
 void Scene::init_scene(){
-  Loader* loaderManager = data->get_loaderManager();
+  Loader* loaderManager = eng_data->get_loaderManager();
   //---------------------------
 
   //Load init object
@@ -162,7 +162,7 @@ void Scene::loop_list(list<Set*>* list_data){
     Set* set = *next(list_data->begin(), i);
     for(int j=0; j<set->list_obj.size(); j++){
       Object* object = *next(set->list_obj.begin(), j);
-      cameraManager->compute_cam_mvp(object);
+      eng_camera->compute_cam_mvp(object);
     }
   }
 

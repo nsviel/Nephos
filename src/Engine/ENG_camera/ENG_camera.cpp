@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "ENG_camera.h"
 #include "Mode/CAM_first_person.h"
 #include "Mode/CAM_arcball.h"
 #include "Projection/CAM_zoom.h"
@@ -9,7 +9,7 @@
 
 
 //Constructor / Destructor
-Camera::Camera(Engine* engine){
+ENG_camera::ENG_camera(Engine* engine){
   //---------------------------
 
   this->param = engine->get_param();
@@ -22,7 +22,7 @@ Camera::Camera(Engine* engine){
 
   //---------------------------
 }
-Camera::~Camera(){
+ENG_camera::~ENG_camera(){
   //---------------------------
 
   delete cam_arcball;
@@ -34,7 +34,7 @@ Camera::~Camera(){
 }
 
 //Main function
-void Camera::control(string what, bool fast){
+void ENG_camera::control(string what, bool fast){
   Struct_camera* camera = &param->camera;
   //---------------------------
 
@@ -69,7 +69,7 @@ void Camera::control(string what, bool fast){
 
   //---------------------------
 }
-void Camera::loop_cam_mouse(){
+void ENG_camera::loop_cam_mouse(){
   Struct_camera* camera = &param->camera;
   //---------------------------
 
@@ -85,7 +85,7 @@ void Camera::loop_cam_mouse(){
 
   //---------------------------
 }
-void Camera::reset(){
+void ENG_camera::reset(){
   Struct_camera* camera = &param->camera;
   //---------------------------
 
@@ -95,7 +95,7 @@ void Camera::reset(){
 }
 
 //MVP Matrix
-mat4 Camera::compute_cam_view(){
+mat4 ENG_camera::compute_cam_view(){
   Struct_camera* camera = &param->camera;
   mat4 cam_view;
   //---------------------------
@@ -112,7 +112,7 @@ mat4 Camera::compute_cam_view(){
   //---------------------------
   return cam_view;
 }
-mat4 Camera::compute_cam_proj(){
+mat4 ENG_camera::compute_cam_proj(){
   Struct_camera* camera = &param->camera;
   mat4 projection;
   //---------------------------
@@ -127,7 +127,7 @@ mat4 Camera::compute_cam_proj(){
   //---------------------------
   return projection;
 }
-mat4 Camera::compute_cam_mvp(){
+mat4 ENG_camera::compute_cam_mvp(){
   //---------------------------
 
   mat4 cam_modl = mat4(1);
@@ -139,7 +139,7 @@ mat4 Camera::compute_cam_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void Camera::compute_cam_mvp(Object* object){
+void ENG_camera::compute_cam_mvp(Object* object){
   //---------------------------
 
   mat4 cam_modl = glm::transpose(object->model);
@@ -151,8 +151,8 @@ void Camera::compute_cam_mvp(Object* object){
   //---------------------------
 }
 
-//Camera mode
-void Camera::set_mode_projection(int proj){
+//ENG_camera mode
+void ENG_camera::set_mode_projection(int proj){
   Struct_camera* camera = &param->camera;
   //---------------------------
 
@@ -169,7 +169,7 @@ void Camera::set_mode_projection(int proj){
 
   //---------------------------
 }
-void Camera::set_mode_angle(int view){
+void ENG_camera::set_mode_angle(int view){
   Struct_camera* camera = &param->camera;
   //---------------------------
 
@@ -186,7 +186,7 @@ void Camera::set_mode_angle(int view){
 
   //---------------------------
 }
-void Camera::set_mode_view(int mode){
+void ENG_camera::set_mode_view(int mode){
   Struct_camera* camera = &param->camera;
   //---------------------------
 
@@ -205,7 +205,7 @@ void Camera::set_mode_view(int mode){
 }
 
 //Specific function
-mat4 Camera::compute_cam_world_pose(){
+mat4 ENG_camera::compute_cam_world_pose(){
   Struct_camera* camera = &param->camera;
   //---------------------------
 
@@ -222,7 +222,7 @@ mat4 Camera::compute_cam_world_pose(){
   //---------------------------
   return absPose;
 }
-void Camera::compute_zoom(float value){
+void ENG_camera::compute_zoom(float value){
   Struct_camera* camera = &param->camera;
   //---------------------------
 

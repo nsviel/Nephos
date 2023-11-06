@@ -1,6 +1,6 @@
 #include "Loader.h"
 #include "Format.h"
-#include "../Data.h"
+#include "../ENG_data.h"
 #include "../Scene/Scene.h"
 
 #include <ELE_specific/File/Directory.h>
@@ -8,10 +8,10 @@
 
 
 //Constructor / Destructor
-Loader::Loader(Data* data){
+Loader::Loader(ENG_data* eng_data){
   //---------------------------
 
-  this->sceneManager = data->get_sceneManager();
+  this->sceneManager = eng_data->get_sceneManager();
   this->formatManager = new Format();
 
   this->ID = 0;

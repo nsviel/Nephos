@@ -8,12 +8,12 @@ class Glyphs;
 class Loader;
 
 
-class Data
+class ENG_data
 {
 public:
   //Constructor / Destructor
-  Data(Engine* engine);
-  ~Data();
+  ENG_data(Engine* engine);
+  ~ENG_data();
 
 public:
   void init();

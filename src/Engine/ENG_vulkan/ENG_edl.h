@@ -27,12 +27,12 @@ public:
 public:
   //Init functions
   Struct_renderpass* init_renderpass();
-  Struct_pipeline* create_pipeline_edl(Struct_renderpass* renderpass);
+  void create_pipeline_edl(Struct_renderpass* renderpass);
 
   //Draw function
   void draw_edl(Struct_renderpass* renderpass);
   void update_descriptor(Struct_renderpass* renderpass);
-  void cmd_draw(Struct_renderpass* renderpass);
+  void draw_command(Struct_renderpass* renderpass);
 
 private:
   Struct_vulkan* struct_vulkan;

@@ -2,9 +2,9 @@
 #define ENGINE_H
 
 class Param;
-class Data;
+class ENG_data;
 class Window;
-class Camera;
+class ENG_camera;
 class VK_engine;
 class Shader;
 class ENG_renderpass;
@@ -24,17 +24,17 @@ public:
   void reset();
   void wait_for_gpu_idle();
 
-  inline Camera* get_cameraManager(){return cameraManager;}
+  inline ENG_camera* get_eng_camera(){return eng_camera;}
   inline Param* get_param(){return param;}
-  inline Data* get_dataManager(){return dataManager;}
+  inline ENG_data* get_dataManager(){return dataManager;}
   inline Window* get_window(){return window;}
   inline VK_engine* get_vk_engine(){return vk_engine;}
   inline Shader* get_shaderManager(){return shaderManager;}
 
 private:
   Param* param;
-  Camera* cameraManager;
-  Data* dataManager;
+  ENG_camera* eng_camera;
+  ENG_data* dataManager;
   Window* window;
   VK_engine* vk_engine;
   Shader* shaderManager;

@@ -25,7 +25,7 @@ GUI::GUI(Window* window, Engine* engine){
 
   this->engine = engine;
   this->window = window;
-  this->data = engine->get_dataManager();
+  this->eng_data = engine->get_eng_data();
 
   this->gui_init = new RND_init(this);
   this->gui_style = new GUI_style(this);

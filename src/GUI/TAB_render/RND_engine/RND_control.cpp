@@ -4,11 +4,11 @@
 #include <Engine.h>
 #include <Param.h>
 #include <ELE_window/Window.h>
-#include <ENG_data/Data.h>
+#include <ENG_data/ENG_data.h>
 #include <ELE_specific/Function/fct_math.h>
 #include <ENG_data/Scene/Scene.h>
-#include <ENG_data/Data.h>
-#include <ENG_camera/Camera.h>
+#include <ENG_data/ENG_data.h>
+#include <ENG_camera/ENG_camera.h>
 #include <ENG_operation/Transformation/Transformation.h>
 
 
@@ -16,12 +16,12 @@
 RND_control::RND_control(GUI* gui){
   //---------------------------
 
-  Data* data = gui->get_data();
+  ENG_data* eng_data = gui->get_eng_data();
   this->engine = gui->get_engine();
   this->window = engine->get_window();
   this->param = engine->get_param();
-  this->cameraManager = engine->get_cameraManager();
-  this->sceneManager = data->get_sceneManager();
+  this->eng_camera = engine->get_eng_camera();
+  this->sceneManager = eng_data->get_sceneManager();
   this->transformManager = new Transformation();
 
   //---------------------------
@@ -86,22 +86,22 @@ void RND_control::control_keyboard_camMove(){
 
       //Z key or Up key
       if(io.KeysDown[571] || io.KeysDown[515]){
-        cameraManager->control("up", is_fast);
+        eng_camera->control("up", is_fast);
       }
 
       //S key or Down key
       if(io.KeysDown[564] || io.KeysDown[516]){
-        cameraManager->control("down", is_fast);
+        eng_camera->control("down", is_fast);
       }
 
       //Q key or Left key
       if(io.KeysDown[562] || io.KeysDown[513]){
-        cameraManager->control("left", is_fast);
+        eng_camera->control("left", is_fast);
       }
 
       //D key or Left key
       if(io.KeysDown[549] || io.KeysDown[514]){
-        cameraManager->control("right", is_fast);
+        eng_camera->control("right", is_fast);
       }
     }
   }
@@ -196,7 +196,7 @@ void RND_control::control_mouse_wheel(){
 
   //Wheel + right clicked - Camera zoom
   if(io.MouseWheel && io.MouseDownDuration[1] >= 0.0f){
-    cameraManager->compute_zoom(io.MouseWheel);
+    eng_camera->compute_zoom(io.MouseWheel);
   }
 
   //Wheel click - Change mouse wheel mode

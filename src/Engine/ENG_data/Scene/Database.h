@@ -3,14 +3,14 @@
 
 #include <ELE_specific/common.h>
 
-class Data;
+class ENG_data;
 
 
 class Database
 {
 public:
   //Constructor / Destructor
-  Database(Data* data);
+  Database(ENG_data* eng_data);
   ~Database();
 
 public:

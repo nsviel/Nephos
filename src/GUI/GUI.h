@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class Engine;
-class Data;
+class ENG_data;
 class Window;
 
 class GUI_font;
@@ -33,7 +33,7 @@ public:
   void docker_space_main();
 
   inline Engine* get_engine(){return engine;}
-  inline Data* get_data(){return data;}
+  inline ENG_data* get_eng_data(){return eng_data;}
   inline Window* get_window(){return window;}
 
   inline GUI_control_gui* get_gui_control(){return gui_control;}
@@ -44,7 +44,7 @@ public:
 
 private:
   Engine* engine;
-  Data* data;
+  ENG_data* eng_data;
   Window* window;
 
   GUI_control_gui* gui_control;

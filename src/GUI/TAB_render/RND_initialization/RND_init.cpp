@@ -2,9 +2,7 @@
 #include "RND_tree.h"
 
 #include <GUI.h>
-
-
-#include <ENG_data/Data.h>
+#include <ENG_data/ENG_data.h>
 #include <ENG_data/Scene/Scene.h>
 #include <ENG_data/Load/Loader.h>
 #include <ENG_operation/Transformation/Transformation.h>
@@ -16,10 +14,10 @@
 RND_init::RND_init(GUI* gui){
   //---------------------------
 
-  Data* data = gui->get_data();
+  ENG_data* eng_data = gui->get_data();
 
-  this->sceneManager = data->get_sceneManager();
-  this->loaderManager = data->get_loaderManager();
+  this->sceneManager = eng_data->get_sceneManager();
+  this->loaderManager = eng_data->get_loaderManager();
   this->transformManager = new Transformation();
   this->gui_tree = new RND_tree(this);
 

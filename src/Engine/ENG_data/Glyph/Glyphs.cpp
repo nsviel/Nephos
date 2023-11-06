@@ -4,15 +4,15 @@
 #include "Scene/Grid.h"
 #include "Scene/Axis_world.h"
 
-#include "../Data.h"
+#include "../ENG_data.h"
 #include "../Scene/Scene.h"
 
 
 //Constructor / Destructor
-Glyphs::Glyphs(Data* data){
+Glyphs::Glyphs(ENG_data* eng_data){
   //---------------------------
 
-  this->sceneManager = data->get_sceneManager();
+  this->sceneManager = eng_data->get_sceneManager();
 
   this->vec_glyph_src.push_back(new Grid());
   this->vec_glyph_src.push_back(new Axis_world());
@@ -79,7 +79,7 @@ void Glyphs::insert_into_gpu(Glyph* glyph){
 
 //Glyph creation / supression
 void Glyphs::create_glyph_scene(Glyph* glyph){
-  Set* col_glyph = data->get_collection_byName("glyph", "glyph_scene");
+  Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
   this->insert_into_gpu(glyph);
@@ -88,7 +88,7 @@ void Glyphs::create_glyph_scene(Glyph* glyph){
   //---------------------------
 }
 void Glyphs::create_glyph_object(Object* object, Glyph* glyph){
-  Set* col_glyph = data->get_collection_byName("glyph", "glyph_object");
+  Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_object");
   //---------------------------
 
   glyph->linked_object = cloud;
@@ -98,7 +98,7 @@ void Glyphs::create_glyph_object(Object* object, Glyph* glyph){
   //---------------------------
 }
 void Glyphs::remove_temporary_glyph(){
-  Set* col_glyph = data->get_collection_byName("glyph", "glyph_scene");
+  Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
   //Remove non permanent glyphs
@@ -114,7 +114,7 @@ void Glyphs::remove_temporary_glyph(){
   //---------------------------
 }
 void Glyphs::remove_glyph_scene(int ID){
-  Set* col_glyph = data->get_collection_byName("glyph", "glyph_scene");
+  Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
   for(int i=0;i<col_glyph->list_obj.size();i++){
@@ -130,7 +130,7 @@ void Glyphs::remove_glyph_scene(int ID){
   //---------------------------
 }
 Glyph* Glyphs::create_glyph(vector<vec3>& XYZ, vector<vec4>& RGB, string mode, bool perma){
-  Set* col_glyph = data->get_collection_byName("glyph", "glyph_scene");
+  Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   Glyph* glyph = new Glyph();
   unsigned int VAO;
   uint colorVBO, locationVBO;

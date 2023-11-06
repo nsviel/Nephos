@@ -3,18 +3,18 @@
 
 #include <ELE_specific/common.h>
 
-class Data;
+class ENG_data;
 class Database;
 class VK_engine;
 class Attribut;
-class Camera;
+class ENG_camera;
 
 
 class Scene
 {
 public:
   //ConsScenetor / DesScenetor
-  Scene(Data* data);
+  Scene(ENG_data* eng_data);
   ~Scene();
 
 public:
@@ -41,11 +41,11 @@ public:
   inline Object* get_selected_object(){return set_scene->selected_obj;}
 
 private:
-  Data* data;
+  ENG_data* eng_data;
   Database* database;
   VK_engine* vk_engine;
   Attribut* attributManager;
-  Camera* cameraManager;
+  ENG_camera* eng_camera;
 
   int ID_obj;
   Set* set_scene;

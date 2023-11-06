@@ -1,4 +1,4 @@
-#include "Data.h"
+#include "ENG_data.h"
 #include "Scene/Scene.h"
 #include "Scene/Database.h"
 #include "Glyph/Glyphs.h"
@@ -6,7 +6,7 @@
 
 
 //Constructor / Destructor
-Data::Data(Engine* engine){
+ENG_data::ENG_data(Engine* engine){
   //---------------------------
 
   this->engine = engine;
@@ -17,7 +17,7 @@ Data::Data(Engine* engine){
 
   //---------------------------
 }
-Data::~Data(){
+ENG_data::~ENG_data(){
   //---------------------------
 
   delete sceneManager;
@@ -28,7 +28,7 @@ Data::~Data(){
   //---------------------------
 }
 
-void Data::init(){
+void ENG_data::init(){
   //---------------------------
 
   sceneManager->init_set();
@@ -37,14 +37,14 @@ void Data::init(){
 
   //---------------------------
 }
-void Data::reset(){
+void ENG_data::reset(){
   //---------------------------
 
   sceneManager->reset_scene();
 
   //---------------------------
 }
-void Data::loop(){
+void ENG_data::loop(){
   //---------------------------
 
   sceneManager->loop();

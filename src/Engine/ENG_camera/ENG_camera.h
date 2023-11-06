@@ -13,11 +13,11 @@ class CAM_zoom;
 class CAM_proj;
 
 
-class Camera
+class ENG_camera
 {
 public:
-  Camera(Engine* engine);
-  ~Camera();
+  ENG_camera(Engine* engine);
+  ~ENG_camera();
 
 public:
   //Main function

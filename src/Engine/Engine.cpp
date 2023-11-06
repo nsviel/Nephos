@@ -1,10 +1,10 @@
 #include "Engine.h"
 #include "Param.h"
 
-#include <ENG_data/Data.h>
+#include <ENG_data/ENG_data.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_render.h>
-#include <ENG_camera/Camera.h>
+#include <ENG_camera/ENG_camera.h>
 #include <ELE_window/Window.h>
 #include <ENG_shader/Shader.h>
 #include <ENG_vulkan/ENG_renderpass.h>
@@ -16,10 +16,10 @@ Engine::Engine(Window* window){
 
   this->window = window;
   this->param = new Param();
-  this->cameraManager = new Camera(this);
+  this->eng_camera = new ENG_camera(this);
   this->shaderManager = new Shader(this);
   this->vk_engine = new VK_engine(window);
-  this->dataManager = new Data(this);
+  this->dataManager = new ENG_data(this);
   this->eng_renderpass = new ENG_renderpass(this);
 
   //---------------------------
@@ -28,7 +28,7 @@ Engine::~Engine(){
   //---------------------------
 
   delete param;
-  delete cameraManager;
+  delete eng_camera;
   delete shaderManager;
   delete vk_engine;
   delete dataManager;
@@ -49,7 +49,7 @@ void Engine::loop(){
   VK_render* vk_render = vk_engine->get_vk_render();
   //---------------------------
 
-  cameraManager->loop_cam_mouse();
+  eng_camera->loop_cam_mouse();
   vk_render->loop_draw_frame();
   dataManager->loop();
 
@@ -72,7 +72,7 @@ void Engine::wait_for_gpu_idle(){
 void Engine::reset(){
   //---------------------------
 
-  cameraManager->reset();
+  eng_camera->reset();
   dataManager->reset();
 
   //---------------------------

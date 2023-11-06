@@ -4,7 +4,7 @@
 #include "Base/Glyph_source.h"
 #include <ELE_specific/common.h>
 
-class Data;
+class ENG_data;
 class Scene;
 
 
@@ -12,7 +12,7 @@ class Glyphs
 {
 public:
   //Constructor / Destructor
-  Glyphs(Data* data);
+  Glyphs(ENG_data* eng_data);
   ~Glyphs();
 
 public:
@@ -21,7 +21,7 @@ public:
   Glyph_source* get_glyph_src_byName(string name);
 
 private:
-  Data* data;
+  ENG_data* eng_data;
   Scene* sceneManager;
 
   vector<Glyph_source*> vec_glyph_src;

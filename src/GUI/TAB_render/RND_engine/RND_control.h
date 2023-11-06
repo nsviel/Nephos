@@ -6,7 +6,7 @@
 class GUI;
 class Engine;
 class Window;
-class Camera;
+class ENG_camera;
 class Window;
 class Scene;
 class Transformation;
@@ -38,7 +38,7 @@ private:
   Param* param;
   Window* window;
   Scene* sceneManager;
-  Camera* cameraManager;
+  ENG_camera* eng_camera;
   Transformation* transformManager;
 };
 
