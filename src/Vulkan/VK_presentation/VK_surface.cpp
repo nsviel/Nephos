@@ -28,7 +28,10 @@ void VK_surface::init_window(){
 void VK_surface::create_window_surface(){
   //---------------------------
 
-  window->create_window_surface(struct_vulkan->instance.instance, struct_vulkan->window.surface);
+  VkResult result = glfwCreateWindowSurface(struct_vulkan->instance.instance, window->get_window(), nullptr, &struct_vulkan->window.surface);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to create window surface!");
+  }
 
   //---------------------------
 }

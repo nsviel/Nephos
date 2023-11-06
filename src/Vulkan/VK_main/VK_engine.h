@@ -49,16 +49,12 @@ public:
   void remove_object_in_engine(Object* object);
 
   inline Window* get_window(){return window;}
-
   inline Struct_param* get_struct_param(){return struct_param;}
   inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
   inline Struct_synchro* get_struct_synchro(){return struct_synchro;}
-
   inline VK_render* get_vk_render(){return vk_render;}
-  inline VK_renderpass* get_vk_renderpass(){return vk_renderpass;}
-  inline VK_frame* get_vk_frame(){return vk_frame;}
   inline VK_imgui* get_vk_imgui(){return vk_imgui;}
-
+  
   inline std::list<Struct_data*> get_list_data_scene(){return struct_vulkan->list_data_scene;}
   inline std::list<Struct_data*> get_list_data_glyph(){return struct_vulkan->list_data_glyph;}
 

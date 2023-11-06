@@ -23,6 +23,7 @@ ENG_gui::ENG_gui(Engine* engine){
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_subpass = new VK_subpass(vk_engine);
+  this->vk_renderpass = new VK_renderpass(vk_engine);
 
   //---------------------------
 }
@@ -30,7 +31,6 @@ ENG_gui::~ENG_gui(){}
 
 //Init function
 Struct_renderpass* ENG_gui::init_renderpass(){
-  VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
   //Renderpass

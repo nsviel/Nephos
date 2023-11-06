@@ -16,6 +16,7 @@ class VK_command;
 class VK_descriptor;
 class VK_uniform;
 class VK_drawing;
+class VK_renderpass;
 
 
 class ENG_edl
@@ -46,6 +47,7 @@ private:
   VK_descriptor* vk_descriptor;
   VK_uniform* vk_uniform;
   VK_drawing* vk_drawing;
+  VK_renderpass* vk_renderpass;
 
   Timer timer;
   float time_renderpass;

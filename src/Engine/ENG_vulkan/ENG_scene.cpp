@@ -29,6 +29,7 @@ ENG_scene::ENG_scene(Engine* engine){
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
   this->vk_drawing = new VK_drawing(vk_engine);
+  this->vk_renderpass = new VK_renderpass(vk_engine);
 
   //---------------------------
 }
@@ -42,7 +43,6 @@ ENG_scene::~ENG_scene(){
 
 //Init function
 Struct_renderpass* ENG_scene::init_renderpass(){
-  VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
   //Renderpass
@@ -78,7 +78,7 @@ void ENG_scene::create_pipeline_point(Struct_renderpass* renderpass){
 void ENG_scene::create_pipeline_line(Struct_renderpass* renderpass){
   SCE_shader* sce_shader = shaderManager->get_sce_shader();
   //---------------------------
-  
+
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "line";
   pipeline->definition.topology = "line";

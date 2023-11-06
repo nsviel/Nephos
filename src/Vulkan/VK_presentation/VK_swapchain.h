@@ -9,6 +9,7 @@ class VK_engine;
 class VK_physical_device;
 class VK_depth;
 class VK_viewport;
+class VK_frame;
 
 
 class VK_swapchain
@@ -41,6 +42,7 @@ private:
   VK_viewport* vk_viewport;
   VK_physical_device* vk_physical_device;
   VK_depth* vk_depth;
+  VK_frame* vk_frame;
 };
 
 #endif

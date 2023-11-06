@@ -13,6 +13,7 @@ class VK_pipeline;
 class VK_subpass;
 class VK_command;
 class VK_viewport;
+class VK_renderpass;
 
 
 class ENG_gui
@@ -38,6 +39,7 @@ private:
   VK_command* vk_command;
   VK_subpass* vk_subpass;
   VK_viewport* vk_viewport;
+  VK_renderpass* vk_renderpass;
 };
 
 #endif

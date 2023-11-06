@@ -31,7 +31,6 @@ public:
   void destroy_window();
 
   //Subfunction
-  void create_window_surface(VkInstance& instance, VkSurfaceKHR& surface);
   void set_window_size_minimum(int width, int height);
   void set_window_size_maximum(int width, int height);
 

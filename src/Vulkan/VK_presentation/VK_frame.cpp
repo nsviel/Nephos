@@ -1,5 +1,4 @@
 #include "VK_frame.h"
-#include "VK_swapchain.h"
 
 #include <VK_main/VK_engine.h>
 #include "../VK_struct/struct_vulkan.h"
@@ -22,7 +21,6 @@ VK_frame::VK_frame(VK_engine* vk_engine){
   this->vk_image = new VK_image(vk_engine);
   this->vk_synchronization = new VK_synchronization(vk_engine);
   this->vk_color = new VK_color(vk_engine);
-  this->vk_swapchain = new VK_swapchain(vk_engine);
   this->vk_framebuffer = new VK_framebuffer(vk_engine);
   this->vk_depth = new VK_depth(vk_engine);
 

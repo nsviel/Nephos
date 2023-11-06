@@ -11,6 +11,7 @@ class VK_color;
 class VK_pipeline;
 class VK_subpass;
 class VK_command_buffer;
+class VK_frame;
 
 
 class VK_renderpass
@@ -37,6 +38,7 @@ private:
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
   VK_command_buffer* vk_command_buffer;
+  VK_frame* vk_frame;
 };
 
 #endif

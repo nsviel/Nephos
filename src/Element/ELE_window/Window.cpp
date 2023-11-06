@@ -53,16 +53,6 @@ void Window::destroy_window(){
 }
 
 //Subfunction
-void Window::create_window_surface(VkInstance& instance, VkSurfaceKHR& surface){
-  //---------------------------
-
-  VkResult result = glfwCreateWindowSurface(instance, window, nullptr, &surface);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create window surface!");
-  }
-
-  //---------------------------
-}
 void Window::set_window_size_minimum(int width, int height){
   //---------------------------
 

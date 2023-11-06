@@ -13,7 +13,6 @@ class VK_image;
 class VK_synchronization;
 class VK_color;
 class VK_framebuffer;
-class VK_swapchain;
 class VK_depth;
 
 
@@ -40,7 +39,6 @@ private:
   VK_image* vk_image;
   VK_synchronization* vk_synchronization;
   VK_color* vk_color;
-  VK_swapchain* vk_swapchain;
   VK_framebuffer* vk_framebuffer;
   VK_depth* vk_depth;
 };

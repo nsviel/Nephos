@@ -21,6 +21,7 @@ VK_renderpass::VK_renderpass(VK_engine* vk_engine){
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_subpass = new VK_subpass(vk_engine);
   this->vk_command_buffer = new VK_command_buffer(vk_engine);
+  this->vk_frame = new VK_frame(vk_engine);
 
   //---------------------------
 }
@@ -56,7 +57,6 @@ void VK_renderpass::clean_renderpass(){
 
 //Subfunction
 void VK_renderpass::clean_renderpass_object(Struct_renderpass* renderpass){
-  VK_frame* vk_frame = vk_engine->get_vk_frame();
   //---------------------------
 
   vk_frame->clean_frame_renderpass(renderpass);
@@ -66,7 +66,6 @@ void VK_renderpass::clean_renderpass_object(Struct_renderpass* renderpass){
   //---------------------------
 }
 void VK_renderpass::create_renderpass(Struct_renderpass* renderpass){
-  VK_frame* vk_frame = vk_engine->get_vk_frame();
   //---------------------------
 
   this->create_renderpass_obj(renderpass);

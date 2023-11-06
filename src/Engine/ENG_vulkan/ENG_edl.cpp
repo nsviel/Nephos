@@ -33,6 +33,7 @@ ENG_edl::ENG_edl(Engine* engine){
   this->vk_drawing = new VK_drawing(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
   this->vk_command = new VK_command(vk_engine);
+  this->vk_renderpass = new VK_renderpass(vk_engine);
 
   //---------------------------
 }
@@ -40,7 +41,6 @@ ENG_edl::~ENG_edl(){}
 
 //Init function
 Struct_renderpass* ENG_edl::init_renderpass(){
-  VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
   //Renderpass

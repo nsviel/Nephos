@@ -21,6 +21,7 @@ VK_swapchain::VK_swapchain(VK_engine* vk_engine){
   this->vk_physical_device = new VK_physical_device(vk_engine);
   this->vk_depth = new VK_depth(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
+  this->vk_frame = new VK_frame(vk_engine);
 
   //---------------------------
 }
@@ -28,7 +29,6 @@ VK_swapchain::~VK_swapchain(){}
 
 //Swap chain function
 void VK_swapchain::recreate_swapChain(){
-  VK_frame* vk_frame = vk_engine->get_vk_frame();
   //---------------------------
 
   //Minimization managment
@@ -59,7 +59,6 @@ void VK_swapchain::clean_swapchain(){
 
   vkDestroySwapchainKHR(struct_vulkan->device.device, struct_vulkan->swapchain.swapchain, nullptr);
 
-  VK_frame* vk_frame = vk_engine->get_vk_frame();
   vk_frame->clean_frame_swapchain(&struct_vulkan->swapchain);
 
   //---------------------------

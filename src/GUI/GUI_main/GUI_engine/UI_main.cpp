@@ -42,7 +42,7 @@ void UI_main::init_gui(){
 
   // Create Window Surface
   VkSurfaceKHR surface;
-  window->create_window_surface(gui_vulkan->g_Instance, surface);
+  //window->create_window_surface(gui_vulkan->g_Instance, surface);
 
   //VkResult err = glfwCreateWindowSurface(gui_vulkan->g_Instance, window->get_window(), gui_vulkan->g_Allocator, &surface);
   //gui_vulkan->check_vk_result(err);
