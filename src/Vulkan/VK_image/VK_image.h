@@ -2,7 +2,7 @@
 #define VK_IMAGE_H
 
 #include <ELE_specific/common.h>
-#include "../VK_struct/struct_image.h"
+#include "../VK_struct/Struct_image.h"
 
 class VK_engine;
 class Struct_vulkan;

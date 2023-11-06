@@ -1,8 +1,8 @@
 #ifndef RP_UI_H
 #define RP_UI_H
 
-#include <VK_struct/struct_renderpass.h>
-#include <VK_struct/struct_pipeline.h>
+#include <VK_struct/Struct_renderpass.h>
+#include <VK_struct/Struct_pipeline.h>
 #include <ELE_specific/common.h>
 
 class Shader;

@@ -1,7 +1,7 @@
 #include "VK_data.h"
 #include "VK_buffer.h"
 #include <VK_main/VK_engine.h>
-#include "../VK_struct/struct_vulkan.h"
+#include "../VK_struct/Struct_vulkan.h"
 #include "../VK_image/VK_texture.h"
 #include "../VK_command/VK_command_buffer.h"
 #include "../VK_binding/VK_binding.h"

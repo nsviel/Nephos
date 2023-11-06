@@ -2,10 +2,11 @@
 #define STRUCT_DATA_H
 
 #include "typedef.h"
-#include "struct_data.h"
-#include "struct_binding.h"
+#include "Struct_data.h"
+#include "Struct_binding.h"
+#include "Struct_image.h"
+
 #include <ELE_specific/common.h>
-#include "struct_image.h"
 
 
 struct Struct_buffer{

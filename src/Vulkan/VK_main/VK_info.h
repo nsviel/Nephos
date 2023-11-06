@@ -1,7 +1,7 @@
 #ifndef VK_INFO_H
 #define VK_INFO_H
 
-#include <VK_struct/struct_vulkan.h>
+#include <VK_struct/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 
 class VK_engine;

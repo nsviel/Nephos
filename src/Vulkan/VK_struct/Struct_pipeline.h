@@ -2,7 +2,7 @@
 #define STRUCT_PIPELINE_H
 
 #include "typedef.h"
-#include "struct_binding.h"
+#include "Struct_binding.h"
 #include <ENG_shader/Base/BASE_shader.h>
 #include <ELE_specific/common.h>
 

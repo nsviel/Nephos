@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class Engine;
-class Struct_vulkan;
+class VK_render;
 class ENG_scene;
 class ENG_edl;
 class ENG_gui;
@@ -22,7 +22,7 @@ public:
   void init_renderpass();
 
 private:
-  Struct_vulkan* struct_vulkan;
+  VK_render* vk_render;
   ENG_scene* eng_scene;
   ENG_edl* eng_edl;
   ENG_gui* eng_gui;

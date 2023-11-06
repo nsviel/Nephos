@@ -1,7 +1,7 @@
 #include "VK_physical_device.h"
 #include "../VK_presentation/VK_surface.h"
 #include <VK_main/VK_engine.h>
-#include "../VK_struct/struct_vulkan.h"
+#include "../VK_struct/Struct_vulkan.h"
 
 
 //Constructor / Destructor

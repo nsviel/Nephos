@@ -1,10 +1,10 @@
 #ifndef VK_SUBMIT_H
 #define VK_SUBMIT_H
 
-#include "../VK_struct/struct_frame.h"
-#include "../VK_struct/struct_renderpass.h"
-#include "../VK_struct/struct_command.h"
-#include "../VK_struct/struct_swapchain.h"
+#include "../VK_struct/Struct_frame.h"
+#include "../VK_struct/Struct_renderpass.h"
+#include "../VK_struct/Struct_command.h"
+#include "../VK_struct/Struct_swapchain.h"
 #include <ELE_specific/common.h>
 
 class VK_engine;

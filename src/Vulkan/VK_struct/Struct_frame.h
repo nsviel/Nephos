@@ -2,7 +2,7 @@
 #define STRUCT_IMAGE_H
 
 #include <ELE_specific/common.h>
-#include "struct_image.h"
+#include "Struct_image.h"
 
 
 struct Frame{

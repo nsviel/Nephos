@@ -1,7 +1,7 @@
 #ifndef VK_BUFFER_H
 #define VK_BUFFER_H
 
-#include "../VK_struct/struct_data.h"
+#include "../VK_struct/Struct_data.h"
 #include <ELE_specific/common.h>
 
 class VK_engine;

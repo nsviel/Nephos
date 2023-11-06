@@ -1,8 +1,8 @@
 #ifndef VK_FRAMEBUFFER_H
 #define VK_FRAMEBUFFER_H
 
-#include "../VK_struct/struct_frame.h"
-#include "../VK_struct/struct_renderpass.h"
+#include "../VK_struct/Struct_frame.h"
+#include "../VK_struct/Struct_renderpass.h"
 #include <ELE_specific/common.h>
 
 class VK_engine;

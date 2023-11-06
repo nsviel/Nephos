@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <VK_shader/VK_reload.h>
-#include <VK_struct/struct_instance.h>
+#include <VK_struct/Struct_instance.h>
 #include <VK_main/VK_engine.h>
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>

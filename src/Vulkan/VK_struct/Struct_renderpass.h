@@ -1,10 +1,10 @@
 #ifndef STRUCT_RENDERPASS_H
 #define STRUCT_RENDERPASS_H
 
-#include "struct_frame.h"
-#include "struct_pipeline.h"
-#include "struct_viewport.h"
-#include "struct_subpass.h"
+#include "Struct_frame.h"
+#include "Struct_pipeline.h"
+#include "Struct_viewport.h"
+#include "Struct_subpass.h"
 #include <ELE_specific/common.h>
 
 

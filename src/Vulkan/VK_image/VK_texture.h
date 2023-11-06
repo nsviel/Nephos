@@ -1,8 +1,8 @@
 #ifndef VK_TEXTURE_H
 #define VK_TEXTURE_H
 
-#include "../VK_struct/struct_image.h"
-#include "../VK_struct/struct_data.h"
+#include "../VK_struct/Struct_image.h"
+#include "../VK_struct/Struct_data.h"
 #include "../VK_struct/typedef.h"
 #include <ELE_specific/common.h>
 

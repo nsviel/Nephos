@@ -1,7 +1,7 @@
 #include "VK_depth.h"
 
 #include <VK_main/VK_engine.h>
-#include "../VK_struct/struct_vulkan.h"
+#include "../VK_struct/Struct_vulkan.h"
 #include "../VK_image/VK_image.h"
 
 

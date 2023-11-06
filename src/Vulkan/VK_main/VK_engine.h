@@ -2,8 +2,8 @@
 #define VK_ENGINE_H
 
 #include "VK_struct/typedef.h"
-#include "VK_struct/struct_data.h"
-#include "VK_struct/struct_vulkan.h"
+#include "VK_struct/Struct_data.h"
+#include "VK_struct/Struct_vulkan.h"
 #include <ELE_specific/common.h>
 
 class Window;

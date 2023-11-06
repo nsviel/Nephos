@@ -1,8 +1,8 @@
 #include "VK_engine.h"
 
-#include <VK_struct/struct_vulkan.h>
-#include <VK_struct/struct_param.h>
-#include <VK_struct/struct_synchro.h>
+#include <VK_struct/Struct_vulkan.h>
+#include <VK_struct/Struct_param.h>
+#include <VK_struct/Struct_synchro.h>
 #include <VK_data/VK_data.h>
 #include <VK_drawing/VK_renderpass.h>
 #include <VK_command/VK_command_buffer.h>

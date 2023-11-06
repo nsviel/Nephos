@@ -1,8 +1,8 @@
 #ifndef VK_EDL_RENDERPASS_H
 #define VK_EDL_RENDERPASS_H
 
-#include <VK_struct/struct_renderpass.h>
-#include <VK_struct/struct_pipeline.h>
+#include <VK_struct/Struct_renderpass.h>
+#include <VK_struct/Struct_pipeline.h>
 #include <ENG_shader/Shader.h>
 #include <ELE_specific/common.h>
 

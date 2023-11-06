@@ -1,9 +1,9 @@
 #ifndef VK_DATA_H
 #define VK_DATA_H
 
-#include "../VK_struct/struct_pipeline.h"
-#include "../VK_struct/struct_data.h"
-#include "../VK_struct/struct_vulkan.h"
+#include "../VK_struct/Struct_pipeline.h"
+#include "../VK_struct/Struct_data.h"
+#include "../VK_struct/Struct_vulkan.h"
 #include <ELE_specific/common.h>
 
 class VK_engine;

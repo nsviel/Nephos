@@ -2,7 +2,7 @@
 
 #include <VK_main/VK_engine.h>
 #include <VK_drawing/VK_drawing.h>
-#include <VK_struct/struct_vulkan.h>
+#include <VK_struct/Struct_vulkan.h>
 #include <ELE_specific/FPS_counter.h>
 
 //Constructor / Destructor
@@ -27,6 +27,13 @@ void VK_render::loop_draw_frame(){
   //---------------------------
   fps_counter->update();
   struct_vulkan->info.engine_fps = fps_counter->get_fps();
+}
+void VK_render::add_renderpass_description(Struct_renderpass* renderpass){
+  //---------------------------
+
+  struct_vulkan->vec_renderpass.push_back(renderpass);
+
+  //---------------------------
 }
 
 //Texture function

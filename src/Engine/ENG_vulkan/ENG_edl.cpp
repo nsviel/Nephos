@@ -5,7 +5,7 @@
 #include <VK_pipeline/VK_subpass.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
-#include <VK_struct/struct_vulkan.h>
+#include <VK_struct/Struct_vulkan.h>
 #include <VK_drawing/VK_viewport.h>
 #include <VK_command/VK_command.h>
 #include <VK_drawing/VK_drawing.h>

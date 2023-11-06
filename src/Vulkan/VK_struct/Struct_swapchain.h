@@ -1,7 +1,7 @@
 #ifndef STRUCT_SWAPCHAIN_H
 #define STRUCT_SWAPCHAIN_H
 
-#include "struct_frame.h"
+#include "Struct_frame.h"
 #include <ELE_specific/common.h>
 
 

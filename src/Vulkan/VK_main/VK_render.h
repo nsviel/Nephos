@@ -2,6 +2,7 @@
 #define VK_RENDER_H
 
 #include <ELE_specific/common.h>
+#include <VK_struct/Struct_vulkan.h>
 #include <VK_image/VK_texture.h>
 
 extern "C" {
@@ -27,6 +28,7 @@ public:
 public:
   //Main functions
   void loop_draw_frame();
+  void add_renderpass_description(Struct_renderpass* renderpass);
 
   //Texture function
   Struct_image* load_texture_from_file(string path);

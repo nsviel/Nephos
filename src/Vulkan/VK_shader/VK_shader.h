@@ -1,7 +1,7 @@
 #ifndef VK_SHADER_H
 #define VK_SHADER_H
 
-#include "../VK_struct/struct_pipeline.h"
+#include "../VK_struct/Struct_pipeline.h"
 #include <ELE_specific/common.h>
 
 class VK_engine;
