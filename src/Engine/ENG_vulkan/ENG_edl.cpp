@@ -75,16 +75,6 @@ Struct_pipeline* ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   //---------------------------
   return pipeline;
 }
-void ENG_edl::recreate_pipeline_edl(){
-  //---------------------------
-
-  vkDeviceWaitIdle(struct_vulkan->device.device);
-  Struct_pipeline* pipeline = vk_pipeline->get_pipeline_byName(struct_vulkan->vec_renderpass[1], "triangle_EDL");
-  vk_pipeline->clean_pipeline(pipeline);
-  vk_pipeline->create_pipeline(struct_vulkan->vec_renderpass[1], pipeline);
-
-  //---------------------------
-}
 
 //Draw function
 void ENG_edl::draw_edl(Struct_renderpass* renderpass){

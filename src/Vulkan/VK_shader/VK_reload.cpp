@@ -27,6 +27,10 @@ VK_reload::~VK_reload(){}
 void VK_reload::hot_shader_reload(string shader_1, string shader_2){
   //---------------------------
 
+  if(shader_1 == "Scene"){
+    Struct_pipeline* pipeline = vk_pipeline->get_pipeline_byName(struct_vulkan->vec_renderpass[0], "point");
+    this->recreate_pipeline(struct_vulkan->vec_renderpass[0], pipeline);
+  }
   if(shader_1 == "EDL"){
     Struct_pipeline* pipeline = vk_pipeline->get_pipeline_byName(struct_vulkan->vec_renderpass[1], "triangle_EDL");
     this->recreate_pipeline(struct_vulkan->vec_renderpass[1], pipeline);
