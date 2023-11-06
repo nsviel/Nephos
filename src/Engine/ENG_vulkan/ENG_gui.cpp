@@ -1,8 +1,6 @@
 #include "ENG_gui.h"
 
 #include <Engine.h>
-#include <VK_drawing/VK_renderpass.h>
-#include <VK_pipeline/VK_subpass.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
 #include <VK_struct/Struct_vulkan.h>
@@ -22,8 +20,6 @@ ENG_gui::ENG_gui(Engine* engine){
   this->vk_command = new VK_command(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_pipeline = new VK_pipeline(vk_engine);
-  this->vk_subpass = new VK_subpass(vk_engine);
-  this->vk_renderpass = new VK_renderpass(vk_engine);
 
   //---------------------------
 }

@@ -1,8 +1,6 @@
 #include "ENG_scene.h"
 
 #include <Engine.h>
-#include <VK_drawing/VK_renderpass.h>
-#include <VK_pipeline/VK_subpass.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
 #include <VK_drawing/VK_viewport.h>
@@ -24,22 +22,14 @@ ENG_scene::ENG_scene(Engine* engine){
   this->vk_engine = engine->get_vk_engine();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
-  this->vk_subpass = new VK_subpass(vk_engine);
   this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
   this->vk_drawing = new VK_drawing(vk_engine);
-  this->vk_renderpass = new VK_renderpass(vk_engine);
 
   //---------------------------
 }
-ENG_scene::~ENG_scene(){
-  //---------------------------
-
-  delete vk_subpass;
-
-  //---------------------------
-}
+ENG_scene::~ENG_scene(){}
 
 //Init function
 Struct_renderpass* ENG_scene::init_renderpass(){

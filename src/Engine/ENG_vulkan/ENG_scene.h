@@ -10,13 +10,11 @@ class Engine;
 class Struct_vulkan;
 class VK_engine;
 class VK_pipeline;
-class VK_subpass;
 class VK_viewport;
 class VK_command;
 class VK_descriptor;
 class VK_uniform;
 class VK_drawing;
-class VK_renderpass;
 
 
 class ENG_scene
@@ -46,9 +44,7 @@ private:
   VK_drawing* vk_drawing;
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
-  VK_subpass* vk_subpass;
   VK_viewport* vk_viewport;
-  VK_renderpass* vk_renderpass;
 
   Timer timer;
   float time_renderpass;
