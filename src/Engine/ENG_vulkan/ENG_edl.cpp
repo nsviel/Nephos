@@ -45,11 +45,13 @@ Struct_renderpass* ENG_edl::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
+  //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "edl";
   renderpass->subpass = "shader";
   renderpass->draw_task = [this](Struct_renderpass* renderpass){ENG_edl::draw_edl(renderpass);};
 
+  //Pipeline
   Struct_pipeline* pipeline_edl = create_pipeline_edl(renderpass);
   renderpass->vec_pipeline.push_back(pipeline_edl);
 
@@ -69,7 +71,7 @@ Struct_pipeline* ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_color", 0, 1, TYPE_SAMPLER, STAGE_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_depth", 0, 4, TYPE_SAMPLER, STAGE_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("EDL_param", sizeof(EDL_param), 5, TYPE_UNIFORM, STAGE_FS));
-
+  
   //---------------------------
   return pipeline;
 }

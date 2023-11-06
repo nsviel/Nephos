@@ -33,11 +33,13 @@ Struct_renderpass* ENG_gui::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
+  //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "ui";
   renderpass->subpass = "presentation";
   renderpass->draw_task = [this](Struct_renderpass* renderpass){ENG_gui::draw_gui(renderpass);};
 
+  //Pipeline
   this->create_pipeline_canvas(renderpass);
 
   //---------------------------
