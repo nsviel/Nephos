@@ -6,7 +6,7 @@
 #include "VK_struct/struct_device.h"
 #include "VK_struct/struct_swapchain.h"
 #include "VK_struct/struct_renderpass.h"
-#include "VK_struct/struct_time.h"
+#include "VK_struct/struct_info.h"
 #include "VK_struct/struct_data.h"
 
 #include <string>
@@ -33,7 +33,7 @@ struct Struct_vulkan{
   Struct_instance instance;
   Struct_device device;
   Struct_swapchain swapchain;
-  Struct_time time;
+  Struct_info info;
   Struct_data canvas;
 
   //Data

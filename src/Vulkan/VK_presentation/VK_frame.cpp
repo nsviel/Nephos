@@ -68,14 +68,14 @@ void VK_frame::clean_frame_renderpass(Struct_renderpass* renderpass){
 }
 
 //Swapchain frame
-void VK_frame::create_frame_swapchain(Struct_swapchain* swapchain){
+void VK_frame::create_frame_swapchain(){
   //---------------------------
 
-  for(int i=0; i<swapchain->vec_swapchain_image.size(); i++){
+  for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
     Frame* frame = new Frame();
 
     frame->ID = i;
-    frame->color.image = swapchain->vec_swapchain_image[i];
+    frame->color.image = struct_vulkan->swapchain.vec_swapchain_image[i];
     frame->color.format = vk_color->find_color_format();
     frame->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
     frame->depth.image_usage = IMAGE_USAGE_DEPTH;
@@ -85,13 +85,13 @@ void VK_frame::create_frame_swapchain(Struct_swapchain* swapchain){
     vk_framebuffer->create_framebuffer(struct_vulkan->vec_renderpass[2], frame);
     vk_synchronization->init_frame_sync(frame);
 
-    swapchain->vec_frame.push_back(frame);
+    struct_vulkan->swapchain.vec_frame.push_back(frame);
   }
 
   //---------------------------
 }
-void VK_frame::clean_frame_swapchain(Struct_swapchain* swapchain){
-  vector<Frame*>& vec_frame = swapchain->vec_frame;
+void VK_frame::clean_frame_swapchain(){
+  vector<Frame*>& vec_frame = struct_vulkan->swapchain.vec_frame;
   //---------------------------
 
   //Vec images

@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 
-struct Struct_time{
+struct Struct_info{
   //---------------------------
 
   float engine_init;

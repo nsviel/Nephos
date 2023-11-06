@@ -1,25 +1,24 @@
 #include "VK_engine.h"
-#include "VK_struct/struct_vulkan.h"
-#include "VK_struct/struct_param.h"
-#include "VK_struct/struct_synchro.h"
-#include "VK_data/VK_data.h"
-#include "VK_drawing/VK_renderpass.h"
-#include "VK_command/VK_command_buffer.h"
-#include "VK_drawing/VK_drawing.h"
-#include "VK_device/VK_device.h"
-#include "VK_device/VK_physical_device.h"
-#include "VK_presentation/VK_surface.h"
-#include "VK_instance/VK_instance.h"
-#include "VK_instance/VK_validation.h"
-#include "VK_presentation/VK_canvas.h"
-#include "VK_binding/VK_descriptor.h"
-#include "VK_image/VK_texture.h"
-#include "VK_presentation/VK_swapchain.h"
-#include "VK_presentation/VK_frame.h"
-#include "VK_shader/VK_reload.h"
-#include "VK_main/VK_imgui.h"
-#include "VK_drawing/VK_viewport.h"
-#include "VK_main/VK_render.h"
+
+#include <VK_struct/struct_vulkan.h>
+#include <VK_struct/struct_param.h>
+#include <VK_struct/struct_synchro.h>
+#include <VK_data/VK_data.h>
+#include <VK_drawing/VK_renderpass.h>
+#include <VK_command/VK_command_buffer.h>
+#include <VK_device/VK_device.h>
+#include <VK_presentation/VK_surface.h>
+#include <VK_instance/VK_instance.h>
+#include <VK_presentation/VK_canvas.h>
+#include <VK_binding/VK_descriptor.h>
+#include <VK_image/VK_texture.h>
+#include <VK_presentation/VK_swapchain.h>
+#include <VK_presentation/VK_frame.h>
+#include <VK_shader/VK_reload.h>
+#include <VK_main/VK_imgui.h>
+#include <VK_drawing/VK_viewport.h>
+#include <VK_main/VK_render.h>
+#include <VK_main/VK_info.h>
 
 #include <ELE_window/Window.h>
 
@@ -34,11 +33,9 @@ VK_engine::VK_engine(Window* window){
   this->struct_vulkan = new Struct_vulkan();
   this->struct_synchro = new Struct_synchro();
 
-  this->vk_imgui = new VK_imgui(this);
   this->vk_instance = new VK_instance(this);
   this->vk_viewport = new VK_viewport(this);
   this->vk_surface = new VK_surface(this);
-  this->vk_physical_device = new VK_physical_device(this);
   this->vk_device = new VK_device(this);
   this->vk_texture = new VK_texture(this);
   this->vk_descriptor = new VK_descriptor(this);
@@ -49,8 +46,10 @@ VK_engine::VK_engine(Window* window){
   this->vk_reload = new VK_reload(this);
   this->vk_frame = new VK_frame(this);
   this->vk_canvas = new VK_canvas(this);
-  this->vk_drawing = new VK_drawing(this);
+  this->vk_info = new VK_info(this);
+
   this->vk_render = new VK_render(this);
+  this->vk_imgui = new VK_imgui(this);
 
   //---------------------------
 }
@@ -74,10 +73,10 @@ void VK_engine::init(){
   vk_swapchain->create_swapchain();
   vk_viewport->init_viewport();
   vk_renderpass->init_renderpass();
-  vk_frame->create_frame_swapchain(&struct_vulkan->swapchain);
+  vk_frame->create_frame_swapchain();
 
   //---------------------------
-  struct_vulkan->time.engine_init = timer.stop_us(t1) / 1000;
+  struct_vulkan->info.engine_init = timer.stop_us(t1) / 1000;
 }
 void VK_engine::device_wait_idle() {
   //---------------------------

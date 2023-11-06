@@ -60,7 +60,7 @@ void VK_drawing::draw_frame(){
   vk_submit->set_next_frame_ID(&struct_vulkan->swapchain);
 
   //---------------------------
-  struct_vulkan->time.draw_frame.push_back(timer.stop_ms(t1));
+  struct_vulkan->info.draw_frame.push_back(timer.stop_ms(t1));
 }
 void VK_drawing::cmd_draw_data(Struct_renderpass* renderpass, Struct_data* data){
   //---------------------------

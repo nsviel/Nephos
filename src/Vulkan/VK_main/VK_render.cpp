@@ -26,7 +26,7 @@ void VK_render::loop_draw_frame(){
 
   //---------------------------
   fps_counter->update();
-  struct_vulkan->time.engine_fps = fps_counter->get_fps();
+  struct_vulkan->info.engine_fps = fps_counter->get_fps();
 }
 
 //Texture function

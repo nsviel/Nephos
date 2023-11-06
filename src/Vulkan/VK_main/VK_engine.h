@@ -20,13 +20,12 @@ class VK_texture;
 class VK_data;
 class VK_viewport;
 class VK_reload;
-class VK_physical_device;
 class VK_frame;
 class VK_canvas;
-class VK_drawing;
 class VK_command_buffer;
 class VK_imgui;
 class VK_render;
+class VK_info;
 
 
 class VK_engine
@@ -54,7 +53,7 @@ public:
   inline Struct_synchro* get_struct_synchro(){return struct_synchro;}
   inline VK_render* get_vk_render(){return vk_render;}
   inline VK_imgui* get_vk_imgui(){return vk_imgui;}
-  
+
   inline std::list<Struct_data*> get_list_data_scene(){return struct_vulkan->list_data_scene;}
   inline std::list<Struct_data*> get_list_data_glyph(){return struct_vulkan->list_data_glyph;}
 
@@ -78,10 +77,9 @@ private:
   VK_data* vk_data;
   VK_viewport* vk_viewport;
   VK_reload* vk_reload;
-  VK_physical_device* vk_physical_device;
   VK_frame* vk_frame;
   VK_canvas* vk_canvas;
-  VK_drawing* vk_drawing;
+  VK_info* vk_info;
 
   Timer timer;
   std::list<Object*> list_scene;

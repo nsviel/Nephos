@@ -41,14 +41,14 @@ void VK_swapchain::recreate_swapChain(){
   vkDeviceWaitIdle(struct_vulkan->device.device);
 
   //Clean old values
-  vk_frame->clean_frame_swapchain(&struct_vulkan->swapchain);
+  vk_frame->clean_frame_swapchain();
   vk_frame->clean_frame_renderpass(struct_vulkan->vec_renderpass[0]);
   vk_frame->clean_frame_renderpass(struct_vulkan->vec_renderpass[1]);
   this->clean_swapchain();
 
   //Recreate values
   this->create_swapchain();
-  vk_frame->create_frame_swapchain(&struct_vulkan->swapchain);
+  vk_frame->create_frame_swapchain();
   vk_frame->create_frame_renderpass(struct_vulkan->vec_renderpass[0]);
   vk_frame->create_frame_renderpass(struct_vulkan->vec_renderpass[1]);
 
@@ -59,7 +59,7 @@ void VK_swapchain::clean_swapchain(){
 
   vkDestroySwapchainKHR(struct_vulkan->device.device, struct_vulkan->swapchain.swapchain, nullptr);
 
-  vk_frame->clean_frame_swapchain(&struct_vulkan->swapchain);
+  vk_frame->clean_frame_swapchain();
 
   //---------------------------
 }

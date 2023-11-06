@@ -77,10 +77,10 @@ void GUI_profiler::time_drawig(bool update){
   static float meanr_rp_edl;
   static float meanr_rp_gui;
   if(update){
-    mean_draw_frame = fct_mean_and_clear(struct_vulkan->time.draw_frame);
-    meanr_rp_scene = fct_mean_and_clear(struct_vulkan->time.time_rp_scene);
-    meanr_rp_edl = fct_mean_and_clear(struct_vulkan->time.time_rp_edl);
-    meanr_rp_gui = fct_mean_and_clear(struct_vulkan->time.time_rp_gui);
+    mean_draw_frame = fct_mean_and_clear(struct_vulkan->info.draw_frame);
+    meanr_rp_scene = fct_mean_and_clear(struct_vulkan->info.time_rp_scene);
+    meanr_rp_edl = fct_mean_and_clear(struct_vulkan->info.time_rp_edl);
+    meanr_rp_gui = fct_mean_and_clear(struct_vulkan->info.time_rp_gui);
   }
 
   ImGui::Text("Time draw frame ");
@@ -118,13 +118,13 @@ void GUI_profiler::time_general(bool update){
 
   static float mean_engine_fps;
   if(update){
-    mean_engine_fps = struct_vulkan->time.engine_fps;
+    mean_engine_fps = struct_vulkan->info.engine_fps;
   }
 
   //Time init
   ImGui::Text("Time initialization ");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", struct_vulkan->time.engine_init);
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", struct_vulkan->info.engine_init);
   ImGui::SameLine();
   ImGui::Text(" ms");
 
