@@ -23,6 +23,7 @@ struct Struct_renderpass{
 
   //Info
   std::string name;
+  std::string subpass;
 
   //Renderpass frame set
   VkImageUsageFlags color_image_usage;

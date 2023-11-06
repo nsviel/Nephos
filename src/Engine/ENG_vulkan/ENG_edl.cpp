@@ -46,12 +46,10 @@ Struct_renderpass* ENG_edl::init_renderpass(){
   //---------------------------
 
   Struct_renderpass* renderpass = new Struct_renderpass();
-
-  Struct_pipeline* pipeline_edl = create_pipeline_edl(renderpass);
-
-  //Renderpass
   renderpass->name = "edl";
-  vk_subpass->create_subpass_shader(renderpass);
+  renderpass->subpass = "shader";
+  
+  Struct_pipeline* pipeline_edl = create_pipeline_edl(renderpass);
   renderpass->vec_pipeline.push_back(pipeline_edl);
 
   //---------------------------

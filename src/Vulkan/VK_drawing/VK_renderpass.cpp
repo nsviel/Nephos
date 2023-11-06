@@ -48,7 +48,7 @@ void VK_renderpass::init_renderpass(){
 
   renderpass = eng_gui->init_renderpass();
   struct_vulkan->vec_renderpass.push_back(renderpass);
-  
+
   //---------------------------
 }
 void VK_renderpass::create_all_renderpass(){
@@ -56,6 +56,7 @@ void VK_renderpass::create_all_renderpass(){
 
   for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
     Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
+    vk_subpass->create_subpass(renderpass);
     this->create_renderpass(renderpass);
   }
 

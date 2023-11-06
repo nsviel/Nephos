@@ -20,6 +20,18 @@ VK_subpass::VK_subpass(VK_engine* vk_engine){
 VK_subpass::~VK_subpass(){}
 
 //Main function
+void VK_subpass::create_subpass(Struct_renderpass* renderpass){
+  //---------------------------
+
+  if(renderpass->subpass == "shader"){
+    this->create_subpass_shader(renderpass);
+  }
+  else if(renderpass->subpass == "presentation"){
+    this->create_subpass_presentation(renderpass);
+  }
+
+  //---------------------------
+}
 void VK_subpass::create_subpass_presentation(Struct_renderpass* renderpass){
   //---------------------------
 

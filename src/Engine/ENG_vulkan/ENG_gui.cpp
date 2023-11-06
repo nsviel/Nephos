@@ -32,9 +32,8 @@ Struct_renderpass* ENG_gui::init_renderpass(){
   //---------------------------
 
   Struct_renderpass* renderpass = new Struct_renderpass();
-
   renderpass->name = "ui";
-  vk_subpass->create_subpass_presentation(renderpass);
+  renderpass->subpass = "presentation";
   this->create_pipeline_canvas(renderpass);
 
   //---------------------------

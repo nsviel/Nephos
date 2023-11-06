@@ -46,7 +46,7 @@ Struct_renderpass* ENG_scene::init_renderpass(){
 
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "scene";
-  vk_subpass->create_subpass_shader(renderpass);
+  renderpass->subpass = "shader";
   this->create_pipeline_point(renderpass);
   this->create_pipeline_line(renderpass);
 
