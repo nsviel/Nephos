@@ -84,7 +84,7 @@ void VK_frame::create_frame_swapchain(Struct_swapchain* swapchain){
 
     vk_image->create_image_view(&frame->color);
     vk_depth->create_depth_attachment(frame);
-    vk_framebuffer->create_framebuffer(&struct_vulkan->vec_renderpass[2], frame);
+    vk_framebuffer->create_framebuffer(struct_vulkan->vec_renderpass[2], frame);
     vk_synchronization->init_frame_sync(frame);
 
     swapchain->vec_frame.push_back(frame);

@@ -37,7 +37,7 @@ struct Struct_vulkan{
   Struct_data canvas;
 
   //Data
-  std::vector<Struct_renderpass> vec_renderpass;
+  std::vector<Struct_renderpass*> vec_renderpass;
   std::vector<Struct_image*> vec_texture;
   std::list<Struct_data*> list_data_scene;
   std::list<Struct_data*> list_data_glyph;

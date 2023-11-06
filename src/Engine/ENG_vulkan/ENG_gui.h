@@ -21,7 +21,7 @@ public:
 
 public:
   //Main functions
-  void init_renderpass();
+  Struct_renderpass* init_renderpass();
 
   //Pipeline
   void create_pipeline_canvas(Struct_renderpass* renderpass);

@@ -18,7 +18,7 @@ VK_imgui::~VK_imgui(){}
 void VK_imgui::init(){
   Window* window = struct_vulkan->window.windowManager;
   VkSurfaceKHR surface = struct_vulkan->window.surface;
-  VkRenderPass renderPass = struct_vulkan->vec_renderpass[2].renderpass;
+  VkRenderPass renderPass = struct_vulkan->vec_renderpass[2]->renderpass;
   //---------------------------
 
   // Setup Dear ImGui context
@@ -79,18 +79,18 @@ void VK_imgui::load_font(){
   VkCommandBufferBeginInfo begin_info = {};
   begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
   begin_info.flags |= VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-  result = vkBeginCommandBuffer(struct_vulkan->vec_renderpass[2].command_buffer, &begin_info);
+  result = vkBeginCommandBuffer(struct_vulkan->vec_renderpass[2]->command_buffer, &begin_info);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }
 
-  ImGui_ImplVulkan_CreateFontsTexture(struct_vulkan->vec_renderpass[2].command_buffer);
+  ImGui_ImplVulkan_CreateFontsTexture(struct_vulkan->vec_renderpass[2]->command_buffer);
 
   VkSubmitInfo end_info = {};
   end_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   end_info.commandBufferCount = 1;
-  end_info.pCommandBuffers = &struct_vulkan->vec_renderpass[2].command_buffer;
-  result = vkEndCommandBuffer(struct_vulkan->vec_renderpass[2].command_buffer);
+  end_info.pCommandBuffers = &struct_vulkan->vec_renderpass[2]->command_buffer;
+  result = vkEndCommandBuffer(struct_vulkan->vec_renderpass[2]->command_buffer);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }
@@ -119,7 +119,7 @@ void VK_imgui::clean(){
 ImTextureID VK_imgui::engine_texture(){
   //---------------------------
 
-  Frame* frame_edl = struct_vulkan->vec_renderpass[1].get_rendering_frame();
+  Frame* frame_edl = struct_vulkan->vec_renderpass[1]->get_rendering_frame();
   Struct_image* image = &frame_edl->color;
   VkDescriptorSet descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   ImTextureID texture = reinterpret_cast<ImTextureID>(descriptor);

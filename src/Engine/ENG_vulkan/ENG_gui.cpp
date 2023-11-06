@@ -27,7 +27,7 @@ ENG_gui::ENG_gui(VK_engine* vk_engine){
 ENG_gui::~ENG_gui(){}
 
 //Main function
-void ENG_gui::init_renderpass(){
+Struct_renderpass* ENG_gui::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
@@ -37,8 +37,10 @@ void ENG_gui::init_renderpass(){
   vk_subpass->create_subpass_presentation(renderpass);
   this->create_pipeline_canvas(renderpass);
 
-  //---------------------------
   vk_renderpass->create_renderpass(renderpass);
+
+  //---------------------------
+  return renderpass;
 }
 void ENG_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
   //---------------------------

@@ -43,19 +43,20 @@ ENG_scene::~ENG_scene(){
 }
 
 //Main function
-void ENG_scene::init_renderpass(){
+Struct_renderpass* ENG_scene::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
   Struct_renderpass* renderpass = new Struct_renderpass();
-
   renderpass->name = "scene";
   vk_subpass->create_subpass_shader(renderpass);
   this->create_pipeline_point(renderpass);
   this->create_pipeline_line(renderpass);
 
-  //---------------------------
   vk_renderpass->create_renderpass(renderpass);
+
+  //---------------------------
+  return renderpass;
 }
 void ENG_scene::create_pipeline_point(Struct_renderpass* renderpass){
   //---------------------------

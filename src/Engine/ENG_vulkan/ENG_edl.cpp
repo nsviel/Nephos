@@ -41,7 +41,7 @@ ENG_edl::ENG_edl(VK_engine* vk_engine){
 ENG_edl::~ENG_edl(){}
 
 //Main function
-void ENG_edl::init_renderpass(){
+Struct_renderpass* ENG_edl::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
 
@@ -54,8 +54,10 @@ void ENG_edl::init_renderpass(){
   vk_subpass->create_subpass_shader(renderpass);
   renderpass->vec_pipeline.push_back(pipeline_edl);
 
-  //---------------------------
   vk_renderpass->create_renderpass(renderpass);
+
+  //---------------------------
+  return renderpass;
 }
 Struct_pipeline* ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   //---------------------------
@@ -77,16 +79,16 @@ Struct_pipeline* ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
 void ENG_edl::recreate_pipeline_edl(){
   //---------------------------
 
-  Struct_pipeline* pipeline_new = create_pipeline_edl(&struct_vulkan->vec_renderpass[1]);
-  vk_pipeline->create_pipeline(&struct_vulkan->vec_renderpass[1], pipeline_new);
+  Struct_pipeline* pipeline_new = create_pipeline_edl(struct_vulkan->vec_renderpass[1]);
+  vk_pipeline->create_pipeline(struct_vulkan->vec_renderpass[1], pipeline_new);
 
   vkDeviceWaitIdle(struct_vulkan->device.device);
 
-  Struct_pipeline* pipeline_old = vk_pipeline->get_pipeline_byName(&struct_vulkan->vec_renderpass[1], "triangle_EDL");
+  Struct_pipeline* pipeline_old = vk_pipeline->get_pipeline_byName(struct_vulkan->vec_renderpass[1], "triangle_EDL");
   vk_pipeline->clean_pipeline(pipeline_old);
 
-  struct_vulkan->vec_renderpass[1].vec_pipeline.clear();
-  struct_vulkan->vec_renderpass[1].vec_pipeline.push_back(pipeline_new);
+  struct_vulkan->vec_renderpass[1]->vec_pipeline.clear();
+  struct_vulkan->vec_renderpass[1]->vec_pipeline.push_back(pipeline_new);
 
   //---------------------------
 }
@@ -95,7 +97,7 @@ void ENG_edl::draw_edl(Struct_renderpass* renderpass){
   //---------------------------
 
   //Update descriptor
-  Frame* frame_scene = struct_vulkan->vec_renderpass[0].get_rendering_frame();
+  Frame* frame_scene = struct_vulkan->vec_renderpass[0]->get_rendering_frame();
   for(int i=0; i<renderpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
     vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);

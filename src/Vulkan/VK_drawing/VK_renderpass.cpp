@@ -38,9 +38,16 @@ VK_renderpass::~VK_renderpass(){}
 void VK_renderpass::init_renderpass(){
   //---------------------------
 
-  eng_scene->init_renderpass();
-  eng_edl->init_renderpass();
-  eng_gui->init_renderpass();
+  Struct_renderpass* renderpass;
+
+  renderpass = eng_scene->init_renderpass();
+  struct_vulkan->vec_renderpass.push_back(renderpass);
+
+  renderpass = eng_edl->init_renderpass();
+  struct_vulkan->vec_renderpass.push_back(renderpass);
+
+  renderpass = eng_gui->init_renderpass();
+  struct_vulkan->vec_renderpass.push_back(renderpass);
 
   //---------------------------
 }
@@ -48,7 +55,7 @@ void VK_renderpass::clean_renderpass(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
-    Struct_renderpass* renderpass = &struct_vulkan->vec_renderpass[i];
+    Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
     this->clean_renderpass_object(renderpass);
   }
 
@@ -76,7 +83,6 @@ void VK_renderpass::create_renderpass(Struct_renderpass* renderpass){
   vk_frame->create_frame_renderpass(renderpass);
 
   //---------------------------
-  struct_vulkan->vec_renderpass.push_back(*renderpass);
 }
 void VK_renderpass::create_renderpass_obj(Struct_renderpass* renderpass){
   //---------------------------
