@@ -19,8 +19,8 @@ public:
 
 public:
   //Main functions
-  void init_frame_sync(Frame* frame);
-  void clean_frame_sync(Frame* frame);
+  void init_frame_sync(Struct_frame* frame);
+  void clean_frame_sync(Struct_frame* frame);
 
   //Synchronization object
   void create_semaphore(VkSemaphore& semaphore);

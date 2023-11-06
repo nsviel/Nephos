@@ -97,7 +97,7 @@ void ENG_scene::draw_scene(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
-  Frame* frame = renderpass->get_rendering_frame();
+  Struct_frame* frame = renderpass->get_rendering_frame();
   vk_command->start_render_pass(renderpass, frame, false);
   vk_viewport->cmd_viewport(renderpass);
   this->cmd_draw_scene(renderpass);

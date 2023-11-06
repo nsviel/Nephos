@@ -15,11 +15,11 @@ struct Struct_swapchain{
   vector<VkImage> vec_swapchain_image;
 
   //Swapchain frame
-  Frame* get_frame_current(){return vec_frame[frame_current_ID];}
-  Frame* get_frame_inflight(){return vec_frame[frame_inflight_ID];}
+  Struct_frame* get_frame_current(){return vec_frame[frame_current_ID];}
+  Struct_frame* get_frame_inflight(){return vec_frame[frame_inflight_ID];}
   uint32_t frame_current_ID = 0;
   uint32_t frame_inflight_ID = 0;
-  std::vector<Frame*> vec_frame;
+  std::vector<Struct_frame*> vec_frame;
 
   //---------------------------
 };

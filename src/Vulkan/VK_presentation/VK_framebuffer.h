@@ -18,10 +18,10 @@ public:
 
 public:
   //FBO creation
-  void create_framebuffer(Struct_renderpass* renderpass, Frame* image);
+  void create_framebuffer(Struct_renderpass* renderpass, Struct_frame* image);
 
   //Deletion functions
-  void clean_framebuffer(Frame* image);
+  void clean_framebuffer(Struct_frame* image);
 
 private:
   Struct_vulkan* struct_vulkan;

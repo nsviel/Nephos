@@ -1,11 +1,11 @@
-#ifndef STRUCT_IMAGE_H
-#define STRUCT_IMAGE_H
+#ifndef STRUCT_FRAME_H
+#define STRUCT_FRAME_H
 
 #include <ELE_specific/common.h>
 #include "Struct_image.h"
 
 
-struct Frame{
+struct Struct_frame{
   //---------------------------
 
   int ID;

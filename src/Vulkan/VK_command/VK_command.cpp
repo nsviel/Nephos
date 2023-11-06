@@ -32,7 +32,7 @@ void VK_command::start_command_buffer_primary(VkCommandBuffer command_buffer){
   //---------------------------
 }
 void VK_command::start_command_buffer_secondary(Struct_renderpass* renderpass, VkCommandBuffer command_buffer){
-  Frame* frame = renderpass->get_rendering_frame();
+  Struct_frame* frame = renderpass->get_rendering_frame();
   //---------------------------
 
   // Create a VkCommandBufferInheritanceInfo structure
@@ -72,7 +72,7 @@ void VK_command::stop_command_buffer(VkCommandBuffer command_buffer){
 }
 
 //Render pass
-void VK_command::start_render_pass(Struct_renderpass* renderpass, Frame* frame, bool with_secondary_cb){
+void VK_command::start_render_pass(Struct_renderpass* renderpass, Struct_frame* frame, bool with_secondary_cb){
   //---------------------------
 
   vkResetCommandBuffer(renderpass->command_buffer, 0);

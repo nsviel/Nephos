@@ -63,7 +63,7 @@ void ENG_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
 void ENG_gui::draw_gui(Struct_renderpass* renderpass){
   //---------------------------
 
-  Frame* frame_current = struct_vulkan->swapchain.get_frame_current();
+  Struct_frame* frame_current = struct_vulkan->swapchain.get_frame_current();
   vk_command->start_render_pass(renderpass, frame_current, false);
   ImDrawData* draw_data = ImGui::GetDrawData();
   ImGui_ImplVulkan_RenderDrawData(draw_data, renderpass->command_buffer);

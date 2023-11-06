@@ -22,7 +22,7 @@ VK_color::VK_color(VK_engine* vk_engine){
 VK_color::~VK_color(){}
 
 //Main function
-void VK_color::create_color_attachment(Frame* frame){
+void VK_color::create_color_attachment(Struct_frame* frame){
   //---------------------------
 
   //Create frame color image

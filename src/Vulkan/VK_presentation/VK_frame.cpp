@@ -33,7 +33,7 @@ void VK_frame::create_frame_renderpass(Struct_renderpass* renderpass){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
-    Frame* frame = new Frame();
+    Struct_frame* frame = new Struct_frame();
 
     frame->ID = i;
     frame->color.image_usage = renderpass->color_image_usage;
@@ -51,12 +51,12 @@ void VK_frame::create_frame_renderpass(Struct_renderpass* renderpass){
   //---------------------------
 }
 void VK_frame::clean_frame_renderpass(Struct_renderpass* renderpass){
-  vector<Frame*>& vec_frame = renderpass->vec_frame;
+  vector<Struct_frame*>& vec_frame = renderpass->vec_frame;
   //---------------------------
 
   //Vec images
   for(int i=0; i<vec_frame.size(); i++){
-    Frame* frame = vec_frame[i];
+    Struct_frame* frame = vec_frame[i];
     vk_image->clean_image(&frame->color);
     vk_image->clean_image(&frame->depth);
     vk_framebuffer->clean_framebuffer(frame);
@@ -72,7 +72,7 @@ void VK_frame::create_frame_swapchain(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
-    Frame* frame = new Frame();
+    Struct_frame* frame = new Struct_frame();
 
     frame->ID = i;
     frame->color.image = struct_vulkan->swapchain.vec_swapchain_image[i];
@@ -91,12 +91,12 @@ void VK_frame::create_frame_swapchain(){
   //---------------------------
 }
 void VK_frame::clean_frame_swapchain(){
-  vector<Frame*>& vec_frame = struct_vulkan->swapchain.vec_frame;
+  vector<Struct_frame*>& vec_frame = struct_vulkan->swapchain.vec_frame;
   //---------------------------
 
   //Vec images
   for(int i=0; i<vec_frame.size(); i++){
-    Frame* frame = vec_frame[i];
+    Struct_frame* frame = vec_frame[i];
     vkDestroyImageView(struct_vulkan->device.device, frame->color.view, nullptr);
     vk_image->clean_image(&frame->depth);
     vk_framebuffer->clean_framebuffer(frame);

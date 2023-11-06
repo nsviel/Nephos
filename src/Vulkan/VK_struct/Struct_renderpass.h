@@ -30,9 +30,9 @@ struct Struct_renderpass{
   VkImageLayout color_sampler_layout;
   VkImageUsageFlags depth_image_usage;
   VkImageLayout depth_sampler_layout;
-  Frame* get_rendering_frame(){return vec_frame[rendering_frame_ID];}
+  Struct_frame* get_rendering_frame(){return vec_frame[rendering_frame_ID];}
   uint32_t rendering_frame_ID = 0;
-  std::vector<Frame*> vec_frame;
+  std::vector<Struct_frame*> vec_frame;
 
   //Render pass elements
   VkRenderPass renderpass;
