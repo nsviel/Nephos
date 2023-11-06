@@ -15,7 +15,6 @@ GUI_gpu::GUI_gpu(GUI* gui){
   Engine* engine = gui->get_engine();
   VK_engine* vk_engine = engine->get_vk_engine();
   this->vk_imgui = vk_engine->get_vk_imgui();
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   //---------------------------
 }

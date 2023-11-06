@@ -3,6 +3,7 @@
 #include <Engine.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
+#include <VK_main/VK_render.h>
 #include <VK_struct/Struct_vulkan.h>
 #include <VK_drawing/VK_viewport.h>
 #include <VK_command/VK_command.h>
@@ -30,6 +31,7 @@ RP_edl::RP_edl(Engine* engine){
   this->vk_drawing = new VK_drawing(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
   this->vk_command = new VK_command(vk_engine);
+  this->vk_render = vk_engine->get_vk_render();
 
   //---------------------------
 }
@@ -104,7 +106,7 @@ void RP_edl::draw_command(Struct_renderpass* renderpass){
   edl_shader->update_shader();
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
   vk_descriptor->cmd_bind_descriptor(renderpass, "triangle_EDL", pipeline->binding.descriptor.set);
-  vk_drawing->cmd_draw_data(renderpass, &struct_vulkan->canvas);
+  vk_drawing->cmd_draw_data(renderpass, vk_render->get_canvas());
 
   vk_command->stop_render_pass(renderpass);
 

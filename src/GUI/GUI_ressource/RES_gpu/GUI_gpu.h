@@ -4,7 +4,6 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class Struct_vulkan;
 class VK_imgui;
 
 
@@ -25,10 +24,6 @@ public:
 
 private:
   VK_imgui* vk_imgui;
-  Struct_vulkan* struct_vulkan;
-
-  VkDescriptorPool imguiPool;
-  ImDrawData* draw_data;
 };
 
 #endif
