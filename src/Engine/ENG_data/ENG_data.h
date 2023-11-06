@@ -4,7 +4,7 @@
 class Engine;
 class ENG_scene;
 class ENG_database;
-class Glyphs;
+class ENG_glyph;
 class Loader;
 
 
@@ -29,7 +29,7 @@ private:
   Engine* engine;
   ENG_scene* eng_scene;
   ENG_database* eng_database;
-  Glyphs* glyphManager;
+  ENG_glyph* eng_glyph;
   Loader* loaderManager;
 };
 

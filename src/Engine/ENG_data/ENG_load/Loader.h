@@ -9,7 +9,7 @@
 #include <vector>
 
 class ENG_data;
-class Format;
+class ENG_format;
 class ENG_scene;
 
 
@@ -30,7 +30,7 @@ public:
   void transfert_data(Object* object, Data_file* eng_data);
 
 private:
-  Format* formatManager;
+  ENG_format* eng_format;
   ENG_scene* eng_scene;
 
   std::string path_current_dir;

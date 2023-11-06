@@ -1,4 +1,4 @@
-#include "Glyphs.h"
+#include "ENG_glyph.h"
 
 #include "Base/Glyph_source.h"
 #include "Scene/Grid.h"
@@ -9,7 +9,7 @@
 
 
 //Constructor / Destructor
-Glyphs::Glyphs(ENG_data* eng_data){
+ENG_glyph::ENG_glyph(ENG_data* eng_data){
   //---------------------------
 
   this->eng_scene = eng_data->get_eng_scene();
@@ -19,7 +19,7 @@ Glyphs::Glyphs(ENG_data* eng_data){
 
   //---------------------------
 }
-Glyphs::~Glyphs(){
+ENG_glyph::~ENG_glyph(){
   //---------------------------
 
   for(int i=0; i<vec_glyph_src.size(); i++){
@@ -30,7 +30,7 @@ Glyphs::~Glyphs(){
 }
 
 //Creation function
-void Glyphs::create_glyph_scene(){
+void ENG_glyph::create_glyph_scene(){
   //---------------------------
 
   for(int i=0; i<vec_glyph_src.size(); i++){
@@ -41,7 +41,7 @@ void Glyphs::create_glyph_scene(){
 
   //---------------------------
 }
-Glyph_source* Glyphs::get_glyph_src_byName(string name){
+Glyph_source* ENG_glyph::get_glyph_src_byName(string name){
   //---------------------------
 
   for(int i=0; i<vec_glyph_src.size(); i++){
@@ -57,7 +57,7 @@ Glyph_source* Glyphs::get_glyph_src_byName(string name){
 
 /*
 //Main functions
-void Glyphs::draw_glyph(Glyph* glyph){
+void ENG_glyph::draw_glyph(Glyph* glyph){
   //---------------------------
 
   if(glyph->is_visible){
@@ -66,7 +66,7 @@ void Glyphs::draw_glyph(Glyph* glyph){
 
   //---------------------------
 }
-void Glyphs::insert_into_gpu(Glyph* glyph){
+void ENG_glyph::insert_into_gpu(Glyph* glyph){
   //---------------------------
 
   gpuManager->gen_vao(glyph);
@@ -78,7 +78,7 @@ void Glyphs::insert_into_gpu(Glyph* glyph){
 }
 
 //Glyph creation / supression
-void Glyphs::create_glyph_scene(Glyph* glyph){
+void ENG_glyph::create_glyph_scene(Glyph* glyph){
   Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
@@ -87,7 +87,7 @@ void Glyphs::create_glyph_scene(Glyph* glyph){
 
   //---------------------------
 }
-void Glyphs::create_glyph_object(Object* object, Glyph* glyph){
+void ENG_glyph::create_glyph_object(Object* object, Glyph* glyph){
   Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_object");
   //---------------------------
 
@@ -97,7 +97,7 @@ void Glyphs::create_glyph_object(Object* object, Glyph* glyph){
 
   //---------------------------
 }
-void Glyphs::remove_temporary_glyph(){
+void ENG_glyph::remove_temporary_glyph(){
   Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
@@ -113,7 +113,7 @@ void Glyphs::remove_temporary_glyph(){
 
   //---------------------------
 }
-void Glyphs::remove_glyph_scene(int ID){
+void ENG_glyph::remove_glyph_scene(int ID){
   Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
@@ -129,7 +129,7 @@ void Glyphs::remove_glyph_scene(int ID){
 
   //---------------------------
 }
-Glyph* Glyphs::create_glyph(vector<vec3>& XYZ, vector<vec4>& RGB, string mode, bool perma){
+Glyph* ENG_glyph::create_glyph(vector<vec3>& XYZ, vector<vec4>& RGB, string mode, bool perma){
   Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   Glyph* glyph = new Glyph();
   unsigned int VAO;
@@ -151,7 +151,7 @@ Glyph* Glyphs::create_glyph(vector<vec3>& XYZ, vector<vec4>& RGB, string mode, b
 }
 
 //Glyph update
-void Glyphs::update_glyph_buffer(Glyph* glyph){
+void ENG_glyph::update_glyph_buffer(Glyph* glyph){
   //---------------------------
 
   gpuManager->update_buffer_location(glyph);
@@ -159,21 +159,21 @@ void Glyphs::update_glyph_buffer(Glyph* glyph){
 
   //---------------------------
 }
-void Glyphs::update_glyph_location(Glyph* glyph){
+void ENG_glyph::update_glyph_location(Glyph* glyph){
   //---------------------------
 
   gpuManager->update_buffer_location(glyph);
 
   //---------------------------
 }
-void Glyphs::update_glyph_color(Glyph* glyph){
+void ENG_glyph::update_glyph_color(Glyph* glyph){
   //---------------------------
 
   gpuManager->update_buffer_color(glyph);
 
   //---------------------------
 }
-void Glyphs::update_glyph_color(Glyph* glyph, vec4 RGB_new){
+void ENG_glyph::update_glyph_color(Glyph* glyph, vec4 RGB_new){
   vector<vec4>& RGB = glyph->rgb;
   int size = RGB.size();
   //---------------------------
@@ -190,7 +190,7 @@ void Glyphs::update_glyph_color(Glyph* glyph, vec4 RGB_new){
 
   //---------------------------
 }
-void Glyphs::update_glyph_MinMax(Glyph* glyph){
+void ENG_glyph::update_glyph_MinMax(Glyph* glyph){
   vector<vec3>& XYZ = glyph->xyz;
   vec3 min = XYZ[0];
   vec3 max = XYZ[0];

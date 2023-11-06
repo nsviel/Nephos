@@ -1,8 +1,8 @@
 #include "ENG_data.h"
 #include "ENG_scene/ENG_scene.h"
 #include "ENG_scene/ENG_database.h"
-#include "Glyph/Glyphs.h"
-#include "Load/Loader.h"
+#include "ENG_glyph/ENG_glyph.h"
+#include "ENG_load/Loader.h"
 
 
 //Constructor / Destructor
@@ -12,7 +12,7 @@ ENG_data::ENG_data(Engine* engine){
   this->engine = engine;
   this->eng_database = new ENG_database(this);
   this->eng_scene = new ENG_scene(this);
-  this->glyphManager = new Glyphs(this);
+  this->eng_glyph = new ENG_glyph(this);
   this->loaderManager = new Loader(this);
 
   //---------------------------
@@ -22,7 +22,7 @@ ENG_data::~ENG_data(){
 
   delete eng_scene;
   delete eng_database;
-  delete glyphManager;
+  delete eng_glyph;
   delete loaderManager;
 
   //---------------------------
@@ -33,7 +33,7 @@ void ENG_data::init(){
 
   eng_scene->init_set();
   eng_scene->init_scene();
-  glyphManager->create_glyph_scene();
+  eng_glyph->create_glyph_scene();
 
   //---------------------------
 }

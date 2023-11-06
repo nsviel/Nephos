@@ -1,15 +1,15 @@
-#include "Format.h"
-#include "../Format/PLY/PLY_importer.h"
-#include "../Format/OBJ/OBJ_importer.h"
-#include "../Format/CSV/CSV_importer.h"
-#include "../Format/PCAP/PCAP_importer.h"
-#include "../Format/PTS/PTS_importer.h"
-#include "../Format/PTX/PTX_importer.h"
-#include "../Format/XYZ/XYZ_importer.h"
+#include "ENG_format.h"
+#include "PLY/PLY_importer.h"
+#include "OBJ/OBJ_importer.h"
+#include "CSV/CSV_importer.h"
+#include "PCAP/PCAP_importer.h"
+#include "PTS/PTS_importer.h"
+#include "PTX/PTX_importer.h"
+#include "XYZ/XYZ_importer.h"
 
 
 //Constructor / Destructor
-Format::Format(){
+ENG_format::ENG_format(){
   //---------------------------
 
   this->ply_import = new PLY_importer();
@@ -22,7 +22,7 @@ Format::Format(){
 
   //---------------------------
 }
-Format::~Format(){
+ENG_format::~ENG_format(){
   //---------------------------
 
   delete ply_import;
@@ -37,7 +37,7 @@ Format::~Format(){
 }
 
 //Main functions
-Data_file* Format::get_data_from_file(std::string path){
+Data_file* ENG_format::get_data_from_file(std::string path){
   Data_file* data;
   //---------------------------
 

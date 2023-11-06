@@ -8,12 +8,12 @@ class ENG_data;
 class ENG_scene;
 
 
-class Glyphs
+class ENG_glyph
 {
 public:
   //Constructor / Destructor
-  Glyphs(ENG_data* eng_data);
-  ~Glyphs();
+  ENG_glyph(ENG_data* eng_data);
+  ~ENG_glyph();
 
 public:
   //Main functions

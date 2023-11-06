@@ -1,5 +1,5 @@
 #include "Loader.h"
-#include "Format.h"
+#include "../ENG_format/ENG_format.h"
 #include "../ENG_data.h"
 #include "../ENG_scene/ENG_scene.h"
 
@@ -12,7 +12,7 @@ Loader::Loader(ENG_data* eng_data){
   //---------------------------
 
   this->eng_scene = eng_data->get_eng_scene();
-  this->formatManager = new Format();
+  this->eng_format = new ENG_format();
 
   this->ID = 0;
   this->path_current_dir = "";
@@ -22,7 +22,7 @@ Loader::Loader(ENG_data* eng_data){
 Loader::~Loader(){
   //---------------------------
 
-  delete formatManager;
+  delete eng_format;
 
   //---------------------------
 }
@@ -45,7 +45,7 @@ Object* Loader::load_object(std::string path){
   object->ID = ID++;
 
   //Retrieve data and insert into engine
-  Data_file* data = formatManager->get_data_from_file(path);
+  Data_file* data = eng_format->get_data_from_file(path);
   this->transfert_data(object, data);
   eng_scene->insert_scene_object(object);
 

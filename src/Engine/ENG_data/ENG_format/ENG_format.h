@@ -13,12 +13,12 @@ class PTX_importer;
 class XYZ_importer;
 
 
-class Format
+class ENG_format
 {
 public:
   //Constructor / Destructor
-  Format();
-  ~Format();
+  ENG_format();
+  ~ENG_format();
 
 public:
   Data_file* get_data_from_file(std::string path);
