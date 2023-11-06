@@ -71,7 +71,7 @@ Struct_pipeline* ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_color", 0, 1, TYPE_SAMPLER, STAGE_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_depth", 0, 4, TYPE_SAMPLER, STAGE_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("EDL_param", sizeof(EDL_param), 5, TYPE_UNIFORM, STAGE_FS));
-  
+
   //---------------------------
   return pipeline;
 }
@@ -85,9 +85,10 @@ void ENG_edl::recreate_pipeline_edl(){
 
   Struct_pipeline* pipeline_old = vk_pipeline->get_pipeline_byName(struct_vulkan->vec_renderpass[1], "triangle_EDL");
   vk_pipeline->clean_pipeline(pipeline_old);
+  Struct_pipeline* pipeline_old = pipeline_new;
 
-  struct_vulkan->vec_renderpass[1]->vec_pipeline.clear();
-  struct_vulkan->vec_renderpass[1]->vec_pipeline.push_back(pipeline_new);
+//  struct_vulkan->vec_renderpass[1]->vec_pipeline.clear();
+//  struct_vulkan->vec_renderpass[1]->vec_pipeline.push_back(pipeline_new);
 
   //---------------------------
 }
