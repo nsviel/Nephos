@@ -16,6 +16,7 @@
 ENG_gui::ENG_gui(Engine* engine){
   //---------------------------
 
+  this->shaderManager = engine->get_shaderManager();
   this->vk_engine = engine->get_vk_engine();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_command = new VK_command(vk_engine);
@@ -45,11 +46,8 @@ Struct_renderpass* ENG_gui::init_renderpass(){
   return renderpass;
 }
 void ENG_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
-  //---------------------------
-
-  Engine* engine = vk_engine->get_engine();
-  Shader* shaderManager = engine->get_shaderManager();
   CAN_shader* can_shader = shaderManager->get_can_shader();
+  //---------------------------
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "triangle";

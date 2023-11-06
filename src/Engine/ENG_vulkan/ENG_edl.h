@@ -36,10 +36,8 @@ public:
   void cmd_draw(Struct_renderpass* renderpass);
 
 private:
-  Timer timer;
   Struct_vulkan* struct_vulkan;
   EDL_shader* edl_shader;
-
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
@@ -49,6 +47,7 @@ private:
   VK_uniform* vk_uniform;
   VK_drawing* vk_drawing;
 
+  Timer timer;
   float time_renderpass;
 };
 

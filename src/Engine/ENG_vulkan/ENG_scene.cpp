@@ -20,6 +20,7 @@
 ENG_scene::ENG_scene(Engine* engine){
   //---------------------------
 
+  this->shaderManager = engine->get_shaderManager();
   this->vk_engine = engine->get_vk_engine();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
@@ -58,11 +59,8 @@ Struct_renderpass* ENG_scene::init_renderpass(){
   return renderpass;
 }
 void ENG_scene::create_pipeline_point(Struct_renderpass* renderpass){
-  //---------------------------
-
-  Engine* engine = vk_engine->get_engine();
-  Shader* shaderManager = engine->get_shaderManager();
   SCE_shader* sce_shader = shaderManager->get_sce_shader();
+  //---------------------------
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "point";
@@ -78,12 +76,9 @@ void ENG_scene::create_pipeline_point(Struct_renderpass* renderpass){
   //---------------------------
 }
 void ENG_scene::create_pipeline_line(Struct_renderpass* renderpass){
-  //---------------------------
-
-  Engine* engine = vk_engine->get_engine();
-  Shader* shaderManager = engine->get_shaderManager();
   SCE_shader* sce_shader = shaderManager->get_sce_shader();
-
+  //---------------------------
+  
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "line";
   pipeline->definition.topology = "line";

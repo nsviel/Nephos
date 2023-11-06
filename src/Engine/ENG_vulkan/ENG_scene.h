@@ -5,6 +5,7 @@
 #include <VK_struct/struct_pipeline.h>
 #include <ELE_specific/common.h>
 
+class Shader;
 class Engine;
 class Struct_vulkan;
 class VK_engine;
@@ -37,7 +38,7 @@ public:
   void cmd_draw_glyph(Struct_renderpass* renderpass);
 
 private:
-  Timer timer;
+  Shader* shaderManager;
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
@@ -49,6 +50,7 @@ private:
   VK_viewport* vk_viewport;
   VK_renderpass* vk_renderpass;
 
+  Timer timer;
   float time_renderpass;
 };
 
