@@ -29,31 +29,13 @@ VK_frame::VK_frame(VK_engine* vk_engine){
 VK_frame::~VK_frame(){}
 
 //Renderpass frame
-void VK_frame::create_frame_renderpass(Struct_renderpass* renderpass){
-  //---------------------------
-
-  Struct_framebuffer* fbo = new Struct_framebuffer();
-
-  fbo->color.usage = renderpass->color_image_usage;
-  fbo->color.layout = renderpass->color_sampler_layout;
-  fbo->depth.usage = renderpass->depth_image_usage;
-  fbo->depth.layout = renderpass->depth_sampler_layout;
-
-  vk_color->create_color_attachment(fbo);
-  vk_depth->create_depth_attachment(fbo);
-  vk_framebuffer->create_framebuffer(renderpass, fbo);
-
-  renderpass->framebuffer = fbo;
-
-  //---------------------------
-}
 void VK_frame::clean_frame_renderpass(Struct_renderpass* renderpass){
   Struct_framebuffer* fbo = renderpass->framebuffer;
   //---------------------------
 
   vk_image->clean_image(&fbo->color);
   vk_image->clean_image(&fbo->depth);
-  vk_framebuffer->clean_framebuffer(fbo);
+  vk_framebuffer->clean_framebuffer_obj(fbo);
   delete fbo;
 
   //---------------------------
@@ -78,7 +60,7 @@ void VK_frame::create_frame_swapchain(){
     vk_image->create_image_view(&fbo->color);
     //vk_color->create_color_attachment(fbo);
     vk_depth->create_depth_attachment(fbo);
-    vk_framebuffer->create_framebuffer(struct_vulkan->vec_renderpass[2], fbo);
+    vk_framebuffer->create_framebuffer_obj(struct_vulkan->vec_renderpass[2], fbo);
     vk_synchronization->init_frame_sync(fbo);
 
     struct_vulkan->swapchain.vec_frame.push_back(fbo);
@@ -95,7 +77,7 @@ void VK_frame::clean_frame_swapchain(){
     Struct_framebuffer* fbo = vec_frame[i];
     vkDestroyImageView(struct_vulkan->device.device, fbo->color.view, nullptr);
     vk_image->clean_image(&fbo->depth);
-    vk_framebuffer->clean_framebuffer(fbo);
+    vk_framebuffer->clean_framebuffer_obj(fbo);
     vk_synchronization->clean_frame_sync(fbo);
     delete fbo;
   }

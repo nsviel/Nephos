@@ -23,6 +23,7 @@ VK_swapchain::VK_swapchain(VK_engine* vk_engine){
   this->vk_depth = new VK_depth(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_frame = new VK_frame(vk_engine);
+  this->vk_framebuffer = new VK_framebuffer(vk_engine);
 
   //---------------------------
 }
@@ -50,8 +51,8 @@ void VK_swapchain::recreate_swapChain(){
   //Recreate values
   this->create_swapchain();
   vk_frame->create_frame_swapchain();
-  vk_frame->create_frame_renderpass(struct_vulkan->vec_renderpass[0]);
-  vk_frame->create_frame_renderpass(struct_vulkan->vec_renderpass[1]);
+  vk_framebuffer->create_framebuffer(struct_vulkan->vec_renderpass[0]);
+  vk_framebuffer->create_framebuffer(struct_vulkan->vec_renderpass[1]);
 
   //---------------------------
 }

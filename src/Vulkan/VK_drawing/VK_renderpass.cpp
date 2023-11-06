@@ -22,6 +22,7 @@ VK_renderpass::VK_renderpass(VK_engine* vk_engine){
   this->vk_subpass = new VK_subpass(vk_engine);
   this->vk_command_buffer = new VK_command_buffer(vk_engine);
   this->vk_frame = new VK_frame(vk_engine);
+  this->vk_framebuffer = new VK_framebuffer(vk_engine);
 
   //---------------------------
 }
@@ -71,7 +72,7 @@ void VK_renderpass::create_renderpass(Struct_renderpass* renderpass){
   this->create_renderpass_obj(renderpass);
   vk_command_buffer->allocate_command_buffer_primary(renderpass);
   vk_pipeline->create_pipelines(renderpass);
-  vk_frame->create_frame_renderpass(renderpass);
+  vk_framebuffer->create_framebuffer(renderpass);
 
   //---------------------------
 }

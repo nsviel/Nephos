@@ -10,6 +10,7 @@ class VK_physical_device;
 class VK_depth;
 class VK_viewport;
 class VK_frame;
+class VK_framebuffer;
 
 
 class VK_swapchain
@@ -43,6 +44,7 @@ private:
   VK_physical_device* vk_physical_device;
   VK_depth* vk_depth;
   VK_frame* vk_frame;
+  VK_framebuffer* vk_framebuffer;
 };
 
 #endif
