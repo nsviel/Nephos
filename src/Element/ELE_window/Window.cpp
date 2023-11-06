@@ -27,7 +27,6 @@ void Window::create_window(){
 
   this->window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
   this->window_dim = glm::vec2(width, height);
-  this->get_required_extensions();
 
   if (!glfwVulkanSupported()){
     printf("GLFW: Vulkan Not Supported\n");
@@ -76,6 +75,18 @@ void Window::manage_input(){
 
   //---------------------------
 }
+vec2 Window::compute_window_dim(){
+  vec2 dim = vec2(0);
+  //---------------------------
+
+  int width, height;
+  glfwGetFramebufferSize(window, &width, &height);
+  this->window_dim = vec2(width, height);
+  this->window_center = glm::vec2(width/2, height/2);
+
+  //---------------------------
+  return window_dim;
+}
 bool Window::check_for_resizing(){
   //---------------------------
 
@@ -88,17 +99,12 @@ bool Window::check_for_resizing(){
   //---------------------------
   return has_been_resized;
 }
-vec2 Window::compute_window_dim(){
-  vec2 dim = vec2(0);
+bool Window::window_should_close(){
   //---------------------------
 
-  int width, height;
-  glfwGetFramebufferSize(window, &width, &height);
-  this->window_dim = vec2(width, height);
-  this->window_center = glm::vec2(width/2, height/2);
+  return glfwWindowShouldClose(window);
 
   //---------------------------
-  return window_dim;
 }
 
 //Mouse position
@@ -116,30 +122,6 @@ void Window::set_mouse_pose(glm::vec2 pos){
   //---------------------------
 
   glfwSetCursorPos(window, pos.x, pos.y);
-
-  //---------------------------
-}
-
-//Accesseur
-vector<const char*> Window::get_required_extensions(){
-  //---------------------------
-
-  uint32_t glfw_extension_nb = 0;
-  const char** glfw_extensions = glfwGetRequiredInstanceExtensions(&glfw_extension_nb);
-  vector<const char*> extensions(glfw_extensions, glfw_extensions + glfw_extension_nb);
-
-  vector<const char*> vec_extension;
-  for(int i=0; i<extensions.size(); i++){
-    vec_extension.push_back(extensions[i]);
-  }
-
-  //---------------------------
-  return vec_extension;
-}
-bool Window::window_should_close(){
-  //---------------------------
-
-  return glfwWindowShouldClose(window);
 
   //---------------------------
 }

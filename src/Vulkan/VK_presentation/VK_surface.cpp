@@ -21,7 +21,7 @@ void VK_surface::init_window(){
   //---------------------------
 
   struct_vulkan->window.windowManager = window;
-  this->get_required_extensions();
+  this->window_extensions();
 
   //---------------------------
 }
@@ -59,10 +59,12 @@ void VK_surface::check_for_resizing(){
   //---------------------------
   struct_vulkan->window.is_resized = is_resized;
 }
-void VK_surface::get_required_extensions(){
+void VK_surface::window_extensions(){
   //---------------------------
 
-  vector<const char*> extensions = window->get_required_extensions();
+  uint32_t glfw_extension_nb = 0;
+  const char** glfw_extensions = glfwGetRequiredInstanceExtensions(&glfw_extension_nb);
+  vector<const char*> extensions(glfw_extensions, glfw_extensions + glfw_extension_nb);
 
   for(int i=0; i<extensions.size(); i++){
     struct_vulkan->instance.extension.push_back(extensions[i]);

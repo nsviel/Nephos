@@ -23,7 +23,7 @@ public:
   //Subfunction
   void create_window_surface();
   void check_for_resizing();
-  void get_required_extensions();
+  void window_extensions();
 
   inline Window* get_window(){return window;}
 
