@@ -22,5 +22,17 @@ struct Struct_frame{
   //---------------------------
 };
 
+struct Frame{
+  //---------------------------
+
+  VkImage image;
+  VkImageView image_view;
+  VkFramebuffer framebuffer;
+  VkCommandBuffer command_buffer;
+  VkSemaphore semaphore;
+
+  //---------------------------
+};
+
 
 #endif
