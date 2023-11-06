@@ -1,7 +1,7 @@
 #ifndef VK_FRAME_H
 #define VK_FRAME_H
 
-#include "../VK_struct/Struct_frame.h"
+#include "../VK_struct/Struct_framebuffer.h"
 #include "../VK_struct/Struct_renderpass.h"
 #include "../VK_struct/Struct_swapchain.h"
 #include <ELE_specific/common.h>

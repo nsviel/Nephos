@@ -1,7 +1,7 @@
 #ifndef VK_CLASS_H
 #define VK_CLASS_H
 
-#include "../VK_struct/Struct_frame.h"
+#include "../VK_struct/Struct_framebuffer.h"
 #include <ELE_specific/common.h>
 
 class VK_engine;
@@ -19,8 +19,8 @@ public:
 
 public:
   //Main functions
-  void init_frame_sync(Struct_frame* frame);
-  void clean_frame_sync(Struct_frame* frame);
+  void init_frame_sync(Struct_framebuffer* frame);
+  void clean_frame_sync(Struct_framebuffer* frame);
 
   //Synchronization object
   void create_semaphore(VkSemaphore& semaphore);

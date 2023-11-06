@@ -5,7 +5,7 @@
 #include "Struct_image.h"
 
 
-struct Struct_frame{
+struct Struct_framebuffer{
   //---------------------------
 
   int ID;

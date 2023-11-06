@@ -1,7 +1,7 @@
 #ifndef STRUCT_RENDERPASS_H
 #define STRUCT_RENDERPASS_H
 
-#include "Struct_frame.h"
+#include "Struct_framebuffer.h"
 #include "Struct_pipeline.h"
 #include "Struct_viewport.h"
 #include "Struct_subpass.h"
@@ -34,8 +34,8 @@ struct Struct_renderpass{
   VkImageUsageFlags depth_image_usage;
   VkImageLayout depth_sampler_layout;
 
-  Struct_frame* get_renderpass_frame(){return vec_renderpass_frame[0];}
-  std::vector<Struct_frame*> vec_renderpass_frame;
+  //Struct_framebuffer* get_framebuffer(){return vec_renderpass_frame[0];}
+  Struct_framebuffer* framebuffer;
 
   //Render pass elements
   VkRenderPass renderpass;

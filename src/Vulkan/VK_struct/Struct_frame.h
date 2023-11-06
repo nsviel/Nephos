@@ -5,7 +5,7 @@
 #include "Struct_image.h"
 
 
-struct Frame{
+struct Struct_frame_{
   //---------------------------
 
   VkImage image;

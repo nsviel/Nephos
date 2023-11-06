@@ -32,37 +32,29 @@ VK_frame::~VK_frame(){}
 void VK_frame::create_frame_renderpass(Struct_renderpass* renderpass){
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
-    Struct_frame* frame = new Struct_frame();
+  Struct_framebuffer* fbo = new Struct_framebuffer();
 
-    frame->ID = i;
-    frame->color.usage = renderpass->color_image_usage;
-    frame->color.layout = renderpass->color_sampler_layout;
-    frame->depth.usage = renderpass->depth_image_usage;
-    frame->depth.layout = renderpass->depth_sampler_layout;
+  fbo->color.usage = renderpass->color_image_usage;
+  fbo->color.layout = renderpass->color_sampler_layout;
+  fbo->depth.usage = renderpass->depth_image_usage;
+  fbo->depth.layout = renderpass->depth_sampler_layout;
 
-    vk_color->create_color_attachment(frame);
-    vk_depth->create_depth_attachment(frame);
-    vk_framebuffer->create_framebuffer(renderpass, frame);
+  vk_color->create_color_attachment(fbo);
+  vk_depth->create_depth_attachment(fbo);
+  vk_framebuffer->create_framebuffer(renderpass, fbo);
 
-    renderpass->vec_renderpass_frame.push_back(frame);
-  }
+  renderpass->framebuffer = fbo;
 
   //---------------------------
 }
 void VK_frame::clean_frame_renderpass(Struct_renderpass* renderpass){
-  vector<Struct_frame*>& vec_frame = renderpass->vec_renderpass_frame;
+  Struct_framebuffer* fbo = renderpass->framebuffer;
   //---------------------------
 
-  //Vec images
-  for(int i=0; i<vec_frame.size(); i++){
-    Struct_frame* frame = vec_frame[i];
-    vk_image->clean_image(&frame->color);
-    vk_image->clean_image(&frame->depth);
-    vk_framebuffer->clean_framebuffer(frame);
-    delete frame;
-  }
-  vec_frame.clear();
+  vk_image->clean_image(&fbo->color);
+  vk_image->clean_image(&fbo->depth);
+  vk_framebuffer->clean_framebuffer(fbo);
+  delete fbo;
 
   //---------------------------
 }
@@ -72,40 +64,40 @@ void VK_frame::create_frame_swapchain(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
-    Struct_frame* frame = new Struct_frame();
+    Struct_framebuffer* fbo = new Struct_framebuffer();
 
-    frame->ID = i;
-    frame->color.image = struct_vulkan->swapchain.vec_swapchain_image[i];
-    frame->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-    frame->color.format = vk_color->find_color_format();
-    frame->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-    frame->color.layout = IMAGE_LAYOUT_PRESENT;
-    frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-    frame->depth.layout = IMAGE_LAYOUT_DEPTH_READONLY;
+    fbo->ID = i;
+    fbo->color.image = struct_vulkan->swapchain.vec_swapchain_image[i];
+    fbo->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+    fbo->color.format = vk_color->find_color_format();
+    fbo->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+    fbo->color.layout = IMAGE_LAYOUT_PRESENT;
+    fbo->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+    fbo->depth.layout = IMAGE_LAYOUT_DEPTH_READONLY;
 
-    vk_image->create_image_view(&frame->color);
-    //vk_color->create_color_attachment(frame);
-    vk_depth->create_depth_attachment(frame);
-    vk_framebuffer->create_framebuffer(struct_vulkan->vec_renderpass[2], frame);
-    vk_synchronization->init_frame_sync(frame);
+    vk_image->create_image_view(&fbo->color);
+    //vk_color->create_color_attachment(fbo);
+    vk_depth->create_depth_attachment(fbo);
+    vk_framebuffer->create_framebuffer(struct_vulkan->vec_renderpass[2], fbo);
+    vk_synchronization->init_frame_sync(fbo);
 
-    struct_vulkan->swapchain.vec_frame.push_back(frame);
+    struct_vulkan->swapchain.vec_frame.push_back(fbo);
   }
 
   //---------------------------
 }
 void VK_frame::clean_frame_swapchain(){
-  vector<Struct_frame*>& vec_frame = struct_vulkan->swapchain.vec_frame;
+  vector<Struct_framebuffer*>& vec_frame = struct_vulkan->swapchain.vec_frame;
   //---------------------------
 
   //Vec images
   for(int i=0; i<vec_frame.size(); i++){
-    Struct_frame* frame = vec_frame[i];
-    vkDestroyImageView(struct_vulkan->device.device, frame->color.view, nullptr);
-    vk_image->clean_image(&frame->depth);
-    vk_framebuffer->clean_framebuffer(frame);
-    vk_synchronization->clean_frame_sync(frame);
-    delete frame;
+    Struct_framebuffer* fbo = vec_frame[i];
+    vkDestroyImageView(struct_vulkan->device.device, fbo->color.view, nullptr);
+    vk_image->clean_image(&fbo->depth);
+    vk_framebuffer->clean_framebuffer(fbo);
+    vk_synchronization->clean_frame_sync(fbo);
+    delete fbo;
   }
   vec_frame.clear();
 

@@ -1,7 +1,7 @@
 #ifndef VK_COMMAND_H
 #define VK_COMMAND_H
 
-#include "../VK_struct/Struct_frame.h"
+#include "../VK_struct/Struct_framebuffer.h"
 #include "../VK_struct/Struct_data.h"
 #include "../VK_struct/Struct_renderpass.h"
 #include <ELE_specific/common.h>
@@ -25,7 +25,7 @@ public:
   void stop_command_buffer(VkCommandBuffer command_buffer);
 
   //Render pass
-  void start_render_pass(Struct_renderpass* renderpass, Struct_frame* frame, bool with_secondary_cb);
+  void start_render_pass(Struct_renderpass* renderpass, Struct_framebuffer* frame, bool with_secondary_cb);
   void stop_render_pass(Struct_renderpass* renderpass);
 
   //Image layout transition

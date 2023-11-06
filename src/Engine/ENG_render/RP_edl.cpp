@@ -83,8 +83,8 @@ void RP_edl::draw_edl(Struct_renderpass* renderpass){
 void RP_edl::update_descriptor(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_frame* frame_scene = struct_vulkan->vec_renderpass[0]->get_renderpass_frame();
-  //Struct_frame* frame_scene = struct_vulkan->swapchain.get_frame_rendering();
+  Struct_framebuffer* frame_scene = struct_vulkan->vec_renderpass[0]->framebuffer;
+  //Struct_framebuffer* frame_scene = struct_vulkan->swapchain.get_frame_rendering();
   for(int i=0; i<renderpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
     vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);
@@ -98,7 +98,7 @@ void RP_edl::draw_command(Struct_renderpass* renderpass){
 
   Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle_EDL");
   EDL_param* edl_param = edl_shader->get_edl_param();
-  Struct_frame* frame = renderpass->get_renderpass_frame();
+  Struct_framebuffer* frame = renderpass->framebuffer;
 
   vk_command->start_render_pass(renderpass, frame, false);
   vk_viewport->cmd_viewport(renderpass);

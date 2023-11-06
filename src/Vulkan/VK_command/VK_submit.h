@@ -1,7 +1,7 @@
 #ifndef VK_SUBMIT_H
 #define VK_SUBMIT_H
 
-#include "../VK_struct/Struct_frame.h"
+#include "../VK_struct/Struct_framebuffer.h"
 #include "../VK_struct/Struct_renderpass.h"
 #include "../VK_struct/Struct_command.h"
 #include "../VK_struct/Struct_swapchain.h"

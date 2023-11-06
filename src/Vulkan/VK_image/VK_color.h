@@ -1,7 +1,7 @@
 #ifndef VK_COLOR_H
 #define VK_COLOR_H
 
-#include "../VK_struct/Struct_frame.h"
+#include "../VK_struct/Struct_framebuffer.h"
 #include <ELE_specific/common.h>
 
 class VK_engine;
@@ -19,7 +19,7 @@ public:
 
 public:
   //Main functions
-  void create_color_attachment(Struct_frame* image);
+  void create_color_attachment(Struct_framebuffer* image);
 
   //Subfunction
   VkSurfaceFormatKHR retrieve_surface_format(const std::vector<VkSurfaceFormatKHR>& dev_format);

@@ -1,7 +1,7 @@
 #ifndef VK_DRAWING_H
 #define VK_DRAWING_H
 
-#include <VK_struct/Struct_frame.h>
+#include <VK_struct/Struct_framebuffer.h>
 #include <VK_struct/Struct_renderpass.h>
 #include <VK_struct/Struct_command.h>
 #include <VK_struct/Struct_data.h>

@@ -1,7 +1,7 @@
 #ifndef VK_FRAMEBUFFER_H
 #define VK_FRAMEBUFFER_H
 
-#include "../VK_struct/Struct_frame.h"
+#include "../VK_struct/Struct_framebuffer.h"
 #include "../VK_struct/Struct_renderpass.h"
 #include <ELE_specific/common.h>
 
@@ -18,10 +18,10 @@ public:
 
 public:
   //FBO creation
-  void create_framebuffer(Struct_renderpass* renderpass, Struct_frame* image);
+  void create_framebuffer(Struct_renderpass* renderpass, Struct_framebuffer* image);
 
   //Deletion functions
-  void clean_framebuffer(Struct_frame* image);
+  void clean_framebuffer(Struct_framebuffer* image);
 
 private:
   Struct_vulkan* struct_vulkan;
