@@ -5,10 +5,10 @@
 
 
 //Constructor / Destructor
-Vulkan::Vulkan(Engine* engine){
+Vulkan::Vulkan(Window* window){
   //---------------------------
 
-  this->vk_engine = new VK_engine(engine);
+  this->vk_engine = new VK_engine(window);
   this->vk_imgui = vk_engine->get_vk_imgui();
   this->vk_render = vk_engine->get_vk_render();
 

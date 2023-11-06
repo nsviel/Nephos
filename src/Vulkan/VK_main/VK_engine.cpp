@@ -1,7 +1,7 @@
 #include "VK_engine.h"
 #include "VK_struct/struct_vulkan.h"
 #include "VK_struct/struct_param.h"
-#include <VK_struct/struct_synchro.h>
+#include "VK_struct/struct_synchro.h"
 #include "VK_data/VK_data.h"
 #include "VK_drawing/VK_renderpass.h"
 #include "VK_command/VK_command_buffer.h"
@@ -18,20 +18,17 @@
 #include "VK_presentation/VK_frame.h"
 #include "VK_shader/VK_reload.h"
 #include "VK_main/VK_imgui.h"
+#include "VK_drawing/VK_viewport.h"
+#include "VK_main/VK_render.h"
 
-#include <Engine.h>
-#include <Param.h>
 #include <ELE_window/Window.h>
-#include <VK_drawing/VK_viewport.h>
-#include <VK_main/VK_render.h>
 
 
 //Constructor / Destructor
-VK_engine::VK_engine(Engine* engine){
+VK_engine::VK_engine(Window* window){
   //---------------------------
 
-  this->engine = engine;
-  this->window = engine->get_window();
+  this->window = window;
 
   this->struct_param = new Struct_param();
   this->struct_vulkan = new Struct_vulkan();

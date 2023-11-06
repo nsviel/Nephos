@@ -18,7 +18,7 @@ Engine::Engine(Window* window){
   this->param = new Param();
   this->cameraManager = new Camera(this);
   this->shaderManager = new Shader(this);
-  this->vk_engine = new VK_engine(this);
+  this->vk_engine = new VK_engine(window);
   this->dataManager = new Data(this);
   this->eng_renderpass = new ENG_renderpass(this);
 
