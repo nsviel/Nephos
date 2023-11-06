@@ -26,7 +26,7 @@ public:
 
 private:
   GUI* gui;
-  Loader* loaderManager;
+  Loader* eng_loader;
   RND_init* gui_init;
   RND_panel* gui_render_panel;
   RND_option* gui_render_option;

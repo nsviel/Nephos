@@ -17,7 +17,7 @@ RND_init::RND_init(GUI* gui){
   ENG_data* eng_data = gui->get_eng_data();
 
   this->eng_scene = eng_data->get_eng_scene();
-  this->loaderManager = eng_data->get_loaderManager();
+  this->eng_loader = eng_data->get_eng_loader();
   this->transformManager = new Transformation();
   this->gui_tree = new RND_tree(this);
 
@@ -87,7 +87,7 @@ void RND_init::load_config_file(){
 void RND_init::operation_new_object(string path){
   //---------------------------
 
-  Object* object = loaderManager->load_object(path);
+  Object* object = eng_loader->load_object(path);
   if(object == nullptr) return;
 
   if(init.remove_old){

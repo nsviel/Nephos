@@ -2,7 +2,7 @@
 #include "ENG_scene/ENG_scene.h"
 #include "ENG_scene/ENG_database.h"
 #include "ENG_glyph/ENG_glyph.h"
-#include "ENG_load/Loader.h"
+#include "ENG_load/ENG_loader.h"
 
 
 //Constructor / Destructor
@@ -13,7 +13,7 @@ ENG_data::ENG_data(Engine* engine){
   this->eng_database = new ENG_database(this);
   this->eng_scene = new ENG_scene(this);
   this->eng_glyph = new ENG_glyph(this);
-  this->loaderManager = new Loader(this);
+  this->eng_loader = new ENG_loader(this);
 
   //---------------------------
 }
@@ -23,7 +23,7 @@ ENG_data::~ENG_data(){
   delete eng_scene;
   delete eng_database;
   delete eng_glyph;
-  delete loaderManager;
+  delete eng_loader;
 
   //---------------------------
 }

@@ -1,4 +1,4 @@
-#include "Loader.h"
+#include "ENG_loader.h"
 #include "../ENG_format/ENG_format.h"
 #include "../ENG_data.h"
 #include "../ENG_scene/ENG_scene.h"
@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-Loader::Loader(ENG_data* eng_data){
+ENG_loader::ENG_loader(ENG_data* eng_data){
   //---------------------------
 
   this->eng_scene = eng_data->get_eng_scene();
@@ -19,7 +19,7 @@ Loader::Loader(ENG_data* eng_data){
 
   //---------------------------
 }
-Loader::~Loader(){
+ENG_loader::~ENG_loader(){
   //---------------------------
 
   delete eng_format;
@@ -28,7 +28,7 @@ Loader::~Loader(){
 }
 
 //Main functions
-Object* Loader::load_object(std::string path){
+Object* ENG_loader::load_object(std::string path){
   //---------------------------
 
   if(file::is_file_exist(path) == false){
@@ -52,7 +52,7 @@ Object* Loader::load_object(std::string path){
   //---------------------------
   return object;
 }
-std::vector<Object*> Loader::load_objects(std::vector<std::string> path){
+std::vector<Object*> ENG_loader::load_objects(std::vector<std::string> path){
   std::vector<Object*> vec_obj;
   //---------------------------
 
@@ -64,7 +64,7 @@ std::vector<Object*> Loader::load_objects(std::vector<std::string> path){
   //---------------------------
   return vec_obj;
 }
-void Loader::load_by_zenity(){
+void ENG_loader::load_by_zenity(){
   //---------------------------
 
   //Select files to load
@@ -77,7 +77,7 @@ void Loader::load_by_zenity(){
 }
 
 //Subfunctions
-void Loader::transfert_data(Object* object, Data_file* data){
+void ENG_loader::transfert_data(Object* object, Data_file* data){
   //---------------------------
 
   object->name = data->name;

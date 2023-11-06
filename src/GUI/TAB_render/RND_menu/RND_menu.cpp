@@ -22,7 +22,7 @@ RND_menu::RND_menu(GUI* gui){
   this->gui_tab_render = gui_tab->get_gui_render();
   this->gui_render_option = gui_tab_render->get_gui_option();
   this->gui_render_panel = gui_tab_render->get_render_panel();
-  this->loaderManager = eng_data->get_loaderManager();
+  this->eng_loader = eng_data->get_eng_loader();
 
   this->show_demo = false;
 
@@ -40,7 +40,7 @@ void RND_menu::run_tab_menu(){
     ImGui::EndMenu();
   }
   if(ImGui::MenuItem("Load")){
-    loaderManager->load_by_zenity();
+    eng_loader->load_by_zenity();
   }
   if(ImGui::BeginMenu("Init")){
     gui_init->design_init();

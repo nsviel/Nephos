@@ -13,12 +13,12 @@ class ENG_format;
 class ENG_scene;
 
 
-class Loader
+class ENG_loader
 {
 public:
   //Constructor / Destructor
-  Loader(ENG_data* eng_data);
-  ~Loader();
+  ENG_loader(ENG_data* eng_data);
+  ~ENG_loader();
 
 public:
   //Main functions

@@ -35,7 +35,7 @@ public:
 
 private:
   ENG_scene* eng_scene;
-  Loader* loaderManager;
+  Loader* eng_loader;
   Transformation* transformManager;
   RND_tree* gui_tree;
 

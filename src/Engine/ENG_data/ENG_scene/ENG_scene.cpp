@@ -42,13 +42,13 @@ void ENG_scene::init_set(){
   //---------------------------
 }
 void ENG_scene::init_scene(){
-  Loader* loaderManager = eng_data->get_loaderManager();
+  Loader* eng_loader = eng_data->get_eng_loader();
   //---------------------------
 
   //Load init object
   vector<string> vec_path;
   vec_path.push_back( "../media/point_cloud/dragon.ply");
-  vector<Object*> vec_obj = loaderManager->load_objects(vec_path);
+  vector<Object*> vec_obj = eng_loader->load_objects(vec_path);
 
   //---------------------------
 }
