@@ -1,10 +1,10 @@
-#include "Database.h"
+#include "ENG_database.h"
 
 #include "../ENG_data.h"
 
 
 //Constructor / Destructor
-Database::Database(ENG_data* eng_data){
+ENG_database::ENG_database(ENG_data* eng_data){
   //---------------------------
 
   this->ID_obj = 0;
@@ -14,4 +14,4 @@ Database::Database(ENG_data* eng_data){
 
   //---------------------------
 }
-Database::~Database(){}
+ENG_database::~ENG_database(){}

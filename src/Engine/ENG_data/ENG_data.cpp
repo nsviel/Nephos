@@ -1,6 +1,6 @@
 #include "ENG_data.h"
 #include "Scene/Scene.h"
-#include "Scene/Database.h"
+#include "Scene/ENG_database.h"
 #include "Glyph/Glyphs.h"
 #include "Load/Loader.h"
 
@@ -10,7 +10,7 @@ ENG_data::ENG_data(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->dataManager = new Database(this);
+  this->eng_database = new ENG_database(this);
   this->sceneManager = new Scene(this);
   this->glyphManager = new Glyphs(this);
   this->loaderManager = new Loader(this);
@@ -21,7 +21,7 @@ ENG_data::~ENG_data(){
   //---------------------------
 
   delete sceneManager;
-  delete dataManager;
+  delete eng_database;
   delete glyphManager;
   delete loaderManager;
 

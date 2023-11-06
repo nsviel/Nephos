@@ -3,7 +3,7 @@
 
 class Engine;
 class Scene;
-class Database;
+class ENG_database;
 class Glyphs;
 class Loader;
 
@@ -22,13 +22,13 @@ public:
 
   inline Engine* get_engine(){return engine;}
   inline Scene* get_sceneManager(){return sceneManager;}
-  inline Database* get_dataManager(){return dataManager;}
+  inline ENG_database* get_eng_database(){return eng_database;}
   inline Loader* get_loaderManager(){return loaderManager;}
 
 private:
   Engine* engine;
   Scene* sceneManager;
-  Database* dataManager;
+  ENG_database* eng_database;
   Glyphs* glyphManager;
   Loader* loaderManager;
 };

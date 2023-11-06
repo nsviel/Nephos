@@ -6,12 +6,12 @@
 class ENG_data;
 
 
-class Database
+class ENG_database
 {
 public:
   //Constructor / Destructor
-  Database(ENG_data* eng_data);
-  ~Database();
+  ENG_database(ENG_data* eng_data);
+  ~ENG_database();
 
 public:
   inline list<Set*>* get_list_data_scene(){return list_data;}
