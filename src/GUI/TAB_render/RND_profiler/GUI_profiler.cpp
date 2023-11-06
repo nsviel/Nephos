@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <VK_main/VK_engine.h>
-#include <VK_struct/struct_vulkan.h>
+#include <VK_main/VK_info.h>
 #include <Engine.h>
 
 
@@ -12,8 +12,8 @@ GUI_profiler::GUI_profiler(GUI* gui, bool* show_window, string name) : BASE_pane
 
   this->gui = gui;
   Engine* engine = gui->get_engine();
-  this->vk_engine = engine->get_vk_engine();
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  VK_engine* vk_engine = engine->get_vk_engine();
+  this->vk_info = vk_engine->get_vk_info();
 
   this->width = 150;
 
@@ -51,7 +51,7 @@ void GUI_profiler::device_model(){
 
   ImGui::Text("Device model ");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", struct_vulkan->device.model.c_str());
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", vk_info->get_gpu_name().c_str());
 
   //---------------------------
 }
@@ -72,15 +72,12 @@ void GUI_profiler::time_drawig(bool update){
   ImGuiIO io = ImGui::GetIO();
   //---------------------------
 
-  static float mean_draw_frame;
-  static float meanr_rp_scene;
-  static float meanr_rp_edl;
-  static float meanr_rp_gui;
+  static float mean_draw_frame = 0;
+  static float meanr_rp_scene = 0;
+  static float meanr_rp_edl = 0;
+  static float meanr_rp_gui = 0;
   if(update){
-    mean_draw_frame = fct_mean_and_clear(struct_vulkan->info.draw_frame);
-    meanr_rp_scene = fct_mean_and_clear(struct_vulkan->info.time_rp_scene);
-    meanr_rp_edl = fct_mean_and_clear(struct_vulkan->info.time_rp_edl);
-    meanr_rp_gui = fct_mean_and_clear(struct_vulkan->info.time_rp_gui);
+
   }
 
   ImGui::Text("Time draw frame ");
@@ -116,24 +113,19 @@ void GUI_profiler::time_general(bool update){
   ImGuiIO io = ImGui::GetIO();
   //---------------------------
 
-  static float mean_engine_fps;
-  if(update){
-    mean_engine_fps = struct_vulkan->info.engine_fps;
-  }
-
   //Time init
   ImGui::Text("Time initialization ");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", struct_vulkan->info.engine_init);
+  //ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", struct_vulkan->info.engine_init);
   ImGui::SameLine();
   ImGui::Text(" ms");
 
   //FPS
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / mean_engine_fps);
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / vk_info->get_fps());
   ImGui::SameLine();
   ImGui::Text(" ms/frame [");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", mean_engine_fps); //io.Framerate
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", vk_info->get_fps()); //io.Framerate
   ImGui::SameLine();
   ImGui::Text(" FPS ]");
 

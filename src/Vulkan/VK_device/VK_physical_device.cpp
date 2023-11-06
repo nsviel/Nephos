@@ -102,7 +102,7 @@ void VK_physical_device::retrieve_device_name(){
   //---------------------------
 
   VkPhysicalDeviceProperties property = find_device_property(struct_vulkan->device.physical_device);
-  struct_vulkan->device.model = property.deviceName;
+  struct_vulkan->info.gpu_name = property.deviceName;
 
   //---------------------------
 }

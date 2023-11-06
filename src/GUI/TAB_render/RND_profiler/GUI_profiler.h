@@ -5,8 +5,7 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class VK_engine;
-class Struct_vulkan;
+class VK_info;
 
 
 class GUI_profiler : public BASE_panel
@@ -29,8 +28,7 @@ public:
 
 private:
   GUI* gui;
-  VK_engine* vk_engine;
-  Struct_vulkan* struct_vulkan;
+  VK_info* vk_info;
   Timer timer;
 
   int width;
