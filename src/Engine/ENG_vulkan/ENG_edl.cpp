@@ -54,8 +54,6 @@ Struct_renderpass* ENG_edl::init_renderpass(){
   vk_subpass->create_subpass_shader(renderpass);
   renderpass->vec_pipeline.push_back(pipeline_edl);
 
-  vk_renderpass->create_renderpass(renderpass);
-
   //---------------------------
   return renderpass;
 }
@@ -112,7 +110,7 @@ void ENG_edl::draw_edl(Struct_renderpass* renderpass){
   vk_command->stop_render_pass(renderpass);
 
   //---------------------------
-  struct_vulkan->time.time_rp_edl.push_back(timer.stop_ms(t1));
+  this->time_renderpass = timer.stop_ms(t1);
 }
 void ENG_edl::cmd_draw(Struct_renderpass* renderpass){
   //---------------------------

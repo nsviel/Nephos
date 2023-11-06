@@ -37,8 +37,6 @@ Struct_renderpass* ENG_gui::init_renderpass(){
   vk_subpass->create_subpass_presentation(renderpass);
   this->create_pipeline_canvas(renderpass);
 
-  vk_renderpass->create_renderpass(renderpass);
-
   //---------------------------
   return renderpass;
 }

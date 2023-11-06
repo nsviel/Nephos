@@ -45,6 +45,8 @@ private:
   VK_subpass* vk_subpass;
   VK_viewport* vk_viewport;
   VK_renderpass* vk_renderpass;
+
+  float time_renderpass;
 };
 
 #endif

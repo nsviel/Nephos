@@ -5,7 +5,6 @@
 #include <VK_pipeline/VK_subpass.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
-#include <VK_struct/struct_vulkan.h>
 #include <VK_drawing/VK_viewport.h>
 #include <ENG_shader/Shader.h>
 #include <ENG_shader/Scene/SCE_shader.h>
@@ -20,8 +19,6 @@
 //Constructor / Destructor
 ENG_scene::ENG_scene(VK_engine* vk_engine){
   //---------------------------
-
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   this->vk_engine = vk_engine;
   this->vk_pipeline = new VK_pipeline(vk_engine);
@@ -52,8 +49,6 @@ Struct_renderpass* ENG_scene::init_renderpass(){
   vk_subpass->create_subpass_shader(renderpass);
   this->create_pipeline_point(renderpass);
   this->create_pipeline_line(renderpass);
-
-  vk_renderpass->create_renderpass(renderpass);
 
   //---------------------------
   return renderpass;
@@ -109,7 +104,7 @@ void ENG_scene::draw_scene(Struct_renderpass* renderpass){
   vk_command->stop_render_pass(renderpass);
 
   //---------------------------
-  struct_vulkan->time.time_rp_scene.push_back(timer.stop_ms(t1));
+  this->time_renderpass = timer.stop_ms(t1);
 }
 void ENG_scene::cmd_draw_scene(Struct_renderpass* renderpass){
   list<Struct_data*> list_data_scene = vk_engine->get_list_data_scene();

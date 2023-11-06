@@ -31,6 +31,7 @@ public:
   void clean_renderpass_object(Struct_renderpass* renderpass);
 
   //Subfunction
+  void create_all_renderpass();
   void create_renderpass(Struct_renderpass* renderpass);
   void create_renderpass_obj(Struct_renderpass* renderpass);
 

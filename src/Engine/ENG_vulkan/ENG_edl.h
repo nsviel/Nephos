@@ -45,6 +45,8 @@ private:
   VK_descriptor* vk_descriptor;
   VK_uniform* vk_uniform;
   VK_drawing* vk_drawing;
+
+  float time_renderpass;
 };
 
 #endif

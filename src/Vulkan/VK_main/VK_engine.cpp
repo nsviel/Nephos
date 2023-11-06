@@ -78,6 +78,7 @@ void VK_engine::init(){
   vk_swapchain->create_swapchain();
   vk_viewport->init_viewport();
   vk_renderpass->init_renderpass();
+  vk_renderpass->create_all_renderpass();
   vk_frame->create_frame_swapchain(&struct_vulkan->swapchain);
 
   //---------------------------
