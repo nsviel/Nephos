@@ -32,7 +32,7 @@ Struct_renderpass* RP_gui::init_renderpass(){
   //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "ui";
-  renderpass->subpass = "presentation";
+  renderpass->subpass_trg = "presentation";
   renderpass->draw_task = [this](Struct_renderpass* renderpass){RP_gui::draw_gui(renderpass);};
 
   //Pipeline
@@ -59,7 +59,7 @@ void RP_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
 void RP_gui::draw_gui(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_frame* frame_current = struct_vulkan->swapchain.get_frame_current();
+  Struct_frame* frame_current = struct_vulkan->swapchain.get_frame_presentation();
   vk_command->start_render_pass(renderpass, frame_current, false);
   ImDrawData* draw_data = ImGui::GetDrawData();
   ImGui_ImplVulkan_RenderDrawData(draw_data, renderpass->command_buffer);

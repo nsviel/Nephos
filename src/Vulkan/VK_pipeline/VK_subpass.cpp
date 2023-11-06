@@ -23,10 +23,10 @@ VK_subpass::~VK_subpass(){}
 void VK_subpass::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
 
-  if(renderpass->subpass == "shader"){
+  if(renderpass->subpass_trg == "shader"){
     this->create_subpass_shader(renderpass);
   }
-  else if(renderpass->subpass == "presentation"){
+  else if(renderpass->subpass_trg == "presentation"){
     this->create_subpass_presentation(renderpass);
   }
 

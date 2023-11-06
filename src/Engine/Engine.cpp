@@ -7,7 +7,7 @@
 #include <ENG_camera/ENG_camera.h>
 #include <ELE_window/Window.h>
 #include <ENG_shader/ENG_shader.h>
-#include <ENG_vulkan/ENG_renderpass.h>
+#include <ENG_render/ENG_renderpass.h>
 
 
 //Constructor / Destructor

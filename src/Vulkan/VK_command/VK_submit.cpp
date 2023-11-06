@@ -29,7 +29,7 @@ void VK_submit::acquire_next_image(Struct_swapchain* swapchain, VkSemaphore& sem
   vkResetFences(struct_vulkan->device.device, 1, &fence);
 
   //Acquiring an image from the swap chain
-  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.device, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_current_ID);
+  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.device, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     vk_swapchain->recreate_swapChain();
     return;
@@ -51,9 +51,9 @@ void VK_submit::acquire_next_image(Struct_swapchain* swapchain, VkSemaphore& sem
 void VK_submit::set_next_frame_ID(Struct_swapchain* swapchain){
   //---------------------------
 
-  int current_ID = swapchain->frame_current_ID;
+  int current_ID = swapchain->frame_presentation_ID;
   current_ID = (current_ID + 1) % struct_vulkan->instance.max_frame_inflight;
-  swapchain->frame_current_ID = current_ID;
+  swapchain->frame_presentation_ID = current_ID;
 
   //---------------------------
 }
@@ -138,7 +138,7 @@ void VK_submit::submit_presentation(Struct_swapchain* swapchain, VkSemaphore& se
   presentation_info.pWaitSemaphores = &semaphore;
   presentation_info.swapchainCount = 1;
   presentation_info.pSwapchains = &swapchain->swapchain;
-  presentation_info.pImageIndices = &swapchain->frame_current_ID;
+  presentation_info.pImageIndices = &swapchain->frame_presentation_ID;
   presentation_info.pResults = nullptr; // Optional
 
   VkResult result = vkQueuePresentKHR(struct_vulkan->device.queue_presentation, &presentation_info);

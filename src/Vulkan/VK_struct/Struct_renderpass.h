@@ -23,15 +23,15 @@ struct Struct_renderpass{
 
   //Info
   std::string name;
-  std::string subpass;
+  std::string subpass_trg;
 
   //Renderpass frame set
   VkImageUsageFlags color_image_usage;
   VkImageLayout color_sampler_layout;
   VkImageUsageFlags depth_image_usage;
   VkImageLayout depth_sampler_layout;
-  Struct_frame* get_rendering_frame(){return vec_frame[rendering_frame_ID];}
-  uint32_t rendering_frame_ID = 0;
+
+  Struct_frame* get_renderpass_frame(){return vec_frame[0];}
   std::vector<Struct_frame*> vec_frame;
 
   //Render pass elements
@@ -42,10 +42,12 @@ struct Struct_renderpass{
   std::vector<Struct_pipeline*> vec_pipeline;
   std::vector<Struct_subpass*> vec_subpass;
 
+  //Synchronization
   VkSemaphore semaphore_wait;
   VkSemaphore semaphore_done;
   VkFence fence;
 
+  //Drawing function
   std::function<void(Struct_renderpass* renderpass)> draw_task;
 
   //---------------------------
