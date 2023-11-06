@@ -36,22 +36,22 @@ void VK_frame::create_frame_renderpass(Struct_renderpass* renderpass){
     Struct_frame* frame = new Struct_frame();
 
     frame->ID = i;
-    frame->color.image_usage = renderpass->color_image_usage;
-    frame->color.sampler_layout = renderpass->color_sampler_layout;
-    frame->depth.image_usage = renderpass->depth_image_usage;
-    frame->depth.sampler_layout = renderpass->depth_sampler_layout;
+    frame->color.usage = renderpass->color_image_usage;
+    frame->color.layout = renderpass->color_sampler_layout;
+    frame->depth.usage = renderpass->depth_image_usage;
+    frame->depth.layout = renderpass->depth_sampler_layout;
 
     vk_color->create_color_attachment(frame);
     vk_depth->create_depth_attachment(frame);
     vk_framebuffer->create_framebuffer(renderpass, frame);
 
-    renderpass->vec_frame.push_back(frame);
+    renderpass->vec_renderpass_frame.push_back(frame);
   }
 
   //---------------------------
 }
 void VK_frame::clean_frame_renderpass(Struct_renderpass* renderpass){
-  vector<Struct_frame*>& vec_frame = renderpass->vec_frame;
+  vector<Struct_frame*>& vec_frame = renderpass->vec_renderpass_frame;
   //---------------------------
 
   //Vec images
@@ -76,11 +76,15 @@ void VK_frame::create_frame_swapchain(){
 
     frame->ID = i;
     frame->color.image = struct_vulkan->swapchain.vec_swapchain_image[i];
+    frame->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
     frame->color.format = vk_color->find_color_format();
     frame->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-    frame->depth.image_usage = IMAGE_USAGE_DEPTH;
+    frame->color.layout = IMAGE_LAYOUT_PRESENT;
+    frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+    frame->depth.layout = IMAGE_LAYOUT_DEPTH_READONLY;
 
     vk_image->create_image_view(&frame->color);
+    //vk_color->create_color_attachment(frame);
     vk_depth->create_depth_attachment(frame);
     vk_framebuffer->create_framebuffer(struct_vulkan->vec_renderpass[2], frame);
     vk_synchronization->init_frame_sync(frame);

@@ -11,6 +11,9 @@
 struct Struct_renderpass{
   //---------------------------
 
+  //Main object
+  VkFramebuffer fbo;
+
   Struct_pipeline* get_pipeline_byName(string name){
     for(int i=0; i<vec_pipeline.size(); i++){
       if(vec_pipeline[i]->definition.name == name){
@@ -31,8 +34,8 @@ struct Struct_renderpass{
   VkImageUsageFlags depth_image_usage;
   VkImageLayout depth_sampler_layout;
 
-  Struct_frame* get_renderpass_frame(){return vec_frame[0];}
-  std::vector<Struct_frame*> vec_frame;
+  Struct_frame* get_renderpass_frame(){return vec_renderpass_frame[0];}
+  std::vector<Struct_frame*> vec_renderpass_frame;
 
   //Render pass elements
   VkRenderPass renderpass;

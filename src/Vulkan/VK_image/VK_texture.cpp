@@ -144,7 +144,7 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
   //Create image
   image->tiling = VK_IMAGE_TILING_OPTIMAL;
   image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  image->image_usage = IMAGE_USAGE_TRANSFERT | IMAGE_USAGE_SAMPLER;
+  image->usage = IMAGE_USAGE_TRANSFERT | IMAGE_USAGE_SAMPLER;
   image->properties = MEMORY_GPU;
   vk_image->create_image(image);
 
