@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class Loader;
+class ENG_loader;
 class RND_panel;
 class RND_init;
 class RND_option;
@@ -26,7 +26,7 @@ public:
 
 private:
   GUI* gui;
-  Loader* eng_loader;
+  ENG_loader* eng_loader;
   RND_init* gui_init;
   RND_panel* gui_render_panel;
   RND_option* gui_render_option;

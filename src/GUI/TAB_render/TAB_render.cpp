@@ -13,7 +13,7 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <ENG_data/ENG_load/Loader.h>
+#include <ENG_data/ENG_load/ENG_loader.h>
 #include <RES_widget/GUI_indicator.h>
 #include <RES_editor/EDI_node.h>
 #include <RES_data/GUI_database.h>

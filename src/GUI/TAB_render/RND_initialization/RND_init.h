@@ -7,7 +7,7 @@
 
 class GUI;
 class ENG_scene;
-class Loader;
+class ENG_loader;
 class Transformation;
 class RND_tree;
 
@@ -35,7 +35,7 @@ public:
 
 private:
   ENG_scene* eng_scene;
-  Loader* eng_loader;
+  ENG_loader* eng_loader;
   Transformation* transformManager;
   RND_tree* gui_tree;
 
