@@ -5,7 +5,7 @@
 #include <ELE_specific/common.h>
 
 class ENG_data;
-class Scene;
+class ENG_scene;
 
 
 class Glyphs
@@ -22,7 +22,7 @@ public:
 
 private:
   ENG_data* eng_data;
-  Scene* sceneManager;
+  ENG_scene* eng_scene;
 
   vector<Glyph_source*> vec_glyph_src;
 };

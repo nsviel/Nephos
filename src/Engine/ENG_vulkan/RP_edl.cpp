@@ -1,4 +1,4 @@
-#include "ENG_edl.h"
+#include "RP_edl.h"
 
 #include <Engine.h>
 #include <VK_pipeline/VK_pipeline.h>
@@ -16,7 +16,7 @@
 
 
 //Constructor / Destructor
-ENG_edl::ENG_edl(Engine* engine){
+RP_edl::RP_edl(Engine* engine){
   //---------------------------
 
   ENG_shader* eng_shader = engine->get_eng_shader();
@@ -33,17 +33,17 @@ ENG_edl::ENG_edl(Engine* engine){
 
   //---------------------------
 }
-ENG_edl::~ENG_edl(){}
+RP_edl::~RP_edl(){}
 
 //Init function
-Struct_renderpass* ENG_edl::init_renderpass(){
+Struct_renderpass* RP_edl::init_renderpass(){
   //---------------------------
 
   //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "edl";
   renderpass->subpass = "shader";
-  renderpass->draw_task = [this](Struct_renderpass* renderpass){ENG_edl::draw_edl(renderpass);};
+  renderpass->draw_task = [this](Struct_renderpass* renderpass){RP_edl::draw_edl(renderpass);};
 
   //Pipeline
   this->create_pipeline_edl(renderpass);
@@ -51,7 +51,7 @@ Struct_renderpass* ENG_edl::init_renderpass(){
   //---------------------------
   return renderpass;
 }
-void ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
+void RP_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_pipeline* pipeline = new Struct_pipeline();
@@ -70,7 +70,7 @@ void ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
 }
 
 //Draw function
-void ENG_edl::draw_edl(Struct_renderpass* renderpass){
+void RP_edl::draw_edl(Struct_renderpass* renderpass){
   //---------------------------
 
   this->update_descriptor(renderpass);
@@ -78,7 +78,7 @@ void ENG_edl::draw_edl(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void ENG_edl::update_descriptor(Struct_renderpass* renderpass){
+void RP_edl::update_descriptor(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_frame* frame_scene = struct_vulkan->vec_renderpass[0]->get_rendering_frame();
@@ -90,7 +90,7 @@ void ENG_edl::update_descriptor(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void ENG_edl::draw_command(Struct_renderpass* renderpass){
+void RP_edl::draw_command(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle_EDL");

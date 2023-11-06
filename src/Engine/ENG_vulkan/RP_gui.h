@@ -14,12 +14,12 @@ class VK_command;
 class VK_viewport;
 
 
-class ENG_gui
+class RP_gui
 {
 public:
   //Constructor / Destructor
-  ENG_gui(Engine* engine);
-  ~ENG_gui();
+  RP_gui(Engine* engine);
+  ~RP_gui();
 
 public:
   //Init functions

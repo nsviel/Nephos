@@ -1,4 +1,4 @@
-#include "ENG_scene.h"
+#include "RP_scene.h"
 
 #include <Engine.h>
 #include <VK_pipeline/VK_pipeline.h>
@@ -15,7 +15,7 @@
 
 
 //Constructor / Destructor
-ENG_scene::ENG_scene(Engine* engine){
+RP_scene::RP_scene(Engine* engine){
   //---------------------------
 
   this->eng_shader = engine->get_eng_shader();
@@ -29,17 +29,17 @@ ENG_scene::ENG_scene(Engine* engine){
 
   //---------------------------
 }
-ENG_scene::~ENG_scene(){}
+RP_scene::~RP_scene(){}
 
 //Init function
-Struct_renderpass* ENG_scene::init_renderpass(){
+Struct_renderpass* RP_scene::init_renderpass(){
   //---------------------------
 
   //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "scene";
   renderpass->subpass = "shader";
-  renderpass->draw_task = [this](Struct_renderpass* renderpass){ENG_scene::draw_scene(renderpass);};
+  renderpass->draw_task = [this](Struct_renderpass* renderpass){RP_scene::draw_scene(renderpass);};
 
   //Pipeline
   this->create_pipeline_point(renderpass);
@@ -48,7 +48,7 @@ Struct_renderpass* ENG_scene::init_renderpass(){
   //---------------------------
   return renderpass;
 }
-void ENG_scene::create_pipeline_point(Struct_renderpass* renderpass){
+void RP_scene::create_pipeline_point(Struct_renderpass* renderpass){
   SCE_shader* sce_shader = eng_shader->get_sce_shader();
   //---------------------------
 
@@ -65,7 +65,7 @@ void ENG_scene::create_pipeline_point(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void ENG_scene::create_pipeline_line(Struct_renderpass* renderpass){
+void RP_scene::create_pipeline_line(Struct_renderpass* renderpass){
   SCE_shader* sce_shader = eng_shader->get_sce_shader();
   //---------------------------
 
@@ -83,7 +83,7 @@ void ENG_scene::create_pipeline_line(Struct_renderpass* renderpass){
 }
 
 //Draw function
-void ENG_scene::draw_scene(Struct_renderpass* renderpass){
+void RP_scene::draw_scene(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
@@ -97,7 +97,7 @@ void ENG_scene::draw_scene(Struct_renderpass* renderpass){
   //---------------------------
   this->time_renderpass = timer.stop_ms(t1);
 }
-void ENG_scene::cmd_draw_scene(Struct_renderpass* renderpass){
+void RP_scene::cmd_draw_scene(Struct_renderpass* renderpass){
   list<Struct_data*> list_data_scene = vk_engine->get_list_data_scene();
   //---------------------------
 
@@ -118,7 +118,7 @@ void ENG_scene::cmd_draw_scene(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void ENG_scene::cmd_draw_glyph(Struct_renderpass* renderpass){
+void RP_scene::cmd_draw_glyph(Struct_renderpass* renderpass){
   list<Struct_data*> list_data_glyph = vk_engine->get_list_data_glyph();
   //---------------------------
 

@@ -1,11 +1,11 @@
-#ifndef RP_SCENE_H
-#define RP_SCENE_H
+#ifndef VK_EDL_RENDERPASS_H
+#define VK_EDL_RENDERPASS_H
 
 #include <VK_struct/Struct_renderpass.h>
 #include <VK_struct/Struct_pipeline.h>
+#include <ENG_shader/ENG_shader.h>
 #include <ELE_specific/common.h>
 
-class ENG_shader;
 class Engine;
 class Struct_vulkan;
 class VK_engine;
@@ -17,34 +17,33 @@ class VK_uniform;
 class VK_drawing;
 
 
-class ENG_scene
+class RP_edl
 {
 public:
   //Constructor / Destructor
-  ENG_scene(Engine* engine);
-  ~ENG_scene();
+  RP_edl(Engine* engine);
+  ~RP_edl();
 
 public:
   //Init functions
   Struct_renderpass* init_renderpass();
-  void create_pipeline_point(Struct_renderpass* renderpass);
-  void create_pipeline_line(Struct_renderpass* renderpass);
+  void create_pipeline_edl(Struct_renderpass* renderpass);
 
   //Draw function
-  void draw_scene(Struct_renderpass* renderpass);
-  void cmd_draw_scene(Struct_renderpass* renderpass);
-  void cmd_draw_glyph(Struct_renderpass* renderpass);
+  void draw_edl(Struct_renderpass* renderpass);
+  void update_descriptor(Struct_renderpass* renderpass);
+  void draw_command(Struct_renderpass* renderpass);
 
 private:
-  ENG_shader* eng_shader;
   Struct_vulkan* struct_vulkan;
+  EDL_shader* edl_shader;
+  VK_engine* vk_engine;
+  VK_pipeline* vk_pipeline;
+  VK_viewport* vk_viewport;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
   VK_uniform* vk_uniform;
   VK_drawing* vk_drawing;
-  VK_engine* vk_engine;
-  VK_pipeline* vk_pipeline;
-  VK_viewport* vk_viewport;
 
   Timer timer;
   float time_renderpass;

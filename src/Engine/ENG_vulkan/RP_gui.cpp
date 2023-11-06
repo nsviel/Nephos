@@ -1,4 +1,4 @@
-#include "ENG_gui.h"
+#include "RP_gui.h"
 
 #include <Engine.h>
 #include <VK_pipeline/VK_pipeline.h>
@@ -11,7 +11,7 @@
 
 
 //Constructor / Destructor
-ENG_gui::ENG_gui(Engine* engine){
+RP_gui::RP_gui(Engine* engine){
   //---------------------------
 
   this->eng_shader = engine->get_eng_shader();
@@ -23,17 +23,17 @@ ENG_gui::ENG_gui(Engine* engine){
 
   //---------------------------
 }
-ENG_gui::~ENG_gui(){}
+RP_gui::~RP_gui(){}
 
 //Init function
-Struct_renderpass* ENG_gui::init_renderpass(){
+Struct_renderpass* RP_gui::init_renderpass(){
   //---------------------------
 
   //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "ui";
   renderpass->subpass = "presentation";
-  renderpass->draw_task = [this](Struct_renderpass* renderpass){ENG_gui::draw_gui(renderpass);};
+  renderpass->draw_task = [this](Struct_renderpass* renderpass){RP_gui::draw_gui(renderpass);};
 
   //Pipeline
   this->create_pipeline_canvas(renderpass);
@@ -41,7 +41,7 @@ Struct_renderpass* ENG_gui::init_renderpass(){
   //---------------------------
   return renderpass;
 }
-void ENG_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
+void RP_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
   CAN_shader* can_shader = eng_shader->get_can_shader();
   //---------------------------
 
@@ -56,7 +56,7 @@ void ENG_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
 }
 
 //Draw function
-void ENG_gui::draw_gui(Struct_renderpass* renderpass){
+void RP_gui::draw_gui(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_frame* frame_current = struct_vulkan->swapchain.get_frame_current();

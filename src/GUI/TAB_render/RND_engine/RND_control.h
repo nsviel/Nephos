@@ -8,7 +8,7 @@ class Engine;
 class Window;
 class ENG_camera;
 class Window;
-class Scene;
+class ENG_scene;
 class Transformation;
 class Param;
 
@@ -37,7 +37,7 @@ private:
   Engine* engine;
   Param* param;
   Window* window;
-  Scene* sceneManager;
+  ENG_scene* eng_scene;
   ENG_camera* eng_camera;
   Transformation* transformManager;
 };

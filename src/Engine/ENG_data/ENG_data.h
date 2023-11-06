@@ -1,8 +1,8 @@
-#ifndef NODE_SCENE_H
-#define NODE_SCENE_H
+#ifndef ENG_DATA_H
+#define ENG_DATA_H
 
 class Engine;
-class Scene;
+class ENG_scene;
 class ENG_database;
 class Glyphs;
 class Loader;
@@ -21,13 +21,13 @@ public:
   void loop();
 
   inline Engine* get_engine(){return engine;}
-  inline Scene* get_sceneManager(){return sceneManager;}
+  inline ENG_scene* get_eng_scene(){return eng_scene;}
   inline ENG_database* get_eng_database(){return eng_database;}
   inline Loader* get_loaderManager(){return loaderManager;}
 
 private:
   Engine* engine;
-  Scene* sceneManager;
+  ENG_scene* eng_scene;
   ENG_database* eng_database;
   Glyphs* glyphManager;
   Loader* loaderManager;

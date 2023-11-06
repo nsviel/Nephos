@@ -5,7 +5,7 @@
 #include <TAB_render/RND_config/RND_panel.h>
 #include <TAB_render/TAB_render.h>
 #include <ENG_data/ENG_data.h>
-#include <ENG_data/Scene/ENG_database.h>
+#include <ENG_data/ENG_scene/ENG_database.h>
 #include <TAB_render/RND_data/PAN_object.h>
 #include <TAB_render/RND_data/PAN_set.h>
 

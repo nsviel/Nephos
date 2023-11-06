@@ -1,5 +1,5 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#ifndef ENG_DATABASE_H
+#define ENG_DATABASE_H
 
 #include <ELE_specific/common.h>
 

@@ -1,7 +1,7 @@
 #include "Loader.h"
 #include "Format.h"
 #include "../ENG_data.h"
-#include "../Scene/Scene.h"
+#include "../ENG_scene/ENG_scene.h"
 
 #include <ELE_specific/File/Directory.h>
 #include <ELE_specific/File/File.h>
@@ -11,7 +11,7 @@
 Loader::Loader(ENG_data* eng_data){
   //---------------------------
 
-  this->sceneManager = eng_data->get_sceneManager();
+  this->eng_scene = eng_data->get_eng_scene();
   this->formatManager = new Format();
 
   this->ID = 0;
@@ -47,7 +47,7 @@ Object* Loader::load_object(std::string path){
   //Retrieve data and insert into engine
   Data_file* data = formatManager->get_data_from_file(path);
   this->transfert_data(object, data);
-  sceneManager->insert_scene_object(object);
+  eng_scene->insert_scene_object(object);
 
   //---------------------------
   return object;

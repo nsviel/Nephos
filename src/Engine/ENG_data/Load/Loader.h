@@ -10,7 +10,7 @@
 
 class ENG_data;
 class Format;
-class Scene;
+class ENG_scene;
 
 
 class Loader
@@ -31,7 +31,7 @@ public:
 
 private:
   Format* formatManager;
-  Scene* sceneManager;
+  ENG_scene* eng_scene;
 
   std::string path_current_dir;
   int ID;

@@ -5,14 +5,14 @@
 #include "Scene/Axis_world.h"
 
 #include "../ENG_data.h"
-#include "../Scene/Scene.h"
+#include "../ENG_scene/ENG_scene.h"
 
 
 //Constructor / Destructor
 Glyphs::Glyphs(ENG_data* eng_data){
   //---------------------------
 
-  this->sceneManager = eng_data->get_sceneManager();
+  this->eng_scene = eng_data->get_eng_scene();
 
   this->vec_glyph_src.push_back(new Grid());
   this->vec_glyph_src.push_back(new Axis_world());
@@ -36,7 +36,7 @@ void Glyphs::create_glyph_scene(){
   for(int i=0; i<vec_glyph_src.size(); i++){
     vec_glyph_src[i]->create_glyph();
     Glyph* glyph = vec_glyph_src[i]->get_glyph();
-    sceneManager->insert_glyph_object(glyph);
+    eng_scene->insert_glyph_object(glyph);
   }
 
   //---------------------------

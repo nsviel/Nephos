@@ -3,7 +3,7 @@
 
 #include <GUI.h>
 #include <ENG_data/ENG_data.h>
-#include <ENG_data/Scene/Scene.h>
+#include <ENG_data/ENG_scene/ENG_scene.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -12,7 +12,7 @@ PAN_object::PAN_object(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   //---------------------------
 
   ENG_data* eng_data = gui->get_eng_data();
-  this->sceneManager = eng_data->get_sceneManager();
+  this->eng_scene = eng_data->get_eng_scene();
 
   this->item_width = 150;
 
@@ -49,7 +49,7 @@ void PAN_object::object_parameter(Object* object){
   if(object->is_suppressible){
     ImGui::SameLine();
     if(ImGui::Button(ICON_FA_TRASH "##4567")){
-      sceneManager->delete_scene_object(object);
+      eng_scene->delete_scene_object(object);
       this->object_selected = nullptr;
     }
   }

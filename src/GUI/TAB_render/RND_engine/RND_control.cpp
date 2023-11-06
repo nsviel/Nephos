@@ -6,7 +6,7 @@
 #include <ELE_window/Window.h>
 #include <ENG_data/ENG_data.h>
 #include <ELE_specific/Function/fct_math.h>
-#include <ENG_data/Scene/Scene.h>
+#include <ENG_data/ENG_scene/ENG_scene.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_camera/ENG_camera.h>
 #include <ENG_operation/Transformation/Transformation.h>
@@ -21,7 +21,7 @@ RND_control::RND_control(GUI* gui){
   this->window = engine->get_window();
   this->param = engine->get_param();
   this->eng_camera = engine->get_eng_camera();
-  this->sceneManager = eng_data->get_sceneManager();
+  this->eng_scene = eng_data->get_eng_scene();
   this->transformManager = new Transformation();
 
   //---------------------------
@@ -49,16 +49,16 @@ void RND_control::control_keyboard_oneAction(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      sceneManager->selected_object_next();
+      eng_scene->selected_object_next();
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      Set* set = sceneManager->get_set_scene();
+      Set* set = eng_scene->get_set_scene();
       Object* object = set->selected_obj;
-      sceneManager->selected_object_next();
-      sceneManager->delete_scene_object(object);
+      eng_scene->selected_object_next();
+      eng_scene->delete_scene_object(object);
       break;
     }
 
@@ -109,7 +109,7 @@ void RND_control::control_keyboard_camMove(){
   //---------------------------
 }
 void RND_control::control_keyboard_translation(){
-  Set* set = sceneManager->get_set_scene();
+  Set* set = eng_scene->get_set_scene();
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -221,7 +221,7 @@ void RND_control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    Set* set = sceneManager->get_set_scene();
+    Set* set = eng_scene->get_set_scene();
     Object* object = set->selected_obj;
     transformManager->make_rotation(object, object->COM, R);
   }

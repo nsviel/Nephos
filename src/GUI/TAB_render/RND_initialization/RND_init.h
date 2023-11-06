@@ -6,7 +6,7 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class Scene;
+class ENG_scene;
 class Loader;
 class Transformation;
 class RND_tree;
@@ -34,7 +34,7 @@ public:
   void build_scene_1();
 
 private:
-  Scene* sceneManager;
+  ENG_scene* eng_scene;
   Loader* loaderManager;
   Transformation* transformManager;
   RND_tree* gui_tree;

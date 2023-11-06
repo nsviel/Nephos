@@ -1,5 +1,5 @@
-#ifndef SCENE_GG_H
-#define SCENE_GG_H
+#ifndef ENG_SCENE_H
+#define ENG_SCENE_H
 
 #include <ELE_specific/common.h>
 
@@ -10,12 +10,12 @@ class Attribut;
 class ENG_camera;
 
 
-class Scene
+class ENG_scene
 {
 public:
   //ConsScenetor / DesScenetor
-  Scene(ENG_data* eng_data);
-  ~Scene();
+  ENG_scene(ENG_data* eng_data);
+  ~ENG_scene();
 
 public:
   //Scene function

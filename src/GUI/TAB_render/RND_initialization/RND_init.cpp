@@ -3,7 +3,7 @@
 
 #include <GUI.h>
 #include <ENG_data/ENG_data.h>
-#include <ENG_data/Scene/Scene.h>
+#include <ENG_data/ENG_scene/ENG_scene.h>
 #include <ENG_data/Load/Loader.h>
 #include <ENG_operation/Transformation/Transformation.h>
 #include <ELE_specific/File/Directory.h>
@@ -16,7 +16,7 @@ RND_init::RND_init(GUI* gui){
 
   ENG_data* eng_data = gui->get_eng_data();
 
-  this->sceneManager = eng_data->get_sceneManager();
+  this->eng_scene = eng_data->get_eng_scene();
   this->loaderManager = eng_data->get_loaderManager();
   this->transformManager = new Transformation();
   this->gui_tree = new RND_tree(this);
@@ -91,7 +91,7 @@ void RND_init::operation_new_object(string path){
   if(object == nullptr) return;
 
   if(init.remove_old){
-    sceneManager->empty_scene_set();
+    eng_scene->empty_scene_set();
   }
 
   transformManager->make_scaling(object, init.scale);

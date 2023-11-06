@@ -6,7 +6,7 @@
 
 class GUI;
 class RND_panel;
-class Scene;
+class ENG_scene;
 
 
 class PAN_object : public BASE_panel
@@ -31,7 +31,7 @@ public:
 
 private:
   RND_panel* gui_render_panel;
-  Scene* sceneManager;
+  ENG_scene* eng_scene;
 
   Object* object_selected;
   int item_width;

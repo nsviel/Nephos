@@ -5,9 +5,9 @@
 
 class Engine;
 class VK_render;
-class ENG_scene;
-class ENG_edl;
-class ENG_gui;
+class RP_scene;
+class RP_edl;
+class RP_gui;
 
 
 class ENG_renderpass
@@ -23,9 +23,9 @@ public:
 
 private:
   VK_render* vk_render;
-  ENG_scene* eng_scene;
-  ENG_edl* eng_edl;
-  ENG_gui* eng_gui;
+  RP_scene* rp_scene;
+  RP_edl* rp_edl;
+  RP_gui* rp_gui;
 };
 
 #endif
