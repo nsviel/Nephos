@@ -6,7 +6,7 @@ class ENG_data;
 class Window;
 class ENG_camera;
 class VK_engine;
-class Shader;
+class ENG_shader;
 class ENG_renderpass;
 
 
@@ -26,10 +26,10 @@ public:
 
   inline ENG_camera* get_eng_camera(){return eng_camera;}
   inline Param* get_param(){return param;}
-  inline ENG_data* get_dataManager(){return dataManager;}
+  inline ENG_data* get_eng_data(){return dataManager;}
   inline Window* get_window(){return window;}
   inline VK_engine* get_vk_engine(){return vk_engine;}
-  inline Shader* get_shaderManager(){return shaderManager;}
+  inline ENG_shader* get_eng_shader(){return eng_shader;}
 
 private:
   Param* param;
@@ -37,7 +37,7 @@ private:
   ENG_data* dataManager;
   Window* window;
   VK_engine* vk_engine;
-  Shader* shaderManager;
+  ENG_shader* eng_shader;
   ENG_renderpass* eng_renderpass;
 };
 

@@ -6,7 +6,7 @@
 #include <VK_main/VK_render.h>
 #include <ENG_camera/ENG_camera.h>
 #include <ELE_window/Window.h>
-#include <ENG_shader/Shader.h>
+#include <ENG_shader/ENG_shader.h>
 #include <ENG_vulkan/ENG_renderpass.h>
 
 
@@ -17,7 +17,7 @@ Engine::Engine(Window* window){
   this->window = window;
   this->param = new Param();
   this->eng_camera = new ENG_camera(this);
-  this->shaderManager = new Shader(this);
+  this->eng_shader = new ENG_shader(this);
   this->vk_engine = new VK_engine(window);
   this->dataManager = new ENG_data(this);
   this->eng_renderpass = new ENG_renderpass(this);
@@ -29,7 +29,7 @@ Engine::~Engine(){
 
   delete param;
   delete eng_camera;
-  delete shaderManager;
+  delete eng_shader;
   delete vk_engine;
   delete dataManager;
 

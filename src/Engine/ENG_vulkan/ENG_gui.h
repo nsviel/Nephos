@@ -5,7 +5,7 @@
 #include <VK_struct/Struct_pipeline.h>
 #include <ELE_specific/common.h>
 
-class Shader;
+class ENG_shader;
 class Engine;
 class Struct_vulkan;
 class VK_engine;
@@ -30,7 +30,7 @@ public:
   void draw_gui(Struct_renderpass* renderpass);
 
 private:
-  Shader* shaderManager;
+  ENG_shader* eng_shader;
   Struct_vulkan* struct_vulkan;
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;

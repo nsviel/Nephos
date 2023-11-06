@@ -1,11 +1,11 @@
-#include "Shader.h"
+#include "ENG_shader.h"
 #include "EDL/EDL_shader.h"
 #include "PSR/PSR_shader.h"
 #include "Canvas/CAN_shader.h"
 #include "Scene/SCE_shader.h"
 
 
-Shader::Shader(Engine* engine){
+ENG_shader::ENG_shader(Engine* engine){
   //---------------------------
 
   this->edl_shader = new EDL_shader(engine);
@@ -15,7 +15,7 @@ Shader::Shader(Engine* engine){
 
   //---------------------------
 }
-Shader::~Shader(){
+ENG_shader::~ENG_shader(){
   //---------------------------
 
   delete edl_shader;

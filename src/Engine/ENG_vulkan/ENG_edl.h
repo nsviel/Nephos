@@ -3,7 +3,7 @@
 
 #include <VK_struct/Struct_renderpass.h>
 #include <VK_struct/Struct_pipeline.h>
-#include <ENG_shader/Shader.h>
+#include <ENG_shader/ENG_shader.h>
 #include <ELE_specific/common.h>
 
 class Engine;

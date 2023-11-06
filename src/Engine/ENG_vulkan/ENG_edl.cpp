@@ -10,7 +10,7 @@
 #include <VK_binding/VK_descriptor.h>
 #include <VK_binding/VK_uniform.h>
 
-#include <ENG_shader/Shader.h>
+#include <ENG_shader/ENG_shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>
 #include <ENG_shader/EDL/EDL_param.h>
 
@@ -19,11 +19,11 @@
 ENG_edl::ENG_edl(Engine* engine){
   //---------------------------
 
-  Shader* shaderManager = engine->get_shaderManager();
+  ENG_shader* eng_shader = engine->get_eng_shader();
 
   this->vk_engine = engine->get_vk_engine();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->edl_shader = shaderManager->get_edl_shader();
+  this->edl_shader = eng_shader->get_edl_shader();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);

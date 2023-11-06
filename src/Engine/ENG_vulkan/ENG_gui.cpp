@@ -6,7 +6,7 @@
 #include <VK_struct/Struct_vulkan.h>
 #include <VK_drawing/VK_viewport.h>
 #include <VK_command/VK_command.h>
-#include <ENG_shader/Shader.h>
+#include <ENG_shader/ENG_shader.h>
 #include <ENG_shader/Canvas/CAN_shader.h>
 
 
@@ -14,7 +14,7 @@
 ENG_gui::ENG_gui(Engine* engine){
   //---------------------------
 
-  this->shaderManager = engine->get_shaderManager();
+  this->eng_shader = engine->get_eng_shader();
   this->vk_engine = engine->get_vk_engine();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_command = new VK_command(vk_engine);
@@ -42,7 +42,7 @@ Struct_renderpass* ENG_gui::init_renderpass(){
   return renderpass;
 }
 void ENG_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
-  CAN_shader* can_shader = shaderManager->get_can_shader();
+  CAN_shader* can_shader = eng_shader->get_can_shader();
   //---------------------------
 
   Struct_pipeline* pipeline = new Struct_pipeline();

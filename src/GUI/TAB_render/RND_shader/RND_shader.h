@@ -8,7 +8,7 @@
 class GUI;
 class EDI_text;
 class GUI_console;
-class Shader;
+class ENG_shader;
 class VK_engine;
 
 
@@ -50,7 +50,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  Shader* shaderManager;
+  ENG_shader* eng_shader;
   EDI_text* editor_vs;
   EDI_text* editor_fs;
   GUI_console* gui_console;

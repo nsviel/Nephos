@@ -5,7 +5,7 @@
 #include <VK_shader/VK_reload.h>
 #include <VK_struct/Struct_instance.h>
 #include <VK_main/VK_engine.h>
-#include <ENG_shader/Shader.h>
+#include <ENG_shader/ENG_shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>
 #include <ENG_shader/Canvas/CAN_shader.h>
 #include <ENG_shader/Scene/SCE_shader.h>
@@ -19,7 +19,7 @@ RND_shader::RND_shader(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   Engine* engine = gui->get_engine();
   this->vk_engine = engine->get_vk_engine();
-  this->shaderManager = engine->get_shaderManager();
+  this->eng_shader = engine->get_eng_shader();
   this->editor_vs = new EDI_text(gui);
   this->editor_fs = new EDI_text(gui);
   this->gui_console = new GUI_console();
@@ -179,15 +179,15 @@ void RND_shader::retrieve_shader_subclasses(){
 
   vector<Shader_info*> vec_shader_info;
   if(selection == "EDL"){
-    EDL_shader* edl_shader = shaderManager->get_edl_shader();
+    EDL_shader* edl_shader = eng_shader->get_edl_shader();
     vec_shader_info = edl_shader->get_vec_shader_info();
   }
   else if(selection == "Scene"){
-    SCE_shader* sce_shader = shaderManager->get_sce_shader();
+    SCE_shader* sce_shader = eng_shader->get_sce_shader();
     vec_shader_info = sce_shader->get_vec_shader_info();
   }
   else if(selection == "Canvas"){
-    CAN_shader* sce_shader = shaderManager->get_can_shader();
+    CAN_shader* sce_shader = eng_shader->get_can_shader();
     vec_shader_info = sce_shader->get_vec_shader_info();
   }
 
@@ -220,15 +220,15 @@ string RND_shader::get_path_vs_from_selection(){
   string path_vs = "";
 
   if(selection == "EDL"){
-    EDL_shader* edl_shader = shaderManager->get_edl_shader();
+    EDL_shader* edl_shader = eng_shader->get_edl_shader();
     path_vs = edl_shader->get_glsl_path_vs(ID_subclass);
   }
   else if(selection == "Scene"){
-    SCE_shader* sce_shader = shaderManager->get_sce_shader();
+    SCE_shader* sce_shader = eng_shader->get_sce_shader();
     path_vs = sce_shader->get_glsl_path_vs(ID_subclass);
   }
   else if(selection == "Canvas"){
-    CAN_shader* can_shader = shaderManager->get_can_shader();
+    CAN_shader* can_shader = eng_shader->get_can_shader();
     path_vs = can_shader->get_glsl_path_vs(ID_subclass);
   }
 
@@ -242,15 +242,15 @@ string RND_shader::get_path_fs_from_selection(){
   string path_fs = "";
 
   if(selection == "EDL"){
-    EDL_shader* edl_shader = shaderManager->get_edl_shader();
+    EDL_shader* edl_shader = eng_shader->get_edl_shader();
     path_fs = edl_shader->get_glsl_path_fs(ID_subclass);
   }
   else if(selection == "Scene"){
-    SCE_shader* sce_shader = shaderManager->get_sce_shader();
+    SCE_shader* sce_shader = eng_shader->get_sce_shader();
     path_fs = sce_shader->get_glsl_path_fs(ID_subclass);
   }
   else if(selection == "Canvas"){
-    CAN_shader* can_shader = shaderManager->get_can_shader();
+    CAN_shader* can_shader = eng_shader->get_can_shader();
     path_fs = can_shader->get_glsl_path_fs(ID_subclass);
   }
 
@@ -269,7 +269,7 @@ void RND_shader::show_parameter(){
   //---------------------------
 }
 void RND_shader::parameter_EDL(){
-  EDL_shader* edl_shader = shaderManager->get_edl_shader();
+  EDL_shader* edl_shader = eng_shader->get_edl_shader();
   EDL_param* edl_param = edl_shader->get_edl_param();
   //---------------------------
 

@@ -14,7 +14,7 @@
 RND_init::RND_init(GUI* gui){
   //---------------------------
 
-  ENG_data* eng_data = gui->get_data();
+  ENG_data* eng_data = gui->get_eng_data();
 
   this->sceneManager = eng_data->get_sceneManager();
   this->loaderManager = eng_data->get_loaderManager();

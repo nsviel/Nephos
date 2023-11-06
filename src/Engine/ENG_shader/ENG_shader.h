@@ -10,11 +10,11 @@ class CAN_shader;
 class SCE_shader;
 
 
-class Shader
+class ENG_shader
 {
 public:
-  Shader(Engine* engine);
-  ~Shader();
+  ENG_shader(Engine* engine);
+  ~ENG_shader();
 
 public:
   inline EDL_shader* get_edl_shader(){return edl_shader;}

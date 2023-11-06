@@ -5,7 +5,7 @@
 #include <VK_struct/Struct_pipeline.h>
 #include <ELE_specific/common.h>
 
-class Shader;
+class ENG_shader;
 class Engine;
 class Struct_vulkan;
 class VK_engine;
@@ -36,7 +36,7 @@ public:
   void cmd_draw_glyph(Struct_renderpass* renderpass);
 
 private:
-  Shader* shaderManager;
+  ENG_shader* eng_shader;
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;

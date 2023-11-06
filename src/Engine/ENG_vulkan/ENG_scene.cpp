@@ -4,7 +4,7 @@
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
 #include <VK_drawing/VK_viewport.h>
-#include <ENG_shader/Shader.h>
+#include <ENG_shader/ENG_shader.h>
 #include <ENG_shader/Scene/SCE_shader.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
@@ -18,7 +18,7 @@
 ENG_scene::ENG_scene(Engine* engine){
   //---------------------------
 
-  this->shaderManager = engine->get_shaderManager();
+  this->eng_shader = engine->get_eng_shader();
   this->vk_engine = engine->get_vk_engine();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
@@ -49,7 +49,7 @@ Struct_renderpass* ENG_scene::init_renderpass(){
   return renderpass;
 }
 void ENG_scene::create_pipeline_point(Struct_renderpass* renderpass){
-  SCE_shader* sce_shader = shaderManager->get_sce_shader();
+  SCE_shader* sce_shader = eng_shader->get_sce_shader();
   //---------------------------
 
   Struct_pipeline* pipeline = new Struct_pipeline();
@@ -66,7 +66,7 @@ void ENG_scene::create_pipeline_point(Struct_renderpass* renderpass){
   //---------------------------
 }
 void ENG_scene::create_pipeline_line(Struct_renderpass* renderpass){
-  SCE_shader* sce_shader = shaderManager->get_sce_shader();
+  SCE_shader* sce_shader = eng_shader->get_sce_shader();
   //---------------------------
 
   Struct_pipeline* pipeline = new Struct_pipeline();
