@@ -46,8 +46,11 @@ struct Struct_renderpass{
   VkSemaphore semaphore_done;
   VkFence fence;
 
+  std::function<void(Struct_renderpass* renderpass)> draw_task;
+
   //---------------------------
 };
+
 
 
 #endif

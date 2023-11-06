@@ -47,6 +47,8 @@ Struct_renderpass* ENG_scene::init_renderpass(){
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "scene";
   renderpass->subpass = "shader";
+  renderpass->draw_task = [this](Struct_renderpass* renderpass){ENG_scene::draw_scene(renderpass);};
+
   this->create_pipeline_point(renderpass);
   this->create_pipeline_line(renderpass);
 

@@ -30,15 +30,10 @@ void VK_synchronization::init_frame_sync(Frame* frame){
     struct_synchro->vec_semaphore_render.push_back(semaphore);
   }
 
-  //Create semaphore - Presentation
-  VkSemaphore semaphore_present;
-  this->create_semaphore(semaphore_present);
-  struct_synchro->vec_semaphore_presen.push_back(semaphore_present);
-
   //Create semaphore - Image acquisition
   VkSemaphore semaphore_image;
   this->create_semaphore(semaphore_image);
-  struct_synchro->vec_semaphore_image.push_back(semaphore_image);
+  struct_synchro->vec_semaphore_render.push_back(semaphore_image);
 
   //Create fence
   VkFence fence;
@@ -52,7 +47,6 @@ void VK_synchronization::clean_frame_sync(Frame* frame){
 
   this->clean_vec_semaphore(struct_synchro->vec_semaphore_render);
   this->clean_vec_semaphore(struct_synchro->vec_semaphore_image);
-  this->clean_vec_semaphore(struct_synchro->vec_semaphore_presen);
   this->clean_vec_fence(struct_synchro->vec_fence);
 
   //---------------------------

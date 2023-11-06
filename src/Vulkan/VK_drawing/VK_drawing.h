@@ -13,6 +13,7 @@ class Struct_synchro;
 class VK_command;
 class VK_descriptor;
 class VK_swapchain;
+class VK_viewport;
 class VK_submit;
 class ENG_scene;
 class ENG_edl;
@@ -36,6 +37,7 @@ private:
   Struct_synchro* struct_synchro;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
+  VK_viewport* vk_viewport;
   VK_submit* vk_submit;
   VK_swapchain* vk_swapchain;
   ENG_scene* eng_scene;

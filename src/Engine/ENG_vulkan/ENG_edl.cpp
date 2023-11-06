@@ -48,6 +48,7 @@ Struct_renderpass* ENG_edl::init_renderpass(){
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "edl";
   renderpass->subpass = "shader";
+  renderpass->draw_task = [this](Struct_renderpass* renderpass){ENG_edl::draw_edl(renderpass);};
 
   Struct_pipeline* pipeline_edl = create_pipeline_edl(renderpass);
   renderpass->vec_pipeline.push_back(pipeline_edl);
@@ -91,7 +92,6 @@ void ENG_edl::recreate_pipeline_edl(){
 
 //Draw function
 void ENG_edl::draw_edl(Struct_renderpass* renderpass){
-  timer_time t1 = timer.start_t();
   //---------------------------
 
   //Update descriptor
@@ -103,14 +103,13 @@ void ENG_edl::draw_edl(Struct_renderpass* renderpass){
   }
 
   //Record command
-  Frame* frame = renderpass->get_rendering_frame();
-  vk_command->start_render_pass(renderpass, frame, false);
+  Frame* frame_render = renderpass->get_rendering_frame();
+  vk_command->start_render_pass(renderpass, frame_render, false);
   vk_viewport->cmd_viewport(renderpass);
   this->cmd_draw(renderpass);
   vk_command->stop_render_pass(renderpass);
 
   //---------------------------
-  this->time_renderpass = timer.stop_ms(t1);
 }
 void ENG_edl::cmd_draw(Struct_renderpass* renderpass){
   //---------------------------
