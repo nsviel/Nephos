@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class ENG_data;
-class Database;
+class ENG_database;
 class VK_engine;
 class Attribut;
 class ENG_camera;
@@ -42,7 +42,7 @@ public:
 
 private:
   ENG_data* eng_data;
-  Database* database;
+  ENG_database* eng_database;
   VK_engine* vk_engine;
   Attribut* attributManager;
   ENG_camera* eng_camera;

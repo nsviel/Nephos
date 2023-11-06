@@ -1,5 +1,5 @@
 #include "Scene.h"
-#include "Database.h"
+#include "ENG_database.h"
 #include "../ENG_data.h"
 #include "../Load/Loader.h"
 
@@ -15,7 +15,7 @@ Scene::Scene(ENG_data* eng_data){
 
   Engine* engine = eng_data->get_engine();
   this->eng_data = eng_data;
-  this->database = eng_data->get_dataManager();
+  this->eng_database = eng_data->get_eng_database();
   this->vk_engine = engine->get_vk_engine();
   this->eng_camera = engine->get_eng_camera();
   this->attributManager = new Attribut();
@@ -28,7 +28,7 @@ Scene::~Scene(){}
 
 //Scene function
 void Scene::init_set(){
-  list<Set*>* list_data = database->get_list_data_scene();
+  list<Set*>* list_data = eng_database->get_list_data_scene();
   //---------------------------
 
   //Glyph set
@@ -146,8 +146,8 @@ void Scene::selected_object_next(){
 
 //Loop function
 void Scene::loop(){
-  list<Set*>* list_data = database->get_list_data_scene();
-  list<Set*>* list_glyph = database->get_list_data_glyph();
+  list<Set*>* list_data = eng_database->get_list_data_scene();
+  list<Set*>* list_glyph = eng_database->get_list_data_glyph();
   //----------------------------
 
   this->loop_list(list_data);

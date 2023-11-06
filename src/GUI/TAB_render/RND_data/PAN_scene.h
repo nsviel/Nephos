@@ -8,7 +8,7 @@ class GUI;
 class RND_panel;
 class PAN_object;
 class PAN_set;
-class Database;
+class ENG_database;
 
 
 class PAN_scene : public BASE_panel
@@ -32,7 +32,7 @@ private:
   RND_panel* gui_render_panel;
   PAN_object* gui_object;
   PAN_set* gui_set;
-  Database* dataManager;
+  ENG_database* eng_database;
 
   bool* show_window;
 };

@@ -5,7 +5,7 @@
 #include <TAB_render/RND_config/RND_panel.h>
 #include <TAB_render/TAB_render.h>
 #include <ENG_data/ENG_data.h>
-#include <ENG_data/Scene/Database.h>
+#include <ENG_data/Scene/ENG_database.h>
 #include <TAB_render/RND_data/PAN_object.h>
 #include <TAB_render/RND_data/PAN_set.h>
 
@@ -17,7 +17,7 @@ PAN_scene::PAN_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
   ENG_data* eng_data = gui->get_eng_data();
   GUI_tab* gui_tab = gui->get_gui_tab();
   TAB_render* gui_render_panel = gui_tab->get_gui_render();
-  this->dataManager = eng_data->get_dataManager();
+  this->eng_database = eng_data->get_eng_database();
   this->gui_render_panel = gui_render_panel->get_render_panel();
   this->show_window = show_window;
   this->gui_set = gui_render_panel->get_gui_set();
@@ -88,7 +88,7 @@ void PAN_scene::draw_window_background(){
   //-------------------------------
 }
 void PAN_scene::tree_view(){
-  list<Set*>* list_data = dataManager->get_list_data_scene();
+  list<Set*>* list_data = eng_database->get_list_data_scene();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;
