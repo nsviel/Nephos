@@ -35,7 +35,7 @@ void VK_pipeline::cmd_bind_pipeline(Struct_renderpass* renderpass, string pipeli
 }
 
 //Clean function
-void VK_pipeline::clean_pipeline(Struct_renderpass* renderpass){
+void VK_pipeline::clean_pipelines(Struct_renderpass* renderpass){
   //---------------------------
 
   for(int i=0; i<renderpass->vec_pipeline.size(); i++){
@@ -56,12 +56,11 @@ void VK_pipeline::clean_pipeline(Struct_pipeline* pipeline){
 }
 
 //Pipeline creation
-void VK_pipeline::create_pipeline(Struct_renderpass* renderpass){
+void VK_pipeline::create_pipelines(Struct_renderpass* renderpass){
   //---------------------------
 
   for(int i=0; i<renderpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
-
     this->create_pipeline(renderpass, pipeline);
   }
 
@@ -70,11 +69,11 @@ void VK_pipeline::create_pipeline(Struct_renderpass* renderpass){
 void VK_pipeline::create_pipeline(Struct_renderpass* renderpass, Struct_pipeline* pipeline){
   //---------------------------
 
-  if(pipeline->purpose == "graphics"){
+  if(pipeline->definition.purpose == "graphics"){
     this->create_pipeline_graphics(pipeline, renderpass);
   }
-  else if(pipeline->purpose == "ui"){
-    this->create_pipeline_ui(pipeline, renderpass);
+  else if(pipeline->definition.purpose == "ui"){
+    this->create_pipeline_presentation(pipeline, renderpass);
   }
   vk_binding->create_binding(&pipeline->binding);
 
@@ -84,6 +83,7 @@ void VK_pipeline::create_pipeline_graphics(Struct_pipeline* pipeline, Struct_ren
   //---------------------------
 
   //Dynamic
+  pipeline->info.dynamic_state_object.clear();
   pipeline->info.dynamic_state_object.push_back(VK_DYNAMIC_STATE_VIEWPORT);
   pipeline->info.dynamic_state_object.push_back(VK_DYNAMIC_STATE_SCISSOR);
   pipeline->info.dynamic_state_object.push_back(VK_DYNAMIC_STATE_LINE_WIDTH);
@@ -140,10 +140,11 @@ void VK_pipeline::create_pipeline_graphics(Struct_pipeline* pipeline, Struct_ren
   //---------------------------
   pipeline->info.info = pipeline_info;
 }
-void VK_pipeline::create_pipeline_ui(Struct_pipeline* pipeline, Struct_renderpass* renderpass){
+void VK_pipeline::create_pipeline_presentation(Struct_pipeline* pipeline, Struct_renderpass* renderpass){
   //---------------------------
 
   //Dynamic
+  pipeline->info.dynamic_state_object.clear();
   pipeline->info.dynamic_state_object.push_back(VK_DYNAMIC_STATE_VIEWPORT);
   pipeline->info.dynamic_state_object.push_back(VK_DYNAMIC_STATE_SCISSOR);
   pipeline->info.dynamic_state_object.push_back(VK_DYNAMIC_STATE_LINE_WIDTH);
@@ -194,6 +195,8 @@ void VK_pipeline::create_pipeline_ui(Struct_pipeline* pipeline, Struct_renderpas
     vkDestroyShaderModule(struct_vulkan->device.device, shader_couple.first, nullptr);
     vkDestroyShaderModule(struct_vulkan->device.device, shader_couple.second, nullptr);
   }
+  pipeline->info.vec_shader_couple.clear();
+  pipeline->info.shader_stage.clear();
 
   //---------------------------
   pipeline->info.info = pipeline_info;
@@ -291,8 +294,8 @@ void VK_pipeline::create_depth(Struct_pipeline* pipeline){
 
   VkPipelineDepthStencilStateCreateInfo depth_stencil = {};
   depth_stencil.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
-  depth_stencil.depthTestEnable = (pipeline->shader_info->with_depth_test) ? VK_TRUE : VK_FALSE;
-  depth_stencil.depthWriteEnable = (pipeline->shader_info->with_depth_test) ? VK_TRUE : VK_FALSE;
+  depth_stencil.depthTestEnable = (pipeline->definition.shader->with_depth_test) ? VK_TRUE : VK_FALSE;
+  depth_stencil.depthWriteEnable = (pipeline->definition.shader->with_depth_test) ? VK_TRUE : VK_FALSE;
   depth_stencil.depthCompareOp = VK_COMPARE_OP_LESS;
   depth_stencil.depthBoundsTestEnable = VK_FALSE;
   depth_stencil.minDepthBounds = 0.0f; // Optional
@@ -345,13 +348,13 @@ void VK_pipeline::create_topology(Struct_pipeline* pipeline){
   input_assembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
   input_assembly.primitiveRestartEnable = VK_FALSE;
 
-  if(pipeline->topology == "point"){
+  if(pipeline->definition.topology == "point"){
     input_assembly.topology = VK_PRIMITIVE_TOPOLOGY_POINT_LIST;
   }
-  else if(pipeline->topology == "line"){
+  else if(pipeline->definition.topology == "line"){
     input_assembly.topology = VK_PRIMITIVE_TOPOLOGY_LINE_LIST;
   }
-  else if(pipeline->topology == "triangle"){
+  else if(pipeline->definition.topology == "triangle"){
     input_assembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
   }
 
@@ -363,11 +366,11 @@ void VK_pipeline::create_topology(Struct_pipeline* pipeline){
 void VK_pipeline::check_struct_pipeline_input(Struct_pipeline* pipeline){
   //---------------------------
 
-  if(pipeline->name == "") cout<<"[error] Pipeline init input -> no name"<<endl;
-  //if(pipeline->topology == "") cout<<"[error] Pipeline init input -> no topology"<<endl;
+  if(pipeline->definition.name == "") cout<<"[error] Pipeline init input -> no name"<<endl;
+  //if(pipeline->definition.topology == "") cout<<"[error] Pipeline init input -> no topology"<<endl;
   //if(pipeline->path_shader_vs == "") cout<<"[error] Pipeline init input -> no path_shader_vs"<<endl;
   //if(pipeline->path_shader_fs == "") cout<<"[error] Pipeline init input -> no path_shader_fs"<<endl;
-  //if(pipeline->info.vec_data_name.size() == 0) cout<<"[error] Pipeline init input -> no vec_data_name"<<endl;
+  //if(pipeline->definition.vec_data_name.size() == 0) cout<<"[error] Pipeline init input -> no vec_data_name"<<endl;
   //if(pipeline->binding.vec_required_binding.size() == 0) cout<<"[error] Pipeline init input -> no vec_required_binding"<<endl;
 
   //---------------------------
@@ -377,7 +380,7 @@ Struct_pipeline* VK_pipeline::get_pipeline_byName(Struct_renderpass* renderpass,
 
   for(int i=0; i<renderpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
-    if(pipeline->name == name){
+    if(pipeline->definition.name == name){
       return pipeline;
     }
   }
@@ -386,7 +389,7 @@ Struct_pipeline* VK_pipeline::get_pipeline_byName(Struct_renderpass* renderpass,
   cout<<"[error] Pipeline by name error -> not found"<<endl;
   for(int i=0; i<renderpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
-    cout<<pipeline->name<<endl;
+    cout<<pipeline->definition.name<<endl;
   }
 
   //---------------------------

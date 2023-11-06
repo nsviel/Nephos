@@ -62,12 +62,12 @@ Struct_pipeline* ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_pipeline* pipeline = new Struct_pipeline();
-  pipeline->name = "triangle_EDL";
-  pipeline->topology = "triangle";
-  pipeline->purpose = "graphics";
-  pipeline->shader_info = edl_shader->get_shader_info("EDL");
-  pipeline->info.vec_data_name.push_back("location");
-  pipeline->info.vec_data_name.push_back("tex_coord");
+  pipeline->definition.name = "triangle_EDL";
+  pipeline->definition.topology = "triangle";
+  pipeline->definition.purpose = "graphics";
+  pipeline->definition.shader = edl_shader->get_shader_info("EDL");
+  pipeline->definition.vec_data_name.push_back("location");
+  pipeline->definition.vec_data_name.push_back("tex_coord");
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_color", 0, 1, TYPE_SAMPLER, STAGE_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_depth", 0, 4, TYPE_SAMPLER, STAGE_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("EDL_param", sizeof(EDL_param), 5, TYPE_UNIFORM, STAGE_FS));
@@ -78,17 +78,10 @@ Struct_pipeline* ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
 void ENG_edl::recreate_pipeline_edl(){
   //---------------------------
 
-  Struct_pipeline* pipeline_new = create_pipeline_edl(struct_vulkan->vec_renderpass[1]);
-  vk_pipeline->create_pipeline(struct_vulkan->vec_renderpass[1], pipeline_new);
-
   vkDeviceWaitIdle(struct_vulkan->device.device);
-
-  Struct_pipeline* pipeline_old = vk_pipeline->get_pipeline_byName(struct_vulkan->vec_renderpass[1], "triangle_EDL");
-  vk_pipeline->clean_pipeline(pipeline_old);
-  Struct_pipeline* pipeline_old = pipeline_new;
-
-//  struct_vulkan->vec_renderpass[1]->vec_pipeline.clear();
-//  struct_vulkan->vec_renderpass[1]->vec_pipeline.push_back(pipeline_new);
+  Struct_pipeline* pipeline = vk_pipeline->get_pipeline_byName(struct_vulkan->vec_renderpass[1], "triangle_EDL");
+  vk_pipeline->clean_pipeline(pipeline);
+  vk_pipeline->create_pipeline(struct_vulkan->vec_renderpass[1], pipeline);
 
   //---------------------------
 }

@@ -53,10 +53,10 @@ void ENG_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
   CAN_shader* can_shader = shaderManager->get_can_shader();
 
   Struct_pipeline* pipeline = new Struct_pipeline();
-  pipeline->name = "triangle";
-  pipeline->purpose = "ui";
-  pipeline->topology = "triangle";
-  pipeline->shader_info = can_shader->get_shader_info("Canvas");
+  pipeline->definition.name = "triangle";
+  pipeline->definition.purpose = "ui";
+  pipeline->definition.topology = "triangle";
+  pipeline->definition.shader = can_shader->get_shader_info("Canvas");
   renderpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------

@@ -13,7 +13,7 @@ struct Struct_renderpass{
 
   Struct_pipeline* get_pipeline_byName(string name){
     for(int i=0; i<vec_pipeline.size(); i++){
-      if(vec_pipeline[i]->name == name){
+      if(vec_pipeline[i]->definition.name == name){
         return vec_pipeline[i];
       }
     }

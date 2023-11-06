@@ -129,7 +129,7 @@ void VK_data::create_attribut_description(Struct_pipeline* pipeline){
   vector<VkVertexInputAttributeDescription> attribut_description;
   //---------------------------
 
-  vector<string>& vec_data_name = pipeline->info.vec_data_name;
+  vector<string>& vec_data_name = pipeline->definition.vec_data_name;
   for(int i=0; i<vec_data_name.size(); i++){
     VkVertexInputAttributeDescription attribut{};
 
@@ -166,7 +166,7 @@ void VK_data::create_vertex_description(Struct_pipeline* pipeline){
   vector<VkVertexInputBindingDescription> data_description;
   //---------------------------
 
-  vector<string>& vec_data_name = pipeline->info.vec_data_name;
+  vector<string>& vec_data_name = pipeline->definition.vec_data_name;
   for(int i=0; i<vec_data_name.size(); i++){
     VkVertexInputBindingDescription description{};
 

@@ -19,6 +19,7 @@ public:
 public:
   //Main function
   void hot_shader_reload(string shader_1, string shader_2);
+  void recreate_pipeline(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
 
 private:
   VK_engine* vk_engine;

@@ -18,6 +18,7 @@ VK_uniform::~VK_uniform(){}
 
 //Uniform creation
 void VK_uniform::create_uniform_buffers(Struct_binding* binding){
+  binding->vec_uniform.clear();
   //---------------------------
 
   vec_descriptor_required& vec_required = binding->vec_required_binding;

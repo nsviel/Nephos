@@ -69,7 +69,7 @@ void VK_renderpass::clean_renderpass_object(Struct_renderpass* renderpass){
 
   vk_frame->clean_frame_renderpass(renderpass);
   vkDestroyRenderPass(struct_vulkan->device.device, renderpass->renderpass, nullptr);
-  vk_pipeline->clean_pipeline(renderpass);
+  vk_pipeline->clean_pipelines(renderpass);
 
   //---------------------------
 }
@@ -79,7 +79,7 @@ void VK_renderpass::create_renderpass(Struct_renderpass* renderpass){
 
   this->create_renderpass_obj(renderpass);
   vk_command_buffer->allocate_command_buffer_primary(renderpass);
-  vk_pipeline->create_pipeline(renderpass);
+  vk_pipeline->create_pipelines(renderpass);
   vk_frame->create_frame_renderpass(renderpass);
 
   //---------------------------

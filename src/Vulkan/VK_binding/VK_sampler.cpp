@@ -18,6 +18,7 @@ VK_sampler::~VK_sampler(){}
 
 //Main function
 void VK_sampler::create_sampler(Struct_binding* binding){
+  binding->vec_sampler.clear();
   //---------------------------
 
   vec_descriptor_required& vec_required = binding->vec_required_binding;

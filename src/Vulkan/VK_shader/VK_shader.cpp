@@ -34,10 +34,10 @@ void VK_shader::create_pipeline_shader_module(Struct_pipeline* pipeline){
   //---------------------------
 
   //Compile shader from GLSL to SPIR-V
-  if(pipeline->shader_info->compile_shader){
-    string folder = pipeline->shader_info->folder;
-    string vs = pipeline->shader_info->path_vs;
-    string fs = pipeline->shader_info->path_fs;
+  if(pipeline->definition.shader->compile_shader){
+    string folder = pipeline->definition.shader->folder;
+    string vs = pipeline->definition.shader->path_vs;
+    string fs = pipeline->definition.shader->path_fs;
     string command = path_shader + "compile.sh " + folder + " " + vs + " " + fs + " >> " + path_output +" 2>&1";
     int result = system(command.c_str());
     if(result != 0){
@@ -50,8 +50,8 @@ void VK_shader::create_pipeline_shader_module(Struct_pipeline* pipeline){
   //string path_vs = struct_vulkan->instance.path_shader + pipeline->path_shader_vs + ".spv";
   //string path_fs = struct_vulkan->instance.path_shader + pipeline->path_shader_fs + ".spv";
 
-  string path_vs = path_shader + pipeline->shader_info->folder + "/spir/" + pipeline->shader_info->path_vs + ".spv";
-  string path_fs = path_shader + pipeline->shader_info->folder + "/spir/" + pipeline->shader_info->path_fs + ".spv";
+  string path_vs = path_shader + pipeline->definition.shader->folder + "/spir/" + pipeline->definition.shader->path_vs + ".spv";
+  string path_fs = path_shader + pipeline->definition.shader->folder + "/spir/" + pipeline->definition.shader->path_fs + ".spv";
   auto code_vert = read_file(path_vs);
   auto code_frag = read_file(path_fs);
 

@@ -7,6 +7,23 @@
 #include <ELE_specific/common.h>
 
 
+//Binding requirement -> Name, Type size, binding, desriptor type, shader stage
+typedef std::vector<std::tuple<std::string, std::size_t, int, VkDescriptorType, VkShaderStageFlagBits>> vec_descriptor_required;
+
+struct Struct_pipeline_definition{
+  //---------------------------
+
+  //Info
+  std::string name = "";
+  std::string topology = "";
+  std::string purpose = "";
+
+  Shader_info* shader;
+  std::vector<std::string> vec_data_name;
+  vec_descriptor_required binding;
+
+  //---------------------------
+};
 struct Struct_pipeline_info{
   //---------------------------
 
@@ -18,7 +35,6 @@ struct Struct_pipeline_info{
   std::vector<VkVertexInputBindingDescription> data_description;
   std::vector<VkVertexInputAttributeDescription> attribut_description;
   std::vector<std::pair<VkShaderModule, VkShaderModule>> vec_shader_couple;
-  std::vector<std::string> vec_data_name;
 
   VkPipelineVertexInputStateCreateInfo vertex_input_info;
   VkPipelineInputAssemblyStateCreateInfo input_assembly;
@@ -32,22 +48,16 @@ struct Struct_pipeline_info{
 
   //---------------------------
 };
-
 struct Struct_pipeline{
   //---------------------------
 
-  //Info
-  std::string name = "";
-  std::string topology = "";
-  std::string purpose = "";
-
   //Pipeline shader
-  Shader_info* shader_info;
   Struct_binding binding;
 
   //Pipeline elments
   VkPipeline pipeline;
   VkPipelineLayout layout;
+  Struct_pipeline_definition definition;
   Struct_pipeline_info info;
 
   //---------------------------
