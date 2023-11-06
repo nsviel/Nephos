@@ -26,7 +26,7 @@ ENG_gui::ENG_gui(VK_engine* vk_engine){
 }
 ENG_gui::~ENG_gui(){}
 
-//Main function
+//Init function
 Struct_renderpass* ENG_gui::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------

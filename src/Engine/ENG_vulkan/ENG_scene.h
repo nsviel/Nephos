@@ -25,10 +25,12 @@ public:
   ~ENG_scene();
 
 public:
-  //Main functions
+  //Init functions
   Struct_renderpass* init_renderpass();
   void create_pipeline_point(Struct_renderpass* renderpass);
   void create_pipeline_line(Struct_renderpass* renderpass);
+
+  //Draw function
   void draw_scene(Struct_renderpass* renderpass);
   void cmd_draw_scene(Struct_renderpass* renderpass);
   void cmd_draw_glyph(Struct_renderpass* renderpass);

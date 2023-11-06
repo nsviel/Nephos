@@ -40,7 +40,7 @@ ENG_edl::ENG_edl(VK_engine* vk_engine){
 }
 ENG_edl::~ENG_edl(){}
 
-//Main function
+//Init function
 Struct_renderpass* ENG_edl::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
@@ -48,7 +48,7 @@ Struct_renderpass* ENG_edl::init_renderpass(){
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "edl";
   renderpass->subpass = "shader";
-  
+
   Struct_pipeline* pipeline_edl = create_pipeline_edl(renderpass);
   renderpass->vec_pipeline.push_back(pipeline_edl);
 
@@ -88,6 +88,8 @@ void ENG_edl::recreate_pipeline_edl(){
 
   //---------------------------
 }
+
+//Draw function
 void ENG_edl::draw_edl(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------

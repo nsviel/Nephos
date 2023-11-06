@@ -39,7 +39,7 @@ ENG_scene::~ENG_scene(){
   //---------------------------
 }
 
-//Main function
+//Init function
 Struct_renderpass* ENG_scene::init_renderpass(){
   VK_renderpass* vk_renderpass = vk_engine->get_vk_renderpass();
   //---------------------------
@@ -92,6 +92,8 @@ void ENG_scene::create_pipeline_line(Struct_renderpass* renderpass){
 
   //---------------------------
 }
+
+//Draw function
 void ENG_scene::draw_scene(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------

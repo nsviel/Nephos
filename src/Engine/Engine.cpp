@@ -39,6 +39,7 @@ Engine::~Engine(){
 void Engine::init(){
   //---------------------------
 
+  eng_renderpass->init_renderpass();
   vk_engine->init();
   dataManager->init();
 

@@ -38,21 +38,10 @@ VK_renderpass::~VK_renderpass(){}
 void VK_renderpass::init_renderpass(){
   //---------------------------
 
-  Struct_renderpass* renderpass;
-
-  renderpass = eng_scene->init_renderpass();
-  struct_vulkan->vec_renderpass.push_back(renderpass);
-
-  renderpass = eng_edl->init_renderpass();
-  struct_vulkan->vec_renderpass.push_back(renderpass);
-
-  renderpass = eng_gui->init_renderpass();
-  struct_vulkan->vec_renderpass.push_back(renderpass);
-
-  //---------------------------
-}
-void VK_renderpass::create_all_renderpass(){
-  //---------------------------
+  if(struct_vulkan->vec_renderpass.size() == 0){
+    cout<<"[error] No renderpass initiated"<<endl;
+    exit(0);
+  }
 
   for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
     Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];

@@ -20,10 +20,8 @@ public:
   ~ENG_gui();
 
 public:
-  //Main functions
+  //Init functions
   Struct_renderpass* init_renderpass();
-
-  //Pipeline
   void create_pipeline_canvas(Struct_renderpass* renderpass);
 
 private:
