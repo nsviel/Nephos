@@ -25,7 +25,7 @@ void VK_surface::init_window(){
 
   //---------------------------
 }
-void VK_surface::create_window_surface(){
+void VK_surface::init_surface(){
   //---------------------------
 
   VkResult result = glfwCreateWindowSurface(struct_vulkan->instance.instance, window->get_window(), nullptr, &struct_vulkan->window.surface);

@@ -9,6 +9,7 @@ VK_imgui::VK_imgui(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->window = vk_engine->get_window();
 
   //---------------------------
 }
@@ -16,8 +17,6 @@ VK_imgui::~VK_imgui(){}
 
 //Main function
 void VK_imgui::init(){
-  Window* window = struct_vulkan->window.windowManager;
-  VkSurfaceKHR surface = struct_vulkan->window.surface;
   VkRenderPass renderPass = struct_vulkan->vec_renderpass[2]->renderpass;
   //---------------------------
 

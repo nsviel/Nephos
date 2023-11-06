@@ -17,8 +17,11 @@ public:
 
 public:
   //Main functions
+  void init_device();
+  void clean_device();
+
+  //Subfunction
   void create_logical_device();
-  void clean_logical_device();
 
 private:
   Struct_vulkan* struct_vulkan;

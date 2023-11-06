@@ -64,14 +64,13 @@ void VK_engine::init(){
   //Instance
   vk_surface->init_window();
   vk_instance->init_instance();
-  vk_surface->create_window_surface();
-  vk_physical_device->init_physical_device();
-  vk_device->create_logical_device();
+  vk_surface->init_surface();
+  vk_device->init_device();
   vk_command_buffer->create_command_pool();
   vk_descriptor->create_descriptor_pool();
   vk_canvas->create_canvas();
 
-  //Pipeline
+  //Rendering
   vk_swapchain->create_swapchain();
   vk_viewport->init_viewport();
   vk_renderpass->init_renderpass();
@@ -97,7 +96,7 @@ void VK_engine::clean(){
   vk_data->clean_data_all();
   vk_descriptor->clean_descriptor_pool();
   vk_command_buffer->clean_command_pool();
-  vk_device->clean_logical_device();
+  vk_device->clean_device();
   vk_surface->clean_surface();
   vk_instance->clean_instance();
 

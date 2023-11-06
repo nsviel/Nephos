@@ -17,6 +17,23 @@ VK_device::VK_device(VK_engine* vk_engine){
 VK_device::~VK_device(){}
 
 //Main functions
+void VK_device::init_device(){
+  //---------------------------
+
+  vk_physical_device->init_physical_device();
+  this->create_logical_device();
+
+  //---------------------------
+}
+void VK_device::clean_device(){
+  //---------------------------
+
+  vkDestroyDevice(struct_vulkan->device.device, nullptr);
+
+  //---------------------------
+}
+
+//Subfunction
 void VK_device::create_logical_device(){
   //Interface between selected GPU and application
   //---------------------------
@@ -62,13 +79,6 @@ void VK_device::create_logical_device(){
   //Get queue family handles
   vkGetDeviceQueue(struct_vulkan->device.device, family_graphics, 0, &struct_vulkan->device.queue_graphics);
   vkGetDeviceQueue(struct_vulkan->device.device, family_presentation, 0, &struct_vulkan->device.queue_presentation);
-
-  //---------------------------
-}
-void VK_device::clean_logical_device(){
-  //---------------------------
-
-  vkDestroyDevice(struct_vulkan->device.device, nullptr);
 
   //---------------------------
 }

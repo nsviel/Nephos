@@ -18,10 +18,10 @@ public:
 public:
   //Main functions
   void init_window();
+  void init_surface();
   void clean_surface();
 
   //Subfunction
-  void create_window_surface();
   void check_for_resizing();
   void window_extensions();
 
