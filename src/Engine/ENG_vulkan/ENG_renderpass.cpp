@@ -14,9 +14,9 @@ ENG_renderpass::ENG_renderpass(Engine* engine){
 
   VK_engine* vk_engine = engine->get_vk_engine();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->eng_scene = new ENG_scene(vk_engine);
-  this->eng_edl = new ENG_edl(vk_engine);
-  this->eng_gui = new ENG_gui(vk_engine);
+  this->eng_scene = new ENG_scene(engine);
+  this->eng_edl = new ENG_edl(engine);
+  this->eng_gui = new ENG_gui(engine);
 
   //---------------------------
 }

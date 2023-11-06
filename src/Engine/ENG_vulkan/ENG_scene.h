@@ -5,6 +5,7 @@
 #include <VK_struct/struct_pipeline.h>
 #include <ELE_specific/common.h>
 
+class Engine;
 class Struct_vulkan;
 class VK_engine;
 class VK_pipeline;
@@ -21,7 +22,7 @@ class ENG_scene
 {
 public:
   //Constructor / Destructor
-  ENG_scene(VK_engine* vk_engine);
+  ENG_scene(Engine* engine);
   ~ENG_scene();
 
 public:

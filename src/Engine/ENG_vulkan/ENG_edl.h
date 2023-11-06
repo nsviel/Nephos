@@ -6,6 +6,7 @@
 #include <ENG_shader/Shader.h>
 #include <ELE_specific/common.h>
 
+class Engine;
 class Struct_vulkan;
 class VK_engine;
 class VK_pipeline;
@@ -21,7 +22,7 @@ class ENG_edl
 {
 public:
   //Constructor / Destructor
-  ENG_edl(VK_engine* vk_engine);
+  ENG_edl(Engine* engine);
   ~ENG_edl();
 
 public:
@@ -31,6 +32,7 @@ public:
 
   //Draw function
   void draw_edl(Struct_renderpass* renderpass);
+  void update_descriptor(Struct_renderpass* renderpass);
   void cmd_draw(Struct_renderpass* renderpass);
 
 private:

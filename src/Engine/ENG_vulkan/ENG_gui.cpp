@@ -13,12 +13,11 @@
 
 
 //Constructor / Destructor
-ENG_gui::ENG_gui(VK_engine* vk_engine){
+ENG_gui::ENG_gui(Engine* engine){
   //---------------------------
 
+  this->vk_engine = engine->get_vk_engine();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-
-  this->vk_engine = vk_engine;
   this->vk_command = new VK_command(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_pipeline = new VK_pipeline(vk_engine);

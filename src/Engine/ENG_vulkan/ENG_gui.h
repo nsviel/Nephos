@@ -5,8 +5,9 @@
 #include <VK_struct/struct_pipeline.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
+class Engine;
 class Struct_vulkan;
+class VK_engine;
 class VK_pipeline;
 class VK_subpass;
 class VK_command;
@@ -17,7 +18,7 @@ class ENG_gui
 {
 public:
   //Constructor / Destructor
-  ENG_gui(VK_engine* vk_engine);
+  ENG_gui(Engine* engine);
   ~ENG_gui();
 
 public:
@@ -29,8 +30,8 @@ public:
   void draw_gui(Struct_renderpass* renderpass);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
+  VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
   VK_command* vk_command;
   VK_subpass* vk_subpass;

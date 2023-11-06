@@ -12,10 +12,6 @@ class VK_pipeline;
 class VK_subpass;
 class VK_command_buffer;
 
-class ENG_scene;
-class ENG_edl;
-class ENG_gui;
-
 
 class VK_renderpass
 {
@@ -34,8 +30,6 @@ public:
   void create_renderpass(Struct_renderpass* renderpass);
   void create_renderpass_obj(Struct_renderpass* renderpass);
 
-  inline ENG_edl* get_eng_edl(){return eng_edl;}
-
 private:
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
@@ -43,10 +37,6 @@ private:
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
   VK_command_buffer* vk_command_buffer;
-
-  ENG_scene* eng_scene;
-  ENG_edl* eng_edl;
-  ENG_gui* eng_gui;
 };
 
 #endif

@@ -12,9 +12,6 @@
 #include <VK_binding/VK_descriptor.h>
 #include <VK_drawing/VK_viewport.h>
 
-#include <ENG_vulkan/ENG_scene.h>
-#include <ENG_vulkan/ENG_edl.h>
-
 
 //Constructor / Destructor
 VK_drawing::VK_drawing(VK_engine* vk_engine){
@@ -28,8 +25,6 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
   this->vk_submit = new VK_submit(vk_engine);
   this->vk_swapchain = new VK_swapchain(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
-  this->eng_scene = new ENG_scene(vk_engine);
-  this->eng_edl = new ENG_edl(vk_engine);
 
   //---------------------------
 }

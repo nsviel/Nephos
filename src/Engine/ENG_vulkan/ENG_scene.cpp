@@ -17,17 +17,17 @@
 
 
 //Constructor / Destructor
-ENG_scene::ENG_scene(VK_engine* vk_engine){
+ENG_scene::ENG_scene(Engine* engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
+  this->vk_engine = engine->get_vk_engine();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_subpass = new VK_subpass(vk_engine);
   this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
-  this->vk_drawing = vk_engine->get_vk_drawing();
+  this->vk_drawing = new VK_drawing(vk_engine);
 
   //---------------------------
 }

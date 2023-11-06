@@ -18,21 +18,19 @@
 
 
 //Constructor / Destructor
-ENG_edl::ENG_edl(VK_engine* vk_engine){
+ENG_edl::ENG_edl(Engine* engine){
   //---------------------------
 
-  Engine* engine = vk_engine->get_engine();
   Shader* shaderManager = engine->get_shaderManager();
 
+  this->vk_engine = engine->get_vk_engine();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->edl_shader = shaderManager->get_edl_shader();
-
-  this->vk_engine = vk_engine;
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_subpass = new VK_subpass(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);
-  this->vk_drawing = vk_engine->get_vk_drawing();
+  this->vk_drawing = new VK_drawing(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
   this->vk_command = new VK_command(vk_engine);
 
@@ -80,20 +78,20 @@ Struct_pipeline* ENG_edl::create_pipeline_edl(Struct_renderpass* renderpass){
 void ENG_edl::draw_edl(Struct_renderpass* renderpass){
   //---------------------------
 
-  //Update descriptor
+  this->update_descriptor(renderpass);
+  this->cmd_draw(renderpass);
+
+  //---------------------------
+}
+void ENG_edl::update_descriptor(Struct_renderpass* renderpass){
+  //---------------------------
+
   Frame* frame_scene = struct_vulkan->vec_renderpass[0]->get_rendering_frame();
   for(int i=0; i<renderpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
     vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);
     vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->depth);
   }
-
-  //Record command
-  Frame* frame_render = renderpass->get_rendering_frame();
-  vk_command->start_render_pass(renderpass, frame_render, false);
-  vk_viewport->cmd_viewport(renderpass);
-  this->cmd_draw(renderpass);
-  vk_command->stop_render_pass(renderpass);
 
   //---------------------------
 }
@@ -102,12 +100,18 @@ void ENG_edl::cmd_draw(Struct_renderpass* renderpass){
 
   Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle_EDL");
   EDL_param* edl_param = edl_shader->get_edl_param();
+  Frame* frame_render = renderpass->get_rendering_frame();
+
+  vk_command->start_render_pass(renderpass, frame_render, false);
+  vk_viewport->cmd_viewport(renderpass);
 
   vk_pipeline->cmd_bind_pipeline(renderpass, "triangle_EDL");
   edl_shader->update_shader();
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
   vk_descriptor->cmd_bind_descriptor(renderpass, "triangle_EDL", pipeline->binding.descriptor.set);
   vk_drawing->cmd_draw_data(renderpass, &struct_vulkan->canvas);
+
+  vk_command->stop_render_pass(renderpass);
 
   //---------------------------
 }
