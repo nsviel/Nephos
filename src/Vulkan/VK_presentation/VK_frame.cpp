@@ -37,15 +37,11 @@ void VK_frame::create_frame(){
 
     fbo->ID = i;
     fbo->color.image = struct_vulkan->swapchain.vec_swapchain_image[i];
-    fbo->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
     fbo->color.format = vk_color->find_color_format();
     fbo->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-    fbo->color.layout = IMAGE_LAYOUT_PRESENT;
-    fbo->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-    fbo->depth.layout = IMAGE_LAYOUT_DEPTH_READONLY;
+    fbo->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
     vk_image->create_image_view(&fbo->color);
-    //vk_color->create_color_attachment(fbo);
     vk_depth->create_depth_attachment(fbo);
     vk_framebuffer->create_framebuffer_obj(struct_vulkan->vec_renderpass[2], fbo);
     vk_synchronization->init_frame_sync(fbo);

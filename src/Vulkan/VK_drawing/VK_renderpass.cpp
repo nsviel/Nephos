@@ -79,11 +79,6 @@ void VK_renderpass::create_renderpass(Struct_renderpass* renderpass){
 void VK_renderpass::create_renderpass_obj(Struct_renderpass* renderpass){
   //---------------------------
 
-  renderpass->color_image_usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-  renderpass->color_sampler_layout = IMAGE_LAYOUT_SHADER_READONLY;
-  renderpass->depth_image_usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-  renderpass->depth_sampler_layout = IMAGE_LAYOUT_DEPTH_READONLY;
-
   Struct_subpass* subpass_ref = renderpass->vec_subpass[0];
 
   vector<VkSubpassDescription> vec_description;

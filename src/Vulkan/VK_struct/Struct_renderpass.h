@@ -11,16 +11,14 @@
 struct Struct_renderpass{
   //---------------------------
 
-  //Main object
-  VkFramebuffer fbo;
-
+  //Function
   Struct_pipeline* get_pipeline_byName(string name){
     for(int i=0; i<vec_pipeline.size(); i++){
       if(vec_pipeline[i]->definition.name == name){
         return vec_pipeline[i];
       }
     }
-    cout<<"[error] Pipeline by name error -> not found"<<endl;
+    cout<<"[error] Pipeline by name error -> "+ name +" not found"<<endl;
     return nullptr;
   }
 
@@ -28,20 +26,12 @@ struct Struct_renderpass{
   std::string name;
   std::string subpass_trg;
 
-  //Renderpass frame set
-  VkImageUsageFlags color_image_usage;
-  VkImageLayout color_sampler_layout;
-  VkImageUsageFlags depth_image_usage;
-  VkImageLayout depth_sampler_layout;
-
-  //Struct_framebuffer* get_framebuffer(){return vec_renderpass_frame[0];}
-  Struct_framebuffer* framebuffer;
-
   //Render pass elements
   VkRenderPass renderpass;
   VkCommandBuffer command_buffer;
+  Struct_framebuffer* framebuffer;
 
-  //Attachment
+  //Element
   std::vector<Struct_pipeline*> vec_pipeline;
   std::vector<Struct_subpass*> vec_subpass;
 
