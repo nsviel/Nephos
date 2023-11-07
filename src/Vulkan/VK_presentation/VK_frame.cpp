@@ -34,8 +34,6 @@ void VK_frame::create_frame(){
 
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
     Struct_framebuffer* fbo = new Struct_framebuffer();
-
-    fbo->ID = i;
     fbo->color.image = struct_vulkan->swapchain.vec_swapchain_image[i];
     fbo->color.format = vk_color->find_color_format();
     fbo->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
