@@ -7,14 +7,14 @@
 #include <imgui/vulkan/imgui_impl_vulkan.h>
 
 class GUI_vulkan;
-class Window;
+class ELE_window;
 
 
 class UI_main
 {
 public:
   //Constructor / Destructor
-  UI_main(Window* window);
+  UI_main(ELE_window* ele_window);
   ~UI_main();
 
 public:
@@ -24,7 +24,7 @@ public:
   void run_gui_main();
 
 private:
-  Window* window;
+  ELE_window* ele_window;
   GUI_vulkan* gui_vulkan;
 
   ImGui_ImplVulkanH_Window* wd;

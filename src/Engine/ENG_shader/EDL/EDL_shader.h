@@ -7,7 +7,7 @@
 
 class Engine;
 class Param;
-class Window;
+class ELE_window;
 
 
 class EDL_shader : public BASE_shader
@@ -25,7 +25,7 @@ public:
 
 private:
   Param* param;
-  Window* window;
+  ELE_window* ele_window;
   EDL_param* edl_param;
 };
 

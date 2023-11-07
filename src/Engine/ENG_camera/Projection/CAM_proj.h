@@ -4,13 +4,13 @@
 #include "../struct_camera.h"
 #include <ELE_specific/common.h>
 
-class Window;
+class ELE_window;
 
 
 class CAM_proj
 {
 public:
-  CAM_proj(Window* window);
+  CAM_proj(ELE_window* ele_window);
   ~CAM_proj();
 
 public:
@@ -18,7 +18,7 @@ public:
   mat4 compute_proj_ortho(Struct_camera* camera);
 
 private:
-  Window* window;
+  ELE_window* ele_window;
 };
 
 #endif

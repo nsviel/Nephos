@@ -3,7 +3,7 @@
 
 #include <ELE_specific/common.h>
 
-class Window;
+class ELE_window;
 class VK_engine;
 class VK_imgui;
 class VK_render;
@@ -13,7 +13,7 @@ class Vulkan
 {
 public:
   //Constructor / Destructor
-  Vulkan(Window* window);
+  Vulkan(ELE_window* window);
   ~Vulkan();
 
 public:

@@ -8,12 +8,12 @@
 using namespace std;
 
 
-class Database_sqlite
+class ELE_database
 {
 public:
   //Constructor / Destructor
-  Database_sqlite(string path);
-  ~Database_sqlite();
+  ELE_database(string path);
+  ~ELE_database();
 
 public:
   //Management function

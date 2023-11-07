@@ -6,7 +6,7 @@
 #include <VK_struct/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 
-class Window;
+class ELE_window;
 class Struct_param;
 class Struct_synchro;
 class Struct_vulkan;
@@ -32,7 +32,7 @@ class VK_engine
 {
 public:
   //Constructor / Destructor
-  VK_engine(Window* window);
+  VK_engine(ELE_window* ele_window);
   ~VK_engine();
 
 public:
@@ -47,7 +47,7 @@ public:
   void insert_glyph_in_engine(Object* object);
   void remove_object_in_engine(Object* object);
 
-  inline Window* get_window(){return window;}
+  inline ELE_window* get_ele_window(){return ele_window;}
   inline Struct_param* get_struct_param(){return struct_param;}
   inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
   inline Struct_synchro* get_struct_synchro(){return struct_synchro;}
@@ -59,7 +59,7 @@ public:
   inline std::list<Struct_data*> get_list_data_glyph(){return struct_vulkan->list_data_glyph;}
 
 private:
-  Window* window;
+  ELE_window* ele_window;
 
   Struct_param* struct_param;
   Struct_synchro* struct_synchro;

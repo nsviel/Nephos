@@ -5,7 +5,7 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
-#include <ELE_window/Window.h>
+#include <ELE_window/ELE_window.h>
 
 #include <imgui/core/imgui.h>
 #include <imgui/core/imgui_impl_glfw.h>
@@ -17,10 +17,10 @@
 
 
 //Constructor / Destructor
-UI_main::UI_main(Window* window){
+UI_main::UI_main(ELE_window* ele_window){
   //---------------------------
 
-  this->window = window;
+  this->ele_window = ele_window;
   this->gui_vulkan = new GUI_vulkan();
 
   //---------------------------
@@ -42,14 +42,14 @@ void UI_main::init_gui(){
 
   // Create Window Surface
   VkSurfaceKHR surface;
-  //window->create_window_surface(gui_vulkan->g_Instance, surface);
+  //ele_window->create_window_surface(gui_vulkan->g_Instance, surface);
 
-  //VkResult err = glfwCreateWindowSurface(gui_vulkan->g_Instance, window->get_window(), gui_vulkan->g_Allocator, &surface);
+  //VkResult err = glfwCreateWindowSurface(gui_vulkan->g_Instance, ele_window->get_window(), gui_vulkan->g_Allocator, &surface);
   //gui_vulkan->check_vk_result(err);
 
   // Create Framebuffers
   int w, h;
-  glfwGetFramebufferSize(window->get_window(), &w, &h);
+  glfwGetFramebufferSize(ele_window->get_window(), &w, &h);
   this->wd = &gui_vulkan->g_MainWindowData;
   gui_vulkan->SetupVulkanWindow(wd, surface, w, h);
 
@@ -75,7 +75,7 @@ void UI_main::init_gui(){
   }
 
   // Setup Platform/Renderer backends
-  //ImGui_ImplGlfw_InitForVulkan(window->get_window(), true);
+  //ImGui_ImplGlfw_InitForVulkan(ele_window->get_window(), true);
   ImGui_ImplVulkan_InitInfo init_info = {};
   init_info.Instance = gui_vulkan->g_Instance;
   init_info.PhysicalDevice = gui_vulkan->g_PhysicalDevice;
@@ -134,7 +134,7 @@ void UI_main::clean_gui_vulkan(){
   gui_vulkan->CleanupVulkanWindow();
   gui_vulkan->CleanupVulkan();
 
-  glfwDestroyWindow(window->get_window());
+  glfwDestroyWindow(ele_window->get_window());
   glfwTerminate();
 
   //---------------------------
@@ -151,7 +151,7 @@ void UI_main::run_gui_main(){
   // Resize swap chain?
   if (gui_vulkan->g_SwapChainRebuild){
     int width, height;
-    glfwGetFramebufferSize(window->get_window(), &width, &height);
+    glfwGetFramebufferSize(ele_window->get_window(), &width, &height);
     if (width > 0 && height > 0){
       ImGui_ImplVulkan_SetMinImageCount(gui_vulkan->g_MinImageCount);
       ImGui_ImplVulkanH_CreateOrResizeWindow(gui_vulkan->g_Instance, gui_vulkan->g_PhysicalDevice, gui_vulkan->g_Device, &gui_vulkan->g_MainWindowData, gui_vulkan->g_QueueFamily, gui_vulkan->g_Allocator, width, height, gui_vulkan->g_MinImageCount);

@@ -5,7 +5,7 @@
 
 class VK_engine;
 class Struct_vulkan;
-class Window;
+class ELE_window;
 
 
 class VK_surface
@@ -25,10 +25,10 @@ public:
   void check_for_resizing();
   void window_extensions();
 
-  inline Window* get_window(){return window;}
+  inline ELE_window* get_ele_window(){return ele_window;}
 
 private:
-  Window* window;
+  ELE_window* ele_window;
   Struct_vulkan* struct_vulkan;
 };
 

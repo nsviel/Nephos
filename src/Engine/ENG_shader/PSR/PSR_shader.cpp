@@ -2,14 +2,14 @@
 
 #include <Engine.h>
 #include <Param.h>
-#include <ELE_window/Window.h>
+#include <ELE_window/ELE_window.h>
 
 
 PSR_shader::PSR_shader(Engine* engine){
   //---------------------------
 
   this->param = engine->get_param();
-  this->window = engine->get_window();
+  this->ele_window = engine->get_ele_window();
 
   this->psr_param = new PSR_param();
 
@@ -42,7 +42,7 @@ void PSR_shader::update_shader(){
   psr_param->z_far = camera->clip_far;
 
   //Dimension
-  vec2 window_dim = window->get_window_dim();
+  vec2 window_dim = ele_window->get_window_dim();
   psr_param->tex_width = window_dim.x;
   psr_param->tex_height = window_dim.y;
 

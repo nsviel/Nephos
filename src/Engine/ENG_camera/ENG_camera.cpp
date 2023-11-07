@@ -13,10 +13,10 @@ ENG_camera::ENG_camera(Engine* engine){
   //---------------------------
 
   this->param = engine->get_param();
-  this->cam_arcball = new CAM_arcball(engine->get_window());
-  this->cam_fp = new CAM_first_person(engine->get_window());
-  this->cam_zoom = new CAM_zoom(engine->get_window());
-  this->cam_proj = new CAM_proj(engine->get_window());
+  this->cam_arcball = new CAM_arcball(engine->get_ele_window());
+  this->cam_fp = new CAM_first_person(engine->get_ele_window());
+  this->cam_zoom = new CAM_zoom(engine->get_ele_window());
+  this->cam_proj = new CAM_proj(engine->get_ele_window());
 
   this->arcball_origin = vec3(0, 0, 0);
 

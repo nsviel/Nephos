@@ -2,14 +2,14 @@
 
 #include <VK_main/VK_engine.h>
 #include <VK_struct/Struct_vulkan.h>
-#include <ELE_window/Window.h>
+#include <ELE_window/ELE_window.h>
 
 
 //Constructor / Destructor
 VK_viewport::VK_viewport(VK_engine* vk_engine){
   //---------------------------
 
-  this->window = vk_engine->get_window();
+  this->ele_window = vk_engine->get_ele_window();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   //---------------------------
@@ -18,7 +18,7 @@ VK_viewport::~VK_viewport(){}
 
 //Main function
 void VK_viewport::init_viewport(){
-  vec2 win_dim = window->get_window_dim();
+  vec2 win_dim = ele_window->get_window_dim();
   //---------------------------
 
   //Viewport
@@ -49,7 +49,7 @@ void VK_viewport::cmd_viewport(Struct_renderpass* renderpass){
   //---------------------------
 }
 void VK_viewport::update_viewport(){
-  vec2 win_dim = window->get_window_dim();
+  vec2 win_dim = ele_window->get_window_dim();
   //---------------------------
 
   //Viewport scene
@@ -66,7 +66,7 @@ void VK_viewport::update_viewport(){
 
 //Subfunction
 Struct_viewport* VK_viewport::create_viewport(){
-  vec2 win_dim = window->get_window_dim();
+  vec2 win_dim = ele_window->get_window_dim();
   //---------------------------
 
   //Viewport

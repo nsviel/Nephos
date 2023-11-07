@@ -6,7 +6,7 @@
 
 
 //Constructor / Destructor
-Vulkan::Vulkan(Window* window){
+Vulkan::Vulkan(ELE_window* window){
   //---------------------------
 
   this->vk_engine = new VK_engine(window);

@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <Param.h>
-#include <ELE_window/Window.h>
+#include <ELE_window/ELE_window.h>
 #include <ENG_data/ENG_data.h>
 #include <ELE_specific/Function/fct_math.h>
 #include <ENG_data/ENG_scene/ENG_scene.h>
@@ -18,7 +18,7 @@ RND_control::RND_control(GUI* gui){
 
   ENG_data* eng_data = gui->get_eng_data();
   this->engine = gui->get_engine();
-  this->window = engine->get_window();
+  this->ele_window = engine->get_ele_window();
   this->param = engine->get_param();
   this->eng_camera = engine->get_eng_camera();
   this->eng_scene = eng_data->get_eng_scene();
@@ -170,20 +170,20 @@ void RND_control::control_mouse(ImVec2 center){
   Struct_camera* camera = &param->camera;
   //----------------------------
 
-  window->set_window_center(vec2(center.x, center.y));
+  ele_window->set_window_center(vec2(center.x, center.y));
 
   //Right click - Camera movement
   static vec2 cursorPos;
   if(ImGui::IsMouseClicked(1)){
-    cursorPos = window->get_mouse_pose();
+    cursorPos = ele_window->get_mouse_pose();
 
     ImGui::GetIO().MouseDrawCursor = false;
-    window->set_mouse_pose(vec2(center.x, center.y));
+    ele_window->set_mouse_pose(vec2(center.x, center.y));
     camera->cam_move = true;
   }
   //Release - back to normal
   if(ImGui::IsMouseReleased(1) && camera->cam_move){
-    window->set_mouse_pose(cursorPos);
+    ele_window->set_mouse_pose(cursorPos);
     camera->cam_move = false;
   }
 

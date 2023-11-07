@@ -5,7 +5,7 @@
 
 class Engine;
 class ENG_data;
-class Window;
+class ELE_window;
 
 class GUI_font;
 class GUI_control_gui;
@@ -21,7 +21,7 @@ class GUI
 {
 public:
   //Constructor / Destructor
-  GUI(Window* window, Engine* engine);
+  GUI(ELE_window* ele_window, Engine* engine);
   ~GUI();
 
 public:
@@ -34,7 +34,7 @@ public:
 
   inline Engine* get_engine(){return engine;}
   inline ENG_data* get_eng_data(){return eng_data;}
-  inline Window* get_window(){return window;}
+  inline ELE_window* get_ele_window(){return ele_window;}
 
   inline GUI_control_gui* get_gui_control(){return gui_control;}
   inline GUI_style* get_gui_style(){return gui_style;}
@@ -45,7 +45,7 @@ public:
 private:
   Engine* engine;
   ENG_data* eng_data;
-  Window* window;
+  ELE_window* ele_window;
 
   GUI_control_gui* gui_control;
   GUI_style* gui_style;

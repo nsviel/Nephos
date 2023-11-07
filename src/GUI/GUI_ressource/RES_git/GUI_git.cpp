@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <GUI_style/GUI_font.h>
-#include <ELE_git/Git.h>
+#include <ELE_git/ELE_git.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -11,7 +11,7 @@ GUI_git::GUI_git(GUI* gui){
   //---------------------------
 
   this->gui_font = gui->get_gui_font();
-  this->git = new Git();
+  this->git = new ELE_git();
 
   //---------------------------
 }

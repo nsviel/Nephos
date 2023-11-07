@@ -1,5 +1,5 @@
 #include "GUI.h"
-#include "ELE_window/Window.h"
+#include "ELE_window/ELE_window.h"
 
 #include <Engine.h>
 #include <VK_main/VK_engine.h>
@@ -20,11 +20,11 @@
 
 
 //Constructor / Destructor
-GUI::GUI(Window* window, Engine* engine){
+GUI::GUI(ELE_window* ele_window, Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->window = window;
+  this->ele_window = ele_window;
   this->eng_data = engine->get_eng_data();
 
   this->gui_init = new RND_init(this);

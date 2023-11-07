@@ -1,18 +1,18 @@
-#include "Database_sqlite.h"
+#include "ELE_database.h"
 
 
 //Constructor / Destructor
-Database_sqlite::Database_sqlite(string path){
+ELE_database::ELE_database(string path){
   //---------------------------
 
   this->path_database = path;
 
   //---------------------------
 }
-Database_sqlite::~Database_sqlite(){}
+ELE_database::~ELE_database(){}
 
 //Management function
-void Database_sqlite::create_table(string name){
+void ELE_database::create_table(string name){
   //---------------------------
 
   SQLite::Database db(path_database.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
@@ -22,7 +22,7 @@ void Database_sqlite::create_table(string name){
 
   //---------------------------
 }
-void Database_sqlite::remove_table(string name){
+void ELE_database::remove_table(string name){
   //---------------------------
 
   SQLite::Database db(path_database.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
@@ -33,7 +33,7 @@ void Database_sqlite::remove_table(string name){
 }
 
 //Retrieving function
-vector<string> Database_sqlite::retrieve_all_table(){
+vector<string> ELE_database::retrieve_all_table(){
   //---------------------------
 
   SQLite::Database db(path_database.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);

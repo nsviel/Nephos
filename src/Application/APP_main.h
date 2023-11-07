@@ -1,18 +1,18 @@
-#ifndef LOOP_H
-#define LOOP_H
+#ifndef APP_MAIN_H
+#define APP_MAIN_H
 
 class Config;
-class Window;
+class ELE_window;
 class Engine;
 class GUI;
 
 
-class Loop
+class APP_main
 {
 public:
   //Constructor / Destructor
-  Loop();
-  ~Loop();
+  APP_main();
+  ~APP_main();
 
 public:
   //Main functions
@@ -26,7 +26,7 @@ public:
 private:
   Config* config;
   Engine* engine;
-  Window* window;
+  ELE_window* ele_window;
   GUI* gui;
 };
 

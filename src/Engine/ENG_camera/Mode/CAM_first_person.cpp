@@ -1,13 +1,13 @@
 #include "CAM_first_person.h"
 
-#include <ELE_window/Window.h>
+#include <ELE_window/ELE_window.h>
 
 
 //Constructor / Destructor
-CAM_first_person::CAM_first_person(Window* window){
+CAM_first_person::CAM_first_person(ELE_window* ele_window){
   //---------------------------
 
-  this->window = window;
+  this->ele_window = ele_window;
 
   this->mouse_pose_old = vec2(0.0f);
 
@@ -47,11 +47,11 @@ void CAM_first_person::fp_cam_mouse(Struct_camera* camera){
   float& elevation = camera->angle_elevation;
 
   //Cursor movement
-  vec2 mouse_pose = window->get_mouse_pose();
-  vec2 window_center = window->get_window_center();
+  vec2 mouse_pose = ele_window->get_mouse_pose();
+  vec2 window_center = ele_window->get_window_center();
 
   if(mouse_pose != mouse_pose_old){
-    window->set_mouse_pose(window_center);
+    ele_window->set_mouse_pose(window_center);
 
     // Compute new orientation
     azimuth += camera->speed_mouse * float(window_center.x - mouse_pose.x);

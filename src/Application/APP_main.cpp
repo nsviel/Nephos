@@ -1,27 +1,27 @@
-#include "Loop.h"
+#include "APP_main.h"
 #include "../config.h"
 
 #include <GUI.h>
 #include <Engine.h>
-#include <ELE_window/Window.h>
+#include <ELE_window/ELE_window.h>
 #include <iostream>
 
 
 //Constructor / Destructor
-Loop::Loop(){
+APP_main::APP_main(){
   //---------------------------
 
   this->config = new Config();
-  this->window = new Window(config);
-  this->engine = new Engine(window);
-  this->gui = new GUI(window, engine);
+  this->ele_window = new ELE_window(config);
+  this->engine = new Engine(ele_window);
+  this->gui = new GUI(ele_window, engine);
 
   //---------------------------
 }
-Loop::~Loop(){}
+APP_main::~APP_main(){}
 
 //Main function
-void Loop::run(){
+void APP_main::run(){
   //---------------------------
 
   this->init();
@@ -32,34 +32,34 @@ void Loop::run(){
 }
 
 //Subfunction
-void Loop::init(){
+void APP_main::init(){
   //---------------------------
 
-  window->create_window();
+  ele_window->create_window();
   engine->init();
   gui->init();
 
   //---------------------------
 }
-void Loop::loop(){
+void APP_main::loop(){
   //---------------------------
 
   auto start_time = std::chrono::steady_clock::now();
-  while(!window->window_should_close()){
+  while(!ele_window->window_should_close()){
     gui->loop();
     engine->loop();
-    window->manage_input();
+    ele_window->manage_input();
   }
   engine->wait_for_gpu_idle();
 
   //---------------------------
 }
-void Loop::end(){
+void APP_main::end(){
   //---------------------------
 
   gui->exit();
   engine->exit();
-  window->destroy_window();
+  ele_window->destroy_window();
 
   //---------------------------
 }

@@ -2,7 +2,7 @@
 
 #include <VK_main/VK_engine.h>
 #include <VK_struct/Struct_vulkan.h>
-#include <ELE_window/Window.h>
+#include <ELE_window/ELE_window.h>
 
 
 //Constructor / Destructor
@@ -10,7 +10,7 @@ VK_surface::VK_surface(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->window = vk_engine->get_window();
+  this->ele_window = vk_engine->get_ele_window();
 
   //---------------------------
 }
@@ -20,7 +20,7 @@ VK_surface::~VK_surface(){}
 void VK_surface::init_window(){
   //---------------------------
 
-  struct_vulkan->window.windowManager = window;
+  struct_vulkan->window.ele_window = ele_window;
   this->window_extensions();
 
   //---------------------------
@@ -28,7 +28,7 @@ void VK_surface::init_window(){
 void VK_surface::init_surface(){
   //---------------------------
 
-  VkResult result = glfwCreateWindowSurface(struct_vulkan->instance.instance, window->get_window(), nullptr, &struct_vulkan->window.surface);
+  VkResult result = glfwCreateWindowSurface(struct_vulkan->instance.instance, ele_window->get_window(), nullptr, &struct_vulkan->window.surface);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create window surface!");
   }
@@ -45,12 +45,12 @@ void VK_surface::clean_surface(){
 
 //Subfunction
 void VK_surface::check_for_resizing(){
-  static vec2 window_dim = window->compute_window_dim();
+  static vec2 window_dim = ele_window->compute_window_dim();
   bool is_resized = false;
   //---------------------------
 
   //ICI PROBLEM QUAND TRANSLATION TO WINDOW CLASS !!!
-  vec2 dim = window->compute_window_dim();
+  vec2 dim = ele_window->compute_window_dim();
   if(dim.x != window_dim.x || dim.y != window_dim.y){
     is_resized = true;
     window_dim = dim;

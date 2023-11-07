@@ -4,13 +4,13 @@
 #include "../struct_camera.h"
 #include <ELE_specific/common.h>
 
-class Window;
+class ELE_window;
 
 
 class CAM_arcball
 {
 public:
-  CAM_arcball(Window* window);
+  CAM_arcball(ELE_window* ele_window);
   ~CAM_arcball();
 
 public:
@@ -20,7 +20,7 @@ public:
   void arcball_viewport_angle(Struct_camera* camera, vec2 angle);
 
 private:
-  Window* window;
+  ELE_window* ele_window;
 };
 
 #endif

@@ -1,13 +1,13 @@
 #include "CAM_proj.h"
 
-#include <ELE_window/Window.h>
+#include <ELE_window/ELE_window.h>
 
 
 //Constructor / Destructor
-CAM_proj::CAM_proj(Window* window){
+CAM_proj::CAM_proj(ELE_window* ele_window){
   //---------------------------
 
-  this->window = window;
+  this->ele_window = ele_window;
 
   //---------------------------
 }
@@ -21,7 +21,7 @@ mat4 CAM_proj::compute_proj_perspective(Struct_camera* camera){
   float z_far = camera->clip_far;
   float fov = glm::radians(camera->fov);
 
-  vec2 window_dim = window->get_window_dim();
+  vec2 window_dim = ele_window->get_window_dim();
   float ratio = window_dim.x / window_dim.y;
 
   mat4 cam_proj = perspective(fov, ratio, z_near, z_far);

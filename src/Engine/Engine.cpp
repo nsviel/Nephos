@@ -5,20 +5,20 @@
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_render.h>
 #include <ENG_camera/ENG_camera.h>
-#include <ELE_window/Window.h>
+#include <ELE_window/ELE_window.h>
 #include <ENG_shader/ENG_shader.h>
 #include <ENG_render/ENG_renderpass.h>
 
 
 //Constructor / Destructor
-Engine::Engine(Window* window){
+Engine::Engine(ELE_window* ele_window){
   //---------------------------
 
-  this->window = window;
+  this->ele_window = ele_window;
   this->param = new Param();
   this->eng_camera = new ENG_camera(this);
   this->eng_shader = new ENG_shader(this);
-  this->vk_engine = new VK_engine(window);
+  this->vk_engine = new VK_engine(ele_window);
   this->dataManager = new ENG_data(this);
   this->eng_renderpass = new ENG_renderpass(this);
 

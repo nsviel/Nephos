@@ -6,7 +6,7 @@
 
 class GUI;
 class Struct_vulkan;
-class Database_sqlite;
+class ELE_database;
 
 
 class GUI_database : public BASE_panel
@@ -25,7 +25,7 @@ public:
   void display_data();
 
 private:
-  Database_sqlite* database;
+  ELE_database* database;
 
   string path_database;
 };

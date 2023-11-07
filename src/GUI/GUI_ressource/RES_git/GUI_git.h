@@ -5,7 +5,7 @@
 
 class GUI_font;
 class GUI;
-class Git;
+class ELE_git;
 
 
 class GUI_git
@@ -25,7 +25,7 @@ public:
 
 private:
   GUI_font* gui_font;
-  Git* git;
+  ELE_git* git;
 };
 
 #endif

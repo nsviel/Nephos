@@ -3,7 +3,7 @@
 
 #include <ELE_specific/common.h>
 
-class Window;
+class ELE_window;
 class VK_engine;
 class Struct_vulkan;
 
@@ -23,7 +23,7 @@ public:
   ImTextureID engine_texture();
 
 private:
-  Window* window;
+  ELE_window* ele_window;
   Struct_vulkan* struct_vulkan;
 
   VkDescriptorPool descriptor_pool;

@@ -20,14 +20,14 @@
 #include <VK_main/VK_render.h>
 #include <VK_main/VK_info.h>
 
-#include <ELE_window/Window.h>
+#include <ELE_window/ELE_window.h>
 
 
 //Constructor / Destructor
-VK_engine::VK_engine(Window* window){
+VK_engine::VK_engine(ELE_window* ele_window){
   //---------------------------
 
-  this->window = window;
+  this->ele_window = ele_window;
 
   this->struct_param = new Struct_param();
   this->struct_vulkan = new Struct_vulkan();
