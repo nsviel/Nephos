@@ -33,9 +33,10 @@ void VK_subpass::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
 }
 void VK_subpass::create_subpass_shader(Struct_renderpass* renderpass){
+  Struct_subpass* subpass = new Struct_subpass();
   //---------------------------
 
-  Struct_subpass* subpass = new Struct_subpass();
+  // Color
   subpass->attached_color.item = 0;
   subpass->attached_color.load_operation = ATTACHMENT_LOADOP_CLEAR;
   subpass->attached_color.store_operation = ATTACHMENT_STOREOP_STORE;
@@ -44,6 +45,7 @@ void VK_subpass::create_subpass_shader(Struct_renderpass* renderpass){
   this->color_attachment_description(subpass);
   this->color_attachment_reference(subpass);
 
+  // Depth
   subpass->attached_depth.item = 1;
   subpass->attached_depth.load_operation = ATTACHMENT_LOADOP_CLEAR;
   subpass->attached_depth.store_operation = ATTACHMENT_STOREOP_STORE;
@@ -58,9 +60,10 @@ void VK_subpass::create_subpass_shader(Struct_renderpass* renderpass){
   //---------------------------
 }
 void VK_subpass::create_subpass_presentation(Struct_renderpass* renderpass){
+  Struct_subpass* subpass = new Struct_subpass();
   //---------------------------
 
-  Struct_subpass* subpass = new Struct_subpass();
+  // Color
   subpass->attached_color.item = 0;
   subpass->attached_color.load_operation = ATTACHMENT_LOADOP_CLEAR;
   subpass->attached_color.store_operation = ATTACHMENT_STOREOP_NOTHING;
@@ -69,6 +72,7 @@ void VK_subpass::create_subpass_presentation(Struct_renderpass* renderpass){
   this->color_attachment_description(subpass);
   this->color_attachment_reference(subpass);
 
+  // Depth
   subpass->attached_depth.item = 1;
   subpass->attached_depth.load_operation = ATTACHMENT_LOADOP_CLEAR;
   subpass->attached_depth.store_operation = ATTACHMENT_STOREOP_NOTHING;
