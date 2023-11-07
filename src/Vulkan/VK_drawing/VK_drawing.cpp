@@ -1,6 +1,4 @@
 #include "VK_drawing.h"
-#include "VK_renderpass.h"
-#include "../VK_presentation/VK_swapchain.h"
 
 #include <VK_main/VK_engine.h>
 #include <VK_struct/Struct_vulkan.h>
@@ -8,9 +6,11 @@
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
-#include <VK_presentation/VK_canvas.h>
+#include <VK_data/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_drawing/VK_viewport.h>
+#include <VK_renderpass/VK_renderpass.h>
+#include <VK_presentation/VK_swapchain.h>
 
 
 //Constructor / Destructor

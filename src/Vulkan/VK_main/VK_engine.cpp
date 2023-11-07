@@ -4,12 +4,12 @@
 #include <VK_struct/Struct_param.h>
 #include <VK_struct/Struct_synchro.h>
 #include <VK_data/VK_data.h>
-#include <VK_drawing/VK_renderpass.h>
+#include <VK_renderpass/VK_renderpass.h>
 #include <VK_command/VK_command_buffer.h>
 #include <VK_device/VK_device.h>
 #include <VK_presentation/VK_surface.h>
 #include <VK_instance/VK_instance.h>
-#include <VK_presentation/VK_canvas.h>
+#include <VK_data/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_image/VK_texture.h>
 #include <VK_presentation/VK_swapchain.h>

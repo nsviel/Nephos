@@ -57,7 +57,7 @@ void VK_frame::create_frame(){
     frame->image.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
 
-    vk_image->create_image_view(&frame->image);
+    //vk_image->create_image_view(&frame->image);
     //vk_framebuffer->create_framebuffer_swapchain(struct_vulkan->vec_renderpass[2], frame);
     //vk_synchronization->init_frame_sync(fbo);
 

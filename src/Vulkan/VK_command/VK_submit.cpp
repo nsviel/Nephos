@@ -4,7 +4,7 @@
 #include "../VK_struct/Struct_vulkan.h"
 #include "../VK_presentation/VK_swapchain.h"
 #include "../VK_presentation/VK_surface.h"
-#include "../VK_presentation/VK_canvas.h"
+#include "../VK_data/VK_canvas.h"
 #include "../VK_binding/VK_descriptor.h"
 
 

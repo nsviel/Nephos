@@ -8,7 +8,7 @@
 #include "../VK_device/VK_device.h"
 #include "../VK_image/VK_color.h"
 #include "../VK_image/VK_image.h"
-#include "../VK_drawing/VK_renderpass.h"
+#include "../VK_renderpass/VK_renderpass.h"
 
 
 //Constructor / Destructor
@@ -86,7 +86,7 @@ void VK_framebuffer::create_framebuffer_swapchain(Struct_renderpass* renderpass,
 
   //Create frambuffer
   vector<VkImageView> attachments;
-  attachments.push_back(frame->image.view);say(static_cast<uint32_t>(attachments.size()));
+  attachments.push_back(frame->image.view);
 
   VkFramebufferCreateInfo framebufferInfo{};
   framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
@@ -102,7 +102,7 @@ void VK_framebuffer::create_framebuffer_swapchain(Struct_renderpass* renderpass,
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create framebuffer!");
   }
-say(static_cast<uint32_t>(attachments.size()));
+
   //---------------------------
   frame->framebuffer = fbo;
 }
