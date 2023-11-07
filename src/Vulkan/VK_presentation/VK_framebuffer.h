@@ -1,6 +1,7 @@
 #ifndef VK_FRAMEBUFFER_H
 #define VK_FRAMEBUFFER_H
 
+#include "../VK_struct/Struct_frame.h"
 #include "../VK_struct/Struct_framebuffer.h"
 #include "../VK_struct/Struct_renderpass.h"
 #include <ELE_specific/common.h>
@@ -25,8 +26,9 @@ public:
   void clean_framebuffer(Struct_renderpass* renderpass);
 
   //Subfunction
-  void create_framebuffer_obj(Struct_renderpass* renderpass, Struct_framebuffer* image);
-  void clean_framebuffer_obj(Struct_framebuffer* image);
+  void create_framebuffer_renderpass(Struct_renderpass* renderpass, Struct_framebuffer* framebuffer);
+  void create_framebuffer_swapchain(Struct_renderpass* renderpass, Struct_frame* frame);
+  void clean_framebuffer_obj(Struct_framebuffer* framebuffer);
 
 private:
   Struct_vulkan* struct_vulkan;

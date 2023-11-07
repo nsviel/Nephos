@@ -41,14 +41,14 @@ void VK_frame::create_frame(){
 
     vk_image->create_image_view(&fbo->color);
     vk_depth->create_depth_attachment(fbo);
-    vk_framebuffer->create_framebuffer_obj(struct_vulkan->vec_renderpass[2], fbo);
+    vk_framebuffer->create_framebuffer_renderpass(struct_vulkan->vec_renderpass[2], fbo);
     vk_synchronization->init_frame_sync(fbo);
 
     struct_vulkan->swapchain.vec_framebuffer.push_back(fbo);
   }
 
 
-/*
+
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
     Struct_frame* frame = new Struct_frame();
     frame->image.image = struct_vulkan->swapchain.vec_swapchain_image[i];
@@ -57,13 +57,13 @@ void VK_frame::create_frame(){
     frame->image.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
 
-    vk_image->create_image_view(&fbo->frame);
-    vk_framebuffer->create_framebuffer_obj(struct_vulkan->vec_renderpass[2], fbo);
-    vk_synchronization->init_frame_sync(fbo);
+    vk_image->create_image_view(&frame->image);
+    //vk_framebuffer->create_framebuffer_swapchain(struct_vulkan->vec_renderpass[2], frame);
+    //vk_synchronization->init_frame_sync(fbo);
 
-    struct_vulkan->swapchain.vec_framebuffer.push_back(fbo);
+    struct_vulkan->swapchain.vec_frame.push_back(frame);
   }
-*/
+
   //---------------------------
 }
 void VK_frame::clean_frame(){
