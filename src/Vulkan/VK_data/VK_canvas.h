@@ -1,7 +1,7 @@
 #ifndef VK_CANVAS_H
 #define VK_CANVAS_H
 
-#include "../VK_struct/Struct_data.h"
+#include <VK_struct/Struct_data.h>
 #include <ELE_specific/common.h>
 
 class VK_engine;

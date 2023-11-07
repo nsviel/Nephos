@@ -1,8 +1,9 @@
 #include "VK_buffer.h"
-#include "../VK_binding/VK_descriptor.h"
+
+#include <VK_binding/VK_descriptor.h>
 #include <VK_main/VK_engine.h>
-#include "../VK_struct/Struct_vulkan.h"
-#include "../VK_command/VK_command.h"
+#include <VK_struct/Struct_vulkan.h>
+#include <VK_command/VK_command.h>
 
 
 //Constructor / Destructor

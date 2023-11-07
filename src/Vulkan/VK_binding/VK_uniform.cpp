@@ -1,8 +1,8 @@
 #include "VK_uniform.h"
 
 #include <VK_main/VK_engine.h>
-#include "../VK_struct/Struct_vulkan.h"
-#include "../VK_data/VK_buffer.h"
+#include <VK_struct/Struct_vulkan.h>
+#include <VK_data/VK_buffer.h>
 
 
 //Constructor / Destructor

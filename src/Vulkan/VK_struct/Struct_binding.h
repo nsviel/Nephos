@@ -1,7 +1,7 @@
 #ifndef STRUCT_BINDING_H
 #define STRUCT_BINDING_H
 
-#include "typedef.h"
+#include <VK_struct/typedef.h>
 #include <ELE_specific/common.h>
 
 //Consistent attribut binding:

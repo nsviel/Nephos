@@ -1,7 +1,7 @@
 #ifndef VK_VALIDATION_H
 #define VK_VALIDATION_H
 
-#include "../VK_struct/Struct_instance.h"
+#include <VK_struct/Struct_instance.h>
 #include <ELE_specific/common.h>
 
 class VK_engine;

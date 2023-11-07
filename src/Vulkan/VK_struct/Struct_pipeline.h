@@ -1,8 +1,8 @@
 #ifndef STRUCT_PIPELINE_H
 #define STRUCT_PIPELINE_H
 
-#include "typedef.h"
-#include "Struct_binding.h"
+#include <VK_struct/typedef.h>
+#include <VK_struct/Struct_binding.h>
 #include <ENG_shader/Base/BASE_shader.h>
 #include <ELE_specific/common.h>
 

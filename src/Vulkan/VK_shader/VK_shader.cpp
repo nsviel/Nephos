@@ -1,7 +1,7 @@
 #include "VK_shader.h"
-#include <VK_main/VK_engine.h>
-#include "../VK_struct/Struct_vulkan.h"
 
+#include <VK_main/VK_engine.h>
+#include <VK_struct/Struct_vulkan.h>
 #include <ELE_specific/File/File.h>
 
 
@@ -51,7 +51,7 @@ void VK_shader::create_pipeline_shader_module(Struct_pipeline* pipeline){
   string path_fs = path_shader + pipeline->definition.shader->folder + "/spir/" + pipeline->definition.shader->path_fs + ".spv";
   auto code_vert = read_file(path_vs);
   auto code_frag = read_file(path_fs);
-  
+
   //Create associated shader modules
   VkShaderModule module_vert = create_shader_module(code_vert);
   VkShaderModule module_frag = create_shader_module(code_frag);

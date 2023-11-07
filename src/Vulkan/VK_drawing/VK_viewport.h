@@ -1,8 +1,8 @@
 #ifndef VK_VIEWPORT_H
 #define VK_VIEWPORT_H
 
-#include "../VK_struct/Struct_viewport.h"
-#include "../VK_struct/Struct_renderpass.h"
+#include <VK_struct/Struct_viewport.h>
+#include <VK_struct/Struct_renderpass.h>
 #include <ELE_specific/common.h>
 
 class VK_engine;
@@ -24,7 +24,7 @@ public:
 
   //Subfunction
   Struct_viewport* create_viewport();
-  
+
 private:
   Struct_vulkan* struct_vulkan;
   Window* window;

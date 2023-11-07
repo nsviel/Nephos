@@ -1,13 +1,13 @@
 #ifndef VK_PARAM_H
 #define VK_PARAM_H
 
-#include "VK_struct/Struct_window.h"
-#include "VK_struct/Struct_instance.h"
-#include "VK_struct/Struct_device.h"
-#include "VK_struct/Struct_swapchain.h"
-#include "VK_struct/Struct_renderpass.h"
-#include "VK_struct/Struct_info.h"
-#include "VK_struct/Struct_data.h"
+#include <VK_struct/Struct_window.h>
+#include <VK_struct/Struct_instance.h>
+#include <VK_struct/Struct_device.h>
+#include <VK_struct/Struct_swapchain.h>
+#include <VK_struct/Struct_renderpass.h>
+#include <VK_struct/Struct_info.h>
+#include <VK_struct/Struct_data.h>
 
 #include <string>
 #include <vector>

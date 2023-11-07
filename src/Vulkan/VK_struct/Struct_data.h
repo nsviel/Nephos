@@ -1,10 +1,10 @@
 #ifndef STRUCT_DATA_H
 #define STRUCT_DATA_H
 
-#include "typedef.h"
-#include "Struct_data.h"
-#include "Struct_binding.h"
-#include "Struct_image.h"
+#include <VK_struct/typedef.h>
+#include <VK_struct/Struct_data.h>
+#include <VK_struct/Struct_binding.h>
+#include <VK_struct/Struct_image.h>
 
 #include <ELE_specific/common.h>
 

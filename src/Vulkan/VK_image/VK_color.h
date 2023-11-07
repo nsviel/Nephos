@@ -1,7 +1,7 @@
 #ifndef VK_COLOR_H
 #define VK_COLOR_H
 
-#include "../VK_struct/Struct_framebuffer.h"
+#include <VK_struct/Struct_framebuffer.h>
 #include <ELE_specific/common.h>
 
 class VK_engine;

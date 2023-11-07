@@ -1,8 +1,8 @@
 #ifndef STRUCT_SWAPCHAIN_H
 #define STRUCT_SWAPCHAIN_H
 
-#include "Struct_framebuffer.h"
-#include "Struct_frame.h"
+#include <VK_struct/Struct_framebuffer.h>
+#include <VK_struct/Struct_frame.h>
 #include <ELE_specific/common.h>
 
 

@@ -1,11 +1,11 @@
 #include "VK_color.h"
-#include "VK_depth.h"
-#include "VK_image.h"
 
+#include <VK_image/VK_depth.h>
+#include <VK_image/VK_image.h>
 #include <VK_main/VK_engine.h>
-#include "../VK_struct/Struct_vulkan.h"
-#include "../VK_device/VK_physical_device.h"
-#include "../VK_presentation/VK_framebuffer.h"
+#include <VK_struct/Struct_vulkan.h>
+#include <VK_device/VK_physical_device.h>
+#include <VK_presentation/VK_framebuffer.h>
 
 
 //Constructor / Destructor

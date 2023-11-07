@@ -1,10 +1,10 @@
 #ifndef STRUCT_RENDERPASS_H
 #define STRUCT_RENDERPASS_H
 
-#include "Struct_framebuffer.h"
-#include "Struct_pipeline.h"
-#include "Struct_viewport.h"
-#include "Struct_subpass.h"
+#include <VK_struct/Struct_framebuffer.h>
+#include <VK_struct/Struct_pipeline.h>
+#include <VK_struct/Struct_viewport.h>
+#include <VK_struct/Struct_subpass.h>
 #include <ELE_specific/common.h>
 
 

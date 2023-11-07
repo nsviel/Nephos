@@ -1,12 +1,12 @@
 #include "VK_pipeline.h"
 
 #include <VK_main/VK_engine.h>
-#include "../VK_struct/Struct_vulkan.h"
-#include "../VK_binding/VK_descriptor.h"
-#include "../VK_data/VK_data.h"
+#include <VK_struct/Struct_vulkan.h>
+#include <VK_binding/VK_descriptor.h>
+#include <VK_data/VK_data.h>
 #include <VK_drawing/VK_viewport.h>
-#include "../VK_shader/VK_shader.h"
-#include "../VK_binding/VK_binding.h"
+#include <VK_shader/VK_shader.h>
+#include <VK_binding/VK_binding.h>
 
 
 //Constructor / Destructor
