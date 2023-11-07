@@ -5,11 +5,11 @@
 #include "Struct_image.h"
 
 
-struct Struct_frame_{
+struct Struct_frame{
   //---------------------------
 
-  VkImage image;
-  VkImageView image_view;
+  Struct_image image;
+
   VkFramebuffer framebuffer;
   VkCommandBuffer command_buffer;
   VkSemaphore semaphore;

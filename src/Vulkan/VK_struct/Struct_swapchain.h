@@ -2,6 +2,7 @@
 #define STRUCT_SWAPCHAIN_H
 
 #include "Struct_framebuffer.h"
+#include "Struct_frame.h"
 #include <ELE_specific/common.h>
 
 
@@ -19,6 +20,7 @@ struct Struct_swapchain{
   uint32_t frame_presentation_ID = 0;
 
   std::vector<Struct_framebuffer*> vec_frame;
+  std::vector<Struct_frame*> vec_frame_;
 
   //---------------------------
 };

@@ -1,5 +1,5 @@
-#ifndef STRUCT_FRAME_H
-#define STRUCT_FRAME_H
+#ifndef STRUCT_FRAMEBUFFER_H
+#define STRUCT_FRAMEBUFFER_H
 
 #include <ELE_specific/common.h>
 #include "Struct_image.h"
@@ -7,8 +7,6 @@
 
 struct Struct_framebuffer{
   //---------------------------
-
-  int ID;
 
   //Main object
   VkFramebuffer fbo;

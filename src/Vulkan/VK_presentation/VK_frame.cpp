@@ -47,6 +47,23 @@ void VK_frame::create_frame(){
     struct_vulkan->swapchain.vec_frame.push_back(fbo);
   }
 
+
+/*
+  for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
+    Struct_frame* frame = new Struct_frame();
+    frame->image.image = struct_vulkan->swapchain.vec_swapchain_image[i];
+    frame->image.format = vk_color->find_color_format();
+    frame->image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+    frame->image.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+
+
+    vk_image->create_image_view(&fbo->frame);
+    vk_framebuffer->create_framebuffer_obj(struct_vulkan->vec_renderpass[2], fbo);
+    vk_synchronization->init_frame_sync(fbo);
+
+    struct_vulkan->swapchain.vec_frame.push_back(fbo);
+  }
+*/
   //---------------------------
 }
 void VK_frame::clean_frame(){
