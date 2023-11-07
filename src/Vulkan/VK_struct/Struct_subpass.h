@@ -12,8 +12,6 @@ struct Struct_subpass_attachment{
   //Attachment info
   VkAttachmentLoadOp load_operation;
   VkAttachmentStoreOp store_operation;
-  VkAttachmentReference depth_reference;
-  std::vector<VkAttachmentReference> vec_color_reference;
 
   //Attachment image layout
   VkImageLayout layout_initial;
@@ -28,10 +26,12 @@ struct Struct_subpass{
   //Subpass info
   VkSubpassDescription description;
   VkSubpassDependency dependency;
+  VkAttachmentReference depth_reference;
 
   //Attachment
   Struct_subpass_attachment color;
   Struct_subpass_attachment depth;
+  std::vector<VkAttachmentReference> vec_color_reference;
   std::vector<VkAttachmentDescription> vec_attachment_description;
 
   //---------------------------
