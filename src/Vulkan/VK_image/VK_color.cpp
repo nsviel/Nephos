@@ -22,21 +22,21 @@ VK_color::VK_color(VK_engine* vk_engine){
 VK_color::~VK_color(){}
 
 //Main function
-void VK_color::create_color_attachment(Struct_framebuffer* frame){
+void VK_color::create_color_attachment(Struct_image* color){
   //---------------------------
 
   //Create frame color image
-  frame->color.name = "tex_color";
-  frame->color.format = find_color_format();
-  frame->color.width = struct_vulkan->window.extent.width;
-  frame->color.height = struct_vulkan->window.extent.height;
-  frame->color.tiling = VK_IMAGE_TILING_OPTIMAL;
-  frame->color.properties = MEMORY_GPU;
-  frame->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  color->name = "tex_color";
+  color->format = find_color_format();
+  color->width = struct_vulkan->window.extent.width;
+  color->height = struct_vulkan->window.extent.height;
+  color->tiling = VK_IMAGE_TILING_OPTIMAL;
+  color->properties = MEMORY_GPU;
+  color->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
 
-  vk_image->create_image(&frame->color);
-  vk_image->create_image_view(&frame->color);
-  vk_image->create_image_sampler(&frame->color);
+  vk_image->create_image(color);
+  vk_image->create_image_view(color);
+  vk_image->create_image_sampler(color);
 
   //---------------------------
 }

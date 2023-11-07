@@ -34,8 +34,8 @@ void VK_framebuffer::create_framebuffer(Struct_renderpass* renderpass){
   fbo->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
   fbo->depth.layout = IMAGE_LAYOUT_DEPTH_READONLY;
 
-  vk_color->create_color_attachment(fbo);
-  vk_depth->create_depth_attachment(fbo);
+  vk_color->create_color_attachment(&fbo->color);
+  vk_depth->create_depth_attachment(&fbo->depth);
   this->create_framebuffer_renderpass(renderpass, fbo);
 
   renderpass->framebuffer = fbo;

@@ -40,7 +40,7 @@ void VK_frame::create_frame(){
     fbo->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
     vk_image->create_image_view(&fbo->color);
-    vk_depth->create_depth_attachment(fbo);
+    vk_depth->create_depth_attachment(&fbo->depth);
     vk_framebuffer->create_framebuffer_renderpass(struct_vulkan->vec_renderpass[2], fbo);
     vk_synchronization->init_frame_sync(fbo);
 

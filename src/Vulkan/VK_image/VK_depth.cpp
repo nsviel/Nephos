@@ -18,30 +18,30 @@ VK_depth::VK_depth(VK_engine* vk_engine){
 VK_depth::~VK_depth(){}
 
 //Main function
-void VK_depth::create_depth_attachment(Struct_framebuffer* frame){
+void VK_depth::create_depth_attachment(Struct_image* depth){
   //---------------------------
 
   //Create frame depth image
-  frame->depth.name = "tex_depth";
-  frame->depth.format = find_depth_format();
-  frame->depth.width = struct_vulkan->window.extent.width;
-  frame->depth.height = struct_vulkan->window.extent.height;
-  frame->depth.tiling = VK_IMAGE_TILING_OPTIMAL;
-  frame->depth.properties = MEMORY_GPU;
-  frame->depth.aspect = VK_IMAGE_ASPECT_DEPTH_BIT;
+  depth->name = "tex_depth";
+  depth->format = find_depth_format();
+  depth->width = struct_vulkan->window.extent.width;
+  depth->height = struct_vulkan->window.extent.height;
+  depth->tiling = VK_IMAGE_TILING_OPTIMAL;
+  depth->properties = MEMORY_GPU;
+  depth->aspect = VK_IMAGE_ASPECT_DEPTH_BIT;
 
-  vk_image->create_image(&frame->depth);
-  vk_image->create_image_view(&frame->depth);
-  vk_image->create_image_sampler(&frame->depth);
+  vk_image->create_image(depth);
+  vk_image->create_image_view(depth);
+  vk_image->create_image_sampler(depth);
 
   //---------------------------
 }
-void VK_depth::clean_depth_attachment(Struct_framebuffer* image){
+void VK_depth::clean_depth_attachment(Struct_image* depth){
   //---------------------------
 
-  vkDestroyImageView(struct_vulkan->device.device, image->depth.view, nullptr);
-  vkDestroyImage(struct_vulkan->device.device, image->depth.image, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, image->depth.mem, nullptr);
+  vkDestroyImageView(struct_vulkan->device.device, depth->view, nullptr);
+  vkDestroyImage(struct_vulkan->device.device, depth->image, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, depth->mem, nullptr);
 
   //---------------------------
 }
