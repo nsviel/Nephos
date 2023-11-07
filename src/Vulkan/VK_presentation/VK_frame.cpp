@@ -44,7 +44,7 @@ void VK_frame::create_frame(){
     vk_framebuffer->create_framebuffer_obj(struct_vulkan->vec_renderpass[2], fbo);
     vk_synchronization->init_frame_sync(fbo);
 
-    struct_vulkan->swapchain.vec_frame.push_back(fbo);
+    struct_vulkan->swapchain.vec_framebuffer.push_back(fbo);
   }
 
 
@@ -61,25 +61,25 @@ void VK_frame::create_frame(){
     vk_framebuffer->create_framebuffer_obj(struct_vulkan->vec_renderpass[2], fbo);
     vk_synchronization->init_frame_sync(fbo);
 
-    struct_vulkan->swapchain.vec_frame.push_back(fbo);
+    struct_vulkan->swapchain.vec_framebuffer.push_back(fbo);
   }
 */
   //---------------------------
 }
 void VK_frame::clean_frame(){
-  vector<Struct_framebuffer*>& vec_frame = struct_vulkan->swapchain.vec_frame;
+  vector<Struct_framebuffer*>& vec_framebuffer = struct_vulkan->swapchain.vec_framebuffer;
   //---------------------------
 
   //Vec images
-  for(int i=0; i<vec_frame.size(); i++){
-    Struct_framebuffer* fbo = vec_frame[i];
+  for(int i=0; i<vec_framebuffer.size(); i++){
+    Struct_framebuffer* fbo = vec_framebuffer[i];
     vkDestroyImageView(struct_vulkan->device.device, fbo->color.view, nullptr);
     vk_image->clean_image(&fbo->depth);
     vk_framebuffer->clean_framebuffer_obj(fbo);
     vk_synchronization->clean_frame_sync(fbo);
     delete fbo;
   }
-  vec_frame.clear();
+  vec_framebuffer.clear();
 
   //---------------------------
 }
