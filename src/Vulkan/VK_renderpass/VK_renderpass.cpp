@@ -79,20 +79,25 @@ void VK_renderpass::create_renderpass(Struct_renderpass* renderpass){
 void VK_renderpass::create_renderpass_obj(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_subpass* subpass_ref = renderpass->vec_subpass[0];
-
+  //Get all related subpass descriptions, attachments and dependencies
   vector<VkSubpassDescription> vec_description;
   vector<VkSubpassDependency> vec_dependency;
+  vector<VkAttachmentDescription> vec_attachment;
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
     Struct_subpass* subpass = renderpass->vec_subpass[i];
     vec_description.push_back(subpass->description);
     vec_dependency.push_back(subpass->dependency);
+
+    for(int j=0; j<subpass->vec_description.size(); j++){
+      vec_attachment.push_back(subpass->vec_description[j]);
+    }
   }
 
+  //Create renderpass
   VkRenderPassCreateInfo renderpass_info{};
   renderpass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
-  renderpass_info.attachmentCount = static_cast<uint32_t>(subpass_ref->vec_attachment_description.size());
-  renderpass_info.pAttachments = subpass_ref->vec_attachment_description.data();
+  renderpass_info.attachmentCount = static_cast<uint32_t>(vec_attachment.size());
+  renderpass_info.pAttachments = vec_attachment.data();
   renderpass_info.subpassCount = vec_description.size();
   renderpass_info.pSubpasses = vec_description.data();
   renderpass_info.dependencyCount = vec_dependency.size();
