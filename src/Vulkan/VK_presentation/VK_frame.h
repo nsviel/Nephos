@@ -24,12 +24,9 @@ public:
   ~VK_frame();
 
 public:
-  //Renderpass frame
-  void clean_frame_renderpass(Struct_renderpass* renderpass);
-
-  //Swapchain frame
-  void create_frame_swapchain();
-  void clean_frame_swapchain();
+  //Main function
+  void create_frame();
+  void clean_frame();
 
 private:
   VK_engine* vk_engine;

@@ -60,7 +60,7 @@ void VK_renderpass::clean_renderpass(){
 void VK_renderpass::clean_renderpass_object(Struct_renderpass* renderpass){
   //---------------------------
 
-  vk_frame->clean_frame_renderpass(renderpass);
+  vk_framebuffer->clean_framebuffer(renderpass);
   vkDestroyRenderPass(struct_vulkan->device.device, renderpass->renderpass, nullptr);
   vk_pipeline->clean_pipelines(renderpass);
 

@@ -28,21 +28,8 @@ VK_frame::VK_frame(VK_engine* vk_engine){
 }
 VK_frame::~VK_frame(){}
 
-//Renderpass frame
-void VK_frame::clean_frame_renderpass(Struct_renderpass* renderpass){
-  Struct_framebuffer* fbo = renderpass->framebuffer;
-  //---------------------------
-
-  vk_image->clean_image(&fbo->color);
-  vk_image->clean_image(&fbo->depth);
-  vk_framebuffer->clean_framebuffer_obj(fbo);
-  delete fbo;
-
-  //---------------------------
-}
-
-//Swapchain frame
-void VK_frame::create_frame_swapchain(){
+//Main function
+void VK_frame::create_frame(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
@@ -68,7 +55,7 @@ void VK_frame::create_frame_swapchain(){
 
   //---------------------------
 }
-void VK_frame::clean_frame_swapchain(){
+void VK_frame::clean_frame(){
   vector<Struct_framebuffer*>& vec_frame = struct_vulkan->swapchain.vec_frame;
   //---------------------------
 

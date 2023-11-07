@@ -20,9 +20,9 @@ public:
   ~VK_framebuffer();
 
 public:
+  //Main function
   void create_framebuffer(Struct_renderpass* renderpass);
-  //FBO creation
-  void clean_frame_renderpass(Struct_renderpass* renderpass);
+  void clean_framebuffer(Struct_renderpass* renderpass);
 
   //Subfunction
   void create_framebuffer_obj(Struct_renderpass* renderpass, Struct_framebuffer* image);

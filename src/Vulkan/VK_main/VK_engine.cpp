@@ -73,7 +73,7 @@ void VK_engine::init(){
   vk_swapchain->create_swapchain();
   vk_viewport->init_viewport();
   vk_renderpass->init_renderpass();
-  vk_frame->create_frame_swapchain();
+  vk_frame->create_frame();
 
   //---------------------------
   struct_vulkan->info.engine_init = timer.stop_us(t1) / 1000;

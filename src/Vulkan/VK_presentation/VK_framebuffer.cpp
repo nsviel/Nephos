@@ -42,7 +42,7 @@ void VK_framebuffer::create_framebuffer(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void VK_framebuffer::clean_frame_renderpass(Struct_renderpass* renderpass){
+void VK_framebuffer::clean_framebuffer(Struct_renderpass* renderpass){
   Struct_framebuffer* fbo = renderpass->framebuffer;
   //---------------------------
 
@@ -53,8 +53,6 @@ void VK_framebuffer::clean_frame_renderpass(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-
-
 
 //Subfunction
 void VK_framebuffer::create_framebuffer_obj(Struct_renderpass* renderpass, Struct_framebuffer* image){
