@@ -100,7 +100,7 @@ void VK_subpass::color_attachment_description(Struct_subpass* subpass){
   color_description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
   color_description.initialLayout = subpass->color.layout_initial;
   color_description.finalLayout = subpass->color.layout_final;
-  subpass->vec_description.push_back(color_description);
+  subpass->vec_attachment.push_back(color_description);
 
   //---------------------------
 }
@@ -126,7 +126,7 @@ void VK_subpass::depth_attachment_description(Struct_subpass* subpass){
   depth_attachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
   depth_attachment.initialLayout = subpass->depth.layout_initial;
   depth_attachment.finalLayout = subpass->depth.layout_final;
-  subpass->vec_description.push_back(depth_attachment);
+  subpass->vec_attachment.push_back(depth_attachment);
 
   //---------------------------
 }

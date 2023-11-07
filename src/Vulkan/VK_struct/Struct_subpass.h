@@ -31,7 +31,7 @@ struct Struct_subpass{
   //Attachment
   Struct_subpass_attachment color;
   Struct_subpass_attachment depth;
-  std::vector<VkAttachmentDescription> vec_description;
+  std::vector<VkAttachmentDescription> vec_attachment;
 
   //---------------------------
 };
