@@ -15,12 +15,10 @@ struct Struct_renderpass{
   std::string name;
   std::string subpass_trg;
 
-  //Drawing stuff
-  std::vector<Struct_subpass*> vec_subpass;
-  Struct_framebuffer* framebuffer;
-
   //Renderpass stuff
   VkRenderPass renderpass;
+  Struct_framebuffer* framebuffer;
+  std::vector<Struct_subpass*> vec_subpass;
 
   //---------------------------
 };

@@ -8,11 +8,11 @@
 struct Struct_frame{
   //---------------------------
 
-  Struct_image image;
-
+  //Main object
   VkFramebuffer fbo;
-  VkCommandBuffer command_buffer;
-  VkSemaphore semaphore;
+
+  //Attachment
+  Struct_image image;
 
   //A suprimer !!!
   Struct_image depth;

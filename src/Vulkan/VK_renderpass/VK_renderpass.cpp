@@ -88,9 +88,10 @@ void VK_renderpass::create_renderpass_obj(Struct_renderpass* renderpass){
     vec_description.push_back(subpass->description);
     vec_dependency.push_back(subpass->dependency);
 
-    for(int j=0; j<subpass->vec_attachment_description.size(); j++){
-      vec_attachment.push_back(subpass->vec_attachment_description[j]);
+    for(int j=0; j<subpass->vec_color.size(); j++){
+      vec_attachment.push_back(subpass->vec_color[j].description);
     }
+    vec_attachment.push_back(subpass->depth.description);
   }
 
   //Create renderpass
