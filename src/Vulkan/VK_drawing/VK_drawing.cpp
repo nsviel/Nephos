@@ -48,24 +48,8 @@ void VK_drawing::draw_frame(){
     Struct_command command;
     Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
 
-    VkFramebuffer fbo = (i != struct_vulkan->vec_renderpass.size()-1) ? renderpass->framebuffer->fbo : struct_vulkan->swapchain.get_frame_presentation()->fbo;
-    vk_command->start_render_pass(renderpass, fbo, false);
-
-    //Subpass
-    for(int j=0; j<renderpass->vec_subpass.size(); j++){
-      Struct_subpass* subpass = renderpass->vec_subpass[j];
-      subpass->draw_task(subpass);
-      command.vec_command_buffer.push_back(subpass->command_buffer);
-    }
-
-    vk_command->stop_render_pass(renderpass);
-
-    //Command
-    command.vec_semaphore_wait.push_back(struct_synchro->vec_semaphore_render[i]);
-    command.vec_semaphore_done.push_back(struct_synchro->vec_semaphore_render[i+1]);
-    command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-    command.fence = (i != struct_vulkan->vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_synchro->vec_fence[0];
-    vk_submit->submit_graphics_command(&command);
+    this->run_renderpass(renderpass, command, i);
+    this->run_command(command, i);
   }
 
   //Submit drawn image
@@ -76,6 +60,38 @@ void VK_drawing::draw_frame(){
   //---------------------------
   struct_vulkan->info.draw_frame.push_back(timer.stop_ms(t1));
 }
+
+//Subfunction
+void VK_drawing::run_renderpass(Struct_renderpass* renderpass, Struct_command& command, int i){
+  //---------------------------
+
+  VkFramebuffer fbo = (i != struct_vulkan->vec_renderpass.size()-1) ? renderpass->framebuffer->fbo : struct_vulkan->swapchain.get_frame_presentation()->fbo;
+  vk_command->start_render_pass(renderpass, fbo, false);
+
+  //Subpass
+  for(int j=0; j<renderpass->vec_subpass.size(); j++){
+    Struct_subpass* subpass = renderpass->vec_subpass[j];
+    subpass->draw_task(subpass);
+    command.vec_command_buffer.push_back(subpass->command_buffer);
+  }
+
+  vk_command->stop_render_pass(renderpass);
+
+  //---------------------------
+}
+void VK_drawing::run_command(Struct_command& command, int i){
+  //---------------------------
+
+  command.vec_semaphore_wait.push_back(struct_synchro->vec_semaphore_render[i]);
+  command.vec_semaphore_done.push_back(struct_synchro->vec_semaphore_render[i+1]);
+  command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
+  command.fence = (i != struct_vulkan->vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_synchro->vec_fence[0];
+  vk_submit->submit_graphics_command(&command);
+
+  //---------------------------
+}
+
+//Draw command
 void VK_drawing::cmd_draw_data(Struct_subpass* subpass, Struct_data* data){
   //---------------------------
 

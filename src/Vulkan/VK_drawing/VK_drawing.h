@@ -27,6 +27,12 @@ public:
 public:
   //Main functions
   void draw_frame();
+
+  //Subfunction
+  void run_renderpass(Struct_renderpass* renderpass, Struct_command& command, int i);
+  void run_command(Struct_command& command, int i);
+
+  //Draw command
   void cmd_draw_data(Struct_subpass* subpass, Struct_data* data);
   void cmd_line_with(Struct_subpass* subpass, Struct_data* data);
 
