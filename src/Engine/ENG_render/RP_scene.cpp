@@ -112,7 +112,7 @@ void RP_scene::cmd_draw_scene(Struct_renderpass* renderpass){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
       vk_uniform->update_uniform("point_size", &data->binding, data->object->draw_point_size);
 
-      vk_descriptor->cmd_bind_descriptor(renderpass, "point", data->binding.descriptor.set);
+      vk_descriptor->cmd_bind_descriptor(subpass, pipeline, data->binding.descriptor.set);
       vk_drawing->cmd_draw_data(subpass, data);
     }
   }
@@ -134,7 +134,7 @@ void RP_scene::cmd_draw_glyph(Struct_renderpass* renderpass){
     if(data->object->draw_type_name == "line" && data->object->is_visible){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
 
-      vk_descriptor->cmd_bind_descriptor(renderpass, "line", data->binding.descriptor.set);
+      vk_descriptor->cmd_bind_descriptor(subpass, pipeline, data->binding.descriptor.set);
       vk_drawing->cmd_line_with(subpass, data);
       vk_drawing->cmd_draw_data(subpass, data);
     }

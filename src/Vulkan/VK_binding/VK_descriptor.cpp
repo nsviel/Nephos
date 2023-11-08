@@ -16,12 +16,9 @@ VK_descriptor::VK_descriptor(VK_engine* vk_engine){
 VK_descriptor::~VK_descriptor(){}
 
 //Main function
-void VK_descriptor::cmd_bind_descriptor(Struct_renderpass* renderpass, string pipeline_name, VkDescriptorSet set){
+void VK_descriptor::cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline* pipeline, VkDescriptorSet set){
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
-  Struct_pipeline* pipeline = subpass->get_pipeline_byName(pipeline_name);
-  
   vkCmdBindDescriptorSets(subpass->command_buffer, PIPELINE_GRAPHICS, pipeline->layout, 0, 1, &set, 0, nullptr);
 
   //---------------------------
