@@ -7,6 +7,7 @@
 
 class Engine;
 class VK_engine;
+class VK_render;
 
 
 class RP_gui
@@ -18,11 +19,12 @@ public:
 
 public:
   //Init functions
-  Struct_renderpass* init_renderpass();
+  void init_renderpass();
   void create_subpass(Struct_renderpass* renderpass);
 
 private:
   VK_engine* vk_engine;
+  VK_render* vk_render;
 };
 
 #endif

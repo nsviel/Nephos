@@ -3,6 +3,7 @@
 #include <Engine.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
+#include <VK_main/VK_render.h>
 #include <VK_drawing/VK_viewport.h>
 #include <ENG_shader/Scene/SCE_shader.h>
 #include <ENG_shader/ENG_shader.h>
@@ -17,6 +18,7 @@ RP_scene::RP_scene(Engine* engine){
 
   this->eng_shader = engine->get_eng_shader();
   this->vk_engine = engine->get_vk_engine();
+  this->vk_render = vk_engine->get_vk_render();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);
@@ -28,7 +30,7 @@ RP_scene::RP_scene(Engine* engine){
 RP_scene::~RP_scene(){}
 
 //Init function
-Struct_renderpass* RP_scene::init_renderpass(){
+void RP_scene::init_renderpass(){
   //---------------------------
 
   //Renderpass
@@ -39,7 +41,7 @@ Struct_renderpass* RP_scene::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  return renderpass;
+  vk_render->add_renderpass_description(renderpass);
 }
 void RP_scene::create_subpass(Struct_renderpass* renderpass){
   SCE_shader* sce_shader = eng_shader->get_sce_shader();

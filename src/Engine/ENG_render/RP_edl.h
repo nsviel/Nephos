@@ -25,7 +25,7 @@ public:
 
 public:
   //Init functions
-  Struct_renderpass* init_renderpass();
+  void init_renderpass();
   void create_subpass(Struct_renderpass* renderpass);
 
   //Draw function

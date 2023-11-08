@@ -34,7 +34,7 @@ RP_edl::RP_edl(Engine* engine){
 RP_edl::~RP_edl(){}
 
 //Init function
-Struct_renderpass* RP_edl::init_renderpass(){
+void RP_edl::init_renderpass(){
   //---------------------------
 
   //Renderpass
@@ -45,7 +45,7 @@ Struct_renderpass* RP_edl::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  return renderpass;
+  vk_render->add_renderpass_description(renderpass);
 }
 void RP_edl::create_subpass(Struct_renderpass* renderpass){
   //---------------------------

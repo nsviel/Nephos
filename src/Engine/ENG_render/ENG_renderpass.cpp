@@ -26,16 +26,9 @@ ENG_renderpass::~ENG_renderpass(){}
 void ENG_renderpass::init_renderpass(){
   //---------------------------
 
-  Struct_renderpass* renderpass;
-
-  renderpass = rp_scene->init_renderpass();
-  vk_render->add_renderpass_description(renderpass);
-
-  renderpass = rp_edl->init_renderpass();
-  vk_render->add_renderpass_description(renderpass);
-
-  renderpass = rp_gui->init_renderpass();
-  vk_render->add_renderpass_description(renderpass);
+  rp_scene->init_renderpass();
+  rp_edl->init_renderpass();
+  rp_gui->init_renderpass();
 
   //---------------------------
 }
