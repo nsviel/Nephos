@@ -24,10 +24,10 @@ public:
   void create_subpass_shader(Struct_renderpass* renderpass);
 
   //Subfunction
-  void color_attachment_description(Struct_subpass* subpass);
-  void color_attachment_reference(Struct_subpass* subpass);
-  void depth_attachment_description(Struct_subpass* subpass);
-  void depth_attachment_reference(Struct_subpass* subpass);
+  void color_attachment_description(Struct_attachment& color);
+  void color_attachment_reference(Struct_attachment& color);
+  void depth_attachment_description(Struct_attachment& depth);
+  void depth_attachment_reference(Struct_attachment& depth);
   void create_subpass_description(Struct_subpass* subpass);
 
 private:

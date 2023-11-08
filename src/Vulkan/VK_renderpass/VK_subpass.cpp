@@ -24,8 +24,7 @@ void VK_subpass::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_subpass* subpass = renderpass->vec_subpass[0];
-  Struct_attachment color;
-  subpass->vec_color.push_back(color);
+
 
   if(renderpass->subpass_trg == "shader"){
     this->create_subpass_shader(renderpass);
@@ -42,22 +41,26 @@ void VK_subpass::create_subpass_shader(Struct_renderpass* renderpass){
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   // Color
-  subpass->vec_color[0].item = 0;
-  subpass->vec_color[0].load_operation = ATTACHMENT_LOADOP_CLEAR;
-  subpass->vec_color[0].store_operation = ATTACHMENT_STOREOP_STORE;
-  subpass->vec_color[0].layout_initial = IMAGE_LAYOUT_EMPTY;
-  subpass->vec_color[0].layout_final = IMAGE_LAYOUT_SHADER_READONLY;
-  this->color_attachment_description(subpass);
-  this->color_attachment_reference(subpass);
+  Struct_attachment color;
+  color.item = 0;
+  color.load_operation = ATTACHMENT_LOADOP_CLEAR;
+  color.store_operation = ATTACHMENT_STOREOP_STORE;
+  color.layout_initial = IMAGE_LAYOUT_EMPTY;
+  color.layout_final = IMAGE_LAYOUT_SHADER_READONLY;
+  this->color_attachment_description(color);
+  this->color_attachment_reference(color);
+  subpass->vec_color.push_back(color);
 
   // Depth
-  subpass->depth.item = 1;
-  subpass->depth.load_operation = ATTACHMENT_LOADOP_CLEAR;
-  subpass->depth.store_operation = ATTACHMENT_STOREOP_STORE;
-  subpass->depth.layout_initial = IMAGE_LAYOUT_EMPTY;
-  subpass->depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
-  this->depth_attachment_description(subpass);
-  this->depth_attachment_reference(subpass);
+  Struct_attachment depth;
+  depth.item = 1;
+  depth.load_operation = ATTACHMENT_LOADOP_CLEAR;
+  depth.store_operation = ATTACHMENT_STOREOP_STORE;
+  depth.layout_initial = IMAGE_LAYOUT_EMPTY;
+  depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+  this->depth_attachment_description(depth);
+  this->depth_attachment_reference(depth);
+  subpass->depth = depth;
 
   this->create_subpass_description(subpass);
 
@@ -69,22 +72,26 @@ void VK_subpass::create_subpass_presentation(Struct_renderpass* renderpass){
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   // Color
-  subpass->vec_color[0].item = 0;
-  subpass->vec_color[0].load_operation = ATTACHMENT_LOADOP_CLEAR;
-  subpass->vec_color[0].store_operation = ATTACHMENT_STOREOP_NOTHING;
-  subpass->vec_color[0].layout_initial = IMAGE_LAYOUT_EMPTY;
-  subpass->vec_color[0].layout_final = IMAGE_LAYOUT_PRESENT;
-  this->color_attachment_description(subpass);
-  this->color_attachment_reference(subpass);
+  Struct_attachment color;
+  color.item = 0;
+  color.load_operation = ATTACHMENT_LOADOP_CLEAR;
+  color.store_operation = ATTACHMENT_STOREOP_NOTHING;
+  color.layout_initial = IMAGE_LAYOUT_EMPTY;
+  color.layout_final = IMAGE_LAYOUT_PRESENT;
+  this->color_attachment_description(color);
+  this->color_attachment_reference(color);
+  subpass->vec_color.push_back(color);
 
   // Depth
-  subpass->depth.item = 1;
-  subpass->depth.load_operation = ATTACHMENT_LOADOP_CLEAR;
-  subpass->depth.store_operation = ATTACHMENT_STOREOP_NOTHING;
-  subpass->depth.layout_initial = IMAGE_LAYOUT_EMPTY;
-  subpass->depth.layout_final = IMAGE_LAYOUT_DEPTH_ATTACHMENT;
-  this->depth_attachment_description(subpass);
-  this->depth_attachment_reference(subpass);
+  Struct_attachment depth;
+  depth.item = 1;
+  depth.load_operation = ATTACHMENT_LOADOP_CLEAR;
+  depth.store_operation = ATTACHMENT_STOREOP_NOTHING;
+  depth.layout_initial = IMAGE_LAYOUT_EMPTY;
+  depth.layout_final = IMAGE_LAYOUT_DEPTH_ATTACHMENT;
+  this->depth_attachment_description(depth);
+  this->depth_attachment_reference(depth);
+  subpass->depth = depth;
 
   this->create_subpass_description(subpass);
 
@@ -92,55 +99,55 @@ void VK_subpass::create_subpass_presentation(Struct_renderpass* renderpass){
 }
 
 //Subfunction
-void VK_subpass::color_attachment_description(Struct_subpass* subpass){
+void VK_subpass::color_attachment_description(Struct_attachment& color){
   //---------------------------
 
   VkAttachmentDescription color_description{};
   color_description.format = vk_color->find_color_format();
   color_description.samples = VK_SAMPLE_COUNT_1_BIT;
-  color_description.loadOp = subpass->vec_color[0].load_operation;
-  color_description.storeOp = subpass->vec_color[0].store_operation;
+  color_description.loadOp = color.load_operation;
+  color_description.storeOp = color.store_operation;
   color_description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
   color_description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-  color_description.initialLayout = subpass->vec_color[0].layout_initial;
-  color_description.finalLayout = subpass->vec_color[0].layout_final;
-  subpass->vec_color[0].description = color_description;
+  color_description.initialLayout = color.layout_initial;
+  color_description.finalLayout = color.layout_final;
+  color.description = color_description;
 
   //---------------------------
 }
-void VK_subpass::color_attachment_reference(Struct_subpass* subpass){
+void VK_subpass::color_attachment_reference(Struct_attachment& color){
   //---------------------------
 
   VkAttachmentReference color_reference{};
-  color_reference.attachment = subpass->vec_color[0].item;
+  color_reference.attachment = color.item;
   color_reference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
-  subpass->vec_color[0].reference = color_reference;
+  color.reference = color_reference;
 
   //---------------------------
 }
-void VK_subpass::depth_attachment_description(Struct_subpass* subpass){
+void VK_subpass::depth_attachment_description(Struct_attachment& depth){
   //---------------------------
 
   VkAttachmentDescription depth_attachment{};
   depth_attachment.format = vk_depth->find_depth_format();
   depth_attachment.samples = VK_SAMPLE_COUNT_1_BIT;
-  depth_attachment.loadOp = subpass->depth.load_operation;
-  depth_attachment.storeOp = subpass->depth.store_operation;
+  depth_attachment.loadOp = depth.load_operation;
+  depth_attachment.storeOp = depth.store_operation;
   depth_attachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
   depth_attachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-  depth_attachment.initialLayout = subpass->depth.layout_initial;
-  depth_attachment.finalLayout = subpass->depth.layout_final;
-  subpass->depth.description = depth_attachment;
+  depth_attachment.initialLayout = depth.layout_initial;
+  depth_attachment.finalLayout = depth.layout_final;
+  depth.description = depth_attachment;
 
   //---------------------------
 }
-void VK_subpass::depth_attachment_reference(Struct_subpass* subpass){
+void VK_subpass::depth_attachment_reference(Struct_attachment& depth){
   //---------------------------
 
   VkAttachmentReference depth_reference{};
-  depth_reference.attachment = subpass->depth.item;
+  depth_reference.attachment = depth.item;
   depth_reference.layout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
-  subpass->depth.reference = depth_reference;
+  depth.reference = depth_reference;
 
   //---------------------------
 }
