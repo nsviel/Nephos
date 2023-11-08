@@ -4,7 +4,6 @@
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_render.h>
-#include <VK_struct/Struct_vulkan.h>
 #include <VK_drawing/VK_viewport.h>
 #include <VK_drawing/VK_drawing.h>
 #include <VK_binding/VK_descriptor.h>
@@ -20,9 +19,8 @@ RP_edl::RP_edl(Engine* engine){
   //---------------------------
 
   ENG_shader* eng_shader = engine->get_eng_shader();
-  VK_engine* vk_engine = engine->get_vk_engine();
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->vk_engine = engine->get_vk_engine();
   this->edl_shader = eng_shader->get_edl_shader();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
@@ -55,7 +53,6 @@ void RP_edl::create_subpass(Struct_renderpass* renderpass){
   Struct_subpass* subpass = new Struct_subpass();
   subpass->target = "shader";
   subpass->draw_task = [this](Struct_subpass* subpass){RP_edl::draw_edl(subpass);};
-  renderpass->vec_subpass.push_back(subpass);
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "triangle_EDL";
@@ -70,6 +67,7 @@ void RP_edl::create_subpass(Struct_renderpass* renderpass){
   subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
+  renderpass->vec_subpass.push_back(subpass);
 }
 
 //Draw function
@@ -84,7 +82,7 @@ void RP_edl::draw_edl(Struct_subpass* subpass){
 void RP_edl::update_descriptor(Struct_subpass* subpass){
   //---------------------------
 
-  Struct_framebuffer* frame_scene = struct_vulkan->vec_renderpass[0]->framebuffer;
+  Struct_framebuffer* frame_scene = vk_engine->get_renderpass(0);
 
   for(int i=0; i<subpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = subpass->vec_pipeline[i];

@@ -7,7 +7,6 @@
 #include <ELE_specific/common.h>
 
 class Engine;
-class Struct_vulkan;
 class VK_engine;
 class VK_pipeline;
 class VK_viewport;
@@ -35,7 +34,7 @@ public:
   void draw_command(Struct_subpass* subpass);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  VK_engine* vk_engine;
   EDL_shader* edl_shader;
   VK_render* vk_render;
   VK_engine* vk_engine;

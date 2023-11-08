@@ -48,7 +48,6 @@ void RP_scene::create_subpass(Struct_renderpass* renderpass){
   Struct_subpass* subpass = new Struct_subpass();
   subpass->target = "shader";
   subpass->draw_task = [this](Struct_subpass* subpass){RP_scene::draw_scene(subpass);};
-  renderpass->vec_subpass.push_back(subpass);
 
   Struct_pipeline* pipeline;
   pipeline = new Struct_pipeline();
@@ -73,6 +72,7 @@ void RP_scene::create_subpass(Struct_renderpass* renderpass){
   subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
+  renderpass->vec_subpass.push_back(subpass);
 }
 
 //Draw function

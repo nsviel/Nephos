@@ -51,6 +51,7 @@ public:
   inline Struct_param* get_struct_param(){return struct_param;}
   inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
   inline Struct_synchro* get_struct_synchro(){return struct_synchro;}
+  inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->vec_renderpass[i];}
   inline VK_render* get_vk_render(){return vk_render;}
   inline VK_imgui* get_vk_imgui(){return vk_imgui;}
   inline VK_info* get_vk_info(){return vk_info;}

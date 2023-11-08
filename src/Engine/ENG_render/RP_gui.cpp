@@ -43,7 +43,6 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
   Struct_subpass* subpass = new Struct_subpass();
   subpass->target = "presentation";
   subpass->draw_task = [this](Struct_subpass* subpass){RP_gui::draw_gui(subpass);};
-  renderpass->vec_subpass.push_back(subpass);
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "triangle";
@@ -53,6 +52,7 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
   subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
+  renderpass->vec_subpass.push_back(subpass);
 }
 
 //Draw function
