@@ -44,7 +44,7 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "triangle";
-  pipeline->definition.purpose = "ui";
+  pipeline->definition.purpose = "presentation";
   pipeline->definition.topology = "triangle";
   pipeline->definition.shader = can_shader->get_shader_info("Canvas");
   subpass->vec_pipeline.push_back(pipeline);

@@ -29,11 +29,13 @@ VK_pipeline::~VK_pipeline(){}
 void VK_pipeline::create_pipeline(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
+  for(int i=0; i<renderpass->vec_subpass.size(); i++){
+    Struct_subpass* subpass = renderpass->vec_subpass[i];
 
-  for(int i=0; i<subpass->vec_pipeline.size(); i++){
-    Struct_pipeline* pipeline = subpass->vec_pipeline[i];
-    this->create_pipeline_struct(renderpass, pipeline);
+    for(int j=0; j<subpass->vec_pipeline.size(); j++){
+      Struct_pipeline* pipeline = subpass->vec_pipeline[j];
+      this->create_pipeline_struct(renderpass, pipeline);
+    }
   }
 
   //---------------------------
@@ -42,16 +44,16 @@ void VK_pipeline::create_pipeline_struct(Struct_renderpass* renderpass, Struct_p
   //---------------------------
 
   if(pipeline->definition.purpose == "graphics"){
-    this->create_pipeline_graphics(pipeline, renderpass);
+    this->create_pipeline_graphics(renderpass, pipeline);
   }
-  else if(pipeline->definition.purpose == "ui"){
-    this->create_pipeline_presentation(pipeline, renderpass);
+  else if(pipeline->definition.purpose == "presentation"){
+    this->create_pipeline_presentation(renderpass, pipeline);
   }
   vk_binding->create_binding(&pipeline->binding);
 
   //---------------------------
 }
-void VK_pipeline::create_pipeline_graphics(Struct_pipeline* pipeline, Struct_renderpass* renderpass){
+void VK_pipeline::create_pipeline_graphics(Struct_renderpass* renderpass, Struct_pipeline* pipeline){
   //---------------------------
 
   //Dynamic
@@ -112,7 +114,7 @@ void VK_pipeline::create_pipeline_graphics(Struct_pipeline* pipeline, Struct_ren
   //---------------------------
   pipeline->info.info = pipeline_info;
 }
-void VK_pipeline::create_pipeline_presentation(Struct_pipeline* pipeline, Struct_renderpass* renderpass){
+void VK_pipeline::create_pipeline_presentation(Struct_renderpass* renderpass, Struct_pipeline* pipeline){
   //---------------------------
 
   //Dynamic
