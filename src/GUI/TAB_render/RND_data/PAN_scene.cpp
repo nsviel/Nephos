@@ -88,7 +88,7 @@ void PAN_scene::draw_window_background(){
   //-------------------------------
 }
 void PAN_scene::tree_view(){
-  list<Set*>* list_data = eng_database->get_list_data_scene();
+  list<Set*>* list_data = eng_database->get_list_data();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;

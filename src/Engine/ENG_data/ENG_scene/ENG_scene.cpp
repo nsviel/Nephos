@@ -28,7 +28,7 @@ ENG_scene::~ENG_scene(){}
 
 //ENG_scene function
 void ENG_scene::init_set(){
-  list<Set*>* list_data = eng_database->get_list_data_scene();
+  list<Set*>* list_data = eng_database->get_list_data();
   //---------------------------
 
   //Glyph set
@@ -64,22 +64,25 @@ void ENG_scene::reset_scene(){
 }
 
 //Insertion / deletion
-void ENG_scene::insert_glyph_object(Object* object){
+void ENG_scene::insert_object_glyph(Object* object){
   //---------------------------
 
+  //Insert into engine
   object->ID = ID_obj++;
   object->is_suppressible = false;
   vk_engine->insert_glyph_in_engine(object);
+
+  //Insert it into database
   set_glyph->list_obj.push_back(object);
   set_glyph->selected_obj = object;
   set_glyph->nb_object++;
 
   //---------------------------
 }
-void ENG_scene::insert_scene_object(Object* object){
+void ENG_scene::insert_object_scene(Object* object){
   //---------------------------
 
-  //Set new object functions
+  //Insert into engine
   object->ID = ID_obj++;
   vk_engine->insert_object_in_engine(object);
   attributManager->compute_MinMax(object);
@@ -146,7 +149,7 @@ void ENG_scene::selected_object_next(){
 
 //Loop function
 void ENG_scene::loop(){
-  list<Set*>* list_data = eng_database->get_list_data_scene();
+  list<Set*>* list_data = eng_database->get_list_data();
   list<Set*>* list_glyph = eng_database->get_list_data_glyph();
   //----------------------------
 

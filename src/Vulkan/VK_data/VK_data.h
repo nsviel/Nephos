@@ -24,8 +24,7 @@ public:
 
 public:
   //Insertion functions
-  void insert_scene_object(Object* object);
-  void insert_glyph_object(Object* object);
+  void insert_object(Object* object);
 
   //Clean function
   void clean_data(Struct_data* data);

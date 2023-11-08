@@ -30,8 +30,8 @@ public:
 
   //Draw function
   void draw_scene(Struct_subpass* subpass);
-  void cmd_draw_scene(Struct_subpass* subpass);
-  void cmd_draw_glyph(Struct_subpass* subpass);
+  void cmd_draw_point(Struct_subpass* subpass);
+  void cmd_draw_line(Struct_subpass* subpass);
 
 private:
   ENG_shader* eng_shader;

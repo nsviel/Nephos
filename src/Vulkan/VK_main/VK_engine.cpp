@@ -125,7 +125,7 @@ void VK_engine::insert_object_in_engine(Object* object){
   //If not, insert it
   if(is_in_list == false){
     list_scene.push_back(object);
-    vk_data->insert_scene_object(object);
+    vk_data->insert_object(object);
   }
 
   //---------------------------
@@ -145,7 +145,7 @@ void VK_engine::insert_glyph_in_engine(Object* object){
   //If not, insert it
   if(is_in_list == false){
     list_glyph.push_back(object);
-    vk_data->insert_glyph_object(object);
+    vk_data->insert_object(object);
   }
 
   //---------------------------

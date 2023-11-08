@@ -24,8 +24,8 @@ public:
   void reset_scene();
 
   //Insertion / deletion
-  void insert_glyph_object(Object* object);
-  void insert_scene_object(Object* object);
+  void insert_object_glyph(Object* object);
+  void insert_object_scene(Object* object);
   void delete_scene_object(Object* object);
   void empty_scene_set();
 

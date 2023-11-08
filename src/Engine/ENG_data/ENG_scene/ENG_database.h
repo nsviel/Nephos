@@ -14,7 +14,7 @@ public:
   ~ENG_database();
 
 public:
-  inline list<Set*>* get_list_data_scene(){return list_data;}
+  inline list<Set*>* get_list_data(){return list_data;}
   inline list<Set*>* get_list_data_glyph(){return list_glyph;}
 
 private:

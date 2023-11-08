@@ -47,7 +47,7 @@ Object* ENG_loader::load_object(std::string path){
   //Retrieve data and insert into engine
   Data_file* data = eng_format->get_data_from_file(path);
   this->transfert_data(object, data);
-  eng_scene->insert_scene_object(object);
+  eng_scene->insert_object_scene(object);
 
   //---------------------------
   return object;

@@ -26,17 +26,21 @@ VK_data::VK_data(VK_engine* vk_engine){
 VK_data::~VK_data(){}
 
 //Insertion function
-void VK_data::insert_scene_object(Object* object){
+void VK_data::insert_object(Object* object){
   //---------------------------
-
-  descriptor_required mvp = std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS);
-  descriptor_required size = std::make_tuple("point_size", sizeof(int), 1, TYPE_UNIFORM, STAGE_VS);
 
   //Creat new data struct
   Struct_data* data = new Struct_data();
   data->object = object;
+
+  //Descriptor
+  descriptor_required mvp = std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS);
   data->binding.vec_required_binding.push_back(mvp);
-  data->binding.vec_required_binding.push_back(size);
+
+  if(object->draw_type_name == "point"){
+    descriptor_required size = std::make_tuple("point_size", sizeof(int), 1, TYPE_UNIFORM, STAGE_VS);
+    data->binding.vec_required_binding.push_back(size);
+  }
 
   //Apply adequat init functions
   this->check_for_attribut(data);
@@ -47,28 +51,6 @@ void VK_data::insert_scene_object(Object* object){
 
   //Insert data struct into set
   struct_vulkan->list_data.push_back(data);
-
-  //---------------------------
-}
-void VK_data::insert_glyph_object(Object* object){
-  //---------------------------
-
-  descriptor_required mvp = std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS);
-
-  //Creat new data struct
-  Struct_data* data = new Struct_data();
-  data->object = object;
-  data->binding.vec_required_binding.push_back(mvp);
-
-  //Apply adequat init functions
-  this->check_for_attribut(data);
-  vk_buffer->create_buffer(data);
-  vk_command_buffer->allocate_command_buffer_secondary(data);
-  vk_descriptor->create_layout_from_required(&data->binding);
-  vk_binding->create_binding(&data->binding);
-
-  //Insert data struct into set
-  struct_vulkan->list_data_glyph.push_back(data);
 
   //---------------------------
 }

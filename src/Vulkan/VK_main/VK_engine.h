@@ -56,7 +56,7 @@ public:
   inline VK_imgui* get_vk_imgui(){return vk_imgui;}
   inline VK_info* get_vk_info(){return vk_info;}
 
-  inline std::list<Struct_data*> get_list_data_scene(){return struct_vulkan->list_data;}
+  inline std::list<Struct_data*> get_list_data(){return struct_vulkan->list_data;}
   inline std::list<Struct_data*> get_list_data_glyph(){return struct_vulkan->list_data_glyph;}
 
 private:

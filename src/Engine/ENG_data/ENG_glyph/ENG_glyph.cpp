@@ -36,7 +36,7 @@ void ENG_glyph::create_glyph_scene(){
   for(int i=0; i<vec_glyph_src.size(); i++){
     vec_glyph_src[i]->create_glyph();
     Glyph* glyph = vec_glyph_src[i]->get_glyph();
-    eng_scene->insert_glyph_object(glyph);
+    eng_scene->insert_object_glyph(glyph);
   }
 
   //---------------------------
