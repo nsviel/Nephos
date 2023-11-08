@@ -26,6 +26,7 @@ public:
   void clean_framebuffer(Struct_renderpass* renderpass);
 
   //Subfunction
+  void create_framebuffer_renderpass(Struct_renderpass* renderpass, Struct_frame* framebuffer);
   void create_framebuffer_renderpass(Struct_renderpass* renderpass, Struct_framebuffer* framebuffer);
   void create_framebuffer_swapchain(Struct_renderpass* renderpass, Struct_frame* frame);
   void clean_framebuffer_obj(Struct_framebuffer* framebuffer);

@@ -33,35 +33,18 @@ void VK_frame::create_frame(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
-    Struct_framebuffer* fbo = new Struct_framebuffer();
-    fbo->color.image = struct_vulkan->swapchain.vec_swapchain_image[i];
-    fbo->color.format = vk_color->find_color_format();
-    fbo->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-    fbo->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+    Struct_framebuffer* frame = new Struct_framebuffer();
+    frame->color.image = struct_vulkan->swapchain.vec_swapchain_image[i];
+    frame->color.format = vk_color->find_color_format();
+    frame->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+    frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
-    vk_image->create_image_view(&fbo->color);
-    vk_depth->create_depth_attachment(&fbo->depth);
-    vk_framebuffer->create_framebuffer_renderpass(struct_vulkan->vec_renderpass[2], fbo);
-    vk_synchronization->init_frame_sync(fbo);
+    vk_image->create_image_view(&frame->color);
+    vk_depth->create_depth_attachment(&frame->depth);
+    vk_framebuffer->create_framebuffer_renderpass(struct_vulkan->vec_renderpass[2], frame);
+    vk_synchronization->init_frame_sync(frame);
 
-    struct_vulkan->swapchain.vec_framebuffer.push_back(fbo);
-  }
-
-
-
-  for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
-    Struct_frame* frame = new Struct_frame();
-    frame->image.image = struct_vulkan->swapchain.vec_swapchain_image[i];
-    frame->image.format = vk_color->find_color_format();
-    frame->image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-    frame->image.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
-
-
-    //vk_image->create_image_view(&frame->image);
-    //vk_framebuffer->create_framebuffer_swapchain(struct_vulkan->vec_renderpass[2], frame);
-    //vk_synchronization->init_frame_sync(fbo);
-
-    struct_vulkan->swapchain.vec_frame.push_back(frame);
+    struct_vulkan->swapchain.vec_framebuffer.push_back(frame);
   }
 
   //---------------------------
@@ -72,12 +55,12 @@ void VK_frame::clean_frame(){
 
   //Vec images
   for(int i=0; i<vec_framebuffer.size(); i++){
-    Struct_framebuffer* fbo = vec_framebuffer[i];
-    vkDestroyImageView(struct_vulkan->device.device, fbo->color.view, nullptr);
-    vk_image->clean_image(&fbo->depth);
-    vk_framebuffer->clean_framebuffer_obj(fbo);
-    vk_synchronization->clean_frame_sync(fbo);
-    delete fbo;
+    Struct_framebuffer* frame = vec_framebuffer[i];
+    vkDestroyImageView(struct_vulkan->device.device, frame->color.view, nullptr);
+    vk_image->clean_image(&frame->depth);
+    vk_framebuffer->clean_framebuffer_obj(frame);
+    vk_synchronization->clean_frame_sync(frame);
+    delete frame;
   }
   vec_framebuffer.clear();
 

@@ -13,9 +13,9 @@ struct Struct_framebuffer{
 
   //Attachment
   Struct_image color;
+  Struct_image depth;
   Struct_image location;
   Struct_image normal;
-  Struct_image depth;
 
   //---------------------------
 };
