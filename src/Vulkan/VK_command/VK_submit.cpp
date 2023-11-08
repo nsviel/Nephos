@@ -60,67 +60,16 @@ void VK_submit::set_next_frame_ID(Struct_swapchain* swapchain){
 }
 
 //Queue submission
-void VK_submit::submit_graphics_command(Struct_command* command){
+void VK_submit::submit_graphics_command(Struct_command* commands){
   //---------------------------
 
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  submit_info.waitSemaphoreCount = 1;
-  submit_info.pWaitSemaphores = &command->semaphore_wait;
-  submit_info.pWaitDstStageMask = &command->wait_stage;
-  submit_info.signalSemaphoreCount = 1;
-  submit_info.pSignalSemaphores = &command->semaphore_done;
-  submit_info.commandBufferCount = 1;
-  submit_info.pCommandBuffers = &command->command_buffer;
-
-  //Very slow operation, need as low command as possible
-  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, command->fence);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to submit draw command buffer!");
-  }
-
-  //---------------------------
-}
-void VK_submit::submit_graphics_command(Struct_renderpass* renderpass){
-  //---------------------------
-
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
-
-  Struct_command command;
-  command.command_buffer = subpass->command_buffer;
-  command.semaphore_wait = renderpass->semaphore_wait;
-  command.semaphore_done = renderpass->semaphore_done;
-  command.fence = renderpass->fence;
-  command.wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-
-  VkSubmitInfo submit_info{};
-  submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  submit_info.waitSemaphoreCount = 1;
-  submit_info.pWaitSemaphores  = &command.semaphore_wait;
-  submit_info.pWaitDstStageMask = &command.wait_stage;
-  submit_info.signalSemaphoreCount = 1;
-  submit_info.pSignalSemaphores = &command.semaphore_done;
-  submit_info.commandBufferCount = 1;
-  submit_info.pCommandBuffers = &command.command_buffer;
-
-  //Very slow operation, need as low command as possible
-  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, command.fence);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to submit draw command buffer!");
-  }
-
-  //---------------------------
-}
-void VK_submit::submit_graphics_commands(Struct_commands* commands){
-  //---------------------------
-
-  VkSubmitInfo submit_info{};
-  submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  submit_info.waitSemaphoreCount = commands->vec_semaphore_rp_wait.size();
-  submit_info.pWaitSemaphores = commands->vec_semaphore_rp_wait.data();
+  submit_info.waitSemaphoreCount = commands->vec_semaphore_wait.size();
+  submit_info.pWaitSemaphores = commands->vec_semaphore_wait.data();
   submit_info.pWaitDstStageMask = commands->vec_wait_stage.data();
-  submit_info.signalSemaphoreCount = commands->vec_semaphore_render.size();
-  submit_info.pSignalSemaphores = commands->vec_semaphore_render.data();
+  submit_info.signalSemaphoreCount = commands->vec_semaphore_done.size();
+  submit_info.pSignalSemaphores = commands->vec_semaphore_done.data();
   submit_info.commandBufferCount = commands->vec_command_buffer.size();
   submit_info.pCommandBuffers = commands->vec_command_buffer.data();
 

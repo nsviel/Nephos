@@ -32,7 +32,7 @@ VK_drawing::~VK_drawing(){}
 
 //Main function
 void VK_drawing::draw_frame(){
-  Struct_commands commands;
+  Struct_command commands;
   VkSemaphore semaphore;
   VkFence fence;
   timer_time t1 = timer.start_t();
@@ -51,7 +51,17 @@ void VK_drawing::draw_frame(){
     renderpass->fence = (i != struct_vulkan->vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_synchro->vec_fence[0];
 
     renderpass->draw_task(renderpass);
-    vk_submit->submit_graphics_command(renderpass);
+
+
+    Struct_subpass* subpass = renderpass->vec_subpass[0];
+    Struct_command command;
+    command.vec_command_buffer.push_back(subpass->command_buffer);
+    command.vec_semaphore_wait.push_back(renderpass->semaphore_wait);
+    command.vec_semaphore_done.push_back(renderpass->semaphore_done);
+    command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
+    command.fence = renderpass->fence;
+
+    vk_submit->submit_graphics_command(&command);
   }
 
   //Submit drawn image
