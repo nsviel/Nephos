@@ -16,10 +16,6 @@ struct Struct_subpass{
   //Attachment
   Struct_attachment depth;
   std::vector<Struct_attachment> vec_color;
-
-  //A jarter et a mettre dans les struct au dessus !!!
-  std::vector<VkAttachmentReference> vec_color_reference;
-
   std::function<void(Struct_subpass* subpass)> draw_task;
 
   //Pipeline

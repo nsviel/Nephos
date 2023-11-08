@@ -114,7 +114,7 @@ void VK_subpass::color_attachment_reference(Struct_subpass* subpass){
   VkAttachmentReference color_reference{};
   color_reference.attachment = subpass->vec_color[0].item;
   color_reference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
-  subpass->vec_color_reference.push_back(color_reference);
+  subpass->vec_color[0].reference = color_reference;
 
   //---------------------------
 }
@@ -147,11 +147,17 @@ void VK_subpass::depth_attachment_reference(Struct_subpass* subpass){
 void VK_subpass::create_subpass_description(Struct_subpass* subpass){
   //---------------------------
 
+  //Pointer vector of all color references
+  vector<VkAttachmentReference*> vec_reference;
+  for(int i=0; i<subpass->vec_color.size(); i++){
+    vec_reference.push_back(&subpass->vec_color[0].reference);
+  }
+
   //Subpasses
   VkSubpassDescription subpass_description{};
   subpass_description.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
-  subpass_description.colorAttachmentCount = static_cast<uint32_t>(subpass->vec_color_reference.size());
-  subpass_description.pColorAttachments = subpass->vec_color_reference.data();
+  subpass_description.colorAttachmentCount = static_cast<uint32_t>(vec_reference.size());
+  subpass_description.pColorAttachments = *vec_reference.data();
   subpass_description.pDepthStencilAttachment = &subpass->depth.reference;
 
   VkSubpassDependency subpass_dependency{};
