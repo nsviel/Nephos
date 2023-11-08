@@ -5,28 +5,25 @@
 #include <VK_struct/Struct_pipeline.h>
 #include <ELE_specific/common.h>
 
-class GUI;
-class VK_pipeline;
+class VK_render;
+class VK_engine;
 
 
 class GUI_renderpass
 {
 public:
   //Constructor / Destructor
-  GUI_renderpass(GUI* gui);
+  GUI_renderpass(VK_engine* vk_engine);
   ~GUI_renderpass();
 
 public:
-  //Init functions
+  //Main functions
   void init_renderpass();
   void create_subpass(Struct_renderpass* renderpass);
 
-  //Draw function
-  void draw_gui(Struct_subpass* subpass);
-
 private:
-  //ENG_shader* eng_shader;
-  VK_pipeline* vk_pipeline;
+  VK_engine* vk_engine;
+  VK_render* vk_render;
 };
 
 #endif

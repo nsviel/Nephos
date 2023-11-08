@@ -23,11 +23,10 @@ GUI_render::~GUI_render(){}
 // Main code
 void GUI_render::init(){
   //---------------------------
-/*
-  gui_renderpass->init_renderpass();
+
+  //gui_renderpass->init_renderpass();
   vk_engine->init();
-  dataManager->init();
-*/
+
   //---------------------------
 }
 void GUI_render::loop(){

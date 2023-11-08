@@ -18,7 +18,7 @@ public:
   ~RP_gui();
 
 public:
-  //Init functions
+  //Main functions
   void init_renderpass();
   void create_subpass(Struct_renderpass* renderpass);
 
