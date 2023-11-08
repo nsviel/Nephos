@@ -25,37 +25,6 @@ VK_pipeline::VK_pipeline(VK_engine* vk_engine){
 }
 VK_pipeline::~VK_pipeline(){}
 
-void VK_pipeline::cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pipeline){
-  //---------------------------
-
-  vkCmdBindPipeline(subpass->command_buffer, PIPELINE_GRAPHICS, pipeline->pipeline);
-
-  //---------------------------
-}
-
-//Clean function
-void VK_pipeline::clean_pipeline(Struct_renderpass* renderpass){
-  //---------------------------
-
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
-
-  for(int i=0; i<subpass->vec_pipeline.size(); i++){
-    Struct_pipeline* pipeline = subpass->vec_pipeline[i];
-    this->clean_pipeline_struct(pipeline);
-  }
-
-  //---------------------------
-}
-void VK_pipeline::clean_pipeline_struct(Struct_pipeline* pipeline){
-  //---------------------------
-
-  vkDestroyPipeline(struct_vulkan->device.device, pipeline->pipeline, nullptr);
-  vkDestroyPipelineLayout(struct_vulkan->device.device, pipeline->layout, nullptr);
-  vk_binding->clean_binding(&pipeline->binding);
-
-  //---------------------------
-}
-
 //Pipeline creation
 void VK_pipeline::create_pipeline(Struct_renderpass* renderpass){
   //---------------------------
@@ -363,6 +332,38 @@ void VK_pipeline::create_topology(Struct_pipeline* pipeline){
 
   //---------------------------
   pipeline->info.input_assembly = input_assembly;
+}
+
+//Clean function
+void VK_pipeline::clean_pipeline(Struct_renderpass* renderpass){
+  //---------------------------
+
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
+  for(int i=0; i<subpass->vec_pipeline.size(); i++){
+    Struct_pipeline* pipeline = subpass->vec_pipeline[i];
+    this->clean_pipeline_struct(pipeline);
+  }
+
+  //---------------------------
+}
+void VK_pipeline::clean_pipeline_struct(Struct_pipeline* pipeline){
+  //---------------------------
+
+  vkDestroyPipeline(struct_vulkan->device.device, pipeline->pipeline, nullptr);
+  vkDestroyPipelineLayout(struct_vulkan->device.device, pipeline->layout, nullptr);
+  vk_binding->clean_binding(&pipeline->binding);
+
+  //---------------------------
+}
+
+//Binding function
+void VK_pipeline::cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pipeline){
+  //---------------------------
+
+  vkCmdBindPipeline(subpass->command_buffer, PIPELINE_GRAPHICS, pipeline->pipeline);
+
+  //---------------------------
 }
 
 //Subfunction

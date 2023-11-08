@@ -22,12 +22,6 @@ public:
   ~VK_pipeline();
 
 public:
-  void cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pipeline);
-
-  //Clean functions
-  void clean_pipeline(Struct_renderpass* renderpass);
-  void clean_pipeline_struct(Struct_pipeline* pipeline);
-
   //Pipeline creation
   void create_pipeline(Struct_renderpass* renderpass);
   void create_pipeline_struct(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
@@ -44,6 +38,13 @@ public:
   void create_color_blending_state(Struct_pipeline* pipeline);
   void create_color_blending(Struct_pipeline* pipeline);
   void create_topology(Struct_pipeline* pipeline);
+
+  //Clean functions
+  void clean_pipeline(Struct_renderpass* renderpass);
+  void clean_pipeline_struct(Struct_pipeline* pipeline);
+
+  //Binding function
+  void cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pipeline);
 
   //Subfunction
   void check_struct_pipeline_input(Struct_pipeline* pipeline);
