@@ -28,28 +28,28 @@ VK_framebuffer::~VK_framebuffer(){}
 void VK_framebuffer::create_framebuffer(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_framebuffer* fbo = new Struct_framebuffer();
-  fbo->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-  fbo->color.layout = IMAGE_LAYOUT_SHADER_READONLY;
-  fbo->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-  fbo->depth.layout = IMAGE_LAYOUT_DEPTH_READONLY;
+  Struct_framebuffer* framebuffer = new Struct_framebuffer();
+  framebuffer->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+  framebuffer->color.layout = IMAGE_LAYOUT_SHADER_READONLY;
+  framebuffer->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+  framebuffer->depth.layout = IMAGE_LAYOUT_DEPTH_READONLY;
 
-  vk_color->create_color_attachment(&fbo->color);
-  vk_depth->create_depth_attachment(&fbo->depth);
-  this->create_framebuffer_renderpass(renderpass, fbo);
+  vk_color->create_color_attachment(&framebuffer->color);
+  vk_depth->create_depth_attachment(&framebuffer->depth);
+  this->create_framebuffer_renderpass(renderpass, framebuffer);
 
-  renderpass->framebuffer = fbo;
+  renderpass->framebuffer = framebuffer;
 
   //---------------------------
 }
 void VK_framebuffer::clean_framebuffer(Struct_renderpass* renderpass){
-  Struct_framebuffer* fbo = renderpass->framebuffer;
+  Struct_framebuffer* framebuffer = renderpass->framebuffer;
   //---------------------------
 
-  vk_image->clean_image(&fbo->color);
-  vk_image->clean_image(&fbo->depth);
-  this->clean_framebuffer_obj(fbo);
-  delete fbo;
+  vk_image->clean_image(&framebuffer->color);
+  vk_image->clean_image(&framebuffer->depth);
+  this->clean_framebuffer_obj(framebuffer->fbo);
+  delete framebuffer;
 
   //---------------------------
 }
@@ -132,17 +132,10 @@ void VK_framebuffer::create_framebuffer_swapchain(Struct_renderpass* renderpass,
   //---------------------------
   frame->framebuffer = fbo;
 }
-void VK_framebuffer::clean_framebuffer_obj(Struct_framebuffer* framebuffer){
+void VK_framebuffer::clean_framebuffer_obj(VkFramebuffer& fbo){
   //---------------------------
 
-  vkDestroyFramebuffer(struct_vulkan->device.device, framebuffer->fbo, nullptr);
-
-  //---------------------------
-}
-void VK_framebuffer::clean_framebuffer_obj(Struct_frame* framebuffer){
-  //---------------------------
-
-  vkDestroyFramebuffer(struct_vulkan->device.device, framebuffer->fbo, nullptr);
+  vkDestroyFramebuffer(struct_vulkan->device.device, fbo, nullptr);
 
   //---------------------------
 }

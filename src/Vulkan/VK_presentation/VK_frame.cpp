@@ -58,7 +58,7 @@ void VK_frame::clean_frame(){
     Struct_frame* frame = vec_frame[i];
     vkDestroyImageView(struct_vulkan->device.device, frame->color.view, nullptr);
     vk_image->clean_image(&frame->depth);
-    vk_framebuffer->clean_framebuffer_obj(frame);
+    vk_framebuffer->clean_framebuffer_obj(frame->fbo);
     vk_synchronization->clean_frame_sync(frame);
     delete frame;
   }
