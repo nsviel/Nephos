@@ -53,7 +53,7 @@ void VK_drawing::draw_frame(){
   }
 
   //Submit drawn image
-  semaphore = struct_synchro->vec_semaphore_render[3];
+  semaphore = struct_synchro->vec_semaphore_render[struct_vulkan->vec_renderpass.size()];
   vk_submit->submit_presentation(&struct_vulkan->swapchain, semaphore);
   vk_submit->set_next_frame_ID(&struct_vulkan->swapchain);
 
