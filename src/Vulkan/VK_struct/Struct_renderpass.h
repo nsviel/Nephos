@@ -22,9 +22,6 @@ struct Struct_renderpass{
 
   //Renderpass stuff
   VkRenderPass renderpass;
-  VkSemaphore semaphore_wait;
-  VkSemaphore semaphore_done;
-  VkFence fence;
 
   //---------------------------
 };
