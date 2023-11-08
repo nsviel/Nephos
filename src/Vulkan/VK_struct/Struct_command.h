@@ -20,12 +20,13 @@ struct Struct_command{
 struct Struct_commands{
   //---------------------------
 
+  //Command
   std::vector<VkCommandBuffer> vec_command_buffer;
   std::vector<VkPipelineStageFlags> vec_wait_stage;
 
+  //Synchronization
   std::vector<VkSemaphore> vec_semaphore_rp_wait;
   std::vector<VkSemaphore> vec_semaphore_render;
-
   VkFence fence = VK_NULL_HANDLE;
 
   //---------------------------
