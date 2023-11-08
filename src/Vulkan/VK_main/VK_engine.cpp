@@ -115,9 +115,9 @@ void VK_engine::insert_object_in_engine(Object* object){
 
   //Check if object already in engine
   bool is_in_list = false;
-  for(int i=0; i<list_scene.size(); i++){
-    Object* object_list = *next(list_scene.begin(),i);
-    if(object->ID == object_list->ID){
+  for(int i=0; i<struct_vulkan->list_data.size(); i++){
+    Struct_data* data = *next(struct_vulkan->list_data.begin(),i);
+    if(data->object->ID == data->object_list->ID){
       is_in_list = true;
     }
   }
