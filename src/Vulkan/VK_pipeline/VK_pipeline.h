@@ -25,12 +25,12 @@ public:
   void cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pipeline);
 
   //Clean functions
-  void clean_pipelines(Struct_renderpass* renderpass);
-  void clean_pipeline(Struct_pipeline* pipeline);
+  void clean_pipeline(Struct_renderpass* renderpass);
+  void clean_pipeline_struct(Struct_pipeline* pipeline);
 
   //Pipeline creation
-  void create_pipelines(Struct_renderpass* renderpass);
-  void create_pipeline(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
+  void create_pipeline(Struct_renderpass* renderpass);
+  void create_pipeline_struct(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
   void create_pipeline_graphics(Struct_pipeline* pipeline, Struct_renderpass* renderpass);
   void create_pipeline_presentation(Struct_pipeline* pipeline, Struct_renderpass* renderpass);
   void create_pipeline_layout(Struct_pipeline* pipeline);

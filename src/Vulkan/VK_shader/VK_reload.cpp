@@ -41,8 +41,8 @@ void VK_reload::recreate_pipeline(Struct_renderpass* renderpass, Struct_pipeline
   //---------------------------
 
   vkDeviceWaitIdle(struct_vulkan->device.device);
-  vk_pipeline->clean_pipeline(pipeline);
-  vk_pipeline->create_pipeline(renderpass, pipeline);
+  vk_pipeline->clean_pipeline_struct(pipeline);
+  vk_pipeline->create_pipeline_struct(renderpass, pipeline);
 
   //---------------------------
 }

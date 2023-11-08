@@ -24,7 +24,7 @@ GUI_render::~GUI_render(){}
 void GUI_render::init(){
   //---------------------------
 /*
-  eng_renderpass->init_renderpass();
+  gui_renderpass->init_renderpass();
   vk_engine->init();
   dataManager->init();
 */

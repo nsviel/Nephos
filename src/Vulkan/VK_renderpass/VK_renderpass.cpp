@@ -40,7 +40,7 @@ void VK_renderpass::init_renderpass(){
   for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
     Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
     vk_subpass->create_subpass(renderpass);
-    this->create_renderpass(renderpass);
+    this->create_renderpass_struct(renderpass);
   }
 
   //---------------------------
@@ -50,28 +50,19 @@ void VK_renderpass::clean_renderpass(){
 
   for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
     Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
-    this->clean_renderpass_object(renderpass);
+    this->clean_renderpass_struct(renderpass);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void VK_renderpass::clean_renderpass_object(Struct_renderpass* renderpass){
-  //---------------------------
-
-  vk_framebuffer->clean_framebuffer(renderpass);
-  vkDestroyRenderPass(struct_vulkan->device.device, renderpass->renderpass, nullptr);
-  vk_pipeline->clean_pipelines(renderpass);
-
-  //---------------------------
-}
-void VK_renderpass::create_renderpass(Struct_renderpass* renderpass){
+void VK_renderpass::create_renderpass_struct(Struct_renderpass* renderpass){
   //---------------------------
 
   this->create_renderpass_obj(renderpass);
   vk_command_buffer->allocate_command_buffer_primary(renderpass);
-  vk_pipeline->create_pipelines(renderpass);
+  vk_pipeline->create_pipeline(renderpass);
   vk_framebuffer->create_framebuffer(renderpass);
 
   //---------------------------
@@ -109,6 +100,15 @@ void VK_renderpass::create_renderpass_obj(Struct_renderpass* renderpass){
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create render pass!");
   }
+
+  //---------------------------
+}
+void VK_renderpass::clean_renderpass_struct(Struct_renderpass* renderpass){
+  //---------------------------
+
+  vk_framebuffer->clean_framebuffer(renderpass);
+  vkDestroyRenderPass(struct_vulkan->device.device, renderpass->renderpass, nullptr);
+  vk_pipeline->clean_pipeline(renderpass);
 
   //---------------------------
 }

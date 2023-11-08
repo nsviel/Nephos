@@ -34,19 +34,19 @@ void VK_pipeline::cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pi
 }
 
 //Clean function
-void VK_pipeline::clean_pipelines(Struct_renderpass* renderpass){
+void VK_pipeline::clean_pipeline(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   for(int i=0; i<subpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = subpass->vec_pipeline[i];
-    this->clean_pipeline(pipeline);
+    this->clean_pipeline_struct(pipeline);
   }
 
   //---------------------------
 }
-void VK_pipeline::clean_pipeline(Struct_pipeline* pipeline){
+void VK_pipeline::clean_pipeline_struct(Struct_pipeline* pipeline){
   //---------------------------
 
   vkDestroyPipeline(struct_vulkan->device.device, pipeline->pipeline, nullptr);
@@ -57,19 +57,19 @@ void VK_pipeline::clean_pipeline(Struct_pipeline* pipeline){
 }
 
 //Pipeline creation
-void VK_pipeline::create_pipelines(Struct_renderpass* renderpass){
+void VK_pipeline::create_pipeline(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   for(int i=0; i<subpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = subpass->vec_pipeline[i];
-    this->create_pipeline(renderpass, pipeline);
+    this->create_pipeline_struct(renderpass, pipeline);
   }
 
   //---------------------------
 }
-void VK_pipeline::create_pipeline(Struct_renderpass* renderpass, Struct_pipeline* pipeline){
+void VK_pipeline::create_pipeline_struct(Struct_renderpass* renderpass, Struct_pipeline* pipeline){
   //---------------------------
 
   if(pipeline->definition.purpose == "graphics"){

@@ -26,11 +26,11 @@ public:
   //Main functions
   void init_renderpass();
   void clean_renderpass();
-  void clean_renderpass_object(Struct_renderpass* renderpass);
 
   //Subfunction
-  void create_renderpass(Struct_renderpass* renderpass);
+  void create_renderpass_struct(Struct_renderpass* renderpass);
   void create_renderpass_obj(Struct_renderpass* renderpass);
+  void clean_renderpass_struct(Struct_renderpass* renderpass);
 
 private:
   VK_engine* vk_engine;
