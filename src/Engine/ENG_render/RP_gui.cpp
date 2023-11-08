@@ -1,8 +1,6 @@
 #include "RP_gui.h"
 
 #include <Engine.h>
-#include <ENG_shader/ENG_shader.h>
-#include <ENG_shader/Canvas/CAN_shader.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_main/VK_engine.h>
 
@@ -12,7 +10,6 @@ RP_gui::RP_gui(Engine* engine){
   //---------------------------
 
   this->vk_engine = engine->get_vk_engine();
-  this->eng_shader = engine->get_eng_shader();
 
   //---------------------------
 }
@@ -34,8 +31,15 @@ Struct_renderpass* RP_gui::init_renderpass(){
 }
 void RP_gui::create_subpass(Struct_renderpass* renderpass){
   VK_imgui* vk_imgui = vk_engine->get_vk_imgui();
-  CAN_shader* can_shader = eng_shader->get_can_shader();
   //---------------------------
+
+  Shader_info* shader_info = new Shader_info();
+  shader_info->title = "Canvas";
+  shader_info->folder = "Canvas";
+  shader_info->path_spir_vs = "../src/Element/ELE_shader/Empty/shader_empty_vs.spv";
+  shader_info->path_spir_fs = "../src/Element/ELE_shader/Empty/shader_empty_fs.spv";
+  shader_info->compile_shader = false;
+  shader_info->with_depth_test = false;
 
   Struct_subpass* subpass = new Struct_subpass();
   subpass->target = "presentation";
@@ -45,7 +49,7 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
   pipeline->definition.name = "triangle";
   pipeline->definition.purpose = "presentation";
   pipeline->definition.topology = "triangle";
-  pipeline->definition.shader = can_shader->get_shader_info("Canvas");
+  pipeline->definition.shader = shader_info;
   subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------

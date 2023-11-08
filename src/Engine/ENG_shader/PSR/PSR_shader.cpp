@@ -25,8 +25,8 @@ void PSR_shader::init_shader(){
   Shader_info* shader_info = new Shader_info();
   shader_info->title = "PSR";
   shader_info->folder = "PSR";
-  shader_info->path_vs = "shader_edl_vs";
-  shader_info->path_fs = "shader_edl_fs";
+  shader_info->path_spir_vs = "shader_edl_vs";
+  shader_info->path_spir_fs = "shader_edl_fs";
   shader_info->compile_shader = true;
   shader_info->with_depth_test = true;
   this->vec_shader_info.push_back(shader_info);

@@ -5,7 +5,6 @@
 #include <VK_struct/Struct_pipeline.h>
 #include <ELE_specific/common.h>
 
-class ENG_shader;
 class Engine;
 class VK_engine;
 
@@ -23,7 +22,6 @@ public:
   void create_subpass(Struct_renderpass* renderpass);
 
 private:
-  ENG_shader* eng_shader;
   VK_engine* vk_engine;
 };
 

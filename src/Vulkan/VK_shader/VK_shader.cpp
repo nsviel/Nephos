@@ -31,7 +31,7 @@ void VK_shader::create_pipeline_shader(Struct_pipeline* pipeline){
 //Subfunction
 void VK_shader::create_pipeline_shader_module(Struct_pipeline* pipeline){
   //---------------------------
-
+/*
   //Compile shader from GLSL to SPIR-V
   if(pipeline->definition.shader->compile_shader){
     string folder = pipeline->definition.shader->folder;
@@ -43,13 +43,13 @@ void VK_shader::create_pipeline_shader_module(Struct_pipeline* pipeline){
       cout<<"[error] Shader compilation GLSL -> SPIR-V"<<endl;
     }
   }
-
+*/
   //Load spir format shaders
   string path_shader = "../src/Engine/ENG_shader/";
-  string path_vs = path_shader + pipeline->definition.shader->folder + "/spir/" + pipeline->definition.shader->path_vs + ".spv";
-  string path_fs = path_shader + pipeline->definition.shader->folder + "/spir/" + pipeline->definition.shader->path_fs + ".spv";
-  auto code_vert = read_file(path_vs);
-  auto code_frag = read_file(path_fs);
+  //string path_vs = pipeline->definition.shader->path_spir_vs;
+  //string path_fs = path_shader + pipeline->definition.shader->folder + "/spir/" + pipeline->definition.shader->path_fs + ".spv";
+  auto code_vert = read_file(pipeline->definition.shader->path_spir_vs);
+  auto code_frag = read_file(pipeline->definition.shader->path_spir_fs);
 
   //Create associated shader modules
   VkShaderModule module_vert = create_shader_module(code_vert);

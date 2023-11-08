@@ -7,7 +7,6 @@
 #include <VK_main/VK_engine.h>
 #include <ENG_shader/ENG_shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>
-#include <ENG_shader/Canvas/CAN_shader.h>
 #include <ENG_shader/Scene/SCE_shader.h>
 #include <RES_editor/EDI_text.h>
 #include <RES_console/GUI_console.h>
@@ -186,10 +185,6 @@ void RND_shader::retrieve_shader_subclasses(){
     SCE_shader* sce_shader = eng_shader->get_sce_shader();
     vec_shader_info = sce_shader->get_vec_shader_info();
   }
-  else if(selection == "Canvas"){
-    CAN_shader* sce_shader = eng_shader->get_can_shader();
-    vec_shader_info = sce_shader->get_vec_shader_info();
-  }
 
   this->vec_shader_subclass.clear();
   for(int i=0; i<vec_shader_info.size(); i++){
@@ -227,10 +222,6 @@ string RND_shader::get_path_vs_from_selection(){
     SCE_shader* sce_shader = eng_shader->get_sce_shader();
     path_vs = sce_shader->get_glsl_path_vs(ID_subclass);
   }
-  else if(selection == "Canvas"){
-    CAN_shader* can_shader = eng_shader->get_can_shader();
-    path_vs = can_shader->get_glsl_path_vs(ID_subclass);
-  }
 
   //---------------------------
   return path_vs;
@@ -248,10 +239,6 @@ string RND_shader::get_path_fs_from_selection(){
   else if(selection == "Scene"){
     SCE_shader* sce_shader = eng_shader->get_sce_shader();
     path_fs = sce_shader->get_glsl_path_fs(ID_subclass);
-  }
-  else if(selection == "Canvas"){
-    CAN_shader* can_shader = eng_shader->get_can_shader();
-    path_fs = can_shader->get_glsl_path_fs(ID_subclass);
   }
 
   //---------------------------

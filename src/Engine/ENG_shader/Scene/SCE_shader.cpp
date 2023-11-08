@@ -23,8 +23,10 @@ void SCE_shader::init_shader(){
   shader_info = new Shader_info();
   shader_info->title = "Line";
   shader_info->folder = "Scene";
-  shader_info->path_vs = "shader_line_vs";
-  shader_info->path_fs = "shader_line_fs";
+  shader_info->path_glsl_vs = "../src/Engine/ENG_shader/Scene/glsl/shader_line_vs.frag";
+  shader_info->path_glsl_fs = "../src/Engine/ENG_shader/Scene/glsl/shader_line_fs.vert";
+  shader_info->path_spir_vs = "../src/Engine/ENG_shader/Scene/spir/shader_line_vs.spv";
+  shader_info->path_spir_fs = "../src/Engine/ENG_shader/Scene/spir/shader_line_fs.spv";
   shader_info->compile_shader = true;
   shader_info->with_depth_test = true;
   this->vec_shader_info.push_back(shader_info);
@@ -33,8 +35,10 @@ void SCE_shader::init_shader(){
   shader_info = new Shader_info();
   shader_info->title = "Point";
   shader_info->folder = "Scene";
-  shader_info->path_vs = "shader_point_vs";
-  shader_info->path_fs = "shader_point_fs";
+  shader_info->path_glsl_vs = "../src/Engine/ENG_shader/Scene/glsl/shader_point_vs.frag";
+  shader_info->path_glsl_fs = "../src/Engine/ENG_shader/Scene/glsl/shader_point_fs.vert";
+  shader_info->path_spir_vs = "../src/Engine/ENG_shader/Scene/spir/shader_point_vs.spv";
+  shader_info->path_spir_fs = "../src/Engine/ENG_shader/Scene/spir/shader_point_fs.spv";
   shader_info->compile_shader = true;
   shader_info->with_depth_test = true;
   this->vec_shader_info.push_back(shader_info);
