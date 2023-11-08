@@ -9,6 +9,7 @@ struct Struct_subpass{
   //---------------------------
 
   //Subpass info
+  std::string target;
   VkSubpassDescription description;
   VkSubpassDependency dependency;
   VkCommandBuffer command_buffer;

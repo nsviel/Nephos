@@ -20,8 +20,8 @@ public:
 public:
   //Main functions
   void create_subpass(Struct_renderpass* renderpass);
-  void create_subpass_presentation(Struct_renderpass* renderpass);
-  void create_subpass_shader(Struct_renderpass* renderpass);
+  void create_subpass_presentation(Struct_subpass* subpass);
+  void create_subpass_shader(Struct_subpass* subpass);
 
   //Subfunction
   void color_attachment_description(Struct_attachment& color);

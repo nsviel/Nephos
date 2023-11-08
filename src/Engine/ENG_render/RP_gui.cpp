@@ -32,7 +32,6 @@ Struct_renderpass* RP_gui::init_renderpass(){
   //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "ui";
-  renderpass->subpass_trg = "presentation";
 
   //Pipeline
   this->create_subpass(renderpass);
@@ -45,6 +44,7 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_subpass* subpass = new Struct_subpass();
+  subpass->target = "presentation";
   subpass->draw_task = [this](Struct_subpass* subpass){RP_gui::draw_gui(subpass);};
   renderpass->vec_subpass.push_back(subpass);
 

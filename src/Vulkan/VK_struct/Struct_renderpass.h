@@ -13,7 +13,6 @@ struct Struct_renderpass{
 
   //Info
   std::string name;
-  std::string subpass_trg;
 
   //Renderpass stuff
   VkRenderPass renderpass;

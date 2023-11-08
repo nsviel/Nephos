@@ -23,22 +23,21 @@ VK_subpass::~VK_subpass(){}
 void VK_subpass::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
+  for(int i=0; i<renderpass->vec_subpass.size(); i++){
+    Struct_subpass* subpass = renderpass->vec_subpass[i];
 
-
-  if(renderpass->subpass_trg == "shader"){
-    this->create_subpass_shader(renderpass);
-  }
-  else if(renderpass->subpass_trg == "presentation"){
-    this->create_subpass_presentation(renderpass);
+    if(subpass->target == "shader"){
+      this->create_subpass_shader(subpass);
+    }
+    else if(subpass->target == "presentation"){
+      this->create_subpass_presentation(subpass);
+    }
   }
 
   //---------------------------
 }
-void VK_subpass::create_subpass_shader(Struct_renderpass* renderpass){
+void VK_subpass::create_subpass_shader(Struct_subpass* subpass){
   //---------------------------
-
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   // Color
   Struct_attachment color;
@@ -62,14 +61,13 @@ void VK_subpass::create_subpass_shader(Struct_renderpass* renderpass){
   this->depth_attachment_reference(depth);
   subpass->depth = depth;
 
+  // Subpass description
   this->create_subpass_description(subpass);
 
   //---------------------------
 }
-void VK_subpass::create_subpass_presentation(Struct_renderpass* renderpass){
+void VK_subpass::create_subpass_presentation(Struct_subpass* subpass){
   //---------------------------
-
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   // Color
   Struct_attachment color;
@@ -93,6 +91,7 @@ void VK_subpass::create_subpass_presentation(Struct_renderpass* renderpass){
   this->depth_attachment_reference(depth);
   subpass->depth = depth;
 
+  // Subpass description
   this->create_subpass_description(subpass);
 
   //---------------------------
