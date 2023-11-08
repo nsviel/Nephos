@@ -26,22 +26,20 @@ struct Struct_renderpass{
   std::string name;
   std::string subpass_trg;
 
+  //Drawing stuff
+  std::vector<Struct_pipeline*> vec_pipeline;
+  std::vector<Struct_subpass*> vec_subpass;
+  std::function<void(Struct_renderpass* renderpass)> draw_task;
+
   //Render pass elements
   VkRenderPass renderpass;
   VkCommandBuffer command_buffer;
   Struct_framebuffer* framebuffer;
 
-  //Element
-  std::vector<Struct_pipeline*> vec_pipeline;
-  std::vector<Struct_subpass*> vec_subpass;
-
   //Synchronization
   VkSemaphore semaphore_wait;
   VkSemaphore semaphore_done;
   VkFence fence;
-
-  //Drawing function
-  std::function<void(Struct_renderpass* renderpass)> draw_task;
 
   //---------------------------
 };
