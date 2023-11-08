@@ -87,11 +87,11 @@ void RP_scene::draw_scene(Struct_renderpass* renderpass){
   Struct_subpass* subpass = renderpass->vec_subpass[0];
   Struct_framebuffer* framebuffer = renderpass->framebuffer;
 
-  vk_command->start_render_pass(renderpass, framebuffer->fbo, false);
+  //vk_command->start_render_pass(renderpass, framebuffer->fbo, false);
   vk_viewport->cmd_viewport(subpass);
   this->cmd_draw_scene(renderpass);
   this->cmd_draw_glyph(renderpass);
-  vk_command->stop_render_pass(renderpass);
+  //vk_command->stop_render_pass(renderpass);
 
   //---------------------------
   this->time_renderpass = timer.stop_ms(t1);

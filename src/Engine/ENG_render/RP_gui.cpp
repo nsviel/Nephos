@@ -65,10 +65,10 @@ void RP_gui::draw_gui(Struct_renderpass* renderpass){
   Struct_subpass* subpass = renderpass->vec_subpass[0];
   Struct_frame* frame = struct_vulkan->swapchain.get_frame_presentation();
 
-  vk_command->start_render_pass(renderpass, frame->fbo, false);
+  //vk_command->start_render_pass(renderpass, frame->fbo, false);
   ImDrawData* draw_data = ImGui::GetDrawData();
   ImGui_ImplVulkan_RenderDrawData(draw_data, subpass->command_buffer);
-  vk_command->stop_render_pass(renderpass);
+  //vk_command->stop_render_pass(renderpass);
 
   //---------------------------
 }

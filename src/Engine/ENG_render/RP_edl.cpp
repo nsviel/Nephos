@@ -105,7 +105,7 @@ void RP_edl::draw_command(Struct_renderpass* renderpass){
   Struct_pipeline* pipeline = subpass->get_pipeline();
   Struct_framebuffer* framebuffer = renderpass->framebuffer;
 
-  vk_command->start_render_pass(renderpass, framebuffer->fbo, false);
+  //vk_command->start_render_pass(renderpass, framebuffer->fbo, false);
   vk_viewport->cmd_viewport(subpass);
 
   vk_pipeline->cmd_bind_pipeline(subpass, pipeline);
@@ -114,7 +114,7 @@ void RP_edl::draw_command(Struct_renderpass* renderpass){
   vk_descriptor->cmd_bind_descriptor(subpass, pipeline, pipeline->binding.descriptor.set);
   vk_drawing->cmd_draw_data(subpass, vk_render->get_canvas());
 
-  vk_command->stop_render_pass(renderpass);
+  //vk_command->stop_render_pass(renderpass);
 
   //---------------------------
 }

@@ -48,12 +48,17 @@ void VK_drawing::draw_frame(){
     Struct_command command;
     Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
 
+    VkFramebuffer fbo = (i != struct_vulkan->vec_renderpass.size()-1) ? renderpass->framebuffer->fbo : struct_vulkan->swapchain.get_frame_presentation()->fbo;
+    vk_command->start_render_pass(renderpass, fbo, false);
+
     //Subpass
     for(int j=0; j<renderpass->vec_subpass.size(); j++){
       Struct_subpass* subpass = renderpass->vec_subpass[j];
       renderpass->draw_task(renderpass);
       command.vec_command_buffer.push_back(subpass->command_buffer);
     }
+
+    vk_command->stop_render_pass(renderpass);
 
     //Command
     command.vec_semaphore_wait.push_back(struct_synchro->vec_semaphore_render[i]);
