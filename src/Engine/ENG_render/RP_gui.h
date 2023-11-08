@@ -7,7 +7,7 @@
 
 class ENG_shader;
 class Engine;
-class VK_pipeline;
+class VK_engine;
 
 
 class RP_gui
@@ -22,12 +22,9 @@ public:
   Struct_renderpass* init_renderpass();
   void create_subpass(Struct_renderpass* renderpass);
 
-  //Draw function
-  void draw_gui(Struct_subpass* subpass);
-
 private:
   ENG_shader* eng_shader;
-  VK_pipeline* vk_pipeline;
+  VK_engine* vk_engine;
 };
 
 #endif

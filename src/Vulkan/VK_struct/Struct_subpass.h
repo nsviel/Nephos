@@ -2,6 +2,7 @@
 #define STRUCT_SUBPASS_H
 
 #include <VK_struct/Struct_attachment.h>
+#include <VK_struct/Struct_pipeline.h>
 #include <ELE_specific/common.h>
 
 

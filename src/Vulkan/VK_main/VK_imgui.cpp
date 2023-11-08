@@ -67,6 +67,14 @@ void VK_imgui::init(){
 
   //---------------------------
 }
+void VK_imgui::draw(Struct_subpass* subpass){
+  //---------------------------
+
+  ImDrawData* draw_data = ImGui::GetDrawData();
+  ImGui_ImplVulkan_RenderDrawData(draw_data, subpass->command_buffer);
+
+  //---------------------------
+}
 void VK_imgui::load_font(){
   //---------------------------
 

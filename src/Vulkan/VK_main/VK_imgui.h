@@ -1,6 +1,7 @@
 #ifndef VK_IMGUI_H
 #define VK_IMGUI_H
 
+#include <VK_struct/Struct_subpass.h>
 #include <ELE_specific/common.h>
 
 class ELE_window;
@@ -18,6 +19,7 @@ public:
 public:
   //Main functions
   void init();
+  void draw(Struct_subpass* subpass);
   void load_font();
   void clean();
   ImTextureID engine_texture();
