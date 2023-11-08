@@ -34,7 +34,6 @@ public:
   void draw_command(Struct_subpass* subpass);
 
 private:
-  VK_engine* vk_engine;
   EDL_shader* edl_shader;
   VK_render* vk_render;
   VK_engine* vk_engine;

@@ -20,14 +20,14 @@ RP_edl::RP_edl(Engine* engine){
 
   ENG_shader* eng_shader = engine->get_eng_shader();
 
-  this->vk_engine = engine->get_vk_engine();
   this->edl_shader = eng_shader->get_edl_shader();
+  this->vk_engine = engine->get_vk_engine();
+  this->vk_render = vk_engine->get_vk_render();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_drawing = new VK_drawing(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
-  this->vk_render = vk_engine->get_vk_render();
 
   //---------------------------
 }
@@ -82,7 +82,8 @@ void RP_edl::draw_edl(Struct_subpass* subpass){
 void RP_edl::update_descriptor(Struct_subpass* subpass){
   //---------------------------
 
-  Struct_framebuffer* frame_scene = vk_engine->get_renderpass(0);
+  Struct_renderpass* renderpass_scene = vk_engine->get_renderpass(0);
+  Struct_framebuffer* frame_scene = renderpass_scene->framebuffer;
 
   for(int i=0; i<subpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = subpass->vec_pipeline[i];
