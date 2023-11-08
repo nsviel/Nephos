@@ -32,7 +32,7 @@ VK_drawing::~VK_drawing(){}
 
 //Main function
 void VK_drawing::draw_frame(){
-  Struct_submit_commands commands;
+  Struct_commands commands;
   VkSemaphore semaphore;
   VkFence fence;
   timer_time t1 = timer.start_t();

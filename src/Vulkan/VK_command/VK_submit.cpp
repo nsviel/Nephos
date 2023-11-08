@@ -60,7 +60,7 @@ void VK_submit::set_next_frame_ID(Struct_swapchain* swapchain){
 }
 
 //Queue submission
-void VK_submit::submit_graphics_command(Struct_submit_command* command){
+void VK_submit::submit_graphics_command(Struct_command* command){
   //---------------------------
 
   VkSubmitInfo submit_info{};
@@ -86,7 +86,7 @@ void VK_submit::submit_graphics_command(Struct_renderpass* renderpass){
 
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
-  Struct_submit_command command;
+  Struct_command command;
   command.command_buffer = subpass->command_buffer;
   command.semaphore_wait = renderpass->semaphore_wait;
   command.semaphore_done = renderpass->semaphore_done;
@@ -111,7 +111,7 @@ void VK_submit::submit_graphics_command(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void VK_submit::submit_graphics_commands(Struct_submit_commands* commands){
+void VK_submit::submit_graphics_commands(Struct_commands* commands){
   //---------------------------
 
   VkSubmitInfo submit_info{};

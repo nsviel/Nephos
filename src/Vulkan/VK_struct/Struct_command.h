@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 
-struct Struct_submit_command{
+struct Struct_command{
   //---------------------------
 
   VkCommandBuffer command_buffer;
@@ -17,7 +17,7 @@ struct Struct_submit_command{
   //---------------------------
 };
 
-struct Struct_submit_commands{
+struct Struct_commands{
   //---------------------------
 
   std::vector<VkCommandBuffer> vec_command_buffer;
