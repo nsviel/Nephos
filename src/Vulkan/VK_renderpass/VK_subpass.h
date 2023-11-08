@@ -20,15 +20,19 @@ public:
 public:
   //Main functions
   void create_subpass(Struct_renderpass* renderpass);
-  void create_subpass_presentation(Struct_subpass* subpass);
-  void create_subpass_shader(Struct_subpass* subpass);
 
   //Subfunction
+  void create_subpass_presentation(Struct_subpass* subpass);
+  void create_subpass_shader(Struct_subpass* subpass);
+  void create_subpass_description(Struct_subpass* subpass);
+
+  //Color attachment
   void color_attachment_description(Struct_attachment& color);
   void color_attachment_reference(Struct_attachment& color);
+
+  //Depth attachment
   void depth_attachment_description(Struct_attachment& depth);
   void depth_attachment_reference(Struct_attachment& depth);
-  void create_subpass_description(Struct_subpass* subpass);
 
 private:
   VK_engine* vk_engine;
