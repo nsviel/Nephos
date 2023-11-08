@@ -59,8 +59,8 @@ void RP_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
 void RP_gui::draw_gui(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_frame* frame_current = struct_vulkan->swapchain.get_frame_presentation();
-  vk_command->start_render_pass(renderpass, frame_current->fbo, false);
+  Struct_frame* frame = struct_vulkan->swapchain.get_frame_presentation();
+  vk_command->start_render_pass(renderpass, frame->fbo, false);
   ImDrawData* draw_data = ImGui::GetDrawData();
   ImGui_ImplVulkan_RenderDrawData(draw_data, renderpass->command_buffer);
   vk_command->stop_render_pass(renderpass);

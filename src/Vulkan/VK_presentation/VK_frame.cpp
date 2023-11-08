@@ -41,7 +41,7 @@ void VK_frame::create_frame(){
 
     vk_image->create_image_view(&frame->color);
     vk_depth->create_depth_attachment(&frame->depth);
-    vk_framebuffer->create_framebuffer_renderpass(struct_vulkan->vec_renderpass[2], frame);
+    vk_framebuffer->create_framebuffer_swapchain(struct_vulkan->vec_renderpass[2], frame);
     vk_synchronization->init_frame_sync(frame);
 
     struct_vulkan->swapchain.vec_frame.push_back(frame);

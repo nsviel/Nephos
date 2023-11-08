@@ -87,9 +87,8 @@ void RP_scene::draw_scene(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
-  Struct_framebuffer* frame = renderpass->framebuffer;
-  //Struct_framebuffer* frame = struct_vulkan->swapchain.get_frame_rendering();
-  vk_command->start_render_pass(renderpass, frame->fbo, false);
+  Struct_framebuffer* framebuffer = renderpass->framebuffer;
+  vk_command->start_render_pass(renderpass, framebuffer->fbo, false);
   vk_viewport->cmd_viewport(renderpass);
   this->cmd_draw_scene(renderpass);
   this->cmd_draw_glyph(renderpass);

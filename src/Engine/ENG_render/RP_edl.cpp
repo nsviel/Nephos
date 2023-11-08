@@ -98,9 +98,9 @@ void RP_edl::draw_command(Struct_renderpass* renderpass){
 
   Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle_EDL");
   EDL_param* edl_param = edl_shader->get_edl_param();
-  Struct_framebuffer* frame = renderpass->framebuffer;
+  Struct_framebuffer* framebuffer = renderpass->framebuffer;
 
-  vk_command->start_render_pass(renderpass, frame->fbo, false);
+  vk_command->start_render_pass(renderpass, framebuffer->fbo, false);
   vk_viewport->cmd_viewport(renderpass);
 
   vk_pipeline->cmd_bind_pipeline(renderpass, "triangle_EDL");

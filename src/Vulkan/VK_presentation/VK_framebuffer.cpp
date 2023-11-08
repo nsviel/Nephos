@@ -55,32 +55,6 @@ void VK_framebuffer::clean_framebuffer(Struct_renderpass* renderpass){
 }
 
 //Subfunction
-void VK_framebuffer::create_framebuffer_renderpass(Struct_renderpass* renderpass, Struct_frame* framebuffer){
-  //---------------------------
-
-  //Create frambuffer
-  vector<VkImageView> attachments;
-  attachments.push_back(framebuffer->color.view);
-  attachments.push_back(framebuffer->depth.view);
-
-  VkFramebufferCreateInfo framebufferInfo{};
-  framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
-  framebufferInfo.renderPass = renderpass->renderpass;
-  framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
-  framebufferInfo.pAttachments = attachments.data();
-  framebufferInfo.width = struct_vulkan->window.extent.width;
-  framebufferInfo.height = struct_vulkan->window.extent.height;
-  framebufferInfo.layers = 1;
-
-  VkFramebuffer fbo;
-  VkResult result = vkCreateFramebuffer(struct_vulkan->device.device, &framebufferInfo, nullptr, &fbo);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create framebuffer!");
-  }
-
-  //---------------------------
-  framebuffer->fbo = fbo;
-}
 void VK_framebuffer::create_framebuffer_renderpass(Struct_renderpass* renderpass, Struct_framebuffer* framebuffer){
   //---------------------------
 
@@ -112,7 +86,8 @@ void VK_framebuffer::create_framebuffer_swapchain(Struct_renderpass* renderpass,
 
   //Create frambuffer
   vector<VkImageView> attachments;
-  attachments.push_back(frame->image.view);
+  attachments.push_back(frame->color.view);
+  attachments.push_back(frame->depth.view);
 
   VkFramebufferCreateInfo framebufferInfo{};
   framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
@@ -130,7 +105,7 @@ void VK_framebuffer::create_framebuffer_swapchain(Struct_renderpass* renderpass,
   }
 
   //---------------------------
-  frame->framebuffer = fbo;
+  frame->fbo = fbo;
 }
 void VK_framebuffer::clean_framebuffer_obj(VkFramebuffer& fbo){
   //---------------------------

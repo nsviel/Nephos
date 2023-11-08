@@ -10,16 +10,13 @@ struct Struct_frame{
 
   Struct_image image;
 
-  VkFramebuffer framebuffer;
+  VkFramebuffer fbo;
   VkCommandBuffer command_buffer;
   VkSemaphore semaphore;
 
   //A suprimer !!!
-  VkFramebuffer fbo;
   Struct_image color;
   Struct_image depth;
-  Struct_image location;
-  Struct_image normal;
 
   //---------------------------
 };
