@@ -116,35 +116,14 @@ void VK_engine::insert_object_in_engine(Object* object){
   //Check if object already in engine
   bool is_in_list = false;
   for(int i=0; i<struct_vulkan->list_data.size(); i++){
-    Struct_data* data = *next(struct_vulkan->list_data.begin(),i);
-    if(data->object->ID == data->object_list->ID){
+    Struct_data* data = *next(struct_vulkan->list_data.begin(), i);
+    if(object->ID == data->object->ID){
       is_in_list = true;
     }
   }
 
   //If not, insert it
   if(is_in_list == false){
-    list_scene.push_back(object);
-    vk_data->insert_object(object);
-  }
-
-  //---------------------------
-}
-void VK_engine::insert_glyph_in_engine(Object* object){
-  //---------------------------
-
-  //Check if object already in engine
-  bool is_in_list = false;
-  for(int i=0; i<list_glyph.size(); i++){
-    Object* object_list = *next(list_glyph.begin(),i);
-    if(object->ID == object_list->ID){
-      is_in_list = true;
-    }
-  }
-
-  //If not, insert it
-  if(is_in_list == false){
-    list_glyph.push_back(object);
     vk_data->insert_object(object);
   }
 
@@ -154,10 +133,9 @@ void VK_engine::remove_object_in_engine(Object* object){
   //---------------------------
 
   bool is_in_list = false;
-  for(int i=0; i<list_scene.size(); i++){
-    Object* object_list = *next(list_scene.begin(),i);
-    if(object->ID == object_list->ID){
-      list_scene.remove(object_list);
+  for(int i=0; i<struct_vulkan->list_data.size(); i++){
+    Struct_data* data = *next(struct_vulkan->list_data.begin(),i);
+    if(object->ID == data->object->ID){
       vk_data->clean_data_scene(object->ID);
     }
   }

@@ -44,7 +44,6 @@ public:
 
   //Data function
   void insert_object_in_engine(Object* object);
-  void insert_glyph_in_engine(Object* object);
   void remove_object_in_engine(Object* object);
 
   inline ELE_window* get_ele_window(){return ele_window;}
@@ -83,8 +82,6 @@ private:
   VK_info* vk_info;
 
   Timer timer;
-  std::list<Object*> list_scene;
-  std::list<Object*> list_glyph;
 };
 
 #endif

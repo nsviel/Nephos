@@ -70,7 +70,7 @@ void ENG_scene::insert_object_glyph(Object* object){
   //Insert into engine
   object->ID = ID_obj++;
   object->is_suppressible = false;
-  vk_engine->insert_glyph_in_engine(object);
+  vk_engine->insert_object_in_engine(object);
 
   //Insert it into database
   set_glyph->list_obj.push_back(object);
