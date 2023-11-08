@@ -28,7 +28,7 @@ public:
 public:
   //Init functions
   Struct_renderpass* init_renderpass();
-  void create_pipeline_edl(Struct_renderpass* renderpass);
+  void create_subpass(Struct_renderpass* renderpass);
 
   //Draw function
   void draw_edl(Struct_renderpass* renderpass);

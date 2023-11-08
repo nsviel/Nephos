@@ -42,17 +42,30 @@ Struct_renderpass* RP_scene::init_renderpass(){
   renderpass->draw_task = [this](Struct_renderpass* renderpass){RP_scene::draw_scene(renderpass);};
 
   //Pipeline
-  this->create_pipeline_point(renderpass);
-  this->create_pipeline_line(renderpass);
+  this->create_subpass(renderpass);
 
   //---------------------------
   return renderpass;
 }
-void RP_scene::create_pipeline_point(Struct_renderpass* renderpass){
+void RP_scene::create_subpass(Struct_renderpass* renderpass){
   SCE_shader* sce_shader = eng_shader->get_sce_shader();
   //---------------------------
 
-  Struct_pipeline* pipeline = new Struct_pipeline();
+  Struct_subpass* subpass = new Struct_subpass();
+  renderpass->vec_subpass.push_back(subpass);
+  Struct_pipeline* pipeline;
+
+  pipeline = new Struct_pipeline();
+  pipeline->definition.name = "line";
+  pipeline->definition.topology = "line";
+  pipeline->definition.purpose = "graphics";
+  pipeline->definition.shader = sce_shader->get_shader_info("Line");
+  pipeline->definition.vec_data_name.push_back("location");
+  pipeline->definition.vec_data_name.push_back("color");
+  pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS));
+  renderpass->vec_pipeline.push_back(pipeline);
+
+  pipeline = new Struct_pipeline();
   pipeline->definition.name = "point";
   pipeline->definition.topology = "point";
   pipeline->definition.purpose = "graphics";
@@ -61,22 +74,6 @@ void RP_scene::create_pipeline_point(Struct_renderpass* renderpass){
   pipeline->definition.vec_data_name.push_back("color");
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("point_size", sizeof(int), 1, TYPE_UNIFORM, STAGE_VS));
-  renderpass->vec_pipeline.push_back(pipeline);
-
-  //---------------------------
-}
-void RP_scene::create_pipeline_line(Struct_renderpass* renderpass){
-  SCE_shader* sce_shader = eng_shader->get_sce_shader();
-  //---------------------------
-
-  Struct_pipeline* pipeline = new Struct_pipeline();
-  pipeline->definition.name = "line";
-  pipeline->definition.topology = "line";
-  pipeline->definition.purpose = "graphics";
-  pipeline->definition.shader = sce_shader->get_shader_info("Line");
-  pipeline->definition.vec_data_name.push_back("location");
-  pipeline->definition.vec_data_name.push_back("color");
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS));
   renderpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------

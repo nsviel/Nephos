@@ -33,8 +33,9 @@ void VK_subpass::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
 }
 void VK_subpass::create_subpass_shader(Struct_renderpass* renderpass){
-  Struct_subpass* subpass = new Struct_subpass();
   //---------------------------
+
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   // Color
   subpass->color.item = 0;
@@ -55,13 +56,13 @@ void VK_subpass::create_subpass_shader(Struct_renderpass* renderpass){
   this->depth_attachment_reference(subpass);
 
   this->create_subpass_description(subpass);
-  renderpass->vec_subpass.push_back(subpass);
 
   //---------------------------
 }
 void VK_subpass::create_subpass_presentation(Struct_renderpass* renderpass){
-  Struct_subpass* subpass = new Struct_subpass();
   //---------------------------
+
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   // Color
   subpass->color.item = 0;
@@ -82,7 +83,6 @@ void VK_subpass::create_subpass_presentation(Struct_renderpass* renderpass){
   this->depth_attachment_reference(subpass);
 
   this->create_subpass_description(subpass);
-  renderpass->vec_subpass.push_back(subpass);
 
   //---------------------------
 }

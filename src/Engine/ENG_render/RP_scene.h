@@ -27,8 +27,7 @@ public:
 public:
   //Init functions
   Struct_renderpass* init_renderpass();
-  void create_pipeline_point(Struct_renderpass* renderpass);
-  void create_pipeline_line(Struct_renderpass* renderpass);
+  void create_subpass(Struct_renderpass* renderpass);
 
   //Draw function
   void draw_scene(Struct_renderpass* renderpass);

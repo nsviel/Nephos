@@ -48,13 +48,16 @@ Struct_renderpass* RP_edl::init_renderpass(){
   renderpass->draw_task = [this](Struct_renderpass* renderpass){RP_edl::draw_edl(renderpass);};
 
   //Pipeline
-  this->create_pipeline_edl(renderpass);
+  this->create_subpass(renderpass);
 
   //---------------------------
   return renderpass;
 }
-void RP_edl::create_pipeline_edl(Struct_renderpass* renderpass){
+void RP_edl::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
+
+  Struct_subpass* subpass = new Struct_subpass();
+  renderpass->vec_subpass.push_back(subpass);
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "triangle_EDL";

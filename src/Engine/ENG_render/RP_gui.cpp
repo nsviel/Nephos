@@ -36,14 +36,17 @@ Struct_renderpass* RP_gui::init_renderpass(){
   renderpass->draw_task = [this](Struct_renderpass* renderpass){RP_gui::draw_gui(renderpass);};
 
   //Pipeline
-  this->create_pipeline_canvas(renderpass);
+  this->create_subpass(renderpass);
 
   //---------------------------
   return renderpass;
 }
-void RP_gui::create_pipeline_canvas(Struct_renderpass* renderpass){
+void RP_gui::create_subpass(Struct_renderpass* renderpass){
   CAN_shader* can_shader = eng_shader->get_can_shader();
   //---------------------------
+
+  Struct_subpass* subpass = new Struct_subpass();
+  renderpass->vec_subpass.push_back(subpass);
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "triangle";

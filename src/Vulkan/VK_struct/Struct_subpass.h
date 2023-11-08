@@ -34,6 +34,18 @@ struct Struct_subpass{
   std::vector<VkAttachmentReference> vec_color_reference;
   std::vector<VkAttachmentDescription> vec_attachment_description;
 
+  //Pipeline
+  std::vector<Struct_pipeline*> vec_pipeline;
+  Struct_pipeline* get_pipeline_byName(string name){
+    for(int i=0; i<vec_pipeline.size(); i++){
+      if(vec_pipeline[i]->definition.name == name){
+        return vec_pipeline[i];
+      }
+    }
+    cout<<"[error] Pipeline by name error -> "+ name +" not found"<<endl;
+    return nullptr;
+  }
+
   //---------------------------
 };
 
