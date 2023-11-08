@@ -5,6 +5,7 @@
 #include <VK_main/VK_engine.h>
 #include <VK_drawing/VK_viewport.h>
 #include <ENG_shader/Scene/SCE_shader.h>
+#include <ENG_shader/ENG_shader.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_binding/VK_uniform.h>
 #include <VK_drawing/VK_drawing.h>
