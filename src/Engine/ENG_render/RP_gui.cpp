@@ -36,8 +36,8 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
   Shader_info* shader_info = new Shader_info();
   shader_info->title = "Canvas";
   shader_info->folder = "Canvas";
-  shader_info->path_spir_vs = "../src/Element/ELE_shader/Empty/shader_empty_vs.spv";
-  shader_info->path_spir_fs = "../src/Element/ELE_shader/Empty/shader_empty_fs.spv";
+  shader_info->path_spir_vs = "../src/Element/ELE_shader/Empty/spir/shader_empty_vs.spv";
+  shader_info->path_spir_fs = "../src/Element/ELE_shader/Empty/spir/shader_empty_fs.spv";
   shader_info->compile_shader = false;
   shader_info->with_depth_test = false;
 
