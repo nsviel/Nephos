@@ -56,10 +56,10 @@ void VK_drawing::draw_frame(){
     Struct_subpass* subpass = renderpass->vec_subpass[0];
     Struct_command command;
     command.vec_command_buffer.push_back(subpass->command_buffer);
-    command.vec_semaphore_wait.push_back(renderpass->semaphore_wait);
-    command.vec_semaphore_done.push_back(renderpass->semaphore_done);
+    command.vec_semaphore_wait.push_back(struct_synchro->vec_semaphore_render[i]);
+    command.vec_semaphore_done.push_back(struct_synchro->vec_semaphore_render[i+1]);
     command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-    command.fence = renderpass->fence;
+    command.fence = (i != struct_vulkan->vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_synchro->vec_fence[0];
 
     vk_submit->submit_graphics_command(&command);
   }
