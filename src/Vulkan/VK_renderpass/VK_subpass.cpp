@@ -4,6 +4,7 @@
 #include <VK_struct/Struct_vulkan.h>
 #include <VK_image/VK_color.h>
 #include <VK_image/VK_depth.h>
+#include <VK_command/VK_command_buffer.h>
 
 
 //Constructor / Destructor
@@ -12,6 +13,7 @@ VK_subpass::VK_subpass(VK_engine* vk_engine){
 
   this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->vk_command_buffer = new VK_command_buffer(vk_engine);
   this->vk_color = new VK_color(vk_engine);
   this->vk_depth = new VK_depth(vk_engine);
 
@@ -26,6 +28,7 @@ void VK_subpass::create_subpass(Struct_renderpass* renderpass){
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
     Struct_subpass* subpass = renderpass->vec_subpass[i];
 
+    vk_command_buffer->allocate_command_buffer_primary(subpass);
     if(subpass->target == "shader"){
       this->create_subpass_shader(subpass);
     }

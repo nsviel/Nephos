@@ -4,8 +4,9 @@
 #include <VK_struct/Struct_renderpass.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
+class VK_engine;
+class VK_command_buffer;
 class VK_color;
 class VK_depth;
 
@@ -35,8 +36,9 @@ public:
   void depth_attachment_reference(Struct_attachment& depth);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
+  VK_engine* vk_engine;
+  VK_command_buffer* vk_command_buffer;
   VK_color* vk_color;
   VK_depth* vk_depth;
 };

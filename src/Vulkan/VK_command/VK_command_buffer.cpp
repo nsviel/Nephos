@@ -46,10 +46,8 @@ void VK_command_buffer::clean_command_pool(){
 }
 
 //Command buffer
-void VK_command_buffer::allocate_command_buffer_primary(Struct_renderpass* renderpass){
+void VK_command_buffer::allocate_command_buffer_primary(Struct_subpass* subpass){
   //---------------------------
-
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   //Command buffer allocation
   VkCommandBufferAllocateInfo allocInfo{};

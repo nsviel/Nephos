@@ -3,7 +3,6 @@
 #include <VK_renderpass/VK_subpass.h>
 #include <VK_main/VK_engine.h>
 #include <VK_struct/Struct_vulkan.h>
-#include <VK_command/VK_command_buffer.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_presentation/VK_frame.h>
 #include <VK_presentation/VK_framebuffer.h>
@@ -20,7 +19,6 @@ VK_renderpass::VK_renderpass(VK_engine* vk_engine){
   this->vk_color = new VK_color(vk_engine);
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_subpass = new VK_subpass(vk_engine);
-  this->vk_command_buffer = new VK_command_buffer(vk_engine);
   this->vk_frame = new VK_frame(vk_engine);
   this->vk_framebuffer = new VK_framebuffer(vk_engine);
 
@@ -61,7 +59,6 @@ void VK_renderpass::create_renderpass_struct(Struct_renderpass* renderpass){
   //---------------------------
 
   this->create_renderpass_obj(renderpass);
-  vk_command_buffer->allocate_command_buffer_primary(renderpass);
   vk_pipeline->create_pipeline(renderpass);
   vk_framebuffer->create_framebuffer(renderpass);
 
