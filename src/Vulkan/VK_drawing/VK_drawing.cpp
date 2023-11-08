@@ -71,10 +71,8 @@ void VK_drawing::draw_frame(){
   //---------------------------
   struct_vulkan->info.draw_frame.push_back(timer.stop_ms(t1));
 }
-void VK_drawing::cmd_draw_data(Struct_renderpass* renderpass, Struct_data* data){
+void VK_drawing::cmd_draw_data(Struct_subpass* subpass, Struct_data* data){
   //---------------------------
-
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   VkDeviceSize offsets[] = {0};
   if(data->xyz.vbo != VK_NULL_HANDLE){
@@ -90,10 +88,8 @@ void VK_drawing::cmd_draw_data(Struct_renderpass* renderpass, Struct_data* data)
 
   //---------------------------
 }
-void VK_drawing::cmd_line_with(Struct_renderpass* renderpass, Struct_data* data){
+void VK_drawing::cmd_line_with(Struct_subpass* subpass, Struct_data* data){
   //---------------------------
-
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   vkCmdSetLineWidth(subpass->command_buffer, data->object->draw_line_width);
 

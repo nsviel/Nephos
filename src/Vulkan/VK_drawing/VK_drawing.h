@@ -27,8 +27,8 @@ public:
 public:
   //Main functions
   void draw_frame();
-  void cmd_draw_data(Struct_renderpass* renderpass, Struct_data* data);
-  void cmd_line_with(Struct_renderpass* renderpass, Struct_data* data);
+  void cmd_draw_data(Struct_subpass* subpass, Struct_data* data);
+  void cmd_line_with(Struct_subpass* subpass, Struct_data* data);
 
 private:
   Struct_vulkan* struct_vulkan;

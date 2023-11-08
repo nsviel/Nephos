@@ -84,9 +84,11 @@ void RP_scene::draw_scene(Struct_renderpass* renderpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
   Struct_framebuffer* framebuffer = renderpass->framebuffer;
+
   vk_command->start_render_pass(renderpass, framebuffer->fbo, false);
-  vk_viewport->cmd_viewport(renderpass);
+  vk_viewport->cmd_viewport(subpass);
   this->cmd_draw_scene(renderpass);
   this->cmd_draw_glyph(renderpass);
   vk_command->stop_render_pass(renderpass);
@@ -111,7 +113,7 @@ void RP_scene::cmd_draw_scene(Struct_renderpass* renderpass){
       vk_uniform->update_uniform("point_size", &data->binding, data->object->draw_point_size);
 
       vk_descriptor->cmd_bind_descriptor(renderpass, "point", data->binding.descriptor.set);
-      vk_drawing->cmd_draw_data(renderpass, data);
+      vk_drawing->cmd_draw_data(subpass, data);
     }
   }
 
@@ -133,8 +135,8 @@ void RP_scene::cmd_draw_glyph(Struct_renderpass* renderpass){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
 
       vk_descriptor->cmd_bind_descriptor(renderpass, "line", data->binding.descriptor.set);
-      vk_drawing->cmd_line_with(renderpass, data);
-      vk_drawing->cmd_draw_data(renderpass, data);
+      vk_drawing->cmd_line_with(subpass, data);
+      vk_drawing->cmd_draw_data(subpass, data);
     }
   }
 

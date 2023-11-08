@@ -19,7 +19,7 @@ public:
 public:
   //Main function
   void init_viewport();
-  void cmd_viewport(Struct_renderpass* renderpass);
+  void cmd_viewport(Struct_subpass* subpass);
   void update_viewport();
 
   //Subfunction

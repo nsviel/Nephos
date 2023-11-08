@@ -37,10 +37,8 @@ void VK_viewport::init_viewport(){
 
   //---------------------------
 }
-void VK_viewport::cmd_viewport(Struct_renderpass* renderpass){
+void VK_viewport::cmd_viewport(Struct_subpass* subpass){
   //---------------------------
-
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   //Viewport
   vkCmdSetViewport(subpass->command_buffer, 0, 1, &struct_vulkan->viewport);
