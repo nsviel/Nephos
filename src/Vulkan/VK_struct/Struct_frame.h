@@ -15,7 +15,6 @@ struct Struct_frame{
   VkSemaphore semaphore;
 
   //A suprimer !!!
-  Struct_image color;
   Struct_image depth;
 
   //---------------------------

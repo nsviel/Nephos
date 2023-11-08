@@ -86,7 +86,7 @@ void VK_framebuffer::create_framebuffer_swapchain(Struct_renderpass* renderpass,
 
   //Create frambuffer
   vector<VkImageView> attachments;
-  attachments.push_back(frame->color.view);
+  attachments.push_back(frame->image.view);
   attachments.push_back(frame->depth.view);
 
   VkFramebufferCreateInfo framebufferInfo{};

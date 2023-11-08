@@ -34,12 +34,12 @@ void VK_frame::create_frame(){
 
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
     Struct_frame* frame = new Struct_frame();
-    frame->color.image = struct_vulkan->swapchain.vec_swapchain_image[i];
-    frame->color.format = vk_color->find_color_format();
-    frame->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+    frame->image.image = struct_vulkan->swapchain.vec_swapchain_image[i];
+    frame->image.format = vk_color->find_color_format();
+    frame->image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
     frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
-    vk_image->create_image_view(&frame->color);
+    vk_image->create_image_view(&frame->image);
     vk_depth->create_depth_attachment(&frame->depth);
     vk_framebuffer->create_framebuffer_swapchain(struct_vulkan->vec_renderpass[2], frame);
     vk_synchronization->init_frame_sync(frame);
@@ -56,7 +56,7 @@ void VK_frame::clean_frame(){
   //Vec images
   for(int i=0; i<vec_frame.size(); i++){
     Struct_frame* frame = vec_frame[i];
-    vkDestroyImageView(struct_vulkan->device.device, frame->color.view, nullptr);
+    vkDestroyImageView(struct_vulkan->device.device, frame->image.view, nullptr);
     vk_image->clean_image(&frame->depth);
     vk_framebuffer->clean_framebuffer_obj(frame->fbo);
     vk_synchronization->clean_frame_sync(frame);
