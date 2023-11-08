@@ -22,7 +22,7 @@ public:
   ~VK_pipeline();
 
 public:
-  void cmd_bind_pipeline(Struct_renderpass* renderpass, string pipeline_name);
+  void cmd_bind_pipeline(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
 
   //Clean functions
   void clean_pipelines(Struct_renderpass* renderpass);

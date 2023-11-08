@@ -18,13 +18,11 @@ struct Struct_renderpass{
   //Drawing stuff
   std::vector<Struct_subpass*> vec_subpass;
   std::function<void(Struct_renderpass* renderpass)> draw_task;
-
-  //Render pass elements
-  VkRenderPass renderpass;
-  VkCommandBuffer command_buffer;
   Struct_framebuffer* framebuffer;
 
-  //Synchronization
+  //Renderpass stuff
+  VkRenderPass renderpass;
+  VkCommandBuffer command_buffer;
   VkSemaphore semaphore_wait;
   VkSemaphore semaphore_done;
   VkFence fence;

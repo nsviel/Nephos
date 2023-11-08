@@ -36,13 +36,20 @@ struct Struct_subpass{
 
   //Pipeline
   std::vector<Struct_pipeline*> vec_pipeline;
+  Struct_pipeline* get_pipeline(){
+    if(vec_pipeline.size() != 1){
+      std::cout<<"[error] several pipeline in subpass"<<std::endl;
+    }else{
+      return vec_pipeline[0];
+    }
+  }
   Struct_pipeline* get_pipeline_byName(string name){
     for(int i=0; i<vec_pipeline.size(); i++){
       if(vec_pipeline[i]->definition.name == name){
         return vec_pipeline[i];
       }
     }
-    cout<<"[error] Pipeline by name error -> "+ name +" not found"<<endl;
+    std::cout<<"[error] Pipeline by name error -> "+ name +" not found"<<std::endl;
     return nullptr;
   }
 

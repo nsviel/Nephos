@@ -98,7 +98,9 @@ void RP_scene::cmd_draw_scene(Struct_renderpass* renderpass){
   list<Struct_data*> list_data_scene = vk_engine->get_list_data_scene();
   //---------------------------
 
-  vk_pipeline->cmd_bind_pipeline(renderpass, "point");
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+  Struct_pipeline* pipeline = subpass->get_pipeline_byName("point");
+  vk_pipeline->cmd_bind_pipeline(renderpass, pipeline);
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data_scene.size(); i++){
@@ -119,7 +121,9 @@ void RP_scene::cmd_draw_glyph(Struct_renderpass* renderpass){
   list<Struct_data*> list_data_glyph = vk_engine->get_list_data_glyph();
   //---------------------------
 
-  vk_pipeline->cmd_bind_pipeline(renderpass, "line");
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+  Struct_pipeline* pipeline = subpass->get_pipeline_byName("line");
+  vk_pipeline->cmd_bind_pipeline(renderpass, pipeline);
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data_glyph.size(); i++){

@@ -25,11 +25,9 @@ VK_pipeline::VK_pipeline(VK_engine* vk_engine){
 }
 VK_pipeline::~VK_pipeline(){}
 
-void VK_pipeline::cmd_bind_pipeline(Struct_renderpass* renderpass, string pipeline_name){
+void VK_pipeline::cmd_bind_pipeline(Struct_renderpass* renderpass, Struct_pipeline* pipeline){
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
-  Struct_pipeline* pipeline = subpass->get_pipeline_byName(pipeline_name);
   vkCmdBindPipeline(renderpass->command_buffer, PIPELINE_GRAPHICS, pipeline->pipeline);
 
   //---------------------------

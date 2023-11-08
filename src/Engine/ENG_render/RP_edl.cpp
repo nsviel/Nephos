@@ -100,15 +100,15 @@ void RP_edl::update_descriptor(Struct_renderpass* renderpass){
 void RP_edl::draw_command(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
-  Struct_pipeline* pipeline = subpass->get_pipeline_byName("triangle_EDL");
   EDL_param* edl_param = edl_shader->get_edl_param();
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+  Struct_pipeline* pipeline = subpass->get_pipeline();
   Struct_framebuffer* framebuffer = renderpass->framebuffer;
 
   vk_command->start_render_pass(renderpass, framebuffer->fbo, false);
   vk_viewport->cmd_viewport(renderpass);
 
-  vk_pipeline->cmd_bind_pipeline(renderpass, "triangle_EDL");
+  vk_pipeline->cmd_bind_pipeline(renderpass, pipeline);
   edl_shader->update_shader();
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
   vk_descriptor->cmd_bind_descriptor(renderpass, "triangle_EDL", pipeline->binding.descriptor.set);
