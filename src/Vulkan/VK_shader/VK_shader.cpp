@@ -130,6 +130,7 @@ void VK_shader::recompile_shader(Shader_info* shader_info){
     int result = system(command.c_str());
     if(result != 0){
       cout<<"[error] Shader compilation GLSL -> SPIR-V\n"<<command<<endl;
+      exit(0);
     }
 /*
     command = "../src/Element/ELE_shader/compile.sh " + glsl_fs + " " + spir_fs + " >> " + path_output +" 2>&1";
