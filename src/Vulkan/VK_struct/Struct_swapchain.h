@@ -16,7 +16,7 @@ struct Struct_swapchain{
   vector<VkImage> vec_swapchain_image;
 
   //Swapchain frame
-  Struct_frame* get_framebuffer_presentation(){return vec_frame[frame_presentation_ID];}
+  Struct_frame* get_frame_presentation(){return vec_frame[frame_presentation_ID];}
   uint32_t frame_presentation_ID = 0;
   std::vector<Struct_frame*> vec_frame;
 
