@@ -1,4 +1,4 @@
-#include "GUI_control_gui.h"
+#include "GUI_control.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -7,7 +7,7 @@
 
 
 //Constructor / Destructor
-GUI_control_gui::GUI_control_gui(GUI* gui){
+GUI_control::GUI_control(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -16,10 +16,10 @@ GUI_control_gui::GUI_control_gui(GUI* gui){
 
   //---------------------------
 }
-GUI_control_gui::~GUI_control_gui(){}
+GUI_control::~GUI_control(){}
 
 //Main function
-void GUI_control_gui::run_control(){
+void GUI_control::run_control(){
   //---------------------------
 
   this->control_keyboard_oneAction();
@@ -28,7 +28,7 @@ void GUI_control_gui::run_control(){
 }
 
 //Keyboard
-void GUI_control_gui::control_keyboard_oneAction(){
+void GUI_control::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 

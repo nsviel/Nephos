@@ -5,7 +5,7 @@
 #include <VK_main/VK_engine.h>
 #include <GUI_tab/GUI_tab.h>
 #include <RES_gpu/GUI_gpu.h>
-#include <GUI_control/GUI_control_gui.h>
+#include <GUI_control/GUI_control.h>
 #include <GUI_style/GUI_style.h>
 #include <GUI_style/GUI_font.h>
 #include <TAB_render/RND_engine/RND_engine.h>
@@ -26,13 +26,11 @@ GUI::GUI(ELE_window* ele_window, Engine* engine){
   this->engine = engine;
   this->ele_window = ele_window;
   this->eng_data = engine->get_eng_data();
-
-  this->gui_init = new RND_init(this);
   this->gui_style = new GUI_style(this);
   this->gui_font = new GUI_font(this);
   this->gui_tab = new GUI_tab(this);
   this->gui_gpu = new GUI_gpu(this);
-  this->gui_control = new GUI_control_gui(this);
+  this->gui_control = new GUI_control(this);
 
   //---------------------------
 }

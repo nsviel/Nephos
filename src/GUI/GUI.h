@@ -8,9 +8,8 @@ class ENG_data;
 class ELE_window;
 
 class GUI_font;
-class GUI_control_gui;
+class GUI_control;
 class GUI_style;
-class RND_init;
 class GUI_gpu;
 class GUI_image;
 class GUI_video;
@@ -36,9 +35,8 @@ public:
   inline ENG_data* get_eng_data(){return eng_data;}
   inline ELE_window* get_ele_window(){return ele_window;}
 
-  inline GUI_control_gui* get_gui_control(){return gui_control;}
+  inline GUI_control* get_gui_control(){return gui_control;}
   inline GUI_style* get_gui_style(){return gui_style;}
-  inline RND_init* get_gui_init(){return gui_init;}
   inline GUI_tab* get_gui_tab(){return gui_tab;}
   inline GUI_font* get_gui_font(){return gui_font;}
 
@@ -47,9 +45,8 @@ private:
   ENG_data* eng_data;
   ELE_window* ele_window;
 
-  GUI_control_gui* gui_control;
+  GUI_control* gui_control;
   GUI_style* gui_style;
-  RND_init* gui_init;
   GUI_gpu* gui_gpu;
   GUI_font* gui_font;
   GUI_tab* gui_tab;

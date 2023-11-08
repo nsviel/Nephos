@@ -8,12 +8,12 @@ class GUI_tab;
 class ELE_window;
 
 
-class GUI_control_gui
+class GUI_control
 {
 public:
   //Constructor / Destructor
-  GUI_control_gui(GUI* gui);
-  ~GUI_control_gui();
+  GUI_control(GUI* gui);
+  ~GUI_control();
 
 public:
   //Main function
