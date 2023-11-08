@@ -1,5 +1,6 @@
 #include "PAN_scene.h"
 
+#include <Engine.h>
 #include <GUI.h>
 #include <GUI_tab/GUI_tab.h>
 #include <TAB_render/RND_config/RND_panel.h>
@@ -14,7 +15,8 @@
 PAN_scene::PAN_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  ENG_data* eng_data = gui->get_eng_data();
+  Engine* engine = gui->get_engine();
+  ENG_data* eng_data = engine->get_eng_data();
   GUI_tab* gui_tab = gui->get_gui_tab();
   TAB_render* gui_render_panel = gui_tab->get_gui_render();
   this->eng_database = eng_data->get_eng_database();

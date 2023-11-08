@@ -2,6 +2,7 @@
 #include "RND_tree.h"
 
 #include <GUI.h>
+#include <Engine.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_scene.h>
 #include <ENG_data/ENG_load/ENG_loader.h>
@@ -14,7 +15,8 @@
 RND_init::RND_init(GUI* gui){
   //---------------------------
 
-  ENG_data* eng_data = gui->get_eng_data();
+  Engine* engine = gui->get_engine();
+  ENG_data* eng_data = engine->get_eng_data();
 
   this->eng_scene = eng_data->get_eng_scene();
   this->eng_loader = eng_data->get_eng_loader();

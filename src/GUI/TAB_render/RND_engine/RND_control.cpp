@@ -16,7 +16,8 @@
 RND_control::RND_control(GUI* gui){
   //---------------------------
 
-  ENG_data* eng_data = gui->get_eng_data();
+  Engine* engine = gui->get_engine();
+  ENG_data* eng_data = engine->get_eng_data();
   this->engine = gui->get_engine();
   this->ele_window = engine->get_ele_window();
   this->param = engine->get_param();

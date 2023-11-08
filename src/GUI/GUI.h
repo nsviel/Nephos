@@ -32,7 +32,6 @@ public:
   void docker_space_main();
 
   inline Engine* get_engine(){return engine;}
-  inline ENG_data* get_eng_data(){return eng_data;}
   inline ELE_window* get_ele_window(){return ele_window;}
 
   inline GUI_control* get_gui_control(){return gui_control;}

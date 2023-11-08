@@ -2,6 +2,7 @@
 #include <TAB_render/RND_config/RND_panel.h>
 
 #include <GUI.h>
+#include <Engine.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_scene.h>
 #include <image/IconsFontAwesome5.h>
@@ -11,7 +12,8 @@
 PAN_object::PAN_object(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  ENG_data* eng_data = gui->get_eng_data();
+  Engine* engine = gui->get_engine();
+  ENG_data* eng_data = engine->get_eng_data();
   this->eng_scene = eng_data->get_eng_scene();
 
   this->item_width = 150;

@@ -1,22 +1,12 @@
 #include "GUI.h"
-#include "ELE_window/ELE_window.h"
 
 #include <Engine.h>
-#include <VK_main/VK_engine.h>
-#include <GUI_tab/GUI_tab.h>
+#include <ELE_window/ELE_window.h>
 #include <RES_gpu/GUI_gpu.h>
+#include <GUI_tab/GUI_tab.h>
 #include <GUI_control/GUI_control.h>
 #include <GUI_style/GUI_style.h>
 #include <GUI_style/GUI_font.h>
-#include <TAB_render/RND_engine/RND_engine.h>
-#include <TAB_render/RND_engine/PAN_camera.h>
-#include <TAB_render/RND_data/PAN_object.h>
-#include <TAB_render/RND_data/PAN_set.h>
-#include <TAB_render/RND_profiler/GUI_profiler.h>
-#include <TAB_render/RND_shader/RND_shader.h>
-#include <TAB_render/RND_data/PAN_scene.h>
-#include <TAB_render/RND_initialization/RND_init.h>
-#include <RES_capture/GUI_capture.h>
 
 
 //Constructor / Destructor
@@ -25,7 +15,7 @@ GUI::GUI(ELE_window* ele_window, Engine* engine){
 
   this->engine = engine;
   this->ele_window = ele_window;
-  this->eng_data = engine->get_eng_data();
+
   this->gui_style = new GUI_style(this);
   this->gui_font = new GUI_font(this);
   this->gui_tab = new GUI_tab(this);
