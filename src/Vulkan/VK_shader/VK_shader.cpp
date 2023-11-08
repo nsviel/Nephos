@@ -121,24 +121,20 @@ void VK_shader::recompile_shader(Shader_info* shader_info){
 
   //Compile shader from GLSL to SPIR-V
   if(shader_info->compile_shader){
-    string glsl_vs = shader_info->path_glsl_vs;
-    string glsl_fs = shader_info->path_glsl_fs;
-    string spir_vs = shader_info->path_spir_vs;
-    string spir_fs = shader_info->path_spir_fs;
+    this->run_recompilation(shader_info->path_glsl_vs, shader_info->path_spir_vs);
+    this->run_recompilation(shader_info->path_glsl_fs, shader_info->path_spir_fs);
+  }
 
-    string command = "../src/Element/ELE_shader/compile.sh " + glsl_vs + " " + spir_vs + " >> " + path_output +" 2>&1";
-    int result = system(command.c_str());
-    if(result != 0){
-      cout<<"[error] Shader compilation GLSL -> SPIR-V\n"<<command<<endl;
-      exit(0);
-    }
-/*
-    command = "../src/Element/ELE_shader/compile.sh " + glsl_fs + " " + spir_fs + " >> " + path_output +" 2>&1";
-    result = system(command.c_str());
-    if(result != 0){
-      cout<<"[error] Shader compilation GLSL -> SPIR-V"<<endl;
-    }
-    */
+  //---------------------------
+}
+void VK_shader::run_recompilation(string path_glsl, string path_spir){
+  //---------------------------
+
+  string command = "../src/Element/ELE_shader/compile.sh " + path_glsl + " " + path_spir + " >> " + path_output +" 2>&1";
+  int result = system(command.c_str());
+  if(result != 0){
+    cout<<"[error] Shader compilation GLSL -> SPIR-V\n"<<command<<endl;
+    exit(0);
   }
 
   //---------------------------
