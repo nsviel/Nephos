@@ -49,6 +49,8 @@ void VK_command_buffer::clean_command_pool(){
 void VK_command_buffer::allocate_command_buffer_primary(Struct_renderpass* renderpass){
   //---------------------------
 
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
   //Command buffer allocation
   VkCommandBufferAllocateInfo allocInfo{};
   allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
@@ -56,7 +58,7 @@ void VK_command_buffer::allocate_command_buffer_primary(Struct_renderpass* rende
   allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
   allocInfo.commandBufferCount = 1;
 
-  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &allocInfo, &renderpass->command_buffer);
+  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &allocInfo, &subpass->command_buffer);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }

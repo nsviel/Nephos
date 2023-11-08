@@ -65,24 +65,28 @@ void VK_drawing::draw_frame(){
 void VK_drawing::cmd_draw_data(Struct_renderpass* renderpass, Struct_data* data){
   //---------------------------
 
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
   VkDeviceSize offsets[] = {0};
   if(data->xyz.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(renderpass->command_buffer, 0, 1, &data->xyz.vbo, offsets);
+    vkCmdBindVertexBuffers(subpass->command_buffer, 0, 1, &data->xyz.vbo, offsets);
   }
   if(data->rgb.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(renderpass->command_buffer, 1, 1, &data->rgb.vbo, offsets);
+    vkCmdBindVertexBuffers(subpass->command_buffer, 1, 1, &data->rgb.vbo, offsets);
   }
   if(data->uv.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(renderpass->command_buffer, 2, 1, &data->uv.vbo, offsets);
+    vkCmdBindVertexBuffers(subpass->command_buffer, 2, 1, &data->uv.vbo, offsets);
   }
-  vkCmdDraw(renderpass->command_buffer, data->object->xyz.size(), 1, 0, 0);
+  vkCmdDraw(subpass->command_buffer, data->object->xyz.size(), 1, 0, 0);
 
   //---------------------------
 }
 void VK_drawing::cmd_line_with(Struct_renderpass* renderpass, Struct_data* data){
   //---------------------------
 
-  vkCmdSetLineWidth(renderpass->command_buffer, data->object->draw_line_width);
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
+  vkCmdSetLineWidth(subpass->command_buffer, data->object->draw_line_width);
 
   //---------------------------
 }

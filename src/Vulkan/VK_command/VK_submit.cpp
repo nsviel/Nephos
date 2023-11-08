@@ -84,8 +84,10 @@ void VK_submit::submit_graphics_command(Struct_submit_command* command){
 void VK_submit::submit_graphics_command(Struct_renderpass* renderpass){
   //---------------------------
 
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
   Struct_submit_command command;
-  command.command_buffer = renderpass->command_buffer;
+  command.command_buffer = subpass->command_buffer;
   command.semaphore_wait = renderpass->semaphore_wait;
   command.semaphore_done = renderpass->semaphore_done;
   command.fence = renderpass->fence;

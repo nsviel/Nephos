@@ -40,11 +40,13 @@ void VK_viewport::init_viewport(){
 void VK_viewport::cmd_viewport(Struct_renderpass* renderpass){
   //---------------------------
 
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
   //Viewport
-  vkCmdSetViewport(renderpass->command_buffer, 0, 1, &struct_vulkan->viewport);
+  vkCmdSetViewport(subpass->command_buffer, 0, 1, &struct_vulkan->viewport);
 
   //Scissor
-  vkCmdSetScissor(renderpass->command_buffer, 0, 1, &struct_vulkan->scissor);
+  vkCmdSetScissor(subpass->command_buffer, 0, 1, &struct_vulkan->scissor);
 
   //---------------------------
 }

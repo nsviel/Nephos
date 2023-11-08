@@ -70,6 +70,9 @@ void VK_imgui::init(){
 void VK_imgui::load_font(){
   //---------------------------
 
+  Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[2];
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
   VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->command_pool, 0);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
@@ -78,18 +81,18 @@ void VK_imgui::load_font(){
   VkCommandBufferBeginInfo begin_info = {};
   begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
   begin_info.flags |= VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-  result = vkBeginCommandBuffer(struct_vulkan->vec_renderpass[2]->command_buffer, &begin_info);
+  result = vkBeginCommandBuffer(subpass->command_buffer, &begin_info);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }
 
-  ImGui_ImplVulkan_CreateFontsTexture(struct_vulkan->vec_renderpass[2]->command_buffer);
+  ImGui_ImplVulkan_CreateFontsTexture(subpass->command_buffer);
 
   VkSubmitInfo end_info = {};
   end_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   end_info.commandBufferCount = 1;
-  end_info.pCommandBuffers = &struct_vulkan->vec_renderpass[2]->command_buffer;
-  result = vkEndCommandBuffer(struct_vulkan->vec_renderpass[2]->command_buffer);
+  end_info.pCommandBuffers = &subpass->command_buffer;
+  result = vkEndCommandBuffer(subpass->command_buffer);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }

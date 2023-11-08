@@ -25,10 +25,10 @@ VK_pipeline::VK_pipeline(VK_engine* vk_engine){
 }
 VK_pipeline::~VK_pipeline(){}
 
-void VK_pipeline::cmd_bind_pipeline(Struct_renderpass* renderpass, Struct_pipeline* pipeline){
+void VK_pipeline::cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pipeline){
   //---------------------------
 
-  vkCmdBindPipeline(renderpass->command_buffer, PIPELINE_GRAPHICS, pipeline->pipeline);
+  vkCmdBindPipeline(subpass->command_buffer, PIPELINE_GRAPHICS, pipeline->pipeline);
 
   //---------------------------
 }
