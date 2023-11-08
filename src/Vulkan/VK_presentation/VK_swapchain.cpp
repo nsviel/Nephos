@@ -44,6 +44,7 @@ void VK_swapchain::recreate_swapChain(){
 
   Struct_renderpass* renderpass_scene = struct_vulkan->get_renderpass_byName("scene");
   Struct_renderpass* renderpass_edl = struct_vulkan->get_renderpass_byName("edl");
+  if(renderpass_scene == nullptr) return;
 
   //Clean old values
   vk_frame->clean_frame();

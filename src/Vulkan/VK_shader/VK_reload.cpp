@@ -28,11 +28,13 @@ void VK_reload::hot_shader_reload(string shader_1, string shader_2){
 
   if(shader_1 == "Scene"){
     Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("scene");
+    if(renderpass == nullptr) return;
     Struct_pipeline* pipeline = vk_pipeline->get_pipeline_byName(renderpass, "point");
     this->recreate_pipeline(renderpass, pipeline);
   }
   if(shader_1 == "EDL"){
     Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("edl");
+    if(renderpass == nullptr) return;
     Struct_pipeline* pipeline = vk_pipeline->get_pipeline_byName(renderpass, "triangle_EDL");
     this->recreate_pipeline(renderpass, pipeline);
   }
