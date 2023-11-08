@@ -14,6 +14,7 @@ class GUI_gpu;
 class GUI_image;
 class GUI_video;
 class GUI_tab;
+class GUI_render;
 
 
 class GUI
@@ -49,6 +50,7 @@ private:
   GUI_gpu* gui_gpu;
   GUI_font* gui_font;
   GUI_tab* gui_tab;
+  GUI_render* gui_render;
 };
 
 #endif

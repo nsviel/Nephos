@@ -5,6 +5,7 @@
 #include <RES_gpu/GUI_gpu.h>
 #include <GUI_tab/GUI_tab.h>
 #include <GUI_control/GUI_control.h>
+#include <GUI_render/GUI_render.h>
 #include <GUI_style/GUI_style.h>
 #include <GUI_style/GUI_font.h>
 
@@ -21,6 +22,7 @@ GUI::GUI(ELE_window* ele_window, Engine* engine){
   this->gui_tab = new GUI_tab(this);
   this->gui_gpu = new GUI_gpu(this);
   this->gui_control = new GUI_control(this);
+  this->gui_render = new GUI_render(this);
 
   //---------------------------
 }
@@ -37,6 +39,7 @@ GUI::~GUI(){
 void GUI::init(){
   //---------------------------
 
+  gui_render->init();
   gui_tab->create_panels();
   gui_gpu->init_gui_vulkan();
   gui_font->init_gui_font();
@@ -56,6 +59,7 @@ void GUI::loop(){
   gui_control->run_control();
 
   gui_gpu->render_frame();
+  gui_render->loop();
 
   //---------------------------
 }
@@ -63,6 +67,7 @@ void GUI::exit(){
   //---------------------------
 
   gui_gpu->clean_gui_vulkan();
+  gui_render->clean();
 
   //---------------------------
 }

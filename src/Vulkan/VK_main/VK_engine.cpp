@@ -78,7 +78,7 @@ void VK_engine::init(){
   //---------------------------
   struct_vulkan->info.engine_init = timer.stop_us(t1) / 1000;
 }
-void VK_engine::device_wait_idle() {
+void VK_engine::device_wait_idle(){
   //---------------------------
 
   vkDeviceWaitIdle(struct_vulkan->device.device);

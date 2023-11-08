@@ -33,6 +33,7 @@ void VK_frame::create_frame(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
+    Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("gui");
     Struct_frame* frame = new Struct_frame();
     frame->image.image = struct_vulkan->swapchain.vec_swapchain_image[i];
     frame->image.format = vk_color->find_color_format();
@@ -41,7 +42,7 @@ void VK_frame::create_frame(){
 
     vk_image->create_image_view(&frame->image);
     vk_depth->create_depth_attachment(&frame->depth);
-    vk_framebuffer->create_framebuffer_swapchain(struct_vulkan->vec_renderpass[2], frame);
+    vk_framebuffer->create_framebuffer_swapchain(renderpass, frame);
     vk_synchronization->init_frame_sync(frame);
 
     struct_vulkan->swapchain.vec_frame.push_back(frame);

@@ -41,6 +41,16 @@ struct Struct_vulkan{
   std::vector<Struct_image*> vec_texture;
   std::list<Struct_data*> list_data;
 
+  Struct_renderpass* get_renderpass_byName(std::string name){
+    for(int i=0; i<vec_renderpass.size(); i++){
+      if(vec_renderpass[i]->name == name){
+        return vec_renderpass[i];
+      }
+    }
+    std::cout<<"[error] Renderpass by name error -> "+ name +" not found"<<std::endl;
+    return nullptr;
+  }
+
   //---------------------------
 };
 
