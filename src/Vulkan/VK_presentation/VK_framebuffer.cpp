@@ -139,3 +139,10 @@ void VK_framebuffer::clean_framebuffer_obj(Struct_framebuffer* framebuffer){
 
   //---------------------------
 }
+void VK_framebuffer::clean_framebuffer_obj(Struct_frame* framebuffer){
+  //---------------------------
+
+  vkDestroyFramebuffer(struct_vulkan->device.device, framebuffer->fbo, nullptr);
+
+  //---------------------------
+}

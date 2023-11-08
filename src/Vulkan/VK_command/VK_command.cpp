@@ -72,7 +72,7 @@ void VK_command::stop_command_buffer(VkCommandBuffer command_buffer){
 }
 
 //Render pass
-void VK_command::start_render_pass(Struct_renderpass* renderpass, Struct_framebuffer* frame, bool with_secondary_cb){
+void VK_command::start_render_pass(Struct_renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb){
   //---------------------------
 
   vkResetCommandBuffer(renderpass->command_buffer, 0);
@@ -89,7 +89,7 @@ void VK_command::start_render_pass(Struct_renderpass* renderpass, Struct_framebu
   VkRenderPassBeginInfo renderpass_info{};
   renderpass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
   renderpass_info.renderPass = renderpass->renderpass;
-  renderpass_info.framebuffer = frame->fbo;
+  renderpass_info.framebuffer = fbo;
   renderpass_info.renderArea.offset = {0, 0};
   renderpass_info.renderArea.extent = struct_vulkan->window.extent;
   renderpass_info.clearValueCount = static_cast<uint32_t>(clear_value.size());
