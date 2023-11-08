@@ -70,15 +70,8 @@ void VK_data::clean_data(Struct_data* data){
 void VK_data::clean_data_all(){
   //---------------------------
 
-  //Data list Scene
   for(int i=0; i<struct_vulkan->list_data.size(); i++){
     Struct_data* data = *next(struct_vulkan->list_data.begin(),i);
-    this->clean_data(data);
-  }
-
-  //Data list Glyph
-  for(int i=0; i<struct_vulkan->list_data_glyph.size(); i++){
-    Struct_data* data = *next(struct_vulkan->list_data_glyph.begin(),i);
     this->clean_data(data);
   }
 
