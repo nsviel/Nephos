@@ -69,7 +69,7 @@ void RP_edl::create_subpass(Struct_renderpass* renderpass){
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_color", 0, 1, TYPE_SAMPLER, STAGE_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_depth", 0, 4, TYPE_SAMPLER, STAGE_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("EDL_param", sizeof(EDL_param), 5, TYPE_UNIFORM, STAGE_FS));
-  renderpass->vec_pipeline.push_back(pipeline);
+  subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
 }
@@ -87,9 +87,10 @@ void RP_edl::update_descriptor(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_framebuffer* frame_scene = struct_vulkan->vec_renderpass[0]->framebuffer;
-  //Struct_framebuffer* frame_scene = struct_vulkan->swapchain.get_frame_rendering();
-  for(int i=0; i<renderpass->vec_pipeline.size(); i++){
-    Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
+  for(int i=0; i<subpass->vec_pipeline.size(); i++){
+    Struct_pipeline* pipeline = subpass->vec_pipeline[i];
     vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);
     vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->depth);
   }
@@ -99,7 +100,8 @@ void RP_edl::update_descriptor(Struct_renderpass* renderpass){
 void RP_edl::draw_command(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_pipeline* pipeline = renderpass->get_pipeline_byName("triangle_EDL");
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+  Struct_pipeline* pipeline = subpass->get_pipeline_byName("triangle_EDL");
   EDL_param* edl_param = edl_shader->get_edl_param();
   Struct_framebuffer* framebuffer = renderpass->framebuffer;
 

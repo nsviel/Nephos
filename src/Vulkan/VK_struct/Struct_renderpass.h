@@ -11,23 +11,11 @@
 struct Struct_renderpass{
   //---------------------------
 
-  //Function
-  Struct_pipeline* get_pipeline_byName(string name){
-    for(int i=0; i<vec_pipeline.size(); i++){
-      if(vec_pipeline[i]->definition.name == name){
-        return vec_pipeline[i];
-      }
-    }
-    cout<<"[error] Pipeline by name error -> "+ name +" not found"<<endl;
-    return nullptr;
-  }
-
   //Info
   std::string name;
   std::string subpass_trg;
 
   //Drawing stuff
-  std::vector<Struct_pipeline*> vec_pipeline;
   std::vector<Struct_subpass*> vec_subpass;
   std::function<void(Struct_renderpass* renderpass)> draw_task;
 

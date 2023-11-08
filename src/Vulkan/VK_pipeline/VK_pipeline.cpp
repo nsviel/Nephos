@@ -28,7 +28,8 @@ VK_pipeline::~VK_pipeline(){}
 void VK_pipeline::cmd_bind_pipeline(Struct_renderpass* renderpass, string pipeline_name){
   //---------------------------
 
-  Struct_pipeline* pipeline = renderpass->get_pipeline_byName(pipeline_name);
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+  Struct_pipeline* pipeline = subpass->get_pipeline_byName(pipeline_name);
   vkCmdBindPipeline(renderpass->command_buffer, PIPELINE_GRAPHICS, pipeline->pipeline);
 
   //---------------------------
@@ -38,8 +39,10 @@ void VK_pipeline::cmd_bind_pipeline(Struct_renderpass* renderpass, string pipeli
 void VK_pipeline::clean_pipelines(Struct_renderpass* renderpass){
   //---------------------------
 
-  for(int i=0; i<renderpass->vec_pipeline.size(); i++){
-    Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
+  for(int i=0; i<subpass->vec_pipeline.size(); i++){
+    Struct_pipeline* pipeline = subpass->vec_pipeline[i];
     this->clean_pipeline(pipeline);
   }
 
@@ -59,8 +62,10 @@ void VK_pipeline::clean_pipeline(Struct_pipeline* pipeline){
 void VK_pipeline::create_pipelines(Struct_renderpass* renderpass){
   //---------------------------
 
-  for(int i=0; i<renderpass->vec_pipeline.size(); i++){
-    Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
+  for(int i=0; i<subpass->vec_pipeline.size(); i++){
+    Struct_pipeline* pipeline = subpass->vec_pipeline[i];
     this->create_pipeline(renderpass, pipeline);
   }
 
@@ -378,8 +383,10 @@ void VK_pipeline::check_struct_pipeline_input(Struct_pipeline* pipeline){
 Struct_pipeline* VK_pipeline::get_pipeline_byName(Struct_renderpass* renderpass, string name){
   //---------------------------
 
-  for(int i=0; i<renderpass->vec_pipeline.size(); i++){
-    Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
+  Struct_subpass* subpass = renderpass->vec_subpass[0];
+
+  for(int i=0; i<subpass->vec_pipeline.size(); i++){
+    Struct_pipeline* pipeline = subpass->vec_pipeline[i];
     if(pipeline->definition.name == name){
       return pipeline;
     }
@@ -387,8 +394,8 @@ Struct_pipeline* VK_pipeline::get_pipeline_byName(Struct_renderpass* renderpass,
 
   //Error barrier
   cout<<"[error] Pipeline by name error -> not found"<<endl;
-  for(int i=0; i<renderpass->vec_pipeline.size(); i++){
-    Struct_pipeline* pipeline = renderpass->vec_pipeline[i];
+  for(int i=0; i<subpass->vec_pipeline.size(); i++){
+    Struct_pipeline* pipeline = subpass->vec_pipeline[i];
     cout<<pipeline->definition.name<<endl;
   }
 

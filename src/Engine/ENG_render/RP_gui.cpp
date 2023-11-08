@@ -53,7 +53,7 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
   pipeline->definition.purpose = "ui";
   pipeline->definition.topology = "triangle";
   pipeline->definition.shader = can_shader->get_shader_info("Canvas");
-  renderpass->vec_pipeline.push_back(pipeline);
+  subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
 }

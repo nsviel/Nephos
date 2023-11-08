@@ -63,7 +63,7 @@ void RP_scene::create_subpass(Struct_renderpass* renderpass){
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS));
-  renderpass->vec_pipeline.push_back(pipeline);
+  subpass->vec_pipeline.push_back(pipeline);
 
   pipeline = new Struct_pipeline();
   pipeline->definition.name = "point";
@@ -74,7 +74,7 @@ void RP_scene::create_subpass(Struct_renderpass* renderpass){
   pipeline->definition.vec_data_name.push_back("color");
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("point_size", sizeof(int), 1, TYPE_UNIFORM, STAGE_VS));
-  renderpass->vec_pipeline.push_back(pipeline);
+  subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
 }
