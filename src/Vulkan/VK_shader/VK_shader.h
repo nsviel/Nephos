@@ -24,6 +24,7 @@ public:
   //Subfunction
   VkShaderModule create_shader_module(const std::vector<char>& code);
   std::vector<char> read_file(const std::string& filename);
+  void recompile_shader(Shader_info* shader_info);
 
 private:
   Struct_vulkan* struct_vulkan;

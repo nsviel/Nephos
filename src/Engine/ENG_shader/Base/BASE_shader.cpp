@@ -25,8 +25,6 @@ Shader_info* BASE_shader::get_shader_info(string title){
 string BASE_shader::get_glsl_path_vs(int ID_subclass){
   //---------------------------
 
-  string file_vs = vec_shader_info[ID_subclass]->path_glsl_vs;
-  string folder = vec_shader_info[ID_subclass]->folder;
   string path_vs = vec_shader_info[ID_subclass]->path_glsl_vs;
 
   //---------------------------
@@ -35,8 +33,6 @@ string BASE_shader::get_glsl_path_vs(int ID_subclass){
 string BASE_shader::get_glsl_path_fs(int ID_subclass){
   //---------------------------
 
-  string file_fs = vec_shader_info[ID_subclass]->path_glsl_fs;
-  string folder = vec_shader_info[ID_subclass]->folder;
   string path_fs = vec_shader_info[ID_subclass]->path_glsl_fs;
 
   //---------------------------

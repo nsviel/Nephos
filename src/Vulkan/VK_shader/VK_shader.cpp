@@ -31,23 +31,9 @@ void VK_shader::create_pipeline_shader(Struct_pipeline* pipeline){
 //Subfunction
 void VK_shader::create_pipeline_shader_module(Struct_pipeline* pipeline){
   //---------------------------
-/*
-  //Compile shader from GLSL to SPIR-V
-  if(pipeline->definition.shader->compile_shader){
-    string folder = pipeline->definition.shader->folder;
-    string vs = pipeline->definition.shader->path_vs;
-    string fs = pipeline->definition.shader->path_fs;
-    string command = "../src/Element/ELE_shader/compile.sh " + folder + " " + vs + " " + fs + " >> " + path_output +" 2>&1";
-    int result = system(command.c_str());
-    if(result != 0){
-      cout<<"[error] Shader compilation GLSL -> SPIR-V"<<endl;
-    }
-  }
-*/
+
   //Load spir format shaders
-  string path_shader = "../src/Engine/ENG_shader/";
-  //string path_vs = pipeline->definition.shader->path_spir_vs;
-  //string path_fs = path_shader + pipeline->definition.shader->folder + "/spir/" + pipeline->definition.shader->path_fs + ".spv";
+  this->recompile_shader(pipeline->definition.shader);
   auto code_vert = read_file(pipeline->definition.shader->path_spir_vs);
   auto code_frag = read_file(pipeline->definition.shader->path_spir_fs);
 
@@ -129,4 +115,30 @@ std::vector<char> VK_shader::read_file(const std::string& path){
 
   //---------------------------
   return buffer;
+}
+void VK_shader::recompile_shader(Shader_info* shader_info){
+  //---------------------------
+
+  //Compile shader from GLSL to SPIR-V
+  if(shader_info->compile_shader){
+    string glsl_vs = shader_info->path_glsl_vs;
+    string glsl_fs = shader_info->path_glsl_fs;
+    string spir_vs = shader_info->path_spir_vs;
+    string spir_fs = shader_info->path_spir_fs;
+
+    string command = "../src/Element/ELE_shader/compile.sh " + glsl_vs + " " + spir_vs + " >> " + path_output +" 2>&1";
+    int result = system(command.c_str());
+    if(result != 0){
+      cout<<"[error] Shader compilation GLSL -> SPIR-V\n"<<command<<endl;
+    }
+/*
+    command = "../src/Element/ELE_shader/compile.sh " + glsl_fs + " " + spir_fs + " >> " + path_output +" 2>&1";
+    result = system(command.c_str());
+    if(result != 0){
+      cout<<"[error] Shader compilation GLSL -> SPIR-V"<<endl;
+    }
+    */
+  }
+
+  //---------------------------
 }
