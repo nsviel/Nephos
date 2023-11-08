@@ -42,17 +42,20 @@ void VK_swapchain::recreate_swapChain(){
 
   vkDeviceWaitIdle(struct_vulkan->device.device);
 
+  Struct_renderpass* renderpass_scene = struct_vulkan->get_renderpass_byName("scene");
+  Struct_renderpass* renderpass_edl = struct_vulkan->get_renderpass_byName("edl");
+
   //Clean old values
   vk_frame->clean_frame();
-  vk_framebuffer->clean_framebuffer(struct_vulkan->vec_renderpass[0]);
-  vk_framebuffer->clean_framebuffer(struct_vulkan->vec_renderpass[1]);
+  vk_framebuffer->clean_framebuffer(renderpass_scene);
+  vk_framebuffer->clean_framebuffer(renderpass_edl);
   this->clean_swapchain();
 
   //Recreate values
   this->create_swapchain();
   vk_frame->create_frame();
-  vk_framebuffer->create_framebuffer(struct_vulkan->vec_renderpass[0]);
-  vk_framebuffer->create_framebuffer(struct_vulkan->vec_renderpass[1]);
+  vk_framebuffer->create_framebuffer(renderpass_scene);
+  vk_framebuffer->create_framebuffer(renderpass_edl);
 
   //---------------------------
 }

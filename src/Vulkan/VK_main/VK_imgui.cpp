@@ -17,7 +17,7 @@ VK_imgui::~VK_imgui(){}
 
 //Main function
 void VK_imgui::init(){
-  VkRenderPass renderPass = struct_vulkan->vec_renderpass[2]->renderpass;
+  Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("gui");
   //---------------------------
 
   // Setup Dear ImGui context
@@ -63,7 +63,7 @@ void VK_imgui::init(){
   init_info.MinImageCount = 3;
   init_info.ImageCount = 3;
   init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
-  ImGui_ImplVulkan_Init(&init_info, renderPass);
+  ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
 
   //---------------------------
 }
@@ -78,7 +78,7 @@ void VK_imgui::draw(Struct_subpass* subpass){
 void VK_imgui::load_font(){
   //---------------------------
 
-  Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[2];
+  Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("gui");
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->command_pool, 0);
@@ -129,7 +129,8 @@ void VK_imgui::clean(){
 ImTextureID VK_imgui::engine_texture(){
   //---------------------------
 
-  Struct_framebuffer* frame_edl = struct_vulkan->vec_renderpass[1]->framebuffer;
+  Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("edl");
+  Struct_framebuffer* frame_edl = renderpass->framebuffer;
   Struct_image* image = &frame_edl->color;
   VkDescriptorSet descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   ImTextureID texture = reinterpret_cast<ImTextureID>(descriptor);
