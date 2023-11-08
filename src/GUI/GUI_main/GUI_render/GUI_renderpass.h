@@ -1,32 +1,31 @@
-#ifndef RP_UI_H
-#define RP_UI_H
+#ifndef GUI_RENDERPASS_H
+#define GUI_RENDERPASS_H
 
 #include <VK_struct/Struct_renderpass.h>
 #include <VK_struct/Struct_pipeline.h>
 #include <ELE_specific/common.h>
 
-class ENG_shader;
-class Engine;
+class GUI;
 class VK_pipeline;
 
 
-class RP_gui
+class GUI_renderpass
 {
 public:
   //Constructor / Destructor
-  RP_gui(Engine* engine);
-  ~RP_gui();
+  GUI_renderpass(GUI* gui);
+  ~GUI_renderpass();
 
 public:
   //Init functions
-  Struct_renderpass* init_renderpass();
+  void init_renderpass();
   void create_subpass(Struct_renderpass* renderpass);
 
   //Draw function
   void draw_gui(Struct_subpass* subpass);
 
 private:
-  ENG_shader* eng_shader;
+  //ENG_shader* eng_shader;
   VK_pipeline* vk_pipeline;
 };
 

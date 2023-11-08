@@ -1,6 +1,6 @@
-#include "RP_gui.h"
+#include "GUI_renderpass.h"
 
-#include <Engine.h>
+#include <GUI.h>
 #include <ENG_shader/ENG_shader.h>
 #include <ENG_shader/Canvas/CAN_shader.h>
 #include <VK_pipeline/VK_pipeline.h>
@@ -8,39 +8,38 @@
 
 
 //Constructor / Destructor
-RP_gui::RP_gui(Engine* engine){
+GUI_renderpass::GUI_renderpass(GUI* engine){
   //---------------------------
-
+/*
   VK_engine* vk_engine = engine->get_vk_engine();
 
   this->eng_shader = engine->get_eng_shader();
+  this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_pipeline = new VK_pipeline(vk_engine);
-
+*/
   //---------------------------
 }
-RP_gui::~RP_gui(){}
+GUI_renderpass::~GUI_renderpass(){}
 
 //Init function
-Struct_renderpass* RP_gui::init_renderpass(){
+void GUI_renderpass::init_renderpass(){
   //---------------------------
-
-  //Renderpass
+/*
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "gui";
-
-  //Pipeline
   this->create_subpass(renderpass);
 
+  vk_render->add_renderpass_description(renderpass);
+*/
   //---------------------------
-  return renderpass;
 }
-void RP_gui::create_subpass(Struct_renderpass* renderpass){
-  CAN_shader* can_shader = eng_shader->get_can_shader();
+void GUI_renderpass::create_subpass(Struct_renderpass* renderpass){
+/*  CAN_shader* can_shader = eng_shader->get_can_shader();
   //---------------------------
 
   Struct_subpass* subpass = new Struct_subpass();
   subpass->target = "presentation";
-  subpass->draw_task = [this](Struct_subpass* subpass){RP_gui::draw_gui(subpass);};
+  subpass->draw_task = [this](Struct_subpass* subpass){GUI_renderpass::draw_gui(subpass);};
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "triangle";
@@ -50,11 +49,11 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
   subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
-  renderpass->vec_subpass.push_back(subpass);
+  renderpass->vec_subpass.push_back(subpass);*/
 }
 
 //Draw function
-void RP_gui::draw_gui(Struct_subpass* subpass){
+void GUI_renderpass::draw_gui(Struct_subpass* subpass){
   //---------------------------
 
   ImDrawData* draw_data = ImGui::GetDrawData();
