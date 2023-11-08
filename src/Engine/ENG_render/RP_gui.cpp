@@ -33,7 +33,6 @@ Struct_renderpass* RP_gui::init_renderpass(){
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "ui";
   renderpass->subpass_trg = "presentation";
-  renderpass->draw_task = [this](Struct_renderpass* renderpass){RP_gui::draw_gui(renderpass);};
 
   //Pipeline
   this->create_subpass(renderpass);
@@ -46,6 +45,7 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_subpass* subpass = new Struct_subpass();
+  subpass->draw_task = [this](Struct_subpass* subpass){RP_gui::draw_gui(subpass);};
   renderpass->vec_subpass.push_back(subpass);
 
   Struct_pipeline* pipeline = new Struct_pipeline();
@@ -59,16 +59,13 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
 }
 
 //Draw function
-void RP_gui::draw_gui(Struct_renderpass* renderpass){
+void RP_gui::draw_gui(Struct_subpass* subpass){
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
   Struct_frame* frame = struct_vulkan->swapchain.get_frame_presentation();
 
-  //vk_command->start_render_pass(renderpass, frame->fbo, false);
   ImDrawData* draw_data = ImGui::GetDrawData();
   ImGui_ImplVulkan_RenderDrawData(draw_data, subpass->command_buffer);
-  //vk_command->stop_render_pass(renderpass);
 
   //---------------------------
 }

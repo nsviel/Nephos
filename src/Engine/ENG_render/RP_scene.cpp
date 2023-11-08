@@ -39,7 +39,6 @@ Struct_renderpass* RP_scene::init_renderpass(){
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "scene";
   renderpass->subpass_trg = "shader";
-  renderpass->draw_task = [this](Struct_renderpass* renderpass){RP_scene::draw_scene(renderpass);};
 
   //Pipeline
   this->create_subpass(renderpass);
@@ -52,9 +51,10 @@ void RP_scene::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_subpass* subpass = new Struct_subpass();
+  subpass->draw_task = [this](Struct_subpass* subpass){RP_scene::draw_scene(subpass);};
   renderpass->vec_subpass.push_back(subpass);
-  Struct_pipeline* pipeline;
 
+  Struct_pipeline* pipeline;
   pipeline = new Struct_pipeline();
   pipeline->definition.name = "line";
   pipeline->definition.topology = "line";
@@ -80,27 +80,21 @@ void RP_scene::create_subpass(Struct_renderpass* renderpass){
 }
 
 //Draw function
-void RP_scene::draw_scene(Struct_renderpass* renderpass){
+void RP_scene::draw_scene(Struct_subpass* subpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
-  Struct_framebuffer* framebuffer = renderpass->framebuffer;
-
-  //vk_command->start_render_pass(renderpass, framebuffer->fbo, false);
   vk_viewport->cmd_viewport(subpass);
-  this->cmd_draw_scene(renderpass);
-  this->cmd_draw_glyph(renderpass);
-  //vk_command->stop_render_pass(renderpass);
+  this->cmd_draw_scene(subpass);
+  this->cmd_draw_glyph(subpass);
 
   //---------------------------
   this->time_renderpass = timer.stop_ms(t1);
 }
-void RP_scene::cmd_draw_scene(Struct_renderpass* renderpass){
+void RP_scene::cmd_draw_scene(Struct_subpass* subpass){
   list<Struct_data*> list_data_scene = vk_engine->get_list_data_scene();
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
   Struct_pipeline* pipeline = subpass->get_pipeline_byName("point");
   vk_pipeline->cmd_bind_pipeline(subpass, pipeline);
 
@@ -119,11 +113,10 @@ void RP_scene::cmd_draw_scene(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void RP_scene::cmd_draw_glyph(Struct_renderpass* renderpass){
+void RP_scene::cmd_draw_glyph(Struct_subpass* subpass){
   list<Struct_data*> list_data_glyph = vk_engine->get_list_data_glyph();
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
   Struct_pipeline* pipeline = subpass->get_pipeline_byName("line");
   vk_pipeline->cmd_bind_pipeline(subpass, pipeline);
 

@@ -30,9 +30,9 @@ public:
   void create_subpass(Struct_renderpass* renderpass);
 
   //Draw function
-  void draw_scene(Struct_renderpass* renderpass);
-  void cmd_draw_scene(Struct_renderpass* renderpass);
-  void cmd_draw_glyph(Struct_renderpass* renderpass);
+  void draw_scene(Struct_subpass* subpass);
+  void cmd_draw_scene(Struct_subpass* subpass);
+  void cmd_draw_glyph(Struct_subpass* subpass);
 
 private:
   ENG_shader* eng_shader;

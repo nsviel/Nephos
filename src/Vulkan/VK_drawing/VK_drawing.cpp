@@ -54,7 +54,7 @@ void VK_drawing::draw_frame(){
     //Subpass
     for(int j=0; j<renderpass->vec_subpass.size(); j++){
       Struct_subpass* subpass = renderpass->vec_subpass[j];
-      renderpass->draw_task(renderpass);
+      subpass->draw_task(subpass);
       command.vec_command_buffer.push_back(subpass->command_buffer);
     }
 

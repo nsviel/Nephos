@@ -17,7 +17,6 @@ struct Struct_renderpass{
 
   //Drawing stuff
   std::vector<Struct_subpass*> vec_subpass;
-  std::function<void(Struct_renderpass* renderpass)> draw_task;
   Struct_framebuffer* framebuffer;
 
   //Renderpass stuff

@@ -31,9 +31,9 @@ public:
   void create_subpass(Struct_renderpass* renderpass);
 
   //Draw function
-  void draw_edl(Struct_renderpass* renderpass);
-  void update_descriptor(Struct_renderpass* renderpass);
-  void draw_command(Struct_renderpass* renderpass);
+  void draw_edl(Struct_subpass* subpass);
+  void update_descriptor(Struct_subpass* subpass);
+  void draw_command(Struct_subpass* subpass);
 
 private:
   Struct_vulkan* struct_vulkan;

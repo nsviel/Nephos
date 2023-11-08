@@ -45,7 +45,6 @@ Struct_renderpass* RP_edl::init_renderpass(){
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "edl";
   renderpass->subpass_trg = "shader";
-  renderpass->draw_task = [this](Struct_renderpass* renderpass){RP_edl::draw_edl(renderpass);};
 
   //Pipeline
   this->create_subpass(renderpass);
@@ -57,6 +56,7 @@ void RP_edl::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_subpass* subpass = new Struct_subpass();
+  subpass->draw_task = [this](Struct_subpass* subpass){RP_edl::draw_edl(subpass);};
   renderpass->vec_subpass.push_back(subpass);
 
   Struct_pipeline* pipeline = new Struct_pipeline();
@@ -75,19 +75,18 @@ void RP_edl::create_subpass(Struct_renderpass* renderpass){
 }
 
 //Draw function
-void RP_edl::draw_edl(Struct_renderpass* renderpass){
+void RP_edl::draw_edl(Struct_subpass* subpass){
   //---------------------------
 
-  this->update_descriptor(renderpass);
-  this->draw_command(renderpass);
+  this->update_descriptor(subpass);
+  this->draw_command(subpass);
 
   //---------------------------
 }
-void RP_edl::update_descriptor(Struct_renderpass* renderpass){
+void RP_edl::update_descriptor(Struct_subpass* subpass){
   //---------------------------
 
   Struct_framebuffer* frame_scene = struct_vulkan->vec_renderpass[0]->framebuffer;
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   for(int i=0; i<subpass->vec_pipeline.size(); i++){
     Struct_pipeline* pipeline = subpass->vec_pipeline[i];
@@ -97,24 +96,18 @@ void RP_edl::update_descriptor(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void RP_edl::draw_command(Struct_renderpass* renderpass){
+void RP_edl::draw_command(Struct_subpass* subpass){
   //---------------------------
 
   EDL_param* edl_param = edl_shader->get_edl_param();
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
   Struct_pipeline* pipeline = subpass->get_pipeline();
-  Struct_framebuffer* framebuffer = renderpass->framebuffer;
 
-  //vk_command->start_render_pass(renderpass, framebuffer->fbo, false);
   vk_viewport->cmd_viewport(subpass);
-
   vk_pipeline->cmd_bind_pipeline(subpass, pipeline);
   edl_shader->update_shader();
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
   vk_descriptor->cmd_bind_descriptor(subpass, pipeline, pipeline->binding.descriptor.set);
   vk_drawing->cmd_draw_data(subpass, vk_render->get_canvas());
-
-  //vk_command->stop_render_pass(renderpass);
 
   //---------------------------
 }

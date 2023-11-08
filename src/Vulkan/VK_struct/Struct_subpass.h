@@ -34,6 +34,7 @@ struct Struct_subpass{
   Struct_subpass_attachment depth;
   std::vector<VkAttachmentReference> vec_color_reference;
   std::vector<VkAttachmentDescription> vec_attachment_description;
+  std::function<void(Struct_subpass* subpass)> draw_task;
 
   //Pipeline
   std::vector<Struct_pipeline*> vec_pipeline;

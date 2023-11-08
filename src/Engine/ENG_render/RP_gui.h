@@ -27,7 +27,7 @@ public:
   void create_subpass(Struct_renderpass* renderpass);
 
   //Draw function
-  void draw_gui(Struct_renderpass* renderpass);
+  void draw_gui(Struct_subpass* subpass);
 
 private:
   ENG_shader* eng_shader;
