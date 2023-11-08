@@ -41,6 +41,7 @@ struct Struct_vulkan{
   std::vector<Struct_image*> vec_texture;
   std::list<Struct_data*> list_data_scene;
   std::list<Struct_data*> list_data_glyph;
+  std::list<Struct_data*> list_data;
 
   //---------------------------
 };
