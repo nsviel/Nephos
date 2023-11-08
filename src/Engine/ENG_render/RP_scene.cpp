@@ -4,11 +4,7 @@
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
 #include <VK_drawing/VK_viewport.h>
-#include <ENG_shader/ENG_shader.h>
 #include <ENG_shader/Scene/SCE_shader.h>
-#include <VK_command/VK_submit.h>
-#include <VK_command/VK_command.h>
-#include <VK_data/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_binding/VK_uniform.h>
 #include <VK_drawing/VK_drawing.h>
@@ -22,7 +18,6 @@ RP_scene::RP_scene(Engine* engine){
   this->vk_engine = engine->get_vk_engine();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
-  this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
   this->vk_drawing = new VK_drawing(vk_engine);

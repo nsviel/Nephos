@@ -88,7 +88,7 @@ void VK_subpass::create_subpass_presentation(Struct_subpass* subpass){
   depth.load_operation = ATTACHMENT_LOADOP_CLEAR;
   depth.store_operation = ATTACHMENT_STOREOP_NOTHING;
   depth.layout_initial = IMAGE_LAYOUT_EMPTY;
-  depth.layout_final = IMAGE_LAYOUT_EMPTY;
+  depth.layout_final = IMAGE_LAYOUT_DEPTH_READONLY;
   this->depth_attachment_description(depth);
   this->depth_attachment_reference(depth);
   subpass->depth = depth;

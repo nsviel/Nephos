@@ -8,9 +8,7 @@
 class ENG_shader;
 class Engine;
 class Struct_vulkan;
-class VK_engine;
 class VK_pipeline;
-class VK_command;
 class VK_viewport;
 
 
@@ -32,9 +30,7 @@ public:
 private:
   ENG_shader* eng_shader;
   Struct_vulkan* struct_vulkan;
-  VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
-  VK_command* vk_command;
   VK_viewport* vk_viewport;
 };
 

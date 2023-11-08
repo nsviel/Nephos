@@ -5,7 +5,6 @@
 #include <VK_main/VK_engine.h>
 #include <VK_struct/Struct_vulkan.h>
 #include <VK_drawing/VK_viewport.h>
-#include <VK_command/VK_command.h>
 #include <ENG_shader/ENG_shader.h>
 #include <ENG_shader/Canvas/CAN_shader.h>
 
@@ -14,10 +13,10 @@
 RP_gui::RP_gui(Engine* engine){
   //---------------------------
 
+  VK_engine* vk_engine = engine->get_vk_engine();
+
   this->eng_shader = engine->get_eng_shader();
-  this->vk_engine = engine->get_vk_engine();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_command = new VK_command(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_pipeline = new VK_pipeline(vk_engine);
 

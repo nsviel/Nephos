@@ -6,7 +6,6 @@
 #include <VK_main/VK_render.h>
 #include <VK_struct/Struct_vulkan.h>
 #include <VK_drawing/VK_viewport.h>
-#include <VK_command/VK_command.h>
 #include <VK_drawing/VK_drawing.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_binding/VK_uniform.h>
@@ -21,8 +20,8 @@ RP_edl::RP_edl(Engine* engine){
   //---------------------------
 
   ENG_shader* eng_shader = engine->get_eng_shader();
+  VK_engine* vk_engine = engine->get_vk_engine();
 
-  this->vk_engine = engine->get_vk_engine();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->edl_shader = eng_shader->get_edl_shader();
   this->vk_pipeline = new VK_pipeline(vk_engine);
@@ -30,7 +29,6 @@ RP_edl::RP_edl(Engine* engine){
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_drawing = new VK_drawing(vk_engine);
   this->vk_uniform = new VK_uniform(vk_engine);
-  this->vk_command = new VK_command(vk_engine);
   this->vk_render = vk_engine->get_vk_render();
 
   //---------------------------

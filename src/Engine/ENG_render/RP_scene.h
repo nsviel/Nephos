@@ -11,7 +11,6 @@ class Struct_vulkan;
 class VK_engine;
 class VK_pipeline;
 class VK_viewport;
-class VK_command;
 class VK_descriptor;
 class VK_uniform;
 class VK_drawing;
@@ -37,7 +36,6 @@ public:
 private:
   ENG_shader* eng_shader;
   Struct_vulkan* struct_vulkan;
-  VK_command* vk_command;
   VK_descriptor* vk_descriptor;
   VK_uniform* vk_uniform;
   VK_drawing* vk_drawing;
