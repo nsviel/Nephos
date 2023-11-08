@@ -29,8 +29,10 @@ public:
   void draw_frame();
 
   //Subfunction
+  void run_next_image();
   void run_renderpass(Struct_renderpass* renderpass, Struct_command& command, int i);
   void run_command(Struct_command& command, int i);
+  void run_presentation();
 
   //Draw command
   void cmd_draw_data(Struct_subpass* subpass, Struct_data* data);

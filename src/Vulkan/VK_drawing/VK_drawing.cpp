@@ -32,16 +32,10 @@ VK_drawing::~VK_drawing(){}
 
 //Main function
 void VK_drawing::draw_frame(){
-  Struct_command commands;
-  VkSemaphore semaphore;
-  VkFence fence;
   timer_time t1 = timer.start_t();
   //---------------------------
 
-  //Next image to draw
-  semaphore = struct_synchro->vec_semaphore_render[0];
-  fence = struct_synchro->vec_fence[0];
-  vk_submit->acquire_next_image(&struct_vulkan->swapchain, semaphore, fence);
+  this->run_next_image();
 
   //Renderpass
   for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
@@ -52,20 +46,31 @@ void VK_drawing::draw_frame(){
     this->run_command(command, i);
   }
 
-  //Submit drawn image
-  semaphore = struct_synchro->vec_semaphore_render[struct_vulkan->vec_renderpass.size()];
-  vk_submit->submit_presentation(&struct_vulkan->swapchain, semaphore);
-  vk_submit->set_next_frame_ID(&struct_vulkan->swapchain);
+  this->run_presentation();
 
   //---------------------------
   struct_vulkan->info.draw_frame.push_back(timer.stop_ms(t1));
 }
 
 //Subfunction
+void VK_drawing::run_next_image(){
+  //---------------------------
+
+  VkSemaphore semaphore = struct_synchro->vec_semaphore_render[0];
+  VkFence fence = struct_synchro->vec_fence[0];
+  vk_submit->acquire_next_image(&struct_vulkan->swapchain, semaphore, fence);
+
+  //---------------------------
+}
 void VK_drawing::run_renderpass(Struct_renderpass* renderpass, Struct_command& command, int i){
   //---------------------------
 
-  VkFramebuffer fbo = (i != struct_vulkan->vec_renderpass.size()-1) ? renderpass->framebuffer->fbo : struct_vulkan->swapchain.get_frame_presentation()->fbo;
+  VkFramebuffer fbo;
+  if(i != struct_vulkan->vec_renderpass.size()-1){
+    fbo = renderpass->framebuffer->fbo;
+  }else{
+    fbo = struct_vulkan->swapchain.get_frame_presentation()->fbo;
+  }
   vk_command->start_render_pass(renderpass, fbo, false);
 
   //Subpass
@@ -87,6 +92,15 @@ void VK_drawing::run_command(Struct_command& command, int i){
   command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
   command.fence = (i != struct_vulkan->vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_synchro->vec_fence[0];
   vk_submit->submit_graphics_command(&command);
+
+  //---------------------------
+}
+void VK_drawing::run_presentation(){
+  //---------------------------
+
+  VkSemaphore semaphore = struct_synchro->vec_semaphore_render[struct_vulkan->vec_renderpass.size()];
+  vk_submit->submit_presentation(&struct_vulkan->swapchain, semaphore);
+  vk_submit->set_next_frame_ID(&struct_vulkan->swapchain);
 
   //---------------------------
 }
