@@ -1,7 +1,6 @@
 #include "GUI_font.h"
 
 #include <GUI.h>
-#include <Engine.h>
 #include <GUI_main/GUI_render/GUI_render.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_engine.h>
@@ -13,9 +12,6 @@
 //Constructor / Destructor
 GUI_font::GUI_font(GUI* gui){
   //---------------------------
-
-  Engine* engine = gui->get_engine();
-  //VK_engine* vk_engine = engine->get_vk_engine();
 
   GUI_render* gui_render = gui->get_gui_render();
   VK_engine* vk_engine = gui_render->get_vk_engine();
