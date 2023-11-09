@@ -1,6 +1,7 @@
 #include "Engine.h"
 
 #include <ELE_window/ELE_window.h>
+#include <Vulkan.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_render.h>
 #include <ENG_data/ENG_data.h>
@@ -16,6 +17,7 @@ Engine::Engine(ELE_window* ele_window){
   this->ele_window = ele_window;
   this->eng_camera = new ENG_camera(this);
   this->eng_shader = new ENG_shader(this);
+  this->eng_vulkan = new Vulkan(ele_window);
   this->vk_engine = new VK_engine(ele_window);
   this->dataManager = new ENG_data(this);
   this->eng_renderpass = new ENG_renderpass(this);
