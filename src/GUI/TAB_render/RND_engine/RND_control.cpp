@@ -2,7 +2,6 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <Param.h>
 #include <ELE_window/ELE_window.h>
 #include <ENG_data/ENG_data.h>
 #include <ELE_specific/Function/fct_math.h>

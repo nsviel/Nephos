@@ -1,8 +1,7 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include <ENG_camera/Struct_camera.h>
-#include <Param.h>
+#include <ENG_camera/ENG_camera.h>
 
 class Param;
 class ENG_data;
@@ -28,15 +27,13 @@ public:
   void wait_for_gpu_idle();
 
   inline ENG_camera* get_eng_camera(){return eng_camera;}
-  inline Param* get_param(){return param;}
   inline ENG_data* get_eng_data(){return dataManager;}
   inline ELE_window* get_ele_window(){return ele_window;}
   inline VK_engine* get_vk_engine(){return vk_engine;}
   inline ENG_shader* get_eng_shader(){return eng_shader;}
-  inline Struct_camera* get_camera(){return &param->camera;};
+  inline Struct_camera* get_camera(){return eng_camera->get_camera();};
 
 private:
-  Param* param;
   ENG_camera* eng_camera;
   ENG_data* dataManager;
   ELE_window* ele_window;

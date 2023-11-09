@@ -1,5 +1,4 @@
 #include "Engine.h"
-#include "Param.h"
 
 #include <ELE_window/ELE_window.h>
 #include <VK_main/VK_engine.h>
@@ -15,7 +14,6 @@ Engine::Engine(ELE_window* ele_window){
   //---------------------------
 
   this->ele_window = ele_window;
-  this->param = new Param();
   this->eng_camera = new ENG_camera(this);
   this->eng_shader = new ENG_shader(this);
   this->vk_engine = new VK_engine(ele_window);
@@ -27,7 +25,6 @@ Engine::Engine(ELE_window* ele_window){
 Engine::~Engine(){
   //---------------------------
 
-  delete param;
   delete eng_camera;
   delete eng_shader;
   delete vk_engine;

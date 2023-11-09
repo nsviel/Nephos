@@ -42,6 +42,7 @@ public:
   inline mat4 get_cam_view(){return compute_cam_view();}
   inline mat4 get_cam_proj(){return compute_cam_proj();}
   inline mat4 get_mvpMatrix(){return compute_cam_mvp();}
+  inline Struct_camera* get_camera(){return camera;};
 
 private:
   Engine* engine;

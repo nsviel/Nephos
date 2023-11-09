@@ -11,7 +11,7 @@
 ENG_camera::ENG_camera(Engine* engine){
   //---------------------------
 
-  this->camera = engine->get_camera();
+  this->camera = new Struct_camera();
   this->cam_arcball = new CAM_arcball(engine->get_ele_window());
   this->cam_fp = new CAM_first_person(engine->get_ele_window());
   this->cam_zoom = new CAM_zoom(engine->get_ele_window());

@@ -4,7 +4,6 @@
 #include <Engine.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_info.h>
-#include <Param.h>
 
 
 //Constructor / Destructor
