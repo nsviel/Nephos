@@ -22,7 +22,7 @@ public:
   void init();
   void clean();
   void loop();
-  void wait_idle();
+  void wait();
 
   inline VK_engine* get_vk_engine(){return vk_engine;}
   inline VK_imgui* get_vk_imgui(){return vk_imgui;}

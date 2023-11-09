@@ -35,7 +35,7 @@ void GUI_render::init(){
 void GUI_render::loop(){
   //---------------------------
 
-  vk_render->loop_draw_frame();
+  gui_vulkan->loop();
 
   //---------------------------
 }

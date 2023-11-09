@@ -29,7 +29,9 @@ void Vulkan::init(){
 }
 void Vulkan::loop(){
   //---------------------------
-
+static int a =0;
+a++;
+if(a<100);
   vk_render->loop_draw_frame();
 
   //---------------------------
@@ -41,7 +43,7 @@ void Vulkan::clean(){
 
   //---------------------------
 }
-void Vulkan::wait_idle() {
+void Vulkan::wait(){
   //---------------------------
 
   vk_engine->device_wait_idle();

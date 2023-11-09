@@ -18,8 +18,7 @@ Engine::Engine(ELE_window* ele_window){
   this->eng_camera = new ENG_camera(this);
   this->eng_shader = new ENG_shader(this);
   this->eng_vulkan = new Vulkan(ele_window);
-  this->vk_engine = eng_vulkan->get_vk_engine();
-  this->dataManager = new ENG_data(this);
+  this->eng_data = new ENG_data(this);
   this->eng_renderpass = new ENG_renderpass(this);
 
   //---------------------------
@@ -29,8 +28,7 @@ Engine::~Engine(){
 
   delete eng_camera;
   delete eng_shader;
-  delete vk_engine;
-  delete dataManager;
+  delete eng_data;
 
   //---------------------------
 }
@@ -39,32 +37,31 @@ void Engine::init(){
   //---------------------------
 
   eng_renderpass->init_renderpass();
-  vk_engine->init();
-  dataManager->init();
+  eng_vulkan->init();
+  eng_data->init();
 
   //---------------------------
 }
 void Engine::loop(){
-  VK_render* vk_render = vk_engine->get_vk_render();
   //---------------------------
 
   eng_camera->loop_cam_mouse();
-  //vk_render->loop_draw_frame();
-  dataManager->loop();
+  eng_data->loop();
+  eng_vulkan->loop();
 
   //---------------------------
 }
 void Engine::exit(){
   //---------------------------
 
-  vk_engine->clean();
+  eng_vulkan->clean();
 
   //---------------------------
 }
 void Engine::wait_for_gpu_idle(){
   //---------------------------
 
-  vk_engine->device_wait_idle();
+  eng_vulkan->wait();
 
   //---------------------------
 }
@@ -72,7 +69,7 @@ void Engine::reset(){
   //---------------------------
 
   eng_camera->reset();
-  dataManager->reset();
+  eng_data->reset();
 
   //---------------------------
 }
