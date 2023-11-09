@@ -16,6 +16,7 @@ struct Struct_renderpass{
 
   //Renderpass stuff
   VkRenderPass renderpass;
+  VkCommandBuffer command_buffer;
   Struct_framebuffer* framebuffer;
   Struct_command command;
   std::vector<Struct_subpass*> vec_subpass;

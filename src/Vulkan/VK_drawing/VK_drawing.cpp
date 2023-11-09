@@ -66,10 +66,14 @@ void VK_drawing::run_renderpass(Struct_renderpass* renderpass, int i){
   //---------------------------
 
   VkFramebuffer fbo;
-  if(i != struct_vulkan->vec_renderpass.size()-1){
+  if(renderpass->target == "graphics"){
     fbo = renderpass->framebuffer->fbo;
-  }else{
+  }
+  else if(renderpass->target == "presentation"){
     fbo = struct_vulkan->swapchain.get_frame_presentation()->fbo;
+  }
+  else{
+    cout<<"[error] No renderpass target"<<endl;
   }
   vk_command->start_render_pass(renderpass, fbo, false);
 
@@ -93,6 +97,7 @@ void VK_drawing::run_command(Struct_renderpass* renderpass, int i){
   command.vec_semaphore_done.push_back(struct_synchro->vec_semaphore_render[i+1]);
   command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
   command.fence = (i != struct_vulkan->vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_synchro->vec_fence[0];
+
   vk_submit->submit_graphics_command(&command);
 
   //---------------------------
