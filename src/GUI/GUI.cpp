@@ -39,12 +39,12 @@ GUI::~GUI(){
 void GUI::init(){
   //---------------------------
 
+  gui_render->init();
   gui_tab->create_panels();
   gui_gpu->init_gui_vulkan();
   gui_font->init_gui_font();
   gui_style->gui_style();
-  gui_render->init();
-
+  
   //---------------------------
 }
 void GUI::loop(){

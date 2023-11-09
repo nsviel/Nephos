@@ -40,7 +40,7 @@ void GUI_video::draw_video(string path){
 void GUI_video::acquire_next_frame(){
   int result;
   //---------------------------
-
+/*
   packet->stream_index = -1;
   while(packet->stream_index != video_stream_idx){
     result = av_read_frame(format_context, packet);
@@ -75,7 +75,7 @@ void GUI_video::acquire_next_frame(){
     this->reboot_video();
   }
 
-  //---------------------------
+*/  //---------------------------
 }
 void GUI_video::load_video(string path){
   if(video_loaded) return;
