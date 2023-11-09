@@ -4,7 +4,6 @@
 #include <ELE_specific/common.h>
 
 class Engine;
-class VK_render;
 class RP_scene;
 class RP_edl;
 class RP_gui;
@@ -22,7 +21,6 @@ public:
   void init_renderpass();
 
 private:
-  VK_render* vk_render;
   RP_scene* rp_scene;
   RP_edl* rp_edl;
   RP_gui* rp_gui;

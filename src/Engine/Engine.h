@@ -26,12 +26,12 @@ public:
   void reset();
   void wait_for_gpu_idle();
 
-  inline ENG_camera* get_eng_camera(){return eng_camera;}
-  inline ENG_data* get_eng_data(){return dataManager;}
   inline ELE_window* get_ele_window(){return ele_window;}
   inline VK_engine* get_vk_engine(){return vk_engine;}
-  inline ENG_shader* get_eng_shader(){return eng_shader;}
   inline Struct_camera* get_camera(){return eng_camera->get_camera();};
+  inline ENG_camera* get_eng_camera(){return eng_camera;}
+  inline ENG_data* get_eng_data(){return dataManager;}
+  inline ENG_shader* get_eng_shader(){return eng_shader;}
 
 private:
   ENG_camera* eng_camera;
