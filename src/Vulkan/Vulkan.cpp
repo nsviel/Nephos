@@ -31,8 +31,10 @@ void Vulkan::loop(){
   //---------------------------
 static int a =0;
 a++;
-if(a<100);
+if(a<100){
   vk_render->loop_draw_frame();
+}
+
 
   //---------------------------
 }
