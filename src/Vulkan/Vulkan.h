@@ -19,7 +19,11 @@ public:
 
 public:
   //Main functions
-  
+  void init();
+  void clean();
+  void loop();
+  void wait_idle();
+
   inline VK_engine* get_vk_engine(){return vk_engine;}
   inline VK_imgui* get_vk_imgui(){return vk_imgui;}
   inline VK_render* get_vk_render(){return vk_render;}

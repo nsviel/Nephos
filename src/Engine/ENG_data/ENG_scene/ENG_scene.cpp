@@ -4,6 +4,7 @@
 #include "../ENG_load/ENG_loader.h"
 
 #include <Engine.h>
+#include <Vulkan.h>
 #include <VK_main/VK_engine.h>
 #include <ENG_camera/ENG_camera.h>
 #include <ENG_operation/Transformation/Attribut.h>
@@ -14,9 +15,11 @@ ENG_scene::ENG_scene(ENG_data* eng_data){
   //---------------------------
 
   Engine* engine = eng_data->get_engine();
+  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+
   this->eng_data = eng_data;
   this->eng_database = eng_data->get_eng_database();
-  this->vk_engine = engine->get_vk_engine();
+  this->vk_engine = eng_vulkan->get_vk_engine();
   this->eng_camera = engine->get_eng_camera();
   this->attributManager = new Attribut();
 

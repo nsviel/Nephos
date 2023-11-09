@@ -28,8 +28,7 @@ public:
   void wait_for_gpu_idle();
 
   inline ELE_window* get_ele_window(){return ele_window;}
-  inline Vulkan* get_eng_vulkan(){return vk_engine;}
-  inline VK_engine* get_vk_engine(){return eng_vulkan;}
+  inline Vulkan* get_eng_vulkan(){return eng_vulkan;}
   inline Struct_camera* get_camera(){return eng_camera->get_camera();};
   inline ENG_camera* get_eng_camera(){return eng_camera;}
   inline ENG_data* get_eng_data(){return dataManager;}

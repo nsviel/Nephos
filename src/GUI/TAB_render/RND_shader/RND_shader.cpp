@@ -2,6 +2,7 @@
 
 #include <GUI.h>
 #include <Engine.h>
+#include <Vulkan.h>
 #include <VK_shader/VK_reload.h>
 #include <VK_struct/Struct_instance.h>
 #include <VK_main/VK_engine.h>
@@ -17,7 +18,9 @@ RND_shader::RND_shader(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  this->vk_engine = engine->get_vk_engine();
+  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+
+  this->vk_engine = eng_vulkan->get_vk_engine();
   this->eng_shader = engine->get_eng_shader();
   this->editor_vs = new EDI_text(gui);
   this->editor_fs = new EDI_text(gui);

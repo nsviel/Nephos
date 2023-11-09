@@ -1,6 +1,7 @@
 #include "RP_scene.h"
 
 #include <Engine.h>
+#include <Vulkan.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_render.h>
@@ -16,9 +17,11 @@
 RP_scene::RP_scene(Engine* engine){
   //---------------------------
 
+  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+
   this->eng_shader = engine->get_eng_shader();
-  this->vk_engine = engine->get_vk_engine();
-  this->vk_render = vk_engine->get_vk_render();
+  this->vk_engine = eng_vulkan->get_vk_engine();
+  this->vk_render = eng_vulkan->get_vk_render();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);

@@ -3,7 +3,7 @@
 
 #include <Engine.h>
 #include <GUI.h>
-#include <VK_main/VK_engine.h>
+#include <Vulkan.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_struct/Struct_vulkan.h>
 #include <image/IconsFontAwesome5.h>
@@ -14,8 +14,9 @@ RND_engine::RND_engine(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  VK_engine* vk_engine = engine->get_vk_engine();
-  this->vk_imgui = vk_engine->get_vk_imgui();
+  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+
+  this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->gui_control = new RND_control(gui);
 
   //---------------------------

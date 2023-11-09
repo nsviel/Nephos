@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <VK_main/VK_engine.h>
+#include <Vulkan.h>
 #include <VK_main/VK_info.h>
 
 
@@ -10,10 +10,11 @@
 RND_option::RND_option(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  this->gui = gui;
   Engine* engine = gui->get_engine();
-  VK_engine* vk_engine = engine->get_vk_engine();
-  this->vk_info = vk_engine->get_vk_info();
+  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+
+  this->gui = gui;
+  this->vk_info = eng_vulkan->get_vk_info();
 
   this->width = 150;
 

@@ -20,3 +20,31 @@ Vulkan::Vulkan(ELE_window* window){
 Vulkan::~Vulkan(){}
 
 //Main function
+void Vulkan::init(){
+  //---------------------------
+
+  vk_engine->init();
+
+  //---------------------------
+}
+void Vulkan::loop(){
+  //---------------------------
+
+  vk_render->loop_draw_frame();
+
+  //---------------------------
+}
+void Vulkan::clean(){
+  //---------------------------
+
+  vk_engine->clean();
+
+  //---------------------------
+}
+void Vulkan::wait_idle() {
+  //---------------------------
+
+  vk_engine->device_wait_idle();
+
+  //---------------------------
+}

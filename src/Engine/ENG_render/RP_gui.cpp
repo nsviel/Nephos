@@ -1,6 +1,7 @@
 #include "RP_gui.h"
 
 #include <Engine.h>
+#include <Vulkan.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_render.h>
@@ -11,8 +12,10 @@
 RP_gui::RP_gui(Engine* engine){
   //---------------------------
 
-  this->vk_engine = engine->get_vk_engine();
-  this->vk_render = vk_engine->get_vk_render();
+  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+
+  this->vk_engine = eng_vulkan->get_vk_engine();
+  this->vk_render = eng_vulkan->get_vk_render();
 
   //---------------------------
 }
