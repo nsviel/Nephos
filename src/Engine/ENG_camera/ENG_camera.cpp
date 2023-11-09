@@ -5,14 +5,13 @@
 #include "Projection/CAM_proj.h"
 
 #include <Engine.h>
-#include <Param.h>
 
 
 //Constructor / Destructor
 ENG_camera::ENG_camera(Engine* engine){
   //---------------------------
 
-  this->param = engine->get_param();
+  this->camera = engine->get_camera();
   this->cam_arcball = new CAM_arcball(engine->get_ele_window());
   this->cam_fp = new CAM_first_person(engine->get_ele_window());
   this->cam_zoom = new CAM_zoom(engine->get_ele_window());
@@ -35,7 +34,6 @@ ENG_camera::~ENG_camera(){
 
 //Main function
 void ENG_camera::control(string what, bool fast){
-  Struct_camera* camera = &param->camera;
   //---------------------------
 
   //Compute camera movment speed value
@@ -70,7 +68,6 @@ void ENG_camera::control(string what, bool fast){
   //---------------------------
 }
 void ENG_camera::loop_cam_mouse(){
-  Struct_camera* camera = &param->camera;
   //---------------------------
 
   if(camera->cam_move){
@@ -86,7 +83,6 @@ void ENG_camera::loop_cam_mouse(){
   //---------------------------
 }
 void ENG_camera::reset(){
-  Struct_camera* camera = &param->camera;
   //---------------------------
 
   camera->reset();
@@ -96,7 +92,6 @@ void ENG_camera::reset(){
 
 //MVP Matrix
 mat4 ENG_camera::compute_cam_view(){
-  Struct_camera* camera = &param->camera;
   mat4 cam_view;
   //---------------------------
 
@@ -113,7 +108,6 @@ mat4 ENG_camera::compute_cam_view(){
   return cam_view;
 }
 mat4 ENG_camera::compute_cam_proj(){
-  Struct_camera* camera = &param->camera;
   mat4 projection;
   //---------------------------
 
@@ -153,7 +147,6 @@ void ENG_camera::compute_cam_mvp(Object* object){
 
 //ENG_camera mode
 void ENG_camera::set_mode_projection(int proj){
-  Struct_camera* camera = &param->camera;
   //---------------------------
 
   switch(proj){
@@ -170,7 +163,6 @@ void ENG_camera::set_mode_projection(int proj){
   //---------------------------
 }
 void ENG_camera::set_mode_angle(int view){
-  Struct_camera* camera = &param->camera;
   //---------------------------
 
   switch(view){
@@ -187,7 +179,6 @@ void ENG_camera::set_mode_angle(int view){
   //---------------------------
 }
 void ENG_camera::set_mode_view(int mode){
-  Struct_camera* camera = &param->camera;
   //---------------------------
 
   switch(mode){
@@ -206,7 +197,6 @@ void ENG_camera::set_mode_view(int mode){
 
 //Specific function
 mat4 ENG_camera::compute_cam_world_pose(){
-  Struct_camera* camera = &param->camera;
   //---------------------------
 
   vec3 zaxis = normalize(camera->cam_F);
@@ -223,7 +213,6 @@ mat4 ENG_camera::compute_cam_world_pose(){
   return absPose;
 }
 void ENG_camera::compute_zoom(float value){
-  Struct_camera* camera = &param->camera;
   //---------------------------
 
   cam_zoom->compute_zoom_position(camera, value);

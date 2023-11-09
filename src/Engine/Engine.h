@@ -1,6 +1,9 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include <ENG_camera/Struct_camera.h>
+#include <Param.h>
+
 class Param;
 class ENG_data;
 class ELE_window;
@@ -30,6 +33,7 @@ public:
   inline ELE_window* get_ele_window(){return ele_window;}
   inline VK_engine* get_vk_engine(){return vk_engine;}
   inline ENG_shader* get_eng_shader(){return eng_shader;}
+  inline Struct_camera* get_camera(){return &param->camera;};
 
 private:
   Param* param;

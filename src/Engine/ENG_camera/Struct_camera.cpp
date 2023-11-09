@@ -1,4 +1,4 @@
-#include "struct_camera.h"
+#include "Struct_camera.h"
 
 
 Struct_camera::Struct_camera(){

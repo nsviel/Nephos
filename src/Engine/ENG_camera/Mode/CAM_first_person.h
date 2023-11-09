@@ -1,7 +1,7 @@
 #ifndef CAM_FPS_H
 #define CAM_FPS_H
 
-#include "../struct_camera.h"
+#include "../Struct_camera.h"
 #include <ELE_specific/common.h>
 
 class ELE_window;

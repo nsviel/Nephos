@@ -1,16 +1,15 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "struct_camera.h"
-
+#include "Struct_camera.h"
 #include <ELE_specific/common.h>
 
 class Engine;
-class Param;
 class CAM_arcball;
 class CAM_first_person;
 class CAM_zoom;
 class CAM_proj;
+class Struct_camera;
 
 
 class ENG_camera
@@ -46,12 +45,12 @@ public:
 
 private:
   Engine* engine;
-  Param* param;
   CAM_arcball* cam_arcball;
   CAM_first_person* cam_fp;
   CAM_zoom* cam_zoom;
   CAM_proj* cam_proj;
 
+  Struct_camera* camera;
   vec3 arcball_origin;
 };
 

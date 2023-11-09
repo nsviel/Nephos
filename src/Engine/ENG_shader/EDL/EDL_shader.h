@@ -6,7 +6,7 @@
 #include <ELE_specific/common.h>
 
 class Engine;
-class Param;
+class Struct_camera;
 class ELE_window;
 
 
@@ -24,7 +24,7 @@ public:
   inline EDL_param* get_edl_param(){return edl_param;}
 
 private:
-  Param* param;
+  Struct_camera* camera;
   ELE_window* ele_window;
   EDL_param* edl_param;
 };

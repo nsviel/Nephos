@@ -41,7 +41,7 @@ void Engine::init(){
 
   eng_renderpass->init_renderpass();
   vk_engine->init();
-  dataManager->init();
+  //dataManager->init();
 
   //---------------------------
 }
@@ -49,9 +49,9 @@ void Engine::loop(){
   VK_render* vk_render = vk_engine->get_vk_render();
   //---------------------------
 
-  eng_camera->loop_cam_mouse();
+  //eng_camera->loop_cam_mouse();
   vk_render->loop_draw_frame();
-  dataManager->loop();
+  //dataManager->loop();
 
   //---------------------------
 }
@@ -72,8 +72,8 @@ void Engine::wait_for_gpu_idle(){
 void Engine::reset(){
   //---------------------------
 
-  eng_camera->reset();
-  dataManager->reset();
+  //eng_camera->reset();
+  //dataManager->reset();
 
   //---------------------------
 }

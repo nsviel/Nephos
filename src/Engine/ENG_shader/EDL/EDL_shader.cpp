@@ -1,14 +1,14 @@
 #include "EDL_shader.h"
 
 #include <Engine.h>
-#include <Param.h>
+#include <ENG_camera/Struct_camera.h>
 #include <ELE_window/ELE_window.h>
 
 
 EDL_shader::EDL_shader(Engine* engine){
   //---------------------------
 
-  this->param = engine->get_param();
+  this->camera = engine->get_camera();
   this->ele_window = engine->get_ele_window();
   this->edl_param = new EDL_param();
 
@@ -42,7 +42,6 @@ void EDL_shader::init_shader(){
   //---------------------------
 }
 void EDL_shader::update_shader(){
-  Struct_camera* camera = &param->camera;
   //---------------------------
 
   // Depth setup
