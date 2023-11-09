@@ -58,7 +58,7 @@ void Engine::exit(){
 
   //---------------------------
 }
-void Engine::wait_for_gpu_idle(){
+void Engine::wait(){
   //---------------------------
 
   eng_vulkan->wait();

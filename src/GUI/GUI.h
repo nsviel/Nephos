@@ -29,6 +29,7 @@ public:
   void init();
   void loop();
   void exit();
+  void wait();
 
   //Subfunction
   void docker_space_main();
@@ -41,7 +42,6 @@ public:
   inline GUI_tab* get_gui_tab(){return gui_tab;}
   inline GUI_font* get_gui_font(){return gui_font;}
   inline GUI_render* get_gui_render(){return gui_render;}
-  inline void wait(){gui_render->wait();}
 
 private:
   Engine* engine;

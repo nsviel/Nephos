@@ -24,7 +24,7 @@ public:
   void loop();
   void exit();
   void reset();
-  void wait_for_gpu_idle();
+  void wait();
 
   inline ELE_window* get_ele_window(){return ele_window;}
   inline Vulkan* get_eng_vulkan(){return eng_vulkan;}

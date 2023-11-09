@@ -50,6 +50,7 @@ void APP_main::loop(){
     engine->loop();
     ele_window->manage_input();
   }
+  engine->wait();
   gui->wait();
 
   //---------------------------

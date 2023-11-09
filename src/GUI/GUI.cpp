@@ -72,6 +72,13 @@ void GUI::exit(){
 
   //---------------------------
 }
+void GUI::wait(){
+  //---------------------------
+
+  gui_render->wait();
+
+  //---------------------------
+}
 
 //Subfunction
 void GUI::docker_space_main(){

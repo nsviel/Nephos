@@ -28,7 +28,7 @@ void GUI_render::init(){
   //---------------------------
 
   gui_renderpass->init_renderpass();
-  vk_engine->init();
+  gui_vulkan->init();
 
   //---------------------------
 }
@@ -42,14 +42,14 @@ void GUI_render::loop(){
 void GUI_render::clean(){
   //---------------------------
 
-  vk_engine->clean();
+  gui_vulkan->clean();
 
   //---------------------------
 }
 void GUI_render::wait(){
   //---------------------------
 
-  vk_engine->device_wait_idle();
+  gui_vulkan->wait();
 
   //---------------------------
 }
