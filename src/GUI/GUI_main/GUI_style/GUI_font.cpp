@@ -2,6 +2,8 @@
 
 #include <GUI.h>
 #include <Engine.h>
+#include <GUI_main/GUI_render/GUI_render.h>
+#include <VK_main/VK_engine.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_struct/Struct_vulkan.h>

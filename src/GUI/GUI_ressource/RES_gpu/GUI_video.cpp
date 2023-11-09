@@ -4,6 +4,7 @@
 #include <Engine.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_render.h>
+#include <GUI_main/GUI_render/GUI_render.h>
 
 
 //Constructor / Destructor

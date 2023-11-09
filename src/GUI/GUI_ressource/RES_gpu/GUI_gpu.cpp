@@ -6,6 +6,7 @@
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_imgui.h>
 #include <ELE_window/ELE_window.h>
+#include <GUI_main/GUI_render/GUI_render.h>
 
 
 //Constructor / Destructor
