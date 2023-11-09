@@ -39,6 +39,7 @@ void RP_scene::init_renderpass(){
   //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "scene";
+  renderpass->target = "graphics";
 
   //Pipeline
   this->create_subpass(renderpass);

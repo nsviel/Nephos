@@ -30,8 +30,8 @@ public:
 
   //Subfunction
   void run_next_image();
-  void run_renderpass(Struct_renderpass* renderpass, Struct_command& command, int i);
-  void run_command(Struct_command& command, int i);
+  void run_renderpass(Struct_renderpass* renderpass, int i);
+  void run_command(Struct_renderpass* renderpass, int i);
   void run_presentation();
 
   //Draw command

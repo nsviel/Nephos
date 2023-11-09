@@ -28,6 +28,7 @@ void RP_gui::init_renderpass(){
   //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "gui";
+  renderpass->target = "presentation";
 
   //Pipeline
   this->create_subpass(renderpass);

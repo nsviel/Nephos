@@ -39,11 +39,10 @@ void VK_drawing::draw_frame(){
 
   //Renderpass
   for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
-    Struct_command command;
     Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
 
-    this->run_renderpass(renderpass, command, i);
-    this->run_command(command, i);
+    this->run_renderpass(renderpass, i);
+    this->run_command(renderpass, i);
   }
 
   this->run_presentation();
@@ -62,7 +61,8 @@ void VK_drawing::run_next_image(){
 
   //---------------------------
 }
-void VK_drawing::run_renderpass(Struct_renderpass* renderpass, Struct_command& command, int i){
+void VK_drawing::run_renderpass(Struct_renderpass* renderpass, int i){
+  Struct_command command;
   //---------------------------
 
   VkFramebuffer fbo;
@@ -83,8 +83,10 @@ void VK_drawing::run_renderpass(Struct_renderpass* renderpass, Struct_command& c
   vk_command->stop_render_pass(renderpass);
 
   //---------------------------
+  renderpass->command = command;
 }
-void VK_drawing::run_command(Struct_command& command, int i){
+void VK_drawing::run_command(Struct_renderpass* renderpass, int i){
+  Struct_command& command = renderpass->command;
   //---------------------------
 
   command.vec_semaphore_wait.push_back(struct_synchro->vec_semaphore_render[i]);

@@ -29,12 +29,8 @@ void Vulkan::init(){
 }
 void Vulkan::loop(){
   //---------------------------
-static int a =0;
-a++;
-if(a<100){
-  vk_render->loop_draw_frame();
-}
 
+  vk_render->loop_draw_frame();
 
   //---------------------------
 }

@@ -42,6 +42,7 @@ void RP_edl::init_renderpass(){
   //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "edl";
+  renderpass->target = "graphics";
 
   //Pipeline
   this->create_subpass(renderpass);
