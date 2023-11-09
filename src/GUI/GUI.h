@@ -39,6 +39,7 @@ public:
   inline GUI_style* get_gui_style(){return gui_style;}
   inline GUI_tab* get_gui_tab(){return gui_tab;}
   inline GUI_font* get_gui_font(){return gui_font;}
+  inline GUI_render* get_gui_render(){return gui_render;}
 
 private:
   Engine* engine;

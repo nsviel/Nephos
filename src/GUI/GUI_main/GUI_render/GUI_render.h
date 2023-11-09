@@ -20,6 +20,8 @@ public:
   void loop();
   void clean();
 
+  inline VK_engine* get_vk_engine(){return vk_engine;}
+  
 private:
   GUI_renderpass* gui_renderpass;
   VK_engine* vk_engine;

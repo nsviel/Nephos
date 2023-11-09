@@ -12,6 +12,9 @@ GUI_video::GUI_video(GUI* gui){
 
   Engine* engine = gui->get_engine();
   VK_engine* vk_engine = engine->get_vk_engine();
+
+  GUI_render* gui_render = gui->get_gui_render();
+  //VK_engine* vk_engine = gui_render->get_vk_engine();
   this->vk_render = vk_engine->get_vk_render();
 
   this->video_loaded = false;
