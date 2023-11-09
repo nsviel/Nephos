@@ -26,7 +26,7 @@ ENG_renderpass::~ENG_renderpass(){}
 void ENG_renderpass::init_renderpass(){
   //---------------------------
 
-  rp_scene->init_renderpass();
+  //rp_scene->init_renderpass();
   //rp_edl->init_renderpass();
   rp_gui->init_renderpass();
 

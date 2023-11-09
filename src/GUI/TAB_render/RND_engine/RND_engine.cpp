@@ -43,6 +43,7 @@ void RND_engine::engine_window(){
   //---------------------------
 
   ImTextureID texture = vk_imgui->engine_texture();
+  if(texture == 0) return;
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
 
