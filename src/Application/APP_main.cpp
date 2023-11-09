@@ -50,7 +50,7 @@ void APP_main::loop(){
     engine->loop();
     ele_window->manage_input();
   }
-  engine->wait_for_gpu_idle();
+  gui->wait();
 
   //---------------------------
 }

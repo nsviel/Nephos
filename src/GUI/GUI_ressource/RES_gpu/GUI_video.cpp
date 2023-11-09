@@ -12,10 +12,10 @@ GUI_video::GUI_video(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  VK_engine* vk_engine = engine->get_vk_engine();
+  //VK_engine* vk_engine = engine->get_vk_engine();
 
   GUI_render* gui_render = gui->get_gui_render();
-  //VK_engine* vk_engine = gui_render->get_vk_engine();
+  VK_engine* vk_engine = gui_render->get_vk_engine();
   this->vk_render = vk_engine->get_vk_render();
 
   this->video_loaded = false;
@@ -40,7 +40,7 @@ void GUI_video::draw_video(string path){
 void GUI_video::acquire_next_frame(){
   int result;
   //---------------------------
-/*
+
   packet->stream_index = -1;
   while(packet->stream_index != video_stream_idx){
     result = av_read_frame(format_context, packet);
@@ -75,7 +75,7 @@ void GUI_video::acquire_next_frame(){
     this->reboot_video();
   }
 
-*/  //---------------------------
+  //---------------------------
 }
 void GUI_video::load_video(string path){
   if(video_loaded) return;

@@ -33,7 +33,7 @@ void GUI_render::init(){
 void GUI_render::loop(){
   //---------------------------
 
-  //vk_render->loop_draw_frame();
+  vk_render->loop_draw_frame();
 
   //---------------------------
 }
@@ -41,6 +41,13 @@ void GUI_render::clean(){
   //---------------------------
 
   vk_engine->clean();
+
+  //---------------------------
+}
+void GUI_render::wait(){
+  //---------------------------
+
+  vk_engine->device_wait_idle();
 
   //---------------------------
 }

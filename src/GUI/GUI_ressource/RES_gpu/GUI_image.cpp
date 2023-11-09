@@ -12,10 +12,10 @@ GUI_image::GUI_image(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  VK_engine* vk_engine = engine->get_vk_engine();
+  //VK_engine* vk_engine = engine->get_vk_engine();
 
   GUI_render* gui_render = gui->get_gui_render();
-  //VK_engine* vk_engine = gui_render->get_vk_engine();
+  VK_engine* vk_engine = gui_render->get_vk_engine();
   this->vk_render = vk_engine->get_vk_render();
 
   //---------------------------
@@ -38,8 +38,8 @@ void GUI_image::load_image(string path){
   //---------------------------
 
   if(image == nullptr){
-    //image = vk_render->load_texture_from_file(path);
-    //this->descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    image = vk_render->load_texture_from_file(path);
+    this->descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   }
 
   //---------------------------

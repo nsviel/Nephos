@@ -8,6 +8,7 @@
 #include <GUI_render/GUI_render.h>
 #include <GUI_style/GUI_style.h>
 #include <GUI_style/GUI_font.h>
+#include <GUI_main/GUI_render/GUI_render.h>
 
 
 //Constructor / Destructor
@@ -18,11 +19,11 @@ GUI::GUI(ELE_window* ele_window, Engine* engine){
   this->ele_window = ele_window;
 
   this->gui_style = new GUI_style(this);
+  this->gui_render = new GUI_render(this);
   this->gui_font = new GUI_font(this);
   this->gui_tab = new GUI_tab(this);
   this->gui_gpu = new GUI_gpu(this);
   this->gui_control = new GUI_control(this);
-  this->gui_render = new GUI_render(this);
 
   //---------------------------
 }
@@ -44,7 +45,7 @@ void GUI::init(){
   gui_gpu->init_gui_vulkan();
   gui_font->init_gui_font();
   gui_style->gui_style();
-  
+
   //---------------------------
 }
 void GUI::loop(){

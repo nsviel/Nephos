@@ -1,6 +1,7 @@
 #ifndef GUI_NODE_H
 #define GUI_NODE_H
 
+#include <GUI_main/GUI_render/GUI_render.h>
 #include <ELE_specific/common.h>
 
 class Engine;
@@ -40,6 +41,7 @@ public:
   inline GUI_tab* get_gui_tab(){return gui_tab;}
   inline GUI_font* get_gui_font(){return gui_font;}
   inline GUI_render* get_gui_render(){return gui_render;}
+  inline void wait(){gui_render->wait();}
 
 private:
   Engine* engine;

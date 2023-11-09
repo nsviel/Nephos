@@ -1,6 +1,5 @@
-
-#ifndef GUI_RENDER_H
-#define GUI_RENDER_H
+#ifndef TAB_RENDER_H
+#define TAB_RENDER_H
 
 #include <ELE_specific/common.h>
 

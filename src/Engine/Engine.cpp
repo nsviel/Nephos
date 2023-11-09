@@ -47,7 +47,7 @@ void Engine::loop(){
   //---------------------------
 
   //eng_camera->loop_cam_mouse();
-  vk_render->loop_draw_frame();
+  //vk_render->loop_draw_frame();
   //dataManager->loop();
 
   //---------------------------
