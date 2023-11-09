@@ -63,9 +63,25 @@ void GUI_tab::run_tab(){
 void GUI_tab::menu(){
   //---------------------------
 
+  this->menu_option();
   this->menu_demo();
-  this->menu_font();
   this->menu_git();
+
+  //---------------------------
+}
+void GUI_tab::menu_option(){
+  ImGuiIO& io = ImGui::GetIO();
+  //---------------------------
+
+  if(ImGui::BeginMenu(ICON_FA_COG, "menu_option")){
+    gui_font->combo_font_gui();
+    gui_font->combo_font_editor();
+
+    GUI_render* gui_render = gui->get_gui_render();
+    VK_info* vk_info = gui_render->get_vk_info();
+    ImGui::Text("e");
+    ImGui::EndMenu();
+  }
 
   //---------------------------
 }
@@ -85,18 +101,6 @@ void GUI_tab::menu_demo(){
 
   if(show_demo){
     ImGui::ShowDemoWindow(&show_demo);
-  }
-
-  //---------------------------
-}
-void GUI_tab::menu_font(){
-  ImGuiIO& io = ImGui::GetIO();
-  //---------------------------
-
-  if(ImGui::BeginMenu(ICON_FA_COG, "menu_font")){
-    gui_font->combo_font_gui();
-    gui_font->combo_font_editor();
-    ImGui::EndMenu();
   }
 
   //---------------------------

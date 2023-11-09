@@ -34,9 +34,9 @@ void VK_renderpass::init_renderpass(){
     cout<<"[error] No renderpass initiated"<<endl;
     exit(0);
   }
-say("---");
+
   for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
-    Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];say(i);
+    Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
     vk_subpass->create_subpass(renderpass);
     this->create_renderpass_struct(renderpass);
   }

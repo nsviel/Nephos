@@ -25,8 +25,8 @@ public:
 
   //Menu function
   void menu();
+  void menu_option();
   void menu_demo();
-  void menu_font();
   void menu_git();
 
   //Tab function

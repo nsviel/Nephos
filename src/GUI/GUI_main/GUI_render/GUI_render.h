@@ -1,6 +1,9 @@
 #ifndef GUI_RENDER_H
 #define GUI_RENDER_H
 
+#include <VK_main/VK_engine.h>
+#include <VK_main/VK_info.h>
+
 class GUI;
 class GUI_renderpass;
 class VK_engine;
@@ -22,6 +25,7 @@ public:
   void wait();
 
   inline VK_engine* get_vk_engine(){return vk_engine;}
+  inline VK_info* get_vk_info(){return vk_engine->get_vk_info();}
 
 private:
   GUI_renderpass* gui_renderpass;
