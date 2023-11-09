@@ -5,7 +5,7 @@
 #include <RES_base/BASE_panel.h>
 
 class GUI;
-class Param;
+class VK_info;
 
 
 class RND_option : public BASE_panel
@@ -25,7 +25,7 @@ public:
 
 private:
   GUI* gui;
-  Param* param;
+  VK_info* vk_info;
 
   int width;
 };

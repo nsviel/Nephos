@@ -10,7 +10,7 @@ class ENG_camera;
 class ELE_window;
 class ENG_scene;
 class Transformation;
-class Param;
+class Struct_camera;
 
 
 class RND_control
@@ -35,11 +35,12 @@ public:
 
 private:
   Engine* engine;
-  Param* param;
   ELE_window* ele_window;
   ENG_scene* eng_scene;
   ENG_camera* eng_camera;
   Transformation* transformManager;
+
+  Struct_camera* camera;
 };
 
 #endif

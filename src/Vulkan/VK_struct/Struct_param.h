@@ -1,5 +1,5 @@
-#ifndef PARAM_ENGINE_H
-#define PARAM_ENGINE_H
+#ifndef STRUCT_PARAM_H
+#define STRUCT_PARAM_H
 
 #include <ENG_camera/Struct_camera.h>
 

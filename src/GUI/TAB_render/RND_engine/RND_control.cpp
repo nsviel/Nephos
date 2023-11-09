@@ -20,7 +20,7 @@ RND_control::RND_control(GUI* gui){
   ENG_data* eng_data = engine->get_eng_data();
   this->engine = gui->get_engine();
   this->ele_window = engine->get_ele_window();
-  this->param = engine->get_param();
+  this->camera = engine->get_camera();
   this->eng_camera = engine->get_eng_camera();
   this->eng_scene = eng_data->get_eng_scene();
   this->transformManager = new Transformation();
@@ -168,7 +168,6 @@ void RND_control::control_keyboard_translation(){
 //Mouse
 void RND_control::control_mouse(ImVec2 center){
   ImGuiIO io = ImGui::GetIO();
-  Struct_camera* camera = &param->camera;
   //----------------------------
 
   ele_window->set_window_center(vec2(center.x, center.y));

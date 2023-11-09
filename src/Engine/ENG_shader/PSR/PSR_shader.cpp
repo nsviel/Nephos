@@ -1,14 +1,13 @@
 #include "PSR_shader.h"
 
 #include <Engine.h>
-#include <Param.h>
 #include <ELE_window/ELE_window.h>
 
 
 PSR_shader::PSR_shader(Engine* engine){
   //---------------------------
 
-  this->param = engine->get_param();
+  this->camera = engine->get_camera();
   this->ele_window = engine->get_ele_window();
 
   this->psr_param = new PSR_param();
@@ -34,7 +33,6 @@ void PSR_shader::init_shader(){
   //---------------------------
 }
 void PSR_shader::update_shader(){
-  Struct_camera* camera = &param->camera;
   //---------------------------
 
   // Depth setup

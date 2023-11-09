@@ -12,8 +12,7 @@ PAN_camera::PAN_camera(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  Param* param = engine->get_param();
-  this->camera = &param->camera;
+  this->camera = engine->get_camera();
 
   //---------------------------
 }
