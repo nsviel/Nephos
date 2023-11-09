@@ -128,8 +128,8 @@ void VK_imgui::clean(){
 }
 ImTextureID VK_imgui::engine_texture(){
   //---------------------------
-
-  Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("edl");
+sayHello();
+  Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("edl");sayHello();
   if(renderpass == nullptr) return 0;
   Struct_framebuffer* frame_edl = renderpass->framebuffer;
   Struct_image* image = &frame_edl->color;
