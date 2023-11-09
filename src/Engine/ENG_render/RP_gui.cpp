@@ -4,6 +4,7 @@
 #include <VK_main/VK_imgui.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_render.h>
+#include <VK_drawing/VK_drawing.h>
 
 
 //Constructor / Destructor
@@ -45,7 +46,7 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
 
   Struct_subpass* subpass = new Struct_subpass();
   subpass->target = "presentation";
-  subpass->draw_task = [vk_imgui](Struct_subpass* subpass){vk_imgui->draw(subpass);};
+  subpass->draw_task = [this](Struct_subpass* subpass){RP_gui::draw(subpass);};
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "triangle";
@@ -56,4 +57,12 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
 
   //---------------------------
   renderpass->vec_subpass.push_back(subpass);
+}
+
+void RP_gui::draw(Struct_subpass* subpass){
+  VK_drawing vk_drawing(vk_engine);
+  //---------------------------
+
+
+  //---------------------------
 }
