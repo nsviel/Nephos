@@ -79,7 +79,8 @@ void GUI_tab::menu_option(){
 
     GUI_render* gui_render = gui->get_gui_render();
     VK_info* vk_info = gui_render->get_vk_info();
-    ImGui::Text("e");
+    float fps = vk_info->get_fps();
+    ImGui::Text("%.2f", fps);
     ImGui::EndMenu();
   }
 

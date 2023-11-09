@@ -6,12 +6,7 @@ FPS_counter::FPS_counter(int nb_values){
   //---------------------------
 
   this->history_size = nb_values;
-  this->frame_times.reserve(nb_values);
-
-  // Initialize frame_times with zeros
-  for (int i = 0; i < history_size; ++i){
-    frame_times[i] = 0;
-  }
+  this->frame_times = std::vector<int>(nb_values, 0);
 
   //---------------------------
 }
@@ -43,20 +38,19 @@ void FPS_counter::update_moving_average(){
       average_fps += frame_times[i];
     }
     average_fps /= history_size;
-    average_fps = 1000000.0f / average_fps;
+    this->fps = 1000000.0f / average_fps;
   }
   else{
     average_fps = 0;
   }
 
   //---------------------------
-  this->fps = average_fps;
 }
 void FPS_counter::control_max_fps(){
   if(cpt_frame < history_size) return;
   //---------------------------
 
-  int minFrameDuration = max_fps; // Minimum frame duration in microseconds
+  int minFrameDuration = 1000000.0f / max_fps; // Minimum frame duration in microseconds
 
   // Calculate the time to sleep to achieve the desired FPS
   int sleepTime = minFrameDuration - average_fps;
