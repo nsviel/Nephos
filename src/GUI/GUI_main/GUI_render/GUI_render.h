@@ -6,6 +6,7 @@
 
 class GUI;
 class GUI_renderpass;
+class Vulkan;
 class VK_engine;
 class VK_render;
 
@@ -24,11 +25,11 @@ public:
   void clean();
   void wait();
 
-  inline VK_engine* get_vk_engine(){return vk_engine;}
-  inline VK_info* get_vk_info(){return vk_engine->get_vk_info();}
+  inline Vulkan* get_gui_vulkan(){return gui_vulkan;}
 
 private:
   GUI_renderpass* gui_renderpass;
+  Vulkan* gui_vulkan;
   VK_engine* vk_engine;
   VK_render* vk_render;
 };

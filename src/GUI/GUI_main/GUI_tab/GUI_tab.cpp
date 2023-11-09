@@ -1,6 +1,7 @@
 #include "GUI_tab.h"
 
 #include <GUI.h>
+#include <Vulkan.h>
 #include <GUI_style/GUI_font.h>
 #include <RES_git/GUI_git.h>
 #include <image/IconsFontAwesome5.h>
@@ -78,7 +79,8 @@ void GUI_tab::menu_option(){
     gui_font->combo_font_editor();
 
     GUI_render* gui_render = gui->get_gui_render();
-    VK_info* vk_info = gui_render->get_vk_info();
+    Vulkan* gui_vulkan = gui_render->get_gui_vulkan();
+    VK_info* vk_info = gui_vulkan->get_vk_info();
     float fps = vk_info->get_fps();
     ImGui::Text("%.2f", fps);
     ImGui::EndMenu();
