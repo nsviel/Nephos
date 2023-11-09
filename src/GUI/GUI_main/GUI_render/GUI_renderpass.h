@@ -21,6 +21,8 @@ public:
   void init_renderpass();
   void create_subpass(Struct_renderpass* renderpass);
 
+  void draw(Struct_subpass* subpass);
+
 private:
   VK_engine* vk_engine;
   VK_render* vk_render;

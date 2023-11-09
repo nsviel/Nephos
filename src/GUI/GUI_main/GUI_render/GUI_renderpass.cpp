@@ -45,6 +45,7 @@ void GUI_renderpass::create_subpass(Struct_renderpass* renderpass){
   Struct_subpass* subpass = new Struct_subpass();
   subpass->target = "presentation";
   subpass->draw_task = [vk_imgui](Struct_subpass* subpass){vk_imgui->draw(subpass);};
+  subpass->draw_task = [this](Struct_subpass* subpass){GUI_renderpass::draw(subpass);};
 
   Struct_pipeline* pipeline = new Struct_pipeline();
   pipeline->definition.name = "triangle";
@@ -55,4 +56,16 @@ void GUI_renderpass::create_subpass(Struct_renderpass* renderpass){
 
   //---------------------------
   renderpass->vec_subpass.push_back(subpass);
+}
+
+void GUI_renderpass::draw(Struct_subpass* subpass){
+  VK_imgui* vk_imgui = vk_engine->get_vk_imgui();
+  //---------------------------
+
+  Struct_pipeline* pipeline = subpass->get_pipeline();
+
+  vkCmdBindPipeline(subpass->command_buffer, PIPELINE_GRAPHICS, pipeline->pipeline);
+  vk_imgui->draw(subpass);
+
+  //---------------------------
 }

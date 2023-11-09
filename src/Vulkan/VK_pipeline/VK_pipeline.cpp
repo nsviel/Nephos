@@ -160,8 +160,8 @@ void VK_pipeline::create_pipeline_presentation(Struct_renderpass* renderpass, St
   //Create pipeline graphics
   VkResult result = vkCreateGraphicsPipelines(struct_vulkan->device.device, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->pipeline);
   if(result != VK_SUCCESS){
-      throw std::runtime_error("[error] failed to create graphics pipeline!");
-    }
+    throw std::runtime_error("[error] failed to create graphics pipeline!");
+  }
 
   //Destroy shader modules
   for(int i=0; i<pipeline->info.vec_shader_couple.size(); i++){

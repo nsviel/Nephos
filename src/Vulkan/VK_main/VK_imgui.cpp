@@ -72,7 +72,6 @@ void VK_imgui::draw(Struct_subpass* subpass){
 
   ImDrawData* draw_data = ImGui::GetDrawData();
   ImGui_ImplVulkan_RenderDrawData(draw_data, subpass->command_buffer);
-    ImGui_ImplVulkan_RenderDrawData(draw_data, subpass->command_buffer);
 
   //---------------------------
 }
