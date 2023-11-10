@@ -5,15 +5,16 @@
 #include <VK_struct/Struct_pipeline.h>
 #include <ELE_specific/common.h>
 
+class Vulkan;
 class VK_render;
-class VK_engine;
+class VK_imgui;
 
 
 class GUI_renderpass
 {
 public:
   //Constructor / Destructor
-  GUI_renderpass(VK_engine* vk_engine);
+  GUI_renderpass(Vulkan* gui_vulkan);
   ~GUI_renderpass();
 
 public:
@@ -21,8 +22,11 @@ public:
   void init_renderpass();
   void create_subpass(Struct_renderpass* renderpass);
 
+  //Draw function
+  void draw(Struct_subpass* subpass);
+
 private:
-  VK_engine* vk_engine;
+  VK_imgui* vk_imgui;
   VK_render* vk_render;
 };
 

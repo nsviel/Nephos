@@ -61,7 +61,7 @@ void VK_engine::init(){
   //---------------------------
 
   struct_vulkan->window.glfw_window = ele_window->get_window();
-  struct_vulkan->window.window_dim = ele_window->get_window_dim();
+  struct_vulkan->window.window_dim = ele_window->compute_window_dim();
 
   //Instance
   vk_surface->init_window();

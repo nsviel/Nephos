@@ -47,7 +47,6 @@ public:
   void insert_object_in_engine(Object* object);
   void remove_object_in_engine(Object* object);
 
-  inline ELE_window* get_ele_window(){return ele_window;}
   inline Struct_param* get_struct_param(){return struct_param;}
   inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
   inline Struct_synchro* get_struct_synchro(){return struct_synchro;}

@@ -25,10 +25,7 @@ public:
   void check_for_resizing();
   void window_extensions();
 
-  inline ELE_window* get_ele_window(){return ele_window;}
-
 private:
-  ELE_window* ele_window;
   Struct_vulkan* struct_vulkan;
 };
 

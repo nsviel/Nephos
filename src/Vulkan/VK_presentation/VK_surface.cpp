@@ -2,7 +2,6 @@
 
 #include <VK_main/VK_engine.h>
 #include <VK_struct/Struct_vulkan.h>
-#include <ELE_window/ELE_window.h>
 
 
 //Constructor / Destructor
@@ -10,7 +9,6 @@ VK_surface::VK_surface(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->ele_window = vk_engine->get_ele_window();
 
   //---------------------------
 }
@@ -20,7 +18,6 @@ VK_surface::~VK_surface(){}
 void VK_surface::init_window(){
   //---------------------------
 
-  struct_vulkan->window.ele_window = ele_window;
   this->window_extensions();
 
   //---------------------------

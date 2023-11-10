@@ -17,7 +17,7 @@ GUI_render::GUI_render(GUI* gui){
   this->gui_vulkan = new Vulkan(ele_window);
   this->vk_engine = gui_vulkan->get_vk_engine();
   this->vk_render = gui_vulkan->get_vk_render();
-  this->gui_renderpass = new GUI_renderpass(vk_engine);
+  this->gui_renderpass = new GUI_renderpass(gui_vulkan);
 
   //---------------------------
 }

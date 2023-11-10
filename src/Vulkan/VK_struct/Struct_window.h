@@ -2,7 +2,6 @@
 #define STRUCT_WINDOW_H
 
 #include <ELE_specific/common.h>
-#include <ELE_window/ELE_window.h>
 
 
 struct Struct_window{
@@ -10,7 +9,6 @@ struct Struct_window{
 
   //Window stuff
   bool is_resized = false;
-  ELE_window* ele_window;
   GLFWwindow* glfw_window;
   vec2 window_dim;
 
