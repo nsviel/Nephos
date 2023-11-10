@@ -24,32 +24,6 @@ void VK_imgui::init(){
   ImGui::CreateContext();
   ImGui::StyleColorsDark();
 
-  // Create Descriptor Pool
-  VkDescriptorPoolSize pool_sizes[] ={
-    { VK_DESCRIPTOR_TYPE_SAMPLER, 1000 },
-    { VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, 1000 },
-    { VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, 1000 },
-    { VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, 1000 },
-    { VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER, 1000 },
-    { VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER, 1000 },
-    { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, 1000 },
-    { VK_DESCRIPTOR_TYPE_STORAGE_BUFFER, 1000 },
-    { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, 1000 },
-    { VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC, 1000 },
-    { VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT, 1000 }
-  };
-  VkDescriptorPoolCreateInfo pool_info = {};
-  pool_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
-  pool_info.flags = VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT;
-  pool_info.maxSets = 1000 * IM_ARRAYSIZE(pool_sizes);
-  pool_info.poolSizeCount = (uint32_t)IM_ARRAYSIZE(pool_sizes);
-  pool_info.pPoolSizes = pool_sizes;
-
-  VkResult result = vkCreateDescriptorPool(struct_vulkan->device.device, &pool_info, nullptr, &descriptor_pool);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create gui");
-  }
-
   // Setup Platform/Renderer bindings
   ImGui_ImplGlfw_InitForVulkan(struct_vulkan->window.glfw_window, true);
   ImGui_ImplVulkan_InitInfo init_info = {};
@@ -121,7 +95,9 @@ void VK_imgui::load_font(){
 void VK_imgui::clean(){
   //---------------------------
 
-  vkDestroyDescriptorPool(struct_vulkan->device.device, descriptor_pool, nullptr);
+  ImGui_ImplVulkan_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+  ImGui::DestroyContext();
 
   //---------------------------
 }

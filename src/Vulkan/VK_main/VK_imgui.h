@@ -25,8 +25,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-
-  VkDescriptorPool descriptor_pool;
 };
 
 #endif

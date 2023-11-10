@@ -33,10 +33,6 @@ void GUI_gpu::clean_gui_vulkan(){
 
   vk_imgui->clean();
 
-  ImGui_ImplVulkan_Shutdown();
-  ImGui_ImplGlfw_Shutdown();
-  ImGui::DestroyContext();
-
   //---------------------------
 }
 
