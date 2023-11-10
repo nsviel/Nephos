@@ -28,7 +28,9 @@ void VK_surface::init_window(){
 void VK_surface::init_surface(){
   //---------------------------
 
-  VkResult result = glfwCreateWindowSurface(struct_vulkan->instance.instance, ele_window->get_window(), nullptr, &struct_vulkan->window.surface);
+
+
+  VkResult result = glfwCreateWindowSurface(struct_vulkan->instance.instance, struct_vulkan->window.glfw_window, nullptr, &struct_vulkan->window.surface);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create window surface!");
   }
@@ -45,15 +47,14 @@ void VK_surface::clean_surface(){
 
 //Subfunction
 void VK_surface::check_for_resizing(){
-  static vec2 window_dim = ele_window->compute_window_dim();
-  bool is_resized = false;
+  static vec2 window_dim = struct_vulkan->window.window_dim;
   //---------------------------
 
-  //ICI PROBLEM QUAND TRANSLATION TO WINDOW CLASS !!!
-  vec2 dim = ele_window->compute_window_dim();
-  if(dim.x != window_dim.x || dim.y != window_dim.y){
+  bool is_resized = false;
+  vec2 last_dim = struct_vulkan->window.window_dim;
+  if(last_dim.x != window_dim.x || last_dim.y != window_dim.y){
     is_resized = true;
-    window_dim = dim;
+    window_dim = last_dim;
   }
 
   //---------------------------

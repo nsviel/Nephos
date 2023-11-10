@@ -9,7 +9,6 @@ VK_imgui::VK_imgui(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->ele_window = vk_engine->get_ele_window();
 
   //---------------------------
 }
@@ -52,7 +51,7 @@ void VK_imgui::init(){
   }
 
   // Setup Platform/Renderer bindings
-  ImGui_ImplGlfw_InitForVulkan(ele_window->get_window(), true);
+  ImGui_ImplGlfw_InitForVulkan(struct_vulkan->window.glfw_window, true);
   ImGui_ImplVulkan_InitInfo init_info = {};
   init_info.Instance = struct_vulkan->instance.instance;
   init_info.PhysicalDevice = struct_vulkan->device.physical_device;

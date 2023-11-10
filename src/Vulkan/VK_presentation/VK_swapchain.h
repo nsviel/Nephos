@@ -4,7 +4,6 @@
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
-class ELE_window;
 class VK_engine;
 class VK_physical_device;
 class VK_depth;
@@ -38,8 +37,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  ELE_window* ele_window;
-  VK_engine* vk_engine;
   VK_viewport* vk_viewport;
   VK_physical_device* vk_physical_device;
   VK_depth* vk_depth;

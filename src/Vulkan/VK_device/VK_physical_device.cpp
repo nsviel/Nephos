@@ -10,7 +10,6 @@ VK_physical_device::VK_physical_device(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->ele_window = vk_engine->get_ele_window();
 
   struct_vulkan->device.extension.clear();
   struct_vulkan->device.extension.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
@@ -86,7 +85,7 @@ void VK_physical_device::compute_extent(){
   if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
     struct_vulkan->window.extent = capabilities.currentExtent;
   }else{
-    glm::vec2 fbo_dim = ele_window->get_window_dim();
+    glm::vec2 fbo_dim = struct_vulkan->window.window_dim;
 
     struct_vulkan->window.extent = {
       static_cast<uint32_t>(fbo_dim.x),

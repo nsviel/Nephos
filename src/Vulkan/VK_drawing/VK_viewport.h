@@ -7,7 +7,6 @@
 
 class VK_engine;
 class Struct_vulkan;
-class ELE_window;
 
 
 class VK_viewport
@@ -27,7 +26,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  ELE_window* ele_window;
 };
 
 #endif

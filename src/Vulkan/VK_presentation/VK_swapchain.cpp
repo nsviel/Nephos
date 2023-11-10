@@ -1,7 +1,6 @@
 #include "VK_swapchain.h"
 
 #include <VK_presentation/VK_frame.h>
-#include <ELE_window/ELE_window.h>
 #include <VK_main/VK_engine.h>
 #include <VK_drawing/VK_viewport.h>
 #include <VK_struct/Struct_vulkan.h>
@@ -15,10 +14,7 @@
 VK_swapchain::VK_swapchain(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
-  this->ele_window = vk_engine->get_ele_window();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-
   this->vk_physical_device = new VK_physical_device(vk_engine);
   this->vk_depth = new VK_depth(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);
@@ -36,7 +32,7 @@ void VK_swapchain::recreate_swapChain(){
   //Minimization managment
   int width = 0, height = 0;
   while(width == 0 || height == 0){
-    glfwGetFramebufferSize(ele_window->get_window(), &width, &height);
+    glfwGetFramebufferSize(struct_vulkan->window.glfw_window, &width, &height);
     glfwWaitEvents();
   }
 

@@ -5,7 +5,6 @@
 
 class VK_engine;
 class Struct_vulkan;
-class ELE_window;
 
 
 class VK_physical_device
@@ -39,7 +38,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  ELE_window* ele_window;
 };
 
 #endif

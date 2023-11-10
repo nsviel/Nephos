@@ -4,7 +4,6 @@
 #include <VK_struct/Struct_subpass.h>
 #include <ELE_specific/common.h>
 
-class ELE_window;
 class VK_engine;
 class Struct_vulkan;
 
@@ -25,7 +24,6 @@ public:
   ImTextureID engine_texture();
 
 private:
-  ELE_window* ele_window;
   Struct_vulkan* struct_vulkan;
 
   VkDescriptorPool descriptor_pool;
