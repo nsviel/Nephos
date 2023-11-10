@@ -9,6 +9,8 @@ struct Struct_physical_device{
   //---------------------------
 
   VkPhysicalDevice physical_device;
+
+  std::string name;
   uint32_t nb_queue_family;
   int queue_graphics_idx;
   int queue_presentation_idx;

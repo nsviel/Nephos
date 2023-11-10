@@ -1,7 +1,6 @@
 #include "VK_physical_device.h"
 
 #include <VK_presentation/VK_surface.h>
-#include <VK_struct/Struct_physical_device.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 
@@ -35,13 +34,6 @@ void VK_physical_device::select_physical_device(){
 
   this->find_physical_devices();
   this->find_physical_device_best();
-
-  //Store device names -homemade à virer ????
-  for(VkPhysicalDevice device : struct_vulkan->instance.vec_physical_device){
-    VkPhysicalDeviceProperties deviceProperties;
-    vkGetPhysicalDeviceProperties(device, &deviceProperties);
-    struct_vulkan->device.vec_device_name.push_back(deviceProperties.deviceName);
-  }
 
   //---------------------------
 }
@@ -77,26 +69,26 @@ void VK_physical_device::retrieve_device_name(){
 }
 
 //Subfunctions
-bool VK_physical_device::is_device_suitable(VkPhysicalDevice physical_device){
+bool VK_physical_device::is_device_suitable(Struct_physical_device& struct_device){
   //---------------------------
 
   //Queue suitable
-  this->find_queue_nb_family(physical_device);
-  this->find_queue_graphics_idx(physical_device);
-  this->find_queue_presentation_idx(physical_device);
+  this->find_queue_nb_family(struct_device);
+  this->find_queue_graphics_idx(struct_device);
+  this->find_queue_presentation_idx(struct_device);
   if(struct_vulkan->device.queue_graphics_idx == -1 || struct_vulkan->device.queue_presentation_idx == -1){
     return false;
   }
 
   //Extension suitable
-  bool extension_ok = check_extension_support(physical_device);
+  bool extension_ok = check_extension_support(struct_device.physical_device);
   if(extension_ok == false){
     return false;
   }
 
   //Swap chain suitable
-  vector<VkSurfaceFormatKHR> surface_format = find_surface_format(physical_device);
-  vector<VkPresentModeKHR> presentation_mode = find_presentation_mode(physical_device);
+  vector<VkSurfaceFormatKHR> surface_format = find_surface_format(struct_device.physical_device);
+  vector<VkPresentModeKHR> presentation_mode = find_presentation_mode(struct_device.physical_device);
   bool swapChain_ok = !surface_format.empty() && !presentation_mode.empty();
   if(swapChain_ok == false){
     return false;
@@ -104,7 +96,7 @@ bool VK_physical_device::is_device_suitable(VkPhysicalDevice physical_device){
 
   //Supported features
   VkPhysicalDeviceFeatures supportedFeatures;
-  vkGetPhysicalDeviceFeatures(physical_device, &supportedFeatures);
+  vkGetPhysicalDeviceFeatures(struct_device.physical_device, &supportedFeatures);
   bool msaa_ok = supportedFeatures.samplerAnisotropy;
   bool line_ok = supportedFeatures.wideLines;
   bool geom_ok = supportedFeatures.geometryShader;
@@ -138,7 +130,6 @@ bool VK_physical_device::check_extension_support(VkPhysicalDevice physical_devic
 
 //Specific info retrieval
 void VK_physical_device::find_physical_devices(){
-  vector<VkPhysicalDevice>& vec_physical_device = struct_vulkan->instance.vec_physical_device;
   //---------------------------
 
   //Find how many GPU are available
@@ -149,8 +140,19 @@ void VK_physical_device::find_physical_devices(){
   }
 
   //List all available GPU and take suitable one
-  vec_physical_device.resize(nb_device);
+  vector<VkPhysicalDevice> vec_physical_device(nb_device);
   vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, vec_physical_device.data());
+
+  //Store physical device properties
+  for(VkPhysicalDevice device : vec_physical_device){
+    VkPhysicalDeviceProperties deviceProperties;
+    vkGetPhysicalDeviceProperties(device, &deviceProperties);
+
+    Struct_physical_device struct_device;
+    struct_device.name = deviceProperties.deviceName;
+    struct_device.physical_device = device;
+    struct_vulkan->instance.vec_physical_device.push_back(struct_device);
+  }
 
   //---------------------------
 }
@@ -159,9 +161,11 @@ void VK_physical_device::find_physical_device_best(){
 
   // Use an ordered map to automatically sort candidates by increasing score
   std::multimap<int, VkPhysicalDevice> candidates;
-  for(VkPhysicalDevice& device : struct_vulkan->instance.vec_physical_device){
-    int score = rate_device_suitability(device);
-    candidates.insert(std::make_pair(score, device));
+  for(int i=0; i<struct_vulkan->instance.vec_physical_device.size(); i++){
+    Struct_physical_device& struct_device = struct_vulkan->instance.vec_physical_device[i];
+
+    this->rate_device_suitability(struct_device);
+    candidates.insert(std::make_pair(struct_device.selection_score, struct_device.physical_device));
   }
 
   //Select adequat GPU physical device
@@ -182,11 +186,11 @@ void VK_physical_device::find_physical_device_best(){
 
   //---------------------------
 }
-void VK_physical_device::find_queue_nb_family(VkPhysicalDevice physical_device){
+void VK_physical_device::find_queue_nb_family(Struct_physical_device& struct_device){
   //---------------------------
 
   uint32_t nb_queue_family = 0;
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queue_family, nullptr);
+  vkGetPhysicalDeviceQueueFamilyProperties(struct_device.physical_device, &nb_queue_family, nullptr);
   if(nb_queue_family == 0) {
     throw std::runtime_error("[error] No queue families on selected GPU");
   }
@@ -194,12 +198,12 @@ void VK_physical_device::find_queue_nb_family(VkPhysicalDevice physical_device){
   //---------------------------
   struct_vulkan->device.nb_queue_family = nb_queue_family;
 }
-void VK_physical_device::find_queue_graphics_idx(VkPhysicalDevice physical_device){
+void VK_physical_device::find_queue_graphics_idx(Struct_physical_device& struct_device){
   //---------------------------
 
   //List queue families
   std::vector<VkQueueFamilyProperties> vec_queueFamily(struct_vulkan->device.nb_queue_family );
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &struct_vulkan->device.nb_queue_family , vec_queueFamily.data());
+  vkGetPhysicalDeviceQueueFamilyProperties(struct_device.physical_device, &struct_vulkan->device.nb_queue_family , vec_queueFamily.data());
 
   //Search for specific properties (e.g, graphics)
   int i = 0;
@@ -215,19 +219,19 @@ void VK_physical_device::find_queue_graphics_idx(VkPhysicalDevice physical_devic
   //---------------------------
   struct_vulkan->device.queue_graphics_idx = -1;
 }
-void VK_physical_device::find_queue_presentation_idx(VkPhysicalDevice physical_device){
+void VK_physical_device::find_queue_presentation_idx(Struct_physical_device& struct_device){
   //---------------------------
 
   //List queue families
   std::vector<VkQueueFamilyProperties> vec_queueFamily(struct_vulkan->device.nb_queue_family );
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &struct_vulkan->device.nb_queue_family , vec_queueFamily.data());
+  vkGetPhysicalDeviceQueueFamilyProperties(struct_device.physical_device, &struct_vulkan->device.nb_queue_family , vec_queueFamily.data());
 
   //Search for specific properties (e.g, graphics)
   int i = 0;
   for(const auto& queueFamily : vec_queueFamily) {
     //Querying for presentation family
     VkBool32 presentSupport = false;
-    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device, i, struct_vulkan->window.surface, &presentSupport);
+    vkGetPhysicalDeviceSurfaceSupportKHR(struct_device.physical_device, i, struct_vulkan->window.surface, &presentSupport);
     if(presentSupport){
       struct_vulkan->device.queue_presentation_idx = i;
       return;
@@ -238,16 +242,23 @@ void VK_physical_device::find_queue_presentation_idx(VkPhysicalDevice physical_d
   //---------------------------
   struct_vulkan->device.queue_presentation_idx = -1;
 }
-int VK_physical_device::rate_device_suitability(VkPhysicalDevice physical_device){
+void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_device){
   int score = 0;
   //---------------------------
 
   VkPhysicalDeviceProperties deviceProperties;
-  vkGetPhysicalDeviceProperties(physical_device, &deviceProperties);
+  vkGetPhysicalDeviceProperties(struct_device.physical_device, &deviceProperties);
 
   // Get rid of llvmpipe
   if(deviceProperties.vendorID == 65541){
-    return 0;
+    struct_device.selection_score = 0;
+    return;
+  }
+
+  // Check if physical device is suitable
+  if(is_device_suitable(struct_device) == false){
+    struct_device.selection_score = 0;
+    return;
   }
 
   // Check if integrated GPU
@@ -255,16 +266,11 @@ int VK_physical_device::rate_device_suitability(VkPhysicalDevice physical_device
     score += 100000;
   }
 
-  // Check if physical device is suitable
-  if(is_device_suitable(physical_device) == false){
-    return 0;
-  }
-
   // Maximum possible size of textures affects graphics quality
   score += deviceProperties.limits.maxImageDimension2D;
 
   //---------------------------
-  return score;
+  struct_device.selection_score = score;
 }
 
 //Find specific properties
