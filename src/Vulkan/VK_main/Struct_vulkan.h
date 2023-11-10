@@ -50,7 +50,7 @@ struct Struct_vulkan{
 
   //Data
   std::vector<Struct_image*> vec_texture;
-  std::list<Struct_data*> list_data;
+  std::list<Struct_data*> list_object;
 
 
 
