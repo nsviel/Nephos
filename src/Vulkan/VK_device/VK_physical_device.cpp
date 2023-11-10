@@ -79,9 +79,9 @@ bool VK_physical_device::is_device_suitable(Struct_physical_device& struct_devic
   }
 
   //Swap chain suitable
-  vector<VkSurfaceFormatKHR> surface_format = find_surface_format(struct_device.physical_device);
-  vector<VkPresentModeKHR> presentation_mode = find_presentation_mode(struct_device.physical_device);
-  bool swapChain_ok = !surface_format.empty() && !presentation_mode.empty();
+  this->find_surface_format(struct_device);
+  this->find_presentation_mode(struct_device);
+  bool swapChain_ok = !struct_device.formats.empty() && !struct_device.presentation_mode.empty();
   if(swapChain_ok == false){
     return false;
   }
@@ -190,6 +190,40 @@ void VK_physical_device::find_surface_capability(Struct_physical_device& struct_
   //---------------------------
   struct_device.capabilities = capabilities;
 }
+void VK_physical_device::find_surface_format(Struct_physical_device& struct_device){
+  vector<VkSurfaceFormatKHR> formats;
+  //---------------------------
+
+  //Get supported surface format number
+  uint32_t nb_format;
+  vkGetPhysicalDeviceSurfaceFormatsKHR(struct_device.physical_device, struct_vulkan->window.surface, &nb_format, nullptr);
+
+  //Get supported surface format list
+  if(nb_format != 0){
+    formats.resize(nb_format);
+    vkGetPhysicalDeviceSurfaceFormatsKHR(struct_device.physical_device, struct_vulkan->window.surface, &nb_format, formats.data());
+  }
+
+  //---------------------------
+  struct_device.formats = formats;
+}
+void VK_physical_device::find_presentation_mode(Struct_physical_device& struct_device){
+  vector<VkPresentModeKHR> presentation_mode;
+  //---------------------------
+
+  //Get presentation mode number
+  uint32_t nb_mode_presentation;
+  vkGetPhysicalDeviceSurfacePresentModesKHR(struct_device.physical_device, struct_vulkan->window.surface, &nb_mode_presentation, nullptr);
+
+  //Get presentation mode list
+  if(nb_mode_presentation != 0){
+    presentation_mode.resize(nb_mode_presentation);
+    vkGetPhysicalDeviceSurfacePresentModesKHR(struct_device.physical_device, struct_vulkan->window.surface, &nb_mode_presentation, presentation_mode.data());
+  }
+
+  //---------------------------
+  struct_device.presentation_mode = presentation_mode;
+}
 void VK_physical_device::find_queue_nb_family(Struct_physical_device& struct_device){
   //---------------------------
 
@@ -278,37 +312,3 @@ void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_
 }
 
 //Find specific properties
-vector<VkSurfaceFormatKHR> VK_physical_device::find_surface_format(VkPhysicalDevice physical_device){
-  vector<VkSurfaceFormatKHR> formats;
-  //---------------------------
-
-  //Get supported surface format number
-  uint32_t nb_format;
-  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, struct_vulkan->window.surface, &nb_format, nullptr);
-
-  //Get supported surface format list
-  if(nb_format != 0){
-    formats.resize(nb_format);
-    vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device, struct_vulkan->window.surface, &nb_format, formats.data());
-  }
-
-  //---------------------------
-  return formats;
-}
-vector<VkPresentModeKHR> VK_physical_device::find_presentation_mode(VkPhysicalDevice physical_device){
-  vector<VkPresentModeKHR> presentation_mode;
-  //---------------------------
-
-  //Get presentation mode number
-  uint32_t nb_mode_presentation;
-  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, struct_vulkan->window.surface, &nb_mode_presentation, nullptr);
-
-  //Get presentation mode list
-  if(nb_mode_presentation != 0){
-    presentation_mode.resize(nb_mode_presentation);
-    vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device, struct_vulkan->window.surface, &nb_mode_presentation, presentation_mode.data());
-  }
-
-  //---------------------------
-  return presentation_mode;
-}

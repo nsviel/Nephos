@@ -36,8 +36,8 @@ public:
 
   //Find specific properties
   void find_surface_capability(Struct_physical_device& struct_device);
-  vector<VkSurfaceFormatKHR> find_surface_format(VkPhysicalDevice physical_device);
-  vector<VkPresentModeKHR> find_presentation_mode(VkPhysicalDevice physical_device);
+  void find_surface_format(Struct_physical_device& struct_device);
+  void find_presentation_mode(Struct_physical_device& struct_device);
 
 private:
   Struct_vulkan* struct_vulkan;

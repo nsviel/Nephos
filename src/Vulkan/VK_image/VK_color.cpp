@@ -59,7 +59,7 @@ VkSurfaceFormatKHR VK_color::retrieve_surface_format(const std::vector<VkSurface
 VkFormat VK_color::find_color_format(){
   //---------------------------
 
-  vector<VkSurfaceFormatKHR> surface_format = vk_physical_device->find_surface_format(struct_vulkan->device.struct_device.physical_device);
+  vector<VkSurfaceFormatKHR> surface_format = struct_vulkan->device.struct_device.formats;
   VkSurfaceFormatKHR surfaceFormat = retrieve_surface_format(surface_format);
   VkFormat format = surfaceFormat.format;
 

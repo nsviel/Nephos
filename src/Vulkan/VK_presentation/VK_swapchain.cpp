@@ -90,7 +90,7 @@ void VK_swapchain::create_swapchain(){
 void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& createInfo){
   //---------------------------
 
-  vector<VkSurfaceFormatKHR> surface_format = vk_physical_device->find_surface_format(struct_vulkan->device.struct_device.physical_device);
+  vector<VkSurfaceFormatKHR> surface_format = struct_vulkan->device.struct_device.formats;
   VkSurfaceFormatKHR surfaceFormat = swapchain_surface_format(surface_format);
   vk_physical_device->compute_extent();
 
@@ -139,7 +139,7 @@ void VK_swapchain::create_swapchain_family(VkSwapchainCreateInfoKHR& createInfo)
 void VK_swapchain::create_swapchain_presentation(VkSwapchainCreateInfoKHR& createInfo){
   //---------------------------
 
-  vector<VkPresentModeKHR> dev_presentation_mode = vk_physical_device->find_presentation_mode(struct_vulkan->device.struct_device.physical_device);
+  vector<VkPresentModeKHR> dev_presentation_mode = struct_vulkan->device.struct_device.presentation_mode;
   VkPresentModeKHR presentation_mode = swapchain_presentation_mode(dev_presentation_mode);
 
   createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; //Ignore alpha channel
