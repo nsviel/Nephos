@@ -12,7 +12,7 @@ VK_instance::VK_instance(Struct_vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_validation = new VK_validation(struct_vulkan);
 
-  struct_vulkan->instance.extension.push_back(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
+  struct_vulkan->instance.extension_ext.push_back(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
 
   //---------------------------
 }
@@ -54,8 +54,8 @@ void VK_instance::create_instance(){
   VkInstanceCreateInfo createInfo{};
   createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
   createInfo.pApplicationInfo = &appInfo;
-  createInfo.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->instance.extension.size());
-  createInfo.ppEnabledExtensionNames = struct_vulkan->instance.extension.data();
+  createInfo.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->instance.extension_ext.size());
+  createInfo.ppEnabledExtensionNames = struct_vulkan->instance.extension_ext.data();
   createInfo.enabledLayerCount = static_cast<uint32_t>(validation_layers.size());
   createInfo.ppEnabledLayerNames = validation_layers.data();
   createInfo.pNext = vk_validation->find_validation_extension();

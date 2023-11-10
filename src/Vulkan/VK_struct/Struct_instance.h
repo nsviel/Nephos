@@ -7,9 +7,10 @@
 struct Struct_instance{
   //---------------------------
 
-  int max_frame_inflight = 2;
   VkInstance instance;
-  vector<const char*> extension;
+  int max_frame_inflight = 2;
+  vector<const char*> extension_ext;
+  vector<const char*> extension_khr;
 
   //---------------------------
 };

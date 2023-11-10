@@ -14,7 +14,6 @@ struct Struct_device{
   VkQueue queue_presentation;
   Struct_physical_device* physical_device_;
 
-  vector<const char*> extension;
   vector<string> vec_device_name;
   uint32_t nb_queue_family;
   int queue_graphics_idx;

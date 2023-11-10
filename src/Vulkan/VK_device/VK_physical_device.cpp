@@ -11,9 +11,9 @@ VK_physical_device::VK_physical_device(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
 
-  struct_vulkan->device.extension.clear();
-  struct_vulkan->device.extension.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
-  struct_vulkan->device.extension.push_back(VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME);
+  struct_vulkan->instance.extension_khr.clear();
+  struct_vulkan->instance.extension_khr.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
+  struct_vulkan->instance.extension_khr.push_back(VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME);
 
   //---------------------------
 }
@@ -158,7 +158,7 @@ bool VK_physical_device::check_extension_support(VkPhysicalDevice physical_devic
   vkEnumerateDeviceExtensionProperties(physical_device, nullptr, &nb_extension, vec_extension.data());
 
   //Check if all required extension are in the list
-  std::set<std::string> requiredExtensions(struct_vulkan->device.extension.begin(), struct_vulkan->device.extension.end());
+  std::set<std::string> requiredExtensions(struct_vulkan->instance.extension_khr.begin(), struct_vulkan->instance.extension_khr.end());
   for(const auto& extension : vec_extension){
     requiredExtensions.erase(extension.extensionName);
   }

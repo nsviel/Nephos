@@ -66,8 +66,8 @@ void VK_device::create_logical_device(){
   createInfo.pQueueCreateInfos = queueCreateInfos.data();
   createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
   createInfo.pEnabledFeatures = &deviceFeatures;
-  createInfo.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->device.extension.size());
-  createInfo.ppEnabledExtensionNames = struct_vulkan->device.extension.data();
+  createInfo.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->instance.extension_khr.size());
+  createInfo.ppEnabledExtensionNames = struct_vulkan->instance.extension_khr.data();
   createInfo.enabledLayerCount = 0;
 
   //Creating the logical device

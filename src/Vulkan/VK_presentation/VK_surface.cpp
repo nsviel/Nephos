@@ -65,7 +65,7 @@ void VK_surface::window_extensions(){
   vector<const char*> extensions(glfw_extensions, glfw_extensions + glfw_extension_nb);
 
   for(int i=0; i<extensions.size(); i++){
-    struct_vulkan->instance.extension.push_back(extensions[i]);
+    struct_vulkan->instance.extension_ext.push_back(extensions[i]);
   }
 
   //---------------------------
