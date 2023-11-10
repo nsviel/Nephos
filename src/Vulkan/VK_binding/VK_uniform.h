@@ -6,7 +6,6 @@
 #include <ENG_shader/EDL/EDL_param.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
 class VK_buffer;
 

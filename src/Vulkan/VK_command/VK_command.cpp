@@ -1,5 +1,7 @@
 #include "VK_command.h"
 
+#include <VK_command/VK_command_buffer.h>
+#include <VK_command/VK_submit.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_main/VK_engine.h>
 
@@ -9,12 +11,27 @@ VK_command::VK_command(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
+  this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
+  //this->vk_submit = new VK_submit(struct_vulkan);
 
   //---------------------------
 }
 VK_command::~VK_command(){}
 
 //Command buffer
+void VK_command::start_command_buffer_once(VkCommandBuffer& command_buffer){
+  //---------------------------
+
+  VkCommandBufferBeginInfo begin_info{};
+  begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+  begin_info.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+  VkResult result = vkBeginCommandBuffer(command_buffer, &begin_info);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("failed to begin recording command buffer!");
+  }
+
+  //---------------------------
+}
 void VK_command::start_command_buffer_primary(VkCommandBuffer command_buffer){
   //---------------------------
 
@@ -170,22 +187,11 @@ void VK_command::image_layout_transition_single(Struct_image* image, VkImageLayo
 
 //Single time command
 VkCommandBuffer VK_command::singletime_command_begin(){
+  VkCommandBuffer command_buffer;
   //---------------------------
 
-  VkCommandBufferAllocateInfo allocInfo{};
-  allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-  allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-  allocInfo.commandPool = struct_vulkan->pool.command;
-  allocInfo.commandBufferCount = 1;
-
-  VkCommandBuffer command_buffer;
-  vkAllocateCommandBuffers(struct_vulkan->device.device, &allocInfo, &command_buffer);
-
-  VkCommandBufferBeginInfo begin_info{};
-  begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-  begin_info.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-
-  vkBeginCommandBuffer(command_buffer, &begin_info);
+  vk_command_buffer->allocate_command_buffer_primary(command_buffer);
+  this->start_command_buffer_once(command_buffer);
 
   //---------------------------
   return command_buffer;
@@ -195,12 +201,14 @@ void VK_command::singletime_command_end(VkCommandBuffer command_buffer){
 
   vkEndCommandBuffer(command_buffer);
 
+  //vk_submit->submit_command_graphics(command_buffer);
+
   VkSubmitInfo submitInfo{};
   submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   submitInfo.commandBufferCount = 1;
   submitInfo.pCommandBuffers = &command_buffer;
-
   vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submitInfo, VK_NULL_HANDLE);
+
   vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
 
   vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pool.command, 1, &command_buffer);

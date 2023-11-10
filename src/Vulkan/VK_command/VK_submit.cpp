@@ -63,11 +63,11 @@ void VK_submit::set_next_frame_ID(Struct_swapchain* swapchain){
 void VK_submit::submit_command_graphics(VkCommandBuffer command){
   //---------------------------
 
-  VkSubmitInfo end_info = {};
-  end_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  end_info.commandBufferCount = 1;
-  end_info.pCommandBuffers = &command;
-  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &end_info, VK_NULL_HANDLE);
+  VkSubmitInfo submit_info = {};
+  submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+  submit_info.commandBufferCount = 1;
+  submit_info.pCommandBuffers = &command;
+  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, VK_NULL_HANDLE);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }

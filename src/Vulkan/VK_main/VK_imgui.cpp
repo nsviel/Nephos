@@ -72,6 +72,8 @@ void VK_imgui::load_font(){
     throw std::runtime_error("gui font error");
   }
 
+
+
   ImGui_ImplVulkan_CreateFontsTexture(subpass->command_buffer);
 
   vk_command->stop_command_buffer(subpass->command_buffer);

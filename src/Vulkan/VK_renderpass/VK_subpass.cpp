@@ -27,7 +27,7 @@ void VK_subpass::create_subpass(Struct_renderpass* renderpass){
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
     Struct_subpass* subpass = renderpass->vec_subpass[i];
 
-    vk_command_buffer->allocate_command_buffer_primary(subpass);
+    vk_command_buffer->allocate_command_buffer_primary(subpass->command_buffer);
     if(subpass->target == "shader"){
       this->create_subpass_shader(subpass);
     }

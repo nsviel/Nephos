@@ -7,8 +7,10 @@
 #include <VK_struct/Struct_renderpass.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
+class VK_engine;
+class VK_command_buffer;
+class VK_submit;
 
 
 class VK_command
@@ -20,6 +22,7 @@ public:
 
 public:
   //Command buffer
+  void start_command_buffer_once(VkCommandBuffer& command_buffer);
   void start_command_buffer_primary(VkCommandBuffer command_buffer);
   void start_command_buffer_secondary(Struct_renderpass* renderpass, VkCommandBuffer command_buffer);
   void stop_command_buffer(VkCommandBuffer command_buffer);
@@ -38,6 +41,8 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
+  VK_command_buffer* vk_command_buffer;
+  //VK_submit* vk_submit;
 };
 
 

@@ -55,17 +55,16 @@ void VK_command_buffer::clean_command_pool(){
 }
 
 //Command buffer
-void VK_command_buffer::allocate_command_buffer_primary(Struct_subpass* subpass){
+void VK_command_buffer::allocate_command_buffer_primary(VkCommandBuffer& command_buffer){
   //---------------------------
 
   //Command buffer allocation
-  VkCommandBufferAllocateInfo allocInfo{};
-  allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-  allocInfo.commandPool = struct_vulkan->pool.command;
-  allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-  allocInfo.commandBufferCount = 1;
-
-  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &allocInfo, &subpass->command_buffer);
+  VkCommandBufferAllocateInfo alloc_info{};
+  alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+  alloc_info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+  alloc_info.commandPool = struct_vulkan->pool.command;
+  alloc_info.commandBufferCount = 1;
+  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &command_buffer);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }
@@ -76,13 +75,13 @@ void VK_command_buffer::allocate_command_buffer_secondary(Struct_data* data){
   //---------------------------
 
   //Command buffer allocation
-  VkCommandBufferAllocateInfo allocInfo{};
-  allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-  allocInfo.commandPool = struct_vulkan->pool.command;
-  allocInfo.level = VK_COMMAND_BUFFER_LEVEL_SECONDARY;
-  allocInfo.commandBufferCount = 1;
+  VkCommandBufferAllocateInfo alloc_info{};
+  alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+  alloc_info.level = VK_COMMAND_BUFFER_LEVEL_SECONDARY;
+  alloc_info.commandPool = struct_vulkan->pool.command;
+  alloc_info.commandBufferCount = 1;
 
-  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &allocInfo, &data->command_buffer_secondary);
+  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &data->command_buffer_secondary);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }

@@ -24,7 +24,7 @@ public:
   void clean_command_pool();
 
   //Command buffer
-  void allocate_command_buffer_primary(Struct_subpass* subpass);
+  void allocate_command_buffer_primary(VkCommandBuffer& command_buffer);
   void allocate_command_buffer_secondary(Struct_data* data);
 
 private:

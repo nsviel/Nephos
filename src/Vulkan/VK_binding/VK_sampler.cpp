@@ -1,8 +1,6 @@
 #include "VK_sampler.h"
 
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
-#include <VK_data/VK_buffer.h>
 
 
 //Constructor / Destructor
@@ -10,7 +8,6 @@ VK_sampler::VK_sampler(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_buffer = new VK_buffer(struct_vulkan);
 
   //---------------------------
 }
