@@ -8,6 +8,7 @@ class Struct_vulkan;
 class VK_engine;
 class VK_command_buffer;
 class VK_submit;
+class VK_command;
 
 
 class VK_imgui
@@ -29,6 +30,7 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_engine* vk_engine;
   VK_submit* vk_submit;
+  VK_command* vk_command;
   VK_command_buffer* vk_command_buffer;
 };
 

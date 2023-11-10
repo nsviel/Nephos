@@ -4,6 +4,7 @@
 #include <VK_main/VK_engine.h>
 #include <VK_command/VK_command_buffer.h>
 #include <VK_command/VK_submit.h>
+#include <VK_command/VK_command.h>
 
 
 //Constructor / Destructor
@@ -12,8 +13,9 @@ VK_imgui::VK_imgui(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
+  this->vk_command = new VK_command(struct_vulkan);
   this->vk_submit = new VK_submit(struct_vulkan);
-  //this->vk_engine = new VK_engine(struct_vulkan);
+  this->vk_engine = new VK_engine(struct_vulkan);
 
   //---------------------------
 }
@@ -72,18 +74,9 @@ void VK_imgui::load_font(){
 
   ImGui_ImplVulkan_CreateFontsTexture(subpass->command_buffer);
 
-
-  result = vkEndCommandBuffer(subpass->command_buffer);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
-  }
-
+  vk_command->stop_command_buffer(subpass->command_buffer);
   vk_submit->submit_command_graphics(subpass->command_buffer);
-
-  result = vkDeviceWaitIdle(struct_vulkan->device.device);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
-  }
+  vk_engine->device_wait_idle();
 
   ImGui_ImplVulkan_DestroyFontUploadObjects();
 
