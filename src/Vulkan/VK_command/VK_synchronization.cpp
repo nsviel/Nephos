@@ -10,7 +10,6 @@ VK_synchronization::VK_synchronization(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_engine = vk_engine;
   this->vk_device = new VK_device(vk_engine);
 
   //---------------------------

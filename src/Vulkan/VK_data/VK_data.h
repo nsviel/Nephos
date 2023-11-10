@@ -39,7 +39,6 @@ public:
   void check_for_attribut(Struct_data* data);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_texture* vk_texture;

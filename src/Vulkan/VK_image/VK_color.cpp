@@ -12,7 +12,6 @@
 VK_color::VK_color(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_physical_device = new VK_physical_device(vk_engine);
   this->vk_image = new VK_image(vk_engine);

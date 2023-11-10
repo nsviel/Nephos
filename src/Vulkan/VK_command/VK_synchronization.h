@@ -30,7 +30,6 @@ public:
   void clean_vec_fence(vector<VkFence>& vec_fence);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_device* vk_device;
 };

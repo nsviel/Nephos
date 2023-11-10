@@ -42,7 +42,6 @@ public:
   VkDescriptorPoolSize add_descriptor_type(VkDescriptorType type, int count);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
 };
 

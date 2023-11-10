@@ -37,7 +37,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_engine* vk_engine;
   VK_command_buffer* vk_command_buffer;
   VK_color* vk_color;
   VK_depth* vk_depth;

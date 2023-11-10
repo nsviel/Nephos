@@ -27,7 +27,6 @@ public:
   void allocate_command_buffer_secondary(Struct_data* data);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_physical_device* vk_physical_device;
 };

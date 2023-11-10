@@ -27,7 +27,6 @@ public:
   VkFormat find_depth_format();
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_image* vk_image;
 };

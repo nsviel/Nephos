@@ -13,7 +13,6 @@
 VK_data::VK_data(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_buffer = new VK_buffer(vk_engine);
   this->vk_texture = new VK_texture(vk_engine);

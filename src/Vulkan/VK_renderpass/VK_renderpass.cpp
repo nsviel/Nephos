@@ -14,7 +14,6 @@
 VK_renderpass::VK_renderpass(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_color = new VK_color(vk_engine);
   this->vk_pipeline = new VK_pipeline(vk_engine);

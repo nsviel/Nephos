@@ -51,7 +51,6 @@ public:
   Struct_pipeline* get_pipeline_byName(Struct_renderpass* renderpass, string name);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_descriptor* vk_descriptor;
   VK_viewport* vk_viewport;

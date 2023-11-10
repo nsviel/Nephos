@@ -8,7 +8,6 @@
 VK_blending::VK_blending(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   //---------------------------

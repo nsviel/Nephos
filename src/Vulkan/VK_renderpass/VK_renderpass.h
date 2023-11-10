@@ -32,7 +32,6 @@ public:
   void clean_renderpass_struct(Struct_renderpass* renderpass);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_color* vk_color;
   VK_pipeline* vk_pipeline;

@@ -47,7 +47,6 @@ public:
   void convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_image* vk_image;

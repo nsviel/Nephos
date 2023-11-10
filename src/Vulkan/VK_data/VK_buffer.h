@@ -36,7 +36,6 @@ public:
   uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
 
 private:
-  VK_engine* vk_engine;
   VK_command* vk_command;
   Struct_vulkan* struct_vulkan;
 };

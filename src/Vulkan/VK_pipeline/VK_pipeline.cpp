@@ -13,7 +13,6 @@
 VK_pipeline::VK_pipeline(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_viewport = new VK_viewport(vk_engine);

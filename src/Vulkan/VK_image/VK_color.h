@@ -26,7 +26,6 @@ public:
   VkFormat find_color_format();
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_physical_device* vk_physical_device;
   VK_image* vk_image;

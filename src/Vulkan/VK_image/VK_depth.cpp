@@ -9,7 +9,6 @@
 VK_depth::VK_depth(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_image = new VK_image(vk_engine);
 

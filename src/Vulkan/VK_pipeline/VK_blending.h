@@ -22,7 +22,6 @@ public:
   void create_color_blending(Struct_pipeline* pipeline);
 
 private:
-  VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
 };
 

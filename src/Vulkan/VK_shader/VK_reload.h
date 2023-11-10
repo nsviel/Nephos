@@ -24,7 +24,6 @@ public:
   void recreate_pipeline(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
 
 private:
-  VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
   Struct_vulkan* struct_vulkan;
   VK_renderpass* vk_renderpass;

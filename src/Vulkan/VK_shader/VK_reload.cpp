@@ -13,7 +13,6 @@
 VK_reload::VK_reload(VK_engine* vk_engine){
   //---------------------------
 
-  this->vk_engine = vk_engine;
   this->struct_vulkan = vk_engine->get_struct_vulkan();
   this->vk_pipeline = new VK_pipeline(vk_engine);
   this->vk_renderpass = new VK_renderpass(vk_engine);

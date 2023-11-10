@@ -24,7 +24,6 @@ public:
   void create_instance();
 
 private:
-  VK_engine* vk_engine;
   VK_validation* vk_validation;
   Struct_vulkan* struct_vulkan;
 };
