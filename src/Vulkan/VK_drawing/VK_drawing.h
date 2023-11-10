@@ -8,7 +8,6 @@
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
-class Struct_synchro;
 class VK_engine;
 class VK_command;
 class VK_descriptor;
@@ -40,7 +39,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  Struct_synchro* struct_synchro;
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
   VK_viewport* vk_viewport;

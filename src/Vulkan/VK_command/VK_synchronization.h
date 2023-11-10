@@ -7,7 +7,6 @@
 class VK_engine;
 class Struct_vulkan;
 class VK_device;
-class Struct_synchro;
 
 
 class VK_synchronization
@@ -30,12 +29,10 @@ public:
   void clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore);
   void clean_vec_fence(vector<VkFence>& vec_fence);
 
-
 private:
   VK_engine* vk_engine;
   Struct_vulkan* struct_vulkan;
   VK_device* vk_device;
-  Struct_synchro* struct_synchro;
 };
 
 #endif

@@ -7,7 +7,6 @@
 #include <ELE_specific/common.h>
 
 class ELE_window;
-class Struct_synchro;
 class Struct_vulkan;
 class VK_surface;
 class VK_instance;
@@ -44,7 +43,6 @@ public:
   void remove_object_in_engine(Object* object);
 
   inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
-  inline Struct_synchro* get_struct_synchro(){return struct_synchro;}
 
   inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->render.vec_renderpass[i];}
   inline std::list<Struct_data*> get_list_data(){return struct_vulkan->list_object;}

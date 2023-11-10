@@ -2,7 +2,6 @@
 
 #include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
-#include <VK_struct/Struct_synchro.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
@@ -18,8 +17,6 @@ VK_drawing::VK_drawing(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->struct_synchro = vk_engine->get_struct_synchro();
-
   this->vk_command = new VK_command(vk_engine);
   this->vk_descriptor = new VK_descriptor(vk_engine);
   this->vk_submit = new VK_submit(vk_engine);
@@ -56,8 +53,8 @@ void VK_drawing::draw_frame(){
 void VK_drawing::run_next_image(){
   //---------------------------
 
-  VkSemaphore semaphore = struct_synchro->vec_semaphore_render[0];
-  VkFence fence = struct_synchro->vec_fence[0];
+  VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[0];
+  VkFence fence = struct_vulkan->synchro.vec_fence[0];
   vk_submit->acquire_next_image(&struct_vulkan->swapchain, semaphore, fence);
 
   //---------------------------
@@ -94,10 +91,10 @@ void VK_drawing::run_command(Struct_renderpass* renderpass, int i){
   Struct_command& command = renderpass->command;
   //---------------------------
 
-  command.vec_semaphore_wait.push_back(struct_synchro->vec_semaphore_render[i]);
-  command.vec_semaphore_done.push_back(struct_synchro->vec_semaphore_render[i+1]);
+  command.vec_semaphore_wait.push_back(struct_vulkan->synchro.vec_semaphore_render[i]);
+  command.vec_semaphore_done.push_back(struct_vulkan->synchro.vec_semaphore_render[i+1]);
   command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-  command.fence = (i != struct_vulkan->render.vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_synchro->vec_fence[0];
+  command.fence = (i != struct_vulkan->render.vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_vulkan->synchro.vec_fence[0];
 
   vk_submit->submit_graphics_command(&command);
 
@@ -106,7 +103,7 @@ void VK_drawing::run_command(Struct_renderpass* renderpass, int i){
 void VK_drawing::run_presentation(){
   //---------------------------
 
-  VkSemaphore semaphore = struct_synchro->vec_semaphore_render[struct_vulkan->render.vec_renderpass.size()];
+  VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[struct_vulkan->render.vec_renderpass.size()];
   vk_submit->submit_presentation(&struct_vulkan->swapchain, semaphore);
   vk_submit->set_next_frame_ID(&struct_vulkan->swapchain);
 

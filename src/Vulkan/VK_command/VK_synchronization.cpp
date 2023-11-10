@@ -2,7 +2,6 @@
 
 #include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
-#include <VK_struct/Struct_synchro.h>
 #include <VK_device/VK_device.h>
 
 
@@ -11,7 +10,6 @@ VK_synchronization::VK_synchronization(VK_engine* vk_engine){
   //---------------------------
 
   this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->struct_synchro = vk_engine->get_struct_synchro();
   this->vk_engine = vk_engine;
   this->vk_device = new VK_device(vk_engine);
 
@@ -27,27 +25,27 @@ void VK_synchronization::init_frame_sync(Struct_frame* frame){
   for(int i=0; i<4; i++){
     VkSemaphore semaphore;
     this->create_semaphore(semaphore);
-    struct_synchro->vec_semaphore_render.push_back(semaphore);
+    struct_vulkan->synchro.vec_semaphore_render.push_back(semaphore);
   }
 
   //Create semaphore - Image acquisition
   VkSemaphore semaphore_image;
   this->create_semaphore(semaphore_image);
-  struct_synchro->vec_semaphore_render.push_back(semaphore_image);
+  struct_vulkan->synchro.vec_semaphore_render.push_back(semaphore_image);
 
   //Create fence
   VkFence fence;
   this->create_fence(fence);
-  struct_synchro->vec_fence.push_back(fence);
+  struct_vulkan->synchro.vec_fence.push_back(fence);
 
   //---------------------------
 }
 void VK_synchronization::clean_frame_sync(Struct_frame* frame){
   //---------------------------
 
-  this->clean_vec_semaphore(struct_synchro->vec_semaphore_render);
-  this->clean_vec_semaphore(struct_synchro->vec_semaphore_image);
-  this->clean_vec_fence(struct_synchro->vec_fence);
+  this->clean_vec_semaphore(struct_vulkan->synchro.vec_semaphore_render);
+  this->clean_vec_semaphore(struct_vulkan->synchro.vec_semaphore_image);
+  this->clean_vec_fence(struct_vulkan->synchro.vec_fence);
 
   //---------------------------
 }
