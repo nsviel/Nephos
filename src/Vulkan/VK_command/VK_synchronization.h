@@ -4,9 +4,7 @@
 #include <VK_struct/Struct_frame.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
-class VK_device;
 
 
 class VK_synchronization
@@ -31,7 +29,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_device* vk_device;
 };
 
 #endif

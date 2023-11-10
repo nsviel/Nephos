@@ -1,15 +1,8 @@
 #include "VK_drawing.h"
 
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
-#include <VK_pipeline/VK_pipeline.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
-#include <VK_data/VK_canvas.h>
-#include <VK_binding/VK_descriptor.h>
-#include <VK_drawing/VK_viewport.h>
-#include <VK_renderpass/VK_renderpass.h>
-#include <VK_presentation/VK_swapchain.h>
 
 
 //Constructor / Destructor
@@ -18,10 +11,7 @@ VK_drawing::VK_drawing(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_command = new VK_command(struct_vulkan);
-  this->vk_descriptor = new VK_descriptor(struct_vulkan);
   this->vk_submit = new VK_submit(struct_vulkan);
-  this->vk_swapchain = new VK_swapchain(struct_vulkan);
-  this->vk_viewport = new VK_viewport(struct_vulkan);
 
   //---------------------------
 }

@@ -11,10 +11,6 @@ VK_physical_device::VK_physical_device(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
 
-  struct_vulkan->instance.extension_khr.clear();
-  struct_vulkan->instance.extension_khr.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
-  struct_vulkan->instance.extension_khr.push_back(VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME);
-
   //---------------------------
 }
 VK_physical_device::~VK_physical_device(){}

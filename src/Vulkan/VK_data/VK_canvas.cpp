@@ -5,7 +5,6 @@
 #include <VK_data/VK_buffer.h>
 #include <VK_data/VK_data.h>
 #include <VK_image/VK_texture.h>
-#include <VK_binding/VK_binding.h>
 
 
 //Constructor / Destructor
@@ -16,7 +15,6 @@ VK_canvas::VK_canvas(Struct_vulkan* struct_vulkan){
   this->vk_buffer = new VK_buffer(struct_vulkan);
   this->vk_data = new VK_data(struct_vulkan);
   this->vk_texture = new VK_texture(struct_vulkan);
-  this->vk_binding = new VK_binding(struct_vulkan);
 
   //---------------------------
 }

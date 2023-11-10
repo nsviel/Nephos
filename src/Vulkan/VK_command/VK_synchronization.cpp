@@ -1,8 +1,6 @@
 #include "VK_synchronization.h"
 
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
-#include <VK_device/VK_device.h>
 
 
 //Constructor / Destructor
@@ -10,7 +8,6 @@ VK_synchronization::VK_synchronization(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_device = new VK_device(struct_vulkan);
 
   //---------------------------
 }

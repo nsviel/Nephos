@@ -9,7 +9,6 @@ class Struct_vulkan;
 class VK_buffer;
 class VK_data;
 class VK_texture;
-class VK_binding;
 
 
 class VK_canvas
@@ -29,7 +28,6 @@ private:
   VK_buffer* vk_buffer;
   VK_data* vk_data;
   VK_texture* vk_texture;
-  VK_binding* vk_binding;
 };
 
 #endif

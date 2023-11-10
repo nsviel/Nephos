@@ -8,11 +8,7 @@
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
-class VK_engine;
 class VK_command;
-class VK_descriptor;
-class VK_swapchain;
-class VK_viewport;
 class VK_submit;
 
 
@@ -40,10 +36,7 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
-  VK_descriptor* vk_descriptor;
-  VK_viewport* vk_viewport;
   VK_submit* vk_submit;
-  VK_swapchain* vk_swapchain;
   Timer timer;
 };
 
