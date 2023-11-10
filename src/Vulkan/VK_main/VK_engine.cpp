@@ -1,7 +1,6 @@
 #include "VK_engine.h"
 
-#include <VK_struct/Struct_vulkan.h>
-#include <VK_struct/Struct_param.h>
+#include <VK_main/Struct_vulkan.h>
 #include <VK_struct/Struct_synchro.h>
 #include <VK_data/VK_data.h>
 #include <VK_renderpass/VK_renderpass.h>
@@ -15,11 +14,7 @@
 #include <VK_presentation/VK_swapchain.h>
 #include <VK_presentation/VK_frame.h>
 #include <VK_shader/VK_reload.h>
-#include <VK_main/VK_imgui.h>
 #include <VK_drawing/VK_viewport.h>
-#include <VK_main/VK_render.h>
-#include <VK_main/VK_info.h>
-
 #include <ELE_window/ELE_window.h>
 
 
@@ -29,7 +24,6 @@ VK_engine::VK_engine(ELE_window* ele_window){
 
   this->ele_window = ele_window;
 
-  this->struct_param = new Struct_param();
   this->struct_vulkan = new Struct_vulkan();
   this->struct_synchro = new Struct_synchro();
 
@@ -46,10 +40,6 @@ VK_engine::VK_engine(ELE_window* ele_window){
   this->vk_reload = new VK_reload(this);
   this->vk_frame = new VK_frame(this);
   this->vk_canvas = new VK_canvas(this);
-  this->vk_info = new VK_info(this);
-
-  this->vk_render = new VK_render(this);
-  this->vk_imgui = new VK_imgui(this);
 
   //---------------------------
 }

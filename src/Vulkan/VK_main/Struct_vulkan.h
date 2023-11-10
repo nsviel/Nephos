@@ -8,6 +8,7 @@
 #include <VK_struct/Struct_renderpass.h>
 #include <VK_struct/Struct_info.h>
 #include <VK_struct/Struct_data.h>
+#include <VK_struct/Struct_param.h>
 
 #include <string>
 #include <vector>
@@ -35,6 +36,7 @@ struct Struct_vulkan{
   Struct_swapchain swapchain;
   Struct_info info;
   Struct_data canvas;
+  Struct_param param;
 
   //Data
   std::vector<Struct_renderpass*> vec_renderpass;

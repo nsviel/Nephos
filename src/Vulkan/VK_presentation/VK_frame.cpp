@@ -1,7 +1,7 @@
 #include "VK_frame.h"
 
 #include <VK_main/VK_engine.h>
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_main/Struct_vulkan.h>
 #include <VK_command/VK_command.h>
 #include <VK_command/VK_synchronization.h>
 #include <VK_presentation/VK_framebuffer.h>

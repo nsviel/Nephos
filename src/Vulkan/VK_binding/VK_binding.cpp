@@ -4,7 +4,7 @@
 #include <VK_binding/VK_sampler.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_main/VK_engine.h>
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_main/Struct_vulkan.h>
 
 
 //Constructor / Destructor

@@ -1,7 +1,7 @@
 #include "VK_drawing.h"
 
 #include <VK_main/VK_engine.h>
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_main/Struct_vulkan.h>
 #include <VK_struct/Struct_synchro.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_command/VK_submit.h>

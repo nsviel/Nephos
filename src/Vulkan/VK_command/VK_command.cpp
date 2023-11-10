@@ -1,7 +1,6 @@
 #include "VK_command.h"
 
-#include <VK_struct/Struct_vulkan.h>
-#include <VK_struct/Struct_param.h>
+#include <VK_main/Struct_vulkan.h>
 #include <VK_main/VK_engine.h>
 
 
@@ -9,7 +8,6 @@
 VK_command::VK_command(VK_engine* vk_engine){
   //---------------------------
 
-  this->struct_param = vk_engine->get_struct_param();
   this->struct_vulkan = vk_engine->get_struct_vulkan();
 
   //---------------------------
@@ -82,10 +80,10 @@ void VK_command::start_render_pass(Struct_renderpass* renderpass, VkFramebuffer&
 
   std::array<VkClearValue, 2> clear_value{};
   clear_value[0].color = {{
-    struct_param->background_color.x,
-    struct_param->background_color.y,
-    struct_param->background_color.z,
-    struct_param->background_color.w}};
+    struct_vulkan->param.background_color.x,
+    struct_vulkan->param.background_color.y,
+    struct_vulkan->param.background_color.z,
+    struct_vulkan->param.background_color.w}};
   clear_value[1].depthStencil = {1.0f, 0};
 
   VkRenderPassBeginInfo renderpass_info{};

@@ -11,9 +11,9 @@ Vulkan::Vulkan(ELE_window* window){
   //---------------------------
 
   this->vk_engine = new VK_engine(window);
-  this->vk_imgui = vk_engine->get_vk_imgui();
-  this->vk_render = vk_engine->get_vk_render();
-  this->vk_info = vk_engine->get_vk_info();
+  this->vk_imgui = new VK_imgui(vk_engine);
+  this->vk_render = new VK_render(vk_engine);
+  this->vk_info = new VK_info(vk_engine);
 
   //---------------------------
 }
@@ -50,11 +50,11 @@ void Vulkan::wait(){
   //---------------------------
 }
 void Vulkan::param(ELE_window* ele_window, bool headless){
-  Struct_param* struct_param = vk_engine->get_struct_param();
+  Struct_vulkan* struct_vulkan = vk_engine->get_struct_vulkan();
   //---------------------------
 
   vk_engine->set_ele_window(ele_window);
-  struct_param->headless_mode = headless;
+  struct_vulkan->param.headless_mode = headless;
 
   //---------------------------
 }

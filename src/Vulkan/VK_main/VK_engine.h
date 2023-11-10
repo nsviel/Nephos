@@ -3,11 +3,10 @@
 
 #include <VK_struct/typedef.h>
 #include <VK_struct/Struct_data.h>
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 
 class ELE_window;
-class Struct_param;
 class Struct_synchro;
 class Struct_vulkan;
 class VK_surface;
@@ -23,9 +22,6 @@ class VK_reload;
 class VK_frame;
 class VK_canvas;
 class VK_command_buffer;
-class VK_imgui;
-class VK_render;
-class VK_info;
 
 
 class VK_engine
@@ -47,26 +43,19 @@ public:
   void insert_object_in_engine(Object* object);
   void remove_object_in_engine(Object* object);
 
-  inline Struct_param* get_struct_param(){return struct_param;}
   inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
   inline Struct_synchro* get_struct_synchro(){return struct_synchro;}
-  inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->vec_renderpass[i];}
-  inline VK_render* get_vk_render(){return vk_render;}
-  inline VK_imgui* get_vk_imgui(){return vk_imgui;}
-  inline VK_info* get_vk_info(){return vk_info;}
 
+  inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->vec_renderpass[i];}
   inline std::list<Struct_data*> get_list_data(){return struct_vulkan->list_data;}
   inline void set_ele_window(ELE_window* value){this->ele_window = value;}
 
 private:
   ELE_window* ele_window;
 
-  Struct_param* struct_param;
   Struct_synchro* struct_synchro;
   Struct_vulkan* struct_vulkan;
 
-  VK_render* vk_render;
-  VK_imgui* vk_imgui;
   VK_surface* vk_surface;
   VK_instance* vk_instance;
   VK_command_buffer* vk_command_buffer;
@@ -80,7 +69,6 @@ private:
   VK_reload* vk_reload;
   VK_frame* vk_frame;
   VK_canvas* vk_canvas;
-  VK_info* vk_info;
 
   Timer timer;
 };

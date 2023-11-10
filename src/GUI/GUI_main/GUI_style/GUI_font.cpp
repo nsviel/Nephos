@@ -4,7 +4,7 @@
 #include <GUI_main/GUI_render/GUI_render.h>
 #include <Vulkan.h>
 #include <VK_main/VK_imgui.h>
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_main/Struct_vulkan.h>
 #include <image/IconsFontAwesome5.h>
 
 

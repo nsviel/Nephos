@@ -2,7 +2,7 @@
 
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_main/Struct_vulkan.h>
 #include <VK_presentation/VK_swapchain.h>
 #include <VK_presentation/VK_surface.h>
 #include <VK_data/VK_canvas.h>

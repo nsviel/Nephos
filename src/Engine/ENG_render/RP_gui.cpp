@@ -37,7 +37,6 @@ void RP_gui::init_renderpass(){
   vk_render->add_renderpass_description(renderpass);
 }
 void RP_gui::create_subpass(Struct_renderpass* renderpass){
-  VK_imgui* vk_imgui = vk_engine->get_vk_imgui();
   //---------------------------
 
   Shader_info* shader_info = new Shader_info();

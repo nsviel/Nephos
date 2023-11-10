@@ -1,6 +1,6 @@
 #include "VK_imgui.h"
 
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_main/Struct_vulkan.h>
 #include <VK_main/VK_engine.h>
 
 

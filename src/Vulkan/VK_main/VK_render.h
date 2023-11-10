@@ -2,7 +2,7 @@
 #define VK_RENDER_H
 
 #include <ELE_specific/common.h>
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_main/Struct_vulkan.h>
 #include <VK_image/VK_texture.h>
 
 extern "C" {

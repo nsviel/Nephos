@@ -3,7 +3,7 @@
 
 #include <VK_struct/Struct_pipeline.h>
 #include <VK_struct/Struct_data.h>
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 
 class VK_engine;

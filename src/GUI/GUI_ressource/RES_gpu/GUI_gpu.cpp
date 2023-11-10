@@ -1,7 +1,7 @@
 #include "GUI_gpu.h"
 
 #include <GUI.h>
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_main/Struct_vulkan.h>
 #include <Vulkan.h>
 #include <VK_main/VK_imgui.h>
 #include <ELE_window/ELE_window.h>
