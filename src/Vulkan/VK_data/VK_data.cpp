@@ -10,15 +10,15 @@
 
 
 //Constructor / Destructor
-VK_data::VK_data(VK_engine* vk_engine){
+VK_data::VK_data(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_buffer = new VK_buffer(vk_engine);
-  this->vk_texture = new VK_texture(vk_engine);
-  this->vk_binding = new VK_binding(vk_engine);
-  this->vk_command_buffer = new VK_command_buffer(vk_engine);
-  this->vk_descriptor = new VK_descriptor(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_buffer = new VK_buffer(struct_vulkan);
+  this->vk_texture = new VK_texture(struct_vulkan);
+  this->vk_binding = new VK_binding(struct_vulkan);
+  this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
+  this->vk_descriptor = new VK_descriptor(struct_vulkan);
 
   //---------------------------
 }

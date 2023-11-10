@@ -15,7 +15,7 @@ class VK_reload
 {
 public:
   //Constructor / Destructor
-  VK_reload(VK_engine* vk_engine);
+  VK_reload(Struct_vulkan* struct_vulkan);
   ~VK_reload();
 
 public:

@@ -12,7 +12,7 @@ class Struct_vulkan;
 class VK_viewport
 {
 public:
-  VK_viewport(VK_engine* vk_engine);
+  VK_viewport(Struct_vulkan* struct_vulkan);
   ~VK_viewport();
 
 public:

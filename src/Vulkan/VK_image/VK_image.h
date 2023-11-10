@@ -15,7 +15,7 @@ class VK_image
 {
 public:
   //Constructor / Destructor
-  VK_image(VK_engine* vk_engine);
+  VK_image(Struct_vulkan* struct_vulkan);
   ~VK_image();
 
 public:

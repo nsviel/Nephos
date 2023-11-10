@@ -9,14 +9,14 @@
 
 
 //Constructor / Destructor
-VK_canvas::VK_canvas(VK_engine* vk_engine){
+VK_canvas::VK_canvas(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_buffer = new VK_buffer(vk_engine);
-  this->vk_data = new VK_data(vk_engine);
-  this->vk_texture = new VK_texture(vk_engine);
-  this->vk_binding = new VK_binding(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_buffer = new VK_buffer(struct_vulkan);
+  this->vk_data = new VK_data(struct_vulkan);
+  this->vk_texture = new VK_texture(struct_vulkan);
+  this->vk_binding = new VK_binding(struct_vulkan);
 
   //---------------------------
 }

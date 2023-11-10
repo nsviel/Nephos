@@ -18,7 +18,7 @@ class VK_pipeline
 {
 public:
   //Constructor / Destructor
-  VK_pipeline(VK_engine* vk_engine);
+  VK_pipeline(Struct_vulkan* struct_vulkan);
   ~VK_pipeline();
 
 public:

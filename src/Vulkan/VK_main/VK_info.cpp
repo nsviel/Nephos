@@ -4,10 +4,10 @@
 
 
 //Constructor / Destructor
-VK_info::VK_info(VK_engine* vk_engine){
+VK_info::VK_info(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }

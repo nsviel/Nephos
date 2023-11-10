@@ -63,7 +63,7 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
 }
 
 void RP_gui::draw(Struct_subpass* subpass){
-  VK_drawing vk_drawing(vk_engine);
+  VK_drawing vk_drawing(vk_engine->get_struct_vulkan());
   //---------------------------
 
 

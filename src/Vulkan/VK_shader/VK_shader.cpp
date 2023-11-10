@@ -6,10 +6,10 @@
 
 
 //Constructor / Destructor
-VK_shader::VK_shader(VK_engine* vk_engine){
+VK_shader::VK_shader(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->struct_vulkan = struct_vulkan;
 
   this->path_output = "output.txt";
   file::clear_file(path_output);

@@ -5,10 +5,10 @@
 
 
 //Constructor / Destructor
-VK_validation::VK_validation(VK_engine* vk_engine){
+VK_validation::VK_validation(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->struct_vulkan = struct_vulkan;
 
   this->struct_vulkan->instance.extension.clear();
   this->struct_vulkan->instance.extension.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);

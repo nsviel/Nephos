@@ -14,7 +14,7 @@ class VK_sampler
 {
 public:
   //Constructor / Destructor
-  VK_sampler(VK_engine* vk_engine);
+  VK_sampler(Struct_vulkan* struct_vulkan);
   ~VK_sampler();
 
 public:

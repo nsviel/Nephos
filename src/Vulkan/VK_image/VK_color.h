@@ -14,7 +14,7 @@ class VK_color
 {
 public:
   //Constructor / Destructor
-  VK_color(VK_engine* vk_engine);
+  VK_color(Struct_vulkan* struct_vulkan);
   ~VK_color();
 
 public:

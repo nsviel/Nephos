@@ -6,11 +6,11 @@
 
 
 //Constructor / Destructor
-VK_instance::VK_instance(VK_engine* vk_engine){
+VK_instance::VK_instance(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_validation = new VK_validation(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_validation = new VK_validation(struct_vulkan);
 
   struct_vulkan->instance.extension.push_back(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
 

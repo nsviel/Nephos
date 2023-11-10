@@ -27,19 +27,19 @@ VK_engine::VK_engine(ELE_window* ele_window){
   this->struct_vulkan = new Struct_vulkan();
   this->struct_synchro = new Struct_synchro();
 
-  this->vk_instance = new VK_instance(this);
-  this->vk_viewport = new VK_viewport(this);
-  this->vk_surface = new VK_surface(this);
-  this->vk_device = new VK_device(this);
-  this->vk_texture = new VK_texture(this);
-  this->vk_descriptor = new VK_descriptor(this);
-  this->vk_command_buffer = new VK_command_buffer(this);
-  this->vk_data = new VK_data(this);
-  this->vk_swapchain = new VK_swapchain(this);
-  this->vk_renderpass = new VK_renderpass(this);
-  this->vk_reload = new VK_reload(this);
-  this->vk_frame = new VK_frame(this);
-  this->vk_canvas = new VK_canvas(this);
+  this->vk_instance = new VK_instance(struct_vulkan);
+  this->vk_viewport = new VK_viewport(struct_vulkan);
+  this->vk_surface = new VK_surface(struct_vulkan);
+  this->vk_device = new VK_device(struct_vulkan);
+  this->vk_texture = new VK_texture(struct_vulkan);
+  this->vk_descriptor = new VK_descriptor(struct_vulkan);
+  this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
+  this->vk_data = new VK_data(struct_vulkan);
+  this->vk_swapchain = new VK_swapchain(struct_vulkan);
+  this->vk_renderpass = new VK_renderpass(struct_vulkan);
+  this->vk_reload = new VK_reload(struct_vulkan);
+  this->vk_frame = new VK_frame(struct_vulkan);
+  this->vk_canvas = new VK_canvas(struct_vulkan);
 
   //---------------------------
 }

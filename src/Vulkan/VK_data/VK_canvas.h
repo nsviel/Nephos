@@ -16,7 +16,7 @@ class VK_canvas
 {
 public:
   //Constructor / Destructor
-  VK_canvas(VK_engine* vk_engine);
+  VK_canvas(Struct_vulkan* struct_vulkan);
   ~VK_canvas();
 
 public:

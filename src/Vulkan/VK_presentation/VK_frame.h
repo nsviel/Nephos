@@ -20,7 +20,7 @@ class VK_frame
 {
 public:
   //Constructor / Destructor
-  VK_frame(VK_engine* vk_engine);
+  VK_frame(Struct_vulkan* struct_vulkan);
   ~VK_frame();
 
 public:

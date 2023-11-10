@@ -11,15 +11,15 @@
 
 
 //Constructor / Destructor
-VK_renderpass::VK_renderpass(VK_engine* vk_engine){
+VK_renderpass::VK_renderpass(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_color = new VK_color(vk_engine);
-  this->vk_pipeline = new VK_pipeline(vk_engine);
-  this->vk_subpass = new VK_subpass(vk_engine);
-  this->vk_frame = new VK_frame(vk_engine);
-  this->vk_framebuffer = new VK_framebuffer(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_color = new VK_color(struct_vulkan);
+  this->vk_pipeline = new VK_pipeline(struct_vulkan);
+  this->vk_subpass = new VK_subpass(struct_vulkan);
+  this->vk_frame = new VK_frame(struct_vulkan);
+  this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
 
   //---------------------------
 }

@@ -6,11 +6,11 @@
 
 
 //Constructor / Destructor
-VK_depth::VK_depth(VK_engine* vk_engine){
+VK_depth::VK_depth(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_image = new VK_image(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_image = new VK_image(struct_vulkan);
 
   //---------------------------
 }

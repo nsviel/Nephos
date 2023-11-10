@@ -7,11 +7,11 @@
 
 
 //Constructor / Destructor
-VK_buffer::VK_buffer(VK_engine* vk_engine){
+VK_buffer::VK_buffer(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_command = new VK_command(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_command = new VK_command(struct_vulkan);
 
   //---------------------------
 }

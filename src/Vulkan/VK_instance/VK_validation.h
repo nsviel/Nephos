@@ -12,7 +12,7 @@ class VK_validation
 {
 public:
   //Constructor / Destructor
-  VK_validation(VK_engine* vk_engine);
+  VK_validation(Struct_vulkan* struct_vulkan);
   ~VK_validation();
 
 public:

@@ -13,7 +13,7 @@ class VK_synchronization
 {
 public:
   //Constructor / Destructor
-  VK_synchronization(VK_engine* vk_engine);
+  VK_synchronization(Struct_vulkan* struct_vulkan);
   ~VK_synchronization();
 
 public:

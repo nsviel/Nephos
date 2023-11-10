@@ -13,15 +13,15 @@
 
 
 //Constructor / Destructor
-VK_drawing::VK_drawing(VK_engine* vk_engine){
+VK_drawing::VK_drawing(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_command = new VK_command(vk_engine);
-  this->vk_descriptor = new VK_descriptor(vk_engine);
-  this->vk_submit = new VK_submit(vk_engine);
-  this->vk_swapchain = new VK_swapchain(vk_engine);
-  this->vk_viewport = new VK_viewport(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_command = new VK_command(struct_vulkan);
+  this->vk_descriptor = new VK_descriptor(struct_vulkan);
+  this->vk_submit = new VK_submit(struct_vulkan);
+  this->vk_swapchain = new VK_swapchain(struct_vulkan);
+  this->vk_viewport = new VK_viewport(struct_vulkan);
 
   //---------------------------
 }

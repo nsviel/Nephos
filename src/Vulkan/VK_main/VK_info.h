@@ -13,7 +13,7 @@ class VK_info
 {
 public:
   //Constructor / Destructor
-  VK_info(VK_engine* vk_engine);
+  VK_info(Struct_vulkan* struct_vulkan);
   ~VK_info();
 
 public:

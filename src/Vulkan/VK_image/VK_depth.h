@@ -13,7 +13,7 @@ class VK_depth
 {
 public:
   //Constructor / Destructor
-  VK_depth(VK_engine* vk_engine);
+  VK_depth(Struct_vulkan* struct_vulkan);
   ~VK_depth();
 
 public:

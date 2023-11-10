@@ -11,9 +11,9 @@ Vulkan::Vulkan(ELE_window* window){
   //---------------------------
 
   this->vk_engine = new VK_engine(window);
-  this->vk_imgui = new VK_imgui(vk_engine);
-  this->vk_render = new VK_render(vk_engine);
-  this->vk_info = new VK_info(vk_engine);
+  this->vk_imgui = new VK_imgui(vk_engine->get_struct_vulkan());
+  this->vk_render = new VK_render(vk_engine->get_struct_vulkan());
+  this->vk_info = new VK_info(vk_engine->get_struct_vulkan());
 
   //---------------------------
 }

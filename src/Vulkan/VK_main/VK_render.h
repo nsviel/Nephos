@@ -22,7 +22,7 @@ class VK_render
 {
 public:
   //Constructor / Destructor
-  VK_render(VK_engine* vk_engine);
+  VK_render(Struct_vulkan* struct_vulkan);
   ~VK_render();
 
 public:

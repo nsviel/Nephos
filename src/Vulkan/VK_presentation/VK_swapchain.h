@@ -16,7 +16,7 @@ class VK_swapchain
 {
 public:
   //Constructor / Destructor
-  VK_swapchain(VK_engine* vk_engine);
+  VK_swapchain(Struct_vulkan* struct_vulkan);
   ~VK_swapchain();
 
 public:

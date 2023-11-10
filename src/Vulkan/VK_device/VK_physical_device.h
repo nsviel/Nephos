@@ -11,7 +11,7 @@ class VK_physical_device
 {
 public:
   //Constructor / Destructor
-  VK_physical_device(VK_engine* vk_engine);
+  VK_physical_device(Struct_vulkan* struct_vulkan);
   ~VK_physical_device();
 
 public:

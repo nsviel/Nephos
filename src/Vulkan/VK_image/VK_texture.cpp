@@ -18,13 +18,13 @@
 
 
 //Constructor / Destructor
-VK_texture::VK_texture(VK_engine* vk_engine){
+VK_texture::VK_texture(Struct_vulkan* struct_vulkan){
   //---------------------------
   
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_buffer = new VK_buffer(vk_engine);
-  this->vk_image = new VK_image(vk_engine);
-  this->vk_command = new VK_command(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_buffer = new VK_buffer(struct_vulkan);
+  this->vk_image = new VK_image(struct_vulkan);
+  this->vk_command = new VK_command(struct_vulkan);
 
   //---------------------------
 }

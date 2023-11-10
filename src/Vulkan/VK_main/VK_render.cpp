@@ -6,12 +6,12 @@
 #include <ELE_specific/FPS_counter.h>
 
 //Constructor / Destructor
-VK_render::VK_render(VK_engine* vk_engine){
+VK_render::VK_render(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->vk_drawing = new VK_drawing(vk_engine);
-  this->vk_texture = new VK_texture(vk_engine);
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->vk_drawing = new VK_drawing(struct_vulkan);
+  this->vk_texture = new VK_texture(struct_vulkan);
+  this->struct_vulkan = struct_vulkan;
   this->fps_counter = new FPS_counter(60);
 
   //---------------------------

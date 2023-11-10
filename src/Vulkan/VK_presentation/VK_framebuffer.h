@@ -17,7 +17,7 @@ class VK_framebuffer
 {
 public:
   //Constructor / Destructor
-  VK_framebuffer(VK_engine* vk_engine);
+  VK_framebuffer(Struct_vulkan* struct_vulkan);
   ~VK_framebuffer();
 
 public:

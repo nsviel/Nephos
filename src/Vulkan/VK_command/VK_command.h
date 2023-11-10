@@ -15,7 +15,7 @@ class VK_command
 {
 public:
   //Constructor / Destructor
-  VK_command(VK_engine* vk_engine);
+  VK_command(Struct_vulkan* struct_vulkan);
   ~VK_command();
 
 public:

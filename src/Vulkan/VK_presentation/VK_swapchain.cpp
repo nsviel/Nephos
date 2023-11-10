@@ -11,15 +11,15 @@
 
 
 //Constructor / Destructor
-VK_swapchain::VK_swapchain(VK_engine* vk_engine){
+VK_swapchain::VK_swapchain(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_physical_device = new VK_physical_device(vk_engine);
-  this->vk_depth = new VK_depth(vk_engine);
-  this->vk_viewport = new VK_viewport(vk_engine);
-  this->vk_frame = new VK_frame(vk_engine);
-  this->vk_framebuffer = new VK_framebuffer(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_physical_device = new VK_physical_device(struct_vulkan);
+  this->vk_depth = new VK_depth(struct_vulkan);
+  this->vk_viewport = new VK_viewport(struct_vulkan);
+  this->vk_frame = new VK_frame(struct_vulkan);
+  this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
 
   //---------------------------
 }

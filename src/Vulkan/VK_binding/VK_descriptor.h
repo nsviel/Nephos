@@ -16,7 +16,7 @@ class VK_descriptor
 {
 public:
   //Constructor / Destructor
-  VK_descriptor(VK_engine* vk_engine);
+  VK_descriptor(Struct_vulkan* struct_vulkan);
   ~VK_descriptor();
 
 public:

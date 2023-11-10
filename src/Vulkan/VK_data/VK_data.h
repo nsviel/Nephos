@@ -19,7 +19,7 @@ class VK_data
 {
 public:
   //Constructor / Destructor
-  VK_data(VK_engine* vk_engine);
+  VK_data(Struct_vulkan* struct_vulkan);
   ~VK_data();
 
 public:

@@ -6,11 +6,11 @@
 
 
 //Constructor / Destructor
-VK_sampler::VK_sampler(VK_engine* vk_engine){
+VK_sampler::VK_sampler(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_buffer = new VK_buffer(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_buffer = new VK_buffer(struct_vulkan);
 
   //---------------------------
 }

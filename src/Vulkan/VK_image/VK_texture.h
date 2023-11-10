@@ -23,7 +23,7 @@ class VK_texture
 {
 public:
   //Constructor / Destructor
-  VK_texture(VK_engine* vk_engine);
+  VK_texture(Struct_vulkan* struct_vulkan);
   ~VK_texture();
 
 public:

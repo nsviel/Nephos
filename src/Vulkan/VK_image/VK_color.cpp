@@ -9,12 +9,12 @@
 
 
 //Constructor / Destructor
-VK_color::VK_color(VK_engine* vk_engine){
+VK_color::VK_color(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_physical_device = new VK_physical_device(vk_engine);
-  this->vk_image = new VK_image(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_physical_device = new VK_physical_device(struct_vulkan);
+  this->vk_image = new VK_image(struct_vulkan);
 
   //---------------------------
 }

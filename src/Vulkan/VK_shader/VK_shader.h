@@ -12,7 +12,7 @@ class VK_shader
 {
 public:
   //Constructor / Destructor
-  VK_shader(VK_engine* vk_engine);
+  VK_shader(Struct_vulkan* struct_vulkan);
   ~VK_shader();
 
 public:

@@ -12,7 +12,7 @@ class VK_imgui
 {
 public:
   //Constructor / Destructor
-  VK_imgui(VK_engine* vk_engine);
+  VK_imgui(Struct_vulkan* struct_vulkan);
   ~VK_imgui();
 
 public:

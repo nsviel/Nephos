@@ -12,7 +12,7 @@ class VK_instance
 {
 public:
   //Constructor / Destructor
-  VK_instance(VK_engine* vk_engine);
+  VK_instance(Struct_vulkan* struct_vulkan);
   ~VK_instance();
 
 public:

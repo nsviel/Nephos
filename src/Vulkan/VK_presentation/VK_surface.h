@@ -12,7 +12,7 @@ class VK_surface
 {
 public:
   //Constructor / Destructor
-  VK_surface(VK_engine* vk_engine);
+  VK_surface(Struct_vulkan* struct_vulkan);
   ~VK_surface();
 
 public:

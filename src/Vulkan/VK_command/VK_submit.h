@@ -17,7 +17,7 @@ class VK_submit
 {
 public:
   //Constructor / Destructor
-  VK_submit(VK_engine* vk_engine);
+  VK_submit(Struct_vulkan* struct_vulkan);
   ~VK_submit();
 
 public:

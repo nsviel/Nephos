@@ -20,7 +20,7 @@ class VK_drawing
 {
 public:
   //Constructor / Destructor
-  VK_drawing(VK_engine* vk_engine);
+  VK_drawing(Struct_vulkan* struct_vulkan);
   ~VK_drawing();
 
 public:

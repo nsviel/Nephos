@@ -6,11 +6,11 @@
 
 
 //Constructor / Destructor
-VK_uniform::VK_uniform(VK_engine* vk_engine){
+VK_uniform::VK_uniform(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_buffer = new VK_buffer(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_buffer = new VK_buffer(struct_vulkan);
 
   //---------------------------
 }

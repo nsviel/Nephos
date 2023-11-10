@@ -15,7 +15,7 @@ class VK_uniform
 {
 public:
   //Constructor / Destructor
-  VK_uniform(VK_engine* vk_engine);
+  VK_uniform(Struct_vulkan* struct_vulkan);
   ~VK_uniform();
 
 public:

@@ -12,7 +12,7 @@ class VK_device
 {
 public:
   //Constructor / Destructor
-  VK_device(VK_engine* vk_engine);
+  VK_device(Struct_vulkan* struct_vulkan);
   ~VK_device();
 
 public:

@@ -6,10 +6,10 @@
 
 
 //Constructor / Destructor
-VK_physical_device::VK_physical_device(VK_engine* vk_engine){
+VK_physical_device::VK_physical_device(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->struct_vulkan = struct_vulkan;
 
   struct_vulkan->device.extension.clear();
   struct_vulkan->device.extension.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);

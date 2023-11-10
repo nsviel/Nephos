@@ -6,11 +6,11 @@
 
 
 //Constructor / Destructor
-VK_synchronization::VK_synchronization(VK_engine* vk_engine){
+VK_synchronization::VK_synchronization(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_device = new VK_device(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_device = new VK_device(struct_vulkan);
 
   //---------------------------
 }

@@ -15,7 +15,7 @@ class VK_subpass
 {
 public:
   //Constructor / Destructor
-  VK_subpass(VK_engine* vk_engine);
+  VK_subpass(Struct_vulkan* struct_vulkan);
   ~VK_subpass();
 
 public:

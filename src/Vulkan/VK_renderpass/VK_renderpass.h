@@ -18,7 +18,7 @@ class VK_renderpass
 {
 public:
   //Constructor / Destructor
-  VK_renderpass(VK_engine* vk_engine);
+  VK_renderpass(Struct_vulkan* struct_vulkan);
   ~VK_renderpass();
 
 public:

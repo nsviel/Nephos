@@ -10,12 +10,12 @@
 
 
 //Constructor / Destructor
-VK_submit::VK_submit(VK_engine* vk_engine){
+VK_submit::VK_submit(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_swapchain = new VK_swapchain(vk_engine);
-  this->vk_surface = new VK_surface(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_swapchain = new VK_swapchain(struct_vulkan);
+  this->vk_surface = new VK_surface(struct_vulkan);
 
   //---------------------------
 }

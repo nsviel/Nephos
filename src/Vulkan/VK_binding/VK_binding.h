@@ -6,7 +6,6 @@
 #include <VK_struct/Struct_data.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
 class VK_descriptor;
 class VK_uniform;
@@ -17,7 +16,7 @@ class VK_binding
 {
 public:
   //Constructor / Destructor
-  VK_binding(VK_engine* vk_engine);
+  VK_binding(Struct_vulkan* struct_vulkan);
   ~VK_binding();
 
 public:

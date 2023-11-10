@@ -5,10 +5,10 @@
 
 
 //Constructor / Destructor
-VK_command::VK_command(VK_engine* vk_engine){
+VK_command::VK_command(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
+  this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }

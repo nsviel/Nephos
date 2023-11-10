@@ -14,7 +14,7 @@ class VK_command_buffer
 {
 public:
   //Constructor / Destructor
-  VK_command_buffer(VK_engine* vk_engine);
+  VK_command_buffer(Struct_vulkan* struct_vulkan);
   ~VK_command_buffer();
 
 public:

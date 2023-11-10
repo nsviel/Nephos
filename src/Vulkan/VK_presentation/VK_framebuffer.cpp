@@ -12,13 +12,13 @@
 
 
 //Constructor / Destructor
-VK_framebuffer::VK_framebuffer(VK_engine* vk_engine){
+VK_framebuffer::VK_framebuffer(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_color = new VK_color(vk_engine);
-  this->vk_depth = new VK_depth(vk_engine);
-  this->vk_image = new VK_image(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_color = new VK_color(struct_vulkan);
+  this->vk_depth = new VK_depth(struct_vulkan);
+  this->vk_image = new VK_image(struct_vulkan);
 
   //---------------------------
 }

@@ -13,7 +13,7 @@ class VK_blending
 {
 public:
   //Constructor / Destructor
-  VK_blending(VK_engine* vk_engine);
+  VK_blending(Struct_vulkan* struct_vulkan);
   ~VK_blending();
 
 public:

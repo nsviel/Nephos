@@ -8,13 +8,13 @@
 
 
 //Constructor / Destructor
-VK_subpass::VK_subpass(VK_engine* vk_engine){
+VK_subpass::VK_subpass(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->struct_vulkan = vk_engine->get_struct_vulkan();
-  this->vk_command_buffer = new VK_command_buffer(vk_engine);
-  this->vk_color = new VK_color(vk_engine);
-  this->vk_depth = new VK_depth(vk_engine);
+  this->struct_vulkan = struct_vulkan;
+  this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
+  this->vk_color = new VK_color(struct_vulkan);
+  this->vk_depth = new VK_depth(struct_vulkan);
 
   //---------------------------
 }
