@@ -25,7 +25,6 @@ void VK_physical_device::init_physical_device(){
 
   this->select_physical_device();
   this->compute_extent();
-  this->retrieve_device_name();
 
   //---------------------------
 }
@@ -56,14 +55,6 @@ void VK_physical_device::compute_extent(){
     struct_vulkan->window.extent.width = std::clamp(struct_vulkan->window.extent.width, capabilities.minImageExtent.width, capabilities.maxImageExtent.width);
     struct_vulkan->window.extent.height = std::clamp(struct_vulkan->window.extent.height, capabilities.minImageExtent.height, capabilities.maxImageExtent.height);
   }
-
-  //---------------------------
-}
-void VK_physical_device::retrieve_device_name(){
-  //---------------------------
-
-  VkPhysicalDeviceProperties property = find_device_property(struct_vulkan->device.struct_device.physical_device);
-  struct_vulkan->info.gpu_name = property.deviceName;
 
   //---------------------------
 }

@@ -9,7 +9,6 @@ struct Struct_info{
 
   float engine_init;
   float engine_fps;
-  std::string gpu_name;
 
   vector<float> draw_frame;
   vector<float> time_rp_scene;

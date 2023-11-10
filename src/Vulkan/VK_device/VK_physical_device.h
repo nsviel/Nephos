@@ -20,7 +20,6 @@ public:
   void init_physical_device();
   void select_physical_device();
   void compute_extent();
-  void retrieve_device_name();
 
   //Subfunctions
   bool is_device_suitable(Struct_physical_device& struct_device);
