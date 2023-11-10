@@ -1,7 +1,9 @@
 #include "VK_imgui.h"
 
 #include <VK_main/Struct_vulkan.h>
+#include <VK_main/VK_engine.h>
 #include <VK_command/VK_command_buffer.h>
+#include <VK_command/VK_submit.h>
 
 
 //Constructor / Destructor
@@ -10,6 +12,8 @@ VK_imgui::VK_imgui(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
+  this->vk_submit = new VK_submit(struct_vulkan);
+  //this->vk_engine = new VK_engine(struct_vulkan);
 
   //---------------------------
 }
@@ -68,19 +72,13 @@ void VK_imgui::load_font(){
 
   ImGui_ImplVulkan_CreateFontsTexture(subpass->command_buffer);
 
-  VkSubmitInfo end_info = {};
-  end_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  end_info.commandBufferCount = 1;
-  end_info.pCommandBuffers = &subpass->command_buffer;
+
   result = vkEndCommandBuffer(subpass->command_buffer);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }
 
-  result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &end_info, VK_NULL_HANDLE);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
-  }
+  vk_submit->submit_command_graphics(subpass->command_buffer);
 
   result = vkDeviceWaitIdle(struct_vulkan->device.device);
   if(result != VK_SUCCESS){

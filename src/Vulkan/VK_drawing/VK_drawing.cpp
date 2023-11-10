@@ -96,7 +96,7 @@ void VK_drawing::run_command(Struct_renderpass* renderpass, int i){
   command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
   command.fence = (i != struct_vulkan->render.vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_vulkan->synchro.vec_fence[0];
 
-  vk_submit->submit_graphics_command(&command);
+  vk_submit->submit_command_render(&command);
 
   //---------------------------
 }

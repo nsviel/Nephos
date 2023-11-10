@@ -26,7 +26,8 @@ public:
   void set_next_frame_ID(Struct_swapchain* swapchain);
 
   //Queue submission
-  void submit_graphics_command(Struct_command* commands);
+  void submit_command_graphics(VkCommandBuffer command);
+  void submit_command_render(Struct_command* commands);
   void submit_presentation(Struct_swapchain* swapchain, VkSemaphore& semaphore);
 
 private:

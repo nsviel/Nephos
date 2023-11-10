@@ -47,9 +47,6 @@ void VK_engine::init(){
   timer_time t1 = timer.start_t();
   //---------------------------
 
-  struct_vulkan->window.glfw_window = ele_window->get_window();
-  struct_vulkan->window.window_dim = ele_window->compute_window_dim();
-
   //Instance
   vk_surface->init_window();
   vk_instance->init_instance();
@@ -71,14 +68,16 @@ void VK_engine::init(){
 void VK_engine::loop(){
   //---------------------------
 
-  struct_vulkan->window.window_dim = ele_window->compute_window_dim();
 
   //---------------------------
 }
 void VK_engine::device_wait_idle(){
   //---------------------------
 
-  vkDeviceWaitIdle(struct_vulkan->device.device);
+  VkResult result = vkDeviceWaitIdle(struct_vulkan->device.device);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] device wait idle");
+  }
 
   //---------------------------
 }
