@@ -1,7 +1,6 @@
 #include "VK_engine.h"
 
 #include <VK_main/Struct_vulkan.h>
-#include <VK_struct/Struct_synchro.h>
 #include <VK_data/VK_data.h>
 #include <VK_renderpass/VK_renderpass.h>
 #include <VK_command/VK_command_buffer.h>
@@ -19,13 +18,11 @@
 
 
 //Constructor / Destructor
-VK_engine::VK_engine(ELE_window* ele_window){
+VK_engine::VK_engine(Struct_vulkan* struct_vulkan, ELE_window* ele_window){
   //---------------------------
 
   this->ele_window = ele_window;
-
-  this->struct_vulkan = new Struct_vulkan();
-  this->struct_synchro = new Struct_synchro();
+  this->struct_vulkan = struct_vulkan;
 
   this->vk_instance = new VK_instance(struct_vulkan);
   this->vk_viewport = new VK_viewport(struct_vulkan);

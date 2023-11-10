@@ -21,15 +21,16 @@ RP_edl::RP_edl(Engine* engine){
 
   ENG_shader* eng_shader = engine->get_eng_shader();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  Struct_vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 
   this->edl_shader = eng_shader->get_edl_shader();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->vk_render = eng_vulkan->get_vk_render();
-  this->vk_pipeline = new VK_pipeline(vk_engine->get_struct_vulkan());
-  this->vk_viewport = new VK_viewport(vk_engine->get_struct_vulkan());
-  this->vk_descriptor = new VK_descriptor(vk_engine->get_struct_vulkan());
-  this->vk_drawing = new VK_drawing(vk_engine->get_struct_vulkan());
-  this->vk_uniform = new VK_uniform(vk_engine->get_struct_vulkan());
+  this->vk_pipeline = new VK_pipeline(struct_vulkan);
+  this->vk_viewport = new VK_viewport(struct_vulkan);
+  this->vk_descriptor = new VK_descriptor(struct_vulkan);
+  this->vk_drawing = new VK_drawing(struct_vulkan);
+  this->vk_uniform = new VK_uniform(struct_vulkan);
 
   //---------------------------
 }

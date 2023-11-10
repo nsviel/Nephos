@@ -1,5 +1,6 @@
 #include "Vulkan.h"
 
+#include <VK_main/Struct_vulkan.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_main/VK_render.h>
@@ -10,10 +11,11 @@
 Vulkan::Vulkan(ELE_window* window){
   //---------------------------
 
-  this->vk_engine = new VK_engine(window);
-  this->vk_imgui = new VK_imgui(vk_engine->get_struct_vulkan());
-  this->vk_render = new VK_render(vk_engine->get_struct_vulkan());
-  this->vk_info = new VK_info(vk_engine->get_struct_vulkan());
+  this->struct_vulkan = new Struct_vulkan();
+  this->vk_engine = new VK_engine(struct_vulkan, window);
+  this->vk_imgui = new VK_imgui(struct_vulkan);
+  this->vk_render = new VK_render(struct_vulkan);
+  this->vk_info = new VK_info(struct_vulkan);
 
   //---------------------------
 }
@@ -50,7 +52,7 @@ void Vulkan::wait(){
   //---------------------------
 }
 void Vulkan::param(ELE_window* ele_window, bool headless){
-  Struct_vulkan* struct_vulkan = vk_engine->get_struct_vulkan();
+  Struct_vulkan* struct_vulkan = struct_vulkan;
   //---------------------------
 
   vk_engine->set_ele_window(ele_window);

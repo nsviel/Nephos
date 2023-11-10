@@ -27,7 +27,7 @@ class VK_engine
 {
 public:
   //Constructor / Destructor
-  VK_engine(ELE_window* ele_window);
+  VK_engine(Struct_vulkan* struct_vulkan, ELE_window* ele_window);
   ~VK_engine();
 
 public:
@@ -42,8 +42,6 @@ public:
   void insert_object_in_engine(Object* object);
   void remove_object_in_engine(Object* object);
 
-  inline Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
-
   inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->render.vec_renderpass[i];}
   inline std::list<Struct_data*> get_list_data(){return struct_vulkan->list_object;}
   inline void set_ele_window(ELE_window* value){this->ele_window = value;}
@@ -51,7 +49,7 @@ public:
 private:
   ELE_window* ele_window;
 
-  Struct_synchro* struct_synchro;
+
   Struct_vulkan* struct_vulkan;
 
   VK_surface* vk_surface;
