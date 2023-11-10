@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 
-int main() {
+int main(){
   APP_main app_main;
   //---------------------------
 

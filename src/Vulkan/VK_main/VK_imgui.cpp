@@ -57,7 +57,7 @@ void VK_imgui::init(){
   init_info.PhysicalDevice = struct_vulkan->device.physical_device;
   init_info.Device = struct_vulkan->device.device;
   init_info.Queue = struct_vulkan->device.queue_graphics;
-  init_info.DescriptorPool = descriptor_pool;
+  init_info.DescriptorPool = struct_vulkan->pool.descriptor;
   init_info.PipelineCache = VK_NULL_HANDLE;
   init_info.MinImageCount = 3;
   init_info.ImageCount = 3;
