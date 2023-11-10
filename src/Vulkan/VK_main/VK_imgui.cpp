@@ -80,7 +80,7 @@ void VK_imgui::load_font(){
   Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("gui");
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
-  VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->command_pool, 0);
+  VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->pool.command, 0);
   if(result != VK_SUCCESS){
     throw std::runtime_error("gui font error");
   }

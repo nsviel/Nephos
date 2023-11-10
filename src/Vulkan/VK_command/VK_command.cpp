@@ -175,7 +175,7 @@ VkCommandBuffer VK_command::singletime_command_begin(){
   VkCommandBufferAllocateInfo allocInfo{};
   allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
   allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-  allocInfo.commandPool = struct_vulkan->command_pool;
+  allocInfo.commandPool = struct_vulkan->pool.command;
   allocInfo.commandBufferCount = 1;
 
   VkCommandBuffer command_buffer;
@@ -203,7 +203,7 @@ void VK_command::singletime_command_end(VkCommandBuffer command_buffer){
   vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submitInfo, VK_NULL_HANDLE);
   vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
 
-  vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->command_pool, 1, &command_buffer);
+  vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pool.command, 1, &command_buffer);
 
   //---------------------------
 }

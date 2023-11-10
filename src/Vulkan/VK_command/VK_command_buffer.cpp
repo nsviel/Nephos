@@ -30,7 +30,7 @@ void VK_command_buffer::create_command_pool(){
   poolInfo.queueFamilyIndex = family_graphics;
 
   //Command pool creation
-  VkResult result = vkCreateCommandPool(struct_vulkan->device.device, &poolInfo, nullptr, &struct_vulkan->command_pool);
+  VkResult result = vkCreateCommandPool(struct_vulkan->device.device, &poolInfo, nullptr, &struct_vulkan->pool.command);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create command pool!");
   }
@@ -40,7 +40,7 @@ void VK_command_buffer::create_command_pool(){
 void VK_command_buffer::clean_command_pool(){
   //---------------------------
 
-  vkDestroyCommandPool(struct_vulkan->device.device, struct_vulkan->command_pool, nullptr);
+  vkDestroyCommandPool(struct_vulkan->device.device, struct_vulkan->pool.command, nullptr);
 
   //---------------------------
 }
@@ -52,7 +52,7 @@ void VK_command_buffer::allocate_command_buffer_primary(Struct_subpass* subpass)
   //Command buffer allocation
   VkCommandBufferAllocateInfo allocInfo{};
   allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-  allocInfo.commandPool = struct_vulkan->command_pool;
+  allocInfo.commandPool = struct_vulkan->pool.command;
   allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
   allocInfo.commandBufferCount = 1;
 
@@ -69,7 +69,7 @@ void VK_command_buffer::allocate_command_buffer_secondary(Struct_data* data){
   //Command buffer allocation
   VkCommandBufferAllocateInfo allocInfo{};
   allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-  allocInfo.commandPool = struct_vulkan->command_pool;
+  allocInfo.commandPool = struct_vulkan->pool.command;
   allocInfo.level = VK_COMMAND_BUFFER_LEVEL_SECONDARY;
   allocInfo.commandBufferCount = 1;
 

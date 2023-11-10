@@ -26,7 +26,7 @@ void VK_descriptor::cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline
 void VK_descriptor::clean_descriptor_pool(){
   //---------------------------
 
-  vkDestroyDescriptorPool(struct_vulkan->device.device, struct_vulkan->descriptor_pool, nullptr);
+  vkDestroyDescriptorPool(struct_vulkan->device.device, struct_vulkan->pool.descriptor, nullptr);
 
   //---------------------------
 }
@@ -37,7 +37,7 @@ void VK_descriptor::allocate_descriptor_set(Struct_binding* binding){
 
   VkDescriptorSetAllocateInfo allocation_info{};
   allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-  allocation_info.descriptorPool = struct_vulkan->descriptor_pool;
+  allocation_info.descriptorPool = struct_vulkan->pool.descriptor;
   allocation_info.descriptorSetCount = 1;
   allocation_info.pSetLayouts = &binding->descriptor.layout;
 
@@ -245,7 +245,7 @@ void VK_descriptor::create_descriptor_pool(){
   pool_info.pPoolSizes = vec_pool_size.data();
   pool_info.maxSets = static_cast<uint32_t>(pool_nb_descriptor);
 
-  VkResult result = vkCreateDescriptorPool(struct_vulkan->device.device, &pool_info, nullptr, &struct_vulkan->descriptor_pool);
+  VkResult result = vkCreateDescriptorPool(struct_vulkan->device.device, &pool_info, nullptr, &struct_vulkan->pool.descriptor);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create descriptor pool!");
   }
