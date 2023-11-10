@@ -58,7 +58,6 @@ void Vulkan::wait(){
   //---------------------------
 }
 void Vulkan::param(ELE_window* ele_window, bool headless){
-  Struct_vulkan* struct_vulkan = struct_vulkan;
   //---------------------------
 
   //vk_engine->set_ele_window(ele_window);
