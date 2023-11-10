@@ -12,7 +12,7 @@ struct Struct_device{
   VkPhysicalDevice physical_device;
   VkQueue queue_graphics;
   VkQueue queue_presentation;
-  Struct_physical_device* physical_device_;
+  Struct_physical_device* physical_device_s;
 
   vector<string> vec_device_name;
   uint32_t nb_queue_family;
