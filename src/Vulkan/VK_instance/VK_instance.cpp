@@ -12,7 +12,7 @@ VK_instance::VK_instance(Struct_vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_validation = new VK_validation(struct_vulkan);
 
-  struct_vulkan->instance.extension_ext.push_back(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
+
 
   //---------------------------
 }

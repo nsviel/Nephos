@@ -15,7 +15,8 @@ public:
 
 public:
   //Main functions
-
+  void init();
+  
 private:
   Struct_vulkan* struct_vulkan;
 };

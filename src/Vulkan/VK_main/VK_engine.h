@@ -20,6 +20,7 @@ class VK_reload;
 class VK_frame;
 class VK_canvas;
 class VK_command_buffer;
+class VK_extension;
 
 
 class VK_engine
@@ -46,6 +47,7 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
+  VK_extension* vk_extension;
   VK_surface* vk_surface;
   VK_instance* vk_instance;
   VK_command_buffer* vk_command_buffer;

@@ -7,6 +7,7 @@
 #include <VK_device/VK_device.h>
 #include <VK_presentation/VK_surface.h>
 #include <VK_instance/VK_instance.h>
+#include <VK_instance/VK_extension.h>
 #include <VK_data/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_image/VK_texture.h>
@@ -22,6 +23,7 @@ VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
 
+  this->vk_extension = new VK_extension(struct_vulkan);
   this->vk_instance = new VK_instance(struct_vulkan);
   this->vk_viewport = new VK_viewport(struct_vulkan);
   this->vk_surface = new VK_surface(struct_vulkan);
@@ -46,6 +48,7 @@ void VK_engine::init(){
   //---------------------------
 
   //Instance
+  vk_extension->init();
   vk_surface->init_window();
   vk_instance->init_instance();
   vk_surface->init_surface();

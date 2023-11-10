@@ -11,9 +11,6 @@ VK_validation::VK_validation(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
 
-  this->struct_vulkan->instance.extension_ext.clear();
-  this->struct_vulkan->instance.extension_ext.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
-  this->struct_vulkan->instance.extension_ext.push_back(VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME);
   this->validation_layers = {"VK_LAYER_KHRONOS_validation"};
   this->with_validation_layer = true;
   this->with_best_practice = false;
