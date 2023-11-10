@@ -31,7 +31,7 @@ void VK_render::loop(){
 void VK_render::add_renderpass_description(Struct_renderpass* renderpass){
   //---------------------------
 
-  struct_vulkan->vec_renderpass.push_back(renderpass);
+  struct_vulkan->render.vec_renderpass.push_back(renderpass);
 
   //---------------------------
 }

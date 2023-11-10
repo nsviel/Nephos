@@ -40,8 +40,8 @@ void VK_swapchain::recreate_swapChain(){
 
   //Clean old swapchain
   vk_frame->clean_frame();
-  for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
-    Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
+  for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
+    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     vk_framebuffer->clean_framebuffer(renderpass);
   }
   this->clean_swapchain();
@@ -49,8 +49,8 @@ void VK_swapchain::recreate_swapChain(){
   //Create new swapchain
   this->create_swapchain();
   vk_frame->create_frame();
-  for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
-    Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
+  for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
+    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     vk_framebuffer->create_framebuffer(renderpass);
   }
 
@@ -100,7 +100,7 @@ void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& createInfo
   if(surface_capability.maxImageCount > 0 && nb_image > surface_capability.maxImageCount){
     nb_image = surface_capability.maxImageCount;
   }
-  struct_vulkan->nb_frame = nb_image;
+  struct_vulkan->render.nb_frame = nb_image;
 
   createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
   createInfo.minImageCount = nb_image;
@@ -170,7 +170,7 @@ VkSurfaceFormatKHR VK_swapchain::swapchain_surface_format(const std::vector<VkSu
 
   //Check if standar RGB is available
   for(const auto& format : dev_format){
-    if(format.format == struct_vulkan->required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
+    if(format.format == struct_vulkan->render.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
       return format;
     }
   }

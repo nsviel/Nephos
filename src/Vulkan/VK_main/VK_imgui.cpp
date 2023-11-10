@@ -16,7 +16,7 @@ VK_imgui::~VK_imgui(){}
 
 //Main function
 void VK_imgui::init(){
-  Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("gui");
+  Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
   //---------------------------
 
   // Setup Dear ImGui context
@@ -77,7 +77,7 @@ void VK_imgui::draw(Struct_subpass* subpass){
 void VK_imgui::load_font(){
   //---------------------------
 
-  Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("gui");
+  Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->pool.command, 0);
@@ -128,7 +128,7 @@ void VK_imgui::clean(){
 ImTextureID VK_imgui::engine_texture(){
   //---------------------------
 
-  Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("edl");
+  Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
   return 0;
   Struct_framebuffer* frame_edl = renderpass->framebuffer;
   Struct_image* image = &frame_edl->color;

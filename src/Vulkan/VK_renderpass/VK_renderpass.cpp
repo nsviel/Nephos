@@ -30,13 +30,13 @@ VK_renderpass::~VK_renderpass(){}
 void VK_renderpass::init_renderpass(){
   //---------------------------
 
-  if(struct_vulkan->vec_renderpass.size() == 0){
+  if(struct_vulkan->render.vec_renderpass.size() == 0){
     cout<<"[error] No renderpass initiated"<<endl;
     exit(0);
   }
 
-  for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
-    Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
+  for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
+    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     vk_subpass->create_subpass(renderpass);
     this->create_renderpass_struct(renderpass);
   }
@@ -46,8 +46,8 @@ void VK_renderpass::init_renderpass(){
 void VK_renderpass::clean_renderpass(){
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
-    Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
+  for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
+    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     this->clean_renderpass_struct(renderpass);
   }
 

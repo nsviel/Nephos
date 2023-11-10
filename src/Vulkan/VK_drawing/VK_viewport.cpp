@@ -20,18 +20,18 @@ void VK_viewport::init_viewport(){
   //---------------------------
 
   //Viewport
-  struct_vulkan->viewport = {};
-  struct_vulkan->viewport.x = 0;
-  struct_vulkan->viewport.y = 0;
-  struct_vulkan->viewport.width  = win_dim.x;
-  struct_vulkan->viewport.height = win_dim.y;
-  struct_vulkan->viewport.minDepth = 0.0f;
-  struct_vulkan->viewport.maxDepth = 1.0f;
+  struct_vulkan->render.viewport = {};
+  struct_vulkan->render.viewport.x = 0;
+  struct_vulkan->render.viewport.y = 0;
+  struct_vulkan->render.viewport.width  = win_dim.x;
+  struct_vulkan->render.viewport.height = win_dim.y;
+  struct_vulkan->render.viewport.minDepth = 0.0f;
+  struct_vulkan->render.viewport.maxDepth = 1.0f;
 
   //Full viewport scissor
-  struct_vulkan->scissor = {};
-  struct_vulkan->scissor.offset = {0, 0};
-  struct_vulkan->scissor.extent = struct_vulkan->window.extent;
+  struct_vulkan->render.scissor = {};
+  struct_vulkan->render.scissor.offset = {0, 0};
+  struct_vulkan->render.scissor.extent = struct_vulkan->window.extent;
 
   //---------------------------
 }
@@ -39,10 +39,10 @@ void VK_viewport::cmd_viewport(Struct_subpass* subpass){
   //---------------------------
 
   //Viewport
-  vkCmdSetViewport(subpass->command_buffer, 0, 1, &struct_vulkan->viewport);
+  vkCmdSetViewport(subpass->command_buffer, 0, 1, &struct_vulkan->render.viewport);
 
   //Scissor
-  vkCmdSetScissor(subpass->command_buffer, 0, 1, &struct_vulkan->scissor);
+  vkCmdSetScissor(subpass->command_buffer, 0, 1, &struct_vulkan->render.scissor);
 
   //---------------------------
 }
@@ -51,13 +51,13 @@ void VK_viewport::update_viewport(){
   //---------------------------
 
   //Viewport scene
-  struct_vulkan->viewport.x = 0;
-  struct_vulkan->viewport.y = 0;
-  struct_vulkan->viewport.width  = win_dim.x;
-  struct_vulkan->viewport.height = win_dim.y;
+  struct_vulkan->render.viewport.x = 0;
+  struct_vulkan->render.viewport.y = 0;
+  struct_vulkan->render.viewport.width  = win_dim.x;
+  struct_vulkan->render.viewport.height = win_dim.y;
 
   //Scissor
-  struct_vulkan->scissor.extent = struct_vulkan->window.extent;
+  struct_vulkan->render.scissor.extent = struct_vulkan->window.extent;
 
   //---------------------------
 }

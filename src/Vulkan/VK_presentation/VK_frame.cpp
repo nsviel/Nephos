@@ -33,7 +33,7 @@ void VK_frame::create_frame(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
-    Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("gui");
+    Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
     if(renderpass == nullptr)return;
     Struct_frame* frame = new Struct_frame();
     frame->image.image = struct_vulkan->swapchain.vec_swapchain_image[i];

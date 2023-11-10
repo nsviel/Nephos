@@ -222,9 +222,9 @@ void VK_pipeline::create_viewport(Struct_pipeline* pipeline){
   VkPipelineViewportStateCreateInfo viewport_state{};
   viewport_state.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
   viewport_state.viewportCount = 1;
-  viewport_state.pViewports = &struct_vulkan->viewport;
+  viewport_state.pViewports = &struct_vulkan->render.viewport;
   viewport_state.scissorCount = 1;
-  viewport_state.pScissors = &struct_vulkan->scissor;
+  viewport_state.pScissors = &struct_vulkan->render.scissor;
 
   //---------------------------
   pipeline->info.viewport_state = viewport_state;
