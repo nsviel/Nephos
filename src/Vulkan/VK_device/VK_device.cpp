@@ -35,41 +35,43 @@ void VK_device::clean(){
 
 //Subfunction
 void VK_device::create_logical_device(){
-  //Interface between selected GPU and application
   //---------------------------
 
   //Get GPU queue families
-  std::set<uint32_t> uniqueQueueFamilies = {(unsigned int)struct_vulkan->device.struct_device.queue_graphics_idx, (unsigned int)struct_vulkan->device.struct_device.queue_presentation_idx};
+  std::set<uint32_t> set_queue = {
+    (unsigned int)struct_vulkan->device.struct_device.queue_graphics_idx,
+    (unsigned int)struct_vulkan->device.struct_device.queue_presentation_idx
+  };
 
   //Create queue on device
   float queuePriority = 1.0f;
-  std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
-  for(uint32_t queueFamily : uniqueQueueFamilies){
+  std::vector<VkDeviceQueueCreateInfo> queue_create_info;
+  for(uint32_t queueFamily : set_queue){
     VkDeviceQueueCreateInfo queueCreateInfo{};
     queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
     queueCreateInfo.queueFamilyIndex = queueFamily;
     queueCreateInfo.queueCount = 1;
     queueCreateInfo.pQueuePriorities = &queuePriority;
-    queueCreateInfos.push_back(queueCreateInfo);
+    queue_create_info.push_back(queueCreateInfo);
   }
 
   //Specifying used device features
-  VkPhysicalDeviceFeatures deviceFeatures{};
-  deviceFeatures.samplerAnisotropy = VK_TRUE;
-  deviceFeatures.wideLines = VK_TRUE;
+  VkPhysicalDeviceFeatures device_features{};
+  device_features.samplerAnisotropy = VK_TRUE;
+  device_features.wideLines = VK_TRUE;
 
   //Logical device info
-  VkDeviceCreateInfo createInfo{};
-  createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
-  createInfo.pQueueCreateInfos = queueCreateInfos.data();
-  createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
-  createInfo.pEnabledFeatures = &deviceFeatures;
-  createInfo.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->instance.extension_khr.size());
-  createInfo.ppEnabledExtensionNames = struct_vulkan->instance.extension_khr.data();
-  createInfo.enabledLayerCount = 0;
+  VkDeviceCreateInfo create_info{};
+  create_info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+  create_info.pQueueCreateInfos = queue_create_info.data();
+  create_info.queueCreateInfoCount = static_cast<uint32_t>(queue_create_info.size());
+  create_info.pEnabledFeatures = &device_features;
+  create_info.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->instance.extension_khr.size());
+  create_info.ppEnabledExtensionNames = struct_vulkan->instance.extension_khr.data();
+  create_info.enabledLayerCount = 0;
 
   //Creating the logical device
-  VkResult result = vkCreateDevice(struct_vulkan->device.struct_device.physical_device, &createInfo, nullptr, &struct_vulkan->device.device);
+  VkResult result = vkCreateDevice(struct_vulkan->device.struct_device.physical_device, &create_info, nullptr, &struct_vulkan->device.device);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create logical device!");
   }

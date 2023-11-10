@@ -80,14 +80,14 @@ VkShaderModule VK_shader::create_shader_module(const std::vector<char>& code){
   //---------------------------
 
   //Shader module info
-  VkShaderModuleCreateInfo createInfo{};
-  createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-  createInfo.codeSize = code.size();
-  createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
+  VkShaderModuleCreateInfo create_info{};
+  create_info.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+  create_info.codeSize = code.size();
+  create_info.pCode = reinterpret_cast<const uint32_t*>(code.data());
 
   //Shader module creation
   VkShaderModule shaderModule;
-  VkResult result = vkCreateShaderModule(struct_vulkan->device.device, &createInfo, nullptr, &shaderModule);
+  VkResult result = vkCreateShaderModule(struct_vulkan->device.device, &create_info, nullptr, &shaderModule);
   if (result != VK_SUCCESS) {
     throw std::runtime_error("[error] failed to create shader module!");
   }

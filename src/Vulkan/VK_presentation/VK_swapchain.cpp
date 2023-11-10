@@ -71,23 +71,23 @@ void VK_swapchain::create_swapchain(){
   //---------------------------
 
   //Create swap chain info
-  VkSwapchainCreateInfoKHR createInfo{};
-  this->create_swapchain_surface(createInfo);
-  this->create_swapchain_family(createInfo);
-  this->create_swapchain_presentation(createInfo);
+  VkSwapchainCreateInfoKHR create_info{};
+  this->create_swapchain_surface(create_info);
+  this->create_swapchain_family(create_info);
+  this->create_swapchain_presentation(create_info);
 
   //Create swap chain
-  VkResult result = vkCreateSwapchainKHR(struct_vulkan->device.device, &createInfo, nullptr, &struct_vulkan->swapchain.swapchain);
+  VkResult result = vkCreateSwapchainKHR(struct_vulkan->device.device, &create_info, nullptr, &struct_vulkan->swapchain.swapchain);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create swap chain!");
   }
 
-  this->create_swapchain_image(struct_vulkan->swapchain.swapchain, createInfo.minImageCount);
+  this->create_swapchain_image(struct_vulkan->swapchain.swapchain, create_info.minImageCount);
   vk_viewport->update_viewport();
 
   //---------------------------
 }
-void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& createInfo){
+void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& create_info){
   //---------------------------
 
   vector<VkSurfaceFormatKHR> surface_format = struct_vulkan->device.struct_device.formats;
@@ -103,47 +103,47 @@ void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& createInfo
   }
   struct_vulkan->render.nb_frame = nb_image;
 
-  createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
-  createInfo.minImageCount = nb_image;
-  createInfo.surface = struct_vulkan->window.surface;
-  createInfo.imageFormat = surfaceFormat.format;
-  createInfo.imageColorSpace = surfaceFormat.colorSpace;
-  createInfo.imageExtent = struct_vulkan->window.extent;
-  createInfo.imageArrayLayers = 1;
-  createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT; //VK_IMAGE_USAGE_TRANSFER_DST_BIT for post-processing
+  create_info.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
+  create_info.minImageCount = nb_image;
+  create_info.surface = struct_vulkan->window.surface;
+  create_info.imageFormat = surfaceFormat.format;
+  create_info.imageColorSpace = surfaceFormat.colorSpace;
+  create_info.imageExtent = struct_vulkan->window.extent;
+  create_info.imageArrayLayers = 1;
+  create_info.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT; //VK_IMAGE_USAGE_TRANSFER_DST_BIT for post-processing
 
-  createInfo.preTransform = surface_capability.currentTransform;
+  create_info.preTransform = surface_capability.currentTransform;
 
   //---------------------------
 }
-void VK_swapchain::create_swapchain_family(VkSwapchainCreateInfoKHR& createInfo){
+void VK_swapchain::create_swapchain_family(VkSwapchainCreateInfoKHR& create_info){
   //---------------------------
 
   //Link with queue families
   uint32_t queueFamilyIndices[] = {(unsigned int)struct_vulkan->device.struct_device.queue_graphics_idx, (unsigned int)struct_vulkan->device.struct_device.queue_presentation_idx};
 
   if(struct_vulkan->device.struct_device.queue_graphics_idx != struct_vulkan->device.struct_device.queue_presentation_idx){
-    createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
-    createInfo.queueFamilyIndexCount = 2;
-    createInfo.pQueueFamilyIndices = queueFamilyIndices;
+    create_info.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
+    create_info.queueFamilyIndexCount = 2;
+    create_info.pQueueFamilyIndices = queueFamilyIndices;
   }else{
-    createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
-    createInfo.queueFamilyIndexCount = 0; // Optional
-    createInfo.pQueueFamilyIndices = nullptr; // Optional
+    create_info.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
+    create_info.queueFamilyIndexCount = 0; // Optional
+    create_info.pQueueFamilyIndices = nullptr; // Optional
   }
 
   //---------------------------
 }
-void VK_swapchain::create_swapchain_presentation(VkSwapchainCreateInfoKHR& createInfo){
+void VK_swapchain::create_swapchain_presentation(VkSwapchainCreateInfoKHR& create_info){
   //---------------------------
 
   vector<VkPresentModeKHR> dev_presentation_mode = struct_vulkan->device.struct_device.presentation_mode;
   VkPresentModeKHR presentation_mode = swapchain_presentation_mode(dev_presentation_mode);
 
-  createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; //Ignore alpha channel
-  createInfo.presentMode = presentation_mode;
-  createInfo.clipped = VK_TRUE;
-  createInfo.oldSwapchain = VK_NULL_HANDLE;
+  create_info.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; //Ignore alpha channel
+  create_info.presentMode = presentation_mode;
+  create_info.clipped = VK_TRUE;
+  create_info.oldSwapchain = VK_NULL_HANDLE;
 
   //---------------------------
 }
