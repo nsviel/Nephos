@@ -13,12 +13,8 @@
 #include <VK_struct/Struct_render.h>
 #include <VK_struct/Struct_synchro.h>
 
-#include <string>
 #include <vector>
 #include <list>
-#include <map>
-#include <glm/glm.hpp>
-#include <iostream>
 
 
 struct Struct_vulkan{
@@ -36,6 +32,7 @@ struct Struct_vulkan{
   Struct_synchro synchro;
 
   std::vector<Struct_image*> vec_texture;
+  std::vector<Struct_device*> vec_physical_device;
   std::list<Struct_data*> list_object;
 
   //---------------------------

@@ -5,6 +5,7 @@
 #include <Vulkan.h>
 #include <VK_shader/VK_reload.h>
 #include <VK_struct/Struct_instance.h>
+#include <VK_struct/Struct_validation.h>
 #include <VK_main/VK_engine.h>
 #include <ENG_shader/ENG_shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>

@@ -39,9 +39,9 @@ void VK_device::create_logical_device(){
   //---------------------------
 
   //Get GPU queue families
-  int family_graphics = vk_physical_device->find_queue_graphics_idx(struct_vulkan->device.physical_device);
-  int family_presentation = vk_physical_device->find_queue_presentation_idx(struct_vulkan->device.physical_device);
-  std::set<uint32_t> uniqueQueueFamilies = {(unsigned int)family_graphics, (unsigned int)family_presentation};
+  //int family_graphics = vk_physical_device->find_queue_graphics_idx(struct_vulkan->device.physical_device);
+  //int family_presentation = vk_physical_device->find_queue_presentation_idx(struct_vulkan->device.physical_device);
+  std::set<uint32_t> uniqueQueueFamilies = {(unsigned int)struct_vulkan->device.queue_graphics_idx, (unsigned int)struct_vulkan->device.queue_presentation_idx};
 
   //Create queue on device
   float queuePriority = 1.0f;
@@ -77,8 +77,8 @@ void VK_device::create_logical_device(){
   }
 
   //Get queue family handles
-  vkGetDeviceQueue(struct_vulkan->device.device, family_graphics, 0, &struct_vulkan->device.queue_graphics);
-  vkGetDeviceQueue(struct_vulkan->device.device, family_presentation, 0, &struct_vulkan->device.queue_presentation);
+  vkGetDeviceQueue(struct_vulkan->device.device, struct_vulkan->device.queue_graphics_idx, 0, &struct_vulkan->device.queue_graphics);
+  vkGetDeviceQueue(struct_vulkan->device.device, struct_vulkan->device.queue_presentation_idx, 0, &struct_vulkan->device.queue_presentation);
 
   //---------------------------
 }
