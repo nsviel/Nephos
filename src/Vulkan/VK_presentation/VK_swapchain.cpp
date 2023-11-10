@@ -119,8 +119,8 @@ void VK_swapchain::create_swapchain_family(VkSwapchainCreateInfoKHR& createInfo)
   //---------------------------
 
   //Link with queue families
-  int family_graphics = vk_physical_device->find_queue_family_graphics(struct_vulkan->device.physical_device);
-  int family_presentation = vk_physical_device->find_queue_family_presentation(struct_vulkan->device.physical_device);
+  int family_graphics = vk_physical_device->find_queue_graphics_idx(struct_vulkan->device.physical_device);
+  int family_presentation = vk_physical_device->find_queue_presentation_idx(struct_vulkan->device.physical_device);
   uint32_t queueFamilyIndices[] = {(unsigned int)family_graphics, (unsigned int)family_presentation};
 
   if(family_graphics != family_presentation){

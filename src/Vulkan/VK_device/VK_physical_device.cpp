@@ -112,8 +112,8 @@ bool VK_physical_device::is_device_suitable(VkPhysicalDevice physical_device){
   //---------------------------
 
   //Queue suitable
-  int family_graphics = find_queue_family_graphics(physical_device);
-  int family_presentation = find_queue_family_presentation(physical_device);
+  int family_graphics = find_queue_graphics_idx(physical_device);
+  int family_presentation = find_queue_presentation_idx(physical_device);
   if(family_graphics == -1 || family_presentation == -1){
     return false;
   }
@@ -167,7 +167,7 @@ bool VK_physical_device::check_extension_support(VkPhysicalDevice physical_devic
 }
 
 //Specific info retrieval
-int VK_physical_device::find_nb_queue_family(VkPhysicalDevice physical_device){
+int VK_physical_device::find_queue_nb_family(VkPhysicalDevice physical_device){
   //---------------------------
 
   uint32_t nb_queue_family = 0;
@@ -180,38 +180,40 @@ int VK_physical_device::find_nb_queue_family(VkPhysicalDevice physical_device){
   //---------------------------
   return nb_queue_family;
 }
-int VK_physical_device::find_queue_family_graphics(VkPhysicalDevice physical_device){
+int VK_physical_device::find_queue_graphics_idx(VkPhysicalDevice physical_device){
   //---------------------------
 
   //Get queue family number
-  uint32_t nb_queue_family = find_nb_queue_family(physical_device);
+  this->find_queue_nb_family(physical_device);
 
   //List queue families
-  std::vector<VkQueueFamilyProperties> vec_queueFamily(nb_queue_family);
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queue_family, vec_queueFamily.data());
+  std::vector<VkQueueFamilyProperties> vec_queueFamily(struct_vulkan->device.nb_queue_family );
+  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &struct_vulkan->device.nb_queue_family , vec_queueFamily.data());
 
   //Search for specific properties (e.g, graphics)
   int i = 0;
   for(const auto& queueFamily : vec_queueFamily){
     //Querying for graphics family
     if(queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT){
-      return i;
+      break;
     }
     i++;
   }
 
+  struct_vulkan->device.queue_graphics_idx = i;
+
   //---------------------------
-  return -1;
+  return i;
 }
-int VK_physical_device::find_queue_family_presentation(VkPhysicalDevice physical_device){
+int VK_physical_device::find_queue_presentation_idx(VkPhysicalDevice physical_device){
   //---------------------------
 
   //Get queue family number
-  uint32_t nb_queue_family = find_nb_queue_family(physical_device);
+  this-find_queue_nb_family(physical_device);
 
   //List queue families
-  std::vector<VkQueueFamilyProperties> vec_queueFamily(nb_queue_family);
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queue_family, vec_queueFamily.data());
+  std::vector<VkQueueFamilyProperties> vec_queueFamily(struct_vulkan->device.nb_queue_family );
+  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &struct_vulkan->device.nb_queue_family , vec_queueFamily.data());
 
   //Search for specific properties (e.g, graphics)
   int i = 0;

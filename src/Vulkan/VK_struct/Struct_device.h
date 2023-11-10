@@ -7,14 +7,16 @@
 struct Struct_device{
   //---------------------------
 
-  VkPhysicalDevice physical_device;
   VkDevice device;
+  VkPhysicalDevice physical_device;
   VkQueue queue_graphics;
   VkQueue queue_presentation;
-  vector<const char*> extension;
 
+  vector<const char*> extension;
   vector<string> vec_device_name;
-  int nb_queue_family;
+  uint32_t nb_queue_family;
+  int queue_graphics_idx;
+  int queue_presentation_idx;
 
   //---------------------------
 };
