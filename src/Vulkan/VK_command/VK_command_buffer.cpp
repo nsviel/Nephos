@@ -20,7 +20,7 @@ VK_command_buffer::~VK_command_buffer(){}
 void VK_command_buffer::create_command_pool(){
   //---------------------------
 
-  //int family_graphics = vk_physical_device->find_queue_graphics_idx(struct_vulkan->device.physical_device);
+  //int family_graphics = vk_physical_device->find_queue_graphics_idx(struct_vulkan->device.struct_device.physical_device);
 
   //Command pool info
   VkCommandPoolCreateInfo poolInfo{};

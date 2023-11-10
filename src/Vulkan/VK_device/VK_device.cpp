@@ -39,8 +39,8 @@ void VK_device::create_logical_device(){
   //---------------------------
 
   //Get GPU queue families
-  //int family_graphics = vk_physical_device->find_queue_graphics_idx(struct_vulkan->device.physical_device);
-  //int family_presentation = vk_physical_device->find_queue_presentation_idx(struct_vulkan->device.physical_device);
+  //int family_graphics = vk_physical_device->find_queue_graphics_idx(struct_vulkan->device.struct_device.physical_device);
+  //int family_presentation = vk_physical_device->find_queue_presentation_idx(struct_vulkan->device.struct_device.physical_device);
   std::set<uint32_t> uniqueQueueFamilies = {(unsigned int)struct_vulkan->device.queue_graphics_idx, (unsigned int)struct_vulkan->device.queue_presentation_idx};
 
   //Create queue on device
@@ -71,7 +71,7 @@ void VK_device::create_logical_device(){
   createInfo.enabledLayerCount = 0;
 
   //Creating the logical device
-  VkResult result = vkCreateDevice(struct_vulkan->device.physical_device, &createInfo, nullptr, &struct_vulkan->device.device);
+  VkResult result = vkCreateDevice(struct_vulkan->device.struct_device.physical_device, &createInfo, nullptr, &struct_vulkan->device.device);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create logical device!");
   }

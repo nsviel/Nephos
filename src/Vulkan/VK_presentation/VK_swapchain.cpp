@@ -90,8 +90,8 @@ void VK_swapchain::create_swapchain(){
 void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& createInfo){
   //---------------------------
 
-  VkSurfaceCapabilitiesKHR surface_capability = vk_physical_device->find_surface_capability(struct_vulkan->device.physical_device);
-  vector<VkSurfaceFormatKHR> surface_format = vk_physical_device->find_surface_format(struct_vulkan->device.physical_device);
+  VkSurfaceCapabilitiesKHR surface_capability = vk_physical_device->find_surface_capability(struct_vulkan->device.struct_device.physical_device);
+  vector<VkSurfaceFormatKHR> surface_format = vk_physical_device->find_surface_format(struct_vulkan->device.struct_device.physical_device);
   VkSurfaceFormatKHR surfaceFormat = swapchain_surface_format(surface_format);
   vk_physical_device->compute_extent();
 
@@ -119,8 +119,8 @@ void VK_swapchain::create_swapchain_family(VkSwapchainCreateInfoKHR& createInfo)
   //---------------------------
 
   //Link with queue families
-  //int family_graphics = vk_physical_device->find_queue_graphics_idx(struct_vulkan->device.physical_device);
-  //int family_presentation = vk_physical_device->find_queue_presentation_idx(struct_vulkan->device.physical_device);
+  //int family_graphics = vk_physical_device->find_queue_graphics_idx(struct_vulkan->device.struct_device.physical_device);
+  //int family_presentation = vk_physical_device->find_queue_presentation_idx(struct_vulkan->device.struct_device.physical_device);
   uint32_t queueFamilyIndices[] = {(unsigned int)struct_vulkan->device.queue_graphics_idx, (unsigned int)struct_vulkan->device.queue_presentation_idx};
 
   if(struct_vulkan->device.queue_graphics_idx != struct_vulkan->device.queue_presentation_idx){
@@ -138,7 +138,7 @@ void VK_swapchain::create_swapchain_family(VkSwapchainCreateInfoKHR& createInfo)
 void VK_swapchain::create_swapchain_presentation(VkSwapchainCreateInfoKHR& createInfo){
   //---------------------------
 
-  vector<VkPresentModeKHR> dev_presentation_mode = vk_physical_device->find_presentation_mode(struct_vulkan->device.physical_device);
+  vector<VkPresentModeKHR> dev_presentation_mode = vk_physical_device->find_presentation_mode(struct_vulkan->device.struct_device.physical_device);
   VkPresentModeKHR presentation_mode = swapchain_presentation_mode(dev_presentation_mode);
 
   createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; //Ignore alpha channel

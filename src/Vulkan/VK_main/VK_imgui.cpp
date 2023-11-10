@@ -35,7 +35,7 @@ void VK_imgui::init(){
   ImGui_ImplGlfw_InitForVulkan(struct_vulkan->window.glfw_window, true);
   ImGui_ImplVulkan_InitInfo init_info = {};
   init_info.Instance = struct_vulkan->instance.instance;
-  init_info.PhysicalDevice = struct_vulkan->device.physical_device;
+  init_info.PhysicalDevice = struct_vulkan->device.struct_device.physical_device;
   init_info.Device = struct_vulkan->device.device;
   init_info.Queue = struct_vulkan->device.queue_graphics;
   init_info.DescriptorPool = struct_vulkan->pool.descriptor;

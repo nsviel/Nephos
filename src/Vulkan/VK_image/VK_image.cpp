@@ -82,7 +82,7 @@ VkImageView VK_image::create_image_view(VkImage image, VkFormat format, VkImageA
 void VK_image::create_image_sampler(Struct_image* texture){
   //---------------------------
 
-  VkPhysicalDeviceProperties properties = vk_physical_device->find_device_property(struct_vulkan->device.physical_device);
+  VkPhysicalDeviceProperties properties = vk_physical_device->find_device_property(struct_vulkan->device.struct_device.physical_device);
   VkSamplerCreateInfo samplerInfo{};
   samplerInfo.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
   samplerInfo.magFilter = VK_FILTER_LINEAR;
