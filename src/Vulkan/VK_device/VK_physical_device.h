@@ -26,6 +26,7 @@ public:
   bool check_extension_support(VkPhysicalDevice physical_device);
 
   //Specific info retrieval
+  int find_nb_queue_family(VkPhysicalDevice physical_device);
   int find_queue_family_graphics(VkPhysicalDevice physical_device);
   int find_queue_family_presentation(VkPhysicalDevice physical_device);
   int rate_device_suitability(VkPhysicalDevice device);

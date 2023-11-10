@@ -14,8 +14,7 @@ struct Struct_device{
   vector<const char*> extension;
 
   vector<string> vec_device_name;
-  int nb_queue_graphics;
-  int nb_queue_presentation;
+  int nb_queue_family;
 
   //---------------------------
 };

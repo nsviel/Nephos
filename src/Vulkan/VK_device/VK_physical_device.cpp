@@ -167,16 +167,24 @@ bool VK_physical_device::check_extension_support(VkPhysicalDevice physical_devic
 }
 
 //Specific info retrieval
-int VK_physical_device::find_queue_family_graphics(VkPhysicalDevice physical_device){
+int VK_physical_device::find_nb_queue_family(VkPhysicalDevice physical_device){
   //---------------------------
 
-  //Get queue family number
   uint32_t nb_queue_family = 0;
   vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queue_family, nullptr);
   if(nb_queue_family == 0) {
     throw std::runtime_error("[error] No queue families on selected GPU");
   }
-  struct_vulkan->device.nb_queue_graphics = nb_queue_family;
+  struct_vulkan->device.nb_queue_family = nb_queue_family;
+
+  //---------------------------
+  return nb_queue_family;
+}
+int VK_physical_device::find_queue_family_graphics(VkPhysicalDevice physical_device){
+  //---------------------------
+
+  //Get queue family number
+  uint32_t nb_queue_family = find_nb_queue_family(physical_device);
 
   //List queue families
   std::vector<VkQueueFamilyProperties> vec_queueFamily(nb_queue_family);
@@ -199,12 +207,7 @@ int VK_physical_device::find_queue_family_presentation(VkPhysicalDevice physical
   //---------------------------
 
   //Get queue family number
-  uint32_t nb_queue_family = 0;
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &nb_queue_family, nullptr);
-  if(nb_queue_family == 0) {
-    throw std::runtime_error("[error] No queue families on selected GPU");
-  }
-  struct_vulkan->device.nb_queue_presentation = nb_queue_family;
+  uint32_t nb_queue_family = find_nb_queue_family(physical_device);
 
   //List queue families
   std::vector<VkQueueFamilyProperties> vec_queueFamily(nb_queue_family);
