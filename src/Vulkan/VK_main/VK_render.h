@@ -27,7 +27,7 @@ public:
 
 public:
   //Main functions
-  void loop_draw_frame();
+  void loop();
   void add_renderpass_description(Struct_renderpass* renderpass);
 
   //Texture function

@@ -15,6 +15,7 @@ struct Struct_param{
   //---------------------------
 
   int max_fps = 120;
+  bool headless_mode = false;
   glm::vec4 background_color = glm::vec4(0.4, 0.4, 0.4, 1);
 
   Struct_camera camera;

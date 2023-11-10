@@ -8,9 +8,13 @@
 struct Struct_window{
   //---------------------------
 
+  //Window stuff
   bool is_resized = false;
   ELE_window* ele_window;
+  GLFWwindow* glfw_window;
+  vec2 window_dim;
 
+  //Vulkan stuff
   VkExtent2D extent;
   VkSurfaceKHR surface;
 

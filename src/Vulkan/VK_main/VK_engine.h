@@ -38,6 +38,7 @@ public:
 public:
   //Main functions
   void init();
+  void loop();
   void clean();
   void device_wait_idle();
   void reload_shader(string shader, string subshader);
@@ -56,6 +57,7 @@ public:
   inline VK_info* get_vk_info(){return vk_info;}
 
   inline std::list<Struct_data*> get_list_data(){return struct_vulkan->list_data;}
+  inline void set_ele_window(ELE_window* value){this->ele_window = value;}
 
 private:
   ELE_window* ele_window;

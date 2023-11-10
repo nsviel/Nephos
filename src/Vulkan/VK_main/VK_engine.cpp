@@ -51,6 +51,9 @@ VK_engine::VK_engine(ELE_window* ele_window){
   this->vk_render = new VK_render(this);
   this->vk_imgui = new VK_imgui(this);
 
+
+  struct_vulkan->window.glfw_window = ele_window->get_window();
+
   //---------------------------
 }
 VK_engine::~VK_engine(){}
@@ -77,6 +80,13 @@ void VK_engine::init(){
 
   //---------------------------
   struct_vulkan->info.engine_init = timer.stop_us(t1) / 1000;
+}
+void VK_engine::loop(){
+  //---------------------------
+
+  struct_vulkan->window.window_dim = ele_window->get_window_dim();
+
+  //---------------------------
 }
 void VK_engine::device_wait_idle(){
   //---------------------------

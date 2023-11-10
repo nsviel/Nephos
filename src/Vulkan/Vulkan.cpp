@@ -30,7 +30,8 @@ void Vulkan::init(){
 void Vulkan::loop(){
   //---------------------------
 
-  vk_render->loop_draw_frame();
+  vk_engine->loop();
+  vk_render->loop();
 
   //---------------------------
 }
@@ -45,6 +46,15 @@ void Vulkan::wait(){
   //---------------------------
 
   vk_engine->device_wait_idle();
+
+  //---------------------------
+}
+void Vulkan::param(ELE_window* ele_window, bool headless){
+  Struct_param* struct_param = vk_engine->get_struct_param();
+  //---------------------------
+
+  vk_engine->set_ele_window(ele_window);
+  struct_param->headless_mode = headless;
 
   //---------------------------
 }

@@ -19,7 +19,7 @@ VK_render::VK_render(VK_engine* vk_engine){
 VK_render::~VK_render(){}
 
 //Main function
-void VK_render::loop_draw_frame(){
+void VK_render::loop(){
   //---------------------------
 
   vk_drawing->draw_frame();

@@ -38,6 +38,7 @@ void VK_drawing::draw_frame(){
   this->run_next_image();
 
   //Renderpass
+  vector<VkCommandBuffer> vec_command_buffer;
   for(int i=0; i<struct_vulkan->vec_renderpass.size(); i++){
     Struct_renderpass* renderpass = struct_vulkan->vec_renderpass[i];
 

@@ -128,17 +128,14 @@ void VK_imgui::clean(){
 }
 ImTextureID VK_imgui::engine_texture(){
   //---------------------------
-  static int truc = 0;
-  truc++;
-//if(truc< 1000)
- return 0;
+
   Struct_renderpass* renderpass = struct_vulkan->get_renderpass_byName("edl");
-  if(renderpass == nullptr) return 0;
+  return 0;
   Struct_framebuffer* frame_edl = renderpass->framebuffer;
   Struct_image* image = &frame_edl->color;
   VkDescriptorSet descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-  //ImTextureID texture = reinterpret_cast<ImTextureID>(descriptor);
+  ImTextureID texture = reinterpret_cast<ImTextureID>(descriptor);
 
   //---------------------------
-  return 0;//texture;
+  return texture;
 }
