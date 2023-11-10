@@ -12,6 +12,9 @@ struct Struct_physical_device{
   VkPhysicalDeviceProperties properties;
   VkSurfaceCapabilitiesKHR capabilities;
 
+  vector<VkSurfaceFormatKHR> formats;
+  vector<VkPresentModeKHR> presentation_mode;
+
   std::string name;
   uint32_t nb_queue_family;
   int queue_graphics_idx;
