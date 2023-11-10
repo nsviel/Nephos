@@ -6,7 +6,6 @@
 #include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 
-class ELE_window;
 class Struct_vulkan;
 class VK_surface;
 class VK_instance;
@@ -27,7 +26,7 @@ class VK_engine
 {
 public:
   //Constructor / Destructor
-  VK_engine(Struct_vulkan* struct_vulkan, ELE_window* ele_window);
+  VK_engine(Struct_vulkan* struct_vulkan);
   ~VK_engine();
 
 public:
@@ -44,14 +43,9 @@ public:
 
   inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->render.vec_renderpass[i];}
   inline std::list<Struct_data*> get_list_data(){return struct_vulkan->list_object;}
-  inline void set_ele_window(ELE_window* value){this->ele_window = value;}
 
 private:
-  ELE_window* ele_window;
-
-
   Struct_vulkan* struct_vulkan;
-
   VK_surface* vk_surface;
   VK_instance* vk_instance;
   VK_command_buffer* vk_command_buffer;

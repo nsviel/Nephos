@@ -14,14 +14,12 @@
 #include <VK_presentation/VK_frame.h>
 #include <VK_shader/VK_reload.h>
 #include <VK_drawing/VK_viewport.h>
-#include <ELE_window/ELE_window.h>
 
 
 //Constructor / Destructor
-VK_engine::VK_engine(Struct_vulkan* struct_vulkan, ELE_window* ele_window){
+VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
   //---------------------------
 
-  this->ele_window = ele_window;
   this->struct_vulkan = struct_vulkan;
 
   this->vk_instance = new VK_instance(struct_vulkan);
