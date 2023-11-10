@@ -1,7 +1,7 @@
 #include "VK_imgui.h"
 
 #include <VK_main/Struct_vulkan.h>
-#include <VK_main/VK_engine.h>
+#include <VK_command/VK_command_buffer.h>
 
 
 //Constructor / Destructor
@@ -9,6 +9,7 @@ VK_imgui::VK_imgui(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
+  this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
 
   //---------------------------
 }
@@ -49,15 +50,13 @@ void VK_imgui::draw(Struct_subpass* subpass){
   //---------------------------
 }
 void VK_imgui::load_font(){
+  VkResult result;
   //---------------------------
 
   Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
-  VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->pool.command, 0);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
-  }
+  vk_command_buffer->reset_command_pool();
 
   VkCommandBufferBeginInfo begin_info = {};
   begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;

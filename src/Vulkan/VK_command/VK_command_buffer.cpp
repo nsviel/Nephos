@@ -36,6 +36,16 @@ void VK_command_buffer::create_command_pool(){
 
   //---------------------------
 }
+void VK_command_buffer::reset_command_pool(){
+  //---------------------------
+
+  VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->pool.command, 0);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to reset command pool");
+  }
+
+  //---------------------------
+}
 void VK_command_buffer::clean_command_pool(){
   //---------------------------
 

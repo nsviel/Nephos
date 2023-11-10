@@ -20,6 +20,7 @@ public:
 public:
   //Command pool
   void create_command_pool();
+  void reset_command_pool();
   void clean_command_pool();
 
   //Command buffer

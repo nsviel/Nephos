@@ -5,6 +5,7 @@
 #include <ELE_specific/common.h>
 
 class VK_engine;
+class VK_command_buffer;
 class Struct_vulkan;
 
 
@@ -25,6 +26,7 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
+  VK_command_buffer* vk_command_buffer;
 };
 
 #endif
