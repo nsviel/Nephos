@@ -8,9 +8,10 @@ struct Struct_instance{
   //---------------------------
 
   VkInstance instance;
-  int max_frame_inflight = 2;
   vector<const char*> extension_ext;
   vector<const char*> extension_khr;
+  int max_frame_inflight = 2;
+  std::vector<VkPhysicalDevice> vec_physical_device;
 
   //---------------------------
 };

@@ -1,6 +1,7 @@
 #include "VK_physical_device.h"
 
 #include <VK_presentation/VK_surface.h>
+#include <VK_struct/Struct_physical_device.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 
@@ -32,43 +33,11 @@ void VK_physical_device::init_physical_device(){
 void VK_physical_device::select_physical_device(){
   //---------------------------
 
-  struct_vulkan->device.physical_device = VK_NULL_HANDLE;
+  this->find_physical_devices();
+  this->find_physical_device_best();
 
-  //Find how many GPU are available
-  uint32_t nb_device = 0;
-  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, nullptr);
-  if(nb_device == 0){
-    throw std::runtime_error("[error] failed to find GPUs with Vulkan support!");
-  }
-
-  //List all available GPU and take suitable one
-  std::vector<VkPhysicalDevice> vec_physical_device(nb_device);
-  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, vec_physical_device.data());
-
-  // Use an ordered map to automatically sort candidates by increasing score
-  std::multimap<int, VkPhysicalDevice> candidates;
-  for(VkPhysicalDevice& device : vec_physical_device){
-    int score = rate_device_suitability(device);
-    candidates.insert(std::make_pair(score, device));
-  }
-
-  //Select adequat GPU physical device
-  if(candidates.rbegin()->first > 0){
-    struct_vulkan->device.physical_device = candidates.rbegin()->second;
-
-    VkPhysicalDeviceProperties deviceProperties;
-    vkGetPhysicalDeviceProperties(struct_vulkan->device.physical_device, &deviceProperties);
-    //say(deviceProperties.deviceName);
-
-  }else {
-    throw std::runtime_error("failed to find a suitable GPU!");
-  }
-  if(struct_vulkan->device.physical_device == VK_NULL_HANDLE){
-    throw std::runtime_error("[error] failed to find a suitable GPU!");
-  }
-
-  //Store device names
-  for(VkPhysicalDevice device : vec_physical_device){
+  //Store device names -homemade à virer ????
+  for(VkPhysicalDevice device : struct_vulkan->instance.vec_physical_device){
     VkPhysicalDeviceProperties deviceProperties;
     vkGetPhysicalDeviceProperties(device, &deviceProperties);
     struct_vulkan->device.vec_device_name.push_back(deviceProperties.deviceName);
@@ -168,6 +137,51 @@ bool VK_physical_device::check_extension_support(VkPhysicalDevice physical_devic
 }
 
 //Specific info retrieval
+void VK_physical_device::find_physical_devices(){
+  vector<VkPhysicalDevice>& vec_physical_device = struct_vulkan->instance.vec_physical_device;
+  //---------------------------
+
+  //Find how many GPU are available
+  uint32_t nb_device = 0;
+  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, nullptr);
+  if(nb_device == 0){
+    throw std::runtime_error("[error] failed to find GPUs with Vulkan support!");
+  }
+
+  //List all available GPU and take suitable one
+  vec_physical_device.resize(nb_device);
+  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, vec_physical_device.data());
+
+  //---------------------------
+}
+void VK_physical_device::find_physical_device_best(){
+  //---------------------------
+
+  // Use an ordered map to automatically sort candidates by increasing score
+  std::multimap<int, VkPhysicalDevice> candidates;
+  for(VkPhysicalDevice& device : struct_vulkan->instance.vec_physical_device){
+    int score = rate_device_suitability(device);
+    candidates.insert(std::make_pair(score, device));
+  }
+
+  //Select adequat GPU physical device
+  struct_vulkan->device.physical_device = VK_NULL_HANDLE;
+  if(candidates.rbegin()->first > 0){
+    struct_vulkan->device.physical_device = candidates.rbegin()->second;
+
+    VkPhysicalDeviceProperties deviceProperties;
+    vkGetPhysicalDeviceProperties(struct_vulkan->device.physical_device, &deviceProperties);
+    //say(deviceProperties.deviceName);
+
+  }else {
+    throw std::runtime_error("failed to find a suitable GPU!");
+  }
+  if(struct_vulkan->device.physical_device == VK_NULL_HANDLE){
+    throw std::runtime_error("[error] failed to find a suitable GPU!");
+  }
+
+  //---------------------------
+}
 void VK_physical_device::find_queue_nb_family(VkPhysicalDevice physical_device){
   //---------------------------
 
