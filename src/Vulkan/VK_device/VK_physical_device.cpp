@@ -20,7 +20,7 @@ VK_physical_device::VK_physical_device(Struct_vulkan* struct_vulkan){
 VK_physical_device::~VK_physical_device(){}
 
 //Main functions
-void VK_physical_device::init_physical_device(){
+void VK_physical_device::init(){
   //---------------------------
 
   this->select_physical_device();
@@ -59,6 +59,8 @@ void VK_physical_device::compute_extent(){
 
   //---------------------------
 }
+
+//Device selection
 bool VK_physical_device::is_device_suitable(Struct_physical_device& struct_device){
   //---------------------------
 
@@ -95,6 +97,36 @@ bool VK_physical_device::is_device_suitable(Struct_physical_device& struct_devic
 
   //---------------------------
   return true;
+}
+void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_device){
+  int score = 0;
+  //---------------------------
+
+  VkPhysicalDeviceProperties deviceProperties;
+  vkGetPhysicalDeviceProperties(struct_device.physical_device, &deviceProperties);
+
+  // Get rid of llvmpipe
+  if(deviceProperties.vendorID == 65541){
+    struct_device.selection_score = 0;
+    return;
+  }
+
+  // Check if physical device is suitable
+  if(is_device_suitable(struct_device) == false){
+    struct_device.selection_score = 0;
+    return;
+  }
+
+  // Check if integrated GPU
+  if(deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
+    score += 100000;
+  }
+
+  // Maximum possible size of textures affects graphics quality
+  score += deviceProperties.limits.maxImageDimension2D;
+
+  //---------------------------
+  struct_device.selection_score = score;
 }
 
 //Specific properties
@@ -285,34 +317,4 @@ void VK_physical_device::find_queue_presentation_idx(Struct_physical_device& str
 
   //---------------------------
   struct_device.queue_presentation_idx = -1;
-}
-void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_device){
-  int score = 0;
-  //---------------------------
-
-  VkPhysicalDeviceProperties deviceProperties;
-  vkGetPhysicalDeviceProperties(struct_device.physical_device, &deviceProperties);
-
-  // Get rid of llvmpipe
-  if(deviceProperties.vendorID == 65541){
-    struct_device.selection_score = 0;
-    return;
-  }
-
-  // Check if physical device is suitable
-  if(is_device_suitable(struct_device) == false){
-    struct_device.selection_score = 0;
-    return;
-  }
-
-  // Check if integrated GPU
-  if(deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
-    score += 100000;
-  }
-
-  // Maximum possible size of textures affects graphics quality
-  score += deviceProperties.limits.maxImageDimension2D;
-
-  //---------------------------
-  struct_device.selection_score = score;
 }

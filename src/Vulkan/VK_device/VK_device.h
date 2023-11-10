@@ -17,8 +17,8 @@ public:
 
 public:
   //Main functions
-  void init_device();
-  void clean_device();
+  void init();
+  void clean();
 
   //Subfunction
   void create_logical_device();

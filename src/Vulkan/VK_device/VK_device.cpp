@@ -17,15 +17,15 @@ VK_device::VK_device(Struct_vulkan* struct_vulkan){
 VK_device::~VK_device(){}
 
 //Main functions
-void VK_device::init_device(){
+void VK_device::init(){
   //---------------------------
 
-  vk_physical_device->init_physical_device();
+  vk_physical_device->init();
   this->create_logical_device();
 
   //---------------------------
 }
-void VK_device::clean_device(){
+void VK_device::clean(){
   //---------------------------
 
   vkDestroyDevice(struct_vulkan->device.device, nullptr);
@@ -39,8 +39,6 @@ void VK_device::create_logical_device(){
   //---------------------------
 
   //Get GPU queue families
-  //int family_graphics = vk_physical_device->find_queue_graphics_idx(struct_vulkan->device.struct_device.physical_device);
-  //int family_presentation = vk_physical_device->find_queue_presentation_idx(struct_vulkan->device.struct_device.physical_device);
   std::set<uint32_t> uniqueQueueFamilies = {(unsigned int)struct_vulkan->device.struct_device.queue_graphics_idx, (unsigned int)struct_vulkan->device.struct_device.queue_presentation_idx};
 
   //Create queue on device
