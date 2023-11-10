@@ -59,8 +59,6 @@ void VK_physical_device::compute_extent(){
 
   //---------------------------
 }
-
-//Subfunctions
 bool VK_physical_device::is_device_suitable(Struct_physical_device& struct_device){
   //---------------------------
 
@@ -73,8 +71,8 @@ bool VK_physical_device::is_device_suitable(Struct_physical_device& struct_devic
   }
 
   //Extension suitable
-  bool extension_ok = check_extension_support(struct_device.physical_device);
-  if(extension_ok == false){
+  this->find_physical_device_support(struct_device);
+  if(struct_device.has_extension_support == false){
     return false;
   }
 
@@ -87,11 +85,10 @@ bool VK_physical_device::is_device_suitable(Struct_physical_device& struct_devic
   }
 
   //Supported features
-  VkPhysicalDeviceFeatures supportedFeatures;
-  vkGetPhysicalDeviceFeatures(struct_device.physical_device, &supportedFeatures);
-  bool msaa_ok = supportedFeatures.samplerAnisotropy;
-  bool line_ok = supportedFeatures.wideLines;
-  bool geom_ok = supportedFeatures.geometryShader;
+  this->find_physical_device_features(struct_device);
+  bool msaa_ok = struct_device.features.samplerAnisotropy;
+  bool line_ok = struct_device.features.wideLines;
+  bool geom_ok = struct_device.features.geometryShader;
   if(msaa_ok == false || line_ok == false || geom_ok == false){
     return false;
   }
@@ -99,28 +96,8 @@ bool VK_physical_device::is_device_suitable(Struct_physical_device& struct_devic
   //---------------------------
   return true;
 }
-bool VK_physical_device::check_extension_support(VkPhysicalDevice physical_device){
-  //---------------------------
 
-  //Get physical_device extension number
-  uint32_t nb_extension;
-  vkEnumerateDeviceExtensionProperties(physical_device, nullptr, &nb_extension, nullptr);
-
-  //List physical_device extension
-  std::vector<VkExtensionProperties> vec_extension(nb_extension);
-  vkEnumerateDeviceExtensionProperties(physical_device, nullptr, &nb_extension, vec_extension.data());
-
-  //Check if all required extension are in the list
-  std::set<std::string> requiredExtensions(struct_vulkan->instance.extension_khr.begin(), struct_vulkan->instance.extension_khr.end());
-  for(const auto& extension : vec_extension){
-    requiredExtensions.erase(extension.extensionName);
-  }
-
-  //---------------------------
-  return requiredExtensions.empty();
-}
-
-//Specific info retrieval
+//Specific properties
 void VK_physical_device::find_physical_devices(){
   //---------------------------
 
@@ -179,6 +156,35 @@ void VK_physical_device::find_physical_device_properties(Struct_physical_device&
   struct_device.name = properties.deviceName;
 
   //---------------------------
+}
+void VK_physical_device::find_physical_device_features(Struct_physical_device& struct_device){
+  //---------------------------
+
+  VkPhysicalDeviceFeatures supportedFeatures;
+  vkGetPhysicalDeviceFeatures(struct_device.physical_device, &supportedFeatures);
+
+  //---------------------------
+  struct_device.features = supportedFeatures;
+}
+void VK_physical_device::find_physical_device_support(Struct_physical_device& struct_device){
+  //---------------------------
+
+  //Get physical_device extension number
+  uint32_t nb_extension;
+  vkEnumerateDeviceExtensionProperties(struct_device.physical_device, nullptr, &nb_extension, nullptr);
+
+  //List physical_device extension
+  std::vector<VkExtensionProperties> vec_extension(nb_extension);
+  vkEnumerateDeviceExtensionProperties(struct_device.physical_device, nullptr, &nb_extension, vec_extension.data());
+
+  //Check if all required extension are in the list
+  std::set<std::string> requiredExtensions(struct_vulkan->instance.extension_khr.begin(), struct_vulkan->instance.extension_khr.end());
+  for(const auto& extension : vec_extension){
+    requiredExtensions.erase(extension.extensionName);
+  }
+
+  //---------------------------
+  struct_device.has_extension_support = requiredExtensions.empty();
 }
 void VK_physical_device::find_surface_capability(Struct_physical_device& struct_device){
   //---------------------------
@@ -310,5 +316,3 @@ void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_
   //---------------------------
   struct_device.selection_score = score;
 }
-
-//Find specific properties

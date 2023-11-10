@@ -21,23 +21,22 @@ public:
   void select_physical_device();
   void compute_extent();
 
-  //Subfunctions
+  //Device selection
   bool is_device_suitable(Struct_physical_device& struct_device);
-  bool check_extension_support(VkPhysicalDevice physical_device);
+  void rate_device_suitability(Struct_physical_device& struct_device);
 
-  //Specific info retrieval
+  //Specific properties
   void find_physical_devices();
   void find_physical_device_best();
   void find_physical_device_properties(Struct_physical_device& struct_device);
-  void find_queue_nb_family(Struct_physical_device& struct_device);
-  void find_queue_graphics_idx(Struct_physical_device& struct_device);
-  void find_queue_presentation_idx(Struct_physical_device& struct_device);
-  void rate_device_suitability(Struct_physical_device& struct_device);
-
-  //Find specific properties
+  void find_physical_device_features(Struct_physical_device& struct_device);
+  void find_physical_device_support(Struct_physical_device& struct_device);
   void find_surface_capability(Struct_physical_device& struct_device);
   void find_surface_format(Struct_physical_device& struct_device);
   void find_presentation_mode(Struct_physical_device& struct_device);
+  void find_queue_nb_family(Struct_physical_device& struct_device);
+  void find_queue_graphics_idx(Struct_physical_device& struct_device);
+  void find_queue_presentation_idx(Struct_physical_device& struct_device);
 
 private:
   Struct_vulkan* struct_vulkan;
