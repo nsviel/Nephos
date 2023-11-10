@@ -28,16 +28,16 @@ public:
   //Specific info retrieval
   void find_physical_devices();
   void find_physical_device_best();
+  void find_physical_device_properties(Struct_physical_device& struct_device);
   void find_queue_nb_family(Struct_physical_device& struct_device);
   void find_queue_graphics_idx(Struct_physical_device& struct_device);
   void find_queue_presentation_idx(Struct_physical_device& struct_device);
   void rate_device_suitability(Struct_physical_device& struct_device);
 
   //Find specific properties
-  VkSurfaceCapabilitiesKHR find_surface_capability(VkPhysicalDevice physical_device);
+  void find_surface_capability(Struct_physical_device& struct_device);
   vector<VkSurfaceFormatKHR> find_surface_format(VkPhysicalDevice physical_device);
   vector<VkPresentModeKHR> find_presentation_mode(VkPhysicalDevice physical_device);
-  VkPhysicalDeviceProperties find_device_property(VkPhysicalDevice physical_device);
 
 private:
   Struct_vulkan* struct_vulkan;

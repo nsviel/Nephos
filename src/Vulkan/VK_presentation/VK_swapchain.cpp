@@ -90,10 +90,11 @@ void VK_swapchain::create_swapchain(){
 void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& createInfo){
   //---------------------------
 
-  VkSurfaceCapabilitiesKHR surface_capability = vk_physical_device->find_surface_capability(struct_vulkan->device.struct_device.physical_device);
   vector<VkSurfaceFormatKHR> surface_format = vk_physical_device->find_surface_format(struct_vulkan->device.struct_device.physical_device);
   VkSurfaceFormatKHR surfaceFormat = swapchain_surface_format(surface_format);
   vk_physical_device->compute_extent();
+
+  VkSurfaceCapabilitiesKHR surface_capability = struct_vulkan->device.struct_device.capabilities;
 
   //Get swap chain image capacity (0 means no maximum)
   uint32_t nb_image = surface_capability.minImageCount + 1;

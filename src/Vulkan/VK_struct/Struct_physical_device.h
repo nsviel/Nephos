@@ -9,6 +9,8 @@ struct Struct_physical_device{
   //---------------------------
 
   VkPhysicalDevice physical_device;
+  VkPhysicalDeviceProperties properties;
+  VkSurfaceCapabilitiesKHR capabilities;
 
   std::string name;
   uint32_t nb_queue_family;

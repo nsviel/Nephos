@@ -40,8 +40,9 @@ void VK_physical_device::compute_extent(){
   //Resolution of the swap chain image
   //---------------------------
 
-  VkSurfaceCapabilitiesKHR capabilities = find_surface_capability(struct_vulkan->device.struct_device.physical_device);
+  this->find_surface_capability(struct_vulkan->device.struct_device);
 
+  VkSurfaceCapabilitiesKHR capabilities = struct_vulkan->device.struct_device.capabilities;
   if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
     struct_vulkan->window.extent = capabilities.currentExtent;
   }else{
@@ -136,12 +137,9 @@ void VK_physical_device::find_physical_devices(){
 
   //Store physical device properties
   for(VkPhysicalDevice device : vec_physical_device){
-    VkPhysicalDeviceProperties deviceProperties;
-    vkGetPhysicalDeviceProperties(device, &deviceProperties);
-
     Struct_physical_device struct_device;
-    struct_device.name = deviceProperties.deviceName;
     struct_device.physical_device = device;
+    this->find_physical_device_properties(struct_device);
     struct_vulkan->instance.vec_physical_device.push_back(struct_device);
   }
 
@@ -171,6 +169,26 @@ void VK_physical_device::find_physical_device_best(){
   }
 
   //---------------------------
+}
+void VK_physical_device::find_physical_device_properties(Struct_physical_device& struct_device){
+  //---------------------------
+
+  VkPhysicalDeviceProperties properties;
+  vkGetPhysicalDeviceProperties(struct_device.physical_device, &properties);
+  struct_device.properties = properties;
+  struct_device.name = properties.deviceName;
+
+  //---------------------------
+}
+void VK_physical_device::find_surface_capability(Struct_physical_device& struct_device){
+  //---------------------------
+
+  //Get basic surface capabilities
+  VkSurfaceCapabilitiesKHR capabilities;
+  vkGetPhysicalDeviceSurfaceCapabilitiesKHR(struct_device.physical_device, struct_vulkan->window.surface, &capabilities);
+
+  //---------------------------
+  struct_device.capabilities = capabilities;
 }
 void VK_physical_device::find_queue_nb_family(Struct_physical_device& struct_device){
   //---------------------------
@@ -260,16 +278,6 @@ void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_
 }
 
 //Find specific properties
-VkSurfaceCapabilitiesKHR VK_physical_device::find_surface_capability(VkPhysicalDevice physical_device){
-  //---------------------------
-
-  //Get basic surface capabilities
-  VkSurfaceCapabilitiesKHR capabilities;
-  vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device, struct_vulkan->window.surface, &capabilities);
-
-  //---------------------------
-  return capabilities;
-}
 vector<VkSurfaceFormatKHR> VK_physical_device::find_surface_format(VkPhysicalDevice physical_device){
   vector<VkSurfaceFormatKHR> formats;
   //---------------------------
@@ -303,13 +311,4 @@ vector<VkPresentModeKHR> VK_physical_device::find_presentation_mode(VkPhysicalDe
 
   //---------------------------
   return presentation_mode;
-}
-VkPhysicalDeviceProperties VK_physical_device::find_device_property(VkPhysicalDevice physical_device){
-  //---------------------------
-
-  VkPhysicalDeviceProperties property{};
-  vkGetPhysicalDeviceProperties(struct_vulkan->device.struct_device.physical_device, &property);
-
-  //---------------------------
-  return property;
 }

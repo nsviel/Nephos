@@ -82,7 +82,6 @@ VkImageView VK_image::create_image_view(VkImage image, VkFormat format, VkImageA
 void VK_image::create_image_sampler(Struct_image* texture){
   //---------------------------
 
-  VkPhysicalDeviceProperties properties = vk_physical_device->find_device_property(struct_vulkan->device.struct_device.physical_device);
   VkSamplerCreateInfo samplerInfo{};
   samplerInfo.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
   samplerInfo.magFilter = VK_FILTER_LINEAR;
@@ -91,7 +90,7 @@ void VK_image::create_image_sampler(Struct_image* texture){
   samplerInfo.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
   samplerInfo.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
   samplerInfo.anisotropyEnable = VK_TRUE;
-  samplerInfo.maxAnisotropy = properties.limits.maxSamplerAnisotropy;
+  samplerInfo.maxAnisotropy = struct_vulkan->device.struct_device.properties.limits.maxSamplerAnisotropy;
   samplerInfo.borderColor = VK_BORDER_COLOR_INT_OPAQUE_BLACK;
   samplerInfo.unnormalizedCoordinates = VK_FALSE;
   samplerInfo.compareEnable = VK_FALSE;
