@@ -4,11 +4,8 @@
 #include <ELE_specific/common.h>
 #include <VK_struct/Struct_image.h>
 
-class VK_engine;
 class Struct_vulkan;
-class VK_command;
 class VK_buffer;
-class VK_physical_device;
 
 
 class VK_image
@@ -36,9 +33,7 @@ public:
   void generate_mipmap(Struct_image* image);
 
 private:
-  VK_physical_device* vk_physical_device;
   Struct_vulkan* struct_vulkan;
-  VK_command* vk_command;
   VK_buffer* vk_buffer;
 };
 

@@ -1,26 +1,18 @@
 #include "VK_texture.h"
 
 #include <VK_image/VK_image.h>
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_data/VK_buffer.h>
-#include <VK_device/VK_device.h>
-#include <VK_device/VK_physical_device.h>
 #include <VK_command/VK_command.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <image/stb_image.h>
 
-/*
-  VK_texture is a upper level class from VK_image
-  It allows to build a texture by creatig a vk_image and all associated elements
-*/
-
 
 //Constructor / Destructor
 VK_texture::VK_texture(Struct_vulkan* struct_vulkan){
   //---------------------------
-  
+
   this->struct_vulkan = struct_vulkan;
   this->vk_buffer = new VK_buffer(struct_vulkan);
   this->vk_image = new VK_image(struct_vulkan);

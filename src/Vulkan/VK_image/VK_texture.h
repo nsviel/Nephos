@@ -12,7 +12,6 @@ extern "C" {
 #include <libswscale/swscale.h>
 }
 
-class VK_engine;
 class Struct_vulkan;
 class VK_buffer;
 class VK_image;

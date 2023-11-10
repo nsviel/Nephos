@@ -4,7 +4,6 @@
 #include <VK_struct/Struct_framebuffer.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
 class VK_image;
 
