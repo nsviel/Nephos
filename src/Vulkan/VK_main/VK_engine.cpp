@@ -161,7 +161,7 @@ void VK_engine::init_engine_headless(){
   vk_canvas->create_canvas();
 
   //Rendering
-    vk_swapchain->create_swapchain();
+    //vk_swapchain->create_swapchain();
   vk_viewport->init_viewport();
   vk_renderpass->init_renderpass();
     vk_frame->create_frame();

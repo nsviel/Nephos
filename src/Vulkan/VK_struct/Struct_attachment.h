@@ -10,6 +10,7 @@ struct Struct_attachment{
   int item;
 
   //Attachment info
+  VkFormat format;
   VkAttachmentLoadOp load_operation;
   VkAttachmentStoreOp store_operation;
   VkAttachmentReference reference;
