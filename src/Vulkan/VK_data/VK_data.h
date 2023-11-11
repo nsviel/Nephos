@@ -2,7 +2,7 @@
 #define VK_DATA_H
 
 #include <VK_struct/Struct_pipeline.h>
-#include <VK_struct/Struct_data.h>
+#include <VK_struct/Struct_entity.h>
 #include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 
@@ -26,7 +26,7 @@ public:
   void insert_object(Object* object);
 
   //Clean function
-  void clean_data(Struct_data* data);
+  void clean_data(Struct_entity* data);
   void clean_data_all();
   void clean_data_scene(int ID);
 
@@ -35,7 +35,7 @@ public:
   void create_vertex_description(Struct_pipeline* pipeline);
   void create_attribut_description(Struct_pipeline* pipeline);
   void combine_description(Struct_pipeline* pipeline);
-  void check_for_attribut(Struct_data* data);
+  void check_for_attribut(Struct_entity* data);
 
 private:
   Struct_vulkan* struct_vulkan;

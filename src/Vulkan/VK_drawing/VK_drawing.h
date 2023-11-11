@@ -4,7 +4,7 @@
 #include <VK_struct/Struct_framebuffer.h>
 #include <VK_struct/Struct_renderpass.h>
 #include <VK_struct/Struct_command.h>
-#include <VK_struct/Struct_data.h>
+#include <VK_struct/Struct_entity.h>
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
@@ -30,8 +30,8 @@ public:
   void run_presentation();
 
   //Draw command
-  void cmd_draw_data(Struct_subpass* subpass, Struct_data* data);
-  void cmd_line_with(Struct_subpass* subpass, Struct_data* data);
+  void cmd_draw_data(Struct_subpass* subpass, Struct_entity* data);
+  void cmd_line_with(Struct_subpass* subpass, Struct_entity* data);
 
 private:
   Struct_vulkan* struct_vulkan;

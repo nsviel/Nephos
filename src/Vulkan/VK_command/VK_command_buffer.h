@@ -2,7 +2,7 @@
 #define VK_COMMAND_BUFFER_H
 
 #include <VK_struct/Struct_renderpass.h>
-#include <VK_struct/Struct_data.h>
+#include <VK_struct/Struct_entity.h>
 #include <ELE_specific/common.h>
 
 class VK_engine;
@@ -20,7 +20,7 @@ public:
 public:
   //Command buffer
   void allocate_command_buffer_primary(VkCommandBuffer& command_buffer);
-  void allocate_command_buffer_secondary(Struct_data* data);
+  void allocate_command_buffer_secondary(Struct_entity* data);
 
 private:
   Struct_vulkan* struct_vulkan;

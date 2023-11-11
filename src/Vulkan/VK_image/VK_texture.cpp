@@ -95,7 +95,7 @@ void VK_texture::create_texture_from_frame(Struct_image* image, AVFrame* frame){
 }
 
 //Texture cleaning
-void VK_texture::clean_texture(Struct_data* data){
+void VK_texture::clean_texture(Struct_entity* data){
   //---------------------------
 
   for(int i=0; i<data->list_texture.size(); i++){

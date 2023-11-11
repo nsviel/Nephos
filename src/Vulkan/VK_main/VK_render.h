@@ -34,7 +34,7 @@ public:
   Struct_image* load_texture_from_file(string path);
   Struct_image* load_texture_from_frame(AVFrame* frame);
 
-  inline Struct_data* get_canvas(){return &struct_vulkan->canvas;}
+  inline Struct_entity* get_canvas(){return &struct_vulkan->canvas;}
 
 private:
   FPS_counter* fps_counter;

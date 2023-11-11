@@ -101,7 +101,7 @@ void VK_drawing::run_presentation(){
 }
 
 //Draw command
-void VK_drawing::cmd_draw_data(Struct_subpass* subpass, Struct_data* data){
+void VK_drawing::cmd_draw_data(Struct_subpass* subpass, Struct_entity* data){
   //---------------------------
 
   VkDeviceSize offsets[] = {0};
@@ -118,7 +118,7 @@ void VK_drawing::cmd_draw_data(Struct_subpass* subpass, Struct_data* data){
 
   //---------------------------
 }
-void VK_drawing::cmd_line_with(Struct_subpass* subpass, Struct_data* data){
+void VK_drawing::cmd_line_with(Struct_subpass* subpass, Struct_entity* data){
   //---------------------------
 
   vkCmdSetLineWidth(subpass->command_buffer, data->object->draw_line_width);

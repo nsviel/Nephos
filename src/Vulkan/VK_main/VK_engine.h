@@ -2,7 +2,7 @@
 #define VK_ENGINE_H
 
 #include <VK_struct/typedef.h>
-#include <VK_struct/Struct_data.h>
+#include <VK_struct/Struct_entity.h>
 #include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 
@@ -44,7 +44,7 @@ public:
   void remove_object_in_engine(Object* object);
 
   inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->render.vec_renderpass[i];}
-  inline std::list<Struct_data*> get_list_data(){return struct_vulkan->list_object;}
+  inline std::list<Struct_entity*> get_list_data(){return struct_vulkan->list_object;}
 
 private:
   Struct_vulkan* struct_vulkan;

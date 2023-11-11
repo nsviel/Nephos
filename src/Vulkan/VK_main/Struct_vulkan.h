@@ -7,11 +7,12 @@
 #include <VK_struct/Struct_swapchain.h>
 #include <VK_struct/Struct_renderpass.h>
 #include <VK_struct/Struct_info.h>
-#include <VK_struct/Struct_data.h>
+#include <VK_struct/Struct_entity.h>
 #include <VK_struct/Struct_param.h>
 #include <VK_struct/Struct_pool.h>
 #include <VK_struct/Struct_render.h>
 #include <VK_struct/Struct_synchro.h>
+#include <VK_struct/Struct_data.h>
 
 #include <vector>
 #include <list>
@@ -26,14 +27,14 @@ struct Struct_vulkan{
   Struct_device device;
   Struct_swapchain swapchain;
   Struct_info info;
-  Struct_data canvas;
+  Struct_data data;
   Struct_param param;
   Struct_pool pool;
   Struct_synchro synchro;
 
+  Struct_entity canvas;
   std::vector<Struct_image*> vec_texture;
-  std::vector<Struct_device*> vec_physical_device;
-  std::list<Struct_data*> list_object;
+  std::list<Struct_entity*> list_object;
 
   //---------------------------
 };

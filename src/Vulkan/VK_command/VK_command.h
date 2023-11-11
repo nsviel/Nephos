@@ -3,7 +3,7 @@
 
 #include <VK_struct/Struct_frame.h>
 #include <VK_struct/Struct_framebuffer.h>
-#include <VK_struct/Struct_data.h>
+#include <VK_struct/Struct_entity.h>
 #include <VK_struct/Struct_renderpass.h>
 #include <ELE_specific/common.h>
 

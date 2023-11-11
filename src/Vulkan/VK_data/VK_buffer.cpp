@@ -18,7 +18,7 @@ VK_buffer::VK_buffer(Struct_vulkan* struct_vulkan){
 VK_buffer::~VK_buffer(){}
 
 //Main function
-void VK_buffer::create_buffer(Struct_data* data){
+void VK_buffer::create_buffer(Struct_entity* data){
   //---------------------------
 
   this->create_buffer_xyz(data);
@@ -37,7 +37,7 @@ void VK_buffer::create_buffer(Struct_data* data){
 
   //---------------------------
 }
-void VK_buffer::clean_buffer(Struct_data* data){
+void VK_buffer::clean_buffer(Struct_entity* data){
   //---------------------------
 
   //Location buffer
@@ -60,7 +60,7 @@ void VK_buffer::clean_buffer(Struct_data* data){
 }
 
 //Data buffer functions
-void VK_buffer::create_buffer_xyz(Struct_data* data){
+void VK_buffer::create_buffer_xyz(Struct_entity* data){
   vector<vec3>& vertices = data->object->xyz;
   VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
   //---------------------------
@@ -85,7 +85,7 @@ void VK_buffer::create_buffer_xyz(Struct_data* data){
 
   //---------------------------
 }
-void VK_buffer::create_buffer_rgb(Struct_data* data){
+void VK_buffer::create_buffer_rgb(Struct_entity* data){
   vector<vec4>& vertices = data->object->rgb;
   VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
   //---------------------------
@@ -110,7 +110,7 @@ void VK_buffer::create_buffer_rgb(Struct_data* data){
 
   //---------------------------
 }
-void VK_buffer::create_buffer_uv(Struct_data* data){
+void VK_buffer::create_buffer_uv(Struct_entity* data){
   vector<vec2>& vertices = data->object->uv;
   VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
   //---------------------------

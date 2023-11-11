@@ -1,6 +1,7 @@
 #ifndef STRUCT_TIME_H
 #define STRUCT_TIME_H
 
+#include <VK_struct/Struct_physical_device.h>
 #include <ELE_specific/common.h>
 
 

@@ -33,7 +33,7 @@ void VK_command_buffer::allocate_command_buffer_primary(VkCommandBuffer& command
 
   //---------------------------
 }
-void VK_command_buffer::allocate_command_buffer_secondary(Struct_data* data){
+void VK_command_buffer::allocate_command_buffer_secondary(Struct_entity* data){
   //---------------------------
 
   //Command buffer allocation

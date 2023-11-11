@@ -27,7 +27,7 @@ void VK_data::insert_object(Object* object){
   //---------------------------
 
   //Creat new data struct
-  Struct_data* data = new Struct_data();
+  Struct_entity* data = new Struct_entity();
   data->object = object;
 
   //Descriptor
@@ -53,7 +53,7 @@ void VK_data::insert_object(Object* object){
 }
 
 //Clean function
-void VK_data::clean_data(Struct_data* data){
+void VK_data::clean_data(Struct_entity* data){
   //---------------------------
 
   vkDeviceWaitIdle(struct_vulkan->device.device);
@@ -68,7 +68,7 @@ void VK_data::clean_data_all(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->list_object.size(); i++){
-    Struct_data* data = *next(struct_vulkan->list_object.begin(),i);
+    Struct_entity* data = *next(struct_vulkan->list_object.begin(),i);
     this->clean_data(data);
   }
 
@@ -78,7 +78,7 @@ void VK_data::clean_data_scene(int ID){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->list_object.size(); i++){
-    Struct_data* data = *next(struct_vulkan->list_object.begin(),i);
+    Struct_entity* data = *next(struct_vulkan->list_object.begin(),i);
     if(data->object->ID == ID){
       this->clean_data(data);
       struct_vulkan->list_object.remove(data);
@@ -182,7 +182,7 @@ void VK_data::combine_description(Struct_pipeline* pipeline){
   //---------------------------
   pipeline->info.vertex_input_info = vertex_input_info;
 }
-void VK_data::check_for_attribut(Struct_data* data){
+void VK_data::check_for_attribut(Struct_entity* data){
   //---------------------------
 
   if(data->object->rgb.size() != 0){
