@@ -11,6 +11,8 @@ struct Struct_swapchain{
 
   //Swapchain element
   VkSwapchainKHR swapchain;
+  VkSurfaceFormatKHR format;
+  VkPresentModeKHR presentation_mode;
 
   //Swapchain image
   vector<VkImage> vec_swapchain_image;

@@ -22,7 +22,8 @@ VK_submit::VK_submit(Struct_vulkan* struct_vulkan){
 VK_submit::~VK_submit(){}
 
 //Main function
-void VK_submit::acquire_next_image(Struct_swapchain* swapchain, VkSemaphore& semaphore, VkFence& fence){
+void VK_submit::acquire_next_image(VkSemaphore& semaphore, VkFence& fence){
+  Struct_swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
   //Wait and reset fence
@@ -49,7 +50,8 @@ void VK_submit::acquire_next_image(Struct_swapchain* swapchain, VkSemaphore& sem
 
   //---------------------------
 }
-void VK_submit::set_next_frame_ID(Struct_swapchain* swapchain){
+void VK_submit::set_next_frame_ID(){
+  Struct_swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
   int current_ID = swapchain->frame_presentation_ID;
@@ -95,7 +97,8 @@ void VK_submit::submit_command_render(Struct_command* command){
 
   //---------------------------
 }
-void VK_submit::submit_presentation(Struct_swapchain* swapchain, VkSemaphore& semaphore){
+void VK_submit::submit_presentation(VkSemaphore& semaphore){
+  Struct_swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
   VkPresentInfoKHR presentation_info{};

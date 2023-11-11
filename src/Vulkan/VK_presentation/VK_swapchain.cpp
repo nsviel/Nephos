@@ -87,8 +87,7 @@ void VK_swapchain::create_swapchain(){
 void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& create_info){
   //---------------------------
 
-  vector<VkSurfaceFormatKHR> surface_format = struct_vulkan->device.struct_device.formats;
-  VkSurfaceFormatKHR surfaceFormat = swapchain_surface_format(surface_format);
+  this->find_swapchain_surface_format();
   vk_physical_device->compute_extent();
 
   VkSurfaceCapabilitiesKHR surface_capability = struct_vulkan->device.struct_device.capabilities;
@@ -103,8 +102,8 @@ void VK_swapchain::create_swapchain_surface(VkSwapchainCreateInfoKHR& create_inf
   create_info.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
   create_info.minImageCount = nb_image;
   create_info.surface = struct_vulkan->window.surface;
-  create_info.imageFormat = surfaceFormat.format;
-  create_info.imageColorSpace = surfaceFormat.colorSpace;
+  create_info.imageFormat = struct_vulkan->swapchain.format.format;
+  create_info.imageColorSpace = struct_vulkan->swapchain.format.colorSpace;
   create_info.imageExtent = struct_vulkan->window.extent;
   create_info.imageArrayLayers = 1;
   create_info.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT; //VK_IMAGE_USAGE_TRANSFER_DST_BIT for post-processing
@@ -134,11 +133,10 @@ void VK_swapchain::create_swapchain_family(VkSwapchainCreateInfoKHR& create_info
 void VK_swapchain::create_swapchain_presentation(VkSwapchainCreateInfoKHR& create_info){
   //---------------------------
 
-  vector<VkPresentModeKHR> dev_presentation_mode = struct_vulkan->device.struct_device.presentation_mode;
-  VkPresentModeKHR presentation_mode = swapchain_presentation_mode(dev_presentation_mode);
+  this->find_swapchain_presentation_mode();
 
   create_info.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; //Ignore alpha channel
-  create_info.presentMode = presentation_mode;
+  create_info.presentMode = struct_vulkan->swapchain.presentation_mode;
   create_info.clipped = VK_TRUE;
   create_info.oldSwapchain = VK_NULL_HANDLE;
 
@@ -161,34 +159,38 @@ void VK_swapchain::create_swapchain_image(VkSwapchainKHR swapchain, unsigned int
 }
 
 //Swap chain parameter
-VkSurfaceFormatKHR VK_swapchain::swapchain_surface_format(const std::vector<VkSurfaceFormatKHR>& dev_format){
+void VK_swapchain::find_swapchain_surface_format(){
+  vector<VkSurfaceFormatKHR>& dev_format = struct_vulkan->device.struct_device.formats;
+  VkSurfaceFormatKHR swapchain_format = dev_format[0];
   //---------------------------
 
   //Check if standar RGB is available
   for(const auto& format : dev_format){
     if(format.format == struct_vulkan->render.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
-      return format;
+      swapchain_format = format;
+      break;
     }
   }
 
   //---------------------------
-  return dev_format[0];
+  struct_vulkan->swapchain.format = swapchain_format;
 }
-VkPresentModeKHR VK_swapchain::swapchain_presentation_mode(const std::vector<VkPresentModeKHR>& dev_mode){
+void VK_swapchain::find_swapchain_presentation_mode(){
+  vector<VkPresentModeKHR>& dev_mode = struct_vulkan->device.struct_device.presentation_mode;
+  //---------------------------
+
   //4 possible modes:
   //- VK_PRESENT_MODE_IMMEDIATE_KHR
   //- VK_PRESENT_MODE_FIFO_KHR
   //- VK_PRESENT_MODE_FIFO_RELAXED_KHR
   //- VK_PRESENT_MODE_MAILBOX_KHR
-  //---------------------------
-
-  //Check for VK_PRESENT_MODE_MAILBOX_KHR mode
+  VkPresentModeKHR presentation_mode = VK_PRESENT_MODE_FIFO_KHR;
   for(const auto& mode : dev_mode){
     if(mode == VK_PRESENT_MODE_MAILBOX_KHR){
-      return mode;
+      presentation_mode = mode;
     }
   }
 
   //---------------------------
-  return VK_PRESENT_MODE_FIFO_KHR;
+  struct_vulkan->swapchain.presentation_mode = presentation_mode;
 }

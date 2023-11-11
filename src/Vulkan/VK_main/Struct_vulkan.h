@@ -1,5 +1,5 @@
-#ifndef VK_PARAM_H
-#define VK_PARAM_H
+#ifndef STRUCT_VULKAN_H
+#define STRUCT_VULKAN_H
 
 #include <VK_struct/Struct_window.h>
 #include <VK_struct/Struct_instance.h>

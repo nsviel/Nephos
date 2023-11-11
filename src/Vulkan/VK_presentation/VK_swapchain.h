@@ -30,8 +30,8 @@ public:
   void create_swapchain_image(VkSwapchainKHR swapchain, unsigned int min_image_count);
 
   //Swap chain parameter
-  VkSurfaceFormatKHR swapchain_surface_format(const std::vector<VkSurfaceFormatKHR>& availableFormats);
-  VkPresentModeKHR swapchain_presentation_mode(const std::vector<VkPresentModeKHR>& availablePresentModes);
+  void find_swapchain_surface_format();
+  void find_swapchain_presentation_mode();
 
 private:
   Struct_vulkan* struct_vulkan;

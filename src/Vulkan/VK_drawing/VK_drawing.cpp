@@ -45,7 +45,7 @@ void VK_drawing::run_next_image(){
 
   VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[0];
   VkFence fence = struct_vulkan->synchro.vec_fence[0];
-  vk_submit->acquire_next_image(&struct_vulkan->swapchain, semaphore, fence);
+  vk_submit->acquire_next_image(semaphore, fence);
 
   //---------------------------
 }
@@ -94,8 +94,8 @@ void VK_drawing::run_presentation(){
   //---------------------------
 
   VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[struct_vulkan->render.vec_renderpass.size()];
-  vk_submit->submit_presentation(&struct_vulkan->swapchain, semaphore);
-  vk_submit->set_next_frame_ID(&struct_vulkan->swapchain);
+  vk_submit->submit_presentation(semaphore);
+  vk_submit->set_next_frame_ID();
 
   //---------------------------
 }
