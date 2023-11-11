@@ -4,7 +4,6 @@
 #include <VK_binding/VK_descriptor.h>
 #include <VK_data/VK_data.h>
 #include <VK_shader/VK_shader.h>
-#include <VK_binding/VK_binding.h>
 
 
 //Constructor / Destructor
@@ -15,7 +14,6 @@ VK_pipeline::VK_pipeline(Struct_vulkan* struct_vulkan){
   this->vk_descriptor = new VK_descriptor(struct_vulkan);
   this->vk_shader = new VK_shader(struct_vulkan);
   this->vk_data = new VK_data(struct_vulkan);
-  this->vk_binding = new VK_binding(struct_vulkan);
 
   //---------------------------
 }
@@ -45,7 +43,7 @@ void VK_pipeline::create_pipeline_struct(Struct_renderpass* renderpass, Struct_p
   else if(pipeline->definition.purpose == "presentation"){
     this->create_pipeline_presentation(renderpass, pipeline);
   }
-  vk_binding->create_binding(&pipeline->binding);
+  vk_descriptor->create_binding(&pipeline->binding);
 
   //---------------------------
 }
@@ -350,7 +348,7 @@ void VK_pipeline::clean_pipeline_struct(Struct_pipeline* pipeline){
 
   vkDestroyPipeline(struct_vulkan->device.device, pipeline->pipeline, nullptr);
   vkDestroyPipelineLayout(struct_vulkan->device.device, pipeline->layout, nullptr);
-  vk_binding->clean_binding(&pipeline->binding);
+  vk_descriptor->clean_binding(&pipeline->binding);
 
   //---------------------------
 }

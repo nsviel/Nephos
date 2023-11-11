@@ -18,7 +18,6 @@ public:
   ~VK_command_buffer();
 
 public:
-
   //Command buffer
   void allocate_command_buffer_primary(VkCommandBuffer& command_buffer);
   void allocate_command_buffer_secondary(Struct_data* data);

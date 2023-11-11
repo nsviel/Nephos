@@ -10,7 +10,6 @@ class VK_descriptor;
 class VK_viewport;
 class VK_shader;
 class VK_data;
-class VK_binding;
 
 
 class VK_pipeline
@@ -54,7 +53,6 @@ private:
   VK_descriptor* vk_descriptor;
   VK_shader* vk_shader;
   VK_data* vk_data;
-  VK_binding* vk_binding;
 };
 
 #endif

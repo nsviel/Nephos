@@ -1,6 +1,8 @@
 #include "VK_descriptor.h"
 
 #include <VK_main/Struct_vulkan.h>
+#include <VK_binding/VK_uniform.h>
+#include <VK_binding/VK_sampler.h>
 
 
 //Constructor / Destructor
@@ -8,12 +10,34 @@ VK_descriptor::VK_descriptor(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
+  this->vk_uniform = new VK_uniform(struct_vulkan);
+  this->vk_sampler = new VK_sampler(struct_vulkan);
 
   //---------------------------
 }
 VK_descriptor::~VK_descriptor(){}
 
 //Main function
+void VK_descriptor::create_binding(Struct_binding* binding){
+  //---------------------------
+
+  vk_uniform->create_uniform_buffers(binding);
+  vk_sampler->create_sampler(binding);
+  this->allocate_descriptor_set(binding);
+  this->update_descriptor_uniform(binding);
+
+  //---------------------------
+}
+void VK_descriptor::clean_binding(Struct_binding* binding){
+  //---------------------------
+
+  vkDestroyDescriptorSetLayout(struct_vulkan->device.device, binding->descriptor.layout, nullptr);
+  vk_uniform->clean_uniform(binding);
+
+  //---------------------------
+}
+
+//Truc
 void VK_descriptor::cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline* pipeline, VkDescriptorSet set){
   //---------------------------
 
@@ -21,9 +45,6 @@ void VK_descriptor::cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline
 
   //---------------------------
 }
-
-
-//Descriptor set allocation
 void VK_descriptor::allocate_descriptor_set(Struct_binding* binding){
   //---------------------------
 

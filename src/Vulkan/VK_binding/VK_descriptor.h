@@ -9,6 +9,8 @@
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
+class VK_uniform;
+class VK_sampler;
 
 
 class VK_descriptor
@@ -20,10 +22,12 @@ public:
 
 public:
   //Main functions
+  void create_binding(Struct_binding* binding);
+  void clean_binding(Struct_binding* binding);
+
+  //Truc
   void cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline* pipeline, VkDescriptorSet set);
   void clean_descriptor_pool();
-
-  //Descriptor set allocation
   void allocate_descriptor_set(Struct_binding* binding);
 
   //Descriptor set update
@@ -38,6 +42,8 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
+  VK_uniform* vk_uniform;
+  VK_sampler* vk_sampler;
 };
 
 #endif
