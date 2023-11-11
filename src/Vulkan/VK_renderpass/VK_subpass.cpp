@@ -45,10 +45,10 @@ void VK_subpass::create_subpass_shader(Struct_subpass* subpass){
   // Color
   Struct_attachment color;
   color.item = 0;
-  color.load_operation = ATTACHMENT_LOADOP_CLEAR;
-  color.store_operation = ATTACHMENT_STOREOP_STORE;
-  color.layout_initial = IMAGE_LAYOUT_EMPTY;
-  color.layout_final = IMAGE_LAYOUT_SHADER_READONLY;
+  color.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
+  color.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
+  color.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
+  color.layout_final = TYP_IMAGE_LAYOUT_SHADER_READONLY;
   this->color_attachment_description(color);
   this->color_attachment_reference(color);
   subpass->vec_color.push_back(color);
@@ -56,9 +56,9 @@ void VK_subpass::create_subpass_shader(Struct_subpass* subpass){
   // Depth
   Struct_attachment depth;
   depth.item = 1;
-  depth.load_operation = ATTACHMENT_LOADOP_CLEAR;
-  depth.store_operation = ATTACHMENT_STOREOP_STORE;
-  depth.layout_initial = IMAGE_LAYOUT_EMPTY;
+  depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
+  depth.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
+  depth.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
   depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
   this->depth_attachment_description(depth);
   this->depth_attachment_reference(depth);
@@ -75,10 +75,10 @@ void VK_subpass::create_subpass_presentation(Struct_subpass* subpass){
   // Color
   Struct_attachment color;
   color.item = 0;
-  color.load_operation = ATTACHMENT_LOADOP_CLEAR;
-  color.store_operation = ATTACHMENT_STOREOP_NOTHING;
-  color.layout_initial = IMAGE_LAYOUT_EMPTY;
-  color.layout_final = IMAGE_LAYOUT_PRESENT;
+  color.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
+  color.store_operation = TYP_ATTACHMENT_STOREOP_NOTHING;
+  color.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
+  color.layout_final = TYP_IMAGE_LAYOUT_PRESENT;
   this->color_attachment_description(color);
   this->color_attachment_reference(color);
   subpass->vec_color.push_back(color);
@@ -86,10 +86,10 @@ void VK_subpass::create_subpass_presentation(Struct_subpass* subpass){
   // Depth
   Struct_attachment depth;
   depth.item = 1;
-  depth.load_operation = ATTACHMENT_LOADOP_CLEAR;
-  depth.store_operation = ATTACHMENT_STOREOP_NOTHING;
-  depth.layout_initial = IMAGE_LAYOUT_EMPTY;
-  depth.layout_final = IMAGE_LAYOUT_DEPTH_READONLY;
+  depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
+  depth.store_operation = TYP_ATTACHMENT_STOREOP_NOTHING;
+  depth.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
+  depth.layout_final = TYP_IMAGE_LAYOUT_DEPTH_READONLY;
   this->depth_attachment_description(depth);
   this->depth_attachment_reference(depth);
   subpass->depth = depth;

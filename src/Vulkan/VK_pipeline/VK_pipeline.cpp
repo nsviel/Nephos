@@ -34,10 +34,10 @@ void VK_pipeline::create_pipeline(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void VK_pipeline::cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pipeline){
+void VK_pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, Struct_pipeline* pipeline){
   //---------------------------
 
-  vkCmdBindPipeline(subpass->command_buffer, PIPELINE_GRAPHICS, pipeline->pipeline);
+  vkCmdBindPipeline(command_buffer, TYP_BIND_PIPELINE_GRAPHICS, pipeline->pipeline);
 
   //---------------------------
 }
@@ -60,11 +60,15 @@ void VK_pipeline::clean_pipeline(Struct_renderpass* renderpass){
 void VK_pipeline::create_pipeline_struct(Struct_renderpass* renderpass, Struct_pipeline* pipeline){
   //---------------------------
 
+  //Pipeline layout & binding
   vk_descriptor->create_layout_from_required(&pipeline->binding);
   this->check_struct_pipeline_input(pipeline);
   vk_shader->create_pipeline_shader(pipeline);
   vk_data->pipeline_data_description(pipeline);
   this->create_pipeline_layout(pipeline);
+  vk_descriptor->create_binding(&pipeline->binding);
+
+  //Pipeline obj
   this->find_pipeline_topology_state(pipeline);
   this->find_pipeline_dynamic_state(pipeline);
   this->find_pipeline_viewport_state(pipeline);
@@ -75,7 +79,6 @@ void VK_pipeline::create_pipeline_struct(Struct_renderpass* renderpass, Struct_p
   this->find_pipeline_depth_state(pipeline);
   this->create_pipeline_obj(renderpass, pipeline);
   this->clean_pipeline_shader_module(pipeline);
-  vk_descriptor->create_binding(&pipeline->binding);
 
   //---------------------------
 }
@@ -114,7 +117,7 @@ void VK_pipeline::create_pipeline_layout(Struct_pipeline* pipeline){
 
   //Push constant for MVP matrix
   //VkPushConstantRange pushconstant_range = {};
-  //pushconstant_range.stageFlags = STAGE_VS;
+  //pushconstant_range.stageFlags = TYP_SHADER_VS;
   //pushconstant_range.offset = 0;
   //pushconstant_range.size = sizeof(glm::mat4);
 

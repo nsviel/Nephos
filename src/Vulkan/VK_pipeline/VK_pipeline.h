@@ -22,7 +22,7 @@ public:
 public:
   //Main function
   void create_pipeline(Struct_renderpass* renderpass);
-  void cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pipeline);
+  void cmd_bind_pipeline(VkCommandBuffer& command_buffer, Struct_pipeline* pipeline);
   void clean_pipeline(Struct_renderpass* renderpass);
   void clean_pipeline_struct(Struct_pipeline* pipeline);
   void clean_pipeline_shader_module(Struct_pipeline* pipeline);

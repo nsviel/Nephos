@@ -124,7 +124,7 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
   VkDeviceMemory staging_mem;
   VkDeviceSize tex_size = image->width * image->height * 4;
   vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
-  vk_buffer->bind_buffer_memory(MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+  vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
   //Copy data to stagging buffer
   void* data;
@@ -135,14 +135,14 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
   //Create image
   image->tiling = VK_IMAGE_TILING_OPTIMAL;
   image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  image->usage = IMAGE_USAGE_TRANSFERT | IMAGE_USAGE_SAMPLER;
-  image->properties = MEMORY_GPU;
+  image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
+  image->properties = TYP_MEMORY_GPU;
   vk_image->create_image(image);
 
   //Image transition from undefined layout to read only layout
-  vk_command->image_layout_transition_single(image, IMAGE_LAYOUT_EMPTY, IMAGE_LAYOUT_TRANSFER_DST);
+  vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
   this->copy_buffer_to_image(image, staging_buffer);
-  vk_command->image_layout_transition_single(image, IMAGE_LAYOUT_TRANSFER_DST, IMAGE_LAYOUT_SHADER_READONLY);
+  vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_TRANSFER_DST, TYP_IMAGE_LAYOUT_SHADER_READONLY);
 
   //Free memory
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);

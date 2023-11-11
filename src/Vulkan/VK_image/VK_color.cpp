@@ -26,7 +26,7 @@ void VK_color::create_color_attachment(Struct_image* color){
   color->width = struct_vulkan->window.extent.width;
   color->height = struct_vulkan->window.extent.height;
   color->tiling = VK_IMAGE_TILING_OPTIMAL;
-  color->properties = MEMORY_GPU;
+  color->properties = TYP_MEMORY_GPU;
   color->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
 
   vk_image->create_image(color);

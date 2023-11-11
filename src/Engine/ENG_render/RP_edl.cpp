@@ -65,9 +65,9 @@ void RP_edl::create_subpass(Struct_renderpass* renderpass){
   pipeline->definition.shader = edl_shader->get_shader_info("EDL");
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("tex_coord");
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_color", 0, 1, TYPE_SAMPLER, STAGE_FS));
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_depth", 0, 4, TYPE_SAMPLER, STAGE_FS));
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("EDL_param", sizeof(EDL_param), 5, TYPE_UNIFORM, STAGE_FS));
+  pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_color", 0, 1, TYP_IMAGE_SAMPLER, TYP_SHADER_FS));
+  pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_depth", 0, 4, TYP_IMAGE_SAMPLER, TYP_SHADER_FS));
+  pipeline->binding.vec_required_binding.push_back(std::make_tuple("EDL_param", sizeof(EDL_param), 5, TYP_UNIFORM, TYP_SHADER_FS));
   subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
@@ -104,7 +104,7 @@ void RP_edl::draw_command(Struct_subpass* subpass){
   Struct_pipeline* pipeline = subpass->get_pipeline();
 
   vk_viewport->cmd_viewport(subpass);
-  vk_pipeline->cmd_bind_pipeline(subpass, pipeline);
+  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
   edl_shader->update_shader();
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
   vk_descriptor->cmd_bind_descriptor(subpass, pipeline, pipeline->binding.descriptor.set);

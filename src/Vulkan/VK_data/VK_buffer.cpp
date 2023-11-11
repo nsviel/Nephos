@@ -46,8 +46,8 @@ template <typename VertexType> void VK_buffer::create_buffer(Struct_buffer* buff
   VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
 
   // Initialize staging buffer
-  this->create_gpu_buffer(size, BUFFER_USAGE_SRC, staging_buffer);
-  this->bind_buffer_memory(MEMORY_SHARED_CPU_GPU, staging_buffer, staging_buffer_memory);
+  this->create_gpu_buffer(size, TYP_BUFFER_USAGE_SRC, staging_buffer);
+  this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_buffer_memory);
 
   // Copy the vertex data from the CPU to the GPU
   void* data_map;
@@ -56,8 +56,8 @@ template <typename VertexType> void VK_buffer::create_buffer(Struct_buffer* buff
   vkUnmapMemory(struct_vulkan->device.device, staging_buffer_memory);
 
   // Initialize destination buffer
-  this->create_gpu_buffer(size, BUFFER_USAGE_DST_VERTEX, buffer->vbo);
-  this->bind_buffer_memory(MEMORY_GPU, buffer->vbo, buffer->mem);
+  this->create_gpu_buffer(size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
+  this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
   this->copy_buffer_to_gpu(staging_buffer, buffer->vbo, size);
 
   // Cleanup staging buffer resources

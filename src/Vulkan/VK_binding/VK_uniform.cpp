@@ -30,7 +30,7 @@ void VK_uniform::create_uniform_buffers(Struct_binding* binding){
     int binding = get<2>(descriptor);
     VkDescriptorType type = get<3>(descriptor);
 
-    if(type == TYPE_UNIFORM){
+    if(type == TYP_UNIFORM){
       Struct_uniform* uniform = create_uniform_buffer(name, size, binding);
       vec_uniform.push_back(uniform);
     }
@@ -47,7 +47,7 @@ Struct_uniform* VK_uniform::create_uniform_buffer(string name, size_t size, int 
     uniform->size = size;
 
     vk_buffer->create_gpu_buffer(size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
-    vk_buffer->bind_buffer_memory(MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
+    vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
     vkMapMemory(struct_vulkan->device.device, uniform->mem, 0, size, 0, &uniform->mapped);
 
   //---------------------------

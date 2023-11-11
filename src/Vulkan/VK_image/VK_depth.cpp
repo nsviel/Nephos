@@ -25,7 +25,7 @@ void VK_depth::create_depth_attachment(Struct_image* depth){
   depth->width = struct_vulkan->window.extent.width;
   depth->height = struct_vulkan->window.extent.height;
   depth->tiling = VK_IMAGE_TILING_OPTIMAL;
-  depth->properties = MEMORY_GPU;
+  depth->properties = TYP_MEMORY_GPU;
   depth->aspect = VK_IMAGE_ASPECT_DEPTH_BIT;
 
   vk_image->create_image(depth);

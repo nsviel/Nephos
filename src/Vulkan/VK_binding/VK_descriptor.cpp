@@ -61,7 +61,7 @@ void VK_descriptor::update_descriptor_uniform(Struct_binding* binding){
     write_uniform.dstSet = binding->descriptor.set;
     write_uniform.dstBinding = uniform->binding;
     write_uniform.dstArrayElement = 0;
-    write_uniform.descriptorType = TYPE_UNIFORM;
+    write_uniform.descriptorType = TYP_UNIFORM;
     write_uniform.descriptorCount = 1;
     write_uniform.pBufferInfo = &vec_descriptor_buffer_info[i];
     vec_descriptor_write.push_back(write_uniform);
@@ -159,7 +159,7 @@ void VK_descriptor::update_descriptor_sampler(Struct_binding* binding, Struct_im
 void VK_descriptor::cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline* pipeline, VkDescriptorSet set){
   //---------------------------
 
-  vkCmdBindDescriptorSets(subpass->command_buffer, PIPELINE_GRAPHICS, pipeline->layout, 0, 1, &set, 0, nullptr);
+  vkCmdBindDescriptorSets(subpass->command_buffer, TYP_BIND_PIPELINE_GRAPHICS, pipeline->layout, 0, 1, &set, 0, nullptr);
 
   //---------------------------
 }
@@ -193,7 +193,12 @@ void VK_descriptor::create_layout_from_required(Struct_binding* binding){
     VkShaderStageFlagBits stage = get<4>(req_binding);
 
     //Convert it into descriptor binding
-    VkDescriptorSetLayoutBinding layout_binding = add_descriptor_binding(type, stage, 1, binding);
+    VkDescriptorSetLayoutBinding layout_binding{};
+    layout_binding.binding = binding;
+    layout_binding.descriptorCount = static_cast<uint32_t>(1);
+    layout_binding.descriptorType = type;
+    layout_binding.stageFlags = stage;
+    layout_binding.pImmutableSamplers = nullptr; // Optional
     vec_binding.push_back(layout_binding);
   }
 
@@ -203,19 +208,7 @@ void VK_descriptor::create_layout_from_required(Struct_binding* binding){
   //---------------------------
 
 }
-VkDescriptorSetLayoutBinding VK_descriptor::add_descriptor_binding(VkDescriptorType type, VkShaderStageFlagBits stage, int count, int binding){
-  //---------------------------
 
-  VkDescriptorSetLayoutBinding layout_binding{};
-  layout_binding.binding = binding;
-  layout_binding.descriptorCount = static_cast<uint32_t>(count);
-  layout_binding.descriptorType = type;
-  layout_binding.stageFlags = stage;
-  layout_binding.pImmutableSamplers = nullptr; // Optional
-
-  //---------------------------
-  return layout_binding;
-}
 VkDescriptorSetLayout VK_descriptor::create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding){
   //---------------------------
 

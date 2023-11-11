@@ -30,11 +30,11 @@ void VK_data::insert_object(Object* object){
   data->object = object;
 
   //Descriptor
-  descriptor_required mvp = std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS);
+  descriptor_required mvp = std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS);
   data->binding.vec_required_binding.push_back(mvp);
 
   if(object->draw_type_name == "point"){
-    descriptor_required size = std::make_tuple("point_size", sizeof(int), 1, TYPE_UNIFORM, STAGE_VS);
+    descriptor_required size = std::make_tuple("point_size", sizeof(int), 1, TYP_UNIFORM, TYP_SHADER_VS);
     data->binding.vec_required_binding.push_back(size);
   }
 

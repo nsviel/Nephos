@@ -64,7 +64,7 @@ void RP_scene::create_subpass(Struct_renderpass* renderpass){
   pipeline->definition.shader = sce_shader->get_shader_info("Line");
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS));
+  pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
   subpass->vec_pipeline.push_back(pipeline);
 
   pipeline = new Struct_pipeline();
@@ -74,8 +74,8 @@ void RP_scene::create_subpass(Struct_renderpass* renderpass){
   pipeline->definition.shader = sce_shader->get_shader_info("Point");
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYPE_UNIFORM, STAGE_VS));
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("point_size", sizeof(int), 1, TYPE_UNIFORM, STAGE_VS));
+  pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
+  pipeline->binding.vec_required_binding.push_back(std::make_tuple("point_size", sizeof(int), 1, TYP_UNIFORM, TYP_SHADER_VS));
   subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
@@ -99,7 +99,7 @@ void RP_scene::cmd_draw_point(Struct_subpass* subpass){
   //---------------------------
 
   Struct_pipeline* pipeline = subpass->get_pipeline_byName("point");
-  vk_pipeline->cmd_bind_pipeline(subpass, pipeline);
+  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
@@ -121,7 +121,7 @@ void RP_scene::cmd_draw_line(Struct_subpass* subpass){
   //---------------------------
 
   Struct_pipeline* pipeline = subpass->get_pipeline_byName("line");
-  vk_pipeline->cmd_bind_pipeline(subpass, pipeline);
+  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){

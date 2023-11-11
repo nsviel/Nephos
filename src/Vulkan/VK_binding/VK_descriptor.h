@@ -35,7 +35,6 @@ public:
   void allocate_descriptor_set(Struct_binding* binding);
   void create_layout_from_required(Struct_binding* binding);
   VkDescriptorSetLayout create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding);
-  VkDescriptorSetLayoutBinding add_descriptor_binding(VkDescriptorType type, VkShaderStageFlagBits stage, int count, int binding);
 
 private:
   Struct_vulkan* struct_vulkan;

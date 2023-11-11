@@ -35,9 +35,9 @@ void VK_framebuffer::create_framebuffer(Struct_renderpass* renderpass){
 
   Struct_framebuffer* framebuffer = new Struct_framebuffer();
   framebuffer->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-  framebuffer->color.layout = IMAGE_LAYOUT_SHADER_READONLY;
+  framebuffer->color.layout = TYP_IMAGE_LAYOUT_SHADER_READONLY;
   framebuffer->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-  framebuffer->depth.layout = IMAGE_LAYOUT_DEPTH_READONLY;
+  framebuffer->depth.layout = TYP_IMAGE_LAYOUT_DEPTH_READONLY;
 
   vk_color->create_color_attachment(&framebuffer->color);
   vk_depth->create_depth_attachment(&framebuffer->depth);
