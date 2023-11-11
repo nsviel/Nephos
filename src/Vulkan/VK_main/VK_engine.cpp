@@ -3,7 +3,6 @@
 #include <VK_main/Struct_vulkan.h>
 #include <VK_data/VK_data.h>
 #include <VK_renderpass/VK_renderpass.h>
-#include <VK_command/VK_command_buffer.h>
 #include <VK_device/VK_device.h>
 #include <VK_presentation/VK_surface.h>
 #include <VK_instance/VK_instance.h>
@@ -32,7 +31,6 @@ VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
   this->vk_device = new VK_device(struct_vulkan);
   this->vk_texture = new VK_texture(struct_vulkan);
   this->vk_descriptor = new VK_descriptor(struct_vulkan);
-  this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
   this->vk_data = new VK_data(struct_vulkan);
   this->vk_swapchain = new VK_swapchain(struct_vulkan);
   this->vk_renderpass = new VK_renderpass(struct_vulkan);

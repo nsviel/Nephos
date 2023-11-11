@@ -5,7 +5,7 @@
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
-class VK_command_buffer;
+class VK_command;
 class VK_color;
 class VK_depth;
 
@@ -36,7 +36,7 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_command_buffer* vk_command_buffer;
+  VK_command* vk_command;
   VK_color* vk_color;
   VK_depth* vk_depth;
 };

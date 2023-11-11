@@ -10,7 +10,7 @@ class VK_engine;
 class Struct_vulkan;
 class VK_buffer;
 class VK_texture;
-class VK_command_buffer;
+class VK_command;
 class VK_descriptor;
 
 
@@ -37,7 +37,7 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_texture* vk_texture;
-  VK_command_buffer* vk_command_buffer;
+  VK_command* vk_command;
   VK_descriptor* vk_descriptor;
 };
 

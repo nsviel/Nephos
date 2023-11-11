@@ -19,7 +19,6 @@ class VK_viewport;
 class VK_reload;
 class VK_frame;
 class VK_canvas;
-class VK_command_buffer;
 class VK_extension;
 class VK_pool;
 
@@ -51,7 +50,6 @@ private:
   VK_extension* vk_extension;
   VK_surface* vk_surface;
   VK_instance* vk_instance;
-  VK_command_buffer* vk_command_buffer;
   VK_device* vk_device;
   VK_swapchain* vk_swapchain;
   VK_renderpass* vk_renderpass;

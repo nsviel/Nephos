@@ -4,7 +4,7 @@
 #include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_image/VK_texture.h>
-#include <VK_command/VK_command_buffer.h>
+#include <VK_command/VK_command.h>
 #include <VK_binding/VK_descriptor.h>
 
 
@@ -15,7 +15,7 @@ VK_data::VK_data(Struct_vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_buffer = new VK_buffer(struct_vulkan);
   this->vk_texture = new VK_texture(struct_vulkan);
-  this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
+  this->vk_command = new VK_command(struct_vulkan);
   this->vk_descriptor = new VK_descriptor(struct_vulkan);
 
   //---------------------------
@@ -41,7 +41,7 @@ void VK_data::insert_object(Object* object){
 
   //Apply adequat init functions
   vk_buffer->create_buffers(data);
-  vk_command_buffer->allocate_command_buffer_secondary(data);
+  vk_command->allocate_command_buffer_secondary(data);
   vk_descriptor->create_layout_from_required(&data->binding);
   vk_descriptor->create_binding(&data->binding);
 

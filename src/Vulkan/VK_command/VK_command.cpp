@@ -1,6 +1,5 @@
 #include "VK_command.h"
 
-#include <VK_command/VK_command_buffer.h>
 #include <VK_command/VK_submit.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_main/VK_engine.h>
@@ -11,7 +10,6 @@ VK_command::VK_command(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
   //this->vk_submit = new VK_submit(struct_vulkan);
 
   //---------------------------
@@ -81,6 +79,39 @@ void VK_command::stop_command_buffer(VkCommandBuffer command_buffer){
   VkResult result = vkEndCommandBuffer(command_buffer);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to record command buffer!");
+  }
+
+  //---------------------------
+}
+void VK_command::allocate_command_buffer_primary(VkCommandBuffer& command_buffer){
+  //---------------------------
+
+  //Command buffer allocation
+  VkCommandBufferAllocateInfo alloc_info{};
+  alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+  alloc_info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+  alloc_info.commandPool = struct_vulkan->pool.command;
+  alloc_info.commandBufferCount = 1;
+  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &command_buffer);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to allocate command buffers!");
+  }
+
+  //---------------------------
+}
+void VK_command::allocate_command_buffer_secondary(Struct_entity* data){
+  //---------------------------
+
+  //Command buffer allocation
+  VkCommandBufferAllocateInfo alloc_info{};
+  alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+  alloc_info.level = VK_COMMAND_BUFFER_LEVEL_SECONDARY;
+  alloc_info.commandPool = struct_vulkan->pool.command;
+  alloc_info.commandBufferCount = 1;
+
+  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &data->command_buffer_secondary);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to allocate command buffers!");
   }
 
   //---------------------------
@@ -190,7 +221,7 @@ VkCommandBuffer VK_command::singletime_command_begin(){
   VkCommandBuffer command_buffer;
   //---------------------------
 
-  vk_command_buffer->allocate_command_buffer_primary(command_buffer);
+  this->allocate_command_buffer_primary(command_buffer);
   this->start_command_buffer_once(command_buffer);
 
   //---------------------------
