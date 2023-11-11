@@ -21,6 +21,7 @@ void VK_device::init(){
 
   vk_physical_device->init();
   this->create_logical_device();
+  this->find_device_queue_handles();
 
   //---------------------------
 }
@@ -37,21 +38,23 @@ void VK_device::create_logical_device(){
   //---------------------------
 
   //Get GPU queue families
-  std::set<uint32_t> set_queue = {
-    (unsigned int)struct_vulkan->device.struct_device.queue_graphics_idx,
-    (unsigned int)struct_vulkan->device.struct_device.queue_presentation_idx
+  std::set<int> set_queue = {
+    struct_vulkan->device.struct_device.queue_graphics_idx,
+    struct_vulkan->device.struct_device.queue_presentation_idx
   };
 
   //Create queue on device
   float queuePriority = 1.0f;
-  std::vector<VkDeviceQueueCreateInfo> queue_create_info;
-  for(uint32_t queueFamily : set_queue){
-    VkDeviceQueueCreateInfo queueCreateInfo{};
-    queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-    queueCreateInfo.queueFamilyIndex = queueFamily;
-    queueCreateInfo.queueCount = 1;
-    queueCreateInfo.pQueuePriorities = &queuePriority;
-    queue_create_info.push_back(queueCreateInfo);
+  vector<VkDeviceQueueCreateInfo> queue_create_info;
+  for(int queue_family : set_queue){
+    if(queue_family != -1){
+      VkDeviceQueueCreateInfo queueCreateInfo{};
+      queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+      queueCreateInfo.queueFamilyIndex = static_cast<uint32_t>(queue_family);
+      queueCreateInfo.queueCount = 1;
+      queueCreateInfo.pQueuePriorities = &queuePriority;
+      queue_create_info.push_back(queueCreateInfo);
+    }
   }
 
   //Specifying used device features
@@ -75,9 +78,20 @@ void VK_device::create_logical_device(){
     throw std::runtime_error("failed to create logical device!");
   }
 
-  //Get queue family handles
-  vkGetDeviceQueue(struct_vulkan->device.device, struct_vulkan->device.struct_device.queue_graphics_idx, 0, &struct_vulkan->device.queue_graphics);
-  vkGetDeviceQueue(struct_vulkan->device.device, struct_vulkan->device.struct_device.queue_presentation_idx, 0, &struct_vulkan->device.queue_presentation);
+  //---------------------------
+}
+void VK_device::find_device_queue_handles(){
+  //---------------------------
+
+  int& queue_graphics = struct_vulkan->device.struct_device.queue_graphics_idx;
+  if(queue_graphics != -1){
+    vkGetDeviceQueue(struct_vulkan->device.device, queue_graphics, 0, &struct_vulkan->device.queue_graphics);
+  }
+
+  int& queue_presentation = struct_vulkan->device.struct_device.queue_presentation_idx;
+  if(queue_presentation != -1){
+    vkGetDeviceQueue(struct_vulkan->device.device, queue_presentation, 0, &struct_vulkan->device.queue_presentation);
+  }
 
   //---------------------------
 }

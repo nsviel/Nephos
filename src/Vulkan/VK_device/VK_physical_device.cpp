@@ -24,15 +24,17 @@ void VK_physical_device::init(){
   //---------------------------
 }
 void VK_physical_device::compute_extent(){
-  //Resolution of the swap chain image
   //---------------------------
 
-  this->find_surface_capability(struct_vulkan->device.struct_device);
-
   VkSurfaceCapabilitiesKHR capabilities = struct_vulkan->device.struct_device.capabilities;
-  if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
+  if(struct_vulkan->param.headless){
+    struct_vulkan->window.extent.width = 200;
+    struct_vulkan->window.extent.height = 200;
+  }
+  else if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
     struct_vulkan->window.extent = capabilities.currentExtent;
-  }else{
+  }
+  else{
     glm::vec2 fbo_dim = struct_vulkan->window.window_dim;
 
     struct_vulkan->window.extent = {
@@ -108,7 +110,12 @@ void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_
   }
 
   // Check if physical device is suitable
-  bool device_suitable = device_suitability(struct_device);
+  bool device_suitable;
+  if(struct_vulkan->param.headless){
+    device_suitable = device_suitability_headless(struct_device);
+  }else{
+    device_suitable = device_suitability(struct_device);
+  }
   if(device_suitable == false){
     struct_device.selection_score = 0;
     return;
@@ -144,15 +151,16 @@ bool VK_physical_device::device_suitability(Struct_physical_device& struct_devic
   if(struct_device.has_extension_support == false){
     return false;
   }
-sayHello();
+
   //Swap chain suitable
-  this->find_surface_format(struct_device);sayHello();
+  this->find_surface_capability(struct_vulkan->device.struct_device);
+  this->find_surface_format(struct_device);
   this->find_presentation_mode(struct_device);
   bool swapChain_ok = !struct_device.formats.empty() && !struct_device.presentation_mode.empty();
   if(swapChain_ok == false){
     return false;
   }
-sayHello();
+
   //Supported features
   this->find_physical_device_features(struct_device);
   bool msaa_ok = struct_device.features.samplerAnisotropy;
@@ -161,7 +169,7 @@ sayHello();
   if(msaa_ok == false || line_ok == false || geom_ok == false){
     return false;
   }
-sayHello();
+
   //---------------------------
   return true;
 }
@@ -171,11 +179,7 @@ bool VK_physical_device::device_suitability_headless(Struct_physical_device& str
   //Queue suitable
   this->find_queue_nb_family(struct_device);
   this->find_queue_graphics_idx(struct_device);
-  this->find_queue_presentation_idx(struct_device);
   if(struct_device.queue_graphics_idx == -1){
-    return false;
-  }
-  if(struct_device.queue_presentation_idx == -1 && struct_vulkan->param.headless == false){
     return false;
   }
 
@@ -184,15 +188,7 @@ bool VK_physical_device::device_suitability_headless(Struct_physical_device& str
   if(struct_device.has_extension_support == false){
     return false;
   }
-sayHello();
-  //Swap chain suitable
-  this->find_surface_format(struct_device);sayHello();
-  this->find_presentation_mode(struct_device);
-  bool swapChain_ok = !struct_device.formats.empty() && !struct_device.presentation_mode.empty();
-  if(swapChain_ok == false){
-    return false;
-  }
-sayHello();
+
   //Supported features
   this->find_physical_device_features(struct_device);
   bool msaa_ok = struct_device.features.samplerAnisotropy;
@@ -201,7 +197,7 @@ sayHello();
   if(msaa_ok == false || line_ok == false || geom_ok == false){
     return false;
   }
-sayHello();
+
   //---------------------------
   return true;
 }

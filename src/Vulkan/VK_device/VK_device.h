@@ -21,6 +21,7 @@ public:
 
   //Subfunction
   void create_logical_device();
+  void find_device_queue_handles();
 
 private:
   Struct_vulkan* struct_vulkan;

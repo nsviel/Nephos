@@ -155,7 +155,7 @@ void VK_engine::init_engine_headless(){
   //Instance
   vk_extension->init();
   vk_instance->init_instance();
-    vk_surface->init();
+    //vk_surface->init();
   vk_device->init();
   vk_pool->init();
   vk_canvas->create_canvas();
