@@ -21,7 +21,9 @@ public:
 
 public:
   //Main function
+  void create_framebuffers();
   void create_framebuffer(Struct_renderpass* renderpass);
+  void clean_framebuffers();
   void clean_framebuffer(Struct_renderpass* renderpass);
 
   //Subfunction

@@ -19,17 +19,14 @@ public:
 
 public:
   //Main function
+  void create_swapchain();
   void recreate_swapChain();
   void clean_swapchain();
 
   //Swap chain creation
-  void create_swapchain();
-  void create_swapchain_surface(VkSwapchainCreateInfoKHR& create_info);
-  void create_swapchain_family(VkSwapchainCreateInfoKHR& create_info);
-  void create_swapchain_presentation(VkSwapchainCreateInfoKHR& create_info);
-  void create_swapchain_image(VkSwapchainKHR swapchain, unsigned int min_image_count);
-
-  //Swap chain parameter
+  void create_swapchain_image();
+  void create_swapchain_obj();
+  void find_swapchain_max_nb_image();
   void find_swapchain_surface_format();
   void find_swapchain_presentation_mode();
 

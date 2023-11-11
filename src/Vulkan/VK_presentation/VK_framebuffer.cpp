@@ -20,6 +20,16 @@ VK_framebuffer::VK_framebuffer(Struct_vulkan* struct_vulkan){
 VK_framebuffer::~VK_framebuffer(){}
 
 //FBO creation
+void VK_framebuffer::create_framebuffers(){
+  //---------------------------
+
+  for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
+    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    this->create_framebuffer(renderpass);
+  }
+
+  //---------------------------
+}
 void VK_framebuffer::create_framebuffer(Struct_renderpass* renderpass){
   //---------------------------
 
@@ -34,6 +44,16 @@ void VK_framebuffer::create_framebuffer(Struct_renderpass* renderpass){
   this->create_framebuffer_renderpass(renderpass, framebuffer);
 
   renderpass->framebuffer = framebuffer;
+
+  //---------------------------
+}
+void VK_framebuffer::clean_framebuffers(){
+  //---------------------------
+
+  for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
+    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    this->clean_framebuffer(renderpass);
+  }
 
   //---------------------------
 }

@@ -16,6 +16,7 @@ struct Struct_swapchain{
 
   //Swapchain image
   vector<VkImage> vec_swapchain_image;
+  uint32_t max_nb_frame;
 
   //Swapchain frame
   Struct_frame* get_frame_presentation(){return vec_frame[frame_presentation_ID];}
