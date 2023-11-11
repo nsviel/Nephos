@@ -22,7 +22,7 @@ VK_data::VK_data(Struct_vulkan* struct_vulkan){
 }
 VK_data::~VK_data(){}
 
-//Insertion function
+//Main function
 void VK_data::insert_object(Object* object){
   //---------------------------
 
@@ -40,7 +40,6 @@ void VK_data::insert_object(Object* object){
   }
 
   //Apply adequat init functions
-  this->check_for_attribut(data);
   vk_buffer->create_buffers(data);
   vk_command_buffer->allocate_command_buffer_secondary(data);
   vk_descriptor->create_layout_from_required(&data->binding);
@@ -51,9 +50,17 @@ void VK_data::insert_object(Object* object){
 
   //---------------------------
 }
+void VK_data::clean_entity_all(){
+  //---------------------------
 
-//Clean function
-void VK_data::clean_data(Struct_entity* data){
+  for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
+    Struct_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
+    this->clean_entity(data);
+  }
+
+  //---------------------------
+}
+void VK_data::clean_entity(Struct_entity* data){
   //---------------------------
 
   vkDeviceWaitIdle(struct_vulkan->device.device);
@@ -61,29 +68,6 @@ void VK_data::clean_data(Struct_entity* data){
   vk_buffer->clean_buffers(data);
   vk_texture->clean_texture(data);
   vk_descriptor->clean_binding(&data->binding);
-
-  //---------------------------
-}
-void VK_data::clean_data_all(){
-  //---------------------------
-
-  for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
-    Struct_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
-    this->clean_data(data);
-  }
-
-  //---------------------------
-}
-void VK_data::clean_data_scene(int ID){
-  //---------------------------
-
-  for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
-    Struct_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
-    if(data->object->ID == ID){
-      this->clean_data(data);
-      struct_vulkan->data.list_object.remove(data);
-    }
-  }
 
   //---------------------------
 }
@@ -181,16 +165,4 @@ void VK_data::combine_description(Struct_pipeline* pipeline){
 
   //---------------------------
   pipeline->info.vertex_input_info = vertex_input_info;
-}
-void VK_data::check_for_attribut(Struct_entity* data){
-  //---------------------------
-
-  if(data->object->rgb.size() != 0){
-    data->has_rgb = true;
-  }
-  if(data->object->uv.size() != 0){
-    data->has_uv = true;
-  }
-
-  //---------------------------
 }

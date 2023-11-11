@@ -89,7 +89,7 @@ void VK_engine::clean(){
   vk_renderpass->clean_renderpass();
   vk_swapchain->clean_swapchain();
   vk_canvas->clean_canvas();
-  vk_data->clean_data_all();
+  vk_data->clean_entity_all();
   vk_pool->clean();
   vk_device->clean();
   vk_surface->clean();
@@ -132,7 +132,8 @@ void VK_engine::remove_object_in_engine(Object* object){
   for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
     Struct_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
     if(object->ID == data->object->ID){
-      vk_data->clean_data_scene(object->ID);
+      vk_data->clean_entity(data);
+      struct_vulkan->data.list_object.remove(data);
     }
   }
 

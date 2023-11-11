@@ -22,20 +22,16 @@ public:
   ~VK_data();
 
 public:
-  //Insertion functions
+  //Main functions
   void insert_object(Object* object);
-
-  //Clean function
-  void clean_data(Struct_entity* data);
-  void clean_data_all();
-  void clean_data_scene(int ID);
+  void clean_entity_all();
+  void clean_entity(Struct_entity* data);
 
   //Pipeline data description
   void create_data_description(Struct_pipeline* pipeline);
   void create_vertex_description(Struct_pipeline* pipeline);
   void create_attribut_description(Struct_pipeline* pipeline);
   void combine_description(Struct_pipeline* pipeline);
-  void check_for_attribut(Struct_entity* data);
 
 private:
   Struct_vulkan* struct_vulkan;

@@ -51,7 +51,6 @@ void VK_canvas::create_canvas(){
 
   struct_vulkan->data.canvas.object = canvas_obj;
 
-  vk_data->check_for_attribut(&struct_vulkan->data.canvas);
   vk_buffer->create_buffers(&struct_vulkan->data.canvas);
 
   //---------------------------

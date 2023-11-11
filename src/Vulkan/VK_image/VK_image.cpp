@@ -143,7 +143,7 @@ void VK_image::bind_image_to_memory(Struct_image* image){
   VkMemoryAllocateInfo allocInfo{};
   allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
   allocInfo.allocationSize = memRequirements.size;
-  allocInfo.memoryTypeIndex = vk_buffer->findMemoryType(memRequirements.memoryTypeBits, image->properties);
+  allocInfo.memoryTypeIndex = vk_buffer->find_memory_type(memRequirements.memoryTypeBits, image->properties);
 
   VkResult result = vkAllocateMemory(struct_vulkan->device.device, &allocInfo, nullptr, &image->mem);
   if(result != VK_SUCCESS){

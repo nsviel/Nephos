@@ -86,15 +86,14 @@ void VK_buffer::clean_buffer(Struct_buffer* buffer){
 void VK_buffer::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBuffer& buffer){
   //---------------------------
 
-  //Buffer creation
   VkBufferCreateInfo bufferInfo{};
   bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
   bufferInfo.size = size;
   bufferInfo.usage = usage;
   bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
-  //Create the GPU buffer
   VkResult result = vkCreateBuffer(struct_vulkan->device.device, &bufferInfo, nullptr, &buffer);
+
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create buffer!");
   }
@@ -112,7 +111,7 @@ void VK_buffer::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& b
   VkMemoryAllocateInfo buffer_allocation_info{};
   buffer_allocation_info.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
   buffer_allocation_info.allocationSize = buffer_mem_requirement.size;
-  buffer_allocation_info.memoryTypeIndex = findMemoryType(buffer_mem_requirement.memoryTypeBits, properties);
+  buffer_allocation_info.memoryTypeIndex = find_memory_type(buffer_mem_requirement.memoryTypeBits, properties);
 
   //Allocate buffer memory on the GPU
   VkResult result = vkAllocateMemory(struct_vulkan->device.device, &buffer_allocation_info, nullptr, &buffer_memory);
@@ -138,9 +137,7 @@ void VK_buffer::copy_buffer_to_gpu(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDev
 
   //---------------------------
 }
-
-//Specific function
-uint32_t VK_buffer::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties){
+uint32_t VK_buffer::find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags properties){
   //---------------------------
 
   VkPhysicalDeviceMemoryProperties memProperties;
