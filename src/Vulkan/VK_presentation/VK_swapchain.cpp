@@ -216,3 +216,26 @@ void VK_swapchain::set_next_frame_ID(){
 
   //---------------------------
 }
+void VK_swapchain::submit_presentation(VkSemaphore& semaphore){
+  Struct_swapchain* swapchain = &struct_vulkan->swapchain;
+  //---------------------------
+
+  VkPresentInfoKHR presentation_info{};
+  presentation_info.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+  presentation_info.waitSemaphoreCount = 1;
+  presentation_info.pWaitSemaphores = &semaphore;
+  presentation_info.swapchainCount = 1;
+  presentation_info.pSwapchains = &swapchain->swapchain;
+  presentation_info.pImageIndices = &swapchain->frame_presentation_ID;
+  presentation_info.pResults = nullptr; // Optional
+
+  VkResult result = vkQueuePresentKHR(struct_vulkan->device.queue_presentation, &presentation_info);
+  
+  if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || struct_vulkan->window.is_resized){
+    this->recreate_swapChain();
+  }else if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to present swap chain image!");
+  }
+
+  //---------------------------
+}

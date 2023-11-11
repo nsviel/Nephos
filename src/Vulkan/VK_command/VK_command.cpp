@@ -9,7 +9,7 @@ VK_command::VK_command(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  //this->vk_submit = new VK_submit(struct_vulkan);
+  this->vk_submit = new VK_submit(struct_vulkan);
 
   //---------------------------
 }
@@ -230,17 +230,8 @@ void VK_command::singletime_command_end(VkCommandBuffer command_buffer){
   //---------------------------
 
   vkEndCommandBuffer(command_buffer);
-
-  //vk_submit->submit_command_graphics(command_buffer);
-
-  VkSubmitInfo submitInfo{};
-  submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  submitInfo.commandBufferCount = 1;
-  submitInfo.pCommandBuffers = &command_buffer;
-  vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submitInfo, VK_NULL_HANDLE);
-
+  vk_submit->submit_command_graphics(command_buffer);
   vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
-
   vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pool.command, 1, &command_buffer);
 
   //---------------------------

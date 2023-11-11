@@ -96,7 +96,7 @@ void VK_drawing::run_presentation(){
   //---------------------------
 
   VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[struct_vulkan->render.vec_renderpass.size()];
-  vk_submit->submit_presentation(semaphore);
+  vk_swapchain->submit_presentation(semaphore);
   vk_swapchain->set_next_frame_ID();
 
   //---------------------------

@@ -51,12 +51,10 @@ struct Struct_pipeline_info{
 struct Struct_pipeline{
   //---------------------------
 
-  //Pipeline shader
-  Struct_binding binding;
-
-  //Pipeline elments
   VkPipeline pipeline;
   VkPipelineLayout layout;
+
+  Struct_binding binding;
   Struct_pipeline_definition definition;
   Struct_pipeline_info info;
 

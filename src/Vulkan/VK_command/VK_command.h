@@ -41,7 +41,7 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  //VK_submit* vk_submit;
+  VK_submit* vk_submit;
 };
 
 
