@@ -1,9 +1,12 @@
 #ifndef VK_RENDER_H
 #define VK_RENDER_H
 
+#include <VK_struct/Struct_renderpass.h>
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
+class VK_command;
+class VK_submit;
 
 
 class VK_render
@@ -15,9 +18,13 @@ public:
 
 public:
   //Main functions
+  void run_renderpass(Struct_renderpass* renderpass, int i);
+  void run_command(Struct_renderpass* renderpass, int i);
 
 private:
   Struct_vulkan* struct_vulkan;
+  VK_command* vk_command;
+  VK_submit* vk_submit;
 };
 
 #endif
