@@ -1,8 +1,10 @@
 #ifndef VK_RENDER_H
 #define VK_RENDER_H
 
+#include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 #include <VK_image/VK_texture.h>
+#include <VK_struct/Struct_renderpass.h>
 
 extern "C" {
 #include <libavcodec/avcodec.h>

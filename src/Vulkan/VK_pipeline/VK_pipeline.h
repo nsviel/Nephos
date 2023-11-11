@@ -20,29 +20,27 @@ public:
   ~VK_pipeline();
 
 public:
-  //Pipeline creation
+  //Main function
   void create_pipeline(Struct_renderpass* renderpass);
+  void cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pipeline);
+  void clean_pipeline(Struct_renderpass* renderpass);
+  void clean_pipeline_struct(Struct_pipeline* pipeline);
+  void clean_pipeline_shader_module(Struct_pipeline* pipeline);
+
+  //Pipeline creation
   void create_pipeline_struct(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
-  void create_pipeline_graphics(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
-  void create_pipeline_presentation(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
+  void create_pipeline_obj(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
   void create_pipeline_layout(Struct_pipeline* pipeline);
 
   //Pipeline element
-  void create_dynamic_state(Struct_pipeline* pipeline);
-  void create_viewport(Struct_pipeline* pipeline);
-  void create_raster(Struct_pipeline* pipeline);
-  void create_multisampling(Struct_pipeline* pipeline);
-  void create_depth(Struct_pipeline* pipeline);
-  void create_color_blending_state(Struct_pipeline* pipeline);
-  void create_color_blending(Struct_pipeline* pipeline);
-  void create_topology(Struct_pipeline* pipeline);
-
-  //Clean functions
-  void clean_pipeline(Struct_renderpass* renderpass);
-  void clean_pipeline_struct(Struct_pipeline* pipeline);
-
-  //Binding function
-  void cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pipeline);
+  void find_pipeline_dynamic_state(Struct_pipeline* pipeline);
+  void find_pipeline_viewport_state(Struct_pipeline* pipeline);
+  void find_pipeline_rasterization_state(Struct_pipeline* pipeline);
+  void find_pipeline_multisampling_state(Struct_pipeline* pipeline);
+  void find_pipeline_depth_state(Struct_pipeline* pipeline);
+  void find_pipeline_blend_attachment_state(Struct_pipeline* pipeline);
+  void find_pipeline_blend_state(Struct_pipeline* pipeline);
+  void find_pipeline_topology_state(Struct_pipeline* pipeline);
 
   //Subfunction
   void check_struct_pipeline_input(Struct_pipeline* pipeline);

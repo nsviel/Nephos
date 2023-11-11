@@ -2,7 +2,6 @@
 
 #include <VK_main/Struct_vulkan.h>
 #include <VK_drawing/VK_drawing.h>
-#include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/FPS_counter.h>
 
 
