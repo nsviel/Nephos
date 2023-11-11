@@ -47,17 +47,22 @@ VkSurfaceFormatKHR VK_color::retrieve_surface_format(const std::vector<VkSurface
     }
   }
 
-  cout<<"[error] Standar RGB is no available"<<endl;
+  cout<<"[error] Standard RGB is no available"<<endl;
 
   //---------------------------
   return dev_format[0];
 }
 VkFormat VK_color::find_color_format(){
+  VkFormat format;
   //---------------------------
 
-  vector<VkSurfaceFormatKHR> surface_format = struct_vulkan->device.struct_device.formats;
-  VkSurfaceFormatKHR surfaceFormat = retrieve_surface_format(surface_format);
-  VkFormat format = surfaceFormat.format;
+  if(struct_vulkan->param.headless){
+    format = VK_FORMAT_R8G8B8A8_UNORM;
+  }else{
+    vector<VkSurfaceFormatKHR> surface_format = struct_vulkan->device.struct_device.formats;
+    VkSurfaceFormatKHR surfaceFormat = retrieve_surface_format(surface_format);
+    format = surfaceFormat.format;
+  }
 
   //---------------------------
   return format;

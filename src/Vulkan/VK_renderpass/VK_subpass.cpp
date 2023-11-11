@@ -34,7 +34,7 @@ void VK_subpass::create_subpass(Struct_renderpass* renderpass){
       this->create_subpass_presentation(subpass);
     }
   }
-sayHello();
+
   //---------------------------
 }
 
@@ -49,7 +49,6 @@ void VK_subpass::create_subpass_shader(Struct_subpass* subpass){
   color.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
   color.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
   color.layout_final = TYP_IMAGE_LAYOUT_SHADER_READONLY;
-  this->color_attachment_format(color);
   this->color_attachment_description(color);
   this->color_attachment_reference(color);
   subpass->vec_color.push_back(color);
@@ -134,7 +133,7 @@ void VK_subpass::color_attachment_description(Struct_attachment& color){
   //---------------------------
 
   VkAttachmentDescription color_description{};
-  color_description.format = color.format;
+  color_description.format = vk_color->find_color_format();
   color_description.samples = VK_SAMPLE_COUNT_1_BIT;
   color_description.loadOp = color.load_operation;
   color_description.storeOp = color.store_operation;
@@ -153,17 +152,6 @@ void VK_subpass::color_attachment_reference(Struct_attachment& color){
   color_reference.attachment = color.item;
   color_reference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
   color.reference = color_reference;
-
-  //---------------------------
-}
-void VK_subpass::color_attachment_format(Struct_attachment& color){
-  //---------------------------
-
-  if(struct_vulkan->param.headless){
-    color.format = VK_FORMAT_R8G8B8A8_UNORM;
-  }else{
-    color.format = vk_color->find_color_format();
-  }
 
   //---------------------------
 }
