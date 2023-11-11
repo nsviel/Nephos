@@ -14,9 +14,6 @@
 #include <VK_struct/Struct_synchro.h>
 #include <VK_struct/Struct_data.h>
 
-#include <vector>
-#include <list>
-
 
 struct Struct_vulkan{
   //---------------------------
@@ -31,10 +28,6 @@ struct Struct_vulkan{
   Struct_param param;
   Struct_pool pool;
   Struct_synchro synchro;
-
-  Struct_entity canvas;
-  std::vector<Struct_image*> vec_texture;
-  std::list<Struct_entity*> list_object;
 
   //---------------------------
 };

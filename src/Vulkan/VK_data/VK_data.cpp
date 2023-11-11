@@ -47,7 +47,7 @@ void VK_data::insert_object(Object* object){
   vk_descriptor->create_binding(&data->binding);
 
   //Insert data struct into set
-  struct_vulkan->list_object.push_back(data);
+  struct_vulkan->data.list_object.push_back(data);
 
   //---------------------------
 }
@@ -67,8 +67,8 @@ void VK_data::clean_data(Struct_entity* data){
 void VK_data::clean_data_all(){
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->list_object.size(); i++){
-    Struct_entity* data = *next(struct_vulkan->list_object.begin(),i);
+  for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
+    Struct_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
     this->clean_data(data);
   }
 
@@ -77,11 +77,11 @@ void VK_data::clean_data_all(){
 void VK_data::clean_data_scene(int ID){
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->list_object.size(); i++){
-    Struct_entity* data = *next(struct_vulkan->list_object.begin(),i);
+  for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
+    Struct_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
     if(data->object->ID == ID){
       this->clean_data(data);
-      struct_vulkan->list_object.remove(data);
+      struct_vulkan->data.list_object.remove(data);
     }
   }
 

@@ -49,18 +49,18 @@ void VK_canvas::create_canvas(){
   canvas_obj->uv = uv;
   canvas_obj->draw_type_name = "triangle";
 
-  struct_vulkan->canvas.object = canvas_obj;
+  struct_vulkan->data.canvas.object = canvas_obj;
 
-  vk_data->check_for_attribut(&struct_vulkan->canvas);
-  vk_buffer->create_buffer(&struct_vulkan->canvas);
+  vk_data->check_for_attribut(&struct_vulkan->data.canvas);
+  vk_buffer->create_buffer(&struct_vulkan->data.canvas);
 
   //---------------------------
 }
 void VK_canvas::clean_canvas(){
   //---------------------------
 
-  vk_buffer->clean_buffer(&struct_vulkan->canvas);
-  vk_texture->clean_texture(&struct_vulkan->canvas);
+  vk_buffer->clean_buffer(&struct_vulkan->data.canvas);
+  vk_texture->clean_texture(&struct_vulkan->data.canvas);
 
   //---------------------------
 }

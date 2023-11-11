@@ -4,18 +4,9 @@
 #include <VK_struct/typedef.h>
 #include <VK_struct/Struct_binding.h>
 #include <VK_struct/Struct_image.h>
-
+#include <VK_struct/Struct_buffer.h>
 #include <ELE_specific/common.h>
 
-
-struct Struct_buffer{
-  //---------------------------
-
-  VkBuffer vbo = VK_NULL_HANDLE;
-  VkDeviceMemory mem;
-
-  //---------------------------
-};
 
 struct Struct_entity{
   //---------------------------

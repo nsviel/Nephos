@@ -44,7 +44,7 @@ public:
   void remove_object_in_engine(Object* object);
 
   inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->render.vec_renderpass[i];}
-  inline std::list<Struct_entity*> get_list_data(){return struct_vulkan->list_object;}
+  inline std::list<Struct_entity*> get_list_data(){return struct_vulkan->data.list_object;}
 
 private:
   Struct_vulkan* struct_vulkan;
