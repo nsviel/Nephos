@@ -4,7 +4,6 @@
 #include <VK_struct/Struct_pipeline.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
 
 

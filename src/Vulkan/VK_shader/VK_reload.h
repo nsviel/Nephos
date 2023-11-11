@@ -5,10 +5,8 @@
 #include <VK_struct/Struct_renderpass.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
-class VK_pipeline;
 class Struct_vulkan;
-class VK_renderpass;
+class VK_pipeline;
 
 
 class VK_reload
@@ -24,9 +22,8 @@ public:
   void recreate_pipeline(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
 
 private:
-  VK_pipeline* vk_pipeline;
   Struct_vulkan* struct_vulkan;
-  VK_renderpass* vk_renderpass;
+  VK_pipeline* vk_pipeline;
 };
 
 #endif

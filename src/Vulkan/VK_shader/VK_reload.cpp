@@ -1,12 +1,7 @@
 #include "VK_reload.h"
 
-#include <Engine.h>
-#include <ENG_shader/ENG_shader.h>
-#include <ENG_shader/EDL/EDL_shader.h>
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_pipeline/VK_pipeline.h>
-#include <VK_renderpass/VK_renderpass.h>
 
 
 //Constructor / Destructor
@@ -15,7 +10,6 @@ VK_reload::VK_reload(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
-  this->vk_renderpass = new VK_renderpass(struct_vulkan);
 
   //---------------------------
 }
