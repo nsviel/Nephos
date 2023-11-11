@@ -37,31 +37,6 @@ void VK_descriptor::clean_binding(Struct_binding* binding){
   //---------------------------
 }
 
-//Truc
-void VK_descriptor::cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline* pipeline, VkDescriptorSet set){
-  //---------------------------
-
-  vkCmdBindDescriptorSets(subpass->command_buffer, PIPELINE_GRAPHICS, pipeline->layout, 0, 1, &set, 0, nullptr);
-
-  //---------------------------
-}
-void VK_descriptor::allocate_descriptor_set(Struct_binding* binding){
-  //---------------------------
-
-  VkDescriptorSetAllocateInfo allocation_info{};
-  allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-  allocation_info.descriptorPool = struct_vulkan->pool.descriptor;
-  allocation_info.descriptorSetCount = 1;
-  allocation_info.pSetLayouts = &binding->descriptor.layout;
-
-  VkResult result = vkAllocateDescriptorSets(struct_vulkan->device.device, &allocation_info, &binding->descriptor.set);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to allocate descriptor sets!");
-  }
-
-  //---------------------------
-}
-
 //Descriptor set update
 void VK_descriptor::update_descriptor_uniform(Struct_binding* binding){
   //---------------------------
@@ -180,7 +155,30 @@ void VK_descriptor::update_descriptor_sampler(Struct_binding* binding, Struct_im
   //---------------------------
 }
 
-//Descriptor layout
+//Subfunction
+void VK_descriptor::cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline* pipeline, VkDescriptorSet set){
+  //---------------------------
+
+  vkCmdBindDescriptorSets(subpass->command_buffer, PIPELINE_GRAPHICS, pipeline->layout, 0, 1, &set, 0, nullptr);
+
+  //---------------------------
+}
+void VK_descriptor::allocate_descriptor_set(Struct_binding* binding){
+  //---------------------------
+
+  VkDescriptorSetAllocateInfo allocation_info{};
+  allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
+  allocation_info.descriptorPool = struct_vulkan->pool.descriptor;
+  allocation_info.descriptorSetCount = 1;
+  allocation_info.pSetLayouts = &binding->descriptor.layout;
+
+  VkResult result = vkAllocateDescriptorSets(struct_vulkan->device.device, &allocation_info, &binding->descriptor.set);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("failed to allocate descriptor sets!");
+  }
+
+  //---------------------------
+}
 void VK_descriptor::create_layout_from_required(Struct_binding* binding){
   vec_descriptor_required& vec_required_binding = binding->vec_required_binding;
   //---------------------------

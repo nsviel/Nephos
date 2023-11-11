@@ -25,17 +25,14 @@ public:
   void create_binding(Struct_binding* binding);
   void clean_binding(Struct_binding* binding);
 
-  //Truc
-  void cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline* pipeline, VkDescriptorSet set);
-  void clean_descriptor_pool();
-  void allocate_descriptor_set(Struct_binding* binding);
-
   //Descriptor set update
   void update_descriptor_uniform(Struct_binding* binding);
   void update_descriptor_sampler(Struct_binding* binding, vector<Struct_image*> vec_image);
   void update_descriptor_sampler(Struct_binding* binding, Struct_image* image);
 
-  //Descriptor layout
+  //Subfunction
+  void cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline* pipeline, VkDescriptorSet set);
+  void allocate_descriptor_set(Struct_binding* binding);
   void create_layout_from_required(Struct_binding* binding);
   VkDescriptorSetLayout create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding);
   VkDescriptorSetLayoutBinding add_descriptor_binding(VkDescriptorType type, VkShaderStageFlagBits stage, int count, int binding);
