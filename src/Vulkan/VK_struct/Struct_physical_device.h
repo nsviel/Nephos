@@ -12,6 +12,7 @@ struct Struct_physical_device{
   VkPhysicalDeviceProperties properties;
   VkSurfaceCapabilitiesKHR capabilities;
   VkPhysicalDeviceFeatures features;
+  VkPhysicalDeviceType type;
 
   vector<VkSurfaceFormatKHR> formats;
   vector<VkPresentModeKHR> presentation_mode;
@@ -19,9 +20,11 @@ struct Struct_physical_device{
   std::string name;
   bool has_extension_support;
   uint32_t nb_queue_family;
+  uint32_t max_image_dim; 
   int queue_graphics_idx = -1;
   int queue_presentation_idx = -1;
   int selection_score;
+  int vendorID;
 
   //---------------------------
 };

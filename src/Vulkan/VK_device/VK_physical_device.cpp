@@ -48,15 +48,61 @@ void VK_physical_device::compute_extent(){
 }
 
 //Device selection
+void VK_physical_device::find_physical_devices(){
+  //---------------------------
+
+  //Find how many GPU are available
+  uint32_t nb_device = 0;
+  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, nullptr);
+  if(nb_device == 0){
+    throw std::runtime_error("[error] failed to find GPUs with Vulkan support!");
+  }
+
+  //List all available GPU and take suitable one
+  vector<VkPhysicalDevice> vec_physical_device(nb_device);
+  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, vec_physical_device.data());
+
+  //Store physical device properties
+  for(VkPhysicalDevice device : vec_physical_device){
+    Struct_physical_device struct_device;
+    struct_device.physical_device = device;
+    this->find_physical_device_properties(struct_device);
+    struct_vulkan->instance.vec_physical_device.push_back(struct_device);
+  }
+
+  //---------------------------
+}
+void VK_physical_device::find_physical_device_best(){
+  //---------------------------
+
+  // Use an ordered map to automatically sort candidates by increasing score
+  std::multimap<int, Struct_physical_device> candidates;
+  for(int i=0; i<struct_vulkan->instance.vec_physical_device.size(); i++){
+    Struct_physical_device& struct_device = struct_vulkan->instance.vec_physical_device[i];
+
+    this->rate_device_suitability(struct_device);
+    candidates.insert(std::make_pair(struct_device.selection_score, struct_device));
+  }
+
+  //Select adequat GPU physical device
+  struct_vulkan->device.struct_device.physical_device = VK_NULL_HANDLE;
+  if(candidates.rbegin()->first > 0){
+    struct_vulkan->device.struct_device = candidates.rbegin()->second;
+  }else {
+    throw std::runtime_error("failed to find a suitable GPU!");
+  }
+  if(struct_vulkan->device.struct_device.physical_device == VK_NULL_HANDLE){
+    throw std::runtime_error("[error] failed to find a suitable GPU!");
+  }
+
+  //---------------------------
+}
 void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_device){
   int score = 0;
   //---------------------------
 
-  VkPhysicalDeviceProperties deviceProperties;
-  vkGetPhysicalDeviceProperties(struct_device.physical_device, &deviceProperties);
-
   // Get rid of llvmpipe
-  if(deviceProperties.vendorID == 65541){
+  if(struct_device.vendorID == 65541){
     struct_device.selection_score = 0;
     return;
   }
@@ -69,12 +115,12 @@ void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_
   }
 
   // Check if integrated GPU
-  if(deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
+  if(struct_device.type == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
     score += 100000;
   }
 
   // Maximum possible size of textures affects graphics quality
-  score += deviceProperties.limits.maxImageDimension2D;
+  score += struct_device.max_image_dim;
 
   //---------------------------
   struct_device.selection_score = score;
@@ -161,55 +207,6 @@ sayHello();
 }
 
 //Specific properties
-void VK_physical_device::find_physical_devices(){
-  //---------------------------
-
-  //Find how many GPU are available
-  uint32_t nb_device = 0;
-  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, nullptr);
-  if(nb_device == 0){
-    throw std::runtime_error("[error] failed to find GPUs with Vulkan support!");
-  }
-
-  //List all available GPU and take suitable one
-  vector<VkPhysicalDevice> vec_physical_device(nb_device);
-  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, vec_physical_device.data());
-
-  //Store physical device properties
-  for(VkPhysicalDevice device : vec_physical_device){
-    Struct_physical_device struct_device;
-    struct_device.physical_device = device;
-    this->find_physical_device_properties(struct_device);
-    struct_vulkan->instance.vec_physical_device.push_back(struct_device);
-  }
-
-  //---------------------------
-}
-void VK_physical_device::find_physical_device_best(){
-  //---------------------------
-
-  // Use an ordered map to automatically sort candidates by increasing score
-  std::multimap<int, Struct_physical_device> candidates;
-  for(int i=0; i<struct_vulkan->instance.vec_physical_device.size(); i++){
-    Struct_physical_device& struct_device = struct_vulkan->instance.vec_physical_device[i];
-
-    this->rate_device_suitability(struct_device);
-    candidates.insert(std::make_pair(struct_device.selection_score, struct_device));
-  }
-
-  //Select adequat GPU physical device
-  struct_vulkan->device.struct_device.physical_device = VK_NULL_HANDLE;
-  if(candidates.rbegin()->first > 0){
-    struct_vulkan->device.struct_device = candidates.rbegin()->second;
-  }else {
-    throw std::runtime_error("failed to find a suitable GPU!");
-  }
-  if(struct_vulkan->device.struct_device.physical_device == VK_NULL_HANDLE){
-    throw std::runtime_error("[error] failed to find a suitable GPU!");
-  }
-
-  //---------------------------
-}
 void VK_physical_device::find_physical_device_properties(Struct_physical_device& struct_device){
   //---------------------------
 
@@ -217,6 +214,9 @@ void VK_physical_device::find_physical_device_properties(Struct_physical_device&
   vkGetPhysicalDeviceProperties(struct_device.physical_device, &properties);
   struct_device.properties = properties;
   struct_device.name = properties.deviceName;
+  struct_device.vendorID = properties.vendorID;
+  struct_device.type = properties.deviceType;
+  struct_device.max_image_dim = properties.limits.maxImageDimension2D;
 
   //---------------------------
 }
