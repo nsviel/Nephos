@@ -6,7 +6,6 @@
 #include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
 class VK_buffer;
 class VK_texture;

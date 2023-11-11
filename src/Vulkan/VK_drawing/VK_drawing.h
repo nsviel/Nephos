@@ -10,6 +10,7 @@
 class Struct_vulkan;
 class VK_command;
 class VK_submit;
+class VK_swapchain;
 
 
 class VK_drawing
@@ -37,6 +38,7 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_submit* vk_submit;
+  VK_swapchain* vk_swapchain;
   Timer timer;
 };
 

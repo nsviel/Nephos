@@ -8,6 +8,7 @@ class VK_physical_device;
 class VK_viewport;
 class VK_frame;
 class VK_framebuffer;
+class VK_surface;
 
 
 class VK_swapchain
@@ -30,12 +31,17 @@ public:
   void find_swapchain_surface_format();
   void find_swapchain_presentation_mode();
 
+  //Image acquisition
+  void acquire_next_image(VkSemaphore& semaphore, VkFence& fence);
+  void set_next_frame_ID();
+
 private:
   Struct_vulkan* struct_vulkan;
   VK_viewport* vk_viewport;
   VK_physical_device* vk_physical_device;
   VK_frame* vk_frame;
   VK_framebuffer* vk_framebuffer;
+  VK_surface* vk_surface;
 };
 
 #endif

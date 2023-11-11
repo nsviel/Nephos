@@ -4,9 +4,7 @@
 #include <VK_struct/Struct_entity.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
-class VK_physical_device;
 class VK_command;
 
 
@@ -33,8 +31,8 @@ public:
   uint32_t find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags properties);
 
 private:
-  VK_command* vk_command;
   Struct_vulkan* struct_vulkan;
+  VK_command* vk_command;
 };
 
 #endif

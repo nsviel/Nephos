@@ -8,7 +8,6 @@
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
-class VK_engine;
 class VK_submit;
 
 

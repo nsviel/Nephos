@@ -17,6 +17,7 @@ VK_swapchain::VK_swapchain(Struct_vulkan* struct_vulkan){
   this->vk_viewport = new VK_viewport(struct_vulkan);
   this->vk_frame = new VK_frame(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
+  this->vk_surface = new VK_surface(struct_vulkan);
 
   //---------------------------
 }
@@ -173,4 +174,44 @@ void VK_swapchain::find_swapchain_presentation_mode(){
 
   //---------------------------
   struct_vulkan->swapchain.presentation_mode = presentation_mode;
+}
+
+//Image acquisition
+void VK_swapchain::acquire_next_image(VkSemaphore& semaphore, VkFence& fence){
+  Struct_swapchain* swapchain = &struct_vulkan->swapchain;
+  //---------------------------
+
+  //Wait and reset fence
+  vkWaitForFences(struct_vulkan->device.device, 1, &fence, VK_TRUE, UINT64_MAX);
+  vkResetFences(struct_vulkan->device.device, 1, &fence);
+
+  //Acquiring an image from the swap chain
+  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.device, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
+  if(result == VK_ERROR_OUT_OF_DATE_KHR){
+    this->recreate_swapChain();
+    return;
+  }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
+    throw std::runtime_error("[error] failed to acquire swap chain image!");
+  }
+
+  //Window resizing
+  vk_surface->check_for_resizing();
+  if(result == VK_ERROR_OUT_OF_DATE_KHR){
+    this->recreate_swapChain();
+    return;
+  }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
+    throw std::runtime_error("[error] failed to acquire swap chain image!");
+  }
+
+  //---------------------------
+}
+void VK_swapchain::set_next_frame_ID(){
+  Struct_swapchain* swapchain = &struct_vulkan->swapchain;
+  //---------------------------
+
+  int current_ID = swapchain->frame_presentation_ID;
+  current_ID = (current_ID + 1) % struct_vulkan->instance.max_frame_inflight;
+  swapchain->frame_presentation_ID = current_ID;
+
+  //---------------------------
 }

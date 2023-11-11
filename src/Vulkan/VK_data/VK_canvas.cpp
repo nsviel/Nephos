@@ -1,6 +1,5 @@
 #include "VK_canvas.h"
 
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_data/VK_buffer.h>
 #include <VK_data/VK_data.h>

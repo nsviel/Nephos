@@ -1,12 +1,7 @@
 #include "VK_submit.h"
 
-#include <VK_pipeline/VK_pipeline.h>
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_presentation/VK_swapchain.h>
-#include <VK_presentation/VK_surface.h>
-#include <VK_data/VK_canvas.h>
-#include <VK_binding/VK_descriptor.h>
 
 
 //Constructor / Destructor
@@ -15,53 +10,12 @@ VK_submit::VK_submit(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_swapchain = new VK_swapchain(struct_vulkan);
-  this->vk_surface = new VK_surface(struct_vulkan);
 
   //---------------------------
 }
 VK_submit::~VK_submit(){}
 
 //Main function
-void VK_submit::acquire_next_image(VkSemaphore& semaphore, VkFence& fence){
-  Struct_swapchain* swapchain = &struct_vulkan->swapchain;
-  //---------------------------
-
-  //Wait and reset fence
-  vkWaitForFences(struct_vulkan->device.device, 1, &fence, VK_TRUE, UINT64_MAX);
-  vkResetFences(struct_vulkan->device.device, 1, &fence);
-
-  //Acquiring an image from the swap chain
-  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.device, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
-  if(result == VK_ERROR_OUT_OF_DATE_KHR){
-    vk_swapchain->recreate_swapChain();
-    return;
-  }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
-    throw std::runtime_error("[error] failed to acquire swap chain image!");
-  }
-
-  //Window resizing
-  vk_surface->check_for_resizing();
-  if(result == VK_ERROR_OUT_OF_DATE_KHR){
-    vk_swapchain->recreate_swapChain();
-    return;
-  }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
-    throw std::runtime_error("[error] failed to acquire swap chain image!");
-  }
-
-  //---------------------------
-}
-void VK_submit::set_next_frame_ID(){
-  Struct_swapchain* swapchain = &struct_vulkan->swapchain;
-  //---------------------------
-
-  int current_ID = swapchain->frame_presentation_ID;
-  current_ID = (current_ID + 1) % struct_vulkan->instance.max_frame_inflight;
-  swapchain->frame_presentation_ID = current_ID;
-
-  //---------------------------
-}
-
-//Queue submission
 void VK_submit::submit_command_graphics(VkCommandBuffer command){
   //---------------------------
 

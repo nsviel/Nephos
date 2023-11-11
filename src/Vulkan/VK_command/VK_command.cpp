@@ -2,7 +2,6 @@
 
 #include <VK_command/VK_submit.h>
 #include <VK_main/Struct_vulkan.h>
-#include <VK_main/VK_engine.h>
 
 
 //Constructor / Destructor

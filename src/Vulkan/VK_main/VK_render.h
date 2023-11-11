@@ -2,7 +2,6 @@
 #define VK_RENDER_H
 
 #include <ELE_specific/common.h>
-#include <VK_main/Struct_vulkan.h>
 #include <VK_image/VK_texture.h>
 
 extern "C" {
@@ -11,7 +10,6 @@ extern "C" {
 #include <libswscale/swscale.h>
 }
 
-class VK_engine;
 class VK_drawing;
 class VK_texture;
 class FPS_counter;

@@ -1,17 +1,18 @@
 #include "VK_render.h"
 
-#include <VK_main/VK_engine.h>
+#include <VK_main/Struct_vulkan.h>
 #include <VK_drawing/VK_drawing.h>
 #include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/FPS_counter.h>
+
 
 //Constructor / Destructor
 VK_render::VK_render(Struct_vulkan* struct_vulkan){
   //---------------------------
 
+  this->struct_vulkan = struct_vulkan;
   this->vk_drawing = new VK_drawing(struct_vulkan);
   this->vk_texture = new VK_texture(struct_vulkan);
-  this->struct_vulkan = struct_vulkan;
   this->fps_counter = new FPS_counter(60);
 
   //---------------------------

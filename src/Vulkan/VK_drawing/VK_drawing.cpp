@@ -3,6 +3,7 @@
 #include <VK_main/Struct_vulkan.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
+#include <VK_presentation/VK_swapchain.h>
 
 
 //Constructor / Destructor
@@ -12,6 +13,7 @@ VK_drawing::VK_drawing(Struct_vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_submit = new VK_submit(struct_vulkan);
+  this->vk_swapchain = new VK_swapchain(struct_vulkan);
 
   //---------------------------
 }
@@ -45,7 +47,7 @@ void VK_drawing::run_next_image(){
 
   VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[0];
   VkFence fence = struct_vulkan->synchro.vec_fence[0];
-  vk_submit->acquire_next_image(semaphore, fence);
+  vk_swapchain->acquire_next_image(semaphore, fence);
 
   //---------------------------
 }
@@ -95,7 +97,7 @@ void VK_drawing::run_presentation(){
 
   VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[struct_vulkan->render.vec_renderpass.size()];
   vk_submit->submit_presentation(semaphore);
-  vk_submit->set_next_frame_ID();
+  vk_swapchain->set_next_frame_ID();
 
   //---------------------------
 }
