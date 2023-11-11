@@ -51,9 +51,8 @@ void VK_engine::init(){
 
   //Instance
   vk_extension->init();
-  vk_surface->init_window();
   vk_instance->init_instance();
-  vk_surface->init_surface();
+  vk_surface->init();
   vk_device->init();
   vk_pool->init();
   vk_canvas->create_canvas();
@@ -93,7 +92,7 @@ void VK_engine::clean(){
   vk_data->clean_data_all();
   vk_pool->clean();
   vk_device->clean();
-  vk_surface->clean_surface();
+  vk_surface->clean();
   vk_instance->clean_instance();
 
   //---------------------------

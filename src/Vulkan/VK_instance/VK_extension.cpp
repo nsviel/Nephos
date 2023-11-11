@@ -26,5 +26,13 @@ void VK_extension::init(){
   struct_vulkan->instance.extension_khr.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
   struct_vulkan->instance.extension_khr.push_back(VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME);
 
+  uint32_t glfw_extension_nb = 0;
+  const char** glfw_extensions = glfwGetRequiredInstanceExtensions(&glfw_extension_nb);
+  vector<const char*> extensions(glfw_extensions, glfw_extensions + glfw_extension_nb);
+
+  for(int i=0; i<extensions.size(); i++){
+    struct_vulkan->instance.extension_ext.push_back(extensions[i]);
+  }
+
   //---------------------------
 }

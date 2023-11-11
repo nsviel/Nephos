@@ -16,13 +16,11 @@ public:
 
 public:
   //Main functions
-  void init_window();
-  void init_surface();
-  void clean_surface();
+  void init();
+  void clean();
 
   //Subfunction
   void check_for_resizing();
-  void window_extensions();
 
 private:
   Struct_vulkan* struct_vulkan;
