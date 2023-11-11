@@ -49,7 +49,6 @@ void VK_swapchain::recreate_swapChain(){
   vkDeviceWaitIdle(struct_vulkan->device.device);
 
   //Clean old swapchain
-  vk_frame->clean_frame();
   vk_framebuffer->clean_framebuffers();
   this->clean_swapchain();
 
@@ -64,7 +63,6 @@ void VK_swapchain::clean_swapchain(){
   //---------------------------
 
   vkDestroySwapchainKHR(struct_vulkan->device.device, struct_vulkan->swapchain.swapchain, nullptr);
-
   vk_frame->clean_frame();
 
   //---------------------------
