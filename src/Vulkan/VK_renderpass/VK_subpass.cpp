@@ -34,7 +34,7 @@ void VK_subpass::create_subpass(Struct_renderpass* renderpass){
       this->create_subpass_presentation(subpass);
     }
   }
-
+sayHello();
   //---------------------------
 }
 
