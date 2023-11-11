@@ -2,7 +2,7 @@
 
 #include <Vulkan.h>
 #include <VK_main/VK_imgui.h>
-#include <VK_main/VK_render.h>
+#include <VK_main/VK_engine.h>
 
 
 //Constructor / Destructor
@@ -10,7 +10,7 @@ GUI_renderpass::GUI_renderpass(Vulkan* gui_vulkan){
   //---------------------------
 
   this->vk_imgui = gui_vulkan->get_vk_imgui();
-  this->vk_render = gui_vulkan->get_vk_render();
+  this->vk_engine = gui_vulkan->get_vk_engine();
 
   //---------------------------
 }
@@ -29,7 +29,7 @@ void GUI_renderpass::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  vk_render->add_renderpass_description(renderpass);
+  vk_engine->add_renderpass_description(renderpass);
 }
 void GUI_renderpass::create_subpass(Struct_renderpass* renderpass){
   //---------------------------

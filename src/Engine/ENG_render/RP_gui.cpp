@@ -4,7 +4,6 @@
 #include <Vulkan.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_main/VK_engine.h>
-#include <VK_main/VK_render.h>
 #include <VK_drawing/VK_drawing.h>
 
 
@@ -15,7 +14,6 @@ RP_gui::RP_gui(Engine* engine){
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
-  this->vk_render = eng_vulkan->get_vk_render();
   this->vk_imgui = eng_vulkan->get_vk_imgui();
 
   //---------------------------
@@ -35,7 +33,7 @@ void RP_gui::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  vk_render->add_renderpass_description(renderpass);
+  vk_engine->add_renderpass_description(renderpass);
 }
 void RP_gui::create_subpass(Struct_renderpass* renderpass){
   //---------------------------

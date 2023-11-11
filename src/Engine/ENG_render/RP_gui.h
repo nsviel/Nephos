@@ -7,7 +7,6 @@
 
 class Engine;
 class VK_engine;
-class VK_render;
 class VK_imgui;
 
 
@@ -27,7 +26,6 @@ public:
 
 private:
   VK_engine* vk_engine;
-  VK_render* vk_render;
   VK_imgui* vk_imgui;
 };
 

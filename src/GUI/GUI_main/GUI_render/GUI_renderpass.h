@@ -6,7 +6,7 @@
 #include <ELE_specific/common.h>
 
 class Vulkan;
-class VK_render;
+class VK_engine;
 class VK_imgui;
 
 
@@ -27,7 +27,7 @@ public:
 
 private:
   VK_imgui* vk_imgui;
-  VK_render* vk_render;
+  VK_engine* vk_engine;
 };
 
 #endif

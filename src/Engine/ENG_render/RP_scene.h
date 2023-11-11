@@ -14,7 +14,6 @@ class VK_viewport;
 class VK_descriptor;
 class VK_uniform;
 class VK_drawing;
-class VK_render;
 
 
 class RP_scene
@@ -43,7 +42,6 @@ private:
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
   VK_viewport* vk_viewport;
-  VK_render* vk_render;
 
   Timer timer;
   float time_renderpass;

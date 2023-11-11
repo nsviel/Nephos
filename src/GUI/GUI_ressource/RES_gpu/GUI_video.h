@@ -10,7 +10,7 @@ extern "C" {
 }
 
 class GUI;
-class VK_render;
+class VK_engine;
 
 
 class GUI_video
@@ -32,7 +32,7 @@ public:
   void display_frame();
 
 private:
-  VK_render* vk_render;
+  VK_engine* vk_engine;
 
   VkDescriptorSet descriptor;
   AVFormatContext* format_context;

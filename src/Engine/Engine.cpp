@@ -2,8 +2,6 @@
 
 #include <ELE_window/ELE_window.h>
 #include <Vulkan.h>
-#include <VK_main/VK_engine.h>
-#include <VK_main/VK_render.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_camera/ENG_camera.h>
 #include <ENG_shader/ENG_shader.h>

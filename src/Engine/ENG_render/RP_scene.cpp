@@ -4,7 +4,6 @@
 #include <Vulkan.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_main/VK_engine.h>
-#include <VK_main/VK_render.h>
 #include <VK_drawing/VK_viewport.h>
 #include <ENG_shader/Scene/SCE_shader.h>
 #include <ENG_shader/ENG_shader.h>
@@ -22,7 +21,6 @@ RP_scene::RP_scene(Engine* engine){
 
   this->eng_shader = engine->get_eng_shader();
   this->vk_engine = eng_vulkan->get_vk_engine();
-  this->vk_render = eng_vulkan->get_vk_render();
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
   this->vk_viewport = new VK_viewport(struct_vulkan);
   this->vk_descriptor = new VK_descriptor(struct_vulkan);
@@ -46,7 +44,7 @@ void RP_scene::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  vk_render->add_renderpass_description(renderpass);
+  vk_engine->add_renderpass_description(renderpass);
 }
 void RP_scene::create_subpass(Struct_renderpass* renderpass){
   SCE_shader* sce_shader = eng_shader->get_sce_shader();

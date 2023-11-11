@@ -23,7 +23,8 @@ VK_drawing::~VK_drawing(){}
 void VK_drawing::draw_frame(){
   timer_time t1 = timer.start_t();
   //---------------------------
-
+//TODO CHANGER CETTE CLASS POUR HEADLESS MODE !!!!
+// OU FAIRE UNE AUTRA CLASS RENDER QUI GERE LE RENDERING OFFSCREEEN ET CETTE CLASS POUR LE DRAWING ON SCREEN ???!!
   this->run_next_image();
 
   //Renderpass

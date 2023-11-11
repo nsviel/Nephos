@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class GUI;
-class VK_render;
+class VK_engine;
 
 
 class GUI_image
@@ -23,7 +23,7 @@ public:
   void display_image();
 
 private:
-  VK_render* vk_render;
+  VK_engine* vk_engine;
   VkDescriptorSet descriptor;
 };
 

@@ -6,6 +6,12 @@
 #include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libswscale/swscale.h>
+}
+
 class Struct_vulkan;
 class VK_surface;
 class VK_instance;
@@ -21,6 +27,8 @@ class VK_frame;
 class VK_canvas;
 class VK_extension;
 class VK_pool;
+class VK_drawing;
+class FPS_counter;
 
 
 class VK_engine
@@ -37,15 +45,21 @@ public:
   void clean();
   void device_wait_idle();
   void reload_shader(string shader, string subshader);
-
-  //Data function
-  void insert_object_in_engine(Object* object);
-  void remove_object_in_engine(Object* object);
+  void add_renderpass_description(Struct_renderpass* renderpass);
 
   //Init function
   void init_engine();
   void init_engine_headless();
 
+  //Data function
+  void insert_object_in_engine(Object* object);
+  void remove_object_in_engine(Object* object);
+
+  //Texture function
+  Struct_image* load_texture_from_file(string path);
+  Struct_image* load_texture_from_frame(AVFrame* frame);
+
+  inline Struct_entity* get_canvas(){return &struct_vulkan->data.canvas;}
   inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->render.vec_renderpass[i];}
   inline std::list<Struct_entity*> get_list_data(){return struct_vulkan->data.list_object;}
 
@@ -65,6 +79,8 @@ private:
   VK_reload* vk_reload;
   VK_frame* vk_frame;
   VK_canvas* vk_canvas;
+  VK_drawing* vk_drawing;
+  FPS_counter* fps_counter;
 
   Timer timer;
 };

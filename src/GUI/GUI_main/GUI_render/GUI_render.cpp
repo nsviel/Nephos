@@ -5,7 +5,6 @@
 #include <ELE_window/ELE_window.h>
 #include <Vulkan.h>
 #include <VK_main/VK_engine.h>
-#include <VK_main/VK_render.h>
 
 #include <Engine.h>
 
@@ -22,7 +21,6 @@ GUI_render::GUI_render(GUI* gui){
 
   //this->gui_vulkan = new Vulkan(ele_window);
   this->vk_engine = gui_vulkan->get_vk_engine();
-  this->vk_render = gui_vulkan->get_vk_render();
   this->gui_renderpass = new GUI_renderpass(gui_vulkan);
 
   //---------------------------

@@ -1,5 +1,6 @@
 #include "VK_engine.h"
 
+#include <ELE_specific/FPS_counter.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_data/VK_data.h>
 #include <VK_renderpass/VK_renderpass.h>
@@ -15,6 +16,7 @@
 #include <VK_presentation/VK_frame.h>
 #include <VK_shader/VK_reload.h>
 #include <VK_drawing/VK_viewport.h>
+#include <VK_drawing/VK_drawing.h>
 
 
 //Constructor / Destructor
@@ -37,6 +39,8 @@ VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
   this->vk_reload = new VK_reload(struct_vulkan);
   this->vk_frame = new VK_frame(struct_vulkan);
   this->vk_canvas = new VK_canvas(struct_vulkan);
+  this->vk_drawing = new VK_drawing(struct_vulkan);
+  this->fps_counter = new FPS_counter(60);
 
   //---------------------------
 }
@@ -59,8 +63,11 @@ void VK_engine::init(){
 void VK_engine::loop(){
   //---------------------------
 
+  vk_drawing->draw_frame();
 
   //---------------------------
+  fps_counter->update();
+  struct_vulkan->info.engine_fps = fps_counter->get_fps();
 }
 void VK_engine::device_wait_idle(){
   //---------------------------
@@ -91,6 +98,50 @@ void VK_engine::reload_shader(string shader, string subshader){
   //---------------------------
 
   vk_reload->hot_shader_reload(shader, subshader);
+
+  //---------------------------
+}
+void VK_engine::add_renderpass_description(Struct_renderpass* renderpass){
+  //---------------------------
+
+  struct_vulkan->render.vec_renderpass.push_back(renderpass);
+
+  //---------------------------
+}
+
+//Init function
+void VK_engine::init_engine(){
+  //---------------------------
+
+  //Instance
+  vk_extension->init();
+  vk_instance->init_instance();
+  vk_surface->init();
+  vk_device->init();
+  vk_pool->init();
+  vk_canvas->create_canvas();
+
+  //Rendering
+  vk_swapchain->create_swapchain();
+  vk_viewport->init_viewport();
+  vk_renderpass->init_renderpass();
+  vk_frame->create_frame();
+
+  //---------------------------
+}
+void VK_engine::init_engine_headless(){
+  //---------------------------
+
+  //Instance
+  vk_extension->init();
+  vk_instance->init_instance();
+  vk_device->init();
+  vk_pool->init();
+  vk_canvas->create_canvas();
+
+  //Rendering
+  vk_viewport->init_viewport();
+  vk_renderpass->init_renderpass();
 
   //---------------------------
 }
@@ -130,38 +181,20 @@ void VK_engine::remove_object_in_engine(Object* object){
   //---------------------------
 }
 
-void VK_engine::init_engine(){
+//Texture function
+Struct_image* VK_engine::load_texture_from_file(string path){
   //---------------------------
 
-  //Instance
-  vk_extension->init();
-  vk_instance->init_instance();
-  vk_surface->init();
-  vk_device->init();
-  vk_pool->init();
-  vk_canvas->create_canvas();
-
-  //Rendering
-  vk_swapchain->create_swapchain();
-  vk_viewport->init_viewport();
-  vk_renderpass->init_renderpass();
-  vk_frame->create_frame();
+  Struct_image* texture = vk_texture->load_texture_from_file(path);
 
   //---------------------------
+  return texture;
 }
-void VK_engine::init_engine_headless(){
+Struct_image* VK_engine::load_texture_from_frame(AVFrame* frame){
   //---------------------------
 
-  //Instance
-  vk_extension->init();
-  vk_instance->init_instance();
-  vk_device->init();
-  vk_pool->init();
-  vk_canvas->create_canvas();
-
-  //Rendering
-  vk_viewport->init_viewport();
-  vk_renderpass->init_renderpass();
+  Struct_image* texture = vk_texture->load_texture_from_frame(frame);
 
   //---------------------------
+  return texture;
 }

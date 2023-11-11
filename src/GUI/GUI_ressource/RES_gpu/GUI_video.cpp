@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Vulkan.h>
-#include <VK_main/VK_render.h>
+#include <VK_main/VK_engine.h>
 #include <GUI_main/GUI_render/GUI_render.h>
 
 
@@ -12,7 +12,7 @@ GUI_video::GUI_video(GUI* gui){
 
   GUI_render* gui_render = gui->get_gui_render();
   Vulkan* gui_vulkan = gui_render->get_gui_vulkan();
-  this->vk_render = gui_vulkan->get_vk_render();
+  this->vk_engine = gui_vulkan->get_vk_engine();
 
   this->video_loaded = false;
 
@@ -59,7 +59,7 @@ void GUI_video::acquire_next_frame(){
     int frameFinished;
     result = avcodec_receive_frame(codec_context, frame);
     if(result == 0){
-      Struct_image* image = vk_render->load_texture_from_frame(frame);
+      Struct_image* image = vk_engine->load_texture_from_frame(frame);
       this->descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     }
 

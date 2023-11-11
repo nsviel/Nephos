@@ -3,7 +3,6 @@
 #include <ELE_window/ELE_window.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_imgui.h>
-#include <VK_main/VK_render.h>
 #include <VK_main/VK_info.h>
 
 
@@ -15,7 +14,6 @@ Vulkan::Vulkan(ELE_window* window){
   this->struct_vulkan = new Struct_vulkan();
   this->vk_engine = new VK_engine(struct_vulkan);
   this->vk_imgui = new VK_imgui(struct_vulkan);
-  this->vk_render = new VK_render(struct_vulkan);
   this->vk_info = new VK_info(struct_vulkan);
 
   //---------------------------
@@ -38,7 +36,7 @@ void Vulkan::loop(){
 
   struct_vulkan->window.window_dim = ele_window->compute_window_dim();
 
-  vk_render->loop();
+  vk_engine->loop();
 
   //---------------------------
 }

@@ -13,7 +13,6 @@ class VK_viewport;
 class VK_descriptor;
 class VK_uniform;
 class VK_drawing;
-class VK_render;
 
 
 class RP_edl
@@ -35,7 +34,6 @@ public:
 
 private:
   EDL_shader* edl_shader;
-  VK_render* vk_render;
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
   VK_viewport* vk_viewport;

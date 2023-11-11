@@ -2,7 +2,6 @@
 
 #include <Engine.h>
 #include <VK_main/VK_engine.h>
-#include <VK_main/VK_render.h>
 #include <ENG_render/RP_scene.h>
 #include <ENG_render/RP_edl.h>
 #include <ENG_render/RP_gui.h>
