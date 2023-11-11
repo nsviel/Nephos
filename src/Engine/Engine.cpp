@@ -47,13 +47,9 @@ void Engine::loop(){
 
   eng_camera->loop_cam_mouse();
   eng_data->loop();
-  //eng_vulkan->loop();
+  eng_vulkan->loop();
 
-  static int a =0;
-  a++;
-  if(a<50){
-    eng_vulkan->loop();
-  }
+
 
   //---------------------------
 }

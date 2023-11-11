@@ -16,6 +16,7 @@ RP_gui::RP_gui(Engine* engine){
 
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->vk_render = eng_vulkan->get_vk_render();
+  this->vk_imgui = eng_vulkan->get_vk_imgui();
 
   //---------------------------
 }
@@ -63,9 +64,9 @@ void RP_gui::create_subpass(Struct_renderpass* renderpass){
 }
 
 void RP_gui::draw(Struct_subpass* subpass){
-  //VK_drawing vk_drawing(vk_engine->get_struct_vulkan());
   //---------------------------
 
+  vk_imgui->draw(subpass);
 
   //---------------------------
 }

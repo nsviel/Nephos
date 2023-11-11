@@ -97,7 +97,6 @@ ImTextureID VK_imgui::engine_texture(){
   //---------------------------
 
   Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
-  return 0;
   Struct_framebuffer* frame_edl = renderpass->framebuffer;
   Struct_image* image = &frame_edl->color;
   VkDescriptorSet descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);

@@ -7,14 +7,20 @@
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_render.h>
 
+#include <Engine.h>
+
 
 //Constructor / Destructor
 GUI_render::GUI_render(GUI* gui){
   //---------------------------
 
+  Engine* engine = gui->get_engine();
+  this->gui_vulkan = engine->get_eng_vulkan();
+
+
   ELE_window* ele_window = gui->get_ele_window();
 
-  this->gui_vulkan = new Vulkan(ele_window);
+  //this->gui_vulkan = new Vulkan(ele_window);
   this->vk_engine = gui_vulkan->get_vk_engine();
   this->vk_render = gui_vulkan->get_vk_render();
   this->gui_renderpass = new GUI_renderpass(gui_vulkan);
@@ -27,22 +33,22 @@ GUI_render::~GUI_render(){}
 void GUI_render::init(){
   //---------------------------
 
-  gui_renderpass->init_renderpass();
-  gui_vulkan->init();
+  //gui_renderpass->init_renderpass();
+  //gui_vulkan->init();
 
   //---------------------------
 }
 void GUI_render::loop(){
   //---------------------------
 
-  gui_vulkan->loop();
+  //gui_vulkan->loop();
 
   //---------------------------
 }
 void GUI_render::clean(){
   //---------------------------
 
-  gui_vulkan->clean();
+  //gui_vulkan->clean();
 
   //---------------------------
 }
