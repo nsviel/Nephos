@@ -11,6 +11,7 @@ class Struct_vulkan;
 class VK_command;
 class VK_submit;
 class VK_swapchain;
+class VK_presentation;
 
 
 class VK_drawing
@@ -28,7 +29,6 @@ public:
   void run_next_image();
   void run_renderpass(Struct_renderpass* renderpass, int i);
   void run_command(Struct_renderpass* renderpass, int i);
-  void run_presentation();
 
   //Draw command
   void cmd_draw_data(VkCommandBuffer& command_buffer, Struct_entity* data);
@@ -36,9 +36,11 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
+  VK_presentation* vk_presentation;
   VK_command* vk_command;
   VK_submit* vk_submit;
   VK_swapchain* vk_swapchain;
+
   Timer timer;
 };
 

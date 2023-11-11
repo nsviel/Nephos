@@ -1,5 +1,6 @@
 #include "VK_drawing.h"
 
+#include <VK_drawing/VK_presentation.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
@@ -14,6 +15,7 @@ VK_drawing::VK_drawing(Struct_vulkan* struct_vulkan){
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_submit = new VK_submit(struct_vulkan);
   this->vk_swapchain = new VK_swapchain(struct_vulkan);
+  this->vk_presentation = new VK_presentation(struct_vulkan);
 
   //---------------------------
 }
@@ -36,7 +38,7 @@ void VK_drawing::draw_frame(){
     this->run_command(renderpass, i);
   }
 
-  this->run_presentation();
+  vk_presentation->run_presentation();
 
   //---------------------------
   struct_vulkan->info.draw_frame.push_back(timer.stop_ms(t1));
@@ -48,7 +50,7 @@ void VK_drawing::run_next_image(){
 
   VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[0];
   VkFence fence = struct_vulkan->synchro.vec_fence[0];
-  vk_swapchain->acquire_next_image(semaphore, fence);
+  vk_presentation->acquire_next_image(semaphore, fence);
 
   //---------------------------
 }
@@ -90,15 +92,6 @@ void VK_drawing::run_command(Struct_renderpass* renderpass, int i){
   command.fence = (i != struct_vulkan->render.vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_vulkan->synchro.vec_fence[0];
 
   vk_submit->submit_command_render(&command);
-
-  //---------------------------
-}
-void VK_drawing::run_presentation(){
-  //---------------------------
-
-  VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[struct_vulkan->render.vec_renderpass.size()];
-  vk_swapchain->submit_presentation(semaphore);
-  vk_swapchain->set_next_frame_ID();
 
   //---------------------------
 }

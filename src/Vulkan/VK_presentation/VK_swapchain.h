@@ -33,8 +33,8 @@ public:
 
   //Image acquisition
   void acquire_next_image(VkSemaphore& semaphore, VkFence& fence);
-  void set_next_frame_ID();
   void submit_presentation(VkSemaphore& semaphore);
+  void set_next_frame_ID();
 
 private:
   Struct_vulkan* struct_vulkan;
