@@ -42,6 +42,10 @@ public:
   void insert_object_in_engine(Object* object);
   void remove_object_in_engine(Object* object);
 
+  //Init function
+  void init_engine();
+  void init_engine_headless();
+
   inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->render.vec_renderpass[i];}
   inline std::list<Struct_entity*> get_list_data(){return struct_vulkan->data.list_object;}
 

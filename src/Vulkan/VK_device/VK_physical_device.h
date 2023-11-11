@@ -17,12 +17,12 @@ public:
 public:
   //Main functions
   void init();
-  void select_physical_device();
   void compute_extent();
 
   //Device selection
-  bool is_device_suitable(Struct_physical_device& struct_device);
   void rate_device_suitability(Struct_physical_device& struct_device);
+  bool device_suitability(Struct_physical_device& struct_device);
+  bool device_suitability_headless(Struct_physical_device& struct_device);
 
   //Specific properties
   void find_physical_devices();

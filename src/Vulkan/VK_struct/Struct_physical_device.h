@@ -19,8 +19,8 @@ struct Struct_physical_device{
   std::string name;
   bool has_extension_support;
   uint32_t nb_queue_family;
-  int queue_graphics_idx;
-  int queue_presentation_idx;
+  int queue_graphics_idx = -1;
+  int queue_presentation_idx = -1;
   int selection_score;
 
   //---------------------------

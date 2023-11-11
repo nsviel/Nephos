@@ -1,7 +1,6 @@
 #include "Vulkan.h"
 
 #include <ELE_window/ELE_window.h>
-#include <VK_main/Struct_vulkan.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_main/VK_render.h>
@@ -60,8 +59,6 @@ void Vulkan::wait(){
 void Vulkan::param(ELE_window* ele_window, bool headless){
   //---------------------------
 
-  //vk_engine->set_ele_window(ele_window);
-  struct_vulkan->param.headless_mode = headless;
 
   //---------------------------
 }

@@ -17,16 +17,9 @@ VK_physical_device::~VK_physical_device(){}
 void VK_physical_device::init(){
   //---------------------------
 
-  this->select_physical_device();
-  this->compute_extent();
-
-  //---------------------------
-}
-void VK_physical_device::select_physical_device(){
-  //---------------------------
-
   this->find_physical_devices();
   this->find_physical_device_best();
+  this->compute_extent();
 
   //---------------------------
 }
@@ -55,43 +48,6 @@ void VK_physical_device::compute_extent(){
 }
 
 //Device selection
-bool VK_physical_device::is_device_suitable(Struct_physical_device& struct_device){
-  //---------------------------
-
-  //Queue suitable
-  this->find_queue_nb_family(struct_device);
-  this->find_queue_graphics_idx(struct_device);
-  this->find_queue_presentation_idx(struct_device);
-  if(struct_device.queue_graphics_idx == -1 || struct_device.queue_presentation_idx == -1){
-    return false;
-  }
-
-  //Extension suitable
-  this->find_physical_device_support(struct_device);
-  if(struct_device.has_extension_support == false){
-    return false;
-  }
-
-  //Swap chain suitable
-  this->find_surface_format(struct_device);
-  this->find_presentation_mode(struct_device);
-  bool swapChain_ok = !struct_device.formats.empty() && !struct_device.presentation_mode.empty();
-  if(swapChain_ok == false){
-    return false;
-  }
-
-  //Supported features
-  this->find_physical_device_features(struct_device);
-  bool msaa_ok = struct_device.features.samplerAnisotropy;
-  bool line_ok = struct_device.features.wideLines;
-  bool geom_ok = struct_device.features.geometryShader;
-  if(msaa_ok == false || line_ok == false || geom_ok == false){
-    return false;
-  }
-
-  //---------------------------
-  return true;
-}
 void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_device){
   int score = 0;
   //---------------------------
@@ -106,7 +62,8 @@ void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_
   }
 
   // Check if physical device is suitable
-  if(is_device_suitable(struct_device) == false){
+  bool device_suitable = device_suitability(struct_device);
+  if(device_suitable == false){
     struct_device.selection_score = 0;
     return;
   }
@@ -121,6 +78,86 @@ void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_
 
   //---------------------------
   struct_device.selection_score = score;
+}
+bool VK_physical_device::device_suitability(Struct_physical_device& struct_device){
+  //---------------------------
+
+  //Queue suitable
+  this->find_queue_nb_family(struct_device);
+  this->find_queue_graphics_idx(struct_device);
+  this->find_queue_presentation_idx(struct_device);
+  if(struct_device.queue_graphics_idx == -1){
+    return false;
+  }
+  if(struct_device.queue_presentation_idx == -1 && struct_vulkan->param.headless == false){
+    return false;
+  }
+
+  //Extension suitable
+  this->find_physical_device_support(struct_device);
+  if(struct_device.has_extension_support == false){
+    return false;
+  }
+sayHello();
+  //Swap chain suitable
+  this->find_surface_format(struct_device);sayHello();
+  this->find_presentation_mode(struct_device);
+  bool swapChain_ok = !struct_device.formats.empty() && !struct_device.presentation_mode.empty();
+  if(swapChain_ok == false){
+    return false;
+  }
+sayHello();
+  //Supported features
+  this->find_physical_device_features(struct_device);
+  bool msaa_ok = struct_device.features.samplerAnisotropy;
+  bool line_ok = struct_device.features.wideLines;
+  bool geom_ok = struct_device.features.geometryShader;
+  if(msaa_ok == false || line_ok == false || geom_ok == false){
+    return false;
+  }
+sayHello();
+  //---------------------------
+  return true;
+}
+bool VK_physical_device::device_suitability_headless(Struct_physical_device& struct_device){
+  //---------------------------
+
+  //Queue suitable
+  this->find_queue_nb_family(struct_device);
+  this->find_queue_graphics_idx(struct_device);
+  this->find_queue_presentation_idx(struct_device);
+  if(struct_device.queue_graphics_idx == -1){
+    return false;
+  }
+  if(struct_device.queue_presentation_idx == -1 && struct_vulkan->param.headless == false){
+    return false;
+  }
+
+  //Extension suitable
+  this->find_physical_device_support(struct_device);
+  if(struct_device.has_extension_support == false){
+    return false;
+  }
+sayHello();
+  //Swap chain suitable
+  this->find_surface_format(struct_device);sayHello();
+  this->find_presentation_mode(struct_device);
+  bool swapChain_ok = !struct_device.formats.empty() && !struct_device.presentation_mode.empty();
+  if(swapChain_ok == false){
+    return false;
+  }
+sayHello();
+  //Supported features
+  this->find_physical_device_features(struct_device);
+  bool msaa_ok = struct_device.features.samplerAnisotropy;
+  bool line_ok = struct_device.features.wideLines;
+  bool geom_ok = struct_device.features.geometryShader;
+  if(msaa_ok == false || line_ok == false || geom_ok == false){
+    return false;
+  }
+sayHello();
+  //---------------------------
+  return true;
 }
 
 //Specific properties
@@ -223,35 +260,35 @@ void VK_physical_device::find_surface_capability(Struct_physical_device& struct_
   struct_device.capabilities = capabilities;
 }
 void VK_physical_device::find_surface_format(Struct_physical_device& struct_device){
-  vector<VkSurfaceFormatKHR> formats;
   //---------------------------
 
   //Get supported surface format number
   uint32_t nb_format;
   vkGetPhysicalDeviceSurfaceFormatsKHR(struct_device.physical_device, struct_vulkan->window.surface, &nb_format, nullptr);
+  if(nb_format == 0){
+    cout<<"[error] No physical device surface format"<<endl;
+  }
 
   //Get supported surface format list
-  if(nb_format != 0){
-    formats.resize(nb_format);
-    vkGetPhysicalDeviceSurfaceFormatsKHR(struct_device.physical_device, struct_vulkan->window.surface, &nb_format, formats.data());
-  }
+  vector<VkSurfaceFormatKHR> formats(nb_format);
+  vkGetPhysicalDeviceSurfaceFormatsKHR(struct_device.physical_device, struct_vulkan->window.surface, &nb_format, formats.data());
 
   //---------------------------
   struct_device.formats = formats;
 }
 void VK_physical_device::find_presentation_mode(Struct_physical_device& struct_device){
-  vector<VkPresentModeKHR> presentation_mode;
   //---------------------------
 
   //Get presentation mode number
   uint32_t nb_mode_presentation;
   vkGetPhysicalDeviceSurfacePresentModesKHR(struct_device.physical_device, struct_vulkan->window.surface, &nb_mode_presentation, nullptr);
+  if(nb_mode_presentation == 0){
+    cout<<"[error] No physical device surface presentation mode"<<endl;
+  }
 
   //Get presentation mode list
-  if(nb_mode_presentation != 0){
-    presentation_mode.resize(nb_mode_presentation);
-    vkGetPhysicalDeviceSurfacePresentModesKHR(struct_device.physical_device, struct_vulkan->window.surface, &nb_mode_presentation, presentation_mode.data());
-  }
+  vector<VkPresentModeKHR> presentation_mode(nb_mode_presentation);
+  vkGetPhysicalDeviceSurfacePresentModesKHR(struct_device.physical_device, struct_vulkan->window.surface, &nb_mode_presentation, presentation_mode.data());
 
   //---------------------------
   struct_device.presentation_mode = presentation_mode;
@@ -287,7 +324,6 @@ void VK_physical_device::find_queue_graphics_idx(Struct_physical_device& struct_
   }
 
   //---------------------------
-  struct_device.queue_graphics_idx = -1;
 }
 void VK_physical_device::find_queue_presentation_idx(Struct_physical_device& struct_device){
   //---------------------------
@@ -310,5 +346,4 @@ void VK_physical_device::find_queue_presentation_idx(Struct_physical_device& str
   }
 
   //---------------------------
-  struct_device.queue_presentation_idx = -1;
 }

@@ -1,6 +1,7 @@
 #ifndef VULKAN_BACKEND_H
 #define VULKAN_BACKEND_H
 
+#include <VK_main/Struct_vulkan.h>
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
@@ -31,6 +32,8 @@ public:
   inline VK_imgui* get_vk_imgui(){return vk_imgui;}
   inline VK_render* get_vk_render(){return vk_render;}
   inline VK_info* get_vk_info(){return vk_info;}
+
+  inline void set_headless(){struct_vulkan->param.headless = true;}
 
 private:
   ELE_window* ele_window;
