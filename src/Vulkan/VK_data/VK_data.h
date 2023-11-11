@@ -28,10 +28,10 @@ public:
   void clean_entity(Struct_entity* data);
 
   //Pipeline data description
-  void create_data_description(Struct_pipeline* pipeline);
-  void create_vertex_description(Struct_pipeline* pipeline);
-  void create_attribut_description(Struct_pipeline* pipeline);
-  void combine_description(Struct_pipeline* pipeline);
+  void pipeline_data_description(Struct_pipeline* pipeline);
+  void pipeline_binding_description(Struct_pipeline* pipeline);
+  void pipeline_attribut_description(Struct_pipeline* pipeline);
+  void pipeline_vertex_input_info(Struct_pipeline* pipeline);
 
 private:
   Struct_vulkan* struct_vulkan;

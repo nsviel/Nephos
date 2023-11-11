@@ -60,7 +60,7 @@ void VK_pipeline::create_pipeline_graphics(Struct_renderpass* renderpass, Struct
   vk_descriptor->create_layout_from_required(&pipeline->binding);
   this->check_struct_pipeline_input(pipeline);
   vk_shader->create_pipeline_shader(pipeline);
-  vk_data->create_data_description(pipeline);
+  vk_data->pipeline_data_description(pipeline);
   this->create_pipeline_layout(pipeline);
   this->create_topology(pipeline);
   this->create_dynamic_state(pipeline);
@@ -121,7 +121,7 @@ void VK_pipeline::create_pipeline_presentation(Struct_renderpass* renderpass, St
   this->check_struct_pipeline_input(pipeline);
   vk_descriptor->create_layout_from_required(&pipeline->binding);
   vk_shader->create_pipeline_shader(pipeline);
-  vk_data->create_data_description(pipeline);
+  vk_data->pipeline_data_description(pipeline);
   this->create_pipeline_layout(pipeline);
   this->create_topology(pipeline);
   this->create_dynamic_state(pipeline);
