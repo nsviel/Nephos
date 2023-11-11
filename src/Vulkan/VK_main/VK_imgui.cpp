@@ -2,7 +2,7 @@
 
 #include <VK_main/Struct_vulkan.h>
 #include <VK_main/VK_engine.h>
-#include <VK_command/VK_command_buffer.h>
+#include <VK_binding/VK_pool.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
 
@@ -12,7 +12,7 @@ VK_imgui::VK_imgui(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_command_buffer = new VK_command_buffer(struct_vulkan);
+  this->vk_pool = new VK_pool(struct_vulkan);
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_submit = new VK_submit(struct_vulkan);
   this->vk_engine = new VK_engine(struct_vulkan);
@@ -62,7 +62,7 @@ void VK_imgui::load_font(){
   Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
-  vk_command_buffer->reset_command_pool();
+  vk_pool->reset_command_pool();
 
   VkCommandBufferBeginInfo begin_info = {};
   begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;

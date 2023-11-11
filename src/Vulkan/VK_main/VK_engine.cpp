@@ -10,6 +10,7 @@
 #include <VK_instance/VK_extension.h>
 #include <VK_data/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
+#include <VK_binding/VK_pool.h>
 #include <VK_image/VK_texture.h>
 #include <VK_presentation/VK_swapchain.h>
 #include <VK_presentation/VK_frame.h>
@@ -23,6 +24,7 @@ VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
 
+  this->vk_pool = new VK_pool(struct_vulkan);
   this->vk_extension = new VK_extension(struct_vulkan);
   this->vk_instance = new VK_instance(struct_vulkan);
   this->vk_viewport = new VK_viewport(struct_vulkan);
@@ -53,8 +55,7 @@ void VK_engine::init(){
   vk_instance->init_instance();
   vk_surface->init_surface();
   vk_device->init();
-  vk_command_buffer->create_command_pool();
-  vk_descriptor->create_descriptor_pool();
+  vk_pool->init();
   vk_canvas->create_canvas();
 
   //Rendering
@@ -90,8 +91,7 @@ void VK_engine::clean(){
   vk_swapchain->clean_swapchain();
   vk_canvas->clean_canvas();
   vk_data->clean_data_all();
-  vk_descriptor->clean_descriptor_pool();
-  vk_command_buffer->clean_command_pool();
+  vk_pool->clean();
   vk_device->clean();
   vk_surface->clean_surface();
   vk_instance->clean_instance();

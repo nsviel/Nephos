@@ -16,42 +16,6 @@ VK_command_buffer::VK_command_buffer(Struct_vulkan* struct_vulkan){
 }
 VK_command_buffer::~VK_command_buffer(){}
 
-//Command pool
-void VK_command_buffer::create_command_pool(){
-  //---------------------------
-
-  //Command pool info
-  VkCommandPoolCreateInfo poolInfo{};
-  poolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-  poolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
-  poolInfo.queueFamilyIndex = struct_vulkan->device.struct_device.queue_graphics_idx;
-
-  //Command pool creation
-  VkResult result = vkCreateCommandPool(struct_vulkan->device.device, &poolInfo, nullptr, &struct_vulkan->pool.command);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create command pool!");
-  }
-
-  //---------------------------
-}
-void VK_command_buffer::reset_command_pool(){
-  //---------------------------
-
-  VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->pool.command, 0);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to reset command pool");
-  }
-
-  //---------------------------
-}
-void VK_command_buffer::clean_command_pool(){
-  //---------------------------
-
-  vkDestroyCommandPool(struct_vulkan->device.device, struct_vulkan->pool.command, nullptr);
-
-  //---------------------------
-}
-
 //Command buffer
 void VK_command_buffer::allocate_command_buffer_primary(VkCommandBuffer& command_buffer){
   //---------------------------

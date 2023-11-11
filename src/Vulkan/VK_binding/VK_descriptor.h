@@ -8,7 +8,6 @@
 #include <VK_struct/Struct_renderpass.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
 
 
@@ -36,10 +35,6 @@ public:
   void create_layout_from_required(Struct_binding* binding);
   VkDescriptorSetLayout create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding);
   VkDescriptorSetLayoutBinding add_descriptor_binding(VkDescriptorType type, VkShaderStageFlagBits stage, int count, int binding);
-
-  //Descriptor pool
-  void create_descriptor_pool();
-  VkDescriptorPoolSize add_descriptor_type(VkDescriptorType type, int count);
 
 private:
   Struct_vulkan* struct_vulkan;

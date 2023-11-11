@@ -6,7 +6,7 @@
 
 class Struct_vulkan;
 class VK_engine;
-class VK_command_buffer;
+class VK_pool;
 class VK_submit;
 class VK_command;
 
@@ -31,7 +31,7 @@ private:
   VK_engine* vk_engine;
   VK_submit* vk_submit;
   VK_command* vk_command;
-  VK_command_buffer* vk_command_buffer;
+  VK_pool* vk_pool;
 };
 
 #endif

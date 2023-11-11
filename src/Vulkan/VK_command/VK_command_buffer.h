@@ -18,10 +18,6 @@ public:
   ~VK_command_buffer();
 
 public:
-  //Command pool
-  void create_command_pool();
-  void reset_command_pool();
-  void clean_command_pool();
 
   //Command buffer
   void allocate_command_buffer_primary(VkCommandBuffer& command_buffer);

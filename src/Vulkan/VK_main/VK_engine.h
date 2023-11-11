@@ -21,6 +21,7 @@ class VK_frame;
 class VK_canvas;
 class VK_command_buffer;
 class VK_extension;
+class VK_pool;
 
 
 class VK_engine
@@ -56,6 +57,7 @@ private:
   VK_renderpass* vk_renderpass;
   VK_descriptor* vk_descriptor;
   VK_texture* vk_texture;
+  VK_pool* vk_pool;
   VK_data* vk_data;
   VK_viewport* vk_viewport;
   VK_reload* vk_reload;

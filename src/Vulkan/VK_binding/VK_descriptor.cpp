@@ -1,6 +1,5 @@
 #include "VK_descriptor.h"
 
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 
 
@@ -22,13 +21,7 @@ void VK_descriptor::cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline
 
   //---------------------------
 }
-void VK_descriptor::clean_descriptor_pool(){
-  //---------------------------
 
-  vkDestroyDescriptorPool(struct_vulkan->device.device, struct_vulkan->pool.descriptor, nullptr);
-
-  //---------------------------
-}
 
 //Descriptor set allocation
 void VK_descriptor::allocate_descriptor_set(Struct_binding* binding){
@@ -222,52 +215,4 @@ VkDescriptorSetLayout VK_descriptor::create_layout(vector<VkDescriptorSetLayoutB
 
   //---------------------------
   return descriptor_layout;
-}
-
-//Descriptor pool
-void VK_descriptor::create_descriptor_pool(){
-  //---------------------------
-
-  int pool_nb_uniform = 1000;
-  int pool_nb_sampler = 1000;
-  int pool_nb_descriptor = 1000;
-
-  //Maximum number of descriptor per type
-  VkDescriptorPoolSize pool_size[] ={
-    { VK_DESCRIPTOR_TYPE_SAMPLER, 1000 },
-    { VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, 1000 },
-    { VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, 1000 },
-    { VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, 1000 },
-    { VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER, 1000 },
-    { VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER, 1000 },
-    { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, 1000 },
-    { VK_DESCRIPTOR_TYPE_STORAGE_BUFFER, 1000 },
-    { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, 1000 },
-    { VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC, 1000 },
-    { VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT, 1000 }
-  };
-
-  VkDescriptorPoolCreateInfo pool_info = {};
-  pool_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
-  pool_info.flags = VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT;
-  pool_info.maxSets = 1000 * IM_ARRAYSIZE(pool_size);
-  pool_info.poolSizeCount = (uint32_t)IM_ARRAYSIZE(pool_size);
-  pool_info.pPoolSizes = pool_size;
-
-  VkResult result = vkCreateDescriptorPool(struct_vulkan->device.device, &pool_info, nullptr, &struct_vulkan->pool.descriptor);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create gui");
-  }
-
-  //---------------------------
-}
-VkDescriptorPoolSize VK_descriptor::add_descriptor_type(VkDescriptorType type, int count){
-  //---------------------------
-
-  VkDescriptorPoolSize pool_sampler{};
-  pool_sampler.type = type;
-  pool_sampler.descriptorCount = static_cast<uint32_t>(count);
-
-  //---------------------------
-  return pool_sampler;
 }
