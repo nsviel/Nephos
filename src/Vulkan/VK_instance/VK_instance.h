@@ -3,7 +3,6 @@
 
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class VK_validation;
 class Struct_vulkan;
 

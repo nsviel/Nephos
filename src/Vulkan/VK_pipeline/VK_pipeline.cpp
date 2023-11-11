@@ -1,10 +1,8 @@
 #include "VK_pipeline.h"
 
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_data/VK_data.h>
-#include <VK_drawing/VK_viewport.h>
 #include <VK_shader/VK_shader.h>
 #include <VK_binding/VK_binding.h>
 
@@ -15,7 +13,6 @@ VK_pipeline::VK_pipeline(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_descriptor = new VK_descriptor(struct_vulkan);
-  this->vk_viewport = new VK_viewport(struct_vulkan);
   this->vk_shader = new VK_shader(struct_vulkan);
   this->vk_data = new VK_data(struct_vulkan);
   this->vk_binding = new VK_binding(struct_vulkan);

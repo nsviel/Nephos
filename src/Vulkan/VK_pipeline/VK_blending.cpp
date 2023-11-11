@@ -1,6 +1,5 @@
 #include "VK_blending.h"
 
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 
 

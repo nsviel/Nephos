@@ -6,9 +6,7 @@
 #include <VK_struct/Struct_swapchain.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
-class VK_physical_device;
 class VK_image;
 class VK_synchronization;
 class VK_color;
@@ -30,11 +28,10 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_physical_device* vk_physical_device;
-  VK_image* vk_image;
   VK_synchronization* vk_synchronization;
-  VK_color* vk_color;
   VK_framebuffer* vk_framebuffer;
+  VK_image* vk_image;
+  VK_color* vk_color;
   VK_depth* vk_depth;
 };
 

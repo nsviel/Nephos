@@ -1,7 +1,6 @@
 #include "VK_instance.h"
 
 #include <VK_instance/VK_validation.h>
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 
 
@@ -11,8 +10,6 @@ VK_instance::VK_instance(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_validation = new VK_validation(struct_vulkan);
-
-
 
   //---------------------------
 }

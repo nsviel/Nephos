@@ -5,7 +5,6 @@
 #include <VK_struct/Struct_renderpass.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
 class VK_descriptor;
 class VK_viewport;
@@ -53,7 +52,6 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
   VK_descriptor* vk_descriptor;
-  VK_viewport* vk_viewport;
   VK_shader* vk_shader;
   VK_data* vk_data;
   VK_binding* vk_binding;

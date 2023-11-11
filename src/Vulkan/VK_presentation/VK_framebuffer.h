@@ -6,7 +6,6 @@
 #include <VK_struct/Struct_renderpass.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class VK_color;
 class VK_depth;
 class VK_image;

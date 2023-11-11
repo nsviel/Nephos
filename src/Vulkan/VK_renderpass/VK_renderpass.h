@@ -5,12 +5,9 @@
 #include <VK_struct/Struct_pipeline.h>
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
-class VK_color;
 class VK_pipeline;
 class VK_subpass;
-class VK_frame;
 class VK_framebuffer;
 
 
@@ -33,10 +30,8 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_color* vk_color;
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
-  VK_frame* vk_frame;
   VK_framebuffer* vk_framebuffer;
 };
 

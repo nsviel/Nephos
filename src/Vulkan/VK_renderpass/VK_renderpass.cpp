@@ -1,13 +1,9 @@
 #include "VK_renderpass.h"
 
 #include <VK_renderpass/VK_subpass.h>
-#include <VK_main/VK_engine.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_pipeline/VK_pipeline.h>
-#include <VK_presentation/VK_frame.h>
 #include <VK_presentation/VK_framebuffer.h>
-#include <VK_image/VK_color.h>
-#include <VK_image/VK_depth.h>
 
 
 //Constructor / Destructor
@@ -15,10 +11,8 @@ VK_renderpass::VK_renderpass(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_color = new VK_color(struct_vulkan);
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
   this->vk_subpass = new VK_subpass(struct_vulkan);
-  this->vk_frame = new VK_frame(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
 
   //---------------------------

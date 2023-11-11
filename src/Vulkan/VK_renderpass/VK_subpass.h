@@ -5,7 +5,6 @@
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
-class VK_engine;
 class VK_command_buffer;
 class VK_color;
 class VK_depth;

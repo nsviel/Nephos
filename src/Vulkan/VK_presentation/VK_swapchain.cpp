@@ -1,12 +1,10 @@
 #include "VK_swapchain.h"
 
 #include <VK_presentation/VK_frame.h>
-#include <VK_main/VK_engine.h>
 #include <VK_drawing/VK_viewport.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_struct/Struct_framebuffer.h>
 #include <VK_presentation/VK_framebuffer.h>
-#include <VK_image/VK_depth.h>
 #include <VK_device/VK_physical_device.h>
 
 
@@ -16,7 +14,6 @@ VK_swapchain::VK_swapchain(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_physical_device = new VK_physical_device(struct_vulkan);
-  this->vk_depth = new VK_depth(struct_vulkan);
   this->vk_viewport = new VK_viewport(struct_vulkan);
   this->vk_frame = new VK_frame(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);

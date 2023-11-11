@@ -8,7 +8,6 @@
 #include <VK_image/VK_depth.h>
 #include <VK_image/VK_color.h>
 #include <VK_image/VK_image.h>
-#include <VK_device/VK_physical_device.h>
 
 
 //Constructor / Destructor
@@ -16,7 +15,6 @@ VK_frame::VK_frame(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_physical_device = new VK_physical_device(struct_vulkan);
   this->vk_synchronization = new VK_synchronization(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
   this->vk_image = new VK_image(struct_vulkan);

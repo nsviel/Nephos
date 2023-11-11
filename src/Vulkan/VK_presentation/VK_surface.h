@@ -3,7 +3,6 @@
 
 #include <ELE_specific/common.h>
 
-class VK_engine;
 class Struct_vulkan;
 class ELE_window;
 
