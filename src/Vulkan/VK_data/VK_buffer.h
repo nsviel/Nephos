@@ -19,13 +19,12 @@ public:
 
 public:
   //Main functions
-  void create_buffer(Struct_entity* data);
-  void clean_buffer(Struct_entity* data);
+  void create_buffers(Struct_entity* data);
+  void clean_buffers(Struct_entity* data);
 
   //Data buffer functions
-  void create_buffer_uv(Struct_entity* data);
-  void create_buffer_xyz(Struct_entity* data);
-  void create_buffer_rgb(Struct_entity* data);
+  template <typename VertexType> void create_buffer(Struct_buffer* buffer, vector<VertexType>& vertices);
+  void clean_buffer(Struct_buffer* buffer);
 
   //Buffer functions
   void bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);

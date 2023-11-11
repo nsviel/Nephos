@@ -8,7 +8,7 @@ struct Struct_buffer{
   //---------------------------
 
   VkBuffer vbo = VK_NULL_HANDLE;
-  VkDeviceMemory mem;
+  VkDeviceMemory mem = VK_NULL_HANDLE;
 
   //---------------------------
 };

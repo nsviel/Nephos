@@ -41,7 +41,7 @@ void VK_data::insert_object(Object* object){
 
   //Apply adequat init functions
   this->check_for_attribut(data);
-  vk_buffer->create_buffer(data);
+  vk_buffer->create_buffers(data);
   vk_command_buffer->allocate_command_buffer_secondary(data);
   vk_descriptor->create_layout_from_required(&data->binding);
   vk_descriptor->create_binding(&data->binding);
@@ -58,7 +58,7 @@ void VK_data::clean_data(Struct_entity* data){
 
   vkDeviceWaitIdle(struct_vulkan->device.device);
 
-  vk_buffer->clean_buffer(data);
+  vk_buffer->clean_buffers(data);
   vk_texture->clean_texture(data);
   vk_descriptor->clean_binding(&data->binding);
 

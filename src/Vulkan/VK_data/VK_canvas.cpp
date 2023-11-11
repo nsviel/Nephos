@@ -52,14 +52,14 @@ void VK_canvas::create_canvas(){
   struct_vulkan->data.canvas.object = canvas_obj;
 
   vk_data->check_for_attribut(&struct_vulkan->data.canvas);
-  vk_buffer->create_buffer(&struct_vulkan->data.canvas);
+  vk_buffer->create_buffers(&struct_vulkan->data.canvas);
 
   //---------------------------
 }
 void VK_canvas::clean_canvas(){
   //---------------------------
 
-  vk_buffer->clean_buffer(&struct_vulkan->data.canvas);
+  vk_buffer->clean_buffers(&struct_vulkan->data.canvas);
   vk_texture->clean_texture(&struct_vulkan->data.canvas);
 
   //---------------------------
