@@ -44,39 +44,19 @@ void VK_pipeline::cmd_bind_pipeline(Struct_subpass* subpass, Struct_pipeline* pi
 void VK_pipeline::clean_pipeline(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
+  for(int i=0; i<renderpass->vec_subpass.size(); i++){
+    Struct_subpass* subpass = renderpass->vec_subpass[i];
 
-  for(int i=0; i<subpass->vec_pipeline.size(); i++){
-    Struct_pipeline* pipeline = subpass->vec_pipeline[i];
-    this->clean_pipeline_struct(pipeline);
+    for(int j=0; j<subpass->vec_pipeline.size(); j++){
+      Struct_pipeline* pipeline = subpass->vec_pipeline[j];
+      this->clean_pipeline_struct(pipeline);
+    }
   }
 
   //---------------------------
 }
-void VK_pipeline::clean_pipeline_struct(Struct_pipeline* pipeline){
-  //---------------------------
 
-  vkDestroyPipeline(struct_vulkan->device.device, pipeline->pipeline, nullptr);
-  vkDestroyPipelineLayout(struct_vulkan->device.device, pipeline->layout, nullptr);
-  vk_descriptor->clean_binding(&pipeline->binding);
-
-  //---------------------------
-}
-void VK_pipeline::clean_pipeline_shader_module(Struct_pipeline* pipeline){
-  //---------------------------
-
-  for(int i=0; i<pipeline->info.vec_shader_couple.size(); i++){
-    pair<VkShaderModule, VkShaderModule> shader_couple = pipeline->info.vec_shader_couple[i];
-    vkDestroyShaderModule(struct_vulkan->device.device, shader_couple.first, nullptr);
-    vkDestroyShaderModule(struct_vulkan->device.device, shader_couple.second, nullptr);
-  }
-  pipeline->info.vec_shader_couple.clear();
-  pipeline->info.shader_stage.clear();
-
-  //---------------------------
-}
-
-//Pipeline creation
+//Pipeline creation / cleaning
 void VK_pipeline::create_pipeline_struct(Struct_renderpass* renderpass, Struct_pipeline* pipeline){
   //---------------------------
 
@@ -151,6 +131,28 @@ void VK_pipeline::create_pipeline_layout(Struct_pipeline* pipeline){
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create pipeline layout!");
   }
+
+  //---------------------------
+}
+void VK_pipeline::clean_pipeline_struct(Struct_pipeline* pipeline){
+  //---------------------------
+
+  vkDestroyPipeline(struct_vulkan->device.device, pipeline->pipeline, nullptr);
+  vkDestroyPipelineLayout(struct_vulkan->device.device, pipeline->layout, nullptr);
+  vk_descriptor->clean_binding(&pipeline->binding);
+
+  //---------------------------
+}
+void VK_pipeline::clean_pipeline_shader_module(Struct_pipeline* pipeline){
+  //---------------------------
+
+  for(int i=0; i<pipeline->info.vec_shader_couple.size(); i++){
+    pair<VkShaderModule, VkShaderModule> shader_couple = pipeline->info.vec_shader_couple[i];
+    vkDestroyShaderModule(struct_vulkan->device.device, shader_couple.first, nullptr);
+    vkDestroyShaderModule(struct_vulkan->device.device, shader_couple.second, nullptr);
+  }
+  pipeline->info.vec_shader_couple.clear();
+  pipeline->info.shader_stage.clear();
 
   //---------------------------
 }
