@@ -230,7 +230,7 @@ void VK_swapchain::submit_presentation(VkSemaphore& semaphore){
   presentation_info.pResults = nullptr; // Optional
 
   VkResult result = vkQueuePresentKHR(struct_vulkan->device.queue_presentation, &presentation_info);
-  
+
   if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || struct_vulkan->window.is_resized){
     this->recreate_swapChain();
   }else if(result != VK_SUCCESS){

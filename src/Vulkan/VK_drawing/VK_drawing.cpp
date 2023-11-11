@@ -21,8 +21,7 @@ VK_drawing::~VK_drawing(){}
 void VK_drawing::draw_frame(){
   timer_time t1 = timer.start_t();
   //---------------------------
-//TODO CHANGER CETTE CLASS POUR HEADLESS MODE !!!!
-// OU FAIRE UNE AUTRA CLASS RENDER QUI GERE LE RENDERING OFFSCREEEN ET CETTE CLASS POUR LE DRAWING ON SCREEN ???!!
+/////// BUG RECREATE SWAPCHAIN MARCHE PLUS
   VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[0];
   VkFence fence = struct_vulkan->synchro.vec_fence[0];
   vk_presentation->acquire_next_image(semaphore, fence);
