@@ -72,6 +72,13 @@ void VK_command::start_command_buffer_secondary(Struct_renderpass* renderpass, V
 
   //---------------------------
 }
+void VK_command::reset_command_buffer(VkCommandBuffer& command_buffer){
+  //---------------------------
+
+  vkResetCommandBuffer(command_buffer, 0);
+
+  //---------------------------
+}
 void VK_command::stop_command_buffer(VkCommandBuffer command_buffer){
   //---------------------------
 
@@ -122,7 +129,7 @@ void VK_command::start_render_pass(Struct_renderpass* renderpass, VkFramebuffer&
 
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
-  vkResetCommandBuffer(subpass->command_buffer, 0);
+  this->reset_command_buffer(subpass->command_buffer);
   this->start_command_buffer_primary(subpass->command_buffer);
 
   std::array<VkClearValue, 2> clear_value{};

@@ -47,11 +47,11 @@ void VK_imgui::init(){
 
   //---------------------------
 }
-void VK_imgui::draw(Struct_subpass* subpass){
+void VK_imgui::draw(VkCommandBuffer& command_buffer){
   //---------------------------
 
   ImDrawData* draw_data = ImGui::GetDrawData();
-  ImGui_ImplVulkan_RenderDrawData(draw_data, subpass->command_buffer);
+  ImGui_ImplVulkan_RenderDrawData(draw_data, command_buffer);
 
   //---------------------------
 }

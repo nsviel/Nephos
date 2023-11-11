@@ -17,7 +17,7 @@ public:
 public:
   //Main function
   void init_viewport();
-  void cmd_viewport(Struct_subpass* subpass);
+  void cmd_viewport(VkCommandBuffer& command_buffer);
   void update_viewport();
 
   //Subfunction

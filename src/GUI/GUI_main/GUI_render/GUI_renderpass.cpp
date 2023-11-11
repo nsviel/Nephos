@@ -61,7 +61,7 @@ void GUI_renderpass::create_subpass(Struct_renderpass* renderpass){
 void GUI_renderpass::draw(Struct_subpass* subpass){
   //---------------------------
 
-  vk_imgui->draw(subpass);
+  vk_imgui->draw(subpass->command_buffer);
 
   //---------------------------
 }

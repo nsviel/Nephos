@@ -23,6 +23,7 @@ public:
   void start_command_buffer_once(VkCommandBuffer& command_buffer);
   void start_command_buffer_primary(VkCommandBuffer command_buffer);
   void start_command_buffer_secondary(Struct_renderpass* renderpass, VkCommandBuffer command_buffer);
+  void reset_command_buffer(VkCommandBuffer& command_buffer);
   void stop_command_buffer(VkCommandBuffer command_buffer);
   void allocate_command_buffer_primary(VkCommandBuffer& command_buffer);
   void allocate_command_buffer_secondary(Struct_entity* data);

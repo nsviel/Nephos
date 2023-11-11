@@ -87,7 +87,7 @@ void RP_scene::draw_scene(Struct_subpass* subpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
-  vk_viewport->cmd_viewport(subpass);
+  vk_viewport->cmd_viewport(subpass->command_buffer);
   this->cmd_draw_point(subpass);
   this->cmd_draw_line(subpass);
 
@@ -109,8 +109,8 @@ void RP_scene::cmd_draw_point(Struct_subpass* subpass){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
       vk_uniform->update_uniform("point_size", &data->binding, data->object->draw_point_size);
 
-      vk_descriptor->cmd_bind_descriptor(subpass, pipeline, data->binding.descriptor.set);
-      vk_drawing->cmd_draw_data(subpass, data);
+      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, data->binding.descriptor.set);
+      vk_drawing->cmd_draw_data(subpass->command_buffer, data);
     }
   }
 
@@ -130,9 +130,9 @@ void RP_scene::cmd_draw_line(Struct_subpass* subpass){
     if(data->object->is_visible && data->object->draw_type_name == "line"){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
 
-      vk_descriptor->cmd_bind_descriptor(subpass, pipeline, data->binding.descriptor.set);
-      vk_drawing->cmd_line_with(subpass, data);
-      vk_drawing->cmd_draw_data(subpass, data);
+      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, data->binding.descriptor.set);
+      vk_drawing->cmd_line_with(subpass->command_buffer, data);
+      vk_drawing->cmd_draw_data(subpass->command_buffer, data);
     }
   }
 

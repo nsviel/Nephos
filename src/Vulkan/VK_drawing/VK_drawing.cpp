@@ -103,27 +103,27 @@ void VK_drawing::run_presentation(){
 }
 
 //Draw command
-void VK_drawing::cmd_draw_data(Struct_subpass* subpass, Struct_entity* data){
+void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, Struct_entity* data){
   //---------------------------
 
   VkDeviceSize offsets[] = {0};
   if(data->xyz.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(subpass->command_buffer, 0, 1, &data->xyz.vbo, offsets);
+    vkCmdBindVertexBuffers(command_buffer, 0, 1, &data->xyz.vbo, offsets);
   }
   if(data->rgb.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(subpass->command_buffer, 1, 1, &data->rgb.vbo, offsets);
+    vkCmdBindVertexBuffers(command_buffer, 1, 1, &data->rgb.vbo, offsets);
   }
   if(data->uv.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(subpass->command_buffer, 2, 1, &data->uv.vbo, offsets);
+    vkCmdBindVertexBuffers(command_buffer, 2, 1, &data->uv.vbo, offsets);
   }
-  vkCmdDraw(subpass->command_buffer, data->object->xyz.size(), 1, 0, 0);
+  vkCmdDraw(command_buffer, data->object->xyz.size(), 1, 0, 0);
 
   //---------------------------
 }
-void VK_drawing::cmd_line_with(Struct_subpass* subpass, Struct_entity* data){
+void VK_drawing::cmd_line_with(VkCommandBuffer& command_buffer, Struct_entity* data){
   //---------------------------
 
-  vkCmdSetLineWidth(subpass->command_buffer, data->object->draw_line_width);
+  vkCmdSetLineWidth(command_buffer, data->object->draw_line_width);
 
   //---------------------------
 }

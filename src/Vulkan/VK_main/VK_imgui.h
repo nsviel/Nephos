@@ -21,7 +21,7 @@ public:
 public:
   //Main functions
   void init();
-  void draw(Struct_subpass* subpass);
+  void draw(VkCommandBuffer& command_buffer);
   void load_font();
   void clean();
   ImTextureID engine_texture();

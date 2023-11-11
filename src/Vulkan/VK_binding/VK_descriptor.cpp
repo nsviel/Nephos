@@ -156,10 +156,10 @@ void VK_descriptor::update_descriptor_sampler(Struct_binding* binding, Struct_im
 }
 
 //Subfunction
-void VK_descriptor::cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline* pipeline, VkDescriptorSet set){
+void VK_descriptor::cmd_bind_descriptor(VkCommandBuffer& command_buffer, Struct_pipeline* pipeline, VkDescriptorSet set){
   //---------------------------
 
-  vkCmdBindDescriptorSets(subpass->command_buffer, TYP_BIND_PIPELINE_GRAPHICS, pipeline->layout, 0, 1, &set, 0, nullptr);
+  vkCmdBindDescriptorSets(command_buffer, TYP_BIND_PIPELINE_GRAPHICS, pipeline->layout, 0, 1, &set, 0, nullptr);
 
   //---------------------------
 }

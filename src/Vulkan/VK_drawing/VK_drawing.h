@@ -31,8 +31,8 @@ public:
   void run_presentation();
 
   //Draw command
-  void cmd_draw_data(Struct_subpass* subpass, Struct_entity* data);
-  void cmd_line_with(Struct_subpass* subpass, Struct_entity* data);
+  void cmd_draw_data(VkCommandBuffer& command_buffer, Struct_entity* data);
+  void cmd_line_with(VkCommandBuffer& command_buffer, Struct_entity* data);
 
 private:
   Struct_vulkan* struct_vulkan;

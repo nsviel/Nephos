@@ -103,12 +103,12 @@ void RP_edl::draw_command(Struct_subpass* subpass){
   EDL_param* edl_param = edl_shader->get_edl_param();
   Struct_pipeline* pipeline = subpass->get_pipeline();
 
-  vk_viewport->cmd_viewport(subpass);
+  vk_viewport->cmd_viewport(subpass->command_buffer);
   vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
   edl_shader->update_shader();
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
-  vk_descriptor->cmd_bind_descriptor(subpass, pipeline, pipeline->binding.descriptor.set);
-  vk_drawing->cmd_draw_data(subpass, vk_render->get_canvas());
+  vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, pipeline->binding.descriptor.set);
+  vk_drawing->cmd_draw_data(subpass->command_buffer, vk_render->get_canvas());
 
   //---------------------------
 }

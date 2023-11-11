@@ -31,7 +31,7 @@ public:
   void update_descriptor_sampler(Struct_binding* binding, Struct_image* image);
 
   //Subfunction
-  void cmd_bind_descriptor(Struct_subpass* subpass, Struct_pipeline* pipeline, VkDescriptorSet set);
+  void cmd_bind_descriptor(VkCommandBuffer& command_buffer, Struct_pipeline* pipeline, VkDescriptorSet set);
   void allocate_descriptor_set(Struct_binding* binding);
   void create_layout_from_required(Struct_binding* binding);
   VkDescriptorSetLayout create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding);
