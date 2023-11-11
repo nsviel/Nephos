@@ -56,10 +56,7 @@ void VK_swapchain::recreate_swapChain(){
   //Create new swapchain
   this->create_swapchain();
   vk_frame->create_frame();
-  for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
-    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
-    vk_framebuffer->create_framebuffer(renderpass);
-  }
+  vk_framebuffer->create_framebuffers();
 
   //---------------------------
 }
