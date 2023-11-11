@@ -28,7 +28,6 @@ void VK_blending::create_color_blending_state(Struct_pipeline* pipeline){
   color_blend_attachment.alphaBlendOp = VK_BLEND_OP_ADD; // Optional
 
   //---------------------------
-
   pipeline->info.color_blend_attachment = color_blend_attachment;
 }
 void VK_blending::create_color_blending(Struct_pipeline* pipeline){

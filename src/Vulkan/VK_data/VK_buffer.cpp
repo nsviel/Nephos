@@ -22,18 +22,8 @@ void VK_buffer::create_buffer(Struct_entity* data){
   //---------------------------
 
   this->create_buffer_xyz(data);
-
-  if(data->has_rgb){
-    this->create_buffer_rgb(data);
-  }
-
-  if(data->has_uv){
-    this->create_buffer_uv(data);
-  }
-
-  if(data->object->path_text != ""){
-    //vk_texture->load_texture(object);
-  }
+  this->create_buffer_rgb(data);
+  this->create_buffer_uv(data);
 
   //---------------------------
 }
@@ -86,6 +76,7 @@ void VK_buffer::create_buffer_xyz(Struct_entity* data){
   //---------------------------
 }
 void VK_buffer::create_buffer_rgb(Struct_entity* data){
+  if(data->has_rgb == false){return;}
   vector<vec4>& vertices = data->object->rgb;
   VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
   //---------------------------
@@ -111,6 +102,7 @@ void VK_buffer::create_buffer_rgb(Struct_entity* data){
   //---------------------------
 }
 void VK_buffer::create_buffer_uv(Struct_entity* data){
+  if(data->has_uv == false){return;}
   vector<vec2>& vertices = data->object->uv;
   VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
   //---------------------------
