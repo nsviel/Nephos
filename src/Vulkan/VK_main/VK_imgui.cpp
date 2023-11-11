@@ -63,16 +63,7 @@ void VK_imgui::load_font(){
   Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   vk_pool->reset_command_pool();
-
-  VkCommandBufferBeginInfo begin_info = {};
-  begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-  begin_info.flags |= VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-  result = vkBeginCommandBuffer(subpass->command_buffer, &begin_info);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
-  }
-
-
+  vk_command->start_command_buffer_once(subpass->command_buffer);
 
   ImGui_ImplVulkan_CreateFontsTexture(subpass->command_buffer);
 

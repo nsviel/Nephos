@@ -166,6 +166,15 @@ void VK_command::stop_render_pass(Struct_renderpass* renderpass){
 }
 
 //Image layout transition
+void VK_command::image_layout_transition_single(Struct_image* image, VkImageLayout old_layout, VkImageLayout new_layout){
+  //---------------------------
+
+  VkCommandBuffer command_buffer = singletime_command_begin();
+  this->image_layout_transition(command_buffer, image, old_layout, new_layout);
+  this->singletime_command_end(command_buffer);
+
+  //---------------------------
+}
 void VK_command::image_layout_transition(VkCommandBuffer command_buffer, Struct_image* image, VkImageLayout old_layout, VkImageLayout new_layout){
   //---------------------------
 
@@ -202,15 +211,6 @@ void VK_command::image_layout_transition(VkCommandBuffer command_buffer, Struct_
   }
 
   vkCmdPipelineBarrier(command_buffer, sourceStage, destinationStage, 0, 0, nullptr, 0, nullptr, 1, &barrier);
-
-  //---------------------------
-}
-void VK_command::image_layout_transition_single(Struct_image* image, VkImageLayout old_layout, VkImageLayout new_layout){
-  //---------------------------
-
-  VkCommandBuffer command_buffer = singletime_command_begin();
-  this->image_layout_transition(command_buffer, image, old_layout, new_layout);
-  this->singletime_command_end(command_buffer);
 
   //---------------------------
 }
