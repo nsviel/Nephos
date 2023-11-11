@@ -153,7 +153,7 @@ bool VK_physical_device::device_suitability(Struct_physical_device& struct_devic
   }
 
   //Swap chain suitable
-  this->find_surface_capability(struct_vulkan->device.struct_device);
+  this->find_surface_capability(struct_device);
   this->find_surface_format(struct_device);
   this->find_presentation_mode(struct_device);
   bool swapChain_ok = !struct_device.formats.empty() && !struct_device.presentation_mode.empty();

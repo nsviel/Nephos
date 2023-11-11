@@ -29,7 +29,7 @@ void VK_renderpass::init_renderpass(){
   }
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
-    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];say("--");
+    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     vk_subpass->create_subpass(renderpass);
     this->create_renderpass_struct(renderpass);
   }

@@ -155,16 +155,13 @@ void VK_engine::init_engine_headless(){
   //Instance
   vk_extension->init();
   vk_instance->init_instance();
-    //vk_surface->init();
   vk_device->init();
   vk_pool->init();
   vk_canvas->create_canvas();
 
   //Rendering
-    //vk_swapchain->create_swapchain();
   vk_viewport->init_viewport();
   vk_renderpass->init_renderpass();
-    vk_frame->create_frame();
 
   //---------------------------
 }
