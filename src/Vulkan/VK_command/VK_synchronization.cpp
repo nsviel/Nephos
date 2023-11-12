@@ -34,10 +34,10 @@ void VK_synchronization::init_frame_sync(Struct_frame* frame){
   this->create_semaphore(semaphore_render_done);
   frame->semaphore_render_done = semaphore_render_done;
 
-  //Create fence
-  VkFence fence;
-  this->create_fence(fence);
-  struct_vulkan->synchro.vec_fence.push_back(fence);
+  static bool once = true;
+  if(once)
+    this->create_fence(struct_vulkan->synchro.fence);
+  once = false;
 
   //---------------------------
 }
@@ -49,7 +49,10 @@ void VK_synchronization::clean_frame_sync(Struct_frame* frame){
   this->clean_vec_semaphore(frame->vec_semaphore_render);
 
 
-  this->clean_vec_fence(struct_vulkan->synchro.vec_fence);
+  static bool once = true;
+  if(once)
+    this->clean_fence(struct_vulkan->synchro.fence);
+  once = false;
 
   //---------------------------
 }
@@ -79,6 +82,8 @@ void VK_synchronization::create_fence(VkFence& fence){
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create fence");
   }
+
+  vkResetFences(struct_vulkan->device.device, 1, &fence);
 
   //---------------------------
 }
