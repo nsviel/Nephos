@@ -17,7 +17,7 @@ public:
 
 public:
   //Main functions
-  void acquire_next_image(VkSemaphore& semaphore, VkFence& fence);
+  void acquire_next_image(VkSemaphore& semaphore);
   void run_presentation(VkSemaphore& semaphore, VkFence& fence);
 
   //Subfunction

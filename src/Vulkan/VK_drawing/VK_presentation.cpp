@@ -18,11 +18,9 @@ VK_presentation::VK_presentation(Struct_vulkan* struct_vulkan){
 VK_presentation::~VK_presentation(){}
 
 //Main function
-void VK_presentation::acquire_next_image(VkSemaphore& semaphore, VkFence& fence){
+void VK_presentation::acquire_next_image(VkSemaphore& semaphore){
   Struct_swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
-
-
 
   //Acquiring an image from the swap chain
   VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.device, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
@@ -47,12 +45,12 @@ void VK_presentation::acquire_next_image(VkSemaphore& semaphore, VkFence& fence)
 void VK_presentation::run_presentation(VkSemaphore& semaphore, VkFence& fence){
   //---------------------------
 
-  this->submit_presentation(semaphore);
-  this->set_next_frame_ID();
-
   //Wait and reset fence
   vkWaitForFences(struct_vulkan->device.device, 1, &fence, VK_TRUE, UINT64_MAX);
   vkResetFences(struct_vulkan->device.device, 1, &fence);
+
+  this->submit_presentation(semaphore);
+  this->set_next_frame_ID();
 
   //---------------------------
 }

@@ -34,10 +34,7 @@ void VK_synchronization::init_frame_sync(Struct_frame* frame){
   this->create_semaphore(semaphore_render_done);
   frame->semaphore_render_done = semaphore_render_done;
 
-  static bool once = true;
-  if(once)
-    this->create_fence(struct_vulkan->synchro.fence);
-  once = false;
+  this->create_fence(frame->fence);
 
   //---------------------------
 }
@@ -47,12 +44,7 @@ void VK_synchronization::clean_frame_sync(Struct_frame* frame){
   this->clean_semaphore(frame->semaphore_image_ready);
   this->clean_semaphore(frame->semaphore_render_done);
   this->clean_vec_semaphore(frame->vec_semaphore_render);
-
-
-  static bool once = true;
-  if(once)
-    this->clean_fence(struct_vulkan->synchro.fence);
-  once = false;
+  this->clean_fence(frame->fence);
 
   //---------------------------
 }

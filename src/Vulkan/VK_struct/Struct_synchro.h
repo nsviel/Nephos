@@ -7,8 +7,7 @@
 struct Struct_synchro{
   //---------------------------
 
-  std::vector<VkFence> vec_fence;
-  VkFence fence;
+
 
   //---------------------------
 };
