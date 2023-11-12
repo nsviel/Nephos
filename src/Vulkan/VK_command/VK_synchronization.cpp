@@ -32,7 +32,20 @@ void VK_synchronization::init_frame_sync(Struct_frame* frame){
   //Create fence
   VkFence fence;
   this->create_fence(fence);
-  struct_vulkan->synchro.fence = fence;
+  struct_vulkan->synchro.vec_fence.push_back(fence);
+
+
+
+  //Create semaphore - Image ready
+  VkSemaphore semaphore_image_ready;
+  this->create_semaphore(semaphore_image_ready);
+  frame->semaphore_image_ready = semaphore_image_ready;
+
+  //Create semaphore - Image ready
+  VkSemaphore semaphore_render_done;
+  this->create_semaphore(semaphore_render_done);
+  frame->semaphore_render_done = semaphore_render_done;
+
 
   //---------------------------
 }
@@ -40,7 +53,14 @@ void VK_synchronization::clean_frame_sync(Struct_frame* frame){
   //---------------------------
 
   this->clean_vec_semaphore(struct_vulkan->synchro.vec_semaphore_render);
-  this->clean_fence(struct_vulkan->synchro.fence);
+  this->clean_vec_fence(struct_vulkan->synchro.vec_fence);
+
+
+
+  this->clean_semaphore(frame->semaphore_image_ready);
+  this->clean_semaphore(frame->semaphore_render_done);
+
+
 
   //---------------------------
 }

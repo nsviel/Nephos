@@ -10,11 +10,11 @@ struct Struct_frame{
 
   //Main object
   VkFramebuffer fbo;
+  VkSemaphore semaphore_image_ready;
+  VkSemaphore semaphore_render_done;
 
   //Attachment
   Struct_image image;
-
-  //A suprimer !!!
   Struct_image depth;
 
   //---------------------------
