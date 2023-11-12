@@ -18,9 +18,10 @@ public:
 public:
   //Main functions
   void acquire_next_image(VkSemaphore& semaphore);
-  void run_presentation(VkSemaphore& semaphore, VkFence& fence);
+  void image_presentation(VkSemaphore& semaphore, VkFence& fence);
 
   //Subfunction
+  void wait_rendering(VkFence& fence);
   void submit_presentation(VkSemaphore& semaphore);
   void set_next_frame_ID();
 
