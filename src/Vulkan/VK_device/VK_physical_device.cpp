@@ -26,6 +26,8 @@ void VK_physical_device::init(){
 void VK_physical_device::compute_extent(){
   //---------------------------
 
+  this->find_surface_capability(struct_vulkan->device.struct_device);
+
   VkSurfaceCapabilitiesKHR capabilities = struct_vulkan->device.struct_device.capabilities;
   if(struct_vulkan->param.headless){
     struct_vulkan->window.extent.width = 200;
@@ -36,7 +38,6 @@ void VK_physical_device::compute_extent(){
   }
   else{
     glm::vec2 fbo_dim = struct_vulkan->window.window_dim;
-
     struct_vulkan->window.extent = {
       static_cast<uint32_t>(fbo_dim.x),
       static_cast<uint32_t>(fbo_dim.y)
