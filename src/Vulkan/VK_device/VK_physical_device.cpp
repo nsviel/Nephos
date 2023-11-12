@@ -299,8 +299,40 @@ void VK_physical_device::find_queue_nb_family(Struct_physical_device& struct_dev
     throw std::runtime_error("[error] No queue families on selected GPU");
   }
 
-  //---------------------------
+  // Retrieve information about each queue family
+  vector<VkQueueFamilyProperties> queue_families(nb_queue_family);
+  vkGetPhysicalDeviceQueueFamilyProperties(struct_device.physical_device, &nb_queue_family, queue_families.data());
+
+  // Count the number of each type of queue
+  uint32_t nb_queue_graphics = 0;
+  uint32_t nb_queue_compute = 0;
+  uint32_t nb_queue_transfer = 0;
+  uint32_t nb_queue_sparseBinding = 0;
+  uint32_t nb_queue_presentation = 0;
+
+  for (uint32_t i = 0; i < nb_queue_family; ++i) {
+    nb_queue_graphics += (queue_families[i].queueFlags & VK_QUEUE_GRAPHICS_BIT) ? queue_families[i].queueCount : 0;
+    nb_queue_compute += (queue_families[i].queueFlags & VK_QUEUE_COMPUTE_BIT) ? queue_families[i].queueCount : 0;
+    nb_queue_transfer += (queue_families[i].queueFlags & VK_QUEUE_TRANSFER_BIT) ? queue_families[i].queueCount : 0;
+    nb_queue_sparseBinding += (queue_families[i].queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? queue_families[i].queueCount : 0;
+
+    if(struct_vulkan->param.headless == false){
+      VkBool32 presentSupport = false;
+      vkGetPhysicalDeviceSurfaceSupportKHR(struct_device.physical_device, i, struct_vulkan->window.surface, &presentSupport);
+      if(presentSupport){
+        nb_queue_presentation += queue_families[i].queueCount;
+      }
+    }
+  }
+
   struct_device.nb_queue_family = nb_queue_family;
+  struct_device.nb_queue_graphics = nb_queue_graphics;
+  struct_device.nb_queue_compute = nb_queue_compute;
+  struct_device.nb_queue_transfer = nb_queue_transfer;
+  struct_device.nb_queue_sparseBinding = nb_queue_sparseBinding;
+  struct_device.nb_queue_presentation = nb_queue_presentation;
+
+  //---------------------------
 }
 void VK_physical_device::find_queue_graphics_idx(Struct_physical_device& struct_device){
   //---------------------------
