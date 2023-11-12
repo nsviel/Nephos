@@ -32,6 +32,7 @@ public:
   inline VK_info* get_vk_info(){return vk_info;}
 
   inline void set_headless(bool value){struct_vulkan->param.headless = value;}
+  inline void set_name(string value){struct_vulkan->name = value;}
 
 private:
   ELE_window* ele_window;

@@ -13,11 +13,13 @@
 #include <VK_struct/Struct_render.h>
 #include <VK_struct/Struct_synchro.h>
 #include <VK_struct/Struct_data.h>
+#include <string>
 
 
 struct Struct_vulkan{
   //---------------------------
 
+  std::string name;
   Struct_render render;
   Struct_window window;
   Struct_instance instance;

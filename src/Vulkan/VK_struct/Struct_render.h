@@ -12,14 +12,21 @@ struct Struct_render{
   std::vector<Struct_renderpass*> vec_renderpass;
   VkViewport viewport;
   VkRect2D scissor;
-  
+
   Struct_renderpass* get_renderpass_byName(std::string name){
+    if(vec_renderpass.size() == 0){
+      std::cout<<"[error] Renderpass vector empty"<<std::endl;
+      exit(0);
+    }
     for(int i=0; i<vec_renderpass.size(); i++){
       if(vec_renderpass[i]->name == name){
         return vec_renderpass[i];
       }
     }
     std::cout<<"[error] Renderpass by name error -> "+ name +" not found"<<std::endl;
+    for(int i=0; i<vec_renderpass.size(); i++){
+      std::cout<<vec_renderpass[i]->name<<std::endl;
+    }
     return nullptr;
   }
 

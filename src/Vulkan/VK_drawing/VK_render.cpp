@@ -69,3 +69,11 @@ void VK_render::draw_subpass(Struct_renderpass* renderpass){
   //---------------------------
   renderpass->command = command;
 }
+void VK_render::wait_end_rendering(VkFence& fence){
+  //---------------------------
+
+  vkWaitForFences(struct_vulkan->device.device, 1, &fence, VK_TRUE, UINT64_MAX);
+  vkResetFences(struct_vulkan->device.device, 1, &fence);
+
+  //---------------------------
+}

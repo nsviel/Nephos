@@ -24,7 +24,8 @@ public:
   //Subfunction
   void start_renderpass(Struct_renderpass* renderpass);
   void draw_subpass(Struct_renderpass* renderpass);
-
+  void wait_end_rendering(VkFence& fence);
+  
 private:
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;

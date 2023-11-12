@@ -21,7 +21,6 @@ public:
   void image_presentation(VkSemaphore& semaphore, VkFence& fence);
 
   //Subfunction
-  void wait_end_rendering(VkFence& fence);
   void submit_presentation(VkSemaphore& semaphore);
   void next_frame_ID();
 
