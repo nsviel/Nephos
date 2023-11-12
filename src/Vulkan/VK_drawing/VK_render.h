@@ -18,8 +18,8 @@ public:
 
 public:
   //Main functions
-  void run_renderpass(Struct_renderpass* renderpass, int i);
-  void run_command(Struct_renderpass* renderpass, int i);
+  void run_renderpass(Struct_renderpass* renderpass);
+  void submit_command(Struct_renderpass* renderpass);
 
   //Subfunction
   void start_renderpass(Struct_renderpass* renderpass);

@@ -18,7 +18,7 @@ VK_render::VK_render(Struct_vulkan* struct_vulkan){
 VK_render::~VK_render(){}
 
 //Main function
-void VK_render::run_renderpass(Struct_renderpass* renderpass, int i){
+void VK_render::run_renderpass(Struct_renderpass* renderpass){
   //---------------------------
 
   this->start_renderpass(renderpass);
@@ -28,7 +28,7 @@ void VK_render::run_renderpass(Struct_renderpass* renderpass, int i){
   //---------------------------
 
 }
-void VK_render::run_command(Struct_renderpass* renderpass, int i){
+void VK_render::submit_command(Struct_renderpass* renderpass){
   Struct_command& command = renderpass->command;
   //---------------------------
 

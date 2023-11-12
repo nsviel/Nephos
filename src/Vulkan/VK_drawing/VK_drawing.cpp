@@ -33,13 +33,13 @@ void VK_drawing::draw_frame(){
   for(int i=0; i<nb_renderpass; i++){
     Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
-    vk_render->run_renderpass(renderpass, i);
+    vk_render->run_renderpass(renderpass);
 
     Struct_command& command = renderpass->command;
     command.vec_semaphore_wait.push_back(semaphore_wait);
     command.vec_semaphore_done.push_back(semaphore_done);
     command.fence = (i == nb_renderpass-1) ? frame->fence : VK_NULL_HANDLE;
-    vk_render->run_command(renderpass, i);
+    vk_render->submit_command(renderpass);
 
     semaphore_wait = frame->vec_semaphore_render[i];
     semaphore_done = frame->vec_semaphore_render[i+1];
