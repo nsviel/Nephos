@@ -28,24 +28,27 @@ void VK_drawing::draw_frame(){
   vk_presentation->acquire_next_image(frame->semaphore_image_ready, fence);
 
   //Renderpass
+  int i;
   vector<VkCommandBuffer> vec_command_buffer;
-  for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
+  VkSemaphore semaphore_wait = frame->semaphore_image_ready;
+  VkSemaphore semaphore_done = struct_vulkan->synchro.vec_semaphore_render[0];
+  for(i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
     Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
     vk_render->run_renderpass(renderpass, i);
 
     Struct_command& command = renderpass->command;
-    command.vec_semaphore_wait.push_back(struct_vulkan->synchro.vec_semaphore_render[i]);
-    if(i==0) command.vec_semaphore_wait[0] = frame->semaphore_image_ready;
-    command.vec_semaphore_done.push_back(struct_vulkan->synchro.vec_semaphore_render[i+1]);
-    if(i==struct_vulkan->render.vec_renderpass.size()-1)
-      command.vec_semaphore_done[command.vec_semaphore_done.size()-1] = frame->semaphore_render_done;
+    command.vec_semaphore_wait.push_back(semaphore_wait);
+    command.vec_semaphore_done.push_back(semaphore_done);
     command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
     command.fence = (i != struct_vulkan->render.vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_vulkan->synchro.vec_fence[0];
     vk_render->run_command(renderpass, i);
+
+    semaphore_wait = struct_vulkan->synchro.vec_semaphore_render[i];
+    semaphore_done = struct_vulkan->synchro.vec_semaphore_render[i+1];
   }
 
-  VkSemaphore semaphore = frame->semaphore_render_done;
+  VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[i-1];
   vk_presentation->run_presentation(semaphore);
 
   //---------------------------
