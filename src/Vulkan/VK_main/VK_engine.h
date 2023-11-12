@@ -60,8 +60,11 @@ public:
   Struct_image* load_texture_from_file(string path);
   Struct_image* load_texture_from_frame(AVFrame* frame);
 
+  //Renderpass function
+  Struct_renderpass* get_renderpass(int i);
+  Struct_renderpass* get_renderpass_presentation(int i);
+
   inline Struct_entity* get_canvas(){return &struct_vulkan->data.canvas;}
-  inline Struct_renderpass* get_renderpass(int i){return struct_vulkan->render.vec_renderpass[i];}
   inline std::list<Struct_entity*> get_list_data(){return struct_vulkan->data.list_object;}
 
 private:

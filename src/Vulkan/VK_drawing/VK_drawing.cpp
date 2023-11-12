@@ -39,7 +39,7 @@ void VK_drawing::draw_frame_headless(){
 sayHello();
   VkSemaphore semaphore_wait = struct_vulkan->synchro.semaphore_image_ready;
   VkSemaphore semaphore_done = struct_vulkan->synchro.vec_semaphore_render[0];
-sayHello();
+
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
@@ -48,15 +48,13 @@ sayHello();
     vk_render->run_renderpass(renderpass);
 
     Struct_command& command = renderpass->command;
-    command.vec_semaphore_wait.push_back(semaphore_wait);
-    command.vec_semaphore_done.push_back(semaphore_done);
     command.fence = (i == nb_renderpass-1) ? struct_vulkan->synchro.fence : VK_NULL_HANDLE;
     vk_render->submit_command(renderpass);
 
     semaphore_wait = struct_vulkan->synchro.vec_semaphore_render[i];
     semaphore_done = struct_vulkan->synchro.vec_semaphore_render[i+1];
   }
-
+sayHello();
   VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[nb_renderpass-1];
   VkFence fence = struct_vulkan->synchro.fence;
   vk_presentation->image_presentation(semaphore, fence);

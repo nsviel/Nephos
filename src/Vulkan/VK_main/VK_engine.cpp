@@ -201,3 +201,19 @@ Struct_image* VK_engine::load_texture_from_frame(AVFrame* frame){
   //---------------------------
   return texture;
 }
+
+//Renderpass function
+Struct_renderpass* VK_engine::get_renderpass(int i){
+  //---------------------------
+
+  return struct_vulkan->render.vec_renderpass[i];
+
+  //---------------------------
+}
+Struct_renderpass* VK_engine::get_renderpass_presentation(int i){
+  //---------------------------
+
+  return struct_vulkan->render.get_renderpass_byName("gui");
+
+  //---------------------------
+}

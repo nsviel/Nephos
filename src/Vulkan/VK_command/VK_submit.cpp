@@ -43,6 +43,7 @@ void VK_submit::submit_command_render(Struct_command* command){
 
   //Very slow operation, need as low command as possible
   VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, command->fence);
+
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to submit draw command buffer!");
   }
