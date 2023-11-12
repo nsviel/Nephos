@@ -16,7 +16,9 @@ public:
 
 public:
   //Main functions
+  void init();
   void init_frame_sync(Struct_frame* frame);
+  void clean();
   void clean_frame_sync(Struct_frame* frame);
 
   //Synchronization object

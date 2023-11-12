@@ -14,6 +14,7 @@
 #include <VK_image/VK_texture.h>
 #include <VK_presentation/VK_swapchain.h>
 #include <VK_presentation/VK_frame.h>
+#include <VK_command/VK_synchronization.h>
 #include <VK_shader/VK_reload.h>
 #include <VK_drawing/VK_viewport.h>
 #include <VK_drawing/VK_drawing.h>
@@ -24,7 +25,6 @@ VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-
   this->vk_pool = new VK_pool(struct_vulkan);
   this->vk_extension = new VK_extension(struct_vulkan);
   this->vk_instance = new VK_instance(struct_vulkan);
@@ -40,6 +40,7 @@ VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
   this->vk_frame = new VK_frame(struct_vulkan);
   this->vk_canvas = new VK_canvas(struct_vulkan);
   this->vk_drawing = new VK_drawing(struct_vulkan);
+  this->vk_synchronization = new VK_synchronization(struct_vulkan);
   this->fps_counter = new FPS_counter(60);
 
   //---------------------------
@@ -54,7 +55,7 @@ void VK_engine::init(){
   if(struct_vulkan->param.headless){
     this->init_engine_headless();
   }else{
-    this->init_engine();
+    this->init_engine_presentation();
   }
 
   //---------------------------
@@ -82,6 +83,7 @@ void VK_engine::device_wait_idle(){
 void VK_engine::clean(){
   //---------------------------
 
+  vk_synchronization->clean();
   vk_texture->clean_textures();
   vk_renderpass->clean_renderpass();
   vk_swapchain->clean_swapchain();
@@ -110,7 +112,7 @@ void VK_engine::add_renderpass_description(Struct_renderpass* renderpass){
 }
 
 //Init function
-void VK_engine::init_engine(){
+void VK_engine::init_engine_presentation(){
   //---------------------------
 
   //Instance
@@ -138,6 +140,7 @@ void VK_engine::init_engine_headless(){
   vk_device->init();
   vk_pool->init();
   vk_canvas->create_canvas();
+  vk_synchronization->init();
 
   //Rendering
   vk_viewport->init_viewport();

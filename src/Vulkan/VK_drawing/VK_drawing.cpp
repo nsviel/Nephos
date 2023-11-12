@@ -21,7 +21,52 @@ VK_drawing::~VK_drawing(){}
 void VK_drawing::draw_frame(){
   timer_time t1 = timer.start_t();
   //---------------------------
+
+  if(struct_vulkan->param.headless){
+    this->draw_frame_headless();
+  }
+  else{
+    this->draw_frame_presentation();
+  }
+
+  //---------------------------
+  struct_vulkan->info.draw_frame.push_back(timer.stop_ms(t1));
+}
+void VK_drawing::draw_frame_headless(){
+  timer_time t1 = timer.start_t();
+  //---------------------------
 /////// FAIRE MARCHER EN HEADLESS !!!
+sayHello();
+  VkSemaphore semaphore_wait = struct_vulkan->synchro.semaphore_image_ready;
+  VkSemaphore semaphore_done = struct_vulkan->synchro.vec_semaphore_render[0];
+sayHello();
+  //Renderpass
+  int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
+  for(int i=0; i<nb_renderpass; i++){
+    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+
+    vk_render->run_renderpass(renderpass);
+
+    Struct_command& command = renderpass->command;
+    command.vec_semaphore_wait.push_back(semaphore_wait);
+    command.vec_semaphore_done.push_back(semaphore_done);
+    command.fence = (i == nb_renderpass-1) ? struct_vulkan->synchro.fence : VK_NULL_HANDLE;
+    vk_render->submit_command(renderpass);
+
+    semaphore_wait = struct_vulkan->synchro.vec_semaphore_render[i];
+    semaphore_done = struct_vulkan->synchro.vec_semaphore_render[i+1];
+  }
+
+  VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[nb_renderpass-1];
+  VkFence fence = struct_vulkan->synchro.fence;
+  vk_presentation->image_presentation(semaphore, fence);
+
+  //---------------------------
+  struct_vulkan->info.draw_frame.push_back(timer.stop_ms(t1));
+}
+void VK_drawing::draw_frame_presentation(){
+  timer_time t1 = timer.start_t();
+  //---------------------------
 
   Struct_frame* frame = struct_vulkan->swapchain.get_frame_presentation();
   VkSemaphore semaphore_wait = frame->semaphore_image_ready;

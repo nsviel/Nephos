@@ -28,6 +28,7 @@ class VK_canvas;
 class VK_extension;
 class VK_pool;
 class VK_drawing;
+class VK_synchronization;
 class FPS_counter;
 
 
@@ -48,7 +49,7 @@ public:
   void add_renderpass_description(Struct_renderpass* renderpass);
 
   //Init function
-  void init_engine();
+  void init_engine_presentation();
   void init_engine_headless();
 
   //Data function
@@ -77,6 +78,7 @@ private:
   VK_data* vk_data;
   VK_viewport* vk_viewport;
   VK_reload* vk_reload;
+  VK_synchronization* vk_synchronization;
   VK_frame* vk_frame;
   VK_canvas* vk_canvas;
   VK_drawing* vk_drawing;

@@ -26,25 +26,27 @@ void VK_physical_device::init(){
 void VK_physical_device::compute_extent(){
   //---------------------------
 
-  this->find_surface_capability(struct_vulkan->device.struct_device);
-
-  VkSurfaceCapabilitiesKHR capabilities = struct_vulkan->device.struct_device.capabilities;
   if(struct_vulkan->param.headless){
     struct_vulkan->window.extent.width = 200;
     struct_vulkan->window.extent.height = 200;
   }
-  else if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
-    struct_vulkan->window.extent = capabilities.currentExtent;
-  }
   else{
-    glm::vec2 fbo_dim = struct_vulkan->window.window_dim;
-    struct_vulkan->window.extent = {
-      static_cast<uint32_t>(fbo_dim.x),
-      static_cast<uint32_t>(fbo_dim.y)
-    };
+    this->find_surface_capability(struct_vulkan->device.struct_device);
+    VkSurfaceCapabilitiesKHR capabilities = struct_vulkan->device.struct_device.capabilities;
 
-    struct_vulkan->window.extent.width = std::clamp(struct_vulkan->window.extent.width, capabilities.minImageExtent.width, capabilities.maxImageExtent.width);
-    struct_vulkan->window.extent.height = std::clamp(struct_vulkan->window.extent.height, capabilities.minImageExtent.height, capabilities.maxImageExtent.height);
+    if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
+      struct_vulkan->window.extent = capabilities.currentExtent;
+    }
+    else{
+      glm::vec2 fbo_dim = struct_vulkan->window.window_dim;
+      struct_vulkan->window.extent = {
+        static_cast<uint32_t>(fbo_dim.x),
+        static_cast<uint32_t>(fbo_dim.y)
+      };
+
+      struct_vulkan->window.extent.width = std::clamp(struct_vulkan->window.extent.width, capabilities.minImageExtent.width, capabilities.maxImageExtent.width);
+      struct_vulkan->window.extent.height = std::clamp(struct_vulkan->window.extent.height, capabilities.minImageExtent.height, capabilities.maxImageExtent.height);
+    }
   }
 
   //---------------------------

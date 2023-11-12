@@ -14,6 +14,30 @@ VK_synchronization::VK_synchronization(Struct_vulkan* struct_vulkan){
 VK_synchronization::~VK_synchronization(){}
 
 //Main function
+void VK_synchronization::init(){
+  //---------------------------
+
+  //Create semaphore - Renderpass
+  for(int i=0; i<4; i++){
+    VkSemaphore semaphore;
+    this->create_semaphore(semaphore);
+    struct_vulkan->synchro.vec_semaphore_render.push_back(semaphore);
+  }
+
+  //Create semaphore - Image ready
+  VkSemaphore semaphore_image_ready;
+  this->create_semaphore(semaphore_image_ready);
+  struct_vulkan->synchro.semaphore_image_ready = semaphore_image_ready;
+
+  //Create semaphore - Image ready
+  VkSemaphore semaphore_render_done;
+  this->create_semaphore(semaphore_render_done);
+  struct_vulkan->synchro.semaphore_render_done = semaphore_render_done;
+
+  this->create_fence(struct_vulkan->synchro.fence);
+
+  //---------------------------
+}
 void VK_synchronization::init_frame_sync(Struct_frame* frame){
   //---------------------------
 
@@ -35,6 +59,16 @@ void VK_synchronization::init_frame_sync(Struct_frame* frame){
   frame->semaphore_render_done = semaphore_render_done;
 
   this->create_fence(frame->fence);
+
+  //---------------------------
+}
+void VK_synchronization::clean(){
+  //---------------------------
+
+  this->clean_semaphore(struct_vulkan->synchro.semaphore_image_ready);
+  this->clean_semaphore(struct_vulkan->synchro.semaphore_render_done);
+  this->clean_vec_semaphore(struct_vulkan->synchro.vec_semaphore_render);
+  this->clean_fence(struct_vulkan->synchro.fence);
 
   //---------------------------
 }
