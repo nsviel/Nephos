@@ -7,9 +7,10 @@
 struct Struct_synchro{
   //---------------------------
 
-  std::vector<VkSemaphore> vec_semaphore_image;
+  VkSemaphore semaphore_image_ready;
+  VkSemaphore semaphore_render_done;
   std::vector<VkSemaphore> vec_semaphore_render;
-  std::vector<VkFence> vec_fence;
+  VkFence fence;
 
   //---------------------------
 };

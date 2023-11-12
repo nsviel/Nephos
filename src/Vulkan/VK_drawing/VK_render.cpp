@@ -50,11 +50,6 @@ void VK_render::run_command(Struct_renderpass* renderpass, int i){
   Struct_command& command = renderpass->command;
   //---------------------------
 
-  command.vec_semaphore_wait.push_back(struct_vulkan->synchro.vec_semaphore_render[i]);
-  command.vec_semaphore_done.push_back(struct_vulkan->synchro.vec_semaphore_render[i+1]);
-  command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-  command.fence = (i != struct_vulkan->render.vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_vulkan->synchro.vec_fence[0];
-
   vk_submit->submit_command_render(&command);
 
   //---------------------------

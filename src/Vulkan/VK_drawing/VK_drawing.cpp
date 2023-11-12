@@ -21,9 +21,10 @@ VK_drawing::~VK_drawing(){}
 void VK_drawing::draw_frame(){
   timer_time t1 = timer.start_t();
   //---------------------------
-/////// BUG RECREATE SWAPCHAIN MARCHE PLUS
+/////// FAIRE MARCHER EN HEADLESS !!!
+
   VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[0];
-  VkFence fence = struct_vulkan->synchro.vec_fence[0];
+  VkFence fence = struct_vulkan->synchro.fence;
   vk_presentation->acquire_next_image(semaphore, fence);
 
   //Renderpass
@@ -32,10 +33,17 @@ void VK_drawing::draw_frame(){
     Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
     vk_render->run_renderpass(renderpass, i);
+
+    Struct_command& command = renderpass->command;
+    command.vec_semaphore_wait.push_back(struct_vulkan->synchro.vec_semaphore_render[i]);
+    command.vec_semaphore_done.push_back(struct_vulkan->synchro.vec_semaphore_render[i+1]);
+    command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
+    command.fence = (i != struct_vulkan->render.vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_vulkan->synchro.fence;
     vk_render->run_command(renderpass, i);
   }
 
-  vk_presentation->run_presentation();
+  semaphore = struct_vulkan->synchro.vec_semaphore_render[struct_vulkan->render.vec_renderpass.size()];
+  vk_presentation->run_presentation(semaphore);
 
   //---------------------------
   struct_vulkan->info.draw_frame.push_back(timer.stop_ms(t1));

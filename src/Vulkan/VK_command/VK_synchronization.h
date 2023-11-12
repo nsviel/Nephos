@@ -25,7 +25,9 @@ public:
 
   //Deletion function
   void clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore);
+  void clean_semaphore(VkSemaphore& semaphore);
   void clean_vec_fence(vector<VkFence>& vec_fence);
+  void clean_fence(VkFence& fence);
 
 private:
   Struct_vulkan* struct_vulkan;

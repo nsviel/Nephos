@@ -46,10 +46,9 @@ void VK_presentation::acquire_next_image(VkSemaphore& semaphore, VkFence& fence)
 
   //---------------------------
 }
-void VK_presentation::run_presentation(){
+void VK_presentation::run_presentation(VkSemaphore& semaphore){
   //---------------------------
 
-  VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[struct_vulkan->render.vec_renderpass.size()];
   this->submit_presentation(semaphore);
   this->set_next_frame_ID();
 
