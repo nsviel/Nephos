@@ -21,9 +21,9 @@ public:
   void image_presentation(VkSemaphore& semaphore, VkFence& fence);
 
   //Subfunction
-  void wait_rendering(VkFence& fence);
+  void wait_end_rendering(VkFence& fence);
   void submit_presentation(VkSemaphore& semaphore);
-  void set_next_frame_ID();
+  void next_frame_ID();
 
 private:
   Struct_vulkan* struct_vulkan;

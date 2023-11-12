@@ -45,15 +45,15 @@ void VK_presentation::acquire_next_image(VkSemaphore& semaphore){
 void VK_presentation::image_presentation(VkSemaphore& semaphore, VkFence& fence){
   //---------------------------
 
-  this->wait_rendering(fence);
+  this->wait_end_rendering(fence);
   this->submit_presentation(semaphore);
-  this->set_next_frame_ID();
+  this->next_frame_ID();
 
   //---------------------------
 }
 
 //Subfunction
-void VK_presentation::wait_rendering(VkFence& fence){
+void VK_presentation::wait_end_rendering(VkFence& fence){
   //---------------------------
 
   vkWaitForFences(struct_vulkan->device.device, 1, &fence, VK_TRUE, UINT64_MAX);
@@ -84,7 +84,7 @@ void VK_presentation::submit_presentation(VkSemaphore& semaphore){
 
   //---------------------------
 }
-void VK_presentation::set_next_frame_ID(){
+void VK_presentation::next_frame_ID(){
   Struct_swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 

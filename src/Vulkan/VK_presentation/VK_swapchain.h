@@ -31,11 +31,6 @@ public:
   void find_swapchain_surface_format();
   void find_swapchain_presentation_mode();
 
-  //Image acquisition
-  void acquire_next_image(VkSemaphore& semaphore, VkFence& fence);
-  void submit_presentation(VkSemaphore& semaphore);
-  void set_next_frame_ID();
-
 private:
   Struct_vulkan* struct_vulkan;
   VK_viewport* vk_viewport;

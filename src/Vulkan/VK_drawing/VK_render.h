@@ -21,6 +21,10 @@ public:
   void run_renderpass(Struct_renderpass* renderpass, int i);
   void run_command(Struct_renderpass* renderpass, int i);
 
+  //Subfunction
+  void start_renderpass(Struct_renderpass* renderpass);
+  void draw_subpass(Struct_renderpass* renderpass);
+
 private:
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
