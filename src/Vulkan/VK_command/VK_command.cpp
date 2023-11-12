@@ -200,7 +200,6 @@ void VK_command::image_layout_transition(VkCommandBuffer command_buffer, Struct_
 
   VkPipelineStageFlags sourceStage;
   VkPipelineStageFlags destinationStage;
-
   if(old_layout == VK_IMAGE_LAYOUT_UNDEFINED && new_layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL){
     barrier.srcAccessMask = 0;
     barrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;

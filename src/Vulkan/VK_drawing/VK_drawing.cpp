@@ -31,7 +31,7 @@ void VK_drawing::draw_frame(){
   int i;
   vector<VkCommandBuffer> vec_command_buffer;
   VkSemaphore semaphore_wait = frame->semaphore_image_ready;
-  VkSemaphore semaphore_done = struct_vulkan->synchro.vec_semaphore_render[0];
+  VkSemaphore semaphore_done = frame->vec_semaphore_render[0];
   for(i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
     Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
@@ -44,11 +44,11 @@ void VK_drawing::draw_frame(){
     command.fence = (i != struct_vulkan->render.vec_renderpass.size()-1) ? VK_NULL_HANDLE : struct_vulkan->synchro.vec_fence[0];
     vk_render->run_command(renderpass, i);
 
-    semaphore_wait = struct_vulkan->synchro.vec_semaphore_render[i];
-    semaphore_done = struct_vulkan->synchro.vec_semaphore_render[i+1];
+    semaphore_wait = frame->vec_semaphore_render[i];
+    semaphore_done = frame->vec_semaphore_render[i+1];
   }
 
-  VkSemaphore semaphore = struct_vulkan->synchro.vec_semaphore_render[i-1];
+  VkSemaphore semaphore = frame->vec_semaphore_render[i-1];
   vk_presentation->run_presentation(semaphore);
 
   //---------------------------
