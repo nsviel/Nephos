@@ -50,6 +50,7 @@ void VK_render::run_command(Struct_renderpass* renderpass, int i){
   Struct_command& command = renderpass->command;
   //---------------------------
 
+  command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
   vk_submit->submit_command_render(&command);
 
   //---------------------------
