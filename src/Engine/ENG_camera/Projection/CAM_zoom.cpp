@@ -2,7 +2,7 @@
 
 
 //Constructor / Destructor
-CAM_zoom::CAM_zoom(ELE_window* ele_window){
+CAM_zoom::CAM_zoom(UTL_window* utl_window){
   //---------------------------
 
   //---------------------------

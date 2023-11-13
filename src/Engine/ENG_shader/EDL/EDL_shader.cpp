@@ -2,14 +2,14 @@
 
 #include <Engine.h>
 #include <ENG_camera/Struct_camera.h>
-#include <ELE_window/ELE_window.h>
+#include <UTL_window/UTL_window.h>
 
 
 EDL_shader::EDL_shader(Engine* engine){
   //---------------------------
 
   this->camera = engine->get_camera();
-  this->ele_window = engine->get_ele_window();
+  this->utl_window = engine->get_ele_window();
   this->edl_param = new EDL_param();
 
   //---------------------------
@@ -49,7 +49,7 @@ void EDL_shader::update_shader(){
   edl_param->z_far = camera->clip_far;
 
   //Dimension
-  vec2 window_dim = ele_window->get_window_dim();
+  vec2 window_dim = utl_window->get_window_dim();
   edl_param->tex_width = window_dim.x;
   edl_param->tex_height = window_dim.y;
 

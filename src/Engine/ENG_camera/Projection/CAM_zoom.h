@@ -4,13 +4,13 @@
 #include "../Struct_camera.h"
 #include <ELE_specific/common.h>
 
-class ELE_window;
+class UTL_window;
 
 
 class CAM_zoom
 {
 public:
-  CAM_zoom(ELE_window* ele_window);
+  CAM_zoom(UTL_window* utl_window);
   ~CAM_zoom();
 
 public:

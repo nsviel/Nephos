@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <ELE_window/ELE_window.h>
+#include <UTL_window/UTL_window.h>
 #include <GUI_tab/GUI_tab.h>
 
 
@@ -11,7 +11,7 @@ GUI_control::GUI_control(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  this->ele_window = engine->get_ele_window();
+  this->utl_window = engine->get_ele_window();
   this->gui_tab = gui->get_gui_tab();
 
   //---------------------------
@@ -35,7 +35,7 @@ void GUI_control::control_keyboard_oneAction(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Esc key - Close program
     if(ImGui::IsKeyPressed(ImGuiKey_Escape)){
-      ele_window->close_window();
+      utl_window->close_window();
     }
 
     //1 key - Next main tab

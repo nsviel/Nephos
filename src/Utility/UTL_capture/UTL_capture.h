@@ -7,12 +7,12 @@
 using namespace std;
 
 
-class ELE_capture
+class UTL_capture
 {
 public:
   //Constructor / Destructor
-  ELE_capture();
-  ~ELE_capture();
+  UTL_capture();
+  ~UTL_capture();
 
 public:
   //Main function

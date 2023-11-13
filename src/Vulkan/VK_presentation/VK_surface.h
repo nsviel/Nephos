@@ -4,7 +4,7 @@
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
-class ELE_window;
+class UTL_window;
 
 
 class VK_surface

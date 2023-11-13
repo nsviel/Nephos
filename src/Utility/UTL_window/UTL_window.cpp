@@ -1,10 +1,10 @@
-#include "ELE_window.h"
+#include "UTL_window.h"
 
 #include <../config.h>
 
 
 //Constructor / Destructor
-ELE_window::ELE_window(Config* config){
+UTL_window::UTL_window(Config* config){
   //---------------------------
 
   this->config = config;
@@ -12,10 +12,10 @@ ELE_window::ELE_window(Config* config){
 
   //---------------------------
 }
-ELE_window::~ELE_window(){}
+UTL_window::~UTL_window(){}
 
 //Main function
-void ELE_window::create_window(){
+void UTL_window::create_window(){
   //---------------------------
 
   int width  = config->window_dim.x;
@@ -35,14 +35,14 @@ void ELE_window::create_window(){
 
   //---------------------------
 }
-void ELE_window::close_window(){
+void UTL_window::close_window(){
   //---------------------------
 
   glfwSetWindowShouldClose(window, true);
 
   //---------------------------
 }
-void ELE_window::destroy_window(){
+void UTL_window::destroy_window(){
   //---------------------------
 
   glfwDestroyWindow(window);
@@ -52,14 +52,14 @@ void ELE_window::destroy_window(){
 }
 
 //Subfunction
-void ELE_window::set_window_size_minimum(int width, int height){
+void UTL_window::set_window_size_minimum(int width, int height){
   //---------------------------
 
   glfwSetWindowSizeLimits(window, width, height, GLFW_DONT_CARE, GLFW_DONT_CARE);
 
   //---------------------------
 }
-void ELE_window::set_window_size_maximum(int width, int height){
+void UTL_window::set_window_size_maximum(int width, int height){
   //---------------------------
 
   glfwSetWindowSizeLimits(window, GLFW_DONT_CARE, GLFW_DONT_CARE, width, height);
@@ -68,14 +68,14 @@ void ELE_window::set_window_size_maximum(int width, int height){
 }
 
 //Sizing function
-void ELE_window::manage_input(){
+void UTL_window::manage_input(){
   //---------------------------
 
   glfwPollEvents();
 
   //---------------------------
 }
-vec2 ELE_window::compute_window_dim(){
+vec2 UTL_window::compute_window_dim(){
   vec2 dim = vec2(0);
   //---------------------------
 
@@ -87,7 +87,7 @@ vec2 ELE_window::compute_window_dim(){
   //---------------------------
   return window_dim;
 }
-bool ELE_window::check_for_resizing(){
+bool UTL_window::check_for_resizing(){
   //---------------------------
 
   vec2 dim = compute_window_dim();
@@ -99,7 +99,7 @@ bool ELE_window::check_for_resizing(){
   //---------------------------
   return has_been_resized;
 }
-bool ELE_window::window_should_close(){
+bool UTL_window::window_should_close(){
   //---------------------------
 
   return glfwWindowShouldClose(window);
@@ -108,7 +108,7 @@ bool ELE_window::window_should_close(){
 }
 
 //Mouse position
-glm::vec2 ELE_window::get_mouse_pose(){
+glm::vec2 UTL_window::get_mouse_pose(){
   //---------------------------
 
   double xpos, ypos;
@@ -118,7 +118,7 @@ glm::vec2 ELE_window::get_mouse_pose(){
   //---------------------------
   return pos;
 }
-void ELE_window::set_mouse_pose(glm::vec2 pos){
+void UTL_window::set_mouse_pose(glm::vec2 pos){
   //---------------------------
 
   glfwSetCursorPos(window, pos.x, pos.y);

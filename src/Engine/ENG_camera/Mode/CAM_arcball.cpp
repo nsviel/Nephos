@@ -1,13 +1,13 @@
 #include "CAM_arcball.h"
 
-#include <ELE_window/ELE_window.h>
+#include <UTL_window/UTL_window.h>
 
 
 //Constructor / Destructor
-CAM_arcball::CAM_arcball(ELE_window* ele_window){
+CAM_arcball::CAM_arcball(UTL_window* utl_window){
   //---------------------------
 
-  this->ele_window =  ele_window;
+  this->utl_window =  utl_window;
 
   //---------------------------
 }
@@ -41,12 +41,12 @@ void CAM_arcball::arcball_cam_mouse(Struct_camera* camera){
 vec2 CAM_arcball::arcball_mouse_angle(){
   //---------------------------
 
-  vec2 mouse_pose = ele_window->get_mouse_pose();
-  ele_window->set_mouse_pose(ele_window->get_window_center());
+  vec2 mouse_pose = utl_window->get_mouse_pose();
+  utl_window->set_mouse_pose(utl_window->get_window_center());
 
   // step 1 : Calculate the amount of rotation given the mouse movement.
-  vec2 window_dim = ele_window->get_window_dim();
-  vec2 window_center = ele_window->get_window_center();
+  vec2 window_dim = utl_window->get_window_dim();
+  vec2 window_center = utl_window->get_window_center();
   float deltaAngleX = (2 * M_PI / window_dim.x); // a movement from left to right = 2*PI = 360 deg
   float deltaAngleY = (M_PI / window_dim.y);  // a movement from top to bottom = PI = 180 deg
   float xAngle = float(window_center.x - mouse_pose.x) * deltaAngleX * 0.1;

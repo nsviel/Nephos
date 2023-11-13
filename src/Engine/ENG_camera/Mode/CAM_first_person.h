@@ -4,13 +4,13 @@
 #include "../Struct_camera.h"
 #include <ELE_specific/common.h>
 
-class ELE_window;
+class UTL_window;
 
 
 class CAM_first_person
 {
 public:
-  CAM_first_person(ELE_window* ele_window);
+  CAM_first_person(UTL_window* utl_window);
   ~CAM_first_person();
 
 public:
@@ -18,7 +18,7 @@ public:
   void fp_cam_mouse(Struct_camera* camera);
 
 private:
-  ELE_window* ele_window;
+  UTL_window* utl_window;
 
   vec2 mouse_pose_old;
 };

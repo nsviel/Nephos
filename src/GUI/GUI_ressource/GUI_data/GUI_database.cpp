@@ -1,13 +1,13 @@
 #include "GUI_database.h"
 #include <GUI.h>
-#include <ELE_database/ELE_database.h>
+#include <UTL_database/UTL_database.h>
 
 
 //Constructor / Destructor
 GUI_database::GUI_database(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  this->database = new ELE_database("../media/database/database.db3");
+  this->database = new UTL_database("../media/database/database.db3");
   this->path_database = "../media/database/database.db3";
 
   //---------------------------

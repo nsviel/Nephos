@@ -5,9 +5,9 @@
 
 class GUI;
 class Engine;
-class ELE_window;
+class UTL_window;
 class ENG_camera;
-class ELE_window;
+class UTL_window;
 class ENG_scene;
 class Transformation;
 class Struct_camera;
@@ -35,7 +35,7 @@ public:
 
 private:
   Engine* engine;
-  ELE_window* ele_window;
+  UTL_window* utl_window;
   ENG_scene* eng_scene;
   ENG_camera* eng_camera;
   Transformation* transformManager;

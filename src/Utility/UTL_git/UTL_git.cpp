@@ -1,15 +1,15 @@
-#include "ELE_git.h"
+#include "UTL_git.h"
 
 
 //Constructor / Destructor
-ELE_git::ELE_git(){
+UTL_git::UTL_git(){
   //---------------------------
 
   this->open_repository();
 
   //---------------------------
 }
-ELE_git::~ELE_git(){
+UTL_git::~UTL_git(){
   //---------------------------
 
   this->close_repository();
@@ -18,7 +18,7 @@ ELE_git::~ELE_git(){
 }
 
 //Main function
-void ELE_git::open_repository(){
+void UTL_git::open_repository(){
   //---------------------------
 
   git_libgit2_init();
@@ -35,7 +35,7 @@ void ELE_git::open_repository(){
 
   //---------------------------
 }
-void ELE_git::close_repository(){
+void UTL_git::close_repository(){
   //---------------------------
 
   git_repository_free(repo);
@@ -44,8 +44,8 @@ void ELE_git::close_repository(){
   //---------------------------
 }
 
-//ELE_git function
-void ELE_git::retrieve_all_branch(){
+//UTL_git function
+void UTL_git::retrieve_all_branch(){
   //---------------------------
 
   git_branch_iterator *it;
@@ -65,7 +65,7 @@ void ELE_git::retrieve_all_branch(){
   //---------------------------
   this->format_branch();
 }
-void ELE_git::retrieve_last_tag(){
+void UTL_git::retrieve_last_tag(){
   //---------------------------
 
   git_strarray tag_names = {0};
@@ -85,7 +85,7 @@ void ELE_git::retrieve_last_tag(){
 
   //---------------------------
 }
-void ELE_git::up_tag_version(){
+void UTL_git::up_tag_version(){
   //---------------------------
 
   //Update tag version
@@ -146,7 +146,7 @@ void ELE_git::up_tag_version(){
 }
 
 //Subfunction
-void ELE_git::format_branch(){
+void UTL_git::format_branch(){
   //---------------------------
 
   for(int i=0; i<vec_branch.size(); i++){

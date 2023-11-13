@@ -1,6 +1,6 @@
 #include "RND_engine.h"
 #include "RND_control.h"
-#include <ELE_window/ELE_window.h>
+#include <UTL_window/UTL_window.h>
 #include <GUI.h>
 #include <image/IconsFontAwesome5.h>
 #include <GUI_gpu/GUI_image.h>
@@ -13,7 +13,7 @@
 RND_engine::RND_engine(GUI* gui){
   //---------------------------
 
-  this->ele_window = gui->get_ele_window();
+  this->utl_window = gui->get_ele_window();
   this->gui_control = new RND_control(gui);
   this->gui_image = new GUI_image(gui);
 

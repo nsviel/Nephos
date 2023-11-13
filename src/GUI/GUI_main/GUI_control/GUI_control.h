@@ -5,7 +5,7 @@
 
 class GUI;
 class GUI_tab;
-class ELE_window;
+class UTL_window;
 
 
 class GUI_control
@@ -25,7 +25,7 @@ public:
   //Mouse
 
 private:
-  ELE_window* ele_window;
+  UTL_window* utl_window;
   GUI_tab* gui_tab;
 };
 

@@ -17,12 +17,12 @@ using namespace glm;
 class Config;
 
 
-class ELE_window
+class UTL_window
 {
 public:
   //Constructor / Destructor
-  ELE_window(Config* config);
-  ~ELE_window();
+  UTL_window(Config* config);
+  ~UTL_window();
 
 public:
   //Main functions

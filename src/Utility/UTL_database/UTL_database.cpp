@@ -1,18 +1,18 @@
-#include "ELE_database.h"
+#include "UTL_database.h"
 
 
 //Constructor / Destructor
-ELE_database::ELE_database(string path){
+UTL_database::UTL_database(string path){
   //---------------------------
 
   this->path_database = path;
 
   //---------------------------
 }
-ELE_database::~ELE_database(){}
+UTL_database::~UTL_database(){}
 
 //Management function
-void ELE_database::create_table(string name){
+void UTL_database::create_table(string name){
   //---------------------------
 
   SQLite::Database db(path_database.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
@@ -22,7 +22,7 @@ void ELE_database::create_table(string name){
 
   //---------------------------
 }
-void ELE_database::remove_table(string name){
+void UTL_database::remove_table(string name){
   //---------------------------
 
   SQLite::Database db(path_database.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
@@ -33,7 +33,7 @@ void ELE_database::remove_table(string name){
 }
 
 //Retrieving function
-vector<string> ELE_database::retrieve_all_table(){
+vector<string> UTL_database::retrieve_all_table(){
   //---------------------------
 
   SQLite::Database db(path_database.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);

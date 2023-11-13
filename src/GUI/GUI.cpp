@@ -1,7 +1,7 @@
 #include "GUI.h"
 
 #include <Engine.h>
-#include <ELE_window/ELE_window.h>
+#include <UTL_window/UTL_window.h>
 #include <GUI_gpu/GUI_gpu.h>
 #include <GUI_tab/GUI_tab.h>
 #include <GUI_control/GUI_control.h>
@@ -12,11 +12,11 @@
 
 
 //Constructor / Destructor
-GUI::GUI(ELE_window* ele_window, Engine* engine){
+GUI::GUI(UTL_window* utl_window, Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->ele_window = ele_window;
+  this->utl_window = utl_window;
 
   this->gui_render = new GUI_render(this);
   this->gui_style = new GUI_style(this);
@@ -81,10 +81,10 @@ void GUI::wait(){
   //---------------------------
 }
 void GUI::resize(){
-  static vec2 dim = ele_window->compute_window_dim();
+  static vec2 dim = utl_window->compute_window_dim();
   //---------------------------
 
-  vec2 dim_new = ele_window->compute_window_dim();
+  vec2 dim_new = utl_window->compute_window_dim();
   if(dim_new != dim){
     dim = dim_new;
   }

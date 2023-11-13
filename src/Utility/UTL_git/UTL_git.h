@@ -5,12 +5,12 @@
 #include <git2.h>
 
 
-class ELE_git
+class UTL_git
 {
 public:
   //Constructor / Destructor
-  ELE_git();
-  ~ELE_git();
+  UTL_git();
+  ~UTL_git();
 
 public:
   //Main functions

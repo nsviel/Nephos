@@ -8,12 +8,12 @@
 using namespace std;
 
 
-class ELE_database
+class UTL_database
 {
 public:
   //Constructor / Destructor
-  ELE_database(string path);
-  ~ELE_database();
+  UTL_database(string path);
+  ~UTL_database();
 
 public:
   //Management function

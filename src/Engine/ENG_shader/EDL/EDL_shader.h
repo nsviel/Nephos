@@ -7,7 +7,7 @@
 
 class Engine;
 class Struct_camera;
-class ELE_window;
+class UTL_window;
 
 
 class EDL_shader : public BASE_shader
@@ -25,7 +25,7 @@ public:
 
 private:
   Struct_camera* camera;
-  ELE_window* ele_window;
+  UTL_window* utl_window;
   EDL_param* edl_param;
 };
 

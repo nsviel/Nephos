@@ -8,7 +8,7 @@
 
 class Engine;
 class Struct_camera;
-class ELE_window;
+class UTL_window;
 
 
 class PSR_shader : public BASE_shader
@@ -24,7 +24,7 @@ public:
   inline PSR_param* get_pyramid_param(){return psr_param;}
 
 private:
-  ELE_window* ele_window;
+  UTL_window* utl_window;
   PSR_param* psr_param;
 
   Struct_camera* camera;

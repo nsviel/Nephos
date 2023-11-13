@@ -1,13 +1,13 @@
 #include "SCE_shader.h"
 
 #include <Engine.h>
-#include <ELE_window/ELE_window.h>
+#include <UTL_window/UTL_window.h>
 
 
 SCE_shader::SCE_shader(Engine* engine){
   //---------------------------
 
-  this->ele_window = engine->get_ele_window();
+  this->utl_window = engine->get_ele_window();
 
   //---------------------------
   this->init_shader();

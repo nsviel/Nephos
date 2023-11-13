@@ -1,13 +1,13 @@
-#include "ELE_capture.h"
+#include "UTL_capture.h"
 
 
 //Constructor / Destructor
-ELE_capture::ELE_capture(){
+UTL_capture::UTL_capture(){
   //---------------------------
 
 
   //---------------------------
 }
-ELE_capture::~ELE_capture(){}
+UTL_capture::~UTL_capture(){}
 
 //Main function

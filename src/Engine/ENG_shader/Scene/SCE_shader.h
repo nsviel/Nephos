@@ -5,7 +5,7 @@
 #include <ENG_shader/Base/BASE_shader.h>
 
 class Engine;
-class ELE_window;
+class UTL_window;
 
 
 class SCE_shader : public BASE_shader
@@ -18,7 +18,7 @@ public:
   void init_shader();
 
 private:
-  ELE_window* ele_window;
+  UTL_window* utl_window;
 };
 
 #endif

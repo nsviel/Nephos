@@ -2,7 +2,7 @@
 #define APP_MAIN_H
 
 class Config;
-class ELE_window;
+class UTL_window;
 class Engine;
 class GUI;
 
@@ -26,7 +26,7 @@ public:
 private:
   Config* config;
   Engine* engine;
-  ELE_window* ele_window;
+  UTL_window* utl_window;
   GUI* gui;
 };
 
