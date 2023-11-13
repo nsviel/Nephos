@@ -18,8 +18,8 @@ GUI::GUI(ELE_window* ele_window, Engine* engine){
   this->engine = engine;
   this->ele_window = ele_window;
 
-  this->gui_style = new GUI_style(this);
   this->gui_render = new GUI_render(this);
+  this->gui_style = new GUI_style(this);
   this->gui_font = new GUI_font(this);
   this->gui_tab = new GUI_tab(this);
   this->gui_gpu = new GUI_gpu(this);

@@ -12,6 +12,7 @@
 #include <VK_command/VK_command.h>
 #include <VK_data/VK_buffer.h>
 #include <image/IconsFontAwesome5.h>
+#include <RES_gpu/GUI_image.h>
 
 
 //Constructor / Destructor
@@ -31,6 +32,7 @@ this->struct_vulkan = gui_vulkan->get_struct_vulkan();
   this->vk_texture = new VK_texture(struct_vulkan);
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_buffer = new VK_buffer(struct_vulkan);
+  this->gui_image = new GUI_image(gui);
 
   //---------------------------
 }
@@ -58,7 +60,12 @@ void RND_engine::engine_window(){
   //IL faut faire passer un staging buffer entre les contextes
 //say("----");
   //truct_image image;
-  Struct_image* image_engine = vk_imgui->engine_texture();
+  //Struct_image* image_engine = vk_imgui->engine_texture();
+
+
+//gui_image->draw_image("truc.png");
+
+
 
 /*
   image.format = VK_FORMAT_R8G8B8A8_SRGB;

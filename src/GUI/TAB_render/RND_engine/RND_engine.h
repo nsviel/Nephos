@@ -12,6 +12,7 @@ class VK_texture;
 class Struct_vulkan;
 class VK_buffer;
 class VK_command;
+class GUI_image;
 
 class RND_engine
 {
@@ -39,6 +40,7 @@ VK_command* vk_command;
   VkDescriptorSet descriptor;
   VK_buffer* vk_buffer;
   bool has_been_initialized;
+    GUI_image* gui_image;
 };
 
 #endif
