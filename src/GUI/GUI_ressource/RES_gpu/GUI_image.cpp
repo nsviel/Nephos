@@ -18,21 +18,59 @@ GUI_image::GUI_image(GUI* gui){
 GUI_image::~GUI_image(){}
 
 //Main function
-void GUI_image::draw_image(string path){
+void GUI_image::draw_image_static(string path){
   //---------------------------
 
-  this->load_image(path);
+  this->load_image_static(path);
+  this->display_image();
+
+  //---------------------------
+}
+void GUI_image::draw_image_dynamic(string path){
+  //---------------------------
+
+  this->load_image_dynamic(path);
+  this->display_image();
+
+  //---------------------------
+}
+void GUI_image::draw_image_bin(string path){
+  //---------------------------
+
+  this->load_image_bin(path);
   this->display_image();
 
   //---------------------------
 }
 
 //Subfunction
-void GUI_image::load_image(string path){
+void GUI_image::load_image_static(string path){
+  static Struct_image* image;
+  //---------------------------
+
+  if(image == nullptr){
+    image = vk_engine->load_texture_from_file(path);
+    VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    this->texture = reinterpret_cast<ImTextureID>(descriptor);
+  }
+
+  //---------------------------
+}
+void GUI_image::load_image_dynamic(string path){
   static Struct_image* image;
   //---------------------------
 
   image = vk_engine->load_texture_from_file(path);
+  VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  this->texture = reinterpret_cast<ImTextureID>(descriptor);
+
+  //---------------------------
+}
+void GUI_image::load_image_bin(string path){
+  static Struct_image* image;
+  //---------------------------
+
+  image = vk_engine->load_texture_from_bin(path);
   VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   this->texture = reinterpret_cast<ImTextureID>(descriptor);
 

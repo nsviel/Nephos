@@ -16,10 +16,14 @@ public:
 
 public:
   //Main function
-  void draw_image(string path);
+  void draw_image_static(string path);
+  void draw_image_dynamic(string path);
+  void draw_image_bin(string path);
 
   //Subfunction
-  void load_image(string path);
+  void load_image_static(string path);
+  void load_image_dynamic(string path);
+  void load_image_bin(string path);
   void display_image();
 
 private:

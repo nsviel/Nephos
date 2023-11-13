@@ -50,6 +50,19 @@ Struct_image* VK_texture::load_texture_from_frame(AVFrame* frame){
   //---------------------------
   return image;
 }
+Struct_image* VK_texture::load_texture_from_bin(string path){
+  //---------------------------
+
+  Struct_image* image = new Struct_image();
+  this->create_texture_from_bin(image, path);
+  vk_image->create_image_view(image);
+  vk_image->create_image_sampler(image);
+
+  struct_vulkan->data.vec_texture.push_back(image);
+
+  //---------------------------
+  return image;
+}
 
 //Texture creation
 void VK_texture::create_texture_from_file(Struct_image* image, string path){
@@ -86,6 +99,61 @@ void VK_texture::create_texture_from_frame(Struct_image* image, AVFrame* frame){
   //Image parameters
   image->width = frame->width;
   image->height = frame->height;
+  image->format = VK_FORMAT_R8G8B8A8_SRGB;
+
+  //Create vulkan texture
+  this->create_vulkan_texture(image);
+
+  //---------------------------
+}
+void VK_texture::create_texture_from_bin(Struct_image* image, string path){
+  //---------------------------
+
+
+
+    FILE* file = fopen("truc.bin", "rb"); // Open the file for reading in binary mode
+
+    uint8_t* buffer;
+    if (file != NULL) {
+        fseek(file, 0, SEEK_END); // Move the file pointer to the end
+        long fileSize = ftell(file); // Get the file size
+        fseek(file, 0, SEEK_SET); // Move the file pointer back to the beginning
+
+        // Allocate memory to store the file contents as uint8_t
+        buffer = (uint8_t*)malloc(fileSize);
+
+        if (buffer != NULL) {
+            // Read the file contents directly into the uint8_t buffer
+            size_t bytesRead = fread(buffer, 1, fileSize, file);
+
+            if (bytesRead == fileSize) {
+                // Successfully read the file
+                // Use the buffer as needed
+                free(buffer); // Release the allocated memory
+            } else {
+                // Handle error if not all bytes were read
+                fprintf(stderr, "Error reading all bytes from file\n");
+                exit(0);
+            }
+        } else {
+            // Handle error if memory allocation fails
+            fprintf(stderr, "Error allocating memory\n");
+            exit(0);
+        }
+
+        fclose(file); // Close the file
+    } else {
+        // Handle error if file cannot be opened
+        fprintf(stderr, "Error opening file for reading: %s\n", "truc.bin");
+        exit(0);
+    }
+
+
+    image->data = buffer;
+
+  //Image parameters
+  image->width = struct_vulkan->window.extent.width;
+  image->height = struct_vulkan->window.extent.height;
   image->format = VK_FORMAT_R8G8B8A8_SRGB;
 
   //Create vulkan texture

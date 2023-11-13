@@ -41,7 +41,7 @@ void RP_edl::init_renderpass(){
   //Renderpass
   Struct_renderpass* renderpass = new Struct_renderpass();
   renderpass->name = "edl";
-  renderpass->target = "transfert";
+  renderpass->target = "graphics";
 
   //Pipeline
   this->create_subpass(renderpass);
@@ -53,7 +53,7 @@ void RP_edl::create_subpass(Struct_renderpass* renderpass){
   //---------------------------
 
   Struct_subpass* subpass = new Struct_subpass();
-  subpass->target = "transfert";
+  subpass->target = "shader";
   subpass->draw_task = [this](Struct_subpass* subpass){RP_edl::draw_edl(subpass);};
 
   Struct_pipeline* pipeline = new Struct_pipeline();

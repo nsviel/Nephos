@@ -29,10 +29,12 @@ public:
   //Main functions
   Struct_image* load_texture_from_file(string path);
   Struct_image* load_texture_from_frame(AVFrame* frame);
+  Struct_image* load_texture_from_bin(string path);
 
   //Texture creation
   void create_texture_from_file(Struct_image* texture, string path);
   void create_texture_from_frame(Struct_image* image, AVFrame* frame);
+  void create_texture_from_bin(Struct_image* image, string path);
 
   //Texture cleaning
   void clean_texture(Struct_entity* object);

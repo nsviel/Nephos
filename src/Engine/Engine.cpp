@@ -19,9 +19,6 @@ Engine::Engine(ELE_window* ele_window){
   this->eng_data = new ENG_data(this);
   this->eng_renderpass = new ENG_renderpass(this);
 
-  eng_vulkan->set_headless(true);
-  eng_vulkan->set_name("Engine_backend");
-
   //---------------------------
 }
 Engine::~Engine(){

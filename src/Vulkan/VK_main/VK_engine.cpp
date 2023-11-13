@@ -201,6 +201,14 @@ Struct_image* VK_engine::load_texture_from_frame(AVFrame* frame){
   //---------------------------
   return texture;
 }
+Struct_image* VK_engine::load_texture_from_bin(string path){
+  //---------------------------
+
+  Struct_image* texture = vk_texture->load_texture_from_bin(path);
+
+  //---------------------------
+  return texture;
+}
 
 //Renderpass function
 Struct_renderpass* VK_engine::get_renderpass(int i){
