@@ -178,6 +178,26 @@ void VK_texture::copy_buffer_to_image(Struct_image* image, VkBuffer buffer){
 
   //---------------------------
 }
+void VK_texture::copy_image_to_buffer(Struct_image* image, VkBuffer buffer){
+  //---------------------------
+
+  VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
+
+  VkBufferImageCopy copyRegion = {
+    .bufferOffset = 0,
+    .bufferRowLength = 0,
+    .bufferImageHeight = 0,
+    .imageSubresource = {VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1},
+    .imageOffset = {0, 0, 0},
+    .imageExtent = {image->width, image->height, 1} // Adjust dimensions accordingly
+  };
+
+  vkCmdCopyImageToBuffer(command_buffer, image->image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, buffer, 1, &copyRegion);
+
+  vk_command->singletime_command_end(command_buffer);
+
+  //---------------------------
+}
 void VK_texture::check_frame_format(AVFrame* frame){
   //---------------------------
 

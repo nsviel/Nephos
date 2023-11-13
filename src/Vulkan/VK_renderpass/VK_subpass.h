@@ -22,8 +22,9 @@ public:
   void create_subpass(Struct_renderpass* renderpass);
 
   //Subfunction
-  void create_subpass_presentation(Struct_subpass* subpass);
   void create_subpass_shader(Struct_subpass* subpass);
+  void create_subpass_transfert(Struct_subpass* subpass);
+  void create_subpass_presentation(Struct_subpass* subpass);
   void create_subpass_description(Struct_subpass* subpass);
 
   //Color attachment

@@ -29,7 +29,7 @@ public:
   void load_font();
   void clean();
   Struct_image* engine_texture();
-
+VkDeviceSize calculateImageSize(VkFormat format, VkExtent3D extent);
 private:
   Struct_vulkan* struct_vulkan;
   VK_engine* vk_engine;

@@ -90,6 +90,43 @@ void VK_imgui::clean(){
 
   //---------------------------
 }
+
+
+VkDeviceSize VK_imgui::calculateImageSize(VkFormat format, VkExtent3D extent) {
+    // Get the number of bytes per pixel for the specified format
+    VkFormatProperties formatProperties;
+    vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.struct_device.physical_device, format, &formatProperties);
+
+    if ((formatProperties.linearTilingFeatures & VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT) == 0) {
+        // Format does not support linear tiling, use optimal tiling instead
+        // You may need to handle this differently based on your specific requirements
+        // In this example, we'll assume optimal tiling support
+        vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.struct_device.physical_device, format, &formatProperties);
+    }
+
+    VkDeviceSize bytesPerPixel = 0;
+
+    switch (format) {
+        case VK_FORMAT_R8_UNORM:
+            bytesPerPixel = 1;
+            break;
+        case VK_FORMAT_R8G8_UNORM:
+            bytesPerPixel = 2;
+            break;
+        case VK_FORMAT_R8G8B8A8_UNORM:
+            bytesPerPixel = 4;
+            break;
+        // Add more cases for other formats as needed
+
+        default:
+            throw std::runtime_error("Unsupported image format");
+    }
+
+    // Calculate the size of the image buffer
+    VkDeviceSize imageSize = bytesPerPixel * extent.width * extent.height * extent.depth;
+
+    return imageSize;
+}
 Struct_image* VK_imgui::engine_texture(){
   ImTextureID texture = 0;
   //---------------------------
@@ -102,6 +139,7 @@ Struct_image* VK_imgui::engine_texture(){
 
 
 
+
   //Create stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
@@ -109,26 +147,17 @@ Struct_image* VK_imgui::engine_texture(){
   vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
+  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, TYP_IMAGE_LAYOUT_TRANSFER_DST);
+  vk_texture->copy_buffer_to_image(image, staging_buffer);
+
+
+
 
 
   //Free memory
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
   vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
 
-// /  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, TYP_IMAGE_LAYOUT_TRANSFER_DST);
-//  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, TYP_IMAGE_LAYOUT_TRANSFER_DST);
-///  vk_texture->copy_buffer_to_image(image, staging_buffer);
-  //vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-
-
-
-//vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-
-
-
-
-  //VkDescriptorSet descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-  //texture = reinterpret_cast<ImTextureID>(descriptor);
 
   //---------------------------
   return image;

@@ -43,14 +43,14 @@ void VK_render::start_renderpass(Struct_renderpass* renderpass){
   //---------------------------
 
   VkFramebuffer fbo;
-  if(renderpass->target == "graphics"){
+  if(renderpass->target == "graphics" || renderpass->target == "transfert"){
     fbo = renderpass->framebuffer->fbo;
   }
   else if(renderpass->target == "presentation"){
     fbo = struct_vulkan->swapchain.get_frame_presentation()->fbo;
   }
   else{
-    cout<<"[error] No renderpass target"<<endl;
+    cout<<"[error] Renderpass target not recognized ["<<renderpass->target<<"]"<<endl;
   }
   vk_command->start_render_pass(renderpass, fbo, false);
 

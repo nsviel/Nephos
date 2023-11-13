@@ -30,8 +30,14 @@ void VK_subpass::create_subpass(Struct_renderpass* renderpass){
     if(subpass->target == "shader"){
       this->create_subpass_shader(subpass);
     }
+    else if(subpass->target == "transfert"){
+      this->create_subpass_transfert(subpass);
+    }
     else if(subpass->target == "presentation"){
       this->create_subpass_presentation(subpass);
+    }
+    else{
+      cout<<"[error] subpass target not recognized"<<endl;
     }
   }
 
@@ -49,6 +55,36 @@ void VK_subpass::create_subpass_shader(Struct_subpass* subpass){
   color.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
   color.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
   color.layout_final = TYP_IMAGE_LAYOUT_SHADER_READONLY;
+  this->color_attachment_description(color);
+  this->color_attachment_reference(color);
+  subpass->vec_color.push_back(color);
+
+  // Depth
+  Struct_attachment depth;
+  depth.item = 1;
+  depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
+  depth.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
+  depth.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
+  depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+  this->depth_attachment_description(depth);
+  this->depth_attachment_reference(depth);
+  subpass->depth = depth;
+
+  // Subpass description
+  this->create_subpass_description(subpass);
+
+  //---------------------------
+}
+void VK_subpass::create_subpass_transfert(Struct_subpass* subpass){
+  //---------------------------
+
+  // Color
+  Struct_attachment color;
+  color.item = 0;
+  color.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
+  color.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
+  color.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
+  color.layout_final = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
   this->color_attachment_description(color);
   this->color_attachment_reference(color);
   subpass->vec_color.push_back(color);
