@@ -31,7 +31,7 @@ void RND_engine::design_panel(){
 
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
   ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
-  if(ImGui::Begin("Engine_panel", NULL)){
+  if(ImGui::Begin("Engine", NULL)){
     this->engine_window();
     this->engine_control();
     ImGui::End();
@@ -45,8 +45,7 @@ void RND_engine::design_panel(){
 void RND_engine::engine_window(){
   //---------------------------
 
-  vec2 dim = ele_window->compute_window_dim();
-  Struct_image* image = vk_imgui->engine_texture(dim);
+  Struct_image* image = vk_imgui->rendered_image();
 
   VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   ImTextureID texture = reinterpret_cast<ImTextureID>(descriptor);
@@ -56,7 +55,6 @@ void RND_engine::engine_window(){
 
   //---------------------------
 }
-
 void RND_engine::engine_control(){
   //---------------------------
 

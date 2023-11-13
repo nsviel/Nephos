@@ -47,6 +47,10 @@ public:
   void check_frame_format(AVFrame* frame);
   void convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B);
   void convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride);
+  VkDeviceSize calculateImageSize(VkFormat format, VkExtent3D extent);
+  
+  void make_screenshot(Struct_image* image);
+  void save_to_bin(Struct_image* image);
 
 private:
   Struct_vulkan* struct_vulkan;

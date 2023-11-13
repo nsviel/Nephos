@@ -31,10 +31,7 @@ public:
   void draw(VkCommandBuffer& command_buffer);
   void load_font();
   void clean();
-  Struct_image* engine_texture(vec2 dim);
-  VkDeviceSize calculateImageSize(VkFormat format, VkExtent3D extent);
-  void make_screenshot(Struct_image* image);
-  void save_to_bin(Struct_image* image);
+  Struct_image* rendered_image();
 
 private:
   Struct_vulkan* struct_vulkan;
