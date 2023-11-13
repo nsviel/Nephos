@@ -36,16 +36,16 @@ TAB_render::~TAB_render(){}
 void TAB_render::create_panels(){
   //---------------------------
 
-  this->gui_engine = new RND_engine(gui);
   this->gui_render_option = new RND_option(gui, &gui_render_panel->show_option, "Option");
   this->gui_object = new PAN_object(gui, &gui_render_panel->show_object, "Object");
   this->gui_set = new PAN_set(gui, &gui_render_panel->show_set, "Set");
   this->gui_profiler = new GUI_profiler(gui, &gui_render_panel->show_profiler, "Profiler");
   this->gui_shader = new RND_shader(gui, &gui_render_panel->show_shader, "Shader");
   this->gui_scene = new PAN_scene(gui, &gui_render_panel->show_scene, "Scene");
-  this->gui_capture = new GUI_capture(gui, &gui_render_panel->show_capture, "Capture");
   this->gui_camera = new PAN_camera(gui, &gui_render_panel->show_camera, "Camera");
   this->gui_database = new GUI_database(gui, &gui_render_panel->show_database, "Database##4323");
+  this->gui_capture = new GUI_capture(gui, &gui_render_panel->show_capture, "Capture");
+  this->gui_engine = new RND_engine(gui);
   this->gui_render_menu = new RND_menu(gui);
 
   //---------------------------

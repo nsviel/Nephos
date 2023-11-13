@@ -39,8 +39,8 @@ public:
   inline PAN_set* get_gui_set(){return gui_set;}
   inline PAN_camera* get_gui_camera(){return gui_camera;}
   inline GUI_capture* get_gui_capture(){return gui_capture;}
-  inline PAN_scene* get_gui_scene(){return gui_scene;}
   inline RND_engine* get_gui_engine(){return gui_engine;}
+  inline PAN_scene* get_gui_scene(){return gui_scene;}
   inline RND_option* get_gui_option(){return gui_render_option;}
 
 private:

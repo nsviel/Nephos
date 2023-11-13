@@ -1,38 +1,24 @@
 #include "RND_engine.h"
 #include "RND_control.h"
 
-#include <Engine.h>
 #include <GUI.h>
-#include <Vulkan.h>
-#include <VK_main/VK_imgui.h>
-#include <VK_main/Struct_vulkan.h>
-#include <VK_image/VK_image.h>
-#include <VK_image/VK_color.h>
-#include <VK_image/VK_texture.h>
-#include <VK_command/VK_command.h>
-#include <VK_data/VK_buffer.h>
 #include <image/IconsFontAwesome5.h>
 #include <RES_gpu/GUI_image.h>
 
+#include <Engine.h>
+#include <Vulkan.h>
+#include <VK_main/VK_imgui.h>
 
 //Constructor / Destructor
 RND_engine::RND_engine(GUI* gui){
   //---------------------------
 
+  this->gui_control = new RND_control(gui);
+  this->gui_image = new GUI_image(gui);
+
   Engine* engine = gui->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
-  GUI_render* gui_render = gui->get_gui_render();
-  Vulkan* gui_vulkan = gui_render->get_gui_vulkan();
-
-this->struct_vulkan = gui_vulkan->get_struct_vulkan();
   this->vk_imgui = eng_vulkan->get_vk_imgui();
-  this->gui_control = new RND_control(gui);
-  this->vk_image = new VK_image(struct_vulkan);
-  this->vk_color = new VK_color(struct_vulkan);
-  this->vk_texture = new VK_texture(struct_vulkan);
-  this->vk_command = new VK_command(struct_vulkan);
-  this->vk_buffer = new VK_buffer(struct_vulkan);
-  this->gui_image = new GUI_image(gui);
 
   //---------------------------
 }
@@ -44,7 +30,7 @@ void RND_engine::design_panel(){
 
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
   ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
-  if(ImGui::Begin("Engine", NULL)){
+  if(ImGui::Begin("Engine_panel", NULL)){
     this->engine_window();
     this->engine_control();
     ImGui::End();
@@ -60,11 +46,11 @@ void RND_engine::engine_window(){
   //IL faut faire passer un staging buffer entre les contextes
 //say("----");
   //truct_image image;
-  //Struct_image* image_engine = vk_imgui->engine_texture();
 
 
-//gui_image->draw_image("truc.png");
 
+gui_image->draw_image("output.png");  Struct_image* image_engine = vk_imgui->engine_texture();
+//  gui_image->draw_image("../media/vulkano.jpg");
 
 
 /*

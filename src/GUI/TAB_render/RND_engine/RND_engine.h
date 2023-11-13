@@ -5,14 +5,9 @@
 
 class GUI;
 class RND_control;
-class VK_imgui;
-class VK_image;
-class VK_color;
-class VK_texture;
-class Struct_vulkan;
-class VK_buffer;
-class VK_command;
 class GUI_image;
+class VK_imgui;
+
 
 class RND_engine
 {
@@ -30,17 +25,11 @@ public:
   void engine_control();
 
 private:
-  VK_imgui* vk_imgui;
-  VK_image* vk_image;
   RND_control* gui_control;
-  Struct_vulkan* struct_vulkan;
-  VK_color* vk_color;
-  VK_texture* vk_texture;
-VK_command* vk_command;
-  VkDescriptorSet descriptor;
-  VK_buffer* vk_buffer;
+  GUI_image* gui_image;
+  VK_imgui* vk_imgui;
+
   bool has_been_initialized;
-    GUI_image* gui_image;
 };
 
 #endif

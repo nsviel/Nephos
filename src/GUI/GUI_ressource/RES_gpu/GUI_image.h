@@ -24,7 +24,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  VkDescriptorSet descriptor;
+  ImTextureID texture;
 };
 
 

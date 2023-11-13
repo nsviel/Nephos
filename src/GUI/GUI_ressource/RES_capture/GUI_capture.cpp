@@ -10,7 +10,7 @@
 GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  this->gui_image = new GUI_image(gui);
+  //this->gui_image = new GUI_image(gui);
   this->gui_video = new GUI_video(gui);
   this->gui = gui;
 
@@ -22,7 +22,7 @@ GUI_capture::~GUI_capture(){}
 void GUI_capture::design_panel(){
   //---------------------------
 
-  this->capture_command();
+  //this->capture_command();
 
   //---------------------------
 }
@@ -34,7 +34,7 @@ void GUI_capture::capture_command(){
 
 //sayHello();
   gui_video->draw_video("../media/vulkano.mp4");
-  gui_image->draw_image("../media/vulkano.jpg");
+  //gui_image->draw_image("../media/vulkano.jpg");
 
 /*
   ImTextureID my_tex_id = io.Fonts->TexID;

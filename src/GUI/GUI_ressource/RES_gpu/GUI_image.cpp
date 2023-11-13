@@ -32,10 +32,11 @@ void GUI_image::load_image(string path){
   static Struct_image* image;
   //---------------------------
 
-  if(image == nullptr){
+
     image = vk_engine->load_texture_from_file(path);
-    this->descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-  }
+    VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    this->texture = reinterpret_cast<ImTextureID>(descriptor);
+  
 
   //---------------------------
 }
@@ -43,7 +44,7 @@ void GUI_image::display_image(){
   //---------------------------
 
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-  ImGui::Image(descriptor, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
+  ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
 
   //---------------------------
 }
