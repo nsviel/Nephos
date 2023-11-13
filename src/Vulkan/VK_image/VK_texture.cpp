@@ -69,7 +69,13 @@ Struct_image* VK_texture::load_texture_from_bin(string path){
 void VK_texture::update_texture_from_frame(Struct_image* image, AVFrame* frame){
   //---------------------------
 
-  this->create_texture_from_frame(image, frame);
+  //Frame data
+  int output_stride = frame->width * 4;
+  image->data = new uint8_t[output_stride * frame->height];
+  this->convert_YUV420P_to_RGB(frame, image->data, output_stride);
+
+  //Create vulkan texture
+  this->update_vulkan_texture(image);
 
   //---------------------------
 }
@@ -104,7 +110,7 @@ void VK_texture::create_texture_from_frame(Struct_image* image, AVFrame* frame){
   //Frame data
   int output_stride = frame->width * 4;
   image->data = new uint8_t[output_stride * frame->height];
-  convert_YUV420P_to_RGB(frame, image->data, output_stride);
+  this->convert_YUV420P_to_RGB(frame, image->data, output_stride);
 
   //Image parameters
   image->width = frame->width;
@@ -228,6 +234,33 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
 
   //---------------------------
 }
+void VK_texture::update_vulkan_texture(Struct_image* image){
+  //---------------------------
+
+  //Create stagging buffer
+  VkBuffer staging_buffer;
+  VkDeviceMemory staging_mem;
+  VkDeviceSize tex_size = image->width * image->height * 4;
+  vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
+  vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+
+  //Copy data to stagging buffer
+  void* data;
+  vkMapMemory(struct_vulkan->device.device, staging_mem, 0, tex_size, 0, &data);
+  memcpy(data, image->data, static_cast<size_t>(tex_size));
+  vkUnmapMemory(struct_vulkan->device.device, staging_mem);
+
+  //Image transition from undefined layout to read only layout
+  vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
+  this->copy_buffer_to_image(image, staging_buffer);
+  vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_TRANSFER_DST, TYP_IMAGE_LAYOUT_SHADER_READONLY);
+
+  //Free memory
+  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
+
+  //---------------------------
+}
 void VK_texture::copy_buffer_to_image(Struct_image* image, VkBuffer buffer){
   //---------------------------
 
@@ -328,6 +361,7 @@ void VK_texture::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, in
   int U_stride = frame->linesize[1];
   int V_stride = frame->linesize[2];
 
+  #pragma omp parallel for
   for (int y = 0; y < height; y++){
     for (int x = 0; x < width; x++) {
       int Y = frame->data[0][y * Y_stride + x];
@@ -335,7 +369,7 @@ void VK_texture::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, in
       int V = frame->data[2][y / 2 * V_stride + x / 2];
 
       int R, G, B;
-      convert_YUV_to_RGB(Y, U, V, R, G, B);
+      this->convert_YUV_to_RGB(Y, U, V, R, G, B);
 
       // Merge channels into VK_FORMAT_R8G8B8A8_UNORM
       uint8_t* pixel = &output_data[y * output_stride + x * 4];

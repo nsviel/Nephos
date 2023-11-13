@@ -212,7 +212,16 @@ Struct_image* VK_engine::load_texture_from_bin(string path){
 void VK_engine::update_texture_from_frame(Struct_image* image, AVFrame* frame){
   //---------------------------
 
-  vk_texture->update_texture_from_frame(image, frame);
+  //vk_texture->update_texture_from_frame(image, frame);
+
+  std::thread updateThread([this, image, frame]() {
+    try {
+      vk_texture->update_texture_from_frame(image, frame);
+    } catch (const std::exception& e) {
+      std::cerr << "Exception caught in thread: " << e.what() << std::endl;
+    }
+  });
+  updateThread.join();
 
   //---------------------------
 }

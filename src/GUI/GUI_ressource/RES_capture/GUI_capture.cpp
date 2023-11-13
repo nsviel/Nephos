@@ -32,7 +32,7 @@ void GUI_capture::capture_command(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  //gui_video->draw_video("../media/vulkano.mp4");
+  gui_video->draw_video("../media/vulkano.mp4");
   gui_image->draw_image_static("../media/vulkano.jpg");
 
   //---------------------------

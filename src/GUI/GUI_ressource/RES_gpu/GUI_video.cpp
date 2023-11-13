@@ -59,7 +59,7 @@ void GUI_video::acquire_next_frame(){
     int frameFinished;
     result = avcodec_receive_frame(codec_context, frame);
     if(result == 0){
-      Struct_image* image = nullptr;
+      static Struct_image* image = nullptr;
 
       if(image == nullptr){
         image = vk_engine->load_texture_from_frame(frame);
@@ -69,7 +69,7 @@ void GUI_video::acquire_next_frame(){
       }
 
     }
-
+    
     //Free AV frame
     av_frame_free(&frame);
     av_packet_unref(packet);
