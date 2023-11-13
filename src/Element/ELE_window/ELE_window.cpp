@@ -7,7 +7,7 @@
 ELE_window::ELE_window(Config* config){
   //---------------------------
 
-  this-> config = config;
+  this->config = config;
   this->has_been_resized = false;
 
   //---------------------------

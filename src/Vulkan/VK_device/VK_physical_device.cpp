@@ -27,8 +27,8 @@ void VK_physical_device::compute_extent(){
   //---------------------------
 
   if(struct_vulkan->param.headless){
-    struct_vulkan->window.extent.width = 200;
-    struct_vulkan->window.extent.height = 200;
+    struct_vulkan->window.extent.width = 1024;
+    struct_vulkan->window.extent.height = 500;
   }
   else{
     this->find_surface_capability(struct_vulkan->device.struct_device);

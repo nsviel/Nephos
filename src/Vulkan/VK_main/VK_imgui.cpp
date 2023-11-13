@@ -127,6 +127,8 @@ VkDeviceSize VK_imgui::calculateImageSize(VkFormat format, VkExtent3D extent) {
 
     return imageSize;
 }
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include <image/stb_image_write.h>
 Struct_image* VK_imgui::engine_texture(){
   ImTextureID texture = 0;
   //---------------------------
@@ -144,14 +146,34 @@ Struct_image* VK_imgui::engine_texture(){
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
   VkDeviceSize tex_size = image->width * image->height * 4;
-  vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
+  vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
-  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, TYP_IMAGE_LAYOUT_TRANSFER_DST);
-  vk_texture->copy_buffer_to_image(image, staging_buffer);
+
+  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_texture->copy_image_to_buffer(image, staging_buffer);
 
 
 
+  VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
+  VkDeviceSize bufferSize = calculateImageSize(image->format, imageExtent);
+
+  // 3. Save staging buffer data to file
+  void* mappedData;
+  vkMapMemory(struct_vulkan->device.device, staging_mem, 0, bufferSize, 0, &mappedData);
+
+
+int channels = 4;  // Assuming RGBA data, adjust as needed
+
+std::string filename = "output.png";  // Adjust the file name and format as needed
+
+if (stbi_write_png(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
+    throw std::runtime_error("Failed to write PNG file!");
+}
+
+
+
+  vkUnmapMemory(struct_vulkan->device.device, staging_mem);
 
 
   //Free memory
