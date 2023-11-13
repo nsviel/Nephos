@@ -25,7 +25,7 @@ void VK_presentation::acquire_next_image(VkSemaphore& semaphore){
   //Acquiring an image from the swap chain
   VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.device, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
-    vk_swapchain->recreate_swapChain();
+    vk_swapchain->recreate_swapchain();
     return;
   }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
     throw std::runtime_error("[error] failed to acquire swap chain image!");
@@ -34,7 +34,7 @@ void VK_presentation::acquire_next_image(VkSemaphore& semaphore){
   //Window resizing
   vk_surface->check_for_resizing();
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
-    vk_swapchain->recreate_swapChain();
+    vk_swapchain->recreate_swapchain();
     return;
   }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
     throw std::runtime_error("[error] failed to acquire swap chain image!");
@@ -68,7 +68,7 @@ void VK_presentation::submit_presentation(VkSemaphore& semaphore){
   VkResult result = vkQueuePresentKHR(struct_vulkan->device.queue_presentation, &presentation_info);
 
   if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || struct_vulkan->window.is_resized){
-    vk_swapchain->recreate_swapChain();
+    vk_swapchain->recreate_swapchain();
   }else if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to present swap chain image!");
   }

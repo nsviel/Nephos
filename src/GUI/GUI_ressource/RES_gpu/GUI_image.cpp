@@ -32,11 +32,9 @@ void GUI_image::load_image(string path){
   static Struct_image* image;
   //---------------------------
 
-
-    image = vk_engine->load_texture_from_file(path);
-    VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-    this->texture = reinterpret_cast<ImTextureID>(descriptor);
-  
+  image = vk_engine->load_texture_from_file(path);
+  VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  this->texture = reinterpret_cast<ImTextureID>(descriptor);
 
   //---------------------------
 }

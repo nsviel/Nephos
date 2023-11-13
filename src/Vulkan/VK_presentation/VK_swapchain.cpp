@@ -38,7 +38,7 @@ void VK_swapchain::create_swapchain(){
 
   //---------------------------
 }
-void VK_swapchain::recreate_swapChain(){
+void VK_swapchain::recreate_swapchain(){
   //---------------------------
 
   //Minimization managment

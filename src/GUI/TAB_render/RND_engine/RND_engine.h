@@ -7,6 +7,7 @@ class GUI;
 class RND_control;
 class GUI_image;
 class VK_imgui;
+class ELE_window;
 
 
 class RND_engine
@@ -28,6 +29,7 @@ private:
   RND_control* gui_control;
   GUI_image* gui_image;
   VK_imgui* vk_imgui;
+  ELE_window* ele_window;
 
   bool has_been_initialized;
 };

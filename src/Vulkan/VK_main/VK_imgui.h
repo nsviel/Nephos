@@ -13,6 +13,8 @@ class VK_command;
 class VK_image;
 class VK_texture;
 class VK_buffer;
+class VK_framebuffer;
+class VK_physical_device;
 
 
 class VK_imgui
@@ -28,7 +30,7 @@ public:
   void draw(VkCommandBuffer& command_buffer);
   void load_font();
   void clean();
-  Struct_image* engine_texture();
+  Struct_image* engine_texture(vec2 dim);
 VkDeviceSize calculateImageSize(VkFormat format, VkExtent3D extent);
 private:
   Struct_vulkan* struct_vulkan;
@@ -39,6 +41,8 @@ private:
   VK_image* vk_image;
   VK_texture* vk_texture;
   VK_buffer* vk_buffer;
+  VK_framebuffer* vk_framebuffer;
+  VK_physical_device* vk_physical_device;
 };
 
 #endif

@@ -8,6 +8,8 @@
 #include <VK_data/VK_buffer.h>
 #include <VK_image/VK_texture.h>
 #include <VK_image/VK_image.h>
+#include <VK_presentation/VK_framebuffer.h>
+#include <VK_device/VK_physical_device.h>
 
 
 //Constructor / Destructor
@@ -22,6 +24,8 @@ VK_imgui::VK_imgui(Struct_vulkan* struct_vulkan){
   this->vk_image = new VK_image(struct_vulkan);
   this->vk_buffer = new VK_buffer(struct_vulkan);
   this->vk_texture = new VK_texture(struct_vulkan);
+  this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
+  this->vk_physical_device = new VK_physical_device(struct_vulkan);
 
   //---------------------------
 }
@@ -129,7 +133,7 @@ VkDeviceSize VK_imgui::calculateImageSize(VkFormat format, VkExtent3D extent) {
 }
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <image/stb_image_write.h>
-Struct_image* VK_imgui::engine_texture(){
+Struct_image* VK_imgui::engine_texture(vec2 dim){
   ImTextureID texture = 0;
   //---------------------------
   //PROBLEM ImGui_ImplVulkan_AddTexture demande que le sampler et view soient créer dans le meme context vulkan que imgui
@@ -165,9 +169,9 @@ Struct_image* VK_imgui::engine_texture(){
 
 int channels = 4;  // Assuming RGBA data, adjust as needed
 
-std::string filename = "output.png";  // Adjust the file name and format as needed
+std::string filename = "output.jpg";  // Adjust the file name and format as needed
 
-if (stbi_write_png(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
+if (stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
     throw std::runtime_error("Failed to write PNG file!");
 }
 
@@ -179,6 +183,21 @@ if (stbi_write_png(filename.c_str(), image->width, image->height, channels, mapp
   //Free memory
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
   vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
+
+
+say(image->width);
+
+if(dim != struct_vulkan->param.headless_dim){
+  struct_vulkan->param.headless_dim = dim;
+  vkDeviceWaitIdle(struct_vulkan->device.device);
+  vk_physical_device->compute_extent();
+  vk_framebuffer->clean_framebuffers();
+  vk_framebuffer->create_framebuffers();
+
+}
+
+
+
 
 
   //---------------------------

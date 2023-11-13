@@ -1,6 +1,6 @@
 #include "RND_engine.h"
 #include "RND_control.h"
-
+#include <ELE_window/ELE_window.h>
 #include <GUI.h>
 #include <image/IconsFontAwesome5.h>
 #include <RES_gpu/GUI_image.h>
@@ -13,6 +13,7 @@
 RND_engine::RND_engine(GUI* gui){
   //---------------------------
 
+  this->ele_window = gui->get_ele_window();
   this->gui_control = new RND_control(gui);
   this->gui_image = new GUI_image(gui);
 
@@ -47,9 +48,10 @@ void RND_engine::engine_window(){
 //say("----");
   //truct_image image;
 
+vec2 dim = ele_window->compute_window_dim();
+Struct_image* image_engine = vk_imgui->engine_texture(dim);
 
-
-gui_image->draw_image("output.png");  Struct_image* image_engine = vk_imgui->engine_texture();
+gui_image->draw_image("output.jpg");
 //  gui_image->draw_image("../media/vulkano.jpg");
 
 
