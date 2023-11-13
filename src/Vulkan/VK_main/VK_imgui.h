@@ -25,7 +25,7 @@ public:
   void draw(VkCommandBuffer& command_buffer);
   void load_font();
   void clean();
-  Struct_image* get_rendered_image();
+  ImTextureID rendered_texture();
 
 private:
   Struct_vulkan* struct_vulkan;

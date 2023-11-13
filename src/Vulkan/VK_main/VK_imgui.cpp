@@ -2,7 +2,7 @@
 
 #include <VK_main/Struct_vulkan.h>
 #include <VK_main/VK_engine.h>
-#include <VK_binding/VK_pool.h>
+#include <VK_instance/VK_pool.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
 
@@ -85,12 +85,18 @@ void VK_imgui::clean(){
   //---------------------------
 }
 
-Struct_image* VK_imgui::get_rendered_image(){
+ImTextureID VK_imgui::rendered_texture(){
+  static ImTextureID texture = 0;
   //---------------------------
 
-  Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
-  Struct_image* image = &renderpass->framebuffer->color;
+  if(texture == 0){
+    Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
+    Struct_image* image = &renderpass->framebuffer->color;
+
+    VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    texture = reinterpret_cast<ImTextureID>(descriptor);
+  }
 
   //---------------------------
-  return image;
+  return texture;
 }

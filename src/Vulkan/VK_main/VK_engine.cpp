@@ -10,7 +10,7 @@
 #include <VK_instance/VK_extension.h>
 #include <VK_data/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
-#include <VK_binding/VK_pool.h>
+#include <VK_instance/VK_pool.h>
 #include <VK_image/VK_texture.h>
 #include <VK_presentation/VK_swapchain.h>
 #include <VK_presentation/VK_frame.h>
@@ -64,6 +64,7 @@ void VK_engine::init(){
 void VK_engine::loop(){
   //---------------------------
 
+  vk_pool->reset_command_pool();
   vk_drawing->draw_frame();
 
   //---------------------------

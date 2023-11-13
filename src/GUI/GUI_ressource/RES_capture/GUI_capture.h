@@ -26,7 +26,7 @@ public:
 
 private:
   GUI_video* gui_video;
-  //GUI_image* gui_image;
+  GUI_image* gui_image;
   GUI* gui;
   RND_panel* gui_render_panel;
 

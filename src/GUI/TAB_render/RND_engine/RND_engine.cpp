@@ -45,11 +45,7 @@ void RND_engine::design_panel(){
 void RND_engine::engine_window(){
   //---------------------------
 
-  Struct_image* image = vk_imgui->get_rendered_image();
-
-  VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-  ImTextureID texture = reinterpret_cast<ImTextureID>(descriptor);
-
+  ImTextureID texture = vk_imgui->rendered_texture();
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
 

@@ -45,7 +45,7 @@ void GUI_image::draw_image_bin(string path){
 
 //Subfunction
 void GUI_image::load_image_static(string path){
-  static Struct_image* image;
+  static Struct_image* image = nullptr;
   //---------------------------
 
   if(image == nullptr){
