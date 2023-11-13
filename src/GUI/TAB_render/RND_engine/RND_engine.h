@@ -8,8 +8,10 @@ class RND_control;
 class VK_imgui;
 class VK_image;
 class VK_color;
+class VK_texture;
 class Struct_vulkan;
-
+class VK_buffer;
+class VK_command;
 
 class RND_engine
 {
@@ -32,8 +34,10 @@ private:
   RND_control* gui_control;
   Struct_vulkan* struct_vulkan;
   VK_color* vk_color;
-
+  VK_texture* vk_texture;
+VK_command* vk_command;
   VkDescriptorSet descriptor;
+  VK_buffer* vk_buffer;
   bool has_been_initialized;
 };
 

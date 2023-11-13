@@ -5,6 +5,8 @@
 #include <VK_binding/VK_pool.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
+#include <VK_data/VK_buffer.h>
+#include <VK_image/VK_texture.h>
 #include <VK_image/VK_image.h>
 
 
@@ -18,6 +20,8 @@ VK_imgui::VK_imgui(Struct_vulkan* struct_vulkan){
   this->vk_submit = new VK_submit(struct_vulkan);
   this->vk_engine = new VK_engine(struct_vulkan);
   this->vk_image = new VK_image(struct_vulkan);
+  this->vk_buffer = new VK_buffer(struct_vulkan);
+  this->vk_texture = new VK_texture(struct_vulkan);
 
   //---------------------------
 }
@@ -98,6 +102,27 @@ Struct_image* VK_imgui::engine_texture(){
 
 
 
+  //Create stagging buffer
+  VkBuffer staging_buffer;
+  VkDeviceMemory staging_mem;
+  VkDeviceSize tex_size = image->width * image->height * 4;
+  vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
+  vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+
+
+
+  //Free memory
+  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
+
+// /  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, TYP_IMAGE_LAYOUT_TRANSFER_DST);
+//  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, TYP_IMAGE_LAYOUT_TRANSFER_DST);
+///  vk_texture->copy_buffer_to_image(image, staging_buffer);
+  //vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+
+
+
+//vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
 
 
 

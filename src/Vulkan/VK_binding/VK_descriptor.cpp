@@ -87,7 +87,7 @@ void VK_descriptor::update_descriptor_sampler(Struct_binding* binding, vector<St
     for(int j=0; j<vec_image.size(); j++){
       Struct_image* image = vec_image[j];
 
-      if(sampler->name == image->name){say(image->name);
+      if(sampler->name == image->name){
         VkDescriptorImageInfo image_info = {};
         image_info.imageLayout = image->layout;
         image_info.imageView = image->view;

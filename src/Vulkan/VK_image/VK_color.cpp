@@ -28,11 +28,11 @@ void VK_color::create_color_attachment(Struct_image* color){
   color->tiling = VK_IMAGE_TILING_OPTIMAL;
   color->properties = TYP_MEMORY_GPU;
   color->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-say(color->view);
+
   vk_image->create_image(color);
   vk_image->create_image_view(color);
   vk_image->create_image_sampler(color);
-say(color->view);
+
   //---------------------------
 }
 

@@ -49,7 +49,7 @@ void VK_image::create_image_view(Struct_image* image){
     throw std::runtime_error("failed to create texture image view!");
   }
 
-  this->compute_mipmap(image);
+  //this->compute_mipmap(image);
 
   //---------------------------
 }
