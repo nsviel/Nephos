@@ -46,11 +46,13 @@ void RND_engine::engine_window(){
   //---------------------------
 
   vec2 dim = ele_window->compute_window_dim();
-  Struct_image* image_engine = vk_imgui->engine_texture(dim);
+  Struct_image* image = vk_imgui->engine_texture(dim);
 
-  //gui_image->draw_image_static("output.jpg");
-  //gui_image->draw_image_bin("truc.bin");
-  //gui_image->draw_image("../media/vulkano.jpg");
+  VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  ImTextureID texture = reinterpret_cast<ImTextureID>(descriptor);
+
+  ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+  ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
 
   //---------------------------
 }
