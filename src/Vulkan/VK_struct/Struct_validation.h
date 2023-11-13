@@ -1,7 +1,7 @@
 #ifndef STRUCT_VALIDATION_H
 #define STRUCT_VALIDATION_H
 
-#include <ELE_specific/common.h>
+#include <UTL_specific/common.h>
 
 
 //Singleton class to store Shader printf output

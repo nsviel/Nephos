@@ -1,7 +1,7 @@
 #include "VK_shader.h"
 
 #include <VK_main/Struct_vulkan.h>
-#include <ELE_specific/File/File.h>
+#include <UTL_specific/File/File.h>
 
 
 //Constructor / Destructor
@@ -129,7 +129,7 @@ void VK_shader::recompile_shader(Shader_info* shader_info){
 void VK_shader::run_recompilation(string path_glsl, string path_spir){
   //---------------------------
 
-  string command = "../src/Utility/ELE_shader/compile.sh " + path_glsl + " " + path_spir + " >> " + path_output +" 2>&1";
+  string command = "../src/Utility/UTL_shader/compile.sh " + path_glsl + " " + path_spir + " >> " + path_output +" 2>&1";
   int result = system(command.c_str());
   if(result != 0){
     cout<<"[error] Shader compilation GLSL -> SPIR-V\n"<<command<<endl;

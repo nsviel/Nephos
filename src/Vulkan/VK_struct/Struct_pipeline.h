@@ -4,7 +4,7 @@
 #include <VK_struct/typedef.h>
 #include <VK_struct/Struct_binding.h>
 #include <ENG_shader/Base/BASE_shader.h>
-#include <ELE_specific/common.h>
+#include <UTL_specific/common.h>
 
 
 //Binding requirement -> Name, Type size, binding, desriptor type, shader stage

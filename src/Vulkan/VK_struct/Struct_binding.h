@@ -2,7 +2,7 @@
 #define STRUCT_BINDING_H
 
 #include <VK_struct/typedef.h>
-#include <ELE_specific/common.h>
+#include <UTL_specific/common.h>
 
 //Consistent attribut binding:
 //  -position -> 0

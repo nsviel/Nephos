@@ -2,7 +2,7 @@
 #define VK_COLOR_H
 
 #include <VK_struct/Struct_image.h>
-#include <ELE_specific/common.h>
+#include <UTL_specific/common.h>
 
 class Struct_vulkan;
 class VK_image;

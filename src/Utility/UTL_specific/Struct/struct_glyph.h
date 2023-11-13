@@ -1,7 +1,7 @@
 #ifndef GLYPH_STRUCT_H
 #define GLYPH_STRUCT_H
 
-#include <ELE_specific/Struct/struct_object.h>
+#include <UTL_specific/Struct/struct_object.h>
 
 
 struct Glyph : public Object

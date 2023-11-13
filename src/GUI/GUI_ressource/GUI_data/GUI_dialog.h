@@ -1,7 +1,7 @@
 #ifndef GUI_DIALOG_H
 #define GUI_DIALOG_H
 
-#include <ELE_specific/common.h>
+#include <UTL_specific/common.h>
 
 class GUI;
 

@@ -2,7 +2,7 @@
 #define STRUCT_PHYSICAL_DEVICE_H
 
 #include <VK_struct/Struct_physical_device.h>
-#include <ELE_specific/common.h>
+#include <UTL_specific/common.h>
 
 
 struct Struct_physical_device{

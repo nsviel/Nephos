@@ -2,8 +2,8 @@
 
 #include "../Color/Color.h"
 
-#include <ELE_specific/Function/fct_math.h>
-#include <ELE_specific/color.h>
+#include <UTL_specific/Function/fct_math.h>
+#include <UTL_specific/color.h>
 
 
 //Constructor / destructor

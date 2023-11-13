@@ -1,8 +1,8 @@
 #ifndef GLYPH_SOURCE_H
 #define GLYPH_SOURCE_H
 
-#include <ELE_specific/Struct/struct_glyph.h>
-#include <ELE_specific/common.h>
+#include <UTL_specific/Struct/struct_glyph.h>
+#include <UTL_specific/common.h>
 
 
 class Glyph_source
