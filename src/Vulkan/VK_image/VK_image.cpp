@@ -34,17 +34,16 @@ void VK_image::create_image_view(Struct_image* image){
   VkImageViewCreateInfo viewInfo{};
   viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
   viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
-  viewInfo.format = image->format;
   viewInfo.subresourceRange = {};
   viewInfo.subresourceRange.aspectMask = image->aspect;
   viewInfo.subresourceRange.baseMipLevel = 0;
   viewInfo.subresourceRange.levelCount = image->mip_level;
   viewInfo.subresourceRange.baseArrayLayer = 0;
   viewInfo.subresourceRange.layerCount = 1;
+  viewInfo.format = image->format;
   viewInfo.image = image->image;
   viewInfo.flags = 0;
 
-  VkImageView imageView;
   VkResult result = vkCreateImageView(struct_vulkan->device.device, &viewInfo, nullptr, &image->view);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create texture image view!");
@@ -57,14 +56,14 @@ void VK_image::create_image_view(Struct_image* image){
 VkImageView VK_image::create_image_view(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags){
 	VkImageViewCreateInfo viewInfo{};
 	viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
-	viewInfo.image = image;
-	viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
-	viewInfo.format = format;
+  viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
 	viewInfo.subresourceRange.aspectMask = aspectFlags;
 	viewInfo.subresourceRange.baseMipLevel = 0;
 	viewInfo.subresourceRange.levelCount = 1;
 	viewInfo.subresourceRange.baseArrayLayer = 0;
 	viewInfo.subresourceRange.layerCount = 1;
+  viewInfo.format = format;
+  viewInfo.image = image;
 
 	VkImageView imageView;
 	if (vkCreateImageView(struct_vulkan->device.device, &viewInfo, nullptr, &imageView) != VK_SUCCESS)

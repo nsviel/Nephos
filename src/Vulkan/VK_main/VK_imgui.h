@@ -2,6 +2,7 @@
 #define VK_IMGUI_H
 
 #include <VK_struct/Struct_subpass.h>
+#include <VK_struct/Struct_image.h>
 #include <ELE_specific/common.h>
 
 class Struct_vulkan;
@@ -9,6 +10,7 @@ class VK_engine;
 class VK_pool;
 class VK_submit;
 class VK_command;
+class VK_image;
 
 
 class VK_imgui
@@ -24,7 +26,7 @@ public:
   void draw(VkCommandBuffer& command_buffer);
   void load_font();
   void clean();
-  ImTextureID engine_texture();
+  Struct_image* engine_texture();
 
 private:
   Struct_vulkan* struct_vulkan;
@@ -32,6 +34,7 @@ private:
   VK_submit* vk_submit;
   VK_command* vk_command;
   VK_pool* vk_pool;
+  VK_image* vk_image;
 };
 
 #endif

@@ -33,6 +33,7 @@ void VK_framebuffer::create_framebuffers(){
 void VK_framebuffer::create_framebuffer(Struct_renderpass* renderpass){
   //---------------------------
 
+say(renderpass->name);
   Struct_framebuffer* framebuffer = new Struct_framebuffer();
   framebuffer->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
   framebuffer->color.layout = TYP_IMAGE_LAYOUT_SHADER_READONLY;

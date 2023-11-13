@@ -6,6 +6,8 @@
 #include <Vulkan.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_main/Struct_vulkan.h>
+#include <VK_image/VK_image.h>
+#include <VK_image/VK_color.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -15,9 +17,14 @@ RND_engine::RND_engine(GUI* gui){
 
   Engine* engine = gui->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  GUI_render* gui_render = gui->get_gui_render();
+  Vulkan* gui_vulkan = gui_render->get_gui_vulkan();
 
+this->struct_vulkan = gui_vulkan->get_struct_vulkan();
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->gui_control = new RND_control(gui);
+  this->vk_image = new VK_image(struct_vulkan);
+  this->vk_color = new VK_color(struct_vulkan);
 
   //---------------------------
 }
@@ -43,10 +50,20 @@ void RND_engine::design_panel(){
 void RND_engine::engine_window(){
   //---------------------------
 
-  ImTextureID texture = vk_imgui->engine_texture();
+  Struct_image image = *vk_imgui->engine_texture();
+//
+
+vk_color->create_color_attachment(&image);
+
+VkDescriptorSet descriptor = ImGui_ImplVulkan_AddTexture(image.sampler, image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+ImTextureID texture = reinterpret_cast<ImTextureID>(descriptor);
+
+
+
+
   if(texture == 0) return;
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-  ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
+  //ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
 
   //---------------------------
 }

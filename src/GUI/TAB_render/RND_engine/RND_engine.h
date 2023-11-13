@@ -6,6 +6,9 @@
 class GUI;
 class RND_control;
 class VK_imgui;
+class VK_image;
+class VK_color;
+class Struct_vulkan;
 
 
 class RND_engine
@@ -25,7 +28,10 @@ public:
 
 private:
   VK_imgui* vk_imgui;
+  VK_image* vk_image;
   RND_control* gui_control;
+  Struct_vulkan* struct_vulkan;
+  VK_color* vk_color;
 
   VkDescriptorSet descriptor;
   bool has_been_initialized;

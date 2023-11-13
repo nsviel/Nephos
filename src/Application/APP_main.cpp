@@ -37,7 +37,7 @@ void APP_main::init(){
 
   ele_window->create_window();
   engine->init();
-  //gui->init();
+  gui->init();
 
   //---------------------------
 }
@@ -46,7 +46,7 @@ void APP_main::loop(){
 
   auto start_time = std::chrono::steady_clock::now();
   while(!ele_window->window_should_close()){
-    //gui->loop();
+    gui->loop();
     engine->loop();
     ele_window->manage_input();
   }

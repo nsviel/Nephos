@@ -5,6 +5,7 @@
 #include <VK_binding/VK_pool.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
+#include <VK_image/VK_image.h>
 
 
 //Constructor / Destructor
@@ -16,6 +17,7 @@ VK_imgui::VK_imgui(Struct_vulkan* struct_vulkan){
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_submit = new VK_submit(struct_vulkan);
   this->vk_engine = new VK_engine(struct_vulkan);
+  this->vk_image = new VK_image(struct_vulkan);
 
   //---------------------------
 }
@@ -84,15 +86,49 @@ void VK_imgui::clean(){
 
   //---------------------------
 }
-ImTextureID VK_imgui::engine_texture(){
+Struct_image* VK_imgui::engine_texture(){
+  ImTextureID texture = 0;
   //---------------------------
+  //PROBLEM ImGui_ImplVulkan_AddTexture demande que le sampler et view soient créer dans le meme context vulkan que imgui
+  // SOlution : recréer les ressources
 
   Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
   Struct_framebuffer* frame_edl = renderpass->framebuffer;
   Struct_image* image = &frame_edl->color;
-  VkDescriptorSet descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-  ImTextureID texture = reinterpret_cast<ImTextureID>(descriptor);
+
+
+
+
+
+
+
+  //VkDescriptorSet descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  //texture = reinterpret_cast<ImTextureID>(descriptor);
+
+  //---------------------------
+  return image;
+}
+
+/*ImTextureID VK_imgui::engine_texture(){
+  ImTextureID texture = 0;
+  //---------------------------
+  //PROBLEM ImGui_ImplVulkan_AddTexture demande que le sampler et view soient créer dans le meme context vulkan que imgui
+  // SOlution : recréer les ressources
+
+  Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
+  Struct_framebuffer* frame_edl = renderpass->framebuffer;
+  Struct_image* image = &frame_edl->color;
+
+
+
+vk_image->create_image_view(image);
+vk_image->create_image_sampler(image);
+
+
+
+  //VkDescriptorSet descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  //texture = reinterpret_cast<ImTextureID>(descriptor);
 
   //---------------------------
   return texture;
-}
+}*/
