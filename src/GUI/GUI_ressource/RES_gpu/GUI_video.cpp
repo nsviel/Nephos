@@ -59,8 +59,15 @@ void GUI_video::acquire_next_frame(){
     int frameFinished;
     result = avcodec_receive_frame(codec_context, frame);
     if(result == 0){
-      Struct_image* image = vk_engine->load_texture_from_frame(frame);
-      this->descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+      Struct_image* image = nullptr;
+
+      if(image == nullptr){
+        image = vk_engine->load_texture_from_frame(frame);
+        this->descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+      }else{
+        vk_engine->update_texture_from_frame(image, frame);
+      }
+
     }
 
     //Free AV frame

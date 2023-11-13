@@ -60,6 +60,7 @@ public:
   Struct_image* load_texture_from_file(string path);
   Struct_image* load_texture_from_frame(AVFrame* frame);
   Struct_image* load_texture_from_bin(string path);
+  void update_texture_from_frame(Struct_image* image, AVFrame* frame);
 
   //Renderpass function
   Struct_renderpass* get_renderpass(int i);

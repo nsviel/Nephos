@@ -66,6 +66,14 @@ Struct_image* VK_texture::load_texture_from_bin(string path){
   return image;
 }
 
+void VK_texture::update_texture_from_frame(Struct_image* image, AVFrame* frame){
+  //---------------------------
+
+  this->create_texture_from_frame(image, frame);
+
+  //---------------------------
+}
+
 //Texture creation
 void VK_texture::create_texture_from_file(Struct_image* image, string path){
   //---------------------------

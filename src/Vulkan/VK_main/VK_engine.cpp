@@ -64,7 +64,6 @@ void VK_engine::init(){
 void VK_engine::loop(){
   //---------------------------
 
-  vk_pool->reset_command_pool();
   vk_drawing->draw_frame();
 
   //---------------------------
@@ -209,6 +208,13 @@ Struct_image* VK_engine::load_texture_from_bin(string path){
 
   //---------------------------
   return texture;
+}
+void VK_engine::update_texture_from_frame(Struct_image* image, AVFrame* frame){
+  //---------------------------
+
+  vk_texture->update_texture_from_frame(image, frame);
+
+  //---------------------------
 }
 
 //Renderpass function

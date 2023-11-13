@@ -20,6 +20,7 @@ public:
 
   //Descriptor pool
   void create_descriptor_pool();
+  void reset_descriptor_pool();
   void clean_descriptor_pool();
 
   //Command pool

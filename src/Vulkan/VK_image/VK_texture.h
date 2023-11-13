@@ -31,6 +31,8 @@ public:
   Struct_image* load_texture_from_frame(AVFrame* frame);
   Struct_image* load_texture_from_bin(string path);
 
+  void update_texture_from_frame(Struct_image* image, AVFrame* frame);
+
   //Texture creation
   void create_texture_from_file(Struct_image* texture, string path);
   void create_texture_from_frame(Struct_image* image, AVFrame* frame);
@@ -48,7 +50,7 @@ public:
   void convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B);
   void convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride);
   VkDeviceSize calculateImageSize(VkFormat format, VkExtent3D extent);
-  
+
   void make_screenshot(Struct_image* image);
   void save_to_bin(Struct_image* image);
 

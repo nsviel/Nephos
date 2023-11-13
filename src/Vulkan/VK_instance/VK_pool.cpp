@@ -67,6 +67,16 @@ void VK_pool::create_descriptor_pool(){
 
   //---------------------------
 }
+void VK_pool::reset_descriptor_pool(){
+  //---------------------------
+
+  VkResult result = vkResetDescriptorPool(struct_vulkan->device.device, struct_vulkan->pool.descriptor, 0);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to reset descripto pool");
+  }
+
+  //---------------------------
+}
 void VK_pool::clean_descriptor_pool(){
   //---------------------------
 
