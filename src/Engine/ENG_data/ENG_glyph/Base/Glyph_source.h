@@ -1,7 +1,7 @@
 #ifndef GLYPH_SOURCE_H
 #define GLYPH_SOURCE_H
 
-#include <UTL_specific/Struct/struct_glyph.h>
+#include <UTL_specific/UTL_struct/struct_glyph.h>
 #include <UTL_specific/common.h>
 
 

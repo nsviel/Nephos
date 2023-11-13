@@ -1,9 +1,9 @@
 #ifndef PLY_IMPORTER_H
 #define PLY_IMPORTER_H
 
-#include <UTL_specific/Struct/struct_data_file.h>
-#include <UTL_specific/File/Info.h>
-#include <UTL_specific/Function/fct_math.h>
+#include <UTL_specific/UTL_struct/struct_data_file.h>
+#include <UTL_specific/UTL_file/Info.h>
+#include <UTL_specific/UTL_function/fct_math.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>

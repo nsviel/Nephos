@@ -1,7 +1,7 @@
 #ifndef STRUCT_SET_H
 #define STRUCT_SET_H
 
-#include <UTL_specific/Struct/struct_object.h>
+#include <UTL_specific/UTL_struct/struct_object.h>
 #include <string>
 #include <vector>
 #include <list>
