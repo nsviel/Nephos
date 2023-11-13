@@ -10,8 +10,8 @@
 #include <ENG_shader/ENG_shader.h>
 #include <ENG_shader/EDL/EDL_shader.h>
 #include <ENG_shader/Scene/SCE_shader.h>
-#include <RES_editor/EDI_text.h>
-#include <RES_console/GUI_console.h>
+#include <GUI_editor/EDI_text.h>
+#include <GUI_console/GUI_console.h>
 
 
 //Constructor / Destructor

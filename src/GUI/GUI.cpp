@@ -2,7 +2,7 @@
 
 #include <Engine.h>
 #include <ELE_window/ELE_window.h>
-#include <RES_gpu/GUI_gpu.h>
+#include <GUI_gpu/GUI_gpu.h>
 #include <GUI_tab/GUI_tab.h>
 #include <GUI_control/GUI_control.h>
 #include <GUI_render/GUI_render.h>

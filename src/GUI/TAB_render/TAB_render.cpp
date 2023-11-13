@@ -14,10 +14,10 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <ENG_data/ENG_load/ENG_loader.h>
-#include <RES_widget/GUI_indicator.h>
-#include <RES_editor/EDI_node.h>
-#include <RES_data/GUI_database.h>
-#include <RES_capture/GUI_capture.h>
+#include <GUI_widget/GUI_indicator.h>
+#include <GUI_editor/EDI_node.h>
+#include <GUI_data/GUI_database.h>
+#include <GUI_capture/GUI_capture.h>
 #include <image/IconsFontAwesome5.h>
 
 

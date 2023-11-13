@@ -1,7 +1,7 @@
 #include "GUI_capture.h"
 
-#include <RES_gpu/GUI_video.h>
-#include <RES_gpu/GUI_image.h>
+#include <GUI_gpu/GUI_video.h>
+#include <GUI_gpu/GUI_image.h>
 #include <TAB_render/TAB_render.h>
 #include <GUI.h>
 

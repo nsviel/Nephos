@@ -1,7 +1,7 @@
 #include "DEV_code_editor.h"
 
 #include <GUI.h>
-#include <RES_editor/EDI_text.h>
+#include <GUI_editor/EDI_text.h>
 
 
 //Constructor / Destructor

@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Vulkan.h>
 #include <GUI_style/GUI_font.h>
-#include <RES_git/GUI_git.h>
+#include <GUI_git/GUI_git.h>
 #include <image/IconsFontAwesome5.h>
 #include <TAB_render/TAB_render.h>
 #include <TAB_render/RND_config/RND_panel.h>

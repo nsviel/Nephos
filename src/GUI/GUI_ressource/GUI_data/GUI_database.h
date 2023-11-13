@@ -1,7 +1,7 @@
 #ifndef GUI_DATABASE_H
 #define GUI_DATABASE_H
 
-#include <RES_base/BASE_panel.h>
+#include <GUI_base/BASE_panel.h>
 #include <ELE_specific/common.h>
 
 class GUI;

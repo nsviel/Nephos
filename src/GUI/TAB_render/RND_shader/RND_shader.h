@@ -3,7 +3,7 @@
 
 #include <ELE_specific/common.h>
 #include <ENG_shader/Base/BASE_shader.h>
-#include <RES_base/BASE_panel.h>
+#include <GUI_base/BASE_panel.h>
 
 class GUI;
 class EDI_text;

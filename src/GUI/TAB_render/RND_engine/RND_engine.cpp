@@ -3,7 +3,7 @@
 #include <ELE_window/ELE_window.h>
 #include <GUI.h>
 #include <image/IconsFontAwesome5.h>
-#include <RES_gpu/GUI_image.h>
+#include <GUI_gpu/GUI_image.h>
 
 #include <Engine.h>
 #include <Vulkan.h>
