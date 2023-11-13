@@ -89,7 +89,7 @@ ImTextureID VK_imgui::rendered_texture(){
   static ImTextureID texture = 0;
   //---------------------------
 
-  if(texture == 0){
+  if(texture == 0 || struct_vulkan->window.is_resized){
     Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
     Struct_image* image = &renderpass->framebuffer->color;
 

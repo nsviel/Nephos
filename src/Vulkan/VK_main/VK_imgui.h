@@ -25,6 +25,7 @@ public:
   void draw(VkCommandBuffer& command_buffer);
   void load_font();
   void clean();
+
   ImTextureID rendered_texture();
 
 private:

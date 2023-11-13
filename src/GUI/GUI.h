@@ -30,6 +30,7 @@ public:
   void loop();
   void exit();
   void wait();
+  void resize();
 
   //Subfunction
   void docker_space_main();

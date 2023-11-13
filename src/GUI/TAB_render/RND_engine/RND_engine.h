@@ -24,6 +24,7 @@ public:
   //Subfunction
   void engine_window();
   void engine_control();
+  void resize();
 
 private:
   RND_control* gui_control;
