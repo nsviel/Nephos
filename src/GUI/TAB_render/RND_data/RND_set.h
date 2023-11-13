@@ -8,12 +8,12 @@ class GUI;
 class RND_panel;
 
 
-class PAN_set : public BASE_panel
+class RND_set : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  PAN_set(GUI* gui, bool* show_window, string name);
-  ~PAN_set();
+  RND_set(GUI* gui, bool* show_window, string name);
+  ~RND_set();
 
   //Main function
   void design_panel();

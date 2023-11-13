@@ -9,12 +9,12 @@ class RND_panel;
 class Struct_camera;
 
 
-class PAN_camera : public BASE_panel
+class RND_camera : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  PAN_camera(GUI* gui, bool* show_window, string name);
-  ~PAN_camera();
+  RND_camera(GUI* gui, bool* show_window, string name);
+  ~RND_camera();
 
   //Main function
   void design_panel();

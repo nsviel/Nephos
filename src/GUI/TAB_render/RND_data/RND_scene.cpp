@@ -1,4 +1,4 @@
-#include "PAN_scene.h"
+#include "RND_scene.h"
 
 #include <Engine.h>
 #include <GUI.h>
@@ -7,12 +7,12 @@
 #include <TAB_render/TAB_render.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_database.h>
-#include <TAB_render/RND_data/PAN_object.h>
-#include <TAB_render/RND_data/PAN_set.h>
+#include <TAB_render/RND_data/RND_object.h>
+#include <TAB_render/RND_data/RND_set.h>
 
 
 //Constructor / Destructor
-PAN_scene::PAN_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+RND_scene::RND_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -27,10 +27,10 @@ PAN_scene::PAN_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
 
   //---------------------------
 }
-PAN_scene::~PAN_scene(){}
+RND_scene::~RND_scene(){}
 
 //Main function
-void PAN_scene::run_panel(){
+void RND_scene::run_panel(){
   //---------------------------
 
   if(*show_window){
@@ -49,7 +49,7 @@ void PAN_scene::run_panel(){
 
   //---------------------------
 }
-void PAN_scene::design_panel(){
+void RND_scene::design_panel(){
   //---------------------------
 
   this->draw_window_background();
@@ -59,7 +59,7 @@ void PAN_scene::design_panel(){
 }
 
 //Subfunction
-void PAN_scene::draw_window_background(){
+void RND_scene::draw_window_background(){
   //-------------------------------
 
   float x1 = ImGui::GetCurrentWindow()->WorkRect.Min.x;
@@ -89,7 +89,7 @@ void PAN_scene::draw_window_background(){
 
   //-------------------------------
 }
-void PAN_scene::tree_view(){
+void RND_scene::tree_view(){
   list<Set*>* list_data = eng_database->get_list_data();
   //---------------------------
 
@@ -119,7 +119,7 @@ void PAN_scene::tree_view(){
 
   //---------------------------
 }
-int PAN_scene::data_node_tree(Set* set){
+int RND_scene::data_node_tree(Set* set){
   int nb_row = 0;
   //-------------------------------
 

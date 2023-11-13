@@ -9,12 +9,12 @@ class RND_panel;
 class ENG_scene;
 
 
-class PAN_object : public BASE_panel
+class RND_object : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  PAN_object(GUI* gui, bool* show_window, string name);
-  ~PAN_object();
+  RND_object(GUI* gui, bool* show_window, string name);
+  ~RND_object();
 
   //Main function
   void design_panel();

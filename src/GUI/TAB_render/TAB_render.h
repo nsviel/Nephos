@@ -11,10 +11,10 @@ class RND_shader;
 class RND_engine;
 class RND_option;
 class GUI_database;
-class PAN_camera;
-class PAN_object;
-class PAN_set;
-class PAN_scene;
+class RND_camera;
+class RND_object;
+class RND_set;
+class RND_scene;
 class GUI_capture;
 class RND_menu;
 
@@ -35,12 +35,12 @@ public:
   inline RND_panel* get_render_panel(){return gui_render_panel;}
   inline RND_shader* get_gui_shader(){return gui_shader;}
   inline GUI_profiler* get_gui_profiling(){return gui_profiler;}
-  inline PAN_object* get_gui_object(){return gui_object;}
-  inline PAN_set* get_gui_set(){return gui_set;}
-  inline PAN_camera* get_gui_camera(){return gui_camera;}
+  inline RND_object* get_gui_object(){return gui_object;}
+  inline RND_set* get_gui_set(){return gui_set;}
+  inline RND_camera* get_gui_camera(){return gui_camera;}
   inline GUI_capture* get_gui_capture(){return gui_capture;}
   inline RND_engine* get_gui_engine(){return gui_engine;}
-  inline PAN_scene* get_gui_scene(){return gui_scene;}
+  inline RND_scene* get_gui_scene(){return gui_scene;}
   inline RND_option* get_gui_option(){return gui_render_option;}
 
 private:
@@ -50,14 +50,14 @@ private:
   RND_menu* gui_render_menu;
 
   GUI_profiler* gui_profiler;
-  PAN_scene* gui_scene;
+  RND_scene* gui_scene;
   RND_shader* gui_shader;
   RND_engine* gui_engine;
   GUI_database* gui_database;
-  PAN_object* gui_object;
-  PAN_camera* gui_camera;
+  RND_object* gui_object;
+  RND_camera* gui_camera;
   GUI_capture* gui_capture;
-  PAN_set* gui_set;
+  RND_set* gui_set;
 };
 
 #endif
