@@ -5,12 +5,6 @@
 #include <VK_binding/VK_pool.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
-#include <VK_data/VK_buffer.h>
-#include <VK_image/VK_texture.h>
-#include <VK_image/VK_image.h>
-#include <VK_presentation/VK_framebuffer.h>
-#include <VK_device/VK_physical_device.h>
-#include <VK_drawing/VK_viewport.h>
 
 
 //Constructor / Destructor
@@ -22,12 +16,6 @@ VK_imgui::VK_imgui(Struct_vulkan* struct_vulkan){
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_submit = new VK_submit(struct_vulkan);
   this->vk_engine = new VK_engine(struct_vulkan);
-  this->vk_image = new VK_image(struct_vulkan);
-  this->vk_buffer = new VK_buffer(struct_vulkan);
-  this->vk_texture = new VK_texture(struct_vulkan);
-  this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
-  this->vk_physical_device = new VK_physical_device(struct_vulkan);
-  this->vk_viewport = new VK_viewport(struct_vulkan);
 
   //---------------------------
 }
@@ -97,7 +85,7 @@ void VK_imgui::clean(){
   //---------------------------
 }
 
-Struct_image* VK_imgui::rendered_image(){
+Struct_image* VK_imgui::get_rendered_image(){
   //---------------------------
 
   Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");

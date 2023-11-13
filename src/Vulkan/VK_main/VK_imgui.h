@@ -10,12 +10,6 @@ class VK_engine;
 class VK_pool;
 class VK_submit;
 class VK_command;
-class VK_image;
-class VK_texture;
-class VK_buffer;
-class VK_framebuffer;
-class VK_physical_device;
-class VK_viewport;
 
 
 class VK_imgui
@@ -31,7 +25,7 @@ public:
   void draw(VkCommandBuffer& command_buffer);
   void load_font();
   void clean();
-  Struct_image* rendered_image();
+  Struct_image* get_rendered_image();
 
 private:
   Struct_vulkan* struct_vulkan;
@@ -39,12 +33,6 @@ private:
   VK_submit* vk_submit;
   VK_command* vk_command;
   VK_pool* vk_pool;
-  VK_image* vk_image;
-  VK_texture* vk_texture;
-  VK_buffer* vk_buffer;
-  VK_framebuffer* vk_framebuffer;
-  VK_physical_device* vk_physical_device;
-  VK_viewport* vk_viewport;
 };
 
 #endif
