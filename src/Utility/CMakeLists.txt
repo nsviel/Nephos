@@ -30,6 +30,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   -lglfw        # glfw
   -lsqlite3     # sqlite
   -lavformat    # ffmpeg
+  -lavdevice    # ffmpeg
   -lavcodec     # ffmpeg
   -lswresample  # ffmpeg
   -lswscale     # ffmpeg

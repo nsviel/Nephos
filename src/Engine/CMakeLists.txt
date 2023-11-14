@@ -36,6 +36,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   Eigen3::Eigen # Eigen
   tins          # Sniffer
   -lavformat    # ffmpeg
+  -lavdevice    # ffmpeg
   -lavcodec     # ffmpeg
   -lswresample  # ffmpeg
   -lswscale     # ffmpeg

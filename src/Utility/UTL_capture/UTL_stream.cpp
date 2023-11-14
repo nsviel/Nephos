@@ -1,28 +1,28 @@
-#include "UTL_video.h"
+#include "UTL_stream.h"
 
 
 //Constructor / Destructor
-UTL_video::UTL_video(){
+UTL_stream::UTL_stream(){
   //---------------------------
 
   this->video_loaded = false;
 
   //---------------------------
 }
-UTL_video::~UTL_video(){}
+UTL_stream::~UTL_stream(){}
 
 //Main function
-void UTL_video::load_video(string path){
+void UTL_stream::load_stream(string path){
   if(video_loaded) return;
   //---------------------------
 
-  this->find_video_context_from_file(path);
+  this->find_video_context_from_stream(path);
   this->decode_video();
 
   //---------------------------
   this->video_loaded = true;
 }
-uint8_t* UTL_video::acquire_next_frame(){
+uint8_t* UTL_stream::acquire_next_frame(){
   int result;
   AVFrame* frame = nullptr;
   uint8_t* data = nullptr;
@@ -75,7 +75,7 @@ uint8_t* UTL_video::acquire_next_frame(){
 }
 
 //Video function
-void UTL_video::find_video_context_from_file(string path){
+void UTL_stream::find_video_context_from_file(string path){
   //---------------------------
 
   this->video_context = avformat_alloc_context();
@@ -86,19 +86,19 @@ void UTL_video::find_video_context_from_file(string path){
 
   //---------------------------
 }
-void UTL_video::find_video_context_from_stream(string path){
+void UTL_stream::find_video_context_from_stream(string path){
   //---------------------------
 
   avdevice_register_all(); // for device
 
   string dev_name = "/dev/video0"; // here mine is video0 , it may vary.
-  AVInputFormat* input_format = av_find_input_format("v4l2");
+  AVInputFormat* inputFormat =av_find_input_format("v4l2");
   AVDictionary* options = NULL;
   av_dict_set(&options, "framerate", "30", 0);
 
   // check video source
   video_context = avformat_alloc_context();
-  bool ok = avformat_open_input(&video_context, dev_name.c_str(), input_format, NULL);
+  bool ok = avformat_open_input(&video_context, dev_name.c_str(), inputFormat, NULL);
   if(ok != 0){
     cout<<"\nOops, could'nt open video source\n\n";
     return;
@@ -106,7 +106,7 @@ void UTL_video::find_video_context_from_stream(string path){
 
   //---------------------------
 }
-void UTL_video::clean_video(){
+void UTL_stream::clean_video(){
   //---------------------------
 
   av_packet_free(&packet);
@@ -117,14 +117,14 @@ void UTL_video::clean_video(){
 
   //---------------------------
 }
-void UTL_video::clean_frame(AVFrame* frame){
+void UTL_stream::clean_frame(AVFrame* frame){
   //---------------------------
 
   av_frame_free(&frame);
 
   //---------------------------
 }
-void UTL_video::reboot_video(){
+void UTL_stream::reboot_video(){
   //---------------------------
 
   // Set the timebase for the video stream
@@ -142,7 +142,7 @@ void UTL_video::reboot_video(){
 
   //---------------------------
 }
-void UTL_video::decode_video(){
+void UTL_stream::decode_video(){
   //---------------------------
 
   //Read and decode a few frames to find missing information
@@ -189,7 +189,7 @@ void UTL_video::decode_video(){
 }
 
 //Subfunction
-uint8_t* UTL_video::convert_frame_to_data(AVFrame* frame){
+uint8_t* UTL_stream::convert_frame_to_data(AVFrame* frame){
   //---------------------------
 
   int stride = frame->width * 4;
@@ -199,7 +199,7 @@ uint8_t* UTL_video::convert_frame_to_data(AVFrame* frame){
   //---------------------------
   return data;
 }
-void UTL_video::convert_frame_to_RGB(AVFrame* frame, uint8_t* data, int stride){
+void UTL_stream::convert_frame_to_RGB(AVFrame* frame, uint8_t* data, int stride){
   //---------------------------
 
   if(frame->format == AV_PIX_FMT_YUV420P){
@@ -211,7 +211,7 @@ void UTL_video::convert_frame_to_RGB(AVFrame* frame, uint8_t* data, int stride){
 
   //---------------------------
 }
-void UTL_video::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int stride){
+void UTL_stream::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int stride){
   //---------------------------
 
   int width = frame->width;
@@ -241,7 +241,7 @@ void UTL_video::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int
 
   //---------------------------
 }
-void UTL_video::convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B){
+void UTL_stream::convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B){
   //---------------------------
 
   R = Y + 1.13983 * (V - 128);
@@ -255,7 +255,7 @@ void UTL_video::convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B){
 
   //---------------------------
 }
-void UTL_video::find_format_name(AVFrame* frame){
+void UTL_stream::find_format_name(AVFrame* frame){
   string result;
   //---------------------------
 

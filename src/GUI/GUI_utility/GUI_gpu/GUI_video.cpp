@@ -5,6 +5,7 @@
 #include <VK_main/VK_engine.h>
 #include <GUI_main/GUI_render/GUI_render.h>
 #include <UTL_capture/UTL_video.h>
+#include <UTL_capture/UTL_stream.h>
 
 
 //Constructor / Destructor
@@ -15,6 +16,7 @@ GUI_video::GUI_video(GUI* gui){
   Vulkan* gui_vulkan = gui_render->get_gui_vulkan();
   this->vk_engine = gui_vulkan->get_vk_engine();
   this->utl_video = new UTL_video();
+  this->utl_stream = new UTL_stream();
 
   //---------------------------
 }
@@ -24,7 +26,7 @@ GUI_video::~GUI_video(){}
 void GUI_video::draw_video(string path){
   //---------------------------
 
-  utl_video->load_video_from_file(path);
+  utl_video->load_video(path);
   uint8_t* data = utl_video->acquire_next_frame();
   this->convert_data_into_texture(data);
   this->display_frame();

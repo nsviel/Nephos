@@ -1,5 +1,5 @@
-#ifndef UTL_VIDEO_H
-#define UTL_VIDEO_H
+#ifndef UTL_STREAM_H
+#define UTL_STREAM_H
 
 #include <UTL_specific/common.h>
 extern "C" {
@@ -12,16 +12,16 @@ extern "C" {
 using namespace std;
 
 
-class UTL_video
+class UTL_stream
 {
 public:
   //Constructor / Destructor
-  UTL_video();
-  ~UTL_video();
+  UTL_stream();
+  ~UTL_stream();
 
 public:
   //Main function
-  void load_video(string path);
+  void load_stream(string path);
   uint8_t* acquire_next_frame();
 
   //Video function

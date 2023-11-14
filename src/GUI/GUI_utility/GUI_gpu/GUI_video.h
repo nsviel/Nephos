@@ -8,6 +8,7 @@
 class GUI;
 class VK_engine;
 class UTL_video;
+class UTL_stream;
 
 
 class GUI_video
@@ -28,6 +29,7 @@ public:
 private:
   VK_engine* vk_engine;
   UTL_video* utl_video;
+  UTL_stream* utl_stream;
 
   ImTextureID texture;
 };
