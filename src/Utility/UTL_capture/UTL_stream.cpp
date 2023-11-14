@@ -182,18 +182,10 @@ void UTL_stream::reboot_video(){
 uint8_t* UTL_stream::convert_frame_to_data(AVFrame* frame){
   //---------------------------
 
-  // Create a SwsContext for converting the frame format if needed
-  struct SwsContext* swsContext = sws_getContext(
-      frame->width, frame->height, static_cast<AVPixelFormat>(frame->format),
-      frame->width, frame->height, AV_PIX_FMT_RGB24,
-      SWS_BILINEAR, nullptr, nullptr, nullptr
-  );
-
-  
-
   int stride = frame->width * 4;
   uint8_t* data = new uint8_t[stride * frame->height];
-  this->convert_frame_to_RGB(frame, data, stride);
+  //this->convert_frame_to_RGB(frame, data, stride);
+  this->convert_YUV420P_to_RGB(frame, data, stride);
 
   //---------------------------
   return data;
@@ -215,27 +207,34 @@ void UTL_stream::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, in
 
   int width = frame->width;
   int height = frame->height;
-  int Y_stride = frame->linesize[0];
-  int U_stride = frame->linesize[1];
-  int V_stride = frame->linesize[2];
+  int YUYV_stride = frame->linesize[0];
 
   #pragma omp parallel for
-  for (int y = 0; y < height; y++){
-    for (int x = 0; x < width; x++) {
-      int Y = frame->data[0][y * Y_stride + x];
-      int U = frame->data[1][y / 2 * U_stride + x / 2];
-      int V = frame->data[2][y / 2 * V_stride + x / 2];
+  for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width * 2; x += 4) {  // Adjusted loop increment for YUYV422
+          int Y1 = frame->data[0][y * YUYV_stride + x];
+          int U = frame->data[0][y * YUYV_stride + x + 1];
+          int Y2 = frame->data[0][y * YUYV_stride + x + 2];
+          int V = frame->data[0][y * YUYV_stride + x + 3];
 
-      int R, G, B;
-      this->convert_YUV_to_RGB(Y, U, V, R, G, B);
+          int R1, G1, B1, R2, G2, B2;
+          this->convert_YUV_to_RGB(Y1, U, V, R1, G1, B1);
+          this->convert_YUV_to_RGB(Y2, U, V, R2, G2, B2);
 
-      // Merge channels into VK_FORMAT_R8G8B8A8_UNORM
-      uint8_t* pixel = &output_data[y * stride + x * 4];
-      pixel[0] = static_cast<uint8_t>(R);
-      pixel[1] = static_cast<uint8_t>(G);
-      pixel[2] = static_cast<uint8_t>(B);
-      pixel[3] = 255; // Fully opaque
-    }
+          // Merge channels into VK_FORMAT_R8G8B8A8_UNORM
+          uint8_t* pixel1 = &output_data[y * stride + x * 2];
+          uint8_t* pixel2 = &output_data[y * stride + (x + 2) * 2];
+
+          pixel1[0] = static_cast<uint8_t>(R1);
+          pixel1[1] = static_cast<uint8_t>(G1);
+          pixel1[2] = static_cast<uint8_t>(B1);
+          pixel1[3] = 255;  // Fully opaque
+
+          pixel2[0] = static_cast<uint8_t>(R2);
+          pixel2[1] = static_cast<uint8_t>(G2);
+          pixel2[2] = static_cast<uint8_t>(B2);
+          pixel2[3] = 255;  // Fully opaque
+      }
   }
 
   //---------------------------
