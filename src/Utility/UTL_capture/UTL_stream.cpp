@@ -104,7 +104,7 @@ void UTL_stream::decode_video(){
   }
 
   //Display some stream information
-  //av_dump_format(video_context, 0, "/dev/video0", 0);
+  av_dump_format(video_context, 0, "/dev/video0", 0);
 
   //Retrieve video stream index
   this->video_stream_idx = -1;
