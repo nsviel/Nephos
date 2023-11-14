@@ -25,12 +25,11 @@ public:
   uint8_t* acquire_next_frame();
 
   //Video function
+  void find_video_context(string path);
   void clean_video();
   void clean_frame(AVFrame* frame);
   void reboot_video();
   void decode_video();
-  void find_video_context_from_file(string path);
-  void find_video_context_from_stream(string path);
 
   //Subfunction
   uint8_t* convert_frame_to_data(AVFrame* frame);

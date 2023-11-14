@@ -16,7 +16,7 @@ void UTL_video::load_video(string path){
   if(video_loaded) return;
   //---------------------------
 
-  this->find_video_context_from_file(path);
+  this->find_video_context(path);
   this->decode_video();
 
   //---------------------------
@@ -75,33 +75,13 @@ uint8_t* UTL_video::acquire_next_frame(){
 }
 
 //Video function
-void UTL_video::find_video_context_from_file(string path){
+void UTL_video::find_video_context(string path){
   //---------------------------
 
   this->video_context = avformat_alloc_context();
   bool ok = avformat_open_input(&video_context, path.c_str(), NULL, NULL);
   if(ok != 0){
     cout << "[error] ffmpeg - video not open" << endl;
-  }
-
-  //---------------------------
-}
-void UTL_video::find_video_context_from_stream(string path){
-  //---------------------------
-
-  avdevice_register_all(); // for device
-
-  string dev_name = "/dev/video0"; // here mine is video0 , it may vary.
-  AVInputFormat* input_format = av_find_input_format("v4l2");
-  AVDictionary* options = NULL;
-  av_dict_set(&options, "framerate", "30", 0);
-
-  // check video source
-  video_context = avformat_alloc_context();
-  bool ok = avformat_open_input(&video_context, dev_name.c_str(), input_format, NULL);
-  if(ok != 0){
-    cout<<"\nOops, could'nt open video source\n\n";
-    return;
   }
 
   //---------------------------

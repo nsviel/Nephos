@@ -26,8 +26,8 @@ GUI_video::~GUI_video(){}
 void GUI_video::draw_video(string path){
   //---------------------------
 
-  utl_video->load_video(path);
-  uint8_t* data = utl_video->acquire_next_frame();
+  utl_stream->load_stream(path);
+  uint8_t* data = utl_stream->acquire_next_frame();
   this->convert_data_into_texture(data);
   this->display_frame();
 
@@ -42,8 +42,8 @@ void GUI_video::convert_data_into_texture(uint8_t* data){
     static Struct_image* image = nullptr;
 
     if(image == nullptr){
-      int width = utl_video->get_frame_width();
-      int height = utl_video->get_frame_height();
+      int width = utl_stream->get_frame_width();
+      int height = utl_stream->get_frame_height();
       image = vk_engine->load_texture_from_data(data, width, height);
       VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
       this->texture = reinterpret_cast<ImTextureID>(descriptor);

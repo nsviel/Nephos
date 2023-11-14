@@ -16,7 +16,7 @@ void UTL_stream::load_stream(string path){
   if(video_loaded) return;
   //---------------------------
 
-  this->find_video_context_from_stream(path);
+  this->find_video_context(path);
   this->decode_video();
 
   //---------------------------
@@ -59,11 +59,10 @@ uint8_t* UTL_stream::acquire_next_frame(){
       data = convert_frame_to_data(frame);
       this->frame_width = frame->width;
       this->frame_height = frame->height;
-
-      this->clean_frame(frame);
     }
 
     //Free packet
+    av_frame_free(&frame);
     av_packet_unref(packet);
   }
   else{say("reboot");
@@ -75,18 +74,7 @@ uint8_t* UTL_stream::acquire_next_frame(){
 }
 
 //Video function
-void UTL_stream::find_video_context_from_file(string path){
-  //---------------------------
-
-  this->video_context = avformat_alloc_context();
-  bool ok = avformat_open_input(&video_context, path.c_str(), NULL, NULL);
-  if(ok != 0){
-    cout << "[error] ffmpeg - video not open" << endl;
-  }
-
-  //---------------------------
-}
-void UTL_stream::find_video_context_from_stream(string path){
+void UTL_stream::find_video_context(string path){
   //---------------------------
 
   avdevice_register_all(); // for device
@@ -106,42 +94,6 @@ void UTL_stream::find_video_context_from_stream(string path){
 
   //---------------------------
 }
-void UTL_stream::clean_video(){
-  //---------------------------
-
-  av_packet_free(&packet);
-  avcodec_close(codec_context);
-  avformat_close_input(&video_context);
-
-  say("video with ffmpeg ok");
-
-  //---------------------------
-}
-void UTL_stream::clean_frame(AVFrame* frame){
-  //---------------------------
-
-  av_frame_free(&frame);
-
-  //---------------------------
-}
-void UTL_stream::reboot_video(){
-  //---------------------------
-
-  // Set the timebase for the video stream
-  const AVRational stream_timebase = video_context->streams[video_stream_idx]->time_base;
-
-  // Seek to the beginning of the video
-  int64_t target_pts = 0;  // Target presentation timestamp (beginning of the video)
-  int64_t seek_target = av_rescale_q(target_pts, AV_TIME_BASE_Q, stream_timebase);
-  int seek_flags = 0;  // Flags (you can adjust them based on your requirements)
-
-  int result = av_seek_frame(video_context, video_stream_idx, seek_target, seek_flags);
-  if (result < 0) {
-    cout << "[error] ffmpeg - Error seeking to the beginning" << endl;
-  }
-
-  //---------------------------
-}
 void UTL_stream::decode_video(){
   //---------------------------
 
@@ -150,6 +102,9 @@ void UTL_stream::decode_video(){
   if(result < 0){
     cout << "[error] ffmpeg - video information" << endl;
   }
+
+  //Display some stream information
+  //av_dump_format(video_context, 0, "/dev/video0", 0);
 
   //Retrieve video stream index
   this->video_stream_idx = -1;
@@ -164,7 +119,12 @@ void UTL_stream::decode_video(){
   }
 
   //Some stuff coding / decoding video
-  AVCodec* codec = avcodec_find_decoder(video_context->streams[video_stream_idx]->codecpar->codec_id);
+  AVCodecParameters* codecParameters = video_context->streams[video_stream_idx]->codecpar;
+  AVCodec* codec = avcodec_find_decoder(codecParameters->codec_id);
+  if (codec == NULL) {
+    cout << "[error] ffmpeg - do not find video stream index" << endl;
+  }
+
   this->codec_context = avcodec_alloc_context3(codec);
 
   //Copy the essential codec parameters (e.g., codec ID, width, height, pixel format, sample format)
@@ -187,6 +147,36 @@ void UTL_stream::decode_video(){
 
   //---------------------------
 }
+void UTL_stream::clean_video(){
+  //---------------------------
+
+  av_packet_free(&packet);
+  avcodec_close(codec_context);
+  avformat_close_input(&video_context);
+
+  say("video with ffmpeg ok");
+
+  //---------------------------
+}
+void UTL_stream::reboot_video(){
+  //---------------------------
+
+  // Set the timebase for the video stream
+  const AVRational stream_timebase = video_context->streams[video_stream_idx]->time_base;
+
+  // Seek to the beginning of the video
+  int64_t target_pts = 0;  // Target presentation timestamp (beginning of the video)
+  int64_t seek_target = av_rescale_q(target_pts, AV_TIME_BASE_Q, stream_timebase);
+  int seek_flags = 0;  // Flags (you can adjust them based on your requirements)
+
+  int result = av_seek_frame(video_context, video_stream_idx, seek_target, seek_flags);
+  if (result < 0) {
+    cout << "[error] ffmpeg - Error seeking to the beginning" << endl;
+  }
+
+  //---------------------------
+}
+
 
 //Subfunction
 uint8_t* UTL_stream::convert_frame_to_data(AVFrame* frame){
