@@ -3,11 +3,7 @@
 
 #include <UTL_specific/common.h>
 
-extern "C" {
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libswscale/swscale.h>
-}
+
 
 class GUI;
 class VK_engine;
@@ -26,10 +22,7 @@ public:
   void draw_video(string path);
 
   //Subfunction
-  AVFrame* acquire_next_frame();
-  void load_video(string path);
-  void clean_video();
-  void reboot_video();
+  void convert_data_into_texture(uint8_t* data);
   void display_frame();
 
 private:
@@ -37,11 +30,6 @@ private:
   UTL_video* utl_video;
 
   ImTextureID texture;
-  AVFormatContext* video_context;
-  AVCodecContext* codec_context;
-  AVPacket* packet;
-  bool video_loaded;
-  int video_stream_idx;
 };
 
 

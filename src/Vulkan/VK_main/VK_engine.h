@@ -6,12 +6,6 @@
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
 
-extern "C" {
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libswscale/swscale.h>
-}
-
 class Struct_vulkan;
 class VK_surface;
 class VK_instance;

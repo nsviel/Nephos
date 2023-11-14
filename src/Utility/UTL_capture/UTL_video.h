@@ -22,10 +22,14 @@ public:
   //Main function
   uint8_t* acquire_next_frame();
   void load_video_from_file(string path);
+
+  //Video function
   void clean_video();
   void clean_frame(AVFrame* frame);
   void reboot_video();
   void decode_video();
+
+  //Subfunction
   uint8_t* convert_frame_to_data(AVFrame* frame);
   void convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B);
   void convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride);

@@ -29,6 +29,11 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   -lstdc++fs    # std::experimental::filesystem
   -lglfw        # glfw
   -lsqlite3     # sqlite
+  -lavformat    # ffmpeg
+  -lavcodec     # ffmpeg
+  -lswresample  # ffmpeg
+  -lswscale     # ffmpeg
+  -lavutil      # ffmpeg
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

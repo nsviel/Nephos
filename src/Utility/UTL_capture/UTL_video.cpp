@@ -1,8 +1,6 @@
 #include "UTL_video.h"
 
 
-
-
 //Constructor / Destructor
 UTL_video::UTL_video(){
   //---------------------------
@@ -81,6 +79,7 @@ uint8_t* UTL_video::acquire_next_frame(){
   return data;
 }
 
+//Video function
 void UTL_video::clean_video(){
   //---------------------------
 
@@ -162,6 +161,8 @@ void UTL_video::decode_video(){
 
   //---------------------------
 }
+
+//Subfunction
 uint8_t* UTL_video::convert_frame_to_data(AVFrame* frame){
   //---------------------------
 
