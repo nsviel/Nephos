@@ -47,8 +47,6 @@ void Engine::loop(){
   eng_data->loop();
   eng_vulkan->loop();
 
-
-
   //---------------------------
 }
 void Engine::exit(){

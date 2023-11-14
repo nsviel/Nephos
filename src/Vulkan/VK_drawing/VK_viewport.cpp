@@ -22,8 +22,8 @@ void VK_viewport::init_viewport(){
   struct_vulkan->render.viewport = {};
   struct_vulkan->render.viewport.x = 0;
   struct_vulkan->render.viewport.y = 0;
-  struct_vulkan->render.viewport.width  = win_dim.x/2;
-  struct_vulkan->render.viewport.height = win_dim.y/2;
+  struct_vulkan->render.viewport.width  = win_dim.x;
+  struct_vulkan->render.viewport.height = win_dim.y;
   struct_vulkan->render.viewport.minDepth = 0.0f;
   struct_vulkan->render.viewport.maxDepth = 1.0f;
 

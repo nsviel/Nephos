@@ -16,7 +16,12 @@ public:
 public:
   //Main functions
   void init();
-  
+
+  //Subfunction
+  void extension_instance();
+  void extension_window();
+  void extension_device();
+
 private:
   Struct_vulkan* struct_vulkan;
 };

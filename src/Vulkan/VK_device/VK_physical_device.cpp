@@ -240,7 +240,7 @@ void VK_physical_device::find_physical_device_support(Struct_physical_device& st
   vkEnumerateDeviceExtensionProperties(struct_device.physical_device, nullptr, &nb_extension, vec_extension.data());
 
   //Check if all required extension are in the list
-  std::set<std::string> requiredExtensions(struct_vulkan->instance.extension_khr.begin(), struct_vulkan->instance.extension_khr.end());
+  std::set<std::string> requiredExtensions(struct_vulkan->instance.extension_device.begin(), struct_vulkan->instance.extension_device.end());
   for(const auto& extension : vec_extension){
     requiredExtensions.erase(extension.extensionName);
   }

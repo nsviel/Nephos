@@ -51,8 +51,8 @@ void VK_instance::create_instance(){
   VkInstanceCreateInfo create_info{};
   create_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
   create_info.pApplicationInfo = &appInfo;
-  create_info.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->instance.extension_ext.size());
-  create_info.ppEnabledExtensionNames = struct_vulkan->instance.extension_ext.data();
+  create_info.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->instance.extension_instance.size());
+  create_info.ppEnabledExtensionNames = struct_vulkan->instance.extension_instance.data();
   create_info.enabledLayerCount = static_cast<uint32_t>(validation_layers.size());
   create_info.ppEnabledLayerNames = validation_layers.data();
   create_info.pNext = vk_validation->find_validation_extension();
