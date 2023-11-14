@@ -6,7 +6,7 @@ set(LIBRARY_NAME LIBRARY_GUI)
 add_subdirectory(TAB_dev)
 add_subdirectory(TAB_render)
 add_subdirectory(GUI_main)
-add_subdirectory(GUI_ressource)
+add_subdirectory(GUI_utility)
 
 #-----------------
 # Compilation

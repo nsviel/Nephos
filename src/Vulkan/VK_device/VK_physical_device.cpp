@@ -126,7 +126,12 @@ void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_
 
   // Check if integrated GPU
   if(struct_device.type == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
-    score += 100000;
+    if(struct_vulkan->param.dedicated_gpu){
+      score += 100000;
+    }
+    else if(struct_vulkan->param.dedicated_gpu == false){
+      score -= 100000;
+    }
   }
 
   // Maximum possible size of textures affects graphics quality

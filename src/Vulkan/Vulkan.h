@@ -33,6 +33,7 @@ public:
 
   inline void set_headless(bool value){struct_vulkan->param.headless = value;}
   inline void set_name(string value){struct_vulkan->name = value;}
+  inline void set_prefere_dedicated_gpu(bool value){struct_vulkan->param.dedicated_gpu = value;}
 
 private:
   UTL_window* utl_window;
