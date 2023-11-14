@@ -101,6 +101,8 @@ void VK_command::allocate_command_buffer_primary(VkCommandBuffer& command_buffer
   VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &command_buffer);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
+  }else{
+    struct_vulkan->pool.nb_command_allocated++;
   }
 
   //---------------------------
@@ -118,7 +120,17 @@ void VK_command::allocate_command_buffer_secondary(Struct_entity* data){
   VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &data->command_buffer_secondary);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
+  }else{
+    struct_vulkan->pool.nb_command_allocated++;
   }
+
+  //---------------------------
+}
+void VK_command::clean_command_buffer(VkCommandBuffer& command_buffer){
+  //---------------------------
+
+  vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pool.command, 1, &command_buffer);
+  struct_vulkan->pool.nb_command_allocated--;
 
   //---------------------------
 }
@@ -255,7 +267,7 @@ void VK_command::singletime_command_end(VkCommandBuffer command_buffer){
   vkEndCommandBuffer(command_buffer);
   vk_submit->submit_command_graphics(command_buffer);
   vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
-  vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pool.command, 1, &command_buffer);
+  this->clean_command_buffer(command_buffer);
 
   //---------------------------
 }

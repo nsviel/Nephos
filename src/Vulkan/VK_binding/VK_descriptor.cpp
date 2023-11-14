@@ -175,6 +175,8 @@ void VK_descriptor::allocate_descriptor_set(Struct_binding* binding){
   VkResult result = vkAllocateDescriptorSets(struct_vulkan->device.device, &allocation_info, &binding->descriptor.set);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate descriptor sets!");
+  }else{
+    struct_vulkan->pool.nb_descriptor_allocated++;
   }
 
   //---------------------------

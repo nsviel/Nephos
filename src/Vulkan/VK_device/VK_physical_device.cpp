@@ -115,9 +115,9 @@ void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_
   // Check if physical device is suitable
   bool device_suitable;
   if(struct_vulkan->param.headless){
-    device_suitable = device_suitability_headless(struct_device);
+    device_suitable = device_suitability_offscreen(struct_device);
   }else{
-    device_suitable = device_suitability(struct_device);
+    device_suitable = device_suitability_onscreen(struct_device);
   }
   if(device_suitable == false){
     struct_device.selection_score = 0;
@@ -135,7 +135,7 @@ void VK_physical_device::rate_device_suitability(Struct_physical_device& struct_
   //---------------------------
   struct_device.selection_score = score;
 }
-bool VK_physical_device::device_suitability(Struct_physical_device& struct_device){
+bool VK_physical_device::device_suitability_onscreen(Struct_physical_device& struct_device){
   //---------------------------
 
   //Queue suitable
@@ -176,7 +176,7 @@ bool VK_physical_device::device_suitability(Struct_physical_device& struct_devic
   //---------------------------
   return true;
 }
-bool VK_physical_device::device_suitability_headless(Struct_physical_device& struct_device){
+bool VK_physical_device::device_suitability_offscreen(Struct_physical_device& struct_device){
   //---------------------------
 
   //Queue suitable

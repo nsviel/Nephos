@@ -40,9 +40,11 @@ void VK_imgui::init(){
   init_info.Queue = struct_vulkan->device.queue_graphics;
   init_info.DescriptorPool = struct_vulkan->pool.descriptor;
   init_info.PipelineCache = VK_NULL_HANDLE;
-  init_info.MinImageCount = 3;
-  init_info.ImageCount = 3;
+  init_info.MinImageCount = 2;
+  init_info.ImageCount = 2;
   init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
+  init_info.Subpass = 0;
+  init_info.QueueFamily = struct_vulkan->device.struct_device.queue_graphics_idx;
   ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
 
   //---------------------------

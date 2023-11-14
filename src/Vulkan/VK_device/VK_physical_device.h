@@ -21,8 +21,8 @@ public:
 
   //Device selection
   void rate_device_suitability(Struct_physical_device& struct_device);
-  bool device_suitability(Struct_physical_device& struct_device);
-  bool device_suitability_headless(Struct_physical_device& struct_device);
+  bool device_suitability_onscreen(Struct_physical_device& struct_device);
+  bool device_suitability_offscreen(Struct_physical_device& struct_device);
 
   //Specific properties
   void find_physical_devices();
