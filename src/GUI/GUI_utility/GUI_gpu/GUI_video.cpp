@@ -27,23 +27,22 @@ void GUI_video::draw_video(string path){
   //---------------------------
 
   utl_video->load_video_from_file(path);
-  AVFrame* frame = utl_video->acquire_next_frame();
+  uint8_t* data = utl_video->acquire_next_frame();
+  int width = utl_video->get_frame_width();
+  int height = utl_video->get_frame_height();
 
-  if(frame != nullptr){
+  if(data != nullptr){
     static Struct_image* image = nullptr;
 
     if(image == nullptr){
-      image = vk_engine->load_texture_from_frame(frame);
+      image = vk_engine->load_texture_from_data(data, width, height);
       VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
       this->texture = reinterpret_cast<ImTextureID>(descriptor);
     }else{
-      vk_engine->update_texture_from_frame(image, frame);
+      vk_engine->update_texture_from_data(image, data);
     }
 
   }
-
-  //Free AV frame
-  utl_video->clean_frame(frame);
 
   this->display_frame();
   //this->clean_video();

@@ -28,14 +28,14 @@ public:
 public:
   //Main functions
   Struct_image* load_texture_from_file(string path);
-  Struct_image* load_texture_from_frame(AVFrame* frame);
+  Struct_image* load_texture_from_data(uint8_t* data, int width, int height);
   Struct_image* load_texture_from_bin(string path);
 
-  void update_texture_from_frame(Struct_image* image, AVFrame* frame);
+  void update_texture_from_data(Struct_image* image, uint8_t* data);
 
   //Texture creation
   void create_texture_from_file(Struct_image* texture, string path);
-  void create_texture_from_frame(Struct_image* image, AVFrame* frame);
+  void create_texture_from_data(Struct_image* image, uint8_t* data, int width, int height);
   void create_texture_from_bin(Struct_image* image, string path);
 
   //Texture cleaning

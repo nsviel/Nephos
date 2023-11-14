@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  AVFrame* acquire_next_frame();
+  uint8_t* acquire_next_frame();
   void load_video_from_file(string path);
   void clean_video();
   void clean_frame(AVFrame* frame);
@@ -30,12 +30,17 @@ public:
   void convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B);
   void convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride);
 
+  inline int get_frame_width(){return frame_width;}
+  inline int get_frame_height(){return frame_height;}
+
 private:
   AVFormatContext* video_context;
   AVCodecContext* codec_context;
   AVPacket* packet;
   bool video_loaded;
   int video_stream_idx;
+  int frame_width = 0;
+  int frame_height = 0;
 };
 
 #endif

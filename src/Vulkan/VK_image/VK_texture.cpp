@@ -39,11 +39,11 @@ Struct_image* VK_texture::load_texture_from_file(string path){
   //---------------------------
   return image;
 }
-Struct_image* VK_texture::load_texture_from_frame(AVFrame* frame){
+Struct_image* VK_texture::load_texture_from_data(uint8_t* data, int width, int height){
   //---------------------------
 
   Struct_image* image = new Struct_image();
-  this->create_texture_from_frame(image, frame);
+  this->create_texture_from_data(image, data, width, height);
   vk_image->create_image_view(image);
   vk_image->create_image_sampler(image);
 
@@ -66,13 +66,11 @@ Struct_image* VK_texture::load_texture_from_bin(string path){
   return image;
 }
 
-void VK_texture::update_texture_from_frame(Struct_image* image, AVFrame* frame){
+void VK_texture::update_texture_from_data(Struct_image* image, uint8_t* data){
   //---------------------------
 
   //Frame data
-  int output_stride = frame->width * 4;
-  image->data = new uint8_t[output_stride * frame->height];
-  this->convert_YUV420P_to_RGB(frame, image->data, output_stride);
+  image->data = data;
 
   //Create vulkan texture
   this->update_vulkan_texture(image);
@@ -104,17 +102,13 @@ void VK_texture::create_texture_from_file(Struct_image* image, string path){
 
   //---------------------------
 }
-void VK_texture::create_texture_from_frame(Struct_image* image, AVFrame* frame){
+void VK_texture::create_texture_from_data(Struct_image* image, uint8_t* data, int width, int height){
   //---------------------------
 
   //Frame data
-  int output_stride = frame->width * 4;
-  image->data = new uint8_t[output_stride * frame->height];
-  this->convert_YUV420P_to_RGB(frame, image->data, output_stride);
-
-  //Image parameters
-  image->width = frame->width;
-  image->height = frame->height;
+  image->data = data;
+  image->width = width;
+  image->height = height;
   image->format = VK_FORMAT_R8G8B8A8_SRGB;
 
   //Create vulkan texture

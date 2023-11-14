@@ -193,10 +193,10 @@ Struct_image* VK_engine::load_texture_from_file(string path){
   //---------------------------
   return texture;
 }
-Struct_image* VK_engine::load_texture_from_frame(AVFrame* frame){
+Struct_image* VK_engine::load_texture_from_data(uint8_t* data, int width, int height){
   //---------------------------
 
-  Struct_image* texture = vk_texture->load_texture_from_frame(frame);
+  Struct_image* texture = vk_texture->load_texture_from_data(data, width, height);
 
   //---------------------------
   return texture;
@@ -209,14 +209,14 @@ Struct_image* VK_engine::load_texture_from_bin(string path){
   //---------------------------
   return texture;
 }
-void VK_engine::update_texture_from_frame(Struct_image* image, AVFrame* frame){
+void VK_engine::update_texture_from_data(Struct_image* image, uint8_t* data){
   //---------------------------
 
-  //vk_texture->update_texture_from_frame(image, frame);
+  //vk_texture->update_texture_from_data(image, frame);
 
-  std::thread updateThread([this, image, frame]() {
+  std::thread updateThread([this, image, data]() {
     try {
-      vk_texture->update_texture_from_frame(image, frame);
+      vk_texture->update_texture_from_data(image, data);
     } catch (const std::exception& e) {
       std::cerr << "Exception caught in thread: " << e.what() << std::endl;
     }

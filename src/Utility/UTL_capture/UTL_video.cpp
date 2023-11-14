@@ -30,9 +30,10 @@ void UTL_video::load_video_from_file(string path){
   //---------------------------
   this->video_loaded = true;
 }
-AVFrame* UTL_video::acquire_next_frame(){
+uint8_t* UTL_video::acquire_next_frame(){
   int result;
   AVFrame* frame = nullptr;
+  uint8_t* data = nullptr;
   //---------------------------
 
   //Get rid of sound data
@@ -60,8 +61,13 @@ AVFrame* UTL_video::acquire_next_frame(){
     int frameFinished;
     result = avcodec_receive_frame(codec_context, frame);
     if(result != 0){
-      cout<<"[error] decoding video"<<endl;
       return nullptr;
+    }else{
+      data = convert_frame_to_data(frame);
+      this->frame_width = frame->width;
+      this->frame_height = frame->height;
+
+      this->clean_frame(frame);
     }
 
     //Free packet
@@ -72,7 +78,7 @@ AVFrame* UTL_video::acquire_next_frame(){
   }
 
   //---------------------------
-  return frame;
+  return data;
 }
 
 void UTL_video::clean_video(){
