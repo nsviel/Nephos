@@ -182,6 +182,15 @@ void UTL_stream::reboot_video(){
 uint8_t* UTL_stream::convert_frame_to_data(AVFrame* frame){
   //---------------------------
 
+  // Create a SwsContext for converting the frame format if needed
+  struct SwsContext* swsContext = sws_getContext(
+      frame->width, frame->height, static_cast<AVPixelFormat>(frame->format),
+      frame->width, frame->height, AV_PIX_FMT_RGB24,
+      SWS_BILINEAR, nullptr, nullptr, nullptr
+  );
+
+  
+
   int stride = frame->width * 4;
   uint8_t* data = new uint8_t[stride * frame->height];
   this->convert_frame_to_RGB(frame, data, stride);
@@ -275,6 +284,9 @@ void UTL_stream::find_format_name(AVFrame* frame){
     default: result = "UNKNOWN_PIXEL_FORMAT";
   }
 
+  if(result != "UNKNOWN_PIXEL_FORMAT"){
+    cout<<result<<endl;
+  }
+
   //---------------------------
-  cout<<result<<endl;
 }
