@@ -291,30 +291,23 @@ void UTL_stream::find_format_name(AVFrame* frame){
 void UTL_stream::find_video_information(){
   //---------------------------
 
-  //Display some stream information
-  av_dump_format(video_context, 0, "/dev/video0", 0);
-
-
-  float start_time = video_context->start_time / 1000000;
-  float duration = 0;
+  struct_video->start_time = video_context->start_time / 1000000;
   if(video_context->duration > 0){
-    duration = video_context->duration;
+    struct_video->duration = video_context->duration;
+  }else{
+    struct_video->duration = -1;
   }
-  float bite_rate = video_context->bit_rate / 1000; //kb/s
+  struct_video->bite_rate = video_context->bit_rate / 1000; //kb/s
 
   // Print information about each stream
   for (unsigned int i = 0; i < video_context->nb_streams; i++) {
     AVStream* stream = video_context->streams[i];
 
-    std::cout << "Stream #" << i << ": ";
-
     if (stream->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
-      std::cout << "Video: ";
-      std::cout << stream->codecpar->format << ", ";
-      std::cout << stream->codecpar->width << "x" << stream->codecpar->height << ", ";
-      std::cout << stream->codecpar->bit_rate << " kb/s, ";
-      std::cout << av_q2d(stream->avg_frame_rate) << " fps" << std::endl;
-      // Add more information as needed
+      struct_video->width = stream->codecpar->width;
+      struct_video->height = stream->codecpar->height;
+      struct_video->bite_rate = stream->codecpar->bit_rate; //kb/s
+      struct_video->fps = av_q2d(stream->avg_frame_rate);
     } else if (stream->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
       std::cout << "Audio: ";
       // Add audio stream information

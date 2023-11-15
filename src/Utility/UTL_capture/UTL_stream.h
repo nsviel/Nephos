@@ -46,7 +46,7 @@ public:
   inline int get_frame_height(){return frame_height;}
 
 private:
-  Struct_video* struct_video;
+  Struct_video struct_video;
   AVFormatContext* video_context = nullptr;
   AVCodecContext* codec_context;
   AVPacket* packet;
