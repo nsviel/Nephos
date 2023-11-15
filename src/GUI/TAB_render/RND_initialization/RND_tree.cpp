@@ -6,8 +6,8 @@
 #include <ENG_data/ENG_scene/ENG_scene.h>
 #include <ENG_data/ENG_load/ENG_loader.h>
 #include <ENG_operation/Transformation/Transformation.h>
-#include <UTL_specific/UTL_file/Directory.h>
-#include <UTL_specific/UTL_file/Info.h>
+#include <UTL_file/Directory.h>
+#include <UTL_file/Info.h>
 
 
 //Constructor / Destructor

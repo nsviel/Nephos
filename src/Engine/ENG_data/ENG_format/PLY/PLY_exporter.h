@@ -1,8 +1,8 @@
 #ifndef PLY_EXPORTER_H
 #define PLY_EXPORTER_H
 
-#include <UTL_specific/UTL_struct/struct_object.h>
-#include <UTL_specific/UTL_file/Info.h>
+#include <UTL_struct/struct_object.h>
+#include <UTL_file/Info.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>

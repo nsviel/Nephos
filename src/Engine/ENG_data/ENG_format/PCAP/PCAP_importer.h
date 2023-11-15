@@ -1,8 +1,8 @@
 #ifndef PCAP_IMPORTER_H
 #define PCAP_IMPORTER_H
 
-#include <UTL_specific/UTL_struct/struct_data_file.h>
-#include <UTL_specific/UTL_file/Info.h>
+#include <UTL_struct/struct_data_file.h>
+#include <UTL_file/Info.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
