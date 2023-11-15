@@ -1,4 +1,4 @@
-#include "struct_glyph.h"
+#include "Struct_glyph.h"
 
 
 Glyph::Glyph(){

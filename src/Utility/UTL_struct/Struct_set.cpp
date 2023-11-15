@@ -1,4 +1,4 @@
-#include "struct_set.h"
+#include "Struct_set.h"
 
 
 Set::Set(std::string name){

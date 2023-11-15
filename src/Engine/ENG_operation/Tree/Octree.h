@@ -1,7 +1,7 @@
 #ifndef OCTREE_H
 #define OCTREE_H
 
-#include <UTL_struct/struct_object.h>
+#include <UTL_struct/Struct_object.h>
 #include <glm/glm.hpp>
 #include <vector>
 

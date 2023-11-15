@@ -2,6 +2,7 @@
 #define UTL_STREAM_H
 
 #include <UTL_specific/common.h>
+#include <UTL_struct/Struct_video.h>
 extern "C" {
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
@@ -39,11 +40,13 @@ public:
   void convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* data, int stride);
   void convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B);
   void find_format_name(AVFrame* frame);
+  void find_video_information();
 
   inline int get_frame_width(){return frame_width;}
   inline int get_frame_height(){return frame_height;}
 
 private:
+  Struct_video* struct_video;
   AVFormatContext* video_context = nullptr;
   AVCodecContext* codec_context;
   AVPacket* packet;

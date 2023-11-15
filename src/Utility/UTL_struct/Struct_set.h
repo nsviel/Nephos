@@ -1,15 +1,14 @@
 #ifndef STRUCT_SET_H
 #define STRUCT_SET_H
 
-#include <UTL_struct/struct_object.h>
+#include <UTL_struct/Struct_object.h>
 #include <string>
 #include <vector>
 #include <list>
 
 
 //Collection are cloud containers
-struct Set
-{
+struct Set{
   //---------------------------
 
   Set(std::string name);

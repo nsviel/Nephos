@@ -42,10 +42,10 @@ using namespace glm;
 #include <UTL_function/fct_timer.h>  //For time profilling
 
 //Data
-#include <UTL_struct/struct_object.h>
-#include <UTL_struct/struct_set.h>
-#include <UTL_struct/struct_data_file.h>
-#include <UTL_struct/struct_glyph.h>
+#include <UTL_struct/Struct_object.h>
+#include <UTL_struct/Struct_set.h>
+#include <UTL_struct/Struct_data_file.h>
+#include <UTL_struct/Struct_glyph.h>
 
 //GUI
 #include <imgui/core/imgui.h>

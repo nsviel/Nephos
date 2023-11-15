@@ -1,8 +1,8 @@
 #ifndef LOADER_H
 #define LOADER_H
 
-#include <UTL_struct/struct_data_file.h>
-#include <UTL_struct/struct_object.h>
+#include <UTL_struct/Struct_data_file.h>
+#include <UTL_struct/Struct_object.h>
 #include <UTL_file/Directory.h>
 #include <UTL_file/Zenity.h>
 #include <string>
