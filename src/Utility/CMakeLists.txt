@@ -29,7 +29,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   -lstdc++fs    # std::experimental::filesystem
   -lglfw        # glfw
   -lsqlite3     # sqlite
-  -ludev
+  -ludev        # video device
 
   -lavformat    # ffmpeg
   -lavdevice    # ffmpeg
@@ -41,4 +41,5 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+  ${LIBUSB_INCLUDE_DIR}
 )

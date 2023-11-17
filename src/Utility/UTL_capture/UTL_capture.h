@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <libusb-1.0/libusb.h>
 
 using namespace std;
 
