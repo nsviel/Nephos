@@ -81,7 +81,7 @@ void UTL_stream::find_video_context(string path){
   avdevice_register_all(); // for device
 
   string dev_name = "/dev/video0"; // here mine is video0 , it may vary.
-  AVInputFormat* inputFormat =av_find_input_format("v4l2");
+  AVInputFormat* inputFormat = av_find_input_format("v4l2");
   AVDictionary* options = NULL;
   av_dict_set(&options, "framerate", "30", 0);
 
@@ -105,7 +105,7 @@ void UTL_stream::decode_video(){
   }
 
 
-
+sayHello();
   //Retrieve video stream index
   this->video_stream_idx = -1;
   for(int i=0; i<video_context->nb_streams; i++){
@@ -117,10 +117,10 @@ void UTL_stream::decode_video(){
   if(video_stream_idx == -1){
     cout << "[error] ffmpeg - do not find video stream index" << endl;
   }
-
+sayHello();
   //Some stuff coding / decoding video
   AVCodecParameters* codecParameters = video_context->streams[video_stream_idx]->codecpar;
-  AVCodec* codec = avcodec_find_decoder(codecParameters->codec_id);
+  const AVCodec* codec = avcodec_find_decoder(codecParameters->codec_id);
   if (codec == NULL) {
     cout << "[error] ffmpeg - do not find video stream index" << endl;
   }
@@ -291,23 +291,23 @@ void UTL_stream::find_format_name(AVFrame* frame){
 void UTL_stream::find_video_information(){
   //---------------------------
 
-  struct_video->start_time = video_context->start_time / 1000000;
+  struct_video.start_time = video_context->start_time / 1000000;
   if(video_context->duration > 0){
-    struct_video->duration = video_context->duration;
+    struct_video.duration = video_context->duration;
   }else{
-    struct_video->duration = -1;
+    struct_video.duration = -1;
   }
-  struct_video->bite_rate = video_context->bit_rate / 1000; //kb/s
+  struct_video.bit_rate = video_context->bit_rate / 1000; //kb/s
 
   // Print information about each stream
   for (unsigned int i = 0; i < video_context->nb_streams; i++) {
     AVStream* stream = video_context->streams[i];
 
     if (stream->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
-      struct_video->width = stream->codecpar->width;
-      struct_video->height = stream->codecpar->height;
-      struct_video->bite_rate = stream->codecpar->bit_rate; //kb/s
-      struct_video->fps = av_q2d(stream->avg_frame_rate);
+      struct_video.width = stream->codecpar->width;
+      struct_video.height = stream->codecpar->height;
+      struct_video.bit_rate = stream->codecpar->bit_rate; //kb/s
+      struct_video.fps = av_q2d(stream->avg_frame_rate);
     } else if (stream->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
       std::cout << "Audio: ";
       // Add audio stream information

@@ -1,7 +1,7 @@
 #include "VK_validation.h"
 
 #include <VK_main/Struct_vulkan.h>
-#include <VK_struct/Struct_validation.h>
+#include <VK_validation/Struct_validation.h>
 
 
 //Constructor / Destructor
