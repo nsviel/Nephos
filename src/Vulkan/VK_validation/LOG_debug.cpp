@@ -1,19 +1,8 @@
-#include "VK_debug.h"
+#include "LOG_debug.h"
 
-
-//Constructor / Destructor
-VK_debug::VK_debug(){
-  //---------------------------
-
-  //---------------------------
-}
-VK_debug::~VK_debug(){}
 
 //Main function
-
-
-//Subfunction
-void validation_message(const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData){
+void LOG_debug::validation_message(const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData){
   //---------------------------
 
   // Split the message into individual objects

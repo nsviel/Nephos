@@ -52,7 +52,7 @@ void VK_framebuffer::clean_framebuffers(){
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
     Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
-    //this->clean_framebuffer(renderpass);
+    this->clean_framebuffer(renderpass);
   }
 
   //---------------------------

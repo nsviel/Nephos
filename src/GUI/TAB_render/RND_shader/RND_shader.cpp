@@ -66,7 +66,7 @@ void RND_shader::design_panel(){
   this->shader_tabs();
   this->shader_control();
 
-string message = Shader_logger::get_instance().get_shader_printf();
+string message = LOG_shader::get_instance().get_shader_printf();
   gui_console->add_log(message);
   gui_console->add_file("error", "output.txt");
   gui_console->draw_console("truc");
