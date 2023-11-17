@@ -25,6 +25,7 @@ public:
   //Subfunction
   void convert_data_into_texture(uint8_t* data);
   void display_frame();
+  void restart_video();
 
 private:
   VK_engine* vk_engine;

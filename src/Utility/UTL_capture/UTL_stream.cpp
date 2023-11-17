@@ -49,9 +49,9 @@ void UTL_stream::find_video_context(string path){
   av_dict_set(&options, "input_format", "mjpeg", 0); // Set the pixel format to MJPEG
 
   // check video source
-  video_context = avformat_alloc_context();
+  this->video_context = avformat_alloc_context();
   bool ok = avformat_open_input(&video_context, path.c_str(), inputFormat, NULL);
-  if(ok != 0){
+  if(ok != 0 || video_context == nullptr){
     this->stream_active = false;
   }else{
     this->stream_active = true;
@@ -113,9 +113,19 @@ void UTL_stream::decode_video(){
 void UTL_stream::clean_video(){
   //---------------------------
 
+  if(!stream_loaded) return;
+
+  this->stream_loaded = false;
+  this->stream_active = false;
+  this->thread_running = false;
+  this->thread_frame.join();
+
   av_packet_free(&packet);
   avcodec_close(codec_context);
   avformat_close_input(&video_context);
+  avformat_free_context(video_context);
+
+  this->video_context = nullptr;
 
   //---------------------------
 }
@@ -324,15 +334,13 @@ bool UTL_stream::check_device_connection(){
   bool connected = true;
   //---------------------------
 
-  if(stream_loaded && stream_active && file::is_device_connected(path_stream) == false){
-    this->video_context = nullptr;
-    this->stream_loaded = false;
-    this->stream_active = false;
+  bool device_connected = file::is_device_connected(path_stream);
+  if(stream_loaded && stream_active && !device_connected){
     this->clean_video();
     connected = false;
     cout<<"Device disconnected"<<endl;
   }
-  else if(file::is_device_connected(path_stream) == false){
+  else if(!stream_loaded || !stream_active || !device_connected){
     connected = false;
   }
 

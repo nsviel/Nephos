@@ -55,6 +55,7 @@ void GUI_capture::capture_devices(){
       // Use ImGui::Selectable to make the row selectable
       if (ImGui::Selectable(device.name.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)) {
         this->stream_node = device.node;
+        gui_video->restart_video();
         selected_device = i;
       }
 

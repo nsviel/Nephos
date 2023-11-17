@@ -62,3 +62,10 @@ void GUI_video::display_frame(){
 
   //---------------------------
 }
+void GUI_video::restart_video(){
+  //---------------------------
+
+  utl_stream->clean_video();
+
+  //---------------------------
+}
