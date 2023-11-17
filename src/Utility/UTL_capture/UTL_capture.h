@@ -1,8 +1,7 @@
 #ifndef ELE_CAPTURE_H
 #define ELE_CAPTURE_H
 
-#include <string>
-#include <vector>
+#include <UTL_specific/common.h>
 #include <libusb-1.0/libusb.h>
 
 using namespace std;
@@ -17,6 +16,7 @@ public:
 
 public:
   //Main function
+  void truc();
 
 private:
 };
