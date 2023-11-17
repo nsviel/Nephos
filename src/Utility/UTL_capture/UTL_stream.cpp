@@ -16,10 +16,8 @@ UTL_stream::~UTL_stream(){}
 
 //Main function
 void UTL_stream::load_stream(string path){
-  if(stream_loaded && stream_active) return;
+  if(stream_loaded && stream_active || path == "") return;
   //---------------------------
-  //say("load stream");
-  path = "/dev/video4";
 
   this->find_camera_devices();
   this->find_video_context(path);

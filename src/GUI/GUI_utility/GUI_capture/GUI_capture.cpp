@@ -16,6 +16,8 @@ GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
   this->gui = gui;
   this->utl_device = new UTL_device();
 
+  this->stream_node = "";
+
   //---------------------------
 }
 GUI_capture::~GUI_capture(){}
@@ -52,8 +54,8 @@ void GUI_capture::capture_devices(){
 
       // Use ImGui::Selectable to make the row selectable
       if (ImGui::Selectable(device.name.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)) {
-          // Handle the selection, for example, store the selected index
-          selected_device = i;
+        this->stream_node = device.node;
+        selected_device = i;
       }
 
       ImGui::TableNextColumn();
@@ -71,8 +73,8 @@ void GUI_capture::capture_command(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  gui_video->draw_video("../media/vulkano.mp4");
-  gui_image->draw_image_static("../media/vulkano.jpg");
+  gui_video->draw_video(stream_node);
+  //gui_image->draw_image_static("../media/vulkano.jpg");
 
   //---------------------------
 }

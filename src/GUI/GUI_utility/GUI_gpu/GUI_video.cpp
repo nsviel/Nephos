@@ -57,8 +57,8 @@ void GUI_video::convert_data_into_texture(uint8_t* data){
 void GUI_video::display_frame(){
   //---------------------------
 
-  ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-  ImGui::Image(texture, ImVec2{200,200});
+  ImVec2 panel_size = ImGui::GetContentRegionAvail();
+  ImGui::Image(texture, ImVec2{panel_size.x, panel_size.y});
 
   //---------------------------
 }

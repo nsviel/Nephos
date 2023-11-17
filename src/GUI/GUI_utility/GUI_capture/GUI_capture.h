@@ -33,6 +33,7 @@ private:
   RND_panel* gui_render_panel;
   UTL_device* utl_device;
 
+  string stream_node;
   int item_width;
 };
 
