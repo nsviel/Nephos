@@ -24,7 +24,12 @@ RND_tree::~RND_tree(){}
 void RND_tree::design_tree(){
   //---------------------------
 
-  static ImGuiTableFlags flags = ImGuiTableFlags_BordersV | ImGuiTableFlags_BordersOuterH | ImGuiTableFlags_Resizable | ImGuiTableFlags_RowBg | ImGuiTableFlags_NoBordersInBody;
+  static ImGuiTableFlags flags;
+  flags |= ImGuiTableFlags_BordersV;
+  flags |= ImGuiTableFlags_BordersOuterH;
+  flags |= ImGuiTableFlags_Resizable;
+  flags |= ImGuiTableFlags_RowBg;
+  flags |= ImGuiTableFlags_NoBordersInBody;
   if (ImGui::BeginTable("init_tree", 3, flags)){
     // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
     ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_NoHide, 175);

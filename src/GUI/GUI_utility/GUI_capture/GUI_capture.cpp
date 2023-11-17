@@ -40,19 +40,25 @@ void GUI_capture::capture_devices(){
   ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_Borders;
   flags |= ImGuiTableFlags_RowBg;
-
-  if(ImGui::BeginTable("database_view", 2, flags)){
-
-    for(int i=0; i<vec_devices.size(); i++){
+  static int selected_device = -1;
+  if (ImGui::BeginTable("database_view", 2, flags)) {
+    for (int i = 0; i < vec_devices.size(); i++) {
       Struct_video_device& device = vec_devices[i];
 
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
 
       ImGui::PushID(device.name.c_str());
-      ImGui::Text("%s", device.name.c_str());
+
+      // Use ImGui::Selectable to make the row selectable
+      if (ImGui::Selectable(device.name.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)) {
+          // Handle the selection, for example, store the selected index
+          selected_device = i;
+      }
+
       ImGui::TableNextColumn();
       ImGui::Text("%s", device.node.c_str());
+
       ImGui::PopID();
     }
 
