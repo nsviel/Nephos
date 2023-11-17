@@ -13,14 +13,13 @@ struct Struct_renderpass{
   //Info
   std::string name;
   std::string target;
+  std::vector<Struct_subpass*> vec_subpass;
 
   //Renderpass stuff
   VkRenderPass renderpass;
   VkCommandBuffer command_buffer;
   Struct_framebuffer* framebuffer;
   Struct_command command;
-  Struct_subpass* current_subpass;
-  std::vector<Struct_subpass*> vec_subpass;
 
   //---------------------------
 };

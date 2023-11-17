@@ -62,15 +62,14 @@ void VK_imgui::load_font(){
   //---------------------------
 
   Struct_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
 
   vk_pool->reset_command_pool();
-  vk_command->start_command_buffer_once(subpass->command_buffer);
+  vk_command->start_command_buffer_once(renderpass->command_buffer);
 
-  ImGui_ImplVulkan_CreateFontsTexture(subpass->command_buffer);
+  ImGui_ImplVulkan_CreateFontsTexture(renderpass->command_buffer);
 
-  vk_command->stop_command_buffer(subpass->command_buffer);
-  vk_submit->submit_command_graphics(subpass->command_buffer);
+  vk_command->stop_command_buffer(renderpass->command_buffer);
+  vk_submit->submit_command_graphics(renderpass->command_buffer);
   vk_engine->device_wait_idle();
 
   ImGui_ImplVulkan_DestroyFontUploadObjects();

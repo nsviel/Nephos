@@ -139,10 +139,8 @@ void VK_command::clean_command_buffer(VkCommandBuffer& command_buffer){
 void VK_command::start_render_pass(Struct_renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb){
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
-
-  this->reset_command_buffer(subpass->command_buffer);
-  this->start_command_buffer_primary(subpass->command_buffer);
+  this->reset_command_buffer(renderpass->command_buffer);
+  this->start_command_buffer_primary(renderpass->command_buffer);
 
   std::array<VkClearValue, 2> clear_value{};
   clear_value[0].color = {{
@@ -168,18 +166,16 @@ void VK_command::start_render_pass(Struct_renderpass* renderpass, VkFramebuffer&
     content = VK_SUBPASS_CONTENTS_INLINE;
   }
 
-  vkCmdBeginRenderPass(subpass->command_buffer, &renderpass_info, content);
+  vkCmdBeginRenderPass(renderpass->command_buffer, &renderpass_info, content);
 
   //---------------------------
 }
 void VK_command::stop_render_pass(Struct_renderpass* renderpass){
   //---------------------------
 
-  Struct_subpass* subpass = renderpass->vec_subpass[0];
+  vkCmdEndRenderPass(renderpass->command_buffer);
 
-  vkCmdEndRenderPass(subpass->command_buffer);
-
-  this->stop_command_buffer(subpass->command_buffer);
+  this->stop_command_buffer(renderpass->command_buffer);
 
   //---------------------------
 }

@@ -105,7 +105,7 @@ void UTL_stream::decode_video(){
   }
 
 
-sayHello();
+
   //Retrieve video stream index
   this->video_stream_idx = -1;
   for(int i=0; i<video_context->nb_streams; i++){
@@ -117,7 +117,7 @@ sayHello();
   if(video_stream_idx == -1){
     cout << "[error] ffmpeg - do not find video stream index" << endl;
   }
-sayHello();
+
   //Some stuff coding / decoding video
   AVCodecParameters* codecParameters = video_context->streams[video_stream_idx]->codecpar;
   const AVCodec* codec = avcodec_find_decoder(codecParameters->codec_id);

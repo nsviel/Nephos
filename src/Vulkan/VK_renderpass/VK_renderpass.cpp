@@ -4,6 +4,7 @@
 #include <VK_main/Struct_vulkan.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_presentation/VK_framebuffer.h>
+#include <VK_command/VK_command.h>
 
 
 //Constructor / Destructor
@@ -14,6 +15,7 @@ VK_renderpass::VK_renderpass(Struct_vulkan* struct_vulkan){
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
   this->vk_subpass = new VK_subpass(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
+  this->vk_command = new VK_command(struct_vulkan);
 
   //---------------------------
 }
@@ -54,6 +56,7 @@ void VK_renderpass::create_renderpass_struct(Struct_renderpass* renderpass){
   this->create_renderpass_obj(renderpass);
   vk_pipeline->create_pipeline(renderpass);
   vk_framebuffer->create_framebuffer(renderpass);
+  vk_command->allocate_command_buffer_primary(renderpass->command_buffer);
 
   //---------------------------
 }

@@ -9,6 +9,7 @@ class Struct_vulkan;
 class VK_pipeline;
 class VK_subpass;
 class VK_framebuffer;
+class VK_command;
 
 
 class VK_renderpass
@@ -33,6 +34,7 @@ private:
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
   VK_framebuffer* vk_framebuffer;
+  VK_command* vk_command;
 };
 
 #endif
