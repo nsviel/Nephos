@@ -14,6 +14,18 @@ namespace file{
     //---------------------------
     return infile.good();
   }
+  bool is_device_connected(const std::string& devicePath) {
+    int fileDescriptor = open(devicePath.c_str(), O_RDONLY);
+
+    if (fileDescriptor == -1) {
+        // Failed to open the device file
+        return false;
+    }
+
+    close(fileDescriptor);  // Close the file descriptor
+
+    return true;
+}
   std::string get_path_abs_build(){
     //---------------------------
 

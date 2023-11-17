@@ -27,9 +27,11 @@ void GUI_video::draw_video(string path){
   //---------------------------
 
   utl_stream->load_stream(path);
-  uint8_t* data = utl_stream->acquire_next_frame();
-  this->convert_data_into_texture(data);
-  this->display_frame();
+  uint8_t* data = utl_stream->get_frame_data();
+  if(data != nullptr){
+    this->convert_data_into_texture(data);
+    this->display_frame();
+  }
 
   //---------------------------
 }
@@ -38,18 +40,16 @@ void GUI_video::draw_video(string path){
 void GUI_video::convert_data_into_texture(uint8_t* data){
   //---------------------------
 
-  if(data != nullptr){
-    static Struct_image* image = nullptr;
+  static Struct_image* image = nullptr;
 
-    if(image == nullptr){
-      int width = utl_stream->get_frame_width();
-      int height = utl_stream->get_frame_height();
-      image = vk_engine->load_texture_from_data(data, width, height);
-      VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-      this->texture = reinterpret_cast<ImTextureID>(descriptor);
-    }else{
-      vk_engine->update_texture_from_data(image, data);
-    }
+  if(image == nullptr){
+    int width = utl_stream->get_frame_width();
+    int height = utl_stream->get_frame_height();
+    image = vk_engine->load_texture_from_data(data, width, height);
+    VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    this->texture = reinterpret_cast<ImTextureID>(descriptor);
+  }else{
+    vk_engine->update_texture_from_data(image, data);
   }
 
   //---------------------------

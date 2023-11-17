@@ -1,11 +1,14 @@
 #include "UTL_stream.h"
 
+#include <UTL_file/File.h>
+
 
 //Constructor / Destructor
 UTL_stream::UTL_stream(){
   //---------------------------
 
-  this->video_loaded = false;
+  this->stream_loaded = false;
+  this->stream_active = false;
 
   //---------------------------
 }
@@ -13,89 +16,53 @@ UTL_stream::~UTL_stream(){}
 
 //Main function
 void UTL_stream::load_stream(string path){
-  if(video_loaded) return;
+  if(stream_loaded && stream_active) return;
   //---------------------------
+  //say("load stream");
+  path = "/dev/video4";
 
+  this->find_camera_devices();
   this->find_video_context(path);
-  this->decode_video();
   this->find_video_information();
+  this->decode_video();
 
-  //---------------------------
-  this->video_loaded = true;
-}
-uint8_t* UTL_stream::acquire_next_frame(){
-  int result;
-  AVFrame* frame = nullptr;
-  uint8_t* data = nullptr;
-  //---------------------------
-
-  //Get rid of sound data
-  packet->stream_index = -1;
-  while(packet->stream_index != video_stream_idx){
-    result = av_read_frame(video_context, packet);
-  }
-
-  if(result >= 0){
-    //Bring packet to frame decoder
-    result = avcodec_send_packet(codec_context, packet);
-    if(result < 0){
-      cout << "[error] ffmpeg - AV codec send packet" << endl;
-      return nullptr;
-    }
-
-    //Allocate AV frame
-    frame = av_frame_alloc();
-    if(!frame){
-      cout << "[error] ffmpeg - frame memory allocation" << endl;
-      return nullptr;
-    }
-
-    //Process or display the video frame here
-    int frameFinished;
-    result = avcodec_receive_frame(codec_context, frame);
-    if(result != 0){
-      cout << "[error] ffmpeg - avodec receive frame" << endl;
-      return nullptr;
-    }else{
-      data = convert_frame_to_data(frame);
-      this->frame_width = frame->width;
-      this->frame_height = frame->height;
-    }
-
-    //Free packet
-    av_frame_free(&frame);
-    av_packet_unref(packet);
-  }
-  else{say("reboot");
-    this->reboot_video();
+  //Start reading thread
+  if(thread_running == false){
+    this->thread_frame = std::thread(&UTL_stream::thread_read_frame, this);
   }
 
   //---------------------------
-  return data;
+  this->stream_loaded = true;
 }
 
 //Video function
 void UTL_stream::find_video_context(string path){
+  this->path_stream = path;
   //---------------------------
+
+  //Check if device exists
+  if(!file::is_device_connected(path_stream)) return;
 
   avdevice_register_all(); // for device
 
-  string dev_name = "/dev/video0"; // here mine is video0 , it may vary.
   AVInputFormat* inputFormat = av_find_input_format("v4l2");
   AVDictionary* options = NULL;
-  av_dict_set(&options, "framerate", "30", 0);
+  av_dict_set(&options, "video_size", "1280x720", 0); // Set the desired resolution
+  av_dict_set(&options, "input_format", "mjpeg", 0); // Set the pixel format to MJPEG
 
   // check video source
   video_context = avformat_alloc_context();
-  bool ok = avformat_open_input(&video_context, dev_name.c_str(), inputFormat, NULL);
+  bool ok = avformat_open_input(&video_context, path.c_str(), inputFormat, NULL);
   if(ok != 0){
-    cout<<"\nOops, could'nt open video source\n\n";
-    return;
+    this->stream_active = false;
+  }else{
+    this->stream_active = true;
   }
 
   //---------------------------
 }
 void UTL_stream::decode_video(){
+  if(stream_active == false) return;
   //---------------------------
 
   //Read and decode a few frames to find missing information
@@ -103,8 +70,6 @@ void UTL_stream::decode_video(){
   if(result < 0){
     cout << "[error] ffmpeg - video information" << endl;
   }
-
-
 
   //Retrieve video stream index
   this->video_stream_idx = -1;
@@ -153,26 +118,6 @@ void UTL_stream::clean_video(){
   av_packet_free(&packet);
   avcodec_close(codec_context);
   avformat_close_input(&video_context);
-
-  say("video with ffmpeg ok");
-
-  //---------------------------
-}
-void UTL_stream::reboot_video(){
-  //---------------------------
-
-  // Set the timebase for the video stream
-  const AVRational stream_timebase = video_context->streams[video_stream_idx]->time_base;
-
-  // Seek to the beginning of the video
-  int64_t target_pts = 0;  // Target presentation timestamp (beginning of the video)
-  int64_t seek_target = av_rescale_q(target_pts, AV_TIME_BASE_Q, stream_timebase);
-  int seek_flags = 0;  // Flags (you can adjust them based on your requirements)
-
-  int result = av_seek_frame(video_context, video_stream_idx, seek_target, seek_flags);
-  if (result < 0) {
-    cout << "[error] ffmpeg - Error seeking to the beginning" << endl;
-  }
 
   //---------------------------
 }
@@ -289,6 +234,7 @@ void UTL_stream::find_format_name(AVFrame* frame){
   //---------------------------
 }
 void UTL_stream::find_video_information(){
+  if(stream_active == false) return;
   //---------------------------
 
   struct_video.start_time = video_context->start_time / 1000000;
@@ -317,4 +263,122 @@ void UTL_stream::find_video_information(){
   }
 
   //---------------------------
+}
+void UTL_stream::thread_read_frame(){
+  //---------------------------
+
+  int result;
+  AVFrame* frame = nullptr;
+  thread_running = true;
+
+  while(thread_running){
+    if(!check_device_connection()) continue;
+
+    //Get rid of sound data
+    packet->stream_index = -1;
+    while(packet->stream_index != video_stream_idx){
+      result = av_read_frame(video_context, packet);
+    }
+
+    if(result >= 0){
+      //Bring packet to frame decoder
+      result = avcodec_send_packet(codec_context, packet);
+      if(result < 0){
+        cout << "[error] ffmpeg - AV codec send packet" << endl;
+        data = nullptr;
+      }
+
+      //Allocate AV frame
+      frame = av_frame_alloc();
+      if(!frame){
+        cout << "[error] ffmpeg - frame memory allocation" << endl;
+        data = nullptr;
+      }
+
+      //Process or display the video frame here
+      int frameFinished;
+      result = avcodec_receive_frame(codec_context, frame);
+      if(result != 0){
+        cout << "[error] ffmpeg - avodec receive frame" << endl;
+        data = nullptr;
+      }else{
+        data = convert_frame_to_data(frame);
+        this->frame_width = frame->width;
+        this->frame_height = frame->height;
+      }
+
+      //Free packet
+      av_frame_free(&frame);
+      av_packet_unref(packet);
+    }
+  }
+
+  //---------------------------
+}
+void UTL_stream::thread_video_device() {
+  int currentIndex = 0;
+  //---------------------------
+
+
+  //---------------------------
+}
+bool UTL_stream::check_device_connection(){
+  bool connected = true;
+  //---------------------------
+
+  if(stream_loaded && stream_active && file::is_device_connected(path_stream) == false){
+    this->video_context = nullptr;
+    this->stream_loaded = false;
+    this->stream_active = false;
+    this->clean_video();
+    connected = false;
+    cout<<"Device disconnected"<<endl;
+  }
+  else if(file::is_device_connected(path_stream) == false){
+    connected = false;
+  }
+
+  //---------------------------
+  return connected;
+}
+void UTL_stream::find_camera_devices(){
+  // Create a udev context
+  struct udev* udev = udev_new();
+  if (!udev) {
+      std::cerr << "Failed to create udev context" << std::endl;
+  }
+
+  // Create a udev enumerator for video devices
+  struct udev_enumerate* enumerate = udev_enumerate_new(udev);
+  udev_enumerate_add_match_subsystem(enumerate, "video4linux");
+  udev_enumerate_scan_devices(enumerate);
+
+  // Get the list of devices
+  struct udev_list_entry* devices = udev_enumerate_get_list_entry(enumerate);
+
+  // Iterate through the list and add information to the vector
+  struct udev_list_entry* entry;
+  udev_list_entry_foreach(entry, devices) {
+    const char* path = udev_list_entry_get_name(entry);
+    struct udev_device* device = udev_device_new_from_syspath(udev, path);
+
+    const char* deviceNode = udev_device_get_devnode(device);
+    const char* deviceName = udev_device_get_sysattr_value(device, "name");
+
+    if (deviceName && deviceNode) {
+      // Check if the camera name is already in the list
+      auto it = std::find_if(list_camera_devices.begin(), list_camera_devices.end(), [&](const auto& pair) { return pair.first == deviceName; });
+
+      // If not found, add to the list
+      if (it == list_camera_devices.end()) {
+        list_camera_devices.emplace_back(deviceName, deviceNode);
+      }
+    }
+
+    udev_device_unref(device);
+  }
+
+  // Cleanup
+  udev_enumerate_unref(enumerate);
+  udev_unref(udev);
 }

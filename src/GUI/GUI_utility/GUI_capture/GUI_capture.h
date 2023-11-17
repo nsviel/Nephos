@@ -9,6 +9,7 @@ class GUI_image;
 class GUI_video;
 class TAB_render;
 class RND_panel;
+class UTL_device;
 
 
 class GUI_capture : public BASE_panel
@@ -22,6 +23,7 @@ public:
   void design_panel();
 
   //Subfunction
+  void capture_devices();
   void capture_command();
 
 private:
@@ -29,6 +31,7 @@ private:
   GUI_image* gui_image;
   GUI* gui;
   RND_panel* gui_render_panel;
+  UTL_device* utl_device;
 
   int item_width;
 };
