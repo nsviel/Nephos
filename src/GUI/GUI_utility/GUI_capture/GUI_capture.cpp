@@ -24,6 +24,7 @@ GUI_capture::~GUI_capture(){}
 void GUI_capture::design_panel(){
   //---------------------------
 
+  this->capture_devices();
   this->capture_command();
 
   //---------------------------
@@ -35,6 +36,28 @@ void GUI_capture::capture_devices(){
 
   utl_device->find_video_devices();
   vector<Struct_video_device> vec_devices = utl_device->get_vec_video_device();
+
+  ImGuiTableFlags flags;
+  flags |= ImGuiTableFlags_Borders;
+  flags |= ImGuiTableFlags_RowBg;
+
+  if(ImGui::BeginTable("database_view", 2, flags)){
+
+    for(int i=0; i<vec_devices.size(); i++){
+      Struct_video_device& device = vec_devices[i];
+
+      ImGui::TableNextRow();
+      ImGui::TableNextColumn();
+
+      ImGui::PushID(device.name.c_str());
+      ImGui::Text("%s", device.name.c_str());
+      ImGui::TableNextColumn();
+      ImGui::Text("%s", device.node.c_str());
+      ImGui::PopID();
+    }
+
+    ImGui::EndTable();
+  }
 
   //---------------------------
 }
