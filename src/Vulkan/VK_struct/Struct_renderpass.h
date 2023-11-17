@@ -19,6 +19,7 @@ struct Struct_renderpass{
   VkCommandBuffer command_buffer;
   Struct_framebuffer* framebuffer;
   Struct_command command;
+  Struct_subpass* current_subpass;
   std::vector<Struct_subpass*> vec_subpass;
 
   //---------------------------
