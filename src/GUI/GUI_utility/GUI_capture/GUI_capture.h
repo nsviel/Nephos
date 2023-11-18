@@ -10,6 +10,7 @@ class GUI_video;
 class TAB_render;
 class RND_panel;
 class UTL_device;
+class UTL_capture;
 
 
 class GUI_capture : public BASE_panel
@@ -33,6 +34,7 @@ private:
   GUI* gui;
   RND_panel* gui_render_panel;
   UTL_device* utl_device;
+  UTL_capture* utl_capture;
 
   string stream_node;
   int item_width;
