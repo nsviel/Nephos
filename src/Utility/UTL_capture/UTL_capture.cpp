@@ -1,8 +1,8 @@
 #include "UTL_capture.h"
 
-#define MSFT_VID 0x045E
-#define RGB_PID 0x097D
-#define DEPTH_PID 0x097C
+#define VENDOR_MICROSOFT 0x045E
+#define ID_RGB 0x097D
+#define ID_DEPTH 0x097C
 
 
 //Constructor / Destructor
@@ -18,6 +18,16 @@ UTL_capture::~UTL_capture(){}
 void UTL_capture::truc(){
   //---------------------------
 
+  this->machin();
+  this->chose();
+
+  //---------------------------
+}
+
+//Subfunction
+void UTL_capture::machin(){
+  //---------------------------
+/*
   struct libusb_device_descriptor desc;
   libusb_context *usb_context;
   libusb_device **list_device; // pointer to pointer of device, used to retrieve a list of devices
@@ -52,11 +62,11 @@ void UTL_capture::truc(){
     }
 
     // Count how many color or depth end points we find.
-    if (desc.idVendor == MSFT_VID) {
-      if (desc.idProduct == RGB_PID) {
+    if (desc.idVendor == VENDOR_MICROSOFT) {
+      if (desc.idProduct == ID_RGB) {
         color_device_count += 1;
       }
-      else if (desc.idProduct == DEPTH_PID) {
+      else if (desc.idProduct == ID_DEPTH) {
         depth_device_count += 1;
       }
     }
@@ -70,6 +80,48 @@ void UTL_capture::truc(){
 
   cout << "Color device count: " << color_device_count << endl;
   cout << "Depth device count: " << depth_device_count << endl;
+*/
+  //---------------------------
+}
+void UTL_capture::chose(){
+  //---------------------------
 
+  // Initialize the Azure Kinect sensor
+  k4a_device_t device = NULL;
+  k4a_device_configuration_t config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
+  config.camera_fps = K4A_FRAMES_PER_SECOND_30;
+/*
+  if (K4A_FAILED(k4a_device_open(0, &device)) ||
+      K4A_FAILED(k4a_device_start_cameras(device, &config))) {
+      std::cerr << "Failed to open or start the device" << std::endl;
+      return;
+  }
+
+  // Capture frames for a short duration
+  std::chrono::seconds captureDuration(5);
+  auto startTime = std::chrono::high_resolution_clock::now();
+
+  while (std::chrono::high_resolution_clock::now() - startTime < captureDuration) {
+      k4a_capture_t capture = NULL;
+      if (k4a_device_get_capture(device, &capture, K4A_WAIT_INFINITE) == K4A_WAIT_RESULT_SUCCEEDED) {
+        sayHello();
+          // Access color and depth frames here if needed
+          // k4a_image_t colorImage = k4a_capture_get_color_image(capture);
+          // k4a_image_t depthImage = k4a_capture_get_depth_image(capture);
+
+          // Process the frames...
+
+          // Release the capture
+          k4a_capture_release(capture);
+      }
+
+      // Sleep for a short time to avoid busy-waiting
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+  }
+
+  // Stop the device and close it
+  k4a_device_stop_cameras(device);
+  k4a_device_close(device);
+*/
   //---------------------------
 }

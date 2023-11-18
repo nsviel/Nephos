@@ -5,9 +5,7 @@ set(LIBRARY_NAME LIBRARY_EXTERN)
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
-  *.hpp
   *.h
-  *.hpp
 )
 
 #-----------------

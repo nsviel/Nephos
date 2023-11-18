@@ -2,11 +2,8 @@
 #define UTL_CAPTURE_H
 
 #include <UTL_specific/common.h>
-#include <k4a/k4a/k4a.h>
-#include <k4a/k4a/k4atypes.h>
-#include <k4a/k4ainternal/capture.h>
-#include <k4a/k4ainternal/image.h>
 #include <libusb-1.0/libusb.h>
+#include <k4a/k4a.h>
 
 
 class UTL_capture
@@ -19,6 +16,10 @@ public:
 public:
   //Main function
   void truc();
+
+  //Subfunction
+  void machin();
+  void chose();
 
 private:
 };
