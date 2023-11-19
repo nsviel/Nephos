@@ -17,10 +17,12 @@ UTL_capture::~UTL_capture(){}
 //Main function
 void UTL_capture::truc(){
   //---------------------------
-
+static bool once = true;
   this->machin();
-  this->chose();
 
+  if(once)
+  this->chose();
+once =false;
   //---------------------------
 }
 
@@ -86,42 +88,83 @@ void UTL_capture::machin(){
 void UTL_capture::chose(){
   //---------------------------
 
-  // Initialize the Azure Kinect sensor
-  k4a_device_t device = NULL;
-  k4a_device_configuration_t config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
-  config.camera_fps = K4A_FRAMES_PER_SECOND_30;
-/*
-  if (K4A_FAILED(k4a_device_open(0, &device)) ||
-      K4A_FAILED(k4a_device_start_cameras(device, &config))) {
-      std::cerr << "Failed to open or start the device" << std::endl;
-      return;
-  }
 
-  // Capture frames for a short duration
-  std::chrono::seconds captureDuration(5);
-  auto startTime = std::chrono::high_resolution_clock::now();
-
-  while (std::chrono::high_resolution_clock::now() - startTime < captureDuration) {
-      k4a_capture_t capture = NULL;
-      if (k4a_device_get_capture(device, &capture, K4A_WAIT_INFINITE) == K4A_WAIT_RESULT_SUCCEEDED) {
-        sayHello();
-          // Access color and depth frames here if needed
-          // k4a_image_t colorImage = k4a_capture_get_color_image(capture);
-          // k4a_image_t depthImage = k4a_capture_get_depth_image(capture);
-
-          // Process the frames...
-
-          // Release the capture
-          k4a_capture_release(capture);
-      }
-
-      // Sleep for a short time to avoid busy-waiting
-      std::this_thread::sleep_for(std::chrono::milliseconds(10));
-  }
-
-  // Stop the device and close it
-  k4a_device_stop_cameras(device);
-  k4a_device_close(device);
-*/
   //---------------------------
+}
+void UTL_capture::open_selected_device(){
+  //---------------------------
+
+  try{
+    if (selected_device_idx < 0){return;}
+    selected_device = k4a::device::open(static_cast<uint32_t>(selected_device_idx));
+  }
+  catch (const int error){
+    return;
+  }
+
+  //---------------------------
+}
+void UTL_capture::refresh_device_list(){
+  //---------------------------
+//"(No available devices)"
+  const uint32_t nb_device = k4a_device_get_installed_count();
+
+  for (uint32_t i = 0; i < nb_device; i++){
+    try{
+      k4a::device device = k4a::device::open(i);
+      connected_device.emplace_back(std::make_pair(i, device.get_serialnum()));
+    }
+    catch(const int error){
+      continue;
+    }
+  }
+
+  if (!connected_device.empty()){
+    selected_device_idx = connected_device[0].first;
+  }
+
+  //---------------------------
+}
+bool UTL_capture::start_camera(){
+  if (camera_started){
+    return false;
+  }
+
+  k4a_device_configuration_t device_config;
+  selected_device.start_cameras(&device_config);
+  this->camera_started = true;
+/*
+  k4a::device *pDevice = &m_device;
+  K4ADataSource<k4a::capture> *pCameraDataSource = &m_cameraDataSource;
+  bool *pPaused = &m_paused;
+  bool *pCamerasStarted = &m_camerasStarted;
+  bool *pAbortInProgress = &m_camerasAbortInProgress;
+  bool isSubordinate = m_config.WiredSyncMode == K4A_WIRED_SYNC_MODE_SUBORDINATE;
+
+  m_cameraPollingThread = std14::make_unique<K4APollingThread>(
+      [pDevice, pCameraDataSource, pPaused, pCamerasStarted, pAbortInProgress, isSubordinate](bool firstRun) {
+          std::chrono::milliseconds pollingTimeout = CameraPollingTimeout;
+          if (firstRun && isSubordinate)
+          {
+              // If we're starting in subordinate mode, we need to give the user time to start the
+              // master device, so we wait for longer.
+              //
+              pollingTimeout = SubordinateModeStartupTimeout;
+          }
+          return PollSensor<k4a::capture>("Cameras",
+                                          pDevice,
+                                          pCameraDataSource,
+                                          pPaused,
+                                          pCamerasStarted,
+                                          pAbortInProgress,
+                                          [](k4a::device *device,
+                                             k4a::capture *capture,
+                                             std::chrono::milliseconds timeout) {
+                                              return device->get_capture(capture, timeout);
+                                          },
+                                          [](k4a::device *device) { device->stop_cameras(); },
+                                          pollingTimeout);
+      });
+
+  return true;*/
 }
