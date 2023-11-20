@@ -1,7 +1,7 @@
 #ifndef VK_SUBPASS_H
 #define VK_SUBPASS_H
 
-#include <VK_struct/Struct_renderpass.h>
+#include <VK_struct/Struct_vk_renderpass.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -19,13 +19,13 @@ public:
 
 public:
   //Main functions
-  void create_subpass(Struct_renderpass* renderpass);
+  void create_subpass(Struct_vk_renderpass* renderpass);
 
   //Subfunction
-  void create_subpass_shader(Struct_subpass* subpass);
-  void create_subpass_transfert(Struct_subpass* subpass);
-  void create_subpass_presentation(Struct_subpass* subpass);
-  void create_subpass_description(Struct_subpass* subpass);
+  void create_subpass_shader(Struct_vk_subpass* subpass);
+  void create_subpass_transfert(Struct_vk_subpass* subpass);
+  void create_subpass_presentation(Struct_vk_subpass* subpass);
+  void create_subpass_description(Struct_vk_subpass* subpass);
 
   //Color attachment
   void color_attachment_description(Struct_vk_attachment& color);

@@ -1,7 +1,7 @@
 #ifndef VK_VALIDATION_H
 #define VK_VALIDATION_H
 
-#include <VK_struct/Struct_instance.h>
+#include <VK_struct/Struct_vk_instance.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;

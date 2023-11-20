@@ -1,10 +1,10 @@
 #ifndef VK_SUBMIT_H
 #define VK_SUBMIT_H
 
-#include <VK_struct/Struct_framebuffer.h>
-#include <VK_struct/Struct_renderpass.h>
-#include <VK_struct/Struct_command.h>
-#include <VK_struct/Struct_swapchain.h>
+#include <VK_struct/Struct_vk_framebuffer.h>
+#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Struct_vk_command.h>
+#include <VK_struct/Struct_vk_swapchain.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -20,7 +20,7 @@ public:
 public:
   //Main functions
   void submit_command_graphics(VkCommandBuffer command);
-  void submit_command_render(Struct_command* commands);
+  void submit_command_render(Struct_vk_command* commands);
 
 private:
   Struct_vulkan* struct_vulkan;

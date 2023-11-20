@@ -4,16 +4,16 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_render{
+struct Struct_vk_render{
   //---------------------------
 
   int nb_frame;
   VkFormat required_image_format = VK_FORMAT_B8G8R8A8_UNORM; //VK_FORMAT_B8G8R8A8_SRGB
-  std::vector<Struct_renderpass*> vec_renderpass;
+  std::vector<Struct_vk_renderpass*> vec_renderpass;
   VkViewport viewport;
   VkRect2D scissor;
 
-  Struct_renderpass* get_renderpass_byName(std::string name){
+  Struct_vk_renderpass* get_renderpass_byName(std::string name){
     if(vec_renderpass.size() == 0){
       std::cout<<"[error] Renderpass vector empty"<<std::endl;
       exit(0);

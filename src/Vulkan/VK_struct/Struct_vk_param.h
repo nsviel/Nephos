@@ -11,7 +11,7 @@
 #include <iostream>
 
 
-struct Struct_param{
+struct Struct_vk_param{
   //---------------------------
 
   int max_fps = 120;

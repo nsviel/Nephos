@@ -2,7 +2,7 @@
 #define VK_TEXTURE_H
 
 #include <VK_struct/Struct_image.h>
-#include <VK_struct/Struct_entity.h>
+#include <VK_struct/Struct_vk_entity.h>
 #include <VK_struct/VK_typedef.h>
 #include <UTL_specific/common.h>
 
@@ -39,7 +39,7 @@ public:
   void create_texture_from_bin(Struct_image* image, string path);
 
   //Texture cleaning
-  void clean_texture(Struct_entity* object);
+  void clean_texture(Struct_vk_entity* object);
   void clean_textures();
 
   //Subfunction

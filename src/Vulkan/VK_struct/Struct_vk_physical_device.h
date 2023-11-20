@@ -1,11 +1,11 @@
 #ifndef STRUCT_PHYSICAL_DEVICE_H
 #define STRUCT_PHYSICAL_DEVICE_H
 
-#include <VK_struct/Struct_physical_device.h>
+#include <VK_struct/Struct_vk_physical_device.h>
 #include <UTL_specific/common.h>
 
 
-struct Struct_physical_device{
+struct Struct_vk_physical_device{
   //---------------------------
 
   VkPhysicalDevice physical_device;

@@ -5,7 +5,7 @@
 #include <VK_struct/Struct_image.h>
 
 
-struct Struct_framebuffer{
+struct Struct_vk_framebuffer{
   //---------------------------
 
   //Main object

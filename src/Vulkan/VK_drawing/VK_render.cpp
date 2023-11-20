@@ -18,7 +18,7 @@ VK_render::VK_render(Struct_vulkan* struct_vulkan){
 VK_render::~VK_render(){}
 
 //Main function
-void VK_render::run_renderpass(Struct_renderpass* renderpass){
+void VK_render::run_renderpass(Struct_vk_renderpass* renderpass){
   //---------------------------
 
   this->start_renderpass(renderpass);
@@ -28,8 +28,8 @@ void VK_render::run_renderpass(Struct_renderpass* renderpass){
   //---------------------------
 
 }
-void VK_render::submit_command(Struct_renderpass* renderpass){
-  Struct_command& command = renderpass->command;
+void VK_render::submit_command(Struct_vk_renderpass* renderpass){
+  Struct_vk_command& command = renderpass->command;
   //---------------------------
 
   command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
@@ -39,7 +39,7 @@ void VK_render::submit_command(Struct_renderpass* renderpass){
 }
 
 //Subfunction
-void VK_render::start_renderpass(Struct_renderpass* renderpass){
+void VK_render::start_renderpass(Struct_vk_renderpass* renderpass){
   //---------------------------
 
   VkFramebuffer fbo;
@@ -56,12 +56,12 @@ void VK_render::start_renderpass(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void VK_render::draw_subpass(Struct_renderpass* renderpass){
-  Struct_command command;
+void VK_render::draw_subpass(Struct_vk_renderpass* renderpass){
+  Struct_vk_command command;
   //---------------------------
 
   for(int j=0; j<renderpass->vec_subpass.size(); j++){
-    Struct_subpass* subpass = renderpass->vec_subpass[j];
+    Struct_vk_subpass* subpass = renderpass->vec_subpass[j];
     subpass->command_buffer = renderpass->command_buffer;
     subpass->draw_task(subpass);
   }

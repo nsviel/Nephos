@@ -2,7 +2,7 @@
 #define VK_INFO_H
 
 #include <VK_main/Struct_vulkan.h>
-#include <VK_struct/Struct_param.h>
+#include <VK_struct/Struct_vk_param.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;

@@ -1,8 +1,8 @@
 #ifndef VK_DATA_H
 #define VK_DATA_H
 
-#include <VK_struct/Struct_pipeline.h>
-#include <VK_struct/Struct_entity.h>
+#include <VK_struct/Struct_vk_pipeline.h>
+#include <VK_struct/Struct_vk_entity.h>
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
 
@@ -24,13 +24,13 @@ public:
   //Main functions
   void insert_object(Object* object);
   void clean_entity_all();
-  void clean_entity(Struct_entity* data);
+  void clean_entity(Struct_vk_entity* data);
 
   //Pipeline data description
-  void pipeline_data_description(Struct_pipeline* pipeline);
-  void pipeline_binding_description(Struct_pipeline* pipeline);
-  void pipeline_attribut_description(Struct_pipeline* pipeline);
-  void pipeline_vertex_input_info(Struct_pipeline* pipeline);
+  void pipeline_data_description(Struct_vk_pipeline* pipeline);
+  void pipeline_binding_description(Struct_vk_pipeline* pipeline);
+  void pipeline_attribut_description(Struct_vk_pipeline* pipeline);
+  void pipeline_vertex_input_info(Struct_vk_pipeline* pipeline);
 
 private:
   Struct_vulkan* struct_vulkan;

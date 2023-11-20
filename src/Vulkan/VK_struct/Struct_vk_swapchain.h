@@ -1,12 +1,12 @@
 #ifndef STRUCT_SWAPCHAIN_H
 #define STRUCT_SWAPCHAIN_H
 
-#include <VK_struct/Struct_framebuffer.h>
+#include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_frame.h>
 #include <UTL_specific/common.h>
 
 
-struct Struct_swapchain{
+struct Struct_vk_swapchain{
   //---------------------------
 
   //Swapchain element

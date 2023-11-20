@@ -1,11 +1,11 @@
 #ifndef STRUCT_TIME_H
 #define STRUCT_TIME_H
 
-#include <VK_struct/Struct_physical_device.h>
+#include <VK_struct/Struct_vk_physical_device.h>
 #include <UTL_specific/common.h>
 
 
-struct Struct_info{
+struct Struct_vk_info{
   //---------------------------
 
   float engine_init;

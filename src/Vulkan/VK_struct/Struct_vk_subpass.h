@@ -2,11 +2,11 @@
 #define STRUCT_SUBPASS_H
 
 #include <VK_struct/Struct_vk_attachment.h>
-#include <VK_struct/Struct_pipeline.h>
+#include <VK_struct/Struct_vk_pipeline.h>
 #include <UTL_specific/common.h>
 
 
-struct Struct_subpass{
+struct Struct_vk_subpass{
   //---------------------------
 
   //Subpass info
@@ -18,11 +18,11 @@ struct Struct_subpass{
   //Attachment
   Struct_vk_attachment depth;
   std::vector<Struct_vk_attachment> vec_color;
-  std::function<void(Struct_subpass* subpass)> draw_task;
+  std::function<void(Struct_vk_subpass* subpass)> draw_task;
 
   //Pipeline
-  std::vector<Struct_pipeline*> vec_pipeline;
-  Struct_pipeline* get_pipeline(){
+  std::vector<Struct_vk_pipeline*> vec_pipeline;
+  Struct_vk_pipeline* get_pipeline(){
     if(vec_pipeline.size() != 1){
       std::cout<<"[error] several pipeline in subpass"<<std::endl;
       return nullptr;
@@ -30,7 +30,7 @@ struct Struct_subpass{
       return vec_pipeline[0];
     }
   }
-  Struct_pipeline* get_pipeline_byName(string name){
+  Struct_vk_pipeline* get_pipeline_byName(string name){
     for(int i=0; i<vec_pipeline.size(); i++){
       if(vec_pipeline[i]->definition.name == name){
         return vec_pipeline[i];

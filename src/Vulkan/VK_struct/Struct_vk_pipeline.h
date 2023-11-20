@@ -10,7 +10,7 @@
 //Binding requirement -> Name, Type size, binding, desriptor type, shader stage
 typedef std::vector<std::tuple<std::string, std::size_t, int, VkDescriptorType, VkShaderStageFlagBits>> vec_descriptor_required;
 
-struct Struct_pipeline_definition{
+struct Struct_vk_pipeline_definition{
   //---------------------------
 
   //Info
@@ -24,7 +24,7 @@ struct Struct_pipeline_definition{
 
   //---------------------------
 };
-struct Struct_pipeline_info{
+struct Struct_vk_pipeline_info{
   //---------------------------
 
   VkGraphicsPipelineCreateInfo info;
@@ -48,15 +48,15 @@ struct Struct_pipeline_info{
 
   //---------------------------
 };
-struct Struct_pipeline{
+struct Struct_vk_pipeline{
   //---------------------------
 
   VkPipeline pipeline;
   VkPipelineLayout layout;
 
   Struct_vk_binding binding;
-  Struct_pipeline_definition definition;
-  Struct_pipeline_info info;
+  Struct_vk_pipeline_definition definition;
+  Struct_vk_pipeline_info info;
 
   //---------------------------
 };

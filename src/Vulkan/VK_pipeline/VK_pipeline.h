@@ -1,8 +1,8 @@
 #ifndef VK_PIPELINE_H
 #define VK_PIPELINE_H
 
-#include <VK_struct/Struct_pipeline.h>
-#include <VK_struct/Struct_renderpass.h>
+#include <VK_struct/Struct_vk_pipeline.h>
+#include <VK_struct/Struct_vk_renderpass.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -21,29 +21,29 @@ public:
 
 public:
   //Main function
-  void create_pipeline(Struct_renderpass* renderpass);
-  void cmd_bind_pipeline(VkCommandBuffer& command_buffer, Struct_pipeline* pipeline);
-  void clean_pipeline(Struct_renderpass* renderpass);
-  void clean_pipeline_struct(Struct_pipeline* pipeline);
-  void clean_pipeline_shader_module(Struct_pipeline* pipeline);
+  void create_pipeline(Struct_vk_renderpass* renderpass);
+  void cmd_bind_pipeline(VkCommandBuffer& command_buffer, Struct_vk_pipeline* pipeline);
+  void clean_pipeline(Struct_vk_renderpass* renderpass);
+  void clean_pipeline_struct(Struct_vk_pipeline* pipeline);
+  void clean_pipeline_shader_module(Struct_vk_pipeline* pipeline);
 
   //Pipeline creation
-  void create_pipeline_struct(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
-  void create_pipeline_obj(Struct_renderpass* renderpass, Struct_pipeline* pipeline);
-  void create_pipeline_layout(Struct_pipeline* pipeline);
+  void create_pipeline_struct(Struct_vk_renderpass* renderpass, Struct_vk_pipeline* pipeline);
+  void create_pipeline_obj(Struct_vk_renderpass* renderpass, Struct_vk_pipeline* pipeline);
+  void create_pipeline_layout(Struct_vk_pipeline* pipeline);
 
   //Pipeline element
-  void find_pipeline_dynamic_state(Struct_pipeline* pipeline);
-  void find_pipeline_viewport_state(Struct_pipeline* pipeline);
-  void find_pipeline_rasterization_state(Struct_pipeline* pipeline);
-  void find_pipeline_multisampling_state(Struct_pipeline* pipeline);
-  void find_pipeline_depth_state(Struct_pipeline* pipeline);
-  void find_pipeline_blend_attachment_state(Struct_pipeline* pipeline);
-  void find_pipeline_blend_state(Struct_pipeline* pipeline);
-  void find_pipeline_topology_state(Struct_pipeline* pipeline);
+  void find_pipeline_dynamic_state(Struct_vk_pipeline* pipeline);
+  void find_pipeline_viewport_state(Struct_vk_pipeline* pipeline);
+  void find_pipeline_rasterization_state(Struct_vk_pipeline* pipeline);
+  void find_pipeline_multisampling_state(Struct_vk_pipeline* pipeline);
+  void find_pipeline_depth_state(Struct_vk_pipeline* pipeline);
+  void find_pipeline_blend_attachment_state(Struct_vk_pipeline* pipeline);
+  void find_pipeline_blend_state(Struct_vk_pipeline* pipeline);
+  void find_pipeline_topology_state(Struct_vk_pipeline* pipeline);
 
   //Subfunction
-  void check_struct_pipeline_input(Struct_pipeline* pipeline);
+  void check_struct_pipeline_input(Struct_vk_pipeline* pipeline);
 
 private:
   Struct_vulkan* struct_vulkan;

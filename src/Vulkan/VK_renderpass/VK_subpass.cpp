@@ -20,11 +20,11 @@ VK_subpass::VK_subpass(Struct_vulkan* struct_vulkan){
 VK_subpass::~VK_subpass(){}
 
 //Main function
-void VK_subpass::create_subpass(Struct_renderpass* renderpass){
+void VK_subpass::create_subpass(Struct_vk_renderpass* renderpass){
   //---------------------------
 
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
-    Struct_subpass* subpass = renderpass->vec_subpass[i];
+    Struct_vk_subpass* subpass = renderpass->vec_subpass[i];
 
     if(subpass->target == "shader"){
       this->create_subpass_shader(subpass);
@@ -44,7 +44,7 @@ void VK_subpass::create_subpass(Struct_renderpass* renderpass){
 }
 
 //Subfunction
-void VK_subpass::create_subpass_shader(Struct_subpass* subpass){
+void VK_subpass::create_subpass_shader(Struct_vk_subpass* subpass){
   //---------------------------
 
   // Color
@@ -74,7 +74,7 @@ void VK_subpass::create_subpass_shader(Struct_subpass* subpass){
 
   //---------------------------
 }
-void VK_subpass::create_subpass_transfert(Struct_subpass* subpass){
+void VK_subpass::create_subpass_transfert(Struct_vk_subpass* subpass){
   //---------------------------
 
   // Color
@@ -104,7 +104,7 @@ void VK_subpass::create_subpass_transfert(Struct_subpass* subpass){
 
   //---------------------------
 }
-void VK_subpass::create_subpass_presentation(Struct_subpass* subpass){
+void VK_subpass::create_subpass_presentation(Struct_vk_subpass* subpass){
   //---------------------------
 
   // Color
@@ -134,7 +134,7 @@ void VK_subpass::create_subpass_presentation(Struct_subpass* subpass){
 
   //---------------------------
 }
-void VK_subpass::create_subpass_description(Struct_subpass* subpass){
+void VK_subpass::create_subpass_description(Struct_vk_subpass* subpass){
   //---------------------------
 
   //Pointer vector of all color references

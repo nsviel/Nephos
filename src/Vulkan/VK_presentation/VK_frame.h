@@ -1,9 +1,9 @@
 #ifndef VK_FRAME_H
 #define VK_FRAME_H
 
-#include <VK_struct/Struct_framebuffer.h>
-#include <VK_struct/Struct_renderpass.h>
-#include <VK_struct/Struct_swapchain.h>
+#include <VK_struct/Struct_vk_framebuffer.h>
+#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Struct_vk_swapchain.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;

@@ -1,7 +1,7 @@
 #ifndef VK_DEPTH_H
 #define VK_DEPTH_H
 
-#include <VK_struct/Struct_framebuffer.h>
+#include <VK_struct/Struct_vk_framebuffer.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;

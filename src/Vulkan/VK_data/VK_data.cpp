@@ -26,7 +26,7 @@ void VK_data::insert_object(Object* object){
   //---------------------------
 
   //Creat new data struct
-  Struct_entity* data = new Struct_entity();
+  Struct_vk_entity* data = new Struct_vk_entity();
   data->object = object;
 
   //Descriptor
@@ -53,13 +53,13 @@ void VK_data::clean_entity_all(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
-    Struct_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
+    Struct_vk_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
     this->clean_entity(data);
   }
 
   //---------------------------
 }
-void VK_data::clean_entity(Struct_entity* data){
+void VK_data::clean_entity(Struct_vk_entity* data){
   //---------------------------
 
   vkDeviceWaitIdle(struct_vulkan->device.device);
@@ -72,7 +72,7 @@ void VK_data::clean_entity(Struct_entity* data){
 }
 
 //Data description
-void VK_data::pipeline_data_description(Struct_pipeline* pipeline){
+void VK_data::pipeline_data_description(Struct_vk_pipeline* pipeline){
   //---------------------------
 
   this->pipeline_binding_description(pipeline);
@@ -81,7 +81,7 @@ void VK_data::pipeline_data_description(Struct_pipeline* pipeline){
 
   //---------------------------
 }
-void VK_data::pipeline_attribut_description(Struct_pipeline* pipeline){
+void VK_data::pipeline_attribut_description(Struct_vk_pipeline* pipeline){
   vector<VkVertexInputAttributeDescription> attribut_description;
   //---------------------------
 
@@ -118,7 +118,7 @@ void VK_data::pipeline_attribut_description(Struct_pipeline* pipeline){
   //---------------------------
   pipeline->info.attribut_description = attribut_description;
 }
-void VK_data::pipeline_binding_description(Struct_pipeline* pipeline){
+void VK_data::pipeline_binding_description(Struct_vk_pipeline* pipeline){
   vector<VkVertexInputBindingDescription> data_description;
   //---------------------------
 
@@ -152,7 +152,7 @@ void VK_data::pipeline_binding_description(Struct_pipeline* pipeline){
   //---------------------------
   pipeline->info.data_description = data_description;
 }
-void VK_data::pipeline_vertex_input_info(Struct_pipeline* pipeline){
+void VK_data::pipeline_vertex_input_info(Struct_vk_pipeline* pipeline){
   //---------------------------
 
   VkPipelineVertexInputStateCreateInfo vertex_input_info{};

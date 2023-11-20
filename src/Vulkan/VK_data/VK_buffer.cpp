@@ -16,7 +16,7 @@ VK_buffer::VK_buffer(Struct_vulkan* struct_vulkan){
 VK_buffer::~VK_buffer(){}
 
 //Main function
-void VK_buffer::create_buffers(Struct_entity* data){
+void VK_buffer::create_buffers(Struct_vk_entity* data){
   //---------------------------
 
   this->create_buffer(&data->xyz, data->object->xyz);
@@ -25,7 +25,7 @@ void VK_buffer::create_buffers(Struct_entity* data){
 
   //---------------------------
 }
-void VK_buffer::clean_buffers(Struct_entity* data){
+void VK_buffer::clean_buffers(Struct_vk_entity* data){
   //---------------------------
 
   this->clean_buffer(&data->xyz);
@@ -36,7 +36,7 @@ void VK_buffer::clean_buffers(Struct_entity* data){
 }
 
 //Data buffer functions
-template <typename VertexType> void VK_buffer::create_buffer(Struct_buffer* buffer, vector<VertexType>& vertices){
+template <typename VertexType> void VK_buffer::create_buffer(Struct_vk_buffer* buffer, vector<VertexType>& vertices){
   //---------------------------
 
   if(vertices.size() == 0){return;}
@@ -66,7 +66,7 @@ template <typename VertexType> void VK_buffer::create_buffer(Struct_buffer* buff
 
   //---------------------------
 }
-void VK_buffer::clean_buffer(Struct_buffer* buffer){
+void VK_buffer::clean_buffer(Struct_vk_buffer* buffer){
   //---------------------------
 
   if(buffer->vbo != VK_NULL_HANDLE){

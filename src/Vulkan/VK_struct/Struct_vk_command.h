@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_command{
+struct Struct_vk_command{
   //---------------------------
 
   //Command

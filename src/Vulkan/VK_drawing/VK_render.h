@@ -1,7 +1,7 @@
 #ifndef VK_RENDER_H
 #define VK_RENDER_H
 
-#include <VK_struct/Struct_renderpass.h>
+#include <VK_struct/Struct_vk_renderpass.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -18,12 +18,12 @@ public:
 
 public:
   //Main functions
-  void run_renderpass(Struct_renderpass* renderpass);
-  void submit_command(Struct_renderpass* renderpass);
+  void run_renderpass(Struct_vk_renderpass* renderpass);
+  void submit_command(Struct_vk_renderpass* renderpass);
 
   //Subfunction
-  void start_renderpass(Struct_renderpass* renderpass);
-  void draw_subpass(Struct_renderpass* renderpass);
+  void start_renderpass(Struct_vk_renderpass* renderpass);
+  void draw_subpass(Struct_vk_renderpass* renderpass);
   void wait_end_rendering(VkFence& fence);
   
 private:

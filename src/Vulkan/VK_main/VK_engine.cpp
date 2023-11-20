@@ -103,7 +103,7 @@ void VK_engine::reload_shader(string shader, string subshader){
 
   //---------------------------
 }
-void VK_engine::add_renderpass_description(Struct_renderpass* renderpass){
+void VK_engine::add_renderpass_description(Struct_vk_renderpass* renderpass){
   //---------------------------
 
   struct_vulkan->render.vec_renderpass.push_back(renderpass);
@@ -156,7 +156,7 @@ void VK_engine::insert_object_in_engine(Object* object){
   //Check if object already in engine
   bool is_in_list = false;
   for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
-    Struct_entity* data = *next(struct_vulkan->data.list_object.begin(), i);
+    Struct_vk_entity* data = *next(struct_vulkan->data.list_object.begin(), i);
     if(object->ID == data->object->ID){
       is_in_list = true;
     }
@@ -174,7 +174,7 @@ void VK_engine::remove_object_in_engine(Object* object){
 
   bool is_in_list = false;
   for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
-    Struct_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
+    Struct_vk_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
     if(object->ID == data->object->ID){
       vk_data->clean_entity(data);
       struct_vulkan->data.list_object.remove(data);
@@ -227,14 +227,14 @@ void VK_engine::update_texture_from_data(Struct_image* image, uint8_t* data){
 }
 
 //Renderpass function
-Struct_renderpass* VK_engine::get_renderpass(int i){
+Struct_vk_renderpass* VK_engine::get_renderpass(int i){
   //---------------------------
 
   return struct_vulkan->render.vec_renderpass[i];
 
   //---------------------------
 }
-Struct_renderpass* VK_engine::get_renderpass_presentation(int i){
+Struct_vk_renderpass* VK_engine::get_renderpass_presentation(int i){
   //---------------------------
 
   return struct_vulkan->render.get_renderpass_byName("gui");

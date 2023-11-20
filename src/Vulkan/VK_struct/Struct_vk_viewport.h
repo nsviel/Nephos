@@ -5,7 +5,7 @@
 #include <vulkan/vulkan.h>
 
 
-struct Struct_viewport{
+struct Struct_vk_viewport{
   //---------------------------
 
   VkViewport viewport;

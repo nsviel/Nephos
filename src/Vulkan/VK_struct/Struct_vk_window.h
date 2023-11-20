@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_window{
+struct Struct_vk_window{
   //---------------------------
 
   //Window stuff

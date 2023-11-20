@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_pool{
+struct Struct_vk_pool{
   //---------------------------
 
   //Command

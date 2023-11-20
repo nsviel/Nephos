@@ -1,7 +1,7 @@
 #ifndef VK_CANVAS_H
 #define VK_CANVAS_H
 
-#include <VK_struct/Struct_entity.h>
+#include <VK_struct/Struct_vk_entity.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;

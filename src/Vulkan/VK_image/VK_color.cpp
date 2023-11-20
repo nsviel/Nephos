@@ -1,7 +1,7 @@
 #include "VK_color.h"
 
 #include <VK_main/Struct_vulkan.h>
-#include <VK_struct/Struct_framebuffer.h>
+#include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_image/VK_image.h>
 
 

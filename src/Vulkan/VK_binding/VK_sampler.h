@@ -2,7 +2,7 @@
 #define VK_SAMPLER_H
 
 #include <VK_struct/Struct_vk_binding.h>
-#include <VK_struct/Struct_pipeline.h>
+#include <VK_struct/Struct_vk_pipeline.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;

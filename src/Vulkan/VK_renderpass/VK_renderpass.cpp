@@ -31,7 +31,7 @@ void VK_renderpass::init_renderpass(){
   }
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
-    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    Struct_vk_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     vk_subpass->create_subpass(renderpass);
     this->create_renderpass_struct(renderpass);
   }
@@ -42,7 +42,7 @@ void VK_renderpass::clean_renderpass(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
-    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    Struct_vk_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     this->clean_renderpass_struct(renderpass);
   }
 
@@ -50,7 +50,7 @@ void VK_renderpass::clean_renderpass(){
 }
 
 //Subfunction
-void VK_renderpass::create_renderpass_struct(Struct_renderpass* renderpass){
+void VK_renderpass::create_renderpass_struct(Struct_vk_renderpass* renderpass){
   //---------------------------
 
   this->create_renderpass_obj(renderpass);
@@ -60,7 +60,7 @@ void VK_renderpass::create_renderpass_struct(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void VK_renderpass::create_renderpass_obj(Struct_renderpass* renderpass){
+void VK_renderpass::create_renderpass_obj(Struct_vk_renderpass* renderpass){
   //---------------------------
 
   //Get all related subpass descriptions, attachments and dependencies
@@ -68,7 +68,7 @@ void VK_renderpass::create_renderpass_obj(Struct_renderpass* renderpass){
   vector<VkSubpassDependency> vec_dependency;
   vector<VkAttachmentDescription> vec_attachment;
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
-    Struct_subpass* subpass = renderpass->vec_subpass[i];
+    Struct_vk_subpass* subpass = renderpass->vec_subpass[i];
     vec_description.push_back(subpass->description);
     vec_dependency.push_back(subpass->dependency);
 
@@ -96,7 +96,7 @@ void VK_renderpass::create_renderpass_obj(Struct_renderpass* renderpass){
 
   //---------------------------
 }
-void VK_renderpass::clean_renderpass_struct(Struct_renderpass* renderpass){
+void VK_renderpass::clean_renderpass_struct(Struct_vk_renderpass* renderpass){
   //---------------------------
 
   vk_framebuffer->clean_framebuffer(renderpass);

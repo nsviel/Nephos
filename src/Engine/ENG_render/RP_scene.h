@@ -1,8 +1,8 @@
 #ifndef RP_SCENE_H
 #define RP_SCENE_H
 
-#include <VK_struct/Struct_renderpass.h>
-#include <VK_struct/Struct_pipeline.h>
+#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Struct_vk_pipeline.h>
 #include <UTL_specific/common.h>
 
 class ENG_shader;
@@ -26,12 +26,12 @@ public:
 public:
   //Init functions
   void init_renderpass();
-  void create_subpass(Struct_renderpass* renderpass);
+  void create_subpass(Struct_vk_renderpass* renderpass);
 
   //Draw function
-  void draw_scene(Struct_subpass* subpass);
-  void cmd_draw_point(Struct_subpass* subpass);
-  void cmd_draw_line(Struct_subpass* subpass);
+  void draw_scene(Struct_vk_subpass* subpass);
+  void cmd_draw_point(Struct_vk_subpass* subpass);
+  void cmd_draw_line(Struct_vk_subpass* subpass);
 
 private:
   ENG_shader* eng_shader;

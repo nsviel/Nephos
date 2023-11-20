@@ -41,11 +41,11 @@ void VK_drawing::draw_frame_headless(){
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
-    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    Struct_vk_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
     vk_render->run_renderpass(renderpass);
 
-    Struct_command& command = renderpass->command;
+    Struct_vk_command& command = renderpass->command;
     command.fence = (i == nb_renderpass-1) ? struct_vulkan->synchro.fence : VK_NULL_HANDLE;
     vk_render->submit_command(renderpass);
 
@@ -69,11 +69,11 @@ void VK_drawing::draw_frame_presentation(){
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
-    Struct_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    Struct_vk_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
     vk_render->run_renderpass(renderpass);
 
-    Struct_command& command = renderpass->command;
+    Struct_vk_command& command = renderpass->command;
     command.vec_semaphore_wait.push_back(semaphore_wait);
     command.vec_semaphore_done.push_back(semaphore_done);
     command.fence = (i == nb_renderpass-1) ? frame->fence : VK_NULL_HANDLE;
@@ -92,7 +92,7 @@ void VK_drawing::draw_frame_presentation(){
 }
 
 //Draw command
-void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, Struct_entity* data){
+void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, Struct_vk_entity* data){
   //---------------------------
 
   VkDeviceSize offsets[] = {0};
@@ -109,7 +109,7 @@ void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, Struct_entity* d
 
   //---------------------------
 }
-void VK_drawing::cmd_line_with(VkCommandBuffer& command_buffer, Struct_entity* data){
+void VK_drawing::cmd_line_with(VkCommandBuffer& command_buffer, Struct_vk_entity* data){
   //---------------------------
 
   vkCmdSetLineWidth(command_buffer, data->object->draw_line_width);

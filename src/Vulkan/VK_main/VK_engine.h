@@ -2,7 +2,7 @@
 #define VK_ENGINE_H
 
 #include <VK_struct/VK_typedef.h>
-#include <VK_struct/Struct_entity.h>
+#include <VK_struct/Struct_vk_entity.h>
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
 
@@ -40,7 +40,7 @@ public:
   void clean();
   void device_wait_idle();
   void reload_shader(string shader, string subshader);
-  void add_renderpass_description(Struct_renderpass* renderpass);
+  void add_renderpass_description(Struct_vk_renderpass* renderpass);
 
   //Init function
   void init_engine_presentation();
@@ -57,11 +57,11 @@ public:
   void update_texture_from_data(Struct_image* image, uint8_t* data);
 
   //Renderpass function
-  Struct_renderpass* get_renderpass(int i);
-  Struct_renderpass* get_renderpass_presentation(int i);
+  Struct_vk_renderpass* get_renderpass(int i);
+  Struct_vk_renderpass* get_renderpass_presentation(int i);
 
-  inline Struct_entity* get_canvas(){return &struct_vulkan->data.canvas;}
-  inline std::list<Struct_entity*> get_list_data(){return struct_vulkan->data.list_object;}
+  inline Struct_vk_entity* get_canvas(){return &struct_vulkan->data.canvas;}
+  inline std::list<Struct_vk_entity*> get_list_data(){return struct_vulkan->data.list_object;}
 
 private:
   Struct_vulkan* struct_vulkan;

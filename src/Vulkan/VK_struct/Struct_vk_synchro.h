@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_synchro{
+struct Struct_vk_synchro{
   //---------------------------
 
   VkFence fence;

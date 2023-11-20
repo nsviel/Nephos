@@ -1,17 +1,17 @@
 #ifndef STRUCT_DEVICE_H
 #define STRUCT_DEVICE_H
 
-#include <VK_struct/Struct_physical_device.h>
+#include <VK_struct/Struct_vk_physical_device.h>
 #include <UTL_specific/common.h>
 
 
-struct Struct_device{
+struct Struct_vk_device{
   //---------------------------
 
   VkDevice device;
   VkQueue queue_graphics;
   VkQueue queue_presentation;
-  Struct_physical_device struct_device;
+  Struct_vk_physical_device struct_device;
 
   //---------------------------
 };

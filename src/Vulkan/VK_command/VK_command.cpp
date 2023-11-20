@@ -43,8 +43,8 @@ void VK_command::start_command_buffer_primary(VkCommandBuffer command_buffer){
 
   //---------------------------
 }
-void VK_command::start_command_buffer_secondary(Struct_renderpass* renderpass, VkCommandBuffer command_buffer){
-  Struct_framebuffer* frame = renderpass->framebuffer;
+void VK_command::start_command_buffer_secondary(Struct_vk_renderpass* renderpass, VkCommandBuffer command_buffer){
+  Struct_vk_framebuffer* frame = renderpass->framebuffer;
   //---------------------------
 
   // Create a VkCommandBufferInheritanceInfo structure
@@ -107,7 +107,7 @@ void VK_command::allocate_command_buffer_primary(VkCommandBuffer& command_buffer
 
   //---------------------------
 }
-void VK_command::allocate_command_buffer_secondary(Struct_entity* data){
+void VK_command::allocate_command_buffer_secondary(Struct_vk_entity* data){
   //---------------------------
 
   //Command buffer allocation
@@ -136,7 +136,7 @@ void VK_command::clean_command_buffer(VkCommandBuffer& command_buffer){
 }
 
 //Render pass
-void VK_command::start_render_pass(Struct_renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb){
+void VK_command::start_render_pass(Struct_vk_renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb){
   //---------------------------
 
   this->reset_command_buffer(renderpass->command_buffer);
@@ -170,7 +170,7 @@ void VK_command::start_render_pass(Struct_renderpass* renderpass, VkFramebuffer&
 
   //---------------------------
 }
-void VK_command::stop_render_pass(Struct_renderpass* renderpass){
+void VK_command::stop_render_pass(Struct_vk_renderpass* renderpass){
   //---------------------------
 
   vkCmdEndRenderPass(renderpass->command_buffer);

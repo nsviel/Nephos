@@ -1,7 +1,7 @@
 #ifndef VK_BUFFER_H
 #define VK_BUFFER_H
 
-#include <VK_struct/Struct_entity.h>
+#include <VK_struct/Struct_vk_entity.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -17,12 +17,12 @@ public:
 
 public:
   //Main functions
-  void create_buffers(Struct_entity* data);
-  void clean_buffers(Struct_entity* data);
+  void create_buffers(Struct_vk_entity* data);
+  void clean_buffers(Struct_vk_entity* data);
 
   //Data buffer functions
-  template <typename VertexType> void create_buffer(Struct_buffer* buffer, vector<VertexType>& vertices);
-  void clean_buffer(Struct_buffer* buffer);
+  template <typename VertexType> void create_buffer(Struct_vk_buffer* buffer, vector<VertexType>& vertices);
+  void clean_buffer(Struct_vk_buffer* buffer);
 
   //Buffer functions
   void bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);

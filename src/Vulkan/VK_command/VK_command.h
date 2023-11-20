@@ -2,9 +2,9 @@
 #define VK_COMMAND_H
 
 #include <VK_struct/Struct_frame.h>
-#include <VK_struct/Struct_framebuffer.h>
-#include <VK_struct/Struct_entity.h>
-#include <VK_struct/Struct_renderpass.h>
+#include <VK_struct/Struct_vk_framebuffer.h>
+#include <VK_struct/Struct_vk_entity.h>
+#include <VK_struct/Struct_vk_renderpass.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -22,16 +22,16 @@ public:
   //Command buffer
   void start_command_buffer_once(VkCommandBuffer& command_buffer);
   void start_command_buffer_primary(VkCommandBuffer command_buffer);
-  void start_command_buffer_secondary(Struct_renderpass* renderpass, VkCommandBuffer command_buffer);
+  void start_command_buffer_secondary(Struct_vk_renderpass* renderpass, VkCommandBuffer command_buffer);
   void reset_command_buffer(VkCommandBuffer& command_buffer);
   void stop_command_buffer(VkCommandBuffer command_buffer);
   void allocate_command_buffer_primary(VkCommandBuffer& command_buffer);
-  void allocate_command_buffer_secondary(Struct_entity* data);
+  void allocate_command_buffer_secondary(Struct_vk_entity* data);
   void clean_command_buffer(VkCommandBuffer& command_buffer);
 
   //Render pass
-  void start_render_pass(Struct_renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb);
-  void stop_render_pass(Struct_renderpass* renderpass);
+  void start_render_pass(Struct_vk_renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb);
+  void stop_render_pass(Struct_vk_renderpass* renderpass);
 
   //Image layout transition
   void image_layout_transition(VkCommandBuffer command_buffer, Struct_image* image, VkImageLayout oldLayout, VkImageLayout newLayout);

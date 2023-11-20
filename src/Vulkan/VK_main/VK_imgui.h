@@ -1,7 +1,7 @@
 #ifndef VK_IMGUI_H
 #define VK_IMGUI_H
 
-#include <VK_struct/Struct_subpass.h>
+#include <VK_struct/Struct_vk_subpass.h>
 #include <VK_struct/Struct_image.h>
 #include <UTL_specific/common.h>
 

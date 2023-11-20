@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_buffer{
+struct Struct_vk_buffer{
   //---------------------------
 
   VkBuffer vbo = VK_NULL_HANDLE;

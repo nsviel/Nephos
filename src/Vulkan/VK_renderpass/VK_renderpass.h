@@ -1,8 +1,8 @@
 #ifndef VK_RENDERPASS_H
 #define VK_RENDERPASS_H
 
-#include <VK_struct/Struct_renderpass.h>
-#include <VK_struct/Struct_pipeline.h>
+#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Struct_vk_pipeline.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -25,9 +25,9 @@ public:
   void clean_renderpass();
 
   //Subfunction
-  void create_renderpass_struct(Struct_renderpass* renderpass);
-  void create_renderpass_obj(Struct_renderpass* renderpass);
-  void clean_renderpass_struct(Struct_renderpass* renderpass);
+  void create_renderpass_struct(Struct_vk_renderpass* renderpass);
+  void create_renderpass_obj(Struct_vk_renderpass* renderpass);
+  void clean_renderpass_struct(Struct_vk_renderpass* renderpass);
 
 private:
   Struct_vulkan* struct_vulkan;
