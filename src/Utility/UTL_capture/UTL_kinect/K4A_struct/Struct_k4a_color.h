@@ -81,10 +81,14 @@ struct Powerline_frequency{
 struct Struct_k4a_color{
   //---------------------------
 
+  //General
   bool enabled = true;
   k4a_image_format_t format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
   k4a_color_resolution_t resolution = K4A_COLOR_RESOLUTION_720P;
+  k4a_color_control_mode_t mode_manuel = K4A_COLOR_CONTROL_MODE_MANUAL;
+  k4a_color_control_mode_t mode_auto = K4A_COLOR_CONTROL_MODE_AUTO;
 
+  //Control
   Exposure exposure;
   White_balance white_balance;
   Brightness brightness;
@@ -94,9 +98,6 @@ struct Struct_k4a_color{
   Gain gain;
   Backlight_compensation backlight_compensation;
   Powerline_frequency powerline_frequency;
-
-  k4a_color_control_mode_t mode_manuel = K4A_COLOR_CONTROL_MODE_MANUAL;
-  k4a_color_control_mode_t mode_auto = K4A_COLOR_CONTROL_MODE_AUTO;
 
   //---------------------------
 };
