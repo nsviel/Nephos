@@ -40,8 +40,8 @@ void K4A_thread::run_capture(Struct_k4a_device* device){
   //Init
   k4a::device k4a_device = k4a::device::open(device->index);
   k4a::capture k4a_capture;
-  device->color.device = &k4a_device;
-  device->color.capture = &k4a_capture;
+  device->device = &k4a_device;
+  device->capture = &k4a_capture;
 
   //Start recording
   k4a_device.start_cameras(&device->config.k4a_config);
@@ -51,12 +51,13 @@ void K4A_thread::run_capture(Struct_k4a_device* device){
   while(thread_running){
     k4a_device.get_capture(&k4a_capture, timeout);
     device->temperature = k4a_capture.get_temperature_c();
+    device->is_capturing = true;
   }
 
   k4a_device.stop_cameras();
 
-  device->color.device = nullptr;
-  device->color.capture = nullptr;
+  device->device = nullptr;
+  device->capture = nullptr;
 
   //---------------------------
 }

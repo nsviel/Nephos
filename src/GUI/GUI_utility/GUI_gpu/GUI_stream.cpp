@@ -21,7 +21,7 @@ GUI_stream::~GUI_stream(){}
 //Main function
 void GUI_stream::draw_video(uint8_t* data, int width, int height){
   //---------------------------
-;
+  
   if(data != nullptr){
     this->convert_data_into_texture(data, width, height);
     this->display_frame();

@@ -294,7 +294,19 @@ void GUI_kinect::draw_camera_color(){
   if(device == nullptr) return;
   //---------------------------
 
-  //gui_stream->draw_video(data, width, height);
+  if(!device->is_capturing){return;}
+  if(!device->capture->is_valid()){return;}
+  k4a::image color_image = device->capture->get_color_image();
+  //k4a::image color_image = device->capture->get_ir_image();
+  //k4a::image color_image = device->capture->get_depth_image();
+  if(!color_image.is_valid()){return;}
+
+  uint8_t* color_data = color_image.get_buffer();
+  int width = color_image.get_width_pixels();
+  int height = color_image.get_height_pixels();
+  gui_stream->draw_video(color_data, width, height);
+
+  color_image.reset();
 
   //---------------------------
 }
