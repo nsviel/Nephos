@@ -20,7 +20,6 @@ public:
   void run();
 
   //Subfunction
-  void make_k4a_configuration();
   void start_camera();
 
   inline K4A_thread* get_k4a_thread(){return k4a_thread;}

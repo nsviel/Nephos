@@ -26,7 +26,7 @@ void Kinect::run(){
 
 //Subfunction
 void Kinect::make_k4a_configuration(){
-  Struct_k4a_config& config = struct_kinect->config;
+/*  Struct_k4a_config& config = struct_kinect->config;
   Struct_k4a_color& color = struct_kinect->color;
   //---------------------------
 
@@ -38,7 +38,7 @@ void Kinect::make_k4a_configuration(){
   config.k4a_config.wired_sync_mode = config.wired_sync_mode;
   config.k4a_config.subordinate_delay_off_master_usec = config.subordinate_delay_off_master_usec;
   config.k4a_config.disable_streaming_indicator = config.disable_streaming_indicator;
-  config.k4a_config.synchronized_images_only = config.synchronized_images_only;
+  config.k4a_config.synchronized_images_only = config.synchronized_images_only;*/
 
   //---------------------------
 }
