@@ -1,5 +1,5 @@
-#ifndef GUI_CAPTURE_H
-#define GUI_CAPTURE_H
+#ifndef GUI_KINECT_H
+#define GUI_KINECT_H
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
@@ -13,12 +13,12 @@ class V4L2_device;
 class UTL_capture;
 
 
-class GUI_capture : public BASE_panel
+class GUI_kinect : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_capture(GUI* gui, bool* show_window, string name);
-  ~GUI_capture();
+  GUI_kinect(GUI* gui, bool* show_window, string name);
+  ~GUI_kinect();
 
   //Main function
   void design_panel();

@@ -13,7 +13,6 @@ class GUI_control;
 class GUI_style;
 class GUI_gpu;
 class GUI_image;
-class GUI_video;
 class GUI_tab;
 class GUI_render;
 

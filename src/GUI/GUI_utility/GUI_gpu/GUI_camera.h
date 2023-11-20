@@ -1,5 +1,5 @@
-#ifndef GUI_VIDEO_H
-#define GUI_VIDEO_H
+#ifndef GUI_CAMERA_H
+#define GUI_CAMERA_H
 
 #include <UTL_specific/common.h>
 
@@ -11,12 +11,12 @@ class V4L2_video;
 class V4L2_camera;
 
 
-class GUI_video
+class GUI_camera
 {
 public:
   //Constructor / Destructor
-  GUI_video(GUI* gui);
-  ~GUI_video();
+  GUI_camera(GUI* gui);
+  ~GUI_camera();
 
 public:
   //Main function

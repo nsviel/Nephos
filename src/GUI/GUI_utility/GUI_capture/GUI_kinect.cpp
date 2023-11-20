@@ -1,4 +1,4 @@
-#include "GUI_capture.h"
+#include "GUI_kinect.h"
 
 #include <GUI_gpu/GUI_camera.h>
 #include <GUI_gpu/GUI_image.h>
@@ -9,7 +9,7 @@
 
 
 //Constructor / Destructor
-GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+GUI_kinect::GUI_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->gui = gui;
@@ -22,10 +22,10 @@ GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
 
   //---------------------------
 }
-GUI_capture::~GUI_capture(){}
+GUI_kinect::~GUI_kinect(){}
 
 //Main function
-void GUI_capture::design_panel(){
+void GUI_kinect::design_panel(){
   //---------------------------
 
   this->capture_devices();
@@ -35,7 +35,7 @@ void GUI_capture::design_panel(){
 }
 
 //Subfunction
-void GUI_capture::capture_devices(){
+void GUI_kinect::capture_devices(){
   //---------------------------
 
   utl_device->find_video_devices();
@@ -72,7 +72,7 @@ void GUI_capture::capture_devices(){
 
   //---------------------------
 }
-void GUI_capture::capture_command(){
+void GUI_kinect::capture_command(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
