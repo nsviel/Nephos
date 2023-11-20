@@ -1,7 +1,7 @@
 #ifndef STRUCT_PIPELINE_H
 #define STRUCT_PIPELINE_H
 
-#include <VK_struct/typedef.h>
+#include <VK_struct/VK_typedef.h>
 #include <VK_struct/Struct_binding.h>
 #include <ENG_shader/Base/BASE_shader.h>
 #include <UTL_specific/common.h>

@@ -1,7 +1,7 @@
 #ifndef STRUCT_ENTITY_H
 #define STRUCT_ENTITY_H
 
-#include <VK_struct/typedef.h>
+#include <VK_struct/VK_typedef.h>
 #include <VK_struct/Struct_binding.h>
 #include <VK_struct/Struct_image.h>
 #include <VK_struct/Struct_buffer.h>

@@ -1,7 +1,7 @@
 #ifndef VK_ENGINE_H
 #define VK_ENGINE_H
 
-#include <VK_struct/typedef.h>
+#include <VK_struct/VK_typedef.h>
 #include <VK_struct/Struct_entity.h>
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>

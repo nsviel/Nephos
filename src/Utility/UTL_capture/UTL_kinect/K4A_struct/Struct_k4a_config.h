@@ -1,6 +1,8 @@
 #ifndef STRUCT_K4A_CONFIG_H
 #define STRUCT_K4A_CONFIG_H
 
+#include "Struct_k4a_color.h"
+
 #include <k4a/k4a.hpp>
 
 #define VENDOR_MICROSOFT 0x045E
@@ -25,6 +27,8 @@ struct Struct_k4a_config{
 
   uint32_t subordinate_delay_off_master_usec = 0;
   int32_t depth_delay_off_color_usec = 0;
+
+  Struct_k4a_color color;
 
   //---------------------------
 };

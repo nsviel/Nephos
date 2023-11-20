@@ -3,7 +3,7 @@
 
 #include <VK_struct/Struct_image.h>
 #include <VK_struct/Struct_entity.h>
-#include <VK_struct/typedef.h>
+#include <VK_struct/VK_typedef.h>
 #include <UTL_specific/common.h>
 
 extern "C" {
