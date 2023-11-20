@@ -7,6 +7,7 @@
 #include <k4a/k4a.h>
 #include <k4a/k4a.hpp>
 
+class K4A_thread;
 
 class K4A_capture
 {
@@ -26,7 +27,8 @@ public:
   void make_k4a_configuration(Struct_kinect* config);
 
 private:
-  Struct_kinect* device_config;
+  Struct_kinect* struct_kinect;
+  K4A_thread* k4a_thread;
 
   //std::unique_ptr<K4APollingThread> thread_camera_polling;
   //K4ADataSource<k4a::capture> camera_data_source;

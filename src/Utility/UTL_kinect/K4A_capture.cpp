@@ -5,7 +5,8 @@
 K4A_capture::K4A_capture(){
   //---------------------------
 
-  this->device_config = new Struct_kinect();
+  this->struct_kinect = new Struct_kinect();
+  this->k4a_thread = new K4A_thread(struct_kinect);
 
   //---------------------------
 }
@@ -76,8 +77,8 @@ bool K4A_capture::start_camera(){
     return false;
   }
 
-  this->make_k4a_configuration(device_config);
-  selected_device.start_cameras(&device_config->k4a_config);
+  this->make_k4a_configuration(struct_kinect);
+  selected_device.start_cameras(&struct_kinect->k4a_config);
   this->camera_started = true;
 
   /*this->thread_camera_polling = std14::make_unique<K4APollingThread>([selected_device, &camera_data_source, camera_pause, camera_started, false, false](bool firstRun){
