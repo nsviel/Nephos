@@ -20,14 +20,33 @@ Kinect::~Kinect(){}
 //Main function
 void Kinect::run(){
   Struct_k4a_device* device = struct_kinect->selected_device;
+  if(device == nullptr){return;}
   //---------------------------
 
-  if(device != nullptr){
-    this->make_k4a_configuration(device);
-    k4a_thread->start_thread(device);
+  this->make_k4a_configuration(device);
+  k4a_thread->start_thread(device);
+
+  //---------------------------
+}
+void Kinect::loop(){
+  Struct_k4a_device* device = struct_kinect->selected_device;
+  if(device == nullptr){return;}
+  //---------------------------
+/*
+  // Assuming you have a k4a::capture object named 'capture'
+  if(device->color.capture == nullptr){return;}
+  k4a::image colorImage = device->color.capture.get_color_image();
+
+  if (colorImage.is_valid()) {
+      // Access the raw data
+      const uint8_t* colorData = colorImage.get_buffer();
+
+      // Now you can use colorData as needed
+
+      // Don't forget to release the image when you are done with it
+      colorImage.reset();
   }
-
-
+*/
   //---------------------------
 }
 

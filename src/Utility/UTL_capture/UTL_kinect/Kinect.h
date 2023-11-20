@@ -20,6 +20,7 @@ public:
 public:
   //Main function
   void run();
+  void loop();
 
   //Subfunction
   void make_k4a_configuration(Struct_k4a_device* device);

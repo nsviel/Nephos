@@ -25,26 +25,39 @@ K4A_thread::~K4A_thread(){
 void K4A_thread::start_thread(Struct_k4a_device* device){
   //---------------------------
 
-  this->thread = std::thread(&K4A_thread::run_capture, this, device);
+  if(!thread_running){
+    this->thread = std::thread(&K4A_thread::run_capture, this, device);
+  }
 
   //---------------------------
 }
 
 //Subfunction
-void K4A_thread::run_capture(Struct_k4a_device* struc_device){
-  if(struc_device == nullptr) return;
+void K4A_thread::run_capture(Struct_k4a_device* device){
+  if(device == nullptr) return;
   //---------------------------
 
-  k4a::device device = k4a::device::open(struc_device->index);
-  device.start_cameras(&struc_device->config.k4a_config);
+  //Init
+  k4a::device k4a_device = k4a::device::open(device->index);
+  k4a::capture k4a_capture;
+  device->color.device = &k4a_device;
+  device->color.capture = &k4a_capture;
+
+  //Start recording
+  k4a_device.start_cameras(&device->config.k4a_config);
 
   this->thread_running = true;
   std::chrono::milliseconds timeout(2000);
   while(thread_running){
-    device.get_capture(struc_device->k4a_capture, timeout);
+    k4a_device.get_capture(&k4a_capture, timeout);
+    device->temperature = k4a_capture.get_temperature_c();
+    say(temp);
   }
 
-  device.stop_cameras();
+  k4a_device.stop_cameras();
+
+  device->color.device = nullptr;
+  device->color.capture = nullptr;
 
   //---------------------------
 }

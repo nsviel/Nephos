@@ -94,6 +94,8 @@ struct Struct_k4a_color{
   bool enabled = true;
   k4a_image_format_t format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
   k4a_color_resolution_t resolution = K4A_COLOR_RESOLUTION_720P;
+  k4a::capture* capture = nullptr;
+  k4a::device* device = nullptr;
 
   //Control
   Exposure exposure;
