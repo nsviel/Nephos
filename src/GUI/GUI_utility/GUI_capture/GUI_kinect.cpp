@@ -78,194 +78,107 @@ void GUI_kinect::kinect_devices(){
   //---------------------------
 }
 void GUI_kinect::kinect_configuration(){
+  Struct_k4a_device& device = struct_kinect->vec_device[0];
   //---------------------------
 
-  Struct_k4a_device& device = vec_device[0];
-
+  ImGui::Separator();
   string device_header = "Device S/N: " + device.serial_number;
   ImGui::Text("%s", device_header.c_str());
   ImGui::SameLine();{
     if(ImGui::Button("Close", ImVec2(item_width, 0))){
     }
   }
+  ImGui::Separator();
+
+  //Depth parameters
+  ImGui::Checkbox("Depth enabled", &device.config.enable_camera_depth);
+  if(device.config.enable_camera_depth){
+    ImGui::Indent();
+    static int depth_mode = 1;
+    if(ImGui::RadioButton("NFOV Binned", &depth_mode, 0)){
+      device.config.depth_mode = K4A_DEPTH_MODE_NFOV_2X2BINNED;
+    }
+    ImGui::SameLine();
+    if(ImGui::RadioButton("NFOV Unbinned", &depth_mode, 1)){
+      device.config.depth_mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
+    }
+    if(ImGui::RadioButton("WFOV Binned", &depth_mode, 2)){
+      device.config.depth_mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
+    }
+    ImGui::SameLine();
+    if(ImGui::RadioButton("WFOV Unbinned", &depth_mode, 3)){
+      device.config.depth_mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
+    }
+    if(ImGui::RadioButton("Passive IR", &depth_mode, 4)){
+      device.config.depth_mode = K4A_DEPTH_MODE_PASSIVE_IR;
+    }
+    ImGui::Unindent();
+  }
+
+  //Color parameters
+  ImGui::Checkbox("Color enabled", &device.config.enable_camera_color);
+  if(device.config.enable_camera_color){
+    ImGui::Indent();
+
+    //Format
+    ImGui::Text("Format");
+    static int color_format = 0;
+    if(ImGui::RadioButton("BGRA", &color_format, 0)){
+      device.config.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+    }
+    ImGui::SameLine();
+    if(ImGui::RadioButton("MJPG", &color_format, 1)){
+      device.config.color_format = K4A_IMAGE_FORMAT_COLOR_MJPG;
+    }
+    ImGui::SameLine();
+    if(ImGui::RadioButton("NV12", &color_format, 2)){
+      device.config.color_format = K4A_IMAGE_FORMAT_COLOR_NV12;
+    }
+    ImGui::SameLine();
+    if(ImGui::RadioButton("YUY2", &color_format, 3)){
+      device.config.color_format = K4A_IMAGE_FORMAT_COLOR_YUY2;
+    }
+
+    //Resolution
+    ImGui::Text("Resolution - 16:9");
+    ImGui::Indent();
+    static int color_resolution = 0;
+    if(ImGui::RadioButton("720p", &color_resolution, 0)){
+      device.config.color_resolution = K4A_COLOR_RESOLUTION_720P;
+    }
+    ImGui::SameLine();
+    if(ImGui::RadioButton("1080p", &color_resolution, 1)){
+      device.config.color_resolution = K4A_COLOR_RESOLUTION_1080P;
+    }
+    if(ImGui::RadioButton("1440p", &color_resolution, 2)){
+      device.config.color_resolution = K4A_COLOR_RESOLUTION_1440P;
+    }
+    ImGui::SameLine();
+    if(ImGui::RadioButton("2160p", &color_resolution, 3)){
+      device.config.color_resolution = K4A_COLOR_RESOLUTION_2160P;
+    }
+    ImGui::Unindent();
+
+    ImGui::Text("Resolution - 4:3");
+    ImGui::Indent();
+    if(ImGui::RadioButton("1536p", &color_resolution, 4)){
+      device.config.color_resolution = K4A_COLOR_RESOLUTION_1536P;
+    }
+    ImGui::SameLine();
+    if(ImGui::RadioButton("3072p", &color_resolution, 5)){
+      device.config.color_resolution = K4A_COLOR_RESOLUTION_3072P;
+    }
+    ImGui::Unindent();
+
+    ImGui::Unindent();
+  }
+
+
 
 
 
 
 /*
-  std::stringstream labelBuilder;
-labelBuilder << "Device S/N: " << m_deviceSerialNumber;
-ImGui::Text("%s", labelBuilder.str().c_str());
-ImGui::SameLine();
-{
-    ImGuiExtensions::ButtonColorChanger cc(ImGuiExtensions::ButtonColor::Red);
-    if (ImGui::SmallButton("Close device"))
-    {
-        return K4ADockControlStatus::ShouldClose;
-    }
-}
-
-ImGui::Separator();
-
-const bool deviceIsStarted = DeviceIsStarted();
-
-// Check microphone health
-//
-if (m_microphone && m_microphone->GetStatusCode() != SoundIoErrorNone)
-{
-    std::stringstream errorBuilder;
-    errorBuilder << "Microphone on device " << m_deviceSerialNumber << " failed!";
-    K4AViewerErrorManager::Instance().SetErrorStatus(errorBuilder.str());
-    StopMicrophone();
-    m_microphone->ClearStatusCode();
-}
-
-// Draw controls
-//
-// InputScalars are a bit wider than we want them by default.
-//
-constexpr float InputScalarScaleFactor = 0.5f;
-
-bool depthEnabledStateChanged = ImGuiExtensions::K4ACheckbox("Enable Depth Camera",
-                                                             &m_config.EnableDepthCamera,
-                                                             !deviceIsStarted);
-
-if (m_firstRun || depthEnabledStateChanged)
-{
-    ImGui::SetNextTreeNodeOpen(m_config.EnableDepthCamera);
-}
-
-ImGui::Indent();
-bool depthModeUpdated = depthEnabledStateChanged;
-if (ImGui::TreeNode("Depth Configuration"))
-{
-    const bool depthSettingsEditable = !deviceIsStarted && m_config.EnableDepthCamera;
-    auto *pDepthMode = reinterpret_cast<int *>(&m_config.DepthMode);
-    ImGui::Text("Depth mode");
-    depthModeUpdated |= ImGuiExtensions::K4ARadioButton("NFOV Binned",
-                                                        pDepthMode,
-                                                        K4A_DEPTH_MODE_NFOV_2X2BINNED,
-                                                        depthSettingsEditable);
-    ImGui::SameLine();
-    depthModeUpdated |= ImGuiExtensions::K4ARadioButton("NFOV Unbinned  ",
-                                                        pDepthMode,
-                                                        K4A_DEPTH_MODE_NFOV_UNBINNED,
-                                                        depthSettingsEditable);
-    // New line
-    depthModeUpdated |= ImGuiExtensions::K4ARadioButton("WFOV Binned",
-                                                        pDepthMode,
-                                                        K4A_DEPTH_MODE_WFOV_2X2BINNED,
-                                                        depthSettingsEditable);
-    ImGui::SameLine();
-    depthModeUpdated |= ImGuiExtensions::K4ARadioButton("WFOV Unbinned  ",
-                                                        pDepthMode,
-                                                        K4A_DEPTH_MODE_WFOV_UNBINNED,
-                                                        depthSettingsEditable);
-    // New line
-    depthModeUpdated |=
-        ImGuiExtensions::K4ARadioButton("Passive IR", pDepthMode, K4A_DEPTH_MODE_PASSIVE_IR, depthSettingsEditable);
-
-    ImGui::TreePop();
-}
-ImGui::Unindent();
-
-bool colorEnableStateChanged = ImGuiExtensions::K4ACheckbox("Enable Color Camera",
-                                                            &m_config.EnableColorCamera,
-                                                            !deviceIsStarted);
-
-if (m_firstRun || colorEnableStateChanged)
-{
-    ImGui::SetNextTreeNodeOpen(m_config.EnableColorCamera);
-}
-
-ImGui::Indent();
-bool colorResolutionUpdated = colorEnableStateChanged;
-if (ImGui::TreeNode("Color Configuration"))
-{
-    const bool colorSettingsEditable = !deviceIsStarted && m_config.EnableColorCamera;
-
-    bool colorFormatUpdated = false;
-    auto *pColorFormat = reinterpret_cast<int *>(&m_config.ColorFormat);
-    ImGui::Text("Format");
-    colorFormatUpdated |=
-        ImGuiExtensions::K4ARadioButton("BGRA", pColorFormat, K4A_IMAGE_FORMAT_COLOR_BGRA32, colorSettingsEditable);
-    ImGui::SameLine();
-    colorFormatUpdated |=
-        ImGuiExtensions::K4ARadioButton("MJPG", pColorFormat, K4A_IMAGE_FORMAT_COLOR_MJPG, colorSettingsEditable);
-    ImGui::SameLine();
-    colorFormatUpdated |=
-        ImGuiExtensions::K4ARadioButton("NV12", pColorFormat, K4A_IMAGE_FORMAT_COLOR_NV12, colorSettingsEditable);
-    ImGui::SameLine();
-    colorFormatUpdated |=
-        ImGuiExtensions::K4ARadioButton("YUY2", pColorFormat, K4A_IMAGE_FORMAT_COLOR_YUY2, colorSettingsEditable);
-
-    // Uncompressed formats are only supported at 720p.
-    //
-    const char *imageFormatHelpMessage = "Not supported in NV12 or YUY2 mode!";
-    const bool imageFormatSupportsHighResolution = m_config.ColorFormat != K4A_IMAGE_FORMAT_COLOR_NV12 &&
-                                                   m_config.ColorFormat != K4A_IMAGE_FORMAT_COLOR_YUY2;
-    if (colorFormatUpdated || m_firstRun)
-    {
-        if (!imageFormatSupportsHighResolution)
-        {
-            m_config.ColorResolution = K4A_COLOR_RESOLUTION_720P;
-        }
-    }
-
-    auto *pColorResolution = reinterpret_cast<int *>(&m_config.ColorResolution);
-
-    ImGui::Text("Resolution");
-    ImGui::Indent();
-    ImGui::Text("16:9");
-    ImGui::Indent();
-    colorResolutionUpdated |= ImGuiExtensions::K4ARadioButton(" 720p",
-                                                              pColorResolution,
-                                                              K4A_COLOR_RESOLUTION_720P,
-                                                              colorSettingsEditable);
-    ImGui::SameLine();
-    colorResolutionUpdated |= ImGuiExtensions::K4ARadioButton("1080p",
-                                                              pColorResolution,
-                                                              K4A_COLOR_RESOLUTION_1080P,
-                                                              colorSettingsEditable &&
-                                                                  imageFormatSupportsHighResolution);
-    ImGuiExtensions::K4AShowTooltip(imageFormatHelpMessage, !imageFormatSupportsHighResolution);
-    // New line
-    colorResolutionUpdated |= ImGuiExtensions::K4ARadioButton("1440p",
-                                                              pColorResolution,
-                                                              K4A_COLOR_RESOLUTION_1440P,
-                                                              colorSettingsEditable &&
-                                                                  imageFormatSupportsHighResolution);
-    ImGuiExtensions::K4AShowTooltip(imageFormatHelpMessage, !imageFormatSupportsHighResolution);
-    ImGui::SameLine();
-    colorResolutionUpdated |= ImGuiExtensions::K4ARadioButton("2160p",
-                                                              pColorResolution,
-                                                              K4A_COLOR_RESOLUTION_2160P,
-                                                              colorSettingsEditable &&
-                                                                  imageFormatSupportsHighResolution);
-    ImGuiExtensions::K4AShowTooltip(imageFormatHelpMessage, !imageFormatSupportsHighResolution);
-    ImGui::Unindent();
-    ImGui::Text("4:3");
-    ImGui::Indent();
-
-    colorResolutionUpdated |= ImGuiExtensions::K4ARadioButton("1536p",
-                                                              pColorResolution,
-                                                              K4A_COLOR_RESOLUTION_1536P,
-                                                              colorSettingsEditable &&
-                                                                  imageFormatSupportsHighResolution);
-    ImGuiExtensions::K4AShowTooltip(imageFormatHelpMessage, !imageFormatSupportsHighResolution);
-
-    ImGui::SameLine();
-    colorResolutionUpdated |= ImGuiExtensions::K4ARadioButton("3072p",
-                                                              pColorResolution,
-                                                              K4A_COLOR_RESOLUTION_3072P,
-                                                              colorSettingsEditable &&
-                                                                  imageFormatSupportsHighResolution);
-    ImGuiExtensions::K4AShowTooltip(imageFormatHelpMessage, !imageFormatSupportsHighResolution);
-
-    ImGui::Unindent();
-    ImGui::Unindent();
-    ImGui::TreePop();
-}
 if (ImGui::TreeNode("Color Controls"))
 {
     // Some of the variable names in here are just long enough to cause clang-format to force a line-wrap,
