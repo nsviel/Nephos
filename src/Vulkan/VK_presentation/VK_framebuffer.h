@@ -1,7 +1,7 @@
 #ifndef VK_FRAMEBUFFER_H
 #define VK_FRAMEBUFFER_H
 
-#include <VK_struct/Struct_frame.h>
+#include <VK_struct/Struct_vk_frame.h>
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <UTL_specific/common.h>
@@ -28,7 +28,7 @@ public:
 
   //Subfunction
   void create_framebuffer_renderpass(Struct_vk_renderpass* renderpass, Struct_vk_framebuffer* framebuffer);
-  void create_framebuffer_swapchain(Struct_vk_renderpass* renderpass, Struct_frame* frame);
+  void create_framebuffer_swapchain(Struct_vk_renderpass* renderpass, Struct_vk_frame* frame);
   void clean_framebuffer_obj(VkFramebuffer& fbo);
 
 private:

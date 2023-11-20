@@ -38,7 +38,7 @@ void VK_synchronization::init(){
 
   //---------------------------
 }
-void VK_synchronization::init_frame_sync(Struct_frame* frame){
+void VK_synchronization::init_frame_sync(Struct_vk_frame* frame){
   //---------------------------
 
   //Create semaphore - Renderpass
@@ -72,7 +72,7 @@ void VK_synchronization::clean(){
 
   //---------------------------
 }
-void VK_synchronization::clean_frame_sync(Struct_frame* frame){
+void VK_synchronization::clean_frame_sync(Struct_vk_frame* frame){
   //---------------------------
 
   this->clean_semaphore(frame->semaphore_image_ready);

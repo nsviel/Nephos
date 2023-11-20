@@ -25,10 +25,10 @@ VK_texture::VK_texture(Struct_vulkan* struct_vulkan){
 VK_texture::~VK_texture(){}
 
 //Main function
-Struct_image* VK_texture::load_texture_from_file(string path){
+Struct_vk_image* VK_texture::load_texture_from_file(string path){
   //---------------------------
 
-  Struct_image* image = new Struct_image();
+  Struct_vk_image* image = new Struct_vk_image();
 
   this->create_texture_from_file(image, path);
   vk_image->create_image_view(image);
@@ -39,10 +39,10 @@ Struct_image* VK_texture::load_texture_from_file(string path){
   //---------------------------
   return image;
 }
-Struct_image* VK_texture::load_texture_from_data(uint8_t* data, int width, int height){
+Struct_vk_image* VK_texture::load_texture_from_data(uint8_t* data, int width, int height){
   //---------------------------
 
-  Struct_image* image = new Struct_image();
+  Struct_vk_image* image = new Struct_vk_image();
   this->create_texture_from_data(image, data, width, height);
   vk_image->create_image_view(image);
   vk_image->create_image_sampler(image);
@@ -52,10 +52,10 @@ Struct_image* VK_texture::load_texture_from_data(uint8_t* data, int width, int h
   //---------------------------
   return image;
 }
-Struct_image* VK_texture::load_texture_from_bin(string path){
+Struct_vk_image* VK_texture::load_texture_from_bin(string path){
   //---------------------------
 
-  Struct_image* image = new Struct_image();
+  Struct_vk_image* image = new Struct_vk_image();
   this->create_texture_from_bin(image, path);
   vk_image->create_image_view(image);
   vk_image->create_image_sampler(image);
@@ -66,7 +66,7 @@ Struct_image* VK_texture::load_texture_from_bin(string path){
   return image;
 }
 
-void VK_texture::update_texture_from_data(Struct_image* image, uint8_t* data){
+void VK_texture::update_texture_from_data(Struct_vk_image* image, uint8_t* data){
   //---------------------------
 
   //Frame data
@@ -79,7 +79,7 @@ void VK_texture::update_texture_from_data(Struct_image* image, uint8_t* data){
 }
 
 //Texture creation
-void VK_texture::create_texture_from_file(Struct_image* image, string path){
+void VK_texture::create_texture_from_file(Struct_vk_image* image, string path){
   //---------------------------
 
   //File data
@@ -102,7 +102,7 @@ void VK_texture::create_texture_from_file(Struct_image* image, string path){
 
   //---------------------------
 }
-void VK_texture::create_texture_from_data(Struct_image* image, uint8_t* data, int width, int height){
+void VK_texture::create_texture_from_data(Struct_vk_image* image, uint8_t* data, int width, int height){
   //---------------------------
 
   //Frame data
@@ -116,7 +116,7 @@ void VK_texture::create_texture_from_data(Struct_image* image, uint8_t* data, in
 
   //---------------------------
 }
-void VK_texture::create_texture_from_bin(Struct_image* image, string path){
+void VK_texture::create_texture_from_bin(Struct_vk_image* image, string path){
   //---------------------------
 
 
@@ -177,7 +177,7 @@ void VK_texture::clean_texture(Struct_vk_entity* data){
   //---------------------------
 
   for(int i=0; i<data->list_texture.size(); i++){
-    Struct_image* image = *next(data->list_texture.begin(), i);
+    Struct_vk_image* image = *next(data->list_texture.begin(), i);
     vk_image->clean_image(image);
   }
 
@@ -194,7 +194,7 @@ void VK_texture::clean_textures(){
 }
 
 //Subfunction
-void VK_texture::create_vulkan_texture(Struct_image* image){
+void VK_texture::create_vulkan_texture(Struct_vk_image* image){
   //---------------------------
 
   //Create stagging buffer
@@ -228,7 +228,7 @@ void VK_texture::create_vulkan_texture(Struct_image* image){
 
   //---------------------------
 }
-void VK_texture::update_vulkan_texture(Struct_image* image){
+void VK_texture::update_vulkan_texture(Struct_vk_image* image){
   //---------------------------
 
   //Create stagging buffer
@@ -255,7 +255,7 @@ void VK_texture::update_vulkan_texture(Struct_image* image){
 
   //---------------------------
 }
-void VK_texture::copy_buffer_to_image(Struct_image* image, VkBuffer buffer){
+void VK_texture::copy_buffer_to_image(Struct_vk_image* image, VkBuffer buffer){
   //---------------------------
 
   VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
@@ -283,7 +283,7 @@ void VK_texture::copy_buffer_to_image(Struct_image* image, VkBuffer buffer){
 
   //---------------------------
 }
-void VK_texture::copy_image_to_buffer(Struct_image* image, VkBuffer buffer){
+void VK_texture::copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer){
   //---------------------------
 
   VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
@@ -412,7 +412,7 @@ VkDeviceSize VK_texture::calculateImageSize(VkFormat format, VkExtent3D extent) 
     return imageSize;
 }
 
-void VK_texture::make_screenshot(Struct_image* image){
+void VK_texture::make_screenshot(Struct_vk_image* image){
   //---------------------------
 
   //Create stagging buffer
@@ -445,7 +445,7 @@ void VK_texture::make_screenshot(Struct_image* image){
 
   //---------------------------
 }
-void VK_texture::save_to_bin(Struct_image* image){
+void VK_texture::save_to_bin(Struct_vk_image* image){
   //---------------------------
 
   //Create stagging buffer

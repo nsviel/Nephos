@@ -51,10 +51,10 @@ public:
   void remove_object_in_engine(Object* object);
 
   //Texture function
-  Struct_image* load_texture_from_file(string path);
-  Struct_image* load_texture_from_data(uint8_t* data, int width, int height);
-  Struct_image* load_texture_from_bin(string path);
-  void update_texture_from_data(Struct_image* image, uint8_t* data);
+  Struct_vk_image* load_texture_from_file(string path);
+  Struct_vk_image* load_texture_from_data(uint8_t* data, int width, int height);
+  Struct_vk_image* load_texture_from_bin(string path);
+  void update_texture_from_data(Struct_vk_image* image, uint8_t* data);
 
   //Renderpass function
   Struct_vk_renderpass* get_renderpass(int i);

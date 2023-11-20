@@ -5,7 +5,7 @@
 #include <vulkan/vulkan.h>
 
 
-struct Struct_image{
+struct Struct_vk_image{
   //---------------------------
 
   //General info

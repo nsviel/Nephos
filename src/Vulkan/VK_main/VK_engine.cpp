@@ -185,31 +185,31 @@ void VK_engine::remove_object_in_engine(Object* object){
 }
 
 //Texture function
-Struct_image* VK_engine::load_texture_from_file(string path){
+Struct_vk_image* VK_engine::load_texture_from_file(string path){
   //---------------------------
 
-  Struct_image* texture = vk_texture->load_texture_from_file(path);
-
-  //---------------------------
-  return texture;
-}
-Struct_image* VK_engine::load_texture_from_data(uint8_t* data, int width, int height){
-  //---------------------------
-
-  Struct_image* texture = vk_texture->load_texture_from_data(data, width, height);
+  Struct_vk_image* texture = vk_texture->load_texture_from_file(path);
 
   //---------------------------
   return texture;
 }
-Struct_image* VK_engine::load_texture_from_bin(string path){
+Struct_vk_image* VK_engine::load_texture_from_data(uint8_t* data, int width, int height){
   //---------------------------
 
-  Struct_image* texture = vk_texture->load_texture_from_bin(path);
+  Struct_vk_image* texture = vk_texture->load_texture_from_data(data, width, height);
 
   //---------------------------
   return texture;
 }
-void VK_engine::update_texture_from_data(Struct_image* image, uint8_t* data){
+Struct_vk_image* VK_engine::load_texture_from_bin(string path){
+  //---------------------------
+
+  Struct_vk_image* texture = vk_texture->load_texture_from_bin(path);
+
+  //---------------------------
+  return texture;
+}
+void VK_engine::update_texture_from_data(Struct_vk_image* image, uint8_t* data){
   //---------------------------
 
   //vk_texture->update_texture_from_data(image, frame);

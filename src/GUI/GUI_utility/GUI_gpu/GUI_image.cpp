@@ -45,7 +45,7 @@ void GUI_image::draw_image_bin(string path){
 
 //Subfunction
 void GUI_image::load_image_static(string path){
-  static Struct_image* image = nullptr;
+  static Struct_vk_image* image = nullptr;
   //---------------------------
 
   if(image == nullptr){
@@ -57,7 +57,7 @@ void GUI_image::load_image_static(string path){
   //---------------------------
 }
 void GUI_image::load_image_dynamic(string path){
-  static Struct_image* image;
+  static Struct_vk_image* image;
   //---------------------------
 
   image = vk_engine->load_texture_from_file(path);
@@ -67,7 +67,7 @@ void GUI_image::load_image_dynamic(string path){
   //---------------------------
 }
 void GUI_image::load_image_bin(string path){
-  static Struct_image* image;
+  static Struct_vk_image* image;
   //---------------------------
 
   image = vk_engine->load_texture_from_bin(path);

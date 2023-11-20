@@ -2,7 +2,7 @@
 #define VK_IMAGE_H
 
 #include <UTL_specific/common.h>
-#include <VK_struct/Struct_image.h>
+#include <VK_struct/Struct_vk_image.h>
 
 class Struct_vulkan;
 class VK_buffer;
@@ -16,21 +16,21 @@ public:
   ~VK_image();
 
 public:
-  void clean_image(Struct_image* image);
+  void clean_image(Struct_vk_image* image);
 
   //Generic image creation
-  void create_image_view(Struct_image* image);
-  void create_image_sampler(Struct_image* texture);
+  void create_image_view(Struct_vk_image* image);
+  void create_image_sampler(Struct_vk_image* texture);
   VkImageView create_image_view(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags);
 
   //image creation
-  void create_image(Struct_image* image);
-  void create_image_obj(Struct_image* image);
-  void bind_image_to_memory(Struct_image* image);
+  void create_image(Struct_vk_image* image);
+  void create_image_obj(Struct_vk_image* image);
+  void bind_image_to_memory(Struct_vk_image* image);
 
   //Subfunction
-  void compute_mipmap(Struct_image* image);
-  void generate_mipmap(Struct_image* image);
+  void compute_mipmap(Struct_vk_image* image);
+  void generate_mipmap(Struct_vk_image* image);
 
 private:
   Struct_vulkan* struct_vulkan;

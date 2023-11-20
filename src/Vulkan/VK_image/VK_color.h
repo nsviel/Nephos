@@ -1,7 +1,7 @@
 #ifndef VK_COLOR_H
 #define VK_COLOR_H
 
-#include <VK_struct/Struct_image.h>
+#include <VK_struct/Struct_vk_image.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -17,7 +17,7 @@ public:
 
 public:
   //Main functions
-  void create_color_attachment(Struct_image* color);
+  void create_color_attachment(Struct_vk_image* color);
 
   //Subfunction
   VkSurfaceFormatKHR retrieve_surface_format(const std::vector<VkSurfaceFormatKHR>& dev_format);

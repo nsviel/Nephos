@@ -16,7 +16,7 @@ VK_image::VK_image(Struct_vulkan* struct_vulkan){
 VK_image::~VK_image(){}
 
 //Generic image creation
-void VK_image::clean_image(Struct_image* image){
+void VK_image::clean_image(Struct_vk_image* image){
   //---------------------------
 
   vkDestroySampler(struct_vulkan->device.device, image->sampler, nullptr);
@@ -28,7 +28,7 @@ void VK_image::clean_image(Struct_image* image){
 
   //---------------------------
 }
-void VK_image::create_image_view(Struct_image* image){
+void VK_image::create_image_view(Struct_vk_image* image){
   //---------------------------
 
   VkImageViewCreateInfo viewInfo{};
@@ -73,7 +73,7 @@ VkImageView VK_image::create_image_view(VkImage image, VkFormat format, VkImageA
 
 	return imageView;
 }
-void VK_image::create_image_sampler(Struct_image* texture){
+void VK_image::create_image_sampler(Struct_vk_image* texture){
   //---------------------------
 
   VkSamplerCreateInfo samplerInfo{};
@@ -100,7 +100,7 @@ void VK_image::create_image_sampler(Struct_image* texture){
 }
 
 //Image creation subfunction
-void VK_image::create_image(Struct_image* image){
+void VK_image::create_image(Struct_vk_image* image){
   //---------------------------
 
   this->create_image_obj(image);
@@ -108,7 +108,7 @@ void VK_image::create_image(Struct_image* image){
 
   //---------------------------
 }
-void VK_image::create_image_obj(Struct_image* image){
+void VK_image::create_image_obj(Struct_vk_image* image){
   //---------------------------
 
   VkImageCreateInfo image_info{};
@@ -133,7 +133,7 @@ void VK_image::create_image_obj(Struct_image* image){
 
   //---------------------------
 }
-void VK_image::bind_image_to_memory(Struct_image* image){
+void VK_image::bind_image_to_memory(Struct_vk_image* image){
   //---------------------------
 
   VkMemoryRequirements memRequirements;
@@ -155,7 +155,7 @@ void VK_image::bind_image_to_memory(Struct_image* image){
 }
 
 //subfunction
-void VK_image::compute_mipmap(Struct_image* image){
+void VK_image::compute_mipmap(Struct_vk_image* image){
   //---------------------------
 
   uint32_t max_level = static_cast<uint32_t>(std::floor(std::log2(std::max(image->width, image->height)))) + 1;
@@ -170,7 +170,7 @@ void VK_image::compute_mipmap(Struct_image* image){
 
   //---------------------------
 }
-void VK_image::generate_mipmap(Struct_image* image){
+void VK_image::generate_mipmap(Struct_vk_image* image){
   //---------------------------
 
 

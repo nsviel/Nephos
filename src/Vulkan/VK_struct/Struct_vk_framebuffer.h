@@ -2,7 +2,7 @@
 #define STRUCT_FRAMEBUFFER_H
 
 #include <UTL_specific/common.h>
-#include <VK_struct/Struct_image.h>
+#include <VK_struct/Struct_vk_image.h>
 
 
 struct Struct_vk_framebuffer{
@@ -12,10 +12,10 @@ struct Struct_vk_framebuffer{
   VkFramebuffer fbo;
 
   //Attachment
-  Struct_image color;
-  Struct_image depth;
-  Struct_image location;
-  Struct_image normal;
+  Struct_vk_image color;
+  Struct_vk_image depth;
+  Struct_vk_image location;
+  Struct_vk_image normal;
 
   //---------------------------
 };

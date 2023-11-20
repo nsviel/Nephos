@@ -96,7 +96,7 @@ void VK_framebuffer::create_framebuffer_renderpass(Struct_vk_renderpass* renderp
   //---------------------------
   framebuffer->fbo = fbo;
 }
-void VK_framebuffer::create_framebuffer_swapchain(Struct_vk_renderpass* renderpass, Struct_frame* frame){
+void VK_framebuffer::create_framebuffer_swapchain(Struct_vk_renderpass* renderpass, Struct_vk_frame* frame){
   //---------------------------
 
   //Create frambuffer

@@ -92,7 +92,7 @@ ImTextureID VK_imgui::rendered_texture(){
 
   if(texture == 0 || struct_vulkan->window.is_resized){
     Struct_vk_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
-    Struct_image* image = &renderpass->framebuffer->color;
+    Struct_vk_image* image = &renderpass->framebuffer->color;
 
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     texture = reinterpret_cast<ImTextureID>(descriptor);

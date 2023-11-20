@@ -181,7 +181,7 @@ void VK_command::stop_render_pass(Struct_vk_renderpass* renderpass){
 }
 
 //Image layout transition
-void VK_command::image_layout_transition_single(Struct_image* image, VkImageLayout old_layout, VkImageLayout new_layout){
+void VK_command::image_layout_transition_single(Struct_vk_image* image, VkImageLayout old_layout, VkImageLayout new_layout){
   //---------------------------
 
   VkCommandBuffer command_buffer = singletime_command_begin();
@@ -190,7 +190,7 @@ void VK_command::image_layout_transition_single(Struct_image* image, VkImageLayo
 
   //---------------------------
 }
-void VK_command::image_layout_transition(VkCommandBuffer command_buffer, Struct_image* image, VkImageLayout old_layout, VkImageLayout new_layout){
+void VK_command::image_layout_transition(VkCommandBuffer command_buffer, Struct_vk_image* image, VkImageLayout old_layout, VkImageLayout new_layout){
   //---------------------------
 
   VkImageMemoryBarrier barrier{};

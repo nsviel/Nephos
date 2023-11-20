@@ -1,7 +1,7 @@
 #ifndef VK_CLASS_H
 #define VK_CLASS_H
 
-#include <VK_struct/Struct_frame.h>
+#include <VK_struct/Struct_vk_frame.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -17,9 +17,9 @@ public:
 public:
   //Main functions
   void init();
-  void init_frame_sync(Struct_frame* frame);
+  void init_frame_sync(Struct_vk_frame* frame);
   void clean();
-  void clean_frame_sync(Struct_frame* frame);
+  void clean_frame_sync(Struct_vk_frame* frame);
 
   //Synchronization object
   void create_semaphore(VkSemaphore& semaphore);

@@ -1,7 +1,7 @@
 #ifndef VK_TEXTURE_H
 #define VK_TEXTURE_H
 
-#include <VK_struct/Struct_image.h>
+#include <VK_struct/Struct_vk_image.h>
 #include <VK_struct/Struct_vk_entity.h>
 #include <VK_struct/VK_typedef.h>
 #include <UTL_specific/common.h>
@@ -27,33 +27,33 @@ public:
 
 public:
   //Main functions
-  Struct_image* load_texture_from_file(string path);
-  Struct_image* load_texture_from_data(uint8_t* data, int width, int height);
-  Struct_image* load_texture_from_bin(string path);
+  Struct_vk_image* load_texture_from_file(string path);
+  Struct_vk_image* load_texture_from_data(uint8_t* data, int width, int height);
+  Struct_vk_image* load_texture_from_bin(string path);
 
-  void update_texture_from_data(Struct_image* image, uint8_t* data);
+  void update_texture_from_data(Struct_vk_image* image, uint8_t* data);
 
   //Texture creation
-  void create_texture_from_file(Struct_image* texture, string path);
-  void create_texture_from_data(Struct_image* image, uint8_t* data, int width, int height);
-  void create_texture_from_bin(Struct_image* image, string path);
+  void create_texture_from_file(Struct_vk_image* texture, string path);
+  void create_texture_from_data(Struct_vk_image* image, uint8_t* data, int width, int height);
+  void create_texture_from_bin(Struct_vk_image* image, string path);
 
   //Texture cleaning
   void clean_texture(Struct_vk_entity* object);
   void clean_textures();
 
   //Subfunction
-  void create_vulkan_texture(Struct_image* image);
-  void update_vulkan_texture(Struct_image* image);
-  void copy_buffer_to_image(Struct_image* image, VkBuffer buffer);
-  void copy_image_to_buffer(Struct_image* image, VkBuffer buffer);
+  void create_vulkan_texture(Struct_vk_image* image);
+  void update_vulkan_texture(Struct_vk_image* image);
+  void copy_buffer_to_image(Struct_vk_image* image, VkBuffer buffer);
+  void copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer);
   void check_frame_format(AVFrame* frame);
   void convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B);
   void convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride);
   VkDeviceSize calculateImageSize(VkFormat format, VkExtent3D extent);
 
-  void make_screenshot(Struct_image* image);
-  void save_to_bin(Struct_image* image);
+  void make_screenshot(Struct_vk_image* image);
+  void save_to_bin(Struct_vk_image* image);
 
 private:
   Struct_vulkan* struct_vulkan;

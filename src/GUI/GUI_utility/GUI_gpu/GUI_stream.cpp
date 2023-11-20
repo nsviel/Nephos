@@ -40,7 +40,7 @@ void GUI_stream::draw_video(string path){
 void GUI_stream::convert_data_into_texture(uint8_t* data){
   //---------------------------
 
-  static Struct_image* image = nullptr;
+  static Struct_vk_image* image = nullptr;
 
   if(image == nullptr){
     int width = utl_stream->get_frame_width();

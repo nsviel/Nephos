@@ -1,7 +1,7 @@
 #ifndef VK_COMMAND_H
 #define VK_COMMAND_H
 
-#include <VK_struct/Struct_frame.h>
+#include <VK_struct/Struct_vk_frame.h>
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_entity.h>
 #include <VK_struct/Struct_vk_renderpass.h>
@@ -34,8 +34,8 @@ public:
   void stop_render_pass(Struct_vk_renderpass* renderpass);
 
   //Image layout transition
-  void image_layout_transition(VkCommandBuffer command_buffer, Struct_image* image, VkImageLayout oldLayout, VkImageLayout newLayout);
-  void image_layout_transition_single(Struct_image* image, VkImageLayout old_layout, VkImageLayout new_layout);
+  void image_layout_transition(VkCommandBuffer command_buffer, Struct_vk_image* image, VkImageLayout oldLayout, VkImageLayout newLayout);
+  void image_layout_transition_single(Struct_vk_image* image, VkImageLayout old_layout, VkImageLayout new_layout);
 
   //Single time command
   VkCommandBuffer singletime_command_begin();

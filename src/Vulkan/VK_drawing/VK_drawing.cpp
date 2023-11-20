@@ -61,7 +61,7 @@ void VK_drawing::draw_frame_headless(){
 void VK_drawing::draw_frame_presentation(){
   //---------------------------
 
-  Struct_frame* frame = struct_vulkan->swapchain.get_frame_presentation();
+  Struct_vk_frame* frame = struct_vulkan->swapchain.get_frame_presentation();
   VkSemaphore semaphore_wait = frame->semaphore_image_ready;
   VkSemaphore semaphore_done = frame->vec_semaphore_render[0];
   vk_presentation->acquire_next_image(semaphore_wait);
