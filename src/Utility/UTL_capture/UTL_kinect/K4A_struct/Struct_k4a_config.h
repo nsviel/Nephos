@@ -13,13 +13,10 @@
 struct Struct_k4a_config{
   //---------------------------
 
-  bool enable_camera_color = true;
   bool enable_camera_depth = true;
   bool disable_streaming_indicator = false;
   bool synchronized_images_only = true;
 
-  k4a_image_format_t color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  k4a_color_resolution_t color_resolution = K4A_COLOR_RESOLUTION_720P;
   k4a_depth_mode_t depth_mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
   k4a_fps_t camera_fps = K4A_FRAMES_PER_SECOND_30;
   k4a_wired_sync_mode_t wired_sync_mode = K4A_WIRED_SYNC_MODE_STANDALONE;
@@ -27,8 +24,6 @@ struct Struct_k4a_config{
 
   uint32_t subordinate_delay_off_master_usec = 0;
   int32_t depth_delay_off_color_usec = 0;
-
-  Struct_k4a_color color;
 
   //---------------------------
 };

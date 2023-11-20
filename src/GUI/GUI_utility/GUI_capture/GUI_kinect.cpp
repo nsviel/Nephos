@@ -120,8 +120,8 @@ void GUI_kinect::kinect_configuration(){
   }
 
   //Color parameters
-  ImGui::Checkbox("Color enabled", &device.config.enable_camera_color);
-  if(device.config.enable_camera_color){
+  ImGui::Checkbox("Color enabled", &device.color.enabled);
+  if(device.color.enabled){
     ImGui::Indent();
     if(ImGui::TreeNode("Color configuration")){
 
@@ -129,19 +129,19 @@ void GUI_kinect::kinect_configuration(){
       ImGui::Text("Format");
       static int color_format = 0;
       if(ImGui::RadioButton("BGRA", &color_format, 0)){
-        device.config.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+        device.color.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("MJPG", &color_format, 1)){
-        device.config.color_format = K4A_IMAGE_FORMAT_COLOR_MJPG;
+        device.color.format = K4A_IMAGE_FORMAT_COLOR_MJPG;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("NV12", &color_format, 2)){
-        device.config.color_format = K4A_IMAGE_FORMAT_COLOR_NV12;
+        device.color.format = K4A_IMAGE_FORMAT_COLOR_NV12;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("YUY2", &color_format, 3)){
-        device.config.color_format = K4A_IMAGE_FORMAT_COLOR_YUY2;
+        device.color.format = K4A_IMAGE_FORMAT_COLOR_YUY2;
       }
 
       //Resolution
@@ -149,29 +149,29 @@ void GUI_kinect::kinect_configuration(){
       ImGui::Indent();
       static int color_resolution = 0;
       if(ImGui::RadioButton("720p", &color_resolution, 0)){
-        device.config.color_resolution = K4A_COLOR_RESOLUTION_720P;
+        device.color.resolution = K4A_COLOR_RESOLUTION_720P;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("1080p", &color_resolution, 1)){
-        device.config.color_resolution = K4A_COLOR_RESOLUTION_1080P;
+        device.color.resolution = K4A_COLOR_RESOLUTION_1080P;
       }
       if(ImGui::RadioButton("1440p", &color_resolution, 2)){
-        device.config.color_resolution = K4A_COLOR_RESOLUTION_1440P;
+        device.color.resolution = K4A_COLOR_RESOLUTION_1440P;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("2160p", &color_resolution, 3)){
-        device.config.color_resolution = K4A_COLOR_RESOLUTION_2160P;
+        device.color.resolution = K4A_COLOR_RESOLUTION_2160P;
       }
       ImGui::Unindent();
 
       ImGui::Text("Resolution [4:3]");
       ImGui::Indent();
       if(ImGui::RadioButton("1536p", &color_resolution, 4)){
-        device.config.color_resolution = K4A_COLOR_RESOLUTION_1536P;
+        device.color.resolution = K4A_COLOR_RESOLUTION_1536P;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("3072p", &color_resolution, 5)){
-        device.config.color_resolution = K4A_COLOR_RESOLUTION_3072P;
+        device.color.resolution = K4A_COLOR_RESOLUTION_3072P;
       }
       ImGui::Unindent();
 

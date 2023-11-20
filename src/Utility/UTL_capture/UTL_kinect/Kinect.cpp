@@ -27,10 +27,11 @@ void Kinect::run(){
 //Subfunction
 void Kinect::make_k4a_configuration(){
   Struct_k4a_config& config = struct_kinect->config;
+  Struct_k4a_color& color = struct_kinect->color;
   //---------------------------
 
-  config.k4a_config.color_format = config.color_format;
-  config.k4a_config.color_resolution = config.enable_camera_color ? config.color_resolution : K4A_COLOR_RESOLUTION_OFF;
+  config.k4a_config.color_format = color.format;
+  config.k4a_config.color_resolution = color.enabled ? color.resolution : K4A_COLOR_RESOLUTION_OFF;
   config.k4a_config.depth_mode = config.enable_camera_depth ? config.depth_mode : K4A_DEPTH_MODE_OFF;
   config.k4a_config.camera_fps = config.camera_fps;
   config.k4a_config.depth_delay_off_color_usec = config.depth_delay_off_color_usec;
