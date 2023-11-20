@@ -1,6 +1,8 @@
 #ifndef K4APOLLINGTHREAD_H
 #define K4APOLLINGTHREAD_H
 
+#include "K4A_struct/Struct_k4a_device.h"
+
 #include <k4a/k4a.hpp>
 #include <functional>
 #include <thread>
@@ -19,7 +21,8 @@ public:
   void run();
 
   //Subfunction
-  void run_thread(k4a::device* device, k4a::capture* capture);
+  void start_thread(Struct_k4a_device* device);
+  void run_capture(Struct_k4a_device* device);
   void stop_thread();
 
   inline bool is_thread_running(){return thread_running;}

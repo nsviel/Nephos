@@ -1,6 +1,8 @@
 #ifndef KINECT_H
 #define KINECT_H
 
+#include "K4A_struct/Struct_k4a_device.h"
+
 #include <UTL_specific/common.h>
 
 class Struct_kinect;
@@ -20,7 +22,7 @@ public:
   void run();
 
   //Subfunction
-  void make_k4a_configuration();
+  void make_k4a_configuration(Struct_k4a_device* device);
   void start_camera();
 
   inline K4A_thread* get_k4a_thread(){return k4a_thread;}
