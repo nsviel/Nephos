@@ -1,7 +1,7 @@
 #ifndef VK_SAMPLER_H
 #define VK_SAMPLER_H
 
-#include <VK_struct/Struct_binding.h>
+#include <VK_struct/Struct_vk_binding.h>
 #include <VK_struct/Struct_pipeline.h>
 #include <UTL_specific/common.h>
 
@@ -17,8 +17,8 @@ public:
 
 public:
   //Main functions
-  void create_sampler(Struct_binding* binding);
-  Struct_sampler* create_sampler_obj(string name, int binding, VkDescriptorType type);
+  void create_sampler(Struct_vk_binding* binding);
+  Struct_vk_sampler* create_sampler_obj(string name, int binding, VkDescriptorType type);
 
 private:
   Struct_vulkan* struct_vulkan;

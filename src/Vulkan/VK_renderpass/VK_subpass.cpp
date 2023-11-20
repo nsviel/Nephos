@@ -48,7 +48,7 @@ void VK_subpass::create_subpass_shader(Struct_subpass* subpass){
   //---------------------------
 
   // Color
-  Struct_attachment color;
+  Struct_vk_attachment color;
   color.item = 0;
   color.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   color.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
@@ -59,7 +59,7 @@ void VK_subpass::create_subpass_shader(Struct_subpass* subpass){
   subpass->vec_color.push_back(color);
 
   // Depth
-  Struct_attachment depth;
+  Struct_vk_attachment depth;
   depth.item = 1;
   depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   depth.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
@@ -78,7 +78,7 @@ void VK_subpass::create_subpass_transfert(Struct_subpass* subpass){
   //---------------------------
 
   // Color
-  Struct_attachment color;
+  Struct_vk_attachment color;
   color.item = 0;
   color.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   color.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
@@ -89,7 +89,7 @@ void VK_subpass::create_subpass_transfert(Struct_subpass* subpass){
   subpass->vec_color.push_back(color);
 
   // Depth
-  Struct_attachment depth;
+  Struct_vk_attachment depth;
   depth.item = 1;
   depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   depth.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
@@ -108,7 +108,7 @@ void VK_subpass::create_subpass_presentation(Struct_subpass* subpass){
   //---------------------------
 
   // Color
-  Struct_attachment color;
+  Struct_vk_attachment color;
   color.item = 0;
   color.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   color.store_operation = TYP_ATTACHMENT_STOREOP_NOTHING;
@@ -119,7 +119,7 @@ void VK_subpass::create_subpass_presentation(Struct_subpass* subpass){
   subpass->vec_color.push_back(color);
 
   // Depth
-  Struct_attachment depth;
+  Struct_vk_attachment depth;
   depth.item = 1;
   depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   depth.store_operation = TYP_ATTACHMENT_STOREOP_NOTHING;
@@ -164,7 +164,7 @@ void VK_subpass::create_subpass_description(Struct_subpass* subpass){
 }
 
 //Color attachment
-void VK_subpass::color_attachment_description(Struct_attachment& color){
+void VK_subpass::color_attachment_description(Struct_vk_attachment& color){
   //---------------------------
 
   VkAttachmentDescription color_description{};
@@ -180,7 +180,7 @@ void VK_subpass::color_attachment_description(Struct_attachment& color){
 
   //---------------------------
 }
-void VK_subpass::color_attachment_reference(Struct_attachment& color){
+void VK_subpass::color_attachment_reference(Struct_vk_attachment& color){
   //---------------------------
 
   VkAttachmentReference color_reference{};
@@ -192,7 +192,7 @@ void VK_subpass::color_attachment_reference(Struct_attachment& color){
 }
 
 //Depth attachment
-void VK_subpass::depth_attachment_description(Struct_attachment& depth){
+void VK_subpass::depth_attachment_description(Struct_vk_attachment& depth){
   //---------------------------
 
   VkAttachmentDescription depth_attachment{};
@@ -208,7 +208,7 @@ void VK_subpass::depth_attachment_description(Struct_attachment& depth){
 
   //---------------------------
 }
-void VK_subpass::depth_attachment_reference(Struct_attachment& depth){
+void VK_subpass::depth_attachment_reference(Struct_vk_attachment& depth){
   //---------------------------
 
   VkAttachmentReference depth_reference{};

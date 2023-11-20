@@ -1,7 +1,7 @@
 #ifndef STRUCT_SUBPASS_H
 #define STRUCT_SUBPASS_H
 
-#include <VK_struct/Struct_attachment.h>
+#include <VK_struct/Struct_vk_attachment.h>
 #include <VK_struct/Struct_pipeline.h>
 #include <UTL_specific/common.h>
 
@@ -16,8 +16,8 @@ struct Struct_subpass{
   VkCommandBuffer command_buffer;
 
   //Attachment
-  Struct_attachment depth;
-  std::vector<Struct_attachment> vec_color;
+  Struct_vk_attachment depth;
+  std::vector<Struct_vk_attachment> vec_color;
   std::function<void(Struct_subpass* subpass)> draw_task;
 
   //Pipeline

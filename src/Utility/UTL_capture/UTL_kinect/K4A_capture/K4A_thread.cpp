@@ -51,7 +51,6 @@ void K4A_thread::run_capture(Struct_k4a_device* device){
   while(thread_running){
     k4a_device.get_capture(&k4a_capture, timeout);
     device->temperature = k4a_capture.get_temperature_c();
-    say(temp);
   }
 
   k4a_device.stop_cameras();

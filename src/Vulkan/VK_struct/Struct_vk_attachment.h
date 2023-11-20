@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_attachment{
+struct Struct_vk_attachment{
   //---------------------------
 
   int item;

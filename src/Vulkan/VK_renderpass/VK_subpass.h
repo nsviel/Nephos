@@ -28,12 +28,12 @@ public:
   void create_subpass_description(Struct_subpass* subpass);
 
   //Color attachment
-  void color_attachment_description(Struct_attachment& color);
-  void color_attachment_reference(Struct_attachment& color);
+  void color_attachment_description(Struct_vk_attachment& color);
+  void color_attachment_reference(Struct_vk_attachment& color);
 
   //Depth attachment
-  void depth_attachment_description(Struct_attachment& depth);
-  void depth_attachment_reference(Struct_attachment& depth);
+  void depth_attachment_description(Struct_vk_attachment& depth);
+  void depth_attachment_reference(Struct_vk_attachment& depth);
 
 private:
   Struct_vulkan* struct_vulkan;

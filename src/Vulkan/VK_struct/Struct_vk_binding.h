@@ -18,7 +18,7 @@ typedef std::vector<std::tuple<std::string, std::size_t, int, VkDescriptorType, 
 typedef std::tuple<std::string, std::size_t, int, VkDescriptorType, VkShaderStageFlagBits> descriptor_required;
 
 //Structures
-struct Struct_descriptor{
+struct Struct_vk_descriptor{
   //---------------------------
 
   VkDescriptorSetLayout layout;
@@ -27,7 +27,7 @@ struct Struct_descriptor{
   //---------------------------
 };
 
-struct Struct_uniform{
+struct Struct_vk_uniform{
   //---------------------------
 
   std::string name;
@@ -40,7 +40,7 @@ struct Struct_uniform{
   //---------------------------
 };
 
-struct Struct_sampler{
+struct Struct_vk_sampler{
   //---------------------------
 
   std::string name;
@@ -50,7 +50,7 @@ struct Struct_sampler{
   //---------------------------
 };
 
-struct Struct_pushcst{
+struct Struct_vk_pushcst{
   //---------------------------
 
   std::string name;
@@ -60,17 +60,17 @@ struct Struct_pushcst{
   //---------------------------
 };
 
-struct Struct_binding{
+struct Struct_vk_binding{
   //---------------------------
 
   //Binding description
   vec_descriptor_required vec_required_binding;
-  Struct_descriptor descriptor;
+  Struct_vk_descriptor descriptor;
 
   //Binding elements
-  vector<Struct_pushcst*> vec_pushcst;
-  vector<Struct_uniform*> vec_uniform;
-  vector<Struct_sampler*> vec_sampler;
+  vector<Struct_vk_pushcst*> vec_pushcst;
+  vector<Struct_vk_uniform*> vec_uniform;
+  vector<Struct_vk_sampler*> vec_sampler;
 
   //---------------------------
 };
