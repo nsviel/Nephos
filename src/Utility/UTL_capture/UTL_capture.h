@@ -2,9 +2,9 @@
 #define UTL_CAPTURE_H
 
 #include <UTL_specific/common.h>
-#include <libusb-1.0/libusb.h>
-#include <k4a/k4a.h>
-#include <k4a/k4a.hpp>
+#include <UTL_kinect/K4A_capture.h>
+
+class K4A_capture;
 
 
 class UTL_capture
@@ -21,15 +21,9 @@ public:
   //Subfunction
   void machin();
   void chose();
-  void open_selected_device();
-  void refresh_device_list();
-  bool start_camera();
 
 private:
-  vector<std::pair<int, string>> connected_device;
-  k4a::device selected_device;
-  int selected_device_idx = -1;
-  bool camera_started;
+  K4A_capture* k4a_capture;
 };
 
 #endif
