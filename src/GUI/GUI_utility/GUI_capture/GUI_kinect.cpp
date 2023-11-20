@@ -1,6 +1,6 @@
 #include "GUI_kinect.h"
 
-#include <GUI_gpu/GUI_camera.h>
+#include <GUI_gpu/GUI_stream.h>
 #include <GUI_gpu/GUI_image.h>
 #include <TAB_render/TAB_render.h>
 #include <UTL_capture/UTL_v4l2/V4L2_device.h>
@@ -14,7 +14,7 @@ GUI_kinect::GUI_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   this->gui = gui;
   this->gui_image = new GUI_image(gui);
-  this->gui_camera = new GUI_camera(gui);
+  this->gui_stream = new GUI_stream(gui);
   this->utl_device = new V4L2_device();
   this->utl_capture = new UTL_capture();
 
@@ -57,7 +57,7 @@ void GUI_kinect::capture_devices(){
       // Use ImGui::Selectable to make the row selectable
       if (ImGui::Selectable(device.name.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)) {
         this->stream_node = device.node;
-        gui_camera->restart_video();
+        gui_stream->restart_video();
         selected_device = i;
       }
 
@@ -76,7 +76,7 @@ void GUI_kinect::capture_command(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  gui_camera->draw_video(stream_node);
+  gui_stream->draw_video(stream_node);
   //gui_image->draw_image_static("../media/vulkano.jpg");
 
   //---------------------------

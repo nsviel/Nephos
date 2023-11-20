@@ -11,12 +11,12 @@ class V4L2_video;
 class V4L2_camera;
 
 
-class GUI_camera
+class GUI_stream
 {
 public:
   //Constructor / Destructor
-  GUI_camera(GUI* gui);
-  ~GUI_camera();
+  GUI_stream(GUI* gui);
+  ~GUI_stream();
 
 public:
   //Main function

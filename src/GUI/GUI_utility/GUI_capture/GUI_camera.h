@@ -6,19 +6,19 @@
 
 class GUI;
 class GUI_image;
-class GUI_camera;
+class GUI_stream;
 class TAB_render;
 class RND_panel;
 class V4L2_device;
 class UTL_capture;
 
 
-class GUI_capture : public BASE_panel
+class GUI_camera : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_capture(GUI* gui, bool* show_window, string name);
-  ~GUI_capture();
+  GUI_camera(GUI* gui, bool* show_window, string name);
+  ~GUI_camera();
 
   //Main function
   void design_panel();
@@ -28,7 +28,7 @@ public:
   void capture_command();
 
 private:
-  GUI_camera* gui_camera;
+  GUI_stream* gui_stream;
   GUI_image* gui_image;
   GUI* gui;
   RND_panel* gui_render_panel;

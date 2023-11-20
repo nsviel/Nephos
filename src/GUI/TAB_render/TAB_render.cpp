@@ -17,7 +17,7 @@
 #include <GUI_widget/GUI_indicator.h>
 #include <GUI_editor/EDI_node.h>
 #include <GUI_data/GUI_database.h>
-#include <GUI_capture/GUI_capture.h>
+#include <GUI_camera/GUI_camera.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -42,9 +42,9 @@ void TAB_render::create_panels(){
   this->gui_profiler = new GUI_profiler(gui, &gui_render_panel->show_profiler, "Profiler");
   this->gui_shader = new RND_shader(gui, &gui_render_panel->show_shader, "Shader");
   this->gui_scene = new RND_scene(gui, &gui_render_panel->show_scene, "Scene");
-  this->gui_camera = new RND_camera(gui, &gui_render_panel->show_camera, "Camera");
+  this->gui_stream = new RND_camera(gui, &gui_render_panel->show_camera, "Camera");
   this->gui_database = new GUI_database(gui, &gui_render_panel->show_database, "Database##4323");
-  this->gui_capture = new GUI_capture(gui, &gui_render_panel->show_capture, "Capture");
+  this->gui_camera = new GUI_camera(gui, &gui_render_panel->show_capture, "Capture");
   this->gui_engine = new RND_engine(gui);
   this->gui_render_menu = new RND_menu(gui);
 
@@ -56,10 +56,10 @@ void TAB_render::draw_panels(){
   gui_render_menu->run_tab_menu();
   gui_shader->run_panel();
   gui_database->run_panel();
-  gui_camera->run_panel();
+  gui_stream->run_panel();
   gui_object->run_panel();
   gui_set->run_panel();
-  gui_capture->run_panel();
+  gui_camera->run_panel();
   gui_scene->run_panel();
   gui_profiler->run_panel();
   gui_render_option->run_panel();

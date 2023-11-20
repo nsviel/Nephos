@@ -1,4 +1,4 @@
-#include "GUI_camera.h"
+#include "GUI_stream.h"
 
 #include <GUI.h>
 #include <Vulkan.h>
@@ -9,7 +9,7 @@
 
 
 //Constructor / Destructor
-GUI_camera::GUI_camera(GUI* gui){
+GUI_stream::GUI_stream(GUI* gui){
   //---------------------------
 
   GUI_render* gui_render = gui->get_gui_render();
@@ -20,10 +20,10 @@ GUI_camera::GUI_camera(GUI* gui){
 
   //---------------------------
 }
-GUI_camera::~GUI_camera(){}
+GUI_stream::~GUI_stream(){}
 
 //Main function
-void GUI_camera::draw_video(string path){
+void GUI_stream::draw_video(string path){
   //---------------------------
 
   utl_stream->load_stream(path);
@@ -37,7 +37,7 @@ void GUI_camera::draw_video(string path){
 }
 
 //Subfunction
-void GUI_camera::convert_data_into_texture(uint8_t* data){
+void GUI_stream::convert_data_into_texture(uint8_t* data){
   //---------------------------
 
   static Struct_image* image = nullptr;
@@ -54,7 +54,7 @@ void GUI_camera::convert_data_into_texture(uint8_t* data){
 
   //---------------------------
 }
-void GUI_camera::display_frame(){
+void GUI_stream::display_frame(){
   //---------------------------
 
   ImVec2 panel_size = ImGui::GetContentRegionAvail();
@@ -62,7 +62,7 @@ void GUI_camera::display_frame(){
 
   //---------------------------
 }
-void GUI_camera::restart_video(){
+void GUI_stream::restart_video(){
   //---------------------------
 
   utl_stream->clean_video();
