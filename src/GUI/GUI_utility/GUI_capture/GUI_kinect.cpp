@@ -26,7 +26,8 @@ void GUI_kinect::design_panel(){
   //---------------------------
 
   this->kinect_devices();
-  this->kinect_configuration();
+  this->configuration_device();
+  this->configuration_general();
 
   //---------------------------
 }
@@ -77,7 +78,7 @@ void GUI_kinect::kinect_devices(){
 
   //---------------------------
 }
-void GUI_kinect::kinect_configuration(){
+void GUI_kinect::configuration_device(){
   Struct_k4a_device& device = struct_kinect->vec_device[0];
   //---------------------------
 
@@ -248,6 +249,28 @@ void GUI_kinect::configuration_color(){
 
     ImGui::Unindent();
   }
+
+  //---------------------------
+}
+void GUI_kinect::configuration_general(){
+  Struct_k4a_device& device = struct_kinect->vec_device[0];
+  //---------------------------
+
+  ImGui::Text("Framerate");
+  static int framerate = 0;
+  if(ImGui::RadioButton("30 FPS", &framerate, 0)){
+    device.config.fps = K4A_FRAMES_PER_SECOND_30;
+  }
+  ImGui::SameLine();
+  if(ImGui::RadioButton("15 FPS", &framerate, 1)){
+    device.config.fps = K4A_FRAMES_PER_SECOND_15;
+  }
+  ImGui::SameLine();
+  if(ImGui::RadioButton("5 FPS", &framerate, 2)){
+    device.config.fps = K4A_FRAMES_PER_SECOND_5;
+  }
+
+  ImGui::Checkbox("Disable streaming LED", &device.config.disable_streaming_indicator);
 
   //---------------------------
 }
