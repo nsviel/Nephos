@@ -1,6 +1,7 @@
 #include "GUI_kinect.h"
 
 #include <GUI.h>
+#include <GUI_gpu/GUI_stream.h>
 #include <UTL_capture/UTL_kinect/Kinect.h>
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
@@ -14,6 +15,7 @@ GUI_kinect::GUI_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   this->kinect = new Kinect();
   this->struct_kinect = kinect->get_struct_kinect();
   this->k4a_device = new K4A_device(struct_kinect);
+  this->gui_stream = new GUI_stream(gui);
 
   this->item_width = 100;
 
@@ -28,10 +30,7 @@ void GUI_kinect::design_panel(){
   this->kinect_devices();
   this->configuration_device();
   this->configuration_general();
-
-  if(ImGui::Button("Run capture", ImVec2(item_width, 0))){
-    kinect->run();
-  }
+  this->draw_camera_color();
 
   //---------------------------
 }
@@ -284,6 +283,18 @@ void GUI_kinect::configuration_general(){
   }
 
   ImGui::Checkbox("Disable streaming LED", &device->config.disable_streaming_indicator);
+
+  if(ImGui::Button("Run capture", ImVec2(item_width, 0))){
+    kinect->run();
+  }
+  //---------------------------
+}
+void GUI_kinect::draw_camera_color(){
+  Struct_k4a_device* device = struct_kinect->selected_device;
+  if(device == nullptr) return;
+  //---------------------------
+
+  //gui_stream->draw_video(data, width, height);
 
   //---------------------------
 }

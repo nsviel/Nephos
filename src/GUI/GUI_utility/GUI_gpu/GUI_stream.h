@@ -3,12 +3,8 @@
 
 #include <UTL_specific/common.h>
 
-
-
 class GUI;
 class VK_engine;
-class V4L2_video;
-class V4L2_camera;
 
 
 class GUI_stream
@@ -20,17 +16,15 @@ public:
 
 public:
   //Main function
-  void draw_video(string path);
+  void draw_video(uint8_t* data, int width, int height);
 
   //Subfunction
-  void convert_data_into_texture(uint8_t* data);
+  void convert_data_into_texture(uint8_t* data, int width, int height);
   void display_frame();
   void restart_video();
 
 private:
   VK_engine* vk_engine;
-  V4L2_video* utl_video;
-  V4L2_camera* utl_stream;
 
   ImTextureID texture;
 };
