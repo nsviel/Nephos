@@ -20,9 +20,11 @@ public:
   //Main function
   void design_panel();
 
-  //Subfunction
+  //Kinect device
   void kinect_devices();
   void kinect_configuration();
+  void configuration_depth();
+  void configuration_color();
 
 private:
   GUI* gui;

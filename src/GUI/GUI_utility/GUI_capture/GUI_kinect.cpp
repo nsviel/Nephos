@@ -31,7 +31,7 @@ void GUI_kinect::design_panel(){
   //---------------------------
 }
 
-//Subfunction
+//Kinect device
 void GUI_kinect::kinect_devices(){
   //---------------------------
 
@@ -90,7 +90,15 @@ void GUI_kinect::kinect_configuration(){
   }
   ImGui::Separator();
 
-  //Depth parameters
+  this->configuration_depth();
+  this->configuration_color();
+
+  //---------------------------
+}
+void GUI_kinect::configuration_depth(){
+  Struct_k4a_device& device = struct_kinect->vec_device[0];
+  //---------------------------
+
   ImGui::Checkbox("Depth enabled", &device.depth.enabled);
   if(device.depth.enabled){
     ImGui::Indent();
@@ -119,7 +127,12 @@ void GUI_kinect::kinect_configuration(){
     ImGui::Unindent();
   }
 
-  //Color parameters
+  //---------------------------
+}
+void GUI_kinect::configuration_color(){
+  Struct_k4a_device& device = struct_kinect->vec_device[0];
+  //---------------------------
+
   ImGui::Checkbox("Color enabled", &device.color.enabled);
   if(device.color.enabled){
     ImGui::Indent();
@@ -207,58 +220,34 @@ void GUI_kinect::kinect_configuration(){
       ImGui::SetNextItemWidth(100);
       ImGui::SliderInt("Gain", &device.color.gain.value, 0, 255, "%d");
 
+      //Backlight Compensation
+      ImGui::Checkbox("Backlight Compensation", &device.color.backlight_compensation.value);
 
+      //Power frequency
+      ImGui::Text("Power Frequency");
+      static int power_frequency = 0;
+      if(ImGui::RadioButton("50Hz", &power_frequency, 0)){
+        device.color.power_frequency.value = "50Hz";
+      }
+      ImGui::SameLine();
+      if(ImGui::RadioButton("60Hz", &power_frequency, 1)){
+        device.color.power_frequency.value = "60Hz";
+      }
 
+      //Refresh / reset buttons
+      if (ImGui::Button("Refresh")){
+
+      }
+      ImGui::SameLine();
+      if (ImGui::Button("Reset to default##RGB")){
+
+      }
 
       ImGui::TreePop();
     }
 
     ImGui::Unindent();
   }
-
-
-
-
-/*
-if (ImGui::TreeNode("Color Controls"))
-{
-    ImGui::PopItemWidth();
-
-    ShowColorControl(K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION, &m_colorSettingsCache.BacklightCompensation,
-        [](ColorSetting *cacheEntry) {
-            return ImGui::Checkbox("Backlight Compensation", reinterpret_cast<bool *>(&cacheEntry->Value)) ?
-                ColorControlAction::SetManual :
-                ColorControlAction::None;
-     });
-
-    ShowColorControl(K4A_COLOR_CONTROL_POWERLINE_FREQUENCY, &m_colorSettingsCache.PowerlineFrequency,
-        [](ColorSetting *cacheEntry) {
-            ImGui::Text("Power Frequency");
-            ImGui::SameLine();
-            bool updated = false;
-            updated |= ImGui::RadioButton("50Hz", &cacheEntry->Value, 1);
-            ImGui::SameLine();
-            updated |= ImGui::RadioButton("60Hz", &cacheEntry->Value, 2);
-            return updated ? ColorControlAction::SetManual : ColorControlAction::None;
-     });
-
-    // clang-format on
-
-    if (ImGui::Button("Refresh"))
-    {
-        LoadColorSettingsCache();
-    }
-
-    ImGui::SameLine();
-
-    if (ImGui::Button("Reset to default##RGB"))
-    {
-        ApplyDefaultColorSettings();
-    }
-
-    ImGui::TreePop();
-}
-*/
 
   //---------------------------
 }

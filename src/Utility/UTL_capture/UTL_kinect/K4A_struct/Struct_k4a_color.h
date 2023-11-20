@@ -62,7 +62,7 @@ struct Sharpness{
 struct Backlight_compensation{
   //---------------------------
 
-  int32_t value;
+  bool value;
   k4a_color_control_command_t command = K4A_COLOR_CONTROL_BACKLIGHT_COMPENSATION;
   k4a_color_control_mode_t mode = K4A_COLOR_CONTROL_MODE_MANUAL;
 
@@ -77,10 +77,10 @@ struct Gain{
 
   //---------------------------
 };
-struct Powerline_frequency{
+struct Power_frequency{
   //---------------------------
 
-  int32_t value;
+  std::string value;
   k4a_color_control_command_t command = K4A_COLOR_CONTROL_POWERLINE_FREQUENCY;
   k4a_color_control_mode_t mode = K4A_COLOR_CONTROL_MODE_MANUAL;
 
@@ -104,7 +104,7 @@ struct Struct_k4a_color{
   Sharpness sharpness;
   Gain gain;
   Backlight_compensation backlight_compensation;
-  Powerline_frequency powerline_frequency;
+  Power_frequency power_frequency;
 
   //---------------------------
 };
