@@ -3,7 +3,7 @@
 #include <GUI_gpu/GUI_video.h>
 #include <GUI_gpu/GUI_image.h>
 #include <TAB_render/TAB_render.h>
-#include <UTL_capture/UTL_device.h>
+#include <UTL_capture/UTL_v4l2/UTL_device.h>
 #include <UTL_capture/UTL_capture.h>
 #include <GUI.h>
 

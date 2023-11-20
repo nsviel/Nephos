@@ -23,6 +23,9 @@ public:
   void make_k4a_configuration();
   void start_camera();
 
+  inline K4A_thread* get_k4a_thread(){return k4a_thread;}
+  inline K4A_device* get_k4a_device(){return k4a_device;}
+
 private:
   Struct_kinect* struct_kinect;
   K4A_thread* k4a_thread;

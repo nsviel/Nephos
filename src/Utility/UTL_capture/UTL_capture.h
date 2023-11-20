@@ -2,7 +2,7 @@
 #define UTL_CAPTURE_H
 
 #include <UTL_specific/common.h>
-#include <UTL_kinect/K4A_capture.h>
+#include <UTL_capture/UTL_kinect/K4A_capture.h>
 
 class K4A_capture;
 

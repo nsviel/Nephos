@@ -4,8 +4,8 @@
 #include <Vulkan.h>
 #include <VK_main/VK_engine.h>
 #include <GUI_main/GUI_render/GUI_render.h>
-#include <UTL_capture/UTL_video.h>
-#include <UTL_capture/UTL_stream.h>
+#include <UTL_capture/UTL_v4l2/UTL_video.h>
+#include <UTL_capture/UTL_v4l2/UTL_stream.h>
 
 
 //Constructor / Destructor
