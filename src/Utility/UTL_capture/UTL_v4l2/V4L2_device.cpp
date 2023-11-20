@@ -1,18 +1,18 @@
-#include "UTL_device.h"
+#include "V4L2_device.h"
 
 #include <UTL_file/File.h>
 
 
 //Constructor / Destructor
-UTL_device::UTL_device(){
+V4L2_device::V4L2_device(){
   //---------------------------
 
   //---------------------------
 }
-UTL_device::~UTL_device(){}
+V4L2_device::~V4L2_device(){}
 
 //Main function
-void UTL_device::find_video_devices(){
+void V4L2_device::find_video_devices(){
   //---------------------------
 
   // Create a udev context

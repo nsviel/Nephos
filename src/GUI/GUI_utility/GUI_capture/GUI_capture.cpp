@@ -3,7 +3,7 @@
 #include <GUI_gpu/GUI_video.h>
 #include <GUI_gpu/GUI_image.h>
 #include <TAB_render/TAB_render.h>
-#include <UTL_capture/UTL_v4l2/UTL_device.h>
+#include <UTL_capture/UTL_v4l2/V4L2_device.h>
 #include <UTL_capture/UTL_capture.h>
 #include <GUI.h>
 
@@ -15,7 +15,7 @@ GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
   this->gui = gui;
   this->gui_image = new GUI_image(gui);
   this->gui_video = new GUI_video(gui);
-  this->utl_device = new UTL_device();
+  this->utl_device = new V4L2_device();
   this->utl_capture = new UTL_capture();
 
   this->stream_node = "";

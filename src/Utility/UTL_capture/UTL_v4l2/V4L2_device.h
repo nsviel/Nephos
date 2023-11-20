@@ -6,12 +6,12 @@
 #include <libudev.h>
 
 
-class UTL_device
+class V4L2_device
 {
 public:
   //Constructor / Destructor
-  UTL_device();
-  ~UTL_device();
+  V4L2_device();
+  ~V4L2_device();
 
 public:
   //Main function

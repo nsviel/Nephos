@@ -9,7 +9,7 @@ class GUI_image;
 class GUI_video;
 class TAB_render;
 class RND_panel;
-class UTL_device;
+class V4L2_device;
 class UTL_capture;
 
 
@@ -32,7 +32,7 @@ private:
   GUI_image* gui_image;
   GUI* gui;
   RND_panel* gui_render_panel;
-  UTL_device* utl_device;
+  V4L2_device* utl_device;
   UTL_capture* utl_capture;
 
   string stream_node;

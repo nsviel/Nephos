@@ -4,8 +4,8 @@
 #include <Vulkan.h>
 #include <VK_main/VK_engine.h>
 #include <GUI_main/GUI_render/GUI_render.h>
-#include <UTL_capture/UTL_v4l2/UTL_video.h>
-#include <UTL_capture/UTL_v4l2/UTL_stream.h>
+#include <UTL_capture/UTL_v4l2/V4L2_video.h>
+#include <UTL_capture/UTL_v4l2/V4L2_camera.h>
 
 
 //Constructor / Destructor
@@ -15,8 +15,8 @@ GUI_video::GUI_video(GUI* gui){
   GUI_render* gui_render = gui->get_gui_render();
   Vulkan* gui_vulkan = gui_render->get_gui_vulkan();
   this->vk_engine = gui_vulkan->get_vk_engine();
-  this->utl_video = new UTL_video();
-  this->utl_stream = new UTL_stream();
+  this->utl_video = new V4L2_video();
+  this->utl_stream = new V4L2_camera();
 
   //---------------------------
 }
