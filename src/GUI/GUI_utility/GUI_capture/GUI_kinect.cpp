@@ -29,6 +29,10 @@ void GUI_kinect::design_panel(){
   this->configuration_device();
   this->configuration_general();
 
+  if(ImGui::Button("Run capture", ImVec2(item_width, 0))){
+    kinect->run();
+  }
+
   //---------------------------
 }
 

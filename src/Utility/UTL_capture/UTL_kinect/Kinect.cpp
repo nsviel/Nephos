@@ -19,7 +19,14 @@ Kinect::~Kinect(){}
 
 //Main function
 void Kinect::run(){
+  Struct_k4a_device* device = struct_kinect->selected_device;
   //---------------------------
+
+  if(device != nullptr){
+    this->make_k4a_configuration(device);
+    k4a_thread->start_thread(device);
+  }
+
 
   //---------------------------
 }

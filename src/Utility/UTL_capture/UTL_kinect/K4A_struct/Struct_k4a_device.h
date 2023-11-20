@@ -15,7 +15,6 @@ struct Struct_k4a_device{
   int index;
   std::string serial_number;
   k4a::capture* k4a_capture;
-  k4a::device* k4a_device;
 
   Struct_k4a_config config;
   Struct_k4a_color color;
