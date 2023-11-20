@@ -5,6 +5,9 @@
 #include <UTL_specific/common.h>
 
 class GUI;
+class Kinect;
+class Struct_kinect;
+class K4A_device;
 
 
 class GUI_kinect : public BASE_panel
@@ -23,6 +26,10 @@ public:
 
 private:
   GUI* gui;
+  Kinect* kinect;
+  Struct_kinect* struct_kinect;
+  K4A_device* k4a_device;
+
 };
 
 #endif

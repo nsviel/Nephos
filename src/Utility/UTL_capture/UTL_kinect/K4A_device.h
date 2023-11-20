@@ -1,6 +1,8 @@
 #ifndef K4A_DEVICE_H
 #define K4A_DEVICE_H
 
+#include "K4A_struct/Struct_k4a_device.h"
+
 #include <UTL_specific/common.h>
 #include <k4a/k4a.h>
 #include <k4a/k4a.hpp>
@@ -17,15 +19,10 @@ public:
 
 public:
   //Main function
-  void open_selected_device();
   void refresh_device_list();
 
 private:
   Struct_kinect* struct_kinect;
-
-  vector<std::pair<int, string>> connected_device;
-  k4a::device selected_device;
-  int selected_device_idx = -1;
 };
 
 #endif

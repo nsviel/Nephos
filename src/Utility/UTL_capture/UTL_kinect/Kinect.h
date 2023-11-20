@@ -25,6 +25,7 @@ public:
 
   inline K4A_thread* get_k4a_thread(){return k4a_thread;}
   inline K4A_device* get_k4a_device(){return k4a_device;}
+  inline Struct_kinect* get_struct_kinect(){return struct_kinect;}
 
 private:
   Struct_kinect* struct_kinect;
