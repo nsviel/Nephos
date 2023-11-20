@@ -17,7 +17,8 @@
 #include <GUI_widget/GUI_indicator.h>
 #include <GUI_editor/EDI_node.h>
 #include <GUI_data/GUI_database.h>
-#include <GUI_camera/GUI_camera.h>
+#include <GUI_capture/GUI_camera.h>
+#include <GUI_capture/GUI_kinect.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -44,7 +45,8 @@ void TAB_render::create_panels(){
   this->gui_scene = new RND_scene(gui, &gui_render_panel->show_scene, "Scene");
   this->gui_stream = new RND_camera(gui, &gui_render_panel->show_camera, "Camera");
   this->gui_database = new GUI_database(gui, &gui_render_panel->show_database, "Database##4323");
-  this->gui_camera = new GUI_camera(gui, &gui_render_panel->show_capture, "Capture");
+  this->gui_camera = new GUI_camera(gui, &gui_render_panel->show_capture_camera, "Camera");
+  this->gui_kinect = new GUI_kinect(gui, &gui_render_panel->show_capture_kinect, "Kinect");
   this->gui_engine = new RND_engine(gui);
   this->gui_render_menu = new RND_menu(gui);
 
@@ -60,6 +62,7 @@ void TAB_render::draw_panels(){
   gui_object->run_panel();
   gui_set->run_panel();
   gui_camera->run_panel();
+  gui_kinect->run_panel();
   gui_scene->run_panel();
   gui_profiler->run_panel();
   gui_render_option->run_panel();
@@ -76,7 +79,8 @@ void TAB_render::open_panels(){
   ImGui::Checkbox(ICON_FA_REFRESH " Profiler##456", &gui_render_panel->show_profiler);
   ImGui::Checkbox(ICON_FA_CAMERA " Camera##456", &gui_render_panel->show_camera);
   ImGui::Checkbox(ICON_FA_ROAD " Shader##456", &gui_render_panel->show_shader);
-  ImGui::Checkbox(ICON_FA_FILM " Capture##456", &gui_render_panel->show_capture);
+  ImGui::Checkbox(ICON_FA_FILM " Camera##456", &gui_render_panel->show_capture_camera);
+  ImGui::Checkbox(ICON_FA_FILM " Kinect##456", &gui_render_panel->show_capture_kinect);
 
   //---------------------------
 }

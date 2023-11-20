@@ -13,12 +13,6 @@ GUI_kinect::GUI_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   //---------------------------
 
   this->gui = gui;
-  this->gui_image = new GUI_image(gui);
-  this->gui_stream = new GUI_stream(gui);
-  this->utl_device = new V4L2_device();
-  this->utl_capture = new UTL_capture();
-
-  this->stream_node = "";
 
   //---------------------------
 }
@@ -28,16 +22,16 @@ GUI_kinect::~GUI_kinect(){}
 void GUI_kinect::design_panel(){
   //---------------------------
 
-  this->capture_devices();
-  this->capture_command();
+  this->kinect_devices();
+  this->kinect_configuration();
 
   //---------------------------
 }
 
 //Subfunction
-void GUI_kinect::capture_devices(){
+void GUI_kinect::kinect_devices(){
   //---------------------------
-
+/*
   utl_device->find_video_devices();
   vector<Struct_video_device> vec_devices = utl_device->get_vec_video_device();
 
@@ -69,15 +63,12 @@ void GUI_kinect::capture_devices(){
 
     ImGui::EndTable();
   }
-
+*/
   //---------------------------
 }
-void GUI_kinect::capture_command(){
-  ImGuiIO& io = ImGui::GetIO();
+void GUI_kinect::kinect_configuration(){
   //---------------------------
 
-  gui_stream->draw_video(stream_node);
-  //gui_image->draw_image_static("../media/vulkano.jpg");
 
   //---------------------------
 }
