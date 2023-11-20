@@ -1,7 +1,7 @@
 #ifndef K4APOLLINGTHREAD_H
 #define K4APOLLINGTHREAD_H
 
-#include "K4A_struct/Struct_k4a_device.h"
+#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_device.h>
 
 #include <k4a/k4a.hpp>
 #include <functional>

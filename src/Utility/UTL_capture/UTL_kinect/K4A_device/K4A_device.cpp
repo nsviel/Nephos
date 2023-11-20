@@ -1,6 +1,6 @@
 #include "K4A_device.h"
 
-#include "Struct_kinect.h"
+#include <UTL_capture/UTL_kinect/Struct_kinect.h>
 
 
 //Constructor / Destructor
