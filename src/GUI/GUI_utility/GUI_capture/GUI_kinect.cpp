@@ -181,31 +181,31 @@ void GUI_kinect::kinect_configuration(){
     if(ImGui::TreeNode("Color control")){
       //Exposur time
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Exposure Time", &device.config.color.exposure_time_us, 488, 1000000, "%d us");
+      ImGui::SliderInt("Exposure Time", &device.config.color.exposure.value, 488, 1000000, "%d us");
 
       //White Balance
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("White Balance", &device.config.color.white_balance, 2500, 12500, "%d K");
+      ImGui::SliderInt("White Balance", &device.config.color.white_balance.value, 2500, 12500, "%d K");
 
       //Brightness
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Brightness", &device.config.color.brightness, 0, 255, "%d");
+      ImGui::SliderInt("Brightness", &device.config.color.brightness.value, 0, 255, "%d");
 
       //Contrast
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Contrast", &device.config.color.contrast, 0, 10, "%d");
+      ImGui::SliderInt("Contrast", &device.config.color.contrast.value, 0, 10, "%d");
 
       //Saturation
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Saturation", &device.config.color.saturation, 0, 63, "%d");
+      ImGui::SliderInt("Saturation", &device.config.color.saturation.value, 0, 63, "%d");
 
       //Sharpness
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Sharpness", &device.config.color.sharpness, 0, 4, "%d");
+      ImGui::SliderInt("Sharpness", &device.config.color.sharpness.value, 0, 4, "%d");
 
       //Gain
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Gain", &device.config.color.gain, 0, 255, "%d");
+      ImGui::SliderInt("Gain", &device.config.color.gain.value, 0, 255, "%d");
 
 
 
