@@ -36,6 +36,7 @@ private:
   Struct_kinect* struct_kinect;
   K4A_device* k4a_device;
 
+  bool show_capture = false;
 };
 
 #endif

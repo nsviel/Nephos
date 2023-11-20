@@ -1,4 +1,5 @@
 #include "GUI_kinect.h"
+#include "GUI_capture.h"
 
 #include <GUI.h>
 #include <GUI_gpu/GUI_stream.h>
@@ -307,6 +308,6 @@ void GUI_kinect::draw_camera_color(){
   gui_stream->draw_video(color_data, width, height);
 
   color_image.reset();
-
+  
   //---------------------------
 }

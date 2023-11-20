@@ -1,5 +1,5 @@
-#ifndef GUI_KINECT_CAPTURE_H
-#define GUI_KINECT_CAPTURE_H
+#ifndef GUI_CAPTURE_H
+#define GUI_CAPTURE_H
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
@@ -7,21 +7,24 @@
 
 class GUI;
 class GUI_stream;
+class GUI_kinect;
 
 
-class GUI_kinect_capture : public BASE_panel
+class GUI_capture : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_kinect_capture(GUI* gui, bool* show_window, string name);
-  ~GUI_kinect_capture();
+  GUI_capture(GUI* gui, bool* show_window, string name);
+  ~GUI_capture();
 
   //Main function
-  void draw_camera_color(Struct_k4a_device* device);
+  void design_panel();
+  void draw_camera_color();
 
 private:
   GUI* gui;
   GUI_stream* gui_stream;
+  GUI_kinect* gui_kinect;
 };
 
 #endif

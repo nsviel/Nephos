@@ -1,5 +1,5 @@
-#ifndef GUI_CAPTURE_H
-#define GUI_CAPTURE_H
+#ifndef GUI_CAMERA_H
+#define GUI_CAMERA_H
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>

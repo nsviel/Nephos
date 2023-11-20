@@ -1,5 +1,5 @@
-#ifndef GUI_CAMERA_H
-#define GUI_CAMERA_H
+#ifndef GUI_STREAM_H
+#define GUI_STREAM_H
 
 #include <UTL_specific/common.h>
 

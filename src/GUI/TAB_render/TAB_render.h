@@ -18,6 +18,7 @@ class RND_scene;
 class GUI_camera;
 class RND_menu;
 class GUI_kinect;
+class GUI_capture;
 
 
 class TAB_render
@@ -58,6 +59,7 @@ private:
   RND_object* gui_object;
   RND_camera* gui_stream;
   GUI_camera* gui_camera;
+  GUI_capture* gui_capture;
   GUI_kinect* gui_kinect;
   RND_set* gui_set;
 };

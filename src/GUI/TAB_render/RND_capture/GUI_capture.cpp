@@ -1,24 +1,35 @@
-#include "GUI_kinect_capture.h"
+#include "GUI_capture.h"
 
 #include <GUI.h>
 #include <GUI_gpu/GUI_stream.h>
+#include <UTL_capture/UTL_kinect/Struct_kinect.h>
 
 
 //Constructor / Destructor
-GUI_kinect_capture::GUI_kinect_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
-
+/*
   this->gui = gui;
+  this->gui_kinect = gui->get_gui_kinect();
   this->gui_stream = new GUI_stream(gui);
 
   this->item_width = 100;
+*/
+  //---------------------------
+}
+GUI_capture::~GUI_capture(){}
+
+//Main function
+void GUI_capture::design_panel(){
+  //---------------------------
+
+  this->draw_camera_color();
 
   //---------------------------
 }
-GUI_kinect_capture::~GUI_kinect_capture(){}
 
-//Main function
-void GUI_kinect_capture::draw_camera_color(Struct_k4a_device* device){
+void GUI_capture::draw_camera_color(){
+/*  Struct_k4a_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
 
@@ -35,6 +46,6 @@ void GUI_kinect_capture::draw_camera_color(Struct_k4a_device* device){
   gui_stream->draw_video(color_data, width, height);
 
   color_image.reset();
-
+*/
   //---------------------------
 }
