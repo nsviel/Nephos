@@ -26,7 +26,6 @@ public:
   //Subfunction
   void capture_devices();
   void capture_command();
-  void truc();
 
 private:
   GUI_video* gui_video;

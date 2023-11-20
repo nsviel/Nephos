@@ -2,9 +2,9 @@
 #define UTL_CAPTURE_H
 
 #include <UTL_specific/common.h>
-#include <UTL_capture/UTL_kinect/K4A_capture.h>
+#include <UTL_capture/UTL_kinect/Kinect.h>
 
-class K4A_capture;
+class Kinect;
 
 
 class UTL_capture
@@ -16,14 +16,12 @@ public:
 
 public:
   //Main function
-  void truc();
-
-  //Subfunction
-  void machin();
-  void chose();
+  void init();
+  void run();
+  void clean();
 
 private:
-  K4A_capture* k4a_capture;
+  Kinect* kinect;
 };
 
 #endif

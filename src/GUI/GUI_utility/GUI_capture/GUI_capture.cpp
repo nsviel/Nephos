@@ -12,9 +12,9 @@
 GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
+  this->gui = gui;
   this->gui_image = new GUI_image(gui);
   this->gui_video = new GUI_video(gui);
-  this->gui = gui;
   this->utl_device = new UTL_device();
   this->utl_capture = new UTL_capture();
 
@@ -30,8 +30,6 @@ void GUI_capture::design_panel(){
 
   this->capture_devices();
   this->capture_command();
-  this->truc();
-  utl_capture->truc();
 
   //---------------------------
 }
@@ -80,16 +78,6 @@ void GUI_capture::capture_command(){
 
   gui_video->draw_video(stream_node);
   //gui_image->draw_image_static("../media/vulkano.jpg");
-
-  //---------------------------
-}
-void GUI_capture::truc(){
-  //---------------------------
-
-
-
-
-
 
   //---------------------------
 }
