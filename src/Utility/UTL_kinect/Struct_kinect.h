@@ -8,7 +8,7 @@
 #define ID_DEPTH 0x097C
 
 
-struct Struct_kinect_config{
+struct Struct_kinect{
   //---------------------------
 
   bool enable_camera_color = true;

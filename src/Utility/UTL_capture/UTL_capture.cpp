@@ -85,6 +85,7 @@ void UTL_capture::machin(){
 void UTL_capture::chose(){
   //---------------------------
 
-
+  k4a_capture->run();
+  
   //---------------------------
 }
