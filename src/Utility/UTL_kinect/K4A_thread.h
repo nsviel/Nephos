@@ -27,7 +27,6 @@ public:
 private:
   Struct_kinect* struct_kinect;
 
-  std::function<bool(bool)> m_pollFn;
   std::thread thread;
   bool thread_running = false;
 };

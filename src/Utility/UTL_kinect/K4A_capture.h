@@ -2,12 +2,11 @@
 #define K4A_CAPTURE_H
 
 #include <UTL_specific/common.h>
-#include <UTL_kinect/Struct_kinect.h>
-#include <libusb-1.0/libusb.h>
-#include <k4a/k4a.h>
-#include <k4a/k4a.hpp>
 
+class Struct_kinect;
 class K4A_thread;
+class K4A_device;
+
 
 class K4A_capture
 {
@@ -21,22 +20,13 @@ public:
   void run();
 
   //Subfunction
-  void open_selected_device();
-  void refresh_device_list();
-  bool start_camera();
-  void make_k4a_configuration(Struct_kinect* config);
+  void make_k4a_configuration();
+  void start_camera();
 
 private:
   Struct_kinect* struct_kinect;
   K4A_thread* k4a_thread;
-
-  //std::unique_ptr<K4APollingThread> thread_camera_polling;
-  //K4ADataSource<k4a::capture> camera_data_source;
-  vector<std::pair<int, string>> connected_device;
-  k4a::device selected_device;
-  int selected_device_idx = -1;
-  bool camera_started;
-  bool camera_pause;
+  K4A_device* k4a_device;
 };
 
 #endif
