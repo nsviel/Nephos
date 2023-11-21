@@ -1,5 +1,5 @@
-#ifndef STRUCT_INSTANCE_H
-#define STRUCT_INSTANCE_H
+#ifndef STRUCT_VK_INSTANCE_H
+#define STRUCT_VK_INSTANCE_H
 
 #include <VK_struct/Struct_vk_physical_device.h>
 #include <UTL_specific/common.h>

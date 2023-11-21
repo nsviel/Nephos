@@ -4,6 +4,8 @@
 #include <VK_main/Struct_vulkan.h>
 #include <VK_data/VK_buffer.h>
 #include <VK_command/VK_command.h>
+#include <UTL_file/File.h>
+#include <UTL_file/Image.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <image/stb_image.h>
@@ -63,21 +65,14 @@ Struct_vk_image* VK_texture::load_texture_from_bin(string path){
 void VK_texture::create_texture_from_file(Struct_vk_image* image, string path){
   //---------------------------
 
-  //File data
-  int tex_width, tex_height, tex_channel;
-  image->data = stbi_load(path.c_str(), &tex_width, &tex_height, &tex_channel, STBI_rgb_alpha);
-  if(!image->data){
-    throw std::runtime_error("failed to load texture image!");
-  }
+  Struct_image struct_image = image::load_image(path);
 
   //Create vulkan texture
-  image->width = tex_width;
-  image->height = tex_height;
+  image->data = struct_image.buffer;
+  image->width = struct_image.width;
+  image->height = struct_image.height;
   image->format = VK_FORMAT_R8G8B8A8_SRGB;
   this->create_vulkan_texture(image);
-
-  //Clean data
-  stbi_image_free(image->data);
 
   //---------------------------
 }
@@ -98,47 +93,7 @@ void VK_texture::create_texture_from_data(Struct_vk_image* image, uint8_t* data,
 void VK_texture::create_texture_from_bin(Struct_vk_image* image, string path){
   //---------------------------
 
-
-
-    FILE* file = fopen("truc.bin", "rb"); // Open the file for reading in binary mode
-
-    uint8_t* buffer;
-    if (file != NULL) {
-        fseek(file, 0, SEEK_END); // Move the file pointer to the end
-        long fileSize = ftell(file); // Get the file size
-        fseek(file, 0, SEEK_SET); // Move the file pointer back to the beginning
-
-        // Allocate memory to store the file contents as uint8_t
-        buffer = (uint8_t*)malloc(fileSize);
-
-        if (buffer != NULL) {
-            // Read the file contents directly into the uint8_t buffer
-            size_t bytesRead = fread(buffer, 1, fileSize, file);
-
-            if (bytesRead == fileSize) {
-                // Successfully read the file
-                // Use the buffer as needed
-                free(buffer); // Release the allocated memory
-            } else {
-                // Handle error if not all bytes were read
-                fprintf(stderr, "Error reading all bytes from file\n");
-                exit(0);
-            }
-        } else {
-            // Handle error if memory allocation fails
-            fprintf(stderr, "Error allocating memory\n");
-            exit(0);
-        }
-
-        fclose(file); // Close the file
-    } else {
-        // Handle error if file cannot be opened
-        fprintf(stderr, "Error opening file for reading: %s\n", "truc.bin");
-        exit(0);
-    }
-
-
-    image->data = buffer;
+  image->data = file::load_file_binary("truc.bin");
 
   //Image parameters
   image->width = struct_vulkan->window.extent.width;

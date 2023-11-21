@@ -1,5 +1,5 @@
-#ifndef STRUCT_WINDOW_H
-#define STRUCT_WINDOW_H
+#ifndef STRUCT_VK_WINDOW_H
+#define STRUCT_VK_WINDOW_H
 
 #include <UTL_specific/common.h>
 

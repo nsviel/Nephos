@@ -1,5 +1,5 @@
-#ifndef STRUCT_ATTACHMENT_H
-#define STRUCT_ATTACHMENT_H
+#ifndef STRUCT_VK_ATTACHMENT_H
+#define STRUCT_VK_ATTACHMENT_H
 
 #include <UTL_specific/common.h>
 

@@ -1,5 +1,5 @@
-#ifndef STRUCT_COMMAND_H
-#define STRUCT_COMMAND_H
+#ifndef STRUCT_VK_COMMAND_H
+#define STRUCT_VK_COMMAND_H
 
 #include <UTL_specific/common.h>
 

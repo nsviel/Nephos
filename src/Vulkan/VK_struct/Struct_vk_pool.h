@@ -1,5 +1,5 @@
-#ifndef STRUCT_POOL_H
-#define STRUCT_POOL_H
+#ifndef STRUCT_VK_POOL_H
+#define STRUCT_VK_POOL_H
 
 #include <UTL_specific/common.h>
 

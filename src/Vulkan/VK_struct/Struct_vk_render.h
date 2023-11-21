@@ -1,5 +1,5 @@
-#ifndef STRUCT_RENDER_H
-#define STRUCT_RENDER_H
+#ifndef STRUCT_VK_RENDER_H
+#define STRUCT_VK_RENDER_H
 
 #include <UTL_specific/common.h>
 

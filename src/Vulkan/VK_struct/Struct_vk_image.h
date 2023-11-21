@@ -1,5 +1,5 @@
-#ifndef STRUCT_IMAGE_H
-#define STRUCT_IMAGE_H
+#ifndef STRUCT_VK_IMAGE_H
+#define STRUCT_VK_IMAGE_H
 
 #include <string>
 #include <vulkan/vulkan.h>

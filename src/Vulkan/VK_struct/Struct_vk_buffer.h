@@ -1,5 +1,5 @@
-#ifndef STRUCT_BUFFER_H
-#define STRUCT_BUFFER_H
+#ifndef STRUCT_VK_BUFFER_H
+#define STRUCT_VK_BUFFER_H
 
 #include <UTL_specific/common.h>
 

@@ -1,5 +1,5 @@
-#ifndef STRUCT_SWAPCHAIN_H
-#define STRUCT_SWAPCHAIN_H
+#ifndef STRUCT_VK_SWAPCHAIN_H
+#define STRUCT_VK_SWAPCHAIN_H
 
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_frame.h>

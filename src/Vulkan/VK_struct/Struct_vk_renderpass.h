@@ -1,5 +1,5 @@
-#ifndef STRUCT_RENDERPASS_H
-#define STRUCT_RENDERPASS_H
+#ifndef STRUCT_VK_RENDERPASS_H
+#define STRUCT_VK_RENDERPASS_H
 
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_command.h>

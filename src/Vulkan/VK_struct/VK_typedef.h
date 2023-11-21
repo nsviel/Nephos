@@ -1,5 +1,5 @@
-#ifndef TYPEDEF_H
-#define TYPEDEF_H
+#ifndef VK_TYPEDEF_H
+#define VK_TYPEDEF_H
 
 #include <UTL_specific/common.h>
 

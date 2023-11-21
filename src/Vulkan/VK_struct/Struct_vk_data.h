@@ -1,5 +1,5 @@
-#ifndef STRUCT_DATA_H
-#define STRUCT_DATA_H
+#ifndef STRUCT_VK_DATA_H
+#define STRUCT_VK_DATA_H
 
 #include <VK_struct/Struct_vk_entity.h>
 #include <VK_struct/Struct_vk_image.h>

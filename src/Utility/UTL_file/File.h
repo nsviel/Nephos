@@ -16,6 +16,7 @@ namespace file{
   void clear_file(std::string path);
   bool is_file_exist(std::string fileName);
   bool is_device_connected(const std::string& devicePath);
+  uint8_t* load_file_binary(std::string path);
 
   //---------------------------
 }

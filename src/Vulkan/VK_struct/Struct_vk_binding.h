@@ -1,5 +1,5 @@
-#ifndef STRUCT_BINDING_H
-#define STRUCT_BINDING_H
+#ifndef STRUCT_VK_BINDING_H
+#define STRUCT_VK_BINDING_H
 
 #include <VK_struct/VK_typedef.h>
 #include <UTL_specific/common.h>

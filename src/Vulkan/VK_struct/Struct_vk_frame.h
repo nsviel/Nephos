@@ -1,5 +1,5 @@
-#ifndef STRUCT_FRAME_H
-#define STRUCT_FRAME_H
+#ifndef STRUCT_VK_FRAME_H
+#define STRUCT_VK_FRAME_H
 
 #include <UTL_specific/common.h>
 #include <VK_struct/Struct_vk_image.h>

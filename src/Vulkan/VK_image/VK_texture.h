@@ -5,6 +5,7 @@
 #include <VK_struct/Struct_vk_entity.h>
 #include <VK_struct/VK_typedef.h>
 #include <UTL_specific/common.h>
+#include <UTL_struct/Struct_image.h>
 
 extern "C" {
 #include <libavcodec/avcodec.h>

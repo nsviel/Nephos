@@ -1,5 +1,5 @@
-#ifndef STRUCT_TIME_H
-#define STRUCT_TIME_H
+#ifndef STRUCT_VK_TIME_H
+#define STRUCT_VK_TIME_H
 
 #include <VK_struct/Struct_vk_physical_device.h>
 #include <UTL_specific/common.h>

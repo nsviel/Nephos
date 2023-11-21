@@ -1,5 +1,5 @@
-#ifndef STRUCT_SYNCHRO_H
-#define STRUCT_SYNCHRO_H
+#ifndef STRUCT_VK_SYNCHRO_H
+#define STRUCT_VK_SYNCHRO_H
 
 #include <UTL_specific/common.h>
 
