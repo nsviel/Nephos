@@ -20,6 +20,8 @@ public:
   void run();
   void clean();
 
+  inline Kinect* get_kinect(){return kinect;}
+
 private:
   Kinect* kinect;
 };

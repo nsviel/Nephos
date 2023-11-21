@@ -7,7 +7,8 @@
 
 class GUI;
 class GUI_stream;
-class CAP_kinect;
+class Kinect;
+class Struct_kinect;
 
 
 class CAP_capture : public BASE_panel
@@ -24,7 +25,8 @@ public:
 private:
   GUI* gui;
   GUI_stream* gui_stream;
-  CAP_kinect* gui_kinect;
+  Kinect* kinect;
+  Struct_kinect* struct_kinect;
 };
 
 #endif

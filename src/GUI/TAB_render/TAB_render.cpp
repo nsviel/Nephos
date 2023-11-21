@@ -65,6 +65,7 @@ void TAB_render::draw_panels(){
   gui_set->run_panel();
   gui_camera->run_panel();
   gui_kinect->run_panel();
+  gui_capture->run_panel();
   gui_scene->run_panel();
   gui_profiler->run_panel();
   gui_render_option->run_panel();

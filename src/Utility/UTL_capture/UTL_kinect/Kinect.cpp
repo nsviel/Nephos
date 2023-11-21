@@ -18,6 +18,12 @@ Kinect::Kinect(){
 Kinect::~Kinect(){}
 
 //Main function
+void Kinect::init(){
+  //---------------------------
+
+
+  //---------------------------
+}
 void Kinect::run(){
   Struct_k4a_device* device = struct_kinect->selected_device;
   if(device == nullptr){return;}

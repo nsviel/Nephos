@@ -2,7 +2,8 @@
 #include "CAP_capture.h"
 
 #include <GUI.h>
-#include <GUI_gpu/GUI_stream.h>
+#include <Utility.h>
+#include <UTL_capture/UTL_capture.h>
 #include <UTL_capture/UTL_kinect/Kinect.h>
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
@@ -12,11 +13,12 @@
 CAP_kinect::CAP_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
-  this->gui = gui;
-  this->kinect = new Kinect();
+  Utility* utility = gui->get_utility();
+  UTL_capture* utl_capture = utility->get_utl_capture();
+
+  this->kinect = utl_capture->get_kinect();
   this->struct_kinect = kinect->get_struct_kinect();
   this->k4a_device = new K4A_device(struct_kinect);
-  this->gui_stream = new GUI_stream(gui);
 
   this->item_width = 100;
 
@@ -31,7 +33,6 @@ void CAP_kinect::design_panel(){
   this->kinect_devices();
   this->configuration_device();
   this->configuration_general();
-  this->draw_camera_color();
 
   //---------------------------
 }
@@ -288,26 +289,5 @@ void CAP_kinect::configuration_general(){
   if(ImGui::Button("Run capture", ImVec2(item_width, 0))){
     kinect->run();
   }
-  //---------------------------
-}
-void CAP_kinect::draw_camera_color(){
-  Struct_k4a_device* device = struct_kinect->selected_device;
-  if(device == nullptr) return;
-  //---------------------------
-
-  if(!device->is_capturing){return;}
-  if(!device->capture->is_valid()){return;}
-  k4a::image color_image = device->capture->get_color_image();
-  //k4a::image color_image = device->capture->get_ir_image();
-  //k4a::image color_image = device->capture->get_depth_image();
-  if(!color_image.is_valid()){return;}
-
-  uint8_t* color_data = color_image.get_buffer();
-  int width = color_image.get_width_pixels();
-  int height = color_image.get_height_pixels();
-  gui_stream->draw_video(color_data, width, height);
-
-  color_image.reset();
-
   //---------------------------
 }

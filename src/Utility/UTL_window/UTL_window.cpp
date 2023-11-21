@@ -103,7 +103,7 @@ bool UTL_window::window_should_close(){
   //---------------------------
 
   bool stop = glfwWindowShouldClose(window);
-  config->run_app = stop;
+  config->run_app = !stop;
 
   //---------------------------
   return stop;

@@ -2,19 +2,23 @@
 
 #include <GUI.h>
 #include <GUI_gpu/GUI_stream.h>
+#include <Utility.h>
+#include <UTL_capture/UTL_capture.h>
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
 
 
 //Constructor / Destructor
 CAP_capture::CAP_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
-/*
+
+  Utility* utility = gui->get_utility();
+  UTL_capture* utl_capture = utility->get_utl_capture();
+
+  this->kinect = utl_capture->get_kinect();
+  this->struct_kinect = kinect->get_struct_kinect();
   this->gui = gui;
-  this->gui_kinect = gui->get_gui_kinect();
   this->gui_stream = new GUI_stream(gui);
 
-  this->item_width = 100;
-*/
   //---------------------------
 }
 CAP_capture::~CAP_capture(){}
@@ -29,7 +33,7 @@ void CAP_capture::design_panel(){
 }
 
 void CAP_capture::draw_camera_color(){
-/*  Struct_k4a_device* device = struct_kinect->selected_device;
+  Struct_k4a_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
 
@@ -46,6 +50,6 @@ void CAP_capture::draw_camera_color(){
   gui_stream->draw_video(color_data, width, height);
 
   color_image.reset();
-*/
+
   //---------------------------
 }

@@ -19,6 +19,7 @@ public:
 
 public:
   //Main function
+  void init();
   void run();
   void loop();
 

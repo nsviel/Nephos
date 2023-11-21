@@ -5,6 +5,7 @@
 
 class Config;
 class UTL_window;
+class UTL_capture;
 
 
 class Utility
@@ -21,9 +22,11 @@ public:
   void exit();
 
   inline UTL_window* get_utl_window(){return utl_window;}
+  inline UTL_capture* get_utl_capture(){return utl_capture;}
 
 private:
   UTL_window* utl_window;
+  UTL_capture* utl_capture;
 };
 
 #endif
