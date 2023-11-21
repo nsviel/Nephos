@@ -2,6 +2,7 @@
 #define GUI_STREAM_H
 
 #include <UTL_specific/common.h>
+#include <UTL_struct/Struct_image.h>
 
 class GUI;
 class VK_engine;
@@ -16,10 +17,10 @@ public:
 
 public:
   //Main function
-  void draw_video(uint8_t* data, int width, int height);
+  void draw_video(Struct_image* struct_image);
 
   //Subfunction
-  void convert_data_into_texture(uint8_t* data, int width, int height);
+  void convert_data_into_texture(Struct_image* struct_image);
   void display_frame();
   void restart_video();
 

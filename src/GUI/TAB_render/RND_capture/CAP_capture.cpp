@@ -40,7 +40,13 @@ void CAP_capture::draw_camera_color(){
   //---------------------------
 
   if(device->data.color.buffer == nullptr){return;}
-  gui_stream->draw_video(device->data.color.buffer, device->data.color.width, device->data.color.height);
+
+  Struct_image struct_image;
+  struct_image.buffer = device->data.color.buffer;
+  struct_image.width = device->data.color.width;
+  struct_image.height = device->data.color.height;
+  struct_image.format = "B8G8R8A8_SRGB";
+  gui_stream->draw_video(&struct_image);
 
   //---------------------------
 }
@@ -50,7 +56,13 @@ void CAP_capture::draw_camera_depth(){
   //---------------------------
 
   if(device->data.depth.buffer == nullptr){return;}
-  gui_stream->draw_video(device->data.depth.buffer, device->data.depth.width, device->data.depth.height);
+
+  Struct_image struct_image;
+  struct_image.buffer = device->data.depth.buffer;
+  struct_image.width = device->data.depth.width;
+  struct_image.height = device->data.depth.height;
+  struct_image.format = "R8G8B8A8_SRGB";
+  gui_stream->draw_video(&struct_image);
 
   //---------------------------
 }

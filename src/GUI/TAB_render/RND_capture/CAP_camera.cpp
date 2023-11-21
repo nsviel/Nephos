@@ -79,10 +79,13 @@ void CAP_camera::capture_command(){
   //---------------------------
 
   v4l2_stream->load_stream(stream_node);
-  uint8_t* data = v4l2_stream->get_frame_data();
-  int width = v4l2_stream->get_frame_width();
-  int height = v4l2_stream->get_frame_height();
-  gui_stream->draw_video(data, width, height);
+
+  Struct_image struct_image;
+  struct_image.buffer = v4l2_stream->get_frame_data();
+  struct_image.width = v4l2_stream->get_frame_width();
+  struct_image.height = v4l2_stream->get_frame_height();
+  struct_image.format = "R8G8B8A8_SRGB";
+  gui_stream->draw_video(&struct_image);
   //gui_image->draw_image_static("../media/vulkano.jpg");
 
   //---------------------------

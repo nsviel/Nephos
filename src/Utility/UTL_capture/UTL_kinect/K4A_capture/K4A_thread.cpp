@@ -56,6 +56,7 @@ void K4A_thread::run_capture(Struct_k4a_device* device){
     device->data.color.buffer = color.get_buffer();
     device->data.color.width = color.get_width_pixels();
     device->data.color.height = color.get_height_pixels();
+    device->data.color.format = "B8G8R8A8_SRGB";
     color.reset();
 
     //Depth

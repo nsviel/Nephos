@@ -2,14 +2,16 @@
 #define STRUCT_K4A_DATA_H
 
 #include <k4a/k4a.hpp>
+#include <string>
 
 
 struct K4A_image{
   //---------------------------
 
-  uint8_t* buffer;
   int width;
   int height;
+  uint8_t* buffer;
+  std::string format;
 
   //---------------------------
 };

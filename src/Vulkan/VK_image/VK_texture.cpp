@@ -184,6 +184,9 @@ VkFormat VK_texture::find_texture_format(Struct_image* image){
   if(image->format == "R8G8B8A8_SRGB"){
     format = VK_FORMAT_R8G8B8A8_SRGB;
   }
+  else if(image->format == "B8G8R8A8_SRGB"){
+    format = VK_FORMAT_B8G8R8A8_SRGB;
+  }
 
   //---------------------------
   return format;

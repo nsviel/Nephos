@@ -20,11 +20,11 @@ GUI_stream::GUI_stream(GUI* gui){
 GUI_stream::~GUI_stream(){}
 
 //Main function
-void GUI_stream::draw_video(uint8_t* data, int width, int height){
+void GUI_stream::draw_video(Struct_image* struct_image){
   //---------------------------
 
-  if(data != nullptr){
-    this->convert_data_into_texture(data, width, height);
+  if(struct_image->buffer != nullptr){
+    this->convert_data_into_texture(struct_image);
     this->display_frame();
   }
 
@@ -32,22 +32,17 @@ void GUI_stream::draw_video(uint8_t* data, int width, int height){
 }
 
 //Subfunction
-void GUI_stream::convert_data_into_texture(uint8_t* data, int width, int height){
+void GUI_stream::convert_data_into_texture(Struct_image* struct_image){
   //---------------------------
 
   static Struct_vk_image* image = nullptr;
 
   if(image == nullptr){
-    Struct_image struct_image;
-    struct_image.buffer = data;
-    struct_image.width = width;
-    struct_image.height = height;
-    struct_image.format = "R8G8B8A8_SRGB";
-    image = vk_engine->load_texture(&struct_image);
+    image = vk_engine->load_texture(struct_image);
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     this->texture = reinterpret_cast<ImTextureID>(descriptor);
   }else{
-    vk_engine->update_texture_from_data(image, data);
+    vk_engine->update_texture_from_data(image, struct_image->buffer);
   }
 
   //---------------------------
