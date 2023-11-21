@@ -20,7 +20,11 @@ public:
 
   //Main function
   void design_panel();
+
+  //Subfunction
   void draw_camera_color();
+  void draw_camera_depth();
+  void draw_camera_ir();
 
 private:
   GUI* gui;
