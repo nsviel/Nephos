@@ -102,9 +102,11 @@ bool UTL_window::check_for_resizing(){
 bool UTL_window::window_should_close(){
   //---------------------------
 
-  return glfwWindowShouldClose(window);
+  bool stop = glfwWindowShouldClose(window);
+  config->run_app = stop;
 
   //---------------------------
+  return stop;
 }
 
 //Mouse position
