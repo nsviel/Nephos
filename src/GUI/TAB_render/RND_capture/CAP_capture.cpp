@@ -28,6 +28,7 @@ void CAP_capture::design_panel(){
   //---------------------------
 
   this->draw_camera_color();
+  //this->draw_camera_depth();
 
   //---------------------------
 }
@@ -38,17 +39,8 @@ void CAP_capture::draw_camera_color(){
   if(device == nullptr) return;
   //---------------------------
 
-  if(!device->is_capturing){return;}
-  if(!device->capture->is_valid()){return;}
-  k4a::image color_image = device->capture->get_color_image();
-  if(!color_image.is_valid()){return;}
-
-  uint8_t* color_data = color_image.get_buffer();
-  int width = color_image.get_width_pixels();
-  int height = color_image.get_height_pixels();
-  gui_stream->draw_video(color_data, width, height);
-
-  color_image.reset();
+  if(device->data.color.buffer == nullptr){return;}
+  gui_stream->draw_video(device->data.color.buffer, device->data.color.width, device->data.color.height);
 
   //---------------------------
 }
@@ -57,17 +49,8 @@ void CAP_capture::draw_camera_depth(){
   if(device == nullptr) return;
   //---------------------------
 
-  if(!device->is_capturing){return;}
-  if(!device->capture->is_valid()){return;}
-  k4a::image color_image = device->capture->get_depth_image();
-  if(!color_image.is_valid()){return;}
-
-  uint8_t* color_data = color_image.get_buffer();
-  int width = color_image.get_width_pixels();
-  int height = color_image.get_height_pixels();
-  gui_stream->draw_video(color_data, width, height);
-
-  color_image.reset();
+  if(device->data.depth.buffer == nullptr){return;}
+  gui_stream->draw_video(device->data.depth.buffer, device->data.depth.width, device->data.depth.height);
 
   //---------------------------
 }
@@ -75,7 +58,7 @@ void CAP_capture::draw_camera_ir(){
   Struct_k4a_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
-
+/*
   if(!device->is_capturing){return;}
   if(!device->capture->is_valid()){return;}
   k4a::image color_image = device->capture->get_ir_image();
@@ -87,6 +70,6 @@ void CAP_capture::draw_camera_ir(){
   gui_stream->draw_video(color_data, width, height);
 
   color_image.reset();
-
+*/
   //---------------------------
 }

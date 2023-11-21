@@ -4,14 +4,23 @@
 #include <k4a/k4a.hpp>
 
 
+struct K4A_image{
+  //---------------------------
+
+  uint8_t* buffer;
+  int width;
+  int height;
+
+  //---------------------------
+};
+
 struct Struct_k4a_data{
   //---------------------------
 
-  uint8_t* color;
-  uint8_t* depth;
-  uint8_t* ir;
-  int width;
-  int height;
+  k4a::capture* capture = nullptr;
+  K4A_image color;
+  K4A_image depth;
+  K4A_image ir;
 
   //---------------------------
 };

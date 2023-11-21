@@ -14,11 +14,8 @@ struct Struct_k4a_device{
   //---------------------------
 
   int index;
-  bool is_capturing = false;
   float temperature = 0;
   std::string serial_number;
-  k4a::capture* capture = nullptr;
-  k4a::device* device = nullptr;
 
   Struct_k4a_config config;
   Struct_k4a_color color;
