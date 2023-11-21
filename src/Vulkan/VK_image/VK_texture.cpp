@@ -77,6 +77,17 @@ Struct_vk_image* VK_texture::load_texture_from_bin(string path){
   //---------------------------
   return image;
 }
+void VK_texture::update_texture_from_data(Struct_vk_image* image, uint8_t* data){
+  //---------------------------
+
+  //Frame data
+  image->data = data;
+
+  //Create vulkan texture
+  this->update_vulkan_texture(image);
+
+  //---------------------------
+}
 
 //Texture cleaning
 void VK_texture::clean_texture(Struct_vk_entity* data){
@@ -95,19 +106,6 @@ void VK_texture::clean_textures(){
   for(int i=0; i<struct_vulkan->data.vec_texture.size(); i++){
     vk_image->clean_image(struct_vulkan->data.vec_texture[i]);
   }
-
-  //---------------------------
-}
-
-//Update
-void VK_texture::update_texture_from_data(Struct_vk_image* image, uint8_t* data){
-  //---------------------------
-
-  //Frame data
-  image->data = data;
-
-  //Create vulkan texture
-  this->update_vulkan_texture(image);
 
   //---------------------------
 }
@@ -220,31 +218,11 @@ void VK_texture::copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer){
 
   //---------------------------
 }
-void VK_texture::check_frame_format(AVFrame* frame){
+VkFormat VK_texture::retrieve_vk_format(string name){
   //---------------------------
 
-  switch(frame->format){
-    case AV_PIX_FMT_YUV420P:
-      say("AV_PIX_FMT_YUV420P");
-      break;
-    case AV_PIX_FMT_YUV422P:
-      say("AV_PIX_FMT_YUV422P");
-      break;
-    case AV_PIX_FMT_YUV444P:
-      say("AV_PIX_FMT_YUV444P");
-      break;
-    case AV_PIX_FMT_YUYV422:
-      say("AV_PIX_FMT_YUYV422");
-      break;
-    case AV_PIX_FMT_RGB24:
-      say("AV_PIX_FMT_RGB24");
-      break;
-    case AV_PIX_FMT_RGBA:
-      say("AV_PIX_FMT_RGBA");
-      break;
-    default:
-      say("format not found");
-      break;
+  if(name == "R8G8B8A8_SRGB"){
+    return VK_FORMAT_R8G8B8A8_SRGB;
   }
 
   //---------------------------

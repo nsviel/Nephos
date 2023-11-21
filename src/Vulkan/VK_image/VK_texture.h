@@ -43,7 +43,7 @@ public:
   void update_vulkan_texture(Struct_vk_image* image);
   void copy_buffer_to_image(Struct_vk_image* image, VkBuffer buffer);
   void copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer);
-  void check_frame_format(AVFrame* frame);
+  VkFormat retrieve_vk_format(string name);
 
 private:
   Struct_vulkan* struct_vulkan;
