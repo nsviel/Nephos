@@ -1,15 +1,17 @@
 #include "PSR_shader.h"
 
 #include <Engine.h>
+#include <Utility.h>
 #include <UTL_window/UTL_window.h>
 
 
 PSR_shader::PSR_shader(Engine* engine){
   //---------------------------
 
-  this->camera = engine->get_camera();
-  this->utl_window = engine->get_ele_window();
+  Utility* utility = engine->get_utility();
 
+  this->camera = engine->get_camera();
+  this->utl_window = utility->get_utl_window();
   this->psr_param = new PSR_param();
 
   //---------------------------

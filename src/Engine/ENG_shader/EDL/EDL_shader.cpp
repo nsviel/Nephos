@@ -2,14 +2,17 @@
 
 #include <Engine.h>
 #include <ENG_camera/Struct_camera.h>
+#include <Utility.h>
 #include <UTL_window/UTL_window.h>
 
 
 EDL_shader::EDL_shader(Engine* engine){
   //---------------------------
 
+  Utility* utility = engine->get_utility();
+
   this->camera = engine->get_camera();
-  this->utl_window = engine->get_ele_window();
+  this->utl_window = utility->get_utl_window();
   this->edl_param = new EDL_param();
 
   //---------------------------

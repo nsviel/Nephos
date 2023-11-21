@@ -3,7 +3,7 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <UTL_window/UTL_window.h>
+#include <Utility.h>
 #include <iostream>
 
 
@@ -12,9 +12,9 @@ APP_main::APP_main(){
   //---------------------------
 
   this->config = new Config();
-  this->utl_window = new UTL_window(config);
-  this->engine = new Engine(utl_window);
-  this->gui = new GUI(utl_window, engine);
+  this->utility = new Utility(config);
+  this->engine = new Engine(utility);
+  this->gui = new GUI(utility, engine);
 
   //---------------------------
 }
@@ -35,7 +35,7 @@ void APP_main::run(){
 void APP_main::init(){
   //---------------------------
 
-  utl_window->create_window();
+  utility->init();
   engine->init();
   gui->init();
 
@@ -43,12 +43,12 @@ void APP_main::init(){
 }
 void APP_main::loop(){
   //---------------------------
-
+//!utl_window->window_should_close()
   auto start_time = std::chrono::steady_clock::now();
-  while(!utl_window->window_should_close()){
+  while(config->run_app){
     gui->loop();
     engine->loop();
-    utl_window->manage_input();
+    utility->loop();
   }
   engine->wait();
   gui->wait();
@@ -60,7 +60,7 @@ void APP_main::end(){
 
   gui->exit();
   engine->exit();
-  utl_window->destroy_window();
+  utility->exit();
 
   //---------------------------
 }

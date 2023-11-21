@@ -2,21 +2,22 @@
 #include "GUI_renderpass.h"
 
 #include <GUI.h>
+#include <Engine.h>
+#include <Utility.h>
 #include <UTL_window/UTL_window.h>
 #include <Vulkan.h>
 #include <VK_main/VK_engine.h>
-
-#include <Engine.h>
 
 
 //Constructor / Destructor
 GUI_render::GUI_render(GUI* gui){
   //---------------------------
 
+  Utility* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
-  this->gui_vulkan = engine->get_eng_vulkan();
-  UTL_window* utl_window = gui->get_ele_window();
+  UTL_window* utl_window = utility->get_utl_window();
 
+  this->gui_vulkan = engine->get_eng_vulkan();
   //this->gui_vulkan = new Vulkan(utl_window);
   this->vk_engine = gui_vulkan->get_vk_engine();
   this->gui_renderpass = new GUI_renderpass(gui_vulkan);

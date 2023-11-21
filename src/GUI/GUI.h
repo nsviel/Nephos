@@ -6,6 +6,7 @@
 
 class Engine;
 class ENG_data;
+class Utility;
 class UTL_window;
 
 class GUI_font;
@@ -21,7 +22,7 @@ class GUI
 {
 public:
   //Constructor / Destructor
-  GUI(UTL_window* utl_window, Engine* engine);
+  GUI(Utility* utility, Engine* engine);
   ~GUI();
 
 public:
@@ -34,8 +35,8 @@ public:
   //Subfunction
   void docker_space_main();
 
+  inline Utility* get_utility(){return utility;}
   inline Engine* get_engine(){return engine;}
-  inline UTL_window* get_ele_window(){return utl_window;}
 
   inline GUI_control* get_gui_control(){return gui_control;}
   inline GUI_style* get_gui_style(){return gui_style;}
@@ -46,8 +47,9 @@ public:
 private:
   Engine* engine;
   ENG_data* eng_data;
-  UTL_window* utl_window;
+  Utility* utility;
 
+  UTL_window* utl_window;
   GUI_control* gui_control;
   GUI_style* gui_style;
   GUI_gpu* gui_gpu;

@@ -1,24 +1,27 @@
 #include "RND_engine.h"
 #include "RND_control.h"
-#include <UTL_window/UTL_window.h>
+
 #include <GUI.h>
+#include <Engine.h>
+#include <Vulkan.h>
+#include <Utility.h>
+#include <VK_main/VK_imgui.h>
+#include <UTL_window/UTL_window.h>
 #include <image/IconsFontAwesome5.h>
 #include <GUI_gpu/GUI_image.h>
 
-#include <Engine.h>
-#include <Vulkan.h>
-#include <VK_main/VK_imgui.h>
 
 //Constructor / Destructor
 RND_engine::RND_engine(GUI* gui){
   //---------------------------
 
-  this->utl_window = gui->get_ele_window();
-  this->gui_control = new RND_control(gui);
-  this->gui_image = new GUI_image(gui);
-
+  Utility* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
+
+  this->utl_window = utility->get_utl_window();
+  this->gui_control = new RND_control(gui);
+  this->gui_image = new GUI_image(gui);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
 
   //---------------------------

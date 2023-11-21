@@ -2,6 +2,7 @@
 
 #include <GUI.h>
 #include <Engine.h>
+#include <Utility.h>
 #include <UTL_window/UTL_window.h>
 #include <GUI_tab/GUI_tab.h>
 
@@ -10,8 +11,10 @@
 GUI_control::GUI_control(GUI* gui){
   //---------------------------
 
+  Utility* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
-  this->utl_window = engine->get_ele_window();
+
+  this->utl_window = utility->get_utl_window();
   this->gui_tab = gui->get_gui_tab();
 
   //---------------------------

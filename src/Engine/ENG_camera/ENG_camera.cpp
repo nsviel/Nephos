@@ -5,17 +5,20 @@
 #include "Projection/CAM_proj.h"
 
 #include <Engine.h>
+#include <Utility.h>
 
 
 //Constructor / Destructor
 ENG_camera::ENG_camera(Engine* engine){
   //---------------------------
 
+  Utility* utility = engine->get_utility();
+
   this->camera = new Struct_camera();
-  this->cam_arcball = new CAM_arcball(engine->get_ele_window());
-  this->cam_fp = new CAM_first_person(engine->get_ele_window());
-  this->cam_zoom = new CAM_zoom(engine->get_ele_window());
-  this->cam_proj = new CAM_proj(engine->get_ele_window());
+  this->cam_arcball = new CAM_arcball(utility->get_utl_window());
+  this->cam_fp = new CAM_first_person(utility->get_utl_window());
+  this->cam_zoom = new CAM_zoom(utility->get_utl_window());
+  this->cam_proj = new CAM_proj(utility->get_utl_window());
 
   this->arcball_origin = vec3(0, 0, 0);
 

@@ -2,6 +2,7 @@
 
 #include <GUI.h>
 #include <Engine.h>
+#include <Utility.h>
 #include <UTL_window/UTL_window.h>
 #include <ENG_data/ENG_data.h>
 #include <UTL_function/fct_math.h>
@@ -15,10 +16,12 @@
 RND_control::RND_control(GUI* gui){
   //---------------------------
 
+  Utility* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
+
   this->engine = gui->get_engine();
-  this->utl_window = engine->get_ele_window();
+  this->utl_window = utility->get_utl_window();
   this->camera = engine->get_camera();
   this->eng_camera = engine->get_eng_camera();
   this->eng_scene = eng_data->get_eng_scene();

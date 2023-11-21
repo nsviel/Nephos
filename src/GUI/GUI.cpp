@@ -1,6 +1,7 @@
 #include "GUI.h"
 
 #include <Engine.h>
+#include <Utility.h>
 #include <UTL_window/UTL_window.h>
 #include <GUI_gpu/GUI_gpu.h>
 #include <GUI_tab/GUI_tab.h>
@@ -12,11 +13,12 @@
 
 
 //Constructor / Destructor
-GUI::GUI(UTL_window* utl_window, Engine* engine){
+GUI::GUI(Utility* utility, Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->utl_window = utl_window;
+  this->utility = utility;
+  this->utl_window = utility->get_utl_window();
 
   this->gui_render = new GUI_render(this);
   this->gui_style = new GUI_style(this);

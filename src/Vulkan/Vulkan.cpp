@@ -1,5 +1,6 @@
 #include "Vulkan.h"
 
+#include <Utility.h>
 #include <UTL_window/UTL_window.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_imgui.h>
@@ -7,10 +8,10 @@
 
 
 //Constructor / Destructor
-Vulkan::Vulkan(UTL_window* window){
+Vulkan::Vulkan(Utility* utility){
   //---------------------------
 
-  this->utl_window = window;
+  this->utl_window = utility->get_utl_window();
   this->struct_vulkan = new Struct_vulkan();
   this->vk_engine = new VK_engine(struct_vulkan);
   this->vk_imgui = new VK_imgui(struct_vulkan);
