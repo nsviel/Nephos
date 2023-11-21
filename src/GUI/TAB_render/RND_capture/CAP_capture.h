@@ -28,9 +28,10 @@ public:
 
 private:
   GUI* gui;
-  GUI_stream* gui_stream;
   Kinect* kinect;
   Struct_kinect* struct_kinect;
+
+  vector<GUI_stream*> vec_gui_stream;
 };
 
 #endif

@@ -17,7 +17,10 @@ CAP_capture::CAP_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
   this->kinect = utl_capture->get_kinect();
   this->struct_kinect = kinect->get_struct_kinect();
   this->gui = gui;
-  this->gui_stream = new GUI_stream(gui);
+
+  this->vec_gui_stream.push_back(new GUI_stream(gui));
+  this->vec_gui_stream.push_back(new GUI_stream(gui));
+  this->vec_gui_stream.push_back(new GUI_stream(gui));
 
   //---------------------------
 }
@@ -27,8 +30,8 @@ CAP_capture::~CAP_capture(){}
 void CAP_capture::design_panel(){
   //---------------------------
 
-  this->draw_camera_color();
-  //this->draw_camera_depth();
+  //this->draw_camera_color();
+  this->draw_camera_depth();
 
   //---------------------------
 }
@@ -46,7 +49,7 @@ void CAP_capture::draw_camera_color(){
   struct_image.width = device->data.color.width;
   struct_image.height = device->data.color.height;
   struct_image.format = "B8G8R8A8_SRGB";
-  gui_stream->draw_video(&struct_image);
+  vec_gui_stream[0]->draw_video(&struct_image);
 
   //---------------------------
 }
@@ -61,8 +64,8 @@ void CAP_capture::draw_camera_depth(){
   struct_image.buffer = device->data.depth.buffer;
   struct_image.width = device->data.depth.width;
   struct_image.height = device->data.depth.height;
-  struct_image.format = "R8G8B8A8_SRGB";
-  gui_stream->draw_video(&struct_image);
+  struct_image.format = "R16UI";
+  vec_gui_stream[1]->draw_video(&struct_image);
 
   //---------------------------
 }

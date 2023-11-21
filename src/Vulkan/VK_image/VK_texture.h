@@ -41,6 +41,7 @@ public:
   void copy_buffer_to_image(Struct_vk_image* image, VkBuffer buffer);
   void copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer);
   VkFormat find_texture_format(Struct_image* image);
+  VkImageAspectFlags find_texture_aspect(Struct_image* image);
 
 private:
   Struct_vulkan* struct_vulkan;
