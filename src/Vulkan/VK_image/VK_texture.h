@@ -28,10 +28,7 @@ public:
 
 public:
   //Main functions
-  Struct_vk_image* load_texture_from_file(string path);
-  Struct_vk_image* load_texture_from_data(uint8_t* data, int width, int height);
-  Struct_vk_image* load_texture_from_bin(string path);
-
+  Struct_vk_image* load_texture(Struct_image* struct_image);
   void update_texture_from_data(Struct_vk_image* image, uint8_t* data);
 
   //Texture cleaning
@@ -43,7 +40,7 @@ public:
   void update_vulkan_texture(Struct_vk_image* image);
   void copy_buffer_to_image(Struct_vk_image* image, VkBuffer buffer);
   void copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer);
-  VkFormat retrieve_vk_format(string name);
+  VkFormat find_texture_format(Struct_image* image);
 
 private:
   Struct_vulkan* struct_vulkan;

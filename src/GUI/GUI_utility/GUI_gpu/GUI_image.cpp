@@ -3,6 +3,8 @@
 #include <GUI.h>
 #include <Vulkan.h>
 #include <GUI_main/GUI_render/GUI_render.h>
+#include <UTL_file/Image.h>
+#include <UTL_struct/Struct_image.h>
 
 
 //Constructor / Destructor
@@ -49,7 +51,9 @@ void GUI_image::load_image_static(string path){
   //---------------------------
 
   if(image == nullptr){
-    image = vk_engine->load_texture_from_file(path);
+    Struct_image struct_image = image::load_image(path);
+    struct_image.format = "R8G8B8A8_SRGB";
+    image = vk_engine->load_texture(&struct_image);
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     this->texture = reinterpret_cast<ImTextureID>(descriptor);
   }
@@ -60,7 +64,9 @@ void GUI_image::load_image_dynamic(string path){
   static Struct_vk_image* image;
   //---------------------------
 
-  image = vk_engine->load_texture_from_file(path);
+  Struct_image struct_image = image::load_image(path);
+  struct_image.format = "R8G8B8A8_SRGB";
+  image = vk_engine->load_texture(&struct_image);
   VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   this->texture = reinterpret_cast<ImTextureID>(descriptor);
 
@@ -70,7 +76,9 @@ void GUI_image::load_image_bin(string path){
   static Struct_vk_image* image;
   //---------------------------
 
-  image = vk_engine->load_texture_from_bin(path);
+  Struct_image struct_image = image::load_image(path);
+  struct_image.format = "R8G8B8A8_SRGB";
+  image = vk_engine->load_texture(&struct_image);
   VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   this->texture = reinterpret_cast<ImTextureID>(descriptor);
 

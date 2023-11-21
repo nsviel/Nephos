@@ -27,7 +27,7 @@ struct Struct_vk_image{
   VkImageLayout layout;
 
   //Other info
-  VkFormat format;
+  VkFormat format = VK_FORMAT_R8G8B8A8_SRGB;
   VkDeviceMemory mem;
   VkMemoryPropertyFlags properties;
   VkSampler sampler;

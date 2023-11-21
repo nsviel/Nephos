@@ -5,6 +5,7 @@
 #include <VK_struct/Struct_vk_entity.h>
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
+#include <UTL_struct/Struct_image.h>
 
 class Struct_vulkan;
 class VK_surface;
@@ -51,9 +52,7 @@ public:
   void remove_object_in_engine(Object* object);
 
   //Texture function
-  Struct_vk_image* load_texture_from_file(string path);
-  Struct_vk_image* load_texture_from_data(uint8_t* data, int width, int height);
-  Struct_vk_image* load_texture_from_bin(string path);
+  Struct_vk_image* load_texture(Struct_image* image);
   void update_texture_from_data(Struct_vk_image* image, uint8_t* data);
 
   //Renderpass function

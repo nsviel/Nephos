@@ -22,56 +22,15 @@ VK_texture::VK_texture(Struct_vulkan* struct_vulkan){
 VK_texture::~VK_texture(){}
 
 //Main function
-Struct_vk_image* VK_texture::load_texture_from_file(string path){
+Struct_vk_image* VK_texture::load_texture(Struct_image* struct_image){
   //---------------------------
 
   Struct_vk_image* image = new Struct_vk_image();
-  Struct_image struct_image = image::load_image(path);
-
-  //Create vulkan texture
-  image->data = struct_image.buffer;
-  image->width = struct_image.width;
-  image->height = struct_image.height;
-  image->format = VK_FORMAT_R8G8B8A8_SRGB;
+  image->data = struct_image->buffer;
+  image->width = struct_image->width;
+  image->height = struct_image->height;
+  image->format = find_texture_format(struct_image);
   this->create_vulkan_texture(image);
-
-  struct_vulkan->data.vec_texture.push_back(image);
-
-  //---------------------------
-  return image;
-}
-Struct_vk_image* VK_texture::load_texture_from_data(uint8_t* data, int width, int height){
-  //---------------------------
-
-  Struct_vk_image* image = new Struct_vk_image();
-  //Frame data
-  image->data = data;
-  image->width = width;
-  image->height = height;
-  image->format = VK_FORMAT_R8G8B8A8_SRGB;
-
-  //Create vulkan texture
-  this->create_vulkan_texture(image);
-
-  struct_vulkan->data.vec_texture.push_back(image);
-
-  //---------------------------
-  return image;
-}
-Struct_vk_image* VK_texture::load_texture_from_bin(string path){
-  //---------------------------
-
-  Struct_vk_image* image = new Struct_vk_image();
-  image->data = file::load_file_binary("truc.bin");
-
-  //Image parameters
-  image->width = struct_vulkan->window.extent.width;
-  image->height = struct_vulkan->window.extent.height;
-  image->format = VK_FORMAT_R8G8B8A8_SRGB;
-
-  //Create vulkan texture
-  this->create_vulkan_texture(image);
-
   struct_vulkan->data.vec_texture.push_back(image);
 
   //---------------------------
@@ -218,12 +177,14 @@ void VK_texture::copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer){
 
   //---------------------------
 }
-VkFormat VK_texture::retrieve_vk_format(string name){
+VkFormat VK_texture::find_texture_format(Struct_image* image){
+  VkFormat format;
   //---------------------------
 
-  if(name == "R8G8B8A8_SRGB"){
-    return VK_FORMAT_R8G8B8A8_SRGB;
+  if(image->format == "R8G8B8A8_SRGB"){
+    format = VK_FORMAT_R8G8B8A8_SRGB;
   }
 
   //---------------------------
+  return format;
 }

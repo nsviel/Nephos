@@ -185,26 +185,10 @@ void VK_engine::remove_object_in_engine(Object* object){
 }
 
 //Texture function
-Struct_vk_image* VK_engine::load_texture_from_file(string path){
+Struct_vk_image* VK_engine::load_texture(Struct_image* image){
   //---------------------------
 
-  Struct_vk_image* texture = vk_texture->load_texture_from_file(path);
-
-  //---------------------------
-  return texture;
-}
-Struct_vk_image* VK_engine::load_texture_from_data(uint8_t* data, int width, int height){
-  //---------------------------
-
-  Struct_vk_image* texture = vk_texture->load_texture_from_data(data, width, height);
-
-  //---------------------------
-  return texture;
-}
-Struct_vk_image* VK_engine::load_texture_from_bin(string path){
-  //---------------------------
-
-  Struct_vk_image* texture = vk_texture->load_texture_from_bin(path);
+  Struct_vk_image* texture = vk_texture->load_texture(image);
 
   //---------------------------
   return texture;
