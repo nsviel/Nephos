@@ -29,10 +29,7 @@ Struct_vk_image* VK_texture::load_texture_from_file(string path){
   //---------------------------
 
   Struct_vk_image* image = new Struct_vk_image();
-
   this->create_texture_from_file(image, path);
-  vk_image->create_image_view(image);
-  vk_image->create_image_sampler(image);
 
   struct_vulkan->data.vec_texture.push_back(image);
 
@@ -45,7 +42,6 @@ Struct_vk_image* VK_texture::load_texture_from_data(uint8_t* data, int width, in
   Struct_vk_image* image = new Struct_vk_image();
   this->create_texture_from_data(image, data, width, height);
 
-
   struct_vulkan->data.vec_texture.push_back(image);
 
   //---------------------------
@@ -56,8 +52,6 @@ Struct_vk_image* VK_texture::load_texture_from_bin(string path){
 
   Struct_vk_image* image = new Struct_vk_image();
   this->create_texture_from_bin(image, path);
-  vk_image->create_image_view(image);
-  vk_image->create_image_sampler(image);
 
   struct_vulkan->data.vec_texture.push_back(image);
 
@@ -76,12 +70,10 @@ void VK_texture::create_texture_from_file(Struct_vk_image* image, string path){
     throw std::runtime_error("failed to load texture image!");
   }
 
-  //Image parameters
+  //Create vulkan texture
   image->width = tex_width;
   image->height = tex_height;
   image->format = VK_FORMAT_R8G8B8A8_SRGB;
-
-  //Create vulkan texture
   this->create_vulkan_texture(image);
 
   //Clean data
