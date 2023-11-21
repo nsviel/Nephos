@@ -4,6 +4,7 @@
 #include <Vulkan.h>
 #include <GUI_style/GUI_font.h>
 #include <GUI_git/GUI_git.h>
+#include <GUI_tab/GUI_menu.h>
 #include <image/IconsFontAwesome5.h>
 #include <TAB_render/TAB_render.h>
 #include <TAB_render/RND_config/RND_panel.h>
@@ -19,6 +20,7 @@ GUI_tab::GUI_tab(GUI* gui){
   this->gui_tab_render = new TAB_render(gui);
   this->gui_tab_dev = new TAB_dev(gui);
   this->gui_git = new GUI_git(gui);
+  this->gui_menu = new GUI_menu(gui);
 
   this->active_tab = "Render";
   this->tab_to_open = "";
@@ -50,73 +52,12 @@ void GUI_tab::run_tab(){
 
   //Draw main menu bar
   ImGui::BeginMainMenuBar();
-  this->menu();
+  gui_menu->menu();
   ImGui::Separator();
   this->tabs();
   ImGui::Dummy(ImVec2(100.0f, 0.0f)); // empty space
   ImGui::EndMainMenuBar();
   this->draw_panels();
-
-  //---------------------------
-}
-
-//Menu function
-void GUI_tab::menu(){
-  //---------------------------
-
-  this->menu_option();
-  this->menu_demo();
-  this->menu_git();
-
-  //---------------------------
-}
-void GUI_tab::menu_option(){
-  ImGuiIO& io = ImGui::GetIO();
-  //---------------------------
-
-  if(ImGui::BeginMenu(ICON_FA_COG, "menu_option")){
-    gui_font->combo_font_gui();
-    gui_font->combo_font_editor();
-
-    GUI_render* gui_render = gui->get_gui_render();
-    Vulkan* gui_vulkan = gui_render->get_gui_vulkan();
-    VK_info* vk_info = gui_vulkan->get_vk_info();
-    float fps = vk_info->get_fps();
-    ImGui::Text("%.2f", fps);
-    ImGui::EndMenu();
-  }
-
-  //---------------------------
-}
-void GUI_tab::menu_demo(){
-  //---------------------------
-
-  if(ImGui::BeginMenu(ICON_FA_BOOK, "menu_demo")){
-    //Demo file
-    if(ImGui::Button("Demo file")){
-      int ret = system("xed ../extern/imgui/core/imgui_demo.cpp");
-    }
-
-    //Demo window
-    ImGui::Checkbox("Demo window", &show_demo);
-    ImGui::EndMenu();
-  }
-
-  if(show_demo){
-    ImGui::ShowDemoWindow(&show_demo);
-  }
-
-  //---------------------------
-}
-void GUI_tab::menu_git(){
-  ImGuiIO& io = ImGui::GetIO();
-  //---------------------------
-
-  if(ImGui::BeginMenu(ICON_FA_GITHUB_ALT, "menu_git")){
-    gui_git->design_panel();
-
-    ImGui::EndMenu();
-  }
 
   //---------------------------
 }

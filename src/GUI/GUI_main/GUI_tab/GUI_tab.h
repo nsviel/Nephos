@@ -5,10 +5,11 @@
 
 class GUI;
 class GUI_font;
+class GUI_menu;
+class GUI_git;
 class TAB_render;
 class TAB_dev;
 class RND_panel;
-class GUI_git;
 
 
 class GUI_tab
@@ -22,13 +23,7 @@ public:
   //Main functions
   void create_panels();
   void run_tab();
-
-  //Menu function
-  void menu();
-  void menu_option();
-  void menu_demo();
-  void menu_git();
-
+  
   //Tab function
   void tabs();
   void draw_panels();
@@ -39,10 +34,11 @@ public:
 
 private:
   GUI* gui;
-  TAB_render* gui_tab_render;
-  TAB_dev* gui_tab_dev;
   GUI_font* gui_font;
   GUI_git* gui_git;
+  GUI_menu* gui_menu;
+  TAB_render* gui_tab_render;
+  TAB_dev* gui_tab_dev;
 
   vector<string> vec_tab;
   string active_tab;
