@@ -30,8 +30,6 @@ void VK_color::create_color_attachment(Struct_vk_image* color){
   color->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
 
   vk_image->create_image(color);
-  vk_image->create_image_view(color);
-  vk_image->create_image_sampler(color);
 
   //---------------------------
 }

@@ -44,8 +44,7 @@ Struct_vk_image* VK_texture::load_texture_from_data(uint8_t* data, int width, in
 
   Struct_vk_image* image = new Struct_vk_image();
   this->create_texture_from_data(image, data, width, height);
-  vk_image->create_image_view(image);
-  vk_image->create_image_sampler(image);
+
 
   struct_vulkan->data.vec_texture.push_back(image);
 
