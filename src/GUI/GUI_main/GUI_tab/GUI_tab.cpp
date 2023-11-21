@@ -2,12 +2,9 @@
 
 #include <GUI.h>
 #include <Vulkan.h>
-#include <GUI_style/GUI_font.h>
-#include <GUI_git/GUI_git.h>
 #include <GUI_tab/GUI_menu.h>
 #include <image/IconsFontAwesome5.h>
 #include <TAB_render/TAB_render.h>
-#include <TAB_render/RND_config/RND_panel.h>
 #include <TAB_dev/TAB_dev.h>
 
 
@@ -15,11 +12,8 @@
 GUI_tab::GUI_tab(GUI* gui){
   //---------------------------
 
-  this->gui = gui;
-  this->gui_font = gui->get_gui_font();
   this->gui_tab_render = new TAB_render(gui);
   this->gui_tab_dev = new TAB_dev(gui);
-  this->gui_git = new GUI_git(gui);
   this->gui_menu = new GUI_menu(gui);
 
   this->active_tab = "Render";

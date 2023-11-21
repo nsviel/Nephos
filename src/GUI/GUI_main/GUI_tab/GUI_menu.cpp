@@ -15,6 +15,8 @@ GUI_menu::GUI_menu(GUI* gui){
   this->gui_font = gui->get_gui_font();
   this->gui_git = new GUI_git(gui);
 
+  this->show_demo = false;
+
   //---------------------------
 }
 GUI_menu::~GUI_menu(){}

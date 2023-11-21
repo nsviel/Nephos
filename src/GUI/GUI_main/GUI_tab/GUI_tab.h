@@ -4,12 +4,9 @@
 #include <UTL_specific/common.h>
 
 class GUI;
-class GUI_font;
 class GUI_menu;
-class GUI_git;
 class TAB_render;
 class TAB_dev;
-class RND_panel;
 
 
 class GUI_tab
@@ -23,7 +20,7 @@ public:
   //Main functions
   void create_panels();
   void run_tab();
-  
+
   //Tab function
   void tabs();
   void draw_panels();
@@ -34,8 +31,6 @@ public:
 
 private:
   GUI* gui;
-  GUI_font* gui_font;
-  GUI_git* gui_git;
   GUI_menu* gui_menu;
   TAB_render* gui_tab_render;
   TAB_dev* gui_tab_dev;
@@ -43,7 +38,6 @@ private:
   vector<string> vec_tab;
   string active_tab;
   string tab_to_open;
-  bool show_demo;
 };
 
 #endif
