@@ -7,11 +7,6 @@
 #include <UTL_file/File.h>
 #include <UTL_file/Image.h>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include <image/stb_image.h>
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include <image/stb_image_write.h>
-
 
 //Constructor / Destructor
 VK_texture::VK_texture(Struct_vulkan* struct_vulkan){
@@ -31,7 +26,14 @@ Struct_vk_image* VK_texture::load_texture_from_file(string path){
   //---------------------------
 
   Struct_vk_image* image = new Struct_vk_image();
-  this->create_texture_from_file(image, path);
+  Struct_image struct_image = image::load_image(path);
+
+  //Create vulkan texture
+  image->data = struct_image.buffer;
+  image->width = struct_image.width;
+  image->height = struct_image.height;
+  image->format = VK_FORMAT_R8G8B8A8_SRGB;
+  this->create_vulkan_texture(image);
 
   struct_vulkan->data.vec_texture.push_back(image);
 
@@ -42,7 +44,14 @@ Struct_vk_image* VK_texture::load_texture_from_data(uint8_t* data, int width, in
   //---------------------------
 
   Struct_vk_image* image = new Struct_vk_image();
-  this->create_texture_from_data(image, data, width, height);
+  //Frame data
+  image->data = data;
+  image->width = width;
+  image->height = height;
+  image->format = VK_FORMAT_R8G8B8A8_SRGB;
+
+  //Create vulkan texture
+  this->create_vulkan_texture(image);
 
   struct_vulkan->data.vec_texture.push_back(image);
 
@@ -53,46 +62,6 @@ Struct_vk_image* VK_texture::load_texture_from_bin(string path){
   //---------------------------
 
   Struct_vk_image* image = new Struct_vk_image();
-  this->create_texture_from_bin(image, path);
-
-  struct_vulkan->data.vec_texture.push_back(image);
-
-  //---------------------------
-  return image;
-}
-
-//Texture creation
-void VK_texture::create_texture_from_file(Struct_vk_image* image, string path){
-  //---------------------------
-
-  Struct_image struct_image = image::load_image(path);
-
-  //Create vulkan texture
-  image->data = struct_image.buffer;
-  image->width = struct_image.width;
-  image->height = struct_image.height;
-  image->format = VK_FORMAT_R8G8B8A8_SRGB;
-  this->create_vulkan_texture(image);
-
-  //---------------------------
-}
-void VK_texture::create_texture_from_data(Struct_vk_image* image, uint8_t* data, int width, int height){
-  //---------------------------
-
-  //Frame data
-  image->data = data;
-  image->width = width;
-  image->height = height;
-  image->format = VK_FORMAT_R8G8B8A8_SRGB;
-
-  //Create vulkan texture
-  this->create_vulkan_texture(image);
-
-  //---------------------------
-}
-void VK_texture::create_texture_from_bin(Struct_vk_image* image, string path){
-  //---------------------------
-
   image->data = file::load_file_binary("truc.bin");
 
   //Image parameters
@@ -103,7 +72,10 @@ void VK_texture::create_texture_from_bin(Struct_vk_image* image, string path){
   //Create vulkan texture
   this->create_vulkan_texture(image);
 
+  struct_vulkan->data.vec_texture.push_back(image);
+
   //---------------------------
+  return image;
 }
 
 //Texture cleaning
@@ -276,83 +248,4 @@ void VK_texture::check_frame_format(AVFrame* frame){
   }
 
   //---------------------------
-}
-void VK_texture::convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B){
-  //---------------------------
-
-  R = Y + 1.13983 * (V - 128);
-  G = Y - 0.39465 * (U - 128) - 0.58060 * (V - 128);
-  B = Y + 2.03211 * (U - 128);
-
-  // Clamp RGB values to [0, 255]
-  R = std::min(255, std::max(0, R));
-  G = std::min(255, std::max(0, G));
-  B = std::min(255, std::max(0, B));
-
-  //---------------------------
-}
-void VK_texture::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride){
-  //---------------------------
-
-  int width = frame->width;
-  int height = frame->height;
-  int Y_stride = frame->linesize[0];
-  int U_stride = frame->linesize[1];
-  int V_stride = frame->linesize[2];
-
-  #pragma omp parallel for
-  for (int y = 0; y < height; y++){
-    for (int x = 0; x < width; x++) {
-      int Y = frame->data[0][y * Y_stride + x];
-      int U = frame->data[1][y / 2 * U_stride + x / 2];
-      int V = frame->data[2][y / 2 * V_stride + x / 2];
-
-      int R, G, B;
-      this->convert_YUV_to_RGB(Y, U, V, R, G, B);
-
-      // Merge channels into VK_FORMAT_R8G8B8A8_UNORM
-      uint8_t* pixel = &output_data[y * output_stride + x * 4];
-      pixel[0] = static_cast<uint8_t>(R);
-      pixel[1] = static_cast<uint8_t>(G);
-      pixel[2] = static_cast<uint8_t>(B);
-      pixel[3] = 255; // Fully opaque
-    }
-  }
-
-  //---------------------------
-}
-VkDeviceSize VK_texture::calculateImageSize(VkFormat format, VkExtent3D extent) {
-    // Get the number of bytes per pixel for the specified format
-    VkFormatProperties formatProperties;
-    vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.struct_device.physical_device, format, &formatProperties);
-
-    if ((formatProperties.linearTilingFeatures & VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT) == 0) {
-        // Format does not support linear tiling, use optimal tiling instead
-        // You may need to handle this differently based on your specific requirements
-        // In this example, we'll assume optimal tiling support
-        vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.struct_device.physical_device, format, &formatProperties);
-    }
-
-    VkDeviceSize bytesPerPixel = 0;
-
-    switch (format) {
-        case VK_FORMAT_R8_UNORM:
-            bytesPerPixel = 1;
-            break;
-        case VK_FORMAT_R8G8_UNORM:
-            bytesPerPixel = 2;
-            break;
-        case VK_FORMAT_R8G8B8A8_UNORM:
-            bytesPerPixel = 4;
-            break;
-        // Add more cases for other formats as needed
-
-        default:
-            throw std::runtime_error("Unsupported image format");
-    }
-
-    // Calculate the size of the image buffer
-    VkDeviceSize imageSize = bytesPerPixel * extent.width * extent.height * extent.depth;
-
-    return imageSize;
 }

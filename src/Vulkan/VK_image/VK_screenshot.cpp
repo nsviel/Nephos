@@ -39,7 +39,7 @@ void VK_screenshot::make_screenshot(Struct_vk_image* image){
   vk_texture->copy_image_to_buffer(image, staging_buffer);
 
   VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
-  VkDeviceSize bufferSize = vk_texture->calculateImageSize(image->format, imageExtent);
+  VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
 
   // 3. Save staging buffer data to file
   void* mappedData;
@@ -71,7 +71,7 @@ void VK_screenshot::save_to_bin(Struct_vk_image* image){
   vk_texture->copy_image_to_buffer(image, staging_buffer);
 
   VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
-  VkDeviceSize bufferSize = vk_texture->calculateImageSize(image->format, imageExtent);
+  VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
 
   // 3. Save staging buffer data to file
   void* mappedData;
@@ -108,4 +108,44 @@ void VK_screenshot::save_to_bin(Struct_vk_image* image){
   vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
 
   //---------------------------
+}
+
+//Subfunction
+VkDeviceSize VK_screenshot::calculate_image_size(VkFormat format, VkExtent3D extent){
+  //---------------------------
+
+  // Get the number of bytes per pixel for the specified format
+  VkFormatProperties formatProperties;
+  vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.struct_device.physical_device, format, &formatProperties);
+
+  if ((formatProperties.linearTilingFeatures & VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT) == 0) {
+    // Format does not support linear tiling, use optimal tiling instead
+    // You may need to handle this differently based on your specific requirements
+    // In this example, we'll assume optimal tiling support
+    vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.struct_device.physical_device, format, &formatProperties);
+  }
+
+  VkDeviceSize bytesPerPixel = 0;
+
+  switch (format) {
+    case VK_FORMAT_R8_UNORM:
+      bytesPerPixel = 1;
+      break;
+    case VK_FORMAT_R8G8_UNORM:
+      bytesPerPixel = 2;
+      break;
+    case VK_FORMAT_R8G8B8A8_UNORM:
+      bytesPerPixel = 4;
+      break;
+    // Add more cases for other formats as needed
+
+    default:
+      throw std::runtime_error("Unsupported image format");
+  }
+
+  // Calculate the size of the image buffer
+  VkDeviceSize imageSize = bytesPerPixel * extent.width * extent.height * extent.depth;
+
+  //---------------------------
+  return imageSize;
 }

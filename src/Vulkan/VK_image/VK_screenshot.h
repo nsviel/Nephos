@@ -31,6 +31,9 @@ public:
   void make_screenshot(Struct_vk_image* image);
   void save_to_bin(Struct_vk_image* image);
 
+  //Subfunction
+  VkDeviceSize calculate_image_size(VkFormat format, VkExtent3D extent);
+  
 private:
   Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;

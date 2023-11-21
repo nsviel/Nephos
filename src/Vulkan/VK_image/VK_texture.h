@@ -34,11 +34,6 @@ public:
 
   void update_texture_from_data(Struct_vk_image* image, uint8_t* data);
 
-  //Texture creation
-  void create_texture_from_file(Struct_vk_image* texture, string path);
-  void create_texture_from_data(Struct_vk_image* image, uint8_t* data, int width, int height);
-  void create_texture_from_bin(Struct_vk_image* image, string path);
-
   //Texture cleaning
   void clean_texture(Struct_vk_entity* object);
   void clean_textures();
@@ -49,9 +44,6 @@ public:
   void copy_buffer_to_image(Struct_vk_image* image, VkBuffer buffer);
   void copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer);
   void check_frame_format(AVFrame* frame);
-  void convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B);
-  void convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride);
-  VkDeviceSize calculateImageSize(VkFormat format, VkExtent3D extent);
 
 private:
   Struct_vulkan* struct_vulkan;
