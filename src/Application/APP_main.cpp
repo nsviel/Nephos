@@ -1,5 +1,5 @@
 #include "APP_main.h"
-#include "../config.h"
+#include "../Config.h"
 
 #include <GUI.h>
 #include <Engine.h>

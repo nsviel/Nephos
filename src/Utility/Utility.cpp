@@ -1,6 +1,6 @@
 #include "Utility.h"
 
-#include <../config.h>
+#include <../Config.h>
 #include <UTL_window/UTL_window.h>
 
 
