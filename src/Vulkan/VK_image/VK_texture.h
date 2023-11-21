@@ -52,9 +52,6 @@ public:
   void convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int output_stride);
   VkDeviceSize calculateImageSize(VkFormat format, VkExtent3D extent);
 
-  void make_screenshot(Struct_vk_image* image);
-  void save_to_bin(Struct_vk_image* image);
-
 private:
   Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;

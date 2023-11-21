@@ -19,6 +19,9 @@ VK_image::~VK_image(){}
 void VK_image::create_image(Struct_vk_image* image){
   //---------------------------
 
+  image->tiling = VK_IMAGE_TILING_OPTIMAL;
+  image->properties = TYP_MEMORY_GPU;
+
   this->create_image_obj(image);
   this->bind_image_to_memory(image);
   this->create_image_view(image);

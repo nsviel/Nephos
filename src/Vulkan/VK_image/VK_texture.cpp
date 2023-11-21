@@ -65,18 +65,6 @@ Struct_vk_image* VK_texture::load_texture_from_bin(string path){
   return image;
 }
 
-void VK_texture::update_texture_from_data(Struct_vk_image* image, uint8_t* data){
-  //---------------------------
-
-  //Frame data
-  image->data = data;
-
-  //Create vulkan texture
-  this->update_vulkan_texture(image);
-
-  //---------------------------
-}
-
 //Texture creation
 void VK_texture::create_texture_from_file(Struct_vk_image* image, string path){
   //---------------------------
@@ -192,6 +180,19 @@ void VK_texture::clean_textures(){
   //---------------------------
 }
 
+//Update
+void VK_texture::update_texture_from_data(Struct_vk_image* image, uint8_t* data){
+  //---------------------------
+
+  //Frame data
+  image->data = data;
+
+  //Create vulkan texture
+  this->update_vulkan_texture(image);
+
+  //---------------------------
+}
+
 //Subfunction
 void VK_texture::create_vulkan_texture(Struct_vk_image* image){
   //---------------------------
@@ -210,10 +211,8 @@ void VK_texture::create_vulkan_texture(Struct_vk_image* image){
   vkUnmapMemory(struct_vulkan->device.device, staging_mem);
 
   //Create image
-  image->tiling = VK_IMAGE_TILING_OPTIMAL;
   image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
-  image->properties = TYP_MEMORY_GPU;
   vk_image->create_image(image);
 
   //Image transition from undefined layout to read only layout
@@ -409,100 +408,4 @@ VkDeviceSize VK_texture::calculateImageSize(VkFormat format, VkExtent3D extent) 
     VkDeviceSize imageSize = bytesPerPixel * extent.width * extent.height * extent.depth;
 
     return imageSize;
-}
-
-void VK_texture::make_screenshot(Struct_vk_image* image){
-  //---------------------------
-
-  //Create stagging buffer
-  VkBuffer staging_buffer;
-  VkDeviceMemory staging_mem;
-  VkDeviceSize tex_size = image->width * image->height * 4;
-  vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
-  vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
-
-  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  this->copy_image_to_buffer(image, staging_buffer);
-
-
-  VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
-  VkDeviceSize bufferSize = calculateImageSize(image->format, imageExtent);
-
-  // 3. Save staging buffer data to file
-  void* mappedData;
-  vkMapMemory(struct_vulkan->device.device, staging_mem, 0, bufferSize, 0, &mappedData);
-  int channels = 4;  // Assuming RGBA data, adjust as needed
-  std::string filename = "output.jpg";  // Adjust the file name and format as needed
-  if (stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
-    throw std::runtime_error("Failed to write PNG file!");
-}
-  vkUnmapMemory(struct_vulkan->device.device, staging_mem);
-
-  //Free memory
-  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
-
-  //---------------------------
-}
-void VK_texture::save_to_bin(Struct_vk_image* image){
-  //---------------------------
-
-  //Create stagging buffer
-  VkBuffer staging_buffer;
-  VkDeviceMemory staging_mem;
-  VkDeviceSize tex_size = image->width * image->height * 4;
-  vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
-  vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
-
-  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  this->copy_image_to_buffer(image, staging_buffer);
-
-
-  VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
-  VkDeviceSize bufferSize = calculateImageSize(image->format, imageExtent);
-
-  // 3. Save staging buffer data to file
-  void* mappedData;
-  void* pixelData = malloc(bufferSize);
-  VkResult mapResult =vkMapMemory(struct_vulkan->device.device, staging_mem, 0, bufferSize, 0, &mappedData);
-//  memcpy(pixelData, mappedData, static_cast<size_t>(tex_size));
-
-if (mapResult == VK_SUCCESS) {
-    // Use mappedData as needed
-
-    FILE* file = fopen("truc.bin", "wb"); // Open the file for writing in binary mode
-    if (file != NULL) {
-        size_t bytesWritten = fwrite(mappedData, 1, bufferSize, file); // Write the data to the file
-
-        if (bytesWritten != bufferSize) {
-            // Handle error if not all bytes were written
-            fprintf(stderr, "Error writing all bytes to file: %s\n", "truc.bin");
-        }
-
-        fclose(file); // Close the file
-    } else {
-        // Handle error if file cannot be opened
-        fprintf(stderr, "Error opening file for writing: %s\n", "truc.bin");
-    }
-
-    vkUnmapMemory(struct_vulkan->device.device, staging_mem);
-} else {
-    // Handle error if memory mapping fails
-    fprintf(stderr, "Error mapping memory: %d\n", mapResult);
-}
-
-
-
-
-
-
-
-
-//Free memory
-vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
-vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
-
-
-
-  //---------------------------
 }
