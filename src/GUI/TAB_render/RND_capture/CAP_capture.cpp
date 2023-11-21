@@ -1,4 +1,4 @@
-#include "GUI_capture.h"
+#include "CAP_capture.h"
 
 #include <GUI.h>
 #include <GUI_gpu/GUI_stream.h>
@@ -6,7 +6,7 @@
 
 
 //Constructor / Destructor
-GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+CAP_capture::CAP_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 /*
   this->gui = gui;
@@ -17,10 +17,10 @@ GUI_capture::GUI_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
 */
   //---------------------------
 }
-GUI_capture::~GUI_capture(){}
+CAP_capture::~CAP_capture(){}
 
 //Main function
-void GUI_capture::design_panel(){
+void CAP_capture::design_panel(){
   //---------------------------
 
   this->draw_camera_color();
@@ -28,7 +28,7 @@ void GUI_capture::design_panel(){
   //---------------------------
 }
 
-void GUI_capture::draw_camera_color(){
+void CAP_capture::draw_camera_color(){
 /*  Struct_k4a_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------

@@ -1,4 +1,4 @@
-#include "GUI_camera.h"
+#include "CAP_camera.h"
 
 #include <GUI_gpu/GUI_stream.h>
 #include <GUI_gpu/GUI_image.h>
@@ -10,7 +10,7 @@
 
 
 //Constructor / Destructor
-GUI_camera::GUI_camera(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+CAP_camera::CAP_camera(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->gui = gui;
@@ -24,10 +24,10 @@ GUI_camera::GUI_camera(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   //---------------------------
 }
-GUI_camera::~GUI_camera(){}
+CAP_camera::~CAP_camera(){}
 
 //Main function
-void GUI_camera::design_panel(){
+void CAP_camera::design_panel(){
   //---------------------------
 
   this->capture_devices();
@@ -37,7 +37,7 @@ void GUI_camera::design_panel(){
 }
 
 //Subfunction
-void GUI_camera::capture_devices(){
+void CAP_camera::capture_devices(){
   //---------------------------
 
   v4l2_device->find_video_devices();
@@ -74,7 +74,7 @@ void GUI_camera::capture_devices(){
 
   //---------------------------
 }
-void GUI_camera::capture_command(){
+void CAP_camera::capture_command(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 

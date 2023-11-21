@@ -10,7 +10,7 @@
 #include "RND_shader/RND_shader.h"
 #include "RND_data/RND_scene.h"
 #include "RND_menu/RND_option.h"
-#include "RND_capture/GUI_capture.h"
+#include "RND_capture/CAP_capture.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -18,8 +18,8 @@
 #include <GUI_widget/GUI_indicator.h>
 #include <GUI_editor/EDI_node.h>
 #include <GUI_data/GUI_database.h>
-#include <RND_capture/GUI_camera.h>
-#include <RND_capture/GUI_kinect.h>
+#include <RND_capture/CAP_camera.h>
+#include <RND_capture/CAP_kinect.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -46,9 +46,9 @@ void TAB_render::create_panels(){
   this->gui_scene = new RND_scene(gui, &gui_render_panel->show_scene, "Scene");
   this->gui_stream = new RND_camera(gui, &gui_render_panel->show_engine_camera, "Camera");
   this->gui_database = new GUI_database(gui, &gui_render_panel->show_database, "Database##4323");
-  this->gui_camera = new GUI_camera(gui, &gui_render_panel->show_camera, "Camera");
-  this->gui_kinect = new GUI_kinect(gui, &gui_render_panel->show_kinect, "Kinect");
-  this->gui_capture = new GUI_capture(gui, &gui_render_panel->show_capture, "Capture");
+  this->gui_camera = new CAP_camera(gui, &gui_render_panel->show_camera, "Camera");
+  this->gui_kinect = new CAP_kinect(gui, &gui_render_panel->show_kinect, "Kinect");
+  this->gui_capture = new CAP_capture(gui, &gui_render_panel->show_capture, "Capture");
   this->gui_engine = new RND_engine(gui);
   this->gui_render_menu = new RND_menu(gui);
 

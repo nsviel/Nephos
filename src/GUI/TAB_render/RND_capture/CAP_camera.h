@@ -14,12 +14,12 @@ class V4L2_device;
 class UTL_capture;
 
 
-class GUI_camera : public BASE_panel
+class CAP_camera : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_camera(GUI* gui, bool* show_window, string name);
-  ~GUI_camera();
+  CAP_camera(GUI* gui, bool* show_window, string name);
+  ~CAP_camera();
 
   //Main function
   void design_panel();

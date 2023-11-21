@@ -7,15 +7,15 @@
 
 class GUI;
 class GUI_stream;
-class GUI_kinect;
+class CAP_kinect;
 
 
-class GUI_capture : public BASE_panel
+class CAP_capture : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_capture(GUI* gui, bool* show_window, string name);
-  ~GUI_capture();
+  CAP_capture(GUI* gui, bool* show_window, string name);
+  ~CAP_capture();
 
   //Main function
   void design_panel();
@@ -24,7 +24,7 @@ public:
 private:
   GUI* gui;
   GUI_stream* gui_stream;
-  GUI_kinect* gui_kinect;
+  CAP_kinect* gui_kinect;
 };
 
 #endif

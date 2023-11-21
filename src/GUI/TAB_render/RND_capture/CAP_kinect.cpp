@@ -1,5 +1,5 @@
-#include "GUI_kinect.h"
-#include "GUI_capture.h"
+#include "CAP_kinect.h"
+#include "CAP_capture.h"
 
 #include <GUI.h>
 #include <GUI_gpu/GUI_stream.h>
@@ -9,7 +9,7 @@
 
 
 //Constructor / Destructor
-GUI_kinect::GUI_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+CAP_kinect::CAP_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->gui = gui;
@@ -22,10 +22,10 @@ GUI_kinect::GUI_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   //---------------------------
 }
-GUI_kinect::~GUI_kinect(){}
+CAP_kinect::~CAP_kinect(){}
 
 //Main function
-void GUI_kinect::design_panel(){
+void CAP_kinect::design_panel(){
   //---------------------------
 
   this->kinect_devices();
@@ -37,7 +37,7 @@ void GUI_kinect::design_panel(){
 }
 
 //Kinect device
-void GUI_kinect::kinect_devices(){
+void CAP_kinect::kinect_devices(){
   //---------------------------
 
   vector<Struct_k4a_device>& vec_device = struct_kinect->vec_device;
@@ -87,7 +87,7 @@ void GUI_kinect::kinect_devices(){
 
   //---------------------------
 }
-void GUI_kinect::configuration_device(){
+void CAP_kinect::configuration_device(){
   Struct_k4a_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
@@ -106,7 +106,7 @@ void GUI_kinect::configuration_device(){
 
   //---------------------------
 }
-void GUI_kinect::configuration_depth(){
+void CAP_kinect::configuration_depth(){
   Struct_k4a_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
@@ -141,7 +141,7 @@ void GUI_kinect::configuration_depth(){
 
   //---------------------------
 }
-void GUI_kinect::configuration_color(){
+void CAP_kinect::configuration_color(){
   Struct_k4a_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
@@ -264,7 +264,7 @@ void GUI_kinect::configuration_color(){
 
   //---------------------------
 }
-void GUI_kinect::configuration_general(){
+void CAP_kinect::configuration_general(){
   Struct_k4a_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
@@ -290,7 +290,7 @@ void GUI_kinect::configuration_general(){
   }
   //---------------------------
 }
-void GUI_kinect::draw_camera_color(){
+void CAP_kinect::draw_camera_color(){
   Struct_k4a_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
@@ -308,6 +308,6 @@ void GUI_kinect::draw_camera_color(){
   gui_stream->draw_video(color_data, width, height);
 
   color_image.reset();
-  
+
   //---------------------------
 }

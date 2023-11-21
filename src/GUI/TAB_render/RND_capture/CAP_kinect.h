@@ -11,12 +11,12 @@ class Struct_kinect;
 class K4A_device;
 
 
-class GUI_kinect : public BASE_panel
+class CAP_kinect : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_kinect(GUI* gui, bool* show_window, string name);
-  ~GUI_kinect();
+  CAP_kinect(GUI* gui, bool* show_window, string name);
+  ~CAP_kinect();
 
   //Main function
   void design_panel();
