@@ -1,7 +1,7 @@
 #include "DEV_command.h"
 
 #include <GUI.h>
-#include <GUI_tab/GUI_tab.h>
+#include <GUI_interface/GUI_tab.h>
 #include <TAB_dev/TAB_dev.h>
 #include <TAB_dev/DEV_config/DEV_panel.h>
 #include <image/IconsFontAwesome5.h>

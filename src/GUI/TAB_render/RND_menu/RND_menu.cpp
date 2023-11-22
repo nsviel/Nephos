@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <GUI_tab/GUI_tab.h>
+#include <GUI_interface/GUI_tab.h>
 #include <TAB_render/TAB_render.h>
 #include <TAB_render/RND_config/RND_panel.h>
 #include <ENG_data/ENG_data.h>

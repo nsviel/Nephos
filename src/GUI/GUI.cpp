@@ -4,7 +4,7 @@
 #include <Utility.h>
 #include <UTL_window/UTL_window.h>
 #include <GUI_gpu/GUI_gpu.h>
-#include <GUI_tab/GUI_tab.h>
+#include <GUI_interface/GUI_tab.h>
 #include <GUI_control/GUI_control.h>
 #include <GUI_render/GUI_render.h>
 #include <GUI_style/GUI_style.h>
