@@ -26,6 +26,7 @@ public:
   void configuration_depth();
   void configuration_color();
   void configuration_general();
+  void firmware_info();
 
 private:
   Kinect* kinect;

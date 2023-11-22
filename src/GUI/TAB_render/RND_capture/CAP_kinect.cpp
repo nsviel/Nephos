@@ -100,6 +100,8 @@ void CAP_kinect::configuration_device(){
     if(ImGui::Button("Close", ImVec2(item_width, 0))){
     }
   }
+
+  this->firmware_info();
   ImGui::Separator();
 
   this->configuration_depth();
@@ -289,5 +291,24 @@ void CAP_kinect::configuration_general(){
   if(ImGui::Button("Run capture", ImVec2(item_width, 0))){
     kinect->run();
   }
+  //---------------------------
+}
+void CAP_kinect::firmware_info(){
+  Struct_k4a_device* device = struct_kinect->selected_device;
+  if(device == nullptr) return;
+  //---------------------------
+
+  if (ImGui::TreeNode("Device Firmware Version Info")){
+    k4a_hardware_version_t versionInfo = device->config.version;
+    ImGui::Text("RGB camera: %u.%u.%u", versionInfo.rgb.major, versionInfo.rgb.minor, versionInfo.rgb.iteration);
+    ImGui::Text("Depth camera: %u.%u.%u", versionInfo.depth.major, versionInfo.depth.minor, versionInfo.depth.iteration);
+    ImGui::Text("Audio: %u.%u.%u", versionInfo.audio.major, versionInfo.audio.minor, versionInfo.audio.iteration);
+
+    ImGui::Text("Build Config: %s", versionInfo.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug");
+    ImGui::Text("Signature type: %s", versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned");
+
+    ImGui::TreePop();
+  }
+
   //---------------------------
 }

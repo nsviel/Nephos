@@ -42,6 +42,7 @@ void K4A_thread::run_capture(Struct_k4a_device* device){
   k4a::capture k4a_capture;
 
   //Start recording
+  device->config.version = k4a_device.get_version();
   k4a_device.start_cameras(&device->config.k4a_config);
 
   this->thread_running = true;
