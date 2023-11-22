@@ -38,7 +38,7 @@ void Vulkan::loop(){
   //---------------------------
 
   struct_vulkan->window.window_dim = utl_window->compute_window_dim();
-
+  
   vk_engine->loop();
 
   //---------------------------

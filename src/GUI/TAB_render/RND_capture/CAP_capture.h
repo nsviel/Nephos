@@ -27,6 +27,7 @@ public:
   void draw_camera_color();
   void draw_camera_depth();
   void draw_camera_ir();
+  void hovered_info_panel(K4A_image* image);
 
 private:
   GUI* gui;

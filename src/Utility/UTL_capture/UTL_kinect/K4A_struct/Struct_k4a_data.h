@@ -8,12 +8,13 @@
 struct K4A_image{
   //---------------------------
 
+  std::string name;
   int width;
   int height;
   uint8_t* buffer;
   size_t size;
   std::string format;
-  std::chrono::microseconds timestamp;
+  float timestamp;
 
   //---------------------------
 };

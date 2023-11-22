@@ -49,11 +49,14 @@ void CAP_capture::draw_camera_color(){
   if(device == nullptr){return;}
   if(!device->data.data_ready){return;}
 
+  K4A_image* k4a_image = &device->data.color;
   Struct_image struct_image;
-  struct_image.buffer = device->data.color.buffer;
-  struct_image.width = device->data.color.width;
-  struct_image.height = device->data.color.height;
-  struct_image.format = device->data.color.format;
+  struct_image.buffer = k4a_image->buffer;
+  struct_image.width = k4a_image->width;
+  struct_image.height = k4a_image->height;
+  struct_image.format = k4a_image->format;
+
+  this->hovered_info_panel(k4a_image);
   vec_gui_stream[0]->draw_stream(&struct_image);
 
   //---------------------------
@@ -65,11 +68,14 @@ void CAP_capture::draw_camera_depth(){
   if(device == nullptr){return;}
   if(!device->data.data_ready){return;}
 
+  K4A_image* k4a_image = &device->data.depth;
   Struct_image struct_image;
   struct_image.buffer = k4a_depth->convert_depth_into_color(device);
-  struct_image.width = device->data.depth.width;
-  struct_image.height = device->data.depth.height;
+  struct_image.width = k4a_image->width;
+  struct_image.height = k4a_image->height;
   struct_image.format = "R8G8B8A8_SRGB";
+
+  this->hovered_info_panel(k4a_image);
   vec_gui_stream[1]->draw_stream(&struct_image);
 
   //---------------------------
@@ -81,12 +87,39 @@ void CAP_capture::draw_camera_ir(){
   if(device == nullptr){return;}
   if(!device->data.data_ready){return;}
 
+  K4A_image* k4a_image = &device->data.ir;
   Struct_image struct_image;
   struct_image.buffer = k4a_infrared->convert_ir_into_color(device);
-  struct_image.width = device->data.ir.width;
-  struct_image.height = device->data.ir.height;
+  struct_image.width = k4a_image->width;
+  struct_image.height = k4a_image->height;
   struct_image.format = "B8G8R8A8_SRGB";
+
+  this->hovered_info_panel(k4a_image);
   vec_gui_stream[2]->draw_stream(&struct_image);
+
+  //---------------------------
+}
+
+void CAP_capture::hovered_info_panel(K4A_image* image){
+  //---------------------------
+
+  ImGui::SetNextWindowPos(ImGui::GetCursorScreenPos(), ImGuiCond_Always);
+  ImGui::SetNextWindowBgAlpha(0.3f);
+  ImGuiWindowFlags flags;
+  flags |= ImGuiWindowFlags_NoMove;
+  flags |= ImGuiWindowFlags_NoTitleBar;
+  flags |= ImGuiWindowFlags_NoResize;
+  flags |= ImGuiWindowFlags_AlwaysAutoResize;
+  flags |= ImGuiWindowFlags_NoSavedSettings;
+  flags |= ImGuiWindowFlags_NoFocusOnAppearing;
+  flags |= ImGuiWindowFlags_NoNav;
+  flags |= ImGuiWindowFlags_NoScrollbar;
+
+  if (ImGui::Begin(image->name.c_str(), nullptr, flags)){
+    ImGui::Text("Average frame rate: %.2f fps", 5.0);
+    ImGui::Text("Timestamp: %.2f", image->timestamp/1000);
+  }
+  ImGui::End();
 
   //---------------------------
 }
