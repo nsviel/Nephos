@@ -5,7 +5,7 @@
 #include <Utility.h>
 #include <UTL_capture/UTL_capture.h>
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
-#include <UTL_capture/UTL_kinect/K4A_capture/K4A_depth.h>
+#include <UTL_capture/UTL_kinect/K4A_data/K4A_depth.h>
 
 
 //Constructor / Destructor
@@ -33,8 +33,8 @@ void CAP_capture::design_panel(){
   //---------------------------
 
   //this->draw_camera_color();
-  this->draw_camera_depth();
-  //this->draw_camera_ir();
+  //this->draw_camera_depth();
+  this->draw_camera_ir();
 
   //---------------------------
 }
@@ -80,9 +80,9 @@ void CAP_capture::draw_camera_ir(){
   if(!device->data.data_ready){return;}
 
   Struct_image struct_image;
-  struct_image.buffer = device->data.color.buffer;
-  struct_image.width = device->data.color.width;
-  struct_image.height = device->data.color.height;
+  struct_image.buffer = device->data.ir.buffer;
+  struct_image.width = device->data.ir.width;
+  struct_image.height = device->data.ir.height;
   struct_image.format = "B8G8R8A8_SRGB";
   vec_gui_stream[2]->draw_stream(&struct_image);
 

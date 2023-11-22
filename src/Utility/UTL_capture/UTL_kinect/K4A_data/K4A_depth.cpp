@@ -19,7 +19,6 @@ uint8_t* K4A_depth::convert_depth_into_color(Struct_k4a_device* device){
 
   uint8_t* inputBuffer = device->data.depth.buffer;
   size_t size = device->data.depth.size;
-
   uint8_t* outputBuffer = new uint8_t[size*4];
 
   for(int i=0, j=0; i<size; i+=2, j+=4){

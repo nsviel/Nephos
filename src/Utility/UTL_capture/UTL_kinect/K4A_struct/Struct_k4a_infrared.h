@@ -1,0 +1,19 @@
+#ifndef STRUCT_K4A_INFRARED_H
+#define STRUCT_K4A_INFRARED_H
+
+#include <k4a/k4a.hpp>
+#include <string>
+
+
+struct Struct_k4a_infrared{
+  //---------------------------
+
+  uint16_t level_min = 0;
+  uint16_t level_max = 1000;
+
+  //---------------------------
+};
+
+
+
+#endif
