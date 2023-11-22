@@ -15,6 +15,8 @@ UTL_capture::~UTL_capture(){}
 void UTL_capture::init(){
   //---------------------------
 
+  kinect->init();
+
   //---------------------------
 }
 void UTL_capture::run(){

@@ -23,6 +23,7 @@ struct Struct_k4a_data{
   K4A_image color;
   K4A_image depth;
   K4A_image ir;
+  bool data_ready = false; 
 
   //---------------------------
 };

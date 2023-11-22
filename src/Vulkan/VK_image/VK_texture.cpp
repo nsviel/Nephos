@@ -188,6 +188,12 @@ VkFormat VK_texture::find_texture_format(Struct_image* image){
   else if(image->format == "B8G8R8A8_SRGB"){
     format = VK_FORMAT_B8G8R8A8_SRGB;
   }
+  else if(image->format == "R16_UNORM"){
+    format = VK_FORMAT_R16_UNORM;
+  }
+  else if(image->format == "R32_UINT"){
+    format = VK_FORMAT_R32_UINT;
+  }
   else if(image->format == "R16UI"){
     format = VK_FORMAT_R16_UINT;
   }
@@ -206,6 +212,12 @@ VkImageAspectFlags VK_texture::find_texture_aspect(Struct_image* image){
     aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   }
   else if(image->format == "B8G8R8A8_SRGB"){
+    aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  }
+  else if(image->format == "R16_UNORM"){
+    aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  }
+  else if(image->format == "R32_UINT"){
     aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   }
   else if(image->format == "R16UI"){

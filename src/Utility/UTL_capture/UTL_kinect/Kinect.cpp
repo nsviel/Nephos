@@ -21,6 +21,8 @@ Kinect::~Kinect(){}
 void Kinect::init(){
   //---------------------------
 
+  k4a_device->refresh_device_list();
+  this->run();
 
   //---------------------------
 }

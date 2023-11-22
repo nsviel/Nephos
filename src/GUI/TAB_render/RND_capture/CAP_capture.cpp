@@ -32,6 +32,7 @@ void CAP_capture::design_panel(){
 
   //this->draw_camera_color();
   this->draw_camera_depth();
+  //this->draw_camera_ir();
 
   //---------------------------
 }
@@ -39,52 +40,49 @@ void CAP_capture::design_panel(){
 //Subfunction
 void CAP_capture::draw_camera_color(){
   Struct_k4a_device* device = struct_kinect->selected_device;
-  if(device == nullptr) return;
   //---------------------------
 
-  if(device->data.color.buffer == nullptr){return;}
+  if(device == nullptr){return;}
+  if(!device->data.data_ready){return;}
 
   Struct_image struct_image;
   struct_image.buffer = device->data.color.buffer;
   struct_image.width = device->data.color.width;
   struct_image.height = device->data.color.height;
-  struct_image.format = "B8G8R8A8_SRGB";
+  struct_image.format = device->data.color.format;
   vec_gui_stream[0]->draw_video(&struct_image);
 
   //---------------------------
 }
 void CAP_capture::draw_camera_depth(){
   Struct_k4a_device* device = struct_kinect->selected_device;
-  if(device == nullptr) return;
   //---------------------------
 
-  if(device->data.depth.buffer == nullptr){return;}
+  if(device == nullptr){return;}
+  if(!device->data.data_ready){return;}
 
   Struct_image struct_image;
-  struct_image.buffer = device->data.depth.buffer;
-  struct_image.width = device->data.depth.width;
-  struct_image.height = device->data.depth.height;
-  struct_image.format = "R16UI";
+  struct_image.buffer = device->data.color.buffer;
+  struct_image.width = device->data.color.width;
+  struct_image.height = device->data.color.height;
+  struct_image.format = "B8G8R8A8_SRGB";
   vec_gui_stream[1]->draw_video(&struct_image);
 
   //---------------------------
 }
 void CAP_capture::draw_camera_ir(){
   Struct_k4a_device* device = struct_kinect->selected_device;
-  if(device == nullptr) return;
   //---------------------------
-/*
-  if(!device->is_capturing){return;}
-  if(!device->capture->is_valid()){return;}
-  k4a::image color_image = device->capture->get_ir_image();
-  if(!color_image.is_valid()){return;}
 
-  uint8_t* color_data = color_image.get_buffer();
-  int width = color_image.get_width_pixels();
-  int height = color_image.get_height_pixels();
-  gui_stream->draw_video(color_data, width, height);
+  if(device == nullptr){return;}
+  if(!device->data.data_ready){return;}
 
-  color_image.reset();
-*/
+  Struct_image struct_image;
+  struct_image.buffer = device->data.color.buffer;
+  struct_image.width = device->data.color.width;
+  struct_image.height = device->data.color.height;
+  struct_image.format = "B8G8R8A8_SRGB";
+  vec_gui_stream[2]->draw_video(&struct_image);
+
   //---------------------------
 }

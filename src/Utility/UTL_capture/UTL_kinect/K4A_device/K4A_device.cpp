@@ -10,7 +10,6 @@ K4A_device::K4A_device(Struct_kinect* struct_kinect){
   this->struct_kinect = struct_kinect;
 
   //---------------------------
-  this->refresh_device_list();
 }
 K4A_device::~K4A_device(){}
 
@@ -34,6 +33,11 @@ void K4A_device::refresh_device_list(){
       cout<<"[error] refresh device vector"<<endl;
       continue;
     }
+  }
+
+  //Default selection
+  if(nb_device > 0){
+    struct_kinect->selected_device = &struct_kinect->vec_device[0];
   }
 
   //---------------------------

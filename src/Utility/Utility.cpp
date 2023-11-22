@@ -21,6 +21,7 @@ void Utility::init(){
   //---------------------------
 
   utl_window->create_window();
+  utl_capture->init();
 
   //---------------------------
 }
