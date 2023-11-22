@@ -9,6 +9,7 @@ class GUI;
 class GUI_stream;
 class Kinect;
 class Struct_kinect;
+class K4A_depth;
 
 
 class CAP_capture : public BASE_panel
@@ -30,6 +31,7 @@ private:
   GUI* gui;
   Kinect* kinect;
   Struct_kinect* struct_kinect;
+  K4A_depth* k4a_depth;
 
   vector<GUI_stream*> vec_gui_stream;
 };
