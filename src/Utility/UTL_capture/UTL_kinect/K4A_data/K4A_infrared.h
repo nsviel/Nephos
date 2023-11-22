@@ -17,6 +17,7 @@ public:
 public:
   //Main function
   uint8_t* convert_ir_into_color(Struct_k4a_device* device);
+  void find_ir_level(Struct_k4a_device* device);
 
 private:
   Struct_kinect* struct_kinect;

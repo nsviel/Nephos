@@ -18,36 +18,37 @@ uint8_t* K4A_infrared::convert_ir_into_color(Struct_k4a_device* device){
   //---------------------------
 
   uint8_t* inputBuffer = device->data.ir.buffer;
-  size_t size = device->data.depth.size;
+  size_t size = device->data.ir.size;
   uint8_t* outputBuffer = new uint8_t[size*4];
+  uint16_t level_min = device->ir.level_min;
+  uint16_t level_max = device->ir.level_max;
 
   for(int i=0, j=0; i<size; i+=2, j+=4){
     uint16_t r = *reinterpret_cast<uint16_t*>(&inputBuffer[i]);
 
-    float R = 0.0f;
-    float G = 0.0f;
-    float B = 0.0f;
+    r = std::min(r, level_max);
+    uint8_t value = static_cast<uint8_t>((r - level_min) * (255.0f / (level_max - level_min)));
 
-    if(r != 0){
-      uint16_t range_min = device->depth.range_min;
-      uint16_t range_max = device->depth.range_max;
-      uint16_t clamped = r;
-      clamped = std::min(clamped, range_max);
-      clamped = std::max(clamped, range_min);
-      float hue = (clamped - range_min) / static_cast<float>(range_max - range_min);
-      constexpr float range = 2.f / 3.f;
-      hue *= range;
-      hue = range - hue;
-
-      ImGui::ColorConvertHSVtoRGB(hue, 1.f, 1.f, R, G, B);
-    }
-
-    outputBuffer[j]     = static_cast<uint8_t>(R * 255);
-    outputBuffer[j + 1] = static_cast<uint8_t>(G * 255);
-    outputBuffer[j + 2] = static_cast<uint8_t>(B * 255);
+    outputBuffer[j]     = value;
+    outputBuffer[j + 1] = value;
+    outputBuffer[j + 2] = value;
     outputBuffer[j + 3] = 255;
   }
 
   //---------------------------
   return outputBuffer;
+}
+void K4A_infrared::find_ir_level(Struct_k4a_device* device){
+  //---------------------------
+
+  if(device->depth.mode == K4A_DEPTH_MODE_PASSIVE_IR){
+    device->ir.level_min = 0;
+    device->ir.level_max = 100;
+  }
+  else{
+    device->depth.range_min = 0;
+    device->depth.range_max = 1000;
+  }
+
+  //---------------------------
 }

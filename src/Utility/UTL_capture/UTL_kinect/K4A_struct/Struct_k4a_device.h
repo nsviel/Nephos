@@ -21,7 +21,7 @@ struct Struct_k4a_device{
   Struct_k4a_config config;
   Struct_k4a_color color;
   Struct_k4a_depth depth;
-  Struct_k4a_infrared infrared;
+  Struct_k4a_infrared ir;
   Struct_k4a_data data;
 
   //---------------------------

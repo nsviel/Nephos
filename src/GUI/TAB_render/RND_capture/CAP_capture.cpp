@@ -6,6 +6,7 @@
 #include <UTL_capture/UTL_capture.h>
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_depth.h>
+#include <UTL_capture/UTL_kinect/K4A_data/K4A_infrared.h>
 
 
 //Constructor / Destructor
@@ -18,6 +19,7 @@ CAP_capture::CAP_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
   this->kinect = utl_capture->get_kinect();
   this->struct_kinect = kinect->get_struct_kinect();
   this->k4a_depth = new K4A_depth();
+  this->k4a_infrared = new K4A_infrared();
   this->gui = gui;
 
   this->vec_gui_stream.push_back(new GUI_stream(gui));
@@ -80,7 +82,7 @@ void CAP_capture::draw_camera_ir(){
   if(!device->data.data_ready){return;}
 
   Struct_image struct_image;
-  struct_image.buffer = device->data.ir.buffer;
+  struct_image.buffer = k4a_infrared->convert_ir_into_color(device);
   struct_image.width = device->data.ir.width;
   struct_image.height = device->data.ir.height;
   struct_image.format = "B8G8R8A8_SRGB";

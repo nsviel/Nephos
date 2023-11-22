@@ -20,6 +20,8 @@ uint8_t* K4A_depth::convert_depth_into_color(Struct_k4a_device* device){
   uint8_t* inputBuffer = device->data.depth.buffer;
   size_t size = device->data.depth.size;
   uint8_t* outputBuffer = new uint8_t[size*4];
+  uint16_t range_min = device->depth.range_min;
+  uint16_t range_max = device->depth.range_max;
 
   for(int i=0, j=0; i<size; i+=2, j+=4){
     uint16_t r = *reinterpret_cast<uint16_t*>(&inputBuffer[i]);
@@ -29,8 +31,6 @@ uint8_t* K4A_depth::convert_depth_into_color(Struct_k4a_device* device){
     float B = 0.0f;
 
     if(r != 0){
-      uint16_t range_min = device->depth.range_min;
-      uint16_t range_max = device->depth.range_max;
       uint16_t clamped = r;
       clamped = std::min(clamped, range_max);
       clamped = std::max(clamped, range_min);
