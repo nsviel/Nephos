@@ -17,10 +17,20 @@ public:
   ~VK_memory();
 
 public:
-  //Main functions
+  //Image GPU function
   void transfert_image_to_gpu(Struct_vk_image* image);
   void copy_buffer_to_image(Struct_vk_image* image, VkBuffer buffer);
   void copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer);
+
+  //Buffer GPU function
+  template <typename VertexType>
+  void transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<VertexType>& vertices);
+  void copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
+
+  //Subfunction
+  void bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
+  void create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBuffer& buffer);
+  uint32_t find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags properties);
 
 private:
   Struct_vulkan* struct_vulkan;
