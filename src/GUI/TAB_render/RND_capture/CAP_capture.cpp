@@ -50,7 +50,7 @@ void CAP_capture::draw_camera_color(){
   struct_image.width = device->data.color.width;
   struct_image.height = device->data.color.height;
   struct_image.format = device->data.color.format;
-  vec_gui_stream[0]->draw_video(&struct_image);
+  vec_gui_stream[0]->draw_stream(&struct_image);
 
   //---------------------------
 }
@@ -62,11 +62,11 @@ void CAP_capture::draw_camera_depth(){
   if(!device->data.data_ready){return;}
 
   Struct_image struct_image;
-  struct_image.buffer = device->data.color.buffer;
-  struct_image.width = device->data.color.width;
-  struct_image.height = device->data.color.height;
-  struct_image.format = "B8G8R8A8_SRGB";
-  vec_gui_stream[1]->draw_video(&struct_image);
+  struct_image.buffer = device->data.depth.buffer;
+  struct_image.width = device->data.depth.width;
+  struct_image.height = device->data.depth.height;
+  struct_image.format = "R16UI";
+  vec_gui_stream[1]->draw_stream(&struct_image);
 
   //---------------------------
 }
@@ -82,7 +82,7 @@ void CAP_capture::draw_camera_ir(){
   struct_image.width = device->data.color.width;
   struct_image.height = device->data.color.height;
   struct_image.format = "B8G8R8A8_SRGB";
-  vec_gui_stream[2]->draw_video(&struct_image);
+  vec_gui_stream[2]->draw_stream(&struct_image);
 
   //---------------------------
 }

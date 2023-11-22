@@ -221,7 +221,7 @@ VkImageAspectFlags VK_texture::find_texture_aspect(Struct_image* image){
     aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   }
   else if(image->format == "R16UI"){
-    aspect = VK_IMAGE_ASPECT_DEPTH_BIT;
+    aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   }
   else{
     cout<<"[error] texture format not recognized ["<<image->format<<"]"<<endl;

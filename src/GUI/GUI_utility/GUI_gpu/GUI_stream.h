@@ -17,7 +17,7 @@ public:
 
 public:
   //Main function
-  void draw_video(Struct_image* struct_image);
+  void draw_stream(Struct_image* struct_image);
 
   //Subfunction
   void convert_data_into_texture(Struct_image* struct_image);

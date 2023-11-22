@@ -20,7 +20,7 @@ GUI_stream::GUI_stream(GUI* gui){
 GUI_stream::~GUI_stream(){}
 
 //Main function
-void GUI_stream::draw_video(Struct_image* struct_image){
+void GUI_stream::draw_stream(Struct_image* struct_image){
   //---------------------------
 
   if(struct_image->buffer != nullptr){

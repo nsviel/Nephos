@@ -113,26 +113,6 @@ void VK_image::create_image_view(Struct_vk_image* image){
 
   //---------------------------
 }
-VkImageView VK_image::create_image_view(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags){
-	VkImageViewCreateInfo viewInfo{};
-	viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
-  viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
-	viewInfo.subresourceRange.aspectMask = aspectFlags;
-	viewInfo.subresourceRange.baseMipLevel = 0;
-	viewInfo.subresourceRange.levelCount = 1;
-	viewInfo.subresourceRange.baseArrayLayer = 0;
-	viewInfo.subresourceRange.layerCount = 1;
-  viewInfo.format = format;
-  viewInfo.image = image;
-
-	VkImageView imageView;
-	if (vkCreateImageView(struct_vulkan->device.device, &viewInfo, nullptr, &imageView) != VK_SUCCESS)
-	{
-		throw std::runtime_error("failed to create texture image view!");
-	}
-
-	return imageView;
-}
 void VK_image::create_image_sampler(Struct_vk_image* texture){
   //---------------------------
 

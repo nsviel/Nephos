@@ -21,7 +21,6 @@ public:
   //Generic image creation
   void create_image_view(Struct_vk_image* image);
   void create_image_sampler(Struct_vk_image* texture);
-  VkImageView create_image_view(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags);
 
   //image creation
   void create_image(Struct_vk_image* image);
