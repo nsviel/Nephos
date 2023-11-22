@@ -34,8 +34,8 @@ CAP_capture::~CAP_capture(){}
 void CAP_capture::design_panel(){
   //---------------------------
 
-  //this->draw_camera_color();
-  //this->draw_camera_depth();
+  this->draw_camera_color();
+  this->draw_camera_depth();
   this->draw_camera_ir();
 
   //---------------------------

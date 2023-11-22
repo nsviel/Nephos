@@ -58,7 +58,6 @@ void GUI::loop(){
   ImGui::NewFrame();
 
   this->docker_space_main();
-  this->resize();
   gui_tab->run_tab();
   gui_control->run_control();
 
@@ -79,17 +78,6 @@ void GUI::wait(){
   //---------------------------
 
   gui_render->wait();
-
-  //---------------------------
-}
-void GUI::resize(){
-  static vec2 dim = utl_window->compute_window_dim();
-  //---------------------------
-
-  vec2 dim_new = utl_window->compute_window_dim();
-  if(dim_new != dim){
-    dim = dim_new;
-  }
 
   //---------------------------
 }

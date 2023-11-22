@@ -30,6 +30,7 @@ void Utility::loop(){
 
   utl_window->manage_input();
   utl_window->window_should_close();
+  utl_window->check_for_resizing();
 
   //---------------------------
 }

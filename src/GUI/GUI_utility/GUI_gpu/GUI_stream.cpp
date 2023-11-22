@@ -4,7 +4,7 @@
 #include <Vulkan.h>
 #include <VK_main/VK_texture.h>
 #include <GUI_main/GUI_render/GUI_render.h>
-#include <UTL_struct/Struct_image.h>
+
 
 
 //Constructor / Destructor
@@ -14,6 +14,7 @@ GUI_stream::GUI_stream(GUI* gui){
   GUI_render* gui_render = gui->get_gui_render();
   Vulkan* vulkan = gui_render->get_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
+  this->image = nullptr;
 
   //---------------------------
 }
@@ -35,8 +36,6 @@ void GUI_stream::draw_stream(Struct_image* struct_image){
 void GUI_stream::convert_data_into_texture(Struct_image* struct_image){
   //---------------------------
 
-  static Struct_vk_image* image = nullptr;
-
   if(image == nullptr){
     image = vk_texture->load_texture(struct_image);
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
@@ -51,7 +50,7 @@ void GUI_stream::convert_data_into_texture(Struct_image* struct_image){
 void GUI_stream::display_frame(){
   //---------------------------
 
-  ImVec2 panel_size = ImGui::GetContentRegionAvail();
+  ImVec2 panel_size = ImGui::GetWindowSize();
   ImGui::Image(texture, ImVec2{panel_size.x, panel_size.y/3});
 
   //---------------------------
