@@ -53,7 +53,7 @@ public:
 
   //Texture function
   Struct_vk_image* load_texture(Struct_image* image);
-  void update_texture_from_data(Struct_vk_image* image, uint8_t* data);
+  void update_texture(Struct_vk_image* image);
 
   //Renderpass function
   Struct_vk_renderpass* get_renderpass(int i);

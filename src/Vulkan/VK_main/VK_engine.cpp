@@ -193,19 +193,10 @@ Struct_vk_image* VK_engine::load_texture(Struct_image* image){
   //---------------------------
   return texture;
 }
-void VK_engine::update_texture_from_data(Struct_vk_image* image, uint8_t* data){
+void VK_engine::update_texture(Struct_vk_image* image){
   //---------------------------
 
-  //vk_texture->update_texture_from_data(image, frame);
-
-  std::thread updateThread([this, image, data]() {
-    try {
-      vk_texture->update_texture_from_data(image, data);
-    } catch (const std::exception& e) {
-      std::cerr << "Exception caught in thread: " << e.what() << std::endl;
-    }
-  });
-  updateThread.join();
+  vk_texture->update_texture(image);
 
   //---------------------------
 }

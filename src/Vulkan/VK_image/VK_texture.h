@@ -8,9 +8,7 @@
 #include <UTL_struct/Struct_image.h>
 
 class Struct_vulkan;
-class VK_buffer;
 class VK_image;
-class VK_command;
 class VK_memory;
 
 class VK_texture
@@ -22,8 +20,8 @@ public:
 
 public:
   //Main functions
-  Struct_vk_image* load_texture(Struct_image* struct_image);
-  void update_texture_from_data(Struct_vk_image* image, uint8_t* data);
+  Struct_vk_image* load_texture(Struct_image* image);
+  void update_texture(Struct_vk_image* image);
 
   //Texture cleaning
   void clean_texture(Struct_vk_entity* object);
@@ -31,15 +29,12 @@ public:
 
   //Subfunction
   void create_vulkan_texture(Struct_vk_image* image);
-  void update_vulkan_texture(Struct_vk_image* image);
   VkFormat find_texture_format(Struct_image* image);
   VkImageAspectFlags find_texture_aspect(Struct_image* image);
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_buffer* vk_buffer;
   VK_image* vk_image;
-  VK_command* vk_command;
   VK_memory* vk_memory;
 };
 

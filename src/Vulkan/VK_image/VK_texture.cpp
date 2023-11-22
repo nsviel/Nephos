@@ -3,8 +3,6 @@
 #include <VK_image/VK_image.h>
 #include <VK_image/VK_memory.h>
 #include <VK_main/Struct_vulkan.h>
-#include <VK_data/VK_buffer.h>
-#include <VK_command/VK_command.h>
 #include <UTL_file/File.h>
 #include <UTL_file/Image.h>
 
@@ -14,9 +12,7 @@ VK_texture::VK_texture(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_buffer = new VK_buffer(struct_vulkan);
   this->vk_image = new VK_image(struct_vulkan);
-  this->vk_command = new VK_command(struct_vulkan);
   this->vk_memory = new VK_memory(struct_vulkan);
 
   //---------------------------
@@ -39,14 +35,10 @@ Struct_vk_image* VK_texture::load_texture(Struct_image* struct_image){
   //---------------------------
   return image;
 }
-void VK_texture::update_texture_from_data(Struct_vk_image* image, uint8_t* data){
+void VK_texture::update_texture(Struct_vk_image* image){
   //---------------------------
 
-  //Frame data
-  image->data = data;
-
-  //Create vulkan texture
-  this->update_vulkan_texture(image);
+  vk_memory->transfert_image_to_gpu(image);
 
   //---------------------------
 }
@@ -76,17 +68,9 @@ void VK_texture::clean_textures(){
 void VK_texture::create_vulkan_texture(Struct_vk_image* image){
   //---------------------------
 
-  //Create image
   image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
   vk_image->create_image(image);
-  vk_memory->transfert_image_to_gpu(image);
-
-  //---------------------------
-}
-void VK_texture::update_vulkan_texture(Struct_vk_image* image){
-  //---------------------------
-
   vk_memory->transfert_image_to_gpu(image);
 
   //---------------------------

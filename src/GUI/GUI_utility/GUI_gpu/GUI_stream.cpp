@@ -42,7 +42,8 @@ void GUI_stream::convert_data_into_texture(Struct_image* struct_image){
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     this->texture = reinterpret_cast<ImTextureID>(descriptor);
   }else{
-    vk_engine->update_texture_from_data(image, struct_image->buffer);
+    image->data = struct_image->buffer;
+    vk_engine->update_texture(image);
   }
 
   //---------------------------
