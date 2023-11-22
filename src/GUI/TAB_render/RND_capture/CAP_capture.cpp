@@ -70,8 +70,9 @@ void convertR16UintBufferToR8G8B8A8Srgb(uint8_t* inputBuffer) {
         outputBuffer[j + 2] = r;   // B
         outputBuffer[j + 3] = 255; // A
     }
-
+say(inputBuffer[1000]);
     *inputBuffer = *outputBuffer;
+say(inputBuffer[1000]);
 }
 
 void CAP_capture::draw_camera_depth(){
