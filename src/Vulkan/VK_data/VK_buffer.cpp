@@ -21,12 +21,16 @@ VK_buffer::~VK_buffer(){}
 void VK_buffer::create_buffers(Struct_vk_entity* data){
   //---------------------------
 
+
   this->create_buffer(&data->xyz, data->object->xyz);
   this->create_buffer(&data->rgb, data->object->rgb);
   this->create_buffer(&data->uv, data->object->uv);
 
-  //vk_memory->transfert_buffer_to_gpu_(&data->uv, data->object->uv);
-
+/*
+  vk_memory->transfert_buffer_to_gpu_(&data->xyz, data->object->xyz);
+  vk_memory->transfert_buffer_to_gpu_(&data->rgb, data->object->rgb);
+  vk_memory->transfert_buffer_to_gpu_(&data->uv, data->object->uv);
+*/
   //---------------------------
 }
 void VK_buffer::clean_buffers(Struct_vk_entity* data){
@@ -35,6 +39,19 @@ void VK_buffer::clean_buffers(Struct_vk_entity* data){
   this->clean_buffer(&data->xyz);
   this->clean_buffer(&data->rgb);
   this->clean_buffer(&data->uv);
+
+  //---------------------------
+}
+void VK_buffer::clean_buffer(Struct_vk_buffer* buffer){
+  //---------------------------
+
+  if(buffer->vbo != VK_NULL_HANDLE){
+    vkDestroyBuffer(struct_vulkan->device.device, buffer->vbo, nullptr);
+  }
+
+  if(buffer->mem != VK_NULL_HANDLE){
+    vkFreeMemory(struct_vulkan->device.device, buffer->mem, nullptr);
+  }
 
   //---------------------------
 }
@@ -70,21 +87,6 @@ template <typename VertexType> void VK_buffer::create_buffer(Struct_vk_buffer* b
 
   //---------------------------
 }
-void VK_buffer::clean_buffer(Struct_vk_buffer* buffer){
-  //---------------------------
-
-  if(buffer->vbo != VK_NULL_HANDLE){
-    vkDestroyBuffer(struct_vulkan->device.device, buffer->vbo, nullptr);
-  }
-
-  if(buffer->mem != VK_NULL_HANDLE){
-    vkFreeMemory(struct_vulkan->device.device, buffer->mem, nullptr);
-  }
-
-  //---------------------------
-}
-
-//Buffer functions
 void VK_buffer::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBuffer& buffer){
   //---------------------------
 

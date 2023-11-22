@@ -2,9 +2,8 @@
 
 #include <VK_main/VK_texture.h>
 #include <VK_image/VK_image.h>
-#include <VK_command/VK_memory.h>
 #include <VK_main/Struct_vulkan.h>
-#include <VK_data/VK_buffer.h>
+#include <VK_command/VK_memory.h>
 #include <VK_command/VK_command.h>
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -16,7 +15,7 @@ VK_screenshot::VK_screenshot(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_buffer = new VK_buffer(struct_vulkan);
+  this->vk_memory = new VK_memory(struct_vulkan);
   this->vk_image = new VK_image(struct_vulkan);
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_texture = new VK_texture(struct_vulkan);
@@ -34,8 +33,8 @@ void VK_screenshot::make_screenshot(Struct_vk_image* image){
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
   VkDeviceSize tex_size = image->width * image->height * 4;
-  vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
-  vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+  vk_memory->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
+  vk_memory->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
   vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
   vk_memory->copy_image_to_buffer(image, staging_buffer);
@@ -66,8 +65,8 @@ void VK_screenshot::save_to_bin(Struct_vk_image* image){
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
   VkDeviceSize tex_size = image->width * image->height * 4;
-  vk_buffer->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
-  vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+  vk_memory->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
+  vk_memory->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
   vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
   vk_memory->copy_image_to_buffer(image, staging_buffer);

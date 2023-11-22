@@ -13,7 +13,6 @@ extern "C" {
 }
 
 class Struct_vulkan;
-class VK_buffer;
 class VK_image;
 class VK_command;
 class VK_texture;
@@ -37,11 +36,10 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_buffer* vk_buffer;
+  VK_memory* vk_memory;
   VK_image* vk_image;
   VK_command* vk_command;
   VK_texture* vk_texture;
-  VK_memory* vk_memory;
 };
 
 #endif
