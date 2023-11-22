@@ -21,12 +21,12 @@ GUI_stream::GUI_stream(GUI* gui){
 GUI_stream::~GUI_stream(){}
 
 //Main function
-void GUI_stream::draw_stream(Struct_image* struct_image){
+void GUI_stream::draw_stream(Struct_image* struct_image, ImVec2 panel_size){
   //---------------------------
 
   if(struct_image->buffer != nullptr){
     this->convert_data_into_texture(struct_image);
-    this->display_frame();
+    ImGui::Image(texture, panel_size);
   }
 
   //---------------------------
@@ -44,14 +44,6 @@ void GUI_stream::convert_data_into_texture(Struct_image* struct_image){
     image->data = struct_image->buffer;
     vk_texture->update_texture(image);
   }
-
-  //---------------------------
-}
-void GUI_stream::display_frame(){
-  //---------------------------
-
-  ImVec2 panel_size = ImGui::GetWindowSize();
-  ImGui::Image(texture, ImVec2{panel_size.x, panel_size.y/3});
 
   //---------------------------
 }

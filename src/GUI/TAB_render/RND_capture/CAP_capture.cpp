@@ -35,30 +35,32 @@ void CAP_capture::design_panel(){
   //---------------------------
 
   if (ImGui::BeginTabBar("capture_tab")){
+    ImVec2 image_size = ImGui::GetContentRegionAvail();
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("All##4567", NULL)){
-      this->draw_camera_color();
-      this->draw_camera_depth();
-      this->draw_camera_ir();
+      image_size = ImVec2(image_size.x, image_size.y/3);
+      this->draw_camera_color(image_size);
+      this->draw_camera_depth(image_size);
+      this->draw_camera_ir(image_size);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Color##4567", NULL)){
-      this->draw_camera_color();
+      this->draw_camera_color(image_size);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Depth##4567", NULL)){
-      this->draw_camera_depth();
+      this->draw_camera_depth(image_size);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("IR##4567", NULL)){
-      this->draw_camera_ir();
+      this->draw_camera_ir(image_size);
       ImGui::EndTabItem();
     }
 
@@ -69,7 +71,7 @@ void CAP_capture::design_panel(){
 }
 
 //Subfunction
-void CAP_capture::draw_camera_color(){
+void CAP_capture::draw_camera_color(ImVec2 image_size){
   Struct_k4a_device* device = struct_kinect->selected_device;
   //---------------------------
 
@@ -84,11 +86,11 @@ void CAP_capture::draw_camera_color(){
   struct_image.format = k4a_image->format;
 
   this->hovered_info_panel(k4a_image);
-  vec_gui_stream[0]->draw_stream(&struct_image);
+  vec_gui_stream[0]->draw_stream(&struct_image, image_size);
 
   //---------------------------
 }
-void CAP_capture::draw_camera_depth(){
+void CAP_capture::draw_camera_depth(ImVec2 image_size){
   Struct_k4a_device* device = struct_kinect->selected_device;
   //---------------------------
 
@@ -103,11 +105,11 @@ void CAP_capture::draw_camera_depth(){
   struct_image.format = "R8G8B8A8_SRGB";
 
   this->hovered_info_panel(k4a_image);
-  vec_gui_stream[1]->draw_stream(&struct_image);
+  vec_gui_stream[1]->draw_stream(&struct_image, image_size);
 
   //---------------------------
 }
-void CAP_capture::draw_camera_ir(){
+void CAP_capture::draw_camera_ir(ImVec2 image_size){
   Struct_k4a_device* device = struct_kinect->selected_device;
   //---------------------------
 
@@ -122,7 +124,7 @@ void CAP_capture::draw_camera_ir(){
   struct_image.format = "B8G8R8A8_SRGB";
 
   this->hovered_info_panel(k4a_image);
-  vec_gui_stream[2]->draw_stream(&struct_image);
+  vec_gui_stream[2]->draw_stream(&struct_image, image_size);
 
   //---------------------------
 }
@@ -130,7 +132,8 @@ void CAP_capture::draw_camera_ir(){
 void CAP_capture::hovered_info_panel(K4A_image* image){
   //---------------------------
 
-  ImGui::SetNextWindowPos(ImGui::GetCursorScreenPos(), ImGuiCond_Always);
+  ImVec2 imageStartPos = ImGui::GetCursorScreenPos();
+  ImGui::SetNextWindowPos(imageStartPos, ImGuiCond_Always);
   ImGui::SetNextWindowBgAlpha(0.3f);
   ImGuiWindowFlags flags;
   flags |= ImGuiWindowFlags_NoMove;
@@ -147,6 +150,8 @@ void CAP_capture::hovered_info_panel(K4A_image* image){
     ImGui::Text("Timestamp: %.2f", image->timestamp/1000);
   }
   ImGui::End();
+
+  ImGui::SetCursorScreenPos(imageStartPos);
 
   //---------------------------
 }

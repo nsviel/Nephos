@@ -85,7 +85,8 @@ void CAP_camera::capture_command(){
   struct_image.width = v4l2_stream->get_frame_width();
   struct_image.height = v4l2_stream->get_frame_height();
   struct_image.format = "R8G8B8A8_SRGB";
-  gui_stream->draw_stream(&struct_image);
+  ImVec2 panel_size = ImGui::GetWindowSize();
+  gui_stream->draw_stream(&struct_image, panel_size);
   //gui_image->draw_image_static("../media/vulkano.jpg");
 
   //---------------------------

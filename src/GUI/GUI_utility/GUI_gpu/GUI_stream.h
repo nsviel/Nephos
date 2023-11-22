@@ -18,12 +18,10 @@ public:
 
 public:
   //Main function
-  void draw_stream(Struct_image* struct_image);
+  void draw_stream(Struct_image* struct_image, ImVec2 panel_size);
 
   //Subfunction
   void convert_data_into_texture(Struct_image* struct_image);
-  void display_frame();
-  void restart_video();
 
 private:
   VK_texture* vk_texture;

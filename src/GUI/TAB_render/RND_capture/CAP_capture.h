@@ -24,9 +24,9 @@ public:
   void design_panel();
 
   //Subfunction
-  void draw_camera_color();
-  void draw_camera_depth();
-  void draw_camera_ir();
+  void draw_camera_color(ImVec2 image_size);
+  void draw_camera_depth(ImVec2 image_size);
+  void draw_camera_ir(ImVec2 image_size);
   void hovered_info_panel(K4A_image* image);
 
 private:
