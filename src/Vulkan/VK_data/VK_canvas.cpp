@@ -3,7 +3,6 @@
 #include <VK_main/Struct_vulkan.h>
 #include <VK_data/VK_buffer.h>
 #include <VK_data/VK_data.h>
-#include <VK_image/VK_texture.h>
 
 
 //Constructor / Destructor
@@ -13,7 +12,6 @@ VK_canvas::VK_canvas(Struct_vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_buffer = new VK_buffer(struct_vulkan);
   this->vk_data = new VK_data(struct_vulkan);
-  this->vk_texture = new VK_texture(struct_vulkan);
 
   //---------------------------
 }
@@ -58,7 +56,6 @@ void VK_canvas::clean_canvas(){
   //---------------------------
 
   vk_buffer->clean_buffers(&struct_vulkan->data.canvas);
-  vk_texture->clean_texture(&struct_vulkan->data.canvas);
 
   //---------------------------
 }

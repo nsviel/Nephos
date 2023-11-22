@@ -5,7 +5,7 @@
 #include <UTL_struct/Struct_image.h>
 
 class GUI;
-class VK_engine;
+class VK_texture;
 
 
 class GUI_stream
@@ -25,7 +25,7 @@ public:
   void restart_video();
 
 private:
-  VK_engine* vk_engine;
+  VK_texture* vk_texture;
 
   ImTextureID texture;
 };

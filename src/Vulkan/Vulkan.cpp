@@ -5,6 +5,7 @@
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_main/VK_info.h>
+#include <VK_main/VK_texture.h>
 
 
 //Constructor / Destructor
@@ -16,6 +17,7 @@ Vulkan::Vulkan(Utility* utility){
   this->vk_engine = new VK_engine(struct_vulkan);
   this->vk_imgui = new VK_imgui(struct_vulkan);
   this->vk_info = new VK_info(struct_vulkan);
+  this->vk_texture = new VK_texture(struct_vulkan);
 
   //---------------------------
 }

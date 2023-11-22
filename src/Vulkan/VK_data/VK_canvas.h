@@ -7,7 +7,6 @@
 class Struct_vulkan;
 class VK_buffer;
 class VK_data;
-class VK_texture;
 
 
 class VK_canvas
@@ -26,7 +25,6 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_data* vk_data;
-  VK_texture* vk_texture;
 };
 
 #endif

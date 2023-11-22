@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Vulkan.h>
-#include <VK_main/VK_engine.h>
+#include <VK_main/VK_texture.h>
 #include <GUI_main/GUI_render/GUI_render.h>
 #include <UTL_struct/Struct_image.h>
 
@@ -13,7 +13,7 @@ GUI_stream::GUI_stream(GUI* gui){
 
   GUI_render* gui_render = gui->get_gui_render();
   Vulkan* gui_vulkan = gui_render->get_gui_vulkan();
-  this->vk_engine = gui_vulkan->get_vk_engine();
+  this->vk_texture = gui_vulkan->get_vk_texture();
 
   //---------------------------
 }
@@ -38,12 +38,12 @@ void GUI_stream::convert_data_into_texture(Struct_image* struct_image){
   static Struct_vk_image* image = nullptr;
 
   if(image == nullptr){
-    image = vk_engine->load_texture(struct_image);
+    image = vk_texture->load_texture(struct_image);
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     this->texture = reinterpret_cast<ImTextureID>(descriptor);
   }else{
     image->data = struct_image->buffer;
-    vk_engine->update_texture(image);
+    vk_texture->update_texture(image);
   }
 
   //---------------------------

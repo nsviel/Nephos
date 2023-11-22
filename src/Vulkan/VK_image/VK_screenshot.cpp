@@ -1,6 +1,6 @@
 #include "VK_screenshot.h"
-#include "VK_texture.h"
 
+#include <VK_main/VK_texture.h>
 #include <VK_image/VK_image.h>
 #include <VK_image/VK_memory.h>
 #include <VK_main/Struct_vulkan.h>

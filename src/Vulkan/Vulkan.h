@@ -10,6 +10,7 @@ class UTL_window;
 class VK_engine;
 class VK_imgui;
 class VK_info;
+class VK_texture;
 
 
 class Vulkan
@@ -31,6 +32,7 @@ public:
   inline VK_engine* get_vk_engine(){return vk_engine;}
   inline VK_imgui* get_vk_imgui(){return vk_imgui;}
   inline VK_info* get_vk_info(){return vk_info;}
+  inline VK_texture* get_vk_texture(){return vk_texture;}
 
   inline void set_headless(bool value){struct_vulkan->param.headless = value;}
   inline void set_name(string value){struct_vulkan->name = value;}
@@ -42,6 +44,7 @@ private:
   VK_engine* vk_engine;
   VK_imgui* vk_imgui;
   VK_info* vk_info;
+  VK_texture* vk_texture;
 };
 
 #endif

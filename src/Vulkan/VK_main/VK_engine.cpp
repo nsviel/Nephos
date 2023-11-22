@@ -11,7 +11,7 @@
 #include <VK_data/VK_canvas.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_instance/VK_pool.h>
-#include <VK_image/VK_texture.h>
+#include <VK_main/VK_texture.h>
 #include <VK_presentation/VK_swapchain.h>
 #include <VK_presentation/VK_frame.h>
 #include <VK_command/VK_synchronization.h>
@@ -180,23 +180,6 @@ void VK_engine::remove_object_in_engine(Object* object){
       struct_vulkan->data.list_object.remove(data);
     }
   }
-
-  //---------------------------
-}
-
-//Texture function
-Struct_vk_image* VK_engine::load_texture(Struct_image* image){
-  //---------------------------
-
-  Struct_vk_image* texture = vk_texture->load_texture(image);
-
-  //---------------------------
-  return texture;
-}
-void VK_engine::update_texture(Struct_vk_image* image){
-  //---------------------------
-
-  vk_texture->update_texture(image);
 
   //---------------------------
 }
