@@ -62,14 +62,10 @@ uint8_t* convertR16UintBufferToR8G8B8A8Srgb(uint8_t* inputBuffer, size_t size) {
     uint16_t r = *reinterpret_cast<uint16_t*>(&inputBuffer[i]);
     uint8_t value = static_cast<uint8_t>(r);
 
-
-
     outputBuffer[j]     = value;
     outputBuffer[j + 1] = value;
     outputBuffer[j + 2] = value;
     outputBuffer[j + 3] = 255; // A
-
-
   }
 
 return outputBuffer;
@@ -84,6 +80,9 @@ void CAP_capture::draw_camera_depth(){
 
 uint8_t* data = convertR16UintBufferToR8G8B8A8Srgb(device->data.depth.buffer, device->data.depth.size);
 
+say("---");
+say(device->data.depth.width);
+say(device->data.depth.height);
 
   Struct_image struct_image;
   struct_image.buffer = data;
