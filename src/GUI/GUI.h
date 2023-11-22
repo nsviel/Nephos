@@ -16,6 +16,7 @@ class GUI_gpu;
 class GUI_image;
 class GUI_tab;
 class GUI_render;
+class GUI_docking;
 
 
 class GUI
@@ -30,9 +31,6 @@ public:
   void loop();
   void exit();
   void wait();
-
-  //Subfunction
-  void docker_space_main();
 
   inline Utility* get_utility(){return utility;}
   inline Engine* get_engine(){return engine;}
@@ -51,6 +49,7 @@ private:
   UTL_window* utl_window;
   GUI_control* gui_control;
   GUI_style* gui_style;
+  GUI_docking* gui_docking;
   GUI_gpu* gui_gpu;
   GUI_font* gui_font;
   GUI_tab* gui_tab;

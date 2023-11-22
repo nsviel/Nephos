@@ -15,7 +15,8 @@ public:
 
 public:
   //Main functions
-
+  void docker_space_main();
+  
 private:
 
 };
