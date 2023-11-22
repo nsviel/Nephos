@@ -1,7 +1,6 @@
 #include "VK_memory.h"
 
 #include <VK_main/Struct_vulkan.h>
-#include <VK_data/VK_buffer.h>
 #include <VK_command/VK_command.h>
 
 
@@ -10,7 +9,6 @@ VK_memory::VK_memory(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_buffer = new VK_buffer(struct_vulkan);
   this->vk_command = new VK_command(struct_vulkan);
 
   //---------------------------
@@ -87,7 +85,7 @@ void VK_memory::copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer){
 
 //Buffer GPU function
 template <typename VertexType>
-void VK_memory::transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<VertexType>& vertices){
+void VK_memory::transfert_buffer_to_gpu_(Struct_vk_buffer* buffer, vector<VertexType>& vertices){
   //---------------------------
 
   if(vertices.size() == 0){return;}

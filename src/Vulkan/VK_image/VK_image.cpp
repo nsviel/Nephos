@@ -1,7 +1,7 @@
 #include "VK_image.h"
 
 #include <VK_main/Struct_vulkan.h>
-#include <VK_data/VK_buffer.h>
+#include <VK_command/VK_memory.h>
 
 
 //Constructor / Destructor
@@ -9,7 +9,7 @@ VK_image::VK_image(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_buffer = new VK_buffer(struct_vulkan);
+  this->vk_memory = new VK_memory(struct_vulkan);
 
   //---------------------------
 }
@@ -63,7 +63,7 @@ void VK_image::bind_image_to_memory(Struct_vk_image* image){
   VkMemoryAllocateInfo allocInfo{};
   allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
   allocInfo.allocationSize = memRequirements.size;
-  allocInfo.memoryTypeIndex = vk_buffer->find_memory_type(memRequirements.memoryTypeBits, image->properties);
+  allocInfo.memoryTypeIndex = vk_memory->find_memory_type(memRequirements.memoryTypeBits, image->properties);
 
   VkResult result = vkAllocateMemory(struct_vulkan->device.device, &allocInfo, nullptr, &image->mem);
   if(result != VK_SUCCESS){

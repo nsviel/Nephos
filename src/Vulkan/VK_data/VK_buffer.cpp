@@ -25,6 +25,8 @@ void VK_buffer::create_buffers(Struct_vk_entity* data){
   this->create_buffer(&data->rgb, data->object->rgb);
   this->create_buffer(&data->uv, data->object->uv);
 
+  //vk_memory->transfert_buffer_to_gpu_(&data->uv, data->object->uv);
+
   //---------------------------
 }
 void VK_buffer::clean_buffers(Struct_vk_entity* data){

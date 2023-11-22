@@ -5,7 +5,7 @@
 #include <VK_struct/Struct_vk_image.h>
 
 class Struct_vulkan;
-class VK_buffer;
+class VK_memory;
 
 
 class VK_image
@@ -33,7 +33,7 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_buffer* vk_buffer;
+  VK_memory* vk_memory;
 };
 
 #endif

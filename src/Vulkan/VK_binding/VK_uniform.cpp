@@ -1,7 +1,7 @@
 #include "VK_uniform.h"
 
 #include <VK_main/Struct_vulkan.h>
-#include <VK_data/VK_buffer.h>
+#include <VK_command/VK_memory.h>
 
 
 //Constructor / Destructor
@@ -9,7 +9,7 @@ VK_uniform::VK_uniform(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_buffer = new VK_buffer(struct_vulkan);
+  this->vk_memory = new VK_memory(struct_vulkan);
 
   //---------------------------
 }
@@ -46,8 +46,8 @@ Struct_vk_uniform* VK_uniform::create_uniform_buffer(string name, size_t size, i
     uniform->binding = binding;
     uniform->size = size;
 
-    vk_buffer->create_gpu_buffer(size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
-    vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
+    vk_memory->create_gpu_buffer(size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
+    vk_memory->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
     vkMapMemory(struct_vulkan->device.device, uniform->mem, 0, size, 0, &uniform->mapped);
 
   //---------------------------

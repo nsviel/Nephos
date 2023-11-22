@@ -7,7 +7,7 @@
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
-class VK_buffer;
+class VK_memory;
 
 
 class VK_uniform
@@ -28,7 +28,7 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_buffer* vk_buffer;
+  VK_memory* vk_memory;
 };
 
 #endif

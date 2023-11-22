@@ -1,11 +1,11 @@
 #ifndef VK_MEMORY_H
 #define VK_MEMORY_H
 
+#include <VK_struct/Struct_vk_buffer.h>
 #include <VK_struct/Struct_vk_image.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
-class VK_buffer;
 class VK_command;
 
 
@@ -24,7 +24,7 @@ public:
 
   //Buffer GPU function
   template <typename VertexType>
-  void transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<VertexType>& vertices);
+  void transfert_buffer_to_gpu_(Struct_vk_buffer* buffer, vector<VertexType>& vertices);
   void copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
 
   //Subfunction
@@ -34,7 +34,6 @@ public:
 
 private:
   Struct_vulkan* struct_vulkan;
-  VK_buffer* vk_buffer;
   VK_command* vk_command;
 };
 
