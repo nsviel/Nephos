@@ -6,11 +6,11 @@
 
 
 //Constructor / Destructor
-GUI_renderpass::GUI_renderpass(Vulkan* gui_vulkan){
+GUI_renderpass::GUI_renderpass(Vulkan* vulkan){
   //---------------------------
 
-  this->vk_imgui = gui_vulkan->get_vk_imgui();
-  this->vk_engine = gui_vulkan->get_vk_engine();
+  this->vk_imgui = vulkan->get_vk_imgui();
+  this->vk_engine = vulkan->get_vk_engine();
 
   //---------------------------
 }

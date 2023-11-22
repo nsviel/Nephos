@@ -16,8 +16,8 @@ public:
 
 public:
   //Main function
-  void init_gui_vulkan();
-  void clean_gui_vulkan();
+  void init_vulkan();
+  void clean_vulkan();
 
   //Render functions
   void render_frame();

@@ -14,7 +14,7 @@ class GUI_renderpass
 {
 public:
   //Constructor / Destructor
-  GUI_renderpass(Vulkan* gui_vulkan);
+  GUI_renderpass(Vulkan* vulkan);
   ~GUI_renderpass();
 
 public:

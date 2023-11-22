@@ -44,7 +44,7 @@ void GUI::init(){
 
   gui_render->init();
   gui_tab->create_panels();
-  gui_gpu->init_gui_vulkan();
+  gui_gpu->init_vulkan();
   gui_font->init_gui_font();
   gui_style->gui_style();
 
@@ -70,7 +70,7 @@ void GUI::loop(){
 void GUI::exit(){
   //---------------------------
 
-  gui_gpu->clean_gui_vulkan();
+  gui_gpu->clean_vulkan();
   gui_render->clean();
 
   //---------------------------

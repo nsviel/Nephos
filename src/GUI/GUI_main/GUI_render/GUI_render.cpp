@@ -17,13 +17,13 @@ GUI_render::GUI_render(GUI* gui){
   Engine* engine = gui->get_engine();
   UTL_window* utl_window = utility->get_utl_window();
 
-  this->gui_vulkan = engine->get_eng_vulkan();
-  //this->gui_vulkan = new Vulkan(utl_window);
-  this->vk_engine = gui_vulkan->get_vk_engine();
-  this->gui_renderpass = new GUI_renderpass(gui_vulkan);
+  this->vulkan = engine->get_eng_vulkan();
+  //this->vulkan = new Vulkan(utl_window);
+  this->vk_engine = vulkan->get_vk_engine();
+  this->gui_renderpass = new GUI_renderpass(vulkan);
 
-  gui_vulkan->set_headless(false);
-  gui_vulkan->set_name("GUI_backend");
+  vulkan->set_headless(false);
+  vulkan->set_name("GUI_backend");
 
   //---------------------------
 }
@@ -34,28 +34,28 @@ void GUI_render::init(){
   //---------------------------
 
   //gui_renderpass->init_renderpass();
-  //gui_vulkan->init();
+  //vulkan->init();
 
   //---------------------------
 }
 void GUI_render::loop(){
   //---------------------------
 
-  //gui_vulkan->loop();
+  //vulkan->loop();
 
   //---------------------------
 }
 void GUI_render::clean(){
   //---------------------------
 
-  //gui_vulkan->clean();
+  //vulkan->clean();
 
   //---------------------------
 }
 void GUI_render::wait(){
   //---------------------------
 
-  //gui_vulkan->wait();
+  //vulkan->wait();
 
   //---------------------------
 }

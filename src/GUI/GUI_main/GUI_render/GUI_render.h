@@ -25,11 +25,11 @@ public:
   void clean();
   void wait();
 
-  inline Vulkan* get_gui_vulkan(){return gui_vulkan;}
+  inline Vulkan* get_vulkan(){return vulkan;}
 
 private:
   GUI_renderpass* gui_renderpass;
-  Vulkan* gui_vulkan;
+  Vulkan* vulkan;
   VK_engine* vk_engine;
   VK_render* vk_render;
 };

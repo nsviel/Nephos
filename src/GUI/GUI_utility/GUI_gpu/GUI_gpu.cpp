@@ -13,22 +13,22 @@ GUI_gpu::GUI_gpu(GUI* gui){
   //---------------------------
 
   GUI_render* gui_render = gui->get_gui_render();
-  Vulkan* gui_vulkan = gui_render->get_gui_vulkan();
-  this->vk_imgui = gui_vulkan->get_vk_imgui();
+  Vulkan* vulkan = gui_render->get_vulkan();
+  this->vk_imgui = vulkan->get_vk_imgui();
 
   //---------------------------
 }
 GUI_gpu::~GUI_gpu(){}
 
 //Main function
-void GUI_gpu::init_gui_vulkan(){
+void GUI_gpu::init_vulkan(){
   //---------------------------
 
   vk_imgui->init();
 
   //---------------------------
 }
-void GUI_gpu::clean_gui_vulkan(){
+void GUI_gpu::clean_vulkan(){
   //---------------------------
 
   vk_imgui->clean();
