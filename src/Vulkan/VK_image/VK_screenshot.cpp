@@ -2,6 +2,7 @@
 #include "VK_texture.h"
 
 #include <VK_image/VK_image.h>
+#include <VK_image/VK_memory.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_data/VK_buffer.h>
 #include <VK_command/VK_command.h>
@@ -19,6 +20,7 @@ VK_screenshot::VK_screenshot(Struct_vulkan* struct_vulkan){
   this->vk_image = new VK_image(struct_vulkan);
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_texture = new VK_texture(struct_vulkan);
+  this->vk_memory = new VK_memory(struct_vulkan);
 
   //---------------------------
 }
@@ -36,7 +38,7 @@ void VK_screenshot::make_screenshot(Struct_vk_image* image){
   vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
   vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_texture->copy_image_to_buffer(image, staging_buffer);
+  vk_memory->copy_image_to_buffer(image, staging_buffer);
 
   VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
   VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
@@ -68,7 +70,7 @@ void VK_screenshot::save_to_bin(Struct_vk_image* image){
   vk_buffer->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
   vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_texture->copy_image_to_buffer(image, staging_buffer);
+  vk_memory->copy_image_to_buffer(image, staging_buffer);
 
   VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
   VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);

@@ -17,6 +17,7 @@ class VK_buffer;
 class VK_image;
 class VK_command;
 class VK_texture;
+class VK_memory;
 
 
 class VK_screenshot
@@ -33,13 +34,14 @@ public:
 
   //Subfunction
   VkDeviceSize calculate_image_size(VkFormat format, VkExtent3D extent);
-  
+
 private:
   Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_image* vk_image;
   VK_command* vk_command;
   VK_texture* vk_texture;
+  VK_memory* vk_memory;
 };
 
 #endif

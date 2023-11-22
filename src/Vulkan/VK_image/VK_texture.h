@@ -7,17 +7,11 @@
 #include <UTL_specific/common.h>
 #include <UTL_struct/Struct_image.h>
 
-extern "C" {
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libswscale/swscale.h>
-}
-
 class Struct_vulkan;
 class VK_buffer;
 class VK_image;
 class VK_command;
-
+class VK_memory;
 
 class VK_texture
 {
@@ -38,8 +32,6 @@ public:
   //Subfunction
   void create_vulkan_texture(Struct_vk_image* image);
   void update_vulkan_texture(Struct_vk_image* image);
-  void copy_buffer_to_image(Struct_vk_image* image, VkBuffer buffer);
-  void copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer);
   VkFormat find_texture_format(Struct_image* image);
   VkImageAspectFlags find_texture_aspect(Struct_image* image);
 
@@ -48,6 +40,7 @@ private:
   VK_buffer* vk_buffer;
   VK_image* vk_image;
   VK_command* vk_command;
+  VK_memory* vk_memory;
 };
 
 #endif
