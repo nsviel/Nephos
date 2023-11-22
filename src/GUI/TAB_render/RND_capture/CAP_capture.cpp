@@ -34,9 +34,36 @@ CAP_capture::~CAP_capture(){}
 void CAP_capture::design_panel(){
   //---------------------------
 
-  this->draw_camera_color();
-  this->draw_camera_depth();
-  this->draw_camera_ir();
+  if (ImGui::BeginTabBar("capture_tab")){
+
+    ImGui::SetNextItemWidth(100);
+    if (ImGui::BeginTabItem("All##4567", NULL)){
+      this->draw_camera_color();
+      this->draw_camera_depth();
+      this->draw_camera_ir();
+      ImGui::EndTabItem();
+    }
+
+    ImGui::SetNextItemWidth(100);
+    if (ImGui::BeginTabItem("Color##4567", NULL)){
+      this->draw_camera_color();
+      ImGui::EndTabItem();
+    }
+
+    ImGui::SetNextItemWidth(100);
+    if (ImGui::BeginTabItem("Depth##4567", NULL)){
+      this->draw_camera_depth();
+      ImGui::EndTabItem();
+    }
+
+    ImGui::SetNextItemWidth(100);
+    if (ImGui::BeginTabItem("IR##4567", NULL)){
+      this->draw_camera_ir();
+      ImGui::EndTabItem();
+    }
+
+    ImGui::EndTabBar();
+  }
 
   //---------------------------
 }
