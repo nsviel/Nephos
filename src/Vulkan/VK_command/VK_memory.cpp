@@ -22,7 +22,7 @@ void VK_memory::transfert_image_to_gpu(Struct_vk_image* image){
   //Create stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
-  VkDeviceSize tex_size = image->width * image->height * 4;
+  VkDeviceSize tex_size = image->width * image->height * image->channel_nb * image->channel_byte;
   this->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 

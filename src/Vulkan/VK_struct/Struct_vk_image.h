@@ -10,6 +10,8 @@ struct Struct_vk_image{
 
   //General info
   std::string name;
+  int channel_nb = 4;
+  int channel_byte = 1;
 
   //Dimension
   uint32_t width = 0;

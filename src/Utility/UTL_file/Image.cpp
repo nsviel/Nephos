@@ -11,7 +11,7 @@ namespace image{
     //---------------------------
 
     Struct_image image;
-    image.buffer = stbi_load(path.c_str(), &image.width, &image.height, &image.channel, STBI_rgb_alpha);
+    image.buffer = stbi_load(path.c_str(), &image.width, &image.height, &image.channel_nb, STBI_rgb_alpha);
     if(!image.buffer){
       std::cout<<"[error] failed to load texture image"<<std::endl;
     }

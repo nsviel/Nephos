@@ -58,6 +58,9 @@ VkFormat VK_texture::find_texture_format(Struct_image* image){
   else if(image->format == "R16_UNORM"){
     format = VK_FORMAT_R16_UNORM;
   }
+  else if(image->format == "R16_UINT"){
+    format = VK_FORMAT_R16_UINT;
+  }
   else if(image->format == "R32_UINT"){
     format = VK_FORMAT_R32_UINT;
   }
