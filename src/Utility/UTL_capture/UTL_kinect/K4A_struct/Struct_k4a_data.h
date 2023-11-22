@@ -11,7 +11,9 @@ struct K4A_image{
   int width;
   int height;
   uint8_t* buffer;
+  size_t size;
   std::string format;
+  std::chrono::microseconds timestamp;
 
   //---------------------------
 };
@@ -23,7 +25,7 @@ struct Struct_k4a_data{
   K4A_image color;
   K4A_image depth;
   K4A_image ir;
-  bool data_ready = false; 
+  bool data_ready = false;
 
   //---------------------------
 };

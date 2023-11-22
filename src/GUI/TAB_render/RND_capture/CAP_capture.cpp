@@ -55,24 +55,33 @@ void CAP_capture::draw_camera_color(){
   //---------------------------
 }
 
-void convertR16UintBufferToR8G8B8A8Srgb(uint8_t* inputBuffer) {
-  size_t bufferSize = strlen(reinterpret_cast<const char*>(inputBuffer));
-    uint8_t* outputBuffer = new uint8_t[bufferSize*4];
+uint8_t* convertR16UintBufferToR8G8B8A8Srgb(uint8_t* inputBuffer, size_t size) {
+  uint8_t* outputBuffer = new uint8_t[size*4];
+
+  for(int i=0, j=0; i<size; i+=2, j+=4){
+    uint16_t r = *reinterpret_cast<uint16_t*>(&inputBuffer[i]);
+    uint8_t value = static_cast<uint8_t>((r * 1.0) / 255);
+    float value2 = ((float)r * 1.0f) / 255.0f;
+    int value3 = (int)value2;
+    uint8_t value4 = reinterpret_cast<uint8_t>(value2);
+
+say("---");
+    say(r);
+    say(value);
+    say(value2);
+    say(value3);
+    say(value4);
 
 
-    for (size_t i = 0, j = 0; i < bufferSize; i=i+2, j += 4) {
-        // Extract single-channel value (R)
-        uint8_t r = inputBuffer[i];
+    outputBuffer[j]     = value;
+    outputBuffer[j + 1] = value;
+    outputBuffer[j + 2] = value;
+    outputBuffer[j + 3] = 255; // A
 
-        // Set R, G, B to the same value, and set A to 255
-        outputBuffer[j] = r;       // R
-        outputBuffer[j + 1] = r;   // G
-        outputBuffer[j + 2] = r;   // B
-        outputBuffer[j + 3] = 255; // A
-    }
-say(inputBuffer[1000]);
-    *inputBuffer = *outputBuffer;
-say(inputBuffer[1000]);
+
+  }
+
+return outputBuffer;
 }
 
 void CAP_capture::draw_camera_depth(){
@@ -82,10 +91,11 @@ void CAP_capture::draw_camera_depth(){
   if(device == nullptr){return;}
   if(!device->data.data_ready){return;}
 
-convertR16UintBufferToR8G8B8A8Srgb(device->data.depth.buffer);
+uint8_t* data = convertR16UintBufferToR8G8B8A8Srgb(device->data.depth.buffer, device->data.depth.size);
+
 
   Struct_image struct_image;
-  struct_image.buffer = device->data.depth.buffer;
+  struct_image.buffer = data;
   struct_image.width = device->data.depth.width;
   struct_image.height = device->data.depth.height;
   struct_image.format = "R8G8B8A8_SRGB";
