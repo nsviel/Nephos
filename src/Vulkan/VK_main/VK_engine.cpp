@@ -47,7 +47,7 @@ VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
 }
 VK_engine::~VK_engine(){}
 
-//Main function
+//Init function
 void VK_engine::init(){
   timer_time t1 = timer.start_t();
   //---------------------------
@@ -61,57 +61,6 @@ void VK_engine::init(){
   //---------------------------
   struct_vulkan->info.engine_init = timer.stop_us(t1) / 1000;
 }
-void VK_engine::loop(){
-  //---------------------------
-
-  vk_drawing->draw_frame();
-
-  //---------------------------
-  fps_counter->update();
-  struct_vulkan->info.engine_fps = fps_counter->get_fps();
-}
-void VK_engine::device_wait_idle(){
-  //---------------------------
-
-  VkResult result = vkDeviceWaitIdle(struct_vulkan->device.device);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] device wait idle");
-  }
-
-  //---------------------------
-}
-void VK_engine::clean(){
-  //---------------------------
-
-  vk_synchronization->clean();
-  vk_texture->clean_textures();
-  vk_renderpass->clean_renderpass();
-  vk_swapchain->clean_swapchain();
-  vk_canvas->clean_canvas();
-  vk_data->clean_entity_all();
-  vk_pool->clean();
-  vk_device->clean();
-  vk_surface->clean();
-  vk_instance->clean_instance();
-
-  //---------------------------
-}
-void VK_engine::reload_shader(string shader, string subshader){
-  //---------------------------
-
-  vk_reload->hot_shader_reload(shader, subshader);
-
-  //---------------------------
-}
-void VK_engine::add_renderpass_description(Struct_vk_renderpass* renderpass){
-  //---------------------------
-
-  struct_vulkan->render.vec_renderpass.push_back(renderpass);
-
-  //---------------------------
-}
-
-//Init function
 void VK_engine::init_engine_presentation(){
   //---------------------------
 
@@ -145,6 +94,52 @@ void VK_engine::init_engine_headless(){
   //Rendering
   vk_viewport->init_viewport();
   vk_renderpass->init_renderpass();
+
+  //---------------------------
+}
+
+//Main function
+void VK_engine::loop(){
+  //---------------------------
+
+  vk_drawing->draw_frame();
+
+  //---------------------------
+  fps_counter->update();
+  struct_vulkan->info.engine_fps = fps_counter->get_fps();
+}
+void VK_engine::clean(){
+  //---------------------------
+
+  vk_synchronization->clean();
+  vk_texture->clean_textures();
+  vk_renderpass->clean_renderpass();
+  vk_swapchain->clean_swapchain();
+  vk_canvas->clean_canvas();
+  vk_data->clean_entity_all();
+  vk_pool->clean();
+  vk_device->clean();
+  vk_surface->clean();
+  vk_instance->clean_instance();
+
+  //---------------------------
+}
+
+//Specific function
+void VK_engine::device_wait_idle(){
+  //---------------------------
+
+  VkResult result = vkDeviceWaitIdle(struct_vulkan->device.device);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] device wait idle");
+  }
+
+  //---------------------------
+}
+void VK_engine::reload_shader(string shader, string subshader){
+  //---------------------------
+
+  vk_reload->hot_shader_reload(shader, subshader);
 
   //---------------------------
 }
@@ -185,6 +180,13 @@ void VK_engine::remove_object_in_engine(Object* object){
 }
 
 //Renderpass function
+void VK_engine::add_renderpass_description(Struct_vk_renderpass* renderpass){
+  //---------------------------
+
+  struct_vulkan->render.vec_renderpass.push_back(renderpass);
+
+  //---------------------------
+}
 Struct_vk_renderpass* VK_engine::get_renderpass(int i){
   //---------------------------
 

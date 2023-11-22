@@ -35,23 +35,25 @@ public:
   ~VK_engine();
 
 public:
-  //Main functions
-  void init();
-  void loop();
-  void clean();
-  void device_wait_idle();
-  void reload_shader(string shader, string subshader);
-  void add_renderpass_description(Struct_vk_renderpass* renderpass);
-
   //Init function
+  void init();
   void init_engine_presentation();
   void init_engine_headless();
+
+  //Main functions
+  void loop();
+  void clean();
+
+  //Specific function
+  void device_wait_idle();
+  void reload_shader(string shader, string subshader);
 
   //Data function
   void insert_object_in_engine(Object* object);
   void remove_object_in_engine(Object* object);
 
   //Renderpass function
+  void add_renderpass_description(Struct_vk_renderpass* renderpass);
   Struct_vk_renderpass* get_renderpass(int i);
   Struct_vk_renderpass* get_renderpass_presentation(int i);
 
