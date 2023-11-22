@@ -60,17 +60,8 @@ uint8_t* convertR16UintBufferToR8G8B8A8Srgb(uint8_t* inputBuffer, size_t size) {
 
   for(int i=0, j=0; i<size; i+=2, j+=4){
     uint16_t r = *reinterpret_cast<uint16_t*>(&inputBuffer[i]);
-    uint8_t value = static_cast<uint8_t>((r * 1.0) / 255);
-    float value2 = ((float)r * 1.0f) / 255.0f;
-    int value3 = (int)value2;
-    uint8_t value4 = reinterpret_cast<uint8_t>(value2);
+    uint8_t value = static_cast<uint8_t>(r);
 
-say("---");
-    say(r);
-    say(value);
-    say(value2);
-    say(value3);
-    say(value4);
 
 
     outputBuffer[j]     = value;
