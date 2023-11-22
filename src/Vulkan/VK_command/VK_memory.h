@@ -19,6 +19,7 @@ public:
 public:
   //Image GPU function
   void transfert_image_to_gpu(Struct_vk_image* image);
+  void allocate_image_memory(Struct_vk_image* image);
   void copy_buffer_to_image(Struct_vk_image* image, VkBuffer buffer);
   void copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer);
 

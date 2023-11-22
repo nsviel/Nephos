@@ -19,16 +19,27 @@ VK_image::~VK_image(){}
 void VK_image::create_image(Struct_vk_image* image){
   //---------------------------
 
-  image->tiling = VK_IMAGE_TILING_OPTIMAL;
-  image->properties = TYP_MEMORY_GPU;
-
   this->create_image_obj(image);
-  this->bind_image_to_memory(image);
+  vk_memory->allocate_image_memory(image);
   this->create_image_view(image);
   this->create_image_sampler(image);
 
   //---------------------------
 }
+void VK_image::clean_image(Struct_vk_image* image){
+  //---------------------------
+
+  vkDestroySampler(struct_vulkan->device.device, image->sampler, nullptr);
+
+  if(image->view != nullptr)
+  vkDestroyImageView(struct_vulkan->device.device, image->view, nullptr);
+  vkDestroyImage(struct_vulkan->device.device, image->image, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, image->mem, nullptr);
+
+  //---------------------------
+}
+
+//Image vulkan creation
 void VK_image::create_image_obj(Struct_vk_image* image){
   //---------------------------
 
@@ -54,84 +65,48 @@ void VK_image::create_image_obj(Struct_vk_image* image){
 
   //---------------------------
 }
-void VK_image::bind_image_to_memory(Struct_vk_image* image){
-  //---------------------------
-
-  VkMemoryRequirements memRequirements;
-  vkGetImageMemoryRequirements(struct_vulkan->device.device, image->image, &memRequirements);
-
-  VkMemoryAllocateInfo allocInfo{};
-  allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
-  allocInfo.allocationSize = memRequirements.size;
-  allocInfo.memoryTypeIndex = vk_memory->find_memory_type(memRequirements.memoryTypeBits, image->properties);
-
-  VkResult result = vkAllocateMemory(struct_vulkan->device.device, &allocInfo, nullptr, &image->mem);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to allocate image memory!");
-  }
-
-  vkBindImageMemory(struct_vulkan->device.device, image->image, image->mem, 0);
-
-  //---------------------------
-}
-void VK_image::clean_image(Struct_vk_image* image){
-  //---------------------------
-
-  vkDestroySampler(struct_vulkan->device.device, image->sampler, nullptr);
-
-  if(image->view != nullptr)
-  vkDestroyImageView(struct_vulkan->device.device, image->view, nullptr);
-  vkDestroyImage(struct_vulkan->device.device, image->image, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, image->mem, nullptr);
-
-  //---------------------------
-}
-
-//Image view & sampler
 void VK_image::create_image_view(Struct_vk_image* image){
   //---------------------------
 
-  VkImageViewCreateInfo viewInfo{};
-  viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
-  viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
-  viewInfo.subresourceRange = {};
-  viewInfo.subresourceRange.aspectMask = image->aspect;
-  viewInfo.subresourceRange.baseMipLevel = 0;
-  viewInfo.subresourceRange.levelCount = image->mip_level;
-  viewInfo.subresourceRange.baseArrayLayer = 0;
-  viewInfo.subresourceRange.layerCount = 1;
-  viewInfo.format = image->format;
-  viewInfo.image = image->image;
-  viewInfo.flags = 0;
+  VkImageViewCreateInfo view_info{};
+  view_info.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+  view_info.viewType = VK_IMAGE_VIEW_TYPE_2D;
+  view_info.subresourceRange = {};
+  view_info.subresourceRange.aspectMask = image->aspect;
+  view_info.subresourceRange.baseMipLevel = 0;
+  view_info.subresourceRange.layerCount = 1;
+  view_info.subresourceRange.baseArrayLayer = 0;
+  view_info.subresourceRange.levelCount = image->mip_level;
+  view_info.format = image->format;
+  view_info.image = image->image;
+  view_info.flags = 0;
 
-  VkResult result = vkCreateImageView(struct_vulkan->device.device, &viewInfo, nullptr, &image->view);
+  VkResult result = vkCreateImageView(struct_vulkan->device.device, &view_info, nullptr, &image->view);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create texture image view!");
   }
-
-  //this->compute_mipmap(image);
 
   //---------------------------
 }
 void VK_image::create_image_sampler(Struct_vk_image* texture){
   //---------------------------
 
-  VkSamplerCreateInfo samplerInfo{};
-  samplerInfo.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
-  samplerInfo.magFilter = VK_FILTER_LINEAR;
-  samplerInfo.minFilter = VK_FILTER_LINEAR;
-  samplerInfo.addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-  samplerInfo.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-  samplerInfo.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-  samplerInfo.anisotropyEnable = VK_TRUE;
-  samplerInfo.maxAnisotropy = struct_vulkan->device.struct_device.properties.limits.maxSamplerAnisotropy;
-  samplerInfo.borderColor = VK_BORDER_COLOR_INT_OPAQUE_BLACK;
-  samplerInfo.unnormalizedCoordinates = VK_FALSE;
-  samplerInfo.compareEnable = VK_FALSE;
-  samplerInfo.compareOp = VK_COMPARE_OP_ALWAYS;
-  samplerInfo.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
+  VkSamplerCreateInfo sampler_info{};
+  sampler_info.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
+  sampler_info.magFilter = VK_FILTER_LINEAR;
+  sampler_info.minFilter = VK_FILTER_LINEAR;
+  sampler_info.addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT;
+  sampler_info.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
+  sampler_info.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
+  sampler_info.anisotropyEnable = VK_TRUE;
+  sampler_info.maxAnisotropy = struct_vulkan->device.struct_device.properties.limits.maxSamplerAnisotropy;
+  sampler_info.borderColor = VK_BORDER_COLOR_INT_OPAQUE_BLACK;
+  sampler_info.unnormalizedCoordinates = VK_FALSE;
+  sampler_info.compareEnable = VK_FALSE;
+  sampler_info.compareOp = VK_COMPARE_OP_ALWAYS;
+  sampler_info.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
 
-  VkResult result = vkCreateSampler(struct_vulkan->device.device, &samplerInfo, nullptr, &texture->sampler);
+  VkResult result = vkCreateSampler(struct_vulkan->device.device, &sampler_info, nullptr, &texture->sampler);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create texture sampler!");
   }

@@ -43,6 +43,25 @@ void VK_memory::transfert_image_to_gpu(Struct_vk_image* image){
 
   //---------------------------
 }
+void VK_memory::allocate_image_memory(Struct_vk_image* image){
+  //---------------------------
+
+  VkMemoryRequirements memRequirements;
+  vkGetImageMemoryRequirements(struct_vulkan->device.device, image->image, &memRequirements);
+
+  VkMemoryAllocateInfo allocInfo{};
+  allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+  allocInfo.allocationSize = memRequirements.size;
+  allocInfo.memoryTypeIndex = find_memory_type(memRequirements.memoryTypeBits, TYP_MEMORY_GPU);
+  VkResult result = vkAllocateMemory(struct_vulkan->device.device, &allocInfo, nullptr, &image->mem);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("failed to allocate image memory!");
+  }
+
+  vkBindImageMemory(struct_vulkan->device.device, image->image, image->mem, 0);
+
+  //---------------------------
+}
 void VK_memory::copy_buffer_to_image(Struct_vk_image* image, VkBuffer buffer){
   //---------------------------
 

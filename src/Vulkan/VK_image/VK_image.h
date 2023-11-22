@@ -16,16 +16,14 @@ public:
   ~VK_image();
 
 public:
+  //Main function
+  void create_image(Struct_vk_image* image);
   void clean_image(Struct_vk_image* image);
 
-  //Generic image creation
+  //Image vulkan creation
+  void create_image_obj(Struct_vk_image* image);
   void create_image_view(Struct_vk_image* image);
   void create_image_sampler(Struct_vk_image* texture);
-
-  //image creation
-  void create_image(Struct_vk_image* image);
-  void create_image_obj(Struct_vk_image* image);
-  void bind_image_to_memory(Struct_vk_image* image);
 
   //Subfunction
   void compute_mipmap(Struct_vk_image* image);
