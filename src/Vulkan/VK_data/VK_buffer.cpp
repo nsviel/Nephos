@@ -2,6 +2,7 @@
 
 #include <VK_main/Struct_vulkan.h>
 #include <VK_command/VK_command.h>
+#include <VK_command/VK_memory.h>
 
 
 //Constructor / Destructor
@@ -10,6 +11,7 @@ VK_buffer::VK_buffer(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_command = new VK_command(struct_vulkan);
+  this->vk_memory = new VK_memory(struct_vulkan);
 
   //---------------------------
 }

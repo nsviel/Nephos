@@ -22,15 +22,11 @@ public:
   //Main functions
   Struct_vk_image* load_texture(Struct_image* image);
   void update_texture(Struct_vk_image* image);
+  VkFormat find_texture_format(Struct_image* image);
 
   //Texture cleaning
   void clean_texture(Struct_vk_entity* object);
   void clean_textures();
-
-  //Subfunction
-  void create_vulkan_texture(Struct_vk_image* image);
-  VkFormat find_texture_format(Struct_image* image);
-  VkImageAspectFlags find_texture_aspect(Struct_image* image);
 
 private:
   Struct_vulkan* struct_vulkan;

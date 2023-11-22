@@ -2,7 +2,7 @@
 
 #include <VK_main/VK_texture.h>
 #include <VK_image/VK_image.h>
-#include <VK_image/VK_memory.h>
+#include <VK_command/VK_memory.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_data/VK_buffer.h>
 #include <VK_command/VK_command.h>

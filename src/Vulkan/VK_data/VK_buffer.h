@@ -6,6 +6,7 @@
 
 class Struct_vulkan;
 class VK_command;
+class VK_memory;
 
 
 class VK_buffer
@@ -33,6 +34,7 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
+  VK_memory* vk_memory;
 };
 
 #endif
