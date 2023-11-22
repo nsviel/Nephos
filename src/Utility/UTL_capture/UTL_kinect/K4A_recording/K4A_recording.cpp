@@ -4,10 +4,11 @@
 
 
 //Constructor / Destructor
-K4A_recording::K4A_recording(){
+K4A_recording::K4A_recording(Struct_kinect* struct_kinect){
   //---------------------------
 
-  this->struct_kinect = new Struct_kinect();
+  this->struct_kinect = struct_kinect;
+
   //---------------------------
 }
 K4A_recording::~K4A_recording(){}
@@ -89,6 +90,8 @@ void K4A_recording::record_control(string path){
   recording.get_tag("K4A_COLOR_FIRMWARE_VERSION", &m_colorFirmwareVersion);
   std::string m_depthFirmwareVersion;
   recording.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &m_depthFirmwareVersion);
+
+  say(m_deviceSerialNumber);
 
   //---------------------------
 }

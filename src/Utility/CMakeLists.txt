@@ -34,6 +34,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   -ludev        # video device
   -lusb-1.0
   -lk4a
+  -lk4arecord
 
   -lavformat    # ffmpeg
   -lavdevice    # ffmpeg

@@ -12,7 +12,7 @@ class K4A_recording
 {
 public:
   //Constructor / Destructor
-  K4A_recording();
+  K4A_recording(Struct_kinect* struct_kinect);
   ~K4A_recording();
 
 public:
