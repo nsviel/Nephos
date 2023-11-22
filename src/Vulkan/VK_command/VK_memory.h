@@ -23,8 +23,9 @@ public:
   void copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer);
 
   //Buffer GPU function
-  template <typename VertexType>
-  void transfert_buffer_to_gpu_(Struct_vk_buffer* buffer, vector<VertexType>& vertices);
+  void transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec2>& vertices);
+  void transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec3>& vertices);
+  void transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec4>& vertices);
   void copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
 
   //Subfunction
