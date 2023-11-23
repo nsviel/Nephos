@@ -42,8 +42,9 @@ void K4A_device::refresh_device_list(){
 
   //---------------------------
 }
+
 string K4A_device::find_name_from_config(k4a_wired_sync_mode_t& value){
-  string name = "";
+  string name = "(None)";
   //---------------------------
 
   switch (value){
@@ -59,16 +60,13 @@ string K4A_device::find_name_from_config(k4a_wired_sync_mode_t& value){
       name = "K4A_WIRED_SYNC_MODE_SUBORDINATE";
       break;
     }
-    default:{
-      cout<<"[error] Unrecognized sync mode"<<endl;
-    }
   }
 
   //---------------------------
   return name;
 }
 string K4A_device::find_name_from_config(k4a_fps_t& value){
-  string name = "";
+  string name = "(None)";
   //---------------------------
 
   switch (value){
@@ -84,16 +82,13 @@ string K4A_device::find_name_from_config(k4a_fps_t& value){
       name = "K4A_FRAMES_PER_SECOND_30";
       break;
     }
-    default:{
-      cout<<"[error] Unrecognized fps"<<endl;
-    }
   }
 
   //---------------------------
   return name;
 }
 string K4A_device::find_name_from_config(k4a_depth_mode_t& value){
-  string name = "";
+  string name = "(None)";
   //---------------------------
 
   switch (value){
@@ -121,16 +116,13 @@ string K4A_device::find_name_from_config(k4a_depth_mode_t& value){
       name = "K4A_DEPTH_MODE_PASSIVE_IR";
       break;
     }
-    default:{
-      cout<<"[error] Unrecognized depth mode"<<endl;
-    }
   }
 
   //---------------------------
   return name;
 }
 string K4A_device::find_name_from_config(k4a_color_resolution_t& value){
-  string name = "";
+  string name = "(None)";
   //---------------------------
 
   switch (value){
@@ -162,16 +154,13 @@ string K4A_device::find_name_from_config(k4a_color_resolution_t& value){
       name = "K4A_COLOR_RESOLUTION_3072P";
       break;
     }
-    default:{
-      cout<<"[error] Unrecognized color resolution"<<endl;
-    }
   }
 
   //---------------------------
   return name;
 }
 string K4A_device::find_name_from_config(k4a_image_format_t& value){
-  string name = "";
+  string name = "(None)";
   //---------------------------
 
   switch (value){
@@ -202,9 +191,6 @@ string K4A_device::find_name_from_config(k4a_image_format_t& value){
     case K4A_IMAGE_FORMAT_CUSTOM:{
       name = "K4A_IMAGE_FORMAT_CUSTOM";
       break;
-    }
-    default:{
-      cout<<"[error] Unrecognized image format"<<endl;
     }
   }
 
