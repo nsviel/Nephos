@@ -8,6 +8,7 @@
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_capture/UTL_kinect/K4A_recording/K4A_playback.h>
+#include <UTL_capture/UTL_kinect/K4A_recording/K4A_recorder.h>
 
 
 //Constructor / Destructor
@@ -21,6 +22,7 @@ CAP_kinect::CAP_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   this->struct_kinect = kinect->get_struct_kinect();
   this->k4a_device = new K4A_device(struct_kinect);
   this->k4a_playback = new K4A_playback(struct_kinect);
+  this->k4a_recorder = new K4A_recorder(struct_kinect);
 
   this->item_width = 100;
 
@@ -45,6 +47,12 @@ void CAP_kinect::design_panel(){
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Playback##4567", NULL)){
       this->playback_stuff();
+      ImGui::EndTabItem();
+    }
+
+    ImGui::SetNextItemWidth(100);
+    if (ImGui::BeginTabItem("Recorder##4567", NULL)){
+      this->recorder_stuff();
       ImGui::EndTabItem();
     }
 
@@ -463,5 +471,12 @@ void CAP_kinect::playback_stuff(){
   }
   ImGui::Separator();
 */
+  //---------------------------
+}
+void CAP_kinect::recorder_stuff(){
+  //---------------------------
+
+
+
   //---------------------------
 }

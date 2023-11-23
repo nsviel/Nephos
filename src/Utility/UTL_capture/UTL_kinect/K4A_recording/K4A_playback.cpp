@@ -22,8 +22,8 @@ void K4A_playback::find_file_information(string path){
   k4a::playback recording = k4a::playback::open(path.c_str());
   k4a_record_configuration_t record_configuration = recording.get_record_configuration();
 
-  //recording.set_color_conversion(K4A_IMAGE_FORMAT_COLOR_BGRA32);
-  //record_configuration.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+  recording.set_color_conversion(K4A_IMAGE_FORMAT_COLOR_BGRA32);
+  record_configuration.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
 
   //General info
   struct_info.file_path = path;

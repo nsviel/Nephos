@@ -37,10 +37,10 @@ void Kinect::run(){
     k4a_capture->start_thread(device);
   }
   else{
-    device = new Struct_k4a_device();
-    struct_kinect->selected_device = device;
-    device->info.file_path = "/home/aether/Desktop/francasque_0.mkv";
-    k4a_replay->start_thread(device);
+    //device = new Struct_k4a_device();
+    //struct_kinect->selected_device = device;
+    //device->info.file_path = "/home/aether/Desktop/francasque_0.mkv";
+    //k4a_replay->start_thread(device);
   }
 
   //---------------------------

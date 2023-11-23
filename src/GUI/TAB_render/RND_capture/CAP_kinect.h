@@ -9,6 +9,7 @@ class Kinect;
 class Struct_kinect;
 class K4A_device;
 class K4A_playback;
+class K4A_recorder;
 
 
 class CAP_kinect : public BASE_panel
@@ -30,12 +31,14 @@ public:
   void firmware_info();
 
   void playback_stuff();
+  void recorder_stuff();
 
 private:
   Kinect* kinect;
   Struct_kinect* struct_kinect;
   K4A_device* k4a_device;
   K4A_playback* k4a_playback;
+  K4A_recorder* k4a_recorder;
 
   bool show_capture = false;
 };

@@ -26,7 +26,7 @@ public:
 private:
   VK_texture* vk_texture;
 
-  Struct_vk_image* image;
+  Struct_vk_image* vk_image;
   ImTextureID texture;
 };
 
