@@ -55,10 +55,7 @@ void K4A_replay::run_capture(Struct_k4a_device* device){
 
     //Color
     k4a::image color = next_capture.get_color_image();
-    if (!color) {
-      //Can't read first packet
-      continue;
-     }
+    if (!color) {continue;}
     device->data.color.name = "color";
     device->data.color.buffer = color.get_buffer();
     device->data.color.size = color.get_size();
@@ -89,7 +86,7 @@ void K4A_replay::run_capture(Struct_k4a_device* device){
     device->data.ir.timestamp = static_cast<float>(ir.get_device_timestamp().count());
     ir.reset();
 
-    device->data.data_ready = true;
+    device->data.data_ready = false;
     this->sleep_necessary_time(device);
   }
 

@@ -74,10 +74,10 @@ void CAP_capture::design_panel(){
 void CAP_capture::draw_camera_color(ImVec2 image_size){
   Struct_k4a_device* device = struct_kinect->selected_device;
   //---------------------------
-say("---");
-  if(device == nullptr){return;}
 
-  sayHello();
+  if(device == nullptr){return;}
+say("---");
+  
   if(!device->data.data_ready){return;}
 
   K4A_image* k4a_image = &device->data.color;

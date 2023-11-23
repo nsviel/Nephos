@@ -70,7 +70,6 @@ void CAP_kinect::kinect_devices(){
       ImGui::TableNextColumn();
       ImGui::TableNextColumn();
       ImGui::Text("(No available devices)");
-      struct_kinect->selected_device = nullptr;
     }
     else{
       ImGui::TableSetupColumn("");
