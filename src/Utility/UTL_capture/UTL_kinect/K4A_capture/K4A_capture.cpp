@@ -40,17 +40,29 @@ void K4A_capture::run_capture(Struct_k4a_device* device){
   //Init
   k4a::device k4a_device = k4a::device::open(device->index);
   k4a::capture k4a_capture;
+  k4a::record recording;
 
   //Start recording
+  device->device = &k4a_device;
   device->config.version = k4a_device.get_version();
   k4a_device.start_cameras(&device->config.k4a_config);
 
+  bool is_recording = thread_recording;
+  if(is_recording){
+    recording = k4a::record::create("output.mkv", k4a_device, device->config.k4a_config);
+    recording.add_tag("Tag1", "Value1");
+    recording.write_header();
+  }
+
   this->thread_running = true;
-  std::chrono::milliseconds timeout(2000);
   while(thread_running){
-    k4a_device.get_capture(&k4a_capture, timeout);
+    k4a_device.get_capture(&k4a_capture, std::chrono::milliseconds(1000));
     device->temperature = k4a_capture.get_temperature_c();
     device->data.capture = &k4a_capture;
+
+    if(is_recording){
+      recording.write_capture(k4a_capture);
+    }
 
     //Color
     k4a::image color = k4a_capture.get_color_image();
@@ -90,6 +102,10 @@ void K4A_capture::run_capture(Struct_k4a_device* device){
   k4a_device.stop_cameras();
 
   device->data.capture = nullptr;
+
+  if(is_recording){
+    recording.flush();
+  }
 
   //---------------------------
 }

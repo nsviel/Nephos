@@ -18,6 +18,7 @@ struct Struct_k4a_device{
   int index;
   float temperature = 0;
   std::string serial_number;
+  k4a::device* device;
 
   Struct_k4a_config config;
   Struct_k4a_color color;

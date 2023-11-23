@@ -79,8 +79,9 @@ void CAP_capture::draw_camera_color(ImVec2 image_size){
   if(!device->data.data_ready){return;}
   say("---");
 
-    
+
   K4A_image* k4a_image = &device->data.color;
+
   Struct_image struct_image;
   struct_image.buffer = k4a_image->buffer;
   struct_image.width = k4a_image->width;
@@ -100,6 +101,7 @@ void CAP_capture::draw_camera_depth(ImVec2 image_size){
   if(!device->data.data_ready){return;}
 
   K4A_image* k4a_image = &device->data.depth;
+
   Struct_image struct_image;
   struct_image.buffer = k4a_depth->convert_depth_into_color(device);
   struct_image.width = k4a_image->width;

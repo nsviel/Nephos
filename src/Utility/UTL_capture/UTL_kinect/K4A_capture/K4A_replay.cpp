@@ -65,10 +65,6 @@ void K4A_replay::run_capture(Struct_k4a_device* device){
     device->data.color.timestamp = static_cast<float>(color.get_device_timestamp().count());
     color.reset();
 
-say(device->data.color.buffer);
-say(strlen(reinterpret_cast<char*>(device->data.color.buffer)));
-
-/*
     //Depth
     k4a::image depth = next_capture.get_depth_image();
     device->data.depth.name = "depth";
@@ -89,8 +85,8 @@ say(strlen(reinterpret_cast<char*>(device->data.color.buffer)));
     device->data.ir.height = ir.get_height_pixels();
     device->data.ir.timestamp = static_cast<float>(ir.get_device_timestamp().count());
     ir.reset();
-*/
-    device->data.data_ready = false;
+
+    device->data.data_ready = true;
     this->sleep_necessary_time(device);
   }
 

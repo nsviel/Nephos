@@ -474,9 +474,13 @@ void CAP_kinect::playback_stuff(){
   //---------------------------
 }
 void CAP_kinect::recorder_stuff(){
+  Struct_k4a_device* device = struct_kinect->selected_device;
+  if(device == nullptr) return;
   //---------------------------
 
-
+  if(ImGui::Button("Record")){
+    k4a_recorder->record_mkv(device);
+  }
 
   //---------------------------
 }

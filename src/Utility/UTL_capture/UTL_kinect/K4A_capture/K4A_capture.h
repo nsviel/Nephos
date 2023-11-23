@@ -4,6 +4,7 @@
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_device.h>
 #include <UTL_specific/common.h>
 #include <k4a/k4a.hpp>
+#include <k4arecord/record.hpp>
 
 class Struct_kinect;
 class K4A_device;
@@ -33,6 +34,7 @@ private:
 
   std::thread thread;
   bool thread_running = false;
+  bool thread_recording = false;
 };
 
 
