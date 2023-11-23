@@ -5,7 +5,7 @@
 #include <string>
 
 
-struct Struct_k4a_record{
+struct Struct_k4a_playback{
   //---------------------------
 
   //Objects

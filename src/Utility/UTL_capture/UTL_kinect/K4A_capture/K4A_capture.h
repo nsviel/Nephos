@@ -16,6 +16,7 @@ public:
   K4A_capture(Struct_kinect* struct_kinect);
   ~K4A_capture();
 
+public:
   //Main function
   void run();
 
