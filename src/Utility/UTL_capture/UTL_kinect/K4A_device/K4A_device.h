@@ -21,6 +21,8 @@ public:
   //Main function
   void refresh_device_list();
 
+  string find_name_from_config(k4a_wired_sync_mode_t& value);
+
 private:
   Struct_kinect* struct_kinect;
 };

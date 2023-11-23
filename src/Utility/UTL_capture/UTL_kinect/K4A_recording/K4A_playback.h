@@ -4,6 +4,7 @@
 #include <UTL_specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
+#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_record.h>
 
 class Struct_kinect;
 
@@ -19,9 +20,11 @@ public:
   //Main function
   void record_control(string path);
 
+  inline Struct_k4a_record& get_struct_record(){return struct_record;}
+
 private:
   Struct_kinect* struct_kinect;
-
+  Struct_k4a_record struct_record;
 };
 
 #endif

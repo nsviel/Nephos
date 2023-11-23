@@ -42,3 +42,28 @@ void K4A_device::refresh_device_list(){
 
   //---------------------------
 }
+string K4A_device::find_name_from_config(k4a_wired_sync_mode_t& value){
+  string name = "";
+  //---------------------------
+
+  switch (value){
+    case K4A_WIRED_SYNC_MODE_STANDALONE:{
+      name = "K4A_WIRED_SYNC_MODE_STANDALONE";
+      break;
+    }
+    case K4A_WIRED_SYNC_MODE_MASTER:{
+      name = "K4A_WIRED_SYNC_MODE_MASTER";
+      break;
+    }
+    case K4A_WIRED_SYNC_MODE_SUBORDINATE:{
+      name = "K4A_WIRED_SYNC_MODE_SUBORDINATE";
+      break;
+    }
+    default:{
+      cout<<"[error] Unrecognized sync mode"<<endl;
+    }
+  }
+
+  //---------------------------
+  return name;
+}

@@ -2,12 +2,13 @@
 #define STRUCT_K4A_RECORD_H
 
 #include <k4a/k4a.hpp>
-#include <std::string>
+#include <string>
 
 
 struct Struct_k4a_record{
   //---------------------------
 
+  std::string path;
   std::string info_fps;
   std::string info_depth_mode;
   std::string info_color_format;
@@ -23,6 +24,7 @@ struct Struct_k4a_record{
   bool is_color;
   bool is_depth;
   bool is_infrared;
+  bool is_imu;
 
   //---------------------------
 };

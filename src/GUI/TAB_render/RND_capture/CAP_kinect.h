@@ -29,6 +29,8 @@ public:
   void configuration_general();
   void firmware_info();
 
+  void playback_stuff();
+
 private:
   Kinect* kinect;
   Struct_kinect* struct_kinect;
