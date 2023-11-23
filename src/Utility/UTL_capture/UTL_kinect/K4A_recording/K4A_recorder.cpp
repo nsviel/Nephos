@@ -17,6 +17,7 @@ K4A_recorder::~K4A_recorder(){}
 void K4A_recorder::record_mkv(Struct_k4a_device* device){
   //---------------------------
 
+/*
   const char* recordingPath = "output.mkv";
 
   // Create a k4a::record instance
@@ -30,7 +31,7 @@ void K4A_recorder::record_mkv(Struct_k4a_device* device){
   recording.write_header();
 
   // Capture loop
-  const int numFramesToRecord = 30; // Record for 10 seconds at 30 FPS
+  const int numFramesToRecord = 150; // Record for 10 seconds at 30 FPS
   for (int i = 0; i < numFramesToRecord; ++i)
   {
       // Acquire a capture from the device
@@ -44,6 +45,6 @@ void K4A_recorder::record_mkv(Struct_k4a_device* device){
 
   // Stop recording and close the file
   recording.flush();
-
+*/
   //---------------------------
 }

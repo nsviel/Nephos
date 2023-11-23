@@ -77,8 +77,6 @@ void CAP_capture::draw_camera_color(ImVec2 image_size){
 
   if(device == nullptr){return;}
   if(!device->data.data_ready){return;}
-  say("---");
-
 
   K4A_image* k4a_image = &device->data.color;
 
