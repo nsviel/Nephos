@@ -317,12 +317,32 @@ void CAP_kinect::firmware_info(){
 
   if (ImGui::TreeNode("Device Firmware Version Info")){
     k4a_hardware_version_t versionInfo = device->config.version;
-    ImGui::Text("RGB camera: %u.%u.%u", versionInfo.rgb.major, versionInfo.rgb.minor, versionInfo.rgb.iteration);
-    ImGui::Text("Depth camera: %u.%u.%u", versionInfo.depth.major, versionInfo.depth.minor, versionInfo.depth.iteration);
-    ImGui::Text("Audio: %u.%u.%u", versionInfo.audio.major, versionInfo.audio.minor, versionInfo.audio.iteration);
+    ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
+    if(ImGui::BeginTable("device##firmware", 2)){
+      ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
 
-    ImGui::Text("Build Config: %s", versionInfo.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug");
-    ImGui::Text("Signature type: %s", versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned");
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("RGB camera"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%u.%u.%u", versionInfo.rgb.major, versionInfo.rgb.minor, versionInfo.rgb.iteration);
+
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Depth camera"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%u.%u.%u", versionInfo.depth.major, versionInfo.depth.minor, versionInfo.depth.iteration);
+
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Audio"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%u.%u.%u", versionInfo.audio.major, versionInfo.audio.minor, versionInfo.audio.iteration);
+
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Build config"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%s", versionInfo.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug");
+
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Signature type"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%s", versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned");
+
+      ImGui::EndTable();
+    }
 
     ImGui::TreePop();
   }
@@ -337,38 +357,110 @@ void CAP_kinect::playback_stuff(){
   k4a_playback->record_control(path);
   Struct_k4a_info& struct_info = k4a_playback->get_struct_record();
 
-
-  if (ImGui::BeginTable("playback_table", 2){
-    ImGui::Text("Path ");
-    ImGui::TableNextColumn();
+  //General info
+  if(ImGui::BeginTable("playback_table##general", 2)){
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Path "); ImGui::TableNextColumn();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", path.c_str());
 
     ImGui::EndTable();
   }
 
-
-
-
+  //Data info
+  ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Recording settings");
-  ImGui::Text("FPS:              %s", struct_info.info_fps.c_str());
-  ImGui::Text("Depth mode:       %s", struct_info.info_depth_mode.c_str());
-  ImGui::Text("Color format:     %s", struct_info.info_color_format.c_str());
-  ImGui::Text("Color resolution: %s", struct_info.info_color_resolution.c_str());
-  ImGui::Text("IMU enabled:      %s", struct_info.is_imu ? "Yes" : "No");
+  if(ImGui::BeginTable("playback_table##data", 2)){
+    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("FPS"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.info_fps.c_str());
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Depth mode"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.info_depth_mode.c_str());
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Color format"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.info_color_format.c_str());
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Color resolution"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.info_color_resolution.c_str());
+
+    ImGui::EndTable();
+  }
   ImGui::Separator();
 
+  //Stream info
+  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Stream info");
+  if(ImGui::BeginTable("playback_table##stream", 2)){
+    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Color enabled"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.is_color ? "Yes" : "No");
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Depth enabled"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.is_depth ? "Yes" : "No");
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("IR enabled"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.is_infrared ? "Yes" : "No");
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.is_imu ? "Yes" : "No");
+
+    ImGui::EndTable();
+  }
+  ImGui::Separator();
+
+  //Synchro info
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Sync settings");
-  ImGui::Text("Depth/color delay (us): %d", struct_info.depth_delay_off_color_us);
-  ImGui::Text("Sync mode:              %s", struct_info.info_wired_sync_mode.c_str());
-  ImGui::Text("Subordinate delay (us): %d", struct_info.subordinate_delay_off_master_us);
-  ImGui::Text("Start timestamp offset: %d", struct_info.start_timestamp_offset_us);
-  ImGui::Text("Recording Length (us):  %lu", struct_info.info_recording_lenght_us);
+  if(ImGui::BeginTable("playback_table##synchro", 2)){
+    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Depth/color delay (us)"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", struct_info.depth_delay_off_color_us);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Sync mode"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.info_wired_sync_mode.c_str());
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", struct_info.start_timestamp_offset_us);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%lu", struct_info.info_recording_lenght_us);
+
+    ImGui::EndTable();
+  }
   ImGui::Separator();
 
+  //Device info
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Device info");
-  ImGui::Text("Device S/N:      %s", struct_info.info_device_serial_number.c_str());
-  ImGui::Text("RGB camera FW:   %s", struct_info.info_color_firmware_version.c_str());
-  ImGui::Text("Depth camera FW: %s", struct_info.info_depth_firmware_version.c_str());
+  if(ImGui::BeginTable("playback_table##device", 2)){
+    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Device S/N"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.info_device_serial_number.c_str());
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("RGB camera FW"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.info_color_firmware_version.c_str());
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", struct_info.info_depth_firmware_version.c_str());
+
+    ImGui::EndTable();
+  }
   ImGui::Separator();
 
   //---------------------------

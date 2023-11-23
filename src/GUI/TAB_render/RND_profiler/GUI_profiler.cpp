@@ -36,10 +36,7 @@ void GUI_profiler::design_profiling(){
   ImGui::BeginChild("Profiling", ImVec2(0, 150), false);
   //---------------------------
 
-  ImGui::TextColored(ImVec4(0.7f, 0.7f, 0.7f, 1.0f),"Profiling");
-
   this->device_model();
-
   bool update = time_update();
   this->time_drawig(update);
   this->time_general(update);
@@ -50,9 +47,16 @@ void GUI_profiler::design_profiling(){
 void GUI_profiler::device_model(){
   //---------------------------
 
-  ImGui::Text("Device model ");
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", vk_info->get_gpu_name().c_str());
+  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  if(ImGui::BeginTable("render##device", 2)){
+    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 125.0f);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Device model"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", vk_info->get_gpu_name().c_str());
+
+    ImGui::EndTable();
+  }
 
   //---------------------------
 }
@@ -77,36 +81,30 @@ void GUI_profiler::time_drawig(bool update){
   static float meanr_rp_scene = 0;
   static float meanr_rp_edl = 0;
   static float meanr_rp_gui = 0;
-  if(update){
 
+  //mETTRE DES TABLEASU ICI !!!!!
+  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  if(ImGui::BeginTable("render##time", 2)){
+    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 125.0f);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Frame drawing"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.1f ms", mean_draw_frame);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Renderpass scene"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.1f ms", meanr_rp_scene);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Renderpass EDL"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.1f ms", meanr_rp_edl);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Renderpass GUI"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.1f ms", meanr_rp_gui);
+
+    ImGui::EndTable();
   }
-
-  ImGui::Text("Time draw frame ");
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", mean_draw_frame);
-  ImGui::SameLine();
-  ImGui::Text(" ms");
-
-  //Time init
-  ImGui::Text("Time renderpass scene ");
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", meanr_rp_scene);
-  ImGui::SameLine();
-  ImGui::Text(" ms");
-
-  //Time init
-  ImGui::Text("Time renderpass EDL ");
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", meanr_rp_edl);
-  ImGui::SameLine();
-  ImGui::Text(" ms");
-
-  //Time init
-  ImGui::Text("Time renderpass ui ");
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", meanr_rp_gui);
-  ImGui::SameLine();
-  ImGui::Text(" ms");
 
   //---------------------------
 }
@@ -114,14 +112,21 @@ void GUI_profiler::time_general(bool update){
   ImGuiIO io = ImGui::GetIO();
   //---------------------------
 
-  //Time init
-  ImGui::Text("Time initialization ");
-  ImGui::SameLine();
-  //ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", struct_vulkan->info.engine_init);
-  ImGui::SameLine();
-  ImGui::Text(" ms");
+  float time_init = 0;
+
+  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  if(ImGui::BeginTable("render##device", 2)){
+    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 125.0f);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Initialization"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.1f ms", time_init);
+
+    ImGui::EndTable();
+  }
 
   //FPS
+  ImGui::Text(" ");
   ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / vk_info->get_fps());
   ImGui::SameLine();
   ImGui::Text(" ms/frame [");
