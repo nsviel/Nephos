@@ -7,7 +7,7 @@
 #include <UTL_capture/UTL_kinect/Kinect.h>
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
-#include <UTL_capture/UTL_kinect/K4A_recording/K4A_recording.h>
+#include <UTL_capture/UTL_kinect/K4A_recording/K4A_playback.h>
 
 
 //Constructor / Destructor
@@ -20,7 +20,7 @@ CAP_kinect::CAP_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   this->kinect = utl_capture->get_kinect();
   this->struct_kinect = kinect->get_struct_kinect();
   this->k4a_device = new K4A_device(struct_kinect);
-  this->k4a_recording = new K4A_recording(struct_kinect);
+  this->k4a_playback = new K4A_playback(struct_kinect);
 
   this->item_width = 100;
 
@@ -44,7 +44,7 @@ void CAP_kinect::design_panel(){
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Playback##4567", NULL)){
-      k4a_recording->record_control("/home/aether/Desktop/francasque_0.mkv");
+      k4a_playback->record_control("/home/aether/Desktop/francasque_0.mkv");
       ImGui::EndTabItem();
     }
 

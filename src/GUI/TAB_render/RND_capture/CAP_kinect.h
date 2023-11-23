@@ -8,7 +8,7 @@ class GUI;
 class Kinect;
 class Struct_kinect;
 class K4A_device;
-class K4A_recording;
+class K4A_playback;
 
 
 class CAP_kinect : public BASE_panel
@@ -33,7 +33,7 @@ private:
   Kinect* kinect;
   Struct_kinect* struct_kinect;
   K4A_device* k4a_device;
-  K4A_recording* k4a_recording;
+  K4A_playback* k4a_playback;
 
   bool show_capture = false;
 };
