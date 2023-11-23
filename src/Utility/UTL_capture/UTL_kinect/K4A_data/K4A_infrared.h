@@ -11,7 +11,7 @@ class K4A_infrared
 {
 public:
   //Constructor / Destructor
-  K4A_infrared();
+  K4A_infrared(Struct_kinect* struct_kinect);
   ~K4A_infrared();
 
 public:

@@ -4,10 +4,10 @@
 
 
 //Constructor / Destructor
-K4A_infrared::K4A_infrared(){
+K4A_infrared::K4A_infrared(Struct_kinect* struct_kinect){
   //---------------------------
 
-  this->struct_kinect = new Struct_kinect();
+  this->struct_kinect = struct_kinect;
 
   //---------------------------
 }

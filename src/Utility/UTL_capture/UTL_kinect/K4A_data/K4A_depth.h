@@ -11,7 +11,7 @@ class K4A_depth
 {
 public:
   //Constructor / Destructor
-  K4A_depth();
+  K4A_depth(Struct_kinect* struct_kinect);
   ~K4A_depth();
 
 public:

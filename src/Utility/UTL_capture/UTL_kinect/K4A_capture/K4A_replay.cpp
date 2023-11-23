@@ -38,14 +38,27 @@ void K4A_replay::run_capture(Struct_k4a_device* device){
 
   //Init
   k4a::playback playback = k4a::playback::open(device->info.file_path.c_str());
+  if (!playback) {
+    cout<<"[error] Failed to open playback file"<<endl;
+    return;
+  }
 
   std::cout << "Playback duration: " << playback.get_recording_length().count() << " microseconds\n";
 
   k4a::capture next_capture;
   this->thread_running = true;
   while(playback.get_next_capture(&next_capture)){
+    if (!next_capture) {
+      cout<<"[error] Failed to get next capture"<<endl;
+      break;
+    }
+
     //Color
     k4a::image color = next_capture.get_color_image();
+    if (!color) {
+      //Can't read first packet
+      continue;
+     }
     device->data.color.name = "color";
     device->data.color.buffer = color.get_buffer();
     device->data.color.size = color.get_size();
@@ -55,9 +68,6 @@ void K4A_replay::run_capture(Struct_k4a_device* device){
     device->data.color.timestamp = static_cast<float>(color.get_device_timestamp().count());
     color.reset();
 
-say(device->data.color.height);
-
-/*
     //Depth
     k4a::image depth = next_capture.get_depth_image();
     device->data.depth.name = "depth";
@@ -78,8 +88,26 @@ say(device->data.color.height);
     device->data.ir.height = ir.get_height_pixels();
     device->data.ir.timestamp = static_cast<float>(ir.get_device_timestamp().count());
     ir.reset();
-*/
+
     device->data.data_ready = true;
+    this->sleep_necessary_time(device);
+  }
+
+  //---------------------------
+}
+void K4A_replay::sleep_necessary_time(Struct_k4a_device* device){
+  //---------------------------
+
+  switch(device->config.fps){
+    case K4A_FRAMES_PER_SECOND_5:{
+      std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    }
+    case K4A_FRAMES_PER_SECOND_15:{
+      std::this_thread::sleep_for(std::chrono::milliseconds(66));
+    }
+    case K4A_FRAMES_PER_SECOND_30:{
+      std::this_thread::sleep_for(std::chrono::milliseconds(33));
+    }
   }
 
   //---------------------------

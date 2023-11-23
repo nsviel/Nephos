@@ -18,8 +18,8 @@ CAP_capture::CAP_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
 
   this->kinect = utl_capture->get_kinect();
   this->struct_kinect = kinect->get_struct_kinect();
-  this->k4a_depth = new K4A_depth();
-  this->k4a_infrared = new K4A_infrared();
+  this->k4a_depth = new K4A_depth(struct_kinect);
+  this->k4a_infrared = new K4A_infrared(struct_kinect);
   this->gui = gui;
 
   this->vec_gui_stream.push_back(new GUI_stream(gui));
@@ -76,6 +76,8 @@ void CAP_capture::draw_camera_color(ImVec2 image_size){
   //---------------------------
 
   if(device == nullptr){return;}
+
+  sayHello();
   if(!device->data.data_ready){return;}
 
   K4A_image* k4a_image = &device->data.color;

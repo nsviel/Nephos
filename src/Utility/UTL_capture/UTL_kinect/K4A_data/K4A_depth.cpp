@@ -4,10 +4,10 @@
 
 
 //Constructor / Destructor
-K4A_depth::K4A_depth(){
+K4A_depth::K4A_depth(Struct_kinect* struct_kinect){
   //---------------------------
 
-  this->struct_kinect = new Struct_kinect();
+  this->struct_kinect = struct_kinect;
 
   //---------------------------
 }

@@ -27,6 +27,7 @@ public:
   void start_thread(Struct_k4a_device* device);
   void run_capture(Struct_k4a_device* device);
   void stop_thread();
+  void sleep_necessary_time(Struct_k4a_device* device);
 
   inline bool is_thread_running(){return thread_running;}
 
