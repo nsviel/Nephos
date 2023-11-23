@@ -21,12 +21,12 @@ public:
   //Main function
   void record_control(string path);
 
-  inline Struct_k4a_info& get_struct_record(){return struct_playback;}
+  inline Struct_k4a_info& get_struct_record(){return struct_info;}
 
 private:
   K4A_device* k4a_device;
   Struct_kinect* struct_kinect;
-  Struct_k4a_info struct_playback;
+  Struct_k4a_info struct_info;
 };
 
 #endif

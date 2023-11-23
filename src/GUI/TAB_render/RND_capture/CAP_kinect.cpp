@@ -333,31 +333,42 @@ void CAP_kinect::firmware_info(){
 void CAP_kinect::playback_stuff(){
   //---------------------------
 
-  k4a_playback->record_control("/home/aether/Desktop/francasque_0.mkv");
+  string path = "/home/aether/Desktop/francasque_0.mkv";
+  k4a_playback->record_control(path);
+  Struct_k4a_info& struct_info = k4a_playback->get_struct_record();
 
-  Struct_k4a_info& struct_playback = k4a_playback->get_struct_record();
+
+  if (ImGui::BeginTable("playback_table", 2){
+    ImGui::Text("Path ");
+    ImGui::TableNextColumn();
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", path.c_str());
+
+    ImGui::EndTable();
+  }
 
 
-  ImGui::Text("Recording Settings");
-  ImGui::Text("FPS:              %s", struct_playback.info_fps.c_str());
-  ImGui::Text("Depth mode:       %s", struct_playback.info_depth_mode.c_str());
-  ImGui::Text("Color format:     %s", struct_playback.info_color_format.c_str());
-  ImGui::Text("Color resolution: %s", struct_playback.info_color_resolution.c_str());
-  ImGui::Text("IMU enabled:      %s", struct_playback.is_imu ? "Yes" : "No");
+
+
+  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Recording settings");
+  ImGui::Text("FPS:              %s", struct_info.info_fps.c_str());
+  ImGui::Text("Depth mode:       %s", struct_info.info_depth_mode.c_str());
+  ImGui::Text("Color format:     %s", struct_info.info_color_format.c_str());
+  ImGui::Text("Color resolution: %s", struct_info.info_color_resolution.c_str());
+  ImGui::Text("IMU enabled:      %s", struct_info.is_imu ? "Yes" : "No");
   ImGui::Separator();
 
-  ImGui::Text("Sync settings");
-  ImGui::Text("Depth/color delay (us): %d", struct_playback.depth_delay_off_color_us);
-  ImGui::Text("Sync mode:              %s", struct_playback.info_wired_sync_mode.c_str());
-  ImGui::Text("Subordinate delay (us): %d", struct_playback.subordinate_delay_off_master_us);
-  ImGui::Text("Start timestamp offset: %d", struct_playback.start_timestamp_offset_us);
-  ImGui::Text("Recording Length (us):  %lu", struct_playback.info_recording_lenght_us);
+  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Sync settings");
+  ImGui::Text("Depth/color delay (us): %d", struct_info.depth_delay_off_color_us);
+  ImGui::Text("Sync mode:              %s", struct_info.info_wired_sync_mode.c_str());
+  ImGui::Text("Subordinate delay (us): %d", struct_info.subordinate_delay_off_master_us);
+  ImGui::Text("Start timestamp offset: %d", struct_info.start_timestamp_offset_us);
+  ImGui::Text("Recording Length (us):  %lu", struct_info.info_recording_lenght_us);
   ImGui::Separator();
 
-  ImGui::Text("Device info");
-  ImGui::Text("Device S/N:      %s", struct_playback.info_device_serial_number.c_str());
-  ImGui::Text("RGB camera FW:   %s", struct_playback.info_color_firmware_version.c_str());
-  ImGui::Text("Depth camera FW: %s", struct_playback.info_depth_firmware_version.c_str());
+  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Device info");
+  ImGui::Text("Device S/N:      %s", struct_info.info_device_serial_number.c_str());
+  ImGui::Text("RGB camera FW:   %s", struct_info.info_color_firmware_version.c_str());
+  ImGui::Text("Depth camera FW: %s", struct_info.info_depth_firmware_version.c_str());
   ImGui::Separator();
 
   //---------------------------
