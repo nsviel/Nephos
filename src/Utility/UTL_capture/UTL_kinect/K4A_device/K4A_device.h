@@ -22,6 +22,10 @@ public:
   void refresh_device_list();
 
   string find_name_from_config(k4a_wired_sync_mode_t& value);
+  string find_name_from_config(k4a_fps_t& value);
+  string find_name_from_config(k4a_depth_mode_t& value);
+  string find_name_from_config(k4a_color_resolution_t& value);
+  string find_name_from_config(k4a_image_format_t& value);
 
 private:
   Struct_kinect* struct_kinect;
