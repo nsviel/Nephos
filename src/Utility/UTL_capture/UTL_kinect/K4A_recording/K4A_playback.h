@@ -19,7 +19,7 @@ public:
 
 public:
   //Main function
-  void record_control(string path);
+  void find_file_information(string path);
 
   inline Struct_k4a_info& get_struct_record(){return struct_info;}
 

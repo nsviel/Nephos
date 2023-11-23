@@ -7,6 +7,7 @@
 
 class Struct_kinect;
 class K4A_capture;
+class K4A_replay;
 class K4A_device;
 
 
@@ -34,6 +35,7 @@ public:
 private:
   Struct_kinect* struct_kinect;
   K4A_capture* k4a_capture;
+  K4A_replay* k4a_replay;
   K4A_device* k4a_device;
 };
 

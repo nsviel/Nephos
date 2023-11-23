@@ -36,19 +36,14 @@ void K4A_replay::start_thread(Struct_k4a_device* device){
 void K4A_replay::run_capture(Struct_k4a_device* device){
   //---------------------------
 
-  Struct_k4a_info playback;
-
   //Init
-  k4a::playback recording = k4a::playback::open(device->info.path_file.c_str());
+  k4a::playback playback = k4a::playback::open(device->info.file_path.c_str());
 
+  std::cout << "Playback duration: " << playback.get_recording_length().count() << " microseconds\n";
+
+  k4a::capture next_capture;
   this->thread_running = true;
-  std::chrono::milliseconds timeout(2000);
-  while(thread_running){
-    k4a::capture next_capture;
-    recording.get_next_capture(&next_capture);
-    device->temperature = next_capture.get_temperature_c();
-    device->data.capture = &next_capture;
-
+  while(playback.get_next_capture(&next_capture)){
     //Color
     k4a::image color = next_capture.get_color_image();
     device->data.color.name = "color";
@@ -60,6 +55,9 @@ void K4A_replay::run_capture(Struct_k4a_device* device){
     device->data.color.timestamp = static_cast<float>(color.get_device_timestamp().count());
     color.reset();
 
+say(device->data.color.height);
+
+/*
     //Depth
     k4a::image depth = next_capture.get_depth_image();
     device->data.depth.name = "depth";
@@ -80,7 +78,7 @@ void K4A_replay::run_capture(Struct_k4a_device* device){
     device->data.ir.height = ir.get_height_pixels();
     device->data.ir.timestamp = static_cast<float>(ir.get_device_timestamp().count());
     ir.reset();
-
+*/
     device->data.data_ready = true;
   }
 

@@ -16,7 +16,7 @@ K4A_playback::K4A_playback(Struct_kinect* struct_kinect){
 K4A_playback::~K4A_playback(){}
 
 //Main function
-void K4A_playback::record_control(string path){
+void K4A_playback::find_file_information(string path){
   //---------------------------
 
   k4a::playback recording = k4a::playback::open(path.c_str());
@@ -26,7 +26,7 @@ void K4A_playback::record_control(string path){
   //record_configuration.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
 
   //General info
-  struct_info.path_file = path;
+  struct_info.file_path = path;
   struct_info.info_fps = k4a_device->find_name_from_config(record_configuration.camera_fps);
   struct_info.is_depth = record_configuration.depth_track_enabled;
   struct_info.is_infrared = record_configuration.ir_track_enabled;
@@ -42,7 +42,7 @@ void K4A_playback::record_control(string path){
   struct_info.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
   struct_info.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
   struct_info.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
-  struct_info.info_recording_lenght_us = static_cast<uint64_t>(recording.get_recording_length().count());
+  struct_info.file_duration = static_cast<uint64_t>(recording.get_recording_length().count());
 
   // Device info
   recording.get_tag("K4A_DEVICE_SERIAL_NUMBER", &struct_info.info_device_serial_number);

@@ -2,6 +2,7 @@
 
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_capture/K4A_capture.h>
+#include <UTL_capture/UTL_kinect/K4A_capture/K4A_replay.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 
 
@@ -11,6 +12,7 @@ Kinect::Kinect(){
 
   this->struct_kinect = new Struct_kinect();
   this->k4a_capture = new K4A_capture(struct_kinect);
+  this->k4a_replay = new K4A_replay(struct_kinect);
   this->k4a_device = new K4A_device(struct_kinect);
 
   //---------------------------
@@ -28,11 +30,17 @@ void Kinect::init(){
 }
 void Kinect::run(){
   Struct_k4a_device* device = struct_kinect->selected_device;
-  if(device == nullptr){return;}
   //---------------------------
 
-  this->make_k4a_configuration(device);
-  k4a_capture->start_thread(device);
+  if(device != nullptr){
+    this->make_k4a_configuration(device);
+    k4a_capture->start_thread(device);
+  }
+  else{
+    device = new Struct_k4a_device();
+    device->info.file_path = "/home/aether/Desktop/francasque_0.mkv";
+    k4a_replay->start_thread(device);
+  }
 
   //---------------------------
 }

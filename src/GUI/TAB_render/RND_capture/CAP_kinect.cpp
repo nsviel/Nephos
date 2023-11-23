@@ -308,6 +308,7 @@ void CAP_kinect::configuration_general(){
   if(ImGui::Button("Run capture", ImVec2(item_width, 0))){
     kinect->run();
   }
+
   //---------------------------
 }
 void CAP_kinect::firmware_info(){
@@ -352,9 +353,9 @@ void CAP_kinect::firmware_info(){
 
 void CAP_kinect::playback_stuff(){
   //---------------------------
-
+/*
   string path = "/home/aether/Desktop/francasque_0.mkv";
-  k4a_playback->record_control(path);
+  k4a_playback->find_file_information(path);
   Struct_k4a_info& struct_info = k4a_playback->get_struct_record();
 
   //General info
@@ -436,7 +437,7 @@ void CAP_kinect::playback_stuff(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%lu", struct_info.info_recording_lenght_us);
+    ImGui::TextColored(color, "%lu", struct_info.file_duration);
 
     ImGui::EndTable();
   }
@@ -462,6 +463,6 @@ void CAP_kinect::playback_stuff(){
     ImGui::EndTable();
   }
   ImGui::Separator();
-
+*/
   //---------------------------
 }

@@ -11,8 +11,11 @@
 struct Struct_k4a_info{
   //---------------------------
 
+  //File info
+  std::string file_path;
+  uint64_t file_duration;
+
   //General info
-  std::string path_file;
   std::string info_fps;
   std::string info_depth_mode;
   std::string info_color_format;
@@ -26,7 +29,6 @@ struct Struct_k4a_info{
   uint32_t depth_delay_off_color_us;
   uint32_t subordinate_delay_off_master_us;
   uint32_t start_timestamp_offset_us;
-  uint64_t info_recording_lenght_us;
 
   //Stream info
   bool is_color;
