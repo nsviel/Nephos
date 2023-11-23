@@ -347,10 +347,10 @@ void CAP_kinect::playback_stuff(){
   ImGui::Separator();
 
   ImGui::Text("Sync settings");
-  ImGui::Text("Depth/color delay (us): %d", struct_playback.info_depth_delay_off_color_us);
+  ImGui::Text("Depth/color delay (us): %d", struct_playback.depth_delay_off_color_us);
   ImGui::Text("Sync mode:              %s", struct_playback.info_wired_sync_mode.c_str());
-  ImGui::Text("Subordinate delay (us): %d", struct_playback.info_subordinate_delay_off_master);
-  ImGui::Text("Start timestamp offset: %d", struct_playback.info_start_timestamp_offset_us);
+  ImGui::Text("Subordinate delay (us): %d", struct_playback.subordinate_delay_off_master_us);
+  ImGui::Text("Start timestamp offset: %d", struct_playback.start_timestamp_offset_us);
   ImGui::Text("Recording Length (us):  %lu", struct_playback.info_recording_lenght_us);
   ImGui::Separator();
 

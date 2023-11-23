@@ -1,6 +1,9 @@
 #ifndef STRUCT_K4A_RECORD_H
 #define STRUCT_K4A_RECORD_H
 
+#include "Struct_k4a_data.h"
+
+#include <k4arecord/playback.hpp>
 #include <k4a/k4a.hpp>
 #include <string>
 
@@ -9,6 +12,7 @@ struct Struct_k4a_playback{
   //---------------------------
 
   //Objects
+  Struct_k4a_data data;
   k4a_record_configuration_t record_configuration;
 
   //Info
@@ -21,9 +25,9 @@ struct Struct_k4a_playback{
   std::string info_device_serial_number;
   std::string info_color_firmware_version;
   std::string info_depth_firmware_version;
-  uint32_t info_depth_delay_off_color_us;
-  uint32_t info_subordinate_delay_off_master;
-  uint32_t info_start_timestamp_offset_us;
+  uint32_t depth_delay_off_color_us;
+  uint32_t subordinate_delay_off_master_us;
+  uint32_t start_timestamp_offset_us;
   uint64_t info_recording_lenght_us;
   bool is_color;
   bool is_depth;

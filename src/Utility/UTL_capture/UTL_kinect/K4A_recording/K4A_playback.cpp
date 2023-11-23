@@ -39,9 +39,9 @@ void K4A_playback::record_control(string path){
 
   // Sync info
   struct_playback.info_wired_sync_mode = k4a_device->find_name_from_config(record_configuration.wired_sync_mode);
-  struct_playback.info_depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
-  struct_playback.info_subordinate_delay_off_master = record_configuration.subordinate_delay_off_master_usec;
-  struct_playback.info_start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
+  struct_playback.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
+  struct_playback.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
+  struct_playback.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
   struct_playback.info_recording_lenght_us = static_cast<uint64_t>(recording.get_recording_length().count());
 
   // Device info

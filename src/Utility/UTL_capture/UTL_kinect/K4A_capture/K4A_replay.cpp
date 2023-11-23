@@ -36,6 +36,8 @@ void K4A_replay::start_thread(string path){
 void K4A_replay::run_capture(string path){
   //---------------------------
 
+  Struct_k4a_playback playback;
+
   //Init
   k4a::playback recording = k4a::playback::open(path.c_str());
 
@@ -44,10 +46,41 @@ void K4A_replay::run_capture(string path){
   while(thread_running){
     k4a::capture next_capture;
     recording.get_next_capture(&next_capture);
+    playback.data.capture = &next_capture;
 
+    //Color
     k4a::image color = next_capture.get_color_image();
+    playback.data.color.name = "color";
+    playback.data.color.buffer = color.get_buffer();
+    playback.data.color.size = color.get_size();
+    playback.data.color.width = color.get_width_pixels();
+    playback.data.color.height = color.get_height_pixels();
+    playback.data.color.format = "B8G8R8A8_SRGB";
+    playback.data.color.timestamp = static_cast<float>(color.get_device_timestamp().count());
+    color.reset();
+
+    //Depth
     k4a::image depth = next_capture.get_depth_image();
-    k4a::image ir    = next_capture.get_ir_image();
+    playback.data.depth.name = "depth";
+    playback.data.depth.buffer = depth.get_buffer();
+    playback.data.depth.size = depth.get_size();
+    playback.data.depth.width = depth.get_width_pixels();
+    playback.data.depth.height = depth.get_height_pixels();
+    playback.data.depth.format = "B8G8R8A8_SRGB";
+    playback.data.depth.timestamp = static_cast<float>(depth.get_device_timestamp().count());
+    depth.reset();
+
+    //IR
+    k4a::image ir = next_capture.get_ir_image();
+    playback.data.ir.name = "ir";
+    playback.data.ir.buffer = ir.get_buffer();
+    playback.data.ir.size = ir.get_size();
+    playback.data.ir.width = ir.get_width_pixels();
+    playback.data.ir.height = ir.get_height_pixels();
+    playback.data.ir.timestamp = static_cast<float>(ir.get_device_timestamp().count());
+    ir.reset();
+
+    playback.data.data_ready = true;
   }
 
   //---------------------------
