@@ -1,7 +1,7 @@
 #include "Kinect.h"
 
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
-#include <UTL_capture/UTL_kinect/K4A_capture/K4A_thread.h>
+#include <UTL_capture/UTL_kinect/K4A_capture/K4A_capture.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 
 
@@ -10,7 +10,7 @@ Kinect::Kinect(){
   //---------------------------
 
   this->struct_kinect = new Struct_kinect();
-  this->k4a_thread = new K4A_thread(struct_kinect);
+  this->k4a_capture = new K4A_capture(struct_kinect);
   this->k4a_device = new K4A_device(struct_kinect);
 
   //---------------------------
@@ -32,7 +32,7 @@ void Kinect::run(){
   //---------------------------
 
   this->make_k4a_configuration(device);
-  k4a_thread->start_thread(device);
+  k4a_capture->start_thread(device);
 
   //---------------------------
 }

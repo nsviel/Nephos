@@ -8,6 +8,10 @@
 struct Struct_k4a_record{
   //---------------------------
 
+  //Objects
+  k4a_record_configuration_t record_configuration;
+
+  //Info
   std::string path;
   std::string info_fps;
   std::string info_depth_mode;
