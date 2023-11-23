@@ -6,6 +6,7 @@
 #include "Struct_k4a_depth.h"
 #include "Struct_k4a_infrared.h"
 #include "Struct_k4a_data.h"
+#include "Struct_k4a_info.h"
 
 #include <k4a/k4a.hpp>
 #include <string>
@@ -23,6 +24,7 @@ struct Struct_k4a_device{
   Struct_k4a_depth depth;
   Struct_k4a_infrared ir;
   Struct_k4a_data data;
+  Struct_k4a_info info;
 
   //---------------------------
 };

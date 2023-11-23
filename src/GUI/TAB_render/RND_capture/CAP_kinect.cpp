@@ -335,7 +335,7 @@ void CAP_kinect::playback_stuff(){
 
   k4a_playback->record_control("/home/aether/Desktop/francasque_0.mkv");
 
-  Struct_k4a_playback& struct_playback = k4a_playback->get_struct_record();
+  Struct_k4a_info& struct_playback = k4a_playback->get_struct_record();
 
 
   ImGui::Text("Recording Settings");

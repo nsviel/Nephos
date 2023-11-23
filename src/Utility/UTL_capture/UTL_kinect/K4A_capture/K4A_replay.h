@@ -2,7 +2,7 @@
 #define K4A_REPLAY_H
 
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_device.h>
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_playback.h>
+#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_info.h>
 #include <UTL_specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
@@ -24,8 +24,8 @@ public:
   void run();
 
   //Subfunction
-  void start_thread(string path);
-  void run_capture(string path);
+  void start_thread(Struct_k4a_device* device);
+  void run_capture(Struct_k4a_device* device);
   void stop_thread();
 
   inline bool is_thread_running(){return thread_running;}

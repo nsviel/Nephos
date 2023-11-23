@@ -8,15 +8,11 @@
 #include <string>
 
 
-struct Struct_k4a_playback{
+struct Struct_k4a_info{
   //---------------------------
 
-  //Objects
-  Struct_k4a_data data;
-  k4a_record_configuration_t record_configuration;
-
-  //Info
-  std::string path;
+  //General info
+  std::string path_file;
   std::string info_fps;
   std::string info_depth_mode;
   std::string info_color_format;
@@ -25,10 +21,14 @@ struct Struct_k4a_playback{
   std::string info_device_serial_number;
   std::string info_color_firmware_version;
   std::string info_depth_firmware_version;
+
+  //Synchro info
   uint32_t depth_delay_off_color_us;
   uint32_t subordinate_delay_off_master_us;
   uint32_t start_timestamp_offset_us;
   uint64_t info_recording_lenght_us;
+
+  //Stream info
   bool is_color;
   bool is_depth;
   bool is_infrared;

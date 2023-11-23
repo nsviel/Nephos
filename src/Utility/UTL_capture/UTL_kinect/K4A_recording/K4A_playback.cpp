@@ -26,7 +26,7 @@ void K4A_playback::record_control(string path){
   //record_configuration.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
 
   //General info
-  struct_playback.path = path;
+  struct_playback.path_file = path;
   struct_playback.info_fps = k4a_device->find_name_from_config(record_configuration.camera_fps);
   struct_playback.is_depth = record_configuration.depth_track_enabled;
   struct_playback.is_infrared = record_configuration.ir_track_enabled;
