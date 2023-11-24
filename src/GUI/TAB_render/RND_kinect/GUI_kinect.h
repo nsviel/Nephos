@@ -21,7 +21,9 @@ public:
   void design_panel();
 
   //Subfunction
-
+  void draw_tab_capture();
+  void draw_tab_playback();
+  void draw_tab_recorder();
 
 private:
   KIN_configuration* kin_configuration;
