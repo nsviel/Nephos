@@ -1,11 +1,11 @@
-#include "K4A_playback.h"
+#include "K4A_configuration.h"
 
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
 
 
 //Constructor / Destructor
-K4A_playback::K4A_playback(Struct_kinect* struct_kinect){
+K4A_configuration::K4A_configuration(Struct_kinect* struct_kinect){
   //---------------------------
 
   this->struct_kinect = struct_kinect;
@@ -13,10 +13,10 @@ K4A_playback::K4A_playback(Struct_kinect* struct_kinect){
 
   //---------------------------
 }
-K4A_playback::~K4A_playback(){}
+K4A_configuration::~K4A_configuration(){}
 
 //Main function
-void K4A_playback::find_file_information(string path){
+void K4A_configuration::find_file_information(string path){
   //---------------------------
 
   k4a::playback recording = k4a::playback::open(path.c_str());
@@ -51,7 +51,7 @@ void K4A_playback::find_file_information(string path){
 
   //---------------------------
 }
-string K4A_playback::find_name_from_config(k4a_wired_sync_mode_t& value){
+string K4A_configuration::find_name_from_config(k4a_wired_sync_mode_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -73,7 +73,7 @@ string K4A_playback::find_name_from_config(k4a_wired_sync_mode_t& value){
   //---------------------------
   return name;
 }
-string K4A_playback::find_name_from_config(k4a_fps_t& value){
+string K4A_configuration::find_name_from_config(k4a_fps_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -95,7 +95,7 @@ string K4A_playback::find_name_from_config(k4a_fps_t& value){
   //---------------------------
   return name;
 }
-string K4A_playback::find_name_from_config(k4a_depth_mode_t& value){
+string K4A_configuration::find_name_from_config(k4a_depth_mode_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -129,7 +129,7 @@ string K4A_playback::find_name_from_config(k4a_depth_mode_t& value){
   //---------------------------
   return name;
 }
-string K4A_playback::find_name_from_config(k4a_color_resolution_t& value){
+string K4A_configuration::find_name_from_config(k4a_color_resolution_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -167,7 +167,7 @@ string K4A_playback::find_name_from_config(k4a_color_resolution_t& value){
   //---------------------------
   return name;
 }
-string K4A_playback::find_name_from_config(k4a_image_format_t& value){
+string K4A_configuration::find_name_from_config(k4a_image_format_t& value){
   string name = "(None)";
   //---------------------------
 

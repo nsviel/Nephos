@@ -10,12 +10,12 @@ class Struct_kinect;
 class K4A_device;
 
 
-class K4A_playback
+class K4A_configuration
 {
 public:
   //Constructor / Destructor
-  K4A_playback(Struct_kinect* struct_kinect);
-  ~K4A_playback();
+  K4A_configuration(Struct_kinect* struct_kinect);
+  ~K4A_configuration();
 
 public:
   //Main function

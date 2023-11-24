@@ -1,10 +1,10 @@
 #include "Kinect.h"
 
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
-#include <UTL_capture/UTL_kinect/K4A_capture/K4A_capture.h>
-#include <UTL_capture/UTL_kinect/K4A_capture/K4A_replay.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
+#include <UTL_capture/UTL_kinect/K4A_capture/K4A_capture.h>
+#include <UTL_capture/UTL_kinect/K4A_capture/K4A_replay.h>
 
 
 //Constructor / Destructor
@@ -12,8 +12,6 @@ Kinect::Kinect(){
   //---------------------------
 
   this->struct_kinect = new Struct_kinect();
-  this->k4a_capture = new K4A_capture();
-  this->k4a_replay = new K4A_replay();
   this->k4a_device = new K4A_device();
   this->k4a_swarm = new K4A_swarm(struct_kinect);
 
@@ -36,36 +34,15 @@ void Kinect::run(){
 
   if(device != nullptr){
     this->make_k4a_configuration(device);
-    k4a_capture->start_thread(device);
+    device->k4a_capture->start_thread(device);
   }
   else{
     device = new K4A_device();
     struct_kinect->selected_device = device;
     device->info.file_path = "/home/aether/Desktop/output.mkv";
-    k4a_replay->start_thread(device);
+    device->k4a_replay->start_thread(device);
   }
 
-  //---------------------------
-}
-void Kinect::loop(){
-  K4A_device* device = struct_kinect->selected_device;
-  if(device == nullptr){return;}
-  //---------------------------
-/*
-  // Assuming you have a k4a::capture object named 'capture'
-  if(device->color.capture == nullptr){return;}
-  k4a::image colorImage = device->color.capture.get_color_image();
-
-  if (colorImage.is_valid()) {
-      // Access the raw data
-      const uint8_t* colorData = colorImage.get_buffer();
-
-      // Now you can use colorData as needed
-
-      // Don't forget to release the image when you are done with it
-      colorImage.reset();
-  }
-*/
   //---------------------------
 }
 
@@ -86,9 +63,4 @@ void Kinect::make_k4a_configuration(K4A_device* device){
 
   //---------------------------
   device->config.k4a_config = k4a_config;
-}
-void Kinect::start_camera(){
-  //---------------------------
-
-  //---------------------------
 }

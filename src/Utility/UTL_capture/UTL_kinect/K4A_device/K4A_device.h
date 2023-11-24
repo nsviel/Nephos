@@ -42,6 +42,7 @@ public:
   k4a::device* device;
   std::string serial_number;
   float temperature = 0;
+  bool is_virtual;
   int index;
 };
 

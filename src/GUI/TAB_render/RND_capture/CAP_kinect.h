@@ -8,8 +8,7 @@ class GUI;
 class Kinect;
 class Struct_kinect;
 class K4A_swarm;
-class K4A_playback;
-class K4A_recorder;
+class K4A_configuration;
 
 
 class CAP_kinect : public BASE_panel
@@ -37,8 +36,7 @@ private:
   Kinect* kinect;
   Struct_kinect* struct_kinect;
   K4A_swarm* k4a_swarm;
-  K4A_playback* k4a_playback;
-  K4A_recorder* k4a_recorder;
+  K4A_configuration* k4a_configuration;
 
   bool show_capture = false;
 };

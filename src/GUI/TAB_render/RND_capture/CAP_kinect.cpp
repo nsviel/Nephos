@@ -7,8 +7,7 @@
 #include <UTL_capture/UTL_kinect/Kinect.h>
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
-#include <UTL_capture/UTL_kinect/K4A_recording/K4A_playback.h>
-#include <UTL_capture/UTL_kinect/K4A_recording/K4A_recorder.h>
+#include <UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
 
 
 //Constructor / Destructor
@@ -21,8 +20,7 @@ CAP_kinect::CAP_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   this->kinect = utl_capture->get_kinect();
   this->struct_kinect = kinect->get_struct_kinect();
   this->k4a_swarm = new K4A_swarm(struct_kinect);
-  this->k4a_playback = new K4A_playback(struct_kinect);
-  this->k4a_recorder = new K4A_recorder(struct_kinect);
+  this->k4a_configuration = new K4A_configuration(struct_kinect);
 
   this->item_width = 100;
 
@@ -362,8 +360,8 @@ void CAP_kinect::playback_stuff(){
   //---------------------------
 /*
   string path = "/home/aether/Desktop/francasque_0.mkv";
-  k4a_playback->find_file_information(path);
-  Struct_k4a_info& struct_info = k4a_playback->get_struct_record();
+  k4a_configuration->find_file_information(path);
+  Struct_k4a_info& struct_info = k4a_configuration->get_struct_record();
 
   //General info
   if(ImGui::BeginTable("playback_table##general", 2)){
@@ -479,7 +477,7 @@ void CAP_kinect::recorder_stuff(){
   //---------------------------
 
   if(ImGui::Button("Record")){
-    k4a_recorder->record_mkv(device);
+    //k4a_recorder->record_mkv(device);
   }
 
   //---------------------------
