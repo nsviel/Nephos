@@ -4,7 +4,7 @@
 #include <GUI_gpu/GUI_stream.h>
 #include <Utility.h>
 #include <UTL_capture/UTL_capture.h>
-#include <UTL_capture/UTL_kinect/Struct_kinect.h>
+#include <UTL_capture/UTL_kinect/K4A_struct/Struct_swarm.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_depth.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_infrared.h>
 
@@ -17,9 +17,9 @@ CAP_capture::CAP_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
   UTL_capture* utl_capture = utility->get_utl_capture();
 
   this->kinect = utl_capture->get_kinect();
-  this->struct_kinect = kinect->get_struct_kinect();
-  this->k4a_depth = new K4A_depth(struct_kinect);
-  this->k4a_infrared = new K4A_infrared(struct_kinect);
+  this->struct_swarm = kinect->get_struct_kinect();
+  this->k4a_depth = new K4A_depth(struct_swarm);
+  this->k4a_infrared = new K4A_infrared(struct_swarm);
   this->gui = gui;
 
   this->vec_gui_stream.push_back(new GUI_stream(gui));
@@ -72,7 +72,7 @@ void CAP_capture::design_panel(){
 
 //Subfunction
 void CAP_capture::draw_camera_color(ImVec2 image_size){
-  K4A_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_swarm->selected_device;
   //---------------------------
 
   if(device == nullptr){return;}
@@ -92,7 +92,7 @@ void CAP_capture::draw_camera_color(ImVec2 image_size){
   //---------------------------
 }
 void CAP_capture::draw_camera_depth(ImVec2 image_size){
-  K4A_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_swarm->selected_device;
   //---------------------------
 
   if(device == nullptr){return;}
@@ -112,7 +112,7 @@ void CAP_capture::draw_camera_depth(ImVec2 image_size){
   //---------------------------
 }
 void CAP_capture::draw_camera_ir(ImVec2 image_size){
-  K4A_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_swarm->selected_device;
   //---------------------------
 
   if(device == nullptr){return;}

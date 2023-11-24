@@ -1,6 +1,6 @@
 #include "Kinect.h"
 
-#include <UTL_capture/UTL_kinect/Struct_kinect.h>
+#include <UTL_capture/UTL_kinect/K4A_struct/Struct_swarm.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
@@ -12,9 +12,9 @@
 Kinect::Kinect(){
   //---------------------------
 
-  this->struct_kinect = new Struct_kinect();
+  this->struct_swarm = new Struct_swarm();
   this->k4a_configuration= new K4A_configuration();
-  this->k4a_swarm = new K4A_swarm(struct_kinect);
+  this->k4a_swarm = new K4A_swarm(struct_swarm);
 
   //---------------------------
 }
@@ -30,7 +30,7 @@ void Kinect::init(){
   //---------------------------
 }
 void Kinect::run(){
-  K4A_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_swarm->selected_device;
   //---------------------------
 
   if(device != nullptr){
@@ -39,7 +39,7 @@ void Kinect::run(){
   }
   else{
     K4A_device* device = k4a_swarm->create_virtual_device();
-    struct_kinect->selected_device = device;
+    struct_swarm->selected_device = device;
     device->info.file_path = "/home/aether/Desktop/output.mkv";
     device->k4a_replay->start_thread(device);
   }

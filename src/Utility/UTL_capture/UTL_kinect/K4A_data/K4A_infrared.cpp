@@ -1,13 +1,13 @@
 #include "K4A_infrared.h"
 
-#include <UTL_capture/UTL_kinect/Struct_kinect.h>
+#include <UTL_capture/UTL_kinect/K4A_struct/Struct_swarm.h>
 
 
 //Constructor / Destructor
-K4A_infrared::K4A_infrared(Struct_kinect* struct_kinect){
+K4A_infrared::K4A_infrared(Struct_swarm* struct_swarm){
   //---------------------------
 
-  this->struct_kinect = struct_kinect;
+  this->struct_swarm = struct_swarm;
 
   //---------------------------
 }

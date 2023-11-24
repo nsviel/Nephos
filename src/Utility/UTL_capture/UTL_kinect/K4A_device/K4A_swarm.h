@@ -7,14 +7,14 @@
 #include <k4a/k4a.h>
 #include <k4a/k4a.hpp>
 
-class Struct_kinect;
+class Struct_swarm;
 
 
 class K4A_swarm
 {
 public:
   //Constructor / Destructor
-  K4A_swarm(Struct_kinect* struct_kinect);
+  K4A_swarm(Struct_swarm* struct_swarm);
   ~K4A_swarm();
 
 public:
@@ -23,7 +23,7 @@ public:
   void refresh_device_list();
 
 private:
-  Struct_kinect* struct_kinect;
+  Struct_swarm* struct_swarm;
 };
 
 #endif

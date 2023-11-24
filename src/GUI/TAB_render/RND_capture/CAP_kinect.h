@@ -6,7 +6,7 @@
 
 class GUI;
 class Kinect;
-class Struct_kinect;
+class Struct_swarm;
 class K4A_swarm;
 class K4A_configuration;
 
@@ -34,7 +34,7 @@ public:
 
 private:
   Kinect* kinect;
-  Struct_kinect* struct_kinect;
+  Struct_swarm* struct_swarm;
   K4A_swarm* k4a_swarm;
   K4A_configuration* k4a_configuration;
 
