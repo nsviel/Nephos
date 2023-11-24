@@ -5,7 +5,7 @@
 
 #include <UTL_specific/common.h>
 
-class Struct_swarm;
+class Struct_k4a_swarm;
 class K4A_configuration;
 class K4A_swarm;
 
@@ -22,10 +22,10 @@ public:
   void init();
   void run();
 
-  inline Struct_swarm* get_struct_kinect(){return struct_swarm;}
+  inline Struct_k4a_swarm* get_struct_kinect(){return struct_k4a_swarm;}
 
 private:
-  Struct_swarm* struct_swarm;
+  Struct_k4a_swarm* struct_k4a_swarm;
   K4A_configuration* k4a_configuration;
   K4A_swarm* k4a_swarm;
 };

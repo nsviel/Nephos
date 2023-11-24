@@ -7,7 +7,7 @@
 #include <k4a/k4a.hpp>
 
 
-struct Struct_swarm{
+struct Struct_k4a_swarm{
   //---------------------------
 
   K4A_device* selected_device = nullptr;

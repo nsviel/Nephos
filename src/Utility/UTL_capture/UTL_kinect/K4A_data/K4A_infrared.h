@@ -4,14 +4,14 @@
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_specific/common.h>
 
-class Struct_swarm;
+class Struct_k4a_swarm;
 
 
 class K4A_infrared
 {
 public:
   //Constructor / Destructor
-  K4A_infrared(Struct_swarm* struct_swarm);
+  K4A_infrared(Struct_k4a_swarm* struct_k4a_swarm);
   ~K4A_infrared();
 
 public:
@@ -20,7 +20,7 @@ public:
   void find_ir_level(K4A_device* device);
 
 private:
-  Struct_swarm* struct_swarm;
+  Struct_k4a_swarm* struct_k4a_swarm;
 };
 
 #endif

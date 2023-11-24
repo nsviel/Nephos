@@ -12,7 +12,7 @@
 #include <k4a/k4a.hpp>
 #include <string>
 
-class Struct_swarm;
+class Struct_k4a_swarm;
 class K4A_capture;
 class K4A_replay;
 
