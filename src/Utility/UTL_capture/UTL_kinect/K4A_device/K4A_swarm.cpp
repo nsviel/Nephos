@@ -1,6 +1,7 @@
 #include "K4A_swarm.h"
 
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
+#include <UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
 
 
 //Constructor / Destructor
@@ -8,6 +9,7 @@ K4A_swarm::K4A_swarm(Struct_k4a_swarm* struct_k4a_swarm){
   //---------------------------
 
   this->struct_k4a_swarm = struct_k4a_swarm;
+  this->k4a_configuration= new K4A_configuration();
 
   //---------------------------
 }
@@ -20,6 +22,7 @@ K4A_device* K4A_swarm::create_virtual_device(){
   K4A_device* device = new K4A_device();
   device->is_virtual = true;
   struct_k4a_swarm->vec_device.push_back(device);
+  k4a_configuration->find_file_information(device, "/home/aether/Desktop/output.mkv");
 
   //---------------------------
   return device;

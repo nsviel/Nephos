@@ -2,7 +2,6 @@
 
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
 #include <UTL_capture/UTL_kinect/K4A_capture/K4A_capture.h>
 #include <UTL_capture/UTL_kinect/K4A_capture/K4A_replay.h>
 
@@ -12,7 +11,6 @@ Kinect::Kinect(){
   //---------------------------
 
   this->struct_k4a_swarm = new Struct_k4a_swarm();
-  this->k4a_configuration= new K4A_configuration();
   this->k4a_swarm = new K4A_swarm(struct_k4a_swarm);
 
   //---------------------------
