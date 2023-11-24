@@ -19,7 +19,6 @@ public:
 
 public:
   //Main function
-  void refresh_device_list();
 
 
 private:

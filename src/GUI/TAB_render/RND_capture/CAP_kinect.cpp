@@ -6,7 +6,7 @@
 #include <UTL_capture/UTL_capture.h>
 #include <UTL_capture/UTL_kinect/Kinect.h>
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
+#include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 #include <UTL_capture/UTL_kinect/K4A_recording/K4A_playback.h>
 #include <UTL_capture/UTL_kinect/K4A_recording/K4A_recorder.h>
 
@@ -20,7 +20,7 @@ CAP_kinect::CAP_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   this->kinect = utl_capture->get_kinect();
   this->struct_kinect = kinect->get_struct_kinect();
-  this->k4a_device = new K4A_device(struct_kinect);
+  this->k4a_swarm = new K4A_swarm(struct_kinect);
   this->k4a_playback = new K4A_playback(struct_kinect);
   this->k4a_recorder = new K4A_recorder(struct_kinect);
 
@@ -107,7 +107,7 @@ void CAP_kinect::kinect_devices(){
   }
 
   if(ImGui::Button("Refresh", ImVec2(item_width, 0))){
-    k4a_device->refresh_device_list();
+    k4a_swarm->refresh_device_list();
   }
 
   //---------------------------

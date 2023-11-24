@@ -7,7 +7,7 @@
 class GUI;
 class Kinect;
 class Struct_kinect;
-class K4A_device;
+class K4A_swarm;
 class K4A_playback;
 class K4A_recorder;
 
@@ -36,7 +36,7 @@ public:
 private:
   Kinect* kinect;
   Struct_kinect* struct_kinect;
-  K4A_device* k4a_device;
+  K4A_swarm* k4a_swarm;
   K4A_playback* k4a_playback;
   K4A_recorder* k4a_recorder;
 

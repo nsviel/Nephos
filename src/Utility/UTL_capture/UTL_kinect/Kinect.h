@@ -9,6 +9,7 @@ class Struct_kinect;
 class K4A_capture;
 class K4A_replay;
 class K4A_device;
+class K4A_swarm;
 
 
 class Kinect
@@ -37,6 +38,7 @@ private:
   K4A_capture* k4a_capture;
   K4A_replay* k4a_replay;
   K4A_device* k4a_device;
+  K4A_swarm* k4a_swarm;
 };
 
 #endif

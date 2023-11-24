@@ -4,6 +4,7 @@
 #include <UTL_capture/UTL_kinect/K4A_capture/K4A_capture.h>
 #include <UTL_capture/UTL_kinect/K4A_capture/K4A_replay.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
+#include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
 //Constructor / Destructor
@@ -14,6 +15,7 @@ Kinect::Kinect(){
   this->k4a_capture = new K4A_capture();
   this->k4a_replay = new K4A_replay();
   this->k4a_device = new K4A_device(struct_kinect);
+  this->k4a_swarm = new K4A_swarm(struct_kinect);
 
   //---------------------------
 }
@@ -23,7 +25,7 @@ Kinect::~Kinect(){}
 void Kinect::init(){
   //---------------------------
 
-  k4a_device->refresh_device_list();
+  k4a_swarm->refresh_device_list();
   this->run();
 
   //---------------------------
