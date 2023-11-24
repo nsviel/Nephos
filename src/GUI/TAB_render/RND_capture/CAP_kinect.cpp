@@ -20,7 +20,7 @@ CAP_kinect::CAP_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   this->kinect = utl_capture->get_kinect();
   this->struct_kinect = kinect->get_struct_kinect();
   this->k4a_swarm = new K4A_swarm(struct_kinect);
-  this->k4a_configuration = new K4A_configuration(struct_kinect);
+  this->k4a_configuration = new K4A_configuration();
 
   this->item_width = 100;
 

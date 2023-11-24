@@ -6,7 +6,6 @@
 #include <k4arecord/playback.hpp>
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_info.h>
 
-class Struct_kinect;
 class K4A_device;
 
 
@@ -14,12 +13,15 @@ class K4A_configuration
 {
 public:
   //Constructor / Destructor
-  K4A_configuration(Struct_kinect* struct_kinect);
+  K4A_configuration();
   ~K4A_configuration();
 
 public:
   //Main function
+  void make_k4a_configuration(K4A_device* device);
   void find_file_information(string path);
+
+  //Subfunction
   string find_name_from_config(k4a_wired_sync_mode_t& value);
   string find_name_from_config(k4a_fps_t& value);
   string find_name_from_config(k4a_depth_mode_t& value);
@@ -30,7 +32,6 @@ public:
 
 private:
   K4A_device* k4a_device;
-  Struct_kinect* struct_kinect;
   Struct_k4a_info struct_info;
 };
 

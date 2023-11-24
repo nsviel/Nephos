@@ -5,10 +5,9 @@
 
 
 //Constructor / Destructor
-K4A_configuration::K4A_configuration(Struct_kinect* struct_kinect){
+K4A_configuration::K4A_configuration(){
   //---------------------------
 
-  this->struct_kinect = struct_kinect;
   this->k4a_device = new K4A_device();
 
   //---------------------------
@@ -16,6 +15,23 @@ K4A_configuration::K4A_configuration(Struct_kinect* struct_kinect){
 K4A_configuration::~K4A_configuration(){}
 
 //Main function
+void K4A_configuration::make_k4a_configuration(K4A_device* device){
+  //---------------------------
+
+  k4a_device_configuration_t k4a_config;
+  k4a_config.color_format = device->color.format;
+  k4a_config.color_resolution = device->color.enabled ? device->color.resolution : K4A_COLOR_RESOLUTION_OFF;
+  k4a_config.depth_mode = device->depth.enabled ? device->depth.mode : K4A_DEPTH_MODE_OFF;
+  k4a_config.camera_fps = device->config.fps;
+  k4a_config.depth_delay_off_color_usec = device->config.depth_delay_off_color_us;
+  k4a_config.wired_sync_mode = device->config.wired_sync_mode;
+  k4a_config.subordinate_delay_off_master_usec = device->config.subordinate_delay_off_master_us;
+  k4a_config.disable_streaming_indicator = device->config.disable_streaming_indicator;
+  k4a_config.synchronized_images_only = device->config.synchronized_images_only;
+
+  //---------------------------
+  device->config.k4a_config = k4a_config;
+}
 void K4A_configuration::find_file_information(string path){
   //---------------------------
 
@@ -51,6 +67,8 @@ void K4A_configuration::find_file_information(string path){
 
   //---------------------------
 }
+
+//Subfunction
 string K4A_configuration::find_name_from_config(k4a_wired_sync_mode_t& value){
   string name = "(None)";
   //---------------------------
