@@ -356,17 +356,15 @@ void CAP_kinect::firmware_info(){
 }
 
 void CAP_kinect::playback_stuff(){
+  K4A_device* device = kinect->get_selected_device();
+  if(device == nullptr) return;
   //---------------------------
-/*
-  string path = "/home/aether/Desktop/francasque_0.mkv";
-  k4a_configuration->find_file_information(path);
-  Struct_k4a_info& struct_info = k4a_configuration->get_struct_record();
 
   //General info
   if(ImGui::BeginTable("playback_table##general", 2)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path "); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", path.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", device->info.file_path.c_str());
 
     ImGui::EndTable();
   }
@@ -379,19 +377,19 @@ void CAP_kinect::playback_stuff(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("FPS"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_fps.c_str());
+    ImGui::TextColored(color, "%s", device->info.info_fps.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_depth_mode.c_str());
+    ImGui::TextColored(color, "%s", device->info.info_depth_mode.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color format"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_color_format.c_str());
+    ImGui::TextColored(color, "%s", device->info.info_color_format.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color resolution"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_color_resolution.c_str());
+    ImGui::TextColored(color, "%s", device->info.info_color_resolution.c_str());
 
     ImGui::EndTable();
   }
@@ -404,19 +402,19 @@ void CAP_kinect::playback_stuff(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.is_color ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", device->info.is_color ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.is_depth ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", device->info.is_depth ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("IR enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.is_infrared ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", device->info.is_infrared ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.is_imu ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", device->info.is_imu ? "Yes" : "No");
 
     ImGui::EndTable();
   }
@@ -429,19 +427,19 @@ void CAP_kinect::playback_stuff(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth/color delay (us)"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", struct_info.depth_delay_off_color_us);
+    ImGui::TextColored(color, "%d", device->info.depth_delay_off_color_us);
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Sync mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_wired_sync_mode.c_str());
+    ImGui::TextColored(color, "%s", device->info.info_wired_sync_mode.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", struct_info.start_timestamp_offset_us);
+    ImGui::TextColored(color, "%d", device->info.start_timestamp_offset_us);
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%lu", struct_info.file_duration);
+    ImGui::TextColored(color, "%lu", device->info.file_duration);
 
     ImGui::EndTable();
   }
@@ -454,20 +452,20 @@ void CAP_kinect::playback_stuff(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device S/N"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_device_serial_number.c_str());
+    ImGui::TextColored(color, "%s", device->info.info_device_serial_number.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("RGB camera FW"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_color_firmware_version.c_str());
+    ImGui::TextColored(color, "%s", device->info.info_color_firmware_version.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_depth_firmware_version.c_str());
+    ImGui::TextColored(color, "%s", device->info.info_depth_firmware_version.c_str());
 
     ImGui::EndTable();
   }
   ImGui::Separator();
-*/
+
   //---------------------------
 }
 void CAP_kinect::recorder_stuff(){
