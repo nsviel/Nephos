@@ -7,9 +7,6 @@
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
 
-class Struct_kinect;
-class K4A_capture;
-class K4A_device;
 class K4A_data;
 
 
@@ -17,7 +14,7 @@ class K4A_replay
 {
 public:
   //Constructor / Destructor
-  K4A_replay(Struct_kinect* struct_kinect);
+  K4A_replay();
   ~K4A_replay();
 
 public:
@@ -33,8 +30,6 @@ public:
   inline bool is_thread_running(){return thread_running;}
 
 private:
-  Struct_kinect* struct_kinect;
-  K4A_device* k4a_device;
   K4A_data* k4a_data;
 
   std::thread thread;

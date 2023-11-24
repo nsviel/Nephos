@@ -6,12 +6,10 @@
 
 
 //Constructor / Destructor
-K4A_replay::K4A_replay(Struct_kinect* struct_kinect){
+K4A_replay::K4A_replay(){
   //---------------------------
 
-  this->struct_kinect = struct_kinect;
-  this->k4a_device = new K4A_device(struct_kinect);
-  this->k4a_data = new K4A_data(struct_kinect);
+  this->k4a_data = new K4A_data();
 
   //---------------------------
 }

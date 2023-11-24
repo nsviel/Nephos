@@ -7,14 +7,12 @@
 #include <k4a/k4a.h>
 #include <k4a/k4a.hpp>
 
-class Struct_kinect;
-
 
 class K4A_data
 {
 public:
   //Constructor / Destructor
-  K4A_data(Struct_kinect* struct_kinect);
+  K4A_data();
   ~K4A_data();
 
 public:
@@ -22,7 +20,6 @@ public:
   void find_data_from_capture(Struct_k4a_data* data, k4a::capture capture);
 
 private:
-  Struct_kinect* struct_kinect;
 };
 
 #endif

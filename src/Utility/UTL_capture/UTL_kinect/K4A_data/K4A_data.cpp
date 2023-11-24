@@ -1,13 +1,10 @@
 #include "K4A_data.h"
 
-#include <UTL_capture/UTL_kinect/Struct_kinect.h>
-
 
 //Constructor / Destructor
-K4A_data::K4A_data(Struct_kinect* struct_kinect){
+K4A_data::K4A_data(){
   //---------------------------
 
-  this->struct_kinect = struct_kinect;
 
   //---------------------------
 }

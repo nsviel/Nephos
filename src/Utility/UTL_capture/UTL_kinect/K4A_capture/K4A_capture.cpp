@@ -1,17 +1,13 @@
 #include "K4A_capture.h"
 
-#include <UTL_capture/UTL_kinect/Struct_kinect.h>
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_data.h>
 
 
 //Constructor / Destructor
-K4A_capture::K4A_capture(Struct_kinect* struct_kinect){
+K4A_capture::K4A_capture(){
   //---------------------------
 
-  this->struct_kinect = struct_kinect;
-  this->k4a_device = new K4A_device(struct_kinect);
-  this->k4a_data = new K4A_data(struct_kinect);
+  this->k4a_data = new K4A_data();
 
   //---------------------------
 }

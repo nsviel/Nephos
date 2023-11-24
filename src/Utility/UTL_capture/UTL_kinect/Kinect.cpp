@@ -11,8 +11,8 @@ Kinect::Kinect(){
   //---------------------------
 
   this->struct_kinect = new Struct_kinect();
-  this->k4a_capture = new K4A_capture(struct_kinect);
-  this->k4a_replay = new K4A_replay(struct_kinect);
+  this->k4a_capture = new K4A_capture();
+  this->k4a_replay = new K4A_replay();
   this->k4a_device = new K4A_device(struct_kinect);
 
   //---------------------------

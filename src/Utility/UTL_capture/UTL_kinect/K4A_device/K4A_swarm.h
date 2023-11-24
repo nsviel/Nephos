@@ -1,5 +1,5 @@
-#ifndef K4A_DEVICE_H
-#define K4A_DEVICE_H
+#ifndef K4A_SWARM_H
+#define K4A_SWARM_H
 
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_device.h>
 
@@ -10,17 +10,16 @@
 class Struct_kinect;
 
 
-class K4A_device
+class K4A_swarm
 {
 public:
   //Constructor / Destructor
-  K4A_device(Struct_kinect* struct_kinect);
-  ~K4A_device();
+  K4A_swarm(Struct_kinect* struct_kinect);
+  ~K4A_swarm();
 
 public:
   //Main function
   void refresh_device_list();
-
 
 private:
   Struct_kinect* struct_kinect;
