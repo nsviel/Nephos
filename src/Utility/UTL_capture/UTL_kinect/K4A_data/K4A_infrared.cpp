@@ -4,10 +4,9 @@
 
 
 //Constructor / Destructor
-K4A_infrared::K4A_infrared(Struct_k4a_swarm* struct_k4a_swarm){
+K4A_infrared::K4A_infrared(){
   //---------------------------
 
-  this->struct_k4a_swarm = struct_k4a_swarm;
 
   //---------------------------
 }

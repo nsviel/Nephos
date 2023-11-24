@@ -18,8 +18,8 @@ CAP_capture::CAP_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
 
   this->kinect = utl_capture->get_kinect();
   this->struct_k4a_swarm = kinect->get_struct_kinect();
-  this->k4a_depth = new K4A_depth(struct_k4a_swarm);
-  this->k4a_infrared = new K4A_infrared(struct_k4a_swarm);
+  this->k4a_depth = new K4A_depth();
+  this->k4a_infrared = new K4A_infrared();
   this->gui = gui;
 
   this->vec_gui_stream.push_back(new GUI_stream(gui));
@@ -68,7 +68,7 @@ void CAP_capture::device_tab(K4A_device* device){
     ImVec2 image_size = ImGui::GetContentRegionAvail();
 
     ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("All##4567", NULL)){say(image_size.y/3);
+    if (ImGui::BeginTabItem("All##4567", NULL)){
       image_size = ImVec2(image_size.x, image_size.y/3-3.33);
       this->draw_camera_color(device, image_size);
       this->draw_camera_depth(device, image_size);

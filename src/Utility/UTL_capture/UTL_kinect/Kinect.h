@@ -20,7 +20,7 @@ public:
 public:
   //Main function
   void init();
-  void run();
+  void run_selected_device();
 
   inline Struct_k4a_swarm* get_struct_kinect(){return struct_k4a_swarm;}
 

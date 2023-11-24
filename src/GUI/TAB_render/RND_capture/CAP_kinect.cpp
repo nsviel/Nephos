@@ -311,7 +311,7 @@ void CAP_kinect::configuration_general(){
   ImGui::Checkbox("Disable streaming LED", &device->config.disable_streaming_indicator);
 
   if(ImGui::Button("Run capture", ImVec2(item_width, 0))){
-    kinect->run();
+    kinect->run_selected_device();
   }
 
   //---------------------------

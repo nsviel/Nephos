@@ -24,24 +24,27 @@ Kinect::~Kinect(){}
 void Kinect::init(){
   //---------------------------
 
+  //Get actual connected device list
   k4a_swarm->refresh_connected_device_list();
-  this->run();
 
-  //---------------------------
-}
-void Kinect::run(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
-  //---------------------------
-
-  if(device != nullptr){
-    k4a_configuration->make_k4a_configuration(device);
-    device->k4a_capture->start_thread(device);
+  //Start capture accordingly
+  if(struct_k4a_swarm->selected_device != nullptr){
+    struct_k4a_swarm->selected_device->run_capture();
   }
   else{
     K4A_device* device = k4a_swarm->create_virtual_device();
     struct_k4a_swarm->selected_device = device;
-    device->info.file_path = "/home/aether/Desktop/output.mkv";
-    device->k4a_replay->start_thread(device);
+    device->run_replay("/home/aether/Desktop/output.mkv");
+  }
+
+  //---------------------------
+}
+void Kinect::run_selected_device(){
+  K4A_device* device = struct_k4a_swarm->selected_device;
+  //---------------------------
+
+  if(device != nullptr){
+    device->run_capture();
   }
 
   //---------------------------

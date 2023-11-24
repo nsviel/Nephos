@@ -31,7 +31,6 @@ public:
   inline Struct_k4a_info& get_struct_record(){return struct_info;}
 
 private:
-  K4A_device* k4a_device;
   Struct_k4a_info struct_info;
 };
 

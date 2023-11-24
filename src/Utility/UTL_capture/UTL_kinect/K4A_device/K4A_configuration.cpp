@@ -8,7 +8,6 @@
 K4A_configuration::K4A_configuration(){
   //---------------------------
 
-  this->k4a_device = new K4A_device();
 
   //---------------------------
 }
