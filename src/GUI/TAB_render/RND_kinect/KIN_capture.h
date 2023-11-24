@@ -12,12 +12,12 @@ class K4A_depth;
 class K4A_infrared;
 
 
-class CAP_capture : public BASE_panel
+class KIN_capture : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  CAP_capture(GUI* gui, bool* show_window, string name);
-  ~CAP_capture();
+  KIN_capture(GUI* gui, bool* show_window, string name);
+  ~KIN_capture();
 
   //Main function
   void design_panel();

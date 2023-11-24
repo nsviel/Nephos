@@ -8,12 +8,12 @@
 class GUI;
 
 
-class CAP_record : public BASE_panel
+class KIN_recorder : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  CAP_record(GUI* gui, bool* show_window, string name);
-  ~CAP_record();
+  KIN_recorder(GUI* gui, bool* show_window, string name);
+  ~KIN_recorder();
 
   //Main function
   void design_panel();

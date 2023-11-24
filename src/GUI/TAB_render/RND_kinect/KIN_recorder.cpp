@@ -1,19 +1,19 @@
-#include "CAP_record.h"
+#include "KIN_recorder.h"
 
 #include <GUI.h>
 
 
 //Constructor / Destructor
-CAP_record::CAP_record(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+KIN_recorder::KIN_recorder(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
 
   //---------------------------
 }
-CAP_record::~CAP_record(){}
+KIN_recorder::~KIN_recorder(){}
 
 //Main function
-void CAP_record::design_panel(){
+void KIN_recorder::design_panel(){
   //---------------------------
 
 
@@ -21,7 +21,7 @@ void CAP_record::design_panel(){
 }
 
 //Subfunction
-void CAP_record::record_parameter(){
+void KIN_recorder::record_parameter(){
   //---------------------------
 
 /*
