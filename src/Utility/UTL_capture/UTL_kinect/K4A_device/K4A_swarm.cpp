@@ -16,13 +16,13 @@ K4A_swarm::K4A_swarm(Struct_k4a_swarm* struct_k4a_swarm){
 K4A_swarm::~K4A_swarm(){}
 
 //Main function
-K4A_device* K4A_swarm::create_virtual_device(){
+K4A_device* K4A_swarm::create_virtual_device(string path){
   //---------------------------
 
   K4A_device* device = new K4A_device();
   device->is_virtual = true;
   struct_k4a_swarm->vec_device.push_back(device);
-  k4a_configuration->find_file_information(device, "/home/aether/Desktop/output.mkv");
+  k4a_configuration->find_file_information(device, path);
 
   //---------------------------
   return device;

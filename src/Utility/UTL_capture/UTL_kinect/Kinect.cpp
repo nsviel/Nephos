@@ -29,9 +29,9 @@ void Kinect::init(){
     struct_k4a_swarm->selected_device->run_capture();
   }
   else{
-    K4A_device* device = k4a_swarm->create_virtual_device();
+    K4A_device* device = k4a_swarm->create_virtual_device("/home/aether/Desktop/output.mkv");
     struct_k4a_swarm->selected_device = device;
-    device->run_replay("/home/aether/Desktop/output.mkv");
+    device->run_replay();
   }
 
   //---------------------------

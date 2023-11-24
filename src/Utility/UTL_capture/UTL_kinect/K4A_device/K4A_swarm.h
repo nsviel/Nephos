@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  K4A_device* create_virtual_device();
+  K4A_device* create_virtual_device(string path);
   void refresh_connected_device_list();
 
 private:
