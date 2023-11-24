@@ -22,7 +22,7 @@ public:
 
   //Subfunction
   void start_thread(K4A_device* device);
-  void run_capture(K4A_device* device);
+  void run_thread(K4A_device* device);
   void stop_thread();
 
   inline bool is_thread_running(){return thread_running;}

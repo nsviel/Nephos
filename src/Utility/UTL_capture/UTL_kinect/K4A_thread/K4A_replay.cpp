@@ -26,14 +26,14 @@ void K4A_replay::start_thread(K4A_device* device){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&K4A_replay::run_capture, this, device);
+    this->thread = std::thread(&K4A_replay::run_thread, this, device);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void K4A_replay::run_capture(K4A_device* device){
+void K4A_replay::run_thread(K4A_device* device){
   //---------------------------
 
   k4a::capture next_capture;

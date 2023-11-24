@@ -24,14 +24,14 @@ void K4A_capture::start_thread(K4A_device* device){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&K4A_capture::run_capture, this, device);
+    this->thread = std::thread(&K4A_capture::run_thread, this, device);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void K4A_capture::run_capture(K4A_device* device){
+void K4A_capture::run_thread(K4A_device* device){
   if(device == nullptr) return;
   //---------------------------
 
@@ -55,6 +55,11 @@ void K4A_capture::run_capture(K4A_device* device){
   this->thread_running = true;
   while(thread_running){
     k4a_device.get_capture(&k4a_capture, std::chrono::milliseconds(1000));
+    if(!k4a_capture){
+      cout<<"[error] Failed to get next capture"<<endl;
+      break;
+    }
+
     device->temperature = k4a_capture.get_temperature_c();
     device->data.capture = &k4a_capture;
 
