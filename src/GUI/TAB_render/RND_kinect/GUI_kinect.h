@@ -5,10 +5,9 @@
 #include <UTL_specific/common.h>
 
 class GUI;
-class Kinect;
-class Struct_k4a_swarm;
-class K4A_swarm;
 class KIN_configuration;
+class KIN_playback;
+class KIN_recorder;
 
 
 class GUI_kinect : public BASE_panel
@@ -21,15 +20,13 @@ public:
   //Main function
   void design_panel();
 
-  void playback_stuff();
-  void recorder_stuff();
+  //Subfunction
+
 
 private:
-  Kinect* kinect;
-  K4A_swarm* k4a_swarm;
   KIN_configuration* kin_configuration;
-
-  bool show_capture = false;
+  KIN_playback* kin_playback;
+  KIN_recorder* kin_recorder;
 };
 
 #endif

@@ -11,10 +11,14 @@ class KIN_playback
 {
 public:
   //Constructor / Destructor
-  KIN_playback();
+  KIN_playback(Kinect* kinect);
   ~KIN_playback();
 
   //Main function
+  void kinect_playback();
+
+  //Subfunction
+  void show_file_information();
 
 private:
   Kinect* kinect;

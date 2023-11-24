@@ -5,23 +5,21 @@
 #include <UTL_specific/common.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 
-class GUI;
+class Kinect;
 
 
-class KIN_recorder : public BASE_panel
+class KIN_recorder
 {
 public:
   //Constructor / Destructor
-  KIN_recorder(GUI* gui, bool* show_window, string name);
+  KIN_recorder(Kinect* kinect);
   ~KIN_recorder();
 
   //Main function
-  void design_panel();
-
-  //Subfunction
-  void record_parameter();
+  void kinect_recorder();
 
 private:
+  Kinect* kinect;
 };
 
 #endif
