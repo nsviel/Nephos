@@ -46,6 +46,7 @@ void K4A_data::find_data_from_capture(Struct_k4a_data* data, k4a::capture captur
   data->ir.size = ir.get_size();
   data->ir.width = ir.get_width_pixels();
   data->ir.height = ir.get_height_pixels();
+  data->ir.format = "B8G8R8A8_SRGB";
   data->ir.timestamp = static_cast<float>(ir.get_device_timestamp().count());
   ir.reset();
 

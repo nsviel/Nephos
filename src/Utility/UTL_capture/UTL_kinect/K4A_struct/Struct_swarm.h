@@ -11,7 +11,7 @@ struct Struct_swarm{
   //---------------------------
 
   K4A_device* selected_device = nullptr;
-  std::vector<K4A_device> vec_device;
+  std::vector<K4A_device*> vec_device;
 
   //---------------------------
 };

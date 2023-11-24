@@ -19,7 +19,7 @@ K4A_device* K4A_swarm::create_virtual_device(){
 
   K4A_device* device = new K4A_device();
   device->is_virtual = true;
-  struct_swarm->vec_device.push_back(*device);
+  struct_swarm->vec_device.push_back(device);
 
   //---------------------------
   return device;
@@ -34,9 +34,9 @@ void K4A_swarm::refresh_device_list(){
     try{
       k4a::device device = k4a::device::open(i);
 
-      K4A_device struct_device;
-      struct_device.index = i;
-      struct_device.serial_number = device.get_serialnum();
+      K4A_device* struct_device = new K4A_device();
+      struct_device->index = i;
+      struct_device->serial_number = device.get_serialnum();
       struct_swarm->vec_device.push_back(struct_device);
     }
     catch(const int error){
@@ -47,7 +47,7 @@ void K4A_swarm::refresh_device_list(){
 
   //Default selection
   if(nb_device > 0){
-    struct_swarm->selected_device = &struct_swarm->vec_device[0];
+    struct_swarm->selected_device = struct_swarm->vec_device[0];
   }
 
   //---------------------------

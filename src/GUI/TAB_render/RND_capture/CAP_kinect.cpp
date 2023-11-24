@@ -64,7 +64,7 @@ void CAP_kinect::design_panel(){
 void CAP_kinect::kinect_devices(){
   //---------------------------
 
-  vector<K4A_device>& vec_device = struct_swarm->vec_device;
+  vector<K4A_device*>& vec_device = struct_swarm->vec_device;
 
   ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_Borders;
@@ -83,18 +83,18 @@ void CAP_kinect::kinect_devices(){
       ImGui::TableSetupColumn("Serial number");
       ImGui::TableHeadersRow();
       for(int i=0; i<vec_device.size(); i++){
-        K4A_device& device = vec_device[i];
+        K4A_device* device = vec_device[i];
 
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
 
-        ImGui::PushID(device.serial_number.c_str());
+        ImGui::PushID(device->serial_number.c_str());
         ImGui::Text("Azur Kinect");
         ImGui::TableNextColumn();
-        ImGui::Text("%d", device.index);
+        ImGui::Text("%d", device->index);
         ImGui::TableNextColumn();
-        if (ImGui::Selectable(device.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
-          struct_swarm->selected_device = &struct_swarm->vec_device[i];
+        if (ImGui::Selectable(device->serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
+          struct_swarm->selected_device = struct_swarm->vec_device[i];
           selected_device = i;
         }
         ImGui::PopID();
