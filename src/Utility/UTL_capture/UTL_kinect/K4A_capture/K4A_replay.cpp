@@ -2,7 +2,7 @@
 
 #include <UTL_capture/UTL_kinect/Struct_kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_data.h>
+#include <UTL_capture/UTL_kinect/K4A_data/K4A_data.h>
 
 
 //Constructor / Destructor

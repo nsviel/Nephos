@@ -8,6 +8,7 @@
 
 class Struct_kinect;
 class K4A_device;
+class K4A_data;
 
 
 class K4A_capture
@@ -31,6 +32,7 @@ public:
 private:
   Struct_kinect* struct_kinect;
   K4A_device* k4a_device;
+  K4A_data* k4a_data;
 
   std::thread thread;
   bool thread_running = false;
