@@ -23,10 +23,14 @@ public:
   //Main function
   void design_panel();
 
-  //Subfunction
-  void draw_camera_color(ImVec2 image_size);
-  void draw_camera_depth(ImVec2 image_size);
-  void draw_camera_ir(ImVec2 image_size);
+  //All devices
+  void vec_device_tab();
+  void device_tab(K4A_device* device);
+
+  //Device capture windows
+  void draw_camera_color(K4A_device* device, ImVec2 image_size);
+  void draw_camera_depth(K4A_device* device, ImVec2 image_size);
+  void draw_camera_ir(K4A_device* device, ImVec2 image_size);
   void hovered_info_panel(K4A_image* image);
 
 private:
