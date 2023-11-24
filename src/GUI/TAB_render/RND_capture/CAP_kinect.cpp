@@ -61,9 +61,8 @@ void CAP_kinect::design_panel(){
 
 //Kinect device
 void CAP_kinect::kinect_devices(){
-  //---------------------------
-
   vector<K4A_device*>& vec_device = kinect->get_vec_device();
+  //---------------------------
 
   ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_Borders;
@@ -363,11 +362,16 @@ void CAP_kinect::playback_stuff(){
   //General info
   if(ImGui::BeginTable("playback_table##general", 2)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Path "); ImGui::TableNextColumn();
+    ImGui::Text("Path"); ImGui::TableNextColumn();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", device->info.file_path.c_str());
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Duration"); ImGui::TableNextColumn();
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f s", (float)device->info.file_duration/1000000);
 
     ImGui::EndTable();
   }
+  ImGui::Separator();
 
   //Data info
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);

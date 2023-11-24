@@ -10,6 +10,8 @@ struct Struct_k4a_swarm{
 
   K4A_device* selected_device = nullptr;
   std::vector<K4A_device*> vec_device;
+  int nb_device_real;
+  int nb_device_virtual;
 
   //---------------------------
 };

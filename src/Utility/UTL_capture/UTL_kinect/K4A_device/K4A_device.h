@@ -30,7 +30,7 @@ public:
   void run_capture();
   void run_replay(string path);
 
-//private:
+public:
   K4A_capture* k4a_capture;
   K4A_replay* k4a_replay;
   K4A_configuration* k4a_configuration;
