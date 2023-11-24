@@ -19,11 +19,7 @@ K4A_device::K4A_device(){
 K4A_device::~K4A_device(){}
 
 //Main function
-<<<<<<< HEAD
-void K4A_device::start_capture(){
-=======
 void K4A_device::run_capture(){
->>>>>>> tmp
   //---------------------------
 
   k4a_configuration->make_k4a_configuration(this);
@@ -31,11 +27,7 @@ void K4A_device::run_capture(){
 
   //---------------------------
 }
-<<<<<<< HEAD
-void K4A_device::start_replay(string path){
-=======
 void K4A_device::run_replay(string path){
->>>>>>> tmp
   //---------------------------
 
   this->info.file_path = path;
