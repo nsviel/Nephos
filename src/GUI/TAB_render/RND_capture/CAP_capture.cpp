@@ -4,7 +4,6 @@
 #include <GUI_gpu/GUI_stream.h>
 #include <Utility.h>
 #include <UTL_capture/UTL_capture.h>
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_depth.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_infrared.h>
 
@@ -17,7 +16,6 @@ CAP_capture::CAP_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
   UTL_capture* utl_capture = utility->get_utl_capture();
 
   this->kinect = utl_capture->get_kinect();
-  this->struct_k4a_swarm = kinect->get_struct_kinect();
   this->k4a_depth = new K4A_depth();
   this->k4a_infrared = new K4A_infrared();
   this->gui = gui;
@@ -41,7 +39,7 @@ void CAP_capture::design_panel(){
 
 //All devices
 void CAP_capture::vec_device_tab(){
-  vector<K4A_device*>& vec_device = struct_k4a_swarm->vec_device;
+  vector<K4A_device*>& vec_device = kinect->get_vec_device();
   //---------------------------
 
   if(ImGui::BeginTabBar("devices_tab##4567")){

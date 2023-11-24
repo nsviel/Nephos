@@ -8,7 +8,6 @@
 class GUI;
 class GUI_stream;
 class Kinect;
-class Struct_k4a_swarm;
 class K4A_depth;
 class K4A_infrared;
 
@@ -36,7 +35,6 @@ public:
 private:
   GUI* gui;
   Kinect* kinect;
-  Struct_k4a_swarm* struct_k4a_swarm;
   K4A_depth* k4a_depth;
   K4A_infrared* k4a_infrared;
 

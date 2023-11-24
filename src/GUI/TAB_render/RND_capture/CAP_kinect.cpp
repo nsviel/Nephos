@@ -18,8 +18,7 @@ CAP_kinect::CAP_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
   UTL_capture* utl_capture = utility->get_utl_capture();
 
   this->kinect = utl_capture->get_kinect();
-  this->struct_k4a_swarm = kinect->get_struct_kinect();
-  this->k4a_swarm = new K4A_swarm(struct_k4a_swarm);
+  this->k4a_swarm = kinect->get_k4a_swarm();
   this->k4a_configuration = new K4A_configuration();
 
   this->item_width = 100;
@@ -64,7 +63,7 @@ void CAP_kinect::design_panel(){
 void CAP_kinect::kinect_devices(){
   //---------------------------
 
-  vector<K4A_device*>& vec_device = struct_k4a_swarm->vec_device;
+  vector<K4A_device*>& vec_device = kinect->get_vec_device();
 
   ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_Borders;
@@ -94,7 +93,7 @@ void CAP_kinect::kinect_devices(){
         ImGui::Text("%d", device->index);
         ImGui::TableNextColumn();
         if (ImGui::Selectable(device->serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
-          struct_k4a_swarm->selected_device = struct_k4a_swarm->vec_device[i];
+          kinect->set_selected_device(device);
           selected_device = i;
         }
         ImGui::PopID();
@@ -111,7 +110,7 @@ void CAP_kinect::kinect_devices(){
   //---------------------------
 }
 void CAP_kinect::configuration_device(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -132,7 +131,7 @@ void CAP_kinect::configuration_device(){
   //---------------------------
 }
 void CAP_kinect::configuration_depth(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -167,7 +166,7 @@ void CAP_kinect::configuration_depth(){
   //---------------------------
 }
 void CAP_kinect::configuration_color(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -290,7 +289,7 @@ void CAP_kinect::configuration_color(){
   //---------------------------
 }
 void CAP_kinect::configuration_general(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -317,7 +316,7 @@ void CAP_kinect::configuration_general(){
   //---------------------------
 }
 void CAP_kinect::firmware_info(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -472,7 +471,7 @@ void CAP_kinect::playback_stuff(){
   //---------------------------
 }
 void CAP_kinect::recorder_stuff(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
