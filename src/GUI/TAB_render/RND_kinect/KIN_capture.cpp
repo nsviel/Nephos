@@ -161,7 +161,7 @@ void KIN_capture::hovered_info_panel(K4A_image* image){
 
   if (ImGui::Begin(image->name.c_str(), nullptr, flags)){
     ImGui::Text("Average frame rate: %.2f fps", 5.0);
-    ImGui::Text("Timestamp: %.2f", image->timestamp/1000);
+    ImGui::Text("Timestamp: %.2f s", image->timestamp/1000000);
   }
   ImGui::End();
 

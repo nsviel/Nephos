@@ -1,6 +1,7 @@
 #include "KIN_playback.h"
 
 #include <UTL_capture/UTL_kinect/Kinect.h>
+#include <image/IconsFontAwesome5.h>
 
 
 //Constructor / Destructor
@@ -18,6 +19,7 @@ void KIN_playback::kinect_playback(){
   //---------------------------
 
   this->show_file_information();
+  this->show_player();
 
   //---------------------------
 }
@@ -138,6 +140,42 @@ void KIN_playback::show_file_information(){
     ImGui::EndTable();
   }
   ImGui::Separator();
+
+  //---------------------------
+}
+void KIN_playback::show_player(){
+  K4A_device* device = kinect->get_selected_device();
+  if(device == nullptr) return;
+  //---------------------------
+
+  bool is_playing = true;
+  bool is_paused = true;
+
+  if(is_playing){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
+    if (ImGui::Button(ICON_FA_PLAY "##36")){
+    }
+    ImGui::PopStyleColor(1);
+  }
+
+  if(is_paused){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
+  }
+  if (ImGui::Button(ICON_FA_PAUSE "##37")){
+  }
+  if(is_paused){
+    ImGui::PopStyleColor(1);
+  }
+
+  if (ImGui::Button(ICON_FA_STOP "##37")){
+
+  }
+
+  if (ImGui::Button(ICON_FA_REPEAT "##37")){
+
+  }
+
+
 
   //---------------------------
 }

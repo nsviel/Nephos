@@ -19,6 +19,7 @@ public:
 
   //Subfunction
   void show_file_information();
+  void show_player();
 
 private:
   Kinect* kinect;
