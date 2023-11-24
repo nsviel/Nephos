@@ -7,6 +7,7 @@
 
 class Struct_k4a_swarm;
 class K4A_swarm;
+class K4A_connection;
 
 
 class Kinect
@@ -31,6 +32,7 @@ public:
 private:
   Struct_k4a_swarm* struct_k4a_swarm;
   K4A_swarm* k4a_swarm;
+  K4A_connection* k4a_connection;
 };
 
 #endif

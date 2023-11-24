@@ -29,6 +29,7 @@ private:
   K4A_configuration* k4a_configuration;
 
   int ID_virtual = 0;
+  int nb_connected_device = -1;
 };
 
 #endif

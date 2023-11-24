@@ -22,8 +22,10 @@ K4A_device::~K4A_device(){}
 void K4A_device::run_capture(){
   //---------------------------
 
-  k4a_configuration->make_k4a_configuration(this);
-  k4a_capture->start_thread(this);
+  if(!k4a_capture->is_thread_running()){
+    k4a_configuration->make_k4a_configuration(this);
+    k4a_capture->start_thread(this);
+  }
 
   //---------------------------
 }

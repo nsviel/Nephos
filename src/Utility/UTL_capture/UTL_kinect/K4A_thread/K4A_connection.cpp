@@ -1,6 +1,6 @@
 #include "K4A_connection.h"
 
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
+#include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
 //Constructor / Destructor
@@ -34,8 +34,12 @@ void K4A_connection::start_thread(){
 void K4A_connection::run_thread(){
   //---------------------------
 
-  k4a_swarm->refresh_connected_device_list();
-  std::this_thread::sleep_for(std::chrono::milliseconds(200));
+  this->thread_running = true;
+  while(thread_running){
+    say("check connection");
+    k4a_swarm->refresh_connected_device_list();
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+  }
 
   //---------------------------
 }

@@ -46,23 +46,48 @@ K4A_device* K4A_swarm::create_device_real(int index){
 void K4A_swarm::refresh_connected_device_list(){
   //---------------------------
 
-  //Fill vec device
-  struct_k4a_swarm->vec_device.clear();
   const uint32_t nb_device = k4a_device_get_installed_count();
-  for(int i=0; i<nb_device; i++){
-    try{
-      this->create_device_real(i);
+
+  if(nb_device != nb_connected_device){
+    //If no real device create virtual one
+    say(nb_device);
+    if(nb_device == 0){
+      string path = "/home/aether/Desktop/output.mkv";
+      K4A_device* device = create_device_virtual(path);
+      struct_k4a_swarm->selected_device = device;
+      device->run_replay(path);
     }
-    catch(const int error){
-      cout<<"[error] refresh device vector"<<endl;
-      continue;
+    //Else keep trace of them and run
+    else{
+      //Fill connected device list
+      struct_k4a_swarm->vec_device.clear();
+      for(int i=0; i<nb_device; i++){
+        try{
+          this->create_device_real(i);
+        }
+        catch(const int error){
+          cout<<"[error] refresh device vector"<<endl;
+          continue;
+        }
+      }
+
+      //Default selection
+      struct_k4a_swarm->selected_device = struct_k4a_swarm->vec_device[0];
+
+      //Run all thread
+      for(int i=0; i<struct_k4a_swarm->vec_device.size(); i++){
+        K4A_device* device = struct_k4a_swarm->vec_device[i];
+        if(!device->is_virtual){
+          device->run_capture();
+        }
+      }
     }
+
+    this->nb_connected_device = nb_device;
   }
 
-  //Default selection
-  if(nb_device > 0){
-    struct_k4a_swarm->selected_device = struct_k4a_swarm->vec_device[0];
-  }
+
+
 
   //---------------------------
 }
