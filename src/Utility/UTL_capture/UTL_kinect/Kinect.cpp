@@ -34,8 +34,7 @@ void Kinect::run(){
   //---------------------------
 
   if(device != nullptr){
-    k4a_configuration->make_k4a_configuration(device);
-    device->k4a_capture->start_thread(device);
+    device->start_capture();
   }
   else{
     K4A_device* device = k4a_swarm->create_virtual_device();

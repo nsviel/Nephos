@@ -15,6 +15,7 @@
 class Struct_k4a_swarm;
 class K4A_capture;
 class K4A_replay;
+class K4A_configuration;
 
 
 class K4A_device
@@ -26,11 +27,13 @@ public:
 
 public:
   //Main function
-
+  void start_capture();
+  void start_replay(string path);
 
 //private:
   K4A_capture* k4a_capture;
   K4A_replay* k4a_replay;
+  K4A_configuration* k4a_configuration;
 
   Struct_k4a_config config;
   Struct_k4a_color color;
