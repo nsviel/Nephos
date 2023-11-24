@@ -20,6 +20,11 @@ public:
 public:
   //Main function
   void find_file_information(string path);
+  string find_name_from_config(k4a_wired_sync_mode_t& value);
+  string find_name_from_config(k4a_fps_t& value);
+  string find_name_from_config(k4a_depth_mode_t& value);
+  string find_name_from_config(k4a_color_resolution_t& value);
+  string find_name_from_config(k4a_image_format_t& value);
 
   inline Struct_k4a_info& get_struct_record(){return struct_info;}
 
