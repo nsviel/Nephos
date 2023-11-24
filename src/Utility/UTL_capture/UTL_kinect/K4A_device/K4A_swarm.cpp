@@ -24,7 +24,7 @@ void K4A_swarm::refresh_device_list(){
     try{
       k4a::device device = k4a::device::open(i);
 
-      Struct_k4a_device struct_device;
+      K4A_device struct_device;
       struct_device.index = i;
       struct_device.serial_number = device.get_serialnum();
       struct_kinect->vec_device.push_back(struct_device);

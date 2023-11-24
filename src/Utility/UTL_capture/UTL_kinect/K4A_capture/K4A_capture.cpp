@@ -20,7 +20,7 @@ K4A_capture::~K4A_capture(){
 }
 
 //Main function
-void K4A_capture::start_thread(Struct_k4a_device* device){
+void K4A_capture::start_thread(K4A_device* device){
   //---------------------------
 
   if(!thread_running){
@@ -31,7 +31,7 @@ void K4A_capture::start_thread(Struct_k4a_device* device){
 }
 
 //Subfunction
-void K4A_capture::run_capture(Struct_k4a_device* device){
+void K4A_capture::run_capture(K4A_device* device){
   if(device == nullptr) return;
   //---------------------------
 

@@ -1,7 +1,7 @@
 #ifndef K4A_DATA_H
 #define K4A_DATA_H
 
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_device.h>
+#include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 
 #include <UTL_specific/common.h>
 #include <k4a/k4a.h>

@@ -22,7 +22,7 @@ K4A_replay::~K4A_replay(){
 }
 
 //Main function
-void K4A_replay::start_thread(Struct_k4a_device* device){
+void K4A_replay::start_thread(K4A_device* device){
   //---------------------------
 
   if(!thread_running){
@@ -33,7 +33,7 @@ void K4A_replay::start_thread(Struct_k4a_device* device){
 }
 
 //Subfunction
-void K4A_replay::run_capture(Struct_k4a_device* device){
+void K4A_replay::run_capture(K4A_device* device){
   //---------------------------
 
   k4a::capture next_capture;
@@ -61,7 +61,7 @@ void K4A_replay::run_capture(Struct_k4a_device* device){
 
   //---------------------------
 }
-void K4A_replay::sleep_necessary_time(Struct_k4a_device* device){
+void K4A_replay::sleep_necessary_time(K4A_device* device){
   //---------------------------
 
   switch(device->config.fps){

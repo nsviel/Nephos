@@ -9,7 +9,7 @@ K4A_playback::K4A_playback(Struct_kinect* struct_kinect){
   //---------------------------
 
   this->struct_kinect = struct_kinect;
-  this->k4a_device = new K4A_device(struct_kinect);
+  this->k4a_device = new K4A_device();
 
   //---------------------------
 }

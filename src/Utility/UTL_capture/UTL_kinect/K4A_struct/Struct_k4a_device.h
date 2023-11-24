@@ -12,7 +12,7 @@
 #include <string>
 
 
-struct Struct_k4a_device{
+struct K4A_device{
   //---------------------------
 
   int index;

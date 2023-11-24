@@ -4,10 +4,8 @@
 
 
 //Constructor / Destructor
-K4A_device::K4A_device(Struct_kinect* struct_kinect){
+K4A_device::K4A_device(){
   //---------------------------
-
-  this->struct_kinect = struct_kinect;
 
   //---------------------------
 }

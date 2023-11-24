@@ -14,7 +14,7 @@ K4A_recorder::K4A_recorder(Struct_kinect* struct_kinect){
 K4A_recorder::~K4A_recorder(){}
 
 //Main function
-void K4A_recorder::record_mkv(Struct_k4a_device* device){
+void K4A_recorder::record_mkv(K4A_device* device){
   //---------------------------
 
 /*

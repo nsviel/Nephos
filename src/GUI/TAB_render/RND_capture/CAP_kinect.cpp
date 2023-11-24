@@ -66,7 +66,7 @@ void CAP_kinect::design_panel(){
 void CAP_kinect::kinect_devices(){
   //---------------------------
 
-  vector<Struct_k4a_device>& vec_device = struct_kinect->vec_device;
+  vector<K4A_device>& vec_device = struct_kinect->vec_device;
 
   ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_Borders;
@@ -85,7 +85,7 @@ void CAP_kinect::kinect_devices(){
       ImGui::TableSetupColumn("Serial number");
       ImGui::TableHeadersRow();
       for(int i=0; i<vec_device.size(); i++){
-        Struct_k4a_device& device = vec_device[i];
+        K4A_device& device = vec_device[i];
 
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
@@ -113,7 +113,7 @@ void CAP_kinect::kinect_devices(){
   //---------------------------
 }
 void CAP_kinect::configuration_device(){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
 
@@ -134,7 +134,7 @@ void CAP_kinect::configuration_device(){
   //---------------------------
 }
 void CAP_kinect::configuration_depth(){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
 
@@ -169,7 +169,7 @@ void CAP_kinect::configuration_depth(){
   //---------------------------
 }
 void CAP_kinect::configuration_color(){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
 
@@ -292,7 +292,7 @@ void CAP_kinect::configuration_color(){
   //---------------------------
 }
 void CAP_kinect::configuration_general(){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
 
@@ -319,7 +319,7 @@ void CAP_kinect::configuration_general(){
   //---------------------------
 }
 void CAP_kinect::firmware_info(){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
 
@@ -474,7 +474,7 @@ void CAP_kinect::playback_stuff(){
   //---------------------------
 }
 void CAP_kinect::recorder_stuff(){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   if(device == nullptr) return;
   //---------------------------
 

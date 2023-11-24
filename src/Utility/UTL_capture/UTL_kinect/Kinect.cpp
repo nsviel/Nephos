@@ -14,7 +14,7 @@ Kinect::Kinect(){
   this->struct_kinect = new Struct_kinect();
   this->k4a_capture = new K4A_capture();
   this->k4a_replay = new K4A_replay();
-  this->k4a_device = new K4A_device(struct_kinect);
+  this->k4a_device = new K4A_device();
   this->k4a_swarm = new K4A_swarm(struct_kinect);
 
   //---------------------------
@@ -31,7 +31,7 @@ void Kinect::init(){
   //---------------------------
 }
 void Kinect::run(){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   //---------------------------
 
   if(device != nullptr){
@@ -39,7 +39,7 @@ void Kinect::run(){
     k4a_capture->start_thread(device);
   }
   else{
-    device = new Struct_k4a_device();
+    device = new K4A_device();
     struct_kinect->selected_device = device;
     device->info.file_path = "/home/aether/Desktop/output.mkv";
     k4a_replay->start_thread(device);
@@ -48,7 +48,7 @@ void Kinect::run(){
   //---------------------------
 }
 void Kinect::loop(){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   if(device == nullptr){return;}
   //---------------------------
 /*
@@ -70,7 +70,7 @@ void Kinect::loop(){
 }
 
 //Subfunction
-void Kinect::make_k4a_configuration(Struct_k4a_device* device){
+void Kinect::make_k4a_configuration(K4A_device* device){
   //---------------------------
 
   k4a_device_configuration_t k4a_config;

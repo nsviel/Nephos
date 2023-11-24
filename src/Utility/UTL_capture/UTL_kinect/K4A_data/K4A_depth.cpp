@@ -14,7 +14,7 @@ K4A_depth::K4A_depth(Struct_kinect* struct_kinect){
 K4A_depth::~K4A_depth(){}
 
 //Main function
-uint8_t* K4A_depth::convert_depth_into_color(Struct_k4a_device* device){
+uint8_t* K4A_depth::convert_depth_into_color(K4A_device* device){
   //---------------------------
 
   uint8_t* inputBuffer = device->data.depth.buffer;
@@ -51,7 +51,7 @@ uint8_t* K4A_depth::convert_depth_into_color(Struct_k4a_device* device){
   //---------------------------
   return outputBuffer;
 }
-void K4A_depth::find_depth_mode_range(Struct_k4a_device* device){
+void K4A_depth::find_depth_mode_range(K4A_device* device){
   //---------------------------
 
   if(device->depth.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){

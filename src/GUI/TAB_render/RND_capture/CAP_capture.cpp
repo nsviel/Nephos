@@ -72,7 +72,7 @@ void CAP_capture::design_panel(){
 
 //Subfunction
 void CAP_capture::draw_camera_color(ImVec2 image_size){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   //---------------------------
 
   if(device == nullptr){return;}
@@ -92,7 +92,7 @@ void CAP_capture::draw_camera_color(ImVec2 image_size){
   //---------------------------
 }
 void CAP_capture::draw_camera_depth(ImVec2 image_size){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   //---------------------------
 
   if(device == nullptr){return;}
@@ -112,7 +112,7 @@ void CAP_capture::draw_camera_depth(ImVec2 image_size){
   //---------------------------
 }
 void CAP_capture::draw_camera_ir(ImVec2 image_size){
-  Struct_k4a_device* device = struct_kinect->selected_device;
+  K4A_device* device = struct_kinect->selected_device;
   //---------------------------
 
   if(device == nullptr){return;}

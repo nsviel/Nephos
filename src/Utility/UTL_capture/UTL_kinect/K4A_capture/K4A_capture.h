@@ -1,7 +1,7 @@
 #ifndef K4A_CAPTURE_H
 #define K4A_CAPTURE_H
 
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_device.h>
+#include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
@@ -21,8 +21,8 @@ public:
   void run();
 
   //Subfunction
-  void start_thread(Struct_k4a_device* device);
-  void run_capture(Struct_k4a_device* device);
+  void start_thread(K4A_device* device);
+  void run_capture(K4A_device* device);
   void stop_thread();
 
   inline bool is_thread_running(){return thread_running;}

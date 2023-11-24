@@ -1,7 +1,7 @@
 #ifndef KINECT_H
 #define KINECT_H
 
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_device.h>
+#include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 
 #include <UTL_specific/common.h>
 
@@ -26,7 +26,7 @@ public:
   void loop();
 
   //Subfunction
-  void make_k4a_configuration(Struct_k4a_device* device);
+  void make_k4a_configuration(K4A_device* device);
   void start_camera();
 
   inline K4A_capture* get_k4a_capture(){return k4a_capture;}
