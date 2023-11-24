@@ -48,15 +48,17 @@ void K4A_capture::run_thread(K4A_device* device){
   bool is_recording = thread_recording;
   if(is_recording){
     recording = k4a::record::create("output.mkv", k4a_device, device->config.k4a_config);
-    recording.add_tag("Tag1", "Value1");
     recording.write_header();
   }
 
+//SUPRIMER LE get_capture chrono et mettre un sleep en bas de 33 ms.
   this->thread_running = true;
   while(thread_running){
-    k4a_device.get_capture(&k4a_capture, std::chrono::milliseconds(1000));
-    if(!k4a_capture){
-      cout<<"[error] Failed to get next capture"<<endl;
+    try {
+      k4a_device.get_capture(&k4a_capture, std::chrono::milliseconds(2000));
+    } catch (const k4a::error& e) {
+      // Assume device is disconnected if an exception is thrown
+      cout << "[error] Kinect device is disconnected: " << e.what() << endl;
       break;
     }
 

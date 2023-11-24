@@ -36,7 +36,6 @@ void K4A_connection::run_thread(){
 
   this->thread_running = true;
   while(thread_running){
-    say("check connection");
     k4a_swarm->refresh_connected_device_list();
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
   }
