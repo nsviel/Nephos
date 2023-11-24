@@ -38,7 +38,7 @@ void Kinect::run(){
     device->k4a_capture->start_thread(device);
   }
   else{
-    device = new K4A_device();
+    K4A_device* device = k4a_swarm->create_virtual_device();
     struct_kinect->selected_device = device;
     device->info.file_path = "/home/aether/Desktop/output.mkv";
     device->k4a_replay->start_thread(device);

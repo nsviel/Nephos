@@ -19,6 +19,7 @@ public:
 
 public:
   //Main function
+  K4A_device* create_virtual_device();
   void refresh_device_list();
 
 private:

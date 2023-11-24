@@ -14,6 +14,16 @@ K4A_swarm::K4A_swarm(Struct_kinect* struct_kinect){
 K4A_swarm::~K4A_swarm(){}
 
 //Main function
+K4A_device* K4A_swarm::create_virtual_device(){
+  //---------------------------
+
+  K4A_device* device = new K4A_device();
+  device->is_virtual = true;
+  struct_kinect->vec_device.push_back(device);
+
+  //---------------------------
+  return device;
+}
 void K4A_swarm::refresh_device_list(){
   //---------------------------
 
