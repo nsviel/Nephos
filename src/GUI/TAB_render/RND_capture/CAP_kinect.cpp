@@ -105,7 +105,7 @@ void CAP_kinect::kinect_devices(){
   }
 
   if(ImGui::Button("Refresh", ImVec2(item_width, 0))){
-    k4a_swarm->refresh_device_list();
+    k4a_swarm->refresh_connected_device_list();
   }
 
   //---------------------------
