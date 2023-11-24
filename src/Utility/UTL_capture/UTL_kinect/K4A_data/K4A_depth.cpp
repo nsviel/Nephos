@@ -1,13 +1,9 @@
 #include "K4A_depth.h"
 
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
-
 
 //Constructor / Destructor
-K4A_depth::K4A_depth(Struct_k4a_swarm* struct_k4a_swarm){
+K4A_depth::K4A_depth(){
   //---------------------------
-
-  this->struct_k4a_swarm = struct_k4a_swarm;
 
   //---------------------------
 }

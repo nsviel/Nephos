@@ -8,6 +8,7 @@
 #include <k4a/k4a.hpp>
 
 class Struct_k4a_swarm;
+class K4A_configuration;
 
 
 class K4A_swarm
@@ -19,11 +20,15 @@ public:
 
 public:
   //Main function
-  K4A_device* create_virtual_device();
+  K4A_device* create_device_virtual(string path);
+  K4A_device* create_device_real(int index);
   void refresh_connected_device_list();
 
 private:
   Struct_k4a_swarm* struct_k4a_swarm;
+  K4A_configuration* k4a_configuration;
+
+  int ID_virtual = 0;
 };
 
 #endif

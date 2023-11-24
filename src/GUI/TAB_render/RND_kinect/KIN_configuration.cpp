@@ -1,77 +1,45 @@
-#include "CAP_kinect.h"
-#include "CAP_capture.h"
+#include "KIN_configuration.h"
 
 #include <GUI.h>
-#include <Utility.h>
-#include <UTL_capture/UTL_capture.h>
 #include <UTL_capture/UTL_kinect/Kinect.h>
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
 
 
 //Constructor / Destructor
-CAP_kinect::CAP_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+KIN_configuration::KIN_configuration(Kinect* kinect){
   //---------------------------
 
-  Utility* utility = gui->get_utility();
-  UTL_capture* utl_capture = utility->get_utl_capture();
-
-  this->kinect = utl_capture->get_kinect();
-  this->struct_k4a_swarm = kinect->get_struct_kinect();
-  this->k4a_swarm = new K4A_swarm(struct_k4a_swarm);
-  this->k4a_configuration = new K4A_configuration();
+  this->kinect = kinect;
+  this->k4a_swarm = kinect->get_k4a_swarm();
 
   this->item_width = 100;
 
   //---------------------------
 }
-CAP_kinect::~CAP_kinect(){}
+KIN_configuration::~KIN_configuration(){}
 
 //Main function
-void CAP_kinect::design_panel(){
+void KIN_configuration::kinect_configuration(){
   //---------------------------
 
-  if (ImGui::BeginTabBar("kinect_tab")){
-
-    ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("Capture##12323", NULL)){
-      this->kinect_devices();
-      this->configuration_device();
-      this->configuration_general();
-      ImGui::EndTabItem();
-    }
-
-    ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("Playback##4567", NULL)){
-      this->playback_stuff();
-      ImGui::EndTabItem();
-    }
-
-    ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("Recorder##4567", NULL)){
-      this->recorder_stuff();
-      ImGui::EndTabItem();
-    }
-
-    ImGui::EndTabBar();
-  }
+  this->kinect_devices();
+  this->configuration_device();
+  this->configuration_general();
 
   //---------------------------
 }
 
-//Kinect device
-void CAP_kinect::kinect_devices(){
+//Subfunction
+void KIN_configuration::kinect_devices(){
+  vector<K4A_device*>& vec_device = kinect->get_vec_device();
   //---------------------------
-
-  vector<K4A_device*>& vec_device = struct_k4a_swarm->vec_device;
 
   ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_Borders;
   flags |= ImGuiTableFlags_RowBg;
   static int selected_device = -1;
   if(ImGui::BeginTable("database_view", 3, flags)){
-    if(vec_device.size() == 0){
+    if(kinect->get_nb_device_real() == 0){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       ImGui::TableNextColumn();
@@ -84,6 +52,7 @@ void CAP_kinect::kinect_devices(){
       ImGui::TableHeadersRow();
       for(int i=0; i<vec_device.size(); i++){
         K4A_device* device = vec_device[i];
+        if(device->is_virtual) continue;
 
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
@@ -94,7 +63,7 @@ void CAP_kinect::kinect_devices(){
         ImGui::Text("%d", device->index);
         ImGui::TableNextColumn();
         if (ImGui::Selectable(device->serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
-          struct_k4a_swarm->selected_device = struct_k4a_swarm->vec_device[i];
+          kinect->set_selected_device(device);
           selected_device = i;
         }
         ImGui::PopID();
@@ -105,13 +74,13 @@ void CAP_kinect::kinect_devices(){
   }
 
   if(ImGui::Button("Refresh", ImVec2(item_width, 0))){
-    k4a_swarm->refresh_device_list();
+    k4a_swarm->refresh_connected_device_list();
   }
 
   //---------------------------
 }
-void CAP_kinect::configuration_device(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+void KIN_configuration::configuration_device(){
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -131,8 +100,8 @@ void CAP_kinect::configuration_device(){
 
   //---------------------------
 }
-void CAP_kinect::configuration_depth(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+void KIN_configuration::configuration_depth(){
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -166,8 +135,8 @@ void CAP_kinect::configuration_depth(){
 
   //---------------------------
 }
-void CAP_kinect::configuration_color(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+void KIN_configuration::configuration_color(){
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -289,8 +258,8 @@ void CAP_kinect::configuration_color(){
 
   //---------------------------
 }
-void CAP_kinect::configuration_general(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+void KIN_configuration::configuration_general(){
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -311,13 +280,13 @@ void CAP_kinect::configuration_general(){
   ImGui::Checkbox("Disable streaming LED", &device->config.disable_streaming_indicator);
 
   if(ImGui::Button("Run capture", ImVec2(item_width, 0))){
-    kinect->run();
+    kinect->run_selected_device();
   }
 
   //---------------------------
 }
-void CAP_kinect::firmware_info(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
+void KIN_configuration::firmware_info(){
+  K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -351,133 +320,6 @@ void CAP_kinect::firmware_info(){
     }
 
     ImGui::TreePop();
-  }
-
-  //---------------------------
-}
-
-void CAP_kinect::playback_stuff(){
-  //---------------------------
-/*
-  string path = "/home/aether/Desktop/francasque_0.mkv";
-  k4a_configuration->find_file_information(path);
-  Struct_k4a_info& struct_info = k4a_configuration->get_struct_record();
-
-  //General info
-  if(ImGui::BeginTable("playback_table##general", 2)){
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Path "); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", path.c_str());
-
-    ImGui::EndTable();
-  }
-
-  //Data info
-  ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
-  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Recording settings");
-  if(ImGui::BeginTable("playback_table##data", 2)){
-    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("FPS"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_fps.c_str());
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Depth mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_depth_mode.c_str());
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Color format"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_color_format.c_str());
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Color resolution"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_color_resolution.c_str());
-
-    ImGui::EndTable();
-  }
-  ImGui::Separator();
-
-  //Stream info
-  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Stream info");
-  if(ImGui::BeginTable("playback_table##stream", 2)){
-    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Color enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.is_color ? "Yes" : "No");
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Depth enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.is_depth ? "Yes" : "No");
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("IR enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.is_infrared ? "Yes" : "No");
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.is_imu ? "Yes" : "No");
-
-    ImGui::EndTable();
-  }
-  ImGui::Separator();
-
-  //Synchro info
-  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Sync settings");
-  if(ImGui::BeginTable("playback_table##synchro", 2)){
-    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Depth/color delay (us)"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", struct_info.depth_delay_off_color_us);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Sync mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_wired_sync_mode.c_str());
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", struct_info.start_timestamp_offset_us);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%lu", struct_info.file_duration);
-
-    ImGui::EndTable();
-  }
-  ImGui::Separator();
-
-  //Device info
-  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Device info");
-  if(ImGui::BeginTable("playback_table##device", 2)){
-    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Device S/N"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_device_serial_number.c_str());
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("RGB camera FW"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_color_firmware_version.c_str());
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", struct_info.info_depth_firmware_version.c_str());
-
-    ImGui::EndTable();
-  }
-  ImGui::Separator();
-*/
-  //---------------------------
-}
-void CAP_kinect::recorder_stuff(){
-  K4A_device* device = struct_k4a_swarm->selected_device;
-  if(device == nullptr) return;
-  //---------------------------
-
-  if(ImGui::Button("Record")){
-    //k4a_recorder->record_mkv(device);
   }
 
   //---------------------------

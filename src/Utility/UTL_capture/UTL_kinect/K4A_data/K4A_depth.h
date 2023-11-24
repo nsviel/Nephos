@@ -11,7 +11,7 @@ class K4A_depth
 {
 public:
   //Constructor / Destructor
-  K4A_depth(Struct_k4a_swarm* struct_k4a_swarm);
+  K4A_depth();
   ~K4A_depth();
 
 public:
@@ -20,7 +20,6 @@ public:
   void find_depth_mode_range(K4A_device* device);
 
 private:
-  Struct_k4a_swarm* struct_k4a_swarm;
 };
 
 #endif

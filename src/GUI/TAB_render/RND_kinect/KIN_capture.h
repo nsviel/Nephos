@@ -8,31 +8,33 @@
 class GUI;
 class GUI_stream;
 class Kinect;
-class Struct_k4a_swarm;
 class K4A_depth;
 class K4A_infrared;
 
 
-class CAP_capture : public BASE_panel
+class KIN_capture : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  CAP_capture(GUI* gui, bool* show_window, string name);
-  ~CAP_capture();
+  KIN_capture(GUI* gui, bool* show_window, string name);
+  ~KIN_capture();
 
   //Main function
   void design_panel();
 
-  //Subfunction
-  void draw_camera_color(ImVec2 image_size);
-  void draw_camera_depth(ImVec2 image_size);
-  void draw_camera_ir(ImVec2 image_size);
+  //All devices
+  void vec_device_tab();
+  void device_tab(K4A_device* device);
+
+  //Device capture windows
+  void draw_camera_color(K4A_device* device, ImVec2 image_size);
+  void draw_camera_depth(K4A_device* device, ImVec2 image_size);
+  void draw_camera_ir(K4A_device* device, ImVec2 image_size);
   void hovered_info_panel(K4A_image* image);
 
 private:
   GUI* gui;
   Kinect* kinect;
-  Struct_k4a_swarm* struct_k4a_swarm;
   K4A_depth* k4a_depth;
   K4A_infrared* k4a_infrared;
 
