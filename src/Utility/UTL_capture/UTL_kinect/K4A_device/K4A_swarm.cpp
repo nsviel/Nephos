@@ -24,11 +24,11 @@ K4A_device* K4A_swarm::create_virtual_device(){
   //---------------------------
   return device;
 }
-void K4A_swarm::refresh_device_list(){
+void K4A_swarm::refresh_connected_device_list(){
   //---------------------------
 
+  //Fill vec device
   struct_k4a_swarm->vec_device.clear();
-
   const uint32_t nb_device = k4a_device_get_installed_count();
   for(int i=0; i<nb_device; i++){
     try{
@@ -36,6 +36,7 @@ void K4A_swarm::refresh_device_list(){
 
       K4A_device* struct_device = new K4A_device();
       struct_device->index = i;
+      struct_device->is_virtual = false;
       struct_device->serial_number = device.get_serialnum();
       struct_k4a_swarm->vec_device.push_back(struct_device);
     }

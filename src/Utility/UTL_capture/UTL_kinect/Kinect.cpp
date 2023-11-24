@@ -24,7 +24,7 @@ Kinect::~Kinect(){}
 void Kinect::init(){
   //---------------------------
 
-  k4a_swarm->refresh_device_list();
+  k4a_swarm->refresh_connected_device_list();
   this->run();
 
   //---------------------------

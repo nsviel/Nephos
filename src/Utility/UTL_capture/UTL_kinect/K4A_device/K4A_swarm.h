@@ -20,7 +20,7 @@ public:
 public:
   //Main function
   K4A_device* create_virtual_device();
-  void refresh_device_list();
+  void refresh_connected_device_list();
 
 private:
   Struct_k4a_swarm* struct_k4a_swarm;
