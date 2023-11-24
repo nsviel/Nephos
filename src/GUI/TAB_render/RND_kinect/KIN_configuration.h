@@ -12,7 +12,13 @@ public:
   ~KIN_configuration();
 
   //Main function
-
+  void kinect_devices();
+  void configuration_device();
+  void configuration_depth();
+  void configuration_color();
+  void configuration_general();
+  void firmware_info();
+  
 private:
 };
 
