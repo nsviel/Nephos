@@ -1,18 +1,35 @@
 #include "KIN_configuration.h"
 
 #include <GUI.h>
+#include <UTL_capture/UTL_kinect/Kinect.h>
+#include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
 //Constructor / Destructor
-KIN_configuration::KIN_configuration(){
+KIN_configuration::KIN_configuration(Kinect* kinect){
   //---------------------------
 
+  this->kinect = kinect;
+  this->k4a_swarm = kinect->get_k4a_swarm();
+
+  this->item_width = 100;
 
   //---------------------------
 }
 KIN_configuration::~KIN_configuration(){}
 
 //Main function
+void KIN_configuration::kinect_configuration(){
+  //---------------------------
+
+  this->kinect_devices();
+  this->configuration_device();
+  this->configuration_general();
+
+  //---------------------------
+}
+
+//Subfunction
 void KIN_configuration::kinect_devices(){
   vector<K4A_device*>& vec_device = kinect->get_vec_device();
   //---------------------------
