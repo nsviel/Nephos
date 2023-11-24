@@ -30,7 +30,7 @@ void Kinect::init(){
   }
   else{
     K4A_device* device = k4a_swarm->create_device_virtual("/home/aether/Desktop/output.mkv");
-    struct_k4a_swarm->selected_device = device;
+    this->set_selected_device(device);
     device->run_replay("/home/aether/Desktop/output.mkv");
   }
 

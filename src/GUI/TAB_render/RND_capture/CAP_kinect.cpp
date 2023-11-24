@@ -69,7 +69,7 @@ void CAP_kinect::kinect_devices(){
   flags |= ImGuiTableFlags_RowBg;
   static int selected_device = -1;
   if(ImGui::BeginTable("database_view", 3, flags)){
-    if(vec_device.size() == 0){
+    if(kinect->get_nb_device_real() == 0){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       ImGui::TableNextColumn();
@@ -82,6 +82,7 @@ void CAP_kinect::kinect_devices(){
       ImGui::TableHeadersRow();
       for(int i=0; i<vec_device.size(); i++){
         K4A_device* device = vec_device[i];
+        if(device->is_virtual) continue;
 
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
