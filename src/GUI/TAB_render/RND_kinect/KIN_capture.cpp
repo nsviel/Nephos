@@ -46,7 +46,8 @@ void KIN_capture::vec_device_tab(){
     for(int i=0; i<vec_device.size(); i++){
       K4A_device* device = vec_device[i];
 
-      string title = "kinect_" + to_string(device->index);
+      string str_virtual = device->is_virtual ? "virtual_" : "";
+      string title = "kinect_" + str_virtual + to_string(device->index);
       if (ImGui::BeginTabItem(title.c_str(), NULL)){
         this->device_tab(device);
         ImGui::EndTabItem();

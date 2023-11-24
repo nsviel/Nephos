@@ -27,6 +27,8 @@ public:
 private:
   Struct_k4a_swarm* struct_k4a_swarm;
   K4A_configuration* k4a_configuration;
+
+  int ID_virtual = 0;
 };
 
 #endif

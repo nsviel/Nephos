@@ -29,9 +29,11 @@ void Kinect::init(){
     struct_k4a_swarm->selected_device->run_capture();
   }
   else{
-    K4A_device* device = k4a_swarm->create_device_virtual("/home/aether/Desktop/output.mkv");
+    string path = "/home/aether/Desktop/output.mkv";
+    //string path = "/home/aether/Desktop/francasque_4.mkv";
+    K4A_device* device = k4a_swarm->create_device_virtual(path);
     this->set_selected_device(device);
-    device->run_replay("/home/aether/Desktop/output.mkv");
+    device->run_replay(path);
   }
 
   //---------------------------
