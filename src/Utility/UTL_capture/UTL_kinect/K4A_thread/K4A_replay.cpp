@@ -46,9 +46,7 @@ void K4A_replay::run_thread(K4A_device* device){
     if(!playback) return;
 
     //Read entire video
-    bool not_the_end = true;
-    while(not_the_end){
-      not_the_end = playback.get_next_capture(&capture);
+    while(playback.get_next_capture(&capture)){
       if(!capture) break;
 
       this->manage_current_timestamp(&playback, device, capture);
@@ -56,7 +54,7 @@ void K4A_replay::run_thread(K4A_device* device){
       this->sleep_necessary_time(device);
       this->manage_thread_pause();
     }
-sayHello();
+
     playback.close();
   }
 
@@ -118,13 +116,13 @@ void K4A_replay::find_file_info(K4A_device* device){
 void K4A_replay::manage_current_timestamp(k4a::playback* playback, K4A_device* device, k4a::capture capture){
   //---------------------------
 
-  k4a::image color = capture.get_color_image();
-  device->info.ts_cur = color.get_device_timestamp().count() / 1000000.0f;
-
   if(ts_seek != -1){
     auto ts_seek_ms = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_seek));
     playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     ts_seek = -1;
+  }else{
+    k4a::image color = capture.get_color_image();
+    device->info.ts_cur = color.get_device_timestamp().count() / 1000000.0f;
   }
 
   //---------------------------
