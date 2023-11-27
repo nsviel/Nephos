@@ -31,7 +31,7 @@ void KIN_configuration::kinect_configuration(){
 
 //Subfunction
 void KIN_configuration::kinect_devices(){
-  vector<K4A_device*>& vec_device = kinect->get_vec_device();
+  list<K4A_device*>& list_device = kinect->get_list_device();
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -50,8 +50,8 @@ void KIN_configuration::kinect_devices(){
       ImGui::TableSetupColumn("ID");
       ImGui::TableSetupColumn("Serial number");
       ImGui::TableHeadersRow();
-      for(int i=0; i<vec_device.size(); i++){
-        K4A_device* device = vec_device[i];
+      for(int i=0; i<list_device.size(); i++){
+        K4A_device* device = *std::next(list_device.begin(), i);
         if(device->is_virtual) continue;
 
         ImGui::TableNextRow();
@@ -278,10 +278,6 @@ void KIN_configuration::configuration_general(){
   }
 
   ImGui::Checkbox("Disable streaming LED", &device->config.disable_streaming_indicator);
-
-  if(ImGui::Button("Run capture", ImVec2(item_width, 0))){
-    kinect->run_selected_device();
-  }
 
   //---------------------------
 }

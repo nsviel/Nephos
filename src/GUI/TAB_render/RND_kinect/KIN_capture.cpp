@@ -39,12 +39,12 @@ void KIN_capture::design_panel(){
 
 //All devices
 void KIN_capture::vec_device_tab(){
-  vector<K4A_device*>& vec_device = kinect->get_vec_device();
+  list<K4A_device*>& list_device = kinect->get_list_device();
   //---------------------------
 
   if(ImGui::BeginTabBar("devices_tab##4567")){
-    for(int i=0; i<vec_device.size(); i++){
-      K4A_device* device = vec_device[i];
+    for(int i=0; i<list_device.size(); i++){
+      K4A_device* device = *std::next(list_device.begin(), i);
 
       string str_virtual = device->is_virtual ? "virtual_" : "";
       string title = "kinect_" + str_virtual + to_string(device->index);
@@ -69,7 +69,7 @@ void KIN_capture::device_tab(K4A_device* device){
     ImVec2 region = ImGui::GetContentRegionAvail();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if(ImGui::Button("Close", ImVec2(region.x, 0))){
-      
+
     }
     ImGui::PopStyleColor(1);
   }

@@ -22,6 +22,7 @@ public:
   //Main function
   K4A_device* create_device_virtual(string path);
   K4A_device* create_device_real(int index);
+  void delete_devicel(K4A_device* device);
   void refresh_connected_device_list();
 
 private:

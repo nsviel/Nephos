@@ -22,7 +22,7 @@ K4A_device* K4A_swarm::create_device_virtual(string path){
   K4A_device* k4a_device = new K4A_device();
   k4a_device->index = ID_virtual++;
   k4a_device->is_virtual = true;
-  struct_k4a_swarm->vec_device.push_back(k4a_device);
+  struct_k4a_swarm->list_device.push_back(k4a_device);
   struct_k4a_swarm->nb_device_virtual++;
   k4a_configuration->find_file_information(k4a_device, path);
 
@@ -37,13 +37,32 @@ K4A_device* K4A_swarm::create_device_real(int index){
   k4a_device->index = index;
   k4a_device->is_virtual = false;
   k4a_device->serial_number = device.get_serialnum();
-  struct_k4a_swarm->vec_device.push_back(k4a_device);
+  struct_k4a_swarm->list_device.push_back(k4a_device);
   struct_k4a_swarm->nb_device_real++;
 
   //---------------------------
   return k4a_device;
 }
+void K4A_swarm::delete_devicel(K4A_device* device){
+  //---------------------------
+
+  delete(device);
+
+  for(int i=0; i<struct_k4a_swarm->list_device.size(); i++){
+
+  }
+/*
+  K4A_device* k4a_device = new K4A_device();
+  k4a_device->index = index;
+  k4a_device->is_virtual = false;
+  k4a_device->serial_number = device.get_serialnum();
+  struct_k4a_swarm->list_device.push_back(k4a_device);
+  struct_k4a_swarm->nb_device_real++;
+*/
+  //---------------------------
+}
 void K4A_swarm::refresh_connected_device_list(){
+  list<K4A_device*>& list_device = struct_k4a_swarm->list_device;
   //---------------------------
 
 //REFAIRE CETTE FUNCTION POUR regarder si
@@ -65,7 +84,7 @@ void K4A_swarm::refresh_connected_device_list(){
     //Else keep trace of them and run
     else{
       //Fill connected device list
-      struct_k4a_swarm->vec_device.clear();
+      struct_k4a_swarm->list_device.clear();
       for(int i=0; i<nb_device; i++){
         try{
           this->create_device_real(i);
@@ -77,11 +96,12 @@ void K4A_swarm::refresh_connected_device_list(){
       }
 
       //Default selection
-      struct_k4a_swarm->selected_device = struct_k4a_swarm->vec_device[0];
+      struct_k4a_swarm->selected_device = *std::next(list_device.begin(), 0);
 
       //Run all thread
-      for(int i=0; i<struct_k4a_swarm->vec_device.size(); i++){
-        K4A_device* device = struct_k4a_swarm->vec_device[i];
+      for(int i=0; i<list_device.size(); i++){
+        K4A_device* device = *std::next(list_device.begin(), i);
+
         if(!device->is_virtual){
           device->run_capture();
         }

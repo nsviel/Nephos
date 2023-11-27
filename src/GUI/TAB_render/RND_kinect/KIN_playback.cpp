@@ -55,6 +55,8 @@ void KIN_playback::show_player(){
   if(ImGui::Button(icon.c_str())){
     if(!*thread_play){
       device->k4a_replay->set_current_timestamp(device->info.ts_beg);
+      *thread_play = true;
+      *thread_paused = false;
     }else{
       *thread_paused = !*thread_paused;
     }

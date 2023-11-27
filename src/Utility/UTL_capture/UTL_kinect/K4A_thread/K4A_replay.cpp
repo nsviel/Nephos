@@ -118,6 +118,7 @@ void K4A_replay::manage_current_timestamp(k4a::playback* playback, K4A_device* d
     auto ts_seek_ms = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_seek));
     playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     device->info.ts_cur = ts_seek;
+    thread_play = true;
     ts_seek = -1;
   }else{
     k4a::image color = capture.get_color_image();

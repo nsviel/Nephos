@@ -39,7 +39,7 @@ void Kinect::init(){
 
   //---------------------------
 }
-void Kinect::run_selected_device(){
+void Kinect::restart_capture(){
   K4A_device* device = struct_k4a_swarm->selected_device;
   //---------------------------
 
