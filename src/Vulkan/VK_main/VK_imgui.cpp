@@ -92,11 +92,9 @@ ImTextureID VK_imgui::rendered_texture(){
   static ImTextureID texture = 0;
   //---------------------------
 
-  //vk_surface->check_for_resizing();
+  bool has_been_resized = check_window_resize();
 
-
-
-  if(texture == 0 || struct_vulkan->window.is_resized){
+  if(texture == 0 || struct_vulkan->window.is_resized || has_been_resized){
     Struct_vk_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
     Struct_vk_image* image = &renderpass->framebuffer->color;
 
@@ -106,4 +104,19 @@ ImTextureID VK_imgui::rendered_texture(){
 
   //---------------------------
   return texture;
+}
+bool VK_imgui::check_window_resize(){
+  //---------------------------
+
+  bool has_been_resized = false;
+  static vec2 dim_old = vk_surface->compute_window_dim();
+  vec2 dim_new = vk_surface->compute_window_dim();
+
+  if(dim_new.x != dim_old.x || dim_new.y != dim_old.y){
+    has_been_resized = true;
+    dim_old = dim_new;
+  }
+
+  //---------------------------
+  return has_been_resized;
 }

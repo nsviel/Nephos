@@ -28,6 +28,7 @@ public:
   void clean();
 
   ImTextureID rendered_texture();
+  bool check_window_resize();
 
 private:
   Struct_vulkan* struct_vulkan;
