@@ -42,7 +42,7 @@ void APP_main::init(){
 }
 void APP_main::loop(){
   //---------------------------
-//!utl_window->window_should_close()
+
   auto start_time = std::chrono::steady_clock::now();
   while(config->run_app){
     gui->loop();

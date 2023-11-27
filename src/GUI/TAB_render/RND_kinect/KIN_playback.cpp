@@ -17,14 +17,18 @@ KIN_playback::~KIN_playback(){}
 
 //Main function
 void KIN_playback::kinect_playback(){
+  K4A_device* device = kinect->get_selected_device();
+  if(device == nullptr) return;
   //---------------------------
 
+  if(!device->is_virtual) ImGui::BeginDisabled();
   this->show_player();
   this->show_info_file();
   this->show_info_recording();
   this->show_info_stream();
   this->show_info_synchro();
   this->show_info_device();
+  if(!device->is_virtual) ImGui::EndDisabled();
 
   //---------------------------
 }

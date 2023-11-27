@@ -20,11 +20,15 @@ KIN_configuration::~KIN_configuration(){}
 
 //Main function
 void KIN_configuration::kinect_configuration(){
+  K4A_device* device = kinect->get_selected_device();
+  if(device == nullptr) return;
   //---------------------------
 
+  if(device->is_virtual) ImGui::BeginDisabled();
   this->kinect_devices();
   this->configuration_device();
   this->configuration_general();
+  if(device->is_virtual) ImGui::EndDisabled();
 
   //---------------------------
 }
