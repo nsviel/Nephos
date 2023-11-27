@@ -4,7 +4,6 @@
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
 
-class Utility;
 class Struct_vulkan;
 class UTL_window;
 class VK_engine;
@@ -17,7 +16,7 @@ class Vulkan
 {
 public:
   //Constructor / Destructor
-  Vulkan(Utility* utility);
+  Vulkan(GLFWwindow* window);
   ~Vulkan();
 
 public:

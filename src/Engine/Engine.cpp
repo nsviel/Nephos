@@ -1,6 +1,7 @@
 #include "Engine.h"
 
 #include <Utility.h>
+#include <UTL_window/UTL_window.h>
 #include <Vulkan.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_camera/ENG_camera.h>
@@ -12,10 +13,12 @@
 Engine::Engine(Utility* utility){
   //---------------------------
 
+  UTL_window* utl_window = utility->get_utl_window();
+
   this->utility = utility;
   this->eng_camera = new ENG_camera(this);
   this->eng_shader = new ENG_shader(this);
-  this->eng_vulkan = new Vulkan(utility);
+  this->eng_vulkan = new Vulkan(utl_window->get_window());
   this->eng_data = new ENG_data(this);
   this->eng_renderpass = new ENG_renderpass(this);
 

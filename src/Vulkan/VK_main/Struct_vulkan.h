@@ -19,6 +19,8 @@
 struct Struct_vulkan{
   //---------------------------
 
+
+
   std::string name;
   Struct_vk_render render;
   Struct_vk_window window;
@@ -30,6 +32,10 @@ struct Struct_vulkan{
   Struct_vk_param param;
   Struct_vk_pool pool;
   Struct_vk_synchro synchro;
+
+  Struct_vulkan(GLFWwindow* window){
+    this->window.glfw_window = window;
+  }
 
   //---------------------------
 };

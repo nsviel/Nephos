@@ -21,6 +21,7 @@ public:
 
   //Subfunction
   void check_for_resizing();
+  vec2 compute_window_dim();
 
 private:
   Struct_vulkan* struct_vulkan;

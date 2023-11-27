@@ -35,7 +35,6 @@ void APP_main::run(){
 void APP_main::init(){
   //---------------------------
 
-  utility->init();
   engine->init();
   gui->init();
 
@@ -45,7 +44,7 @@ void APP_main::loop(){
   //---------------------------
 //!utl_window->window_should_close()
   auto start_time = std::chrono::steady_clock::now();
-  while(config->run_app){  
+  while(config->run_app){
     gui->loop();
     engine->loop();
     utility->loop();

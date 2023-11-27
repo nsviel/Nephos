@@ -59,6 +59,7 @@ public:
 
   inline Struct_vk_entity* get_canvas(){return &struct_vulkan->data.canvas;}
   inline std::list<Struct_vk_entity*> get_list_data(){return struct_vulkan->data.list_object;}
+  inline void set_window(GLFWwindow* window){struct_vulkan->window.glfw_window = window;}
 
 private:
   Struct_vulkan* struct_vulkan;

@@ -13,6 +13,7 @@ Utility::Utility(Config* config){
   this->utl_capture = new UTL_capture();
 
   //---------------------------
+  this->init();
 }
 Utility::~Utility(){}
 
