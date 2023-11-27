@@ -57,7 +57,7 @@ void K4A_configuration::find_file_information(K4A_device* device, string path){
   device->info.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
   device->info.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
   device->info.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
-  device->info.file_duration = static_cast<uint64_t>(playback.get_recording_length().count());
+  device->info.file_duration = playback.get_recording_length();
 
   // Device info
   playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &device->info.info_device_serial_number);

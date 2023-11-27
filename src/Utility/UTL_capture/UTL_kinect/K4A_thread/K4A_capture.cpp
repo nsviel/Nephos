@@ -43,36 +43,33 @@ void K4A_capture::run_thread(K4A_device* device){
   //Start recording
   device->device = &k4a_device;
   device->config.version = k4a_device.get_version();
-  k4a_device.start_cameras(&device->config.k4a_config);
 
+  k4a_device.start_cameras(&device->config.k4a_config);
   bool is_recording = thread_recording;
   if(is_recording){
     recording = k4a::record::create("output.mkv", k4a_device, device->config.k4a_config);
     recording.write_header();
   }
 
-//SUPRIMER LE get_capture chrono et mettre un sleep en bas de 33 ms.
   this->thread_running = true;
-  while(thread_running){
-    try {
-      k4a_device.get_capture(&k4a_capture, std::chrono::milliseconds(2000));
-    } catch (const k4a::error& e) {
-      // Assume device is disconnected if an exception is thrown
-      cout << "[error] Kinect device is disconnected: " << e.what() << endl;
+  while(thread_running && device){
+    if(!device){
       break;
     }
 
-    device->temperature = k4a_capture.get_temperature_c();
-    device->data.capture = &k4a_capture;
+    k4a_device.get_capture(&k4a_capture, std::chrono::milliseconds(2000));
+    if(!k4a_capture){
+      continue;
+    }
 
     if(is_recording){
       recording.write_capture(k4a_capture);
     }
 
-    k4a_data->find_data_from_capture(&device->data, k4a_capture);
+    device->temperature = k4a_capture.get_temperature_c();
+    device->data.capture = &k4a_capture;
+    k4a_data->find_data_from_capture(&device->data, k4a_capture);say("3");
   }
-
-  k4a_device.stop_cameras();
 
   device->data.capture = nullptr;
 

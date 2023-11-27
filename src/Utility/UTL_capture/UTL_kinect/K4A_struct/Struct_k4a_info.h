@@ -13,7 +13,10 @@ struct Struct_k4a_info{
 
   //File info
   std::string file_path;
-  uint64_t file_duration;
+  std::chrono::microseconds file_duration;
+  std::chrono::microseconds ts_beg;
+  std::chrono::microseconds ts_end;
+  std::chrono::microseconds ts_cur;
 
   //General info
   std::string info_fps;

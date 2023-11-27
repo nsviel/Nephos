@@ -18,8 +18,12 @@ public:
   void kinect_playback();
 
   //Subfunction
-  void show_file_information();
   void show_player();
+  void show_info_file();
+  void show_info_recording();
+  void show_info_stream();
+  void show_info_synchro();
+  void show_info_device();
 
 private:
   Kinect* kinect;

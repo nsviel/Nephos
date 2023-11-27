@@ -26,6 +26,7 @@ public:
   void stop_thread();
 
   inline bool is_thread_running(){return thread_running;}
+  inline bool* get_thread_pause(){return &thread_pause;}
 
 private:
   K4A_data* k4a_data;
@@ -33,6 +34,7 @@ private:
   std::thread thread;
   bool thread_running = false;
   bool thread_recording = false;
+  bool thread_pause = false;
 };
 
 

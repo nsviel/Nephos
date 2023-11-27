@@ -19,21 +19,29 @@ public:
 
 public:
   //Main function
-  void run();
-
-  //Subfunction
   void start_thread(K4A_device* device);
   void run_thread(K4A_device* device);
   void stop_thread();
+
+  //Subfunction
   void sleep_necessary_time(K4A_device* device);
+  void find_file_info(K4A_device* device);
+  void manage_current_timestamp(K4A_device* device, k4a::capture capture);
+  void manage_thread_pause();
 
   inline bool is_thread_running(){return thread_running;}
+  inline bool* get_thread_pause(){return &thread_pause;}
+  inline bool* get_thread_restart(){return &thread_restart;}
+  inline void set_current_timestamp(float value){this->ts_seek = value;}
 
 private:
   K4A_data* k4a_data;
 
   std::thread thread;
+  float ts_seek = -1;
   bool thread_running = false;
+  bool thread_pause = false;
+  bool thread_restart = false;
 };
 
 #endif
