@@ -10,6 +10,7 @@ class GUI_stream;
 class Kinect;
 class K4A_depth;
 class K4A_infrared;
+class K4A_swarm;
 
 
 class KIN_capture : public BASE_panel
@@ -37,6 +38,7 @@ private:
   Kinect* kinect;
   K4A_depth* k4a_depth;
   K4A_infrared* k4a_infrared;
+  K4A_swarm* k4a_swarm;
 
   vector<GUI_stream*> vec_gui_stream;
 };

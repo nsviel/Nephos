@@ -43,22 +43,22 @@ K4A_device* K4A_swarm::create_device_real(int index){
   //---------------------------
   return k4a_device;
 }
-void K4A_swarm::delete_devicel(K4A_device* device){
+void K4A_swarm::delete_device(K4A_device* device){
+  list<K4A_device*>& list_device = struct_k4a_swarm->list_device;
   //---------------------------
 
+  device->stop_threads();
+
+  for(int i=0; i<list_device.size(); i++){
+    K4A_device* device_current = *std::next(list_device.begin(), i);
+    if(device_current->serial_number == device->serial_number){
+      list_device.remove(device);
+    }
+  }
+
+  device->is_virtual ? struct_k4a_swarm->nb_device_virtual-- : struct_k4a_swarm->nb_device_real--;
   delete(device);
 
-  for(int i=0; i<struct_k4a_swarm->list_device.size(); i++){
-
-  }
-/*
-  K4A_device* k4a_device = new K4A_device();
-  k4a_device->index = index;
-  k4a_device->is_virtual = false;
-  k4a_device->serial_number = device.get_serialnum();
-  struct_k4a_swarm->list_device.push_back(k4a_device);
-  struct_k4a_swarm->nb_device_real++;
-*/
   //---------------------------
 }
 void K4A_swarm::refresh_connected_device_list(){

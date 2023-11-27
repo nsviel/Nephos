@@ -29,6 +29,7 @@ public:
   //Main function
   void run_capture();
   void run_replay(string path);
+  void stop_threads();
 
 public:
   K4A_capture* k4a_capture;

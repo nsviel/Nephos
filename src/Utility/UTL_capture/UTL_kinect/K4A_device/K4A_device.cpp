@@ -37,3 +37,11 @@ void K4A_device::run_replay(string path){
 
   //---------------------------
 }
+void K4A_device::stop_threads(){
+  //---------------------------
+
+  this->k4a_capture->stop_thread();
+  this->k4a_replay->stop_thread();
+
+  //---------------------------
+}

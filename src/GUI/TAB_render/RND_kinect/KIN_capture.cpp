@@ -6,6 +6,7 @@
 #include <UTL_capture/UTL_capture.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_depth.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_infrared.h>
+#include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
 //Constructor / Destructor
@@ -18,6 +19,7 @@ KIN_capture::KIN_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
   this->kinect = utl_capture->get_kinect();
   this->k4a_depth = new K4A_depth();
   this->k4a_infrared = new K4A_infrared();
+  this->k4a_swarm = kinect->get_k4a_swarm();
   this->gui = gui;
 
   this->vec_gui_stream.push_back(new GUI_stream(gui));
@@ -69,7 +71,7 @@ void KIN_capture::device_tab(K4A_device* device){
     ImVec2 region = ImGui::GetContentRegionAvail();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if(ImGui::Button("Close", ImVec2(region.x, 0))){
-
+      k4a_swarm->delete_device(device);
     }
     ImGui::PopStyleColor(1);
   }
