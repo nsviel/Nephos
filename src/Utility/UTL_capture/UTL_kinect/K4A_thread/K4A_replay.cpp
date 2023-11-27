@@ -40,6 +40,7 @@ void K4A_replay::run_thread(K4A_device* device){
   k4a::playback playback = k4a::playback::open(device->info.file_path.c_str());
   if(!playback) return;
   this->thread_running = true;
+  this->thread_play = true;
 
   //Playback thread
   while(thread_running){
@@ -117,6 +118,8 @@ void K4A_replay::manage_current_timestamp(k4a::playback* playback, K4A_device* d
     auto ts_seek_ms = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_seek));
     playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     ts_seek = -1;
+    this->thread_play = true;
+    device->info.ts_cur = ts_seek;
   }else{
     k4a::image color = capture.get_color_image();
     device->info.ts_cur = color.get_device_timestamp().count() / 1000000.0f;
@@ -139,8 +142,14 @@ void K4A_replay::manage_pause(){
 void K4A_replay::manage_restart(k4a::playback* playback, K4A_device* device){
   //---------------------------
 
-  if(thread_restart && device->info.ts_cur == device->info.ts_end){
-    playback->seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
+  if(device->info.ts_cur == device->info.ts_end){
+    if(thread_restart){
+      this->thread_play = true;
+      playback->seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
+    }
+    else{
+      this->thread_play = false;
+    }
   }
 
   //---------------------------
