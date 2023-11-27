@@ -38,13 +38,10 @@ void KIN_playback::show_player(){
   bool is_playing = true;
 
   //Slider
-  float slider_start = device->info.ts_beg.count() / 1000000.0f;
-  float slider_end   = device->info.ts_end.count() / 1000000.0f;
-  float slider_value = device->info.ts_cur.count() / 1000000.0f;
   ImVec2 image_size = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(image_size.x);
-  if(ImGui::SliderFloat("###Slider_playback", &slider_value, slider_start, slider_end, "%.2f s")){
-    device->k4a_replay->set_current_timestamp(slider_value);
+  if(ImGui::SliderFloat("###Slider_playback", &device->info.ts_cur, device->info.ts_beg, device->info.ts_end, "%.2f s")){
+    device->k4a_replay->set_current_timestamp(device->info.ts_cur);
   }
 
   //Slider buttons
@@ -84,7 +81,7 @@ void KIN_playback::show_info_file(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f s", (float)device->info.file_duration.count()/1000000.0f);
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f s", (float)device->info.file_duration);
 
     ImGui::EndTable();
   }
@@ -192,7 +189,7 @@ void KIN_playback::show_info_synchro(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%lu", device->info.file_duration);
+      ImGui::TextColored(color, "%.2f", device->info.file_duration);
 
       ImGui::EndTable();
     }

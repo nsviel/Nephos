@@ -13,10 +13,10 @@ struct Struct_k4a_info{
 
   //File info
   std::string file_path;
-  std::chrono::microseconds file_duration;
-  std::chrono::microseconds ts_beg;
-  std::chrono::microseconds ts_end;
-  std::chrono::microseconds ts_cur;
+  float file_duration;
+  float ts_beg;
+  float ts_end;
+  float ts_cur;
 
   //General info
   std::string info_fps;

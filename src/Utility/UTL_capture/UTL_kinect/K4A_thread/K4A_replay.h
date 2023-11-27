@@ -26,7 +26,7 @@ public:
   //Subfunction
   void sleep_necessary_time(K4A_device* device);
   void find_file_info(K4A_device* device);
-  void manage_current_timestamp(K4A_device* device, k4a::capture capture);
+  void manage_current_timestamp(k4a::playback* playback, K4A_device* device, k4a::capture capture);
   void manage_thread_pause();
 
   inline bool is_thread_running(){return thread_running;}
