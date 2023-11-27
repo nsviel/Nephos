@@ -9,11 +9,12 @@ struct K4A_image{
   //---------------------------
 
   std::string name;
+  std::string format;
+
   int width;
   int height;
   uint8_t* buffer;
   size_t size;
-  std::string format;
   float timestamp;
 
   //---------------------------
@@ -22,7 +23,6 @@ struct K4A_image{
 struct Struct_k4a_data{
   //---------------------------
 
-  k4a::capture* capture = nullptr;
   K4A_image color;
   K4A_image depth;
   K4A_image ir;

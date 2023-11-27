@@ -69,9 +69,9 @@ void KIN_capture::device_tab(K4A_device* device){
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("All##4567", NULL)){
       image_size = ImVec2(image_size.x, image_size.y/3-3.33);
-      this->draw_camera_color(device, image_size);
+      //this->draw_camera_color(device, image_size);
       this->draw_camera_depth(device, image_size);
-      this->draw_camera_ir(device, image_size);
+      //this->draw_camera_ir(device, image_size);
       ImGui::EndTabItem();
     }
 
