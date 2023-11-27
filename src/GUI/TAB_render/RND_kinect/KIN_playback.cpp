@@ -66,6 +66,8 @@ void KIN_playback::show_player(){
   if (ImGui::Button(ICON_FA_STOP "##37")){
     device->k4a_replay->set_current_timestamp(device->info.ts_end);
     *thread_restart = false;
+    *thread_play = false;
+    *thread_paused = false;
   }
   if(!*thread_paused) ImGui::PopStyleColor(1);
   ImGui::SameLine();
