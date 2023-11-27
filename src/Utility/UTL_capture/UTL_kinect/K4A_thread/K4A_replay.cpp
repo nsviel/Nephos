@@ -37,26 +37,23 @@ void K4A_replay::run_thread(K4A_device* device){
   //Get info about file
   this->find_file_info(device);
   k4a::capture capture;
+  k4a::playback playback = k4a::playback::open(device->info.file_path.c_str());
+  if(!playback) return;
   this->thread_running = true;
 
   //Playback thread
   while(thread_running){
-    //Open file for playback
-    k4a::playback playback = k4a::playback::open(device->info.file_path.c_str());
-    if(!playback) return;
+    playback.get_next_capture(&capture);
+    if(!capture) break;
 
-    //Read entire video
-    while(playback.get_next_capture(&capture)){
-      if(!capture) break;
-
-      this->manage_current_timestamp(&playback, device, capture);
-      k4a_data->find_data_from_capture(&device->data, capture);
-      this->sleep_necessary_time(device);
-      this->manage_thread_pause();
-    }
-
-    playback.close();
+    this->manage_current_timestamp(&playback, device, capture);
+    k4a_data->find_data_from_capture(&device->data, capture);
+    this->sleep_necessary_time(device);
+    this->manage_pause();
+    this->manage_restart(&playback, device);
   }
+
+  playback.close();
 
   //---------------------------
 }
@@ -127,7 +124,7 @@ void K4A_replay::manage_current_timestamp(k4a::playback* playback, K4A_device* d
 
   //---------------------------
 }
-void K4A_replay::manage_thread_pause(){
+void K4A_replay::manage_pause(){
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -135,6 +132,15 @@ void K4A_replay::manage_thread_pause(){
     while(thread_pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
+  }
+
+  //---------------------------
+}
+void K4A_replay::manage_restart(k4a::playback* playback, K4A_device* device){
+  //---------------------------
+
+  if(thread_restart && device->info.ts_cur == device->info.ts_end){
+    playback->seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
   }
 
   //---------------------------
