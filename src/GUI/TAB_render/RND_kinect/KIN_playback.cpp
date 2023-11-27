@@ -47,6 +47,8 @@ void KIN_playback::show_player(){
   //Slider buttons
   bool* thread_play = device->k4a_replay->get_thread_play();
   bool* thread_paused = device->k4a_replay->get_thread_pause();
+  bool* thread_restart = device->k4a_replay->get_thread_restart();
+
   ImU32 color = (*thread_paused || !*thread_play) ? IM_COL32(46, 133, 45, 255) : IM_COL32(133, 133, 0, 255);
   string icon = (*thread_paused || !*thread_play) ? (ICON_FA_PLAY "##36") : (ICON_FA_PAUSE "##36");
   ImGui::PushStyleColor(ImGuiCol_Button, color);
@@ -63,10 +65,10 @@ void KIN_playback::show_player(){
   if(!*thread_paused) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
   if (ImGui::Button(ICON_FA_STOP "##37")){
     device->k4a_replay->set_current_timestamp(device->info.ts_end);
+    *thread_restart = false;
   }
   if(!*thread_paused) ImGui::PopStyleColor(1);
   ImGui::SameLine();
-  bool* thread_restart = device->k4a_replay->get_thread_restart();
   if(*thread_restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
   if (ImGui::Button(ICON_FA_REPEAT "##37")){
     *thread_restart = !*thread_restart;

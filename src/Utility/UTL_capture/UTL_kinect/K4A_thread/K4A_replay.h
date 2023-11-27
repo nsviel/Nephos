@@ -44,7 +44,7 @@ private:
   bool thread_running = false;
   bool thread_play = false;
   bool thread_pause = false;
-  bool thread_restart = false;
+  bool thread_restart = true;
 };
 
 #endif
