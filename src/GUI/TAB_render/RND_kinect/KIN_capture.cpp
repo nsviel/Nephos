@@ -48,7 +48,8 @@ void KIN_capture::vec_device_tab(){
 
       string str_virtual = device->is_virtual ? "virtual_" : "";
       string title = "kinect_" + str_virtual + to_string(device->index);
-      if (ImGui::BeginTabItem(title.c_str(), NULL)){
+
+      if(ImGui::BeginTabItem(title.c_str(), NULL)){
         this->device_tab(device);
         ImGui::EndTabItem();
       }
@@ -63,6 +64,17 @@ void KIN_capture::device_tab(K4A_device* device){
   if(!device->data.data_ready){return;}
   //---------------------------
 
+  //Close device button
+  if(!device->is_virtual){
+    ImVec2 region = ImGui::GetContentRegionAvail();
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
+    if(ImGui::Button("Close", ImVec2(region.x, 0))){
+      
+    }
+    ImGui::PopStyleColor(1);
+  }
+
+  //Display capture images
   if(ImGui::BeginTabBar("device_tab##4567")){
     ImVec2 image_size = ImGui::GetContentRegionAvail();
 

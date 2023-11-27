@@ -104,7 +104,6 @@ void KIN_playback::show_info_recording(){
   //---------------------------
 
   if(ImGui::TreeNode("Recording setting")){
-    ImGui::Separator();
 
     ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
     if(ImGui::BeginTable("playback_table##data", 2)){
@@ -141,7 +140,6 @@ void KIN_playback::show_info_stream(){
   //---------------------------
 
   if(ImGui::TreeNode("Stream info")){
-    ImGui::Separator();
 
     ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
     if(ImGui::BeginTable("playback_table##stream", 2)){
@@ -178,7 +176,6 @@ void KIN_playback::show_info_synchro(){
   //---------------------------
 
   if(ImGui::TreeNode("Sync settings")){
-    ImGui::Separator();
 
     ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
     if(ImGui::BeginTable("playback_table##synchro", 2)){
@@ -215,7 +212,6 @@ void KIN_playback::show_info_device(){
   //---------------------------
 
   if(ImGui::TreeNode("Device info")){
-    ImGui::Separator();
 
     ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
     if(ImGui::BeginTable("playback_table##device", 2)){
