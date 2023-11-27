@@ -92,7 +92,7 @@ ImTextureID VK_imgui::rendered_texture(){
   static ImTextureID texture = 0;
   //---------------------------
 
-  vk_surface->check_for_resizing();
+  //vk_surface->check_for_resizing();
 
 
 
