@@ -69,9 +69,9 @@ void KIN_capture::device_tab(K4A_device* device){
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("All##4567", NULL)){
       image_size = ImVec2(image_size.x, image_size.y/3-3.33);
-      //this->draw_camera_color(device, image_size);
+      this->draw_camera_color(device, image_size);
       this->draw_camera_depth(device, image_size);
-      //this->draw_camera_ir(device, image_size);
+      this->draw_camera_ir(device, image_size);
       ImGui::EndTabItem();
     }
 
@@ -100,47 +100,55 @@ void KIN_capture::device_tab(K4A_device* device){
 
 //Device capture windows
 void KIN_capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
-  K4A_image* k4a_image = &device->data.color;
+  K4A_image* data_color = &device->data.color;
   //---------------------------
 
   Struct_image struct_image;
-  struct_image.buffer = k4a_image->buffer;
-  struct_image.width = k4a_image->width;
-  struct_image.height = k4a_image->height;
-  struct_image.format = k4a_image->format;
+  struct_image.buffer = data_color->buffer;
+  struct_image.width = data_color->width;
+  struct_image.height = data_color->height;
+  struct_image.format = data_color->format;
 
-  this->hovered_info_panel(k4a_image);
+  this->hovered_info_panel(data_color);
   vec_gui_stream[0]->draw_stream(&struct_image, image_size);
 
   //---------------------------
 }
 void KIN_capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
-  K4A_image* k4a_image = &device->data.depth;
+  K4A_image* data_depth = &device->data.depth;
   //---------------------------
 
+  uint8_t* new_buffer = k4a_depth->convert_depth_into_color(device);
+
   Struct_image struct_image;
-  struct_image.buffer = k4a_depth->convert_depth_into_color(device);
-  struct_image.width = k4a_image->width;
-  struct_image.height = k4a_image->height;
+  struct_image.buffer = new_buffer;
+  struct_image.width = data_depth->width;
+  struct_image.height = data_depth->height;
   struct_image.format = "R8G8B8A8_SRGB";
 
-  this->hovered_info_panel(k4a_image);
+  this->hovered_info_panel(data_depth);
   vec_gui_stream[1]->draw_stream(&struct_image, image_size);
+
+  delete[] new_buffer;
 
   //---------------------------
 }
 void KIN_capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
-  K4A_image* k4a_image = &device->data.ir;
+  K4A_image* data_ir = &device->data.ir;
   //---------------------------
 
+  uint8_t* new_buffer = k4a_infrared->convert_ir_into_color(device);
+
   Struct_image struct_image;
-  struct_image.buffer = k4a_infrared->convert_ir_into_color(device);
-  struct_image.width = k4a_image->width;
-  struct_image.height = k4a_image->height;
+  struct_image.buffer = new_buffer;
+  struct_image.width = data_ir->width;
+  struct_image.height = data_ir->height;
   struct_image.format = "B8G8R8A8_SRGB";
 
-  this->hovered_info_panel(k4a_image);
+  this->hovered_info_panel(data_ir);
   vec_gui_stream[2]->draw_stream(&struct_image, image_size);
+
+  delete[] new_buffer;
 
   //---------------------------
 }

@@ -10,6 +10,7 @@ class VK_engine;
 class VK_pool;
 class VK_submit;
 class VK_command;
+class VK_surface;
 
 
 class VK_imgui
@@ -34,6 +35,7 @@ private:
   VK_submit* vk_submit;
   VK_command* vk_command;
   VK_pool* vk_pool;
+  VK_surface* vk_surface;
 };
 
 #endif

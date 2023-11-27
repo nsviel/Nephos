@@ -5,6 +5,7 @@
 #include <VK_instance/VK_pool.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
+#include <VK_render/VK_surface.h>
 
 
 //Constructor / Destructor
@@ -16,6 +17,7 @@ VK_imgui::VK_imgui(Struct_vulkan* struct_vulkan){
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_submit = new VK_submit(struct_vulkan);
   this->vk_engine = new VK_engine(struct_vulkan);
+  this->vk_surface = new VK_surface(struct_vulkan);
 
   //---------------------------
 }
@@ -89,6 +91,10 @@ void VK_imgui::clean(){
 ImTextureID VK_imgui::rendered_texture(){
   static ImTextureID texture = 0;
   //---------------------------
+
+  vk_surface->check_for_resizing();
+
+
 
   if(texture == 0 || struct_vulkan->window.is_resized){
     Struct_vk_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");

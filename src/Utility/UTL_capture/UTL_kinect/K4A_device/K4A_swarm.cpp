@@ -50,13 +50,12 @@ void K4A_swarm::refresh_connected_device_list(){
 //si changement -> si 0 real device, creer un virtual device
 //si changement -> si virtual device, supprimer celui-ci et créer un réle device
 //si changement -> si n-1 device supprimer real device
-//si changement -> si 0 device supprimer real device et créer un nouveau virtual device 
+//si changement -> si 0 device supprimer real device et créer un nouveau virtual device
 
   const uint32_t nb_device = k4a_device_get_installed_count();
 
   if(nb_device != nb_connected_device){
     //If no real device create virtual one
-    say(nb_device);
     if(nb_device == 0){
       string path = "/home/aether/Desktop/output.mkv";
       K4A_device* device = create_device_virtual(path);
