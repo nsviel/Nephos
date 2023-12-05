@@ -26,7 +26,7 @@ Then compile and run the executable
  mkdir build && cd build && cmake .. && make -j4 && ./executable
  or
  ./run.sh
-
+```
 </details>
 
 <details><summary>License</summary>
