@@ -7,6 +7,7 @@ class GUI;
 class DEV_code_editor;
 class DEV_panel;
 class DEV_command;
+class GUI_database;
 
 
 class TAB_dev
@@ -28,7 +29,7 @@ private:
   GUI* gui;
   DEV_panel* gui_dev_panel;
   DEV_command* gui_dev_command;
-
+  GUI_database* gui_database;
 };
 
 #endif

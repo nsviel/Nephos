@@ -10,7 +10,6 @@ class GUI_profiler;
 class RND_shader;
 class RND_engine;
 class RND_option;
-class GUI_database;
 class RND_camera;
 class RND_object;
 class RND_set;
@@ -53,7 +52,6 @@ private:
   RND_scene* gui_scene;
   RND_shader* gui_shader;
   RND_engine* gui_engine;
-  GUI_database* gui_database;
   RND_object* gui_object;
   RND_camera* gui_stream;
   KIN_capture* gui_capture;

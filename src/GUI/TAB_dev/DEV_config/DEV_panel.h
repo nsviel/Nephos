@@ -16,6 +16,7 @@ struct DEV_panel{
 
   vector<DEV_code_editor*> vec_editor;
   int ID_editor = 0;
+  bool show_database = false;
 
   //---------------------------
 };

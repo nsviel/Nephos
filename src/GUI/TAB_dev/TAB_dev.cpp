@@ -4,6 +4,8 @@
 #include <GUI.h>
 #include <TAB_dev/DEV_editor/DEV_code_editor.h>
 #include <TAB_dev/DEV_command/DEV_command.h>
+#include <TAB_dev/DEV_database/GUI_database.h>
+#include <image/IconsFontAwesome5.h>
 
 
 //Constructor / Destructor
@@ -12,6 +14,7 @@ TAB_dev::TAB_dev(GUI* gui){
 
   this->gui = gui;
   this->gui_dev_panel = new DEV_panel();
+  this->gui_database = new GUI_database(gui, &gui_dev_panel->show_database, "Database##4323");
 
   //---------------------------
 }
@@ -32,13 +35,14 @@ void TAB_dev::draw_panels(){
 
   gui_dev_panel->run_editors();
   gui_dev_command->run_panel();
+  gui_database->run_panel();
 
   //---------------------------
 }
 void TAB_dev::open_panels(){
   //---------------------------
 
-
+  ImGui::Checkbox(ICON_FA_KEY " Database##456", &gui_dev_panel->show_database);
 
   //---------------------------
 }
