@@ -24,6 +24,3 @@ struct DEV_panel{
 };
 
 }
-
-
-#endif

@@ -27,5 +27,3 @@ private:
   dev::DEV_database* dev_database;
   dev::DEV_menu* dev_menu;
 };
-
-#endif
