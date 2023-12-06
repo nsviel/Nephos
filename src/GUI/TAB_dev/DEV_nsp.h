@@ -5,7 +5,7 @@ namespace dev{
   //---------------------------
 
   class Menu;
-  class DEV_code_editor;
+  class Editor;
   class Database;
   class Panel;
   class DEV_command;

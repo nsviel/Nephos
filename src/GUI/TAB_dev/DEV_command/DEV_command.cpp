@@ -47,7 +47,7 @@ void DEV_command::design_panel(){
 
   if(ImGui::Button("New editor")){
     static bool truc = true;
-    gui_panel->vec_editor.push_back(new dev::DEV_code_editor(gui, &truc, "Editor"));
+    gui_panel->vec_editor.push_back(new dev::Editor(gui, &truc, "Editor"));
   }
 
   //---------------------------

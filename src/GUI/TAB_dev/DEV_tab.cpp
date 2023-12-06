@@ -2,7 +2,7 @@
 #include "DEV_nsp.h"
 
 #include <GUI.h>
-#include <TAB_dev/DEV_editor/DEV_code_editor.h>
+#include <TAB_dev/DEV_editor/Editor.h>
 #include <TAB_dev/DEV_command/DEV_command.h>
 #include <TAB_dev/DEV_data/Database.h>
 #include <TAB_dev/DEV_utility/Menu.h>
@@ -28,7 +28,7 @@ void DEV_tab::create_panels(){
   //---------------------------
 
   static bool truc = true;
-  panel->vec_editor.push_back(new dev::DEV_code_editor(gui, &truc, "Editor"));
+  panel->vec_editor.push_back(new dev::Editor(gui, &truc, "Editor"));
   this->dev_command = new dev::DEV_command(gui);
 
   //---------------------------

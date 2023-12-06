@@ -9,12 +9,12 @@ class EDI_text;
 
 namespace dev{
 
-class DEV_code_editor : public BASE_panel
+class Editor : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  DEV_code_editor(GUI* gui, bool* show_window, string name);
-  ~DEV_code_editor();
+  Editor(GUI* gui, bool* show_window, string name);
+  ~Editor();
 
 public:
   //Main function
