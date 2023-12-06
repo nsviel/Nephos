@@ -1,16 +1,20 @@
 #include "DEV_menu.h"
+#include "../DEV_nsp.h"
+#include "../DEV_config/DEV_panel.h"
 
 #include <GUI.h>
 #include <GUI_interface/GUI_tab.h>
 #include <TAB_dev/DEV_tab.h>
+#include <image/IconsFontAwesome5.h>
 
+
+namespace dev{
 
 //Constructor / Destructor
-DEV_menu::DEV_menu(GUI* gui){
+DEV_menu::DEV_menu(DEV_panel* dev_panel){
   //---------------------------
 
-  GUI_tab* gui_tab = gui->get_gui_tab();
-  this->dev_tab = gui_tab->get_dev_tab();
+  this->dev_panel = dev_panel;
 
   //---------------------------
 }
@@ -22,7 +26,7 @@ void DEV_menu::run_tab_menu(){
 
   ImGui::BeginMainMenuBar();
   if(ImGui::BeginMenu("Panel##111")){
-    dev_tab->open_panels();
+    this->open_panels();
     ImGui::EndMenu();
   }
   ImGui::EndMainMenuBar();
@@ -31,3 +35,12 @@ void DEV_menu::run_tab_menu(){
 }
 
 //Subfunctions
+void DEV_menu::open_panels(){
+  //---------------------------
+
+  ImGui::Checkbox(ICON_FA_KEY " Database##456", &dev_panel->show_database);
+
+  //---------------------------
+}
+
+}

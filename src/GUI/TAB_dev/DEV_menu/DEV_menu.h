@@ -1,17 +1,18 @@
-#ifndef GUI_DEV_MENU_H
-#define GUI_DEV_MENU_H
+#ifndef DEV_MENU_H
+#define DEV_MENU_H
 
 #include <UTL_specific/common.h>
 
-class GUI;
-class DEV_tab;
+class DEV_panel;
 
+
+namespace dev{
 
 class DEV_menu
 {
 public:
   //Constructor / Destructor
-  DEV_menu(GUI* gui);
+  DEV_menu(DEV_panel* panel);
   ~DEV_menu();
 
 public:
@@ -19,11 +20,14 @@ public:
   void run_tab_menu();
 
   //Subfunctions
+  void open_panels();
 
 private:
-  DEV_tab* dev_tab;
+  DEV_panel* dev_panel;
 
 };
+
+}
 
 
 #endif

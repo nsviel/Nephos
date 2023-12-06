@@ -1,6 +1,7 @@
 #ifndef DEV_TAB_H
 #define DEV_TAB_H
 
+#include "DEV_nsp.h"
 #include <UTL_specific/common.h>
 
 class GUI;
@@ -21,7 +22,6 @@ public:
   //Main functions
   void create_panels();
   void draw_panels();
-  void open_panels();
 
   inline DEV_panel* get_dev_panel(){return dev_panel;}
 
@@ -30,6 +30,7 @@ private:
   DEV_panel* dev_panel;
   DEV_command* dev_command;
   DEV_database* dev_database;
+  dev::DEV_menu* dev_menu;
 };
 
 #endif
