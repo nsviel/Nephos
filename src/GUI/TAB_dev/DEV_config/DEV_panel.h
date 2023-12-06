@@ -1,5 +1,4 @@
-#ifndef STRUCT_DEV_PANEL_H
-#define STRUCT_DEV_PANEL_H
+#pragma once
 
 #include "../DEV_nsp.h"
 #include <TAB_dev/DEV_editor/DEV_code_editor.h>

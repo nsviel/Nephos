@@ -1,5 +1,4 @@
-#ifndef DEV_MENU_H
-#define DEV_MENU_H
+#pragma once
 
 #include "../DEV_nsp.h"
 #include <UTL_specific/common.h>

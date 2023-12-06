@@ -1,5 +1,4 @@
-#ifndef GUI_CODE_EDITOR_H
-#define GUI_CODE_EDITOR_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <GUI_base/BASE_panel.h>

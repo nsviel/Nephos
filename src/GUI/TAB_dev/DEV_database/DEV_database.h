@@ -1,5 +1,4 @@
-#ifndef GUI_DATABASE_H
-#define GUI_DATABASE_H
+#pragma once
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>

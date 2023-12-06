@@ -1,5 +1,4 @@
-#ifndef DEV_NSP_H
-#define DEV_NSP_H
+#pragma once
 
 
 namespace dev{

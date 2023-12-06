@@ -1,5 +1,4 @@
-#ifndef GUI_DEV_COMMAND_H
-#define GUI_DEV_COMMAND_H
+#pragma once
 
 #include "../DEV_nsp.h"
 #include <UTL_specific/common.h>
