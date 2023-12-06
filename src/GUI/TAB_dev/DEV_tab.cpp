@@ -1,4 +1,4 @@
-#include "TAB_dev.h"
+#include "DEV_tab.h"
 #include "DEV_config/DEV_panel.h"
 
 #include <GUI.h>
@@ -9,7 +9,7 @@
 
 
 //Constructor / Destructor
-TAB_dev::TAB_dev(GUI* gui){
+DEV_tab::DEV_tab(GUI* gui){
   //---------------------------
 
   this->gui = gui;
@@ -18,10 +18,10 @@ TAB_dev::TAB_dev(GUI* gui){
 
   //---------------------------
 }
-TAB_dev::~TAB_dev(){}
+DEV_tab::~DEV_tab(){}
 
 //Main function
-void TAB_dev::create_panels(){
+void DEV_tab::create_panels(){
   //---------------------------
 
   static bool truc = true;
@@ -30,7 +30,7 @@ void TAB_dev::create_panels(){
 
   //---------------------------
 }
-void TAB_dev::draw_panels(){
+void DEV_tab::draw_panels(){
   //---------------------------
 
   gui_dev_panel->run_editors();
@@ -39,7 +39,7 @@ void TAB_dev::draw_panels(){
 
   //---------------------------
 }
-void TAB_dev::open_panels(){
+void DEV_tab::open_panels(){
   //---------------------------
 
   ImGui::Checkbox(ICON_FA_KEY " Database##456", &gui_dev_panel->show_database);

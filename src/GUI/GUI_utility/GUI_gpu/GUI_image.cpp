@@ -12,7 +12,7 @@
 GUI_image::GUI_image(GUI* gui){
   //---------------------------
 
-  GUI_render* gui_render = gui->get_gui_render();
+  GUI_render* gui_render = gui->get_rnd_tab();
   Vulkan* vulkan = gui_render->get_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
 

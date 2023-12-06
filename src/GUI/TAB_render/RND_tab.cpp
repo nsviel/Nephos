@@ -39,12 +39,12 @@ void RND_tab::create_panels(){
   this->rnd_object = new RND_object(gui, &gui_render_panel->show_object, "Object");
   this->rnd_set = new RND_set(gui, &gui_render_panel->show_set, "Set");
   this->gui_profiler = new GUI_profiler(gui, &gui_render_panel->show_profiler, "Profiler");
-  this->gui_shader = new RND_shader(gui, &gui_render_panel->show_shader, "Shader");
-  this->gui_scene = new RND_scene(gui, &gui_render_panel->show_scene, "Scene");
-  this->gui_stream = new RND_camera(gui, &gui_render_panel->show_engine_camera, "Camera");
+  this->rnd_shader = new RND_shader(gui, &gui_render_panel->show_shader, "Shader");
+  this->rnd_scene = new RND_scene(gui, &gui_render_panel->show_scene, "Scene");
+  this->rnd_camera = new RND_camera(gui, &gui_render_panel->show_engine_camera, "Camera");
   this->gui_kinect = new GUI_kinect(gui, &gui_render_panel->show_kinect, "Kinect");
   this->gui_capture = new KIN_capture(gui, &gui_render_panel->show_capture, "Capture");
-  this->gui_engine = new RND_engine(gui);
+  this->rnd_engine = new RND_engine(gui);
   this->rnd_menu = new RND_menu(gui);
 
   //---------------------------
@@ -53,16 +53,16 @@ void RND_tab::draw_panels(){
   //---------------------------
 
   rnd_menu->run_tab_menu();
-  gui_shader->run_panel();
-  gui_stream->run_panel();
+  rnd_shader->run_panel();
+  rnd_camera->run_panel();
   rnd_object->run_panel();
   rnd_set->run_panel();
   gui_kinect->run_panel();
   gui_capture->run_panel();
-  gui_scene->run_panel();
+  rnd_scene->run_panel();
   gui_profiler->run_panel();
   rnd_option->run_panel();
-  gui_engine->design_panel();
+  rnd_engine->design_panel();
 
   //---------------------------
 }

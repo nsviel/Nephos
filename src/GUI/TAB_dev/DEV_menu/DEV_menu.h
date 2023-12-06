@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 class GUI;
-class TAB_dev;
+class DEV_tab;
 
 
 class DEV_menu
@@ -21,7 +21,7 @@ public:
   //Subfunctions
 
 private:
-  TAB_dev* gui_tab_dev;
+  DEV_tab* dev_tab;
 
 };
 

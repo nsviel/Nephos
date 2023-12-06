@@ -1,5 +1,5 @@
-#ifndef GUI_DEV_PANEL_H
-#define GUI_DEV_PANEL_H
+#ifndef DEV_TAB_H
+#define DEV_TAB_H
 
 #include <UTL_specific/common.h>
 
@@ -10,12 +10,12 @@ class DEV_command;
 class GUI_database;
 
 
-class TAB_dev
+class DEV_tab
 {
 public:
   //Constructor / Destructor
-  TAB_dev(GUI* gui);
-  ~TAB_dev();
+  DEV_tab(GUI* gui);
+  ~DEV_tab();
 
 public:
   //Main functions

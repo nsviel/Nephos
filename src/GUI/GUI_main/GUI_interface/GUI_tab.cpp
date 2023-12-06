@@ -5,15 +5,15 @@
 #include <GUI_interface/GUI_menu.h>
 #include <image/IconsFontAwesome5.h>
 #include <TAB_render/RND_tab.h>
-#include <TAB_dev/TAB_dev.h>
+#include <TAB_dev/DEV_tab.h>
 
 
 //Constructor / Destructor
 GUI_tab::GUI_tab(GUI* gui){
   //---------------------------
 
-  this->gui_tab_render = new RND_tab(gui);
-  this->gui_tab_dev = new TAB_dev(gui);
+  this->rnd_tab = new RND_tab(gui);
+  this->dev_tab = new DEV_tab(gui);
   this->gui_menu = new GUI_menu(gui);
 
   this->active_tab = "Render";
@@ -26,8 +26,8 @@ GUI_tab::GUI_tab(GUI* gui){
 GUI_tab::~GUI_tab(){
   //---------------------------
 
-  delete gui_tab_render;
-  delete gui_tab_dev;
+  delete rnd_tab;
+  delete dev_tab;
 
   //---------------------------
 }
@@ -36,8 +36,8 @@ GUI_tab::~GUI_tab(){
 void GUI_tab::create_panels(){
   //---------------------------
 
-  gui_tab_render->create_panels();
-  gui_tab_dev->create_panels();
+  rnd_tab->create_panels();
+  dev_tab->create_panels();
 
   //---------------------------
 }
@@ -85,10 +85,10 @@ void GUI_tab::draw_panels(){
 
   //Draw selected tab panels
   if(active_tab == "Render"){
-    gui_tab_render->draw_panels();
+    rnd_tab->draw_panels();
   }
   else if(active_tab == "Dev"){
-    gui_tab_dev->draw_panels();
+    dev_tab->draw_panels();
   }
 
   //---------------------------

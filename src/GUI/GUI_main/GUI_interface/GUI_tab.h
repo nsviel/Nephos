@@ -6,7 +6,7 @@
 class GUI;
 class GUI_menu;
 class RND_tab;
-class TAB_dev;
+class DEV_tab;
 
 
 class GUI_tab
@@ -26,14 +26,14 @@ public:
   void draw_panels();
   void next_tab();
 
-  inline RND_tab* get_gui_render(){return gui_tab_render;}
-  inline TAB_dev* get_gui_dev(){return gui_tab_dev;}
+  inline RND_tab* get_rnd_tab(){return rnd_tab;}
+  inline DEV_tab* get_dev_tab(){return dev_tab;}
 
 private:
   GUI* gui;
   GUI_menu* gui_menu;
-  RND_tab* gui_tab_render;
-  TAB_dev* gui_tab_dev;
+  RND_tab* rnd_tab;
+  DEV_tab* dev_tab;
 
   vector<string> vec_tab;
   string active_tab;

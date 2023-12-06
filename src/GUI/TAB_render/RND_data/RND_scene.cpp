@@ -18,9 +18,9 @@ RND_scene::RND_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
   GUI_tab* gui_tab = gui->get_gui_tab();
-  RND_tab* rnd_panel = gui_tab->get_gui_render();
+  RND_tab* rnd_panel = gui_tab->get_rnd_tab();
   this->eng_database = eng_data->get_eng_database();
-  this->rnd_panel = rnd_panel->get_render_panel();
+  this->rnd_panel = rnd_panel->get_rnd_panel();
   this->show_window = show_window;
   this->gui_set = rnd_panel->get_rnd_set();
   this->gui_object = rnd_panel->get_rnd_object();

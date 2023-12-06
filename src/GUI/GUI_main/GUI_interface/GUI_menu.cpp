@@ -39,7 +39,7 @@ void GUI_menu::menu_option(){
     gui_font->combo_font_gui();
     gui_font->combo_font_editor();
 
-    GUI_render* gui_render = gui->get_gui_render();
+    GUI_render* gui_render = gui->get_rnd_tab();
     Vulkan* vulkan = gui_render->get_vulkan();
     VK_info* vk_info = vulkan->get_vk_info();
     float fps = vk_info->get_fps();

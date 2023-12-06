@@ -22,9 +22,9 @@ RND_menu::RND_menu(GUI* gui){
 
   this->gui = gui;
   this->gui_init = new RND_init(gui);
-  this->rnd_tab = gui_tab->get_gui_render();
-  this->rnd_option = rnd_tab->get_gui_option();
-  this->rnd_panel = rnd_tab->get_render_panel();
+  this->rnd_tab = gui_tab->get_rnd_tab();
+  this->rnd_option = rnd_tab->get_rnd_option();
+  this->rnd_panel = rnd_tab->get_rnd_panel();
   this->eng_loader = eng_data->get_eng_loader();
 
   //---------------------------
