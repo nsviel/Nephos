@@ -3,10 +3,10 @@
 
 #include <GUI.h>
 #include <TAB_dev/DEV_editor/Editor.h>
-#include <TAB_dev/Command/Command.h>
+#include <TAB_dev/DEV_editor/Command.h>
 #include <TAB_dev/DEV_data/Database.h>
-#include <TAB_dev/DEV_utility/Menu.h>
-#include <TAB_dev/DEV_utility/Panel.h>
+#include <TAB_dev/DEV_tab/Menu.h>
+#include <TAB_dev/DEV_tab/Panel.h>
 
 
 
