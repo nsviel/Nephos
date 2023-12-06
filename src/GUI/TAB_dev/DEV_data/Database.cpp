@@ -1,4 +1,4 @@
-#include "DEV_database.h"
+#include "Database.h"
 #include <GUI.h>
 #include <UTL_database/UTL_database.h>
 
@@ -6,7 +6,7 @@
 namespace dev{
 
 //Constructor / Destructor
-DEV_database::DEV_database(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Database::Database(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->database = new UTL_database("../media/database/database.db3");
@@ -14,10 +14,10 @@ DEV_database::DEV_database(GUI* gui, bool* show_window, string name) : BASE_pane
 
   //---------------------------
 }
-DEV_database::~DEV_database(){}
+Database::~Database(){}
 
 //Main function
-void DEV_database::design_panel(){
+void Database::design_panel(){
   //---------------------------
 
   this->display_option();
@@ -27,7 +27,7 @@ void DEV_database::design_panel(){
 }
 
 //Subfunction
-void DEV_database::display_option(){
+void Database::display_option(){
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -63,7 +63,7 @@ void DEV_database::display_option(){
 
   //---------------------------
 }
-void DEV_database::display_data(){
+void Database::display_data(){
   //---------------------------
 
   vector<string> vec_table = database->retrieve_all_table();

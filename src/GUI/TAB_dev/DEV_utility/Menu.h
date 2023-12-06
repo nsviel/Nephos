@@ -6,12 +6,12 @@
 
 namespace dev{
 
-class DEV_menu
+class Menu
 {
 public:
   //Constructor / Destructor
-  DEV_menu(DEV_panel* panel);
-  ~DEV_menu();
+  Menu(Panel* panel);
+  ~Menu();
 
 public:
   //Main function
@@ -21,7 +21,7 @@ public:
   void open_panels();
 
 private:
-  dev::DEV_panel* dev_panel;
+  dev::Panel* panel;
 
 };
 

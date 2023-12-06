@@ -6,7 +6,7 @@
 
 namespace dev{
 
-struct DEV_panel{
+struct Panel{
   //---------------------------
 
   void run_editors(){

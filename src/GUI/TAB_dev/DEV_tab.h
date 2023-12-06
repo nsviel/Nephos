@@ -18,12 +18,12 @@ public:
   void create_panels();
   void draw_panels();
 
-  inline dev::DEV_panel* get_dev_panel(){return dev_panel;}
+  inline dev::Panel* get_panel(){return panel;}
 
 private:
   GUI* gui;
-  dev::DEV_panel* dev_panel;
+  dev::Panel* panel;
   dev::DEV_command* dev_command;
-  dev::DEV_database* dev_database;
-  dev::DEV_menu* dev_menu;
+  dev::Database* database;
+  dev::Menu* menu;
 };

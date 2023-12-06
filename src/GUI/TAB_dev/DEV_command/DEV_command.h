@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 class GUI;
-class DEV_panel;
+class Panel;
 
 
 namespace dev{
@@ -25,7 +25,7 @@ public:
 
 private:
   GUI* gui;
-  DEV_panel* gui_dev_panel;
+  Panel* gui_panel;
 };
 
 }

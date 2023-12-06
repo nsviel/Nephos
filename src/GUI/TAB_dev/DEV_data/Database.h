@@ -10,12 +10,12 @@ class UTL_database;
 
 namespace dev{
 
-class DEV_database : public BASE_panel
+class Database : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  DEV_database(GUI* gui, bool* show_window, string name);
-  ~DEV_database();
+  Database(GUI* gui, bool* show_window, string name);
+  ~Database();
 
 public:
   //Main functions

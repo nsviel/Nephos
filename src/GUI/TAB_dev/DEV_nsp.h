@@ -4,10 +4,10 @@
 namespace dev{
   //---------------------------
 
-  class DEV_menu;
+  class Menu;
   class DEV_code_editor;
-  class DEV_database;
-  class DEV_panel;
+  class Database;
+  class Panel;
   class DEV_command;
 
   //---------------------------
