@@ -4,7 +4,7 @@
 #include <Vulkan.h>
 #include <GUI_interface/GUI_menu.h>
 #include <image/IconsFontAwesome5.h>
-#include <TAB_render/TAB_render.h>
+#include <TAB_render/RND_tab.h>
 #include <TAB_dev/TAB_dev.h>
 
 
@@ -12,7 +12,7 @@
 GUI_tab::GUI_tab(GUI* gui){
   //---------------------------
 
-  this->gui_tab_render = new TAB_render(gui);
+  this->gui_tab_render = new RND_tab(gui);
   this->gui_tab_dev = new TAB_dev(gui);
   this->gui_menu = new GUI_menu(gui);
 

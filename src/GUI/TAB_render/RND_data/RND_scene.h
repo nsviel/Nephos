@@ -29,7 +29,7 @@ public:
   int data_node_tree(Set* set);
 
 private:
-  RND_panel* gui_render_panel;
+  RND_panel* rnd_panel;
   RND_object* gui_object;
   RND_set* gui_set;
   ENG_database* eng_database;

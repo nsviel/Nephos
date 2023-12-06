@@ -4,7 +4,7 @@
 #include <GUI.h>
 #include <GUI_interface/GUI_tab.h>
 #include <TAB_render/RND_config/RND_panel.h>
-#include <TAB_render/TAB_render.h>
+#include <TAB_render/RND_tab.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_database.h>
 #include <TAB_render/RND_data/RND_object.h>
@@ -18,12 +18,12 @@ RND_scene::RND_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
   GUI_tab* gui_tab = gui->get_gui_tab();
-  TAB_render* gui_render_panel = gui_tab->get_gui_render();
+  RND_tab* rnd_panel = gui_tab->get_gui_render();
   this->eng_database = eng_data->get_eng_database();
-  this->gui_render_panel = gui_render_panel->get_render_panel();
+  this->rnd_panel = rnd_panel->get_render_panel();
   this->show_window = show_window;
-  this->gui_set = gui_render_panel->get_gui_set();
-  this->gui_object = gui_render_panel->get_gui_object();
+  this->gui_set = rnd_panel->get_rnd_set();
+  this->gui_object = rnd_panel->get_rnd_object();
 
   //---------------------------
 }
@@ -146,7 +146,7 @@ int RND_scene::data_node_tree(Set* set){
   //If item double-clicked
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
     gui_set->set_selected_set(set);
-    gui_render_panel->show_set = true;
+    rnd_panel->show_set = true;
   }
 
   //Set elements leaf nodes
@@ -176,7 +176,7 @@ int RND_scene::data_node_tree(Set* set){
       //If item double-clicked
       if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
         gui_object->set_selected_object(object);
-        gui_render_panel->show_object = true;
+        rnd_panel->show_object = true;
       }
 
     }

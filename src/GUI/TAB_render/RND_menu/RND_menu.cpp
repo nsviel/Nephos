@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <GUI_interface/GUI_tab.h>
-#include <TAB_render/TAB_render.h>
+#include <TAB_render/RND_tab.h>
 #include <TAB_render/RND_config/RND_panel.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_load/ENG_loader.h>
@@ -22,12 +22,10 @@ RND_menu::RND_menu(GUI* gui){
 
   this->gui = gui;
   this->gui_init = new RND_init(gui);
-  this->gui_tab_render = gui_tab->get_gui_render();
-  this->gui_render_option = gui_tab_render->get_gui_option();
-  this->gui_render_panel = gui_tab_render->get_render_panel();
+  this->rnd_tab = gui_tab->get_gui_render();
+  this->rnd_option = rnd_tab->get_gui_option();
+  this->rnd_panel = rnd_tab->get_render_panel();
   this->eng_loader = eng_data->get_eng_loader();
-
-  this->show_demo = false;
 
   //---------------------------
 }
@@ -39,7 +37,7 @@ void RND_menu::run_tab_menu(){
 
   ImGui::BeginMainMenuBar();
   if(ImGui::BeginMenu("Panel##111")){
-    gui_tab_render->open_panels();
+    rnd_tab->open_panels();
     ImGui::EndMenu();
   }
   if(ImGui::MenuItem("Load")){

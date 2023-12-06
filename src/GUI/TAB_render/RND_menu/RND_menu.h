@@ -8,7 +8,7 @@ class ENG_loader;
 class RND_panel;
 class RND_init;
 class RND_option;
-class TAB_render;
+class RND_tab;
 
 
 class RND_menu
@@ -28,12 +28,9 @@ private:
   GUI* gui;
   ENG_loader* eng_loader;
   RND_init* gui_init;
-  RND_panel* gui_render_panel;
-  RND_option* gui_render_option;
-  TAB_render* gui_tab_render;
-
-  bool show_demo;
-
+  RND_panel* rnd_panel;
+  RND_option* rnd_option;
+  RND_tab* rnd_tab;
 };
 
 
