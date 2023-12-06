@@ -8,7 +8,7 @@ namespace dev{
   class Editor;
   class Database;
   class Panel;
-  class DEV_command;
+  class Command;
 
   //---------------------------
 }

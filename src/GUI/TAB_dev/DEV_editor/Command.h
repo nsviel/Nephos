@@ -9,12 +9,12 @@ class Panel;
 
 namespace dev{
 
-class DEV_command
+class Command
 {
 public:
   //Constructor / Destructor
-  DEV_command(GUI* gui);
-  ~DEV_command();
+  Command(GUI* gui);
+  ~Command();
 
 public:
   //Main function

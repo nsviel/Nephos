@@ -1,4 +1,4 @@
-#include "DEV_command.h"
+#include "Command.h"
 #include "../DEV_nsp.h"
 
 #include <GUI.h>
@@ -11,7 +11,7 @@
 namespace dev{
 
 //Constructor / Destructor
-DEV_command::DEV_command(GUI* gui){
+Command::Command(GUI* gui){
   //---------------------------
 
   GUI_tab* gui_tab = gui->get_gui_tab();
@@ -21,10 +21,10 @@ DEV_command::DEV_command(GUI* gui){
 
   //---------------------------
 }
-DEV_command::~DEV_command(){}
+Command::~Command(){}
 
 //Main function
-void DEV_command::run_panel(){
+void Command::run_panel(){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
@@ -37,7 +37,7 @@ void DEV_command::run_panel(){
 
   //---------------------------
 }
-void DEV_command::design_panel(){
+void Command::design_panel(){
   //---------------------------
 
   if(ImGui::Button(ICON_FA_PLAY)){

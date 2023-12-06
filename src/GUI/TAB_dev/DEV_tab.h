@@ -23,7 +23,7 @@ public:
 private:
   GUI* gui;
   dev::Panel* panel;
-  dev::DEV_command* dev_command;
+  dev::Command* command;
   dev::Database* database;
   dev::Menu* menu;
 };
