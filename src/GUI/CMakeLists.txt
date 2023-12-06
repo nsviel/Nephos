@@ -12,7 +12,7 @@ add_subdirectory(GUI_utility)
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC
-  GUI.cpp
+  GUI_nsp.h
 )
 
 #-----------------
@@ -24,7 +24,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_ENGINE
 
   LIBRARY_GUI_MAIN
-  LIBRARY_GUI_RESSOURCE
+  LIBRARY_GUI_UTILITY
   LIBRARY_GUI_TAB_DEV
   LIBRARY_GUI_TAB_RENDER
 )
