@@ -1,5 +1,4 @@
-#ifndef GUI_RENDER_MENU_H
-#define GUI_RENDER_MENU_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -32,6 +31,3 @@ private:
   RND_option* rnd_option;
   RND_tab* rnd_tab;
 };
-
-
-#endif

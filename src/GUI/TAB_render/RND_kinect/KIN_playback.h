@@ -1,5 +1,4 @@
-#ifndef KIN_PLAYBACK_H
-#define KIN_PLAYBACK_H
+#pragma once
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
@@ -28,5 +27,3 @@ public:
 private:
   Kinect* kinect;
 };
-
-#endif

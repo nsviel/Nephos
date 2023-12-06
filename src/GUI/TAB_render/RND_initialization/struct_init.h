@@ -1,5 +1,4 @@
-#ifndef STRUCT_INIT_H
-#define STRUCT_INIT_H
+#pragma once
 
 #include "struct_node.h"
 #include <UTL_specific/common.h>
@@ -21,5 +20,3 @@ struct Struct_init{
 
   //---------------------------
 };
-
-#endif

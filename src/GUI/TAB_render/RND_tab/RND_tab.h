@@ -1,5 +1,4 @@
-#ifndef RND_TAB_H
-#define RND_TAB_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -58,5 +57,3 @@ private:
   RND_kinect* rnd_kinect;
   RND_set* rnd_set;
 };
-
-#endif

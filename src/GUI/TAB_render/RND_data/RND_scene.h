@@ -1,5 +1,4 @@
-#ifndef GUI_SCENE_H
-#define GUI_SCENE_H
+#pragma once
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
@@ -36,5 +35,3 @@ private:
 
   bool* show_window;
 };
-
-#endif

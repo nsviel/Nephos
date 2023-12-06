@@ -1,5 +1,4 @@
-#ifndef GUI_ENGINE_H
-#define GUI_ENGINE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -34,5 +33,3 @@ private:
 
   bool has_been_initialized;
 };
-
-#endif

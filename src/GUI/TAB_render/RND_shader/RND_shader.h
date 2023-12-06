@@ -1,5 +1,4 @@
-#ifndef GUI_SHADER_H
-#define GUI_SHADER_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <ENG_shader/Base/BASE_shader.h>
@@ -69,5 +68,3 @@ private:
   int ID_class;
   int ID_subclass;
 };
-
-#endif

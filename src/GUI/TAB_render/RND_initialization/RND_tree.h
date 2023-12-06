@@ -1,5 +1,4 @@
-#ifndef GUI_TREE_H
-#define GUI_TREE_H
+#pragma once
 
 #include "struct_node.h"
 #include "struct_init.h"
@@ -36,5 +35,3 @@ private:
   vector<vector<Tree_node*>> nodes_path_vec;
   Struct_init* init;
 };
-
-#endif

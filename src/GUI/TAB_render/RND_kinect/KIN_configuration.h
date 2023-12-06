@@ -1,5 +1,4 @@
-#ifndef KIN_CONFIGURATION_H
-#define KIN_CONFIGURATION_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -32,5 +31,3 @@ private:
 
   int item_width;
 };
-
-#endif

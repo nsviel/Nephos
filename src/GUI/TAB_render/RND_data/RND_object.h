@@ -1,5 +1,4 @@
-#ifndef GUI_OBJECT_H
-#define GUI_OBJECT_H
+#pragma once
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
@@ -36,5 +35,3 @@ private:
   Object* object_selected;
   int item_width;
 };
-
-#endif

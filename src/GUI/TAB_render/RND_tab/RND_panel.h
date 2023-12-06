@@ -1,5 +1,4 @@
-#ifndef GUI_RENDER_PANEL_H
-#define GUI_RENDER_PANEL_H
+#pragma once
 
 
 struct RND_panel{
@@ -17,5 +16,3 @@ struct RND_panel{
 
   //---------------------------
 };
-
-#endif

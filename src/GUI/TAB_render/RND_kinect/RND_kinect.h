@@ -1,5 +1,4 @@
-#ifndef GUI_KINECT_H
-#define GUI_KINECT_H
+#pragma once
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
@@ -30,5 +29,3 @@ private:
   KIN_playback* kin_playback;
   KIN_recorder* kin_recorder;
 };
-
-#endif

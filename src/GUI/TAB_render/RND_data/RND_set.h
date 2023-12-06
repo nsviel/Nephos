@@ -1,5 +1,4 @@
-#ifndef GUI_SET_H
-#define GUI_SET_H
+#pragma once
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
@@ -30,5 +29,3 @@ private:
   Set* set_selected;
   int item_width;
 };
-
-#endif

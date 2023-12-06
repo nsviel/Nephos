@@ -1,5 +1,4 @@
-#ifndef CONTROL_ENGINE_H
-#define CONTROL_ENGINE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -42,5 +41,3 @@ private:
 
   Struct_camera* camera;
 };
-
-#endif

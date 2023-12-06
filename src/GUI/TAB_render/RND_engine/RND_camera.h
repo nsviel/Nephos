@@ -1,5 +1,4 @@
-#ifndef WIN_CAMERA_H
-#define WIN_CAMERA_H
+#pragma once
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
@@ -30,5 +29,3 @@ private:
 
   int item_width;
 };
-
-#endif

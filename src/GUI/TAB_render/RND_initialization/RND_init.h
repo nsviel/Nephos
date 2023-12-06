@@ -1,5 +1,4 @@
-#ifndef GUI_INITIALIZATION_H
-#define GUI_INITIALIZATION_H
+#pragma once
 
 #include "struct_node.h"
 #include "struct_init.h"
@@ -44,5 +43,3 @@ private:
 
   Struct_init init;
 };
-
-#endif

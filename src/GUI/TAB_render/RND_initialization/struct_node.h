@@ -1,5 +1,4 @@
-#ifndef STRUCT_TREEFILE_H
-#define STRUCT_TREEFILE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -18,5 +17,3 @@ struct Tree_node{
 
   //---------------------------
 };
-
-#endif

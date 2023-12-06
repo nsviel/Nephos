@@ -1,5 +1,4 @@
-#ifndef GUI_TIMING_H
-#define GUI_TIMING_H
+#pragma once
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
@@ -33,5 +32,3 @@ private:
 
   int width;
 };
-
-#endif

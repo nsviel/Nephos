@@ -1,5 +1,4 @@
-#ifndef CAP_RECORD_H
-#define CAP_RECORD_H
+#pragma once
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
@@ -21,5 +20,3 @@ public:
 private:
   Kinect* kinect;
 };
-
-#endif
