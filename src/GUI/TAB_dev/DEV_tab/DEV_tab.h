@@ -6,6 +6,8 @@
 class GUI;
 
 
+namespace dev{
+
 class DEV_tab
 {
 public:
@@ -27,3 +29,5 @@ private:
   dev::Database* database;
   dev::Menu* menu;
 };
+
+}

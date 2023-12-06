@@ -5,7 +5,7 @@
 #include <GUI_interface/GUI_menu.h>
 #include <image/IconsFontAwesome5.h>
 #include <TAB_render/RND_tab.h>
-#include <TAB_dev/DEV_tab/DEV_tab.h>
+#include <TAB_dev/DEV_nsp.h>
 
 
 //Constructor / Destructor
@@ -13,7 +13,7 @@ GUI_tab::GUI_tab(GUI* gui){
   //---------------------------
 
   this->rnd_tab = new RND_tab(gui);
-  this->dev_tab = new DEV_tab(gui);
+  this->dev_tab = new dev::DEV_tab(gui);
   this->gui_menu = new GUI_menu(gui);
 
   this->active_tab = "Render";

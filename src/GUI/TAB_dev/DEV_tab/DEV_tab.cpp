@@ -5,7 +5,7 @@
 
 
 
-
+namespace dev{
 
 //Constructor / Destructor
 DEV_tab::DEV_tab(GUI* gui){
@@ -39,4 +39,6 @@ void DEV_tab::draw_panels(){
   database->run_panel();
 
   //---------------------------
+}
+
 }
