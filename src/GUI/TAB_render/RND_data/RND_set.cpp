@@ -1,7 +1,7 @@
 #include "RND_set.h"
 
 #include <GUI.h>
-#include <TAB_render/RND_config/RND_panel.h>
+#include <TAB_render/RND_tab/RND_panel.h>
 
 #include <ENG_operation/Transformation/Attribut.h>
 

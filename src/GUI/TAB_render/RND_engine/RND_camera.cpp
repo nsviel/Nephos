@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <TAB_render/RND_config/RND_panel.h>
+#include <TAB_render/RND_tab/RND_panel.h>
 #include <ENG_camera/Struct_camera.h>
 
 

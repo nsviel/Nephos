@@ -6,12 +6,12 @@
 #include <GUI_widget/GUI_indicator.h>
 #include <GUI_editor/EDI_node.h>
 #include <RND_engine/RND_camera.h>
-#include <RND_menu/RND_menu.h>
-#include <RND_config/RND_panel.h>
+#include <RND_tab/RND_menu.h>
+#include <RND_tab/RND_panel.h>
 #include <RND_engine/RND_engine.h>
 #include <RND_profiler/RND_profiler.h>
 #include <RND_shader/RND_shader.h>
-#include <RND_menu/RND_option.h>
+#include <RND_tab/RND_option.h>
 #include <RND_data/RND_object.h>
 #include <RND_data/RND_scene.h>
 #include <RND_data/RND_set.h>

@@ -3,8 +3,8 @@
 #include <Engine.h>
 #include <GUI.h>
 #include <GUI_interface/GUI_tab.h>
-#include <TAB_render/RND_config/RND_panel.h>
-#include <TAB_render/RND_tab.h>
+#include <TAB_render/RND_tab/RND_panel.h>
+#include <TAB_render/RND_tab/RND_tab.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_database.h>
 #include <TAB_render/RND_data/RND_object.h>

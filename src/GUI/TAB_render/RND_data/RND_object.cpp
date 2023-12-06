@@ -1,5 +1,5 @@
 #include "RND_object.h"
-#include <TAB_render/RND_config/RND_panel.h>
+#include <TAB_render/RND_tab/RND_panel.h>
 
 #include <GUI.h>
 #include <Engine.h>
