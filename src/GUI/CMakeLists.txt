@@ -3,7 +3,7 @@ set(LIBRARY_NAME LIBRARY_GUI)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(GUI_dev)
+add_subdirectory(TAB_dev)
 add_subdirectory(TAB_render)
 add_subdirectory(GUI_main)
 add_subdirectory(GUI_utility)
