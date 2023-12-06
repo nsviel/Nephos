@@ -11,7 +11,7 @@
 namespace dev{
 
 //Constructor / Destructor
-DEV_menu::DEV_menu(DEV_panel* dev_panel){
+DEV_menu::DEV_menu(dev::DEV_panel* dev_panel){
   //---------------------------
 
   this->dev_panel = dev_panel;

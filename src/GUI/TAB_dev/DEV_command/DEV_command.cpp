@@ -8,6 +8,8 @@
 #include <image/IconsFontAwesome5.h>
 
 
+namespace dev{
+
 //Constructor / Destructor
 DEV_command::DEV_command(GUI* gui){
   //---------------------------
@@ -52,3 +54,5 @@ void DEV_command::design_panel(){
 }
 
 //Subfunctions
+
+}

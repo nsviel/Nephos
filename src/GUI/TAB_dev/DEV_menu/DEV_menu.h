@@ -1,9 +1,8 @@
 #ifndef DEV_MENU_H
 #define DEV_MENU_H
 
+#include "../DEV_nsp.h"
 #include <UTL_specific/common.h>
-
-class DEV_panel;
 
 
 namespace dev{
@@ -23,7 +22,7 @@ public:
   void open_panels();
 
 private:
-  DEV_panel* dev_panel;
+  dev::DEV_panel* dev_panel;
 
 };
 

@@ -8,6 +8,8 @@ class GUI;
 class DEV_panel;
 
 
+namespace dev{
+
 class DEV_command
 {
 public:
@@ -26,5 +28,8 @@ private:
   GUI* gui;
   DEV_panel* gui_dev_panel;
 };
+
+}
+
 
 #endif

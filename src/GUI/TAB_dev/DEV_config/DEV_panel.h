@@ -5,6 +5,8 @@
 #include <TAB_dev/DEV_editor/DEV_code_editor.h>
 
 
+namespace dev{
+
 struct DEV_panel{
   //---------------------------
 
@@ -21,5 +23,8 @@ struct DEV_panel{
 
   //---------------------------
 };
+
+}
+
 
 #endif
