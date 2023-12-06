@@ -6,7 +6,7 @@
 class GUI;
 class RND_panel;
 
-class GUI_profiler;
+class RND_profiler;
 class RND_shader;
 class RND_engine;
 class RND_option;
@@ -15,8 +15,8 @@ class RND_object;
 class RND_set;
 class RND_scene;
 class RND_menu;
-class GUI_kinect;
-class KIN_capture;
+class RND_kinect;
+class RND_capture;
 
 
 class RND_tab
@@ -34,7 +34,7 @@ public:
 
   inline RND_panel* get_rnd_panel(){return gui_render_panel;}
   inline RND_shader* get_rnd_shader(){return rnd_shader;}
-  inline GUI_profiler* get_gui_profiling(){return gui_profiler;}
+  inline RND_profiler* get_rnd_profiler(){return rnd_profiler;}
   inline RND_object* get_rnd_object(){return rnd_object;}
   inline RND_set* get_rnd_set(){return rnd_set;}
   inline RND_camera* get_rnd_camera(){return rnd_camera;}
@@ -48,14 +48,14 @@ private:
   RND_option* rnd_option;
   RND_menu* rnd_menu;
 
-  GUI_profiler* gui_profiler;
+  RND_profiler* rnd_profiler;
   RND_scene* rnd_scene;
   RND_shader* rnd_shader;
   RND_engine* rnd_engine;
   RND_object* rnd_object;
   RND_camera* rnd_camera;
-  KIN_capture* gui_capture;
-  GUI_kinect* gui_kinect;
+  RND_capture* rnd_capture;
+  RND_kinect* rnd_kinect;
   RND_set* rnd_set;
 };
 

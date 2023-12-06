@@ -9,12 +9,12 @@ class Struct_vulkan;
 class UTL_database;
 
 
-class GUI_database : public BASE_panel
+class DEV_database : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_database(GUI* gui, bool* show_window, string name);
-  ~GUI_database();
+  DEV_database(GUI* gui, bool* show_window, string name);
+  ~DEV_database();
 
 public:
   //Main functions

@@ -10,12 +10,12 @@ class KIN_playback;
 class KIN_recorder;
 
 
-class GUI_kinect : public BASE_panel
+class RND_kinect : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_kinect(GUI* gui, bool* show_window, string name);
-  ~GUI_kinect();
+  RND_kinect(GUI* gui, bool* show_window, string name);
+  ~RND_kinect();
 
   //Main function
   void design_panel();

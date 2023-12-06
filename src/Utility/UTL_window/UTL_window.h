@@ -1,8 +1,6 @@
 #ifndef WINDOW_MANAGER_H
 #define WINDOW_MANAGER_H
 
-#include "../Utility_namespace.h"
-
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #define GLFW_INCLUDE_VULKAN
@@ -19,7 +17,6 @@ using namespace glm;
 class Config;
 
 
-namespace utility{
 class UTL_window
 {
 public:
@@ -62,6 +59,5 @@ private:
   vec2 window_center;
   bool has_been_resized;
 };
-}
 
 #endif

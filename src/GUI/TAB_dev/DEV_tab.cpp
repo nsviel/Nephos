@@ -4,7 +4,7 @@
 #include <GUI.h>
 #include <TAB_dev/DEV_editor/DEV_code_editor.h>
 #include <TAB_dev/DEV_command/DEV_command.h>
-#include <TAB_dev/DEV_database/GUI_database.h>
+#include <TAB_dev/DEV_database/DEV_database.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -13,8 +13,8 @@ DEV_tab::DEV_tab(GUI* gui){
   //---------------------------
 
   this->gui = gui;
-  this->gui_dev_panel = new DEV_panel();
-  this->gui_database = new GUI_database(gui, &gui_dev_panel->show_database, "Database##4323");
+  this->dev_panel = new DEV_panel();
+  this->dev_database = new DEV_database(gui, &dev_panel->show_database, "Database##4323");
 
   //---------------------------
 }
@@ -25,24 +25,24 @@ void DEV_tab::create_panels(){
   //---------------------------
 
   static bool truc = true;
-  gui_dev_panel->vec_editor.push_back(new DEV_code_editor(gui, &truc, "Editor"));
-  this->gui_dev_command = new DEV_command(gui);
+  dev_panel->vec_editor.push_back(new DEV_code_editor(gui, &truc, "Editor"));
+  this->dev_command = new DEV_command(gui);
 
   //---------------------------
 }
 void DEV_tab::draw_panels(){
   //---------------------------
 
-  gui_dev_panel->run_editors();
-  gui_dev_command->run_panel();
-  gui_database->run_panel();
+  dev_panel->run_editors();
+  dev_command->run_panel();
+  dev_database->run_panel();
 
   //---------------------------
 }
 void DEV_tab::open_panels(){
   //---------------------------
 
-  ImGui::Checkbox(ICON_FA_KEY " Database##456", &gui_dev_panel->show_database);
+  ImGui::Checkbox(ICON_FA_KEY " Database##456", &dev_panel->show_database);
 
   //---------------------------
 }

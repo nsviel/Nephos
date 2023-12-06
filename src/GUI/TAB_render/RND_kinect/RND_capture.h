@@ -13,12 +13,12 @@ class K4A_infrared;
 class K4A_swarm;
 
 
-class KIN_capture : public BASE_panel
+class RND_capture : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  KIN_capture(GUI* gui, bool* show_window, string name);
-  ~KIN_capture();
+  RND_capture(GUI* gui, bool* show_window, string name);
+  ~RND_capture();
 
   //Main function
   void design_panel();

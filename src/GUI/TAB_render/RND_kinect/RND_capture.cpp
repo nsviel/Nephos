@@ -1,4 +1,4 @@
-#include "KIN_capture.h"
+#include "RND_capture.h"
 
 #include <GUI.h>
 #include <GUI_gpu/GUI_stream.h>
@@ -10,7 +10,7 @@
 
 
 //Constructor / Destructor
-KIN_capture::KIN_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+RND_capture::RND_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Utility* utility = gui->get_utility();
@@ -28,10 +28,10 @@ KIN_capture::KIN_capture(GUI* gui, bool* show_window, string name) : BASE_panel(
 
   //---------------------------
 }
-KIN_capture::~KIN_capture(){}
+RND_capture::~RND_capture(){}
 
 //Main function
-void KIN_capture::design_panel(){
+void RND_capture::design_panel(){
   //---------------------------
 
   this->vec_device_tab();
@@ -40,7 +40,7 @@ void KIN_capture::design_panel(){
 }
 
 //All devices
-void KIN_capture::vec_device_tab(){
+void RND_capture::vec_device_tab(){
   list<K4A_device*>& list_device = kinect->get_list_device();
   //---------------------------
 
@@ -62,7 +62,7 @@ void KIN_capture::vec_device_tab(){
 
   //---------------------------
 }
-void KIN_capture::device_tab(K4A_device* device){
+void RND_capture::device_tab(K4A_device* device){
   if(!device->data.data_ready){return;}
   //---------------------------
 
@@ -113,7 +113,7 @@ void KIN_capture::device_tab(K4A_device* device){
 }
 
 //Device capture windows
-void KIN_capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
+void RND_capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
   K4A_image* data_color = &device->data.color;
   //---------------------------
 
@@ -128,7 +128,7 @@ void KIN_capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
 
   //---------------------------
 }
-void KIN_capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
+void RND_capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
   K4A_image* data_depth = &device->data.depth;
   //---------------------------
 
@@ -147,7 +147,7 @@ void KIN_capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
 
   //---------------------------
 }
-void KIN_capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
+void RND_capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
   K4A_image* data_ir = &device->data.ir;
   //---------------------------
 
@@ -166,7 +166,7 @@ void KIN_capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
 
   //---------------------------
 }
-void KIN_capture::hovered_info_panel(K4A_image* image){
+void RND_capture::hovered_info_panel(K4A_image* image){
   //---------------------------
 
   ImVec2 imageStartPos = ImGui::GetCursorScreenPos();

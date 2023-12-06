@@ -8,12 +8,12 @@ class GUI;
 class VK_info;
 
 
-class GUI_profiler : public BASE_panel
+class RND_profiler : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  GUI_profiler(GUI* gui, bool* show_window, string name);
-  ~GUI_profiler();
+  RND_profiler(GUI* gui, bool* show_window, string name);
+  ~RND_profiler();
 
 public:
   //Main function
