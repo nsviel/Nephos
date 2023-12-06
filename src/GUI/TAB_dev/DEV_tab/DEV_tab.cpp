@@ -1,12 +1,9 @@
 #include "DEV_tab.h"
-#include "DEV_nsp.h"
 
 #include <GUI.h>
-#include <TAB_dev/DEV_editor/Editor.h>
-#include <TAB_dev/DEV_editor/Command.h>
-#include <TAB_dev/DEV_data/Database.h>
-#include <TAB_dev/DEV_tab/Menu.h>
-#include <TAB_dev/DEV_tab/Panel.h>
+#include <TAB_dev/DEV_nsp.h>
+
+
 
 
 

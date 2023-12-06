@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../DEV_nsp.h"
-#include <TAB_dev/DEV_editor/Editor.h>
+#include <TAB_dev/DEV_nsp.h>
 
 
 namespace dev{

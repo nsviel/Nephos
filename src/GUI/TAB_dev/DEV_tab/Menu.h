@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../DEV_nsp.h"
+#include <TAB_dev/DEV_nsp.h>
 #include <UTL_specific/common.h>
 
 

@@ -1,10 +1,6 @@
 #include "Menu.h"
-#include "../DEV_nsp.h"
 
-#include <GUI.h>
-#include <GUI_interface/GUI_tab.h>
-#include <TAB_dev/DEV_tab/DEV_tab.h>
-#include <TAB_dev/DEV_tab/Panel.h>
+#include <TAB_dev/DEV_nsp.h>
 #include <image/IconsFontAwesome5.h>
 
 
