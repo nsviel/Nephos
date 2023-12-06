@@ -27,13 +27,13 @@ public:
   void next_tab();
 
   inline RND_tab* get_rnd_tab(){return rnd_tab;}
-  inline dev::DEV_tab* get_dev_tab(){return dev_tab;}
+  inline dev::Tab* get_dev_tab(){return dev_tab;}
 
 private:
   GUI* gui;
   GUI_menu* gui_menu;
   RND_tab* rnd_tab;
-  dev::DEV_tab* dev_tab;
+  dev::Tab* dev_tab;
 
   vector<string> vec_tab;
   string active_tab;

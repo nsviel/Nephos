@@ -1,4 +1,4 @@
-#include "DEV_tab.h"
+#include "Tab.h"
 
 #include <GUI.h>
 #include <TAB_dev/DEV_nsp.h>
@@ -8,7 +8,7 @@
 namespace dev{
 
 //Constructor / Destructor
-DEV_tab::DEV_tab(GUI* gui){
+Tab::Tab(GUI* gui){
   //---------------------------
 
   this->gui = gui;
@@ -18,10 +18,10 @@ DEV_tab::DEV_tab(GUI* gui){
 
   //---------------------------
 }
-DEV_tab::~DEV_tab(){}
+Tab::~Tab(){}
 
 //Main function
-void DEV_tab::create_panels(){
+void Tab::create_panels(){
   //---------------------------
 
   static bool truc = true;
@@ -30,7 +30,7 @@ void DEV_tab::create_panels(){
 
   //---------------------------
 }
-void DEV_tab::draw_panels(){
+void Tab::draw_panels(){
   //---------------------------
 
   menu->run_tab_menu();

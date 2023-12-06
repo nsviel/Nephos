@@ -2,7 +2,6 @@
 
 #include <GUI.h>
 #include <GUI_interface/GUI_tab.h>
-#include <TAB_dev/DEV_tab/DEV_tab.h>
 #include <TAB_dev/DEV_nsp.h>
 #include <image/IconsFontAwesome5.h>
 
@@ -14,7 +13,7 @@ Command::Command(GUI* gui){
   //---------------------------
 
   GUI_tab* gui_tab = gui->get_gui_tab();
-  DEV_tab* gui_tab_dev = gui_tab->get_dev_tab();
+  dev::Tab* gui_tab_dev = gui_tab->get_dev_tab();
   this->gui = gui;
   this->gui_panel = gui_tab_dev->get_panel();
 

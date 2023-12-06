@@ -5,15 +5,17 @@
 
 class GUI;
 
-
 namespace dev{
+class Command;
+class Menu;
 
-class DEV_tab
+
+class Tab
 {
 public:
   //Constructor / Destructor
-  DEV_tab(GUI* gui);
-  ~DEV_tab();
+  Tab(GUI* gui);
+  ~Tab();
 
 public:
   //Main functions

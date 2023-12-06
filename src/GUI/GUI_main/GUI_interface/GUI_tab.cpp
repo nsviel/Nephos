@@ -13,7 +13,7 @@ GUI_tab::GUI_tab(GUI* gui){
   //---------------------------
 
   this->rnd_tab = new RND_tab(gui);
-  this->dev_tab = new dev::DEV_tab(gui);
+  this->dev_tab = new dev::Tab(gui);
   this->gui_menu = new GUI_menu(gui);
 
   this->active_tab = "Render";
