@@ -5,10 +5,8 @@
 #include <UTL_specific/common.h>
 
 class GUI;
-class DEV_code_editor;
 class DEV_panel;
 class DEV_command;
-class DEV_database;
 
 
 class DEV_tab
@@ -29,7 +27,7 @@ private:
   GUI* gui;
   DEV_panel* dev_panel;
   DEV_command* dev_command;
-  DEV_database* dev_database;
+  dev::DEV_database* dev_database;
   dev::DEV_menu* dev_menu;
 };
 

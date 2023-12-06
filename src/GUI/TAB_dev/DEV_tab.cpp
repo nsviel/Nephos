@@ -17,7 +17,7 @@ DEV_tab::DEV_tab(GUI* gui){
   this->gui = gui;
   this->dev_panel = new DEV_panel();
   this->dev_menu = new dev::DEV_menu(dev_panel);
-  this->dev_database = new DEV_database(gui, &dev_panel->show_database, "Database##4323");
+  this->dev_database = new dev::DEV_database(gui, &dev_panel->show_database, "Database##4323");
 
   //---------------------------
 }
@@ -28,7 +28,7 @@ void DEV_tab::create_panels(){
   //---------------------------
 
   static bool truc = true;
-  dev_panel->vec_editor.push_back(new DEV_code_editor(gui, &truc, "Editor"));
+  dev_panel->vec_editor.push_back(new dev::DEV_code_editor(gui, &truc, "Editor"));
   this->dev_command = new DEV_command(gui);
 
   //---------------------------

@@ -4,6 +4,8 @@
 #include <GUI_editor/EDI_text.h>
 
 
+namespace dev{
+
 //Constructor / Destructor
 DEV_code_editor::DEV_code_editor(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
@@ -24,3 +26,5 @@ void DEV_code_editor::design_panel(){
 }
 
 //Subfunction
+
+}

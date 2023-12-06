@@ -8,6 +8,8 @@ class GUI;
 class EDI_text;
 
 
+namespace dev{
+
 class DEV_code_editor : public BASE_panel
 {
 public:
@@ -22,5 +24,8 @@ public:
 private:
   EDI_text* editor;
 };
+
+}
+
 
 #endif

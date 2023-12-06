@@ -9,6 +9,8 @@ class Struct_vulkan;
 class UTL_database;
 
 
+namespace dev{
+
 class DEV_database : public BASE_panel
 {
 public:
@@ -29,5 +31,8 @@ private:
 
   string path_database;
 };
+
+}
+
 
 #endif

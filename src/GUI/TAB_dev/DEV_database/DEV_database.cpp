@@ -3,6 +3,8 @@
 #include <UTL_database/UTL_database.h>
 
 
+namespace dev{
+
 //Constructor / Destructor
 DEV_database::DEV_database(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
@@ -107,4 +109,6 @@ void DEV_database::display_data(){
 
 
   //---------------------------
+}
+
 }
