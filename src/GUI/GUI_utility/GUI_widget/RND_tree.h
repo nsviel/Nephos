@@ -7,6 +7,8 @@
 class Init;
 
 
+namespace gui::widget{
+
 class RND_tree
 {
 public:
@@ -35,3 +37,5 @@ private:
   vector<vector<Tree_node*>> nodes_path_vec;
   Struct_init* init;
 };
+
+}

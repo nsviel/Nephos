@@ -3,12 +3,12 @@
 #include "struct_init.h"
 #include <GUI_widget/struct_node.h>
 #include <UTL_specific/common.h>
+#include <GUI_utility/Widget_nsp.h>
 
 class GUI;
 class ENG_scene;
 class ENG_loader;
 class Transformation;
-class RND_tree;
 
 
 namespace gui::rnd::tab{
@@ -38,7 +38,7 @@ private:
   ENG_scene* eng_scene;
   ENG_loader* eng_loader;
   Transformation* transformManager;
-  RND_tree* gui_tree;
+  gui::widget::RND_tree* gui_tree;
 
   vector<Tree_node*> nodes_root;
   vector<vector<Tree_node*>> nodes_path_vec;

@@ -1,8 +1,9 @@
-#ifndef GUI_CONSOLE_H
-#define GUI_CONSOLE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
+
+namespace gui::widget{
 
 class GUI_console
 {
@@ -43,4 +44,4 @@ private:
   bool                  ScrollToBottom;
 };
 
-#endif
+}

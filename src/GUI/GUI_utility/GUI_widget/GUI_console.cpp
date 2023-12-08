@@ -1,6 +1,8 @@
 #include "GUI_console.h"
 
 
+namespace gui::widget{
+
 //Constructor / Destructor
 GUI_console::GUI_console(){
   //---------------------------
@@ -308,4 +310,6 @@ int GUI_console::TextEditCallback(ImGuiInputTextCallbackData* data){
 
   //---------------------------
   return 0;
+}
+
 }

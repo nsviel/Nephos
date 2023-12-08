@@ -8,7 +8,6 @@
 #include <ENG_operation/Transformation/Transformation.h>
 #include <UTL_file/Directory.h>
 #include <UTL_file/Info.h>
-#include <GUI_widget/RND_tree.h>
 
 
 namespace gui::rnd::tab{
@@ -23,7 +22,7 @@ Init::Init(GUI* gui){
   this->eng_scene = eng_data->get_eng_scene();
   this->eng_loader = eng_data->get_eng_loader();
   this->transformManager = new Transformation();
-  this->gui_tree = new RND_tree();
+  this->gui_tree = new gui::widget::RND_tree();
 
   //---------------------------
   this->init_init();

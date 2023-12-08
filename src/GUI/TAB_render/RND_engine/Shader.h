@@ -4,10 +4,10 @@
 #include <ENG_shader/Base/BASE_shader.h>
 #include <GUI_utility/Base_nsp.h>
 #include <GUI_utility/Editor_nsp.h>
+#include <GUI_utility/Widget_nsp.h>
 
 class GUI;
 class Text;
-class GUI_console;
 class ENG_shader;
 class VK_engine;
 
@@ -55,7 +55,7 @@ private:
   ENG_shader* eng_shader;
   gui::editor::Text* editor_vs;
   gui::editor::Text* editor_fs;
-  GUI_console* gui_console;
+  gui::widget::GUI_console* gui_console;
 
   vector<string> vec_shader_class;
   vector<string> vec_shader_subclass;

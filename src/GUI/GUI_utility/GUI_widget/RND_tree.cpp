@@ -4,6 +4,8 @@
 #include <UTL_file/Info.h>
 
 
+namespace gui::widget{
+
 //Constructor / Destructor
 RND_tree::RND_tree(){}
 RND_tree::~RND_tree(){}
@@ -245,4 +247,6 @@ void RND_tree::open_selection(Tree_node* node){
   }
 
   //---------------------------
+}
+
 }

@@ -1,10 +1,11 @@
-#ifndef GUI_DIALOG_H
-#define GUI_DIALOG_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
 class GUI;
 
+
+namespace gui::widget{
 
 class GUI_dialog
 {
@@ -23,4 +24,4 @@ public:
 private:
 };
 
-#endif
+}

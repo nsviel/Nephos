@@ -2,6 +2,8 @@
 #include <GUI.h>
 
 
+namespace gui::widget{
+
 //Constructor / Destructor
 GUI_dialog::GUI_dialog(GUI* gui){
   //---------------------------
@@ -21,3 +23,5 @@ void GUI_dialog::open_file(){
 }
 
 //Subfunctions
+
+}
