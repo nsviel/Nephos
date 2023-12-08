@@ -12,9 +12,9 @@ Command::Command(GUI* gui){
   //---------------------------
 
   GUI_tab* gui_tab = gui->get_gui_tab();
-  gui::dev::tab::Tab* dev_tab = gui_tab->get_dev_tab();
+  //gui::dev::tab::Tab* dev_tab = gui_tab->get_dev_tab();
   this->gui = gui;
-  this->gui_panel = dev_tab->get_panel();
+  //this->gui_panel = dev_tab->get_panel();
 
   //---------------------------
 }
@@ -44,7 +44,7 @@ void Command::design_panel(){
 
   if(ImGui::Button("New editor")){
     static bool truc = true;
-    gui_panel->vec_editor.push_back(new gui::dev::Editor(gui, &truc, "Editor"));
+    //gui_panel->vec_editor.push_back(new gui::dev::Editor(gui, &truc, "Editor"));
   }
 
   //---------------------------

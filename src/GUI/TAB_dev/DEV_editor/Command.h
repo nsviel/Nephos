@@ -24,7 +24,7 @@ public:
 
 private:
   GUI* gui;
-  gui::dev::tab::Panel* gui_panel;
+  //gui::dev::tab::Panel* gui_panel;
 };
 
 }
