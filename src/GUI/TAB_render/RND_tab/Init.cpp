@@ -1,4 +1,4 @@
-#include "RND_init.h"
+#include "Init.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -11,8 +11,10 @@
 #include <GUI_widget/RND_tree.h>
 
 
+namespace gui::rnd::tab{
+
 //Constructor / Destructor
-RND_init::RND_init(GUI* gui){
+Init::Init(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -26,10 +28,10 @@ RND_init::RND_init(GUI* gui){
   //---------------------------
   this->init_init();
 }
-RND_init::~RND_init(){}
+Init::~Init(){}
 
 //Main functions
-void RND_init::design_init(){
+void Init::design_init(){
   //---------------------------
 
   this->design_option();
@@ -37,7 +39,7 @@ void RND_init::design_init(){
 
   //---------------------------
 }
-void RND_init::design_option(){
+void Init::design_option(){
   //---------------------------
 
   //Point cloud scaling
@@ -52,7 +54,7 @@ void RND_init::design_option(){
 }
 
 //Subfunction
-void RND_init::init_init(){
+void Init::init_init(){
   //---------------------------
 
   this->init.remove_old = true;
@@ -79,14 +81,14 @@ void RND_init::init_init(){
   //---------------------------
   gui_tree->construct_tree(&init);
 }
-void RND_init::load_config_file(){
+void Init::load_config_file(){
   //---------------------------
 
 
 
   //---------------------------
 }
-void RND_init::operation_new_object(string path){
+void Init::operation_new_object(string path){
   //---------------------------
 
   data::Object* object = eng_loader->load_object(path);
@@ -102,7 +104,7 @@ void RND_init::operation_new_object(string path){
 }
 
 //Custom scene
-void RND_init::build_custom_scene(vector<vector<Tree_node*>>& nodes_path_vec){
+void Init::build_custom_scene(vector<vector<Tree_node*>>& nodes_path_vec){
   //---------------------------
 
   //Scene folder
@@ -127,10 +129,12 @@ void RND_init::build_custom_scene(vector<vector<Tree_node*>>& nodes_path_vec){
 
   //---------------------------
 }
-void RND_init::build_scene_1(){
+void Init::build_scene_1(){
   //---------------------------
 
 
 
   //---------------------------
+}
+
 }

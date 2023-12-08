@@ -11,12 +11,14 @@ class Transformation;
 class RND_tree;
 
 
-class RND_init
+namespace gui::rnd::tab{
+
+class Init
 {
 public:
   //Constructor / Destructor
-  RND_init(GUI* gui);
-  ~RND_init();
+  Init(GUI* gui);
+  ~Init();
 
 public:
   //Main funxtion
@@ -43,3 +45,5 @@ private:
 
   Struct_init init;
 };
+
+}

@@ -4,7 +4,7 @@
 #include <GUI_widget/struct_node.h>
 #include <UTL_specific/common.h>
 
-class RND_init;
+class Init;
 
 
 class RND_tree
@@ -29,7 +29,7 @@ public:
   void open_selection(Tree_node* node);
 
 private:
-  RND_init* gui_init;
+  Init* gui_init;
 
   vector<Tree_node*> nodes_root;
   vector<vector<Tree_node*>> nodes_path_vec;

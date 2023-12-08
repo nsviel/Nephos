@@ -6,7 +6,7 @@
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_load/ENG_loader.h>
 #include <image/IconsFontAwesome5.h>
-#include <TAB_render/RND_tab/RND_init.h>
+#include <TAB_render/RND_tab/Init.h>
 
 
 namespace gui::rnd::tab{
@@ -20,7 +20,7 @@ Menu::Menu(GUI* gui){
   GUI_tab* gui_tab = gui->get_gui_tab();
 
   this->gui = gui;
-  this->gui_init = new RND_init(gui);
+  this->gui_init = new Init(gui);
   this->rnd_tab = gui_tab->get_rnd_tab();
   this->rnd_option = rnd_tab->get_rnd_option();
   this->rnd_panel = rnd_tab->get_rnd_panel();

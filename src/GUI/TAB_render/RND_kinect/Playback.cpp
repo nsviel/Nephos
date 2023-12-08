@@ -1,22 +1,24 @@
-#include "KIN_playback.h"
+#include "Playback.h"
 
 #include <UTL_capture/UTL_kinect/Kinect.h>
 #include <image/IconsFontAwesome5.h>
 #include <UTL_capture/UTL_kinect/K4A_thread/K4A_replay.h>
 
 
+namespace gui::kinect{
+
 //Constructor / Destructor
-KIN_playback::KIN_playback(Kinect* kinect){
+Playback::Playback(Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;
 
   //---------------------------
 }
-KIN_playback::~KIN_playback(){}
+Playback::~Playback(){}
 
 //Main function
-void KIN_playback::kinect_playback(){
+void Playback::kinect_playback(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -34,7 +36,7 @@ void KIN_playback::kinect_playback(){
 }
 
 //Subfunction
-void KIN_playback::show_player(){
+void Playback::show_player(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -85,7 +87,7 @@ void KIN_playback::show_player(){
 
   //---------------------------
 }
-void KIN_playback::show_info_file(){
+void Playback::show_info_file(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -106,7 +108,7 @@ void KIN_playback::show_info_file(){
 
   //---------------------------
 }
-void KIN_playback::show_info_recording(){
+void Playback::show_info_recording(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -142,7 +144,7 @@ void KIN_playback::show_info_recording(){
 
   //---------------------------
 }
-void KIN_playback::show_info_stream(){
+void Playback::show_info_stream(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -178,7 +180,7 @@ void KIN_playback::show_info_stream(){
 
   //---------------------------
 }
-void KIN_playback::show_info_synchro(){
+void Playback::show_info_synchro(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -214,7 +216,7 @@ void KIN_playback::show_info_synchro(){
 
   //---------------------------
 }
-void KIN_playback::show_info_device(){
+void Playback::show_info_device(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -245,4 +247,6 @@ void KIN_playback::show_info_device(){
   }
 
   //---------------------------
+}
+
 }

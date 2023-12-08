@@ -7,12 +7,14 @@ class Kinect;
 class K4A_swarm;
 
 
-class KIN_configuration
+namespace gui::kinect{
+
+class Configuration
 {
 public:
   //Constructor / Destructor
-  KIN_configuration(Kinect* kinect);
-  ~KIN_configuration();
+  Configuration(Kinect* kinect);
+  ~Configuration();
 
   //Main function
   void kinect_configuration();
@@ -31,3 +33,5 @@ private:
 
   int item_width;
 };
+
+}

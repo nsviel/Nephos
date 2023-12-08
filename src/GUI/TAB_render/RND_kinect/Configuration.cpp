@@ -1,12 +1,14 @@
-#include "KIN_configuration.h"
+#include "Configuration.h"
 
 #include <GUI.h>
 #include <UTL_capture/UTL_kinect/Kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
+namespace gui::kinect{
+
 //Constructor / Destructor
-KIN_configuration::KIN_configuration(Kinect* kinect){
+Configuration::Configuration(Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;
@@ -16,10 +18,10 @@ KIN_configuration::KIN_configuration(Kinect* kinect){
 
   //---------------------------
 }
-KIN_configuration::~KIN_configuration(){}
+Configuration::~Configuration(){}
 
 //Main function
-void KIN_configuration::kinect_configuration(){
+void Configuration::kinect_configuration(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -34,7 +36,7 @@ void KIN_configuration::kinect_configuration(){
 }
 
 //Subfunction
-void KIN_configuration::kinect_devices(){
+void Configuration::kinect_devices(){
   list<K4A_device*>& list_device = kinect->get_list_device();
   //---------------------------
 
@@ -83,7 +85,7 @@ void KIN_configuration::kinect_devices(){
 
   //---------------------------
 }
-void KIN_configuration::configuration_device(){
+void Configuration::configuration_device(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -104,7 +106,7 @@ void KIN_configuration::configuration_device(){
 
   //---------------------------
 }
-void KIN_configuration::configuration_depth(){
+void Configuration::configuration_depth(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -139,7 +141,7 @@ void KIN_configuration::configuration_depth(){
 
   //---------------------------
 }
-void KIN_configuration::configuration_color(){
+void Configuration::configuration_color(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -262,7 +264,7 @@ void KIN_configuration::configuration_color(){
 
   //---------------------------
 }
-void KIN_configuration::configuration_general(){
+void Configuration::configuration_general(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -285,7 +287,7 @@ void KIN_configuration::configuration_general(){
 
   //---------------------------
 }
-void KIN_configuration::firmware_info(){
+void Configuration::firmware_info(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -323,4 +325,6 @@ void KIN_configuration::firmware_info(){
   }
 
   //---------------------------
+}
+
 }

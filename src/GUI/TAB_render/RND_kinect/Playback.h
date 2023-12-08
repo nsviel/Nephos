@@ -6,12 +6,14 @@
 class Kinect;
 
 
-class KIN_playback
+namespace gui::kinect{
+
+class Playback
 {
 public:
   //Constructor / Destructor
-  KIN_playback(Kinect* kinect);
-  ~KIN_playback();
+  Playback(Kinect* kinect);
+  ~Playback();
 
   //Main function
   void kinect_playback();
@@ -27,3 +29,5 @@ public:
 private:
   Kinect* kinect;
 };
+
+}

@@ -2,10 +2,9 @@
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
+#include <TAB_render/Kinect_nsp.h>
 
 class GUI;
-class KIN_configuration;
-class KIN_playback;
 class KIN_recorder;
 
 
@@ -27,8 +26,8 @@ public:
   void draw_tab_recorder();
 
 private:
-  KIN_configuration* kin_configuration;
-  KIN_playback* kin_playback;
+  gui::kinect::Configuration* kin_configuration;
+  gui::kinect::Playback* kin_playback;
   KIN_recorder* kin_recorder;
 };
 

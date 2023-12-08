@@ -5,7 +5,7 @@
 
 class GUI;
 class ENG_loader;
-class RND_init;
+class Init;
 
 namespace gui::rnd::tab{
 class Panel;
@@ -29,7 +29,7 @@ public:
 private:
   GUI* gui;
   ENG_loader* eng_loader;
-  RND_init* gui_init;
+  Init* gui_init;
   gui::rnd::tab::Panel* rnd_panel;
   gui::rnd::tab::Option* rnd_option;
   gui::rnd::tab::Tab* rnd_tab;
