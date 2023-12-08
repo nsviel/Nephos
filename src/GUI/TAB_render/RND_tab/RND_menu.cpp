@@ -12,6 +12,8 @@
 #include <TAB_render/RND_initialization/RND_init.h>
 
 
+namespace gui::rnd::tab{
+
 //Constructor / Destructor
 RND_menu::RND_menu(GUI* gui){
   //---------------------------
@@ -53,3 +55,5 @@ void RND_menu::run_tab_menu(){
 }
 
 //Subfunctions
+
+}

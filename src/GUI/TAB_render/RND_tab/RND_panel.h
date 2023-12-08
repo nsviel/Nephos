@@ -1,6 +1,8 @@
 #pragma once
 
 
+namespace gui::rnd::tab{
+
 struct RND_panel{
   //---------------------------
 
@@ -16,3 +18,5 @@ struct RND_panel{
 
   //---------------------------
 };
+
+}

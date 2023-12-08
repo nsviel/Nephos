@@ -2,12 +2,11 @@
 
 #include <UTL_specific/common.h>
 #include <TAB_render/Panel_nsp.h>
+#include <TAB_render/Tab_nsp.h>
 
 class GUI;
-class RND_panel;
 
-class Profiler;
-class RND_option;
+namespace gui::rnd::tab{
 class RND_menu;
 
 
@@ -24,7 +23,7 @@ public:
   void draw_panels();
   void open_panels();
 
-  inline RND_panel* get_rnd_panel(){return gui_render_panel;}
+  inline gui::rnd::tab::RND_panel* get_rnd_panel(){return gui_render_panel;}
   inline gui::rnd::panel::Shader* get_rnd_shader(){return rnd_shader;}
   inline gui::rnd::panel::Profiler* get_rnd_profiler(){return rnd_profiler;}
   inline gui::rnd::panel::Object* get_rnd_object(){return rnd_object;}
@@ -32,14 +31,13 @@ public:
   inline gui::rnd::panel::Camera* get_rnd_camera(){return rnd_camera;}
   inline gui::rnd::panel::Render* get_rnd_render(){return rnd_render;}
   inline gui::rnd::panel::Scene* get_rnd_scene(){return rnd_scene;}
-  inline RND_option* get_rnd_option(){return rnd_option;}
+  inline gui::rnd::tab::RND_option* get_rnd_option(){return rnd_option;}
 
 private:
   GUI* gui;
-  RND_panel* gui_render_panel;
-  RND_option* rnd_option;
-  RND_menu* rnd_menu;
-
+  gui::rnd::tab::RND_panel* gui_render_panel;
+  gui::rnd::tab::RND_option* rnd_option;
+  gui::rnd::tab::RND_menu* rnd_menu;
   gui::rnd::panel::Shader* rnd_shader;
   gui::rnd::panel::Profiler* rnd_profiler;
   gui::rnd::panel::Scene* rnd_scene;
@@ -50,3 +48,5 @@ private:
   gui::rnd::panel::Kinect_panel* rnd_kinect;
   gui::rnd::panel::Set* rnd_set;
 };
+
+}

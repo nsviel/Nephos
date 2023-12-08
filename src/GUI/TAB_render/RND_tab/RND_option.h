@@ -7,6 +7,8 @@ class GUI;
 class VK_info;
 
 
+namespace gui::rnd::tab{
+
 class RND_option : public BASE_panel
 {
 public:
@@ -28,3 +30,5 @@ private:
 
   int width;
 };
+
+}

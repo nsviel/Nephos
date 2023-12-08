@@ -1,11 +1,14 @@
 #pragma once
 
 #include <UTL_specific/common.h>
+#include <TAB_render/Tab_nsp.h>
 
 class GUI;
 class ENG_loader;
-class RND_panel;
 class RND_init;
+
+namespace gui::rnd::tab{
+class RND_panel;
 class RND_option;
 class RND_tab;
 
@@ -27,7 +30,9 @@ private:
   GUI* gui;
   ENG_loader* eng_loader;
   RND_init* gui_init;
-  RND_panel* rnd_panel;
-  RND_option* rnd_option;
-  RND_tab* rnd_tab;
+  gui::rnd::tab::RND_panel* rnd_panel;
+  gui::rnd::tab::RND_option* rnd_option;
+  gui::rnd::tab::RND_tab* rnd_tab;
 };
+
+}

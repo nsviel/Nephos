@@ -11,7 +11,7 @@
 GUI_tab::GUI_tab(GUI* gui){
   //---------------------------
 
-  this->rnd_tab = new RND_tab(gui);
+  this->rnd_tab = new gui::rnd::tab::RND_tab(gui);
   this->dev_tab = new gui::dev::tab::Tab(gui);
   this->gui_menu = new GUI_menu(gui);
 

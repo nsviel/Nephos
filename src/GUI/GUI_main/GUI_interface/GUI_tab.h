@@ -2,11 +2,11 @@
 #define GUI_TAB_H
 
 #include <TAB_dev/Tab_nsp.h>
+#include <TAB_render/Tab_nsp.h>
 #include <UTL_specific/common.h>
 
 class GUI;
 class GUI_menu;
-class RND_tab;
 
 
 class GUI_tab
@@ -26,13 +26,13 @@ public:
   void draw_panels();
   void next_tab();
 
-  inline RND_tab* get_rnd_tab(){return rnd_tab;}
+  inline gui::rnd::tab::RND_tab* get_rnd_tab(){return rnd_tab;}
   inline gui::dev::tab::Tab* get_dev_tab(){return dev_tab;}
 
 private:
   GUI* gui;
   GUI_menu* gui_menu;
-  RND_tab* rnd_tab;
+  gui::rnd::tab::RND_tab* rnd_tab;
   gui::dev::tab::Tab* dev_tab;
 
   vector<string> vec_tab;

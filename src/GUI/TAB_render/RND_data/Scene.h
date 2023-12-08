@@ -3,9 +3,9 @@
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
 #include <TAB_render/Panel_nsp.h>
+#include <TAB_render/Tab_nsp.h>
 
 class GUI;
-class RND_panel;
 class Set;
 class ENG_database;
 
@@ -31,7 +31,7 @@ public:
   int data_node_tree(data::Set* set);
 
 private:
-  RND_panel* rnd_panel;
+  gui::rnd::tab::RND_panel* rnd_panel;
   gui::rnd::panel::Object* gui_object;
   Set* gui_set;
   ENG_database* eng_database;

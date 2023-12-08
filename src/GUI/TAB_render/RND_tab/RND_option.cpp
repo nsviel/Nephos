@@ -6,6 +6,8 @@
 #include <VK_main/VK_info.h>
 
 
+namespace gui::rnd::tab{
+
 //Constructor / Destructor
 RND_option::RND_option(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
@@ -55,4 +57,6 @@ void RND_option::option_fps(){
   ImGui::SliderInt("FPS max", max_fps, 10, 1000);
 
   //---------------------------
+}
+
 }
