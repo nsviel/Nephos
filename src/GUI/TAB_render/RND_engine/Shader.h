@@ -55,7 +55,7 @@ private:
   ENG_shader* eng_shader;
   gui::editor::Text* editor_vs;
   gui::editor::Text* editor_fs;
-  gui::widget::GUI_console* gui_console;
+  gui::widget::Console* gui_console;
 
   vector<string> vec_shader_class;
   vector<string> vec_shader_subclass;

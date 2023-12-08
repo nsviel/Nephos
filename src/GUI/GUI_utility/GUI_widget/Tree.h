@@ -1,7 +1,7 @@
 #pragma once
 
 #include <RND_tab/struct_init.h>
-#include <GUI_widget/struct_node.h>
+#include <GUI_widget/Tree_node.h>
 #include <UTL_specific/common.h>
 
 class Init;
@@ -9,12 +9,12 @@ class Init;
 
 namespace gui::widget{
 
-class RND_tree
+class Tree
 {
 public:
   //Constructor / Destructor
-  RND_tree();
-  ~RND_tree();
+  Tree();
+  ~Tree();
 
 public:
   //Main function

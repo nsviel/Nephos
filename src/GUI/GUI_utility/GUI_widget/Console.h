@@ -5,12 +5,12 @@
 
 namespace gui::widget{
 
-class GUI_console
+class Console
 {
 public:
   //Constructor / Destructor
-  GUI_console();
-  ~GUI_console();
+  Console();
+  ~Console();
 
 public:
   //Main function
@@ -29,7 +29,7 @@ public:
   static char* Strdup(const char* s)                           { IM_ASSERT(s); size_t len = strlen(s) + 1; void* buf = malloc(len); IM_ASSERT(buf); return (char*)memcpy(buf, (const void*)s, len); }
   static void  Strtrim(char* s)                                { char* str_end = s + strlen(s); while (str_end > s && str_end[-1] == ' ') str_end--; *str_end = 0; }
   static int TextEditCallbackStub(ImGuiInputTextCallbackData* data){
-    GUI_console* console = (GUI_console*)data->UserData;
+    Console* console = (Console*)data->UserData;
     return console->TextEditCallback(data);
   }
 

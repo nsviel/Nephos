@@ -1,16 +1,16 @@
 #pragma once
 
-#include <GUI_widget/RND_tree.h>
-#include <GUI_widget/GUI_dialog.h>
-#include <GUI_widget/GUI_console.h>
+#include <GUI_widget/Tree.h>
+#include <GUI_widget/Dialog.h>
+#include <GUI_widget/Console.h>
 
 
 namespace gui::widget{
   //---------------------------
 
-  class RND_tree;
-  class GUI_dialog;
-  class GUI_console;
+  class Tree;
+  class Dialog;
+  class Console;
 
   //---------------------------
 }

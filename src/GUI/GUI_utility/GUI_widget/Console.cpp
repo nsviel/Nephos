@@ -1,20 +1,20 @@
-#include "GUI_console.h"
+#include "Console.h"
 
 
 namespace gui::widget{
 
 //Constructor / Destructor
-GUI_console::GUI_console(){
+Console::Console(){
   //---------------------------
 
   this->AutoScroll = true;
 
   //---------------------------
 }
-GUI_console::~GUI_console(){}
+Console::~Console(){}
 
 //Main function
-void GUI_console::draw_console(string title){
+void Console::draw_console(string title){
   //---------------------------
 
   // Reserve enough left-over height for 1 separator + 1 input text
@@ -85,7 +85,7 @@ void GUI_console::draw_console(string title){
 }
 
 //Add / clear function
-void GUI_console::add_log(const char* fmt, ...){
+void Console::add_log(const char* fmt, ...){
   //---------------------------
 
   // FIXME-OPT
@@ -99,7 +99,7 @@ void GUI_console::add_log(const char* fmt, ...){
 
   //---------------------------
 }
-void GUI_console::add_log(string& log){
+void Console::add_log(string& log){
   //---------------------------
 
   char* copy = ImStrdup(log.c_str());
@@ -107,7 +107,7 @@ void GUI_console::add_log(string& log){
 
   //---------------------------
 }
-void GUI_console::add_file(string prefix, string path){
+void Console::add_file(string prefix, string path){
   //---------------------------
 
   //Retrieve file content
@@ -138,7 +138,7 @@ void GUI_console::add_file(string prefix, string path){
 
   //---------------------------
 }
-void GUI_console::clear_log(){
+void Console::clear_log(){
   //---------------------------
 
   for (int i = 0; i < Items.Size; i++){
@@ -150,7 +150,7 @@ void GUI_console::clear_log(){
 }
 
 //Subfunction
-void GUI_console::draw_command_line(){
+void Console::draw_command_line(){
   //---------------------------
 
   bool reclaim_focus = false;
@@ -167,7 +167,7 @@ void GUI_console::draw_command_line(){
 
   //---------------------------
 }
-void GUI_console::ExecCommand(const char* command_line){
+void Console::ExecCommand(const char* command_line){
   //---------------------------
 
   add_log("# %s\n", command_line);
@@ -211,7 +211,7 @@ void GUI_console::ExecCommand(const char* command_line){
 
   //---------------------------
 }
-int GUI_console::TextEditCallback(ImGuiInputTextCallbackData* data){
+int Console::TextEditCallback(ImGuiInputTextCallbackData* data){
   //---------------------------
 
   //add_log("cursor: %d, selection: %d-%d", data->CursorPos, data->SelectionStart, data->SelectionEnd);

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "struct_init.h"
-#include <GUI_widget/struct_node.h>
+#include <GUI_widget/Tree_node.h>
 #include <UTL_specific/common.h>
 #include <GUI_utility/Widget_nsp.h>
 
@@ -38,7 +38,7 @@ private:
   ENG_scene* eng_scene;
   ENG_loader* eng_loader;
   Transformation* transformManager;
-  gui::widget::RND_tree* gui_tree;
+  gui::widget::Tree* gui_tree;
 
   vector<Tree_node*> nodes_root;
   vector<vector<Tree_node*>> nodes_path_vec;

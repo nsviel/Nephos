@@ -1,4 +1,4 @@
-#include "RND_tree.h"
+#include "Tree.h"
 
 #include <UTL_file/Directory.h>
 #include <UTL_file/Info.h>
@@ -7,11 +7,11 @@
 namespace gui::widget{
 
 //Constructor / Destructor
-RND_tree::RND_tree(){}
-RND_tree::~RND_tree(){}
+Tree::Tree(){}
+Tree::~Tree(){}
 
 //Tree view
-void RND_tree::design_tree(){
+void Tree::design_tree(){
   //---------------------------
 
   static ImGuiTableFlags flags;
@@ -38,7 +38,7 @@ void RND_tree::design_tree(){
 
   //---------------------------
 }
-void RND_tree::construct_tree(Struct_init* init){
+void Tree::construct_tree(Struct_init* init){
   this->nodes_path_vec.clear();
   this->init = init;
   //---------------------------
@@ -60,7 +60,7 @@ void RND_tree::construct_tree(Struct_init* init){
 }
 
 //subfunction
-void RND_tree::construct_node(string path, vector<Tree_node*>& nodes){
+void Tree::construct_node(string path, vector<Tree_node*>& nodes){
   if(path != ""){
     //---------------------------
 
@@ -78,7 +78,7 @@ void RND_tree::construct_node(string path, vector<Tree_node*>& nodes){
     //---------------------------
   }
 }
-void RND_tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>& nodes){
+void Tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>& nodes){
   //---------------------------
 
   for(int i=0; i<vec_path.size(); i++){
@@ -100,7 +100,7 @@ void RND_tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>&
 
   //---------------------------
 }
-void RND_tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* parent){
+void Tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* parent){
   vector<string> list_path = directory::list_all_path(path);
   //---------------------------
 
@@ -142,7 +142,7 @@ void RND_tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node
 
   //---------------------------
 }
-void RND_tree::display_node(Tree_node* node, vector<Tree_node*>& all_nodes){
+void Tree::display_node(Tree_node* node, vector<Tree_node*>& all_nodes){
   if(all_nodes.size() != 0){
     //---------------------------
 
@@ -188,7 +188,7 @@ void RND_tree::display_node(Tree_node* node, vector<Tree_node*>& all_nodes){
     //---------------------------
   }
 }
-void RND_tree::display_node_root(vector<Tree_node*>& all_nodes){
+void Tree::display_node_root(vector<Tree_node*>& all_nodes){
   //---------------------------
 
   for(int i=0; i<all_nodes.size(); i++){
@@ -210,7 +210,7 @@ void RND_tree::display_node_root(vector<Tree_node*>& all_nodes){
 
   //---------------------------
 }
-bool RND_tree::check_display_file_format(string path){
+bool Tree::check_display_file_format(string path){
   string format = info::get_format_from_path(path);
   //---------------------------
 
@@ -223,7 +223,7 @@ bool RND_tree::check_display_file_format(string path){
   //---------------------------
   return false;
 }
-void RND_tree::open_selection(Tree_node* node){
+void Tree::open_selection(Tree_node* node){
   //---------------------------
 
   if(node->type == "File"){

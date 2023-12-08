@@ -7,12 +7,12 @@ class GUI;
 
 namespace gui::widget{
 
-class GUI_dialog
+class Dialog
 {
 public:
   //Constructor / Destructor
-  GUI_dialog(GUI* gui);
-  ~GUI_dialog();
+  Dialog(GUI* gui);
+  ~Dialog();
 
 public:
   //Main function

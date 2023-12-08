@@ -25,7 +25,7 @@ Shader::Shader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   this->eng_shader = engine->get_eng_shader();
   this->editor_vs = new gui::editor::Text(gui);
   this->editor_fs = new gui::editor::Text(gui);
-  this->gui_console = new gui::widget::GUI_console();
+  this->gui_console = new gui::widget::Console();
 
   this->item_width = 100;
   this->ID_class = 0;

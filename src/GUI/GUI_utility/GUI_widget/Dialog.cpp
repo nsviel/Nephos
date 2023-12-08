@@ -1,20 +1,20 @@
-#include "GUI_dialog.h"
+#include "Dialog.h"
 #include <GUI.h>
 
 
 namespace gui::widget{
 
 //Constructor / Destructor
-GUI_dialog::GUI_dialog(GUI* gui){
+Dialog::Dialog(GUI* gui){
   //---------------------------
 
 
   //---------------------------
 }
-GUI_dialog::~GUI_dialog(){}
+Dialog::~Dialog(){}
 
 //Main function
-void GUI_dialog::open_file(){
+void Dialog::open_file(){
   //---------------------------
 
 
