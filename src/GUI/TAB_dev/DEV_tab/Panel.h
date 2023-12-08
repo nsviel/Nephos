@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <TAB_dev/Panel_nsp.h>
+#include <TAB_dev/Tab_nsp.h>
 
 
 namespace gui::dev::tab{
