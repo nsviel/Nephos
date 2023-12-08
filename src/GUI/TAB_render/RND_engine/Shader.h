@@ -11,12 +11,14 @@ class ENG_shader;
 class VK_engine;
 
 
-class RND_shader : public BASE_panel
+namespace gui::rnd::engine{
+
+class Shader : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  RND_shader(GUI* gui, bool* show_window, string name);
-  ~RND_shader();
+  Shader(GUI* gui, bool* show_window, string name);
+  ~Shader();
 
 public:
   //Main function
@@ -68,3 +70,5 @@ private:
   int ID_class;
   int ID_subclass;
 };
+
+}

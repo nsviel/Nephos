@@ -8,7 +8,6 @@
 #include <RND_tab/RND_menu.h>
 #include <RND_tab/RND_panel.h>
 #include <RND_profiler/RND_profiler.h>
-#include <RND_shader/RND_shader.h>
 #include <RND_tab/RND_option.h>
 #include <TAB_render/Panel_nsp.h>
 #include <image/IconsFontAwesome5.h>
@@ -33,7 +32,7 @@ void RND_tab::create_panels(){
   this->rnd_object = new gui::rnd::panel::Object(gui, &gui_render_panel->show_object, "data::Object");
   this->rnd_set = new gui::rnd::panel::Set(gui, &gui_render_panel->show_set, "Set");
   this->rnd_profiler = new RND_profiler(gui, &gui_render_panel->show_profiler, "Profiler");
-  this->rnd_shader = new RND_shader(gui, &gui_render_panel->show_shader, "Shader");
+  this->rnd_shader = new gui::rnd::engine::Shader(gui, &gui_render_panel->show_shader, "Shader");
   this->rnd_scene = new gui::rnd::panel::Scene(gui, &gui_render_panel->show_scene, "Scene");
   this->rnd_camera = new gui::rnd::panel::Camera(gui, &gui_render_panel->show_engine_camera, "Camera");
   this->rnd_kinect = new gui::rnd::panel::Kinect_panel(gui, &gui_render_panel->show_kinect, "Kinect");
