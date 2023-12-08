@@ -1,4 +1,4 @@
-#include "GUI_image.h"
+#include "Image.h"
 
 #include <GUI.h>
 #include <Vulkan.h>
@@ -8,8 +8,10 @@
 #include <VK_main/VK_texture.h>
 
 
+namespace gui::media{
+
 //Constructor / Destructor
-GUI_image::GUI_image(GUI* gui){
+Image::Image(GUI* gui){
   //---------------------------
 
   GUI_render* gui_render = gui->get_rnd_tab();
@@ -18,10 +20,10 @@ GUI_image::GUI_image(GUI* gui){
 
   //---------------------------
 }
-GUI_image::~GUI_image(){}
+Image::~Image(){}
 
 //Main function
-void GUI_image::draw_image_static(string path){
+void Image::draw_image_static(string path){
   //---------------------------
 
   this->load_image_static(path);
@@ -29,7 +31,7 @@ void GUI_image::draw_image_static(string path){
 
   //---------------------------
 }
-void GUI_image::draw_image_dynamic(string path){
+void Image::draw_image_dynamic(string path){
   //---------------------------
 
   this->load_image_dynamic(path);
@@ -37,7 +39,7 @@ void GUI_image::draw_image_dynamic(string path){
 
   //---------------------------
 }
-void GUI_image::draw_image_bin(string path){
+void Image::draw_image_bin(string path){
   //---------------------------
 
   this->load_image_bin(path);
@@ -47,7 +49,7 @@ void GUI_image::draw_image_bin(string path){
 }
 
 //Subfunction
-void GUI_image::load_image_static(string path){
+void Image::load_image_static(string path){
   static Struct_vk_image* image = nullptr;
   //---------------------------
 
@@ -61,7 +63,7 @@ void GUI_image::load_image_static(string path){
 
   //---------------------------
 }
-void GUI_image::load_image_dynamic(string path){
+void Image::load_image_dynamic(string path){
   static Struct_vk_image* image;
   //---------------------------
 
@@ -73,7 +75,7 @@ void GUI_image::load_image_dynamic(string path){
 
   //---------------------------
 }
-void GUI_image::load_image_bin(string path){
+void Image::load_image_bin(string path){
   static Struct_vk_image* image;
   //---------------------------
 
@@ -85,11 +87,13 @@ void GUI_image::load_image_bin(string path){
 
   //---------------------------
 }
-void GUI_image::display_image(){
+void Image::display_image(){
   //---------------------------
 
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
 
   //---------------------------
+}
+
 }

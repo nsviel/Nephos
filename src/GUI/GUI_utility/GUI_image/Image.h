@@ -7,12 +7,14 @@ class GUI;
 class VK_texture;
 
 
-class GUI_image
+namespace gui::media{
+
+class Image
 {
 public:
   //Constructor / Destructor
-  GUI_image(GUI* gui);
-  ~GUI_image();
+  Image(GUI* gui);
+  ~Image();
 
 public:
   //Main function
@@ -30,6 +32,8 @@ private:
   VK_texture* vk_texture;
   ImTextureID texture;
 };
+
+}
 
 
 #endif

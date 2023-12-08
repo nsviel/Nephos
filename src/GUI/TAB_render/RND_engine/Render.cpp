@@ -7,7 +7,6 @@
 #include <VK_main/VK_imgui.h>
 #include <UTL_window/UTL_window.h>
 #include <image/IconsFontAwesome5.h>
-#include <GUI_gpu/GUI_image.h>
 
 
 namespace gui::rnd::panel{
@@ -22,7 +21,7 @@ Render::Render(GUI* gui){
 
   this->utl_window = utility->get_utl_window();
   this->gui_control = new gui::rnd::engine::Control(gui);
-  this->gui_image = new GUI_image(gui);
+  this->gui_image = new gui::media::Image(gui);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
 
   //---------------------------

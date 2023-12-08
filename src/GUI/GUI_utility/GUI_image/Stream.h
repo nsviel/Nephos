@@ -9,12 +9,14 @@ class GUI;
 class VK_texture;
 
 
-class GUI_stream
+namespace gui::media{
+
+class Stream
 {
 public:
   //Constructor / Destructor
-  GUI_stream(GUI* gui);
-  ~GUI_stream();
+  Stream(GUI* gui);
+  ~Stream();
 
 public:
   //Main function
@@ -29,6 +31,8 @@ private:
   Struct_vk_image* vk_image;
   ImTextureID texture;
 };
+
+}
 
 
 #endif

@@ -1,11 +1,11 @@
 #pragma once
 
 #include <GUI_utility/Base_nsp.h>
+#include <GUI_utility/Media_nsp.h>
 #include <UTL_specific/common.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 
 class GUI;
-class GUI_stream;
 class Kinect;
 class K4A_depth;
 class K4A_infrared;
@@ -41,7 +41,7 @@ private:
   K4A_infrared* k4a_infrared;
   K4A_swarm* k4a_swarm;
 
-  vector<GUI_stream*> vec_gui_stream;
+  vector<gui::media::Stream*> vec_gui_stream;
 };
 
 }

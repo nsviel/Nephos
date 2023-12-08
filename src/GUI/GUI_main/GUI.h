@@ -13,7 +13,7 @@ class GUI_font;
 class GUI_control;
 class GUI_style;
 class GUI_gpu;
-class GUI_image;
+class Image;
 class GUI_tab;
 class GUI_render;
 class GUI_docking;

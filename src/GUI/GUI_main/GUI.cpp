@@ -3,7 +3,7 @@
 #include <Engine.h>
 #include <Utility.h>
 #include <UTL_window/UTL_window.h>
-#include <GUI_gpu/GUI_gpu.h>
+#include <GUI_image/GUI_gpu.h>
 #include <GUI_interface/GUI_tab.h>
 #include <GUI_interface/GUI_docking.h>
 #include <GUI_control/GUI_control.h>

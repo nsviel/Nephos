@@ -1,4 +1,4 @@
-#include "GUI_stream.h"
+#include "Stream.h"
 
 #include <GUI.h>
 #include <Vulkan.h>
@@ -6,9 +6,10 @@
 #include <GUI_main/GUI_render/GUI_render.h>
 
 
+namespace gui::media{
 
 //Constructor / Destructor
-GUI_stream::GUI_stream(GUI* gui){
+Stream::Stream(GUI* gui){
   //---------------------------
 
   GUI_render* gui_render = gui->get_rnd_tab();
@@ -18,10 +19,10 @@ GUI_stream::GUI_stream(GUI* gui){
 
   //---------------------------
 }
-GUI_stream::~GUI_stream(){}
+Stream::~Stream(){}
 
 //Main function
-void GUI_stream::draw_stream(data::Image* image, ImVec2 panel_size){
+void Stream::draw_stream(data::Image* image, ImVec2 panel_size){
   //---------------------------
 
   if(image->buffer != nullptr){
@@ -33,7 +34,7 @@ void GUI_stream::draw_stream(data::Image* image, ImVec2 panel_size){
 }
 
 //Subfunction
-void GUI_stream::convert_data_into_texture(data::Image* image){
+void Stream::convert_data_into_texture(data::Image* image){
   //---------------------------
 
   if(vk_image == nullptr){
@@ -46,4 +47,6 @@ void GUI_stream::convert_data_into_texture(data::Image* image){
   }
 
   //---------------------------
+}
+
 }

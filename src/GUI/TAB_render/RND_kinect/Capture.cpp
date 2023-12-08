@@ -1,7 +1,6 @@
 #include "Capture.h"
 
 #include <GUI.h>
-#include <GUI_gpu/GUI_stream.h>
 #include <Utility.h>
 #include <UTL_capture/UTL_capture.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_depth.h>
@@ -24,9 +23,9 @@ Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, 
   this->k4a_swarm = kinect->get_k4a_swarm();
   this->gui = gui;
 
-  this->vec_gui_stream.push_back(new GUI_stream(gui));
-  this->vec_gui_stream.push_back(new GUI_stream(gui));
-  this->vec_gui_stream.push_back(new GUI_stream(gui));
+  this->vec_gui_stream.push_back(new gui::media::Stream(gui));
+  this->vec_gui_stream.push_back(new gui::media::Stream(gui));
+  this->vec_gui_stream.push_back(new gui::media::Stream(gui));
 
   //---------------------------
 }

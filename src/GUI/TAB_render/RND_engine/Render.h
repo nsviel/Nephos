@@ -2,9 +2,9 @@
 
 #include <UTL_specific/common.h>
 #include <TAB_render/Engine_nsp.h>
+#include <GUI_utility/Media_nsp.h>
 
 class GUI;
-class GUI_image;
 class VK_imgui;
 class UTL_window;
 
@@ -29,7 +29,7 @@ public:
 
 private:
   gui::rnd::engine::Control* gui_control;
-  GUI_image* gui_image;
+  gui::media::Image* gui_image;
   VK_imgui* vk_imgui;
   UTL_window* utl_window;
 
