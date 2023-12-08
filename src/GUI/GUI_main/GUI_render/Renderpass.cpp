@@ -1,4 +1,4 @@
-#include "GUI_renderpass.h"
+#include "Renderpass.h"
 
 #include <Vulkan.h>
 #include <VK_main/VK_imgui.h>
@@ -8,7 +8,7 @@
 namespace gui{
 
 //Constructor / Destructor
-GUI_renderpass::GUI_renderpass(Vulkan* vulkan){
+Renderpass::Renderpass(Vulkan* vulkan){
   //---------------------------
 
   this->vk_imgui = vulkan->get_vk_imgui();
@@ -16,10 +16,10 @@ GUI_renderpass::GUI_renderpass(Vulkan* vulkan){
 
   //---------------------------
 }
-GUI_renderpass::~GUI_renderpass(){}
+Renderpass::~Renderpass(){}
 
 //Init function
-void GUI_renderpass::init_renderpass(){
+void Renderpass::init_renderpass(){
   //---------------------------
 
   //Renderpass
@@ -33,7 +33,7 @@ void GUI_renderpass::init_renderpass(){
   //---------------------------
   vk_engine->add_renderpass_description(renderpass);
 }
-void GUI_renderpass::create_subpass(Struct_vk_renderpass* renderpass){
+void Renderpass::create_subpass(Struct_vk_renderpass* renderpass){
   //---------------------------
 
   Shader_info* shader_info = new Shader_info();
@@ -46,7 +46,7 @@ void GUI_renderpass::create_subpass(Struct_vk_renderpass* renderpass){
 
   Struct_vk_subpass* subpass = new Struct_vk_subpass();
   subpass->target = "presentation";
-  subpass->draw_task = [this](Struct_vk_subpass* subpass){GUI_renderpass::draw(subpass);};
+  subpass->draw_task = [this](Struct_vk_subpass* subpass){Renderpass::draw(subpass);};
 
   Struct_vk_pipeline* pipeline = new Struct_vk_pipeline();
   pipeline->definition.name = "triangle";
@@ -60,7 +60,7 @@ void GUI_renderpass::create_subpass(Struct_vk_renderpass* renderpass){
 }
 
 //Draw function
-void GUI_renderpass::draw(Struct_vk_subpass* subpass){
+void Renderpass::draw(Struct_vk_subpass* subpass){
   //---------------------------
 
   vk_imgui->draw(subpass->command_buffer);

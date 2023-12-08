@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI_main/GUI_render/GUI_render.h>
+#include <GUI_main/GUI_render/Render.h>
 #include <GUI_main/GUI_nsp.h>
 #include <UTL_specific/common.h>
 
@@ -32,7 +32,7 @@ public:
   inline GUI_style* get_gui_style(){return gui_style;}
   inline gui::Tab* get_gui_tab(){return gui_tab;}
   inline GUI_font* get_gui_font(){return gui_font;}
-  inline gui::GUI_render* get_rnd_tab(){return gui_render;}
+  inline gui::Render* get_rnd_tab(){return gui_render;}
 
 private:
   Engine* engine;
@@ -45,5 +45,5 @@ private:
   gui::Docking* gui_docking;
   GUI_font* gui_font;
   gui::Tab* gui_tab;
-  gui::GUI_render* gui_render;
+  gui::Render* gui_render;
 };

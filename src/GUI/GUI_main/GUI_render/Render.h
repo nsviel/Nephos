@@ -11,15 +11,15 @@ class VK_render;
 class VK_imgui;
 
 namespace gui{
-class GUI_renderpass;
+class Renderpass;
 
 
-class GUI_render
+class Render
 {
 public:
   //Constructor / Destructor
-  GUI_render(GUI* gui);
-  ~GUI_render();
+  Render(GUI* gui);
+  ~Render();
 
 public:
   //Main functions
@@ -31,7 +31,7 @@ public:
   inline Vulkan* get_vulkan(){return vulkan;}
 
 private:
-  gui::GUI_renderpass* gui_renderpass;
+  gui::Renderpass* gui_renderpass;
   Vulkan* vulkan;
   VK_engine* vk_engine;
   VK_render* vk_render;

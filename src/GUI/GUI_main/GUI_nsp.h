@@ -4,8 +4,8 @@
 #include <GUI_interface/Docking.h>
 #include <GUI_interface/Menu.h>
 #include <GUI_interface/Tab.h>
-#include <GUI_render/GUI_render.h>
-#include <GUI_render/GUI_renderpass.h>
+#include <GUI_render/Render.h>
+#include <GUI_render/Renderpass.h>
 
 
 namespace gui{
@@ -15,8 +15,8 @@ namespace gui{
   class Docking;
   class Menu;
   class Tab;
-  class GUI_render;
-  class GUI_renderpass;
+  class Render;
+  class Renderpass;
 
   //---------------------------
 }

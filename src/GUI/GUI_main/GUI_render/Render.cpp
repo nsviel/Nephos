@@ -1,4 +1,4 @@
-#include "GUI_render.h"
+#include "Render.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -12,7 +12,7 @@
 namespace gui{
 
 //Constructor / Destructor
-GUI_render::GUI_render(GUI* gui){
+Render::Render(GUI* gui){
   //---------------------------
 
   Utility* utility = gui->get_utility();
@@ -22,7 +22,7 @@ GUI_render::GUI_render(GUI* gui){
   this->vulkan = engine->get_eng_vulkan();
   //this->vulkan = new Vulkan(utl_window);
   this->vk_engine = vulkan->get_vk_engine();
-  this->gui_renderpass = new gui::GUI_renderpass(vulkan);
+  this->gui_renderpass = new gui::Renderpass(vulkan);
   this->vk_imgui = vulkan->get_vk_imgui();
 
   vulkan->set_headless(false);
@@ -30,31 +30,31 @@ GUI_render::GUI_render(GUI* gui){
 
   //---------------------------
 }
-GUI_render::~GUI_render(){}
+Render::~Render(){}
 
 // Main code
-void GUI_render::init(){
+void Render::init(){
   //---------------------------
 
   vk_imgui->init();
 
   //---------------------------
 }
-void GUI_render::loop(){
+void Render::loop(){
   //---------------------------
 
   ImGui::Render();
 
   //---------------------------
 }
-void GUI_render::clean(){
+void Render::clean(){
   //---------------------------
 
   vk_imgui->clean();
 
   //---------------------------
 }
-void GUI_render::new_frame(){
+void Render::new_frame(){
   //---------------------------
 
   ImGui_ImplVulkan_NewFrame();

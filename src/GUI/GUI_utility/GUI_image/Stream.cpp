@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Vulkan.h>
 #include <VK_main/VK_texture.h>
-#include <GUI_main/GUI_render/GUI_render.h>
+#include <GUI_main/GUI_render/Render.h>
 
 
 namespace gui::media{
@@ -12,7 +12,7 @@ namespace gui::media{
 Stream::Stream(GUI* gui){
   //---------------------------
 
-  GUI_render* gui_render = gui->get_rnd_tab();
+  Render* gui_render = gui->get_rnd_tab();
   Vulkan* vulkan = gui_render->get_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
   this->vk_image = nullptr;

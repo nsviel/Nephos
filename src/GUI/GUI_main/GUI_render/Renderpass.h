@@ -11,12 +11,12 @@ class VK_imgui;
 
 namespace gui{
 
-class GUI_renderpass
+class Renderpass
 {
 public:
   //Constructor / Destructor
-  GUI_renderpass(Vulkan* vulkan);
-  ~GUI_renderpass();
+  Renderpass(Vulkan* vulkan);
+  ~Renderpass();
 
 public:
   //Main functions
