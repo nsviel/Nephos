@@ -5,7 +5,6 @@
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_scene.h>
 #include <image/IconsFontAwesome5.h>
-#include <TAB_render/RND_tab/RND_panel.h>
 
 
 namespace gui::rnd::panel{

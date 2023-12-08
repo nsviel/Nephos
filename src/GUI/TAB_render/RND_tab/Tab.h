@@ -10,12 +10,12 @@ namespace gui::rnd::tab{
 class RND_menu;
 
 
-class RND_tab
+class Tab
 {
 public:
   //Constructor / Destructor
-  RND_tab(GUI* gui);
-  ~RND_tab();
+  Tab(GUI* gui);
+  ~Tab();
 
 public:
   //Main functions

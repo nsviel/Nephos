@@ -10,7 +10,7 @@ class RND_init;
 namespace gui::rnd::tab{
 class RND_panel;
 class RND_option;
-class RND_tab;
+class Tab;
 
 
 class RND_menu
@@ -32,7 +32,7 @@ private:
   RND_init* gui_init;
   gui::rnd::tab::RND_panel* rnd_panel;
   gui::rnd::tab::RND_option* rnd_option;
-  gui::rnd::tab::RND_tab* rnd_tab;
+  gui::rnd::tab::Tab* rnd_tab;
 };
 
 }

@@ -4,14 +4,13 @@
 #include <Vulkan.h>
 #include <GUI_interface/GUI_menu.h>
 #include <image/IconsFontAwesome5.h>
-#include <TAB_render/RND_tab/RND_tab.h>
 
 
 //Constructor / Destructor
 GUI_tab::GUI_tab(GUI* gui){
   //---------------------------
 
-  this->rnd_tab = new gui::rnd::tab::RND_tab(gui);
+  this->rnd_tab = new gui::rnd::tab::Tab(gui);
   this->dev_tab = new gui::dev::tab::Tab(gui);
   this->gui_menu = new GUI_menu(gui);
 

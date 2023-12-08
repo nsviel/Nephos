@@ -3,11 +3,8 @@
 #include <GUI.h>
 #include <Engine.h>
 #include <GUI_interface/GUI_tab.h>
-#include <TAB_render/RND_tab/RND_tab.h>
-#include <TAB_render/RND_tab/RND_panel.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_load/ENG_loader.h>
-#include <TAB_render/RND_tab/RND_option.h>
 #include <image/IconsFontAwesome5.h>
 #include <TAB_render/RND_initialization/RND_init.h>
 

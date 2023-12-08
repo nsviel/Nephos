@@ -1,4 +1,4 @@
-#include "RND_tab.h"
+#include "Tab.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -12,7 +12,7 @@
 namespace gui::rnd::tab{
 
 //Constructor / Destructor
-RND_tab::RND_tab(GUI* gui){
+Tab::Tab(GUI* gui){
   //---------------------------
 
   this->gui = gui;
@@ -20,10 +20,10 @@ RND_tab::RND_tab(GUI* gui){
 
   //---------------------------
 }
-RND_tab::~RND_tab(){}
+Tab::~Tab(){}
 
 //Main function
-void RND_tab::create_panels(){
+void Tab::create_panels(){
   //---------------------------
 
   this->rnd_option = new gui::rnd::tab::RND_option(gui, &gui_render_panel->show_option, "Option");
@@ -40,7 +40,7 @@ void RND_tab::create_panels(){
 
   //---------------------------
 }
-void RND_tab::draw_panels(){
+void Tab::draw_panels(){
   //---------------------------
 
   rnd_menu->run_tab_menu();
@@ -57,7 +57,7 @@ void RND_tab::draw_panels(){
 
   //---------------------------
 }
-void RND_tab::open_panels(){
+void Tab::open_panels(){
   //---------------------------
 
   ImGui::Checkbox(ICON_FA_COG " Option##456", &gui_render_panel->show_option);
