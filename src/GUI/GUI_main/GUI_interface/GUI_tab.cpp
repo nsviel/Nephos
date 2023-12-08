@@ -2,9 +2,10 @@
 
 #include <GUI.h>
 #include <Vulkan.h>
-#include <GUI_interface/GUI_menu.h>
 #include <image/IconsFontAwesome5.h>
 
+
+namespace gui{
 
 //Constructor / Destructor
 GUI_tab::GUI_tab(GUI* gui){
@@ -12,7 +13,7 @@ GUI_tab::GUI_tab(GUI* gui){
 
   this->rnd_tab = new gui::rnd::tab::Tab(gui);
   this->dev_tab = new gui::dev::tab::Tab(gui);
-  this->gui_menu = new GUI_menu(gui);
+  this->gui_menu = new gui::GUI_menu(gui);
 
   this->active_tab = "Render";
   this->tab_to_open = "";
@@ -106,4 +107,6 @@ void GUI_tab::next_tab(){
 
 
   //---------------------------
+}
+
 }

@@ -1,13 +1,14 @@
 #pragma once
 
 #include <UTL_specific/common.h>
+#include <GUI_main/GUI_nsp.h>
 
 class GUI;
-class GUI_tab;
 class UTL_window;
 
-
 namespace gui{
+class GUI_tab;
+
 
 class Control
 {
@@ -27,7 +28,7 @@ public:
 
 private:
   UTL_window* utl_window;
-  GUI_tab* gui_tab;
+  gui::GUI_tab* gui_tab;
 };
 
 }

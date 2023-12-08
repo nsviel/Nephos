@@ -5,6 +5,8 @@
 class GUI;
 
 
+namespace gui{
+
 class GUI_docking
 {
 public:
@@ -17,5 +19,6 @@ public:
   void docker_space_main();
 
 private:
-
 };
+
+}

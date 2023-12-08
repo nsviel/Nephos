@@ -6,6 +6,8 @@
 #include <image/IconsFontAwesome5.h>
 
 
+namespace gui{
+
 //Constructor / Destructor
 GUI_menu::GUI_menu(GUI* gui){
   //---------------------------
@@ -79,4 +81,6 @@ void GUI_menu::menu_git(){
   }
 
   //---------------------------
+}
+
 }

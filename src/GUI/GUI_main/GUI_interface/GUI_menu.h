@@ -7,6 +7,8 @@ class GUI;
 class GUI_font;
 
 
+namespace gui{
+
 class GUI_menu
 {
 public:
@@ -28,3 +30,5 @@ private:
 
   bool show_demo;
 };
+
+}

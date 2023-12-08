@@ -3,6 +3,8 @@
 #include <GUI.h>
 
 
+namespace gui{
+
 //Constructor / Destructor
 GUI_docking::GUI_docking(GUI* gui){
   //---------------------------
@@ -47,4 +49,6 @@ void GUI_docking::docker_space_main(){
   ImGui::End();
 
   //---------------------------
+}
+
 }

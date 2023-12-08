@@ -2,11 +2,13 @@
 
 #include <TAB_dev/Tab_nsp.h>
 #include <TAB_render/Tab_nsp.h>
+#include <GUI_main/GUI_nsp.h>
 #include <UTL_specific/common.h>
 
 class GUI;
-class GUI_menu;
 
+
+namespace gui{
 
 class GUI_tab
 {
@@ -30,7 +32,7 @@ public:
 
 private:
   GUI* gui;
-  GUI_menu* gui_menu;
+  gui::GUI_menu* gui_menu;
   gui::rnd::tab::Tab* rnd_tab;
   gui::dev::tab::Tab* dev_tab;
 
@@ -38,3 +40,5 @@ private:
   string active_tab;
   string tab_to_open;
 };
+
+}
