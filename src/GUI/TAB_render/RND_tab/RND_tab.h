@@ -34,7 +34,7 @@ public:
   inline gui::rnd::panel::Object* get_rnd_object(){return rnd_object;}
   inline gui::rnd::panel::Set* get_rnd_set(){return rnd_set;}
   inline RND_camera* get_rnd_camera(){return rnd_camera;}
-  inline gui::rnd::panel::Engine* get_rnd_engine(){return rnd_engine;}
+  inline gui::rnd::panel::Render* get_rnd_render(){return rnd_render;}
   inline gui::rnd::panel::Scene* get_rnd_scene(){return rnd_scene;}
   inline RND_option* get_rnd_option(){return rnd_option;}
 
@@ -47,7 +47,7 @@ private:
   RND_profiler* rnd_profiler;
   gui::rnd::panel::Scene* rnd_scene;
   RND_shader* rnd_shader;
-  gui::rnd::panel::Engine* rnd_engine;
+  gui::rnd::panel::Render* rnd_render;
   gui::rnd::panel::Object* rnd_object;
   RND_camera* rnd_camera;
   RND_capture* rnd_capture;
