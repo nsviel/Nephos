@@ -1,19 +1,21 @@
 //https://github.com/thedmd/imgui-node-editor
-#include "EDI_node.h"
+#include "Node.h"
 #include <GUI.h>
 
 
+namespace gui::editor{
+
 //Constructor / Destructor
-EDI_node::EDI_node(EDI_node* gui){
+Node::Node(Node* gui){
   //---------------------------
 
 
   //---------------------------
 }
-EDI_node::~EDI_node(){}
+Node::~Node(){}
 
 //Main function
-void EDI_node::design_panel(){
+void Node::design_panel(){
   //---------------------------
 
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
@@ -27,7 +29,7 @@ void EDI_node::design_panel(){
 }
 
 //Subfunction
-void EDI_node::node_editor(){
+void Node::node_editor(){
   //---------------------------
 
   //Example exampe;
@@ -36,4 +38,6 @@ void EDI_node::node_editor(){
     //  return exampe.Run();
 
   //---------------------------
+}
+
 }

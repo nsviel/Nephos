@@ -8,12 +8,12 @@ class GUI;
 
 namespace gui::editor{
 
-class EDI_hexa
+class Hexa
 {
 public:
   //Constructor / Destructor
-  EDI_hexa(GUI* gui);
-  ~EDI_hexa();
+  Hexa(GUI* gui);
+  ~Hexa();
 
 public:
   //Main functions

@@ -2,9 +2,10 @@
 
 #include <UTL_specific/common.h>
 #include <GUI_utility/Base_nsp.h>
+#include <GUI_utility/Editor_nsp.h>
 
 class GUI;
-class EDI_text;
+class Text;
 
 
 namespace gui::dev::panel{
@@ -21,7 +22,7 @@ public:
   void design_panel();
 
 private:
-  EDI_text* editor;
+  gui::editor::Text* editor;
 };
 
 }

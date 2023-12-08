@@ -1,20 +1,20 @@
-#include "EDI_hexa.h"
+#include "Hexa.h"
 #include <GUI.h>
 
 
 namespace gui::editor{
 
 //Constructor / Destructor
-EDI_hexa::EDI_hexa(GUI* gui){
+Hexa::Hexa(GUI* gui){
   //---------------------------
 
 
   //---------------------------
 }
-EDI_hexa::~EDI_hexa(){}
+Hexa::~Hexa(){}
 
 //Main function
-void EDI_hexa::design_panel(){
+void Hexa::design_panel(){
   //---------------------------
 
 
@@ -22,7 +22,7 @@ void EDI_hexa::design_panel(){
 }
 
 //Subfunction
-void EDI_hexa::design_editor_memory(){
+void Hexa::design_editor_memory(){
   //---------------------------
 
   static MemoryEditor mem_edit;

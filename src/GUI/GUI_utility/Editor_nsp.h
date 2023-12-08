@@ -1,16 +1,16 @@
 #pragma once
 
-#include <GUI_editor/EDI_hexa.h>
-#include <GUI_editor/EDI_node.h>
-#include <GUI_editor/EDI_text.h>
+#include <GUI_editor/Hexa.h>
+#include <GUI_editor/Node.h>
+#include <GUI_editor/Text.h>
 
 
 namespace gui::editor{
   //---------------------------
 
-  class EDI_hexa;
-  class EDI_node;
-  class EDI_text;
+  class Hexa;
+  class Node;
+  class Text;
 
   //---------------------------
 }

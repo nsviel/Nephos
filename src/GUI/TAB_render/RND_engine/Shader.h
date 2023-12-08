@@ -3,9 +3,10 @@
 #include <UTL_specific/common.h>
 #include <ENG_shader/Base/BASE_shader.h>
 #include <GUI_utility/Base_nsp.h>
+#include <GUI_utility/Editor_nsp.h>
 
 class GUI;
-class EDI_text;
+class Text;
 class GUI_console;
 class ENG_shader;
 class VK_engine;
@@ -52,8 +53,8 @@ public:
 private:
   VK_engine* vk_engine;
   ENG_shader* eng_shader;
-  EDI_text* editor_vs;
-  EDI_text* editor_fs;
+  gui::editor::Text* editor_vs;
+  gui::editor::Text* editor_fs;
   GUI_console* gui_console;
 
   vector<string> vec_shader_class;

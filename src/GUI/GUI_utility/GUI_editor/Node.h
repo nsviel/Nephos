@@ -3,15 +3,17 @@
 #include <UTL_specific/common.h>
 #include <imgui/node/imgui_node_editor.h>
 
-class EDI_node;
+class Node;
 
 
-class EDI_node
+namespace gui::editor{
+
+class Node
 {
 public:
   //Constructor / Destructor
-  EDI_node(EDI_node* gui);
-  ~EDI_node();
+  Node(Node* gui);
+  ~Node();
 
 public:
   //Main functions
@@ -22,3 +24,5 @@ public:
 
 private:
 };
+
+}

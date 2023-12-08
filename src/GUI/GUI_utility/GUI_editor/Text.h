@@ -7,12 +7,14 @@ class GUI;
 class GUI_font;
 
 
-class EDI_text
+namespace gui::editor{
+
+class Text
 {
 public:
   //Constructor / Destructor
-  EDI_text(GUI* gui);
-  ~EDI_text();
+  Text(GUI* gui);
+  ~Text();
 
 public:
   //Main functions
@@ -43,3 +45,5 @@ private:
   string current_file_path;
   bool has_been_saved;
 };
+
+}

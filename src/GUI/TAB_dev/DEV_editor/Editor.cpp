@@ -1,7 +1,6 @@
 #include "Editor.h"
 
 #include <GUI.h>
-#include <GUI_editor/EDI_text.h>
 
 
 namespace gui::dev::panel{
@@ -10,7 +9,7 @@ namespace gui::dev::panel{
 Editor::Editor(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  this->editor = new EDI_text(gui);
+  this->editor = new gui::editor::Text(gui);
 
   //---------------------------
 }
