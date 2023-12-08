@@ -1,7 +1,7 @@
 #ifndef LOADER_H
 #define LOADER_H
 
-#include <UTL_base/Struct_data_file.h>
+#include <UTL_base/Struct_file.h>
 #include <UTL_base/Struct_object.h>
 #include <UTL_file/Directory.h>
 #include <UTL_file/Zenity.h>
@@ -27,7 +27,7 @@ public:
   void load_by_zenity();
 
   //Subfunctions
-  void transfert_data(Object* object, Data_file* eng_data);
+  void transfert_data(Object* object, data::File* eng_data);
 
 private:
   ENG_format* eng_format;

@@ -6,10 +6,10 @@ OBJ_importer::OBJ_importer(){}
 OBJ_importer::~OBJ_importer(){}
 
 //Main function
-Data_file* OBJ_importer::Loader(std::string path){
+data::File* OBJ_importer::Loader(std::string path){
   //---------------------------
 
-  Data_file* data = new Data_file();
+  data::File* data = new data::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
 
@@ -163,7 +163,7 @@ void OBJ_importer::parse_mtl(std::string path_obj){
 
   //---------------------------
 }
-void OBJ_importer::fill_data_file(Data_file* data, std::vector<Vertex>& vertex_vec){
+void OBJ_importer::fill_data_file(data::File* data, std::vector<Vertex>& vertex_vec){
   //---------------------------
 
   if(is_face){

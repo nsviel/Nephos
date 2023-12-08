@@ -17,8 +17,8 @@ PTS_importer::PTS_importer(){
 PTS_importer::~PTS_importer(){}
 
 //Main load functions
-Data_file* PTS_importer::Loader(std::string path){
-  Data_file* data = new Data_file();
+data::File* PTS_importer::Loader(std::string path){
+  data::File* data = new data::File();
   //---------------------------
 
   data->name = info::get_name_from_path(path);
@@ -52,8 +52,8 @@ Data_file* PTS_importer::Loader(std::string path){
   //---------------------------
   return data;
 }
-Data_file* PTS_importer::Loader(std::string path, int lmin, int lmax){
-  Data_file* data = new Data_file();
+data::File* PTS_importer::Loader(std::string path, int lmin, int lmax){
+  data::File* data = new data::File();
   //---------------------------
 
   //Initialization
@@ -246,7 +246,7 @@ void PTS_importer::Loader_configuration(){
   //---------------------------
   endParameters = true;
 }
-void PTS_importer::Loader_data(Data_file* data, int FILE_config){
+void PTS_importer::Loader_data(data::File* data, int FILE_config){
   std::istringstream iss(line);
   float x,y,z,r,g,b,I,nx,ny,nz;
   //---------------------------

@@ -24,8 +24,8 @@ Parser_HDL32::Parser_HDL32(){
 Parser_HDL32::~Parser_HDL32(){}
 
 //Main function
-Data_file* Parser_HDL32::parse_packet(std::vector<int> packet){
-  Data_file* cloud = new Data_file();
+data::File* Parser_HDL32::parse_packet(std::vector<int> packet){
+  data::File* cloud = new data::File();
   //---------------------------
 
   //Packet timestamp
@@ -215,7 +215,7 @@ void Parser_HDL32::parse_timestamp(){
 
   //---------------------------
 }
-void Parser_HDL32::final_check(Data_file* cloud){
+void Parser_HDL32::final_check(data::File* cloud){
   //---------------------------
 
   //Supress points when no distance are measured

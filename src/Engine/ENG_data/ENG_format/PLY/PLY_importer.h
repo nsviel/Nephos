@@ -1,7 +1,7 @@
 #ifndef PLY_IMPORTER_H
 #define PLY_IMPORTER_H
 
-#include <UTL_base/Struct_data_file.h>
+#include <UTL_base/Struct_file.h>
 #include <UTL_file/Info.h>
 #include <UTL_function/fct_math.h>
 #include <glm/glm.hpp>
@@ -22,7 +22,7 @@ public:
 
 public:
   //Main functions
-  Data_file* Loader(std::string path_file);
+  data::File* Loader(std::string path_file);
 
 private:
   //Loader data
@@ -48,7 +48,7 @@ private:
   float get_uchar_from_binary(char* block_data, int& offset);
 
 private:
-  Data_file* data;
+  data::File* data;
 
   //Parametrization
   std::vector<std::string> property_type;

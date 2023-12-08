@@ -1,7 +1,7 @@
 #ifndef FILE_PTX_H
 #define FILE_PTX_H
 
-#include <UTL_base/Struct_data_file.h>
+#include <UTL_base/Struct_file.h>
 #include <UTL_file/Info.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -38,7 +38,7 @@ public:
 
 public:
   //Main functions
-  Data_file* Loader(std::string pathFile);
+  data::File* Loader(std::string pathFile);
   bool Exporter(std::string pathFile);
 
   //Subfunctions
@@ -61,7 +61,7 @@ public:
 
 private:
   //Datatypes
-  Data_file* data;
+  data::File* data;
 
   std::list<PTXCloud*>* list_ptxCloud;
   float x, y, z, I, r, g ,b;

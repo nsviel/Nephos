@@ -1,7 +1,7 @@
 #ifndef XYZ_IMPORTER_H
 #define XYZ_IMPORTER_H
 
-#include <UTL_base/Struct_data_file.h>
+#include <UTL_base/Struct_file.h>
 #include <UTL_file/Info.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -16,11 +16,11 @@ public:
   ~XYZ_importer();
 
 public:
-  Data_file* Loader(std::string filePath);
+  data::File* Loader(std::string filePath);
 
 private:
   //Datatypes
-  Data_file* data_out;
+  data::File* data_out;
 };
 
 #endif

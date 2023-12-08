@@ -1,7 +1,7 @@
 #ifndef FORMAT_H
 #define FORMAT_H
 
-#include <UTL_base/Struct_data_file.h>
+#include <UTL_base/Struct_file.h>
 #include <string>
 
 class PLY_importer;
@@ -21,7 +21,7 @@ public:
   ~ENG_format();
 
 public:
-  Data_file* get_data_from_file(std::string path);
+  data::File* get_data_from_file(std::string path);
 
 private:
   PLY_importer* ply_import;

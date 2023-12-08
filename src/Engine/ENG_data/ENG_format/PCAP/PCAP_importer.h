@@ -1,7 +1,7 @@
 #ifndef PCAP_IMPORTER_H
 #define PCAP_IMPORTER_H
 
-#include <UTL_base/Struct_data_file.h>
+#include <UTL_base/Struct_file.h>
 #include <UTL_file/Info.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -21,10 +21,10 @@ public:
   ~PCAP_importer();
 
 public:
-  Data_file* Loader(std::string pathFile);
+  data::File* Loader(std::string pathFile);
 
-  void Loader_vlp16(Data_file* data, std::string pathFile);
-  void Loader_hdl32(Data_file* data, std::string pathFile);
+  void Loader_vlp16(data::File* data, std::string pathFile);
+  void Loader_hdl32(data::File* data, std::string pathFile);
   int get_file_length(std::string pathFile);
 
   inline void set_lidar_model(std::string value){this->LiDAR_model = value;}

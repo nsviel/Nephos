@@ -59,11 +59,11 @@ bool count_packets(const PDU &){
 }
 
 //Main function
-Data_file* PCAP_importer::Loader(std::string path){
+data::File* PCAP_importer::Loader(std::string path){
   file_packets.clear();
   //---------------------------
 
-  Data_file* data = new Data_file();
+  data::File* data = new data::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
 
@@ -100,7 +100,7 @@ Data_file* PCAP_importer::Loader(std::string path){
   return data;
 }
 
-void PCAP_importer::Loader_vlp16(Data_file* data, std::string path){
+void PCAP_importer::Loader_vlp16(data::File* data, std::string path){
   Capture_frame frameManager;
   Parser_VLP16 udpManager;
   //---------------------------
@@ -108,12 +108,12 @@ void PCAP_importer::Loader_vlp16(Data_file* data, std::string path){
   int cpt = 0;
   for(int i=0; i<file_packets.size(); i++){
 
-    Data_file* cloud = udpManager.parse_packet(file_packets[i]);
+    data::File* cloud = udpManager.parse_packet(file_packets[i]);
     bool frame_rev = frameManager.build_frame(cloud);
 
     if(frame_rev){
-      Data_file* frame = frameManager.get_endedFrame();
-      Data_file* frame_data = new Data_file();
+      data::File* frame = frameManager.get_endedFrame();
+      data::File* frame_data = new data::File();
 
       frame_data->name = "frame_" + std::to_string(cpt); cpt++;
       frame_data->path_file = path;
@@ -133,18 +133,18 @@ void PCAP_importer::Loader_vlp16(Data_file* data, std::string path){
 
   //---------------------------
 }
-void PCAP_importer::Loader_hdl32(Data_file* data, std::string path){
+void PCAP_importer::Loader_hdl32(data::File* data, std::string path){
   Capture_frame frameManager;
   Parser_HDL32 udpManager;
   //---------------------------
 
   for(int i=0; i<file_packets.size(); i++){
-    Data_file* cloud = udpManager.parse_packet(file_packets[i]);
+    data::File* cloud = udpManager.parse_packet(file_packets[i]);
     bool frame_rev = frameManager.build_frame(cloud);
 
     if(frame_rev){
-      Data_file* frame = frameManager.get_endedFrame();
-      Data_file* frame_data = new Data_file();
+      data::File* frame = frameManager.get_endedFrame();
+      data::File* frame_data = new data::File();
 
       frame_data->path_file = path;
       frame_data->nb_element = frame->xyz.size();

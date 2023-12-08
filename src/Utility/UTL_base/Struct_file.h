@@ -5,8 +5,10 @@
 #include <vector>
 
 
+namespace data{
+
 //Generique structure to parse file point clouds
-struct Data_file{
+struct File{
   //---------------------------
 
   //Info
@@ -27,7 +29,9 @@ struct Data_file{
   std::vector<float> R;
   std::vector<float> A;
 
-  std::vector<Data_file*> vec_data;
+  std::vector<File*> vec_data;
 
   //---------------------------
 };
+
+}

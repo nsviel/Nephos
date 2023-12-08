@@ -1,7 +1,7 @@
 #ifndef OBJ_IMPORTER_H
 #define OBJ_IMPORTER_H
 
-#include <UTL_base/Struct_data_file.h>
+#include <UTL_base/Struct_file.h>
 #include <UTL_file/Info.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -37,16 +37,16 @@ public:
 
 public:
   //Main function
-  Data_file* Loader(std::string filePath);
+  data::File* Loader(std::string filePath);
 
   //Subfunction
   void init_params();
   std::vector<Vertex> get_data_from_file(std::istream& in);
   void parse_mtl(std::string path_obj);
-  void fill_data_file(Data_file* data, std::vector<Vertex>& vertex_vec);
+  void fill_data_file(data::File* data, std::vector<Vertex>& vertex_vec);
 
 private:
-  Data_file* data_out;
+  data::File* data_out;
   std::string file_mtl;
   std::string file_texture;
   bool is_face;

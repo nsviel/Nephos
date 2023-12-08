@@ -1,7 +1,7 @@
 #ifndef CAPTURE_FRAME_H
 #define CAPTURE_FRAME_H
 
-#include <UTL_base/Struct_data_file.h>
+#include <UTL_base/Struct_file.h>
 #include <UTL_function/fct_math.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -18,18 +18,18 @@ public:
 
 public:
   //Main functions
-  bool build_frame(Data_file* cloud);
+  bool build_frame(data::File* cloud);
   void reset_frame();
 
   //Subfunctions
-  void add_cloudsToFrame(Data_file* cloud);
-  void end_cloudsToFrame(Data_file* cloud, int index);
+  void add_cloudsToFrame(data::File* cloud);
+  void end_cloudsToFrame(data::File* cloud, int index);
 
-  inline Data_file* get_endedFrame(){return frame_ended;}
+  inline data::File* get_endedFrame(){return frame_ended;}
 
 private:
-  Data_file* frame_onrun;
-  Data_file* frame_ended;
+  data::File* frame_onrun;
+  data::File* frame_ended;
 };
 
 #endif

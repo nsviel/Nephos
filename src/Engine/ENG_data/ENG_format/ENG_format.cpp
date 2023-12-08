@@ -37,8 +37,8 @@ ENG_format::~ENG_format(){
 }
 
 //Main functions
-Data_file* ENG_format::get_data_from_file(std::string path){
-  Data_file* data;
+data::File* ENG_format::get_data_from_file(std::string path){
+  data::File* data;
   //---------------------------
 
   std::string format = info::get_format_from_path(path);

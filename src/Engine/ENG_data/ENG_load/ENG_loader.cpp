@@ -45,7 +45,7 @@ Object* ENG_loader::load_object(std::string path){
   object->ID = ID++;
 
   //Retrieve data and insert into engine
-  Data_file* data = eng_format->get_data_from_file(path);
+  data::File* data = eng_format->get_data_from_file(path);
   this->transfert_data(object, data);
   eng_scene->insert_object_scene(object);
 
@@ -77,7 +77,7 @@ void ENG_loader::load_by_zenity(){
 }
 
 //Subfunctions
-void ENG_loader::transfert_data(Object* object, Data_file* data){
+void ENG_loader::transfert_data(Object* object, data::File* data){
   //---------------------------
 
   object->name = data->name;

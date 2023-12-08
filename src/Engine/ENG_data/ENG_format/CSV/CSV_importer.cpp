@@ -9,8 +9,8 @@ CSV_importer::CSV_importer(){}
 CSV_importer::~CSV_importer(){}
 
 //Main function
-Data_file* CSV_importer::Loader(std::string pathFile){
-  Data_file* data;
+data::File* CSV_importer::Loader(std::string pathFile){
+  data::File* data;
   //---------------------------
 
   std::ifstream file(pathFile);
@@ -18,7 +18,7 @@ Data_file* CSV_importer::Loader(std::string pathFile){
 
   //At row level
   for(int i=0; i<csvFile.size(); i++){
-    Data_file* data_sub = new Data_file();
+    data::File* data_sub = new data::File();
     data_sub->path_file = pathFile;
 
     //At field level

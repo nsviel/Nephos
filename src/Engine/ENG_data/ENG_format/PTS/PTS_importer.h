@@ -1,7 +1,7 @@
 #ifndef PTS_IMPORTER_H
 #define PTS_IMPORTER_H
 
-#include <UTL_base/Struct_data_file.h>
+#include <UTL_base/Struct_file.h>
 #include <UTL_base/Struct_object.h>
 #include <UTL_file/Info.h>
 #include <glm/glm.hpp>
@@ -21,8 +21,8 @@ public:
 
 public:
   //Main functions
-  Data_file* Loader(std::string pathFile);
-  Data_file* Loader(std::string pathFile, int lmin, int lmax);
+  data::File* Loader(std::string pathFile);
+  data::File* Loader(std::string pathFile, int lmin, int lmax);
 
   bool Exporter(std::string pathFile, Object* object);
 
@@ -36,7 +36,7 @@ private:
   void Loader_init();
   void Loader_nbColumns();
   void Loader_configuration();
-  void Loader_data(Data_file* data_out, int FILE_config);
+  void Loader_data(data::File* data_out, int FILE_config);
 
   //Loader sub-functions
   bool check_header(std::string pathFile);

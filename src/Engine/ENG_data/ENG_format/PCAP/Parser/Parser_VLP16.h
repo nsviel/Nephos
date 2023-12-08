@@ -3,7 +3,7 @@
 
 // Server side implementation of UDP client-server model
 
-#include <UTL_base/Struct_data_file.h>
+#include <UTL_base/Struct_file.h>
 #include <UTL_function/fct_math.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -20,7 +20,7 @@ public:
 
 public:
   //Main functions
-  Data_file* parse_packet(std::vector<int> packet);
+  data::File* parse_packet(std::vector<int> packet);
 
   //Subfunctions
   bool parse_header(std::vector<int>& packet_dec);
@@ -31,7 +31,7 @@ public:
   void parse_timestamp();
 
   //Final processing function
-  void reorder_by_azimuth(Data_file* cloud);
+  void reorder_by_azimuth(data::File* cloud);
   void supress_empty_data();
 
   //Subsubfunctions
