@@ -2,10 +2,10 @@
 #define GUI_MENU_H
 
 #include <UTL_specific/common.h>
+#include <GUI_utility/Utility_nsp.h>
 
 class GUI;
 class GUI_font;
-class GUI_git;
 
 
 class GUI_menu
@@ -25,7 +25,7 @@ public:
 private:
   GUI* gui;
   GUI_font* gui_font;
-  GUI_git* gui_git;
+  gui::utility::Git* gui_git;
 
   bool show_demo;
 };

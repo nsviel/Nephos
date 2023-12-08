@@ -1,5 +1,4 @@
-#ifndef GUI_GIT_H
-#define GUI_GIT_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -8,12 +7,14 @@ class GUI;
 class UTL_git;
 
 
-class GUI_git
+namespace gui::utility{
+
+class Git
 {
 public:
   //Constructor / Destructor
-  GUI_git(GUI* gui);
-  ~GUI_git();
+  Git(GUI* gui);
+  ~Git();
 
 public:
   //Main functions
@@ -28,4 +29,4 @@ private:
   UTL_git* git;
 };
 
-#endif
+}

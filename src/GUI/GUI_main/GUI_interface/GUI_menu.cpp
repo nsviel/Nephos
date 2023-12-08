@@ -3,7 +3,6 @@
 #include <GUI.h>
 #include <Vulkan.h>
 #include <GUI_style/GUI_font.h>
-#include <GUI_git/GUI_git.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -13,7 +12,7 @@ GUI_menu::GUI_menu(GUI* gui){
 
   this->gui = gui;
   this->gui_font = gui->get_gui_font();
-  this->gui_git = new GUI_git(gui);
+  this->gui_git = new gui::utility::Git(gui);
 
   this->show_demo = false;
 

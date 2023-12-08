@@ -1,4 +1,4 @@
-#include "GUI_git.h"
+#include "Git.h"
 
 #include <GUI.h>
 #include <GUI_style/GUI_font.h>
@@ -6,8 +6,10 @@
 #include <image/IconsFontAwesome5.h>
 
 
+namespace gui::utility{
+
 //Constructor / Destructor
-GUI_git::GUI_git(GUI* gui){
+Git::Git(GUI* gui){
   //---------------------------
 
   this->gui_font = gui->get_gui_font();
@@ -15,10 +17,10 @@ GUI_git::GUI_git(GUI* gui){
 
   //---------------------------
 }
-GUI_git::~GUI_git(){}
+Git::~Git(){}
 
 //Main function
-void GUI_git::design_panel(){
+void Git::design_panel(){
   //---------------------------
 
   this->draw_information();
@@ -28,7 +30,7 @@ void GUI_git::design_panel(){
 }
 
 //Subfunction
-void GUI_git::draw_information(){
+void Git::draw_information(){
   //---------------------------
 
   //Print last tag
@@ -44,7 +46,7 @@ void GUI_git::draw_information(){
 
   //---------------------------
 }
-void GUI_git::draw_branches(){
+void Git::draw_branches(){
   vector<pair<string, string>> vec_branch = git->get_vec_branch_formatted();
   //---------------------------
 
@@ -72,4 +74,6 @@ void GUI_git::draw_branches(){
   }
 
   //---------------------------
+}
+
 }

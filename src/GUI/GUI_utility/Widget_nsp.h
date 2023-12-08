@@ -1,12 +1,10 @@
 #pragma once
 
-#include <GUI_git/Git.h>
 
 
-namespace gui::utility{
+namespace gui::widget{
   //---------------------------
 
-  class Git;
 
   //---------------------------
 }
