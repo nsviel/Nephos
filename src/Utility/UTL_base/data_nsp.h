@@ -4,7 +4,7 @@
 #include <UTL_base/Struct_set.h>
 #include <UTL_base/Struct_file.h>
 #include <UTL_base/Struct_glyph.h>
-#include <UTL_base/data::Struct_image.h>
+#include <UTL_base/Struct_image.h>
 
 
 namespace data{
@@ -14,7 +14,7 @@ namespace data{
   class Set;
   class Glyph;
   class File;
-  class data::Struct_image;
+  class Image;
 
   //---------------------------
 }

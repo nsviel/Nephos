@@ -20,7 +20,7 @@ VK_texture::VK_texture(Struct_vulkan* struct_vulkan){
 VK_texture::~VK_texture(){}
 
 //Main function
-Struct_vk_image* VK_texture::load_texture(data::Struct_image* struct_image){
+Struct_vk_image* VK_texture::load_texture(data::Image* struct_image){
   //---------------------------
 
   Struct_vk_image* image = new Struct_vk_image();
@@ -45,7 +45,7 @@ void VK_texture::update_texture(Struct_vk_image* image){
 
   //---------------------------
 }
-VkFormat VK_texture::find_texture_format(data::Struct_image* image){
+VkFormat VK_texture::find_texture_format(data::Image* image){
   VkFormat format;
   //---------------------------
 

@@ -2,7 +2,7 @@
 #define GUI_STREAM_H
 
 #include <UTL_specific/common.h>
-#include <UTL_base/data::Struct_image.h>
+#include <UTL_base/Struct_image.h>
 #include <VK_struct/Struct_vk_image.h>
 
 class GUI;
@@ -18,10 +18,10 @@ public:
 
 public:
   //Main function
-  void draw_stream(data::Struct_image* struct_image, ImVec2 panel_size);
+  void draw_stream(data::Image* struct_image, ImVec2 panel_size);
 
   //Subfunction
-  void convert_data_into_texture(data::Struct_image* struct_image);
+  void convert_data_into_texture(data::Image* struct_image);
 
 private:
   VK_texture* vk_texture;

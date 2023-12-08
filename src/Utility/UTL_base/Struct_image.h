@@ -5,7 +5,7 @@
 
 namespace data{
 
-struct data::Struct_image{
+struct Image{
   //---------------------------
 
   int channel_nb = 4;
