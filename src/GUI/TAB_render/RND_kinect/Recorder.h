@@ -7,12 +7,14 @@
 class Kinect;
 
 
-class KIN_recorder
+namespace gui::kinect{
+
+class Recorder
 {
 public:
   //Constructor / Destructor
-  KIN_recorder(Kinect* kinect);
-  ~KIN_recorder();
+  Recorder(Kinect* kinect);
+  ~Recorder();
 
   //Main function
   void kinect_recorder();
@@ -20,3 +22,5 @@ public:
 private:
   Kinect* kinect;
 };
+
+}

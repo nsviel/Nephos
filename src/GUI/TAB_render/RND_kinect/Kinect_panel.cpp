@@ -7,7 +7,6 @@
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
-#include <RND_kinect/KIN_recorder.h>
 
 
 namespace gui::rnd::panel{
@@ -22,7 +21,7 @@ Kinect_panel::Kinect_panel(GUI* gui, bool* show_window, string name) : BASE_pane
 
   this->kin_configuration = new gui::kinect::Configuration(kinect);
   this->kin_playback = new gui::kinect::Playback(kinect);
-  this->kin_recorder = new KIN_recorder(kinect);
+  this->kin_recorder = new gui::kinect::Recorder(kinect);
 
   //---------------------------
 }

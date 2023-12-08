@@ -1,20 +1,22 @@
-#include "KIN_recorder.h"
+#include "Recorder.h"
 
 #include <UTL_capture/UTL_kinect/Kinect.h>
 
 
+namespace gui::kinect{
+
 //Constructor / Destructor
-KIN_recorder::KIN_recorder(Kinect* kinect){
+Recorder::Recorder(Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;
 
   //---------------------------
 }
-KIN_recorder::~KIN_recorder(){}
+Recorder::~Recorder(){}
 
 //Main function
-void KIN_recorder::kinect_recorder(){
+void Recorder::kinect_recorder(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -27,3 +29,5 @@ void KIN_recorder::kinect_recorder(){
 }
 
 //Subfunction
+
+}

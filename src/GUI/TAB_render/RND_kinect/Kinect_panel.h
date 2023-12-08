@@ -5,7 +5,7 @@
 #include <TAB_render/Kinect_nsp.h>
 
 class GUI;
-class KIN_recorder;
+class Recorder;
 
 
 namespace gui::rnd::panel{
@@ -28,7 +28,7 @@ public:
 private:
   gui::kinect::Configuration* kin_configuration;
   gui::kinect::Playback* kin_playback;
-  KIN_recorder* kin_recorder;
+  gui::kinect::Recorder* kin_recorder;
 };
 
 }
