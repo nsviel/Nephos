@@ -1,4 +1,4 @@
-#include "RND_kinect.h"
+#include "Kinect_panel.h"
 
 #include <GUI.h>
 #include <Utility.h>
@@ -8,7 +8,6 @@
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
 #include <RND_kinect/KIN_configuration.h>
-#include <RND_kinect/RND_capture.h>
 #include <RND_kinect/KIN_playback.h>
 #include <RND_kinect/KIN_recorder.h>
 
@@ -16,7 +15,7 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-RND_kinect::RND_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Kinect_panel::Kinect_panel(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Utility* utility = gui->get_utility();
@@ -29,10 +28,10 @@ RND_kinect::RND_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   //---------------------------
 }
-RND_kinect::~RND_kinect(){}
+Kinect_panel::~Kinect_panel(){}
 
 //Main function
-void RND_kinect::design_panel(){
+void Kinect_panel::design_panel(){
   //---------------------------
 
   if (ImGui::BeginTabBar("kinect_tab")){
@@ -46,7 +45,7 @@ void RND_kinect::design_panel(){
 }
 
 //Subfunction
-void RND_kinect::draw_tab_capture(){
+void Kinect_panel::draw_tab_capture(){
   //---------------------------
 
   ImGui::SetNextItemWidth(100);
@@ -57,7 +56,7 @@ void RND_kinect::draw_tab_capture(){
 
   //---------------------------
 }
-void RND_kinect::draw_tab_playback(){
+void Kinect_panel::draw_tab_playback(){
   //---------------------------
 
   ImGui::SetNextItemWidth(100);
@@ -68,7 +67,7 @@ void RND_kinect::draw_tab_playback(){
 
   //---------------------------
 }
-void RND_kinect::draw_tab_recorder(){
+void Kinect_panel::draw_tab_recorder(){
   //---------------------------
 
   ImGui::SetNextItemWidth(100);

@@ -11,12 +11,12 @@ class KIN_recorder;
 
 namespace gui::rnd::panel{
 
-class RND_kinect : public BASE_panel
+class Kinect_panel : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  RND_kinect(GUI* gui, bool* show_window, string name);
-  ~RND_kinect();
+  Kinect_panel(GUI* gui, bool* show_window, string name);
+  ~Kinect_panel();
 
   //Main function
   void design_panel();

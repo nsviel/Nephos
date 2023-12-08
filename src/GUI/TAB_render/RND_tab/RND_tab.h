@@ -47,7 +47,7 @@ private:
   gui::rnd::panel::Render* rnd_render;
   gui::rnd::panel::Object* rnd_object;
   gui::rnd::panel::Camera* rnd_camera;
-  gui::rnd::panel::RND_capture* rnd_capture;
-  gui::rnd::panel::RND_kinect* rnd_kinect;
+  gui::rnd::panel::Capture* rnd_capture;
+  gui::rnd::panel::Kinect_panel* rnd_kinect;
   gui::rnd::panel::Set* rnd_set;
 };

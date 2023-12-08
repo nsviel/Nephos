@@ -13,13 +13,13 @@ class K4A_swarm;
 
 
 namespace gui::rnd::panel{
-  
-class RND_capture : public BASE_panel
+
+class Capture : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  RND_capture(GUI* gui, bool* show_window, string name);
-  ~RND_capture();
+  Capture(GUI* gui, bool* show_window, string name);
+  ~Capture();
 
   //Main function
   void design_panel();
