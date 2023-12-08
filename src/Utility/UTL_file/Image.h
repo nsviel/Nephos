@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include <UTL_struct/Struct_image.h>
+#include <UTL_base/Struct_image.h>
 
 
 namespace image{

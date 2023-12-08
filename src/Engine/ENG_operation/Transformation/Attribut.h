@@ -1,8 +1,8 @@
 #ifndef ATTRIBUT_H
 #define ATTRIBUT_H
 
-#include <UTL_struct/Struct_object.h>
-#include <UTL_struct/Struct_set.h>
+#include <UTL_base/Struct_object.h>
+#include <UTL_base/Struct_set.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>

@@ -2,7 +2,7 @@
 #define UTL_DEVICE_H
 
 #include <UTL_specific/common.h>
-#include <UTL_struct/Struct_video_device.h>
+#include <UTL_base/Struct_video_device.h>
 #include <libudev.h>
 
 

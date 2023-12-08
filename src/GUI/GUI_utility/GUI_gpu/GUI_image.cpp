@@ -4,7 +4,7 @@
 #include <Vulkan.h>
 #include <GUI_main/GUI_render/GUI_render.h>
 #include <UTL_file/Image.h>
-#include <UTL_struct/Struct_image.h>
+#include <UTL_base/Struct_image.h>
 #include <VK_main/VK_texture.h>
 
 

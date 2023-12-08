@@ -2,7 +2,7 @@
 #define GUI_STREAM_H
 
 #include <UTL_specific/common.h>
-#include <UTL_struct/Struct_image.h>
+#include <UTL_base/Struct_image.h>
 #include <VK_struct/Struct_vk_image.h>
 
 class GUI;

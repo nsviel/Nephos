@@ -2,7 +2,7 @@
 #define V4L2_CAMERA_H
 
 #include <UTL_specific/common.h>
-#include <UTL_struct/Struct_video.h>
+#include <UTL_base/Struct_video.h>
 extern "C" {
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
