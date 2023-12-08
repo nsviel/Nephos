@@ -19,7 +19,7 @@ VK_canvas::~VK_canvas(){}
 
 //Main function
 void VK_canvas::create_canvas(){
-  Object* canvas_obj = new Object();
+  data::Object* canvas_obj = new data::Object();
   //---------------------------
 
   //Generic quad coordinates and UV

@@ -18,14 +18,14 @@ public:
   void design_panel();
 
   //Sub functions
-  void set_info(Set* set);
-  void set_parameter(Set* set);
+  void set_info(data::Set* set);
+  void set_parameter(data::Set* set);
 
-  inline void set_selected_set(Set* set){this->set_selected = set;}
+  inline void set_selected_set(data::Set* set){this->set_selected = set;}
 
 private:
   RND_panel* gui_render_panel;
 
-  Set* set_selected;
+  data::Set* set_selected;
   int item_width;
 };

@@ -22,7 +22,7 @@ VK_data::VK_data(Struct_vulkan* struct_vulkan){
 VK_data::~VK_data(){}
 
 //Main function
-void VK_data::insert_object(Object* object){
+void VK_data::insert_object(data::Object* object){
   //---------------------------
 
   //Creat new data struct

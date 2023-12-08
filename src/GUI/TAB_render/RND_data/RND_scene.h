@@ -25,7 +25,7 @@ public:
   //Subfunction
   void draw_window_background();
   void tree_view();
-  int data_node_tree(Set* set);
+  int data_node_tree(data::Set* set);
 
 private:
   RND_panel* rnd_panel;

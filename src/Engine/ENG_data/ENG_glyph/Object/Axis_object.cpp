@@ -92,7 +92,7 @@ void Axis_object::create_axis_circle(float circleRadius){
 
   //---------------------------
 }
-data::Glyph* Axis_object::create_axis_subset(Object* object){
+data::Glyph* Axis_object::create_axis_subset(data::Object* object){
   data::Glyph* axis_subset = new data::Glyph();
   //---------------------------
 
@@ -114,7 +114,7 @@ data::Glyph* Axis_object::create_axis_subset(Object* object){
   //---------------------------
   return axis_subset;
 }
-void Axis_object::update_axis_subset(Object* object, data::Glyph* glyph){
+void Axis_object::update_axis_subset(data::Object* object, data::Glyph* glyph){
   if(glyph == nullptr) return;
   vector<vec3>& XYZ = glyph->xyz;
   vec3 subset_root = object->root;

@@ -79,7 +79,7 @@ void ENG_glyph::insert_into_gpu(data::Glyph* glyph){
 
 //data::Glyph creation / supression
 void ENG_glyph::create_glyph_scene(data::Glyph* glyph){
-  Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
+  data::Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
   this->insert_into_gpu(glyph);
@@ -87,8 +87,8 @@ void ENG_glyph::create_glyph_scene(data::Glyph* glyph){
 
   //---------------------------
 }
-void ENG_glyph::create_glyph_object(Object* object, data::Glyph* glyph){
-  Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_object");
+void ENG_glyph::create_glyph_object(data::Object* object, data::Glyph* glyph){
+  data::Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_object");
   //---------------------------
 
   glyph->linked_object = cloud;
@@ -98,7 +98,7 @@ void ENG_glyph::create_glyph_object(Object* object, data::Glyph* glyph){
   //---------------------------
 }
 void ENG_glyph::remove_temporary_glyph(){
-  Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
+  data::Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
   //Remove non permanent glyphs
@@ -114,7 +114,7 @@ void ENG_glyph::remove_temporary_glyph(){
   //---------------------------
 }
 void ENG_glyph::remove_glyph_scene(int ID){
-  Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
+  data::Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
   for(int i=0;i<col_glyph->list_obj.size();i++){
@@ -130,7 +130,7 @@ void ENG_glyph::remove_glyph_scene(int ID){
   //---------------------------
 }
 data::Glyph* ENG_glyph::create_glyph(vector<vec3>& XYZ, vector<vec4>& RGB, string mode, bool perma){
-  Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
+  data::Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   data::Glyph* glyph = new data::Glyph();
   unsigned int VAO;
   uint colorVBO, locationVBO;

@@ -33,14 +33,14 @@ void RND_object::design_panel(){
 }
 
 //Subfunction
-void RND_object::object_info(Object* object){
+void RND_object::object_info(data::Object* object){
   //---------------------------
 
-  this->set_name("Object " + object->name);
+  this->set_name("data::Object " + object->name);
 
   //---------------------------
 }
-void RND_object::object_parameter(Object* object){
+void RND_object::object_parameter(data::Object* object){
   ImGui::Columns(2);
   //---------------------------
 
@@ -120,7 +120,7 @@ void RND_object::object_parameter(Object* object){
 }
 
 //Primitive size
-void RND_object::width_line(Object* object){
+void RND_object::width_line(data::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -149,7 +149,7 @@ void RND_object::width_line(Object* object){
 
   //---------------------------
 }
-void RND_object::size_point(Object* object){
+void RND_object::size_point(data::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

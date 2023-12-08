@@ -38,13 +38,13 @@ public:
   ~Octree();
 
 public:
-  void create_octree(Object* object);
-  void create_octree(Object* object, int level);
+  void create_octree(data::Object* object);
+  void create_octree(data::Object* object, int level);
   void remove_octree(Root* root);
 
   //Sub functions
   void remove_cube(Cube* cube);
-  void build_root(Object* object);
+  void build_root(data::Object* object);
   void build_octree(Cube* cube_parent);
   vector<vec3> compute_cube_location(vec3 min, vec3 max);
   vector<vec4> compute_cube_color(int size);

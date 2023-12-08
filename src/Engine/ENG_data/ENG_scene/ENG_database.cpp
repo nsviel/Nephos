@@ -9,8 +9,8 @@ ENG_database::ENG_database(ENG_data* eng_data){
 
   this->ID_obj = 0;
 
-  this->list_data = new list<Set*>();
-  this->list_glyph = new list<Set*>();
+  this->list_data = new list<data::Set*>();
+  this->list_glyph = new list<data::Set*>();
 
   //---------------------------
 }

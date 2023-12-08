@@ -24,21 +24,21 @@ public:
   void reset_scene();
 
   //Insertion / deletion
-  void insert_object_glyph(Object* object);
-  void insert_object_scene(Object* object);
-  void delete_scene_object(Object* object);
+  void insert_object_glyph(data::Object* object);
+  void insert_object_scene(data::Object* object);
+  void delete_scene_object(data::Object* object);
   void empty_scene_set();
 
-  //Object
+  //data::Object
   void selected_object_next();
 
   //Loop
   void loop();
-  void loop_list(list<Set*>* list_data);
+  void loop_list(list<data::Set*>* list_data);
 
-  inline Set* get_set_scene(){return set_scene;}
-  inline Set* get_set_glyph(){return set_glyph;}
-  inline Object* get_selected_object(){return set_scene->selected_obj;}
+  inline data::Set* get_set_scene(){return set_scene;}
+  inline data::Set* get_set_glyph(){return set_glyph;}
+  inline data::Object* get_selected_object(){return set_scene->selected_obj;}
 
 private:
   ENG_data* eng_data;
@@ -48,8 +48,8 @@ private:
   ENG_camera* eng_camera;
 
   int ID_obj;
-  Set* set_scene;
-  Set* set_glyph;
+  data::Set* set_scene;
+  data::Set* set_glyph;
 };
 
 

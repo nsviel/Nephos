@@ -11,7 +11,7 @@
 struct Struct_vk_entity{
   //---------------------------
 
-  Object* object;
+  data::Object* object;
 
   //Data
   bool has_xyz = false;

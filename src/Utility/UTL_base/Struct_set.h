@@ -6,6 +6,8 @@
 #include <list>
 
 
+namespace data{
+
 //Collection are cloud containers
 struct Set{
   //---------------------------
@@ -19,9 +21,11 @@ struct Set{
   bool is_visible = true;
 
   //Data
-  Object* selected_obj = nullptr;
-  std::list<Object*> list_obj;
-  std::list<Set*> list_set;
+  data::Object* selected_obj = nullptr;
+  std::list<data::Object*> list_obj;
+  std::list<data::Set*> list_set;
 
   //---------------------------
 };
+
+}

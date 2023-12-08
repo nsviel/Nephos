@@ -5,12 +5,12 @@
 
 namespace data{
 
-struct Glyph : public Object
+struct Glyph : public data::Object
 {
   //---------------------------
 
   bool is_permanent = false;
-  Object* linked_object = nullptr;
+  data::Object* linked_object = nullptr;
 
   //---------------------------
 };

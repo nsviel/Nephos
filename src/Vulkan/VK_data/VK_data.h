@@ -22,7 +22,7 @@ public:
 
 public:
   //Main functions
-  void insert_object(Object* object);
+  void insert_object(data::Object* object);
   void clean_entity_all();
   void clean_entity(Struct_vk_entity* data);
 

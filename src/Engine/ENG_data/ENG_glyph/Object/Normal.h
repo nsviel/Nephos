@@ -12,9 +12,9 @@ public:
   ~Normal();
 
 public:
-  data::Glyph* create_glyph(Object* object);
-  void update_normal_cloud(Object* object, data::Glyph* glyph); 
-  void update_normal_cloud(Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s);
+  data::Glyph* create_glyph(data::Object* object);
+  void update_normal_cloud(data::Object* object, data::Glyph* glyph); 
+  void update_normal_cloud(data::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s);
 
   inline bool* get_visibility(){return &visibility;}
   inline int* get_size(){return &size;}

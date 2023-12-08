@@ -22,12 +22,12 @@ public:
 
 public:
   //Main functions
-  Object* load_object(std::string path);
-  std::vector<Object*> load_objects(std::vector<std::string> path);
+  data::Object* load_object(std::string path);
+  std::vector<data::Object*> load_objects(std::vector<std::string> path);
   void load_by_zenity();
 
   //Subfunctions
-  void transfert_data(Object* object, data::File* eng_data);
+  void transfert_data(data::Object* object, data::File* eng_data);
 
 private:
   ENG_format* eng_format;

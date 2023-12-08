@@ -26,7 +26,7 @@ public:
 
   //MVP matrices
   mat4 compute_cam_view();
-  void compute_cam_mvp(Object* object);
+  void compute_cam_mvp(data::Object* object);
   mat4 compute_cam_proj();
   mat4 compute_cam_mvp();
 

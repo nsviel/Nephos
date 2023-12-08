@@ -1,6 +1,8 @@
 #include "Struct_set.h"
 
 
+namespace data{
+
 Set::Set(std::string name){
   //---------------------------
 
@@ -18,4 +20,6 @@ void Set::reset(){
   }
 
   //---------------------------
+}
+
 }

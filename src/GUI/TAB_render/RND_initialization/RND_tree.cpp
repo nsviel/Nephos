@@ -241,7 +241,7 @@ void RND_tree::open_selection(Tree_node* node){
   }
   /*else if(node->type == "Folder" && node->end_folder){
     if(pathManager->check_folder_format(node->path, "ply")){
-      Object* object;
+      data::Object* object;
 
       if(with_onthefly == false){
         object = pathManager->loading_directory_frame(node->path);

@@ -10,7 +10,9 @@
 #include <map>
 
 
-struct Object{ //Cloud cloud / part
+namespace data{
+
+struct Object{
   //---------------------------
 
   //Functions
@@ -63,3 +65,5 @@ struct Object{ //Cloud cloud / part
 
   //---------------------------
 };
+
+}

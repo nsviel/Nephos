@@ -36,7 +36,7 @@ void RND_tab::create_panels(){
   //---------------------------
 
   this->rnd_option = new RND_option(gui, &gui_render_panel->show_option, "Option");
-  this->rnd_object = new RND_object(gui, &gui_render_panel->show_object, "Object");
+  this->rnd_object = new RND_object(gui, &gui_render_panel->show_object, "data::Object");
   this->rnd_set = new RND_set(gui, &gui_render_panel->show_set, "Set");
   this->rnd_profiler = new RND_profiler(gui, &gui_render_panel->show_profiler, "Profiler");
   this->rnd_shader = new RND_shader(gui, &gui_render_panel->show_shader, "Shader");

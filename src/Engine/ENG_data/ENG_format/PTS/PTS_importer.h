@@ -24,7 +24,7 @@ public:
   data::File* Loader(std::string pathFile);
   data::File* Loader(std::string pathFile, int lmin, int lmax);
 
-  bool Exporter(std::string pathFile, Object* object);
+  bool Exporter(std::string pathFile, data::Object* object);
 
   inline void set_IdataFormat(int value){this->IdataFormat = value;}
   inline void set_retrievingIntensity(bool value){this->retrieve_I = value;}

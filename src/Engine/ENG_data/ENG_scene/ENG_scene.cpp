@@ -31,15 +31,15 @@ ENG_scene::~ENG_scene(){}
 
 //ENG_scene function
 void ENG_scene::init_set(){
-  list<Set*>* list_data = eng_database->get_list_data();
+  list<data::Set*>* list_data = eng_database->get_list_data();
   //---------------------------
 
   //data::Glyph set
-  this->set_glyph = new Set("data::Glyph");
+  this->set_glyph = new data::Set("data::Glyph");
   list_data->push_back(set_glyph);
 
   //ENG_scene set
-  this->set_scene = new Set("ENG_scene");
+  this->set_scene = new data::Set("ENG_scene");
   list_data->push_back(set_scene);
 
   //---------------------------
@@ -51,7 +51,7 @@ void ENG_scene::init_scene(){
   //Load init object
   vector<string> vec_path;
   vec_path.push_back( "../media/point_cloud/dragon.ply");
-  vector<Object*> vec_obj = eng_loader->load_objects(vec_path);
+  vector<data::Object*> vec_obj = eng_loader->load_objects(vec_path);
 
   //---------------------------
 }
@@ -59,7 +59,7 @@ void ENG_scene::reset_scene(){
   //---------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    Object* object = *next(set_scene->list_obj.begin(),i);
+    data::Object* object = *next(set_scene->list_obj.begin(),i);
     object->reset();
   }
 
@@ -67,7 +67,7 @@ void ENG_scene::reset_scene(){
 }
 
 //Insertion / deletion
-void ENG_scene::insert_object_glyph(Object* object){
+void ENG_scene::insert_object_glyph(data::Object* object){
   //---------------------------
 
   //Insert into engine
@@ -82,7 +82,7 @@ void ENG_scene::insert_object_glyph(Object* object){
 
   //---------------------------
 }
-void ENG_scene::insert_object_scene(Object* object){
+void ENG_scene::insert_object_scene(data::Object* object){
   //---------------------------
 
   //Insert into engine
@@ -97,12 +97,12 @@ void ENG_scene::insert_object_scene(Object* object){
 
   //---------------------------
 }
-void ENG_scene::delete_scene_object(Object* object){
+void ENG_scene::delete_scene_object(data::Object* object){
   //---------------------------
 
   //Delete it from database and engine
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    Object* object_list = *next(set_scene->list_obj.begin(),i);
+    data::Object* object_list = *next(set_scene->list_obj.begin(),i);
     if(object->ID == object_list->ID){
       set_scene->list_obj.remove(object);
       vk_engine->remove_object_in_engine(object);
@@ -116,7 +116,7 @@ void ENG_scene::empty_scene_set(){
   //---------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    Object* object = *next(set_scene->list_obj.begin(),i);
+    data::Object* object = *next(set_scene->list_obj.begin(),i);
 
     set_scene->list_obj.remove(object);
     vk_engine->remove_object_in_engine(object);
@@ -126,16 +126,16 @@ void ENG_scene::empty_scene_set(){
   //---------------------------
 }
 
-//Object
+//data::Object
 void ENG_scene::selected_object_next(){
-  Object* selected = set_scene->selected_obj;
+  data::Object* selected = set_scene->selected_obj;
   //----------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    Object* object = *next(set_scene->list_obj.begin(), i);
+    data::Object* object = *next(set_scene->list_obj.begin(), i);
 
     if(selected->ID == object->ID){
-      Object* selection;
+      data::Object* selection;
 
       if((i + 1) < set_scene->list_obj.size()){
         selection = *next(set_scene->list_obj.begin(), i + 1);
@@ -152,8 +152,8 @@ void ENG_scene::selected_object_next(){
 
 //Loop function
 void ENG_scene::loop(){
-  list<Set*>* list_data = eng_database->get_list_data();
-  list<Set*>* list_glyph = eng_database->get_list_data_glyph();
+  list<data::Set*>* list_data = eng_database->get_list_data();
+  list<data::Set*>* list_glyph = eng_database->get_list_data_glyph();
   //----------------------------
 
   this->loop_list(list_data);
@@ -161,13 +161,13 @@ void ENG_scene::loop(){
 
   //----------------------------
 }
-void ENG_scene::loop_list(list<Set*>* list_data){
+void ENG_scene::loop_list(list<data::Set*>* list_data){
   //----------------------------
 
   for(int i=0; i<list_data->size(); i++){
-    Set* set = *next(list_data->begin(), i);
+    data::Set* set = *next(list_data->begin(), i);
     for(int j=0; j<set->list_obj.size(); j++){
-      Object* object = *next(set->list_obj.begin(), j);
+      data::Object* object = *next(set->list_obj.begin(), j);
       eng_camera->compute_cam_mvp(object);
     }
   }

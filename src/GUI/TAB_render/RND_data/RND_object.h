@@ -19,19 +19,19 @@ public:
   void design_panel();
 
   //Sub functions
-  void object_info(Object* object);
-  void object_parameter(Object* object);
+  void object_info(data::Object* object);
+  void object_parameter(data::Object* object);
 
   //Primitive size
-  void width_line(Object* object);
-  void size_point(Object* object);
+  void width_line(data::Object* object);
+  void size_point(data::Object* object);
 
-  inline void set_selected_object(Object* object){this->object_selected = object;}
+  inline void set_selected_object(data::Object* object){this->object_selected = object;}
 
 private:
   RND_panel* gui_render_panel;
   ENG_scene* eng_scene;
 
-  Object* object_selected;
+  data::Object* object_selected;
   int item_width;
 };

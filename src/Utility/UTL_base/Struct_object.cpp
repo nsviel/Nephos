@@ -1,6 +1,8 @@
 #include <UTL_base/Struct_object.h>
 
 
+namespace data{
+
 void Object::reset(){
   //---------------------------
 
@@ -15,6 +17,7 @@ void Object::reset(){
   this->model = glm::mat4(1.0f);
   this->mvp = glm::mat4(1.0f);
 
-
   //---------------------------
+}
+
 }

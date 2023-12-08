@@ -18,13 +18,13 @@ public:
 
 public:
   // Translation
-  void make_translation(Object* object, vec3 trans);
+  void make_translation(data::Object* object, vec3 trans);
 
   // Rotation
-  void make_rotation(Object* object, vec3 COM, vec3 angles);
+  void make_rotation(data::Object* object, vec3 COM, vec3 angles);
 
   //Scaling
-  void make_scaling(Object* object, float scale);
+  void make_scaling(data::Object* object, float scale);
 
   //Subfunction
   mat4 get_translation_mat(vec3 trans);

@@ -299,7 +299,7 @@ void PTS_importer::Loader_data(data::File* data, int FILE_config){
 }
 
 //Main exporter functions
-bool PTS_importer::Exporter(std::string path, Object* object){
+bool PTS_importer::Exporter(std::string path, data::Object* object){
   //---------------------------
 
   //Create file

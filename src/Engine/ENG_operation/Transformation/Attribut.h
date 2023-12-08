@@ -20,8 +20,8 @@ public:
 
 public:
   //Main functions
-  void compute_MinMax(Object* object);
-  void set_visibility(Set* set, bool visibility);
+  void compute_MinMax(data::Object* object);
+  void set_visibility(data::Set* set, bool visibility);
 
 private:
 };

@@ -6,7 +6,7 @@ Attribut::Attribut(){}
 Attribut::~Attribut(){}
 
 //Main function
-void Attribut::compute_MinMax(Object* object){
+void Attribut::compute_MinMax(data::Object* object){
   vector<vec3>& XYZ = object->xyz;
   vec3 centroid = vec3(0, 0, 0);
   vec3 min = XYZ[0];
@@ -30,11 +30,11 @@ void Attribut::compute_MinMax(Object* object){
   object->max = max;
   object->COM = centroid;
 }
-void Attribut::set_visibility(Set* set, bool visibility){
+void Attribut::set_visibility(data::Set* set, bool visibility){
   //---------------------------
 
   for(int i=0; i<set->list_obj.size(); i++){
-    Object* object = *next(set->list_obj.begin(), i);
+    data::Object* object = *next(set->list_obj.begin(), i);
     object->is_visible = visibility;
   }
 

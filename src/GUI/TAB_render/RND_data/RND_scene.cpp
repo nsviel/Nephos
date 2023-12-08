@@ -90,7 +90,7 @@ void RND_scene::draw_window_background(){
   //-------------------------------
 }
 void RND_scene::tree_view(){
-  list<Set*>* list_data = eng_database->get_list_data();
+  list<data::Set*>* list_data = eng_database->get_list_data();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;
@@ -104,7 +104,7 @@ void RND_scene::tree_view(){
 
     //Database
     for(int row_i=0; row_i<list_data->size(); row_i++){
-      Set* set = *next(list_data->begin(), row_i);
+      data::Set* set = *next(list_data->begin(), row_i);
 
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
@@ -119,7 +119,7 @@ void RND_scene::tree_view(){
 
   //---------------------------
 }
-int RND_scene::data_node_tree(Set* set){
+int RND_scene::data_node_tree(data::Set* set){
   int nb_row = 0;
   //-------------------------------
 
@@ -152,14 +152,14 @@ int RND_scene::data_node_tree(Set* set){
   //Set elements leaf nodes
   if(is_node_open){
     for(int j=0; j<set->list_obj.size(); j++){
-      Object* object = *next(set->list_obj.begin(), j);
+      data::Object* object = *next(set->list_obj.begin(), j);
 
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       nb_row++;
 
       //If object is selected
-      if(object->ID == set->selected_obj->ID && set->name == "Object"){
+      if(object->ID == set->selected_obj->ID && set->name == "data::Object"){
         flag_leaf |= ImGuiTreeNodeFlags_Selected;
       }else{
         flag_leaf &= ~ImGuiTreeNodeFlags_Selected;

@@ -27,14 +27,14 @@ void RND_set::design_panel(){
 }
 
 //Subfunction
-void RND_set::set_info(Set* set){
+void RND_set::set_info(data::Set* set){
   //---------------------------
 
   this->set_name("Set " + set->name);
 
   //---------------------------
 }
-void RND_set::set_parameter(Set* set){
+void RND_set::set_parameter(data::Set* set){
   ImGui::Columns(2);
   //---------------------------
 

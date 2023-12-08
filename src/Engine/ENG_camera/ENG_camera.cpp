@@ -136,7 +136,7 @@ mat4 ENG_camera::compute_cam_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void ENG_camera::compute_cam_mvp(Object* object){
+void ENG_camera::compute_cam_mvp(data::Object* object){
   //---------------------------
 
   mat4 cam_modl = glm::transpose(object->model);

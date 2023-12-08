@@ -31,7 +31,7 @@ void AABB::create_glyph(){
 
   //---------------------------
 }
-void AABB::update_glyph(Set* collection, data::Glyph* glyph){
+void AABB::update_glyph(data::Set* collection, data::Glyph* glyph){
   vec3 min = collection->min;
   vec3 max = collection->max;
   //---------------------------
@@ -41,7 +41,7 @@ void AABB::update_glyph(Set* collection, data::Glyph* glyph){
 
   //---------------------------
 }
-void AABB::update_glyph(Object* object){
+void AABB::update_glyph(data::Object* object){
   vector<vec3>& XYZ = glyph->xyz;
   vector<vec4>& RGB = glyph->rgb;
   vec3 min = cloud->min;

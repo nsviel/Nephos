@@ -89,7 +89,7 @@ void RND_init::load_config_file(){
 void RND_init::operation_new_object(string path){
   //---------------------------
 
-  Object* object = eng_loader->load_object(path);
+  data::Object* object = eng_loader->load_object(path);
   if(object == nullptr) return;
 
   if(init.remove_old){
