@@ -5,7 +5,9 @@
 #include <vector>
 
 
-struct Struct_video{
+namespace data{
+
+struct Video{
   //---------------------------
 
   int64_t start_time;
@@ -17,3 +19,5 @@ struct Struct_video{
 
   //---------------------------
 };
+
+}

@@ -5,6 +5,7 @@
 #include <UTL_base/Struct_file.h>
 #include <UTL_base/Struct_glyph.h>
 #include <UTL_base/Struct_image.h>
+#include <UTL_base/Struct_video.h>
 
 
 namespace data{
@@ -15,6 +16,7 @@ namespace data{
   class Glyph;
   class File;
   class Image;
+  class Video;
 
   //---------------------------
 }
