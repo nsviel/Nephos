@@ -1,4 +1,4 @@
-#include "RND_control.h"
+#include "Control.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -12,8 +12,10 @@
 #include <ENG_operation/Transformation/Transformation.h>
 
 
+namespace gui::rnd::engine{
+
 //Constructor / Destructor
-RND_control::RND_control(GUI* gui){
+Control::Control(GUI* gui){
   //---------------------------
 
   Utility* utility = gui->get_utility();
@@ -29,10 +31,10 @@ RND_control::RND_control(GUI* gui){
 
   //---------------------------
 }
-RND_control::~RND_control(){}
+Control::~Control(){}
 
 //Main function
-void RND_control::run_control(ImVec2 center){
+void Control::run_control(ImVec2 center){
   //---------------------------
 
   this->control_keyboard_oneAction();
@@ -45,7 +47,7 @@ void RND_control::run_control(ImVec2 center){
 }
 
 //Keyboard
-void RND_control::control_keyboard_oneAction(){
+void Control::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -74,7 +76,7 @@ void RND_control::control_keyboard_oneAction(){
 
   //----------------------------
 }
-void RND_control::control_keyboard_camMove(){
+void Control::control_keyboard_camMove(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -111,7 +113,7 @@ void RND_control::control_keyboard_camMove(){
 
   //---------------------------
 }
-void RND_control::control_keyboard_translation(){
+void Control::control_keyboard_translation(){
   data::Set* set = eng_scene->get_set_scene();
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
@@ -168,7 +170,7 @@ void RND_control::control_keyboard_translation(){
 }
 
 //Mouse
-void RND_control::control_mouse(ImVec2 center){
+void Control::control_mouse(ImVec2 center){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -191,7 +193,7 @@ void RND_control::control_mouse(ImVec2 center){
 
   //---------------------------
 }
-void RND_control::control_mouse_wheel(){
+void Control::control_mouse_wheel(){
   static int wheel_mode = 0;
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
@@ -229,4 +231,6 @@ void RND_control::control_mouse_wheel(){
   }
 
   //----------------------------
+}
+
 }

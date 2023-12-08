@@ -1,5 +1,4 @@
 #include "Render.h"
-#include "RND_control.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -22,7 +21,7 @@ Render::Render(GUI* gui){
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->utl_window = utility->get_utl_window();
-  this->gui_control = new RND_control(gui);
+  this->gui_control = new gui::rnd::engine::Control(gui);
   this->gui_image = new GUI_image(gui);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
 

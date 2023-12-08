@@ -1,9 +1,9 @@
 #pragma once
 
 #include <UTL_specific/common.h>
+#include <TAB_render/Engine_nsp.h>
 
 class GUI;
-class RND_control;
 class GUI_image;
 class VK_imgui;
 class UTL_window;
@@ -28,7 +28,7 @@ public:
   void resize();
 
 private:
-  RND_control* gui_control;
+  gui::rnd::engine::Control* gui_control;
   GUI_image* gui_image;
   VK_imgui* vk_imgui;
   UTL_window* utl_window;

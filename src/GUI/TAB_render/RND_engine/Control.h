@@ -12,12 +12,14 @@ class Transformation;
 class Struct_camera;
 
 
-class RND_control
+namespace gui::rnd::engine{
+
+class Control
 {
 public:
   //Constructor / Destructor
-  RND_control(GUI* gui);
-  ~RND_control();
+  Control(GUI* gui);
+  ~Control();
 
 public:
   //Main function
@@ -41,3 +43,5 @@ private:
 
   Struct_camera* camera;
 };
+
+}
