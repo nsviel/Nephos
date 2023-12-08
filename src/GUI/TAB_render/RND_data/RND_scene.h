@@ -2,15 +2,16 @@
 
 #include <GUI_base/BASE_panel.h>
 #include <UTL_specific/common.h>
+#include <TAB_render/Panel_nsp.h>
 
 class GUI;
 class RND_panel;
-class RND_object;
 class RND_set;
 class ENG_database;
 
-
 namespace gui::rnd::panel{
+class RND_object;
+
 
 class RND_scene : public BASE_panel
 {
@@ -31,7 +32,7 @@ public:
 
 private:
   RND_panel* rnd_panel;
-  RND_object* gui_object;
+  gui::rnd::panel::RND_object* gui_object;
   RND_set* gui_set;
   ENG_database* eng_database;
 

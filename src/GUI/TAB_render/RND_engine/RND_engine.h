@@ -9,6 +9,8 @@ class VK_imgui;
 class UTL_window;
 
 
+namespace gui::rnd::panel{
+
 class RND_engine
 {
 public:
@@ -33,3 +35,5 @@ private:
 
   bool has_been_initialized;
 };
+
+}

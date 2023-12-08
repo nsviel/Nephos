@@ -7,7 +7,7 @@
 #include <TAB_render/RND_tab/RND_tab.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_database.h>
-#include <TAB_render/RND_data/RND_object.h>
+#include <TAB_render/Panel_nsp.h>
 #include <TAB_render/RND_data/RND_set.h>
 
 

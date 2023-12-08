@@ -11,6 +11,8 @@
 #include <GUI_gpu/GUI_image.h>
 
 
+namespace gui::rnd::panel{
+
 //Constructor / Destructor
 RND_engine::RND_engine(GUI* gui){
   //---------------------------
@@ -66,4 +68,6 @@ void RND_engine::engine_control(){
   }
 
   //---------------------------
+}
+
 }
