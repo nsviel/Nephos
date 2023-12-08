@@ -86,9 +86,9 @@ void Octree::build_root(data::Object* object){
 
   //Create root cube
   Cube* cube = new Cube();
-  cube->min = fct_min_vec3(cloud->xyz);
-  cube->max = fct_max_vec3(cloud->xyz);
-  cube->center = fct_centroid(cube->min, cube->max);
+  cube->min = math::min_vec3(cloud->xyz);
+  cube->max = math::max_vec3(cloud->xyz);
+  cube->center = math::centroid(cube->min, cube->max);
   cube->level = 0;
   cube->idx_cube = idx;
   cube->idx_child = idx;
@@ -254,7 +254,7 @@ void Octree::compute_cube_division(Cube* cube_parent){
 
       cube->min = min;
       cube->max = max;
-      cube->center = fct_centroid(min, max);
+      cube->center = centroid(min, max);
       cube->level = cube_parent->level + 1;
       cube->idx_cube = idx;
       cube->idx_child = idx;
