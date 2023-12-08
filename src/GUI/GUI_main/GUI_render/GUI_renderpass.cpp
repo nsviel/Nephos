@@ -5,6 +5,8 @@
 #include <VK_main/VK_engine.h>
 
 
+namespace gui{
+
 //Constructor / Destructor
 GUI_renderpass::GUI_renderpass(Vulkan* vulkan){
   //---------------------------
@@ -64,4 +66,6 @@ void GUI_renderpass::draw(Struct_vk_subpass* subpass){
   vk_imgui->draw(subpass->command_buffer);
 
   //---------------------------
+}
+
 }

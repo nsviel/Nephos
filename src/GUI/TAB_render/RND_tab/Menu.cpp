@@ -17,7 +17,7 @@ Menu::Menu(GUI* gui){
 
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
-  Tab* gui_tab = gui->get_gui_tab();
+  gui::Tab* gui_tab = gui->get_gui_tab();
 
   this->gui = gui;
   this->gui_init = new Init(gui);

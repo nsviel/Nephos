@@ -1,7 +1,6 @@
 #include "GUI_font.h"
 
 #include <GUI.h>
-#include <GUI_main/GUI_render/GUI_render.h>
 #include <Vulkan.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_main/Struct_vulkan.h>
@@ -12,7 +11,7 @@
 GUI_font::GUI_font(GUI* gui){
   //---------------------------
 
-  GUI_render* gui_render = gui->get_rnd_tab();
+  gui::GUI_render* gui_render = gui->get_rnd_tab();
   Vulkan* vulkan = gui_render->get_vulkan();
   this->vk_imgui = vulkan->get_vk_imgui();
 

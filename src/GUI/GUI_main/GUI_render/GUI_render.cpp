@@ -1,5 +1,4 @@
 #include "GUI_render.h"
-#include "GUI_renderpass.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -9,6 +8,8 @@
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_imgui.h>
 
+
+namespace gui{
 
 //Constructor / Destructor
 GUI_render::GUI_render(GUI* gui){
@@ -21,7 +22,7 @@ GUI_render::GUI_render(GUI* gui){
   this->vulkan = engine->get_eng_vulkan();
   //this->vulkan = new Vulkan(utl_window);
   this->vk_engine = vulkan->get_vk_engine();
-  this->gui_renderpass = new GUI_renderpass(vulkan);
+  this->gui_renderpass = new gui::GUI_renderpass(vulkan);
   this->vk_imgui = vulkan->get_vk_imgui();
 
   vulkan->set_headless(false);
@@ -61,4 +62,6 @@ void GUI_render::new_frame(){
   ImGui::NewFrame();
 
   //---------------------------
+}
+
 }

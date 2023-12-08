@@ -3,7 +3,6 @@
 #include <Engine.h>
 #include <Utility.h>
 #include <UTL_window/UTL_window.h>
-#include <GUI_render/GUI_render.h>
 #include <GUI_style/GUI_style.h>
 #include <GUI_style/GUI_font.h>
 #include <GUI_main/GUI_render/GUI_render.h>
@@ -17,7 +16,7 @@ GUI::GUI(Utility* utility, Engine* engine){
   this->utility = utility;
   this->utl_window = utility->get_utl_window();
 
-  this->gui_render = new GUI_render(this);
+  this->gui_render = new gui::GUI_render(this);
   this->gui_style = new GUI_style(this);
   this->gui_font = new GUI_font(this);
   this->gui_tab = new gui::Tab(this);

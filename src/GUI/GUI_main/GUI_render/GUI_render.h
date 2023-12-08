@@ -2,13 +2,16 @@
 
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_info.h>
+#include <GUI_main/GUI_nsp.h>
 
 class GUI;
-class GUI_renderpass;
 class Vulkan;
 class VK_engine;
 class VK_render;
 class VK_imgui;
+
+namespace gui{
+class GUI_renderpass;
 
 
 class GUI_render
@@ -28,9 +31,11 @@ public:
   inline Vulkan* get_vulkan(){return vulkan;}
 
 private:
-  GUI_renderpass* gui_renderpass;
+  gui::GUI_renderpass* gui_renderpass;
   Vulkan* vulkan;
   VK_engine* vk_engine;
   VK_render* vk_render;
   VK_imgui* vk_imgui;
 };
+
+}

@@ -9,6 +9,8 @@ class VK_engine;
 class VK_imgui;
 
 
+namespace gui{
+
 class GUI_renderpass
 {
 public:
@@ -28,3 +30,5 @@ private:
   VK_imgui* vk_imgui;
   VK_engine* vk_engine;
 };
+
+}
