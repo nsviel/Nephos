@@ -3,7 +3,9 @@
 #include <string>
 
 
-struct Struct_image{
+namespace data{
+
+struct data::Struct_image{
   //---------------------------
 
   int channel_nb = 4;
@@ -15,3 +17,5 @@ struct Struct_image{
 
   //---------------------------
 };
+
+}

@@ -5,7 +5,7 @@
 #include <VK_struct/Struct_vk_entity.h>
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
-#include <UTL_base/Struct_image.h>
+#include <UTL_base/data::Struct_image.h>
 
 class Struct_vulkan;
 class VK_surface;

@@ -21,7 +21,7 @@ GUI_stream::GUI_stream(GUI* gui){
 GUI_stream::~GUI_stream(){}
 
 //Main function
-void GUI_stream::draw_stream(Struct_image* image, ImVec2 panel_size){
+void GUI_stream::draw_stream(data::Struct_image* image, ImVec2 panel_size){
   //---------------------------
 
   if(image->buffer != nullptr){
@@ -33,7 +33,7 @@ void GUI_stream::draw_stream(Struct_image* image, ImVec2 panel_size){
 }
 
 //Subfunction
-void GUI_stream::convert_data_into_texture(Struct_image* image){
+void GUI_stream::convert_data_into_texture(data::Struct_image* image){
   //---------------------------
 
   if(vk_image == nullptr){

@@ -3,13 +3,13 @@
 
 #include <string>
 #include <iostream>
-#include <UTL_base/Struct_image.h>
+#include <UTL_base/data::Struct_image.h>
 
 
 namespace image{
   //---------------------------
 
-  Struct_image load_image(std::string path);
+  data::Struct_image load_image(std::string path);
 
   //---------------------------
 }
