@@ -1,4 +1,4 @@
-#include "RND_object.h"
+#include "Object.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -11,7 +11,7 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-RND_object::RND_object(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Object::Object(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -22,10 +22,10 @@ RND_object::RND_object(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   //---------------------------
 }
-RND_object::~RND_object(){}
+Object::~Object(){}
 
 //Main function
-void RND_object::design_panel(){
+void Object::design_panel(){
   //---------------------------
 
   this->object_info(object_selected);
@@ -35,14 +35,14 @@ void RND_object::design_panel(){
 }
 
 //Subfunction
-void RND_object::object_info(data::Object* object){
+void Object::object_info(data::Object* object){
   //---------------------------
 
   this->set_name("data::Object " + object->name);
 
   //---------------------------
 }
-void RND_object::object_parameter(data::Object* object){
+void Object::object_parameter(data::Object* object){
   ImGui::Columns(2);
   //---------------------------
 
@@ -122,7 +122,7 @@ void RND_object::object_parameter(data::Object* object){
 }
 
 //Primitive size
-void RND_object::width_line(data::Object* object){
+void Object::width_line(data::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -151,7 +151,7 @@ void RND_object::width_line(data::Object* object){
 
   //---------------------------
 }
-void RND_object::size_point(data::Object* object){
+void Object::size_point(data::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

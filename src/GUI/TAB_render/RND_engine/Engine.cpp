@@ -1,4 +1,4 @@
-#include "RND_engine.h"
+#include "Engine.h"
 #include "RND_control.h"
 
 #include <GUI.h>
@@ -14,7 +14,7 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-RND_engine::RND_engine(GUI* gui){
+Engine::Engine(GUI* gui){
   //---------------------------
 
   Utility* utility = gui->get_utility();
@@ -28,10 +28,10 @@ RND_engine::RND_engine(GUI* gui){
 
   //---------------------------
 }
-RND_engine::~RND_engine(){}
+Engine::~Engine(){}
 
 //Main function
-void RND_engine::design_panel(){
+void Engine::design_panel(){
   //---------------------------
 
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
@@ -47,7 +47,7 @@ void RND_engine::design_panel(){
 }
 
 //Subfunction
-void RND_engine::engine_window(){
+void Engine::engine_window(){
   //---------------------------
 
   ImTextureID texture = vk_imgui->rendered_texture();
@@ -56,7 +56,7 @@ void RND_engine::engine_window(){
 
   //---------------------------
 }
-void RND_engine::engine_control(){
+void Engine::engine_control(){
   //---------------------------
 
   if(ImGui::IsItemHovered()){

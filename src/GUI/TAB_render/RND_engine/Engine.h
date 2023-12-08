@@ -11,12 +11,12 @@ class UTL_window;
 
 namespace gui::rnd::panel{
 
-class RND_engine
+class Engine
 {
 public:
   //Constructor / Destructor
-  RND_engine(GUI* gui);
-  ~RND_engine();
+  Engine(GUI* gui);
+  ~Engine();
 
 public:
   //Main functions
