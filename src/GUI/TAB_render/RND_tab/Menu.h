@@ -8,17 +8,17 @@ class ENG_loader;
 class RND_init;
 
 namespace gui::rnd::tab{
-class RND_panel;
-class RND_option;
+class Panel;
+class Option;
 class Tab;
 
 
-class RND_menu
+class Menu
 {
 public:
   //Constructor / Destructor
-  RND_menu(GUI* gui);
-  ~RND_menu();
+  Menu(GUI* gui);
+  ~Menu();
 
 public:
   //Main function
@@ -30,8 +30,8 @@ private:
   GUI* gui;
   ENG_loader* eng_loader;
   RND_init* gui_init;
-  gui::rnd::tab::RND_panel* rnd_panel;
-  gui::rnd::tab::RND_option* rnd_option;
+  gui::rnd::tab::Panel* rnd_panel;
+  gui::rnd::tab::Option* rnd_option;
   gui::rnd::tab::Tab* rnd_tab;
 };
 

@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 class GUI;
-class RND_panel;
+class Panel;
 
 
 namespace gui::rnd::panel{
@@ -26,7 +26,7 @@ public:
   inline void set_selected_set(data::Set* set){this->set_selected = set;}
 
 private:
-  RND_panel* gui_render_panel;
+  Panel* gui_render_panel;
 
   data::Set* set_selected;
   int item_width;

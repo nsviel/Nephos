@@ -1,4 +1,4 @@
-#include "RND_option.h"
+#include "Option.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -9,7 +9,7 @@
 namespace gui::rnd::tab{
 
 //Constructor / Destructor
-RND_option::RND_option(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Option::Option(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -22,10 +22,10 @@ RND_option::RND_option(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   //---------------------------
 }
-RND_option::~RND_option(){}
+Option::~Option(){}
 
 //Main function
-void RND_option::design_panel(){
+void Option::design_panel(){
   //---------------------------
 
   this->option_color();
@@ -35,7 +35,7 @@ void RND_option::design_panel(){
 }
 
 //Subfunctions
-void RND_option::option_color(){
+void Option::option_color(){
   if(ImGui::CollapsingHeader("Colors")){
     //---------------------------
 
@@ -48,7 +48,7 @@ void RND_option::option_color(){
     ImGui::Separator();
   }
 }
-void RND_option::option_fps(){
+void Option::option_fps(){
   //---------------------------
 
   //FPS max value

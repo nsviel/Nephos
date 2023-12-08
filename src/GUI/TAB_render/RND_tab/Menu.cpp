@@ -1,4 +1,4 @@
-#include "RND_menu.h"
+#include "Menu.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -12,7 +12,7 @@
 namespace gui::rnd::tab{
 
 //Constructor / Destructor
-RND_menu::RND_menu(GUI* gui){
+Menu::Menu(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -28,10 +28,10 @@ RND_menu::RND_menu(GUI* gui){
 
   //---------------------------
 }
-RND_menu::~RND_menu(){}
+Menu::~Menu(){}
 
 //Main function
-void RND_menu::run_tab_menu(){
+void Menu::run_tab_menu(){
   //---------------------------
 
   ImGui::BeginMainMenuBar();

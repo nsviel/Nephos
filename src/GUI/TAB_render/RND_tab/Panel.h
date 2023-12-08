@@ -3,7 +3,7 @@
 
 namespace gui::rnd::tab{
 
-struct RND_panel{
+struct Panel{
   //---------------------------
 
   bool show_engine_camera   = false;

@@ -31,7 +31,7 @@ public:
   int data_node_tree(data::Set* set);
 
 private:
-  gui::rnd::tab::RND_panel* rnd_panel;
+  gui::rnd::tab::Panel* rnd_panel;
   gui::rnd::panel::Object* gui_object;
   Set* gui_set;
   ENG_database* eng_database;

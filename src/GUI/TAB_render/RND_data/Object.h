@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 class GUI;
-class RND_panel;
+class Panel;
 class ENG_scene;
 
 
@@ -31,7 +31,7 @@ public:
   inline void set_selected_object(data::Object* object){this->object_selected = object;}
 
 private:
-  RND_panel* gui_render_panel;
+  Panel* gui_render_panel;
   ENG_scene* eng_scene;
 
   data::Object* object_selected;

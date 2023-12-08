@@ -7,7 +7,7 @@
 class GUI;
 
 namespace gui::rnd::tab{
-class RND_menu;
+class Menu;
 
 
 class Tab
@@ -23,7 +23,7 @@ public:
   void draw_panels();
   void open_panels();
 
-  inline gui::rnd::tab::RND_panel* get_rnd_panel(){return gui_render_panel;}
+  inline gui::rnd::tab::Panel* get_rnd_panel(){return gui_render_panel;}
   inline gui::rnd::panel::Shader* get_rnd_shader(){return rnd_shader;}
   inline gui::rnd::panel::Profiler* get_rnd_profiler(){return rnd_profiler;}
   inline gui::rnd::panel::Object* get_rnd_object(){return rnd_object;}
@@ -31,13 +31,13 @@ public:
   inline gui::rnd::panel::Camera* get_rnd_camera(){return rnd_camera;}
   inline gui::rnd::panel::Render* get_rnd_render(){return rnd_render;}
   inline gui::rnd::panel::Scene* get_rnd_scene(){return rnd_scene;}
-  inline gui::rnd::tab::RND_option* get_rnd_option(){return rnd_option;}
+  inline gui::rnd::tab::Option* get_rnd_option(){return rnd_option;}
 
 private:
   GUI* gui;
-  gui::rnd::tab::RND_panel* gui_render_panel;
-  gui::rnd::tab::RND_option* rnd_option;
-  gui::rnd::tab::RND_menu* rnd_menu;
+  gui::rnd::tab::Panel* gui_render_panel;
+  gui::rnd::tab::Option* rnd_option;
+  gui::rnd::tab::Menu* rnd_menu;
   gui::rnd::panel::Shader* rnd_shader;
   gui::rnd::panel::Profiler* rnd_profiler;
   gui::rnd::panel::Scene* rnd_scene;

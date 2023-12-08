@@ -9,12 +9,12 @@ class VK_info;
 
 namespace gui::rnd::tab{
 
-class RND_option : public BASE_panel
+class Option : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  RND_option(GUI* gui, bool* show_window, string name);
-  ~RND_option();
+  Option(GUI* gui, bool* show_window, string name);
+  ~Option();
 
 public:
   //Main function
