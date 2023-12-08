@@ -1,4 +1,4 @@
-#include "GUI_tab.h"
+#include "Tab.h"
 
 #include <GUI.h>
 #include <Vulkan.h>
@@ -8,12 +8,12 @@
 namespace gui{
 
 //Constructor / Destructor
-GUI_tab::GUI_tab(GUI* gui){
+Tab::Tab(GUI* gui){
   //---------------------------
 
   this->rnd_tab = new gui::rnd::tab::Tab(gui);
   this->dev_tab = new gui::dev::tab::Tab(gui);
-  this->gui_menu = new gui::GUI_menu(gui);
+  this->gui_menu = new gui::Menu(gui);
 
   this->active_tab = "Render";
   this->tab_to_open = "";
@@ -22,7 +22,7 @@ GUI_tab::GUI_tab(GUI* gui){
 
   //---------------------------
 }
-GUI_tab::~GUI_tab(){
+Tab::~Tab(){
   //---------------------------
 
   delete rnd_tab;
@@ -32,7 +32,7 @@ GUI_tab::~GUI_tab(){
 }
 
 //Main function
-void GUI_tab::create_panels(){
+void Tab::create_panels(){
   //---------------------------
 
   rnd_tab->create_panels();
@@ -40,7 +40,7 @@ void GUI_tab::create_panels(){
 
   //---------------------------
 }
-void GUI_tab::run_tab(){
+void Tab::run_tab(){
   //---------------------------
 
   //Draw main menu bar
@@ -56,7 +56,7 @@ void GUI_tab::run_tab(){
 }
 
 //Tab function
-void GUI_tab::tabs(){
+void Tab::tabs(){
   ImGuiTabItemFlags flag;
   //---------------------------
 
@@ -79,7 +79,7 @@ void GUI_tab::tabs(){
 
   //---------------------------
 }
-void GUI_tab::draw_panels(){
+void Tab::draw_panels(){
   //---------------------------
 
   //Draw selected tab panels
@@ -92,7 +92,7 @@ void GUI_tab::draw_panels(){
 
   //---------------------------
 }
-void GUI_tab::next_tab(){
+void Tab::next_tab(){
   //---------------------------
 
   for(int i=0; i<vec_tab.size(); i++){

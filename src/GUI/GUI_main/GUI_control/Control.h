@@ -7,7 +7,7 @@ class GUI;
 class UTL_window;
 
 namespace gui{
-class GUI_tab;
+class Tab;
 
 
 class Control
@@ -28,7 +28,7 @@ public:
 
 private:
   UTL_window* utl_window;
-  gui::GUI_tab* gui_tab;
+  gui::Tab* gui_tab;
 };
 
 }

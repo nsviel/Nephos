@@ -10,12 +10,12 @@ class GUI;
 
 namespace gui{
 
-class GUI_tab
+class Tab
 {
 public:
   //Constructor / Destructor
-  GUI_tab(GUI* gui);
-  ~GUI_tab();
+  Tab(GUI* gui);
+  ~Tab();
 
 public:
   //Main functions
@@ -32,7 +32,7 @@ public:
 
 private:
   GUI* gui;
-  gui::GUI_menu* gui_menu;
+  gui::Menu* gui_menu;
   gui::rnd::tab::Tab* rnd_tab;
   gui::dev::tab::Tab* dev_tab;
 

@@ -2,7 +2,7 @@
 
 #include <Engine.h>
 #include <GUI.h>
-#include <GUI_interface/GUI_tab.h>
+#include <GUI_interface/Tab.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_database.h>
 #include <TAB_render/Panel_nsp.h>
@@ -17,7 +17,7 @@ Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name
 
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
-  GUI_tab* gui_tab = gui->get_gui_tab();
+  Tab* gui_tab = gui->get_gui_tab();
   gui::rnd::tab::Tab* rnd_panel = gui_tab->get_rnd_tab();
   this->eng_database = eng_data->get_eng_database();
   this->rnd_panel = rnd_panel->get_rnd_panel();

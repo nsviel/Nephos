@@ -1,4 +1,4 @@
-#include "GUI_docking.h"
+#include "Docking.h"
 
 #include <GUI.h>
 
@@ -6,16 +6,16 @@
 namespace gui{
 
 //Constructor / Destructor
-GUI_docking::GUI_docking(GUI* gui){
+Docking::Docking(GUI* gui){
   //---------------------------
 
 
   //---------------------------
 }
-GUI_docking::~GUI_docking(){}
+Docking::~Docking(){}
 
 //Main function
-void GUI_docking::docker_space_main(){
+void Docking::docker_space_main(){
   //---------------------------
 
   static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;

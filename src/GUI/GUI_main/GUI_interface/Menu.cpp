@@ -1,4 +1,4 @@
-#include "GUI_menu.h"
+#include "Menu.h"
 
 #include <GUI.h>
 #include <Vulkan.h>
@@ -9,7 +9,7 @@
 namespace gui{
 
 //Constructor / Destructor
-GUI_menu::GUI_menu(GUI* gui){
+Menu::Menu(GUI* gui){
   //---------------------------
 
   this->gui = gui;
@@ -20,10 +20,10 @@ GUI_menu::GUI_menu(GUI* gui){
 
   //---------------------------
 }
-GUI_menu::~GUI_menu(){}
+Menu::~Menu(){}
 
 //Menu function
-void GUI_menu::menu(){
+void Menu::menu(){
   //---------------------------
 
   this->menu_option();
@@ -32,7 +32,7 @@ void GUI_menu::menu(){
 
   //---------------------------
 }
-void GUI_menu::menu_option(){
+void Menu::menu_option(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
@@ -50,7 +50,7 @@ void GUI_menu::menu_option(){
 
   //---------------------------
 }
-void GUI_menu::menu_demo(){
+void Menu::menu_demo(){
   //---------------------------
 
   if(ImGui::BeginMenu(ICON_FA_BOOK, "menu_demo")){
@@ -70,7 +70,7 @@ void GUI_menu::menu_demo(){
 
   //---------------------------
 }
-void GUI_menu::menu_git(){
+void Menu::menu_git(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 

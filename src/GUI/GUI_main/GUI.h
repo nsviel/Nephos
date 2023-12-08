@@ -32,7 +32,7 @@ public:
 
   inline gui::Control* get_gui_control(){return gui_control;}
   inline GUI_style* get_gui_style(){return gui_style;}
-  inline gui::GUI_tab* get_gui_tab(){return gui_tab;}
+  inline gui::Tab* get_gui_tab(){return gui_tab;}
   inline GUI_font* get_gui_font(){return gui_font;}
   inline GUI_render* get_rnd_tab(){return gui_render;}
 
@@ -44,8 +44,8 @@ private:
   UTL_window* utl_window;
   gui::Control* gui_control;
   GUI_style* gui_style;
-  gui::GUI_docking* gui_docking;
+  gui::Docking* gui_docking;
   GUI_font* gui_font;
-  gui::GUI_tab* gui_tab;
+  gui::Tab* gui_tab;
   GUI_render* gui_render;
 };

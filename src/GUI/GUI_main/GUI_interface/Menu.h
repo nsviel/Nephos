@@ -9,12 +9,12 @@ class GUI_font;
 
 namespace gui{
 
-class GUI_menu
+class Menu
 {
 public:
   //Constructor / Destructor
-  GUI_menu(GUI* gui);
-  ~GUI_menu();
+  Menu(GUI* gui);
+  ~Menu();
 
 public:
   //Menu function

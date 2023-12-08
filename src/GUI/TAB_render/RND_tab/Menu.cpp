@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Engine.h>
-#include <GUI_interface/GUI_tab.h>
+#include <GUI_interface/Tab.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_load/ENG_loader.h>
 #include <image/IconsFontAwesome5.h>
@@ -17,7 +17,7 @@ Menu::Menu(GUI* gui){
 
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
-  GUI_tab* gui_tab = gui->get_gui_tab();
+  Tab* gui_tab = gui->get_gui_tab();
 
   this->gui = gui;
   this->gui_init = new Init(gui);

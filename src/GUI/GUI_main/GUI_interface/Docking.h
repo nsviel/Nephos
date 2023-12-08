@@ -7,12 +7,12 @@ class GUI;
 
 namespace gui{
 
-class GUI_docking
+class Docking
 {
 public:
   //Constructor / Destructor
-  GUI_docking(GUI* gui);
-  ~GUI_docking();
+  Docking(GUI* gui);
+  ~Docking();
 
 public:
   //Main functions
