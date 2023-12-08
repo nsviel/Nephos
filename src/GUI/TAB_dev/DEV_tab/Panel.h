@@ -1,21 +1,22 @@
 #pragma once
 
-#include <TAB_dev/Dev_nsp.h>
+#include <vector>
+#include <TAB_dev/Panel_nsp.h>
 
 
-namespace dev{
+namespace gui::dev::tab{
 
 struct Panel{
   //---------------------------
 
   void run_editors(){
     for(int i=0; i<vec_editor.size(); i++){
-      dev::Editor* editor = vec_editor[i];
+      gui::dev::panel::Editor* editor = vec_editor[i];
       editor->run_panel();
     }
   }
 
-  vector<dev::Editor*> vec_editor;
+  std::vector<gui::dev::panel::Editor*> vec_editor;
   int ID_editor = 0;
   bool show_database = false;
 

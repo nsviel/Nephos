@@ -1,10 +1,10 @@
 #pragma once
 
-#include <TAB_dev/Dev_nsp.h>
 #include <UTL_specific/common.h>
+#include <TAB_dev/Tab_nsp.h>
 
 
-namespace dev{
+namespace gui::dev::tab{
 
 class Menu
 {
@@ -21,7 +21,7 @@ public:
   void open_panels();
 
 private:
-  dev::Panel* panel;
+  gui::dev::tab::Panel* panel;
 
 };
 
