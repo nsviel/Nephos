@@ -1,12 +1,12 @@
 #pragma once
 
-#include <GUI_control/GUI_control.h>
+#include <GUI_control/Control.h>
 
 
 namespace gui{
   //---------------------------
 
-  class GUI_control;
+  class Control;
 
   //---------------------------
 }

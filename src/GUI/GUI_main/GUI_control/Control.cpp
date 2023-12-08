@@ -1,4 +1,4 @@
-#include "GUI_control.h"
+#include "Control.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -10,7 +10,7 @@
 namespace gui{
 
 //Constructor / Destructor
-GUI_control::GUI_control(GUI* gui){
+Control::Control(GUI* gui){
   //---------------------------
 
   Utility* utility = gui->get_utility();
@@ -21,10 +21,10 @@ GUI_control::GUI_control(GUI* gui){
 
   //---------------------------
 }
-GUI_control::~GUI_control(){}
+Control::~Control(){}
 
 //Main function
-void GUI_control::run_control(){
+void Control::run_control(){
   //---------------------------
 
   this->control_keyboard_oneAction();
@@ -33,7 +33,7 @@ void GUI_control::run_control(){
 }
 
 //Keyboard
-void GUI_control::control_keyboard_oneAction(){
+void Control::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 

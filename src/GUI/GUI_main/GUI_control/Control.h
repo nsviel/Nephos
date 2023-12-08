@@ -9,12 +9,12 @@ class UTL_window;
 
 namespace gui{
 
-class GUI_control
+class Control
 {
 public:
   //Constructor / Destructor
-  GUI_control(GUI* gui);
-  ~GUI_control();
+  Control(GUI* gui);
+  ~Control();
 
 public:
   //Main function

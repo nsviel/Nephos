@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GUI_main/GUI_render/GUI_render.h>
+#include <GUI_main/GUI_nsp.h>
 #include <UTL_specific/common.h>
 
 class Engine;
@@ -9,7 +10,6 @@ class Utility;
 class UTL_window;
 
 class GUI_font;
-class GUI_control;
 class GUI_style;
 class Image;
 class GUI_tab;
@@ -33,7 +33,7 @@ public:
   inline Utility* get_utility(){return utility;}
   inline Engine* get_engine(){return engine;}
 
-  inline GUI_control* get_gui_control(){return gui_control;}
+  inline gui::Control* get_gui_control(){return gui_control;}
   inline GUI_style* get_gui_style(){return gui_style;}
   inline GUI_tab* get_gui_tab(){return gui_tab;}
   inline GUI_font* get_gui_font(){return gui_font;}
@@ -45,7 +45,7 @@ private:
   Utility* utility;
 
   UTL_window* utl_window;
-  GUI_control* gui_control;
+  gui::Control* gui_control;
   GUI_style* gui_style;
   GUI_docking* gui_docking;
   GUI_font* gui_font;

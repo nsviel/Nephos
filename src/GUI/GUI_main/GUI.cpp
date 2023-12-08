@@ -5,7 +5,6 @@
 #include <UTL_window/UTL_window.h>
 #include <GUI_interface/GUI_tab.h>
 #include <GUI_interface/GUI_docking.h>
-#include <GUI_control/GUI_control.h>
 #include <GUI_render/GUI_render.h>
 #include <GUI_style/GUI_style.h>
 #include <GUI_style/GUI_font.h>
@@ -24,7 +23,7 @@ GUI::GUI(Utility* utility, Engine* engine){
   this->gui_style = new GUI_style(this);
   this->gui_font = new GUI_font(this);
   this->gui_tab = new GUI_tab(this);
-  this->gui_control = new GUI_control(this);
+  this->gui_control = new gui::Control(this);
   this->gui_docking = new GUI_docking(this);
 
   //---------------------------
