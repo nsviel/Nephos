@@ -3,7 +3,6 @@
 #include <Engine.h>
 #include <Utility.h>
 #include <UTL_window/UTL_window.h>
-#include <GUI_image/GUI_gpu.h>
 #include <GUI_interface/GUI_tab.h>
 #include <GUI_interface/GUI_docking.h>
 #include <GUI_control/GUI_control.h>
@@ -25,7 +24,6 @@ GUI::GUI(Utility* utility, Engine* engine){
   this->gui_style = new GUI_style(this);
   this->gui_font = new GUI_font(this);
   this->gui_tab = new GUI_tab(this);
-  this->gui_gpu = new GUI_gpu(this);
   this->gui_control = new GUI_control(this);
   this->gui_docking = new GUI_docking(this);
 
@@ -46,7 +44,6 @@ void GUI::init(){
 
   gui_render->init();
   gui_tab->create_panels();
-  gui_gpu->init_vulkan();
   gui_font->init_gui_font();
   gui_style->gui_style();
 
@@ -62,8 +59,6 @@ void GUI::loop(){
   gui_docking->docker_space_main();
   gui_tab->run_tab();
   gui_control->run_control();
-
-  gui_gpu->render_frame();
   gui_render->loop();
 
   //---------------------------
@@ -71,7 +66,6 @@ void GUI::loop(){
 void GUI::exit(){
   //---------------------------
 
-  gui_gpu->clean_vulkan();
   gui_render->clean();
 
   //---------------------------

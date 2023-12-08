@@ -12,7 +12,6 @@ class UTL_window;
 class GUI_font;
 class GUI_control;
 class GUI_style;
-class GUI_gpu;
 class Image;
 class GUI_tab;
 class GUI_render;
@@ -50,7 +49,6 @@ private:
   GUI_control* gui_control;
   GUI_style* gui_style;
   GUI_docking* gui_docking;
-  GUI_gpu* gui_gpu;
   GUI_font* gui_font;
   GUI_tab* gui_tab;
   GUI_render* gui_render;
