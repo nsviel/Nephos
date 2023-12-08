@@ -1,5 +1,4 @@
-#ifndef GUI_STREAM_H
-#define GUI_STREAM_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <UTL_base/Struct_image.h>
@@ -33,6 +32,3 @@ private:
 };
 
 }
-
-
-#endif

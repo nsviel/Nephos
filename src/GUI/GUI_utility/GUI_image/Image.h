@@ -1,5 +1,4 @@
-#ifndef GUI_IMAGE_H
-#define GUI_IMAGE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -34,6 +33,3 @@ private:
 };
 
 }
-
-
-#endif

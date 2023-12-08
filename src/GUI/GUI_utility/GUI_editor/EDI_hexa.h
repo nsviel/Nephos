@@ -1,11 +1,12 @@
-#ifndef GUI_EDITOR_HEXA_H
-#define GUI_EDITOR_HEXA_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <imgui/editor/editor_memory.h>
 
 class GUI;
 
+
+namespace gui::editor{
 
 class EDI_hexa
 {
@@ -24,4 +25,4 @@ public:
 private:
 };
 
-#endif
+}

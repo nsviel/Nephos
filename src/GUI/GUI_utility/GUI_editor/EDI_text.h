@@ -1,5 +1,4 @@
-#ifndef GUI_EDITOR_TEXT_H
-#define GUI_EDITOR_TEXT_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <imgui/editor/Text/editor_text.h>
@@ -44,5 +43,3 @@ private:
   string current_file_path;
   bool has_been_saved;
 };
-
-#endif

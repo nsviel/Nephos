@@ -2,6 +2,8 @@
 #include <GUI.h>
 
 
+namespace gui::editor{
+
 //Constructor / Destructor
 EDI_hexa::EDI_hexa(GUI* gui){
   //---------------------------
@@ -29,4 +31,6 @@ void EDI_hexa::design_editor_memory(){
   mem_edit.DrawWindow("Memory Editor", data, data_size);
 
   //---------------------------
+}
+
 }

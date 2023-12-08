@@ -1,5 +1,4 @@
-#ifndef GUI_EDITOR_NODE_H
-#define GUI_EDITOR_NODE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <imgui/node/imgui_node_editor.h>
@@ -23,5 +22,3 @@ public:
 
 private:
 };
-
-#endif
