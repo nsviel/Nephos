@@ -8,6 +8,8 @@
 #include <image/IconsFontAwesome5.h>
 
 
+namespace gui::rnd::panel{
+
 //Constructor / Destructor
 RND_object::RND_object(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
@@ -177,4 +179,6 @@ void RND_object::size_point(data::Object* object){
   ImGui::Text("%d", object->draw_point_size);
 
   //---------------------------
+}
+
 }

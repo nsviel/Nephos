@@ -2,9 +2,10 @@
 
 #include <GUI.h>
 #include <TAB_render/RND_tab/RND_panel.h>
-
 #include <ENG_operation/Transformation/Attribut.h>
 
+
+namespace gui::rnd::panel{
 
 //Constructor / Destructor
 RND_set::RND_set(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
@@ -67,4 +68,6 @@ void RND_set::set_parameter(data::Set* set){
 
   //---------------------------
   ImGui::Columns(1);
+}
+
 }

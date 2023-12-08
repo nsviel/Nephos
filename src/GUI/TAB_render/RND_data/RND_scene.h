@@ -10,6 +10,8 @@ class RND_set;
 class ENG_database;
 
 
+namespace gui::rnd::panel{
+
 class RND_scene : public BASE_panel
 {
 public:
@@ -35,3 +37,5 @@ private:
 
   bool* show_window;
 };
+
+}

@@ -8,6 +8,8 @@ class RND_panel;
 class ENG_scene;
 
 
+namespace gui::rnd::panel{
+
 class RND_object : public BASE_panel
 {
 public:
@@ -35,3 +37,5 @@ private:
   data::Object* object_selected;
   int item_width;
 };
+
+}

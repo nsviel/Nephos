@@ -11,6 +11,8 @@
 #include <TAB_render/RND_data/RND_set.h>
 
 
+namespace gui::rnd::panel{
+
 //Constructor / Destructor
 RND_scene::RND_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
@@ -186,4 +188,6 @@ int RND_scene::data_node_tree(data::Set* set){
 
   //-------------------------------
   return nb_row;
+}
+
 }

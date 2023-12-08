@@ -74,7 +74,7 @@ float fct_mean_and_clear(std::vector<float>& vec){
   //---------------------------
   return mean;
 }
-float fct_sum(std::vector<float>& vec){
+float compute_sum(std::vector<float>& vec){
   //Sum of vector elements
   float out = 0;
   int size = vec.size();
@@ -87,7 +87,7 @@ float fct_sum(std::vector<float>& vec){
   //---------------------------
   return out;
 }
-float fct_dotProduct(glm::vec3 vec_A, glm::vec3 vec_B){
+float dot_product(glm::vec3 vec_A, glm::vec3 vec_B){
   float product = 0;
   //---------------------------
 
@@ -148,7 +148,7 @@ double compute_distance(Eigen::Vector4d pt1, Eigen::Vector3d pt2){
   //---------------------------
   return dist;
 }
-bool fct_is_nan(glm::vec3 vec){
+bool is_nan(glm::vec3 vec){
   //---------------------------
 
   if(isnan(vec[0]) || isnan(vec[1]) || isnan(vec[2])){
@@ -158,7 +158,7 @@ bool fct_is_nan(glm::vec3 vec){
   //---------------------------
   return false;
 }
-bool fct_is_nan(Eigen::Vector3d vec){
+bool is_nan(Eigen::Vector3d vec){
   //---------------------------
 
   if(isnan(vec(0)) || isnan(vec(1)) || isnan(vec(2))){
@@ -317,7 +317,7 @@ Eigen::Matrix3d fct_covarianceMat(std::vector<Eigen::Vector3d>& vec){
   //---------------------------
   return covMat;
 }
-std::vector<float> fct_inv(std::vector<float>& vec){
+std::vector<float> compute_inv(std::vector<float>& vec){
   //Vector inversion
   std::vector<float> vec_out;
   int size = vec.size();
@@ -330,7 +330,7 @@ std::vector<float> fct_inv(std::vector<float>& vec){
   //---------------------------
   return vec_out;
 }
-std::vector<float> fct_ones(int size){
+std::vector<float> vector_ones(int size){
   std::vector<float> vec;
   //---------------------------
 

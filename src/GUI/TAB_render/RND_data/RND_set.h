@@ -7,6 +7,8 @@ class GUI;
 class RND_panel;
 
 
+namespace gui::rnd::panel{
+
 class RND_set : public BASE_panel
 {
 public:
@@ -29,3 +31,5 @@ private:
   data::Set* set_selected;
   int item_width;
 };
+
+}
