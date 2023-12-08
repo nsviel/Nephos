@@ -23,12 +23,13 @@ public:
 
   //Subfunction
   void display_option();
-  void display_data();
+  void combo_table();
+  void display_table();
 
 private:
   UTL_database* database;
 
-  string path_database;
+  string path_db;
 };
 
 }

@@ -10,8 +10,9 @@ namespace gui::dev::panel{
 Database::Database(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  this->database = new UTL_database("../media/database/database.db3");
-  this->path_database = "../media/database/database.db3";
+  this->path_db = "/home/aether/Desktop/todo/power.db3";
+  //this->path_db = "../media/database/database.db3";
+  this->database = new UTL_database(path_db);
 
   //---------------------------
 }
@@ -22,7 +23,8 @@ void Database::design_panel(){
   //---------------------------
 
   this->display_option();
-  this->display_data();
+  this->combo_table();
+  this->display_table();
 
   //---------------------------
 }
@@ -64,15 +66,16 @@ void Database::display_option(){
 
   //---------------------------
 }
-void Database::display_data(){
+void Database::combo_table(){
   //---------------------------
 
   vector<string> vec_table = database->retrieve_all_table();
+  if(vec_table.size() == 0) return;
 
   //Table list combo
   static int selectedIndex = 0;
   if(ImGui::BeginCombo("table_combo", vec_table[selectedIndex].c_str())){
-    for(int i = 0; i < vec_table.size(); ++i){
+    for(int i=0; i<vec_table.size(); i++){
       const bool isSelected = (selectedIndex == i);
       if(ImGui::Selectable(vec_table[i].c_str(), isSelected)){
         selectedIndex = i;
@@ -85,12 +88,16 @@ void Database::display_data(){
     ImGui::EndCombo();
   }
 
+  //---------------------------
+}
+void Database::display_table(){
+  //---------------------------
 
+  vector<string> vec_table = database->retrieve_all_table();
 
   ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_Borders;
   flags |= ImGuiTableFlags_RowBg;
-
   if(ImGui::BeginTable("database_view", 1, flags)){
 
     for(int i=0; i<vec_table.size(); i++){
@@ -106,8 +113,6 @@ void Database::display_data(){
 
     ImGui::EndTable();
   }
-
-
 
   //---------------------------
 }

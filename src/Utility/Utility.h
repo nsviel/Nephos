@@ -1,7 +1,6 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
-#include "Utility_namespace.h"
 #include <UTL_specific/common.h>
 
 class Config;

@@ -24,7 +24,7 @@ public:
   vector<string> retrieve_all_table();
 
 private:
-  string path_database;
+  string db_path;
 };
 
 #endif

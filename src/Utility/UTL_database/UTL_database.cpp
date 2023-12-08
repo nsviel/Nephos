@@ -5,7 +5,7 @@
 UTL_database::UTL_database(string path){
   //---------------------------
 
-  this->path_database = path;
+  this->db_path = path;
 
   //---------------------------
 }
@@ -13,9 +13,10 @@ UTL_database::~UTL_database(){}
 
 //Management function
 void UTL_database::create_table(string name){
+  if(name == "")return;
   //---------------------------
 
-  SQLite::Database db(path_database.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
+  SQLite::Database db(db_path.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
 
   db.exec("DROP TABLE IF EXISTS " + name);
   db.exec("CREATE TABLE " + name + " (id INTEGER PRIMARY KEY, value TEXT)");
@@ -23,9 +24,10 @@ void UTL_database::create_table(string name){
   //---------------------------
 }
 void UTL_database::remove_table(string name){
+  if(name == "")return;
   //---------------------------
 
-  SQLite::Database db(path_database.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
+  SQLite::Database db(db_path.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
 
   db.exec("DROP TABLE IF EXISTS " + name);
 
@@ -36,7 +38,7 @@ void UTL_database::remove_table(string name){
 vector<string> UTL_database::retrieve_all_table(){
   //---------------------------
 
-  SQLite::Database db(path_database.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
+  SQLite::Database db(db_path.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
 
   SQLite::Statement query(db, "SELECT * FROM sqlite_master where type='table'");
   vector<string> vec_table;

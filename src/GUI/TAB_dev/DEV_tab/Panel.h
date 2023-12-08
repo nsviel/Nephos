@@ -19,7 +19,7 @@ struct Panel{
 
   std::vector<gui::dev::panel::Editor*> vec_editor;
   int ID_editor = 0;
-  bool show_database = false;
+  bool show_database = true;
 
   //---------------------------
 };
