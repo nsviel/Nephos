@@ -1,7 +1,7 @@
 #ifndef GUI_TAB_H
 #define GUI_TAB_H
 
-#include <TAB_dev/DEV_nsp.h>
+#include <TAB_dev/Dev_nsp.h>
 #include <UTL_specific/common.h>
 
 class GUI;

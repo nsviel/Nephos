@@ -5,7 +5,7 @@
 #include <GUI_interface/GUI_menu.h>
 #include <image/IconsFontAwesome5.h>
 #include <TAB_render/RND_tab/RND_tab.h>
-#include <TAB_dev/DEV_nsp.h>
+#include <TAB_dev/Dev_nsp.h>
 
 
 //Constructor / Destructor
