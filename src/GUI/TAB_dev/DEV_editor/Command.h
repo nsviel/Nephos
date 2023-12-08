@@ -1,13 +1,12 @@
 #pragma once
 
-#include <TAB_dev/DEV_nsp.h>
+#include <TAB_dev/Tab_nsp.h>
 #include <UTL_specific/common.h>
 
 class GUI;
-class Panel;
 
+namespace gui::dev::panel{
 
-namespace dev{
 
 class Command
 {
@@ -25,7 +24,7 @@ public:
 
 private:
   GUI* gui;
-  Panel* gui_panel;
+  //gui::dev::tab::Panel* gui_panel;
 };
 
 }

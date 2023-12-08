@@ -1,23 +1,24 @@
-#include "RND_set.h"
+#include "Set.h"
 
 #include <GUI.h>
 #include <TAB_render/RND_tab/RND_panel.h>
-
 #include <ENG_operation/Transformation/Attribut.h>
 
 
+namespace gui::rnd::panel{
+
 //Constructor / Destructor
-RND_set::RND_set(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Set::Set(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   this->item_width = 150;
 
   //---------------------------
 }
-RND_set::~RND_set(){}
+Set::~Set(){}
 
 //Main function
-void RND_set::design_panel(){
+void Set::design_panel(){
   //---------------------------
 
   this->set_info(set_selected);
@@ -27,14 +28,14 @@ void RND_set::design_panel(){
 }
 
 //Subfunction
-void RND_set::set_info(data::Set* set){
+void Set::set_info(data::Set* set){
   //---------------------------
 
   this->set_name("Set " + set->name);
 
   //---------------------------
 }
-void RND_set::set_parameter(data::Set* set){
+void Set::set_parameter(data::Set* set){
   ImGui::Columns(2);
   //---------------------------
 
@@ -67,4 +68,6 @@ void RND_set::set_parameter(data::Set* set){
 
   //---------------------------
   ImGui::Columns(1);
+}
+
 }

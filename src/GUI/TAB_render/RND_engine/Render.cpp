@@ -1,4 +1,4 @@
-#include "RND_engine.h"
+#include "Render.h"
 #include "RND_control.h"
 
 #include <GUI.h>
@@ -11,8 +11,10 @@
 #include <GUI_gpu/GUI_image.h>
 
 
+namespace gui::rnd::panel{
+
 //Constructor / Destructor
-RND_engine::RND_engine(GUI* gui){
+Render::Render(GUI* gui){
   //---------------------------
 
   Utility* utility = gui->get_utility();
@@ -26,15 +28,15 @@ RND_engine::RND_engine(GUI* gui){
 
   //---------------------------
 }
-RND_engine::~RND_engine(){}
+Render::~Render(){}
 
 //Main function
-void RND_engine::design_panel(){
+void Render::design_panel(){
   //---------------------------
 
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
   ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
-  if(ImGui::Begin("Engine", NULL)){
+  if(ImGui::Begin("Render", NULL)){
     this->engine_window();
     this->engine_control();
     ImGui::End();
@@ -45,7 +47,7 @@ void RND_engine::design_panel(){
 }
 
 //Subfunction
-void RND_engine::engine_window(){
+void Render::engine_window(){
   //---------------------------
 
   ImTextureID texture = vk_imgui->rendered_texture();
@@ -54,7 +56,7 @@ void RND_engine::engine_window(){
 
   //---------------------------
 }
-void RND_engine::engine_control(){
+void Render::engine_control(){
   //---------------------------
 
   if(ImGui::IsItemHovered()){
@@ -66,4 +68,6 @@ void RND_engine::engine_control(){
   }
 
   //---------------------------
+}
+
 }

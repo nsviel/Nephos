@@ -1,20 +1,18 @@
 #include "Tab.h"
 
 #include <GUI.h>
-#include <TAB_dev/DEV_nsp.h>
 
 
-
-namespace dev{
+namespace gui::dev::tab{
 
 //Constructor / Destructor
 Tab::Tab(GUI* gui){
   //---------------------------
 
   this->gui = gui;
-  this->panel = new dev::Panel();
-  this->menu = new dev::Menu(panel);
-  this->database = new dev::Database(gui, &panel->show_database, "Database##4323");
+  this->panel = new gui::dev::tab::Panel();
+  this->menu = new gui::dev::tab::Menu(panel);
+  this->database = new gui::dev::panel::Database(gui, &panel->show_database, "Database##4323");
 
   //---------------------------
 }
@@ -25,8 +23,8 @@ void Tab::create_panels(){
   //---------------------------
 
   static bool truc = true;
-  panel->vec_editor.push_back(new dev::Editor(gui, &truc, "Editor"));
-  this->command = new dev::Command(gui);
+  panel->vec_editor.push_back(new gui::dev::panel::Editor(gui, &truc, "Editor"));
+  this->command = new gui::dev::panel::Command(gui);
 
   //---------------------------
 }

@@ -1,21 +1,20 @@
 #include "Command.h"
 
 #include <GUI.h>
-#include <GUI_interface/GUI_tab.h>
-#include <TAB_dev/DEV_nsp.h>
 #include <image/IconsFontAwesome5.h>
+#include <TAB_dev/Tab_nsp.h>
 
 
-namespace dev{
+namespace gui::dev::panel{
 
 //Constructor / Destructor
 Command::Command(GUI* gui){
   //---------------------------
 
   GUI_tab* gui_tab = gui->get_gui_tab();
-  dev::Tab* dev_tab = gui_tab->get_dev_tab();
+  //gui::dev::tab::Tab* dev_tab = gui_tab->get_dev_tab();
   this->gui = gui;
-  this->gui_panel = dev_tab->get_panel();
+  //this->gui_panel = dev_tab->get_panel();
 
   //---------------------------
 }
@@ -45,7 +44,7 @@ void Command::design_panel(){
 
   if(ImGui::Button("New editor")){
     static bool truc = true;
-    gui_panel->vec_editor.push_back(new dev::Editor(gui, &truc, "Editor"));
+    //gui_panel->vec_editor.push_back(new gui::dev::Editor(gui, &truc, "Editor"));
   }
 
   //---------------------------

@@ -1,7 +1,7 @@
 #ifndef GUI_TAB_H
 #define GUI_TAB_H
 
-#include <TAB_dev/DEV_nsp.h>
+#include <TAB_dev/Tab_nsp.h>
 #include <UTL_specific/common.h>
 
 class GUI;
@@ -27,13 +27,13 @@ public:
   void next_tab();
 
   inline RND_tab* get_rnd_tab(){return rnd_tab;}
-  inline dev::Tab* get_dev_tab(){return dev_tab;}
+  inline gui::dev::tab::Tab* get_dev_tab(){return dev_tab;}
 
 private:
   GUI* gui;
   GUI_menu* gui_menu;
   RND_tab* rnd_tab;
-  dev::Tab* dev_tab;
+  gui::dev::tab::Tab* dev_tab;
 
   vector<string> vec_tab;
   string active_tab;

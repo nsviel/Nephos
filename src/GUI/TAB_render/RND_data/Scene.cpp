@@ -1,4 +1,4 @@
-#include "RND_scene.h"
+#include "Scene.h"
 
 #include <Engine.h>
 #include <GUI.h>
@@ -7,12 +7,14 @@
 #include <TAB_render/RND_tab/RND_tab.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_database.h>
-#include <TAB_render/RND_data/RND_object.h>
-#include <TAB_render/RND_data/RND_set.h>
+#include <TAB_render/Panel_nsp.h>
+#include <TAB_render/RND_data/Set.h>
 
+
+namespace gui::rnd::panel{
 
 //Constructor / Destructor
-RND_scene::RND_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Scene::Scene(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -27,10 +29,10 @@ RND_scene::RND_scene(GUI* gui, bool* show_window, string name) : BASE_panel(show
 
   //---------------------------
 }
-RND_scene::~RND_scene(){}
+Scene::~Scene(){}
 
 //Main function
-void RND_scene::run_panel(){
+void Scene::run_panel(){
   //---------------------------
 
   if(*show_window){
@@ -49,7 +51,7 @@ void RND_scene::run_panel(){
 
   //---------------------------
 }
-void RND_scene::design_panel(){
+void Scene::design_panel(){
   //---------------------------
 
   this->draw_window_background();
@@ -59,7 +61,7 @@ void RND_scene::design_panel(){
 }
 
 //Subfunction
-void RND_scene::draw_window_background(){
+void Scene::draw_window_background(){
   //-------------------------------
 
   float x1 = ImGui::GetCurrentWindow()->WorkRect.Min.x;
@@ -89,7 +91,7 @@ void RND_scene::draw_window_background(){
 
   //-------------------------------
 }
-void RND_scene::tree_view(){
+void Scene::tree_view(){
   list<data::Set*>* list_data = eng_database->get_list_data();
   //---------------------------
 
@@ -119,7 +121,7 @@ void RND_scene::tree_view(){
 
   //---------------------------
 }
-int RND_scene::data_node_tree(data::Set* set){
+int Scene::data_node_tree(data::Set* set){
   int nb_row = 0;
   //-------------------------------
 
@@ -186,4 +188,6 @@ int RND_scene::data_node_tree(data::Set* set){
 
   //-------------------------------
   return nb_row;
+}
+
 }

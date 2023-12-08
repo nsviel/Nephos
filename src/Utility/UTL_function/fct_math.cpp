@@ -74,7 +74,7 @@ float mean_and_clear(std::vector<float>& vec){
   //---------------------------
   return mean;
 }
-float sum(std::vector<float>& vec){
+float compute_sum(std::vector<float>& vec){
   //Sum of vector elements
   float out = 0;
   int size = vec.size();
@@ -317,7 +317,7 @@ Eigen::Matrix3d covariance_matrix(std::vector<Eigen::Vector3d>& vec){
   //---------------------------
   return covMat;
 }
-std::vector<float> inv(std::vector<float>& vec){
+std::vector<float> compute_inv(std::vector<float>& vec){
   //Vector inversion
   std::vector<float> vec_out;
   int size = vec.size();
@@ -330,7 +330,7 @@ std::vector<float> inv(std::vector<float>& vec){
   //---------------------------
   return vec_out;
 }
-std::vector<float> ones(int size){
+std::vector<float> vector_ones(int size){
   std::vector<float> vec;
   //---------------------------
 

@@ -9,12 +9,14 @@ class VK_imgui;
 class UTL_window;
 
 
-class RND_engine
+namespace gui::rnd::panel{
+
+class Render
 {
 public:
   //Constructor / Destructor
-  RND_engine(GUI* gui);
-  ~RND_engine();
+  Render(GUI* gui);
+  ~Render();
 
 public:
   //Main functions
@@ -33,3 +35,5 @@ private:
 
   bool has_been_initialized;
 };
+
+}

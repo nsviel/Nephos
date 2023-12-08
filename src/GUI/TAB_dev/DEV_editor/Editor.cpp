@@ -4,7 +4,7 @@
 #include <GUI_editor/EDI_text.h>
 
 
-namespace dev{
+namespace gui::dev::panel{
 
 //Constructor / Destructor
 Editor::Editor(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){

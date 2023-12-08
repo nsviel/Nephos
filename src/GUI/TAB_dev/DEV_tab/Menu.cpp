@@ -1,13 +1,12 @@
 #include "Menu.h"
 
-#include <TAB_dev/DEV_nsp.h>
 #include <image/IconsFontAwesome5.h>
 
 
-namespace dev{
+namespace gui::dev::tab{
 
 //Constructor / Destructor
-Menu::Menu(dev::Panel* panel){
+Menu::Menu(gui::dev::tab::Panel* panel){
   //---------------------------
 
   this->panel = panel;

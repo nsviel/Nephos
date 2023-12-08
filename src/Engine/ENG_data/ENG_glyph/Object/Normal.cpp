@@ -56,8 +56,6 @@ void Normal::update_normal_cloud(data::Object* object, data::Glyph* glyph){
     vec3& xyz = xyz_s[i];
     vec3& nxyz = Nxyz_s[i];
 
-    if(math::is_nan(nxyz)) continue;
-
     vec3 vec_n = vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
 
     xyz_n.push_back(xyz);

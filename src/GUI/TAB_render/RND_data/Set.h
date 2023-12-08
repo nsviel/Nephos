@@ -7,12 +7,14 @@ class GUI;
 class RND_panel;
 
 
-class RND_set : public BASE_panel
+namespace gui::rnd::panel{
+
+class Set : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  RND_set(GUI* gui, bool* show_window, string name);
-  ~RND_set();
+  Set(GUI* gui, bool* show_window, string name);
+  ~Set();
 
   //Main function
   void design_panel();
@@ -29,3 +31,5 @@ private:
   data::Set* set_selected;
   int item_width;
 };
+
+}

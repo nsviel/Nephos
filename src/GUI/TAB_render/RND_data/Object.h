@@ -8,12 +8,14 @@ class RND_panel;
 class ENG_scene;
 
 
-class RND_object : public BASE_panel
+namespace gui::rnd::panel{
+
+class Object : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  RND_object(GUI* gui, bool* show_window, string name);
-  ~RND_object();
+  Object(GUI* gui, bool* show_window, string name);
+  ~Object();
 
   //Main function
   void design_panel();
@@ -35,3 +37,5 @@ private:
   data::Object* object_selected;
   int item_width;
 };
+
+}

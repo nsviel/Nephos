@@ -1,13 +1,14 @@
 #pragma once
 
-#include <TAB_dev/DEV_nsp.h>
+#include <TAB_dev/Tab_nsp.h>
 #include <UTL_specific/common.h>
 
 class GUI;
 
-namespace dev{
+namespace gui::dev::tab{
 class Command;
 class Menu;
+class Panel;
 
 
 class Tab
@@ -22,14 +23,14 @@ public:
   void create_panels();
   void draw_panels();
 
-  inline dev::Panel* get_panel(){return panel;}
+  inline gui::dev::tab::Panel* get_panel(){return panel;}
 
 private:
   GUI* gui;
-  dev::Panel* panel;
-  dev::Command* command;
-  dev::Database* database;
-  dev::Menu* menu;
+  gui::dev::tab::Panel* panel;
+  gui::dev::tab::Menu* menu;
+  gui::dev::panel::Command* command;
+  gui::dev::panel::Database* database;
 };
 
 }

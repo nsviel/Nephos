@@ -21,7 +21,7 @@ float compute_distance_origin(Eigen::Vector3f pt1);
 float compute_distance_origin(glm::vec3 pt1);
 float compute_distance(Eigen::Vector3f pt1, Eigen::Vector3f pt2);
 float dot_product(glm::vec3 vec_A, glm::vec3 vec_B);
-float sum(std::vector<float>& vec);
+float compute_sum(std::vector<float>& vec);
 double compute_distance_origin(Eigen::Vector3d pt1);
 double compute_distance(Eigen::Vector3d pt1, Eigen::Vector3d pt2);
 double compute_distance(Eigen::Vector4d pt1, Eigen::Vector4d pt2);
@@ -30,8 +30,8 @@ bool is_nan(glm::vec3 vec);
 bool is_nan(Eigen::Vector3d vec);
 
 //Basic function
-std::vector<float> inv(std::vector<float>& vec);
-std::vector<float> ones(int size);
+std::vector<float> compute_inv(std::vector<float>& vec);
+std::vector<float> vector_ones(int size);
 std::string thousand_separator(int n);
 float sign(float value);
 

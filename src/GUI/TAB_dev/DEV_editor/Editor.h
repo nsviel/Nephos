@@ -7,7 +7,7 @@ class GUI;
 class EDI_text;
 
 
-namespace dev{
+namespace gui::dev::panel{
 
 class Editor : public BASE_panel
 {
