@@ -9,6 +9,8 @@ class KIN_playback;
 class KIN_recorder;
 
 
+namespace gui::rnd::panel{
+
 class RND_kinect : public BASE_panel
 {
 public:
@@ -29,3 +31,5 @@ private:
   KIN_playback* kin_playback;
   KIN_recorder* kin_recorder;
 };
+
+}

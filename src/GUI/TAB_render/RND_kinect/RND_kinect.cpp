@@ -13,6 +13,8 @@
 #include <RND_kinect/KIN_recorder.h>
 
 
+namespace gui::rnd::panel{
+
 //Constructor / Destructor
 RND_kinect::RND_kinect(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
@@ -76,4 +78,6 @@ void RND_kinect::draw_tab_recorder(){
   }
 
   //---------------------------
+}
+
 }

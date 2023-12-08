@@ -9,6 +9,8 @@
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
+namespace gui::rnd::panel{
+
 //Constructor / Destructor
 RND_capture::RND_capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
@@ -191,4 +193,6 @@ void RND_capture::hovered_info_panel(K4A_image* image){
   ImGui::SetCursorScreenPos(imageStartPos);
 
   //---------------------------
+}
+
 }

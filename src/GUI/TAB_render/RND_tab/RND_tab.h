@@ -10,8 +10,6 @@ class RND_profiler;
 class RND_shader;
 class RND_option;
 class RND_menu;
-class RND_kinect;
-class RND_capture;
 
 
 class RND_tab
@@ -49,7 +47,7 @@ private:
   gui::rnd::panel::Render* rnd_render;
   gui::rnd::panel::Object* rnd_object;
   gui::rnd::panel::Camera* rnd_camera;
-  RND_capture* rnd_capture;
-  RND_kinect* rnd_kinect;
+  gui::rnd::panel::RND_capture* rnd_capture;
+  gui::rnd::panel::RND_kinect* rnd_kinect;
   gui::rnd::panel::Set* rnd_set;
 };

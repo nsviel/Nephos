@@ -12,6 +12,8 @@ class K4A_infrared;
 class K4A_swarm;
 
 
+namespace gui::rnd::panel{
+  
 class RND_capture : public BASE_panel
 {
 public:
@@ -41,3 +43,5 @@ private:
 
   vector<GUI_stream*> vec_gui_stream;
 };
+
+}
