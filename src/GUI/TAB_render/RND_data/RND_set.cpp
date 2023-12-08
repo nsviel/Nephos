@@ -61,7 +61,7 @@ void RND_set::set_parameter(data::Set* set){
   //Number of object
   ImGui::Text("Nb object");
   ImGui::NextColumn();
-  string nb_object = thousandSeparator(set->nb_object);
+  string nb_object = math::thousand_separator(set->nb_object);
   ImGui::Text("%s", nb_object.c_str());
   ImGui::NextColumn();
 

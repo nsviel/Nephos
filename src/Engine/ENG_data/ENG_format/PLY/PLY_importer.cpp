@@ -635,7 +635,7 @@ void PLY_importer::reorder_by_timestamp(){
 
   if(data->ts.size() != 0){
     //Check for non void and reorder by index
-    for (auto i: fct_sortByIndexes(data->ts)){
+    for (auto i: math::sort_by_indexes(data->ts)){
       if(data->xyz[i] != glm::vec3(0, 0, 0)){
         //Location adn timestamp
         ts.push_back(data->ts[i]);

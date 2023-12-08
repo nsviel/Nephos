@@ -1,8 +1,10 @@
 #include "fct_math.h"
 
 
+namespace math{
+
 //Basic functions
-float fct_distance(glm::vec3 pt1, glm::vec3 pt2){
+float compute_distance(glm::vec3 pt1, glm::vec3 pt2){
   //Euclidean distance
   float dist;
   //---------------------------
@@ -12,7 +14,7 @@ float fct_distance(glm::vec3 pt1, glm::vec3 pt2){
   //---------------------------
   return dist;
 }
-float fct_distance_origin(Eigen::Vector3f pt1){
+float compute_distance_origin(Eigen::Vector3f pt1){
   //Euclidean distance
   float dist;
   //---------------------------
@@ -22,7 +24,7 @@ float fct_distance_origin(Eigen::Vector3f pt1){
   //---------------------------
   return dist;
 }
-float fct_distance_origin(glm::vec3 pt1){
+float compute_distance_origin(glm::vec3 pt1){
   //Euclidean distance
   float dist;
   //---------------------------
@@ -32,7 +34,7 @@ float fct_distance_origin(glm::vec3 pt1){
   //---------------------------
   return dist;
 }
-float fct_distance(Eigen::Vector3f pt1, Eigen::Vector3f pt2){
+float compute_distance(Eigen::Vector3f pt1, Eigen::Vector3f pt2){
   //Euclidean distance
   //---------------------------
 
@@ -97,7 +99,7 @@ float fct_dotProduct(glm::vec3 vec_A, glm::vec3 vec_B){
   //---------------------------
   return product;
 }
-double fct_distance_origin(Eigen::Vector3d pt1){
+double compute_distance_origin(Eigen::Vector3d pt1){
   //Euclidean distance
   double dist;
   //---------------------------
@@ -107,7 +109,7 @@ double fct_distance_origin(Eigen::Vector3d pt1){
   //---------------------------
   return dist;
 }
-double fct_distance(Eigen::Vector3d pt1, Eigen::Vector3d pt2){
+double compute_distance(Eigen::Vector3d pt1, Eigen::Vector3d pt2){
   //Euclidean distance
   //---------------------------
 
@@ -120,7 +122,7 @@ double fct_distance(Eigen::Vector3d pt1, Eigen::Vector3d pt2){
   //---------------------------
   return dist;
 }
-double fct_distance(Eigen::Vector4d pt1, Eigen::Vector4d pt2){
+double compute_distance(Eigen::Vector4d pt1, Eigen::Vector4d pt2){
   //Euclidean distance
   //---------------------------
 
@@ -133,7 +135,7 @@ double fct_distance(Eigen::Vector4d pt1, Eigen::Vector4d pt2){
   //---------------------------
   return dist;
 }
-double fct_distance(Eigen::Vector4d pt1, Eigen::Vector3d pt2){
+double compute_distance(Eigen::Vector4d pt1, Eigen::Vector3d pt2){
   //Euclidean distance
   //---------------------------
 
@@ -166,7 +168,7 @@ bool fct_is_nan(Eigen::Vector3d vec){
   //---------------------------
   return false;
 }
-std::string thousandSeparator(int n){
+std::string thousand_separator(int n){
     std::string ans = "";
 
     // Convert the given integer
@@ -351,7 +353,7 @@ std::vector<float> fct_crossProduct(std::vector<float>& vec_A, std::vector<float
   //---------------------------
   return vec_cross;
 }
-float fct_sign(float value){
+float sign(float value){
   //---------------------------
 
   if(std::signbit(value)){
@@ -725,11 +727,11 @@ float fct_R2(std::vector<float>& data_X, std::vector<float>& data_Y, std::vector
 
 /*Sorting functions
   --->Sort by order, keeping trace of indices
-  Use with for (auto i: fct_sortByIndexes(v)) {
+  Use with for (auto i: math::sort_by_indexes(v)) {
               cout << v[i] << endl;
             }
 */
-std::vector<size_t> fct_sortByIndexes(const std::vector<float> &v){
+std::vector<size_t> sort_by_indexes(const std::vector<float> &v){
   // initialize original index locations
   std::vector<size_t> idx(v.size());
   std::iota(idx.begin(), idx.end(), 0);
@@ -740,7 +742,7 @@ std::vector<size_t> fct_sortByIndexes(const std::vector<float> &v){
 
   return idx;
 }
-std::vector<size_t> fct_sortByIndexes_greater(const std::vector<float> &v){
+std::vector<size_t> sort_by_indexes_greater(const std::vector<float> &v){
   //--->Sort by greater order, keeping trace of indices
 
   // initialize original index locations
@@ -801,13 +803,15 @@ glm::vec3 fct_degreeToRadian_vec3(glm::vec3 degree){
   return radian;
 }
 glm::vec3 fct_radianToDegree_vec3(glm::vec3 radian){
-    glm::vec3 degree;
-    //---------------------------
+  glm::vec3 degree;
+  //---------------------------
 
-    for(int i=0; i<3; i++){
-      degree[i] = (radian[i] * 180) / 3.14159265358979323846f;
-    }
-
-    //---------------------------
-    return degree;
+  for(int i=0; i<3; i++){
+    degree[i] = (radian[i] * 180) / 3.14159265358979323846f;
   }
+
+  //---------------------------
+  return degree;
+}
+
+}

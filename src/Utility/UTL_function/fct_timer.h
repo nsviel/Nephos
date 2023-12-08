@@ -1,5 +1,4 @@
-#ifndef TIMER_H
-#define TIMER_H
+#pragma once
 
 typedef decltype(std::chrono::high_resolution_clock::now()) timer_time;
 
@@ -67,5 +66,3 @@ private:
   std::chrono::high_resolution_clock::time_point t1;
   std::chrono::high_resolution_clock::time_point t2;
 };
-
-#endif

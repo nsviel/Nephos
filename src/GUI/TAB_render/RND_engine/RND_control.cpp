@@ -213,13 +213,13 @@ void RND_control::control_mouse_wheel(){
     float radian = 5 * M_PI/180;
     vec3 R;
     if(wheel_mode == 0){
-      R = vec3(0, 0, fct_sign(io.MouseWheel) * radian);
+      R = vec3(0, 0, math::sign(io.MouseWheel) * radian);
     }
     else if(wheel_mode == 1){
-      R = vec3(0, fct_sign(io.MouseWheel) * radian, 0);
+      R = vec3(0, math::sign(io.MouseWheel) * radian, 0);
     }
     else if(wheel_mode == 2){
-      R = vec3(fct_sign(io.MouseWheel) * radian, 0, 0);
+      R = vec3(math::sign(io.MouseWheel) * radian, 0, 0);
     }
 
     //Apply rotation

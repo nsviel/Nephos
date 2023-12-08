@@ -104,7 +104,7 @@ void RND_object::object_parameter(data::Object* object){
     //Number of points
     ImGui::Text("Nb point");
     ImGui::NextColumn();
-    string nb_point = thousandSeparator(object->nb_point);
+    string nb_point = math::thousand_separator(object->nb_point);
     ImGui::Text("%s", nb_point.c_str());
     ImGui::NextColumn();
 

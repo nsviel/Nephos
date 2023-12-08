@@ -1,5 +1,4 @@
-#ifndef TRANSTYPAGE_FCT_H
-#define TRANSTYPAGE_FCT_H
+#pragma once
 
 #include <bits/stdc++.h>
 
@@ -288,5 +287,3 @@ namespace{
     return sucess;
   }
 }
-
-#endif

@@ -244,7 +244,7 @@ void Parser_HDL32::final_check(data::File* cloud){
   std::vector<float> I_b;
   std::vector<float> A_b;
   std::vector<float> t_b;
-  for (auto i: fct_sortByIndexes(packet_A)){
+  for (auto i: math::sort_by_indexes(packet_A)){
     xyz_b.push_back(packet_xyz[i]);
     t_b.push_back(packet_t[i]);
     R_b.push_back(packet_R[i]);

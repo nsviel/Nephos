@@ -1,5 +1,4 @@
-#ifndef TERMINAL_FUNCTIONS_H
-#define TERMINAL_FUNCTIONS_H
+#pragma once
 
 #include <iostream>
 #include <time.h>
@@ -130,5 +129,3 @@ namespace{
 
   //---------------------------
 }
-
-#endif

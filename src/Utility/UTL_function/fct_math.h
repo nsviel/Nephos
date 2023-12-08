@@ -1,5 +1,4 @@
-#ifndef MATH_FUNCTIONS_H
-#define MATH_FUNCTIONS_H
+#pragma once
 
 #include <numeric>
 #include <string>
@@ -14,26 +13,27 @@
  * \brief Basic math functions
  */
 
+namespace math{
 
 //Distance functions
-float fct_distance(glm::vec3 pt1, glm::vec3 pt2);
-float fct_distance_origin(Eigen::Vector3f pt1);
-float fct_distance_origin(glm::vec3 pt1);
-float fct_distance(Eigen::Vector3f pt1, Eigen::Vector3f pt2);
+float compute_distance(glm::vec3 pt1, glm::vec3 pt2);
+float compute_distance_origin(Eigen::Vector3f pt1);
+float compute_distance_origin(glm::vec3 pt1);
+float compute_distance(Eigen::Vector3f pt1, Eigen::Vector3f pt2);
 float fct_dotProduct(glm::vec3 vec_A, glm::vec3 vec_B);
 float fct_sum(std::vector<float>& vec);
-double fct_distance_origin(Eigen::Vector3d pt1);
-double fct_distance(Eigen::Vector3d pt1, Eigen::Vector3d pt2);
-double fct_distance(Eigen::Vector4d pt1, Eigen::Vector4d pt2);
-double fct_distance(Eigen::Vector4d pt1, Eigen::Vector3d pt2);
+double compute_distance_origin(Eigen::Vector3d pt1);
+double compute_distance(Eigen::Vector3d pt1, Eigen::Vector3d pt2);
+double compute_distance(Eigen::Vector4d pt1, Eigen::Vector4d pt2);
+double compute_distance(Eigen::Vector4d pt1, Eigen::Vector3d pt2);
 bool fct_is_nan(glm::vec3 vec);
 bool fct_is_nan(Eigen::Vector3d vec);
 
 //Basic function
 std::vector<float> fct_inv(std::vector<float>& vec);
 std::vector<float> fct_ones(int size);
-std::string thousandSeparator(int n);
-float fct_sign(float value);
+std::string thousand_separator(int n);
+float sign(float value);
 
 //Minimum / Mean / Maximum
 int fct_min_z_id(std::vector<glm::vec3> vec);
@@ -73,8 +73,8 @@ Eigen::Matrix3f fct_covarianceMat(std::vector<Eigen::Vector3f>& vec);
 Eigen::Matrix3d fct_covarianceMat(std::vector<Eigen::Vector3d>& vec);
 
 //Sorting functions
-std::vector<size_t> fct_sortByIndexes(const std::vector<float> &v);
-std::vector<size_t> fct_sortByIndexes_greater(const std::vector<float> &v);
+std::vector<size_t> sort_by_indexes(const std::vector<float> &v);
+std::vector<size_t> sort_by_indexes_greater(const std::vector<float> &v);
 bool is_number(const std::string& s);
 void fct_sort_alpha_num_(std::vector<std::string>& vec);
 
@@ -86,5 +86,4 @@ double fct_angularDistance(const Eigen::Matrix3f &rota, const Eigen::Matrix3f &r
 glm::vec3 fct_degreeToRadian_vec3(glm::vec3 degree);
 glm::vec3 fct_radianToDegree_vec3(glm::vec3 radian);
 
-
-#endif
+}

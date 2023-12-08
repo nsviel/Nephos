@@ -1,5 +1,4 @@
-#ifndef TICTOC_FUNCTIONS_H
-#define TICTOC_FUNCTIONS_H
+#pragma once
 
 #include <iostream>
 #include <time.h>
@@ -82,5 +81,3 @@ namespace{
 
   //---------------------------
 }
-
-#endif
