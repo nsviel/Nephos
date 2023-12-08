@@ -1,4 +1,4 @@
-#include "math.h"
+#include "fct_math.h"
 
 
 namespace math{
@@ -47,7 +47,7 @@ float compute_distance(Eigen::Vector3f pt1, Eigen::Vector3f pt2){
   //---------------------------
   return dist;
 }
-float mean(std::vector<float>& vec){
+float fct_mean(std::vector<float>& vec){
   int size = vec.size();
   float sum = 0;
   //---------------------------
@@ -60,7 +60,7 @@ float mean(std::vector<float>& vec){
   //---------------------------
   return mean;
 }
-float mean_and_clear(std::vector<float>& vec){
+float fct_mean_and_clear(std::vector<float>& vec){
   int size = vec.size();
   float sum = 0;
   //---------------------------
@@ -206,7 +206,7 @@ std::string thousand_separator(int n){
 
     return ans;
 }
-glm::vec3 centroid(std::vector<glm::vec3>& vec){
+glm::vec3 fct_centroid(std::vector<glm::vec3>& vec){
   glm::vec3 centroid = glm::vec3(0, 0, 0);
   //---------------------------
 
@@ -223,7 +223,7 @@ glm::vec3 centroid(std::vector<glm::vec3>& vec){
   //---------------------------
   return centroid;
 }
-glm::vec3 centroid(glm::vec3& vec1, glm::vec3& vec2){
+glm::vec3 fct_centroid(glm::vec3& vec1, glm::vec3& vec2){
   glm::vec3 centroid = glm::vec3(0, 0, 0);
   //---------------------------
 
@@ -234,7 +234,7 @@ glm::vec3 centroid(glm::vec3& vec1, glm::vec3& vec2){
   //---------------------------
   return centroid;
 }
-Eigen::Vector3f centroid(std::vector<Eigen::Vector3f>& XYZ){
+Eigen::Vector3f fct_centroid(std::vector<Eigen::Vector3f>& XYZ){
   Eigen::Vector3f centroid = Eigen::Vector3f::Zero();
   int size = XYZ.size();
   //---------------------------
@@ -252,7 +252,7 @@ Eigen::Vector3f centroid(std::vector<Eigen::Vector3f>& XYZ){
   //---------------------------
   return centroid;
 }
-Eigen::Vector3d centroid(std::vector<Eigen::Vector3d>& XYZ){
+Eigen::Vector3d fct_centroid(std::vector<Eigen::Vector3d>& XYZ){
   Eigen::Vector3d centroid = Eigen::Vector3d::Zero();
   int size = XYZ.size();
   //---------------------------
@@ -270,11 +270,11 @@ Eigen::Vector3d centroid(std::vector<Eigen::Vector3d>& XYZ){
   //---------------------------
   return centroid;
 }
-Eigen::Matrix3f covariance_matrix(std::vector<Eigen::Vector3f>& vec){
+Eigen::Matrix3f fct_covarianceMat(std::vector<Eigen::Vector3f>& vec){
   //---------------------------
 
   // Centroide
-  Eigen::Vector3f centroid = centroid(vec);
+  Eigen::Vector3f centroid = fct_centroid(vec);
 
   //Covariance matrix
   Eigen::Matrix3f covMat = Eigen::Matrix3f::Zero();
@@ -293,11 +293,11 @@ Eigen::Matrix3f covariance_matrix(std::vector<Eigen::Vector3f>& vec){
   //---------------------------
   return covMat;
 }
-Eigen::Matrix3d covariance_matrix(std::vector<Eigen::Vector3d>& vec){
+Eigen::Matrix3d fct_covarianceMat(std::vector<Eigen::Vector3d>& vec){
   //---------------------------
 
   // Centroide
-  Eigen::Vector3d centroid = centroid(vec);
+  Eigen::Vector3d centroid = fct_centroid(vec);
 
   //Covariance matrix
   Eigen::Matrix3d covMat = Eigen::Matrix3d::Zero();
@@ -342,7 +342,7 @@ std::vector<float> vector_ones(int size){
   //---------------------------
   return vec;
 }
-std::vector<float> cross_product(std::vector<float>& vec_A, std::vector<float>& vec_B){
+std::vector<float> fct_crossProduct(std::vector<float>& vec_A, std::vector<float>& vec_B){
   std::vector<float> vec_cross;
   //---------------------------
 
@@ -366,7 +366,7 @@ float sign(float value){
 }
 
 //Minimum / Maximum
-int min_z_id(std::vector<glm::vec3> vec){
+int fct_min_z_id(std::vector<glm::vec3> vec){
   glm::vec3 min = vec[0];
   int id = 0;
   int size = vec.size();
@@ -382,7 +382,7 @@ int min_z_id(std::vector<glm::vec3> vec){
   //---------------------------
   return id;
 }
-float min(std::vector<float>& vec){
+float fct_min(std::vector<float>& vec){
   float min = vec[0];
   int size = vec.size();
   //---------------------------
@@ -394,7 +394,7 @@ float min(std::vector<float>& vec){
   //---------------------------
   return min;
 }
-int min(std::vector<int>& vec){
+int fct_min(std::vector<int>& vec){
   int min = vec[0];
   int size = vec.size();
   //---------------------------
@@ -406,7 +406,7 @@ int min(std::vector<int>& vec){
   //---------------------------
   return min;
 }
-float min(float in1, float in2){
+float fct_min(float in1, float in2){
   //---------------------------
 
   if(in1 > in2){
@@ -417,7 +417,7 @@ float min(float in1, float in2){
 
   //---------------------------
 }
-float max(std::vector<float>& vec){
+float fct_max(std::vector<float>& vec){
   int size = vec.size();
   if(size == 0) return 0;
   //---------------------------
@@ -430,7 +430,7 @@ float max(std::vector<float>& vec){
   //---------------------------
   return max;
 }
-float max_vec(std::vector<std::vector<float>>& vec){
+float fct_max_vec(std::vector<std::vector<float>>& vec){
   float max = vec[0].size();
   int size = vec.size();
   //---------------------------
@@ -442,7 +442,7 @@ float max_vec(std::vector<std::vector<float>>& vec){
   //---------------------------
   return max;
 }
-glm::vec2 min_vec2(std::vector<glm::vec2> XY){
+glm::vec2 fct_min_vec2(std::vector<glm::vec2> XY){
   glm::vec2 min = XY[0];
   int size = XY.size();
   //---------------------------
@@ -456,7 +456,7 @@ glm::vec2 min_vec2(std::vector<glm::vec2> XY){
   //---------------------------
   return min;
 }
-glm::vec2 max_vec2(std::vector<glm::vec2> XY){
+glm::vec2 fct_max_vec2(std::vector<glm::vec2> XY){
   glm::vec2 max = XY[0];
   int size = XY.size();
   //---------------------------
@@ -470,7 +470,7 @@ glm::vec2 max_vec2(std::vector<glm::vec2> XY){
   //---------------------------
   return max;
 }
-glm::vec3 min_z(std::vector<glm::vec3> vec){
+glm::vec3 fct_min_z(std::vector<glm::vec3> vec){
   glm::vec3 min = vec[0];
   int size = vec.size();
   //---------------------------
@@ -482,7 +482,7 @@ glm::vec3 min_z(std::vector<glm::vec3> vec){
   //---------------------------
   return min;
 }
-glm::vec3 min_vec3(std::vector<glm::vec3> XYZ){
+glm::vec3 fct_min_vec3(std::vector<glm::vec3> XYZ){
   glm::vec3 min = glm::vec3(100000000.0f);
   int size = XYZ.size();
   //---------------------------
@@ -496,7 +496,7 @@ glm::vec3 min_vec3(std::vector<glm::vec3> XYZ){
   //---------------------------
   return min;
 }
-glm::vec3 max_vec3(std::vector<glm::vec3> XYZ){
+glm::vec3 fct_max_vec3(std::vector<glm::vec3> XYZ){
   glm::vec3 max = XYZ[0];
   int size = XYZ.size();
   //---------------------------
@@ -512,7 +512,7 @@ glm::vec3 max_vec3(std::vector<glm::vec3> XYZ){
 }
 
 //Normalization
-std::vector<float> normalize(std::vector<float>& vec){
+std::vector<float> fct_normalize(std::vector<float>& vec){
   std::vector<float> vec_out(vec);
   int size = vec.size();
   //-----------------------------
@@ -533,7 +533,7 @@ std::vector<float> normalize(std::vector<float>& vec){
   //-----------------------------
   return vec_out;
 }
-std::vector<double> normalize(std::vector<double>& vec){
+std::vector<double> fct_normalize(std::vector<double>& vec){
   std::vector<double> vec_out(vec);
   int size = vec.size();
   //-----------------------------
@@ -554,7 +554,7 @@ std::vector<double> normalize(std::vector<double>& vec){
   //-----------------------------
   return vec_out;
 }
-std::vector<float> normalize(std::vector<float>& vec, glm::vec2 range){
+std::vector<float> fct_normalize(std::vector<float>& vec, glm::vec2 range){
   std::vector<float> vec_out(vec);
   int size = vec.size();
   //-----------------------------
@@ -571,7 +571,7 @@ std::vector<float> normalize(std::vector<float>& vec, glm::vec2 range){
   //-----------------------------
   return vec_out;
 }
-std::vector<float> normalize(std::vector<float>& vec, float value_to_avoid){
+std::vector<float> fct_normalize(std::vector<float>& vec, float value_to_avoid){
   std::vector<float> vec_out(vec);
   int size = vec.size();
   //-----------------------------
@@ -598,7 +598,7 @@ std::vector<float> normalize(std::vector<float>& vec, float value_to_avoid){
   //-----------------------------
   return vec_out;
 }
-std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid){
+std::vector<float> fct_standardize(std::vector<float>& vec, float value_to_avoid){
   std::vector<float> vec_out(vec);
   int size = vec.size();
   //-----------------------------
@@ -637,7 +637,7 @@ std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid){
   //-----------------------------
   return vec_out;
 }
-std::vector<float> normalize_01(std::vector<float>& vec){
+std::vector<float> fct_normalize_01(std::vector<float>& vec){
   std::vector<float> vec_out(vec);
   int size = vec.size();
   //-----------------------------
@@ -663,7 +663,7 @@ std::vector<float> normalize_01(std::vector<float>& vec){
 
 
 //Statistical functions
-float std(std::vector<float>& vec){
+float fct_std(std::vector<float>& vec){
   //---> Standard deviation
   float sum = 0.0, mean, Std = 0.0;
   int size = vec.size();
@@ -681,7 +681,7 @@ float std(std::vector<float>& vec){
   //-------------------
   return sqrt(Std / vec.size());
 }
-float var(std::vector<float>& vec){
+float fct_var(std::vector<float>& vec){
   //---> Variance
   int size = vec.size();
   //-------------------
@@ -703,21 +703,21 @@ float var(std::vector<float>& vec){
   //-------------------
   return var;
 }
-float cv(std::vector<float>& vec){
+float fct_cv(std::vector<float>& vec){
   //---> Coefficient of variation
-  float std = std(vec);
-  float CV = (std / mean(vec)) * 100;
+  float std = fct_std(vec);
+  float CV = (std / fct_mean(vec)) * 100;
 
   return CV;
 }
-float R2(std::vector<float>& data_X, std::vector<float>& data_Y, std::vector<float>& coeffs){
+float fct_R2(std::vector<float>& data_X, std::vector<float>& data_Y, std::vector<float>& coeffs){
   int size = data_Y.size();
   float up = 0.0f, bot = 0.0f, R_2;
   for(int i=0; i<size; i++)
   {
     if(coeffs.size() == 2) up += pow((data_Y[i] - (coeffs[1]*data_X[i] + coeffs[0])), 2);
     if(coeffs.size() == 3) up += pow((data_Y[i] - (coeffs[2]*pow(data_X[i],2) + coeffs[1]*data_X[i] + coeffs[0])), 2);
-    bot += pow((data_Y[i] - mean(data_Y)), 2);
+    bot += pow((data_Y[i] - fct_mean(data_Y)), 2);
   }
   R_2 = 1 - (up / bot);
   std::cout<<"---> R² = "<<R_2<<std::endl;
@@ -762,18 +762,18 @@ bool is_number(const std::string& s){
 }
 
 //Geometric functions
-double angularDistance(const Eigen::Matrix3f &rota, const Eigen::Matrix3f &rotb) {
+double fct_angularDistance(const Eigen::Matrix3f &rota, const Eigen::Matrix3f &rotb) {
   double norm = ((rota * rotb.transpose()).trace() - 1) / 2;
   norm = std::acos(norm) * 180 / M_PI;
   return norm;
 }
-float oriented_angle(glm::vec2 A, glm::vec2 B){
+float fct_oriented_angle(glm::vec2 A, glm::vec2 B){
   float det = A.x * B.y - A.y * B.x;
   float dot = A.x * B.x + A.y * B.y;
   float angle = atan2(det, dot);
   return angle;
 }
-float degreeToRadian(float degree){
+float fct_degreeToRadian(float degree){
   float radian;
   //---------------------------
 
@@ -782,7 +782,7 @@ float degreeToRadian(float degree){
   //---------------------------
   return radian;
 }
-float radianToDegree(float radian){
+float fct_radianToDegree(float radian){
   float degree;
   //---------------------------
 
@@ -791,7 +791,7 @@ float radianToDegree(float radian){
   //---------------------------
   return degree;
 }
-glm::vec3 degreeToRadian_vec3(glm::vec3 degree){
+glm::vec3 fct_degreeToRadian_vec3(glm::vec3 degree){
   glm::vec3 radian;
   //---------------------------
 
@@ -802,7 +802,7 @@ glm::vec3 degreeToRadian_vec3(glm::vec3 degree){
   //---------------------------
   return radian;
 }
-glm::vec3 radianToDegree_vec3(glm::vec3 radian){
+glm::vec3 fct_radianToDegree_vec3(glm::vec3 radian){
   glm::vec3 degree;
   //---------------------------
 
