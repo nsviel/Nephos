@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 #include <UTL_specific/common.h>
 #include <TAB_render/Panel_nsp.h>
 #include <TAB_render/Tab_nsp.h>
@@ -13,7 +13,7 @@ namespace gui::rnd::panel{
 class Object;
 
 
-class Scene : public BASE_panel
+class Scene : public gui::base::Panel
 {
 public:
   //Constructor / Destructor

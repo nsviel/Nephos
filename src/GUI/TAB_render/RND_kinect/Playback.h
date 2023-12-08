@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 #include <UTL_specific/common.h>
 
 class Kinect;

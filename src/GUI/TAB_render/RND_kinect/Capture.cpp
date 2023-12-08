@@ -12,7 +12,7 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-Capture::Capture(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   Utility* utility = gui->get_utility();

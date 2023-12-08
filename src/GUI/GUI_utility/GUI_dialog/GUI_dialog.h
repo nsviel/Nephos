@@ -1,14 +1,12 @@
-#ifndef GUI_DIALOG_H
-#define GUI_DIALOG_H
+#pragma once
 
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 #include <UTL_specific/common.h>
 
 class GUI;
-class Panel;
 
 
-class GUI_dialog : public BASE_panel
+class GUI_dialog : public gui::base::Panel
 {
 public:
   //Constructor / Destructor
@@ -22,9 +20,5 @@ public:
   void capture_command();
 
 private:
-  Panel* gui_render_panel;
-
   int item_width;
 };
-
-#endif

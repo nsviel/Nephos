@@ -1,7 +1,7 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 
 class GUI;
 class EDI_text;
@@ -9,7 +9,7 @@ class EDI_text;
 
 namespace gui::dev::panel{
 
-class Editor : public BASE_panel
+class Editor : public gui::base::Panel
 {
 public:
   //Constructor / Destructor

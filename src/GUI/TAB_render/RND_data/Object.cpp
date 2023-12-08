@@ -10,7 +10,7 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-Object::Object(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Object::Object(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();

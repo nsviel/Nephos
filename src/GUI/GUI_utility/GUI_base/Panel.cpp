@@ -1,8 +1,10 @@
-#include "BASE_panel.h"
+#include "Panel.h"
 
+
+namespace gui::base{
 
 //Constructor / Destructor
-BASE_panel::BASE_panel(bool* show_window, string name){
+Panel::Panel(bool* show_window, string name){
   //---------------------------
 
   this->show_window = show_window;
@@ -11,10 +13,10 @@ BASE_panel::BASE_panel(bool* show_window, string name){
 
   //---------------------------
 }
-BASE_panel::~BASE_panel(){}
+Panel::~Panel(){}
 
 //Main function
-void BASE_panel::run_panel(){
+void Panel::run_panel(){
   //---------------------------
 
   if(*show_window){
@@ -32,9 +34,11 @@ void BASE_panel::run_panel(){
 }
 
 //Subfunction
-void BASE_panel::design_panel(){
+void Panel::design_panel(){
   //---------------------------
 
 
   //---------------------------
+}
+
 }

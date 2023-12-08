@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 #include <UTL_specific/common.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 
@@ -14,7 +14,7 @@ class K4A_swarm;
 
 namespace gui::rnd::panel{
 
-class Capture : public BASE_panel
+class Capture : public gui::base::Panel
 {
 public:
   //Constructor / Destructor

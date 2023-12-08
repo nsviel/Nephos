@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 #include <UTL_specific/common.h>
 
 class GUI;
@@ -10,7 +10,7 @@ class UTL_database;
 
 namespace gui::dev::panel{
 
-class Database : public BASE_panel
+class Database : public gui::base::Panel
 {
 public:
   //Constructor / Destructor

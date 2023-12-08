@@ -7,7 +7,7 @@
 namespace gui::dev::panel{
 
 //Constructor / Destructor
-Editor::Editor(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Editor::Editor(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   this->editor = new EDI_text(gui);

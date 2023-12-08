@@ -1,15 +1,16 @@
-#ifndef WIN_BASE_H
-#define WIN_BASE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
 
-class BASE_panel
+namespace gui::base{
+
+class Panel
 {
 public:
   //Constructor / Destructor
-  BASE_panel(bool* show_window, string name);
-  ~BASE_panel();
+  Panel(bool* show_window, string name);
+  ~Panel();
 
 public:
   //Main function
@@ -27,4 +28,4 @@ public:
   bool* show_window;
 };
 
-#endif
+}

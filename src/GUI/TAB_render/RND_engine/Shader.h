@@ -2,7 +2,7 @@
 
 #include <UTL_specific/common.h>
 #include <ENG_shader/Base/BASE_shader.h>
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 
 class GUI;
 class EDI_text;
@@ -13,7 +13,7 @@ class VK_engine;
 
 namespace gui::rnd::panel{
 
-class Shader : public BASE_panel
+class Shader : public gui::base::Panel
 {
 public:
   //Constructor / Destructor

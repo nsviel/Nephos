@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 #include <UTL_specific/common.h>
 
 class GUI;
@@ -9,7 +9,7 @@ class Panel;
 
 namespace gui::rnd::panel{
 
-class Set : public BASE_panel
+class Set : public gui::base::Panel
 {
 public:
   //Constructor / Destructor

@@ -7,7 +7,7 @@
 namespace gui::dev::panel{
 
 //Constructor / Destructor
-Database::Database(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Database::Database(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   this->database = new UTL_database("../media/database/database.db3");

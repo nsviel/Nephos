@@ -9,7 +9,7 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-Profiler::Profiler(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Profiler::Profiler(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();

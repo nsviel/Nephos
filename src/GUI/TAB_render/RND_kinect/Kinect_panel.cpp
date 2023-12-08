@@ -12,7 +12,7 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-Kinect_panel::Kinect_panel(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Kinect_panel::Kinect_panel(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   Utility* utility = gui->get_utility();

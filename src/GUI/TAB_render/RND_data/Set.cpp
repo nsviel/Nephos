@@ -7,7 +7,7 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-Set::Set(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Set::Set(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   this->item_width = 150;

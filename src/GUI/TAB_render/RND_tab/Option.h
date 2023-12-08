@@ -1,7 +1,7 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 
 class GUI;
 class VK_info;
@@ -9,7 +9,7 @@ class VK_info;
 
 namespace gui::rnd::tab{
 
-class Option : public BASE_panel
+class Option : public gui::base::Panel
 {
 public:
   //Constructor / Destructor

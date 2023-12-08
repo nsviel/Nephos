@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 #include <UTL_specific/common.h>
 
 class GUI;
@@ -9,7 +9,7 @@ class VK_info;
 
 namespace gui::rnd::panel{
 
-class Profiler : public BASE_panel
+class Profiler : public gui::base::Panel
 {
 public:
   //Constructor / Destructor

@@ -5,7 +5,7 @@
 
 
 //Constructor / Destructor
-GUI_dialog::GUI_dialog(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+GUI_dialog::GUI_dialog(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
 

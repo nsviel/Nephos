@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI_base/BASE_panel.h>
+#include <GUI_utility/Base_nsp.h>
 #include <UTL_specific/common.h>
 #include <TAB_render/Kinect_nsp.h>
 
@@ -10,7 +10,7 @@ class Recorder;
 
 namespace gui::rnd::panel{
 
-class Kinect_panel : public BASE_panel
+class Kinect_panel : public gui::base::Panel
 {
 public:
   //Constructor / Destructor
