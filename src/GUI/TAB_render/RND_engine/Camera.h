@@ -8,12 +8,14 @@ class RND_panel;
 class Struct_camera;
 
 
-class RND_camera : public BASE_panel
+namespace gui::rnd::panel{
+
+class Camera : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  RND_camera(GUI* gui, bool* show_window, string name);
-  ~RND_camera();
+  Camera(GUI* gui, bool* show_window, string name);
+  ~Camera();
 
   //Main function
   void design_panel();
@@ -29,3 +31,5 @@ private:
 
   int item_width;
 };
+
+}

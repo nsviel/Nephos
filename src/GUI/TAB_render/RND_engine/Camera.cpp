@@ -1,4 +1,4 @@
-#include "RND_camera.h"
+#include "Camera.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -6,8 +6,10 @@
 #include <ENG_camera/Struct_camera.h>
 
 
+namespace gui::rnd::panel{
+
 //Constructor / Destructor
-RND_camera::RND_camera(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Camera::Camera(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -15,10 +17,10 @@ RND_camera::RND_camera(GUI* gui, bool* show_window, string name) : BASE_panel(sh
 
   //---------------------------
 }
-RND_camera::~RND_camera(){}
+Camera::~Camera(){}
 
 //Main function
-void RND_camera::design_panel(){
+void Camera::design_panel(){
   //---------------------------
 
   this->cam_parameter();
@@ -28,7 +30,7 @@ void RND_camera::design_panel(){
 }
 
 //Subfunction
-void RND_camera::cam_parameter(){
+void Camera::cam_parameter(){
   //---------------------------
 
   //Camera parameters
@@ -62,7 +64,7 @@ void RND_camera::cam_parameter(){
 
   //---------------------------
 }
-void RND_camera::cam_info(){
+void Camera::cam_info(){
   //---------------------------
 
   //Camera position
@@ -80,4 +82,6 @@ void RND_camera::cam_info(){
   ImGui::Text("Vertical angle : %.2f°", camera->angle_elevation * 180 / M_PI);
 
   //---------------------------
+}
+
 }

@@ -9,7 +9,6 @@ class RND_panel;
 class RND_profiler;
 class RND_shader;
 class RND_option;
-class RND_camera;
 class RND_menu;
 class RND_kinect;
 class RND_capture;
@@ -33,7 +32,7 @@ public:
   inline RND_profiler* get_rnd_profiler(){return rnd_profiler;}
   inline gui::rnd::panel::Object* get_rnd_object(){return rnd_object;}
   inline gui::rnd::panel::Set* get_rnd_set(){return rnd_set;}
-  inline RND_camera* get_rnd_camera(){return rnd_camera;}
+  inline gui::rnd::panel::Camera* get_rnd_camera(){return rnd_camera;}
   inline gui::rnd::panel::Render* get_rnd_render(){return rnd_render;}
   inline gui::rnd::panel::Scene* get_rnd_scene(){return rnd_scene;}
   inline RND_option* get_rnd_option(){return rnd_option;}
@@ -49,7 +48,7 @@ private:
   RND_shader* rnd_shader;
   gui::rnd::panel::Render* rnd_render;
   gui::rnd::panel::Object* rnd_object;
-  RND_camera* rnd_camera;
+  gui::rnd::panel::Camera* rnd_camera;
   RND_capture* rnd_capture;
   RND_kinect* rnd_kinect;
   gui::rnd::panel::Set* rnd_set;
