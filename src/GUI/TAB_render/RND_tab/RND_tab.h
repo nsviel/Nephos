@@ -6,7 +6,7 @@
 class GUI;
 class RND_panel;
 
-class RND_profiler;
+class Profiler;
 class RND_option;
 class RND_menu;
 
@@ -25,8 +25,8 @@ public:
   void open_panels();
 
   inline RND_panel* get_rnd_panel(){return gui_render_panel;}
-  inline gui::rnd::engine::Shader* get_rnd_shader(){return rnd_shader;}
-  inline RND_profiler* get_rnd_profiler(){return rnd_profiler;}
+  inline gui::rnd::panel::Shader* get_rnd_shader(){return rnd_shader;}
+  inline gui::rnd::panel::Profiler* get_rnd_profiler(){return rnd_profiler;}
   inline gui::rnd::panel::Object* get_rnd_object(){return rnd_object;}
   inline gui::rnd::panel::Set* get_rnd_set(){return rnd_set;}
   inline gui::rnd::panel::Camera* get_rnd_camera(){return rnd_camera;}
@@ -40,9 +40,9 @@ private:
   RND_option* rnd_option;
   RND_menu* rnd_menu;
 
-  RND_profiler* rnd_profiler;
+  gui::rnd::panel::Shader* rnd_shader;
+  gui::rnd::panel::Profiler* rnd_profiler;
   gui::rnd::panel::Scene* rnd_scene;
-  gui::rnd::engine::Shader* rnd_shader;
   gui::rnd::panel::Render* rnd_render;
   gui::rnd::panel::Object* rnd_object;
   gui::rnd::panel::Camera* rnd_camera;

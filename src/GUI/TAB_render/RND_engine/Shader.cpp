@@ -14,7 +14,7 @@
 #include <GUI_console/GUI_console.h>
 
 
-namespace gui::rnd::engine{
+namespace gui::rnd::panel{
 
 //Constructor / Destructor
 Shader::Shader(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){

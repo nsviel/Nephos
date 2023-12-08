@@ -7,12 +7,14 @@ class GUI;
 class VK_info;
 
 
-class RND_profiler : public BASE_panel
+namespace gui::rnd::panel{
+
+class Profiler : public BASE_panel
 {
 public:
   //Constructor / Destructor
-  RND_profiler(GUI* gui, bool* show_window, string name);
-  ~RND_profiler();
+  Profiler(GUI* gui, bool* show_window, string name);
+  ~Profiler();
 
 public:
   //Main function
@@ -32,3 +34,5 @@ private:
 
   int width;
 };
+
+}

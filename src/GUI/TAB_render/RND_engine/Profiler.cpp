@@ -1,4 +1,4 @@
-#include "RND_profiler.h"
+#include "Profiler.h"
 
 #include <GUI.h>
 #include <Vulkan.h>
@@ -6,8 +6,10 @@
 #include <Engine.h>
 
 
+namespace gui::rnd::panel{
+
 //Constructor / Destructor
-RND_profiler::RND_profiler(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
+Profiler::Profiler(GUI* gui, bool* show_window, string name) : BASE_panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -20,10 +22,10 @@ RND_profiler::RND_profiler(GUI* gui, bool* show_window, string name) : BASE_pane
 
   //---------------------------
 }
-RND_profiler::~RND_profiler(){}
+Profiler::~Profiler(){}
 
 //Main function
-void RND_profiler::design_panel(){
+void Profiler::design_panel(){
   //---------------------------
 
   this->design_profiling();
@@ -32,7 +34,7 @@ void RND_profiler::design_panel(){
 }
 
 //Subfunctions
-void RND_profiler::design_profiling(){
+void Profiler::design_profiling(){
   ImGui::BeginChild("Profiling", ImVec2(0, 150), false);
   //---------------------------
 
@@ -44,7 +46,7 @@ void RND_profiler::design_profiling(){
   //---------------------------
   ImGui::EndChild();
 }
-void RND_profiler::device_model(){
+void Profiler::device_model(){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
@@ -60,7 +62,7 @@ void RND_profiler::device_model(){
 
   //---------------------------
 }
-bool RND_profiler::time_update(){
+bool Profiler::time_update(){
   //---------------------------
 
   static timer_time t1 = timer.start_t();
@@ -73,7 +75,7 @@ bool RND_profiler::time_update(){
   //---------------------------
   return false;
 }
-void RND_profiler::time_drawig(bool update){
+void Profiler::time_drawig(bool update){
   ImGuiIO io = ImGui::GetIO();
   //---------------------------
 
@@ -108,7 +110,7 @@ void RND_profiler::time_drawig(bool update){
 
   //---------------------------
 }
-void RND_profiler::time_general(bool update){
+void Profiler::time_general(bool update){
   ImGuiIO io = ImGui::GetIO();
   //---------------------------
 
@@ -136,4 +138,6 @@ void RND_profiler::time_general(bool update){
   ImGui::Text(" FPS ]");
 
   //---------------------------
+}
+
 }
