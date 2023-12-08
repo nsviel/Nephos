@@ -18,14 +18,14 @@ public:
   virtual void reset_glyph(){}
   virtual void reset(){}
 
-  inline Glyph* get_glyph(){return glyph;}
+  inline data::Glyph* get_glyph(){return glyph;}
   inline string get_name(){return name;}
   inline vec4* get_color(){return &color;}
   inline bool* get_visibility(){return &is_visible;}
   inline void set_visibility(bool value){this->is_visible = value;}
 
 protected:
-  Glyph* glyph;
+  data::Glyph* glyph;
 
   string name;
   vec4 color;

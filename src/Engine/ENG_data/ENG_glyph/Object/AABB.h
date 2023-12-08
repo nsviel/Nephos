@@ -11,7 +11,7 @@ public:
 
 public:
 /*  void create_glyph();
-  void update_glyph(Set* collection, Glyph* glyph);
+  void update_glyph(Set* collection, data::Glyph* glyph);
   void update_glyph(Object* object);
   vector<vec3> build_box(vec3 min, vec3 max);*/
 

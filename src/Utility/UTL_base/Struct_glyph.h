@@ -9,10 +9,8 @@ struct Glyph : public Object
 {
   //---------------------------
 
-  Glyph();
-
-  bool is_permanent;
-  Object* linked_object;
+  bool is_permanent = false;
+  Object* linked_object = nullptr;
 
   //---------------------------
 };

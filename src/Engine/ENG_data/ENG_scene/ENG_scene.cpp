@@ -34,8 +34,8 @@ void ENG_scene::init_set(){
   list<Set*>* list_data = eng_database->get_list_data();
   //---------------------------
 
-  //Glyph set
-  this->set_glyph = new Set("Glyph");
+  //data::Glyph set
+  this->set_glyph = new Set("data::Glyph");
   list_data->push_back(set_glyph);
 
   //ENG_scene set

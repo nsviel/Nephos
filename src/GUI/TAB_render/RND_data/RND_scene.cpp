@@ -127,7 +127,7 @@ int RND_scene::data_node_tree(Set* set){
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
   //flag_node |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
-  if(set->name != "Glyph"){
+  if(set->name != "data::Glyph"){
     flag_node |= ImGuiTreeNodeFlags_DefaultOpen;
   }
 

@@ -27,7 +27,7 @@ Grid_plane::~Grid_plane(){
 }
 
 void Grid_plane::create_grid(){
-  this->grid = new Glyph();
+  this->grid = new data::Glyph();
   //---------------------------
 
   //Create glyph
@@ -44,7 +44,7 @@ void Grid_plane::create_grid(){
   //---------------------------
 }
 void Grid_plane::create_grid_sub(){
-  this->grid_sub = new Glyph();
+  this->grid_sub = new data::Glyph();
   vector<vec3>& XYZ = grid_sub->xyz;
   vector<vec4>& RGB = grid_sub->rgb;
   //---------------------------
@@ -62,7 +62,7 @@ void Grid_plane::create_grid_sub(){
   //---------------------------
 }
 void Grid_plane::create_grid_plane(){
-  this->grid_plane = new Glyph();
+  this->grid_plane = new data::Glyph();
   //---------------------------
 
   //Construct plane grid

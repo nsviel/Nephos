@@ -35,7 +35,7 @@ void ENG_glyph::create_glyph_scene(){
 
   for(int i=0; i<vec_glyph_src.size(); i++){
     vec_glyph_src[i]->create_glyph();
-    Glyph* glyph = vec_glyph_src[i]->get_glyph();
+    data::Glyph* glyph = vec_glyph_src[i]->get_glyph();
     eng_scene->insert_object_glyph(glyph);
   }
 
@@ -57,7 +57,7 @@ Glyph_source* ENG_glyph::get_glyph_src_byName(string name){
 
 /*
 //Main functions
-void ENG_glyph::draw_glyph(Glyph* glyph){
+void ENG_glyph::draw_glyph(data::Glyph* glyph){
   //---------------------------
 
   if(glyph->is_visible){
@@ -66,7 +66,7 @@ void ENG_glyph::draw_glyph(Glyph* glyph){
 
   //---------------------------
 }
-void ENG_glyph::insert_into_gpu(Glyph* glyph){
+void ENG_glyph::insert_into_gpu(data::Glyph* glyph){
   //---------------------------
 
   gpuManager->gen_vao(glyph);
@@ -77,8 +77,8 @@ void ENG_glyph::insert_into_gpu(Glyph* glyph){
   //---------------------------
 }
 
-//Glyph creation / supression
-void ENG_glyph::create_glyph_scene(Glyph* glyph){
+//data::Glyph creation / supression
+void ENG_glyph::create_glyph_scene(data::Glyph* glyph){
   Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
@@ -87,7 +87,7 @@ void ENG_glyph::create_glyph_scene(Glyph* glyph){
 
   //---------------------------
 }
-void ENG_glyph::create_glyph_object(Object* object, Glyph* glyph){
+void ENG_glyph::create_glyph_object(Object* object, data::Glyph* glyph){
   Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_object");
   //---------------------------
 
@@ -103,7 +103,7 @@ void ENG_glyph::remove_temporary_glyph(){
 
   //Remove non permanent glyphs
   for(int i=0; i<col_glyph->list_obj.size(); i++){
-    Glyph* glyph = (Glyph*)*next(col_glyph->list_obj.begin(),i);
+    data::Glyph* glyph = (data::Glyph*)*next(col_glyph->list_obj.begin(),i);
 
     if(glyph->is_permanent == false){
       this->remove_glyph_scene(glyph->ID);
@@ -118,7 +118,7 @@ void ENG_glyph::remove_glyph_scene(int ID){
   //---------------------------
 
   for(int i=0;i<col_glyph->list_obj.size();i++){
-    Glyph* glyph = (Glyph*)*next(col_glyph->list_obj.begin(),i);
+    data::Glyph* glyph = (data::Glyph*)*next(col_glyph->list_obj.begin(),i);
 
     if(glyph->ID == ID){
       delete glyph;
@@ -129,9 +129,9 @@ void ENG_glyph::remove_glyph_scene(int ID){
 
   //---------------------------
 }
-Glyph* ENG_glyph::create_glyph(vector<vec3>& XYZ, vector<vec4>& RGB, string mode, bool perma){
+data::Glyph* ENG_glyph::create_glyph(vector<vec3>& XYZ, vector<vec4>& RGB, string mode, bool perma){
   Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
-  Glyph* glyph = new Glyph();
+  data::Glyph* glyph = new data::Glyph();
   unsigned int VAO;
   uint colorVBO, locationVBO;
   //---------------------------
@@ -150,8 +150,8 @@ Glyph* ENG_glyph::create_glyph(vector<vec3>& XYZ, vector<vec4>& RGB, string mode
   return glyph;
 }
 
-//Glyph update
-void ENG_glyph::update_glyph_buffer(Glyph* glyph){
+//data::Glyph update
+void ENG_glyph::update_glyph_buffer(data::Glyph* glyph){
   //---------------------------
 
   gpuManager->update_buffer_location(glyph);
@@ -159,21 +159,21 @@ void ENG_glyph::update_glyph_buffer(Glyph* glyph){
 
   //---------------------------
 }
-void ENG_glyph::update_glyph_location(Glyph* glyph){
+void ENG_glyph::update_glyph_location(data::Glyph* glyph){
   //---------------------------
 
   gpuManager->update_buffer_location(glyph);
 
   //---------------------------
 }
-void ENG_glyph::update_glyph_color(Glyph* glyph){
+void ENG_glyph::update_glyph_color(data::Glyph* glyph){
   //---------------------------
 
   gpuManager->update_buffer_color(glyph);
 
   //---------------------------
 }
-void ENG_glyph::update_glyph_color(Glyph* glyph, vec4 RGB_new){
+void ENG_glyph::update_glyph_color(data::Glyph* glyph, vec4 RGB_new){
   vector<vec4>& RGB = glyph->rgb;
   int size = RGB.size();
   //---------------------------
@@ -190,7 +190,7 @@ void ENG_glyph::update_glyph_color(Glyph* glyph, vec4 RGB_new){
 
   //---------------------------
 }
-void ENG_glyph::update_glyph_MinMax(Glyph* glyph){
+void ENG_glyph::update_glyph_MinMax(data::Glyph* glyph){
   vector<vec3>& XYZ = glyph->xyz;
   vec3 min = XYZ[0];
   vec3 max = XYZ[0];

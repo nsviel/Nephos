@@ -14,7 +14,7 @@ AABB::AABB(){
 
 //Main function
 void AABB::create_glyph(){
-  this->glyph = new Glyph();
+  this->glyph = new data::Glyph();
   //---------------------------
 
   //Create glyph
@@ -31,7 +31,7 @@ void AABB::create_glyph(){
 
   //---------------------------
 }
-void AABB::update_glyph(Set* collection, Glyph* glyph){
+void AABB::update_glyph(Set* collection, data::Glyph* glyph){
   vec3 min = collection->min;
   vec3 max = collection->max;
   //---------------------------
