@@ -9,7 +9,6 @@ class ENG_data;
 class Utility;
 class UTL_window;
 class GUI_font;
-class GUI_style;
 
 
 class GUI
@@ -29,7 +28,7 @@ public:
   inline Engine* get_engine(){return engine;}
 
   inline gui::Control* get_gui_control(){return gui_control;}
-  inline GUI_style* get_gui_style(){return gui_style;}
+  inline gui::GUI_style* get_gui_style(){return gui_style;}
   inline gui::Tab* get_gui_tab(){return gui_tab;}
   inline GUI_font* get_gui_font(){return gui_font;}
   inline gui::Render* get_rnd_tab(){return gui_render;}
@@ -41,7 +40,7 @@ private:
 
   UTL_window* utl_window;
   gui::Control* gui_control;
-  GUI_style* gui_style;
+  gui::GUI_style* gui_style;
   gui::Docking* gui_docking;
   GUI_font* gui_font;
   gui::Tab* gui_tab;

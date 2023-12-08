@@ -6,6 +6,7 @@
 #include <GUI_interface/Tab.h>
 #include <GUI_render/Render.h>
 #include <GUI_render/Renderpass.h>
+#include <GUI_style/GUI_style.h>
 
 
 namespace gui{
@@ -17,6 +18,7 @@ namespace gui{
   class Tab;
   class Render;
   class Renderpass;
+  class GUI_style;
 
   //---------------------------
 }

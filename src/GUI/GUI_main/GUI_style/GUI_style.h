@@ -5,6 +5,8 @@
 class GUI;
 
 
+namespace gui{
+
 class GUI_style
 {
 public:
@@ -23,3 +25,5 @@ public:
 
 private:
 };
+
+}

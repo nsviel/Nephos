@@ -3,6 +3,8 @@
 #include <image/IconsFontAwesome5.h>
 
 
+namespace gui{
+
 //Constructor / Destructor
 GUI_style::GUI_style(GUI* gui){
   //---------------------------
@@ -91,4 +93,6 @@ void GUI_style::color_widget(){
   ImGui::PushStyleColor(ImGuiCol_TableRowBgAlt, IM_COL32(25, 25, 25, 255));
 
   //---------------------------
+}
+
 }
