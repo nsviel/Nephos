@@ -1,23 +1,11 @@
 #include "RND_tree.h"
-#include "RND_init.h"
 
-
-#include <ENG_data/ENG_data.h>
-#include <ENG_data/ENG_scene/ENG_scene.h>
-#include <ENG_data/ENG_load/ENG_loader.h>
-#include <ENG_operation/Transformation/Transformation.h>
 #include <UTL_file/Directory.h>
 #include <UTL_file/Info.h>
 
 
 //Constructor / Destructor
-RND_tree::RND_tree(RND_init* gui_init){
-  //---------------------------
-
-  this->gui_init = gui_init;
-
-  //---------------------------
-}
+RND_tree::RND_tree(){}
 RND_tree::~RND_tree(){}
 
 //Tree view
@@ -237,7 +225,7 @@ void RND_tree::open_selection(Tree_node* node){
   //---------------------------
 
   if(node->type == "File"){
-    gui_init->operation_new_object(node->path);
+    //gui_init->operation_new_object(node->path);
   }
   /*else if(node->type == "Folder" && node->end_folder){
     if(pathManager->check_folder_format(node->path, "ply")){

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "struct_node.h"
-#include "struct_init.h"
+#include <RND_tab/struct_init.h>
+#include <GUI_widget/struct_node.h>
 #include <UTL_specific/common.h>
 
 class RND_init;
@@ -11,7 +11,7 @@ class RND_tree
 {
 public:
   //Constructor / Destructor
-  RND_tree(RND_init* gui_init);
+  RND_tree();
   ~RND_tree();
 
 public:

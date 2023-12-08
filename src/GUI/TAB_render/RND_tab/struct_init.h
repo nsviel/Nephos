@@ -1,6 +1,6 @@
 #pragma once
 
-#include "struct_node.h"
+#include <GUI_widget/struct_node.h>
 #include <UTL_specific/common.h>
 
 

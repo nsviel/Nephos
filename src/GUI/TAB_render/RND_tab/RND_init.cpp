@@ -1,5 +1,4 @@
 #include "RND_init.h"
-#include "RND_tree.h"
 
 #include <GUI.h>
 #include <Engine.h>
@@ -9,6 +8,7 @@
 #include <ENG_operation/Transformation/Transformation.h>
 #include <UTL_file/Directory.h>
 #include <UTL_file/Info.h>
+#include <GUI_widget/RND_tree.h>
 
 
 //Constructor / Destructor
@@ -21,7 +21,7 @@ RND_init::RND_init(GUI* gui){
   this->eng_scene = eng_data->get_eng_scene();
   this->eng_loader = eng_data->get_eng_loader();
   this->transformManager = new Transformation();
-  this->gui_tree = new RND_tree(this);
+  this->gui_tree = new RND_tree();
 
   //---------------------------
   this->init_init();

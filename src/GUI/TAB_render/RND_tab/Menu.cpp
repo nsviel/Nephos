@@ -6,7 +6,7 @@
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_load/ENG_loader.h>
 #include <image/IconsFontAwesome5.h>
-#include <TAB_render/RND_initialization/RND_init.h>
+#include <TAB_render/RND_tab/RND_init.h>
 
 
 namespace gui::rnd::tab{
