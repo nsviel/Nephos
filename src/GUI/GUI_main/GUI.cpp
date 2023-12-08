@@ -16,7 +16,7 @@ GUI::GUI(Utility* utility, Engine* engine){
   this->utl_window = utility->get_utl_window();
 
   this->gui_render = new gui::Render(this);
-  this->gui_style = new gui::GUI_style(this);
+  this->gui_style = new gui::Style(this);
   this->gui_font = new GUI_font(this);
   this->gui_tab = new gui::Tab(this);
   this->gui_control = new gui::Control(this);

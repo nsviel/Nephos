@@ -7,12 +7,12 @@ class GUI;
 
 namespace gui{
 
-class GUI_style
+class Style
 {
 public:
   //Constructor / Destructor
-  GUI_style(GUI* gui);
-  ~GUI_style();
+  Style(GUI* gui);
+  ~Style();
 
 public:
   //Main function

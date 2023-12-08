@@ -1,4 +1,4 @@
-#include "GUI_style.h"
+#include "Style.h"
 
 #include <image/IconsFontAwesome5.h>
 
@@ -6,17 +6,17 @@
 namespace gui{
 
 //Constructor / Destructor
-GUI_style::GUI_style(GUI* gui){
+Style::Style(GUI* gui){
   //---------------------------
 
 
 
   //---------------------------
 }
-GUI_style::~GUI_style(){}
+Style::~Style(){}
 
 //Main function
-void GUI_style::gui_style(){
+void Style::gui_style(){
   //---------------------------
 
   this->style_window();
@@ -27,7 +27,7 @@ void GUI_style::gui_style(){
 }
 
 //Subfunction
-void GUI_style::style_window(){
+void Style::style_window(){
   ImGuiStyle& style = ImGui::GetStyle();
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
@@ -56,7 +56,7 @@ void GUI_style::style_window(){
 
   //---------------------------
 }
-void GUI_style::color_window(){
+void Style::color_window(){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Header, IM_COL32(76, 76, 76, 255));
@@ -71,7 +71,7 @@ void GUI_style::color_window(){
 
   //---------------------------
 }
-void GUI_style::color_widget(){
+void Style::color_widget(){
   //---------------------------
 
   //Widget
