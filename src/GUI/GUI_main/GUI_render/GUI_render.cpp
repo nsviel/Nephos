@@ -53,10 +53,12 @@ void GUI_render::clean(){
 
   //---------------------------
 }
-void GUI_render::wait(){
+void GUI_render::new_frame(){
   //---------------------------
 
-  //vulkan->wait();
+  ImGui_ImplVulkan_NewFrame();
+  ImGui_ImplGlfw_NewFrame();
+  ImGui::NewFrame();
 
   //---------------------------
 }

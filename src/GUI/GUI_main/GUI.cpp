@@ -52,10 +52,7 @@ void GUI::init(){
 void GUI::loop(){
   //---------------------------
 
-  ImGui_ImplVulkan_NewFrame();
-  ImGui_ImplGlfw_NewFrame();
-  ImGui::NewFrame();
-
+  gui_render->new_frame();
   gui_docking->docker_space_main();
   gui_tab->run_tab();
   gui_control->run_control();
@@ -73,7 +70,7 @@ void GUI::exit(){
 void GUI::wait(){
   //---------------------------
 
-  gui_render->wait();
+  //gui_render->wait();
 
   //---------------------------
 }

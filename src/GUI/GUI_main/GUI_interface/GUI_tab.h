@@ -1,5 +1,4 @@
-#ifndef GUI_TAB_H
-#define GUI_TAB_H
+#pragma once
 
 #include <TAB_dev/Tab_nsp.h>
 #include <TAB_render/Tab_nsp.h>
@@ -39,5 +38,3 @@ private:
   string active_tab;
   string tab_to_open;
 };
-
-#endif

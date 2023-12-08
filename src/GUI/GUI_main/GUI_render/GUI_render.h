@@ -1,5 +1,4 @@
-#ifndef GUI_RENDER_H
-#define GUI_RENDER_H
+#pragma once
 
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_info.h>
@@ -24,7 +23,7 @@ public:
   void init();
   void loop();
   void clean();
-  void wait();
+  void new_frame();
 
   inline Vulkan* get_vulkan(){return vulkan;}
 
@@ -35,5 +34,3 @@ private:
   VK_render* vk_render;
   VK_imgui* vk_imgui;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef GUI_RENDERPASS_H
-#define GUI_RENDERPASS_H
+#pragma once
 
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <VK_struct/Struct_vk_pipeline.h>
@@ -29,5 +28,3 @@ private:
   VK_imgui* vk_imgui;
   VK_engine* vk_engine;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef CONTROL_GUI_H
-#define CONTROL_GUI_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -7,6 +6,8 @@ class GUI;
 class GUI_tab;
 class UTL_window;
 
+
+namespace gui{
 
 class GUI_control
 {
@@ -29,4 +30,4 @@ private:
   GUI_tab* gui_tab;
 };
 
-#endif
+}

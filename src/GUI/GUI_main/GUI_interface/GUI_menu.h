@@ -1,5 +1,4 @@
-#ifndef GUI_MENU_H
-#define GUI_MENU_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <GUI_utility/Utility_nsp.h>
@@ -29,5 +28,3 @@ private:
 
   bool show_demo;
 };
-
-#endif

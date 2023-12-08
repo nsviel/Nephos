@@ -1,9 +1,12 @@
 #pragma once
 
+#include <GUI_control/GUI_control.h>
 
-namespace render{
+
+namespace gui{
   //---------------------------
 
+  class GUI_control;
 
   //---------------------------
 }

@@ -1,5 +1,4 @@
-#ifndef GUI_NODE_H
-#define GUI_NODE_H
+#pragma once
 
 #include <GUI_main/GUI_render/GUI_render.h>
 #include <UTL_specific/common.h>
@@ -53,5 +52,3 @@ private:
   GUI_tab* gui_tab;
   GUI_render* gui_render;
 };
-
-#endif

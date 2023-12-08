@@ -1,5 +1,4 @@
-#ifndef GUI_STYLE_H
-#define GUI_STYLE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -24,6 +23,3 @@ public:
 
 private:
 };
-
-
-#endif

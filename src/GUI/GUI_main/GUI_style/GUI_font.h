@@ -1,5 +1,4 @@
-#ifndef GUI_FONT_H
-#define GUI_FONT_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -40,5 +39,3 @@ private:
   ImFont* font_gui;
   ImFont* font_small;
 };
-
-#endif

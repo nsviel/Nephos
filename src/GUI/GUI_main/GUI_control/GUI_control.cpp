@@ -7,6 +7,8 @@
 #include <GUI_interface/GUI_tab.h>
 
 
+namespace gui{
+
 //Constructor / Destructor
 GUI_control::GUI_control(GUI* gui){
   //---------------------------
@@ -51,3 +53,5 @@ void GUI_control::control_keyboard_oneAction(){
 }
 
 //Mouse
+
+}

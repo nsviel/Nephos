@@ -1,5 +1,4 @@
-#ifndef GUI_DOCKING_H
-#define GUI_DOCKING_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -16,9 +15,7 @@ public:
 public:
   //Main functions
   void docker_space_main();
-  
+
 private:
 
 };
-
-#endif
