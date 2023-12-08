@@ -1,5 +1,4 @@
-#ifndef STRUCT_VIDEO_H
-#define STRUCT_VIDEO_H
+#pragma once
 
 #include <glm/glm.hpp>
 #include <string>
@@ -18,6 +17,3 @@ struct Struct_video{
 
   //---------------------------
 };
-
-
-#endif

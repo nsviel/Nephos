@@ -1,5 +1,4 @@
-#ifndef STRUCT_IMAGE_H
-#define STRUCT_IMAGE_H
+#pragma once
 
 #include <string>
 
@@ -16,6 +15,3 @@ struct Struct_image{
 
   //---------------------------
 };
-
-
-#endif

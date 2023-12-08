@@ -1,5 +1,4 @@
-#ifndef DATAFILE_STRUCT_H
-#define DATAFILE_STRUCT_H
+#pragma once
 
 #include <glm/glm.hpp>
 #include <string>
@@ -32,6 +31,3 @@ struct Data_file{
 
   //---------------------------
 };
-
-
-#endif

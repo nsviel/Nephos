@@ -1,5 +1,4 @@
-#ifndef STRUCT_SET_H
-#define STRUCT_SET_H
+#pragma once
 
 #include <UTL_base/Struct_object.h>
 #include <string>
@@ -26,5 +25,3 @@ struct Set{
 
   //---------------------------
 };
-
-#endif

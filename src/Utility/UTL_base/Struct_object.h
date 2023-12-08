@@ -1,5 +1,4 @@
-#ifndef STRUCT_OBJECT_H
-#define STRUCT_OBJECT_H
+#pragma once
 
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
@@ -64,5 +63,3 @@ struct Object{ //Cloud cloud / part
 
   //---------------------------
 };
-
-#endif

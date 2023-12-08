@@ -1,8 +1,9 @@
-#ifndef GLYPH_STRUCT_H
-#define GLYPH_STRUCT_H
+#pragma once
 
 #include <UTL_base/Struct_object.h>
 
+
+namespace data{
 
 struct Glyph : public Object
 {
@@ -16,4 +17,4 @@ struct Glyph : public Object
   //---------------------------
 };
 
-#endif
+}
