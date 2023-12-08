@@ -8,6 +8,5 @@ namespace gui::rnd::engine{
 
   class Control;
 
-
   //---------------------------
 }
