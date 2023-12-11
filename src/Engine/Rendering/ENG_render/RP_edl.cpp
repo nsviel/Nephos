@@ -9,9 +9,9 @@
 #include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/VK_binding/VK_uniform.h>
 
-#include <Engine/ENG_shader/ENG_shader.h>
-#include <Engine/ENG_shader/EDL/EDL_shader.h>
-#include <Engine/ENG_shader/EDL/EDL_param.h>
+#include <Engine/Rendering/ENG_shader/ENG_shader.h>
+#include <Engine/Rendering/ENG_shader/EDL/EDL_shader.h>
+#include <Engine/Rendering/ENG_shader/EDL/EDL_param.h>
 
 
 //Constructor / Destructor

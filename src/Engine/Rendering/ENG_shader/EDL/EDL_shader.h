@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Engine/Base/Namespace.h>
-#include <Engine/ENG_shader/EDL/EDL_param.h>
-#include <Engine/ENG_shader/Base/BASE_shader.h>
+#include <Engine/Rendering/ENG_shader/EDL/EDL_param.h>
+#include <Engine/Rendering/ENG_shader/Base/BASE_shader.h>
 #include <Utility/Specific/common.h>
 
 class Engine;

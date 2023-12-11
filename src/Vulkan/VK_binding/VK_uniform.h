@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Namespace.h>
-#include <Engine/ENG_shader/EDL/EDL_param.h>
+#include <Engine/Rendering/ENG_shader/EDL/EDL_param.h>
 #include <Utility/Specific/common.h>
 
 

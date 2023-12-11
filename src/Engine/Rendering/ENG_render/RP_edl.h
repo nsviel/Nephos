@@ -2,7 +2,7 @@
 
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/Namespace.h>
-#include <Engine/ENG_shader/ENG_shader.h>
+#include <Engine/Rendering/ENG_shader/ENG_shader.h>
 #include <Utility/Specific/common.h>
 
 class Engine;
