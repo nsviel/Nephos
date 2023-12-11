@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_attachment.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/Struct_vk_pipeline.h>
 #include <UTL_specific/common.h>
 
@@ -15,8 +15,8 @@ struct Struct_vk_subpass{
   VkCommandBuffer command_buffer;
 
   //Attachment
-  Struct_vk_attachment depth;
-  std::vector<Struct_vk_attachment> vec_color;
+  vk::structure::Struct_vk_attachment depth;
+  std::vector<vk::structure::Struct_vk_attachment> vec_color;
   std::function<void(Struct_vk_subpass* subpass)> draw_task;
 
   //Pipeline
