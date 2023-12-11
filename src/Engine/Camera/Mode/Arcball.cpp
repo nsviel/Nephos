@@ -1,20 +1,22 @@
-#include "CAM_arcball.h"
+#include "Arcball.h"
 
 #include <Utility/UTL_window/UTL_window.h>
 
 
+namespace eng::camera::mode{
+
 //Constructor / Destructor
-CAM_arcball::CAM_arcball(UTL_window* utl_window){
+Arcball::Arcball(UTL_window* utl_window){
   //---------------------------
 
   this->utl_window =  utl_window;
 
   //---------------------------
 }
-CAM_arcball::~CAM_arcball(){}
+Arcball::~Arcball(){}
 
 //Main function
-mat4 CAM_arcball::arcball_view_mat(eng::structure::Camera* camera){
+mat4 Arcball::arcball_view_mat(eng::structure::Camera* camera){
   mat4 cam_view;
   //---------------------------
 
@@ -28,7 +30,7 @@ mat4 CAM_arcball::arcball_view_mat(eng::structure::Camera* camera){
   //---------------------------
   return cam_view;
 }
-void CAM_arcball::arcball_cam_mouse(eng::structure::Camera* camera){
+void Arcball::arcball_cam_mouse(eng::structure::Camera* camera){
   //---------------------------
 
   vec2 angle = arcball_mouse_angle();
@@ -38,7 +40,7 @@ void CAM_arcball::arcball_cam_mouse(eng::structure::Camera* camera){
 }
 
 //Subfunction
-vec2 CAM_arcball::arcball_mouse_angle(){
+vec2 Arcball::arcball_mouse_angle(){
   //---------------------------
 
   vec2 mouse_pose = utl_window->get_mouse_pose();
@@ -56,7 +58,7 @@ vec2 CAM_arcball::arcball_mouse_angle(){
   //---------------------------
   return angle;
 }
-void CAM_arcball::arcball_viewport_angle(eng::structure::Camera* camera, vec2 angle){
+void Arcball::arcball_viewport_angle(eng::structure::Camera* camera, vec2 angle){
   //---------------------------
 
   // Get the homogenous position of the camera and pivot point
@@ -76,4 +78,6 @@ void CAM_arcball::arcball_viewport_angle(eng::structure::Camera* camera, vec2 an
   camera->cam_P = (Rr * (cam_P - cam_COM_obj)) + cam_COM_obj;
 
   //---------------------------
+}
+
 }

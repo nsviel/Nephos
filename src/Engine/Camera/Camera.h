@@ -1,11 +1,10 @@
 #pragma once
 
 #include <Engine/Base/Namespace.h>
+#include <Engine/Camera/Mode/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class Engine;
-class CAM_arcball;
-class CAM_first_person;
 class CAM_zoom;
 class CAM_proj;
 
@@ -46,8 +45,8 @@ public:
 
 private:
   Engine* engine;
-  CAM_arcball* cam_arcball;
-  CAM_first_person* cam_fp;
+  eng::camera::mode::Arcball* cam_arcball;
+  eng::camera::mode::First_person* cam_fp;
   CAM_zoom* cam_zoom;
   CAM_proj* cam_proj;
 

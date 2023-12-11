@@ -1,6 +1,4 @@
 #include "Camera.h"
-#include "Mode/CAM_first_person.h"
-#include "Mode/CAM_arcball.h"
 #include "Projection/CAM_zoom.h"
 #include "Projection/CAM_proj.h"
 
@@ -18,8 +16,8 @@ Camera::Camera(Engine* engine){
   Utility* utility = engine->get_utility();
 
   this->camera = new eng::structure::Camera();
-  this->cam_arcball = new CAM_arcball(utility->get_utl_window());
-  this->cam_fp = new CAM_first_person(utility->get_utl_window());
+  this->cam_arcball = new eng::camera::mode::Arcball(utility->get_utl_window());
+  this->cam_fp = new eng::camera::mode::First_person(utility->get_utl_window());
   this->cam_zoom = new CAM_zoom(utility->get_utl_window());
   this->cam_proj = new CAM_proj(utility->get_utl_window());
 

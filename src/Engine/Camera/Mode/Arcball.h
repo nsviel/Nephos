@@ -6,11 +6,13 @@
 class UTL_window;
 
 
-class CAM_arcball
+namespace eng::camera::mode{
+
+class Arcball
 {
 public:
-  CAM_arcball(UTL_window* utl_window);
-  ~CAM_arcball();
+  Arcball(UTL_window* utl_window);
+  ~Arcball();
 
 public:
   mat4 arcball_view_mat(eng::structure::Camera* camera);
@@ -21,3 +23,5 @@ public:
 private:
   UTL_window* utl_window;
 };
+
+}

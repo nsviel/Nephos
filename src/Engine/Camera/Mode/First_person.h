@@ -6,11 +6,13 @@
 class UTL_window;
 
 
-class CAM_first_person
+namespace eng::camera::mode{
+
+class First_person
 {
 public:
-  CAM_first_person(UTL_window* utl_window);
-  ~CAM_first_person();
+  First_person(UTL_window* utl_window);
+  ~First_person();
 
 public:
   mat4 fp_view_mat(eng::structure::Camera* camera);
@@ -21,3 +23,5 @@ private:
 
   vec2 mouse_pose_old;
 };
+
+}
