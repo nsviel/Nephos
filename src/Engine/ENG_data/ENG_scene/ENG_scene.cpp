@@ -1,6 +1,5 @@
 #include "ENG_scene.h"
 #include "ENG_database.h"
-#include "../ENG_data.h"
 #include "../ENG_load/ENG_loader.h"
 
 #include <Engine/Base/Namespace.h>
@@ -14,7 +13,7 @@
 
 
 //ConsScenetor / DesScenetor
-ENG_scene::ENG_scene(ENG_data* eng_data){
+ENG_scene::ENG_scene(eng::data::ENG_data* eng_data){
   //---------------------------
 
   Engine* engine = eng_data->get_engine();

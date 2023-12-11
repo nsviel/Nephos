@@ -4,10 +4,8 @@
 #include <Engine/Node/Engine.h>
 #include <Utility/Node/Utility.h>
 #include <Utility/UTL_window/UTL_window.h>
-#include <Engine/ENG_data/ENG_data.h>
 #include <Utility/UTL_function/fct_math.h>
 #include <Engine/ENG_data/ENG_scene/ENG_scene.h>
-#include <Engine/ENG_data/ENG_data.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/ENG_operation/Transformation/Transformation.h>
 
@@ -20,7 +18,7 @@ Control::Control(GUI* gui){
 
   Utility* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
-  ENG_data* eng_data = engine->get_eng_data();
+  eng::data::ENG_data* eng_data = engine->get_eng_data();
 
   this->engine = gui->get_engine();
   this->utl_window = utility->get_utl_window();

@@ -5,6 +5,8 @@
 #include "ENG_load/ENG_loader.h"
 
 
+namespace eng::data{
+
 //Constructor / Destructor
 ENG_data::ENG_data(Engine* engine){
   //---------------------------
@@ -50,4 +52,6 @@ void ENG_data::loop(){
   eng_scene->loop();
 
   //---------------------------
+}
+
 }

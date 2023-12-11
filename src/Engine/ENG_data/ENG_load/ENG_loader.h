@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/ENG_data/Namespace.h>
 #include <Engine/Base/Namespace.h>
 #include <Utility/UTL_base/Struct_file.h>
 #include <Engine/Base/Namespace.h>
@@ -8,7 +9,6 @@
 #include <string>
 #include <vector>
 
-class ENG_data;
 class ENG_format;
 class ENG_scene;
 
@@ -17,7 +17,7 @@ class ENG_loader
 {
 public:
   //Constructor / Destructor
-  ENG_loader(ENG_data* eng_data);
+  ENG_loader(eng::data::ENG_data* eng_data);
   ~ENG_loader();
 
 public:

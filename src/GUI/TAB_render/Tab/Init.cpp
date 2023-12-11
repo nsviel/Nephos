@@ -2,7 +2,6 @@
 
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
-#include <Engine/ENG_data/ENG_data.h>
 #include <Engine/ENG_data/ENG_scene/ENG_scene.h>
 #include <Engine/ENG_data/ENG_load/ENG_loader.h>
 #include <Engine/ENG_operation/Transformation/Transformation.h>
@@ -17,7 +16,7 @@ Init::Init(GUI* gui){
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  ENG_data* eng_data = engine->get_eng_data();
+  eng::data::ENG_data* eng_data = engine->get_eng_data();
 
   this->eng_scene = eng_data->get_eng_scene();
   this->eng_loader = eng_data->get_eng_loader();

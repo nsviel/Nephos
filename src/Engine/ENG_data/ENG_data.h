@@ -7,6 +7,8 @@ class ENG_glyph;
 class ENG_loader;
 
 
+namespace eng::data{
+
 class ENG_data
 {
 public:
@@ -31,3 +33,5 @@ private:
   ENG_glyph* eng_glyph;
   ENG_loader* eng_loader;
 };
+
+}

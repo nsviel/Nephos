@@ -1,16 +1,15 @@
 #pragma once
 
 #include <Engine/Base/Namespace.h>
+#include <Engine/ENG_data/Namespace.h>
 #include <Utility/UTL_specific/common.h>
-
-class ENG_data;
 
 
 class ENG_database
 {
 public:
   //Constructor / Destructor
-  ENG_database(ENG_data* eng_data);
+  ENG_database(eng::data::ENG_data* eng_data);
   ~ENG_database();
 
 public:

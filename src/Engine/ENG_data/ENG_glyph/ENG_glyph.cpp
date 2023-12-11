@@ -4,12 +4,12 @@
 #include "Scene/Grid.h"
 #include "Scene/Axis_world.h"
 
-#include "../ENG_data.h"
+#include <Engine/ENG_data/Namespace.h>
 #include "../ENG_scene/ENG_scene.h"
 
 
 //Constructor / Destructor
-ENG_glyph::ENG_glyph(ENG_data* eng_data){
+ENG_glyph::ENG_glyph(eng::data::ENG_data* eng_data){
   //---------------------------
 
   this->eng_scene = eng_data->get_eng_scene();

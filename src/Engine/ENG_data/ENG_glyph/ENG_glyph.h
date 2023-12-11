@@ -1,9 +1,9 @@
 #pragma once
 
+#include <Engine/ENG_data/Namespace.h>
 #include "Base/Glyph_source.h"
 #include <Utility/UTL_specific/common.h>
 
-class ENG_data;
 class ENG_scene;
 
 
@@ -11,7 +11,7 @@ class ENG_glyph
 {
 public:
   //Constructor / Destructor
-  ENG_glyph(ENG_data* eng_data);
+  ENG_glyph(eng::data::ENG_data* eng_data);
   ~ENG_glyph();
 
 public:
@@ -20,7 +20,7 @@ public:
   Glyph_source* get_glyph_src_byName(string name);
 
 private:
-  ENG_data* eng_data;
+  eng::data::ENG_data* eng_data;
   ENG_scene* eng_scene;
 
   vector<Glyph_source*> vec_glyph_src;
