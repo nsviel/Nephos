@@ -62,12 +62,12 @@ void VK_viewport::update_viewport(){
 }
 
 //Subfunction
-vk::structure::Struct_vk_viewport* VK_viewport::create_viewport(){
+vk::structure::Viewport* VK_viewport::create_viewport(){
   vec2 win_dim = struct_vulkan->window.window_dim;
   //---------------------------
 
   //Viewport
-  vk::structure::Struct_vk_viewport* viewport = new vk::structure::Struct_vk_viewport();
+  vk::structure::Viewport* viewport = new vk::structure::Viewport();
   viewport->viewport = {};
   viewport->viewport.x = 0;
   viewport->viewport.y = 0;

@@ -5,7 +5,7 @@
 
 namespace vk::structure{
 
-struct Struct_vk_synchro{
+struct Synchro{
   //---------------------------
 
   VkFence fence;

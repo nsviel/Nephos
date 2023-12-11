@@ -19,7 +19,7 @@ public:
   void update_viewport();
 
   //Subfunction
-  vk::structure::Struct_vk_viewport* create_viewport();
+  vk::structure::Viewport* create_viewport();
 
 private:
   Struct_vulkan* struct_vulkan;

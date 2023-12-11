@@ -20,10 +20,10 @@
 #include <VK_struct/Renderpass.h>
 #include <VK_struct/Subpass.h>
 
-#include <VK_struct/Struct_vk_swapchain.h>
-#include <VK_struct/Struct_vk_synchro.h>
-#include <VK_struct/Struct_vk_viewport.h>
-#include <VK_struct/Struct_vk_window.h>
+#include <VK_struct/Swapchain.h>
+#include <VK_struct/Synchro.h>
+#include <VK_struct/Viewport.h>
+#include <VK_struct/Window.h>
 
 
 namespace vk::structure{
@@ -49,10 +49,10 @@ namespace vk::structure{
   class Renderpass;
   class Subpass;
 
-  class Struct_vk_swapchain;
-  class Struct_vk_synchro;
-  class Struct_vk_viewport;
-  class Struct_vk_window;
+  class Swapchain;
+  class Synchro;
+  class Viewport;
+  class Window;
 
   //---------------------------
 }

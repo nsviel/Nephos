@@ -5,7 +5,7 @@
 
 namespace vk::structure{
 
-struct Struct_vk_window{
+struct Window{
   //---------------------------
 
   //Window stuff

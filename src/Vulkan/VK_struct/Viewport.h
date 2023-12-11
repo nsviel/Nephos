@@ -6,7 +6,7 @@
 
 namespace vk::structure{
 
-struct Struct_vk_viewport{
+struct Viewport{
   //---------------------------
 
   VkViewport viewport;

@@ -7,7 +7,7 @@
 
 namespace vk::structure{
 
-struct Struct_vk_swapchain{
+struct Swapchain{
   //---------------------------
 
   //Swapchain element
