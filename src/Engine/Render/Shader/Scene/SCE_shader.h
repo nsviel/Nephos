@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Render/ENG_shader/Base/BASE_shader.h>
+#include <Engine/Render/Shader/Base/BASE_shader.h>
 
 class Engine;
 class UTL_window;

@@ -33,7 +33,7 @@ public:
   void cmd_draw_line(vk::structure::Subpass* subpass);
 
 private:
-  eng::shader::ENG_shader* eng_shader;
+  eng::render::ENG_shader* eng_shader;
   vk::structure::Vulkan* struct_vulkan;
   VK_descriptor* vk_descriptor;
   VK_uniform* vk_uniform;

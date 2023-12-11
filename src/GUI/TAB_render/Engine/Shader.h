@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Render/ENG_shader/Base/BASE_shader.h>
+#include <Engine/Render/Shader/Base/BASE_shader.h>
 #include <Engine/Render/Namespace.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <GUI/GUI_utility/Editor/Namespace.h>
@@ -52,7 +52,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  eng::shader::ENG_shader* eng_shader;
+  eng::render::ENG_shader* eng_shader;
   gui::editor::Text* editor_vs;
   gui::editor::Text* editor_fs;
   gui::widget::Console* gui_console;

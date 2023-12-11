@@ -4,7 +4,7 @@
 #include "Scene/SCE_shader.h"
 
 
-namespace eng::shader{
+namespace eng::render{
 
 ENG_shader::ENG_shader(Engine* engine){
   //---------------------------

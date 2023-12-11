@@ -8,7 +8,7 @@ class PSR_shader;
 class SCE_shader;
 
 
-namespace eng::shader{
+namespace eng::render{
 
 class ENG_shader
 {

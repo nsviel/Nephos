@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Engine/Render/ENG_shader/ENG_shader.h>
+#include <Engine/Render/Shader/ENG_shader.h>
 
 
-namespace eng::shader{
+namespace eng::render{
   //---------------------------
 
   class ENG_shader;
