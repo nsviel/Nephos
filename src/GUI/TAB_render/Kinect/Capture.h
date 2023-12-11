@@ -5,7 +5,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
 #include <Utility/Capture/Kinect/Namespace.h>
-#include <Utility/Capture/Kinect/K4A_data/Namespace.h>
+#include <Utility/Capture/Kinect/Data/Namespace.h>
 
 class GUI;
 class K4A_swarm;

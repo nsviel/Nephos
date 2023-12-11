@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Capture/Kinect/K4A_data/Namespace.h>
+#include <Utility/Capture/Kinect/Data/Namespace.h>
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
