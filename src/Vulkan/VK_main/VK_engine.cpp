@@ -73,7 +73,7 @@ void VK_engine::init_engine_presentation(){
   vk_pool->init();
   vk_canvas->create_canvas();
 
-  //Rendering
+  //Render
   vk_swapchain->create_swapchain();
   vk_viewport->init_viewport();
   vk_renderpass->init_renderpass();
@@ -92,7 +92,7 @@ void VK_engine::init_engine_headless(){
   vk_canvas->create_canvas();
   vk_synchronization->init();
 
-  //Rendering
+  //Render
   vk_viewport->init_viewport();
   vk_renderpass->init_renderpass();
 

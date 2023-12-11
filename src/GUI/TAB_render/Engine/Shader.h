@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Rendering/ENG_shader/Base/BASE_shader.h>
+#include <Engine/Render/ENG_shader/Base/BASE_shader.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <GUI/GUI_utility/Editor/Namespace.h>
 #include <GUI/GUI_utility/Widget/Namespace.h>

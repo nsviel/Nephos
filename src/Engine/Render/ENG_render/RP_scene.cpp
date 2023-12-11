@@ -5,8 +5,8 @@
 #include <Vulkan/VK_pipeline/VK_pipeline.h>
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Vulkan/VK_drawing/VK_viewport.h>
-#include <Engine/Rendering/ENG_shader/Scene/SCE_shader.h>
-#include <Engine/Rendering/ENG_shader/ENG_shader.h>
+#include <Engine/Render/ENG_shader/Scene/SCE_shader.h>
+#include <Engine/Render/ENG_shader/ENG_shader.h>
 #include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/VK_binding/VK_uniform.h>
 #include <Vulkan/VK_drawing/VK_drawing.h>

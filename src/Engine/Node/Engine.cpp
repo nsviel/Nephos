@@ -3,8 +3,8 @@
 #include <Utility/Element/UTL_window.h>
 #include <Vulkan/Vulkan.h>
 #include <Engine/Camera/Namespace.h>
-#include <Engine/Rendering/ENG_shader/ENG_shader.h>
-#include <Engine/Rendering/ENG_render/ENG_renderpass.h>
+#include <Engine/Render/ENG_shader/ENG_shader.h>
+#include <Engine/Render/ENG_render/ENG_renderpass.h>
 
 
 //Constructor / Destructor
