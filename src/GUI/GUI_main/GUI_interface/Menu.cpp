@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Vulkan.h>
-#include <GUI_style/GUI_font.h>
+#include <GUI_main/Style/GUI_font.h>
 #include <image/IconsFontAwesome5.h>
 
 
@@ -14,7 +14,7 @@ Menu::Menu(GUI* gui){
 
   this->gui = gui;
   this->gui_font = gui->get_gui_font();
-  this->gui_git = new gui::utility::Git(gui);
+  this->gui_git = new gui::element::Git(gui);
 
   this->show_demo = false;
 

@@ -1,7 +1,7 @@
 #include "Text.h"
 
 #include <GUI.h>
-#include <GUI_style/GUI_font.h>
+#include <GUI_main/Style/GUI_font.h>
 
 
 namespace gui::editor{

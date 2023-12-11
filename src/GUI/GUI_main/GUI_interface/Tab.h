@@ -2,7 +2,7 @@
 
 #include <TAB_dev/Tab/Namespace.h>
 #include <TAB_render/Tab/Namespace.h>
-#include <GUI_main/GUI_nsp.h>
+#include <GUI_main/Namespace.h>
 #include <UTL_specific/common.h>
 
 class GUI;

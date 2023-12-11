@@ -1,7 +1,7 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <GUI_main/GUI_nsp.h>
+#include <GUI_main/Namespace.h>
 
 class GUI;
 class UTL_window;

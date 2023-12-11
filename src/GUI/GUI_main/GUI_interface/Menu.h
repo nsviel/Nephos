@@ -1,7 +1,7 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <GUI_utility/Utility_nsp.h>
+#include <GUI_utility/Element/Namespace.h>
 
 class GUI;
 class GUI_font;
@@ -26,7 +26,7 @@ public:
 private:
   GUI* gui;
   GUI_font* gui_font;
-  gui::utility::Git* gui_git;
+  gui::element::Git* gui_git;
 
   bool show_demo;
 };

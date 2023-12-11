@@ -1,12 +1,12 @@
 #include "Git.h"
 
 #include <GUI.h>
-#include <GUI_style/GUI_font.h>
+#include <GUI_main/Style/GUI_font.h>
 #include <UTL_git/UTL_git.h>
 #include <image/IconsFontAwesome5.h>
 
 
-namespace gui::utility{
+namespace gui::element{
 
 //Constructor / Destructor
 Git::Git(GUI* gui){

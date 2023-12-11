@@ -7,7 +7,7 @@ class GUI;
 class UTL_git;
 
 
-namespace gui::utility{
+namespace gui::element{
 
 class Git
 {
