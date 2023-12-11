@@ -11,7 +11,7 @@ K4A_device::K4A_device(){
 
   this->k4a_capture = new K4A_capture();
   this->k4a_replay = new K4A_replay();
-  this->k4a_configuration= new util::kinect::device::K4A_configuration();
+  this->k4a_configuration= new util::kinect::device::Configuration();
 
   //---------------------------
 }

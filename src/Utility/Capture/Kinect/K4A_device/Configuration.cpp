@@ -1,4 +1,4 @@
-#include "K4A_configuration.h"
+#include "Configuration.h"
 
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
 
@@ -6,16 +6,16 @@
 namespace util::kinect::device{
 
 //Constructor / Destructor
-K4A_configuration::K4A_configuration(){
+Configuration::Configuration(){
   //---------------------------
 
 
   //---------------------------
 }
-K4A_configuration::~K4A_configuration(){}
+Configuration::~Configuration(){}
 
 //Main function
-void K4A_configuration::make_k4a_configuration(K4A_device* device){
+void Configuration::make_k4a_configuration(K4A_device* device){
   //---------------------------
 
   k4a_device_configuration_t k4a_config;
@@ -32,7 +32,7 @@ void K4A_configuration::make_k4a_configuration(K4A_device* device){
   //---------------------------
   device->config.k4a_config = k4a_config;
 }
-void K4A_configuration::find_file_information(K4A_device* device, string path){
+void Configuration::find_file_information(K4A_device* device, string path){
   //---------------------------
 
   k4a::playback playback = k4a::playback::open(path.c_str());
@@ -69,7 +69,7 @@ void K4A_configuration::find_file_information(K4A_device* device, string path){
 }
 
 //Subfunction
-string K4A_configuration::find_name_from_config(k4a_wired_sync_mode_t& value){
+string Configuration::find_name_from_config(k4a_wired_sync_mode_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -91,7 +91,7 @@ string K4A_configuration::find_name_from_config(k4a_wired_sync_mode_t& value){
   //---------------------------
   return name;
 }
-string K4A_configuration::find_name_from_config(k4a_fps_t& value){
+string Configuration::find_name_from_config(k4a_fps_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -113,7 +113,7 @@ string K4A_configuration::find_name_from_config(k4a_fps_t& value){
   //---------------------------
   return name;
 }
-string K4A_configuration::find_name_from_config(k4a_depth_mode_t& value){
+string Configuration::find_name_from_config(k4a_depth_mode_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -147,7 +147,7 @@ string K4A_configuration::find_name_from_config(k4a_depth_mode_t& value){
   //---------------------------
   return name;
 }
-string K4A_configuration::find_name_from_config(k4a_color_resolution_t& value){
+string Configuration::find_name_from_config(k4a_color_resolution_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -185,7 +185,7 @@ string K4A_configuration::find_name_from_config(k4a_color_resolution_t& value){
   //---------------------------
   return name;
 }
-string K4A_configuration::find_name_from_config(k4a_image_format_t& value){
+string Configuration::find_name_from_config(k4a_image_format_t& value){
   string name = "(None)";
   //---------------------------
 

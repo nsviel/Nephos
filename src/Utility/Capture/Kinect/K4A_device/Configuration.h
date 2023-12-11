@@ -10,12 +10,12 @@ class K4A_device;
 
 namespace util::kinect::device{
 
-class K4A_configuration
+class Configuration
 {
 public:
   //Constructor / Destructor
-  K4A_configuration();
-  ~K4A_configuration();
+  Configuration();
+  ~Configuration();
 
 public:
   //Main function
