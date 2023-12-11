@@ -2,9 +2,9 @@
 
 #include <Engine/Node/Engine.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Engine/Render/ENG_render/RP_scene.h>
-#include <Engine/Render/ENG_render/RP_edl.h>
-#include <Engine/Render/ENG_render/RP_gui.h>
+#include <Engine/Render/RP_scene.h>
+#include <Engine/Render/RP_edl.h>
+#include <Engine/Render/RP_gui.h>
 
 
 //Constructor / Destructor
