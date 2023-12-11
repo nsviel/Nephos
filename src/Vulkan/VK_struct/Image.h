@@ -6,7 +6,7 @@
 
 namespace vk::structure{
 
-struct Struct_vk_image{
+struct Image{
   //---------------------------
 
   //General info

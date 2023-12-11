@@ -1,12 +1,12 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <VK_struct/Struct_vk_image.h>
+#include <VK_struct/Image.h>
 
 
 namespace vk::structure{
 
-struct Struct_vk_frame{
+struct Frame{
   //---------------------------
 
   //Main object
@@ -17,8 +17,8 @@ struct Struct_vk_frame{
   std::vector<VkSemaphore> vec_semaphore_render;
 
   //Attachment
-  Struct_vk_image image;
-  Struct_vk_image depth;
+  Image image;
+  Image depth;
 
   //---------------------------
 };

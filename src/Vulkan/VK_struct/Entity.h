@@ -3,7 +3,7 @@
 #include <VK_struct/Namespace.h>
 #include <VK_struct/VK_typedef.h>
 #include <VK_struct/Struct_vk_binding.h>
-#include <VK_struct/Struct_vk_image.h>
+#include <VK_struct/Image.h>
 
 #include <UTL_specific/common.h>
 
@@ -26,7 +26,7 @@ struct Entity{
   vk::structure::Buffer uv;
 
   //Binding
-  list<Struct_vk_image*> list_texture;
+  list<Image*> list_texture;
   VkCommandBuffer command_buffer_secondary;
   Struct_vk_binding binding;
 

@@ -16,7 +16,7 @@ VK_memory::VK_memory(Struct_vulkan* struct_vulkan){
 VK_memory::~VK_memory(){}
 
 //Image GPU function
-void VK_memory::transfert_image_to_gpu(vk::structure::Struct_vk_image* image){
+void VK_memory::transfert_image_to_gpu(vk::structure::Image* image){
   //---------------------------
 
   //Create stagging buffer
@@ -43,7 +43,7 @@ void VK_memory::transfert_image_to_gpu(vk::structure::Struct_vk_image* image){
 
   //---------------------------
 }
-void VK_memory::allocate_image_memory(vk::structure::Struct_vk_image* image){
+void VK_memory::allocate_image_memory(vk::structure::Image* image){
   //---------------------------
 
   VkMemoryRequirements memRequirements;
@@ -62,7 +62,7 @@ void VK_memory::allocate_image_memory(vk::structure::Struct_vk_image* image){
 
   //---------------------------
 }
-void VK_memory::copy_buffer_to_image(vk::structure::Struct_vk_image* image, VkBuffer buffer){
+void VK_memory::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer){
   //---------------------------
 
   VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
@@ -83,7 +83,7 @@ void VK_memory::copy_buffer_to_image(vk::structure::Struct_vk_image* image, VkBu
 
   //---------------------------
 }
-void VK_memory::copy_image_to_buffer(vk::structure::Struct_vk_image* image, VkBuffer buffer){
+void VK_memory::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer){
   //---------------------------
 
   VkCommandBuffer command_buffer = vk_command->singletime_command_begin();

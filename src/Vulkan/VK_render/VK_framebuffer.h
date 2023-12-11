@@ -2,7 +2,7 @@
 
 #include <VK_struct/Namespace.h>
 #include <VK_struct/Struct_vk_renderpass.h>
-#include <VK_struct/Struct_vk_frame.h>
+#include <VK_struct/Frame.h>
 #include <UTL_specific/common.h>
 
 class VK_color;
@@ -26,8 +26,8 @@ public:
   void clean_framebuffer(Struct_vk_renderpass* renderpass);
 
   //Subfunction
-  void create_framebuffer_renderpass(Struct_vk_renderpass* renderpass, vk::structure::Struct_vk_framebuffer* framebuffer);
-  void create_framebuffer_swapchain(Struct_vk_renderpass* renderpass, vk::structure::Struct_vk_frame* frame);
+  void create_framebuffer_renderpass(Struct_vk_renderpass* renderpass, vk::structure::Framebuffer* framebuffer);
+  void create_framebuffer_swapchain(Struct_vk_renderpass* renderpass, vk::structure::Frame* frame);
   void clean_framebuffer_obj(VkFramebuffer& fbo);
 
 private:

@@ -6,17 +6,17 @@
 
 namespace vk::structure{
 
-struct Struct_vk_framebuffer{
+struct Framebuffer{
   //---------------------------
 
   //Main object
   VkFramebuffer fbo;
 
   //Attachment
-  vk::structure::Struct_vk_image color;
-  vk::structure::Struct_vk_image depth;
-  vk::structure::Struct_vk_image location;
-  vk::structure::Struct_vk_image normal;
+  vk::structure::Image color;
+  vk::structure::Image depth;
+  vk::structure::Image location;
+  vk::structure::Image normal;
 
   //---------------------------
 };

@@ -3,7 +3,7 @@
 #include <VK_main/Struct_vulkan.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
-#include <VK_struct/Struct_vk_frame.h>
+#include <VK_struct/Frame.h>
 
 
 //Constructor / Destructor

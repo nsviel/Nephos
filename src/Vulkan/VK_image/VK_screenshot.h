@@ -26,8 +26,8 @@ public:
 
 public:
   //Main functions
-  void make_screenshot(vk::structure::Struct_vk_image* image);
-  void save_to_bin(vk::structure::Struct_vk_image* image);
+  void make_screenshot(vk::structure::Image* image);
+  void save_to_bin(vk::structure::Image* image);
 
   //Subfunction
   VkDeviceSize calculate_image_size(VkFormat format, VkExtent3D extent);

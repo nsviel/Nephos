@@ -16,10 +16,10 @@ public:
 
 public:
   //Image GPU function
-  void transfert_image_to_gpu(vk::structure::Struct_vk_image* image);
-  void allocate_image_memory(vk::structure::Struct_vk_image* image);
-  void copy_buffer_to_image(vk::structure::Struct_vk_image* image, VkBuffer buffer);
-  void copy_image_to_buffer(vk::structure::Struct_vk_image* image, VkBuffer buffer);
+  void transfert_image_to_gpu(vk::structure::Image* image);
+  void allocate_image_memory(vk::structure::Image* image);
+  void copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer);
+  void copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer);
 
   //Buffer GPU function
   void transfert_buffer_to_gpu(vk::structure::Buffer* buffer, vector<vec2>& vertices);

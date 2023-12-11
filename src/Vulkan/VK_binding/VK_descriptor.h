@@ -25,8 +25,8 @@ public:
 
   //Descriptor set update
   void update_descriptor_uniform(Struct_vk_binding* binding);
-  void update_descriptor_sampler(Struct_vk_binding* binding, vector<vk::structure::Struct_vk_image*> vec_image);
-  void update_descriptor_sampler(Struct_vk_binding* binding, vk::structure::Struct_vk_image* image);
+  void update_descriptor_sampler(Struct_vk_binding* binding, vector<vk::structure::Image*> vec_image);
+  void update_descriptor_sampler(Struct_vk_binding* binding, vk::structure::Image* image);
 
   //Subfunction
   void cmd_bind_descriptor(VkCommandBuffer& command_buffer, Struct_vk_pipeline* pipeline, VkDescriptorSet set);

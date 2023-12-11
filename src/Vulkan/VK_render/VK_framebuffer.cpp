@@ -4,7 +4,7 @@
 #include <VK_image/VK_depth.h>
 #include <VK_image/VK_color.h>
 #include <VK_image/VK_image.h>
-#include <VK_struct/Struct_vk_frame.h>
+#include <VK_struct/Frame.h>
 
 
 //Constructor / Destructor
@@ -34,7 +34,7 @@ void VK_framebuffer::create_framebuffers(){
 void VK_framebuffer::create_framebuffer(Struct_vk_renderpass* renderpass){
   //---------------------------
 
-  vk::structure::Struct_vk_framebuffer* framebuffer = new vk::structure::Struct_vk_framebuffer();
+  vk::structure::Framebuffer* framebuffer = new vk::structure::Framebuffer();
   framebuffer->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
   framebuffer->color.layout = TYP_IMAGE_LAYOUT_SHADER_READONLY;
   framebuffer->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
@@ -59,7 +59,7 @@ void VK_framebuffer::clean_framebuffers(){
   //---------------------------
 }
 void VK_framebuffer::clean_framebuffer(Struct_vk_renderpass* renderpass){
-  vk::structure::Struct_vk_framebuffer* framebuffer = renderpass->framebuffer;
+  vk::structure::Framebuffer* framebuffer = renderpass->framebuffer;
   //---------------------------
 
   vk_image->clean_image(&framebuffer->color);
@@ -71,7 +71,7 @@ void VK_framebuffer::clean_framebuffer(Struct_vk_renderpass* renderpass){
 }
 
 //Subfunction
-void VK_framebuffer::create_framebuffer_renderpass(Struct_vk_renderpass* renderpass, vk::structure::Struct_vk_framebuffer* framebuffer){
+void VK_framebuffer::create_framebuffer_renderpass(Struct_vk_renderpass* renderpass, vk::structure::Framebuffer* framebuffer){
   //---------------------------
 
   //Create frambuffer
@@ -97,7 +97,7 @@ void VK_framebuffer::create_framebuffer_renderpass(Struct_vk_renderpass* renderp
   //---------------------------
   framebuffer->fbo = fbo;
 }
-void VK_framebuffer::create_framebuffer_swapchain(Struct_vk_renderpass* renderpass, vk::structure::Struct_vk_frame* frame){
+void VK_framebuffer::create_framebuffer_swapchain(Struct_vk_renderpass* renderpass, vk::structure::Frame* frame){
   //---------------------------
 
   //Create frambuffer

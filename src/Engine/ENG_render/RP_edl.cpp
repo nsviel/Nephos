@@ -85,7 +85,7 @@ void RP_edl::update_descriptor(Struct_vk_subpass* subpass){
   //---------------------------
 
   Struct_vk_renderpass* renderpass_scene = vk_engine->get_renderpass(0);
-  vk::structure::Struct_vk_framebuffer* frame_scene = renderpass_scene->framebuffer;
+  vk::structure::Framebuffer* frame_scene = renderpass_scene->framebuffer;
 
   for(int i=0; i<subpass->vec_pipeline.size(); i++){
     Struct_vk_pipeline* pipeline = subpass->vec_pipeline[i];

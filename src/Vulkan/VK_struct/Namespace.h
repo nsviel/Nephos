@@ -8,8 +8,8 @@
 #include <VK_struct/Device.h>
 #include <VK_struct/Entity.h>
 #include <VK_struct/Namespace.h>
-#include <VK_struct/Struct_vk_framebuffer.h>
-#include <VK_struct/Struct_vk_image.h>
+#include <VK_struct/Framebuffer.h>
+#include <VK_struct/Image.h>
 
 
 namespace vk::structure{
@@ -22,9 +22,9 @@ namespace vk::structure{
   class Data;
   class Device;
   class Entity;
-  class Struct_vk_frame;
-  class Struct_vk_framebuffer;
-  class Struct_vk_image;
+  class Frame;
+  class Framebuffer;
+  class Image;
 
   //---------------------------
 }

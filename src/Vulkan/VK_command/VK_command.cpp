@@ -44,7 +44,7 @@ void VK_command::start_command_buffer_primary(VkCommandBuffer command_buffer){
   //---------------------------
 }
 void VK_command::start_command_buffer_secondary(Struct_vk_renderpass* renderpass, VkCommandBuffer command_buffer){
-  vk::structure::Struct_vk_framebuffer* frame = renderpass->framebuffer;
+  vk::structure::Framebuffer* frame = renderpass->framebuffer;
   //---------------------------
 
   // Create a VkCommandBufferInheritanceInfo structure
@@ -181,7 +181,7 @@ void VK_command::stop_render_pass(Struct_vk_renderpass* renderpass){
 }
 
 //Image layout transition
-void VK_command::image_layout_transition_single(vk::structure::Struct_vk_image* image, VkImageLayout old_layout, VkImageLayout new_layout){
+void VK_command::image_layout_transition_single(vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout){
   //---------------------------
 
   VkCommandBuffer command_buffer = singletime_command_begin();
@@ -190,7 +190,7 @@ void VK_command::image_layout_transition_single(vk::structure::Struct_vk_image* 
 
   //---------------------------
 }
-void VK_command::image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Struct_vk_image* image, VkImageLayout old_layout, VkImageLayout new_layout){
+void VK_command::image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout){
   //---------------------------
 
   VkImageMemoryBarrier barrier{};
