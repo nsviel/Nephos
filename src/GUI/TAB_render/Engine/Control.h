@@ -42,7 +42,7 @@ private:
   ENG_camera* eng_camera;
   Transformation* transformManager;
 
-  eng::structure::Struct_camera* camera;
+  eng::structure::Camera* camera;
 };
 
 }

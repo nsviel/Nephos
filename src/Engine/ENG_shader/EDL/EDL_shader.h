@@ -24,7 +24,7 @@ public:
   inline EDL_param* get_edl_param(){return edl_param;}
 
 private:
-  eng::structure::Struct_camera* camera;
+  eng::structure::Camera* camera;
   UTL_window* utl_window;
   EDL_param* edl_param;
 };

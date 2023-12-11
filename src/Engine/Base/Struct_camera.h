@@ -6,9 +6,9 @@
 
 namespace eng::structure{
 
-struct Struct_camera{
+struct Camera{
 
-  Struct_camera();
+  Camera();
   void reset();
 
   glm::vec2 pos = glm::vec2(0.0f);

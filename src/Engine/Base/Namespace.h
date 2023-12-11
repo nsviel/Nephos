@@ -12,7 +12,7 @@ namespace eng::structure{
   class Object;
   class Glyph;
   class Set;
-  class Struct_camera;
+  class Camera;
 
   //---------------------------
 }

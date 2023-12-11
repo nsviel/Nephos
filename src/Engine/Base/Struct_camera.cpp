@@ -3,7 +3,7 @@
 
 namespace eng::structure{
 
-Struct_camera::Struct_camera(){
+Camera::Camera(){
   //---------------------------
 
   this->reset();
@@ -11,7 +11,7 @@ Struct_camera::Struct_camera(){
   //---------------------------
 }
 
-void Struct_camera::reset(){
+void Camera::reset(){
   //---------------------------
 
   this->angle_azimuth = M_PI + M_PI/4;

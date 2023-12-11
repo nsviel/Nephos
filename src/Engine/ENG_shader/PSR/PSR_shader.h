@@ -26,5 +26,5 @@ private:
   UTL_window* utl_window;
   PSR_param* psr_param;
 
-  eng::structure::Struct_camera* camera;
+  eng::structure::Camera* camera;
 };

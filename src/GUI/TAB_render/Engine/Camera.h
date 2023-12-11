@@ -28,7 +28,7 @@ public:
 
 private:
   Panel* gui_render_panel;
-  eng::structure::Struct_camera* camera;
+  eng::structure::Camera* camera;
 
   int item_width;
 };

@@ -13,8 +13,8 @@ public:
   ~CAM_proj();
 
 public:
-  mat4 compute_proj_perspective(eng::structure::Struct_camera* camera);
-  mat4 compute_proj_ortho(eng::structure::Struct_camera* camera);
+  mat4 compute_proj_perspective(eng::structure::Camera* camera);
+  mat4 compute_proj_ortho(eng::structure::Camera* camera);
 
 private:
   UTL_window* utl_window;
