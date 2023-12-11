@@ -8,7 +8,7 @@ class K4A_device;
 
 namespace util::kinect::structure{
 
-struct Struct_k4a_swarm{
+struct Swarm{
   //---------------------------
 
   K4A_device* selected_device = nullptr;

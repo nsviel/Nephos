@@ -32,9 +32,9 @@ public:
   util::kinect::structure::Config config;
   util::kinect::structure::Color color;
   util::kinect::structure::Depth depth;
-  util::kinect::structure::Struct_k4a_infrared ir;
+  util::kinect::structure::Infrared ir;
   util::kinect::structure::Data data;
-  util::kinect::structure::Struct_k4a_info info;
+  util::kinect::structure::Info info;
 
   k4a::device* device;
   std::string serial_number;

@@ -8,7 +8,7 @@
 
 namespace util::kinect::structure{
 
-struct Struct_k4a_info{
+struct Info{
   //---------------------------
 
   //File info

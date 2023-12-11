@@ -31,7 +31,7 @@ public:
   inline void set_selected_device(K4A_device* device){struct_k4a_swarm->selected_device = device;}
 
 private:
-  util::kinect::structure::Struct_k4a_swarm* struct_k4a_swarm;
+  util::kinect::structure::Swarm* struct_k4a_swarm;
   K4A_swarm* k4a_swarm;
   K4A_connection* k4a_connection;
 };

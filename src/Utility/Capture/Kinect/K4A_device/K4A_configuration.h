@@ -27,8 +27,8 @@ public:
   string find_name_from_config(k4a_color_resolution_t& value);
   string find_name_from_config(k4a_image_format_t& value);
 
-  inline util::kinect::structure::Struct_k4a_info& get_struct_record(){return struct_info;}
+  inline util::kinect::structure::Info& get_struct_record(){return struct_info;}
 
 private:
-  util::kinect::structure::Struct_k4a_info struct_info;
+  util::kinect::structure::Info struct_info;
 };

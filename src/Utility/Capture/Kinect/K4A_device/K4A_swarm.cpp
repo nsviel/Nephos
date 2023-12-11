@@ -4,7 +4,7 @@
 
 
 //Constructor / Destructor
-K4A_swarm::K4A_swarm(util::kinect::structure::Struct_k4a_swarm* struct_k4a_swarm){
+K4A_swarm::K4A_swarm(util::kinect::structure::Swarm* struct_k4a_swarm){
   //---------------------------
 
   this->struct_k4a_swarm = struct_k4a_swarm;

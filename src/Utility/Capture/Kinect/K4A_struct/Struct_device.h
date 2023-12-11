@@ -7,7 +7,7 @@
 
 namespace util::kinect::structure{
 
-struct Struct_k4a_device{
+struct Device{
   //---------------------------
 
   int index;
@@ -18,9 +18,9 @@ struct Struct_k4a_device{
   util::kinect::structure::Config config;
   util::kinect::structure::Color color;
   util::kinect::structure::Depth depth;
-  util::kinect::structure::Struct_k4a_infrared ir;
+  util::kinect::structure::Infrared ir;
   util::kinect::structure::Data data;
-  util::kinect::structure::Struct_k4a_info info;
+  util::kinect::structure::Info info;
 
   //---------------------------
 };

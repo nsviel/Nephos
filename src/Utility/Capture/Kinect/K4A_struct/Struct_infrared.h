@@ -6,7 +6,7 @@
 
 namespace util::kinect::structure{
 
-struct Struct_k4a_infrared{
+struct Infrared{
   //---------------------------
 
   uint16_t level_min = 0;
