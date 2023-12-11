@@ -2,7 +2,7 @@
 
 // Server side implementation of UDP client-server model
 
-#include <Utility/UTL_base/Struct_file.h>
+#include <Utility/Base/Struct_file.h>
 #include <Utility/UTL_function/fct_math.h>
 #include <glm/glm.hpp>
 #include <string>

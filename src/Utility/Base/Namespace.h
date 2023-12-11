@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Utility/UTL_base/Struct_file.h>
-#include <Utility/UTL_base/Struct_image.h>
-#include <Utility/UTL_base/Struct_video.h>
+#include <Utility/Base/Struct_file.h>
+#include <Utility/Base/Struct_image.h>
+#include <Utility/Base/Struct_video.h>
 
 
 namespace data{

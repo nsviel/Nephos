@@ -4,7 +4,7 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/UTL_specific/common.h>
-#include <Utility/UTL_base/Struct_image.h>
+#include <Utility/Base/Struct_image.h>
 #include <Vulkan/VK_main/Namespace.h>
 
 

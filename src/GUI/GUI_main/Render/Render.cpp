@@ -2,7 +2,7 @@
 
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
-#include <Utility/Namespace.h>
+#include <Utility/Node/Namespace.h>
 #include <Utility/UTL_window/UTL_window.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>

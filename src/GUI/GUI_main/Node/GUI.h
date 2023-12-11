@@ -3,7 +3,7 @@
 #include <GUI/GUI_main/Render/Render.h>
 #include <GUI/GUI_main/Node/Namespace.h>
 #include <Utility/UTL_specific/common.h>
-#include <Utility/Namespace.h>
+#include <Utility/Node/Namespace.h>
 
 class Engine;
 class Node;

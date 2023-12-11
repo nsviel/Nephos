@@ -41,7 +41,7 @@ using namespace glm;
 #include <Utility/UTL_function/fct_timer.h>  //For time profilling
 
 //Data
-#include <Utility/UTL_base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 
 //GUI
 #include <imgui/core/imgui.h>

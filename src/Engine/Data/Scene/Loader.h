@@ -3,8 +3,8 @@
 #include <Engine/Data/Namespace.h>
 #include <Engine/Base/Namespace.h>
 
-#include <Utility/UTL_base/Namespace.h>
-#include <Utility/UTL_base/Struct_file.h>
+#include <Utility/Base/Namespace.h>
+#include <Utility/Base/Struct_file.h>
 #include <Utility/UTL_file/Directory.h>
 #include <Utility/UTL_file/Zenity.h>
 #include <Utility/UTL_file/File.h>
