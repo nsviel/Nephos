@@ -1,7 +1,7 @@
 #pragma once
 
 #include <VK_struct/Struct_vk_image.h>
-#include <VK_struct/Struct_vk_entity.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/VK_typedef.h>
 #include <UTL_specific/common.h>
 #include <UTL_base/Struct_image.h>
@@ -24,7 +24,7 @@ public:
   VkFormat find_texture_format(data::Image* image);
 
   //Texture cleaning
-  void clean_texture(Struct_vk_entity* object);
+  void clean_texture(vk::structure::Struct_vk_entity* object);
   void clean_textures();
 
 private:

@@ -3,7 +3,7 @@
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <VK_struct/Namespace.h>
-#include <VK_struct/Struct_vk_entity.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -25,8 +25,8 @@ public:
   void draw_frame_presentation();
 
   //Draw command
-  void cmd_draw_data(VkCommandBuffer& command_buffer, Struct_vk_entity* data);
-  void cmd_line_with(VkCommandBuffer& command_buffer, Struct_vk_entity* data);
+  void cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Struct_vk_entity* data);
+  void cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Struct_vk_entity* data);
 
 private:
   Struct_vulkan* struct_vulkan;

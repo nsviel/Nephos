@@ -3,7 +3,7 @@
 #include <VK_struct/Struct_vk_binding.h>
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_pipeline.h>
-#include <VK_struct/Struct_vk_entity.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <UTL_specific/common.h>
 

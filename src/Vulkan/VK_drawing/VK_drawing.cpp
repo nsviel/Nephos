@@ -92,7 +92,7 @@ void VK_drawing::draw_frame_presentation(){
 }
 
 //Draw command
-void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, Struct_vk_entity* data){
+void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Struct_vk_entity* data){
   //---------------------------
 
   VkDeviceSize offsets[] = {0};
@@ -109,7 +109,7 @@ void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, Struct_vk_entity
 
   //---------------------------
 }
-void VK_drawing::cmd_line_with(VkCommandBuffer& command_buffer, Struct_vk_entity* data){
+void VK_drawing::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Struct_vk_entity* data){
   //---------------------------
 
   vkCmdSetLineWidth(command_buffer, data->object->draw_line_width);

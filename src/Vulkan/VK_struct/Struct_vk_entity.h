@@ -8,6 +8,8 @@
 #include <UTL_specific/common.h>
 
 
+namespace vk::structure{
+
 struct Struct_vk_entity{
   //---------------------------
 
@@ -30,3 +32,5 @@ struct Struct_vk_entity{
 
   //---------------------------
 };
+
+}

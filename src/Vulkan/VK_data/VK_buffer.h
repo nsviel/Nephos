@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_entity.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -16,8 +16,8 @@ public:
 
 public:
   //Main functions
-  void create_buffers(Struct_vk_entity* data);
-  void clean_buffers(Struct_vk_entity* data);
+  void create_buffers(vk::structure::Struct_vk_entity* data);
+  void clean_buffers(vk::structure::Struct_vk_entity* data);
   void clean_buffer(vk::structure::Buffer* buffer);
 
 private:

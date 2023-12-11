@@ -76,7 +76,7 @@ VkFormat VK_texture::find_texture_format(data::Image* image){
 }
 
 //Texture cleaning
-void VK_texture::clean_texture(Struct_vk_entity* data){
+void VK_texture::clean_texture(vk::structure::Struct_vk_entity* data){
   //---------------------------
 
   for(int i=0; i<data->list_texture.size(); i++){

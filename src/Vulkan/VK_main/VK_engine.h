@@ -1,7 +1,7 @@
 #pragma once
 
 #include <VK_struct/VK_typedef.h>
-#include <VK_struct/Struct_vk_entity.h>
+#include <VK_struct/Namespace.h>
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
 #include <UTL_base/Struct_image.h>
@@ -56,8 +56,8 @@ public:
   Struct_vk_renderpass* get_renderpass(int i);
   Struct_vk_renderpass* get_renderpass_presentation(int i);
 
-  inline Struct_vk_entity* get_canvas(){return &struct_vulkan->data.canvas;}
-  inline std::list<Struct_vk_entity*> get_list_data(){return struct_vulkan->data.list_object;}
+  inline vk::structure::Struct_vk_entity* get_canvas(){return &struct_vulkan->data.canvas;}
+  inline std::list<vk::structure::Struct_vk_entity*> get_list_data(){return struct_vulkan->data.list_object;}
   inline void set_window(GLFWwindow* window){struct_vulkan->window.glfw_window = window;}
 
 private:

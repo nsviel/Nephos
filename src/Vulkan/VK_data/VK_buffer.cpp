@@ -16,7 +16,7 @@ VK_buffer::VK_buffer(Struct_vulkan* struct_vulkan){
 VK_buffer::~VK_buffer(){}
 
 //Main function
-void VK_buffer::create_buffers(Struct_vk_entity* data){
+void VK_buffer::create_buffers(vk::structure::Struct_vk_entity* data){
   //---------------------------
 
   vk_memory->transfert_buffer_to_gpu(&data->xyz, data->object->xyz);
@@ -25,7 +25,7 @@ void VK_buffer::create_buffers(Struct_vk_entity* data){
 
   //---------------------------
 }
-void VK_buffer::clean_buffers(Struct_vk_entity* data){
+void VK_buffer::clean_buffers(vk::structure::Struct_vk_entity* data){
   //---------------------------
 
   this->clean_buffer(&data->xyz);
