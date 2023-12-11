@@ -15,8 +15,8 @@ struct Struct_vk_subpass{
   VkCommandBuffer command_buffer;
 
   //Attachment
-  vk::structure::Struct_vk_attachment depth;
-  std::vector<vk::structure::Struct_vk_attachment> vec_color;
+  vk::structure::Attachment depth;
+  std::vector<vk::structure::Attachment> vec_color;
   std::function<void(Struct_vk_subpass* subpass)> draw_task;
 
   //Pipeline

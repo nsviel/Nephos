@@ -5,7 +5,7 @@
 
 namespace vk::structure{
 
-struct Struct_vk_attachment{
+struct Attachment{
   //---------------------------
 
   int item;
