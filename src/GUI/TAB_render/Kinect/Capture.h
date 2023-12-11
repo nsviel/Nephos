@@ -4,9 +4,9 @@
 #include <GUI/GUI_utility/Media/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Capture/UTL_kinect/K4A_device/K4A_device.h>
+#include <Utility/Capture/UTL_kinect/Namespace.h>
 
 class GUI;
-class Kinect;
 class K4A_depth;
 class K4A_infrared;
 class K4A_swarm;
@@ -36,7 +36,7 @@ public:
 
 private:
   GUI* gui;
-  Kinect* kinect;
+  util::kinect::Kinect* kinect;
   K4A_depth* k4a_depth;
   K4A_infrared* k4a_infrared;
   K4A_swarm* k4a_swarm;

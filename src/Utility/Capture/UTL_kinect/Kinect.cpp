@@ -5,6 +5,8 @@
 #include <Utility/Capture/UTL_kinect/K4A_thread/K4A_connection.h>
 
 
+namespace util::kinect{
+
 //Constructor / Destructor
 Kinect::Kinect(){
   //---------------------------
@@ -48,4 +50,6 @@ void Kinect::restart_capture(){
   }
 
   //---------------------------
+}
+
 }

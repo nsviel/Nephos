@@ -1,9 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Capture/UTL_kinect/Kinect.h>
-
-class Kinect;
+#include <Utility/Capture/UTL_kinect/Namespace.h>
 
 
 namespace util::capture{
@@ -21,10 +19,10 @@ public:
   void run();
   void clean();
 
-  inline Kinect* get_kinect(){return kinect;}
+  inline util::kinect::Kinect* get_kinect(){return kinect;}
 
 private:
-  Kinect* kinect;
+  util::kinect::Kinect* kinect;
 };
 
 }

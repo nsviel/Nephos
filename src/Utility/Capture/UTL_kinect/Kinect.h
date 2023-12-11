@@ -3,11 +3,14 @@
 #include <Utility/Capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
 #include <Utility/Capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <Utility/Specific/common.h>
+#include <Utility/Capture/UTL_kinect/Namespace.h>
 
 class Struct_k4a_swarm;
 class K4A_swarm;
 class K4A_connection;
 
+
+namespace util::kinect{
 
 class Kinect
 {
@@ -33,3 +36,5 @@ private:
   K4A_swarm* k4a_swarm;
   K4A_connection* k4a_connection;
 };
+
+}

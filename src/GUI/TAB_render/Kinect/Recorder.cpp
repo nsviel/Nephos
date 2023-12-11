@@ -1,12 +1,10 @@
 #include "Recorder.h"
 
-#include <Utility/Capture/UTL_kinect/Kinect.h>
-
 
 namespace gui::kinect{
 
 //Constructor / Destructor
-Recorder::Recorder(Kinect* kinect){
+Recorder::Recorder(util::kinect::Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;

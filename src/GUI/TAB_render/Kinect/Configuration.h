@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <Utility/Capture/UTL_kinect/Namespace.h>
 
 class GUI;
-class Kinect;
 class K4A_swarm;
 
 
@@ -13,7 +13,7 @@ class Configuration
 {
 public:
   //Constructor / Destructor
-  Configuration(Kinect* kinect);
+  Configuration(util::kinect::Kinect* kinect);
   ~Configuration();
 
   //Main function
@@ -28,7 +28,7 @@ public:
   void firmware_info();
 
 private:
-  Kinect* kinect;
+  util::kinect::Kinect* kinect;
   K4A_swarm* k4a_swarm;
 
   int item_width;

@@ -2,8 +2,7 @@
 
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
-
-class Kinect;
+#include <Utility/Capture/UTL_kinect/Namespace.h>
 
 
 namespace gui::kinect{
@@ -12,7 +11,7 @@ class Playback
 {
 public:
   //Constructor / Destructor
-  Playback(Kinect* kinect);
+  Playback(util::kinect::Kinect* kinect);
   ~Playback();
 
   //Main function
@@ -27,7 +26,7 @@ public:
   void show_info_device();
 
 private:
-  Kinect* kinect;
+  util::kinect::Kinect* kinect;
 };
 
 }

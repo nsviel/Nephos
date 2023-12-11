@@ -7,7 +7,7 @@ namespace util::capture{
 Capture::Capture(){
   //---------------------------
 
-  this->kinect = new Kinect();
+  this->kinect = new util::kinect::Kinect();
 
   //---------------------------
 }

@@ -1,14 +1,13 @@
 #include "Configuration.h"
 
 #include <Node/GUI.h>
-#include <Utility/Capture/UTL_kinect/Kinect.h>
 #include <Utility/Capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
 namespace gui::kinect{
 
 //Constructor / Destructor
-Configuration::Configuration(Kinect* kinect){
+Configuration::Configuration(util::kinect::Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;

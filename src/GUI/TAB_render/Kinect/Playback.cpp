@@ -1,6 +1,5 @@
 #include "Playback.h"
 
-#include <Utility/Capture/UTL_kinect/Kinect.h>
 #include <image/IconsFontAwesome5.h>
 #include <Utility/Capture/UTL_kinect/K4A_thread/K4A_replay.h>
 
@@ -8,7 +7,7 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Playback::Playback(Kinect* kinect){
+Playback::Playback(util::kinect::Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;
