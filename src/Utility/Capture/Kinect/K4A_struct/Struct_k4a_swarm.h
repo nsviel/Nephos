@@ -2,7 +2,11 @@
 
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
 #include <k4a/k4a.hpp>
+#include <list>
 
+class K4A_device;
+
+namespace util::kinect::structure{
 
 struct Struct_k4a_swarm{
   //---------------------------
@@ -14,3 +18,5 @@ struct Struct_k4a_swarm{
 
   //---------------------------
 };
+
+}

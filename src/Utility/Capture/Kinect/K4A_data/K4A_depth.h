@@ -3,8 +3,6 @@
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
 #include <Utility/Specific/common.h>
 
-class Struct_k4a_swarm;
-
 
 class K4A_depth
 {

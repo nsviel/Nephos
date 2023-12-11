@@ -1,14 +1,11 @@
 #pragma once
 
 #include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_infrared.h>
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_info.h>
 
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <string>
 
-class Struct_k4a_swarm;
 class K4A_capture;
 class K4A_replay;
 class K4A_configuration;
@@ -35,9 +32,9 @@ public:
   util::kinect::structure::Config config;
   util::kinect::structure::Color color;
   util::kinect::structure::Depth depth;
-  Struct_k4a_infrared ir;
+  util::kinect::structure::Struct_k4a_infrared ir;
   util::kinect::structure::Data data;
-  Struct_k4a_info info;
+  util::kinect::structure::Struct_k4a_info info;
 
   k4a::device* device;
   std::string serial_number;

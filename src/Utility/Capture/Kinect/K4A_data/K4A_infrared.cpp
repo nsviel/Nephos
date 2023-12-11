@@ -1,7 +1,5 @@
 #include "K4A_infrared.h"
 
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_swarm.h>
-
 
 //Constructor / Destructor
 K4A_infrared::K4A_infrared(){

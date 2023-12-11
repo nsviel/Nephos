@@ -1,11 +1,10 @@
 #pragma once
 
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_swarm.h>
+#include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Capture/Kinect/Namespace.h>
 
-class Struct_k4a_swarm;
 class K4A_swarm;
 class K4A_connection;
 
@@ -32,7 +31,7 @@ public:
   inline void set_selected_device(K4A_device* device){struct_k4a_swarm->selected_device = device;}
 
 private:
-  Struct_k4a_swarm* struct_k4a_swarm;
+  util::kinect::structure::Struct_k4a_swarm* struct_k4a_swarm;
   K4A_swarm* k4a_swarm;
   K4A_connection* k4a_connection;
 };

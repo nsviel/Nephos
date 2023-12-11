@@ -1,11 +1,10 @@
 #include "K4A_swarm.h"
 
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_swarm.h>
 #include <Utility/Capture/Kinect/K4A_device/K4A_configuration.h>
 
 
 //Constructor / Destructor
-K4A_swarm::K4A_swarm(Struct_k4a_swarm* struct_k4a_swarm){
+K4A_swarm::K4A_swarm(util::kinect::structure::Struct_k4a_swarm* struct_k4a_swarm){
   //---------------------------
 
   this->struct_k4a_swarm = struct_k4a_swarm;

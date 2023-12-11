@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_info.h>
+#include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
 
 class K4A_device;
 
@@ -27,8 +27,8 @@ public:
   string find_name_from_config(k4a_color_resolution_t& value);
   string find_name_from_config(k4a_image_format_t& value);
 
-  inline Struct_k4a_info& get_struct_record(){return struct_info;}
+  inline util::kinect::structure::Struct_k4a_info& get_struct_record(){return struct_info;}
 
 private:
-  Struct_k4a_info struct_info;
+  util::kinect::structure::Struct_k4a_info struct_info;
 };

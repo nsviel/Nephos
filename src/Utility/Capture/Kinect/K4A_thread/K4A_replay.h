@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_info.h>
+#include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>

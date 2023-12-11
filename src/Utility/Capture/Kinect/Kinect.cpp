@@ -11,7 +11,7 @@ namespace util::kinect{
 Kinect::Kinect(){
   //---------------------------
 
-  this->struct_k4a_swarm = new Struct_k4a_swarm();
+  this->struct_k4a_swarm = new util::kinect::structure::Struct_k4a_swarm();
   this->k4a_swarm = new K4A_swarm(struct_k4a_swarm);
   this->k4a_connection = new K4A_connection(k4a_swarm);
 

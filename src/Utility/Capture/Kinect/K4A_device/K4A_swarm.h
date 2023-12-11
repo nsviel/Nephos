@@ -1,12 +1,11 @@
 #pragma once
 
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
-
+#include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.h>
 #include <k4a/k4a.hpp>
 
-class Struct_k4a_swarm;
 class K4A_configuration;
 
 
@@ -14,7 +13,7 @@ class K4A_swarm
 {
 public:
   //Constructor / Destructor
-  K4A_swarm(Struct_k4a_swarm* struct_k4a_swarm);
+  K4A_swarm(util::kinect::structure::Struct_k4a_swarm* struct_k4a_swarm);
   ~K4A_swarm();
 
 public:
@@ -25,7 +24,7 @@ public:
   void refresh_connected_device_list();
 
 private:
-  Struct_k4a_swarm* struct_k4a_swarm;
+  util::kinect::structure::Struct_k4a_swarm* struct_k4a_swarm;
   K4A_configuration* k4a_configuration;
 
   int ID_virtual = 0;

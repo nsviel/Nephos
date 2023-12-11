@@ -6,6 +6,8 @@
 #include <string>
 
 
+namespace util::kinect::structure{
+
 struct Struct_k4a_info{
   //---------------------------
 
@@ -39,3 +41,5 @@ struct Struct_k4a_info{
 
   //---------------------------
 };
+
+}
