@@ -3,7 +3,7 @@
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
 #include <GUI/GUI_main/Interface/Tab.h>
-#include <Engine/Data/ENG_load/ENG_loader.h>
+#include <Engine/Data/Namespace.h>
 #include <image/IconsFontAwesome5.h>
 #include <GUI/TAB_render/Tab/Init.h>
 

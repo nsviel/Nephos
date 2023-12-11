@@ -2,9 +2,10 @@
 
 #include <Utility/UTL_specific/common.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
+#include <Engine/Data/Namespace.h>
 
 class GUI;
-class ENG_loader;
+
 class Init;
 
 namespace gui::rnd::tab{
@@ -28,7 +29,7 @@ public:
 
 private:
   GUI* gui;
-  ENG_loader* eng_loader;
+  eng::data::ENG_loader* eng_loader;
   Init* gui_init;
   gui::rnd::tab::Panel* rnd_panel;
   gui::rnd::tab::Option* rnd_option;

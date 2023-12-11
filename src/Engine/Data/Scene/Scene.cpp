@@ -1,6 +1,6 @@
 #include "Scene.h"
 #include "Database.h"
-#include "../ENG_load/ENG_loader.h"
+#include <Engine/Data/Namespace.h>
 
 #include <Engine/Base/Namespace.h>
 #include <Engine/Base/Struct_object.h>
@@ -49,7 +49,7 @@ void Scene::init_set(){
   //---------------------------
 }
 void Scene::init_scene(){
-  ENG_loader* eng_loader = eng_data->get_eng_loader();
+  eng::data::ENG_loader* eng_loader = eng_data->get_eng_loader();
   //---------------------------
 
   //Load init object

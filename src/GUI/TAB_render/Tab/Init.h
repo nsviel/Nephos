@@ -7,7 +7,7 @@
 #include <GUI/GUI_utility/Widget/Namespace.h>
 
 class GUI;
-class ENG_loader;
+
 class Transformation;
 
 
@@ -36,7 +36,7 @@ public:
 
 private:
   eng::data::Scene* eng_scene;
-  ENG_loader* eng_loader;
+  eng::data::ENG_loader* eng_loader;
   Transformation* transformManager;
   gui::widget::Tree* gui_tree;
 

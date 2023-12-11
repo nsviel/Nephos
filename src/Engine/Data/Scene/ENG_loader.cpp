@@ -1,11 +1,12 @@
 #include "ENG_loader.h"
 #include "../ENG_format/ENG_format.h"
-#include "../Node.h"
-#include "../Scene/Scene.h"
 
+#include <Utility/UTL_base/Namespace.h>
 #include <Utility/UTL_file/Directory.h>
-#include <Utility/UTL_file/File.h>
+#include <Utility/UTL_file/Zenity.h>
 
+
+namespace eng::data{
 
 //Constructor / Destructor
 ENG_loader::ENG_loader(eng::data::Node* eng_data){
@@ -45,7 +46,7 @@ eng::structure::Object* ENG_loader::load_object(std::string path){
   object->ID = ID++;
 
   //Retrieve data and insert into engine
-  data::File* data = eng_format->get_data_from_file(path);
+  MyFile* data = eng_format->get_data_from_file(path);
   this->transfert_data(object, data);
   eng_scene->insert_object_scene(object);
 
@@ -77,24 +78,26 @@ void ENG_loader::load_by_zenity(){
 }
 
 //Subfunctions
-void ENG_loader::transfert_data(eng::structure::Object* object, data::File* data){
+void ENG_loader::transfert_data(eng::structure::Object* object, MyFile* file_data){
   //---------------------------
 
-  object->name = data->name;
-  object->nb_point = data->xyz.size();
+  object->name = file_data->name;
+  object->nb_point = file_data->xyz.size();
 
-  object->xyz = data->xyz;
-  object->rgb = data->rgb;
-  object->uv = data->uv;
+  object->xyz = file_data->xyz;
+  object->rgb = file_data->rgb;
+  object->uv = file_data->uv;
 
   if(object->rgb.size() == 0){
-    for(int i=0; i<data->xyz.size(); i++){
+    for(int i=0; i<file_data->xyz.size(); i++){
       object->rgb.push_back(vec4(1,1,1,1));
     }
   }
 
   //Delete raw data
-  delete data;
+  delete file_data;
 
   //---------------------------
+}
+
 }
