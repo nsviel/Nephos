@@ -4,7 +4,7 @@
 #include <Engine.h>
 #include <Vulkan.h>
 #include <VK_shader/VK_reload.h>
-#include <VK_struct/Struct_vk_instance.h>
+#include <VK_struct/Instance.h>
 #include <VK_validation/Struct_validation.h>
 #include <VK_main/VK_engine.h>
 #include <ENG_shader/ENG_shader.h>

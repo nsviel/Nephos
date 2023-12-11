@@ -10,7 +10,9 @@
 #include <iostream>
 
 
-struct Struct_vk_param{
+namespace vk::structure{
+
+struct Parameter{
   //---------------------------
 
   int max_fps = 120;
@@ -23,3 +25,5 @@ struct Struct_vk_param{
 
   //---------------------------
 };
+
+}

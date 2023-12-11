@@ -4,7 +4,9 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_vk_instance{
+namespace vk::structure{
+
+struct Instance{
   //---------------------------
 
   VkInstance instance;
@@ -15,3 +17,5 @@ struct Struct_vk_instance{
 
   //---------------------------
 };
+
+}

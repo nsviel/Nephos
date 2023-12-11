@@ -4,7 +4,9 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_vk_info{
+namespace vk::structure{
+
+struct Info{
   //---------------------------
 
   float engine_init;
@@ -17,3 +19,5 @@ struct Struct_vk_info{
 
   //---------------------------
 };
+
+}

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_instance.h>
+#include <VK_struct/Instance.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
