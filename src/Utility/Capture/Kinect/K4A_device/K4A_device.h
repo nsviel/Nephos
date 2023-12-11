@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_config.h>
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_color.h>
+#include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
 #include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_depth.h>
 #include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_infrared.h>
 #include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_data.h>
@@ -36,7 +36,7 @@ public:
   K4A_configuration* k4a_configuration;
 
   Struct_k4a_config config;
-  Struct_k4a_color color;
+  util::kinect::structure::Struct_k4a_color color;
   Struct_k4a_depth depth;
   Struct_k4a_infrared ir;
   Struct_k4a_data data;
