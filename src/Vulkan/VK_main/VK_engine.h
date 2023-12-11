@@ -6,7 +6,7 @@
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
 #include <UTL_base/Struct_image.h>
-#include <Vulkan_namespace.h>
+#include <VK_main/Namespace.h>
 
 class Struct_vulkan;
 class VK_surface;

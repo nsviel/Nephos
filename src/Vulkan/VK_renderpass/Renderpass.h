@@ -3,7 +3,7 @@
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <VK_struct/Struct_vk_pipeline.h>
 #include <UTL_specific/common.h>
-#include <Vulkan_namespace.h>
+#include <VK_main/Namespace.h>
 
 class Struct_vulkan;
 class VK_pipeline;
