@@ -13,12 +13,14 @@ struct Struct_video_device{
   //---------------------------
 };
 
-class V4L2_device
+namespace util::v4l2{
+
+class Device
 {
 public:
   //Constructor / Destructor
-  V4L2_device();
-  ~V4L2_device();
+  Device();
+  ~Device();
 
 public:
   //Main function
@@ -27,3 +29,5 @@ public:
 private:
   vector<Struct_video_device> vec_video_device;
 };
+
+}

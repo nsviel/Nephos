@@ -1,10 +1,12 @@
-#include "V4L2_camera.h"
+#include "Camera.h"
 
 #include <Utility/Function/File/File.h>
 
 
+namespace util::v4l2{
+
 //Constructor / Destructor
-V4L2_camera::V4L2_camera(){
+Camera::Camera(){
   //---------------------------
 
   this->stream_loaded = false;
@@ -12,10 +14,10 @@ V4L2_camera::V4L2_camera(){
 
   //---------------------------
 }
-V4L2_camera::~V4L2_camera(){}
+Camera::~Camera(){}
 
 //Main function
-void V4L2_camera::load_stream(string path){
+void Camera::load_stream(string path){
   if(stream_loaded && stream_active || path == "") return;
   //---------------------------
 
@@ -26,7 +28,7 @@ void V4L2_camera::load_stream(string path){
 
   //Start reading thread
   if(thread_running == false){
-    this->thread_frame = std::thread(&V4L2_camera::thread_read_frame, this);
+    this->thread_frame = std::thread(&Camera::thread_read_frame, this);
   }
 
   //---------------------------
@@ -34,7 +36,7 @@ void V4L2_camera::load_stream(string path){
 }
 
 //Video function
-void V4L2_camera::find_video_context(string path){
+void Camera::find_video_context(string path){
   this->path_stream = path;
   //---------------------------
 
@@ -59,7 +61,7 @@ void V4L2_camera::find_video_context(string path){
 
   //---------------------------
 }
-void V4L2_camera::decode_video(){
+void Camera::decode_video(){
   if(stream_active == false) return;
   //---------------------------
 
@@ -110,7 +112,7 @@ void V4L2_camera::decode_video(){
 
   //---------------------------
 }
-void V4L2_camera::clean_video(){
+void Camera::clean_video(){
   //---------------------------
 
   if(!stream_loaded) return;
@@ -131,7 +133,7 @@ void V4L2_camera::clean_video(){
 }
 
 //Subfunction
-uint8_t* V4L2_camera::convert_frame_to_data(AVFrame* frame){
+uint8_t* Camera::convert_frame_to_data(AVFrame* frame){
   //---------------------------
 
   int stride = frame->width * 4;
@@ -142,7 +144,7 @@ uint8_t* V4L2_camera::convert_frame_to_data(AVFrame* frame){
   //---------------------------
   return data;
 }
-void V4L2_camera::convert_frame_to_RGB(AVFrame* frame, uint8_t* data, int stride){
+void Camera::convert_frame_to_RGB(AVFrame* frame, uint8_t* data, int stride){
   //---------------------------
 
   if(frame->format == AV_PIX_FMT_YUV420P){
@@ -154,7 +156,7 @@ void V4L2_camera::convert_frame_to_RGB(AVFrame* frame, uint8_t* data, int stride
 
   //---------------------------
 }
-void V4L2_camera::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int stride){
+void Camera::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, int stride){
   //---------------------------
 
   int width = frame->width;
@@ -191,7 +193,7 @@ void V4L2_camera::convert_YUV420P_to_RGB(AVFrame* frame, uint8_t* output_data, i
 
   //---------------------------
 }
-void V4L2_camera::convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B){
+void Camera::convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B){
   //---------------------------
 
   R = Y + 1.13983 * (V - 128);
@@ -205,7 +207,7 @@ void V4L2_camera::convert_YUV_to_RGB(int Y, int U, int V, int& R, int& G, int& B
 
   //---------------------------
 }
-void V4L2_camera::find_format_name(AVFrame* frame){
+void Camera::find_format_name(AVFrame* frame){
   string result;
   //---------------------------
 
@@ -241,7 +243,7 @@ void V4L2_camera::find_format_name(AVFrame* frame){
 
   //---------------------------
 }
-void V4L2_camera::find_video_information(){
+void Camera::find_video_information(){
   if(stream_active == false) return;
   //---------------------------
 
@@ -272,7 +274,7 @@ void V4L2_camera::find_video_information(){
 
   //---------------------------
 }
-void V4L2_camera::thread_read_frame(){
+void Camera::thread_read_frame(){
   //---------------------------
 
   int result;
@@ -323,14 +325,14 @@ void V4L2_camera::thread_read_frame(){
 
   //---------------------------
 }
-void V4L2_camera::thread_video_device() {
+void Camera::thread_video_device() {
   int currentIndex = 0;
   //---------------------------
 
 
   //---------------------------
 }
-bool V4L2_camera::check_device_connection(){
+bool Camera::check_device_connection(){
   bool connected = true;
   //---------------------------
 
@@ -347,7 +349,7 @@ bool V4L2_camera::check_device_connection(){
   //---------------------------
   return connected;
 }
-void V4L2_camera::find_camera_devices(){
+void Camera::find_camera_devices(){
   // Create a udev context
   struct udev* udev = udev_new();
   if (!udev) {
@@ -387,4 +389,6 @@ void V4L2_camera::find_camera_devices(){
   // Cleanup
   udev_enumerate_unref(enumerate);
   udev_unref(udev);
+}
+
 }

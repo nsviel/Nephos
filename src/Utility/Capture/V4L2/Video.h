@@ -11,12 +11,14 @@ extern "C" {
 using namespace std;
 
 
-class V4L2_video
+namespace util::v4l2{
+
+class Video
 {
 public:
   //Constructor / Destructor
-  V4L2_video();
-  ~V4L2_video();
+  Video();
+  ~Video();
 
 public:
   //Main function
@@ -49,3 +51,5 @@ private:
   int frame_width = 0;
   int frame_height = 0;
 };
+
+}

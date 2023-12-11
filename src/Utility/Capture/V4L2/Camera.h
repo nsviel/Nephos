@@ -13,12 +13,14 @@ using namespace std;
 #include <libudev.h>
 
 
-class V4L2_camera
+namespace util::v4l2{
+
+class Camera
 {
 public:
   //Constructor / Destructor
-  V4L2_camera();
-  ~V4L2_camera();
+  Camera();
+  ~Camera();
 
 public:
   //Main function
@@ -63,3 +65,5 @@ private:
   std::thread thread_device;
   uint8_t* data = nullptr;
 };
+
+}

@@ -1,18 +1,20 @@
-#include "V4L2_device.h"
+#include "Device.h"
 
 #include <Utility/Function/File/File.h>
 
 
+namespace util::v4l2{
+
 //Constructor / Destructor
-V4L2_device::V4L2_device(){
+Device::Device(){
   //---------------------------
 
   //---------------------------
 }
-V4L2_device::~V4L2_device(){}
+Device::~Device(){}
 
 //Main function
-void V4L2_device::find_video_devices(){
+void Device::find_video_devices(){
   //---------------------------
 
   // Create a udev context
@@ -69,4 +71,6 @@ void V4L2_device::find_video_devices(){
   udev_unref(udev);
 
   //---------------------------
+}
+
 }
