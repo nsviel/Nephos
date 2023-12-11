@@ -38,11 +38,11 @@ void ENG_scene::init_set(){
   //---------------------------
 
   //eng::structure::Glyph set
-  this->set_glyph = new eng::structure::Set();//("Glyph");
+  this->set_glyph = new eng::structure::Set("Glyph");
   list_data->push_back(set_glyph);
 
   //ENG_scene set
-  this->set_scene = new eng::structure::Set();//("Scene");
+  this->set_scene = new eng::structure::Set("Scene");
   list_data->push_back(set_scene);
 
   //---------------------------

@@ -6,7 +6,7 @@
 
 struct Struct_camera{
 
-  //Struct_camera();
+  Struct_camera();
   void reset();
 
   glm::vec2 pos = glm::vec2(0.0f);

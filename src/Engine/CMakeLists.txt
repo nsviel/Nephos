@@ -6,13 +6,8 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 
 
 file(GLOB_RECURSE ALL_SOURCES
-  ENG_camera/*.cpp
-  ENG_data/*.cpp
-  ENG_operation/*.cpp
-  ENG_shader/*.cpp
-  ENG_render/*.cpp
-  Engine.cpp
-  Param.cpp
+  *.cpp
+  *.h
 )
 
 #-----------------

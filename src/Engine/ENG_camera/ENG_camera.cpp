@@ -89,7 +89,7 @@ void ENG_camera::loop_cam_mouse(){
 void ENG_camera::reset(){
   //---------------------------
 
-  //camera->reset();
+  camera->reset();
 
   //---------------------------
 }
