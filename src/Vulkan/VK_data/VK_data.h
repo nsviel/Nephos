@@ -23,7 +23,7 @@ public:
   //Main functions
   void insert_object(data::Object* object);
   void clean_entity_all();
-  void clean_entity(vk::structure::Struct_vk_entity* data);
+  void clean_entity(vk::structure::Entity* data);
 
   //Pipeline data description
   void pipeline_data_description(Struct_vk_pipeline* pipeline);

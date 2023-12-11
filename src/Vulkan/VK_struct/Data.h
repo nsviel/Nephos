@@ -2,18 +2,18 @@
 
 #include <VK_struct/Namespace.h>
 #include <VK_struct/Struct_vk_image.h>
-#include <VK_struct/Struct_vk_entity.h>
+#include <VK_struct/Entity.h>
 #include <UTL_specific/common.h>
 
 
 namespace vk::structure{
 
-struct Struct_vk_data{
+struct Data{
   //---------------------------
 
-  vk::structure::Struct_vk_entity canvas;
+  vk::structure::Entity canvas;
   std::vector<Struct_vk_image*> vec_texture;
-  std::list<vk::structure::Struct_vk_entity*> list_object;
+  std::list<vk::structure::Entity*> list_object;
 
   //---------------------------
 };

@@ -93,7 +93,7 @@ void RP_scene::draw_scene(Struct_vk_subpass* subpass){
   this->time_renderpass = timer.stop_ms(t1);
 }
 void RP_scene::cmd_draw_point(Struct_vk_subpass* subpass){
-  list<vk::structure::Struct_vk_entity*> list_data = vk_engine->get_list_data();
+  list<vk::structure::Entity*> list_data = vk_engine->get_list_data();
   //---------------------------
 
   Struct_vk_pipeline* pipeline = subpass->get_pipeline_byName("point");
@@ -101,7 +101,7 @@ void RP_scene::cmd_draw_point(Struct_vk_subpass* subpass){
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
-    vk::structure::Struct_vk_entity* data =  *next(list_data.begin(), i);
+    vk::structure::Entity* data =  *next(list_data.begin(), i);
 
     if(data->object->is_visible && data->object->draw_type_name == "point"){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
@@ -115,7 +115,7 @@ void RP_scene::cmd_draw_point(Struct_vk_subpass* subpass){
   //---------------------------
 }
 void RP_scene::cmd_draw_line(Struct_vk_subpass* subpass){
-  list<vk::structure::Struct_vk_entity*> list_data = vk_engine->get_list_data();
+  list<vk::structure::Entity*> list_data = vk_engine->get_list_data();
   //---------------------------
 
   Struct_vk_pipeline* pipeline = subpass->get_pipeline_byName("line");
@@ -123,7 +123,7 @@ void RP_scene::cmd_draw_line(Struct_vk_subpass* subpass){
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
-    vk::structure::Struct_vk_entity* data =  *next(list_data.begin(),i);
+    vk::structure::Entity* data =  *next(list_data.begin(),i);
 
     if(data->object->is_visible && data->object->draw_type_name == "line"){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);

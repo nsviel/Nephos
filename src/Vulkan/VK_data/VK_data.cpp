@@ -26,7 +26,7 @@ void VK_data::insert_object(data::Object* object){
   //---------------------------
 
   //Creat new data struct
-  vk::structure::Struct_vk_entity* data = new vk::structure::Struct_vk_entity();
+  vk::structure::Entity* data = new vk::structure::Entity();
   data->object = object;
 
   //Descriptor
@@ -53,13 +53,13 @@ void VK_data::clean_entity_all(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
-    vk::structure::Struct_vk_entity* data = *next(struct_vulkan->data.list_object.begin(),i);
+    vk::structure::Entity* data = *next(struct_vulkan->data.list_object.begin(),i);
     this->clean_entity(data);
   }
 
   //---------------------------
 }
-void VK_data::clean_entity(vk::structure::Struct_vk_entity* data){
+void VK_data::clean_entity(vk::structure::Entity* data){
   //---------------------------
 
   vkDeviceWaitIdle(struct_vulkan->device.device);

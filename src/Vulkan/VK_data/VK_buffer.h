@@ -16,8 +16,8 @@ public:
 
 public:
   //Main functions
-  void create_buffers(vk::structure::Struct_vk_entity* data);
-  void clean_buffers(vk::structure::Struct_vk_entity* data);
+  void create_buffers(vk::structure::Entity* data);
+  void clean_buffers(vk::structure::Entity* data);
   void clean_buffer(vk::structure::Buffer* buffer);
 
 private:

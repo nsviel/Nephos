@@ -107,7 +107,7 @@ void VK_command::allocate_command_buffer_primary(VkCommandBuffer& command_buffer
 
   //---------------------------
 }
-void VK_command::allocate_command_buffer_secondary(vk::structure::Struct_vk_entity* data){
+void VK_command::allocate_command_buffer_secondary(vk::structure::Entity* data){
   //---------------------------
 
   //Command buffer allocation

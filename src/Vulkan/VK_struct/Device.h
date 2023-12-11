@@ -6,7 +6,7 @@
 
 namespace vk::structure{
 
-struct Struct_vk_device{
+struct Device{
   //---------------------------
 
   VkDevice device;

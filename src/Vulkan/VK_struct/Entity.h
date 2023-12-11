@@ -10,7 +10,7 @@
 
 namespace vk::structure{
 
-struct Struct_vk_entity{
+struct Entity{
   //---------------------------
 
   data::Object* object;
