@@ -1,7 +1,7 @@
 #include "GUI.h"
 
-#include <Engine.h>
-#include <Utility.h>
+#include <Node/Engine.h>
+#include <Node/Utility.h>
 #include <UTL_window/UTL_window.h>
 #include <GUI_main/Style/GUI_font.h>
 #include <GUI_main/Render/Render.h>

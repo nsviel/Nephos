@@ -1,7 +1,7 @@
 #include "Capture.h"
 
 #include <Node/GUI.h>
-#include <Utility.h>
+#include <Node/Utility.h>
 #include <UTL_capture/UTL_capture.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_depth.h>
 #include <UTL_capture/UTL_kinect/K4A_data/K4A_infrared.h>

@@ -2,8 +2,8 @@
 #include "../Config.h"
 
 #include <Node/GUI.h>
-#include <Engine.h>
-#include <Utility.h>
+#include <Node/Engine.h>
+#include <Node/Utility.h>
 #include <iostream>
 
 

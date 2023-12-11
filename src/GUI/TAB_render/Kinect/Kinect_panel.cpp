@@ -1,7 +1,7 @@
 #include "Kinect_panel.h"
 
 #include <Node/GUI.h>
-#include <Utility.h>
+#include <Node/Utility.h>
 #include <UTL_capture/UTL_capture.h>
 #include <UTL_capture/UTL_kinect/Kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
