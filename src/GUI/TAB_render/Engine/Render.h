@@ -7,7 +7,6 @@
 
 class GUI;
 class VK_imgui;
-class UTL_window;
 
 
 namespace gui::engine{
@@ -32,7 +31,7 @@ private:
   gui::engine::Control* gui_control;
   gui::media::Image* gui_image;
   VK_imgui* vk_imgui;
-  UTL_window* utl_window;
+  util::element::UTL_window* utl_window;
 
   bool has_been_initialized;
 };

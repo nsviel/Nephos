@@ -7,8 +7,6 @@
 
 class GUI;
 class Engine;
-class UTL_window;
-class UTL_window;
 
 
 namespace gui::engine{
@@ -35,7 +33,7 @@ public:
 
 private:
   Engine* engine;
-  UTL_window* utl_window;
+  util::element::UTL_window* utl_window;
   eng::data::Scene* eng_scene;
   eng::camera::Node* eng_camera;
   eng::ope::Transformation* transformManager;

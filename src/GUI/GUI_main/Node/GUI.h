@@ -4,10 +4,10 @@
 #include <GUI/GUI_main/Node/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Node/Namespace.h>
+#include <Utility/Element/Namespace.h>
 
 class Engine;
 class Node;
-class UTL_window;
 class GUI_font;
 
 
@@ -38,7 +38,7 @@ private:
   Node* eng_data;
   utility::Node* utility;
 
-  UTL_window* utl_window;
+  util::element::UTL_window* utl_window;
   gui::Control* gui_control;
   gui::Style* gui_style;
   gui::Docking* gui_docking;

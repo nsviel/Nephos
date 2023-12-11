@@ -7,6 +7,8 @@
 using namespace std;
 
 
+namespace util::element{
+
 class UTL_database
 {
 public:
@@ -25,3 +27,5 @@ public:
 private:
   string db_path;
 };
+
+}

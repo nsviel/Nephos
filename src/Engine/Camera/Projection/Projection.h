@@ -2,8 +2,7 @@
 
 #include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
-
-class UTL_window;
+#include <Utility/Element/Namespace.h>
 
 
 namespace eng::camera::proj{
@@ -11,7 +10,7 @@ namespace eng::camera::proj{
 class Projection
 {
 public:
-  Projection(UTL_window* utl_window);
+  Projection(util::element::UTL_window* utl_window);
   ~Projection();
 
 public:
@@ -19,7 +18,7 @@ public:
   mat4 compute_proj_ortho(eng::structure::Camera* camera);
 
 private:
-  UTL_window* utl_window;
+  util::element::UTL_window* utl_window;
 };
 
 }

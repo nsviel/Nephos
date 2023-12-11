@@ -16,6 +16,8 @@ using namespace glm;
 class Config;
 
 
+namespace util::element{
+
 class UTL_window
 {
 public:
@@ -58,3 +60,5 @@ private:
   vec2 window_center;
   bool has_been_resized;
 };
+
+}

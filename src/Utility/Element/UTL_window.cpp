@@ -3,6 +3,8 @@
 #include <Config.h>
 
 
+namespace util::element{
+
 //Constructor / Destructor
 UTL_window::UTL_window(Config* config){
   //---------------------------
@@ -126,4 +128,6 @@ void UTL_window::set_mouse_pose(glm::vec2 pos){
   glfwSetCursorPos(window, pos.x, pos.y);
 
   //---------------------------
+}
+
 }

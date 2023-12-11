@@ -17,7 +17,7 @@ Render::Render(GUI* gui){
 
   utility::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
-  UTL_window* utl_window = utility->get_utl_window();
+  util::element::UTL_window* utl_window = utility->get_utl_window();
 
   this->vulkan = engine->get_eng_vulkan();
   //this->vulkan = new Vulkan(utl_window);

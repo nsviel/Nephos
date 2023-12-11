@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <Utility/Element/Namespace.h>
 
 class Config;
-class UTL_window;
 class UTL_capture;
 
 
@@ -22,11 +22,11 @@ public:
   void loop();
   void exit();
 
-  inline UTL_window* get_utl_window(){return utl_window;}
+  inline util::element::UTL_window* get_utl_window(){return utl_window;}
   inline UTL_capture* get_utl_capture(){return utl_capture;}
 
 private:
-  UTL_window* utl_window;
+  util::element::UTL_window* utl_window;
   UTL_capture* utl_capture;
 };
 

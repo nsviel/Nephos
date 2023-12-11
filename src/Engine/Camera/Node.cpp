@@ -3,6 +3,7 @@
 #include <Engine/Base/Namespace.h>
 #include <Engine/Node/Engine.h>
 #include <Utility/Node/Namespace.h>
+#include <Utility/Element/Namespace.h>
 
 
 namespace eng::camera{
@@ -12,12 +13,13 @@ Node::Node(Engine* engine){
   //---------------------------
 
   utility::Node* utility = engine->get_utility();
+  util::element::UTL_window* utl_window = utility->get_utl_window();
 
   this->camera = new eng::structure::Camera();
-  this->cam_arcball = new eng::camera::mode::Arcball(utility->get_utl_window());
-  this->cam_fp = new eng::camera::mode::First_person(utility->get_utl_window());
-  this->cam_zoom = new eng::camera::proj::Zoom(utility->get_utl_window());
-  this->cam_proj = new eng::camera::proj::Projection(utility->get_utl_window());
+  this->cam_arcball = new eng::camera::mode::Arcball(utl_window);
+  this->cam_fp = new eng::camera::mode::First_person(utl_window);
+  this->cam_zoom = new eng::camera::proj::Zoom(utl_window);
+  this->cam_proj = new eng::camera::proj::Projection(utl_window);
 
   this->arcball_origin = vec3(0, 0, 0);
 

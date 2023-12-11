@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <Utility/Element/Namespace.h>
 #include <Engine/Shader/Base/BASE_shader.h>
 
 class Engine;
-class UTL_window;
 
 
 namespace eng::shader{
@@ -19,7 +19,7 @@ public:
   void init_shader();
 
 private:
-  UTL_window* utl_window;
+  util::element::UTL_window* utl_window;
 };
 
 }

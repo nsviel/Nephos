@@ -4,6 +4,8 @@
 #include <git2.h>
 
 
+namespace util::element{
+
 class UTL_git
 {
 public:
@@ -34,3 +36,5 @@ private:
   git_repository* repo;
   string last_tag;
 };
+
+}

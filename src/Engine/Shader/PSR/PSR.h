@@ -4,10 +4,9 @@
 #include <Engine/Shader/Base/BASE_shader.h>
 #include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Utility/Element/Namespace.h>
 
 class Engine;
-
-class UTL_window;
 
 
 namespace eng::shader{
@@ -25,7 +24,7 @@ public:
   inline PSR_param* get_pyramid_param(){return psr_param;}
 
 private:
-  UTL_window* utl_window;
+  util::element::UTL_window* utl_window;
   PSR_param* psr_param;
 
   eng::structure::Camera* camera;

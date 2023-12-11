@@ -2,8 +2,7 @@
 
 #include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
-
-class UTL_window;
+#include <Utility/Element/Namespace.h>
 
 
 namespace eng::camera::mode{
@@ -11,7 +10,7 @@ namespace eng::camera::mode{
 class Arcball
 {
 public:
-  Arcball(UTL_window* utl_window);
+  Arcball(util::element::UTL_window* utl_window);
   ~Arcball();
 
 public:
@@ -21,7 +20,7 @@ public:
   void arcball_viewport_angle(eng::structure::Camera* camera, vec2 angle);
 
 private:
-  UTL_window* utl_window;
+  util::element::UTL_window* utl_window;
 };
 
 }

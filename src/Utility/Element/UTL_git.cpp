@@ -1,6 +1,8 @@
 #include "UTL_git.h"
 
 
+namespace util::element{
+
 //Constructor / Destructor
 UTL_git::UTL_git(){
   //---------------------------
@@ -173,4 +175,6 @@ void UTL_git::format_branch(){
   }
 
   //---------------------------
+}
+
 }

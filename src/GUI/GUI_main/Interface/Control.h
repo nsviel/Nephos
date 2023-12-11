@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <Utility/Element/Namespace.h>
 #include <GUI/GUI_main/Node/Namespace.h>
 
 class GUI;
-class UTL_window;
 
 namespace gui{
 class Tab;
@@ -27,7 +27,7 @@ public:
   //Mouse
 
 private:
-  UTL_window* utl_window;
+  util::element::UTL_window* utl_window;
   gui::Tab* gui_tab;
 };
 

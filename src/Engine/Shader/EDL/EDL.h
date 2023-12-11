@@ -4,10 +4,9 @@
 #include <Engine/Shader/EDL/EDL_param.h>
 #include <Engine/Shader/Base/BASE_shader.h>
 #include <Utility/Specific/common.h>
+#include <Utility/Element/Namespace.h>
 
 class Engine;
-
-class UTL_window;
 
 
 namespace eng::shader{
@@ -27,7 +26,7 @@ public:
 
 private:
   eng::structure::Camera* camera;
-  UTL_window* utl_window;
+  util::element::UTL_window* utl_window;
   eng::shader::EDL_param* edl_param;
 };
 

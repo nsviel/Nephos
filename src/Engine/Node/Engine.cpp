@@ -1,6 +1,6 @@
 #include "Engine.h"
 
-#include <Utility/Element/UTL_window.h>
+#include <Utility/Element/Namespace.h>
 #include <Vulkan/Vulkan.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Render/ENG_renderpass.h>
@@ -10,7 +10,7 @@
 Engine::Engine(utility::Node* utility){
   //---------------------------
 
-  UTL_window* utl_window = utility->get_utl_window();
+  util::element::UTL_window* utl_window = utility->get_utl_window();
 
   this->utility = utility;
   this->eng_camera = new eng::camera::Node(this);

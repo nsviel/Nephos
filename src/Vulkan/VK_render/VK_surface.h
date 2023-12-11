@@ -4,9 +4,6 @@
 #include <Utility/Specific/common.h>
 
 
-class UTL_window;
-
-
 class VK_surface
 {
 public:

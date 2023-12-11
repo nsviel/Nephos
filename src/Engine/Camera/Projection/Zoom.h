@@ -2,8 +2,7 @@
 
 #include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
-
-class UTL_window;
+#include <Utility/Element/Namespace.h>
 
 
 namespace eng::camera::proj{
@@ -11,7 +10,7 @@ namespace eng::camera::proj{
 class Zoom
 {
 public:
-  Zoom(UTL_window* utl_window);
+  Zoom(util::element::UTL_window* utl_window);
   ~Zoom();
 
 public:

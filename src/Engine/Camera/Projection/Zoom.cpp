@@ -4,7 +4,7 @@
 namespace eng::camera::proj{
 
 //Constructor / Destructor
-Zoom::Zoom(UTL_window* utl_window){
+Zoom::Zoom(util::element::UTL_window* utl_window){
   //---------------------------
 
   //---------------------------

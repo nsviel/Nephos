@@ -4,6 +4,7 @@
 #include <Engine/Camera/Mode/Namespace.h>
 #include <Engine/Camera/Projection/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Utility/Element/Namespace.h>
 
 class Engine;
 

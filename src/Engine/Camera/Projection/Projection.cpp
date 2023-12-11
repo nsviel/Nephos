@@ -1,12 +1,10 @@
 #include "Projection.h"
 
-#include <Utility/Element/UTL_window.h>
-
 
 namespace eng::camera::proj{
 
 //Constructor / Destructor
-Projection::Projection(UTL_window* utl_window){
+Projection::Projection(util::element::UTL_window* utl_window){
   //---------------------------
 
   this->utl_window = utl_window;

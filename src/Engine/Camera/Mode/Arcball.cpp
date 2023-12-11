@@ -1,12 +1,10 @@
 #include "Arcball.h"
 
-#include <Utility/Element/UTL_window.h>
-
 
 namespace eng::camera::mode{
 
 //Constructor / Destructor
-Arcball::Arcball(UTL_window* utl_window){
+Arcball::Arcball(util::element::UTL_window* utl_window){
   //---------------------------
 
   this->utl_window =  utl_window;

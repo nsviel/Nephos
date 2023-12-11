@@ -1,6 +1,8 @@
 #include "UTL_database.h"
 
 
+namespace util::element{
+
 //Constructor / Destructor
 UTL_database::UTL_database(string path){
   //---------------------------
@@ -48,4 +50,6 @@ vector<string> UTL_database::retrieve_all_table(){
 
   //---------------------------
   return vec_table;
+}
+
 }

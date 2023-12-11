@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <Utility/Element/Namespace.h>
 
 class GUI_font;
 class GUI;
-class UTL_git;
 
 
 namespace gui::element{
@@ -26,7 +26,7 @@ public:
 
 private:
   GUI_font* gui_font;
-  UTL_git* git;
+  util::element::UTL_git* git;
 };
 
 }
