@@ -7,12 +7,14 @@ class UTL_window;
 class UTL_capture;
 
 
-class Utility
+namespace utility{
+
+class Node
 {
 public:
   //Constructor / Destructor
-  Utility(Config* config);
-  ~Utility();
+  Node(Config* config);
+  ~Node();
 
 public:
   //Main function
@@ -27,3 +29,5 @@ private:
   UTL_window* utl_window;
   UTL_capture* utl_capture;
 };
+
+}

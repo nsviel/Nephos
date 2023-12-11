@@ -1,14 +1,13 @@
 #include "GUI.h"
 
 #include <Engine/Node/Engine.h>
-#include <Utility/Node/Utility.h>
 #include <Utility/UTL_window/UTL_window.h>
 #include <GUI/GUI_main/Style/GUI_font.h>
 #include <GUI/GUI_main/Render/Render.h>
 
 
 //Constructor / Destructor
-GUI::GUI(Utility* utility, Engine* engine){
+GUI::GUI(utility::Node* utility, Engine* engine){
   //---------------------------
 
   this->engine = engine;

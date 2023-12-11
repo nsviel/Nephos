@@ -1,7 +1,8 @@
 #pragma once
 
+#include <Utility/Namespace.h>
+
 class Config;
-class Utility;
 class Engine;
 class GUI;
 
@@ -25,6 +26,6 @@ public:
 private:
   Config* config;
   Engine* engine;
-  Utility* utility;
+  utility::Node* utility;
   GUI* gui;
 };

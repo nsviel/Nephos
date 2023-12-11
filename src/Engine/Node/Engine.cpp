@@ -1,6 +1,5 @@
 #include "Engine.h"
 
-#include <Utility/Node/Utility.h>
 #include <Utility/UTL_window/UTL_window.h>
 #include <Vulkan/Vulkan.h>
 #include <Engine/Camera/Namespace.h>
@@ -9,7 +8,7 @@
 
 
 //Constructor / Destructor
-Engine::Engine(Utility* utility){
+Engine::Engine(utility::Node* utility){
   //---------------------------
 
   UTL_window* utl_window = utility->get_utl_window();

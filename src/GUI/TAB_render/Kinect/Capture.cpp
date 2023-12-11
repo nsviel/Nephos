@@ -1,7 +1,7 @@
 #include "Capture.h"
 
 #include <Node/GUI.h>
-#include <Utility/Node/Utility.h>
+#include <Utility/Namespace.h>
 #include <Utility/UTL_capture/UTL_capture.h>
 #include <Utility/UTL_capture/UTL_kinect/K4A_data/K4A_depth.h>
 #include <Utility/UTL_capture/UTL_kinect/K4A_data/K4A_infrared.h>
@@ -14,7 +14,7 @@ namespace gui::kinect{
 Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  Utility* utility = gui->get_utility();
+  utility::Node* utility = gui->get_utility();
   UTL_capture* utl_capture = utility->get_utl_capture();
 
   this->kinect = utl_capture->get_kinect();

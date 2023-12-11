@@ -2,7 +2,7 @@
 
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
-#include <Utility/Node/Utility.h>
+#include <Utility/Namespace.h>
 #include <Utility/UTL_window/UTL_window.h>
 #include <Utility/UTL_function/fct_math.h>
 #include <Engine/Data/Scene/Scene.h>
@@ -16,7 +16,7 @@ namespace gui::engine{
 Control::Control(GUI* gui){
   //---------------------------
 
-  Utility* utility = gui->get_utility();
+  utility::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
   eng::data::Node* eng_data = engine->get_eng_data();
 

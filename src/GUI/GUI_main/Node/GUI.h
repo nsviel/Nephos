@@ -3,10 +3,10 @@
 #include <GUI/GUI_main/Render/Render.h>
 #include <GUI/GUI_main/Node/Namespace.h>
 #include <Utility/UTL_specific/common.h>
+#include <Utility/Namespace.h>
 
 class Engine;
 class Node;
-class Utility;
 class UTL_window;
 class GUI_font;
 
@@ -15,7 +15,7 @@ class GUI
 {
 public:
   //Constructor / Destructor
-  GUI(Utility* utility, Engine* engine);
+  GUI(utility::Node* utility, Engine* engine);
   ~GUI();
 
 public:
@@ -24,7 +24,7 @@ public:
   void exit();
   void wait();
 
-  inline Utility* get_utility(){return utility;}
+  inline utility::Node* get_utility(){return utility;}
   inline Engine* get_engine(){return engine;}
 
   inline gui::Control* get_gui_control(){return gui_control;}
@@ -36,7 +36,7 @@ public:
 private:
   Engine* engine;
   Node* eng_data;
-  Utility* utility;
+  utility::Node* utility;
 
   UTL_window* utl_window;
   gui::Control* gui_control;

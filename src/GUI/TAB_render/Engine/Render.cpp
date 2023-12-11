@@ -3,7 +3,7 @@
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
 #include <Vulkan/Vulkan.h>
-#include <Utility/Node/Utility.h>
+#include <Utility/Namespace.h>
 #include <Vulkan/VK_main/VK_imgui.h>
 #include <Utility/UTL_window/UTL_window.h>
 #include <image/IconsFontAwesome5.h>
@@ -15,7 +15,7 @@ namespace gui::engine{
 Render::Render(GUI* gui){
   //---------------------------
 
-  Utility* utility = gui->get_utility();
+  utility::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 

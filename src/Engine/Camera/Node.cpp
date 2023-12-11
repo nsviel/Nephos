@@ -2,7 +2,7 @@
 
 #include <Engine/Base/Namespace.h>
 #include <Engine/Node/Engine.h>
-#include <Utility/Node/Utility.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::camera{
@@ -11,7 +11,7 @@ namespace eng::camera{
 Node::Node(Engine* engine){
   //---------------------------
 
-  Utility* utility = engine->get_utility();
+  utility::Node* utility = engine->get_utility();
 
   this->camera = new eng::structure::Camera();
   this->cam_arcball = new eng::camera::mode::Arcball(utility->get_utl_window());

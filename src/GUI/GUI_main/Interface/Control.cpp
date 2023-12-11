@@ -2,7 +2,7 @@
 
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
-#include <Utility/Node/Utility.h>
+#include <Utility/Namespace.h>
 #include <Utility/UTL_window/UTL_window.h>
 
 
@@ -12,7 +12,7 @@ namespace gui{
 Control::Control(GUI* gui){
   //---------------------------
 
-  Utility* utility = gui->get_utility();
+  utility::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
 
   this->utl_window = utility->get_utl_window();

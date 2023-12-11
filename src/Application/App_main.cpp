@@ -3,7 +3,6 @@
 
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
-#include <Utility/Node/Utility.h>
 #include <iostream>
 
 
@@ -12,7 +11,7 @@ App_main::App_main(){
   //---------------------------
 
   this->config = new Config();
-  this->utility = new Utility(config);
+  this->utility = new utility::Node(config);
   this->engine = new Engine(utility);
   this->gui = new GUI(utility, engine);
 

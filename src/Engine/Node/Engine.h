@@ -1,10 +1,10 @@
 #pragma once
 
+#include <Utility/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Data/Namespace.h>
 
 class Param;
-class Utility;
 class Vulkan;
 class ENG_shader;
 class ENG_renderpass;
@@ -14,7 +14,7 @@ class Engine
 {
 public:
   //Constructor / Destructor
-  Engine(Utility* utility);
+  Engine(utility::Node* utility);
   ~Engine();
 
 public:
@@ -24,7 +24,7 @@ public:
   void reset();
   void wait();
 
-  inline Utility* get_utility(){return utility;}
+  inline utility::Node* get_utility(){return utility;}
   inline Vulkan* get_eng_vulkan(){return eng_vulkan;}
   inline eng::structure::Camera* get_camera(){return eng_camera->get_camera();};
   inline eng::camera::Node* get_eng_camera(){return eng_camera;}
@@ -32,7 +32,7 @@ public:
   inline ENG_shader* get_eng_shader(){return eng_shader;}
 
 private:
-  Utility* utility;
+  utility::Node* utility;
   eng::camera::Node* eng_camera;
   eng::data::Node* eng_data;
   Vulkan* eng_vulkan;

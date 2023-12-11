@@ -1,14 +1,14 @@
 #include "SCE_shader.h"
 
 #include <Engine/Node/Engine.h>
-#include <Utility/Node/Utility.h>
+#include <Utility/Namespace.h>
 #include <Utility/UTL_window/UTL_window.h>
 
 
 SCE_shader::SCE_shader(Engine* engine){
   //---------------------------
 
-  Utility* utility = engine->get_utility();
+  utility::Node* utility = engine->get_utility();
 
   this->utl_window = utility->get_utl_window();
 

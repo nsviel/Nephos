@@ -1,12 +1,14 @@
-#include "Utility.h"
+#include "Node.h"
 
 #include <Config.h>
 #include <Utility/UTL_window/UTL_window.h>
 #include <Utility/UTL_capture/UTL_capture.h>
 
 
+namespace utility{
+
 //Constructor / Destructor
-Utility::Utility(Config* config){
+Node::Node(Config* config){
   //---------------------------
 
   this->utl_window = new UTL_window(config);
@@ -15,10 +17,10 @@ Utility::Utility(Config* config){
   //---------------------------
   this->init();
 }
-Utility::~Utility(){}
+Node::~Node(){}
 
 //Main function
-void Utility::init(){
+void Node::init(){
   //---------------------------
 
   utl_window->create_window();
@@ -26,7 +28,7 @@ void Utility::init(){
 
   //---------------------------
 }
-void Utility::loop(){
+void Node::loop(){
   //---------------------------
 
   utl_window->manage_input();
@@ -35,10 +37,12 @@ void Utility::loop(){
 
   //---------------------------
 }
-void Utility::exit(){
+void Node::exit(){
   //---------------------------
 
   utl_window->destroy_window();
 
   //---------------------------
+}
+
 }
