@@ -2,7 +2,7 @@
 
 #include <Engine.h>
 #include <GUI.h>
-#include <GUI_interface/Tab.h>
+#include <GUI_main/Interface/Tab.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_database.h>
 #include <TAB_render/Data/Namespace.h>
