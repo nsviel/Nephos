@@ -26,7 +26,7 @@ public:
   void display_table();
 
 private:
-  util::element::UTL_database* database;
+  util::element::Database* database;
 
   string path_db;
 };

@@ -1,15 +1,15 @@
 #pragma once
 
-#include <Utility/Element/UTL_database.h>
-#include <Utility/Element/UTL_git.h>
+#include <Utility/Element/Database.h>
+#include <Utility/Element/Git.h>
 #include <Utility/Element/UTL_window.h>
 
 
 namespace util::element{
   //---------------------------
 
-  class UTL_database;
-  class UTL_git;
+  class Database;
+  class Git;
   class UTL_window;
 
   //---------------------------

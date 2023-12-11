@@ -26,7 +26,7 @@ public:
 
 private:
   GUI_font* gui_font;
-  util::element::UTL_git* git;
+  util::element::Git* git;
 };
 
 }

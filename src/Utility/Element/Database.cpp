@@ -1,20 +1,20 @@
-#include "UTL_database.h"
+#include "Database.h"
 
 
 namespace util::element{
 
 //Constructor / Destructor
-UTL_database::UTL_database(string path){
+Database::Database(string path){
   //---------------------------
 
   this->db_path = path;
 
   //---------------------------
 }
-UTL_database::~UTL_database(){}
+Database::~Database(){}
 
 //Management function
-void UTL_database::create_table(string name){
+void Database::create_table(string name){
   if(name == "")return;
   //---------------------------
 
@@ -25,7 +25,7 @@ void UTL_database::create_table(string name){
 
   //---------------------------
 }
-void UTL_database::remove_table(string name){
+void Database::remove_table(string name){
   if(name == "")return;
   //---------------------------
 
@@ -37,7 +37,7 @@ void UTL_database::remove_table(string name){
 }
 
 //Retrieving function
-vector<string> UTL_database::retrieve_all_table(){
+vector<string> Database::retrieve_all_table(){
   //---------------------------
 
   SQLite::Database db(db_path.c_str(), SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);

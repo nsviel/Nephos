@@ -12,7 +12,7 @@ Git::Git(GUI* gui){
   //---------------------------
 
   this->gui_font = gui->get_gui_font();
-  this->git = new util::element::UTL_git();
+  this->git = new util::element::Git();
 
   //---------------------------
 }

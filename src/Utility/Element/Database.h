@@ -9,12 +9,12 @@ using namespace std;
 
 namespace util::element{
 
-class UTL_database
+class Database
 {
 public:
   //Constructor / Destructor
-  UTL_database(string path);
-  ~UTL_database();
+  Database(string path);
+  ~Database();
 
 public:
   //Management function

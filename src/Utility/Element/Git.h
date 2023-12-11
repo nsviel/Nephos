@@ -6,12 +6,12 @@
 
 namespace util::element{
 
-class UTL_git
+class Git
 {
 public:
   //Constructor / Destructor
-  UTL_git();
-  ~UTL_git();
+  Git();
+  ~Git();
 
 public:
   //Main functions
