@@ -10,7 +10,7 @@ Node::Node(Config* config){
   //---------------------------
 
   this->utl_window = new util::element::Window(config);
-  this->utl_capture = new util::capture::Capture();
+  this->utl_capture = new util::capture::Node();
 
   //---------------------------
   this->init();

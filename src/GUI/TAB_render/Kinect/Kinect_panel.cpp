@@ -13,7 +13,7 @@ Kinect_panel::Kinect_panel(GUI* gui, bool* show_window, string name) : Panel(sho
   //---------------------------
 
   util::Node* utility = gui->get_utility();
-  util::capture::Capture* utl_capture = utility->get_utl_capture();
+  util::capture::Node* utl_capture = utility->get_utl_capture();
   util::kinect::Kinect* kinect = utl_capture->get_kinect();
 
   this->kin_configuration = new gui::kinect::Configuration(kinect);

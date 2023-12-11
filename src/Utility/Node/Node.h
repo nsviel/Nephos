@@ -23,11 +23,11 @@ public:
   void exit();
 
   inline util::element::Window* get_utl_window(){return utl_window;}
-  inline util::capture::Capture* get_utl_capture(){return utl_capture;}
+  inline util::capture::Node* get_utl_capture(){return utl_capture;}
 
 private:
   util::element::Window* utl_window;
-  util::capture::Capture* utl_capture;
+  util::capture::Node* utl_capture;
 };
 
 }

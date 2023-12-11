@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Utility/Capture/Node/Capture.h>
+#include <Utility/Capture/Node/Node.h>
 
 
 namespace util::capture{
   //---------------------------
 
-  class Capture;
+  class Node;
 
   //---------------------------
 }

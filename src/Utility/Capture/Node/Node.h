@@ -6,12 +6,12 @@
 
 namespace util::capture{
 
-class Capture
+class Node
 {
 public:
   //Constructor / Destructor
-  Capture();
-  ~Capture();
+  Node();
+  ~Node();
 
 public:
   //Main function

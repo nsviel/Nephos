@@ -1,32 +1,32 @@
-#include "Capture.h"
+#include "Node.h"
 
 
 namespace util::capture{
 
 //Constructor / Destructor
-Capture::Capture(){
+Node::Node(){
   //---------------------------
 
   this->kinect = new util::kinect::Kinect();
 
   //---------------------------
 }
-Capture::~Capture(){}
+Node::~Node(){}
 
 //Main function
-void Capture::init(){
+void Node::init(){
   //---------------------------
 
   kinect->init();
 
   //---------------------------
 }
-void Capture::run(){
+void Node::run(){
   //---------------------------
 
   //---------------------------
 }
-void Capture::clean(){
+void Node::clean(){
   //---------------------------
 
 
