@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_PIPELINE_H
-#define STRUCT_VK_PIPELINE_H
+#pragma once
 
 #include <VK_struct/VK_typedef.h>
 #include <VK_struct/Struct_vk_binding.h>
@@ -60,6 +59,3 @@ struct Struct_vk_pipeline{
 
   //---------------------------
 };
-
-
-#endif

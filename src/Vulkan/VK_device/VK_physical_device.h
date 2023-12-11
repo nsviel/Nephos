@@ -1,5 +1,4 @@
-#ifndef VK_PHYSICAL_DEVICE_H
-#define VK_PHYSICAL_DEVICE_H
+#pragma once
 
 #include <VK_struct/Struct_vk_physical_device.h>
 #include <UTL_specific/common.h>
@@ -40,5 +39,3 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
 };
-
-#endif

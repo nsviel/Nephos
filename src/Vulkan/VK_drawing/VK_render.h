@@ -1,5 +1,4 @@
-#ifndef VK_RENDER_H
-#define VK_RENDER_H
+#pragma once
 
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <UTL_specific/common.h>
@@ -25,11 +24,9 @@ public:
   void start_renderpass(Struct_vk_renderpass* renderpass);
   void draw_subpass(Struct_vk_renderpass* renderpass);
   void wait_end_rendering(VkFence& fence);
-  
+
 private:
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_submit* vk_submit;
 };
-
-#endif

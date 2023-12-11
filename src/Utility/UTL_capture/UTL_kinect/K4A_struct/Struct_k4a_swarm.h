@@ -1,5 +1,4 @@
-#ifndef STRUCT_K4A_SWARM_H
-#define STRUCT_K4A_SWARM_H
+#pragma once
 
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <k4a/k4a.hpp>
@@ -15,7 +14,3 @@ struct Struct_k4a_swarm{
 
   //---------------------------
 };
-
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef K4A_INFRARED_H
-#define K4A_INFRARED_H
+#pragma once
 
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_specific/common.h>
@@ -22,5 +21,3 @@ public:
 private:
 
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef CAMERA_H
-#define CAMERA_H
+#pragma once
 
 #include "Struct_camera.h"
 #include <UTL_specific/common.h>
@@ -54,5 +53,3 @@ private:
   Struct_camera* camera;
   vec3 arcball_origin;
 };
-
-#endif

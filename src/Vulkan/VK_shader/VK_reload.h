@@ -1,5 +1,4 @@
-#ifndef VK_RELOAD_H
-#define VK_RELOAD_H
+#pragma once
 
 #include <VK_struct/Struct_vk_pipeline.h>
 #include <VK_struct/Struct_vk_renderpass.h>
@@ -25,5 +24,3 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_pipeline* vk_pipeline;
 };
-
-#endif

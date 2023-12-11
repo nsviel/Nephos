@@ -1,5 +1,4 @@
-#ifndef K4A_PLAYBACK__H
-#define K4A_PLAYBACK__H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <k4a/k4a.hpp>
@@ -33,5 +32,3 @@ public:
 private:
   Struct_k4a_info struct_info;
 };
-
-#endif

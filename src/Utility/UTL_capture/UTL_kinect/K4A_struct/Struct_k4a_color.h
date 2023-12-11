@@ -1,5 +1,4 @@
-#ifndef STRUCT_K4A_COLOR_H
-#define STRUCT_K4A_COLOR_H
+#pragma once
 
 #include <k4a/k4a.hpp>
 #include <string>
@@ -108,7 +107,3 @@ struct Struct_k4a_color{
 
   //---------------------------
 };
-
-
-
-#endif

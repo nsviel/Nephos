@@ -1,5 +1,4 @@
-#ifndef CAM_ZOOM_H
-#define CAM_ZOOM_H
+#pragma once
 
 #include "../Struct_camera.h"
 #include <UTL_specific/common.h>
@@ -19,5 +18,3 @@ public:
 
 private:
 };
-
-#endif

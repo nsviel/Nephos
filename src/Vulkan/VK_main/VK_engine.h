@@ -1,5 +1,4 @@
-#ifndef VK_ENGINE_H
-#define VK_ENGINE_H
+#pragma once
 
 #include <VK_struct/VK_typedef.h>
 #include <VK_struct/Struct_vk_entity.h>
@@ -83,5 +82,3 @@ private:
 
   Timer timer;
 };
-
-#endif

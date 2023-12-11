@@ -1,5 +1,4 @@
-#ifndef VK_SHADER_H
-#define VK_SHADER_H
+#pragma once
 
 #include <VK_struct/Struct_vk_pipeline.h>
 #include <UTL_specific/common.h>
@@ -31,5 +30,3 @@ private:
 
   string path_output;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VK_SCREENSHOT_H
-#define VK_SCREENSHOT_H
+#pragma once
 
 #include <VK_struct/Struct_vk_image.h>
 #include <VK_struct/Struct_vk_entity.h>
@@ -41,5 +40,3 @@ private:
   VK_command* vk_command;
   VK_texture* vk_texture;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef UDP_PARSER_VLP16_H
-#define UDP_PARSER_VLP16_H
+#pragma once
 
 // Server side implementation of UDP client-server model
 
@@ -52,5 +51,3 @@ private:
   float packet_ts_us;
   bool supress_emptyElements;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VK_SWAPCHAIN_H
-#define VK_SWAPCHAIN_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -39,5 +38,3 @@ private:
   VK_framebuffer* vk_framebuffer;
   VK_surface* vk_surface;
 };
-
-#endif

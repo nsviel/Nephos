@@ -1,5 +1,4 @@
-#ifndef K4A_DEVICE_H
-#define K4A_DEVICE_H
+#pragma once
 
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_config.h>
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_color.h>
@@ -49,5 +48,3 @@ public:
   bool is_virtual;
   int index;
 };
-
-#endif

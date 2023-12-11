@@ -1,5 +1,4 @@
-#ifndef LOG_SHADER_H
-#define LOG_SHADER_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -23,6 +22,3 @@ private:
   LOG_shader() = default;
   std::string shader_printf;
 };
-
-
-#endif

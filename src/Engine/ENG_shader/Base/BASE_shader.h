@@ -1,5 +1,4 @@
-#ifndef BASE_SHADER_H
-#define BASE_SHADER_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -37,5 +36,3 @@ public:
 protected:
   std::vector<Shader_info*> vec_shader_info;
 };
-
-#endif

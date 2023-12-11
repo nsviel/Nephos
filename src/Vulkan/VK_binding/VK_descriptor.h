@@ -1,5 +1,4 @@
-#ifndef VK_DESCRIPTOR_H
-#define VK_DESCRIPTOR_H
+#pragma once
 
 #include <VK_struct/Struct_vk_binding.h>
 #include <VK_struct/Struct_vk_framebuffer.h>
@@ -41,5 +40,3 @@ private:
   VK_uniform* vk_uniform;
   VK_sampler* vk_sampler;
 };
-
-#endif

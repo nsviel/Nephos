@@ -1,5 +1,4 @@
-#ifndef OCTREE_H
-#define OCTREE_H
+#pragma once
 
 #include <UTL_base/Struct_object.h>
 #include <glm/glm.hpp>
@@ -60,5 +59,3 @@ private:
   int octree_time;
   int nb_level;
 };
-
-#endif

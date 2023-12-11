@@ -1,5 +1,4 @@
-#ifndef APP_MAIN_H
-#define APP_MAIN_H
+#pragma once
 
 class Config;
 class Utility;
@@ -29,5 +28,3 @@ private:
   Utility* utility;
   GUI* gui;
 };
-
-#endif

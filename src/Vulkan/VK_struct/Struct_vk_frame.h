@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_FRAME_H
-#define STRUCT_VK_FRAME_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <VK_struct/Struct_vk_image.h>
@@ -21,6 +20,3 @@ struct Struct_vk_frame{
 
   //---------------------------
 };
-
-
-#endif

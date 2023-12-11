@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_BINDING_H
-#define STRUCT_VK_BINDING_H
+#pragma once
 
 #include <VK_struct/VK_typedef.h>
 #include <UTL_specific/common.h>
@@ -74,6 +73,3 @@ struct Struct_vk_binding{
 
   //---------------------------
 };
-
-
-#endif

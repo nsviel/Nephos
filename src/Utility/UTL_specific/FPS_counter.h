@@ -1,5 +1,4 @@
-#ifndef FPS_COUNTER_H
-#define FPS_COUNTER_H
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -30,6 +29,3 @@ private:
   float fps;
   std::chrono::time_point<std::chrono::steady_clock> lastUpdateTime_;
 };
-
-
-#endif

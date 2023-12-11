@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_ENTITY_H
-#define STRUCT_VK_ENTITY_H
+#pragma once
 
 #include <VK_struct/VK_typedef.h>
 #include <VK_struct/Struct_vk_binding.h>
@@ -30,5 +29,3 @@ struct Struct_vk_entity{
 
   //---------------------------
 };
-
-#endif

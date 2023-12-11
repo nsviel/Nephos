@@ -1,5 +1,4 @@
-#ifndef INFO_H
-#define INFO_H
+#pragma once
 
 #include <string>
 #include <filesystem>
@@ -25,5 +24,3 @@ namespace info{
 
   //---------------------------
 }
-
-#endif

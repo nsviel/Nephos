@@ -1,5 +1,4 @@
-#ifndef STRUCT_K4A_RECORD_H
-#define STRUCT_K4A_RECORD_H
+#pragma once
 
 #include "Struct_k4a_data.h"
 
@@ -41,7 +40,3 @@ struct Struct_k4a_info{
 
   //---------------------------
 };
-
-
-
-#endif

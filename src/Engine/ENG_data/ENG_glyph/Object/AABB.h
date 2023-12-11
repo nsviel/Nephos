@@ -1,5 +1,4 @@
-#ifndef OBJECT_AABB_H
-#define OBJECT_AABB_H
+#pragma once
 
 #include "../Base/Glyph_source.h"
 
@@ -18,5 +17,3 @@ public:
 private:
   int width;
 };
-
-#endif

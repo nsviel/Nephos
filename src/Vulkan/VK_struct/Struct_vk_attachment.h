@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_ATTACHMENT_H
-#define STRUCT_VK_ATTACHMENT_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -21,6 +20,3 @@ struct Struct_vk_attachment{
 
   //---------------------------
 };
-
-
-#endif

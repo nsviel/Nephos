@@ -1,5 +1,4 @@
-#ifndef OBJECT_NORMAL_H
-#define OBJECT_NORMAL_H
+#pragma once
 
 #include "../Base/Glyph_source.h"
 
@@ -13,7 +12,7 @@ public:
 
 public:
   data::Glyph* create_glyph(data::Object* object);
-  void update_normal_cloud(data::Object* object, data::Glyph* glyph); 
+  void update_normal_cloud(data::Object* object, data::Glyph* glyph);
   void update_normal_cloud(data::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s);
 
   inline bool* get_visibility(){return &visibility;}
@@ -25,5 +24,3 @@ private:
   int size;
   int width;
 };
-
-#endif

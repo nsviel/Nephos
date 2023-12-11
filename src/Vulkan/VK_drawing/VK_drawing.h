@@ -1,5 +1,4 @@
-#ifndef VK_DRAWING_H
-#define VK_DRAWING_H
+#pragma once
 
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_renderpass.h>
@@ -36,5 +35,3 @@ private:
 
   Timer timer;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VK_WINDOW_H
-#define VK_WINDOW_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -26,5 +25,3 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
 };
-
-#endif

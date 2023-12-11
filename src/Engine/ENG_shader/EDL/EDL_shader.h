@@ -1,5 +1,4 @@
-#ifndef SHADER_EDL_H
-#define SHADER_EDL_H
+#pragma once
 
 #include <ENG_shader/EDL/EDL_param.h>
 #include <ENG_shader/Base/BASE_shader.h>
@@ -28,5 +27,3 @@ private:
   UTL_window* utl_window;
   EDL_param* edl_param;
 };
-
-#endif

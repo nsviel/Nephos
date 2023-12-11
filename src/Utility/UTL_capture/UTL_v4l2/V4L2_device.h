@@ -1,5 +1,4 @@
-#ifndef UTL_DEVICE_H
-#define UTL_DEVICE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <libudev.h>
@@ -28,5 +27,3 @@ public:
 private:
   vector<Struct_video_device> vec_video_device;
 };
-
-#endif

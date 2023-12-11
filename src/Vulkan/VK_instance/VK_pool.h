@@ -1,5 +1,4 @@
-#ifndef VK_POOL_H
-#define VK_POOL_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -31,5 +30,3 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
 };
-
-#endif

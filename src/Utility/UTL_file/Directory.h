@@ -1,5 +1,4 @@
-#ifndef DIRECTORY_H
-#define DIRECTORY_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -38,6 +37,3 @@ namespace directory{
 
   //---------------------------
 }
-
-
-#endif

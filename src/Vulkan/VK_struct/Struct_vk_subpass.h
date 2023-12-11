@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_SUBPASS_H
-#define STRUCT_VK_SUBPASS_H
+#pragma once
 
 #include <VK_struct/Struct_vk_attachment.h>
 #include <VK_struct/Struct_vk_pipeline.h>
@@ -42,6 +41,3 @@ struct Struct_vk_subpass{
 
   //---------------------------
 };
-
-
-#endif

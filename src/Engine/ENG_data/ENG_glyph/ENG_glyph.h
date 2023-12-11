@@ -1,5 +1,4 @@
-#ifndef GLYPHS_H
-#define GLYPHS_H
+#pragma once
 
 #include "Base/Glyph_source.h"
 #include <UTL_specific/common.h>
@@ -26,5 +25,3 @@ private:
 
   vector<Glyph_source*> vec_glyph_src;
 };
-
-#endif

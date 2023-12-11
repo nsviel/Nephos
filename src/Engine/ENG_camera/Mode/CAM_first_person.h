@@ -1,5 +1,4 @@
-#ifndef CAM_FPS_H
-#define CAM_FPS_H
+#pragma once
 
 #include "../Struct_camera.h"
 #include <UTL_specific/common.h>
@@ -22,5 +21,3 @@ private:
 
   vec2 mouse_pose_old;
 };
-
-#endif

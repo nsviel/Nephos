@@ -1,5 +1,4 @@
-#ifndef DATABASE_SQLITE_H
-#define DATABASE_SQLITE_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -26,5 +25,3 @@ public:
 private:
   string db_path;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VK_FRAMEBUFFER_H
-#define VK_FRAMEBUFFER_H
+#pragma once
 
 #include <VK_struct/Struct_vk_frame.h>
 #include <VK_struct/Struct_vk_framebuffer.h>
@@ -37,5 +36,3 @@ private:
   VK_depth* vk_depth;
   VK_image* vk_image;
 };
-
-#endif

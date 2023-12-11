@@ -1,5 +1,4 @@
-#ifndef VK_VALIDATION_H
-#define VK_VALIDATION_H
+#pragma once
 
 #include <VK_struct/Struct_vk_instance.h>
 #include <UTL_specific/common.h>
@@ -44,5 +43,3 @@ private:
   vector<VkValidationFeatureEnableEXT> EXT_enables;
   VkValidationFeaturesEXT EXT_feature;
 };
-
-#endif

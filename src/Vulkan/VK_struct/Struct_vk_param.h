@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_PARAM_H
-#define STRUCT_VK_PARAM_H
+#pragma once
 
 #include <ENG_camera/Struct_camera.h>
 
@@ -24,5 +23,3 @@ struct Struct_vk_param{
 
   //---------------------------
 };
-
-#endif

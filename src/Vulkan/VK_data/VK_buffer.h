@@ -1,5 +1,4 @@
-#ifndef VK_BUFFER_H
-#define VK_BUFFER_H
+#pragma once
 
 #include <VK_struct/Struct_vk_entity.h>
 #include <UTL_specific/common.h>
@@ -25,5 +24,3 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_memory* vk_memory;
 };
-
-#endif

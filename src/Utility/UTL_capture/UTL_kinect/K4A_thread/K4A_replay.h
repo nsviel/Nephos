@@ -1,5 +1,4 @@
-#ifndef K4A_REPLAY_H
-#define K4A_REPLAY_H
+#pragma once
 
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_info.h>
@@ -46,5 +45,3 @@ private:
   bool thread_pause = false;
   bool thread_restart = true;
 };
-
-#endif

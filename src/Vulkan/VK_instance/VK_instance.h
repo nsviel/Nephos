@@ -1,5 +1,4 @@
-#ifndef VK_INSTANCE_H
-#define VK_INSTANCE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -26,5 +25,3 @@ private:
   VK_validation* vk_validation;
   Struct_vulkan* struct_vulkan;
 };
-
-#endif

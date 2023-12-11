@@ -1,5 +1,4 @@
-#ifndef FILE_H
-#define FILE_H
+#pragma once
 
 #include <string>
 #include <iostream>
@@ -20,5 +19,3 @@ namespace file{
 
   //---------------------------
 }
-
-#endif

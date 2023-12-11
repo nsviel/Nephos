@@ -1,5 +1,4 @@
-#ifndef WINDOW_MANAGER_H
-#define WINDOW_MANAGER_H
+#pragma once
 
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
@@ -59,5 +58,3 @@ private:
   vec2 window_center;
   bool has_been_resized;
 };
-
-#endif

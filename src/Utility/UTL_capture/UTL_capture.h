@@ -1,5 +1,4 @@
-#ifndef UTL_CAPTURE_H
-#define UTL_CAPTURE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <UTL_capture/UTL_kinect/Kinect.h>
@@ -25,5 +24,3 @@ public:
 private:
   Kinect* kinect;
 };
-
-#endif

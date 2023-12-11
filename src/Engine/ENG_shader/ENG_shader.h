@@ -1,5 +1,4 @@
-#ifndef SHADER_H
-#define SHADER_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -25,5 +24,3 @@ private:
   PSR_shader* psr_shader;
   SCE_shader* sce_shader;
 };
-
-#endif

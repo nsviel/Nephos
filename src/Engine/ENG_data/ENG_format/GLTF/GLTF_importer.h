@@ -1,5 +1,4 @@
-#ifndef PTS_IMPORTER_H
-#define PTS_IMPORTER_H
+#pragma once
 
 #include <UTL_base/Struct_file.h>
 #include <UTL_base/Struct_object.h>
@@ -30,5 +29,3 @@ public:
 private:
   tinygltf::Model model;
 };
-
-#endif

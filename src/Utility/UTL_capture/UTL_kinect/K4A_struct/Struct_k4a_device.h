@@ -1,5 +1,4 @@
-#ifndef STRUCT_K4A_DEVICE_H
-#define STRUCT_K4A_DEVICE_H
+#pragma once
 
 #include "Struct_k4a_config.h"
 #include "Struct_k4a_color.h"
@@ -29,7 +28,3 @@ struct Struct_k4a_device{
 
   //---------------------------
 };
-
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef STRUCT_CAMERA_H
-#define STRUCT_CAMERA_H
+#pragma once
 
 #include <glm/glm.hpp>
 #include <string>
@@ -41,5 +40,3 @@ struct Struct_camera{
   glm::mat4 mat_view = glm::mat4(1);
   glm::mat4 mat_vp = glm::mat4(1);
 };
-
-#endif

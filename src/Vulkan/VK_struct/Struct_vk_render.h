@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_RENDER_H
-#define STRUCT_VK_RENDER_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -32,6 +31,3 @@ struct Struct_vk_render{
 
   //---------------------------
 };
-
-
-#endif

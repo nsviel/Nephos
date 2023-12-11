@@ -1,5 +1,4 @@
-#ifndef PARSER_CSV_H
-#define PARSER_CSV_H
+#pragma once
 
 class CSVIterator
 {
@@ -49,5 +48,3 @@ int truc()
         std::cout << "4th Element(" << row[3] << ")\n";
     }
 }
-
-#endif

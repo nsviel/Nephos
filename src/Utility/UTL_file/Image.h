@@ -1,5 +1,4 @@
-#ifndef IMAGE_H
-#define IMAGE_H
+#pragma once
 
 #include <string>
 #include <iostream>
@@ -13,5 +12,3 @@ namespace image{
 
   //---------------------------
 }
-
-#endif

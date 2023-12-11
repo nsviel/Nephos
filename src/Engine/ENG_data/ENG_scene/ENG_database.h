@@ -1,5 +1,4 @@
-#ifndef ENG_DATABASE_H
-#define ENG_DATABASE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -23,5 +22,3 @@ private:
   list<data::Set*>* list_data;
   list<data::Set*>* list_glyph;
 };
-
-#endif

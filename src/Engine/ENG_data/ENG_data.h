@@ -1,5 +1,4 @@
-#ifndef ENG_DATA_H
-#define ENG_DATA_H
+#pragma once
 
 class Engine;
 class ENG_scene;
@@ -32,5 +31,3 @@ private:
   ENG_glyph* eng_glyph;
   ENG_loader* eng_loader;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_COMMAND_H
-#define STRUCT_VK_COMMAND_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -18,6 +17,3 @@ struct Struct_vk_command{
 
   //---------------------------
 };
-
-
-#endif

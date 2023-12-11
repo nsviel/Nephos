@@ -1,5 +1,4 @@
-#ifndef RP_SCENE_H
-#define RP_SCENE_H
+#pragma once
 
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <VK_struct/Struct_vk_pipeline.h>
@@ -46,5 +45,3 @@ private:
   Timer timer;
   float time_renderpass;
 };
-
-#endif

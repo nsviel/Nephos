@@ -1,5 +1,4 @@
-#ifndef PLY_IMPORTER_H
-#define PLY_IMPORTER_H
+#pragma once
 
 #include <UTL_base/Struct_file.h>
 #include <UTL_file/Info.h>
@@ -65,5 +64,3 @@ private:
   int property_number;
   int header_size;
 };
-
-#endif

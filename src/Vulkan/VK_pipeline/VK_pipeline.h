@@ -1,5 +1,4 @@
-#ifndef VK_PIPELINE_H
-#define VK_PIPELINE_H
+#pragma once
 
 #include <VK_struct/Struct_vk_pipeline.h>
 #include <VK_struct/Struct_vk_renderpass.h>
@@ -51,5 +50,3 @@ private:
   VK_shader* vk_shader;
   VK_data* vk_data;
 };
-
-#endif

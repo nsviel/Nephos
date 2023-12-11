@@ -1,5 +1,4 @@
-#ifndef PARSER_CSV_H
-#define PARSER_CSV_H
+#pragma once
 
 //https://github.com/AriaFallah/csv-parser
 
@@ -344,5 +343,3 @@ namespace aria {
     };
   }
 }
-
-#endif

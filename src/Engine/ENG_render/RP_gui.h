@@ -1,5 +1,4 @@
-#ifndef RP_UI_H
-#define RP_UI_H
+#pragma once
 
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <VK_struct/Struct_vk_pipeline.h>
@@ -28,5 +27,3 @@ private:
   VK_engine* vk_engine;
   VK_imgui* vk_imgui;
 };
-
-#endif

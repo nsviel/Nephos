@@ -1,5 +1,4 @@
-#ifndef LOADER_H
-#define LOADER_H
+#pragma once
 
 #include <UTL_base/Struct_file.h>
 #include <UTL_base/Struct_object.h>
@@ -36,5 +35,3 @@ private:
   std::string path_current_dir;
   int ID;
 };
-
-#endif

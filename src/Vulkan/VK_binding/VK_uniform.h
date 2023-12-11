@@ -1,5 +1,4 @@
-#ifndef VK_UNIFORM_H
-#define VK_UNIFORM_H
+#pragma once
 
 #include <VK_struct/Struct_vk_binding.h>
 #include <VK_struct/Struct_vk_pipeline.h>
@@ -30,5 +29,3 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_memory* vk_memory;
 };
-
-#endif

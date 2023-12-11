@@ -1,5 +1,4 @@
-#ifndef STRUCT_K4A_CONFIG_H
-#define STRUCT_K4A_CONFIG_H
+#pragma once
 
 #include <k4a/k4a.hpp>
 
@@ -23,7 +22,3 @@ struct Struct_k4a_config{
 
   //---------------------------
 };
-
-
-
-#endif

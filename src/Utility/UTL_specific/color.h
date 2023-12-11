@@ -1,5 +1,4 @@
-#ifndef COLOR_H
-#define COLOR_H
+#pragma once
 
 #include <map>
 #include <string>
@@ -42,6 +41,3 @@ static glm::vec4 nord12 (0.815686, 0.529412, 0.439216, 1); //Orange
 static glm::vec4 nord13 (0.921569, 0.796078, 0.545098, 1); //Yellow
 static glm::vec4 nord14 (0.639216, 0.745098, 0.54902, 1); //Green
 static glm::vec4 nord15 (0.705882, 0.556863, 0.678431, 1); //Purple
-
-
-#endif

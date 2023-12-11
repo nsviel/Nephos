@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_IMAGE_H
-#define STRUCT_VK_IMAGE_H
+#pragma once
 
 #include <string>
 #include <vulkan/vulkan.h>
@@ -36,6 +35,3 @@ struct Struct_vk_image{
 
   //---------------------------
 };
-
-
-#endif

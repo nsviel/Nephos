@@ -1,5 +1,4 @@
-#ifndef OBJ_IMPORTER_H
-#define OBJ_IMPORTER_H
+#pragma once
 
 #include <UTL_base/Struct_file.h>
 #include <UTL_file/Info.h>
@@ -51,5 +50,3 @@ private:
   std::string file_texture;
   bool is_face;
 };
-
-#endif

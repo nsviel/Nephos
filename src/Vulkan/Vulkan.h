@@ -1,5 +1,4 @@
-#ifndef VULKAN_BACKEND_H
-#define VULKAN_BACKEND_H
+#pragma once
 
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
@@ -45,5 +44,3 @@ private:
   VK_info* vk_info;
   VK_texture* vk_texture;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef GLYPH_SOURCE_H
-#define GLYPH_SOURCE_H
+#pragma once
 
 #include <UTL_base/Struct_glyph.h>
 #include <UTL_specific/common.h>
@@ -31,5 +30,3 @@ protected:
   vec4 color;
   bool is_visible;
 };
-
-#endif

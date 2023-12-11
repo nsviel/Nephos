@@ -1,5 +1,4 @@
-#ifndef STRUCT_VALIDATION_H
-#define STRUCT_VALIDATION_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include "LOG_shader.h"
@@ -24,6 +23,3 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL callback_debug(VkDebugUtilsMessageSeverity
   //---------------------------
   return VK_FALSE;
 }
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VK_FRAME_H
-#define VK_FRAME_H
+#pragma once
 
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_renderpass.h>
@@ -34,5 +33,3 @@ private:
   VK_color* vk_color;
   VK_depth* vk_depth;
 };
-
-#endif

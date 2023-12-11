@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_BUFFER_H
-#define STRUCT_VK_BUFFER_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -12,6 +11,3 @@ struct Struct_vk_buffer{
 
   //---------------------------
 };
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef LOG_DEBUG_H
-#define LOG_DEBUG_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -18,6 +17,3 @@ public:
 private:
   LOG_debug() = default;
 };
-
-
-#endif

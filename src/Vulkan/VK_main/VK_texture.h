@@ -1,5 +1,4 @@
-#ifndef VK_TEXTURE_H
-#define VK_TEXTURE_H
+#pragma once
 
 #include <VK_struct/Struct_vk_image.h>
 #include <VK_struct/Struct_vk_entity.h>
@@ -33,5 +32,3 @@ private:
   VK_image* vk_image;
   VK_memory* vk_memory;
 };
-
-#endif

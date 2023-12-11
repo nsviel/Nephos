@@ -1,5 +1,4 @@
-#ifndef ENGINE_H
-#define ENGINE_H
+#pragma once
 
 #include <ENG_camera/ENG_camera.h>
 
@@ -41,5 +40,3 @@ private:
   ENG_shader* eng_shader;
   ENG_renderpass* eng_renderpass;
 };
-
-#endif

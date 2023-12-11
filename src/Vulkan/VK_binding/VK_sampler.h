@@ -1,5 +1,4 @@
-#ifndef VK_SAMPLER_H
-#define VK_SAMPLER_H
+#pragma once
 
 #include <VK_struct/Struct_vk_binding.h>
 #include <VK_struct/Struct_vk_pipeline.h>
@@ -23,5 +22,3 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VK_MEMORY_H
-#define VK_MEMORY_H
+#pragma once
 
 #include <VK_struct/Struct_vk_buffer.h>
 #include <VK_struct/Struct_vk_image.h>
@@ -38,5 +37,3 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
 };
-
-#endif

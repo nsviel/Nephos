@@ -1,5 +1,4 @@
-#ifndef GIT_FUNCTION_H
-#define GIT_FUNCTION_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <git2.h>
@@ -35,5 +34,3 @@ private:
   git_repository* repo;
   string last_tag;
 };
-
-#endif

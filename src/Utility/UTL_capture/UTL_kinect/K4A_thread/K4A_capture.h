@@ -1,5 +1,4 @@
-#ifndef K4A_CAPTURE_H
-#define K4A_CAPTURE_H
+#pragma once
 
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 #include <UTL_specific/common.h>
@@ -36,6 +35,3 @@ private:
   bool thread_recording = false;
   bool thread_pause = false;
 };
-
-
-#endif

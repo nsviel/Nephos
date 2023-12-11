@@ -1,5 +1,4 @@
-#ifndef COLORMAP_H
-#define COLORMAP_H
+#pragma once
 
 #include <glm/glm.hpp>
 #include <string>
@@ -28,5 +27,3 @@ private:
   vector<vector<vec3>> colormap_list;
   vector<vec3> colormap_selected;
 };
-
-#endif

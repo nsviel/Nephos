@@ -1,5 +1,4 @@
-#ifndef COMMON_H
-#define COMMON_H
+#pragma once
 
 //Include
 #define GLM_FORCE_RADIANS
@@ -49,6 +48,3 @@ using namespace glm;
 #include <imgui/core/imgui_impl_glfw.h>
 #include <imgui/core/imgui_internal.h>
 #include <imgui/vulkan/imgui_impl_vulkan.h>
-
-
-#endif

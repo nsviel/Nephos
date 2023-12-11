@@ -1,5 +1,4 @@
-#ifndef VK_PRESENTATION_H
-#define VK_PRESENTATION_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -29,5 +28,3 @@ private:
   VK_surface* vk_surface;
   VK_swapchain* vk_swapchain;
 };
-
-#endif

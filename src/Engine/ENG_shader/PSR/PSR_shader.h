@@ -1,5 +1,4 @@
-#ifndef SHADER_PSR_H
-#define SHADER_PSR_H
+#pragma once
 
 #include "PSR_param.h"
 #include <ENG_shader/Base/BASE_shader.h>
@@ -29,5 +28,3 @@ private:
 
   Struct_camera* camera;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef OBJECT_TREE_H
-#define OBJECT_TREE_H
+#pragma once
 
 #include "../Base/Glyph_source.h"
 
@@ -26,5 +25,3 @@ private:
   vec4 tree_color;
   int tree_level;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VK_SUBMIT_H
-#define VK_SUBMIT_H
+#pragma once
 
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_renderpass.h>
@@ -25,5 +24,3 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
 };
-
-#endif

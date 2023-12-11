@@ -1,5 +1,4 @@
-#ifndef UTILITY_H
-#define UTILITY_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -28,5 +27,3 @@ private:
   UTL_window* utl_window;
   UTL_capture* utl_capture;
 };
-
-#endif

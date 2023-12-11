@@ -1,5 +1,4 @@
-#ifndef ELE_RENDERPASS_H
-#define ELE_RENDERPASS_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -25,5 +24,3 @@ private:
   RP_edl* rp_edl;
   RP_gui* rp_gui;
 };
-
-#endif

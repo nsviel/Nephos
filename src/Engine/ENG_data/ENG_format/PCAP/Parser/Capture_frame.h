@@ -1,5 +1,4 @@
-#ifndef CAPTURE_FRAME_H
-#define CAPTURE_FRAME_H
+#pragma once
 
 #include <UTL_base/Struct_file.h>
 #include <UTL_function/fct_math.h>
@@ -31,5 +30,3 @@ private:
   data::File* frame_onrun;
   data::File* frame_ended;
 };
-
-#endif

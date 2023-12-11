@@ -1,5 +1,4 @@
-#ifndef VK_IMGUI_H
-#define VK_IMGUI_H
+#pragma once
 
 #include <VK_struct/Struct_vk_subpass.h>
 #include <VK_struct/Struct_vk_image.h>
@@ -38,5 +37,3 @@ private:
   VK_pool* vk_pool;
   VK_surface* vk_surface;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef V4L2_VIDEO_H
-#define V4L2_VIDEO_H
+#pragma once
 
 #include <UTL_specific/common.h>
 extern "C" {
@@ -50,5 +49,3 @@ private:
   int frame_width = 0;
   int frame_height = 0;
 };
-
-#endif

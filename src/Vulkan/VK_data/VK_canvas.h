@@ -1,5 +1,4 @@
-#ifndef VK_CANVAS_H
-#define VK_CANVAS_H
+#pragma once
 
 #include <VK_struct/Struct_vk_entity.h>
 #include <UTL_specific/common.h>
@@ -26,5 +25,3 @@ private:
   VK_buffer* vk_buffer;
   VK_data* vk_data;
 };
-
-#endif

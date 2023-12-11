@@ -1,5 +1,4 @@
-#ifndef VK_VIEWPORT_H
-#define VK_VIEWPORT_H
+#pragma once
 
 #include <VK_struct/Struct_vk_viewport.h>
 #include <VK_struct/Struct_vk_renderpass.h>
@@ -26,5 +25,3 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
 };
-
-#endif

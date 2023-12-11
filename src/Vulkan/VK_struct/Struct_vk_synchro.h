@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_SYNCHRO_H
-#define STRUCT_VK_SYNCHRO_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -14,5 +13,3 @@ struct Struct_vk_synchro{
 
   //---------------------------
 };
-
-#endif

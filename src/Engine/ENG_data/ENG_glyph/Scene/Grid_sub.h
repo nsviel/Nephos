@@ -1,5 +1,4 @@
-#ifndef OBJECT_GRID_SUB_H
-#define OBJECT_GRID_SUB_H
+#pragma once
 
 #include "../Base/Glyph_source.h"
 
@@ -33,5 +32,3 @@ private:
   vec4 grid_sub_color;
   int nb_cell;
 };
-
-#endif

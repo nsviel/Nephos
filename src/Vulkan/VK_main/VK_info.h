@@ -1,5 +1,4 @@
-#ifndef VK_INFO_H
-#define VK_INFO_H
+#pragma once
 
 #include <VK_main/Struct_vulkan.h>
 #include <VK_struct/Struct_vk_param.h>
@@ -25,5 +24,3 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef ZENITY_H
-#define ZENITY_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -18,5 +17,3 @@ namespace zenity{
 
   //---------------------------
 }
-
-#endif

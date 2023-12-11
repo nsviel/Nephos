@@ -1,5 +1,4 @@
-#ifndef VK_TYPEDEF_H
-#define VK_TYPEDEF_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -54,6 +53,3 @@ constexpr image_usage TYP_IMAGE_USAGE_DEPTH = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTAC
 constexpr image_usage TYP_IMAGE_USAGE_TRANSFERT = VK_IMAGE_USAGE_TRANSFER_DST_BIT;
 constexpr image_usage TYP_IMAGE_USAGE_SAMPLER = VK_IMAGE_USAGE_SAMPLED_BIT;
 constexpr image_usage TYP_IMAGE_USAGE_ATTACHMENT = VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT;
-
-
-#endif

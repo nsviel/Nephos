@@ -1,5 +1,4 @@
-#ifndef COLOR_FUNCTION_H
-#define COLOR_FUNCTION_H
+#pragma once
 
 
 class Color
@@ -15,5 +14,3 @@ public:
 private:
 
 };
-
-#endif

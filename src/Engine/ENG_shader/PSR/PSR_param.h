@@ -1,5 +1,4 @@
-#ifndef STRUCT_PYRAMID_H
-#define STRUCT_PYRAMID_H
+#pragma once
 
 
 struct PSR_param{
@@ -12,6 +11,3 @@ struct PSR_param{
 
   //---------------------------
 };
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VK_COLOR_H
-#define VK_COLOR_H
+#pragma once
 
 #include <VK_struct/Struct_vk_image.h>
 #include <UTL_specific/common.h>
@@ -27,5 +26,3 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_image* vk_image;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef STRUCT_VK_SWAPCHAIN_H
-#define STRUCT_VK_SWAPCHAIN_H
+#pragma once
 
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_frame.h>
@@ -25,6 +24,3 @@ struct Struct_vk_swapchain{
 
   //---------------------------
 };
-
-
-#endif

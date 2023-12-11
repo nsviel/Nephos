@@ -1,5 +1,4 @@
-#ifndef K4A_DATA_H
-#define K4A_DATA_H
+#pragma once
 
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 
@@ -21,5 +20,3 @@ public:
 
 private:
 };
-
-#endif

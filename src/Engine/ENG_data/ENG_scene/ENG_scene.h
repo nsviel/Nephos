@@ -1,5 +1,4 @@
-#ifndef ENG_SCENE_H
-#define ENG_SCENE_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -51,6 +50,3 @@ private:
   data::Set* set_scene;
   data::Set* set_glyph;
 };
-
-
-#endif

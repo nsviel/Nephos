@@ -1,5 +1,4 @@
-#ifndef VK_EDL_RENDERPASS_H
-#define VK_EDL_RENDERPASS_H
+#pragma once
 
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <VK_struct/Struct_vk_pipeline.h>
@@ -44,5 +43,3 @@ private:
   Timer timer;
   float time_renderpass;
 };
-
-#endif

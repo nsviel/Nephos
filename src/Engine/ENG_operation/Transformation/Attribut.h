@@ -1,5 +1,4 @@
-#ifndef ATTRIBUT_H
-#define ATTRIBUT_H
+#pragma once
 
 #include <UTL_base/Struct_object.h>
 #include <UTL_base/Struct_set.h>
@@ -25,5 +24,3 @@ public:
 
 private:
 };
-
-#endif

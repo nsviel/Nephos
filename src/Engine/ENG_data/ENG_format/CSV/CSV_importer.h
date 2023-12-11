@@ -1,5 +1,4 @@
-#ifndef CSV_IMPORTER_H
-#define CSV_IMPORTER_H
+#pragma once
 
 #include <UTL_base/Struct_file.h>
 #include <glm/glm.hpp>
@@ -21,5 +20,3 @@ private:
   //Datatypes
   data::File* data_out;
 };
-
-#endif

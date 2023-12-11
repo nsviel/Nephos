@@ -1,5 +1,4 @@
-#ifndef V4L2_CAMERA_H
-#define V4L2_CAMERA_H
+#pragma once
 
 #include <UTL_specific/common.h>
 #include <UTL_base/Struct_video.h>
@@ -64,5 +63,3 @@ private:
   std::thread thread_device;
   uint8_t* data = nullptr;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef TRANSFORMATION_H
-#define TRANSFORMATION_H
+#pragma once
 
 #include <UTL_base/Struct_object.h>
 #include <glm/glm.hpp>
@@ -33,5 +32,3 @@ public:
 
 private:
 };
-
-#endif

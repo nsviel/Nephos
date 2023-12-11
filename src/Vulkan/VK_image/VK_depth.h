@@ -1,5 +1,4 @@
-#ifndef VK_DEPTH_H
-#define VK_DEPTH_H
+#pragma once
 
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <UTL_specific/common.h>
@@ -29,5 +28,3 @@ private:
   Struct_vulkan* struct_vulkan;
   VK_image* vk_image;
 };
-
-#endif

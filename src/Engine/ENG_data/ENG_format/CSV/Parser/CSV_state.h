@@ -1,5 +1,4 @@
-#ifndef PARSER_CSV_H
-#define PARSER_CSV_H
+#pragma once
 
 #include <istream>
 #include <string>
@@ -67,5 +66,3 @@ std::vector<std::vector<std::string>> readCSV(std::istream &in) {
   }
   return table;
 }
-
-#endif

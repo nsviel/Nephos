@@ -1,5 +1,4 @@
-#ifndef FORMAT_H
-#define FORMAT_H
+#pragma once
 
 #include <UTL_base/Struct_file.h>
 #include <string>
@@ -32,5 +31,3 @@ private:
   PTX_importer* ptx_import;
   XYZ_importer* xyz_import;
 };
-
-#endif

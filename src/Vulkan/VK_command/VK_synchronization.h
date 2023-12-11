@@ -1,5 +1,4 @@
-#ifndef VK_CLASS_H
-#define VK_CLASS_H
+#pragma once
 
 #include <VK_struct/Struct_vk_frame.h>
 #include <UTL_specific/common.h>
@@ -34,5 +33,3 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
 };
-
-#endif

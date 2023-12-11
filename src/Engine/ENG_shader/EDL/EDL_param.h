@@ -1,5 +1,4 @@
-#ifndef STRUCT_EDL_H
-#define STRUCT_EDL_H
+#pragma once
 
 
 struct EDL_param{
@@ -15,6 +14,3 @@ struct EDL_param{
 
   //---------------------------
 };
-
-
-#endif

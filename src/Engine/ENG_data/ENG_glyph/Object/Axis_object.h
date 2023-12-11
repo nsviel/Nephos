@@ -1,5 +1,4 @@
-#ifndef OBJECT_AXIS_OBJECT_H
-#define OBJECT_AXIS_OBJECT_H
+#pragma once
 
 #include "../Base/Glyph_source.h"
 
@@ -27,5 +26,3 @@ private:
 
   bool is_visible;
 };
-
-#endif

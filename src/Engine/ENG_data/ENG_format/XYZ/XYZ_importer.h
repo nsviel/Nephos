@@ -1,5 +1,4 @@
-#ifndef XYZ_IMPORTER_H
-#define XYZ_IMPORTER_H
+#pragma once
 
 #include <UTL_base/Struct_file.h>
 #include <UTL_file/Info.h>
@@ -22,5 +21,3 @@ private:
   //Datatypes
   data::File* data_out;
 };
-
-#endif

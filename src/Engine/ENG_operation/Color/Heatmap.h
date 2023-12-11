@@ -1,5 +1,4 @@
-#ifndef HEATMAP_H
-#define HEATMAP_H
+#pragma once
 
 #include <glm/glm.hpp>
 #include <string>
@@ -29,5 +28,3 @@ private:
   bool is_normalization;
   int heatmap_mode;
 };
-
-#endif

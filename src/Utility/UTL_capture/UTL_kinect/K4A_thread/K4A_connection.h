@@ -1,5 +1,4 @@
-#ifndef K4A_CONNECTION_H
-#define K4A_CONNECTION_H
+#pragma once
 
 #include <UTL_specific/common.h>
 
@@ -30,5 +29,3 @@ private:
   std::thread thread;
   bool thread_running = false;
 };
-
-#endif

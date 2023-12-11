@@ -1,5 +1,4 @@
-#ifndef CAM_ARCBALL_H
-#define CAM_ARCBALL_H
+#pragma once
 
 #include "../Struct_camera.h"
 #include <UTL_specific/common.h>
@@ -22,5 +21,3 @@ public:
 private:
   UTL_window* utl_window;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef KINECT_H
-#define KINECT_H
+#pragma once
 
 #include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
@@ -34,5 +33,3 @@ private:
   K4A_swarm* k4a_swarm;
   K4A_connection* k4a_connection;
 };
-
-#endif

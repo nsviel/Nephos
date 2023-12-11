@@ -1,5 +1,4 @@
-#ifndef STRUCT_VULKAN_H
-#define STRUCT_VULKAN_H
+#pragma once
 
 #include <VK_struct/Struct_vk_window.h>
 #include <VK_struct/Struct_vk_instance.h>
@@ -39,5 +38,3 @@ struct Struct_vulkan{
 
   //---------------------------
 };
-
-#endif

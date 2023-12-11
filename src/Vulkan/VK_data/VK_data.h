@@ -1,5 +1,4 @@
-#ifndef VK_DATA_H
-#define VK_DATA_H
+#pragma once
 
 #include <VK_struct/Struct_vk_pipeline.h>
 #include <VK_struct/Struct_vk_entity.h>
@@ -39,5 +38,3 @@ private:
   VK_command* vk_command;
   VK_descriptor* vk_descriptor;
 };
-
-#endif
