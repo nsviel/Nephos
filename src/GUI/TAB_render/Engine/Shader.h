@@ -2,13 +2,13 @@
 
 #include <Utility/Specific/common.h>
 #include <Engine/Render/ENG_shader/Base/BASE_shader.h>
+#include <Engine/Render/Namespace.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <GUI/GUI_utility/Editor/Namespace.h>
 #include <GUI/GUI_utility/Widget/Namespace.h>
 
 class GUI;
 class Text;
-class ENG_shader;
 class VK_engine;
 
 
@@ -52,7 +52,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  ENG_shader* eng_shader;
+  eng::shader::ENG_shader* eng_shader;
   gui::editor::Text* editor_vs;
   gui::editor::Text* editor_fs;
   gui::widget::Console* gui_console;

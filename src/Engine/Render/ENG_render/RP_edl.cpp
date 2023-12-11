@@ -9,7 +9,6 @@
 #include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/VK_binding/VK_uniform.h>
 
-#include <Engine/Render/ENG_shader/ENG_shader.h>
 #include <Engine/Render/ENG_shader/EDL/EDL_shader.h>
 #include <Engine/Render/ENG_shader/EDL/EDL_param.h>
 
@@ -18,7 +17,7 @@
 RP_edl::RP_edl(Engine* engine){
   //---------------------------
 
-  ENG_shader* eng_shader = engine->get_eng_shader();
+  eng::shader::ENG_shader* eng_shader = engine->get_eng_shader();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 

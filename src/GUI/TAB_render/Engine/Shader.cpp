@@ -7,7 +7,6 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_validation/Struct_validation.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Engine/Render/ENG_shader/ENG_shader.h>
 #include <Engine/Render/ENG_shader/EDL/EDL_shader.h>
 #include <Engine/Render/ENG_shader/Scene/SCE_shader.h>
 

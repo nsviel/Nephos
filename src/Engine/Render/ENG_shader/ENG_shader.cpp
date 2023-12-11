@@ -4,6 +4,8 @@
 #include "Scene/SCE_shader.h"
 
 
+namespace eng::shader{
+
 ENG_shader::ENG_shader(Engine* engine){
   //---------------------------
 
@@ -21,4 +23,6 @@ ENG_shader::~ENG_shader(){
   delete sce_shader;
 
   //---------------------------
+}
+
 }

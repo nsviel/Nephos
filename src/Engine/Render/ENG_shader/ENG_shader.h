@@ -8,6 +8,8 @@ class PSR_shader;
 class SCE_shader;
 
 
+namespace eng::shader{
+
 class ENG_shader
 {
 public:
@@ -24,3 +26,5 @@ private:
   PSR_shader* psr_shader;
   SCE_shader* sce_shader;
 };
+
+}

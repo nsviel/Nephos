@@ -3,8 +3,8 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Engine/Render/Namespace.h>
 
-class ENG_shader;
 class Engine;
 
 class VK_engine;
@@ -33,7 +33,7 @@ public:
   void cmd_draw_line(vk::structure::Subpass* subpass);
 
 private:
-  ENG_shader* eng_shader;
+  eng::shader::ENG_shader* eng_shader;
   vk::structure::Vulkan* struct_vulkan;
   VK_descriptor* vk_descriptor;
   VK_uniform* vk_uniform;

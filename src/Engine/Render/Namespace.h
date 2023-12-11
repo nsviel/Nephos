@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Engine/Data/Scene/Database.h>
+#include <Engine/Render/ENG_shader/ENG_shader.h>
 
 
-namespace eng::ope{
+namespace eng::shader{
   //---------------------------
 
-
+  class ENG_shader;
 
   //---------------------------
 }
