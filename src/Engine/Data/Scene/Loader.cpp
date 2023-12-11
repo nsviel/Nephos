@@ -1,4 +1,4 @@
-#include "ENG_loader.h"
+#include "Loader.h"
 #include "../ENG_format/ENG_format.h"
 
 #include <Utility/UTL_base/Namespace.h>
@@ -9,7 +9,7 @@
 namespace eng::data{
 
 //Constructor / Destructor
-ENG_loader::ENG_loader(eng::data::Node* eng_data){
+Loader::Loader(eng::data::Node* eng_data){
   //---------------------------
 
   this->eng_scene = eng_data->get_eng_scene();
@@ -20,7 +20,7 @@ ENG_loader::ENG_loader(eng::data::Node* eng_data){
 
   //---------------------------
 }
-ENG_loader::~ENG_loader(){
+Loader::~Loader(){
   //---------------------------
 
   delete eng_format;
@@ -29,7 +29,7 @@ ENG_loader::~ENG_loader(){
 }
 
 //Main functions
-eng::structure::Object* ENG_loader::load_object(std::string path){
+eng::structure::Object* Loader::load_object(std::string path){
   //---------------------------
 
   if(file::is_file_exist(path) == false){
@@ -53,7 +53,7 @@ eng::structure::Object* ENG_loader::load_object(std::string path){
   //---------------------------
   return object;
 }
-std::vector<eng::structure::Object*> ENG_loader::load_objects(std::vector<std::string> path){
+std::vector<eng::structure::Object*> Loader::load_objects(std::vector<std::string> path){
   std::vector<eng::structure::Object*> vec_obj;
   //---------------------------
 
@@ -65,7 +65,7 @@ std::vector<eng::structure::Object*> ENG_loader::load_objects(std::vector<std::s
   //---------------------------
   return vec_obj;
 }
-void ENG_loader::load_by_zenity(){
+void Loader::load_by_zenity(){
   //---------------------------
 
   //Select files to load
@@ -78,7 +78,7 @@ void ENG_loader::load_by_zenity(){
 }
 
 //Subfunctions
-void ENG_loader::transfert_data(eng::structure::Object* object, MyFile* file_data){
+void Loader::transfert_data(eng::structure::Object* object, MyFile* file_data){
   //---------------------------
 
   object->name = file_data->name;

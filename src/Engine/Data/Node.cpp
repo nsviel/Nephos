@@ -14,7 +14,7 @@ Node::Node(Engine* engine){
   this->eng_database = new eng::data::Database(this);
   this->eng_scene = new eng::data::Scene(this);
   this->eng_glyph = new ENG_glyph(this);
-  this->eng_loader = new eng::data::ENG_loader(this);
+  this->eng_loader = new eng::data::Loader(this);
 
   //---------------------------
 }

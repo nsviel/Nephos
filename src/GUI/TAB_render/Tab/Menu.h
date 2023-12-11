@@ -29,7 +29,7 @@ public:
 
 private:
   GUI* gui;
-  eng::data::ENG_loader* eng_loader;
+  eng::data::Loader* eng_loader;
   Init* gui_init;
   gui::rnd::tab::Panel* rnd_panel;
   gui::rnd::tab::Option* rnd_option;

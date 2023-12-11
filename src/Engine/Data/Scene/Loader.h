@@ -21,12 +21,12 @@ namespace eng::data{
 class Scene;
 
 
-class ENG_loader
+class Loader
 {
 public:
   //Constructor / Destructor
-  ENG_loader(eng::data::Node* eng_data);
-  ~ENG_loader();
+  Loader(eng::data::Node* eng_data);
+  ~Loader();
 
 public:
   //Main functions

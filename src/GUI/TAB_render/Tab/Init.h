@@ -36,7 +36,7 @@ public:
 
 private:
   eng::data::Scene* eng_scene;
-  eng::data::ENG_loader* eng_loader;
+  eng::data::Loader* eng_loader;
   Transformation* transformManager;
   gui::widget::Tree* gui_tree;
 

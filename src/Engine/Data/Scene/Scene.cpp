@@ -49,7 +49,7 @@ void Scene::init_set(){
   //---------------------------
 }
 void Scene::init_scene(){
-  eng::data::ENG_loader* eng_loader = eng_data->get_eng_loader();
+  eng::data::Loader* eng_loader = eng_data->get_eng_loader();
   //---------------------------
 
   //Load init object
