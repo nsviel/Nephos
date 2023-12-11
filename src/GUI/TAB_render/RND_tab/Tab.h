@@ -3,7 +3,7 @@
 #include <UTL_specific/common.h>
 #include <TAB_render/Panel_nsp.h>
 #include <TAB_render/Tab_nsp.h>
-#include <TAB_render/RND_engine/Namespace.h>
+#include <TAB_render/Engine/Namespace.h>
 
 class GUI;
 
