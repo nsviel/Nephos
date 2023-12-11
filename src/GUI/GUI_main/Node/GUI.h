@@ -5,7 +5,7 @@
 #include <Utility/UTL_specific/common.h>
 
 class Engine;
-class ENG_data;
+class Node;
 class Utility;
 class UTL_window;
 class GUI_font;
@@ -35,7 +35,7 @@ public:
 
 private:
   Engine* engine;
-  ENG_data* eng_data;
+  Node* eng_data;
   Utility* utility;
 
   UTL_window* utl_window;

@@ -1,6 +1,6 @@
 #include "ENG_loader.h"
 #include "../ENG_format/ENG_format.h"
-#include "../ENG_data.h"
+#include "../Node.h"
 #include "../ENG_scene/ENG_scene.h"
 
 #include <Utility/UTL_file/Directory.h>
@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-ENG_loader::ENG_loader(eng::data::ENG_data* eng_data){
+ENG_loader::ENG_loader(eng::data::Node* eng_data){
   //---------------------------
 
   this->eng_scene = eng_data->get_eng_scene();

@@ -9,7 +9,7 @@
 
 
 //Constructor / Destructor
-ENG_glyph::ENG_glyph(eng::data::ENG_data* eng_data){
+ENG_glyph::ENG_glyph(eng::data::Node* eng_data){
   //---------------------------
 
   this->eng_scene = eng_data->get_eng_scene();

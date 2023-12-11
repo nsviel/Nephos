@@ -17,7 +17,7 @@ class ENG_loader
 {
 public:
   //Constructor / Destructor
-  ENG_loader(eng::data::ENG_data* eng_data);
+  ENG_loader(eng::data::Node* eng_data);
   ~ENG_loader();
 
 public:

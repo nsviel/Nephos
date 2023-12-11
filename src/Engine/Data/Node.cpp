@@ -1,4 +1,4 @@
-#include "ENG_data.h"
+#include "Node.h"
 #include "ENG_scene/ENG_scene.h"
 #include "ENG_scene/ENG_database.h"
 #include "ENG_glyph/ENG_glyph.h"
@@ -8,18 +8,18 @@
 namespace eng::data{
 
 //Constructor / Destructor
-ENG_data::ENG_data(Engine* engine){
+Node::Node(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->eng_database = new ENG_database(this);
+  this->eng_database = new Nodebase(this);
   this->eng_scene = new ENG_scene(this);
   this->eng_glyph = new ENG_glyph(this);
   this->eng_loader = new ENG_loader(this);
 
   //---------------------------
 }
-ENG_data::~ENG_data(){
+Node::~Node(){
   //---------------------------
 
   delete eng_scene;
@@ -30,7 +30,7 @@ ENG_data::~ENG_data(){
   //---------------------------
 }
 
-void ENG_data::init(){
+void Node::init(){
   //---------------------------
 
   eng_scene->init_set();
@@ -39,14 +39,14 @@ void ENG_data::init(){
 
   //---------------------------
 }
-void ENG_data::reset(){
+void Node::reset(){
   //---------------------------
 
   eng_scene->reset_scene();
 
   //---------------------------
 }
-void ENG_data::loop(){
+void Node::loop(){
   //---------------------------
 
   eng_scene->loop();

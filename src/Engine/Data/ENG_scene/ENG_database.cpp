@@ -2,7 +2,7 @@
 
 
 //Constructor / Destructor
-ENG_database::ENG_database(eng::data::ENG_data* eng_data){
+Nodebase::Nodebase(eng::data::Node* eng_data){
   //---------------------------
 
   this->ID_obj = 0;
@@ -12,4 +12,4 @@ ENG_database::ENG_database(eng::data::ENG_data* eng_data){
 
   //---------------------------
 }
-ENG_database::~ENG_database(){}
+Nodebase::~Nodebase(){}

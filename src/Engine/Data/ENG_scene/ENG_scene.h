@@ -5,7 +5,7 @@
 #include <Engine/Camera/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
-class ENG_database;
+class Nodebase;
 class VK_engine;
 class Attribut;
 
@@ -14,7 +14,7 @@ class ENG_scene
 {
 public:
   //ConsScenetor / DesScenetor
-  ENG_scene(eng::data::ENG_data* eng_data);
+  ENG_scene(eng::data::Node* eng_data);
   ~ENG_scene();
 
 public:
@@ -41,8 +41,8 @@ public:
   inline eng::structure::Object* get_selected_object(){return set_scene->selected_obj;}
 
 private:
-  eng::data::ENG_data* eng_data;
-  ENG_database* eng_database;
+  eng::data::Node* eng_data;
+  Nodebase* eng_database;
   VK_engine* vk_engine;
   Attribut* attributManager;
   eng::camera::Node* eng_camera;

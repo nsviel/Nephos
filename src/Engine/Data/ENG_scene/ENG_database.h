@@ -5,12 +5,12 @@
 #include <Utility/UTL_specific/common.h>
 
 
-class ENG_database
+class Nodebase
 {
 public:
   //Constructor / Destructor
-  ENG_database(eng::data::ENG_data* eng_data);
-  ~ENG_database();
+  Nodebase(eng::data::Node* eng_data);
+  ~Nodebase();
 
 public:
   inline list<eng::structure::Set*>* get_list_data(){return list_data;}

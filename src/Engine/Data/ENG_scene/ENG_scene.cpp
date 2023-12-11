@@ -13,7 +13,7 @@
 
 
 //ConsScenetor / DesScenetor
-ENG_scene::ENG_scene(eng::data::ENG_data* eng_data){
+ENG_scene::ENG_scene(eng::data::Node* eng_data){
   //---------------------------
 
   Engine* engine = eng_data->get_engine();

@@ -18,7 +18,7 @@ Control::Control(GUI* gui){
 
   Utility* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
-  eng::data::ENG_data* eng_data = engine->get_eng_data();
+  eng::data::Node* eng_data = engine->get_eng_data();
 
   this->engine = gui->get_engine();
   this->utl_window = utility->get_utl_window();

@@ -11,7 +11,7 @@ class ENG_glyph
 {
 public:
   //Constructor / Destructor
-  ENG_glyph(eng::data::ENG_data* eng_data);
+  ENG_glyph(eng::data::Node* eng_data);
   ~ENG_glyph();
 
 public:
@@ -20,7 +20,7 @@ public:
   Glyph_source* get_glyph_src_byName(string name);
 
 private:
-  eng::data::ENG_data* eng_data;
+  eng::data::Node* eng_data;
   ENG_scene* eng_scene;
 
   vector<Glyph_source*> vec_glyph_src;

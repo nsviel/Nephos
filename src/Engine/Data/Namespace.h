@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Engine/Data/ENG_data.h>
+#include <Engine/Data/Node.h>
 
 
 namespace eng::data{
   //---------------------------
 
-  class ENG_data;
+  class Node;
 
   //---------------------------
 }
