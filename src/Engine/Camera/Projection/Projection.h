@@ -6,11 +6,13 @@
 class UTL_window;
 
 
-class CAM_proj
+namespace eng::camera::proj{
+
+class Projection
 {
 public:
-  CAM_proj(UTL_window* utl_window);
-  ~CAM_proj();
+  Projection(UTL_window* utl_window);
+  ~Projection();
 
 public:
   mat4 compute_proj_perspective(eng::structure::Camera* camera);
@@ -19,3 +21,5 @@ public:
 private:
   UTL_window* utl_window;
 };
+
+}

@@ -1,15 +1,17 @@
-#include "CAM_zoom.h"
+#include "Zoom.h"
 
+
+namespace eng::camera::proj{
 
 //Constructor / Destructor
-CAM_zoom::CAM_zoom(UTL_window* utl_window){
+Zoom::Zoom(UTL_window* utl_window){
   //---------------------------
 
   //---------------------------
 }
-CAM_zoom::~CAM_zoom(){}
+Zoom::~Zoom(){}
 
-void CAM_zoom::compute_zoom_optic(eng::structure::Camera* camera, float yoffset){
+void Zoom::compute_zoom_optic(eng::structure::Camera* camera, float yoffset){
   //---------------------------
 
   //Perspective zoom
@@ -23,7 +25,7 @@ void CAM_zoom::compute_zoom_optic(eng::structure::Camera* camera, float yoffset)
 
   //---------------------------
 }
-void CAM_zoom::compute_zoom_position(eng::structure::Camera* camera, float yoffset){
+void Zoom::compute_zoom_position(eng::structure::Camera* camera, float yoffset){
   //---------------------------
 
   //Perspective zoom
@@ -34,4 +36,6 @@ void CAM_zoom::compute_zoom_position(eng::structure::Camera* camera, float yoffs
   camera->zoom -= yoffset * 0.1;
 
   //---------------------------
+}
+
 }

@@ -1,20 +1,22 @@
-#include "CAM_proj.h"
+#include "Projection.h"
 
 #include <Utility/UTL_window/UTL_window.h>
 
 
+namespace eng::camera::proj{
+
 //Constructor / Destructor
-CAM_proj::CAM_proj(UTL_window* utl_window){
+Projection::Projection(UTL_window* utl_window){
   //---------------------------
 
   this->utl_window = utl_window;
 
   //---------------------------
 }
-CAM_proj::~CAM_proj(){}
+Projection::~Projection(){}
 
 //Main function
-mat4 CAM_proj::compute_proj_perspective(eng::structure::Camera* camera){
+mat4 Projection::compute_proj_perspective(eng::structure::Camera* camera){
   //---------------------------
 
   float z_near = camera->clip_near;
@@ -32,7 +34,7 @@ mat4 CAM_proj::compute_proj_perspective(eng::structure::Camera* camera){
   //---------------------------
   return cam_proj;
 }
-mat4 CAM_proj::compute_proj_ortho(eng::structure::Camera* camera){
+mat4 Projection::compute_proj_ortho(eng::structure::Camera* camera){
   //---------------------------
 
   float z_near = camera->clip_near;
@@ -45,4 +47,6 @@ mat4 CAM_proj::compute_proj_ortho(eng::structure::Camera* camera){
 
   //---------------------------
   return cam_proj;
+}
+
 }

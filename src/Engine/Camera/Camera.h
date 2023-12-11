@@ -2,11 +2,10 @@
 
 #include <Engine/Base/Namespace.h>
 #include <Engine/Camera/Mode/Namespace.h>
+#include <Engine/Camera/Projection/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class Engine;
-class CAM_zoom;
-class CAM_proj;
 
 
 namespace eng::camera{
@@ -47,8 +46,8 @@ private:
   Engine* engine;
   eng::camera::mode::Arcball* cam_arcball;
   eng::camera::mode::First_person* cam_fp;
-  CAM_zoom* cam_zoom;
-  CAM_proj* cam_proj;
+  eng::camera::proj::Zoom* cam_zoom;
+  eng::camera::proj::Projection* cam_proj;
 
   eng::structure::Camera* camera;
   vec3 arcball_origin;

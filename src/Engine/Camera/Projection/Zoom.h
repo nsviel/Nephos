@@ -6,11 +6,13 @@
 class UTL_window;
 
 
-class CAM_zoom
+namespace eng::camera::proj{
+
+class Zoom
 {
 public:
-  CAM_zoom(UTL_window* utl_window);
-  ~CAM_zoom();
+  Zoom(UTL_window* utl_window);
+  ~Zoom();
 
 public:
   void compute_zoom_optic(eng::structure::Camera* camera, float value);
@@ -18,3 +20,5 @@ public:
 
 private:
 };
+
+}
