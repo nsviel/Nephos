@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Struct_k4a_data.h"
+#include "Data.h"
 
 #include <k4arecord/playback.hpp>
 #include <k4a/k4a.hpp>

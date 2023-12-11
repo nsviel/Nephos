@@ -2,10 +2,10 @@
 
 #include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
 
-#include "Struct_k4a_config.h"
-#include "Struct_k4a_depth.h"
+#include "Config.h"
+#include "Depth.h"
 #include "Struct_k4a_infrared.h"
-#include "Struct_k4a_data.h"
+#include "Data.h"
 #include "Struct_k4a_info.h"
 
 #include <k4a/k4a.hpp>
@@ -20,11 +20,11 @@ struct Struct_k4a_device{
   std::string serial_number;
   k4a::device* device;
 
-  Struct_k4a_config config;
+  Config config;
   util::kinect::structure::Color color;
-  Struct_k4a_depth depth;
+  Depth depth;
   Struct_k4a_infrared ir;
-  Struct_k4a_data data;
+  Data data;
   Struct_k4a_info info;
 
   //---------------------------

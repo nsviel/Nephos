@@ -5,7 +5,7 @@
 
 
 namespace util::kinect::structure{
-  
+
 struct K4A_image{
   //---------------------------
 
@@ -21,7 +21,7 @@ struct K4A_image{
   //---------------------------
 };
 
-struct Struct_k4a_data{
+struct Data{
   //---------------------------
 
   K4A_image color;

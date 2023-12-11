@@ -9,7 +9,7 @@
 
 namespace util::kinect::structure{
 
-struct Struct_k4a_config{
+struct Config{
   //---------------------------
 
   k4a_fps_t fps = K4A_FRAMES_PER_SECOND_30;

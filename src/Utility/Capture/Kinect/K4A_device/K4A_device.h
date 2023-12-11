@@ -32,11 +32,11 @@ public:
   K4A_replay* k4a_replay;
   K4A_configuration* k4a_configuration;
 
-  util::kinect::structure::Struct_k4a_config config;
+  util::kinect::structure::Config config;
   util::kinect::structure::Color color;
-  util::kinect::structure::Struct_k4a_depth depth;
+  util::kinect::structure::Depth depth;
   Struct_k4a_infrared ir;
-  util::kinect::structure::Struct_k4a_data data;
+  util::kinect::structure::Data data;
   Struct_k4a_info info;
 
   k4a::device* device;

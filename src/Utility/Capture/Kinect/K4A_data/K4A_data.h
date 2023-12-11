@@ -16,7 +16,7 @@ public:
 
 public:
   //Main function
-  void find_data_from_capture(util::kinect::structure::Struct_k4a_data* data, k4a::capture capture);
+  void find_data_from_capture(util::kinect::structure::Data* data, k4a::capture capture);
 
 private:
 };

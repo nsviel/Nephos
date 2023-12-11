@@ -6,7 +6,7 @@
 
 namespace util::kinect::structure{
 
-struct Struct_k4a_depth{
+struct Depth{
   //---------------------------
 
   bool enabled = true;
