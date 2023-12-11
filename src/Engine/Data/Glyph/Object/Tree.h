@@ -1,8 +1,7 @@
 #pragma once
 
+#include <Engine/Operation/Namespace.h>
 #include "../Base/Glyph_source.h"
-
-class Octree;
 
 
 class Tree : public Glyph_source
@@ -20,7 +19,7 @@ public:
   inline int* get_tree_level(){return &tree_level;}
 
 private:
-  Octree* octreeManager;
+  eng::ope::Octree* octreeManager;
   bool is_visible;
   vec4 tree_color;
   int tree_level;

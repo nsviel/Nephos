@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Engine/Operation/Namespace.h>
+
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
@@ -7,8 +9,8 @@
 using namespace std;
 using namespace glm;
 
-class Colormap;
 
+namespace eng::ope{
 
 class Heatmap
 {
@@ -20,7 +22,7 @@ public:
 public:
 
 private:
-  Colormap* colormapManager;
+  eng::ope::Colormap* colormapManager;
 
   vec2 range_norm;
   vec2 range_height;
@@ -28,3 +30,5 @@ private:
   bool is_normalization;
   int heatmap_mode;
 };
+
+}

@@ -9,7 +9,6 @@
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Engine/Camera/Namespace.h>
-#include <Engine/ENG_operation/Transformation/Attribut.h>
 
 
 namespace eng::data{
@@ -25,7 +24,7 @@ Scene::Scene(eng::data::Node* eng_data){
   this->eng_database = eng_data->get_eng_database();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->eng_camera = engine->get_eng_camera();
-  this->attributManager = new Attribut();
+  this->attributManager = new eng::ope::Attribut();
 
   this->ID_obj = 0;
 

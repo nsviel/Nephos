@@ -3,6 +3,8 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
+namespace eng::ope{
+
 //Constructor / destructor
 Colormap::Colormap(){
   //---------------------------
@@ -65,4 +67,6 @@ glm::vec4 Colormap::random_color(){
 
   //---------------------------
   return color;
+}
+
 }

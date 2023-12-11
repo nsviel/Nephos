@@ -1,6 +1,8 @@
 #include "Attribut.h"
 
 
+namespace eng::ope{
+
 // Constructor / Destructor
 Attribut::Attribut(){}
 Attribut::~Attribut(){}
@@ -39,4 +41,6 @@ void Attribut::set_visibility(eng::structure::Set* set, bool visibility){
   }
 
   //---------------------------
+}
+
 }

@@ -8,8 +8,6 @@
 
 class GUI;
 
-class Transformation;
-
 
 namespace gui::rnd::tab{
 
@@ -37,7 +35,7 @@ public:
 private:
   eng::data::Scene* eng_scene;
   eng::data::Loader* eng_loader;
-  Transformation* transformManager;
+  eng::ope::Transformation* transformManager;
   gui::widget::Tree* gui_tree;
 
   vector<Tree_node*> nodes_root;

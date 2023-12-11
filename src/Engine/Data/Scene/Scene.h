@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Operation/Namespace.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Base/Namespace.h>
 #include <Engine/Camera/Namespace.h>
@@ -7,7 +8,6 @@
 
 
 class VK_engine;
-class Attribut;
 
 
 namespace eng::data{
@@ -49,7 +49,7 @@ private:
   eng::data::Node* eng_data;
   eng::data::Database* eng_database;
   VK_engine* vk_engine;
-  Attribut* attributManager;
+  eng::ope::Attribut* attributManager;
   eng::camera::Node* eng_camera;
 
   int ID_obj;

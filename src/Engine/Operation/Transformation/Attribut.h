@@ -9,6 +9,8 @@ using namespace std;
 using namespace glm;
 
 
+namespace eng::ope{
+
 class Attribut
 {
 public:
@@ -23,3 +25,5 @@ public:
 
 private:
 };
+
+}

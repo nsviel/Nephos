@@ -3,7 +3,6 @@
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
 #include <Engine/Data/Namespace.h>
-#include <Engine/ENG_operation/Transformation/Transformation.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Info.h>
 
@@ -19,7 +18,7 @@ Init::Init(GUI* gui){
 
   this->eng_scene = eng_data->get_eng_scene();
   this->eng_loader = eng_data->get_eng_loader();
-  this->transformManager = new Transformation();
+  this->transformManager = new eng::ope::Transformation();
   this->gui_tree = new gui::widget::Tree();
 
   //---------------------------

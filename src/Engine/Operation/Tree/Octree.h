@@ -30,6 +30,8 @@ struct Root{
 };
 
 
+namespace eng::ope{
+
 class Octree
 {
 public:
@@ -60,3 +62,5 @@ private:
   int octree_time;
   int nb_level;
 };
+
+}

@@ -10,9 +10,6 @@ class Engine;
 class UTL_window;
 class UTL_window;
 
-class Transformation;
-
-
 
 namespace gui::engine{
 
@@ -41,7 +38,7 @@ private:
   UTL_window* utl_window;
   eng::data::Scene* eng_scene;
   eng::camera::Node* eng_camera;
-  Transformation* transformManager;
+  eng::ope::Transformation* transformManager;
 
   eng::structure::Camera* camera;
 };

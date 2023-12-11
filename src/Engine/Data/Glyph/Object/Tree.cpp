@@ -1,15 +1,13 @@
 #include "Tree.h"
 
 #include <Utility/Function/Math/fct_math.h>
-#include <Engine/ENG_operation/Color/Color.h>
-#include <Engine/ENG_operation/Tree/Octree.h>
 
 
 //Constructor / destructor
 Tree::Tree(){
   //---------------------------
 
-  this->octreeManager = new Octree();
+  this->octreeManager = new eng::ope::Octree();
 
   this->name = "tree";
   this->is_visible = false;

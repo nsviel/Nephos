@@ -3,6 +3,8 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
+namespace eng::ope{
+
 // Constructor / Destructor
 Transformation::Transformation(){}
 Transformation::~Transformation(){}
@@ -100,4 +102,6 @@ mat4 Transformation::get_rotation_mat(vec3 r){
 
   //---------------------------
   return rotation;
+}
+
 }

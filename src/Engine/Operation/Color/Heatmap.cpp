@@ -4,11 +4,13 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
+namespace eng::ope{
+
 //Constructor / destructor
 Heatmap::Heatmap(){
   //---------------------------
 
-  this->colormapManager = new Colormap();
+  this->colormapManager = new eng::ope::Colormap();
 
   this->heatmap_mode = 1;
   this->is_normalization = true;
@@ -24,4 +26,6 @@ Heatmap::~Heatmap(){
   delete colormapManager;
 
   //---------------------------
+}
+
 }

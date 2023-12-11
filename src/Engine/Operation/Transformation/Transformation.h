@@ -9,6 +9,8 @@ using namespace std;
 using namespace glm;
 
 
+namespace eng::ope{
+  
 class Transformation
 {
 public:
@@ -33,3 +35,5 @@ public:
 
 private:
 };
+
+}

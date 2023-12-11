@@ -1,10 +1,10 @@
 #include "Octree.h"
 
-#include "../Color/Color.h"
-
 #include <Utility/Function/Math/fct_math.h>
 #include <Utility/Specific/color.h>
 
+
+namespace eng::ope{
 
 //Constructor / destructor
 Octree::Octree(){
@@ -303,3 +303,5 @@ vector<int> Octree::compute_idx_from_point(vec3 min, vec3 max, Cube* cube_parent
   return idx_cube;
 }
 */
+
+}

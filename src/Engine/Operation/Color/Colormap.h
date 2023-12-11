@@ -8,6 +8,8 @@ using namespace std;
 using namespace glm;
 
 
+namespace eng::ope{
+
 class Colormap
 {
 public:
@@ -27,3 +29,5 @@ private:
   vector<vector<vec3>> colormap_list;
   vector<vec3> colormap_selected;
 };
+
+}

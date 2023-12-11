@@ -7,7 +7,6 @@
 #include <Utility/Function/Math/fct_math.h>
 #include <Engine/Data/Scene/Scene.h>
 #include <Engine/Camera/Namespace.h>
-#include <Engine/ENG_operation/Transformation/Transformation.h>
 
 
 namespace gui::engine{
@@ -25,7 +24,7 @@ Control::Control(GUI* gui){
   this->camera = engine->get_camera();
   this->eng_camera = engine->get_eng_camera();
   this->eng_scene = eng_data->get_eng_scene();
-  this->transformManager = new Transformation();
+  this->transformManager = new eng::ope::Transformation();
 
   //---------------------------
 }
