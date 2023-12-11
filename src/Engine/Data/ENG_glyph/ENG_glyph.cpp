@@ -5,7 +5,7 @@
 #include "Scene/Axis_world.h"
 
 #include <Engine/Data/Namespace.h>
-#include "../ENG_scene/ENG_scene.h"
+#include "../Scene/Scene.h"
 
 
 //Constructor / Destructor

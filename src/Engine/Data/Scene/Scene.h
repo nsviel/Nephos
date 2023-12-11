@@ -12,15 +12,15 @@ class Attribut;
 
 namespace eng::data{
 class Node;
-class ENG_database;
+class Database;
 
 
-class ENG_scene
+class Scene
 {
 public:
   //ConsScenetor / DesScenetor
-  ENG_scene(eng::data::Node* eng_data);
-  ~ENG_scene();
+  Scene(eng::data::Node* eng_data);
+  ~Scene();
 
 public:
   //Scene function
@@ -47,7 +47,7 @@ public:
 
 private:
   eng::data::Node* eng_data;
-  eng::data::ENG_database* eng_database;
+  eng::data::Database* eng_database;
   VK_engine* vk_engine;
   Attribut* attributManager;
   eng::camera::Node* eng_camera;

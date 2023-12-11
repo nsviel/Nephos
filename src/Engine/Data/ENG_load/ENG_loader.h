@@ -31,7 +31,7 @@ public:
 
 private:
   ENG_format* eng_format;
-  eng::data::ENG_scene* eng_scene;
+  eng::data::Scene* eng_scene;
 
   std::string path_current_dir;
   int ID;

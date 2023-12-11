@@ -1,7 +1,7 @@
 #include "ENG_loader.h"
 #include "../ENG_format/ENG_format.h"
 #include "../Node.h"
-#include "../ENG_scene/ENG_scene.h"
+#include "../Scene/Scene.h"
 
 #include <Utility/UTL_file/Directory.h>
 #include <Utility/UTL_file/File.h>

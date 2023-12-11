@@ -39,7 +39,7 @@ public:
 private:
   Engine* engine;
   UTL_window* utl_window;
-  eng::data::ENG_scene* eng_scene;
+  eng::data::Scene* eng_scene;
   eng::camera::Node* eng_camera;
   Transformation* transformManager;
 

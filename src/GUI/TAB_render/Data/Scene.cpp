@@ -3,7 +3,7 @@
 #include <Engine/Node/Engine.h>
 #include <Node/GUI.h>
 #include <GUI/GUI_main/Interface/Tab.h>
-#include <Engine/Data/ENG_scene/ENG_database.h>
+#include <Engine/Data/Scene/Database.h>
 #include <GUI/TAB_render/Data/Namespace.h>
 
 
@@ -15,7 +15,7 @@ Scene::Scene(GUI* gui, gui::rnd::tab::Panel* tab_panel){
 
   Engine* engine = gui->get_engine();
   eng::data::Node* eng_data = engine->get_eng_data();
-  eng::data::ENG_database* eng_database = eng_data->get_eng_database();
+  eng::data::Database* eng_database = eng_data->get_eng_database();
 
   this->tab_panel = tab_panel;
   this->panel_set = new gui::rnd::panel::Set(gui, &tab_panel->show_set);

@@ -34,7 +34,7 @@ public:
 
 private:
   Panel* gui_render_panel;
-  eng::data::ENG_scene* eng_scene;
+  eng::data::Scene* eng_scene;
 
   eng::structure::Object* object_selected;
   string panel_name;

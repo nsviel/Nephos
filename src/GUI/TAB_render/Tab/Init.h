@@ -35,7 +35,7 @@ public:
   void build_scene_1();
 
 private:
-  eng::data::ENG_scene* eng_scene;
+  eng::data::Scene* eng_scene;
   ENG_loader* eng_loader;
   Transformation* transformManager;
   gui::widget::Tree* gui_tree;

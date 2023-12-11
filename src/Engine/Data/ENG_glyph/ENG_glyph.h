@@ -19,7 +19,7 @@ public:
 
 private:
   eng::data::Node* eng_data;
-  eng::data::ENG_scene* eng_scene;
+  eng::data::Scene* eng_scene;
 
   vector<Glyph_source*> vec_glyph_src;
 };

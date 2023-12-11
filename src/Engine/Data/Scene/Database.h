@@ -8,12 +8,12 @@ namespace eng::data{
 class Node;
 
 
-class ENG_database
+class Database
 {
 public:
   //Constructor / Destructor
-  ENG_database(eng::data::Node* eng_data);
-  ~ENG_database();
+  Database(eng::data::Node* eng_data);
+  ~Database();
 
 public:
   inline list<eng::structure::Set*>* get_list_data(){return list_data;}

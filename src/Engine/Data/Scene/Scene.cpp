@@ -1,5 +1,5 @@
-#include "ENG_scene.h"
-#include "ENG_database.h"
+#include "Scene.h"
+#include "Database.h"
 #include "../ENG_load/ENG_loader.h"
 
 #include <Engine/Base/Namespace.h>
@@ -15,7 +15,7 @@
 namespace eng::data{
 
 //ConsScenetor / DesScenetor
-ENG_scene::ENG_scene(eng::data::Node* eng_data){
+Scene::Scene(eng::data::Node* eng_data){
   //---------------------------
 
   Engine* engine = eng_data->get_engine();
@@ -31,10 +31,10 @@ ENG_scene::ENG_scene(eng::data::Node* eng_data){
 
   //---------------------------
 }
-ENG_scene::~ENG_scene(){}
+Scene::~Scene(){}
 
-//ENG_scene function
-void ENG_scene::init_set(){
+//Scene function
+void Scene::init_set(){
   list<eng::structure::Set*>* list_data = eng_database->get_list_data();
   //---------------------------
 
@@ -42,13 +42,13 @@ void ENG_scene::init_set(){
   this->set_glyph = new eng::structure::Set("Glyph");
   list_data->push_back(set_glyph);
 
-  //ENG_scene set
+  //Scene set
   this->set_scene = new eng::structure::Set("Scene");
   list_data->push_back(set_scene);
 
   //---------------------------
 }
-void ENG_scene::init_scene(){
+void Scene::init_scene(){
   ENG_loader* eng_loader = eng_data->get_eng_loader();
   //---------------------------
 
@@ -59,7 +59,7 @@ void ENG_scene::init_scene(){
 
   //---------------------------
 }
-void ENG_scene::reset_scene(){
+void Scene::reset_scene(){
   //---------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
@@ -71,7 +71,7 @@ void ENG_scene::reset_scene(){
 }
 
 //Insertion / deletion
-void ENG_scene::insert_object_glyph(eng::structure::Object* object){
+void Scene::insert_object_glyph(eng::structure::Object* object){
   //---------------------------
 
   //Insert into engine
@@ -86,7 +86,7 @@ void ENG_scene::insert_object_glyph(eng::structure::Object* object){
 
   //---------------------------
 }
-void ENG_scene::insert_object_scene(eng::structure::Object* object){
+void Scene::insert_object_scene(eng::structure::Object* object){
   //---------------------------
 
   //Insert into engine
@@ -101,7 +101,7 @@ void ENG_scene::insert_object_scene(eng::structure::Object* object){
 
   //---------------------------
 }
-void ENG_scene::delete_scene_object(eng::structure::Object* object){
+void Scene::delete_scene_object(eng::structure::Object* object){
   //---------------------------
 
   //Delete it from database and engine
@@ -116,7 +116,7 @@ void ENG_scene::delete_scene_object(eng::structure::Object* object){
 
   //---------------------------
 }
-void ENG_scene::empty_scene_set(){
+void Scene::empty_scene_set(){
   //---------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
@@ -131,7 +131,7 @@ void ENG_scene::empty_scene_set(){
 }
 
 //eng::structure::Object
-void ENG_scene::selected_object_next(){
+void Scene::selected_object_next(){
   eng::structure::Object* selected = set_scene->selected_obj;
   //----------------------------
 
@@ -155,7 +155,7 @@ void ENG_scene::selected_object_next(){
 }
 
 //Loop function
-void ENG_scene::loop(){
+void Scene::loop(){
   list<eng::structure::Set*>* list_data = eng_database->get_list_data();
   list<eng::structure::Set*>* list_glyph = eng_database->get_list_data_glyph();
   //----------------------------
@@ -165,7 +165,7 @@ void ENG_scene::loop(){
 
   //----------------------------
 }
-void ENG_scene::loop_list(list<eng::structure::Set*>* list_data){
+void Scene::loop_list(list<eng::structure::Set*>* list_data){
   //----------------------------
 
   for(int i=0; i<list_data->size(); i++){
