@@ -4,6 +4,8 @@
 #include <vulkan/vulkan.h>
 
 
+namespace vk::structure{
+
 struct Struct_vk_image{
   //---------------------------
 
@@ -35,3 +37,5 @@ struct Struct_vk_image{
 
   //---------------------------
 };
+
+}

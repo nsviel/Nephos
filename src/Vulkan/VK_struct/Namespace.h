@@ -7,6 +7,10 @@
 #include <VK_struct/Data.h>
 #include <VK_struct/Device.h>
 #include <VK_struct/Entity.h>
+#include <VK_struct/Namespace.h>
+#include <VK_struct/Struct_vk_framebuffer.h>
+#include <VK_struct/Struct_vk_image.h>
+
 
 namespace vk::structure{
   //---------------------------
@@ -18,6 +22,9 @@ namespace vk::structure{
   class Data;
   class Device;
   class Entity;
+  class Struct_vk_frame;
+  class Struct_vk_framebuffer;
+  class Struct_vk_image;
 
   //---------------------------
 }

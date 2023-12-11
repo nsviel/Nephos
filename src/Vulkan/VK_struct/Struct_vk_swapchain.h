@@ -1,7 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_framebuffer.h>
-#include <VK_struct/Struct_vk_frame.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 
@@ -18,9 +17,9 @@ struct Struct_vk_swapchain{
   uint32_t max_nb_frame;
 
   //Swapchain frame
-  Struct_vk_frame* get_frame_presentation(){return vec_frame[frame_presentation_ID];}
+  vk::structure::Struct_vk_frame* get_frame_presentation(){return vec_frame[frame_presentation_ID];}
   uint32_t frame_presentation_ID = 0;
-  std::vector<Struct_vk_frame*> vec_frame;
+  std::vector<vk::structure::Struct_vk_frame*> vec_frame;
 
   //---------------------------
 };

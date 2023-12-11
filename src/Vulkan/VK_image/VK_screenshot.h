@@ -1,6 +1,5 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_image.h>
 #include <VK_struct/Namespace.h>
 #include <VK_struct/VK_typedef.h>
 #include <UTL_specific/common.h>
@@ -27,8 +26,8 @@ public:
 
 public:
   //Main functions
-  void make_screenshot(Struct_vk_image* image);
-  void save_to_bin(Struct_vk_image* image);
+  void make_screenshot(vk::structure::Struct_vk_image* image);
+  void save_to_bin(vk::structure::Struct_vk_image* image);
 
   //Subfunction
   VkDeviceSize calculate_image_size(VkFormat format, VkExtent3D extent);

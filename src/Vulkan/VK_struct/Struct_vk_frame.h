@@ -4,6 +4,8 @@
 #include <VK_struct/Struct_vk_image.h>
 
 
+namespace vk::structure{
+
 struct Struct_vk_frame{
   //---------------------------
 
@@ -20,3 +22,5 @@ struct Struct_vk_frame{
 
   //---------------------------
 };
+
+}

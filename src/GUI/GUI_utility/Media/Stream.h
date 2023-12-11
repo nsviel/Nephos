@@ -2,7 +2,7 @@
 
 #include <UTL_specific/common.h>
 #include <UTL_base/Struct_image.h>
-#include <VK_struct/Struct_vk_image.h>
+#include <VK_struct/Namespace.h>
 
 class GUI;
 class VK_texture;
@@ -27,7 +27,7 @@ public:
 private:
   VK_texture* vk_texture;
 
-  Struct_vk_image* vk_image;
+  vk::structure::Struct_vk_image* vk_image;
   ImTextureID texture;
 };
 

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <VK_struct/Namespace.h>
 #include <VK_struct/Struct_vk_swapchain.h>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_framebuffer.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -16,8 +16,8 @@ public:
 
 public:
   //Main functions
-  void create_depth_attachment(Struct_vk_image* depth);
-  void clean_depth_attachment(Struct_vk_image* depth);
+  void create_depth_attachment(vk::structure::Struct_vk_image* depth);
+  void clean_depth_attachment(vk::structure::Struct_vk_image* depth);
 
   //Subfunctions
   bool find_stencil_component(VkFormat format);

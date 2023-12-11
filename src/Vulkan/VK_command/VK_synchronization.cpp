@@ -1,6 +1,7 @@
 #include "VK_synchronization.h"
 
 #include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Struct_vk_frame.h>
 
 
 //Constructor / Destructor
@@ -38,7 +39,7 @@ void VK_synchronization::init(){
 
   //---------------------------
 }
-void VK_synchronization::init_frame_sync(Struct_vk_frame* frame){
+void VK_synchronization::init_frame_sync(vk::structure::Struct_vk_frame* frame){
   //---------------------------
 
   //Create semaphore - Renderpass
@@ -72,7 +73,7 @@ void VK_synchronization::clean(){
 
   //---------------------------
 }
-void VK_synchronization::clean_frame_sync(Struct_vk_frame* frame){
+void VK_synchronization::clean_frame_sync(vk::structure::Struct_vk_frame* frame){
   //---------------------------
 
   this->clean_semaphore(frame->semaphore_image_ready);

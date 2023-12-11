@@ -32,7 +32,7 @@ void VK_frame::create_frame(){
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
     Struct_vk_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
     if(renderpass == nullptr)return;
-    Struct_vk_frame* frame = new Struct_vk_frame();
+    vk::structure::Struct_vk_frame* frame = new vk::structure::Struct_vk_frame();
     frame->image.image = struct_vulkan->swapchain.vec_swapchain_image[i];
     frame->image.format = vk_color->find_color_format();
     frame->image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
@@ -49,12 +49,12 @@ void VK_frame::create_frame(){
   //---------------------------
 }
 void VK_frame::clean_frame(){
-  vector<Struct_vk_frame*>& vec_frame = struct_vulkan->swapchain.vec_frame;
+  vector<vk::structure::Struct_vk_frame*>& vec_frame = struct_vulkan->swapchain.vec_frame;
   //---------------------------
 
   //Vec images
   for(int i=0; i<vec_frame.size(); i++){
-    Struct_vk_frame* frame = vec_frame[i];
+    vk::structure::Struct_vk_frame* frame = vec_frame[i];
     vkDestroyImageView(struct_vulkan->device.device, frame->image.view, nullptr);
     vk_image->clean_image(&frame->depth);
     vk_framebuffer->clean_framebuffer_obj(frame->fbo);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_image.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -16,7 +16,7 @@ public:
 
 public:
   //Main functions
-  void create_color_attachment(Struct_vk_image* color);
+  void create_color_attachment(vk::structure::Struct_vk_image* color);
 
   //Subfunction
   VkSurfaceFormatKHR retrieve_surface_format(const std::vector<VkSurfaceFormatKHR>& dev_format);

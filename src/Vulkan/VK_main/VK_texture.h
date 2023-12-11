@@ -1,6 +1,5 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_image.h>
 #include <VK_struct/Namespace.h>
 #include <VK_struct/VK_typedef.h>
 #include <UTL_specific/common.h>
@@ -19,8 +18,8 @@ public:
 
 public:
   //Main functions
-  Struct_vk_image* load_texture(data::Image* image);
-  void update_texture(Struct_vk_image* image);
+  vk::structure::Struct_vk_image* load_texture(data::Image* image);
+  void update_texture(vk::structure::Struct_vk_image* image);
   VkFormat find_texture_format(data::Image* image);
 
   //Texture cleaning

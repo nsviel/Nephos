@@ -1,8 +1,10 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <VK_struct/Struct_vk_image.h>
+#include <VK_struct/Namespace.h>
 
+
+namespace vk::structure{
 
 struct Struct_vk_framebuffer{
   //---------------------------
@@ -11,10 +13,12 @@ struct Struct_vk_framebuffer{
   VkFramebuffer fbo;
 
   //Attachment
-  Struct_vk_image color;
-  Struct_vk_image depth;
-  Struct_vk_image location;
-  Struct_vk_image normal;
+  vk::structure::Struct_vk_image color;
+  vk::structure::Struct_vk_image depth;
+  vk::structure::Struct_vk_image location;
+  vk::structure::Struct_vk_image normal;
 
   //---------------------------
 };
+
+}

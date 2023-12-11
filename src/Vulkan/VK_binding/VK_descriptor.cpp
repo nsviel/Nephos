@@ -74,7 +74,7 @@ void VK_descriptor::update_descriptor_uniform(Struct_vk_binding* binding){
 
   //---------------------------
 }
-void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vector<Struct_vk_image*> vec_image){
+void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vector<vk::structure::Struct_vk_image*> vec_image){
   //---------------------------
 
   //For each sampler struct in binding struct search for image with same name in vec_image
@@ -85,7 +85,7 @@ void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vector
     Struct_vk_sampler* sampler = binding->vec_sampler[i];
 
     for(int j=0; j<vec_image.size(); j++){
-      Struct_vk_image* image = vec_image[j];
+      vk::structure::Struct_vk_image* image = vec_image[j];
 
       if(sampler->name == image->name){
         VkDescriptorImageInfo image_info = {};
@@ -113,7 +113,7 @@ void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vector
 
   //---------------------------
 }
-void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, Struct_vk_image* image){
+void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vk::structure::Struct_vk_image* image){
   //---------------------------
 
   Struct_vk_sampler* sampler = nullptr;

@@ -16,7 +16,7 @@ VK_image::VK_image(Struct_vulkan* struct_vulkan){
 VK_image::~VK_image(){}
 
 //Main function
-void VK_image::create_image(Struct_vk_image* image){
+void VK_image::create_image(vk::structure::Struct_vk_image* image){
   //---------------------------
 
   this->create_image_obj(image);
@@ -26,7 +26,7 @@ void VK_image::create_image(Struct_vk_image* image){
 
   //---------------------------
 }
-void VK_image::clean_image(Struct_vk_image* image){
+void VK_image::clean_image(vk::structure::Struct_vk_image* image){
   //---------------------------
 
   vkDestroySampler(struct_vulkan->device.device, image->sampler, nullptr);
@@ -40,7 +40,7 @@ void VK_image::clean_image(Struct_vk_image* image){
 }
 
 //Image vulkan creation
-void VK_image::create_image_obj(Struct_vk_image* image){
+void VK_image::create_image_obj(vk::structure::Struct_vk_image* image){
   //---------------------------
 
   VkImageCreateInfo image_info{};
@@ -65,7 +65,7 @@ void VK_image::create_image_obj(Struct_vk_image* image){
 
   //---------------------------
 }
-void VK_image::create_image_view(Struct_vk_image* image){
+void VK_image::create_image_view(vk::structure::Struct_vk_image* image){
   //---------------------------
 
   VkImageViewCreateInfo view_info{};
@@ -88,7 +88,7 @@ void VK_image::create_image_view(Struct_vk_image* image){
 
   //---------------------------
 }
-void VK_image::create_image_sampler(Struct_vk_image* texture){
+void VK_image::create_image_sampler(vk::structure::Struct_vk_image* texture){
   //---------------------------
 
   VkSamplerCreateInfo sampler_info{};
@@ -115,7 +115,7 @@ void VK_image::create_image_sampler(Struct_vk_image* texture){
 }
 
 //subfunction
-void VK_image::compute_mipmap(Struct_vk_image* image){
+void VK_image::compute_mipmap(vk::structure::Struct_vk_image* image){
   //---------------------------
 
   uint32_t max_level = static_cast<uint32_t>(std::floor(std::log2(std::max(image->width, image->height)))) + 1;
@@ -130,7 +130,7 @@ void VK_image::compute_mipmap(Struct_vk_image* image){
 
   //---------------------------
 }
-void VK_image::generate_mipmap(Struct_vk_image* image){
+void VK_image::generate_mipmap(vk::structure::Struct_vk_image* image){
   //---------------------------
 
 

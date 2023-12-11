@@ -1,7 +1,7 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <VK_struct/Struct_vk_image.h>
+#include <VK_struct/Namespace.h>
 
 class Struct_vulkan;
 class VK_memory;
@@ -16,17 +16,17 @@ public:
 
 public:
   //Main function
-  void create_image(Struct_vk_image* image);
-  void clean_image(Struct_vk_image* image);
+  void create_image(vk::structure::Struct_vk_image* image);
+  void clean_image(vk::structure::Struct_vk_image* image);
 
   //Image vulkan creation
-  void create_image_obj(Struct_vk_image* image);
-  void create_image_view(Struct_vk_image* image);
-  void create_image_sampler(Struct_vk_image* texture);
+  void create_image_obj(vk::structure::Struct_vk_image* image);
+  void create_image_view(vk::structure::Struct_vk_image* image);
+  void create_image_sampler(vk::structure::Struct_vk_image* texture);
 
   //Subfunction
-  void compute_mipmap(Struct_vk_image* image);
-  void generate_mipmap(Struct_vk_image* image);
+  void compute_mipmap(vk::structure::Struct_vk_image* image);
+  void generate_mipmap(vk::structure::Struct_vk_image* image);
 
 private:
   Struct_vulkan* struct_vulkan;

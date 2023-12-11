@@ -1,7 +1,7 @@
 #include "VK_color.h"
 
 #include <VK_main/Struct_vulkan.h>
-#include <VK_struct/Struct_vk_framebuffer.h>
+#include <VK_struct/Namespace.h>
 #include <VK_image/VK_image.h>
 
 
@@ -17,7 +17,7 @@ VK_color::VK_color(Struct_vulkan* struct_vulkan){
 VK_color::~VK_color(){}
 
 //Main function
-void VK_color::create_color_attachment(Struct_vk_image* color){
+void VK_color::create_color_attachment(vk::structure::Struct_vk_image* color){
   //---------------------------
 
   //Create frame color image

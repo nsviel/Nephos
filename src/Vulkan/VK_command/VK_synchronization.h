@@ -1,7 +1,8 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_frame.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
+#include <VK_struct/Struct_vk_frame.h>
 
 class Struct_vulkan;
 
@@ -16,9 +17,9 @@ public:
 public:
   //Main functions
   void init();
-  void init_frame_sync(Struct_vk_frame* frame);
+  void init_frame_sync(vk::structure::Struct_vk_frame* frame);
   void clean();
-  void clean_frame_sync(Struct_vk_frame* frame);
+  void clean_frame_sync(vk::structure::Struct_vk_frame* frame);
 
   //Synchronization object
   void create_semaphore(VkSemaphore& semaphore);

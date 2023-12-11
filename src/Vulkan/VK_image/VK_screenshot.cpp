@@ -26,7 +26,7 @@ VK_screenshot::VK_screenshot(Struct_vulkan* struct_vulkan){
 VK_screenshot::~VK_screenshot(){}
 
 //Main function
-void VK_screenshot::make_screenshot(Struct_vk_image* image){
+void VK_screenshot::make_screenshot(vk::structure::Struct_vk_image* image){
   //---------------------------
 
   //Create stagging buffer
@@ -58,7 +58,7 @@ void VK_screenshot::make_screenshot(Struct_vk_image* image){
 
   //---------------------------
 }
-void VK_screenshot::save_to_bin(Struct_vk_image* image){
+void VK_screenshot::save_to_bin(vk::structure::Struct_vk_image* image){
   //---------------------------
 
   //Create stagging buffer

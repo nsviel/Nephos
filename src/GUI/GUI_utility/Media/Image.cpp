@@ -50,7 +50,7 @@ void Image::draw_image_bin(string path){
 
 //Subfunction
 void Image::load_image_static(string path){
-  static Struct_vk_image* image = nullptr;
+  static vk::structure::Struct_vk_image* image = nullptr;
   //---------------------------
 
   if(image == nullptr){
@@ -64,7 +64,7 @@ void Image::load_image_static(string path){
   //---------------------------
 }
 void Image::load_image_dynamic(string path){
-  static Struct_vk_image* image;
+  static vk::structure::Struct_vk_image* image;
   //---------------------------
 
   data::Image struct_image = image::load_image(path);
@@ -76,7 +76,7 @@ void Image::load_image_dynamic(string path){
   //---------------------------
 }
 void Image::load_image_bin(string path){
-  static Struct_vk_image* image;
+  static vk::structure::Struct_vk_image* image;
   //---------------------------
 
   data::Image struct_image = image::load_image(path);
