@@ -6,8 +6,8 @@ XYZ_importer::XYZ_importer(){}
 XYZ_importer::~XYZ_importer(){}
 
 //Main function
-data::File* XYZ_importer::Loader(std::string path){
-  data::File* data = new data::File();
+utility::base::File* XYZ_importer::Loader(std::string path){
+  utility::base::File* data = new utility::base::File();
   //---------------------------
 
   data->name = info::get_name_from_path(path);

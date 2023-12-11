@@ -47,7 +47,7 @@ public:
 
 private:
   std::vector<std::pair<std::string, std::string>> list_camera_devices;
-  data::Video struct_video;
+  utility::base::Video struct_video;
   AVFormatContext* video_context = nullptr;
   AVCodecContext* codec_context;
   AVPacket* packet;

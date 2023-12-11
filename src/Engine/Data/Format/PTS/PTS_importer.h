@@ -21,8 +21,8 @@ public:
 
 public:
   //Main functions
-  data::File* Loader(std::string pathFile);
-  data::File* Loader(std::string pathFile, int lmin, int lmax);
+  utility::base::File* Loader(std::string pathFile);
+  utility::base::File* Loader(std::string pathFile, int lmin, int lmax);
 
   bool Exporter(std::string pathFile, eng::structure::Object* object);
 
@@ -36,7 +36,7 @@ private:
   void Loader_init();
   void Loader_nbColumns();
   void Loader_configuration();
-  void Loader_data(data::File* data_out, int FILE_config);
+  void Loader_data(utility::base::File* data_out, int FILE_config);
 
   //Loader sub-functions
   bool check_header(std::string pathFile);

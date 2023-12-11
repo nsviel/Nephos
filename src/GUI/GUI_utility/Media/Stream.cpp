@@ -22,7 +22,7 @@ Stream::Stream(GUI* gui){
 Stream::~Stream(){}
 
 //Main function
-void Stream::draw_stream(data::Image* image, ImVec2 panel_size){
+void Stream::draw_stream(utility::base::Image* image, ImVec2 panel_size){
   //---------------------------
 
   if(image->buffer != nullptr){
@@ -34,7 +34,7 @@ void Stream::draw_stream(data::Image* image, ImVec2 panel_size){
 }
 
 //Subfunction
-void Stream::convert_data_into_texture(data::Image* image){
+void Stream::convert_data_into_texture(utility::base::Image* image){
   //---------------------------
 
   if(vk_image == nullptr){

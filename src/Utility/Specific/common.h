@@ -40,9 +40,6 @@ using namespace glm;
 #include <Utility/Function/Timer/fct_chrono.h> //For debuging
 #include <Utility/Function/Timer/fct_timer.h>  //For time profilling
 
-//Data
-#include <Utility/Base/Namespace.h>
-
 //GUI
 #include <imgui/core/imgui.h>
 #include <imgui/core/imgui_impl_glfw.h>

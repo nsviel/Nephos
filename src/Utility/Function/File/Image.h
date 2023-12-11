@@ -8,7 +8,7 @@
 namespace image{
   //---------------------------
 
-  data::Image load_image(std::string path);
+  utility::base::Image load_image(std::string path);
 
   //---------------------------
 }

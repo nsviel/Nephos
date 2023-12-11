@@ -54,7 +54,7 @@ void Image::load_image_static(string path){
   //---------------------------
 
   if(image == nullptr){
-    data::Image struct_image = image::load_image(path);
+    utility::base::Image struct_image = image::load_image(path);
     struct_image.format = "R8G8B8A8_SRGB";
     image = vk_texture->load_texture(&struct_image);
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
@@ -67,7 +67,7 @@ void Image::load_image_dynamic(string path){
   static vk::structure::Image* image;
   //---------------------------
 
-  data::Image struct_image = image::load_image(path);
+  utility::base::Image struct_image = image::load_image(path);
   struct_image.format = "R8G8B8A8_SRGB";
   image = vk_texture->load_texture(&struct_image);
   VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
@@ -79,7 +79,7 @@ void Image::load_image_bin(string path){
   static vk::structure::Image* image;
   //---------------------------
 
-  data::Image struct_image = image::load_image(path);
+  utility::base::Image struct_image = image::load_image(path);
   struct_image.format = "R8G8B8A8_SRGB";
   image = vk_texture->load_texture(&struct_image);
   VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);

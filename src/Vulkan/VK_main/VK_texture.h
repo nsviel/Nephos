@@ -18,9 +18,9 @@ public:
 
 public:
   //Main functions
-  vk::structure::Image* load_texture(data::Image* image);
+  vk::structure::Image* load_texture(utility::base::Image* image);
   void update_texture(vk::structure::Image* image);
-  VkFormat find_texture_format(data::Image* image);
+  VkFormat find_texture_format(utility::base::Image* image);
 
   //Texture cleaning
   void clean_texture(vk::structure::Entity* object);

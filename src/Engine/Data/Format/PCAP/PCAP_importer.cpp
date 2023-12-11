@@ -59,11 +59,11 @@ bool count_packets(const PDU &){
 }
 
 //Main function
-data::File* PCAP_importer::Loader(std::string path){
+utility::base::File* PCAP_importer::Loader(std::string path){
   file_packets.clear();
   //---------------------------
 
-  data::File* data = new data::File();
+  utility::base::File* data = new utility::base::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
 
@@ -100,7 +100,7 @@ data::File* PCAP_importer::Loader(std::string path){
   return data;
 }
 
-void PCAP_importer::Loader_vlp16(data::File* data, std::string path){
+void PCAP_importer::Loader_vlp16(utility::base::File* data, std::string path){
   Capture_frame frameManager;
   Parser_VLP16 udpManager;
   //---------------------------
@@ -108,12 +108,12 @@ void PCAP_importer::Loader_vlp16(data::File* data, std::string path){
   int cpt = 0;
   for(int i=0; i<file_packets.size(); i++){
 
-    data::File* cloud = udpManager.parse_packet(file_packets[i]);
+    utility::base::File* cloud = udpManager.parse_packet(file_packets[i]);
     bool frame_rev = frameManager.build_frame(cloud);
 
     if(frame_rev){
-      data::File* frame = frameManager.get_endedFrame();
-      data::File* frame_data = new data::File();
+      utility::base::File* frame = frameManager.get_endedFrame();
+      utility::base::File* frame_data = new utility::base::File();
 
       frame_data->name = "frame_" + std::to_string(cpt); cpt++;
       frame_data->path_file = path;
@@ -133,18 +133,18 @@ void PCAP_importer::Loader_vlp16(data::File* data, std::string path){
 
   //---------------------------
 }
-void PCAP_importer::Loader_hdl32(data::File* data, std::string path){
+void PCAP_importer::Loader_hdl32(utility::base::File* data, std::string path){
   Capture_frame frameManager;
   Parser_HDL32 udpManager;
   //---------------------------
 
   for(int i=0; i<file_packets.size(); i++){
-    data::File* cloud = udpManager.parse_packet(file_packets[i]);
+    utility::base::File* cloud = udpManager.parse_packet(file_packets[i]);
     bool frame_rev = frameManager.build_frame(cloud);
 
     if(frame_rev){
-      data::File* frame = frameManager.get_endedFrame();
-      data::File* frame_data = new data::File();
+      utility::base::File* frame = frameManager.get_endedFrame();
+      utility::base::File* frame_data = new utility::base::File();
 
       frame_data->path_file = path;
       frame_data->nb_element = frame->xyz.size();

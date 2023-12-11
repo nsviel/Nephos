@@ -118,7 +118,7 @@ void Capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
   K4A_image* data_color = &device->data.color;
   //---------------------------
 
-  data::Image struct_image;
+  utility::base::Image struct_image;
   struct_image.buffer = data_color->buffer;
   struct_image.width = data_color->width;
   struct_image.height = data_color->height;
@@ -135,7 +135,7 @@ void Capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
 
   uint8_t* new_buffer = k4a_depth->convert_depth_into_color(device);
 
-  data::Image struct_image;
+  utility::base::Image struct_image;
   struct_image.buffer = new_buffer;
   struct_image.width = data_depth->width;
   struct_image.height = data_depth->height;
@@ -154,7 +154,7 @@ void Capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
 
   uint8_t* new_buffer = k4a_infrared->convert_ir_into_color(device);
 
-  data::Image struct_image;
+  utility::base::Image struct_image;
   struct_image.buffer = new_buffer;
   struct_image.width = data_ir->width;
   struct_image.height = data_ir->height;

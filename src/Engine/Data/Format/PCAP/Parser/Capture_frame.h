@@ -17,16 +17,16 @@ public:
 
 public:
   //Main functions
-  bool build_frame(data::File* cloud);
+  bool build_frame(utility::base::File* cloud);
   void reset_frame();
 
   //Subfunctions
-  void add_cloudsToFrame(data::File* cloud);
-  void end_cloudsToFrame(data::File* cloud, int index);
+  void add_cloudsToFrame(utility::base::File* cloud);
+  void end_cloudsToFrame(utility::base::File* cloud, int index);
 
-  inline data::File* get_endedFrame(){return frame_ended;}
+  inline utility::base::File* get_endedFrame(){return frame_ended;}
 
 private:
-  data::File* frame_onrun;
-  data::File* frame_ended;
+  utility::base::File* frame_onrun;
+  utility::base::File* frame_ended;
 };

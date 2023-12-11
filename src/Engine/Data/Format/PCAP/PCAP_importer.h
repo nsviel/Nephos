@@ -20,10 +20,10 @@ public:
   ~PCAP_importer();
 
 public:
-  data::File* Loader(std::string pathFile);
+  utility::base::File* Loader(std::string pathFile);
 
-  void Loader_vlp16(data::File* data, std::string pathFile);
-  void Loader_hdl32(data::File* data, std::string pathFile);
+  void Loader_vlp16(utility::base::File* data, std::string pathFile);
+  void Loader_hdl32(utility::base::File* data, std::string pathFile);
   int get_file_length(std::string pathFile);
 
   inline void set_lidar_model(std::string value){this->LiDAR_model = value;}

@@ -21,7 +21,7 @@ public:
 
 public:
   //Main functions
-  data::File* Loader(std::string pathFile);
+  utility::base::File* Loader(std::string pathFile);
 
   //Subfunction
   void load_file(std::string path);

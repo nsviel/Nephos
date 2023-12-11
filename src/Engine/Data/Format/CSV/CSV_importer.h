@@ -14,9 +14,9 @@ public:
   ~CSV_importer();
 
 public:
-  data::File* Loader(std::string pathFile);
+  utility::base::File* Loader(std::string pathFile);
 
 private:
   //Datatypes
-  data::File* data_out;
+  utility::base::File* data_out;
 };
