@@ -1,6 +1,6 @@
 #include "Profiler.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <Vulkan.h>
 #include <VK_main/VK_info.h>
 #include <Engine.h>

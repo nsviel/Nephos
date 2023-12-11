@@ -1,6 +1,6 @@
 #include "Configuration.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <UTL_capture/UTL_kinect/Kinect.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 

@@ -1,6 +1,6 @@
 #include "Init.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <Engine.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_scene.h>

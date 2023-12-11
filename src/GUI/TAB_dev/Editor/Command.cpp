@@ -1,6 +1,6 @@
 #include "Command.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <image/IconsFontAwesome5.h>
 #include <TAB_dev/Tab/Namespace.h>
 

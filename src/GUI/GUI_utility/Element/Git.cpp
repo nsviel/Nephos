@@ -1,6 +1,6 @@
 #include "Git.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <GUI_main/Style/GUI_font.h>
 #include <UTL_git/UTL_git.h>
 #include <image/IconsFontAwesome5.h>

@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <Engine.h>
 #include <ENG_camera/Struct_camera.h>
 

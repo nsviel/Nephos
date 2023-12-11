@@ -1,6 +1,6 @@
 #include "Stream.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <Vulkan.h>
 #include <VK_main/VK_texture.h>
 #include <GUI_main/Render/Render.h>

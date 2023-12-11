@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <Vulkan.h>
 #include <GUI_main/Style/GUI_font.h>
 #include <image/IconsFontAwesome5.h>

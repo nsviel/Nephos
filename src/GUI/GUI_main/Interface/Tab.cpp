@@ -1,6 +1,6 @@
 #include "Tab.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <Vulkan.h>
 #include <image/IconsFontAwesome5.h>
 

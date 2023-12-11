@@ -1,7 +1,7 @@
 #include "APP_main.h"
 #include "../Config.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <Engine.h>
 #include <Utility.h>
 #include <iostream>

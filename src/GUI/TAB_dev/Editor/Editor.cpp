@@ -1,6 +1,6 @@
 #include "Editor.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 
 
 namespace gui::dev::editor{

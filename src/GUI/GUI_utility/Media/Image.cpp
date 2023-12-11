@@ -1,6 +1,6 @@
 #include "Image.h"
 
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <Vulkan.h>
 #include <GUI_main/Render/Render.h>
 #include <UTL_file/Image.h>

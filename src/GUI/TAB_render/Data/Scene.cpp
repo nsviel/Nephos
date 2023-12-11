@@ -1,7 +1,7 @@
 #include "Scene.h"
 
 #include <Engine.h>
-#include <GUI.h>
+#include <Node/GUI.h>
 #include <GUI_main/Interface/Tab.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_database.h>
