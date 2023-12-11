@@ -6,12 +6,12 @@ class Engine;
 class GUI;
 
 
-class APP_main
+class App_main
 {
 public:
   //Constructor / Destructor
-  APP_main();
-  ~APP_main();
+  App_main();
+  ~App_main();
 
 public:
   //Main functions

@@ -1,4 +1,4 @@
-#include "APP_main.h"
+#include "App_main.h"
 #include "../Config.h"
 
 #include <Node/GUI.h>
@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-APP_main::APP_main(){
+App_main::App_main(){
   //---------------------------
 
   this->config = new Config();
@@ -18,10 +18,10 @@ APP_main::APP_main(){
 
   //---------------------------
 }
-APP_main::~APP_main(){}
+App_main::~App_main(){}
 
 //Main function
-void APP_main::run(){
+void App_main::run(){
   //---------------------------
 
   this->init();
@@ -32,7 +32,7 @@ void APP_main::run(){
 }
 
 //Subfunction
-void APP_main::init(){
+void App_main::init(){
   //---------------------------
 
   engine->init();
@@ -40,7 +40,7 @@ void APP_main::init(){
 
   //---------------------------
 }
-void APP_main::loop(){
+void App_main::loop(){
   //---------------------------
 
   auto start_time = std::chrono::steady_clock::now();
@@ -54,7 +54,7 @@ void APP_main::loop(){
 
   //---------------------------
 }
-void APP_main::end(){
+void App_main::end(){
   //---------------------------
 
   gui->exit();

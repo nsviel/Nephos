@@ -4,11 +4,9 @@
 #include <string>
 
 
-namespace eng::structure{
-
 struct Struct_camera{
 
-  Struct_camera();
+  //Struct_camera();
   void reset();
 
   glm::vec2 pos = glm::vec2(0.0f);
@@ -42,5 +40,3 @@ struct Struct_camera{
   glm::mat4 mat_view = glm::mat4(1);
   glm::mat4 mat_vp = glm::mat4(1);
 };
-
-}

@@ -2,7 +2,7 @@
 
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
-#include <Engine/ENG_camera/Struct_camera.h>
+#include <Engine/Base/Struct_camera.h>
 
 
 namespace gui::engine{

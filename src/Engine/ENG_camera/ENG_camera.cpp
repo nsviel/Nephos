@@ -4,6 +4,7 @@
 #include "Projection/CAM_zoom.h"
 #include "Projection/CAM_proj.h"
 
+#include <Engine/Base/Struct_camera.h>
 #include <Engine/Node/Engine.h>
 #include <Utility/Node/Utility.h>
 
@@ -88,7 +89,7 @@ void ENG_camera::loop_cam_mouse(){
 void ENG_camera::reset(){
   //---------------------------
 
-  camera->reset();
+  //camera->reset();
 
   //---------------------------
 }

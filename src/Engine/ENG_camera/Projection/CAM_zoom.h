@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Struct_camera.h"
+#include <Engine/Base/Struct_camera.h>
 #include <Utility/UTL_specific/common.h>
 
 class UTL_window;

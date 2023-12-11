@@ -1,7 +1,7 @@
 #include "EDL_shader.h"
 
 #include <Engine/Node/Engine.h>
-#include <Engine/ENG_camera/Struct_camera.h>
+#include <Engine/Base/Struct_camera.h>
 #include <Utility/Node/Utility.h>
 #include <Utility/UTL_window/UTL_window.h>
 

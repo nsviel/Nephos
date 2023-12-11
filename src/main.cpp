@@ -1,11 +1,11 @@
-#include "Application/APP_main.h"
+#include "Application/App_main.h"
 
 #include <iostream>
 #include <stdexcept>
 
 
 int main(){
-  APP_main app_main;
+  App_main app_main;
   //---------------------------
 
   std::cout<<"--- \033[1;34mBegin program\033[0m ---"<<std::endl;

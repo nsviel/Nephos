@@ -1,8 +1,6 @@
 #include "Struct_camera.h"
 
 
-namespace eng::structure{
-
 Struct_camera::Struct_camera(){
   //---------------------------
 
@@ -30,6 +28,4 @@ void Struct_camera::reset(){
   this->mode = "first_person";
 
   //---------------------------
-}
-
 }

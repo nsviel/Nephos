@@ -2,7 +2,7 @@
 
 #include "PSR_param.h"
 #include <Engine/ENG_shader/Base/BASE_shader.h>
-#include <Engine/ENG_camera/Struct_camera.h>
+#include <Engine/Base/Struct_camera.h>
 #include <Utility/UTL_specific/common.h>
 
 class Engine;
