@@ -2,7 +2,6 @@
 
 #include <Utility/Capture/Kinect/Device/K4A_device.h>
 #include <Utility/Capture/Kinect/Device/K4A_swarm.h>
-#include <Utility/Capture/Kinect/Thread/K4A_connection.h>
 
 
 namespace util::kinect{
@@ -13,7 +12,7 @@ Kinect::Kinect(){
 
   this->struct_k4a_swarm = new util::kinect::structure::Swarm();
   this->k4a_swarm = new K4A_swarm(struct_k4a_swarm);
-  this->k4a_connection = new K4A_connection(k4a_swarm);
+  this->k4a_connection = new util::kinect::thread::Connection(k4a_swarm);
 
   //---------------------------
 }

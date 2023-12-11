@@ -1,12 +1,12 @@
 #pragma once
 
 #include <Utility/Capture/Kinect/Structure/Namespace.h>
+#include <Utility/Capture/Kinect/Thread/Namespace.h>
 #include <Utility/Capture/Kinect/Device/K4A_device.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Capture/Kinect/Namespace.h>
 
 class K4A_swarm;
-class K4A_connection;
 
 
 namespace util::kinect{
@@ -33,7 +33,7 @@ public:
 private:
   util::kinect::structure::Swarm* struct_k4a_swarm;
   K4A_swarm* k4a_swarm;
-  K4A_connection* k4a_connection;
+  util::kinect::thread::Connection* k4a_connection;
 };
 
 }

@@ -5,12 +5,14 @@
 class K4A_swarm;
 
 
-class K4A_connection
+namespace util::kinect::thread{
+
+class Connection
 {
 public:
   //Constructor / Destructor
-  K4A_connection(K4A_swarm* k4a_swarm);
-  ~K4A_connection();
+  Connection(K4A_swarm* k4a_swarm);
+  ~Connection();
 
 public:
   //Main function
@@ -29,3 +31,5 @@ private:
   std::thread thread;
   bool thread_running = false;
 };
+
+}

@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Utility/Capture/Kinect/Kinect.h>
+#include <Utility/Capture/Kinect/Thread/Connection.h>
 
 
 namespace util::kinect::thread{
   //---------------------------
 
-  class Kinect;
+  class Connection;
 
   //---------------------------
 }
