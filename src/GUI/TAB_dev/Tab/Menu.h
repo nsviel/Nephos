@@ -1,7 +1,7 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <TAB_dev/Tab_nsp.h>
+#include <TAB_dev/Tab/Namespace.h>
 
 
 namespace gui::dev::tab{

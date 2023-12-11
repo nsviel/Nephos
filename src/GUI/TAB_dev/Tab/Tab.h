@@ -1,6 +1,6 @@
 #pragma once
 
-#include <TAB_dev/Tab_nsp.h>
+#include <TAB_dev/Tab/Namespace.h>
 #include <UTL_specific/common.h>
 
 class GUI;
@@ -29,8 +29,8 @@ private:
   GUI* gui;
   gui::dev::tab::Panel* panel;
   gui::dev::tab::Menu* menu;
-  gui::dev::panel::Command* command;
-  gui::dev::panel::Database* database;
+  gui::dev::editor::Command* command;
+  gui::dev::data::Database* database;
 };
 
 }

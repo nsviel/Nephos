@@ -8,7 +8,7 @@ class Struct_vulkan;
 class UTL_database;
 
 
-namespace gui::dev::panel{
+namespace gui::dev::data{
 
 class Database : public gui::base::Panel
 {

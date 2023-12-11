@@ -2,10 +2,10 @@
 
 #include <GUI.h>
 #include <image/IconsFontAwesome5.h>
-#include <TAB_dev/Tab_nsp.h>
+#include <TAB_dev/Tab/Namespace.h>
 
 
-namespace gui::dev::panel{
+namespace gui::dev::editor{
 
 //Constructor / Destructor
 Command::Command(GUI* gui){

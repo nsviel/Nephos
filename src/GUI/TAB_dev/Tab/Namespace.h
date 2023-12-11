@@ -1,8 +1,8 @@
 #pragma once
 
-#include <TAB_dev/DEV_tab/Panel.h>
-#include <TAB_dev/DEV_tab/Menu.h>
-#include <TAB_dev/DEV_tab/Tab.h>
+#include <TAB_dev/Tab/Panel.h>
+#include <TAB_dev/Tab/Menu.h>
+#include <TAB_dev/Tab/Tab.h>
 
 
 namespace gui::dev::tab{

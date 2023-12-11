@@ -1,11 +1,11 @@
 #pragma once
 
-#include <TAB_dev/Tab_nsp.h>
+#include <TAB_dev/Tab/Namespace.h>
 #include <UTL_specific/common.h>
 
 class GUI;
 
-namespace gui::dev::panel{
+namespace gui::dev::editor{
 
 
 class Command

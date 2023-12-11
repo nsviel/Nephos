@@ -4,7 +4,7 @@
 #include <UTL_database/UTL_database.h>
 
 
-namespace gui::dev::panel{
+namespace gui::dev::data{
 
 //Constructor / Destructor
 Database::Database(GUI* gui, bool* show_window, string name) : Panel(show_window, name){

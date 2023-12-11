@@ -3,7 +3,7 @@
 #include <GUI.h>
 
 
-namespace gui::dev::panel{
+namespace gui::dev::editor{
 
 //Constructor / Destructor
 Editor::Editor(GUI* gui, bool* show_window, string name) : Panel(show_window, name){

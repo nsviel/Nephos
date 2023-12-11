@@ -8,7 +8,7 @@ class GUI;
 class Text;
 
 
-namespace gui::dev::panel{
+namespace gui::dev::editor{
 
 class Editor : public gui::base::Panel
 {
