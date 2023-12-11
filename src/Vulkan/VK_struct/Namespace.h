@@ -13,13 +13,17 @@
 #include <VK_struct/Info.h>
 #include <VK_struct/Instance.h>
 #include <VK_struct/Parameter.h>
-
 #include <VK_struct/Physical_device.h>
 #include <VK_struct/Pipeline.h>
 #include <VK_struct/Pool.h>
 #include <VK_struct/Render.h>
 #include <VK_struct/Renderpass.h>
 #include <VK_struct/Subpass.h>
+
+#include <VK_struct/Struct_vk_swapchain.h>
+#include <VK_struct/Struct_vk_synchro.h>
+#include <VK_struct/Struct_vk_viewport.h>
+#include <VK_struct/Struct_vk_window.h>
 
 
 namespace vk::structure{
@@ -38,13 +42,17 @@ namespace vk::structure{
   class Info;
   class Instance;
   class Parameter;
-
   class Physical_device;
   class Pipeline;
   class Pool;
   class Render;
   class Renderpass;
   class Subpass;
+
+  class Struct_vk_swapchain;
+  class Struct_vk_synchro;
+  class Struct_vk_viewport;
+  class Struct_vk_window;
 
   //---------------------------
 }

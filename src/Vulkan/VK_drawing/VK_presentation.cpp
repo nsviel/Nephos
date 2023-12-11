@@ -19,7 +19,7 @@ VK_presentation::~VK_presentation(){}
 
 //Main function
 void VK_presentation::acquire_next_image(VkSemaphore& semaphore){
-  Struct_vk_swapchain* swapchain = &struct_vulkan->swapchain;
+  vk::structure::Struct_vk_swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
   //Acquiring an image from the swap chain
@@ -44,7 +44,7 @@ void VK_presentation::image_presentation(VkSemaphore& semaphore, VkFence& fence)
 
 //Subfunction
 void VK_presentation::submit_presentation(VkSemaphore& semaphore){
-  Struct_vk_swapchain* swapchain = &struct_vulkan->swapchain;
+  vk::structure::Struct_vk_swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
   VkPresentInfoKHR presentation_info{};
@@ -69,7 +69,7 @@ void VK_presentation::submit_presentation(VkSemaphore& semaphore){
   //---------------------------
 }
 void VK_presentation::next_frame_ID(){
-  Struct_vk_swapchain* swapchain = &struct_vulkan->swapchain;
+  vk::structure::Struct_vk_swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
   int current_ID = swapchain->frame_presentation_ID;

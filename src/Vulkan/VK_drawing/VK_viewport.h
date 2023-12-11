@@ -1,6 +1,5 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_viewport.h>
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
@@ -20,7 +19,7 @@ public:
   void update_viewport();
 
   //Subfunction
-  Struct_vk_viewport* create_viewport();
+  vk::structure::Struct_vk_viewport* create_viewport();
 
 private:
   Struct_vulkan* struct_vulkan;

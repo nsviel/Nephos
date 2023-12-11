@@ -4,6 +4,8 @@
 #include <vulkan/vulkan.h>
 
 
+namespace vk::structure{
+
 struct Struct_vk_viewport{
   //---------------------------
 
@@ -12,3 +14,5 @@ struct Struct_vk_viewport{
 
   //---------------------------
 };
+
+}
