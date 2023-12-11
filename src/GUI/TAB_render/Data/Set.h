@@ -1,22 +1,21 @@
 #pragma once
 
-#include <GUI_utility/Base/Namespace.h>
 #include <UTL_specific/common.h>
 
 class GUI;
-class Panel;
 
 
 namespace gui::rnd::panel{
 
-class Set : public gui::base::Panel
+class Set
 {
 public:
   //Constructor / Destructor
-  Set(GUI* gui, bool* show_window, string name);
+  Set(GUI* gui, bool* show_window);
   ~Set();
 
   //Main function
+  void run_panel();
   void design_panel();
 
   //Sub functions

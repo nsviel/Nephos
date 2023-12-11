@@ -7,7 +7,7 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-Set::Set(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Set::Set(GUI* gui, bool* show_window){
   //---------------------------
 
   this->panel_show = show_window;
@@ -19,6 +19,22 @@ Set::Set(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
 Set::~Set(){}
 
 //Main function
+void Set::run_panel(){
+  //---------------------------
+
+  if(*panel_show){
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    if(ImGui::Begin(panel_name.c_str(), panel_show, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+
+      this->design_panel();
+
+      ImGui::End();
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
 void Set::design_panel(){
   //---------------------------
 
