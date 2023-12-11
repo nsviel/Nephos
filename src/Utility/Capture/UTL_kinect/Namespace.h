@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Capture/UTL_kinect/Kinect.h>
+#include <Utility/Capture/Kinect/Kinect.h>
 
 
 namespace util::kinect{

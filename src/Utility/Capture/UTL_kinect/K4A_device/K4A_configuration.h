@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
-#include <Utility/Capture/UTL_kinect/K4A_struct/Struct_k4a_info.h>
+#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_info.h>
 
 class K4A_device;
 

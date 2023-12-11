@@ -3,8 +3,8 @@
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <GUI/GUI_utility/Media/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Capture/UTL_kinect/K4A_device/K4A_device.h>
-#include <Utility/Capture/UTL_kinect/Namespace.h>
+#include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
+#include <Utility/Capture/Kinect/Namespace.h>
 
 class GUI;
 class K4A_depth;

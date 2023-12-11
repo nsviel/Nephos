@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Capture/UTL_kinect/K4A_device/K4A_device.h>
+#include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
 #include <Utility/Specific/common.h>
 
 class Struct_k4a_swarm;
