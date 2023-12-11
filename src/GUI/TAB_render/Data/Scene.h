@@ -3,7 +3,7 @@
 #include <GUI_utility/Base_nsp.h>
 #include <UTL_specific/common.h>
 #include <TAB_render/Data/Namespace.h>
-#include <TAB_render/Tab_nsp.h>
+#include <TAB_render/RND_tab/Namespace.h>
 
 class GUI;
 class Set;
