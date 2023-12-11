@@ -28,8 +28,6 @@ public:
   inline gui::rnd::tab::Panel* get_rnd_panel(){return gui_render_panel;}
   inline gui::engine::Shader* get_rnd_shader(){return rnd_shader;}
   inline gui::engine::Profiler* get_rnd_profiler(){return rnd_profiler;}
-  inline gui::rnd::panel::Object* get_rnd_object(){return rnd_object;}
-  inline gui::rnd::panel::Set* get_rnd_set(){return rnd_set;}
   inline gui::engine::Camera* get_rnd_camera(){return rnd_camera;}
   inline gui::engine::Render* get_rnd_render(){return rnd_render;}
   inline gui::rnd::panel::Scene* get_rnd_scene(){return rnd_scene;}
@@ -44,11 +42,9 @@ private:
   gui::engine::Profiler* rnd_profiler;
   gui::rnd::panel::Scene* rnd_scene;
   gui::engine::Render* rnd_render;
-  gui::rnd::panel::Object* rnd_object;
   gui::engine::Camera* rnd_camera;
   gui::kinect::Capture* rnd_capture;
   gui::kinect::Kinect_panel* rnd_kinect;
-  gui::rnd::panel::Set* rnd_set;
 };
 
 }

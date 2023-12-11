@@ -17,12 +17,12 @@ Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
   Tab* gui_tab = gui->get_gui_tab();
-  gui::rnd::tab::Tab* rnd_panel = gui_tab->get_rnd_tab();
+  gui::rnd::tab::Tab* rnd_tab = gui_tab->get_rnd_tab();
   this->eng_database = eng_data->get_eng_database();
-  this->rnd_panel = rnd_panel->get_rnd_panel();
+  this->rnd_panel = rnd_tab->get_rnd_panel();
   this->show_window = show_window;
-  this->gui_set = rnd_panel->get_rnd_set();
-  this->gui_object = rnd_panel->get_rnd_object();
+  this->gui_set = new gui::rnd::panel::Set(gui, &rnd_panel->show_set, "Set");
+  this->gui_object = new gui::rnd::panel::Object(gui, &rnd_panel->show_object, "Object");
 
   //---------------------------
 }
@@ -31,6 +31,9 @@ Scene::~Scene(){}
 //Main function
 void Scene::run_panel(){
   //---------------------------
+
+  gui_object->run_panel();
+  gui_set->run_panel();
 
   if(*show_window){
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));

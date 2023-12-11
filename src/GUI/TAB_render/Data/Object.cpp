@@ -37,7 +37,7 @@ void Object::design_panel(){
 void Object::object_info(data::Object* object){
   //---------------------------
 
-  this->set_name("data::Object " + object->name);
+  this->set_name("Object " + object->name);
 
   //---------------------------
 }
