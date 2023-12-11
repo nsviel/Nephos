@@ -4,6 +4,8 @@
 #include <Utility/Specific/common.h>
 
 
+namespace util::kinect::data{
+
 class K4A_depth
 {
 public:
@@ -18,3 +20,5 @@ public:
 
 private:
 };
+
+}

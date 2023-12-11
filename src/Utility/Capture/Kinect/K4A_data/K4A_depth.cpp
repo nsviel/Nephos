@@ -1,6 +1,8 @@
 #include "K4A_depth.h"
 
 
+namespace util::kinect::data{
+
 //Constructor / Destructor
 K4A_depth::K4A_depth(){
   //---------------------------
@@ -68,4 +70,6 @@ void K4A_depth::find_depth_mode_range(K4A_device* device){
   }
 
   //---------------------------
+}
+
 }
