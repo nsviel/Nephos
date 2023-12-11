@@ -16,12 +16,12 @@ using MyFile = data::File;
 
 namespace eng::data{
 
-class ENG_format
+class Format
 {
 public:
   //Constructor / Destructor
-  ENG_format();
-  ~ENG_format();
+  Format();
+  ~Format();
 
 public:
   MyFile* get_data_from_file(std::string path);

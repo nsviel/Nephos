@@ -1,5 +1,5 @@
 #include "Loader.h"
-#include "../ENG_format/ENG_format.h"
+#include "../Format/Format.h"
 
 #include <Utility/UTL_base/Namespace.h>
 #include <Utility/UTL_file/Directory.h>
@@ -13,7 +13,7 @@ Loader::Loader(eng::data::Node* eng_data){
   //---------------------------
 
   this->eng_scene = eng_data->get_eng_scene();
-  this->eng_format = new eng::data::ENG_format();
+  this->eng_format = new eng::data::Format();
 
   this->ID = 0;
   this->path_current_dir = "";

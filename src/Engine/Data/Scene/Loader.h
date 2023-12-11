@@ -16,7 +16,7 @@ using MyFile = data::File;
 
 namespace eng::data{
 class Scene;
-class ENG_format;
+class Format;
 
 
 class Loader
@@ -36,7 +36,7 @@ public:
   void transfert_data(eng::structure::Object* object, MyFile* file_data);
 
 private:
-  eng::data::ENG_format* eng_format;
+  eng::data::Format* eng_format;
   eng::data::Scene* eng_scene;
 
   std::string path_current_dir;

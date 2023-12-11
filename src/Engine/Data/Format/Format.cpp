@@ -1,4 +1,4 @@
-#include "ENG_format.h"
+#include "Format.h"
 #include "PLY/PLY_importer.h"
 #include "OBJ/OBJ_importer.h"
 #include "CSV/CSV_importer.h"
@@ -11,7 +11,7 @@
 namespace eng::data{
 
 //Constructor / Destructor
-ENG_format::ENG_format(){
+Format::Format(){
   //---------------------------
 
   this->ply_import = new PLY_importer();
@@ -24,7 +24,7 @@ ENG_format::ENG_format(){
 
   //---------------------------
 }
-ENG_format::~ENG_format(){
+Format::~Format(){
   //---------------------------
 
   delete ply_import;
@@ -39,7 +39,7 @@ ENG_format::~ENG_format(){
 }
 
 //Main functions
-MyFile* ENG_format::get_data_from_file(std::string path){
+MyFile* Format::get_data_from_file(std::string path){
   MyFile* data;
   //---------------------------
 
