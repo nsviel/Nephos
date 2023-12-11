@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
-#include <TAB_dev/DEV_editor/Namespace.h>
-#include <TAB_dev/DEV_data/Namespace.h>
+#include <TAB_dev/Editor/Namespace.h>
+#include <TAB_dev/Data/Namespace.h>
 #include <TAB_dev/Tab/Namespace.h>
 
 

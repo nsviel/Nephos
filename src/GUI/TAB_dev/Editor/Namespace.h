@@ -1,7 +1,7 @@
 #pragma once
 
-#include <TAB_dev/DEV_editor/Editor.h>
-#include <TAB_dev/DEV_editor/Command.h>
+#include <TAB_dev/Editor/Editor.h>
+#include <TAB_dev/Editor/Command.h>
 
 
 namespace gui::dev::editor{
