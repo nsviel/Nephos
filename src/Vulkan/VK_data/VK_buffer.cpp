@@ -34,7 +34,7 @@ void VK_buffer::clean_buffers(Struct_vk_entity* data){
 
   //---------------------------
 }
-void VK_buffer::clean_buffer(Struct_vk_buffer* buffer){
+void VK_buffer::clean_buffer(vk::structure::Buffer* buffer){
   //---------------------------
 
   if(buffer->vbo != VK_NULL_HANDLE){

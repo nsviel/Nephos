@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_buffer.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/Struct_vk_image.h>
 #include <UTL_specific/common.h>
 
@@ -23,9 +23,9 @@ public:
   void copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer);
 
   //Buffer GPU function
-  void transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec2>& vertices);
-  void transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec3>& vertices);
-  void transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec4>& vertices);
+  void transfert_buffer_to_gpu(vk::structure::Buffer* buffer, vector<vec2>& vertices);
+  void transfert_buffer_to_gpu(vk::structure::Buffer* buffer, vector<vec3>& vertices);
+  void transfert_buffer_to_gpu(vk::structure::Buffer* buffer, vector<vec4>& vertices);
   void copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
 
   //Subfunction

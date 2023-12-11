@@ -3,7 +3,9 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_vk_buffer{
+namespace vk::structure{
+
+struct Buffer{
   //---------------------------
 
   VkBuffer vbo = VK_NULL_HANDLE;
@@ -11,3 +13,5 @@ struct Struct_vk_buffer{
 
   //---------------------------
 };
+
+}

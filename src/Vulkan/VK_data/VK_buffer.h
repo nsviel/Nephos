@@ -18,7 +18,7 @@ public:
   //Main functions
   void create_buffers(Struct_vk_entity* data);
   void clean_buffers(Struct_vk_entity* data);
-  void clean_buffer(Struct_vk_buffer* buffer);
+  void clean_buffer(vk::structure::Buffer* buffer);
 
 private:
   Struct_vulkan* struct_vulkan;

@@ -2,7 +2,7 @@
 
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_renderpass.h>
-#include <VK_struct/Struct_vk_command.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/Struct_vk_entity.h>
 #include <UTL_specific/common.h>
 

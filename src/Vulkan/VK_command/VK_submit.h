@@ -2,7 +2,7 @@
 
 #include <VK_struct/Struct_vk_framebuffer.h>
 #include <VK_struct/Struct_vk_renderpass.h>
-#include <VK_struct/Struct_vk_command.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/Struct_vk_swapchain.h>
 #include <UTL_specific/common.h>
 
@@ -19,7 +19,7 @@ public:
 public:
   //Main functions
   void submit_command_graphics(VkCommandBuffer command);
-  void submit_command_render(Struct_vk_command* commands);
+  void submit_command_render(vk::structure::Command* commands);
 
 private:
   Struct_vulkan* struct_vulkan;

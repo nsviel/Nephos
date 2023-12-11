@@ -28,7 +28,7 @@ void VK_submit::submit_command_graphics(VkCommandBuffer command){
 
   //---------------------------
 }
-void VK_submit::submit_command_render(Struct_vk_command* command){
+void VK_submit::submit_command_render(vk::structure::Command* command){
   //---------------------------
 
   VkSubmitInfo submit_info{};

@@ -103,7 +103,7 @@ void VK_memory::copy_image_to_buffer(Struct_vk_image* image, VkBuffer buffer){
 }
 
 //Buffer GPU function
-void VK_memory::transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec2>& vertices){
+void VK_memory::transfert_buffer_to_gpu(vk::structure::Buffer* buffer, vector<vec2>& vertices){
   //---------------------------
 
   if(vertices.size() == 0){return;}
@@ -133,7 +133,7 @@ void VK_memory::transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec2>& 
 
   //---------------------------
 }
-void VK_memory::transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec3>& vertices){
+void VK_memory::transfert_buffer_to_gpu(vk::structure::Buffer* buffer, vector<vec3>& vertices){
   //---------------------------
 
   if(vertices.size() == 0){return;}
@@ -163,7 +163,7 @@ void VK_memory::transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec3>& 
 
   //---------------------------
 }
-void VK_memory::transfert_buffer_to_gpu(Struct_vk_buffer* buffer, vector<vec4>& vertices){
+void VK_memory::transfert_buffer_to_gpu(vk::structure::Buffer* buffer, vector<vec4>& vertices){
   //---------------------------
 
   if(vertices.size() == 0){return;}

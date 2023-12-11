@@ -29,7 +29,7 @@ void VK_render::run_renderpass(Struct_vk_renderpass* renderpass){
 
 }
 void VK_render::submit_command(Struct_vk_renderpass* renderpass){
-  Struct_vk_command& command = renderpass->command;
+  vk::structure::Command& command = renderpass->command;
   //---------------------------
 
   command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
@@ -57,7 +57,7 @@ void VK_render::start_renderpass(Struct_vk_renderpass* renderpass){
   //---------------------------
 }
 void VK_render::draw_subpass(Struct_vk_renderpass* renderpass){
-  Struct_vk_command command;
+  vk::structure::Command command;
   //---------------------------
 
   for(int j=0; j<renderpass->vec_subpass.size(); j++){

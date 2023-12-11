@@ -3,7 +3,9 @@
 #include <UTL_specific/common.h>
 
 
-struct Struct_vk_command{
+namespace vk::structure{
+
+struct Command{
   //---------------------------
 
   //Command
@@ -17,3 +19,5 @@ struct Struct_vk_command{
 
   //---------------------------
 };
+
+}
