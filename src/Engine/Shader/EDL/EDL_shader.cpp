@@ -6,6 +6,8 @@
 #include <Utility/Element/UTL_window.h>
 
 
+namespace eng::shader{
+
 EDL_shader::EDL_shader(Engine* engine){
   //---------------------------
 
@@ -13,7 +15,7 @@ EDL_shader::EDL_shader(Engine* engine){
 
   this->camera = engine->get_camera();
   this->utl_window = utility->get_utl_window();
-  this->edl_param = new EDL_param();
+  this->edl_param = new eng::shader::EDL_param();
 
   //---------------------------
   this->init_shader();
@@ -57,4 +59,6 @@ void EDL_shader::update_shader(){
   edl_param->tex_height = window_dim.y;
 
   //---------------------------
+}
+
 }

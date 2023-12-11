@@ -7,6 +7,8 @@ class Engine;
 class UTL_window;
 
 
+namespace eng::shader{
+
 class SCE_shader : public BASE_shader
 {
 public:
@@ -19,3 +21,5 @@ public:
 private:
   UTL_window* utl_window;
 };
+
+}

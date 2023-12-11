@@ -5,6 +5,8 @@
 #include <Utility/Element/UTL_window.h>
 
 
+namespace eng::shader{
+
 SCE_shader::SCE_shader(Engine* engine){
   //---------------------------
 
@@ -47,4 +49,6 @@ void SCE_shader::init_shader(){
   this->vec_shader_info.push_back(shader_info);
 
   //---------------------------
+}
+
 }

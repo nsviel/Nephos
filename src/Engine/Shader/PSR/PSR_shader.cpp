@@ -5,6 +5,8 @@
 #include <Utility/Element/UTL_window.h>
 
 
+namespace eng::shader{
+
 PSR_shader::PSR_shader(Engine* engine){
   //---------------------------
 
@@ -47,4 +49,6 @@ void PSR_shader::update_shader(){
   psr_param->tex_height = window_dim.y;
 
   //---------------------------
+}
+
 }

@@ -1,6 +1,8 @@
 #pragma once
 
 
+namespace eng::shader{
+
 struct EDL_param{
   //---------------------------
 
@@ -14,3 +16,5 @@ struct EDL_param{
 
   //---------------------------
 };
+
+}

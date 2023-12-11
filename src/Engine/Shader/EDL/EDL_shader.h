@@ -10,6 +10,8 @@ class Engine;
 class UTL_window;
 
 
+namespace eng::shader{
+
 class EDL_shader : public BASE_shader
 {
 public:
@@ -21,10 +23,12 @@ public:
   void init_shader();
   void update_shader();
 
-  inline EDL_param* get_edl_param(){return edl_param;}
+  inline eng::shader::EDL_param* get_edl_param(){return edl_param;}
 
 private:
   eng::structure::Camera* camera;
   UTL_window* utl_window;
-  EDL_param* edl_param;
+  eng::shader::EDL_param* edl_param;
 };
+
+}

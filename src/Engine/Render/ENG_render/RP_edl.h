@@ -32,7 +32,7 @@ public:
   void draw_command(vk::structure::Subpass* subpass);
 
 private:
-  EDL_shader* edl_shader;
+  eng::shader::EDL_shader* edl_shader;
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
   VK_viewport* vk_viewport;

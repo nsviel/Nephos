@@ -46,7 +46,7 @@ void RP_scene::init_renderpass(){
   vk_engine->add_renderpass_description(renderpass);
 }
 void RP_scene::create_subpass(vk::structure::Renderpass* renderpass){
-  SCE_shader* sce_shader = eng_shader->get_sce_shader();
+  eng::shader::SCE_shader* sce_shader = eng_shader->get_sce_shader();
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();

@@ -10,6 +10,8 @@ class Engine;
 class UTL_window;
 
 
+namespace eng::shader{
+
 class PSR_shader : public BASE_shader
 {
 public:
@@ -28,3 +30,5 @@ private:
 
   eng::structure::Camera* camera;
 };
+
+}

@@ -98,4 +98,4 @@ template <typename T> void VK_uniform::update_uniform(string uniform_name, vk::s
 }
 template void VK_uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, glm::mat4 value);
 template void VK_uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, int value);
-template void VK_uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, EDL_param value);
+template void VK_uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, eng::shader::EDL_param value);
