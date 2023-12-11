@@ -9,15 +9,15 @@
 #include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/VK_binding/VK_uniform.h>
 
-#include <Engine/Render/Shader/EDL/EDL_shader.h>
-#include <Engine/Render/Shader/EDL/EDL_param.h>
+#include <Engine/Shader/EDL/EDL_shader.h>
+#include <Engine/Shader/EDL/EDL_param.h>
 
 
 //Constructor / Destructor
 RP_edl::RP_edl(Engine* engine){
   //---------------------------
 
-  eng::render::ENG_shader* eng_shader = engine->get_eng_shader();
+  eng::shader::Shader* eng_shader = engine->get_eng_shader();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 

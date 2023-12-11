@@ -8,13 +8,13 @@ class PSR_shader;
 class SCE_shader;
 
 
-namespace eng::render{
+namespace eng::shader{
 
-class ENG_shader
+class Shader
 {
 public:
-  ENG_shader(Engine* engine);
-  ~ENG_shader();
+  Shader(Engine* engine);
+  ~Shader();
 
 public:
   inline EDL_shader* get_edl_shader(){return edl_shader;}

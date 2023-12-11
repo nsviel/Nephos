@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Render/Shader/Base/BASE_shader.h>
-#include <Engine/Render/Namespace.h>
+#include <Engine/Shader/Base/BASE_shader.h>
+#include <Engine/Shader/Namespace.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <GUI/GUI_utility/Editor/Namespace.h>
 #include <GUI/GUI_utility/Widget/Namespace.h>
@@ -52,7 +52,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  eng::render::ENG_shader* eng_shader;
+  eng::shader::Shader* eng_shader;
   gui::editor::Text* editor_vs;
   gui::editor::Text* editor_fs;
   gui::widget::Console* gui_console;
