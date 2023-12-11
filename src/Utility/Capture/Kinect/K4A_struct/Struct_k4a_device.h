@@ -1,12 +1,8 @@
 #pragma once
 
 #include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
-
-#include "Config.h"
-#include "Depth.h"
-#include "Struct_k4a_infrared.h"
-#include "Data.h"
-#include "Struct_k4a_info.h"
+#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_infrared.h>
+#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_info.h>
 
 #include <k4a/k4a.hpp>
 #include <string>
