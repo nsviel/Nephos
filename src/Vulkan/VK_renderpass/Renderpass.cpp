@@ -1,6 +1,5 @@
 #include "Renderpass.h"
 
-#include <VK_renderpass/VK_subpass.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_render/VK_framebuffer.h>
@@ -15,7 +14,7 @@ Renderpass::Renderpass(Struct_vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
-  this->vk_subpass = new VK_subpass(struct_vulkan);
+  this->vk_subpass = new vk::Subpass(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
   this->vk_command = new VK_command(struct_vulkan);
 

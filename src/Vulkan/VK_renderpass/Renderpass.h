@@ -3,15 +3,17 @@
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <VK_struct/Struct_vk_pipeline.h>
 #include <UTL_specific/common.h>
+#include <Vulkan_namespace.h>
 
 class Struct_vulkan;
 class VK_pipeline;
-class VK_subpass;
 class VK_framebuffer;
 class VK_command;
 
 
 namespace vk{
+class Subpass;
+
 
 class Renderpass
 {
@@ -33,7 +35,7 @@ public:
 private:
   Struct_vulkan* struct_vulkan;
   VK_pipeline* vk_pipeline;
-  VK_subpass* vk_subpass;
+  vk::Subpass* vk_subpass;
   VK_framebuffer* vk_framebuffer;
   VK_command* vk_command;
 };

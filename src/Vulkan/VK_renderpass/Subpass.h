@@ -1,5 +1,4 @@
-#ifndef VK_SUBPASS_H
-#define VK_SUBPASS_H
+#pragma once
 
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <UTL_specific/common.h>
@@ -10,12 +9,14 @@ class VK_color;
 class VK_depth;
 
 
-class VK_subpass
+namespace vk{
+
+class Subpass
 {
 public:
   //Constructor / Destructor
-  VK_subpass(Struct_vulkan* struct_vulkan);
-  ~VK_subpass();
+  Subpass(Struct_vulkan* struct_vulkan);
+  ~Subpass();
 
 public:
   //Main functions
@@ -42,4 +43,4 @@ private:
   VK_depth* vk_depth;
 };
 
-#endif
+}

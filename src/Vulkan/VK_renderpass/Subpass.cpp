@@ -1,4 +1,4 @@
-#include "VK_subpass.h"
+#include "Subpass.h"
 
 #include <VK_main/Struct_vulkan.h>
 #include <VK_image/VK_color.h>
@@ -6,8 +6,10 @@
 #include <VK_command/VK_command.h>
 
 
+namespace vk{
+
 //Constructor / Destructor
-VK_subpass::VK_subpass(Struct_vulkan* struct_vulkan){
+Subpass::Subpass(Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -17,10 +19,10 @@ VK_subpass::VK_subpass(Struct_vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_subpass::~VK_subpass(){}
+Subpass::~Subpass(){}
 
 //Main function
-void VK_subpass::create_subpass(Struct_vk_renderpass* renderpass){
+void Subpass::create_subpass(Struct_vk_renderpass* renderpass){
   //---------------------------
 
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
@@ -44,7 +46,7 @@ void VK_subpass::create_subpass(Struct_vk_renderpass* renderpass){
 }
 
 //Subfunction
-void VK_subpass::create_subpass_shader(Struct_vk_subpass* subpass){
+void Subpass::create_subpass_shader(Struct_vk_subpass* subpass){
   //---------------------------
 
   // Color
@@ -74,7 +76,7 @@ void VK_subpass::create_subpass_shader(Struct_vk_subpass* subpass){
 
   //---------------------------
 }
-void VK_subpass::create_subpass_transfert(Struct_vk_subpass* subpass){
+void Subpass::create_subpass_transfert(Struct_vk_subpass* subpass){
   //---------------------------
 
   // Color
@@ -104,7 +106,7 @@ void VK_subpass::create_subpass_transfert(Struct_vk_subpass* subpass){
 
   //---------------------------
 }
-void VK_subpass::create_subpass_presentation(Struct_vk_subpass* subpass){
+void Subpass::create_subpass_presentation(Struct_vk_subpass* subpass){
   //---------------------------
 
   // Color
@@ -134,7 +136,7 @@ void VK_subpass::create_subpass_presentation(Struct_vk_subpass* subpass){
 
   //---------------------------
 }
-void VK_subpass::create_subpass_description(Struct_vk_subpass* subpass){
+void Subpass::create_subpass_description(Struct_vk_subpass* subpass){
   //---------------------------
 
   //Pointer vector of all color references
@@ -164,7 +166,7 @@ void VK_subpass::create_subpass_description(Struct_vk_subpass* subpass){
 }
 
 //Color attachment
-void VK_subpass::color_attachment_description(Struct_vk_attachment& color){
+void Subpass::color_attachment_description(Struct_vk_attachment& color){
   //---------------------------
 
   VkAttachmentDescription color_description{};
@@ -180,7 +182,7 @@ void VK_subpass::color_attachment_description(Struct_vk_attachment& color){
 
   //---------------------------
 }
-void VK_subpass::color_attachment_reference(Struct_vk_attachment& color){
+void Subpass::color_attachment_reference(Struct_vk_attachment& color){
   //---------------------------
 
   VkAttachmentReference color_reference{};
@@ -192,7 +194,7 @@ void VK_subpass::color_attachment_reference(Struct_vk_attachment& color){
 }
 
 //Depth attachment
-void VK_subpass::depth_attachment_description(Struct_vk_attachment& depth){
+void Subpass::depth_attachment_description(Struct_vk_attachment& depth){
   //---------------------------
 
   VkAttachmentDescription depth_attachment{};
@@ -208,7 +210,7 @@ void VK_subpass::depth_attachment_description(Struct_vk_attachment& depth){
 
   //---------------------------
 }
-void VK_subpass::depth_attachment_reference(Struct_vk_attachment& depth){
+void Subpass::depth_attachment_reference(Struct_vk_attachment& depth){
   //---------------------------
 
   VkAttachmentReference depth_reference{};
@@ -217,4 +219,6 @@ void VK_subpass::depth_attachment_reference(Struct_vk_attachment& depth){
   depth.reference = depth_reference;
 
   //---------------------------
+}
+
 }
