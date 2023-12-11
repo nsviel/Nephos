@@ -11,19 +11,19 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-Scene::Scene(GUI* gui, gui::rnd::tab::Panel* rnd_panel){
+Scene::Scene(GUI* gui, gui::rnd::tab::Panel* tab_panel){
   //---------------------------
 
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
   ENG_database* eng_database = eng_data->get_eng_database();
 
-  this->rnd_panel = rnd_panel;
-  this->gui_set = new gui::rnd::panel::Set(gui, &rnd_panel->show_set);
-  this->gui_object = new gui::rnd::panel::Object(gui, &rnd_panel->show_object);
+  this->tab_panel = tab_panel;
+  this->panel_set = new gui::rnd::panel::Set(gui, &tab_panel->show_set);
+  this->panel_object = new gui::rnd::panel::Object(gui, &tab_panel->show_object);
 
   this->list_data = eng_database->get_list_data();
-  this->panel_show = &rnd_panel->show_scene;
+  this->panel_show = &tab_panel->show_scene;
   this->panel_name = "Scene";
 
   //---------------------------
@@ -34,8 +34,8 @@ Scene::~Scene(){}
 void Scene::run_panel(){
   //---------------------------
 
-  gui_object->run_panel();
-  gui_set->run_panel();
+  panel_object->run_panel();
+  panel_set->run_panel();
 
   if(*panel_show){
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
@@ -148,8 +148,8 @@ int Scene::data_node_tree(data::Set* set){
 
   //If item double-clicked
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
-    gui_set->set_selected_set(set);
-    rnd_panel->show_set = true;
+    panel_set->set_selected_set(set);
+    tab_panel->show_set = true;
   }
 
   //Set elements leaf nodes
@@ -178,8 +178,8 @@ int Scene::data_node_tree(data::Set* set){
 
       //If item double-clicked
       if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
-        gui_object->set_selected_object(object);
-        rnd_panel->show_object = true;
+        panel_object->set_selected_object(object);
+        tab_panel->show_object = true;
       }
 
     }

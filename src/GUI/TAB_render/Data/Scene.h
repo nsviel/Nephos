@@ -15,7 +15,7 @@ class Scene
 {
 public:
   //Constructor / Destructor
-  Scene(GUI* gui, gui::rnd::tab::Panel* rnd_panel);
+  Scene(GUI* gui, gui::rnd::tab::Panel* tab_panel);
   ~Scene();
 
 public:
@@ -29,9 +29,9 @@ public:
   int data_node_tree(data::Set* set);
 
 private:
-  gui::rnd::tab::Panel* rnd_panel;
-  gui::rnd::panel::Object* gui_object;
-  Set* gui_set;
+  gui::rnd::tab::Panel* tab_panel;
+  gui::rnd::panel::Object* panel_object;
+  gui::rnd::panel::Set* panel_set;
 
   list<data::Set*>* list_data;
   string panel_name;
