@@ -13,8 +13,8 @@ public:
   ~Tree();
 
 public:
-  data::Glyph* create_glyph(eng::structure::Object* object);
-  void update_tree(eng::structure::Object* object, data::Glyph* glyph);
+  eng::structure::Glyph* create_glyph(eng::structure::Object* object);
+  void update_tree(eng::structure::Object* object, eng::structure::Glyph* glyph);
 
   inline bool* get_visibility(){return &is_visible;}
   inline int* get_tree_level(){return &tree_level;}

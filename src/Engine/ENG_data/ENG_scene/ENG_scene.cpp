@@ -3,7 +3,9 @@
 #include "../ENG_data.h"
 #include "../ENG_load/ENG_loader.h"
 
+#include <Engine/Base/Namespace.h>
 #include <Engine/Base/Struct_object.h>
+#include <Engine/Base/Struct_set.h>
 #include <Engine/Node/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
@@ -32,15 +34,15 @@ ENG_scene::~ENG_scene(){}
 
 //ENG_scene function
 void ENG_scene::init_set(){
-  list<data::Set*>* list_data = eng_database->get_list_data();
+  list<eng::structure::Set*>* list_data = eng_database->get_list_data();
   //---------------------------
 
-  //data::Glyph set
-  this->set_glyph = new data::Set("data::Glyph");
+  //eng::structure::Glyph set
+  this->set_glyph = new eng::structure::Set();//("Glyph");
   list_data->push_back(set_glyph);
 
   //ENG_scene set
-  this->set_scene = new data::Set("ENG_scene");
+  this->set_scene = new eng::structure::Set();//("Scene");
   list_data->push_back(set_scene);
 
   //---------------------------
@@ -153,8 +155,8 @@ void ENG_scene::selected_object_next(){
 
 //Loop function
 void ENG_scene::loop(){
-  list<data::Set*>* list_data = eng_database->get_list_data();
-  list<data::Set*>* list_glyph = eng_database->get_list_data_glyph();
+  list<eng::structure::Set*>* list_data = eng_database->get_list_data();
+  list<eng::structure::Set*>* list_glyph = eng_database->get_list_data_glyph();
   //----------------------------
 
   this->loop_list(list_data);
@@ -162,11 +164,11 @@ void ENG_scene::loop(){
 
   //----------------------------
 }
-void ENG_scene::loop_list(list<data::Set*>* list_data){
+void ENG_scene::loop_list(list<eng::structure::Set*>* list_data){
   //----------------------------
 
   for(int i=0; i<list_data->size(); i++){
-    data::Set* set = *next(list_data->begin(), i);
+    eng::structure::Set* set = *next(list_data->begin(), i);
     for(int j=0; j<set->list_obj.size(); j++){
       eng::structure::Object* object = *next(set->list_obj.begin(), j);
       eng_camera->compute_cam_mvp(object);

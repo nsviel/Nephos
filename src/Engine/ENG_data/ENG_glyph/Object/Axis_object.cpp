@@ -20,7 +20,7 @@ Axis_object::~Axis_object(){
 }
 
 void Axis_object::create_axis_scene(){
-  axis_scene = new data::Glyph();
+  axis_scene = new eng::structure::Glyph();
   //---------------------------
 
   //Create glyph
@@ -56,7 +56,7 @@ void Axis_object::create_axis_scene(){
   //---------------------------
 }
 void Axis_object::create_axis_circle(float circleRadius){
-  axis_circle = new data::Glyph();
+  axis_circle = new eng::structure::Glyph();
   //---------------------------
 
   //Create glyph
@@ -92,8 +92,8 @@ void Axis_object::create_axis_circle(float circleRadius){
 
   //---------------------------
 }
-data::Glyph* Axis_object::create_axis_subset(eng::structure::Object* object){
-  data::Glyph* axis_subset = new data::Glyph();
+eng::structure::Glyph* Axis_object::create_axis_subset(eng::structure::Object* object){
+  eng::structure::Glyph* axis_subset = new eng::structure::Glyph();
   //---------------------------
 
   //Create glyph
@@ -114,7 +114,7 @@ data::Glyph* Axis_object::create_axis_subset(eng::structure::Object* object){
   //---------------------------
   return axis_subset;
 }
-void Axis_object::update_axis_subset(eng::structure::Object* object, data::Glyph* glyph){
+void Axis_object::update_axis_subset(eng::structure::Object* object, eng::structure::Glyph* glyph){
   if(glyph == nullptr) return;
   vector<vec3>& XYZ = glyph->xyz;
   vec3 subset_root = object->root;

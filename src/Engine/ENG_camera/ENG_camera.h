@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Struct_camera.h"
+
+#include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class Engine;

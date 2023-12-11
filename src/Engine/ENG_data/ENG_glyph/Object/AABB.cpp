@@ -14,7 +14,7 @@ AABB::AABB(){
 
 //Main function
 void AABB::create_glyph(){
-  this->glyph = new data::Glyph();
+  this->glyph = new eng::structure::Glyph();
   //---------------------------
 
   //Create glyph
@@ -31,7 +31,7 @@ void AABB::create_glyph(){
 
   //---------------------------
 }
-void AABB::update_glyph(data::Set* collection, data::Glyph* glyph){
+void AABB::update_glyph(eng::structure::Set* collection, eng::structure::Glyph* glyph){
   vec3 min = collection->min;
   vec3 max = collection->max;
   //---------------------------

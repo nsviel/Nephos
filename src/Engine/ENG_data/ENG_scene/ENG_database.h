@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class ENG_data;
@@ -13,12 +14,12 @@ public:
   ~ENG_database();
 
 public:
-  inline list<data::Set*>* get_list_data(){return list_data;}
-  inline list<data::Set*>* get_list_data_glyph(){return list_glyph;}
+  inline list<eng::structure::Set*>* get_list_data(){return list_data;}
+  inline list<eng::structure::Set*>* get_list_data_glyph(){return list_glyph;}
 
 private:
   int ID_obj;
 
-  list<data::Set*>* list_data;
-  list<data::Set*>* list_glyph;
+  list<eng::structure::Set*>* list_data;
+  list<eng::structure::Set*>* list_glyph;
 };

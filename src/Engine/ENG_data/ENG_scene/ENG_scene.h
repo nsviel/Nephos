@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Engine/Base/Struct_object.h>
+#include <Engine/Base/Namespace.h>
+#include <Engine/Base/Struct_set.h>
 #include <Utility/UTL_specific/common.h>
 
 class ENG_data;
@@ -34,10 +35,10 @@ public:
 
   //Loop
   void loop();
-  void loop_list(list<data::Set*>* list_data);
+  void loop_list(list<eng::structure::Set*>* list_data);
 
-  inline data::Set* get_set_scene(){return set_scene;}
-  inline data::Set* get_set_glyph(){return set_glyph;}
+  inline eng::structure::Set* get_set_scene(){return set_scene;}
+  inline eng::structure::Set* get_set_glyph(){return set_glyph;}
   inline eng::structure::Object* get_selected_object(){return set_scene->selected_obj;}
 
 private:
@@ -48,6 +49,6 @@ private:
   ENG_camera* eng_camera;
 
   int ID_obj;
-  data::Set* set_scene;
-  data::Set* set_glyph;
+  eng::structure::Set* set_scene;
+  eng::structure::Set* set_glyph;
 };

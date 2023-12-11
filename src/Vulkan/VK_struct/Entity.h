@@ -5,6 +5,7 @@
 #include <Vulkan/VK_struct/Binding.h>
 #include <Vulkan/VK_struct/Image.h>
 
+#include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 

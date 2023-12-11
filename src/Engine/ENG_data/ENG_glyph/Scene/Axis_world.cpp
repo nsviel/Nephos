@@ -19,7 +19,7 @@ Axis_world::~Axis_world(){
 }
 
 void Axis_world::create_glyph(){
-  glyph = new data::Glyph();
+  glyph = new eng::structure::Glyph();
   //---------------------------
 
   //Create glyph

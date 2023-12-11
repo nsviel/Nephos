@@ -13,16 +13,16 @@ public:
 public:
   void create_axis_scene();
   void create_axis_circle(float circleRadius);
-  data::Glyph* create_axis_subset(eng::structure::Object* object);
-  void update_axis_subset(eng::structure::Object* object, data::Glyph* glyph);
+  eng::structure::Glyph* create_axis_subset(eng::structure::Object* object);
+  void update_axis_subset(eng::structure::Object* object, eng::structure::Glyph* glyph);
 
-  inline data::Glyph* get_axis_scene(){return axis_scene;}
-  inline data::Glyph* get_axis_circle(){return axis_circle;}
+  inline eng::structure::Glyph* get_axis_scene(){return axis_scene;}
+  inline eng::structure::Glyph* get_axis_circle(){return axis_circle;}
   inline bool* get_axis_subset_visibility(){return &is_visible;}
 
 private:
-  data::Glyph* axis_scene;
-  data::Glyph* axis_circle;
+  eng::structure::Glyph* axis_scene;
+  eng::structure::Glyph* axis_circle;
 
   bool is_visible;
 };

@@ -45,14 +45,14 @@ void Set::design_panel(){
 }
 
 //Subfunction
-void Set::set_info(data::Set* set){
+void Set::set_info(eng::structure::Set* set){
   //---------------------------
 
   this->panel_name = "Set " + set->name;
 
   //---------------------------
 }
-void Set::set_parameter(data::Set* set){
+void Set::set_parameter(eng::structure::Set* set){
   ImGui::Columns(2);
   //---------------------------
 

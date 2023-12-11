@@ -20,7 +20,7 @@ Grid::~Grid(){
 }
 
 void Grid::create_glyph(){
-  this->glyph = new data::Glyph();
+  this->glyph = new eng::structure::Glyph();
   //---------------------------
 
   //Create glyph

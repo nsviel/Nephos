@@ -107,7 +107,7 @@ void Scene::tree_view(){
 
     //Database
     for(int row_i=0; row_i<list_data->size(); row_i++){
-      data::Set* set = *next(list_data->begin(), row_i);
+      eng::structure::Set* set = *next(list_data->begin(), row_i);
 
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
@@ -122,7 +122,7 @@ void Scene::tree_view(){
 
   //---------------------------
 }
-int Scene::data_node_tree(data::Set* set){
+int Scene::data_node_tree(eng::structure::Set* set){
   int nb_row = 0;
   //-------------------------------
 
@@ -130,7 +130,7 @@ int Scene::data_node_tree(data::Set* set){
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
   //flag_node |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
-  if(set->name != "data::Glyph"){
+  if(set->name != "eng::structure::Glyph"){
     flag_node |= ImGuiTreeNodeFlags_DefaultOpen;
   }
 

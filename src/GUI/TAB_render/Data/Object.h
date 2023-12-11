@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class GUI;

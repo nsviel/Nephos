@@ -20,8 +20,8 @@ Tree::Tree(){
 }
 Tree::~Tree(){}
 
-data::Glyph* Tree::create_glyph(eng::structure::Object* object){
-  data::Glyph* tree = new data::Glyph();
+eng::structure::Glyph* Tree::create_glyph(eng::structure::Object* object){
+  eng::structure::Glyph* tree = new eng::structure::Glyph();
   //---------------------------
 
   //Create glyph
@@ -35,7 +35,7 @@ data::Glyph* Tree::create_glyph(eng::structure::Object* object){
   //---------------------------
   return tree;
 }
-void Tree::update_tree(eng::structure::Object* object, data::Glyph* tree){
+void Tree::update_tree(eng::structure::Object* object, eng::structure::Glyph* tree){
   //---------------------------
 
   if(is_visible){

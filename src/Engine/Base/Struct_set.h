@@ -12,7 +12,7 @@ namespace eng::structure{
 struct Set{
   //---------------------------
 
-  Set(std::string name);
+  //Set(std::string name);
   void reset();
 
   //Info

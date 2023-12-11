@@ -60,7 +60,7 @@ void Control::control_keyboard_oneAction(){
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      data::Set* set = eng_scene->get_set_scene();
+      eng::structure::Set* set = eng_scene->get_set_scene();
       eng::structure::Object* object = set->selected_obj;
       eng_scene->selected_object_next();
       eng_scene->delete_scene_object(object);
@@ -114,7 +114,7 @@ void Control::control_keyboard_camMove(){
   //---------------------------
 }
 void Control::control_keyboard_translation(){
-  data::Set* set = eng_scene->get_set_scene();
+  eng::structure::Set* set = eng_scene->get_set_scene();
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -225,7 +225,7 @@ void Control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    data::Set* set = eng_scene->get_set_scene();
+    eng::structure::Set* set = eng_scene->get_set_scene();
     eng::structure::Object* object = set->selected_obj;
     transformManager->make_rotation(object, object->COM, R);
   }

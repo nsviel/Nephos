@@ -30,7 +30,7 @@ void Attribut::compute_MinMax(eng::structure::Object* object){
   object->max = max;
   object->COM = centroid;
 }
-void Attribut::set_visibility(data::Set* set, bool visibility){
+void Attribut::set_visibility(eng::structure::Set* set, bool visibility){
   //---------------------------
 
   for(int i=0; i<set->list_obj.size(); i++){

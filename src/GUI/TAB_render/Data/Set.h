@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class GUI;
@@ -19,13 +20,13 @@ public:
   void design_panel();
 
   //Sub functions
-  void set_info(data::Set* set);
-  void set_parameter(data::Set* set);
+  void set_info(eng::structure::Set* set);
+  void set_parameter(eng::structure::Set* set);
 
-  inline void set_selected_set(data::Set* set){this->set_selected = set;}
+  inline void set_selected_set(eng::structure::Set* set){this->set_selected = set;}
 
 private:
-  data::Set* set_selected;
+  eng::structure::Set* set_selected;
   string panel_name;
   bool* panel_show;;
   int item_width;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 #include <GUI/TAB_render/Data/Namespace.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
@@ -26,14 +27,14 @@ public:
   //Subfunction
   void draw_window_background();
   void tree_view();
-  int data_node_tree(data::Set* set);
+  int data_node_tree(eng::structure::Set* set);
 
 private:
   gui::rnd::tab::Panel* tab_panel;
   gui::rnd::panel::Object* panel_object;
   gui::rnd::panel::Set* panel_set;
 
-  list<data::Set*>* list_data;
+  list<eng::structure::Set*>* list_data;
   string panel_name;
   bool* panel_show;;
 };

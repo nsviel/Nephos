@@ -29,7 +29,7 @@ tic();
   this->build_octree(root->child);
 toc_ms("octree");
 
-  data::Glyph* glyph = &cloud->glyphs["tree"];
+  eng::structure::Glyph* glyph = &cloud->glyphs["tree"];
   glyph->xyz = root->xyz;
   glyph->rgb = root->rgb;
 
@@ -45,7 +45,7 @@ void Octree::create_octree(eng::structure::Object* object, int level){
   this->build_octree(root->child);
   this->octree_time = toc_ms();
 
-  data::Glyph* glyph = &cloud->glyphs["tree"];
+  eng::structure::Glyph* glyph = &cloud->glyphs["tree"];
   glyph->xyz = root->xyz;
   glyph->rgb = root->rgb;
 
