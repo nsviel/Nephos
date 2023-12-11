@@ -8,7 +8,6 @@
 #include <Utility/Capture/Kinect/K4A_data/Namespace.h>
 
 class GUI;
-class K4A_infrared;
 class K4A_swarm;
 
 
@@ -38,7 +37,7 @@ private:
   GUI* gui;
   util::kinect::Kinect* kinect;
   util::kinect::data::K4A_depth* k4a_depth;
-  K4A_infrared* k4a_infrared;
+  util::kinect::data::K4A_infrared* k4a_infrared;
   K4A_swarm* k4a_swarm;
 
   vector<gui::media::Stream*> vec_gui_stream;

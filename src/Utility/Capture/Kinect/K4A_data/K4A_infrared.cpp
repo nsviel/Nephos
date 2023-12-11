@@ -1,6 +1,8 @@
 #include "K4A_infrared.h"
 
 
+namespace util::kinect::data{
+
 //Constructor / Destructor
 K4A_infrared::K4A_infrared(){
   //---------------------------
@@ -48,4 +50,6 @@ void K4A_infrared::find_ir_level(K4A_device* device){
   }
 
   //---------------------------
+}
+
 }
