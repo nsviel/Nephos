@@ -11,14 +11,15 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-Scene::Scene(GUI* gui, gui::rnd::tab::Panel* rnd_panel, bool* show_window, string name) : Panel(show_window, name){
+Scene::Scene(GUI* gui, gui::rnd::tab::Panel* rnd_panel){
   //---------------------------
 
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
   this->eng_database = eng_data->get_eng_database();
   this->rnd_panel = rnd_panel;
-  this->show_window = &rnd_panel->show_scene;
+  this->panel_show = &rnd_panel->show_scene;
+  this->panel_name = "Scene";
   this->gui_set = new gui::rnd::panel::Set(gui, &rnd_panel->show_set, "Set");
   this->gui_object = new gui::rnd::panel::Object(gui, &rnd_panel->show_object, "Object");
 
@@ -33,11 +34,11 @@ void Scene::run_panel(){
   gui_object->run_panel();
   gui_set->run_panel();
 
-  if(*show_window){
+  if(*panel_show){
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::SetNextWindowSizeConstraints(ImVec2(200, 100), ImVec2(1000, 1000));
-    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize)){
+    if(ImGui::Begin(panel_name.c_str(), panel_show, ImGuiWindowFlags_AlwaysAutoResize)){
 
       this->design_panel();
 

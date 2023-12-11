@@ -28,7 +28,7 @@ void Tab::create_panels(){
   this->rnd_option = new gui::rnd::tab::Option(gui, &gui_render_panel->show_option, "Option");
   this->rnd_profiler = new gui::engine::Profiler(gui, &gui_render_panel->show_profiler, "Profiler");
   this->rnd_shader = new gui::engine::Shader(gui, &gui_render_panel->show_shader, "Shader");
-  this->rnd_scene = new gui::rnd::panel::Scene(gui, gui_render_panel, &gui_render_panel->show_scene, "Scene");
+  this->rnd_scene = new gui::rnd::panel::Scene(gui, gui_render_panel);
   this->rnd_camera = new gui::engine::Camera(gui, &gui_render_panel->show_engine_camera, "Camera");
   this->rnd_kinect = new gui::kinect::Kinect_panel(gui, &gui_render_panel->show_kinect, "Kinect");
   this->rnd_capture = new gui::kinect::Capture(gui, &gui_render_panel->show_capture, "Capture");

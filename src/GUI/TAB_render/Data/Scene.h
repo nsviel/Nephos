@@ -13,11 +13,11 @@ namespace gui::rnd::panel{
 class Object;
 
 
-class Scene : public gui::base::Panel
+class Scene
 {
 public:
   //Constructor / Destructor
-  Scene(GUI* gui, gui::rnd::tab::Panel* rnd_panel, bool* show_window, string name);
+  Scene(GUI* gui, gui::rnd::tab::Panel* rnd_panel);
   ~Scene();
 
 public:
@@ -36,7 +36,8 @@ private:
   Set* gui_set;
   ENG_database* eng_database;
 
-  bool* show_window;
+  string panel_name;
+  bool* panel_show;;
 };
 
 }
