@@ -10,7 +10,7 @@ namespace eng::camera::mode{
 class First_person
 {
 public:
-  First_person(util::element::UTL_window* utl_window);
+  First_person(util::element::Window* utl_window);
   ~First_person();
 
 public:
@@ -18,7 +18,7 @@ public:
   void fp_cam_mouse(eng::structure::Camera* camera);
 
 private:
-  util::element::UTL_window* utl_window;
+  util::element::Window* utl_window;
 
   vec2 mouse_pose_old;
 };

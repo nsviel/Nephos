@@ -10,7 +10,7 @@ namespace eng::camera::mode{
 class Arcball
 {
 public:
-  Arcball(util::element::UTL_window* utl_window);
+  Arcball(util::element::Window* utl_window);
   ~Arcball();
 
 public:
@@ -20,7 +20,7 @@ public:
   void arcball_viewport_angle(eng::structure::Camera* camera, vec2 angle);
 
 private:
-  util::element::UTL_window* utl_window;
+  util::element::Window* utl_window;
 };
 
 }

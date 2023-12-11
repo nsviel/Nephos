@@ -4,7 +4,7 @@
 namespace eng::camera::mode{
 
 //Constructor / Destructor
-Arcball::Arcball(util::element::UTL_window* utl_window){
+Arcball::Arcball(util::element::Window* utl_window){
   //---------------------------
 
   this->utl_window =  utl_window;

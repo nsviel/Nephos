@@ -38,7 +38,7 @@ private:
   Node* eng_data;
   utility::Node* utility;
 
-  util::element::UTL_window* utl_window;
+  util::element::Window* utl_window;
   gui::Control* gui_control;
   gui::Style* gui_style;
   gui::Docking* gui_docking;

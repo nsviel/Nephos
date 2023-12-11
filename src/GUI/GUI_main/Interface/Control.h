@@ -27,7 +27,7 @@ public:
   //Mouse
 
 private:
-  util::element::UTL_window* utl_window;
+  util::element::Window* utl_window;
   gui::Tab* gui_tab;
 };
 

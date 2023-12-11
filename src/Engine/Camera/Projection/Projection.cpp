@@ -4,7 +4,7 @@
 namespace eng::camera::proj{
 
 //Constructor / Destructor
-Projection::Projection(util::element::UTL_window* utl_window){
+Projection::Projection(util::element::Window* utl_window){
   //---------------------------
 
   this->utl_window = utl_window;

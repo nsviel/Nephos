@@ -10,7 +10,7 @@
 Engine::Engine(utility::Node* utility){
   //---------------------------
 
-  util::element::UTL_window* utl_window = utility->get_utl_window();
+  util::element::Window* utl_window = utility->get_utl_window();
 
   this->utility = utility;
   this->eng_camera = new eng::camera::Node(this);

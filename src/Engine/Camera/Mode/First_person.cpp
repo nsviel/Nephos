@@ -4,7 +4,7 @@
 namespace eng::camera::mode{
 
 //Constructor / Destructor
-First_person::First_person(util::element::UTL_window* utl_window){
+First_person::First_person(util::element::Window* utl_window){
   //---------------------------
 
   this->utl_window = utl_window;

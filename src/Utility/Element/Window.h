@@ -18,12 +18,12 @@ class Config;
 
 namespace util::element{
 
-class UTL_window
+class Window
 {
 public:
   //Constructor / Destructor
-  UTL_window(Config* config);
-  ~UTL_window();
+  Window(Config* config);
+  ~Window();
 
 public:
   //Main functions

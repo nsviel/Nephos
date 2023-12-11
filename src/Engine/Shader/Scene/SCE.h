@@ -19,7 +19,7 @@ public:
   void init_shader();
 
 private:
-  util::element::UTL_window* utl_window;
+  util::element::Window* utl_window;
 };
 
 }

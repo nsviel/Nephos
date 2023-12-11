@@ -24,7 +24,7 @@ public:
   inline PSR_param* get_pyramid_param(){return psr_param;}
 
 private:
-  util::element::UTL_window* utl_window;
+  util::element::Window* utl_window;
   PSR_param* psr_param;
 
   eng::structure::Camera* camera;

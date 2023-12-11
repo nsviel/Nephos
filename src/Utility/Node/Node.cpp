@@ -10,7 +10,7 @@ namespace utility{
 Node::Node(Config* config){
   //---------------------------
 
-  this->utl_window = new util::element::UTL_window(config);
+  this->utl_window = new util::element::Window(config);
   this->utl_capture = new UTL_capture();
 
   //---------------------------

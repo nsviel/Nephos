@@ -51,7 +51,7 @@ void Vulkan::wait(){
 
   //---------------------------
 }
-void Vulkan::param(util::element::UTL_window* utl_window, bool headless){
+void Vulkan::param(util::element::Window* utl_window, bool headless){
   //---------------------------
 
 

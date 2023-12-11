@@ -13,7 +13,7 @@ Node::Node(Engine* engine){
   //---------------------------
 
   utility::Node* utility = engine->get_utility();
-  util::element::UTL_window* utl_window = utility->get_utl_window();
+  util::element::Window* utl_window = utility->get_utl_window();
 
   this->camera = new eng::structure::Camera();
   this->cam_arcball = new eng::camera::mode::Arcball(utl_window);

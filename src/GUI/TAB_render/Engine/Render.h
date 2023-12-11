@@ -31,7 +31,7 @@ private:
   gui::engine::Control* gui_control;
   gui::media::Image* gui_image;
   VK_imgui* vk_imgui;
-  util::element::UTL_window* utl_window;
+  util::element::Window* utl_window;
 
   bool has_been_initialized;
 };

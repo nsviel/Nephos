@@ -26,7 +26,7 @@ public:
 
 private:
   eng::structure::Camera* camera;
-  util::element::UTL_window* utl_window;
+  util::element::Window* utl_window;
   eng::shader::EDL_param* edl_param;
 };
 

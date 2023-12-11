@@ -10,7 +10,7 @@ namespace eng::camera::proj{
 class Zoom
 {
 public:
-  Zoom(util::element::UTL_window* utl_window);
+  Zoom(util::element::Window* utl_window);
   ~Zoom();
 
 public:
