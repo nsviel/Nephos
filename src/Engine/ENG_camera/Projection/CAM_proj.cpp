@@ -14,7 +14,7 @@ CAM_proj::CAM_proj(UTL_window* utl_window){
 CAM_proj::~CAM_proj(){}
 
 //Main function
-mat4 CAM_proj::compute_proj_perspective(Struct_camera* camera){
+mat4 CAM_proj::compute_proj_perspective(eng::structure::Struct_camera* camera){
   //---------------------------
 
   float z_near = camera->clip_near;
@@ -32,7 +32,7 @@ mat4 CAM_proj::compute_proj_perspective(Struct_camera* camera){
   //---------------------------
   return cam_proj;
 }
-mat4 CAM_proj::compute_proj_ortho(Struct_camera* camera){
+mat4 CAM_proj::compute_proj_ortho(eng::structure::Struct_camera* camera){
   //---------------------------
 
   float z_near = camera->clip_near;

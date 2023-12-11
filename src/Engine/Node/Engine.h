@@ -27,7 +27,7 @@ public:
 
   inline Utility* get_utility(){return utility;}
   inline Vulkan* get_eng_vulkan(){return eng_vulkan;}
-  inline Struct_camera* get_camera(){return eng_camera->get_camera();};
+  inline eng::structure::Struct_camera* get_camera(){return eng_camera->get_camera();};
   inline ENG_camera* get_eng_camera(){return eng_camera;}
   inline ENG_data* get_eng_data(){return eng_data;}
   inline ENG_shader* get_eng_shader(){return eng_shader;}

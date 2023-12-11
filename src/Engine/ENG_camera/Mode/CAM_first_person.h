@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Struct_camera.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class UTL_window;
@@ -13,8 +13,8 @@ public:
   ~CAM_first_person();
 
 public:
-  mat4 fp_view_mat(Struct_camera* camera);
-  void fp_cam_mouse(Struct_camera* camera);
+  mat4 fp_view_mat(eng::structure::Struct_camera* camera);
+  void fp_cam_mouse(eng::structure::Struct_camera* camera);
 
 private:
   UTL_window* utl_window;

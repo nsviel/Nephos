@@ -2,11 +2,11 @@
 
 #include "PSR_param.h"
 #include <Engine/ENG_shader/Base/BASE_shader.h>
-#include <Engine/Base/Struct_camera.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class Engine;
-class Struct_camera;
+
 class UTL_window;
 
 
@@ -26,5 +26,5 @@ private:
   UTL_window* utl_window;
   PSR_param* psr_param;
 
-  Struct_camera* camera;
+  eng::structure::Struct_camera* camera;
 };

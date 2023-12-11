@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class GUI;
@@ -9,7 +10,7 @@ class ENG_camera;
 class UTL_window;
 class ENG_scene;
 class Transformation;
-class Struct_camera;
+
 
 
 namespace gui::engine{
@@ -41,7 +42,7 @@ private:
   ENG_camera* eng_camera;
   Transformation* transformManager;
 
-  Struct_camera* camera;
+  eng::structure::Struct_camera* camera;
 };
 
 }

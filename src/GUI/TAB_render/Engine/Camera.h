@@ -1,11 +1,12 @@
 #pragma once
 
+#include <Engine/Base/Namespace.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class GUI;
 class Panel;
-class Struct_camera;
+
 
 
 namespace gui::engine{
@@ -27,7 +28,7 @@ public:
 
 private:
   Panel* gui_render_panel;
-  Struct_camera* camera;
+  eng::structure::Struct_camera* camera;
 
   int item_width;
 };

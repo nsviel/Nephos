@@ -1,11 +1,12 @@
 #pragma once
 
+#include <Engine/Base/Namespace.h>
 #include <Engine/ENG_shader/EDL/EDL_param.h>
 #include <Engine/ENG_shader/Base/BASE_shader.h>
 #include <Utility/UTL_specific/common.h>
 
 class Engine;
-class Struct_camera;
+
 class UTL_window;
 
 
@@ -23,7 +24,7 @@ public:
   inline EDL_param* get_edl_param(){return edl_param;}
 
 private:
-  Struct_camera* camera;
+  eng::structure::Struct_camera* camera;
   UTL_window* utl_window;
   EDL_param* edl_param;
 };

@@ -9,7 +9,7 @@ CAM_zoom::CAM_zoom(UTL_window* utl_window){
 }
 CAM_zoom::~CAM_zoom(){}
 
-void CAM_zoom::compute_zoom_optic(Struct_camera* camera, float yoffset){
+void CAM_zoom::compute_zoom_optic(eng::structure::Struct_camera* camera, float yoffset){
   //---------------------------
 
   //Perspective zoom
@@ -23,7 +23,7 @@ void CAM_zoom::compute_zoom_optic(Struct_camera* camera, float yoffset){
 
   //---------------------------
 }
-void CAM_zoom::compute_zoom_position(Struct_camera* camera, float yoffset){
+void CAM_zoom::compute_zoom_position(eng::structure::Struct_camera* camera, float yoffset){
   //---------------------------
 
   //Perspective zoom

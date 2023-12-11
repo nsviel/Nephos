@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Struct_camera.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class UTL_window;
@@ -13,8 +13,8 @@ public:
   ~CAM_proj();
 
 public:
-  mat4 compute_proj_perspective(Struct_camera* camera);
-  mat4 compute_proj_ortho(Struct_camera* camera);
+  mat4 compute_proj_perspective(eng::structure::Struct_camera* camera);
+  mat4 compute_proj_ortho(eng::structure::Struct_camera* camera);
 
 private:
   UTL_window* utl_window;

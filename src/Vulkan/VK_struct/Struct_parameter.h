@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Struct_camera.h>
+#include <Engine/Base/Namespace.h>
 
 #include <string>
 #include <vector>
@@ -21,7 +21,7 @@ struct Parameter{
   glm::vec4 background_color = glm::vec4(0.4, 0.4, 0.4, 1);
   glm::vec2 headless_dim =  glm::vec2(1024, 500);
 
-  Struct_camera camera;
+  eng::structure::Struct_camera camera;
 
   //---------------------------
 };

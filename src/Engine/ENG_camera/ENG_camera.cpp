@@ -4,7 +4,7 @@
 #include "Projection/CAM_zoom.h"
 #include "Projection/CAM_proj.h"
 
-#include <Engine/Base/Struct_camera.h>
+#include <Engine/Base/Namespace.h>
 #include <Engine/Node/Engine.h>
 #include <Utility/Node/Utility.h>
 
@@ -15,7 +15,7 @@ ENG_camera::ENG_camera(Engine* engine){
 
   Utility* utility = engine->get_utility();
 
-  this->camera = new Struct_camera();
+  this->camera = new eng::structure::Struct_camera();
   this->cam_arcball = new CAM_arcball(utility->get_utl_window());
   this->cam_fp = new CAM_first_person(utility->get_utl_window());
   this->cam_zoom = new CAM_zoom(utility->get_utl_window());

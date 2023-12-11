@@ -15,7 +15,7 @@ CAM_first_person::CAM_first_person(UTL_window* utl_window){
 }
 CAM_first_person::~CAM_first_person(){}
 
-mat4 CAM_first_person::fp_view_mat(Struct_camera* camera){
+mat4 CAM_first_person::fp_view_mat(eng::structure::Struct_camera* camera){
   //---------------------------
 
   float azimuth = camera->angle_azimuth;
@@ -40,7 +40,7 @@ mat4 CAM_first_person::fp_view_mat(Struct_camera* camera){
   //---------------------------
   return cam_view;
 }
-void CAM_first_person::fp_cam_mouse(Struct_camera* camera){
+void CAM_first_person::fp_cam_mouse(eng::structure::Struct_camera* camera){
   //---------------------------
 
   float& azimuth = camera->angle_azimuth;
