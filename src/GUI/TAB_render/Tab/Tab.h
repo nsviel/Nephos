@@ -2,7 +2,7 @@
 
 #include <UTL_specific/common.h>
 #include <TAB_render/Data/Namespace.h>
-#include <TAB_render/RND_tab/Namespace.h>
+#include <TAB_render/Tab/Namespace.h>
 #include <TAB_render/Engine/Namespace.h>
 #include <TAB_render/Kinect/Namespace.h>
 

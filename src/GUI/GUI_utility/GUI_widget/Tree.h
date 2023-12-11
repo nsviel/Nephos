@@ -1,6 +1,6 @@
 #pragma once
 
-#include <RND_tab/struct_init.h>
+#include <Tab/struct_init.h>
 #include <GUI_widget/Tree_node.h>
 #include <UTL_specific/common.h>
 
