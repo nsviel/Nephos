@@ -1,10 +1,10 @@
 #include "Scene.h"
 
-#include <Node/Engine.h>
+#include <Engine/Node/Engine.h>
 #include <Node/GUI.h>
 #include <GUI_main/Interface/Tab.h>
-#include <ENG_data/ENG_data.h>
-#include <ENG_data/ENG_scene/ENG_database.h>
+#include <Engine/ENG_data/ENG_data.h>
+#include <Engine/ENG_data/ENG_scene/ENG_database.h>
 #include <TAB_render/Data/Namespace.h>
 
 

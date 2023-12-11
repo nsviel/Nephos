@@ -1,11 +1,11 @@
 #include "Init.h"
 
 #include <Node/GUI.h>
-#include <Node/Engine.h>
-#include <ENG_data/ENG_data.h>
-#include <ENG_data/ENG_scene/ENG_scene.h>
-#include <ENG_data/ENG_load/ENG_loader.h>
-#include <ENG_operation/Transformation/Transformation.h>
+#include <Engine/Node/Engine.h>
+#include <Engine/ENG_data/ENG_data.h>
+#include <Engine/ENG_data/ENG_scene/ENG_scene.h>
+#include <Engine/ENG_data/ENG_load/ENG_loader.h>
+#include <Engine/ENG_operation/Transformation/Transformation.h>
 #include <UTL_file/Directory.h>
 #include <UTL_file/Info.h>
 

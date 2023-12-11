@@ -1,7 +1,7 @@
 #pragma once
 
-#include <ENG_shader/EDL/EDL_param.h>
-#include <ENG_shader/Base/BASE_shader.h>
+#include <Engine/ENG_shader/EDL/EDL_param.h>
+#include <Engine/ENG_shader/Base/BASE_shader.h>
 #include <UTL_specific/common.h>
 
 class Engine;

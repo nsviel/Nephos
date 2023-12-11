@@ -2,7 +2,7 @@
 #include "../Config.h"
 
 #include <Node/GUI.h>
-#include <Node/Engine.h>
+#include <Engine/Node/Engine.h>
 #include <Node/Utility.h>
 #include <iostream>
 

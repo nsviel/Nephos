@@ -1,15 +1,15 @@
 #include "Shader.h"
 
 #include <Node/GUI.h>
-#include <Node/Engine.h>
+#include <Engine/Node/Engine.h>
 #include <Vulkan.h>
 #include <VK_shader/VK_reload.h>
 #include <VK_struct/Instance.h>
 #include <VK_validation/Struct_validation.h>
 #include <VK_main/VK_engine.h>
-#include <ENG_shader/ENG_shader.h>
-#include <ENG_shader/EDL/EDL_shader.h>
-#include <ENG_shader/Scene/SCE_shader.h>
+#include <Engine/ENG_shader/ENG_shader.h>
+#include <Engine/ENG_shader/EDL/EDL_shader.h>
+#include <Engine/ENG_shader/Scene/SCE_shader.h>
 
 
 namespace gui::engine{

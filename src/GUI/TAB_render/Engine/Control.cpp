@@ -1,15 +1,15 @@
 #include "Control.h"
 
 #include <Node/GUI.h>
-#include <Node/Engine.h>
+#include <Engine/Node/Engine.h>
 #include <Node/Utility.h>
 #include <UTL_window/UTL_window.h>
-#include <ENG_data/ENG_data.h>
+#include <Engine/ENG_data/ENG_data.h>
 #include <UTL_function/fct_math.h>
-#include <ENG_data/ENG_scene/ENG_scene.h>
-#include <ENG_data/ENG_data.h>
-#include <ENG_camera/ENG_camera.h>
-#include <ENG_operation/Transformation/Transformation.h>
+#include <Engine/ENG_data/ENG_scene/ENG_scene.h>
+#include <Engine/ENG_data/ENG_data.h>
+#include <Engine/ENG_camera/ENG_camera.h>
+#include <Engine/ENG_operation/Transformation/Transformation.h>
 
 
 namespace gui::engine{

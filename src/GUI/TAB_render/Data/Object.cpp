@@ -1,9 +1,9 @@
 #include "Object.h"
 
 #include <Node/GUI.h>
-#include <Node/Engine.h>
-#include <ENG_data/ENG_data.h>
-#include <ENG_data/ENG_scene/ENG_scene.h>
+#include <Engine/Node/Engine.h>
+#include <Engine/ENG_data/ENG_data.h>
+#include <Engine/ENG_data/ENG_scene/ENG_scene.h>
 #include <image/IconsFontAwesome5.h>
 
 

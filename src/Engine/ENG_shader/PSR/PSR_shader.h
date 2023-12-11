@@ -1,8 +1,8 @@
 #pragma once
 
 #include "PSR_param.h"
-#include <ENG_shader/Base/BASE_shader.h>
-#include <ENG_camera/Struct_camera.h>
+#include <Engine/ENG_shader/Base/BASE_shader.h>
+#include <Engine/ENG_camera/Struct_camera.h>
 #include <UTL_specific/common.h>
 
 class Engine;
