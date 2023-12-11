@@ -12,7 +12,7 @@
 #include <ENG_shader/Scene/SCE_shader.h>
 
 
-namespace gui::rnd::panel{
+namespace gui::rnd::engine{
 
 //Constructor / Destructor
 Shader::Shader(GUI* gui, bool* show_window, string name) : Panel(show_window, name){

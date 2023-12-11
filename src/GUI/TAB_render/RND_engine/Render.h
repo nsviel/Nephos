@@ -1,7 +1,7 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <TAB_render/Engine_nsp.h>
+#include <TAB_render/RND_engine/Namespace.h>
 #include <GUI_utility/Media_nsp.h>
 
 class GUI;
@@ -9,7 +9,7 @@ class VK_imgui;
 class UTL_window;
 
 
-namespace gui::rnd::panel{
+namespace gui::rnd::engine{
 
 class Render
 {

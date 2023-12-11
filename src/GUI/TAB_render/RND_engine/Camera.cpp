@@ -5,7 +5,7 @@
 #include <ENG_camera/Struct_camera.h>
 
 
-namespace gui::rnd::panel{
+namespace gui::rnd::engine{
 
 //Constructor / Destructor
 Camera::Camera(GUI* gui, bool* show_window, string name) : Panel(show_window, name){

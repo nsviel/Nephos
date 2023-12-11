@@ -6,7 +6,7 @@
 #include <Engine.h>
 
 
-namespace gui::rnd::panel{
+namespace gui::rnd::engine{
 
 //Constructor / Destructor
 Profiler::Profiler(GUI* gui, bool* show_window, string name) : Panel(show_window, name){

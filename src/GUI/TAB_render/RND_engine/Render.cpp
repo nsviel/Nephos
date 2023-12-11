@@ -9,7 +9,7 @@
 #include <image/IconsFontAwesome5.h>
 
 
-namespace gui::rnd::panel{
+namespace gui::rnd::engine{
 
 //Constructor / Destructor
 Render::Render(GUI* gui){

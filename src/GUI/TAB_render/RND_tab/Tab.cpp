@@ -28,13 +28,13 @@ void Tab::create_panels(){
   this->rnd_option = new gui::rnd::tab::Option(gui, &gui_render_panel->show_option, "Option");
   this->rnd_object = new gui::rnd::panel::Object(gui, &gui_render_panel->show_object, "data::Object");
   this->rnd_set = new gui::rnd::panel::Set(gui, &gui_render_panel->show_set, "Set");
-  this->rnd_profiler = new gui::rnd::panel::Profiler(gui, &gui_render_panel->show_profiler, "Profiler");
-  this->rnd_shader = new gui::rnd::panel::Shader(gui, &gui_render_panel->show_shader, "Shader");
+  this->rnd_profiler = new gui::rnd::engine::Profiler(gui, &gui_render_panel->show_profiler, "Profiler");
+  this->rnd_shader = new gui::rnd::engine::Shader(gui, &gui_render_panel->show_shader, "Shader");
   this->rnd_scene = new gui::rnd::panel::Scene(gui, &gui_render_panel->show_scene, "Scene");
-  this->rnd_camera = new gui::rnd::panel::Camera(gui, &gui_render_panel->show_engine_camera, "Camera");
+  this->rnd_camera = new gui::rnd::engine::Camera(gui, &gui_render_panel->show_engine_camera, "Camera");
   this->rnd_kinect = new gui::rnd::panel::Kinect_panel(gui, &gui_render_panel->show_kinect, "Kinect");
   this->rnd_capture = new gui::rnd::panel::Capture(gui, &gui_render_panel->show_capture, "Capture");
-  this->rnd_render = new gui::rnd::panel::Render(gui);
+  this->rnd_render = new gui::rnd::engine::Render(gui);
   this->rnd_menu = new gui::rnd::tab::Menu(gui);
 
   //---------------------------
