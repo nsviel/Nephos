@@ -3,7 +3,7 @@
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <GUI/TAB_render/Kinect/Namespace.h>
-#include <Utility/Capture/Kinect/Base/Namespace.h>
+#include <Utility/Capture/Kinect/Structure/Namespace.h>
 
 class GUI;
 class Recorder;
