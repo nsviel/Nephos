@@ -3,7 +3,7 @@
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <GUI/GUI_utility/Media/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
+#include <Utility/Capture/Kinect/Device/K4A_device.h>
 #include <Utility/Capture/Kinect/Namespace.h>
 #include <Utility/Capture/Kinect/Data/Namespace.h>
 

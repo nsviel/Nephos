@@ -1,7 +1,7 @@
 #include "K4A_device.h"
 
-#include <Utility/Capture/Kinect/K4A_thread/K4A_capture.h>
-#include <Utility/Capture/Kinect/K4A_thread/K4A_replay.h>
+#include <Utility/Capture/Kinect/Thread/K4A_capture.h>
+#include <Utility/Capture/Kinect/Thread/K4A_replay.h>
 
 
 

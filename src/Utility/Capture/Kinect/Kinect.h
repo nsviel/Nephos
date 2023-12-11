@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Capture/Kinect/Structure/Namespace.h>
-#include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
+#include <Utility/Capture/Kinect/Device/K4A_device.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Capture/Kinect/Namespace.h>
 

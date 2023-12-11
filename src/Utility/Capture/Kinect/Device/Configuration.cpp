@@ -1,6 +1,6 @@
 #include "Configuration.h"
 
-#include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
+#include <Utility/Capture/Kinect/Device/K4A_device.h>
 
 
 namespace util::kinect::device{

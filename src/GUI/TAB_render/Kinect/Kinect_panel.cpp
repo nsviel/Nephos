@@ -2,8 +2,8 @@
 
 #include <Node/GUI.h>
 #include <Utility/Node/Namespace.h>
-#include <Utility/Capture/Kinect/K4A_device/K4A_swarm.h>
-#include <Utility/Capture/Kinect/K4A_device/Configuration.h>
+#include <Utility/Capture/Kinect/Device/K4A_swarm.h>
+#include <Utility/Capture/Kinect/Device/Configuration.h>
 
 
 namespace gui::kinect{
