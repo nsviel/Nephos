@@ -7,8 +7,8 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_validation/Struct_validation.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Engine/Shader/EDL/EDL_shader.h>
-#include <Engine/Shader/Scene/SCE_shader.h>
+#include <Engine/Shader/EDL/EDL.h>
+#include <Engine/Shader/Scene/SCE.h>
 
 
 namespace gui::engine{
@@ -181,11 +181,11 @@ void Shader::retrieve_shader_subclasses(){
 
   vector<Shader_info*> vec_shader_info;
   if(selection == "EDL"){
-    eng::shader::EDL_shader* edl_shader = eng_shader->get_edl_shader();
+    eng::shader::EDL* edl_shader = eng_shader->get_edl_shader();
     vec_shader_info = edl_shader->get_vec_shader_info();
   }
   else if(selection == "Scene"){
-    eng::shader::SCE_shader* sce_shader = eng_shader->get_sce_shader();
+    eng::shader::SCE* sce_shader = eng_shader->get_sce_shader();
     vec_shader_info = sce_shader->get_vec_shader_info();
   }
 
@@ -218,11 +218,11 @@ string Shader::get_path_vs_from_selection(){
   string path_vs = "";
 
   if(selection == "EDL"){
-    eng::shader::EDL_shader* edl_shader = eng_shader->get_edl_shader();
+    eng::shader::EDL* edl_shader = eng_shader->get_edl_shader();
     path_vs = edl_shader->get_glsl_path_vs(ID_subclass);
   }
   else if(selection == "Scene"){
-    eng::shader::SCE_shader* sce_shader = eng_shader->get_sce_shader();
+    eng::shader::SCE* sce_shader = eng_shader->get_sce_shader();
     path_vs = sce_shader->get_glsl_path_vs(ID_subclass);
   }
 
@@ -236,11 +236,11 @@ string Shader::get_path_fs_from_selection(){
   string path_fs = "";
 
   if(selection == "EDL"){
-    eng::shader::EDL_shader* edl_shader = eng_shader->get_edl_shader();
+    eng::shader::EDL* edl_shader = eng_shader->get_edl_shader();
     path_fs = edl_shader->get_glsl_path_fs(ID_subclass);
   }
   else if(selection == "Scene"){
-    eng::shader::SCE_shader* sce_shader = eng_shader->get_sce_shader();
+    eng::shader::SCE* sce_shader = eng_shader->get_sce_shader();
     path_fs = sce_shader->get_glsl_path_fs(ID_subclass);
   }
 
@@ -259,7 +259,7 @@ void Shader::show_parameter(){
   //---------------------------
 }
 void Shader::parameter_EDL(){
-  eng::shader::EDL_shader* edl_shader = eng_shader->get_edl_shader();
+  eng::shader::EDL* edl_shader = eng_shader->get_edl_shader();
   eng::shader::EDL_param* edl_param = edl_shader->get_edl_param();
   //---------------------------
 

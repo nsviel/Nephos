@@ -12,12 +12,12 @@ class UTL_window;
 
 namespace eng::shader{
 
-class EDL_shader : public BASE_shader
+class EDL : public BASE_shader
 {
 public:
   //Contrustor / destructor
-  EDL_shader(Engine* engine);
-  ~EDL_shader();
+  EDL(Engine* engine);
+  ~EDL();
 
   //Main function
   void init_shader();

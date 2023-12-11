@@ -1,4 +1,4 @@
-#include "EDL_shader.h"
+#include "EDL.h"
 
 #include <Engine/Node/Engine.h>
 #include <Engine/Base/Namespace.h>
@@ -8,7 +8,7 @@
 
 namespace eng::shader{
 
-EDL_shader::EDL_shader(Engine* engine){
+EDL::EDL(Engine* engine){
   //---------------------------
 
   utility::Node* utility = engine->get_utility();
@@ -20,10 +20,10 @@ EDL_shader::EDL_shader(Engine* engine){
   //---------------------------
   this->init_shader();
 }
-EDL_shader::~EDL_shader(){}
+EDL::~EDL(){}
 
 //Main function
-void EDL_shader::init_shader(){
+void EDL::init_shader(){
   //---------------------------
 
   //Set parameter values
@@ -46,7 +46,7 @@ void EDL_shader::init_shader(){
 
   //---------------------------
 }
-void EDL_shader::update_shader(){
+void EDL::update_shader(){
   //---------------------------
 
   // Depth setup

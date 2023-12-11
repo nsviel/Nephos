@@ -12,11 +12,11 @@ class UTL_window;
 
 namespace eng::shader{
 
-class PSR_shader : public BASE_shader
+class PSR : public BASE_shader
 {
 public:
-  PSR_shader(Engine* engine);
-  ~PSR_shader();
+  PSR(Engine* engine);
+  ~PSR();
 
   //Main function
   void update_shader();

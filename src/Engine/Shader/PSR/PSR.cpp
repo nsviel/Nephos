@@ -1,4 +1,4 @@
-#include "PSR_shader.h"
+#include "PSR.h"
 
 #include <Engine/Node/Engine.h>
 #include <Utility/Node/Namespace.h>
@@ -7,7 +7,7 @@
 
 namespace eng::shader{
 
-PSR_shader::PSR_shader(Engine* engine){
+PSR::PSR(Engine* engine){
   //---------------------------
 
   utility::Node* utility = engine->get_utility();
@@ -19,10 +19,10 @@ PSR_shader::PSR_shader(Engine* engine){
   //---------------------------
   this->init_shader();
 }
-PSR_shader::~PSR_shader(){}
+PSR::~PSR(){}
 
 //Main function
-void PSR_shader::init_shader(){
+void PSR::init_shader(){
   //---------------------------
 
   Shader_info* shader_info = new Shader_info();
@@ -36,7 +36,7 @@ void PSR_shader::init_shader(){
 
   //---------------------------
 }
-void PSR_shader::update_shader(){
+void PSR::update_shader(){
   //---------------------------
 
   // Depth setup

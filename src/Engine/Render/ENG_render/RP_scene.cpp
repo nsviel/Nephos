@@ -5,7 +5,7 @@
 #include <Vulkan/VK_pipeline/VK_pipeline.h>
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Vulkan/VK_drawing/VK_viewport.h>
-#include <Engine/Shader/Scene/SCE_shader.h>
+#include <Engine/Shader/Scene/SCE.h>
 #include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/VK_binding/VK_uniform.h>
 #include <Vulkan/VK_drawing/VK_drawing.h>
@@ -46,7 +46,7 @@ void RP_scene::init_renderpass(){
   vk_engine->add_renderpass_description(renderpass);
 }
 void RP_scene::create_subpass(vk::structure::Renderpass* renderpass){
-  eng::shader::SCE_shader* sce_shader = eng_shader->get_sce_shader();
+  eng::shader::SCE* sce_shader = eng_shader->get_sce_shader();
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();

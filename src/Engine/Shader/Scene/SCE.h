@@ -9,11 +9,11 @@ class UTL_window;
 
 namespace eng::shader{
 
-class SCE_shader : public BASE_shader
+class SCE : public BASE_shader
 {
 public:
-  SCE_shader(Engine* engine);
-  ~SCE_shader();
+  SCE(Engine* engine);
+  ~SCE();
 
   //Main function
   void init_shader();

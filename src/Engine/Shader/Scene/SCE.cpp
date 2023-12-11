@@ -1,4 +1,4 @@
-#include "SCE_shader.h"
+#include "SCE.h"
 
 #include <Engine/Node/Engine.h>
 #include <Utility/Node/Namespace.h>
@@ -7,7 +7,7 @@
 
 namespace eng::shader{
 
-SCE_shader::SCE_shader(Engine* engine){
+SCE::SCE(Engine* engine){
   //---------------------------
 
   utility::Node* utility = engine->get_utility();
@@ -17,10 +17,10 @@ SCE_shader::SCE_shader(Engine* engine){
   //---------------------------
   this->init_shader();
 }
-SCE_shader::~SCE_shader(){}
+SCE::~SCE(){}
 
 //Main function
-void SCE_shader::init_shader(){
+void SCE::init_shader(){
   Shader_info* shader_info;
   //---------------------------
 
