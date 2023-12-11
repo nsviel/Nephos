@@ -7,7 +7,7 @@
 #include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_data.h>
 #include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_info.h>
 
-#include <Utility/UTL_specific/common.h>
+#include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <string>
 

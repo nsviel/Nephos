@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GUI/GUI_utility/Base/Namespace.h>
-#include <Utility/UTL_specific/common.h>
+#include <Utility/Specific/common.h>
 #include <GUI/TAB_render/Kinect/Namespace.h>
 
 class GUI;
