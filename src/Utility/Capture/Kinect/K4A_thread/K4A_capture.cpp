@@ -1,13 +1,11 @@
 #include "K4A_capture.h"
 
-#include <Utility/Capture/Kinect/K4A_data/K4A_data.h>
-
 
 //Constructor / Destructor
 K4A_capture::K4A_capture(){
   //---------------------------
 
-  this->k4a_data = new K4A_data();
+  this->k4a_data = new util::kinect::data::K4A_data();
 
   //---------------------------
 }

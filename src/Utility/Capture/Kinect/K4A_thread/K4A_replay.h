@@ -1,12 +1,11 @@
 #pragma once
 
+#include <Utility/Capture/Kinect/K4A_data/Namespace.h>
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
 #include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
-
-class K4A_data;
 
 
 class K4A_replay
@@ -36,7 +35,7 @@ public:
   inline void set_current_timestamp(float value){this->ts_seek = value;}
 
 private:
-  K4A_data* k4a_data;
+  util::kinect::data::K4A_data* k4a_data;
 
   std::thread thread;
   float ts_seek = -1;

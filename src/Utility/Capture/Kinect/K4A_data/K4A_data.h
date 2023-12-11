@@ -7,6 +7,8 @@
 #include <k4a/k4a.hpp>
 
 
+namespace util::kinect::data{
+
 class K4A_data
 {
 public:
@@ -20,3 +22,5 @@ public:
 
 private:
 };
+
+}

@@ -1,11 +1,10 @@
 #pragma once
 
+#include <Utility/Capture/Kinect/K4A_data/Namespace.h>
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
-
-class K4A_data;
 
 
 class K4A_capture
@@ -28,7 +27,7 @@ public:
   inline bool* get_thread_pause(){return &thread_pause;}
 
 private:
-  K4A_data* k4a_data;
+  util::kinect::data::K4A_data* k4a_data;
 
   std::thread thread;
   bool thread_running = false;

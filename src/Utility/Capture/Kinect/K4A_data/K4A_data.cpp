@@ -1,6 +1,8 @@
 #include "K4A_data.h"
 
 
+namespace util::kinect::data{
+
 //Constructor / Destructor
 K4A_data::K4A_data(){
   //---------------------------
@@ -53,4 +55,6 @@ void K4A_data::find_data_from_capture(util::kinect::structure::Data* data, k4a::
   data->data_ready = true;
 
   //---------------------------
+}
+
 }

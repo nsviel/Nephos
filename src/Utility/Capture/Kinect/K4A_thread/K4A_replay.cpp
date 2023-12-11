@@ -1,14 +1,13 @@
 #include "K4A_replay.h"
 
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
-#include <Utility/Capture/Kinect/K4A_data/K4A_data.h>
 
 
 //Constructor / Destructor
 K4A_replay::K4A_replay(){
   //---------------------------
 
-  this->k4a_data = new K4A_data();
+  this->k4a_data = new util::kinect::data::K4A_data();
 
   //---------------------------
 }
