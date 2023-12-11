@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GUI_utility/Base/Namespace.h>
-#include <GUI_utility/GUI_image/Namespace.h>
+#include <GUI_utility/Media/Namespace.h>
 #include <UTL_specific/common.h>
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
 

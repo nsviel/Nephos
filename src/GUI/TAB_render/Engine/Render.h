@@ -2,7 +2,7 @@
 
 #include <UTL_specific/common.h>
 #include <TAB_render/Engine/Namespace.h>
-#include <GUI_utility/GUI_image/Namespace.h>
+#include <GUI_utility/Media/Namespace.h>
 
 class GUI;
 class VK_imgui;
