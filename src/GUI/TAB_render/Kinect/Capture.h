@@ -12,7 +12,7 @@ class K4A_infrared;
 class K4A_swarm;
 
 
-namespace gui::rnd::panel{
+namespace gui::kinect{
 
 class Capture : public gui::base::Panel
 {

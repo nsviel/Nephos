@@ -8,7 +8,7 @@ class Panel;
 class Struct_camera;
 
 
-namespace gui::rnd::engine{
+namespace gui::engine{
 
 class Camera : public gui::base::Panel
 {

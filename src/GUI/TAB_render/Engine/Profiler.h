@@ -7,7 +7,7 @@ class GUI;
 class VK_info;
 
 
-namespace gui::rnd::engine{
+namespace gui::engine{
 
 class Profiler : public gui::base::Panel
 {

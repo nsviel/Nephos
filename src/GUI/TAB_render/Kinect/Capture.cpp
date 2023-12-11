@@ -8,7 +8,7 @@
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
-namespace gui::rnd::panel{
+namespace gui::kinect{
 
 //Constructor / Destructor
 Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, name){

@@ -12,7 +12,7 @@ class ENG_shader;
 class VK_engine;
 
 
-namespace gui::rnd::engine{
+namespace gui::engine{
 
 class Shader : public gui::base::Panel
 {

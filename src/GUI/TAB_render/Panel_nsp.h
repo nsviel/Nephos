@@ -4,8 +4,7 @@
 #include <RND_data/Scene.h>
 #include <RND_data/Set.h>
 
-#include <RND_kinect/Kinect_panel.h>
-#include <RND_kinect/Capture.h>
+
 
 
 namespace gui::rnd::panel{
@@ -16,8 +15,7 @@ namespace gui::rnd::panel{
   class Set;
 
 
-  class Kinect_panel;
-  class Capture;
+
 
   //---------------------------
 }

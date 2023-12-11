@@ -9,7 +9,7 @@ class VK_imgui;
 class UTL_window;
 
 
-namespace gui::rnd::engine{
+namespace gui::engine{
 
 class Render
 {
@@ -28,7 +28,7 @@ public:
   void resize();
 
 private:
-  gui::rnd::engine::Control* gui_control;
+  gui::engine::Control* gui_control;
   gui::media::Image* gui_image;
   VK_imgui* vk_imgui;
   UTL_window* utl_window;

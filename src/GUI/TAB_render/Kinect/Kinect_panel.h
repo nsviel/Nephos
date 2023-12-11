@@ -2,13 +2,13 @@
 
 #include <GUI_utility/Base_nsp.h>
 #include <UTL_specific/common.h>
-#include <TAB_render/Kinect_nsp.h>
+#include <TAB_render/Kinect/Namespace.h>
 
 class GUI;
 class Recorder;
 
 
-namespace gui::rnd::panel{
+namespace gui::kinect{
 
 class Kinect_panel : public gui::base::Panel
 {

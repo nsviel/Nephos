@@ -9,7 +9,7 @@
 #include <UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
 
 
-namespace gui::rnd::panel{
+namespace gui::kinect{
 
 //Constructor / Destructor
 Kinect_panel::Kinect_panel(GUI* gui, bool* show_window, string name) : Panel(show_window, name){

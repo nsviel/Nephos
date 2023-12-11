@@ -8,7 +8,7 @@
 #include <TAB_render/Engine/Profiler.h>
 
 
-namespace gui::rnd::engine{
+namespace gui::engine{
   //---------------------------
 
   class Control;

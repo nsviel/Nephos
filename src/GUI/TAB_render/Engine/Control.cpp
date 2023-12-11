@@ -12,7 +12,7 @@
 #include <ENG_operation/Transformation/Transformation.h>
 
 
-namespace gui::rnd::engine{
+namespace gui::engine{
 
 //Constructor / Destructor
 Control::Control(GUI* gui){

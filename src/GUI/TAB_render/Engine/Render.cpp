@@ -9,7 +9,7 @@
 #include <image/IconsFontAwesome5.h>
 
 
-namespace gui::rnd::engine{
+namespace gui::engine{
 
 //Constructor / Destructor
 Render::Render(GUI* gui){
@@ -20,7 +20,7 @@ Render::Render(GUI* gui){
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->utl_window = utility->get_utl_window();
-  this->gui_control = new gui::rnd::engine::Control(gui);
+  this->gui_control = new gui::engine::Control(gui);
   this->gui_image = new gui::media::Image(gui);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
 
