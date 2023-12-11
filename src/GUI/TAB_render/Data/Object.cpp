@@ -10,13 +10,15 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-Object::Object(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Object::Object(GUI* gui, bool* panel_show){
   //---------------------------
 
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
   this->eng_scene = eng_data->get_eng_scene();
 
+  this->panel_show = panel_show;
+  this->panel_name = "Object";
   this->item_width = 150;
 
   //---------------------------
@@ -24,6 +26,22 @@ Object::Object(GUI* gui, bool* show_window, string name) : Panel(show_window, na
 Object::~Object(){}
 
 //Main function
+void Object::run_panel(){
+  //---------------------------
+
+  if(*panel_show){
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    if(ImGui::Begin(panel_name.c_str(), panel_show, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+
+      this->design_panel();
+
+      ImGui::End();
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
 void Object::design_panel(){
   //---------------------------
 
@@ -37,7 +55,7 @@ void Object::design_panel(){
 void Object::object_info(data::Object* object){
   //---------------------------
 
-  this->set_name("Object " + object->name);
+  this->panel_name = "Object " + object->name;
 
   //---------------------------
 }

@@ -10,6 +10,8 @@ namespace gui::rnd::panel{
 Set::Set(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
+  this->panel_show = show_window;
+  this->panel_name = "Scene";
   this->item_width = 150;
 
   //---------------------------

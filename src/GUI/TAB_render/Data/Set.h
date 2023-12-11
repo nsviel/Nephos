@@ -29,6 +29,8 @@ private:
   Panel* gui_render_panel;
 
   data::Set* set_selected;
+  string panel_name;
+  bool* panel_show;;
   int item_width;
 };
 

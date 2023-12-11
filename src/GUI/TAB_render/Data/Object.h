@@ -10,14 +10,15 @@ class ENG_scene;
 
 namespace gui::rnd::panel{
 
-class Object : public gui::base::Panel
+class Object
 {
 public:
   //Constructor / Destructor
-  Object(GUI* gui, bool* show_window, string name);
+  Object(GUI* gui, bool* show_window);
   ~Object();
 
   //Main function
+  void run_panel();
   void design_panel();
 
   //Sub functions
@@ -35,6 +36,8 @@ private:
   ENG_scene* eng_scene;
 
   data::Object* object_selected;
+  string panel_name;
+  bool* panel_show;;
   int item_width;
 };
 

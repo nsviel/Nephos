@@ -18,10 +18,11 @@ Scene::Scene(GUI* gui, gui::rnd::tab::Panel* rnd_panel){
   ENG_data* eng_data = engine->get_eng_data();
   this->eng_database = eng_data->get_eng_database();
   this->rnd_panel = rnd_panel;
+  this->gui_set = new gui::rnd::panel::Set(gui, &rnd_panel->show_set, "Set");
+  this->gui_object = new gui::rnd::panel::Object(gui, &rnd_panel->show_object);
+
   this->panel_show = &rnd_panel->show_scene;
   this->panel_name = "Scene";
-  this->gui_set = new gui::rnd::panel::Set(gui, &rnd_panel->show_set, "Set");
-  this->gui_object = new gui::rnd::panel::Object(gui, &rnd_panel->show_object, "Object");
 
   //---------------------------
 }
