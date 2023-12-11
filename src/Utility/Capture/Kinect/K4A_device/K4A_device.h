@@ -36,7 +36,7 @@ public:
   K4A_configuration* k4a_configuration;
 
   Struct_k4a_config config;
-  util::kinect::structure::Struct_k4a_color color;
+  util::kinect::structure::Color color;
   Struct_k4a_depth depth;
   Struct_k4a_infrared ir;
   Struct_k4a_data data;

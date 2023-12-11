@@ -21,7 +21,7 @@ struct Struct_k4a_device{
   k4a::device* device;
 
   Struct_k4a_config config;
-  util::kinect::structure::Struct_k4a_color color;
+  util::kinect::structure::Color color;
   Struct_k4a_depth depth;
   Struct_k4a_infrared ir;
   Struct_k4a_data data;

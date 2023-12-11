@@ -88,7 +88,7 @@ struct Power_frequency{
 
 namespace util::kinect::structure{
 
-struct Struct_k4a_color{
+struct Color{
   //---------------------------
 
   //General
