@@ -25,12 +25,12 @@ public:
 public:
   //Init functions
   void init_renderpass();
-  void create_subpass(vk::structure::Struct_vk_renderpass* renderpass);
+  void create_subpass(vk::structure::Renderpass* renderpass);
 
   //Draw function
-  void draw_scene(vk::structure::Struct_vk_subpass* subpass);
-  void cmd_draw_point(vk::structure::Struct_vk_subpass* subpass);
-  void cmd_draw_line(vk::structure::Struct_vk_subpass* subpass);
+  void draw_scene(vk::structure::Subpass* subpass);
+  void cmd_draw_point(vk::structure::Subpass* subpass);
+  void cmd_draw_line(vk::structure::Subpass* subpass);
 
 private:
   ENG_shader* eng_shader;

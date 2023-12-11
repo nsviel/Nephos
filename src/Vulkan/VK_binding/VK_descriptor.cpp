@@ -156,7 +156,7 @@ void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vk::st
 }
 
 //Subfunction
-void VK_descriptor::cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Struct_vk_pipeline* pipeline, VkDescriptorSet set){
+void VK_descriptor::cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set){
   //---------------------------
 
   vkCmdBindDescriptorSets(command_buffer, TYP_BIND_PIPELINE_GRAPHICS, pipeline->layout, 0, 1, &set, 0, nullptr);

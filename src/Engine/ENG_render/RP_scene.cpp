@@ -36,7 +36,7 @@ void RP_scene::init_renderpass(){
   //---------------------------
 
   //Renderpass
-  vk::structure::Struct_vk_renderpass* renderpass = new vk::structure::Struct_vk_renderpass();
+  vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
   renderpass->name = "scene";
   renderpass->target = "graphics";
 
@@ -46,16 +46,16 @@ void RP_scene::init_renderpass(){
   //---------------------------
   vk_engine->add_renderpass_description(renderpass);
 }
-void RP_scene::create_subpass(vk::structure::Struct_vk_renderpass* renderpass){
+void RP_scene::create_subpass(vk::structure::Renderpass* renderpass){
   SCE_shader* sce_shader = eng_shader->get_sce_shader();
   //---------------------------
 
-  vk::structure::Struct_vk_subpass* subpass = new vk::structure::Struct_vk_subpass();
+  vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = "shader";
-  subpass->draw_task = [this](vk::structure::Struct_vk_subpass* subpass){RP_scene::draw_scene(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){RP_scene::draw_scene(subpass);};
 
-  vk::structure::Struct_vk_pipeline* pipeline;
-  pipeline = new vk::structure::Struct_vk_pipeline();
+  vk::structure::Pipeline* pipeline;
+  pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "line";
   pipeline->definition.topology = "line";
   pipeline->definition.purpose = "graphics";
@@ -65,7 +65,7 @@ void RP_scene::create_subpass(vk::structure::Struct_vk_renderpass* renderpass){
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
   subpass->vec_pipeline.push_back(pipeline);
 
-  pipeline = new vk::structure::Struct_vk_pipeline();
+  pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "point";
   pipeline->definition.topology = "point";
   pipeline->definition.purpose = "graphics";
@@ -81,7 +81,7 @@ void RP_scene::create_subpass(vk::structure::Struct_vk_renderpass* renderpass){
 }
 
 //Draw function
-void RP_scene::draw_scene(vk::structure::Struct_vk_subpass* subpass){
+void RP_scene::draw_scene(vk::structure::Subpass* subpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
@@ -92,11 +92,11 @@ void RP_scene::draw_scene(vk::structure::Struct_vk_subpass* subpass){
   //---------------------------
   this->time_renderpass = timer.stop_ms(t1);
 }
-void RP_scene::cmd_draw_point(vk::structure::Struct_vk_subpass* subpass){
+void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
   list<vk::structure::Entity*> list_data = vk_engine->get_list_data();
   //---------------------------
 
-  vk::structure::Struct_vk_pipeline* pipeline = subpass->get_pipeline_byName("point");
+  vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("point");
   vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
 
   //Bind and draw vertex buffers
@@ -114,11 +114,11 @@ void RP_scene::cmd_draw_point(vk::structure::Struct_vk_subpass* subpass){
 
   //---------------------------
 }
-void RP_scene::cmd_draw_line(vk::structure::Struct_vk_subpass* subpass){
+void RP_scene::cmd_draw_line(vk::structure::Subpass* subpass){
   list<vk::structure::Entity*> list_data = vk_engine->get_list_data();
   //---------------------------
 
-  vk::structure::Struct_vk_pipeline* pipeline = subpass->get_pipeline_byName("line");
+  vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("line");
   vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
 
   //Bind and draw vertex buffers

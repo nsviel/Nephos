@@ -15,9 +15,9 @@ public:
 
 public:
   //Main function
-  void create_pipeline_shader(vk::structure::Struct_vk_pipeline* pipeline);
-  void create_pipeline_shader_module(vk::structure::Struct_vk_pipeline* pipeline);
-  void create_pipeline_shader_info(vk::structure::Struct_vk_pipeline* pipeline);
+  void create_pipeline_shader(vk::structure::Pipeline* pipeline);
+  void create_pipeline_shader_module(vk::structure::Pipeline* pipeline);
+  void create_pipeline_shader_info(vk::structure::Pipeline* pipeline);
 
   //Subfunction
   VkShaderModule create_shader_module(const std::vector<char>& code);

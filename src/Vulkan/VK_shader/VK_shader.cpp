@@ -18,7 +18,7 @@ VK_shader::VK_shader(Struct_vulkan* struct_vulkan){
 VK_shader::~VK_shader(){}
 
 //Main function
-void VK_shader::create_pipeline_shader(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_shader::create_pipeline_shader(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   this->create_pipeline_shader_module(pipeline);
@@ -28,7 +28,7 @@ void VK_shader::create_pipeline_shader(vk::structure::Struct_vk_pipeline* pipeli
 }
 
 //Subfunction
-void VK_shader::create_pipeline_shader_module(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_shader::create_pipeline_shader_module(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Load spir format shaders
@@ -47,7 +47,7 @@ void VK_shader::create_pipeline_shader_module(vk::structure::Struct_vk_pipeline*
 
   //---------------------------
 }
-void VK_shader::create_pipeline_shader_info(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_shader::create_pipeline_shader_info(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   pair<VkShaderModule, VkShaderModule>& shader_couple = pipeline->info.vec_shader_couple[0];

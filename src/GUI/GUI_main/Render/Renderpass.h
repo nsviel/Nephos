@@ -21,10 +21,10 @@ public:
 public:
   //Main functions
   void init_renderpass();
-  void create_subpass(vk::structure::Struct_vk_renderpass* renderpass);
+  void create_subpass(vk::structure::Renderpass* renderpass);
 
   //Draw function
-  void draw(vk::structure::Struct_vk_subpass* subpass);
+  void draw(vk::structure::Subpass* subpass);
 
 private:
   VK_imgui* vk_imgui;

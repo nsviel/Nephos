@@ -1,19 +1,19 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_subpass.h>
+#include <VK_struct/Subpass.h>
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 
 namespace vk::structure{
 
-struct Struct_vk_renderpass{
+struct Renderpass{
   //---------------------------
 
   //Info
   std::string name;
   std::string target;
-  std::vector<vk::structure::Struct_vk_subpass*> vec_subpass;
+  std::vector<vk::structure::Subpass*> vec_subpass;
 
   //Renderpass stuff
   VkRenderPass renderpass;

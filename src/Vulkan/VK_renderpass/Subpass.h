@@ -21,13 +21,13 @@ public:
 
 public:
   //Main functions
-  void create_subpass(vk::structure::Struct_vk_renderpass* renderpass);
+  void create_subpass(vk::structure::Renderpass* renderpass);
 
   //Subfunction
-  void create_subpass_shader(vk::structure::Struct_vk_subpass* subpass);
-  void create_subpass_transfert(vk::structure::Struct_vk_subpass* subpass);
-  void create_subpass_presentation(vk::structure::Struct_vk_subpass* subpass);
-  void create_subpass_description(vk::structure::Struct_vk_subpass* subpass);
+  void create_subpass_shader(vk::structure::Subpass* subpass);
+  void create_subpass_transfert(vk::structure::Subpass* subpass);
+  void create_subpass_presentation(vk::structure::Subpass* subpass);
+  void create_subpass_description(vk::structure::Subpass* subpass);
 
   //Color attachment
   void color_attachment_description(vk::structure::Attachment& color);

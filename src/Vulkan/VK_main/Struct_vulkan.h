@@ -15,7 +15,7 @@ struct Struct_vulkan{
 
 
   std::string name;
-  vk::structure::Struct_vk_render render;
+  vk::structure::Render render;
   Struct_vk_window window;
   vk::structure::Instance instance;
   vk::structure::Device device;
@@ -23,7 +23,7 @@ struct Struct_vulkan{
   vk::structure::Info info;
   vk::structure::Data data;
   vk::structure::Parameter param;
-  vk::structure::Struct_vk_pool pool;
+  vk::structure::Pool pool;
   Struct_vk_synchro synchro;
 
   Struct_vulkan(GLFWwindow* window){

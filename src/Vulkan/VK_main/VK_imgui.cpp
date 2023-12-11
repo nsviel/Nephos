@@ -25,7 +25,7 @@ VK_imgui::~VK_imgui(){}
 
 //Main function
 void VK_imgui::init(){
-  vk::structure::Struct_vk_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
+  vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
   //---------------------------
 
   // Setup Dear ImGui context
@@ -63,7 +63,7 @@ void VK_imgui::load_font(){
   VkResult result;
   //---------------------------
 
-  vk::structure::Struct_vk_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
+  vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
 
   vk_pool->reset_command_pool();
   vk_command->start_command_buffer_once(renderpass->command_buffer);
@@ -95,7 +95,7 @@ ImTextureID VK_imgui::rendered_texture(){
   bool has_been_resized = check_window_resize();
 
   if(texture == 0 || struct_vulkan->window.is_resized || has_been_resized){
-    vk::structure::Struct_vk_renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
+    vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
     vk::structure::Image* image = &renderpass->framebuffer->color;
 
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);

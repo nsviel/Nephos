@@ -39,7 +39,7 @@ void RP_edl::init_renderpass(){
   //---------------------------
 
   //Renderpass
-  vk::structure::Struct_vk_renderpass* renderpass = new vk::structure::Struct_vk_renderpass();
+  vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
   renderpass->name = "edl";
   renderpass->target = "graphics";
 
@@ -49,14 +49,14 @@ void RP_edl::init_renderpass(){
   //---------------------------
   vk_engine->add_renderpass_description(renderpass);
 }
-void RP_edl::create_subpass(vk::structure::Struct_vk_renderpass* renderpass){
+void RP_edl::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  vk::structure::Struct_vk_subpass* subpass = new vk::structure::Struct_vk_subpass();
+  vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = "shader";
-  subpass->draw_task = [this](vk::structure::Struct_vk_subpass* subpass){RP_edl::draw_edl(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){RP_edl::draw_edl(subpass);};
 
-  vk::structure::Struct_vk_pipeline* pipeline = new vk::structure::Struct_vk_pipeline();
+  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle_EDL";
   pipeline->definition.topology = "triangle";
   pipeline->definition.purpose = "graphics";
@@ -73,7 +73,7 @@ void RP_edl::create_subpass(vk::structure::Struct_vk_renderpass* renderpass){
 }
 
 //Draw function
-void RP_edl::draw_edl(vk::structure::Struct_vk_subpass* subpass){
+void RP_edl::draw_edl(vk::structure::Subpass* subpass){
   //---------------------------
 
   this->update_descriptor(subpass);
@@ -81,25 +81,25 @@ void RP_edl::draw_edl(vk::structure::Struct_vk_subpass* subpass){
 
   //---------------------------
 }
-void RP_edl::update_descriptor(vk::structure::Struct_vk_subpass* subpass){
+void RP_edl::update_descriptor(vk::structure::Subpass* subpass){
   //---------------------------
 
-  vk::structure::Struct_vk_renderpass* renderpass_scene = vk_engine->get_renderpass(0);
+  vk::structure::Renderpass* renderpass_scene = vk_engine->get_renderpass(0);
   vk::structure::Framebuffer* frame_scene = renderpass_scene->framebuffer;
 
   for(int i=0; i<subpass->vec_pipeline.size(); i++){
-    vk::structure::Struct_vk_pipeline* pipeline = subpass->vec_pipeline[i];
+    vk::structure::Pipeline* pipeline = subpass->vec_pipeline[i];
     vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);
     vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->depth);
   }
 
   //---------------------------
 }
-void RP_edl::draw_command(vk::structure::Struct_vk_subpass* subpass){
+void RP_edl::draw_command(vk::structure::Subpass* subpass){
   //---------------------------
 
   EDL_param* edl_param = edl_shader->get_edl_param();
-  vk::structure::Struct_vk_pipeline* pipeline = subpass->get_pipeline();
+  vk::structure::Pipeline* pipeline = subpass->get_pipeline();
 
   vk_viewport->cmd_viewport(subpass->command_buffer);
   vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);

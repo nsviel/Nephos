@@ -1,7 +1,7 @@
 #pragma once
 
 #include <VK_struct/Namespace.h>
-#include <VK_struct/Struct_vk_pipeline.h>
+#include <VK_struct/Pipeline.h>
 #include <UTL_specific/common.h>
 
 class Engine;
@@ -19,9 +19,9 @@ public:
 public:
   //Main functions
   void init_renderpass();
-  void create_subpass(vk::structure::Struct_vk_renderpass* renderpass);
+  void create_subpass(vk::structure::Renderpass* renderpass);
 
-  void draw(vk::structure::Struct_vk_subpass* subpass);
+  void draw(vk::structure::Subpass* subpass);
 
 private:
   VK_engine* vk_engine;

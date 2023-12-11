@@ -43,7 +43,7 @@ void VK_command::start_command_buffer_primary(VkCommandBuffer command_buffer){
 
   //---------------------------
 }
-void VK_command::start_command_buffer_secondary(vk::structure::Struct_vk_renderpass* renderpass, VkCommandBuffer command_buffer){
+void VK_command::start_command_buffer_secondary(vk::structure::Renderpass* renderpass, VkCommandBuffer command_buffer){
   vk::structure::Framebuffer* frame = renderpass->framebuffer;
   //---------------------------
 
@@ -136,7 +136,7 @@ void VK_command::clean_command_buffer(VkCommandBuffer& command_buffer){
 }
 
 //Render pass
-void VK_command::start_render_pass(vk::structure::Struct_vk_renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb){
+void VK_command::start_render_pass(vk::structure::Renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb){
   //---------------------------
 
   this->reset_command_buffer(renderpass->command_buffer);
@@ -170,7 +170,7 @@ void VK_command::start_render_pass(vk::structure::Struct_vk_renderpass* renderpa
 
   //---------------------------
 }
-void VK_command::stop_render_pass(vk::structure::Struct_vk_renderpass* renderpass){
+void VK_command::stop_render_pass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vkCmdEndRenderPass(renderpass->command_buffer);

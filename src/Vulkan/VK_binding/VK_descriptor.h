@@ -1,7 +1,7 @@
 #pragma once
 
 #include <VK_struct/Struct_vk_binding.h>
-#include <VK_struct/Struct_vk_pipeline.h>
+#include <VK_struct/Pipeline.h>
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
@@ -28,7 +28,7 @@ public:
   void update_descriptor_sampler(Struct_vk_binding* binding, vk::structure::Image* image);
 
   //Subfunction
-  void cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Struct_vk_pipeline* pipeline, VkDescriptorSet set);
+  void cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set);
   void allocate_descriptor_set(Struct_vk_binding* binding);
   void create_layout_from_required(Struct_vk_binding* binding);
   VkDescriptorSetLayout create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding);

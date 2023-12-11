@@ -15,11 +15,11 @@
 #include <VK_struct/Parameter.h>
 
 #include <VK_struct/Physical_device.h>
-#include <VK_struct/Struct_vk_pipeline.h>
-#include <VK_struct/Struct_vk_pool.h>
-#include <VK_struct/Struct_vk_render.h>
-#include <VK_struct/Struct_vk_renderpass.h>
-#include <VK_struct/Struct_vk_subpass.h>
+#include <VK_struct/Pipeline.h>
+#include <VK_struct/Pool.h>
+#include <VK_struct/Render.h>
+#include <VK_struct/Renderpass.h>
+#include <VK_struct/Subpass.h>
 
 
 namespace vk::structure{
@@ -40,11 +40,11 @@ namespace vk::structure{
   class Parameter;
 
   class Physical_device;
-  class Struct_vk_pipeline;
-  class Struct_vk_pool;
-  class Struct_vk_render;
-  class Struct_vk_renderpass;
-  class Struct_vk_subpass;
+  class Pipeline;
+  class Pool;
+  class Render;
+  class Renderpass;
+  class Subpass;
 
   //---------------------------
 }

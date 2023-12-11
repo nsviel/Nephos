@@ -24,12 +24,12 @@ public:
 public:
   //Init functions
   void init_renderpass();
-  void create_subpass(vk::structure::Struct_vk_renderpass* renderpass);
+  void create_subpass(vk::structure::Renderpass* renderpass);
 
   //Draw function
-  void draw_edl(vk::structure::Struct_vk_subpass* subpass);
-  void update_descriptor(vk::structure::Struct_vk_subpass* subpass);
-  void draw_command(vk::structure::Struct_vk_subpass* subpass);
+  void draw_edl(vk::structure::Subpass* subpass);
+  void update_descriptor(vk::structure::Subpass* subpass);
+  void draw_command(vk::structure::Subpass* subpass);
 
 private:
   EDL_shader* edl_shader;

@@ -26,9 +26,9 @@ public:
   void clean_renderpass();
 
   //Subfunction
-  void create_renderpass_struct(vk::structure::Struct_vk_renderpass* renderpass);
-  void create_renderpass_obj(vk::structure::Struct_vk_renderpass* renderpass);
-  void clean_renderpass_struct(vk::structure::Struct_vk_renderpass* renderpass);
+  void create_renderpass_struct(vk::structure::Renderpass* renderpass);
+  void create_renderpass_obj(vk::structure::Renderpass* renderpass);
+  void clean_renderpass_struct(vk::structure::Renderpass* renderpass);
 
 private:
   Struct_vulkan* struct_vulkan;

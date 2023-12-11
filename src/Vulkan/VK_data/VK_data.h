@@ -25,10 +25,10 @@ public:
   void clean_entity(vk::structure::Entity* data);
 
   //Pipeline data description
-  void pipeline_data_description(vk::structure::Struct_vk_pipeline* pipeline);
-  void pipeline_binding_description(vk::structure::Struct_vk_pipeline* pipeline);
-  void pipeline_attribut_description(vk::structure::Struct_vk_pipeline* pipeline);
-  void pipeline_vertex_input_info(vk::structure::Struct_vk_pipeline* pipeline);
+  void pipeline_data_description(vk::structure::Pipeline* pipeline);
+  void pipeline_binding_description(vk::structure::Pipeline* pipeline);
+  void pipeline_attribut_description(vk::structure::Pipeline* pipeline);
+  void pipeline_vertex_input_info(vk::structure::Pipeline* pipeline);
 
 private:
   Struct_vulkan* struct_vulkan;

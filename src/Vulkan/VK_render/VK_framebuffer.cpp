@@ -25,13 +25,13 @@ void VK_framebuffer::create_framebuffers(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
-    vk::structure::Struct_vk_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     this->create_framebuffer(renderpass);
   }
 
   //---------------------------
 }
-void VK_framebuffer::create_framebuffer(vk::structure::Struct_vk_renderpass* renderpass){
+void VK_framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk::structure::Framebuffer* framebuffer = new vk::structure::Framebuffer();
@@ -52,13 +52,13 @@ void VK_framebuffer::clean_framebuffers(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
-    vk::structure::Struct_vk_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     this->clean_framebuffer(renderpass);
   }
 
   //---------------------------
 }
-void VK_framebuffer::clean_framebuffer(vk::structure::Struct_vk_renderpass* renderpass){
+void VK_framebuffer::clean_framebuffer(vk::structure::Renderpass* renderpass){
   vk::structure::Framebuffer* framebuffer = renderpass->framebuffer;
   //---------------------------
 
@@ -71,7 +71,7 @@ void VK_framebuffer::clean_framebuffer(vk::structure::Struct_vk_renderpass* rend
 }
 
 //Subfunction
-void VK_framebuffer::create_framebuffer_renderpass(vk::structure::Struct_vk_renderpass* renderpass, vk::structure::Framebuffer* framebuffer){
+void VK_framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* renderpass, vk::structure::Framebuffer* framebuffer){
   //---------------------------
 
   //Create frambuffer
@@ -97,7 +97,7 @@ void VK_framebuffer::create_framebuffer_renderpass(vk::structure::Struct_vk_rend
   //---------------------------
   framebuffer->fbo = fbo;
 }
-void VK_framebuffer::create_framebuffer_swapchain(vk::structure::Struct_vk_renderpass* renderpass, vk::structure::Frame* frame){
+void VK_framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* renderpass, vk::structure::Frame* frame){
   //---------------------------
 
   //Create frambuffer

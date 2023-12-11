@@ -4,7 +4,7 @@
 #include <VK_binding/VK_descriptor.h>
 #include <VK_data/VK_data.h>
 #include <VK_shader/VK_shader.h>
-#include <VK_struct/Struct_vk_pipeline.h>
+#include <VK_struct/Pipeline.h>
 
 
 //Constructor / Destructor
@@ -21,35 +21,35 @@ VK_pipeline::VK_pipeline(Struct_vulkan* struct_vulkan){
 VK_pipeline::~VK_pipeline(){}
 
 //Main function
-void VK_pipeline::create_pipeline(vk::structure::Struct_vk_renderpass* renderpass){
+void VK_pipeline::create_pipeline(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
-    vk::structure::Struct_vk_subpass* subpass = renderpass->vec_subpass[i];
+    vk::structure::Subpass* subpass = renderpass->vec_subpass[i];
 
     for(int j=0; j<subpass->vec_pipeline.size(); j++){
-      vk::structure::Struct_vk_pipeline* pipeline = subpass->vec_pipeline[j];
+      vk::structure::Pipeline* pipeline = subpass->vec_pipeline[j];
       this->create_pipeline_struct(renderpass, pipeline);
     }
   }
 
   //---------------------------
 }
-void VK_pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   vkCmdBindPipeline(command_buffer, TYP_BIND_PIPELINE_GRAPHICS, pipeline->pipeline);
 
   //---------------------------
 }
-void VK_pipeline::clean_pipeline(vk::structure::Struct_vk_renderpass* renderpass){
+void VK_pipeline::clean_pipeline(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
-    vk::structure::Struct_vk_subpass* subpass = renderpass->vec_subpass[i];
+    vk::structure::Subpass* subpass = renderpass->vec_subpass[i];
 
     for(int j=0; j<subpass->vec_pipeline.size(); j++){
-      vk::structure::Struct_vk_pipeline* pipeline = subpass->vec_pipeline[j];
+      vk::structure::Pipeline* pipeline = subpass->vec_pipeline[j];
       this->clean_pipeline_struct(pipeline);
     }
   }
@@ -58,7 +58,7 @@ void VK_pipeline::clean_pipeline(vk::structure::Struct_vk_renderpass* renderpass
 }
 
 //Pipeline creation / cleaning
-void VK_pipeline::create_pipeline_struct(vk::structure::Struct_vk_renderpass* renderpass, vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Pipeline layout & binding
@@ -83,7 +83,7 @@ void VK_pipeline::create_pipeline_struct(vk::structure::Struct_vk_renderpass* re
 
   //---------------------------
 }
-void VK_pipeline::create_pipeline_obj(vk::structure::Struct_vk_renderpass* renderpass, vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::create_pipeline_obj(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkGraphicsPipelineCreateInfo pipeline_info{};
@@ -113,7 +113,7 @@ void VK_pipeline::create_pipeline_obj(vk::structure::Struct_vk_renderpass* rende
 
   //---------------------------
 }
-void VK_pipeline::create_pipeline_layout(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::create_pipeline_layout(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Push constant for MVP matrix
@@ -138,7 +138,7 @@ void VK_pipeline::create_pipeline_layout(vk::structure::Struct_vk_pipeline* pipe
 
   //---------------------------
 }
-void VK_pipeline::clean_pipeline_struct(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::clean_pipeline_struct(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   vkDestroyPipeline(struct_vulkan->device.device, pipeline->pipeline, nullptr);
@@ -147,7 +147,7 @@ void VK_pipeline::clean_pipeline_struct(vk::structure::Struct_vk_pipeline* pipel
 
   //---------------------------
 }
-void VK_pipeline::clean_pipeline_shader_module(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::clean_pipeline_shader_module(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   for(int i=0; i<pipeline->info.vec_shader_couple.size(); i++){
@@ -162,7 +162,7 @@ void VK_pipeline::clean_pipeline_shader_module(vk::structure::Struct_vk_pipeline
 }
 
 //Pipeline element
-void VK_pipeline::find_pipeline_dynamic_state(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::find_pipeline_dynamic_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   pipeline->info.dynamic_state_object.clear();
@@ -180,7 +180,7 @@ void VK_pipeline::find_pipeline_dynamic_state(vk::structure::Struct_vk_pipeline*
   //---------------------------
   pipeline->info.dynamic_state = dynamic_state;
 }
-void VK_pipeline::find_pipeline_viewport_state(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::find_pipeline_viewport_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Viewport info
@@ -194,7 +194,7 @@ void VK_pipeline::find_pipeline_viewport_state(vk::structure::Struct_vk_pipeline
   //---------------------------
   pipeline->info.viewport_state = viewport_state;
 }
-void VK_pipeline::find_pipeline_rasterization_state(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::find_pipeline_rasterization_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineRasterizationStateCreateInfo rasterizer{};
@@ -213,7 +213,7 @@ void VK_pipeline::find_pipeline_rasterization_state(vk::structure::Struct_vk_pip
   //---------------------------
   pipeline->info.rasterizer = rasterizer;
 }
-void VK_pipeline::find_pipeline_multisampling_state(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::find_pipeline_multisampling_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineMultisampleStateCreateInfo multisampling{};
@@ -228,7 +228,7 @@ void VK_pipeline::find_pipeline_multisampling_state(vk::structure::Struct_vk_pip
   //---------------------------
   pipeline->info.multisampling = multisampling;
 }
-void VK_pipeline::find_pipeline_depth_state(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::find_pipeline_depth_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineDepthStencilStateCreateInfo depth_stencil = {};
@@ -246,7 +246,7 @@ void VK_pipeline::find_pipeline_depth_state(vk::structure::Struct_vk_pipeline* p
   //---------------------------
   pipeline->info.depth_stencil = depth_stencil;
 }
-void VK_pipeline::find_pipeline_blend_attachment_state(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::find_pipeline_blend_attachment_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineColorBlendAttachmentState color_blend_attachment{};
@@ -263,7 +263,7 @@ void VK_pipeline::find_pipeline_blend_attachment_state(vk::structure::Struct_vk_
 
   pipeline->info.color_blend_attachment = color_blend_attachment;
 }
-void VK_pipeline::find_pipeline_blend_state(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::find_pipeline_blend_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineColorBlendStateCreateInfo color_blend_info{};
@@ -280,7 +280,7 @@ void VK_pipeline::find_pipeline_blend_state(vk::structure::Struct_vk_pipeline* p
   //---------------------------
   pipeline->info.color_blend_info = color_blend_info;
 }
-void VK_pipeline::find_pipeline_topology_state(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::find_pipeline_topology_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineInputAssemblyStateCreateInfo input_assembly{};
@@ -302,7 +302,7 @@ void VK_pipeline::find_pipeline_topology_state(vk::structure::Struct_vk_pipeline
 }
 
 //Subfunction
-void VK_pipeline::check_struct_pipeline_input(vk::structure::Struct_vk_pipeline* pipeline){
+void VK_pipeline::check_struct_pipeline_input(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   if(pipeline->definition.name == "") cout<<"[error] Pipeline init input -> no name"<<endl;

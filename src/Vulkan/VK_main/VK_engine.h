@@ -52,9 +52,9 @@ public:
   void remove_object_in_engine(data::Object* object);
 
   //Renderpass function
-  void add_renderpass_description(vk::structure::Struct_vk_renderpass* renderpass);
-  vk::structure::Struct_vk_renderpass* get_renderpass(int i);
-  vk::structure::Struct_vk_renderpass* get_renderpass_presentation(int i);
+  void add_renderpass_description(vk::structure::Renderpass* renderpass);
+  vk::structure::Renderpass* get_renderpass(int i);
+  vk::structure::Renderpass* get_renderpass_presentation(int i);
 
   inline vk::structure::Entity* get_canvas(){return &struct_vulkan->data.canvas;}
   inline std::list<vk::structure::Entity*> get_list_data(){return struct_vulkan->data.list_object;}

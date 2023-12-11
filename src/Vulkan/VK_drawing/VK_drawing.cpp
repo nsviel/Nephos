@@ -41,7 +41,7 @@ void VK_drawing::draw_frame_headless(){
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
-    vk::structure::Struct_vk_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
     vk_render->run_renderpass(renderpass);
 
@@ -69,7 +69,7 @@ void VK_drawing::draw_frame_presentation(){
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
-    vk::structure::Struct_vk_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
     vk_render->run_renderpass(renderpass);
 

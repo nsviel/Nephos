@@ -1,13 +1,13 @@
 #pragma once
 
 #include <VK_struct/Namespace.h>
-#include <VK_struct/Struct_vk_pipeline.h>
+#include <VK_struct/Pipeline.h>
 #include <UTL_specific/common.h>
 
 
 namespace vk::structure{
 
-struct Struct_vk_subpass{
+struct Subpass{
   //---------------------------
 
   //Subpass info
@@ -19,11 +19,11 @@ struct Struct_vk_subpass{
   //Attachment
   vk::structure::Attachment depth;
   std::vector<vk::structure::Attachment> vec_color;
-  std::function<void(Struct_vk_subpass* subpass)> draw_task;
+  std::function<void(Subpass* subpass)> draw_task;
 
   //Pipeline
-  std::vector<vk::structure::Struct_vk_pipeline*> vec_pipeline;
-  vk::structure::Struct_vk_pipeline* get_pipeline(){
+  std::vector<vk::structure::Pipeline*> vec_pipeline;
+  vk::structure::Pipeline* get_pipeline(){
     if(vec_pipeline.size() != 1){
       std::cout<<"[error] several pipeline in subpass"<<std::endl;
       return nullptr;
@@ -31,7 +31,7 @@ struct Struct_vk_subpass{
       return vec_pipeline[0];
     }
   }
-  vk::structure::Struct_vk_pipeline* get_pipeline_byName(string name){
+  vk::structure::Pipeline* get_pipeline_byName(string name){
     for(int i=0; i<vec_pipeline.size(); i++){
       if(vec_pipeline[i]->definition.name == name){
         return vec_pipeline[i];

@@ -18,7 +18,7 @@ public:
 public:
   //Main function
   void hot_shader_reload(string shader_1, string shader_2);
-  void recreate_pipeline(vk::structure::Struct_vk_renderpass* renderpass, vk::structure::Struct_vk_pipeline* pipeline);
+  void recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline);
 
 private:
   Struct_vulkan* struct_vulkan;

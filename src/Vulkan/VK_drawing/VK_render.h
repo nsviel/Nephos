@@ -18,12 +18,12 @@ public:
 
 public:
   //Main functions
-  void run_renderpass(vk::structure::Struct_vk_renderpass* renderpass);
-  void submit_command(vk::structure::Struct_vk_renderpass* renderpass);
+  void run_renderpass(vk::structure::Renderpass* renderpass);
+  void submit_command(vk::structure::Renderpass* renderpass);
 
   //Subfunction
-  void start_renderpass(vk::structure::Struct_vk_renderpass* renderpass);
-  void draw_subpass(vk::structure::Struct_vk_renderpass* renderpass);
+  void start_renderpass(vk::structure::Renderpass* renderpass);
+  void draw_subpass(vk::structure::Renderpass* renderpass);
   void wait_end_rendering(VkFence& fence);
 
 private:
