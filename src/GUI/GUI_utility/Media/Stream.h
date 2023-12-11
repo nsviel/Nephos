@@ -2,7 +2,7 @@
 
 #include <Utility/UTL_specific/common.h>
 #include <Utility/UTL_base/Struct_image.h>
-#include <VK_struct/Namespace.h>
+#include <Vulkan/VK_struct/Namespace.h>
 
 class GUI;
 class VK_texture;

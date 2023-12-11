@@ -1,9 +1,9 @@
 #include "Subpass.h"
 
-#include <VK_struct/Namespace.h>
-#include <VK_image/VK_color.h>
-#include <VK_image/VK_depth.h>
-#include <VK_command/VK_command.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_image/VK_color.h>
+#include <Vulkan/VK_image/VK_depth.h>
+#include <Vulkan/VK_command/VK_command.h>
 
 
 namespace vk{

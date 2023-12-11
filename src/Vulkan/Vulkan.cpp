@@ -2,10 +2,10 @@
 
 #include <Utility/Node/Utility.h>
 #include <Utility/UTL_window/UTL_window.h>
-#include <VK_main/VK_engine.h>
-#include <VK_main/VK_imgui.h>
-#include <VK_main/VK_info.h>
-#include <VK_main/VK_texture.h>
+#include <Vulkan/VK_main/VK_engine.h>
+#include <Vulkan/VK_main/VK_imgui.h>
+#include <Vulkan/VK_main/VK_info.h>
+#include <Vulkan/VK_main/VK_texture.h>
 
 
 //Constructor / Destructor

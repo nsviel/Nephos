@@ -1,7 +1,7 @@
 #pragma once
 
-#include <VK_main/VK_engine.h>
-#include <VK_main/VK_info.h>
+#include <Vulkan/VK_main/VK_engine.h>
+#include <Vulkan/VK_main/VK_info.h>
 #include <GUI/GUI_main/Node/Namespace.h>
 
 class GUI;

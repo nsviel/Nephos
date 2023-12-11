@@ -1,7 +1,7 @@
 #include "VK_memory.h"
 
-#include <VK_struct/Namespace.h>
-#include <VK_command/VK_command.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_command/VK_command.h>
 
 
 //Constructor / Destructor

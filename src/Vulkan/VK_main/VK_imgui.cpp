@@ -1,11 +1,11 @@
 #include "VK_imgui.h"
 
-#include <VK_struct/Namespace.h>
-#include <VK_main/VK_engine.h>
-#include <VK_instance/VK_pool.h>
-#include <VK_command/VK_submit.h>
-#include <VK_command/VK_command.h>
-#include <VK_render/VK_surface.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_main/VK_engine.h>
+#include <Vulkan/VK_instance/VK_pool.h>
+#include <Vulkan/VK_command/VK_submit.h>
+#include <Vulkan/VK_command/VK_command.h>
+#include <Vulkan/VK_render/VK_surface.h>
 
 
 //Constructor / Destructor

@@ -1,9 +1,9 @@
 #include "VK_drawing.h"
 
-#include <VK_struct/Namespace.h>
-#include <VK_drawing/VK_presentation.h>
-#include <VK_drawing/VK_render.h>
-#include <VK_struct/Frame.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_drawing/VK_presentation.h>
+#include <Vulkan/VK_drawing/VK_render.h>
+#include <Vulkan/VK_struct/Frame.h>
 
 //Constructor / Destructor
 VK_drawing::VK_drawing(vk::structure::Vulkan* struct_vulkan){

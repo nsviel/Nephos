@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/UTL_specific/common.h>
-#include <VK_struct/Image.h>
+#include <Vulkan/VK_struct/Image.h>
 
 
 namespace vk::structure{

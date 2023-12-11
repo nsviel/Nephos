@@ -1,10 +1,10 @@
 #include "VK_screenshot.h"
 
-#include <VK_main/VK_texture.h>
-#include <VK_image/VK_image.h>
-#include <VK_struct/Namespace.h>
-#include <VK_command/VK_memory.h>
-#include <VK_command/VK_command.h>
+#include <Vulkan/VK_main/VK_texture.h>
+#include <Vulkan/VK_image/VK_image.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_command/VK_memory.h>
+#include <Vulkan/VK_command/VK_command.h>
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <image/stb_image_write.h>

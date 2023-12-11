@@ -1,24 +1,24 @@
 #include "VK_engine.h"
 
-#include <VK_main/Namespace.h>
+#include <Vulkan/VK_main/Namespace.h>
 
 #include <Utility/UTL_specific/FPS_counter.h>
-#include <VK_struct/Namespace.h>
-#include <VK_data/VK_data.h>
-#include <VK_device/VK_device.h>
-#include <VK_render/VK_surface.h>
-#include <VK_instance/VK_instance.h>
-#include <VK_instance/VK_extension.h>
-#include <VK_data/VK_canvas.h>
-#include <VK_binding/VK_descriptor.h>
-#include <VK_instance/VK_pool.h>
-#include <VK_main/VK_texture.h>
-#include <VK_render/VK_swapchain.h>
-#include <VK_render/VK_frame.h>
-#include <VK_command/VK_synchronization.h>
-#include <VK_shader/VK_reload.h>
-#include <VK_drawing/VK_viewport.h>
-#include <VK_drawing/VK_drawing.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_data/VK_data.h>
+#include <Vulkan/VK_device/VK_device.h>
+#include <Vulkan/VK_render/VK_surface.h>
+#include <Vulkan/VK_instance/VK_instance.h>
+#include <Vulkan/VK_instance/VK_extension.h>
+#include <Vulkan/VK_data/VK_canvas.h>
+#include <Vulkan/VK_binding/VK_descriptor.h>
+#include <Vulkan/VK_instance/VK_pool.h>
+#include <Vulkan/VK_main/VK_texture.h>
+#include <Vulkan/VK_render/VK_swapchain.h>
+#include <Vulkan/VK_render/VK_frame.h>
+#include <Vulkan/VK_command/VK_synchronization.h>
+#include <Vulkan/VK_shader/VK_reload.h>
+#include <Vulkan/VK_drawing/VK_viewport.h>
+#include <Vulkan/VK_drawing/VK_drawing.h>
 
 
 //Constructor / Destructor

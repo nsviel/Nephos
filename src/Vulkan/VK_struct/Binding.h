@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/VK_typedef.h>
+#include <Vulkan/VK_struct/VK_typedef.h>
 #include <Utility/UTL_specific/common.h>
 
 //Consistent attribut binding:

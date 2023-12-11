@@ -1,8 +1,8 @@
 #pragma once
 
-#include <VK_struct/Namespace.h>
+#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/UTL_specific/common.h>
-#include <VK_struct/Frame.h>
+#include <Vulkan/VK_struct/Frame.h>
 
 
 

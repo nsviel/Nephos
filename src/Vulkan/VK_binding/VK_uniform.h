@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Namespace.h>
+#include <Vulkan/VK_struct/Namespace.h>
 #include <Engine/ENG_shader/EDL/EDL_param.h>
 #include <Utility/UTL_specific/common.h>
 

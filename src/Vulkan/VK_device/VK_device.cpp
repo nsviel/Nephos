@@ -1,7 +1,7 @@
 #include "VK_device.h"
 
-#include <VK_struct/Namespace.h>
-#include <VK_device/VK_physical_device.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_device/VK_physical_device.h>
 
 
 //Constructor / Destructor

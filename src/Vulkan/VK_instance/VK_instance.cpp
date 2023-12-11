@@ -1,7 +1,7 @@
 #include "VK_instance.h"
 
-#include <VK_validation/VK_validation.h>
-#include <VK_struct/Namespace.h>
+#include <Vulkan/VK_validation/VK_validation.h>
+#include <Vulkan/VK_struct/Namespace.h>
 
 
 //Constructor / Destructor

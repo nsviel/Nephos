@@ -1,6 +1,6 @@
 #include "UTL_window.h"
 
-#include <../Config.h>
+#include <Config.h>
 
 
 //Constructor / Destructor

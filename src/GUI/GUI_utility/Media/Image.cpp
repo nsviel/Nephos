@@ -1,11 +1,11 @@
 #include "Image.h"
 
 #include <Node/GUI.h>
-#include <Vulkan.h>
+#include <Vulkan/Vulkan.h>
 #include <GUI/GUI_main/Render/Render.h>
 #include <Utility/UTL_file/Image.h>
 #include <Utility/UTL_base/Struct_image.h>
-#include <VK_main/VK_texture.h>
+#include <Vulkan/VK_main/VK_texture.h>
 
 
 namespace gui::media{

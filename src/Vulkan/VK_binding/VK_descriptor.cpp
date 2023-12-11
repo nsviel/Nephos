@@ -1,8 +1,8 @@
 #include "VK_descriptor.h"
 
-#include <VK_struct/Namespace.h>
-#include <VK_binding/VK_uniform.h>
-#include <VK_binding/VK_sampler.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_binding/VK_uniform.h>
+#include <Vulkan/VK_binding/VK_sampler.h>
 
 
 //Constructor / Destructor

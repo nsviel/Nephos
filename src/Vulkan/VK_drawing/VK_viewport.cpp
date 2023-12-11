@@ -1,6 +1,6 @@
 #include "VK_viewport.h"
 
-#include <VK_struct/Namespace.h>
+#include <Vulkan/VK_struct/Namespace.h>
 
 
 //Constructor / Destructor

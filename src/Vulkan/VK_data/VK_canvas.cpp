@@ -1,8 +1,8 @@
 #include "VK_canvas.h"
 
-#include <VK_struct/Namespace.h>
-#include <VK_data/VK_buffer.h>
-#include <VK_data/VK_data.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_data/VK_buffer.h>
+#include <Vulkan/VK_data/VK_data.h>
 
 
 //Constructor / Destructor

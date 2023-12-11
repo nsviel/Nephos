@@ -1,6 +1,6 @@
 #include "VK_sampler.h"
 
-#include <VK_struct/Namespace.h>
+#include <Vulkan/VK_struct/Namespace.h>
 
 
 //Constructor / Destructor

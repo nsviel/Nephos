@@ -2,8 +2,8 @@
 
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
-#include <Vulkan.h>
-#include <VK_main/VK_info.h>
+#include <Vulkan/Vulkan.h>
+#include <Vulkan/VK_main/VK_info.h>
 
 
 namespace gui::rnd::tab{

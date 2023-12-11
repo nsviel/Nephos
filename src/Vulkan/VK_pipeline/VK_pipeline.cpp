@@ -1,10 +1,10 @@
 #include "VK_pipeline.h"
 
-#include <VK_struct/Namespace.h>
-#include <VK_binding/VK_descriptor.h>
-#include <VK_data/VK_data.h>
-#include <VK_shader/VK_shader.h>
-#include <VK_struct/Pipeline.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_binding/VK_descriptor.h>
+#include <Vulkan/VK_data/VK_data.h>
+#include <Vulkan/VK_shader/VK_shader.h>
+#include <Vulkan/VK_struct/Pipeline.h>
 
 
 //Constructor / Destructor
