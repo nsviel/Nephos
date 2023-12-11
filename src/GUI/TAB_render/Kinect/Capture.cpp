@@ -14,7 +14,7 @@ namespace gui::kinect{
 Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  utility::Node* utility = gui->get_utility();
+  util::Node* utility = gui->get_utility();
   UTL_capture* utl_capture = utility->get_utl_capture();
 
   this->kinect = utl_capture->get_kinect();

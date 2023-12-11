@@ -15,7 +15,7 @@ namespace gui::engine{
 Render::Render(GUI* gui){
   //---------------------------
 
-  utility::Node* utility = gui->get_utility();
+  util::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 

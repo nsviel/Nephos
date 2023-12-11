@@ -4,7 +4,7 @@
 #include <Utility/Capture/UTL_capture.h>
 
 
-namespace utility{
+namespace util{
 
 //Constructor / Destructor
 Node::Node(Config* config){

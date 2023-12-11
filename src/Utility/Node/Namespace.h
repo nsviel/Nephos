@@ -3,7 +3,7 @@
 #include <Utility/Node/Node.h>
 
 
-namespace utility{
+namespace util{
   //---------------------------
 
   class Node;

@@ -15,7 +15,7 @@ namespace gui{
 Render::Render(GUI* gui){
   //---------------------------
 
-  utility::Node* utility = gui->get_utility();
+  util::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
   util::element::Window* utl_window = utility->get_utl_window();
 

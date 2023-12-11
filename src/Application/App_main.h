@@ -26,6 +26,6 @@ public:
 private:
   Config* config;
   Engine* engine;
-  utility::Node* utility;
+  util::Node* utility;
   GUI* gui;
 };

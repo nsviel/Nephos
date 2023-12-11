@@ -15,7 +15,7 @@ namespace gui::engine{
 Control::Control(GUI* gui){
   //---------------------------
 
-  utility::Node* utility = gui->get_utility();
+  util::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
   eng::data::Node* eng_data = engine->get_eng_data();
 

@@ -12,7 +12,7 @@ namespace eng::camera{
 Node::Node(Engine* engine){
   //---------------------------
 
-  utility::Node* utility = engine->get_utility();
+  util::Node* utility = engine->get_utility();
   util::element::Window* utl_window = utility->get_utl_window();
 
   this->camera = new eng::structure::Camera();

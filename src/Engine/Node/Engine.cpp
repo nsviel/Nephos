@@ -7,7 +7,7 @@
 
 
 //Constructor / Destructor
-Engine::Engine(utility::Node* utility){
+Engine::Engine(util::Node* utility){
   //---------------------------
 
   util::element::Window* utl_window = utility->get_utl_window();

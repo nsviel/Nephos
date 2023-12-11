@@ -7,7 +7,7 @@ class Config;
 class UTL_capture;
 
 
-namespace utility{
+namespace util{
 
 class Node
 {
