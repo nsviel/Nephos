@@ -1,7 +1,7 @@
 #pragma once
 
 #include <VK_struct/VK_typedef.h>
-#include <VK_struct/Struct_vk_binding.h>
+#include <VK_struct/Binding.h>
 #include <ENG_shader/Base/BASE_shader.h>
 #include <UTL_specific/common.h>
 
@@ -56,7 +56,7 @@ struct Pipeline{
   VkPipeline pipeline;
   VkPipelineLayout layout;
 
-  Struct_vk_binding binding;
+  vk::structure::Binding binding;
   Pipeline_definition definition;
   Pipeline_info info;
 

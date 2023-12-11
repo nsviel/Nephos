@@ -1,6 +1,5 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_binding.h>
 #include <VK_struct/Namespace.h>
 #include <ENG_shader/EDL/EDL_param.h>
 #include <UTL_specific/common.h>
@@ -18,12 +17,12 @@ public:
 
 public:
   //Main functions
-  void create_uniform_buffers(Struct_vk_binding* binding);
-  Struct_vk_uniform* create_uniform_buffer(string name, size_t size, int binding);
-  void clean_uniform(Struct_vk_binding* binding);
+  void create_uniform_buffers(vk::structure::Binding* binding);
+  vk::structure::Uniform* create_uniform_buffer(string name, size_t size, int binding);
+  void clean_uniform(vk::structure::Binding* binding);
 
   //uniform update
-  template <typename T> void update_uniform(string uniform_name, Struct_vk_binding* binding, T value);
+  template <typename T> void update_uniform(string uniform_name, vk::structure::Binding* binding, T value);
 
 private:
   Struct_vulkan* struct_vulkan;

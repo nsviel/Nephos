@@ -1,7 +1,7 @@
 #pragma once
 
 #include <VK_struct/Attachment.h>
-#include <VK_struct/Struct_vk_binding.h>
+#include <VK_struct/Binding.h>
 #include <VK_struct/Buffer.h>
 #include <VK_struct/Command.h>
 #include <VK_struct/Data.h>
@@ -19,7 +19,6 @@
 #include <VK_struct/Render.h>
 #include <VK_struct/Renderpass.h>
 #include <VK_struct/Subpass.h>
-
 #include <VK_struct/Swapchain.h>
 #include <VK_struct/Synchro.h>
 #include <VK_struct/Viewport.h>
@@ -30,7 +29,7 @@ namespace vk::structure{
   //---------------------------
 
   class Attachment;
-  class Struct_vk_binding;
+  class Binding;
   class Buffer;
   class Command;
   class Data;
@@ -48,7 +47,6 @@ namespace vk::structure{
   class Render;
   class Renderpass;
   class Subpass;
-
   class Swapchain;
   class Synchro;
   class Viewport;

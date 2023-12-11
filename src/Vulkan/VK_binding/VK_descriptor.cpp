@@ -18,7 +18,7 @@ VK_descriptor::VK_descriptor(Struct_vulkan* struct_vulkan){
 VK_descriptor::~VK_descriptor(){}
 
 //Main function
-void VK_descriptor::create_binding(Struct_vk_binding* binding){
+void VK_descriptor::create_binding(vk::structure::Binding* binding){
   //---------------------------
 
   vk_uniform->create_uniform_buffers(binding);
@@ -28,7 +28,7 @@ void VK_descriptor::create_binding(Struct_vk_binding* binding){
 
   //---------------------------
 }
-void VK_descriptor::clean_binding(Struct_vk_binding* binding){
+void VK_descriptor::clean_binding(vk::structure::Binding* binding){
   //---------------------------
 
   vkDestroyDescriptorSetLayout(struct_vulkan->device.device, binding->descriptor.layout, nullptr);
@@ -38,14 +38,14 @@ void VK_descriptor::clean_binding(Struct_vk_binding* binding){
 }
 
 //Descriptor set update
-void VK_descriptor::update_descriptor_uniform(Struct_vk_binding* binding){
+void VK_descriptor::update_descriptor_uniform(vk::structure::Binding* binding){
   //---------------------------
 
   //Make list of writeable uniform
   vector<VkWriteDescriptorSet> vec_descriptor_write;
   vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
   for(int i=0; i<binding->vec_uniform.size(); i++){
-    Struct_vk_uniform* uniform = binding->vec_uniform[i];
+    vk::structure::Uniform* uniform = binding->vec_uniform[i];
 
     VkDescriptorBufferInfo descriptor_info = {};
     descriptor_info.buffer = uniform->buffer;
@@ -55,7 +55,7 @@ void VK_descriptor::update_descriptor_uniform(Struct_vk_binding* binding){
   }
 
   for(int i=0; i<binding->vec_uniform.size(); i++){
-    Struct_vk_uniform* uniform = binding->vec_uniform[i];
+    vk::structure::Uniform* uniform = binding->vec_uniform[i];
     VkWriteDescriptorSet write_uniform = {};
     write_uniform.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
     write_uniform.dstSet = binding->descriptor.set;
@@ -74,7 +74,7 @@ void VK_descriptor::update_descriptor_uniform(Struct_vk_binding* binding){
 
   //---------------------------
 }
-void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vector<vk::structure::Image*> vec_image){
+void VK_descriptor::update_descriptor_sampler(vk::structure::Binding* binding, vector<vk::structure::Image*> vec_image){
   //---------------------------
 
   //For each sampler struct in binding struct search for image with same name in vec_image
@@ -82,7 +82,7 @@ void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vector
   vector<VkWriteDescriptorSet> vec_descriptor_write;
   vector<VkDescriptorImageInfo> vec_descriptor_image_info;
   for(int i=0; i<binding->vec_sampler.size(); i++){
-    Struct_vk_sampler* sampler = binding->vec_sampler[i];
+    vk::structure::Sampler* sampler = binding->vec_sampler[i];
 
     for(int j=0; j<vec_image.size(); j++){
       vk::structure::Image* image = vec_image[j];
@@ -113,10 +113,10 @@ void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vector
 
   //---------------------------
 }
-void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vk::structure::Image* image){
+void VK_descriptor::update_descriptor_sampler(vk::structure::Binding* binding, vk::structure::Image* image){
   //---------------------------
 
-  Struct_vk_sampler* sampler = nullptr;
+  vk::structure::Sampler* sampler = nullptr;
   for(int i=0; i<binding->vec_sampler.size(); i++){
     if(image->name == binding->vec_sampler[i]->name){
       sampler = binding->vec_sampler[i];
@@ -128,7 +128,7 @@ void VK_descriptor::update_descriptor_sampler(Struct_vk_binding* binding, vk::st
     cout<<"Existing uniform names: "<<endl;
 
     for(int i=0; i<binding->vec_sampler.size(); i++){
-      Struct_vk_sampler* sampler = binding->vec_sampler[i];
+      vk::structure::Sampler* sampler = binding->vec_sampler[i];
       cout<<"\033[1;32m"<<sampler->name<<"\033[0m"<<endl;
     }
 
@@ -163,7 +163,7 @@ void VK_descriptor::cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::str
 
   //---------------------------
 }
-void VK_descriptor::allocate_descriptor_set(Struct_vk_binding* binding){
+void VK_descriptor::allocate_descriptor_set(vk::structure::Binding* binding){
   //---------------------------
 
   VkDescriptorSetAllocateInfo allocation_info{};
@@ -181,7 +181,7 @@ void VK_descriptor::allocate_descriptor_set(Struct_vk_binding* binding){
 
   //---------------------------
 }
-void VK_descriptor::create_layout_from_required(Struct_vk_binding* binding){
+void VK_descriptor::create_layout_from_required(vk::structure::Binding* binding){
   vec_descriptor_required& vec_required_binding = binding->vec_required_binding;
   //---------------------------
 

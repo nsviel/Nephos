@@ -1,7 +1,5 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_binding.h>
-#include <VK_struct/Pipeline.h>
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
@@ -19,18 +17,18 @@ public:
 
 public:
   //Main functions
-  void create_binding(Struct_vk_binding* binding);
-  void clean_binding(Struct_vk_binding* binding);
+  void create_binding(vk::structure::Binding* binding);
+  void clean_binding(vk::structure::Binding* binding);
 
   //Descriptor set update
-  void update_descriptor_uniform(Struct_vk_binding* binding);
-  void update_descriptor_sampler(Struct_vk_binding* binding, vector<vk::structure::Image*> vec_image);
-  void update_descriptor_sampler(Struct_vk_binding* binding, vk::structure::Image* image);
+  void update_descriptor_uniform(vk::structure::Binding* binding);
+  void update_descriptor_sampler(vk::structure::Binding* binding, vector<vk::structure::Image*> vec_image);
+  void update_descriptor_sampler(vk::structure::Binding* binding, vk::structure::Image* image);
 
   //Subfunction
   void cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set);
-  void allocate_descriptor_set(Struct_vk_binding* binding);
-  void create_layout_from_required(Struct_vk_binding* binding);
+  void allocate_descriptor_set(vk::structure::Binding* binding);
+  void create_layout_from_required(vk::structure::Binding* binding);
   VkDescriptorSetLayout create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding);
 
 private:

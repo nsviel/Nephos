@@ -16,8 +16,10 @@
 typedef std::vector<std::tuple<std::string, std::size_t, int, VkDescriptorType, VkShaderStageFlagBits>> vec_descriptor_required;
 typedef std::tuple<std::string, std::size_t, int, VkDescriptorType, VkShaderStageFlagBits> descriptor_required;
 
+namespace vk::structure{
+
 //Structures
-struct Struct_vk_descriptor{
+struct Descriptor{
   //---------------------------
 
   VkDescriptorSetLayout layout;
@@ -26,7 +28,7 @@ struct Struct_vk_descriptor{
   //---------------------------
 };
 
-struct Struct_vk_uniform{
+struct Uniform{
   //---------------------------
 
   std::string name;
@@ -39,7 +41,7 @@ struct Struct_vk_uniform{
   //---------------------------
 };
 
-struct Struct_vk_sampler{
+struct Sampler{
   //---------------------------
 
   std::string name;
@@ -49,7 +51,7 @@ struct Struct_vk_sampler{
   //---------------------------
 };
 
-struct Struct_vk_pushcst{
+struct Push_constant{
   //---------------------------
 
   std::string name;
@@ -59,17 +61,19 @@ struct Struct_vk_pushcst{
   //---------------------------
 };
 
-struct Struct_vk_binding{
+struct Binding{
   //---------------------------
 
   //Binding description
   vec_descriptor_required vec_required_binding;
-  Struct_vk_descriptor descriptor;
+  Descriptor descriptor;
 
   //Binding elements
-  vector<Struct_vk_pushcst*> vec_pushcst;
-  vector<Struct_vk_uniform*> vec_uniform;
-  vector<Struct_vk_sampler*> vec_sampler;
+  vector<vk::structure::Push_constant*> vec_pushcst;
+  vector<vk::structure::Uniform*> vec_uniform;
+  vector<vk::structure::Sampler*> vec_sampler;
 
   //---------------------------
 };
+
+}
