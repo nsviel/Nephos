@@ -1,5 +1,4 @@
 #include "Node.h"
-#include "ENG_glyph/ENG_glyph.h"
 
 #include <Engine/Data/Namespace.h>
 
@@ -13,7 +12,7 @@ Node::Node(Engine* engine){
   this->engine = engine;
   this->eng_database = new eng::data::Database(this);
   this->eng_scene = new eng::data::Scene(this);
-  this->eng_glyph = new ENG_glyph(this);
+  this->eng_glyph = new eng::data::Glyph(this);
   this->eng_loader = new eng::data::Loader(this);
 
   //---------------------------

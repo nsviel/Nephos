@@ -4,13 +4,11 @@
 
 class Engine;
 
-class ENG_glyph;
-
-
 namespace eng::data{
 class Scene;
 class Database;
 class Loader;
+class Glyph;
 
 
 class Node
@@ -34,7 +32,7 @@ private:
   Engine* engine;
   eng::data::Scene* eng_scene;
   eng::data::Database* eng_database;
-  ENG_glyph* eng_glyph;
+  eng::data::Glyph* eng_glyph;
   eng::data::Loader* eng_loader;
 };
 

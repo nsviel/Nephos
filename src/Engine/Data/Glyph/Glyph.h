@@ -5,12 +5,14 @@
 #include <Utility/UTL_specific/common.h>
 
 
-class ENG_glyph
+namespace eng::data{
+
+class Glyph
 {
 public:
   //Constructor / Destructor
-  ENG_glyph(eng::data::Node* eng_data);
-  ~ENG_glyph();
+  Glyph(eng::data::Node* eng_data);
+  ~Glyph();
 
 public:
   //Main functions
@@ -23,3 +25,5 @@ private:
 
   vector<Glyph_source*> vec_glyph_src;
 };
+
+}
