@@ -8,6 +8,8 @@
 class K4A_device;
 
 
+namespace util::kinect::device{
+
 class K4A_configuration
 {
 public:
@@ -32,3 +34,5 @@ public:
 private:
   util::kinect::structure::Info struct_info;
 };
+
+}

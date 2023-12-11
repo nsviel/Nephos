@@ -3,6 +3,8 @@
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
 
 
+namespace util::kinect::device{
+
 //Constructor / Destructor
 K4A_configuration::K4A_configuration(){
   //---------------------------
@@ -220,4 +222,6 @@ string K4A_configuration::find_name_from_config(k4a_image_format_t& value){
 
   //---------------------------
   return name;
+}
+
 }

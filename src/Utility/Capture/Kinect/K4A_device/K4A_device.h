@@ -1,14 +1,13 @@
 #pragma once
 
 #include <Utility/Capture/Kinect/Structure/Namespace.h>
-
+#include <Utility/Capture/Kinect/K4A_device/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <string>
 
 class K4A_capture;
 class K4A_replay;
-class K4A_configuration;
 
 
 class K4A_device
@@ -27,7 +26,7 @@ public:
 public:
   K4A_capture* k4a_capture;
   K4A_replay* k4a_replay;
-  K4A_configuration* k4a_configuration;
+  util::kinect::device::K4A_configuration* k4a_configuration;
 
   util::kinect::structure::Config config;
   util::kinect::structure::Color color;
