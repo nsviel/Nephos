@@ -4,8 +4,8 @@
 #include <GUI_main/Interface/Docking.h>
 #include <GUI_main/Interface/Menu.h>
 #include <GUI_main/Interface/Tab.h>
-#include <GUI_main/GUI_render/Render.h>
-#include <GUI_main/GUI_render/Renderpass.h>
+#include <GUI_main/Render/Render.h>
+#include <GUI_main/Render/Renderpass.h>
 #include <GUI_main/Style/Style.h>
 
 
