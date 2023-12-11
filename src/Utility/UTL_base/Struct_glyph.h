@@ -1,16 +1,17 @@
 #pragma once
 
+#include <Base/Struct_object.h>
 #include <UTL_base/Struct_object.h>
 
 
 namespace data{
 
-struct Glyph : public data::Object
+struct Glyph : public eng::structure::Object
 {
   //---------------------------
 
   bool is_permanent = false;
-  data::Object* linked_object = nullptr;
+  eng::structure::Object* linked_object = nullptr;
 
   //---------------------------
 };

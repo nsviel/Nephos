@@ -13,8 +13,8 @@ public:
 public:
   void create_axis_scene();
   void create_axis_circle(float circleRadius);
-  data::Glyph* create_axis_subset(data::Object* object);
-  void update_axis_subset(data::Object* object, data::Glyph* glyph);
+  data::Glyph* create_axis_subset(eng::structure::Object* object);
+  void update_axis_subset(eng::structure::Object* object, data::Glyph* glyph);
 
   inline data::Glyph* get_axis_scene(){return axis_scene;}
   inline data::Glyph* get_axis_circle(){return axis_circle;}

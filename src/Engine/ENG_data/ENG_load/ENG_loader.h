@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Base/Namespace.h>
 #include <UTL_base/Struct_file.h>
 #include <UTL_base/Struct_object.h>
 #include <UTL_file/Directory.h>
@@ -21,12 +22,12 @@ public:
 
 public:
   //Main functions
-  data::Object* load_object(std::string path);
-  std::vector<data::Object*> load_objects(std::vector<std::string> path);
+  eng::structure::Object* load_object(std::string path);
+  std::vector<eng::structure::Object*> load_objects(std::vector<std::string> path);
   void load_by_zenity();
 
   //Subfunctions
-  void transfert_data(data::Object* object, data::File* eng_data);
+  void transfert_data(eng::structure::Object* object, data::File* eng_data);
 
 private:
   ENG_format* eng_format;

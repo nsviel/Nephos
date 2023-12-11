@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Base/Namespace.h>
 #include <UTL_base/Struct_object.h>
 #include <UTL_base/Struct_set.h>
 #include <glm/glm.hpp>
@@ -19,7 +20,7 @@ public:
 
 public:
   //Main functions
-  void compute_MinMax(data::Object* object);
+  void compute_MinMax(eng::structure::Object* object);
   void set_visibility(data::Set* set, bool visibility);
 
 private:

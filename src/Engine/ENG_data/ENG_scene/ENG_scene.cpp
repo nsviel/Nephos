@@ -3,6 +3,7 @@
 #include "../ENG_data.h"
 #include "../ENG_load/ENG_loader.h"
 
+#include <Base/Struct_object.h>
 #include <Node/Engine.h>
 #include <Vulkan.h>
 #include <VK_main/VK_engine.h>
@@ -51,7 +52,7 @@ void ENG_scene::init_scene(){
   //Load init object
   vector<string> vec_path;
   vec_path.push_back( "../media/point_cloud/dragon.ply");
-  vector<data::Object*> vec_obj = eng_loader->load_objects(vec_path);
+  vector<eng::structure::Object*> vec_obj = eng_loader->load_objects(vec_path);
 
   //---------------------------
 }
@@ -59,15 +60,15 @@ void ENG_scene::reset_scene(){
   //---------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    data::Object* object = *next(set_scene->list_obj.begin(),i);
-    object->reset();
+    eng::structure::Object* object = *next(set_scene->list_obj.begin(),i);
+    //object->reset();
   }
 
   //---------------------------
 }
 
 //Insertion / deletion
-void ENG_scene::insert_object_glyph(data::Object* object){
+void ENG_scene::insert_object_glyph(eng::structure::Object* object){
   //---------------------------
 
   //Insert into engine
@@ -82,7 +83,7 @@ void ENG_scene::insert_object_glyph(data::Object* object){
 
   //---------------------------
 }
-void ENG_scene::insert_object_scene(data::Object* object){
+void ENG_scene::insert_object_scene(eng::structure::Object* object){
   //---------------------------
 
   //Insert into engine
@@ -97,12 +98,12 @@ void ENG_scene::insert_object_scene(data::Object* object){
 
   //---------------------------
 }
-void ENG_scene::delete_scene_object(data::Object* object){
+void ENG_scene::delete_scene_object(eng::structure::Object* object){
   //---------------------------
 
   //Delete it from database and engine
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    data::Object* object_list = *next(set_scene->list_obj.begin(),i);
+    eng::structure::Object* object_list = *next(set_scene->list_obj.begin(),i);
     if(object->ID == object_list->ID){
       set_scene->list_obj.remove(object);
       vk_engine->remove_object_in_engine(object);
@@ -116,7 +117,7 @@ void ENG_scene::empty_scene_set(){
   //---------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    data::Object* object = *next(set_scene->list_obj.begin(),i);
+    eng::structure::Object* object = *next(set_scene->list_obj.begin(),i);
 
     set_scene->list_obj.remove(object);
     vk_engine->remove_object_in_engine(object);
@@ -126,16 +127,16 @@ void ENG_scene::empty_scene_set(){
   //---------------------------
 }
 
-//data::Object
+//eng::structure::Object
 void ENG_scene::selected_object_next(){
-  data::Object* selected = set_scene->selected_obj;
+  eng::structure::Object* selected = set_scene->selected_obj;
   //----------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    data::Object* object = *next(set_scene->list_obj.begin(), i);
+    eng::structure::Object* object = *next(set_scene->list_obj.begin(), i);
 
     if(selected->ID == object->ID){
-      data::Object* selection;
+      eng::structure::Object* selection;
 
       if((i + 1) < set_scene->list_obj.size()){
         selection = *next(set_scene->list_obj.begin(), i + 1);
@@ -167,7 +168,7 @@ void ENG_scene::loop_list(list<data::Set*>* list_data){
   for(int i=0; i<list_data->size(); i++){
     data::Set* set = *next(list_data->begin(), i);
     for(int j=0; j<set->list_obj.size(); j++){
-      data::Object* object = *next(set->list_obj.begin(), j);
+      eng::structure::Object* object = *next(set->list_obj.begin(), j);
       eng_camera->compute_cam_mvp(object);
     }
   }

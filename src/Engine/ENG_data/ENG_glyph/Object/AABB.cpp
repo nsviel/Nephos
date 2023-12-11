@@ -41,7 +41,7 @@ void AABB::update_glyph(data::Set* collection, data::Glyph* glyph){
 
   //---------------------------
 }
-void AABB::update_glyph(data::Object* object){
+void AABB::update_glyph(eng::structure::Object* object){
   vector<vec3>& XYZ = glyph->xyz;
   vector<vec4>& RGB = glyph->rgb;
   vec3 min = cloud->min;

@@ -8,7 +8,7 @@ Transformation::Transformation(){}
 Transformation::~Transformation(){}
 
 // Translation
-void Transformation::make_translation(data::Object* object, vec3 trans){
+void Transformation::make_translation(eng::structure::Object* object, vec3 trans){
   if(object == nullptr) return;
   //---------------------------
 
@@ -22,7 +22,7 @@ void Transformation::make_translation(data::Object* object, vec3 trans){
 }
 
 //Rotation
-void Transformation::make_rotation(data::Object* object, vec3 COM, vec3 radian){
+void Transformation::make_rotation(eng::structure::Object* object, vec3 COM, vec3 radian){
   if(object == nullptr) return;
   //---------------------------
 
@@ -37,7 +37,7 @@ void Transformation::make_rotation(data::Object* object, vec3 COM, vec3 radian){
 }
 
 //Scaling
-void Transformation::make_scaling(data::Object* object, float scale){
+void Transformation::make_scaling(eng::structure::Object* object, float scale){
   if(object == nullptr) return;
   //---------------------------
 

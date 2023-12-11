@@ -20,7 +20,7 @@ public:
 
 public:
   //Main functions
-  void insert_object(data::Object* object);
+  void insert_object(eng::structure::Object* object);
   void clean_entity_all();
   void clean_entity(vk::structure::Entity* data);
 

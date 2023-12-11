@@ -90,7 +90,7 @@ void Init::load_config_file(){
 void Init::operation_new_object(string path){
   //---------------------------
 
-  data::Object* object = eng_loader->load_object(path);
+  eng::structure::Object* object = eng_loader->load_object(path);
   if(object == nullptr) return;
 
   if(init.remove_old){

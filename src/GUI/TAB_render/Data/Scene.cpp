@@ -155,14 +155,14 @@ int Scene::data_node_tree(data::Set* set){
   //Set elements leaf nodes
   if(is_node_open){
     for(int j=0; j<set->list_obj.size(); j++){
-      data::Object* object = *next(set->list_obj.begin(), j);
+      eng::structure::Object* object = *next(set->list_obj.begin(), j);
 
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       nb_row++;
 
       //If object is selected
-      if(object->ID == set->selected_obj->ID && set->name == "data::Object"){
+      if(object->ID == set->selected_obj->ID && set->name == "eng::structure::Object"){
         flag_leaf |= ImGuiTreeNodeFlags_Selected;
       }else{
         flag_leaf &= ~ImGuiTreeNodeFlags_Selected;

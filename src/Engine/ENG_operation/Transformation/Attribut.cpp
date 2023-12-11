@@ -6,7 +6,7 @@ Attribut::Attribut(){}
 Attribut::~Attribut(){}
 
 //Main function
-void Attribut::compute_MinMax(data::Object* object){
+void Attribut::compute_MinMax(eng::structure::Object* object){
   vector<vec3>& XYZ = object->xyz;
   vec3 centroid = vec3(0, 0, 0);
   vec3 min = XYZ[0];
@@ -34,7 +34,7 @@ void Attribut::set_visibility(data::Set* set, bool visibility){
   //---------------------------
 
   for(int i=0; i<set->list_obj.size(); i++){
-    data::Object* object = *next(set->list_obj.begin(), i);
+    eng::structure::Object* object = *next(set->list_obj.begin(), i);
     object->is_visible = visibility;
   }
 

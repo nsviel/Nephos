@@ -20,7 +20,7 @@ Tree::Tree(){
 }
 Tree::~Tree(){}
 
-data::Glyph* Tree::create_glyph(data::Object* object){
+data::Glyph* Tree::create_glyph(eng::structure::Object* object){
   data::Glyph* tree = new data::Glyph();
   //---------------------------
 
@@ -35,7 +35,7 @@ data::Glyph* Tree::create_glyph(data::Object* object){
   //---------------------------
   return tree;
 }
-void Tree::update_tree(data::Object* object, data::Glyph* tree){
+void Tree::update_tree(eng::structure::Object* object, data::Glyph* tree){
   //---------------------------
 
   if(is_visible){

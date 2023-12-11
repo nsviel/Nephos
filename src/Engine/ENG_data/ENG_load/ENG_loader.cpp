@@ -28,7 +28,7 @@ ENG_loader::~ENG_loader(){
 }
 
 //Main functions
-data::Object* ENG_loader::load_object(std::string path){
+eng::structure::Object* ENG_loader::load_object(std::string path){
   //---------------------------
 
   if(file::is_file_exist(path) == false){
@@ -37,7 +37,7 @@ data::Object* ENG_loader::load_object(std::string path){
   }
 
   //Create new object
-  data::Object* object = new data::Object();
+  eng::structure::Object* object = new eng::structure::Object();
   object->path_file = path;
   object->path_text = "../media/viking_room.png";
   object->draw_type_name = "point";
@@ -52,12 +52,12 @@ data::Object* ENG_loader::load_object(std::string path){
   //---------------------------
   return object;
 }
-std::vector<data::Object*> ENG_loader::load_objects(std::vector<std::string> path){
-  std::vector<data::Object*> vec_obj;
+std::vector<eng::structure::Object*> ENG_loader::load_objects(std::vector<std::string> path){
+  std::vector<eng::structure::Object*> vec_obj;
   //---------------------------
 
   for(int i=0; i<path.size(); i++){
-    data::Object* object = load_object(path[i]);
+    eng::structure::Object* object = load_object(path[i]);
     vec_obj.push_back(object);
   }
 
@@ -77,7 +77,7 @@ void ENG_loader::load_by_zenity(){
 }
 
 //Subfunctions
-void ENG_loader::transfert_data(data::Object* object, data::File* data){
+void ENG_loader::transfert_data(eng::structure::Object* object, data::File* data){
   //---------------------------
 
   object->name = data->name;

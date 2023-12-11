@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Base/Namespace.h>
 #include <UTL_base/Struct_object.h>
 #include <UTL_file/Info.h>
 #include <glm/glm.hpp>
@@ -16,7 +17,7 @@ public:
 
 public:
   //Main functions
-  bool export_cloud(data::Object* object, std::string path_dir, std::string ply_format);
+  bool export_cloud(eng::structure::Object* object, std::string path_dir, std::string ply_format);
 
 private:
   std::vector<std::string> property_type;

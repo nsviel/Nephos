@@ -87,7 +87,7 @@ void ENG_glyph::create_glyph_scene(data::Glyph* glyph){
 
   //---------------------------
 }
-void ENG_glyph::create_glyph_object(data::Object* object, data::Glyph* glyph){
+void ENG_glyph::create_glyph_object(eng::structure::Object* object, data::Glyph* glyph){
   data::Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_object");
   //---------------------------
 

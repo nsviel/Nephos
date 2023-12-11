@@ -20,6 +20,7 @@ find_package(k4a REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
+  LIBRARY_ENGINE
 
   ${k4a_LIBS}
   Eigen3::Eigen # Eigen

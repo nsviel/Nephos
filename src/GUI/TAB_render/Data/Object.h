@@ -21,20 +21,20 @@ public:
   void design_panel();
 
   //Sub functions
-  void object_info(data::Object* object);
-  void object_parameter(data::Object* object);
+  void object_info(eng::structure::Object* object);
+  void object_parameter(eng::structure::Object* object);
 
   //Primitive size
-  void width_line(data::Object* object);
-  void size_point(data::Object* object);
+  void width_line(eng::structure::Object* object);
+  void size_point(eng::structure::Object* object);
 
-  inline void set_selected_object(data::Object* object){this->object_selected = object;}
+  inline void set_selected_object(eng::structure::Object* object){this->object_selected = object;}
 
 private:
   Panel* gui_render_panel;
   ENG_scene* eng_scene;
 
-  data::Object* object_selected;
+  eng::structure::Object* object_selected;
   string panel_name;
   bool* panel_show;;
   int item_width;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Base/Struct_object.h>
 #include <UTL_base/Struct_object.h>
 #include <string>
 #include <vector>
@@ -21,8 +22,8 @@ struct Set{
   bool is_visible = true;
 
   //Data
-  data::Object* selected_obj = nullptr;
-  std::list<data::Object*> list_obj;
+  eng::structure::Object* selected_obj = nullptr;
+  std::list<eng::structure::Object*> list_obj;
   std::list<data::Set*> list_set;
 
   //---------------------------

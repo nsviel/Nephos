@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Base/Struct_object.h>
 #include <UTL_specific/common.h>
 
 class ENG_data;
@@ -23,12 +24,12 @@ public:
   void reset_scene();
 
   //Insertion / deletion
-  void insert_object_glyph(data::Object* object);
-  void insert_object_scene(data::Object* object);
-  void delete_scene_object(data::Object* object);
+  void insert_object_glyph(eng::structure::Object* object);
+  void insert_object_scene(eng::structure::Object* object);
+  void delete_scene_object(eng::structure::Object* object);
   void empty_scene_set();
 
-  //data::Object
+  //eng::structure::Object
   void selected_object_next();
 
   //Loop
@@ -37,7 +38,7 @@ public:
 
   inline data::Set* get_set_scene(){return set_scene;}
   inline data::Set* get_set_glyph(){return set_glyph;}
-  inline data::Object* get_selected_object(){return set_scene->selected_obj;}
+  inline eng::structure::Object* get_selected_object(){return set_scene->selected_obj;}
 
 private:
   ENG_data* eng_data;

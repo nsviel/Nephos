@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Base/Namespace.h>
 #include <UTL_base/Struct_file.h>
 #include <UTL_base/Struct_object.h>
 #include <UTL_file/Info.h>
@@ -23,7 +24,7 @@ public:
   data::File* Loader(std::string pathFile);
   data::File* Loader(std::string pathFile, int lmin, int lmax);
 
-  bool Exporter(std::string pathFile, data::Object* object);
+  bool Exporter(std::string pathFile, eng::structure::Object* object);
 
   inline void set_IdataFormat(int value){this->IdataFormat = value;}
   inline void set_retrievingIntensity(bool value){this->retrieve_I = value;}
