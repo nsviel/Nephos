@@ -5,7 +5,7 @@
 
 namespace vk::structure{
 
-struct Struct_vk_physical_device{
+struct Physical_device{
   //---------------------------
 
   VkPhysicalDevice physical_device;

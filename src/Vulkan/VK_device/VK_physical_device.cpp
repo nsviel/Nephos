@@ -69,7 +69,7 @@ void VK_physical_device::find_physical_devices(){
 
   //Store physical device properties
   for(VkPhysicalDevice device : vec_physical_device){
-    vk::structure::Struct_vk_physical_device struct_device;
+    vk::structure::Physical_device struct_device;
     struct_device.physical_device = device;
     this->find_physical_device_properties(struct_device);
     struct_vulkan->instance.vec_physical_device.push_back(struct_device);
@@ -81,9 +81,9 @@ void VK_physical_device::find_physical_device_best(){
   //---------------------------
 
   // Use an ordered map to automatically sort candidates by increasing score
-  std::multimap<int, vk::structure::Struct_vk_physical_device> candidates;
+  std::multimap<int, vk::structure::Physical_device> candidates;
   for(int i=0; i<struct_vulkan->instance.vec_physical_device.size(); i++){
-    vk::structure::Struct_vk_physical_device& struct_device = struct_vulkan->instance.vec_physical_device[i];
+    vk::structure::Physical_device& struct_device = struct_vulkan->instance.vec_physical_device[i];
 
     this->rate_device_suitability(struct_device);
     candidates.insert(std::make_pair(struct_device.selection_score, struct_device));
@@ -102,7 +102,7 @@ void VK_physical_device::find_physical_device_best(){
 
   //---------------------------
 }
-void VK_physical_device::rate_device_suitability(vk::structure::Struct_vk_physical_device& struct_device){
+void VK_physical_device::rate_device_suitability(vk::structure::Physical_device& struct_device){
   int score = 0;
   //---------------------------
 
@@ -140,7 +140,7 @@ void VK_physical_device::rate_device_suitability(vk::structure::Struct_vk_physic
   //---------------------------
   struct_device.selection_score = score;
 }
-bool VK_physical_device::device_suitability_onscreen(vk::structure::Struct_vk_physical_device& struct_device){
+bool VK_physical_device::device_suitability_onscreen(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   //Queue suitable
@@ -181,7 +181,7 @@ bool VK_physical_device::device_suitability_onscreen(vk::structure::Struct_vk_ph
   //---------------------------
   return true;
 }
-bool VK_physical_device::device_suitability_offscreen(vk::structure::Struct_vk_physical_device& struct_device){
+bool VK_physical_device::device_suitability_offscreen(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   //Queue suitable
@@ -211,7 +211,7 @@ bool VK_physical_device::device_suitability_offscreen(vk::structure::Struct_vk_p
 }
 
 //Specific properties
-void VK_physical_device::find_physical_device_properties(vk::structure::Struct_vk_physical_device& struct_device){
+void VK_physical_device::find_physical_device_properties(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   VkPhysicalDeviceProperties properties;
@@ -224,7 +224,7 @@ void VK_physical_device::find_physical_device_properties(vk::structure::Struct_v
 
   //---------------------------
 }
-void VK_physical_device::find_physical_device_features(vk::structure::Struct_vk_physical_device& struct_device){
+void VK_physical_device::find_physical_device_features(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   VkPhysicalDeviceFeatures supportedFeatures;
@@ -233,7 +233,7 @@ void VK_physical_device::find_physical_device_features(vk::structure::Struct_vk_
   //---------------------------
   struct_device.features = supportedFeatures;
 }
-void VK_physical_device::find_physical_device_support(vk::structure::Struct_vk_physical_device& struct_device){
+void VK_physical_device::find_physical_device_support(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   //Get physical_device extension number
@@ -253,7 +253,7 @@ void VK_physical_device::find_physical_device_support(vk::structure::Struct_vk_p
   //---------------------------
   struct_device.has_extension_support = requiredExtensions.empty();
 }
-void VK_physical_device::find_surface_capability(vk::structure::Struct_vk_physical_device& struct_device){
+void VK_physical_device::find_surface_capability(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   //Get basic surface capabilities
@@ -263,7 +263,7 @@ void VK_physical_device::find_surface_capability(vk::structure::Struct_vk_physic
   //---------------------------
   struct_device.capabilities = capabilities;
 }
-void VK_physical_device::find_surface_format(vk::structure::Struct_vk_physical_device& struct_device){
+void VK_physical_device::find_surface_format(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   //Get supported surface format number
@@ -280,7 +280,7 @@ void VK_physical_device::find_surface_format(vk::structure::Struct_vk_physical_d
   //---------------------------
   struct_device.formats = formats;
 }
-void VK_physical_device::find_presentation_mode(vk::structure::Struct_vk_physical_device& struct_device){
+void VK_physical_device::find_presentation_mode(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   //Get presentation mode number
@@ -297,7 +297,7 @@ void VK_physical_device::find_presentation_mode(vk::structure::Struct_vk_physica
   //---------------------------
   struct_device.presentation_mode = presentation_mode;
 }
-void VK_physical_device::find_queue_nb_family(vk::structure::Struct_vk_physical_device& struct_device){
+void VK_physical_device::find_queue_nb_family(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   uint32_t nb_queue_family = 0;
@@ -341,7 +341,7 @@ void VK_physical_device::find_queue_nb_family(vk::structure::Struct_vk_physical_
 
   //---------------------------
 }
-void VK_physical_device::find_queue_graphics_idx(vk::structure::Struct_vk_physical_device& struct_device){
+void VK_physical_device::find_queue_graphics_idx(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   //List queue families
@@ -361,7 +361,7 @@ void VK_physical_device::find_queue_graphics_idx(vk::structure::Struct_vk_physic
 
   //---------------------------
 }
-void VK_physical_device::find_queue_presentation_idx(vk::structure::Struct_vk_physical_device& struct_device){
+void VK_physical_device::find_queue_presentation_idx(vk::structure::Physical_device& struct_device){
   //---------------------------
 
   //List queue families

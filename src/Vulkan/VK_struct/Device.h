@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_physical_device.h>
+#include <VK_struct/Physical_device.h>
 #include <UTL_specific/common.h>
 
 
@@ -12,7 +12,7 @@ struct Device{
   VkDevice device;
   VkQueue queue_graphics;
   VkQueue queue_presentation;
-  vk::structure::Struct_vk_physical_device struct_device;
+  vk::structure::Physical_device struct_device;
 
   //---------------------------
 };

@@ -14,7 +14,7 @@
 #include <VK_struct/Instance.h>
 #include <VK_struct/Parameter.h>
 
-#include <VK_struct/Struct_vk_physical_device.h>
+#include <VK_struct/Physical_device.h>
 #include <VK_struct/Struct_vk_pipeline.h>
 #include <VK_struct/Struct_vk_pool.h>
 #include <VK_struct/Struct_vk_render.h>
@@ -39,7 +39,7 @@ namespace vk::structure{
   class Instance;
   class Parameter;
 
-  class Struct_vk_physical_device;
+  class Physical_device;
   class Struct_vk_pipeline;
   class Struct_vk_pool;
   class Struct_vk_render;
