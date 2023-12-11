@@ -11,7 +11,7 @@ Set::Set(GUI* gui, bool* show_window){
   //---------------------------
 
   this->panel_show = show_window;
-  this->panel_name = "Scene";
+  this->panel_name = "Set";
   this->item_width = 150;
 
   //---------------------------
@@ -48,7 +48,7 @@ void Set::design_panel(){
 void Set::set_info(data::Set* set){
   //---------------------------
 
-  this->set_name("Set " + set->name);
+  this->panel_name = "Set " + set->name;
 
   //---------------------------
 }

@@ -16,11 +16,13 @@ Scene::Scene(GUI* gui, gui::rnd::tab::Panel* rnd_panel){
 
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
-  this->eng_database = eng_data->get_eng_database();
+  ENG_database* eng_database = eng_data->get_eng_database();
+
   this->rnd_panel = rnd_panel;
-  this->gui_set = new gui::rnd::panel::Set(gui, &rnd_panel->show_set, "Set");
+  this->gui_set = new gui::rnd::panel::Set(gui, &rnd_panel->show_set);
   this->gui_object = new gui::rnd::panel::Object(gui, &rnd_panel->show_object);
 
+  this->list_data = eng_database->get_list_data();
   this->panel_show = &rnd_panel->show_scene;
   this->panel_name = "Scene";
 
@@ -92,7 +94,6 @@ void Scene::draw_window_background(){
   //-------------------------------
 }
 void Scene::tree_view(){
-  list<data::Set*>* list_data = eng_database->get_list_data();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;

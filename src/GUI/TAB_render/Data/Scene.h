@@ -2,6 +2,7 @@
 
 #include <UTL_specific/common.h>
 #include <TAB_render/Data/Namespace.h>
+#include <TAB_render/Tab/Namespace.h>
 
 class GUI;
 
@@ -31,8 +32,8 @@ private:
   gui::rnd::tab::Panel* rnd_panel;
   gui::rnd::panel::Object* gui_object;
   Set* gui_set;
-  ENG_database* eng_database;
 
+  list<data::Set*>* list_data;
   string panel_name;
   bool* panel_show;;
 };

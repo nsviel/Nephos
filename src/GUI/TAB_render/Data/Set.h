@@ -25,8 +25,6 @@ public:
   inline void set_selected_set(data::Set* set){this->set_selected = set;}
 
 private:
-  Panel* gui_render_panel;
-
   data::Set* set_selected;
   string panel_name;
   bool* panel_show;;
