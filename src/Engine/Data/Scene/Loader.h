@@ -12,13 +12,11 @@
 #include <string>
 #include <vector>
 
-class ENG_format;
-
 using MyFile = data::File;
-
 
 namespace eng::data{
 class Scene;
+class ENG_format;
 
 
 class Loader
@@ -38,7 +36,7 @@ public:
   void transfert_data(eng::structure::Object* object, MyFile* file_data);
 
 private:
-  ENG_format* eng_format;
+  eng::data::ENG_format* eng_format;
   eng::data::Scene* eng_scene;
 
   std::string path_current_dir;

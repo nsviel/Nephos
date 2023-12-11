@@ -11,6 +11,10 @@ class PTS_importer;
 class PTX_importer;
 class XYZ_importer;
 
+using MyFile = data::File;
+
+
+namespace eng::data{
 
 class ENG_format
 {
@@ -20,7 +24,7 @@ public:
   ~ENG_format();
 
 public:
-  data::File* get_data_from_file(std::string path);
+  MyFile* get_data_from_file(std::string path);
 
 private:
   PLY_importer* ply_import;
@@ -31,3 +35,5 @@ private:
   PTX_importer* ptx_import;
   XYZ_importer* xyz_import;
 };
+
+}

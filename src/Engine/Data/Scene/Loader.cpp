@@ -13,7 +13,7 @@ Loader::Loader(eng::data::Node* eng_data){
   //---------------------------
 
   this->eng_scene = eng_data->get_eng_scene();
-  this->eng_format = new ENG_format();
+  this->eng_format = new eng::data::ENG_format();
 
   this->ID = 0;
   this->path_current_dir = "";

@@ -8,6 +8,8 @@
 #include "XYZ/XYZ_importer.h"
 
 
+namespace eng::data{
+
 //Constructor / Destructor
 ENG_format::ENG_format(){
   //---------------------------
@@ -37,8 +39,8 @@ ENG_format::~ENG_format(){
 }
 
 //Main functions
-data::File* ENG_format::get_data_from_file(std::string path){
-  data::File* data;
+MyFile* ENG_format::get_data_from_file(std::string path){
+  MyFile* data;
   //---------------------------
 
   std::string format = info::get_format_from_path(path);
@@ -66,4 +68,6 @@ data::File* ENG_format::get_data_from_file(std::string path){
 
   //---------------------------
   return data;
+}
+
 }
