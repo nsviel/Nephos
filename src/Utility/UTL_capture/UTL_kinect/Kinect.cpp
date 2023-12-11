@@ -1,8 +1,8 @@
 #include "Kinect.h"
 
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
-#include <UTL_capture/UTL_kinect/K4A_thread/K4A_connection.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_thread/K4A_connection.h>
 
 
 //Constructor / Destructor

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <UTL_specific/common.h>
-#include <UTL_base/Struct_image.h>
+#include <Utility/UTL_specific/common.h>
+#include <Utility/UTL_base/Struct_image.h>
 #include <VK_struct/Namespace.h>
 
 class GUI;

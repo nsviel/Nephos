@@ -1,9 +1,9 @@
 #include "K4A_device.h"
 
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
-#include <UTL_capture/UTL_kinect/K4A_thread/K4A_capture.h>
-#include <UTL_capture/UTL_kinect/K4A_thread/K4A_replay.h>
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_thread/K4A_capture.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_thread/K4A_replay.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
 
 
 //Constructor / Destructor

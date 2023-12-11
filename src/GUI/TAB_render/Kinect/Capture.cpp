@@ -1,11 +1,11 @@
 #include "Capture.h"
 
 #include <Node/GUI.h>
-#include <Node/Utility.h>
-#include <UTL_capture/UTL_capture.h>
-#include <UTL_capture/UTL_kinect/K4A_data/K4A_depth.h>
-#include <UTL_capture/UTL_kinect/K4A_data/K4A_infrared.h>
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
+#include <Utility/Node/Utility.h>
+#include <Utility/UTL_capture/UTL_capture.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_data/K4A_depth.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_data/K4A_infrared.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
 namespace gui::kinect{

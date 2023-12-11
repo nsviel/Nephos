@@ -2,10 +2,10 @@
 
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
-#include <Node/Utility.h>
-#include <UTL_window/UTL_window.h>
+#include <Utility/Node/Utility.h>
+#include <Utility/UTL_window/UTL_window.h>
 #include <Engine/ENG_data/ENG_data.h>
-#include <UTL_function/fct_math.h>
+#include <Utility/UTL_function/fct_math.h>
 #include <Engine/ENG_data/ENG_scene/ENG_scene.h>
 #include <Engine/ENG_data/ENG_data.h>
 #include <Engine/ENG_camera/ENG_camera.h>

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_info.h>
-#include <UTL_specific/common.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_info.h>
+#include <Utility/UTL_specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
 

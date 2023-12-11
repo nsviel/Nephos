@@ -1,13 +1,13 @@
 #pragma once
 
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_config.h>
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_color.h>
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_depth.h>
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_infrared.h>
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_data.h>
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_info.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_config.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_color.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_depth.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_infrared.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_data.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_info.h>
 
-#include <UTL_specific/common.h>
+#include <Utility/UTL_specific/common.h>
 #include <k4a/k4a.hpp>
 #include <string>
 

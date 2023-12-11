@@ -1,12 +1,12 @@
 #include "Kinect_panel.h"
 
 #include <Node/GUI.h>
-#include <Node/Utility.h>
-#include <UTL_capture/UTL_capture.h>
-#include <UTL_capture/UTL_kinect/Kinect.h>
-#include <UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
+#include <Utility/Node/Utility.h>
+#include <Utility/UTL_capture/UTL_capture.h>
+#include <Utility/UTL_capture/UTL_kinect/Kinect.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_configuration.h>
 
 
 namespace gui::kinect{

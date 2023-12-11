@@ -1,7 +1,7 @@
 #pragma once
 
-#include <UTL_specific/common.h>
-#include <UTL_base/Struct_video.h>
+#include <Utility/UTL_specific/common.h>
+#include <Utility/UTL_base/Struct_video.h>
 extern "C" {
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>

@@ -5,7 +5,7 @@
 #include <VK_struct/Binding.h>
 #include <VK_struct/Image.h>
 
-#include <UTL_specific/common.h>
+#include <Utility/UTL_specific/common.h>
 
 
 namespace vk::structure{

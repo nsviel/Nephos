@@ -2,8 +2,8 @@
 
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
-#include <Node/Utility.h>
-#include <UTL_window/UTL_window.h>
+#include <Utility/Node/Utility.h>
+#include <Utility/UTL_window/UTL_window.h>
 
 
 namespace gui{

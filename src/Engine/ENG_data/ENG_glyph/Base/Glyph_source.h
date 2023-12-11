@@ -1,7 +1,7 @@
 #pragma once
 
-#include <UTL_base/Struct_glyph.h>
-#include <UTL_specific/common.h>
+#include <Utility/UTL_base/Struct_glyph.h>
+#include <Utility/UTL_specific/common.h>
 
 
 class Glyph_source

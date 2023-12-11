@@ -1,7 +1,7 @@
 #pragma once
 
-#include <UTL_specific/common.h>
-#include <UTL_capture/UTL_kinect/Kinect.h>
+#include <Utility/UTL_specific/common.h>
+#include <Utility/UTL_capture/UTL_kinect/Kinect.h>
 
 class Kinect;
 

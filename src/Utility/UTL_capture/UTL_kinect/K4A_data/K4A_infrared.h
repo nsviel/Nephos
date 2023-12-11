@@ -1,7 +1,7 @@
 #pragma once
 
-#include <UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
-#include <UTL_specific/common.h>
+#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
+#include <Utility/UTL_specific/common.h>
 
 class Struct_k4a_swarm;
 

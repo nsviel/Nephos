@@ -2,8 +2,8 @@
 
 #include <VK_struct/Namespace.h>
 #include <VK_struct/VK_typedef.h>
-#include <UTL_specific/common.h>
-#include <UTL_base/Struct_image.h>
+#include <Utility/UTL_specific/common.h>
+#include <Utility/UTL_base/Struct_image.h>
 
 
 class VK_image;

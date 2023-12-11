@@ -1,8 +1,8 @@
 #include "SCE_shader.h"
 
 #include <Engine/Node/Engine.h>
-#include <Node/Utility.h>
-#include <UTL_window/UTL_window.h>
+#include <Utility/Node/Utility.h>
+#include <Utility/UTL_window/UTL_window.h>
 
 
 SCE_shader::SCE_shader(Engine* engine){

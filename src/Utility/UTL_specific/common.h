@@ -35,13 +35,13 @@ using namespace std;
 using namespace glm;
 
 //Function
-#include <UTL_function/fct_terminal.h>
-#include <UTL_function/fct_math.h>
-#include <UTL_function/fct_chrono.h> //For debuging
-#include <UTL_function/fct_timer.h>  //For time profilling
+#include <Utility/UTL_function/fct_terminal.h>
+#include <Utility/UTL_function/fct_math.h>
+#include <Utility/UTL_function/fct_chrono.h> //For debuging
+#include <Utility/UTL_function/fct_timer.h>  //For time profilling
 
 //Data
-#include <UTL_base/data_nsp.h>
+#include <Utility/UTL_base/data_nsp.h>
 
 //GUI
 #include <imgui/core/imgui.h>

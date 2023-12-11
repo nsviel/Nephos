@@ -1,7 +1,7 @@
 #include "Engine.h"
 
-#include <Node/Utility.h>
-#include <UTL_window/UTL_window.h>
+#include <Utility/Node/Utility.h>
+#include <Utility/UTL_window/UTL_window.h>
 #include <Vulkan.h>
 #include <Engine/ENG_data/ENG_data.h>
 #include <Engine/ENG_camera/ENG_camera.h>

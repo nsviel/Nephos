@@ -1,7 +1,7 @@
 #include "Vulkan.h"
 
-#include <Node/Utility.h>
-#include <UTL_window/UTL_window.h>
+#include <Utility/Node/Utility.h>
+#include <Utility/UTL_window/UTL_window.h>
 #include <VK_main/VK_engine.h>
 #include <VK_main/VK_imgui.h>
 #include <VK_main/VK_info.h>
