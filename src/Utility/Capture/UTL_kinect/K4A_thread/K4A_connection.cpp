@@ -1,6 +1,6 @@
 #include "K4A_connection.h"
 
-#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
+#include <Utility/Capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
 //Constructor / Destructor

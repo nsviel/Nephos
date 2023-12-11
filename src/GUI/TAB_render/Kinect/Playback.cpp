@@ -1,8 +1,8 @@
 #include "Playback.h"
 
-#include <Utility/UTL_capture/UTL_kinect/Kinect.h>
+#include <Utility/Capture/UTL_kinect/Kinect.h>
 #include <image/IconsFontAwesome5.h>
-#include <Utility/UTL_capture/UTL_kinect/K4A_thread/K4A_replay.h>
+#include <Utility/Capture/UTL_kinect/K4A_thread/K4A_replay.h>
 
 
 namespace gui::kinect{

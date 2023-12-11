@@ -1,8 +1,8 @@
 #include "Configuration.h"
 
 #include <Node/GUI.h>
-#include <Utility/UTL_capture/UTL_kinect/Kinect.h>
-#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_swarm.h>
+#include <Utility/Capture/UTL_kinect/Kinect.h>
+#include <Utility/Capture/UTL_kinect/K4A_device/K4A_swarm.h>
 
 
 namespace gui::kinect{

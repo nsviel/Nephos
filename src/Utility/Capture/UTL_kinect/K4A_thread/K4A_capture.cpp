@@ -1,6 +1,6 @@
 #include "K4A_capture.h"
 
-#include <Utility/UTL_capture/UTL_kinect/K4A_data/K4A_data.h>
+#include <Utility/Capture/UTL_kinect/K4A_data/K4A_data.h>
 
 
 //Constructor / Destructor

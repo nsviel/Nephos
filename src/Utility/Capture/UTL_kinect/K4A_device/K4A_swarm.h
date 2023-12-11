@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/UTL_capture/UTL_kinect/K4A_device/K4A_device.h>
+#include <Utility/Capture/UTL_kinect/K4A_device/K4A_device.h>
 
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.h>
