@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Camera/Namespace.h>
-#include <Engine/ENG_data/Namespace.h>
+#include <Engine/Data/Namespace.h>
 
 class Param;
 class Utility;

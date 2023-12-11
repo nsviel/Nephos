@@ -4,7 +4,7 @@
 #include "Scene/Grid.h"
 #include "Scene/Axis_world.h"
 
-#include <Engine/ENG_data/Namespace.h>
+#include <Engine/Data/Namespace.h>
 #include "../ENG_scene/ENG_scene.h"
 
 
