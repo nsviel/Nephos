@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -29,12 +29,12 @@ public:
   void create_subpass_description(Struct_vk_subpass* subpass);
 
   //Color attachment
-  void color_attachment_description(Struct_vk_attachment& color);
-  void color_attachment_reference(Struct_vk_attachment& color);
+  void color_attachment_description(vk::structure::Struct_vk_attachment& color);
+  void color_attachment_reference(vk::structure::Struct_vk_attachment& color);
 
   //Depth attachment
-  void depth_attachment_description(Struct_vk_attachment& depth);
-  void depth_attachment_reference(Struct_vk_attachment& depth);
+  void depth_attachment_description(vk::structure::Struct_vk_attachment& depth);
+  void depth_attachment_reference(vk::structure::Struct_vk_attachment& depth);
 
 private:
   Struct_vulkan* struct_vulkan;
