@@ -68,7 +68,7 @@ private:
   VK_instance* vk_instance;
   VK_device* vk_device;
   VK_swapchain* vk_swapchain;
-  vk::VK_renderpass* vk_renderpass;
+  vk::Renderpass* vk_renderpass;
   VK_descriptor* vk_descriptor;
   VK_texture* vk_texture;
   VK_pool* vk_pool;

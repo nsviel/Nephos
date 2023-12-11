@@ -36,7 +36,7 @@ VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
   this->vk_descriptor = new VK_descriptor(struct_vulkan);
   this->vk_data = new VK_data(struct_vulkan);
   this->vk_swapchain = new VK_swapchain(struct_vulkan);
-  this->vk_renderpass = new vk::VK_renderpass(struct_vulkan);
+  this->vk_renderpass = new vk::Renderpass(struct_vulkan);
   this->vk_reload = new VK_reload(struct_vulkan);
   this->vk_frame = new VK_frame(struct_vulkan);
   this->vk_canvas = new VK_canvas(struct_vulkan);

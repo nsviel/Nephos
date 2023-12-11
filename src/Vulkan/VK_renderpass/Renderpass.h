@@ -13,12 +13,12 @@ class VK_command;
 
 namespace vk{
 
-class VK_renderpass
+class Renderpass
 {
 public:
   //Constructor / Destructor
-  VK_renderpass(Struct_vulkan* struct_vulkan);
-  ~VK_renderpass();
+  Renderpass(Struct_vulkan* struct_vulkan);
+  ~Renderpass();
 
 public:
   //Main functions

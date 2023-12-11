@@ -1,12 +1,12 @@
 #pragma once
 
-#include <VK_renderpass/VK_renderpass.h>
+#include <VK_renderpass/Renderpass.h>
 
 
 namespace vk{
   //---------------------------
 
-  class VK_renderpass;
+  class Renderpass;
 
   //---------------------------
 }
