@@ -5,9 +5,14 @@
 #include <Engine/Camera/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
-class Nodebase;
+
 class VK_engine;
 class Attribut;
+
+
+namespace eng::data{
+class Node;
+class ENG_database;
 
 
 class ENG_scene
@@ -42,7 +47,7 @@ public:
 
 private:
   eng::data::Node* eng_data;
-  Nodebase* eng_database;
+  eng::data::ENG_database* eng_database;
   VK_engine* vk_engine;
   Attribut* attributManager;
   eng::camera::Node* eng_camera;
@@ -51,3 +56,5 @@ private:
   eng::structure::Set* set_scene;
   eng::structure::Set* set_glyph;
 };
+
+}

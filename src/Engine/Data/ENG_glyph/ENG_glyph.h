@@ -4,8 +4,6 @@
 #include "Base/Glyph_source.h"
 #include <Utility/UTL_specific/common.h>
 
-class ENG_scene;
-
 
 class ENG_glyph
 {
@@ -21,7 +19,7 @@ public:
 
 private:
   eng::data::Node* eng_data;
-  ENG_scene* eng_scene;
+  eng::data::ENG_scene* eng_scene;
 
   vector<Glyph_source*> vec_glyph_src;
 };

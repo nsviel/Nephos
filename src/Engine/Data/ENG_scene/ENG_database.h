@@ -4,13 +4,16 @@
 #include <Engine/Data/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
+namespace eng::data{
+class Node;
 
-class Nodebase
+
+class ENG_database
 {
 public:
   //Constructor / Destructor
-  Nodebase(eng::data::Node* eng_data);
-  ~Nodebase();
+  ENG_database(eng::data::Node* eng_data);
+  ~ENG_database();
 
 public:
   inline list<eng::structure::Set*>* get_list_data(){return list_data;}
@@ -22,3 +25,5 @@ private:
   list<eng::structure::Set*>* list_data;
   list<eng::structure::Set*>* list_glyph;
 };
+
+}

@@ -12,6 +12,8 @@
 #include <Engine/ENG_operation/Transformation/Attribut.h>
 
 
+namespace eng::data{
+
 //ConsScenetor / DesScenetor
 ENG_scene::ENG_scene(eng::data::Node* eng_data){
   //---------------------------
@@ -175,4 +177,6 @@ void ENG_scene::loop_list(list<eng::structure::Set*>* list_data){
   }
 
   //----------------------------
+}
+
 }

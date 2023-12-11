@@ -1,11 +1,12 @@
 #pragma once
 
+#include <Engine/Data/Namespace.h>
 #include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class GUI;
 class Panel;
-class ENG_scene;
+
 
 
 namespace gui::rnd::panel{
@@ -33,7 +34,7 @@ public:
 
 private:
   Panel* gui_render_panel;
-  ENG_scene* eng_scene;
+  eng::data::ENG_scene* eng_scene;
 
   eng::structure::Object* object_selected;
   string panel_name;

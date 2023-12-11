@@ -10,7 +10,7 @@
 #include <vector>
 
 class ENG_format;
-class ENG_scene;
+
 
 
 class ENG_loader
@@ -31,7 +31,7 @@ public:
 
 private:
   ENG_format* eng_format;
-  ENG_scene* eng_scene;
+  eng::data::ENG_scene* eng_scene;
 
   std::string path_current_dir;
   int ID;

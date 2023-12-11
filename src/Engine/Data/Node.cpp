@@ -1,6 +1,4 @@
 #include "Node.h"
-#include "ENG_scene/ENG_scene.h"
-#include "ENG_scene/ENG_database.h"
 #include "ENG_glyph/ENG_glyph.h"
 #include "ENG_load/ENG_loader.h"
 
@@ -12,8 +10,8 @@ Node::Node(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->eng_database = new Nodebase(this);
-  this->eng_scene = new ENG_scene(this);
+  this->eng_database = new eng::data::ENG_database(this);
+  this->eng_scene = new eng::data::ENG_scene(this);
   this->eng_glyph = new ENG_glyph(this);
   this->eng_loader = new ENG_loader(this);
 

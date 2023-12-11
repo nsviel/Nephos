@@ -2,7 +2,6 @@
 
 #include <Node/GUI.h>
 #include <Engine/Node/Engine.h>
-#include <Engine/Data/ENG_scene/ENG_scene.h>
 #include <Engine/Data/ENG_load/ENG_loader.h>
 #include <Engine/ENG_operation/Transformation/Transformation.h>
 #include <Utility/UTL_file/Directory.h>

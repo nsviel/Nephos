@@ -1,8 +1,10 @@
 #include "ENG_database.h"
 
 
+namespace eng::data{
+
 //Constructor / Destructor
-Nodebase::Nodebase(eng::data::Node* eng_data){
+ENG_database::ENG_database(eng::data::Node* eng_data){
   //---------------------------
 
   this->ID_obj = 0;
@@ -12,4 +14,6 @@ Nodebase::Nodebase(eng::data::Node* eng_data){
 
   //---------------------------
 }
-Nodebase::~Nodebase(){}
+ENG_database::~ENG_database(){}
+
+}

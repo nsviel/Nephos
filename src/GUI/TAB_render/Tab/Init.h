@@ -1,12 +1,12 @@
 #pragma once
 
 #include "struct_init.h"
+#include <Engine/Data/Namespace.h>
 #include <GUI/GUI_utility/Widget/Tree_node.h>
 #include <Utility/UTL_specific/common.h>
 #include <GUI/GUI_utility/Widget/Namespace.h>
 
 class GUI;
-class ENG_scene;
 class ENG_loader;
 class Transformation;
 
@@ -35,7 +35,7 @@ public:
   void build_scene_1();
 
 private:
-  ENG_scene* eng_scene;
+  eng::data::ENG_scene* eng_scene;
   ENG_loader* eng_loader;
   Transformation* transformManager;
   gui::widget::Tree* gui_tree;
