@@ -2,7 +2,7 @@
 
 #include <UTL_specific/common.h>
 #include <GUI_utility/Base_nsp.h>
-#include <GUI_utility/Editor_nsp.h>
+#include <GUI_utility/Editor/Namespace.h>
 
 class GUI;
 class Text;
