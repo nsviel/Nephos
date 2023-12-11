@@ -1,7 +1,6 @@
 #include "Node.h"
 
 #include <Config.h>
-#include <Utility/Capture/UTL_capture.h>
 
 
 namespace util{
@@ -11,7 +10,7 @@ Node::Node(Config* config){
   //---------------------------
 
   this->utl_window = new util::element::Window(config);
-  this->utl_capture = new UTL_capture();
+  this->utl_capture = new util::capture::Capture();
 
   //---------------------------
   this->init();

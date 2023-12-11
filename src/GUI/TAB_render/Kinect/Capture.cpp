@@ -2,7 +2,6 @@
 
 #include <Node/GUI.h>
 #include <Utility/Node/Namespace.h>
-#include <Utility/Capture/UTL_capture.h>
 #include <Utility/Capture/UTL_kinect/K4A_data/K4A_depth.h>
 #include <Utility/Capture/UTL_kinect/K4A_data/K4A_infrared.h>
 #include <Utility/Capture/UTL_kinect/K4A_device/K4A_swarm.h>
@@ -15,7 +14,7 @@ Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, 
   //---------------------------
 
   util::Node* utility = gui->get_utility();
-  UTL_capture* utl_capture = utility->get_utl_capture();
+  util::capture::Capture* utl_capture = utility->get_utl_capture();
 
   this->kinect = utl_capture->get_kinect();
   this->k4a_depth = new K4A_depth();

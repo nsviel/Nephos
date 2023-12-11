@@ -2,7 +2,6 @@
 
 #include <Node/GUI.h>
 #include <Utility/Node/Namespace.h>
-#include <Utility/Capture/UTL_capture.h>
 #include <Utility/Capture/UTL_kinect/Kinect.h>
 #include <Utility/Capture/UTL_kinect/K4A_struct/Struct_k4a_swarm.h>
 #include <Utility/Capture/UTL_kinect/K4A_device/K4A_swarm.h>
@@ -16,7 +15,7 @@ Kinect_panel::Kinect_panel(GUI* gui, bool* show_window, string name) : Panel(sho
   //---------------------------
 
   util::Node* utility = gui->get_utility();
-  UTL_capture* utl_capture = utility->get_utl_capture();
+  util::capture::Capture* utl_capture = utility->get_utl_capture();
   Kinect* kinect = utl_capture->get_kinect();
 
   this->kin_configuration = new gui::kinect::Configuration(kinect);

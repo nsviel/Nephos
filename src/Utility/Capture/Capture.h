@@ -6,12 +6,14 @@
 class Kinect;
 
 
-class UTL_capture
+namespace util::capture{
+
+class Capture
 {
 public:
   //Constructor / Destructor
-  UTL_capture();
-  ~UTL_capture();
+  Capture();
+  ~Capture();
 
 public:
   //Main function
@@ -24,3 +26,5 @@ public:
 private:
   Kinect* kinect;
 };
+
+}

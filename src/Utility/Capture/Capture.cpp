@@ -1,33 +1,37 @@
-#include "UTL_capture.h"
+#include "Capture.h"
 
+
+namespace util::capture{
 
 //Constructor / Destructor
-UTL_capture::UTL_capture(){
+Capture::Capture(){
   //---------------------------
 
   this->kinect = new Kinect();
 
   //---------------------------
 }
-UTL_capture::~UTL_capture(){}
+Capture::~Capture(){}
 
 //Main function
-void UTL_capture::init(){
+void Capture::init(){
   //---------------------------
 
   kinect->init();
 
   //---------------------------
 }
-void UTL_capture::run(){
+void Capture::run(){
   //---------------------------
 
   //---------------------------
 }
-void UTL_capture::clean(){
+void Capture::clean(){
   //---------------------------
 
 
 
   //---------------------------
+}
+
 }

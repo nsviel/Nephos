@@ -2,9 +2,9 @@
 
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
+#include <Utility/Capture/Namespace.h>
 
 class Config;
-class UTL_capture;
 
 
 namespace util{
@@ -23,11 +23,11 @@ public:
   void exit();
 
   inline util::element::Window* get_utl_window(){return utl_window;}
-  inline UTL_capture* get_utl_capture(){return utl_capture;}
+  inline util::capture::Capture* get_utl_capture(){return utl_capture;}
 
 private:
   util::element::Window* utl_window;
-  UTL_capture* utl_capture;
+  util::capture::Capture* utl_capture;
 };
 
 }
