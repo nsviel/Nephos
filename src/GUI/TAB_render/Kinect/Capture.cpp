@@ -15,8 +15,8 @@ Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, 
   util::capture::Capture* utl_capture = utility->get_utl_capture();
 
   this->kinect = utl_capture->get_kinect();
-  this->k4a_depth = new util::kinect::data::K4A_depth();
-  this->k4a_infrared = new util::kinect::data::K4A_infrared();
+  this->k4a_depth = new util::kinect::data::Depth();
+  this->k4a_infrared = new util::kinect::data::Infrared();
   this->k4a_swarm = kinect->get_k4a_swarm();
   this->gui = gui;
 

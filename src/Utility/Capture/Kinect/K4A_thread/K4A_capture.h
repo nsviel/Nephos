@@ -27,7 +27,7 @@ public:
   inline bool* get_thread_pause(){return &thread_pause;}
 
 private:
-  util::kinect::data::K4A_data* k4a_data;
+  util::kinect::data::Data* k4a_data;
 
   std::thread thread;
   bool thread_running = false;

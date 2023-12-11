@@ -1,19 +1,19 @@
-#include "K4A_data.h"
+#include "Data.h"
 
 
 namespace util::kinect::data{
 
 //Constructor / Destructor
-K4A_data::K4A_data(){
+Data::Data(){
   //---------------------------
 
 
   //---------------------------
 }
-K4A_data::~K4A_data(){}
+Data::~Data(){}
 
 //Main function
-void K4A_data::find_data_from_capture(util::kinect::structure::Data* data, k4a::capture capture){
+void Data::find_data_from_capture(util::kinect::structure::Data* data, k4a::capture capture){
   //---------------------------
 
   //Color

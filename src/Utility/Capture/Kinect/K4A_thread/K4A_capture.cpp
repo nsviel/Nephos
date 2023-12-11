@@ -5,7 +5,7 @@
 K4A_capture::K4A_capture(){
   //---------------------------
 
-  this->k4a_data = new util::kinect::data::K4A_data();
+  this->k4a_data = new util::kinect::data::Data();
 
   //---------------------------
 }

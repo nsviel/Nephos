@@ -1,19 +1,19 @@
-#include "K4A_infrared.h"
+#include "Infrared.h"
 
 
 namespace util::kinect::data{
 
 //Constructor / Destructor
-K4A_infrared::K4A_infrared(){
+Infrared::Infrared(){
   //---------------------------
 
 
   //---------------------------
 }
-K4A_infrared::~K4A_infrared(){}
+Infrared::~Infrared(){}
 
 //Main function
-uint8_t* K4A_infrared::convert_ir_into_color(K4A_device* device){
+uint8_t* Infrared::convert_ir_into_color(K4A_device* device){
   //---------------------------
 
   uint8_t* inputBuffer = device->data.ir.buffer;
@@ -37,7 +37,7 @@ uint8_t* K4A_infrared::convert_ir_into_color(K4A_device* device){
   //---------------------------
   return outputBuffer;
 }
-void K4A_infrared::find_ir_level(K4A_device* device){
+void Infrared::find_ir_level(K4A_device* device){
   //---------------------------
 
   if(device->depth.mode == K4A_DEPTH_MODE_PASSIVE_IR){

@@ -7,7 +7,7 @@
 K4A_replay::K4A_replay(){
   //---------------------------
 
-  this->k4a_data = new util::kinect::data::K4A_data();
+  this->k4a_data = new util::kinect::data::Data();
 
   //---------------------------
 }

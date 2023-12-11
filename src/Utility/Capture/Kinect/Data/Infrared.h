@@ -1,26 +1,26 @@
 #pragma once
 
 #include <Utility/Capture/Kinect/K4A_device/K4A_device.h>
-
+#include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <k4a/k4a.h>
-#include <k4a/k4a.hpp>
 
 
 namespace util::kinect::data{
 
-class K4A_data
+class Infrared
 {
 public:
   //Constructor / Destructor
-  K4A_data();
-  ~K4A_data();
+  Infrared();
+  ~Infrared();
 
 public:
   //Main function
-  void find_data_from_capture(util::kinect::structure::Data* data, k4a::capture capture);
+  uint8_t* convert_ir_into_color(K4A_device* device);
+  void find_ir_level(K4A_device* device);
 
 private:
+
 };
 
 }

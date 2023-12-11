@@ -36,8 +36,8 @@ public:
 private:
   GUI* gui;
   util::kinect::Kinect* kinect;
-  util::kinect::data::K4A_depth* k4a_depth;
-  util::kinect::data::K4A_infrared* k4a_infrared;
+  util::kinect::data::Depth* k4a_depth;
+  util::kinect::data::Infrared* k4a_infrared;
   K4A_swarm* k4a_swarm;
 
   vector<gui::media::Stream*> vec_gui_stream;

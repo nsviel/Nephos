@@ -6,12 +6,12 @@
 
 namespace util::kinect::data{
 
-class K4A_depth
+class Depth
 {
 public:
   //Constructor / Destructor
-  K4A_depth();
-  ~K4A_depth();
+  Depth();
+  ~Depth();
 
 public:
   //Main function

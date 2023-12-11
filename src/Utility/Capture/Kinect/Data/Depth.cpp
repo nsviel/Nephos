@@ -1,18 +1,18 @@
-#include "K4A_depth.h"
+#include "Depth.h"
 
 
 namespace util::kinect::data{
 
 //Constructor / Destructor
-K4A_depth::K4A_depth(){
+Depth::Depth(){
   //---------------------------
 
   //---------------------------
 }
-K4A_depth::~K4A_depth(){}
+Depth::~Depth(){}
 
 //Main function
-uint8_t* K4A_depth::convert_depth_into_color(K4A_device* device){
+uint8_t* Depth::convert_depth_into_color(K4A_device* device){
   //---------------------------
 
   uint8_t* inputBuffer = device->data.depth.buffer;
@@ -49,7 +49,7 @@ uint8_t* K4A_depth::convert_depth_into_color(K4A_device* device){
   //---------------------------
   return outputBuffer;
 }
-void K4A_depth::find_depth_mode_range(K4A_device* device){
+void Depth::find_depth_mode_range(K4A_device* device){
   //---------------------------
 
   if(device->depth.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){

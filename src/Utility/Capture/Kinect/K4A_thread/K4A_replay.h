@@ -35,7 +35,7 @@ public:
   inline void set_current_timestamp(float value){this->ts_seek = value;}
 
 private:
-  util::kinect::data::K4A_data* k4a_data;
+  util::kinect::data::Data* k4a_data;
 
   std::thread thread;
   float ts_seek = -1;
