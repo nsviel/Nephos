@@ -1,14 +1,11 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Frame.h>
 #include <Utility/UTL_specific/common.h>
 
 class VK_color;
 class VK_depth;
 class VK_image;
-
 
 
 class VK_framebuffer

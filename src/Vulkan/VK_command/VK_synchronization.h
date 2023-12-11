@@ -2,9 +2,6 @@
 
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/UTL_specific/common.h>
-#include <Vulkan/VK_struct/Frame.h>
-
-
 
 
 class VK_synchronization

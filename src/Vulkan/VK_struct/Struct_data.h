@@ -1,8 +1,6 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Image.h>
-#include <Vulkan/VK_struct/Entity.h>
 #include <Utility/UTL_specific/common.h>
 
 

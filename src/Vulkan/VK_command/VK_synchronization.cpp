@@ -1,7 +1,6 @@
 #include "VK_synchronization.h"
 
 #include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Frame.h>
 
 
 //Constructor / Destructor

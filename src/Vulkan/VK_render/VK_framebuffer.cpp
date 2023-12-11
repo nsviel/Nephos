@@ -4,7 +4,6 @@
 #include <Vulkan/VK_image/VK_depth.h>
 #include <Vulkan/VK_image/VK_color.h>
 #include <Vulkan/VK_image/VK_image.h>
-#include <Vulkan/VK_struct/Frame.h>
 
 
 //Constructor / Destructor

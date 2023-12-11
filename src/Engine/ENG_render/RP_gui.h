@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Pipeline.h>
 #include <Utility/UTL_specific/common.h>
 
 class Engine;

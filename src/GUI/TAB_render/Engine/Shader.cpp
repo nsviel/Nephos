@@ -4,7 +4,7 @@
 #include <Engine/Node/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_shader/VK_reload.h>
-#include <Vulkan/VK_struct/Instance.h>
+#include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_validation/Struct_validation.h>
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Engine/ENG_shader/ENG_shader.h>

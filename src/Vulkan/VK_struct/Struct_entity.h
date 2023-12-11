@@ -2,8 +2,6 @@
 
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/VK_typedef.h>
-#include <Vulkan/VK_struct/Binding.h>
-#include <Vulkan/VK_struct/Image.h>
 
 #include <Engine/Base/Namespace.h>
 #include <Utility/UTL_specific/common.h>

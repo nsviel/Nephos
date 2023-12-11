@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/VK_struct/VK_typedef.h>
-#include <Vulkan/VK_struct/Binding.h>
+#include <Vulkan/VK_struct/Namespace.h>
 #include <Engine/ENG_shader/Base/BASE_shader.h>
 #include <Utility/UTL_specific/common.h>
 

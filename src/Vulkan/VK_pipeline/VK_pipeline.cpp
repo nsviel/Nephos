@@ -4,7 +4,6 @@
 #include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/VK_data/VK_data.h>
 #include <Vulkan/VK_shader/VK_shader.h>
-#include <Vulkan/VK_struct/Pipeline.h>
 
 
 //Constructor / Destructor
