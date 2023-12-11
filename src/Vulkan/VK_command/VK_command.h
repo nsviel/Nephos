@@ -12,7 +12,7 @@ class VK_command
 {
 public:
   //Constructor / Destructor
-  VK_command(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_command(vk::structure::Vulkan* struct_vulkan);
   ~VK_command();
 
 public:
@@ -39,6 +39,6 @@ public:
   void singletime_command_end(VkCommandBuffer command_buffer);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_submit* vk_submit;
 };

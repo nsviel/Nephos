@@ -4,7 +4,7 @@
 
 
 //Constructor / Destructor
-VK_sampler::VK_sampler(vk::structure::Struct_vulkan* struct_vulkan){
+VK_sampler::VK_sampler(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

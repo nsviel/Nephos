@@ -12,7 +12,7 @@ class VK_reload
 {
 public:
   //Constructor / Destructor
-  VK_reload(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_reload(vk::structure::Vulkan* struct_vulkan);
   ~VK_reload();
 
 public:
@@ -21,6 +21,6 @@ public:
   void recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_pipeline* vk_pipeline;
 };

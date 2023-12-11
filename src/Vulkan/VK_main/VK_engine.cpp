@@ -22,7 +22,7 @@
 
 
 //Constructor / Destructor
-VK_engine::VK_engine(vk::structure::Struct_vulkan* struct_vulkan){
+VK_engine::VK_engine(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

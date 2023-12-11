@@ -11,7 +11,7 @@ class VK_buffer
 {
 public:
   //Constructor / Destructor
-  VK_buffer(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_buffer(vk::structure::Vulkan* struct_vulkan);
   ~VK_buffer();
 
 public:
@@ -21,6 +21,6 @@ public:
   void clean_buffer(vk::structure::Buffer* buffer);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_memory* vk_memory;
 };

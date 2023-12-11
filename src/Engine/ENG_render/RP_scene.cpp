@@ -17,7 +17,7 @@ RP_scene::RP_scene(Engine* engine){
   //---------------------------
 
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
-  vk::structure::Struct_vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
+  vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 
   this->eng_shader = engine->get_eng_shader();
   this->vk_engine = eng_vulkan->get_vk_engine();

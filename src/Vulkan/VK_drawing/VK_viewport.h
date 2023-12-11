@@ -9,7 +9,7 @@
 class VK_viewport
 {
 public:
-  VK_viewport(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_viewport(vk::structure::Vulkan* struct_vulkan);
   ~VK_viewport();
 
 public:
@@ -22,5 +22,5 @@ public:
   vk::structure::Viewport* create_viewport();
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
 };

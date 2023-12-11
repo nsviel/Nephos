@@ -11,7 +11,7 @@ class VK_memory
 {
 public:
   //Constructor / Destructor
-  VK_memory(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_memory(vk::structure::Vulkan* struct_vulkan);
   ~VK_memory();
 
 public:
@@ -33,6 +33,6 @@ public:
   uint32_t find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags properties);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_command* vk_command;
 };

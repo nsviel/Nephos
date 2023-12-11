@@ -9,7 +9,7 @@
 namespace vk{
 
 //Constructor / Destructor
-Subpass::Subpass(vk::structure::Struct_vulkan* struct_vulkan){
+Subpass::Subpass(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

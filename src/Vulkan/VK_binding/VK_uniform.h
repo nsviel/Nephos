@@ -12,7 +12,7 @@ class VK_uniform
 {
 public:
   //Constructor / Destructor
-  VK_uniform(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_uniform(vk::structure::Vulkan* struct_vulkan);
   ~VK_uniform();
 
 public:
@@ -25,6 +25,6 @@ public:
   template <typename T> void update_uniform(string uniform_name, vk::structure::Binding* binding, T value);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_memory* vk_memory;
 };

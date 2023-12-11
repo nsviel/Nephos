@@ -26,7 +26,7 @@ public:
   void wait();
   void param(UTL_window* utl_window, bool headless);
 
-  inline vk::structure::Struct_vulkan* get_struct_vulkan(){return struct_vulkan;}
+  inline vk::structure::Vulkan* get_struct_vulkan(){return struct_vulkan;}
   inline VK_engine* get_vk_engine(){return vk_engine;}
   inline VK_imgui* get_vk_imgui(){return vk_imgui;}
   inline VK_info* get_vk_info(){return vk_info;}
@@ -38,7 +38,7 @@ public:
 
 private:
   UTL_window* utl_window;
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_engine* vk_engine;
   VK_imgui* vk_imgui;
   VK_info* vk_info;

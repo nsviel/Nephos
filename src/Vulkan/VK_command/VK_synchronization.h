@@ -11,7 +11,7 @@ class VK_synchronization
 {
 public:
   //Constructor / Destructor
-  VK_synchronization(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_synchronization(vk::structure::Vulkan* struct_vulkan);
   ~VK_synchronization();
 
 public:
@@ -32,5 +32,5 @@ public:
   void clean_fence(VkFence& fence);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
 };

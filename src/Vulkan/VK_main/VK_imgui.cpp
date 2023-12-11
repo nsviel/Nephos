@@ -9,7 +9,7 @@
 
 
 //Constructor / Destructor
-VK_imgui::VK_imgui(vk::structure::Struct_vulkan* struct_vulkan){
+VK_imgui::VK_imgui(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

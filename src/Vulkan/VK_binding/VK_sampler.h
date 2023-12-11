@@ -10,7 +10,7 @@ class VK_sampler
 {
 public:
   //Constructor / Destructor
-  VK_sampler(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_sampler(vk::structure::Vulkan* struct_vulkan);
   ~VK_sampler();
 
 public:
@@ -19,5 +19,5 @@ public:
   vk::structure::Sampler* create_sampler_obj(string name, int binding, VkDescriptorType type);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
 };

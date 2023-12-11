@@ -9,7 +9,7 @@
 namespace vk{
 
 //Constructor / Destructor
-Renderpass::Renderpass(vk::structure::Struct_vulkan* struct_vulkan){
+Renderpass::Renderpass(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

@@ -5,7 +5,7 @@
 
 
 //Constructor / Destructor
-VK_buffer::VK_buffer(vk::structure::Struct_vulkan* struct_vulkan){
+VK_buffer::VK_buffer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

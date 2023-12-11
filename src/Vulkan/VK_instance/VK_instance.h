@@ -11,7 +11,7 @@ class VK_instance
 {
 public:
   //Constructor / Destructor
-  VK_instance(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_instance(vk::structure::Vulkan* struct_vulkan);
   ~VK_instance();
 
 public:
@@ -24,5 +24,5 @@ public:
 
 private:
   VK_validation* vk_validation;
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
 };

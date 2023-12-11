@@ -6,7 +6,7 @@
 
 
 //Constructor / Destructor
-VK_canvas::VK_canvas(vk::structure::Struct_vulkan* struct_vulkan){
+VK_canvas::VK_canvas(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

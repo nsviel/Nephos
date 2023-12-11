@@ -10,7 +10,7 @@ class VK_submit
 {
 public:
   //Constructor / Destructor
-  VK_submit(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_submit(vk::structure::Vulkan* struct_vulkan);
   ~VK_submit();
 
 public:
@@ -19,5 +19,5 @@ public:
   void submit_command_render(vk::structure::Command* commands);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
 };

@@ -11,7 +11,7 @@
 
 
 //Constructor / Destructor
-VK_frame::VK_frame(vk::structure::Struct_vulkan* struct_vulkan){
+VK_frame::VK_frame(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

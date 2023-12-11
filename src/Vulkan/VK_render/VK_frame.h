@@ -15,7 +15,7 @@ class VK_frame
 {
 public:
   //Constructor / Destructor
-  VK_frame(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_frame(vk::structure::Vulkan* struct_vulkan);
   ~VK_frame();
 
 public:
@@ -24,7 +24,7 @@ public:
   void clean_frame();
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_synchronization* vk_synchronization;
   VK_framebuffer* vk_framebuffer;
   VK_image* vk_image;

@@ -11,7 +11,7 @@
 
 
 //Constructor / Destructor
-VK_screenshot::VK_screenshot(vk::structure::Struct_vulkan* struct_vulkan){
+VK_screenshot::VK_screenshot(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

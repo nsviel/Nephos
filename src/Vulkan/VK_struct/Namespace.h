@@ -23,7 +23,7 @@
 #include <VK_struct/Synchro.h>
 #include <VK_struct/Viewport.h>
 #include <VK_struct/Window.h>
-#include <VK_struct/Struct_vulkan.h>
+#include <VK_struct/Vulkan.h>
 
 
 namespace vk::structure{
@@ -52,7 +52,7 @@ namespace vk::structure{
   class Synchro;
   class Viewport;
   class Window;
-  class Struct_vulkan;
+  class Vulkan;
 
   //---------------------------
 }

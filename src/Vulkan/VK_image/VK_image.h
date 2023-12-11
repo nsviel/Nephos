@@ -11,7 +11,7 @@ class VK_image
 {
 public:
   //Constructor / Destructor
-  VK_image(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_image(vk::structure::Vulkan* struct_vulkan);
   ~VK_image();
 
 public:
@@ -29,6 +29,6 @@ public:
   void generate_mipmap(vk::structure::Image* image);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_memory* vk_memory;
 };

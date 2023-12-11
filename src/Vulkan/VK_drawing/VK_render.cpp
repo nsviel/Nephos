@@ -7,7 +7,7 @@
 
 
 //Constructor / Destructor
-VK_render::VK_render(vk::structure::Struct_vulkan* struct_vulkan){
+VK_render::VK_render(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

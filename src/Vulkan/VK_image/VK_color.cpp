@@ -6,7 +6,7 @@
 
 
 //Constructor / Destructor
-VK_color::VK_color(vk::structure::Struct_vulkan* struct_vulkan){
+VK_color::VK_color(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

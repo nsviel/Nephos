@@ -8,7 +8,7 @@ class VK_validation
 {
 public:
   //Constructor / Destructor
-  VK_validation(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_validation(vk::structure::Vulkan* struct_vulkan);
   ~VK_validation();
 
 public:
@@ -29,7 +29,7 @@ public:
   inline vector<const char*> get_validation_layers(){return validation_layers;};
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
 
   vector<const char*> validation_layers;
   bool with_validation_layer;

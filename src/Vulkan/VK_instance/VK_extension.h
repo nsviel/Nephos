@@ -8,7 +8,7 @@ class VK_extension
 {
 public:
   //Constructor / Destructor
-  VK_extension(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_extension(vk::structure::Vulkan* struct_vulkan);
   ~VK_extension();
 
 public:
@@ -21,5 +21,5 @@ public:
   void extension_device();
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
 };

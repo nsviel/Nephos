@@ -12,7 +12,7 @@
 Vulkan::Vulkan(GLFWwindow* window){
   //---------------------------
 
-  this->struct_vulkan = new vk::structure::Struct_vulkan(window);
+  this->struct_vulkan = new vk::structure::Vulkan(window);
   this->vk_engine = new VK_engine(struct_vulkan);
   this->vk_imgui = new VK_imgui(struct_vulkan);
   this->vk_info = new VK_info(struct_vulkan);

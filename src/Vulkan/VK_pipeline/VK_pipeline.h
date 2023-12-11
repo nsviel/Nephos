@@ -15,7 +15,7 @@ class VK_pipeline
 {
 public:
   //Constructor / Destructor
-  VK_pipeline(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_pipeline(vk::structure::Vulkan* struct_vulkan);
   ~VK_pipeline();
 
 public:
@@ -45,7 +45,7 @@ public:
   void check_struct_pipeline_input(vk::structure::Pipeline* pipeline);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_descriptor* vk_descriptor;
   VK_shader* vk_shader;
   VK_data* vk_data;

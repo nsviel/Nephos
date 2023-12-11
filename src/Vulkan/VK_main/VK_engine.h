@@ -30,7 +30,7 @@ class VK_engine
 {
 public:
   //Constructor / Destructor
-  VK_engine(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_engine(vk::structure::Vulkan* struct_vulkan);
   ~VK_engine();
 
 public:
@@ -61,7 +61,7 @@ public:
   inline void set_window(GLFWwindow* window){struct_vulkan->window.glfw_window = window;}
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_extension* vk_extension;
   VK_surface* vk_surface;
   VK_instance* vk_instance;

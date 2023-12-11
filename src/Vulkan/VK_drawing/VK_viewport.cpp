@@ -4,7 +4,7 @@
 
 
 //Constructor / Destructor
-VK_viewport::VK_viewport(vk::structure::Struct_vulkan* struct_vulkan){
+VK_viewport::VK_viewport(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

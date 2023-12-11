@@ -10,7 +10,7 @@ class VK_physical_device
 {
 public:
   //Constructor / Destructor
-  VK_physical_device(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_physical_device(vk::structure::Vulkan* struct_vulkan);
   ~VK_physical_device();
 
 public:
@@ -37,5 +37,5 @@ public:
   void find_queue_presentation_idx(vk::structure::Physical_device& struct_device);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
 };

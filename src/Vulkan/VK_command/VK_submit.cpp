@@ -4,7 +4,7 @@
 
 
 //Constructor / Destructor
-VK_submit::VK_submit(vk::structure::Struct_vulkan* struct_vulkan){
+VK_submit::VK_submit(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

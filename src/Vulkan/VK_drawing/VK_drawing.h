@@ -13,7 +13,7 @@ class VK_drawing
 {
 public:
   //Constructor / Destructor
-  VK_drawing(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_drawing(vk::structure::Vulkan* struct_vulkan);
   ~VK_drawing();
 
 public:
@@ -27,7 +27,7 @@ public:
   void cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Entity* data);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_presentation* vk_presentation;
   VK_render* vk_render;
 

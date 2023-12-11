@@ -11,7 +11,7 @@ class VK_info
 {
 public:
   //Constructor / Destructor
-  VK_info(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_info(vk::structure::Vulkan* struct_vulkan);
   ~VK_info();
 
 public:
@@ -22,5 +22,5 @@ public:
   inline vec4* get_color_background(){return &struct_vulkan->param.background_color;}
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
 };

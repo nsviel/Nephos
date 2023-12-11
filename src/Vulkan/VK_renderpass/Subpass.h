@@ -16,7 +16,7 @@ class Subpass
 {
 public:
   //Constructor / Destructor
-  Subpass(vk::structure::Struct_vulkan* struct_vulkan);
+  Subpass(vk::structure::Vulkan* struct_vulkan);
   ~Subpass();
 
 public:
@@ -38,7 +38,7 @@ public:
   void depth_attachment_reference(vk::structure::Attachment& depth);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_color* vk_color;
   VK_depth* vk_depth;

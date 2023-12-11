@@ -4,7 +4,7 @@
 
 
 //Constructor / Destructor
-VK_surface::VK_surface(vk::structure::Struct_vulkan* struct_vulkan){
+VK_surface::VK_surface(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

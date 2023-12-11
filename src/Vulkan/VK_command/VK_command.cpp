@@ -5,7 +5,7 @@
 
 
 //Constructor / Destructor
-VK_command::VK_command(vk::structure::Struct_vulkan* struct_vulkan){
+VK_command::VK_command(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

@@ -8,7 +8,7 @@ class VK_pool
 {
 public:
   //Constructor / Destructor
-  VK_pool(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_pool(vk::structure::Vulkan* struct_vulkan);
   ~VK_pool();
 
 public:
@@ -27,5 +27,5 @@ public:
   void clean_command_pool();
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
 };

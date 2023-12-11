@@ -6,7 +6,7 @@
 
 namespace vk::structure{
 
-struct Struct_vulkan{
+struct Vulkan{
   //---------------------------
 
   std::string name;
@@ -21,7 +21,7 @@ struct Struct_vulkan{
   vk::structure::Pool pool;
   vk::structure::Synchro synchro;
 
-  Struct_vulkan(GLFWwindow* window){
+  Vulkan(GLFWwindow* window){
     this->window.glfw_window = window;
   }
 

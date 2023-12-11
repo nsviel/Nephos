@@ -5,7 +5,7 @@
 
 
 //Constructor / Destructor
-VK_validation::VK_validation(vk::structure::Struct_vulkan* struct_vulkan){
+VK_validation::VK_validation(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

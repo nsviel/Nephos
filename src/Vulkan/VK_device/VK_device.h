@@ -11,7 +11,7 @@ class VK_device
 {
 public:
   //Constructor / Destructor
-  VK_device(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_device(vk::structure::Vulkan* struct_vulkan);
   ~VK_device();
 
 public:
@@ -24,6 +24,6 @@ public:
   void find_device_queue_handles();
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_physical_device* vk_physical_device;
 };

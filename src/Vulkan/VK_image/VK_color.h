@@ -11,7 +11,7 @@ class VK_color
 {
 public:
   //Constructor / Destructor
-  VK_color(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_color(vk::structure::Vulkan* struct_vulkan);
   ~VK_color();
 
 public:
@@ -23,6 +23,6 @@ public:
   VkFormat find_color_format();
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_image* vk_image;
 };

@@ -6,7 +6,7 @@
 #include <VK_struct/Frame.h>
 
 //Constructor / Destructor
-VK_drawing::VK_drawing(vk::structure::Struct_vulkan* struct_vulkan){
+VK_drawing::VK_drawing(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

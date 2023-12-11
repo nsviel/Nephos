@@ -4,7 +4,7 @@
 
 
 //Constructor / Destructor
-VK_physical_device::VK_physical_device(vk::structure::Struct_vulkan* struct_vulkan){
+VK_physical_device::VK_physical_device(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

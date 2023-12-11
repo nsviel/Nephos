@@ -5,7 +5,7 @@
 
 
 //Constructor / Destructor
-VK_device::VK_device(vk::structure::Struct_vulkan* struct_vulkan){
+VK_device::VK_device(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

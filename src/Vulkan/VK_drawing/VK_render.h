@@ -13,7 +13,7 @@ class VK_render
 {
 public:
   //Constructor / Destructor
-  VK_render(vk::structure::Struct_vulkan* struct_vulkan);
+  VK_render(vk::structure::Vulkan* struct_vulkan);
   ~VK_render();
 
 public:
@@ -27,7 +27,7 @@ public:
   void wait_end_rendering(VkFence& fence);
 
 private:
-  vk::structure::Struct_vulkan* struct_vulkan;
+  vk::structure::Vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_submit* vk_submit;
 };
