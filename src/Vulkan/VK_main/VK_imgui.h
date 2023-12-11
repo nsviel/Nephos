@@ -1,6 +1,5 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_subpass.h>
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 

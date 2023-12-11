@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
@@ -21,13 +21,13 @@ public:
 
 public:
   //Main functions
-  void create_subpass(Struct_vk_renderpass* renderpass);
+  void create_subpass(vk::structure::Struct_vk_renderpass* renderpass);
 
   //Subfunction
-  void create_subpass_shader(Struct_vk_subpass* subpass);
-  void create_subpass_transfert(Struct_vk_subpass* subpass);
-  void create_subpass_presentation(Struct_vk_subpass* subpass);
-  void create_subpass_description(Struct_vk_subpass* subpass);
+  void create_subpass_shader(vk::structure::Struct_vk_subpass* subpass);
+  void create_subpass_transfert(vk::structure::Struct_vk_subpass* subpass);
+  void create_subpass_presentation(vk::structure::Struct_vk_subpass* subpass);
+  void create_subpass_description(vk::structure::Struct_vk_subpass* subpass);
 
   //Color attachment
   void color_attachment_description(vk::structure::Attachment& color);

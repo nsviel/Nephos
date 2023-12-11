@@ -72,7 +72,7 @@ void VK_data::clean_entity(vk::structure::Entity* data){
 }
 
 //Data description
-void VK_data::pipeline_data_description(Struct_vk_pipeline* pipeline){
+void VK_data::pipeline_data_description(vk::structure::Struct_vk_pipeline* pipeline){
   //---------------------------
 
   this->pipeline_binding_description(pipeline);
@@ -81,7 +81,7 @@ void VK_data::pipeline_data_description(Struct_vk_pipeline* pipeline){
 
   //---------------------------
 }
-void VK_data::pipeline_attribut_description(Struct_vk_pipeline* pipeline){
+void VK_data::pipeline_attribut_description(vk::structure::Struct_vk_pipeline* pipeline){
   vector<VkVertexInputAttributeDescription> attribut_description;
   //---------------------------
 
@@ -118,7 +118,7 @@ void VK_data::pipeline_attribut_description(Struct_vk_pipeline* pipeline){
   //---------------------------
   pipeline->info.attribut_description = attribut_description;
 }
-void VK_data::pipeline_binding_description(Struct_vk_pipeline* pipeline){
+void VK_data::pipeline_binding_description(vk::structure::Struct_vk_pipeline* pipeline){
   vector<VkVertexInputBindingDescription> data_description;
   //---------------------------
 
@@ -152,7 +152,7 @@ void VK_data::pipeline_binding_description(Struct_vk_pipeline* pipeline){
   //---------------------------
   pipeline->info.data_description = data_description;
 }
-void VK_data::pipeline_vertex_input_info(Struct_vk_pipeline* pipeline){
+void VK_data::pipeline_vertex_input_info(vk::structure::Struct_vk_pipeline* pipeline){
   //---------------------------
 
   VkPipelineVertexInputStateCreateInfo vertex_input_info{};

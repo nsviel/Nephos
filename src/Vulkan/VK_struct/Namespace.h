@@ -14,6 +14,13 @@
 #include <VK_struct/Instance.h>
 #include <VK_struct/Parameter.h>
 
+#include <VK_struct/Struct_vk_physical_device.h>
+#include <VK_struct/Struct_vk_pipeline.h>
+#include <VK_struct/Struct_vk_pool.h>
+#include <VK_struct/Struct_vk_render.h>
+#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Struct_vk_subpass.h>
+
 
 namespace vk::structure{
   //---------------------------
@@ -31,6 +38,13 @@ namespace vk::structure{
   class Info;
   class Instance;
   class Parameter;
+
+  class Struct_vk_physical_device;
+  class Struct_vk_pipeline;
+  class Struct_vk_pool;
+  class Struct_vk_render;
+  class Struct_vk_renderpass;
+  class Struct_vk_subpass;
 
   //---------------------------
 }

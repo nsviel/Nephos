@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_pipeline.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -15,9 +15,9 @@ public:
 
 public:
   //Main function
-  void create_pipeline_shader(Struct_vk_pipeline* pipeline);
-  void create_pipeline_shader_module(Struct_vk_pipeline* pipeline);
-  void create_pipeline_shader_info(Struct_vk_pipeline* pipeline);
+  void create_pipeline_shader(vk::structure::Struct_vk_pipeline* pipeline);
+  void create_pipeline_shader_module(vk::structure::Struct_vk_pipeline* pipeline);
+  void create_pipeline_shader_info(vk::structure::Struct_vk_pipeline* pipeline);
 
   //Subfunction
   VkShaderModule create_shader_module(const std::vector<char>& code);

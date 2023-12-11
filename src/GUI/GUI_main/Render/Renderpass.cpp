@@ -23,7 +23,7 @@ void Renderpass::init_renderpass(){
   //---------------------------
 
   //Renderpass
-  Struct_vk_renderpass* renderpass = new Struct_vk_renderpass();
+  vk::structure::Struct_vk_renderpass* renderpass = new vk::structure::Struct_vk_renderpass();
   renderpass->name = "gui";
   renderpass->target = "presentation";
 
@@ -33,7 +33,7 @@ void Renderpass::init_renderpass(){
   //---------------------------
   vk_engine->add_renderpass_description(renderpass);
 }
-void Renderpass::create_subpass(Struct_vk_renderpass* renderpass){
+void Renderpass::create_subpass(vk::structure::Struct_vk_renderpass* renderpass){
   //---------------------------
 
   Shader_info* shader_info = new Shader_info();
@@ -44,11 +44,11 @@ void Renderpass::create_subpass(Struct_vk_renderpass* renderpass){
   shader_info->compile_shader = false;
   shader_info->with_depth_test = false;
 
-  Struct_vk_subpass* subpass = new Struct_vk_subpass();
+  vk::structure::Struct_vk_subpass* subpass = new vk::structure::Struct_vk_subpass();
   subpass->target = "presentation";
-  subpass->draw_task = [this](Struct_vk_subpass* subpass){Renderpass::draw(subpass);};
+  subpass->draw_task = [this](vk::structure::Struct_vk_subpass* subpass){Renderpass::draw(subpass);};
 
-  Struct_vk_pipeline* pipeline = new Struct_vk_pipeline();
+  vk::structure::Struct_vk_pipeline* pipeline = new vk::structure::Struct_vk_pipeline();
   pipeline->definition.name = "triangle";
   pipeline->definition.purpose = "presentation";
   pipeline->definition.topology = "triangle";
@@ -60,7 +60,7 @@ void Renderpass::create_subpass(Struct_vk_renderpass* renderpass){
 }
 
 //Draw function
-void Renderpass::draw(Struct_vk_subpass* subpass){
+void Renderpass::draw(vk::structure::Struct_vk_subpass* subpass){
   //---------------------------
 
   vk_imgui->draw(subpass->command_buffer);

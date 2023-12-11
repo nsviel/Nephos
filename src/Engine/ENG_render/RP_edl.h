@@ -1,7 +1,7 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_renderpass.h>
-#include <VK_struct/Struct_vk_pipeline.h>
+#include <VK_struct/Namespace.h>
+#include <VK_struct/Namespace.h>
 #include <ENG_shader/ENG_shader.h>
 #include <UTL_specific/common.h>
 
@@ -24,12 +24,12 @@ public:
 public:
   //Init functions
   void init_renderpass();
-  void create_subpass(Struct_vk_renderpass* renderpass);
+  void create_subpass(vk::structure::Struct_vk_renderpass* renderpass);
 
   //Draw function
-  void draw_edl(Struct_vk_subpass* subpass);
-  void update_descriptor(Struct_vk_subpass* subpass);
-  void draw_command(Struct_vk_subpass* subpass);
+  void draw_edl(vk::structure::Struct_vk_subpass* subpass);
+  void update_descriptor(vk::structure::Struct_vk_subpass* subpass);
+  void draw_command(vk::structure::Struct_vk_subpass* subpass);
 
 private:
   EDL_shader* edl_shader;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <VK_struct/Namespace.h>
-#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -19,7 +19,7 @@ public:
   //Command buffer
   void start_command_buffer_once(VkCommandBuffer& command_buffer);
   void start_command_buffer_primary(VkCommandBuffer command_buffer);
-  void start_command_buffer_secondary(Struct_vk_renderpass* renderpass, VkCommandBuffer command_buffer);
+  void start_command_buffer_secondary(vk::structure::Struct_vk_renderpass* renderpass, VkCommandBuffer command_buffer);
   void reset_command_buffer(VkCommandBuffer& command_buffer);
   void stop_command_buffer(VkCommandBuffer command_buffer);
   void allocate_command_buffer_primary(VkCommandBuffer& command_buffer);
@@ -27,8 +27,8 @@ public:
   void clean_command_buffer(VkCommandBuffer& command_buffer);
 
   //Render pass
-  void start_render_pass(Struct_vk_renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb);
-  void stop_render_pass(Struct_vk_renderpass* renderpass);
+  void start_render_pass(vk::structure::Struct_vk_renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb);
+  void stop_render_pass(vk::structure::Struct_vk_renderpass* renderpass);
 
   //Image layout transition
   void image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image* image, VkImageLayout oldLayout, VkImageLayout newLayout);

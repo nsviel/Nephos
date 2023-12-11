@@ -181,21 +181,21 @@ void VK_engine::remove_object_in_engine(data::Object* object){
 }
 
 //Renderpass function
-void VK_engine::add_renderpass_description(Struct_vk_renderpass* renderpass){
+void VK_engine::add_renderpass_description(vk::structure::Struct_vk_renderpass* renderpass){
   //---------------------------
 
   struct_vulkan->render.vec_renderpass.push_back(renderpass);
 
   //---------------------------
 }
-Struct_vk_renderpass* VK_engine::get_renderpass(int i){
+vk::structure::Struct_vk_renderpass* VK_engine::get_renderpass(int i){
   //---------------------------
 
   return struct_vulkan->render.vec_renderpass[i];
 
   //---------------------------
 }
-Struct_vk_renderpass* VK_engine::get_renderpass_presentation(int i){
+vk::structure::Struct_vk_renderpass* VK_engine::get_renderpass_presentation(int i){
   //---------------------------
 
   return struct_vulkan->render.get_renderpass_byName("gui");

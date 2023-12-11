@@ -1,7 +1,7 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_pipeline.h>
-#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Namespace.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;
@@ -18,7 +18,7 @@ public:
 public:
   //Main function
   void hot_shader_reload(string shader_1, string shader_2);
-  void recreate_pipeline(Struct_vk_renderpass* renderpass, Struct_vk_pipeline* pipeline);
+  void recreate_pipeline(vk::structure::Struct_vk_renderpass* renderpass, vk::structure::Struct_vk_pipeline* pipeline);
 
 private:
   Struct_vulkan* struct_vulkan;

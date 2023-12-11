@@ -1,7 +1,7 @@
 #pragma once
 
 #include <VK_struct/Struct_vk_viewport.h>
-#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Struct_vulkan;

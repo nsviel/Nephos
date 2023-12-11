@@ -47,6 +47,9 @@ struct Struct_vk_pipeline_info{
 
   //---------------------------
 };
+
+namespace vk::structure{
+
 struct Struct_vk_pipeline{
   //---------------------------
 
@@ -59,3 +62,5 @@ struct Struct_vk_pipeline{
 
   //---------------------------
 };
+
+}

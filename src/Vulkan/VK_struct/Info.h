@@ -1,6 +1,5 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_physical_device.h>
 #include <UTL_specific/common.h>
 
 

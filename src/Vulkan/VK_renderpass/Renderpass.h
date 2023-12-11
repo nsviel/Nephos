@@ -1,7 +1,5 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_renderpass.h>
-#include <VK_struct/Struct_vk_pipeline.h>
 #include <UTL_specific/common.h>
 #include <VK_main/Namespace.h>
 
@@ -28,9 +26,9 @@ public:
   void clean_renderpass();
 
   //Subfunction
-  void create_renderpass_struct(Struct_vk_renderpass* renderpass);
-  void create_renderpass_obj(Struct_vk_renderpass* renderpass);
-  void clean_renderpass_struct(Struct_vk_renderpass* renderpass);
+  void create_renderpass_struct(vk::structure::Struct_vk_renderpass* renderpass);
+  void create_renderpass_obj(vk::structure::Struct_vk_renderpass* renderpass);
+  void clean_renderpass_struct(vk::structure::Struct_vk_renderpass* renderpass);
 
 private:
   Struct_vulkan* struct_vulkan;

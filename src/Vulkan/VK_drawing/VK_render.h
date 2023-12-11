@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
@@ -18,12 +18,12 @@ public:
 
 public:
   //Main functions
-  void run_renderpass(Struct_vk_renderpass* renderpass);
-  void submit_command(Struct_vk_renderpass* renderpass);
+  void run_renderpass(vk::structure::Struct_vk_renderpass* renderpass);
+  void submit_command(vk::structure::Struct_vk_renderpass* renderpass);
 
   //Subfunction
-  void start_renderpass(Struct_vk_renderpass* renderpass);
-  void draw_subpass(Struct_vk_renderpass* renderpass);
+  void start_renderpass(vk::structure::Struct_vk_renderpass* renderpass);
+  void draw_subpass(vk::structure::Struct_vk_renderpass* renderpass);
   void wait_end_rendering(VkFence& fence);
 
 private:

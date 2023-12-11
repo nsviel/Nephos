@@ -1,7 +1,7 @@
 #pragma once
 
 #include <VK_struct/Struct_vk_binding.h>
-#include <VK_struct/Struct_vk_pipeline.h>
+#include <VK_struct/Namespace.h>
 #include <ENG_shader/EDL/EDL_param.h>
 #include <UTL_specific/common.h>
 

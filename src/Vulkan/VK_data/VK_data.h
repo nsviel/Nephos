@@ -1,6 +1,5 @@
 #pragma once
 
-#include <VK_struct/Struct_vk_pipeline.h>
 #include <VK_struct/Namespace.h>
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
@@ -26,10 +25,10 @@ public:
   void clean_entity(vk::structure::Entity* data);
 
   //Pipeline data description
-  void pipeline_data_description(Struct_vk_pipeline* pipeline);
-  void pipeline_binding_description(Struct_vk_pipeline* pipeline);
-  void pipeline_attribut_description(Struct_vk_pipeline* pipeline);
-  void pipeline_vertex_input_info(Struct_vk_pipeline* pipeline);
+  void pipeline_data_description(vk::structure::Struct_vk_pipeline* pipeline);
+  void pipeline_binding_description(vk::structure::Struct_vk_pipeline* pipeline);
+  void pipeline_attribut_description(vk::structure::Struct_vk_pipeline* pipeline);
+  void pipeline_vertex_input_info(vk::structure::Struct_vk_pipeline* pipeline);
 
 private:
   Struct_vulkan* struct_vulkan;

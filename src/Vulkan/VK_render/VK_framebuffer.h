@@ -1,7 +1,7 @@
 #pragma once
 
 #include <VK_struct/Namespace.h>
-#include <VK_struct/Struct_vk_renderpass.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/Frame.h>
 #include <UTL_specific/common.h>
 
@@ -21,13 +21,13 @@ public:
 public:
   //Main function
   void create_framebuffers();
-  void create_framebuffer(Struct_vk_renderpass* renderpass);
+  void create_framebuffer(vk::structure::Struct_vk_renderpass* renderpass);
   void clean_framebuffers();
-  void clean_framebuffer(Struct_vk_renderpass* renderpass);
+  void clean_framebuffer(vk::structure::Struct_vk_renderpass* renderpass);
 
   //Subfunction
-  void create_framebuffer_renderpass(Struct_vk_renderpass* renderpass, vk::structure::Framebuffer* framebuffer);
-  void create_framebuffer_swapchain(Struct_vk_renderpass* renderpass, vk::structure::Frame* frame);
+  void create_framebuffer_renderpass(vk::structure::Struct_vk_renderpass* renderpass, vk::structure::Framebuffer* framebuffer);
+  void create_framebuffer_swapchain(vk::structure::Struct_vk_renderpass* renderpass, vk::structure::Frame* frame);
   void clean_framebuffer_obj(VkFramebuffer& fbo);
 
 private:

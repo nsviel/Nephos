@@ -12,7 +12,7 @@ struct Device{
   VkDevice device;
   VkQueue queue_graphics;
   VkQueue queue_presentation;
-  Struct_vk_physical_device struct_device;
+  vk::structure::Struct_vk_physical_device struct_device;
 
   //---------------------------
 };
