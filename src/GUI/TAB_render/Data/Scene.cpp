@@ -5,8 +5,7 @@
 #include <GUI_interface/Tab.h>
 #include <ENG_data/ENG_data.h>
 #include <ENG_data/ENG_scene/ENG_database.h>
-#include <TAB_render/Panel_nsp.h>
-#include <TAB_render/RND_data/Set.h>
+#include <TAB_render/Data/Namespace.h>
 
 
 namespace gui::rnd::panel{

@@ -4,7 +4,7 @@
 #include <Engine.h>
 #include <ENG_data/ENG_load/ENG_loader.h>
 #include <GUI_widget/GUI_indicator.h>
-#include <TAB_render/Panel_nsp.h>
+#include <TAB_render/Data/Namespace.h>
 #include <image/IconsFontAwesome5.h>
 
 

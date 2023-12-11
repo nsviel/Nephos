@@ -1,10 +1,8 @@
 #pragma once
 
-#include <RND_data/Object.h>
-#include <RND_data/Scene.h>
-#include <RND_data/Set.h>
-
-
+#include <TAB_render/Data/Object.h>
+#include <TAB_render/Data/Scene.h>
+#include <TAB_render/Data/Set.h>
 
 
 namespace gui::rnd::panel{
@@ -13,9 +11,6 @@ namespace gui::rnd::panel{
   class Object;
   class Scene;
   class Set;
-
-
-
 
   //---------------------------
 }

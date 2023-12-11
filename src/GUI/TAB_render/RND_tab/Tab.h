@@ -1,7 +1,7 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <TAB_render/Panel_nsp.h>
+#include <TAB_render/Data/Namespace.h>
 #include <TAB_render/Tab_nsp.h>
 #include <TAB_render/Engine/Namespace.h>
 #include <TAB_render/Kinect/Namespace.h>
