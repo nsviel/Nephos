@@ -11,16 +11,14 @@
 namespace gui::rnd::panel{
 
 //Constructor / Destructor
-Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Scene::Scene(GUI* gui, gui::rnd::tab::Panel* rnd_panel, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
   ENG_data* eng_data = engine->get_eng_data();
-  Tab* gui_tab = gui->get_gui_tab();
-  gui::rnd::tab::Tab* rnd_tab = gui_tab->get_rnd_tab();
   this->eng_database = eng_data->get_eng_database();
-  this->rnd_panel = rnd_tab->get_rnd_panel();
-  this->show_window = show_window;
+  this->rnd_panel = rnd_panel;
+  this->show_window = &rnd_panel->show_scene;
   this->gui_set = new gui::rnd::panel::Set(gui, &rnd_panel->show_set, "Set");
   this->gui_object = new gui::rnd::panel::Object(gui, &rnd_panel->show_object, "Object");
 

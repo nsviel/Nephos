@@ -17,7 +17,7 @@ class Scene : public gui::base::Panel
 {
 public:
   //Constructor / Destructor
-  Scene(GUI* gui, bool* show_window, string name);
+  Scene(GUI* gui, gui::rnd::tab::Panel* rnd_panel, bool* show_window, string name);
   ~Scene();
 
 public:
