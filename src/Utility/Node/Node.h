@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
-#include <Utility/Capture/Namespace.h>
+#include <Utility/Capture/Node/Namespace.h>
 
 class Config;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Capture/Capture.h>
+#include <Utility/Capture/Node/Capture.h>
 
 
 namespace util::capture{
