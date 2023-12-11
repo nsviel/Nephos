@@ -11,7 +11,7 @@ class PTS_importer;
 class PTX_importer;
 class XYZ_importer;
 
-using MyFile = utility::base::File;
+using MyFile = util::base::File;
 
 
 namespace eng::data{

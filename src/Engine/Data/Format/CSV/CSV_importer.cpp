@@ -9,8 +9,8 @@ CSV_importer::CSV_importer(){}
 CSV_importer::~CSV_importer(){}
 
 //Main function
-utility::base::File* CSV_importer::Loader(std::string pathFile){
-  utility::base::File* data;
+util::base::File* CSV_importer::Loader(std::string pathFile){
+  util::base::File* data;
   //---------------------------
 
   std::ifstream file(pathFile);
@@ -18,7 +18,7 @@ utility::base::File* CSV_importer::Loader(std::string pathFile){
 
   //At row level
   for(int i=0; i<csvFile.size(); i++){
-    utility::base::File* data_sub = new utility::base::File();
+    util::base::File* data_sub = new util::base::File();
     data_sub->path_file = pathFile;
 
     //At field level

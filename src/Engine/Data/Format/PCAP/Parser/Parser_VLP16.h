@@ -19,7 +19,7 @@ public:
 
 public:
   //Main functions
-  utility::base::File* parse_packet(std::vector<int> packet);
+  util::base::File* parse_packet(std::vector<int> packet);
 
   //Subfunctions
   bool parse_header(std::vector<int>& packet_dec);
@@ -30,7 +30,7 @@ public:
   void parse_timestamp();
 
   //Final processing function
-  void reorder_by_azimuth(utility::base::File* cloud);
+  void reorder_by_azimuth(util::base::File* cloud);
   void supress_empty_data();
 
   //Subsubfunctions

@@ -6,8 +6,8 @@ PLY_importer::PLY_importer(){}
 PLY_importer::~PLY_importer(){}
 
 //Main loader functions
-utility::base::File* PLY_importer::Loader(std::string path){
-  data = new utility::base::File();
+util::base::File* PLY_importer::Loader(std::string path){
+  data = new util::base::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
   this->face_number = 0;

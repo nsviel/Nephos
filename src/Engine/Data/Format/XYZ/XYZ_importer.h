@@ -15,9 +15,9 @@ public:
   ~XYZ_importer();
 
 public:
-  utility::base::File* Loader(std::string filePath);
+  util::base::File* Loader(std::string filePath);
 
 private:
   //Datatypes
-  utility::base::File* data_out;
+  util::base::File* data_out;
 };

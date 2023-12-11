@@ -3,7 +3,7 @@
 #include <string>
 
 
-namespace utility::base{
+namespace util::base{
 
 struct Image{
   //---------------------------

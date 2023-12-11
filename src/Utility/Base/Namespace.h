@@ -5,7 +5,7 @@
 #include <Utility/Base/Struct_video.h>
 
 
-namespace utility::base{
+namespace util::base{
   //---------------------------
 
   class File;

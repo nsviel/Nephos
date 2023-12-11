@@ -37,7 +37,7 @@ public:
 
 public:
   //Main functions
-  utility::base::File* Loader(std::string pathFile);
+  util::base::File* Loader(std::string pathFile);
   bool Exporter(std::string pathFile);
 
   //Subfunctions
@@ -60,7 +60,7 @@ public:
 
 private:
   //Datatypes
-  utility::base::File* data;
+  util::base::File* data;
 
   std::list<PTXCloud*>* list_ptxCloud;
   float x, y, z, I, r, g ,b;
