@@ -1,9 +1,9 @@
 #pragma once
 
 #include "struct_init.h"
-#include <GUI_widget/Tree_node.h>
+#include <GUI_utility/Widget/Tree_node.h>
 #include <UTL_specific/common.h>
-#include <GUI_utility/Widget_nsp.h>
+#include <GUI_utility/Widget/Namespace.h>
 
 class GUI;
 class ENG_scene;

@@ -4,7 +4,7 @@
 #include <ENG_shader/Base/BASE_shader.h>
 #include <GUI_utility/Base/Namespace.h>
 #include <GUI_utility/Editor/Namespace.h>
-#include <GUI_utility/Widget_nsp.h>
+#include <GUI_utility/Widget/Namespace.h>
 
 class GUI;
 class Text;
