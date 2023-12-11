@@ -2,10 +2,10 @@
 
 #include <Engine/Node/Engine.h>
 #include <Node/GUI.h>
-#include <GUI_main/Interface/Tab.h>
+#include <GUI/GUI_main/Interface/Tab.h>
 #include <Engine/ENG_data/ENG_data.h>
 #include <Engine/ENG_data/ENG_scene/ENG_database.h>
-#include <TAB_render/Data/Namespace.h>
+#include <GUI/TAB_render/Data/Namespace.h>
 
 
 namespace gui::rnd::panel{

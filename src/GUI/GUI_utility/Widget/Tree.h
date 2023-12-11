@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Tab/struct_init.h>
-#include <GUI_utility/Widget/Namespace.h>
+#include <GUI/GUI_utility/Widget/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Init;

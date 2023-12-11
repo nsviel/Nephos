@@ -1,8 +1,8 @@
 #pragma once
 
-#include <TAB_render/Data/Object.h>
-#include <TAB_render/Data/Scene.h>
-#include <TAB_render/Data/Set.h>
+#include <GUI/TAB_render/Data/Object.h>
+#include <GUI/TAB_render/Data/Scene.h>
+#include <GUI/TAB_render/Data/Set.h>
 
 
 namespace gui::rnd::panel{

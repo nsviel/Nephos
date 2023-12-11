@@ -1,8 +1,8 @@
 #pragma once
 
-#include <GUI_utility/Widget/Tree.h>
-#include <GUI_utility/Widget/Dialog.h>
-#include <GUI_utility/Widget/Console.h>
+#include <GUI/GUI_utility/Widget/Tree.h>
+#include <GUI/GUI_utility/Widget/Dialog.h>
+#include <GUI/GUI_utility/Widget/Console.h>
 
 
 namespace gui::widget{

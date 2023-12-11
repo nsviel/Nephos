@@ -1,6 +1,6 @@
 #pragma once
 
-#include <TAB_dev/Tab/Namespace.h>
+#include <GUI/TAB_dev/Tab/Namespace.h>
 #include <UTL_specific/common.h>
 
 class GUI;

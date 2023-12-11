@@ -1,8 +1,8 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <TAB_render/Engine/Namespace.h>
-#include <GUI_utility/Media/Namespace.h>
+#include <GUI/TAB_render/Engine/Namespace.h>
+#include <GUI/GUI_utility/Media/Namespace.h>
 
 class GUI;
 class VK_imgui;

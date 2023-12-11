@@ -1,10 +1,10 @@
 #pragma once
 
-#include <TAB_render/Kinect/Configuration.h>
-#include <TAB_render/Kinect/Playback.h>
-#include <TAB_render/Kinect/Recorder.h>
-#include <TAB_render/Kinect/Kinect_panel.h>
-#include <TAB_render/Kinect/Capture.h>
+#include <GUI/TAB_render/Kinect/Configuration.h>
+#include <GUI/TAB_render/Kinect/Playback.h>
+#include <GUI/TAB_render/Kinect/Recorder.h>
+#include <GUI/TAB_render/Kinect/Kinect_panel.h>
+#include <GUI/TAB_render/Kinect/Capture.h>
 
 
 namespace gui::kinect{

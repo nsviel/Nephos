@@ -1,11 +1,11 @@
 #pragma once
 
-#include <TAB_render/Engine/Control.h>
-#include <TAB_render/Engine/Render.h>
-#include <TAB_render/Engine/Camera.h>
-#include <TAB_render/Engine/Shader.h>
-#include <TAB_render/Engine/Profiler.h>
-#include <TAB_render/Engine/Profiler.h>
+#include <GUI/TAB_render/Engine/Control.h>
+#include <GUI/TAB_render/Engine/Render.h>
+#include <GUI/TAB_render/Engine/Camera.h>
+#include <GUI/TAB_render/Engine/Shader.h>
+#include <GUI/TAB_render/Engine/Profiler.h>
+#include <GUI/TAB_render/Engine/Profiler.h>
 
 
 namespace gui::engine{

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <GUI_utility/Media/Image.h>
-#include <GUI_utility/Media/Stream.h>
+#include <GUI/GUI_utility/Media/Image.h>
+#include <GUI/GUI_utility/Media/Stream.h>
 
 
 namespace gui::media{

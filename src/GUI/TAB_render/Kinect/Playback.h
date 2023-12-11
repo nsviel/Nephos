@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI_utility/Base/Namespace.h>
+#include <GUI/GUI_utility/Base/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Kinect;

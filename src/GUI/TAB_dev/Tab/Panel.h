@@ -1,9 +1,9 @@
 #pragma once
 
 #include <vector>
-#include <TAB_dev/Editor/Namespace.h>
-#include <TAB_dev/Data/Namespace.h>
-#include <TAB_dev/Tab/Namespace.h>
+#include <GUI/TAB_dev/Editor/Namespace.h>
+#include <GUI/TAB_dev/Data/Namespace.h>
+#include <GUI/TAB_dev/Tab/Namespace.h>
 
 
 namespace gui::dev::tab{

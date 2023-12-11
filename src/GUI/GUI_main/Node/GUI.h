@@ -1,7 +1,7 @@
 #pragma once
 
-#include <GUI_main/Render/Render.h>
-#include <GUI_main/Node/Namespace.h>
+#include <GUI/GUI_main/Render/Render.h>
+#include <GUI/GUI_main/Node/Namespace.h>
 #include <UTL_specific/common.h>
 
 class Engine;

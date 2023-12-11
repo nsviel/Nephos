@@ -1,8 +1,8 @@
 #pragma once
 
 #include <UTL_specific/common.h>
-#include <TAB_render/Data/Namespace.h>
-#include <TAB_render/Tab/Namespace.h>
+#include <GUI/TAB_render/Data/Namespace.h>
+#include <GUI/TAB_render/Tab/Namespace.h>
 
 class GUI;
 
