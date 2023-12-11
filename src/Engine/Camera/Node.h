@@ -10,11 +10,11 @@ class Engine;
 
 namespace eng::camera{
 
-class Camera
+class Node
 {
 public:
-  Camera(Engine* engine);
-  ~Camera();
+  Node(Engine* engine);
+  ~Node();
 
 public:
   //Main function

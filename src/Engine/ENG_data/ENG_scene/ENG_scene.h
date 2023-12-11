@@ -45,7 +45,7 @@ private:
   ENG_database* eng_database;
   VK_engine* vk_engine;
   Attribut* attributManager;
-  eng::camera::Camera* eng_camera;
+  eng::camera::Node* eng_camera;
 
   int ID_obj;
   eng::structure::Set* set_scene;

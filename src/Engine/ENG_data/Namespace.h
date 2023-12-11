@@ -1,12 +1,11 @@
 #pragma once
 
-#include <Engine/Camera/Node.h>
 
 
-namespace eng::camera{
+namespace eng::data{
   //---------------------------
 
-  class Node;
+
 
   //---------------------------
 }

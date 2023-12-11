@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "Node.h"
 
 #include <Engine/Base/Namespace.h>
 #include <Engine/Node/Engine.h>
@@ -8,7 +8,7 @@
 namespace eng::camera{
 
 //Constructor / Destructor
-Camera::Camera(Engine* engine){
+Node::Node(Engine* engine){
   //---------------------------
 
   Utility* utility = engine->get_utility();
@@ -23,7 +23,7 @@ Camera::Camera(Engine* engine){
 
   //---------------------------
 }
-Camera::~Camera(){
+Node::~Node(){
   //---------------------------
 
   delete cam_arcball;
@@ -35,7 +35,7 @@ Camera::~Camera(){
 }
 
 //Main function
-void Camera::control(string what, bool fast){
+void Node::control(string what, bool fast){
   //---------------------------
 
   //Compute camera movment speed value
@@ -69,7 +69,7 @@ void Camera::control(string what, bool fast){
 
   //---------------------------
 }
-void Camera::loop_cam_mouse(){
+void Node::loop_cam_mouse(){
   //---------------------------
 
   if(camera->cam_move){
@@ -84,7 +84,7 @@ void Camera::loop_cam_mouse(){
 
   //---------------------------
 }
-void Camera::reset(){
+void Node::reset(){
   //---------------------------
 
   camera->reset();
@@ -93,7 +93,7 @@ void Camera::reset(){
 }
 
 //MVP Matrix
-mat4 Camera::compute_cam_view(){
+mat4 Node::compute_cam_view(){
   mat4 cam_view;
   //---------------------------
 
@@ -109,7 +109,7 @@ mat4 Camera::compute_cam_view(){
   //---------------------------
   return cam_view;
 }
-mat4 Camera::compute_cam_proj(){
+mat4 Node::compute_cam_proj(){
   mat4 projection;
   //---------------------------
 
@@ -123,7 +123,7 @@ mat4 Camera::compute_cam_proj(){
   //---------------------------
   return projection;
 }
-mat4 Camera::compute_cam_mvp(){
+mat4 Node::compute_cam_mvp(){
   //---------------------------
 
   mat4 cam_modl = mat4(1);
@@ -135,7 +135,7 @@ mat4 Camera::compute_cam_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void Camera::compute_cam_mvp(eng::structure::Object* object){
+void Node::compute_cam_mvp(eng::structure::Object* object){
   //---------------------------
 
   mat4 cam_modl = glm::transpose(object->model);
@@ -148,7 +148,7 @@ void Camera::compute_cam_mvp(eng::structure::Object* object){
 }
 
 //Camera mode
-void Camera::set_mode_projection(int proj){
+void Node::set_mode_projection(int proj){
   //---------------------------
 
   switch(proj){
@@ -164,7 +164,7 @@ void Camera::set_mode_projection(int proj){
 
   //---------------------------
 }
-void Camera::set_mode_angle(int view){
+void Node::set_mode_angle(int view){
   //---------------------------
 
   switch(view){
@@ -180,7 +180,7 @@ void Camera::set_mode_angle(int view){
 
   //---------------------------
 }
-void Camera::set_mode_view(int mode){
+void Node::set_mode_view(int mode){
   //---------------------------
 
   switch(mode){
@@ -198,7 +198,7 @@ void Camera::set_mode_view(int mode){
 }
 
 //Specific function
-mat4 Camera::compute_cam_world_pose(){
+mat4 Node::compute_cam_world_pose(){
   //---------------------------
 
   vec3 zaxis = normalize(camera->cam_F);
@@ -214,7 +214,7 @@ mat4 Camera::compute_cam_world_pose(){
   //---------------------------
   return absPose;
 }
-void Camera::compute_zoom(float value){
+void Node::compute_zoom(float value){
   //---------------------------
 
   cam_zoom->compute_zoom_position(camera, value);

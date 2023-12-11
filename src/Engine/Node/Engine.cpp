@@ -16,7 +16,7 @@ Engine::Engine(Utility* utility){
   UTL_window* utl_window = utility->get_utl_window();
 
   this->utility = utility;
-  this->eng_camera = new eng::camera::Camera(this);
+  this->eng_camera = new eng::camera::Node(this);
   this->eng_shader = new ENG_shader(this);
   this->eng_vulkan = new Vulkan(utl_window->get_window());
   this->eng_data = new ENG_data(this);

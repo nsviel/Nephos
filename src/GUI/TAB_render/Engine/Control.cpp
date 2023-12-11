@@ -8,7 +8,7 @@
 #include <Utility/UTL_function/fct_math.h>
 #include <Engine/ENG_data/ENG_scene/ENG_scene.h>
 #include <Engine/ENG_data/ENG_data.h>
-#include <Engine/Camera/Camera.h>
+#include <Engine/Camera/Namespace.h>
 #include <Engine/ENG_operation/Transformation/Transformation.h>
 
 

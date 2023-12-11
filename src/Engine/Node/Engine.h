@@ -27,13 +27,13 @@ public:
   inline Utility* get_utility(){return utility;}
   inline Vulkan* get_eng_vulkan(){return eng_vulkan;}
   inline eng::structure::Camera* get_camera(){return eng_camera->get_camera();};
-  inline eng::camera::Camera* get_eng_camera(){return eng_camera;}
+  inline eng::camera::Node* get_eng_camera(){return eng_camera;}
   inline ENG_data* get_eng_data(){return eng_data;}
   inline ENG_shader* get_eng_shader(){return eng_shader;}
 
 private:
   Utility* utility;
-  eng::camera::Camera* eng_camera;
+  eng::camera::Node* eng_camera;
   ENG_data* eng_data;
   Vulkan* eng_vulkan;
   ENG_shader* eng_shader;
