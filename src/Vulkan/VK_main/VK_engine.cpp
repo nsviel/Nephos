@@ -1,9 +1,10 @@
 #include "VK_engine.h"
 
+#include <Vulkan_namespace.h>
+
 #include <UTL_specific/FPS_counter.h>
 #include <VK_main/Struct_vulkan.h>
 #include <VK_data/VK_data.h>
-#include <VK_renderpass/VK_renderpass.h>
 #include <VK_device/VK_device.h>
 #include <VK_render/VK_surface.h>
 #include <VK_instance/VK_instance.h>
@@ -35,7 +36,7 @@ VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
   this->vk_descriptor = new VK_descriptor(struct_vulkan);
   this->vk_data = new VK_data(struct_vulkan);
   this->vk_swapchain = new VK_swapchain(struct_vulkan);
-  this->vk_renderpass = new VK_renderpass(struct_vulkan);
+  this->vk_renderpass = new vk::VK_renderpass(struct_vulkan);
   this->vk_reload = new VK_reload(struct_vulkan);
   this->vk_frame = new VK_frame(struct_vulkan);
   this->vk_canvas = new VK_canvas(struct_vulkan);

@@ -1,5 +1,4 @@
-#ifndef VK_RENDERPASS_H
-#define VK_RENDERPASS_H
+#pragma once
 
 #include <VK_struct/Struct_vk_renderpass.h>
 #include <VK_struct/Struct_vk_pipeline.h>
@@ -11,6 +10,8 @@ class VK_subpass;
 class VK_framebuffer;
 class VK_command;
 
+
+namespace vk{
 
 class VK_renderpass
 {
@@ -37,4 +38,4 @@ private:
   VK_command* vk_command;
 };
 
-#endif
+}

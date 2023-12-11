@@ -7,6 +7,8 @@
 #include <VK_command/VK_command.h>
 
 
+namespace vk{
+
 //Constructor / Destructor
 VK_renderpass::VK_renderpass(Struct_vulkan* struct_vulkan){
   //---------------------------
@@ -104,4 +106,6 @@ void VK_renderpass::clean_renderpass_struct(Struct_vk_renderpass* renderpass){
   vk_pipeline->clean_pipeline(renderpass);
 
   //---------------------------
+}
+
 }

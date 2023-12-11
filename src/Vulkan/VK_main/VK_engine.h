@@ -6,13 +6,13 @@
 #include <VK_main/Struct_vulkan.h>
 #include <UTL_specific/common.h>
 #include <UTL_base/Struct_image.h>
+#include <Vulkan_namespace.h>
 
 class Struct_vulkan;
 class VK_surface;
 class VK_instance;
 class VK_device;
 class VK_swapchain;
-class VK_renderpass;
 class VK_descriptor;
 class VK_texture;
 class VK_data;
@@ -68,7 +68,7 @@ private:
   VK_instance* vk_instance;
   VK_device* vk_device;
   VK_swapchain* vk_swapchain;
-  VK_renderpass* vk_renderpass;
+  vk::VK_renderpass* vk_renderpass;
   VK_descriptor* vk_descriptor;
   VK_texture* vk_texture;
   VK_pool* vk_pool;
