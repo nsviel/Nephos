@@ -1,11 +1,10 @@
 #pragma once
 
-#include <Engine/ENG_camera/ENG_camera.h>
+#include <Engine/Camera/Namespace.h>
 
 class Param;
 class Utility;
 class ENG_data;
-class ENG_camera;
 class Vulkan;
 class ENG_shader;
 class ENG_renderpass;
@@ -28,13 +27,13 @@ public:
   inline Utility* get_utility(){return utility;}
   inline Vulkan* get_eng_vulkan(){return eng_vulkan;}
   inline eng::structure::Camera* get_camera(){return eng_camera->get_camera();};
-  inline ENG_camera* get_eng_camera(){return eng_camera;}
+  inline eng::camera::Camera* get_eng_camera(){return eng_camera;}
   inline ENG_data* get_eng_data(){return eng_data;}
   inline ENG_shader* get_eng_shader(){return eng_shader;}
 
 private:
   Utility* utility;
-  ENG_camera* eng_camera;
+  eng::camera::Camera* eng_camera;
   ENG_data* eng_data;
   Vulkan* eng_vulkan;
   ENG_shader* eng_shader;

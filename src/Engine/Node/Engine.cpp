@@ -4,7 +4,7 @@
 #include <Utility/UTL_window/UTL_window.h>
 #include <Vulkan/Vulkan.h>
 #include <Engine/ENG_data/ENG_data.h>
-#include <Engine/ENG_camera/ENG_camera.h>
+#include <Engine/Camera/Namespace.h>
 #include <Engine/ENG_shader/ENG_shader.h>
 #include <Engine/ENG_render/ENG_renderpass.h>
 
@@ -16,7 +16,7 @@ Engine::Engine(Utility* utility){
   UTL_window* utl_window = utility->get_utl_window();
 
   this->utility = utility;
-  this->eng_camera = new ENG_camera(this);
+  this->eng_camera = new eng::camera::Camera(this);
   this->eng_shader = new ENG_shader(this);
   this->eng_vulkan = new Vulkan(utl_window->get_window());
   this->eng_data = new ENG_data(this);

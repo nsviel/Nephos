@@ -1,14 +1,13 @@
 #pragma once
 
 #include <Engine/Base/Namespace.h>
-#include <Engine/Base/Struct_set.h>
+#include <Engine/Camera/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class ENG_data;
 class ENG_database;
 class VK_engine;
 class Attribut;
-class ENG_camera;
 
 
 class ENG_scene
@@ -46,7 +45,7 @@ private:
   ENG_database* eng_database;
   VK_engine* vk_engine;
   Attribut* attributManager;
-  ENG_camera* eng_camera;
+  eng::camera::Camera* eng_camera;
 
   int ID_obj;
   eng::structure::Set* set_scene;

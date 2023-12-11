@@ -9,7 +9,7 @@
 #include <Engine/Node/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Engine/ENG_camera/ENG_camera.h>
+#include <Engine/Camera/Namespace.h>
 #include <Engine/ENG_operation/Transformation/Attribut.h>
 
 

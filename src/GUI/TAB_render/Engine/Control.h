@@ -1,12 +1,12 @@
 #pragma once
 
 #include <Engine/Base/Namespace.h>
+#include <Engine/Camera/Namespace.h>
 #include <Utility/UTL_specific/common.h>
 
 class GUI;
 class Engine;
 class UTL_window;
-class ENG_camera;
 class UTL_window;
 class ENG_scene;
 class Transformation;
@@ -39,7 +39,7 @@ private:
   Engine* engine;
   UTL_window* utl_window;
   ENG_scene* eng_scene;
-  ENG_camera* eng_camera;
+  eng::camera::Camera* eng_camera;
   Transformation* transformManager;
 
   eng::structure::Camera* camera;

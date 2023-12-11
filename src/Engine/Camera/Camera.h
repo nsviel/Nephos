@@ -10,12 +10,13 @@ class CAM_zoom;
 class CAM_proj;
 
 
+namespace eng::camera{
 
-class ENG_camera
+class Camera
 {
 public:
-  ENG_camera(Engine* engine);
-  ~ENG_camera();
+  Camera(Engine* engine);
+  ~Camera();
 
 public:
   //Main function
@@ -53,3 +54,5 @@ private:
   eng::structure::Camera* camera;
   vec3 arcball_origin;
 };
+
+}
