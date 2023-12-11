@@ -1,10 +1,7 @@
 #pragma once
 
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_config.h>
 #include <Utility/Capture/Kinect/K4A_struct/Namespace.h>
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_depth.h>
 #include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_infrared.h>
-#include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_data.h>
 #include <Utility/Capture/Kinect/K4A_struct/Struct_k4a_info.h>
 
 #include <Utility/Specific/common.h>
@@ -35,11 +32,11 @@ public:
   K4A_replay* k4a_replay;
   K4A_configuration* k4a_configuration;
 
-  Struct_k4a_config config;
+  util::kinect::structure::Struct_k4a_config config;
   util::kinect::structure::Color color;
-  Struct_k4a_depth depth;
+  util::kinect::structure::Struct_k4a_depth depth;
   Struct_k4a_infrared ir;
-  Struct_k4a_data data;
+  util::kinect::structure::Struct_k4a_data data;
   Struct_k4a_info info;
 
   k4a::device* device;

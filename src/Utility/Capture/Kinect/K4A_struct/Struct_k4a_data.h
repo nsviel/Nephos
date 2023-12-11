@@ -4,6 +4,8 @@
 #include <string>
 
 
+namespace util::kinect::structure{
+  
 struct K4A_image{
   //---------------------------
 
@@ -29,3 +31,5 @@ struct Struct_k4a_data{
 
   //---------------------------
 };
+
+}

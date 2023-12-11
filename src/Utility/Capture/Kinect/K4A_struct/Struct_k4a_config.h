@@ -7,6 +7,8 @@
 #define ID_DEPTH 0x097C
 
 
+namespace util::kinect::structure{
+
 struct Struct_k4a_config{
   //---------------------------
 
@@ -22,3 +24,5 @@ struct Struct_k4a_config{
 
   //---------------------------
 };
+
+}

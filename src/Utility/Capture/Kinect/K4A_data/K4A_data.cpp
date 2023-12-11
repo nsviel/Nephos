@@ -11,7 +11,7 @@ K4A_data::K4A_data(){
 K4A_data::~K4A_data(){}
 
 //Main function
-void K4A_data::find_data_from_capture(Struct_k4a_data* data, k4a::capture capture){
+void K4A_data::find_data_from_capture(util::kinect::structure::Struct_k4a_data* data, k4a::capture capture){
   //---------------------------
 
   //Color
