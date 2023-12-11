@@ -3,14 +3,14 @@
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 
 
 class VK_submit
 {
 public:
   //Constructor / Destructor
-  VK_submit(Struct_vulkan* struct_vulkan);
+  VK_submit(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_submit();
 
 public:
@@ -19,5 +19,5 @@ public:
   void submit_command_render(vk::structure::Command* commands);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
 };

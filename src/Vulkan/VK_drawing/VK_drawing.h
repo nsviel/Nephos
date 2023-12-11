@@ -4,7 +4,7 @@
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 class VK_presentation;
 class VK_render;
 
@@ -13,7 +13,7 @@ class VK_drawing
 {
 public:
   //Constructor / Destructor
-  VK_drawing(Struct_vulkan* struct_vulkan);
+  VK_drawing(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_drawing();
 
 public:
@@ -27,7 +27,7 @@ public:
   void cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Entity* data);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_presentation* vk_presentation;
   VK_render* vk_render;
 

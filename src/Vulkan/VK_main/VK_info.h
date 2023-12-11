@@ -1,17 +1,17 @@
 #pragma once
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/Parameter.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 
 
 class VK_info
 {
 public:
   //Constructor / Destructor
-  VK_info(Struct_vulkan* struct_vulkan);
+  VK_info(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_info();
 
 public:
@@ -22,5 +22,5 @@ public:
   inline vec4* get_color_background(){return &struct_vulkan->param.background_color;}
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
 };

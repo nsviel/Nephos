@@ -1,11 +1,11 @@
 #include "VK_image.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_command/VK_memory.h>
 
 
 //Constructor / Destructor
-VK_image::VK_image(Struct_vulkan* struct_vulkan){
+VK_image::VK_image(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

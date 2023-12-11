@@ -1,6 +1,6 @@
 #include "VK_framebuffer.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_image/VK_depth.h>
 #include <VK_image/VK_color.h>
 #include <VK_image/VK_image.h>
@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-VK_framebuffer::VK_framebuffer(Struct_vulkan* struct_vulkan){
+VK_framebuffer::VK_framebuffer(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

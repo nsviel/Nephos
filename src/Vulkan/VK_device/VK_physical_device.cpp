@@ -1,10 +1,10 @@
 #include "VK_physical_device.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 
 
 //Constructor / Destructor
-VK_physical_device::VK_physical_device(Struct_vulkan* struct_vulkan){
+VK_physical_device::VK_physical_device(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

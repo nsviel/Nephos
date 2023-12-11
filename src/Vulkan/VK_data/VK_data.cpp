@@ -1,14 +1,14 @@
 #include "VK_data.h"
 
 #include <VK_data/VK_buffer.h>
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_main/VK_texture.h>
 #include <VK_command/VK_command.h>
 #include <VK_binding/VK_descriptor.h>
 
 
 //Constructor / Destructor
-VK_data::VK_data(Struct_vulkan* struct_vulkan){
+VK_data::VK_data(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

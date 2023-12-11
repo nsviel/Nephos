@@ -1,10 +1,10 @@
 #include "VK_submit.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 
 
 //Constructor / Destructor
-VK_submit::VK_submit(Struct_vulkan* struct_vulkan){
+VK_submit::VK_submit(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

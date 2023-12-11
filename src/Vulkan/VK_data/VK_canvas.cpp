@@ -1,12 +1,12 @@
 #include "VK_canvas.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_data/VK_buffer.h>
 #include <VK_data/VK_data.h>
 
 
 //Constructor / Destructor
-VK_canvas::VK_canvas(Struct_vulkan* struct_vulkan){
+VK_canvas::VK_canvas(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

@@ -1,11 +1,11 @@
 #include "VK_validation.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_validation/Struct_validation.h>
 
 
 //Constructor / Destructor
-VK_validation::VK_validation(Struct_vulkan* struct_vulkan){
+VK_validation::VK_validation(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

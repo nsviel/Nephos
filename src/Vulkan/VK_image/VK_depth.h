@@ -3,7 +3,7 @@
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 class VK_image;
 
 
@@ -11,7 +11,7 @@ class VK_depth
 {
 public:
   //Constructor / Destructor
-  VK_depth(Struct_vulkan* struct_vulkan);
+  VK_depth(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_depth();
 
 public:
@@ -25,6 +25,6 @@ public:
   VkFormat find_depth_format();
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_image* vk_image;
 };

@@ -1,10 +1,10 @@
 #pragma once
 
 #include <VK_struct/Namespace.h>
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 class VK_buffer;
 class VK_texture;
 class VK_command;
@@ -15,7 +15,7 @@ class VK_data
 {
 public:
   //Constructor / Destructor
-  VK_data(Struct_vulkan* struct_vulkan);
+  VK_data(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_data();
 
 public:
@@ -31,7 +31,7 @@ public:
   void pipeline_vertex_input_info(vk::structure::Pipeline* pipeline);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_texture* vk_texture;
   VK_command* vk_command;

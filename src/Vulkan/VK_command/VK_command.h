@@ -4,7 +4,7 @@
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 class VK_submit;
 
 
@@ -12,7 +12,7 @@ class VK_command
 {
 public:
   //Constructor / Destructor
-  VK_command(Struct_vulkan* struct_vulkan);
+  VK_command(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_command();
 
 public:
@@ -39,6 +39,6 @@ public:
   void singletime_command_end(VkCommandBuffer command_buffer);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_submit* vk_submit;
 };

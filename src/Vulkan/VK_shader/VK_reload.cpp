@@ -1,11 +1,11 @@
 #include "VK_reload.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_pipeline/VK_pipeline.h>
 
 
 //Constructor / Destructor
-VK_reload::VK_reload(Struct_vulkan* struct_vulkan){
+VK_reload::VK_reload(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

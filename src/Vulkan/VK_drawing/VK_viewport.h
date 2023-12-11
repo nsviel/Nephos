@@ -3,13 +3,13 @@
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 
 
 class VK_viewport
 {
 public:
-  VK_viewport(Struct_vulkan* struct_vulkan);
+  VK_viewport(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_viewport();
 
 public:
@@ -22,5 +22,5 @@ public:
   vk::structure::Viewport* create_viewport();
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
 };

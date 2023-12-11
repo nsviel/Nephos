@@ -5,7 +5,7 @@
 #include <UTL_specific/common.h>
 #include <UTL_base/Struct_image.h>
 
-class Struct_vulkan;
+
 class VK_image;
 class VK_memory;
 
@@ -13,7 +13,7 @@ class VK_texture
 {
 public:
   //Constructor / Destructor
-  VK_texture(Struct_vulkan* struct_vulkan);
+  VK_texture(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_texture();
 
 public:
@@ -27,7 +27,7 @@ public:
   void clean_textures();
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_image* vk_image;
   VK_memory* vk_memory;
 };

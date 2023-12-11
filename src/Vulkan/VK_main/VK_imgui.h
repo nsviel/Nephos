@@ -3,7 +3,7 @@
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 class VK_engine;
 class VK_pool;
 class VK_submit;
@@ -15,7 +15,7 @@ class VK_imgui
 {
 public:
   //Constructor / Destructor
-  VK_imgui(Struct_vulkan* struct_vulkan);
+  VK_imgui(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_imgui();
 
 public:
@@ -29,7 +29,7 @@ public:
   bool check_window_resize();
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_engine* vk_engine;
   VK_submit* vk_submit;
   VK_command* vk_command;

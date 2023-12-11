@@ -3,7 +3,7 @@
 #include <UTL_specific/common.h>
 #include <VK_struct/Namespace.h>
 
-class Struct_vulkan;
+
 class VK_memory;
 
 
@@ -11,7 +11,7 @@ class VK_image
 {
 public:
   //Constructor / Destructor
-  VK_image(Struct_vulkan* struct_vulkan);
+  VK_image(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_image();
 
 public:
@@ -29,6 +29,6 @@ public:
   void generate_mipmap(vk::structure::Image* image);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_memory* vk_memory;
 };

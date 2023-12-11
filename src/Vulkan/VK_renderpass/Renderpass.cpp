@@ -1,6 +1,6 @@
 #include "Renderpass.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_pipeline/VK_pipeline.h>
 #include <VK_render/VK_framebuffer.h>
 #include <VK_command/VK_command.h>
@@ -9,7 +9,7 @@
 namespace vk{
 
 //Constructor / Destructor
-Renderpass::Renderpass(Struct_vulkan* struct_vulkan){
+Renderpass::Renderpass(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

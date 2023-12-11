@@ -1,10 +1,10 @@
 #include "VK_extension.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 
 
 //Constructor / Destructor
-VK_extension::VK_extension(Struct_vulkan* struct_vulkan){
+VK_extension::VK_extension(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

@@ -3,7 +3,7 @@
 #include <VK_main/Namespace.h>
 
 #include <UTL_specific/FPS_counter.h>
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_data/VK_data.h>
 #include <VK_device/VK_device.h>
 #include <VK_render/VK_surface.h>
@@ -22,7 +22,7 @@
 
 
 //Constructor / Destructor
-VK_engine::VK_engine(Struct_vulkan* struct_vulkan){
+VK_engine::VK_engine(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

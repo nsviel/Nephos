@@ -1,11 +1,11 @@
 #include "VK_buffer.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_command/VK_memory.h>
 
 
 //Constructor / Destructor
-VK_buffer::VK_buffer(Struct_vulkan* struct_vulkan){
+VK_buffer::VK_buffer(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

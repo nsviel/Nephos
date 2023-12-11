@@ -3,7 +3,7 @@
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 class VK_command;
 
 
@@ -11,7 +11,7 @@ class VK_memory
 {
 public:
   //Constructor / Destructor
-  VK_memory(Struct_vulkan* struct_vulkan);
+  VK_memory(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_memory();
 
 public:
@@ -33,6 +33,6 @@ public:
   uint32_t find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags properties);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
 };

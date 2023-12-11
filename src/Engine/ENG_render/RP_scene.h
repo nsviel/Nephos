@@ -6,7 +6,7 @@
 
 class ENG_shader;
 class Engine;
-class Struct_vulkan;
+
 class VK_engine;
 class VK_pipeline;
 class VK_viewport;
@@ -34,7 +34,7 @@ public:
 
 private:
   ENG_shader* eng_shader;
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_descriptor* vk_descriptor;
   VK_uniform* vk_uniform;
   VK_drawing* vk_drawing;

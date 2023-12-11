@@ -1,6 +1,6 @@
 #include "Subpass.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_image/VK_color.h>
 #include <VK_image/VK_depth.h>
 #include <VK_command/VK_command.h>
@@ -9,7 +9,7 @@
 namespace vk{
 
 //Constructor / Destructor
-Subpass::Subpass(Struct_vulkan* struct_vulkan){
+Subpass::Subpass(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

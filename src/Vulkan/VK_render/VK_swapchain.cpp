@@ -1,6 +1,6 @@
 #include "VK_swapchain.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_render/VK_frame.h>
 #include <VK_drawing/VK_viewport.h>
 #include <VK_struct/Namespace.h>
@@ -10,7 +10,7 @@
 
 
 //Constructor / Destructor
-VK_swapchain::VK_swapchain(Struct_vulkan* struct_vulkan){
+VK_swapchain::VK_swapchain(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

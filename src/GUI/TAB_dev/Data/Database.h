@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 
 class GUI;
-class Struct_vulkan;
+
 class UTL_database;
 
 

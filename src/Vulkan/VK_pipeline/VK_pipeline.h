@@ -4,7 +4,7 @@
 #include <UTL_specific/common.h>
 #include <VK_struct/Pipeline.h>
 
-class Struct_vulkan;
+
 class VK_descriptor;
 class VK_viewport;
 class VK_shader;
@@ -15,7 +15,7 @@ class VK_pipeline
 {
 public:
   //Constructor / Destructor
-  VK_pipeline(Struct_vulkan* struct_vulkan);
+  VK_pipeline(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_pipeline();
 
 public:
@@ -45,7 +45,7 @@ public:
   void check_struct_pipeline_input(vk::structure::Pipeline* pipeline);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_descriptor* vk_descriptor;
   VK_shader* vk_shader;
   VK_data* vk_data;

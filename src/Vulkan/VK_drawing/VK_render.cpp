@@ -1,13 +1,13 @@
 #include "VK_render.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_command/VK_submit.h>
 #include <VK_command/VK_command.h>
 #include <VK_struct/Frame.h>
 
 
 //Constructor / Destructor
-VK_render::VK_render(Struct_vulkan* struct_vulkan){
+VK_render::VK_render(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

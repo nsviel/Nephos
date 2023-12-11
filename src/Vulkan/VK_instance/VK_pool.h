@@ -1,15 +1,14 @@
 #pragma once
 
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
-
-class Struct_vulkan;
 
 
 class VK_pool
 {
 public:
   //Constructor / Destructor
-  VK_pool(Struct_vulkan* struct_vulkan);
+  VK_pool(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_pool();
 
 public:
@@ -28,5 +27,5 @@ public:
   void clean_command_pool();
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
 };

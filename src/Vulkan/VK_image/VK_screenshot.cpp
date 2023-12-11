@@ -2,7 +2,7 @@
 
 #include <VK_main/VK_texture.h>
 #include <VK_image/VK_image.h>
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_command/VK_memory.h>
 #include <VK_command/VK_command.h>
 
@@ -11,7 +11,7 @@
 
 
 //Constructor / Destructor
-VK_screenshot::VK_screenshot(Struct_vulkan* struct_vulkan){
+VK_screenshot::VK_screenshot(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

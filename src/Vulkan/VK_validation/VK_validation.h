@@ -1,16 +1,14 @@
 #pragma once
 
-#include <VK_struct/Instance.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
-
-class Struct_vulkan;
 
 
 class VK_validation
 {
 public:
   //Constructor / Destructor
-  VK_validation(Struct_vulkan* struct_vulkan);
+  VK_validation(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_validation();
 
 public:
@@ -31,7 +29,7 @@ public:
   inline vector<const char*> get_validation_layers(){return validation_layers;};
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
 
   vector<const char*> validation_layers;
   bool with_validation_layer;

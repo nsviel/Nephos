@@ -2,13 +2,13 @@
 
 #include <VK_image/VK_image.h>
 #include <VK_command/VK_memory.h>
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_file/File.h>
 #include <UTL_file/Image.h>
 
 
 //Constructor / Destructor
-VK_texture::VK_texture(Struct_vulkan* struct_vulkan){
+VK_texture::VK_texture(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

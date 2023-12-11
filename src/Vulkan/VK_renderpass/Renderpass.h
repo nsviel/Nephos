@@ -3,7 +3,7 @@
 #include <UTL_specific/common.h>
 #include <VK_main/Namespace.h>
 
-class Struct_vulkan;
+
 class VK_pipeline;
 class VK_framebuffer;
 class VK_command;
@@ -17,7 +17,7 @@ class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(Struct_vulkan* struct_vulkan);
+  Renderpass(vk::structure::Struct_vulkan* struct_vulkan);
   ~Renderpass();
 
 public:
@@ -31,7 +31,7 @@ public:
   void clean_renderpass_struct(vk::structure::Renderpass* renderpass);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_pipeline* vk_pipeline;
   vk::Subpass* vk_subpass;
   VK_framebuffer* vk_framebuffer;

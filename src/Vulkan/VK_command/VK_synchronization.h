@@ -4,14 +4,14 @@
 #include <UTL_specific/common.h>
 #include <VK_struct/Frame.h>
 
-class Struct_vulkan;
+
 
 
 class VK_synchronization
 {
 public:
   //Constructor / Destructor
-  VK_synchronization(Struct_vulkan* struct_vulkan);
+  VK_synchronization(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_synchronization();
 
 public:
@@ -32,5 +32,5 @@ public:
   void clean_fence(VkFence& fence);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
 };

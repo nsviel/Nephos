@@ -1,8 +1,9 @@
 #pragma once
 
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 class VK_swapchain;
 class VK_surface;
 
@@ -11,7 +12,7 @@ class VK_presentation
 {
 public:
   //Constructor / Destructor
-  VK_presentation(Struct_vulkan* struct_vulkan);
+  VK_presentation(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_presentation();
 
 public:
@@ -24,7 +25,7 @@ public:
   void next_frame_ID();
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_surface* vk_surface;
   VK_swapchain* vk_swapchain;
 };

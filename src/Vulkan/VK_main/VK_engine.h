@@ -2,12 +2,12 @@
 
 #include <VK_struct/VK_typedef.h>
 #include <VK_struct/Namespace.h>
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 #include <UTL_base/Struct_image.h>
 #include <VK_main/Namespace.h>
 
-class Struct_vulkan;
+
 class VK_surface;
 class VK_instance;
 class VK_device;
@@ -30,7 +30,7 @@ class VK_engine
 {
 public:
   //Constructor / Destructor
-  VK_engine(Struct_vulkan* struct_vulkan);
+  VK_engine(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_engine();
 
 public:
@@ -61,7 +61,7 @@ public:
   inline void set_window(GLFWwindow* window){struct_vulkan->window.glfw_window = window;}
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_extension* vk_extension;
   VK_surface* vk_surface;
   VK_instance* vk_instance;

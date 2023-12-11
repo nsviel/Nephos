@@ -1,6 +1,6 @@
 #include "VK_imgui.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_main/VK_engine.h>
 #include <VK_instance/VK_pool.h>
 #include <VK_command/VK_submit.h>
@@ -9,7 +9,7 @@
 
 
 //Constructor / Destructor
-VK_imgui::VK_imgui(Struct_vulkan* struct_vulkan){
+VK_imgui::VK_imgui(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

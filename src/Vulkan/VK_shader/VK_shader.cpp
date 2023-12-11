@@ -1,11 +1,11 @@
 #include "VK_shader.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <UTL_file/File.h>
 
 
 //Constructor / Destructor
-VK_shader::VK_shader(Struct_vulkan* struct_vulkan){
+VK_shader::VK_shader(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

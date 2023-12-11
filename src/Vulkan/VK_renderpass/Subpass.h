@@ -4,7 +4,7 @@
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 class VK_command;
 class VK_color;
 class VK_depth;
@@ -16,7 +16,7 @@ class Subpass
 {
 public:
   //Constructor / Destructor
-  Subpass(Struct_vulkan* struct_vulkan);
+  Subpass(vk::structure::Struct_vulkan* struct_vulkan);
   ~Subpass();
 
 public:
@@ -38,7 +38,7 @@ public:
   void depth_attachment_reference(vk::structure::Attachment& depth);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_color* vk_color;
   VK_depth* vk_depth;

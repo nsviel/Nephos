@@ -1,16 +1,17 @@
 #pragma once
 
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
 class VK_validation;
-class Struct_vulkan;
+
 
 
 class VK_instance
 {
 public:
   //Constructor / Destructor
-  VK_instance(Struct_vulkan* struct_vulkan);
+  VK_instance(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_instance();
 
 public:
@@ -23,5 +24,5 @@ public:
 
 private:
   VK_validation* vk_validation;
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
 };

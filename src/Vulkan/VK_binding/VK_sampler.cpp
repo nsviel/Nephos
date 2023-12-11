@@ -1,10 +1,10 @@
 #include "VK_sampler.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 
 
 //Constructor / Destructor
-VK_sampler::VK_sampler(Struct_vulkan* struct_vulkan){
+VK_sampler::VK_sampler(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

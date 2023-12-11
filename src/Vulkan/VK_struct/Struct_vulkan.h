@@ -4,10 +4,10 @@
 #include <string>
 
 
+namespace vk::structure{
+
 struct Struct_vulkan{
   //---------------------------
-
-
 
   std::string name;
   vk::structure::Render render;
@@ -27,3 +27,5 @@ struct Struct_vulkan{
 
   //---------------------------
 };
+
+}

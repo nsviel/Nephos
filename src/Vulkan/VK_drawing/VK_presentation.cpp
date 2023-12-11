@@ -1,12 +1,12 @@
 #include "VK_presentation.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_render/VK_swapchain.h>
 #include <VK_render/VK_surface.h>
 
 
 //Constructor / Destructor
-VK_presentation::VK_presentation(Struct_vulkan* struct_vulkan){
+VK_presentation::VK_presentation(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

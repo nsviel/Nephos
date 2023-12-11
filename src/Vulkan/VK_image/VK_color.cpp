@@ -1,12 +1,12 @@
 #include "VK_color.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_struct/Namespace.h>
 #include <VK_image/VK_image.h>
 
 
 //Constructor / Destructor
-VK_color::VK_color(Struct_vulkan* struct_vulkan){
+VK_color::VK_color(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

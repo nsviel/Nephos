@@ -1,11 +1,11 @@
 #include "VK_depth.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_image/VK_image.h>
 
 
 //Constructor / Destructor
-VK_depth::VK_depth(Struct_vulkan* struct_vulkan){
+VK_depth::VK_depth(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

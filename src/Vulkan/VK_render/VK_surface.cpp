@@ -1,10 +1,10 @@
 #include "VK_surface.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 
 
 //Constructor / Destructor
-VK_surface::VK_surface(Struct_vulkan* struct_vulkan){
+VK_surface::VK_surface(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

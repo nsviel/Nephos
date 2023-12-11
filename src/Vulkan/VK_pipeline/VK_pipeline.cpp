@@ -1,6 +1,6 @@
 #include "VK_pipeline.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_binding/VK_descriptor.h>
 #include <VK_data/VK_data.h>
 #include <VK_shader/VK_shader.h>
@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-VK_pipeline::VK_pipeline(Struct_vulkan* struct_vulkan){
+VK_pipeline::VK_pipeline(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

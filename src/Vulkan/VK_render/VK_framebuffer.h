@@ -8,14 +8,14 @@
 class VK_color;
 class VK_depth;
 class VK_image;
-class Struct_vulkan;
+
 
 
 class VK_framebuffer
 {
 public:
   //Constructor / Destructor
-  VK_framebuffer(Struct_vulkan* struct_vulkan);
+  VK_framebuffer(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_framebuffer();
 
 public:
@@ -31,7 +31,7 @@ public:
   void clean_framebuffer_obj(VkFramebuffer& fbo);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_color* vk_color;
   VK_depth* vk_depth;
   VK_image* vk_image;

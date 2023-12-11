@@ -1,8 +1,9 @@
 #pragma once
 
+#include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 class VK_physical_device;
 
 
@@ -10,7 +11,7 @@ class VK_device
 {
 public:
   //Constructor / Destructor
-  VK_device(Struct_vulkan* struct_vulkan);
+  VK_device(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_device();
 
 public:
@@ -23,6 +24,6 @@ public:
   void find_device_queue_handles();
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
   VK_physical_device* vk_physical_device;
 };

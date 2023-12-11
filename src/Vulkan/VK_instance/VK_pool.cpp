@@ -1,10 +1,10 @@
 #include "VK_pool.h"
 
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 
 
 //Constructor / Destructor
-VK_pool::VK_pool(Struct_vulkan* struct_vulkan){
+VK_pool::VK_pool(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;

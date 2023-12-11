@@ -3,14 +3,14 @@
 #include <VK_struct/Namespace.h>
 #include <UTL_specific/common.h>
 
-class Struct_vulkan;
+
 
 
 class VK_shader
 {
 public:
   //Constructor / Destructor
-  VK_shader(Struct_vulkan* struct_vulkan);
+  VK_shader(vk::structure::Struct_vulkan* struct_vulkan);
   ~VK_shader();
 
 public:
@@ -26,7 +26,7 @@ public:
   void run_recompilation(string path_glsl, string path_spir);
 
 private:
-  Struct_vulkan* struct_vulkan;
+  vk::structure::Struct_vulkan* struct_vulkan;
 
   string path_output;
 };

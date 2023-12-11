@@ -1,7 +1,7 @@
 #include "VK_frame.h"
 
 #include <VK_main/VK_engine.h>
-#include <VK_main/Struct_vulkan.h>
+#include <VK_struct/Namespace.h>
 #include <VK_command/VK_command.h>
 #include <VK_command/VK_synchronization.h>
 #include <VK_render/VK_framebuffer.h>
@@ -11,7 +11,7 @@
 
 
 //Constructor / Destructor
-VK_frame::VK_frame(Struct_vulkan* struct_vulkan){
+VK_frame::VK_frame(vk::structure::Struct_vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
