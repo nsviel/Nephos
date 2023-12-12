@@ -121,7 +121,7 @@ void Capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
   struct_image.height = data_color->height;
   struct_image.format = data_color->format;
 
-  this->hovered_info_panel(data_color);
+  this->hovered_panel(data_color);
   vec_gui_stream[0]->draw_stream(&struct_image, image_size);
 
   //---------------------------
@@ -138,7 +138,7 @@ void Capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
   struct_image.height = data_depth->height;
   struct_image.format = "R8G8B8A8_SRGB";
 
-  this->hovered_info_panel(data_depth);
+  this->hovered_panel(data_depth);
   vec_gui_stream[1]->draw_stream(&struct_image, image_size);
 
   delete[] new_buffer;
@@ -157,14 +157,14 @@ void Capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
   struct_image.height = data_ir->height;
   struct_image.format = "B8G8R8A8_SRGB";
 
-  this->hovered_info_panel(data_ir);
+  this->hovered_panel(data_ir);
   vec_gui_stream[2]->draw_stream(&struct_image, image_size);
 
   delete[] new_buffer;
 
   //---------------------------
 }
-void Capture::hovered_info_panel(util::kinect::structure::Image* image){
+void Capture::hovered_panel(util::kinect::structure::Image* image){
   //---------------------------
 
   ImVec2 imageStartPos = ImGui::GetCursorScreenPos();

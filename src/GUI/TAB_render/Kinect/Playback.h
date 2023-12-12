@@ -19,11 +19,11 @@ public:
 
   //Subfunction
   void show_player();
-  void show_info_file();
-  void show_info_recording();
-  void show_info_stream();
-  void show_info_synchro();
-  void show_info_device();
+  void show_file();
+  void show_recording();
+  void show_stream();
+  void show_synchro();
+  void show_device();
 
 private:
   util::kinect::Kinect* kinect;

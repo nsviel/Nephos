@@ -31,7 +31,7 @@ public:
   void draw_camera_color(K4A_device* device, ImVec2 image_size);
   void draw_camera_depth(K4A_device* device, ImVec2 image_size);
   void draw_camera_ir(K4A_device* device, ImVec2 image_size);
-  void hovered_info_panel(util::kinect::structure::Image* image);
+  void hovered_panel(util::kinect::structure::Image* image);
 
 private:
   GUI* gui;

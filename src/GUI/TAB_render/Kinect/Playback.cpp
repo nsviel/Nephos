@@ -24,11 +24,11 @@ void Playback::kinect_playback(){
 
   if(!device->is_virtual) ImGui::BeginDisabled();
   this->show_player();
-  this->show_info_file();
-  this->show_info_recording();
-  this->show_info_stream();
-  this->show_info_synchro();
-  this->show_info_device();
+  this->show_file();
+  this->show_recording();
+  this->show_stream();
+  this->show_synchro();
+  this->show_device();
   if(!device->is_virtual) ImGui::EndDisabled();
 
   //---------------------------
@@ -86,7 +86,7 @@ void Playback::show_player(){
 
   //---------------------------
 }
-void Playback::show_info_file(){
+void Playback::show_file(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -95,11 +95,11 @@ void Playback::show_info_file(){
   if(ImGui::BeginTable("playback_table##general", 2)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", device->file.file_path.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", device->file.path.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f s", (float)device->file.file_duration);
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f s", (float)device->file.duration);
 
     ImGui::EndTable();
   }
@@ -107,7 +107,7 @@ void Playback::show_info_file(){
 
   //---------------------------
 }
-void Playback::show_info_recording(){
+void Playback::show_recording(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -120,19 +120,19 @@ void Playback::show_info_recording(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("FPS"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->file.info_fps.c_str());
+      ImGui::TextColored(color, "%s", device->file.fps.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Depth mode"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->file.info_depth_mode.c_str());
+      ImGui::TextColored(color, "%s", device->file.depth_mode.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Color format"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->file.info_color_format.c_str());
+      ImGui::TextColored(color, "%s", device->file.color_format.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Color resolution"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->file.info_color_resolution.c_str());
+      ImGui::TextColored(color, "%s", device->file.color_resolution.c_str());
 
       ImGui::EndTable();
     }
@@ -143,7 +143,7 @@ void Playback::show_info_recording(){
 
   //---------------------------
 }
-void Playback::show_info_stream(){
+void Playback::show_stream(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -179,7 +179,7 @@ void Playback::show_info_stream(){
 
   //---------------------------
 }
-void Playback::show_info_synchro(){
+void Playback::show_synchro(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -196,7 +196,7 @@ void Playback::show_info_synchro(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Sync mode"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->file.info_wired_sync_mode.c_str());
+      ImGui::TextColored(color, "%s", device->file.wired_sync_mode.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();
@@ -204,7 +204,7 @@ void Playback::show_info_synchro(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f", device->file.file_duration);
+      ImGui::TextColored(color, "%.2f", device->file.duration);
 
       ImGui::EndTable();
     }
@@ -215,7 +215,7 @@ void Playback::show_info_synchro(){
 
   //---------------------------
 }
-void Playback::show_info_device(){
+void Playback::show_device(){
   K4A_device* device = kinect->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -228,15 +228,15 @@ void Playback::show_info_device(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Device S/N"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->file.info_device_serial_number.c_str());
+      ImGui::TextColored(color, "%s", device->file.device_serial_number.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("RGB camera FW"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->file.info_color_firmware_version.c_str());
+      ImGui::TextColored(color, "%s", device->file.color_firmware_version.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->file.info_depth_firmware_version.c_str());
+      ImGui::TextColored(color, "%s", device->file.depth_firmware_version.c_str());
 
       ImGui::EndTable();
     }
