@@ -16,8 +16,8 @@ Infrared::~Infrared(){}
 uint8_t* Infrared::convert_ir_into_color(K4A_device* device){
   //---------------------------
 
-  uint8_t* inputBuffer = device->data.ir.buffer;
-  size_t size = device->data.ir.size;
+  uint8_t* inputBuffer = device->ir.image.buffer;
+  size_t size = device->ir.image.size;
   uint8_t* outputBuffer = new uint8_t[size*4];
   uint16_t level_min = device->ir.config.level_min;
   uint16_t level_max = device->ir.config.level_max;

@@ -45,8 +45,8 @@ void Playback::show_player(){
   //Slider
   ImVec2 image_size = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(image_size.x);
-  if(ImGui::SliderFloat("###Slider_playback", &device->data.color.timestamp, device->info.ts_beg, device->info.ts_end, "%.2f s")){
-    device->k4a_replay->set_current_timestamp(device->data.color.timestamp);
+  if(ImGui::SliderFloat("###Slider_playback", &device->color.image.timestamp, device->info.ts_beg, device->info.ts_end, "%.2f s")){
+    device->k4a_replay->set_current_timestamp(device->color.image.timestamp);
   }
 
   //Slider buttons

@@ -112,7 +112,7 @@ void Capture::device_tab(K4A_device* device){
 
 //Device capture windows
 void Capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
-  util::kinect::structure::Image* data_color = &device->data.color;
+  util::kinect::structure::Image* data_color = &device->color.image;
   //---------------------------
 
   util::base::Image struct_image;
@@ -127,7 +127,7 @@ void Capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
   //---------------------------
 }
 void Capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
-  util::kinect::structure::Image* data_depth = &device->data.depth;
+  util::kinect::structure::Image* data_depth = &device->depth.image;
   //---------------------------
 
   uint8_t* new_buffer = k4a_depth->convert_depth_into_color(device);
@@ -146,7 +146,7 @@ void Capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
   //---------------------------
 }
 void Capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
-  util::kinect::structure::Image* data_ir = &device->data.ir;
+  util::kinect::structure::Image* data_ir = &device->ir.image;
   //---------------------------
 
   uint8_t* new_buffer = k4a_infrared->convert_ir_into_color(device);

@@ -134,10 +134,10 @@ void K4A_replay::manage_pause(){
 
   //---------------------------
 }
-void K4A_replay::manage_restart(k4a::playback* playback, K4A_device* device){
+void K4A_replay::manage_restart(k4a::playback* playback, K4A_device* k4a_device){
   //---------------------------
 
-  if(device->data.color.timestamp == device->info.ts_end){
+  if(k4a_device->color.image.timestamp == k4a_device->info.ts_end){
     if(thread_restart){
       this->thread_play = true;
       playback->seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);

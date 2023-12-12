@@ -18,9 +18,9 @@ public:
   void find_data_from_capture(K4A_device* device, k4a::capture capture);
 
   //Subfunction
-  void find_color(util::kinect::structure::Data* data, k4a::capture capture);
-  void find_depth(util::kinect::structure::Data* data, k4a::capture capture);
-  void find_ir(util::kinect::structure::Data* data, k4a::capture capture);
+  void find_color(K4A_device* k4a_device, k4a::capture capture);
+  void find_depth(K4A_device* k4a_device, k4a::capture capture);
+  void find_ir(K4A_device* k4a_device, k4a::capture capture);
 
 private:
 };

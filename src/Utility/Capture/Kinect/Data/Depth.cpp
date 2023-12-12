@@ -15,8 +15,8 @@ Depth::~Depth(){}
 uint8_t* Depth::convert_depth_into_color(K4A_device* device){
   //---------------------------
 
-  uint8_t* inputBuffer = device->data.depth.buffer;
-  size_t size = device->data.depth.size;
+  uint8_t* inputBuffer = device->depth.image.buffer;
+  size_t size = device->depth.image.size;
   uint8_t* outputBuffer = new uint8_t[size*4];
   uint16_t range_min = device->depth.config.range_min;
   uint16_t range_max = device->depth.config.range_max;
