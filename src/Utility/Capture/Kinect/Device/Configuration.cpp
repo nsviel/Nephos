@@ -30,7 +30,7 @@ void Configuration::make_k4a_configuration(K4A_device* device){
   //---------------------------
   device->config.k4a_config = k4a_config;
 }
-void Configuration::find_file_information(K4A_device* device, string path){
+void Configuration::find_file_information(util::kinect::structure::Info& info, string path){
   //---------------------------
 
   k4a::playback playback = k4a::playback::open(path.c_str());
@@ -40,28 +40,28 @@ void Configuration::find_file_information(K4A_device* device, string path){
   record_configuration.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
 
   //General info
-  device->info.file_path = path;
-  device->info.info_fps = this->find_name_from_config(record_configuration.camera_fps);
-  device->info.is_depth = record_configuration.depth_track_enabled;
-  device->info.is_infrared = record_configuration.ir_track_enabled;
-  device->info.is_imu = record_configuration.imu_track_enabled;
-  device->info.is_color = record_configuration.color_track_enabled;
+  info.file_path = path;
+  info.info_fps = this->find_name_from_config(record_configuration.camera_fps);
+  info.is_depth = record_configuration.depth_track_enabled;
+  info.is_infrared = record_configuration.ir_track_enabled;
+  info.is_imu = record_configuration.imu_track_enabled;
+  info.is_color = record_configuration.color_track_enabled;
 
-  device->info.info_depth_mode = this->find_name_from_config(record_configuration.depth_mode);
-  device->info.info_color_format = this->find_name_from_config(record_configuration.color_format);
-  device->info.info_color_resolution = this->find_name_from_config(record_configuration.color_resolution);
+  info.info_depth_mode = this->find_name_from_config(record_configuration.depth_mode);
+  info.info_color_format = this->find_name_from_config(record_configuration.color_format);
+  info.info_color_resolution = this->find_name_from_config(record_configuration.color_resolution);
 
   // Sync info
-  device->info.info_wired_sync_mode = this->find_name_from_config(record_configuration.wired_sync_mode);
-  device->info.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
-  device->info.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
-  device->info.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
-  device->info.file_duration = playback.get_recording_length().count() / 1000000.0f;
+  info.info_wired_sync_mode = this->find_name_from_config(record_configuration.wired_sync_mode);
+  info.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
+  info.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
+  info.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
+  info.file_duration = playback.get_recording_length().count() / 1000000.0f;
 
   // Device info
-  playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &device->info.info_device_serial_number);
-  playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &device->info.info_color_firmware_version);
-  playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &device->info.info_depth_firmware_version);
+  playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &info.info_device_serial_number);
+  playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &info.info_color_firmware_version);
+  playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &info.info_depth_firmware_version);
 
   //---------------------------
 }

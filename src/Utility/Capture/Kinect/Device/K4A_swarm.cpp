@@ -21,7 +21,7 @@ K4A_device* K4A_swarm::create_device_virtual(string path){
   k4a_device->is_virtual = true;
   struct_k4a_swarm->list_device.push_back(k4a_device);
   struct_k4a_swarm->nb_device_virtual++;
-  k4a_configuration->find_file_information(k4a_device, path);
+  k4a_configuration->find_file_information(k4a_device->info, path);
 
   //---------------------------
   return k4a_device;

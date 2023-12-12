@@ -20,7 +20,7 @@ public:
 public:
   //Main function
   void make_k4a_configuration(K4A_device* device);
-  void find_file_information(K4A_device* device, string path);
+  void find_file_information(util::kinect::structure::Info& info, string path);
 
   //Subfunction
   string find_name_from_config(k4a_wired_sync_mode_t& value);
