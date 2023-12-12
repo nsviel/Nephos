@@ -49,6 +49,15 @@ void VK_data::insert_object(eng::structure::Object* object){
 
   //---------------------------
 }
+void VK_data::update_object(eng::structure::Object* object, vk::structure::Entity* data){
+  //---------------------------
+
+  //Apply adequat init functions
+  data->object = object;
+  vk_buffer->create_buffers(data);
+
+  //---------------------------
+}
 void VK_data::clean_entity_all(){
   //---------------------------
 

@@ -19,6 +19,7 @@ public:
 
 public:
   //Main function
+  void init();
   void run_capture();
   void run_replay(string path);
   void stop_threads();

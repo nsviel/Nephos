@@ -151,15 +151,19 @@ void VK_engine::insert_object_in_engine(eng::structure::Object* object){
 
   //Check if object already in engine
   bool is_in_list = false;
+  vk::structure::Entity* data;
   for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
-    vk::structure::Entity* data = *next(struct_vulkan->data.list_object.begin(), i);
+    data = *next(struct_vulkan->data.list_object.begin(), i);
     if(object->ID == data->object->ID){
       is_in_list = true;
+      break;
     }
   }
 
   //If not, insert it
-  if(is_in_list == false){
+  if(is_in_list){
+    vk_data->update_object(object, data);
+  }else{
     vk_data->insert_object(object);
   }
 

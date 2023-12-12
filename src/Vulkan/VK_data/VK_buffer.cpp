@@ -19,9 +19,9 @@ VK_buffer::~VK_buffer(){}
 void VK_buffer::create_buffers(vk::structure::Entity* data){
   //---------------------------
 
-  vk_memory->transfert_buffer_to_gpu(&data->xyz, data->object->xyz);
-  vk_memory->transfert_buffer_to_gpu(&data->rgb, data->object->rgb);
-  vk_memory->transfert_buffer_to_gpu(&data->uv, data->object->uv);
+  vk_memory->transfert_buffer_to_gpu(data->object->xyz, &data->xyz);
+  vk_memory->transfert_buffer_to_gpu(data->object->rgb, &data->rgb);
+  vk_memory->transfert_buffer_to_gpu(data->object->uv, &data->uv);
 
   //---------------------------
 }
