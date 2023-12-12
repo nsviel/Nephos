@@ -14,6 +14,7 @@ struct Device{
   std::string serial_number;
   k4a::device* device;
   bool data_ready = false;
+  bool is_virtual;
 
   k4a_fps_t fps = K4A_FRAMES_PER_SECOND_30;
   k4a_device_configuration_t k4a_config;

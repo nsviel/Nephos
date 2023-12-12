@@ -32,9 +32,4 @@ public:
   util::kinect::structure::Depth depth;
   util::kinect::structure::Infrared ir;
   util::kinect::structure::File file;
-
-  std::string serial_number;
-  float temperature = 0;
-  bool is_virtual;
-  int index;
 };

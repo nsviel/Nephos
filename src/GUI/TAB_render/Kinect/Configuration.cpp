@@ -25,11 +25,11 @@ void Configuration::kinect_configuration(){
   if(device == nullptr) return;
   //---------------------------
 
-  if(device->is_virtual) ImGui::BeginDisabled();
+  if(device->device.is_virtual) ImGui::BeginDisabled();
   this->kinect_devices();
   this->configuration_device();
   this->configuration_general();
-  if(device->is_virtual) ImGui::EndDisabled();
+  if(device->device.is_virtual) ImGui::EndDisabled();
 
   //---------------------------
 }
@@ -57,17 +57,17 @@ void Configuration::kinect_devices(){
       ImGui::TableHeadersRow();
       for(int i=0; i<list_device.size(); i++){
         K4A_device* device = *std::next(list_device.begin(), i);
-        if(device->is_virtual) continue;
+        if(device->device.is_virtual) continue;
 
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
 
-        ImGui::PushID(device->serial_number.c_str());
+        ImGui::PushID(device->device.serial_number.c_str());
         ImGui::Text("Azur Kinect");
         ImGui::TableNextColumn();
-        ImGui::Text("%d", device->index);
+        ImGui::Text("%d", device->device.index);
         ImGui::TableNextColumn();
-        if (ImGui::Selectable(device->serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
+        if (ImGui::Selectable(device->device.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
           kinect->set_selected_device(device);
           selected_device = i;
         }
@@ -90,7 +90,7 @@ void Configuration::configuration_device(){
   //---------------------------
 
   ImGui::Separator();
-  string device_header = "Device S/N: " + device->serial_number;
+  string device_header = "Device S/N: " + device->device.serial_number;
   ImGui::Text("%s", device_header.c_str());
   ImGui::SameLine();{
     if(ImGui::Button("Close", ImVec2(item_width, 0))){

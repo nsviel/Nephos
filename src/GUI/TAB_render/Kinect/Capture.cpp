@@ -46,8 +46,8 @@ void Capture::vec_device_tab(){
     for(int i=0; i<list_device.size(); i++){
       K4A_device* device = *std::next(list_device.begin(), i);
 
-      string str_virtual = device->is_virtual ? "virtual_" : "";
-      string title = "kinect_" + str_virtual + to_string(device->index);
+      string str_virtual = device->device.is_virtual ? "virtual_" : "";
+      string title = "kinect_" + str_virtual + to_string(device->device.index);
 
       if(ImGui::BeginTabItem(title.c_str(), NULL)){
         this->device_tab(device);
@@ -65,7 +65,7 @@ void Capture::device_tab(K4A_device* device){
   //---------------------------
 
   //Close device button
-  if(!device->is_virtual){
+  if(!device->device.is_virtual){
     ImVec2 region = ImGui::GetContentRegionAvail();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if(ImGui::Button("Close", ImVec2(region.x, 0))){

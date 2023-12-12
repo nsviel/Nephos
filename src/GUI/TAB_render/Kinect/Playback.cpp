@@ -22,14 +22,14 @@ void Playback::kinect_playback(){
   if(device == nullptr) return;
   //---------------------------
 
-  if(!device->is_virtual) ImGui::BeginDisabled();
+  if(!device->device.is_virtual) ImGui::BeginDisabled();
   this->show_player();
   this->show_file();
   this->show_recording();
   this->show_stream();
   this->show_synchro();
   this->show_device();
-  if(!device->is_virtual) ImGui::EndDisabled();
+  if(!device->device.is_virtual) ImGui::EndDisabled();
 
   //---------------------------
 }
