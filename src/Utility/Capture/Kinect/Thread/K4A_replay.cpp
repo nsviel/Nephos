@@ -31,21 +31,24 @@ void K4A_replay::run_thread(K4A_device* device){
   //---------------------------
 
   //Get info about file
-  this->find_file_info(device->info);
-  k4a::capture capture;
+  this->find_file_duration(device->info);
+
+  //Init playback
   k4a::playback playback = k4a::playback::open(device->info.file_path.c_str());
   if(!playback) return;
   this->thread_running = true;
   this->thread_play = true;
 
   //Playback thread
+  k4a::capture capture;
   while(thread_running){
     playback.get_next_capture(&capture);
     if(!capture) break;
 
-    this->manage_timestamp(&playback);
     k4a_data->find_data_from_capture(&device->data, capture);
     this->sleep_necessary_time(device->config.fps);
+
+    this->manage_timestamp(&playback);
     this->manage_pause();
     this->manage_restart(&playback, device);
   }
@@ -83,7 +86,7 @@ void K4A_replay::sleep_necessary_time(int fps_mode){
 
   //---------------------------
 }
-void K4A_replay::find_file_info(util::kinect::structure::Info& info){
+void K4A_replay::find_file_duration(util::kinect::structure::Info& info){
   //---------------------------
 
   k4a::image color;
