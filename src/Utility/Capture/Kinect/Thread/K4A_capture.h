@@ -31,6 +31,6 @@ private:
 
   std::thread thread;
   bool thread_running = false;
-  bool thread_recording = false;
   bool thread_pause = false;
+  bool is_recording = false;
 };
