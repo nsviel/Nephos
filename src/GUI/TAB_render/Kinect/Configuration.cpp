@@ -44,7 +44,7 @@ void Configuration::kinect_devices(){
   flags |= ImGuiTableFlags_RowBg;
   static int selected_device = -1;
   if(ImGui::BeginTable("database_view", 3, flags)){
-    if(k4a_swarm->get_nb_device_real() == 0){
+    if(k4a_swarm->get_nb_device() == 0){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       ImGui::TableNextColumn();

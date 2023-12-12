@@ -33,7 +33,7 @@ void Kinect::init(){
   else{/*
     string path = "/home/aether/Desktop/output.mkv";
     //string path = "/home/aether/Desktop/francasque_4.mkv";
-    K4A_device* device = k4a_swarm->create_device_virtual(path);
+    K4A_device* device = k4a_swarm->create_playback(path);
     this->set_selected_device(device);
     device->run_replay(path);*/
   }

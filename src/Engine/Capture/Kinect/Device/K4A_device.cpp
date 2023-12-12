@@ -17,7 +17,6 @@ K4A_device::K4A_device(Engine* engine){
   this->eng_scene = eng_data->get_eng_scene();
 
   //---------------------------
-  this->init();
 }
 K4A_device::~K4A_device(){}
 
@@ -26,8 +25,8 @@ void K4A_device::init(){
   //---------------------------
 
   //Device name
-  string str_virtual = device.is_virtual ? "virtual_" : "";
-  this->device.name = "kinect_" + str_virtual + to_string(device.index);
+  string str_mode = device.is_virtual ? "playback_" : "kinect_";
+  this->device.name = str_mode + to_string(device.index);
 
   //Device cloud
   this->object = new eng::structure::Object();

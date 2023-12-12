@@ -15,20 +15,21 @@ K4A_swarm::K4A_swarm(Engine* engine){
 K4A_swarm::~K4A_swarm(){}
 
 //Main function
-K4A_device* K4A_swarm::create_device_virtual(string path){
+K4A_device* K4A_swarm::create_playback(string path){
   //---------------------------
 
   K4A_device* k4a_device = new K4A_device(engine);
   k4a_device->device.index = ID_virtual++;
   k4a_device->device.is_virtual = true;
   str_swarm->list_device.push_back(k4a_device);
-  str_swarm->nb_device_virtual++;
+  str_swarm->nb_playback++;
+  k4a_device->init();
   eng::kinect::configuration::find_file_information(k4a_device, path);
 
   //---------------------------
   return k4a_device;
 }
-K4A_device* K4A_swarm::create_device_real(int index){
+K4A_device* K4A_swarm::create_device(int index){
   //---------------------------
 
   k4a::device device = k4a::device::open(index);
@@ -36,8 +37,9 @@ K4A_device* K4A_swarm::create_device_real(int index){
   k4a_device->device.index = index;
   k4a_device->device.is_virtual = false;
   k4a_device->device.serial_number = device.get_serialnum();
+  k4a_device->init();
   str_swarm->list_device.push_back(k4a_device);
-  str_swarm->nb_device_real++;
+  str_swarm->nb_device++;
 
   //---------------------------
   return k4a_device;
@@ -55,7 +57,7 @@ void K4A_swarm::delete_device(K4A_device* device){
     }
   }
 
-  device->device.is_virtual ? str_swarm->nb_device_virtual-- : str_swarm->nb_device_real--;
+  device->device.is_virtual ? str_swarm->nb_playback-- : str_swarm->nb_device--;
   delete(device);
 
   //---------------------------
@@ -76,7 +78,7 @@ void K4A_swarm::refresh_connected_device_list(){
     //If no real device create virtual one
     if(nb_device == 0){
       string path = "/home/aether/Desktop/output.mkv";
-      K4A_device* device = create_device_virtual(path);
+      K4A_device* device = create_playback(path);
       str_swarm->selected_device = device;
       device->run_replay(path);
     }
@@ -86,7 +88,7 @@ void K4A_swarm::refresh_connected_device_list(){
       str_swarm->list_device.clear();
       for(int i=0; i<nb_device; i++){
         try{
-          this->create_device_real(i);
+          this->create_device(i);
         }
         catch(const int error){
           cout<<"[error] refresh device vector"<<endl;
