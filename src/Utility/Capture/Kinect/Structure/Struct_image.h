@@ -8,7 +8,6 @@ namespace util::kinect::structure{
 struct Image{
   //---------------------------
 
-  std::string name;
   std::string format;
 
   int width;

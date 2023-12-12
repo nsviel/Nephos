@@ -19,7 +19,7 @@ void Configuration::make_k4a_configuration(K4A_device* device){
   k4a_device_configuration_t k4a_config;
   k4a_config.color_format = device->color.format;
   k4a_config.color_resolution = device->color.enabled ? device->color.resolution : K4A_COLOR_RESOLUTION_OFF;
-  k4a_config.depth_mode = device->depth.enabled ? device->depth.mode : K4A_DEPTH_MODE_OFF;
+  k4a_config.depth_mode = device->depth.config.enabled ? device->depth.config.mode : K4A_DEPTH_MODE_OFF;
   k4a_config.camera_fps = device->config.fps;
   k4a_config.depth_delay_off_color_usec = device->synchro.depth_delay_off_color_us;
   k4a_config.wired_sync_mode = device->synchro.wired_sync_mode;

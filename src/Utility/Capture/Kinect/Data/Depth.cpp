@@ -18,8 +18,8 @@ uint8_t* Depth::convert_depth_into_color(K4A_device* device){
   uint8_t* inputBuffer = device->data.depth.buffer;
   size_t size = device->data.depth.size;
   uint8_t* outputBuffer = new uint8_t[size*4];
-  uint16_t range_min = device->depth.range_min;
-  uint16_t range_max = device->depth.range_max;
+  uint16_t range_min = device->depth.config.range_min;
+  uint16_t range_max = device->depth.config.range_max;
 
   for(int i=0, j=0; i<size; i+=2, j+=4){
     uint16_t r = *reinterpret_cast<uint16_t*>(&inputBuffer[i]);
@@ -52,21 +52,21 @@ uint8_t* Depth::convert_depth_into_color(K4A_device* device){
 void Depth::find_depth_mode_range(K4A_device* device){
   //---------------------------
 
-  if(device->depth.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){
-    device->depth.range_min = 500;
-    device->depth.range_max = 5800;
+  if(device->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){
+    device->depth.config.range_min = 500;
+    device->depth.config.range_max = 5800;
   }
-  else if(device->depth.mode == K4A_DEPTH_MODE_NFOV_UNBINNED){
-    device->depth.range_min = 500;
-    device->depth.range_max = 4000;
+  else if(device->depth.config.mode == K4A_DEPTH_MODE_NFOV_UNBINNED){
+    device->depth.config.range_min = 500;
+    device->depth.config.range_max = 4000;
   }
-  else if(device->depth.mode == K4A_DEPTH_MODE_WFOV_2X2BINNED){
-    device->depth.range_min = 250;
-    device->depth.range_max = 3000;
+  else if(device->depth.config.mode == K4A_DEPTH_MODE_WFOV_2X2BINNED){
+    device->depth.config.range_min = 250;
+    device->depth.config.range_max = 3000;
   }
-  else if(device->depth.mode == K4A_DEPTH_MODE_WFOV_UNBINNED){
-    device->depth.range_min = 250;
-    device->depth.range_max = 2500;
+  else if(device->depth.config.mode == K4A_DEPTH_MODE_WFOV_UNBINNED){
+    device->depth.config.range_min = 250;
+    device->depth.config.range_max = 2500;
   }
 
   //---------------------------

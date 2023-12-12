@@ -40,13 +40,13 @@ uint8_t* Infrared::convert_ir_into_color(K4A_device* device){
 void Infrared::find_ir_level(K4A_device* device){
   //---------------------------
 
-  if(device->depth.mode == K4A_DEPTH_MODE_PASSIVE_IR){
+  if(device->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){
     device->ir.level_min = 0;
     device->ir.level_max = 100;
   }
   else{
-    device->depth.range_min = 0;
-    device->depth.range_max = 1000;
+    device->depth.config.range_min = 0;
+    device->depth.config.range_max = 1000;
   }
 
   //---------------------------

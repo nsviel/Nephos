@@ -110,27 +110,27 @@ void Configuration::configuration_depth(){
   if(device == nullptr) return;
   //---------------------------
 
-  ImGui::Checkbox("Depth enabled", &device->depth.enabled);
-  if(device->depth.enabled){
+  ImGui::Checkbox("Depth enabled", &device->depth.config.enabled);
+  if(device->depth.config.enabled){
     ImGui::Indent();
     if(ImGui::TreeNode("Depth configuration")){
       static int depth_mode = 1;
       if(ImGui::RadioButton("NFOV Binned", &depth_mode, 0)){
-        device->depth.mode = K4A_DEPTH_MODE_NFOV_2X2BINNED;
+        device->depth.config.mode = K4A_DEPTH_MODE_NFOV_2X2BINNED;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("NFOV Unbinned", &depth_mode, 1)){
-        device->depth.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
+        device->depth.config.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
       }
       if(ImGui::RadioButton("WFOV Binned", &depth_mode, 2)){
-        device->depth.mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
+        device->depth.config.mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("WFOV Unbinned", &depth_mode, 3)){
-        device->depth.mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
+        device->depth.config.mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
       }
       if(ImGui::RadioButton("Passive IR", &depth_mode, 4)){
-        device->depth.mode = K4A_DEPTH_MODE_PASSIVE_IR;
+        device->depth.config.mode = K4A_DEPTH_MODE_PASSIVE_IR;
       }
 
       ImGui::TreePop();
