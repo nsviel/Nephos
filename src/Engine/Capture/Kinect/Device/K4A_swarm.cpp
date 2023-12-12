@@ -1,10 +1,13 @@
 #include "K4A_swarm.h"
 
+#include <Engine/Engine.h>
+
 
 //Constructor / Destructor
-K4A_swarm::K4A_swarm(eng::kinect::structure::Swarm* struct_k4a_swarm){
+K4A_swarm::K4A_swarm(Engine* engine, eng::kinect::structure::Swarm* struct_k4a_swarm){
   //---------------------------
 
+  this->engine = engine;
   this->struct_k4a_swarm = struct_k4a_swarm;
 
 
@@ -16,7 +19,7 @@ K4A_swarm::~K4A_swarm(){}
 K4A_device* K4A_swarm::create_device_virtual(string path){
   //---------------------------
 
-  K4A_device* k4a_device = new K4A_device();
+  K4A_device* k4a_device = new K4A_device(engine);
   k4a_device->device.index = ID_virtual++;
   k4a_device->device.is_virtual = true;
   struct_k4a_swarm->list_device.push_back(k4a_device);
@@ -30,7 +33,7 @@ K4A_device* K4A_swarm::create_device_real(int index){
   //---------------------------
 
   k4a::device device = k4a::device::open(index);
-  K4A_device* k4a_device = new K4A_device();
+  K4A_device* k4a_device = new K4A_device(engine);
   k4a_device->device.index = index;
   k4a_device->device.is_virtual = false;
   k4a_device->device.serial_number = device.get_serialnum();

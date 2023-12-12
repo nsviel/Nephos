@@ -10,6 +10,8 @@
 #include <k4a/k4a.h>
 #include <k4a/k4a.hpp>
 
+class Engine;
+
 
 namespace eng::kinect{
 
@@ -17,7 +19,7 @@ class Kinect
 {
 public:
   //Constructor / Destructor
-  Kinect();
+  Kinect(Engine* engine);
   ~Kinect();
 
 public:

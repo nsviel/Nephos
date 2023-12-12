@@ -7,13 +7,14 @@
 #include <k4arecord/record.hpp>
 
 class FPS_counter;
+class Engine;
 
 
 class K4A_capture
 {
 public:
   //Constructor / Destructor
-  K4A_capture();
+  K4A_capture(Engine* engine);
   ~K4A_capture();
 
 public:

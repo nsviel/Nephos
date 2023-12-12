@@ -1,13 +1,15 @@
 #include "Node.h"
 
+#include <Engine/Engine.h>
+
 
 namespace eng::capture{
 
 //Constructor / Destructor
-Node::Node(){
+Node::Node(Engine* engine){
   //---------------------------
 
-  this->kinect = new eng::kinect::Kinect();
+  this->kinect = new eng::kinect::Kinect(engine);
 
   //---------------------------
 }

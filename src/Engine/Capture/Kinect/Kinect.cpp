@@ -1,14 +1,16 @@
 #include "Kinect.h"
 
+#include <Engine/Engine.h>
+
 
 namespace eng::kinect{
 
 //Constructor / Destructor
-Kinect::Kinect(){
+Kinect::Kinect(Engine* engine){
   //---------------------------
 
   this->struct_k4a_swarm = new eng::kinect::structure::Swarm();
-  this->k4a_swarm = new K4A_swarm(struct_k4a_swarm);
+  this->k4a_swarm = new K4A_swarm(engine, struct_k4a_swarm);
   this->k4a_connection = new eng::kinect::thread::Connection(k4a_swarm);
 
   //---------------------------

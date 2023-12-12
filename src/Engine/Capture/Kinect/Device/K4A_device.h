@@ -6,13 +6,14 @@
 
 class K4A_capture;
 class K4A_replay;
+class Engine;
 
 
 class K4A_device
 {
 public:
   //Constructor / Destructor
-  K4A_device();
+  K4A_device(Engine* engine);
   ~K4A_device();
 
 public:

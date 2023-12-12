@@ -1,16 +1,17 @@
 #include "K4A_device.h"
 
+#include <Engine/Engine.h>
 #include <Engine/Capture/Kinect/Thread/K4A_capture.h>
 #include <Engine/Capture/Kinect/Thread/K4A_replay.h>
 
 
 
 //Constructor / Destructor
-K4A_device::K4A_device(){
+K4A_device::K4A_device(Engine* engine){
   //---------------------------
 
-  this->k4a_capture = new K4A_capture();
-  this->k4a_replay = new K4A_replay();
+  this->k4a_capture = new K4A_capture(engine);
+  this->k4a_replay = new K4A_replay(engine);
 
 
   //---------------------------

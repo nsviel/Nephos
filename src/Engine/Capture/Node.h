@@ -3,6 +3,8 @@
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/Kinect/Namespace.h>
 
+class Engine;
+
 
 namespace eng::capture{
 
@@ -10,7 +12,7 @@ class Node
 {
 public:
   //Constructor / Destructor
-  Node();
+  Node(Engine* engine);
   ~Node();
 
 public:

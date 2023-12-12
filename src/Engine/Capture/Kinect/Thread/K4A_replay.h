@@ -8,13 +8,14 @@
 #include <k4arecord/playback.hpp>
 
 class FPS_counter;
+class Engine;
 
 
 class K4A_replay
 {
 public:
   //Constructor / Destructor
-  K4A_replay();
+  K4A_replay(Engine* engine);
   ~K4A_replay();
 
 public:

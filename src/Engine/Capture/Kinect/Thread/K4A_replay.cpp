@@ -1,10 +1,11 @@
 #include "K4A_replay.h"
 
+#include <Engine/Engine.h>
 #include <Utility/Function/Timer/FPS_counter.h>
 
 
 //Constructor / Destructor
-K4A_replay::K4A_replay(){
+K4A_replay::K4A_replay(Engine* engine){
   //---------------------------
 
   this->fps_counter = new FPS_counter(60);
