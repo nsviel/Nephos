@@ -25,6 +25,8 @@ public:
   void run_replay(string path);
   void stop_threads();
 
+  inline eng::structure::Object* get_object(){return object;}
+
 public:
   eng::data::Scene* eng_scene;
   K4A_capture* k4a_capture;

@@ -32,6 +32,7 @@ void K4A_device::init(){
   //Device cloud
   this->object = new eng::structure::Object();
   object->name = device.name;
+  object->draw_type_name = "point";
   eng_scene->insert_object_scene(object);
 
   //---------------------------

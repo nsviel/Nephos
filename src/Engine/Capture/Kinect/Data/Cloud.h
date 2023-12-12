@@ -19,6 +19,10 @@ public:
   //Main function
   void convert_into_cloud(K4A_device* k4a_device);
 
+  //Subfunction
+  void retrieve_location(K4A_device* k4a_device);
+  void retrieve_color(K4A_device* k4a_device);
+
 private:
   Engine* engine;
 

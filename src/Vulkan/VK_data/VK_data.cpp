@@ -54,6 +54,7 @@ void VK_data::update_object(eng::structure::Object* object, vk::structure::Entit
 
   //Apply adequat init functions
   data->object = object;
+  vk_buffer->clean_buffers(data);
   vk_buffer->create_buffers(data);
 
   //---------------------------
