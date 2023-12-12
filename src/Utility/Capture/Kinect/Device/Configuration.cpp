@@ -1,8 +1,5 @@
 #include "Configuration.h"
 
-#include <Utility/Capture/Kinect/Device/K4A_device.h>
-#include <k4arecord/playback.hpp>
-
 
 namespace util::kinect::device{
 

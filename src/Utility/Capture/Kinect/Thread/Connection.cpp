@@ -1,7 +1,5 @@
 #include "Connection.h"
 
-#include <Utility/Capture/Kinect/Device/K4A_swarm.h>
-
 
 namespace util::kinect::thread{
 

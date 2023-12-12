@@ -5,6 +5,7 @@
 #include <Utility/Capture/Kinect/Device/K4A_device.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Capture/Kinect/Namespace.h>
+#include <Utility/Capture/Kinect/Device/K4A_swarm.h>
 
 #include <k4a/k4a.h>
 #include <k4a/k4a.hpp>

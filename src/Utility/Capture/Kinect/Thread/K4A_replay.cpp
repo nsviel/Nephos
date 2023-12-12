@@ -1,7 +1,5 @@
 #include "K4A_replay.h"
 
-#include <Utility/Capture/Kinect/Device/K4A_device.h>
-
 
 //Constructor / Destructor
 K4A_replay::K4A_replay(){

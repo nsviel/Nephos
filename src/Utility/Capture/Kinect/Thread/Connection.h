@@ -1,8 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-
-class K4A_swarm;
+#include <Utility/Capture/Kinect/Device/K4A_swarm.h>
 
 
 namespace util::kinect::thread{

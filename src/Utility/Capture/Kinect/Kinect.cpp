@@ -1,8 +1,5 @@
 #include "Kinect.h"
 
-#include <Utility/Capture/Kinect/Device/K4A_device.h>
-#include <Utility/Capture/Kinect/Device/K4A_swarm.h>
-
 
 namespace util::kinect{
 
