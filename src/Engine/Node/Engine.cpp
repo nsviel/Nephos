@@ -18,6 +18,7 @@ Engine::Engine(util::Node* utility){
   this->eng_vulkan = new Vulkan(utl_window->get_window());
   this->eng_data = new eng::data::Node(this);
   this->eng_renderpass = new ENG_renderpass(this);
+  this->utl_capture = new util::capture::Node();
 
   //---------------------------
 }
@@ -37,6 +38,7 @@ void Engine::init(){
   eng_renderpass->init_renderpass();
   eng_vulkan->init();
   eng_data->init();
+  utl_capture->init();
 
   //---------------------------
 }

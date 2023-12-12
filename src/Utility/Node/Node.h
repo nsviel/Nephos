@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
-#include <Utility/Capture/Node/Namespace.h>
 
 class Config;
 
@@ -23,11 +22,9 @@ public:
   void exit();
 
   inline util::element::Window* get_utl_window(){return utl_window;}
-  inline util::capture::Node* get_utl_capture(){return utl_capture;}
 
 private:
   util::element::Window* utl_window;
-  util::capture::Node* utl_capture;
 };
 
 }

@@ -2,8 +2,8 @@
 
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Capture/Kinect/Device/K4A_device.h>
-#include <Utility/Capture/Kinect/Namespace.h>
+#include <Engine/Capture/Kinect/Device/K4A_device.h>
+#include <Engine/Capture/Kinect/Namespace.h>
 
 
 namespace gui::kinect{

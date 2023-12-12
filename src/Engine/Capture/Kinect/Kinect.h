@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Utility/Capture/Kinect/Structure/Namespace.h>
-#include <Utility/Capture/Kinect/Thread/Namespace.h>
-#include <Utility/Capture/Kinect/Namespace.h>
-#include <Utility/Capture/Kinect/Device/K4A_swarm.h>
-#include <Utility/Capture/Kinect/Device/K4A_device.h>
+#include <Engine/Capture/Kinect/Structure/Namespace.h>
+#include <Engine/Capture/Kinect/Thread/Namespace.h>
+#include <Engine/Capture/Kinect/Namespace.h>
+#include <Engine/Capture/Kinect/Device/K4A_swarm.h>
+#include <Engine/Capture/Kinect/Device/K4A_device.h>
 #include <Utility/Specific/common.h>
 
 #include <k4a/k4a.h>

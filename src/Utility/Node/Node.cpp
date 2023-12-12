@@ -10,7 +10,6 @@ Node::Node(Config* config){
   //---------------------------
 
   this->utl_window = new util::element::Window(config);
-  this->utl_capture = new util::capture::Node();
 
   //---------------------------
   this->init();
@@ -22,7 +21,6 @@ void Node::init(){
   //---------------------------
 
   utl_window->create_window();
-  utl_capture->init();
 
   //---------------------------
 }

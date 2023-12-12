@@ -1,7 +1,7 @@
 #include "Configuration.h"
 
 #include <Node/GUI.h>
-#include <Utility/Capture/Kinect/Device/K4A_swarm.h>
+#include <Engine/Capture/Kinect/Device/K4A_swarm.h>
 
 
 namespace gui::kinect{

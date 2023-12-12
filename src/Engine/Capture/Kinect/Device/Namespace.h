@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Capture/Kinect/Device/Configuration.h>
+#include <Engine/Capture/Kinect/Device/Configuration.h>
 
 
 namespace util::kinect::device{

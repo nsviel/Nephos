@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Capture/Kinect/Namespace.h>
+#include <Engine/Capture/Kinect/Namespace.h>
 
 
 namespace util::capture{
