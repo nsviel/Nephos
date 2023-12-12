@@ -37,6 +37,13 @@ void K4A_device::init(){
 
   //---------------------------
 }
+void K4A_device::destroy(){
+  //---------------------------
+
+  this->device.transformation.destroy();
+
+  //---------------------------
+}
 void K4A_device::draw_cloud(){
   //---------------------------
 
@@ -44,6 +51,8 @@ void K4A_device::draw_cloud(){
 
   //---------------------------
 }
+
+//Capture function
 void K4A_device::run_capture(){
   //---------------------------
 

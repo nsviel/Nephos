@@ -52,22 +52,23 @@ void Cloud::retrieve_location(K4A_device* k4a_device){
     int z = point_cloud_data[depth_idx+2];
 
     if(x != 0 && y != 0 && z != 0){
-      glm::vec3 point(z/100.0f, -y/100.0f, x/100.0f);
+      //coordinate base 10m and oriented -X axis.
+      glm::vec3 point(-z/100.0f, -x/100.0f, -y/100.0f);
       vec_xyz.push_back(point);
 
       //Retrieve color
       int color_idx = i * 4;
-      uint8_t r = static_cast<float>(color_data[color_idx])     / 255.0f;
-      uint8_t g = static_cast<float>(color_data[color_idx + 1]) / 255.0f;
-      uint8_t b = static_cast<float>(color_data[color_idx + 2]) / 255.0f;
-      uint8_t a = static_cast<float>(color_data[color_idx + 3]) / 255.0f;
+      float r = static_cast<float>(color_data[color_idx + 2]) / 255.0f;
+      float g = static_cast<float>(color_data[color_idx + 1]) / 255.0f;
+      float b = static_cast<float>(color_data[color_idx])     / 255.0f;
+      float a = static_cast<float>(color_data[color_idx + 3]) / 255.0f;
       vec_rgba.push_back(vec4(r, g, b, a));
     }
   }
 
   eng::structure::Object* object = k4a_device->get_object();
   object->xyz = vec_xyz;
-  //object->rgb = vec_rgba;
+  object->rgb = vec_rgba;
 
   //---------------------------
 }

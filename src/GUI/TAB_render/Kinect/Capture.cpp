@@ -119,7 +119,6 @@ void Capture::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
   struct_image.height = data_color->height;
   struct_image.format = data_color->format;
 
-
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[0]->draw_stream(&struct_image, image_size);
   this->overlay_capture(k4a_device, data_color, image_size, image_pose);

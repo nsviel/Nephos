@@ -16,8 +16,8 @@ Data::~Data(){}
 void Data::find_data_from_capture(K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
 
-  this->find_color(k4a_device, capture);
   this->find_depth(k4a_device, capture);
+  this->find_color(k4a_device, capture);
   this->find_ir(k4a_device, capture);
   k4a_device->device.data_ready = true;
 
@@ -30,6 +30,7 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
 
   k4a::image color = capture.get_color_image();
   if (!color || !color.is_valid()) {return;}
+  color = k4a_device->device.transformation.color_image_to_depth_camera(k4a_device->depth.image.image, color);
   k4a_device->color.image.image = color;
   k4a_device->color.image.name = "color";
   k4a_device->color.image.buffer = color.get_buffer();

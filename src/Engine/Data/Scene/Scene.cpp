@@ -54,7 +54,7 @@ void Scene::init_scene(){
   //Load init object
   vector<string> vec_path;
   vec_path.push_back( "../media/point_cloud/dragon.ply");
-  vector<eng::structure::Object*> vec_obj = eng_loader->load_objects(vec_path);
+  //vector<eng::structure::Object*> vec_obj = eng_loader->load_objects(vec_path);
 
   //---------------------------
 }
