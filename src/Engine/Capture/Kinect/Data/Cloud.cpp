@@ -25,7 +25,7 @@ void Cloud::convert_into_cloud(K4A_device* k4a_device){
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->image.width, depth->image.height, depth->image.width * 3 * (int)sizeof(int16_t));
 
   // Transform depth image to point cloud
-  k4a_device->device.transformation.depth_image_to_point_cloud(depth->image.k4a_image, K4A_CALIBRATION_TYPE_DEPTH, cloud_image);
+  k4a_device->device.transformation.depth_image_to_point_cloud(depth->image.image, K4A_CALIBRATION_TYPE_DEPTH, &cloud_image);
 
   // Convert point cloud data to vector<glm::vec3>
   int16_t* point_cloud_data = reinterpret_cast<int16_t*>(cloud_image.get_buffer());

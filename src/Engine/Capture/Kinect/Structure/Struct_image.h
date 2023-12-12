@@ -8,6 +8,7 @@ namespace eng::kinect::structure{
 struct Image{
   //---------------------------
 
+  k4a::image image;
   std::string name;
   std::string format;
   int width;

@@ -30,6 +30,7 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
 
   k4a::image color = capture.get_color_image();
   if (!color || !color.is_valid()) {return;}
+  k4a_device->color.image.image = color;
   k4a_device->color.image.name = "color";
   k4a_device->color.image.buffer = color.get_buffer();
   k4a_device->color.image.size = color.get_size();
@@ -46,6 +47,7 @@ void Data::find_depth(K4A_device* k4a_device, k4a::capture capture){
 
   k4a::image depth = capture.get_depth_image();
   if (!depth || !depth.is_valid()) {return;}
+  k4a_device->depth.image.image = depth;
   k4a_device->depth.image.name = "depth";
   k4a_device->depth.image.buffer = depth.get_buffer();
   k4a_device->depth.image.size = depth.get_size();
@@ -63,6 +65,7 @@ void Data::find_ir(K4A_device* k4a_device, k4a::capture capture){
 
   k4a::image ir = capture.get_ir_image();
   if (!ir || !ir.is_valid()) {return;}
+  k4a_device->ir.image.image = ir;
   k4a_device->ir.image.name = "ir";
   k4a_device->ir.image.buffer = ir.get_buffer();
   k4a_device->ir.image.size = ir.get_size();
