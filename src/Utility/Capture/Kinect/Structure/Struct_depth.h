@@ -20,7 +20,7 @@ struct Depth_config{
 struct Depth{
   //---------------------------
 
-  Depth_config config;
+  util::kinect::structure::Depth_config config;
   util::kinect::structure::Image image;
 
   //---------------------------

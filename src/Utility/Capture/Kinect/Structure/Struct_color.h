@@ -87,7 +87,7 @@ struct Power_frequency{
   //---------------------------
 };
 
-struct Color{
+struct Color_config{
   //---------------------------
 
   //General
@@ -105,6 +105,15 @@ struct Color{
   util::kinect::structure::Gain gain;
   util::kinect::structure::Backlight_compensation backlight_compensation;
   util::kinect::structure::Power_frequency power_frequency;
+
+  //---------------------------
+};
+
+struct Color{
+  //---------------------------
+
+  util::kinect::structure::Color_config config;
+  util::kinect::structure::Image image;
 
   //---------------------------
 };

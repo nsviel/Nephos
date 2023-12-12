@@ -30,6 +30,7 @@ void Data::find_color(util::kinect::structure::Data* data, k4a::capture capture)
 
   k4a::image color = capture.get_color_image();
   if (!color || !color.is_valid()) {return;}
+  data->color.name = "color";
   data->color.buffer = color.get_buffer();
   data->color.size = color.get_size();
   data->color.width = color.get_width_pixels();
@@ -45,6 +46,7 @@ void Data::find_depth(util::kinect::structure::Data* data, k4a::capture capture)
 
   k4a::image depth = capture.get_depth_image();
   if (!depth || !depth.is_valid()) {return;}
+  data->depth.name = "depth";
   data->depth.buffer = depth.get_buffer();
   data->depth.size = depth.get_size();
   data->depth.width = depth.get_width_pixels();
@@ -60,6 +62,7 @@ void Data::find_ir(util::kinect::structure::Data* data, k4a::capture capture){
 
   k4a::image ir = capture.get_ir_image();
   if (!ir || !ir.is_valid()) {return;}
+  data->ir.name = "ir";
   data->ir.buffer = ir.get_buffer();
   data->ir.size = ir.get_size();
   data->ir.width = ir.get_width_pixels();

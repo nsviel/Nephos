@@ -8,8 +8,8 @@ namespace util::kinect::structure{
 struct Image{
   //---------------------------
 
+  std::string name;
   std::string format;
-
   int width;
   int height;
   uint8_t* buffer;
