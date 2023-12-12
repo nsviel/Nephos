@@ -52,6 +52,7 @@ void Data::find_depth(K4A_device* k4a_device, k4a::capture capture){
   k4a_device->depth.image.width = depth.get_width_pixels();
   k4a_device->depth.image.height = depth.get_height_pixels();
   k4a_device->depth.image.format = "B8G8R8A8_SRGB";
+  k4a_device->depth.image.temperature = capture.get_temperature_c();
   k4a_device->depth.image.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
   depth.reset();
 

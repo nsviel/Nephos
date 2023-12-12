@@ -121,8 +121,10 @@ void Capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
   struct_image.height = data_color->height;
   struct_image.format = data_color->format;
 
-  this->hovered_panel(data_color);
+
+  ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[0]->draw_stream(&struct_image, image_size);
+  this->overlay_capture(data_color, image_size, image_pose);
 
   //---------------------------
 }
@@ -138,8 +140,9 @@ void Capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
   struct_image.height = data_depth->height;
   struct_image.format = "R8G8B8A8_SRGB";
 
-  this->hovered_panel(data_depth);
+  ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[1]->draw_stream(&struct_image, image_size);
+  this->overlay_capture(data_depth, image_size, image_pose);
 
   delete[] new_buffer;
 
@@ -157,18 +160,23 @@ void Capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
   struct_image.height = data_ir->height;
   struct_image.format = "B8G8R8A8_SRGB";
 
-  this->hovered_panel(data_ir);
+  ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[2]->draw_stream(&struct_image, image_size);
+  this->overlay_capture(data_ir, image_size, image_pose);
 
   delete[] new_buffer;
 
   //---------------------------
 }
-void Capture::hovered_panel(util::kinect::structure::Image* image){
+
+//Overlay
+void Capture::overlay_capture(util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose){
   //---------------------------
 
-  ImVec2 imageStartPos = ImGui::GetCursorScreenPos();
-  ImGui::SetNextWindowPos(imageStartPos, ImGuiCond_Always);
+  bool image_hovered = ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenOverlappedByWindow);
+  this->compute_hovered_pixel(image, image_size, image_pose, image_hovered);
+
+  ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
   ImGui::SetNextWindowBgAlpha(0.3f);
   ImGuiWindowFlags flags;
   flags |= ImGuiWindowFlags_NoMove;
@@ -178,15 +186,64 @@ void Capture::hovered_panel(util::kinect::structure::Image* image){
   flags |= ImGuiWindowFlags_NoSavedSettings;
   flags |= ImGuiWindowFlags_NoFocusOnAppearing;
   flags |= ImGuiWindowFlags_NoNav;
+  flags |= ImGuiWindowFlags_NoNavFocus;
   flags |= ImGuiWindowFlags_NoScrollbar;
 
   if (ImGui::Begin(image->name.c_str(), nullptr, flags)){
-    ImGui::Text("Average frame rate: %.2f fps", 5.0);
-    ImGui::Text("Timestamp: %.2f s", image->timestamp/1000000);
+    this->overlay_information(image);
+    this->overlay_pixel(image, image_size);
+
+
   }
   ImGui::End();
 
-  ImGui::SetCursorScreenPos(imageStartPos);
+  //---------------------------
+}
+void Capture::overlay_information(util::kinect::structure::Image* image){
+  //---------------------------
+
+  ImGui::Text("Average frame rate: %.2f fps", 5.0);
+  ImGui::Text("Timestamp: %.2f s", image->timestamp);
+  if(image->temperature != -1){
+    ImGui::Text("Temperature: %.2f°", image->temperature);
+  }
+
+  //---------------------------
+}
+void Capture::overlay_pixel(util::kinect::structure::Image* image, ImVec2 image_size){
+  //---------------------------
+
+  if(image->hovered_pixel_x != -1 && image->hovered_pixel_y != -1){
+    ImGui::Text("Hovered pixel: %.0f %.0f", image->hovered_pixel_x, image->hovered_pixel_y);
+  }
+
+  //---------------------------
+}
+void Capture::compute_hovered_pixel(util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered){
+  //---------------------------
+
+  //Reinitialize coord values
+  image->hovered_pixel_x = -1;
+  image->hovered_pixel_y = -1;
+
+  // Compute hovered pixel coordinates
+  if(image_hovered){
+    ImVec2 mousePos = ImGui::GetIO().MousePos;
+    ImVec2 hoveredUIPixel;
+    ImVec2 sourceImageDimensions = ImVec2(image->width, image->height);
+    hoveredUIPixel.x = mousePos.x - image_pose.x;
+    hoveredUIPixel.x = std::min(hoveredUIPixel.x, image_size.x);
+    hoveredUIPixel.x = std::max(hoveredUIPixel.x, 0.0f);
+
+    hoveredUIPixel.y = mousePos.y - image_pose.y;
+    hoveredUIPixel.y = std::min(hoveredUIPixel.y, image_size.y);
+    hoveredUIPixel.y = std::max(hoveredUIPixel.y, 0.0f);
+
+    const float uiCoordinateToImageCoordinateRatio = sourceImageDimensions.x / image_size.x;
+
+    image->hovered_pixel_x = hoveredUIPixel.x * uiCoordinateToImageCoordinateRatio;
+    image->hovered_pixel_y = hoveredUIPixel.y * uiCoordinateToImageCoordinateRatio;
+  }
 
   //---------------------------
 }

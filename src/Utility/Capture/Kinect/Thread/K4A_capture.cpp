@@ -59,7 +59,6 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
     if(is_recording) recording.write_capture(capture);
 
     //Capture data
-    k4a_device->device.temperature = capture.get_temperature_c();
     k4a_data->find_data_from_capture(k4a_device, capture);
   }
 

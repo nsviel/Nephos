@@ -31,7 +31,12 @@ public:
   void draw_camera_color(K4A_device* device, ImVec2 image_size);
   void draw_camera_depth(K4A_device* device, ImVec2 image_size);
   void draw_camera_ir(K4A_device* device, ImVec2 image_size);
-  void hovered_panel(util::kinect::structure::Image* image);
+
+  //Overlay
+  void compute_hovered_pixel(util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
+  void overlay_capture(util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose);
+  void overlay_information(util::kinect::structure::Image* image);
+  void overlay_pixel(util::kinect::structure::Image* image, ImVec2 image_size);
 
 private:
   GUI* gui;
@@ -41,6 +46,7 @@ private:
   K4A_swarm* k4a_swarm;
 
   vector<gui::media::Stream*> vec_gui_stream;
+  ImVec2 hovered_pixel;
 };
 
 }

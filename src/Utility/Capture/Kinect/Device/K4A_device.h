@@ -24,7 +24,6 @@ public:
 public:
   K4A_capture* k4a_capture;
   K4A_replay* k4a_replay;
-  //util::kinect::device::Configuration* k4a_configuration;
 
   util::kinect::structure::Device device;
   util::kinect::structure::Synchro synchro;

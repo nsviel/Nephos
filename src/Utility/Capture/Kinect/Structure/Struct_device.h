@@ -10,7 +10,6 @@ struct Device{
   //---------------------------
 
   int index;
-  float temperature = 0;
   std::string serial_number;
   k4a::device* device;
   bool data_ready = false;
