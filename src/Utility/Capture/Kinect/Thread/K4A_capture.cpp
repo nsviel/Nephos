@@ -39,12 +39,12 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
   k4a::record recording;
 
   //Start camera
-  k4a_device->config.version = device.get_version();
-  device.start_cameras(&k4a_device->config.k4a_config);
+  k4a_device->device.version = device.get_version();
+  device.start_cameras(&k4a_device->device.k4a_config);
 
   //Start recording
   if(is_recording){
-    recording = k4a::record::create("output.mkv", device, k4a_device->config.k4a_config);
+    recording = k4a::record::create("output.mkv", device, k4a_device->device.k4a_config);
     recording.write_header();
   }
 

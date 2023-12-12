@@ -271,15 +271,15 @@ void Configuration::configuration_general(){
   ImGui::Text("Framerate");
   static int framerate = 0;
   if(ImGui::RadioButton("30 FPS", &framerate, 0)){
-    device->config.fps = K4A_FRAMES_PER_SECOND_30;
+    device->device.fps = K4A_FRAMES_PER_SECOND_30;
   }
   ImGui::SameLine();
   if(ImGui::RadioButton("15 FPS", &framerate, 1)){
-    device->config.fps = K4A_FRAMES_PER_SECOND_15;
+    device->device.fps = K4A_FRAMES_PER_SECOND_15;
   }
   ImGui::SameLine();
   if(ImGui::RadioButton("5 FPS", &framerate, 2)){
-    device->config.fps = K4A_FRAMES_PER_SECOND_5;
+    device->device.fps = K4A_FRAMES_PER_SECOND_5;
   }
 
   ImGui::Checkbox("Disable streaming LED", &device->synchro.disable_streaming_indicator);
@@ -292,7 +292,7 @@ void Configuration::firmware_info(){
   //---------------------------
 
   if (ImGui::TreeNode("Device Firmware Version Info")){
-    k4a_hardware_version_t versionInfo = device->config.version;
+    k4a_hardware_version_t versionInfo = device->device.version;
     ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
     if(ImGui::BeginTable("device##firmware", 2)){
       ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);

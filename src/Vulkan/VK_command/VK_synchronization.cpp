@@ -64,12 +64,12 @@ void VK_synchronization::init_frame_sync(vk::structure::Frame* frame){
 }
 void VK_synchronization::clean(){
   //---------------------------
-
+/*
   this->clean_semaphore(struct_vulkan->synchro.semaphore_image_ready);
   this->clean_semaphore(struct_vulkan->synchro.semaphore_render_done);
   this->clean_vec_semaphore(struct_vulkan->synchro.vec_semaphore_render);
   this->clean_fence(struct_vulkan->synchro.fence);
-
+*/
   //---------------------------
 }
 void VK_synchronization::clean_frame_sync(vk::structure::Frame* frame){

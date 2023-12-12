@@ -26,6 +26,7 @@ public:
   K4A_replay* k4a_replay;
   util::kinect::device::Configuration* k4a_configuration;
 
+  util::kinect::structure::Device device;
   util::kinect::structure::Config config;
   util::kinect::structure::Synchro synchro;
   util::kinect::structure::Color color;
@@ -34,7 +35,6 @@ public:
   util::kinect::structure::Data data;
   util::kinect::structure::Info info;
 
-  k4a::device* device;
   std::string serial_number;
   float temperature = 0;
   bool is_virtual;

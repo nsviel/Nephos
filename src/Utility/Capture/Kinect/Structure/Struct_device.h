@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Capture/Kinect/Structure/Namespace.h>
 #include <k4a/k4a.hpp>
 #include <string>
 
@@ -15,14 +14,10 @@ struct Device{
   std::string serial_number;
   k4a::device* device;
 
-  util::kinect::structure::Config config;
-  util::kinect::structure::Color color;
-  util::kinect::structure::Depth depth;
-  util::kinect::structure::Infrared ir;
-  util::kinect::structure::Data data;
-  util::kinect::structure::Info info;
-  util::kinect::structure::Synchro synchro;
-
+  k4a_fps_t fps = K4A_FRAMES_PER_SECOND_30;
+  k4a_device_configuration_t k4a_config;
+  k4a_hardware_version_t version;
+  
   //---------------------------
 };
 
