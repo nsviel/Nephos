@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  void find_data_from_capture(util::kinect::structure::Data* data, k4a::capture capture);
+  void find_data_from_capture(K4A_device* device, k4a::capture capture);
 
   //Subfunction
   void find_color(util::kinect::structure::Data* data, k4a::capture capture);

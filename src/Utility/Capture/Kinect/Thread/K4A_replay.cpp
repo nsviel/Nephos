@@ -45,7 +45,7 @@ void K4A_replay::run_thread(K4A_device* device){
     playback.get_next_capture(&capture);
     if(!capture) break;
 
-    k4a_data->find_data_from_capture(&device->data, capture);
+    k4a_data->find_data_from_capture(device, capture);
     this->sleep_necessary_time(device->device.fps);
 
     this->manage_timestamp(&playback);

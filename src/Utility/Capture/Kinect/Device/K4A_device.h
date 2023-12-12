@@ -27,7 +27,6 @@ public:
   util::kinect::device::Configuration* k4a_configuration;
 
   util::kinect::structure::Device device;
-  util::kinect::structure::Config config;
   util::kinect::structure::Synchro synchro;
   util::kinect::structure::Color color;
   util::kinect::structure::Depth depth;

@@ -13,13 +13,13 @@ Data::Data(){
 Data::~Data(){}
 
 //Main function
-void Data::find_data_from_capture(util::kinect::structure::Data* data, k4a::capture capture){
+void Data::find_data_from_capture(K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
 
-  this->find_color(data, capture);
-  this->find_depth(data, capture);
-  this->find_ir(data, capture);
-  data->data_ready = true;
+  this->find_color(&k4a_device->data, capture);
+  this->find_depth(&k4a_device->data, capture);
+  this->find_ir(&k4a_device->data, capture);
+  k4a_device->device.data_ready = true;
 
   //---------------------------
 }

@@ -4,7 +4,6 @@
 #include <Utility/Capture/Kinect/Structure/Struct_synchro.h>
 #include <Utility/Capture/Kinect/Structure/Struct_image.h>
 #include <Utility/Capture/Kinect/Structure/Struct_color.h>
-#include <Utility/Capture/Kinect/Structure/Struct_config.h>
 #include <Utility/Capture/Kinect/Structure/Struct_data.h>
 #include <Utility/Capture/Kinect/Structure/Struct_depth.h>
 #include <Utility/Capture/Kinect/Structure/Struct_info.h>
@@ -17,7 +16,6 @@ namespace util::kinect::structure{
 
   class Device;
   class Color;
-  class Config;
   class Data;
   class Depth;
   class Info;

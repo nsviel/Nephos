@@ -61,7 +61,7 @@ void Capture::vec_device_tab(){
   //---------------------------
 }
 void Capture::device_tab(K4A_device* device){
-  if(!device->data.data_ready){return;}
+  if(!device->device.data_ready){return;}
   //---------------------------
 
   //Close device button
