@@ -32,14 +32,14 @@ void K4A_device::init(){
   //Device cloud
   this->object = new eng::structure::Object();
   object->name = device.name;
-  //object->ID = eng_scene->get_current_ID_obj();
+  eng_scene->insert_object_scene(object);
 
   //---------------------------
 }
 void K4A_device::draw_cloud(){
   //---------------------------
 
-  eng_scene->insert_object_scene(object);
+  eng_scene->update_object(object);
 
   //---------------------------
 }

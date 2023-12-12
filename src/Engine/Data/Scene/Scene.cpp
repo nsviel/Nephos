@@ -100,6 +100,14 @@ void Scene::insert_object_scene(eng::structure::Object* object){
 
   //---------------------------
 }
+void Scene::update_object(eng::structure::Object* object){
+  //---------------------------
+
+  vk_engine->insert_object_in_engine(object);
+  attributManager->compute_MinMax(object);
+
+  //---------------------------
+}
 void Scene::delete_scene_object(eng::structure::Object* object){
   //---------------------------
 
@@ -154,9 +162,6 @@ void Scene::selected_object_next(){
 }
 void Scene::provide_new_ID(eng::structure::Object* object){
   //----------------------------
-
-  say(object->name);
-  say(object->ID);
 
   if(object->ID == -1){
     object->ID = ID_obj++;
