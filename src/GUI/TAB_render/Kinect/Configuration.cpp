@@ -282,7 +282,7 @@ void Configuration::configuration_general(){
     device->config.fps = K4A_FRAMES_PER_SECOND_5;
   }
 
-  ImGui::Checkbox("Disable streaming LED", &device->config.disable_streaming_indicator);
+  ImGui::Checkbox("Disable streaming LED", &device->synchro.disable_streaming_indicator);
 
   //---------------------------
 }

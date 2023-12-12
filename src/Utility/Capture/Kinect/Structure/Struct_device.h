@@ -21,6 +21,7 @@ struct Device{
   util::kinect::structure::Infrared ir;
   util::kinect::structure::Data data;
   util::kinect::structure::Info info;
+  util::kinect::structure::Synchro synchro;
 
   //---------------------------
 };

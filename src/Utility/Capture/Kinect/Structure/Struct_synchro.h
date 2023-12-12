@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 
 namespace util::kinect::structure{
 
