@@ -24,6 +24,7 @@ Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, 
   this->vec_gui_stream.push_back(new gui::media::Stream(gui));
   this->vec_gui_stream.push_back(new gui::media::Stream(gui));
   this->vec_gui_stream.push_back(new gui::media::Stream(gui));
+  this->vec_gui_stream.push_back(new gui::media::Stream(gui));
 
   //---------------------------
 }
@@ -92,6 +93,12 @@ void Capture::device_tab(K4A_device* k4a_device){
     }
 
     ImGui::SetNextItemWidth(100);
+    if (ImGui::BeginTabItem("Color from depth##4567", NULL)){
+      this->draw_camera_color_from_depth(k4a_device, image_size);
+      ImGui::EndTabItem();
+    }
+
+    ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Depth##4567", NULL)){
       this->draw_camera_depth(k4a_device, image_size);
       ImGui::EndTabItem();
@@ -121,6 +128,22 @@ void Capture::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[0]->draw_stream(&struct_image, image_size);
+  this->overlay_capture(k4a_device, data_color, image_size, image_pose);
+
+  //---------------------------
+}
+void Capture::draw_camera_color_from_depth(K4A_device* k4a_device, ImVec2 image_size){
+  eng::kinect::structure::Image* data_color = &k4a_device->color.image_depth;
+  //---------------------------
+
+  util::base::Image struct_image;
+  struct_image.buffer = data_color->buffer;
+  struct_image.width = data_color->width;
+  struct_image.height = data_color->height;
+  struct_image.format = data_color->format;
+
+  ImVec2 image_pose = ImGui::GetCursorScreenPos();
+  vec_gui_stream[3]->draw_stream(&struct_image, image_size);
   this->overlay_capture(k4a_device, data_color, image_size, image_pose);
 
   //---------------------------

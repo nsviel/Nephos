@@ -20,7 +20,7 @@ public:
   //Subfunction
   void find_depth(K4A_device* k4a_device, k4a::capture capture);
   void find_color(K4A_device* k4a_device, k4a::capture capture);
-  void find_color_depth(K4A_device* k4a_device, k4a::capture capture);
+  void find_color_from_depth(K4A_device* k4a_device, k4a::capture capture);
   void find_ir(K4A_device* k4a_device, k4a::capture capture);
 
 private:

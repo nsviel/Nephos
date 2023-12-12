@@ -29,6 +29,7 @@ public:
 
   //Device capture windows
   void draw_camera_color(K4A_device* device, ImVec2 image_size);
+  void draw_camera_color_from_depth(K4A_device* k4a_device, ImVec2 image_size);
   void draw_camera_depth(K4A_device* device, ImVec2 image_size);
   void draw_camera_ir(K4A_device* device, ImVec2 image_size);
 

@@ -18,7 +18,7 @@ void Data::find_data_from_capture(K4A_device* k4a_device, k4a::capture capture){
 
   this->find_depth(k4a_device, capture);
   this->find_color(k4a_device, capture);
-  this->find_color_depth(k4a_device, capture);
+  this->find_color_from_depth(k4a_device, capture);
   this->find_ir(k4a_device, capture);
   k4a_device->device.data_ready = true;
 
@@ -61,21 +61,22 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
 
   //---------------------------
 }
-void Data::find_color_depth(K4A_device* k4a_device, k4a::capture capture){
+void Data::find_color_from_depth(K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
 
   k4a::image color = capture.get_color_image();
   if (!color || !color.is_valid()) {return;}
-  color = k4a_device->device.transformation.color_image_to_depth_camera(k4a_device->depth.image.image, color);
-  k4a_device->color.image_depth.image = color;
-  k4a_device->color.image_depth.name = "color";
-  k4a_device->color.image_depth.buffer = color.get_buffer();
-  k4a_device->color.image_depth.size = color.get_size();
-  k4a_device->color.image_depth.width = color.get_width_pixels();
-  k4a_device->color.image_depth.height = color.get_height_pixels();
+  k4a::image color_depth = k4a_device->device.transformation.color_image_to_depth_camera(k4a_device->depth.image.image, color);
+  k4a_device->color.image_depth.image = color_depth;
+  k4a_device->color.image_depth.name = "color_from_depth";
+  k4a_device->color.image_depth.buffer = color_depth.get_buffer();
+  k4a_device->color.image_depth.size = color_depth.get_size();
+  k4a_device->color.image_depth.width = color_depth.get_width_pixels();
+  k4a_device->color.image_depth.height = color_depth.get_height_pixels();
   k4a_device->color.image_depth.format = "B8G8R8A8_SRGB";
   k4a_device->color.image_depth.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
   color.reset();
+  color_depth.reset();
 
   //---------------------------
 }
