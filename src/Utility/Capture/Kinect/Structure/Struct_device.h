@@ -14,8 +14,9 @@ struct Device{
   k4a::device* device;
   bool data_ready = false;
   bool is_virtual;
+  float fps;
 
-  k4a_fps_t fps = K4A_FRAMES_PER_SECOND_30;
+  k4a_fps_t fps_mode = K4A_FRAMES_PER_SECOND_30;
   k4a_device_configuration_t k4a_config;
   k4a_hardware_version_t version;
 

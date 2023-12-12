@@ -7,6 +7,8 @@
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
 
+class FPS_counter;
+
 
 class K4A_replay
 {
@@ -35,6 +37,7 @@ public:
   inline void set_current_timestamp(float value){this->ts_seek = value;}
 
 private:
+  FPS_counter* fps_counter;
   util::kinect::data::Data* k4a_data;
 
   std::thread thread;

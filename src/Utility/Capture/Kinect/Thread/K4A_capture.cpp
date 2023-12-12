@@ -1,10 +1,13 @@
 #include "K4A_capture.h"
 
+#include <Utility/Function/Timer/FPS_counter.h>
+
 
 //Constructor / Destructor
 K4A_capture::K4A_capture(){
   //---------------------------
 
+  this->fps_counter = new FPS_counter(60);
   this->k4a_data = new util::kinect::data::Data();
 
   //---------------------------
@@ -60,6 +63,9 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
 
     //Capture data
     k4a_data->find_data_from_capture(k4a_device, capture);
+    fps_counter->update();
+
+    k4a_device->device.fps = fps_counter->get_fps();
   }
 
   if(is_recording){

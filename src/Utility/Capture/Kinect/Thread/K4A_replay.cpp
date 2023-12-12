@@ -1,10 +1,13 @@
 #include "K4A_replay.h"
 
+#include <Utility/Function/Timer/FPS_counter.h>
+
 
 //Constructor / Destructor
 K4A_replay::K4A_replay(){
   //---------------------------
 
+  this->fps_counter = new FPS_counter(60);
   this->k4a_data = new util::kinect::data::Data();
 
   //---------------------------
@@ -18,23 +21,23 @@ K4A_replay::~K4A_replay(){
 }
 
 //Main function
-void K4A_replay::start_thread(K4A_device* device){
+void K4A_replay::start_thread(K4A_device* k4a_device){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&K4A_replay::run_thread, this, device);
+    this->thread = std::thread(&K4A_replay::run_thread, this, k4a_device);
   }
 
   //---------------------------
 }
-void K4A_replay::run_thread(K4A_device* device){
+void K4A_replay::run_thread(K4A_device* k4a_device){
   //---------------------------
 
   //Get info about file
-  this->find_duration(device->file);
+  this->find_duration(k4a_device->file);
 
   //Init playback
-  k4a::playback playback = k4a::playback::open(device->file.path.c_str());
+  k4a::playback playback = k4a::playback::open(k4a_device->file.path.c_str());
   if(!playback) return;
   this->thread_running = true;
   this->thread_play = true;
@@ -45,12 +48,15 @@ void K4A_replay::run_thread(K4A_device* device){
     playback.get_next_capture(&capture);
     if(!capture) break;
 
-    k4a_data->find_data_from_capture(device, capture);
-    this->sleep_necessary_time(device->device.fps);
+    k4a_data->find_data_from_capture(k4a_device, capture);
+    this->sleep_necessary_time(k4a_device->device.fps_mode);
 
     this->manage_timestamp(&playback);
     this->manage_pause();
-    this->manage_restart(&playback, device);
+    this->manage_restart(&playback, k4a_device);
+
+    fps_counter->update();
+    k4a_device->device.fps = fps_counter->get_fps();
   }
 
   playback.close();

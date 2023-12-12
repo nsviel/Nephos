@@ -44,13 +44,13 @@ void Capture::vec_device_tab(){
 
   if(ImGui::BeginTabBar("devices_tab##4567")){
     for(int i=0; i<list_device.size(); i++){
-      K4A_device* device = *std::next(list_device.begin(), i);
+      K4A_device* k4a_device = *std::next(list_device.begin(), i);
 
-      string str_virtual = device->device.is_virtual ? "virtual_" : "";
-      string title = "kinect_" + str_virtual + to_string(device->device.index);
+      string str_virtual = k4a_device->device.is_virtual ? "virtual_" : "";
+      string title = "kinect_" + str_virtual + to_string(k4a_device->device.index);
 
       if(ImGui::BeginTabItem(title.c_str(), NULL)){
-        this->device_tab(device);
+        this->device_tab(k4a_device);
         ImGui::EndTabItem();
       }
 
@@ -60,16 +60,16 @@ void Capture::vec_device_tab(){
 
   //---------------------------
 }
-void Capture::device_tab(K4A_device* device){
-  if(!device->device.data_ready){return;}
+void Capture::device_tab(K4A_device* k4a_device){
+  if(!k4a_device->device.data_ready){return;}
   //---------------------------
 
   //Close device button
-  if(!device->device.is_virtual){
+  if(!k4a_device->device.is_virtual){
     ImVec2 region = ImGui::GetContentRegionAvail();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if(ImGui::Button("Close", ImVec2(region.x, 0))){
-      k4a_swarm->delete_device(device);
+      k4a_swarm->delete_device(k4a_device);
     }
     ImGui::PopStyleColor(1);
   }
@@ -81,27 +81,27 @@ void Capture::device_tab(K4A_device* device){
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("All##4567", NULL)){
       image_size = ImVec2(image_size.x, image_size.y/3-3.33);
-      this->draw_camera_color(device, image_size);
-      this->draw_camera_depth(device, image_size);
-      this->draw_camera_ir(device, image_size);
+      this->draw_camera_color(k4a_device, image_size);
+      this->draw_camera_depth(k4a_device, image_size);
+      this->draw_camera_ir(k4a_device, image_size);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Color##4567", NULL)){
-      this->draw_camera_color(device, image_size);
+      this->draw_camera_color(k4a_device, image_size);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Depth##4567", NULL)){
-      this->draw_camera_depth(device, image_size);
+      this->draw_camera_depth(k4a_device, image_size);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("IR##4567", NULL)){
-      this->draw_camera_ir(device, image_size);
+      this->draw_camera_ir(k4a_device, image_size);
       ImGui::EndTabItem();
     }
     ImGui::EndTabBar();
@@ -111,8 +111,8 @@ void Capture::device_tab(K4A_device* device){
 }
 
 //Device capture windows
-void Capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
-  util::kinect::structure::Image* data_color = &device->color.image;
+void Capture::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
+  util::kinect::structure::Image* data_color = &k4a_device->color.image;
   //---------------------------
 
   util::base::Image struct_image;
@@ -124,15 +124,15 @@ void Capture::draw_camera_color(K4A_device* device, ImVec2 image_size){
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[0]->draw_stream(&struct_image, image_size);
-  this->overlay_capture(data_color, image_size, image_pose);
+  this->overlay_capture(k4a_device, data_color, image_size, image_pose);
 
   //---------------------------
 }
-void Capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
-  util::kinect::structure::Image* data_depth = &device->depth.image;
+void Capture::draw_camera_depth(K4A_device* k4a_device, ImVec2 image_size){
+  util::kinect::structure::Image* data_depth = &k4a_device->depth.image;
   //---------------------------
 
-  uint8_t* new_buffer = k4a_depth->convert_depth_into_color(device);
+  uint8_t* new_buffer = k4a_depth->convert_depth_into_color(k4a_device);
 
   util::base::Image struct_image;
   struct_image.buffer = new_buffer;
@@ -142,17 +142,17 @@ void Capture::draw_camera_depth(K4A_device* device, ImVec2 image_size){
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[1]->draw_stream(&struct_image, image_size);
-  this->overlay_capture(data_depth, image_size, image_pose);
+  this->overlay_capture(k4a_device, data_depth, image_size, image_pose);
 
   delete[] new_buffer;
 
   //---------------------------
 }
-void Capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
-  util::kinect::structure::Image* data_ir = &device->ir.image;
+void Capture::draw_camera_ir(K4A_device* k4a_device, ImVec2 image_size){
+  util::kinect::structure::Image* data_ir = &k4a_device->ir.image;
   //---------------------------
 
-  uint8_t* new_buffer = k4a_infrared->convert_ir_into_color(device);
+  uint8_t* new_buffer = k4a_infrared->convert_ir_into_color(k4a_device);
 
   util::base::Image struct_image;
   struct_image.buffer = new_buffer;
@@ -162,7 +162,7 @@ void Capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[2]->draw_stream(&struct_image, image_size);
-  this->overlay_capture(data_ir, image_size, image_pose);
+  this->overlay_capture(k4a_device, data_ir, image_size, image_pose);
 
   delete[] new_buffer;
 
@@ -170,7 +170,7 @@ void Capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
 }
 
 //Overlay
-void Capture::overlay_capture(util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose){
+void Capture::overlay_capture(K4A_device* k4a_device, util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose){
   //---------------------------
 
   //Hovered pixel
@@ -192,17 +192,17 @@ void Capture::overlay_capture(util::kinect::structure::Image* image, ImVec2 imag
   flags |= ImGuiWindowFlags_NoScrollbar;
 
   if (ImGui::Begin(image->name.c_str(), nullptr, flags)){
-    this->overlay_information(image);
+    this->overlay_information(k4a_device, image);
     this->overlay_pixel(image, image_size);
   }
   ImGui::End();
 
   //---------------------------
 }
-void Capture::overlay_information(util::kinect::structure::Image* image){
+void Capture::overlay_information(K4A_device* k4a_device, util::kinect::structure::Image* image){
   //---------------------------
 
-  ImGui::Text("Average frame rate: %.2f fps", 5.0);
+  ImGui::Text("Frame rate: %.2f fps", k4a_device->device.fps);
   ImGui::Text("Timestamp: %.2f s", image->timestamp);
   if(image->temperature != -1){
     ImGui::Text("Temperature: %.2f°", image->temperature);

@@ -34,8 +34,8 @@ public:
 
   //Overlay
   void compute_hovered_pixel(util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
-  void overlay_capture(util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose);
-  void overlay_information(util::kinect::structure::Image* image);
+  void overlay_capture(K4A_device* device, util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose);
+  void overlay_information(K4A_device* device, util::kinect::structure::Image* image);
   void overlay_pixel(util::kinect::structure::Image* image, ImVec2 image_size);
 
 private:

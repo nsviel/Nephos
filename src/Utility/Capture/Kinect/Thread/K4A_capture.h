@@ -6,6 +6,8 @@
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
 
+class FPS_counter;
+
 
 class K4A_capture
 {
@@ -27,6 +29,7 @@ public:
   inline bool* get_thread_pause(){return &thread_pause;}
 
 private:
+  FPS_counter* fps_counter;
   util::kinect::data::Data* k4a_data;
 
   std::thread thread;
