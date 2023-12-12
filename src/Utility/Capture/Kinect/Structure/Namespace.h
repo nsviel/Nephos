@@ -9,6 +9,7 @@
 #include <Utility/Capture/Kinect/Structure/Struct_infrared.h>
 #include <Utility/Capture/Kinect/Structure/Struct_swarm.h>
 #include <Utility/Capture/Kinect/Structure/Struct_device.h>
+#include <Utility/Capture/Kinect/Structure/Struct_synchro.h>
 
 
 
@@ -24,6 +25,7 @@ namespace util::kinect::structure{
   class Swarm;
   class Device;
   class Image;
+  class Synchro;
 
   //---------------------------
 }

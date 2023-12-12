@@ -3,6 +3,7 @@
 #include <k4a/k4a.hpp>
 #include <string>
 
+namespace util::kinect::structure{
 
 struct Exposure{
   //---------------------------
@@ -86,8 +87,6 @@ struct Power_frequency{
   //---------------------------
 };
 
-namespace util::kinect::structure{
-
 struct Color{
   //---------------------------
 
@@ -97,15 +96,15 @@ struct Color{
   k4a_color_resolution_t resolution = K4A_COLOR_RESOLUTION_720P;
 
   //Control
-  Exposure exposure;
-  White_balance white_balance;
-  Brightness brightness;
-  Contrast contrast;
-  Saturation saturation;
-  Sharpness sharpness;
-  Gain gain;
-  Backlight_compensation backlight_compensation;
-  Power_frequency power_frequency;
+  util::kinect::structure::Exposure exposure;
+  util::kinect::structure::White_balance white_balance;
+  util::kinect::structure::Brightness brightness;
+  util::kinect::structure::Contrast contrast;
+  util::kinect::structure::Saturation saturation;
+  util::kinect::structure::Sharpness sharpness;
+  util::kinect::structure::Gain gain;
+  util::kinect::structure::Backlight_compensation backlight_compensation;
+  util::kinect::structure::Power_frequency power_frequency;
 
   //---------------------------
 };
