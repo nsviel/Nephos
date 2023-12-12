@@ -6,6 +6,9 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Capture/Kinect/Namespace.h>
 
+#include <k4a/k4a.h>
+#include <k4a/k4a.hpp>
+
 class K4A_swarm;
 
 

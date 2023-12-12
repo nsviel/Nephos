@@ -1,9 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
-#include <k4a/k4a.hpp>
-#include <k4arecord/playback.hpp>
 #include <Utility/Capture/Kinect/Structure/Namespace.h>
+#include <Utility/Specific/common.h>
+
 
 class K4A_device;
 

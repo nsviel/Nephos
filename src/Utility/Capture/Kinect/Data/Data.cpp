@@ -16,7 +16,18 @@ Data::~Data(){}
 void Data::find_data_from_capture(util::kinect::structure::Data* data, k4a::capture capture){
   //---------------------------
 
-  //Color
+  this->find_color(data, capture);
+  this->find_depth(data, capture);
+  this->find_ir(data, capture);
+  data->data_ready = true;
+
+  //---------------------------
+}
+
+//Subfunction
+void Data::find_color(util::kinect::structure::Data* data, k4a::capture capture){
+  //---------------------------
+
   k4a::image color = capture.get_color_image();
   if (!color || !color.is_valid()) {return;}
   data->color.name = "color";
@@ -28,7 +39,11 @@ void Data::find_data_from_capture(util::kinect::structure::Data* data, k4a::capt
   data->color.timestamp = static_cast<float>(color.get_device_timestamp().count());
   color.reset();
 
-  //Depth
+  //---------------------------
+}
+void Data::find_depth(util::kinect::structure::Data* data, k4a::capture capture){
+  //---------------------------
+
   k4a::image depth = capture.get_depth_image();
   if (!depth || !depth.is_valid()) {return;}
   data->depth.name = "depth";
@@ -40,7 +55,11 @@ void Data::find_data_from_capture(util::kinect::structure::Data* data, k4a::capt
   data->depth.timestamp = static_cast<float>(depth.get_device_timestamp().count());
   depth.reset();
 
-  //IR
+  //---------------------------
+}
+void Data::find_ir(util::kinect::structure::Data* data, k4a::capture capture){
+  //---------------------------
+
   k4a::image ir = capture.get_ir_image();
   if (!ir || !ir.is_valid()) {return;}
   data->ir.name = "ir";
@@ -51,8 +70,6 @@ void Data::find_data_from_capture(util::kinect::structure::Data* data, k4a::capt
   data->ir.format = "B8G8R8A8_SRGB";
   data->ir.timestamp = static_cast<float>(ir.get_device_timestamp().count());
   ir.reset();
-
-  data->data_ready = true;
 
   //---------------------------
 }

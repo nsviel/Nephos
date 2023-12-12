@@ -1,6 +1,5 @@
 #pragma once
 
-#include <k4a/k4a.hpp>
 #include <string>
 
 
@@ -24,9 +23,9 @@ struct K4A_image{
 struct Data{
   //---------------------------
 
-  K4A_image color;
-  K4A_image depth;
-  K4A_image ir;
+  util::kinect::structure::K4A_image color;
+  util::kinect::structure::K4A_image depth;
+  util::kinect::structure::K4A_image ir;
   bool data_ready = false;
 
   //---------------------------
