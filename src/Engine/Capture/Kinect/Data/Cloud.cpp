@@ -36,7 +36,7 @@ void Cloud::retrieve_location(K4A_device* k4a_device){
 
   // Color stuff
   eng::kinect::structure::Color* color = &k4a_device->color;
-  uint8_t* color_data = color->image.buffer;
+  uint8_t* color_data = color->image_depth.buffer;
   std::vector<glm::vec4> vec_rgba;
 
   // Cloud stuff

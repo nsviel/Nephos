@@ -114,6 +114,7 @@ struct Color{
 
   eng::kinect::structure::Color_config config;
   eng::kinect::structure::Image image;
+  eng::kinect::structure::Image image_depth;
 
   //---------------------------
 };
