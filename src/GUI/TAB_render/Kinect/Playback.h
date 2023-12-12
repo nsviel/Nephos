@@ -4,6 +4,8 @@
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/Kinect/Namespace.h>
 
+class K4A_swarm;
+
 
 namespace gui::kinect{
 
@@ -27,6 +29,7 @@ public:
 
 private:
   eng::kinect::Kinect* kinect;
+  K4A_swarm* k4a_swarm;
 };
 
 }

@@ -2,6 +2,7 @@
 
 #include <image/IconsFontAwesome5.h>
 #include <Engine/Capture/Kinect/Thread/K4A_replay.h>
+#include <Engine/Capture/Kinect/Device/K4A_swarm.h>
 
 
 namespace gui::kinect{
@@ -11,6 +12,7 @@ Playback::Playback(eng::kinect::Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;
+  this->k4a_swarm = kinect->get_k4a_swarm();
 
   //---------------------------
 }
@@ -18,7 +20,7 @@ Playback::~Playback(){}
 
 //Main function
 void Playback::kinect_playback(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -36,7 +38,7 @@ void Playback::kinect_playback(){
 
 //Subfunction
 void Playback::show_player(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -87,7 +89,7 @@ void Playback::show_player(){
   //---------------------------
 }
 void Playback::show_file(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -108,7 +110,7 @@ void Playback::show_file(){
   //---------------------------
 }
 void Playback::show_recording(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -144,7 +146,7 @@ void Playback::show_recording(){
   //---------------------------
 }
 void Playback::show_stream(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -180,7 +182,7 @@ void Playback::show_stream(){
   //---------------------------
 }
 void Playback::show_synchro(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -216,7 +218,7 @@ void Playback::show_synchro(){
   //---------------------------
 }
 void Playback::show_device(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 

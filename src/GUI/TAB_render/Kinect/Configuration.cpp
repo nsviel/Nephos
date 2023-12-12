@@ -21,7 +21,7 @@ Configuration::~Configuration(){}
 
 //Main function
 void Configuration::kinect_configuration(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -36,7 +36,7 @@ void Configuration::kinect_configuration(){
 
 //Subfunction
 void Configuration::kinect_devices(){
-  list<K4A_device*>& list_device = kinect->get_list_device();
+  list<K4A_device*>& list_device = k4a_swarm->get_list_device();
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -44,7 +44,7 @@ void Configuration::kinect_devices(){
   flags |= ImGuiTableFlags_RowBg;
   static int selected_device = -1;
   if(ImGui::BeginTable("database_view", 3, flags)){
-    if(kinect->get_nb_device_real() == 0){
+    if(k4a_swarm->get_nb_device_real() == 0){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       ImGui::TableNextColumn();
@@ -68,7 +68,7 @@ void Configuration::kinect_devices(){
         ImGui::Text("%d", device->device.index);
         ImGui::TableNextColumn();
         if (ImGui::Selectable(device->device.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
-          kinect->set_selected_device(device);
+          k4a_swarm->set_selected_device(device);
           selected_device = i;
         }
         ImGui::PopID();
@@ -85,7 +85,7 @@ void Configuration::kinect_devices(){
   //---------------------------
 }
 void Configuration::configuration_device(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -106,7 +106,7 @@ void Configuration::configuration_device(){
   //---------------------------
 }
 void Configuration::configuration_depth(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -141,7 +141,7 @@ void Configuration::configuration_depth(){
   //---------------------------
 }
 void Configuration::configuration_color(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -264,7 +264,7 @@ void Configuration::configuration_color(){
   //---------------------------
 }
 void Configuration::configuration_general(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 
@@ -287,7 +287,7 @@ void Configuration::configuration_general(){
   //---------------------------
 }
 void Configuration::firmware_info(){
-  K4A_device* device = kinect->get_selected_device();
+  K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
 

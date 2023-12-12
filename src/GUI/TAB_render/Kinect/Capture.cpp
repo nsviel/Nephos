@@ -40,7 +40,7 @@ void Capture::design_panel(){
 
 //All devices
 void Capture::vec_device_tab(){
-  list<K4A_device*>& list_device = kinect->get_list_device();
+  list<K4A_device*>& list_device = k4a_swarm->get_list_device();
   //---------------------------
 
   if(ImGui::BeginTabBar("devices_tab##4567")){
