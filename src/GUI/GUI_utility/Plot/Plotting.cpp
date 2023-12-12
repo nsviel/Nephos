@@ -1,16 +1,15 @@
 #include "Plotting.h"
 
-#include <Node/GUI.h>
-
 
 namespace gui::plot{
 
 //Constructor / Destructor
-Plotting::Plotting(GUI* gui){
+Plotting::Plotting(){
   //---------------------------
 
 
   //---------------------------
+  this->implot_style();
 }
 Plotting::~Plotting(){}
 
@@ -25,13 +24,13 @@ void Plotting::open_file(){
   cpt++;
 
   vec_c.push_back(cpt);
-  vec_d.push_back(k4a_device->device.fps);
+  vec_d.push_back(30);
 
   if(vec_c.size() > 100) vec_c.erase(vec_c.begin());
   if(vec_d.size() > 100) vec_d.erase(vec_d.begin());
 
   ImGui::Begin("My Window");
-  if(ImPlot::BeginPlot("##plot", ImVec2(-1, -1))){
+  if(ImPlot::BeginPlot("##plot", ImVec2(-1, -1), ImPlotFlags_NoMouseText)){
     ImPlot::PushStyleVar(ImPlotStyleVar_FillAlpha, 0.5f);
     ImPlot::SetupAxisLimitsConstraints(ImAxis_Y1, 0, 60);
     ImPlot::SetupAxisZoomConstraints(ImAxis_Y1, 0, 60);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GUI/GUI_utility/Base/Namespace.h>
+#include <GUI/GUI_utility/Plot/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class GUI;
@@ -29,6 +30,7 @@ public:
 
 private:
   GUI* gui;
+  gui::plot::Plotting* gui_plot;
   VK_info* vk_info;
   Timer timer;
 

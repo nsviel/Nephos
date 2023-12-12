@@ -2,8 +2,6 @@
 
 #include <Utility/Specific/common.h>
 
-class GUI;
-
 
 namespace gui::plot{
 
@@ -11,7 +9,7 @@ class Plotting
 {
 public:
   //Constructor / Destructor
-  Plotting(GUI* gui);
+  Plotting();
   ~Plotting();
 
 public:
