@@ -1,6 +1,7 @@
 #pragma once
 
 #include <k4a/k4a.hpp>
+#include <k4arecord/playback.hpp>
 #include <string>
 
 
@@ -17,6 +18,7 @@ struct Device{
   float fps;
 
   k4a::device* device;
+  k4a::playback* playback;
   k4a::calibration calibration;
   k4a::transformation transformation;
 

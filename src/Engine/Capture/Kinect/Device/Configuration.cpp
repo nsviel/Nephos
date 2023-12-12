@@ -4,12 +4,24 @@
 namespace eng::kinect::configuration{
 
 //Main function
+void init_device_calibration(K4A_device* k4a_device){
+  //---------------------------
+
+  k4a_device->device.calibration = k4a_device->device.device->get_calibration(k4a_device->depth.config.mode, k4a_device->color.config.resolution);
+
+  //---------------------------
+}
+void init_playback_calibration(K4A_device* k4a_device){
+  //---------------------------
+
+  k4a_device->device.calibration = k4a_device->device.playback->get_calibration();
+
+  //---------------------------
+}
 void init_device_transformation(K4A_device* k4a_device){
   //---------------------------
 
-  eng::kinect::structure::Device& device = k4a_device->device;
-  device.calibration = device.device->get_calibration(k4a_device->depth.config.mode, k4a_device->color.config.resolution);
-  device.transformation = k4a::transformation(device.calibration);
+  k4a_device->device.transformation = k4a::transformation(k4a_device->device.calibration);
 
   //---------------------------
 }

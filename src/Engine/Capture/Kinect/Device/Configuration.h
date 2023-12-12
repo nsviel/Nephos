@@ -11,6 +11,8 @@ class K4A_device;
 namespace eng::kinect::configuration{
 
   //Main function
+  void init_playback_calibration(K4A_device* k4a_device);
+  void init_device_calibration(K4A_device* k4a_device);
   void init_device_transformation(K4A_device* k4a_device);
   void make_k4a_configuration(K4A_device* k4a_device);
   void find_file_information(K4A_device* k4a_device, string path);

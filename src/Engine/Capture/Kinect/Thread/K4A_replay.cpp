@@ -42,6 +42,11 @@ void K4A_replay::run_thread(K4A_device* k4a_device){
   if(!playback) return;
   this->thread_running = true;
   this->thread_play = true;
+  k4a_device->device.playback = &playback;
+
+  eng::kinect::configuration::make_k4a_configuration(k4a_device);
+  eng::kinect::configuration::init_playback_calibration(k4a_device);
+  eng::kinect::configuration::init_device_transformation(k4a_device);
 
   //Playback thread
   k4a::capture capture;
