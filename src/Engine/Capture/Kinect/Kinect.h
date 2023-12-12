@@ -26,6 +26,7 @@ public:
   //Main function
   void init();
   void restart_capture();
+  void loop();
 
   inline K4A_swarm* get_k4a_swarm(){return k4a_swarm;}
 

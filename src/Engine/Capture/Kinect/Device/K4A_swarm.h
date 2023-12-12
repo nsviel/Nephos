@@ -21,6 +21,7 @@ public:
   K4A_device* create_device_real(int index);
   void delete_device(K4A_device* device);
   void refresh_connected_device_list();
+  void draw_all_clouds();
 
   inline K4A_device* get_selected_device(){return str_swarm->selected_device;}
   inline list<K4A_device*>& get_list_device(){return str_swarm->list_device;}

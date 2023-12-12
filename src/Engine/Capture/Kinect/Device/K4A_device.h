@@ -20,6 +20,7 @@ public:
 public:
   //Main function
   void init();
+  void draw_cloud();
   void run_capture();
   void run_replay(string path);
   void stop_threads();

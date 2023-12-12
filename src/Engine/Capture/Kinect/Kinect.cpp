@@ -50,5 +50,12 @@ void Kinect::restart_capture(){
 
   //---------------------------
 }
+void Kinect::loop(){
+  //---------------------------
+
+  k4a_swarm->draw_all_clouds();
+
+  //---------------------------
+}
 
 }

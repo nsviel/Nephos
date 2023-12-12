@@ -115,3 +115,15 @@ void K4A_swarm::refresh_connected_device_list(){
 
   //---------------------------
 }
+void K4A_swarm::draw_all_clouds(){
+  list<K4A_device*>& list_device = str_swarm->list_device;
+  //---------------------------
+
+  //Run all thread
+  for(int i=0; i<list_device.size(); i++){
+    K4A_device* device = *std::next(list_device.begin(), i);
+    device->draw_cloud();
+  }
+
+  //---------------------------
+}

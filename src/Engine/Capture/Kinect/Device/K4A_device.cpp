@@ -28,10 +28,16 @@ void K4A_device::init(){
   //Device name
   string str_virtual = device.is_virtual ? "virtual_" : "";
   this->device.name = "kinect_" + str_virtual + to_string(device.index);
-  
+
   //Device cloud
   this->object = new eng::structure::Object();
   object->name = device.name;
+
+  //---------------------------
+}
+void K4A_device::draw_cloud(){
+  //---------------------------
+
   eng_scene->insert_object_scene(object);
 
   //---------------------------

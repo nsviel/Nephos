@@ -26,6 +26,8 @@ void Node::init(){
 void Node::run(){
   //---------------------------
 
+  kinect->loop();
+
   //---------------------------
 }
 void Node::clean(){
