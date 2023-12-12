@@ -41,8 +41,8 @@ void Infrared::find_ir_level(K4A_device* device){
   //---------------------------
 
   if(device->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){
-    device->ir.level_min = 0;
-    device->ir.level_max = 100;
+    device->ir.config.level_min = 0;
+    device->ir.config.level_max = 100;
   }
   else{
     device->depth.config.range_min = 0;
