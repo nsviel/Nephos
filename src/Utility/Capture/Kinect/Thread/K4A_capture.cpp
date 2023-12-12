@@ -41,6 +41,11 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
   k4a::capture capture;
   k4a::record recording;
 
+  //Configuration
+  k4a_device->device.device = &device;
+  util::kinect::configuration::make_k4a_configuration(k4a_device);
+  util::kinect::configuration::init_device_transformation(k4a_device);
+
   //Start camera
   k4a_device->device.version = device.get_version();
   device.start_cameras(&k4a_device->device.k4a_config);

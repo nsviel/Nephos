@@ -22,7 +22,6 @@ void K4A_device::run_capture(){
   //---------------------------
 
   if(!k4a_capture->is_thread_running()){
-    util::kinect::configuration::make_k4a_configuration(this);
     k4a_capture->start_thread(this);
   }
 
