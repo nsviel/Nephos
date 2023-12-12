@@ -4,7 +4,7 @@
 #include <Engine/Capture/Kinect/Namespace.h>
 
 
-namespace util::capture{
+namespace eng::capture{
 
 class Node
 {

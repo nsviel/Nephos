@@ -3,7 +3,7 @@
 #include <Node/GUI.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_info.h>
-#include <Engine/Node/Engine.h>
+#include <Engine/Engine.h>
 
 
 namespace gui::engine{

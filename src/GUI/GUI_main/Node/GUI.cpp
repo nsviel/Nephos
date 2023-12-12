@@ -1,6 +1,6 @@
 #include "GUI.h"
 
-#include <Engine/Node/Engine.h>
+#include <Engine/Engine.h>
 #include <Utility/Element/Window.h>
 #include <GUI/GUI_main/Style/GUI_font.h>
 #include <GUI/GUI_main/Render/Render.h>

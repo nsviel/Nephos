@@ -1,7 +1,7 @@
 #include "Init.h"
 
 #include <Node/GUI.h>
-#include <Engine/Node/Engine.h>
+#include <Engine/Engine.h>
 #include <Engine/Data/Namespace.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Info.h>

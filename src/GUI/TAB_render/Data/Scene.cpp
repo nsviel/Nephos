@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-#include <Engine/Node/Engine.h>
+#include <Engine/Engine.h>
 #include <Node/GUI.h>
 #include <GUI/GUI_main/Interface/Tab.h>
 #include <Engine/Data/Scene/Database.h>

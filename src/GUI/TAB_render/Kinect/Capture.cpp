@@ -1,7 +1,7 @@
 #include "Capture.h"
 
 #include <Node/GUI.h>
-#include <Engine/Node/Engine.h>
+#include <Engine/Engine.h>
 #include <Utility/Node/Namespace.h>
 #include <Engine/Capture/Kinect/Device/K4A_swarm.h>
 
@@ -13,8 +13,8 @@ Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, 
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  util::capture::Node* utl_capture = engine->get_utl_capture();
-  
+  eng::capture::Node* utl_capture = engine->get_utl_capture();
+
   this->kinect = utl_capture->get_kinect();
   this->k4a_depth = new util::kinect::data::Depth();
   this->k4a_infrared = new util::kinect::data::Infrared();
