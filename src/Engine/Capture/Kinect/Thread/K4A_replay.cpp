@@ -10,6 +10,7 @@ K4A_replay::K4A_replay(Engine* engine){
 
   this->fps_counter = new FPS_counter(60);
   this->k4a_data = new eng::kinect::data::Data();
+  this->k4a_cloud = new eng::kinect::data::Cloud(engine);
 
   //---------------------------
 }
@@ -55,6 +56,7 @@ void K4A_replay::run_thread(K4A_device* k4a_device){
     if(!capture) break;
 
     k4a_data->find_data_from_capture(k4a_device, capture);
+    k4a_cloud->convert_into_cloud(k4a_device);
     this->sleep_necessary_time(k4a_device->device.fps_mode);
 
     this->manage_timestamp(&playback);

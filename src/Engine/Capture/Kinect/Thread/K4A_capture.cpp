@@ -46,6 +46,7 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
   //Configuration
   k4a_device->device.device = &device;
   eng::kinect::configuration::make_k4a_configuration(k4a_device);
+  eng::kinect::configuration::init_device_calibration(k4a_device);
   eng::kinect::configuration::init_device_transformation(k4a_device);
 
   //Start camera

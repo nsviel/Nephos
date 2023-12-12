@@ -40,6 +40,7 @@ public:
 private:
   FPS_counter* fps_counter;
   eng::kinect::data::Data* k4a_data;
+  eng::kinect::data::Cloud* k4a_cloud;
 
   std::thread thread;
   float ts_seek = -1;
