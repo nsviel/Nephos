@@ -173,9 +173,11 @@ void Capture::draw_camera_ir(K4A_device* device, ImVec2 image_size){
 void Capture::overlay_capture(util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose){
   //---------------------------
 
+  //Hovered pixel
   bool image_hovered = ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenOverlappedByWindow);
   this->compute_hovered_pixel(image, image_size, image_pose, image_hovered);
 
+  //Overlay
   ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
   ImGui::SetNextWindowBgAlpha(0.3f);
   ImGuiWindowFlags flags;
@@ -192,8 +194,6 @@ void Capture::overlay_capture(util::kinect::structure::Image* image, ImVec2 imag
   if (ImGui::Begin(image->name.c_str(), nullptr, flags)){
     this->overlay_information(image);
     this->overlay_pixel(image, image_size);
-
-
   }
   ImGui::End();
 
@@ -215,6 +215,7 @@ void Capture::overlay_pixel(util::kinect::structure::Image* image, ImVec2 image_
 
   if(image->hovered_pixel_x != -1 && image->hovered_pixel_y != -1){
     ImGui::Text("Hovered pixel: %.0f %.0f", image->hovered_pixel_x, image->hovered_pixel_y);
+    ImGui::Text("Hovered pixel: %.3f", image->hovered_pixel_m);
   }
 
   //---------------------------
@@ -227,7 +228,7 @@ void Capture::compute_hovered_pixel(util::kinect::structure::Image* image, ImVec
   image->hovered_pixel_y = -1;
 
   // Compute hovered pixel coordinates
-  if(image_hovered){
+  if(image_hovered && (image->name == "depth" || image->name == "ir")){
     ImVec2 mousePos = ImGui::GetIO().MousePos;
     ImVec2 hoveredUIPixel;
     ImVec2 sourceImageDimensions = ImVec2(image->width, image->height);
@@ -243,6 +244,10 @@ void Capture::compute_hovered_pixel(util::kinect::structure::Image* image, ImVec
 
     image->hovered_pixel_x = hoveredUIPixel.x * uiCoordinateToImageCoordinateRatio;
     image->hovered_pixel_y = hoveredUIPixel.y * uiCoordinateToImageCoordinateRatio;
+
+    //Pixel value
+    uint16_t* buffer = reinterpret_cast<uint16_t*>(image->buffer);
+    image->hovered_pixel_m = buffer[size_t(image->hovered_pixel_y) * size_t(image->width) + size_t(image->hovered_pixel_x)] / 1000.0f;
   }
 
   //---------------------------
