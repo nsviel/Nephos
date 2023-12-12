@@ -31,6 +31,7 @@ void VK_imgui::init(){
   // Setup Dear ImGui context
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
+  ImPlot::CreateContext();
   ImGui::StyleColorsDark();
 
   // Setup Platform/Renderer bindings
@@ -83,6 +84,7 @@ void VK_imgui::clean(){
 
   ImGui_ImplVulkan_Shutdown();
   ImGui_ImplGlfw_Shutdown();
+  ImPlot::DestroyContext();
   ImGui::DestroyContext();
 
   //---------------------------
