@@ -45,7 +45,7 @@ void Playback::show_player(){
   //Slider
   ImVec2 image_size = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(image_size.x);
-  if(ImGui::SliderFloat("###Slider_playback", &device->color.image.timestamp, device->info.ts_beg, device->info.ts_end, "%.2f s")){
+  if(ImGui::SliderFloat("###Slider_playback", &device->color.image.timestamp, device->file.ts_beg, device->file.ts_end, "%.2f s")){
     device->k4a_replay->set_current_timestamp(device->color.image.timestamp);
   }
 
@@ -59,7 +59,7 @@ void Playback::show_player(){
   ImGui::PushStyleColor(ImGuiCol_Button, color);
   if(ImGui::Button(icon.c_str())){
     if(!*thread_play){
-      device->k4a_replay->set_current_timestamp(device->info.ts_beg);
+      device->k4a_replay->set_current_timestamp(device->file.ts_beg);
       *thread_play = true;
       *thread_paused = false;
     }else{
@@ -71,7 +71,7 @@ void Playback::show_player(){
   ImGui::SameLine();
   if(!*thread_paused) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
   if (ImGui::Button(ICON_FA_STOP "##37")){
-    device->k4a_replay->set_current_timestamp(device->info.ts_end);
+    device->k4a_replay->set_current_timestamp(device->file.ts_end);
     *thread_restart = false;
     *thread_play = false;
     *thread_paused = false;
@@ -95,11 +95,11 @@ void Playback::show_info_file(){
   if(ImGui::BeginTable("playback_table##general", 2)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", device->info.file_path.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", device->file.file_path.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f s", (float)device->info.file_duration);
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f s", (float)device->file.file_duration);
 
     ImGui::EndTable();
   }
@@ -120,19 +120,19 @@ void Playback::show_info_recording(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("FPS"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.info_fps.c_str());
+      ImGui::TextColored(color, "%s", device->file.info_fps.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Depth mode"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.info_depth_mode.c_str());
+      ImGui::TextColored(color, "%s", device->file.info_depth_mode.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Color format"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.info_color_format.c_str());
+      ImGui::TextColored(color, "%s", device->file.info_color_format.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Color resolution"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.info_color_resolution.c_str());
+      ImGui::TextColored(color, "%s", device->file.info_color_resolution.c_str());
 
       ImGui::EndTable();
     }
@@ -156,19 +156,19 @@ void Playback::show_info_stream(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Color enabled"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.is_color ? "Yes" : "No");
+      ImGui::TextColored(color, "%s", device->file.is_color ? "Yes" : "No");
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Depth enabled"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.is_depth ? "Yes" : "No");
+      ImGui::TextColored(color, "%s", device->file.is_depth ? "Yes" : "No");
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("IR enabled"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.is_infrared ? "Yes" : "No");
+      ImGui::TextColored(color, "%s", device->file.is_infrared ? "Yes" : "No");
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.is_imu ? "Yes" : "No");
+      ImGui::TextColored(color, "%s", device->file.is_imu ? "Yes" : "No");
 
       ImGui::EndTable();
     }
@@ -196,7 +196,7 @@ void Playback::show_info_synchro(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Sync mode"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.info_wired_sync_mode.c_str());
+      ImGui::TextColored(color, "%s", device->file.info_wired_sync_mode.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();
@@ -204,7 +204,7 @@ void Playback::show_info_synchro(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f", device->info.file_duration);
+      ImGui::TextColored(color, "%.2f", device->file.file_duration);
 
       ImGui::EndTable();
     }
@@ -228,15 +228,15 @@ void Playback::show_info_device(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Device S/N"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.info_device_serial_number.c_str());
+      ImGui::TextColored(color, "%s", device->file.info_device_serial_number.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("RGB camera FW"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.info_color_firmware_version.c_str());
+      ImGui::TextColored(color, "%s", device->file.info_color_firmware_version.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", device->info.info_depth_firmware_version.c_str());
+      ImGui::TextColored(color, "%s", device->file.info_depth_firmware_version.c_str());
 
       ImGui::EndTable();
     }

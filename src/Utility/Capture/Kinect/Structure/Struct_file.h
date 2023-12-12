@@ -5,7 +5,7 @@
 
 namespace util::kinect::structure{
 
-struct Info{
+struct File{
   //---------------------------
 
   //File info

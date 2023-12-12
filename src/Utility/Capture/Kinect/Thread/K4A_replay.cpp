@@ -31,10 +31,10 @@ void K4A_replay::run_thread(K4A_device* device){
   //---------------------------
 
   //Get info about file
-  this->find_file_duration(device->info);
+  this->find_file_duration(device->file);
 
   //Init playback
-  k4a::playback playback = k4a::playback::open(device->info.file_path.c_str());
+  k4a::playback playback = k4a::playback::open(device->file.file_path.c_str());
   if(!playback) return;
   this->thread_running = true;
   this->thread_play = true;
@@ -137,7 +137,7 @@ void K4A_replay::manage_pause(){
 void K4A_replay::manage_restart(k4a::playback* playback, K4A_device* k4a_device){
   //---------------------------
 
-  if(k4a_device->color.image.timestamp == k4a_device->info.ts_end){
+  if(k4a_device->color.image.timestamp == k4a_device->file.ts_end){
     if(thread_restart){
       this->thread_play = true;
       playback->seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);

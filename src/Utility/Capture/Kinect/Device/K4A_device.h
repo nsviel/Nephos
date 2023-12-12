@@ -31,7 +31,7 @@ public:
   util::kinect::structure::Color color;
   util::kinect::structure::Depth depth;
   util::kinect::structure::Infrared ir;
-  util::kinect::structure::Info info;
+  util::kinect::structure::File file;
 
   std::string serial_number;
   float temperature = 0;
