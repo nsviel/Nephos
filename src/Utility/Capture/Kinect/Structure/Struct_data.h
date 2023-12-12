@@ -1,31 +1,17 @@
 #pragma once
 
+#include <Utility/Capture/Kinect/Structure/Namespace.h>
 #include <string>
 
 
 namespace util::kinect::structure{
 
-struct K4A_image{
-  //---------------------------
-
-  std::string name;
-  std::string format;
-
-  int width;
-  int height;
-  uint8_t* buffer;
-  size_t size;
-  float timestamp;
-
-  //---------------------------
-};
-
 struct Data{
   //---------------------------
 
-  util::kinect::structure::K4A_image color;
-  util::kinect::structure::K4A_image depth;
-  util::kinect::structure::K4A_image ir;
+  util::kinect::structure::Image color;
+  util::kinect::structure::Image depth;
+  util::kinect::structure::Image ir;
   bool data_ready = false;
 
   //---------------------------
