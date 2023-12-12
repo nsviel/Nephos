@@ -3,7 +3,7 @@
 #include <Engine/Capture/Kinect/Kinect.h>
 
 
-namespace util::kinect{
+namespace eng::kinect{
   //---------------------------
 
   class Kinect;

@@ -11,7 +11,7 @@ class Playback
 {
 public:
   //Constructor / Destructor
-  Playback(util::kinect::Kinect* kinect);
+  Playback(eng::kinect::Kinect* kinect);
   ~Playback();
 
   //Main function
@@ -26,7 +26,7 @@ public:
   void show_device();
 
 private:
-  util::kinect::Kinect* kinect;
+  eng::kinect::Kinect* kinect;
 };
 
 }

@@ -16,8 +16,8 @@ Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, 
   eng::capture::Node* utl_capture = engine->get_utl_capture();
 
   this->kinect = utl_capture->get_kinect();
-  this->k4a_depth = new util::kinect::data::Depth();
-  this->k4a_infrared = new util::kinect::data::Infrared();
+  this->k4a_depth = new eng::kinect::data::Depth();
+  this->k4a_infrared = new eng::kinect::data::Infrared();
   this->k4a_swarm = kinect->get_k4a_swarm();
   this->gui = gui;
 
@@ -113,7 +113,7 @@ void Capture::device_tab(K4A_device* k4a_device){
 
 //Device capture windows
 void Capture::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
-  util::kinect::structure::Image* data_color = &k4a_device->color.image;
+  eng::kinect::structure::Image* data_color = &k4a_device->color.image;
   //---------------------------
 
   util::base::Image struct_image;
@@ -130,7 +130,7 @@ void Capture::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
   //---------------------------
 }
 void Capture::draw_camera_depth(K4A_device* k4a_device, ImVec2 image_size){
-  util::kinect::structure::Image* data_depth = &k4a_device->depth.image;
+  eng::kinect::structure::Image* data_depth = &k4a_device->depth.image;
   //---------------------------
 
   uint8_t* new_buffer = k4a_depth->convert_depth_into_color(k4a_device);
@@ -150,7 +150,7 @@ void Capture::draw_camera_depth(K4A_device* k4a_device, ImVec2 image_size){
   //---------------------------
 }
 void Capture::draw_camera_ir(K4A_device* k4a_device, ImVec2 image_size){
-  util::kinect::structure::Image* data_ir = &k4a_device->ir.image;
+  eng::kinect::structure::Image* data_ir = &k4a_device->ir.image;
   //---------------------------
 
   uint8_t* new_buffer = k4a_infrared->convert_ir_into_color(k4a_device);
@@ -171,7 +171,7 @@ void Capture::draw_camera_ir(K4A_device* k4a_device, ImVec2 image_size){
 }
 
 //Overlay
-void Capture::overlay_capture(K4A_device* k4a_device, util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose){
+void Capture::overlay_capture(K4A_device* k4a_device, eng::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose){
   //---------------------------
 
   //Hovered pixel
@@ -200,7 +200,7 @@ void Capture::overlay_capture(K4A_device* k4a_device, util::kinect::structure::I
 
   //---------------------------
 }
-void Capture::overlay_information(K4A_device* k4a_device, util::kinect::structure::Image* image){
+void Capture::overlay_information(K4A_device* k4a_device, eng::kinect::structure::Image* image){
   //---------------------------
 
   ImGui::Text("Frame rate: %.2f fps", k4a_device->device.fps);
@@ -211,7 +211,7 @@ void Capture::overlay_information(K4A_device* k4a_device, util::kinect::structur
 
   //---------------------------
 }
-void Capture::overlay_pixel(util::kinect::structure::Image* image, ImVec2 image_size){
+void Capture::overlay_pixel(eng::kinect::structure::Image* image, ImVec2 image_size){
   //---------------------------
 
   if(image->hovered_pixel_x != -1 && image->hovered_pixel_y != -1){
@@ -221,7 +221,7 @@ void Capture::overlay_pixel(util::kinect::structure::Image* image, ImVec2 image_
 
   //---------------------------
 }
-void Capture::compute_hovered_pixel(util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered){
+void Capture::compute_hovered_pixel(eng::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered){
   //---------------------------
 
   //Reinitialize coord values

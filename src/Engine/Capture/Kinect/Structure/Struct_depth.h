@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace util::kinect::structure{
+namespace eng::kinect::structure{
 
 struct Depth_config{
   //---------------------------
@@ -20,8 +20,8 @@ struct Depth_config{
 struct Depth{
   //---------------------------
 
-  util::kinect::structure::Depth_config config;
-  util::kinect::structure::Image image;
+  eng::kinect::structure::Depth_config config;
+  eng::kinect::structure::Image image;
 
   //---------------------------
 };

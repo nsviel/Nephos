@@ -6,7 +6,7 @@
 class K4A_device;
 
 
-namespace util::kinect::structure{
+namespace eng::kinect::structure{
 
 struct Swarm{
   //---------------------------

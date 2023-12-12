@@ -7,7 +7,7 @@ namespace eng::capture{
 Node::Node(){
   //---------------------------
 
-  this->kinect = new util::kinect::Kinect();
+  this->kinect = new eng::kinect::Kinect();
 
   //---------------------------
 }

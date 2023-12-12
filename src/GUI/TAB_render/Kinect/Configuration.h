@@ -13,7 +13,7 @@ class Configuration
 {
 public:
   //Constructor / Destructor
-  Configuration(util::kinect::Kinect* kinect);
+  Configuration(eng::kinect::Kinect* kinect);
   ~Configuration();
 
   //Main function
@@ -28,7 +28,7 @@ public:
   void firmware_info();
 
 private:
-  util::kinect::Kinect* kinect;
+  eng::kinect::Kinect* kinect;
   K4A_swarm* k4a_swarm;
 
   int item_width;

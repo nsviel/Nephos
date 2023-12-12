@@ -8,7 +8,7 @@ K4A_replay::K4A_replay(){
   //---------------------------
 
   this->fps_counter = new FPS_counter(60);
-  this->k4a_data = new util::kinect::data::Data();
+  this->k4a_data = new eng::kinect::data::Data();
 
   //---------------------------
 }
@@ -92,7 +92,7 @@ void K4A_replay::sleep_necessary_time(int fps_mode){
 
   //---------------------------
 }
-void K4A_replay::find_duration(util::kinect::structure::File& info){
+void K4A_replay::find_duration(eng::kinect::structure::File& info){
   //---------------------------
 
   k4a::image color;

@@ -3,7 +3,7 @@
 #include <Engine/Capture/Kinect/Thread/Connection.h>
 
 
-namespace util::kinect::thread{
+namespace eng::kinect::thread{
   //---------------------------
 
   class Connection;

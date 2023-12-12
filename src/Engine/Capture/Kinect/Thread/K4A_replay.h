@@ -25,7 +25,7 @@ public:
 
   //Subfunction
   void sleep_necessary_time(int fps_mode);
-  void find_duration(util::kinect::structure::File& info);
+  void find_duration(eng::kinect::structure::File& info);
   void manage_timestamp(k4a::playback* playback);
   void manage_pause();
   void manage_restart(k4a::playback* playback, K4A_device* device);
@@ -38,7 +38,7 @@ public:
 
 private:
   FPS_counter* fps_counter;
-  util::kinect::data::Data* k4a_data;
+  eng::kinect::data::Data* k4a_data;
 
   std::thread thread;
   float ts_seek = -1;

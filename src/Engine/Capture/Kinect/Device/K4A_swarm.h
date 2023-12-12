@@ -10,7 +10,7 @@ class K4A_swarm
 {
 public:
   //Constructor / Destructor
-  K4A_swarm(util::kinect::structure::Swarm* struct_k4a_swarm);
+  K4A_swarm(eng::kinect::structure::Swarm* struct_k4a_swarm);
   ~K4A_swarm();
 
 public:
@@ -21,7 +21,7 @@ public:
   void refresh_connected_device_list();
 
 private:
-  util::kinect::structure::Swarm* struct_k4a_swarm;
+  eng::kinect::structure::Swarm* struct_k4a_swarm;
 
 
   int ID_virtual = 0;

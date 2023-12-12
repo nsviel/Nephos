@@ -33,16 +33,16 @@ public:
   void draw_camera_ir(K4A_device* device, ImVec2 image_size);
 
   //Overlay
-  void compute_hovered_pixel(util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
-  void overlay_capture(K4A_device* device, util::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose);
-  void overlay_information(K4A_device* device, util::kinect::structure::Image* image);
-  void overlay_pixel(util::kinect::structure::Image* image, ImVec2 image_size);
+  void compute_hovered_pixel(eng::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
+  void overlay_capture(K4A_device* device, eng::kinect::structure::Image* image, ImVec2 image_size, ImVec2 image_pose);
+  void overlay_information(K4A_device* device, eng::kinect::structure::Image* image);
+  void overlay_pixel(eng::kinect::structure::Image* image, ImVec2 image_size);
 
 private:
   GUI* gui;
-  util::kinect::Kinect* kinect;
-  util::kinect::data::Depth* k4a_depth;
-  util::kinect::data::Infrared* k4a_infrared;
+  eng::kinect::Kinect* kinect;
+  eng::kinect::data::Depth* k4a_depth;
+  eng::kinect::data::Infrared* k4a_infrared;
   K4A_swarm* k4a_swarm;
 
   vector<gui::media::Stream*> vec_gui_stream;

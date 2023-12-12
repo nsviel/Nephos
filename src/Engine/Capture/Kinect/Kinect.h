@@ -11,7 +11,7 @@
 #include <k4a/k4a.hpp>
 
 
-namespace util::kinect{
+namespace eng::kinect{
 
 class Kinect
 {
@@ -33,9 +33,9 @@ public:
   inline void set_selected_device(K4A_device* device){struct_k4a_swarm->selected_device = device;}
 
 private:
-  util::kinect::structure::Swarm* struct_k4a_swarm;
+  eng::kinect::structure::Swarm* struct_k4a_swarm;
   K4A_swarm* k4a_swarm;
-  util::kinect::thread::Connection* k4a_connection;
+  eng::kinect::thread::Connection* k4a_connection;
 };
 
 }

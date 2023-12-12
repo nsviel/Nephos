@@ -30,7 +30,7 @@ public:
 
 private:
   FPS_counter* fps_counter;
-  util::kinect::data::Data* k4a_data;
+  eng::kinect::data::Data* k4a_data;
 
   std::thread thread;
   bool thread_running = false;

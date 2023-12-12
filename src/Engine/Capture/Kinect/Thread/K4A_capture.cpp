@@ -8,7 +8,7 @@ K4A_capture::K4A_capture(){
   //---------------------------
 
   this->fps_counter = new FPS_counter(60);
-  this->k4a_data = new util::kinect::data::Data();
+  this->k4a_data = new eng::kinect::data::Data();
 
   //---------------------------
 }
@@ -43,8 +43,8 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
 
   //Configuration
   k4a_device->device.device = &device;
-  util::kinect::configuration::make_k4a_configuration(k4a_device);
-  util::kinect::configuration::init_device_transformation(k4a_device);
+  eng::kinect::configuration::make_k4a_configuration(k4a_device);
+  eng::kinect::configuration::init_device_transformation(k4a_device);
 
   //Start camera
   k4a_device->device.version = device.get_version();

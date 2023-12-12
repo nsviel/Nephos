@@ -3,7 +3,7 @@
 #include <Engine/Capture/Kinect/Device/Configuration.h>
 
 
-namespace util::kinect::device{
+namespace eng::kinect::device{
   //---------------------------
 
   //class Configuration;

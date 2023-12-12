@@ -4,7 +4,7 @@
 #include <Engine/Capture/Kinect/Device/K4A_swarm.h>
 
 
-namespace util::kinect::thread{
+namespace eng::kinect::thread{
 
 class Connection
 {

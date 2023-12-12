@@ -25,11 +25,11 @@ public:
   K4A_capture* k4a_capture;
   K4A_replay* k4a_replay;
 
-  util::kinect::structure::Device device;
-  util::kinect::structure::Synchro synchro;
-  util::kinect::structure::File file;
+  eng::kinect::structure::Device device;
+  eng::kinect::structure::Synchro synchro;
+  eng::kinect::structure::File file;
 
-  util::kinect::structure::Color color;
-  util::kinect::structure::Depth depth;
-  util::kinect::structure::Infrared ir;
+  eng::kinect::structure::Color color;
+  eng::kinect::structure::Depth depth;
+  eng::kinect::structure::Infrared ir;
 };

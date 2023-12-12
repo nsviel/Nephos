@@ -12,14 +12,14 @@ class Recorder
 {
 public:
   //Constructor / Destructor
-  Recorder(util::kinect::Kinect* kinect);
+  Recorder(eng::kinect::Kinect* kinect);
   ~Recorder();
 
   //Main function
   void kinect_recorder();
 
 private:
-  util::kinect::Kinect* kinect;
+  eng::kinect::Kinect* kinect;
 };
 
 }

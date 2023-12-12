@@ -1,7 +1,7 @@
 #include "Connection.h"
 
 
-namespace util::kinect::thread{
+namespace eng::kinect::thread{
 
 //Constructor / Destructor
 Connection::Connection(K4A_swarm* k4a_swarm){

@@ -19,10 +19,10 @@ public:
   void run();
   void clean();
 
-  inline util::kinect::Kinect* get_kinect(){return kinect;}
+  inline eng::kinect::Kinect* get_kinect(){return kinect;}
 
 private:
-  util::kinect::Kinect* kinect;
+  eng::kinect::Kinect* kinect;
 };
 
 }

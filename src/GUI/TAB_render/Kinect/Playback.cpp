@@ -7,7 +7,7 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Playback::Playback(util::kinect::Kinect* kinect){
+Playback::Playback(eng::kinect::Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;

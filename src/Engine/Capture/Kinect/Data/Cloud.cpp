@@ -1,7 +1,7 @@
 #include "Cloud.h"
 
 
-namespace util::kinect::data{
+namespace eng::kinect::data{
 
 //Constructor / Destructor
 Cloud::Cloud(){

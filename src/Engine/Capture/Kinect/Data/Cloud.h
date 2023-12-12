@@ -4,7 +4,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace util::kinect::data{
+namespace eng::kinect::data{
 
 class Cloud
 {

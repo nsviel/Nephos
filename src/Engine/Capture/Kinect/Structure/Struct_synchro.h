@@ -4,7 +4,7 @@
 #include <cstdint>
 
 
-namespace util::kinect::structure{
+namespace eng::kinect::structure{
 
 struct Synchro{
   //---------------------------

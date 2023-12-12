@@ -10,7 +10,7 @@
 #include <Engine/Capture/Kinect/Structure/Struct_swarm.h>
 
 
-namespace util::kinect::structure{
+namespace eng::kinect::structure{
   //---------------------------
 
   class Device;

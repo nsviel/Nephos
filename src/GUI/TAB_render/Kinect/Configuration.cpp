@@ -7,7 +7,7 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Configuration::Configuration(util::kinect::Kinect* kinect){
+Configuration::Configuration(eng::kinect::Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;

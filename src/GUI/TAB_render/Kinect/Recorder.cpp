@@ -4,7 +4,7 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Recorder::Recorder(util::kinect::Kinect* kinect){
+Recorder::Recorder(eng::kinect::Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;

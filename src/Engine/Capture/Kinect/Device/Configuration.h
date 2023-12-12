@@ -8,7 +8,7 @@
 class K4A_device;
 
 
-namespace util::kinect::configuration{
+namespace eng::kinect::configuration{
 
   //Main function
   void init_device_transformation(K4A_device* k4a_device);

@@ -1,15 +1,15 @@
 #include "Kinect.h"
 
 
-namespace util::kinect{
+namespace eng::kinect{
 
 //Constructor / Destructor
 Kinect::Kinect(){
   //---------------------------
 
-  this->struct_k4a_swarm = new util::kinect::structure::Swarm();
+  this->struct_k4a_swarm = new eng::kinect::structure::Swarm();
   this->k4a_swarm = new K4A_swarm(struct_k4a_swarm);
-  this->k4a_connection = new util::kinect::thread::Connection(k4a_swarm);
+  this->k4a_connection = new eng::kinect::thread::Connection(k4a_swarm);
 
   //---------------------------
 }
