@@ -29,10 +29,10 @@ public:
   string find_name_from_config(k4a_color_resolution_t& value);
   string find_name_from_config(k4a_image_format_t& value);
 
-  inline util::kinect::structure::Info& get_struct_record(){return struct_info;}
+  inline util::kinect::structure::File& get_struct_record(){return struct_info;}
 
 private:
-  util::kinect::structure::Info struct_info;
+  util::kinect::structure::File struct_info;
 };
 
 }

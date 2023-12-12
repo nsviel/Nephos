@@ -31,10 +31,10 @@ void K4A_replay::run_thread(K4A_device* device){
   //---------------------------
 
   //Get info about file
-  this->find_file_duration(device->file);
+  this->find_duration(device->file);
 
   //Init playback
-  k4a::playback playback = k4a::playback::open(device->file.file_path.c_str());
+  k4a::playback playback = k4a::playback::open(device->file.path.c_str());
   if(!playback) return;
   this->thread_running = true;
   this->thread_play = true;
@@ -86,15 +86,15 @@ void K4A_replay::sleep_necessary_time(int fps_mode){
 
   //---------------------------
 }
-void K4A_replay::find_file_duration(util::kinect::structure::Info& info){
+void K4A_replay::find_duration(util::kinect::structure::File& info){
   //---------------------------
 
   k4a::image color;
   k4a::capture capture;
-  k4a::playback playback = k4a::playback::open(info.file_path.c_str());
+  k4a::playback playback = k4a::playback::open(info.path.c_str());
 
   //File duration
-  info.file_duration = playback.get_recording_length().count() / 1000000.0f;
+  info.duration = playback.get_recording_length().count() / 1000000.0f;
 
   //File first timestamp
   playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);

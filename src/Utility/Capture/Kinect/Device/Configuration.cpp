@@ -40,28 +40,28 @@ void Configuration::find_file_information(K4A_device* device, string path){
   record_configuration.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
 
   //General info
-  device->file.file_path = path;
-  device->file.info_fps = this->find_name_from_config(record_configuration.camera_fps);
+  device->file.path = path;
+  device->file.fps = this->find_name_from_config(record_configuration.camera_fps);
   device->file.is_depth = record_configuration.depth_track_enabled;
   device->file.is_infrared = record_configuration.ir_track_enabled;
   device->file.is_imu = record_configuration.imu_track_enabled;
   device->file.is_color = record_configuration.color_track_enabled;
 
-  device->file.info_depth_mode = this->find_name_from_config(record_configuration.depth_mode);
-  device->file.info_color_format = this->find_name_from_config(record_configuration.color_format);
-  device->file.info_color_resolution = this->find_name_from_config(record_configuration.color_resolution);
+  device->file.depth_mode = this->find_name_from_config(record_configuration.depth_mode);
+  device->file.color_format = this->find_name_from_config(record_configuration.color_format);
+  device->file.color_resolution = this->find_name_from_config(record_configuration.color_resolution);
 
   // Sync info
-  device->file.info_wired_sync_mode = this->find_name_from_config(record_configuration.wired_sync_mode);
+  device->file.wired_sync_mode = this->find_name_from_config(record_configuration.wired_sync_mode);
   device->synchro.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
   device->synchro.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
   device->synchro.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
-  device->file.file_duration = playback.get_recording_length().count() / 1000000.0f;
+  device->file.duration = playback.get_recording_length().count() / 1000000.0f;
 
   // Device info
-  playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &device->file.info_device_serial_number);
-  playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &device->file.info_color_firmware_version);
-  playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &device->file.info_depth_firmware_version);
+  playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &device->file.device_serial_number);
+  playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &device->file.color_firmware_version);
+  playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &device->file.depth_firmware_version);
 
   //---------------------------
 }
