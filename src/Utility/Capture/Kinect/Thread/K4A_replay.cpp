@@ -43,7 +43,7 @@ void K4A_replay::run_thread(K4A_device* device){
     playback.get_next_capture(&capture);
     if(!capture) break;
 
-    this->manage_current_timestamp(&playback, device, capture);
+    this->manage_timestamp(&playback);
     k4a_data->find_data_from_capture(&device->data, capture);
     this->sleep_necessary_time(device->config.fps);
     this->manage_pause();
@@ -107,14 +107,12 @@ void K4A_replay::find_file_info(util::kinect::structure::Info& info){
 
   //---------------------------
 }
-void K4A_replay::manage_current_timestamp(k4a::playback* playback, K4A_device* device, k4a::capture capture){
+void K4A_replay::manage_timestamp(k4a::playback* playback){
   //---------------------------
 
   if(ts_seek != -1){
-    //Set the required timestamp
     auto ts_seek_ms = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_seek));
     playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    device->data.color.timestamp = ts_seek;
     thread_play = true;
     ts_seek = -1;
   }
