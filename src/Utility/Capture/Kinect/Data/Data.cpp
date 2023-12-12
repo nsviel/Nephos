@@ -36,7 +36,7 @@ void Data::find_color(util::kinect::structure::Data* data, k4a::capture capture)
   data->color.width = color.get_width_pixels();
   data->color.height = color.get_height_pixels();
   data->color.format = "B8G8R8A8_SRGB";
-  data->color.timestamp = static_cast<float>(color.get_device_timestamp().count());
+  data->color.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
   color.reset();
 
   //---------------------------
@@ -52,7 +52,7 @@ void Data::find_depth(util::kinect::structure::Data* data, k4a::capture capture)
   data->depth.width = depth.get_width_pixels();
   data->depth.height = depth.get_height_pixels();
   data->depth.format = "B8G8R8A8_SRGB";
-  data->depth.timestamp = static_cast<float>(depth.get_device_timestamp().count());
+  data->depth.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
   depth.reset();
 
   //---------------------------
@@ -68,7 +68,7 @@ void Data::find_ir(util::kinect::structure::Data* data, k4a::capture capture){
   data->ir.width = ir.get_width_pixels();
   data->ir.height = ir.get_height_pixels();
   data->ir.format = "B8G8R8A8_SRGB";
-  data->ir.timestamp = static_cast<float>(ir.get_device_timestamp().count());
+  data->ir.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
   ir.reset();
 
   //---------------------------

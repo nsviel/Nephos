@@ -22,8 +22,8 @@ public:
   void stop_thread();
 
   //Subfunction
-  void sleep_necessary_time(K4A_device* device);
-  void find_file_info(K4A_device* device);
+  void sleep_necessary_time(int fps_mode);
+  void find_file_info(util::kinect::structure::Info& info);
   void manage_current_timestamp(k4a::playback* playback, K4A_device* device, k4a::capture capture);
   void manage_pause();
   void manage_restart(k4a::playback* playback, K4A_device* device);
