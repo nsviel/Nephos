@@ -6,7 +6,7 @@
 namespace util::kinect::device{
   //---------------------------
 
-  class Configuration;
+  //class Configuration;
 
   //---------------------------
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Capture/Kinect/Structure/Namespace.h>
-#include <Utility/Capture/Kinect/Device/Namespace.h>
+#include <Utility/Capture/Kinect/Device/Configuration.h>
 #include <Utility/Specific/common.h>
 
 class K4A_capture;
@@ -24,12 +24,13 @@ public:
 public:
   K4A_capture* k4a_capture;
   K4A_replay* k4a_replay;
-  util::kinect::device::Configuration* k4a_configuration;
+  //util::kinect::device::Configuration* k4a_configuration;
 
   util::kinect::structure::Device device;
   util::kinect::structure::Synchro synchro;
+  util::kinect::structure::File file;
+
   util::kinect::structure::Color color;
   util::kinect::structure::Depth depth;
   util::kinect::structure::Infrared ir;
-  util::kinect::structure::File file;
 };

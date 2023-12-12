@@ -11,7 +11,7 @@ K4A_device::K4A_device(){
 
   this->k4a_capture = new K4A_capture();
   this->k4a_replay = new K4A_replay();
-  this->k4a_configuration= new util::kinect::device::Configuration();
+
 
   //---------------------------
 }
@@ -22,7 +22,7 @@ void K4A_device::run_capture(){
   //---------------------------
 
   if(!k4a_capture->is_thread_running()){
-    k4a_configuration->make_k4a_configuration(this);
+    util::kinect::configuration::make_k4a_configuration(this);
     k4a_capture->start_thread(this);
   }
 

@@ -1,19 +1,10 @@
 #include "Configuration.h"
 
 
-namespace util::kinect::device{
-
-//Constructor / Destructor
-Configuration::Configuration(){
-  //---------------------------
-
-
-  //---------------------------
-}
-Configuration::~Configuration(){}
+namespace util::kinect::configuration{
 
 //Main function
-void Configuration::make_k4a_configuration(K4A_device* device){
+void make_k4a_configuration(K4A_device* device){
   //---------------------------
 
   k4a_device_configuration_t k4a_config;
@@ -30,7 +21,7 @@ void Configuration::make_k4a_configuration(K4A_device* device){
   //---------------------------
   device->device.k4a_config = k4a_config;
 }
-void Configuration::find_file_information(K4A_device* device, string path){
+void find_file_information(K4A_device* device, string path){
   //---------------------------
 
   k4a::playback playback = k4a::playback::open(path.c_str());
@@ -41,18 +32,18 @@ void Configuration::find_file_information(K4A_device* device, string path){
 
   //General info
   device->file.path = path;
-  device->file.fps = this->find_name_from_config(record_configuration.camera_fps);
+  device->file.fps = util::kinect::configuration::find_name_from_config(record_configuration.camera_fps);
   device->file.is_depth = record_configuration.depth_track_enabled;
   device->file.is_infrared = record_configuration.ir_track_enabled;
   device->file.is_imu = record_configuration.imu_track_enabled;
   device->file.is_color = record_configuration.color_track_enabled;
 
-  device->file.depth_mode = this->find_name_from_config(record_configuration.depth_mode);
-  device->file.color_format = this->find_name_from_config(record_configuration.color_format);
-  device->file.color_resolution = this->find_name_from_config(record_configuration.color_resolution);
+  device->file.depth_mode = util::kinect::configuration::find_name_from_config(record_configuration.depth_mode);
+  device->file.color_format = util::kinect::configuration::find_name_from_config(record_configuration.color_format);
+  device->file.color_resolution = util::kinect::configuration::find_name_from_config(record_configuration.color_resolution);
 
   // Sync info
-  device->file.wired_sync_mode = this->find_name_from_config(record_configuration.wired_sync_mode);
+  device->file.wired_sync_mode = util::kinect::configuration::find_name_from_config(record_configuration.wired_sync_mode);
   device->synchro.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
   device->synchro.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
   device->synchro.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
@@ -67,7 +58,7 @@ void Configuration::find_file_information(K4A_device* device, string path){
 }
 
 //Subfunction
-string Configuration::find_name_from_config(k4a_wired_sync_mode_t& value){
+string find_name_from_config(k4a_wired_sync_mode_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -89,7 +80,7 @@ string Configuration::find_name_from_config(k4a_wired_sync_mode_t& value){
   //---------------------------
   return name;
 }
-string Configuration::find_name_from_config(k4a_fps_t& value){
+string find_name_from_config(k4a_fps_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -111,7 +102,7 @@ string Configuration::find_name_from_config(k4a_fps_t& value){
   //---------------------------
   return name;
 }
-string Configuration::find_name_from_config(k4a_depth_mode_t& value){
+string find_name_from_config(k4a_depth_mode_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -145,7 +136,7 @@ string Configuration::find_name_from_config(k4a_depth_mode_t& value){
   //---------------------------
   return name;
 }
-string Configuration::find_name_from_config(k4a_color_resolution_t& value){
+string find_name_from_config(k4a_color_resolution_t& value){
   string name = "(None)";
   //---------------------------
 
@@ -183,7 +174,7 @@ string Configuration::find_name_from_config(k4a_color_resolution_t& value){
   //---------------------------
   return name;
 }
-string Configuration::find_name_from_config(k4a_image_format_t& value){
+string find_name_from_config(k4a_image_format_t& value){
   string name = "(None)";
   //---------------------------
 

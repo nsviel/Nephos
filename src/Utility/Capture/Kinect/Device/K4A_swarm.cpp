@@ -6,7 +6,7 @@ K4A_swarm::K4A_swarm(util::kinect::structure::Swarm* struct_k4a_swarm){
   //---------------------------
 
   this->struct_k4a_swarm = struct_k4a_swarm;
-  this->k4a_configuration= new util::kinect::device::Configuration();
+
 
   //---------------------------
 }
@@ -21,7 +21,7 @@ K4A_device* K4A_swarm::create_device_virtual(string path){
   k4a_device->device.is_virtual = true;
   struct_k4a_swarm->list_device.push_back(k4a_device);
   struct_k4a_swarm->nb_device_virtual++;
-  k4a_configuration->find_file_information(k4a_device, path);
+  util::kinect::configuration::find_file_information(k4a_device, path);
 
   //---------------------------
   return k4a_device;

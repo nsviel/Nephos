@@ -2,7 +2,7 @@
 
 #include <Utility/Capture/Kinect/Device/K4A_device.h>
 #include <Utility/Capture/Kinect/Structure/Namespace.h>
-#include <Utility/Capture/Kinect/Device/Namespace.h>
+#include <Utility/Capture/Kinect/Device/Configuration.h>
 #include <Utility/Specific/common.h>
 
 
@@ -22,7 +22,7 @@ public:
 
 private:
   util::kinect::structure::Swarm* struct_k4a_swarm;
-  util::kinect::device::Configuration* k4a_configuration;
+
 
   int ID_virtual = 0;
   int nb_connected_device = -1;
