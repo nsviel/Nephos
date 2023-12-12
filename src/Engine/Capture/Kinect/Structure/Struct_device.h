@@ -10,6 +10,7 @@ struct Device{
   //---------------------------
 
   int index;
+  std::string name;
   std::string serial_number;
   bool data_ready = false;
   bool is_virtual;

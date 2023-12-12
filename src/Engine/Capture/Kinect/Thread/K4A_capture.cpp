@@ -70,8 +70,10 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
 
     //Capture data
     k4a_data->find_data_from_capture(k4a_device, capture);
-    fps_counter->update();
+    k4a_cloud->convert_into_cloud(k4a_device);
 
+    //FPS
+    fps_counter->update();
     k4a_device->device.fps = fps_counter->get_fps();
   }
 

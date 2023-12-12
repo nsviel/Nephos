@@ -1,6 +1,7 @@
 #include "Cloud.h"
 
 #include <Engine/Engine.h>
+#include <Engine/Data/Scene/Scene.h>
 
 
 namespace eng::kinect::data{

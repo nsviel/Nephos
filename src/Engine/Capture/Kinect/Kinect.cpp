@@ -20,7 +20,7 @@ Kinect::~Kinect(){}
 //Main function
 void Kinect::init(){
   //---------------------------
-//
+
   //Get actual connected device list
   k4a_swarm->refresh_connected_device_list();
   k4a_connection->start_thread();

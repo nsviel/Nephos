@@ -10,10 +10,12 @@ Attribut::~Attribut(){}
 //Main function
 void Attribut::compute_MinMax(eng::structure::Object* object){
   vector<vec3>& XYZ = object->xyz;
+  if(XYZ.size() == 0) return;
+  //---------------------------
+
   vec3 centroid = vec3(0, 0, 0);
   vec3 min = XYZ[0];
   vec3 max = XYZ[0];
-  //---------------------------
 
   for(int i=0; i<XYZ.size(); i++){
     for(int j=0; j<3; j++){

@@ -2,6 +2,7 @@
 
 #include <Engine/Capture/Kinect/Structure/Namespace.h>
 #include <Engine/Capture/Kinect/Device/Configuration.h>
+#include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class K4A_capture;
@@ -23,8 +24,10 @@ public:
   void stop_threads();
 
 public:
+  eng::data::Scene* eng_scene;
   K4A_capture* k4a_capture;
   K4A_replay* k4a_replay;
+  eng::structure::Object* object;
 
   eng::kinect::structure::Device device;
   eng::kinect::structure::Synchro synchro;
