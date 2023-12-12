@@ -4,24 +4,33 @@
 namespace util::kinect::configuration{
 
 //Main function
-void make_k4a_configuration(K4A_device* device){
+void init_device_transformation(K4A_device* k4a_device){
+  //---------------------------
+
+  util::kinect::structure::Device& device = k4a_device->device;
+  device.calibration = device.device->get_calibration(k4a_device->depth.config.mode, k4a_device->color.config.resolution);
+  device.transformation = k4a::transformation(device.calibration);
+
+  //---------------------------
+}
+void make_k4a_configuration(K4A_device* k4a_device){
   //---------------------------
 
   k4a_device_configuration_t k4a_config;
-  k4a_config.color_format = device->color.config.format;
-  k4a_config.color_resolution = device->color.config.enabled ? device->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
-  k4a_config.depth_mode = device->depth.config.enabled ? device->depth.config.mode : K4A_DEPTH_MODE_OFF;
-  k4a_config.camera_fps = device->device.fps_mode;
-  k4a_config.depth_delay_off_color_usec = device->synchro.depth_delay_off_color_us;
-  k4a_config.wired_sync_mode = device->synchro.wired_sync_mode;
-  k4a_config.subordinate_delay_off_master_usec = device->synchro.subordinate_delay_off_master_us;
-  k4a_config.disable_streaming_indicator = device->synchro.disable_streaming_indicator;
-  k4a_config.synchronized_images_only = device->synchro.synchronized_images_only;
+  k4a_config.color_format = k4a_device->color.config.format;
+  k4a_config.color_resolution = k4a_device->color.config.enabled ? k4a_device->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
+  k4a_config.depth_mode = k4a_device->depth.config.enabled ? k4a_device->depth.config.mode : K4A_DEPTH_MODE_OFF;
+  k4a_config.camera_fps = k4a_device->device.fps_mode;
+  k4a_config.depth_delay_off_color_usec = k4a_device->synchro.depth_delay_off_color_us;
+  k4a_config.wired_sync_mode = k4a_device->synchro.wired_sync_mode;
+  k4a_config.subordinate_delay_off_master_usec = k4a_device->synchro.subordinate_delay_off_master_us;
+  k4a_config.disable_streaming_indicator = k4a_device->synchro.disable_streaming_indicator;
+  k4a_config.synchronized_images_only = k4a_device->synchro.synchronized_images_only;
 
   //---------------------------
-  device->device.k4a_config = k4a_config;
+  k4a_device->device.k4a_config = k4a_config;
 }
-void find_file_information(K4A_device* device, string path){
+void find_file_information(K4A_device* k4a_device, string path){
   //---------------------------
 
   k4a::playback playback = k4a::playback::open(path.c_str());
@@ -31,28 +40,28 @@ void find_file_information(K4A_device* device, string path){
   record_configuration.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
 
   //General info
-  device->file.path = path;
-  device->file.fps = util::kinect::configuration::find_name_from_config(record_configuration.camera_fps);
-  device->file.is_depth = record_configuration.depth_track_enabled;
-  device->file.is_infrared = record_configuration.ir_track_enabled;
-  device->file.is_imu = record_configuration.imu_track_enabled;
-  device->file.is_color = record_configuration.color_track_enabled;
+  k4a_device->file.path = path;
+  k4a_device->file.fps = util::kinect::configuration::find_name_from_config(record_configuration.camera_fps);
+  k4a_device->file.is_depth = record_configuration.depth_track_enabled;
+  k4a_device->file.is_infrared = record_configuration.ir_track_enabled;
+  k4a_device->file.is_imu = record_configuration.imu_track_enabled;
+  k4a_device->file.is_color = record_configuration.color_track_enabled;
 
-  device->file.depth_mode = util::kinect::configuration::find_name_from_config(record_configuration.depth_mode);
-  device->file.color_format = util::kinect::configuration::find_name_from_config(record_configuration.color_format);
-  device->file.color_resolution = util::kinect::configuration::find_name_from_config(record_configuration.color_resolution);
+  k4a_device->file.depth_mode = util::kinect::configuration::find_name_from_config(record_configuration.depth_mode);
+  k4a_device->file.color_format = util::kinect::configuration::find_name_from_config(record_configuration.color_format);
+  k4a_device->file.color_resolution = util::kinect::configuration::find_name_from_config(record_configuration.color_resolution);
 
   // Sync info
-  device->file.wired_sync_mode = util::kinect::configuration::find_name_from_config(record_configuration.wired_sync_mode);
-  device->synchro.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
-  device->synchro.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
-  device->synchro.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
-  device->file.duration = playback.get_recording_length().count() / 1000000.0f;
+  k4a_device->file.wired_sync_mode = util::kinect::configuration::find_name_from_config(record_configuration.wired_sync_mode);
+  k4a_device->synchro.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
+  k4a_device->synchro.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
+  k4a_device->synchro.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
+  k4a_device->file.duration = playback.get_recording_length().count() / 1000000.0f;
 
   // Device info
-  playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &device->file.device_serial_number);
-  playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &device->file.color_firmware_version);
-  playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &device->file.depth_firmware_version);
+  playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &k4a_device->file.device_serial_number);
+  playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &k4a_device->file.color_firmware_version);
+  playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &k4a_device->file.depth_firmware_version);
 
   //---------------------------
 }
