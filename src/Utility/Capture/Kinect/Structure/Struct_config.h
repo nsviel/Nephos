@@ -13,7 +13,6 @@ struct Config{
   //---------------------------
 
   k4a_fps_t fps = K4A_FRAMES_PER_SECOND_30;
-  k4a_wired_sync_mode_t wired_sync_mode = K4A_WIRED_SYNC_MODE_STANDALONE;
   k4a_device_configuration_t k4a_config;
   k4a_hardware_version_t version;
 

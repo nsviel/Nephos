@@ -192,7 +192,7 @@ void Playback::show_info_synchro(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Depth/color delay (us)"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%d", device->info.depth_delay_off_color_us);
+      ImGui::TextColored(color, "%d", device->synchro.depth_delay_off_color_us);
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Sync mode"); ImGui::TableNextColumn();
@@ -200,7 +200,7 @@ void Playback::show_info_synchro(){
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%d", device->info.start_timestamp_offset_us);
+      ImGui::TextColored(color, "%d", device->synchro.start_timestamp_offset_us);
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("IMU enabled"); ImGui::TableNextColumn();

@@ -25,11 +25,6 @@ struct Info{
   std::string info_color_firmware_version;
   std::string info_depth_firmware_version;
 
-  //Synchro info
-  uint32_t depth_delay_off_color_us;
-  uint32_t subordinate_delay_off_master_us;
-  uint32_t start_timestamp_offset_us;
-
   //Stream info
   bool is_color;
   bool is_depth;
