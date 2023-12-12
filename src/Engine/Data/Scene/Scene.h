@@ -36,6 +36,7 @@ public:
 
   //eng::structure::Object
   void selected_object_next();
+  void provide_new_ID(eng::structure::Object* object);
 
   //Loop
   void loop();

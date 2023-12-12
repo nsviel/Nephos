@@ -13,7 +13,7 @@ Capture::Capture(GUI* gui, bool* show_window, string name) : Panel(show_window, 
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  eng::capture::Node* utl_capture = engine->get_utl_capture();
+  eng::capture::Node* utl_capture = engine->get_eng_capture();
 
   this->kinect = utl_capture->get_kinect();
   this->k4a_depth = new eng::kinect::data::Depth();

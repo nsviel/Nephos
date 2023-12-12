@@ -15,7 +15,6 @@ Loader::Loader(eng::data::Node* eng_data){
   this->eng_scene = eng_data->get_eng_scene();
   this->eng_format = new eng::data::Format();
 
-  this->ID = 0;
   this->path_current_dir = "";
 
   //---------------------------
@@ -43,7 +42,6 @@ eng::structure::Object* Loader::load_object(std::string path){
   object->path_text = "../media/viking_room.png";
   object->draw_type_name = "point";
   object->has_texture = true;
-  object->ID = ID++;
 
   //Retrieve data and insert into engine
   MyFile* data = eng_format->get_data_from_file(path);

@@ -74,7 +74,7 @@ void Scene::insert_object_glyph(eng::structure::Object* object){
   //---------------------------
 
   //Insert into engine
-  object->ID = ID_obj++;
+  this->provide_new_ID(object);
   object->is_suppressible = false;
   vk_engine->insert_object_in_engine(object);
 
@@ -89,7 +89,7 @@ void Scene::insert_object_scene(eng::structure::Object* object){
   //---------------------------
 
   //Insert into engine
-  object->ID = ID_obj++;
+  this->provide_new_ID(object);
   vk_engine->insert_object_in_engine(object);
   attributManager->compute_MinMax(object);
 
@@ -129,7 +129,7 @@ void Scene::empty_scene_set(){
   //---------------------------
 }
 
-//eng::structure::Object
+//Object
 void Scene::selected_object_next(){
   eng::structure::Object* selected = set_scene->selected_obj;
   //----------------------------
@@ -148,6 +148,18 @@ void Scene::selected_object_next(){
 
       set_scene->selected_obj = selection;
     }
+  }
+
+  //----------------------------
+}
+void Scene::provide_new_ID(eng::structure::Object* object){
+  //----------------------------
+
+  say(object->name);
+  say(object->ID);
+
+  if(object->ID == -1){
+    object->ID = ID_obj++;
   }
 
   //----------------------------

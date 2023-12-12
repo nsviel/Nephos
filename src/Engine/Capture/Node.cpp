@@ -23,7 +23,7 @@ void Node::init(){
 
   //---------------------------
 }
-void Node::run(){
+void Node::loop(){
   //---------------------------
 
   kinect->loop();

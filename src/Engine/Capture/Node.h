@@ -18,7 +18,7 @@ public:
 public:
   //Main function
   void init();
-  void run();
+  void loop();
   void clean();
 
   inline eng::kinect::Kinect* get_kinect(){return kinect;}

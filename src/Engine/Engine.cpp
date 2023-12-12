@@ -18,7 +18,7 @@ Engine::Engine(util::Node* utility){
   this->eng_vulkan = new Vulkan(utl_window->get_window());
   this->eng_data = new eng::data::Node(this);
   this->eng_renderpass = new ENG_renderpass(this);
-  this->utl_capture = new eng::capture::Node(this);
+  this->eng_capture = new eng::capture::Node(this);
 
   //---------------------------
 }
@@ -38,7 +38,7 @@ void Engine::init(){
   eng_renderpass->init_renderpass();
   eng_vulkan->init();
   eng_data->init();
-  utl_capture->init();
+  eng_capture->init();
 
   //---------------------------
 }
@@ -48,6 +48,7 @@ void Engine::loop(){
   eng_camera->loop_cam_mouse();
   eng_data->loop();
   eng_vulkan->loop();
+  eng_capture->loop();
 
   //---------------------------
 }

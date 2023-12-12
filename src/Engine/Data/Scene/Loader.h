@@ -40,7 +40,6 @@ private:
   eng::data::Scene* eng_scene;
 
   std::string path_current_dir;
-  int ID;
 };
 
 }
