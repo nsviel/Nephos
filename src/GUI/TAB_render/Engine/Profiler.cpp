@@ -39,7 +39,9 @@ void Profiler::design_panel(){
 void Profiler::engine_render_graph(){
   //---------------------------
 
+  vector<vk::structure::Task>* vec_task = vk_info->get_profiler_data();
 
+  profiler->loop();
 
   //---------------------------
 }

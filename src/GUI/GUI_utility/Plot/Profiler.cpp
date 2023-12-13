@@ -22,10 +22,35 @@ Profiler::Profiler(){
   this->max_nb_data = 100;
 
   //---------------------------
+  this->init();
 }
 Profiler::~Profiler(){}
 
 //Main function
+void Profiler::init(){
+  //---------------------------
+
+  vec_color.clear();
+  vec_color.push_back(ImProfil::Colors::turqoise);
+  vec_color.push_back(ImProfil::Colors::greenSea);
+  vec_color.push_back(ImProfil::Colors::emerald);
+  vec_color.push_back(ImProfil::Colors::nephritis);
+  vec_color.push_back(ImProfil::Colors::peterRiver);
+  vec_color.push_back(ImProfil::Colors::belizeHole);
+  vec_color.push_back(ImProfil::Colors::amethyst);
+  vec_color.push_back(ImProfil::Colors::wisteria);
+  vec_color.push_back(ImProfil::Colors::sunFlower);
+  vec_color.push_back(ImProfil::Colors::orange);
+  vec_color.push_back(ImProfil::Colors::carrot);
+  vec_color.push_back(ImProfil::Colors::pumpkin);
+  vec_color.push_back(ImProfil::Colors::alizarin);
+  vec_color.push_back(ImProfil::Colors::pomegranate);
+  vec_color.push_back(ImProfil::Colors::clouds);
+  vec_color.push_back(ImProfil::Colors::silver);
+  vec_color.push_back(ImProfil::Colors::imguiText);
+
+  //---------------------------
+}
 void Profiler::loop(){
   //---------------------------
 
@@ -49,11 +74,33 @@ void Profiler::add_cpu_task(float time_beg, float time_end, string name, string 
 
   //---------------------------
 }
+void Profiler::add_cpu_task(float time_beg, float time_end, string name){
+  //---------------------------
+
+  ImProfil::Task task;
+  uint32_t color = next_color();
+  task = {time_beg, time_end, name, color};
+  vec_cpu_task.push_back(task);
+  if(vec_cpu_task.size() > max_nb_data) vec_cpu_task.erase(vec_cpu_task.begin());
+
+  //---------------------------
+}
 void Profiler::add_gpu_task(float time_beg, float time_end, string name, string color_name){
   //---------------------------
 
   ImProfil::Task task;
   uint32_t color = determine_color(color_name);
+  task = {time_beg, time_end, name, color};
+  vec_gpu_task.push_back(task);
+  if(vec_gpu_task.size() > max_nb_data) vec_gpu_task.erase(vec_gpu_task.begin());
+
+  //---------------------------
+}
+void Profiler::add_gpu_task(float time_beg, float time_end, string name){
+  //---------------------------
+
+  ImProfil::Task task;
+  uint32_t color = next_color();
   task = {time_beg, time_end, name, color};
   vec_gpu_task.push_back(task);
   if(vec_gpu_task.size() > max_nb_data) vec_gpu_task.erase(vec_gpu_task.begin());
@@ -116,6 +163,19 @@ uint32_t Profiler::determine_color(string color_name){
     color = ImProfil::Colors::imguiText;
   }
 
+
+  //---------------------------
+  return color;
+}
+uint32_t Profiler::next_color(){
+  uint32_t color;
+  //---------------------------
+
+  static int idx = 0;
+  color = vec_color[idx];
+  idx++;
+
+  if(idx >= vec_color.size()) idx = 0;
 
   //---------------------------
   return color;
