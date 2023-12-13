@@ -2,8 +2,10 @@
 
 
 namespace ImProfil{
-  
+
 Window::Window(): cpuGraph(300), gpuGraph(300){
+  //---------------------------
+
   stopProfiling = false;
   frameOffset = 0;
   frame_width = 3;
@@ -12,9 +14,13 @@ Window::Window(): cpuGraph(300), gpuGraph(300){
   prevFpsFrameTime = std::chrono::system_clock::now();
   fpsFramesCount = 0;
   avgFrameTime = 1.0f;
+
+  //---------------------------
 }
 
 void Window::Render(){
+  //---------------------------
+
   //Time stuff
   fpsFramesCount++;
   auto currFrameTime = std::chrono::system_clock::now();
@@ -67,6 +73,8 @@ void Window::Render(){
   cpuGraph.use_colored_legend_text = use_colored_legend_text;
 
   ImGui::End();
+
+  //---------------------------
 }
 
 }
