@@ -31,7 +31,7 @@ class Graph
 public:
   Graph(size_t framesCount);
   void LoadFrameData(const std::vector<ImProfil::Graph_task>& tasks);
-  void RenderTimings(int graphWidth, int legendWidth, int height, int frameIndexOffset);
+  void render_timings(int graphWidth, int legendWidth, int height, int frameIndexOffset);
 
   int frame_width;
   int frame_spacing;

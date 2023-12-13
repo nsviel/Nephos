@@ -6,14 +6,14 @@ namespace ImProfil{
 Graph::Graph(size_t framesCount){
   //---------------------------
 
-  frames.resize(framesCount);
+  this->frames.resize(framesCount);
   for(auto &frame : frames){
     frame.tasks.reserve(100);
   }
 
-  frame_width = 3;
-  frame_spacing = 1;
-  use_colored_legend_text = true;
+  this->frame_width = 3;
+  this->frame_spacing = 1;
+  this->use_colored_legend_text = true;
 
   //---------------------------
 }
@@ -59,7 +59,7 @@ void Graph::LoadFrameData(const std::vector<ImProfil::Graph_task>& tasks){
 
   //---------------------------
 }
-void Graph::RenderTimings(int graphWidth, int legendWidth, int height, int frameIndexOffset){
+void Graph::render_timings(int graphWidth, int legendWidth, int height, int frameIndexOffset){
   //---------------------------
 
   ImDrawList* drawList = ImGui::GetWindowDrawList();
