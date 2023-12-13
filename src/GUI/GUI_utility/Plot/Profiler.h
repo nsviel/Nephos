@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <imgui/profiler/ImGuiProfilerRenderer.h>
+#include <imgui/profiler/ImProfil.h>
 
 
 namespace gui::plot{
