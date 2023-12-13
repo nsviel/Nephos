@@ -50,11 +50,11 @@ void Window::Render_overlay(ImVec2 image_pose){
 
   ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
   ImGui::SetNextWindowBgAlpha(0.0f);
+  ImGui::SetNextWindowSize(ImVec2(300, 75));
   ImGuiWindowFlags flags;
   flags |= ImGuiWindowFlags_NoMove;
   flags |= ImGuiWindowFlags_NoTitleBar;
   flags |= ImGuiWindowFlags_NoResize;
-  flags |= ImGuiWindowFlags_AlwaysAutoResize;
   flags |= ImGuiWindowFlags_NoSavedSettings;
   flags |= ImGuiWindowFlags_NoFocusOnAppearing;
   flags |= ImGuiWindowFlags_NoNav;

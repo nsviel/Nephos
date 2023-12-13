@@ -52,6 +52,7 @@ private:
   std::map<std::string, size_t> taskNameToStatsIndex;
   std::vector<FrameData> frames;
   size_t currFrameIndex = 0;
+  int border_color;
 };
 
 }

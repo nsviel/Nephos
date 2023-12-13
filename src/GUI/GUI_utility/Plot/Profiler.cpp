@@ -51,11 +51,11 @@ void Profiler::init(){
 
   //---------------------------
 }
-void Profiler::loop(){
+void Profiler::loop(ImVec2 image_pose){
   //---------------------------
 
   profiler.graph->LoadFrameData(vec_task);
-  profiler.Render_window();
+  profiler.Render_overlay(image_pose);
 
   //---------------------------
 }

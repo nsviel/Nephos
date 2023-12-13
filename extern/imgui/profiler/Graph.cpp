@@ -14,6 +14,7 @@ Graph::Graph(size_t framesCount){
   this->frame_width = 3;
   this->frame_spacing = 1;
   this->use_colored_legend_text = true;
+  this->border_color = 0x00ffffff;
 
   //---------------------------
 }
@@ -105,7 +106,7 @@ void Graph::RebuildTaskStats(size_t endFrame, size_t framesCount){
 void Graph::RenderGraph(ImDrawList *drawList, glm::vec2 graphPos, glm::vec2 graphSize, size_t frameIndexOffset){
   //---------------------------
 
-  Rect(drawList, graphPos, graphPos + graphSize, 0xffffffff, false);
+  Rect(drawList, graphPos, graphPos + graphSize, border_color, false);
   float heightThreshold = 1.0f;
 
   for (size_t frameNumber = 0; frameNumber < frames.size(); frameNumber++){
