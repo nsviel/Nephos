@@ -9,7 +9,7 @@
 #include <iostream>
 
 
-namespace ImGuiUtils{
+namespace ImProfil{
 
   inline glm::vec2 Vec2(ImVec2 vec){return glm::vec2(vec.x, vec.y);}
 
@@ -28,8 +28,8 @@ namespace ImGuiUtils{
       frameSpacing = 1;
       useColoredLegendText = false;
     }
-    //void LoadFrameData(const ImProfil::ProfilerTask *tasks, size_t count){
-    void LoadFrameData(const std::vector<ImProfil::ProfilerTask>& tasks){
+    //void LoadFrameData(const ImProfil::Task *tasks, size_t count){
+    void LoadFrameData(const std::vector<ImProfil::Task>& tasks){
        size_t count = tasks.size();
       auto &currFrame = frames[currFrameIndex];
       currFrame.tasks.resize(0);
@@ -192,7 +192,7 @@ namespace ImGuiUtils{
       struct PriorityEntry
       {
         bool isUsed;
-        ImProfil::ProfilerTask task;
+        ImProfil::Task task;
       };
       std::map<std::string, PriorityEntry> priorityEntries;
       for (auto priorityTask : priorityTasks)
@@ -301,7 +301,7 @@ namespace ImGuiUtils{
           usedTaskNames.insert(tasks[bestTaskIndex].name);
         }
       }*/
-      std::vector<ImProfil::ProfilerTask> tasks;
+      std::vector<ImProfil::Task> tasks;
       std::vector<size_t> taskStatsIndex;
       //std::vector<size_t> priorityTaskIndices;
     };
@@ -317,9 +317,9 @@ namespace ImGuiUtils{
     size_t currFrameIndex = 0;
   };
 
-  class ProfilersWindow{
+  class Window{
   public:
-    ProfilersWindow(): cpuGraph(300), gpuGraph(300){
+    Window(): cpuGraph(300), gpuGraph(300){
       stopProfiling = false;
       frameOffset = 0;
       frameWidth = 3;

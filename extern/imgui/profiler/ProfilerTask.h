@@ -33,7 +33,7 @@ namespace ImProfil{
     const static uint32_t silver = RGBA_LE(0xbdc3c7ffu);
     const static uint32_t imguiText = RGBA_LE(0xF2F5FAFFu);
   }
-  struct ProfilerTask{
+  struct Task{
     double startTime;
     double endTime;
     std::string name;
