@@ -23,8 +23,8 @@ public:
 
   bool stopProfiling;
   int frameOffset;
-  ImProfil::Graph cpuGraph;
-  ImProfil::Graph gpuGraph;
+  ImProfil::Graph* cpuGraph;
+  ImProfil::Graph* gpuGraph;
   int frame_width;
   int frame_spacing;
   bool use_colored_legend_text;

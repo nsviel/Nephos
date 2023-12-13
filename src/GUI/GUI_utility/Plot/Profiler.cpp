@@ -54,8 +54,8 @@ void Profiler::init(){
 void Profiler::loop(){
   //---------------------------
 
-  profiler.cpuGraph.LoadFrameData(vec_cpu_task);
-  profiler.gpuGraph.LoadFrameData(vec_gpu_task);
+  profiler.cpuGraph->LoadFrameData(vec_cpu_task);
+  profiler.gpuGraph->LoadFrameData(vec_gpu_task);
 
   profiler.Render();
 

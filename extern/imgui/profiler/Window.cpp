@@ -3,8 +3,11 @@
 
 namespace ImProfil{
 
-Window::Window(): cpuGraph(300), gpuGraph(300){
+Window::Window(){
   //---------------------------
+
+  this->cpuGraph = new ImProfil::Graph(300);
+  this->gpuGraph = new ImProfil::Graph(300);
 
   stopProfiling = false;
   frameOffset = 0;
@@ -47,8 +50,8 @@ void Window::Render(){
   int graphHeight = std::min(maxGraphHeight, availableGraphHeight);
   int legendWidth = 200;
   int graphWidth = int(canvasSize.x) - legendWidth;
-  gpuGraph.RenderTimings(graphWidth, legendWidth, graphHeight, frameOffset);
-  cpuGraph.RenderTimings(graphWidth, legendWidth, graphHeight, frameOffset);
+  gpuGraph->RenderTimings(graphWidth, legendWidth, graphHeight, frameOffset);
+  cpuGraph->RenderTimings(graphWidth, legendWidth, graphHeight, frameOffset);
   if (graphHeight * 2 + sizeMargin + sizeMargin < canvasSize.y){
     ImGui::Columns(2);
     size_t textSize = 50;
@@ -65,12 +68,12 @@ void Window::Render(){
   }
   if (!stopProfiling)
     frameOffset = 0;
-  gpuGraph.frame_width = frame_width;
-  gpuGraph.frame_spacing = frame_spacing;
-  gpuGraph.use_colored_legend_text = use_colored_legend_text;
-  cpuGraph.frame_width = frame_width;
-  cpuGraph.frame_spacing = frame_spacing;
-  cpuGraph.use_colored_legend_text = use_colored_legend_text;
+  gpuGraph->frame_width = frame_width;
+  gpuGraph->frame_spacing = frame_spacing;
+  gpuGraph->use_colored_legend_text = use_colored_legend_text;
+  cpuGraph->frame_width = frame_width;
+  cpuGraph->frame_spacing = frame_spacing;
+  cpuGraph->use_colored_legend_text = use_colored_legend_text;
 
   ImGui::End();
 
