@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
 

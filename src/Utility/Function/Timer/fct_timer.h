@@ -62,6 +62,9 @@ public:
     return duration.count();
   }
 
+  inline float get_time_start(){return t1.count();}
+  inline float get_time_stop(){return t2.count();}
+
 private:
   std::chrono::high_resolution_clock::time_point t1;
   std::chrono::high_resolution_clock::time_point t2;

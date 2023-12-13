@@ -13,7 +13,11 @@ public:
 
 public:
   //Main functions
+  void start();
+  void stop(string name);
 
 private:
   vk::structure::Vulkan* struct_vulkan;
+  Timer timer;
+  timer_time t;
 };
