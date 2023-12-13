@@ -101,6 +101,7 @@ void VK_engine::init_engine_headless(){
 
 //Main function
 void VK_engine::loop(){
+  struct_vulkan->profiler.time_ref = std::chrono::system_clock::now();
   struct_vulkan->profiler.vec_task.clear();
   //---------------------------
 

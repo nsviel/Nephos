@@ -2,6 +2,7 @@
 
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Utility/Function/Timer/fct_timer.h>
 
 class Engine;
 class VK_engine;

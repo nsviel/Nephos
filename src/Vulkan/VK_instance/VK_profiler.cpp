@@ -15,17 +15,17 @@ VK_profiler::~VK_profiler(){}
 void VK_profiler::start(){
   //---------------------------
 
-  this->t = timer.start_t();
+  this->time_beg = timer.get_time();
 
   //---------------------------
 }
 void VK_profiler::stop(string name){
   //---------------------------
 
-  float duration = timer.stop_ms(t);
-  float time_beg = timer.get_time_start();
-  float time_end = timer.get_time_stop();
-  vk::structure::Task task = {time_beg, time_end, name};
+  timer_time time_end = timer.get_time();
+  double A = timer.duration_s(struct_vulkan->profiler.time_ref, time_beg);
+  double B = timer.duration_s(struct_vulkan->profiler.time_ref, time_end);
+  vk::structure::Task task = {A, B, name};
   struct_vulkan->profiler.vec_task.push_back(task);
 
   //---------------------------

@@ -61,6 +61,15 @@ void Profiler::loop(){
 
   //---------------------------
 }
+void Profiler::reset(){
+  //---------------------------
+
+  this->vec_cpu_task.clear();
+  this->vec_gpu_task.clear();
+  this->idx_color = 0;
+
+  //---------------------------
+}
 
 //Subfunction
 void Profiler::add_cpu_task(float time_beg, float time_end, string name, string color_name){
@@ -74,12 +83,12 @@ void Profiler::add_cpu_task(float time_beg, float time_end, string name, string 
 
   //---------------------------
 }
-void Profiler::add_cpu_task(ImProfil::Task task){
+void Profiler::add_cpu_task(float time_beg, float time_end, string name){
   //---------------------------
 
   ImProfil::Graph_task graph_task;
   uint32_t color = next_color();
-  graph_task = {task.time_beg, task.time_end, task.name, color};
+  graph_task = {time_beg, time_end, name, color};
   vec_cpu_task.push_back(graph_task);
   if(vec_cpu_task.size() > max_nb_data) vec_cpu_task.erase(vec_cpu_task.begin());
 
@@ -96,12 +105,12 @@ void Profiler::add_gpu_task(float time_beg, float time_end, string name, string 
 
   //---------------------------
 }
-void Profiler::add_gpu_task(ImProfil::Task task){
+void Profiler::add_gpu_task(float time_beg, float time_end, string name){
   //---------------------------
 
   ImProfil::Graph_task graph_task;
   uint32_t color = next_color();
-  graph_task = {task.time_beg, task.time_end, task.name, color};
+  graph_task = {time_beg, time_end, name, color};
   vec_gpu_task.push_back(graph_task);
   if(vec_gpu_task.size() > max_nb_data) vec_gpu_task.erase(vec_gpu_task.begin());
 
@@ -171,11 +180,10 @@ uint32_t Profiler::next_color(){
   uint32_t color;
   //---------------------------
 
-  static int idx = 0;
-  color = vec_color[idx];
-  idx++;
+  color = vec_color[idx_color];
+  idx_color++;
 
-  if(idx >= vec_color.size()) idx = 0;
+  if(idx_color >= vec_color.size()) idx_color = 0;
 
   //---------------------------
   return color;

@@ -39,7 +39,12 @@ void Profiler::design_panel(){
 void Profiler::engine_render_graph(){
   //---------------------------
 
-  vector<vk::structure::Task>* vec_task = vk_info->get_profiler_data();
+  profiler->reset();
+  vector<vk::structure::Task>& vec_gpu_task = vk_info->get_profiler_data();
+  for(int i=0; i<vec_gpu_task.size(); i++){
+    vk::structure::Task task = vec_gpu_task[i];
+    profiler->add_gpu_task(task.time_beg, task.time_end, task.name);
+  }
 
   profiler->loop();
 

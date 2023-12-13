@@ -29,7 +29,7 @@ void VK_render::run_renderpass(vk::structure::Renderpass* renderpass){
   vk_command->stop_render_pass(renderpass);
 
   //---------------------------
-  string name = "renderpass_" + renderpass->name;
+  string name = "rp_" + renderpass->name;
   vk_profiler->stop(name);
 }
 void VK_render::submit_command(vk::structure::Renderpass* renderpass){

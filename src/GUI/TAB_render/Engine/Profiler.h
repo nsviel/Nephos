@@ -3,6 +3,7 @@
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <GUI/GUI_utility/Plot/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Utility/Function/Timer/fct_timer.h>
 
 class GUI;
 class VK_info;

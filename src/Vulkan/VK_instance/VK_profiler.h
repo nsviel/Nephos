@@ -2,6 +2,7 @@
 
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Utility/Function/Timer/fct_timer.h>
 
 
 class VK_profiler
@@ -19,5 +20,5 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   Timer timer;
-  timer_time t;
+  timer_time time_beg;
 };
