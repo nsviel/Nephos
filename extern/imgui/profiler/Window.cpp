@@ -14,31 +14,23 @@ Window::Window(){
   this->frame_width = 3;
   this->frame_spacing = 1;
   this->use_colored_legend_text = true;
-  this->prevFpsFrameTime = std::chrono::system_clock::now();
-  this->fpsFramesCount = 0;
-  this->avgFrameTime = 1.0f;
+  this->prev_fps_frame_time = std::chrono::system_clock::now();
+  this->fps_frames_count = 0;
+  this->avg_frame_time = 1.0f;
 
   //---------------------------
 }
 
+//Main function
 void Window::Render(){
   //---------------------------
 
-  //Time stuff
-  fpsFramesCount++;
-  auto currFrameTime = std::chrono::system_clock::now();{
-    float fpsDeltaTime = std::chrono::duration<float>(currFrameTime - prevFpsFrameTime).count();
-    if (fpsDeltaTime > 0.5f){
-      this->avgFrameTime = fpsDeltaTime / float(fpsFramesCount);
-      fpsFramesCount = 0;
-      prevFpsFrameTime = currFrameTime;
-    }
-  }
+  this->fps_counter();
 
   //Window stuff
   std::stringstream title;
   title.precision(2);
-  title << std::fixed << "Profiler [" << avgFrameTime * 1000.0f << "ms" << "\t" << 1.0f / avgFrameTime << "fps" << "]###ProfilerWindow";
+  title << std::fixed << "Profiler [" << avg_frame_time * 1000.0f << "ms" << "\t" << 1.0f / avg_frame_time << "fps" << "]###ProfilerWindow";
   //###AnimatedTitle
   ImGui::Begin(title.str().c_str(), 0, ImGuiWindowFlags_NoScrollbar);
 
@@ -78,9 +70,26 @@ void Window::Render(){
 
   //---------------------------
 }
-void Window::truc(ImProfil::Graph graph){
+
+//Subfunction
+void Window::fps_counter(){
   //---------------------------
 
+  //Time stuff
+  fps_frames_count++;
+  auto currFrameTime = std::chrono::system_clock::now();{
+    float fpsDeltaTime = std::chrono::duration<float>(currFrameTime - prev_fps_frame_time).count();
+    if (fpsDeltaTime > 0.5f){
+      this->avg_frame_time = fpsDeltaTime / float(fps_frames_count);
+      fps_frames_count = 0;
+      prev_fps_frame_time = currFrameTime;
+    }
+  }
+
+  //---------------------------
+}
+void Window::truc(ImProfil::Graph graph){
+  //---------------------------
 
 
   //---------------------------
