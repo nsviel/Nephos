@@ -24,10 +24,10 @@ public:
   void Render();
 
   //Subfunction
+  void init_graph();
   void fps_counter();
   void display_option();
 
-  ImProfil::Graph* cpu_graph;
   ImProfil::Graph* gpu_graph;
 
   using TimePoint = std::chrono::time_point<std::chrono::system_clock>;

@@ -6,9 +6,6 @@ namespace ImProfil{
 Window::Window(){
   //---------------------------
 
-  this->cpu_graph = new ImProfil::Graph(300);
-  this->gpu_graph = new ImProfil::Graph(300);
-
   this->stop_profiling = false;
   this->frame_offset = 0;
   this->frame_width = 1;
@@ -21,6 +18,7 @@ Window::Window(){
   this->max_graph_height = 300;
 
   //---------------------------
+  this->init_graph();
 }
 
 //Main function
@@ -42,15 +40,6 @@ void Window::Render(){
   int graph_width = int(available_size.x) - legend_width;
 
   gpu_graph->render_timings(graph_width, legend_width, graph_height, frame_offset);
-  cpu_graph->render_timings(graph_width, legend_width, graph_height, frame_offset);
-
-
-  gpu_graph->frame_width = frame_width;
-  gpu_graph->frame_spacing = frame_spacing;
-  gpu_graph->use_colored_legend_text = use_colored_legend_text;
-  cpu_graph->frame_width = frame_width;
-  cpu_graph->frame_spacing = frame_spacing;
-  cpu_graph->use_colored_legend_text = use_colored_legend_text;
 
   ImGui::End();
 
@@ -58,6 +47,16 @@ void Window::Render(){
 }
 
 //Subfunction
+void Window::init_graph(){
+  //---------------------------
+
+  this->gpu_graph = new ImProfil::Graph(300);
+  gpu_graph->frame_width = frame_width;
+  gpu_graph->frame_spacing = frame_spacing;
+  gpu_graph->use_colored_legend_text = use_colored_legend_text;
+
+  //---------------------------
+}
 void Window::fps_counter(){
   //---------------------------
 
