@@ -1,10 +1,9 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
-
+class VK_profiler;
 class VK_command;
 class VK_submit;
 
@@ -30,4 +29,5 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   VK_command* vk_command;
   VK_submit* vk_submit;
+  VK_profiler* vk_profiler;
 };

@@ -4,8 +4,6 @@
 #include <Utility/Specific/common.h>
 
 
-
-
 class VK_info
 {
 public:
@@ -19,6 +17,7 @@ public:
   inline float get_fps(){return struct_vulkan->profiler.engine_fps;}
   inline int* get_fps_max(){return &struct_vulkan->param.max_fps;}
   inline vec4* get_color_background(){return &struct_vulkan->param.background_color;}
+  inline vector<vk::structure::Task>* get_profil_data(){return &struct_vulkan->profiler.vec_task;}
 
 private:
   vk::structure::Vulkan* struct_vulkan;

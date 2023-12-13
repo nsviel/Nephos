@@ -21,8 +21,11 @@ public:
   //Main function
   void design_panel();
 
-  //Subfunctions
-  void design_profiler();
+  //Graph
+  void engine_render_graph();
+
+  //Text
+  void engine_text_info();
   void device_model();
   bool time_update();
   void time_drawig(bool update);
@@ -30,6 +33,7 @@ public:
 
 private:
   GUI* gui;
+  gui::plot::Profiler* profiler;
   VK_info* vk_info;
   Timer timer;
 

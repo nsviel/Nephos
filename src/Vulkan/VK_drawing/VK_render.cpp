@@ -3,6 +3,7 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_command/VK_submit.h>
 #include <Vulkan/VK_command/VK_command.h>
+#include <Vulkan/VK_instance/VK_profiler.h>
 
 
 //Constructor / Destructor
@@ -12,6 +13,7 @@ VK_render::VK_render(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_submit = new VK_submit(struct_vulkan);
+  this->vk_profiler = new VK_profiler(struct_vulkan);
 
   //---------------------------
 }
@@ -19,7 +21,7 @@ VK_render::~VK_render(){}
 
 //Main function
 void VK_render::run_renderpass(vk::structure::Renderpass* renderpass){
-  //timer_time t1 = timer.start_t();
+  vk_profiler->start();
   //---------------------------
 
   this->start_renderpass(renderpass);
@@ -27,10 +29,8 @@ void VK_render::run_renderpass(vk::structure::Renderpass* renderpass){
   vk_command->stop_render_pass(renderpass);
 
   //---------------------------
-    //timer_time t1 = timer.start_t();
-  //float duration = timer.stop_ms(t1);
-  //struct_vulkan->profiler.vec_task.push_back();
-  //say(duration);
+  string name = "renderpass_" + renderpass->name;
+  vk_profiler->stop(name);
 }
 void VK_render::submit_command(vk::structure::Renderpass* renderpass){
   vk::structure::Command& command = renderpass->command;

@@ -16,6 +16,7 @@ Profiler::Profiler(GUI* gui, bool* show_window, string name) : Panel(show_window
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->gui = gui;
+  this->profiler = new gui::plot::Profiler();
   this->vk_info = eng_vulkan->get_vk_info();
 
   this->width = 150;
@@ -28,13 +29,23 @@ Profiler::~Profiler(){}
 void Profiler::design_panel(){
   //---------------------------
 
-  this->design_profiler();
+  this->engine_render_graph();
+  this->engine_text_info();
 
   //---------------------------
 }
 
-//Subfunctions
-void Profiler::design_profiler(){
+//Graph
+void Profiler::engine_render_graph(){
+  //---------------------------
+
+
+
+  //---------------------------
+}
+
+//Text
+void Profiler::engine_text_info(){
   ImGui::BeginChild("Profiling", ImVec2(0, 150), false);
   //---------------------------
 

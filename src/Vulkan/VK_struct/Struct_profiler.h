@@ -8,10 +8,10 @@ namespace vk::structure{
 struct Task{
   //---------------------------
 
-  string name;
   float time_beg;
   float time_end;
-
+  string name;
+  
   //---------------------------
 };
 
