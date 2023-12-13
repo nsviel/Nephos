@@ -54,7 +54,7 @@ void Profiler::init(){
 void Profiler::loop(ImVec2 image_pose){
   //---------------------------
 
-  profiler.graph->LoadFrameData(vec_task);
+  profiler.graph->load_frame_data(vec_task);
   profiler.Render_overlay(image_pose);
 
   //---------------------------

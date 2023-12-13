@@ -3,14 +3,17 @@
 
 namespace ImProfil{
 
-Graph::Graph(size_t framesCount){
+//Constructor
+Graph::Graph(size_t frame_size){
   //---------------------------
 
-  this->frames.resize(framesCount);
+  this->frame_max_task = 100;
+  this->frames.resize(frame_size);
   for(auto &frame : frames){
-    frame.tasks.reserve(100);
+    frame.tasks.reserve(frame_max_task);
   }
 
+  this->frame_size = frame_size;
   this->frame_width = 3;
   this->frame_spacing = 1;
   this->use_colored_legend_text = true;
@@ -19,59 +22,47 @@ Graph::Graph(size_t framesCount){
   //---------------------------
 }
 
-void Graph::LoadFrameData(const std::vector<ImProfil::Graph_task>& tasks){
+//Main function
+void Graph::load_frame_data(const std::vector<ImProfil::Graph_task>& tasks){
   //---------------------------
 
   size_t count = tasks.size();
-  auto &currFrame = frames[currFrameIndex];
-  currFrame.tasks.resize(0);
+  auto &current_frame = frames[current_frameIndex];
+  current_frame.tasks.resize(0);
   for (size_t taskIndex = 0; taskIndex < count; taskIndex++){
-    if (taskIndex == 0)
-      currFrame.tasks.push_back(tasks[taskIndex]);
-    else
-    {
-      if (tasks[taskIndex - 1].color != tasks[taskIndex].color || tasks[taskIndex - 1].name != tasks[taskIndex].name)
-      {
-        currFrame.tasks.push_back(tasks[taskIndex]);
+    if(taskIndex == 0)
+      current_frame.tasks.push_back(tasks[taskIndex]);
+    else{
+      if(tasks[taskIndex - 1].color != tasks[taskIndex].color || tasks[taskIndex - 1].name != tasks[taskIndex].name){
+        current_frame.tasks.push_back(tasks[taskIndex]);
       }
       else
       {
-        currFrame.tasks.back().endTime = tasks[taskIndex].endTime;
+        current_frame.tasks.back().endTime = tasks[taskIndex].endTime;
       }
     }
   }
-  currFrame.taskStatsIndex.resize(currFrame.tasks.size());
+  current_frame.taskStatsIndex.resize(current_frame.tasks.size());
 
-  for (size_t taskIndex = 0; taskIndex < currFrame.tasks.size(); taskIndex++){
-    auto &task = currFrame.tasks[taskIndex];
+  for (size_t taskIndex = 0; taskIndex < current_frame.tasks.size(); taskIndex++){
+    auto &task = current_frame.tasks[taskIndex];
     auto it = taskNameToStatsIndex.find(task.name);
-    if (it == taskNameToStatsIndex.end())
+    if(it == taskNameToStatsIndex.end())
     {
       taskNameToStatsIndex[task.name] = taskStats.size();
       TaskStats taskStat;
       taskStat.maxTime = -1.0;
       taskStats.push_back(taskStat);
     }
-    currFrame.taskStatsIndex[taskIndex] = taskNameToStatsIndex[task.name];
+    current_frame.taskStatsIndex[taskIndex] = taskNameToStatsIndex[task.name];
   }
-  currFrameIndex = (currFrameIndex + 1) % frames.size();
+  current_frameIndex = (current_frameIndex + 1) % frames.size();
 
-  this->RebuildTaskStats(currFrameIndex, 300/*frames.size()*/);
-
-  //---------------------------
-}
-void Graph::render_timings(int graphWidth, int legendWidth, int height, int frameIndexOffset){
-  //---------------------------
-
-  ImDrawList* drawList = ImGui::GetWindowDrawList();
-  const glm::vec2 widgetPos = Vec2(ImGui::GetCursorScreenPos());
-  this->RenderGraph(drawList, widgetPos, glm::vec2(graphWidth, height), frameIndexOffset);
-  this->RenderLegend(drawList, widgetPos + glm::vec2(graphWidth, 0.0f), glm::vec2(legendWidth, height), frameIndexOffset);
-  ImGui::Dummy(ImVec2(float(graphWidth + legendWidth), float(height)));
+  this->rebuild_task_stats(current_frameIndex, frame_size);
 
   //---------------------------
 }
-void Graph::RebuildTaskStats(size_t endFrame, size_t framesCount){
+void Graph::rebuild_task_stats(size_t endFrame, size_t framesCount){
   //---------------------------
 
   for (auto &taskStat : taskStats){
@@ -103,33 +94,47 @@ void Graph::RebuildTaskStats(size_t endFrame, size_t framesCount){
 
   //---------------------------
 }
-void Graph::RenderGraph(ImDrawList *drawList, glm::vec2 graphPos, glm::vec2 graphSize, size_t frameIndexOffset){
+
+//Rendering
+void Graph::render_timings(int graphWidth, int legendWidth, int height, int frameIndexOffset){
   //---------------------------
 
-  Rect(drawList, graphPos, graphPos + graphSize, border_color, false);
+  ImDrawList* draw_list = ImGui::GetWindowDrawList();
+  const glm::vec2 widgetPos = Vec2(ImGui::GetCursorScreenPos());
+  this->render_graph(draw_list, widgetPos, glm::vec2(graphWidth, height), frameIndexOffset);
+  this->render_legend(draw_list, widgetPos + glm::vec2(graphWidth, 0.0f), glm::vec2(legendWidth, height), frameIndexOffset);
+  ImGui::Dummy(ImVec2(float(graphWidth + legendWidth), float(height)));
+
+  //---------------------------
+}
+void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 graph_size, size_t frameIndexOffset){
+  //---------------------------
+
+  this->draw_rect(draw_list, graph_pose, graph_pose + graph_size, border_color, false);
+  this->draw_line(draw_list, graph_size.x, 0.5, 0xffffffff);
   float heightThreshold = 1.0f;
 
   for (size_t frameNumber = 0; frameNumber < frames.size(); frameNumber++){
-    size_t frameIndex = (currFrameIndex - frameIndexOffset - 1 - frameNumber + 2 * frames.size()) % frames.size();
+    size_t frameIndex = (current_frameIndex - frameIndexOffset - 1 - frameNumber + 2 * frames.size()) % frames.size();
 
-    glm::vec2 framePos = graphPos + glm::vec2(graphSize.x - 1 - frame_width - (frame_width + frame_spacing) * frameNumber, graphSize.y - 1);
-    if (framePos.x < graphPos.x + 1)
+    glm::vec2 framePos = graph_pose + glm::vec2(graph_size.x - 1 - frame_width - (frame_width + frame_spacing) * frameNumber, graph_size.y - 1);
+    if(framePos.x < graph_pose.x + 1)
       break;
     glm::vec2 taskPos = framePos + glm::vec2(0.0f, 0.0f);
     auto &frame = frames[frameIndex];
-    for (const auto& task : frame.tasks)
-    {
-      float taskStartHeight = (float(task.startTime) / maxFrameTime) * graphSize.y;
-      float taskEndHeight = (float(task.endTime) / maxFrameTime) * graphSize.y;
+    for (const auto& task : frame.tasks){
+      float taskStartHeight = (float(task.startTime) / maxFrameTime) * graph_size.y;
+      float taskEndHeight = (float(task.endTime) / maxFrameTime) * graph_size.y;
       //taskMaxCosts[task.name] = std::max(taskMaxCosts[task.name], task.endTime - task.startTime);
-      if (abs(taskEndHeight - taskStartHeight) > heightThreshold)
-        Rect(drawList, taskPos + glm::vec2(0.0f, -taskStartHeight), taskPos + glm::vec2(frame_width, -taskEndHeight), task.color, true);
+      if(abs(taskEndHeight - taskStartHeight) > heightThreshold){
+        this->draw_rect(draw_list, taskPos + glm::vec2(0.0f, -taskStartHeight), taskPos + glm::vec2(frame_width, -taskEndHeight), task.color, true);
+      }
     }
   }
 
   //---------------------------
 }
-void Graph::RenderLegend(ImDrawList *drawList, glm::vec2 legendPos, glm::vec2 legendSize, size_t frameIndexOffset){
+void Graph::render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 legendSize, size_t frameIndexOffset){
   //---------------------------
 
   float markerLeftRectMargin = 3.0f;
@@ -140,102 +145,114 @@ void Graph::RenderLegend(ImDrawList *drawList, glm::vec2 legendPos, glm::vec2 le
   float markerRigthRectMargin = 3.0f;
   float markerRightRectHeight = 10.0f;
   float markerRightRectSpacing = 4.0f;
-  float nameOffset = 40.0f;
-  glm::vec2 textMargin = glm::vec2(5.0f, -3.0f);
 
-  auto &currFrame = frames[(currFrameIndex - frameIndexOffset - 1 + 2 * frames.size()) % frames.size()];
+  auto &current_frame = frames[(current_frameIndex - frameIndexOffset - 1 + 2 * frames.size()) % frames.size()];
   size_t maxTasksCount = size_t(legendSize.y / (markerRightRectHeight + markerRightRectSpacing));
 
-  for (auto &taskStat : taskStats)
-  {
+  for (auto &taskStat : taskStats){
     taskStat.onScreenIndex = size_t(-1);
   }
 
   size_t tasksToShow = std::min<size_t>(taskStats.size(), maxTasksCount);
   size_t tasksShownCount = 0;
-  for (size_t taskIndex = 0; taskIndex < currFrame.tasks.size(); taskIndex++)
-  {
-    auto &task = currFrame.tasks[taskIndex];
-    auto &stat = taskStats[currFrame.taskStatsIndex[taskIndex]];
+  for(size_t taskIndex = 0; taskIndex < current_frame.tasks.size(); taskIndex++){
+    ImProfil::Graph_task& task = current_frame.tasks[taskIndex];
+    auto &stat = taskStats[current_frame.taskStatsIndex[taskIndex]];
 
-    if (stat.priorityOrder >= tasksToShow)
+    if(stat.priorityOrder >= tasksToShow){
       continue;
+    }
 
-    if (stat.onScreenIndex == size_t(-1))
-    {
+    if(stat.onScreenIndex == size_t(-1)){
       stat.onScreenIndex = tasksShownCount++;
     }
-    else
+    else{
       continue;
+    }
+
     float taskStartHeight = (float(task.startTime) / maxFrameTime) * legendSize.y;
     float taskEndHeight = (float(task.endTime) / maxFrameTime) * legendSize.y;
-
     glm::vec2 markerLeftRectMin = legendPos + glm::vec2(markerLeftRectMargin, legendSize.y);
     glm::vec2 markerLeftRectMax = markerLeftRectMin + glm::vec2(markerLeftRectWidth, 0.0f);
     markerLeftRectMin.y -= taskStartHeight;
     markerLeftRectMax.y -= taskEndHeight;
-
     glm::vec2 markerRightRectMin = legendPos + glm::vec2(markerLeftRectMargin + markerLeftRectWidth + markerMidWidth, legendSize.y - markerRigthRectMargin - (markerRightRectHeight + markerRightRectSpacing) * stat.onScreenIndex);
     glm::vec2 markerRightRectMax = markerRightRectMin + glm::vec2(markerRightRectWidth, -markerRightRectHeight);
-    RenderTaskMarker(drawList, markerLeftRectMin, markerLeftRectMax, markerRightRectMin, markerRightRectMax, task.color);
 
-    uint32_t textColor = use_colored_legend_text ? task.color : ImProfil::color::imguiText;// task.color;
-
-    float taskTimeMs = float(task.endTime - task.startTime);
-    std::ostringstream timeText;
-    timeText.precision(2);
-    timeText << std::fixed << std::string("[") << (taskTimeMs * 1000.0f);
-
-    this->Text(drawList, markerRightRectMax + textMargin, textColor, timeText.str().c_str());
-    this->Text(drawList, markerRightRectMax + textMargin + glm::vec2(nameOffset, 0.0f), textColor, (std::string("ms] ") + task.name).c_str());
+    this->render_task_marker(draw_list, markerLeftRectMin, markerLeftRectMax, markerRightRectMin, markerRightRectMax, task.color);
+    this->render_legend_text(draw_list, markerRightRectMax, task.color, task);
   }
 
   //---------------------------
 }
-
-//Element
-void Graph::Rect(ImDrawList *drawList, glm::vec2 minPoint, glm::vec2 maxPoint, uint32_t col, bool filled = true){
+void Graph::render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, uint32_t col){
   //---------------------------
 
-  if(filled)
-    drawList->AddRectFilled(ImVec2(minPoint.x, minPoint.y), ImVec2(maxPoint.x, maxPoint.y), col);
-  else
-    drawList->AddRect(ImVec2(minPoint.x, minPoint.y), ImVec2(maxPoint.x, maxPoint.y), col);
-
-  //---------------------------
-}
-void Graph::Text(ImDrawList *drawList, glm::vec2 point, uint32_t col, const char *text){
-  //---------------------------
-
-  drawList->AddText(ImVec2(point.x, point.y), col, text);
-
-  //---------------------------
-}
-void Graph::Triangle(ImDrawList *drawList, std::array<glm::vec2, 3> points, uint32_t col, bool filled = true){
-  //---------------------------
-
-  if (filled)
-    drawList->AddTriangleFilled(ImVec2(points[0].x, points[0].y), ImVec2(points[1].x, points[1].y), ImVec2(points[2].x, points[2].y), col);
-  else
-    drawList->AddTriangle(ImVec2(points[0].x, points[0].y), ImVec2(points[1].x, points[1].y), ImVec2(points[2].x, points[2].y), col);
-
-  //---------------------------
-}
-void Graph::RenderTaskMarker(ImDrawList *drawList, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, uint32_t col){
-  //---------------------------
-
-  Rect(drawList, leftMinPoint, leftMaxPoint, col, true);
-  Rect(drawList, rightMinPoint, rightMaxPoint, col, true);
+  this->draw_rect(draw_list, leftMinPoint, leftMaxPoint, col, true);
+  this->draw_rect(draw_list, rightMinPoint, rightMaxPoint, col, true);
   std::array<ImVec2, 4> points = {
     ImVec2(leftMaxPoint.x, leftMinPoint.y),
     ImVec2(leftMaxPoint.x, leftMaxPoint.y),
     ImVec2(rightMinPoint.x, rightMaxPoint.y),
     ImVec2(rightMinPoint.x, rightMinPoint.y)
   };
-  drawList->AddConvexPolyFilled(points.data(), int(points.size()), col);
+  draw_list->AddConvexPolyFilled(points.data(), int(points.size()), col);
+
+  //---------------------------
+}
+void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, uint32_t col, ImProfil::Graph_task task){
+  //---------------------------
+
+  glm::vec2 textMargin = glm::vec2(5.0f, -3.0f);
+  float nameOffset = 40.0f;
+
+  uint32_t textColor = use_colored_legend_text ? task.color : ImProfil::color::imguiText;
+
+  float taskTimeMs = float(task.endTime - task.startTime);
+  std::ostringstream timeText;
+  timeText.precision(2);
+  timeText << std::fixed << std::string("[") << (taskTimeMs * 1000.0f);
+
+  this->draw_text(draw_list, rightMaxPoint + textMargin, textColor, timeText.str().c_str());
+  this->draw_text(draw_list, rightMaxPoint + textMargin + glm::vec2(nameOffset, 0.0f), textColor, (std::string("ms] ") + task.name).c_str());
 
   //---------------------------
 }
 
+//Element
+void Graph::draw_line(ImDrawList *draw_list, float width, float height, uint32_t color){
+  //---------------------------
+
+  draw_list->AddRectFilled(ImVec2(0, height), ImVec2(width, height + 1), color);
+
+  //---------------------------
+}
+void Graph::draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, uint32_t color, bool filled = true){
+  //---------------------------
+
+  if(filled)
+    draw_list->AddRectFilled(ImVec2(minPoint.x, minPoint.y), ImVec2(maxPoint.x, maxPoint.y), color);
+  else
+    draw_list->AddRect(ImVec2(minPoint.x, minPoint.y), ImVec2(maxPoint.x, maxPoint.y), color);
+
+  //---------------------------
+}
+void Graph::draw_text(ImDrawList *draw_list, glm::vec2 point, uint32_t col, const char *text){
+  //---------------------------
+
+  draw_list->AddText(ImVec2(point.x, point.y), col, text);
+
+  //---------------------------
+}
+void Graph::draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, uint32_t col, bool filled = true){
+  //---------------------------
+
+  if(filled)
+    draw_list->AddTriangleFilled(ImVec2(points[0].x, points[0].y), ImVec2(points[1].x, points[1].y), ImVec2(points[2].x, points[2].y), col);
+  else
+    draw_list->AddTriangle(ImVec2(points[0].x, points[0].y), ImVec2(points[1].x, points[1].y), ImVec2(points[2].x, points[2].y), col);
+
+  //---------------------------
+}
 
 }

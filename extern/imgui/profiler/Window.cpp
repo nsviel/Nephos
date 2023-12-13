@@ -92,12 +92,12 @@ void Window::fps_counter(){
 
   //Time stuff
   fps_frames_count++;
-  auto currFrameTime = std::chrono::system_clock::now();{
-    float fpsDeltaTime = std::chrono::duration<float>(currFrameTime - prev_fps_frame_time).count();
+  auto current_frameTime = std::chrono::system_clock::now();{
+    float fpsDeltaTime = std::chrono::duration<float>(current_frameTime - prev_fps_frame_time).count();
     if (fpsDeltaTime > 0.5f){
       this->avg_frame_time = fpsDeltaTime / float(fps_frames_count);
       fps_frames_count = 0;
-      prev_fps_frame_time = currFrameTime;
+      prev_fps_frame_time = current_frameTime;
     }
   }
 
