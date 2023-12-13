@@ -19,7 +19,7 @@ VK_drawing::~VK_drawing(){}
 
 //Main function
 void VK_drawing::draw_frame(){
-  timer_time t1 = timer.start_t();
+
   //---------------------------
 
   if(struct_vulkan->param.headless){
@@ -30,7 +30,7 @@ void VK_drawing::draw_frame(){
   }
 
   //---------------------------
-  struct_vulkan->profiler.draw_frame.push_back(timer.stop_ms(t1));
+
 }
 void VK_drawing::draw_frame_headless(){
   //---------------------------
@@ -61,10 +61,12 @@ void VK_drawing::draw_frame_headless(){
 void VK_drawing::draw_frame_presentation(){
   //---------------------------
 
+
   vk::structure::Frame* frame = struct_vulkan->swapchain.get_frame_presentation();
   VkSemaphore semaphore_wait = frame->semaphore_image_ready;
   VkSemaphore semaphore_done = frame->vec_semaphore_render[0];
   vk_presentation->acquire_next_image(semaphore_wait);
+
 
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
@@ -83,9 +85,13 @@ void VK_drawing::draw_frame_presentation(){
     semaphore_done = frame->vec_semaphore_render[i+1];
   }
 
+
   VkSemaphore semaphore = frame->vec_semaphore_render[nb_renderpass-1];
   VkFence fence = frame->fence;
   vk_render->wait_end_rendering(fence);
+
+
+
   vk_presentation->image_presentation(semaphore, fence);
 
   //---------------------------

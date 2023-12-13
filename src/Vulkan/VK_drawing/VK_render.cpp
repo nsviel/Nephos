@@ -19,6 +19,7 @@ VK_render::~VK_render(){}
 
 //Main function
 void VK_render::run_renderpass(vk::structure::Renderpass* renderpass){
+  //timer_time t1 = timer.start_t();
   //---------------------------
 
   this->start_renderpass(renderpass);
@@ -26,7 +27,9 @@ void VK_render::run_renderpass(vk::structure::Renderpass* renderpass){
   vk_command->stop_render_pass(renderpass);
 
   //---------------------------
-
+  //float duration = timer.stop_ms(t1);
+  //struct_vulkan->profiler.vec_task.push_back();
+  //say(duration);
 }
 void VK_render::submit_command(vk::structure::Renderpass* renderpass){
   vk::structure::Command& command = renderpass->command;
