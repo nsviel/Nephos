@@ -27,6 +27,7 @@ private:
 
   vector<ImProfil::Task> vec_cpu_task;
   vector<ImProfil::Task> vec_gpu_task;
+  int max_nb_data;
 };
 
 }

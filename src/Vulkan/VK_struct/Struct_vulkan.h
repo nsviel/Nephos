@@ -15,7 +15,7 @@ struct Vulkan{
   vk::structure::Instance instance;
   vk::structure::Device device;
   vk::structure::Swapchain swapchain;
-  vk::structure::Info info;
+  vk::structure::Profiler profiler;
   vk::structure::Data data;
   vk::structure::Parameter param;
   vk::structure::Pool pool;

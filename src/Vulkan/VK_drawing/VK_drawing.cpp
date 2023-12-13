@@ -30,7 +30,7 @@ void VK_drawing::draw_frame(){
   }
 
   //---------------------------
-  struct_vulkan->info.draw_frame.push_back(timer.stop_ms(t1));
+  struct_vulkan->profiler.draw_frame.push_back(timer.stop_ms(t1));
 }
 void VK_drawing::draw_frame_headless(){
   //---------------------------

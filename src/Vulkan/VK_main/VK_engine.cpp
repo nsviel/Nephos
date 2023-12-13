@@ -60,7 +60,7 @@ void VK_engine::init(){
   }
 
   //---------------------------
-  struct_vulkan->info.engine_init = timer.stop_us(t1) / 1000;
+  struct_vulkan->profiler.engine_init = timer.stop_us(t1) / 1000;
 }
 void VK_engine::init_engine_presentation(){
   //---------------------------
@@ -107,7 +107,7 @@ void VK_engine::loop(){
 
   //---------------------------
   fps_counter->update();
-  struct_vulkan->info.engine_fps = fps_counter->get_fps();
+  struct_vulkan->profiler.engine_fps = fps_counter->get_fps();
 }
 void VK_engine::clean(){
   //---------------------------

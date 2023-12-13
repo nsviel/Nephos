@@ -19,6 +19,7 @@ Profiler::Profiler(){
   //---------------------------
 
   this->profiler = ImProfil::Window();
+  this->max_nb_data = 100;
 
   //---------------------------
 }
@@ -44,6 +45,7 @@ void Profiler::add_cpu_task(float time_beg, float time_end, string name, string 
   uint32_t color = determine_color(color_name);
   task = {time_beg, time_end, name, color};
   vec_cpu_task.push_back(task);
+  if(vec_cpu_task.size() > max_nb_data) vec_cpu_task.erase(vec_cpu_task.begin());
 
   //---------------------------
 }
@@ -54,6 +56,7 @@ void Profiler::add_gpu_task(float time_beg, float time_end, string name, string 
   uint32_t color = determine_color(color_name);
   task = {time_beg, time_end, name, color};
   vec_gpu_task.push_back(task);
+  if(vec_gpu_task.size() > max_nb_data) vec_gpu_task.erase(vec_gpu_task.begin());
 
   //---------------------------
 }
