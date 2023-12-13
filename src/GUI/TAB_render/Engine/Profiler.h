@@ -22,7 +22,7 @@ public:
   void design_panel();
 
   //Subfunctions
-  void design_profiling();
+  void design_profiler();
   void device_model();
   bool time_update();
   void time_drawig(bool update);
@@ -30,7 +30,6 @@ public:
 
 private:
   GUI* gui;
-  gui::plot::Plotting* gui_plot;
   VK_info* vk_info;
   Timer timer;
 

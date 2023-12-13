@@ -17,7 +17,6 @@ Profiler::Profiler(GUI* gui, bool* show_window, string name) : Panel(show_window
 
   this->gui = gui;
   this->vk_info = eng_vulkan->get_vk_info();
-  this->gui_plot = new gui::plot::Plotting();
 
   this->width = 150;
 
@@ -29,15 +28,13 @@ Profiler::~Profiler(){}
 void Profiler::design_panel(){
   //---------------------------
 
-  this->design_profiling();
-
-  gui_plot->open_file();
+  this->design_profiler();
 
   //---------------------------
 }
 
 //Subfunctions
-void Profiler::design_profiling(){
+void Profiler::design_profiler(){
   ImGui::BeginChild("Profiling", ImVec2(0, 150), false);
   //---------------------------
 

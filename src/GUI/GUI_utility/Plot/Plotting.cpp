@@ -14,7 +14,7 @@ Plotting::Plotting(){
 Plotting::~Plotting(){}
 
 //Main function
-void Plotting::open_file(){
+void Plotting::plot_constant_in_time(){
   //---------------------------
 
   static vector<float> vec_c;

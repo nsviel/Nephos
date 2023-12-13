@@ -45,4 +45,3 @@ using namespace glm;
 #include <imgui/core/imgui_impl_glfw.h>
 #include <imgui/core/imgui_internal.h>
 #include <imgui/vulkan/imgui_impl_vulkan.h>
-#include <imgui/implot/implot.h>

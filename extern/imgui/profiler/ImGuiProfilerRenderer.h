@@ -28,7 +28,9 @@ namespace ImGuiUtils{
       frameSpacing = 1;
       useColoredLegendText = false;
     }
-    void LoadFrameData(const legit::ProfilerTask *tasks, size_t count){
+    //void LoadFrameData(const legit::ProfilerTask *tasks, size_t count){
+    void LoadFrameData(const std::vector<legit::ProfilerTask>& tasks){
+       size_t count = tasks.size();
       auto &currFrame = frames[currFrameIndex];
       currFrame.tasks.resize(0);
       for (size_t taskIndex = 0; taskIndex < count; taskIndex++){

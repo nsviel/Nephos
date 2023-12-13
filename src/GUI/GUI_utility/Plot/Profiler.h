@@ -1,26 +1,24 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <imgui/implot/implot.h>
+#include <imgui/profiler/ImGuiProfilerRenderer.h>
 
 
 namespace gui::plot{
 
-class Plotting
+class Profiler
 {
 public:
   //Constructor / Destructor
-  Plotting();
-  ~Plotting();
+  Profiler();
+  ~Profiler();
 
 public:
   //Main function
-  void plot_constant_in_time();
-
-  //Subfunction
-  void implot_style();
+  void design_profiling();
 
 private:
+  ImGuiUtils::ProfilersWindow win;
 };
 
 }
