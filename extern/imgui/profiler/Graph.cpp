@@ -13,7 +13,7 @@ Graph::Graph(size_t framesCount){
 
   frame_width = 3;
   frame_spacing = 1;
-  use_colored_legend_text = false;
+  use_colored_legend_text = true;
 
   //---------------------------
 }

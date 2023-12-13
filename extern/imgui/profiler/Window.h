@@ -19,19 +19,21 @@ class Graph;
 class Window{
 public:
   Window();
+  
   void Render();
 
-  bool stopProfiling;
-  int frameOffset;
-  ImProfil::Graph* cpuGraph;
-  ImProfil::Graph* gpuGraph;
-  int frame_width;
-  int frame_spacing;
-  bool use_colored_legend_text;
+  ImProfil::Graph* cpu_graph;
+  ImProfil::Graph* gpu_graph;
+
   using TimePoint = std::chrono::time_point<std::chrono::system_clock>;
   TimePoint prevFpsFrameTime;
   size_t fpsFramesCount;
   float avgFrameTime;
+  bool use_colored_legend_text;
+  bool stopProfiling;
+  int frameOffset;
+  int frame_width;
+  int frame_spacing;
 };
 
 }
