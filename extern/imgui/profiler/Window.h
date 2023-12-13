@@ -25,7 +25,7 @@ public:
 
   //Subfunction
   void fps_counter();
-  void truc(ImProfil::Graph graph);
+  void display_option();
 
   ImProfil::Graph* cpu_graph;
   ImProfil::Graph* gpu_graph;
@@ -39,6 +39,8 @@ public:
   int frame_offset;
   int frame_width;
   int frame_spacing;
+  int legend_width;
+  int max_graph_height;
 };
 
 }
