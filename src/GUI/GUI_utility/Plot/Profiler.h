@@ -20,9 +20,9 @@ public:
 
   //Subfunction
   void add_cpu_task(float time_beg, float time_end, string name, string color);
-  void add_cpu_task(float time_beg, float time_end, string name);
+  void add_cpu_task(ImProfil::Task task);
   void add_gpu_task(float time_beg, float time_end, string name, string color);
-  void add_gpu_task(float time_beg, float time_end, string name);
+  void add_gpu_task(ImProfil::Task task);
   uint32_t determine_color(string color);
   uint32_t next_color();
 

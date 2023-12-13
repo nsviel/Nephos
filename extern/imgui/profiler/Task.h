@@ -6,8 +6,8 @@
 namespace ImProfil{
 
 struct Task{
-  double startTime;
-  double endTime;
+  double time_bed;
+  double time_end;
   std::string name;
 };
 

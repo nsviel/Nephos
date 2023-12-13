@@ -66,21 +66,21 @@ void Profiler::loop(){
 void Profiler::add_cpu_task(float time_beg, float time_end, string name, string color_name){
   //---------------------------
 
-  ImProfil::Graph_task task;
+  ImProfil::Graph_task graph_task;
   uint32_t color = determine_color(color_name);
-  task = {time_beg, time_end, name, color};
-  vec_cpu_task.push_back(task);
+  graph_task = {time_beg, time_end, name, color};
+  vec_cpu_task.push_back(graph_task);
   if(vec_cpu_task.size() > max_nb_data) vec_cpu_task.erase(vec_cpu_task.begin());
 
   //---------------------------
 }
-void Profiler::add_cpu_task(float time_beg, float time_end, string name){
+void Profiler::add_cpu_task(ImProfil::Task task){
   //---------------------------
 
-  ImProfil::Graph_task task;
+  ImProfil::Graph_task graph_task;
   uint32_t color = next_color();
-  task = {time_beg, time_end, name, color};
-  vec_cpu_task.push_back(task);
+  graph_task = {task.time_beg, task.time_end, task.name, color};
+  vec_cpu_task.push_back(graph_task);
   if(vec_cpu_task.size() > max_nb_data) vec_cpu_task.erase(vec_cpu_task.begin());
 
   //---------------------------
@@ -88,21 +88,21 @@ void Profiler::add_cpu_task(float time_beg, float time_end, string name){
 void Profiler::add_gpu_task(float time_beg, float time_end, string name, string color_name){
   //---------------------------
 
-  ImProfil::Graph_task task;
+  ImProfil::Graph_task graph_task;
   uint32_t color = determine_color(color_name);
-  task = {time_beg, time_end, name, color};
-  vec_gpu_task.push_back(task);
+  graph_task = {time_beg, time_end, name, color};
+  vec_gpu_task.push_back(graph_task);
   if(vec_gpu_task.size() > max_nb_data) vec_gpu_task.erase(vec_gpu_task.begin());
 
   //---------------------------
 }
-void Profiler::add_gpu_task(float time_beg, float time_end, string name){
+void Profiler::add_gpu_task(ImProfil::Task task){
   //---------------------------
 
-  ImProfil::Graph_task task;
+  ImProfil::Graph_task graph_task;
   uint32_t color = next_color();
-  task = {time_beg, time_end, name, color};
-  vec_gpu_task.push_back(task);
+  graph_task = {task.time_beg, task.time_end, task.name, color};
+  vec_gpu_task.push_back(graph_task);
   if(vec_gpu_task.size() > max_nb_data) vec_gpu_task.erase(vec_gpu_task.begin());
 
   //---------------------------
