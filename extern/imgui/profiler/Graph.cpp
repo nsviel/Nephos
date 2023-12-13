@@ -232,4 +232,32 @@ void Graph::RenderLegend(ImDrawList *drawList, glm::vec2 legendPos, glm::vec2 le
     }*/
   }
 
+void Graph::Rect(ImDrawList *drawList, glm::vec2 minPoint, glm::vec2 maxPoint, uint32_t col, bool filled = true){
+  if(filled)
+    drawList->AddRectFilled(ImVec2(minPoint.x, minPoint.y), ImVec2(maxPoint.x, maxPoint.y), col);
+  else
+    drawList->AddRect(ImVec2(minPoint.x, minPoint.y), ImVec2(maxPoint.x, maxPoint.y), col);
+}
+void Graph::Text(ImDrawList *drawList, glm::vec2 point, uint32_t col, const char *text){
+  drawList->AddText(ImVec2(point.x, point.y), col, text);
+}
+void Graph::Triangle(ImDrawList *drawList, std::array<glm::vec2, 3> points, uint32_t col, bool filled = true){
+  if (filled)
+    drawList->AddTriangleFilled(ImVec2(points[0].x, points[0].y), ImVec2(points[1].x, points[1].y), ImVec2(points[2].x, points[2].y), col);
+  else
+    drawList->AddTriangle(ImVec2(points[0].x, points[0].y), ImVec2(points[1].x, points[1].y), ImVec2(points[2].x, points[2].y), col);
+}
+void Graph::RenderTaskMarker(ImDrawList *drawList, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, uint32_t col){
+  Rect(drawList, leftMinPoint, leftMaxPoint, col, true);
+  Rect(drawList, rightMinPoint, rightMaxPoint, col, true);
+  std::array<ImVec2, 4> points = {
+    ImVec2(leftMaxPoint.x, leftMinPoint.y),
+    ImVec2(leftMaxPoint.x, leftMaxPoint.y),
+    ImVec2(rightMinPoint.x, rightMaxPoint.y),
+    ImVec2(rightMinPoint.x, rightMinPoint.y)
+  };
+  drawList->AddConvexPolyFilled(points.data(), int(points.size()), col);
+}
+
+
 }
