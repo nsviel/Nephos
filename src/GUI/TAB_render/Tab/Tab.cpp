@@ -29,7 +29,7 @@ void Tab::create_panels(){
   this->rnd_profiler = new gui::engine::Profiler(gui, &gui_render_panel->show_profiler, "Profiler");
   this->rnd_shader = new gui::engine::Shader(gui, &gui_render_panel->show_shader, "Shader");
   this->rnd_scene = new gui::rnd::panel::Scene(gui, gui_render_panel);
-  this->rnd_camera = new gui::engine::Camera(gui, &gui_render_panel->show_engine_camera, "Camera");
+  this->rnd_camera = new gui::engine::Camera(gui, &gui_render_panel->show_camera, "Camera");
   this->rnd_kinect = new gui::kinect::Kinect_panel(gui, &gui_render_panel->show_kinect, "Kinect");
   this->rnd_capture = new gui::kinect::Capture(gui, &gui_render_panel->show_capture, "Capture");
   this->rnd_render = new gui::engine::Render(gui);
@@ -58,7 +58,7 @@ void Tab::open_panels(){
   ImGui::Checkbox(ICON_FA_COG " Option##456", &gui_render_panel->show_option);
   ImGui::Checkbox(ICON_FA_PLAY " Scene##456", &gui_render_panel->show_scene);
   ImGui::Checkbox(ICON_FA_REFRESH " Profiler##456", &gui_render_panel->show_profiler);
-  ImGui::Checkbox(ICON_FA_CAMERA " Camera##456", &gui_render_panel->show_engine_camera);
+  ImGui::Checkbox(ICON_FA_CAMERA " Camera##456", &gui_render_panel->show_camera);
   ImGui::Checkbox(ICON_FA_ROAD " Shader##456", &gui_render_panel->show_shader);
   ImGui::Checkbox(ICON_FA_FILM " Kinect_panel##456", &gui_render_panel->show_kinect);
 
