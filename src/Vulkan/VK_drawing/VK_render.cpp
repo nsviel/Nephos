@@ -29,8 +29,6 @@ void VK_render::run_renderpass(vk::structure::Renderpass* renderpass){
   vk_command->stop_render_pass(renderpass);
 
   //---------------------------
-  string name = "rp_" + renderpass->name;
-  vk_profiler->stop(name);
 }
 void VK_render::submit_command(vk::structure::Renderpass* renderpass){
   vk::structure::Command& command = renderpass->command;
@@ -40,6 +38,8 @@ void VK_render::submit_command(vk::structure::Renderpass* renderpass){
   vk_submit->submit_command_render(&command);
 
   //---------------------------
+  string name = "rp_" + renderpass->name;
+  vk_profiler->stop(name);
 }
 
 //Subfunction
