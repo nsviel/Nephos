@@ -55,7 +55,7 @@ void Profiler::loop(){
   //---------------------------
 
   profiler.graph->LoadFrameData(vec_task);
-  profiler.Render();
+  profiler.Render_window();
 
   //---------------------------
 }

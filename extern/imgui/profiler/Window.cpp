@@ -22,7 +22,7 @@ Window::Window(){
 }
 
 //Main function
-void Window::Render(){
+void Window::Render_window(){
   //---------------------------
 
   this->fps_counter();
@@ -39,7 +39,37 @@ void Window::Render(){
   int graph_height = std::min(max_graph_height, graph_height_available);
   int graph_width = int(available_size.x) - legend_width;
 
-  graph->render_timings(graph_width, legend_width, graph_height, frame_offset);
+  graph->render_timings(graph_width, legend_width, graph_height_available, frame_offset);
+
+  ImGui::End();
+
+  //---------------------------
+}
+void Window::Render_overlay(ImVec2 image_pose){
+  //---------------------------
+
+  ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
+  ImGui::SetNextWindowBgAlpha(0.0f);
+  ImGuiWindowFlags flags;
+  flags |= ImGuiWindowFlags_NoMove;
+  flags |= ImGuiWindowFlags_NoTitleBar;
+  flags |= ImGuiWindowFlags_NoResize;
+  flags |= ImGuiWindowFlags_AlwaysAutoResize;
+  flags |= ImGuiWindowFlags_NoSavedSettings;
+  flags |= ImGuiWindowFlags_NoFocusOnAppearing;
+  flags |= ImGuiWindowFlags_NoNav;
+  flags |= ImGuiWindowFlags_NoNavFocus;
+  flags |= ImGuiWindowFlags_NoScrollbar;
+
+  ImGui::Begin("##profiler_overlay", 0, flags);
+
+  ImVec2 available_size = ImGui::GetContentRegionAvail();
+  int margin_size = int(ImGui::GetStyle().ItemSpacing.y);
+  int graph_height_available = (int(available_size.y) - margin_size);
+  int graph_height = std::min(max_graph_height, graph_height_available);
+  int graph_width = int(available_size.x) - legend_width;
+
+  graph->render_timings(graph_width, legend_width, graph_height_available, frame_offset);
 
   ImGui::End();
 

@@ -21,7 +21,8 @@ public:
   Window();
 
   //Main function
-  void Render();
+  void Render_window();
+  void Render_overlay(ImVec2 image_pose);
 
   //Subfunction
   void init_graph();
