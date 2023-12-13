@@ -28,8 +28,8 @@ namespace ImGuiUtils{
       frameSpacing = 1;
       useColoredLegendText = false;
     }
-    //void LoadFrameData(const legit::ProfilerTask *tasks, size_t count){
-    void LoadFrameData(const std::vector<legit::ProfilerTask>& tasks){
+    //void LoadFrameData(const ImProfil::ProfilerTask *tasks, size_t count){
+    void LoadFrameData(const std::vector<ImProfil::ProfilerTask>& tasks){
        size_t count = tasks.size();
       auto &currFrame = frames[currFrameIndex];
       currFrame.tasks.resize(0);
@@ -177,7 +177,7 @@ namespace ImGuiUtils{
         glm::vec2 markerRightRectMax = markerRightRectMin + glm::vec2(markerRightRectWidth, -markerRightRectHeight);
         RenderTaskMarker(drawList, markerLeftRectMin, markerLeftRectMax, markerRightRectMin, markerRightRectMax, task.color);
 
-        uint32_t textColor = useColoredLegendText ? task.color : legit::Colors::imguiText;// task.color;
+        uint32_t textColor = useColoredLegendText ? task.color : ImProfil::Colors::imguiText;// task.color;
 
         float taskTimeMs = float(task.endTime - task.startTime);
         std::ostringstream timeText;
@@ -192,7 +192,7 @@ namespace ImGuiUtils{
       struct PriorityEntry
       {
         bool isUsed;
-        legit::ProfilerTask task;
+        ImProfil::ProfilerTask task;
       };
       std::map<std::string, PriorityEntry> priorityEntries;
       for (auto priorityTask : priorityTasks)
@@ -224,7 +224,7 @@ namespace ImGuiUtils{
           glm::vec2 markerRightRectMax = markerRightRectMin + glm::vec2(markerRightRectWidth, -markerRightRectHeight);
           RenderTaskMarker(drawList, markerLeftRectMin, markerLeftRectMax, markerRightRectMin, markerRightRectMax, task.color);
 
-          uint32_t textColor = legit::Colors::imguiText;// task.color;
+          uint32_t textColor = ImProfil::Colors::imguiText;// task.color;
 
           float taskTimeMs = float(task.endTime - task.startTime);
           std::ostringstream timeText;
@@ -301,7 +301,7 @@ namespace ImGuiUtils{
           usedTaskNames.insert(tasks[bestTaskIndex].name);
         }
       }*/
-      std::vector<legit::ProfilerTask> tasks;
+      std::vector<ImProfil::ProfilerTask> tasks;
       std::vector<size_t> taskStatsIndex;
       //std::vector<size_t> priorityTaskIndices;
     };

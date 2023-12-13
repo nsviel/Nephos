@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <string>
 
-namespace legit{
+namespace ImProfil{
 
   namespace Colors{
     //https://flatuicolors.com/palette/defo

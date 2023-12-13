@@ -28,13 +28,13 @@ void Profiler::design_profiling(){
     }
   };*/
 
-  legit::ProfilerTask task;
-  vector<legit::ProfilerTask> vec_task;
+  ImProfil::ProfilerTask task;
+  vector<ImProfil::ProfilerTask> vec_task;
 
-  task = {0, 0.003, "hello", legit::Colors::turqoise};
+  task = {0, 0.003, "hello", ImProfil::Colors::turqoise};
   vec_task.push_back(task);
 
-  task = {0.004, 0.010, "yup", legit::Colors::nephritis};
+  task = {0.004, 0.010, "yup", ImProfil::Colors::nephritis};
   vec_task.push_back(task);
 
   win.gpuGraph.LoadFrameData(vec_task);
@@ -42,4 +42,6 @@ void Profiler::design_profiling(){
   win.Render();
 
   //---------------------------
+}
+
 }
