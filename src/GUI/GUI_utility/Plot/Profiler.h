@@ -29,8 +29,8 @@ public:
 private:
   ImProfil::Window profiler;
 
-  vector<ImProfil::Task> vec_cpu_task;
-  vector<ImProfil::Task> vec_gpu_task;
+  vector<ImProfil::Graph_task> vec_cpu_task;
+  vector<ImProfil::Graph_task> vec_gpu_task;
   vector<uint32_t> vec_color;
   int max_nb_data;
 };

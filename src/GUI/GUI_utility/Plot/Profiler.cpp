@@ -31,23 +31,23 @@ void Profiler::init(){
   //---------------------------
 
   vec_color.clear();
-  vec_color.push_back(ImProfil::Colors::turqoise);
-  vec_color.push_back(ImProfil::Colors::greenSea);
-  vec_color.push_back(ImProfil::Colors::emerald);
-  vec_color.push_back(ImProfil::Colors::nephritis);
-  vec_color.push_back(ImProfil::Colors::peterRiver);
-  vec_color.push_back(ImProfil::Colors::belizeHole);
-  vec_color.push_back(ImProfil::Colors::amethyst);
-  vec_color.push_back(ImProfil::Colors::wisteria);
-  vec_color.push_back(ImProfil::Colors::sunFlower);
-  vec_color.push_back(ImProfil::Colors::orange);
-  vec_color.push_back(ImProfil::Colors::carrot);
-  vec_color.push_back(ImProfil::Colors::pumpkin);
-  vec_color.push_back(ImProfil::Colors::alizarin);
-  vec_color.push_back(ImProfil::Colors::pomegranate);
-  vec_color.push_back(ImProfil::Colors::clouds);
-  vec_color.push_back(ImProfil::Colors::silver);
-  vec_color.push_back(ImProfil::Colors::imguiText);
+  vec_color.push_back(ImProfil::color::turqoise);
+  vec_color.push_back(ImProfil::color::greenSea);
+  vec_color.push_back(ImProfil::color::emerald);
+  vec_color.push_back(ImProfil::color::nephritis);
+  vec_color.push_back(ImProfil::color::peterRiver);
+  vec_color.push_back(ImProfil::color::belizeHole);
+  vec_color.push_back(ImProfil::color::amethyst);
+  vec_color.push_back(ImProfil::color::wisteria);
+  vec_color.push_back(ImProfil::color::sunFlower);
+  vec_color.push_back(ImProfil::color::orange);
+  vec_color.push_back(ImProfil::color::carrot);
+  vec_color.push_back(ImProfil::color::pumpkin);
+  vec_color.push_back(ImProfil::color::alizarin);
+  vec_color.push_back(ImProfil::color::pomegranate);
+  vec_color.push_back(ImProfil::color::clouds);
+  vec_color.push_back(ImProfil::color::silver);
+  vec_color.push_back(ImProfil::color::imguiText);
 
   //---------------------------
 }
@@ -66,7 +66,7 @@ void Profiler::loop(){
 void Profiler::add_cpu_task(float time_beg, float time_end, string name, string color_name){
   //---------------------------
 
-  ImProfil::Task task;
+  ImProfil::Graph_task task;
   uint32_t color = determine_color(color_name);
   task = {time_beg, time_end, name, color};
   vec_cpu_task.push_back(task);
@@ -77,7 +77,7 @@ void Profiler::add_cpu_task(float time_beg, float time_end, string name, string 
 void Profiler::add_cpu_task(float time_beg, float time_end, string name){
   //---------------------------
 
-  ImProfil::Task task;
+  ImProfil::Graph_task task;
   uint32_t color = next_color();
   task = {time_beg, time_end, name, color};
   vec_cpu_task.push_back(task);
@@ -88,7 +88,7 @@ void Profiler::add_cpu_task(float time_beg, float time_end, string name){
 void Profiler::add_gpu_task(float time_beg, float time_end, string name, string color_name){
   //---------------------------
 
-  ImProfil::Task task;
+  ImProfil::Graph_task task;
   uint32_t color = determine_color(color_name);
   task = {time_beg, time_end, name, color};
   vec_gpu_task.push_back(task);
@@ -99,7 +99,7 @@ void Profiler::add_gpu_task(float time_beg, float time_end, string name, string 
 void Profiler::add_gpu_task(float time_beg, float time_end, string name){
   //---------------------------
 
-  ImProfil::Task task;
+  ImProfil::Graph_task task;
   uint32_t color = next_color();
   task = {time_beg, time_end, name, color};
   vec_gpu_task.push_back(task);
@@ -112,55 +112,55 @@ uint32_t Profiler::determine_color(string color_name){
   //---------------------------
 
   if(color_name == "turquoise"){
-    color = ImProfil::Colors::turqoise;
+    color = ImProfil::color::turqoise;
   }
   else if(color_name == "greenSea"){
-    color = ImProfil::Colors::greenSea;
+    color = ImProfil::color::greenSea;
   }
   else if(color_name == "emerald"){
-    color = ImProfil::Colors::emerald;
+    color = ImProfil::color::emerald;
   }
   else if(color_name == "nephritis"){
-    color = ImProfil::Colors::nephritis;
+    color = ImProfil::color::nephritis;
   }
   else if(color_name == "peterRiver"){
-    color = ImProfil::Colors::nephritis;
+    color = ImProfil::color::nephritis;
   }
   else if(color_name == "belizeHole"){
-    color = ImProfil::Colors::nephritis;
+    color = ImProfil::color::nephritis;
   }
   else if(color_name == "amethyst"){
-    color = ImProfil::Colors::amethyst;
+    color = ImProfil::color::amethyst;
   }
   else if(color_name == "wisteria"){
-    color = ImProfil::Colors::wisteria;
+    color = ImProfil::color::wisteria;
   }
   else if(color_name == "sunFlower"){
-    color = ImProfil::Colors::sunFlower;
+    color = ImProfil::color::sunFlower;
   }
   else if(color_name == "orange"){
-    color = ImProfil::Colors::orange;
+    color = ImProfil::color::orange;
   }
   else if(color_name == "carrot"){
-    color = ImProfil::Colors::carrot;
+    color = ImProfil::color::carrot;
   }
   else if(color_name == "pumpkin"){
-    color = ImProfil::Colors::pumpkin;
+    color = ImProfil::color::pumpkin;
   }
   else if(color_name == "alizarin"){
-    color = ImProfil::Colors::alizarin;
+    color = ImProfil::color::alizarin;
   }
   else if(color_name == "pomegranate"){
-    color = ImProfil::Colors::pomegranate;
+    color = ImProfil::color::pomegranate;
   }
   else if(color_name == "clouds"){
-    color = ImProfil::Colors::clouds;
+    color = ImProfil::color::clouds;
   }
   else if(color_name == "silver"){
-    color = ImProfil::Colors::silver;
+    color = ImProfil::color::silver;
   }
   else if(color_name == "imguiText"){
-    color = ImProfil::Colors::imguiText;
+    color = ImProfil::color::imguiText;
   }
 
 

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "ProfilerTask.h"
+#include "Task.h"
+#include "Color.h"
 #include "../core/imgui.h"
 
 #include <array>
@@ -28,8 +29,8 @@ namespace ImProfil{
       frameSpacing = 1;
       useColoredLegendText = false;
     }
-    //void LoadFrameData(const ImProfil::Task *tasks, size_t count){
-    void LoadFrameData(const std::vector<ImProfil::Task>& tasks){
+    //void LoadFrameData(const ImProfil::Graph_task *tasks, size_t count){
+    void LoadFrameData(const std::vector<ImProfil::Graph_task>& tasks){
        size_t count = tasks.size();
       auto &currFrame = frames[currFrameIndex];
       currFrame.tasks.resize(0);
@@ -177,7 +178,7 @@ namespace ImProfil{
         glm::vec2 markerRightRectMax = markerRightRectMin + glm::vec2(markerRightRectWidth, -markerRightRectHeight);
         RenderTaskMarker(drawList, markerLeftRectMin, markerLeftRectMax, markerRightRectMin, markerRightRectMax, task.color);
 
-        uint32_t textColor = useColoredLegendText ? task.color : ImProfil::Colors::imguiText;// task.color;
+        uint32_t textColor = useColoredLegendText ? task.color : ImProfil::color::imguiText;// task.color;
 
         float taskTimeMs = float(task.endTime - task.startTime);
         std::ostringstream timeText;
@@ -192,7 +193,7 @@ namespace ImProfil{
       struct PriorityEntry
       {
         bool isUsed;
-        ImProfil::Task task;
+        ImProfil::Graph_task task;
       };
       std::map<std::string, PriorityEntry> priorityEntries;
       for (auto priorityTask : priorityTasks)
@@ -224,7 +225,7 @@ namespace ImProfil{
           glm::vec2 markerRightRectMax = markerRightRectMin + glm::vec2(markerRightRectWidth, -markerRightRectHeight);
           RenderTaskMarker(drawList, markerLeftRectMin, markerLeftRectMax, markerRightRectMin, markerRightRectMax, task.color);
 
-          uint32_t textColor = ImProfil::Colors::imguiText;// task.color;
+          uint32_t textColor = ImProfil::color::imguiText;// task.color;
 
           float taskTimeMs = float(task.endTime - task.startTime);
           std::ostringstream timeText;
@@ -301,7 +302,7 @@ namespace ImProfil{
           usedTaskNames.insert(tasks[bestTaskIndex].name);
         }
       }*/
-      std::vector<ImProfil::Task> tasks;
+      std::vector<ImProfil::Graph_task> tasks;
       std::vector<size_t> taskStatsIndex;
       //std::vector<size_t> priorityTaskIndices;
     };
