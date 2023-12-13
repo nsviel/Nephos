@@ -102,8 +102,7 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Entity* data =  *next(list_data.begin(), i);
 
-
-    if(data->object->is_visible && data->object->draw_type_name == "point"){
+    if(data->object->is_visible && data->object->draw_type_name == "point" && data->object->xyz.size() != 0){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
       vk_uniform->update_uniform("point_size", &data->binding, data->object->draw_point_size);
 
