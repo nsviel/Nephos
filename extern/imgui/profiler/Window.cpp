@@ -34,12 +34,12 @@ void Window::Render(){
   ImGui::Begin(title.str().c_str(), 0, ImGuiWindowFlags_NoScrollbar);
 
   ImVec2 available_size = ImGui::GetContentRegionAvail();
-  int sizeMargin = int(ImGui::GetStyle().ItemSpacing.y);
-  int availableGraphHeight = (int(available_size.y) - sizeMargin) / 2;
-  int graph_height = std::min(max_graph_height, availableGraphHeight);
+  int margin_size = int(ImGui::GetStyle().ItemSpacing.y);
+  int graph_height_available = (int(available_size.y) - margin_size);
+  int graph_height = std::min(max_graph_height, graph_height_available);
   int graph_width = int(available_size.x) - legend_width;
 
-  gpu_graph->render_timings(graph_width, legend_width, graph_height, frame_offset);
+  graph->render_timings(graph_width, legend_width, graph_height, frame_offset);
 
   ImGui::End();
 
@@ -50,10 +50,10 @@ void Window::Render(){
 void Window::init_graph(){
   //---------------------------
 
-  this->gpu_graph = new ImProfil::Graph(300);
-  gpu_graph->frame_width = frame_width;
-  gpu_graph->frame_spacing = frame_spacing;
-  gpu_graph->use_colored_legend_text = use_colored_legend_text;
+  this->graph = new ImProfil::Graph(300);
+  graph->frame_width = frame_width;
+  graph->frame_spacing = frame_spacing;
+  graph->use_colored_legend_text = use_colored_legend_text;
 
   //---------------------------
 }

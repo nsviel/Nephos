@@ -28,8 +28,7 @@ public:
   void fps_counter();
   void display_option();
 
-  ImProfil::Graph* gpu_graph;
-
+  ImProfil::Graph* graph;
   using TimePoint = std::chrono::time_point<std::chrono::system_clock>;
   TimePoint prev_fps_frame_time;
   size_t fps_frames_count;
