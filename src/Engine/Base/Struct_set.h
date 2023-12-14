@@ -13,7 +13,7 @@ struct Set{
   //---------------------------
 
   Set(std::string name);
-  void reset();
+  void set_visibility(bool value);
 
   //Info
   std::string name;

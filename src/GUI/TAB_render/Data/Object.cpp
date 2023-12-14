@@ -53,7 +53,7 @@ void Object::design_panel(){
 void Object::object_info(eng::structure::Object* object){
   //---------------------------
 
-  this->panel_name = "Object " + object->name;
+  this->panel_name = "[Object]   " + object->name;
 
   //---------------------------
 }
