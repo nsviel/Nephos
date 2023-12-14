@@ -28,25 +28,23 @@ Option::~Option(){}
 void Option::design_panel(){
   //---------------------------
 
-  this->option_color();
   this->option_fps();
+  ImGui::Separator();
+  this->option_color();
 
   //---------------------------
 }
 
 //Subfunctions
 void Option::option_color(){
-  if(ImGui::CollapsingHeader("Colors")){
-    //---------------------------
+  //---------------------------
 
-    //Background color
-    vec4* screen_color = vk_info->get_color_background();
-    ImGui::SetNextItemWidth(width);
-    ImGui::ColorEdit4("Background", (float*)screen_color);
+  //Background color
+  vec4* screen_color = vk_info->get_color_background();
+  ImGui::SetNextItemWidth(width);
+  ImGui::ColorEdit4("Background", (float*)screen_color);
 
-    //---------------------------
-    ImGui::Separator();
-  }
+  //---------------------------
 }
 void Option::option_fps(){
   //---------------------------
