@@ -38,7 +38,7 @@ void Cloud::retrieve_location(K4A_device* k4a_device){
 
   // Color stuff
   eng::kinect::structure::Color* color = &k4a_device->color;
-  vector<uint8_t>& color_data = color->image_depth.data;
+  const vector<uint8_t>& color_data = color->image_depth.data;
   std::vector<glm::vec4> vec_rgba;
 
   // Cloud stuff
@@ -53,7 +53,7 @@ void Cloud::retrieve_location(K4A_device* k4a_device){
     int y = point_cloud_data[depth_idx+1];
     int z = point_cloud_data[depth_idx+2];
 
-    if(1){//x != 0 && y != 0 && z != 0){
+    if(x != 0 && y != 0 && z != 0){
       //coordinate base 10m and oriented -X axis.
       glm::vec3 point(-z/100.0f, -x/100.0f, -y/100.0f);
       vec_xyz.push_back(point);

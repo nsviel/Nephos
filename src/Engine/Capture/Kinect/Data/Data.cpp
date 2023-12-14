@@ -30,7 +30,10 @@ void Data::find_depth(K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
 
   k4a::image depth = capture.get_depth_image();
-  if (!depth || !depth.is_valid()) {return;}
+  if(!depth || !depth.is_valid()){
+    cout<<"[error] kinect depth image invalid"<<endl;
+    return;
+  }
   k4a_device->depth.image.image = depth;
   k4a_device->depth.image.name = "depth";
   k4a_device->depth.image.data = std::vector<uint8_t>(depth.get_buffer(), depth.get_buffer() + depth.get_size());
@@ -47,7 +50,10 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
 
   k4a::image color = capture.get_color_image();
-  if (!color || !color.is_valid()) {return;}
+  if(!color || !color.is_valid()){
+    cout<<"[error] kinect color image invalid"<<endl;
+    return;
+  }
   k4a_device->color.image.image = color;
   k4a_device->color.image.name = "color";
   k4a_device->color.image.data = std::vector<uint8_t>(color.get_buffer(), color.get_buffer() + color.get_size());
@@ -63,7 +69,10 @@ void Data::find_color_from_depth(K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
 
   k4a::image color_depth = k4a_device->device.transformation.color_image_to_depth_camera(k4a_device->depth.image.image, k4a_device->color.image.image);
-  if (!color_depth || !color_depth.is_valid()) {return;}
+  if(!color_depth || !color_depth.is_valid()){
+    cout<<"[error] kinect color from depth image invalid"<<endl;
+    return;
+  }
   k4a_device->color.image_depth.image = color_depth;
   k4a_device->color.image_depth.name = "color_from_depth";
   k4a_device->color.image_depth.data = std::vector<uint8_t>(color_depth.get_buffer(), color_depth.get_buffer() + color_depth.get_size());
@@ -73,13 +82,22 @@ void Data::find_color_from_depth(K4A_device* k4a_device, k4a::capture capture){
   k4a_device->color.image_depth.timestamp = k4a_device->color.image.timestamp;
   color_depth.reset();
 
+  for(int i=0; i<k4a_device->color.image_depth.data .size(); i++){
+    k4a_device->color.image_depth.data[i] = 255;
+  }
+
+
+
   //---------------------------
 }
 void Data::find_ir(K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
 
   k4a::image ir = capture.get_ir_image();
-  if (!ir || !ir.is_valid()) {return;}
+  if(!ir || !ir.is_valid()){
+    cout<<"[error] kinect ir image invalid"<<endl;
+    return;
+  }
   k4a_device->ir.image.image = ir;
   k4a_device->ir.image.name = "ir";
   k4a_device->ir.image.data = std::vector<uint8_t>(ir.get_buffer(), ir.get_buffer() + ir.get_size());
