@@ -14,7 +14,6 @@ struct Panel{
   bool show_profiler = true;
   bool show_scene    = true;
   bool show_option   = false;
-  bool show_capture  = true;
 
   //---------------------------
 };

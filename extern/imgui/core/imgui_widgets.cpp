@@ -43,7 +43,8 @@ Index of this file:
 #include "imgui_internal.h"
 
 // System includes
-#include <stdint.h>     // intptr_t
+#include <cstdint>     // intptr_t
+#include <iostream>
 
 //-------------------------------------------------------------------------
 // Warnings
@@ -6609,11 +6610,14 @@ bool ImGui::Selectable(const char* label, bool selected, ImGuiSelectableFlags fl
     RenderTextClipped(text_min, text_max, label, NULL, &label_size, style.SelectableTextAlign, &bb);
 
     // Automatically close popups
-    if (pressed && (window->Flags & ImGuiWindowFlags_Popup) && !(flags & ImGuiSelectableFlags_DontClosePopups) && !(g.LastItemData.InFlags & ImGuiItemFlags_SelectableDontClosePopup))
-        CloseCurrentPopup();
+    if (pressed && (window->Flags & ImGuiWindowFlags_Popup) && !(flags & ImGuiSelectableFlags_DontClosePopups) && !(g.LastItemData.InFlags & ImGuiItemFlags_SelectableDontClosePopup)){
+      CloseCurrentPopup();
+    }
 
-    if (disabled_item && !disabled_global)
-        EndDisabled();
+    if (disabled_item && !disabled_global){
+      EndDisabled();
+    }
+
 
     IMGUI_TEST_ENGINE_ITEM_INFO(id, label, g.LastItemData.StatusFlags);
     return pressed; //-V1020
