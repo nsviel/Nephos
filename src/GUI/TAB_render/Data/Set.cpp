@@ -12,7 +12,7 @@ Set::Set(GUI* gui, bool* show_window){
 
   this->panel_show = show_window;
   this->panel_name = "Set";
-  this->item_width = 150;
+  this->item_width = 100;
 
   //---------------------------
 }
@@ -53,38 +53,37 @@ void Set::set_info(eng::structure::Set* set){
   //---------------------------
 }
 void Set::set_parameter(eng::structure::Set* set){
-  ImGui::Columns(2);
   //---------------------------
 
-  //Visibility
-  ImGui::Text("Visibility");
-  ImGui::NextColumn();
-  if(ImGui::Checkbox("##4555", &set->is_visible)){
-    //Setfunc setfunc;
-    //setfunc.set_visibility(set, set->is_visible);
-  }
-  ImGui::NextColumn();
+  if(ImGui::BeginTable("object##table", 2, ImGuiTableFlags_BordersInnerV)){
+    //Visibility
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Visibility"); ImGui::TableNextColumn();
+    if(ImGui::Checkbox("##4555", &set->is_visible)){
+      //Setfunc setfunc;
+      //setfunc.set_visibility(set, set->is_visible);
+    }
 
-  //Name
-  ImGui::SetColumnWidth(-1,75);
-  ImGui::Text("Name");
-  ImGui::NextColumn();
-  static char str_n[256];
-  strcpy(str_n, set->name.c_str());
-  if(ImGui::InputText("##name", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
-    set->name = str_n;
-  }
-  ImGui::NextColumn();
+    //Name
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Name"); ImGui::TableNextColumn();
+    static char str_n[256];
+    strcpy(str_n, set->name.c_str());
+    ImGui::SetNextItemWidth(item_width);
+    if(ImGui::InputText("##name", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
+      set->name = str_n;
+    }
 
-  //Number of object
-  ImGui::Text("Nb object");
-  ImGui::NextColumn();
-  string nb_object = math::thousand_separator(set->nb_object);
-  ImGui::Text("%s", nb_object.c_str());
-  ImGui::NextColumn();
+    //Number of object
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Nb object"); ImGui::TableNextColumn();
+    string nb_object = math::thousand_separator(set->nb_object);
+    ImGui::Text("%s", nb_object.c_str());
+
+    ImGui::EndTable();
+  }
 
   //---------------------------
-  ImGui::Columns(1);
 }
 
 }

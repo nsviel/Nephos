@@ -17,7 +17,7 @@ Object::Object(GUI* gui, bool* panel_show){
 
   this->panel_show = panel_show;
   this->panel_name = "Object";
-  this->item_width = 150;
+  this->item_width = 100;
 
   //---------------------------
 }
@@ -79,6 +79,7 @@ void Object::object_parameter(eng::structure::Object* object){
     ImGui::Text("Name"); ImGui::TableNextColumn();
     static char str_n[256];
     strcpy(str_n, object->name.c_str());
+    ImGui::SetNextItemWidth(item_width);
     if(ImGui::InputText("##name", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
       object->name = str_n;
     }
@@ -88,6 +89,7 @@ void Object::object_parameter(eng::structure::Object* object){
     ImGui::Text("Format"); ImGui::TableNextColumn();
     static char str_f[256];
     strcpy(str_f, object->file_format.c_str());
+    ImGui::SetNextItemWidth(item_width);
     if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
       object->file_format = str_f;
     }
@@ -138,8 +140,6 @@ void Object::width_line(eng::structure::Object* object){
   //---------------------------
 
   //Column 1
-  ImGui::SetNextItemWidth(item_width);
-  ImGui::AlignTextToFramePadding();
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Line width"); ImGui::TableNextColumn();
 
@@ -167,8 +167,6 @@ void Object::size_point(eng::structure::Object* object){
   //---------------------------
 
   //Column 1
-  ImGui::SetNextItemWidth(item_width);
-  ImGui::AlignTextToFramePadding();
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Point size"); ImGui::TableNextColumn();
 
