@@ -139,14 +139,14 @@ void Capture::draw_camera_color_from_depth(K4A_device* k4a_device, ImVec2 image_
   //---------------------------
 
   //Il y a un probleme ici non identifié, le vecteur semble changer de taille (?)
-  int size = k4a_device->color.image_depth.data.size();
+  /*int size = k4a_device->color.image_depth.data.size();
   for(int i=0; i<k4a_device->color.image_depth.data.size(); i++){
     if(float(k4a_device->color.image_depth.data[i]) != 255.0f){
       say("nop");
       say(float(k4a_device->color.image_depth.data[i]));
     }
 
-  }
+  }*/
 
   util::base::Image struct_image;
   struct_image.data = data_color->data;
