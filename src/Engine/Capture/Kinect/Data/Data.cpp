@@ -33,8 +33,7 @@ void Data::find_depth(K4A_device* k4a_device, k4a::capture capture){
   if (!depth || !depth.is_valid()) {return;}
   k4a_device->depth.image.image = depth;
   k4a_device->depth.image.name = "depth";
-  k4a_device->depth.image.buffer = depth.get_buffer();
-  k4a_device->depth.image.size = depth.get_size();
+  k4a_device->depth.image.data = std::vector<uint8_t>(depth.get_buffer(), depth.get_buffer() + depth.get_size());
   k4a_device->depth.image.width = depth.get_width_pixels();
   k4a_device->depth.image.height = depth.get_height_pixels();
   k4a_device->depth.image.format = "B8G8R8A8_SRGB";
@@ -51,8 +50,7 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
   if (!color || !color.is_valid()) {return;}
   k4a_device->color.image.image = color;
   k4a_device->color.image.name = "color";
-  k4a_device->color.image.buffer = color.get_buffer();
-  k4a_device->color.image.size = color.get_size();
+  k4a_device->color.image.data = std::vector<uint8_t>(color.get_buffer(), color.get_buffer() + color.get_size());
   k4a_device->color.image.width = color.get_width_pixels();
   k4a_device->color.image.height = color.get_height_pixels();
   k4a_device->color.image.format = "B8G8R8A8_SRGB";
@@ -69,8 +67,7 @@ void Data::find_color_from_depth(K4A_device* k4a_device, k4a::capture capture){
   k4a::image color_depth = k4a_device->device.transformation.color_image_to_depth_camera(k4a_device->depth.image.image, color);
   k4a_device->color.image_depth.image = color_depth;
   k4a_device->color.image_depth.name = "color_from_depth";
-  k4a_device->color.image_depth.buffer = color_depth.get_buffer();
-  k4a_device->color.image_depth.size = color_depth.get_size();
+  k4a_device->color.image.data = std::vector<uint8_t>(color.get_buffer(), color.get_buffer() + color.get_size());
   k4a_device->color.image_depth.width = color_depth.get_width_pixels();
   k4a_device->color.image_depth.height = color_depth.get_height_pixels();
   k4a_device->color.image_depth.format = "B8G8R8A8_SRGB";
@@ -87,8 +84,7 @@ void Data::find_ir(K4A_device* k4a_device, k4a::capture capture){
   if (!ir || !ir.is_valid()) {return;}
   k4a_device->ir.image.image = ir;
   k4a_device->ir.image.name = "ir";
-  k4a_device->ir.image.buffer = ir.get_buffer();
-  k4a_device->ir.image.size = ir.get_size();
+  k4a_device->ir.image.data = std::vector<uint8_t>(ir.get_buffer(), ir.get_buffer() + ir.get_size());
   k4a_device->ir.image.width = ir.get_width_pixels();
   k4a_device->ir.image.height = ir.get_height_pixels();
   k4a_device->ir.image.format = "B8G8R8A8_SRGB";

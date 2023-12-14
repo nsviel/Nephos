@@ -24,7 +24,7 @@ vk::structure::Image* VK_texture::load_texture(util::base::Image* struct_image){
   //---------------------------
 
   vk::structure::Image* image = new vk::structure::Image();
-  image->data = struct_image->buffer;
+  image->data = struct_image->data;
   image->width = struct_image->width;
   image->height = struct_image->height;
   image->format = find_texture_format(struct_image);

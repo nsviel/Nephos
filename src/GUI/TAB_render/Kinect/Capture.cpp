@@ -121,7 +121,7 @@ void Capture::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
   //---------------------------
 
   util::base::Image struct_image;
-  struct_image.buffer = data_color->buffer;
+  struct_image.data = data_color->data;
   struct_image.width = data_color->width;
   struct_image.height = data_color->height;
   struct_image.format = data_color->format;
@@ -137,7 +137,7 @@ void Capture::draw_camera_color_from_depth(K4A_device* k4a_device, ImVec2 image_
   //---------------------------
 
   util::base::Image struct_image;
-  struct_image.buffer = data_color->buffer;
+  struct_image.data = data_color->data;
   struct_image.width = data_color->width;
   struct_image.height = data_color->height;
   struct_image.format = data_color->format;
@@ -152,10 +152,10 @@ void Capture::draw_camera_depth(K4A_device* k4a_device, ImVec2 image_size){
   eng::kinect::structure::Image* data_depth = &k4a_device->depth.image;
   //---------------------------
 
-  uint8_t* new_buffer = k4a_depth->convert_depth_into_color(k4a_device);
+  std::vector<uint8_t> new_buffer = k4a_depth->convert_depth_into_color(k4a_device);
 
   util::base::Image struct_image;
-  struct_image.buffer = new_buffer;
+  struct_image.data = new_buffer;
   struct_image.width = data_depth->width;
   struct_image.height = data_depth->height;
   struct_image.format = "R8G8B8A8_SRGB";
@@ -164,18 +164,16 @@ void Capture::draw_camera_depth(K4A_device* k4a_device, ImVec2 image_size){
   vec_gui_stream[1]->draw_stream(&struct_image, image_size);
   this->overlay_capture(k4a_device, data_depth, image_size, image_pose);
 
-  delete[] new_buffer;
-
   //---------------------------
 }
 void Capture::draw_camera_ir(K4A_device* k4a_device, ImVec2 image_size){
   eng::kinect::structure::Image* data_ir = &k4a_device->ir.image;
   //---------------------------
 
-  uint8_t* new_buffer = k4a_infrared->convert_ir_into_color(k4a_device);
+  std::vector<uint8_t> new_buffer = k4a_infrared->convert_ir_into_color(k4a_device);
 
   util::base::Image struct_image;
-  struct_image.buffer = new_buffer;
+  struct_image.data = new_buffer;
   struct_image.width = data_ir->width;
   struct_image.height = data_ir->height;
   struct_image.format = "B8G8R8A8_SRGB";
@@ -183,8 +181,6 @@ void Capture::draw_camera_ir(K4A_device* k4a_device, ImVec2 image_size){
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[2]->draw_stream(&struct_image, image_size);
   this->overlay_capture(k4a_device, data_ir, image_size, image_pose);
-
-  delete[] new_buffer;
 
   //---------------------------
 }
@@ -266,8 +262,10 @@ void Capture::compute_hovered_pixel(eng::kinect::structure::Image* image, ImVec2
     image->hovered_pixel_y = hoveredUIPixel.y * uiCoordinateToImageCoordinateRatio;
 
     //Pixel value
-    uint16_t* buffer = reinterpret_cast<uint16_t*>(image->buffer);
-    image->hovered_pixel_m = buffer[size_t(image->hovered_pixel_y) * size_t(image->width) + size_t(image->hovered_pixel_x)] / 1000.0f;
+    std::vector<uint8_t>& data = image->data;
+    size_t index = size_t(image->hovered_pixel_y) * size_t(image->width * 2) + size_t(image->hovered_pixel_x * 2);
+    uint16_t pixelData = static_cast<uint16_t>(data[index]) | (static_cast<uint16_t>(data[index + 1]) << 8);
+    image->hovered_pixel_m = pixelData / 1000.0f;
   }
 
   //---------------------------

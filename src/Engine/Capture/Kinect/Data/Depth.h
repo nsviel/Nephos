@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  uint8_t* convert_depth_into_color(K4A_device* device);
+  std::vector<uint8_t> convert_depth_into_color(K4A_device* device);
   void find_depth_mode_range(K4A_device* device);
 
 private:

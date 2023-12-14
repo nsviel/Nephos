@@ -25,7 +25,7 @@ Stream::~Stream(){}
 void Stream::draw_stream(util::base::Image* image, ImVec2 panel_size){
   //---------------------------
 
-  if(image->buffer != nullptr){
+  if(!image->data.empty()){
     this->convert_data_into_texture(image);
     ImGui::Image(texture, panel_size);
   }
@@ -42,7 +42,7 @@ void Stream::convert_data_into_texture(util::base::Image* image){
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(vk_image->sampler, vk_image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     this->texture = reinterpret_cast<ImTextureID>(descriptor);
   }else{
-    vk_image->data = image->buffer;
+    vk_image->data = image->data;
     vk_texture->update_texture(vk_image);
   }
 

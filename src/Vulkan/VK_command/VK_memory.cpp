@@ -29,7 +29,7 @@ void VK_memory::transfert_image_to_gpu(vk::structure::Image* image){
   //Copy data to stagging buffer
   void* data;
   vkMapMemory(struct_vulkan->device.device, staging_mem, 0, tex_size, 0, &data);
-  memcpy(data, image->data, static_cast<size_t>(tex_size));
+  memcpy(data, image->data.data(), static_cast<size_t>(tex_size));
   vkUnmapMemory(struct_vulkan->device.device, staging_mem);
 
   //Image transition from undefined layout to read only layout

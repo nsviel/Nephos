@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  uint8_t* convert_ir_into_color(K4A_device* device);
+  std::vector<uint8_t> convert_ir_into_color(K4A_device* device);
   void find_ir_level(K4A_device* device);
 
 private:

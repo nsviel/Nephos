@@ -12,23 +12,21 @@ Depth::Depth(){
 Depth::~Depth(){}
 
 //Main function
-uint8_t* Depth::convert_depth_into_color(K4A_device* device){
-  //---------------------------
-
-  uint8_t* inputBuffer = device->depth.image.buffer;
-  size_t size = device->depth.image.size;
-  uint8_t* outputBuffer = new uint8_t[size*4];
+std::vector<uint8_t> Depth::convert_depth_into_color(K4A_device* device){
+  vector<uint8_t>& inputBuffer = device->depth.image.data;
   uint16_t range_min = device->depth.config.range_min;
   uint16_t range_max = device->depth.config.range_max;
+  //---------------------------
 
-  for(int i=0, j=0; i<size; i+=2, j+=4){
-    uint16_t r = *reinterpret_cast<uint16_t*>(&inputBuffer[i]);
+  std::vector<uint8_t> outputBuffer(inputBuffer.size() * 4, 0);
+  for (int i = 0, j = 0; i < inputBuffer.size(); i += 2, j += 4) {
+    uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
 
     float R = 0.0f;
     float G = 0.0f;
     float B = 0.0f;
 
-    if(r != 0){
+    if (r != 0) {
       uint16_t clamped = r;
       clamped = std::min(clamped, range_max);
       clamped = std::max(clamped, range_min);
@@ -40,7 +38,7 @@ uint8_t* Depth::convert_depth_into_color(K4A_device* device){
       ImGui::ColorConvertHSVtoRGB(hue, 1.f, 1.f, R, G, B);
     }
 
-    outputBuffer[j]     = static_cast<uint8_t>(R * 255);
+    outputBuffer[j] = static_cast<uint8_t>(R * 255);
     outputBuffer[j + 1] = static_cast<uint8_t>(G * 255);
     outputBuffer[j + 2] = static_cast<uint8_t>(B * 255);
     outputBuffer[j + 3] = 255;

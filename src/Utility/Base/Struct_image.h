@@ -13,8 +13,7 @@ struct Image{
   int channel_byte = 1;
   int width;
   int height;
-  uint8_t* buffer;
-  std::vector<uint8_t> vec_data;
+  std::vector<uint8_t> data;
   std::string format;
 
   //---------------------------
