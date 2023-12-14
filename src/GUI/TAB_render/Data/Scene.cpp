@@ -128,7 +128,7 @@ int Scene::data_node_tree(eng::structure::Set* set){
   //Node flag_tree
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
-  if(set->name != "eng::structure::Glyph"){
+  if(set->name != "Glyph"){
     flag_node |= ImGuiTreeNodeFlags_DefaultOpen;
   }
 

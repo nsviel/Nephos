@@ -85,15 +85,15 @@ string find_name_from_config(k4a_wired_sync_mode_t& value){
 
   switch (value){
     case K4A_WIRED_SYNC_MODE_STANDALONE:{
-      name = "K4A_WIRED_SYNC_MODE_STANDALONE";
+      name = "Standalone";
       break;
     }
     case K4A_WIRED_SYNC_MODE_MASTER:{
-      name = "K4A_WIRED_SYNC_MODE_MASTER";
+      name = "Master";
       break;
     }
     case K4A_WIRED_SYNC_MODE_SUBORDINATE:{
-      name = "K4A_WIRED_SYNC_MODE_SUBORDINATE";
+      name = "Subordinate";
       break;
     }
   }
@@ -107,15 +107,15 @@ string find_name_from_config(k4a_fps_t& value){
 
   switch (value){
     case K4A_FRAMES_PER_SECOND_5:{
-      name = "K4A_FRAMES_PER_SECOND_5";
+      name = "5 fps";
       break;
     }
     case K4A_FRAMES_PER_SECOND_15:{
-      name = "K4A_FRAMES_PER_SECOND_15";
+      name = "15 fps";
       break;
     }
     case K4A_FRAMES_PER_SECOND_30:{
-      name = "K4A_FRAMES_PER_SECOND_30";
+      name = "30 fps";
       break;
     }
   }
@@ -129,27 +129,27 @@ string find_name_from_config(k4a_depth_mode_t& value){
 
   switch (value){
     case K4A_DEPTH_MODE_OFF:{
-      name = "K4A_DEPTH_MODE_OFF";
+      name = "Off";
       break;
     }
     case K4A_DEPTH_MODE_NFOV_2X2BINNED:{
-      name = "K4A_DEPTH_MODE_NFOV_2X2BINNED";
+      name = "NFOV 2x2 binned";
       break;
     }
     case K4A_DEPTH_MODE_NFOV_UNBINNED:{
-      name = "K4A_DEPTH_MODE_NFOV_UNBINNED";
+      name = "NFOV unbinned";
       break;
     }
     case K4A_DEPTH_MODE_WFOV_2X2BINNED:{
-      name = "K4A_DEPTH_MODE_WFOV_2X2BINNED";
+      name = "WFOV 2x2 binned";
       break;
     }
     case K4A_DEPTH_MODE_WFOV_UNBINNED:{
-      name = "K4A_DEPTH_MODE_WFOV_UNBINNED";
+      name = "WFOV unbinned";
       break;
     }
     case K4A_DEPTH_MODE_PASSIVE_IR:{
-      name = "K4A_DEPTH_MODE_PASSIVE_IR";
+      name = "Passive IR";
       break;
     }
   }
@@ -163,31 +163,31 @@ string find_name_from_config(k4a_color_resolution_t& value){
 
   switch (value){
     case K4A_COLOR_RESOLUTION_OFF:{
-      name = "K4A_COLOR_RESOLUTION_OFF";
+      name = "Off";
       break;
     }
     case K4A_COLOR_RESOLUTION_720P:{
-      name = "K4A_COLOR_RESOLUTION_720P";
+      name = "720p";
       break;
     }
     case K4A_COLOR_RESOLUTION_1080P:{
-      name = "K4A_COLOR_RESOLUTION_1080P";
+      name = "1080p";
       break;
     }
     case K4A_COLOR_RESOLUTION_1440P:{
-      name = "K4A_COLOR_RESOLUTION_1440P";
+      name = "1440p";
       break;
     }
     case K4A_COLOR_RESOLUTION_1536P:{
-      name = "K4A_COLOR_RESOLUTION_1536P";
+      name = "1536p";
       break;
     }
     case K4A_COLOR_RESOLUTION_2160P:{
-      name = "K4A_COLOR_RESOLUTION_2160P";
+      name = "2160p";
       break;
     }
     case K4A_COLOR_RESOLUTION_3072P:{
-      name = "K4A_COLOR_RESOLUTION_3072P";
+      name = "3072p";
       break;
     }
   }
@@ -201,31 +201,31 @@ string find_name_from_config(k4a_image_format_t& value){
 
   switch (value){
     case K4A_IMAGE_FORMAT_COLOR_MJPG:{
-      name = "K4A_IMAGE_FORMAT_COLOR_MJPG";
+      name = "MJPG";
       break;
     }
     case K4A_IMAGE_FORMAT_COLOR_NV12:{
-      name = "K4A_IMAGE_FORMAT_COLOR_NV12";
+      name = "NV12";
       break;
     }
     case K4A_IMAGE_FORMAT_COLOR_YUY2:{
-      name = "K4A_IMAGE_FORMAT_COLOR_YUY2";
+      name = "YUY2";
       break;
     }
     case K4A_IMAGE_FORMAT_COLOR_BGRA32:{
-      name = "K4A_IMAGE_FORMAT_COLOR_BGRA32";
+      name = "BGRA32";
       break;
     }
     case K4A_IMAGE_FORMAT_DEPTH16:{
-      name = "K4A_IMAGE_FORMAT_DEPTH16";
+      name = "DEPTH16";
       break;
     }
     case K4A_IMAGE_FORMAT_IR16:{
-      name = "K4A_IMAGE_FORMAT_IR16";
+      name = "IR16";
       break;
     }
     case K4A_IMAGE_FORMAT_CUSTOM:{
-      name = "K4A_IMAGE_FORMAT_CUSTOM";
+      name = "Custom";
       break;
     }
   }

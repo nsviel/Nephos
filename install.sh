@@ -3,7 +3,7 @@
 # Nephos engine installation
 # For now, this script only support apt package manager from ubuntu. For other linux related OS, try the following commands:
 
-
+# Start
 echo -ne "[\e[92m#\e[0m] Run installation for Ubuntu related OS..."
 
 # Ubuntu
@@ -18,6 +18,8 @@ sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-1.3.243-jammy.list https://p
 sudo apt update
 sudo apt -y install vulkan-sdk
 
+# Azur kinect SDK
+sudo extern/azur_sdk/install_azure_kinect_camera_u_22.04.sh
 
-
+# End
 echo -ne "[\e[92m#\e[0m] Done"

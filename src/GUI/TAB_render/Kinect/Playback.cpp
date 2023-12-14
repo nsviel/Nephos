@@ -56,6 +56,7 @@ void Playback::show_player(){
   bool* thread_paused = device->k4a_replay->get_thread_pause();
   bool* thread_restart = device->k4a_replay->get_thread_restart();
 
+  //PLAY / PAUSE buttons
   ImU32 color = (*thread_paused || !*thread_play) ? IM_COL32(46, 133, 45, 255) : IM_COL32(133, 133, 0, 255);
   string icon = (*thread_paused || !*thread_play) ? (ICON_FA_PLAY "##36") : (ICON_FA_PAUSE "##36");
   ImGui::PushStyleColor(ImGuiCol_Button, color);
@@ -70,15 +71,18 @@ void Playback::show_player(){
   }
   ImGui::PopStyleColor(1);
 
+  //STOP button
   ImGui::SameLine();
   if(!*thread_paused) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
   if (ImGui::Button(ICON_FA_STOP "##37")){
-    device->k4a_replay->set_current_timestamp(device->file.ts_end);
+    device->k4a_replay->set_current_timestamp(device->file.ts_beg);
     *thread_restart = false;
     *thread_play = false;
     *thread_paused = false;
   }
   if(!*thread_paused) ImGui::PopStyleColor(1);
+
+  //REAPEAT button
   ImGui::SameLine();
   if(*thread_restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
   if (ImGui::Button(ICON_FA_REPEAT "##37")){
@@ -121,7 +125,7 @@ void Playback::show_recording(){
       ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("FPS"); ImGui::TableNextColumn();
+      ImGui::Text("Frame rate"); ImGui::TableNextColumn();
       ImGui::TextColored(color, "%s", device->file.fps.c_str());
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
