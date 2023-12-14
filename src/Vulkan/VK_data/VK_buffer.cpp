@@ -19,9 +19,22 @@ VK_buffer::~VK_buffer(){}
 void VK_buffer::create_buffers(vk::structure::Entity* data){
   //---------------------------
 
-  vk_memory->transfert_buffer_to_gpu(data->object->xyz, &data->xyz);
-  vk_memory->transfert_buffer_to_gpu(data->object->rgb, &data->rgb);
-  vk_memory->transfert_buffer_to_gpu(data->object->uv, &data->uv);
+  data->has_xyz = false;
+  data->has_rgb = false;
+  data->has_uv = false;
+
+  if(!data->object->xyz.empty()){
+    vk_memory->transfert_buffer_to_gpu(data->object->xyz, &data->xyz);
+    data->has_xyz = true;
+  }
+  if(!data->object->rgb.empty()){
+    vk_memory->transfert_buffer_to_gpu(data->object->rgb, &data->rgb);
+    data->has_rgb = true;
+  }
+  if(!data->object->uv.empty()){
+    vk_memory->transfert_buffer_to_gpu(data->object->uv, &data->uv);
+    data->has_uv = true;
+  }
 
   //---------------------------
 }

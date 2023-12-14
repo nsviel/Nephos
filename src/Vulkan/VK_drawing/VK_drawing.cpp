@@ -102,16 +102,16 @@ void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::E
   //---------------------------
 
   VkDeviceSize offsets[] = {0};
-  if(data->xyz.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(command_buffer, 0, 1, &data->xyz.vbo, offsets);
-  }
-  if(data->rgb.vbo != VK_NULL_HANDLE){
+  if(data->rgb.vbo != VK_NULL_HANDLE && data->has_rgb){
     vkCmdBindVertexBuffers(command_buffer, 1, 1, &data->rgb.vbo, offsets);
   }
-  if(data->uv.vbo != VK_NULL_HANDLE){
+  if(data->uv.vbo != VK_NULL_HANDLE && data->has_uv){
     vkCmdBindVertexBuffers(command_buffer, 2, 1, &data->uv.vbo, offsets);
   }
-  vkCmdDraw(command_buffer, data->object->xyz.size(), 1, 0, 0);
+  if(data->xyz.vbo != VK_NULL_HANDLE && data->has_xyz){
+    vkCmdBindVertexBuffers(command_buffer, 0, 1, &data->xyz.vbo, offsets);
+    vkCmdDraw(command_buffer, data->object->xyz.size(), 1, 0, 0);
+  }
 
   //---------------------------
 }

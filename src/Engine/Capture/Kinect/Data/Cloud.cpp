@@ -28,6 +28,8 @@ void Cloud::convert_into_cloud(K4A_device* k4a_device){
 
 //Subfunction
 void Cloud::retrieve_location(K4A_device* k4a_device){
+  if(k4a_device->color.image_depth.data.empty()) return;
+  if(k4a_device->depth.image.data.empty()) return;
   //---------------------------
 
   // Depth stuff
@@ -38,7 +40,6 @@ void Cloud::retrieve_location(K4A_device* k4a_device){
   eng::kinect::structure::Color* color = &k4a_device->color;
   vector<uint8_t>& color_data = color->image_depth.data;
   std::vector<glm::vec4> vec_rgba;
-  if(color_data.empty()) return;
 
   // Cloud stuff
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->image.width, depth->image.height, depth->image.width * 3 * (int)sizeof(int16_t));
