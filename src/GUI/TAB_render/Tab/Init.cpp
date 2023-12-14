@@ -51,10 +51,10 @@ void Init::design_option(){
 
 //Subfunction
 void Init::init_init(){
-  Tree_filler filler;
   //---------------------------
 
   //Open accepted formats
+  filler.accepted_format.clear();
   filler.accepted_format.push_back("pts");
   filler.accepted_format.push_back("obj");
   filler.accepted_format.push_back("ply");
@@ -67,10 +67,14 @@ void Init::init_init(){
   filler.accepted_format.push_back("laz");
 
   //Custom folder tree
+  filler.vec_path_folder.clear();
   filler.vec_path_folder.push_back("../media/point_cloud");
 
   //Custom file leaf
   //filler.vec_path_file.push_back("../media/dragon.ply");
+
+  //Function
+  filler.fct_on_click = [this](const std::string path){operation_new_object(path);};
 
   //---------------------------
   gui_tree->construct_tree(&filler);
@@ -79,10 +83,10 @@ void Init::load_config_file(){
   //---------------------------
 
 
-
   //---------------------------
 }
 void Init::operation_new_object(string path){
+  if(path == "") return;
   //---------------------------
 
   eng::structure::Object* object = eng_loader->load_object(path);

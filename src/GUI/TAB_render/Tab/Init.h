@@ -39,6 +39,7 @@ private:
 
   vector<Tree_node*> nodes_root;
   vector<vector<Tree_node*>> nodes_path_vec;
+  Tree_filler filler;
   bool remove_old = true;
   float scale = 1;
 

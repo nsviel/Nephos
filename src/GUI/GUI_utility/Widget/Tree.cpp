@@ -43,6 +43,8 @@ void Tree::construct_tree(Tree_filler* filler){
   this->filler = filler;
   //---------------------------
 
+
+
   //Construct init path nodes for specific cloud locations
   this->construct_node_root(filler->vec_path_file, nodes_root);
 
@@ -223,24 +225,9 @@ bool Tree::check_display_file_format(string path){
 void Tree::open_selection(Tree_node* node){
   //---------------------------
 
-  if(node->type == "File"){
+  if(node->type == "File" && filler != nullptr && filler->fct_on_click){
     //gui_init->operation_new_object(node->path);
-  }
-  /*else if(node->type == "Folder" && node->end_folder){
-    if(pathManager->check_folder_format(node->path, "ply")){
-      eng::structure::Object* object;
-
-      if(with_onthefly == false){
-        object = pathManager->loading_directory_frame(node->path);
-      }else{
-        object = pathManager->loading_onthefly(node->path);
-      }
-
-      this->operation_new_collection(object);
-    }
-  }*/
-  else if(node->type == "scene_1"){
-    //this->build_scene_1();
+    filler->fct_on_click(node->path);
   }
 
   //---------------------------

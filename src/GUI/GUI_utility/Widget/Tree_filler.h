@@ -16,5 +16,8 @@ struct Tree_filler{
   bool is_selection = false;
   Tree_node* node_selected;
 
+  //Function
+  std::function<void(string path)> fct_on_click;
+
   //---------------------------
 };

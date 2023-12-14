@@ -32,8 +32,7 @@ public:
 private:
   vector<Tree_node*> nodes_root;
   vector<vector<Tree_node*>> nodes_path_vec;
-  Tree_filler* filler;
-  std::function<void()> fct_onClick;
+  Tree_filler* filler = nullptr;
 };
 
 }
