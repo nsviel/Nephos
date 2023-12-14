@@ -4,7 +4,7 @@
 #include <GUI/TAB_render/Kinect/Playback.h>
 #include <GUI/TAB_render/Kinect/Recorder.h>
 #include <GUI/TAB_render/Kinect/Panel.h>
-#include <GUI/TAB_render/Kinect/Capture.h>
+#include <GUI/TAB_render/Kinect/Stream.h>
 
 
 namespace gui::kinect{
@@ -14,7 +14,7 @@ namespace gui::kinect{
   class Playback;
   class Recorder;
   class Panel;
-  class Capture;
+  class Stream;
 
   //---------------------------
 }

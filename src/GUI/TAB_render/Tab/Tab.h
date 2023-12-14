@@ -43,7 +43,7 @@ private:
   gui::rnd::panel::Scene* rnd_scene;
   gui::engine::Render* rnd_render;
   gui::engine::Camera* rnd_camera;
-  gui::kinect::Capture* rnd_capture;
+  gui::kinect::Stream* rnd_stream;
   gui::kinect::Panel* rnd_kinect;
 };
 

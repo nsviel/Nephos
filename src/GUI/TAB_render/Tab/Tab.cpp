@@ -31,7 +31,7 @@ void Tab::create_panels(){
   this->rnd_scene = new gui::rnd::panel::Scene(gui, gui_render_panel);
   this->rnd_camera = new gui::engine::Camera(gui, &gui_render_panel->show_camera, "Camera");
   this->rnd_kinect = new gui::kinect::Panel(gui, &gui_render_panel->show_kinect, "Kinect");
-  this->rnd_capture = new gui::kinect::Capture(gui, &gui_render_panel->show_kinect, "Capture");
+  this->rnd_stream = new gui::kinect::Stream(gui, &gui_render_panel->show_kinect, "Stream");
   this->rnd_render = new gui::engine::Render(gui);
   this->rnd_menu = new gui::rnd::tab::Menu(gui);
 
@@ -44,7 +44,7 @@ void Tab::draw_panels(){
   rnd_shader->run_panel();
   rnd_camera->run_panel();
   rnd_kinect->run_panel();
-  rnd_capture->run_panel();
+  rnd_stream->run_panel();
   rnd_scene->run_panel();
   rnd_profiler->run_panel();
   rnd_option->run_panel();

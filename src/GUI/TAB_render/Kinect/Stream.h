@@ -13,12 +13,12 @@ class K4A_swarm;
 
 namespace gui::kinect{
 
-class Capture : public gui::base::Panel
+class Stream : public gui::base::Panel
 {
 public:
   //Constructor / Destructor
-  Capture(GUI* gui, bool* show_window, string name);
-  ~Capture();
+  Stream(GUI* gui, bool* show_window, string name);
+  ~Stream();
 
   //Main function
   void design_panel();
