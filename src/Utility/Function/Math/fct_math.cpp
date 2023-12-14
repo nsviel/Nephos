@@ -724,6 +724,18 @@ float fct_R2(std::vector<float>& data_X, std::vector<float>& data_Y, std::vector
 
   return R_2;
 }
+glm::vec4 random_color(){
+  //---------------------------
+
+  srand(static_cast<unsigned>(8));
+  float R = float(rand()) / RAND_MAX;
+  float G = float(rand()) / RAND_MAX;
+  float B = float(rand()) / RAND_MAX;
+  glm::vec4 color = glm::vec4(R, G, B, 1.0f);
+
+  //---------------------------
+  return color;
+}
 
 /*Sorting functions
   --->Sort by order, keeping trace of indices

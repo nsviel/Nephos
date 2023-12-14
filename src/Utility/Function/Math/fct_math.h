@@ -71,6 +71,7 @@ float fct_cv(std::vector<float>& vec);
 float fct_R2(std::vector<float>& data_X, std::vector<float>& data_Y, std::vector<float>& coeffs);
 Eigen::Matrix3f fct_covarianceMat(std::vector<Eigen::Vector3f>& vec);
 Eigen::Matrix3d fct_covarianceMat(std::vector<Eigen::Vector3d>& vec);
+glm::vec4 random_color();
 
 //Sorting functions
 std::vector<size_t> sort_by_indexes(const std::vector<float> &v);

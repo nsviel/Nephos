@@ -66,10 +66,11 @@ void Cloud::retrieve_location(K4A_device* k4a_device){
   //---------------------------
 }
 void Cloud::retrieve_color(K4A_device* k4a_device, int i){
+  eng::kinect::structure::Cloud* cloud = k4a_device->get_cloud();
   glm::vec4 color;
   //---------------------------
 
-  if(1){
+  if(cloud->color_mode == 0){
     //Camera color
     const vector<uint8_t>& color_data = k4a_device->color.image_depth.data;
 
@@ -79,10 +80,13 @@ void Cloud::retrieve_color(K4A_device* k4a_device, int i){
     float b = static_cast<float>(color_data[color_idx])     / 255.0f;
     float a = 1.0f;
     color = vec4(r, g, b, a);
-  }else if(1){
-    //Unicolor
+  }else if(cloud->color_mode == 1){
+    //Colored unicolor
     color = cloud->object->unicolor;
-  }else if(1){
+  }else if(cloud->color_mode == 2){
+    //White unicolor
+    color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+  }else if(cloud->color_mode == 3){
     //Heatmap
   }
 

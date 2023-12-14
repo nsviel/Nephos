@@ -1,8 +1,17 @@
-#include <Engine/Base/Namespace.h>
+#include "Struct_object.h"
+
+#include <Utility/Function/Math/fct_math.h>
 
 
 namespace eng::structure{
 
+Object::Object(){
+  //---------------------------
+
+  this->unicolor = math::random_color();
+
+  //---------------------------
+}
 void Object::reset(){
   //---------------------------
 

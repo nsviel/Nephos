@@ -16,6 +16,7 @@ struct Object{
   //---------------------------
 
   //Functions
+  Object();
   void reset();
 
   //State

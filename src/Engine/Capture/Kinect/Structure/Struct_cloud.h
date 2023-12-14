@@ -15,10 +15,11 @@ struct Cloud{
 
   /*
   * 0 -> camera color
-  * 1 -> unicolor
-  * 2 -> heatmap
+  * 1 -> colored unicolor
+  * 2 -> white unicolor
+  * 3 -> heatmap
   */
-  int color_mode = 0;
+  int color_mode = 2;
 
   //---------------------------
 };
