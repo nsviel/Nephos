@@ -62,17 +62,15 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
 void Data::find_color_from_depth(K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
 
-  k4a::image color = capture.get_color_image();
-  if (!color || !color.is_valid()) {return;}
-  k4a::image color_depth = k4a_device->device.transformation.color_image_to_depth_camera(k4a_device->depth.image.image, color);
+  k4a::image color_depth = k4a_device->device.transformation.color_image_to_depth_camera(k4a_device->depth.image.image, k4a_device->color.image.image);
+  if (!color_depth || !color_depth.is_valid()) {return;}
   k4a_device->color.image_depth.image = color_depth;
   k4a_device->color.image_depth.name = "color_from_depth";
   k4a_device->color.image_depth.data = std::vector<uint8_t>(color_depth.get_buffer(), color_depth.get_buffer() + color_depth.get_size());
   k4a_device->color.image_depth.width = color_depth.get_width_pixels();
   k4a_device->color.image_depth.height = color_depth.get_height_pixels();
   k4a_device->color.image_depth.format = "B8G8R8A8_SRGB";
-  k4a_device->color.image_depth.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
-  color.reset();
+  k4a_device->color.image_depth.timestamp = k4a_device->color.image.timestamp;
   color_depth.reset();
 
   //---------------------------
