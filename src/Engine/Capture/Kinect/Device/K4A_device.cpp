@@ -2,7 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Engine/Capture/Kinect/Thread/K4A_capture.h>
-#include <Engine/Capture/Kinect/Thread/K4A_replay.h>
+#include <Engine/Capture/Kinect/Thread/K4A_playback.h>
 
 
 
@@ -13,7 +13,7 @@ K4A_device::K4A_device(Engine* engine){
   eng::data::Node* eng_data = engine->get_eng_data();
 
   this->k4a_capture = new K4A_capture(engine);
-  this->k4a_replay = new K4A_replay(engine);
+  this->k4a_replay = new K4A_playback(engine);
   this->eng_scene = eng_data->get_eng_scene();
 
   //---------------------------

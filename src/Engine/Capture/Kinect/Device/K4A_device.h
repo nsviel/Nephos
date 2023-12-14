@@ -6,7 +6,7 @@
 #include <Utility/Specific/common.h>
 
 class K4A_capture;
-class K4A_replay;
+class K4A_playback;
 class Engine;
 
 
@@ -33,7 +33,7 @@ public:
 public:
   eng::data::Scene* eng_scene;
   K4A_capture* k4a_capture;
-  K4A_replay* k4a_replay;
+  K4A_playback* k4a_replay;
 
   eng::kinect::structure::Cloud cloud;
   eng::kinect::structure::Device device;

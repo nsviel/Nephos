@@ -1,11 +1,11 @@
-#include "K4A_replay.h"
+#include "K4A_playback.h"
 
 #include <Engine/Engine.h>
 #include <Utility/Function/Timer/FPS_counter.h>
 
 
 //Constructor / Destructor
-K4A_replay::K4A_replay(Engine* engine){
+K4A_playback::K4A_playback(Engine* engine){
   //---------------------------
 
   this->fps_counter = new FPS_counter(60);
@@ -14,7 +14,7 @@ K4A_replay::K4A_replay(Engine* engine){
 
   //---------------------------
 }
-K4A_replay::~K4A_replay(){
+K4A_playback::~K4A_playback(){
   //---------------------------
 
   this->stop_thread();
@@ -23,16 +23,16 @@ K4A_replay::~K4A_replay(){
 }
 
 //Main function
-void K4A_replay::start_thread(K4A_device* k4a_device){
+void K4A_playback::start_thread(K4A_device* k4a_device){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&K4A_replay::run_thread, this, k4a_device);
+    this->thread = std::thread(&K4A_playback::run_thread, this, k4a_device);
   }
 
   //---------------------------
 }
-void K4A_replay::run_thread(K4A_device* k4a_device){
+void K4A_playback::run_thread(K4A_device* k4a_device){
   //---------------------------
 
   //Get info about file
@@ -71,7 +71,7 @@ void K4A_replay::run_thread(K4A_device* k4a_device){
 
   //---------------------------
 }
-void K4A_replay::stop_thread(){
+void K4A_playback::stop_thread(){
   //---------------------------
 
   this->thread_running = false;
@@ -83,7 +83,7 @@ void K4A_replay::stop_thread(){
 }
 
 //Subfunction
-void K4A_replay::sleep_necessary_time(int fps_mode){
+void K4A_playback::sleep_necessary_time(int fps_mode){
   //---------------------------
 
   switch(fps_mode){
@@ -100,7 +100,7 @@ void K4A_replay::sleep_necessary_time(int fps_mode){
 
   //---------------------------
 }
-void K4A_replay::find_duration(eng::kinect::structure::File& info){
+void K4A_playback::find_duration(eng::kinect::structure::File& info){
   //---------------------------
 
   k4a::image color;
@@ -124,7 +124,7 @@ void K4A_replay::find_duration(eng::kinect::structure::File& info){
 
   //---------------------------
 }
-void K4A_replay::manage_timestamp(k4a::playback* playback){
+void K4A_playback::manage_timestamp(k4a::playback* playback){
   //---------------------------
 
   if(ts_seek != -1){
@@ -136,7 +136,16 @@ void K4A_replay::manage_timestamp(k4a::playback* playback){
 
   //---------------------------
 }
-void K4A_replay::manage_pause(){
+void K4A_playback::forward_timestamp(k4a::playback* playback){
+  //---------------------------
+
+  float ts_seek = 0;
+  auto ts_seek_ms = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_seek));
+  playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+
+  //---------------------------
+}
+void K4A_playback::manage_pause(){
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -148,7 +157,7 @@ void K4A_replay::manage_pause(){
 
   //---------------------------
 }
-void K4A_replay::manage_restart(k4a::playback* playback, K4A_device* k4a_device){
+void K4A_playback::manage_restart(k4a::playback* playback, K4A_device* k4a_device){
   //---------------------------
 
   if(k4a_device->color.image.timestamp == k4a_device->file.ts_end){

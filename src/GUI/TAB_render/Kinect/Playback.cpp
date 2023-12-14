@@ -1,7 +1,7 @@
 #include "Playback.h"
 
 #include <image/IconsFontAwesome5.h>
-#include <Engine/Capture/Kinect/Thread/K4A_replay.h>
+#include <Engine/Capture/Kinect/Thread/K4A_playback.h>
 #include <Engine/Capture/Kinect/Device/K4A_swarm.h>
 
 
@@ -25,6 +25,7 @@ void Playback::kinect_playback(){
   //---------------------------
 
   if(!device->device.is_virtual) ImGui::BeginDisabled();
+  this->control_player();
   this->show_player();
   this->show_file();
   this->show_recording();
@@ -36,7 +37,7 @@ void Playback::kinect_playback(){
   //---------------------------
 }
 
-//Subfunction
+//Design function
 void Playback::show_player(){
   K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
@@ -252,6 +253,36 @@ void Playback::show_device(){
   }
 
   //---------------------------
+}
+
+//Subfunction
+void Playback::control_player(){
+  ImGuiIO io = ImGui::GetIO();
+  //----------------------------
+
+  for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
+    //Tab key
+    if(ImGui::IsKeyPressed(ImGuiKey_Space)){
+      K4A_device* device = k4a_swarm->get_selected_device();
+      bool* thread_paused = device->k4a_replay->get_thread_pause();
+      *thread_paused = !*thread_paused;
+      break;
+    }
+
+    //Left arrow key
+    if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
+
+      break;
+    }
+
+    //Right arrow key
+    if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
+
+      break;
+    }
+  }
+
+  //----------------------------
 }
 
 }

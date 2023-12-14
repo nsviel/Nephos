@@ -19,13 +19,16 @@ public:
   //Main function
   void kinect_playback();
 
-  //Subfunction
+  //Design function
   void show_player();
   void show_file();
   void show_recording();
   void show_stream();
   void show_synchro();
   void show_device();
+
+  //Subfunction
+  void control_player();
 
 private:
   eng::kinect::Kinect* kinect;

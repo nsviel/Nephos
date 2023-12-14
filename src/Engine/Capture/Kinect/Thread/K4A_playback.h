@@ -11,12 +11,12 @@ class FPS_counter;
 class Engine;
 
 
-class K4A_replay
+class K4A_playback
 {
 public:
   //Constructor / Destructor
-  K4A_replay(Engine* engine);
-  ~K4A_replay();
+  K4A_playback(Engine* engine);
+  ~K4A_playback();
 
 public:
   //Main function
@@ -27,6 +27,7 @@ public:
   //Subfunction
   void sleep_necessary_time(int fps_mode);
   void find_duration(eng::kinect::structure::File& info);
+  void forward_timestamp(k4a::playback* playback);
   void manage_timestamp(k4a::playback* playback);
   void manage_pause();
   void manage_restart(k4a::playback* playback, K4A_device* device);
