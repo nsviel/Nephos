@@ -209,7 +209,7 @@ void Playback::show_synchro(){
       ImGui::TextColored(color, "%d", device->synchro.start_timestamp_offset_us);
 
       ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
+      ImGui::Text("Recording length"); ImGui::TableNextColumn();
       ImGui::TextColored(color, "%.2f", device->file.duration);
 
       ImGui::EndTable();

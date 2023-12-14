@@ -31,7 +31,7 @@ void Tab::create_panels(){
   this->rnd_scene = new gui::rnd::panel::Scene(gui, gui_render_panel);
   this->rnd_camera = new gui::engine::Camera(gui, &gui_render_panel->show_camera, "Camera");
   this->rnd_kinect = new gui::kinect::Panel(gui, &gui_render_panel->show_kinect, "Kinect");
-  this->rnd_capture = new gui::kinect::Capture(gui, &gui_render_panel->show_capture, "Capture");
+  this->rnd_capture = new gui::kinect::Capture(gui, &gui_render_panel->show_kinect, "Capture");
   this->rnd_render = new gui::engine::Render(gui);
   this->rnd_menu = new gui::rnd::tab::Menu(gui);
 
@@ -60,7 +60,7 @@ void Tab::open_panels(){
   ImGui::Checkbox(ICON_FA_REFRESH " Profiler##456", &gui_render_panel->show_profiler);
   ImGui::Checkbox(ICON_FA_CAMERA " Camera##456", &gui_render_panel->show_camera);
   ImGui::Checkbox(ICON_FA_ROAD " Shader##456", &gui_render_panel->show_shader);
-  ImGui::Checkbox(ICON_FA_FILM " Panel##456", &gui_render_panel->show_kinect);
+  ImGui::Checkbox(ICON_FA_FILM " Kinect##456", &gui_render_panel->show_kinect);
 
   //---------------------------
 }
