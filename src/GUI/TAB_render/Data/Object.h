@@ -27,8 +27,8 @@ public:
   void object_parameter(eng::structure::Object* object);
 
   //Primitive size
-  void width_line(eng::structure::Object* object);
-  void size_point(eng::structure::Object* object);
+  void object_line(eng::structure::Object* object);
+  void object_point(eng::structure::Object* object);
 
   inline void set_selected_object(eng::structure::Object* object){this->object_selected = object;}
 

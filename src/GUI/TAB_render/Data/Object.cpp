@@ -28,7 +28,7 @@ void Object::run_panel(){
   //---------------------------
 
   if(*panel_show){
-    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.2, 0.2, 0.2, 1));
     if(ImGui::Begin(panel_name.c_str(), panel_show, ImGuiWindowFlags_AlwaysAutoResize)){
 
       this->design_panel();
@@ -116,16 +116,12 @@ void Object::object_parameter(eng::structure::Object* object){
 
     //Primitive size
     if(object->draw_type_name == "point"){
-      //Number of points
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Nb point"); ImGui::TableNextColumn();
-      string nb_point = math::thousand_separator(object->nb_point);
-      ImGui::Text("%s", nb_point.c_str());
 
-      this->size_point(object);
+
+      this->object_point(object);
     }
     else if(object->draw_type_name == "line"){
-      this->width_line(object);
+      this->object_line(object);
     }
 
     ImGui::EndTable();
@@ -135,15 +131,13 @@ void Object::object_parameter(eng::structure::Object* object){
 }
 
 //Primitive size
-void Object::width_line(eng::structure::Object* object){
+void Object::object_line(eng::structure::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
-  //Column 1
+  //Line width
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Line width"); ImGui::TableNextColumn();
-
-  //Column 2
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
     object->draw_line_width--;
@@ -162,15 +156,19 @@ void Object::width_line(eng::structure::Object* object){
 
   //---------------------------
 }
-void Object::size_point(eng::structure::Object* object){
+void Object::object_point(eng::structure::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
-  //Column 1
+  //Number of points
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Nb point"); ImGui::TableNextColumn();
+  string nb_point = math::thousand_separator(object->nb_point);
+  ImGui::Text("%s", nb_point.c_str());
+
+  //Point size
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Point size"); ImGui::TableNextColumn();
-
-  //Column 2
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
     object->draw_point_size--;

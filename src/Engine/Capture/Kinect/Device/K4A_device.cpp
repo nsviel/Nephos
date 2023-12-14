@@ -46,6 +46,7 @@ void K4A_device::destroy(){
 void K4A_device::draw_cloud(){
   //---------------------------
 
+  object->nb_point = object->xyz.size();
   eng_scene->update_object(object);
 
   //---------------------------
