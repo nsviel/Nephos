@@ -1,4 +1,4 @@
-#include "Kinect_panel.h"
+#include "Panel.h"
 
 #include <Node/GUI.h>
 #include <Engine/Engine.h>
@@ -10,7 +10,7 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Kinect_panel::Kinect_panel(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -23,10 +23,10 @@ Kinect_panel::Kinect_panel(GUI* gui, bool* show_window, string name) : Panel(sho
 
   //---------------------------
 }
-Kinect_panel::~Kinect_panel(){}
+Panel::~Panel(){}
 
 //Main function
-void Kinect_panel::design_panel(){
+void Panel::design_panel(){
   //---------------------------
 
   if (ImGui::BeginTabBar("kinect_tab")){
@@ -40,7 +40,7 @@ void Kinect_panel::design_panel(){
 }
 
 //Subfunction
-void Kinect_panel::draw_tab_capture(){
+void Panel::draw_tab_capture(){
   //---------------------------
 
   ImGui::SetNextItemWidth(100);
@@ -51,7 +51,7 @@ void Kinect_panel::draw_tab_capture(){
 
   //---------------------------
 }
-void Kinect_panel::draw_tab_playback(){
+void Panel::draw_tab_playback(){
   //---------------------------
 
   ImGui::SetNextItemWidth(100);
@@ -62,7 +62,7 @@ void Kinect_panel::draw_tab_playback(){
 
   //---------------------------
 }
-void Kinect_panel::draw_tab_recorder(){
+void Panel::draw_tab_recorder(){
   //---------------------------
 
   ImGui::SetNextItemWidth(100);

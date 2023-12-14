@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 
 namespace util::base{
@@ -13,6 +14,7 @@ struct Image{
   int width;
   int height;
   uint8_t* buffer;
+  std::vector<uint8_t> vec_data;
   std::string format;
 
   //---------------------------
