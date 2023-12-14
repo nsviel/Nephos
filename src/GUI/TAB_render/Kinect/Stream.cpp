@@ -3,7 +3,7 @@
 #include <Node/GUI.h>
 #include <Engine/Engine.h>
 #include <Utility/Node/Namespace.h>
-#include <Engine/Stream/Kinect/Device/K4A_swarm.h>
+#include <Engine/Capture/Kinect/Device/K4A_swarm.h>
 
 
 namespace gui::kinect{
