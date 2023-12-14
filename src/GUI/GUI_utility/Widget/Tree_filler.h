@@ -4,12 +4,10 @@
 #include <Utility/Specific/common.h>
 
 
-struct Struct_init{
+struct Tree_filler{
   //---------------------------
 
-  bool remove_old = true;
-  float scale = 1;
-
+  //Pathes
   vector<string> accepted_format;
   vector<string> vec_path_folder;
   vector<string> vec_path_file;

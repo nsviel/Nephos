@@ -40,42 +40,40 @@ void Init::design_option(){
 
   //Point cloud scaling
   ImGui::SetNextItemWidth(100);
-  ImGui::DragFloat("Scale##4567", &init.scale, 0.1, 0.1, 100, "%.2f x");
+  ImGui::DragFloat("Scale##4567", &scale, 0.1, 0.1, 100, "%.2f x");
   ImGui::SameLine();
 
   //Remove old clouds
-  ImGui::Checkbox("Remove##222", &init.remove_old);
+  ImGui::Checkbox("Remove##222", &remove_old);
 
   //---------------------------
 }
 
 //Subfunction
 void Init::init_init(){
+  Tree_filler filler;
   //---------------------------
-
-  this->init.remove_old = true;
-  this->init.scale = 1;
 
   //Open accepted formats
-  this->init.accepted_format.push_back("pts");
-  this->init.accepted_format.push_back("obj");
-  this->init.accepted_format.push_back("ply");
-  this->init.accepted_format.push_back("xyz");
-  this->init.accepted_format.push_back("cbor");
-  this->init.accepted_format.push_back("pcap");
-  this->init.accepted_format.push_back("ptx");
-  this->init.accepted_format.push_back("csv");
-  this->init.accepted_format.push_back("las");
-  this->init.accepted_format.push_back("laz");
+  filler.accepted_format.push_back("pts");
+  filler.accepted_format.push_back("obj");
+  filler.accepted_format.push_back("ply");
+  filler.accepted_format.push_back("xyz");
+  filler.accepted_format.push_back("cbor");
+  filler.accepted_format.push_back("pcap");
+  filler.accepted_format.push_back("ptx");
+  filler.accepted_format.push_back("csv");
+  filler.accepted_format.push_back("las");
+  filler.accepted_format.push_back("laz");
 
   //Custom folder tree
-  this->init.vec_path_folder.push_back("../media/point_cloud");
+  filler.vec_path_folder.push_back("../media/point_cloud");
 
   //Custom file leaf
-  //this->init.vec_path_file.push_back("../media/dragon.ply");
+  //filler.vec_path_file.push_back("../media/dragon.ply");
 
   //---------------------------
-  gui_tree->construct_tree(&init);
+  gui_tree->construct_tree(&filler);
 }
 void Init::load_config_file(){
   //---------------------------
@@ -90,11 +88,11 @@ void Init::operation_new_object(string path){
   eng::structure::Object* object = eng_loader->load_object(path);
   if(object == nullptr) return;
 
-  if(init.remove_old){
+  if(remove_old){
     eng_scene->empty_scene_set();
   }
 
-  transformManager->make_scaling(object, init.scale);
+  transformManager->make_scaling(object, scale);
 
   //---------------------------
 }

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "struct_init.h"
 #include <Engine/Data/Namespace.h>
 #include <GUI/GUI_utility/Widget/Tree_node.h>
 #include <Utility/Specific/common.h>
@@ -40,8 +39,9 @@ private:
 
   vector<Tree_node*> nodes_root;
   vector<vector<Tree_node*>> nodes_path_vec;
+  bool remove_old = true;
+  float scale = 1;
 
-  Struct_init init;
 };
 
 }

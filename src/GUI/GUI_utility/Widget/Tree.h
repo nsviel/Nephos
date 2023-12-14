@@ -1,10 +1,9 @@
 #pragma once
 
-#include <Tab/struct_init.h>
-#include <GUI/GUI_utility/Widget/Namespace.h>
-#include <Utility/Specific/common.h>
+#include "Tree_node.h"
+#include "Tree_filler.h"
 
-class Init;
+#include <Utility/Specific/common.h>
 
 
 namespace gui::widget{
@@ -19,7 +18,7 @@ public:
 public:
   //Main function
   void design_tree();
-  void construct_tree(Struct_init* init);
+  void construct_tree(Tree_filler* filler);
 
   //subfunction
   void construct_node(string path, vector<Tree_node*>& nodes);
@@ -31,11 +30,10 @@ public:
   void open_selection(Tree_node* node);
 
 private:
-  Init* gui_init;
-
   vector<Tree_node*> nodes_root;
   vector<vector<Tree_node*>> nodes_path_vec;
-  Struct_init* init;
+  Tree_filler* filler;
+  std::function<void()> fct_onClick;
 };
 
 }

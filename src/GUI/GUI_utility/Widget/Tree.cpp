@@ -38,21 +38,18 @@ void Tree::design_tree(){
 
   //---------------------------
 }
-void Tree::construct_tree(Struct_init* init){
+void Tree::construct_tree(Tree_filler* filler){
   this->nodes_path_vec.clear();
-  this->init = init;
+  this->filler = filler;
   //---------------------------
 
   //Construct init path nodes for specific cloud locations
-  this->construct_node_root(init->vec_path_file, nodes_root);
-
-  //Set a node for specific scene construction
-  //this->build_custom_scene(nodes_path_vec);
+  this->construct_node_root(filler->vec_path_file, nodes_root);
 
   //Construct predefined init path nodes
-  for(int i=0; i<init->vec_path_folder.size(); i++){
+  for(int i=0; i<filler->vec_path_folder.size(); i++){
     vector<Tree_node*> nodes_path;
-    this->construct_node(init->vec_path_folder[i], nodes_path);
+    this->construct_node(filler->vec_path_folder[i], nodes_path);
     this->nodes_path_vec.push_back(nodes_path);
   }
 
@@ -214,8 +211,8 @@ bool Tree::check_display_file_format(string path){
   string format = info::get_format_from_path(path);
   //---------------------------
 
-  for(int i=0; i<init->accepted_format.size(); i++){
-    if(format == init->accepted_format[i]){
+  for(int i=0; i<filler->accepted_format.size(); i++){
+    if(format == filler->accepted_format[i]){
       return true;
     }
   }

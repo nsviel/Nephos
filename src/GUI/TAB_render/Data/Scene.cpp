@@ -128,7 +128,6 @@ int Scene::data_node_tree(eng::structure::Set* set){
   //Node flag_tree
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
-  //flag_node |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
   if(set->name != "eng::structure::Glyph"){
     flag_node |= ImGuiTreeNodeFlags_DefaultOpen;
   }
@@ -161,7 +160,7 @@ int Scene::data_node_tree(eng::structure::Set* set){
       nb_row++;
 
       //If object is selected
-      if(object->ID == set->selected_obj->ID && set->name == "eng::structure::Object"){
+      if(object->ID == set->selected_obj->ID && set->name == "Scene"){
         flag_leaf |= ImGuiTreeNodeFlags_Selected;
       }else{
         flag_leaf &= ~ImGuiTreeNodeFlags_Selected;
