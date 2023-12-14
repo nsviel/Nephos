@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Capture/Kinect/Structure/Struct_cloud.h>
 #include <Engine/Capture/Kinect/Structure/Struct_device.h>
 #include <Engine/Capture/Kinect/Structure/Struct_synchro.h>
 #include <Engine/Capture/Kinect/Structure/Struct_image.h>
@@ -21,6 +22,7 @@ namespace eng::kinect::structure{
   class Swarm;
   class Image;
   class Synchro;
+  class Cloud;
 
   //---------------------------
 }

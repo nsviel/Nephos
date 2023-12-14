@@ -21,11 +21,14 @@ public:
 
   //Subfunction
   void retrieve_location(K4A_device* k4a_device);
-  void retrieve_color(K4A_device* k4a_device);
+  void retrieve_color(K4A_device* k4a_device, int i);
 
 private:
   Engine* engine;
 
+  eng::kinect::structure::Cloud* cloud;
+  std::vector<glm::vec3> vec_xyz;
+  std::vector<glm::vec4> vec_rgba;
 };
 
 }

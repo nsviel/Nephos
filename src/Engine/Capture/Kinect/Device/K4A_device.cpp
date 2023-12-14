@@ -29,10 +29,10 @@ void K4A_device::init(){
   this->device.name = str_mode + to_string(device.index);
 
   //Device cloud
-  this->object = new eng::structure::Object();
-  object->name = device.name;
-  object->draw_type_name = "point";
-  eng_scene->insert_object_scene(object);
+  cloud.object = new eng::structure::Object();
+  cloud.object->name = device.name;
+  cloud.object->draw_type_name = "point";
+  eng_scene->insert_object_scene(cloud.object);
 
   //---------------------------
 }
@@ -46,8 +46,8 @@ void K4A_device::destroy(){
 void K4A_device::draw_cloud(){
   //---------------------------
 
-  object->nb_point = object->xyz.size();
-  eng_scene->update_object(object);
+  cloud.object->nb_point = cloud.object->xyz.size();
+  eng_scene->update_object(cloud.object);
 
   //---------------------------
 }

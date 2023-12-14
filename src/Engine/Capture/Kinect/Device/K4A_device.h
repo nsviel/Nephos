@@ -28,14 +28,14 @@ public:
   void run_replay(string path);
   void stop_threads();
 
-  inline eng::structure::Object* get_object(){return object;}
+  inline eng::kinect::structure::Cloud* get_cloud(){return &cloud;}
 
 public:
   eng::data::Scene* eng_scene;
   K4A_capture* k4a_capture;
   K4A_replay* k4a_replay;
-  eng::structure::Object* object;
 
+  eng::kinect::structure::Cloud cloud;
   eng::kinect::structure::Device device;
   eng::kinect::structure::Synchro synchro;
   eng::kinect::structure::File file;
