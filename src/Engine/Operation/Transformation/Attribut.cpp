@@ -44,5 +44,14 @@ void Attribut::set_visibility(eng::structure::Set* set, bool visibility){
 
   //---------------------------
 }
+void Attribut::set_unicolor(eng::structure::Object* object){
+  //---------------------------
+
+  for(int i=0; i<object->rgb.size(); i++){
+    object->rgb[i] = object->unicolor;
+  }
+
+  //---------------------------
+}
 
 }

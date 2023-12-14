@@ -14,6 +14,7 @@ Object::Object(GUI* gui, bool* panel_show){
   Engine* engine = gui->get_engine();
   eng::data::Node* eng_data = engine->get_eng_data();
   this->eng_scene = eng_data->get_eng_scene();
+  this->attributManager = new eng::ope::Attribut();
 
   this->panel_show = panel_show;
   this->panel_name = "Object";
@@ -100,7 +101,8 @@ void Object::object_parameter(eng::structure::Object* object){
     ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
     flags |= ImGuiColorEditFlags_AlphaBar;
     if(ImGui::ColorEdit4("Color", (float*)&object->unicolor, flags)){
-      //colorManager->set_color_new(object, object->unicolor);
+      attributManager->set_unicolor(object);
+      eng_scene->update_object(object);
     }
 
     //Root pos

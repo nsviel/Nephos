@@ -3,10 +3,10 @@
 #include <Engine/Data/Namespace.h>
 #include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Engine/Operation/Namespace.h>
 
 class GUI;
 class Panel;
-
 
 
 namespace gui::rnd::panel{
@@ -34,6 +34,7 @@ public:
 
 private:
   Panel* gui_render_panel;
+  eng::ope::Attribut* attributManager;
   eng::data::Scene* eng_scene;
 
   eng::structure::Object* object_selected;

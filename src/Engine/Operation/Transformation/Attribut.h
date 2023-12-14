@@ -22,6 +22,7 @@ public:
   //Main functions
   void compute_MinMax(eng::structure::Object* object);
   void set_visibility(eng::structure::Set* set, bool visibility);
+  void set_unicolor(eng::structure::Object* object);
 
 private:
 };
