@@ -27,7 +27,7 @@ public:
   void draw_tab_recorder();
 
 private:
-  gui::kinect::Configuration* kin_configuration;
+  gui::kinect::Capture* kin_configuration;
   gui::kinect::Playback* kin_playback;
   gui::kinect::Recorder* kin_recorder;
 };

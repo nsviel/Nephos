@@ -1,4 +1,4 @@
-#include "Configuration.h"
+#include "Capture.h"
 
 #include <Node/GUI.h>
 #include <Engine/Capture/Kinect/Device/K4A_swarm.h>
@@ -7,7 +7,7 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Configuration::Configuration(eng::kinect::Kinect* kinect){
+Capture::Capture(eng::kinect::Kinect* kinect){
   //---------------------------
 
   this->kinect = kinect;
@@ -17,10 +17,10 @@ Configuration::Configuration(eng::kinect::Kinect* kinect){
 
   //---------------------------
 }
-Configuration::~Configuration(){}
+Capture::~Capture(){}
 
 //Main function
-void Configuration::kinect_configuration(){
+void Capture::kinect_configuration(){
   K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -35,7 +35,7 @@ void Configuration::kinect_configuration(){
 }
 
 //Subfunction
-void Configuration::kinect_devices(){
+void Capture::kinect_devices(){
   list<K4A_device*>& list_device = k4a_swarm->get_list_device();
   //---------------------------
 
@@ -84,7 +84,7 @@ void Configuration::kinect_devices(){
 
   //---------------------------
 }
-void Configuration::configuration_device(){
+void Capture::configuration_device(){
   K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -105,7 +105,7 @@ void Configuration::configuration_device(){
 
   //---------------------------
 }
-void Configuration::configuration_depth(){
+void Capture::configuration_depth(){
   K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -140,7 +140,7 @@ void Configuration::configuration_depth(){
 
   //---------------------------
 }
-void Configuration::configuration_color(){
+void Capture::configuration_color(){
   K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -263,7 +263,7 @@ void Configuration::configuration_color(){
 
   //---------------------------
 }
-void Configuration::configuration_general(){
+void Capture::configuration_general(){
   K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------
@@ -286,7 +286,7 @@ void Configuration::configuration_general(){
 
   //---------------------------
 }
-void Configuration::firmware_info(){
+void Capture::firmware_info(){
   K4A_device* device = k4a_swarm->get_selected_device();
   if(device == nullptr) return;
   //---------------------------

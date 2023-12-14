@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI/TAB_render/Kinect/Configuration.h>
+#include <GUI/TAB_render/Kinect/Capture.h>
 #include <GUI/TAB_render/Kinect/Playback.h>
 #include <GUI/TAB_render/Kinect/Recorder.h>
 #include <GUI/TAB_render/Kinect/Panel.h>
@@ -10,7 +10,7 @@
 namespace gui::kinect{
   //---------------------------
 
-  class Configuration;
+  class Capture;
   class Playback;
   class Recorder;
   class Panel;

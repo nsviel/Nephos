@@ -3,8 +3,6 @@
 #include <Node/GUI.h>
 #include <Engine/Engine.h>
 #include <Utility/Node/Namespace.h>
-#include <Engine/Capture/Kinect/Device/K4A_swarm.h>
-#include <Engine/Capture/Kinect/Device/Configuration.h>
 
 
 namespace gui::kinect{
@@ -17,7 +15,7 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
   eng::capture::Node* utl_capture = engine->get_eng_capture();
   eng::kinect::Kinect* kinect = utl_capture->get_kinect();
 
-  this->kin_configuration = new gui::kinect::Configuration(kinect);
+  this->kin_configuration = new gui::kinect::Capture(kinect);
   this->kin_playback = new gui::kinect::Playback(kinect);
   this->kin_recorder = new gui::kinect::Recorder(kinect);
 

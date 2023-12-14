@@ -9,12 +9,12 @@ class K4A_swarm;
 
 namespace gui::kinect{
 
-class Configuration
+class Capture
 {
 public:
   //Constructor / Destructor
-  Configuration(eng::kinect::Kinect* kinect);
-  ~Configuration();
+  Capture(eng::kinect::Kinect* kinect);
+  ~Capture();
 
   //Main function
   void kinect_configuration();
