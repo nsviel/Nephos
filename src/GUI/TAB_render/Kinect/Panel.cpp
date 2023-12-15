@@ -15,7 +15,7 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
   eng::capture::Node* utl_capture = engine->get_eng_capture();
   eng::kinect::Kinect* kinect = utl_capture->get_kinect();
 
-  this->kin_configuration = new gui::kinect::Capture(kinect);
+  this->kin_capture = new gui::kinect::Capture(kinect);
   this->kin_playback = new gui::kinect::Playback(kinect);
   this->kin_recorder = new gui::kinect::Recorder(kinect);
   this->kin_player = new gui::kinect::Player(kinect);
@@ -29,39 +29,15 @@ void Panel::design_panel(){
   //---------------------------
 
   kin_player->draw_player();
-  if (ImGui::BeginTabBar("kinect_tab")){
-    this->draw_tab_capture();
-    this->draw_tab_playback();
-    ImGui::EndTabBar();
-  }
+  kin_capture->kinect_configuration();
+  kin_playback->kinect_playback();
   kin_recorder->kinect_recorder();
 
   //---------------------------
 }
 
 //Subfunction
-void Panel::draw_tab_capture(){
-  //---------------------------
 
-  ImGui::SetNextItemWidth(100);
-  if (ImGui::BeginTabItem("Capture##12323", NULL)){
-    kin_configuration->kinect_configuration();
-    ImGui::EndTabItem();
-  }
-
-  //---------------------------
-}
-void Panel::draw_tab_playback(){
-  //---------------------------
-
-  ImGui::SetNextItemWidth(100);
-  if (ImGui::BeginTabItem("Playback##4567", NULL)){
-    kin_playback->kinect_playback();
-    ImGui::EndTabItem();
-  }
-
-  //---------------------------
-}
 
 
 }

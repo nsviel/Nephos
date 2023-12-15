@@ -21,7 +21,7 @@ Playback::~Playback(){}
 //Main function
 void Playback::kinect_playback(){
   K4A_device* k4a_device = k4a_swarm->get_selected_device();
-  if(k4a_device == nullptr) return;
+  if(k4a_device == nullptr || !k4a_device->player.is_playback) return;
   //---------------------------
 
   this->show_info();

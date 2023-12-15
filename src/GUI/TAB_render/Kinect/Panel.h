@@ -22,11 +22,9 @@ public:
   void design_panel();
 
   //Subfunction
-  void draw_tab_capture();
-  void draw_tab_playback();
 
 private:
-  gui::kinect::Capture* kin_configuration;
+  gui::kinect::Capture* kin_capture;
   gui::kinect::Playback* kin_playback;
   gui::kinect::Recorder* kin_recorder;
   gui::kinect::Player* kin_player;
