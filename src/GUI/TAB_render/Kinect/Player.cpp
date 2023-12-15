@@ -24,6 +24,7 @@ void Player::draw_player(){
 
   this->player_control();
   this->player_slider();
+  this->player_button();
 
   //---------------------------
 }
@@ -71,10 +72,15 @@ void Player::player_slider(){
     device->k4a_replay->set_current_timestamp(device->color.image.timestamp);
   }
 
-  //Slider buttons
+  //---------------------------
+}
+void Player::player_start(){
+  K4A_device* device = k4a_swarm->get_selected_device();
+  if(device == nullptr) return;
+  //---------------------------
+
   bool* thread_play = device->k4a_replay->get_thread_play();
   bool* thread_paused = device->k4a_replay->get_thread_pause();
-  bool* thread_restart = device->k4a_replay->get_thread_restart();
 
   //PLAY / PAUSE buttons
   ImU32 color = (*thread_paused || !*thread_play) ? IM_COL32(46, 133, 45, 255) : IM_COL32(133, 133, 0, 255);
@@ -91,6 +97,17 @@ void Player::player_slider(){
   }
   ImGui::PopStyleColor(1);
 
+  //---------------------------
+}
+void Player::player_stop(){
+  K4A_device* device = k4a_swarm->get_selected_device();
+  if(device == nullptr) return;
+  //---------------------------
+
+  bool* thread_play = device->k4a_replay->get_thread_play();
+  bool* thread_paused = device->k4a_replay->get_thread_pause();
+  bool* thread_restart = device->k4a_replay->get_thread_restart();
+
   //STOP button
   ImGui::SameLine();
   if(!*thread_paused) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
@@ -102,7 +119,33 @@ void Player::player_slider(){
   }
   if(!*thread_paused) ImGui::PopStyleColor(1);
 
+  //---------------------------
+}
+void Player::player_repeat(){
+  K4A_device* device = k4a_swarm->get_selected_device();
+  if(device == nullptr) return;
+  //---------------------------
+
+  bool* thread_restart = device->k4a_replay->get_thread_restart();
+
   //REAPEAT button
+  ImGui::SameLine();
+  if(*thread_restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
+  if (ImGui::Button(ICON_FA_REPEAT "##37")){
+    *thread_restart = !*thread_restart;
+  }
+  if(*thread_restart) ImGui::PopStyleColor(1);
+
+  //---------------------------
+}
+void Player::player_record(){
+  K4A_device* device = k4a_swarm->get_selected_device();
+  if(device == nullptr) return;
+  //---------------------------
+
+  bool* thread_restart = device->k4a_replay->get_thread_restart();
+
+  //RECORD button
   ImGui::SameLine();
   if(*thread_restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
   if (ImGui::Button(ICON_FA_REPEAT "##37")){

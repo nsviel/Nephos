@@ -22,6 +22,10 @@ public:
   //Subfunction
   void player_control();
   void player_slider();
+  void player_start();
+  void player_stop();
+  void player_repeat();
+  void player_record();
 
 private:
   eng::kinect::Kinect* kinect;
