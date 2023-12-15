@@ -68,7 +68,7 @@ void find_file_information(K4A_device* k4a_device, string path){
   k4a_device->synchro.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
   k4a_device->synchro.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
   k4a_device->synchro.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
-  k4a_device->file.duration = playback.get_recording_length().count() / 1000000.0f;
+  k4a_device->player.duration = playback.get_recording_length().count() / 1000000.0f;
 
   // Device info
   playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &k4a_device->file.device_serial_number);

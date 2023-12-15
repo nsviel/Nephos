@@ -26,7 +26,7 @@ public:
 
   //Subfunction
   void sleep_necessary_time(int fps_mode);
-  void find_duration(eng::kinect::structure::File& info);
+  void find_duration(K4A_device* k4a_device);
   void forward_timestamp(k4a::playback* playback);
   void manage_timestamp(k4a::playback* playback);
   void manage_pause();

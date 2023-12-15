@@ -36,7 +36,7 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
   //---------------------------
 
   //Get info about file
-  this->find_duration(k4a_device->file);
+  this->find_duration(k4a_device);
 
   //Init playback
   k4a::playback playback = k4a::playback::open(k4a_device->file.path.c_str());
@@ -100,27 +100,28 @@ void K4A_playback::sleep_necessary_time(int fps_mode){
 
   //---------------------------
 }
-void K4A_playback::find_duration(eng::kinect::structure::File& info){
+void K4A_playback::find_duration(K4A_device* k4a_device){
+  eng::kinect::structure::Player* player = &k4a_device->player;
   //---------------------------
 
   k4a::image color;
   k4a::capture capture;
-  k4a::playback playback = k4a::playback::open(info.path.c_str());
+  k4a::playback playback = k4a::playback::open(k4a_device->file.path.c_str());
 
   //File duration
-  info.duration = playback.get_recording_length().count() / 1000000.0f;
+  player->duration = playback.get_recording_length().count() / 1000000.0f;
 
   //File first timestamp
   playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
   playback.get_next_capture(&capture);
   color = capture.get_color_image();
-  info.ts_beg = color.get_device_timestamp().count() / 1000000.0f;
+  player->ts_beg = color.get_device_timestamp().count() / 1000000.0f;
 
   //File last timestamp
   playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_END);
   playback.get_previous_capture(&capture);
   color = capture.get_color_image();
-  info.ts_end = color.get_device_timestamp().count() / 1000000.0f;
+  player->ts_end = color.get_device_timestamp().count() / 1000000.0f;
 
   //---------------------------
 }
@@ -160,7 +161,8 @@ void K4A_playback::manage_pause(){
 void K4A_playback::manage_restart(k4a::playback* playback, K4A_device* k4a_device){
   //---------------------------
 
-  if(k4a_device->color.image.timestamp == k4a_device->file.ts_end){
+  k4a_device->player.ts_cur = k4a_device->color.image.timestamp;
+  if(k4a_device->player.ts_cur == k4a_device->player.ts_end){
     if(thread_restart){
       this->thread_play = true;
       playback->seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);

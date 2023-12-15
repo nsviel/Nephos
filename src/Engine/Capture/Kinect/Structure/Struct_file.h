@@ -10,12 +10,8 @@ struct File{
 
   //File info
   std::string path;
-  float duration;
-  float ts_beg;
-  float ts_end;
-  float ts_cur;
-
-  //General info
+  
+  //Configuration info
   std::string fps;
   std::string depth_mode;
   std::string color_format;

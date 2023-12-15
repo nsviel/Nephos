@@ -39,6 +39,7 @@ public:
   eng::kinect::structure::Device device;
   eng::kinect::structure::Synchro synchro;
   eng::kinect::structure::File file;
+  eng::kinect::structure::Player player;
 
   eng::kinect::structure::Color color;
   eng::kinect::structure::Depth depth;
