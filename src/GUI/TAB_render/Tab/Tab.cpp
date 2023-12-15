@@ -30,7 +30,7 @@ void Tab::create_panels(){
   this->rnd_shader = new gui::engine::Shader(gui, &gui_render_panel->show_shader, "Shader");
   this->rnd_scene = new gui::rnd::panel::Scene(gui, gui_render_panel);
   this->rnd_camera = new gui::engine::Camera(gui, &gui_render_panel->show_camera, "Camera");
-  this->rnd_kinect = new gui::kinect::Panel(gui, &gui_render_panel->show_kinect, "Kinect");
+  this->rnd_kinect = new gui::kinect::Panel(gui, &gui_render_panel->show_kinect, "Player");
   this->rnd_stream = new gui::kinect::Stream(gui, &gui_render_panel->show_kinect, "Stream");
   this->rnd_render = new gui::engine::Render(gui);
   this->rnd_menu = new gui::rnd::tab::Menu(gui);

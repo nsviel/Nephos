@@ -49,6 +49,10 @@ void Playback::show_info(){
   if(ImGui::BeginTable("playback_table##general", 2)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
+    if(ImGui::Button("...##file_path")){
+
+    }
+    ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4a_device->playback.path.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();

@@ -25,7 +25,7 @@ void K4A_device::init(){
   //---------------------------
 
   //Device name
-  string str_mode = device.is_virtual ? "playback_" : "kinect_";
+  string str_mode = device.is_virtual ? "playback_" : "capture_";
   this->device.name = str_mode + to_string(device.index);
 
   //Device cloud
