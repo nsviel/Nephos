@@ -29,13 +29,10 @@ public:
   void find_duration(K4A_device* k4a_device);
   void forward_timestamp(K4A_device* device);
   void manage_timestamp(K4A_device* device);
-  void manage_pause();
+  void manage_pause(K4A_device* k4a_device);
   void manage_restart(K4A_device* device);
 
   inline bool is_thread_running(){return thread_running;}
-  inline bool* get_thread_pause(){return &thread_pause;}
-  inline bool* get_thread_restart(){return &thread_restart;}
-  inline bool* get_thread_play(){return &thread_play;}
   inline void set_current_timestamp(float value){this->ts_seek = value;}
 
 private:
@@ -46,7 +43,4 @@ private:
   std::thread thread;
   float ts_seek = -1;
   bool thread_running = false;
-  bool thread_play = false;
-  bool thread_pause = false;
-  bool thread_restart = true;
 };

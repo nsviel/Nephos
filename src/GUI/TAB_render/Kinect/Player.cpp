@@ -41,8 +41,7 @@ void Player::player_control(){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
       K4A_device* k4a_device = k4a_swarm->get_selected_device();
-      bool* thread_paused = k4a_device->k4a_replay->get_thread_pause();
-      *thread_paused = !*thread_paused;
+      k4a_device->player.pause = !k4a_device->player.pause;
       break;
     }
 
@@ -84,20 +83,18 @@ void Player::player_start(){
   //---------------------------
 
   eng::kinect::structure::Player* player = &k4a_device->player;
-  bool* thread_play = k4a_device->k4a_replay->get_thread_play();
-  bool* thread_paused = k4a_device->k4a_replay->get_thread_pause();
 
   //PLAY / PAUSE buttons
-  ImU32 color = (*thread_paused || !*thread_play) ? IM_COL32(46, 133, 45, 255) : IM_COL32(133, 133, 0, 255);
-  string icon = (*thread_paused || !*thread_play) ? (ICON_FA_PLAY "##36") : (ICON_FA_PAUSE "##36");
+  ImU32 color = (player->pause || !player->play) ? IM_COL32(46, 133, 45, 255) : IM_COL32(133, 133, 0, 255);
+  string icon = (player->pause || !player->play) ? (ICON_FA_PLAY "##36") : (ICON_FA_PAUSE "##36");
   ImGui::PushStyleColor(ImGuiCol_Button, color);
   if(ImGui::Button(icon.c_str())){
-    if(!*thread_play){
+    if(!player->play){
       k4a_device->k4a_replay->set_current_timestamp(player->ts_beg);
-      *thread_play = true;
-      *thread_paused = false;
+      player->play = true;
+      player->pause = false;
     }else{
-      *thread_paused = !*thread_paused;
+      player->pause = !player->pause;
     }
   }
   ImGui::PopStyleColor(1);
@@ -109,20 +106,18 @@ void Player::player_stop(){
   if(k4a_device == nullptr) return;
   //---------------------------
 
-  bool* thread_play = k4a_device->k4a_replay->get_thread_play();
-  bool* thread_paused = k4a_device->k4a_replay->get_thread_pause();
-  bool* thread_restart = k4a_device->k4a_replay->get_thread_restart();
+  eng::kinect::structure::Player* player = &k4a_device->player;
 
   //STOP button
   ImGui::SameLine();
-  if(!*thread_paused) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
+  if(!player->pause) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
   if (ImGui::Button(ICON_FA_STOP "##37")){
     k4a_device->k4a_replay->set_current_timestamp(k4a_device->player.ts_beg);
-    *thread_restart = false;
-    *thread_play = false;
-    *thread_paused = false;
+    player->restart = false;
+    player->play = false;
+    player->pause = false;
   }
-  if(!*thread_paused) ImGui::PopStyleColor(1);
+  if(!player->pause) ImGui::PopStyleColor(1);
 
   //---------------------------
 }
@@ -131,15 +126,15 @@ void Player::player_repeat(){
   if(k4a_device == nullptr) return;
   //---------------------------
 
-  bool* thread_restart = k4a_device->k4a_replay->get_thread_restart();
+  eng::kinect::structure::Player* player = &k4a_device->player;
 
   //REAPEAT button
   ImGui::SameLine();
-  if(*thread_restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
+  if(player->restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
   if (ImGui::Button(ICON_FA_REPEAT "##37")){
-    *thread_restart = !*thread_restart;
+    player->restart = !player->restart;
   }
-  if(*thread_restart) ImGui::PopStyleColor(1);
+  if(player->restart) ImGui::PopStyleColor(1);
 
   //---------------------------
 }
@@ -148,15 +143,15 @@ void Player::player_record(){
   if(k4a_device == nullptr) return;
   //---------------------------
 
-  bool* thread_restart = k4a_device->k4a_replay->get_thread_restart();
+  eng::kinect::structure::Player* player = &k4a_device->player;
 
   //RECORD button
   ImGui::SameLine();
-  if(*thread_restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
+  if(player->restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
   if (ImGui::Button(ICON_FA_CIRCLE "##37")){
-    *thread_restart = !*thread_restart;
+    player->restart = !player->restart;
   }
-  if(*thread_restart) ImGui::PopStyleColor(1);
+  if(player->restart) ImGui::PopStyleColor(1);
 
   //---------------------------
 }

@@ -42,7 +42,7 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
   k4a::playback playback = k4a::playback::open(k4a_device->file.path.c_str());
   if(!playback) return;
   this->thread_running = true;
-  this->thread_play = true;
+  k4a_device->player.play = true;
   k4a_device->device.playback = &playback;
 
   eng::kinect::configuration::make_k4a_configuration(k4a_device);
@@ -60,7 +60,7 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
     this->sleep_necessary_time(k4a_device->device.fps_mode);
 
     this->manage_timestamp(k4a_device);
-    this->manage_pause();
+    this->manage_pause(k4a_device);
     this->manage_restart(k4a_device);
 
     fps_counter->update();
@@ -131,7 +131,7 @@ void K4A_playback::manage_timestamp(K4A_device* k4a_device){
   if(ts_seek != -1){
     auto ts_seek_ms = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_seek));
     k4a_device->device.playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    thread_play = true;
+    k4a_device->player.play = true;
     ts_seek = -1;
   }
 
@@ -146,12 +146,12 @@ void K4A_playback::forward_timestamp(K4A_device* k4a_device){
 
   //---------------------------
 }
-void K4A_playback::manage_pause(){
+void K4A_playback::manage_pause(K4A_device* k4a_device){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  if(thread_pause){
-    while(thread_pause && thread_running){
+  if(k4a_device->player.pause){
+    while(k4a_device->player.pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }
@@ -163,12 +163,12 @@ void K4A_playback::manage_restart(K4A_device* k4a_device){
 
   k4a_device->player.ts_cur = k4a_device->color.image.timestamp;
   if(k4a_device->player.ts_cur == k4a_device->player.ts_end){
-    if(thread_restart){
-      this->thread_play = true;
+    if(k4a_device->player.restart){
+      k4a_device->player.play = true;
       k4a_device->device.playback->seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
     }
     else{
-      this->thread_play = false;
+      k4a_device->player.play = false;
     }
   }
 
