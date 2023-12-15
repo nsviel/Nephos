@@ -40,6 +40,7 @@ public:
   eng::kinect::structure::Synchro synchro;
   eng::kinect::structure::Playback playback;
   eng::kinect::structure::Player player;
+  eng::kinect::structure::Recorder recorder;
 
   eng::kinect::structure::Color color;
   eng::kinect::structure::Depth depth;

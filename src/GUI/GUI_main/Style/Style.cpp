@@ -1,4 +1,5 @@
 #include "Style.h"
+#include "Color.h"
 
 #include <image/IconsFontAwesome5.h>
 
@@ -20,8 +21,7 @@ void Style::gui_style(){
   //---------------------------
 
   this->style_window();
-  this->color_window();
-  this->color_widget();
+  gui::color::apply();
 
   //---------------------------
 }
@@ -55,44 +55,4 @@ void Style::style_window(){
   //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
   //---------------------------
-}
-void Style::color_window(){
-  //---------------------------
-
-  ImGui::PushStyleColor(ImGuiCol_Header, IM_COL32(76, 76, 76, 255));
-  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(43, 73, 101, 220));
-  ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(0, 0, 0, 255));
-  ImGui::PushStyleColor(ImGuiCol_MenuBarBg, IM_COL32(0, 0, 0, 255));
-  ImGui::PushStyleColor(ImGuiCol_ResizeGrip, IM_COL32(15, 15, 15, 255));
-  ImGui::PushStyleColor(ImGuiCol_WindowBg, IM_COL32(50, 50, 50, 255));
-  ImGui::PushStyleColor(ImGuiCol_PopupBg, IM_COL32(0, 0, 0, 255));
-  ImGui::PushStyleColor(ImGuiCol_Separator, IM_COL32(77, 77, 77, 255));
-  ImGui::PushStyleColor(ImGuiCol_TitleBgActive, IM_COL32(0, 0, 0, 255));  //docker active dock
-
-  //---------------------------
-}
-void Style::color_widget(){
-  //---------------------------
-
-  //Widget
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(79, 79, 79, 255));
-  ImGui::PushStyleColor(ImGuiCol_CheckMark, IM_COL32(0, 0, 0, 255));
-
-  //Widget frame
-  ImGui::PushStyleColor(ImGuiCol_FrameBg, IM_COL32(79, 79, 79, 255));
-  ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, IM_COL32(79, 79, 79, 255));
-  ImGui::PushStyleColor(ImGuiCol_FrameBgActive, IM_COL32(79, 79, 79, 255));
-
-  //Slider
-  ImGui::PushStyleColor(ImGuiCol_SliderGrab, IM_COL32(0, 0, 0, 255));
-  ImGui::PushStyleColor(ImGuiCol_SliderGrabActive, IM_COL32(0, 0, 0, 255));
-
-  //Table
-  ImGui::PushStyleColor(ImGuiCol_TableBorderStrong, IM_COL32(0, 0, 0, 255));
-  ImGui::PushStyleColor(ImGuiCol_TableRowBg, IM_COL32(35, 35, 35, 255));
-  ImGui::PushStyleColor(ImGuiCol_TableRowBgAlt, IM_COL32(25, 25, 25, 255));
-
-  //---------------------------
-}
-
 }
