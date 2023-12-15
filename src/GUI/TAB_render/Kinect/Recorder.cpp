@@ -1,6 +1,7 @@
 #include "Recorder.h"
 
 #include <Engine/Capture/Kinect/Device/K4A_swarm.h>
+#include <image/IconsFontAwesome5.h>
 
 
 namespace gui::kinect{
@@ -18,13 +19,10 @@ Recorder::~Recorder(){}
 
 //Main function
 void Recorder::kinect_recorder(){
-  K4A_device* device = k4a_swarm->get_selected_device();
-  if(device == nullptr) return;
   //---------------------------
 
   if(ImGui::TreeNode("Recorder")){
-    if(ImGui::Button("Button")){
-    }
+    this->recorder_path();
 
     ImGui::Separator();
     ImGui::TreePop();
@@ -34,5 +32,34 @@ void Recorder::kinect_recorder(){
 }
 
 //Subfunction
+void Recorder::recorder_path(){
+  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  if(k4a_device == nullptr) return;
+  //---------------------------
+
+  if(ImGui::BeginTable("playback_table##general", 2)){
+    //Folder
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Folder"); ImGui::TableNextColumn();
+    if(ImGui::Button("...##folder_path")){
+
+    }
+    ImGui::SameLine();
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4a_device->recorder.folder_to_save.c_str());
+
+    //File
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("File"); ImGui::TableNextColumn();
+    if(ImGui::Button("...##file_path")){
+
+    }
+    ImGui::SameLine();
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4a_device->recorder.path_to_save.c_str());
+
+    ImGui::EndTable();
+  }
+
+  //---------------------------
+}
 
 }

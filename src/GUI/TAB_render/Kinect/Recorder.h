@@ -20,6 +20,9 @@ public:
   //Main function
   void kinect_recorder();
 
+  //Subfunction
+  void recorder_path();
+
 private:
   eng::kinect::Kinect* kinect;
   K4A_swarm* k4a_swarm;

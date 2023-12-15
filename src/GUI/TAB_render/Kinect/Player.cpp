@@ -159,12 +159,19 @@ void Player::player_record(){
   if(k4a_device == nullptr) return;
   //---------------------------
 
+  //Button
   eng::kinect::structure::Player* player = &k4a_device->player;
   if(player->record) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
   if (ImGui::Button(ICON_FA_CIRCLE "##37")){
     player->record = !player->record;
   }
   if(player->record) ImGui::PopStyleColor(1);
+
+  //Recording time
+  if(player->record){
+    ImGui::SameLine();
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f", k4a_device->recorder.time_recording);
+  }
 
   //---------------------------
 }

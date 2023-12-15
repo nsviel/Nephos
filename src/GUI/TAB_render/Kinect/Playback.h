@@ -25,7 +25,7 @@ public:
   void show_info_color();
   void show_info_depth();
   void show_info_synch();
-  
+
 private:
   eng::kinect::Kinect* kinect;
   K4A_swarm* k4a_swarm;

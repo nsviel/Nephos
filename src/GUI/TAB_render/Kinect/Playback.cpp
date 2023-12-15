@@ -1,8 +1,8 @@
 #include "Playback.h"
 
-#include <image/IconsFontAwesome5.h>
 #include <Engine/Capture/Kinect/Thread/K4A_playback.h>
 #include <Engine/Capture/Kinect/Device/K4A_swarm.h>
+#include <image/IconsFontAwesome5.h>
 
 
 namespace gui::kinect{
@@ -46,7 +46,6 @@ void Playback::show_info(){
   if(k4a_device == nullptr) return;
   //---------------------------
 
-  //General info
   if(ImGui::BeginTable("playback_table##general", 2)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();

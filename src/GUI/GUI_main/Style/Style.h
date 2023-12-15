@@ -20,8 +20,6 @@ public:
 
   //Subfunction
   void style_window();
-  void color_window();
-  void color_widget();
 
 private:
 };
