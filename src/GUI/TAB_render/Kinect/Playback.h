@@ -20,12 +20,12 @@ public:
   void kinect_playback();
 
   //Subfunction
-  void show_file();
-  void show_recording();
-  void show_stream();
-  void show_synchro();
-  void show_device();
-
+  void show_info();
+  void show_info_device();
+  void show_info_color();
+  void show_info_depth();
+  void show_info_synch();
+  
 private:
   eng::kinect::Kinect* kinect;
   K4A_swarm* k4a_swarm;

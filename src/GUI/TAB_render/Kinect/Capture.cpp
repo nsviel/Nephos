@@ -25,11 +25,9 @@ void Capture::kinect_configuration(){
   if(device == nullptr) return;
   //---------------------------
 
-  if(device->device.is_virtual) ImGui::BeginDisabled();
   this->kinect_devices();
   this->configuration_device();
   this->configuration_general();
-  if(device->device.is_virtual) ImGui::EndDisabled();
 
   //---------------------------
 }
