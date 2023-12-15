@@ -26,10 +26,13 @@ void Playback::kinect_playback(){
 
   this->show_info();
   ImGui::Separator();
-  this->show_info_device();
-  this->show_info_color();
-  this->show_info_depth();
-  this->show_info_synch();
+  if(ImGui::TreeNode("Configuration")){
+    this->show_info_device();
+    this->show_info_color();
+    this->show_info_depth();
+    this->show_info_synch();
+    ImGui::TreePop();
+  }
 
   //---------------------------
 }

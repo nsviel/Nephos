@@ -22,8 +22,10 @@ void Recorder::kinect_recorder(){
   if(device == nullptr) return;
   //---------------------------
 
-  if(ImGui::Button("Record")){
+  if(ImGui::TreeNode("Recorder")){
     //k4a_recorder->record_mkv(device);
+
+    ImGui::TreePop();
   }
 
   //---------------------------

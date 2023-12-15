@@ -66,7 +66,7 @@ void Style::color_window(){
   ImGui::PushStyleColor(ImGuiCol_ResizeGrip, IM_COL32(15, 15, 15, 255));
   ImGui::PushStyleColor(ImGuiCol_WindowBg, IM_COL32(50, 50, 50, 255));
   ImGui::PushStyleColor(ImGuiCol_PopupBg, IM_COL32(0, 0, 0, 255));
-  ImGui::PushStyleColor(ImGuiCol_Separator, IM_COL32(165, 165, 165, 255));
+  ImGui::PushStyleColor(ImGuiCol_Separator, IM_COL32(77, 77, 77, 255));
   ImGui::PushStyleColor(ImGuiCol_TitleBgActive, IM_COL32(0, 0, 0, 255));  //docker active dock
 
   //---------------------------

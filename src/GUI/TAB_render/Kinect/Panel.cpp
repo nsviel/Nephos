@@ -32,9 +32,9 @@ void Panel::design_panel(){
   if (ImGui::BeginTabBar("kinect_tab")){
     this->draw_tab_capture();
     this->draw_tab_playback();
-    this->draw_tab_recorder();
     ImGui::EndTabBar();
   }
+  kin_recorder->kinect_recorder();
 
   //---------------------------
 }
@@ -62,16 +62,6 @@ void Panel::draw_tab_playback(){
 
   //---------------------------
 }
-void Panel::draw_tab_recorder(){
-  //---------------------------
 
-  ImGui::SetNextItemWidth(100);
-  if (ImGui::BeginTabItem("Recorder##4567", NULL)){
-    kin_recorder->kinect_recorder();
-    ImGui::EndTabItem();
-  }
-
-  //---------------------------
-}
 
 }
