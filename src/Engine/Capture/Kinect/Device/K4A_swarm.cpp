@@ -21,6 +21,7 @@ K4A_device* K4A_swarm::create_playback(string path){
   K4A_device* k4a_device = new K4A_device(engine);
   k4a_device->device.index = ID_virtual++;
   k4a_device->device.is_virtual = true;
+  k4a_device->player.is_playback = true;
   str_swarm->list_device.push_back(k4a_device);
   str_swarm->nb_playback++;
   k4a_device->init();
@@ -36,6 +37,7 @@ K4A_device* K4A_swarm::create_device(int index){
   K4A_device* k4a_device = new K4A_device(engine);
   k4a_device->device.index = index;
   k4a_device->device.is_virtual = false;
+  k4a_device->player.is_playback = false;
   k4a_device->device.serial_number = device.get_serialnum();
   k4a_device->init();
   str_swarm->list_device.push_back(k4a_device);

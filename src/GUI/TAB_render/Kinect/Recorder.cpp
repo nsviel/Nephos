@@ -26,6 +26,7 @@ void Recorder::kinect_recorder(){
     if(ImGui::Button("Button")){
     }
 
+    ImGui::Separator();
     ImGui::TreePop();
   }
 

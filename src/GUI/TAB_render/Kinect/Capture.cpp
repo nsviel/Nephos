@@ -30,6 +30,8 @@ void Capture::kinect_configuration(){
   if(ImGui::TreeNode("Configuration")){
     this->configuration_device();
     this->configuration_general();
+
+    ImGui::Separator();
     ImGui::TreePop();
   }
 

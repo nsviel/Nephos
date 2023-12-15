@@ -80,6 +80,27 @@ void Player::player_slider(){
 
   //---------------------------
 }
+
+//Player button
+void Player::player_close(){
+  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  if(k4a_device == nullptr || k4a_device->player.is_playback) return;
+  //---------------------------
+
+  //Close device button
+  if(!k4a_device->device.is_virtual){
+    ImVec2 region = ImGui::GetContentRegionAvail();
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 30, 30, 255));
+    if(ImGui::Button("Close##kinect", ImVec2(region.x, 0))){
+      k4a_swarm->delete_device(k4a_device);
+    }
+    ImGui::PopStyleColor(1);
+    ImGui::PopStyleColor(1);
+  }
+
+  //---------------------------
+}
 void Player::player_start(){
   K4A_device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
@@ -121,7 +142,7 @@ void Player::player_stop(){
 }
 void Player::player_repeat(){
   K4A_device* k4a_device = k4a_swarm->get_selected_device();
-  if(k4a_device == nullptr) return;
+  if(k4a_device == nullptr || !k4a_device->player.is_playback) return;
   //---------------------------
 
   eng::kinect::structure::Player* player = &k4a_device->player;

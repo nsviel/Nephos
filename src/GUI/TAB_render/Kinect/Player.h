@@ -22,6 +22,9 @@ public:
   //Subfunction
   void player_control();
   void player_slider();
+
+  //Player button
+  void player_close();
   void player_start();
   void player_stop();
   void player_repeat();

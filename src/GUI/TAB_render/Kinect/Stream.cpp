@@ -63,18 +63,6 @@ void Stream::device_tab(K4A_device* k4a_device){
   if(!k4a_device->device.data_ready){return;}
   //---------------------------
 
-  //Close device button
-  if(!k4a_device->device.is_virtual){
-    ImVec2 region = ImGui::GetContentRegionAvail();
-    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 30, 30, 255));
-    if(ImGui::Button("Close", ImVec2(region.x, 0))){
-      k4a_swarm->delete_device(k4a_device);
-    }
-    ImGui::PopStyleColor(1);
-    ImGui::PopStyleColor(1);
-  }
-
   //Display capture images
   if(ImGui::BeginTabBar("device_tab##4567")){
     ImVec2 image_size = ImGui::GetContentRegionAvail();

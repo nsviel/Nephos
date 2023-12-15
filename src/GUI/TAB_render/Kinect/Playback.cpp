@@ -24,6 +24,7 @@ void Playback::kinect_playback(){
   if(k4a_device == nullptr || !k4a_device->player.is_playback) return;
   //---------------------------
 
+  ImGui::Separator();
   this->show_info();
   ImGui::Separator();
   if(ImGui::TreeNode("Configuration")){
@@ -31,6 +32,8 @@ void Playback::kinect_playback(){
     this->show_info_color();
     this->show_info_depth();
     this->show_info_synch();
+
+    ImGui::Separator();
     ImGui::TreePop();
   }
 
@@ -44,7 +47,6 @@ void Playback::show_info(){
   //---------------------------
 
   //General info
-  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Info");
   if(ImGui::BeginTable("playback_table##general", 2)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
