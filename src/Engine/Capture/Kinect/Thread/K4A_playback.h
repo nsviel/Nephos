@@ -27,10 +27,10 @@ public:
   //Subfunction
   void sleep_necessary_time(int fps_mode);
   void find_duration(K4A_device* k4a_device);
-  void forward_timestamp(k4a::playback* playback);
-  void manage_timestamp(k4a::playback* playback);
+  void forward_timestamp(K4A_device* device);
+  void manage_timestamp(K4A_device* device);
   void manage_pause();
-  void manage_restart(k4a::playback* playback, K4A_device* device);
+  void manage_restart(K4A_device* device);
 
   inline bool is_thread_running(){return thread_running;}
   inline bool* get_thread_pause(){return &thread_pause;}

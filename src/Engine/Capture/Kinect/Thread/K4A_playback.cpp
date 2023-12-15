@@ -59,9 +59,9 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
     k4a_cloud->convert_into_cloud(k4a_device);
     this->sleep_necessary_time(k4a_device->device.fps_mode);
 
-    this->manage_timestamp(&playback);
+    this->manage_timestamp(k4a_device);
     this->manage_pause();
-    this->manage_restart(&playback, k4a_device);
+    this->manage_restart(k4a_device);
 
     fps_counter->update();
     k4a_device->device.fps = fps_counter->get_fps();
@@ -125,24 +125,24 @@ void K4A_playback::find_duration(K4A_device* k4a_device){
 
   //---------------------------
 }
-void K4A_playback::manage_timestamp(k4a::playback* playback){
+void K4A_playback::manage_timestamp(K4A_device* k4a_device){
   //---------------------------
 
   if(ts_seek != -1){
     auto ts_seek_ms = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_seek));
-    playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    k4a_device->device.playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     thread_play = true;
     ts_seek = -1;
   }
 
   //---------------------------
 }
-void K4A_playback::forward_timestamp(k4a::playback* playback){
+void K4A_playback::forward_timestamp(K4A_device* k4a_device){
   //---------------------------
 
   float ts_seek = 0;
   auto ts_seek_ms = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_seek));
-  playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+  k4a_device->device.playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
 
   //---------------------------
 }
@@ -158,14 +158,14 @@ void K4A_playback::manage_pause(){
 
   //---------------------------
 }
-void K4A_playback::manage_restart(k4a::playback* playback, K4A_device* k4a_device){
+void K4A_playback::manage_restart(K4A_device* k4a_device){
   //---------------------------
 
   k4a_device->player.ts_cur = k4a_device->color.image.timestamp;
   if(k4a_device->player.ts_cur == k4a_device->player.ts_end){
     if(thread_restart){
       this->thread_play = true;
-      playback->seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
+      k4a_device->device.playback->seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
     }
     else{
       this->thread_play = false;
