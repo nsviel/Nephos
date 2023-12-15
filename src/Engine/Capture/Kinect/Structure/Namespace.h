@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Capture/Kinect/Structure/Struct_player.h>
 #include <Engine/Capture/Kinect/Structure/Struct_cloud.h>
 #include <Engine/Capture/Kinect/Structure/Struct_device.h>
 #include <Engine/Capture/Kinect/Structure/Struct_synchro.h>
@@ -23,6 +24,7 @@ namespace eng::kinect::structure{
   class Image;
   class Synchro;
   class Cloud;
+  class Player;
 
   //---------------------------
 }

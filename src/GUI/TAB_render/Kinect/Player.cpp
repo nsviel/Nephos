@@ -24,7 +24,10 @@ void Player::draw_player(){
 
   this->player_control();
   this->player_slider();
-  this->player_button();
+  this->player_start();
+  this->player_stop();
+  this->player_repeat();
+  this->player_record();
 
   //---------------------------
 }
@@ -148,7 +151,7 @@ void Player::player_record(){
   //RECORD button
   ImGui::SameLine();
   if(*thread_restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
-  if (ImGui::Button(ICON_FA_REPEAT "##37")){
+  if (ImGui::Button(ICON_FA_CIRCLE "##37")){
     *thread_restart = !*thread_restart;
   }
   if(*thread_restart) ImGui::PopStyleColor(1);
