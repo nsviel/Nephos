@@ -50,7 +50,7 @@ void Playback::show_info(){
   if(ImGui::BeginTable("playback_table##general", 2)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4a_device->file.path.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4a_device->playback.path.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
@@ -73,15 +73,15 @@ void Playback::show_info_device(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device S/N"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.device_serial_number.c_str());
+    ImGui::TextColored(color, "%s", k4a_device->playback.device_serial_number.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.is_imu ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", k4a_device->playback.is_imu ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Frame rate"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.fps.c_str());
+    ImGui::TextColored(color, "%s", k4a_device->playback.fps.c_str());
 
     ImGui::EndTable();
   }
@@ -100,19 +100,19 @@ void Playback::show_info_color(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.is_color ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", k4a_device->playback.is_color ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color format"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.color_format.c_str());
+    ImGui::TextColored(color, "%s", k4a_device->playback.color_format.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color resolution"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.color_resolution.c_str());
+    ImGui::TextColored(color, "%s", k4a_device->playback.color_resolution.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color firmware"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.color_firmware_version.c_str());
+    ImGui::TextColored(color, "%s", k4a_device->playback.color_firmware_version.c_str());
 
     ImGui::EndTable();
   }
@@ -131,19 +131,19 @@ void Playback::show_info_depth(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.is_depth ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", k4a_device->playback.is_depth ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("IR enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.is_infrared ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", k4a_device->playback.is_infrared ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.depth_mode.c_str());
+    ImGui::TextColored(color, "%s", k4a_device->playback.depth_mode.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.depth_firmware_version.c_str());
+    ImGui::TextColored(color, "%s", k4a_device->playback.depth_firmware_version.c_str());
 
     ImGui::EndTable();
   }
@@ -166,7 +166,7 @@ void Playback::show_info_synch(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Sync mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->file.wired_sync_mode.c_str());
+    ImGui::TextColored(color, "%s", k4a_device->playback.wired_sync_mode.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();

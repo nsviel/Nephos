@@ -5,12 +5,12 @@
 
 namespace eng::kinect::structure{
 
-struct File{
+struct Playback{
   //---------------------------
 
   //File info
   std::string path;
-  
+
   //Configuration info
   std::string fps;
   std::string depth_mode;

@@ -11,7 +11,7 @@ Kinect::Kinect(Engine* engine){
 
 
   this->k4a_swarm = new K4A_swarm(engine);
-  this->k4a_connection = new eng::kinect::thread::Connection(k4a_swarm);
+  this->k4a_connection = new eng::kinect::thread::K4A_connection(k4a_swarm);
 
   //---------------------------
 }

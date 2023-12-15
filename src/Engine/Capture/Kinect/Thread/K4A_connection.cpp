@@ -1,17 +1,17 @@
-#include "Connection.h"
+#include "K4A_connection.h"
 
 
 namespace eng::kinect::thread{
 
 //Constructor / Destructor
-Connection::Connection(K4A_swarm* k4a_swarm){
+K4A_connection::K4A_connection(K4A_swarm* k4a_swarm){
   //---------------------------
 
   this->k4a_swarm = k4a_swarm;
 
   //---------------------------
 }
-Connection::~Connection(){
+K4A_connection::~K4A_connection(){
   //---------------------------
 
   this->stop_thread();
@@ -20,18 +20,18 @@ Connection::~Connection(){
 }
 
 //Main function
-void Connection::start_thread(){
+void K4A_connection::start_thread(){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&Connection::run_thread, this);
+    this->thread = std::thread(&K4A_connection::run_thread, this);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Connection::run_thread(){
+void K4A_connection::run_thread(){
   //---------------------------
 
   this->thread_running = true;
@@ -42,7 +42,7 @@ void Connection::run_thread(){
 
   //---------------------------
 }
-void Connection::stop_thread(){
+void K4A_connection::stop_thread(){
   //---------------------------
 
   this->thread_running = false;

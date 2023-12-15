@@ -39,7 +39,7 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
   this->find_duration(k4a_device);
 
   //Init playback
-  k4a::playback playback = k4a::playback::open(k4a_device->file.path.c_str());
+  k4a::playback playback = k4a::playback::open(k4a_device->playback.path.c_str());
   if(!playback) return;
   this->thread_running = true;
   k4a_device->player.play = true;
@@ -106,7 +106,7 @@ void K4A_playback::find_duration(K4A_device* k4a_device){
 
   k4a::image color;
   k4a::capture capture;
-  k4a::playback playback = k4a::playback::open(k4a_device->file.path.c_str());
+  k4a::playback playback = k4a::playback::open(k4a_device->playback.path.c_str());
 
   //File duration
   player->duration = playback.get_recording_length().count() / 1000000.0f;

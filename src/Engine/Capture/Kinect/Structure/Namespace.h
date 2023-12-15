@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Capture/Kinect/Structure/Struct_recorder.h>
 #include <Engine/Capture/Kinect/Structure/Struct_player.h>
 #include <Engine/Capture/Kinect/Structure/Struct_cloud.h>
 #include <Engine/Capture/Kinect/Structure/Struct_device.h>
@@ -7,7 +8,7 @@
 #include <Engine/Capture/Kinect/Structure/Struct_image.h>
 #include <Engine/Capture/Kinect/Structure/Struct_color.h>
 #include <Engine/Capture/Kinect/Structure/Struct_depth.h>
-#include <Engine/Capture/Kinect/Structure/Struct_file.h>
+#include <Engine/Capture/Kinect/Structure/Struct_playback.h>
 #include <Engine/Capture/Kinect/Structure/Struct_infrared.h>
 #include <Engine/Capture/Kinect/Structure/Struct_swarm.h>
 
@@ -19,12 +20,13 @@ namespace eng::kinect::structure{
   class Color;
   class Depth;
   class Infrared;
-  class File;
+  class Playback;
   class Swarm;
   class Image;
   class Synchro;
   class Cloud;
   class Player;
+  class Recorder;
 
   //---------------------------
 }

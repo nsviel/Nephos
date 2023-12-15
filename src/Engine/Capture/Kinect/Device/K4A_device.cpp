@@ -13,7 +13,7 @@ K4A_device::K4A_device(Engine* engine){
   eng::data::Node* eng_data = engine->get_eng_data();
 
   this->k4a_capture = new K4A_capture(engine);
-  this->k4a_replay = new K4A_playback(engine);
+  this->k4a_playback = new K4A_playback(engine);
   this->eng_scene = eng_data->get_eng_scene();
 
   //---------------------------
@@ -65,8 +65,8 @@ void K4A_device::run_capture(){
 void K4A_device::run_replay(string path){
   //---------------------------
 
-  this->file.path = path;
-  k4a_replay->start_thread(this);
+  this->playback.path = path;
+  k4a_playback->start_thread(this);
 
   //---------------------------
 }
@@ -74,7 +74,7 @@ void K4A_device::stop_threads(){
   //---------------------------
 
   this->k4a_capture->stop_thread();
-  this->k4a_replay->stop_thread();
+  this->k4a_playback->stop_thread();
 
   //---------------------------
 }

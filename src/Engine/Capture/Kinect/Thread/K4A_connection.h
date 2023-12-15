@@ -6,12 +6,12 @@
 
 namespace eng::kinect::thread{
 
-class Connection
+class K4A_connection
 {
 public:
   //Constructor / Destructor
-  Connection(K4A_swarm* k4a_swarm);
-  ~Connection();
+  K4A_connection(K4A_swarm* k4a_swarm);
+  ~K4A_connection();
 
 public:
   //Main function

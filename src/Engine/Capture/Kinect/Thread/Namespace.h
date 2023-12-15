@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Engine/Capture/Kinect/Thread/Connection.h>
+#include <Engine/Capture/Kinect/Thread/K4A_connection.h>
 
 
 namespace eng::kinect::thread{
   //---------------------------
 
-  class Connection;
+  class K4A_connection;
 
   //---------------------------
 }

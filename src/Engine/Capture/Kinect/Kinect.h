@@ -32,7 +32,7 @@ public:
 
 private:
   K4A_swarm* k4a_swarm;
-  eng::kinect::thread::Connection* k4a_connection;
+  eng::kinect::thread::K4A_connection* k4a_connection;
 };
 
 }

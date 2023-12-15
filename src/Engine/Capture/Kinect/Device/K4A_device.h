@@ -33,12 +33,12 @@ public:
 public:
   eng::data::Scene* eng_scene;
   K4A_capture* k4a_capture;
-  K4A_playback* k4a_replay;
+  K4A_playback* k4a_playback;
 
   eng::kinect::structure::Cloud cloud;
   eng::kinect::structure::Device device;
   eng::kinect::structure::Synchro synchro;
-  eng::kinect::structure::File file;
+  eng::kinect::structure::Playback playback;
   eng::kinect::structure::Player player;
 
   eng::kinect::structure::Color color;
