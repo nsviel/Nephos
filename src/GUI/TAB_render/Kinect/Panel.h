@@ -30,6 +30,7 @@ private:
   gui::kinect::Capture* kin_configuration;
   gui::kinect::Playback* kin_playback;
   gui::kinect::Recorder* kin_recorder;
+  gui::kinect::Player* kin_player;
 };
 
 }

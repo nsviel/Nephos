@@ -18,6 +18,7 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
   this->kin_configuration = new gui::kinect::Capture(kinect);
   this->kin_playback = new gui::kinect::Playback(kinect);
   this->kin_recorder = new gui::kinect::Recorder(kinect);
+  this->kin_player = new gui::kinect::Player(kinect);
 
   //---------------------------
 }
@@ -27,6 +28,7 @@ Panel::~Panel(){}
 void Panel::design_panel(){
   //---------------------------
 
+  kin_player->draw_player();
   if (ImGui::BeginTabBar("kinect_tab")){
     this->draw_tab_capture();
     this->draw_tab_playback();

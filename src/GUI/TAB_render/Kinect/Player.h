@@ -9,22 +9,19 @@ class K4A_swarm;
 
 namespace gui::kinect{
 
-class Playback
+class Player
 {
 public:
   //Constructor / Destructor
-  Playback(eng::kinect::Kinect* kinect);
-  ~Playback();
+  Player(eng::kinect::Kinect* kinect);
+  ~Player();
 
   //Main function
-  void kinect_playback();
+  void draw_player();
 
   //Subfunction
-  void show_file();
-  void show_recording();
-  void show_stream();
-  void show_synchro();
-  void show_device();
+  void player_control();
+  void player_slider();
 
 private:
   eng::kinect::Kinect* kinect;
