@@ -151,11 +151,7 @@ void Playback::show_synchro(){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();
       ImGui::TextColored(color, "%d", k4a_device->synchro.start_timestamp_offset_us);
-
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Recording length"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f", k4a_device->player.duration);
-
+      
       ImGui::EndTable();
     }
 

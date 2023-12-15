@@ -25,8 +25,11 @@ void Player::draw_player(){
   this->player_control();
   this->player_slider();
   this->player_start();
+  ImGui::SameLine();
   this->player_stop();
+  ImGui::SameLine();
   this->player_repeat();
+  ImGui::SameLine();
   this->player_record();
 
   //---------------------------
@@ -83,8 +86,6 @@ void Player::player_start(){
   //---------------------------
 
   eng::kinect::structure::Player* player = &k4a_device->player;
-
-  //PLAY / PAUSE buttons
   ImU32 color = (player->pause || !player->play) ? IM_COL32(46, 133, 45, 255) : IM_COL32(133, 133, 0, 255);
   string icon = (player->pause || !player->play) ? (ICON_FA_PLAY "##36") : (ICON_FA_PAUSE "##36");
   ImGui::PushStyleColor(ImGuiCol_Button, color);
@@ -107,9 +108,6 @@ void Player::player_stop(){
   //---------------------------
 
   eng::kinect::structure::Player* player = &k4a_device->player;
-
-  //STOP button
-  ImGui::SameLine();
   if(!player->pause) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
   if (ImGui::Button(ICON_FA_STOP "##37")){
     k4a_device->k4a_replay->set_current_timestamp(k4a_device->player.ts_beg);
@@ -127,9 +125,6 @@ void Player::player_repeat(){
   //---------------------------
 
   eng::kinect::structure::Player* player = &k4a_device->player;
-
-  //REAPEAT button
-  ImGui::SameLine();
   if(player->restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
   if (ImGui::Button(ICON_FA_REPEAT "##37")){
     player->restart = !player->restart;
@@ -144,14 +139,11 @@ void Player::player_record(){
   //---------------------------
 
   eng::kinect::structure::Player* player = &k4a_device->player;
-
-  //RECORD button
-  ImGui::SameLine();
-  if(player->restart) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
+  if(player->record) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
   if (ImGui::Button(ICON_FA_CIRCLE "##37")){
-    player->restart = !player->restart;
+    player->record = !player->record;
   }
-  if(player->restart) ImGui::PopStyleColor(1);
+  if(player->record) ImGui::PopStyleColor(1);
 
   //---------------------------
 }

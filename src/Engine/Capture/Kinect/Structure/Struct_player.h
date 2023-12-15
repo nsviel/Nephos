@@ -8,6 +8,7 @@ namespace eng::kinect::structure{
 struct Player{
   //---------------------------
 
+  bool is_playback;
   bool play = true;
   bool pause = false;
   bool restart = true;
