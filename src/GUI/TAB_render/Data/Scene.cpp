@@ -21,7 +21,6 @@ Scene::Scene(GUI* gui, gui::rnd::tab::Panel* tab_panel){
   this->panel_object = new gui::rnd::panel::Object(gui, &tab_panel->show_object);
 
   this->panel_show = &tab_panel->show_scene;
-  this->panel_name = "Scene";
 
   //---------------------------
 }
@@ -38,7 +37,7 @@ void Scene::run_panel(){
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::SetNextWindowSizeConstraints(ImVec2(200, 100), ImVec2(1000, 1000));
-    if(ImGui::Begin(panel_name.c_str(), panel_show, ImGuiWindowFlags_AlwaysAutoResize)){
+    if(ImGui::Begin("Scene", panel_show, ImGuiWindowFlags_AlwaysAutoResize)){
 
       this->design_panel();
 

@@ -43,12 +43,16 @@ void Scene::init_scene(){
   //---------------------------
 }
 void Scene::reset_scene(){
-  eng::structure::Set* set_scene = eng_database->get_set("Scene");
+  list<eng::structure::Set*>* list_set = eng_database->get_list_set();
   //---------------------------
 
-  for(int i=0; i<set_scene->list_obj.size(); i++){
-    eng::structure::Object* object = (eng::structure::Object*)*next(set_scene->list_obj.begin(),i);
-    //object->reset();
+  for(int i=0; i<list_set->size(); i++){
+    eng::structure::Set* set = *next(list_set->begin(), i);
+
+    for(int j=0; j<set->list_obj.size(); j++){
+      eng::structure::Entity* entity = *next(set->list_obj.begin(), j);
+      entity->reset();
+    }
   }
 
   //---------------------------
