@@ -44,5 +44,14 @@ eng::structure::Set* Database::get_set(string name){
   //---------------------------
   return nullptr;
 }
+void Database::assign_ID(eng::structure::Entity* entity){
+  //----------------------------
+
+  if(entity->ID == -1){
+    entity->ID = ID_entity++;
+  }
+
+  //----------------------------
+}
 
 }

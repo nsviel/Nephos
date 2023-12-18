@@ -25,7 +25,7 @@ struct Set
 
   //Data
   eng::structure::Entity* selected_entity = nullptr;
-  std::list<eng::structure::Entity*> list_obj;
+  std::list<eng::structure::Entity*> list_entity;
   std::list<eng::structure::Set*> list_set;
 
   //---------------------------

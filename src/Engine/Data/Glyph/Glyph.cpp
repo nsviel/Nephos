@@ -104,8 +104,8 @@ void Glyph::remove_temporary_glyph(){
   //---------------------------
 
   //Remove non permanent glyphs
-  for(int i=0; i<col_glyph->list_obj.size(); i++){
-    eng::structure::Glyph* glyph = (eng::structure::Glyph*)*next(col_glyph->list_obj.begin(),i);
+  for(int i=0; i<col_glyph->list_entity.size(); i++){
+    eng::structure::Glyph* glyph = (eng::structure::Glyph*)*next(col_glyph->list_entity.begin(),i);
 
     if(glyph->is_permanent == false){
       this->remove_glyph_scene(glyph->ID);
@@ -119,13 +119,13 @@ void Glyph::remove_glyph_scene(int ID){
   eng::structure::Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   //---------------------------
 
-  for(int i=0;i<col_glyph->list_obj.size();i++){
-    eng::structure::Glyph* glyph = (eng::structure::Glyph*)*next(col_glyph->list_obj.begin(),i);
+  for(int i=0;i<col_glyph->list_entity.size();i++){
+    eng::structure::Glyph* glyph = (eng::structure::Glyph*)*next(col_glyph->list_entity.begin(),i);
 
     if(glyph->ID == ID){
       delete glyph;
-      list<Object_*>::iterator it = next(col_glyph->list_obj.begin(), i);
-      col_glyph->list_obj.erase(it);
+      list<Object_*>::iterator it = next(col_glyph->list_entity.begin(), i);
+      col_glyph->list_entity.erase(it);
     }
   }
 
@@ -146,7 +146,7 @@ eng::structure::Glyph* Glyph::create_glyph(vector<vec3>& XYZ, vector<vec4>& RGB,
   glyph->is_permanent = perma;
 
   this->insert_into_gpu(glyph);
-  col_glyph->list_obj.push_back(glyph);
+  col_glyph->list_entity.push_back(glyph);
 
   //---------------------------
   return glyph;

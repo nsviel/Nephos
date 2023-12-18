@@ -152,8 +152,8 @@ int Scene::data_node_tree(eng::structure::Set* set){
 
   //Set elements leaf nodes
   if(is_node_open){
-    for(int j=0; j<set->list_obj.size(); j++){
-      eng::structure::Object* object = (eng::structure::Object*)*next(set->list_obj.begin(), j);
+    for(int j=0; j<set->list_entity.size(); j++){
+      eng::structure::Object* object = (eng::structure::Object*)*next(set->list_entity.begin(), j);
 
       ImGui::TableNextRow();
       ImGui::TableNextColumn();

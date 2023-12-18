@@ -95,11 +95,11 @@ bool PTX_importer::Exporter(std::string path){
     //----->HEADER
     //***********************************
     int nbRows = 3;
-    if(collection->list_obj[0].I.size() != 0) nbRows++;
-    if(collection->list_obj[0].has_color) nbRows++;
-    if(collection->list_obj[0].N.size() != 0) nbRows++;
+    if(collection->list_entity[0].I.size() != 0) nbRows++;
+    if(collection->list_entity[0].has_color) nbRows++;
+    if(collection->list_entity[0].N.size() != 0) nbRows++;
     //number of columns
-    file << collection->list_obj[0].nb_point << endl;
+    file << collection->list_entity[0].nb_point << endl;
     //number of rows
     file << nbRows << endl;
     //scanner registered position
@@ -110,8 +110,8 @@ bool PTX_importer::Exporter(std::string path){
     file << 0 << " " << 1 << " " << 0 << endl;
     file << 0 << " " << 0 << " " << 1 << endl;
     //transformation matrix
-    glm::mat4& transMat = collection->list_obj[0].trans;
-    glm::mat4& rotMat = collection->list_obj[0].rotat;
+    glm::mat4& transMat = collection->list_entity[0].trans;
+    glm::mat4& rotMat = collection->list_entity[0].rotat;
     mat4 finalMat = transpose(transMat * rotMat);
     file << setprecision(6) << finalMat[0][0] << " " << finalMat[0][1] << " " << finalMat[0][2] << " " << finalMat[0][3] << endl;
     file << setprecision(6) << finalMat[1][0] << " " << finalMat[1][1] << " " << finalMat[1][2] << " " << finalMat[1][3] << endl;
@@ -133,16 +133,16 @@ bool PTX_importer::Exporter(std::string path){
       file << setprecision(precision) << pos[i].x <<" "<< pos[i].y <<" "<< pos[i].z ;
 
       //---> R
-      if(collection->list_obj[0].I.size() != 0)
+      if(collection->list_entity[0].I.size() != 0)
         file << setprecision(0) <<" "<< ref[i];
 
       //---> rgb
       //Color only
-      if(collection->list_obj[0].has_color)
+      if(collection->list_entity[0].has_color)
         file << setprecision(0) <<" "<< col[i].x * 255 <<" "<< col[i].y * 255 <<" "<< col[i].z * 255;
 
       //---> nx ny nz
-      if(collection->list_obj[0].N.size() != 0)
+      if(collection->list_entity[0].N.size() != 0)
         file << setprecision(precision) <<" "<< nor[i].x <<" "<< nor[i].y <<" "<< nor[i].z;
 
       //We end the line

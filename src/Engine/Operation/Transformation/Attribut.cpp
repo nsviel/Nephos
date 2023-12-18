@@ -37,8 +37,8 @@ void Attribut::compute_MinMax(eng::structure::Object* object){
 void Attribut::set_visibility(eng::structure::Set* set, bool visibility){
   //---------------------------
 
-  for(int i=0; i<set->list_obj.size(); i++){
-    eng::structure::Object* object = (eng::structure::Object*)*next(set->list_obj.begin(), i);
+  for(int i=0; i<set->list_entity.size(); i++){
+    eng::structure::Object* object = (eng::structure::Object*)*next(set->list_entity.begin(), i);
     object->is_visible = visibility;
   }
 

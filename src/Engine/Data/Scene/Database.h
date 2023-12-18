@@ -18,14 +18,14 @@ public:
   //Main function
   void init_set();
   void add_new_set(string name);
+  void assign_ID(eng::structure::Entity* entity);
   eng::structure::Set* get_set(string name);
 
   inline list<eng::structure::Set*>* get_list_set(){return &list_set;}
 
 private:
-  int ID_obj;
-
   list<eng::structure::Set*> list_set;
+  int ID_entity;
 };
 
 }

@@ -34,11 +34,7 @@ public:
   void update_object(eng::structure::Object* object);
   void delete_object_scene(eng::structure::Entity* object);
   void delete_object_scene_all();
-
-  //eng::structure::Object
-  void selected_object_next();
-  void provide_new_ID(eng::structure::Object* object);
-
+  
 private:
   eng::data::Node* eng_data;
   eng::data::Database* eng_database;
