@@ -35,10 +35,7 @@ void Scene::init_set(){
   list<eng::structure::Set*>* list_set = eng_database->get_list_set();
   //---------------------------
 
-  //eng::structure::Glyph set
-  this->set_glyph = new eng::structure::Set("Glyph");
-  list_set->push_back(set_glyph);
-
+  eng_database->add_new_set("Glyph");
   eng_database->add_new_set("Scene");
 
   //Sensor set
@@ -72,6 +69,7 @@ void Scene::reset_scene(){
 
 //Insertion / deletion
 void Scene::insert_object_glyph(eng::structure::Object* object){
+  eng::structure::Set* set_glyph = eng_database->get_set("Glyph");
   //---------------------------
 
   //Insert into engine

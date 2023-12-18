@@ -41,9 +41,7 @@ public:
 
   //Loop
   void loop();
-
-  inline eng::structure::Set* get_set_glyph(){return set_glyph;}
-
+  
 private:
   eng::data::Node* eng_data;
   eng::data::Database* eng_database;
@@ -52,7 +50,6 @@ private:
   eng::camera::Node* eng_camera;
 
   int ID_obj;
-  eng::structure::Set* set_glyph;
 };
 
 }
