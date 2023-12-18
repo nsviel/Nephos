@@ -39,9 +39,11 @@ void Scene::init_set(){
   this->set_glyph = new eng::structure::Set("Glyph");
   list_set->push_back(set_glyph);
 
-  //Scene set
-  this->set_scene = new eng::structure::Set("Scene");
-  list_set->push_back(set_scene);
+  eng_database->add_new_set("Scene");
+
+  //Sensor set
+  eng::structure::Set* set_sensor = new eng::structure::Set("Sensor");
+  list_set->push_back(set_sensor);
 
   //---------------------------
 }
@@ -57,6 +59,7 @@ void Scene::init_scene(){
   //---------------------------
 }
 void Scene::reset_scene(){
+  eng::structure::Set* set_scene = eng_database->get_set("Scene");
   //---------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
@@ -84,6 +87,7 @@ void Scene::insert_object_glyph(eng::structure::Object* object){
   //---------------------------
 }
 void Scene::insert_object_scene(eng::structure::Object* object){
+  eng::structure::Set* set_scene = eng_database->get_set("Scene");
   //---------------------------
 
   //Insert into engine
@@ -107,6 +111,7 @@ void Scene::update_object(eng::structure::Object* object){
   //---------------------------
 }
 void Scene::delete_scene_object(eng::structure::Object* object){
+  eng::structure::Set* set_scene = eng_database->get_set("Scene");
   //---------------------------
 
   //Delete it from database and engine
@@ -122,6 +127,7 @@ void Scene::delete_scene_object(eng::structure::Object* object){
   //---------------------------
 }
 void Scene::empty_scene_set(){
+  eng::structure::Set* set_scene = eng_database->get_set("Scene");
   //---------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
@@ -137,6 +143,7 @@ void Scene::empty_scene_set(){
 
 //Object
 void Scene::selected_object_next(){
+  eng::structure::Set* set_scene = eng_database->get_set("Scene");
   eng::structure::Object* selected = (eng::structure::Object*)set_scene->selected_entity;
   //----------------------------
 

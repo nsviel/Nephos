@@ -25,6 +25,7 @@ Control::Control(GUI* gui){
   this->camera = engine->get_camera();
   this->eng_camera = engine->get_eng_camera();
   this->eng_scene = eng_data->get_eng_scene();
+  this->eng_database = eng_data->get_eng_database();
   this->transformManager = new eng::ope::Transformation();
 
   //---------------------------
@@ -58,7 +59,7 @@ void Control::control_keyboard_oneAction(){
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      eng::structure::Set* set = eng_scene->get_set_scene();
+      eng::structure::Set* set = eng_database->get_set("Scene");
       eng::structure::Object* object = (eng::structure::Object*)set->selected_entity;
       eng_scene->selected_object_next();
       eng_scene->delete_scene_object(object);
@@ -112,7 +113,7 @@ void Control::control_keyboard_camMove(){
   //---------------------------
 }
 void Control::control_keyboard_translation(){
-  eng::structure::Set* set = eng_scene->get_set_scene();
+  eng::structure::Set* set = eng_database->get_set("Scene");
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -223,7 +224,7 @@ void Control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    eng::structure::Set* set = eng_scene->get_set_scene();
+    eng::structure::Set* set = eng_database->get_set("Scene");
     eng::structure::Object* object = (eng::structure::Object*)set->selected_entity;
     transformManager->make_rotation(object, object->COM, R);
   }

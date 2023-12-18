@@ -15,15 +15,15 @@ public:
   Database(eng::data::Node* eng_data);
   ~Database();
 
-  void add_new_set(eng::structure::Set* set);
+  void add_new_set(string name);
+  eng::structure::Set* get_set(string name);
 
-public:
-  inline list<eng::structure::Set*>* get_list_set(){return list_set;}
+  inline list<eng::structure::Set*>* get_list_set(){return &list_set;}
 
 private:
   int ID_obj;
 
-  list<eng::structure::Set*>* list_set;
+  list<eng::structure::Set*> list_set;
 };
 
 }

@@ -42,9 +42,7 @@ public:
   //Loop
   void loop();
 
-  inline eng::structure::Set* get_set_scene(){return set_scene;}
   inline eng::structure::Set* get_set_glyph(){return set_glyph;}
-  inline eng::structure::Object* get_selected_object(){return (eng::structure::Object*)set_scene->selected_entity;}
 
 private:
   eng::data::Node* eng_data;
@@ -54,7 +52,6 @@ private:
   eng::camera::Node* eng_camera;
 
   int ID_obj;
-  eng::structure::Set* set_scene;
   eng::structure::Set* set_glyph;
 };
 
