@@ -32,7 +32,7 @@ public:
   void insert_object_glyph(eng::structure::Object* object);
   void insert_object_scene(eng::structure::Object* object);
   void update_object(eng::structure::Object* object);
-  void delete_object_scene(eng::structure::Object* object);
+  void delete_object_scene(eng::structure::Entity* object);
   void delete_object_scene_all();
 
   //eng::structure::Object

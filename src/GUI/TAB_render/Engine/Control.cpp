@@ -53,16 +53,15 @@ void Control::control_keyboard_oneAction(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      eng_scene->selected_object_next();
+      eng::structure::Set* set_scene = eng_database->get_set("Scene");
+      set_scene->select_next_object();
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      eng::structure::Set* set = eng_database->get_set("Scene");
-      eng::structure::Object* object = (eng::structure::Object*)set->selected_entity;
-      eng_scene->selected_object_next();
-      eng_scene->delete_object_scene(object);
+      eng::structure::Set* set_scene = eng_database->get_set("Scene");
+      eng_scene->delete_object_scene(set_scene->selected_entity);
       break;
     }
 

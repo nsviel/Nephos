@@ -117,16 +117,19 @@ void Scene::update_object(eng::structure::Object* object){
 
   //---------------------------
 }
-void Scene::delete_object_scene(eng::structure::Object* object){
+void Scene::delete_object_scene(eng::structure::Entity* entity){
   eng::structure::Set* set_scene = eng_database->get_set("Scene");
   //---------------------------
+
+  //Selected next entity
+  set_scene->select_next_object();
 
   //Delete it from database and engine
   for(int i=0; i<set_scene->list_obj.size(); i++){
     eng::structure::Object* object_list = (eng::structure::Object*)*next(set_scene->list_obj.begin(),i);
-    if(object->ID == object_list->ID){
-      set_scene->list_obj.remove(object);
-      vk_engine->remove_object_in_engine(object);
+    if(entity->ID == object_list->ID){
+      set_scene->list_obj.remove(entity);
+      vk_engine->remove_object_in_engine((eng::structure::Object*)entity);
       set_scene->nb_entity--;
     }
   }
