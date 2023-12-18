@@ -11,9 +11,8 @@ public:
   AABB();
 
 public:
-  void create();
-  void update(eng::structure::Set* collection, eng::structure::Glyph* glyph);
-  void update(eng::structure::Object* object);
+  void create(eng::structure::Cloud* cloud);
+  void update(eng::structure::Cloud* cloud);
   vector<vec3> build_box(vec3 min, vec3 max);
 
 private:

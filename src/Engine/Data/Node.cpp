@@ -33,7 +33,7 @@ void Node::init(){
 
   eng_database->init_set();
   eng_scene->init();
-  eng_glyph->create_glyph_scene();
+  eng_glyph->create_glyph_world();
 
   //---------------------------
 }

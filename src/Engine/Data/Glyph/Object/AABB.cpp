@@ -14,43 +14,28 @@ AABB::AABB(){
 }
 
 //Main function
-void AABB::create(){
-  this->glyph = new eng::structure::Glyph();
+void AABB::create(eng::structure::Cloud* cloud){
   //---------------------------
 
-  //Create glyph
-  glyph->name = "aabb";
-  glyph->draw_line_width = width;
-  glyph->is_visible = true;
-  glyph->draw_type_name = "line";
-  glyph->is_permanent = true;
-  glyph->unicolor = color;
+  cloud->aabb.name = "aabb";
+  cloud->aabb.draw_line_width = width;
+  cloud->aabb.is_visible = true;
+  cloud->aabb.draw_type_name = "line";
+  cloud->aabb.is_permanent = true;
+  cloud->aabb.unicolor = color;
 
   for(int i=0; i<24; i++){
-    glyph->rgb.push_back(color);
+    cloud->aabb.rgb.push_back(color);
   }
 
   //---------------------------
 }
-void AABB::update(eng::structure::Set* set, eng::structure::Glyph* glyph){
-/*  vec3 min = set->min;
-  vec3 max = set->max;
+void AABB::update(eng::structure::Cloud* cloud){
   //---------------------------
 
-  //location
-  glyph->xyz = build_box(min, max);*/
-
-  //---------------------------
-}
-void AABB::update(eng::structure::Object* object){
-  vector<vec3>& XYZ = glyph->xyz;
-  vector<vec4>& RGB = glyph->rgb;
-/*  vec3 min = cloud->min;
+  vec3 min = cloud->min;
   vec3 max = cloud->max;
-  //---------------------------
-
-  //location
-  glyph->xyz = build_box(min, max);*/
+  cloud->aabb.xyz = build_box(min, max);
 
   //---------------------------
 }
