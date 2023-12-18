@@ -45,7 +45,7 @@ public:
 
   inline eng::structure::Set* get_set_scene(){return set_scene;}
   inline eng::structure::Set* get_set_glyph(){return set_glyph;}
-  inline eng::structure::Object* get_selected_object(){return set_scene->selected_obj;}
+  inline eng::structure::Object* get_selected_object(){return (eng::structure::Object*)set_scene->selected_entity;}
 
 private:
   eng::data::Node* eng_data;

@@ -59,7 +59,7 @@ void Control::control_keyboard_oneAction(){
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
       eng::structure::Set* set = eng_scene->get_set_scene();
-      eng::structure::Object* object = set->selected_obj;
+      eng::structure::Object* object = (eng::structure::Object*)set->selected_entity;
       eng_scene->selected_object_next();
       eng_scene->delete_scene_object(object);
       break;
@@ -128,37 +128,37 @@ void Control::control_keyboard_translation(){
       // Z key
       if(io.KeysDown[571]){
         vec3 translation = vec3(transCoef, 0, 0);
-        transformManager->make_translation(set->selected_obj, translation);
+        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
         vec3 translation = vec3(-transCoef, 0, 0);
-        transformManager->make_translation(set->selected_obj, translation);
+        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
         vec3 translation = vec3(0, transCoef, 0);
-        transformManager->make_translation(set->selected_obj, translation);
+        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
         vec3 translation = vec3(0, -transCoef, 0);
-        transformManager->make_translation(set->selected_obj, translation);
+        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
         vec3 translation = vec3(0, 0, transCoef);
-        transformManager->make_translation(set->selected_obj, translation);
+        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
         vec3 translation = vec3(0, 0, -transCoef);
-        transformManager->make_translation(set->selected_obj, translation);
+        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
         break;
       }
     }
@@ -224,7 +224,7 @@ void Control::control_mouse_wheel(){
 
     //Apply rotation
     eng::structure::Set* set = eng_scene->get_set_scene();
-    eng::structure::Object* object = set->selected_obj;
+    eng::structure::Object* object = (eng::structure::Object*)set->selected_entity;
     transformManager->make_rotation(object, object->COM, R);
   }
 

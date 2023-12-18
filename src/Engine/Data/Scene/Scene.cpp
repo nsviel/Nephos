@@ -60,7 +60,7 @@ void Scene::reset_scene(){
   //---------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    eng::structure::Object* object = *next(set_scene->list_obj.begin(),i);
+    eng::structure::Object* object = (eng::structure::Object*)*next(set_scene->list_obj.begin(),i);
     //object->reset();
   }
 
@@ -78,7 +78,7 @@ void Scene::insert_object_glyph(eng::structure::Object* object){
 
   //Insert it into database
   set_glyph->list_obj.push_back(object);
-  set_glyph->selected_obj = object;
+  set_glyph->selected_entity = object;
   set_glyph->nb_object++;
 
   //---------------------------
@@ -93,7 +93,7 @@ void Scene::insert_object_scene(eng::structure::Object* object){
 
   //Insert it into database
   set_scene->list_obj.push_back(object);
-  set_scene->selected_obj = object;
+  set_scene->selected_entity = object;
   set_scene->nb_object++;
 
   //---------------------------
@@ -111,7 +111,7 @@ void Scene::delete_scene_object(eng::structure::Object* object){
 
   //Delete it from database and engine
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    eng::structure::Object* object_list = *next(set_scene->list_obj.begin(),i);
+    eng::structure::Object* object_list = (eng::structure::Object*)*next(set_scene->list_obj.begin(),i);
     if(object->ID == object_list->ID){
       set_scene->list_obj.remove(object);
       vk_engine->remove_object_in_engine(object);
@@ -125,7 +125,7 @@ void Scene::empty_scene_set(){
   //---------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    eng::structure::Object* object = *next(set_scene->list_obj.begin(),i);
+    eng::structure::Object* object = (eng::structure::Object*)*next(set_scene->list_obj.begin(),i);
 
     set_scene->list_obj.remove(object);
     vk_engine->remove_object_in_engine(object);
@@ -137,22 +137,22 @@ void Scene::empty_scene_set(){
 
 //Object
 void Scene::selected_object_next(){
-  eng::structure::Object* selected = set_scene->selected_obj;
+  eng::structure::Object* selected = (eng::structure::Object*)set_scene->selected_entity;
   //----------------------------
 
   for(int i=0; i<set_scene->list_obj.size(); i++){
-    eng::structure::Object* object = *next(set_scene->list_obj.begin(), i);
+    eng::structure::Object* object = (eng::structure::Object*)*next(set_scene->list_obj.begin(), i);
 
     if(selected->ID == object->ID){
       eng::structure::Object* selection;
 
       if((i + 1) < set_scene->list_obj.size()){
-        selection = *next(set_scene->list_obj.begin(), i + 1);
+        selection = (eng::structure::Object*)*next(set_scene->list_obj.begin(), i + 1);
       }else{
-        selection = *next(set_scene->list_obj.begin(), 0);
+        selection = (eng::structure::Object*)*next(set_scene->list_obj.begin(), 0);
       }
 
-      set_scene->selected_obj = selection;
+      set_scene->selected_entity = selection;
     }
   }
 
@@ -185,7 +185,7 @@ void Scene::loop_list(list<eng::structure::Set*>* list_data){
   for(int i=0; i<list_data->size(); i++){
     eng::structure::Set* set = *next(list_data->begin(), i);
     for(int j=0; j<set->list_obj.size(); j++){
-      eng::structure::Object* object = *next(set->list_obj.begin(), j);
+      eng::structure::Object* object = (eng::structure::Object*)*next(set->list_obj.begin(), j);
       eng_camera->compute_cam_mvp(object);
     }
   }

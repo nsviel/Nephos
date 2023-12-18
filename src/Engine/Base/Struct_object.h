@@ -45,8 +45,6 @@ struct Object : public eng::structure::Entity
   std::vector<float> ts;
   std::vector<float> Is;
 
-  bool is_visible = true;
-  bool is_suppressible = true;
   bool has_color;
   bool has_intensity;
   bool has_normal;

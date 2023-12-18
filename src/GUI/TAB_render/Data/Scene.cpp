@@ -153,14 +153,15 @@ int Scene::data_node_tree(eng::structure::Set* set){
   //Set elements leaf nodes
   if(is_node_open){
     for(int j=0; j<set->list_obj.size(); j++){
-      eng::structure::Object* object = *next(set->list_obj.begin(), j);
+      eng::structure::Object* object = (eng::structure::Object*)*next(set->list_obj.begin(), j);
 
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       nb_row++;
 
       //If object is selected
-      if(object->ID == set->selected_obj->ID && set->name == "Scene"){
+      eng::structure::Object* set_object = (eng::structure::Object*)set->selected_entity;
+      if(object->ID == set_object->ID && set->name == "Scene"){
         flag_leaf |= ImGuiTreeNodeFlags_Selected;
       }else{
         flag_leaf &= ~ImGuiTreeNodeFlags_Selected;
@@ -171,7 +172,7 @@ int Scene::data_node_tree(eng::structure::Set* set){
 
       //If item clicked
       if(ImGui::IsItemClicked()){
-        set->selected_obj = object;
+        set->selected_entity = object;
       }
 
       //If item double-clicked

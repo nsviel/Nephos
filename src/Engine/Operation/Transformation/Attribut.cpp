@@ -38,7 +38,7 @@ void Attribut::set_visibility(eng::structure::Set* set, bool visibility){
   //---------------------------
 
   for(int i=0; i<set->list_obj.size(); i++){
-    eng::structure::Object* object = *next(set->list_obj.begin(), i);
+    eng::structure::Object* object = (eng::structure::Object*)*next(set->list_obj.begin(), i);
     object->is_visible = visibility;
   }
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Struct_object.h>
+#include <Engine/Base/Struct_entity.h>
 
 #include <string>
 #include <vector>
@@ -23,8 +23,8 @@ struct Set
   bool is_visible = true;
 
   //Data
-  eng::structure::Object* selected_obj = nullptr;
-  std::list<eng::structure::Object*> list_obj;
+  eng::structure::Entity* selected_entity = nullptr;
+  std::list<eng::structure::Entity*> list_obj;
   std::list<eng::structure::Set*> list_set;
 
   //---------------------------
