@@ -56,24 +56,37 @@ void Glyph::create_glyph_world(){
 
   //---------------------------
 }
+
+//Cloud function
 void Glyph::create_cloud_glyphs(eng::structure::Cloud* cloud){
   //---------------------------
 
+  //AABB
   glyph_aabb->create(cloud);
   eng_database->assign_ID(&cloud->aabb);
   vk_engine->insert_object_in_engine(&cloud->aabb);
   cloud->list_glyph.push_back(&cloud->aabb);
 
+  //Axis
+  glyph_axis->create(cloud);
+  eng_database->assign_ID(&cloud->axis);
+  vk_engine->insert_object_in_engine(&cloud->axis);
+  cloud->list_glyph.push_back(&cloud->axis);
+
   //---------------------------
 }
-
-//Loop function
 void Glyph::update_cloud_glyphs(eng::structure::Cloud* cloud){
   //---------------------------
 
+  //AABB
   glyph_aabb->update(cloud);
   vk_engine->insert_object_in_engine(&cloud->aabb);
   eng_camera->compute_cam_mvp(&cloud->aabb);
+
+  //AABB
+  glyph_axis->update(cloud);
+  vk_engine->insert_object_in_engine(&cloud->axis);
+  eng_camera->compute_cam_mvp(&cloud->axis);
 
   //---------------------------
 }

@@ -17,6 +17,7 @@ public:
   void update(eng::structure::Cloud* cloud);
 
 private:
+  bool is_visible;
 };
 
 }

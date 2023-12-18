@@ -7,6 +7,8 @@ namespace glyph::object{
 Axis::Axis(){
   //---------------------------
 
+  this->is_visible = true;
+
   //---------------------------
 }
 Axis::~Axis(){}
@@ -29,36 +31,24 @@ void Axis::create(eng::structure::Cloud* cloud){
   RGB.push_back(vec4(0.2f, 0.2f, 0.9f, 1.0f));
   RGB.push_back(vec4(0.2f, 0.2f, 0.9f, 1.0f));
 
+  vector<vec3>& XYZ = cloud->axis.xyz;
+  vec3 root = vec3(0, 0, 0);
+  vec3 x = vec3(0.1,0,0);
+  vec3 y = vec3(0,0.1,0);
+  vec3 z = vec3(0,0,0.1);
+  XYZ.push_back(root);
+  XYZ.push_back(x);
+  XYZ.push_back(root);
+  XYZ.push_back(y);
+  XYZ.push_back(root);
+  XYZ.push_back(z);
+
   //---------------------------
 }
 void Axis::update(eng::structure::Cloud* cloud){
-  vector<vec3>& XYZ = cloud->axis.xyz;
-  vec3 subset_root = cloud->axis.root;
   //---------------------------
 
-  cloud->axis.is_visible = true;
-  XYZ.clear();
-
-  //Axis rotation
-  mat4 R = cloud->rotat;
-  vec4 Rx = vec4(0.1,0,0,1) * R;
-  vec4 Ry = vec4(0,0.1,0,1) * R;
-  vec4 Rz = vec4(0,0,0.1,1) * R;
-
-  //X Axis
-  vec3 subsey_x = vec3(subset_root.x + Rx.x, subset_root.y + Rx.y, subset_root.z + Rx.z);
-  XYZ.push_back(subset_root);
-  XYZ.push_back(subsey_x);
-
-  //Y Axis
-  vec3 subsey_y = vec3(subset_root.x + Ry.x, subset_root.y + Ry.y, subset_root.z + Ry.z);
-  XYZ.push_back(subset_root);
-  XYZ.push_back(subsey_y);
-
-  //Z Axis
-  vec3 subsey_z = vec3(subset_root.x + Rz.x, subset_root.y + Rz.y, subset_root.z + Rz.z);
-  XYZ.push_back(subset_root);
-  XYZ.push_back(subsey_z);
+  cloud->axis.model = cloud->model;
 
   //---------------------------
 }
