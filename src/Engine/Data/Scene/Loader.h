@@ -17,7 +17,7 @@ using MyFile = util::base::File;
 namespace eng::data{
 class Scene;
 class Format;
-
+class Node;
 
 class Loader
 {

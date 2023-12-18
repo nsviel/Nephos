@@ -9,6 +9,8 @@ class VK_engine;
 
 
 namespace eng::data{
+class Node;
+class Database;
 
 class Glyph
 {
