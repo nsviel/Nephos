@@ -1,5 +1,5 @@
 #include "Glyph.h"
-#include "Base/Glyph_source.h"
+
 #include "../Scene/Scene.h"
 
 #include <Engine/Data/Namespace.h>
@@ -47,7 +47,7 @@ void Glyph::create_cloud_glyphs(eng::structure::Cloud* cloud){
 
   //---------------------------
 }
-Glyph_source* Glyph::get_glyph_src_byName(string name){
+glyph::base::Source* Glyph::get_glyph_src_byName(string name){
   //---------------------------
 
   for(int i=0; i<vec_glyph_src.size(); i++){

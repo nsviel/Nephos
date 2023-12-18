@@ -4,12 +4,14 @@
 #include <Utility/Specific/common.h>
 
 
-class Glyph_source
+namespace glyph::base{
+
+class Source
 {
 public:
   //Constructor / Destructor
-  Glyph_source();
-  ~Glyph_source();
+  Source();
+  ~Source();
 
 public:
   virtual void create(){}
@@ -29,3 +31,5 @@ protected:
   vec4 color;
   bool is_visible;
 };
+
+}

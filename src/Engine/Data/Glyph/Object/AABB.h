@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../Base/Glyph_source.h"
+#include "../Base/Source.h"
 
 
 namespace glyph::object{
 
-class AABB : public Glyph_source
+class AABB : public glyph::base::Source
 {
 public:
   AABB();

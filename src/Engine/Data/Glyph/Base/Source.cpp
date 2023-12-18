@@ -1,8 +1,10 @@
-#include "Glyph_source.h"
+#include "Source.h"
 
+
+namespace glyph::base{
 
 //Constructor / destructor
-Glyph_source::Glyph_source(){
+Source::Source(){
   //---------------------------
 
   this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -10,10 +12,12 @@ Glyph_source::Glyph_source(){
 
   //---------------------------
 }
-Glyph_source::~Glyph_source(){
+Source::~Source(){
   //---------------------------
 
   delete glyph;
 
   //---------------------------
+}
+
 }

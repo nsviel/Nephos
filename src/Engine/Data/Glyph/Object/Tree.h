@@ -1,12 +1,12 @@
 #pragma once
 
 #include <Engine/Operation/Namespace.h>
-#include "../Base/Glyph_source.h"
+#include "../Base/Source.h"
 
 
 namespace glyph::object{
 
-class Tree : public Glyph_source
+class Tree : public glyph::base::Source
 {
 public:
   //Constructor / Destructor

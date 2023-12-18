@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../Base/Glyph_source.h"
+#include "../Base/Source.h"
 
 
 namespace glyph::world{
 
-class Grid_plane : public Glyph_source
+class Grid_plane : public glyph::base::Source
 {
 public:
   //Constructor / Destructor

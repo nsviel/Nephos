@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../Base/Glyph_source.h"
+#include "../Base/Source.h"
 
 
 namespace glyph::object{
 
-class Axis : public Glyph_source
+class Axis : public glyph::base::Source
 {
 public:
   //Constructor / Destructor
