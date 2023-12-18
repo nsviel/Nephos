@@ -73,6 +73,12 @@ void Glyph::create_cloud_glyphs(eng::structure::Cloud* cloud){
   vk_engine->insert_object_in_engine(&cloud->axis);
   cloud->list_glyph.push_back(&cloud->axis);
 
+  //Camera
+  glyph_cam->create(cloud);
+  eng_database->assign_ID(&cloud->camera);
+  vk_engine->insert_object_in_engine(&cloud->camera);
+  cloud->list_glyph.push_back(&cloud->camera);
+
   //---------------------------
 }
 void Glyph::update_cloud_glyphs(eng::structure::Cloud* cloud){
@@ -87,6 +93,11 @@ void Glyph::update_cloud_glyphs(eng::structure::Cloud* cloud){
   glyph_axis->update(cloud);
   vk_engine->insert_object_in_engine(&cloud->axis);
   eng_camera->compute_cam_mvp(&cloud->axis);
+
+  //AABB
+  glyph_cam->update(cloud);
+  vk_engine->insert_object_in_engine(&cloud->camera);
+  eng_camera->compute_cam_mvp(&cloud->camera);
 
   //---------------------------
 }
