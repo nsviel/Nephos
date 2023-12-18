@@ -12,6 +12,15 @@ Set::Set(std::string name){
 }
 
 //Misc function
+void Set::add_new_set(std::string name){
+  //---------------------------
+
+  eng::structure::Set* set = new eng::structure::Set(name);
+  list_set.push_back(set);
+  this->nb_set++;
+
+  //---------------------------
+}
 void Set::set_visibility(bool value){
   //---------------------------
 

@@ -77,8 +77,8 @@ void Scene::reset(){
 }
 
 //Insertion / deletion
-void Scene::insert_object_glyph(eng::structure::Object* object){
-  eng::structure::Set* set_glyph = eng_database->get_set("Glyph");
+void Scene::insert_object_world(eng::structure::Object* object){
+  eng::structure::Set* set_glyph = eng_database->get_set("World");
   //---------------------------
 
   //Insert into engine

@@ -22,6 +22,7 @@ public:
   //Subfunction
   void retrieve_location(K4A_device* k4a_device);
   void retrieve_color(K4A_device* k4a_device, int i);
+  void retrieve_corner_coordinate(K4A_device* k4a_device);
 
 private:
   Engine* engine;

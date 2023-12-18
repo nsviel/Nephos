@@ -15,12 +15,14 @@ struct Set
   //---------------------------
 
   Set(std::string name);
+  void add_new_set(std::string name);
   void set_visibility(bool value);
   void select_next_object();
 
   //Info
   std::string name;
   int nb_entity = 0;
+  int nb_set = 0;
   bool is_visible = true;
 
   //Data

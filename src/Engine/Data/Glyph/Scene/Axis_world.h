@@ -3,6 +3,8 @@
 #include "../Base/Glyph_source.h"
 
 
+namespace glyph::scene{
+
 class Axis_world : public Glyph_source
 {
 public:
@@ -18,3 +20,5 @@ public:
 private:
   bool is_visible;
 };
+
+}

@@ -1,6 +1,8 @@
 #include "Grid.h"
 
 
+namespace glyph::scene{
+
 //Constructor / destructor
 Grid::Grid(){
   //---------------------------
@@ -60,4 +62,6 @@ void Grid::update_grid(int value){
   }
 
   //---------------------------
+}
+
 }

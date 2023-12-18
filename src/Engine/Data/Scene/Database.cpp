@@ -7,7 +7,7 @@ namespace eng::data{
 Database::Database(eng::data::Node* eng_data){
   //---------------------------
 
-  this->ID_obj = 0;
+  this->ID_entity = 0;
 
   //---------------------------
 }
@@ -17,10 +17,11 @@ Database::~Database(){}
 void Database::init_set(){
   //---------------------------
 
-  this->add_new_set("Glyph");
+  this->add_new_set("World");
   this->add_new_set("Scene");
-  this->add_new_set("Sensor");
 
+eng::structure::Set* set = get_set("Scene");
+set->add_new_set("coucou");
   //---------------------------
 }
 void Database::add_new_set(string name){
@@ -40,6 +41,8 @@ eng::structure::Set* Database::get_set(string name){
       return set;
     }
   }
+
+  cout<<"[error] Set not found ["<<name<<"]"<<endl;
 
   //---------------------------
   return nullptr;

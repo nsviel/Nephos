@@ -3,6 +3,8 @@
 #include "../Base/Glyph_source.h"
 
 
+namespace glyph::scene{
+
 class Grid_sub : public Glyph_source
 {
 public:
@@ -32,3 +34,5 @@ private:
   vec4 grid_sub_color;
   int nb_cell;
 };
+
+}

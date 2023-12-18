@@ -1,6 +1,8 @@
 #include "Grid_plane.h"
 
 
+namespace glyph::scene{
+
 //Constructor / destructor
 Grid_plane::Grid_plane(){
   //---------------------------
@@ -165,4 +167,6 @@ void Grid_plane::update_grid_plane(int value){
   XYZ[5] = vec3(nb_cell, nb_cell, 0);
 
   //---------------------------
+}
+
 }

@@ -1,6 +1,8 @@
 #include "Axis_world.h"
 
 
+namespace glyph::scene{
+
 //Constructor / destructor
 Axis_world::Axis_world(){
   //---------------------------
@@ -53,4 +55,6 @@ void Axis_world::create_glyph(){
   RGB.push_back(vec4(0.0f, 0.0f, 1.0f, 1.0f));
 
   //---------------------------
+}
+
 }
