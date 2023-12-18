@@ -31,7 +31,7 @@ Scene::Scene(eng::data::Node* eng_data){
 Scene::~Scene(){}
 
 //Scene function
-void Scene::init_scene(){
+void Scene::init(){
   eng::data::Loader* eng_loader = eng_data->get_eng_loader();
   //---------------------------
 
@@ -42,7 +42,25 @@ void Scene::init_scene(){
 
   //---------------------------
 }
-void Scene::reset_scene(){
+void Scene::loop(){
+  list<eng::structure::Set*>* list_set = eng_database->get_list_set();
+  //----------------------------
+
+  for(int i=0; i<list_set->size(); i++){
+    eng::structure::Set* set = *next(list_set->begin(), i);
+    for(int j=0; j<set->list_obj.size(); j++){
+      eng::structure::Entity* entity = *next(set->list_obj.begin(), j);
+
+      //Object operation
+      if(eng::structure::Object* object = dynamic_cast<eng::structure::Object*>(entity)){
+        eng_camera->compute_cam_mvp(object);
+     }
+    }
+  }
+
+  //----------------------------
+}
+void Scene::reset(){
   list<eng::structure::Set*>* list_set = eng_database->get_list_set();
   //---------------------------
 
@@ -99,7 +117,7 @@ void Scene::update_object(eng::structure::Object* object){
 
   //---------------------------
 }
-void Scene::delete_scene_object(eng::structure::Object* object){
+void Scene::delete_object_scene(eng::structure::Object* object){
   eng::structure::Set* set_scene = eng_database->get_set("Scene");
   //---------------------------
 
@@ -115,7 +133,7 @@ void Scene::delete_scene_object(eng::structure::Object* object){
 
   //---------------------------
 }
-void Scene::empty_scene_set(){
+void Scene::delete_object_scene_all(){
   eng::structure::Set* set_scene = eng_database->get_set("Scene");
   //---------------------------
 
@@ -159,26 +177,6 @@ void Scene::provide_new_ID(eng::structure::Object* object){
 
   if(object->ID == -1){
     object->ID = ID_obj++;
-  }
-
-  //----------------------------
-}
-
-//Loop function
-void Scene::loop(){
-  list<eng::structure::Set*>* list_set = eng_database->get_list_set();
-  //----------------------------
-
-  for(int i=0; i<list_set->size(); i++){
-    eng::structure::Set* set = *next(list_set->begin(), i);
-    for(int j=0; j<set->list_obj.size(); j++){
-      eng::structure::Entity* entity = *next(set->list_obj.begin(), j);
-
-      //Object operation
-      if(eng::structure::Object* object = dynamic_cast<eng::structure::Object*>(entity)){
-        eng_camera->compute_cam_mvp(object);
-     }
-    }
   }
 
   //----------------------------

@@ -70,7 +70,7 @@ void Object::object_parameter(eng::structure::Object* object){
     if(object->is_suppressible){
       ImGui::SameLine();
       if(ImGui::Button(ICON_FA_TRASH "##4567")){
-        eng_scene->delete_scene_object(object);
+        eng_scene->delete_object_scene(object);
         this->object_selected = nullptr;
       }
     }

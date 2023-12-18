@@ -23,7 +23,6 @@ struct Object : public eng::structure::Entity
   void reset();
 
   //State
-  int ID = -1;
   int nb_point = 0;
   int draw_line_width = 1;
   int draw_point_size = 5;

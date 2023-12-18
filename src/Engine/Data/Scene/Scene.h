@@ -24,22 +24,20 @@ public:
 
 public:
   //Scene function
-  void init_scene();
-  void reset_scene();
+  void init();
+  void loop();
+  void reset();
 
   //Insertion / deletion
   void insert_object_glyph(eng::structure::Object* object);
   void insert_object_scene(eng::structure::Object* object);
   void update_object(eng::structure::Object* object);
-  void delete_scene_object(eng::structure::Object* object);
-  void empty_scene_set();
+  void delete_object_scene(eng::structure::Object* object);
+  void delete_object_scene_all();
 
   //eng::structure::Object
   void selected_object_next();
   void provide_new_ID(eng::structure::Object* object);
-
-  //Loop
-  void loop();
 
 private:
   eng::data::Node* eng_data;

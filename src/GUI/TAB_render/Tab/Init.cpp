@@ -93,7 +93,7 @@ void Init::operation_new_object(string path){
   if(object == nullptr) return;
 
   if(remove_old){
-    eng_scene->empty_scene_set();
+    eng_scene->delete_object_scene_all();
   }
 
   transformManager->make_scaling(object, scale);

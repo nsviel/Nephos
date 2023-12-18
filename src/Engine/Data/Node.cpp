@@ -32,7 +32,7 @@ void Node::init(){
   //---------------------------
 
   eng_database->init_set();
-  eng_scene->init_scene();
+  eng_scene->init();
   eng_glyph->create_glyph_scene();
 
   //---------------------------
@@ -40,7 +40,7 @@ void Node::init(){
 void Node::reset(){
   //---------------------------
 
-  eng_scene->reset_scene();
+  eng_scene->reset();
 
   //---------------------------
 }

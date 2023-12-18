@@ -62,7 +62,7 @@ void Control::control_keyboard_oneAction(){
       eng::structure::Set* set = eng_database->get_set("Scene");
       eng::structure::Object* object = (eng::structure::Object*)set->selected_entity;
       eng_scene->selected_object_next();
-      eng_scene->delete_scene_object(object);
+      eng_scene->delete_object_scene(object);
       break;
     }
 

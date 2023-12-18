@@ -16,6 +16,7 @@ struct Set
 
   Set(std::string name);
   void set_visibility(bool value);
+  void select_next_object();
 
   //Info
   std::string name;
