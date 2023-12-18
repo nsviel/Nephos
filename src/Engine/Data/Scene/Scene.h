@@ -29,7 +29,6 @@ public:
   void reset();
 
   //Insertion / deletion
-  void insert_object_world(eng::structure::Object* object);
   void insert_object_scene(eng::structure::Object* object);
   void update_object(eng::structure::Object* object);
   void delete_object_scene(eng::structure::Entity* object);

@@ -5,6 +5,8 @@
 #include <Engine/Data/Glyph/Object/Namespace.h>
 #include <Utility/Specific/common.h>
 
+class VK_engine;
+
 
 namespace eng::data{
 
@@ -24,9 +26,10 @@ public:
   void update_cloud_glyphs(eng::structure::Cloud* cloud);
 
 private:
+  VK_engine* vk_engine;
   glyph::object::AABB* aabb;
   eng::data::Node* eng_data;
-  eng::data::Scene* eng_scene;
+  eng::data::Database* eng_database;
 
   vector<glyph::base::Source*> vec_glyph_src;
 };

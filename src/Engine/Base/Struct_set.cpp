@@ -69,6 +69,15 @@ void Set::select_next_object(){
 
   //----------------------------
 }
+void Set::insert_entity(eng::structure::Entity* entity){
+  //---------------------------
+
+  this->list_entity.push_back(entity);
+  this->selected_entity = entity;
+  this->nb_entity++;
+
+  //---------------------------
+}
 eng::structure::Set* Set::get_set(std::string name){
   //---------------------------
 

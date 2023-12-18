@@ -70,23 +70,6 @@ void Scene::reset(){
 }
 
 //Insertion / deletion
-void Scene::insert_object_world(eng::structure::Object* object){
-  eng::structure::Set* data_set = eng_database->get_data_set();
-  eng::structure::Set* set_glyph = data_set->get_set("World");
-  //---------------------------
-
-  //Insert into engine
-  eng_database->assign_ID(object);
-  object->is_suppressible = false;
-  vk_engine->insert_object_in_engine(object);
-
-  //Insert it into database
-  set_glyph->list_entity.push_back(object);
-  set_glyph->selected_entity = object;
-  set_glyph->nb_entity++;
-
-  //---------------------------
-}
 void Scene::insert_object_scene(eng::structure::Object* object){
   eng::structure::Set* data_set = eng_database->get_data_set();
   eng::structure::Set* set_scene = data_set->get_set("Scene");
@@ -96,11 +79,7 @@ void Scene::insert_object_scene(eng::structure::Object* object){
   eng_database->assign_ID(object);
   vk_engine->insert_object_in_engine(object);
   attributManager->compute_MinMax(object);
-
-  //Insert it into database
-  set_scene->list_entity.push_back(object);
-  set_scene->selected_entity = object;
-  set_scene->nb_entity++;
+  set_glyph->insert_entity(object);
 
   //---------------------------
 }
