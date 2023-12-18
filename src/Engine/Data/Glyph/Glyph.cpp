@@ -15,7 +15,7 @@ Glyph::Glyph(eng::data::Node* eng_data){
   this->eng_scene = eng_data->get_eng_scene();
 
   this->vec_glyph_src.push_back(new glyph::world::Grid());
-  this->vec_glyph_src.push_back(new glyph::world::Axis_world());
+  this->vec_glyph_src.push_back(new glyph::world::Axis());
 
   //---------------------------
 }

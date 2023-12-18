@@ -5,12 +5,12 @@
 
 namespace glyph::object{
 
-class Axis_object : public Glyph_source
+class Axis : public Glyph_source
 {
 public:
   //Constructor / Destructor
-  Axis_object();
-  ~Axis_object();
+  Axis();
+  ~Axis();
 
 public:
   void create_axis_scene();

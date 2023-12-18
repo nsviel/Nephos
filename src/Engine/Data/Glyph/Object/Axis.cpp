@@ -1,10 +1,10 @@
-#include "Axis_object.h"
+#include "Axis.h"
 
 
 namespace glyph::object{
 
 //Constructor / destructor
-Axis_object::Axis_object(){
+Axis::Axis(){
   //---------------------------
 
   this->name = "axis";
@@ -13,7 +13,7 @@ Axis_object::Axis_object(){
   //---------------------------
   this->create_axis_scene();
 }
-Axis_object::~Axis_object(){
+Axis::~Axis(){
   //---------------------------
 
   delete axis_scene;
@@ -21,7 +21,7 @@ Axis_object::~Axis_object(){
   //---------------------------
 }
 
-void Axis_object::create_axis_scene(){
+void Axis::create_axis_scene(){
   axis_scene = new eng::structure::Glyph();
   //---------------------------
 
@@ -57,7 +57,7 @@ void Axis_object::create_axis_scene(){
 
   //---------------------------
 }
-void Axis_object::create_axis_circle(float circleRadius){
+void Axis::create_axis_circle(float circleRadius){
   axis_circle = new eng::structure::Glyph();
   //---------------------------
 
@@ -94,7 +94,7 @@ void Axis_object::create_axis_circle(float circleRadius){
 
   //---------------------------
 }
-eng::structure::Glyph* Axis_object::create_axis_subset(eng::structure::Object* object){
+eng::structure::Glyph* Axis::create_axis_subset(eng::structure::Object* object){
   eng::structure::Glyph* axis_subset = new eng::structure::Glyph();
   //---------------------------
 
@@ -104,7 +104,7 @@ eng::structure::Glyph* Axis_object::create_axis_subset(eng::structure::Object* o
   axis_subset->is_visible = is_visible;
   axis_subset->draw_type_name = "line";
 
-  //Axis_object colors
+  //Axis colors
   vector<vec4>& RGB = axis_subset->rgb;
   RGB.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
   RGB.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
@@ -116,7 +116,7 @@ eng::structure::Glyph* Axis_object::create_axis_subset(eng::structure::Object* o
   //---------------------------
   return axis_subset;
 }
-void Axis_object::update_axis_subset(eng::structure::Object* object, eng::structure::Glyph* glyph){
+void Axis::update_axis_subset(eng::structure::Object* object, eng::structure::Glyph* glyph){
   if(glyph == nullptr) return;
   vector<vec3>& XYZ = glyph->xyz;
   vec3 subset_root = object->root;
@@ -125,23 +125,23 @@ void Axis_object::update_axis_subset(eng::structure::Object* object, eng::struct
   glyph->is_visible = is_visible;
   XYZ.clear();
 
-  //Axis_object rotation
+  //Axis rotation
   mat4 R = object->rotat;
   vec4 Rx = vec4(0.1,0,0,1) * R;
   vec4 Ry = vec4(0,0.1,0,1) * R;
   vec4 Rz = vec4(0,0,0.1,1) * R;
 
-  //X Axis_object
+  //X Axis
   vec3 subsey_x = vec3(subset_root.x + Rx.x, subset_root.y + Rx.y, subset_root.z + Rx.z);
   XYZ.push_back(subset_root);
   XYZ.push_back(subsey_x);
 
-  //Y Axis_object
+  //Y Axis
   vec3 subsey_y = vec3(subset_root.x + Ry.x, subset_root.y + Ry.y, subset_root.z + Ry.z);
   XYZ.push_back(subset_root);
   XYZ.push_back(subsey_y);
 
-  //Z Axis_object
+  //Z Axis
   vec3 subsey_z = vec3(subset_root.x + Rz.x, subset_root.y + Rz.y, subset_root.z + Rz.z);
   XYZ.push_back(subset_root);
   XYZ.push_back(subsey_z);

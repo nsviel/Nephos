@@ -10,7 +10,7 @@ namespace glyph::object{
   //---------------------------
 
   class AABB;
-  class Axis_object;
+  class Axis;
   class Normal;
   class Tree;
 

@@ -1,10 +1,10 @@
-#include "Axis_world.h"
+#include "Axis.h"
 
 
 namespace glyph::world{
 
 //Constructor / destructor
-Axis_world::Axis_world(){
+Axis::Axis(){
   //---------------------------
 
   this->name = "axis_world";
@@ -12,7 +12,7 @@ Axis_world::Axis_world(){
 
   //---------------------------
 }
-Axis_world::~Axis_world(){
+Axis::~Axis(){
   //---------------------------
 
   delete glyph;
@@ -20,7 +20,7 @@ Axis_world::~Axis_world(){
   //---------------------------
 }
 
-void Axis_world::create_glyph(){
+void Axis::create_glyph(){
   glyph = new eng::structure::Glyph();
   //---------------------------
 

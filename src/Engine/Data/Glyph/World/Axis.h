@@ -5,12 +5,12 @@
 
 namespace glyph::world{
 
-class Axis_world : public Glyph_source
+class Axis : public Glyph_source
 {
 public:
   //Constructor / Destructor
-  Axis_world();
-  ~Axis_world();
+  Axis();
+  ~Axis();
 
 public:
   void create_glyph();
