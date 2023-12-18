@@ -17,6 +17,7 @@ public:
 public:
   //Main functions
   void create_glyph_scene();
+  void create_cloud_glyphs(eng::structure::Cloud* cloud);
   Glyph_source* get_glyph_src_byName(string name);
 
 private:

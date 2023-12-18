@@ -33,6 +33,7 @@ public:
 
 public:
   eng::data::Scene* eng_scene;
+  eng::data::Glyph* eng_glyph;
   K4A_capture* k4a_capture;
   K4A_playback* k4a_playback;
 

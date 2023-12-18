@@ -11,7 +11,7 @@ namespace eng::kinect::structure{
 struct Cloud{
   //---------------------------
 
-  eng::structure::Object* object;
+  eng::structure::Cloud* object;
 
   /*
   * 0 -> camera color

@@ -114,20 +114,6 @@ void Scene::tree_view(){
         this->data_node_tree(set);
         ImGui::PopID();
       }
-
-      /*if(set->nb_set != 0){
-        list<eng::structure::Set*>& list_subset = set->list_set;
-        for(int j=0; j<list_subset.size(); j++){
-          eng::structure::Set* subset = *next(list_subset.begin(), j);
-
-          ImGui::TableNextRow();
-          ImGui::TableNextColumn();
-
-          ImGui::PushID(subset->name.c_str());
-          this->data_node_tree(subset);
-          ImGui::PopID();
-        }
-      }*/
     }
 
     ImGui::EndTable();

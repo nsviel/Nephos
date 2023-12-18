@@ -27,6 +27,7 @@ public:
   inline eng::data::Scene* get_eng_scene(){return eng_scene;}
   inline eng::data::Database* get_eng_database(){return eng_database;}
   inline eng::data::Loader* get_eng_loader(){return eng_loader;}
+  inline eng::data::Glyph* get_eng_glyph(){return eng_glyph;}
 
 private:
   Engine* engine;

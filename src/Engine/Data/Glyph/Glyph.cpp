@@ -41,6 +41,12 @@ void Glyph::create_glyph_scene(){
 
   //---------------------------
 }
+void Glyph::create_cloud_glyphs(eng::structure::Cloud* cloud){
+  //---------------------------
+
+
+  //---------------------------
+}
 Glyph_source* Glyph::get_glyph_src_byName(string name){
   //---------------------------
 
