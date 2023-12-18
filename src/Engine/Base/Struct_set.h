@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Engine/Base/Struct_object.h>
 
 #include <string>
 #include <vector>
@@ -9,7 +9,7 @@
 
 namespace eng::structure{
 
-//Collection are cloud containers
+//Set are entity container
 struct Set
 {
   //---------------------------

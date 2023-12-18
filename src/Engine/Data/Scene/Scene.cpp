@@ -3,8 +3,6 @@
 #include <Engine/Data/Namespace.h>
 
 #include <Engine/Base/Namespace.h>
-#include <Engine/Base/Struct_object.h>
-#include <Engine/Base/Struct_set.h>
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>

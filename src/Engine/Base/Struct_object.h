@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Engine/Base/Struct_entity.h>
+
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
 #include <Eigen/Dense>
@@ -12,7 +14,7 @@
 
 namespace eng::structure{
 
-struct Object
+struct Object : public eng::structure::Entity
 {
   //---------------------------
 
