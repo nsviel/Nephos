@@ -28,7 +28,7 @@ Loader::~Loader(){
 }
 
 //Main functions
-eng::structure::Object* Loader::load_object(std::string path){
+eng::structure::Cloud* Loader::load_object(std::string path){
   //---------------------------
 
   if(file::is_file_exist(path) == false){
@@ -37,26 +37,26 @@ eng::structure::Object* Loader::load_object(std::string path){
   }
 
   //Create new object
-  eng::structure::Object* object = new eng::structure::Object();
-  object->path_file = path;
-  object->path_text = "../media/viking_room.png";
-  object->draw_type_name = "point";
-  object->has_texture = true;
+  eng::structure::Cloud* cloud = new eng::structure::Cloud();
+  cloud->path_file = path;
+  cloud->path_text = "../media/viking_room.png";
+  cloud->draw_type_name = "point";
+  cloud->has_texture = true;
 
   //Retrieve data and insert into engine
   MyFile* data = eng_format->get_data_from_file(path);
-  this->transfert_data(object, data);
-  eng_scene->insert_object_scene(object);
+  this->transfert_data(cloud, data);
+  eng_scene->insert_object_scene(cloud);
 
   //---------------------------
-  return object;
+  return cloud;
 }
-std::vector<eng::structure::Object*> Loader::load_objects(std::vector<std::string> path){
-  std::vector<eng::structure::Object*> vec_obj;
+std::vector<eng::structure::Cloud*> Loader::load_objects(std::vector<std::string> path){
+  std::vector<eng::structure::Cloud*> vec_obj;
   //---------------------------
 
   for(int i=0; i<path.size(); i++){
-    eng::structure::Object* object = load_object(path[i]);
+    eng::structure::Cloud* object = load_object(path[i]);
     vec_obj.push_back(object);
   }
 

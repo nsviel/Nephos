@@ -6,9 +6,7 @@ namespace glyph::object{
 AABB::AABB(){
   //---------------------------
 
-  this->name = "aabb";
   this->color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
-  this->width = 1;
 
   //---------------------------
 }
@@ -16,9 +14,9 @@ AABB::AABB(){
 //Main function
 void AABB::create(eng::structure::Cloud* cloud){
   //---------------------------
-
+sayHello();
   cloud->aabb.name = "aabb";
-  cloud->aabb.draw_line_width = width;
+  cloud->aabb.draw_line_width = 1;
   cloud->aabb.is_visible = true;
   cloud->aabb.draw_type_name = "line";
   cloud->aabb.is_permanent = true;

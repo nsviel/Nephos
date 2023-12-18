@@ -74,16 +74,17 @@ void Scene::reset(){
 }
 
 //Insertion / deletion
-void Scene::insert_object_scene(eng::structure::Object* object){
+void Scene::insert_object_scene(eng::structure::Cloud* cloud){
   eng::structure::Set* data_set = eng_database->get_data_set();
   eng::structure::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   //Insert into engine
-  eng_database->assign_ID(object);
-  vk_engine->insert_object_in_engine(object);
-  attributManager->compute_MinMax(object);
-  set_scene->insert_entity(object);
+  eng_database->assign_ID(cloud);
+  vk_engine->insert_object_in_engine(cloud);
+  attributManager->compute_MinMax(cloud);
+  set_scene->insert_entity(cloud);
+  eng_glyph->create_cloud_glyphs(cloud);
 
   //---------------------------
 }

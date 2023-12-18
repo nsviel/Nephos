@@ -1,11 +1,12 @@
 #pragma once
 
-#include "../Base/Source.h"
+#include <Utility/Specific/common.h>
+#include <Engine/Base/Namespace.h>
 
 
 namespace glyph::object{
 
-class AABB : public glyph::base::Source
+class AABB
 {
 public:
   AABB();
@@ -16,7 +17,7 @@ public:
   vector<vec3> build_box(vec3 min, vec3 max);
 
 private:
-  int width;
+  vec4 color;
 };
 
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Data/Glyph/Glyph.h>
 #include <Engine/Operation/Namespace.h>
 #include <Engine/Data/Scene/Database.h>
 #include <Engine/Data/Glyph/Glyph.h>
@@ -12,6 +13,7 @@ class VK_engine;
 
 
 namespace eng::data{
+class Glyph;
 
 class Scene
 {
@@ -27,7 +29,7 @@ public:
   void reset();
 
   //Insertion / deletion
-  void insert_object_scene(eng::structure::Object* object);
+  void insert_object_scene(eng::structure::Cloud* cloud);
   void update_object(eng::structure::Object* object);
   void delete_object_scene(eng::structure::Entity* object);
   void delete_object_scene_all();

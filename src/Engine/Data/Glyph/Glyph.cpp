@@ -3,8 +3,6 @@
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Engine/Engine.h>
-#include <Engine/Data/Namespace.h>
-#include <Engine/Data/Glyph/World/Namespace.h>
 
 
 namespace eng::data{
@@ -18,7 +16,8 @@ Glyph::Glyph(eng::data::Node* eng_data){
 
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->eng_database = eng_data->get_eng_database();
-  this->aabb = new glyph::object::AABB();
+  this->glyph_aabb = new glyph::object::AABB();
+  this->glyph_axis = new glyph::object::Axis();
 
   this->vec_glyph_src.push_back(new glyph::world::Grid());
   this->vec_glyph_src.push_back(new glyph::world::Axis());
@@ -50,21 +49,17 @@ void Glyph::create_glyph_world(){
     eng_database->assign_ID(glyph);
     glyph->is_suppressible = false;
     vk_engine->insert_object_in_engine(glyph);
-
-    //Insert it into database
-    set_world->list_entity.push_back(glyph);
-    set_world->selected_entity = glyph;
-    set_world->nb_entity++;
+    set_world->insert_entity(glyph);
   }
 
   //---------------------------
 }
 void Glyph::create_cloud_glyphs(eng::structure::Cloud* cloud){
   //---------------------------
-
-  //aabb->create(cloud);
-  //eng_scene->insert_object_world(&cloud->aabb);
-
+say(cloud->name);
+  glyph_aabb->create(cloud);sayHello();
+  //eng_database->assign_ID(&cloud->aabb);
+  //vk_engine->insert_object_in_engine(&cloud->aabb);
 
   //---------------------------
 }
@@ -73,7 +68,7 @@ void Glyph::create_cloud_glyphs(eng::structure::Cloud* cloud){
 void Glyph::update_cloud_glyphs(eng::structure::Cloud* cloud){
   //---------------------------
 
-  aabb->update(cloud);
+  glyph_aabb->update(cloud);
 
   //---------------------------
 }
