@@ -52,5 +52,20 @@ void Set::select_next_object(){
 
   //----------------------------
 }
+eng::structure::Set* Set::get_set(std::string name){
+  //---------------------------
+
+  for(int i=0; i<list_set.size(); i++){
+    eng::structure::Set* set = *next(list_set.begin(),i);
+    if(set->name == name){
+      return set;
+    }
+  }
+
+  std::cout<<"[error] Set not found ["<<name<<"]"<<std::endl;
+
+  //---------------------------
+  return nullptr;
+}
 
 }

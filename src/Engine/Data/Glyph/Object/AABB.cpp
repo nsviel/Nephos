@@ -6,13 +6,12 @@ namespace glyph::object{
 AABB::AABB(){
   //---------------------------
 
-  //this->name = "aabb";
-  //this->color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
-  //this->width = 1;
+  this->name = "aabb";
+  this->color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+  this->width = 1;
 
   //---------------------------
-//  this->create_glyph();
-}/*
+}
 
 //Main function
 void AABB::create_glyph(){
@@ -33,25 +32,25 @@ void AABB::create_glyph(){
 
   //---------------------------
 }
-void AABB::update_glyph(eng::structure::Set* collection, eng::structure::Glyph* glyph){
-  vec3 min = collection->min;
-  vec3 max = collection->max;
+void AABB::update_glyph(eng::structure::Set* set, eng::structure::Glyph* glyph){
+/*  vec3 min = set->min;
+  vec3 max = set->max;
   //---------------------------
 
   //location
-  glyph->xyz = build_box(min, max);
+  glyph->xyz = build_box(min, max);*/
 
   //---------------------------
 }
 void AABB::update_glyph(eng::structure::Object* object){
   vector<vec3>& XYZ = glyph->xyz;
   vector<vec4>& RGB = glyph->rgb;
-  vec3 min = cloud->min;
+/*  vec3 min = cloud->min;
   vec3 max = cloud->max;
   //---------------------------
 
   //location
-  glyph->xyz = build_box(min, max);
+  glyph->xyz = build_box(min, max);*/
 
   //---------------------------
 }
@@ -101,6 +100,6 @@ vector<vec3> AABB::build_box(vec3 min, vec3 max){
   //---------------------------
   return XYZ;
 }
-*/
+
 
 }

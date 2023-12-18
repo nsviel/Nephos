@@ -17,15 +17,14 @@ public:
 
   //Main function
   void init_set();
-  void add_new_set(string name);
   void assign_ID(eng::structure::Entity* entity);
-  eng::structure::Set* get_set(string name);
 
-  inline list<eng::structure::Set*>* get_list_set(){return &list_set;}
+  inline list<eng::structure::Set*>* get_list_set(){return &data_set->list_set;}
+  inline eng::structure::Set* get_set(string name){return data_set->get_set(name);}
+  inline eng::structure::Set* get_data_set(){return data_set;}
 
 private:
-  list<eng::structure::Set*> list_set;
-  int ID_entity;
+  eng::structure::Set* data_set;
 };
 
 }
