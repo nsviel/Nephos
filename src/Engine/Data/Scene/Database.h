@@ -15,6 +15,8 @@ public:
   Database(eng::data::Node* eng_data);
   ~Database();
 
+  void add_new_set(eng::structure::Set* set);
+
 public:
   inline list<eng::structure::Set*>* get_list_set(){return list_set;}
 

@@ -41,7 +41,6 @@ public:
 
   //Loop
   void loop();
-  void loop_list(list<eng::structure::Set*>* list_data);
 
   inline eng::structure::Set* get_set_scene(){return set_scene;}
   inline eng::structure::Set* get_set_glyph(){return set_glyph;}

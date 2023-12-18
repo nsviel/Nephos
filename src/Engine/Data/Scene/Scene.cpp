@@ -32,16 +32,16 @@ Scene::~Scene(){}
 
 //Scene function
 void Scene::init_set(){
-  list<eng::structure::Set*>* list_data = eng_database->get_list_set();
+  list<eng::structure::Set*>* list_set = eng_database->get_list_set();
   //---------------------------
 
   //eng::structure::Glyph set
   this->set_glyph = new eng::structure::Set("Glyph");
-  list_data->push_back(set_glyph);
+  list_set->push_back(set_glyph);
 
   //Scene set
   this->set_scene = new eng::structure::Set("Scene");
-  list_data->push_back(set_scene);
+  list_set->push_back(set_scene);
 
   //---------------------------
 }
@@ -170,21 +170,19 @@ void Scene::provide_new_ID(eng::structure::Object* object){
 
 //Loop function
 void Scene::loop(){
-  list<eng::structure::Set*>* list_data = eng_database->get_list_set();
+  list<eng::structure::Set*>* list_set = eng_database->get_list_set();
   //----------------------------
 
-  this->loop_list(list_data);
-
-  //----------------------------
-}
-void Scene::loop_list(list<eng::structure::Set*>* list_data){
-  //----------------------------
-
-  for(int i=0; i<list_data->size(); i++){
-    eng::structure::Set* set = *next(list_data->begin(), i);
+  for(int i=0; i<list_set->size(); i++){
+    eng::structure::Set* set = *next(list_set->begin(), i);
     for(int j=0; j<set->list_obj.size(); j++){
-      eng::structure::Object* object = (eng::structure::Object*)*next(set->list_obj.begin(), j);
-      eng_camera->compute_cam_mvp(object);
+      eng::structure::Entity* entity = *next(set->list_obj.begin(), j);
+
+      //Object operation
+      if(eng::structure::Object* object = dynamic_cast<eng::structure::Object*>(entity)){
+        eng::structure::Object* object = (eng::structure::Object*)*next(set->list_obj.begin(), j);
+        eng_camera->compute_cam_mvp(object);
+     }
     }
   }
 
