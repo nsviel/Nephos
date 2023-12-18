@@ -3,6 +3,8 @@
 #include "../Base/Glyph_source.h"
 
 
+namespace glyph::object{
+
 class Normal : public Glyph_source
 {
 public:
@@ -24,3 +26,5 @@ private:
   int size;
   int width;
 };
+
+}

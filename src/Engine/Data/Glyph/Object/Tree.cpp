@@ -3,6 +3,8 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
+namespace glyph::object{
+
 //Constructor / destructor
 Tree::Tree(){
   //---------------------------
@@ -42,4 +44,6 @@ void Tree::update_tree(eng::structure::Object* object, eng::structure::Glyph* tr
   }
 
   //---------------------------
+}
+
 }

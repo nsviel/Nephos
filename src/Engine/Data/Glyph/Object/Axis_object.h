@@ -3,6 +3,8 @@
 #include "../Base/Glyph_source.h"
 
 
+namespace glyph::object{
+
 class Axis_object : public Glyph_source
 {
 public:
@@ -26,3 +28,5 @@ private:
 
   bool is_visible;
 };
+
+}

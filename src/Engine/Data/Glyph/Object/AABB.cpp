@@ -1,6 +1,8 @@
 #include "AABB.h"
 
 
+namespace glyph::object{
+
 AABB::AABB(){
   //---------------------------
 
@@ -100,3 +102,5 @@ vector<vec3> AABB::build_box(vec3 min, vec3 max){
   return XYZ;
 }
 */
+
+}

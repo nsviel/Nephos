@@ -4,6 +4,8 @@
 #include "../Base/Glyph_source.h"
 
 
+namespace glyph::object{
+
 class Tree : public Glyph_source
 {
 public:
@@ -24,3 +26,5 @@ private:
   vec4 tree_color;
   int tree_level;
 };
+
+}

@@ -3,6 +3,8 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
+namespace glyph::object{
+
 //Constructor / destructor
 Normal::Normal(){
   //---------------------------
@@ -104,3 +106,5 @@ void Normal::update_normal_cloud(eng::structure::Object* object, vector<vec3>& x
 
   //---------------------------
 }*/
+
+}

@@ -1,6 +1,8 @@
 #include "Axis_object.h"
 
 
+namespace glyph::object{
+
 //Constructor / destructor
 Axis_object::Axis_object(){
   //---------------------------
@@ -145,4 +147,6 @@ void Axis_object::update_axis_subset(eng::structure::Object* object, eng::struct
   XYZ.push_back(subsey_z);
 
   //---------------------------
+}
+
 }
