@@ -10,11 +10,11 @@
 namespace eng::structure{
   //---------------------------
 
+  class Entity;
   class Object;
   class Glyph;
   class Set;
   class Camera;
-  class Entity;
 
   //---------------------------
 }

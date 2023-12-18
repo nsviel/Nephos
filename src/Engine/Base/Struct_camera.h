@@ -1,12 +1,14 @@
 #pragma once
 
+#include <Engine/Base/Namespace.h>
+
 #include <glm/glm.hpp>
 #include <string>
 
 
 namespace eng::structure{
 
-struct Camera
+struct Camera : public eng::structure::Entity
 {
   //---------------------------
 
