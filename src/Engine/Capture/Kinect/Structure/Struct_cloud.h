@@ -12,6 +12,7 @@ struct Cloud{
   //---------------------------
 
   eng::structure::Cloud* object;
+  std::vector<glm::vec3> vec_corner;
 
   /*
   * 0 -> camera color

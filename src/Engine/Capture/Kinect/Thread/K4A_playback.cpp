@@ -59,7 +59,7 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
     k4a_cloud->convert_into_cloud(k4a_device);
     this->sleep_necessary_time(k4a_device->device.fps_mode);
 
-    this->manage_timestamp(k4a_device);
+    this->manage_query_ts(k4a_device);
     this->manage_pause(k4a_device);
     this->manage_restart(k4a_device);
 
@@ -125,24 +125,27 @@ void K4A_playback::find_duration(K4A_device* k4a_device){
 
   //---------------------------
 }
-void K4A_playback::manage_timestamp(K4A_device* k4a_device){
+void K4A_playback::manage_query_ts(K4A_device* k4a_device){
   //---------------------------
 
-  if(ts_seek != -1){
-    auto ts_seek_ms = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_seek));
-    k4a_device->device.playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    k4a_device->player.play = true;
-    ts_seek = -1;
+  //If a timestamp was querry
+  if(k4a_device->player.ts_seek != -1){
+    if(k4a_device->player.ts_seek > k4a_device->player.ts_end) k4a_device->player.ts_seek = k4a_device->player.ts_end;
+    if(k4a_device->player.ts_seek < k4a_device->player.ts_beg) k4a_device->player.ts_seek = k4a_device->player.ts_beg;
+    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(k4a_device->player.ts_seek));
+    k4a_device->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    k4a_device->player.ts_seek = -1;
   }
 
-  //---------------------------
-}
-void K4A_playback::forward_timestamp(K4A_device* k4a_device){
-  //---------------------------
-
-  float ts_seek = 0;
-  auto ts_seek_ms = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_seek));
-  k4a_device->device.playback->seek_timestamp(ts_seek_ms, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+  //If a timestamp forawardwas querry
+  if(k4a_device->player.ts_forward != 0){
+    float ts_forward = k4a_device->player.ts_cur + 5 * k4a_device->player.ts_forward;
+    if(ts_forward > k4a_device->player.ts_end) ts_forward = k4a_device->player.ts_end;
+    if(ts_forward < k4a_device->player.ts_beg) ts_forward = k4a_device->player.ts_beg;
+    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_forward));
+    k4a_device->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    k4a_device->player.ts_forward = 0;
+  }
 
   //---------------------------
 }
@@ -151,7 +154,7 @@ void K4A_playback::manage_pause(K4A_device* k4a_device){
 
   //If pause, wait until end pause or end thread
   if(k4a_device->player.pause){
-    while(k4a_device->player.pause && thread_running){
+    while(k4a_device->player.pause && thread_running && k4a_device->player.ts_seek == -1 && k4a_device->player.ts_forward == 0){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }

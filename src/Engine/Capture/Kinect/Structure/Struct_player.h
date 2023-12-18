@@ -18,6 +18,7 @@ struct Player{
   float ts_beg = -1;
   float ts_end = -1;
   float ts_cur = -1;
+  float ts_forward = 0;
   float ts_seek = -1;
 
   //---------------------------

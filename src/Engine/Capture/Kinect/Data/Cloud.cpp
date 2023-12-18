@@ -97,25 +97,19 @@ void Cloud::retrieve_color(K4A_device* k4a_device, int i){
 void Cloud::retrieve_corner_coordinate(K4A_device* k4a_device){
   //---------------------------
 
-
   // Define your pixel coordinates and depth value
   int pixel_x = 640;  // replace ... with your pixel x-coordinate
   int pixel_y = 220;  // replace ... with your pixel y-coordinate
   float depth_value = 1749;  // replace ... with your depth value
 
-
   // Convert pixel coordinates and depth value to 3D coordinates
   k4a_float2_t pixel_point = { static_cast<float>(pixel_x), static_cast<float>(pixel_y) };
-  k4a_float3_t point3d;
-  int valid;
-  k4a_calibration_2d_to_3d(&k4a_device->device.calibration, &pixel_point, depth_value, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &point3d, &valid);
-
-glm::vec3 point(-point3d.v[2]/100.0f, -point3d.v[0]/100.0f, -point3d.v[1]/100.0f);
-
-say("----");
-say(valid);
-say(point);
-
+  k4a_float3_t xyz;
+  int is_valid;
+  k4a_calibration_2d_to_3d(&k4a_device->device.calibration, &pixel_point, depth_value, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &xyz, &is_valid);
+  if(is_valid){
+    glm::vec3 point(-xyz.v[2]/100.0f, -xyz.v[0]/100.0f, -xyz.v[1]/100.0f);
+  }
 
   //---------------------------
 }

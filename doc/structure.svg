@@ -23,12 +23,12 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.95875068"
-     inkscape:cx="2340.5459"
-     inkscape:cy="1790.3507"
+     inkscape:zoom="0.67793911"
+     inkscape:cx="764.08042"
+     inkscape:cy="1348.9412"
      inkscape:window-width="1553"
      inkscape:window-height="1014"
-     inkscape:window-x="555"
+     inkscape:window-x="367"
      inkscape:window-y="98"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
@@ -1267,5 +1267,57 @@
          style="stroke-width:0.264583"
          x="348.9718"
          y="534.92603">Axis</tspan></text>
+    <path
+       style="fill:#fffffc;fill-opacity:1;stroke:#000000;stroke-width:0.603269px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -170.3296,369.49986 v 46.27919 l 41.35371,41.3537 h 56.636531 L -35.902582,420.696 V 365.75874 L -80.460967,321.2003 h -55.538243 z"
+       id="path1077" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.60278;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path4511"
+       cx="-169.69492"
+       cy="368.95914"
+       r="3.9328799" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.60278;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path4511-3"
+       cx="-137.34572"
+       cy="321.08609"
+       r="3.9328799" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.60278;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path4511-8"
+       cx="-170.38492"
+       cy="414.51663"
+       r="3.9328799" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.60278;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path4511-83"
+       cx="-127.93645"
+       cy="457.42285"
+       r="3.9328799" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.60278;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path4511-1"
+       cx="-72.787224"
+       cy="457.6413"
+       r="3.9328799" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.60278;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path4511-89"
+       cx="-36.540722"
+       cy="422.3291"
+       r="3.9328799" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.60278;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path4511-6"
+       cx="-36.270977"
+       cy="367.3793"
+       r="3.9328799" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.60278;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path4511-4"
+       cx="-81.48674"
+       cy="319.70947"
+       r="3.9328799" />
   </g>
 </svg>

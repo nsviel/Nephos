@@ -50,13 +50,17 @@ void Player::player_control(){
 
     //Left arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
-
+      K4A_device* k4a_device = k4a_swarm->get_selected_device();
+      eng::kinect::structure::Player* player = &k4a_device->player;
+      player->ts_forward = -1;
       break;
     }
 
     //Right arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
-
+      K4A_device* k4a_device = k4a_swarm->get_selected_device();
+      eng::kinect::structure::Player* player = &k4a_device->player;
+      player->ts_forward = 1;
       break;
     }
   }
@@ -75,7 +79,7 @@ void Player::player_slider(){
   ImVec2 image_size = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(image_size.x);
   if(ImGui::SliderFloat("###Slider_playback", &player->ts_cur, player->ts_beg, player->ts_end, "%.2f s")){
-    k4a_device->k4a_playback->set_current_timestamp(player->ts_cur);
+    player->ts_seek = player->ts_cur;
   }
 
   //---------------------------
@@ -112,7 +116,7 @@ void Player::player_start(){
   ImGui::PushStyleColor(ImGuiCol_Button, color);
   if(ImGui::Button(icon.c_str())){
     if(!player->play){
-      k4a_device->k4a_playback->set_current_timestamp(player->ts_beg);
+      player->ts_seek = player->ts_beg;
       player->play = true;
       player->pause = false;
     }else{
@@ -131,7 +135,7 @@ void Player::player_stop(){
   eng::kinect::structure::Player* player = &k4a_device->player;
   if(!player->pause) ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
   if (ImGui::Button(ICON_FA_STOP "##37")){
-    k4a_device->k4a_playback->set_current_timestamp(k4a_device->player.ts_beg);
+    player->ts_seek = player->ts_beg;
     player->restart = false;
     player->play = false;
     player->pause = false;
