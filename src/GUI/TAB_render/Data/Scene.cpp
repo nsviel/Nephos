@@ -90,7 +90,7 @@ void Scene::draw_window_background(){
   //-------------------------------
 }
 void Scene::tree_view(){
-  list<eng::structure::Set*>* list_set = eng_database->get_list_set();
+  eng::structure::Set* data_set = eng_database->get_data_set();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;
@@ -103,8 +103,8 @@ void Scene::tree_view(){
     ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch);
 
     //Database
-    for(int row_i=0; row_i<list_set->size(); row_i++){
-      eng::structure::Set* set = *next(list_set->begin(), row_i);
+    for(int row_i=0; row_i<data_set->list_set.size(); row_i++){
+      eng::structure::Set* set = *next(data_set->list_set.begin(), row_i);
 
       if(set->nb_entity != 0){
         ImGui::TableNextRow();

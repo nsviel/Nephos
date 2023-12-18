@@ -43,11 +43,11 @@ void Scene::init(){
   //---------------------------
 }
 void Scene::loop(){
-  list<eng::structure::Set*>* list_set = eng_database->get_list_set();
+  eng::structure::Set* data_set = eng_database->get_data_set();
   //----------------------------
 
-  for(int i=0; i<list_set->size(); i++){
-    eng::structure::Set* set = *next(list_set->begin(), i);
+  for(int i=0; i<data_set->list_set.size(); i++){
+    eng::structure::Set* set = *next(data_set->list_set.begin(), i);
     for(int j=0; j<set->list_entity.size(); j++){
       eng::structure::Entity* entity = *next(set->list_entity.begin(), j);
 
@@ -61,11 +61,11 @@ void Scene::loop(){
   //----------------------------
 }
 void Scene::reset(){
-  list<eng::structure::Set*>* list_set = eng_database->get_list_set();
+  eng::structure::Set* data_set = eng_database->get_data_set();
   //---------------------------
 
-  for(int i=0; i<list_set->size(); i++){
-    eng::structure::Set* set = *next(list_set->begin(), i);
+  for(int i=0; i<data_set->list_set.size(); i++){
+    eng::structure::Set* set = *next(data_set->list_set.begin(), i);
 
     for(int j=0; j<set->list_entity.size(); j++){
       eng::structure::Entity* entity = *next(set->list_entity.begin(), j);
