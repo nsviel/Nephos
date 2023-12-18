@@ -19,7 +19,7 @@ struct Set
 
   //Info
   std::string name;
-  int nb_object = 0;
+  int nb_entity = 0;
   bool is_visible = true;
 
   //Data

@@ -67,7 +67,7 @@ void Scene::insert_object_glyph(eng::structure::Object* object){
   //Insert it into database
   set_glyph->list_obj.push_back(object);
   set_glyph->selected_entity = object;
-  set_glyph->nb_object++;
+  set_glyph->nb_entity++;
 
   //---------------------------
 }
@@ -83,7 +83,7 @@ void Scene::insert_object_scene(eng::structure::Object* object){
   //Insert it into database
   set_scene->list_obj.push_back(object);
   set_scene->selected_entity = object;
-  set_scene->nb_object++;
+  set_scene->nb_entity++;
 
   //---------------------------
 }
@@ -105,7 +105,7 @@ void Scene::delete_scene_object(eng::structure::Object* object){
     if(object->ID == object_list->ID){
       set_scene->list_obj.remove(object);
       vk_engine->remove_object_in_engine(object);
-      set_scene->nb_object--;
+      set_scene->nb_entity--;
     }
   }
 
@@ -120,7 +120,7 @@ void Scene::empty_scene_set(){
 
     set_scene->list_obj.remove(object);
     vk_engine->remove_object_in_engine(object);
-    set_scene->nb_object--;
+    set_scene->nb_entity--;
   }
 
   //---------------------------

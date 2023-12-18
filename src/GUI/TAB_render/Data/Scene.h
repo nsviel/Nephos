@@ -33,9 +33,8 @@ private:
   gui::rnd::tab::Panel* tab_panel;
   gui::rnd::panel::Object* panel_object;
   gui::rnd::panel::Set* panel_set;
+  eng::data::Database* eng_database;
 
-  list<eng::structure::Set*>* list_data;
-  string panel_name;
   bool* panel_show;;
 };
 

@@ -15,13 +15,11 @@ Scene::Scene(GUI* gui, gui::rnd::tab::Panel* tab_panel){
 
   Engine* engine = gui->get_engine();
   eng::data::Node* eng_data = engine->get_eng_data();
-  eng::data::Database* eng_database = eng_data->get_eng_database();
-
+  this->eng_database = eng_data->get_eng_database();
   this->tab_panel = tab_panel;
   this->panel_set = new gui::rnd::panel::Set(gui, &tab_panel->show_set);
   this->panel_object = new gui::rnd::panel::Object(gui, &tab_panel->show_object);
 
-  this->list_data = eng_database->get_list_set();
   this->panel_show = &tab_panel->show_scene;
   this->panel_name = "Scene";
 
@@ -93,6 +91,7 @@ void Scene::draw_window_background(){
   //-------------------------------
 }
 void Scene::tree_view(){
+  list<eng::structure::Set*>* list_set = eng_database->get_list_set();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;
@@ -105,15 +104,17 @@ void Scene::tree_view(){
     ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch);
 
     //Database
-    for(int row_i=0; row_i<list_data->size(); row_i++){
-      eng::structure::Set* set = *next(list_data->begin(), row_i);
+    for(int row_i=0; row_i<list_set->size(); row_i++){
+      eng::structure::Set* set = *next(list_set->begin(), row_i);
 
-      ImGui::TableNextRow();
-      ImGui::TableNextColumn();
+      if(set->nb_entity != 0){
+        ImGui::TableNextRow();
+        ImGui::TableNextColumn();
 
-      ImGui::PushID(set->name.c_str());
-      this->data_node_tree(set);
-      ImGui::PopID();
+        ImGui::PushID(set->name.c_str());
+        this->data_node_tree(set);
+        ImGui::PopID();
+      }
     }
 
     ImGui::EndTable();

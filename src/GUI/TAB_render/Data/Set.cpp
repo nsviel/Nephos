@@ -76,8 +76,8 @@ void Set::set_parameter(eng::structure::Set* set){
     //Number of object
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Nb object"); ImGui::TableNextColumn();
-    string nb_object = math::thousand_separator(set->nb_object);
-    ImGui::Text("%s", nb_object.c_str());
+    string nb_entity = math::thousand_separator(set->nb_entity);
+    ImGui::Text("%s", nb_entity.c_str());
 
     ImGui::EndTable();
   }
