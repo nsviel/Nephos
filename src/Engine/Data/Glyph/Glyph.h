@@ -21,6 +21,7 @@ public:
   glyph::base::Source* get_glyph_src_byName(string name);
 
 private:
+  glyph::object::AABB* aabb;
   eng::data::Node* eng_data;
   eng::data::Scene* eng_scene;
 
