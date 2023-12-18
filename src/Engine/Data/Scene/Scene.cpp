@@ -64,21 +64,15 @@ void Scene::reset(){
   eng::structure::Set* data_set = eng_database->get_data_set();
   //---------------------------
 
-  for(int i=0; i<data_set->list_set.size(); i++){
-    eng::structure::Set* set = *next(data_set->list_set.begin(), i);
-
-    for(int j=0; j<set->list_entity.size(); j++){
-      eng::structure::Entity* entity = *next(set->list_entity.begin(), j);
-      entity->reset();
-    }
-  }
+  data_set->reset();
 
   //---------------------------
 }
 
 //Insertion / deletion
 void Scene::insert_object_world(eng::structure::Object* object){
-  eng::structure::Set* set_glyph = eng_database->get_set("World");
+  eng::structure::Set* data_set = eng_database->get_data_set();
+  eng::structure::Set* set_glyph = data_set->get_set("World");
   //---------------------------
 
   //Insert into engine
@@ -94,7 +88,8 @@ void Scene::insert_object_world(eng::structure::Object* object){
   //---------------------------
 }
 void Scene::insert_object_scene(eng::structure::Object* object){
-  eng::structure::Set* set_scene = eng_database->get_set("Scene");
+  eng::structure::Set* data_set = eng_database->get_data_set();
+  eng::structure::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   //Insert into engine
@@ -118,7 +113,8 @@ void Scene::update_object(eng::structure::Object* object){
   //---------------------------
 }
 void Scene::delete_object_scene(eng::structure::Entity* entity){
-  eng::structure::Set* set_scene = eng_database->get_set("Scene");
+  eng::structure::Set* data_set = eng_database->get_data_set();
+  eng::structure::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   //Selected next entity
@@ -137,7 +133,8 @@ void Scene::delete_object_scene(eng::structure::Entity* entity){
   //---------------------------
 }
 void Scene::delete_object_scene_all(){
-  eng::structure::Set* set_scene = eng_database->get_set("Scene");
+  eng::structure::Set* data_set = eng_database->get_data_set();
+  eng::structure::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   for(int i=0; i<set_scene->list_entity.size(); i++){

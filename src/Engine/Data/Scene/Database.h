@@ -19,7 +19,6 @@ public:
   void init_set();
   void assign_ID(eng::structure::Entity* entity);
 
-  inline eng::structure::Set* get_set(string name){return data_set->get_set(name);}
   inline eng::structure::Set* get_data_set(){return data_set;}
 
 private:

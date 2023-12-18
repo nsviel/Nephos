@@ -9,7 +9,10 @@ struct Cloud : public eng::structure::Object
 {
   //---------------------------
 
-  std::list<eng::structure::Glyph*> list_glyph;
+  eng::structure::Glyph aabb;
+  eng::structure::Glyph axis;
+  eng::structure::Glyph normal;
+  eng::structure::Glyph tree;
 
   //---------------------------
 };

@@ -21,6 +21,23 @@ void Set::add_new_set(std::string name){
 
   //---------------------------
 }
+void Set::reset(){
+  //---------------------------
+
+  //Reset all associated entities
+  for(int j=0; j<list_entity.size(); j++){
+    eng::structure::Entity* entity = *next(list_entity.begin(), j);
+    entity->reset();
+  }
+
+  //Reset all associated sets
+  for(int i=0; i<list_set.size(); i++){
+    eng::structure::Set* set = *next(list_set.begin(), i);
+    set->reset();
+  }
+
+  //---------------------------
+}
 void Set::set_visibility(bool value){
   //---------------------------
 

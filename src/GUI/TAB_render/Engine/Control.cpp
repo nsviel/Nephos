@@ -50,17 +50,18 @@ void Control::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
+  eng::structure::Set* data_set = eng_database->get_data_set();
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      eng::structure::Set* set_scene = eng_database->get_set("Scene");
+      eng::structure::Set* set_scene = data_set->get_set("Scene");
       set_scene->select_next_object();
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      eng::structure::Set* set_scene = eng_database->get_set("Scene");
+      eng::structure::Set* set_scene = data_set->get_set("Scene");
       eng_scene->delete_object_scene(set_scene->selected_entity);
       break;
     }
@@ -112,10 +113,10 @@ void Control::control_keyboard_camMove(){
   //---------------------------
 }
 void Control::control_keyboard_translation(){
-  eng::structure::Set* set = eng_database->get_set("Scene");
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
+  eng::structure::Set* data_set = eng_database->get_data_set();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
       float transCoef = 0.01;
@@ -128,37 +129,43 @@ void Control::control_keyboard_translation(){
       // Z key
       if(io.KeysDown[571]){
         vec3 translation = vec3(transCoef, 0, 0);
-        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
+        eng::structure::Set* set_scene = data_set->get_set("Scene");
+        transformManager->make_translation((eng::structure::Object*)set_scene->selected_entity, translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
         vec3 translation = vec3(-transCoef, 0, 0);
-        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
+        eng::structure::Set* set_scene = data_set->get_set("Scene");
+        transformManager->make_translation((eng::structure::Object*)set_scene->selected_entity, translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
         vec3 translation = vec3(0, transCoef, 0);
-        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
+        eng::structure::Set* set_scene = data_set->get_set("Scene");
+        transformManager->make_translation((eng::structure::Object*)set_scene->selected_entity, translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
         vec3 translation = vec3(0, -transCoef, 0);
-        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
+        eng::structure::Set* set_scene = data_set->get_set("Scene");
+        transformManager->make_translation((eng::structure::Object*)set_scene->selected_entity, translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
         vec3 translation = vec3(0, 0, transCoef);
-        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
+        eng::structure::Set* set_scene = data_set->get_set("Scene");
+        transformManager->make_translation((eng::structure::Object*)set_scene->selected_entity, translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
         vec3 translation = vec3(0, 0, -transCoef);
-        transformManager->make_translation((eng::structure::Object*)set->selected_entity, translation);
+        eng::structure::Set* set_scene = data_set->get_set("Scene");
+        transformManager->make_translation((eng::structure::Object*)set_scene->selected_entity, translation);
         break;
       }
     }
@@ -223,8 +230,9 @@ void Control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    eng::structure::Set* set = eng_database->get_set("Scene");
-    eng::structure::Object* object = (eng::structure::Object*)set->selected_entity;
+    eng::structure::Set* data_set = eng_database->get_data_set();
+    eng::structure::Set* set_scene = data_set->get_set("Scene");
+    eng::structure::Object* object = (eng::structure::Object*)set_scene->selected_entity;
     transformManager->make_rotation(object, object->COM, R);
   }
 
