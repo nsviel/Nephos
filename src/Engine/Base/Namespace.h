@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Base/Struct_entity.h>
 #include <Engine/Base/Struct_object.h>
 #include <Engine/Base/Struct_glyph.h>
 #include <Engine/Base/Struct_set.h>
@@ -13,6 +14,7 @@ namespace eng::structure{
   class Glyph;
   class Set;
   class Camera;
+  class Entity;
 
   //---------------------------
 }

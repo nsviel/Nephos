@@ -9,7 +9,8 @@
 namespace eng::structure{
 
 //Collection are cloud containers
-struct Set{
+struct Set
+{
   //---------------------------
 
   Set(std::string name);

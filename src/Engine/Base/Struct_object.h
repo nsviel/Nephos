@@ -12,7 +12,8 @@
 
 namespace eng::structure{
 
-struct Object{
+struct Object
+{
   //---------------------------
 
   //Functions

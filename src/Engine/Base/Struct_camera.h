@@ -6,7 +6,9 @@
 
 namespace eng::structure{
 
-struct Camera{
+struct Camera
+{
+  //---------------------------
 
   Camera();
   void reset();
@@ -41,6 +43,8 @@ struct Camera{
   glm::mat4 mat_proj = glm::mat4(1);
   glm::mat4 mat_view = glm::mat4(1);
   glm::mat4 mat_vp = glm::mat4(1);
+
+  //---------------------------
 };
 
 }
