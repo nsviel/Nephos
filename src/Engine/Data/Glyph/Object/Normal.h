@@ -13,7 +13,7 @@ public:
   ~Normal();
 
 public:
-  eng::structure::Glyph* create_glyph(eng::structure::Object* object);
+  eng::structure::Glyph* create(eng::structure::Object* object);
   void update_normal_cloud(eng::structure::Object* object, eng::structure::Glyph* glyph);
   void update_normal_cloud(eng::structure::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s);
 

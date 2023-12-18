@@ -19,7 +19,7 @@ Normal::Normal(){
 }
 Normal::~Normal(){}
 /*
-eng::structure::Glyph* Normal::create_glyph(eng::structure::Object* object){
+eng::structure::Glyph* Normal::create(eng::structure::Object* object){
   eng::structure::Glyph* glyph = new eng::structure::Glyph();
   //---------------------------
 

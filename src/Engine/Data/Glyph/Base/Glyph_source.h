@@ -12,9 +12,8 @@ public:
   ~Glyph_source();
 
 public:
-  virtual void create_glyph(){}
-  virtual void update_glyph(){}
-  virtual void reset_glyph(){}
+  virtual void create(){}
+  virtual void update(){}
   virtual void reset(){}
 
   inline eng::structure::Glyph* get_glyph(){return glyph;}

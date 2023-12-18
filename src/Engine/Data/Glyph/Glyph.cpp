@@ -34,7 +34,7 @@ void Glyph::create_glyph_scene(){
   //---------------------------
 
   for(int i=0; i<vec_glyph_src.size(); i++){
-    vec_glyph_src[i]->create_glyph();
+    vec_glyph_src[i]->create();
     eng::structure::Glyph* glyph = vec_glyph_src[i]->get_glyph();
     eng_scene->insert_object_world(glyph);
   }
@@ -135,7 +135,7 @@ void Glyph::remove_glyph_scene(int ID){
 
   //---------------------------
 }
-eng::structure::Glyph* Glyph::create_glyph(vector<vec3>& XYZ, vector<vec4>& RGB, string mode, bool perma){
+eng::structure::Glyph* Glyph::create(vector<vec3>& XYZ, vector<vec4>& RGB, string mode, bool perma){
   eng::structure::Set* col_glyph = eng_data->get_collection_byName("glyph", "glyph_scene");
   eng::structure::Glyph* glyph = new eng::structure::Glyph();
   unsigned int VAO;

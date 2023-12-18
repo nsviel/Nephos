@@ -20,7 +20,7 @@ Axis::~Axis(){
   //---------------------------
 }
 
-void Axis::create_glyph(){
+void Axis::create(){
   glyph = new eng::structure::Glyph();
   //---------------------------
 

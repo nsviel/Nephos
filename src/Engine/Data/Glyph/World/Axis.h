@@ -13,7 +13,7 @@ public:
   ~Axis();
 
 public:
-  void create_glyph();
+  void create();
 
   inline bool* get_axis_subset_visibility(){return &is_visible;}
 

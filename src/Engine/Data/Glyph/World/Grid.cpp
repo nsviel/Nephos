@@ -21,7 +21,7 @@ Grid::~Grid(){
   //---------------------------
 }
 
-void Grid::create_glyph(){
+void Grid::create(){
   this->glyph = new eng::structure::Glyph();
   //---------------------------
 

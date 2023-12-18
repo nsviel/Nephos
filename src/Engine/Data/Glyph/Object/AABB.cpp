@@ -14,7 +14,7 @@ AABB::AABB(){
 }
 
 //Main function
-void AABB::create_glyph(){
+void AABB::create(){
   this->glyph = new eng::structure::Glyph();
   //---------------------------
 
@@ -32,7 +32,7 @@ void AABB::create_glyph(){
 
   //---------------------------
 }
-void AABB::update_glyph(eng::structure::Set* set, eng::structure::Glyph* glyph){
+void AABB::update(eng::structure::Set* set, eng::structure::Glyph* glyph){
 /*  vec3 min = set->min;
   vec3 max = set->max;
   //---------------------------
@@ -42,7 +42,7 @@ void AABB::update_glyph(eng::structure::Set* set, eng::structure::Glyph* glyph){
 
   //---------------------------
 }
-void AABB::update_glyph(eng::structure::Object* object){
+void AABB::update(eng::structure::Object* object){
   vector<vec3>& XYZ = glyph->xyz;
   vector<vec4>& RGB = glyph->rgb;
 /*  vec3 min = cloud->min;

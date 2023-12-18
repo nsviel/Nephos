@@ -13,7 +13,7 @@ public:
   ~Grid();
 
 public:
-  void create_glyph();
+  void create();
   void update_grid(int value);
 
 private:

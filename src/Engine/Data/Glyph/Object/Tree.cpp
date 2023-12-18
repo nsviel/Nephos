@@ -20,7 +20,7 @@ Tree::Tree(){
 }
 Tree::~Tree(){}
 
-eng::structure::Glyph* Tree::create_glyph(eng::structure::Object* object){
+eng::structure::Glyph* Tree::create(eng::structure::Object* object){
   eng::structure::Glyph* tree = new eng::structure::Glyph();
   //---------------------------
 
