@@ -21,7 +21,7 @@ Scene::Scene(GUI* gui, gui::rnd::tab::Panel* tab_panel){
   this->panel_set = new gui::rnd::panel::Set(gui, &tab_panel->show_set);
   this->panel_object = new gui::rnd::panel::Object(gui, &tab_panel->show_object);
 
-  this->list_data = eng_database->get_list_data();
+  this->list_data = eng_database->get_list_set();
   this->panel_show = &tab_panel->show_scene;
   this->panel_name = "Scene";
 

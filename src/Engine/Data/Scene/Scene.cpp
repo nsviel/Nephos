@@ -32,7 +32,7 @@ Scene::~Scene(){}
 
 //Scene function
 void Scene::init_set(){
-  list<eng::structure::Set*>* list_data = eng_database->get_list_data();
+  list<eng::structure::Set*>* list_data = eng_database->get_list_set();
   //---------------------------
 
   //eng::structure::Glyph set
@@ -170,12 +170,10 @@ void Scene::provide_new_ID(eng::structure::Object* object){
 
 //Loop function
 void Scene::loop(){
-  list<eng::structure::Set*>* list_data = eng_database->get_list_data();
-  list<eng::structure::Set*>* list_glyph = eng_database->get_list_data_glyph();
+  list<eng::structure::Set*>* list_data = eng_database->get_list_set();
   //----------------------------
 
   this->loop_list(list_data);
-  this->loop_list(list_glyph);
 
   //----------------------------
 }

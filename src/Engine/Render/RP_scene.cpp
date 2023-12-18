@@ -92,7 +92,7 @@ void RP_scene::draw_scene(vk::structure::Subpass* subpass){
   this->time_renderpass = timer.stop_ms(t1);
 }
 void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
-  list<vk::structure::Object*> list_data = vk_engine->get_list_data();
+  list<vk::structure::Object*> list_data = vk_engine->get_list_set();
   //---------------------------
 
   vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("point");
@@ -114,7 +114,7 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
   //---------------------------
 }
 void RP_scene::cmd_draw_line(vk::structure::Subpass* subpass){
-  list<vk::structure::Object*> list_data = vk_engine->get_list_data();
+  list<vk::structure::Object*> list_data = vk_engine->get_list_set();
   //---------------------------
 
   vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("line");

@@ -16,14 +16,12 @@ public:
   ~Database();
 
 public:
-  inline list<eng::structure::Set*>* get_list_data(){return list_data;}
-  inline list<eng::structure::Set*>* get_list_data_glyph(){return list_glyph;}
+  inline list<eng::structure::Set*>* get_list_set(){return list_set;}
 
 private:
   int ID_obj;
 
-  list<eng::structure::Set*>* list_data;
-  list<eng::structure::Set*>* list_glyph;
+  list<eng::structure::Set*>* list_set;
 };
 
 }

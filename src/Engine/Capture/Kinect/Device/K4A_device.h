@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Base/Struct_entity.h>
 #include <Engine/Capture/Kinect/Structure/Namespace.h>
 #include <Engine/Capture/Kinect/Device/Configuration.h>
 #include <Engine/Data/Namespace.h>
@@ -10,7 +11,7 @@ class K4A_playback;
 class Engine;
 
 
-class K4A_device
+class K4A_device : public eng::structure::Entity
 {
 public:
   //Constructor / Destructor
