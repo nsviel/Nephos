@@ -135,18 +135,18 @@ void Scene::tree_view(){
 
   //---------------------------
 }
-int Scene::data_node_tree(eng::structure::Set* set){
+int Scene::data_node_tree(eng::structure::Set* set) {
   int nb_row = 0;
-  //-------------------------------
+  //---------------------------
 
-  //Node flag_tree
+  // Node flags
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
-  if(set->name != "World"){
+  if (set->name != "World") {
     flag_node |= ImGuiTreeNodeFlags_DefaultOpen;
   }
 
-  //Leaf flag_tree
+  // Leaf flags
   ImGuiTreeNodeFlags flag_leaf;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
@@ -155,53 +155,56 @@ int Scene::data_node_tree(eng::structure::Set* set){
   flag_leaf |= ImGuiTreeNodeFlags_Bullet;
   flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
 
-  //Set nodes
+  // Set nodes
+  if(set->nb_entity == 0 && set->nb_set == 0) return 0;
   bool is_node_open = ImGui::TreeNodeEx(set->name.c_str(), flag_node);
 
-  //If item double-clicked
-  if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
+  // If item double-clicked
+  if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
     panel_set->set_selected_set(set);
     tab_panel->show_set = true;
   }
 
-  //Set elements leaf nodes
-  if(is_node_open){
-    for(int j=0; j<set->list_entity.size(); j++){
-      eng::structure::Object* object = (eng::structure::Object*)*next(set->list_entity.begin(), j);
-
+  // Set elements (leaf nodes) and nested set nodes
+  if (is_node_open) {
+    for (auto& entity : set->list_entity) {
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       nb_row++;
 
-      //If object is selected
-      eng::structure::Object* set_object = (eng::structure::Object*)set->selected_entity;
-      if(object->ID == set_object->ID && set->name == "Scene"){
+      // If object is selected
+      if (entity == set->selected_entity) {
         flag_leaf |= ImGuiTreeNodeFlags_Selected;
-      }else{
+      } else {
         flag_leaf &= ~ImGuiTreeNodeFlags_Selected;
       }
 
-      //Display leaf
-      ImGui::TreeNodeEx(object->name.c_str(), flag_leaf);
+      // Display leaf
+      ImGui::TreeNodeEx(entity->name.c_str(), flag_leaf);
 
-      //If item clicked
-      if(ImGui::IsItemClicked()){
-        set->selected_entity = object;
+      // If item clicked
+      if (ImGui::IsItemClicked()) {
+        set->selected_entity = entity;
       }
 
-      //If item double-clicked
-      if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
-        panel_object->set_selected_object(object);
+      // If item double-clicked
+      if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
+        panel_object->set_selected_object(static_cast<eng::structure::Object*>(entity));
         tab_panel->show_object = true;
       }
+    }
 
+    // Recursive call for nested sets
+    for(eng::structure::Set* subset : set->list_set) {
+      nb_row += data_node_tree(subset);
     }
 
     ImGui::TreePop();
   }
 
-  //-------------------------------
+  //---------------------------
   return nb_row;
 }
+
 
 }
