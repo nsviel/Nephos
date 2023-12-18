@@ -18,7 +18,7 @@ Database::~Database(){}
 void Database::add_new_set(eng::structure::Set* set){
   //---------------------------
 
-  list_set.push_back(set);
+  list_set->push_back(set);
 
   //---------------------------
 }

@@ -180,7 +180,6 @@ void Scene::loop(){
 
       //Object operation
       if(eng::structure::Object* object = dynamic_cast<eng::structure::Object*>(entity)){
-        eng::structure::Object* object = (eng::structure::Object*)*next(set->list_obj.begin(), j);
         eng_camera->compute_cam_mvp(object);
      }
     }
