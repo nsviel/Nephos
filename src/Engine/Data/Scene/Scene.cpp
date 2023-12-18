@@ -57,7 +57,7 @@ void Scene::loop(){
 
       //Cloud update
       if(eng::structure::Cloud* cloud = dynamic_cast<eng::structure::Cloud*>(entity)){
-        //eng_glyph->update_cloud_glyphs(cloud);
+        eng_glyph->update_cloud_glyphs(cloud);
       }
     }
   }

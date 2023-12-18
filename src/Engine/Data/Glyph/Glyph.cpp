@@ -16,6 +16,8 @@ Glyph::Glyph(eng::data::Node* eng_data){
 
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->eng_database = eng_data->get_eng_database();
+  this->eng_camera = engine->get_eng_camera();
+
   this->glyph_aabb = new glyph::object::AABB();
   this->glyph_axis = new glyph::object::Axis();
 
@@ -56,10 +58,11 @@ void Glyph::create_glyph_world(){
 }
 void Glyph::create_cloud_glyphs(eng::structure::Cloud* cloud){
   //---------------------------
-say(cloud->name);
-  glyph_aabb->create(cloud);sayHello();
-  //eng_database->assign_ID(&cloud->aabb);
-  //vk_engine->insert_object_in_engine(&cloud->aabb);
+
+  glyph_aabb->create(cloud);
+  eng_database->assign_ID(&cloud->aabb);
+  vk_engine->insert_object_in_engine(&cloud->aabb);
+  cloud->list_glyph.push_back(&cloud->aabb);
 
   //---------------------------
 }
@@ -69,6 +72,8 @@ void Glyph::update_cloud_glyphs(eng::structure::Cloud* cloud){
   //---------------------------
 
   glyph_aabb->update(cloud);
+  vk_engine->insert_object_in_engine(&cloud->aabb);
+  eng_camera->compute_cam_mvp(&cloud->aabb);
 
   //---------------------------
 }

@@ -5,6 +5,7 @@
 #include <Engine/Data/Glyph/World/Namespace.h>
 #include <Engine/Data/Glyph/Base/Source.h>
 #include <Engine/Data/Glyph/Object/Namespace.h>
+#include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class VK_engine;
@@ -33,6 +34,7 @@ private:
   glyph::object::Axis* glyph_axis;
   eng::data::Node* eng_data;
   eng::data::Database* eng_database;
+  eng::camera::Node* eng_camera;
 
   vector<glyph::base::Source*> vec_glyph_src;
 };
