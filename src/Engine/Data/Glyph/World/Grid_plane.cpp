@@ -1,7 +1,7 @@
 #include "Grid_plane.h"
 
 
-namespace glyph::scene{
+namespace glyph::world{
 
 //Constructor / destructor
 Grid_plane::Grid_plane(){

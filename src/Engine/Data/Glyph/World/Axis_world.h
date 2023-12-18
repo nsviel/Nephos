@@ -3,7 +3,7 @@
 #include "../Base/Glyph_source.h"
 
 
-namespace glyph::scene{
+namespace glyph::world{
 
 class Axis_world : public Glyph_source
 {

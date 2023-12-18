@@ -1,11 +1,9 @@
 #include "Glyph.h"
-
 #include "Base/Glyph_source.h"
-#include "Scene/Grid.h"
-#include "Scene/Axis_world.h"
+#include "../Scene/Scene.h"
 
 #include <Engine/Data/Namespace.h>
-#include "../Scene/Scene.h"
+#include <Engine/Data/Glyph/World/Namespace.h>
 
 
 namespace eng::data{
@@ -16,8 +14,8 @@ Glyph::Glyph(eng::data::Node* eng_data){
 
   this->eng_scene = eng_data->get_eng_scene();
 
-  this->vec_glyph_src.push_back(new Grid());
-  this->vec_glyph_src.push_back(new Axis_world());
+  this->vec_glyph_src.push_back(new glyph::world::Grid());
+  this->vec_glyph_src.push_back(new glyph::world::Axis_world());
 
   //---------------------------
 }

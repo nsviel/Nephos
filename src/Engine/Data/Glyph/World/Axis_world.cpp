@@ -1,7 +1,7 @@
 #include "Axis_world.h"
 
 
-namespace glyph::scene{
+namespace glyph::world{
 
 //Constructor / destructor
 Axis_world::Axis_world(){
