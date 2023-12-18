@@ -16,10 +16,12 @@ public:
   ~Glyph();
 
 public:
-  //Main functions
+  //Init functions
   void create_glyph_world();
   void create_cloud_glyphs(eng::structure::Cloud* cloud);
-  glyph::base::Source* get_glyph_src_byName(string name);
+
+  //Loop function
+  void update_cloud_glyphs(eng::structure::Cloud* cloud);
 
 private:
   glyph::object::AABB* aabb;

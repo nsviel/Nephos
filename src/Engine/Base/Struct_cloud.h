@@ -13,6 +13,7 @@ struct Cloud : public eng::structure::Object
   eng::structure::Glyph axis;
   eng::structure::Glyph normal;
   eng::structure::Glyph tree;
+  eng::structure::Glyph camera;
 
   //---------------------------
 };

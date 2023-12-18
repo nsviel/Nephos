@@ -30,7 +30,7 @@ Glyph::~Glyph(){
   //---------------------------
 }
 
-//Main function
+//Init function
 void Glyph::create_glyph_world(){
   //---------------------------
 
@@ -45,22 +45,20 @@ void Glyph::create_glyph_world(){
 void Glyph::create_cloud_glyphs(eng::structure::Cloud* cloud){
   //---------------------------
 
-  //aabb->create(cloud);
+  aabb->create(cloud);
+  eng_scene->insert_object_world(&cloud->aabb);
 
 
   //---------------------------
 }
-glyph::base::Source* Glyph::get_glyph_src_byName(string name){
+
+//Loop function
+void Glyph::update_cloud_glyphs(eng::structure::Cloud* cloud){
   //---------------------------
 
-  for(int i=0; i<vec_glyph_src.size(); i++){
-    if(name == vec_glyph_src[i]->get_name()){
-      return vec_glyph_src[i];
-    }
-  }
+  aabb->update(cloud);
 
   //---------------------------
-  return nullptr;
 }
 
 }
