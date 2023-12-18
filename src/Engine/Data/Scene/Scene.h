@@ -24,7 +24,6 @@ public:
 
 public:
   //Scene function
-  void init_set();
   void init_scene();
   void reset_scene();
 
@@ -41,7 +40,7 @@ public:
 
   //Loop
   void loop();
-  
+
 private:
   eng::data::Node* eng_data;
   eng::data::Database* eng_database;

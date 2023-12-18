@@ -31,7 +31,7 @@ Node::~Node(){
 void Node::init(){
   //---------------------------
 
-  eng_scene->init_set();
+  eng_database->init_set();
   eng_scene->init_scene();
   eng_glyph->create_glyph_scene();
 

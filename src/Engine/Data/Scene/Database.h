@@ -15,6 +15,8 @@ public:
   Database(eng::data::Node* eng_data);
   ~Database();
 
+  //Main function
+  void init_set();
   void add_new_set(string name);
   eng::structure::Set* get_set(string name);
 

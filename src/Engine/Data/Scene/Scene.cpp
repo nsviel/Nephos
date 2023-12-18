@@ -31,19 +31,6 @@ Scene::Scene(eng::data::Node* eng_data){
 Scene::~Scene(){}
 
 //Scene function
-void Scene::init_set(){
-  list<eng::structure::Set*>* list_set = eng_database->get_list_set();
-  //---------------------------
-
-  eng_database->add_new_set("Glyph");
-  eng_database->add_new_set("Scene");
-
-  //Sensor set
-  eng::structure::Set* set_sensor = new eng::structure::Set("Sensor");
-  list_set->push_back(set_sensor);
-
-  //---------------------------
-}
 void Scene::init_scene(){
   eng::data::Loader* eng_loader = eng_data->get_eng_loader();
   //---------------------------

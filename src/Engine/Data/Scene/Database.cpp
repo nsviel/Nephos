@@ -13,6 +13,16 @@ Database::Database(eng::data::Node* eng_data){
 }
 Database::~Database(){}
 
+//Main function
+void Database::init_set(){
+  //---------------------------
+
+  this->add_new_set("Glyph");
+  this->add_new_set("Scene");
+  this->add_new_set("Sensor");
+
+  //---------------------------
+}
 void Database::add_new_set(string name){
   //---------------------------
 
