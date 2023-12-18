@@ -1,6 +1,4 @@
 #include "Scene.h"
-#include "Database.h"
-#include <Engine/Data/Namespace.h>
 
 #include <Engine/Base/Namespace.h>
 #include <Engine/Engine.h>
@@ -20,6 +18,7 @@ Scene::Scene(eng::data::Node* eng_data){
 
   this->eng_data = eng_data;
   this->eng_database = eng_data->get_eng_database();
+  this->eng_glyph = eng_data->get_eng_glyph();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->eng_camera = engine->get_eng_camera();
   this->attributManager = new eng::ope::Attribut();
@@ -54,7 +53,12 @@ void Scene::loop(){
       //Object operation
       if(eng::structure::Object* object = dynamic_cast<eng::structure::Object*>(entity)){
         eng_camera->compute_cam_mvp(object);
-     }
+      }
+
+      //Cloud update
+      if(eng::structure::Cloud* cloud = dynamic_cast<eng::structure::Cloud*>(entity)){
+        //eng_glyph->update_cloud_glyphs(cloud);
+      }
     }
   }
 
@@ -79,7 +83,7 @@ void Scene::insert_object_scene(eng::structure::Object* object){
   eng_database->assign_ID(object);
   vk_engine->insert_object_in_engine(object);
   attributManager->compute_MinMax(object);
-  set_glyph->insert_entity(object);
+  set_scene->insert_entity(object);
 
   //---------------------------
 }
