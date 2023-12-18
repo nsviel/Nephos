@@ -16,7 +16,7 @@ VK_buffer::VK_buffer(vk::structure::Vulkan* struct_vulkan){
 VK_buffer::~VK_buffer(){}
 
 //Main function
-void VK_buffer::create_buffers(vk::structure::Entity* data){
+void VK_buffer::create_buffers(vk::structure::Object* data){
   //---------------------------
 
   data->has_xyz = false;
@@ -38,7 +38,7 @@ void VK_buffer::create_buffers(vk::structure::Entity* data){
 
   //---------------------------
 }
-void VK_buffer::clean_buffers(vk::structure::Entity* data){
+void VK_buffer::clean_buffers(vk::structure::Object* data){
   //---------------------------
 
   this->clean_buffer(&data->xyz);

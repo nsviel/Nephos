@@ -5,7 +5,7 @@
 #include <Vulkan/VK_struct/Struct_buffer.h>
 #include <Vulkan/VK_struct/Struct_command.h>
 #include <Vulkan/VK_struct/Struct_image.h>
-#include <Vulkan/VK_struct/Struct_entity.h>
+#include <Vulkan/VK_struct/Struct_object.h>
 #include <Vulkan/VK_struct/Struct_data.h>
 #include <Vulkan/VK_struct/Struct_physical_device.h>
 #include <Vulkan/VK_struct/Struct_device.h>
@@ -33,7 +33,7 @@ namespace vk::structure{
   class Binding;
   class Buffer;
   class Command;
-  class Entity;
+  class Object;
   class Data;
   class Device;
   class Frame;

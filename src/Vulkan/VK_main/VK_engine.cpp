@@ -153,7 +153,7 @@ void VK_engine::insert_object_in_engine(eng::structure::Object* object){
 
   //Check if object already in engine
   bool is_in_list = false;
-  vk::structure::Entity* data;
+  vk::structure::Object* data;
   for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
     data = *next(struct_vulkan->data.list_object.begin(), i);
     if(object->ID == data->object->ID){
@@ -176,7 +176,7 @@ void VK_engine::remove_object_in_engine(eng::structure::Object* object){
 
   bool is_in_list = false;
   for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
-    vk::structure::Entity* data = *next(struct_vulkan->data.list_object.begin(),i);
+    vk::structure::Object* data = *next(struct_vulkan->data.list_object.begin(),i);
     if(object->ID == data->object->ID){
       vk_data->clean_entity(data);
       struct_vulkan->data.list_object.remove(data);

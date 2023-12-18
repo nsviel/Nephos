@@ -22,8 +22,8 @@ public:
   void draw_frame_presentation();
 
   //Draw command
-  void cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Entity* data);
-  void cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Entity* data);
+  void cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object* data);
+  void cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* data);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

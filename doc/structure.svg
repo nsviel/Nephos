@@ -25,7 +25,7 @@
      showgrid="false"
      inkscape:zoom="0.67793911"
      inkscape:cx="503.73255"
-     inkscape:cy="491.93208"
+     inkscape:cy="491.93209"
      inkscape:window-width="1880"
      inkscape:window-height="1168"
      inkscape:window-x="40"
@@ -74,7 +74,7 @@
          id="tspan1712"
          style="stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
          x="84.912666"
-         y="41.731991">Object</tspan></text>
+         y="41.731991">Entity</tspan></text>
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-opacity:1"
        id="rect896-89"
@@ -92,7 +92,7 @@
          id="tspan1712-3"
          style="stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
          x="52.962532"
-         y="86.49173">Entity</tspan></text>
+         y="86.49173">Object</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
@@ -139,7 +139,7 @@
          id="tspan1712-5-7"
          style="stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
          x="82.832413"
-         y="203.77753">Entity</tspan></text>
+         y="203.77753">Object</tspan></text>
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-opacity:1"
        id="rect896-9"

@@ -9,7 +9,7 @@
 
 namespace vk::structure{
 
-struct Entity{
+struct Object{
   //---------------------------
 
   eng::structure::Object* object;

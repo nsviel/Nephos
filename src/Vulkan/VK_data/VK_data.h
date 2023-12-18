@@ -21,9 +21,9 @@ public:
 public:
   //Main functions
   void insert_object(eng::structure::Object* object);
-  void update_object(eng::structure::Object* object, vk::structure::Entity* data);
+  void update_object(eng::structure::Object* object, vk::structure::Object* data);
   void clean_entity_all();
-  void clean_entity(vk::structure::Entity* data);
+  void clean_entity(vk::structure::Object* data);
 
   //Pipeline data description
   void pipeline_data_description(vk::structure::Pipeline* pipeline);
