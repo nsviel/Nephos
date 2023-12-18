@@ -20,6 +20,7 @@ struct Set
   void set_visibility(bool value);
   void select_next_object();
   eng::structure::Set* get_set(std::string name);
+  eng::structure::Entity* get_entity(std::string name);
 
   //Info
   std::string name;

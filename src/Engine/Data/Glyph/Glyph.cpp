@@ -45,6 +45,8 @@ void Glyph::create_glyph_world(){
 void Glyph::create_cloud_glyphs(eng::structure::Cloud* cloud){
   //---------------------------
 
+  //aabb->create(cloud);
+
 
   //---------------------------
 }

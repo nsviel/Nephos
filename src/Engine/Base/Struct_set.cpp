@@ -67,5 +67,20 @@ eng::structure::Set* Set::get_set(std::string name){
   //---------------------------
   return nullptr;
 }
+eng::structure::Entity* Set::get_entity(std::string name){
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    eng::structure::Entity* entity = *next(list_entity.begin(),i);
+    if(entity->name == name){
+      return entity;
+    }
+  }
+
+  std::cout<<"[error] Entity not found ["<<name<<"]"<<std::endl;
+
+  //---------------------------
+  return nullptr;
+}
 
 }

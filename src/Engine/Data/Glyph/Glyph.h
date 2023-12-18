@@ -1,7 +1,8 @@
 #pragma once
 
 #include <Engine/Data/Namespace.h>
-#include "Base/Source.h"
+#include <Engine/Data/Glyph/Base/Source.h>
+#include <Engine/Data/Glyph/Object/Namespace.h>
 #include <Utility/Specific/common.h>
 
 
