@@ -8,6 +8,7 @@ Axis::Axis(){
   //---------------------------
 
   this->is_visible = true;
+  this->eng_transform = new eng::ope::Transformation();
 
   //---------------------------
 }
@@ -48,7 +49,8 @@ void Axis::create(eng::structure::Cloud* cloud){
 void Axis::update(eng::structure::Cloud* cloud){
   //---------------------------
 
-  cloud->axis.model = cloud->model;
+  eng_transform->make_translation(&cloud->axis, cloud->trans);
+  eng_transform->make_rotation(&cloud->axis, cloud->rotat);
 
   //---------------------------
 }

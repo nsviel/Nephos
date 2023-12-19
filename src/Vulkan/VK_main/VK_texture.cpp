@@ -27,6 +27,7 @@ vk::structure::Image* VK_texture::load_texture(util::base::Image* struct_image){
   image->data = struct_image->data;
   image->width = struct_image->width;
   image->height = struct_image->height;
+  image->size = struct_image->size;
   image->format = find_texture_format(struct_image);
   image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
@@ -49,7 +50,7 @@ VkFormat VK_texture::find_texture_format(util::base::Image* image){
   VkFormat format;
   //---------------------------
 
-  if(image->format == "R8G8B8A8_SRGB"){
+  if(image->format == "R8G8B8A8_SRGB" || image->format == "MJPEG"){
     format = VK_FORMAT_R8G8B8A8_SRGB;
   }
   else if(image->format == "B8G8R8A8_SRGB"){
@@ -68,7 +69,7 @@ VkFormat VK_texture::find_texture_format(util::base::Image* image){
     format = VK_FORMAT_R16_UINT;
   }
   else{
-    cout<<"[error] texture format not recognized ["<<image->format<<"]"<<endl;
+    cout<<"[error] texture format not recognized [-> "<<image->format<<"]"<<endl;
   }
 
   //---------------------------

@@ -1,0 +1,142 @@
+#include "K4A_capture.h"
+
+#include <Engine/Engine.h>
+#include <Utility/Function/Timer/FPS_counter.h>
+#include <Engine/Capture/K4A/Utils/Configuration.h>
+
+
+//Constructor / Destructor
+K4A_capture::K4A_capture(Engine* engine){
+  //---------------------------
+
+  this->fps_counter = new FPS_counter(60);
+  this->k4a_data = new eng::kinect::data::Data();
+  this->k4a_cloud = new eng::kinect::data::Cloud(engine);
+  this->k4a_config = new eng::kinect::Configuration();
+
+  //---------------------------
+}
+K4A_capture::~K4A_capture(){
+  //---------------------------
+
+  this->stop_thread();
+
+  //---------------------------
+}
+
+//Main function
+void K4A_capture::start_thread(K4A_device* device){
+  //---------------------------
+
+  if(!thread_running){
+    this->thread = std::thread(&K4A_capture::run_thread, this, device);
+  }
+
+  //---------------------------
+}
+
+//Subfunction
+void K4A_capture::run_thread(K4A_device* k4a_device){
+  if(k4a_device == nullptr) return;
+  //---------------------------
+
+  //Init elements
+  k4a_device->device.index =0;
+  k4a::device device = k4a::device::open(k4a_device->device.index);
+  k4a::capture capture;
+
+  //Configuration
+  k4a_device->device.device = &device;
+  k4a_device->device.serial_number = device.get_serialnum();
+  k4a_config->make_k4a_configuration(k4a_device);
+  k4a_config->init_device_calibration(k4a_device);
+  k4a_config->init_device_transformation(k4a_device);
+
+  //Start camera
+  k4a_device->device.version = device.get_version();
+  this->manage_color_setting(k4a_device);
+  device.start_cameras(&k4a_device->device.k4a_config);
+
+  //Start capture thread
+  this->thread_running = true;
+  while(thread_running && k4a_device){
+    auto timeout = std::chrono::milliseconds(2000);
+    device.get_capture(&capture, timeout);
+    if(!capture) continue;
+
+    //Capture data
+    k4a_data->find_data_from_capture(k4a_device, capture);
+    k4a_cloud->convert_into_cloud(k4a_device);
+    this->manage_pause(k4a_device);
+    this->manage_recording(k4a_device, capture);
+
+    //FPS
+    fps_counter->update();
+    k4a_device->device.fps = fps_counter->get_fps();
+  }
+
+  //---------------------------
+}
+void K4A_capture::stop_thread(){
+  //---------------------------
+
+  this->thread_running = false;
+  if(thread.joinable()){
+    thread.join();
+  }
+
+  //---------------------------
+}
+void K4A_capture::manage_pause(K4A_device* k4a_device){
+  //---------------------------
+
+  //If pause, wait until end pause or end thread
+  if(k4a_device->player.pause){
+    while(k4a_device->player.pause && thread_running){
+      std::this_thread::sleep_for(std::chrono::milliseconds(33));
+    }
+  }
+
+  //---------------------------
+}
+void K4A_capture::manage_recording(K4A_device* k4a_device, k4a::capture capture){
+  //---------------------------
+
+  k4a::record& recorder = k4a_device->recorder.recorder;
+
+  //Start recording
+  if(k4a_device->player.record && !recorder.is_valid()){
+    recorder = k4a::record::create(k4a_device->recorder.path.c_str(), *k4a_device->device.device, k4a_device->device.k4a_config);
+    recorder.write_header();
+    k4a_device->recorder.ts_beg = k4a_device->player.ts_cur;
+  }
+
+  //Recording
+  if(k4a_device->player.record && recorder.is_valid()){
+    recorder.write_capture(capture);
+    k4a_device->recorder.ts_rec = k4a_device->player.ts_cur - k4a_device->recorder.ts_beg;
+  }
+
+  //Flush to file when finish
+  if(!k4a_device->player.record && recorder.is_valid()){
+    recorder.flush();
+    recorder.close();
+  }
+
+  //---------------------------
+}
+void K4A_capture::manage_color_setting(K4A_device* k4a_device){
+  //---------------------------
+
+  k4a_device->device.device->set_color_control(k4a_device->color.config.exposure.command, k4a_device->color.config.exposure.mode, k4a_device->color.config.exposure.value);
+  k4a_device->device.device->set_color_control(k4a_device->color.config.white_balance.command, k4a_device->color.config.white_balance.mode, k4a_device->color.config.white_balance.value);
+  k4a_device->device.device->set_color_control(k4a_device->color.config.brightness.command, k4a_device->color.config.brightness.mode, k4a_device->color.config.brightness.value);
+  k4a_device->device.device->set_color_control(k4a_device->color.config.contrast.command, k4a_device->color.config.contrast.mode, k4a_device->color.config.contrast.value);
+  k4a_device->device.device->set_color_control(k4a_device->color.config.saturation.command, k4a_device->color.config.saturation.mode, k4a_device->color.config.saturation.value);
+  k4a_device->device.device->set_color_control(k4a_device->color.config.sharpness.command, k4a_device->color.config.sharpness.mode, k4a_device->color.config.sharpness.value);
+  k4a_device->device.device->set_color_control(k4a_device->color.config.gain.command, k4a_device->color.config.gain.mode, k4a_device->color.config.gain.value);
+  k4a_device->device.device->set_color_control(k4a_device->color.config.backlight_compensation.command, k4a_device->color.config.backlight_compensation.mode, k4a_device->color.config.backlight_compensation.value);
+  k4a_device->device.device->set_color_control(k4a_device->color.config.power_frequency.command, k4a_device->color.config.power_frequency.mode, k4a_device->color.config.power_frequency.value);
+
+  //---------------------------
+}

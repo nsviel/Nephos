@@ -10,7 +10,7 @@ echo -ne "[\e[92m#\e[0m] Run installation for Ubuntu related OS..."
 sudo apt install -y cmake build-essential libeigen3-dev python3-dev libsqlite3-dev sqlite3 git ffmpeg
 sudo apt install -y vulkan-tools libvulkan-dev vulkan-validationlayers-dev spirv-tools
 sudo apt install -y libglfw3-dev libxxf86vm-dev libxi-dev libavcodec-dev libavformat-dev libswscale-dev libvlc-dev
-sudo apt install -y libglm-dev libgit2-dev libgtest-dev libtins-dev libavdevice-dev libudev-dev
+sudo apt install -y libglm-dev libgit2-dev libgtest-dev libtins-dev libavdevice-dev libudev-dev libturbojpeg-dev
 
 # LunarG SDK
 wget -qO- https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo tee /etc/apt/trusted.gpg.d/lunarg.asc

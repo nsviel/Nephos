@@ -42,6 +42,7 @@ void FPS_counter::update_moving_average(){
   }
   else{
     average_fps = 0;
+    this->fps = 0;
   }
 
   //---------------------------

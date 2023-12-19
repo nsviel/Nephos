@@ -2,6 +2,8 @@
 
 #include "../Base/Source.h"
 
+#include <Engine/Operation/Transformation/Transformation.h>
+
 
 namespace glyph::object{
 
@@ -17,6 +19,8 @@ public:
   void update(eng::structure::Cloud* cloud);
 
 private:
+  eng::ope::Transformation* eng_transform;
+
   bool is_visible;
 };
 

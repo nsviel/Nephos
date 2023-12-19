@@ -26,6 +26,6 @@ private:
   std::vector<int> frame_times;
   int currentIndex_ = 0;
   int64_t average_fps = 0;
-  float fps;
+  float fps = 0;
   std::chrono::time_point<std::chrono::steady_clock> lastUpdateTime_;
 };

@@ -5,6 +5,7 @@
 #include <GUI/GUI_main/Interface/Tab.h>
 #include <Engine/Data/Scene/Database.h>
 #include <GUI/TAB_render/Data/Namespace.h>
+#include <image/IconsFontAwesome5.h>
 
 
 namespace gui::rnd::panel{
@@ -138,12 +139,13 @@ int Scene::data_node_tree(eng::structure::Set* set) {
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
   flag_leaf |= ImGuiTreeNodeFlags_Leaf;
   flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
-  flag_leaf |= ImGuiTreeNodeFlags_Bullet;
+  //flag_leaf |= ImGuiTreeNodeFlags_Bullet;
   flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
 
   // Set nodes
   if(set->nb_entity == 0 && set->nb_set == 0) return 0;
-  bool is_node_open = ImGui::TreeNodeEx(set->name.c_str(), flag_node);
+  string name = ICON_FA_FOLDER + (string)"   " + set->name;
+  bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag_node);
 
   // If item double-clicked
   if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
@@ -159,14 +161,15 @@ int Scene::data_node_tree(eng::structure::Set* set) {
       nb_row++;
 
       // If object is selected
-      if (entity == set->selected_entity) {
+      if(entity == set->selected_entity && entity->is_suppressible){
         flag_leaf |= ImGuiTreeNodeFlags_Selected;
-      } else {
+      }else{
         flag_leaf &= ~ImGuiTreeNodeFlags_Selected;
       }
 
       // Display leaf
-      ImGui::TreeNodeEx(entity->name.c_str(), flag_leaf);
+      string name = ICON_FA_FILE_O + (string)"   " + entity->name;
+      ImGui::TreeNodeEx(name.c_str(), flag_leaf);
 
       // If item clicked
       if (ImGui::IsItemClicked()) {

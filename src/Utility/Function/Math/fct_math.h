@@ -81,10 +81,10 @@ void fct_sort_alpha_num_(std::vector<std::string>& vec);
 
 //Geometric functions
 float fct_oriented_angle(glm::vec2 A, glm::vec2 B);
-float fct_degreeToRadian(float degree);
-float fct_radianToDegree(float radian);
+float degree_to_radian(float degree);
+float radian_to_degree(float radian);
 double fct_angularDistance(const Eigen::Matrix3f &rota, const Eigen::Matrix3f &rotb);
-glm::vec3 fct_degreeToRadian_vec3(glm::vec3 degree);
-glm::vec3 fct_radianToDegree_vec3(glm::vec3 radian);
+glm::vec3 degree_to_radian(glm::vec3 degree);
+glm::vec3 radian_to_degree_vec3(glm::vec3 radian);
 
 }

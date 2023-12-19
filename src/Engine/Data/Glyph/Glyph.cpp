@@ -101,5 +101,14 @@ void Glyph::update_cloud_glyphs(eng::structure::Cloud* cloud){
 
   //---------------------------
 }
+void Glyph::remove_cloud_glyphs(eng::structure::Cloud* cloud){
+  //---------------------------
+
+  vk_engine->remove_object_in_engine(&cloud->aabb);
+  vk_engine->remove_object_in_engine(&cloud->axis);
+  vk_engine->remove_object_in_engine(&cloud->camera);
+
+  //---------------------------
+}
 
 }

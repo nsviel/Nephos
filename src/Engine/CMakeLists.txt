@@ -36,6 +36,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   -lswresample  # ffmpeg
   -lswscale     # ffmpeg
   -lavutil      # ffmpeg
+  -lturbojpeg
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

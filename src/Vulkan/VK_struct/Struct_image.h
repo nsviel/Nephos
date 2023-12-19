@@ -18,6 +18,7 @@ struct Image{
   //Dimension
   uint32_t width = 0;
   uint32_t height = 0;
+  uint32_t size = 0;
   uint32_t mip_level_max = 1;
   uint32_t mip_level = 1;
   std::vector<uint8_t> data;

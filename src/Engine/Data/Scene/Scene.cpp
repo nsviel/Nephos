@@ -109,6 +109,7 @@ void Scene::delete_object_scene(eng::structure::Entity* entity){
     eng::structure::Object* object_list = (eng::structure::Object*)*next(set_scene->list_entity.begin(),i);
     if(entity->ID == object_list->ID){
       set_scene->list_entity.remove(entity);
+      eng_glyph->remove_cloud_glyphs((eng::structure::Cloud*)entity);
       vk_engine->remove_object_in_engine((eng::structure::Object*)entity);
       set_scene->nb_entity--;
     }

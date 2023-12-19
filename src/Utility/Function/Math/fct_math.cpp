@@ -785,7 +785,7 @@ float fct_oriented_angle(glm::vec2 A, glm::vec2 B){
   float angle = atan2(det, dot);
   return angle;
 }
-float fct_degreeToRadian(float degree){
+float degree_to_radian(float degree){
   float radian;
   //---------------------------
 
@@ -794,7 +794,7 @@ float fct_degreeToRadian(float degree){
   //---------------------------
   return radian;
 }
-float fct_radianToDegree(float radian){
+float radian_to_degree(float radian){
   float degree;
   //---------------------------
 
@@ -803,7 +803,7 @@ float fct_radianToDegree(float radian){
   //---------------------------
   return degree;
 }
-glm::vec3 fct_degreeToRadian_vec3(glm::vec3 degree){
+glm::vec3 degree_to_radian(glm::vec3 degree){
   glm::vec3 radian;
   //---------------------------
 
@@ -814,7 +814,7 @@ glm::vec3 fct_degreeToRadian_vec3(glm::vec3 degree){
   //---------------------------
   return radian;
 }
-glm::vec3 fct_radianToDegree_vec3(glm::vec3 radian){
+glm::vec3 radian_to_degree_vec3(glm::vec3 radian){
   glm::vec3 degree;
   //---------------------------
 

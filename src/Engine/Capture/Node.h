@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/Kinect/Namespace.h>
+#include <Engine/Capture/K4A/Namespace.h>
 
 class Engine;
 

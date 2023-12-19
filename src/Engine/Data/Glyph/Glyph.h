@@ -23,10 +23,11 @@ public:
 public:
   //Init functions
   void create_glyph_world();
-  void create_cloud_glyphs(eng::structure::Cloud* cloud);
 
-  //Loop function
+  //Subfunction
+  void create_cloud_glyphs(eng::structure::Cloud* cloud);
   void update_cloud_glyphs(eng::structure::Cloud* cloud);
+  void remove_cloud_glyphs(eng::structure::Cloud* cloud);
 
 private:
   VK_engine* vk_engine;
