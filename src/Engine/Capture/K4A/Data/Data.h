@@ -27,8 +27,8 @@ public:
   //Subfunction
   string convert_k4a_format(k4a_image_format_t color_format);
   k4a::image retrieve_image_from_capture(k4a::image& image);
-  vector<uint8_t> retrieve_data_from_capture(k4a::image& image);
-  vector<uint8_t> convert_mjpeg_image(k4a::image& image);
+  void retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data);
+  void convert_mjpeg_image(k4a::image& image, vector<uint8_t>& data);
 
 private:
   tjhandle tj_handle;

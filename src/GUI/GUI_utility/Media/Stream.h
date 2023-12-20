@@ -19,10 +19,11 @@ public:
 
 public:
   //Main function
-  void draw_stream(util::base::Image* struct_image, ImVec2 panel_size);
+  void draw_stream(util::base::Image* struct_image, ImVec2 image_size);
 
   //Subfunction
   void convert_data_into_texture(util::base::Image* struct_image);
+  void render_image(ImVec2& imageSize);
 
 private:
   VK_texture* vk_texture;

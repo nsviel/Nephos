@@ -60,7 +60,7 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
   k4a::image color = capture.get_color_image();
   if(!color || !color.is_valid()){
     return;
-  }
+  }/*
   k4a_device->color.image.image = color;
   k4a_device->color.image.name = "color";
   k4a_device->color.image.data = retrieve_data_from_capture(color);
@@ -70,7 +70,7 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
   k4a_device->color.image.format = "B8G8R8A8_SRGB";
   k4a_device->color.image.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
   k4a_device->player.ts_cur = k4a_device->color.image.timestamp;
-
+*/
   //---------------------------
   color.reset();
 }
@@ -169,8 +169,7 @@ k4a::image Data::retrieve_image_from_capture(k4a::image& image){
   //---------------------------
   return new_image;
 }
-vector<uint8_t> Data::retrieve_data_from_capture(k4a::image& image){
-  std::vector<uint8_t> data;
+void Data::retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data){
   //---------------------------
 
   string format = convert_k4a_format(image.get_format());
@@ -181,9 +180,8 @@ vector<uint8_t> Data::retrieve_data_from_capture(k4a::image& image){
   }
 
   //---------------------------
-  return data;
 }
-vector<uint8_t> Data::convert_mjpeg_image(k4a::image& image){
+void Data::convert_mjpeg_image(k4a::image& image, vector<uint8_t>& data){
   //---------------------------
 
   int width = image.get_width_pixels();
@@ -198,8 +196,9 @@ vector<uint8_t> Data::convert_mjpeg_image(k4a::image& image){
     cout<<"[error] MPEG convertion error"<<endl;
   }
 
+  data = bgra;
+
   //---------------------------
-  return bgra;
 }
 
 

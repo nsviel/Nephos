@@ -22,12 +22,12 @@ Stream::Stream(GUI* gui){
 Stream::~Stream(){}
 
 //Main function
-void Stream::draw_stream(util::base::Image* image, ImVec2 panel_size){
+void Stream::draw_stream(util::base::Image* image, ImVec2 image_size){
   //---------------------------
 
   if(!image->data.empty()){
     this->convert_data_into_texture(image);
-    ImGui::Image(texture, panel_size);
+    this->render_image(image_size);
   }
 
   //---------------------------
@@ -48,5 +48,13 @@ void Stream::convert_data_into_texture(util::base::Image* image){
 
   //---------------------------
 }
+void Stream::render_image(ImVec2& image_size){
+  //---------------------------
+
+  ImGui::Image(texture, image_size);
+
+  //---------------------------
+}
+
 
 }
