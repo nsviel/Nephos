@@ -16,7 +16,7 @@ K4A_device::K4A_device(Engine* engine){
   this->k4a_playback = new K4A_playback(engine);
   this->eng_scene = eng_data->get_eng_scene();
   this->eng_glyph = eng_data->get_eng_glyph();
-  this->eng_transform = new eng::ope::Transformation();
+  this->ope_transform = new eng::ope::Transformation();
 
   //---------------------------
 }
@@ -35,7 +35,7 @@ void K4A_device::init(){
   cloud.object->name = device.name;
   cloud.object->draw_type_name = "point";
   eng_scene->insert_object_scene(cloud.object);
-  eng_transform->make_scaling(cloud.object, 10);
+  ope_transform->make_scaling(cloud.object, 10);
 
   //---------------------------
 }

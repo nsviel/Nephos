@@ -24,7 +24,8 @@ public:
   void rotation(K4A_device* k4a_device, int value);
 
 private:
-  eng::ope::Transformation* eng_transform;
+  eng::ope::Transformation* ope_transform;
+  eng::ope::Attribut* ope_attribut;
 };
 
 }

@@ -7,7 +7,8 @@ namespace eng::kinect{
 Player::Player(){
   //---------------------------
 
-  this->eng_transform = new eng::ope::Transformation();
+  this->ope_transform = new eng::ope::Transformation();
+  this->ope_attribut = new eng::ope::Attribut();
 
   //---------------------------
 }
@@ -72,7 +73,8 @@ void Player::record(K4A_device* k4a_device){
 void Player::rotation(K4A_device* k4a_device, int value){
   //---------------------------
 
-  eng_transform->make_rotation(k4a_device->cloud.object, vec3(value * 90, 0, 0));
+  ope_attribut->compute_MinMax(k4a_device->cloud.object);say(k4a_device->cloud.object.COM);
+  ope_transform->make_rotation(k4a_device->cloud.object, vec3(value * 90, 0, 0));
 
   //---------------------------
 }

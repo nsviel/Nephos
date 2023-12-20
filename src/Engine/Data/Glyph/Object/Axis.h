@@ -19,7 +19,7 @@ public:
   void update(eng::structure::Cloud* cloud);
 
 private:
-  eng::ope::Transformation* eng_transform;
+  eng::ope::Transformation* ope_transform;
 
   bool is_visible;
 };
