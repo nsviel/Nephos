@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-#include <image/IconsFontAwesome5.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace gui::dev::tab{

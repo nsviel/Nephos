@@ -1,8 +1,8 @@
 #include "Player.h"
 
-#include <image/IconsFontAwesome5.h>
 #include <Engine/Capture/K4A/Thread/K4A_playback.h>
 #include <Engine/Capture/K4A/Device/K4A_swarm.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace gui::kinect{
@@ -34,6 +34,8 @@ void Player::draw_player(){
   this->player_repeat();
   ImGui::SameLine();
   this->player_record();
+  ImGui::SameLine();
+  this->player_rotation();
 
   //---------------------------
 }
@@ -155,14 +157,14 @@ void Player::player_repeat(){
   if(k4a_device->player.restart){
     //Repeat activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
-    if(ImGui::Button(ICON_FA_REPEAT "##37")){
+    if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
       k4a_player->restart(k4a_device);
     }
     ImGui::PopStyleColor();
   }
   else{
     //Repeat desactivated
-    if (ImGui::Button(ICON_FA_REPEAT "##37")){
+    if (ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
       k4a_player->restart(k4a_device);
     }
   }
@@ -193,6 +195,17 @@ void Player::player_record(){
   if(k4a_device->player.record){
     ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f", k4a_device->recorder.ts_rec);
+  }
+
+  //---------------------------
+}
+void Player::player_rotation(){
+  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  if(k4a_device == nullptr) return;
+  //---------------------------
+
+  if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##398")){
+    k4a_player->rotation(k4a_device, 1);
   }
 
   //---------------------------

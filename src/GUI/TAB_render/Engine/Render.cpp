@@ -6,7 +6,6 @@
 #include <Utility/Node/Namespace.h>
 #include <Vulkan/VK_main/VK_imgui.h>
 #include <Utility/Element/Window.h>
-#include <image/IconsFontAwesome5.h>
 
 
 namespace gui::engine{

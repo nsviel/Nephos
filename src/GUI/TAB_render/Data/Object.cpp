@@ -2,7 +2,7 @@
 
 #include <Node/GUI.h>
 #include <Engine/Engine.h>
-#include <image/IconsFontAwesome5.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace gui::rnd::panel{

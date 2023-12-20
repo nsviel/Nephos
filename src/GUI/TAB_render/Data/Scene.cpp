@@ -5,7 +5,7 @@
 #include <GUI/GUI_main/Interface/Tab.h>
 #include <Engine/Data/Scene/Database.h>
 #include <GUI/TAB_render/Data/Namespace.h>
-#include <image/IconsFontAwesome5.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace gui::rnd::panel{

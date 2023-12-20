@@ -2,7 +2,6 @@
 
 #include <Node/GUI.h>
 #include <Vulkan/Vulkan.h>
-#include <image/IconsFontAwesome5.h>
 
 
 namespace gui{

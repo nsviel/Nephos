@@ -7,6 +7,7 @@ namespace eng::kinect{
 Player::Player(){
   //---------------------------
 
+  this->eng_transform = new eng::ope::Transformation();
 
   //---------------------------
 }
@@ -65,6 +66,13 @@ void Player::record(K4A_device* k4a_device){
   //---------------------------
 
   player->record = !player->record;
+
+  //---------------------------
+}
+void Player::rotation(K4A_device* k4a_device, int value){
+  //---------------------------
+
+  eng_transform->make_rotation(k4a_device->cloud.object, vec3(value * 90, 0, 0));
 
   //---------------------------
 }

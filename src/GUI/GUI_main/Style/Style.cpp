@@ -1,8 +1,6 @@
 #include "Style.h"
 #include "Color.h"
 
-#include <image/IconsFontAwesome5.h>
-
 
 namespace gui{
 

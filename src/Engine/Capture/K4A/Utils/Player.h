@@ -21,9 +21,10 @@ public:
   void stop(K4A_device* k4a_device);
   void restart(K4A_device* k4a_device);
   void record(K4A_device* k4a_device);
+  void rotation(K4A_device* k4a_device, int value);
 
 private:
-
+  eng::ope::Transformation* eng_transform;
 };
 
 }

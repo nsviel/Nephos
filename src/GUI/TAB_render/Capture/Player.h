@@ -30,6 +30,7 @@ public:
   void player_stop();
   void player_repeat();
   void player_record();
+  void player_rotation();
 
 private:
   eng::kinect::Kinect* kinect;

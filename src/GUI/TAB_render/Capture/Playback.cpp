@@ -2,7 +2,6 @@
 
 #include <Engine/Capture/K4A/Thread/K4A_playback.h>
 #include <Engine/Capture/K4A/Device/K4A_swarm.h>
-#include <image/IconsFontAwesome5.h>
 
 
 namespace gui::kinect{

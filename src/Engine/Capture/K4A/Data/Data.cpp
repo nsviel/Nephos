@@ -176,7 +176,7 @@ void Data::retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data){
   if(format == "B8G8R8A8_SRGB"){
     data = std::vector<uint8_t>(image.get_buffer(), image.get_buffer() + image.get_size());
   }else if(format == "MJPEG"){
-    data = convert_mjpeg_image(image);
+    this->convert_mjpeg_image(image, data);
   }
 
   //---------------------------

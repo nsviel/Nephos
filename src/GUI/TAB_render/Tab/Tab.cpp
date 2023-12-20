@@ -5,7 +5,7 @@
 #include <Engine/Data/Namespace.h>
 #include <GUI/GUI_utility/Widget/GUI_indicator.h>
 #include <GUI/TAB_render/Data/Namespace.h>
-#include <image/IconsFontAwesome5.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace gui::rnd::tab{
@@ -57,7 +57,7 @@ void Tab::open_panels(){
 
   ImGui::Checkbox(ICON_FA_COG " Option##456", &gui_render_panel->show_option);
   ImGui::Checkbox(ICON_FA_PLAY " Scene##456", &gui_render_panel->show_scene);
-  ImGui::Checkbox(ICON_FA_REFRESH " Profiler##456", &gui_render_panel->show_profiler);
+  ImGui::Checkbox(ICON_FA_ARROW_ROTATE_RIGHT " Profiler##456", &gui_render_panel->show_profiler);
   ImGui::Checkbox(ICON_FA_CAMERA " Camera##456", &gui_render_panel->show_camera);
   ImGui::Checkbox(ICON_FA_ROAD " Shader##456", &gui_render_panel->show_shader);
   ImGui::Checkbox(ICON_FA_FILM " Kinect##456", &gui_render_panel->show_kinect);
