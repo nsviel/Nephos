@@ -204,9 +204,11 @@ void Player::player_rotation(){
   if(k4a_device == nullptr) return;
   //---------------------------
 
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 45, 133, 255));
   if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##398")){
     k4a_player->rotation(k4a_device, 1);
   }
+  ImGui::PopStyleColor();
 
   //---------------------------
 }

@@ -31,6 +31,9 @@ public:
   //Scaling
   void make_scaling(eng::structure::Object* object, float scale);
 
+  //Transformation
+  void make_transformation(eng::structure::Object* object, mat4 translation, mat4 rotation);
+  
   //Subfunction
   mat4 get_translation_mat(vec3 trans);
   mat4 get_translation_mat_neye(vec3 trans);

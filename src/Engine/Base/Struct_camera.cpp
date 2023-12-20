@@ -14,7 +14,7 @@ Camera::Camera(){
 void Camera::reset(){
   //---------------------------
 
-  this->angle_azimuth = M_PI + M_PI/4;
+  this->angle_azimuth = M_PI/4;
   this->angle_elevation = -M_PI/6;
   this->fov = 65;
   this->speed_mouse = 0.0030000000260770321;
@@ -23,7 +23,7 @@ void Camera::reset(){
   this->clip_near = 0.01;
 
   this->cam_R = glm::normalize(glm::vec3(cos(angle_azimuth - M_PI/2.0f), sin(angle_azimuth - M_PI/2.0f), 0));
-  this->cam_P = glm::vec3(5, 5, 5);
+  this->cam_P = glm::vec3(-5, -5, 5);
 
   this->projection = "perspective";
   this->view = "oblique";

@@ -49,8 +49,7 @@ void Axis::create(eng::structure::Cloud* cloud){
 void Axis::update(eng::structure::Cloud* cloud){
   //---------------------------
 
-  eng_transform->make_translation(&cloud->axis, cloud->trans);
-  eng_transform->make_rotation(&cloud->axis, cloud->rotat);
+  eng_transform->make_transformation(&cloud->axis, cloud->trans, cloud->rotat);
 
   //---------------------------
 }

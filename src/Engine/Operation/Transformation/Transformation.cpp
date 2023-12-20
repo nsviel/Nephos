@@ -60,10 +60,7 @@ void Transformation::make_rotation(eng::structure::Object* object, vec3 degree){
   vec3 radian = math::degree_to_radian(degree);
   mat4 rotation = get_rotation_mat(radian);
   mat4 COM_mat = get_translation_mat_neye(COM);
-  vec4 COM_hom = vec4(COM.x, COM.y, COM.z, 1);
 
-  COM_hom = COM_hom * rotation;
-  object->COM = vec3(COM_hom.x, COM_hom.y, COM_hom.z);
   object->rotat *= rotation;
   object->model -= COM_mat;
   object->model *= rotation;
@@ -103,6 +100,16 @@ void Transformation::make_scaling(eng::structure::Object* object, float scale){
 }
 
 //Transformation
+void Transformation::make_transformation(eng::structure::Object* object, mat4 translation, mat4 rotation){
+  if(object == nullptr) return;
+  //---------------------------
+
+  object->model = rotation * translation;
+
+  //---------------------------
+}
+
+//Subfunction
 mat4 Transformation::get_translation_mat(vec3 trans){
   glm::mat4 translation(1.0);
   //---------------------------
