@@ -21,7 +21,7 @@ public:
   //Data function
   void find_depth(K4A_device* k4a_device, k4a::capture capture);
   void find_color(K4A_device* k4a_device, k4a::capture capture);
-  void find_color_from_depth(K4A_device* k4a_device, k4a::capture capture);
+  void find_color_from_depth(K4A_device* k4a_device, k4a::capture capture, k4a::transformation& transformation);
   void find_ir(K4A_device* k4a_device, k4a::capture capture);
 
   //Subfunction

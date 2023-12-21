@@ -56,9 +56,10 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
   k4a::capture capture;
   while(thread_running){
     playback.get_next_capture(&capture);
-    if(!capture) break;
+    if(!capture) continue;
 
     k4a_data->find_data_from_capture(k4a_device, capture);
+    k4a_data->find_color_from_depth(k4a_device, capture, k4a_device->device.transformation);
     k4a_cloud->convert_into_cloud(k4a_device);
     this->sleep_necessary_time(k4a_device->device.fps_mode);
 

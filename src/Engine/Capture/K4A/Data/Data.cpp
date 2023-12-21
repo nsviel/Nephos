@@ -26,7 +26,6 @@ void Data::find_data_from_capture(K4A_device* k4a_device, k4a::capture capture){
   //Capture data
   this->find_depth(k4a_device, capture);
   this->find_color(k4a_device, capture);
-  this->find_color_from_depth(k4a_device, capture);
   this->find_ir(k4a_device, capture);
 
   //Finish
@@ -87,33 +86,6 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
   color.reset();
 }
-void Data::find_color_from_depth(K4A_device* k4a_device, k4a::capture capture){
-  if(!k4a_device->color.image.image || !k4a_device->depth.image.image) return;
-  //---------------------------
-
-  //Convert it into a depth POV representation
-  k4a::image color_from_depth = k4a_device->device.transformation.color_image_to_depth_camera(k4a_device->depth.image.image, k4a_device->color.image.image);
-  if(!color_from_depth || !color_from_depth.is_valid()){
-    return;
-  }
-
-  //Get specific information
-  float timestamp = k4a_device->color.image.timestamp;
-  string format = k4a_device->color.image.format;
-  this->retrieve_data_from_capture(color_from_depth, k4a_device->color.image_depth.data, format);
-
-  //Fill data structure
-  k4a_device->color.image_depth.image = color_from_depth;
-  k4a_device->color.image_depth.name = "color_from_depth";
-  k4a_device->color.image_depth.size = k4a_device->color.image_depth.data.size();
-  k4a_device->color.image_depth.width = color_from_depth.get_width_pixels();
-  k4a_device->color.image_depth.height = color_from_depth.get_height_pixels();
-  k4a_device->color.image_depth.format = format;
-  k4a_device->color.image_depth.timestamp = timestamp;
-
-  //---------------------------
-  color_from_depth.reset();
-}
 void Data::find_ir(K4A_device* k4a_device, k4a::capture capture){
   k4a::image ir = capture.get_ir_image();
   //---------------------------
@@ -138,6 +110,33 @@ void Data::find_ir(K4A_device* k4a_device, k4a::capture capture){
 
   //---------------------------
   ir.reset();
+}
+void Data::find_color_from_depth(K4A_device* k4a_device, k4a::capture capture, k4a::transformation& transformation){
+  if(!k4a_device->color.image.image || !k4a_device->depth.image.image) return;
+  //---------------------------
+
+  //Convert it into a depth POV representation
+  k4a::image color_from_depth = transformation.color_image_to_depth_camera(k4a_device->depth.image.image, k4a_device->color.image.image);
+  if(!color_from_depth || !color_from_depth.is_valid()){
+    return;
+  }
+
+  //Get specific information
+  float timestamp = k4a_device->color.image.timestamp;
+  string format = k4a_device->color.image.format;
+  this->retrieve_data_from_capture(color_from_depth, k4a_device->color.image_depth.data, format);
+
+  //Fill data structure
+  k4a_device->color.image_depth.image = color_from_depth;
+  k4a_device->color.image_depth.name = "color_from_depth";
+  k4a_device->color.image_depth.size = k4a_device->color.image_depth.data.size();
+  k4a_device->color.image_depth.width = color_from_depth.get_width_pixels();
+  k4a_device->color.image_depth.height = color_from_depth.get_height_pixels();
+  k4a_device->color.image_depth.format = format;
+  k4a_device->color.image_depth.timestamp = timestamp;
+
+  //---------------------------
+  color_from_depth.reset();
 }
 
 //Subfunction
