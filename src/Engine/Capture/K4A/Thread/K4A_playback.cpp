@@ -175,13 +175,10 @@ void K4A_playback::manage_restart(K4A_device* k4a_device){
   //---------------------------
 
   if(k4a_device->player.ts_cur == k4a_device->player.ts_end){
-    if(k4a_device->player.restart){
-      k4a_device->player.play = true;
-      k4a_device->device.playback->seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
-    }
-    else{
-      k4a_device->player.play = false;
-    }
+    k4a_device->player.play = k4a_device->player.restart;
+    k4a_device->player.pause = !k4a_device->player.restart;
+    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(k4a_device->player.ts_beg));
+    k4a_device->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
   }
 
   //---------------------------

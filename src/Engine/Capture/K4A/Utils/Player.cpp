@@ -20,7 +20,6 @@ void Player::play(K4A_device* k4a_device){
   //---------------------------
 
   if(!player->play){
-    player->ts_seek = player->ts_beg;
     player->play = true;
     player->pause = false;
   }else{
