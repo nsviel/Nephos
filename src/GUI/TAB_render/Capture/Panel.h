@@ -28,6 +28,7 @@ private:
   gui::kinect::Playback* kin_playback;
   gui::kinect::Recorder* kin_recorder;
   gui::kinect::Player* kin_player;
+  gui::kinect::Operation* kin_operation;
 };
 
 }

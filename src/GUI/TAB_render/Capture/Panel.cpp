@@ -19,6 +19,7 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
   this->kin_playback = new gui::kinect::Playback(kinect);
   this->kin_recorder = new gui::kinect::Recorder(kinect);
   this->kin_player = new gui::kinect::Player(kinect);
+  this->kin_operation = new gui::kinect::Operation(kinect);
 
   //---------------------------
 }
@@ -31,8 +32,9 @@ void Panel::design_panel(){
   kin_player->draw_player();
   kin_capture->kinect_configuration();
   kin_playback->kinect_playback();
+  kin_operation->kinect_operation();
   kin_recorder->kinect_recorder();
-
+  
   //---------------------------
 }
 

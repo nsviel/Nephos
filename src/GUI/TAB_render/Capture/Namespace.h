@@ -1,5 +1,6 @@
 #pragma once
 
+#include <GUI/TAB_render/Capture/Operation.h>
 #include <GUI/TAB_render/Capture/Player.h>
 #include <GUI/TAB_render/Capture/Capture.h>
 #include <GUI/TAB_render/Capture/Playback.h>
@@ -17,6 +18,7 @@ namespace gui::kinect{
   class Panel;
   class Stream;
   class Player;
+  class Operation;
 
   //---------------------------
 }
