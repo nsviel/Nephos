@@ -17,7 +17,7 @@ public:
 
 public:
   //Main function
-  void make_colorization(vector<vec4>& vec_rgba, int size, int mode);
+  void make_colorization(vector<vec4>& vec_rgba, int size, int mode, vec4 unicolor);
 
 private:
 
