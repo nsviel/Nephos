@@ -79,6 +79,10 @@ void Cloud::loop_end(K4A_device* k4a_device){
   cloud->object->xyz = vec_xyz;
   kin_operation->make_colorization(cloud, vec_rgba);
 
+  for(int i=0; i<vec_rgba.size(); i++){
+    vec_rgba[i] = vec4(vec_ir[i]/100, vec_ir[i]/100, vec_ir[i]/100, 1);
+  }
+
   cloud->object->rgb = vec_rgba;
 
   //---------------------------
@@ -130,10 +134,8 @@ void Cloud::retrieve_ir(K4A_device* k4a_device, int i){
 
   const vector<uint8_t>& ir_data = k4a_device->ir.image.data;
 
-  int color_idx = i;
-  float value = static_cast<float>(ir_data[color_idx]);
-
-  say(value);
+  int color_idx = i * 2;
+  uint16_t value = static_cast<uint16_t>(ir_data[color_idx]) | (static_cast<uint16_t>(ir_data[color_idx + 1]) << 8);
 
   //---------------------------
   vec_ir.push_back(value);
