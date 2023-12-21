@@ -77,9 +77,9 @@ void Cloud::loop_end(K4A_device* k4a_device){
   eng::kinect::structure::Cloud* cloud = k4a_device->get_cloud();
   cloud->nb_point = vec_xyz.size();
   cloud->object->xyz = vec_xyz;
+  cloud->object->Is = vec_ir;
   kin_operation->make_colorization(cloud, vec_rgba);
   cloud->object->rgb = vec_rgba;
-  cloud->object->Is = vec_ir;
 
   //---------------------------
 }

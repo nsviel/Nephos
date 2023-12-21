@@ -58,6 +58,12 @@ void Operation::colorization(){
   ImGui::SameLine();
   ImGui::RadioButton("Heatmap", &k4a_device->cloud.color_mode, 3);
 
+  //Intensity cursor
+  if(k4a_device->cloud.color_mode == 2){
+    ImGui::SetNextItemWidth(100);
+    ImGui::SliderInt("Intensity division", &k4a_device->cloud.intensity_division, 1, 5000);
+  }
+
   //Heatmap mode
   if(k4a_device->cloud.color_mode == 3){
     ImGui::Indent();
@@ -66,6 +72,11 @@ void Operation::colorization(){
     ImGui::RadioButton("H", &k4a_device->cloud.heatmap_mode, 1);
     ImGui::SameLine();
     ImGui::RadioButton("R", &k4a_device->cloud.heatmap_mode, 2);
+
+    if(k4a_device->cloud.heatmap_mode == 0){
+      ImGui::SetNextItemWidth(100);
+      ImGui::SliderInt("Intensity division", &k4a_device->cloud.intensity_division, 1, 5000);
+    }
     ImGui::Unindent();
   }
 

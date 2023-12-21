@@ -15,6 +15,7 @@ public:
   ~Heatmap();
 
   //Main function
+  vector<vec4> heatmap_intensity(eng::structure::Object* object, int diviser);
   vector<vec4> heatmap_height(eng::structure::Object* object);
 
   //Specific mode functions
