@@ -25,10 +25,10 @@ public:
   void find_ir(K4A_device* k4a_device, k4a::capture capture);
 
   //Subfunction
-  string convert_k4a_format(k4a_image_format_t color_format);
+  string retrieve_format_from_k4a(k4a_image_format_t color_format);
   k4a::image retrieve_image_from_capture(k4a::image& image);
-  void retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data);
-  void convert_mjpeg_image(k4a::image& image, vector<uint8_t>& data);
+  void retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data, string& format);
+  void retrieve_bgra_from_mjpeg(k4a::image& image, vector<uint8_t>& data);
 
 private:
   tjhandle tj_handle;

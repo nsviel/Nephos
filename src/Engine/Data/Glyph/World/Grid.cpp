@@ -8,7 +8,7 @@ Grid::Grid(){
   //---------------------------
 
   this->name = "grid";
-  this->grid_color = vec4(1, 1, 1, 1);
+  this->grid_color = vec4(1, 1, 1, 0.3);
   this->nb_cell = 4;
 
   //---------------------------
