@@ -46,13 +46,9 @@ void Operation::colorization(){
   ImGui::RadioButton("RGB", &k4a_device->cloud.color_mode, 0);
   ImGui::SameLine();
   ImGui::RadioButton("##unicolor", &k4a_device->cloud.color_mode, 1);
-
   ImGui::SameLine();
-  ImGuiColorEditFlags flags;
-  flags |= ImGuiColorEditFlags_NoInputs;
-  flags |= ImGuiColorEditFlags_AlphaBar;
+  ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
   ImGui::ColorEdit4("##unicolor_choice", (float*)&k4a_device->cloud.object->unicolor, flags);
-
   ImGui::SameLine();
   ImGui::RadioButton("I", &k4a_device->cloud.color_mode, 2);
   ImGui::SameLine();
