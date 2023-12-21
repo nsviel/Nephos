@@ -63,8 +63,9 @@ void Cloud::retrieve_location(K4A_device* k4a_device){
 
   eng::kinect::structure::Cloud* cloud = k4a_device->get_cloud();
   cloud->nb_point = vec_xyz.size();
-  kin_operation->make_colorization(cloud, vec_rgba);
   cloud->object->xyz = vec_xyz;
+  kin_operation->make_colorization(cloud, vec_rgba);
+
   cloud->object->rgb = vec_rgba;
 
   //---------------------------

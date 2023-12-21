@@ -565,7 +565,11 @@ std::vector<float> fct_normalize(std::vector<float>& vec, glm::vec2 range){
 
   //Normalization
   for(int i=0; i<size; i++){
-    vec_out[i] = (vec[i] - min) / (max - min);
+    if(vec_out[i] < min || vec_out[i] > max){
+      vec_out[i] = -1;
+    }else{
+      vec_out[i] = (vec[i] - min) / (max - min);
+    }
   }
 
   //-----------------------------

@@ -12,10 +12,9 @@ Heatmap::Heatmap(){
   this->colormapManager = new eng::ope::Colormap();
   this->attribManager = new eng::ope::Attribut();
 
-  this->heatmap_mode = 1;
   this->is_normalization = true;
   this->range_norm = vec2(0.0f, 1.0f);
-  this->range_height = vec2(-2.0f, 2.0f);
+  this->range_height = vec2(-1.0f, 2.0f);
   this->range_intensity = vec2(0.0f, 1.0f);
 
   //---------------------------
@@ -29,10 +28,12 @@ Heatmap::~Heatmap(){
 }
 
 //Main function
-vector<vec4> Heatmap::retrieve_heatmap(eng::structure::Object* object){
+vector<vec4> Heatmap::heatmap_height(eng::structure::Object* object){
   //---------------------------
 
-
+  vector<float> z_vec = attribManager->retrieve_z_vector(object);
+  vector<float> z_vec_norm = math::fct_normalize(z_vec, range_height);
+  this->compute_heatmap(z_vec_norm, object->xyz.size());
 
   //---------------------------
   return heatmap;
@@ -42,7 +43,7 @@ vector<vec4> Heatmap::retrieve_heatmap(eng::structure::Object* object){
 void Heatmap::mode_height(eng::structure::Object* object){
   //---------------------------
 
-  vector<float> z_vec = attribManager->get_z_vector(object->xyz);
+  vector<float> z_vec = attribManager->retrieve_z_vector(object);
   this->heatmap_set(object, z_vec);
 
   //---------------------------
@@ -110,6 +111,46 @@ void Heatmap::mode_It(eng::structure::Object* object){
 }
 
 //Processing functions
+void Heatmap::compute_heatmap(vector<float>& v_in, int size){
+  //---------------------------
+
+  heatmap.clear();
+  heatmap.reserve(size);
+
+  //Normalization of the input vector
+  vector<float> v_norm;
+  if(is_normalization){
+    v_norm = math::fct_normalize(v_in, -1);
+  }else{
+    v_norm = v_in;
+  }
+
+  //Compute heatmap from input vector
+  vec4 color;
+  for(int i=0; i<size; i++){
+    if(v_in[i] != -1 && isnan(v_norm[i]) == false){
+      vector<vec3>* colormap = colormapManager->get_colormap_selected();
+
+      float value = v_norm[i] * (colormap->size()-1);        // Will multiply value by 3.
+      float idx1  = floor(value);                  // Our desired color will be after this index.
+      float idx2  = idx1 + 1;                        // ... and before this index (inclusive).
+      float fractBetween = value - float(idx1);    // Distance between the two indexes (0-1).
+
+      float red   = ((*colormap)[idx2][0] - (*colormap)[idx1][0]) * fractBetween + (*colormap)[idx1][0];
+      float green = ((*colormap)[idx2][1] - (*colormap)[idx1][1]) * fractBetween + (*colormap)[idx1][1];
+      float blue  = ((*colormap)[idx2][2] - (*colormap)[idx1][2]) * fractBetween + (*colormap)[idx1][2];
+
+      color = vec4(red, green, blue, 1.0f);
+    }
+    else{
+      color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+    }
+
+    heatmap.push_back(color);
+  }
+
+  //---------------------------
+}
 void Heatmap::heatmap_set(eng::structure::Object* object, vector<float>& v_in){
   vector<vec4>& RGB = object->rgb;
   //---------------------------

@@ -7,6 +7,7 @@ namespace eng::kinect{
 Operation::Operation(){
   //---------------------------
 
+  this->ope_heatmap = new eng::ope::Heatmap();
 
   //---------------------------
 }
@@ -27,7 +28,7 @@ void Operation::make_colorization(eng::kinect::structure::Cloud* cloud, vector<v
   }
   //Heatmap
   else if(cloud->color_mode == 3){
-
+    vec_rgba = ope_heatmap->heatmap_height(cloud->object);
   }
 
   //---------------------------

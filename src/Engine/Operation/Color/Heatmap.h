@@ -15,7 +15,7 @@ public:
   ~Heatmap();
 
   //Main function
-  vector<vec4> retrieve_heatmap(eng::structure::Object* object);
+  vector<vec4> heatmap_height(eng::structure::Object* object);
 
   //Specific mode functions
   void mode_height(eng::structure::Object* object);
@@ -25,6 +25,7 @@ public:
   void mode_It(eng::structure::Object* object);
 
   //Heatmap functions
+  void compute_heatmap(vector<float>& v_in, int size);
   void heatmap_set(eng::structure::Object* object, vector<float>& v_in);
 
 private:
@@ -36,7 +37,6 @@ private:
   vec2 range_height;
   vec2 range_intensity;
   bool is_normalization;
-  int heatmap_mode;
 };
 
 }
