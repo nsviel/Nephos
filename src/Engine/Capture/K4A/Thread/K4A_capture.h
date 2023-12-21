@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Capture/K4A/Thread/Cloud.h>
 #include <Engine/Capture/K4A/Data/Namespace.h>
 #include <Engine/Capture/K4A/Device/K4A_device.h>
 #include <Engine/Capture/K4A/Utils/Namespace.h>
@@ -36,7 +37,7 @@ public:
 private:
   FPS_counter* fps_counter;
   eng::kinect::data::Data* k4a_data;
-  eng::kinect::data::Cloud* k4a_cloud;
+  Cloud* k4a_cloud;
   eng::kinect::Configuration* k4a_config;
 
   std::thread thread;

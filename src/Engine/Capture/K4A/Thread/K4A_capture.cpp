@@ -11,7 +11,7 @@ K4A_capture::K4A_capture(Engine* engine){
 
   this->fps_counter = new FPS_counter(60);
   this->k4a_data = new eng::kinect::data::Data();
-  this->k4a_cloud = new eng::kinect::data::Cloud(engine);
+  this->k4a_cloud = new Cloud(engine);
   this->k4a_config = new eng::kinect::Configuration();
 
   //---------------------------
@@ -20,6 +20,7 @@ K4A_capture::~K4A_capture(){
   //---------------------------
 
   this->stop_thread();
+  this->thread.join();
 
   //---------------------------
 }

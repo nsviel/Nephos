@@ -7,8 +7,6 @@
 class Engine;
 
 
-namespace eng::kinect::data{
-
 class Cloud
 {
 public:
@@ -40,5 +38,3 @@ private:
   std::vector<glm::vec4> vec_rgba;
   std::vector<float> vec_ir;
 };
-
-}

@@ -5,8 +5,6 @@
 #include <Engine/Operation/Transformation/Transformation.h>
 
 
-namespace eng::kinect::data{
-
 //Constructor / Destructor
 Cloud::Cloud(Engine* engine){
   //---------------------------
@@ -74,10 +72,13 @@ void Cloud::loop_end(K4A_device* k4a_device){
   if(k4a_device->depth.image.data.empty()) return;
   //---------------------------
 
+  //Store capture data
   eng::kinect::structure::Cloud* cloud = k4a_device->get_cloud();
   cloud->nb_point = vec_xyz.size();
   cloud->object->xyz = vec_xyz;
   cloud->object->Is = vec_ir;
+
+  //Final colorization
   kin_operation->make_colorization(cloud, vec_rgba);
   cloud->object->rgb = vec_rgba;
 
@@ -146,7 +147,4 @@ void Cloud::retrieve_corner_coordinate(K4A_device* k4a_device){
   }
 
   //---------------------------
-}
-
-
 }

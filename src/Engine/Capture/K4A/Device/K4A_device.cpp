@@ -20,7 +20,13 @@ K4A_device::K4A_device(Engine* engine){
 
   //---------------------------
 }
-K4A_device::~K4A_device(){}
+K4A_device::~K4A_device(){
+  //---------------------------
+
+  this->destroy();
+
+  //---------------------------
+}
 
 //Main function
 void K4A_device::init(){
