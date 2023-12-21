@@ -68,17 +68,40 @@ void Transformation::make_rotation(eng::structure::Object* object, vec3 degree){
 
   //---------------------------
 }
-void Transformation::make_rotation(eng::structure::Object* object, mat4 rotation){
+void Transformation::make_rotation(eng::structure::Object* object, vec3 COM, mat4 rotation){
   if(object == nullptr) return;
   //---------------------------
 
-  vec3& COM = object->COM;
+  //vec3& COM = object->COM;
   mat4 COM_mat = get_translation_mat_neye(COM);
 
   object->rotat *= rotation;
   object->model -= COM_mat;
   object->model *= rotation;
   object->model += COM_mat;
+
+  //---------------------------
+}
+void Transformation::make_rotation_axe_X(eng::structure::Object* object, float degree){
+  if(object == nullptr) return;
+  //---------------------------
+
+  float radian = math::degree_to_radian(degree);
+
+  // Matrice de rotation locale autour de l'axe x
+  glm::mat4 rotationMatrixXLocal = glm::rotate(glm::mat4(1.0f), radian, glm::vec3(1.0f, 0.0f, 0.0f));
+
+  // Obtenez la partie de translation de la matrice modèle actuelle
+  glm::vec3 translation = glm::vec3(object->model[3]);
+
+  // Appliquez la nouvelle rotation locale à la matrice modèle
+  object->model = glm::translate(glm::mat4(1.0f), translation) * rotationMatrixXLocal * object->model;
+
+  // Mettez à jour les composantes de rotation cumulatives
+  object->rotat = rotationMatrixXLocal * object->rotat;
+
+  // Mettez à jour les composantes de translation cumulatives
+  object->trans = glm::translate(glm::mat4(1.0f), translation) * object->trans;
 
   //---------------------------
 }
@@ -100,11 +123,16 @@ void Transformation::make_scaling(eng::structure::Object* object, float scale){
 }
 
 //Transformation
-void Transformation::make_transformation(eng::structure::Object* object, mat4 translation, mat4 rotation){
+void Transformation::make_transformation(eng::structure::Object* object, vec3 COM, mat4 translation, mat4 rotation){
   if(object == nullptr) return;
   //---------------------------
 
-  object->model = rotation * translation;
+  mat4 COM_mat = get_translation_mat_neye(COM);
+
+  object->model = translation;
+  object->model -= COM_mat;
+  object->model *= rotation;
+  object->model += COM_mat;
 
   //---------------------------
 }

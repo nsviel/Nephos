@@ -14,14 +14,17 @@ void Attribut::compute_MinMax(eng::structure::Object* object){
   //---------------------------
 
   vec3 centroid = vec3(0, 0, 0);
-  vec3 min = XYZ[0];
-  vec3 max = XYZ[0];
+  vec3 min = vec3(1000000, 1000000, 1000000);
+  vec3 max = vec3(-1000000, -1000000, -1000000);
 
   for(int i=0; i<XYZ.size(); i++){
+    vec4 xys_h = vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
+    xys_h = xys_h * object->model;
+
     for(int j=0; j<3; j++){
-      if(XYZ[i][j] <= min[j]) min[j] = XYZ[i][j];
-      if(XYZ[i][j] >= max[j]) max[j] = XYZ[i][j];
-      centroid[j] += XYZ[i][j];
+      if(xys_h[j] <= min[j]) min[j] = xys_h[j];
+      if(xys_h[j] >= max[j]) max[j] = xys_h[j];
+      centroid[j] += xys_h[j];
     }
   }
 

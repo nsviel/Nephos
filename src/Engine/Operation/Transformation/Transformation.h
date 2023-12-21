@@ -26,14 +26,15 @@ public:
   // Rotation
   void make_rotation(eng::structure::Object* object, vec3 COM, vec3 radian);
   void make_rotation(eng::structure::Object* object, vec3 degree);
-  void make_rotation(eng::structure::Object* object, mat4 rotation);
+  void make_rotation(eng::structure::Object* object, vec3 COM, mat4 rotation);
+  void make_rotation_axe_X(eng::structure::Object* object, float degree);
 
   //Scaling
   void make_scaling(eng::structure::Object* object, float scale);
 
   //Transformation
-  void make_transformation(eng::structure::Object* object, mat4 translation, mat4 rotation);
-  
+  void make_transformation(eng::structure::Object* object, vec3 COM, mat4 translation, mat4 rotation);
+
   //Subfunction
   mat4 get_translation_mat(vec3 trans);
   mat4 get_translation_mat_neye(vec3 trans);

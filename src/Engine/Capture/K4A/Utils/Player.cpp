@@ -73,8 +73,8 @@ void Player::record(K4A_device* k4a_device){
 void Player::rotation(K4A_device* k4a_device, int value){
   //---------------------------
 
-  ope_attribut->compute_MinMax(k4a_device->cloud.object);say(k4a_device->cloud.object.COM);
-  ope_transform->make_rotation(k4a_device->cloud.object, vec3(value * 90, 0, 0));
+  ope_attribut->compute_MinMax(k4a_device->cloud.object);
+  ope_transform->make_rotation_axe_X(k4a_device->cloud.object, value * 90);
 
   //---------------------------
 }
