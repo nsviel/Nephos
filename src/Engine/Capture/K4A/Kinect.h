@@ -24,6 +24,7 @@ public:
 public:
   //Main function
   void loop();
+  void reset();
 
   inline K4A_swarm* get_k4a_swarm(){return k4a_swarm;}
 

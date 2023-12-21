@@ -29,6 +29,18 @@ void K4A_swarm::draw_all_clouds(){
 
   //---------------------------
 }
+void K4A_swarm::reset_all_device(){
+  list<K4A_device*>& list_device = str_swarm->list_device;
+  //---------------------------
+
+  //Run all thread
+  for(int i=0; i<list_device.size(); i++){
+    K4A_device* k4a_device = *std::next(list_device.begin(), i);
+    k4a_device->player.ts_seek = k4a_device->player.ts_beg;
+  }
+
+  //---------------------------
+}
 
 //Connection function
 void K4A_swarm::refresh_connected_device(){

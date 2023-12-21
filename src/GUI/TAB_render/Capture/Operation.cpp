@@ -35,14 +35,17 @@ void Operation::kinect_operation(){
 
 //Subfunction
 void Operation::colorization(){
+  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  if(k4a_device == nullptr) return;
   //---------------------------
-/*
-  static int item_current_2 = 0;
-  const char* items[] = { "AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIII", "JJJJ", "KKKK", "LLLLLLL", "MMMM", "OOOOOOO" };
 
-  ImGui::Combo("combo 2 (one-liner)", &item_current_2, "aaaa\0bbbb\0cccc\0dddd\0eeee\0\0");
+  static int color_mode = 2;
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Colorization");
+  ImGui::RadioButton("Camera", &k4a_device->cloud.color_mode, 0);
+  ImGui::RadioButton("Unicolor", &k4a_device->cloud.color_mode, 1);
+  ImGui::RadioButton("White", &k4a_device->cloud.color_mode, 2);
+  ImGui::RadioButton("Heatmap", &k4a_device->cloud.color_mode, 3);
 
-*/
   //---------------------------
 }
 

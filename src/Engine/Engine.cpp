@@ -71,6 +71,7 @@ void Engine::reset(){
 
   eng_camera->reset();
   eng_data->reset();
+  eng_capture->reset();
 
   //---------------------------
 }

@@ -20,6 +20,7 @@ public:
   void init();
   void loop();
   void clean();
+  void reset();
 
   inline eng::kinect::Kinect* get_kinect(){return kinect;}
 
