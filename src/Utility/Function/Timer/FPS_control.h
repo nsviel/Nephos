@@ -6,21 +6,20 @@
 #include <thread>
 
 
-class FPS_counter
+class FPS_control
 {
 public:
-  FPS_counter(int fps_max);
-  ~FPS_counter();
+  FPS_control(int fps_max);
+  ~FPS_control();
 
   //Main function
-  void update();
+  void start();
+  void stop();
 
-  inline float get_fps() const { return fps;}
   inline void set_fps_max(int value){this->fps_max = value;}
   inline int get_fps_max(){return fps_max;}
 
 private:
-  std::chrono::time_point<std::chrono::steady_clock> last_time;
-  float fps = 0;
+  std::chrono::time_point<std::chrono::steady_clock> start_time;
   int fps_max = 60;
 };

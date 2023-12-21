@@ -9,7 +9,7 @@
 K4A_playback::K4A_playback(Engine* engine){
   //---------------------------
 
-  this->fps_counter = new FPS_counter(60);
+  this->fps_counter = new FPS_counter(30);
   this->k4a_data = new eng::kinect::data::Data();
   this->k4a_processing = new K4A_processing(engine);
   this->k4a_config = new eng::kinect::Configuration();
@@ -56,6 +56,7 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
   //Playback thread
   k4a::capture capture;
   while(thread_running){
+    auto start_time = std::chrono::high_resolution_clock::now();
     playback.get_next_capture(&capture);
     if(!capture) continue;
 
@@ -71,6 +72,18 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
 
     fps_counter->update();
     k4a_device->device.fps = fps_counter->get_fps();
+say(k4a_device->device.fps);
+    auto end_time = std::chrono::high_resolution_clock::now();
+     auto elapsed_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+
+     // Calculate the time to sleep to achieve the desired FPS
+     int sleep_time = 1000000.0f/30.0f - elapsed_time;
+     //say("(---)");
+     //say(sleep_time);
+     //say(elapsed_time);
+     if (sleep_time > 0) {
+         std::this_thread::sleep_for(std::chrono::microseconds(sleep_time));
+     }
   }
 
   playback.close();
