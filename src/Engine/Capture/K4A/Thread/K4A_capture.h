@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Engine/Capture/K4A/Thread/Cloud.h>
 #include <Engine/Capture/K4A/Data/Namespace.h>
 #include <Engine/Capture/K4A/Device/K4A_device.h>
 #include <Engine/Capture/K4A/Utils/Namespace.h>
