@@ -14,7 +14,7 @@ K4A_playback::K4A_playback(Engine* engine){
   this->fps_control = new FPS_control(30);
 
   this->k4a_data = new eng::kinect::data::Data();
-  this->k4a_processing = new K4A_processing(engine);
+  this->k4a_processing = new eng::kinect::data::Cloud(engine);
   this->k4a_config = new eng::kinect::Configuration();
 
   //---------------------------
@@ -60,7 +60,7 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
   k4a::capture capture;
   while(thread_running){
     fps_control->start();
-    
+
     playback.get_next_capture(&capture);
     if(!capture) continue;
 

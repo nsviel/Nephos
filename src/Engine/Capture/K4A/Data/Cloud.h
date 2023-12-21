@@ -7,12 +7,14 @@
 class Engine;
 
 
-class K4A_processing
+namespace eng::kinect::data{
+
+class Cloud
 {
 public:
   //Constructor / Destructor
-  K4A_processing(Engine* engine);
-  ~K4A_processing();
+  Cloud(Engine* engine);
+  ~Cloud();
 
 public:
   //Main function
@@ -37,5 +39,6 @@ private:
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgba;
   std::vector<float> vec_ir;
-  std::thread thread;
 };
+
+}
