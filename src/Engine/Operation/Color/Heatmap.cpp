@@ -28,6 +28,16 @@ Heatmap::~Heatmap(){
   //---------------------------
 }
 
+//Main function
+vector<vec4> Heatmap::retrieve_heatmap(eng::structure::Object* object){
+  //---------------------------
+
+
+
+  //---------------------------
+  return heatmap;
+}
+
 //Specific mode functions
 void Heatmap::mode_height(eng::structure::Object* object){
   //---------------------------

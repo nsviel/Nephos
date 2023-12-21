@@ -21,6 +21,8 @@ struct Cloud{
   * 3 -> heatmap
   */
   int color_mode = 2;
+  int heatmap_mode = 0;
+  int nb_point = 0;
 
   //---------------------------
 };

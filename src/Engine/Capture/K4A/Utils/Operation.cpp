@@ -13,23 +13,23 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Main function
-void Operation::make_colorization(vector<vec4>& vec_rgba, int size, int mode, vec4 unicolor){
+void Operation::make_colorization(eng::kinect::structure::Cloud* cloud, vector<vec4>& vec_rgba){
   //---------------------------
 
   //Colored unicolor
-  if(mode == 1){
-    vec_rgba = vector<vec4> (size, unicolor);
+  if(cloud->color_mode == 1){
+    vec_rgba = vector<vec4> (cloud->nb_point, cloud->object->unicolor);
   }
   //White unicolor
-  if(mode == 2){
+  else if(cloud->color_mode == 2){
     vec4 white = vec4(1.0f, 1.0f, 1.0f, 1.0f);
-    vec_rgba = vector<vec4> (size, white);
+    vec_rgba = vector<vec4> (cloud->nb_point, white);
   }
   //Heatmap
-  else if(mode == 3){
+  else if(cloud->color_mode == 3){
 
   }
-  
+
   //---------------------------
 }
 
