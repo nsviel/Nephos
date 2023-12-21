@@ -18,14 +18,16 @@ public:
   void control_max_fps();
 
   inline float get_fps() const { return fps;}
+  inline void set_fps_max(int value){this->max_fps = value;}
+  inline int get_fps_max(){return max_fps;}
 
 private:
+  std::chrono::time_point<std::chrono::steady_clock> lastUpdateTime_;
+  std::vector<int> frame_times;
+  float fps = 0;
+  int64_t average_fps = 0;
   int history_size;
   int max_fps = 60;
   int cpt_frame = 0;
-  std::vector<int> frame_times;
   int currentIndex_ = 0;
-  int64_t average_fps = 0;
-  float fps = 0;
-  std::chrono::time_point<std::chrono::steady_clock> lastUpdateTime_;
 };

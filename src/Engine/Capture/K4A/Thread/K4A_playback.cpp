@@ -11,7 +11,7 @@ K4A_playback::K4A_playback(Engine* engine){
 
   this->fps_counter = new FPS_counter(60);
   this->k4a_data = new eng::kinect::data::Data();
-  this->k4a_cloud = new K4A_processing(engine);
+  this->k4a_processing = new K4A_processing(engine);
   this->k4a_config = new eng::kinect::Configuration();
 
   //---------------------------
@@ -61,9 +61,10 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
 
     k4a_data->find_data_from_capture(k4a_device, capture);
     k4a_data->find_color_from_depth(k4a_device, capture, k4a_device->device.transformation);
-    k4a_cloud->convert_into_cloud(k4a_device);
-    this->sleep_necessary_time(k4a_device->device.fps_mode);
 
+    k4a_processing->convert_into_cloud(k4a_device);
+
+    this->manage_fps(k4a_device->device.fps_mode);
     this->manage_pause(k4a_device);
     this->manage_query_ts(k4a_device);
     this->manage_restart(k4a_device);
@@ -88,18 +89,18 @@ void K4A_playback::stop_thread(){
 }
 
 //Subfunction
-void K4A_playback::sleep_necessary_time(int fps_mode){
+void K4A_playback::manage_fps(int fps_mode){
   //---------------------------
 
   switch(fps_mode){
     case K4A_FRAMES_PER_SECOND_5:{
-      std::this_thread::sleep_for(std::chrono::milliseconds(200));
+      fps_counter->set_fps_max(5);
     }
     case K4A_FRAMES_PER_SECOND_15:{
-      std::this_thread::sleep_for(std::chrono::milliseconds(66));
+      fps_counter->set_fps_max(15);
     }
     case K4A_FRAMES_PER_SECOND_30:{
-      std::this_thread::sleep_for(std::chrono::milliseconds(33));
+      fps_counter->set_fps_max(30);
     }
   }
 

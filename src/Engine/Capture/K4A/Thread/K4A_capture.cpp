@@ -11,7 +11,7 @@ K4A_capture::K4A_capture(Engine* engine){
 
   this->fps_counter = new FPS_counter(60);
   this->k4a_data = new eng::kinect::data::Data();
-  this->k4a_cloud = new K4A_processing(engine);
+  this->k4a_processing = new K4A_processing(engine);
   this->k4a_config = new eng::kinect::Configuration();
 
   //---------------------------
@@ -67,7 +67,7 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
 
     //Capture data
     k4a_data->find_data_from_capture(k4a_device, capture);
-    k4a_cloud->convert_into_cloud(k4a_device);
+    k4a_processing->convert_into_cloud(k4a_device);
     this->manage_pause(k4a_device);
     this->manage_recording(k4a_device, capture);
 

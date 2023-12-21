@@ -37,7 +37,7 @@ public:
 private:
   FPS_counter* fps_counter;
   eng::kinect::data::Data* k4a_data;
-  K4A_processing* k4a_cloud;
+  K4A_processing* k4a_processing;
   eng::kinect::Configuration* k4a_config;
 
   std::thread thread;

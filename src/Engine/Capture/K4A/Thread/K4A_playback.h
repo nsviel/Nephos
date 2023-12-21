@@ -27,8 +27,8 @@ public:
   void stop_thread();
 
   //Subfunction
-  void sleep_necessary_time(int fps_mode);
   void find_duration(K4A_device* k4a_device);
+  void manage_fps(int fps_mode);
   void manage_query_ts(K4A_device* device);
   void manage_pause(K4A_device* k4a_device);
   void manage_restart(K4A_device* device);
@@ -39,7 +39,7 @@ public:
 private:
   FPS_counter* fps_counter;
   eng::kinect::data::Data* k4a_data;
-  K4A_processing* k4a_cloud;
+  K4A_processing* k4a_processing;
   eng::kinect::Configuration* k4a_config;
 
   std::thread thread;
