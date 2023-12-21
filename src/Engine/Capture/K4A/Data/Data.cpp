@@ -23,10 +23,14 @@ Data::~Data(){
 void Data::find_data_from_capture(K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
 
+  //Capture data
   this->find_depth(k4a_device, capture);
   this->find_color(k4a_device, capture);
   this->find_color_from_depth(k4a_device, capture);
   this->find_ir(k4a_device, capture);
+
+  //Finish
+  k4a_device->player.ts_cur = k4a_device->color.image.timestamp;
   k4a_device->device.data_ready = true;
 
   //---------------------------
@@ -79,7 +83,6 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
   k4a_device->color.image.height = color.get_height_pixels();
   k4a_device->color.image.format = format;
   k4a_device->color.image.timestamp = timestamp;
-  k4a_device->player.ts_cur = k4a_device->color.image.timestamp;
 
   //---------------------------
   color.reset();
@@ -87,35 +90,29 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
 void Data::find_color_from_depth(K4A_device* k4a_device, k4a::capture capture){
   if(!k4a_device->color.image.image || !k4a_device->depth.image.image) return;
   //---------------------------
-/*
-  //Creat a new k4a image with RGBA data format
-  int width = k4a_device->color.image.width;
-  int height = k4a_device->color.image.height;
-  int size = k4a_device->color.image.size;
-  vector<uint8_t> data = k4a_device->color.image.data;
-  k4a::image new_image = k4a::image::create_from_buffer(K4A_IMAGE_FORMAT_COLOR_BGRA32, width, height, width * 4, data.data(), size, nullptr, nullptr);
 
   //Convert it into a depth POV representation
-  k4a::image color_from_depth = k4a_device->device.transformation.color_image_to_depth_camera(k4a_device->depth.image.image, new_image);
+  k4a::image color_from_depth = k4a_device->device.transformation.color_image_to_depth_camera(k4a_device->depth.image.image, k4a_device->color.image.image);
   if(!color_from_depth || !color_from_depth.is_valid()){
     return;
   }
 
   //Get specific information
-  string format = retrieve_format_from_k4a(depth.get_format());
+  float timestamp = k4a_device->color.image.timestamp;
+  string format = k4a_device->color.image.format;
+  this->retrieve_data_from_capture(color_from_depth, k4a_device->color.image_depth.data, format);
 
   //Fill data structure
   k4a_device->color.image_depth.image = color_from_depth;
   k4a_device->color.image_depth.name = "color_from_depth";
-  k4a_device->color.image_depth.data = retrieve_data_from_capture(color_from_depth);
-  k4a_device->color.image_depth.size = color_from_depth.get_size();
+  k4a_device->color.image_depth.size = k4a_device->color.image_depth.data.size();
   k4a_device->color.image_depth.width = color_from_depth.get_width_pixels();
   k4a_device->color.image_depth.height = color_from_depth.get_height_pixels();
-  k4a_device->color.image_depth.format = "B8G8R8A8_SRGB";
-  k4a_device->color.image_depth.timestamp = k4a_device->color.image.timestamp;
-  color_from_depth.reset();
-*/
+  k4a_device->color.image_depth.format = format;
+  k4a_device->color.image_depth.timestamp = timestamp;
+
   //---------------------------
+  color_from_depth.reset();
 }
 void Data::find_ir(K4A_device* k4a_device, k4a::capture capture){
   k4a::image ir = capture.get_ir_image();
@@ -155,7 +152,7 @@ string Data::retrieve_format_from_k4a(k4a_image_format_t color_format){
   }else if(color_format == K4A_IMAGE_FORMAT_COLOR_YUY2){
     format = "YUY2";
   }else if(color_format == K4A_IMAGE_FORMAT_COLOR_BGRA32){
-    format = "B8G8R8A8_SRGB";
+    format = "R8G8B8A8_SRGB";
   }else if(color_format == K4A_IMAGE_FORMAT_DEPTH16){
     format = "DEPTH16";
   }else if(color_format == K4A_IMAGE_FORMAT_IR16){
@@ -176,7 +173,7 @@ k4a::image Data::retrieve_image_from_capture(k4a::image& image){
   //---------------------------
 
   string format = retrieve_format_from_k4a(image.get_format());
-  if(format == "B8G8R8A8_SRGB"){
+  if(format == "R8G8B8A8_SRGB"){
     new_image = image;
   }else if(format == "MJPEG"){
     int width = image.get_width_pixels();
@@ -194,10 +191,10 @@ void Data::retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data, 
 
   if(format == "MJPEG"){
     this->retrieve_bgra_from_mjpeg(image, data);
-    format = "B8G8R8A8_SRGB";
+    format = "R8G8B8A8_SRGB";
   }else{
     data = std::vector<uint8_t>(image.get_buffer(), image.get_buffer() + image.get_size());
-    format = "B8G8R8A8_SRGB";
+    format = "R8G8B8A8_SRGB";
   }
 
   //---------------------------
@@ -216,8 +213,10 @@ void Data::retrieve_bgra_from_mjpeg(k4a::image& image, vector<uint8_t>& data){
   if(ret != 0){
     cout<<"[error] MPEG convertion error"<<endl;
   }
-
   data = bgra;
+
+  //Creat a new k4a image with RGBA data format
+  image = k4a::image::create_from_buffer(K4A_IMAGE_FORMAT_COLOR_BGRA32, width, height, width * 4, data.data(), data.size(), nullptr, nullptr);
 
   //---------------------------
 }
