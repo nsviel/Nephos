@@ -42,6 +42,7 @@ void Data::find_depth(K4A_device* k4a_device, k4a::capture capture){
     cout<<"[error] kinect depth image invalid"<<endl;
     return;
   }
+  float timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
   string format = retrieve_format_from_k4a(depth.get_format());
   this->retrieve_data_from_capture(depth, k4a_device->depth.image.data, format);
 
@@ -52,7 +53,7 @@ void Data::find_depth(K4A_device* k4a_device, k4a::capture capture){
   k4a_device->depth.image.height = depth.get_height_pixels();
   k4a_device->depth.image.format = format;
   k4a_device->depth.image.temperature = capture.get_temperature_c();
-  k4a_device->depth.image.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
+  k4a_device->depth.image.timestamp = timestamp;
   k4a_device->depth.image.image = depth;
 
   //---------------------------
@@ -66,6 +67,7 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
   if(!color || !color.is_valid()){
     return;
   }
+  float timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
   string format = retrieve_format_from_k4a(color.get_format());
   this->retrieve_data_from_capture(color, k4a_device->color.image.data, format);
 
@@ -76,7 +78,7 @@ void Data::find_color(K4A_device* k4a_device, k4a::capture capture){
   k4a_device->color.image.width = color.get_width_pixels();
   k4a_device->color.image.height = color.get_height_pixels();
   k4a_device->color.image.format = format;
-  k4a_device->color.image.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
+  k4a_device->color.image.timestamp = timestamp;
   k4a_device->player.ts_cur = k4a_device->color.image.timestamp;
 
   //---------------------------
@@ -124,6 +126,7 @@ void Data::find_ir(K4A_device* k4a_device, k4a::capture capture){
     cout<<"[error] kinect ir image invalid"<<endl;
     return;
   }
+  float timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
   string format = retrieve_format_from_k4a(ir.get_format());
   this->retrieve_data_from_capture(ir, k4a_device->ir.image.data, format);
 
@@ -134,7 +137,7 @@ void Data::find_ir(K4A_device* k4a_device, k4a::capture capture){
   k4a_device->ir.image.width = ir.get_width_pixels();
   k4a_device->ir.image.height = ir.get_height_pixels();
   k4a_device->ir.image.format = format;
-  k4a_device->ir.image.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
+  k4a_device->ir.image.timestamp = timestamp;
 
   //---------------------------
   ir.reset();
