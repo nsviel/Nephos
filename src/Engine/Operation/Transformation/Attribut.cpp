@@ -56,5 +56,16 @@ void Attribut::set_unicolor(eng::structure::Object* object){
 
   //---------------------------
 }
+vector<float> Attribut::get_z_vector(vector<vec3>& xyz){
+  vector<float> z_vec;
+  //---------------------------
+
+  for(int i=0; i<xyz.size(); i++){
+    z_vec.push_back(xyz[i].z);
+  }
+
+  //---------------------------
+  return z_vec;
+}
 
 }

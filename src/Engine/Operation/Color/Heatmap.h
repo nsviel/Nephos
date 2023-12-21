@@ -1,13 +1,8 @@
 #pragma once
 
 #include <Engine/Operation/Namespace.h>
-
-#include <glm/glm.hpp>
-#include <string>
-#include <vector>
-
-using namespace std;
-using namespace glm;
+#include <Engine/Base/Namespace.h>
+#include <Utility/Specific/common.h>
 
 
 namespace eng::ope{
@@ -19,10 +14,19 @@ public:
   Heatmap();
   ~Heatmap();
 
-public:
+  //Specific mode functions
+  void mode_height(eng::structure::Object* object);
+  void mode_intensity(eng::structure::Object* object);
+  void mode_distance(eng::structure::Object* object);
+  void mode_cosIt(eng::structure::Object* object);
+  void mode_It(eng::structure::Object* object);
+
+  //Heatmap functions
+  void heatmap_set(eng::structure::Object* object, vector<float>& v_in);
 
 private:
   eng::ope::Colormap* colormapManager;
+  eng::ope::Attribut* attribManager;
 
   vec2 range_norm;
   vec2 range_height;

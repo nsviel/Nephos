@@ -54,7 +54,6 @@ void Colormap::choose(string name){
     }
   }
 
-
   //---------------------------
 }
 glm::vec4 Colormap::random_color(){
