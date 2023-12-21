@@ -64,6 +64,7 @@ void Cloud::loop_data(K4A_device* k4a_device){
     if(x != 0 && y != 0 && z != 0){
       this->retrieve_location(x, y, z);
       this->retrieve_color(k4a_device, i);
+      this->retrieve_ir(k4a_device, i);
     }
   }
 
@@ -122,6 +123,20 @@ void Cloud::retrieve_color(K4A_device* k4a_device, int i){
 
   //---------------------------
   vec_rgba.push_back(color);
+}
+void Cloud::retrieve_ir(K4A_device* k4a_device, int i){
+  if(k4a_device->ir.image.data.empty()) return;
+  //---------------------------
+
+  const vector<uint8_t>& ir_data = k4a_device->ir.image.data;
+
+  int color_idx = i;
+  float value = static_cast<float>(ir_data[color_idx]);
+
+  say(value);
+
+  //---------------------------
+  vec_ir.push_back(value);
 }
 void Cloud::retrieve_corner_coordinate(K4A_device* k4a_device){
   //---------------------------

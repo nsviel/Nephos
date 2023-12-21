@@ -28,6 +28,7 @@ public:
   //Subfunction
   void retrieve_location(int& x, int& y, int& z);
   void retrieve_color(K4A_device* k4a_device, int i);
+  void retrieve_ir(K4A_device* k4a_device, int i);
   void retrieve_corner_coordinate(K4A_device* k4a_device);
 
 private:
