@@ -364,6 +364,20 @@ float sign(float value){
 
   //---------------------------
 }
+std::vector<float> divise(std::vector<float>& vec, int diviser){
+  std::vector<float> vec_out;
+  //---------------------------
+
+  int size = vec.size();
+  vec_out.reserve(size);
+
+  for(int i=0; i<size; i++){
+    vec_out.push_back(vec[i] / diviser);
+  }
+
+  //---------------------------
+  return vec_out;
+}
 
 //Minimum / Maximum
 int fct_min_z_id(std::vector<glm::vec3> vec){

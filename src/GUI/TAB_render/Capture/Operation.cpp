@@ -43,16 +43,16 @@ void Operation::colorization(){
   //Colorization mode
   static int color_mode = 2;
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Colorization");
-  ImGui::RadioButton("RGB", &k4a_device->cloud.color_mode, 0);
+  ImGui::RadioButton("RGB##colorization", &k4a_device->cloud.color_mode, 0);
   ImGui::SameLine();
   ImGui::RadioButton("##unicolor", &k4a_device->cloud.color_mode, 1);
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
   ImGui::ColorEdit4("##unicolor_choice", (float*)&k4a_device->cloud.object->unicolor, flags);
   ImGui::SameLine();
-  ImGui::RadioButton("I", &k4a_device->cloud.color_mode, 2);
+  ImGui::RadioButton("I##colorization", &k4a_device->cloud.color_mode, 2);
   ImGui::SameLine();
-  ImGui::RadioButton("Heatmap", &k4a_device->cloud.color_mode, 3);
+  ImGui::RadioButton("Heatmap##colorization", &k4a_device->cloud.color_mode, 3);
 
   //Intensity cursor
   if(k4a_device->cloud.color_mode == 2){
@@ -63,11 +63,11 @@ void Operation::colorization(){
   //Heatmap mode
   if(k4a_device->cloud.color_mode == 3){
     ImGui::Indent();
-    ImGui::RadioButton("I", &k4a_device->cloud.heatmap_mode, 0);
+    ImGui::RadioButton("I##heatmap", &k4a_device->cloud.heatmap_mode, 0);
     ImGui::SameLine();
-    ImGui::RadioButton("H", &k4a_device->cloud.heatmap_mode, 1);
+    ImGui::RadioButton("H##heatmap", &k4a_device->cloud.heatmap_mode, 1);
     ImGui::SameLine();
-    ImGui::RadioButton("R", &k4a_device->cloud.heatmap_mode, 2);
+    ImGui::RadioButton("R##heatmap", &k4a_device->cloud.heatmap_mode, 2);
 
     if(k4a_device->cloud.heatmap_mode == 0){
       ImGui::SetNextItemWidth(100);

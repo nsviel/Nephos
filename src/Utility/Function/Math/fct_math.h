@@ -28,6 +28,7 @@ double compute_distance(Eigen::Vector4d pt1, Eigen::Vector4d pt2);
 double compute_distance(Eigen::Vector4d pt1, Eigen::Vector3d pt2);
 bool is_nan(glm::vec3 vec);
 bool is_nan(Eigen::Vector3d vec);
+std::vector<float> divise(std::vector<float>& vec, int diviser);
 
 //Basic function
 std::vector<float> compute_inv(std::vector<float>& vec);

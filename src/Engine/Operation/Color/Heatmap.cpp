@@ -15,7 +15,7 @@ Heatmap::Heatmap(){
   this->is_normalization = true;
   this->range_norm = vec2(0.0f, 1.0f);
   this->range_height = vec2(-1.0f, 2.0f);
-  this->range_intensity = vec2(0.0f, 1000.0f);
+  this->range_intensity = vec2(0.0f, 1.0f);
 
   //---------------------------
 }
@@ -31,8 +31,9 @@ Heatmap::~Heatmap(){
 vector<vec4> Heatmap::heatmap_intensity(eng::structure::Object* object, int diviser){
   //---------------------------
 
-  vector<float> z_vec_norm = math::fct_normalize(object->Is, range_intensity);
-  this->compute_heatmap(z_vec_norm, object->xyz.size());
+  vector<float> I_divided = math::divise(object->Is, diviser);
+  vector<float> I_norm = math::fct_normalize(I_divided, range_intensity);
+  this->compute_heatmap(I_norm, object->xyz.size());
 
   //---------------------------
   return heatmap;
