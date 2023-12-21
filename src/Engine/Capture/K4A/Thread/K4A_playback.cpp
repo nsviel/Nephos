@@ -2,6 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Utility/Function/Timer/FPS_counter.h>
+#include <Utility/Function/Timer/FPS_control.h>
 #include <Engine/Capture/K4A/Utils/Namespace.h>
 
 
@@ -10,6 +11,7 @@ K4A_playback::K4A_playback(Engine* engine){
   //---------------------------
 
   this->fps_counter = new FPS_counter();
+  this->fps_control = new FPS_control(30);
 
   this->k4a_data = new eng::kinect::data::Data();
   this->k4a_processing = new K4A_processing(engine);
@@ -57,7 +59,8 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
   //Playback thread
   k4a::capture capture;
   while(thread_running){
-    auto start_time = std::chrono::high_resolution_clock::now();
+    fps_control->start();
+    
     playback.get_next_capture(&capture);
     if(!capture) continue;
 
@@ -71,21 +74,8 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
     this->manage_query_ts(k4a_device);
     this->manage_restart(k4a_device);
 
-
+    fps_control->stop();
     k4a_device->device.fps = fps_counter->update();
-    /*
-say(k4a_device->device.fps);
-    auto end_time = std::chrono::high_resolution_clock::now();
-     auto elapsed_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
-
-     // Calculate the time to sleep to achieve the desired FPS
-     int sleep_time = 1000000.0f/30.0f - elapsed_time;
-     //say("(---)");
-     //say(sleep_time);
-     //say(elapsed_time);
-     if (sleep_time > 0) {
-         std::this_thread::sleep_for(std::chrono::microseconds(sleep_time));
-     }*/
   }
 
   playback.close();
@@ -109,13 +99,13 @@ void K4A_playback::manage_fps(int fps_mode){
 
   switch(fps_mode){
     case K4A_FRAMES_PER_SECOND_5:{
-    //  fps_counter->set_fps_max(5);
+      fps_control->set_fps_max(5);
     }
     case K4A_FRAMES_PER_SECOND_15:{
-      //fps_counter->set_fps_max(15);
+      fps_control->set_fps_max(15);
     }
     case K4A_FRAMES_PER_SECOND_30:{
-      //fps_counter->set_fps_max(30);
+      fps_control->set_fps_max(30);
     }
   }
 

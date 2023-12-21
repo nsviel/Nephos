@@ -2,6 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Utility/Function/Timer/FPS_counter.h>
+#include <Utility/Function/Timer/FPS_control.h>
 #include <Engine/Capture/K4A/Utils/Namespace.h>
 
 
@@ -10,6 +11,7 @@ K4A_capture::K4A_capture(Engine* engine){
   //---------------------------
 
   this->fps_counter = new FPS_counter();
+  this->fps_control = new FPS_control(30);
   this->k4a_data = new eng::kinect::data::Data();
   this->k4a_processing = new K4A_processing(engine);
   this->k4a_config = new eng::kinect::Configuration();
@@ -61,6 +63,8 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
   //Start capture thread
   this->thread_running = true;
   while(thread_running && k4a_device){
+    fps_control->start();
+
     auto timeout = std::chrono::milliseconds(2000);
     device.get_capture(&capture, timeout);
     if(!capture) continue;
@@ -72,7 +76,7 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
     this->manage_recording(k4a_device, capture);
 
     //FPS
-
+    fps_control->stop();
     k4a_device->device.fps = fps_counter->update();
   }
 

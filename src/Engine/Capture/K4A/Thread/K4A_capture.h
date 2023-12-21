@@ -9,6 +9,7 @@
 #include <k4arecord/record.hpp>
 
 class FPS_counter;
+class FPS_control;
 class Engine;
 
 
@@ -36,6 +37,7 @@ public:
 
 private:
   FPS_counter* fps_counter;
+  FPS_control* fps_control;
   eng::kinect::data::Data* k4a_data;
   K4A_processing* k4a_processing;
   eng::kinect::Configuration* k4a_config;

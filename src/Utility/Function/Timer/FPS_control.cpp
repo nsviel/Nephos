@@ -4,7 +4,6 @@
 FPS_control::FPS_control(int fps_max){
   //---------------------------
 
-  this->last_time = std::chrono::steady_clock::now();
   this->fps_max = fps_max;
 
   //---------------------------
@@ -20,7 +19,7 @@ void FPS_control::start(){
 
   //---------------------------
 }
-void FPS_control::start(){
+void FPS_control::stop(){
   //---------------------------
 
   auto now = std::chrono::steady_clock::now();

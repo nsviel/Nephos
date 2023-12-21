@@ -21,5 +21,5 @@ float FPS_counter::update(){
   this->fps = 1000000.0f / elapsed_time;
 
   //---------------------------
-  return fps
+  return fps;
 }
