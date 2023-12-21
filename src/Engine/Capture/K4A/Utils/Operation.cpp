@@ -17,18 +17,31 @@ Operation::~Operation(){}
 void Operation::make_colorization(eng::kinect::structure::Cloud* cloud, vector<vec4>& vec_rgba){
   //---------------------------
 
-  //Colored unicolor
-  if(cloud->color_mode == 1){
-    vec_rgba = vector<vec4> (cloud->nb_point, cloud->object->unicolor);
+  switch(cloud->color_mode){
+    case 1:{//Colored unicolor
+      vec_rgba = vector<vec4> (cloud->nb_point, cloud->object->unicolor);
+    }
+    case 2:{//White unicolor
+      vec4 white = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+      vec_rgba = vector<vec4> (cloud->nb_point, white);
+    }
+    case 3:{//Heatmap
+      this->make_heatmap(cloud, vec_rgba);
+    }
   }
-  //White unicolor
-  else if(cloud->color_mode == 2){
-    vec4 white = vec4(1.0f, 1.0f, 1.0f, 1.0f);
-    vec_rgba = vector<vec4> (cloud->nb_point, white);
-  }
-  //Heatmap
-  else if(cloud->color_mode == 3){
-    vec_rgba = ope_heatmap->heatmap_height(cloud->object);
+
+  //---------------------------
+}
+void Operation::make_heatmap(eng::kinect::structure::Cloud* cloud, vector<vec4>& vec_rgba){
+  //---------------------------
+
+  switch(cloud->heatmap_mode){
+    case 0:{//Intensity
+      vec_rgba = ope_heatmap->heatmap_height(cloud->object);
+    }
+    case 1:{//Height
+      vec_rgba = ope_heatmap->heatmap_height(cloud->object);
+    }
   }
 
   //---------------------------

@@ -78,12 +78,8 @@ void Cloud::loop_end(K4A_device* k4a_device){
   cloud->nb_point = vec_xyz.size();
   cloud->object->xyz = vec_xyz;
   kin_operation->make_colorization(cloud, vec_rgba);
-
-  for(int i=0; i<vec_rgba.size(); i++){
-    vec_rgba[i] = vec4(vec_ir[i]/100, vec_ir[i]/100, vec_ir[i]/100, 1);
-  }
-
   cloud->object->rgb = vec_rgba;
+  cloud->object->Is = vec_ir;
 
   //---------------------------
 }
@@ -115,14 +111,6 @@ void Cloud::retrieve_color(K4A_device* k4a_device, int i){
     float b = static_cast<float>(color_data[color_idx])     / 255.0f;
     float a = 1.0f;
     color = vec4(r, g, b, a);
-  }else if(cloud->color_mode == 1){
-    //Colored unicolor
-    color = cloud->object->unicolor;
-  }else if(cloud->color_mode == 2){
-    //White unicolor
-    color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
-  }else if(cloud->color_mode == 3){
-    //Heatmap
   }
 
   //---------------------------

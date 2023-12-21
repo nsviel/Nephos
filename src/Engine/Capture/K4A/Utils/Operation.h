@@ -19,6 +19,7 @@ public:
 public:
   //Main function
   void make_colorization(eng::kinect::structure::Cloud* cloud, vector<vec4>& vec_rgba);
+  void make_heatmap(eng::kinect::structure::Cloud* cloud, vector<vec4>& vec_rgba);
 
 private:
   eng::ope::Heatmap* ope_heatmap;

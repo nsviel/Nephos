@@ -24,6 +24,7 @@ void Operation::kinect_operation(){
   //---------------------------
 
   if(ImGui::TreeNode("Operation")){
+    ImGui::Unindent();
     this->colorization();
 
     ImGui::Separator();
@@ -39,12 +40,34 @@ void Operation::colorization(){
   if(k4a_device == nullptr) return;
   //---------------------------
 
+  //Colorization mode
   static int color_mode = 2;
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Colorization");
-  ImGui::RadioButton("Camera", &k4a_device->cloud.color_mode, 0);
-  ImGui::RadioButton("Unicolor", &k4a_device->cloud.color_mode, 1);
-  ImGui::RadioButton("White", &k4a_device->cloud.color_mode, 2);
+  ImGui::RadioButton("RGB", &k4a_device->cloud.color_mode, 0);
+  ImGui::SameLine();
+  ImGui::RadioButton("##unicolor", &k4a_device->cloud.color_mode, 1);
+
+  ImGui::SameLine();
+  ImGuiColorEditFlags flags;
+  flags |= ImGuiColorEditFlags_NoInputs;
+  flags |= ImGuiColorEditFlags_AlphaBar;
+  ImGui::ColorEdit4("##unicolor_choice", (float*)&k4a_device->cloud.object->unicolor, flags);
+
+  ImGui::SameLine();
+  ImGui::RadioButton("I", &k4a_device->cloud.color_mode, 2);
+  ImGui::SameLine();
   ImGui::RadioButton("Heatmap", &k4a_device->cloud.color_mode, 3);
+
+  //Heatmap mode
+  if(k4a_device->cloud.color_mode == 3){
+    ImGui::Indent();
+    ImGui::RadioButton("I", &k4a_device->cloud.heatmap_mode, 0);
+    ImGui::SameLine();
+    ImGui::RadioButton("H", &k4a_device->cloud.heatmap_mode, 1);
+    ImGui::SameLine();
+    ImGui::RadioButton("R", &k4a_device->cloud.heatmap_mode, 2);
+    ImGui::Unindent();
+  }
 
   //---------------------------
 }
