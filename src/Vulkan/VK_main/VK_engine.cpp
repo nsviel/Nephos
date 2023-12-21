@@ -42,7 +42,7 @@ VK_engine::VK_engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_canvas = new VK_canvas(struct_vulkan);
   this->vk_drawing = new VK_drawing(struct_vulkan);
   this->vk_synchronization = new VK_synchronization(struct_vulkan);
-  this->fps_counter = new FPS_counter(60);
+  this->fps_counter = new FPS_counter();
 
   //---------------------------
 }
@@ -108,8 +108,7 @@ void VK_engine::loop(){
   vk_drawing->draw_frame();
 
   //---------------------------
-  fps_counter->update();
-  struct_vulkan->profiler.engine_fps = fps_counter->get_fps();
+  struct_vulkan->profiler.engine_fps = fps_counter->update();
 }
 void VK_engine::clean(){
   //---------------------------

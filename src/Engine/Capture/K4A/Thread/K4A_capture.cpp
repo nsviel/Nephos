@@ -9,7 +9,7 @@
 K4A_capture::K4A_capture(Engine* engine){
   //---------------------------
 
-  this->fps_counter = new FPS_counter(60);
+  this->fps_counter = new FPS_counter();
   this->k4a_data = new eng::kinect::data::Data();
   this->k4a_processing = new K4A_processing(engine);
   this->k4a_config = new eng::kinect::Configuration();
@@ -72,8 +72,8 @@ void K4A_capture::run_thread(K4A_device* k4a_device){
     this->manage_recording(k4a_device, capture);
 
     //FPS
-    fps_counter->update();
-    k4a_device->device.fps = fps_counter->get_fps();
+
+    k4a_device->device.fps = fps_counter->update();
   }
 
   //---------------------------

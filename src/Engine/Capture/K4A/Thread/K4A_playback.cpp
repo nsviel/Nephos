@@ -9,7 +9,8 @@
 K4A_playback::K4A_playback(Engine* engine){
   //---------------------------
 
-  this->fps_counter = new FPS_counter(30);
+  this->fps_counter = new FPS_counter();
+
   this->k4a_data = new eng::kinect::data::Data();
   this->k4a_processing = new K4A_processing(engine);
   this->k4a_config = new eng::kinect::Configuration();
@@ -70,8 +71,9 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
     this->manage_query_ts(k4a_device);
     this->manage_restart(k4a_device);
 
-    fps_counter->update();
-    k4a_device->device.fps = fps_counter->get_fps();
+
+    k4a_device->device.fps = fps_counter->update();
+    /*
 say(k4a_device->device.fps);
     auto end_time = std::chrono::high_resolution_clock::now();
      auto elapsed_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
@@ -83,7 +85,7 @@ say(k4a_device->device.fps);
      //say(elapsed_time);
      if (sleep_time > 0) {
          std::this_thread::sleep_for(std::chrono::microseconds(sleep_time));
-     }
+     }*/
   }
 
   playback.close();
@@ -107,13 +109,13 @@ void K4A_playback::manage_fps(int fps_mode){
 
   switch(fps_mode){
     case K4A_FRAMES_PER_SECOND_5:{
-      fps_counter->set_fps_max(5);
+    //  fps_counter->set_fps_max(5);
     }
     case K4A_FRAMES_PER_SECOND_15:{
-      fps_counter->set_fps_max(15);
+      //fps_counter->set_fps_max(15);
     }
     case K4A_FRAMES_PER_SECOND_30:{
-      fps_counter->set_fps_max(30);
+      //fps_counter->set_fps_max(30);
     }
   }
 
