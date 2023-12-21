@@ -13,31 +13,38 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Main function
-void Operation::make_colorization(eng::kinect::structure::Cloud* cloud, std::vector<glm::vec4>& vec_rgba){
+void Operation::make_colorization(vector<vec4>& vec_rgba, int size, int mode){
   //---------------------------
+  tic();
+  vec4 defaultValue = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+  vec_rgba = vector<vec4> (size, defaultValue);
 
+/*
   vec_rgba.clear();
-  for(int i=0; i<cloud->object->xyz.size(); i++){
-    glm::vec4 color;
+  vec_rgba.reserve(size);
+  for(int i=0; i<size; i++){
+    vec4 color;
 
     //Colored unicolor
-    if(cloud->color_mode == 1){
-
-      color = cloud->object->unicolor;
+    if(mode == 1){
+//
+  //    color = cloud->object->unicolor;
     }
     //White unicolor
-    else if(cloud->color_mode == 2){
+    else if(mode == 2){
 
       color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
     }
     //Heatmap
-    else if(cloud->color_mode == 3){
+    else if(mode == 3){
 
     }
 
     vec_rgba.push_back(color);
-  }
-
+  }*/
+  say(size);
+  say(vec_rgba.size());
+toc_us("hey");
   //---------------------------
 }
 
