@@ -108,16 +108,16 @@ void Player::player_start(){
   if(k4a_device == nullptr) return;
   //---------------------------
 
-  if(k4a_device->player.pause || !k4a_device->player.play){
-    //Play button
+  //Play button -> if paused or not playing
+  if(k4a_device->player.pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##player_start")){
-      k4a_player->start(k4a_device);
+      k4a_player->play(k4a_device);
     }
     ImGui::PopStyleColor();
   }
+  //Pause button -> if not paused and playing
   else{
-    //Pause button
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##player_pause")){
       k4a_player->pause(k4a_device);

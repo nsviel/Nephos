@@ -15,7 +15,7 @@ Player::Player(){
 Player::~Player(){}
 
 //Main function
-void Player::start(K4A_device* k4a_device){
+void Player::play(K4A_device* k4a_device){
   eng::kinect::structure::Player* player = &k4a_device->player;
   //---------------------------
 
@@ -24,7 +24,7 @@ void Player::start(K4A_device* k4a_device){
     player->play = true;
     player->pause = false;
   }else{
-    player->pause = !player->pause;
+    player->pause = false;
   }
 
   //---------------------------
@@ -33,13 +33,7 @@ void Player::pause(K4A_device* k4a_device){
   eng::kinect::structure::Player* player = &k4a_device->player;
   //---------------------------
 
-  if(!player->play){
-    player->ts_seek = player->ts_beg;
-    player->play = true;
-    player->pause = false;
-  }else{
-    player->pause = !player->pause;
-  }
+  player->pause = true;
 
   //---------------------------
 }
@@ -48,9 +42,8 @@ void Player::stop(K4A_device* k4a_device){
   //---------------------------
 
   player->ts_seek = player->ts_beg;
-  player->restart = false;
   player->play = false;
-  player->pause = false;
+  player->pause = true;
 
   //---------------------------
 }

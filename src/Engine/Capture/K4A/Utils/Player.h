@@ -16,7 +16,7 @@ public:
 
 public:
   //Main function
-  void start(K4A_device* k4a_device);
+  void play(K4A_device* k4a_device);
   void pause(K4A_device* k4a_device);
   void stop(K4A_device* k4a_device);
   void restart(K4A_device* k4a_device);

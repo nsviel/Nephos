@@ -63,8 +63,8 @@ void K4A_playback::run_thread(K4A_device* k4a_device){
     k4a_cloud->convert_into_cloud(k4a_device);
     this->sleep_necessary_time(k4a_device->device.fps_mode);
 
-    this->manage_query_ts(k4a_device);
     this->manage_pause(k4a_device);
+    this->manage_query_ts(k4a_device);
     this->manage_restart(k4a_device);
 
     fps_counter->update();
@@ -163,7 +163,7 @@ void K4A_playback::manage_pause(K4A_device* k4a_device){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  if(k4a_device->player.pause){
+  if(k4a_device->player.pause || !k4a_device->player.play){
     while(k4a_device->player.pause && thread_running && k4a_device->player.ts_seek == -1 && k4a_device->player.ts_forward == 0){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
