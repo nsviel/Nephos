@@ -22,23 +22,32 @@ Cloud::~Cloud(){}
 void Cloud::convert_into_cloud(K4A_device* k4a_device){
   //---------------------------
 
-  this->retrieve_location(k4a_device);
+  this->loop_init(k4a_device);
+  this->loop_data(k4a_device);
+  this->loop_end(k4a_device);
   //this->retrieve_corner_coordinate(k4a_device);
 
   //---------------------------
 }
 
-//Subfunction
-void Cloud::retrieve_location(K4A_device* k4a_device){
+//Loop function
+void Cloud::loop_init(K4A_device* k4a_device){
   if(k4a_device->depth.image.data.empty()) return;
   //---------------------------
 
-  // Depth stuff
-  eng::kinect::structure::Depth* depth = &k4a_device->depth;
   vec_xyz.clear();
-
-  // Color stuff
   vec_rgba.clear();
+  vec_ir.clear();
+
+  //---------------------------
+}
+void Cloud::loop_data(K4A_device* k4a_device){
+  if(k4a_device->depth.image.data.empty()) return;
+  //---------------------------
+
+  // Data stuff
+  eng::kinect::structure::Depth* depth = &k4a_device->depth;
+  eng::kinect::structure::Infrared* ir = &k4a_device->ir;
 
   // Cloud stuff
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->image.width, depth->image.height, depth->image.width * 3 * (int)sizeof(int16_t));
@@ -53,13 +62,16 @@ void Cloud::retrieve_location(K4A_device* k4a_device){
     int z = point_cloud_data[depth_idx+2];
 
     if(x != 0 && y != 0 && z != 0){
-      //coordinate in meter and X axis oriented.
-      glm::vec3 point(z/1000.0f, -x/1000.0f, -y/1000.0f);
-      vec_xyz.push_back(point);
-
+      this->retrieve_location(x, y, z);
       this->retrieve_color(k4a_device, i);
     }
   }
+
+  //---------------------------
+}
+void Cloud::loop_end(K4A_device* k4a_device){
+  if(k4a_device->depth.image.data.empty()) return;
+  //---------------------------
 
   eng::kinect::structure::Cloud* cloud = k4a_device->get_cloud();
   cloud->nb_point = vec_xyz.size();
@@ -69,6 +81,17 @@ void Cloud::retrieve_location(K4A_device* k4a_device){
   cloud->object->rgb = vec_rgba;
 
   //---------------------------
+}
+
+//Subfunction
+void Cloud::retrieve_location(int& x, int& y, int& z){
+  //---------------------------
+
+  //coordinate in meter and X axis oriented.
+  glm::vec3 point(z/1000.0f, -x/1000.0f, -y/1000.0f);
+
+  //---------------------------
+  vec_xyz.push_back(point);
 }
 void Cloud::retrieve_color(K4A_device* k4a_device, int i){
   //---------------------------
