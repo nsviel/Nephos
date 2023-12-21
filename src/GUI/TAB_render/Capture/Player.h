@@ -3,7 +3,7 @@
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/K4A/Namespace.h>
-#include <Engine/Capture/K4A/Utils/Player.h>
+#include <Engine/Capture/K4A/Utils/Namespace.h>
 
 class K4A_swarm;
 

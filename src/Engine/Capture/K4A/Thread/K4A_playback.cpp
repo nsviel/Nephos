@@ -2,7 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Utility/Function/Timer/FPS_counter.h>
-#include <Engine/Capture/K4A/Utils/Configuration.h>
+#include <Engine/Capture/K4A/Utils/Namespace.h>
 
 
 //Constructor / Destructor
