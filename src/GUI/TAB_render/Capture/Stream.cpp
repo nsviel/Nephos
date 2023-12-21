@@ -206,6 +206,7 @@ void Stream::overlay_capture(K4A_device* k4a_device, eng::kinect::structure::Ima
   flags |= ImGuiWindowFlags_NoNav;
   flags |= ImGuiWindowFlags_NoNavFocus;
   flags |= ImGuiWindowFlags_NoScrollbar;
+  flags |= ImGuiWindowFlags_NoDocking;
 
   if (ImGui::Begin(image->name.c_str(), nullptr, flags)){
     this->overlay_information(k4a_device, image);
