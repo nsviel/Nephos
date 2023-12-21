@@ -1,6 +1,7 @@
 #include "K4A_swarm.h"
 
 #include <Engine/Engine.h>
+#include <Utility/Function/File/Info.h>
 
 
 //Constructor / Destructor
@@ -118,6 +119,7 @@ K4A_device* K4A_swarm::create_playback(string path){
   k4a_device->device.index = str_swarm->nb_playback;
   k4a_device->device.is_playback = true;
   k4a_device->playback.path = path;
+  k4a_device->playback.filename = info::get_filename_from_path(path);
   k4a_device->recorder.folder = default_folder;
   k4a_device->recorder.path = default_folder + "record_dev_" + to_string(k4a_device->device.index) + ".mkv";
 

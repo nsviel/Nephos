@@ -10,6 +10,7 @@ struct Playback{
 
   //File info
   std::string path;
+  std::string filename;
 
   //Configuration info
   std::string fps;

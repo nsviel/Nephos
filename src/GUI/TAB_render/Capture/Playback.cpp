@@ -45,18 +45,26 @@ void Playback::show_info(){
   if(k4a_device == nullptr) return;
   //---------------------------
 
+  ImVec4 color = ImVec4(0.4f,1.0f,0.4f,1.0f);
   if(ImGui::BeginTable("playback_table##general", 2)){
+    //Name
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Name"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", k4a_device->playback.filename.c_str());
+
+    //Path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
-    if(ImGui::Button("...##file_path")){
+    if(ImGui::SmallButton("...##file_path")){
       string path = zenity::zenity_file();
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4a_device->playback.path.c_str());
+    ImGui::TextColored(color, "%s", k4a_device->playback.path.c_str());
 
+    //Duration
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f s", k4a_device->player.duration);
+    ImGui::TextColored(color, "%.2f s", k4a_device->player.duration);
 
     ImGui::EndTable();
   }
