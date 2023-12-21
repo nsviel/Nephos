@@ -12,6 +12,7 @@ Cloud::Cloud(Engine* engine){
   //---------------------------
 
   this->engine = engine;
+  this->kin_operation = new eng::kinect::Operation();
 
   //---------------------------
 }
@@ -61,6 +62,7 @@ void Cloud::retrieve_location(K4A_device* k4a_device){
   }
 
   eng::kinect::structure::Cloud* cloud = k4a_device->get_cloud();
+  kin_operation->make_colorization(cloud, vec_rgba);
   cloud->object->xyz = vec_xyz;
   cloud->object->rgb = vec_rgba;
 

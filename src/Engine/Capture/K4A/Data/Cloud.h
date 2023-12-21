@@ -2,6 +2,7 @@
 
 #include <Engine/Capture/K4A/Device/K4A_device.h>
 #include <Utility/Specific/common.h>
+#include <Engine/Capture/K4A/Utils/Namespace.h>
 
 class Engine;
 
@@ -26,6 +27,7 @@ public:
 
 private:
   Engine* engine;
+  eng::kinect::Operation* kin_operation;
 
   eng::kinect::structure::Cloud* cloud;
   std::vector<glm::vec3> vec_xyz;

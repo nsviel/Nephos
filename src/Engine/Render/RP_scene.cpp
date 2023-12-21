@@ -101,8 +101,13 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* data =  *next(list_data.begin(), i);
+    bool& is_visible = data->object->is_visible;
+    bool is_point = data->object->draw_type_name == "point";
+    bool has_xyz = data->object->xyz.size() != 0;
+    bool has_rgb = data->object->rgb.size() != 0;
+    bool same_length = data->object->rgb.size() == data->object->xyz.size();
 
-    if(data->object->is_visible && data->object->draw_type_name == "point" && data->object->xyz.size() != 0){
+    if(is_visible && is_point && has_xyz && has_rgb && same_length){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
       vk_uniform->update_uniform("point_size", &data->binding, data->object->draw_point_size);
 
@@ -123,8 +128,13 @@ void RP_scene::cmd_draw_line(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* data =  *next(list_data.begin(), i);
+    bool& is_visible = data->object->is_visible;
+    bool is_point = data->object->draw_type_name == "line";
+    bool has_xyz = data->object->xyz.size() != 0;
+    bool has_rgb = data->object->rgb.size() != 0;
+    bool same_length = data->object->rgb.size() == data->object->xyz.size();
 
-    if(data->object->is_visible && data->object->draw_type_name == "line"){
+    if(is_visible && is_point && has_xyz && has_rgb && same_length){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
 
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, data->binding.descriptor.set);

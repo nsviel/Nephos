@@ -17,7 +17,7 @@ public:
 
 public:
   //Main function
-
+  void make_colorization(eng::kinect::structure::Cloud* cloud, std::vector<glm::vec4>& vec_rgba);
 
 private:
 
