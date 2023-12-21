@@ -7,12 +7,12 @@
 class Engine;
 
 
-class Cloud
+class K4A_processing
 {
 public:
   //Constructor / Destructor
-  Cloud(Engine* engine);
-  ~Cloud();
+  K4A_processing(Engine* engine);
+  ~K4A_processing();
 
 public:
   //Main function

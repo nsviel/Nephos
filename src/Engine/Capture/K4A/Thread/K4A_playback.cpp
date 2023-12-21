@@ -11,7 +11,7 @@ K4A_playback::K4A_playback(Engine* engine){
 
   this->fps_counter = new FPS_counter(60);
   this->k4a_data = new eng::kinect::data::Data();
-  this->k4a_cloud = new Cloud(engine);
+  this->k4a_cloud = new K4A_processing(engine);
   this->k4a_config = new eng::kinect::Configuration();
 
   //---------------------------

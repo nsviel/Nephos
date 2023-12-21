@@ -1,4 +1,4 @@
-#include "Cloud.h"
+#include "K4A_processing.h"
 
 #include <Engine/Engine.h>
 #include <Engine/Data/Scene/Scene.h>
@@ -6,7 +6,7 @@
 
 
 //Constructor / Destructor
-Cloud::Cloud(Engine* engine){
+K4A_processing::K4A_processing(Engine* engine){
   //---------------------------
 
   this->engine = engine;
@@ -14,10 +14,10 @@ Cloud::Cloud(Engine* engine){
 
   //---------------------------
 }
-Cloud::~Cloud(){}
+K4A_processing::~K4A_processing(){}
 
 //Main function
-void Cloud::convert_into_cloud(K4A_device* k4a_device){
+void K4A_processing::convert_into_cloud(K4A_device* k4a_device){
   //---------------------------
 
   this->loop_init(k4a_device);
@@ -29,7 +29,7 @@ void Cloud::convert_into_cloud(K4A_device* k4a_device){
 }
 
 //Loop function
-void Cloud::loop_init(K4A_device* k4a_device){
+void K4A_processing::loop_init(K4A_device* k4a_device){
   if(k4a_device->depth.image.data.empty()) return;
   //---------------------------
 
@@ -39,7 +39,7 @@ void Cloud::loop_init(K4A_device* k4a_device){
 
   //---------------------------
 }
-void Cloud::loop_data(K4A_device* k4a_device){
+void K4A_processing::loop_data(K4A_device* k4a_device){
   if(k4a_device->depth.image.data.empty()) return;
   //---------------------------
 
@@ -68,7 +68,7 @@ void Cloud::loop_data(K4A_device* k4a_device){
 
   //---------------------------
 }
-void Cloud::loop_end(K4A_device* k4a_device){
+void K4A_processing::loop_end(K4A_device* k4a_device){
   if(k4a_device->depth.image.data.empty()) return;
   //---------------------------
 
@@ -86,7 +86,7 @@ void Cloud::loop_end(K4A_device* k4a_device){
 }
 
 //Subfunction
-void Cloud::retrieve_location(int& x, int& y, int& z){
+void K4A_processing::retrieve_location(int& x, int& y, int& z){
   //---------------------------
 
   //coordinate in meter and X axis oriented.
@@ -95,7 +95,7 @@ void Cloud::retrieve_location(int& x, int& y, int& z){
   //---------------------------
   vec_xyz.push_back(point);
 }
-void Cloud::retrieve_color(K4A_device* k4a_device, int i){
+void K4A_processing::retrieve_color(K4A_device* k4a_device, int i){
   //---------------------------
 
   eng::kinect::structure::Cloud* cloud = k4a_device->get_cloud();
@@ -117,7 +117,7 @@ void Cloud::retrieve_color(K4A_device* k4a_device, int i){
   //---------------------------
   vec_rgba.push_back(color);
 }
-void Cloud::retrieve_ir(K4A_device* k4a_device, int i){
+void K4A_processing::retrieve_ir(K4A_device* k4a_device, int i){
   if(k4a_device->ir.image.data.empty()) return;
   //---------------------------
 
@@ -129,7 +129,7 @@ void Cloud::retrieve_ir(K4A_device* k4a_device, int i){
   //---------------------------
   vec_ir.push_back(value);
 }
-void Cloud::retrieve_corner_coordinate(K4A_device* k4a_device){
+void K4A_processing::retrieve_corner_coordinate(K4A_device* k4a_device){
   //---------------------------
 
   // Define your pixel coordinates and depth value
