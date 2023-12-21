@@ -117,19 +117,21 @@ void K4A_playback::find_duration(K4A_device* k4a_device){
 
   //File first timestamp
   playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
-  playback.get_next_capture(&capture);
-  color = capture.get_color_image();
-  if(color != nullptr){
-    player->ts_beg = color.get_device_timestamp().count() / 1000000.0f;
+  color = nullptr;
+  while(color == nullptr){
+    playback.get_next_capture(&capture);
+    color = capture.get_color_image();
   }
+  player->ts_beg = color.get_device_timestamp().count() / 1000000.0f;
 
   //File last timestamp
   playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_END);
-  playback.get_previous_capture(&capture);
-  color = capture.get_color_image();
-  if(color != nullptr){
-    player->ts_end = color.get_device_timestamp().count() / 1000000.0f;
+  color = nullptr;
+  while(color == nullptr){
+    playback.get_previous_capture(&capture);
+    color = capture.get_color_image();
   }
+  player->ts_end = color.get_device_timestamp().count() / 1000000.0f;
 
   //---------------------------
 }
