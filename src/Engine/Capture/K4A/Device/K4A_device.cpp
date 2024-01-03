@@ -57,6 +57,7 @@ void K4A_device::destroy(){
 void K4A_device::draw_cloud(){
   //---------------------------
 
+  std::unique_lock<std::mutex> lock(cloud.object->mutex);
   cloud.object->nb_point = cloud.object->xyz.size();
   eng_scene->update_object(cloud.object);
 

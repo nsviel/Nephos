@@ -74,8 +74,10 @@ void Cloud::loop_end(K4A_device* k4a_device){
   if(k4a_device->depth.image.data.empty()) return;
   //---------------------------
 
-  //Store capture data
   eng::kinect::structure::Cloud* cloud = k4a_device->get_cloud();
+  std::unique_lock<std::mutex> lock(cloud->object->mutex);
+
+  //Store capture data
   cloud->nb_point = vec_xyz.size();
   cloud->object->xyz = vec_xyz;
   cloud->object->Is = vec_ir;
@@ -83,6 +85,10 @@ void Cloud::loop_end(K4A_device* k4a_device){
   //Final colorization
   kin_operation->make_colorization(cloud, vec_rgba);
   cloud->object->rgb = vec_rgba;
+
+  if(cloud->object->xyz.size() != cloud->object->rgb.size()){
+    cout<<"[error] cloud creation size problem"<<endl;
+  }
 
   //---------------------------
 }

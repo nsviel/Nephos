@@ -10,6 +10,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <mutex>
 
 
 namespace eng::structure{
@@ -42,6 +43,7 @@ struct Object : public eng::structure::Entity
   std::vector<glm::vec2> uv;
   std::vector<float> ts;
   std::vector<float> Is;
+  std::mutex mutex;
 
   bool has_color;
   bool has_intensity;
