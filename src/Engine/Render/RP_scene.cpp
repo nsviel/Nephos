@@ -106,8 +106,8 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
     bool has_xyz = data->object->xyz.size() != 0;
     bool has_rgb = data->object->rgb.size() != 0;
     bool same_length = data->object->rgb.size() == data->object->xyz.size();
-    
-    if(is_visible && is_point && has_xyz && has_rgb && same_length){
+
+    if(is_visible && is_point && has_xyz && has_rgb){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
       vk_uniform->update_uniform("point_size", &data->binding, data->object->draw_point_size);
 

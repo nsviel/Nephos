@@ -55,6 +55,7 @@ VkFormat VK_texture::find_texture_format(util::base::Image* image){
   }
   else if(image->format == "B8G8R8A8_SRGB"){
     format = VK_FORMAT_B8G8R8A8_SRGB;
+    sayHello();
   }
   else if(image->format == "R16_UNORM"){
     format = VK_FORMAT_R16_UNORM;
