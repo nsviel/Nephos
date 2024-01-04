@@ -28,6 +28,7 @@ void Tab::create_panels(){
   this->rnd_option = new gui::rnd::tab::Option(gui, &gui_render_panel->show_option, "Option");
   this->rnd_profiler = new gui::engine::Profiler(gui, &gui_render_panel->show_profiler, "Profiler");
   this->rnd_shader = new gui::engine::Shader(gui, &gui_render_panel->show_shader, "Shader");
+  this->rnd_loader = new gui::rnd::tab::Loader(gui, &gui_render_panel->show_loader, "Loader");
   this->rnd_scene = new gui::rnd::panel::Scene(gui, gui_render_panel);
   this->rnd_camera = new gui::engine::Camera(gui, &gui_render_panel->show_camera, "Camera");
   this->rnd_kinect = new gui::kinect::Panel(gui, &gui_render_panel->show_kinect, "Player");
@@ -41,6 +42,7 @@ void Tab::draw_panels(){
   //---------------------------
 
   rnd_menu->run_tab_menu();
+  rnd_loader->run_panel();
   rnd_shader->run_panel();
   rnd_camera->run_panel();
   rnd_kinect->run_panel();
@@ -55,6 +57,7 @@ void Tab::draw_panels(){
 void Tab::open_panels(){
   //---------------------------
 
+  ImGui::Checkbox(ICON_FA_FOLDER " Loader##456", &gui_render_panel->show_loader);
   ImGui::Checkbox(ICON_FA_COG " Option##456", &gui_render_panel->show_option);
   ImGui::Checkbox(ICON_FA_PLAY " Scene##456", &gui_render_panel->show_scene);
   ImGui::Checkbox(ICON_FA_ARROW_ROTATE_RIGHT " Profiler##456", &gui_render_panel->show_profiler);

@@ -26,7 +26,7 @@ namespace file{
 
     return true;
 }
-  std::string get_path_abs_build(){
+  std::string get_current_path_abs(){
     //---------------------------
 
     fs::path currentPath = fs::current_path();
@@ -36,6 +36,24 @@ namespace file{
     //---------------------------
     return absPath;
   }
+  std::string get_current_parent_path_abs(){
+    //---------------------------
+
+    fs::path currentPath = fs::current_path();
+    fs::path absolutePath = currentPath.parent_path();
+
+    //---------------------------
+    return absolutePath.string();
+  }
+  std::string get_absolute_path(const std::string& relativePath){
+    //---------------------------
+
+    fs::path currentPath = fs::current_path();
+    fs::path absolutePath = currentPath / relativePath;
+
+    //---------------------------
+    return absolutePath.string();
+}
   void clear_file(std::string path){
     //---------------------------
 

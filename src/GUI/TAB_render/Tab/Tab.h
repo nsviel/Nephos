@@ -38,6 +38,7 @@ private:
   gui::rnd::tab::Panel* gui_render_panel;
   gui::rnd::tab::Option* rnd_option;
   gui::rnd::tab::Menu* rnd_menu;
+  gui::rnd::tab::Loader* rnd_loader;
   gui::engine::Shader* rnd_shader;
   gui::engine::Profiler* rnd_profiler;
   gui::rnd::panel::Scene* rnd_scene;

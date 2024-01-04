@@ -28,7 +28,6 @@ private:
   GUI* gui;
   eng::data::Loader* eng_loader;
   gui::rnd::tab::Init* rnd_init;
-  gui::rnd::tab::Loader* rnd_loader;
   gui::rnd::tab::Panel* rnd_panel;
   gui::rnd::tab::Option* rnd_option;
 };
