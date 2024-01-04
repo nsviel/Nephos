@@ -42,7 +42,7 @@ void Menu::run_tab_menu(){
   }
   if(ImGui::MenuItem("Load")){
     string title = "Selection";
-    string filter = ", .ply, .pcap, .mkv";
+    string filter = ", .ply, .pcap, .mkv, .h, .cpp";
     ImDialog::Instance()->OpenDialog("selection_dialog", title.c_str(), filter.c_str(), "..");
     ImDialog::Instance()->SetFileStyle(IGFD_FileStyleByTypeDir, "", ImVec4(0.5f, 0.63f, 0.75f, 0.9f), ICON_FA_FOLDER);
     ImDialog::Instance()->SetFileStyle(IGFD_FileStyleByTypeFile, "", ImVec4(1.0f, 1.0f, 1.0f, 0.9f), ICON_FA_FILE);

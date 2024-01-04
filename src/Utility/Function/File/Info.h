@@ -21,6 +21,7 @@ namespace info{
   //Retrieve quantity info from path
   int get_file_nbPoint(std::string pathFile);
   float get_file_size(std::string path);
+  std::string get_file_formatted_size(std::string path);
 
   //---------------------------
 }

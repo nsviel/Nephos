@@ -108,7 +108,7 @@ namespace directory{
     while ((files = readdir(directory)) != NULL){
       std::string name = files->d_name;
 
-      if(name != "." && name != ".."){
+      if(name != "."){
         path_vec.push_back(name);
       }
     }
