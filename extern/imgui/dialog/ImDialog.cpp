@@ -14,6 +14,9 @@
 #include <cstdlib>
 #include <algorithm>
 #include <iostream>
+#include <sys/types.h>
+#include <dirent.h>
+#include <cctype>
 
 #include "../core/imgui.h"
 #include "../core/imgui_internal.h"
@@ -23,35 +26,21 @@
 
 
 #ifdef __cplusplus
+
 #if defined(__WIN32__) || defined(WIN32) || defined(_WIN32) || defined(__WIN64__) || defined(WIN64) || \
     defined(_WIN64) || defined(_MSC_VER)
+
 #define _IGFD_WIN_
 #define stat _stat
 #define stricmp _stricmp
-#include <cctype>
 #define PATH_SEP '\\'
-#ifndef PATH_MAX
 #define PATH_MAX 260
-#endif  // PATH_MAX
-#elif defined(__linux__) || defined(__FreeBSD__) || defined(__DragonFly__) || defined(__NetBSD__) || \
-    defined(__APPLE__) || defined(__EMSCRIPTEN__)
 #define _IGFD_UNIX_
 #define stricmp strcasecmp
-#include <sys/types.h>
-// this option need c++17
-#ifndef USE_STD_FILESYSTEM
-#include <dirent.h>
-#endif  // USE_STD_FILESYSTEM
 #define PATH_SEP '/'
-#endif  // _IGFD_UNIX_
-#ifdef USE_THUMBNAILS
-#endif  // USE_THUMBNAILS
-#ifndef IS_FLOAT_DIFFERENT
 #define IS_FLOAT_DIFFERENT(a, b) (fabs((a) - (b)) > FLT_EPSILON)
-#endif  // IS_FLOAT_DIFFERENT
-#ifndef IS_FLOAT_EQUAL
 #define IS_FLOAT_EQUAL(a, b) (fabs((a) - (b)) < FLT_EPSILON)
-#endif  // IS_FLOAT_EQUAL
+
 
 
 ///////////////////////////////
