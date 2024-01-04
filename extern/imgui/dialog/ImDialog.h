@@ -99,7 +99,6 @@ enum IGFD_ResultMode_ {
 };
 
 
-#ifdef __cplusplus
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "../core/imgui.h"
 #include <set>
@@ -117,14 +116,10 @@ enum IGFD_ResultMode_ {
 #include <fstream>
 #include <functional>
 #include <unordered_map>
+#include <cstdint>
 
 
-// Define attributes of all API symbols declarations (e.g. for DLL under Windows)
-// Using ImDialog via a shared library is not recommended, because we don't guarantee
-// backward nor forward ABI compatibility and also function call overhead. If you
-// do use ImDialog as a DLL, be sure to call SetImGuiContext (see Miscellanous section).
 
-#define IGFD_API
 #define MAX_FILE_DIALOG_NAME_BUFFER 1024
 #define MAX_PATH_BUFFER_SIZE 1024
 #define EXT_MAX_LEVEL 10U
@@ -134,58 +129,58 @@ enum IGFD_ResultMode_ {
 #define defaultSortOrderSize true
 #define defaultSortOrderDate true
 #define defaultSortOrderThumbnails true
-
+#define API __attribute__((__visibility__("default")))
 
 namespace IGFD {
-  
+
 typedef void* UserDatas;
 typedef std::function<void(const char*, UserDatas, bool*)> PaneFun;  // side pane function binding
 
 template <typename T>
-class SearchableVector {
+class SearchableVector{
 private:
-    std::unordered_map<T, size_t> m_Dico;
-    std::vector<T> m_Array;
+  std::unordered_map<T, size_t> m_Dico;
+  std::vector<T> m_Array;
 
 public:
-    void clear() {
-        m_Dico.clear();
-        m_Array.clear();
-    }
+  void clear() {
+      m_Dico.clear();
+      m_Array.clear();
+  }
 
-    bool empty() const { return m_Array.empty(); }
-    size_t size() const { return m_Array.size(); }
-    T& operator[](const size_t& vIdx) { return m_Array[vIdx]; }
-    T& at(const size_t& vIdx) { return m_Array.at(vIdx); }
-    typename std::vector<T>::iterator begin() { return m_Array.begin(); }
-    typename std::vector<T>::const_iterator begin() const { return m_Array.begin(); }
-    typename std::vector<T>::iterator end() { return m_Array.end(); }
-    typename std::vector<T>::const_iterator end() const { return m_Array.end(); }
+  bool empty() const { return m_Array.empty(); }
+  size_t size() const { return m_Array.size(); }
+  T& operator[](const size_t& vIdx) { return m_Array[vIdx]; }
+  T& at(const size_t& vIdx) { return m_Array.at(vIdx); }
+  typename std::vector<T>::iterator begin() { return m_Array.begin(); }
+  typename std::vector<T>::const_iterator begin() const { return m_Array.begin(); }
+  typename std::vector<T>::iterator end() { return m_Array.end(); }
+  typename std::vector<T>::const_iterator end() const { return m_Array.end(); }
 
-    bool try_add(T vKey) {
-        if (!exist(vKey)) {
-            m_Dico[vKey] = m_Array.size();
-            m_Array.push_back(vKey);
-            return true;
-        }
-        return false;
-    }
+  bool try_add(T vKey) {
+      if (!exist(vKey)) {
+          m_Dico[vKey] = m_Array.size();
+          m_Array.push_back(vKey);
+          return true;
+      }
+      return false;
+  }
 
-    bool try_set_existing(T vKey) {
-        if (exist(vKey)) {
-            auto row = m_Dico.at(vKey);
-            m_Array[row] = vKey;
-            return true;
-        }
-        return false;
-    }
+  bool try_set_existing(T vKey) {
+      if (exist(vKey)) {
+          auto row = m_Dico.at(vKey);
+          m_Array[row] = vKey;
+          return true;
+      }
+      return false;
+  }
 
-    bool exist(const std::string& vKey) const { return (m_Dico.find(vKey) != m_Dico.end()); }
+  bool exist(const std::string& vKey) const { return (m_Dico.find(vKey) != m_Dico.end()); }
 };
 
-class IGFD_API Utils {
+class Utils{
 public:
-    struct IGFD_API PathStruct {
+    struct PathStruct {
         std::string path;
         std::string name;
         std::string ext;
@@ -219,8 +214,8 @@ public:
     static size_t GetLastCharPosWithMinCharCount(
         const std::string& vString, const char& vChar, const size_t& vMinCharCount);
 };
-class IGFD_API FileInfos;
-class IGFD_API FileStyle {
+class FileInfos;
+class FileStyle {
 public:
     typedef std::function<bool(const FileInfos&, FileStyle&)> FileStyleFunctor;
 
@@ -235,8 +230,8 @@ public:
     FileStyle(const FileStyle& vStyle);
     FileStyle(const ImVec4& vColor, const std::string& vIcon = "", ImFont* vFont = nullptr);
 };
-class IGFD_API FileDialogInternal;
-class IGFD_API SearchManager {
+class FileDialogInternal;
+class SearchManager {
 public:
     std::string puSearchTag;
     char puSearchBuffer[MAX_FILE_DIALOG_NAME_BUFFER] = "";
@@ -246,7 +241,7 @@ public:
     void Clear();                                                 // clear datas
     void DrawSearchBar(FileDialogInternal& vFileDialogInternal);  // draw the search bar
 };
-class IGFD_API FilterInfos {
+class FilterInfos {
 private:
     // just for return a default const std::string& in getFirstFilter.
     // cannot be const, because FilterInfos must be affected to an another FilterInfos
@@ -272,8 +267,8 @@ public:
     std::string transformAsteriskBasedFilterToRegex(
         const std::string& vFilter);  // will transform a filter who contain * to a regex
 };
-class IGFD_API FileInfos;
-class IGFD_API FilterManager{
+class FileInfos;
+class FilterManager{
 private:
   std::vector<FilterInfos> prParsedFilters;
   std::unordered_map<IGFD_FileStyleFlags, std::unordered_map<std::string, std::shared_ptr<FileStyle>>>
@@ -301,9 +296,9 @@ public:
   std::string ReplaceExtentionWithCurrentFilterIfNeeded(const std::string& vFileName,IGFD_ResultMode vFlag) const;     // replace the extention of the current file by the selected filter
   void SetDefaultFilterIfNotDefined();  // define the first filter if no filter is selected
 };
-class IGFD_API FileType {
+class FileType {
 public:
-  enum class ContentType {
+  enum class ContentType{
     // The ordering will be used during sort.
     Invalid = -1,
     Directory = 0,
@@ -334,7 +329,7 @@ public:
   bool operator<(const FileType& rhs) const;
   bool operator>(const FileType& rhs) const;
 };
-class IGFD_API FileInfos {
+class FileInfos {
 public:
   // extention of the file, the array is the levels of ext, by ex : .a.b.c, will be save in {.a.b.c, .b.c, .c}
   // 10 level max are sufficient i guess. the others levels will be checked if countExtDot > 1
@@ -356,7 +351,7 @@ public:
   bool SearchForExts(const std::string& vComaSepExts, const bool& vIsCaseInsensitive, const size_t& vMaxLevel = EXT_MAX_LEVEL)const;  // will check the fileExtLevels levels for vExts (ext are coma separated), until vMaxLevel
   bool FinalizeFileTypeParsing(const size_t& vMaxDotToExtract);  // finalize the parsing the file (only a file or link to file. no dir)
 };
-class IGFD_API FileManager {
+class FileManager {
 public:                            // types
   enum class SortingFieldEnum {  // sorting for filetering of the file lsit
     FIELD_NONE = 0,            // no sorting preference, result indetermined haha..
@@ -467,7 +462,7 @@ public:
   void DrawDirectoryCreation(const FileDialogInternal& vFileDialogInternal);  // draw directory creation widget
   void DrawPathComposer(const FileDialogInternal& vFileDialogInternal);       // draw path composer widget
 };
-class IGFD_API FileDialogInternal {
+class FileDialogInternal {
 public:
   FileManager puFileManager;      // the file manager
   FilterManager puFilterManager;  // the filter manager
@@ -501,7 +496,7 @@ public:
   void EndFrame();           // end frame, so maybe neded to do somethings fater all
   void ResetForNewDialog();  // reset what is needed to reset for the openging of a new dialog
 };
-class IGFD_API ThumbnailFeature {
+class ThumbnailFeature {
 protected:
   ThumbnailFeature();
   ~ThumbnailFeature();
@@ -556,7 +551,7 @@ public:
 #endif
 };
 
-class IGFD_API BookMarkFeature {
+class BookMarkFeature {
 protected:
   BookMarkFeature();
 
@@ -588,12 +583,12 @@ public:
 };
 
 // file localization by input chat // widget flashing
-class IGFD_API KeyExplorerFeature {
+class KeyExplorerFeature {
 protected:
   KeyExplorerFeature();
 };
 
-class IGFD_API FileDialog : public BookMarkFeature, public KeyExplorerFeature, public ThumbnailFeature {
+class FileDialog : public BookMarkFeature, public KeyExplorerFeature, public ThumbnailFeature {
 protected:
     FileDialogInternal prFileDialogInternal;
     ImGuiListClipper prFileListClipper;
@@ -748,16 +743,11 @@ protected:
 
 
 
+
+
 }  // namespace IGFD
 
 
-
-#endif  // __cplusplus
-
-
-#include <stdint.h>
-#define API __attribute__((__visibility__("default")))
-#define IGFD_C_API extern "C" API
 typedef IGFD::UserDatas IGFDUserDatas;
 typedef IGFD::PaneFun IGFDPaneFun;
 typedef IGFD::FileDialog ImDialog;
