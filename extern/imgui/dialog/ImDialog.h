@@ -204,8 +204,6 @@ public:
     static void AppendToBuffer(char* vBuffer, size_t vBufferLen, const std::string& vStr);
     static void ResetBuffer(char* vBuffer);
     static void SetBuffer(char* vBuffer, size_t vBufferLen, const std::string& vStr);
-    static std::string UTF8Encode(const std::wstring& wstr);
-    static std::wstring UTF8Decode(const std::string& str);
     static std::vector<std::string> SplitStringToVector(
         const std::string& vText, const char& vDelimiter, const bool& vPushEmpty);
     static std::vector<std::string> GetDrivesList();
@@ -296,7 +294,7 @@ public:
   std::string ReplaceExtentionWithCurrentFilterIfNeeded(const std::string& vFileName,IGFD_ResultMode vFlag) const;     // replace the extention of the current file by the selected filter
   void SetDefaultFilterIfNotDefined();  // define the first filter if no filter is selected
 };
-class FileType {
+class FileType{
 public:
   enum class ContentType{
     // The ordering will be used during sort.
@@ -439,7 +437,7 @@ public:
   void SortFields(const FileDialogInternal& vFileDialogInternal);       // will sort a column
   void OpenCurrentPath(const FileDialogInternal& vFileDialogInternal);  // set the path of the dialog, will launch the
   bool GetDrives();                                                     // list drives on windows platform
-  bool CreateDir(const std::string& vPath);                             // create a directory on the file system
+  bool create_dir(const std::string& vPath);                             // create a directory on the file system
   std::string ComposeNewPath(std::vector<std::string>::iterator vIter);         // compose a path from the compose path widget
   bool SetPathOnParentDirectoryIfAny();                  // compose paht on parent directory
   std::string GetCurrentPath();                          // get the current path
@@ -448,7 +446,7 @@ public:
   void SetDefaultFileName(const std::string& vFileName);
   bool SelectDirectory(const std::shared_ptr<FileInfos>& vInfos);  // enter directory
   void SelectFileName(const FileDialogInternal& vFileDialogInternal,  const std::shared_ptr<FileInfos>& vInfos);  // select filename
-  void SetCurrentDir(const std::string& vPath);   // define current directory for scan
+  void set_current_dir(const std::string& vPath);   // define current directory for scan
   void ScanDir(const FileDialogInternal& vFileDialogInternal,const std::string& vPath);  // scan the directory for retrieve the file list
 
 public:
