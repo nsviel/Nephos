@@ -924,12 +924,3 @@ typedef IGFD::UserDatas IGFDUserDatas;
 typedef IGFD::PaneFun IGFDPaneFun;
 typedef IGFD::FileDialog ImDialog;
 typedef void (*IGFD_PaneFun)(const char*, void*, bool*);  // callback fucntion for display the pane
-
-struct IGFD_Selection_Pair {
-    char* fileName;
-    char* filePathName;
-};
-struct IGFD_Selection {
-    IGFD_Selection_Pair* table;  // 0
-    size_t count;                // 0U
-};

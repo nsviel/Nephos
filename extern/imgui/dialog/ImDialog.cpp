@@ -25,31 +25,15 @@
 #include "../../image/stb_image_resize.h"
 
 
-#ifdef __cplusplus
-
-#if defined(__WIN32__) || defined(WIN32) || defined(_WIN32) || defined(__WIN64__) || defined(WIN64) || \
-    defined(_WIN64) || defined(_MSC_VER)
-
-#define _IGFD_WIN_
-#define stat _stat
-#define stricmp _stricmp
-#define PATH_SEP '\\'
-#define PATH_MAX 260
 #define _IGFD_UNIX_
 #define stricmp strcasecmp
 #define PATH_SEP '/'
 #define IS_FLOAT_DIFFERENT(a, b) (fabs((a) - (b)) > FLT_EPSILON)
 #define IS_FLOAT_EQUAL(a, b) (fabs((a) - (b)) < FLT_EPSILON)
 
-
-
-///////////////////////////////
-// locales
-///////////////////////////////
 #define createDirButtonString "+"
 #define okButtonString "OK"
 #define okButtonWidth 0.0f
-
 #define cancelButtonString "Cancel"
 #define cancelButtonWidth 0.0f
 #define okCancelButtonAlignement 0.0f
@@ -89,7 +73,6 @@
 class IGFDException : public std::exception {
 private:
     std::string m_Message;
-
 public:
     IGFDException(const std::string& vMessage) : m_Message(vMessage) {}
     const char* what() { return m_Message.c_str(); }
@@ -3226,5 +3209,3 @@ IGFD_API bool IGFD::FileDialog::prConfirm_Or_OpenOverWriteFileDialog_IfNeeded(
 
     return false;
 }
-
-#endif  // __cplusplus
