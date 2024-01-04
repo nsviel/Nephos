@@ -703,35 +703,17 @@ public:
     std::map<std::string, std::string> GetSelection(
         IGFD_ResultMode vFlag = IGFD_ResultMode_KeepInputFile);  // Open File behavior : will return selection via a
                                                                  // map<FileName, FilePathName>
-    std::string GetFilePathName(
-        IGFD_ResultMode vFlag =
-            IGFD_ResultMode_AddIfNoFileExt);  // Save File behavior : will return the current file path name
-    std::string GetCurrentFileName(
-        IGFD_ResultMode vFlag =
-            IGFD_ResultMode_AddIfNoFileExt);  // Save File behavior : will return the content file name
+    std::string GetFilePathName(IGFD_ResultMode vFlag =IGFD_ResultMode_AddIfNoFileExt);  // Save File behavior : will return the current file path name
+    std::string GetCurrentFileName(IGFD_ResultMode vFlag =IGFD_ResultMode_AddIfNoFileExt);  // Save File behavior : will return the content file name
     std::string GetCurrentPath();             // will return current file path
     std::string GetCurrentFilter();           // will return current filter
     UserDatas GetUserDatas() const;           // will return user datas send with Open Dialog
 
     // file style by extentions
-    void SetFileStyle(                      // SetExtention datas for have custom display of particular file type
-        const IGFD_FileStyleFlags& vFlags,  // file style
-        const char* vCriteria,              // extention filter to tune
-        const FileStyle& vInfos);  // Filter Extention Struct who contain Color and Icon/Text for the display of the
-                                   // file with extention filter
-    void SetFileStyle(             // SetExtention datas for have custom display of particular file type
-        const IGFD_FileStyleFlags& vFlags,  // file style
-        const char* vCriteria,              // extention filter to tune
-        const ImVec4& vColor,               // wanted color for the display of the file with extention filter
-        const std::string& vIcon = "",      // wanted text or icon of the file with extention filter
-        ImFont* vFont = nullptr);           // wanted font
+    void SetFileStyle(const FileStyle& vInfos);  // Filter Extention Struct who contain Color and Icon/Text for the display of the
+    void SetFileStyle(const std::string& vIcon = "", ImFont* vFont = nullptr);           // wanted font
     void SetFileStyle(FileStyle::FileStyleFunctor vFunctor);  // set file style via lambda function
-    bool GetFileStyle(                                        // GetExtention datas. return true is extention exist
-        const IGFD_FileStyleFlags& vFlags,                    // file style
-        const std::string& vCriteria,                         // extention filter (same as used in SetExtentionInfos)
-        ImVec4* vOutColor,                                    // color to retrieve
-        std::string* vOutIcon = nullptr,                      // icon or text to retrieve
-        ImFont** vOutFont = nullptr);                         // font to retreive
+    bool GetFileStyle(const IGFD_FileStyleFlags& vFlags, const std::string& vCriteria, ImVec4* vOutColor, std::string* vOutIcon = nullptr, ImFont** vOutFont = nullptr);                         // font to retreive
     void ClearFilesStyle();                                   // clear extentions setttings
 
     void SetLocales(                      // set locales to use before and after the dialog display
