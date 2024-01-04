@@ -6,6 +6,7 @@
 class GUI;
 
 namespace gui::rnd::tab{
+class Loader;
 
 
 class Menu

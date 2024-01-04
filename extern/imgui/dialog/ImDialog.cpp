@@ -1,43 +1,4 @@
-#pragma region PVS STUDIO
-
-// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
-// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
-
-#pragma endregion
-
-#pragma region IGFD LICENSE
-
-/*
-MIT License
-
-Copyright (c) 2019-2020 Stephane Cuillerdier (aka aiekick)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/
-
-#pragma endregion
-
 #include "ImDialog.h"
-
-#ifdef __cplusplus
-
-#pragma region Includes
 
 #include <cfloat>
 #include <cstring>  // stricmp / strcasecmp
@@ -48,38 +9,26 @@ SOFTWARE.
 #include <sys/stat.h>
 #include <cstdio>
 #include <cerrno>
-
-// this option need c++17
-#ifdef USE_STD_FILESYSTEM
 #include <filesystem>
 #include <exception>
-#endif  // USE_STD_FILESYSTEM
+#include <cstdlib>
+#include <algorithm>
+#include <iostream>
 
-#ifdef __EMSCRIPTEN__
-#include <emscripten.h>
-#endif  // __EMSCRIPTEN__
+#include "../core/imgui.h"
+#include "../core/imgui_internal.h"
+#include "../../image/stb_image.h"
+#define STB_IMAGE_RESIZE_IMPLEMENTATION
+#include "../../image/stb_image_resize.h"
 
-#ifdef _MSC_VER
 
-#define IGFD_DEBUG_BREAK     \
-    if (IsDebuggerPresent()) \
-    __debugbreak()
-#else
-#define IGFD_DEBUG_BREAK
-#endif
-
+#ifdef __cplusplus
 #if defined(__WIN32__) || defined(WIN32) || defined(_WIN32) || defined(__WIN64__) || defined(WIN64) || \
     defined(_WIN64) || defined(_MSC_VER)
 #define _IGFD_WIN_
 #define stat _stat
 #define stricmp _stricmp
 #include <cctype>
-// this option need c++17
-#ifdef USE_STD_FILESYSTEM
-#include <windows.h>
-#else
-#include "dirent/dirent.h"  // directly open the dirent file attached to this lib
-#endif                      // USE_STD_FILESYSTEM
 #define PATH_SEP '\\'
 #ifndef PATH_MAX
 #define PATH_MAX 260
@@ -95,46 +44,14 @@ SOFTWARE.
 #endif  // USE_STD_FILESYSTEM
 #define PATH_SEP '/'
 #endif  // _IGFD_UNIX_
-
-#include "../core/imgui.h"
-#include "../core/imgui_internal.h"
-
-#include <cstdlib>
-#include <algorithm>
-#include <iostream>
-
-#pragma endregion
-
-#pragma region Common defines
-
 #ifdef USE_THUMBNAILS
-#ifndef DONT_DEFINE_AGAIN__STB_IMAGE_IMPLEMENTATION
-#ifndef STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_IMPLEMENTATION
-#endif  // STB_IMAGE_IMPLEMENTATION
-#endif  // DONT_DEFINE_AGAIN__STB_IMAGE_IMPLEMENTATION
-#include "stb/stb_image.h"
-#ifndef DONT_DEFINE_AGAIN__STB_IMAGE_RESIZE_IMPLEMENTATION
-#ifndef STB_IMAGE_RESIZE_IMPLEMENTATION
-#define STB_IMAGE_RESIZE_IMPLEMENTATION
-#endif  // STB_IMAGE_RESIZE_IMPLEMENTATION
-#endif  // DONT_DEFINE_AGAIN__STB_IMAGE_RESIZE_IMPLEMENTATION
-#include "stb/stb_image_resize.h"
 #endif  // USE_THUMBNAILS
-
-// float comparisons
 #ifndef IS_FLOAT_DIFFERENT
 #define IS_FLOAT_DIFFERENT(a, b) (fabs((a) - (b)) > FLT_EPSILON)
 #endif  // IS_FLOAT_DIFFERENT
 #ifndef IS_FLOAT_EQUAL
 #define IS_FLOAT_EQUAL(a, b) (fabs((a) - (b)) < FLT_EPSILON)
 #endif  // IS_FLOAT_EQUAL
-
-#pragma endregion
-
-#pragma region IGFD NAMESPACE
-
-#pragma region CUSTOMIZATION DEFINES
 
 ///////////////////////////////
 // COMBOBOX
@@ -699,12 +616,6 @@ IGFD_API void IGFD::Utils::AppendToBuffer(char* vBuffer, size_t vBufferLen, cons
     if (len > str.size()) {
         len = str.size();
     }
-#ifdef _MSC_VER
-    strncpy_s(vBuffer, vBufferLen, str.c_str(), len);
-#else   // _MSC_VER
-    strncpy(vBuffer, str.c_str(), len);
-#endif  // _MSC_VER
-    vBuffer[len] = '\0';
 }
 
 IGFD_API void IGFD::Utils::ResetBuffer(char* vBuffer) { vBuffer[0] = '\0'; }
@@ -2097,16 +2008,6 @@ IGFD_API void IGFD::FileManager::prCompleteFileInfos(const std::shared_ptr<FileI
             }
 
             size_t len = 0;
-#ifdef _MSC_VER
-            struct tm _tm;
-            errno_t err = localtime_s(&_tm, &statInfos.st_mtime);
-            if (!err)
-                len = strftime(timebuf, 99, DateTimeFormat, &_tm);
-#else   // _MSC_VER
-            struct tm* _tm = localtime(&statInfos.st_mtime);
-            if (_tm)
-                len = strftime(timebuf, 99, DateTimeFormat, _tm);
-#endif  // _MSC_VER
             if (len) {
                 vInfos->fileModifDate = std::string(timebuf, len);
             }
@@ -2489,11 +2390,7 @@ IGFD_API void IGFD::FileManager::DrawPathComposer(const FileDialogInternal& vFil
             for (auto itPathDecomp = prCurrentPathDecomposition.begin();
                  itPathDecomp != prCurrentPathDecomposition.end(); ++itPathDecomp) {
                 if (itPathDecomp != prCurrentPathDecomposition.begin()) {
-#if defined(CUSTOM_PATH_SPACING)
-                    ImGui::SameLine(0, CUSTOM_PATH_SPACING);
-#else
-                    ImGui::SameLine();
-#endif  // USE_CUSTOM_PATH_SPACING
+                    ImGui::SameLine(0, 2);
                     if (!(vFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_DisableQuickPathSelection)) {
 #if defined(_IGFD_WIN_)
                         const char* sep = "\\";
@@ -2506,11 +2403,9 @@ IGFD_API void IGFD::FileManager::DrawPathComposer(const FileDialogInternal& vFil
                             bool click = IMGUI_PATH_BUTTON(sep);
                             ImGui::PopID();
 
-#if defined(CUSTOM_PATH_SPACING)
-                            ImGui::SameLine(0, CUSTOM_PATH_SPACING);
-#else
-                            ImGui::SameLine();
-#endif  // USE_CUSTOM_PATH_SPACING
+
+                            ImGui::SameLine(0, 2);
+
 
                             if (click) {
                                 OpenPathPopup(vFileDialogInternal, itPathDecomp - 1);
@@ -4935,11 +4830,6 @@ IGFD_C_API IGFD_Selection IGFD_GetSelection(ImDialog* vContextPtr, IGFD_ResultMo
                 if (!s.first.empty()) {
                     size_t siz = s.first.size() + 1U;
                     pair->fileName = new char[siz];
-#ifndef _MSC_VER
-                    strncpy(pair->fileName, s.first.c_str(), siz);
-#else   // _MSC_VER
-                    strncpy_s(pair->fileName, siz, s.first.c_str(), siz);
-#endif  // _MSC_VER
                     pair->fileName[siz - 1U] = '\0';
                 }
 
@@ -4947,11 +4837,6 @@ IGFD_C_API IGFD_Selection IGFD_GetSelection(ImDialog* vContextPtr, IGFD_ResultMo
                 if (!s.second.empty()) {
                     size_t siz = s.second.size() + 1U;
                     pair->filePathName = new char[siz];
-#ifndef _MSC_VER
-                    strncpy(pair->filePathName, s.second.c_str(), siz);
-#else   // _MSC_VER
-                    strncpy_s(pair->filePathName, siz, s.second.c_str(), siz);
-#endif  // _MSC_VER
                     pair->filePathName[siz - 1U] = '\0';
                 }
             }
@@ -4972,11 +4857,6 @@ IGFD_C_API char* IGFD_GetFilePathName(ImDialog* vContextPtr, IGFD_ResultMode vMo
             size_t siz = s.size() + 1U;
             res = (char*)malloc(siz);
             if (res) {
-#ifndef _MSC_VER
-                strncpy(res, s.c_str(), siz);
-#else   // _MSC_VER
-                strncpy_s(res, siz, s.c_str(), siz);
-#endif  // _MSC_VER
                 res[siz - 1U] = '\0';
             }
         }
@@ -4994,11 +4874,6 @@ IGFD_C_API char* IGFD_GetCurrentFileName(ImDialog* vContextPtr, IGFD_ResultMode 
             size_t siz = s.size() + 1U;
             res = (char*)malloc(siz);
             if (res) {
-#ifndef _MSC_VER
-                strncpy(res, s.c_str(), siz);
-#else   // _MSC_VER
-                strncpy_s(res, siz, s.c_str(), siz);
-#endif  // _MSC_VER
                 res[siz - 1U] = '\0';
             }
         }
@@ -5016,11 +4891,6 @@ IGFD_C_API char* IGFD_GetCurrentPath(ImDialog* vContextPtr) {
             size_t siz = s.size() + 1U;
             res = (char*)malloc(siz);
             if (res) {
-#ifndef _MSC_VER
-                strncpy(res, s.c_str(), siz);
-#else   // _MSC_VER
-                strncpy_s(res, siz, s.c_str(), siz);
-#endif  // _MSC_VER
                 res[siz - 1U] = '\0';
             }
         }
@@ -5038,11 +4908,6 @@ IGFD_C_API char* IGFD_GetCurrentFilter(ImDialog* vContextPtr) {
             size_t siz = s.size() + 1U;
             res = (char*)malloc(siz);
             if (res) {
-#ifndef _MSC_VER
-                strncpy(res, s.c_str(), siz);
-#else   // _MSC_VER
-                strncpy_s(res, siz, s.c_str(), siz);
-#endif  // _MSC_VER
                 res[siz - 1U] = '\0';
             }
         }
@@ -5070,7 +4935,6 @@ IGFD_C_API void IGFD_SetFileStyle(ImDialog* vContextPtr,
         vContextPtr->SetFileStyle(vFlags, vCriteria, vColor, vIcon, vFont);
     }
 }
-
 IGFD_C_API void IGFD_SetFileStyle2(ImDialog* vContextPtr,
     IGFD_FileStyleFlags vFlags,
     const char* vCriteria,
@@ -5098,11 +4962,6 @@ IGFD_C_API bool IGFD_GetFileStyle(ImDialog* vContextPtr,
             size_t siz = icon.size() + 1U;
             *vOutIconText = (char*)malloc(siz);
             if (*vOutIconText) {
-#ifndef _MSC_VER
-                strncpy(*vOutIconText, icon.c_str(), siz);
-#else   // _MSC_VER
-                strncpy_s(*vOutIconText, siz, icon.c_str(), siz);
-#endif  // _MSC_VER
                 (*vOutIconText)[siz - 1U] = '\0';
             }
         }
@@ -5143,11 +5002,6 @@ IGFD_C_API char* IGFD_SerializeBookmarks(ImDialog* vContextPtr, bool vDontSerial
             size_t siz = s.size() + 1U;
             res = (char*)malloc(siz);
             if (res) {
-#ifndef _MSC_VER
-                strncpy(res, s.c_str(), siz);
-#else   // _MSC_VER
-                strncpy_s(res, siz, s.c_str(), siz);
-#endif  // _MSC_VER
                 res[siz - 1U] = '\0';
             }
         }

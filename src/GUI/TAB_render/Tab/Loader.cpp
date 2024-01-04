@@ -6,6 +6,7 @@
 #include <Engine/Data/Namespace.h>
 #include <GUI/TAB_render/Tab/Init.h>
 #include <imgui/dialog/ImDialog.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace gui::rnd::tab{
@@ -26,8 +27,16 @@ Loader::~Loader(){}
 //Main function
 void Loader::loader_dialog(){
   //---------------------------
-//eng_loader->load_by_zenity();
-  ImDialog::Instance()->OpenDialog("selection_dialog", "Selection", ".ply, .pcap, .mkv", "..");
+
+  //eng_loader->load_by_zenity();
+
+  //ImDialog
+  string title = "Selection";
+  string filter = ", .ply, .pcap, .mkv";
+  ImDialog::Instance()->OpenDialog("selection_dialog", title.c_str(), filter.c_str(), "..");
+  ImDialog::Instance()->SetFileStyle(IGFD_FileStyleByTypeDir, "", ImVec4(0.5f, 0.63f, 0.75f, 0.9f), ICON_FA_FOLDER);
+  ImDialog::Instance()->SetFileStyle(IGFD_FileStyleByTypeFile, "", ImVec4(1.0f, 1.0f, 1.0f, 0.9f), ICON_FA_FILE);
+  //ImDialog::Instance()->SetFileStyle(IGFD_FileStyleByExtention, ".mkv", IM_COL32(45, 133, 133, 255));
 
   //---------------------------
 }
