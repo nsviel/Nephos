@@ -115,9 +115,9 @@ void Cloud::retrieve_color(K4A_device* k4a_device, int i){
     const vector<uint8_t>& color_data = k4a_device->color.image_depth.data;
 
     int color_idx = i * 4;
-    float r = static_cast<float>(color_data[color_idx + 2]) / 255.0f;
+    float r = static_cast<float>(color_data[color_idx + 0]) / 255.0f;
     float g = static_cast<float>(color_data[color_idx + 1]) / 255.0f;
-    float b = static_cast<float>(color_data[color_idx])     / 255.0f;
+    float b = static_cast<float>(color_data[color_idx + 2]) / 255.0f;
     float a = 1.0f;
     color = vec4(r, g, b, a);
   }

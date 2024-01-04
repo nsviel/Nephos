@@ -1,6 +1,6 @@
 #pragma once
 
-// uncomment and modify defines under for customize ImGuiFileDialog
+// uncomment and modify defines under for customize ImDialog
 
 //this options need c++17
 //#define USE_STD_FILESYSTEM
@@ -11,9 +11,9 @@
 // the slash's buttons in path cna be used for quick select parallles directories
 //#define USE_QUICK_PATH_SELECT
 
-// the spacing between button path's can be customized. 
+// the spacing between button path's can be customized.
 // if disabled the spacing is defined by the imgui theme
-// define the space between path buttons 
+// define the space between path buttons
 //#define CUSTOM_PATH_SPACING 2
 
 //#define USE_THUMBNAILS
@@ -35,7 +35,7 @@
 
 //#define USE_EXPLORATION_BY_KEYS
 // this mapping by default is for GLFW but you can use another
-//#include <GLFW/glfw3.h> 
+//#include <GLFW/glfw3.h>
 // Up key for explore to the top
 //#define IGFD_KEY_UP ImGuiKey_UpArrow
 // Down key for explore to the bottom

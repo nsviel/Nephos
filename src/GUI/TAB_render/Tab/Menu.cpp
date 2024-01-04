@@ -5,6 +5,7 @@
 #include <GUI/GUI_main/Interface/Tab.h>
 #include <Engine/Data/Namespace.h>
 #include <GUI/TAB_render/Tab/Init.h>
+#include <imgui/dialog/ImDialog.h>
 
 
 namespace gui::rnd::tab{
@@ -38,7 +39,8 @@ void Menu::run_tab_menu(){
     ImGui::EndMenu();
   }
   if(ImGui::MenuItem("Load")){
-    eng_loader->load_by_zenity();
+    //eng_loader->load_by_zenity();
+    this->loader_dialog();
   }
   if(ImGui::BeginMenu("Init")){
     gui_init->design_init();
@@ -46,9 +48,36 @@ void Menu::run_tab_menu(){
   }
   ImGui::EndMainMenuBar();
 
+  this->loader_panel();
+
   //---------------------------
 }
 
 //Subfunctions
+void Menu::loader_dialog(){
+  //---------------------------
+
+  ImDialog::Instance()->OpenDialog("selection_dialog", "Selection", ".ply, .pcap, .mkv", "..");
+
+  //---------------------------
+}
+void Menu::loader_panel(){
+  //---------------------------
+
+  // display
+  if (ImDialog::Instance()->Display("selection_dialog")){
+    // action if OK
+    if (ImDialog::Instance()->IsOk()){
+      std::string filePathName = ImDialog::Instance()->GetFilePathName();
+      std::string filePath = ImDialog::Instance()->GetCurrentPath();
+      // action
+    }
+
+    // close
+    ImDialog::Instance()->Close();
+  }
+
+  //---------------------------
+}
 
 }

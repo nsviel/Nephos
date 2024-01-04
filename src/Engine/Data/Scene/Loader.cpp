@@ -6,6 +6,8 @@
 #include <Utility/Function/File/Zenity.h>
 
 
+
+
 namespace eng::data{
 
 //Constructor / Destructor
@@ -39,7 +41,6 @@ eng::structure::Cloud* Loader::load_object(std::string path){
   //Create new object
   eng::structure::Cloud* cloud = new eng::structure::Cloud();
   cloud->path_file = path;
-  cloud->path_text = "../media/viking_room.png";
   cloud->draw_type_name = "point";
   cloud->has_texture = true;
 

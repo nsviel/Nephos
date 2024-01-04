@@ -26,6 +26,8 @@ public:
   void run_tab_menu();
 
   //Subfunctions
+  void loader_dialog();
+  void loader_panel();
 
 private:
   GUI* gui;
