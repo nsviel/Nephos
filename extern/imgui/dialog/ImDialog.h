@@ -128,34 +128,18 @@ enum IGFD_ResultMode_ {
 #define MAX_FILE_DIALOG_NAME_BUFFER 1024
 #define MAX_PATH_BUFFER_SIZE 1024
 #define EXT_MAX_LEVEL 10U
-
-#ifndef defaultSortField
 #define defaultSortField FIELD_FILENAME
-#endif  // defaultSortField
-
-#ifndef defaultSortOrderFilename
 #define defaultSortOrderFilename true
-#endif  // defaultSortOrderFilename
-#ifndef defaultSortOrderType
 #define defaultSortOrderType true
-#endif  // defaultSortOrderType
-#ifndef defaultSortOrderSize
 #define defaultSortOrderSize true
-#endif  // defaultSortOrderSize
-#ifndef defaultSortOrderDate
 #define defaultSortOrderDate true
-#endif  // defaultSortOrderDate
-#ifndef defaultSortOrderThumbnails
 #define defaultSortOrderThumbnails true
-#endif  // defaultSortOrderThumbnails
-
-
 
 
 namespace IGFD {
+  
 typedef void* UserDatas;
 typedef std::function<void(const char*, UserDatas, bool*)> PaneFun;  // side pane function binding
-
 
 template <typename T>
 class SearchableVector {
@@ -367,10 +351,10 @@ public:
   std::shared_ptr<FileStyle> fileStyle = nullptr;  // style of the file                               // USE_THUMBNAILS
 
 public:
-    bool SearchForTag(const std::string& vTag) const;  // will search a tag in fileNameExt and fileNameExt_optimized
-    bool SearchForExt(const std::string& vExt, const bool& vIsCaseInsensitive, const size_t& vMaxLevel = EXT_MAX_LEVEL)const;  // will check the fileExtLevels levels for vExt, until vMaxLevel
-    bool SearchForExts(const std::string& vComaSepExts, const bool& vIsCaseInsensitive, const size_t& vMaxLevel = EXT_MAX_LEVEL)const;  // will check the fileExtLevels levels for vExts (ext are coma separated), until vMaxLevel
-    bool FinalizeFileTypeParsing(const size_t& vMaxDotToExtract);  // finalize the parsing the file (only a file or link to file. no dir)
+  bool SearchForTag(const std::string& vTag) const;  // will search a tag in fileNameExt and fileNameExt_optimized
+  bool SearchForExt(const std::string& vExt, const bool& vIsCaseInsensitive, const size_t& vMaxLevel = EXT_MAX_LEVEL)const;  // will check the fileExtLevels levels for vExt, until vMaxLevel
+  bool SearchForExts(const std::string& vComaSepExts, const bool& vIsCaseInsensitive, const size_t& vMaxLevel = EXT_MAX_LEVEL)const;  // will check the fileExtLevels levels for vExts (ext are coma separated), until vMaxLevel
+  bool FinalizeFileTypeParsing(const size_t& vMaxDotToExtract);  // finalize the parsing the file (only a file or link to file. no dir)
 };
 class IGFD_API FileManager {
 public:                            // types
@@ -571,9 +555,6 @@ public:
     void ManageGPUThumbnails();  // in gpu rendering zone, whill create or destroy texture
 #endif
 };
-
-
-
 
 class IGFD_API BookMarkFeature {
 protected:
