@@ -18,6 +18,7 @@
 #include <dirent.h>
 #include <cctype>
 
+#include "ImDialog_config.h"
 #include "../core/imgui.h"
 #include "../core/imgui_internal.h"
 #include "../../image/stb_image.h"
@@ -27,46 +28,11 @@
 
 #define _IGFD_UNIX_
 #define stricmp strcasecmp
-#define PATH_SEP '/'
+
 #define IS_FLOAT_DIFFERENT(a, b) (fabs((a) - (b)) > FLT_EPSILON)
 #define IS_FLOAT_EQUAL(a, b) (fabs((a) - (b)) < FLT_EPSILON)
 
-#define createDirButtonString "+"
-#define okButtonString "OK"
-#define okButtonWidth 0.0f
-#define cancelButtonString "Cancel"
-#define cancelButtonWidth 0.0f
-#define okCancelButtonAlignement 0.0f
-#define invertOkAndCancelButtons 0
-#define resetButtonString "R"
-#define drivesButtonString "Drives"
-#define editPathButtonString "E"
-#define searchString "Search :"
-#define dirEntryString "[Dir]"
-#define linkEntryString "[Link]"
-#define fileEntryString "[File]"
-#define fileNameString "File Name :"
-#define dirNameString "Directory Path :"
-#define buttonResetSearchString "Reset search"
-#define buttonDriveString "Drives"
-#define buttonEditPathString "Edit path\nYou can also right click on path buttons"
-#define buttonResetPathString "Reset to current directory"
-#define buttonCreateDirString "Create Directory"
-#define tableHeaderAscendingIcon "A|"
-#define tableHeaderDescendingIcon "D|"
-#define tableHeaderFileNameString "File name"
-#define tableHeaderFileTypeString "Type"
-#define tableHeaderFileSizeString "Size"
-#define tableHeaderFileDateString "Date"
-#define fileSizeBytes "o"
-#define fileSizeKiloBytes "Ko"
-#define fileSizeMegaBytes "Mo"
-#define fileSizeGigaBytes "Go"
-#define OverWriteDialogTitleString "The file Already Exist !"
-#define OverWriteDialogMessageString "Would you like to OverWrite it ?"
-#define OverWriteDialogConfirmButtonString "Confirm"
-#define OverWriteDialogCancelButtonString "Cancel"
-#define DateTimeFormat "%Y/%m/%d %H:%M"
+
 
 
 
@@ -278,7 +244,7 @@ IGFD::Utils::PathStruct IGFD::Utils::ParsePathFileName(const std::string& vPathF
 
   if (!vPathFileName.empty()) {
     std::string pfn = vPathFileName;
-    std::string separator(1u, PATH_SEP);
+    std::string separator(1u, '/');
     IGFD::Utils::ReplaceString(pfn, "\\", separator);
     IGFD::Utils::ReplaceString(pfn, "/", separator);
 
@@ -936,7 +902,7 @@ std::string IGFD::FilterManager::ReplaceExtentionWithCurrentFilterIfNeeded(const
     return result;
 }
 
-IGFD::FileManager::FileManager() { puFsRoot = std::string(1u, PATH_SEP); }
+IGFD::FileManager::FileManager() { puFsRoot = std::string(1u, '/'); }
 
 
 size_t IGFD::FileManager::GetComposerSize() { return prCurrentPathDecomposition.size(); }
@@ -1307,7 +1273,7 @@ void IGFD::FileManager::ScanDir(const FileDialogInternal& vFileDialogInternal, c
 #endif
                     case DT_UNKNOWN: {
                         struct stat sb = {};
-                        auto filePath = path + std::string(1u, PATH_SEP) + ent->d_name;
+                        auto filePath = path + std::string(1u, '/') + ent->d_name;
 
                         if (!stat(filePath.c_str(), &sb)) {
                             if (sb.st_mode & S_IFLNK) {
@@ -1382,7 +1348,7 @@ void IGFD::FileManager::ScanDirForPathSelection(
                 struct stat sb = {};
                 int result = 0;
                 if (ent->d_type == DT_UNKNOWN) {
-                    auto filePath = path + std::string(1u, PATH_SEP) + ent->d_name;
+                    auto filePath = path + std::string(1u, '/') + ent->d_name;
 
                     result = stat(filePath.c_str(), &sb);
                 }
@@ -1459,7 +1425,7 @@ void IGFD::FileManager::prCompleteFileInfos(const std::shared_ptr<FileInfos>& vI
 
         // FIXME: so the condition is always true?
         if (vInfos->fileType.isFile() || vInfos->fileType.isLinkToUnknown() || vInfos->fileType.isDir())
-            fpn = vInfos->filePath + std::string(1u, PATH_SEP) + vInfos->fileNameExt;
+            fpn = vInfos->filePath + std::string(1u, '/') + vInfos->fileNameExt;
 
         struct stat statInfos = {};
         char timebuf[100];
@@ -1525,12 +1491,12 @@ void IGFD::FileManager::set_current_dir(const std::string& vPath) {
         if (numchar != nullptr)
         {
             prCurrentPath = std::move(real_path);
-            if (prCurrentPath[prCurrentPath.size() - 1] == PATH_SEP) {
+            if (prCurrentPath[prCurrentPath.size() - 1] == '/') {
                 prCurrentPath = prCurrentPath.substr(0, prCurrentPath.size() - 1);
             }
             IGFD::Utils::SetBuffer(puInputPathBuffer, MAX_PATH_BUFFER_SIZE, prCurrentPath);
-            prCurrentPathDecomposition = IGFD::Utils::SplitStringToVector(prCurrentPath, PATH_SEP, false);
-            prCurrentPathDecomposition.insert(prCurrentPathDecomposition.begin(), std::string(1u, PATH_SEP));
+            prCurrentPathDecomposition = IGFD::Utils::SplitStringToVector(prCurrentPath, '/', false);
+            prCurrentPathDecomposition.insert(prCurrentPathDecomposition.begin(), std::string(1u, '/'));
             if (!prCurrentPathDecomposition.empty()) {
                 puFsRoot = prCurrentPathDecomposition[0];
             }
@@ -1659,7 +1625,7 @@ void IGFD::FileManager::DrawDirectoryCreation(const FileDialogInternal& vFileDia
         if (ImGui::Button(okButtonString)) {
             std::string newDir = std::string(puDirectoryNameBuffer);
             if (create_dir(newDir)) {
-                SetCurrentPath(prCurrentPath + std::string(1u, PATH_SEP) + newDir);
+                SetCurrentPath(prCurrentPath + std::string(1u, '/') + newDir);
                 OpenCurrentPath(vFileDialogInternal);
             }
 
@@ -1763,7 +1729,7 @@ bool IGFD::FileManager::create_dir(const std::string& vPath) {
   //---------------------------
 
   if (!vPath.empty()) {
-    std::string path = prCurrentPath + std::string(1u, PATH_SEP) + vPath;
+    std::string path = prCurrentPath + std::string(1u, '/') + vPath;
     res = IGFD::Utils::CreateDirectoryIfNotExist(path);
   }
 
@@ -1797,14 +1763,14 @@ bool IGFD::FileManager::SelectDirectory(const std::shared_ptr<FileInfos>& vInfos
         std::string newPath;
 
         if (puShowDrives) {
-            newPath = vInfos->fileNameExt + std::string(1u, PATH_SEP);
+            newPath = vInfos->fileNameExt + std::string(1u, '/');
         } else {
 #ifdef __linux__
             if (puFsRoot == prCurrentPath)
                 newPath = prCurrentPath + vInfos->fileNameExt;
             else
 #endif  // __linux__
-                newPath = prCurrentPath + std::string(1u, PATH_SEP) + vInfos->fileNameExt;
+                newPath = prCurrentPath + std::string(1u, '/') + vInfos->fileNameExt;
         }
 
         if (IGFD::Utils::IsDirectoryCanBeOpened(newPath)) {
@@ -1883,7 +1849,7 @@ std::string IGFD::FileManager::GetResultingPath() {
     if (puDLGDirectoryMode) {  // if directory mode
         std::string selectedDirectory = puFileNameBuffer;
         if (!selectedDirectory.empty() && selectedDirectory != ".") {
-            path += std::string(1u, PATH_SEP) + selectedDirectory;
+            path += std::string(1u, '/') + selectedDirectory;
         }
     }
     return path;
@@ -1905,7 +1871,7 @@ std::string IGFD::FileManager::GetResultingFilePathName(
         if (puFsRoot != result)
 #endif  // _IGFD_UNIX_
         {
-            result += std::string(1u, PATH_SEP);
+            result += std::string(1u, '/');
         }
         result += filename;
     }
@@ -1920,13 +1886,13 @@ std::string IGFD::FileManager::ComposeNewPath(std::vector<std::string>::iterator
             if (*vIter == puFsRoot)
                 res = *vIter + res;
             else
-                res = *vIter + PATH_SEP + res;
+                res = *vIter + '/' + res;
         } else
             res = *vIter;
 
         if (vIter == prCurrentPathDecomposition.begin()) {
-            if (res[0] != PATH_SEP)
-                res = PATH_SEP + res;
+            if (res[0] != '/')
+                res = '/' + res;
             break;
         }
 
@@ -1950,7 +1916,7 @@ std::map<std::string, std::string> IGFD::FileManager::GetResultingSelection(
         if (puFsRoot != result)
 #endif  // _IGFD_UNIX_
         {
-            result += std::string(1u, PATH_SEP);
+            result += std::string(1u, '/');
         }
 
         result +=
