@@ -79,218 +79,45 @@
 ///////////////////////////////
 // locales
 ///////////////////////////////
-#ifndef createDirButtonString
 #define createDirButtonString "+"
-#endif  // createDirButtonString
-#ifndef okButtonString
 #define okButtonString "OK"
-#endif  // okButtonString
-#ifndef okButtonWidth
 #define okButtonWidth 0.0f
-#endif  // okButtonWidth
-#ifndef cancelButtonString
+
 #define cancelButtonString "Cancel"
-#endif  // cancelButtonString
-#ifndef cancelButtonWidth
 #define cancelButtonWidth 0.0f
-#endif  // cancelButtonWidth
-#ifndef okCancelButtonAlignement
 #define okCancelButtonAlignement 0.0f
-#endif  // okCancelButtonAlignement
-#ifndef invertOkAndCancelButtons
-// 0 => disabled, 1 => enabled
 #define invertOkAndCancelButtons 0
-#endif  // invertOkAndCancelButtons
-#ifndef resetButtonString
 #define resetButtonString "R"
-#endif  // resetButtonString
-#ifndef drivesButtonString
 #define drivesButtonString "Drives"
-#endif  // drivesButtonString
-#ifndef editPathButtonString
 #define editPathButtonString "E"
-#endif  // editPathButtonString
-#ifndef searchString
 #define searchString "Search :"
-#endif  // searchString
-#ifndef dirEntryString
 #define dirEntryString "[Dir]"
-#endif  // dirEntryString
-#ifndef linkEntryString
 #define linkEntryString "[Link]"
-#endif  // linkEntryString
-#ifndef fileEntryString
 #define fileEntryString "[File]"
-#endif  // fileEntryString
-#ifndef fileNameString
 #define fileNameString "File Name :"
-#endif  // fileNameString
-#ifndef dirNameString
 #define dirNameString "Directory Path :"
-#endif  // dirNameString
-#ifndef buttonResetSearchString
 #define buttonResetSearchString "Reset search"
-#endif  // buttonResetSearchString
-#ifndef buttonDriveString
 #define buttonDriveString "Drives"
-#endif  // buttonDriveString
-#ifndef buttonEditPathString
 #define buttonEditPathString "Edit path\nYou can also right click on path buttons"
-#endif  // buttonEditPathString
-#ifndef buttonResetPathString
 #define buttonResetPathString "Reset to current directory"
-#endif  // buttonResetPathString
-#ifndef buttonCreateDirString
 #define buttonCreateDirString "Create Directory"
-#endif  // buttonCreateDirString
-#ifndef tableHeaderAscendingIcon
 #define tableHeaderAscendingIcon "A|"
-#endif  // tableHeaderAscendingIcon
-#ifndef tableHeaderDescendingIcon
 #define tableHeaderDescendingIcon "D|"
-#endif  // tableHeaderDescendingIcon
-#ifndef tableHeaderFileNameString
 #define tableHeaderFileNameString "File name"
-#endif  // tableHeaderFileNameString
-#ifndef tableHeaderFileTypeString
 #define tableHeaderFileTypeString "Type"
-#endif  // tableHeaderFileTypeString
-#ifndef tableHeaderFileSizeString
 #define tableHeaderFileSizeString "Size"
-#endif  // tableHeaderFileSizeString
-#ifndef tableHeaderFileDateString
 #define tableHeaderFileDateString "Date"
-#endif  // tableHeaderFileDateString
-#ifndef fileSizeBytes
 #define fileSizeBytes "o"
-#endif  // fileSizeBytes
-#ifndef fileSizeKiloBytes
 #define fileSizeKiloBytes "Ko"
-#endif  // fileSizeKiloBytes
-#ifndef fileSizeMegaBytes
 #define fileSizeMegaBytes "Mo"
-#endif  // fileSizeMegaBytes
-#ifndef fileSizeGigaBytes
 #define fileSizeGigaBytes "Go"
-#endif  // fileSizeGigaBytes
-#ifndef OverWriteDialogTitleString
 #define OverWriteDialogTitleString "The file Already Exist !"
-#endif  // OverWriteDialogTitleString
-#ifndef OverWriteDialogMessageString
 #define OverWriteDialogMessageString "Would you like to OverWrite it ?"
-#endif  // OverWriteDialogMessageString
-#ifndef OverWriteDialogConfirmButtonString
 #define OverWriteDialogConfirmButtonString "Confirm"
-#endif  // OverWriteDialogConfirmButtonString
-#ifndef OverWriteDialogCancelButtonString
 #define OverWriteDialogCancelButtonString "Cancel"
-#endif  // OverWriteDialogCancelButtonString
-#ifndef DateTimeFormat
-// see strftime functionin <ctime> for customize
 #define DateTimeFormat "%Y/%m/%d %H:%M"
-#endif  // DateTimeFormat
-///////////////////////////////
-// THUMBNAILS
-///////////////////////////////
-#ifdef USE_THUMBNAILS
-#ifndef tableHeaderFileThumbnailsString
-#define tableHeaderFileThumbnailsString "Thumbnails"
-#endif  // tableHeaderFileThumbnailsString
-#ifndef DisplayMode_FilesList_ButtonString
-#define DisplayMode_FilesList_ButtonString "FL"
-#endif  // DisplayMode_FilesList_ButtonString
-#ifndef DisplayMode_FilesList_ButtonHelp
-#define DisplayMode_FilesList_ButtonHelp "File List"
-#endif  // DisplayMode_FilesList_ButtonHelp
-#ifndef DisplayMode_ThumbailsList_ButtonString
-#define DisplayMode_ThumbailsList_ButtonString "TL"
-#endif  // DisplayMode_ThumbailsList_ButtonString
-#ifndef DisplayMode_ThumbailsList_ButtonHelp
-#define DisplayMode_ThumbailsList_ButtonHelp "Thumbnails List"
-#endif  // DisplayMode_ThumbailsList_ButtonHelp
-#ifndef DisplayMode_ThumbailsGrid_ButtonString
-#define DisplayMode_ThumbailsGrid_ButtonString "TG"
-#endif  // DisplayMode_ThumbailsGrid_ButtonString
-#ifndef DisplayMode_ThumbailsGrid_ButtonHelp
-#define DisplayMode_ThumbailsGrid_ButtonHelp "Thumbnails Grid"
-#endif  // DisplayMode_ThumbailsGrid_ButtonHelp
-#ifndef DisplayMode_ThumbailsList_ImageHeight
-#define DisplayMode_ThumbailsList_ImageHeight 32.0f
-#endif  // DisplayMode_ThumbailsList_ImageHeight
-#ifndef IMGUI_RADIO_BUTTON
-inline bool inRadioButton(const char* vLabel, bool vToggled) {
-    bool pressed = false;
-    if (vToggled) {
-        ImVec4 bua = ImGui::GetStyleColorVec4(ImGuiCol_ButtonActive);
-        ImVec4 te = ImGui::GetStyleColorVec4(ImGuiCol_Text);
-        ImGui::PushStyleColor(ImGuiCol_Button, te);
-        ImGui::PushStyleColor(ImGuiCol_ButtonActive, te);
-        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, te);
-        ImGui::PushStyleColor(ImGuiCol_Text, bua);
-    }
-    pressed = IMGUI_BUTTON(vLabel);
-    if (vToggled) {
-        ImGui::PopStyleColor(4);  //-V112
-    }
-    return pressed;
-}
-#define IMGUI_RADIO_BUTTON inRadioButton
-#endif  // IMGUI_RADIO_BUTTON
-#endif  // USE_THUMBNAILS
-///////////////////////////////
-// BOOKMARKS
-///////////////////////////////
-#ifdef USE_BOOKMARK
-#ifndef defaultBookmarkPaneWith
-#define defaultBookmarkPaneWith 150.0f
-#endif  // defaultBookmarkPaneWith
-#ifndef bookmarksButtonString
-#define bookmarksButtonString "Bookmark"
-#endif  // bookmarksButtonString
-#ifndef bookmarksButtonHelpString
-#define bookmarksButtonHelpString "Bookmark"
-#endif  // bookmarksButtonHelpString
-#ifndef addBookmarkButtonString
-#define addBookmarkButtonString "+"
-#endif  // addBookmarkButtonString
-#ifndef removeBookmarkButtonString
-#define removeBookmarkButtonString "-"
-#endif  // removeBookmarkButtonString
-#ifndef IMGUI_TOGGLE_BUTTON
-inline bool inToggleButton(const char* vLabel, bool* vToggled) {
-    bool pressed = false;
 
-    if (vToggled && *vToggled) {
-        ImVec4 bua = ImGui::GetStyleColorVec4(ImGuiCol_ButtonActive);
-        // ImVec4 buh = ImGui::GetStyleColorVec4(ImGuiCol_ButtonHovered);
-        // ImVec4 bu = ImGui::GetStyleColorVec4(ImGuiCol_Button);
-        ImVec4 te = ImGui::GetStyleColorVec4(ImGuiCol_Text);
-        ImGui::PushStyleColor(ImGuiCol_Button, te);
-        ImGui::PushStyleColor(ImGuiCol_ButtonActive, te);
-        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, te);
-        ImGui::PushStyleColor(ImGuiCol_Text, bua);
-    }
 
-    pressed = IMGUI_BUTTON(vLabel);
-
-    if (vToggled && *vToggled) {
-        ImGui::PopStyleColor(4);  //-V112
-    }
-
-    if (vToggled && pressed)
-        *vToggled = !*vToggled;
-
-    return pressed;
-}
-#define IMGUI_TOGGLE_BUTTON inToggleButton
-#endif  // IMGUI_TOGGLE_BUTTON
-#endif  // USE_BOOKMARK
-
-#pragma endregion
-
-#pragma region INTERNAL
-
-#pragma region EXCEPTION
 
 class IGFDException : public std::exception {
 private:
@@ -301,9 +128,6 @@ public:
     const char* what() { return m_Message.c_str(); }
 };
 
-#pragma endregion
-
-#pragma region Utils
 
 #ifndef USE_STD_FILESYSTEM
 inline int inAlphaSort(const struct dirent** a, const struct dirent** b) { return strcoll((*a)->d_name, (*b)->d_name); }
@@ -665,9 +489,6 @@ IGFD_API size_t IGFD::Utils::GetLastCharPosWithMinCharCount(
     return std::string::npos;
 }
 
-#pragma endregion
-
-#pragma region FileStyle
 
 IGFD_API IGFD::FileStyle::FileStyle() : color(0, 0, 0, 0) {}
 
@@ -681,9 +502,7 @@ IGFD_API IGFD::FileStyle::FileStyle(const FileStyle& vStyle) {
 IGFD_API IGFD::FileStyle::FileStyle(const ImVec4& vColor, const std::string& vIcon, ImFont* vFont)
     : color(vColor), icon(vIcon), font(vFont) {}
 
-#pragma endregion
 
-#pragma region SearchManager
 
 IGFD_API void IGFD::SearchManager::Clear() {
     puSearchTag.clear();
@@ -712,9 +531,8 @@ IGFD_API void IGFD::SearchManager::DrawSearchBar(FileDialogInternal& vFileDialog
     }
 }
 
-#pragma endregion
 
-#pragma region FilterInfos
+
 
 void IGFD::FilterInfos::setCollectionTitle(const std::string& vTitle) { title = vTitle; }
 
@@ -799,9 +617,9 @@ IGFD_API std::string IGFD::FilterInfos::transformAsteriskBasedFilterToRegex(cons
     return res;
 }
 
-#pragma endregion
 
-#pragma region FilterManager
+
+
 
 IGFD_API const IGFD::FilterInfos& IGFD::FilterManager::GetSelectedFilter() const { return prSelectedFilter; }
 
@@ -1267,9 +1085,7 @@ IGFD_API void IGFD::FilterManager::SetDefaultFilterIfNotDefined() {
     }
 }
 
-#pragma endregion
 
-#pragma region FileType
 
 IGFD::FileType::FileType() = default;
 IGFD::FileType::FileType(const ContentType& vContentType, const bool& vIsSymlink)
@@ -1287,9 +1103,7 @@ bool IGFD::FileType::operator!=(const FileType& rhs) const { return m_Content !=
 bool IGFD::FileType::operator<(const FileType& rhs) const { return m_Content < rhs.m_Content; }
 bool IGFD::FileType::operator>(const FileType& rhs) const { return m_Content > rhs.m_Content; }
 
-#pragma endregion
 
-#pragma region FileInfos
 
 IGFD_API bool IGFD::FileInfos::SearchForTag(const std::string& vTag) const {
     if (!vTag.empty()) {
@@ -1371,9 +1185,8 @@ bool IGFD::FileInfos::FinalizeFileTypeParsing(const size_t& vMaxDotToExtract) {
     return false;
 }
 
-#pragma endregion
 
-#pragma region FileManager
+
 
 IGFD_API IGFD::FileManager::FileManager() { puFsRoot = std::string(1u, PATH_SEP); }
 
@@ -2495,9 +2308,7 @@ IGFD_API std::map<std::string, std::string> IGFD::FileManager::GetResultingSelec
     return res;
 }
 
-#pragma endregion
 
-#pragma region FileDialogInternal
 
 IGFD_API void IGFD::FileDialogInternal::NewFrame() {
     puCanWeContinue = true;  // reset flag for possibily validate the dialog
@@ -2552,13 +2363,9 @@ IGFD_API void IGFD::FileDialogInternal::EndFrame() {
 
 IGFD_API void IGFD::FileDialogInternal::ResetForNewDialog() {}
 
-#pragma endregion
 
-#pragma endregion
 
-#pragma region Optional Features
 
-#pragma region ThumbnailFeature
 
 IGFD_API IGFD::ThumbnailFeature::ThumbnailFeature() {
 #ifdef USE_THUMBNAILS
@@ -2832,9 +2639,8 @@ IGFD_API void IGFD::ThumbnailFeature::ManageGPUThumbnails() {
 
 #endif  // USE_THUMBNAILS
 
-#pragma endregion
 
-#pragma region BookMarkFeature
+
 
 IGFD_API IGFD::BookMarkFeature::BookMarkFeature() {
 #ifdef USE_BOOKMARK
@@ -2984,9 +2790,8 @@ IGFD_API bool IGFD::BookMarkFeature::RemoveBookmark(const std::string& vBookMark
 }
 #endif  // USE_BOOKMARK
 
-#pragma endregion
 
-#pragma region KeyExplorerFeature
+
 
 IGFD::KeyExplorerFeature::KeyExplorerFeature() = default;
 
@@ -3361,11 +3166,7 @@ IGFD_API void IGFD::KeyExplorerFeature::SetFlashingAttenuationInSeconds(float vA
 }
 #endif  // USE_EXPLORATION_BY_KEYS
 
-#pragma endregion
 
-#pragma endregion
-
-#pragma region FileDialog
 
 IGFD_API IGFD::FileDialog::FileDialog() : BookMarkFeature(), KeyExplorerFeature(), ThumbnailFeature() {}
 IGFD_API IGFD::FileDialog::~FileDialog() = default;
@@ -3704,34 +3505,18 @@ IGFD_API void IGFD::FileDialog::EndFrame() {
 IGFD_API void IGFD::FileDialog::QuitFrame() { QuitThumbnailFrame(prFileDialogInternal); }
 
 IGFD_API void IGFD::FileDialog::prDrawHeader() {
-#ifdef USE_BOOKMARK
-    if (!(prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_DisableBookmarkMode)) {
-        prDrawBookmarkButton();
-        ImGui::SameLine();
-    }
 
-#endif  // USE_BOOKMARK
 
     prFileDialogInternal.puFileManager.DrawDirectoryCreation(prFileDialogInternal);
 
     if (
-#ifdef USE_BOOKMARK
-        !(prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_DisableBookmarkMode) ||
-#endif  // USE_BOOKMARK
+
         !(prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_DisableCreateDirectoryButton)) {
         ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
         ImGui::SameLine();
     }
     prFileDialogInternal.puFileManager.DrawPathComposer(prFileDialogInternal);
 
-#ifdef USE_THUMBNAILS
-    if (!(prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_DisableThumbnailMode)) {
-        prDrawDisplayModeToolBar();
-        ImGui::SameLine();
-        ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
-        ImGui::SameLine();
-    }
-#endif  // USE_THUMBNAILS
 
     prFileDialogInternal.puSearchManager.DrawSearchBar(prFileDialogInternal);
 }
@@ -4646,13 +4431,12 @@ IGFD_API bool IGFD::FileDialog::prConfirm_Or_OpenOverWriteFileDialog_IfNeeded(
     return false;
 }
 
-#pragma endregion
 
-#pragma endregion
+
+
 
 #endif  // __cplusplus
 
-#pragma region IGFD_C_API
 
 // Return an initialized IGFD_Selection_Pair
 IGFD_C_API IGFD_Selection_Pair IGFD_Selection_Pair_Get(void) {
@@ -4697,20 +4481,7 @@ IGFD_C_API void IGFD_Destroy(ImDialog* vContextPtr) {
     }
 }
 
-// standard dialog
-IGFD_C_API void IGFD_OpenDialog(ImDialog* vContextPtr,
-    const char* vKey,
-    const char* vTitle,
-    const char* vFilters,
-    const char* vPath,
-    const char* vFileName,
-    const int vCountSelectionMax,
-    void* vUserDatas,
-    ImGuiFileDialogFlags flags) {
-    if (vContextPtr) {
-        vContextPtr->OpenDialog(vKey, vTitle, vFilters, vPath, vFileName, vCountSelectionMax, vUserDatas, flags);
-    }
-}
+
 
 IGFD_C_API void IGFD_OpenDialog2(ImDialog* vContextPtr,
     const char* vKey,
@@ -5051,5 +4822,3 @@ IGFD_C_API void ManageGPUThumbnails(ImDialog* vContextPtr) {
     }
 }
 #endif  // USE_THUMBNAILS
-
-#pragma endregion
