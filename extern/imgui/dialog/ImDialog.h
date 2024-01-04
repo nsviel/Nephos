@@ -710,7 +710,7 @@ public:
         const std::string& vLocaleEnd);   // locale to use at the end of the dialog display
 
 protected:
-    void NewFrame();   // new frame just at begining of display
+    void new_frame();   // new frame just at begining of display
     void EndFrame();   // end frame just at end of display
     void QuitFrame();  // quit frame when qui quit the dialog
 
@@ -718,9 +718,9 @@ protected:
     bool prConfirm_Or_OpenOverWriteFileDialog_IfNeeded(bool vLastAction, ImGuiWindowFlags vFlags);  // treatment of the result, start the confirm to overwrite dialog// if needed (if defined with flag)
 
     // dialog parts
-    virtual void prDrawHeader();   // draw header part of the dialog (bookmark btn, dir creation, path composer, search
-    virtual void prDrawContent();  // draw content part of the dialog (bookmark pane, file list, side pane)
-    virtual bool prDrawFooter();   // draw footer part of the dialog (file field, fitler combobox, ok/cancel btn's)
+    virtual void draw_header();   // draw header part of the dialog (bookmark btn, dir creation, path composer, search
+    virtual void draw_table();  // draw content part of the dialog (bookmark pane, file list, side pane)
+    virtual bool draw_footer();   // draw footer part of the dialog (file field, fitler combobox, ok/cancel btn's)
 
     // widgets components
     virtual void DisplayPathPopup(ImVec2 vSize);  // draw path popup when click on a \ or /

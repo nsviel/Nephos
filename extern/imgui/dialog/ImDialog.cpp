@@ -29,12 +29,6 @@
 #define _IGFD_UNIX_
 #define stricmp strcasecmp
 
-#define IS_FLOAT_DIFFERENT(a, b) (fabs((a) - (b)) > FLT_EPSILON)
-#define IS_FLOAT_EQUAL(a, b) (fabs((a) - (b)) < FLT_EPSILON)
-
-
-
-
 
 class IGFDException : public std::exception {
 private:
@@ -291,14 +285,6 @@ void IGFD::SearchManager::Clear() {
     IGFD::Utils::ResetBuffer(puSearchBuffer);
 }
 void IGFD::SearchManager::DrawSearchBar(FileDialogInternal& vFileDialogInternal) {
-    // search field
-    if (ImGui::Button(resetButtonString "##BtnImGuiFileDialogSearchField")) {
-        Clear();
-        vFileDialogInternal.puFileManager.ApplyFilteringOnFileList(vFileDialogInternal);
-    }
-    if (ImGui::IsItemHovered())
-        ImGui::SetTooltip(buttonResetSearchString);
-    ImGui::SameLine();
     ImGui::Text(searchString);
     ImGui::SameLine();
     ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x);
@@ -1642,32 +1628,17 @@ void IGFD::FileManager::DrawDirectoryCreation(const FileDialogInternal& vFileDia
     ImGui::SameLine();
 }
 void IGFD::FileManager::DrawPathComposer(const FileDialogInternal& vFileDialogInternal) {
-    if (ImGui::Button(resetButtonString)) {
-        SetCurrentPath(".");
-        OpenCurrentPath(vFileDialogInternal);
-    }
-    if (ImGui::IsItemHovered())
-        ImGui::SetTooltip(buttonResetPathString);
+  if(ImGui::Button(resetButtonString)){
+    SetCurrentPath(".");
+    OpenCurrentPath(vFileDialogInternal);
+  }
+  if (ImGui::IsItemHovered())
+    ImGui::SetTooltip(buttonResetPathString);
+  ImGui::SameLine();
+  ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
 
-    ImGui::SameLine();
-
-    if (ImGui::Button(editPathButtonString)) {
-        puInputPathActivated = !puInputPathActivated;
-        if (puInputPathActivated) {
-            auto endIt = prCurrentPathDecomposition.end();
-            prCurrentPath = ComposeNewPath(--endIt);
-            IGFD::Utils::SetBuffer(puInputPathBuffer, MAX_PATH_BUFFER_SIZE, prCurrentPath);
-        }
-    }
-    if (ImGui::IsItemHovered())
-        ImGui::SetTooltip(buttonEditPathString);
-
-    ImGui::SameLine();
-
-    ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
-
-    // show current path
-    if (!prCurrentPathDecomposition.empty()) {
+  // show current path
+  if (!prCurrentPathDecomposition.empty()) {
         ImGui::SameLine();
 
         if (puInputPathActivated) {
@@ -2208,7 +2179,7 @@ void ImDialog::OpenDialogWithPane(const std::string& vKey,
 
     prFileDialogInternal.puShowDialog = true;
 }
-void ImDialog::NewFrame() {
+void ImDialog::new_frame() {
     prFileDialogInternal.NewFrame();
     NewThumbnailFrame(prFileDialogInternal);
 }
@@ -2217,23 +2188,20 @@ void ImDialog::EndFrame() {
     prFileDialogInternal.EndFrame();
 }
 void ImDialog::QuitFrame() { QuitThumbnailFrame(prFileDialogInternal); }
-void ImDialog::prDrawHeader() {
+void ImDialog::draw_header() {
+  //---------------------------
 
+  prFileDialogInternal.puFileManager.DrawDirectoryCreation(prFileDialogInternal);
+  if (!(prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_DisableCreateDirectoryButton)) {
+      ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
+      ImGui::SameLine();
+  }
+  prFileDialogInternal.puFileManager.DrawPathComposer(prFileDialogInternal);
+  prFileDialogInternal.puSearchManager.DrawSearchBar(prFileDialogInternal);
 
-    prFileDialogInternal.puFileManager.DrawDirectoryCreation(prFileDialogInternal);
-
-    if (
-
-        !(prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_DisableCreateDirectoryButton)) {
-        ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
-        ImGui::SameLine();
-    }
-    prFileDialogInternal.puFileManager.DrawPathComposer(prFileDialogInternal);
-
-
-    prFileDialogInternal.puSearchManager.DrawSearchBar(prFileDialogInternal);
+  //---------------------------
 }
-void ImDialog::prDrawContent() {
+void ImDialog::draw_table() {
     ImVec2 size = ImGui::GetContentRegionAvail() - ImVec2(0.0f, prFileDialogInternal.puFooterHeight);
 
 #ifdef USE_BOOKMARK
@@ -2671,135 +2639,111 @@ void ImDialog::SetLocales(
 
 bool ImDialog::Display(
     const std::string& vKey, ImGuiWindowFlags vFlags, ImVec2 vMinSize, ImVec2 vMaxSize) {
-    bool res = false;
+  bool res = false;
+  //---------------------------
 
-    if (prFileDialogInternal.puShowDialog && prFileDialogInternal.puDLGkey == vKey) {
-        if (prFileDialogInternal.puUseCustomLocale)
-            setlocale(prFileDialogInternal.puLocaleCategory, prFileDialogInternal.puLocaleBegin.c_str());
+  if (prFileDialogInternal.puShowDialog && prFileDialogInternal.puDLGkey == vKey) {
+    if (prFileDialogInternal.puUseCustomLocale)
+      setlocale(prFileDialogInternal.puLocaleCategory, prFileDialogInternal.puLocaleBegin.c_str());
 
-        auto& fdFile = prFileDialogInternal.puFileManager;
-        auto& fdFilter = prFileDialogInternal.puFilterManager;
+    auto& fdFile = prFileDialogInternal.puFileManager;
+    auto& fdFilter = prFileDialogInternal.puFilterManager;
 
-        static ImGuiWindowFlags flags;  // todo: not a good solution for multi instance, to fix
+    static ImGuiWindowFlags flags;  // todo: not a good solution for multi instance, to fix
 
-        // to be sure than only one dialog is displayed per frame
-        ImGuiContext& g = *GImGui;
-        if (g.FrameCount == prFileDialogInternal.puLastImGuiFrameCount)  // one instance was displayed this frame before
-                                                                         // for this key +> quit
-            return res;
-        prFileDialogInternal.puLastImGuiFrameCount = g.FrameCount;  // mark this instance as used this frame
+    // to be sure than only one dialog is displayed per frame
+    ImGuiContext& g = *GImGui;
+    if (g.FrameCount == prFileDialogInternal.puLastImGuiFrameCount)  // one instance was displayed this frame before
+                                                                     // for this key +> quit
+        return res;
+    prFileDialogInternal.puLastImGuiFrameCount = g.FrameCount;  // mark this instance as used this frame
 
-        std::string name = prFileDialogInternal.puDLGtitle + "##" + prFileDialogInternal.puDLGkey;
-        if (prFileDialogInternal.puName != name) {
-            fdFile.ClearComposer();
-            fdFile.ClearFileLists();
-            flags = vFlags;
-        }
-
-        NewFrame();
-
-#ifdef IMGUI_HAS_VIEWPORT
-        if (!ImGui::GetIO().ConfigViewportsNoDecoration) {
-            // https://github.com/ocornut/imgui/issues/4534
-            ImGuiWindowClass window_class;
-            window_class.ViewportFlagsOverrideClear = ImGuiViewportFlags_NoDecoration;
-            ImGui::SetNextWindowClass(&window_class);
-        }
-#endif  // IMGUI_HAS_VIEWPORT
-
-        bool beg = false;
-        if (prFileDialogInternal.puDLGflags &
-            ImGuiFileDialogFlags_NoDialog)  // disable our own dialog system (standard or modal)
-        {
-            beg = true;
-        } else {
-            ImGui::SetNextWindowSizeConstraints(vMinSize, vMaxSize);
-
-            if (prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_Modal &&
-                !prFileDialogInternal.puOkResultToConfirm)  // disable modal because the confirm dialog for overwrite is
-                                                            // a new modal
-            {
-                ImGui::OpenPopup(name.c_str());
-                beg = ImGui::BeginPopupModal(name.c_str(), (bool*)nullptr, flags | ImGuiWindowFlags_NoScrollbar);
-            } else {
-                beg = ImGui::Begin(name.c_str(), &prFileDialogInternal.puShowDialog, flags | ImGuiWindowFlags_NoScrollbar);
-            }
-        }
-        if (beg) {
-#ifdef IMGUI_HAS_VIEWPORT
-            // if decoration is enabled we disable the resizing feature of imgui for avoid crash with SDL2 and GLFW3
-            if (ImGui::GetIO().ConfigViewportsNoDecoration) {
-                flags = vFlags;
-            } else {
-                auto win = ImGui::GetCurrentWindowRead();
-                if (win->Viewport->Idx != 0)
-                    flags |= ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar;
-                else
-                    flags = vFlags;
-            }
-#endif  // IMGUI_HAS_VIEWPORT
-
-            ImGuiID _frameId = ImGui::GetID(name.c_str());
-            ImVec2 frameSize = ImVec2(0, 0);
-            if (prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_NoDialog)
-                frameSize = vMaxSize;
-            if (ImGui::BeginChild(_frameId, frameSize, false, flags | ImGuiWindowFlags_NoScrollbar)) {
-                prFileDialogInternal.puName = name;  //-V820
-
-                if (fdFile.puDLGpath.empty())
-                    fdFile.puDLGpath = ".";  // defaut path is '.'
-
-                fdFilter.SetDefaultFilterIfNotDefined();
-
-                // init list of files
-                if (fdFile.IsFileListEmpty() && !fdFile.puShowDrives) {
-                    IGFD::Utils::ReplaceString(fdFile.puDLGDefaultFileName, fdFile.puDLGpath, "");  // local path
-                    if (!fdFile.puDLGDefaultFileName.empty()) {
-                        fdFile.SetDefaultFileName(fdFile.puDLGDefaultFileName);
-                        fdFilter.SetSelectedFilterWithExt(fdFilter.puDLGdefaultExt);
-                    } else if (fdFile.puDLGDirectoryMode)  // directory mode
-                        fdFile.SetDefaultFileName(".");
-                    fdFile.ScanDir(prFileDialogInternal, fdFile.puDLGpath);
-                }
-
-                // draw dialog parts
-                prDrawHeader();        // bookmark, directory, path
-                prDrawContent();       // bookmark, files view, side pane
-                res = prDrawFooter();  // file field, filter combobox, ok/cancel buttons
-
-                EndFrame();
-            }
-            ImGui::EndChild();
-
-            // for display in dialog center, the confirm to overwrite dlg
-            prFileDialogInternal.puDialogCenterPos = ImGui::GetCurrentWindowRead()->ContentRegionRect.GetCenter();
-
-            // when the confirm to overwrite dialog will appear we need to
-            // disable the modal mode of the main file dialog
-            // see prOkResultToConfirm under
-            if (prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_Modal &&
-                !prFileDialogInternal.puOkResultToConfirm) {
-                ImGui::EndPopup();
-            }
-        }
-
-        if (prFileDialogInternal.puDLGflags &
-            ImGuiFileDialogFlags_NoDialog) {  // disable our own dialog system (standard or modal)
-        } else {
-            // same things here regarding prOkResultToConfirm
-            if (!(prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_Modal) ||
-                prFileDialogInternal.puOkResultToConfirm) {
-                ImGui::End();
-            }
-        }
-        // confirm the result and show the confirm to overwrite dialog if needed
-        res = prConfirm_Or_OpenOverWriteFileDialog_IfNeeded(res, vFlags);
-
-        if (prFileDialogInternal.puUseCustomLocale)
-            setlocale(prFileDialogInternal.puLocaleCategory, prFileDialogInternal.puLocaleEnd.c_str());
+    std::string name = prFileDialogInternal.puDLGtitle + "##" + prFileDialogInternal.puDLGkey;
+    if (prFileDialogInternal.puName != name) {
+        fdFile.ClearComposer();
+        fdFile.ClearFileLists();
+        flags = vFlags;
     }
 
-    return res;
+    new_frame();
+
+
+    bool beg = false;
+    if (prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_NoDialog){
+        beg = true;
+    }else{
+      ImGui::SetNextWindowSizeConstraints(vMinSize, vMaxSize);
+
+      if (prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_Modal && !prFileDialogInternal.puOkResultToConfirm){
+        ImGui::OpenPopup(name.c_str());
+        beg = ImGui::BeginPopupModal(name.c_str(), (bool*)nullptr, flags | ImGuiWindowFlags_NoScrollbar);
+      } else {
+        beg = ImGui::Begin(name.c_str(), &prFileDialogInternal.puShowDialog, flags | ImGuiWindowFlags_NoScrollbar);
+      }
+    }
+    if (beg) {
+      ImGuiID _frameId = ImGui::GetID(name.c_str());
+      ImVec2 frameSize = ImVec2(0, 0);
+      if (prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_NoDialog){
+        frameSize = vMaxSize;
+      }
+      if (ImGui::BeginChild(_frameId, frameSize, false, flags | ImGuiWindowFlags_NoScrollbar)) {
+        prFileDialogInternal.puName = name;  //-V820
+
+        if (fdFile.puDLGpath.empty())
+            fdFile.puDLGpath = ".";  // defaut path is '.'
+
+        fdFilter.SetDefaultFilterIfNotDefined();
+
+        // init list of files
+        if (fdFile.IsFileListEmpty() && !fdFile.puShowDrives) {
+            IGFD::Utils::ReplaceString(fdFile.puDLGDefaultFileName, fdFile.puDLGpath, "");  // local path
+            if (!fdFile.puDLGDefaultFileName.empty()) {
+                fdFile.SetDefaultFileName(fdFile.puDLGDefaultFileName);
+                fdFilter.SetSelectedFilterWithExt(fdFilter.puDLGdefaultExt);
+            } else if (fdFile.puDLGDirectoryMode)  // directory mode
+                fdFile.SetDefaultFileName(".");
+            fdFile.ScanDir(prFileDialogInternal, fdFile.puDLGpath);
+        }
+
+        // draw dialog parts
+        this->draw_header();        // bookmark, directory, path
+        this->draw_table();       // bookmark, files view, side pane
+        res = draw_footer();  // file field, filter combobox, ok/cancel buttons
+
+        EndFrame();
+      }
+      ImGui::EndChild();
+
+      // for display in dialog center, the confirm to overwrite dlg
+      prFileDialogInternal.puDialogCenterPos = ImGui::GetCurrentWindowRead()->ContentRegionRect.GetCenter();
+
+      // when the confirm to overwrite dialog will appear we need to
+      // disable the modal mode of the main file dialog
+      // see prOkResultToConfirm under
+      if (prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_Modal && !prFileDialogInternal.puOkResultToConfirm) {
+        ImGui::EndPopup();
+      }
+    }
+
+    if (prFileDialogInternal.puDLGflags &
+      ImGuiFileDialogFlags_NoDialog) {  // disable our own dialog system (standard or modal)
+    } else {
+      // same things here regarding prOkResultToConfirm
+      if (!(prFileDialogInternal.puDLGflags & ImGuiFileDialogFlags_Modal) || prFileDialogInternal.puOkResultToConfirm) {
+        ImGui::End();
+      }
+    }
+    // confirm the result and show the confirm to overwrite dialog if needed
+    res = prConfirm_Or_OpenOverWriteFileDialog_IfNeeded(res, vFlags);
+
+    if (prFileDialogInternal.puUseCustomLocale){
+      setlocale(prFileDialogInternal.puLocaleCategory, prFileDialogInternal.puLocaleEnd.c_str());
+    }
+  }
+
+  //---------------------------
+  return res;
 }
 bool ImDialog::WasOpenedThisFrame(const std::string& vKey) const {
     bool res = prFileDialogInternal.puShowDialog && prFileDialogInternal.puDLGkey == vKey;
@@ -2955,7 +2899,7 @@ bool ImDialog::prDrawValidationButtons() {
 
     return res;
 }
-bool ImDialog::prDrawFooter() {
+bool ImDialog::draw_footer() {
     auto& fdFile = prFileDialogInternal.puFileManager;
 
     float posY = ImGui::GetCursorPos().y;  // height of last bar calc
