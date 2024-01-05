@@ -21,16 +21,16 @@ Glyph::Glyph(eng::data::Node* eng_data){
   this->glyph_aabb = new glyph::object::AABB();
   this->glyph_axis = new glyph::object::Axis();
 
-  this->vec_glyph_src.push_back(new glyph::world::Grid());
-  this->vec_glyph_src.push_back(new glyph::world::Axis());
+  this->vec_glyph.push_back(new glyph::world::Grid());
+  this->vec_glyph.push_back(new glyph::world::Axis());
 
   //---------------------------
 }
 Glyph::~Glyph(){
   //---------------------------
 
-  for(int i=0; i<vec_glyph_src.size(); i++){
-    delete vec_glyph_src[i];
+  for(int i=0; i<vec_glyph.size(); i++){
+    delete vec_glyph[i];
   }
 
   //---------------------------
@@ -40,10 +40,10 @@ Glyph::~Glyph(){
 void Glyph::create_glyph_world(){
   //---------------------------
 
-  for(int i=0; i<vec_glyph_src.size(); i++){
+  for(int i=0; i<vec_glyph.size(); i++){
     eng::structure::Set* data_set = eng_database->get_data_set();
     eng::structure::Set* set_world = data_set->get_set("World");
-    eng::base::Glyph* base = vec_glyph_src[i];
+    eng::base::Glyph* base = vec_glyph[i];
     eng::structure::Glyph* glyph = base->create();
 
     //Insert into engine

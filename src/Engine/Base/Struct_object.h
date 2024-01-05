@@ -51,6 +51,7 @@ struct Object : public eng::structure::Entity
   bool has_normal;
   bool has_texture;
   bool has_timestamp;
+  bool is_permanent = false;
 
   //Pose
   glm::vec3 min = glm::vec3(0.0f);
