@@ -1,5 +1,4 @@
 #include "Loader.h"
-#include "Item.h"
 
 #include <Node/GUI.h>
 #include <Engine/Engine.h>
@@ -103,9 +102,9 @@ void Loader::draw_content(){
     ImGui::TableHeadersRow();
 
     //Item transposition
-    vector<Item> vec_item_folder;
-    vector<Item> vec_item_file;
     int ID = 0;
+    vec_item_folder.clear();
+    vec_item_file.clear();
     for(int i=0; i<vec_current_files.size(); i++){
       Item item;
       string file = vec_current_files[i];
@@ -125,6 +124,7 @@ void Loader::draw_content(){
         item.color_icon = ImVec4(0.5f, 0.63f, 0.75f, 0.9f);
         vec_item_folder.push_back(item);
       }else if(item.type == "file"){
+        item.path = file;
         item.name = info::get_name_from_path(file);
         item.icon = string(ICON_FA_FILE);
         item.size = info::get_file_formatted_size(file);
@@ -234,6 +234,7 @@ void Loader::draw_footer(){
   if(file_selection.Size != 0){
     if(ImGui::Button("Load##222")){
       this->operation_load();
+      this->file_selection.clear();
     }
   }
 
@@ -247,14 +248,29 @@ void Loader::draw_footer(){
 void Loader::operation_load(){
   //---------------------------
 
-  //eng::structure::Object* object = eng_loader->load_object(file_selection[0]);
-  //if(object == nullptr) return;
+  //Retrieve all good selected files to load
+  vector<string> vec_path;
+  for(int i=0; i<vec_item_file.size(); i++){
+    Item& item = vec_item_file[i];
+    if(file_selection.contains(item.ID)){
+      if(eng_loader->check_format_viability(item.format)){
+        vec_path.push_back(item.path);
+      }
+    }
+  }
+  if(vec_path.size() == 0) return;
 
+  //Apply loading and operations
   if(remove_old){
     eng_scene->delete_object_scene_all();
   }
 
-  //transformManager->make_scaling(object, scale);
+  for(int i=0; i<vec_path.size(); i++){
+    eng::structure::Object* object = eng_loader->load_object(vec_path[i]);
+    if(object != nullptr){
+      transformManager->make_scaling(object, scale);
+    }
+  }
 
   //---------------------------
 }

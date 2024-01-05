@@ -17,6 +17,7 @@ struct Item{
   //---------------------------
 
   //Item stuff
+  string path;
   string name;
   string type;
   string format;

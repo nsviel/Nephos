@@ -6,8 +6,6 @@
 #include <Utility/Function/File/Zenity.h>
 
 
-
-
 namespace eng::data{
 
 //Constructor / Destructor
@@ -18,6 +16,15 @@ Loader::Loader(eng::data::Node* eng_data){
   this->eng_format = new eng::data::Format();
 
   this->path_current_dir = "";
+  this->accepted_format.push_back("pts");
+  this->accepted_format.push_back("obj");
+  this->accepted_format.push_back("ply");
+  this->accepted_format.push_back("xyz");
+  this->accepted_format.push_back("pcap");
+  this->accepted_format.push_back("ptx");
+  this->accepted_format.push_back("csv");
+  this->accepted_format.push_back("las");
+  this->accepted_format.push_back("mkv");
 
   //---------------------------
 }
@@ -64,17 +71,6 @@ std::vector<eng::structure::Cloud*> Loader::load_objects(std::vector<std::string
   //---------------------------
   return vec_obj;
 }
-void Loader::load_by_zenity(){
-  //---------------------------
-
-  //Select files to load
-  std::vector<std::string> path_vec = zenity::zenity_file_vec("Load", path_current_dir);
-
-  //Add object in engine
-  this->load_objects(path_vec);
-
-  //---------------------------
-}
 
 //Subfunctions
 void Loader::transfert_data(eng::structure::Object* object, MyFile* file_data){
@@ -97,6 +93,18 @@ void Loader::transfert_data(eng::structure::Object* object, MyFile* file_data){
   delete file_data;
 
   //---------------------------
+}
+bool Loader::check_format_viability(string format){
+  //---------------------------
+
+  for(int i=0; i<accepted_format.size(); i++){
+    if(format == accepted_format[i]){
+      return true;
+    }
+  }
+
+  //---------------------------
+  return false;
 }
 
 }

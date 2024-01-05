@@ -30,15 +30,16 @@ public:
   //Main functions
   eng::structure::Cloud* load_object(std::string path);
   std::vector<eng::structure::Cloud*> load_objects(std::vector<std::string> path);
-  void load_by_zenity();
 
   //Subfunctions
   void transfert_data(eng::structure::Object* object, MyFile* file_data);
+  bool check_format_viability(string format);
 
 private:
   eng::data::Format* eng_format;
   eng::data::Scene* eng_scene;
 
+  vector<string> accepted_format;
   std::string path_current_dir;
 };
 

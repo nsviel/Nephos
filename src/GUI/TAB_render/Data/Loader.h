@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Item.h"
+
 #include <Utility/Specific/common.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <Engine/Data/Namespace.h>
@@ -34,6 +36,8 @@ private:
   eng::data::Loader* eng_loader;
   eng::ope::Transformation* transformManager;
 
+  vector<Item> vec_item_folder;
+  vector<Item> vec_item_file;
   ImVector<int> file_selection;
   vector<string> bookmark;
   string default_dir;
