@@ -5,7 +5,7 @@
 
 enum ColumnID{
   //---------------------------
-  
+
   ColumnID_name,
   ColumnID_weight,
   ColumnID_format
@@ -25,6 +25,7 @@ struct Item{
   ImVec4 color_icon;
   ImVec4 color_text;
   float weight;
+  int ID;
 
   //Sorting stuff
   static const ImGuiTableSortSpecs* s_current_sort_specs;

@@ -21,8 +21,8 @@ Loader::Loader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   eng::data::Node* eng_data = engine->get_eng_data();
 
   this->eng_loader = eng_data->get_eng_loader();
-  this->current_dir = file::get_current_parent_path_abs();
-  this->vec_current_files = directory::list_all_path(current_dir);
+  this->default_dir = file::get_current_parent_path_abs();
+  this->current_dir = default_dir;
 
   //---------------------------
 }
@@ -45,7 +45,7 @@ void Loader::draw_header(){
 
   //Reset current dir
   if(ImGui::Button(ICON_FA_HOUSE "##222")){
-
+    this->current_dir = default_dir;
   }
   ImGui::SameLine();
   ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
@@ -77,8 +77,7 @@ void Loader::draw_header(){
     ImGui::PushID(i);
     element_path += "/" + element;
     if (ImGui::Button(element.c_str())) {
-
-      say(element_path);
+      this->current_dir = element_path;
     }
     ImGui::PopID();
   }
@@ -86,6 +85,7 @@ void Loader::draw_header(){
   //---------------------------
 }
 void Loader::draw_content(){
+  vector<string> vec_current_files = directory::list_all_path(current_dir);
   //---------------------------
 
   static ImGuiTableFlags flags;
@@ -105,6 +105,7 @@ void Loader::draw_content(){
     //Item transposition
     vector<Item> vec_item_folder;
     vector<Item> vec_item_file;
+    int ID = 0;
     for(int i=0; i<vec_current_files.size(); i++){
       Item item;
       string file = vec_current_files[i];
@@ -113,6 +114,7 @@ void Loader::draw_content(){
       if(filename[0] == '.') continue;
 
       //Get file info
+      item.ID = ID++;
       item.name = info::get_name_from_path(file);
       item.type = directory::is_dir_or_file(file);
       if(item.type == "directory"){
@@ -138,11 +140,16 @@ void Loader::draw_content(){
       Item::SortWithSortSpecs(sort_specs, vec_item_file);
     }
 
-    // Populate the table
+    // Populate the table - Folder
     for(int i=0; i<vec_item_folder.size(); i++){
       Item& item = vec_item_folder[i];
 
       ImGui::TableNextRow();
+      if (ImGui::IsMouseDoubleClicked(0) && ImGui::TableSetColumnIndex(-1)) {
+        this->current_dir += "/" + item.name;
+        std::cout << "Double-clicked on row: " << i << std::endl;
+      }
+
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
       ImGui::SameLine();
@@ -152,6 +159,10 @@ void Loader::draw_content(){
       ImGui::TableNextColumn();
       ImGui::Text("%s", item.size.c_str());
     }
+
+    // Populate the table - File
+    static ImVector<int> selection;
+    ImGuiSelectableFlags flags = ImGuiSelectableFlags_SpanAllColumns | ImGuiSelectableFlags_AllowOverlap;
     for(int i=0; i<vec_item_file.size(); i++){
       Item& item = vec_item_file[i];
 
@@ -159,7 +170,20 @@ void Loader::draw_content(){
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
       ImGui::SameLine();
-      ImGui::Text("%s", item.name.c_str());
+      const bool item_is_selected = selection.contains(item.ID);
+      if (ImGui::Selectable(item.name.c_str(), item_is_selected, flags)){
+        if (ImGui::GetIO().KeyCtrl){
+            if (item_is_selected){
+              selection.find_erase_unsorted(item.ID);
+            }
+            else{
+              selection.push_back(item.ID);
+            }
+        }else{
+          selection.clear();
+          selection.push_back(item.ID);
+        }
+      }
       ImGui::TableNextColumn();
       ImGui::Text("%s", item.format.c_str());
       ImGui::TableNextColumn();

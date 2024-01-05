@@ -28,8 +28,8 @@ public:
 
 private:
   eng::data::Loader* eng_loader;
-
-  vector<string> vec_current_files;
+  
+  string default_dir;
   string current_dir;
   bool remove_old = true;
   float scale = 1;
