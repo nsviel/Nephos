@@ -21,10 +21,10 @@ Grid::~Grid(){
   //---------------------------
 }
 
-eng::structure::Glyph* Grid::create(){
+eng::structure::Object* Grid::create(){
   //---------------------------
 
-  this->glyph = new eng::structure::Glyph();
+  this->glyph = new eng::structure::Object();
   glyph->draw_line_width = 1;
   glyph->is_visible = true;
   glyph->draw_type_name = "line";

@@ -10,13 +10,13 @@ struct Cloud : public eng::structure::Object
 {
   //---------------------------
 
-  eng::structure::Glyph aabb;
-  eng::structure::Glyph axis;
-  eng::structure::Glyph normal;
-  eng::structure::Glyph tree;
-  eng::structure::Glyph camera;
+  eng::structure::Object aabb;
+  eng::structure::Object axis;
+  eng::structure::Object normal;
+  eng::structure::Object tree;
+  eng::structure::Object camera;
 
-  std::list<eng::structure::Glyph*> list_glyph;
+  std::list<eng::structure::Object*> list_glyph;
 
   //---------------------------
 };

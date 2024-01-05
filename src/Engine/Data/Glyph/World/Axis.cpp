@@ -21,10 +21,10 @@ Axis::~Axis(){
 }
 
 //Main function
-eng::structure::Glyph* Axis::create(){
+eng::structure::Object* Axis::create(){
   //---------------------------
 
-  glyph = new eng::structure::Glyph();
+  glyph = new eng::structure::Object();
   glyph->draw_line_width = 4;
   glyph->is_visible = true;
   glyph->draw_type_name = "line";

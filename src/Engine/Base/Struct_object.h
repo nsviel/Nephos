@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Engine/Base/Struct_entity.h>
+//#include <Engine/Base/Base_glyph.h>
 
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
@@ -51,7 +52,6 @@ struct Object : public eng::structure::Entity
   bool has_normal;
   bool has_texture;
   bool has_timestamp;
-  bool is_permanent = false;
 
   //Pose
   glm::vec3 min = glm::vec3(0.0f);
@@ -65,7 +65,8 @@ struct Object : public eng::structure::Entity
   glm::mat4 mvp = glm::mat4(1.0f);
 
   //List of subobject
-  std::list<Object*> list_object;
+  std::list<eng::structure::Object*> list_object;
+  //std::list<eng::base::Glyph*> list_glyph;
 
   //---------------------------
 };

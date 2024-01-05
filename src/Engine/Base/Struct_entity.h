@@ -15,6 +15,7 @@ struct Entity
   int ID = -1;
   bool is_visible = true;
   bool is_suppressible = true;
+  bool is_permanent = false;
   std::string name = "";
 
   //---------------------------

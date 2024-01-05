@@ -20,10 +20,10 @@ Grid_axis::~Grid_axis(){
   //---------------------------
 }
 
-eng::structure::Glyph* Grid_axis::create(){
+eng::structure::Object* Grid_axis::create(){
   //---------------------------
 
-  this->glyph = new eng::structure::Glyph();
+  this->glyph = new eng::structure::Object();
   glyph->draw_line_width = 5;
   glyph->is_visible = true;
   glyph->draw_type_name = "line";

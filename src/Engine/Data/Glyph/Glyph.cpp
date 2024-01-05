@@ -44,7 +44,7 @@ void Glyph::create_glyph_world(){
     eng::structure::Set* data_set = eng_database->get_data_set();
     eng::structure::Set* set_world = data_set->get_set("World");
     eng::base::Glyph* base = vec_glyph[i];
-    eng::structure::Glyph* glyph = base->create();
+    eng::structure::Object* glyph = base->create();
 
     //Insert into engine
     eng_database->assign_ID(glyph);
