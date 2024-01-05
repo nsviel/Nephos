@@ -39,6 +39,7 @@ private:
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgba;
   std::vector<float> vec_ir;
+  std::vector<float> vec_r;
 };
 
 }

@@ -43,6 +43,7 @@ struct Object : public eng::structure::Entity
   std::vector<glm::vec2> uv;
   std::vector<float> ts;
   std::vector<float> Is;
+  std::vector<float> R;
   std::mutex mutex;
 
   bool has_color;

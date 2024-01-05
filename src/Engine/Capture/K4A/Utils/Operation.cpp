@@ -58,6 +58,10 @@ void Operation::colorization_heatmap(eng::kinect::structure::Cloud* cloud, vecto
       vec_rgba = ope_heatmap->heatmap_height(cloud->object, cloud->range_height);
       break;
     }
+    case 2:{//Range
+      vec_rgba = ope_heatmap->heatmap_range(cloud->object);
+      break;
+    }
   }
 
   //---------------------------

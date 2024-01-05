@@ -58,38 +58,18 @@ vector<vec4> Heatmap::heatmap_height(eng::structure::Object* object, vec2 range)
   //---------------------------
   return heatmap;
 }
+vector<vec4> Heatmap::heatmap_range(eng::structure::Object* object){
+  //---------------------------
+
+  vector<float>& dist = object->R;
+  vector<float> dist_norm = math::fct_normalize(dist);
+  this->compute_heatmap(dist_norm, object->xyz.size());
+
+  //---------------------------
+  return heatmap;
+}
 
 //Specific mode functions
-void Heatmap::mode_height(eng::structure::Object* object){
-  //---------------------------
-
-  vector<float> z_vec = attribManager->retrieve_z_vector(object);
-  this->heatmap_set(object, z_vec);
-
-  //---------------------------
-}
-void Heatmap::mode_intensity(eng::structure::Object* object){
-  /*if(object->I.size() != 0){
-    //---------------------------
-
-    vector<float>& Is = object->I;
-    vector<float> color_vec;
-
-    for(int i=0; i<Is.size(); i++){
-      //If point i intensity is in range
-      if(Is[i] >= range_intensity.x && Is[i] <= range_intensity.y){
-        color_vec.push_back(Is[i]);
-      }
-      //If point i intensity is out of range
-      else{
-        color_vec.push_back(-1);
-      }
-    }
-
-    //---------------------------
-    this->heatmap_set(object, color_vec);
-  }*/
-}
 void Heatmap::mode_distance(eng::structure::Object* object){
   /*vector<float>& dist = object->R;
   //---------------------------

@@ -38,6 +38,7 @@ void Cloud::loop_init(K4A_device* k4a_device){
   vec_xyz.clear();
   vec_rgba.clear();
   vec_ir.clear();
+  vec_r.clear();
 
   //---------------------------
 }
@@ -81,6 +82,7 @@ void Cloud::loop_end(K4A_device* k4a_device){
   cloud->nb_point = vec_xyz.size();
   cloud->object->xyz = vec_xyz;
   cloud->object->Is = vec_ir;
+  cloud->object->R = vec_r;
 
   //Final colorization
   kin_operation->make_colorization(cloud, vec_rgba);
@@ -98,10 +100,14 @@ void Cloud::retrieve_location(int& x, int& y, int& z){
   //---------------------------
 
   //coordinate in meter and X axis oriented.
-  glm::vec3 point(z/1000.0f, -x/1000.0f, -y/1000.0f);
+  glm::vec3 point_m(z/1000.0f, -x/1000.0f, -y/1000.0f);
+  vec_xyz.push_back(point_m);
+
+  //Range calculation
+  float R = sqrt(pow(point_m.x, 2) + pow(point_m.y, 2) + pow(point_m.z, 2));
+  vec_r.push_back(R);
 
   //---------------------------
-  vec_xyz.push_back(point);
 }
 void Cloud::retrieve_color(K4A_device* k4a_device, int i){
   //---------------------------
