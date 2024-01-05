@@ -26,10 +26,10 @@ Scene::~Scene(){}
 void Scene::design_panel(){
   //---------------------------
 
-  this->draw_window_background();
-  this->tree_view();
   rnd_object->run_panel();
   rnd_set->run_panel();
+  this->draw_window_background();
+  this->tree_view();
 
   //---------------------------
 }
