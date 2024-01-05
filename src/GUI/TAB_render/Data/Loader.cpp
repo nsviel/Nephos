@@ -122,6 +122,7 @@ void Loader::draw_content(){
         item.weight = 0;
         item.format = "---";
         item.color_icon = ImVec4(0.5f, 0.63f, 0.75f, 0.9f);
+        item.color_text = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_item_folder.push_back(item);
       }else if(item.type == "file"){
         item.path = file;
@@ -131,6 +132,7 @@ void Loader::draw_content(){
         item.weight = info::get_file_size(file);
         item.format = info::get_format_from_path(file);
         item.color_icon = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+        item.color_text = eng_loader->check_format_viability(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_item_file.push_back(item);
       }
     }
@@ -142,14 +144,26 @@ void Loader::draw_content(){
     }
 
     // Populate the table - Folder
-    ImGuiSelectableFlags flags = ImGuiSelectableFlags_SpanAllColumns | ImGuiSelectableFlags_AllowOverlap;
+    ImGuiSelectableFlags flags;
+    flags |= ImGuiSelectableFlags_SpanAllColumns;
+    flags |= ImGuiSelectableFlags_AllowOverlap;
+    flags |= ImGuiSelectableFlags_AllowDoubleClick;
     for(int i=0; i<vec_item_folder.size(); i++){
       Item& item = vec_item_folder[i];
 
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
       ImGui::SameLine();
-      if(ImGui::Selectable(item.name.c_str(), false, flags | ImGuiSelectableFlags_AllowDoubleClick) && ImGui::IsMouseDoubleClicked(0)){
+      ImGui::TextColored(item.color_text, "%s", item.name.c_str());
+      ImGui::TableNextColumn();
+      ImGui::TextColored(item.color_text, "%s", item.format.c_str());
+      ImGui::TableNextColumn();
+      ImGui::TextColored(item.color_text, "%s", item.size.c_str());
+
+      //Selection stuff
+      ImGui::SameLine();
+      string name = "##" + to_string(item.ID);
+      if(ImGui::Selectable(name.c_str(), false, flags) && ImGui::IsMouseDoubleClicked(0)){
         if(item.name == ".."){
           std::filesystem::path path = this->current_dir;
           this->current_dir = path.parent_path();
@@ -159,10 +173,6 @@ void Loader::draw_content(){
           this->file_selection.clear();
         }
       }
-      ImGui::TableNextColumn();
-      ImGui::Text("%s", item.format.c_str());
-      ImGui::TableNextColumn();
-      ImGui::Text("%s", item.size.c_str());
     }
 
     // Populate the table - File
@@ -173,8 +183,18 @@ void Loader::draw_content(){
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
       ImGui::SameLine();
+      ImGui::TextColored(item.color_text, "%s", item.name.c_str());
+      ImGui::TableNextColumn();
+      ImGui::TextColored(item.color_text, "%s", item.format.c_str());
+      ImGui::TableNextColumn();
+      ImGui::TextColored(item.color_text, "%s", item.size.c_str());
+
+      //Selection stuff
+      ImGui::SameLine();
       const bool item_is_selected = file_selection.contains(item.ID);
-      if (ImGui::Selectable(item.name.c_str(), item_is_selected, flags)){
+      string name = "##" + to_string(item.ID);
+      if (ImGui::Selectable(name.c_str(), item_is_selected, flags)){
+        //Add selection to list
         if (ImGui::GetIO().KeyCtrl){
             if (item_is_selected){
               file_selection.find_erase_unsorted(item.ID);
@@ -186,11 +206,14 @@ void Loader::draw_content(){
           file_selection.clear();
           file_selection.push_back(item.ID);
         }
+
+        //If double clicked, load it
+        if(ImGui::IsMouseDoubleClicked(0)){
+          file_selection.clear();
+          file_selection.push_back(item.ID);
+          this->operation_load();
+        }
       }
-      ImGui::TableNextColumn();
-      ImGui::Text("%s", item.format.c_str());
-      ImGui::TableNextColumn();
-      ImGui::Text("%s", item.size.c_str());
     }
 
     ImGui::EndTable();
