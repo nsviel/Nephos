@@ -17,6 +17,7 @@ public:
   //Main function
   vector<vec4> heatmap_intensity(eng::structure::Object* object, int diviser);
   vector<vec4> heatmap_height(eng::structure::Object* object);
+  vector<vec4> heatmap_height(eng::structure::Object* object, vec2 range);
 
   //Specific mode functions
   void mode_height(eng::structure::Object* object);
@@ -28,6 +29,8 @@ public:
   //Heatmap functions
   void compute_heatmap(vector<float>& v_in, int size);
   void heatmap_set(eng::structure::Object* object, vector<float>& v_in);
+
+  inline vec2* get_range_height(){return &range_height;}
 
 private:
   eng::ope::Colormap* colormapManager;

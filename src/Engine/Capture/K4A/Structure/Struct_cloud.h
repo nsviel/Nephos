@@ -24,6 +24,7 @@ struct Cloud{
   int heatmap_mode = 0;
   int nb_point = 0;
   int intensity_division = 1000;
+  glm::vec2 range_height = glm::vec2(-1, 1);
 
   //---------------------------
 };

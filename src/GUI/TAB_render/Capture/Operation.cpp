@@ -69,9 +69,18 @@ void Operation::colorization(){
     ImGui::SameLine();
     ImGui::RadioButton("R##heatmap", &k4a_device->cloud.heatmap_mode, 2);
 
+    //Intensity heatmap
     if(k4a_device->cloud.heatmap_mode == 0){
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Intensity division", &k4a_device->cloud.intensity_division, 1, 5000);
+      ImGui::SliderInt("I diviser", &k4a_device->cloud.intensity_division, 1, 5000);
+    }
+
+    //Height heatmap
+    if(k4a_device->cloud.heatmap_mode == 1){
+      float min = k4a_device->cloud.object->min.z + 10;
+      float max = k4a_device->cloud.object->min.z + 10;
+      ImGui::SetNextItemWidth(125);
+      ImGui::DragFloatRange2("Z##321", &k4a_device->cloud.range_height.x, &k4a_device->cloud.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
     }
     ImGui::Unindent();
   }

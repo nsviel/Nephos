@@ -55,10 +55,6 @@ void Playback::show_info(){
     //Path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
-    if(ImGui::SmallButton("...##file_path")){
-      string path = zenity::zenity_file();
-    }
-    ImGui::SameLine();
     ImGui::TextColored(color, "%s", k4a_device->playback.path.c_str());
 
     //Duration

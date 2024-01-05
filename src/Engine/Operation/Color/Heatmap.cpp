@@ -48,6 +48,16 @@ vector<vec4> Heatmap::heatmap_height(eng::structure::Object* object){
   //---------------------------
   return heatmap;
 }
+vector<vec4> Heatmap::heatmap_height(eng::structure::Object* object, vec2 range){
+  //---------------------------
+
+  vector<float> z_vec = attribManager->retrieve_z_vector(object);
+  vector<float> z_vec_norm = math::fct_normalize(z_vec, range);
+  this->compute_heatmap(z_vec_norm, object->xyz.size());
+
+  //---------------------------
+  return heatmap;
+}
 
 //Specific mode functions
 void Heatmap::mode_height(eng::structure::Object* object){

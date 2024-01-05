@@ -31,6 +31,7 @@ public:
   void player_repeat();
   void player_record();
   void player_rotation();
+  void player_exit();
 
 private:
   eng::kinect::Kinect* kinect;
