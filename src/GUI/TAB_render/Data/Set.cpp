@@ -4,7 +4,7 @@
 #include <Engine/Operation/Transformation/Attribut.h>
 
 
-namespace gui::rnd::panel{
+namespace gui::rnd::data{
 
 //Constructor / Destructor
 Set::Set(GUI* gui, bool* show_window){

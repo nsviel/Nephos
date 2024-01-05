@@ -1,10 +1,6 @@
 #include "Tab.h"
 
 #include <Node/GUI.h>
-#include <Engine/Engine.h>
-#include <Engine/Data/Namespace.h>
-#include <GUI/GUI_utility/Widget/GUI_indicator.h>
-#include <GUI/TAB_render/Data/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -25,11 +21,11 @@ Tab::~Tab(){}
 void Tab::create_panels(){
   //---------------------------
 
+  this->rnd_loader = new gui::rnd::data::Loader(gui, &gui_render_panel->show_loader, "Loader");
+  this->rnd_scene = new gui::rnd::data::Scene(gui, gui_render_panel);
   this->rnd_option = new gui::rnd::tab::Option(gui, &gui_render_panel->show_option, "Option");
   this->rnd_profiler = new gui::engine::Profiler(gui, &gui_render_panel->show_profiler, "Profiler");
   this->rnd_shader = new gui::engine::Shader(gui, &gui_render_panel->show_shader, "Shader");
-  this->rnd_loader = new gui::rnd::tab::Loader(gui, &gui_render_panel->show_loader, "Loader");
-  this->rnd_scene = new gui::rnd::panel::Scene(gui, gui_render_panel);
   this->rnd_camera = new gui::engine::Camera(gui, &gui_render_panel->show_camera, "Camera");
   this->rnd_kinect = new gui::kinect::Panel(gui, &gui_render_panel->show_kinect, "Player");
   this->rnd_stream = new gui::kinect::Stream(gui, &gui_render_panel->show_kinect, "Stream");

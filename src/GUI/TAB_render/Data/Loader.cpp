@@ -9,7 +9,7 @@
 #include <Utility/Function/File/Info.h>
 
 
-namespace gui::rnd::tab{
+namespace gui::rnd::data{
 
 //Constructor / Destructor
 Loader::Loader(GUI* gui, bool* show_window, string name) : Panel(show_window, name){

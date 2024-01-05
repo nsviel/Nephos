@@ -1,6 +1,5 @@
 #pragma once
 
-#include <GUI/TAB_render/Tab/Loader.h>
 #include <GUI/TAB_render/Tab/Panel.h>
 #include <GUI/TAB_render/Tab/Option.h>
 #include <GUI/TAB_render/Tab/Menu.h>
@@ -10,7 +9,6 @@
 namespace gui::rnd::tab{
   //---------------------------
 
-  class Loader;
   class Option;
   class Panel;
   class Menu;

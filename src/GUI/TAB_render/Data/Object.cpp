@@ -5,7 +5,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace gui::rnd::panel{
+namespace gui::rnd::data{
 
 //Constructor / Destructor
 Object::Object(GUI* gui, bool* panel_show){

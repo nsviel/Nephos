@@ -6,7 +6,7 @@
 class GUI;
 
 
-namespace gui::rnd::panel{
+namespace gui::rnd::data{
 
 class Set
 {

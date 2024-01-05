@@ -8,7 +8,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace gui::rnd::panel{
+namespace gui::rnd::data{
 
 //Constructor / Destructor
 Scene::Scene(GUI* gui, gui::rnd::tab::Panel* tab_panel){
@@ -18,8 +18,8 @@ Scene::Scene(GUI* gui, gui::rnd::tab::Panel* tab_panel){
   eng::data::Node* eng_data = engine->get_eng_data();
   this->eng_database = eng_data->get_eng_database();
   this->tab_panel = tab_panel;
-  this->panel_set = new gui::rnd::panel::Set(gui, &tab_panel->show_set);
-  this->panel_object = new gui::rnd::panel::Object(gui, &tab_panel->show_object);
+  this->panel_set = new gui::rnd::data::Set(gui, &tab_panel->show_set);
+  this->panel_object = new gui::rnd::data::Object(gui, &tab_panel->show_object);
 
   this->panel_show = &tab_panel->show_scene;
 

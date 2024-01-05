@@ -8,7 +8,7 @@
 class GUI;
 
 
-namespace gui::rnd::tab{
+namespace gui::rnd::data{
 
 class Loader : public gui::base::Panel
 {

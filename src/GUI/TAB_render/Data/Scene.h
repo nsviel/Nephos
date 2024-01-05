@@ -7,7 +7,7 @@
 
 class GUI;
 
-namespace gui::rnd::panel{
+namespace gui::rnd::data{
 class Object;
 class Set;
 
@@ -31,8 +31,8 @@ public:
 
 private:
   gui::rnd::tab::Panel* tab_panel;
-  gui::rnd::panel::Object* panel_object;
-  gui::rnd::panel::Set* panel_set;
+  gui::rnd::data::Object* panel_object;
+  gui::rnd::data::Set* panel_set;
   eng::data::Database* eng_database;
 
   bool* panel_show;;

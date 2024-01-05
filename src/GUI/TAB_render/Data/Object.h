@@ -9,7 +9,7 @@ class GUI;
 class Panel;
 
 
-namespace gui::rnd::panel{
+namespace gui::rnd::data{
 
 class Object
 {
