@@ -1,4 +1,5 @@
 #include "Loader.h"
+#include "Item.h"
 
 #include <Node/GUI.h>
 #include <Engine/Engine.h>
@@ -69,9 +70,9 @@ void Loader::draw_header(){
     string element = pathElements[i];
     if(element == "") continue;
 
-    ImGui::SameLine();
+    ImGui::SameLine(0, 2);
     ImGui::Text("/");
-    ImGui::SameLine();
+    ImGui::SameLine(0, 2);
 
     ImGui::PushID(i);
     element_path += "/" + element;
@@ -96,45 +97,73 @@ void Loader::draw_content(){
   flags |= ImGuiTableFlags_Sortable;
   if (ImGui::BeginTable("init_tree", 3, flags)){
     // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
-    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175);
-    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75);
-    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75);
+    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ColumnID_name);
+    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, ColumnID_format);
+    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, ColumnID_weight);
     ImGui::TableHeadersRow();
 
+    //Item transposition
+    vector<Item> vec_item_folder;
+    vector<Item> vec_item_file;
     for(int i=0; i<vec_current_files.size(); i++){
+      Item item;
       string file = vec_current_files[i];
       string filename = info::get_filename_from_path(file);
+      //Remove hidden files
       if(filename[0] == '.') continue;
 
-      string name = info::get_name_from_path(file);
-      string type = directory::is_dir_or_file(file);
-      string format;
-      string size;
-      string icon;
-      ImVec4 icon_color;
-
-      if(type == "directory"){
-        icon = string(ICON_FA_FOLDER);
-        size = "---";
-        format = "---";
-        icon_color = ImVec4(0.5f, 0.63f, 0.75f, 0.9f);
-      }else if(type == "file"){
-        icon = string(ICON_FA_FILE);
-        size = info::get_file_formatted_size(file);
-        format = info::get_format_from_path(file);
-        icon_color = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+      //Get file info
+      item.name = info::get_name_from_path(file);
+      item.type = directory::is_dir_or_file(file);
+      if(item.type == "directory"){
+        item.icon = string(ICON_FA_FOLDER);
+        item.size = "---";
+        item.weight = 0;
+        item.format = "---";
+        item.color_icon = ImVec4(0.5f, 0.63f, 0.75f, 0.9f);
+        vec_item_folder.push_back(item);
+      }else if(item.type == "file"){
+        item.icon = string(ICON_FA_FILE);
+        item.size = info::get_file_formatted_size(file);
+        item.weight = info::get_file_size(file);
+        item.format = info::get_format_from_path(file);
+        item.color_icon = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+        vec_item_file.push_back(item);
       }
+    }
 
+    // Sort data
+    if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
+      Item::SortWithSortSpecs(sort_specs, vec_item_folder);
+      Item::SortWithSortSpecs(sort_specs, vec_item_file);
+    }
+
+    // Populate the table
+    for(int i=0; i<vec_item_folder.size(); i++){
+      Item& item = vec_item_folder[i];
 
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
-      ImGui::TextColored(icon_color, "%s", icon.c_str());
+      ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
       ImGui::SameLine();
-      ImGui::Text("%s", name.c_str());
+      ImGui::Text("%s", item.name.c_str());
       ImGui::TableNextColumn();
-      ImGui::Text("%s", format.c_str());
+      ImGui::Text("%s", item.format.c_str());
       ImGui::TableNextColumn();
-      ImGui::Text("%s", size.c_str());
+      ImGui::Text("%s", item.size.c_str());
+    }
+    for(int i=0; i<vec_item_file.size(); i++){
+      Item& item = vec_item_file[i];
+
+      ImGui::TableNextRow();
+      ImGui::TableNextColumn();
+      ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
+      ImGui::SameLine();
+      ImGui::Text("%s", item.name.c_str());
+      ImGui::TableNextColumn();
+      ImGui::Text("%s", item.format.c_str());
+      ImGui::TableNextColumn();
+      ImGui::Text("%s", item.size.c_str());
     }
 
     ImGui::EndTable();
