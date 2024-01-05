@@ -4,13 +4,13 @@
 #include <Utility/Specific/common.h>
 
 
-namespace glyph::base{
+namespace eng::base{
 
-class Source
+class Glyph
 {
 public:
   //Constructor / Destructor
-  Source(){
+  Glyph(){
     //---------------------------
 
     this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -18,7 +18,7 @@ public:
 
     //---------------------------
   }
-  ~Source(){
+  ~Glyph(){
     //---------------------------
 
     delete glyph;

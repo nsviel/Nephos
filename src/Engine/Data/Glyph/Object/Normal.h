@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Engine/Base/Source.h>
+#include <Engine/Base/Base_glyph.h>
 
 
 namespace glyph::object{
 
-class Normal : public glyph::base::Source
+class Normal : public eng::base::Glyph
 {
 public:
   //Constructor / Destructor

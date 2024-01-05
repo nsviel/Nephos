@@ -43,7 +43,7 @@ void Glyph::create_glyph_world(){
   for(int i=0; i<vec_glyph_src.size(); i++){
     eng::structure::Set* data_set = eng_database->get_data_set();
     eng::structure::Set* set_world = data_set->get_set("World");
-    glyph::base::Source* base = vec_glyph_src[i];
+    eng::base::Glyph* base = vec_glyph_src[i];
     eng::structure::Glyph* glyph = base->create();
 
     //Insert into engine
