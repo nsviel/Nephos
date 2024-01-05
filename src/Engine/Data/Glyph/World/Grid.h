@@ -14,7 +14,7 @@ public:
 
 public:
   //Main function
-  void create();
+  eng::structure::Glyph* create();
   void update();
 
 private:

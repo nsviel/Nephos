@@ -21,7 +21,7 @@ Axis::~Axis(){
 }
 
 //Main function
-void Axis::create(){
+eng::structure::Glyph* Axis::create(){
   //---------------------------
 
   glyph = new eng::structure::Glyph();
@@ -32,6 +32,7 @@ void Axis::create(){
   this->update();
 
   //---------------------------
+  return glyph;
 }
 void Axis::update(){
   vector<vec3>& XYZ = glyph->xyz;

@@ -21,7 +21,7 @@ Grid::~Grid(){
   //---------------------------
 }
 
-void Grid::create(){
+eng::structure::Glyph* Grid::create(){
   //---------------------------
 
   this->glyph = new eng::structure::Glyph();
@@ -33,6 +33,7 @@ void Grid::create(){
   this->update();
 
   //---------------------------
+  return glyph;
 }
 void Grid::update(){
   vector<vec3>& XYZ = glyph->xyz;

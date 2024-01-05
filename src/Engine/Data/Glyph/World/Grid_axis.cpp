@@ -20,7 +20,7 @@ Grid_axis::~Grid_axis(){
   //---------------------------
 }
 
-void Grid_axis::create(){
+eng::structure::Glyph* Grid_axis::create(){
   //---------------------------
 
   this->glyph = new eng::structure::Glyph();
@@ -32,6 +32,7 @@ void Grid_axis::create(){
   this->update();
 
   //---------------------------
+  return glyph;
 }
 void Grid_axis::update(){
   vector<vec3>& XYZ = glyph->xyz;

@@ -10,11 +10,24 @@ class Source
 {
 public:
   //Constructor / Destructor
-  Source();
-  ~Source();
+  Source(){
+    //---------------------------
+
+    this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+    this->is_visible = true;
+
+    //---------------------------
+  }
+  ~Source(){
+    //---------------------------
+
+    delete glyph;
+
+    //---------------------------
+  }
 
 public:
-  virtual void create(){}
+  virtual eng::structure::Glyph* create(){return glyph;}
   virtual void update(){}
   virtual void reset(){}
 
