@@ -11,7 +11,7 @@ Tab::Tab(GUI* gui){
   //---------------------------
 
   this->rnd_panel = new gui::rnd::tab::Panel(gui);
-  this->dev_tab = new gui::dev::tab::Tab(gui);
+  this->dev_panel = new gui::dev::tab::Panel(gui);
   this->gui_menu = new gui::Menu(gui);
 
   this->active_tab = "Render";
@@ -25,7 +25,7 @@ Tab::~Tab(){
   //---------------------------
 
   delete rnd_panel;
-  delete dev_tab;
+  delete dev_panel;
 
   //---------------------------
 }
@@ -35,7 +35,7 @@ void Tab::create_panels(){
   //---------------------------
 
   rnd_panel->create_panels();
-  dev_tab->create_panels();
+  dev_panel->create_panels();
 
   //---------------------------
 }
@@ -86,7 +86,7 @@ void Tab::draw_panels(){
     rnd_panel->draw_panels();
   }
   else if(active_tab == "Dev"){
-    dev_tab->draw_panels();
+    dev_panel->draw_panels();
   }
 
   //---------------------------

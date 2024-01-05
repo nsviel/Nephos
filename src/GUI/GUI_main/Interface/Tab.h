@@ -28,13 +28,13 @@ public:
   void next_tab();
 
   inline gui::rnd::tab::Panel* get_rnd_panel(){return rnd_panel;}
-  inline gui::dev::tab::Tab* get_dev_tab(){return dev_tab;}
+  inline gui::dev::tab::Panel* get_dev_panel(){return dev_panel;}
 
 private:
   GUI* gui;
   gui::Menu* gui_menu;
   gui::rnd::tab::Panel* rnd_panel;
-  gui::dev::tab::Tab* dev_tab;
+  gui::dev::tab::Panel* dev_panel;
 
   vector<string> vec_tab;
   string active_tab;

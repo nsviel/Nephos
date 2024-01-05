@@ -3,14 +3,15 @@
 #include <Utility/Specific/common.h>
 #include <GUI/TAB_dev/Tab/Namespace.h>
 
-
 namespace gui::dev::tab{
+class Panel;
+
 
 class Menu
 {
 public:
   //Constructor / Destructor
-  Menu(Panel* panel);
+  Menu(gui::dev::tab::Panel* panel);
   ~Menu();
 
 public:
