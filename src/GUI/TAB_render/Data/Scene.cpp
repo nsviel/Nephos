@@ -2,59 +2,34 @@
 
 #include <Engine/Engine.h>
 #include <Node/GUI.h>
-#include <GUI/GUI_main/Interface/Tab.h>
-#include <Engine/Data/Scene/Database.h>
-#include <GUI/TAB_render/Data/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
 namespace gui::rnd::data{
 
 //Constructor / Destructor
-Scene::Scene(GUI* gui, gui::rnd::tab::Panel* tab_panel){
+Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
   eng::data::Node* eng_data = engine->get_eng_data();
-  this->eng_database = eng_data->get_eng_database();
-  this->tab_panel = tab_panel;
-  this->panel_set = new gui::rnd::data::Set(gui, &tab_panel->show_set);
-  this->panel_object = new gui::rnd::data::Object(gui, &tab_panel->show_object);
 
-  this->panel_show = &tab_panel->show_scene;
+  this->eng_database = eng_data->get_eng_database();
+  this->rnd_set = new gui::rnd::data::Set(gui, &show_set);
+  this->rnd_object = new gui::rnd::data::Object(gui, &show_object);
 
   //---------------------------
 }
 Scene::~Scene(){}
 
 //Main function
-void Scene::run_panel(){
-  //---------------------------
-
-  panel_object->run_panel();
-  panel_set->run_panel();
-
-  if(*panel_show){
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
-    ImGui::SetNextWindowSizeConstraints(ImVec2(200, 100), ImVec2(1000, 1000));
-    if(ImGui::Begin("Scene", panel_show, ImGuiWindowFlags_AlwaysAutoResize)){
-
-      this->design_panel();
-
-      ImGui::End();
-    }
-    ImGui::PopStyleColor();
-    ImGui::PopStyleVar();
-  }
-
-  //---------------------------
-}
 void Scene::design_panel(){
   //---------------------------
 
   this->draw_window_background();
   this->tree_view();
+  rnd_object->run_panel();
+  rnd_set->run_panel();
 
   //---------------------------
 }
@@ -149,8 +124,8 @@ int Scene::data_node_tree(eng::structure::Set* set) {
 
   // If item double-clicked
   if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
-    panel_set->set_selected_set(set);
-    tab_panel->show_set = true;
+    rnd_set->set_selected_set(set);
+    this->show_set = true;
   }
 
   // Set elements (leaf nodes) and nested set nodes
@@ -178,8 +153,8 @@ int Scene::data_node_tree(eng::structure::Set* set) {
 
       // If item double-clicked
       if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
-        panel_object->set_selected_object(static_cast<eng::structure::Object*>(entity));
-        tab_panel->show_object = true;
+        rnd_object->set_selected_object(static_cast<eng::structure::Object*>(entity));
+        this->show_object = true;
       }
     }
 

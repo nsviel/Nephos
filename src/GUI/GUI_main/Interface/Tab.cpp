@@ -10,7 +10,7 @@ namespace gui{
 Tab::Tab(GUI* gui){
   //---------------------------
 
-  this->rnd_tab = new gui::rnd::tab::Tab(gui);
+  this->rnd_panel = new gui::rnd::tab::Panel(gui);
   this->dev_tab = new gui::dev::tab::Tab(gui);
   this->gui_menu = new gui::Menu(gui);
 
@@ -24,7 +24,7 @@ Tab::Tab(GUI* gui){
 Tab::~Tab(){
   //---------------------------
 
-  delete rnd_tab;
+  delete rnd_panel;
   delete dev_tab;
 
   //---------------------------
@@ -34,7 +34,7 @@ Tab::~Tab(){
 void Tab::create_panels(){
   //---------------------------
 
-  rnd_tab->create_panels();
+  rnd_panel->create_panels();
   dev_tab->create_panels();
 
   //---------------------------
@@ -83,7 +83,7 @@ void Tab::draw_panels(){
 
   //Draw selected tab panels
   if(active_tab == "Render"){
-    rnd_tab->draw_panels();
+    rnd_panel->draw_panels();
   }
   else if(active_tab == "Dev"){
     dev_tab->draw_panels();

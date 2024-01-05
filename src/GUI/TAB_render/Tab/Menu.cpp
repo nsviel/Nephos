@@ -9,17 +9,10 @@
 namespace gui::rnd::tab{
 
 //Constructor / Destructor
-Menu::Menu(GUI* gui){
+Menu::Menu(gui::rnd::tab::Panel* rnd_panel){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
-  eng::data::Node* eng_data = engine->get_eng_data();
-  gui::Tab* gui_tab = gui->get_gui_tab();
-  gui::rnd::tab::Tab* rnd_tab = gui_tab->get_rnd_tab();
-
-  this->gui = gui;
-  this->rnd_option = rnd_tab->get_rnd_option();
-  this->rnd_panel = rnd_tab->get_rnd_panel();
+  this->rnd_panel = rnd_panel;
 
   //---------------------------
 }

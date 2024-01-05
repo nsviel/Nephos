@@ -2,8 +2,8 @@
 
 #include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <GUI/TAB_render/Data/Namespace.h>
-#include <GUI/TAB_render/Tab/Namespace.h>
+#include <GUI/GUI_utility/Base/Namespace.h>
+#include <Engine/Data/Scene/Database.h>
 
 class GUI;
 
@@ -12,16 +12,15 @@ class Object;
 class Set;
 
 
-class Scene
+class Scene : public gui::base::Panel
 {
 public:
   //Constructor / Destructor
-  Scene(GUI* gui, gui::rnd::tab::Panel* tab_panel);
+  Scene(GUI* gui, bool* show_window, string name);
   ~Scene();
 
 public:
   //Main function
-  void run_panel();
   void design_panel();
 
   //Subfunction
@@ -29,10 +28,12 @@ public:
   void tree_view();
   int data_node_tree(eng::structure::Set* set);
 
+  bool show_object   = false;
+  bool show_set      = false;
+
 private:
-  gui::rnd::tab::Panel* tab_panel;
-  gui::rnd::data::Object* panel_object;
-  gui::rnd::data::Set* panel_set;
+  gui::rnd::data::Object* rnd_object;
+  gui::rnd::data::Set* rnd_set;
   eng::data::Database* eng_database;
 
   bool* panel_show;;
