@@ -5,12 +5,12 @@
 
 namespace glyph::world{
 
-class Axis : public glyph::base::Source
+class Grid_axis : public glyph::base::Source
 {
 public:
   //Constructor / Destructor
-  Axis();
-  ~Axis();
+  Grid_axis();
+  ~Grid_axis();
 
 public:
   //Main function
@@ -18,6 +18,8 @@ public:
   void update();
 
 private:
+  vec4 color;
+  int nb_cell;
 };
 
 }

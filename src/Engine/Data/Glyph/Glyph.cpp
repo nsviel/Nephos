@@ -39,10 +39,13 @@ Glyph::~Glyph(){
 //Init function
 void Glyph::create_glyph_world(){
   //---------------------------
+  say("----");
 
   for(int i=0; i<vec_glyph_src.size(); i++){
-    vec_glyph_src[i]->create();
-    eng::structure::Glyph* glyph = vec_glyph_src[i]->get_glyph();
+    glyph::base::Source* base = vec_glyph_src[i];
+    base->create();
+    eng::structure::Glyph* glyph = base->get_glyph();
+    say(base->get_name());
 
     eng::structure::Set* data_set = eng_database->get_data_set();
     eng::structure::Set* set_world = data_set->get_set("World");
@@ -53,7 +56,7 @@ void Glyph::create_glyph_world(){
     vk_engine->insert_object_in_engine(glyph);
     set_world->insert_entity(glyph);
   }
-
+sayHello();
   //---------------------------
 }
 

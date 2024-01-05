@@ -15,12 +15,9 @@ public:
 public:
   //Main function
   void create();
-
-  //Subfunction
-  void construct_grid();
+  void update();
 
 private:
-  vec4 grid_color;
   int nb_cell;
 };
 

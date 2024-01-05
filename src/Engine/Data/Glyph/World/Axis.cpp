@@ -29,13 +29,11 @@ void Axis::create(){
   glyph->is_visible = true;
   glyph->draw_type_name = "line";
   glyph->is_permanent = true;
-  this->construct_axis(glyph);
+  this->update();
 
   //---------------------------
 }
-
-//Subfunction
-void Axis::construct_axis(eng::structure::Glyph* glyph){
+void Axis::update(){
   vector<vec3>& XYZ = glyph->xyz;
   vector<vec4>& RGB = glyph->rgb;
   //---------------------------
