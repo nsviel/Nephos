@@ -142,19 +142,21 @@ void Loader::draw_content(){
     }
 
     // Populate the table - Folder
+    ImGuiSelectableFlags flags = ImGuiSelectableFlags_SpanAllColumns | ImGuiSelectableFlags_AllowOverlap;
     for(int i=0; i<vec_item_folder.size(); i++){
       Item& item = vec_item_folder[i];
-
-      ImGui::TableNextRow();
-      if (ImGui::IsMouseDoubleClicked(0) && ImGui::TableSetColumnIndex(-1)) {
-        this->current_dir += "/" + item.name;
-        std::cout << "Double-clicked on row: " << i << std::endl;
-      }
 
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
       ImGui::SameLine();
-      ImGui::Text("%s", item.name.c_str());
+      if(ImGui::Selectable(item.name.c_str(), false, flags | ImGuiSelectableFlags_AllowDoubleClick) && ImGui::IsMouseDoubleClicked(0)){
+        if(item.name == ".."){
+          std::filesystem::path path = this->current_dir;
+          this->current_dir = path.parent_path();
+        }else{
+          this->current_dir += "/" + item.name;
+        }
+      }
       ImGui::TableNextColumn();
       ImGui::Text("%s", item.format.c_str());
       ImGui::TableNextColumn();
@@ -162,8 +164,7 @@ void Loader::draw_content(){
     }
 
     // Populate the table - File
-    static ImVector<int> selection;
-    ImGuiSelectableFlags flags = ImGuiSelectableFlags_SpanAllColumns | ImGuiSelectableFlags_AllowOverlap;
+    static ImVector<int> vec_selection;
     for(int i=0; i<vec_item_file.size(); i++){
       Item& item = vec_item_file[i];
 
@@ -171,18 +172,18 @@ void Loader::draw_content(){
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
       ImGui::SameLine();
-      const bool item_is_selected = selection.contains(item.ID);
+      const bool item_is_selected = vec_selection.contains(item.ID);
       if (ImGui::Selectable(item.name.c_str(), item_is_selected, flags)){
         if (ImGui::GetIO().KeyCtrl){
             if (item_is_selected){
-              selection.find_erase_unsorted(item.ID);
+              vec_selection.find_erase_unsorted(item.ID);
             }
             else{
-              selection.push_back(item.ID);
+              vec_selection.push_back(item.ID);
             }
         }else{
-          selection.clear();
-          selection.push_back(item.ID);
+          vec_selection.clear();
+          vec_selection.push_back(item.ID);
         }
       }
       ImGui::TableNextColumn();
