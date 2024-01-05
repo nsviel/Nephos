@@ -42,8 +42,8 @@ private:
   vector<string> bookmark;
   string default_dir;
   string current_dir;
-  bool remove_old = true;
-  float scale = 1;
+  bool param_remove_old = true;
+  float param_scaling = 1;
 };
 
 }

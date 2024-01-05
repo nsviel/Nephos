@@ -226,7 +226,8 @@ void Loader::draw_footer(){
 
   ImVec2 window_pos = ImGui::GetWindowPos();
   ImVec2 window_size = ImGui::GetWindowSize();
-  ImGui::SetNextWindowPos(ImVec2(window_pos.x, window_size.y - 40), ImGuiCond_Always);
+  float padding = file_selection.Size != 0 ? 40 : 20;
+  ImGui::SetNextWindowPos(ImVec2(window_pos.x, window_size.y - padding), ImGuiCond_Always);
   ImGui::SetNextWindowSize(ImVec2(window_size.x, 100), ImGuiCond_Always);
 
   // Begin the footer window
@@ -243,16 +244,6 @@ void Loader::draw_footer(){
   flags |= ImGuiWindowFlags_NoDocking;
   ImGui::Begin("Footer", nullptr, flags);
 
-  // Point cloud scaling
-  ImGui::Separator();
-  ImGui::SetNextItemWidth(100);
-  ImGui::DragFloat("Scale##4567", &scale, 0.1, 0.1, 100, "%.2f x");
-  ImGui::SameLine();
-
-  // Remove old clouds
-  ImGui::Checkbox("Remove##222", &remove_old);
-  ImGui::Separator();
-
   // Load button
   if(file_selection.Size != 0){
     if(ImGui::Button("Load##222")){
@@ -260,6 +251,15 @@ void Loader::draw_footer(){
       this->file_selection.clear();
     }
   }
+
+  // Point cloud scaling
+  ImGui::Separator();
+  ImGui::SetNextItemWidth(100);
+  ImGui::DragFloat("Scale##4567", &param_scaling, 0.1, 0.1, 100, "%.2f x");
+  ImGui::SameLine();
+
+  // Remove old clouds
+  ImGui::Checkbox("Remove##222", &param_remove_old);
 
   // End the footer window
   ImGui::End();
@@ -284,14 +284,14 @@ void Loader::operation_load(){
   if(vec_path.size() == 0) return;
 
   //Apply loading and operations
-  if(remove_old){
+  if(param_remove_old){
     eng_scene->delete_object_scene_all();
   }
 
   for(int i=0; i<vec_path.size(); i++){
     eng::structure::Object* object = eng_loader->load_object(vec_path[i]);
     if(object != nullptr){
-      transformManager->make_scaling(object, scale);
+      transformManager->make_scaling(object, param_scaling);
     }
   }
 
