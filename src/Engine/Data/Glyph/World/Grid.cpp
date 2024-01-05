@@ -7,9 +7,8 @@ namespace glyph::world{
 Grid::Grid(){
   //---------------------------
 
-  this->name = "grid";
   this->grid_color = vec4(1, 1, 1, 0.3);
-  this->nb_cell = 4;
+  this->nb_cell = 40;
 
   //---------------------------
 }
@@ -22,26 +21,21 @@ Grid::~Grid(){
 }
 
 void Grid::create(){
-  this->glyph = new eng::structure::Glyph();
   //---------------------------
 
-  //Create glyph
-  glyph->name = "grid";
-  glyph->draw_line_width = 2;
+  this->glyph = new eng::structure::Glyph();
+  glyph->draw_line_width = 1;
   glyph->is_visible = true;
   glyph->draw_type_name = "line";
   glyph->is_permanent = true;
   glyph->unicolor = grid_color;
-
-  //Construct glyph
-  this->update_grid(nb_cell);
+  this->construct_grid();
 
   //---------------------------
 }
-void Grid::update_grid(int value){
+void Grid::construct_grid(){
   vector<vec3>& XYZ = glyph->xyz;
   vector<vec4>& RGB = glyph->rgb;
-  this->nb_cell = value;
   //---------------------------
 
   //Parameters

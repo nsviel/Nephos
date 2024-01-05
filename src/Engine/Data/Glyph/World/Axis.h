@@ -13,7 +13,11 @@ public:
   ~Axis();
 
 public:
+  //Main function
   void create();
+
+  //Subfunction
+  void construct_axis(eng::structure::Glyph* glyph);
 
   inline bool* get_axis_subset_visibility(){return &is_visible;}
 

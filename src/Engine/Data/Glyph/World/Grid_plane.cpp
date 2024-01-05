@@ -10,7 +10,7 @@ Grid_plane::Grid_plane(){
   this->name = "grid";
   this->grid_color = vec4(0.5f, 0.5f, 0.5f, 1.0f);
   this->grid_sub_color = vec4(0.3f, 0.3f, 0.3f, 1.0f);
-  this->nb_cell = 4;
+  this->nb_cell = 40;
 
   this->create_grid();
   this->create_grid_sub();
@@ -34,7 +34,7 @@ void Grid_plane::create_grid(){
 
   //Create glyph
   grid->name = "grid";
-  grid->draw_line_width = 2;
+  grid->draw_line_width = 1;
   grid->is_visible = true;
   grid->draw_type_name = "line";
   grid->is_permanent = true;

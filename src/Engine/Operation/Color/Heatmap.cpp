@@ -69,47 +69,6 @@ vector<vec4> Heatmap::heatmap_range(eng::structure::Object* object){
   return heatmap;
 }
 
-//Specific mode functions
-void Heatmap::mode_distance(eng::structure::Object* object){
-  /*vector<float>& dist = object->R;
-  //---------------------------
-
-  if(dist.size() == 0){
-    attribManager->compute_subset_distance(object);
-  }
-
-  vector<float> dist_norm = math::fct_normalize(dist);
-  vector<float>& color_vec = dist_norm;
-
-  //---------------------------
-  this->heatmap_set(object, color_vec);*/
-}
-void Heatmap::mode_cosIt(eng::structure::Object* object){
-  /*vector<float>& color_vec = object->cosIt;
-  //---------------------------
-
-  if(color_vec.size() == 0){
-    attribManager->compute_subset_cosIt(object);
-  }
-
-  //---------------------------
-  this->heatmap_set(object, color_vec);*/
-}
-void Heatmap::mode_It(eng::structure::Object* object){
-  /*vector<float>& It = object->It;
-  //---------------------------
-
-  if(It.size() == 0){
-    attribManager->compute_subset_cosIt(object);
-  }
-
-  vector<float> It_norm = math::fct_normalize(It);
-  vector<float>& color_vec = It_norm;
-
-  //---------------------------
-  this->heatmap_set(object, color_vec);*/
-}
-
 //Processing functions
 void Heatmap::compute_heatmap(vector<float>& v_in, int size){
   //---------------------------

@@ -20,22 +20,26 @@ Axis::~Axis(){
   //---------------------------
 }
 
+//Main function
 void Axis::create(){
-  glyph = new eng::structure::Glyph();
   //---------------------------
 
-  //Create glyph
-  glyph->name = "axis_world";
+  glyph = new eng::structure::Glyph();
   glyph->draw_line_width = 4;
   glyph->is_visible = true;
   glyph->draw_type_name = "line";
   glyph->is_permanent = true;
+  this->construct_axis(glyph);
 
-  //Parameters
+  //---------------------------
+}
+
+//Subfunction
+void Axis::construct_axis(eng::structure::Glyph* glyph){
   vector<vec3>& XYZ = glyph->xyz;
   vector<vec4>& RGB = glyph->rgb;
+  //---------------------------
 
-  //Construct glyph
   //X axis
   XYZ.push_back(vec3(0, 0, 0.005));
   XYZ.push_back(vec3(1, 0, 0.005));

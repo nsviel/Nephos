@@ -19,12 +19,7 @@ public:
   vector<vec4> heatmap_height(eng::structure::Object* object);
   vector<vec4> heatmap_height(eng::structure::Object* object, vec2 range);
   vector<vec4> heatmap_range(eng::structure::Object* object);
-
-  //Specific mode functions
-  void mode_distance(eng::structure::Object* object);
-  void mode_cosIt(eng::structure::Object* object);
-  void mode_It(eng::structure::Object* object);
-
+  
   //Heatmap functions
   void compute_heatmap(vector<float>& v_in, int size);
   void heatmap_set(eng::structure::Object* object, vector<float>& v_in);

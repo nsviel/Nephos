@@ -13,8 +13,11 @@ public:
   ~Grid();
 
 public:
+  //Main function
   void create();
-  void update_grid(int value);
+
+  //Subfunction
+  void construct_grid();
 
 private:
   vec4 grid_color;
