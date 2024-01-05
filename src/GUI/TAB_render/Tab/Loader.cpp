@@ -5,8 +5,6 @@
 #include <Engine/Engine.h>
 #include <GUI/GUI_main/Interface/Tab.h>
 #include <Engine/Data/Namespace.h>
-#include <GUI/TAB_render/Tab/Init.h>
-#include <imgui/dialog/ImDialog.h>
 #include <image/IconsFontAwesome6.h>
 #include <Utility/Function/File/Info.h>
 
@@ -20,7 +18,9 @@ Loader::Loader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   Engine* engine = gui->get_engine();
   eng::data::Node* eng_data = engine->get_eng_data();
 
+  this->eng_scene = eng_data->get_eng_scene();
   this->eng_loader = eng_data->get_eng_loader();
+  this->transformManager = new eng::ope::Transformation();
   this->default_dir = file::get_current_parent_path_abs();
   this->current_dir = default_dir;
 
@@ -39,7 +39,7 @@ void Loader::design_panel(){
   //---------------------------
 }
 
-//Subfunction
+//Panel
 void Loader::draw_header(){
   //---------------------------
 
@@ -153,8 +153,10 @@ void Loader::draw_content(){
         if(item.name == ".."){
           std::filesystem::path path = this->current_dir;
           this->current_dir = path.parent_path();
+          this->file_selection.clear();
         }else{
           this->current_dir += "/" + item.name;
+          this->file_selection.clear();
         }
       }
       ImGui::TableNextColumn();
@@ -164,7 +166,6 @@ void Loader::draw_content(){
     }
 
     // Populate the table - File
-    static ImVector<int> vec_selection;
     for(int i=0; i<vec_item_file.size(); i++){
       Item& item = vec_item_file[i];
 
@@ -172,18 +173,18 @@ void Loader::draw_content(){
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
       ImGui::SameLine();
-      const bool item_is_selected = vec_selection.contains(item.ID);
+      const bool item_is_selected = file_selection.contains(item.ID);
       if (ImGui::Selectable(item.name.c_str(), item_is_selected, flags)){
         if (ImGui::GetIO().KeyCtrl){
             if (item_is_selected){
-              vec_selection.find_erase_unsorted(item.ID);
+              file_selection.find_erase_unsorted(item.ID);
             }
             else{
-              vec_selection.push_back(item.ID);
+              file_selection.push_back(item.ID);
             }
         }else{
-          vec_selection.clear();
-          vec_selection.push_back(item.ID);
+          file_selection.clear();
+          file_selection.push_back(item.ID);
         }
       }
       ImGui::TableNextColumn();
@@ -200,13 +201,60 @@ void Loader::draw_content(){
 void Loader::draw_footer(){
   //---------------------------
 
-  //Point cloud scaling
+  ImVec2 window_pos = ImGui::GetWindowPos();
+  ImVec2 window_size = ImGui::GetWindowSize();
+  ImGui::SetNextWindowPos(ImVec2(window_pos.x, window_size.y - 40), ImGuiCond_Always);
+  ImGui::SetNextWindowSize(ImVec2(window_size.x, 100), ImGuiCond_Always);
+
+  // Begin the footer window
+  ImGuiWindowFlags flags;
+  flags |= ImGuiWindowFlags_NoMove;
+  flags |= ImGuiWindowFlags_NoTitleBar;
+  flags |= ImGuiWindowFlags_NoResize;
+  flags |= ImGuiWindowFlags_AlwaysAutoResize;
+  flags |= ImGuiWindowFlags_NoSavedSettings;
+  flags |= ImGuiWindowFlags_NoFocusOnAppearing;
+  flags |= ImGuiWindowFlags_NoNav;
+  flags |= ImGuiWindowFlags_NoNavFocus;
+  flags |= ImGuiWindowFlags_NoScrollbar;
+  flags |= ImGuiWindowFlags_NoDocking;
+  ImGui::Begin("Footer", nullptr, flags);
+
+  // Point cloud scaling
+  ImGui::Separator();
   ImGui::SetNextItemWidth(100);
   ImGui::DragFloat("Scale##4567", &scale, 0.1, 0.1, 100, "%.2f x");
   ImGui::SameLine();
 
-  //Remove old clouds
+  // Remove old clouds
   ImGui::Checkbox("Remove##222", &remove_old);
+  ImGui::Separator();
+
+  // Load button
+  if(file_selection.Size != 0){
+    if(ImGui::Button("Load##222")){
+      this->operation_load();
+    }
+  }
+
+  // End the footer window
+  ImGui::End();
+
+  //---------------------------
+}
+
+//Subfunction
+void Loader::operation_load(){
+  //---------------------------
+
+  //eng::structure::Object* object = eng_loader->load_object(file_selection[0]);
+  //if(object == nullptr) return;
+
+  if(remove_old){
+    eng_scene->delete_object_scene_all();
+  }
+
+  //transformManager->make_scaling(object, scale);
 
   //---------------------------
 }
