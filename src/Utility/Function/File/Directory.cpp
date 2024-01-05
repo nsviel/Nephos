@@ -144,7 +144,7 @@ namespace directory{
       std::string path_file = files->d_name;
       std::string path_full = path_dir + "/" + path_file;
 
-      if(path_file != "." && path_file != ".."){
+      if(path_file != "."){
         path_vec.push_back(path_full);
       }
     }

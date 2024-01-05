@@ -111,13 +111,13 @@ void Loader::draw_content(){
       string file = vec_current_files[i];
       string filename = info::get_filename_from_path(file);
       //Remove hidden files
-      if(filename[0] == '.') continue;
+      if(filename[0] == '.' && filename[1] != '.') continue;
 
       //Get file info
       item.ID = ID++;
-      item.name = info::get_name_from_path(file);
       item.type = directory::is_dir_or_file(file);
       if(item.type == "directory"){
+        item.name = info::get_filename_from_path(file);
         item.icon = string(ICON_FA_FOLDER);
         item.size = "---";
         item.weight = 0;
@@ -125,6 +125,7 @@ void Loader::draw_content(){
         item.color_icon = ImVec4(0.5f, 0.63f, 0.75f, 0.9f);
         vec_item_folder.push_back(item);
       }else if(item.type == "file"){
+        item.name = info::get_name_from_path(file);
         item.icon = string(ICON_FA_FILE);
         item.size = info::get_file_formatted_size(file);
         item.weight = info::get_file_size(file);
