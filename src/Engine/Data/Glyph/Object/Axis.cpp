@@ -14,6 +14,7 @@ Axis::Axis(){
 }
 Axis::~Axis(){}
 
+//Main function
 void Axis::create(eng::data::Object* object){
   //---------------------------
 
@@ -25,8 +26,22 @@ void Axis::create(eng::data::Object* object){
   axis->draw_line_width = 3;
   axis->is_visible = is_visible;
   axis->draw_type_name = "line";
+  this->construct(axis);
 
-  //Axis colors
+  //---------------------------
+}
+void Axis::update(eng::data::Object* object){
+  //---------------------------
+
+  ope_transform->make_transformation(object->axis, object->COM, object->trans, object->rotat);
+
+  //---------------------------
+}
+
+//Subfunction
+void Axis::construct(eng::data::Object* axis){
+  //---------------------------
+
   vector<vec4>& RGB = axis->rgb;
   RGB.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
   RGB.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
@@ -46,13 +61,6 @@ void Axis::create(eng::data::Object* object){
   XYZ.push_back(y);
   XYZ.push_back(root);
   XYZ.push_back(z);
-
-  //---------------------------
-}
-void Axis::update(eng::data::Object* object){
-  //---------------------------
-
-  ope_transform->make_transformation(object->axis, object->COM, object->trans, object->rotat);
 
   //---------------------------
 }
