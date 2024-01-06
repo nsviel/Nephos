@@ -1,10 +1,10 @@
-#include "Grid_plane.h"
+#include "Plane.h"
 
 
 namespace glyph::grid{
 
 //Constructor / destructor
-Grid_plane::Grid_plane(){
+Plane::Plane(){
   //---------------------------
 
   this->name = "grid";
@@ -18,7 +18,7 @@ Grid_plane::Grid_plane(){
 
   //---------------------------
 }
-Grid_plane::~Grid_plane(){
+Plane::~Plane(){
   //---------------------------
 
   delete grid;
@@ -28,7 +28,7 @@ Grid_plane::~Grid_plane(){
   //---------------------------
 }
 
-void Grid_plane::create_grid(){
+void Plane::create_grid(){
   this->grid = new eng::data::Object();
   //---------------------------
 
@@ -45,7 +45,7 @@ void Grid_plane::create_grid(){
 
   //---------------------------
 }
-void Grid_plane::create_grid_sub(){
+void Plane::create_grid_sub(){
   this->grid_sub = new eng::data::Object();
   vector<vec3>& XYZ = grid_sub->xyz;
   vector<vec4>& RGB = grid_sub->rgb;
@@ -63,7 +63,7 @@ void Grid_plane::create_grid_sub(){
 
   //---------------------------
 }
-void Grid_plane::create_grid_plane(){
+void Plane::create_grid_plane(){
   this->grid_plane = new eng::data::Object();
   //---------------------------
 
@@ -96,7 +96,7 @@ void Grid_plane::create_grid_plane(){
   //---------------------------
 }
 
-void Grid_plane::update_grid(int value){
+void Plane::update_grid(int value){
   vector<vec3>& XYZ = grid->xyz;
   vector<vec4>& RGB = grid->rgb;
   this->nb_cell = value;
@@ -121,7 +121,7 @@ void Grid_plane::update_grid(int value){
 
   //---------------------------
 }
-void Grid_plane::update_grid_sub(int value){
+void Plane::update_grid_sub(int value){
   vector<vec3>& XYZ = grid_sub->xyz;
   vector<vec4>& RGB = grid_sub->rgb;
   this->nb_cell = value;
@@ -153,7 +153,7 @@ void Grid_plane::update_grid_sub(int value){
 
   //---------------------------
 }
-void Grid_plane::update_grid_plane(int value){
+void Plane::update_grid_plane(int value){
   vector<vec3>& XYZ = grid_plane->xyz;
   this->nb_cell = value;
   //---------------------------

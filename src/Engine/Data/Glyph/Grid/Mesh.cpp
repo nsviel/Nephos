@@ -1,10 +1,10 @@
-#include "Grid.h"
+#include "Mesh.h"
 
 
 namespace glyph::grid{
 
 //Constructor / destructor
-Grid::Grid(){
+Mesh::Mesh(){
   //---------------------------
 
   this->name = "grid";
@@ -13,7 +13,7 @@ Grid::Grid(){
 
   //---------------------------
 }
-Grid::~Grid(){
+Mesh::~Mesh(){
   //---------------------------
 
   delete data;
@@ -21,7 +21,7 @@ Grid::~Grid(){
   //---------------------------
 }
 
-void Grid::create(){
+void Mesh::create(){
   //---------------------------
 
   this->data = new eng::data::Object();
@@ -35,7 +35,7 @@ void Grid::create(){
 
   //---------------------------
 }
-void Grid::update(){
+void Mesh::update(){
   vector<vec3>& XYZ = data->xyz;
   vector<vec4>& RGB = data->rgb;
   //---------------------------

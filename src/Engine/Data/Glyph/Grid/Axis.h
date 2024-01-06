@@ -5,12 +5,12 @@
 
 namespace glyph::grid{
 
-class Grid : public eng::data::Glyph
+class Axis : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Grid();
-  ~Grid();
+  Axis();
+  ~Axis();
 
 public:
   //Main function
@@ -18,6 +18,7 @@ public:
   void update();
 
 private:
+  vec4 color;
   int nb_cell;
 };
 

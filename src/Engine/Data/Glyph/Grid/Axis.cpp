@@ -1,10 +1,10 @@
-#include "Grid_axis.h"
+#include "Axis.h"
 
 
 namespace glyph::grid{
 
 //Constructor / destructor
-Grid_axis::Grid_axis(){
+Axis::Axis(){
   //---------------------------
 
   this->color = vec4(1, 1, 1, 0.5);
@@ -12,7 +12,7 @@ Grid_axis::Grid_axis(){
 
   //---------------------------
 }
-Grid_axis::~Grid_axis(){
+Axis::~Axis(){
   //---------------------------
 
   delete data;
@@ -20,7 +20,7 @@ Grid_axis::~Grid_axis(){
   //---------------------------
 }
 
-void Grid_axis::create(){
+void Axis::create(){
   //---------------------------
 
   this->data = new eng::data::Object();
@@ -34,7 +34,7 @@ void Grid_axis::create(){
 
   //---------------------------
 }
-void Grid_axis::update(){
+void Axis::update(){
   vector<vec3>& XYZ = data->xyz;
   vector<vec4>& RGB = data->rgb;
   //---------------------------

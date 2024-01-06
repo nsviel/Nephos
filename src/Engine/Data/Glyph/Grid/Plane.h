@@ -5,12 +5,12 @@
 
 namespace glyph::grid{
 
-class Grid_plane : public eng::data::Glyph
+class Plane : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Grid_plane();
-  ~Grid_plane();
+  Plane();
+  ~Plane();
 
 public:
   void create_grid();
