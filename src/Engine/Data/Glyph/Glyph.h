@@ -23,6 +23,7 @@ public:
 public:
   //Glyph world
   void create_glyph_world();
+  void remove_glyph_world();
 
   //Glyph object
   void create_glyph_object(eng::data::Object* object);
@@ -36,7 +37,7 @@ private:
   eng::scene::Database* eng_database;
   eng::camera::Node* eng_camera;
 
-  vector<eng::data::Glyph*> vec_glyph;
+  list<eng::data::Glyph*> list_glyph;
 };
 
 }

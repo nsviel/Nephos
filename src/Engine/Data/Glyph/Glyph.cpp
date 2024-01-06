@@ -18,17 +18,14 @@ Glyph::Glyph(eng::scene::Node* eng_data){
   this->eng_database = eng_data->get_eng_database();
   this->eng_camera = engine->get_eng_camera();
 
-  this->vec_glyph.push_back(new glyph::world::Grid());
-  this->vec_glyph.push_back(new glyph::world::Axis());
+
 
   //---------------------------
 }
 Glyph::~Glyph(){
   //---------------------------
 
-  for(int i=0; i<vec_glyph.size(); i++){
-    delete vec_glyph[i];
-  }
+  this->remove_glyph_world();
 
   //---------------------------
 }
@@ -39,13 +36,29 @@ void Glyph::create_glyph_world(){
   eng::data::Set* set_world = data_set->get_set("World");
   //---------------------------
 
-  for(int i=0; i<vec_glyph.size(); i++){
-    eng::data::Glyph* glyph = vec_glyph[i];
+  this->remove_glyph_world();
+  this->list_glyph.push_back(new glyph::world::Grid());
+  this->list_glyph.push_back(new glyph::world::Axis());
+
+  for(int i=0; i<list_glyph.size(); i++){
+    eng::data::Glyph* glyph = *next(list_glyph.begin(), i);
 
     glyph->create();
     eng_database->assign_ID(glyph->get_data());
     vk_engine->insert_object_in_engine(glyph->get_data());
     set_world->insert_entity(glyph->get_data());
+  }
+
+  //---------------------------
+}
+void Glyph::remove_glyph_world(){
+  //---------------------------
+
+  for(int i=0; i<list_glyph.size(); i++){
+    eng::data::Glyph* glyph = *next(list_glyph.begin(), i);
+    vk_engine->remove_object_in_engine(glyph->get_data());
+    list_glyph.remove(glyph);
+    delete glyph;
   }
 
   //---------------------------
