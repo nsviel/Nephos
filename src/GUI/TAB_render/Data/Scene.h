@@ -26,7 +26,7 @@ public:
   //Subfunction
   void draw_window_background();
   void tree_view();
-  int data_node_tree(eng::structure::Set* set);
+  int data_node_tree(eng::data::Set* set);
 
   bool show_object   = false;
   bool show_set      = false;

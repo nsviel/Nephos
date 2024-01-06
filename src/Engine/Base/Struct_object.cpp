@@ -3,7 +3,7 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
-namespace eng::structure{
+namespace eng::data{
 
 Object::Object(){
   //---------------------------

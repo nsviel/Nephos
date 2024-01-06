@@ -20,10 +20,10 @@ public:
 
 public:
   //Main functions
-  void compute_MinMax(eng::structure::Object* object);
-  void set_visibility(eng::structure::Set* set, bool visibility);
-  void set_unicolor(eng::structure::Object* object);
-  vector<float> retrieve_z_vector(eng::structure::Object* object);
+  void compute_MinMax(eng::data::Object* object);
+  void set_visibility(eng::data::Set* set, bool visibility);
+  void set_unicolor(eng::data::Object* object);
+  vector<float> retrieve_z_vector(eng::data::Object* object);
 
 private:
 };

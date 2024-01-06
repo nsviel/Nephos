@@ -39,7 +39,7 @@ private:
   eng::camera::Node* eng_camera;
   eng::ope::Transformation* transformManager;
 
-  eng::structure::Camera* camera;
+  eng::data::Camera* camera;
 };
 
 }

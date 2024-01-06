@@ -11,7 +11,7 @@ namespace eng::kinect::structure{
 struct Cloud{
   //---------------------------
 
-  eng::structure::Object* object;
+  eng::data::Object* object;
   std::vector<glm::vec3> vec_corner;
 
   /*

@@ -12,8 +12,8 @@ public:
   AABB();
 
 public:
-  void create(eng::structure::Object* object);
-  void update(eng::structure::Object* object);
+  void create(eng::data::Object* object);
+  void update(eng::data::Object* object);
   vector<vec3> build_box(vec3 min, vec3 max);
 
 private:

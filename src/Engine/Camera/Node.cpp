@@ -15,7 +15,7 @@ Node::Node(Engine* engine){
   util::Node* utility = engine->get_utility();
   util::element::Window* utl_window = utility->get_utl_window();
 
-  this->camera = new eng::structure::Camera();
+  this->camera = new eng::data::Camera();
   this->cam_arcball = new eng::camera::mode::Arcball(utl_window);
   this->cam_fp = new eng::camera::mode::First_person(utl_window);
   this->cam_zoom = new eng::camera::proj::Zoom(utl_window);
@@ -137,7 +137,7 @@ mat4 Node::compute_cam_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void Node::compute_cam_mvp(eng::structure::Object* object){
+void Node::compute_cam_mvp(eng::data::Object* object){
   //---------------------------
 
   mat4 cam_modl = glm::transpose(object->model);

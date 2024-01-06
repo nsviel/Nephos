@@ -8,7 +8,7 @@
 #include <iostream>
 
 
-namespace eng::structure{
+namespace eng::data{
 
 //Set are entity container
 struct Set
@@ -20,9 +20,9 @@ struct Set
   void add_new_set(std::string name);
   void set_visibility(bool value);
   void select_next_object();
-  void insert_entity(eng::structure::Entity* entity);
-  eng::structure::Set* get_set(std::string name);
-  eng::structure::Entity* get_entity(std::string name);
+  void insert_entity(eng::data::Entity* entity);
+  eng::data::Set* get_set(std::string name);
+  eng::data::Entity* get_entity(std::string name);
 
   //Info
   std::string name;
@@ -32,9 +32,9 @@ struct Set
   int ID_entity = 0;
 
   //Data
-  eng::structure::Entity* selected_entity = nullptr;
-  std::list<eng::structure::Entity*> list_entity;
-  std::list<eng::structure::Set*> list_set;
+  eng::data::Entity* selected_entity = nullptr;
+  std::list<eng::data::Entity*> list_entity;
+  std::list<eng::data::Set*> list_set;
 
   //---------------------------
 };

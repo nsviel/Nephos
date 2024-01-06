@@ -14,8 +14,8 @@ public:
   ~Zoom();
 
 public:
-  void compute_zoom_optic(eng::structure::Camera* camera, float value);
-  void compute_zoom_position(eng::structure::Camera* camera, float value);
+  void compute_zoom_optic(eng::data::Camera* camera, float value);
+  void compute_zoom_position(eng::data::Camera* camera, float value);
 
 private:
 };

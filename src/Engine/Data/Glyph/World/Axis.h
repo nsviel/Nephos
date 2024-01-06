@@ -14,7 +14,7 @@ public:
 
 public:
   //Main function
-  eng::structure::Object* create();
+  eng::data::Object* create();
   void update();
 
 private:

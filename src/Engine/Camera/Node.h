@@ -25,7 +25,7 @@ public:
 
   //MVP matrices
   mat4 compute_cam_view();
-  void compute_cam_mvp(eng::structure::Object* object);
+  void compute_cam_mvp(eng::data::Object* object);
   mat4 compute_cam_proj();
   mat4 compute_cam_mvp();
 
@@ -41,7 +41,7 @@ public:
   inline mat4 get_cam_view(){return compute_cam_view();}
   inline mat4 get_cam_proj(){return compute_cam_proj();}
   inline mat4 get_mvpMatrix(){return compute_cam_mvp();}
-  inline eng::structure::Camera* get_camera(){return camera;};
+  inline eng::data::Camera* get_camera(){return camera;};
 
 private:
   Engine* engine;
@@ -50,7 +50,7 @@ private:
   eng::camera::proj::Zoom* cam_zoom;
   eng::camera::proj::Projection* cam_proj;
 
-  eng::structure::Camera* camera;
+  eng::data::Camera* camera;
   vec3 arcball_origin;
 };
 

@@ -11,7 +11,7 @@ Zoom::Zoom(util::element::Window* utl_window){
 }
 Zoom::~Zoom(){}
 
-void Zoom::compute_zoom_optic(eng::structure::Camera* camera, float yoffset){
+void Zoom::compute_zoom_optic(eng::data::Camera* camera, float yoffset){
   //---------------------------
 
   //Perspective zoom
@@ -25,7 +25,7 @@ void Zoom::compute_zoom_optic(eng::structure::Camera* camera, float yoffset){
 
   //---------------------------
 }
-void Zoom::compute_zoom_position(eng::structure::Camera* camera, float yoffset){
+void Zoom::compute_zoom_position(eng::data::Camera* camera, float yoffset){
   //---------------------------
 
   //Perspective zoom

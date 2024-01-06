@@ -13,11 +13,11 @@ Camera::Camera(){
 Camera::~Camera(){}
 
 //Main function
-void Camera::create(eng::structure::Object* object){
+void Camera::create(eng::data::Object* object){
   //---------------------------
 
-  object->camera = new eng::structure::Object();
-  eng::structure::Object* camera = object->camera;
+  object->camera = new eng::data::Object();
+  eng::data::Object* camera = object->camera;
 
   camera->name = "camera";
   camera->draw_line_width = 1;
@@ -28,7 +28,7 @@ void Camera::create(eng::structure::Object* object){
 
   //---------------------------
 }
-void Camera::update(eng::structure::Object* object){
+void Camera::update(eng::data::Object* object){
   //---------------------------
 
 

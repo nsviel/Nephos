@@ -14,10 +14,10 @@ public:
   ~Arcball();
 
 public:
-  mat4 arcball_view_mat(eng::structure::Camera* camera);
-  void arcball_cam_mouse(eng::structure::Camera* camera);
+  mat4 arcball_view_mat(eng::data::Camera* camera);
+  void arcball_cam_mouse(eng::data::Camera* camera);
   vec2 arcball_mouse_angle();
-  void arcball_viewport_angle(eng::structure::Camera* camera, vec2 angle);
+  void arcball_viewport_angle(eng::data::Camera* camera, vec2 angle);
 
 private:
   util::element::Window* utl_window;

@@ -1,7 +1,7 @@
 #include "Struct_camera.h"
 
 
-namespace eng::structure{
+namespace eng::data{
 
 Camera::Camera(){
   //---------------------------

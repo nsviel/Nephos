@@ -1,7 +1,7 @@
 #include "Struct_set.h"
 
 
-namespace eng::structure{
+namespace eng::data{
 
 Set::Set(std::string name){
   //---------------------------
@@ -15,7 +15,7 @@ Set::Set(std::string name){
 void Set::add_new_set(std::string name){
   //---------------------------
 
-  eng::structure::Set* set = new eng::structure::Set(name);
+  eng::data::Set* set = new eng::data::Set(name);
   list_set.push_back(set);
   this->nb_set++;
 
@@ -26,13 +26,13 @@ void Set::reset(){
 
   //Reset all associated entities
   for(int j=0; j<list_entity.size(); j++){
-    eng::structure::Entity* entity = *next(list_entity.begin(), j);
+    eng::data::Entity* entity = *next(list_entity.begin(), j);
     entity->reset();
   }
 
   //Reset all associated sets
   for(int i=0; i<list_set.size(); i++){
-    eng::structure::Set* set = *next(list_set.begin(), i);
+    eng::data::Set* set = *next(list_set.begin(), i);
     set->reset();
   }
 
@@ -42,7 +42,7 @@ void Set::set_visibility(bool value){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    eng::structure::Entity* entity = *next(list_entity.begin(), i);
+    eng::data::Entity* entity = *next(list_entity.begin(), i);
     entity->is_visible = value;
   }
 
@@ -52,10 +52,10 @@ void Set::select_next_object(){
   //----------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    eng::structure::Entity* entity = *next(list_entity.begin(), i);
+    eng::data::Entity* entity = *next(list_entity.begin(), i);
 
     if(selected_entity->ID == entity->ID){
-      eng::structure::Entity* selection;
+      eng::data::Entity* selection;
 
       if((i + 1) < list_entity.size()){
         selection = *next(list_entity.begin(), i + 1);
@@ -69,7 +69,7 @@ void Set::select_next_object(){
 
   //----------------------------
 }
-void Set::insert_entity(eng::structure::Entity* entity){
+void Set::insert_entity(eng::data::Entity* entity){
   //---------------------------
 
   this->list_entity.push_back(entity);
@@ -78,11 +78,11 @@ void Set::insert_entity(eng::structure::Entity* entity){
 
   //---------------------------
 }
-eng::structure::Set* Set::get_set(std::string name){
+eng::data::Set* Set::get_set(std::string name){
   //---------------------------
 
   for(int i=0; i<list_set.size(); i++){
-    eng::structure::Set* set = *next(list_set.begin(),i);
+    eng::data::Set* set = *next(list_set.begin(),i);
     if(set->name == name){
       return set;
     }
@@ -93,11 +93,11 @@ eng::structure::Set* Set::get_set(std::string name){
   //---------------------------
   return nullptr;
 }
-eng::structure::Entity* Set::get_entity(std::string name){
+eng::data::Entity* Set::get_entity(std::string name){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    eng::structure::Entity* entity = *next(list_entity.begin(),i);
+    eng::data::Entity* entity = *next(list_entity.begin(),i);
     if(entity->name == name){
       return entity;
     }

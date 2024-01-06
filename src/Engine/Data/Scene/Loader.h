@@ -28,11 +28,11 @@ public:
 
 public:
   //Main functions
-  eng::structure::Object* load_object(std::string path);
-  std::vector<eng::structure::Object*> load_objects(std::vector<std::string> path);
+  eng::data::Object* load_object(std::string path);
+  std::vector<eng::data::Object*> load_objects(std::vector<std::string> path);
 
   //Subfunctions
-  void transfert_data(eng::structure::Object* object, MyFile* file_data);
+  void transfert_data(eng::data::Object* object, MyFile* file_data);
   bool check_format_viability(string format);
 
 private:

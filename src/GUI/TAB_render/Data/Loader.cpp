@@ -289,7 +289,7 @@ void Loader::operation_load(){
   }
 
   for(int i=0; i<vec_path.size(); i++){
-    eng::structure::Object* object = eng_loader->load_object(vec_path[i]);
+    eng::data::Object* object = eng_loader->load_object(vec_path[i]);
     if(object != nullptr){
       transformManager->make_scaling(object, param_scaling);
     }

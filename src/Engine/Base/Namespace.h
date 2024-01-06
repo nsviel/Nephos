@@ -7,7 +7,7 @@
 #include <Engine/Base/Struct_sensor.h>
 
 
-namespace eng::structure{
+namespace eng::data{
   //---------------------------
 
   class Entity;

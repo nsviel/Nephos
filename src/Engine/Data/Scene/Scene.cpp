@@ -37,20 +37,20 @@ void Scene::init(){
   //Load init object
   vector<string> vec_path;
   vec_path.push_back( "../media/point_cloud/dragon.ply");
-  //vector<eng::structure::Object*> vec_obj = eng_loader->load_objects(vec_path);
+  //vector<eng::data::Object*> vec_obj = eng_loader->load_objects(vec_path);
 
   //---------------------------
 }
 void Scene::loop(){
-  eng::structure::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = eng_database->get_data_set();
   //----------------------------
 
   for(int i=0; i<data_set->list_set.size(); i++){
-    eng::structure::Set* set = *next(data_set->list_set.begin(), i);
+    eng::data::Set* set = *next(data_set->list_set.begin(), i);
     for(int j=0; j<set->list_entity.size(); j++){
-      eng::structure::Entity* entity = *next(set->list_entity.begin(), j);
+      eng::data::Entity* entity = *next(set->list_entity.begin(), j);
 
-      if(eng::structure::Object* object = dynamic_cast<eng::structure::Object*>(entity)){
+      if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
         eng_camera->compute_cam_mvp(object);
         eng_glyph->update_cloud_glyphs(object);
       }
@@ -60,7 +60,7 @@ void Scene::loop(){
   //----------------------------
 }
 void Scene::reset(){
-  eng::structure::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = eng_database->get_data_set();
   //---------------------------
 
   data_set->reset();
@@ -69,9 +69,9 @@ void Scene::reset(){
 }
 
 //Insertion / deletion
-void Scene::insert_object_scene(eng::structure::Object* object){
-  eng::structure::Set* data_set = eng_database->get_data_set();
-  eng::structure::Set* set_scene = data_set->get_set("Scene");
+void Scene::insert_object_scene(eng::data::Object* object){
+  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   //Insert into engine
@@ -83,7 +83,7 @@ void Scene::insert_object_scene(eng::structure::Object* object){
 
   //---------------------------
 }
-void Scene::update_object(eng::structure::Object* object){
+void Scene::update_object(eng::data::Object* object){
   //---------------------------
 
   vk_engine->insert_object_in_engine(object);
@@ -91,9 +91,9 @@ void Scene::update_object(eng::structure::Object* object){
 
   //---------------------------
 }
-void Scene::delete_object_scene(eng::structure::Entity* entity){
-  eng::structure::Set* data_set = eng_database->get_data_set();
-  eng::structure::Set* set_scene = data_set->get_set("Scene");
+void Scene::delete_object_scene(eng::data::Entity* entity){
+  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   //Selected next entity
@@ -101,11 +101,11 @@ void Scene::delete_object_scene(eng::structure::Entity* entity){
 
   //Delete it from database and engine
   for(int i=0; i<set_scene->list_entity.size(); i++){
-    eng::structure::Object* object_list = (eng::structure::Object*)*next(set_scene->list_entity.begin(),i);
+    eng::data::Object* object_list = (eng::data::Object*)*next(set_scene->list_entity.begin(),i);
     if(entity->ID == object_list->ID){
       set_scene->list_entity.remove(entity);
-      eng_glyph->remove_cloud_glyphs((eng::structure::Object*)entity);
-      vk_engine->remove_object_in_engine((eng::structure::Object*)entity);
+      eng_glyph->remove_cloud_glyphs((eng::data::Object*)entity);
+      vk_engine->remove_object_in_engine((eng::data::Object*)entity);
       set_scene->nb_entity--;
     }
   }
@@ -113,12 +113,12 @@ void Scene::delete_object_scene(eng::structure::Entity* entity){
   //---------------------------
 }
 void Scene::delete_object_scene_all(){
-  eng::structure::Set* data_set = eng_database->get_data_set();
-  eng::structure::Set* set_scene = data_set->get_set("Scene");
+  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   for(int i=0; i<set_scene->list_entity.size(); i++){
-    eng::structure::Object* object = (eng::structure::Object*)*next(set_scene->list_entity.begin(),i);
+    eng::data::Object* object = (eng::data::Object*)*next(set_scene->list_entity.begin(),i);
 
     set_scene->list_entity.remove(object);
     vk_engine->remove_object_in_engine(object);

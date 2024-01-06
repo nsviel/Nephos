@@ -14,9 +14,9 @@
 #include <mutex>
 
 
-namespace eng::structure{
+namespace eng::data{
 
-struct Object : public eng::structure::Entity
+struct Object : public eng::data::Entity
 {
   //---------------------------
 
@@ -65,13 +65,13 @@ struct Object : public eng::structure::Entity
   glm::mat4 mvp = glm::mat4(1.0f);
 
   //List of subobject
-  std::list<eng::structure::Object*> list_object;
+  std::list<eng::data::Object*> list_object;
   //std::list<eng::base::Glyph*> list_glyph;
-  eng::structure::Object* aabb;
-  eng::structure::Object* axis;
-  eng::structure::Object* normal;
-  eng::structure::Object* tree;
-  eng::structure::Object* camera;
+  eng::data::Object* aabb;
+  eng::data::Object* axis;
+  eng::data::Object* normal;
+  eng::data::Object* tree;
+  eng::data::Object* camera;
 
   //---------------------------
 };

@@ -17,12 +17,12 @@ public:
 
   //Main function
   void init_set();
-  void assign_ID(eng::structure::Entity* entity);
+  void assign_ID(eng::data::Entity* entity);
 
-  inline eng::structure::Set* get_data_set(){return data_set;}
+  inline eng::data::Set* get_data_set(){return data_set;}
 
 private:
-  eng::structure::Set* data_set;
+  eng::data::Set* data_set;
 };
 
 }

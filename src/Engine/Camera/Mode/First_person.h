@@ -14,8 +14,8 @@ public:
   ~First_person();
 
 public:
-  mat4 fp_view_mat(eng::structure::Camera* camera);
-  void fp_cam_mouse(eng::structure::Camera* camera);
+  mat4 fp_view_mat(eng::data::Camera* camera);
+  void fp_cam_mouse(eng::data::Camera* camera);
 
 private:
   util::element::Window* utl_window;

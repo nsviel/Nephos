@@ -27,7 +27,7 @@ private:
   util::element::Window* utl_window;
   PSR_param* psr_param;
 
-  eng::structure::Camera* camera;
+  eng::data::Camera* camera;
 };
 
 }

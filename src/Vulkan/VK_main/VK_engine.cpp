@@ -147,7 +147,7 @@ void VK_engine::reload_shader(string shader, string subshader){
 }
 
 //Data function
-void VK_engine::insert_object_in_engine(eng::structure::Object* object){
+void VK_engine::insert_object_in_engine(eng::data::Object* object){
   //---------------------------
 
   //Check if object already in engine
@@ -170,7 +170,7 @@ void VK_engine::insert_object_in_engine(eng::structure::Object* object){
 
   //---------------------------
 }
-void VK_engine::remove_object_in_engine(eng::structure::Object* object){
+void VK_engine::remove_object_in_engine(eng::data::Object* object){
   //---------------------------
 
   bool is_in_list = false;

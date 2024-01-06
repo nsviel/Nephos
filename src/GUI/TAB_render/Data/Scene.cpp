@@ -66,7 +66,7 @@ void Scene::draw_window_background(){
   //-------------------------------
 }
 void Scene::tree_view(){
-  eng::structure::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = eng_database->get_data_set();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;
@@ -80,7 +80,7 @@ void Scene::tree_view(){
 
     //Database
     for(int row_i=0; row_i<data_set->list_set.size(); row_i++){
-      eng::structure::Set* set = *next(data_set->list_set.begin(), row_i);
+      eng::data::Set* set = *next(data_set->list_set.begin(), row_i);
 
       if(set->nb_entity != 0){
         ImGui::TableNextRow();
@@ -97,7 +97,7 @@ void Scene::tree_view(){
 
   //---------------------------
 }
-int Scene::data_node_tree(eng::structure::Set* set) {
+int Scene::data_node_tree(eng::data::Set* set) {
   int nb_row = 0;
   //---------------------------
 
@@ -153,13 +153,13 @@ int Scene::data_node_tree(eng::structure::Set* set) {
 
       // If item double-clicked
       if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
-        rnd_object->set_selected_object(static_cast<eng::structure::Object*>(entity));
+        rnd_object->set_selected_object(static_cast<eng::data::Object*>(entity));
         this->show_object = true;
       }
     }
 
     // Recursive call for nested sets
-    for(eng::structure::Set* subset : set->list_set) {
+    for(eng::data::Set* subset : set->list_set) {
       nb_row += data_node_tree(subset);
     }
 

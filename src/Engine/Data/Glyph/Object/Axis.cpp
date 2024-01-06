@@ -14,12 +14,12 @@ Axis::Axis(){
 }
 Axis::~Axis(){}
 
-void Axis::create(eng::structure::Object* object){
+void Axis::create(eng::data::Object* object){
   //---------------------------
 
   //Create glyph
-  object->axis = new eng::structure::Object();
-  eng::structure::Object* axis = object->axis;
+  object->axis = new eng::data::Object();
+  eng::data::Object* axis = object->axis;
 
   axis->name = "axis";
   axis->draw_line_width = 3;
@@ -49,7 +49,7 @@ void Axis::create(eng::structure::Object* object){
 
   //---------------------------
 }
-void Axis::update(eng::structure::Object* object){
+void Axis::update(eng::data::Object* object){
   //---------------------------
 
   ope_transform->make_transformation(object->axis, object->COM, object->trans, object->rotat);

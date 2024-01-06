@@ -48,8 +48,8 @@ public:
   void reload_shader(string shader, string subshader);
 
   //Data function
-  void insert_object_in_engine(eng::structure::Object* object);
-  void remove_object_in_engine(eng::structure::Object* object);
+  void insert_object_in_engine(eng::data::Object* object);
+  void remove_object_in_engine(eng::data::Object* object);
 
   //Renderpass function
   void add_renderpass_description(vk::structure::Renderpass* renderpass);

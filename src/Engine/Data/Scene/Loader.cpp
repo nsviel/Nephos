@@ -37,7 +37,7 @@ Loader::~Loader(){
 }
 
 //Main functions
-eng::structure::Object* Loader::load_object(std::string path){
+eng::data::Object* Loader::load_object(std::string path){
   //---------------------------
 
   if(file::is_file_exist(path) == false){
@@ -46,7 +46,7 @@ eng::structure::Object* Loader::load_object(std::string path){
   }
 
   //Create new object
-  eng::structure::Object* cloud = new eng::structure::Object();
+  eng::data::Object* cloud = new eng::data::Object();
   cloud->path_file = path;
   cloud->draw_type_name = "point";
   cloud->has_texture = true;
@@ -59,12 +59,12 @@ eng::structure::Object* Loader::load_object(std::string path){
   //---------------------------
   return cloud;
 }
-std::vector<eng::structure::Object*> Loader::load_objects(std::vector<std::string> path){
-  std::vector<eng::structure::Object*> vec_obj;
+std::vector<eng::data::Object*> Loader::load_objects(std::vector<std::string> path){
+  std::vector<eng::data::Object*> vec_obj;
   //---------------------------
 
   for(int i=0; i<path.size(); i++){
-    eng::structure::Object* object = load_object(path[i]);
+    eng::data::Object* object = load_object(path[i]);
     vec_obj.push_back(object);
   }
 
@@ -73,7 +73,7 @@ std::vector<eng::structure::Object*> Loader::load_objects(std::vector<std::strin
 }
 
 //Subfunctions
-void Loader::transfert_data(eng::structure::Object* object, MyFile* file_data){
+void Loader::transfert_data(eng::data::Object* object, MyFile* file_data){
   //---------------------------
 
   object->name = file_data->name;

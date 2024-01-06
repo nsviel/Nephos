@@ -15,7 +15,7 @@ First_person::First_person(util::element::Window* utl_window){
 }
 First_person::~First_person(){}
 
-mat4 First_person::fp_view_mat(eng::structure::Camera* camera){
+mat4 First_person::fp_view_mat(eng::data::Camera* camera){
   //---------------------------
 
   float azimuth = camera->angle_azimuth;
@@ -40,7 +40,7 @@ mat4 First_person::fp_view_mat(eng::structure::Camera* camera){
   //---------------------------
   return cam_view;
 }
-void First_person::fp_cam_mouse(eng::structure::Camera* camera){
+void First_person::fp_cam_mouse(eng::data::Camera* camera){
   //---------------------------
 
   float& azimuth = camera->angle_azimuth;

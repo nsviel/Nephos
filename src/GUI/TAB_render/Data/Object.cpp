@@ -51,14 +51,14 @@ void Object::design_panel(){
 }
 
 //Subfunction
-void Object::object_info(eng::structure::Object* object){
+void Object::object_info(eng::data::Object* object){
   //---------------------------
 
   this->panel_name = "[Object]   " + object->name;
 
   //---------------------------
 }
-void Object::object_parameter(eng::structure::Object* object){
+void Object::object_parameter(eng::data::Object* object){
 
   //---------------------------
 
@@ -133,7 +133,7 @@ void Object::object_parameter(eng::structure::Object* object){
 }
 
 //Primitive size
-void Object::object_line(eng::structure::Object* object){
+void Object::object_line(eng::data::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -158,7 +158,7 @@ void Object::object_line(eng::structure::Object* object){
 
   //---------------------------
 }
-void Object::object_point(eng::structure::Object* object){
+void Object::object_point(eng::data::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

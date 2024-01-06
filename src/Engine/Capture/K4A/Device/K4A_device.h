@@ -10,7 +10,7 @@ class K4A_playback;
 class Engine;
 
 
-class K4A_device : public eng::structure::Entity
+class K4A_device : public eng::data::Entity
 {
 public:
   //Constructor / Destructor

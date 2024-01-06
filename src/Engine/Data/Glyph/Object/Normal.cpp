@@ -19,8 +19,8 @@ Normal::Normal(){
 }
 Normal::~Normal(){}
 /*
-eng::structure::Object* Normal::create(eng::structure::Object* object){
-  eng::structure::Object* glyph = new eng::structure::Object();
+eng::data::Object* Normal::create(eng::data::Object* object){
+  eng::data::Object* glyph = new eng::data::Object();
   //---------------------------
 
   //Create glyph
@@ -33,7 +33,7 @@ eng::structure::Object* Normal::create(eng::structure::Object* object){
   //---------------------------
   return glyph;
 }
-void Normal::update_normal_cloud(eng::structure::Object* object, eng::structure::Object* glyph){
+void Normal::update_normal_cloud(eng::data::Object* object, eng::data::Object* glyph){
   glyph->draw_point_size = size;
   //---------------------------
 
@@ -69,8 +69,8 @@ void Normal::update_normal_cloud(eng::structure::Object* object, eng::structure:
 
   //---------------------------
 }
-void Normal::update_normal_cloud(eng::structure::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s){
-  eng::structure::Object* normal = &cloud->glyphs["normal"];
+void Normal::update_normal_cloud(eng::data::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s){
+  eng::data::Object* normal = &cloud->glyphs["normal"];
   normal->draw_point_size = size;
   //---------------------------
 

@@ -25,7 +25,7 @@ public:
   inline eng::shader::EDL_param* get_edl_param(){return edl_param;}
 
 private:
-  eng::structure::Camera* camera;
+  eng::data::Camera* camera;
   util::element::Window* utl_window;
   eng::shader::EDL_param* edl_param;
 };

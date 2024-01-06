@@ -12,11 +12,11 @@ AABB::AABB(){
 }
 
 //Main function
-void AABB::create(eng::structure::Object* object){
+void AABB::create(eng::data::Object* object){
   //---------------------------
 
-  object->aabb = new eng::structure::Object();
-  eng::structure::Object* aabb = object->aabb;
+  object->aabb = new eng::data::Object();
+  eng::data::Object* aabb = object->aabb;
 
   aabb->name = "aabb";
   aabb->draw_line_width = 1;
@@ -31,8 +31,8 @@ void AABB::create(eng::structure::Object* object){
 
   //---------------------------
 }
-void AABB::update(eng::structure::Object* object){
-  eng::structure::Object* aabb = object->aabb;
+void AABB::update(eng::data::Object* object){
+  eng::data::Object* aabb = object->aabb;
   //---------------------------
 
   vec3 min = object->min;

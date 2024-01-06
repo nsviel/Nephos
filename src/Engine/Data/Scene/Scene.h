@@ -29,9 +29,9 @@ public:
   void reset();
 
   //Insertion / deletion
-  void insert_object_scene(eng::structure::Object* object);
-  void update_object(eng::structure::Object* object);
-  void delete_object_scene(eng::structure::Entity* object);
+  void insert_object_scene(eng::data::Object* object);
+  void update_object(eng::data::Object* object);
+  void delete_object_scene(eng::data::Entity* object);
   void delete_object_scene_all();
 
 private:

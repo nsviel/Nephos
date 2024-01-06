@@ -41,10 +41,10 @@ void Glyph::create_glyph_world(){
   //---------------------------
 
   for(int i=0; i<vec_glyph.size(); i++){
-    eng::structure::Set* data_set = eng_database->get_data_set();
-    eng::structure::Set* set_world = data_set->get_set("World");
+    eng::data::Set* data_set = eng_database->get_data_set();
+    eng::data::Set* set_world = data_set->get_set("World");
     eng::base::Glyph* base = vec_glyph[i];
-    eng::structure::Object* glyph = base->create();
+    eng::data::Object* glyph = base->create();
 
     //Insert into engine
     eng_database->assign_ID(glyph);
@@ -57,7 +57,7 @@ void Glyph::create_glyph_world(){
 }
 
 //Cloud function
-void Glyph::create_cloud_glyphs(eng::structure::Object* object){
+void Glyph::create_cloud_glyphs(eng::data::Object* object){
   //---------------------------
 
   //AABB
@@ -77,7 +77,7 @@ void Glyph::create_cloud_glyphs(eng::structure::Object* object){
 
   //---------------------------
 }
-void Glyph::update_cloud_glyphs(eng::structure::Object* object){
+void Glyph::update_cloud_glyphs(eng::data::Object* object){
   //---------------------------
 /*
   //AABB
@@ -97,7 +97,7 @@ void Glyph::update_cloud_glyphs(eng::structure::Object* object){
 */
   //---------------------------
 }
-void Glyph::remove_cloud_glyphs(eng::structure::Object* object){
+void Glyph::remove_cloud_glyphs(eng::data::Object* object){
   //---------------------------
 
   vk_engine->remove_object_in_engine(object->aabb);

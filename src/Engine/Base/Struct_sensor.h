@@ -5,9 +5,9 @@
 #include <string>
 
 
-namespace eng::structure{
+namespace eng::data{
 
-struct Sensor : public eng::structure::Entity
+struct Sensor : public eng::data::Entity
 {
   //---------------------------
 

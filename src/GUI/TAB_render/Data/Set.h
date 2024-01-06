@@ -20,13 +20,13 @@ public:
   void design_panel();
 
   //Sub functions
-  void set_info(eng::structure::Set* set);
-  void set_parameter(eng::structure::Set* set);
+  void set_info(eng::data::Set* set);
+  void set_parameter(eng::data::Set* set);
 
-  inline void set_selected_set(eng::structure::Set* set){this->set_selected = set;}
+  inline void set_selected_set(eng::data::Set* set){this->set_selected = set;}
 
 private:
-  eng::structure::Set* set_selected;
+  eng::data::Set* set_selected;
   string panel_name;
   bool* panel_show;;
   int item_width;

@@ -6,9 +6,9 @@
 #include <string>
 
 
-namespace eng::structure{
+namespace eng::data{
 
-struct Camera : public eng::structure::Entity
+struct Camera : public eng::data::Entity
 {
   //---------------------------
 

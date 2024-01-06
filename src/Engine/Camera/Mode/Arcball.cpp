@@ -14,7 +14,7 @@ Arcball::Arcball(util::element::Window* utl_window){
 Arcball::~Arcball(){}
 
 //Main function
-mat4 Arcball::arcball_view_mat(eng::structure::Camera* camera){
+mat4 Arcball::arcball_view_mat(eng::data::Camera* camera){
   mat4 cam_view;
   //---------------------------
 
@@ -28,7 +28,7 @@ mat4 Arcball::arcball_view_mat(eng::structure::Camera* camera){
   //---------------------------
   return cam_view;
 }
-void Arcball::arcball_cam_mouse(eng::structure::Camera* camera){
+void Arcball::arcball_cam_mouse(eng::data::Camera* camera){
   //---------------------------
 
   vec2 angle = arcball_mouse_angle();
@@ -56,7 +56,7 @@ vec2 Arcball::arcball_mouse_angle(){
   //---------------------------
   return angle;
 }
-void Arcball::arcball_viewport_angle(eng::structure::Camera* camera, vec2 angle){
+void Arcball::arcball_viewport_angle(eng::data::Camera* camera, vec2 angle){
   //---------------------------
 
   // Get the homogenous position of the camera and pivot point
