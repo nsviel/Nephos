@@ -6,7 +6,7 @@
 
 namespace glyph::object{
 
-class Tree : public eng::base::Glyph
+class Tree : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor

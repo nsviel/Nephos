@@ -4,7 +4,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace eng::base{
+namespace eng::data{
 
 class Glyph
 {

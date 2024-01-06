@@ -5,7 +5,7 @@
 
 namespace glyph::world{
 
-class Grid_axis : public eng::base::Glyph
+class Grid_axis : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor

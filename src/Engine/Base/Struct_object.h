@@ -13,8 +13,9 @@
 #include <map>
 #include <mutex>
 
-
 namespace eng::data{
+class Glyph;
+
 
 struct Object : public eng::data::Entity
 {
@@ -66,7 +67,7 @@ struct Object : public eng::data::Entity
 
   //List of subobject
   std::list<eng::data::Object*> list_object;
-  //std::list<eng::base::Glyph*> list_glyph;
+  //std::list<eng::data::Glyph*> list_glyph;
   eng::data::Object* aabb;
   eng::data::Object* axis;
   eng::data::Object* normal;

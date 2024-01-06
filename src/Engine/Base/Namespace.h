@@ -5,6 +5,7 @@
 #include <Engine/Base/Struct_set.h>
 #include <Engine/Base/Struct_camera.h>
 #include <Engine/Base/Struct_sensor.h>
+#include <Engine/Base/Base_glyph.h>
 
 
 namespace eng::data{
@@ -15,6 +16,7 @@ namespace eng::data{
   class Set;
   class Camera;
   class Sensor;
+  class Glyph;
 
   //---------------------------
 }

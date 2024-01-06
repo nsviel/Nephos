@@ -38,7 +38,7 @@ private:
   eng::scene::Database* eng_database;
   eng::camera::Node* eng_camera;
 
-  vector<eng::base::Glyph*> vec_glyph;
+  vector<eng::data::Glyph*> vec_glyph;
 };
 
 }

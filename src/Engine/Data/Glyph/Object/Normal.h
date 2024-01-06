@@ -5,7 +5,7 @@
 
 namespace glyph::object{
 
-class Normal : public eng::base::Glyph
+class Normal : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor

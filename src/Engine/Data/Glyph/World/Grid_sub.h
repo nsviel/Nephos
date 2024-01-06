@@ -5,7 +5,7 @@
 
 namespace glyph::world{
 
-class Grid_sub : public eng::base::Glyph
+class Grid_sub : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
