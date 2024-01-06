@@ -7,7 +7,7 @@ namespace glyph::grid{
 Axis::Axis(){
   //---------------------------
 
-  this->color = vec4(1, 1, 1, 0.5);
+  this->color = vec4(0, 0, 1, 1);
   this->nb_cell = 40;
 
   //---------------------------
