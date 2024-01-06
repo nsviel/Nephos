@@ -15,7 +15,7 @@ Grid_axis::Grid_axis(){
 Grid_axis::~Grid_axis(){
   //---------------------------
 
-  delete glyph;
+  delete object;
 
   //---------------------------
 }
@@ -23,20 +23,20 @@ Grid_axis::~Grid_axis(){
 eng::data::Object* Grid_axis::create(){
   //---------------------------
 
-  this->glyph = new eng::data::Object();
-  glyph->draw_line_width = 5;
-  glyph->is_visible = true;
-  glyph->draw_type_name = "line";
-  glyph->is_permanent = true;
-  glyph->unicolor = color;
+  this->object = new eng::data::Object();
+  object->draw_line_width = 5;
+  object->is_visible = true;
+  object->draw_type_name = "line";
+  object->is_permanent = true;
+  object->unicolor = color;
   this->update();
 
   //---------------------------
-  return glyph;
+  return object;
 }
 void Grid_axis::update(){
-  vector<vec3>& XYZ = glyph->xyz;
-  vector<vec4>& RGB = glyph->rgb;
+  vector<vec3>& XYZ = object->xyz;
+  vector<vec4>& RGB = object->rgb;
   //---------------------------
 
   //Parameters

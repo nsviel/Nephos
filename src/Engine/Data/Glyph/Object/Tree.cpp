@@ -41,7 +41,7 @@ void Tree::update(eng::data::Object* object, eng::data::Object* tree){
 
   if(is_visible){
     //octreeManager->create_octree(cloud, tree_level);
-    tree->xyz = glyph->xyz;
+    tree->xyz = object->xyz;
   }
 
   //---------------------------
