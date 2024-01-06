@@ -59,7 +59,7 @@ void Glyph::create_glyph_world(){
 //Glyph object
 void Glyph::create_glyph_object(eng::data::Object* object){
   //---------------------------
-
+/*
   //AABB
   glyph_aabb->create(object);
   eng_database->assign_ID(object->aabb);
@@ -74,7 +74,7 @@ void Glyph::create_glyph_object(eng::data::Object* object){
   glyph_cam->create(object);
   eng_database->assign_ID(object->camera);
   vk_engine->insert_object_in_engine(object->camera);
-
+*/
   //---------------------------
 }
 void Glyph::update_glyph_object(eng::data::Object* object){

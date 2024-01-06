@@ -21,24 +21,24 @@ public:
   ~Glyph(){
     //---------------------------
 
-    delete object;
+    delete data;
 
     //---------------------------
   }
 
 public:
-  virtual eng::data::Object* create(){return object;}
+  virtual eng::data::Object* create(){return data;}
   virtual void update(){}
   virtual void reset(){}
 
-  inline eng::data::Object* get_object(){return object;}
+  inline eng::data::Object* get_data(){return data;}
   inline string get_name(){return name;}
   inline vec4* get_color(){return &color;}
   inline bool* get_visibility(){return &is_visible;}
   inline void set_visibility(bool value){this->is_visible = value;}
 
 protected:
-  eng::data::Object* object;
+  eng::data::Object* data;
 
   string name;
   vec4 color;

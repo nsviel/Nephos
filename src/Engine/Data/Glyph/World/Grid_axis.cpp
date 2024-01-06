@@ -15,7 +15,7 @@ Grid_axis::Grid_axis(){
 Grid_axis::~Grid_axis(){
   //---------------------------
 
-  delete object;
+  delete data;
 
   //---------------------------
 }
@@ -23,20 +23,20 @@ Grid_axis::~Grid_axis(){
 eng::data::Object* Grid_axis::create(){
   //---------------------------
 
-  this->object = new eng::data::Object();
-  object->draw_line_width = 5;
-  object->is_visible = true;
-  object->draw_type_name = "line";
-  object->is_permanent = true;
-  object->unicolor = color;
+  this->data = new eng::data::Object();
+  data->draw_line_width = 5;
+  data->is_visible = true;
+  data->draw_type_name = "line";
+  data->is_permanent = true;
+  data->unicolor = color;
   this->update();
 
   //---------------------------
-  return object;
+  return data;
 }
 void Grid_axis::update(){
-  vector<vec3>& XYZ = object->xyz;
-  vector<vec4>& RGB = object->rgb;
+  vector<vec3>& XYZ = data->xyz;
+  vector<vec4>& RGB = data->rgb;
   //---------------------------
 
   //Parameters

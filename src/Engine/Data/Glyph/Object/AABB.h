@@ -6,7 +6,7 @@
 
 namespace glyph::object{
 
-class AABB
+class AABB : public eng::data::Glyph
 {
 public:
   AABB();

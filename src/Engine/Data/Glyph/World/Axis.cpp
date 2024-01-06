@@ -15,7 +15,7 @@ Axis::Axis(){
 Axis::~Axis(){
   //---------------------------
 
-  delete object;
+  delete data;
 
   //---------------------------
 }
@@ -24,19 +24,19 @@ Axis::~Axis(){
 eng::data::Object* Axis::create(){
   //---------------------------
 
-  object = new eng::data::Object();
-  object->draw_line_width = 4;
-  object->is_visible = true;
-  object->draw_type_name = "line";
-  object->is_permanent = true;
+  data = new eng::data::Object();
+  data->draw_line_width = 4;
+  data->is_visible = true;
+  data->draw_type_name = "line";
+  data->is_permanent = true;
   this->update();
 
   //---------------------------
-  return object;
+  return data;
 }
 void Axis::update(){
-  vector<vec3>& XYZ = object->xyz;
-  vector<vec4>& RGB = object->rgb;
+  vector<vec3>& XYZ = data->xyz;
+  vector<vec4>& RGB = data->rgb;
   //---------------------------
 
   //X axis

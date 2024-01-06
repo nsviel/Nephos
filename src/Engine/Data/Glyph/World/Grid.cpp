@@ -16,7 +16,7 @@ Grid::Grid(){
 Grid::~Grid(){
   //---------------------------
 
-  delete object;
+  delete data;
 
   //---------------------------
 }
@@ -24,20 +24,20 @@ Grid::~Grid(){
 eng::data::Object* Grid::create(){
   //---------------------------
 
-  this->object = new eng::data::Object();
-  object->draw_line_width = 1;
-  object->is_visible = true;
-  object->draw_type_name = "line";
-  object->is_permanent = true;
-  object->unicolor = color;
+  this->data = new eng::data::Object();
+  data->draw_line_width = 1;
+  data->is_visible = true;
+  data->draw_type_name = "line";
+  data->is_permanent = true;
+  data->unicolor = color;
   this->update();
 
   //---------------------------
-  return object;
+  return data;
 }
 void Grid::update(){
-  vector<vec3>& XYZ = object->xyz;
-  vector<vec4>& RGB = object->rgb;
+  vector<vec3>& XYZ = data->xyz;
+  vector<vec4>& RGB = data->rgb;
   //---------------------------
 
   //Parameters
