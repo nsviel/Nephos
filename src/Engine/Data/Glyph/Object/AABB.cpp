@@ -12,28 +12,32 @@ AABB::AABB(){
 }
 
 //Main function
-void AABB::create(eng::structure::Cloud* cloud){
+void AABB::create(eng::structure::Object* object){
   //---------------------------
 
-  cloud->aabb.name = "aabb";
-  cloud->aabb.draw_line_width = 1;
-  cloud->aabb.is_visible = false;
-  cloud->aabb.draw_type_name = "line";
-  cloud->aabb.is_permanent = true;
-  cloud->aabb.unicolor = color;
+  object->aabb = new eng::structure::Object();
+  eng::structure::Object* aabb = object->aabb;
+
+  aabb->name = "aabb";
+  aabb->draw_line_width = 1;
+  aabb->is_visible = false;
+  aabb->draw_type_name = "line";
+  aabb->is_permanent = true;
+  aabb->unicolor = color;
 
   for(int i=0; i<24; i++){
-    cloud->aabb.rgb.push_back(color);
+    aabb->rgb.push_back(color);
   }
 
   //---------------------------
 }
-void AABB::update(eng::structure::Cloud* cloud){
+void AABB::update(eng::structure::Object* object){
+  eng::structure::Object* aabb = object->aabb;
   //---------------------------
 
-  vec3 min = cloud->min;
-  vec3 max = cloud->max;
-  cloud->aabb.xyz = build_box(min, max);
+  vec3 min = object->min;
+  vec3 max = object->max;
+  aabb->xyz = build_box(min, max);
 
   //---------------------------
 }

@@ -37,7 +37,7 @@ Loader::~Loader(){
 }
 
 //Main functions
-eng::structure::Cloud* Loader::load_object(std::string path){
+eng::structure::Object* Loader::load_object(std::string path){
   //---------------------------
 
   if(file::is_file_exist(path) == false){
@@ -46,7 +46,7 @@ eng::structure::Cloud* Loader::load_object(std::string path){
   }
 
   //Create new object
-  eng::structure::Cloud* cloud = new eng::structure::Cloud();
+  eng::structure::Object* cloud = new eng::structure::Object();
   cloud->path_file = path;
   cloud->draw_type_name = "point";
   cloud->has_texture = true;
@@ -59,12 +59,12 @@ eng::structure::Cloud* Loader::load_object(std::string path){
   //---------------------------
   return cloud;
 }
-std::vector<eng::structure::Cloud*> Loader::load_objects(std::vector<std::string> path){
-  std::vector<eng::structure::Cloud*> vec_obj;
+std::vector<eng::structure::Object*> Loader::load_objects(std::vector<std::string> path){
+  std::vector<eng::structure::Object*> vec_obj;
   //---------------------------
 
   for(int i=0; i<path.size(); i++){
-    eng::structure::Cloud* object = load_object(path[i]);
+    eng::structure::Object* object = load_object(path[i]);
     vec_obj.push_back(object);
   }
 

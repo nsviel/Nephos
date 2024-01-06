@@ -28,8 +28,8 @@ public:
 
 public:
   //Main functions
-  eng::structure::Cloud* load_object(std::string path);
-  std::vector<eng::structure::Cloud*> load_objects(std::vector<std::string> path);
+  eng::structure::Object* load_object(std::string path);
+  std::vector<eng::structure::Object*> load_objects(std::vector<std::string> path);
 
   //Subfunctions
   void transfert_data(eng::structure::Object* object, MyFile* file_data);

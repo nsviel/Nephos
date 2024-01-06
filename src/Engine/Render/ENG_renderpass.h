@@ -4,6 +4,7 @@
 
 class Engine;
 class RP_scene;
+class RP_glyph;
 class RP_edl;
 class RP_gui;
 
@@ -21,6 +22,7 @@ public:
 
 private:
   RP_scene* rp_scene;
+  RP_glyph* rp_glyph;
   RP_edl* rp_edl;
   RP_gui* rp_gui;
 };

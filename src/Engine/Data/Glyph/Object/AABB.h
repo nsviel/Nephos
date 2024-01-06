@@ -12,8 +12,8 @@ public:
   AABB();
 
 public:
-  void create(eng::structure::Cloud* cloud);
-  void update(eng::structure::Cloud* cloud);
+  void create(eng::structure::Object* object);
+  void update(eng::structure::Object* object);
   vector<vec3> build_box(vec3 min, vec3 max);
 
 private:

@@ -57,55 +57,52 @@ void Glyph::create_glyph_world(){
 }
 
 //Cloud function
-void Glyph::create_cloud_glyphs(eng::structure::Cloud* cloud){
+void Glyph::create_cloud_glyphs(eng::structure::Object* object){
   //---------------------------
 
   //AABB
-  glyph_aabb->create(cloud);
-  eng_database->assign_ID(&cloud->aabb);
-  vk_engine->insert_object_in_engine(&cloud->aabb);
-  cloud->list_glyph.push_back(&cloud->aabb);
+  glyph_aabb->create(object);
+  eng_database->assign_ID(object->aabb);
+  vk_engine->insert_object_in_engine(object->aabb);
 
   //Axis
-  glyph_axis->create(cloud);
-  eng_database->assign_ID(&cloud->axis);
-  vk_engine->insert_object_in_engine(&cloud->axis);
-  cloud->list_glyph.push_back(&cloud->axis);
+  glyph_axis->create(object);
+  eng_database->assign_ID(object->axis);
+  vk_engine->insert_object_in_engine(object->axis);
 
   //Camera
-  glyph_cam->create(cloud);
-  eng_database->assign_ID(&cloud->camera);
-  vk_engine->insert_object_in_engine(&cloud->camera);
-  cloud->list_glyph.push_back(&cloud->camera);
+  glyph_cam->create(object);
+  eng_database->assign_ID(object->camera);
+  vk_engine->insert_object_in_engine(object->camera);
 
   //---------------------------
 }
-void Glyph::update_cloud_glyphs(eng::structure::Cloud* cloud){
+void Glyph::update_cloud_glyphs(eng::structure::Object* object){
   //---------------------------
+/*
+  //AABB
+  glyph_aabb->update(object);
+  vk_engine->insert_object_in_engine(object->aabb);
+  eng_camera->compute_cam_mvp(object->aabb);
 
   //AABB
-  glyph_aabb->update(cloud);
-  vk_engine->insert_object_in_engine(&cloud->aabb);
-  eng_camera->compute_cam_mvp(&cloud->aabb);
+  glyph_axis->update(object);
+  vk_engine->insert_object_in_engine(object->axis);
+  eng_camera->compute_cam_mvp(object->axis);
 
   //AABB
-  glyph_axis->update(cloud);
-  vk_engine->insert_object_in_engine(&cloud->axis);
-  eng_camera->compute_cam_mvp(&cloud->axis);
-
-  //AABB
-  glyph_cam->update(cloud);
-  vk_engine->insert_object_in_engine(&cloud->camera);
-  eng_camera->compute_cam_mvp(&cloud->camera);
-
+  glyph_cam->update(object);
+  vk_engine->insert_object_in_engine(object->camera);
+  eng_camera->compute_cam_mvp(object->camera);
+*/
   //---------------------------
 }
-void Glyph::remove_cloud_glyphs(eng::structure::Cloud* cloud){
+void Glyph::remove_cloud_glyphs(eng::structure::Object* object){
   //---------------------------
 
-  vk_engine->remove_object_in_engine(&cloud->aabb);
-  vk_engine->remove_object_in_engine(&cloud->axis);
-  vk_engine->remove_object_in_engine(&cloud->camera);
+  vk_engine->remove_object_in_engine(object->aabb);
+  vk_engine->remove_object_in_engine(object->axis);
+  vk_engine->remove_object_in_engine(object->camera);
 
   //---------------------------
 }

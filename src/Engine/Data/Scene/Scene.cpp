@@ -50,14 +50,9 @@ void Scene::loop(){
     for(int j=0; j<set->list_entity.size(); j++){
       eng::structure::Entity* entity = *next(set->list_entity.begin(), j);
 
-      //Object operation
       if(eng::structure::Object* object = dynamic_cast<eng::structure::Object*>(entity)){
         eng_camera->compute_cam_mvp(object);
-      }
-
-      //Cloud update
-      if(eng::structure::Cloud* cloud = dynamic_cast<eng::structure::Cloud*>(entity)){
-        eng_glyph->update_cloud_glyphs(cloud);
+        eng_glyph->update_cloud_glyphs(object);
       }
     }
   }
@@ -74,17 +69,17 @@ void Scene::reset(){
 }
 
 //Insertion / deletion
-void Scene::insert_object_scene(eng::structure::Cloud* cloud){
+void Scene::insert_object_scene(eng::structure::Object* object){
   eng::structure::Set* data_set = eng_database->get_data_set();
   eng::structure::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   //Insert into engine
-  eng_database->assign_ID(cloud);
-  vk_engine->insert_object_in_engine(cloud);
-  attributManager->compute_MinMax(cloud);
-  set_scene->insert_entity(cloud);
-  eng_glyph->create_cloud_glyphs(cloud);
+  eng_database->assign_ID(object);
+  vk_engine->insert_object_in_engine(object);
+  attributManager->compute_MinMax(object);
+  set_scene->insert_entity(object);
+  eng_glyph->create_cloud_glyphs(object);
 
   //---------------------------
 }
@@ -109,7 +104,7 @@ void Scene::delete_object_scene(eng::structure::Entity* entity){
     eng::structure::Object* object_list = (eng::structure::Object*)*next(set_scene->list_entity.begin(),i);
     if(entity->ID == object_list->ID){
       set_scene->list_entity.remove(entity);
-      eng_glyph->remove_cloud_glyphs((eng::structure::Cloud*)entity);
+      eng_glyph->remove_cloud_glyphs((eng::structure::Object*)entity);
       vk_engine->remove_object_in_engine((eng::structure::Object*)entity);
       set_scene->nb_entity--;
     }

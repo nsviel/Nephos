@@ -25,9 +25,9 @@ public:
   void create_glyph_world();
 
   //Subfunction
-  void create_cloud_glyphs(eng::structure::Cloud* cloud);
-  void update_cloud_glyphs(eng::structure::Cloud* cloud);
-  void remove_cloud_glyphs(eng::structure::Cloud* cloud);
+  void create_cloud_glyphs(eng::structure::Object* object);
+  void update_cloud_glyphs(eng::structure::Object* object);
+  void remove_cloud_glyphs(eng::structure::Object* object);
 
 private:
   VK_engine* vk_engine;

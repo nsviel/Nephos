@@ -67,6 +67,11 @@ struct Object : public eng::structure::Entity
   //List of subobject
   std::list<eng::structure::Object*> list_object;
   //std::list<eng::base::Glyph*> list_glyph;
+  eng::structure::Object* aabb;
+  eng::structure::Object* axis;
+  eng::structure::Object* normal;
+  eng::structure::Object* tree;
+  eng::structure::Object* camera;
 
   //---------------------------
 };

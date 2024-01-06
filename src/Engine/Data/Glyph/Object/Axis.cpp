@@ -14,17 +14,20 @@ Axis::Axis(){
 }
 Axis::~Axis(){}
 
-void Axis::create(eng::structure::Cloud* cloud){
+void Axis::create(eng::structure::Object* object){
   //---------------------------
 
   //Create glyph
-  cloud->axis.name = "axis";
-  cloud->axis.draw_line_width = 3;
-  cloud->axis.is_visible = is_visible;
-  cloud->axis.draw_type_name = "line";
+  object->axis = new eng::structure::Object();
+  eng::structure::Object* axis = object->axis;
+
+  axis->name = "axis";
+  axis->draw_line_width = 3;
+  axis->is_visible = is_visible;
+  axis->draw_type_name = "line";
 
   //Axis colors
-  vector<vec4>& RGB = cloud->axis.rgb;
+  vector<vec4>& RGB = axis->rgb;
   RGB.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
   RGB.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
   RGB.push_back(vec4(0.2f, 0.9f, 0.2f, 1.0f));
@@ -32,7 +35,7 @@ void Axis::create(eng::structure::Cloud* cloud){
   RGB.push_back(vec4(0.2f, 0.2f, 0.9f, 1.0f));
   RGB.push_back(vec4(0.2f, 0.2f, 0.9f, 1.0f));
 
-  vector<vec3>& XYZ = cloud->axis.xyz;
+  vector<vec3>& XYZ = axis->xyz;
   vec3 root = vec3(0, 0, 0);
   vec3 x = vec3(0.1,0,0);
   vec3 y = vec3(0,0.1,0);
@@ -46,10 +49,10 @@ void Axis::create(eng::structure::Cloud* cloud){
 
   //---------------------------
 }
-void Axis::update(eng::structure::Cloud* cloud){
+void Axis::update(eng::structure::Object* object){
   //---------------------------
 
-  ope_transform->make_transformation(&cloud->axis, cloud->COM, cloud->trans, cloud->rotat);
+  ope_transform->make_transformation(object->axis, object->COM, object->trans, object->rotat);
 
   //---------------------------
 }
