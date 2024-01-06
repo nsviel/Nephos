@@ -31,8 +31,6 @@ public:
 
 private:
   VK_engine* vk_engine;
-  glyph::object::AABB* glyph_aabb;
-  glyph::object::Axis* glyph_axis;
   glyph::object::Camera* glyph_cam;
   eng::scene::Node* eng_data;
   eng::scene::Database* eng_database;

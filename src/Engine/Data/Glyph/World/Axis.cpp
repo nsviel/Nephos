@@ -29,6 +29,7 @@ void Axis::create(){
   data->is_visible = true;
   data->draw_type_name = "line";
   data->is_permanent = true;
+  data->is_suppressible = false;
   this->update();
 
   //---------------------------

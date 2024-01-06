@@ -68,11 +68,6 @@ struct Object : public eng::data::Entity
   //List of subobject
   std::list<eng::data::Object*> list_object;
   std::list<eng::data::Glyph*> list_glyph;
-  eng::data::Object* aabb;
-  eng::data::Object* axis;
-  eng::data::Object* normal;
-  eng::data::Object* tree;
-  eng::data::Object* camera;
 
   //---------------------------
 };

@@ -29,6 +29,7 @@ public:
 public:
   virtual void create(){}
   virtual void update(){}
+  virtual void update(eng::data::Object* object){}
   virtual void reset(){}
 
   inline eng::data::Object* get_data(){return data;}
