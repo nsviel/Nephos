@@ -34,8 +34,8 @@ public:
 private:
   Engine* engine;
   util::element::Window* utl_window;
-  eng::data::Scene* eng_scene;
-  eng::data::Database* eng_database;
+  eng::scene::Scene* eng_scene;
+  eng::scene::Database* eng_database;
   eng::camera::Node* eng_camera;
   eng::ope::Transformation* transformManager;
 

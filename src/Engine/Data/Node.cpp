@@ -3,17 +3,17 @@
 #include <Engine/Data/Namespace.h>
 
 
-namespace eng::data{
+namespace eng::scene{
 
 //Constructor / Destructor
 Node::Node(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->eng_database = new eng::data::Database(this);
-  this->eng_glyph = new eng::data::Glyph(this);
-  this->eng_scene = new eng::data::Scene(this);
-  this->eng_loader = new eng::data::Loader(this);
+  this->eng_database = new eng::scene::Database(this);
+  this->eng_glyph = new eng::scene::Glyph(this);
+  this->eng_scene = new eng::scene::Scene(this);
+  this->eng_loader = new eng::scene::Loader(this);
 
   //---------------------------
 }

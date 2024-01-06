@@ -14,7 +14,7 @@ class XYZ_importer;
 using MyFile = util::base::File;
 
 
-namespace eng::data{
+namespace eng::scene{
 
 class Format
 {

@@ -14,7 +14,7 @@
 
 using MyFile = util::base::File;
 
-namespace eng::data{
+namespace eng::scene{
 class Scene;
 class Format;
 class Node;
@@ -23,7 +23,7 @@ class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(eng::data::Node* eng_data);
+  Loader(eng::scene::Node* eng_data);
   ~Loader();
 
 public:
@@ -36,8 +36,8 @@ public:
   bool check_format_viability(string format);
 
 private:
-  eng::data::Format* eng_format;
-  eng::data::Scene* eng_scene;
+  eng::scene::Format* eng_format;
+  eng::scene::Scene* eng_scene;
 
   vector<string> accepted_format;
   std::string path_current_dir;

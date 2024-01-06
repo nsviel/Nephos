@@ -8,7 +8,7 @@
 #include "XYZ/XYZ_importer.h"
 
 
-namespace eng::data{
+namespace eng::scene{
 
 //Constructor / Destructor
 Format::Format(){

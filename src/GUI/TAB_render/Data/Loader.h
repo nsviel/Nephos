@@ -32,8 +32,8 @@ public:
   void operation_load();
 
 private:
-  eng::data::Scene* eng_scene;
-  eng::data::Loader* eng_loader;
+  eng::scene::Scene* eng_scene;
+  eng::scene::Loader* eng_loader;
   eng::ope::Transformation* transformManager;
 
   vector<Item> vec_item_folder;

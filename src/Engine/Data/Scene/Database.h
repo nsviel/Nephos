@@ -4,7 +4,7 @@
 #include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace eng::data{
+namespace eng::scene{
 class Node;
 
 
@@ -12,7 +12,7 @@ class Database
 {
 public:
   //Constructor / Destructor
-  Database(eng::data::Node* eng_data);
+  Database(eng::scene::Node* eng_data);
   ~Database();
 
   //Main function

@@ -34,7 +34,7 @@ public:
 private:
   gui::rnd::data::Object* rnd_object;
   gui::rnd::data::Set* rnd_set;
-  eng::data::Database* eng_database;
+  eng::scene::Database* eng_database;
 
   bool* panel_show;;
 };

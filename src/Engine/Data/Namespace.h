@@ -8,7 +8,7 @@
 #include <Engine/Data/Node.h>
 
 
-namespace eng::data{
+namespace eng::scene{
   //---------------------------
 
   class Database;

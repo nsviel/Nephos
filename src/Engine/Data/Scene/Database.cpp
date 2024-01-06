@@ -1,10 +1,10 @@
 #include "Database.h"
 
 
-namespace eng::data{
+namespace eng::scene{
 
 //Constructor / Destructor
-Database::Database(eng::data::Node* eng_data){
+Database::Database(eng::scene::Node* eng_data){
   //---------------------------
 
   this->data_set = new eng::structure::Set("Data");

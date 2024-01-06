@@ -7,10 +7,10 @@
 #include <Engine/Camera/Namespace.h>
 
 
-namespace eng::data{
+namespace eng::scene{
 
 //ConsScenetor / DesScenetor
-Scene::Scene(eng::data::Node* eng_data){
+Scene::Scene(eng::scene::Node* eng_data){
   //---------------------------
 
   Engine* engine = eng_data->get_engine();
@@ -31,7 +31,7 @@ Scene::~Scene(){}
 
 //Scene function
 void Scene::init(){
-  eng::data::Loader* eng_loader = eng_data->get_eng_loader();
+  eng::scene::Loader* eng_loader = eng_data->get_eng_loader();
   //---------------------------
 
   //Load init object

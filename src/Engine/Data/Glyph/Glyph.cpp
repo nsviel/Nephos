@@ -5,10 +5,10 @@
 #include <Engine/Engine.h>
 
 
-namespace eng::data{
+namespace eng::scene{
 
 //Constructor / Destructor
-Glyph::Glyph(eng::data::Node* eng_data){
+Glyph::Glyph(eng::scene::Node* eng_data){
   //---------------------------
 
   Engine* engine = eng_data->get_engine();

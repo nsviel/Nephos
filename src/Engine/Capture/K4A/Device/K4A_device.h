@@ -33,8 +33,8 @@ public:
   inline eng::kinect::structure::Cloud* get_cloud(){return &cloud;}
 
 public:
-  eng::data::Scene* eng_scene;
-  eng::data::Glyph* eng_glyph;
+  eng::scene::Scene* eng_scene;
+  eng::scene::Glyph* eng_glyph;
   eng::ope::Transformation* ope_transform;
   K4A_capture* k4a_capture;
   K4A_playback* k4a_playback;

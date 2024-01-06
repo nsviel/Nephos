@@ -4,7 +4,7 @@
 
 class Engine;
 
-namespace eng::data{
+namespace eng::scene{
 class Scene;
 class Database;
 class Loader;
@@ -24,17 +24,17 @@ public:
   void loop();
 
   inline Engine* get_engine(){return engine;}
-  inline eng::data::Scene* get_eng_scene(){return eng_scene;}
-  inline eng::data::Database* get_eng_database(){return eng_database;}
-  inline eng::data::Loader* get_eng_loader(){return eng_loader;}
-  inline eng::data::Glyph* get_eng_glyph(){return eng_glyph;}
+  inline eng::scene::Scene* get_eng_scene(){return eng_scene;}
+  inline eng::scene::Database* get_eng_database(){return eng_database;}
+  inline eng::scene::Loader* get_eng_loader(){return eng_loader;}
+  inline eng::scene::Glyph* get_eng_glyph(){return eng_glyph;}
 
 private:
   Engine* engine;
-  eng::data::Scene* eng_scene;
-  eng::data::Database* eng_database;
-  eng::data::Glyph* eng_glyph;
-  eng::data::Loader* eng_loader;
+  eng::scene::Scene* eng_scene;
+  eng::scene::Database* eng_database;
+  eng::scene::Glyph* eng_glyph;
+  eng::scene::Loader* eng_loader;
 };
 
 }

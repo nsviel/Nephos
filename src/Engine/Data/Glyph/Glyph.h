@@ -11,13 +11,13 @@
 class VK_engine;
 
 
-namespace eng::data{
+namespace eng::scene{
 
 class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(eng::data::Node* eng_data);
+  Glyph(eng::scene::Node* eng_data);
   ~Glyph();
 
 public:
@@ -34,8 +34,8 @@ private:
   glyph::object::AABB* glyph_aabb;
   glyph::object::Axis* glyph_axis;
   glyph::object::Camera* glyph_cam;
-  eng::data::Node* eng_data;
-  eng::data::Database* eng_database;
+  eng::scene::Node* eng_data;
+  eng::scene::Database* eng_database;
   eng::camera::Node* eng_camera;
 
   vector<eng::base::Glyph*> vec_glyph;

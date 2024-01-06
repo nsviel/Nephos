@@ -12,14 +12,14 @@
 class VK_engine;
 
 
-namespace eng::data{
+namespace eng::scene{
 class Glyph;
 
 class Scene
 {
 public:
   //ConsScenetor / DesScenetor
-  Scene(eng::data::Node* eng_data);
+  Scene(eng::scene::Node* eng_data);
   ~Scene();
 
 public:
@@ -36,9 +36,9 @@ public:
 
 private:
   VK_engine* vk_engine;
-  eng::data::Node* eng_data;
-  eng::data::Database* eng_database;
-  eng::data::Glyph* eng_glyph;
+  eng::scene::Node* eng_data;
+  eng::scene::Database* eng_database;
+  eng::scene::Glyph* eng_glyph;
   eng::ope::Attribut* attributManager;
   eng::camera::Node* eng_camera;
 

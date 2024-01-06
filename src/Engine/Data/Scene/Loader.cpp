@@ -6,14 +6,14 @@
 #include <Utility/Function/File/Zenity.h>
 
 
-namespace eng::data{
+namespace eng::scene{
 
 //Constructor / Destructor
-Loader::Loader(eng::data::Node* eng_data){
+Loader::Loader(eng::scene::Node* eng_data){
   //---------------------------
 
   this->eng_scene = eng_data->get_eng_scene();
-  this->eng_format = new eng::data::Format();
+  this->eng_format = new eng::scene::Format();
 
   this->path_current_dir = "";
   this->accepted_format.push_back("pts");

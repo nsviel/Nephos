@@ -35,7 +35,7 @@ public:
 private:
   Panel* gui_render_panel;
   eng::ope::Attribut* attributManager;
-  eng::data::Scene* eng_scene;
+  eng::scene::Scene* eng_scene;
 
   eng::structure::Object* object_selected;
   string panel_name;
