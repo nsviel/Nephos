@@ -37,6 +37,7 @@ void Glyph::create_glyph_world(){
   this->remove_glyph_world();
   this->list_glyph.push_back(new glyph::grid::Mesh());
   this->list_glyph.push_back(new glyph::grid::Axis());
+  this->list_glyph.push_back(new glyph::grid::Plane());
   this->list_glyph.push_back(new glyph::world::Axis());
 
   for(int i=0; i<list_glyph.size(); i++){

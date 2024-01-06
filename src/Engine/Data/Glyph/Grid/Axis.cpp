@@ -7,7 +7,7 @@ namespace glyph::grid{
 Axis::Axis(){
   //---------------------------
 
-  this->color = vec4(0, 0, 1, 1);
+  this->color = vec4(1, 1, 1, 0.5);
   this->nb_cell = 40;
 
   //---------------------------
@@ -24,7 +24,7 @@ void Axis::create(){
   //---------------------------
 
   this->data = new eng::data::Object();
-  data->draw_line_width = 5;
+  data->draw_line_width = 2;
   data->is_visible = true;
   data->draw_type_name = "line";
   data->is_permanent = true;

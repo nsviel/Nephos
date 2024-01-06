@@ -47,6 +47,18 @@ void SCE::init_shader(){
   shader_info->with_depth_test = true;
   this->vec_shader_info.push_back(shader_info);
 
+  //Add shader info - Triangle
+  shader_info = new Shader_info();
+  shader_info->title = "Triangle";
+  shader_info->folder = "Scene";
+  shader_info->path_glsl_vs = "../src/Engine/Shader/Scene/glsl/shader_line_vs.vert";
+  shader_info->path_glsl_fs = "../src/Engine/Shader/Scene/glsl/shader_line_fs.frag";
+  shader_info->path_spir_vs = "../src/Engine/Shader/Scene/spir/shader_line_vs.spv";
+  shader_info->path_spir_fs = "../src/Engine/Shader/Scene/spir/shader_line_fs.spv";
+  shader_info->compile_shader = true;
+  shader_info->with_depth_test = true;
+  this->vec_shader_info.push_back(shader_info);
+
   //---------------------------
 }
 

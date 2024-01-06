@@ -53,6 +53,7 @@ void RP_scene::create_subpass(vk::structure::Renderpass* renderpass){
   subpass->target = "shader";
   subpass->draw_task = [this](vk::structure::Subpass* subpass){RP_scene::draw_scene(subpass);};
 
+  //Line pipeline
   vk::structure::Pipeline* pipeline;
   pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "line";
@@ -64,6 +65,7 @@ void RP_scene::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
   subpass->vec_pipeline.push_back(pipeline);
 
+  //Point pipeline
   pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "point";
   pipeline->definition.topology = "point";
@@ -73,6 +75,17 @@ void RP_scene::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.vec_data_name.push_back("color");
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("point_size", sizeof(int), 1, TYP_UNIFORM, TYP_SHADER_VS));
+  subpass->vec_pipeline.push_back(pipeline);
+
+  //Triangle pipeline
+  pipeline = new vk::structure::Pipeline();
+  pipeline->definition.name = "triangle";
+  pipeline->definition.topology = "triangle";
+  pipeline->definition.purpose = "graphics";
+  pipeline->definition.shader = sce_shader->get_shader_info("Triangle");
+  pipeline->definition.vec_data_name.push_back("location");
+  pipeline->definition.vec_data_name.push_back("color");
+  pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
   subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
@@ -87,6 +100,7 @@ void RP_scene::draw_scene(vk::structure::Subpass* subpass){
   vk_viewport->cmd_viewport(subpass->command_buffer);
   this->cmd_draw_point(subpass);
   this->cmd_draw_line(subpass);
+  this->cmd_draw_triangle(subpass);
 
   //---------------------------
   this->time_renderpass = timer.stop_ms(t1);
@@ -130,6 +144,33 @@ void RP_scene::cmd_draw_line(vk::structure::Subpass* subpass){
     vk::structure::Object* data =  *next(list_data.begin(), i);
     bool& is_visible = data->object->is_visible;
     bool is_point = data->object->draw_type_name == "line";
+    bool has_xyz = data->object->xyz.size() != 0;
+    bool has_rgb = data->object->rgb.size() != 0;
+    bool same_length = data->object->rgb.size() == data->object->xyz.size();
+
+    if(is_visible && is_point && has_xyz && has_rgb && same_length){
+      vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
+
+      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, data->binding.descriptor.set);
+      vk_drawing->cmd_line_with(subpass->command_buffer, data);
+      vk_drawing->cmd_draw_data(subpass->command_buffer, data);
+    }
+  }
+
+  //---------------------------
+}
+void RP_scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
+  list<vk::structure::Object*> list_data = vk_engine->get_list_data();
+  //---------------------------
+
+  vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("triangle");
+  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
+
+  //Bind and draw vertex buffers
+  for(int i=0; i<list_data.size(); i++){
+    vk::structure::Object* data =  *next(list_data.begin(), i);
+    bool& is_visible = data->object->is_visible;
+    bool is_point = data->object->draw_type_name == "triangle";
     bool has_xyz = data->object->xyz.size() != 0;
     bool has_rgb = data->object->rgb.size() != 0;
     bool same_length = data->object->rgb.size() == data->object->xyz.size();

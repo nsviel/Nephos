@@ -31,6 +31,7 @@ public:
   void draw_scene(vk::structure::Subpass* subpass);
   void cmd_draw_point(vk::structure::Subpass* subpass);
   void cmd_draw_line(vk::structure::Subpass* subpass);
+  void cmd_draw_triangle(vk::structure::Subpass* subpass);
 
 private:
   eng::shader::Shader* eng_shader;
