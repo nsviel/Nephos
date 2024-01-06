@@ -41,6 +41,8 @@ void AABB::update(eng::data::Object* object){
 
   //---------------------------
 }
+
+//Subfunction
 vector<vec3> AABB::build_box(vec3 min, vec3 max){
   vector<vec3> XYZ;
   vec3 l1, l2;

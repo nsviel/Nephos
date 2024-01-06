@@ -12,8 +12,11 @@ public:
   AABB();
 
 public:
+  //Main function
   void create(eng::data::Object* object);
   void update(eng::data::Object* object);
+
+  //Subfunction
   vector<vec3> build_box(vec3 min, vec3 max);
 
 private:

@@ -20,6 +20,7 @@ Tree::Tree(){
 }
 Tree::~Tree(){}
 
+//Main function
 eng::data::Object* Tree::create(eng::data::Object* object){
   eng::data::Object* tree = new eng::data::Object();
   //---------------------------
@@ -35,7 +36,7 @@ eng::data::Object* Tree::create(eng::data::Object* object){
   //---------------------------
   return tree;
 }
-void Tree::update_tree(eng::data::Object* object, eng::data::Object* tree){
+void Tree::update(eng::data::Object* object, eng::data::Object* tree){
   //---------------------------
 
   if(is_visible){
