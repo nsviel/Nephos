@@ -36,7 +36,7 @@ Glyph::~Glyph(){
   //---------------------------
 }
 
-//Init function
+//Glyph world
 void Glyph::create_glyph_world(){
   //---------------------------
 
@@ -56,8 +56,8 @@ void Glyph::create_glyph_world(){
   //---------------------------
 }
 
-//Cloud function
-void Glyph::create_cloud_glyphs(eng::data::Object* object){
+//Glyph object
+void Glyph::create_glyph_object(eng::data::Object* object){
   //---------------------------
 
   //AABB
@@ -77,7 +77,7 @@ void Glyph::create_cloud_glyphs(eng::data::Object* object){
 
   //---------------------------
 }
-void Glyph::update_cloud_glyphs(eng::data::Object* object){
+void Glyph::update_glyph_object(eng::data::Object* object){
   //---------------------------
 /*
   //AABB
@@ -97,7 +97,7 @@ void Glyph::update_cloud_glyphs(eng::data::Object* object){
 */
   //---------------------------
 }
-void Glyph::remove_cloud_glyphs(eng::data::Object* object){
+void Glyph::remove_glyph_object(eng::data::Object* object){
   //---------------------------
 
   vk_engine->remove_object_in_engine(object->aabb);

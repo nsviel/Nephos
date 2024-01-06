@@ -52,7 +52,7 @@ void Scene::loop(){
 
       if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
         eng_camera->compute_cam_mvp(object);
-        eng_glyph->update_cloud_glyphs(object);
+        eng_glyph->update_glyph_object(object);
       }
     }
   }
@@ -79,7 +79,7 @@ void Scene::insert_object_scene(eng::data::Object* object){
   vk_engine->insert_object_in_engine(object);
   attributManager->compute_MinMax(object);
   set_scene->insert_entity(object);
-  eng_glyph->create_cloud_glyphs(object);
+  eng_glyph->create_glyph_object(object);
 
   //---------------------------
 }
@@ -104,7 +104,7 @@ void Scene::delete_object_scene(eng::data::Entity* entity){
     eng::data::Object* object_list = (eng::data::Object*)*next(set_scene->list_entity.begin(),i);
     if(entity->ID == object_list->ID){
       set_scene->list_entity.remove(entity);
-      eng_glyph->remove_cloud_glyphs((eng::data::Object*)entity);
+      eng_glyph->remove_glyph_object((eng::data::Object*)entity);
       vk_engine->remove_object_in_engine((eng::data::Object*)entity);
       set_scene->nb_entity--;
     }

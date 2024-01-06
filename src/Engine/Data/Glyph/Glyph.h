@@ -21,13 +21,13 @@ public:
   ~Glyph();
 
 public:
-  //Init functions
+  //Glyph world
   void create_glyph_world();
 
-  //Subfunction
-  void create_cloud_glyphs(eng::data::Object* object);
-  void update_cloud_glyphs(eng::data::Object* object);
-  void remove_cloud_glyphs(eng::data::Object* object);
+  //Glyph object
+  void create_glyph_object(eng::data::Object* object);
+  void update_glyph_object(eng::data::Object* object);
+  void remove_glyph_object(eng::data::Object* object);
 
 private:
   VK_engine* vk_engine;
