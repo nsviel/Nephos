@@ -12,7 +12,7 @@ AABB::AABB(){
 }
 
 //Main function
-void AABB::create(eng::data::Object* object){
+void AABB::create(){
   //---------------------------
 
   data = new eng::data::Object();

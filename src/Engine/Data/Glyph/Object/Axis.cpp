@@ -15,34 +15,32 @@ Axis::Axis(){
 Axis::~Axis(){}
 
 //Main function
-void Axis::create(eng::data::Object* object){
+void Axis::create(){
   //---------------------------
 
   //Create glyph
-  object->axis = new eng::data::Object();
-  eng::data::Object* axis = object->axis;
-
-  axis->name = "axis";
-  axis->draw_line_width = 3;
-  axis->is_visible = is_visible;
-  axis->draw_type_name = "line";
-  this->construct(axis);
+  data = new eng::data::Object();
+  data->name = "axis";
+  data->draw_line_width = 3;
+  data->is_visible = is_visible;
+  data->draw_type_name = "line";
+  this->construct();
 
   //---------------------------
 }
 void Axis::update(eng::data::Object* object){
   //---------------------------
 
-  ope_transform->make_transformation(object->axis, object->COM, object->trans, object->rotat);
+  ope_transform->make_transformation(data, object->COM, object->trans, object->rotat);
 
   //---------------------------
 }
 
 //Subfunction
-void Axis::construct(eng::data::Object* axis){
+void Axis::construct(){
   //---------------------------
 
-  vector<vec4>& RGB = axis->rgb;
+  vector<vec4>& RGB = data->rgb;
   RGB.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
   RGB.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
   RGB.push_back(vec4(0.2f, 0.9f, 0.2f, 1.0f));
@@ -50,7 +48,7 @@ void Axis::construct(eng::data::Object* axis){
   RGB.push_back(vec4(0.2f, 0.2f, 0.9f, 1.0f));
   RGB.push_back(vec4(0.2f, 0.2f, 0.9f, 1.0f));
 
-  vector<vec3>& XYZ = axis->xyz;
+  vector<vec3>& XYZ = data->xyz;
   vec3 root = vec3(0, 0, 0);
   vec3 x = vec3(0.1,0,0);
   vec3 y = vec3(0,0.1,0);

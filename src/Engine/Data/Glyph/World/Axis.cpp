@@ -21,7 +21,7 @@ Axis::~Axis(){
 }
 
 //Main function
-eng::data::Object* Axis::create(){
+void Axis::create(){
   //---------------------------
 
   data = new eng::data::Object();
@@ -32,7 +32,6 @@ eng::data::Object* Axis::create(){
   this->update();
 
   //---------------------------
-  return data;
 }
 void Axis::update(){
   vector<vec3>& XYZ = data->xyz;

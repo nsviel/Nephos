@@ -21,7 +21,7 @@ Grid::~Grid(){
   //---------------------------
 }
 
-eng::data::Object* Grid::create(){
+void Grid::create(){
   //---------------------------
 
   this->data = new eng::data::Object();
@@ -33,7 +33,6 @@ eng::data::Object* Grid::create(){
   this->update();
 
   //---------------------------
-  return data;
 }
 void Grid::update(){
   vector<vec3>& XYZ = data->xyz;

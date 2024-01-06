@@ -16,11 +16,11 @@ public:
 
 public:
   //Main function
-  void create(eng::data::Object* object);
+  void create();
   void update(eng::data::Object* object);
 
   //Subfunctions
-  void construct(eng::data::Object* axis);
+  void construct();
 
 private:
   eng::ope::Transformation* ope_transform;

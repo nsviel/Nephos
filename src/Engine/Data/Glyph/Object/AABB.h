@@ -13,7 +13,7 @@ public:
 
 public:
   //Main function
-  void create(eng::data::Object* object);
+  void create();
   void update(eng::data::Object* object);
 
   //Subfunction

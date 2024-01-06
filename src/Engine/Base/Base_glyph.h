@@ -27,7 +27,7 @@ public:
   }
 
 public:
-  virtual eng::data::Object* create(){return data;}
+  virtual void create(){}
   virtual void update(){}
   virtual void reset(){}
 

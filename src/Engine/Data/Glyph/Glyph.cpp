@@ -43,14 +43,15 @@ void Glyph::create_glyph_world(){
   for(int i=0; i<vec_glyph.size(); i++){
     eng::data::Set* data_set = eng_database->get_data_set();
     eng::data::Set* set_world = data_set->get_set("World");
-    eng::data::Glyph* base = vec_glyph[i];
-    eng::data::Object* glyph = base->create();
+    eng::data::Glyph* glyph = vec_glyph[i];
+    glyph->create();
+    eng::data::Object* data = glyph->get_data();
 
     //Insert into engine
-    eng_database->assign_ID(glyph);
-    glyph->is_suppressible = false;
-    vk_engine->insert_object_in_engine(glyph);
-    set_world->insert_entity(glyph);
+    eng_database->assign_ID(data);
+    data->is_suppressible = false;
+    vk_engine->insert_object_in_engine(data);
+    set_world->insert_entity(data);
   }
 
   //---------------------------

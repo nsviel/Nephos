@@ -13,18 +13,16 @@ Camera::Camera(){
 Camera::~Camera(){}
 
 //Main function
-void Camera::create(eng::data::Object* object){
+void Camera::create(){
   //---------------------------
 
-  object->camera = new eng::data::Object();
-  eng::data::Object* camera = object->camera;
-
-  camera->name = "camera";
-  camera->draw_line_width = 1;
-  camera->is_visible = true;
-  camera->draw_type_name = "line";
-  camera->is_permanent = true;
-  camera->unicolor = vec4(1, 1, 1, 0.2f);
+  data = new eng::data::Object();
+  data->name = "camera";
+  data->draw_line_width = 1;
+  data->is_visible = true;
+  data->draw_type_name = "line";
+  data->is_permanent = true;
+  data->unicolor = vec4(1, 1, 1, 0.2f);
 
   //---------------------------
 }

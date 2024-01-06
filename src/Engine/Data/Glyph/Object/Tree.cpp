@@ -13,35 +13,34 @@ Tree::Tree(){
 
   this->name = "tree";
   this->is_visible = false;
-  this->tree_color = vec4(1, 1, 1, 0.7);
-  this->tree_level = 6;
+  this->color = vec4(1, 1, 1, 0.7);
+  this->level = 6;
 
   //---------------------------
 }
 Tree::~Tree(){}
 
 //Main function
-eng::data::Object* Tree::create(eng::data::Object* object){
-  eng::data::Object* tree = new eng::data::Object();
+void Tree::create(){
   //---------------------------
 
   //Create glyph
-  tree->name = "tree";
-  tree->draw_line_width = 2;
-  tree->is_visible = is_visible;
-  tree->draw_type_name = "line";
-  tree->is_permanent = true;
-  tree->unicolor = tree_color;
+  data = new eng::data::Object();
+  data->name = "tree";
+  data->draw_line_width = 2;
+  data->is_visible = is_visible;
+  data->draw_type_name = "line";
+  data->is_permanent = true;
+  data->unicolor = color;
 
   //---------------------------
-  return tree;
 }
-void Tree::update(eng::data::Object* object, eng::data::Object* tree){
+void Tree::update(eng::data::Object* object){
   //---------------------------
 
   if(is_visible){
-    //octreeManager->create_octree(cloud, tree_level);
-    tree->xyz = object->xyz;
+    //octreeManager->create_octree(cloud, level);
+    data->xyz = object->xyz;
   }
 
   //---------------------------

@@ -20,7 +20,7 @@ Grid_axis::~Grid_axis(){
   //---------------------------
 }
 
-eng::data::Object* Grid_axis::create(){
+void Grid_axis::create(){
   //---------------------------
 
   this->data = new eng::data::Object();
@@ -32,7 +32,6 @@ eng::data::Object* Grid_axis::create(){
   this->update();
 
   //---------------------------
-  return data;
 }
 void Grid_axis::update(){
   vector<vec3>& XYZ = data->xyz;

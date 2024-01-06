@@ -13,7 +13,7 @@ public:
   ~Camera();
 
 public:
-  void create(eng::data::Object* object);
+  void create();
   void update(eng::data::Object* object);
 
 private:

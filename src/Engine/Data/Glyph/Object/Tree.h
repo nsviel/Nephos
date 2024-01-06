@@ -15,17 +15,15 @@ public:
 
 public:
   //Main function
-  eng::data::Object* create(eng::data::Object* object);
-  void update(eng::data::Object* object, eng::data::Object* glyph);
+  void create();
+  void update(eng::data::Object* object);
 
   inline bool* get_visibility(){return &is_visible;}
-  inline int* get_tree_level(){return &tree_level;}
+  inline int* get_level(){return &level;}
 
 private:
   eng::ope::Octree* octreeManager;
-  bool is_visible;
-  vec4 tree_color;
-  int tree_level;
+  int level;
 };
 
 }
