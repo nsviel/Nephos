@@ -1,19 +1,18 @@
-#include "Grid.h"
+#include "Grid_axis.h"
 
 
-namespace glyph::world{
+namespace glyph::grid{
 
 //Constructor / destructor
-Grid::Grid(){
+Grid_axis::Grid_axis(){
   //---------------------------
 
-  this->name = "grid";
-  this->color = vec4(1, 1, 1, 0.3);
+  this->color = vec4(1, 1, 1, 0.5);
   this->nb_cell = 40;
 
   //---------------------------
 }
-Grid::~Grid(){
+Grid_axis::~Grid_axis(){
   //---------------------------
 
   delete data;
@@ -21,11 +20,11 @@ Grid::~Grid(){
   //---------------------------
 }
 
-void Grid::create(){
+void Grid_axis::create(){
   //---------------------------
 
   this->data = new eng::data::Object();
-  data->draw_line_width = 1;
+  data->draw_line_width = 5;
   data->is_visible = true;
   data->draw_type_name = "line";
   data->is_permanent = true;
@@ -35,7 +34,7 @@ void Grid::create(){
 
   //---------------------------
 }
-void Grid::update(){
+void Grid_axis::update(){
   vector<vec3>& XYZ = data->xyz;
   vector<vec4>& RGB = data->rgb;
   //---------------------------
@@ -44,18 +43,17 @@ void Grid::update(){
   XYZ.clear();
   RGB.clear();
 
-  //Construct glyph
-  for(int i=-nb_cell; i<=nb_cell; i++){
-    XYZ.push_back(vec3((float)i, -(float)nb_cell, 0));
-    XYZ.push_back(vec3((float)i, (float)nb_cell, 0));
+  //X axis
+  XYZ.push_back(vec3(-nb_cell, 0, 0));
+  XYZ.push_back(vec3(nb_cell, 0, 0));
+  RGB.push_back(color);
+  RGB.push_back(color);
 
-    XYZ.push_back(vec3(-(float)nb_cell, (float)i, 0));
-    XYZ.push_back(vec3((float)nb_cell, (float)i, 0));
-
-    for(int j=0; j<4; j++){
-      RGB.push_back(color);
-    }
-  }
+  //Y axis
+  XYZ.push_back(vec3(0, -nb_cell, 0.005));
+  XYZ.push_back(vec3(0, nb_cell, 0.005));
+  RGB.push_back(color);
+  RGB.push_back(color);
 
   //---------------------------
 }

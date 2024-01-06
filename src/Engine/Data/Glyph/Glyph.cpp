@@ -18,8 +18,6 @@ Glyph::Glyph(eng::scene::Node* eng_data){
   this->eng_database = eng_data->get_eng_database();
   this->eng_camera = engine->get_eng_camera();
 
-
-
   //---------------------------
 }
 Glyph::~Glyph(){
@@ -37,7 +35,7 @@ void Glyph::create_glyph_world(){
   //---------------------------
 
   this->remove_glyph_world();
-  this->list_glyph.push_back(new glyph::world::Grid());
+  this->list_glyph.push_back(new glyph::grid::Grid());
   this->list_glyph.push_back(new glyph::world::Axis());
 
   for(int i=0; i<list_glyph.size(); i++){

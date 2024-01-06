@@ -1,7 +1,7 @@
 #include "Grid_sub.h"
 
 
-namespace glyph::world{
+namespace glyph::grid{
 
 //Constructor / destructor
 Grid_sub::Grid_sub(){

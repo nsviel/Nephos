@@ -3,7 +3,7 @@
 #include <Engine/Base/Base_glyph.h>
 
 
-namespace glyph::world{
+namespace glyph::grid{
 
 class Grid_plane : public eng::data::Glyph
 {
