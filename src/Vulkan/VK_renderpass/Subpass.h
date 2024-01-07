@@ -32,6 +32,8 @@ public:
   //Color attachment
   void color_attachment_description(vk::structure::Attachment& color);
   void color_attachment_reference(vk::structure::Attachment& color);
+  void color_attachment_resolve_description(vk::structure::Attachment& color);
+  void color_attachment_resolve_reference(vk::structure::Attachment& color);
 
   //Depth attachment
   void depth_attachment_description(vk::structure::Attachment& depth);

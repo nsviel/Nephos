@@ -35,6 +35,7 @@ public:
   void find_queue_nb_family(vk::structure::Physical_device& struct_device);
   void find_queue_graphics_idx(vk::structure::Physical_device& struct_device);
   void find_queue_presentation_idx(vk::structure::Physical_device& struct_device);
+  void find_max_usable_sample_count(vk::structure::Physical_device& struct_device);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

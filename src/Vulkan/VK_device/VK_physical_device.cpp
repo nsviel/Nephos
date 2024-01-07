@@ -171,6 +171,7 @@ bool VK_physical_device::device_suitability_onscreen(vk::structure::Physical_dev
 
   //Supported features
   this->find_physical_device_features(struct_device);
+  this->find_max_usable_sample_count(struct_device);
   bool msaa_ok = struct_device.features.samplerAnisotropy;
   bool line_ok = struct_device.features.wideLines;
   bool geom_ok = struct_device.features.geometryShader;
@@ -382,4 +383,22 @@ void VK_physical_device::find_queue_presentation_idx(vk::structure::Physical_dev
   }
 
   //---------------------------
+}
+void VK_physical_device::find_max_usable_sample_count(vk::structure::Physical_device& struct_device){
+  VkSampleCountFlagBits max_sample;
+  //---------------------------
+
+  VkSampleCountFlags counts = struct_device.properties.limits.framebufferColorSampleCounts & struct_device.properties.limits.framebufferDepthSampleCounts;
+  if (counts & VK_SAMPLE_COUNT_64_BIT) { max_sample = VK_SAMPLE_COUNT_64_BIT; }
+  else if (counts & VK_SAMPLE_COUNT_32_BIT) { max_sample = VK_SAMPLE_COUNT_32_BIT; }
+  else if (counts & VK_SAMPLE_COUNT_16_BIT) { max_sample = VK_SAMPLE_COUNT_16_BIT; }
+  else if (counts & VK_SAMPLE_COUNT_8_BIT) { max_sample = VK_SAMPLE_COUNT_8_BIT; }
+  else if (counts & VK_SAMPLE_COUNT_4_BIT) { max_sample = VK_SAMPLE_COUNT_4_BIT; }
+  else if (counts & VK_SAMPLE_COUNT_2_BIT) { max_sample = VK_SAMPLE_COUNT_2_BIT; }
+  else max_sample = VK_SAMPLE_COUNT_1_BIT;
+
+  max_sample = VK_SAMPLE_COUNT_1_BIT; // for now
+
+  //---------------------------
+  struct_device.max_sample_count = max_sample;
 }

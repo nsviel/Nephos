@@ -55,7 +55,7 @@ void VK_image::create_image_obj(vk::structure::Image* image){
   image_info.tiling = image->tiling;
   image_info.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
   image_info.usage = image->usage | VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
-  image_info.samples = VK_SAMPLE_COUNT_1_BIT;
+  image_info.samples = struct_vulkan->device.struct_device.max_sample_count;
   image_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
   VkResult result = vkCreateImage(struct_vulkan->device.device, &image_info, nullptr, &image->image);

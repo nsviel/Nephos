@@ -13,6 +13,7 @@ struct Physical_device{
   VkSurfaceCapabilitiesKHR capabilities;
   VkPhysicalDeviceFeatures features;
   VkPhysicalDeviceType type;
+  VkSampleCountFlagBits max_sample_count;
 
   vector<VkSurfaceFormatKHR> formats;
   vector<VkPresentModeKHR> presentation_mode;
