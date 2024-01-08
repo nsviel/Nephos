@@ -34,7 +34,8 @@ public:
 private:
   eng::scene::Scene* eng_scene;
   eng::scene::Loader* eng_loader;
-  eng::ope::Transformation* transformManager;
+  eng::ope::Transformation* ope_transform;
+  eng::ope::Operation* ope_operation;
 
   vector<Item> vec_item_folder;
   vector<Item> vec_item_file;
@@ -42,8 +43,9 @@ private:
   vector<string> bookmark;
   string default_dir;
   string current_dir;
-  bool param_remove_old = true;
   float param_scaling = 1;
+  bool param_remove_old = true;
+  bool param_centered = true;
 };
 
 }

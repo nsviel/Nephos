@@ -41,7 +41,6 @@ void K4A_device::init(){
   cloud.object->name = device.name;
   cloud.object->draw_type_name = "point";
   eng_scene->insert_object_scene(cloud.object);
-  ope_transform->make_scaling(cloud.object, 10);
 
   //---------------------------
 }

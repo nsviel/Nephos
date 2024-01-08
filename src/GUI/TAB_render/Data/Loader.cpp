@@ -19,7 +19,8 @@ Loader::Loader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
 
   this->eng_scene = eng_data->get_eng_scene();
   this->eng_loader = eng_data->get_eng_loader();
-  this->transformManager = new eng::ope::Transformation();
+  this->ope_transform = new eng::ope::Transformation();
+  this->ope_operation = new eng::ope::Operation();
   this->default_dir = file::get_current_parent_path_abs();
   this->current_dir = default_dir;
 
@@ -252,14 +253,18 @@ void Loader::draw_footer(){
     }
   }
 
-  // Point cloud scaling
+  // Scale new
   ImGui::Separator();
-  ImGui::SetNextItemWidth(100);
+  ImGui::SetNextItemWidth(75);
   ImGui::DragFloat("Scale##4567", &param_scaling, 0.1, 0.1, 100, "%.2f x");
-  ImGui::SameLine();
 
-  // Remove old clouds
+  // Remove old
+  ImGui::SameLine();
   ImGui::Checkbox("Remove##222", &param_remove_old);
+
+  // Center new
+  ImGui::SameLine();
+  ImGui::Checkbox("Centered##222", &param_centered);
 
   // End the footer window
   ImGui::End();
@@ -290,8 +295,15 @@ void Loader::operation_load(){
 
   for(int i=0; i<vec_path.size(); i++){
     eng::data::Object* object = eng_loader->load_object(vec_path[i]);
+
     if(object != nullptr){
-      transformManager->make_scaling(object, param_scaling);
+      //Scaling
+      ope_transform->make_scaling(object, param_scaling);
+
+      //Centered
+      if(param_centered){
+        ope_operation->center_object(object);
+      }
     }
   }
 
