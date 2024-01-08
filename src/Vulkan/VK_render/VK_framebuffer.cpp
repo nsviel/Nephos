@@ -40,6 +40,7 @@ void VK_framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
   framebuffer->depth.layout = TYP_IMAGE_LAYOUT_DEPTH_READONLY;
 
   vk_color->create_color_attachment(&framebuffer->color);
+  vk_color->create_color_attachment(&framebuffer->color_resolve);
   vk_depth->create_depth_attachment(&framebuffer->depth);
   this->create_framebuffer_renderpass(renderpass, framebuffer);
 
@@ -62,6 +63,7 @@ void VK_framebuffer::clean_framebuffer(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk_image->clean_image(&framebuffer->color);
+  vk_image->clean_image(&framebuffer->color_resolve);
   vk_image->clean_image(&framebuffer->depth);
   this->clean_framebuffer_obj(framebuffer->fbo);
   delete framebuffer;

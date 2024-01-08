@@ -63,8 +63,8 @@ void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
   //Color resolver
   vk::structure::Attachment color_resolve;
   color_resolve.item = 1;
-  //this->color_attachment_resolve_description(color_resolve);
-  //this->color_attachment_resolve_reference(color_resolve);
+  this->color_attachment_resolve_description(color_resolve);
+  this->color_attachment_resolve_reference(color_resolve);
   //subpass->vec_color_resolve.push_back(color_resolve);
 
   // Depth
