@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Struct_file.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Info.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -20,10 +20,10 @@ public:
   ~PCAP_importer();
 
 public:
-  util::base::File* Loader(std::string pathFile);
+  eng::data::File* Loader(std::string pathFile);
 
-  void Loader_vlp16(util::base::File* data, std::string pathFile);
-  void Loader_hdl32(util::base::File* data, std::string pathFile);
+  void Loader_vlp16(eng::data::File* data, std::string pathFile);
+  void Loader_hdl32(eng::data::File* data, std::string pathFile);
   int get_file_length(std::string pathFile);
 
   inline void set_lidar_model(std::string value){this->LiDAR_model = value;}

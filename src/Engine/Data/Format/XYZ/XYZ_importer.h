@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Struct_file.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Info.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -15,9 +15,9 @@ public:
   ~XYZ_importer();
 
 public:
-  util::base::File* Loader(std::string filePath);
+  eng::data::File* Loader(std::string filePath);
 
 private:
   //Datatypes
-  util::base::File* data_out;
+  eng::data::File* data_out;
 };

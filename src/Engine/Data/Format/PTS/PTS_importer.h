@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Base/Namespace.h>
-#include <Utility/Base/Struct_file.h>
+#include <Engine/Base/Namespace.h>
 #include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Info.h>
 #include <glm/glm.hpp>
@@ -21,8 +21,8 @@ public:
 
 public:
   //Main functions
-  util::base::File* Loader(std::string pathFile);
-  util::base::File* Loader(std::string pathFile, int lmin, int lmax);
+  eng::data::File* Loader(std::string pathFile);
+  eng::data::File* Loader(std::string pathFile, int lmin, int lmax);
 
   bool Exporter(std::string pathFile, eng::data::Object* object);
 
@@ -36,7 +36,7 @@ private:
   void Loader_init();
   void Loader_nbColumns();
   void Loader_configuration();
-  void Loader_data(util::base::File* data_out, int FILE_config);
+  void Loader_data(eng::data::File* data_out, int FILE_config);
 
   //Loader sub-functions
   bool check_header(std::string pathFile);

@@ -3,8 +3,8 @@
 #include <Engine/Data/Namespace.h>
 #include <Engine/Base/Namespace.h>
 
-#include <Utility/Base/Namespace.h>
-#include <Utility/Base/Struct_file.h>
+#include <Engine/Base/Namespace.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 #include <Utility/Function/File/File.h>
@@ -12,12 +12,11 @@
 #include <string>
 #include <vector>
 
-using MyFile = util::base::File;
-
 namespace eng::scene{
 class Scene;
 class Format;
 class Node;
+
 
 class Loader
 {
@@ -32,7 +31,7 @@ public:
   std::vector<eng::data::Object*> load_objects(std::vector<std::string> path);
 
   //Subfunctions
-  void transfert_data(eng::data::Object* object, MyFile* file_data);
+  void transfert_data(eng::data::Object* object, eng::data::File* file_data);
   bool check_format_viability(string format);
 
 private:

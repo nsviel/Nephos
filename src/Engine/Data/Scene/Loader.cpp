@@ -1,7 +1,7 @@
 #include "Loader.h"
 #include "../Format/Format.h"
 
-#include <Utility/Base/Namespace.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 
@@ -40,10 +40,17 @@ Loader::~Loader(){
 eng::data::Object* Loader::load_object(std::string path){
   //---------------------------
 
+  //Check file existence
   if(file::is_file_exist(path) == false){
     cout<<"[error] File doesn't exists at "<<path<<endl;
     return nullptr;
   }
+
+  //Check file format
+  /*if(check_format_viability(item.format)){
+    cout<<"[error] File format not supported"<<endl;
+    return nullptr;
+  }*/
 
   //Create new object
   eng::data::Object* cloud = new eng::data::Object();
@@ -52,7 +59,7 @@ eng::data::Object* Loader::load_object(std::string path){
   cloud->has_texture = true;
 
   //Retrieve data and insert into engine
-  MyFile* data = eng_format->get_data_from_file(path);
+  eng::data::File* data = eng_format->get_data_from_file(path);
   this->transfert_data(cloud, data);
   eng_scene->insert_object_scene(cloud);
 
@@ -73,7 +80,7 @@ std::vector<eng::data::Object*> Loader::load_objects(std::vector<std::string> pa
 }
 
 //Subfunctions
-void Loader::transfert_data(eng::data::Object* object, MyFile* file_data){
+void Loader::transfert_data(eng::data::Object* object, eng::data::File* file_data){
   //---------------------------
 
   object->name = file_data->name;
@@ -106,5 +113,6 @@ bool Loader::check_format_viability(string format){
   //---------------------------
   return false;
 }
+
 
 }

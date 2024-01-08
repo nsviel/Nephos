@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Struct_file.h>
+#include <Engine/Base/Namespace.h>
 #include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Info.h>
 #include <glm/glm.hpp>
@@ -21,7 +21,7 @@ public:
 
 public:
   //Main functions
-  util::base::File* Loader(std::string pathFile);
+  eng::data::File* Loader(std::string pathFile);
 
   //Subfunction
   void load_file(std::string path);

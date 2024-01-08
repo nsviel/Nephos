@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Struct_file.h>
+#include <Engine/Base/Namespace.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
@@ -14,9 +14,9 @@ public:
   ~CSV_importer();
 
 public:
-  util::base::File* Loader(std::string pathFile);
+  eng::data::File* Loader(std::string pathFile);
 
 private:
   //Datatypes
-  util::base::File* data_out;
+  eng::data::File* data_out;
 };

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Base/Struct_video.h>
+#include <Engine/Base/Namespace.h>
 extern "C" {
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
@@ -49,7 +49,7 @@ public:
 
 private:
   std::vector<std::pair<std::string, std::string>> list_camera_devices;
-  util::base::Video struct_video;
+  eng::data::Video struct_video;
   AVFormatContext* video_context = nullptr;
   AVCodecContext* codec_context;
   AVPacket* packet;

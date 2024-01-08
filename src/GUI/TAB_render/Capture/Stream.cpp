@@ -110,7 +110,7 @@ void Stream::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
   eng::kinect::structure::Image* data_color = &k4a_device->color.image;
   //---------------------------
 
-  util::base::Image struct_image;
+  eng::data::Image struct_image;
   struct_image.data = data_color->data;
   struct_image.width = data_color->width;
   struct_image.height = data_color->height;
@@ -136,7 +136,7 @@ void Stream::draw_camera_color_from_depth(K4A_device* k4a_device, ImVec2 image_s
 
   }*/
 
-  util::base::Image struct_image;
+  eng::data::Image struct_image;
   struct_image.data = data_color->data;
   struct_image.width = data_color->width;
   struct_image.height = data_color->height;
@@ -154,7 +154,7 @@ void Stream::draw_camera_depth(K4A_device* k4a_device, ImVec2 image_size){
 
   std::vector<uint8_t> new_buffer = k4a_depth->convert_depth_into_color(k4a_device);
 
-  util::base::Image struct_image;
+  eng::data::Image struct_image;
   struct_image.data = new_buffer;
   struct_image.width = data_depth->width;
   struct_image.height = data_depth->height;
@@ -172,7 +172,7 @@ void Stream::draw_camera_ir(K4A_device* k4a_device, ImVec2 image_size){
 
   std::vector<uint8_t> new_buffer = k4a_infrared->convert_ir_into_color(k4a_device);
 
-  util::base::Image struct_image;
+  eng::data::Image struct_image;
   struct_image.data = new_buffer;
   struct_image.width = data_ir->width;
   struct_image.height = data_ir->height;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Struct_file.h>
+#include <Engine/Base/Namespace.h>
 #include <string>
 
 class PLY_importer;
@@ -11,7 +11,7 @@ class PTS_importer;
 class PTX_importer;
 class XYZ_importer;
 
-using MyFile = util::base::File;
+using MyFile = eng::data::File;
 
 
 namespace eng::scene{

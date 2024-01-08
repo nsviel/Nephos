@@ -2,7 +2,7 @@
 
 // Server side implementation of UDP client-server model
 
-#include <Utility/Base/Struct_file.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/Function/Math/fct_math.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -19,7 +19,7 @@ public:
 
 public:
   //Main functions
-  util::base::File* parse_packet(std::vector<int> packet);
+  eng::data::File* parse_packet(std::vector<int> packet);
 
   //Subfunctions
   void parse_vector(std::vector<int> packet);
@@ -27,7 +27,7 @@ public:
   void parse_azimuth();
   void parse_coordinates();
   void parse_timestamp();
-  void final_check(util::base::File* cloud);
+  void final_check(eng::data::File* cloud);
 
   //Subsubfunctions
   std::vector<float> calc_timing_offsets();

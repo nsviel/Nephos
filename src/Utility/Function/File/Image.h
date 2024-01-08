@@ -2,13 +2,13 @@
 
 #include <string>
 #include <iostream>
-#include <Utility/Base/Struct_image.h>
+#include <Engine/Base/Namespace.h>
 
 
 namespace image{
   //---------------------------
 
-  util::base::Image load_image(std::string path);
+  eng::data::Image load_image(std::string path);
 
   //---------------------------
 }

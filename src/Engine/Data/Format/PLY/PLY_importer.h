@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Struct_file.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Info.h>
 #include <Utility/Function/Math/fct_math.h>
 #include <glm/glm.hpp>
@@ -21,7 +21,7 @@ public:
 
 public:
   //Main functions
-  util::base::File* Loader(std::string path_file);
+  eng::data::File* Loader(std::string path_file);
 
 private:
   //Loader data
@@ -47,7 +47,7 @@ private:
   float get_uchar_from_binary(char* block_data, int& offset);
 
 private:
-  util::base::File* data;
+  eng::data::File* data;
 
   //Parametrization
   std::vector<std::string> property_type;
