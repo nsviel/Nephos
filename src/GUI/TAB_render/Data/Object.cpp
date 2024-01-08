@@ -66,7 +66,7 @@ void Object::object_button(eng::data::Object* object){
   //Suppression
   if(object->is_suppressible){
     if(ImGui::Button(ICON_FA_TRASH "##4567")){
-      eng_scene->delete_object_scene(object);
+      eng_scene->delete_entity(object);
       this->object_selected = nullptr;
     }
   }

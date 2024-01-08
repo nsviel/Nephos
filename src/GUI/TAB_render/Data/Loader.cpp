@@ -290,7 +290,7 @@ void Loader::operation_load(){
 
   //Apply loading and operations
   if(param_remove_old){
-    eng_scene->delete_object_scene_all();
+    eng_scene->delete_entity_all();
   }
 
   for(int i=0; i<vec_path.size(); i++){

@@ -68,7 +68,7 @@ void Scene::reset(){
   //---------------------------
 }
 
-//Insertion / deletion
+//Object
 void Scene::insert_object_scene(eng::data::Object* object){
   eng::data::Set* data_set = eng_database->get_data_set();
   eng::data::Set* set_scene = data_set->get_set("Scene");
@@ -91,7 +91,9 @@ void Scene::update_object(eng::data::Object* object){
 
   //---------------------------
 }
-void Scene::delete_object_scene(eng::data::Entity* entity){
+
+//Entity
+void Scene::delete_entity(eng::data::Entity* entity){
   eng::data::Set* data_set = eng_database->get_data_set();
   eng::data::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
@@ -112,7 +114,7 @@ void Scene::delete_object_scene(eng::data::Entity* entity){
 
   //---------------------------
 }
-void Scene::delete_object_scene_all(){
+void Scene::delete_entity_all(){
   eng::data::Set* data_set = eng_database->get_data_set();
   eng::data::Set* set_scene = data_set->get_set("Scene");
   //---------------------------

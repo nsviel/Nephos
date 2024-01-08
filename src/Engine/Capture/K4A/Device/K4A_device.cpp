@@ -49,7 +49,7 @@ void K4A_device::destroy(){
 
   this->stop_threads();
   this->device.transformation.destroy();
-  eng_scene->delete_object_scene(cloud.object);
+  eng_scene->delete_entity(cloud.object);
 
   //---------------------------
 }
