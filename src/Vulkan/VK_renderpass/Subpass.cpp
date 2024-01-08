@@ -153,7 +153,7 @@ void Subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
   this->depth_attachment_description(depth);
   this->depth_attachment_reference(depth);
   subpass->depth = depth;
-  
+
   // Subpass description
   this->create_subpass_description(subpass);
 
