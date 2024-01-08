@@ -26,6 +26,7 @@ public:
 private:
   eng::ope::Transformation* ope_transform;
   eng::ope::Attribut* ope_attribut;
+  eng::ope::Operation* ope_operation;
 };
 
 }

@@ -9,6 +9,7 @@ Player::Player(){
 
   this->ope_transform = new eng::ope::Transformation();
   this->ope_attribut = new eng::ope::Attribut();
+  this->ope_operation = new eng::ope::Operation();
 
   //---------------------------
 }
@@ -67,6 +68,7 @@ void Player::rotation(K4A_device* k4a_device, int value){
 
   ope_attribut->compute_MinMax(k4a_device->cloud.object);
   ope_transform->make_rotation_axe_X(k4a_device->cloud.object, value * 90);
+  ope_operation->center_object(k4a_device->cloud.object);
 
   //---------------------------
 }
