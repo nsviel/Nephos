@@ -8,7 +8,7 @@ Plane::Plane(){
   //---------------------------
 
   this->name = "grid_plane";
-  this->color = vec4(0.1f, 0.1f, 0.1f, 1.0f);
+  this->color = vec4(0.15f, 0.15f, 0.15f, 1.0f);
   this->nb_cell = 10;
 
   //---------------------------
