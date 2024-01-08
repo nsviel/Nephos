@@ -18,6 +18,7 @@ struct Subpass{
   //Attachment
   vk::structure::Attachment depth;
   std::vector<vk::structure::Attachment> vec_color;
+  std::vector<vk::structure::Attachment> vec_color_resolve;
   std::function<void(Subpass* subpass)> draw_task;
 
   //Pipeline

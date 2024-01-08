@@ -23,7 +23,8 @@ public:
   void design_panel();
 
   //Sub functions
-  void object_info(eng::data::Object* object);
+  void object_title(eng::data::Object* object);
+  void object_button(eng::data::Object* object);
   void object_parameter(eng::data::Object* object);
 
   //Primitive size

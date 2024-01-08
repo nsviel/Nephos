@@ -44,22 +44,41 @@ void Object::run_panel(){
 void Object::design_panel(){
   //---------------------------
 
-  this->object_info(object_selected);
+  this->object_title(object_selected);
+  this->object_button(object_selected);
   this->object_parameter(object_selected);
 
   //---------------------------
 }
 
 //Subfunction
-void Object::object_info(eng::data::Object* object){
+void Object::object_title(eng::data::Object* object){
   //---------------------------
 
   this->panel_name = "[Object]   " + object->name;
 
   //---------------------------
 }
-void Object::object_parameter(eng::data::Object* object){
+void Object::object_button(eng::data::Object* object){
+  //---------------------------
 
+  //Suppression
+  if(object->is_suppressible){
+    if(ImGui::Button(ICON_FA_TRASH "##4567")){
+      eng_scene->delete_object_scene(object);
+      this->object_selected = nullptr;
+    }
+  }
+
+  //Centered
+  ImGui::SameLine();
+  if(ImGui::Button("C##399", ImVec2(20, 0))){
+
+  }
+
+  //---------------------------
+}
+void Object::object_parameter(eng::data::Object* object){
   //---------------------------
 
   if(ImGui::BeginTable("object##table", 2, ImGuiTableFlags_BordersInnerV)){
@@ -67,13 +86,6 @@ void Object::object_parameter(eng::data::Object* object){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Visibility"); ImGui::TableNextColumn();
     ImGui::Checkbox("##4555", &object->is_visible);
-    if(object->is_suppressible){
-      ImGui::SameLine();
-      if(ImGui::Button(ICON_FA_TRASH "##4567")){
-        eng_scene->delete_object_scene(object);
-        this->object_selected = nullptr;
-      }
-    }
 
     //Name
     ImGui::TableNextRow(); ImGui::TableNextColumn();
