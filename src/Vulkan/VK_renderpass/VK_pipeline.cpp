@@ -218,7 +218,7 @@ void VK_pipeline::find_pipeline_multisampling_state(vk::structure::Pipeline* pip
   VkPipelineMultisampleStateCreateInfo multisampling{};
   multisampling.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
   multisampling.sampleShadingEnable = VK_FALSE;
-  multisampling.rasterizationSamples = struct_vulkan->device.struct_device.max_sample_count;
+  multisampling.rasterizationSamples = struct_vulkan->device.physical_device.max_sample_count;
   multisampling.minSampleShading = 1.0f; // Optional
   multisampling.pSampleMask = nullptr; // Optional
   multisampling.alphaToCoverageEnable = VK_FALSE; // Optional

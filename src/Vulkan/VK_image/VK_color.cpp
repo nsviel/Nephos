@@ -55,7 +55,7 @@ VkFormat VK_color::find_color_format(){
   if(struct_vulkan->param.headless){
     format = VK_FORMAT_R8G8B8A8_UNORM;
   }else{
-    vector<VkSurfaceFormatKHR> surface_format = struct_vulkan->device.struct_device.formats;
+    vector<VkSurfaceFormatKHR> surface_format = struct_vulkan->device.physical_device.formats;
     VkSurfaceFormatKHR surfaceFormat = retrieve_surface_format(surface_format);
     format = surfaceFormat.format;
   }

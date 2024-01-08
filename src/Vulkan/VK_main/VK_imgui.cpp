@@ -38,7 +38,7 @@ void VK_imgui::init(){
   ImGui_ImplGlfw_InitForVulkan(struct_vulkan->window.glfw_window, true);
   ImGui_ImplVulkan_InitInfo init_info = {};
   init_info.Instance = struct_vulkan->instance.instance;
-  init_info.PhysicalDevice = struct_vulkan->device.struct_device.physical_device;
+  init_info.PhysicalDevice = struct_vulkan->device.physical_device.physical_device;
   init_info.Device = struct_vulkan->device.device;
   init_info.Queue = struct_vulkan->device.queue_graphics;
   init_info.DescriptorPool = struct_vulkan->pool.descriptor;
@@ -47,7 +47,7 @@ void VK_imgui::init(){
   init_info.ImageCount = 2;
   init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
   init_info.Subpass = 0;
-  init_info.QueueFamily = struct_vulkan->device.struct_device.queue_graphics_idx;
+  init_info.QueueFamily = struct_vulkan->device.physical_device.queue_graphics_idx;
   ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
 
   //---------------------------

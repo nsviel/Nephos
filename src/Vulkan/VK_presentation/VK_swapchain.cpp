@@ -90,12 +90,12 @@ void VK_swapchain::create_swapchain_obj(){
   //---------------------------
 
   uint32_t queueFamilyIndices[] = {
-    (unsigned int) struct_vulkan->device.struct_device.queue_graphics_idx,
-    (unsigned int) struct_vulkan->device.struct_device.queue_presentation_idx
+    (unsigned int) struct_vulkan->device.physical_device.queue_graphics_idx,
+    (unsigned int) struct_vulkan->device.physical_device.queue_presentation_idx
   };
 
   VkSwapchainCreateInfoKHR create_info{};
-  if(struct_vulkan->device.struct_device.queue_graphics_idx != struct_vulkan->device.struct_device.queue_presentation_idx){
+  if(struct_vulkan->device.physical_device.queue_graphics_idx != struct_vulkan->device.physical_device.queue_presentation_idx){
     create_info.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
     create_info.queueFamilyIndexCount = 2;
     create_info.pQueueFamilyIndices = queueFamilyIndices;
@@ -118,7 +118,7 @@ void VK_swapchain::create_swapchain_obj(){
   create_info.clipped = VK_TRUE;
   create_info.oldSwapchain = VK_NULL_HANDLE;
 
-  VkSurfaceCapabilitiesKHR surface_capability = struct_vulkan->device.struct_device.capabilities;
+  VkSurfaceCapabilitiesKHR surface_capability = struct_vulkan->device.physical_device.capabilities;
   create_info.preTransform = surface_capability.currentTransform;
 
   VkResult result = vkCreateSwapchainKHR(struct_vulkan->device.device, &create_info, nullptr, &struct_vulkan->swapchain.swapchain);
@@ -129,7 +129,7 @@ void VK_swapchain::create_swapchain_obj(){
   //---------------------------
 }
 void VK_swapchain::find_swapchain_max_nb_image(){
-  VkSurfaceCapabilitiesKHR surface_capability = struct_vulkan->device.struct_device.capabilities;
+  VkSurfaceCapabilitiesKHR surface_capability = struct_vulkan->device.physical_device.capabilities;
   //---------------------------
 
   //Get swap chain image capacity (0 means no maximum)
@@ -142,7 +142,7 @@ void VK_swapchain::find_swapchain_max_nb_image(){
   struct_vulkan->swapchain.max_nb_frame = nb_image;
 }
 void VK_swapchain::find_swapchain_surface_format(){
-  vector<VkSurfaceFormatKHR>& dev_format = struct_vulkan->device.struct_device.formats;
+  vector<VkSurfaceFormatKHR>& dev_format = struct_vulkan->device.physical_device.formats;
   VkSurfaceFormatKHR swapchain_format = dev_format[0];
   //---------------------------
 
@@ -158,7 +158,7 @@ void VK_swapchain::find_swapchain_surface_format(){
   struct_vulkan->swapchain.format = swapchain_format;
 }
 void VK_swapchain::find_swapchain_presentation_mode(){
-  vector<VkPresentModeKHR>& dev_mode = struct_vulkan->device.struct_device.presentation_mode;
+  vector<VkPresentModeKHR>& dev_mode = struct_vulkan->device.physical_device.presentation_mode;
   //---------------------------
 
   //4 possible modes:

@@ -39,8 +39,8 @@ void VK_device::create_logical_device(){
 
   //Get GPU queue families
   std::set<int> set_queue = {
-    struct_vulkan->device.struct_device.queue_graphics_idx,
-    struct_vulkan->device.struct_device.queue_presentation_idx
+    struct_vulkan->device.physical_device.queue_graphics_idx,
+    struct_vulkan->device.physical_device.queue_presentation_idx
   };
 
   //Create queue on device
@@ -73,7 +73,7 @@ void VK_device::create_logical_device(){
   create_info.enabledLayerCount = 0;
 
   //Creating the logical device
-  VkResult result = vkCreateDevice(struct_vulkan->device.struct_device.physical_device, &create_info, nullptr, &struct_vulkan->device.device);
+  VkResult result = vkCreateDevice(struct_vulkan->device.physical_device.physical_device, &create_info, nullptr, &struct_vulkan->device.device);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create logical device!");
   }
@@ -83,12 +83,12 @@ void VK_device::create_logical_device(){
 void VK_device::find_device_queue_handles(){
   //---------------------------
 
-  int& queue_graphics = struct_vulkan->device.struct_device.queue_graphics_idx;
+  int& queue_graphics = struct_vulkan->device.physical_device.queue_graphics_idx;
   if(queue_graphics != -1){
     vkGetDeviceQueue(struct_vulkan->device.device, queue_graphics, 0, &struct_vulkan->device.queue_graphics);
   }
 
-  int& queue_presentation = struct_vulkan->device.struct_device.queue_presentation_idx;
+  int& queue_presentation = struct_vulkan->device.physical_device.queue_presentation_idx;
   if(queue_presentation != -1){
     vkGetDeviceQueue(struct_vulkan->device.device, queue_presentation, 0, &struct_vulkan->device.queue_presentation);
   }
