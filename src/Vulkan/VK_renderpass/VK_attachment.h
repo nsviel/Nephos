@@ -16,14 +16,14 @@ public:
 
 public:
   //Color attachment
-  void color_attachment_description(vk::structure::Attachment& color);
-  void color_attachment_reference(vk::structure::Attachment& color);
-  void color_attachment_resolve_description(vk::structure::Attachment& color);
-  void color_attachment_resolve_reference(vk::structure::Attachment& color);
+  void color_description(vk::structure::Attachment& color);
+  void color_reference(vk::structure::Attachment& color);
+  void color_resolve_description(vk::structure::Attachment& color);
+  void color_resolve_reference(vk::structure::Attachment& color);
 
   //Depth attachment
-  void depth_attachment_description(vk::structure::Attachment& depth);
-  void depth_attachment_reference(vk::structure::Attachment& depth);
+  void depth_description(vk::structure::Attachment& depth);
+  void depth_reference(vk::structure::Attachment& depth);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

@@ -30,83 +30,83 @@ VK_attachment::VK_attachment(vk::structure::Vulkan* struct_vulkan){
 VK_attachment::~VK_attachment(){}
 
 //Color attachment
-void VK_attachment::color_attachment_description(vk::structure::Attachment& color){
+void VK_attachment::color_description(vk::structure::Attachment& color){
   //---------------------------
 
-  VkAttachmentDescription color_description{};
-  color_description.format = vk_color->find_color_format();
-  color_description.samples = struct_vulkan->device.struct_device.max_sample_count;
-  color_description.loadOp = color.load_operation;
-  color_description.storeOp = color.store_operation;
-  color_description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-  color_description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-  color_description.initialLayout = color.layout_initial;
-  color_description.finalLayout = color.layout_final;
+  VkAttachmentDescription description{};
+  description.format = vk_color->find_color_format();
+  description.samples = struct_vulkan->device.struct_device.max_sample_count;
+  description.loadOp = TYP_ATTACHMENT_LOADOP_CLEAR;
+  description.storeOp = color.store_operation;
+  description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+  description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+  description.initialLayout = color.layout_initial;
+  description.finalLayout = color.layout_final;
 
   //---------------------------
-  color.description = color_description;
+  color.description = description;
 }
-void VK_attachment::color_attachment_reference(vk::structure::Attachment& color){
+void VK_attachment::color_reference(vk::structure::Attachment& color){
   //---------------------------
 
-  VkAttachmentReference color_reference{};
-  color_reference.attachment = color.index;
-  color_reference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+  VkAttachmentReference reference{};
+  reference.attachment = color.index;
+  reference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
   //---------------------------
-  color.reference = color_reference;
+  color.reference = reference;
 }
-void VK_attachment::color_attachment_resolve_description(vk::structure::Attachment& color_resolve){
+void VK_attachment::color_resolve_description(vk::structure::Attachment& color_resolve){
   //---------------------------
 
-  VkAttachmentDescription color_description{};
-  color_description.format = vk_color->find_color_format();
-  color_description.samples = VK_SAMPLE_COUNT_1_BIT;
-  color_description.loadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-  color_description.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
-  color_description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-  color_description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-  color_description.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
-  color_description.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+  VkAttachmentDescription description{};
+  description.format = vk_color->find_color_format();
+  description.samples = VK_SAMPLE_COUNT_1_BIT;
+  description.loadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+  description.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
+  description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+  description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+  description.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+  description.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
 
   //---------------------------
-  color_resolve.description = color_description;
+  color_resolve.description = description;
 }
-void VK_attachment::color_attachment_resolve_reference(vk::structure::Attachment& color_resolve){
+void VK_attachment::color_resolve_reference(vk::structure::Attachment& color_resolve){
   //---------------------------
 
-  VkAttachmentReference color_reference{};
-  color_reference.attachment = color_resolve.index;
-  color_reference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+  VkAttachmentReference reference{};
+  reference.attachment = color_resolve.index;
+  reference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
   //---------------------------
-  color_resolve.reference = color_reference;
+  color_resolve.reference = reference;
 }
 
 //Depth attachment
-void VK_attachment::depth_attachment_description(vk::structure::Attachment& depth){
+void VK_attachment::depth_description(vk::structure::Attachment& depth){
   //---------------------------
 
-  VkAttachmentDescription depth_attachment{};
-  depth_attachment.format = vk_depth->find_depth_format();
-  depth_attachment.samples = struct_vulkan->device.struct_device.max_sample_count;
-  depth_attachment.loadOp = depth.load_operation;
-  depth_attachment.storeOp = depth.store_operation;
-  depth_attachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-  depth_attachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-  depth_attachment.initialLayout = depth.layout_initial;
-  depth_attachment.finalLayout = depth.layout_final;
+  VkAttachmentDescription description{};
+  description.format = vk_depth->find_depth_format();
+  description.samples = struct_vulkan->device.struct_device.max_sample_count;
+  description.loadOp = TYP_ATTACHMENT_LOADOP_CLEAR;
+  description.storeOp = depth.store_operation;
+  description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+  description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+  description.initialLayout = depth.layout_initial;
+  description.finalLayout = depth.layout_final;
 
   //---------------------------
-  depth.description = depth_attachment;
+  depth.description = description;
 }
-void VK_attachment::depth_attachment_reference(vk::structure::Attachment& depth){
+void VK_attachment::depth_reference(vk::structure::Attachment& depth){
   //---------------------------
 
-  VkAttachmentReference depth_reference{};
-  depth_reference.attachment = depth.index;
-  depth_reference.layout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+  VkAttachmentReference reference{};
+  reference.attachment = depth.index;
+  reference.layout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
 
   //---------------------------
-  depth.reference = depth_reference;
+  depth.reference = reference;
 }
