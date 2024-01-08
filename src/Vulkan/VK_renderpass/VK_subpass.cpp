@@ -79,6 +79,7 @@ void VK_subpass::create_subpass_shader(vk::structure::Subpass* subpass){
   //Color resolver
   vk::structure::Attachment color_resolve;
   color_resolve.index = 1;
+  color_resolve.layout_final = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
   vk_attachment->color_resolve_description(color_resolve);
   vk_attachment->color_resolve_reference(color_resolve);
   //subpass->vec_color_resolve.push_back(color_resolve);

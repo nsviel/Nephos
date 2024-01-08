@@ -67,7 +67,7 @@ void VK_attachment::color_resolve_description(vk::structure::Attachment& color_r
   description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
   description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
   description.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
-  description.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+  description.finalLayout = color_resolve.layout_final;
 
   //---------------------------
   color_resolve.description = description;
