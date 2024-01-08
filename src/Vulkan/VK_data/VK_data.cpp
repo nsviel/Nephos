@@ -112,7 +112,7 @@ void VK_data::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
     }
     else if(vec_data_name[i] == "tex_coord"){
       attribut.binding = 2;
-      attribut.location = 2;
+      attribut.location = 4;
       attribut.format = VK_FORMAT_R32G32_SFLOAT;
       attribut.offset = 0;
     }
