@@ -14,7 +14,8 @@ Object::Object(GUI* gui, bool* panel_show){
   Engine* engine = gui->get_engine();
   eng::scene::Node* eng_data = engine->get_eng_data();
   this->eng_scene = eng_data->get_eng_scene();
-  this->attributManager = new eng::ope::Attribut();
+  this->ope_attribut = new eng::ope::Attribut();
+  this->ope_operation = new eng::ope::Operation();
 
   this->panel_show = panel_show;
   this->panel_name = "Object";
@@ -73,7 +74,7 @@ void Object::object_button(eng::data::Object* object){
   //Centered
   ImGui::SameLine();
   if(ImGui::Button("C##399", ImVec2(20, 0))){
-
+    ope_operation->center_object(object);
   }
 
   //---------------------------
@@ -113,7 +114,7 @@ void Object::object_parameter(eng::data::Object* object){
     ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
     flags |= ImGuiColorEditFlags_AlphaBar;
     if(ImGui::ColorEdit4("Color", (float*)&object->unicolor, flags)){
-      attributManager->set_unicolor(object);
+      ope_attribut->set_unicolor(object);
       eng_scene->update_object(object);
     }
 

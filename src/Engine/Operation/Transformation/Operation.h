@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Engine/Base/Namespace.h>
+#include <Engine/Operation/Namespace.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
@@ -20,9 +21,11 @@ public:
 
 public:
   //Main functions
-
+  void center_object(eng::data::Object* object);
 
 private:
+  eng::ope::Transformation* ope_transform;
+  eng::ope::Attribut* ope_attribut;
 };
 
 }
