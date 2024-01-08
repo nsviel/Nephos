@@ -22,7 +22,10 @@ public:
   void construct_submesh();
 
 private:
+  vec4 color_mesh;
+  vec4 color_submesh;
   int nb_cell;
+  int nb_subcell;
 };
 
 }
