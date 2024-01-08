@@ -62,9 +62,10 @@ void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
 
   //Color resolver
   vk::structure::Attachment color_resolve;
-  this->color_attachment_resolve_description(color_resolve);
-  this->color_attachment_resolve_reference(color_resolve);
-  subpass->vec_color_resolve.push_back(color_resolve);
+  color_resolve.item = 1;
+  //this->color_attachment_resolve_description(color_resolve);
+  //this->color_attachment_resolve_reference(color_resolve);
+  //subpass->vec_color_resolve.push_back(color_resolve);
 
   // Depth
   vk::structure::Attachment depth;
@@ -145,24 +146,29 @@ void Subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
 void Subpass::create_subpass_description(vk::structure::Subpass* subpass){
   //---------------------------
 
-  //Pointer vector of all color references
+  //Format elements
+  uint32_t nb_color_attachment = 0;
   vector<VkAttachmentReference*> vec_color;
   for(int i=0; i<subpass->vec_color.size(); i++){
     vec_color.push_back(&subpass->vec_color[0].reference);
   }
-
-  VkAttachmentReference* ref_resolve;
-  if(subpass->vec_color_resolve.size() != 0){
-    //ref_resolve = &subpass->vec_color_resolve[0].reference;
+  nb_color_attachment += subpass->vec_color.size();
+  vector<VkAttachmentReference*> vec_color_resolve;
+  for(int i=0; i<subpass->vec_color_resolve.size(); i++){
+    vec_color_resolve.push_back(&subpass->vec_color_resolve[0].reference);
   }
+  nb_color_attachment += subpass->vec_color_resolve.size();
 
+  //Subpass decription
   VkSubpassDescription subpass_description{};
   subpass_description.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
   subpass_description.colorAttachmentCount = static_cast<uint32_t>(vec_color.size());
   subpass_description.pColorAttachments = *vec_color.data();
-  subpass_description.pResolveAttachments = ref_resolve;
+  if(vec_color_resolve.size() != 0)
+  subpass_description.pResolveAttachments = *vec_color_resolve.data();
   subpass_description.pDepthStencilAttachment = &subpass->depth.reference;
 
+  //Subpass dependencies
   VkSubpassDependency subpass_dependency{};
   subpass_dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
   subpass_dependency.dstSubpass = 0;
@@ -223,7 +229,7 @@ void Subpass::color_attachment_resolve_reference(vk::structure::Attachment& colo
   //---------------------------
 
   VkAttachmentReference color_reference{};
-  color_reference.attachment = 2;
+  color_reference.attachment = color_resolve.item;
   color_reference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
   //---------------------------
