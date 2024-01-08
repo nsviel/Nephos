@@ -22,13 +22,12 @@ public:
 
 public:
   //Main functions
-  void init_renderpass();
-  void clean_renderpass();
+  void init_all_renderpass();
+  void clean_all_renderpass();
 
   //Subfunction
-  void create_renderpass_struct(vk::structure::Renderpass* renderpass);
-  void create_renderpass_obj(vk::structure::Renderpass* renderpass);
-  void clean_renderpass_struct(vk::structure::Renderpass* renderpass);
+  void create_renderpass(vk::structure::Renderpass* renderpass);
+  void clean_renderpass(vk::structure::Renderpass* renderpass);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

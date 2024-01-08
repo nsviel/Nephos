@@ -76,7 +76,7 @@ void VK_engine::init_engine_presentation(){
   //Render
   vk_swapchain->create_swapchain();
   vk_viewport->init_viewport();
-  vk_renderpass->init_renderpass();
+  vk_renderpass->init_all_renderpass();
   vk_frame->create_frame();
 
   //---------------------------
@@ -94,7 +94,7 @@ void VK_engine::init_engine_headless(){
 
   //Render
   vk_viewport->init_viewport();
-  vk_renderpass->init_renderpass();
+  vk_renderpass->init_all_renderpass();
 
   //---------------------------
 }
@@ -115,7 +115,7 @@ void VK_engine::clean(){
 
   vk_synchronization->clean();
   vk_texture->clean_textures();
-  vk_renderpass->clean_renderpass();
+  vk_renderpass->clean_all_renderpass();
   vk_swapchain->clean_swapchain();
   vk_canvas->clean_canvas();
   vk_data->clean_entity_all();

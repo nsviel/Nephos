@@ -23,45 +23,40 @@ Renderpass::Renderpass(vk::structure::Vulkan* struct_vulkan){
 Renderpass::~Renderpass(){}
 
 //Main function
-void Renderpass::init_renderpass(){
+void Renderpass::init_all_renderpass(){
   //---------------------------
 
+  //Check for renderpass demande
   if(struct_vulkan->render.vec_renderpass.size() == 0){
     cout<<"[error] No renderpass initiated"<<endl;
     exit(0);
   }
 
+  //Create renderpass according to the vec of renderpass demande
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     vk_subpass->create_subpass(renderpass);
-    this->create_renderpass_struct(renderpass);
+    this->create_renderpass(renderpass);
+    vk_pipeline->create_pipeline(renderpass);
+    vk_framebuffer->create_framebuffer(renderpass);
+    vk_command->allocate_command_buffer_primary(renderpass->command_buffer);
   }
 
   //---------------------------
 }
-void Renderpass::clean_renderpass(){
+void Renderpass::clean_all_renderpass(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
-    this->clean_renderpass_struct(renderpass);
+    this->clean_renderpass(renderpass);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Renderpass::create_renderpass_struct(vk::structure::Renderpass* renderpass){
-  //---------------------------
-
-  this->create_renderpass_obj(renderpass);
-  vk_pipeline->create_pipeline(renderpass);
-  vk_framebuffer->create_framebuffer(renderpass);
-  vk_command->allocate_command_buffer_primary(renderpass->command_buffer);
-
-  //---------------------------
-}
-void Renderpass::create_renderpass_obj(vk::structure::Renderpass* renderpass){
+void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   //Get all related subpass descriptions, attachments and dependencies
@@ -86,7 +81,7 @@ void Renderpass::create_renderpass_obj(vk::structure::Renderpass* renderpass){
   //Create renderpass
   VkRenderPassCreateInfo renderpass_info{};
   renderpass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
-  renderpass_info.attachmentCount = static_cast<uint32_t>(vec_attachment.size());
+  renderpass_info.attachmentCount = vec_attachment.size();
   renderpass_info.pAttachments = vec_attachment.data();
   renderpass_info.subpassCount = vec_description.size();
   renderpass_info.pSubpasses = vec_description.data();
@@ -101,7 +96,7 @@ void Renderpass::create_renderpass_obj(vk::structure::Renderpass* renderpass){
 
   //---------------------------
 }
-void Renderpass::clean_renderpass_struct(vk::structure::Renderpass* renderpass){
+void Renderpass::clean_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk_framebuffer->clean_framebuffer(renderpass);
