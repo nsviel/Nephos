@@ -8,8 +8,8 @@ Mesh::Mesh(){
   //---------------------------
 
   this->name = "grid";
-  this->color = vec4(1, 1, 1, 0.3);
-  this->nb_cell = 40;
+  this->color = vec4(0.3f, 0.3f, 0.3f, 1.0f);
+  this->nb_cell = 10;
 
   //---------------------------
 }
@@ -21,6 +21,7 @@ Mesh::~Mesh(){
   //---------------------------
 }
 
+//Main function
 void Mesh::create(){
   //---------------------------
 
@@ -36,6 +37,40 @@ void Mesh::create(){
   //---------------------------
 }
 void Mesh::update(){
+  //---------------------------
+
+  this->construct_mesh();
+  this->construct_submesh();
+
+  //---------------------------
+}
+
+//Subfunction
+void Mesh::construct_mesh(){
+  vector<vec3>& XYZ = data->xyz;
+  vector<vec4>& RGB = data->rgb;
+  //---------------------------
+
+  //Parameters
+  XYZ.clear();
+  RGB.clear();
+
+  //Construct glyph
+  for(int i=-nb_cell; i<=nb_cell; i++){
+    XYZ.push_back(vec3((float)i, -(float)nb_cell, 0));
+    XYZ.push_back(vec3((float)i, (float)nb_cell, 0));
+
+    XYZ.push_back(vec3(-(float)nb_cell, (float)i, 0));
+    XYZ.push_back(vec3((float)nb_cell, (float)i, 0));
+
+    for(int j=0; j<4; j++){
+      RGB.push_back(color);
+    }
+  }
+
+  //---------------------------
+}
+void Mesh::construct_submesh(){
   vector<vec3>& XYZ = data->xyz;
   vector<vec4>& RGB = data->rgb;
   //---------------------------

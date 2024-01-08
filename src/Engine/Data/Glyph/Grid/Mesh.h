@@ -17,6 +17,10 @@ public:
   void create();
   void update();
 
+  //Subfunction
+  void construct_mesh();
+  void construct_submesh();
+
 private:
   int nb_cell;
 };
