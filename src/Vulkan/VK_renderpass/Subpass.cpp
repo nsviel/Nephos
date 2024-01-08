@@ -5,6 +5,18 @@
 #include <Vulkan/VK_image/VK_depth.h>
 #include <Vulkan/VK_command/VK_command.h>
 
+/*
+  Attachment index is defined as follow:
+    - 0 color
+    - 1 depth
+    - 2 texture
+
+    - 0 color
+    - 1 color
+    - 2 color resolve
+    - 3 depth
+    - 4 texture
+*/
 
 namespace vk{
 
@@ -51,7 +63,7 @@ void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
 
   // Color
   vk::structure::Attachment color;
-  color.item = 0;
+  color.index = 0;
   color.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   color.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
   color.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
@@ -62,14 +74,14 @@ void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
 
   //Color resolver
   vk::structure::Attachment color_resolve;
-  color_resolve.item = 1;
+  color_resolve.index = 1;
   this->color_attachment_resolve_description(color_resolve);
   this->color_attachment_resolve_reference(color_resolve);
   //subpass->vec_color_resolve.push_back(color_resolve);
 
   // Depth
   vk::structure::Attachment depth;
-  depth.item = 1;
+  depth.index = 1;
   depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   depth.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
   depth.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
@@ -88,7 +100,7 @@ void Subpass::create_subpass_transfert(vk::structure::Subpass* subpass){
 
   // Color
   vk::structure::Attachment color;
-  color.item = 0;
+  color.index = 0;
   color.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   color.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
   color.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
@@ -99,7 +111,7 @@ void Subpass::create_subpass_transfert(vk::structure::Subpass* subpass){
 
   // Depth
   vk::structure::Attachment depth;
-  depth.item = 1;
+  depth.index = 1;
   depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   depth.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
   depth.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
@@ -118,7 +130,7 @@ void Subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
 
   // Color
   vk::structure::Attachment color;
-  color.item = 0;
+  color.index = 0;
   color.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   color.store_operation = TYP_ATTACHMENT_STOREOP_NOTHING;
   color.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
@@ -129,7 +141,7 @@ void Subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
 
   // Depth
   vk::structure::Attachment depth;
-  depth.item = 1;
+  depth.index = 1;
   depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
   depth.store_operation = TYP_ATTACHMENT_STOREOP_NOTHING;
   depth.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
@@ -203,7 +215,7 @@ void Subpass::color_attachment_reference(vk::structure::Attachment& color){
   //---------------------------
 
   VkAttachmentReference color_reference{};
-  color_reference.attachment = color.item;
+  color_reference.attachment = color.index;
   color_reference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
   //---------------------------
@@ -229,7 +241,7 @@ void Subpass::color_attachment_resolve_reference(vk::structure::Attachment& colo
   //---------------------------
 
   VkAttachmentReference color_reference{};
-  color_reference.attachment = color_resolve.item;
+  color_reference.attachment = color_resolve.index;
   color_reference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
   //---------------------------
@@ -257,7 +269,7 @@ void Subpass::depth_attachment_reference(vk::structure::Attachment& depth){
   //---------------------------
 
   VkAttachmentReference depth_reference{};
-  depth_reference.attachment = depth.item;
+  depth_reference.attachment = depth.index;
   depth_reference.layout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
 
   //---------------------------

@@ -8,7 +8,7 @@ namespace vk::structure{
 struct Attachment{
   //---------------------------
 
-  int item;
+  int index;
 
   //Attachment info
   VkAttachmentLoadOp load_operation;
