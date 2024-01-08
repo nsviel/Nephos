@@ -1,11 +1,10 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
-
 class VK_command;
+class VK_attachment;
 class VK_color;
 class VK_depth;
 
@@ -44,6 +43,7 @@ private:
   VK_command* vk_command;
   VK_color* vk_color;
   VK_depth* vk_depth;
+  VK_attachment* vk_attachment;
 };
 
 }

@@ -28,6 +28,7 @@ Subpass::Subpass(vk::structure::Vulkan* struct_vulkan){
   this->vk_command = new VK_command(struct_vulkan);
   this->vk_color = new VK_color(struct_vulkan);
   this->vk_depth = new VK_depth(struct_vulkan);
+  this->vk_attachment = new VK_attachment(struct_vulkan);
 
   //---------------------------
 }
