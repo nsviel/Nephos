@@ -39,7 +39,7 @@ void VK_memory::transfert_image_to_gpu(vk::structure::Image* image){
   //Image transition from undefined layout to read only layout
   vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
   this->copy_buffer_to_image(image, staging_buffer);
-  vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_TRANSFER_DST, TYP_IMAGE_LAYOUT_SHADER_READONLY);
+  vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //Free memory
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);

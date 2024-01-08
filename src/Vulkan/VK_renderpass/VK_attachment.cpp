@@ -37,10 +37,10 @@ void VK_attachment::color_description(vk::structure::Attachment& color){
   description.format = vk_color->find_color_format();
   description.samples = struct_vulkan->device.struct_device.max_sample_count;
   description.loadOp = TYP_ATTACHMENT_LOADOP_CLEAR;
-  description.storeOp = color.store_operation;
+  description.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
   description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
   description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-  description.initialLayout = color.layout_initial;
+  description.initialLayout = TYP_IMAGE_LAYOUT_EMPTY;
   description.finalLayout = color.layout_final;
 
   //---------------------------
@@ -91,10 +91,10 @@ void VK_attachment::depth_description(vk::structure::Attachment& depth){
   description.format = vk_depth->find_depth_format();
   description.samples = struct_vulkan->device.struct_device.max_sample_count;
   description.loadOp = TYP_ATTACHMENT_LOADOP_CLEAR;
-  description.storeOp = depth.store_operation;
+  description.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
   description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
   description.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-  description.initialLayout = depth.layout_initial;
+  description.initialLayout = TYP_IMAGE_LAYOUT_EMPTY;
   description.finalLayout = depth.layout_final;
 
   //---------------------------
