@@ -31,6 +31,7 @@ public:
   //Object
   void insert_object_scene(eng::data::Object* object);
   void update_object(eng::data::Object* object);
+  void remove_object(eng::data::Object* object);
 
   //Entity
   void delete_entity(eng::data::Entity* object);

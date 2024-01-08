@@ -19,7 +19,7 @@ struct Set
   void reset();
   void add_new_set(std::string name);
   void set_visibility(bool value);
-  void select_next_object();
+  void select_next_entity();
   void insert_entity(eng::data::Entity* entity);
   eng::data::Set* get_set(std::string name);
   eng::data::Entity* get_entity(std::string name);

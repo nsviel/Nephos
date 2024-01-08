@@ -23,5 +23,13 @@ void Operation::center_object(eng::data::Object* object){
 
   //---------------------------
 }
+void Operation::elevate_object(eng::data::Object* object){
+  //---------------------------
+
+  ope_attribut->compute_MinMax(object);
+  ope_transform->make_translation(object, vec3(0, 0, -object->min.z));
+
+  //---------------------------
+}
 
 }

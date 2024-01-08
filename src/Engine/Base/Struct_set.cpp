@@ -48,7 +48,7 @@ void Set::set_visibility(bool value){
 
   //---------------------------
 }
-void Set::select_next_object(){
+void Set::select_next_entity(){
   //----------------------------
 
   for(int i=0; i<list_entity.size(); i++){

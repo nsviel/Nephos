@@ -55,7 +55,7 @@ void Control::control_keyboard_oneAction(){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
       eng::data::Set* set_scene = data_set->get_set("Scene");
-      set_scene->select_next_object();
+      set_scene->select_next_entity();
       break;
     }
 

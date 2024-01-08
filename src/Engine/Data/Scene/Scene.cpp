@@ -91,6 +91,14 @@ void Scene::update_object(eng::data::Object* object){
 
   //---------------------------
 }
+void Scene::remove_object(eng::data::Object* object){
+  //---------------------------
+
+  eng_glyph->remove_glyph_object(object);
+  vk_engine->remove_object_in_engine(object);
+
+  //---------------------------
+}
 
 //Entity
 void Scene::delete_entity(eng::data::Entity* entity){
@@ -99,16 +107,22 @@ void Scene::delete_entity(eng::data::Entity* entity){
   //---------------------------
 
   //Selected next entity
-  set_scene->select_next_object();
+  set_scene->select_next_entity();
 
   //Delete it from database and engine
   for(int i=0; i<set_scene->list_entity.size(); i++){
-    eng::data::Object* object_list = (eng::data::Object*)*next(set_scene->list_entity.begin(),i);
-    if(entity->ID == object_list->ID){
+    eng::data::Entity* entity_scene = *next(set_scene->list_entity.begin(),i);
+
+    if(entity->ID == entity_scene->ID){
       set_scene->list_entity.remove(entity);
-      eng_glyph->remove_glyph_object((eng::data::Object*)entity);
-      vk_engine->remove_object_in_engine((eng::data::Object*)entity);
       set_scene->nb_entity--;
+
+      //If entity is an object
+      if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){say("object");
+        this->remove_object(object);
+      }
+
+      //If entity is a k4a device
     }
   }
 
