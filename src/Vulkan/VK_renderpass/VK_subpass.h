@@ -18,10 +18,12 @@ public:
   //Main functions
   void create_subpass(vk::structure::Renderpass* renderpass);
 
-  //Subfunction
+  //Subpass type
   void create_subpass_shader(vk::structure::Subpass* subpass);
   void create_subpass_transfert(vk::structure::Subpass* subpass);
   void create_subpass_presentation(vk::structure::Subpass* subpass);
+
+  //Subfunction
   void create_subpass_description(vk::structure::Subpass* subpass);
 
 private:

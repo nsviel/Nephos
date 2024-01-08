@@ -38,12 +38,15 @@ void VK_subpass::create_subpass(vk::structure::Renderpass* renderpass){
 
     if(subpass->target == "shader"){
       this->create_subpass_shader(subpass);
+      this->create_subpass_description(subpass);
     }
     else if(subpass->target == "transfert"){
       this->create_subpass_transfert(subpass);
+      this->create_subpass_description(subpass);
     }
     else if(subpass->target == "presentation"){
       this->create_subpass_presentation(subpass);
+      this->create_subpass_description(subpass);
     }
     else{
       cout<<"[error] subpass target not recognized"<<endl;
@@ -53,11 +56,9 @@ void VK_subpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 }
 
-//Subfunction
+//Subpass type
 void VK_subpass::create_subpass_shader(vk::structure::Subpass* subpass){
   //---------------------------
-
-
 
   // Color
   vk::structure::Attachment color;
@@ -88,9 +89,6 @@ void VK_subpass::create_subpass_shader(vk::structure::Subpass* subpass){
   vk_attachment->color_attachment_resolve_reference(color_resolve);
   //subpass->vec_color_resolve.push_back(color_resolve);
 
-  // Subpass description
-  this->create_subpass_description(subpass);
-
   //---------------------------
 }
 void VK_subpass::create_subpass_transfert(vk::structure::Subpass* subpass){
@@ -118,15 +116,10 @@ void VK_subpass::create_subpass_transfert(vk::structure::Subpass* subpass){
   vk_attachment->color_attachment_reference(color);
   subpass->vec_color.push_back(color);
 
-  // Subpass description
-  this->create_subpass_description(subpass);
-
   //---------------------------
 }
 void VK_subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
   //---------------------------
-
-
 
   // Color
   vk::structure::Attachment color;
@@ -150,11 +143,10 @@ void VK_subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
   vk_attachment->depth_attachment_reference(depth);
   subpass->depth = depth;
 
-  // Subpass description
-  this->create_subpass_description(subpass);
-
   //---------------------------
 }
+
+//Subfunction
 void VK_subpass::create_subpass_description(vk::structure::Subpass* subpass){
   //---------------------------
 
