@@ -38,7 +38,7 @@ void VK_frame::create_frame(){
     frame->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
     frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
-    vk_depth->create_depth_attachment(&frame->depth);
+    vk_depth->create_depth_image(&frame->depth);
     vk_image->create_image_view(&frame->color);
     vk_framebuffer->create_framebuffer_swapchain(renderpass, frame);
     vk_synchronization->init_frame_sync(frame);

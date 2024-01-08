@@ -16,7 +16,7 @@ VK_depth::VK_depth(vk::structure::Vulkan* struct_vulkan){
 VK_depth::~VK_depth(){}
 
 //Main function
-void VK_depth::create_depth_attachment(vk::structure::Image* depth){
+void VK_depth::create_depth_image(vk::structure::Image* depth){
   //---------------------------
 
   //Create frame depth image
@@ -27,15 +27,6 @@ void VK_depth::create_depth_attachment(vk::structure::Image* depth){
   depth->aspect = VK_IMAGE_ASPECT_DEPTH_BIT;
 
   vk_image->create_image(depth);
-
-  //---------------------------
-}
-void VK_depth::clean_depth_attachment(vk::structure::Image* depth){
-  //---------------------------
-
-  vkDestroyImageView(struct_vulkan->device.device, depth->view, nullptr);
-  vkDestroyImage(struct_vulkan->device.device, depth->image, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, depth->mem, nullptr);
 
   //---------------------------
 }

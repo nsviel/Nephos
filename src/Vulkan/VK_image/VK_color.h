@@ -16,7 +16,7 @@ public:
 
 public:
   //Main functions
-  void create_color_attachment(vk::structure::Image* color);
+  void create_color_image(vk::structure::Image* color);
 
   //Subfunction
   VkSurfaceFormatKHR retrieve_surface_format(const std::vector<VkSurfaceFormatKHR>& dev_format);

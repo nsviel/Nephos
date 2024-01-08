@@ -16,8 +16,7 @@ public:
 
 public:
   //Main functions
-  void create_depth_attachment(vk::structure::Image* depth);
-  void clean_depth_attachment(vk::structure::Image* depth);
+  void create_depth_image(vk::structure::Image* depth);
 
   //Subfunctions
   bool find_stencil_component(VkFormat format);

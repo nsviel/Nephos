@@ -17,7 +17,7 @@ VK_color::VK_color(vk::structure::Vulkan* struct_vulkan){
 VK_color::~VK_color(){}
 
 //Main function
-void VK_color::create_color_attachment(vk::structure::Image* color){
+void VK_color::create_color_image(vk::structure::Image* color){
   //---------------------------
 
   //Create frame color image
