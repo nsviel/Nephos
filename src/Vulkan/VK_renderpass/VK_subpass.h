@@ -5,18 +5,14 @@
 
 class VK_command;
 class VK_attachment;
-class VK_color;
-class VK_depth;
 
 
-namespace vk{
-
-class Subpass
+class VK_subpass
 {
 public:
   //Constructor / Destructor
-  Subpass(vk::structure::Vulkan* struct_vulkan);
-  ~Subpass();
+  VK_subpass(vk::structure::Vulkan* struct_vulkan);
+  ~VK_subpass();
 
 public:
   //Main functions
@@ -28,22 +24,8 @@ public:
   void create_subpass_presentation(vk::structure::Subpass* subpass);
   void create_subpass_description(vk::structure::Subpass* subpass);
 
-  //Color attachment
-  void color_attachment_description(vk::structure::Attachment& color);
-  void color_attachment_reference(vk::structure::Attachment& color);
-  void color_attachment_resolve_description(vk::structure::Attachment& color);
-  void color_attachment_resolve_reference(vk::structure::Attachment& color);
-
-  //Depth attachment
-  void depth_attachment_description(vk::structure::Attachment& depth);
-  void depth_attachment_reference(vk::structure::Attachment& depth);
-
 private:
   vk::structure::Vulkan* struct_vulkan;
   VK_command* vk_command;
-  VK_color* vk_color;
-  VK_depth* vk_depth;
   VK_attachment* vk_attachment;
 };
-
-}

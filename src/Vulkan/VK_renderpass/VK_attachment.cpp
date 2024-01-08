@@ -17,8 +17,6 @@
     - 4 texture
 */
 
-namespace vk{
-
 //Constructor / Destructor
 VK_attachment::VK_attachment(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -111,6 +109,4 @@ void VK_attachment::depth_attachment_reference(vk::structure::Attachment& depth)
 
   //---------------------------
   depth.reference = depth_reference;
-}
-
 }

@@ -7,18 +7,15 @@
 class VK_pipeline;
 class VK_framebuffer;
 class VK_command;
+class VK_subpass;
 
 
-namespace vk{
-class Subpass;
-
-
-class Renderpass
+class VK_renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::structure::Vulkan* struct_vulkan);
-  ~Renderpass();
+  VK_renderpass(vk::structure::Vulkan* struct_vulkan);
+  ~VK_renderpass();
 
 public:
   //Main functions
@@ -32,9 +29,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   VK_pipeline* vk_pipeline;
-  vk::Subpass* vk_subpass;
+  VK_subpass* vk_subpass;
   VK_framebuffer* vk_framebuffer;
   VK_command* vk_command;
 };
-
-}

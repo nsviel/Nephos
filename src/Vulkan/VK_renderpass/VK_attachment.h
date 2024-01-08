@@ -7,8 +7,6 @@ class VK_color;
 class VK_depth;
 
 
-namespace vk{
-
 class VK_attachment
 {
 public:
@@ -32,5 +30,3 @@ private:
   VK_color* vk_color;
   VK_depth* vk_depth;
 };
-
-}

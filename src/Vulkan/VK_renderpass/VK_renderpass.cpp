@@ -1,4 +1,4 @@
-#include "Renderpass.h"
+#include "VK_renderpass.h"
 
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_renderpass/VK_pipeline.h>
@@ -6,24 +6,22 @@
 #include <Vulkan/VK_command/VK_command.h>
 
 
-namespace vk{
-
 //Constructor / Destructor
-Renderpass::Renderpass(vk::structure::Vulkan* struct_vulkan){
+VK_renderpass::VK_renderpass(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
-  this->vk_subpass = new vk::Subpass(struct_vulkan);
+  this->vk_subpass = new VK_subpass(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
   this->vk_command = new VK_command(struct_vulkan);
 
   //---------------------------
 }
-Renderpass::~Renderpass(){}
+VK_renderpass::~VK_renderpass(){}
 
 //Main function
-void Renderpass::init_all_renderpass(){
+void VK_renderpass::init_all_renderpass(){
   //---------------------------
 
   //Check for renderpass demande
@@ -44,7 +42,7 @@ void Renderpass::init_all_renderpass(){
 
   //---------------------------
 }
-void Renderpass::clean_all_renderpass(){
+void VK_renderpass::clean_all_renderpass(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
@@ -56,7 +54,7 @@ void Renderpass::clean_all_renderpass(){
 }
 
 //Subfunction
-void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
+void VK_renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   //Get all related subpass descriptions, attachments and dependencies
@@ -96,7 +94,7 @@ void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
 
   //---------------------------
 }
-void Renderpass::clean_renderpass(vk::structure::Renderpass* renderpass){
+void VK_renderpass::clean_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk_framebuffer->clean_framebuffer(renderpass);
@@ -104,6 +102,4 @@ void Renderpass::clean_renderpass(vk::structure::Renderpass* renderpass){
   vk_pipeline->clean_pipeline(renderpass);
 
   //---------------------------
-}
-
 }
