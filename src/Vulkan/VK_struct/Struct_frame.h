@@ -17,7 +17,7 @@ struct Frame{
   std::vector<VkSemaphore> vec_semaphore_render;
 
   //Attachment
-  Image image;
+  Image color;
   Image depth;
 
   //---------------------------

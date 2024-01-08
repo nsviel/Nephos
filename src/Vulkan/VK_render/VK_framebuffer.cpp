@@ -39,9 +39,9 @@ void VK_framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
   framebuffer->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT | VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
   framebuffer->depth.layout = TYP_IMAGE_LAYOUT_DEPTH_READONLY;
 
+  vk_depth->create_depth_attachment(&framebuffer->depth);
   vk_color->create_color_attachment(&framebuffer->color);
   vk_color->create_color_attachment(&framebuffer->color_resolve);
-  vk_depth->create_depth_attachment(&framebuffer->depth);
   this->create_framebuffer_renderpass(renderpass, framebuffer);
 
   renderpass->framebuffer = framebuffer;
@@ -78,8 +78,9 @@ void VK_framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* re
   //Create frambuffer
   vector<VkImageView> attachments;
   attachments.push_back(framebuffer->color.view);
-  //attachments.push_back(framebuffer->color_resolve.view);
   attachments.push_back(framebuffer->depth.view);
+
+  //attachments.push_back(framebuffer->color_resolve.view);
 
   VkFramebufferCreateInfo framebufferInfo{};
   framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
@@ -104,7 +105,8 @@ void VK_framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* ren
 
   //Create frambuffer
   vector<VkImageView> attachments;
-  attachments.push_back(frame->image.view);
+
+  attachments.push_back(frame->color.view);
   attachments.push_back(frame->depth.view);
 
   VkFramebufferCreateInfo framebufferInfo{};

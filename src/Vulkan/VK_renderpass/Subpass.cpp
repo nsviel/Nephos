@@ -61,6 +61,8 @@ void Subpass::create_subpass(vk::structure::Renderpass* renderpass){
 void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
   //---------------------------
 
+
+
   // Color
   vk::structure::Attachment color;
   color.index = 0;
@@ -71,13 +73,6 @@ void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
   this->color_attachment_description(color);
   this->color_attachment_reference(color);
   subpass->vec_color.push_back(color);
-
-  //Color resolver
-  vk::structure::Attachment color_resolve;
-  color_resolve.index = 1;
-  this->color_attachment_resolve_description(color_resolve);
-  this->color_attachment_resolve_reference(color_resolve);
-  //subpass->vec_color_resolve.push_back(color_resolve);
 
   // Depth
   vk::structure::Attachment depth;
@@ -90,6 +85,13 @@ void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
   this->depth_attachment_reference(depth);
   subpass->depth = depth;
 
+  //Color resolver
+  vk::structure::Attachment color_resolve;
+  color_resolve.index = 1;
+  this->color_attachment_resolve_description(color_resolve);
+  this->color_attachment_resolve_reference(color_resolve);
+  //subpass->vec_color_resolve.push_back(color_resolve);
+
   // Subpass description
   this->create_subpass_description(subpass);
 
@@ -97,6 +99,17 @@ void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
 }
 void Subpass::create_subpass_transfert(vk::structure::Subpass* subpass){
   //---------------------------
+
+  // Depth
+  vk::structure::Attachment depth;
+  depth.index = 1;
+  depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
+  depth.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
+  depth.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
+  depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
+  this->depth_attachment_description(depth);
+  this->depth_attachment_reference(depth);
+  subpass->depth = depth;
 
   // Color
   vk::structure::Attachment color;
@@ -109,17 +122,6 @@ void Subpass::create_subpass_transfert(vk::structure::Subpass* subpass){
   this->color_attachment_reference(color);
   subpass->vec_color.push_back(color);
 
-  // Depth
-  vk::structure::Attachment depth;
-  depth.index = 1;
-  depth.load_operation = TYP_ATTACHMENT_LOADOP_CLEAR;
-  depth.store_operation = TYP_ATTACHMENT_STOREOP_STORE;
-  depth.layout_initial = TYP_IMAGE_LAYOUT_EMPTY;
-  depth.layout_final = VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL;
-  this->depth_attachment_description(depth);
-  this->depth_attachment_reference(depth);
-  subpass->depth = depth;
-
   // Subpass description
   this->create_subpass_description(subpass);
 
@@ -127,6 +129,8 @@ void Subpass::create_subpass_transfert(vk::structure::Subpass* subpass){
 }
 void Subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
   //---------------------------
+
+
 
   // Color
   vk::structure::Attachment color;
@@ -149,7 +153,7 @@ void Subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
   this->depth_attachment_description(depth);
   this->depth_attachment_reference(depth);
   subpass->depth = depth;
-
+  
   // Subpass description
   this->create_subpass_description(subpass);
 
@@ -174,11 +178,11 @@ void Subpass::create_subpass_description(vk::structure::Subpass* subpass){
   //Subpass decription
   VkSubpassDescription subpass_description{};
   subpass_description.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
+  subpass_description.pDepthStencilAttachment = &subpass->depth.reference;
   subpass_description.colorAttachmentCount = nb_color_attachment;
   subpass_description.pColorAttachments = *vec_color.data();
   if(vec_color_resolve.size() != 0)
   subpass_description.pResolveAttachments = *vec_color_resolve.data();
-  subpass_description.pDepthStencilAttachment = &subpass->depth.reference;
 
   //Subpass dependencies
   VkSubpassDependency subpass_dependency{};
