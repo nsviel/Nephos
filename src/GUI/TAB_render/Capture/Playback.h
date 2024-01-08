@@ -20,7 +20,6 @@ public:
   void kinect_playback();
 
   //Subfunction
-  void show_info();
   void show_info_device();
   void show_info_color();
   void show_info_depth();

@@ -7,6 +7,7 @@
 
 class GUI;
 class Recorder;
+class K4A_swarm;
 
 
 namespace gui::kinect{
@@ -22,6 +23,7 @@ public:
   void design_panel();
 
   //Subfunction
+  void show_info();
 
 private:
   gui::kinect::Capture* kin_capture;
@@ -29,6 +31,7 @@ private:
   gui::kinect::Recorder* kin_recorder;
   gui::kinect::Player* kin_player;
   gui::kinect::Operation* kin_operation;
+  K4A_swarm* k4a_swarm;
 };
 
 }

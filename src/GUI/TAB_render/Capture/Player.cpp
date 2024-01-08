@@ -193,12 +193,6 @@ void Player::player_record(){
     }
   }
 
-  //Recording time
-  if(k4a_device->player.record){
-    ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%.2f", k4a_device->recorder.ts_rec);
-  }
-
   //---------------------------
 }
 void Player::player_rotation(){

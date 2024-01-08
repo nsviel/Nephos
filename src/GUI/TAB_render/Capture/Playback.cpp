@@ -24,8 +24,6 @@ void Playback::kinect_playback(){
   //---------------------------
 
   ImGui::Separator();
-  this->show_info();
-  ImGui::Separator();
   if(ImGui::TreeNode("Configuration")){
     this->show_info_device();
     this->show_info_color();
@@ -40,33 +38,6 @@ void Playback::kinect_playback(){
 }
 
 //Design function
-void Playback::show_info(){
-  K4A_device* k4a_device = k4a_swarm->get_selected_device();
-  if(k4a_device == nullptr) return;
-  //---------------------------
-
-  ImVec4 color = ImVec4(0.4f,1.0f,0.4f,1.0f);
-  if(ImGui::BeginTable("playback_table##general", 2)){
-    //Name
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Name"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->playback.filename.c_str());
-
-    //Path
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Path"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->playback.path.c_str());
-
-    //Duration
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", k4a_device->player.duration);
-
-    ImGui::EndTable();
-  }
-
-  //---------------------------
-}
 void Playback::show_info_device(){
   K4A_device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
