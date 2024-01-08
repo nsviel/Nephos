@@ -65,7 +65,7 @@ void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
   color_resolve.item = 1;
   this->color_attachment_resolve_description(color_resolve);
   this->color_attachment_resolve_reference(color_resolve);
-  subpass->vec_color_resolve.push_back(color_resolve);
+  //subpass->vec_color_resolve.push_back(color_resolve);
 
   // Depth
   vk::structure::Attachment depth;
@@ -162,7 +162,7 @@ void Subpass::create_subpass_description(vk::structure::Subpass* subpass){
   //Subpass decription
   VkSubpassDescription subpass_description{};
   subpass_description.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
-  subpass_description.colorAttachmentCount = static_cast<uint32_t>(vec_color.size());
+  subpass_description.colorAttachmentCount = nb_color_attachment;
   subpass_description.pColorAttachments = *vec_color.data();
   if(vec_color_resolve.size() != 0)
   subpass_description.pResolveAttachments = *vec_color_resolve.data();

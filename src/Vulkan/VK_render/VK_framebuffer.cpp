@@ -78,6 +78,7 @@ void VK_framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* re
   //Create frambuffer
   vector<VkImageView> attachments;
   attachments.push_back(framebuffer->color.view);
+  //attachments.push_back(framebuffer->color_resolve.view);
   attachments.push_back(framebuffer->depth.view);
 
   VkFramebufferCreateInfo framebufferInfo{};
