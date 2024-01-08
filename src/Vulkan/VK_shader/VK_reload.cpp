@@ -1,7 +1,7 @@
 #include "VK_reload.h"
 
 #include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_pipeline/VK_pipeline.h>
+#include <Vulkan/VK_renderpass/VK_pipeline.h>
 
 
 //Constructor / Destructor
