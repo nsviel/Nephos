@@ -32,7 +32,7 @@ public:
 
   //Subfunctions
   void transfert_data(eng::data::Object* object, eng::data::File* file_data);
-  bool check_format_supported(string format);
+  bool is_format_supported(string format);
 
 private:
   eng::scene::Format* eng_format;

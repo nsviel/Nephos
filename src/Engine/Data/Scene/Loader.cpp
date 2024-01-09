@@ -50,7 +50,7 @@ eng::data::Object* Loader::load_object(std::string path){
 
   //Check file format
   string format = info::get_format_from_path(path);
-  if(check_format_supported(format)){
+  if(!is_format_supported(format)){
     cout<<"[error] File format not supported -> "<<format<<endl;
     return nullptr;
   }
@@ -108,7 +108,7 @@ void Loader::transfert_data(eng::data::Object* object, eng::data::File* file_dat
 
   //---------------------------
 }
-bool Loader::check_format_supported(string format){
+bool Loader::is_format_supported(string format){
   //---------------------------
 
   for(int i=0; i<supported_format.size(); i++){

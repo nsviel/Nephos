@@ -133,7 +133,7 @@ void Loader::draw_content(){
         item.weight = info::get_file_size(file);
         item.format = info::get_format_from_path(file);
         item.color_icon = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
-        item.color_text = eng_loader->check_format_viability(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+        item.color_text = eng_loader->is_format_supported(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_item_file.push_back(item);
       }
     }
@@ -281,7 +281,7 @@ void Loader::operation_load(){
   for(int i=0; i<vec_item_file.size(); i++){
     Item& item = vec_item_file[i];
     if(file_selection.contains(item.ID)){
-      if(eng_loader->check_format_viability(item.format)){
+      if(eng_loader->is_format_supported(item.format)){
         vec_path.push_back(item.path);
       }
     }
