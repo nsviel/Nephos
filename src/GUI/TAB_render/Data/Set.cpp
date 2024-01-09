@@ -48,7 +48,7 @@ void Set::design_panel(){
 void Set::set_info(eng::data::Set* set){
   //---------------------------
 
-  this->panel_name = "[Set]   " + set->name;
+  this->panel_name = "[Set]  " + set->name;
 
   //---------------------------
 }

@@ -31,6 +31,8 @@ void Entity::run_panel(){
 
   if(*panel_show){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.2, 0.2, 0.2, 1));
+    ImGui::Begin("hello", panel_show, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::End();
     if(ImGui::Begin(panel_name.c_str(), panel_show, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
       this->design_panel();
@@ -45,22 +47,22 @@ void Entity::run_panel(){
 void Entity::design_panel(){
   //---------------------------
 
-  this->object_title(entity);
-  this->object_button(entity);
-  this->object_parameter(entity);
+  this->entity_title(entity);
+  this->entity_button(entity);
+  this->entity_parameter(entity);
 
   //---------------------------
 }
 
 //Subfunction
-void Entity::object_title(eng::data::Entity* entity){
+void Entity::entity_title(eng::data::Entity* entity){
   //---------------------------
 
-  this->panel_name = "[Entity::" + entity->type + "]   " + entity->name;
+  this->panel_name = "[Entity]  " + entity->name;
 
   //---------------------------
 }
-void Entity::object_button(eng::data::Entity* entity){
+void Entity::entity_button(eng::data::Entity* entity){
   //---------------------------
 
   //Suppression
@@ -79,10 +81,15 @@ void Entity::object_button(eng::data::Entity* entity){
 
   //---------------------------
 }
-void Entity::object_parameter(eng::data::Entity* entity){
+void Entity::entity_parameter(eng::data::Entity* entity){
   //---------------------------
 
   if(ImGui::BeginTable("entity##table", 2, ImGuiTableFlags_BordersInnerV)){
+    //Type
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Type"); ImGui::TableNextColumn();
+    ImGui::Text("%s", entity->type.c_str());
+
     //Visibility
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Visibility"); ImGui::TableNextColumn();
@@ -99,7 +106,7 @@ void Entity::object_parameter(eng::data::Entity* entity){
     }
 
     //Format
-    if(entity->type == "Object"){
+    if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Format"); ImGui::TableNextColumn();
       static char str_f[256];
@@ -108,37 +115,35 @@ void Entity::object_parameter(eng::data::Entity* entity){
       if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
         object->file_format = str_f;
       }
-    }
 
-    //Uniform collection color
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Color"); ImGui::TableNextColumn();
-    ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
-    flags |= ImGuiColorEditFlags_AlphaBar;
-    if(ImGui::ColorEdit4("Color", (float*)&object->unicolor, flags)){
-      ope_attribut->set_unicolor(object);
-      eng_scene->update_object(object);
-    }
+      //Uniform collection color
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Color"); ImGui::TableNextColumn();
+      ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
+      flags |= ImGuiColorEditFlags_AlphaBar;
+      if(ImGui::ColorEdit4("Color", (float*)&object->unicolor, flags)){
+        ope_attribut->set_unicolor(object);
+        eng_scene->update_object(object);
+      }
 
-    //Root pos
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    vec3& root = object->root;
-    ImGui::Text("Root"); ImGui::TableNextColumn();
-    ImGui::NextColumn();
-    ImGui::Text("%.2f  %.2f  %.2f", root.x, root.y, root.z);
-    ImGui::SameLine();
-    if(ImGui::Button("R", ImVec2(15,0))){
-      root = vec3(0,0,0);
-    }
+      //Root pos
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      vec3& root = object->root;
+      ImGui::Text("Root"); ImGui::TableNextColumn();
+      ImGui::NextColumn();
+      ImGui::Text("%.2f  %.2f  %.2f", root.x, root.y, root.z);
+      ImGui::SameLine();
+      if(ImGui::Button("R", ImVec2(15,0))){
+        root = vec3(0,0,0);
+      }
 
-    //Primitive size
-    if(object->draw_type_name == "point"){
-
-
-      this->object_point(object);
-    }
-    else if(object->draw_type_name == "line"){
-      this->object_line(object);
+      //Primitive size
+      if(object->draw_type_name == "point"){
+        this->entity_point(object);
+      }
+      else if(object->draw_type_name == "line"){
+        this->entity_line(object);
+      }
     }
 
     ImGui::EndTable();
@@ -148,7 +153,7 @@ void Entity::object_parameter(eng::data::Entity* entity){
 }
 
 //Primitive size
-void Entity::object_line(eng::data::Object* object){
+void Entity::entity_line(eng::data::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -173,7 +178,7 @@ void Entity::object_line(eng::data::Object* object){
 
   //---------------------------
 }
-void Entity::object_point(eng::data::Object* object){
+void Entity::entity_point(eng::data::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

@@ -18,6 +18,8 @@ K4A_device::K4A_device(Engine* engine){
   this->sce_glyph = eng_data->get_scene_glyph();
   this->ope_transform = new eng::ope::Transformation();
 
+  this->type = "K4A_device";
+
   //---------------------------
 }
 K4A_device::~K4A_device(){

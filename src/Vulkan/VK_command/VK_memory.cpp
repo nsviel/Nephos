@@ -20,10 +20,10 @@ void VK_memory::transfert_image_to_gpu(vk::structure::Image* image){
   //---------------------------
 
   //Retrieve required buffer size
-  VkMemoryRequirements memory_requirement;
-  vkGetImageMemoryRequirements(struct_vulkan->device.device, image->image, &memory_requirement);
+  //VkMemoryRequirements memory_requirement;
+  //vkGetImageMemoryRequirements(struct_vulkan->device.device, image->image, &memory_requirement);
   VkDeviceSize tex_size = image->data.size();
-  
+
   //Create stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_memory;

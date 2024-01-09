@@ -23,15 +23,15 @@ public:
   void design_panel();
 
   //Sub functions
-  void object_title(eng::data::Object* object);
-  void object_button(eng::data::Object* object);
-  void object_parameter(eng::data::Object* object);
+  void entity_title(eng::data::Entity* entity);
+  void entity_button(eng::data::Entity* entity);
+  void entity_parameter(eng::data::Entity* entity);
 
   //Primitive size
-  void object_line(eng::data::Object* object);
-  void object_point(eng::data::Object* object);
+  void entity_line(eng::data::Object* object);
+  void entity_point(eng::data::Object* object);
 
-  inline void set_selected_entity(eng::data::Entity* entity){this->entity = entity;}
+  inline void set_entity(eng::data::Entity* entity){this->entity = entity;}
 
 private:
   Panel* gui_render_panel;

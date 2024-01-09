@@ -153,7 +153,7 @@ int Scene::data_node_tree(eng::data::Set* set) {
 
       // If item double-clicked
       if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
-        rnd_object->set_selected_object(entity);
+        rnd_object->set_entity(entity);
         this->show_object = true;
       }
     }
