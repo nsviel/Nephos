@@ -9,7 +9,6 @@ Plane::Plane(){
 
   this->name = "grid_plane";
   this->color = vec4(0.2f, 0.2f, 0.2f, 1.0f);
-  this->is_suppressible = false;
 
   //---------------------------
 }

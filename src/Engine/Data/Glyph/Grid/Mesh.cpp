@@ -11,7 +11,6 @@ Mesh::Mesh(){
   this->color_mesh = vec4(0.3f, 0.3f, 0.3f, 1.0f);
   this->color_submesh = vec4(0.24f, 0.24f, 0.24f, 1.0f);
   this->nb_subcell = 10;
-  this->is_suppressible = false;
 
   //---------------------------
 }

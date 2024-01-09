@@ -9,6 +9,8 @@ Grid::Grid(){
 
   this->name = "Grid";
   this->nb_cell = 10;
+  this->is_suppressible = false;
+  this->is_movable = false;
 
   //---------------------------
 }

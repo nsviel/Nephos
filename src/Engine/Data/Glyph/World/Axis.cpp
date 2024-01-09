@@ -10,6 +10,7 @@ Axis::Axis(){
   this->name = "Axis";
   this->is_visible = true;
   this->is_suppressible = false;
+  this->is_movable = false;
 
   //---------------------------
 }
