@@ -69,6 +69,7 @@ void Set::select_next_entity(){
   }
 
   //----------------------------
+  this->selected_entity = nullptr;
 }
 void Set::insert_entity(eng::data::Entity* entity){
   //---------------------------
@@ -76,6 +77,17 @@ void Set::insert_entity(eng::data::Entity* entity){
   this->list_entity.push_back(entity);
   this->selected_entity = entity;
   this->nb_entity++;
+
+  //---------------------------
+}
+void Set::remove_entity(eng::data::Entity* entity){
+  //---------------------------
+
+  this->list_entity.remove(entity);
+  this->nb_entity--;
+  if(list_entity.size() == 0){
+    this->selected_entity = nullptr;
+  }
 
   //---------------------------
 }

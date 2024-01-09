@@ -81,7 +81,7 @@ void Operation::make_translation(eng::data::Entity* entity, vec3 translation){
 void Operation::make_rotation(eng::data::Entity* entity, vec3 rotation){
   if(entity == nullptr) return;
   //---------------------------
-sayHello();
+
   //Object entity
   if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
     ope_transform->make_rotation(object, object->COM, rotation);

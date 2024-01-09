@@ -21,6 +21,7 @@ struct Set
   void set_visibility(bool value);
   void select_next_entity();
   void insert_entity(eng::data::Entity* entity);
+  void remove_entity(eng::data::Entity* entity);
   eng::data::Set* get_set(std::string name);
   eng::data::Entity* get_entity(std::string name);
 
