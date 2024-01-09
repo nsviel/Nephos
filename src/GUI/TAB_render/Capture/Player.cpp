@@ -1,5 +1,6 @@
 #include "Player.h"
 
+#include <Engine/Engine.h>
 #include <Engine/Capture/K4A/Thread/K4A_playback.h>
 #include <Engine/Capture/K4A/Device/K4A_swarm.h>
 #include <image/IconsFontAwesome6.h>
@@ -8,10 +9,14 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Player::Player(eng::kinect::Kinect* kinect){
+Player::Player(Engine* engine){
   //---------------------------
 
-  this->kinect = kinect;
+  eng::scene::Node* node_scene = engine->get_eng_data();
+  eng::capture::Node* node_capture = engine->get_eng_capture();
+
+  this->sce_scene = node_scene->get_scene();
+  this->kinect = node_capture->get_kinect();
   this->k4a_swarm = kinect->get_k4a_swarm();
   this->k4a_player = new eng::kinect::Player();
 
@@ -196,7 +201,7 @@ void Player::player_close(){
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
   if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-    k4a_swarm->close_device(k4a_device);
+    sce_scene->delete_entity(k4a_device);
   }
   ImGui::PopStyleColor();
 

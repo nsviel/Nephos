@@ -9,12 +9,12 @@
 namespace eng::scene{
 
 //Constructor / Destructor
-Operation::Operation(eng::scene::Node* sce_node){
+Operation::Operation(eng::scene::Node* node_scene){
   //---------------------------
 
-  this->engine = sce_node->get_engine();
-  this->sce_database = sce_node->get_scene_database();
-  this->sce_glyph = sce_node->get_scene_glyph();
+  this->engine = node_scene->get_engine();
+  this->sce_database = node_scene->get_scene_database();
+  this->sce_glyph = node_scene->get_scene_glyph();
   this->eng_camera = engine->get_eng_camera();
   this->ope_transform = new eng::ope::Transformation();
 
@@ -61,8 +61,8 @@ void Operation::remove_entity(eng::data::Entity* entity){
   }
   //If entity is a k4a device
   if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
-    eng::capture::Node* cap_node = engine->get_eng_capture();
-    eng::kinect::Kinect* kinect = cap_node->get_kinect();
+    eng::capture::Node* node_capture = engine->get_eng_capture();
+    eng::kinect::Kinect* kinect = node_capture->get_kinect();
     K4A_swarm* k4a_swarm = kinect->get_k4a_swarm();
 
     k4a_swarm->close_device(device);

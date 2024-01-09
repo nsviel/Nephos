@@ -37,7 +37,7 @@ private:
   Panel* gui_render_panel;
   eng::ope::Attribut* ope_attribut;
   eng::ope::Operation* ope_operation;
-  eng::scene::Scene* eng_scene;
+  eng::scene::Scene* sce_scene;
 
   eng::data::Entity* entity;
   string panel_name;

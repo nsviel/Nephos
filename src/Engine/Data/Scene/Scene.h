@@ -21,7 +21,7 @@ class Scene
 {
 public:
   //ConsScenetor / DesScenetor
-  Scene(eng::scene::Node* sce_node);
+  Scene(eng::scene::Node* node_scene);
   ~Scene();
 
 public:
@@ -44,7 +44,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  eng::scene::Node* sce_node;
+  eng::scene::Node* node_scene;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
   eng::scene::Operation* sce_operation;

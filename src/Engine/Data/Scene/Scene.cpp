@@ -10,18 +10,18 @@
 namespace eng::scene{
 
 //ConsScenetor / DesScenetor
-Scene::Scene(eng::scene::Node* sce_node){
+Scene::Scene(eng::scene::Node* node_scene){
   //---------------------------
 
-  Engine* engine = sce_node->get_engine();
+  Engine* engine = node_scene->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
-  this->sce_node = sce_node;
-  this->sce_database = sce_node->get_scene_database();
-  this->sce_glyph = sce_node->get_scene_glyph();
+  this->node_scene = node_scene;
+  this->sce_database = node_scene->get_scene_database();
+  this->sce_glyph = node_scene->get_scene_glyph();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->eng_camera = engine->get_eng_camera();
-  this->sce_operation = new eng::scene::Operation(sce_node);
+  this->sce_operation = new eng::scene::Operation(node_scene);
   this->ope_attribut = new eng::ope::Attribut();
 
   this->ID_obj = 0;
@@ -32,7 +32,7 @@ Scene::~Scene(){}
 
 //Scene function
 void Scene::init(){
-  eng::scene::Loader* eng_loader = sce_node->get_scene_loader();
+  eng::scene::Loader* eng_loader = node_scene->get_scene_loader();
   //---------------------------
 
   //Initial scene entities

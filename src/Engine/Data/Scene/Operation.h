@@ -15,7 +15,7 @@ class Operation
 {
 public:
   //ConsOperationtor / DesOperationtor
-  Operation(eng::scene::Node* sce_node);
+  Operation(eng::scene::Node* node_scene);
   ~Operation();
 
 public:

@@ -18,15 +18,15 @@ Control::Control(GUI* gui){
 
   util::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
-  eng::scene::Node* sce_node = engine->get_eng_data();
+  eng::scene::Node* node_scene = engine->get_eng_data();
 
   this->engine = gui->get_engine();
   this->utl_window = utility->get_utl_window();
   this->camera = engine->get_camera();
   this->cam_node = engine->get_eng_camera();
-  this->sce_scene = sce_node->get_scene();
-  this->sce_database = sce_node->get_scene_database();
-  this->sce_operation = new eng::scene::Operation(sce_node);
+  this->sce_scene = node_scene->get_scene();
+  this->sce_database = node_scene->get_scene_database();
+  this->sce_operation = new eng::scene::Operation(node_scene);
   this->transformManager = new eng::ope::Transformation();
 
   //---------------------------

@@ -40,7 +40,7 @@ public:
 
 private:
   Engine* engine;
-  eng::scene::Scene* eng_scene;
+  eng::scene::Scene* sce_scene;
   eng::kinect::structure::Swarm* struct_swarm;
 
   string default_folder;

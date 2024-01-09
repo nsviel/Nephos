@@ -11,7 +11,7 @@ K4A_swarm::K4A_swarm(Engine* engine){
   eng::scene::Node* eng_data = engine->get_eng_data();
 
   this->engine = engine;
-  this->eng_scene = eng_data->get_scene();
+  this->sce_scene = eng_data->get_scene();
   this->struct_swarm = new eng::kinect::structure::Swarm();
   this->default_folder = "../media/record/";
   this->default_file = "/home/aether/Desktop/versaille.mkv";
@@ -131,7 +131,7 @@ K4A_device* K4A_swarm::create_playback(string path){
 
   k4a_device->init();
   k4a_device->run_playback(path);
-  eng_scene->insert_entity_scene(k4a_device);
+  sce_scene->insert_entity_scene(k4a_device);
 
   //---------------------------
   return k4a_device;
@@ -152,7 +152,7 @@ K4A_device* K4A_swarm::create_device(){
 
   k4a_device->init();
   k4a_device->run_capture();
-  eng_scene->insert_entity_scene(k4a_device);
+  sce_scene->insert_entity_scene(k4a_device);
 
   //---------------------------
   return k4a_device;

@@ -13,7 +13,8 @@ Entity::Entity(GUI* gui, bool* panel_show){
 
   Engine* engine = gui->get_engine();
   eng::scene::Node* eng_data = engine->get_eng_data();
-  this->eng_scene = eng_data->get_scene();
+
+  this->sce_scene = eng_data->get_scene();
   this->ope_attribut = new eng::ope::Attribut();
   this->ope_operation = new eng::ope::Operation();
 
@@ -31,8 +32,6 @@ void Entity::run_panel(){
 
   if(*panel_show){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.2, 0.2, 0.2, 1));
-    ImGui::Begin("hello", panel_show, ImGuiWindowFlags_AlwaysAutoResize);
-    ImGui::End();
     if(ImGui::Begin(panel_name.c_str(), panel_show, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
       this->design_panel();
@@ -68,7 +67,7 @@ void Entity::entity_button(eng::data::Entity* entity){
   //Suppression
   if(entity->is_suppressible){
     if(ImGui::Button(ICON_FA_TRASH "##4567")){
-      eng_scene->delete_entity(entity);
+      sce_scene->delete_entity(entity);
       this->entity = nullptr;
     }
   }
@@ -123,7 +122,7 @@ void Entity::entity_parameter(eng::data::Entity* entity){
       flags |= ImGuiColorEditFlags_AlphaBar;
       if(ImGui::ColorEdit4("Color", (float*)&object->unicolor, flags)){
         ope_attribut->set_unicolor(object);
-        eng_scene->update_object(object);
+        sce_scene->update_object(object);
       }
 
       //Root pos

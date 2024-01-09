@@ -14,7 +14,7 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(eng::kinect::Kinect* kinect);
+  Player(Engine* engine);
   ~Player();
 
   //Main function
@@ -33,6 +33,7 @@ public:
   void player_close();
 
 private:
+  eng::scene::Scene* sce_scene;
   eng::kinect::Kinect* kinect;
   eng::kinect::Player* k4a_player;
   K4A_swarm* k4a_swarm;
