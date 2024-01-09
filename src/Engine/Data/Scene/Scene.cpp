@@ -18,9 +18,10 @@ Scene::Scene(eng::scene::Node* sce_node){
 
   this->sce_node = sce_node;
   this->sce_database = sce_node->get_scene_database();
-  this->eng_glyph = sce_node->get_scene_glyph();
+  this->sce_glyph = sce_node->get_scene_glyph();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->eng_camera = engine->get_eng_camera();
+  this->sce_operation = new eng::scene::Operation(sce_node);
   this->attributManager = new eng::ope::Attribut();
 
   this->ID_obj = 0;
@@ -49,17 +50,7 @@ void Scene::loop(){
     eng::data::Set* set = *next(data_set->list_set.begin(), i);
     for(int j=0; j<set->list_entity.size(); j++){
       eng::data::Entity* entity = *next(set->list_entity.begin(), j);
-
-      //Object entity
-      if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
-        eng_camera->compute_cam_mvp(object);
-        eng_glyph->update_glyph_object(object);
-      }
-      //K4A device entity
-      else if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
-        eng_camera->compute_cam_mvp(device->cloud.object);
-        eng_glyph->update_glyph_object(device->cloud.object);
-      }
+      sce_operation->loop(entity);
     }
   }
 
@@ -143,7 +134,7 @@ void Scene::insert_object(eng::data::Object* object){
 
   sce_database->assign_ID(object);
   vk_engine->insert_object_in_engine(object);
-  eng_glyph->create_glyph_object(object);
+  sce_glyph->create_glyph_object(object);
 
   //---------------------------
 }
@@ -158,7 +149,7 @@ void Scene::update_object(eng::data::Object* object){
 void Scene::remove_object(eng::data::Object* object){
   //---------------------------
 
-  eng_glyph->remove_glyph_object(object);
+  sce_glyph->remove_glyph_object(object);
   vk_engine->remove_object_in_engine(object);
 
   //---------------------------

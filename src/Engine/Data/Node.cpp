@@ -11,7 +11,7 @@ Node::Node(Engine* engine){
 
   this->engine = engine;
   this->sce_database = new eng::scene::Database(this);
-  this->eng_glyph = new eng::scene::Glyph(this);
+  this->sce_glyph = new eng::scene::Glyph(this);
   this->eng_scene = new eng::scene::Scene(this);
   this->eng_loader = new eng::scene::Loader(this);
 
@@ -22,7 +22,7 @@ Node::~Node(){
 
   delete eng_scene;
   delete sce_database;
-  delete eng_glyph;
+  delete sce_glyph;
   delete eng_loader;
 
   //---------------------------
@@ -33,7 +33,7 @@ void Node::init(){
 
   sce_database->init_set();
   eng_scene->init();
-  eng_glyph->create_glyph_world();
+  sce_glyph->create_glyph_world();
 
   //---------------------------
 }

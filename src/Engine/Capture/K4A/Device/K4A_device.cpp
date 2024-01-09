@@ -15,7 +15,7 @@ K4A_device::K4A_device(Engine* engine){
   this->k4a_capture = new K4A_capture(engine);
   this->k4a_playback = new K4A_playback(engine);
   this->eng_scene = eng_data->get_scene();
-  this->eng_glyph = eng_data->get_scene_glyph();
+  this->sce_glyph = eng_data->get_scene_glyph();
   this->ope_transform = new eng::ope::Transformation();
 
   //---------------------------

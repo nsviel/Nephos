@@ -27,13 +27,13 @@ public:
   inline eng::scene::Scene* get_scene(){return eng_scene;}
   inline eng::scene::Database* get_scene_database(){return sce_database;}
   inline eng::scene::Loader* get_scene_loader(){return eng_loader;}
-  inline eng::scene::Glyph* get_scene_glyph(){return eng_glyph;}
+  inline eng::scene::Glyph* get_scene_glyph(){return sce_glyph;}
 
 private:
   Engine* engine;
   eng::scene::Scene* eng_scene;
   eng::scene::Database* sce_database;
-  eng::scene::Glyph* eng_glyph;
+  eng::scene::Glyph* sce_glyph;
   eng::scene::Loader* eng_loader;
 };
 

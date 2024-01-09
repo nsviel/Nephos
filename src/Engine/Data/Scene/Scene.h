@@ -3,6 +3,7 @@
 #include <Engine/Data/Glyph/Glyph.h>
 #include <Engine/Operation/Namespace.h>
 #include <Engine/Data/Scene/Database.h>
+#include <Engine/Data/Scene/Operation.h>
 #include <Engine/Data/Glyph/Glyph.h>
 #include <Engine/Data/Node.h>
 #include <Engine/Base/Namespace.h>
@@ -11,9 +12,10 @@
 
 class VK_engine;
 
-
 namespace eng::scene{
 class Glyph;
+class Operation;
+
 
 class Scene
 {
@@ -43,7 +45,8 @@ private:
   VK_engine* vk_engine;
   eng::scene::Node* sce_node;
   eng::scene::Database* sce_database;
-  eng::scene::Glyph* eng_glyph;
+  eng::scene::Glyph* sce_glyph;
+  eng::scene::Operation* sce_operation;
   eng::ope::Attribut* attributManager;
   eng::camera::Node* eng_camera;
 

@@ -34,7 +34,7 @@ public:
 
 public:
   eng::scene::Scene* eng_scene;
-  eng::scene::Glyph* eng_glyph;
+  eng::scene::Glyph* sce_glyph;
   eng::ope::Transformation* ope_transform;
   K4A_capture* k4a_capture;
   K4A_playback* k4a_playback;
