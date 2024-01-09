@@ -13,9 +13,9 @@ Stream::Stream(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  eng::capture::Node* utl_capture = engine->get_eng_capture();
+  eng::capture::Node* cap_node = engine->get_eng_capture();
 
-  this->kinect = utl_capture->get_kinect();
+  this->kinect = cap_node->get_kinect();
   this->k4a_depth = new eng::kinect::data::Depth();
   this->k4a_infrared = new eng::kinect::data::Infrared();
   this->k4a_swarm = kinect->get_k4a_swarm();

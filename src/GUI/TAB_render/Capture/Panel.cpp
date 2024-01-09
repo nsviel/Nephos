@@ -12,8 +12,8 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  eng::capture::Node* utl_capture = engine->get_eng_capture();
-  eng::kinect::Kinect* kinect = utl_capture->get_kinect();
+  eng::capture::Node* cap_node = engine->get_eng_capture();
+  eng::kinect::Kinect* kinect = cap_node->get_kinect();
 
   this->k4a_swarm = kinect->get_k4a_swarm();
   this->kin_capture = new gui::kinect::Capture(kinect);
