@@ -17,6 +17,7 @@ Operation::Operation(eng::scene::Node* node_scene){
   this->sce_glyph = node_scene->get_scene_glyph();
   this->node_camera = engine->get_node_camera();
   this->ope_transform = new eng::ope::Transformation();
+  this->ope_operation = new eng::ope::Operation();
 
   //---------------------------
 }
@@ -70,6 +71,8 @@ void Operation::remove_entity(eng::data::Entity* entity){
 
   //---------------------------
 }
+
+//Transformation
 void Operation::make_translation(eng::data::Entity* entity, vec3 translation){
   if(entity == nullptr) return;
   //---------------------------
@@ -100,7 +103,21 @@ void Operation::make_rotation(eng::data::Entity* entity, vec3 rotation){
 
   //---------------------------
 }
+void Operation::make_center(eng::data::Entity* entity){
+  if(entity == nullptr) return;
+  //---------------------------
 
+  //Object entity
+  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
+    ope_operation->center_object(object);
+  }
+  //K4A device entity
+  else if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
+    ope_operation->center_object(device->cloud.object);
+  }
+
+  //---------------------------
+}
 
 
 }

@@ -22,8 +22,11 @@ public:
   //Main function
   void update_entity(eng::data::Entity* entity);
   void remove_entity(eng::data::Entity* entity);
+
+  //Transformation
   void make_translation(eng::data::Entity* entity, vec3 translation);
   void make_rotation(eng::data::Entity* entity, vec3 rotation);
+  void make_center(eng::data::Entity* entity);
 
 private:
   Engine* engine;
@@ -31,6 +34,7 @@ private:
   eng::scene::Glyph* sce_glyph;
   eng::camera::Node* node_camera;
   eng::ope::Transformation* ope_transform;
+  eng::ope::Operation* ope_operation;
 };
 
 }

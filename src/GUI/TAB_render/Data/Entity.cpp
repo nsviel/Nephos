@@ -15,6 +15,7 @@ Entity::Entity(GUI* gui, bool* panel_show){
   eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->sce_scene = node_scene->get_scene();
+  this->sce_operation = node_scene->get_scene_operation();
   this->ope_attribut = new eng::ope::Attribut();
   this->ope_operation = new eng::ope::Operation();
 
@@ -65,17 +66,15 @@ void Entity::entity_button(eng::data::Entity* entity){
   //---------------------------
 
   //Suppression
-  if(entity->is_suppressible){
-    if(ImGui::Button(ICON_FA_TRASH "##4567")){
-      sce_scene->delete_entity(entity);
-      this->entity = nullptr;
-    }
+  if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
+    sce_scene->delete_entity(entity);
+    this->entity = nullptr;
   }
 
   //Centered
   ImGui::SameLine();
   if(entity->is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
-    //ope_operation->center_object(entity);
+    sce_operation->make_center(entity);
   }
 
   //---------------------------
