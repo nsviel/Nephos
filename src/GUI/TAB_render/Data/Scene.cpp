@@ -16,7 +16,7 @@ Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name
 
   this->sce_database = eng_data->get_scene_database();
   this->rnd_set = new gui::rnd::data::Set(gui, &show_set);
-  this->rnd_object = new gui::rnd::data::Object(gui, &show_object);
+  this->rnd_object = new gui::rnd::data::Entity(gui, &show_object);
 
   //---------------------------
 }

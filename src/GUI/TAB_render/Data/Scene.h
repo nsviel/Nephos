@@ -8,7 +8,7 @@
 class GUI;
 
 namespace gui::rnd::data{
-class Object;
+class Entity;
 class Set;
 
 
@@ -32,7 +32,7 @@ public:
   bool show_set      = false;
 
 private:
-  gui::rnd::data::Object* rnd_object;
+  gui::rnd::data::Entity* rnd_object;
   gui::rnd::data::Set* rnd_set;
   eng::scene::Database* sce_database;
 

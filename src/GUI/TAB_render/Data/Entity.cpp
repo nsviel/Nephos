@@ -1,4 +1,4 @@
-#include "Object.h"
+#include "Entity.h"
 
 #include <Node/GUI.h>
 #include <Engine/Engine.h>
@@ -8,7 +8,7 @@
 namespace gui::rnd::data{
 
 //Constructor / Destructor
-Object::Object(GUI* gui, bool* panel_show){
+Entity::Entity(GUI* gui, bool* panel_show){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -18,15 +18,15 @@ Object::Object(GUI* gui, bool* panel_show){
   this->ope_operation = new eng::ope::Operation();
 
   this->panel_show = panel_show;
-  this->panel_name = "Object";
+  this->panel_name = "Entity";
   this->item_width = 100;
 
   //---------------------------
 }
-Object::~Object(){}
+Entity::~Entity(){}
 
 //Main function
-void Object::run_panel(){
+void Entity::run_panel(){
   //---------------------------
 
   if(*panel_show){
@@ -42,7 +42,7 @@ void Object::run_panel(){
 
   //---------------------------
 }
-void Object::design_panel(){
+void Entity::design_panel(){
   //---------------------------
 
   this->object_title(object_selected);
@@ -53,14 +53,14 @@ void Object::design_panel(){
 }
 
 //Subfunction
-void Object::object_title(eng::data::Object* object){
+void Entity::object_title(eng::data::Object* object){
   //---------------------------
 
-  this->panel_name = "[Object]   " + object->name;
+  this->panel_name = "[Entity]   " + object->name;
 
   //---------------------------
 }
-void Object::object_button(eng::data::Object* object){
+void Entity::object_button(eng::data::Object* object){
   //---------------------------
 
   //Suppression
@@ -79,7 +79,7 @@ void Object::object_button(eng::data::Object* object){
 
   //---------------------------
 }
-void Object::object_parameter(eng::data::Object* object){
+void Entity::object_parameter(eng::data::Object* object){
   //---------------------------
 
   if(ImGui::BeginTable("object##table", 2, ImGuiTableFlags_BordersInnerV)){
@@ -146,7 +146,7 @@ void Object::object_parameter(eng::data::Object* object){
 }
 
 //Primitive size
-void Object::object_line(eng::data::Object* object){
+void Entity::object_line(eng::data::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -171,7 +171,7 @@ void Object::object_line(eng::data::Object* object){
 
   //---------------------------
 }
-void Object::object_point(eng::data::Object* object){
+void Entity::object_point(eng::data::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

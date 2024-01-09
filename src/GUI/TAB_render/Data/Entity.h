@@ -11,12 +11,12 @@ class Panel;
 
 namespace gui::rnd::data{
 
-class Object
+class Entity
 {
 public:
   //Constructor / Destructor
-  Object(GUI* gui, bool* show_window);
-  ~Object();
+  Entity(GUI* gui, bool* show_window);
+  ~Entity();
 
   //Main function
   void run_panel();
