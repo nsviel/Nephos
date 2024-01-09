@@ -13,11 +13,11 @@ Engine::Engine(util::Node* utility){
   util::element::Window* utl_window = utility->get_utl_window();
 
   this->utility = utility;
+  this->eng_vulkan = new Vulkan(utl_window->get_window());
+  this->eng_renderpass = new ENG_renderpass(this);
   this->node_camera = new eng::camera::Node(this);
   this->node_shader = new eng::shader::Node(this);
-  this->eng_vulkan = new Vulkan(utl_window->get_window());
   this->node_scene = new eng::scene::Node(this);
-  this->eng_renderpass = new ENG_renderpass(this);
   this->node_capture = new eng::capture::Node(this);
 
   //---------------------------

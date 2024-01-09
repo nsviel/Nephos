@@ -34,11 +34,11 @@ public:
   inline eng::capture::Node* get_node_capture(){return node_capture;}
 
 private:
+  Vulkan* eng_vulkan;
+  ENG_renderpass* eng_renderpass;
   util::Node* utility;
   eng::camera::Node* node_camera;
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;
-  Vulkan* eng_vulkan;
   eng::shader::Node* node_shader;
-  ENG_renderpass* eng_renderpass;
 };
