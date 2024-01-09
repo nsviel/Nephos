@@ -22,7 +22,7 @@ Operation::Operation(eng::scene::Node* sce_node){
 Operation::~Operation(){}
 
 //Main function
-void Operation::loop(eng::data::Entity* entity){
+void Operation::update_entity(eng::data::Entity* entity){
   //---------------------------
 
   //Object entity
@@ -35,6 +35,13 @@ void Operation::loop(eng::data::Entity* entity){
     eng_camera->compute_cam_mvp(device->cloud.object);
     sce_glyph->update_glyph_object(device->cloud.object);
   }
+
+  //---------------------------
+}
+void Operation::remove_entity(eng::data::Entity* entity){
+  //---------------------------
+
+
 
   //---------------------------
 }

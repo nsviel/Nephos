@@ -50,7 +50,7 @@ void Scene::loop(){
     eng::data::Set* set = *next(data_set->list_set.begin(), i);
     for(int j=0; j<set->list_entity.size(); j++){
       eng::data::Entity* entity = *next(set->list_entity.begin(), j);
-      sce_operation->loop(entity);
+      sce_operation->update_entity(entity);
     }
   }
 

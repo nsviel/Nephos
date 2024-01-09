@@ -18,7 +18,8 @@ public:
 
 public:
   //Main function
-  void loop(eng::data::Entity* entity);
+  void update_entity(eng::data::Entity* entity);
+  void remove_entity(eng::data::Entity* entity);
   void make_translation(vec3 translation);
   void make_rotation(vec3 rotation);
 
