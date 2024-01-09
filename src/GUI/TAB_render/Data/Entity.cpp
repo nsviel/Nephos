@@ -65,6 +65,7 @@ void Entity::close_panel(){
 
 //Subfunction
 void Entity::entity_title(eng::data::Entity* entity){
+  if(entity == nullptr) return;
   //---------------------------
 
   this->panel_name = "[Entity]  " + entity->name;
@@ -72,6 +73,7 @@ void Entity::entity_title(eng::data::Entity* entity){
   //---------------------------
 }
 void Entity::entity_button(eng::data::Entity* entity){
+  if(entity == nullptr) return;
   //---------------------------
 
   //Suppression
@@ -90,6 +92,7 @@ void Entity::entity_button(eng::data::Entity* entity){
   //---------------------------
 }
 void Entity::entity_parameter(eng::data::Entity* entity){
+  if(entity == nullptr) return;
   //---------------------------
 
   if(ImGui::BeginTable("entity##table", 2, ImGuiTableFlags_BordersInnerV)){
