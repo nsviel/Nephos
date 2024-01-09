@@ -16,7 +16,8 @@ public:
 
 public:
   //Main function
-  void make_translation();
+  void make_translation(vec3 translation);
+  void make_rotation(vec3 rotation);
 
 private:
   eng::scene::Database* sce_database;

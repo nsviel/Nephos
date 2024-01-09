@@ -55,9 +55,8 @@ void Scene::loop(){
         eng_camera->compute_cam_mvp(object);
         eng_glyph->update_glyph_object(object);
       }
-
       //K4A device entity
-      if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
+      else if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
         eng_camera->compute_cam_mvp(device->cloud.object);
         eng_glyph->update_glyph_object(device->cloud.object);
       }

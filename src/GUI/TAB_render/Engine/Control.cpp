@@ -18,14 +18,15 @@ Control::Control(GUI* gui){
 
   util::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
-  eng::scene::Node* eng_data = engine->get_eng_data();
+  eng::scene::Node* sce_node = engine->get_eng_data();
 
   this->engine = gui->get_engine();
   this->utl_window = utility->get_utl_window();
   this->camera = engine->get_camera();
-  this->eng_camera = engine->get_eng_camera();
-  this->eng_scene = eng_data->get_scene();
-  this->sce_database = eng_data->get_scene_database();
+  this->cam_node = engine->get_eng_camera();
+  this->sce_scene = sce_node->get_scene();
+  this->sce_database = sce_node->get_scene_database();
+  this->sce_operation = new eng::scene::Operation(sce_node);
   this->transformManager = new eng::ope::Transformation();
 
   //---------------------------
@@ -62,7 +63,7 @@ void Control::control_keyboard_oneAction(){
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
       eng::data::Set* set_scene = data_set->get_set("Scene");
-      eng_scene->delete_entity(set_scene->selected_entity);
+      sce_scene->delete_entity(set_scene->selected_entity);
       break;
     }
 
@@ -90,22 +91,22 @@ void Control::control_keyboard_camMove(){
 
       //Z key or Up key
       if(io.KeysDown[571] || io.KeysDown[515]){
-        eng_camera->control("up", is_fast);
+        cam_node->control("up", is_fast);
       }
 
       //S key or Down key
       if(io.KeysDown[564] || io.KeysDown[516]){
-        eng_camera->control("down", is_fast);
+        cam_node->control("down", is_fast);
       }
 
       //Q key or Left key
       if(io.KeysDown[562] || io.KeysDown[513]){
-        eng_camera->control("left", is_fast);
+        cam_node->control("left", is_fast);
       }
 
       //D key or Left key
       if(io.KeysDown[549] || io.KeysDown[514]){
-        eng_camera->control("right", is_fast);
+        cam_node->control("right", is_fast);
       }
     }
   }
@@ -119,53 +120,47 @@ void Control::control_keyboard_translation(){
   eng::data::Set* data_set = sce_database->get_data_set();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
-      float transCoef = 0.01;
+      float translation_qtt = 0.01;
 
       //Shift speed up
       if(io.KeysDown[340]){
-        //transCoef = cloud_trans_speed * 5;
+        //translation_qtt = cloud_trans_speed * 5;
       }
 
       // Z key
       if(io.KeysDown[571]){
-        vec3 translation = vec3(transCoef, 0, 0);
-        eng::data::Set* set_scene = data_set->get_set("Scene");
-        transformManager->make_translation((eng::data::Object*)set_scene->selected_entity, translation);
+        vec3 translation = vec3(translation_qtt, 0, 0);
+        sce_operation->make_translation(translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
-        vec3 translation = vec3(-transCoef, 0, 0);
-        eng::data::Set* set_scene = data_set->get_set("Scene");
-        transformManager->make_translation((eng::data::Object*)set_scene->selected_entity, translation);
+        vec3 translation = vec3(-translation_qtt, 0, 0);
+        sce_operation->make_translation(translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
-        vec3 translation = vec3(0, transCoef, 0);
-        eng::data::Set* set_scene = data_set->get_set("Scene");
-        transformManager->make_translation((eng::data::Object*)set_scene->selected_entity, translation);
+        vec3 translation = vec3(0, translation_qtt, 0);
+        sce_operation->make_translation(translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
-        vec3 translation = vec3(0, -transCoef, 0);
-        eng::data::Set* set_scene = data_set->get_set("Scene");
-        transformManager->make_translation((eng::data::Object*)set_scene->selected_entity, translation);
+        vec3 translation = vec3(0, -translation_qtt, 0);
+        sce_operation->make_translation(translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
-        vec3 translation = vec3(0, 0, transCoef);
-        eng::data::Set* set_scene = data_set->get_set("Scene");
-        transformManager->make_translation((eng::data::Object*)set_scene->selected_entity, translation);
+        vec3 translation = vec3(0, 0, translation_qtt);
+        sce_operation->make_translation(translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
-        vec3 translation = vec3(0, 0, -transCoef);
-        eng::data::Set* set_scene = data_set->get_set("Scene");
-        transformManager->make_translation((eng::data::Object*)set_scene->selected_entity, translation);
+        vec3 translation = vec3(0, 0, -translation_qtt);
+        sce_operation->make_translation(translation);
         break;
       }
     }
@@ -205,7 +200,7 @@ void Control::control_mouse_wheel(){
 
   //Wheel + right clicked - Camera zoom
   if(io.MouseWheel && io.MouseDownDuration[1] >= 0.0f){
-    eng_camera->compute_zoom(io.MouseWheel);
+    cam_node->compute_zoom(io.MouseWheel);
   }
 
   //Wheel click - Change mouse wheel mode
@@ -230,10 +225,7 @@ void Control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    eng::data::Set* data_set = sce_database->get_data_set();
-    eng::data::Set* set_scene = data_set->get_set("Scene");
-    eng::data::Object* object = (eng::data::Object*)set_scene->selected_entity;
-    transformManager->make_rotation(object, object->COM, R);
+    sce_operation->make_rotation(R);
   }
 
   //----------------------------
