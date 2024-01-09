@@ -20,6 +20,7 @@ void Plane::create(){
   //---------------------------
 
   eng::data::Object* object = new eng::data::Object();
+  object->name = "grid_plane";
   object->is_visible = true;
   object->draw_type_name = "triangle";
   object->is_permanent = true;

@@ -23,6 +23,7 @@ void Mesh::create(){
   //---------------------------
 
   eng::data::Object* object = new eng::data::Object();
+  object->name = "grid_mesh";
   object->draw_line_width = 1;
   object->is_visible = true;
   object->draw_type_name = "line";

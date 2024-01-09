@@ -19,6 +19,7 @@ void Axis::create(){
   //---------------------------
 
   eng::data::Object* object = new eng::data::Object();
+  object->name = "grid_axis";
   object->draw_line_width = 2;
   object->is_visible = true;
   object->draw_type_name = "line";

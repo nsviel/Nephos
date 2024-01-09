@@ -17,6 +17,7 @@ public:
   //Main function
   void create();
   void update();
+  void insert_object_from_glyph(eng::data::Glyph& glyph);
 
 private:
   glyph::grid::Mesh mesh;

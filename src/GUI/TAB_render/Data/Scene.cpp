@@ -129,8 +129,8 @@ int Scene::data_node_tree(eng::data::Set* set) {
   }
 
   // Set elements (leaf nodes) and nested set nodes
-  if (is_node_open) {
-    for (auto& entity : set->list_entity) {
+  if(is_node_open){
+    for(eng::data::Entity* entity : set->list_entity){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       nb_row++;

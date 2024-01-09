@@ -21,9 +21,9 @@ void Grid::create(){
   axis.create();
   plane.create();
 
-  this->vec_object.push_back(mesh.get_vec_object());
-  this->vec_object.push_back(axis.get_vec_object());
-  this->vec_object.push_back(plane.get_vec_object());
+  this->insert_object_from_glyph(mesh);
+  this->insert_object_from_glyph(axis);
+  this->insert_object_from_glyph(plane);
 
   //---------------------------
 }
@@ -33,6 +33,16 @@ void Grid::update(){
   mesh.update();
   axis.update();
   plane.update();
+
+  //---------------------------
+}
+void Grid::insert_object_from_glyph(eng::data::Glyph& glyph){
+  //---------------------------
+
+  vector<eng::data::Object*> vec_object = glyph.get_vec_object();
+  for(int i=0; i<vec_object.size(); i++){
+    this->vec_object.push_back(vec_object[i]);
+  }
 
   //---------------------------
 }
