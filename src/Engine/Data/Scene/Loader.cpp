@@ -12,7 +12,7 @@ namespace eng::scene{
 Loader::Loader(eng::scene::Node* eng_data){
   //---------------------------
 
-  this->eng_scene = eng_data->get_eng_scene();
+  this->eng_scene = eng_data->get_scene();
   this->eng_format = new eng::scene::Format();
 
   this->path_current_dir = "";

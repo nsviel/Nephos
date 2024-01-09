@@ -35,7 +35,7 @@ private:
   VK_engine* vk_engine;
   glyph::object::Camera* glyph_cam;
   eng::scene::Node* eng_data;
-  eng::scene::Database* eng_database;
+  eng::scene::Database* sce_database;
   eng::camera::Node* eng_camera;
 
   list<eng::data::Glyph*> list_glyph;

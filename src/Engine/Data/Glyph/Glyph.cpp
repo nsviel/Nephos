@@ -15,7 +15,7 @@ Glyph::Glyph(eng::scene::Node* eng_data){
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
-  this->eng_database = eng_data->get_eng_database();
+  this->sce_database = eng_data->get_scene_database();
   this->eng_camera = engine->get_eng_camera();
 
   //---------------------------
@@ -30,7 +30,7 @@ Glyph::~Glyph(){
 
 //Glyph world
 void Glyph::create_glyph_world(){
-  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = sce_database->get_data_set();
   eng::data::Set* set_world = data_set->get_set("World");
   //---------------------------
 
@@ -44,7 +44,7 @@ void Glyph::create_glyph_world(){
     eng::data::Glyph* glyph = *next(list_glyph.begin(), i);
 
     glyph->create();
-    eng_database->assign_ID(glyph->get_data());
+    sce_database->assign_ID(glyph->get_data());
     vk_engine->insert_object_in_engine(glyph->get_data());
     set_world->insert_entity(glyph->get_data());
   }
@@ -75,7 +75,7 @@ void Glyph::create_glyph_object(eng::data::Object* object){
   for(int i=0; i<object->list_glyph.size(); i++){
     eng::data::Glyph* glyph = *next(object->list_glyph.begin(), i);
     glyph->create();
-    eng_database->assign_ID(glyph->get_data());
+    sce_database->assign_ID(glyph->get_data());
     vk_engine->insert_object_in_engine(glyph->get_data());
   }
 

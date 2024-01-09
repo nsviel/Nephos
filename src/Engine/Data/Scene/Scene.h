@@ -19,7 +19,7 @@ class Scene
 {
 public:
   //ConsScenetor / DesScenetor
-  Scene(eng::scene::Node* eng_data);
+  Scene(eng::scene::Node* sce_node);
   ~Scene();
 
 public:
@@ -41,8 +41,8 @@ public:
 
 private:
   VK_engine* vk_engine;
-  eng::scene::Node* eng_data;
-  eng::scene::Database* eng_database;
+  eng::scene::Node* sce_node;
+  eng::scene::Database* sce_database;
   eng::scene::Glyph* eng_glyph;
   eng::ope::Attribut* attributManager;
   eng::camera::Node* eng_camera;

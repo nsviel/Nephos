@@ -10,15 +10,15 @@
 namespace eng::scene{
 
 //ConsScenetor / DesScenetor
-Scene::Scene(eng::scene::Node* eng_data){
+Scene::Scene(eng::scene::Node* sce_node){
   //---------------------------
 
-  Engine* engine = eng_data->get_engine();
+  Engine* engine = sce_node->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
-  this->eng_data = eng_data;
-  this->eng_database = eng_data->get_eng_database();
-  this->eng_glyph = eng_data->get_eng_glyph();
+  this->sce_node = sce_node;
+  this->sce_database = sce_node->get_scene_database();
+  this->eng_glyph = sce_node->get_scene_glyph();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->eng_camera = engine->get_eng_camera();
   this->attributManager = new eng::ope::Attribut();
@@ -31,7 +31,7 @@ Scene::~Scene(){}
 
 //Scene function
 void Scene::init(){
-  eng::scene::Loader* eng_loader = eng_data->get_eng_loader();
+  eng::scene::Loader* eng_loader = sce_node->get_scene_loader();
   //---------------------------
 
   //Initial scene entities
@@ -42,7 +42,7 @@ void Scene::init(){
   //---------------------------
 }
 void Scene::loop(){
-  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = sce_database->get_data_set();
   //----------------------------
 
   for(int i=0; i<data_set->list_set.size(); i++){
@@ -50,9 +50,16 @@ void Scene::loop(){
     for(int j=0; j<set->list_entity.size(); j++){
       eng::data::Entity* entity = *next(set->list_entity.begin(), j);
 
+      //Object entity
       if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
         eng_camera->compute_cam_mvp(object);
         eng_glyph->update_glyph_object(object);
+      }
+
+      //K4A device entity
+      if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
+        eng_camera->compute_cam_mvp(device->cloud.object);
+        eng_glyph->update_glyph_object(device->cloud.object);
       }
     }
   }
@@ -60,7 +67,7 @@ void Scene::loop(){
   //----------------------------
 }
 void Scene::reset(){
-  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = sce_database->get_data_set();
   //---------------------------
 
   data_set->reset();
@@ -70,7 +77,7 @@ void Scene::reset(){
 
 //Entity
 void Scene::insert_entity_scene(eng::data::Entity* entity){
-  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = sce_database->get_data_set();
   eng::data::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
@@ -79,7 +86,7 @@ void Scene::insert_entity_scene(eng::data::Entity* entity){
   //---------------------------
 }
 void Scene::delete_entity(eng::data::Entity* entity){
-  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = sce_database->get_data_set();
   eng::data::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
@@ -106,7 +113,7 @@ void Scene::delete_entity(eng::data::Entity* entity){
   //---------------------------
 }
 void Scene::delete_entity_all(){
-  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = sce_database->get_data_set();
   eng::data::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
@@ -123,7 +130,7 @@ void Scene::delete_entity_all(){
 
 //Object
 void Scene::insert_object_scene(eng::data::Object* object){
-  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = sce_database->get_data_set();
   eng::data::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
@@ -135,7 +142,7 @@ void Scene::insert_object_scene(eng::data::Object* object){
 void Scene::insert_object(eng::data::Object* object){
   //---------------------------
 
-  eng_database->assign_ID(object);
+  sce_database->assign_ID(object);
   vk_engine->insert_object_in_engine(object);
   eng_glyph->create_glyph_object(object);
 

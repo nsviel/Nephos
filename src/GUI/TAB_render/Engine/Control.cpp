@@ -24,8 +24,8 @@ Control::Control(GUI* gui){
   this->utl_window = utility->get_utl_window();
   this->camera = engine->get_camera();
   this->eng_camera = engine->get_eng_camera();
-  this->eng_scene = eng_data->get_eng_scene();
-  this->eng_database = eng_data->get_eng_database();
+  this->eng_scene = eng_data->get_scene();
+  this->sce_database = eng_data->get_scene_database();
   this->transformManager = new eng::ope::Transformation();
 
   //---------------------------
@@ -50,7 +50,7 @@ void Control::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = sce_database->get_data_set();
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
@@ -116,7 +116,7 @@ void Control::control_keyboard_translation(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = sce_database->get_data_set();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
       float transCoef = 0.01;
@@ -230,7 +230,7 @@ void Control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    eng::data::Set* data_set = eng_database->get_data_set();
+    eng::data::Set* data_set = sce_database->get_data_set();
     eng::data::Set* set_scene = data_set->get_set("Scene");
     eng::data::Object* object = (eng::data::Object*)set_scene->selected_entity;
     transformManager->make_rotation(object, object->COM, R);

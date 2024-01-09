@@ -13,7 +13,7 @@ Object::Object(GUI* gui, bool* panel_show){
 
   Engine* engine = gui->get_engine();
   eng::scene::Node* eng_data = engine->get_eng_data();
-  this->eng_scene = eng_data->get_eng_scene();
+  this->eng_scene = eng_data->get_scene();
   this->ope_attribut = new eng::ope::Attribut();
   this->ope_operation = new eng::ope::Operation();
 

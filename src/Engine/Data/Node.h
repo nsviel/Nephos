@@ -24,15 +24,15 @@ public:
   void loop();
 
   inline Engine* get_engine(){return engine;}
-  inline eng::scene::Scene* get_eng_scene(){return eng_scene;}
-  inline eng::scene::Database* get_eng_database(){return eng_database;}
-  inline eng::scene::Loader* get_eng_loader(){return eng_loader;}
-  inline eng::scene::Glyph* get_eng_glyph(){return eng_glyph;}
+  inline eng::scene::Scene* get_scene(){return eng_scene;}
+  inline eng::scene::Database* get_scene_database(){return sce_database;}
+  inline eng::scene::Loader* get_scene_loader(){return eng_loader;}
+  inline eng::scene::Glyph* get_scene_glyph(){return eng_glyph;}
 
 private:
   Engine* engine;
   eng::scene::Scene* eng_scene;
-  eng::scene::Database* eng_database;
+  eng::scene::Database* sce_database;
   eng::scene::Glyph* eng_glyph;
   eng::scene::Loader* eng_loader;
 };

@@ -11,7 +11,7 @@ K4A_swarm::K4A_swarm(Engine* engine){
   eng::scene::Node* eng_data = engine->get_eng_data();
 
   this->engine = engine;
-  this->eng_scene = eng_data->get_eng_scene();
+  this->eng_scene = eng_data->get_scene();
   this->struct_swarm = new eng::kinect::structure::Swarm();
   this->default_folder = "../media/record/";
   this->default_file = "/home/aether/Desktop/versaille.mkv";

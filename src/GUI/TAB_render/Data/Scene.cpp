@@ -14,7 +14,7 @@ Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name
   Engine* engine = gui->get_engine();
   eng::scene::Node* eng_data = engine->get_eng_data();
 
-  this->eng_database = eng_data->get_eng_database();
+  this->sce_database = eng_data->get_scene_database();
   this->rnd_set = new gui::rnd::data::Set(gui, &show_set);
   this->rnd_object = new gui::rnd::data::Object(gui, &show_object);
 
@@ -66,7 +66,7 @@ void Scene::draw_window_background(){
   //-------------------------------
 }
 void Scene::tree_view(){
-  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* data_set = sce_database->get_data_set();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;
