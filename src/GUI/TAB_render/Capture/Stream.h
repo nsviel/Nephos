@@ -21,6 +21,7 @@ public:
   ~Stream();
 
   //Main function
+  void run_panel();
   void design_panel();
 
   //All devices

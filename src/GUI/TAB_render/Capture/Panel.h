@@ -20,6 +20,7 @@ public:
   ~Panel();
 
   //Main function
+  void run_panel();
   void design_panel();
 
   //Subfunction

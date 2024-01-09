@@ -27,6 +27,23 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
 Panel::~Panel(){}
 
 //Main function
+void Panel::run_panel(){
+  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  //---------------------------
+
+  if(*show_window && k4a_device != nullptr){
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+
+      this->design_panel();
+
+      ImGui::End();
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
 void Panel::design_panel(){
   //---------------------------
 
