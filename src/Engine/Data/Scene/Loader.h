@@ -32,13 +32,13 @@ public:
 
   //Subfunctions
   void transfert_data(eng::data::Object* object, eng::data::File* file_data);
-  bool check_format_viability(string format);
+  bool check_format_supported(string format);
 
 private:
   eng::scene::Format* eng_format;
   eng::scene::Scene* eng_scene;
 
-  vector<string> accepted_format;
+  vector<string> supported_format;
   std::string path_current_dir;
 };
 

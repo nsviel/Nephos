@@ -4,6 +4,7 @@
 #include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
+#include <Utility/Function/File/Info.h>
 
 
 namespace eng::scene{
@@ -16,15 +17,15 @@ Loader::Loader(eng::scene::Node* node_scene){
   this->eng_format = new eng::scene::Format();
 
   this->path_current_dir = "";
-  this->accepted_format.push_back("pts");
-  this->accepted_format.push_back("obj");
-  this->accepted_format.push_back("ply");
-  this->accepted_format.push_back("xyz");
-  this->accepted_format.push_back("pcap");
-  this->accepted_format.push_back("ptx");
-  this->accepted_format.push_back("csv");
-  this->accepted_format.push_back("las");
-  this->accepted_format.push_back("mkv");
+  this->supported_format.push_back("pts");
+  this->supported_format.push_back("obj");
+  this->supported_format.push_back("ply");
+  this->supported_format.push_back("xyz");
+  this->supported_format.push_back("pcap");
+  this->supported_format.push_back("ptx");
+  this->supported_format.push_back("csv");
+  this->supported_format.push_back("las");
+  this->supported_format.push_back("mkv");
 
   //---------------------------
 }
@@ -38,6 +39,7 @@ Loader::~Loader(){
 
 //Main functions
 eng::data::Object* Loader::load_object(std::string path){
+  eng::data::Object* cloud = nullptr;
   //---------------------------
 
   //Check file existence
@@ -47,21 +49,26 @@ eng::data::Object* Loader::load_object(std::string path){
   }
 
   //Check file format
-  /*if(check_format_viability(item.format)){
-    cout<<"[error] File format not supported"<<endl;
+  string format = info::get_format_from_path(path);
+  if(check_format_supported(format)){
+    cout<<"[error] File format not supported -> "<<format<<endl;
     return nullptr;
-  }*/
+  }
 
-  //Create new object
-  eng::data::Object* cloud = new eng::data::Object();
-  cloud->path_file = path;
-  cloud->draw_type_name = "point";
-  cloud->has_texture = true;
+  if(format == "mkv"){
 
-  //Retrieve data and insert into engine
-  eng::data::File* data = eng_format->get_data_from_file(path);
-  this->transfert_data(cloud, data);
-  eng_scene->insert_object_scene(cloud);
+  }else{
+    //Create new object
+    cloud = new eng::data::Object();
+    cloud->path_file = path;
+    cloud->draw_type_name = "point";
+    cloud->has_texture = true;
+
+    //Retrieve data and insert into engine
+    eng::data::File* data = eng_format->get_data_from_file(path);
+    this->transfert_data(cloud, data);
+    eng_scene->insert_object_scene(cloud);
+  }
 
   //---------------------------
   return cloud;
@@ -101,11 +108,11 @@ void Loader::transfert_data(eng::data::Object* object, eng::data::File* file_dat
 
   //---------------------------
 }
-bool Loader::check_format_viability(string format){
+bool Loader::check_format_supported(string format){
   //---------------------------
 
-  for(int i=0; i<accepted_format.size(); i++){
-    if(format == accepted_format[i]){
+  for(int i=0; i<supported_format.size(); i++){
+    if(format == supported_format[i]){
       return true;
     }
   }
