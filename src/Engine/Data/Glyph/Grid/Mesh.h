@@ -15,16 +15,15 @@ public:
 public:
   //Main function
   void create();
-  void update();
+  void update(int nb_cell);
 
   //Subfunction
-  void construct_mesh();
-  void construct_submesh();
+  void construct_mesh(int nb_cell);
+  void construct_submesh(int nb_cell);
 
 private:
   vec4 color_mesh;
   vec4 color_submesh;
-  int nb_cell;
   int nb_subcell;
 };
 

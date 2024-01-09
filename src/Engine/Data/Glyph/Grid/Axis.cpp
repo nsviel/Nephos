@@ -8,7 +8,6 @@ Axis::Axis(){
   //---------------------------
 
   this->color = vec4(0.4f, 0.4f, 0.4f, 1.0f);
-  this->nb_cell = 10;
   this->is_suppressible = false;
 
   //---------------------------
@@ -27,11 +26,10 @@ void Axis::create(){
   object->is_permanent = true;
   object->unicolor = color;
   this->vec_object.push_back(object);
-  this->update();
 
   //---------------------------
 }
-void Axis::update(){
+void Axis::update(int nb_cell){
   vector<vec3>& XYZ = vec_object[0]->xyz;
   vector<vec4>& RGB = vec_object[0]->rgb;
   float z = -0.001;

@@ -9,7 +9,6 @@ Plane::Plane(){
 
   this->name = "grid_plane";
   this->color = vec4(0.2f, 0.2f, 0.2f, 1.0f);
-  this->nb_cell = 10;
   this->is_suppressible = false;
 
   //---------------------------
@@ -27,11 +26,10 @@ void Plane::create(){
   object->is_permanent = true;
   object->unicolor = color;
   this->vec_object.push_back(object);
-  this->update();
 
   //---------------------------
 }
-void Plane::update(){
+void Plane::update(int nb_cell){
   vector<vec3>& XYZ = vec_object[0]->xyz;
   vector<vec4>& RGB = vec_object[0]->rgb;
   float z = -0.004;

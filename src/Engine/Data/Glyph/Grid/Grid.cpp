@@ -8,6 +8,7 @@ Grid::Grid(){
   //---------------------------
 
   this->name = "Grid";
+  this->nb_cell = 10;
 
   //---------------------------
 }
@@ -21,6 +22,8 @@ void Grid::create(){
   axis.create();
   plane.create();
 
+  this->update();
+
   this->insert_object_from_glyph(mesh);
   this->insert_object_from_glyph(axis);
   this->insert_object_from_glyph(plane);
@@ -30,9 +33,9 @@ void Grid::create(){
 void Grid::update(){
   //---------------------------
 
-  mesh.update();
-  axis.update();
-  plane.update();
+  mesh.update(nb_cell);
+  axis.update(nb_cell);
+  plane.update(nb_cell);
 
   //---------------------------
 }

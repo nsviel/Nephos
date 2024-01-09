@@ -10,7 +10,6 @@ Mesh::Mesh(){
   this->name = "grid";
   this->color_mesh = vec4(0.3f, 0.3f, 0.3f, 1.0f);
   this->color_submesh = vec4(0.24f, 0.24f, 0.24f, 1.0f);
-  this->nb_cell = 10;
   this->nb_subcell = 10;
   this->is_suppressible = false;
 
@@ -31,23 +30,22 @@ void Mesh::create(){
   object->is_permanent = true;
   object->unicolor = color_mesh;
   this->vec_object.push_back(object);
-  this->update();
 
   //---------------------------
 }
-void Mesh::update(){
+void Mesh::update(int nb_cell){
   vec_object[0]->xyz.clear();
   vec_object[0]->rgb.clear();
   //---------------------------
 
-  this->construct_mesh();
-  this->construct_submesh();
+  this->construct_mesh(nb_cell);
+  this->construct_submesh(nb_cell);
 
   //---------------------------
 }
 
 //Subfunction
-void Mesh::construct_mesh(){
+void Mesh::construct_mesh(int nb_cell){
   vector<vec3>& XYZ = vec_object[0]->xyz;
   vector<vec4>& RGB = vec_object[0]->rgb;
   float z = -0.002;
@@ -70,7 +68,7 @@ void Mesh::construct_mesh(){
 
   //---------------------------
 }
-void Mesh::construct_submesh(){
+void Mesh::construct_submesh(int nb_cell){
   vector<vec3>& XYZ = vec_object[0]->xyz;
   vector<vec4>& RGB = vec_object[0]->rgb;
   float z = -0.003;

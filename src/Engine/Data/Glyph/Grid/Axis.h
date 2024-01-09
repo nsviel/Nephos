@@ -15,11 +15,10 @@ public:
 public:
   //Main function
   void create();
-  void update();
+  void update(int nb_cell);
 
 private:
   vec4 color;
-  int nb_cell;
 };
 
 }
