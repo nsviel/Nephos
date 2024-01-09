@@ -2,6 +2,8 @@
 
 #include <Engine/Engine.h>
 #include <Engine/Capture/K4A/Namespace.h>
+#include <Vulkan/Vulkan.h>
+#include <Vulkan/VK_main/VK_engine.h>
 
 
 namespace eng::scene{
@@ -11,7 +13,9 @@ Operation::Operation(eng::scene::Node* sce_node){
   //---------------------------
 
   Engine* engine = sce_node->get_engine();
+  Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
+  this->vk_engine = eng_vulkan->get_vk_engine();
   this->sce_database = sce_node->get_scene_database();
   this->sce_glyph = sce_node->get_scene_glyph();
   this->eng_camera = engine->get_eng_camera();
@@ -41,7 +45,13 @@ void Operation::update_entity(eng::data::Entity* entity){
 void Operation::remove_entity(eng::data::Entity* entity){
   //---------------------------
 
+  //If entity is an object
+  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
+    sce_glyph->remove_glyph_object(object);
+    vk_engine->remove_object_in_engine(object);
+  }
 
+  //If entity is a k4a device
 
   //---------------------------
 }

@@ -100,13 +100,7 @@ void Scene::delete_entity(eng::data::Entity* entity){
     if(entity->ID == entity_scene->ID){
       set_scene->list_entity.remove(entity);
       set_scene->nb_entity--;
-
-      //If entity is an object
-      if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){say("object");
-        this->remove_object(object);
-      }
-
-      //If entity is a k4a device
+      sce_operation->remove_entity(entity);
     }
   }
 
@@ -118,11 +112,11 @@ void Scene::delete_entity_all(){
   //---------------------------
 
   for(int i=0; i<set_scene->list_entity.size(); i++){
-    eng::data::Object* object = (eng::data::Object*)*next(set_scene->list_entity.begin(),i);
+    eng::data::Entity* entity = *next(set_scene->list_entity.begin(),i);
 
     set_scene->list_entity.remove(object);
-    vk_engine->remove_object_in_engine(object);
     set_scene->nb_entity--;
+    sce_operation->remove_entity(entity);
   }
 
   //---------------------------

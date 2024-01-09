@@ -5,6 +5,8 @@
 #include <Engine/Operation/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 
+class VK_engine;
+
 namespace eng::scene{
 class Glyph;
 
@@ -24,6 +26,7 @@ public:
   void make_rotation(eng::data::Entity* entity, vec3 rotation);
 
 private:
+  VK_engine* vk_engine;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
   eng::camera::Node* eng_camera;
