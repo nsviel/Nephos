@@ -28,14 +28,16 @@ public:
   void loop();
   void reset();
 
-  //Object
-  void insert_object_scene(eng::data::Object* object);
-  void update_object(eng::data::Object* object);
-  void remove_object(eng::data::Object* object);
-
   //Entity
+  void insert_entity_scene(eng::data::Entity* entity);
   void delete_entity(eng::data::Entity* object);
   void delete_entity_all();
+
+  //Object
+  void insert_object_scene(eng::data::Object* object);
+  void insert_object(eng::data::Object* object);
+  void update_object(eng::data::Object* object);
+  void remove_object(eng::data::Object* object);
 
 private:
   VK_engine* vk_engine;

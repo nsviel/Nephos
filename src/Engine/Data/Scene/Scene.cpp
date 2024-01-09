@@ -34,9 +34,9 @@ void Scene::init(){
   eng::scene::Loader* eng_loader = eng_data->get_eng_loader();
   //---------------------------
 
-  //Load init object
-  vector<string> vec_path;
-  vec_path.push_back( "../media/point_cloud/dragon.ply");
+  //Initial scene entities
+  //vector<string> vec_path;
+  //vec_path.push_back( "../media/point_cloud/dragon.ply");
   //vector<eng::data::Object*> vec_obj = eng_loader->load_objects(vec_path);
 
   //---------------------------
@@ -68,39 +68,16 @@ void Scene::reset(){
   //---------------------------
 }
 
-//Object
-void Scene::insert_object_scene(eng::data::Object* object){
+//Entity
+void Scene::insert_entity_scene(eng::data::Entity* entity){
   eng::data::Set* data_set = eng_database->get_data_set();
   eng::data::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
-  //Insert into engine
-  eng_database->assign_ID(object);
-  vk_engine->insert_object_in_engine(object);
-  attributManager->compute_MinMax(object);
-  set_scene->insert_entity(object);
-  eng_glyph->create_glyph_object(object);
+  set_scene->insert_entity(entity);
 
   //---------------------------
 }
-void Scene::update_object(eng::data::Object* object){
-  //---------------------------
-
-  vk_engine->insert_object_in_engine(object);
-  attributManager->compute_MinMax(object);
-
-  //---------------------------
-}
-void Scene::remove_object(eng::data::Object* object){
-  //---------------------------
-
-  eng_glyph->remove_glyph_object(object);
-  vk_engine->remove_object_in_engine(object);
-
-  //---------------------------
-}
-
-//Entity
 void Scene::delete_entity(eng::data::Entity* entity){
   eng::data::Set* data_set = eng_database->get_data_set();
   eng::data::Set* set_scene = data_set->get_set("Scene");
@@ -143,5 +120,44 @@ void Scene::delete_entity_all(){
 
   //---------------------------
 }
+
+//Object
+void Scene::insert_object_scene(eng::data::Object* object){
+  eng::data::Set* data_set = eng_database->get_data_set();
+  eng::data::Set* set_scene = data_set->get_set("Scene");
+  //---------------------------
+
+  this->insert_object(object);
+  set_scene->insert_entity(object);
+
+  //---------------------------
+}
+void Scene::insert_object(eng::data::Object* object){
+  //---------------------------
+
+  eng_database->assign_ID(object);
+  vk_engine->insert_object_in_engine(object);
+  eng_glyph->create_glyph_object(object);
+
+  //---------------------------
+}
+void Scene::update_object(eng::data::Object* object){
+  //---------------------------
+
+  vk_engine->insert_object_in_engine(object);
+  attributManager->compute_MinMax(object);
+
+  //---------------------------
+}
+void Scene::remove_object(eng::data::Object* object){
+  //---------------------------
+
+  eng_glyph->remove_glyph_object(object);
+  vk_engine->remove_object_in_engine(object);
+
+  //---------------------------
+}
+
+
 
 }

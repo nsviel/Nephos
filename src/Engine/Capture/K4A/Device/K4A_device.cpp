@@ -40,7 +40,7 @@ void K4A_device::init(){
   cloud.object = new eng::data::Object();
   cloud.object->name = device.name;
   cloud.object->draw_type_name = "point";
-  eng_scene->insert_object_scene(cloud.object);
+  eng_scene->insert_object(cloud.object);
 
   //---------------------------
 }

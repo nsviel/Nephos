@@ -8,7 +8,10 @@
 K4A_swarm::K4A_swarm(Engine* engine){
   //---------------------------
 
+  eng::scene::Node* eng_data = engine->get_eng_data();
+
   this->engine = engine;
+  this->eng_scene = eng_data->get_eng_scene();
   this->str_swarm = new eng::kinect::structure::Swarm();
   this->default_folder = "../media/record/";
   this->default_file = "/home/aether/Desktop/versaille.mkv";
@@ -116,7 +119,8 @@ K4A_device* K4A_swarm::create_playback(string path){
   //---------------------------
 
   K4A_device* k4a_device = new K4A_device(engine);
-  k4a_device->device.index = str_swarm->nb_playback;
+  k4a_device->name = "playback_" + to_string(str_swarm->nb_device);
+  k4a_device->device.index = str_swarm->nb_device;
   k4a_device->device.is_playback = true;
   k4a_device->playback.path = path;
   k4a_device->playback.filename = info::get_filename_from_path(path);
@@ -129,6 +133,7 @@ K4A_device* K4A_swarm::create_playback(string path){
 
   k4a_device->init();
   k4a_device->run_playback(path);
+  eng_scene->insert_entity_scene(k4a_device);
 
   //---------------------------
   return k4a_device;
@@ -137,6 +142,7 @@ K4A_device* K4A_swarm::create_device(){
   //---------------------------
 
   K4A_device* k4a_device = new K4A_device(engine);
+  k4a_device->name = "device_" + to_string(str_swarm->nb_capture);
   k4a_device->device.index = str_swarm->nb_capture;
   k4a_device->device.is_playback = false;
   k4a_device->recorder.folder = default_folder;
@@ -148,6 +154,7 @@ K4A_device* K4A_swarm::create_device(){
 
   k4a_device->init();
   k4a_device->run_capture();
+  eng_scene->insert_entity_scene(k4a_device);
 
   //---------------------------
   return k4a_device;
