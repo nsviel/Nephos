@@ -10,12 +10,12 @@
 K4A_device::K4A_device(Engine* engine){
   //---------------------------
 
-  eng::scene::Node* eng_data = engine->get_eng_data();
+  eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->k4a_capture = new K4A_capture(engine);
   this->k4a_playback = new K4A_playback(engine);
-  this->eng_scene = eng_data->get_scene();
-  this->sce_glyph = eng_data->get_scene_glyph();
+  this->eng_scene = node_scene->get_scene();
+  this->sce_glyph = node_scene->get_scene_glyph();
   this->ope_transform = new eng::ope::Transformation();
 
   this->type = "K4A_device";

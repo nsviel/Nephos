@@ -12,8 +12,8 @@ namespace gui::kinect{
 Player::Player(Engine* engine){
   //---------------------------
 
-  eng::scene::Node* node_scene = engine->get_eng_data();
-  eng::capture::Node* node_capture = engine->get_eng_capture();
+  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::capture::Node* node_capture = engine->get_node_capture();
 
   this->sce_scene = node_scene->get_scene();
   this->kinect = node_capture->get_kinect();

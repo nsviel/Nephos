@@ -12,7 +12,7 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  eng::capture::Node* node_capture = engine->get_eng_capture();
+  eng::capture::Node* node_capture = engine->get_node_capture();
   eng::kinect::Kinect* kinect = node_capture->get_kinect();
 
   this->k4a_swarm = kinect->get_k4a_swarm();

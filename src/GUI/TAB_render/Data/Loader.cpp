@@ -15,10 +15,10 @@ Loader::Loader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  eng::scene::Node* eng_data = engine->get_eng_data();
+  eng::scene::Node* node_scene = engine->get_node_scene();
 
-  this->eng_scene = eng_data->get_scene();
-  this->eng_loader = eng_data->get_scene_loader();
+  this->eng_scene = node_scene->get_scene();
+  this->eng_loader = node_scene->get_scene_loader();
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();
   this->default_dir = file::get_current_parent_path_abs();

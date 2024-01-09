@@ -22,7 +22,7 @@ class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(eng::scene::Node* eng_data);
+  Loader(eng::scene::Node* node_scene);
   ~Loader();
 
 public:

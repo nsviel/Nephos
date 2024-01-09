@@ -12,9 +12,9 @@ Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  eng::scene::Node* eng_data = engine->get_eng_data();
+  eng::scene::Node* node_scene = engine->get_node_scene();
 
-  this->sce_database = eng_data->get_scene_database();
+  this->sce_database = node_scene->get_scene_database();
   this->rnd_set = new gui::rnd::data::Set(gui, &show_set);
   this->rnd_object = new gui::rnd::data::Entity(gui, &show_object);
 

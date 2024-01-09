@@ -27,17 +27,17 @@ public:
 
   inline util::Node* get_utility(){return utility;}
   inline Vulkan* get_eng_vulkan(){return eng_vulkan;}
-  inline eng::data::Camera* get_camera(){return eng_camera->get_camera();};
-  inline eng::camera::Node* get_eng_camera(){return eng_camera;}
-  inline eng::scene::Node* get_eng_data(){return eng_data;}
+  inline eng::data::Camera* get_camera(){return node_camera->get_camera();};
+  inline eng::camera::Node* get_node_camera(){return node_camera;}
+  inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::shader::Shader* get_eng_shader(){return eng_shader;}
-  inline eng::capture::Node* get_eng_capture(){return eng_capture;}
+  inline eng::capture::Node* get_node_capture(){return node_capture;}
 
 private:
   util::Node* utility;
-  eng::camera::Node* eng_camera;
-  eng::scene::Node* eng_data;
-  eng::capture::Node* eng_capture;
+  eng::camera::Node* node_camera;
+  eng::scene::Node* node_scene;
+  eng::capture::Node* node_capture;
   Vulkan* eng_vulkan;
   eng::shader::Shader* eng_shader;
   ENG_renderpass* eng_renderpass;

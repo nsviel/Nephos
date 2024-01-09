@@ -13,21 +13,21 @@ Engine::Engine(util::Node* utility){
   util::element::Window* utl_window = utility->get_utl_window();
 
   this->utility = utility;
-  this->eng_camera = new eng::camera::Node(this);
+  this->node_camera = new eng::camera::Node(this);
   this->eng_shader = new eng::shader::Shader(this);
   this->eng_vulkan = new Vulkan(utl_window->get_window());
-  this->eng_data = new eng::scene::Node(this);
+  this->node_scene = new eng::scene::Node(this);
   this->eng_renderpass = new ENG_renderpass(this);
-  this->eng_capture = new eng::capture::Node(this);
+  this->node_capture = new eng::capture::Node(this);
 
   //---------------------------
 }
 Engine::~Engine(){
   //---------------------------
 
-  delete eng_camera;
+  delete node_camera;
   delete eng_shader;
-  delete eng_data;
+  delete node_scene;
 
   //---------------------------
 }
@@ -37,18 +37,18 @@ void Engine::init(){
 
   eng_renderpass->init_renderpass();
   eng_vulkan->init();
-  eng_data->init();
-  eng_capture->init();
+  node_scene->init();
+  node_capture->init();
 
   //---------------------------
 }
 void Engine::loop(){
   //---------------------------
 
-  eng_camera->loop_cam_mouse();
-  eng_data->loop();
+  node_camera->loop_cam_mouse();
+  node_scene->loop();
   eng_vulkan->loop();
-  eng_capture->loop();
+  node_capture->loop();
 
   //---------------------------
 }
@@ -69,9 +69,9 @@ void Engine::wait(){
 void Engine::reset(){
   //---------------------------
 
-  eng_camera->reset();
-  eng_data->reset();
-  eng_capture->reset();
+  node_camera->reset();
+  node_scene->reset();
+  node_capture->reset();
 
   //---------------------------
 }
