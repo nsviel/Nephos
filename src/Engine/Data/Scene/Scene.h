@@ -48,7 +48,7 @@ private:
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
   eng::scene::Operation* sce_operation;
-  eng::ope::Attribut* attributManager;
+  eng::ope::Attribut* ope_attribut;
   eng::camera::Node* eng_camera;
 
   int ID_obj;

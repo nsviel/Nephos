@@ -66,8 +66,6 @@ void K4A_swarm::refresh_connected_device(){
     struct_swarm->nb_device = nb_device;
   }
 
-  this->manage_no_device();
-
   //---------------------------
 }
 void K4A_swarm::manage_new_device(int nb_new_device){

@@ -16,6 +16,13 @@ Kinect::Kinect(Engine* engine){
 Kinect::~Kinect(){}
 
 //Main function
+void Kinect::init(){
+  //---------------------------
+
+  k4a_swarm->manage_no_device();
+
+  //---------------------------
+}
 void Kinect::loop(){
   //---------------------------
 

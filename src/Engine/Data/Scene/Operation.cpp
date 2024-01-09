@@ -24,6 +24,7 @@ Operation::~Operation(){}
 
 //Main function
 void Operation::update_entity(eng::data::Entity* entity){
+  if(entity == nullptr) return;
   //---------------------------
 
   //Object entity
@@ -40,6 +41,7 @@ void Operation::update_entity(eng::data::Entity* entity){
   //---------------------------
 }
 void Operation::remove_entity(eng::data::Entity* entity){
+  if(entity == nullptr) return;
   //---------------------------
 
   //If entity is an object
@@ -62,6 +64,7 @@ void Operation::remove_entity(eng::data::Entity* entity){
   //---------------------------
 }
 void Operation::make_translation(eng::data::Entity* entity, vec3 translation){
+  if(entity == nullptr) return;
   //---------------------------
 
   //Object entity
@@ -76,6 +79,7 @@ void Operation::make_translation(eng::data::Entity* entity, vec3 translation){
   //---------------------------
 }
 void Operation::make_rotation(eng::data::Entity* entity, vec3 rotation){
+  if(entity == nullptr) return;
   //---------------------------
 
   //Object entity

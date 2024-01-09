@@ -54,16 +54,17 @@ void Set::select_next_entity(){
   for(int i=0; i<list_entity.size(); i++){
     eng::data::Entity* entity = *next(list_entity.begin(), i);
 
-    if(selected_entity->ID == entity->ID){
-      eng::data::Entity* selection;
+    if(this->selected_entity->ID == entity->ID){
+      eng::data::Entity* next_entity;
 
       if((i + 1) < list_entity.size()){
-        selection = *next(list_entity.begin(), i + 1);
+        next_entity = *next(list_entity.begin(), i + 1);
       }else{
-        selection = *next(list_entity.begin(), 0);
+        next_entity = *next(list_entity.begin(), 0);
       }
 
-      this->selected_entity = selection;
+      this->selected_entity = next_entity;
+      return;
     }
   }
 

@@ -22,7 +22,7 @@ Scene::Scene(eng::scene::Node* sce_node){
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->eng_camera = engine->get_eng_camera();
   this->sce_operation = new eng::scene::Operation(sce_node);
-  this->attributManager = new eng::ope::Attribut();
+  this->ope_attribut = new eng::ope::Attribut();
 
   this->ID_obj = 0;
 
@@ -147,7 +147,7 @@ void Scene::update_object(eng::data::Object* object){
   //---------------------------
 
   vk_engine->insert_object_in_engine(object);
-  attributManager->compute_MinMax(object);
+  ope_attribut->compute_MinMax(object);
 
   //---------------------------
 }
