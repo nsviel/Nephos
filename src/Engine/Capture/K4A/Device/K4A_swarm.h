@@ -32,16 +32,16 @@ public:
   void delete_device_all();
   void selecte_next_device();
 
-  inline K4A_device* get_selected_device(){return str_swarm->selected_device;}
-  inline list<K4A_device*>& get_list_device(){return str_swarm->list_device;}
-  inline int get_nb_device(){return str_swarm->nb_device;}
-  inline int get_nb_playback(){return str_swarm->nb_playback;}
-  inline void set_selected_device(K4A_device* device){str_swarm->selected_device = device;}
+  inline K4A_device* get_selected_device(){return struct_swarm->selected_device;}
+  inline list<K4A_device*>& get_list_device(){return struct_swarm->list_device;}
+  inline int get_nb_device(){return struct_swarm->nb_device;}
+  inline int get_nb_playback(){return struct_swarm->nb_playback;}
+  inline void set_selected_device(K4A_device* device){struct_swarm->selected_device = device;}
 
 private:
   Engine* engine;
   eng::scene::Scene* eng_scene;
-  eng::kinect::structure::Swarm* str_swarm;
+  eng::kinect::structure::Swarm* struct_swarm;
 
   string default_folder;
   string default_file;
