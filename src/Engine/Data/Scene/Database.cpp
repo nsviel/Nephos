@@ -20,12 +20,13 @@ void Database::init_set(){
   data_set->add_new_set("World");
   data_set->add_new_set("Scene");
 
-eng::data::Set* set = data_set->get_set("Scene");
-set->add_new_set("coucou");
+//eng::data::Set* set = data_set->get_set("Scene");
+//set->add_new_set("coucou");
   //---------------------------
 }
 
 void Database::assign_ID(eng::data::Entity* entity){
+  if(entity == nullptr) return;
   //----------------------------
 
   if(entity->ID == -1){

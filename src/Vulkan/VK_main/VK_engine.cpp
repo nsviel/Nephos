@@ -148,6 +148,7 @@ void VK_engine::reload_shader(string shader, string subshader){
 
 //Data function
 void VK_engine::insert_object_in_engine(eng::data::Object* object){
+  if(object == nullptr) return;
   //---------------------------
 
   //Check if object already in engine

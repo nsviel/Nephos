@@ -72,6 +72,7 @@ void Set::select_next_entity(){
   this->selected_entity = nullptr;
 }
 void Set::insert_entity(eng::data::Entity* entity){
+  if(entity == nullptr) return;
   //---------------------------
 
   this->list_entity.push_back(entity);

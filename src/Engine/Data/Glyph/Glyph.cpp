@@ -35,18 +35,16 @@ void Glyph::create_glyph_world(){
   //---------------------------
 
   this->remove_glyph_world();
-  this->list_glyph.push_back(new glyph::grid::Mesh());
-  this->list_glyph.push_back(new glyph::grid::Axis());
-  this->list_glyph.push_back(new glyph::grid::Plane());
+  this->list_glyph.push_back(new glyph::grid::Grid(vk_engine));
   this->list_glyph.push_back(new glyph::world::Axis());
 
   for(int i=0; i<list_glyph.size(); i++){
     eng::data::Glyph* glyph = *next(list_glyph.begin(), i);
 
     glyph->create();
-    sce_database->assign_ID(glyph->get_data());
-    vk_engine->insert_object_in_engine(glyph->get_data());
-    set_world->insert_entity(glyph->get_data());
+    sce_database->assign_ID(glyph->get_object());
+    vk_engine->insert_object_in_engine(glyph->get_object());
+    set_world->insert_entity(glyph->get_object());
   }
 
   //---------------------------
@@ -56,7 +54,7 @@ void Glyph::remove_glyph_world(){
 
   for(int i=0; i<list_glyph.size(); i++){
     eng::data::Glyph* glyph = *next(list_glyph.begin(), i);
-    vk_engine->remove_object_in_engine(glyph->get_data());
+    vk_engine->remove_object_in_engine(glyph->get_object());
     list_glyph.remove(glyph);
     delete glyph;
   }
@@ -75,8 +73,8 @@ void Glyph::create_glyph_object(eng::data::Object* object){
   for(int i=0; i<object->list_glyph.size(); i++){
     eng::data::Glyph* glyph = *next(object->list_glyph.begin(), i);
     glyph->create();
-    sce_database->assign_ID(glyph->get_data());
-    vk_engine->insert_object_in_engine(glyph->get_data());
+    sce_database->assign_ID(glyph->get_object());
+    vk_engine->insert_object_in_engine(glyph->get_object());
   }
 
   //---------------------------
@@ -87,8 +85,8 @@ void Glyph::update_glyph_object(eng::data::Object* object){
   for(int i=0; i<object->list_glyph.size(); i++){
     eng::data::Glyph* glyph = *next(object->list_glyph.begin(), i);
     glyph->update(object);
-    vk_engine->insert_object_in_engine(glyph->get_data());
-    eng_camera->compute_cam_mvp(glyph->get_data());
+    vk_engine->insert_object_in_engine(glyph->get_object());
+    eng_camera->compute_cam_mvp(glyph->get_object());
   }
 
   //---------------------------
@@ -98,7 +96,7 @@ void Glyph::remove_glyph_object(eng::data::Object* object){
 
   for(int i=0; i<object->list_glyph.size(); i++){
     eng::data::Glyph* glyph = *next(object->list_glyph.begin(), i);
-    vk_engine->remove_object_in_engine(glyph->get_data());
+    vk_engine->remove_object_in_engine(glyph->get_object());
   }
 
   //---------------------------

@@ -7,7 +7,7 @@ namespace glyph::world{
 Axis::Axis(){
   //---------------------------
 
-  this->name = "axis_world";
+  this->name = "Axis";
   this->is_visible = true;
 
   //---------------------------
