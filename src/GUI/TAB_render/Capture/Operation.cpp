@@ -7,11 +7,11 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Operation::Operation(eng::kinect::Kinect* kinect){
+Operation::Operation(eng::kinect::Node* node_kinect){
   //---------------------------
 
-  this->kinect = kinect;
-  this->k4a_swarm = kinect->get_k4a_swarm();
+  this->node_kinect = node_kinect;
+  this->k4a_swarm = node_kinect->get_k4a_swarm();
 
   this->item_width = 100;
 

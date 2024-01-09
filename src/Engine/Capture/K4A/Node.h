@@ -14,12 +14,12 @@ class Engine;
 
 namespace eng::kinect{
 
-class Kinect
+class Node
 {
 public:
   //Constructor / Destructor
-  Kinect(Engine* engine);
-  ~Kinect();
+  Node(Engine* engine);
+  ~Node();
 
 public:
   //Main function

@@ -13,14 +13,14 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
 
   Engine* engine = gui->get_engine();
   eng::capture::Node* node_capture = engine->get_node_capture();
-  eng::kinect::Kinect* kinect = node_capture->get_kinect();
+  eng::kinect::Node* node_kinect = node_capture->get_node_kinect();
 
-  this->k4a_swarm = kinect->get_k4a_swarm();
-  this->kin_capture = new gui::kinect::Capture(kinect);
-  this->kin_playback = new gui::kinect::Playback(kinect);
-  this->kin_recorder = new gui::kinect::Recorder(kinect);
+  this->k4a_swarm = node_kinect->get_k4a_swarm();
+  this->kin_capture = new gui::kinect::Capture(node_kinect);
+  this->kin_playback = new gui::kinect::Playback(node_kinect);
+  this->kin_recorder = new gui::kinect::Recorder(node_kinect);
   this->kin_player = new gui::kinect::Player(engine);
-  this->kin_operation = new gui::kinect::Operation(kinect);
+  this->kin_operation = new gui::kinect::Operation(node_kinect);
 
   //---------------------------
 }

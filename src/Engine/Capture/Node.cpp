@@ -9,7 +9,7 @@ namespace eng::capture{
 Node::Node(Engine* engine){
   //---------------------------
 
-  this->kinect = new eng::kinect::Kinect(engine);
+  this->node_kinect = new eng::kinect::Node(engine);
 
   //---------------------------
 }
@@ -19,14 +19,14 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  kinect->init();
+  node_kinect->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  kinect->loop();
+  node_kinect->loop();
 
   //---------------------------
 }
@@ -40,7 +40,7 @@ void Node::clean(){
 void Node::reset(){
   //---------------------------
 
-  kinect->reset();
+  node_kinect->reset();
 
   //---------------------------
 }

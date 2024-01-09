@@ -22,10 +22,10 @@ public:
   void clean();
   void reset();
 
-  inline eng::kinect::Kinect* get_kinect(){return kinect;}
+  inline eng::kinect::Node* get_node_kinect(){return node_kinect;}
 
 private:
-  eng::kinect::Kinect* kinect;
+  eng::kinect::Node* node_kinect;
 };
 
 }

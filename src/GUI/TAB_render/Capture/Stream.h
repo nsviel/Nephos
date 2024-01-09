@@ -42,7 +42,7 @@ public:
 
 private:
   GUI* gui;
-  eng::kinect::Kinect* kinect;
+  eng::kinect::Node* node_kinect;
   eng::kinect::data::Depth* k4a_depth;
   eng::kinect::data::Infrared* k4a_infrared;
   K4A_swarm* k4a_swarm;

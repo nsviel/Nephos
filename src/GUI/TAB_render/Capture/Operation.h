@@ -13,7 +13,7 @@ class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(eng::kinect::Kinect* kinect);
+  Operation(eng::kinect::Node* node_kinect);
   ~Operation();
 
   //Main function
@@ -23,7 +23,7 @@ public:
   void colorization();
 
 private:
-  eng::kinect::Kinect* kinect;
+  eng::kinect::Node* node_kinect;
   K4A_swarm* k4a_swarm;
 
   int item_width;

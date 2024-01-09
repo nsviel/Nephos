@@ -15,10 +15,10 @@ Stream::Stream(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   Engine* engine = gui->get_engine();
   eng::capture::Node* node_capture = engine->get_node_capture();
 
-  this->kinect = node_capture->get_kinect();
+  this->node_kinect = node_capture->get_node_kinect();
   this->k4a_depth = new eng::kinect::data::Depth();
   this->k4a_infrared = new eng::kinect::data::Infrared();
-  this->k4a_swarm = kinect->get_k4a_swarm();
+  this->k4a_swarm = node_kinect->get_k4a_swarm();
   this->gui = gui;
 
   this->vec_gui_stream.push_back(new gui::media::Stream(gui));

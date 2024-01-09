@@ -13,7 +13,7 @@ class Capture
 {
 public:
   //Constructor / Destructor
-  Capture(eng::kinect::Kinect* kinect);
+  Capture(eng::kinect::Node* node_kinect);
   ~Capture();
 
   //Main function
@@ -27,7 +27,7 @@ public:
   void firmware_info();
 
 private:
-  eng::kinect::Kinect* kinect;
+  eng::kinect::Node* node_kinect;
   K4A_swarm* k4a_swarm;
 
   int item_width;

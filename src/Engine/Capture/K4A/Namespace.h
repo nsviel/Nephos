@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Engine/Capture/K4A/Kinect.h>
+#include <Engine/Capture/K4A/Node.h>
 
 
 namespace eng::kinect{
   //---------------------------
 
-  class Kinect;
+  class Node;
 
   //---------------------------
 }

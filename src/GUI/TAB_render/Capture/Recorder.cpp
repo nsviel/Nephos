@@ -6,11 +6,11 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Recorder::Recorder(eng::kinect::Kinect* kinect){
+Recorder::Recorder(eng::kinect::Node* node_kinect){
   //---------------------------
 
-  this->kinect = kinect;
-  this->k4a_swarm = kinect->get_k4a_swarm();
+  this->node_kinect = node_kinect;
+  this->k4a_swarm = node_kinect->get_k4a_swarm();
 
   //---------------------------
 }
