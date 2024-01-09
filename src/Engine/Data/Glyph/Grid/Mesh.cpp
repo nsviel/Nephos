@@ -12,6 +12,7 @@ Mesh::Mesh(){
   this->color_submesh = vec4(0.24f, 0.24f, 0.24f, 1.0f);
   this->nb_cell = 10;
   this->nb_subcell = 10;
+  this->is_suppressible = false;
 
   //---------------------------
 }
@@ -28,7 +29,6 @@ void Mesh::create(){
   object->is_visible = true;
   object->draw_type_name = "line";
   object->is_permanent = true;
-  object->is_suppressible = false;
   object->unicolor = color_mesh;
   this->vec_object.push_back(object);
   this->update();

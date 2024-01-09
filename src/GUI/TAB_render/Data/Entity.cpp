@@ -45,67 +45,69 @@ void Entity::run_panel(){
 void Entity::design_panel(){
   //---------------------------
 
-  this->object_title(object_selected);
-  this->object_button(object_selected);
-  this->object_parameter(object_selected);
+  this->object_title(entity);
+  this->object_button(entity);
+  this->object_parameter(entity);
 
   //---------------------------
 }
 
 //Subfunction
-void Entity::object_title(eng::data::Object* object){
+void Entity::object_title(eng::data::Entity* entity){
   //---------------------------
 
-  this->panel_name = "[Entity]   " + object->name;
+  this->panel_name = "[Entity::" + entity->type + "]   " + entity->name;
 
   //---------------------------
 }
-void Entity::object_button(eng::data::Object* object){
+void Entity::object_button(eng::data::Entity* entity){
   //---------------------------
 
   //Suppression
-  if(object->is_suppressible){
+  if(entity->is_suppressible){
     if(ImGui::Button(ICON_FA_TRASH "##4567")){
-      eng_scene->delete_entity(object);
-      this->object_selected = nullptr;
+      eng_scene->delete_entity(entity);
+      this->entity = nullptr;
     }
   }
 
   //Centered
   ImGui::SameLine();
   if(ImGui::Button("C##399", ImVec2(20, 0))){
-    ope_operation->center_object(object);
+    //ope_operation->center_object(entity);
   }
 
   //---------------------------
 }
-void Entity::object_parameter(eng::data::Object* object){
+void Entity::object_parameter(eng::data::Entity* entity){
   //---------------------------
 
-  if(ImGui::BeginTable("object##table", 2, ImGuiTableFlags_BordersInnerV)){
+  if(ImGui::BeginTable("entity##table", 2, ImGuiTableFlags_BordersInnerV)){
     //Visibility
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Visibility"); ImGui::TableNextColumn();
-    ImGui::Checkbox("##4555", &object->is_visible);
+    ImGui::Checkbox("##4555", &entity->is_visible);
 
     //Name
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Name"); ImGui::TableNextColumn();
     static char str_n[256];
-    strcpy(str_n, object->name.c_str());
+    strcpy(str_n, entity->name.c_str());
     ImGui::SetNextItemWidth(item_width);
     if(ImGui::InputText("##name", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
-      object->name = str_n;
+      entity->name = str_n;
     }
 
     //Format
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Format"); ImGui::TableNextColumn();
-    static char str_f[256];
-    strcpy(str_f, object->file_format.c_str());
-    ImGui::SetNextItemWidth(item_width);
-    if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
-      object->file_format = str_f;
+    if(entity->type == "Object"){
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Format"); ImGui::TableNextColumn();
+      static char str_f[256];
+      strcpy(str_f, object->file_format.c_str());
+      ImGui::SetNextItemWidth(item_width);
+      if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
+        object->file_format = str_f;
+      }
     }
 
     //Uniform collection color

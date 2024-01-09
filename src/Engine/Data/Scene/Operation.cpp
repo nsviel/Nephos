@@ -65,7 +65,7 @@ void Operation::remove_entity(eng::data::Entity* entity){
     eng::kinect::Kinect* kinect = cap_node->get_kinect();
     K4A_swarm* k4a_swarm = kinect->get_k4a_swarm();
 
-    k4a_swarm->delete_device(device);
+    k4a_swarm->close_device(device);
   }
 
   //---------------------------

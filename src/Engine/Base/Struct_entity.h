@@ -17,6 +17,7 @@ struct Entity
   bool is_suppressible = true;
   bool is_permanent = false;
   std::string name = "";
+  std::string type = "entity";
 
   //---------------------------
 };

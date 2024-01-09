@@ -10,6 +10,7 @@ Plane::Plane(){
   this->name = "grid_plane";
   this->color = vec4(0.2f, 0.2f, 0.2f, 1.0f);
   this->nb_cell = 10;
+  this->is_suppressible = false;
 
   //---------------------------
 }
@@ -24,7 +25,6 @@ void Plane::create(){
   object->is_visible = true;
   object->draw_type_name = "triangle";
   object->is_permanent = true;
-  object->is_suppressible = false;
   object->unicolor = color;
   this->vec_object.push_back(object);
   this->update();

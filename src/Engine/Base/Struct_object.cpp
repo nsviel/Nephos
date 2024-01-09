@@ -9,6 +9,7 @@ Object::Object(){
   //---------------------------
 
   this->unicolor = math::random_color();
+  this->type = "Object";
 
   //---------------------------
 }

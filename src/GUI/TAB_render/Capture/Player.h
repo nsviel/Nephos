@@ -25,13 +25,12 @@ public:
   void player_slider();
 
   //Player button
-  void player_close();
   void player_start();
   void player_stop();
   void player_repeat();
   void player_record();
   void player_rotation();
-  void player_exit();
+  void player_close();
 
 private:
   eng::kinect::Kinect* kinect;

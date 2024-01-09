@@ -9,6 +9,7 @@ Axis::Axis(){
 
   this->name = "Axis";
   this->is_visible = true;
+  this->is_suppressible = false;
 
   //---------------------------
 }
@@ -25,7 +26,6 @@ void Axis::create(){
   object->is_visible = true;
   object->draw_type_name = "line";
   object->is_permanent = true;
-  object->is_suppressible = false;
   this->vec_object.push_back(object);
   this->update();
 

@@ -28,8 +28,8 @@ public:
   //Creation function
   K4A_device* create_playback(string path);
   K4A_device* create_device();
-  void delete_device(K4A_device* device);
-  void delete_device_all();
+  void close_device(K4A_device* device);
+  void close_device_all();
   void selecte_next_device();
 
   inline K4A_device* get_selected_device(){return struct_swarm->selected_device;}

@@ -26,7 +26,6 @@ void Player::draw_player(){
   this->player_control();
   this->player_slider();
 
-  this->player_close();
   this->player_start();
   ImGui::SameLine();
   this->player_stop();
@@ -37,7 +36,7 @@ void Player::draw_player(){
   ImGui::SameLine();
   this->player_rotation();
   ImGui::SameLine();
-  this->player_exit();
+  this->player_close();
 
   //---------------------------
 }
@@ -87,24 +86,6 @@ void Player::player_slider(){
 }
 
 //Player button
-void Player::player_close(){
-  K4A_device* k4a_device = k4a_swarm->get_selected_device();
-  if(k4a_device == nullptr || k4a_device->device.is_playback) return;
-  //---------------------------
-
-  //Close device button
-  if(!k4a_device->device.is_playback){
-    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 30, 30, 255));
-    if(ImGui::Button("Close")){
-      k4a_swarm->delete_device(k4a_device);
-    }
-    ImGui::PopStyleColor(2);
-    ImGui::SameLine();
-  }
-
-  //---------------------------
-}
 void Player::player_start(){
   K4A_device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
@@ -208,14 +189,14 @@ void Player::player_rotation(){
 
   //---------------------------
 }
-void Player::player_exit(){
+void Player::player_close(){
   K4A_device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
   if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-
+    k4a_swarm->close_device(k4a_device);
   }
   ImGui::PopStyleColor();
 

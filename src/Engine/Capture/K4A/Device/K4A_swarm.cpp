@@ -74,7 +74,7 @@ void K4A_swarm::manage_new_device(int nb_new_device){
 
   //If previsouly no device, we need to supress all default playback
   if(struct_swarm->nb_device == 0){
-    this->delete_device_all();
+    this->close_device_all();
   }
 
   //Create required number of new devices
@@ -88,7 +88,7 @@ void K4A_swarm::manage_less_device(int nb_less_device){
   //---------------------------
 
   //Suppress all devices
-  this->delete_device_all();
+  this->close_device_all();
 
   //If no real device create virtual one
   uint32_t nb_device = k4a_device_get_installed_count();
@@ -157,7 +157,7 @@ K4A_device* K4A_swarm::create_device(){
   //---------------------------
   return k4a_device;
 }
-void K4A_swarm::delete_device(K4A_device* k4a_device){
+void K4A_swarm::close_device(K4A_device* k4a_device){
   list<K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
@@ -171,13 +171,13 @@ void K4A_swarm::delete_device(K4A_device* k4a_device){
 
   //---------------------------
 }
-void K4A_swarm::delete_device_all(){
+void K4A_swarm::close_device_all(){
   list<K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
   for(int i=0; i<list_device.size(); i++){
     K4A_device* k4a_device = *std::next(list_device.begin(), i);
-    this->delete_device(k4a_device);
+    this->close_device(k4a_device);
   }
 
   //---------------------------

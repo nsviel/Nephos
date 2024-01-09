@@ -31,7 +31,7 @@ public:
   void object_line(eng::data::Object* object);
   void object_point(eng::data::Object* object);
 
-  inline void set_selected_object(eng::data::Object* object){this->object_selected = object;}
+  inline void set_selected_entity(eng::data::Entity* entity){this->entity = entity;}
 
 private:
   Panel* gui_render_panel;
@@ -39,7 +39,7 @@ private:
   eng::ope::Operation* ope_operation;
   eng::scene::Scene* eng_scene;
 
-  eng::data::Object* object_selected;
+  eng::data::Entity* entity;
   string panel_name;
   bool* panel_show;;
   int item_width;

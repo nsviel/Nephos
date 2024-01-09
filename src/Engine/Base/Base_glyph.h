@@ -15,6 +15,7 @@ public:
 
     this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
     this->is_visible = true;
+    this->type = "glyph";
 
     //---------------------------
   }
