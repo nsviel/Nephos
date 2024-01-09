@@ -4,7 +4,7 @@
 #include <Engine/Engine.h>
 #include <Engine/Data/Scene/Scene.h>
 #include <Engine/Camera/Namespace.h>
-#include <Utility/Node/Namespace.h>
+#include <Utility/Namespace.h>
 #include <Utility/Element/Window.h>
 #include <Utility/Function/Math/fct_math.h>
 

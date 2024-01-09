@@ -1,7 +1,7 @@
 #include "SCE.h"
 
 #include <Engine/Engine.h>
-#include <Utility/Node/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::shader{

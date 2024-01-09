@@ -2,7 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Engine/Base/Namespace.h>
-#include <Utility/Node/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::shader{

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Node/Namespace.h>
+#include <Utility/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Shader/Namespace.h>

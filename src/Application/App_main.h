@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Node/Namespace.h>
+#include <Utility/Namespace.h>
 
 class Config;
 class Engine;
