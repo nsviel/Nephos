@@ -45,11 +45,20 @@ void Entity::run_panel(){
   //---------------------------
 }
 void Entity::design_panel(){
+  if(entity == nullptr) close_panel();
   //---------------------------
 
   this->entity_title(entity);
   this->entity_button(entity);
   this->entity_parameter(entity);
+
+  //---------------------------
+}
+void Entity::close_panel(){
+  //---------------------------
+
+  this->entity = nullptr;
+  *panel_show = false;
 
   //---------------------------
 }
@@ -68,7 +77,8 @@ void Entity::entity_button(eng::data::Entity* entity){
   //Suppression
   if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
     sce_scene->delete_entity(entity);
-    this->entity = nullptr;
+    this->close_panel();
+    return;
   }
 
   //Centered

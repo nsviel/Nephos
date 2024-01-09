@@ -21,6 +21,7 @@ public:
   //Main function
   void run_panel();
   void design_panel();
+  void close_panel();
 
   //Sub functions
   void entity_title(eng::data::Entity* entity);
