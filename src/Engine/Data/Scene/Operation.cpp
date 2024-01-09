@@ -36,9 +36,7 @@ void Operation::update_entity(eng::data::Entity* entity){
   else if(eng::data::Glyph* glyph = dynamic_cast<eng::data::Glyph*>(entity)){
     vector<eng::data::Object*> vec_object = glyph->get_vec_object();
     for(int i=0; i<vec_object.size(); i++){
-      say(vec_object[i]->name);
       eng_camera->compute_cam_mvp(vec_object[i]);
-      sce_glyph->update_glyph_object(vec_object[i]);
     }
   }
   //K4A device entity

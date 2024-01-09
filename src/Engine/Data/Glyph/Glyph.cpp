@@ -34,17 +34,16 @@ void Glyph::create_glyph_world(){
   eng::data::Set* set_world = data_set->get_set("World");
   //---------------------------
 
-  this->remove_glyph_world();
-  this->list_glyph.push_back(new glyph::grid::Grid());
-  this->list_glyph.push_back(new glyph::world::Axis());
+  if(set_world->list_entity.size() != 0) return;
+  set_world->insert_entity(new glyph::grid::Axis());
+  set_world->insert_entity(new glyph::grid::Grid());
 
-  for(int i=0; i<list_glyph.size(); i++){
-    eng::data::Glyph* glyph = *next(list_glyph.begin(), i);
+  for(int i=0; i<set_world->list_entity.size(); i++){
+    eng::data::Glyph* glyph = (eng::data::Glyph*)*next(set_world->list_entity.begin(), i);
 
     //Glyph creation
     glyph->create();
     sce_database->assign_ID(glyph);
-    set_world->insert_entity(glyph);
 
     //Glyph data
     vector<eng::data::Object*> vec_object = glyph->get_vec_object();
@@ -56,21 +55,23 @@ void Glyph::create_glyph_world(){
   //---------------------------
 }
 void Glyph::remove_glyph_world(){
+  eng::data::Set* data_set = sce_database->get_data_set();
+  eng::data::Set* set_world = data_set->get_set("World");
   //---------------------------
 
-  for(int i=0; i<list_glyph.size(); i++){
-    eng::data::Glyph* glyph = *next(list_glyph.begin(), i);
-    vector<eng::data::Object*> vec_object = glyph->get_vec_object();
+  for(int i=0; i<set_world->list_entity.size(); i++){
+    eng::data::Glyph* glyph = (eng::data::Glyph*)*next(set_world->list_entity.begin(), i);
 
+    vector<eng::data::Object*> vec_object = glyph->get_vec_object();
     for(int j=0; j<vec_object.size(); j++){
       vk_engine->remove_object_in_engine(vec_object[j]);
     }
 
-    list_glyph.remove(glyph);
     delete glyph;
   }
 
   //---------------------------
+  set_world->list_entity.clear();
 }
 
 //Glyph object

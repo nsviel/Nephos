@@ -37,8 +37,6 @@ private:
   eng::scene::Node* eng_data;
   eng::scene::Database* sce_database;
   eng::camera::Node* eng_camera;
-
-  list<eng::data::Glyph*> list_glyph;
 };
 
 }
