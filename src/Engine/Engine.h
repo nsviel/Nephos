@@ -30,7 +30,7 @@ public:
   inline eng::data::Camera* get_camera(){return node_camera->get_camera();};
   inline eng::camera::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
-  inline eng::shader::Shader* get_eng_shader(){return eng_shader;}
+  inline eng::shader::Node* get_node_shader(){return node_shader;}
   inline eng::capture::Node* get_node_capture(){return node_capture;}
 
 private:
@@ -39,6 +39,6 @@ private:
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;
   Vulkan* eng_vulkan;
-  eng::shader::Shader* eng_shader;
+  eng::shader::Node* node_shader;
   ENG_renderpass* eng_renderpass;
 };

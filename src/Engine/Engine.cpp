@@ -14,7 +14,7 @@ Engine::Engine(util::Node* utility){
 
   this->utility = utility;
   this->node_camera = new eng::camera::Node(this);
-  this->eng_shader = new eng::shader::Shader(this);
+  this->node_shader = new eng::shader::Node(this);
   this->eng_vulkan = new Vulkan(utl_window->get_window());
   this->node_scene = new eng::scene::Node(this);
   this->eng_renderpass = new ENG_renderpass(this);
@@ -26,7 +26,7 @@ Engine::~Engine(){
   //---------------------------
 
   delete node_camera;
-  delete eng_shader;
+  delete node_shader;
   delete node_scene;
 
   //---------------------------

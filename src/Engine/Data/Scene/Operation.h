@@ -29,7 +29,7 @@ private:
   Engine* engine;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
-  eng::camera::Node* eng_camera;
+  eng::camera::Node* node_camera;
   eng::ope::Transformation* ope_transform;
 };
 

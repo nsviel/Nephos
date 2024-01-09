@@ -36,7 +36,7 @@ private:
   glyph::object::Camera* glyph_cam;
   eng::scene::Node* node_scene;
   eng::scene::Database* sce_database;
-  eng::camera::Node* eng_camera;
+  eng::camera::Node* node_camera;
 };
 
 }

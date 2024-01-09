@@ -1,9 +1,9 @@
-#include "Shader.h"
+#include "Node.h"
 
 
 namespace eng::shader{
 
-Shader::Shader(Engine* engine){
+Node::Node(Engine* engine){
   //---------------------------
 
   this->edl_shader = new eng::shader::EDL(engine);
@@ -12,7 +12,7 @@ Shader::Shader(Engine* engine){
 
   //---------------------------
 }
-Shader::~Shader(){
+Node::~Node(){
   //---------------------------
 
   delete edl_shader;

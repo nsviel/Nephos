@@ -49,7 +49,7 @@ private:
   eng::scene::Glyph* sce_glyph;
   eng::scene::Operation* sce_operation;
   eng::ope::Attribut* ope_attribut;
-  eng::camera::Node* eng_camera;
+  eng::camera::Node* node_camera;
 
   int ID_obj;
 };

@@ -4,7 +4,7 @@
 #include <Engine/Shader/EDL/EDL_param.h>
 #include <Engine/Shader/PSR/PSR.h>
 #include <Engine/Shader/Scene/SCE.h>
-#include <Engine/Shader/Shader.h>
+#include <Engine/Shader/Node.h>
 
 
 namespace eng::shader{
@@ -14,7 +14,7 @@ namespace eng::shader{
   class PSR;
   class EDL;
   class EDL_param;
-  class Shader;
+  class Node;
 
   //---------------------------
 }

@@ -34,7 +34,7 @@ public:
   void cmd_draw_triangle(vk::structure::Subpass* subpass);
 
 private:
-  eng::shader::Shader* eng_shader;
+  eng::shader::Node* node_shader;
   vk::structure::Vulkan* struct_vulkan;
   VK_descriptor* vk_descriptor;
   VK_uniform* vk_uniform;

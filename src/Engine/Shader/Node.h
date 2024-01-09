@@ -8,11 +8,11 @@ class Engine;
 
 namespace eng::shader{
 
-class Shader
+class Node
 {
 public:
-  Shader(Engine* engine);
-  ~Shader();
+  Node(Engine* engine);
+  ~Node();
 
 public:
   inline eng::shader::EDL* get_edl_shader(){return edl_shader;}

@@ -52,7 +52,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  eng::shader::Shader* eng_shader;
+  eng::shader::Node* node_shader;
   gui::editor::Text* editor_vs;
   gui::editor::Text* editor_fs;
   gui::widget::Console* gui_console;
