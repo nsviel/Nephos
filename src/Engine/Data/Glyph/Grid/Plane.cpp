@@ -13,30 +13,26 @@ Plane::Plane(){
 
   //---------------------------
 }
-Plane::~Plane(){
-  //---------------------------
-
-  delete data;
-
-  //---------------------------
-}
+Plane::~Plane(){}
 
 void Plane::create(){
+  if(vec_object.size() != 0) return;
   //---------------------------
 
-  this->data = new eng::data::Object();
-  data->is_visible = true;
-  data->draw_type_name = "triangle";
-  data->is_permanent = true;
-  data->is_suppressible = false;
-  data->unicolor = color;
+  eng::data::Object* object = new eng::data::Object();
+  object->is_visible = true;
+  object->draw_type_name = "triangle";
+  object->is_permanent = true;
+  object->is_suppressible = false;
+  object->unicolor = color;
+  this->vec_object.push_back(object);
   this->update();
 
   //---------------------------
 }
 void Plane::update(){
-  vector<vec3>& XYZ = data->xyz;
-  vector<vec4>& RGB = data->rgb;
+  vector<vec3>& XYZ = vec_object[0]->xyz;
+  vector<vec4>& RGB = vec_object[0]->rgb;
   float z = -0.004;
   //---------------------------
 

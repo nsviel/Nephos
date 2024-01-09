@@ -138,6 +138,7 @@ mat4 Node::compute_cam_mvp(){
   return mvpMatrix;
 }
 void Node::compute_cam_mvp(eng::data::Object* object){
+  if(object == nullptr) return;
   //---------------------------
 
   mat4 cam_modl = glm::transpose(object->model);

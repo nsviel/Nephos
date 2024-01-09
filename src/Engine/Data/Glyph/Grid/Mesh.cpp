@@ -15,32 +15,28 @@ Mesh::Mesh(){
 
   //---------------------------
 }
-Mesh::~Mesh(){
-  //---------------------------
-
-  delete data;
-
-  //---------------------------
-}
+Mesh::~Mesh(){}
 
 //Main function
 void Mesh::create(){
+  if(vec_object.size() != 0) return;
   //---------------------------
 
-  this->data = new eng::data::Object();
-  data->draw_line_width = 1;
-  data->is_visible = true;
-  data->draw_type_name = "line";
-  data->is_permanent = true;
-  data->is_suppressible = false;
-  data->unicolor = color_mesh;
+  eng::data::Object* object = new eng::data::Object();
+  object->draw_line_width = 1;
+  object->is_visible = true;
+  object->draw_type_name = "line";
+  object->is_permanent = true;
+  object->is_suppressible = false;
+  object->unicolor = color_mesh;
+  this->vec_object.push_back(object);
   this->update();
 
   //---------------------------
 }
 void Mesh::update(){
-  data->xyz.clear();
-  data->rgb.clear();
+  vec_object[0]->xyz.clear();
+  vec_object[0]->rgb.clear();
   //---------------------------
 
   this->construct_mesh();
@@ -51,8 +47,8 @@ void Mesh::update(){
 
 //Subfunction
 void Mesh::construct_mesh(){
-  vector<vec3>& XYZ = data->xyz;
-  vector<vec4>& RGB = data->rgb;
+  vector<vec3>& XYZ = vec_object[0]->xyz;
+  vector<vec4>& RGB = vec_object[0]->rgb;
   float z = -0.002;
   //---------------------------
 
@@ -74,8 +70,8 @@ void Mesh::construct_mesh(){
   //---------------------------
 }
 void Mesh::construct_submesh(){
-  vector<vec3>& XYZ = data->xyz;
-  vector<vec4>& RGB = data->rgb;
+  vector<vec3>& XYZ = vec_object[0]->xyz;
+  vector<vec4>& RGB = vec_object[0]->rgb;
   float z = -0.003;
   //---------------------------
 

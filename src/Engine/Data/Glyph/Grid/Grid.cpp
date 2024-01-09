@@ -14,13 +14,7 @@ Grid::Grid(VK_engine* vk_engine){
 
   //---------------------------
 }
-Grid::~Grid(){
-  //---------------------------
-
-  delete data;
-
-  //---------------------------
-}
+Grid::~Grid(){}
 
 void Grid::create(){
   //---------------------------
@@ -29,9 +23,9 @@ void Grid::create(){
   axis.create();
   plane.create();
 
-  vk_engine->insert_object_in_engine(mesh.get_object());
-  vk_engine->insert_object_in_engine(axis.get_object());
-  vk_engine->insert_object_in_engine(plane.get_object());
+  //vk_engine->insert_object_in_engine(mesh.get_object());
+  //vk_engine->insert_object_in_engine(axis.get_object());
+  //vk_engine->insert_object_in_engine(plane.get_object());
 
   //---------------------------
 }

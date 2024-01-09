@@ -22,16 +22,18 @@ Tree::~Tree(){}
 
 //Main function
 void Tree::create(){
+  if(vec_object.size() != 0) return;
   //---------------------------
 
   //Create glyph
-  data = new eng::data::Object();
-  data->name = "tree";
-  data->draw_line_width = 2;
-  data->is_visible = is_visible;
-  data->draw_type_name = "line";
-  data->is_permanent = true;
-  data->unicolor = color;
+  eng::data::Object* object = new eng::data::Object();
+  object->name = "tree";
+  object->draw_line_width = 2;
+  object->is_visible = is_visible;
+  object->draw_type_name = "line";
+  object->is_permanent = true;
+  object->unicolor = color;
+  this->vec_object.push_back(object);
 
   //---------------------------
 }
@@ -40,7 +42,7 @@ void Tree::update(eng::data::Object* object){
 
   if(is_visible){
     //octreeManager->create_octree(cloud, level);
-    data->xyz = object->xyz;
+    vec_object[0]->xyz = object->xyz;
   }
 
   //---------------------------

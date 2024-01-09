@@ -10,22 +10,26 @@ AABB::AABB(){
 
   //---------------------------
 }
+AABB::~AABB(){}
 
 //Main function
 void AABB::create(){
+  if(vec_object.size() != 0) return;
   //---------------------------
 
-  data = new eng::data::Object();
-  data->name = "aabb";
-  data->draw_line_width = 1;
-  data->is_visible = false;
-  data->draw_type_name = "line";
-  data->is_permanent = true;
-  data->unicolor = color;
+  eng::data::Object* object = new eng::data::Object();
+  object->name = "aabb";
+  object->draw_line_width = 1;
+  object->is_visible = false;
+  object->draw_type_name = "line";
+  object->is_permanent = true;
+  object->unicolor = color;
 
   for(int i=0; i<24; i++){
-    data->rgb.push_back(color);
+    object->rgb.push_back(color);
   }
+
+  this->vec_object.push_back(object);
 
   //---------------------------
 }
@@ -34,7 +38,7 @@ void AABB::update(eng::data::Object* object){
 
   vec3 min = object->min;
   vec3 max = object->max;
-  data->xyz = build_box(min, max);
+  vec_object[0]->xyz = build_box(min, max);
 
   //---------------------------
 }

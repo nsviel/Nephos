@@ -32,6 +32,11 @@ void Operation::update_entity(eng::data::Entity* entity){
     eng_camera->compute_cam_mvp(object);
     sce_glyph->update_glyph_object(object);
   }
+  //Glyph entity
+  else if(eng::data::Glyph* glyph = dynamic_cast<eng::data::Glyph*>(entity)){
+    //eng_camera->compute_cam_mvp(glyph->get_object());
+    //sce_glyph->update_glyph_object(glyph->get_object());
+  }
   //K4A device entity
   else if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
     eng_camera->compute_cam_mvp(device->cloud.object);

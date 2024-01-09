@@ -12,31 +12,27 @@ Axis::Axis(){
 
   //---------------------------
 }
-Axis::~Axis(){
-  //---------------------------
-
-  delete data;
-
-  //---------------------------
-}
+Axis::~Axis(){}
 
 void Axis::create(){
+  if(vec_object.size() != 0) return;
   //---------------------------
 
-  this->data = new eng::data::Object();
-  data->draw_line_width = 2;
-  data->is_visible = true;
-  data->draw_type_name = "line";
-  data->is_permanent = true;
-  data->is_suppressible = false;
-  data->unicolor = color;
+  eng::data::Object* object = new eng::data::Object();
+  object->draw_line_width = 2;
+  object->is_visible = true;
+  object->draw_type_name = "line";
+  object->is_permanent = true;
+  object->is_suppressible = false;
+  object->unicolor = color;
+  this->vec_object.push_back(object);
   this->update();
 
   //---------------------------
 }
 void Axis::update(){
-  vector<vec3>& XYZ = data->xyz;
-  vector<vec4>& RGB = data->rgb;
+  vector<vec3>& XYZ = vec_object[0]->xyz;
+  vector<vec4>& RGB = vec_object[0]->rgb;
   float z = -0.001;
   //---------------------------
 

@@ -10,6 +10,7 @@ class AABB : public eng::data::Glyph
 {
 public:
   AABB();
+  ~AABB();
 
 public:
   //Main function

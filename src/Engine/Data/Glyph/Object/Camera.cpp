@@ -14,15 +14,17 @@ Camera::~Camera(){}
 
 //Main function
 void Camera::create(){
+  if(vec_object.size() != 0) return;
   //---------------------------
 
-  data = new eng::data::Object();
-  data->name = "camera";
-  data->draw_line_width = 1;
-  data->is_visible = true;
-  data->draw_type_name = "line";
-  data->is_permanent = true;
-  data->unicolor = vec4(1, 1, 1, 0.2f);
+  eng::data::Object* object = new eng::data::Object();
+  object->name = "camera";
+  object->draw_line_width = 1;
+  object->is_visible = true;
+  object->draw_type_name = "line";
+  object->is_permanent = true;
+  object->unicolor = vec4(1, 1, 1, 0.2f);
+  this->vec_object.push_back(object);
 
   //---------------------------
 }
