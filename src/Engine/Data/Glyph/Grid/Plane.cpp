@@ -37,7 +37,7 @@ void Plane::create(){
 void Plane::update(){
   vector<vec3>& XYZ = data->xyz;
   vector<vec4>& RGB = data->rgb;
-  float z = -0.001;
+  float z = -0.004;
   //---------------------------
 
   XYZ.clear();

@@ -37,6 +37,7 @@ void Axis::create(){
 void Axis::update(){
   vector<vec3>& XYZ = data->xyz;
   vector<vec4>& RGB = data->rgb;
+  float z = -0.001;
   //---------------------------
 
   //Parameters
@@ -44,14 +45,14 @@ void Axis::update(){
   RGB.clear();
 
   //X axis
-  XYZ.push_back(vec3(-nb_cell, 0, 0));
-  XYZ.push_back(vec3(nb_cell, 0, 0));
+  XYZ.push_back(vec3(-nb_cell, 0, z));
+  XYZ.push_back(vec3(nb_cell, 0, z));
   RGB.push_back(color);
   RGB.push_back(color);
 
   //Y axis
-  XYZ.push_back(vec3(0, -nb_cell, 0.005));
-  XYZ.push_back(vec3(0, nb_cell, 0.005));
+  XYZ.push_back(vec3(0, -nb_cell, z));
+  XYZ.push_back(vec3(0, nb_cell, z));
   RGB.push_back(color);
   RGB.push_back(color);
 
