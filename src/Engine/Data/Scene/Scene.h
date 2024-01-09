@@ -29,6 +29,7 @@ public:
   void init();
   void loop();
   void reset();
+  eng::data::Entity* get_selected_entity();
 
   //Entity
   void insert_entity_scene(eng::data::Entity* entity);

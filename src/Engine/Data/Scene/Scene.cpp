@@ -64,6 +64,16 @@ void Scene::reset(){
 
   //---------------------------
 }
+eng::data::Entity* Scene::get_selected_entity(){
+  eng::data::Set* data_set = sce_database->get_data_set();
+  //---------------------------
+
+  eng::data::Set* set_scene = data_set->get_set("Scene");
+  eng::data::Entity* entity = set_scene->selected_entity;
+
+  //---------------------------
+  return entity;
+}
 
 //Entity
 void Scene::insert_entity_scene(eng::data::Entity* entity){

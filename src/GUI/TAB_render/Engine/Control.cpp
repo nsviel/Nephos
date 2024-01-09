@@ -130,37 +130,43 @@ void Control::control_keyboard_translation(){
       // Z key
       if(io.KeysDown[571]){
         vec3 translation = vec3(translation_qtt, 0, 0);
-        sce_operation->make_translation(translation);
+        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        sce_operation->make_translation(entity, translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
         vec3 translation = vec3(-translation_qtt, 0, 0);
-        sce_operation->make_translation(translation);
+        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        sce_operation->make_translation(entity, translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
         vec3 translation = vec3(0, translation_qtt, 0);
-        sce_operation->make_translation(translation);
+        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        sce_operation->make_translation(entity, translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
         vec3 translation = vec3(0, -translation_qtt, 0);
-        sce_operation->make_translation(translation);
+        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        sce_operation->make_translation(entity, translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
         vec3 translation = vec3(0, 0, translation_qtt);
-        sce_operation->make_translation(translation);
+        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        sce_operation->make_translation(entity, translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
         vec3 translation = vec3(0, 0, -translation_qtt);
-        sce_operation->make_translation(translation);
+        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        sce_operation->make_translation(entity, translation);
         break;
       }
     }
@@ -225,7 +231,8 @@ void Control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    sce_operation->make_rotation(R);
+    eng::data::Entity* entity = sce_scene->get_selected_entity();
+    sce_operation->make_rotation(entity, R);
   }
 
   //----------------------------

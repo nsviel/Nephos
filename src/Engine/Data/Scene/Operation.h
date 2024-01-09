@@ -20,8 +20,8 @@ public:
   //Main function
   void update_entity(eng::data::Entity* entity);
   void remove_entity(eng::data::Entity* entity);
-  void make_translation(vec3 translation);
-  void make_rotation(vec3 rotation);
+  void make_translation(eng::data::Entity* entity, vec3 translation);
+  void make_rotation(eng::data::Entity* entity, vec3 rotation);
 
 private:
   eng::scene::Database* sce_database;

@@ -45,12 +45,8 @@ void Operation::remove_entity(eng::data::Entity* entity){
 
   //---------------------------
 }
-void Operation::make_translation(vec3 translation){
-  eng::data::Set* data_set = sce_database->get_data_set();
+void Operation::make_translation(eng::data::Entity* entity, vec3 translation){
   //---------------------------
-
-  eng::data::Set* set_scene = data_set->get_set("Scene");
-  eng::data::Entity* entity = set_scene->selected_entity;
 
   //Object entity
   if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
@@ -63,12 +59,8 @@ void Operation::make_translation(vec3 translation){
 
   //---------------------------
 }
-void Operation::make_rotation(vec3 rotation){
-  eng::data::Set* data_set = sce_database->get_data_set();
+void Operation::make_rotation(eng::data::Entity* entity, vec3 rotation){
   //---------------------------
-
-  eng::data::Set* set_scene = data_set->get_set("Scene");
-  eng::data::Entity* entity = set_scene->selected_entity;
 
   //Object entity
   if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
