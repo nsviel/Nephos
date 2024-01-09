@@ -35,7 +35,7 @@ void Glyph::create_glyph_world(){
   //---------------------------
 
   this->remove_glyph_world();
-  this->list_glyph.push_back(new glyph::grid::Grid(vk_engine));
+  this->list_glyph.push_back(new glyph::grid::Grid());
   this->list_glyph.push_back(new glyph::world::Axis());
 
   for(int i=0; i<list_glyph.size(); i++){
@@ -114,7 +114,7 @@ void Glyph::remove_glyph_object(eng::data::Object* object){
   for(int i=0; i<object->list_glyph.size(); i++){
     eng::data::Glyph* glyph = *next(object->list_glyph.begin(), i);
     vector<eng::data::Object*> vec_object = glyph->get_vec_object();
-    
+
     for(int j=0; j<vec_object.size(); j++){
       vk_engine->remove_object_in_engine(vec_object[j]);
     }
