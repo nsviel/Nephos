@@ -22,7 +22,8 @@ public:
   void camera_left(eng::data::Camera* camera, float speed);
   void camera_mouse(eng::data::Camera* camera);
 
-  mat4 fp_view_mat(eng::data::Camera* camera);
+  //Camera matrix
+  mat4 compute_camera_view(eng::data::Camera* camera);
 
 
 private:

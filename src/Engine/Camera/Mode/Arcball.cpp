@@ -52,8 +52,8 @@ void Arcball::camera_mouse(eng::data::Camera* camera){
   //---------------------------
 }
 
-
-mat4 Arcball::arcball_view_mat(eng::data::Camera* camera){
+//Camera matrix
+mat4 Arcball::compute_camera_view(eng::data::Camera* camera){
   mat4 cam_view;
   //---------------------------
 
@@ -67,7 +67,6 @@ mat4 Arcball::arcball_view_mat(eng::data::Camera* camera){
   //---------------------------
   return cam_view;
 }
-
 
 //Subfunction
 vec2 Arcball::arcball_mouse_angle(){

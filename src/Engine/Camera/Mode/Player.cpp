@@ -72,8 +72,8 @@ void Player::camera_mouse(eng::data::Camera* camera){
   //---------------------------
 }
 
-
-mat4 Player::fp_view_mat(eng::data::Camera* camera){
+//Camera matrix
+mat4 Player::compute_camera_view(eng::data::Camera* camera){
   //---------------------------
 
   float azimuth = camera->angle_azimuth;

@@ -15,6 +15,7 @@ Control::Control(Engine* engine, eng::data::Camera* camera){
   util::Node* utility = engine->get_utility();
   util::element::Window* utl_window = utility->get_utl_window();
 
+  this->cam_proj = new eng::camera::Projection(utl_window);
   this->cam_zoom = new eng::camera::Zoom(utl_window);
 
   this->vec_mode.push_back(new eng::camera::mode::Player(utl_window));
@@ -76,24 +77,16 @@ void Control::control_zoom(float value){
 }
 
 //Camera matrix
-/*
-mat4 Node::compute_cam_view(){
+mat4 Control::compute_cam_view(){
   mat4 cam_view;
   //---------------------------
 
-  if(camera->cam_pose){
-    cam_view = camera->cam_pose_mat;
-  }else if(camera->mode == "player"){
-    cam_view = cam_fp->fp_view_mat(camera);
-  }else if(camera->mode == "arcball"){
-    camera->cam_COM_obj = arcball_origin;
-    cam_view = cam_arcball->arcball_view_mat(camera);
-  }
+  cam_view = active_mode->compute_camera_view(camera);
 
   //---------------------------
   return cam_view;
 }
-mat4 Node::compute_cam_proj(){
+mat4 Control::compute_cam_proj(){
   mat4 projection;
   //---------------------------
 
@@ -107,7 +100,7 @@ mat4 Node::compute_cam_proj(){
   //---------------------------
   return projection;
 }
-mat4 Node::compute_cam_mvp(){
+mat4 Control::compute_cam_mvp(){
   //---------------------------
 
   mat4 cam_modl = mat4(1);
@@ -119,7 +112,7 @@ mat4 Node::compute_cam_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void Node::compute_cam_mvp(eng::data::Object* object){
+void Control::compute_cam_mvp(eng::data::Object* object){
   if(object == nullptr) return;
   //---------------------------
 
@@ -131,7 +124,7 @@ void Node::compute_cam_mvp(eng::data::Object* object){
 
   //---------------------------
 }
-*/
+
 mat4 Control::compute_camera_pose(){
   //---------------------------
 

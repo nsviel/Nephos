@@ -22,7 +22,10 @@ public:
   void camera_left(eng::data::Camera* camera, float speed);
   void camera_mouse(eng::data::Camera* camera);
 
-  mat4 arcball_view_mat(eng::data::Camera* camera);
+  //Camera matrix
+  mat4 compute_camera_view(eng::data::Camera* camera);
+
+  //Subfunction
   vec2 arcball_mouse_angle();
   void rotate_by_angle(eng::data::Camera* camera, vec2 angle);
 

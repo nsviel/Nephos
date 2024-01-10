@@ -128,7 +128,7 @@ void VK_physical_device::rate_device_suitability(vk::structure::Physical_device&
     if(struct_vulkan->param.dedicated_gpu){
       score += 100000;
     }
-    else if(struct_vulkan->param.dedicated_gpu == false){
+    else{
       score -= 100000;
     }
   }

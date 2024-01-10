@@ -16,6 +16,7 @@ Operation::Operation(eng::scene::Node* node_scene){
   this->sce_database = node_scene->get_scene_database();
   this->sce_glyph = node_scene->get_scene_glyph();
   this->node_camera = engine->get_node_camera();
+  this->cam_control = node_camera->get_camera_control();
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();
   this->ope_attribut = new eng::ope::Attribut();
@@ -31,19 +32,19 @@ void Operation::update_entity(eng::data::Entity* entity){
 
   //Object entity
   if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
-    node_camera->compute_cam_mvp(object);
+    cam_control->compute_cam_mvp(object);
     sce_glyph->update_glyph_object(object);
   }
   //Glyph entity
   else if(eng::data::Glyph* glyph = dynamic_cast<eng::data::Glyph*>(entity)){
     vector<eng::data::Object*> vec_object = glyph->get_vec_object();
     for(int i=0; i<vec_object.size(); i++){
-      node_camera->compute_cam_mvp(vec_object[i]);
+      cam_control->compute_cam_mvp(vec_object[i]);
     }
   }
   //K4A device entity
   else if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
-    node_camera->compute_cam_mvp(device->cloud.object);
+    cam_control->compute_cam_mvp(device->cloud.object);
     sce_glyph->update_glyph_object(device->cloud.object);
   }
 

@@ -57,7 +57,7 @@ void Node::reset(){
 mat4 Node::compute_cam_view(){
   mat4 cam_view;
   //---------------------------
-
+/*
   if(camera->cam_pose){
     cam_view = camera->cam_pose_mat;
   }else if(camera->mode == "player"){
@@ -66,7 +66,7 @@ mat4 Node::compute_cam_view(){
     camera->cam_COM_obj = arcball_origin;
     cam_view = cam_arcball->arcball_view_mat(camera);
   }
-
+*/
   //---------------------------
   return cam_view;
 }
