@@ -1,4 +1,4 @@
-#include "Render.h"
+#include "Renderer.h"
 
 #include <Node/GUI.h>
 #include <Engine/Engine.h>
@@ -6,12 +6,13 @@
 #include <Utility/Namespace.h>
 #include <Vulkan/VK_main/VK_imgui.h>
 #include <Utility/Element/Window.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace gui::engine{
 
 //Constructor / Destructor
-Render::Render(GUI* gui){
+Renderer::Renderer(GUI* gui){
   //---------------------------
 
   util::Node* utility = gui->get_utility();
@@ -29,15 +30,15 @@ Render::Render(GUI* gui){
 
   //---------------------------
 }
-Render::~Render(){}
+Renderer::~Renderer(){}
 
 //Main function
-void Render::design_panel(){
+void Renderer::design_panel(){
   //---------------------------
 
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
   ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
-  if(ImGui::Begin("Render", NULL)){
+  if(ImGui::Begin("Renderer", NULL)){
     ImVec2 image_pose = ImGui::GetCursorScreenPos();
     this->engine_texture();
     this->engine_control();
@@ -50,16 +51,51 @@ void Render::design_panel(){
 }
 
 //Subfunction
-void Render::engine_texture(){
+void Renderer::engine_texture(){
   //---------------------------
 
+  ImVec2 image_pose = ImGui::GetCursorScreenPos();
   ImTextureID texture = vk_imgui->rendered_texture();
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
 
+
+
+/*
+  --- SIDE BUTTONS ---
+  ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
+  ImGui::SetNextWindowBgAlpha(0.0f);
+  ImGuiWindowFlags flags;
+  flags |= ImGuiWindowFlags_NoMove;
+  flags |= ImGuiWindowFlags_NoTitleBar;
+  flags |= ImGuiWindowFlags_NoResize;
+  flags |= ImGuiWindowFlags_AlwaysAutoResize;
+  flags |= ImGuiWindowFlags_NoSavedSettings;
+  flags |= ImGuiWindowFlags_NoFocusOnAppearing;
+  flags |= ImGuiWindowFlags_NoNav;
+  flags |= ImGuiWindowFlags_NoNavFocus;
+  flags |= ImGuiWindowFlags_NoScrollbar;
+  flags |= ImGuiWindowFlags_NoDocking;
+
+  if (ImGui::Begin("##osef138", nullptr, flags)){
+    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
+    if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##398", ImVec2(25, 25))){
+      //k4a_player->rotation(k4a_device, 1);
+    }
+    if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##39sss8", ImVec2(15, 15))){
+      //k4a_player->rotation(k4a_device, 1);
+    }
+    if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##39sss8", ImVec2(15, 15))){
+      //k4a_player->rotation(k4a_device, 1);
+    }
+    ImGui::PopStyleVar();
+  }
+  ImGui::End();
+*/
+
   //---------------------------
 }
-void Render::engine_control(){
+void Renderer::engine_control(){
   //---------------------------
 
   if(ImGui::IsItemHovered()){
@@ -72,7 +108,7 @@ void Render::engine_control(){
 
   //---------------------------
 }
-void Render::engine_overlay(ImVec2 image_pose){
+void Renderer::engine_overlay(ImVec2 image_pose){
   if(!with_profiler_overlay) return;
   //---------------------------
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GUI/TAB_render/Engine/Control.h>
-#include <GUI/TAB_render/Engine/Render.h>
+#include <GUI/TAB_render/Engine/Renderer.h>
 #include <GUI/TAB_render/Engine/Camera.h>
 #include <GUI/TAB_render/Engine/Shader.h>
 #include <GUI/TAB_render/Engine/Profiler.h>
@@ -15,7 +15,7 @@ namespace gui::engine{
   class Profiler;
   class Shader;
   class Camera;
-  class Render;
+  class Renderer;
 
   //---------------------------
 }

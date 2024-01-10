@@ -18,6 +18,7 @@ Operation::Operation(eng::scene::Node* node_scene){
   this->node_camera = engine->get_node_camera();
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();
+  this->ope_attribut = new eng::ope::Attribut();
 
   //---------------------------
 }
@@ -99,6 +100,24 @@ void Operation::make_rotation(eng::data::Entity* entity, vec3 rotation){
   //K4A device entity
   else if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
     ope_transform->make_rotation(device->cloud.object, device->cloud.object->COM, rotation);
+  }
+
+  //---------------------------
+}
+void Operation::make_rotation_X_90d(eng::data::Entity* entity, int value){
+  //---------------------------
+
+  //Object entity
+  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
+    ope_attribut->compute_MinMax(object);
+    ope_transform->make_rotation_axe_X(object, value * 90);
+    ope_operation->elevate_object(object);
+  }
+  //K4A device entity
+  else if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
+    ope_attribut->compute_MinMax(device->cloud.object);
+    ope_transform->make_rotation_axe_X(device->cloud.object, value * 90);
+    ope_operation->elevate_object(device->cloud.object);
   }
 
   //---------------------------

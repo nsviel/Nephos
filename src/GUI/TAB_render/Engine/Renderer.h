@@ -12,12 +12,12 @@ class VK_imgui;
 
 namespace gui::engine{
 
-class Render
+class Renderer
 {
 public:
   //Constructor / Destructor
-  Render(GUI* gui);
-  ~Render();
+  Renderer(GUI* gui);
+  ~Renderer();
 
 public:
   //Main functions

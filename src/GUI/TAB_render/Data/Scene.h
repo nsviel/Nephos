@@ -24,8 +24,9 @@ public:
   void design_panel();
 
   //Subfunction
+  void draw_button();
   void draw_window_background();
-  void tree_view();
+  void draw_tree_view();
   int data_node_tree(eng::data::Set* set);
 
   bool show_object   = false;
@@ -34,6 +35,8 @@ public:
 private:
   gui::rnd::data::Entity* rnd_object;
   gui::rnd::data::Set* rnd_set;
+  eng::scene::Scene* sce_scene;
+  eng::scene::Operation* sce_operation;
   eng::scene::Database* sce_database;
 
   bool* panel_show;;

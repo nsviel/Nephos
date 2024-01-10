@@ -15,6 +15,8 @@ Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name
   eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->sce_database = node_scene->get_scene_database();
+  this->sce_scene = node_scene->get_scene();
+  this->sce_operation = node_scene->get_scene_operation();
   this->rnd_set = new gui::rnd::data::Set(gui, &show_set);
   this->rnd_object = new gui::rnd::data::Entity(gui, &show_object);
 
@@ -28,13 +30,46 @@ void Scene::design_panel(){
 
   rnd_object->run_panel();
   rnd_set->run_panel();
+
+  this->draw_button();
   this->draw_window_background();
-  this->tree_view();
+  this->draw_tree_view();
 
   //---------------------------
 }
 
 //Subfunction
+void Scene::draw_button(){
+  eng::data::Set* data_set = sce_database->get_data_set();
+  eng::data::Set* set_scene = data_set->get_set("Scene");
+  eng::data::Entity* entity = set_scene->selected_entity;
+  //-------------------------------
+
+  if(entity == nullptr) return;
+  ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
+
+  //Suppression
+  if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
+    sce_scene->delete_entity(entity);
+    return;
+  }
+
+  //Centered
+  ImGui::SameLine();
+  if(entity->is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
+    sce_operation->make_center(entity);
+  }
+
+  ImGui::SameLine();
+  if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##39sss8")){
+    sce_operation->make_rotation_X_90d(entity, 1);
+  }
+
+  ImGui::PopStyleVar();
+  ImGui::Separator();
+
+  //-------------------------------
+}
 void Scene::draw_window_background(){
   //-------------------------------
 
@@ -65,7 +100,7 @@ void Scene::draw_window_background(){
 
   //-------------------------------
 }
-void Scene::tree_view(){
+void Scene::draw_tree_view(){
   eng::data::Set* data_set = sce_database->get_data_set();
   //---------------------------
 

@@ -63,16 +63,6 @@ void Player::record(K4A_device* k4a_device){
 
   //---------------------------
 }
-void Player::rotation(K4A_device* k4a_device, int value){
-  //---------------------------
-
-  ope_attribut->compute_MinMax(k4a_device->cloud.object);
-  ope_transform->make_rotation_axe_X(k4a_device->cloud.object, value * 90);
-  ope_operation->elevate_object(k4a_device->cloud.object);
-
-  //---------------------------
-}
-
 
 
 }

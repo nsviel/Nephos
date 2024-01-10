@@ -39,8 +39,6 @@ void Player::draw_player(){
   ImGui::SameLine();
   this->player_record();
   ImGui::SameLine();
-  this->player_rotation();
-  ImGui::SameLine();
   this->player_close();
 
   //---------------------------
@@ -178,19 +176,6 @@ void Player::player_record(){
       k4a_player->record(k4a_device);
     }
   }
-
-  //---------------------------
-}
-void Player::player_rotation(){
-  K4A_device* k4a_device = k4a_swarm->get_selected_device();
-  if(k4a_device == nullptr) return;
-  //---------------------------
-
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 45, 133, 255));
-  if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##398")){
-    k4a_player->rotation(k4a_device, 1);
-  }
-  ImGui::PopStyleColor();
 
   //---------------------------
 }

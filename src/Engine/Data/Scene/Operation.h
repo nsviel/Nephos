@@ -26,6 +26,7 @@ public:
   //Transformation
   void make_translation(eng::data::Entity* entity, vec3 translation);
   void make_rotation(eng::data::Entity* entity, vec3 rotation);
+  void make_rotation_X_90d(eng::data::Entity* entity, int value);
   void make_center(eng::data::Entity* entity);
 
 private:
@@ -35,6 +36,7 @@ private:
   eng::camera::Node* node_camera;
   eng::ope::Transformation* ope_transform;
   eng::ope::Operation* ope_operation;
+  eng::ope::Attribut* ope_attribut;
 };
 
 }
