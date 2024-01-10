@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Engine/Data/Glyph/Glyph.h>
+#include <Engine/Scene/Glyph/Glyph.h>
 #include <Engine/Operation/Namespace.h>
-#include <Engine/Data/Scene/Database.h>
-#include <Engine/Data/Scene/Operation.h>
-#include <Engine/Data/Glyph/Glyph.h>
-#include <Engine/Data/Node.h>
+#include <Engine/Scene/Data/Database.h>
+#include <Engine/Scene/Data/Operation.h>
+#include <Engine/Scene/Glyph/Glyph.h>
+#include <Engine/Scene/Node.h>
 #include <Engine/Base/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Data/Namespace.h>
+#include <Engine/Scene/Namespace.h>
 #include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Engine/Operation/Namespace.h>

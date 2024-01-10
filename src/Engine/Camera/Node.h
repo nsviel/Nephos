@@ -33,7 +33,7 @@ public:
 
   //Specific function
   mat4 compute_cam_world_pose();
-  void compute_zoom(float value);
+
 
   inline mat4 get_cam_view(){return compute_cam_view();}
   inline mat4 get_cam_proj(){return compute_cam_proj();}

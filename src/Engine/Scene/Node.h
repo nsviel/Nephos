@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Data/Namespace.h>
+#include <Engine/Scene/Namespace.h>
 
 class Engine;
 

@@ -2,7 +2,7 @@
 
 #include <Engine/Base/Struct_entity.h>
 #include <Engine/Capture/K4A/Structure/Namespace.h>
-#include <Engine/Data/Namespace.h>
+#include <Engine/Scene/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class K4A_capture;

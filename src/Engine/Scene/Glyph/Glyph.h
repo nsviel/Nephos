@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Engine/Data/Node.h>
-#include <Engine/Data/Scene/Database.h>
+#include <Engine/Scene/Node.h>
+#include <Engine/Scene/Data/Database.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 
-#include <Engine/Data/Glyph/World/Namespace.h>
-#include <Engine/Data/Glyph/Object/Namespace.h>
-#include <Engine/Data/Glyph/Grid/Namespace.h>
+#include <Engine/Scene/Glyph/World/Namespace.h>
+#include <Engine/Scene/Glyph/Object/Namespace.h>
+#include <Engine/Scene/Glyph/Grid/Namespace.h>
 
 class VK_engine;
 

@@ -118,20 +118,14 @@ mat4 Node::compute_cam_world_pose(){
   vec3 yaxis = cross(zaxis, xaxis);
 
   mat4 absPose(
-         xaxis[0], yaxis[0], zaxis[0], camera->cam_P[0],
-         xaxis[1], yaxis[1], zaxis[1], camera->cam_P[1],
-         xaxis[2], yaxis[2], zaxis[2], camera->cam_P[2],
-           0,       0,       0,     1);
+    xaxis[0], yaxis[0], zaxis[0], camera->cam_P[0],
+    xaxis[1], yaxis[1], zaxis[1], camera->cam_P[1],
+    xaxis[2], yaxis[2], zaxis[2], camera->cam_P[2],
+    0,       0,       0,     1);
 
   //---------------------------
   return absPose;
 }
-void Node::compute_zoom(float value){
-  //---------------------------
 
-  cam_zoom->compute_zoom_position(camera, value);
-
-  //---------------------------
-}
 
 }

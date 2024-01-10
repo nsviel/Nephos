@@ -4,7 +4,7 @@
 
 #include <Utility/Specific/common.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
-#include <Engine/Data/Namespace.h>
+#include <Engine/Scene/Namespace.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 
 class GUI;

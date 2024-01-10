@@ -2,7 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Engine/Camera/Namespace.h>
-#include <Engine/Data/Namespace.h>
+#include <Engine/Scene/Namespace.h>
 #include <Engine/Shader/Namespace.h>
 #include <Engine/Capture/Node.h>
 

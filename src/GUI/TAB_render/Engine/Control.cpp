@@ -2,7 +2,7 @@
 
 #include <Node/GUI.h>
 #include <Engine/Engine.h>
-#include <Engine/Data/Scene/Scene.h>
+#include <Engine/Scene/Data/Scene.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Utility/Element/Window.h>
@@ -206,7 +206,7 @@ void Control::control_mouse_wheel(){
 
   //Wheel + right clicked - Camera zoom
   if(io.MouseWheel && io.MouseDownDuration[1] >= 0.0f){
-    node_camera->compute_zoom(io.MouseWheel);
+    cam_control->control_zoom(io.MouseWheel);
   }
 
   //Wheel click - Change mouse wheel mode
