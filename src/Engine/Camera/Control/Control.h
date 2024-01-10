@@ -24,6 +24,10 @@ public:
   void control_zoom(float value);
 
   //Camera matrix
+  mat4 compute_cam_view();
+  mat4 compute_cam_proj();
+  mat4 compute_cam_mvp();
+  void compute_cam_mvp(eng::data::Object* object);
   mat4 compute_camera_pose();
 
 private:

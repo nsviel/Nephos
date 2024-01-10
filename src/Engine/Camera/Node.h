@@ -27,12 +27,9 @@ public:
 
   //MVP matrices
   mat4 compute_cam_view();
-  void compute_cam_mvp(eng::data::Object* object);
   mat4 compute_cam_proj();
   mat4 compute_cam_mvp();
-
-  //Specific function
-  mat4 compute_cam_world_pose();
+  void compute_cam_mvp(eng::data::Object* object);
 
 
   inline mat4 get_cam_view(){return compute_cam_view();}
