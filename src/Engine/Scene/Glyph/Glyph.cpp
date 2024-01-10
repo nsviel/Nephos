@@ -114,7 +114,7 @@ void Glyph::update_glyph_object(eng::data::Object* object){
     glyph->update(object);
     for(int j=0; j<vec_object.size(); j++){
       vk_engine->insert_object_in_engine(vec_object[j]);
-      cam_control->compute_cam_mvp(vec_object[j]);
+      cam_control->compute_camera_mvp(vec_object[j]);
     }
   }
 

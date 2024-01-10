@@ -77,7 +77,7 @@ void Control::control_zoom(float value){
 }
 
 //Camera matrix
-mat4 Control::compute_cam_view(){
+mat4 Control::compute_camera_view(){
   mat4 cam_view;
   //---------------------------
 
@@ -86,7 +86,7 @@ mat4 Control::compute_cam_view(){
   //---------------------------
   return cam_view;
 }
-mat4 Control::compute_cam_proj(){
+mat4 Control::compute_camera_proj(){
   mat4 projection;
   //---------------------------
 
@@ -100,25 +100,25 @@ mat4 Control::compute_cam_proj(){
   //---------------------------
   return projection;
 }
-mat4 Control::compute_cam_mvp(){
+mat4 Control::compute_camera_mvp(){
   //---------------------------
 
   mat4 cam_modl = mat4(1);
-  mat4 cam_view = compute_cam_view();
-  mat4 cam_proj = compute_cam_proj();
+  mat4 cam_view = compute_camera_view();
+  mat4 cam_proj = compute_camera_proj();
 
   mat4 mvpMatrix = cam_proj * cam_view * cam_modl;
 
   //---------------------------
   return mvpMatrix;
 }
-void Control::compute_cam_mvp(eng::data::Object* object){
+void Control::compute_camera_mvp(eng::data::Object* object){
   if(object == nullptr) return;
   //---------------------------
 
   mat4 cam_modl = glm::transpose(object->model);
-  mat4 cam_view = compute_cam_view();
-  mat4 cam_proj = compute_cam_proj();
+  mat4 cam_view = compute_camera_view();
+  mat4 cam_proj = compute_camera_proj();
 
   object->mvp = cam_proj * cam_view * cam_modl;
 
