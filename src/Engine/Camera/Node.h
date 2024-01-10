@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Engine/Base/Namespace.h>
+#include <Engine/Camera/Namespace.h>
 #include <Engine/Camera/Mode/Namespace.h>
-#include <Engine/Camera/Projection/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
 
@@ -47,8 +47,8 @@ private:
   Engine* engine;
   eng::camera::mode::Arcball* cam_arcball;
   eng::camera::mode::First_person* cam_fp;
-  eng::camera::proj::Zoom* cam_zoom;
-  eng::camera::proj::Projection* cam_proj;
+  eng::camera::Zoom* cam_zoom;
+  eng::camera::Projection* cam_proj;
 
   eng::data::Camera* camera;
   vec3 arcball_origin;

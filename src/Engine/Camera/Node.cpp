@@ -18,8 +18,8 @@ Node::Node(Engine* engine){
   this->camera = new eng::data::Camera();
   this->cam_arcball = new eng::camera::mode::Arcball(utl_window);
   this->cam_fp = new eng::camera::mode::First_person(utl_window);
-  this->cam_zoom = new eng::camera::proj::Zoom(utl_window);
-  this->cam_proj = new eng::camera::proj::Projection(utl_window);
+  this->cam_zoom = new eng::camera::Zoom(utl_window);
+  this->cam_proj = new eng::camera::Projection(utl_window);
 
   this->arcball_origin = vec3(0, 0, 0);
 

@@ -49,20 +49,27 @@ void Scene::draw_button(){
   ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
 
   //Suppression
-  if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
+  if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##supressionentity")){
     sce_scene->delete_entity(entity);
     return;
   }
 
   //Centered
   ImGui::SameLine();
-  if(entity->is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
+  if(entity->is_movable && ImGui::Button("C##centerentity", ImVec2(20, 0))){
     sce_operation->make_center(entity);
   }
 
+  //Rotation 90° around X axis
   ImGui::SameLine();
-  if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##39sss8")){
+  if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
     sce_operation->make_rotation_X_90d(entity, 1);
+  }
+
+  //Camera mode
+  ImGui::SameLine();
+  if(ImGui::Button(ICON_FA_CAMERA "##camera123")){
+
   }
 
   ImGui::PopStyleVar();

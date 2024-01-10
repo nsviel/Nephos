@@ -1,7 +1,7 @@
 #include "Zoom.h"
 
 
-namespace eng::camera::proj{
+namespace eng::camera{
 
 //Constructor / Destructor
 Zoom::Zoom(util::element::Window* utl_window){
