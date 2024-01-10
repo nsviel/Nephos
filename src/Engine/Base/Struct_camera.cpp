@@ -26,7 +26,7 @@ void Camera::reset(){
   this->cam_P = glm::vec3(-2, -2, 2);
 
   this->projection = CAMERA_PROJ_PERSPECTIVE;
-  this->mode = CAMERA_MODE_PLAYER;
+  this->mode = CAMERA_MODE_ARCBALL;
 
   //---------------------------
 }

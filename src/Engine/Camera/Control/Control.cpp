@@ -20,7 +20,6 @@ Control::Control(Engine* engine, eng::data::Camera* camera){
 
   this->vec_mode.push_back(new eng::camera::mode::Player(utl_window));
   this->vec_mode.push_back(new eng::camera::mode::Arcball(utl_window));
-  this->active_mode = vec_mode[0];
   this->camera = camera;
 
   //---------------------------
@@ -128,7 +127,6 @@ void Control::compute_camera_mvp(eng::data::Object* object){
 
   //---------------------------
 }
-
 mat4 Control::compute_camera_pose(){
   //---------------------------
 
@@ -144,6 +142,24 @@ mat4 Control::compute_camera_pose(){
 
   //---------------------------
   return absPose;
+}
+
+//Camera parameter
+void Control::set_camera_mode(){
+  //---------------------------
+
+  switch(camera->mode){
+    case CAMERA_MODE_PLAYER:{
+      this->active_mode = vec_mode[0];
+      break;
+    }
+    case CAMERA_MODE_ARCBALL:{
+      this->active_mode = vec_mode[1];
+      break;
+    }
+  }
+
+  //---------------------------
 }
 
 

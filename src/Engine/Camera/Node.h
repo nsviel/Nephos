@@ -20,6 +20,7 @@ public:
 
 public:
   //Main function
+  void init();
   void loop();
   void reset();
 

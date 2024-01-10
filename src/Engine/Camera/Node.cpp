@@ -27,6 +27,13 @@ Node::~Node(){
 }
 
 //Main function
+void Node::init(){
+  //---------------------------
+
+  cam_control->set_camera_mode();
+
+  //---------------------------
+}
 void Node::loop(){
   //---------------------------
 

@@ -30,10 +30,13 @@ public:
   void compute_camera_mvp(eng::data::Object* object);
   mat4 compute_camera_pose();
 
+  //Camera parameter
+  void set_camera_mode();
+
 private:
   eng::camera::Zoom* cam_zoom;
   eng::camera::Projection* cam_proj;
-  
+
   vector<eng::camera::mode::Base*> vec_mode;
   eng::camera::mode::Base* active_mode;
   eng::data::Camera* camera;

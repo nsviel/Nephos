@@ -39,6 +39,7 @@ void Engine::init(){
   eng_vulkan->init();
   node_scene->init();
   node_capture->init();
+  node_camera->init();
 
   //---------------------------
 }
