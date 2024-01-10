@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Utility/Namespace.h>

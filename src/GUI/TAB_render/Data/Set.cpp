@@ -1,6 +1,6 @@
 #include "Set.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Operation/Transformation/Attribut.h>
 
 

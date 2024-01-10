@@ -1,6 +1,6 @@
 #include "Stream.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Utility/Namespace.h>
 #include <Engine/Capture/K4A/Device/K4A_swarm.h>

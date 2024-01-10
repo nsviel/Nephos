@@ -1,6 +1,6 @@
 #include "Shader.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_shader/VK_reload.h>

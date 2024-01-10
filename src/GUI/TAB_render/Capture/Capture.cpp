@@ -1,6 +1,6 @@
 #include "Capture.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Capture/K4A/Device/K4A_swarm.h>
 
 

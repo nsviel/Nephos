@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Engine.h>
 #include <image/IconsFontAwesome6.h>
 

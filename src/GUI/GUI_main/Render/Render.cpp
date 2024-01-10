@@ -1,6 +1,6 @@
 #include "Render.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Utility/Namespace.h>
 #include <Utility/Element/Window.h>

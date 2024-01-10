@@ -1,6 +1,6 @@
 #include "Loader.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Engine.h>
 #include <GUI/GUI_main/Interface/Tab.h>
 #include <Engine/Scene/Namespace.h>

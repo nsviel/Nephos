@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Engine/Base/Namespace.h>
 

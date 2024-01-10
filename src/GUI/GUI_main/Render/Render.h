@@ -2,7 +2,7 @@
 
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Vulkan/VK_main/VK_info.h>
-#include <GUI/GUI_main/Node/Namespace.h>
+#include <GUI/GUI_main/Namespace.h>
 
 class GUI;
 class Vulkan;

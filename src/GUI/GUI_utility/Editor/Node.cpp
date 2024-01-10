@@ -1,6 +1,6 @@
 //https://github.com/thedmd/imgui-node-editor
 #include "Node.h"
-#include <Node/GUI.h>
+#include <GUI.h>
 
 
 namespace gui::editor{

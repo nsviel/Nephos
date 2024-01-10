@@ -1,6 +1,6 @@
 #include "Text.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <GUI/GUI_main/Style/GUI_font.h>
 
 

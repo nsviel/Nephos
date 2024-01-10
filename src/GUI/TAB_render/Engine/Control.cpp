@@ -1,6 +1,6 @@
 #include "Control.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Engine/Scene/Data/Scene.h>
 #include <Engine/Camera/Namespace.h>

@@ -1,5 +1,5 @@
 #include "Hexa.h"
-#include <Node/GUI.h>
+#include <GUI.h>
 
 
 namespace gui::editor{

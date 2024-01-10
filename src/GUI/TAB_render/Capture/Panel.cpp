@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-#include <Node/GUI.h>
+#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Utility/Namespace.h>
 

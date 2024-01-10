@@ -1,5 +1,5 @@
 #include "Dialog.h"
-#include <Node/GUI.h>
+#include <GUI.h>
 
 
 namespace gui::widget{
