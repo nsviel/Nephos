@@ -30,6 +30,7 @@ public:
   void rotate_by_angle(eng::data::Camera* camera, vec2 angle);
 
 private:
+  vec3 origin;
 };
 
 }

@@ -27,11 +27,8 @@ public:
   inline eng::camera::Control* get_camera_control(){return cam_control;}
 
 private:
-  Engine* engine;
   eng::camera::Control* cam_control;
   eng::data::Camera* camera;
-  
-  vec3 arcball_origin;
 };
 
 }
