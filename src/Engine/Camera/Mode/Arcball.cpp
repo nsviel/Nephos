@@ -12,7 +12,7 @@ Arcball::Arcball(util::element::Window* utl_window) : Base(utl_window){
 }
 Arcball::~Arcball(){}
 
-//Main function
+//Camera movement
 void Arcball::camera_up(eng::data::Camera* camera, float speed){
   //---------------------------
 
@@ -43,6 +43,14 @@ void Arcball::camera_left(eng::data::Camera* camera, float speed){
 
   //---------------------------
 }
+void Arcball::camera_mouse(eng::data::Camera* camera){
+  //---------------------------
+
+  vec2 angle = arcball_mouse_angle();
+  this->rotate_by_angle(camera, angle);
+
+  //---------------------------
+}
 
 
 mat4 Arcball::arcball_view_mat(eng::data::Camera* camera){
@@ -59,14 +67,7 @@ mat4 Arcball::arcball_view_mat(eng::data::Camera* camera){
   //---------------------------
   return cam_view;
 }
-void Arcball::arcball_cam_mouse(eng::data::Camera* camera){
-  //---------------------------
 
-  vec2 angle = arcball_mouse_angle();
-  this->rotate_by_angle(camera, angle);
-
-  //---------------------------
-}
 
 //Subfunction
 vec2 Arcball::arcball_mouse_angle(){

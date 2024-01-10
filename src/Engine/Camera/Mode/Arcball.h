@@ -15,13 +15,14 @@ public:
   ~Arcball();
 
 public:
+  //Camera movement
   void camera_up(eng::data::Camera* camera, float speed);
   void camera_down(eng::data::Camera* camera, float speed);
   void camera_right(eng::data::Camera* camera, float speed);
   void camera_left(eng::data::Camera* camera, float speed);
+  void camera_mouse(eng::data::Camera* camera);
 
   mat4 arcball_view_mat(eng::data::Camera* camera);
-  void arcball_cam_mouse(eng::data::Camera* camera);
   vec2 arcball_mouse_angle();
   void rotate_by_angle(eng::data::Camera* camera, vec2 angle);
 

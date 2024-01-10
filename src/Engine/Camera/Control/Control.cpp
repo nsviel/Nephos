@@ -15,9 +15,6 @@ Control::Control(Engine* engine, eng::data::Camera* camera){
   util::Node* utility = engine->get_utility();
   util::element::Window* utl_window = utility->get_utl_window();
 
-  this->mode_arcball = new eng::camera::mode::Arcball(utl_window);
-  this->mode_player = new eng::camera::mode::Player(utl_window);
-
   this->vec_mode.push_back(new eng::camera::mode::Player(utl_window));
   this->vec_mode.push_back(new eng::camera::mode::Arcball(utl_window));
   this->active_mode = vec_mode[0];
@@ -62,8 +59,7 @@ void Control::control_mouse(){
   //---------------------------
 
   if(camera->cam_move){
-    if(camera->mode == "player")       mode_player->fp_cam_mouse(camera);
-    else if(camera->mode == "arcball") mode_arcball->arcball_cam_mouse(camera);
+    active_mode->camera_mouse(camera);
     ImGui::SetMouseCursor(ImGuiMouseCursor_None);
   }
 

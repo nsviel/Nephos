@@ -23,9 +23,6 @@ public:
   void control_mouse();
 
 private:
-  eng::camera::mode::Arcball* mode_arcball;
-  eng::camera::mode::Player* mode_player;
-
   vector<eng::camera::mode::Base*> vec_mode;
   eng::camera::mode::Base* active_mode;
   eng::data::Camera* camera;

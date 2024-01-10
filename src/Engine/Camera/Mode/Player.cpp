@@ -13,7 +13,7 @@ Player::Player(util::element::Window* utl_window) : Base(utl_window){
 }
 Player::~Player(){}
 
-//MAin function
+//Camera movement
 void Player::camera_up(eng::data::Camera* camera, float speed){
   //---------------------------
 
@@ -42,29 +42,7 @@ void Player::camera_left(eng::data::Camera* camera, float speed){
 
   //---------------------------
 }
-
-
-mat4 Player::fp_view_mat(eng::data::Camera* camera){
-  //---------------------------
-
-  float azimuth = camera->angle_azimuth;
-  float elevation = camera->angle_elevation;
-
-  //Compute camera
-  camera->cam_R = normalize(vec3(cos(azimuth - M_PI/2.0f), sin(azimuth - M_PI/2.0f), 0));
-  camera->cam_F = vec3(cos(elevation) * cos(azimuth), cos(elevation) * sin(azimuth), sin(elevation));
-  camera->cam_U = normalize(cross(camera->cam_R, camera->cam_F));
-  vec3 cam_target = camera->cam_P + camera->cam_F;
-
-  //Compute view matrix
-  mat4 cam_view = lookAt(camera->cam_P, cam_target, camera->cam_U);
-
-  camera->mat_view = cam_view;
-
-  //---------------------------
-  return cam_view;
-}
-void Player::fp_cam_mouse(eng::data::Camera* camera){
+void Player::camera_mouse(eng::data::Camera* camera){
   //---------------------------
 
   float& azimuth = camera->angle_azimuth;
@@ -93,5 +71,28 @@ void Player::fp_cam_mouse(eng::data::Camera* camera){
 
   //---------------------------
 }
+
+
+mat4 Player::fp_view_mat(eng::data::Camera* camera){
+  //---------------------------
+
+  float azimuth = camera->angle_azimuth;
+  float elevation = camera->angle_elevation;
+
+  //Compute camera
+  camera->cam_R = normalize(vec3(cos(azimuth - M_PI/2.0f), sin(azimuth - M_PI/2.0f), 0));
+  camera->cam_F = vec3(cos(elevation) * cos(azimuth), cos(elevation) * sin(azimuth), sin(elevation));
+  camera->cam_U = normalize(cross(camera->cam_R, camera->cam_F));
+  vec3 cam_target = camera->cam_P + camera->cam_F;
+
+  //Compute view matrix
+  mat4 cam_view = lookAt(camera->cam_P, cam_target, camera->cam_U);
+
+  camera->mat_view = cam_view;
+
+  //---------------------------
+  return cam_view;
+}
+
 
 }
