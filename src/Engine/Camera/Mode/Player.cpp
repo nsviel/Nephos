@@ -1,10 +1,10 @@
-#include "First_person.h"
+#include "Player.h"
 
 
 namespace eng::camera::mode{
 
 //Constructor / Destructor
-First_person::First_person(util::element::Window* utl_window){
+Player::Player(util::element::Window* utl_window){
   //---------------------------
 
   this->utl_window = utl_window;
@@ -13,9 +13,9 @@ First_person::First_person(util::element::Window* utl_window){
 
   //---------------------------
 }
-First_person::~First_person(){}
+Player::~Player(){}
 
-mat4 First_person::fp_view_mat(eng::data::Camera* camera){
+mat4 Player::fp_view_mat(eng::data::Camera* camera){
   //---------------------------
 
   float azimuth = camera->angle_azimuth;
@@ -35,7 +35,7 @@ mat4 First_person::fp_view_mat(eng::data::Camera* camera){
   //---------------------------
   return cam_view;
 }
-void First_person::fp_cam_mouse(eng::data::Camera* camera){
+void Player::fp_cam_mouse(eng::data::Camera* camera){
   //---------------------------
 
   float& azimuth = camera->angle_azimuth;

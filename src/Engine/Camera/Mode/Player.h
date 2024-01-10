@@ -7,11 +7,11 @@
 
 namespace eng::camera::mode{
 
-class First_person
+class Player
 {
 public:
-  First_person(util::element::Window* utl_window);
-  ~First_person();
+  Player(util::element::Window* utl_window);
+  ~Player();
 
 public:
   mat4 fp_view_mat(eng::data::Camera* camera);

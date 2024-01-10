@@ -28,7 +28,7 @@ public:
 
 private:
   eng::camera::mode::Arcball* mode_arcball;
-  eng::camera::mode::First_person* mode_player;
+  eng::camera::mode::Player* mode_player;
 
   eng::data::Camera* camera;
 };

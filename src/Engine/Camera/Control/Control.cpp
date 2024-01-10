@@ -16,7 +16,7 @@ Control::Control(Engine* engine, eng::data::Camera* camera){
   util::element::Window* utl_window = utility->get_utl_window();
 
   this->mode_arcball = new eng::camera::mode::Arcball(utl_window);
-  this->mode_player = new eng::camera::mode::First_person(utl_window);
+  this->mode_player = new eng::camera::mode::Player(utl_window);
   this->camera = camera;
 
   //---------------------------
