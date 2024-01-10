@@ -14,8 +14,12 @@ public:
   ~Base();
 
 public:
+  virtual void camera_up(eng::data::Camera* camera, float speed){}
+  virtual void camera_down(eng::data::Camera* camera, float speed){}
+  virtual void camera_right(eng::data::Camera* camera, float speed){}
+  virtual void camera_left(eng::data::Camera* camera, float speed){}
 
-private:
+protected:
   util::element::Window* utl_window;
 };
 

@@ -15,6 +15,11 @@ public:
   ~Player();
 
 public:
+  void camera_up(eng::data::Camera* camera, float speed);
+  void camera_down(eng::data::Camera* camera, float speed);
+  void camera_right(eng::data::Camera* camera, float speed);
+  void camera_left(eng::data::Camera* camera, float speed);
+
   mat4 fp_view_mat(eng::data::Camera* camera);
   void fp_cam_mouse(eng::data::Camera* camera);
 

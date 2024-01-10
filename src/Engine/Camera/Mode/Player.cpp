@@ -13,6 +13,37 @@ Player::Player(util::element::Window* utl_window) : Base(utl_window){
 }
 Player::~Player(){}
 
+//MAin function
+void Player::camera_up(eng::data::Camera* camera, float speed){
+  //---------------------------
+
+  camera->cam_P += camera->cam_F * speed;
+
+  //---------------------------
+}
+void Player::camera_down(eng::data::Camera* camera, float speed){
+  //---------------------------
+
+  camera->cam_P -= camera->cam_F * speed;
+
+  //---------------------------
+}
+void Player::camera_right(eng::data::Camera* camera, float speed){
+  //---------------------------
+
+  camera->cam_P += camera->cam_R * speed;
+
+  //---------------------------
+}
+void Player::camera_left(eng::data::Camera* camera, float speed){
+  //---------------------------
+
+  camera->cam_P -= camera->cam_R * speed;
+
+  //---------------------------
+}
+
+
 mat4 Player::fp_view_mat(eng::data::Camera* camera){
   //---------------------------
 

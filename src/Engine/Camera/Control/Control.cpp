@@ -17,6 +17,10 @@ Control::Control(Engine* engine, eng::data::Camera* camera){
 
   this->mode_arcball = new eng::camera::mode::Arcball(utl_window);
   this->mode_player = new eng::camera::mode::Player(utl_window);
+
+  this->vec_mode.push_back(new eng::camera::mode::Player(utl_window));
+  this->vec_mode.push_back(new eng::camera::mode::Arcball(utl_window));
+  this->active_mode = vec_mode[0];
   this->camera = camera;
 
   //---------------------------
@@ -35,29 +39,19 @@ void Control::control_keyboard(int direction, bool fast){
 
   switch(direction){
     case CAMERA_UP:{
-      camera->cam_P += camera->cam_F * cam_speed;
+      active_mode->camera_up(camera, cam_speed);
       break;
     }
     case CAMERA_DOWN:{
-      camera->cam_P -= camera->cam_F * cam_speed;
+      active_mode->camera_down(camera, cam_speed);
       break;
     }
     case CAMERA_RIGHT:{
-      if(camera->mode == "Player"){
-        camera->cam_P += camera->cam_R * cam_speed;
-      }else if(camera->mode == "arcball"){
-        vec2 angle =vec2(-cam_speed/10, 0);
-        mode_arcball->rotate_by_angle(camera, angle);
-      }
+      active_mode->camera_right(camera, cam_speed);
       break;
     }
     case CAMERA_LEFT:{
-      if(camera->mode == "Player"){
-        camera->cam_P -= camera->cam_R * cam_speed;
-      }else if(camera->mode == "arcball"){
-        vec2 angle =vec2(cam_speed/10, 0);
-        mode_arcball->rotate_by_angle(camera, angle);
-      }
+      active_mode->camera_left(camera, cam_speed);
       break;
     }
   }
