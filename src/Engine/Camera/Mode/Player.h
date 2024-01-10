@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Camera/Namespace.h>
 #include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
@@ -7,7 +8,7 @@
 
 namespace eng::camera::mode{
 
-class Player
+class Player : public eng::camera::mode::Base
 {
 public:
   Player(util::element::Window* utl_window);
@@ -18,8 +19,6 @@ public:
   void fp_cam_mouse(eng::data::Camera* camera);
 
 private:
-  util::element::Window* utl_window;
-
   vec2 mouse_pose_old;
 };
 

@@ -1,13 +1,14 @@
 #pragma once
 
+#include <Engine/Camera/Namespace.h>
 #include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
 
-
 namespace eng::camera::mode{
 
-class Arcball
+
+class Arcball : public eng::camera::mode::Base
 {
 public:
   Arcball(util::element::Window* utl_window);
@@ -20,7 +21,6 @@ public:
   void rotate_by_angle(eng::data::Camera* camera, vec2 angle);
 
 private:
-  util::element::Window* utl_window;
 };
 
 }

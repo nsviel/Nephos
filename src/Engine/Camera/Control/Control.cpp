@@ -24,7 +24,7 @@ Control::Control(Engine* engine, eng::data::Camera* camera){
 Control::~Control(){}
 
 //Main function
-void Control::control_keyboard(string direction, bool fast){
+void Control::control_keyboard(int direction, bool fast){
   //---------------------------
 
   //Compute camera movment speed value
@@ -33,26 +33,32 @@ void Control::control_keyboard(string direction, bool fast){
     cam_speed *= 5;
   }
 
-  if(direction == "up"){
-    camera->cam_P += camera->cam_F * cam_speed;
-  }
-  else if(direction == "down"){
-    camera->cam_P -= camera->cam_F * cam_speed;
-  }
-  else if(direction == "right"){
-    if(camera->mode == "Player"){
-      camera->cam_P += camera->cam_R * cam_speed;
-    }else if(camera->mode == "arcball"){
-      vec2 angle =vec2(-cam_speed/10, 0);
-      mode_arcball->rotate_by_angle(camera, angle);
+  switch(direction){
+    case CAMERA_UP:{
+      camera->cam_P += camera->cam_F * cam_speed;
+      break;
     }
-  }
-  else if(direction == "left"){
-    if(camera->mode == "Player"){
-      camera->cam_P -= camera->cam_R * cam_speed;
-    }else if(camera->mode == "arcball"){
-      vec2 angle =vec2(cam_speed/10, 0);
-      mode_arcball->rotate_by_angle(camera, angle);
+    case CAMERA_DOWN:{
+      camera->cam_P -= camera->cam_F * cam_speed;
+      break;
+    }
+    case CAMERA_RIGHT:{
+      if(camera->mode == "Player"){
+        camera->cam_P += camera->cam_R * cam_speed;
+      }else if(camera->mode == "arcball"){
+        vec2 angle =vec2(-cam_speed/10, 0);
+        mode_arcball->rotate_by_angle(camera, angle);
+      }
+      break;
+    }
+    case CAMERA_LEFT:{
+      if(camera->mode == "Player"){
+        camera->cam_P -= camera->cam_R * cam_speed;
+      }else if(camera->mode == "arcball"){
+        vec2 angle =vec2(cam_speed/10, 0);
+        mode_arcball->rotate_by_angle(camera, angle);
+      }
+      break;
     }
   }
 

@@ -19,7 +19,7 @@ public:
 
 public:
   //Camera displacment
-  void control_keyboard(string direction, bool fast);
+  void control_keyboard(int direction, bool fast);
   void control_mouse();
 
 private:

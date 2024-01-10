@@ -6,12 +6,24 @@
 #include <string>
 
 
-namespace eng::data{
-
 enum camera_mode{
   CAMERA_MODE_PLAYER = 0,
   CAMERA_MODE_ARCBALL = 1,
 };
+
+enum camera_projection{
+  CAMERA_PROJ_PERSPECTIVE = 0,
+  CAMERA_PROJ_ORTHOGRAPHIC = 1,
+};
+
+enum camera_direction{
+  CAMERA_UP = 0,
+  CAMERA_DOWN = 1,
+  CAMERA_RIGHT = 2,
+  CAMERA_LEFT = 3,
+};
+
+namespace eng::data{
 
 struct Camera : public eng::data::Entity
 {
@@ -40,6 +52,8 @@ struct Camera : public eng::data::Entity
   float clip_near;
   float clip_far;
 
+  //int projection;
+  //int mode;
   std::string projection;
   std::string mode;
 
