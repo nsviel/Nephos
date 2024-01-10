@@ -28,7 +28,6 @@ public:
 public:
   //Main functions
   eng::data::Object* load_object(std::string path);
-  std::vector<eng::data::Object*> load_objects(std::vector<std::string> path);
 
   //Subfunctions
   void transfert_data(eng::data::Object* object, eng::data::File* file_data);

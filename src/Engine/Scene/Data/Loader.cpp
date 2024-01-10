@@ -71,18 +71,6 @@ eng::data::Object* Loader::load_object(std::string path){
   //---------------------------
   return cloud;
 }
-std::vector<eng::data::Object*> Loader::load_objects(std::vector<std::string> path){
-  std::vector<eng::data::Object*> vec_obj;
-  //---------------------------
-
-  for(int i=0; i<path.size(); i++){
-    eng::data::Object* object = load_object(path[i]);
-    vec_obj.push_back(object);
-  }
-
-  //---------------------------
-  return vec_obj;
-}
 
 //Subfunctions
 void Loader::transfert_data(eng::data::Object* object, eng::data::File* file_data){
