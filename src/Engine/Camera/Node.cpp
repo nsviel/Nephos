@@ -17,7 +17,7 @@ Node::Node(Engine* engine){
 
   this->camera = new eng::data::Camera();
   this->cam_arcball = new eng::camera::mode::Arcball(utl_window);
-  this->cam_fp = new eng::camera::mode::First_person(utl_window);
+  this->cam_fp = new eng::camera::mode::Player(utl_window);
   this->cam_zoom = new eng::camera::Zoom(utl_window);
   this->cam_proj = new eng::camera::Projection(utl_window);
   this->cam_control = new eng::camera::Control(engine, camera);
@@ -60,7 +60,7 @@ mat4 Node::compute_cam_view(){
 
   if(camera->cam_pose){
     cam_view = camera->cam_pose_mat;
-  }else if(camera->mode == "first_person"){
+  }else if(camera->mode == "player"){
     cam_view = cam_fp->fp_view_mat(camera);
   }else if(camera->mode == "arcball"){
     camera->cam_COM_obj = arcball_origin;

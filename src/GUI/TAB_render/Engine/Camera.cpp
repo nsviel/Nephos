@@ -52,8 +52,8 @@ void Camera::cam_parameter(){
   ImGui::NextColumn();
   static int mode = 0;
   ImGui::Text("Mode");
-  if(ImGui::RadioButton("Default", &mode, 0)){
-    camera->mode = "first_person";
+  if(ImGui::RadioButton("Player", &mode, 0)){
+    camera->mode = "player";
   }
   if(ImGui::RadioButton("Arcball", &mode, 1)){
     camera->mode = "arcball";

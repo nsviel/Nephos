@@ -26,7 +26,7 @@ void Camera::reset(){
   this->cam_P = glm::vec3(-2, -2, 2);
 
   this->projection = "perspective";
-  this->mode = "first_person";
+  this->mode = "player";
 
   //---------------------------
 }

@@ -17,7 +17,7 @@ public:
   mat4 arcball_view_mat(eng::data::Camera* camera);
   void arcball_cam_mouse(eng::data::Camera* camera);
   vec2 arcball_mouse_angle();
-  void arcball_viewport_angle(eng::data::Camera* camera, vec2 angle);
+  void rotate_by_angle(eng::data::Camera* camera, vec2 angle);
 
 private:
   util::element::Window* utl_window;

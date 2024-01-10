@@ -32,7 +32,7 @@ void Arcball::arcball_cam_mouse(eng::data::Camera* camera){
   //---------------------------
 
   vec2 angle = arcball_mouse_angle();
-  this->arcball_viewport_angle(camera, angle);
+  this->rotate_by_angle(camera, angle);
 
   //---------------------------
 }
@@ -56,7 +56,7 @@ vec2 Arcball::arcball_mouse_angle(){
   //---------------------------
   return angle;
 }
-void Arcball::arcball_viewport_angle(eng::data::Camera* camera, vec2 angle){
+void Arcball::rotate_by_angle(eng::data::Camera* camera, vec2 angle){
   //---------------------------
 
   // Get the homogenous position of the camera and pivot point

@@ -40,19 +40,19 @@ void Control::control_keyboard(string direction, bool fast){
     camera->cam_P -= camera->cam_F * cam_speed;
   }
   else if(direction == "right"){
-    if(camera->mode == "first_person"){
+    if(camera->mode == "Player"){
       camera->cam_P += camera->cam_R * cam_speed;
     }else if(camera->mode == "arcball"){
       vec2 angle =vec2(-cam_speed/10, 0);
-      mode_arcball->arcball_viewport_angle(camera, angle);
+      mode_arcball->rotate_by_angle(camera, angle);
     }
   }
   else if(direction == "left"){
-    if(camera->mode == "first_person"){
+    if(camera->mode == "Player"){
       camera->cam_P -= camera->cam_R * cam_speed;
     }else if(camera->mode == "arcball"){
       vec2 angle =vec2(cam_speed/10, 0);
-      mode_arcball->arcball_viewport_angle(camera, angle);
+      mode_arcball->rotate_by_angle(camera, angle);
     }
   }
 
@@ -62,47 +62,9 @@ void Control::control_mouse(){
   //---------------------------
 
   if(camera->cam_move){
-    if(camera->mode == "first_person"){
-      mode_player->fp_cam_mouse(camera);
-      ImGui::SetMouseCursor(ImGuiMouseCursor_None);
-    }else if(camera->mode == "arcball"){
-      mode_arcball->arcball_cam_mouse(camera);
-      ImGui::SetMouseCursor(ImGuiMouseCursor_None);
-    }
-  }
-
-  //---------------------------
-}
-
-//Camera mode
-void Control::set_mode_projection(int proj){
-  //---------------------------
-
-  switch(proj){
-    case 0:{ //Perspective
-      camera->projection = "perspective";
-      break;
-    }
-    case 1:{ //Orthographic
-      camera->projection = "orthographic";
-      break;
-    }
-  }
-
-  //---------------------------
-}
-void Control::set_mode_view(int mode){
-  //---------------------------
-
-  switch(mode){
-    case 0:{ //Default
-      camera->mode = "first_person";
-      break;
-    }
-    case 1:{ //Arcball
-      camera->mode = "arcball";
-      break;
-    }
+    if(camera->mode == "player")       mode_player->fp_cam_mouse(camera);
+    else if(camera->mode == "arcball") mode_arcball->arcball_cam_mouse(camera);
+    ImGui::SetMouseCursor(ImGuiMouseCursor_None);
   }
 
   //---------------------------

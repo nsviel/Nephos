@@ -8,6 +8,11 @@
 
 namespace eng::data{
 
+enum camera_mode{
+  CAMERA_MODE_PLAYER = 0,
+  CAMERA_MODE_ARCBALL = 1,
+};
+
 struct Camera : public eng::data::Entity
 {
   //---------------------------

@@ -44,7 +44,7 @@ public:
 private:
   Engine* engine;
   eng::camera::mode::Arcball* cam_arcball;
-  eng::camera::mode::First_person* cam_fp;
+  eng::camera::mode::Player* cam_fp;
   eng::camera::Zoom* cam_zoom;
   eng::camera::Projection* cam_proj;
   eng::camera::Control* cam_control;

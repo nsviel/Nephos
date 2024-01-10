@@ -22,10 +22,6 @@ public:
   void control_keyboard(string direction, bool fast);
   void control_mouse();
 
-  //Camera mode
-  void set_mode_projection(int value);
-  void set_mode_view(int value);
-
 private:
   eng::camera::mode::Arcball* mode_arcball;
   eng::camera::mode::Player* mode_player;
