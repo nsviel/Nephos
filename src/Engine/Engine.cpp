@@ -35,7 +35,7 @@ Engine::~Engine(){
 void Engine::init(){
   //---------------------------
 
-  eng_renderpass->init_renderpass();
+  eng_renderpass->init();
   eng_vulkan->init();
   node_scene->init();
   node_capture->init();
@@ -45,7 +45,7 @@ void Engine::init(){
 void Engine::loop(){
   //---------------------------
 
-  node_camera->loop_cam_mouse();
+  node_camera->loop();
   node_scene->loop();
   eng_vulkan->loop();
   node_capture->loop();

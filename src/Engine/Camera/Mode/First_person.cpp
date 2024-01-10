@@ -21,11 +21,6 @@ mat4 First_person::fp_view_mat(eng::data::Camera* camera){
   float azimuth = camera->angle_azimuth;
   float elevation = camera->angle_elevation;
 
-  //Forward and Up camera
-  if(camera->view == "top"){
-    elevation = -M_PI/2.0f;
-  }
-
   //Compute camera
   camera->cam_R = normalize(vec3(cos(azimuth - M_PI/2.0f), sin(azimuth - M_PI/2.0f), 0));
   camera->cam_F = vec3(cos(elevation) * cos(azimuth), cos(elevation) * sin(azimuth), sin(elevation));

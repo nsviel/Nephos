@@ -36,7 +36,6 @@ struct Camera : public eng::data::Entity
   float clip_far;
 
   std::string projection;
-  std::string view;
   std::string mode;
 
   bool cam_move = false;

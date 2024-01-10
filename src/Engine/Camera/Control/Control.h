@@ -14,15 +14,21 @@ namespace eng::camera{
 class Control
 {
 public:
-  Control(Engine* engine);
+  Control(Engine* engine, eng::data::Camera* camera);
   ~Control();
 
 public:
-  //Main function
-  void control(string what, bool fast);
+  //Camera displacment
+  void control_keyboard(string direction, bool fast);
+  void control_mouse();
+
+  //Camera mode
+  void set_mode_projection(int value);
+  void set_mode_view(int value);
 
 private:
-  eng::camera::mode::Arcball* cam_arcball;
+  eng::camera::mode::Arcball* mode_arcball;
+  eng::camera::mode::First_person* mode_player;
 
   eng::data::Camera* camera;
 };

@@ -20,20 +20,16 @@ public:
 
 public:
   //Main function
-
-  void loop_cam_mouse();
+  void loop();
   void reset();
+
+
 
   //MVP matrices
   mat4 compute_cam_view();
   void compute_cam_mvp(eng::data::Object* object);
   mat4 compute_cam_proj();
   mat4 compute_cam_mvp();
-
-  //Camera mode
-  void set_mode_projection(int value);
-  void set_mode_angle(int value);
-  void set_mode_view(int value);
 
   //Specific function
   mat4 compute_cam_world_pose();

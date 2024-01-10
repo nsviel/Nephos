@@ -18,7 +18,7 @@ public:
 
 public:
   //Main functions
-  void init_renderpass();
+  void init();
 
 private:
   RP_scene* rp_scene;

@@ -91,22 +91,22 @@ void Control::control_keyboard_camMove(){
 
       //Z key or Up key
       if(io.KeysDown[571] || io.KeysDown[515]){
-        cam_control->control("up", is_fast);
+        cam_control->control_keyboard("up", is_fast);
       }
 
       //S key or Down key
       if(io.KeysDown[564] || io.KeysDown[516]){
-        cam_control->control("down", is_fast);
+        cam_control->control_keyboard("down", is_fast);
       }
 
       //Q key or Left key
       if(io.KeysDown[562] || io.KeysDown[513]){
-        cam_control->control("left", is_fast);
+        cam_control->control_keyboard("left", is_fast);
       }
 
       //D key or Left key
       if(io.KeysDown[549] || io.KeysDown[514]){
-        cam_control->control("right", is_fast);
+        cam_control->control_keyboard("right", is_fast);
       }
     }
   }

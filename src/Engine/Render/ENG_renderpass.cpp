@@ -22,7 +22,7 @@ ENG_renderpass::ENG_renderpass(Engine* engine){
 ENG_renderpass::~ENG_renderpass(){}
 
 //Main function
-void ENG_renderpass::init_renderpass(){
+void ENG_renderpass::init(){
   //---------------------------
 
   rp_scene->init_renderpass();

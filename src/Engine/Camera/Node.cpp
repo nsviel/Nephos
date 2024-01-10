@@ -20,7 +20,7 @@ Node::Node(Engine* engine){
   this->cam_fp = new eng::camera::mode::First_person(utl_window);
   this->cam_zoom = new eng::camera::Zoom(utl_window);
   this->cam_proj = new eng::camera::Projection(utl_window);
-  this->cam_control = new eng::camera::Control(engine);
+  this->cam_control = new eng::camera::Control(engine, camera);
 
   this->arcball_origin = vec3(0, 0, 0);
 
@@ -38,19 +38,10 @@ Node::~Node(){
 }
 
 //Main function
-
-void Node::loop_cam_mouse(){
+void Node::loop(){
   //---------------------------
 
-  if(camera->cam_move){
-    if(camera->mode == "first_person"){
-      cam_fp->fp_cam_mouse(camera);
-      ImGui::SetMouseCursor(ImGuiMouseCursor_None);
-    }else if(camera->mode == "arcball"){
-      cam_arcball->arcball_cam_mouse(camera);
-      ImGui::SetMouseCursor(ImGuiMouseCursor_None);
-    }
-  }
+  cam_control->control_mouse();
 
   //---------------------------
 }
@@ -114,56 +105,6 @@ void Node::compute_cam_mvp(eng::data::Object* object){
   mat4 cam_proj = compute_cam_proj();
 
   object->mvp = cam_proj * cam_view * cam_modl;
-
-  //---------------------------
-}
-
-//Camera mode
-void Node::set_mode_projection(int proj){
-  //---------------------------
-
-  switch(proj){
-    case 0:{ //Perspective
-      camera->projection = "perspective";
-      break;
-    }
-    case 1:{ //Orthographic
-      camera->projection = "orthographic";
-      break;
-    }
-  }
-
-  //---------------------------
-}
-void Node::set_mode_angle(int view){
-  //---------------------------
-
-  switch(view){
-    case 0:{ //Top
-      camera->view = "top";
-      break;
-    }
-    case 1:{ //Oblique
-      camera->view = "oblique";
-      break;
-    }
-  }
-
-  //---------------------------
-}
-void Node::set_mode_view(int mode){
-  //---------------------------
-
-  switch(mode){
-    case 0:{ //Default
-      camera->mode = "first_person";
-      break;
-    }
-    case 1:{ //Arcball
-      camera->mode = "arcball";
-      break;
-    }
-  }
 
   //---------------------------
 }
