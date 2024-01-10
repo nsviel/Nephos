@@ -16,13 +16,13 @@ Scene::Scene(eng::scene::Node* node_scene){
   Engine* engine = node_scene->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
-  this->node_scene = node_scene;
   this->sce_database = node_scene->get_scene_database();
   this->sce_glyph = node_scene->get_scene_glyph();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->node_camera = engine->get_node_camera();
   this->sce_operation = new eng::scene::Operation(node_scene);
   this->ope_attribut = new eng::ope::Attribut();
+  this->sce_loader = node_scene->get_scene_loader();
 
   this->ID_obj = 0;
 
@@ -32,7 +32,6 @@ Scene::~Scene(){}
 
 //Scene function
 void Scene::init(){
-  eng::scene::Loader* eng_loader = node_scene->get_scene_loader();
   //---------------------------
 
   //Initial scene entities
@@ -76,6 +75,15 @@ eng::data::Entity* Scene::get_selected_entity(){
 }
 
 //Entity
+eng::data::Entity* Scene::import_entity(std::string path){
+  //---------------------------
+
+  eng::data::Entity* entity = sce_loader->load_object(path);
+  this->insert_entity_scene(entity);
+
+  //---------------------------
+  return entity;
+}
 void Scene::insert_entity_scene(eng::data::Entity* entity){
   eng::data::Set* data_set = sce_database->get_data_set();
   eng::data::Set* set_scene = data_set->get_set("Scene");

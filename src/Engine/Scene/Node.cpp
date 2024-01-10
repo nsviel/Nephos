@@ -12,8 +12,8 @@ Node::Node(Engine* engine){
   this->engine = engine;
   this->sce_database = new eng::scene::Database(this);
   this->sce_glyph = new eng::scene::Glyph(this);
-  this->sce_scene = new eng::scene::Scene(this);
   this->sce_loader = new eng::scene::Loader(this);
+  this->sce_scene = new eng::scene::Scene(this);
   this->sce_operation = new eng::scene::Operation(this);
 
   //---------------------------

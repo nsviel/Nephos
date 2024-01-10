@@ -76,6 +76,7 @@ void Control::control_zoom(float value){
 }
 
 //Camera matrix
+/*
 mat4 Node::compute_cam_view(){
   mat4 cam_view;
   //---------------------------
@@ -130,6 +131,7 @@ void Node::compute_cam_mvp(eng::data::Object* object){
 
   //---------------------------
 }
+*/
 mat4 Control::compute_camera_pose(){
   //---------------------------
 

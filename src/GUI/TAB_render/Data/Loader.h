@@ -32,8 +32,8 @@ public:
   void operation_load();
 
 private:
-  eng::scene::Scene* eng_scene;
-  eng::scene::Loader* eng_loader;
+  eng::scene::Scene* sce_scene;
+  eng::scene::Loader* sce_loader;
   eng::ope::Transformation* ope_transform;
   eng::ope::Operation* ope_operation;
 

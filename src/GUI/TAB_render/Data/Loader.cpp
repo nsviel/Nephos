@@ -17,8 +17,8 @@ Loader::Loader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   Engine* engine = gui->get_engine();
   eng::scene::Node* node_scene = engine->get_node_scene();
 
-  this->eng_scene = node_scene->get_scene();
-  this->eng_loader = node_scene->get_scene_loader();
+  this->sce_scene = node_scene->get_scene();
+  this->sce_loader = node_scene->get_scene_loader();
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();
   this->default_dir = file::get_current_parent_path_abs();
@@ -133,7 +133,7 @@ void Loader::draw_content(){
         item.weight = info::get_file_size(file);
         item.format = info::get_format_from_path(file);
         item.color_icon = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
-        item.color_text = eng_loader->is_format_supported(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+        item.color_text = sce_loader->is_format_supported(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_item_file.push_back(item);
       }
     }
@@ -281,7 +281,7 @@ void Loader::operation_load(){
   for(int i=0; i<vec_item_file.size(); i++){
     Item& item = vec_item_file[i];
     if(file_selection.contains(item.ID)){
-      if(eng_loader->is_format_supported(item.format)){
+      if(sce_loader->is_format_supported(item.format)){
         vec_path.push_back(item.path);
       }
     }
@@ -290,19 +290,19 @@ void Loader::operation_load(){
 
   //Apply loading and operations
   if(param_remove_old){
-    eng_scene->delete_entity_all();
+    sce_scene->delete_entity_all();
   }
 
   for(int i=0; i<vec_path.size(); i++){
-    eng::data::Object* object = eng_loader->load_object(vec_path[i]);
+    eng::data::Entity* entity = sce_scene->import_entity(vec_path[i]);
 
-    if(object != nullptr){
+    if(entity != nullptr){
       //Scaling
-      ope_transform->make_scaling(object, param_scaling);
+      //ope_transform->make_scaling(object, param_scaling);
 
       //Centered
       if(param_centered){
-        ope_operation->center_object(object);
+        //ope_operation->center_object(object);
       }
     }
   }

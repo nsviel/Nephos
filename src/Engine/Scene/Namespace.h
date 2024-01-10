@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Engine/Scene/Data/Database.h>
-#include <Engine/Scene/Data/Scene.h>
 #include <Engine/Scene/Data/Loader.h>
+#include <Engine/Scene/Data/Scene.h>
 #include <Engine/Scene/Data/Operation.h>
 #include <Engine/Scene/Glyph/Glyph.h>
 #include <Engine/Scene/Format/Format.h>

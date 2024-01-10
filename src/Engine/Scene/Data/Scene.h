@@ -32,6 +32,7 @@ public:
   eng::data::Entity* get_selected_entity();
 
   //Entity
+  eng::data::Entity* import_entity(std::string path);
   void insert_entity_scene(eng::data::Entity* entity);
   void delete_entity(eng::data::Entity* object);
   void delete_entity_all();
@@ -44,10 +45,10 @@ public:
 
 private:
   VK_engine* vk_engine;
-  eng::scene::Node* node_scene;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
   eng::scene::Operation* sce_operation;
+  eng::scene::Loader* sce_loader;
   eng::ope::Attribut* ope_attribut;
   eng::camera::Node* node_camera;
 

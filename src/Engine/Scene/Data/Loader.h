@@ -36,7 +36,6 @@ public:
 
 private:
   eng::scene::Format* eng_format;
-  eng::scene::Scene* eng_scene;
 
   vector<string> supported_format;
   std::string path_current_dir;

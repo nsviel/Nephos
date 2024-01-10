@@ -13,7 +13,6 @@ namespace eng::scene{
 Loader::Loader(eng::scene::Node* node_scene){
   //---------------------------
 
-  this->eng_scene = node_scene->get_scene();
   this->eng_format = new eng::scene::Format();
 
   this->path_current_dir = "";
@@ -67,7 +66,6 @@ eng::data::Object* Loader::load_object(std::string path){
     //Retrieve data and insert into engine
     eng::data::File* data = eng_format->get_data_from_file(path);
     this->transfert_data(cloud, data);
-    eng_scene->insert_object_scene(cloud);
   }
 
   //---------------------------
