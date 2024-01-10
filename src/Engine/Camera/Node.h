@@ -23,30 +23,14 @@ public:
   void loop();
   void reset();
 
-
-
-  //MVP matrices
-  mat4 compute_cam_view();
-  mat4 compute_cam_proj();
-  mat4 compute_cam_mvp();
-  void compute_cam_mvp(eng::data::Object* object);
-
-
-  inline mat4 get_cam_view(){return compute_cam_view();}
-  inline mat4 get_cam_proj(){return compute_cam_proj();}
-  inline mat4 get_mvpMatrix(){return compute_cam_mvp();}
   inline eng::data::Camera* get_camera(){return camera;};
   inline eng::camera::Control* get_camera_control(){return cam_control;}
 
 private:
   Engine* engine;
-  eng::camera::mode::Arcball* cam_arcball;
-  eng::camera::mode::Player* cam_fp;
-  eng::camera::Zoom* cam_zoom;
-  eng::camera::Projection* cam_proj;
   eng::camera::Control* cam_control;
-
   eng::data::Camera* camera;
+  
   vec3 arcball_origin;
 };
 

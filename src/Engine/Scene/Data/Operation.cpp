@@ -15,7 +15,7 @@ Operation::Operation(eng::scene::Node* node_scene){
   this->engine = node_scene->get_engine();
   this->sce_database = node_scene->get_scene_database();
   this->sce_glyph = node_scene->get_scene_glyph();
-  this->node_camera = engine->get_node_camera();
+  eng::camera::Node* node_camera = engine->get_node_camera();
   this->cam_control = node_camera->get_camera_control();
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();

@@ -16,7 +16,8 @@ Glyph::Glyph(eng::scene::Node* node_scene){
 
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->sce_database = node_scene->get_scene_database();
-  this->node_camera = engine->get_node_camera();
+  eng::camera::Node* node_camera = engine->get_node_camera();
+  this->cam_control = node_camera->get_camera_control();
 
   //---------------------------
 }
@@ -113,7 +114,7 @@ void Glyph::update_glyph_object(eng::data::Object* object){
     glyph->update(object);
     for(int j=0; j<vec_object.size(); j++){
       vk_engine->insert_object_in_engine(vec_object[j]);
-      node_camera->compute_cam_mvp(vec_object[j]);
+      cam_control->compute_cam_mvp(vec_object[j]);
     }
   }
 

@@ -33,7 +33,6 @@ private:
   Engine* engine;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
-  eng::camera::Node* node_camera;
   eng::camera::Control* cam_control;
   eng::ope::Transformation* ope_transform;
   eng::ope::Operation* ope_operation;
