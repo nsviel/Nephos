@@ -90,11 +90,15 @@ mat4 Control::compute_camera_proj(){
   mat4 projection;
   //---------------------------
 
-  if(camera->projection == "perspective"){
-    projection = cam_proj->compute_proj_perspective(camera);
-  }
-  else if(camera->projection == "orthographic"){
-    projection = cam_proj->compute_proj_ortho(camera);
+  switch(camera->projection){
+    case CAMERA_PROJ_PERSPECTIVE:{
+      projection = cam_proj->compute_proj_perspective(camera);
+      break;
+    }
+    case CAMERA_PROJ_ORTHOGRAPHIC:{
+      projection = cam_proj->compute_proj_ortho(camera);
+      break;
+    }
   }
 
   //---------------------------

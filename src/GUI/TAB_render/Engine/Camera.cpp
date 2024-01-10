@@ -43,20 +43,20 @@ void Camera::cam_parameter(){
   static int projection = 0;
   ImGui::Text("Projection");
   if(ImGui::RadioButton("Perspective", &projection, 0)){
-    camera->projection = "perspective";
+    camera->projection = CAMERA_PROJ_PERSPECTIVE;
   }
   if(ImGui::RadioButton("Orthographic", &projection, 1)){
-    camera->projection = "orthographic";
+    camera->projection = CAMERA_PROJ_ORTHOGRAPHIC;
   }
 
   ImGui::NextColumn();
   static int mode = 0;
   ImGui::Text("Mode");
   if(ImGui::RadioButton("Player", &mode, 0)){
-    camera->mode = "player";
+    camera->mode = CAMERA_MODE_PLAYER;
   }
   if(ImGui::RadioButton("Arcball", &mode, 1)){
-    camera->mode = "arcball";
+    camera->mode = CAMERA_MODE_ARCBALL;
   }
   ImGui::Columns(1);
   ImGui::Separator();

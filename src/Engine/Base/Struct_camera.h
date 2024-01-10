@@ -52,10 +52,8 @@ struct Camera : public eng::data::Entity
   float clip_near;
   float clip_far;
 
-  //int projection;
-  //int mode;
-  std::string projection;
-  std::string mode;
+  int projection;
+  int mode;
 
   bool cam_move = false;
   bool cam_pose = false;

@@ -25,8 +25,8 @@ void Camera::reset(){
   this->cam_R = glm::normalize(glm::vec3(cos(angle_azimuth - M_PI/2.0f), sin(angle_azimuth - M_PI/2.0f), 0));
   this->cam_P = glm::vec3(-2, -2, 2);
 
-  this->projection = "perspective";
-  this->mode = "player";
+  this->projection = CAMERA_PROJ_PERSPECTIVE;
+  this->mode = CAMERA_MODE_PLAYER;
 
   //---------------------------
 }
