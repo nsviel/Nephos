@@ -37,8 +37,8 @@ private:
   eng::scene::Operation* sce_operation;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
-  eng::camera::Node* cam_node;
-  eng::ope::Transformation* transformManager;
+  eng::camera::Node* node_camera;
+  eng::camera::Control* cam_control;
 
   eng::data::Camera* camera;
 };

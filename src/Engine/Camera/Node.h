@@ -8,8 +8,9 @@
 
 class Engine;
 
-
 namespace eng::camera{
+class Control;
+
 
 class Node
 {
@@ -19,7 +20,7 @@ public:
 
 public:
   //Main function
-  void control(string what, bool fast);
+
   void loop_cam_mouse();
   void reset();
 
@@ -42,6 +43,7 @@ public:
   inline mat4 get_cam_proj(){return compute_cam_proj();}
   inline mat4 get_mvpMatrix(){return compute_cam_mvp();}
   inline eng::data::Camera* get_camera(){return camera;};
+  inline eng::camera::Control* get_camera_control(){return cam_control;}
 
 private:
   Engine* engine;
@@ -49,6 +51,7 @@ private:
   eng::camera::mode::First_person* cam_fp;
   eng::camera::Zoom* cam_zoom;
   eng::camera::Projection* cam_proj;
+  eng::camera::Control* cam_control;
 
   eng::data::Camera* camera;
   vec3 arcball_origin;

@@ -23,11 +23,11 @@ Control::Control(GUI* gui){
   this->engine = gui->get_engine();
   this->utl_window = utility->get_utl_window();
   this->camera = engine->get_camera();
-  this->cam_node = engine->get_node_camera();
+  this->node_camera = engine->get_node_camera();
+  this->cam_control = node_camera->get_camera_control();
   this->sce_scene = node_scene->get_scene();
   this->sce_database = node_scene->get_scene_database();
   this->sce_operation = new eng::scene::Operation(node_scene);
-  this->transformManager = new eng::ope::Transformation();
 
   //---------------------------
 }
@@ -91,22 +91,22 @@ void Control::control_keyboard_camMove(){
 
       //Z key or Up key
       if(io.KeysDown[571] || io.KeysDown[515]){
-        cam_node->control("up", is_fast);
+        cam_control->control("up", is_fast);
       }
 
       //S key or Down key
       if(io.KeysDown[564] || io.KeysDown[516]){
-        cam_node->control("down", is_fast);
+        cam_control->control("down", is_fast);
       }
 
       //Q key or Left key
       if(io.KeysDown[562] || io.KeysDown[513]){
-        cam_node->control("left", is_fast);
+        cam_control->control("left", is_fast);
       }
 
       //D key or Left key
       if(io.KeysDown[549] || io.KeysDown[514]){
-        cam_node->control("right", is_fast);
+        cam_control->control("right", is_fast);
       }
     }
   }
@@ -206,7 +206,7 @@ void Control::control_mouse_wheel(){
 
   //Wheel + right clicked - Camera zoom
   if(io.MouseWheel && io.MouseDownDuration[1] >= 0.0f){
-    cam_node->compute_zoom(io.MouseWheel);
+    node_camera->compute_zoom(io.MouseWheel);
   }
 
   //Wheel click - Change mouse wheel mode
