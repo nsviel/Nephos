@@ -24,6 +24,9 @@ Loader::Loader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   this->default_dir = file::get_current_parent_path_abs();
   this->current_dir = default_dir;
 
+  this->vec_bookmark.push_back("../media/point_cloud/bunny.ply");
+  this->vec_bookmark.push_back("../media/point_cloud/dragon.ply");
+
   //---------------------------
 }
 Loader::~Loader(){}
@@ -32,15 +35,40 @@ Loader::~Loader(){}
 void Loader::design_panel(){
   //---------------------------
 
-  this->draw_header();
-  this->draw_content();
+  ImVec2 size = ImGui::GetContentRegionAvail();
+  if(ImGui::BeginTabBar("Loader_tab##4567")){
+    //File manager loader
+    ImGui::SetNextItemWidth(size.x/2);
+    if(ImGui::BeginTabItem("File##50", NULL)){
+      this->draw_file();
+      ImGui::EndTabItem();
+    }
+
+    //Bookmark loader
+    ImGui::SetNextItemWidth(size.x/2);
+    if(ImGui::BeginTabItem("Bookmark##50", NULL)){
+      this->draw_bookmark();
+      ImGui::EndTabItem();
+    }
+
+    ImGui::EndTabBar();
+  }
+
   this->draw_footer();
 
   //---------------------------
 }
 
-//Panel
-void Loader::draw_header(){
+//File stuff
+void Loader::draw_file(){
+  //---------------------------
+
+  this->draw_file_header();
+  this->draw_file_content();
+
+  //---------------------------
+}
+void Loader::draw_file_header(){
   //---------------------------
 
   //Reset current dir
@@ -84,7 +112,7 @@ void Loader::draw_header(){
 
   //---------------------------
 }
-void Loader::draw_content(){
+void Loader::draw_file_content(){
   vector<string> vec_current_files = directory::list_all_path(current_dir);
   //---------------------------
 
@@ -212,12 +240,27 @@ void Loader::draw_content(){
         if(ImGui::IsMouseDoubleClicked(0)){
           file_selection.clear();
           file_selection.push_back(item.ID);
-          this->operation_load();
+          this->operation_selection();
         }
       }
     }
 
     ImGui::EndTable();
+  }
+
+  //---------------------------
+}
+
+//Other stuff
+void Loader::draw_bookmark(){
+  //---------------------------
+
+  int size = ImGui::GetContentRegionAvail().x;
+  for(int i=0; i<vec_bookmark.size(); i++){
+    string name = ICON_FA_FILE + (string)"   " + vec_bookmark[i];
+    if(ImGui::Button(name.c_str(), ImVec2(size, 0))){
+      this->operation_selection(vec_bookmark[i]);
+    }
   }
 
   //---------------------------
@@ -248,7 +291,7 @@ void Loader::draw_footer(){
   // Load button
   if(file_selection.Size != 0){
     if(ImGui::Button("Load##222")){
-      this->operation_load();
+      this->operation_selection();
       this->file_selection.clear();
     }
   }
@@ -273,7 +316,7 @@ void Loader::draw_footer(){
 }
 
 //Subfunction
-void Loader::operation_load(){
+void Loader::operation_selection(){
   //---------------------------
 
   //Retrieve all good selected files to load
@@ -309,5 +352,32 @@ void Loader::operation_load(){
 
   //---------------------------
 }
+void Loader::operation_selection(string path){
+  //---------------------------
+
+  //File check
+  string format = info::get_format_from_path(path);
+  if(!file::is_file_exist(path)) return;
+  if(!sce_loader->is_format_supported(format)) return;
+
+  //Apply loading and operations
+  if(param_remove_old){
+    sce_scene->delete_entity_all();
+  }
+
+  eng::data::Entity* entity = sce_scene->import_entity(path);
+  if(entity != nullptr){
+    //Scaling
+    //ope_transform->make_scaling(object, param_scaling);
+
+    //Centered
+    if(param_centered){
+      //ope_operation->center_object(object);
+    }
+  }
+
+  //---------------------------
+}
+
 
 }

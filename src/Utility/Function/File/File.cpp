@@ -7,12 +7,19 @@ namespace file{
   //---------------------------
 
   bool is_file_exist(std::string path){
+    bool is_exists;
     //---------------------------
 
     std::ifstream infile(path.c_str());
+    is_exists = infile.good();
+
+    if(!is_exists){
+      std::string abs_path = get_absolute_path(path);
+      std::cout << "[error] File doesn't exists [" << abs_path << "]" << std::endl;
+    }
 
     //---------------------------
-    return infile.good();
+    return is_exists;
   }
   bool is_device_connected(const std::string& devicePath) {
     int fileDescriptor = open(devicePath.c_str(), O_RDONLY);

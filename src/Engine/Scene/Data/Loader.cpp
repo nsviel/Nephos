@@ -38,7 +38,7 @@ Loader::~Loader(){
 
 //Main functions
 eng::data::Object* Loader::load_object(std::string path){
-  eng::data::Object* cloud = nullptr;
+  eng::data::Object* object = nullptr;
   //---------------------------
 
   //Check file existence
@@ -58,18 +58,17 @@ eng::data::Object* Loader::load_object(std::string path){
 
   }else{
     //Create new object
-    cloud = new eng::data::Object();
-    cloud->path_file = path;
-    cloud->draw_type_name = "point";
-    cloud->has_texture = true;
+    object = new eng::data::Object();
+    object->path_file = path;
+    object->has_texture = true;
 
     //Retrieve data and insert into engine
     eng::data::File* data = eng_format->get_data_from_file(path);
-    this->transfert_data(cloud, data);
+    this->transfert_data(object, data);
   }
 
   //---------------------------
-  return cloud;
+  return object;
 }
 
 //Subfunctions
@@ -78,6 +77,7 @@ void Loader::transfert_data(eng::data::Object* object, eng::data::File* file_dat
 
   object->name = file_data->name;
   object->nb_point = file_data->xyz.size();
+  object->draw_type_name = file_data->draw_type_name;
 
   object->xyz = file_data->xyz;
   object->rgb = file_data->rgb;

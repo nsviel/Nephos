@@ -23,13 +23,18 @@ public:
   //Main function
   void design_panel();
 
-  //Panel
-  void draw_header();
-  void draw_content();
+  //File stuff
+  void draw_file();
+  void draw_file_header();
+  void draw_file_content();
+
+  //Other stuff
+  void draw_bookmark();
   void draw_footer();
 
   //Subfunction
-  void operation_load();
+  void operation_selection();
+  void operation_selection(string path);
 
 private:
   eng::scene::Scene* sce_scene;
@@ -40,7 +45,7 @@ private:
   vector<Item> vec_item_folder;
   vector<Item> vec_item_file;
   ImVector<int> file_selection;
-  vector<string> bookmark;
+  vector<string> vec_bookmark;
   string default_dir;
   string current_dir;
   float param_scaling = 1;

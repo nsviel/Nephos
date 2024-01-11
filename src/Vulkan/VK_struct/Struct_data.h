@@ -7,6 +7,7 @@
 namespace vk::structure{
 
 struct Data{
+  //One structure containing all engined inserted data (vk::object)
   //---------------------------
 
   vk::structure::Object canvas;
