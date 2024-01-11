@@ -18,7 +18,7 @@ public:
   void construct(eng::data::Object* object);
 
 private:
-
+  float scale;
 };
 
 }

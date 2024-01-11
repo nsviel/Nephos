@@ -7,7 +7,7 @@ namespace glyph::grid{
 Grid::Grid(){
   //---------------------------
 
-  this->name = "Grid";
+  this->name = "grid";
   this->nb_cell = 10;
   this->is_suppressible = false;
   this->is_movable = false;

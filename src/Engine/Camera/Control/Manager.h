@@ -27,6 +27,8 @@ private:
   Engine* engine;
   vector<eng::data::Camera*> vec_camera;
   eng::data::Camera* current_camera;
+
+  int camera_ID;
 };
 
 }

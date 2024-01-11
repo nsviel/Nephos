@@ -11,6 +11,8 @@ Manager::Manager(Engine* engine){
 
   this->engine = engine;
 
+  this->camera_ID = 0;
+
   //---------------------------
 }
 Manager::~Manager(){}
@@ -23,11 +25,14 @@ void Manager::create_camera(){
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   eng::scene::Database* sce_database = node_scene->get_scene_database();
   eng::data::Set* data_set = sce_database->get_data_set();
-  eng::data::Set* set_camera = data_set->get_set("Camera");
+  eng::data::Set* set_world = data_set->get_set("World");
 
   eng::data::Camera* camera = new eng::data::Camera();
+  camera->name = "camera_" + to_string(camera_ID++);
+  camera->is_suppressible = false;
+  camera->is_movable = false;
   sce_glyph->create_glyph_camera(camera);
-  set_camera->insert_entity(camera);
+  set_world->insert_entity(camera);
 
   this->vec_camera.push_back(camera);
   this->current_camera = camera;

@@ -40,18 +40,19 @@ void Glyph::create_glyph_world(){
   set_world->insert_entity(new glyph::world::Axis());
 
   for(int i=0; i<set_world->list_entity.size(); i++){
-    //En partant du principle qu'il n'y a que des glyphs dans set_world
-    eng::data::Glyph* glyph = (eng::data::Glyph*)*next(set_world->list_entity.begin(), i);
+    eng::data::Entity* entity = *next(set_world->list_entity.begin(), i);
 
-    //Glyph creation
-    glyph->create();
-    sce_database->assign_ID(glyph);
+    if(eng::data::Glyph* glyph = dynamic_cast<eng::data::Glyph*>(entity)){
+      //Glyph creation
+      glyph->create();
+      sce_database->assign_ID(glyph);
 
-    //Glyph data
-    vector<eng::data::Object*> vec_object = glyph->get_vec_object();
-    for(int j=0; j<vec_object.size(); j++){
-      sce_database->assign_ID(vec_object[j]);
-      vk_engine->insert_object_in_engine(vec_object[j]);
+      //Glyph data
+      vector<eng::data::Object*> vec_object = glyph->get_vec_object();
+      for(int j=0; j<vec_object.size(); j++){
+        sce_database->assign_ID(vec_object[j]);
+        vk_engine->insert_object_in_engine(vec_object[j]);
+      }
     }
   }
 
