@@ -42,6 +42,14 @@ void Operation::update_entity(eng::data::Entity* entity){
       cam_control->compute_camera_mvp(vec_object[i]);
     }
   }
+  //Camera entity
+  else if(eng::data::Camera* camera = dynamic_cast<eng::data::Camera*>(entity)){
+    for(int i=0; i<camera->list_glyph.size(); i++){
+      eng::data::Glyph* glyph = *next(camera->list_glyph.begin(), i);
+      glyph->update(camera);
+      this->update_entity(glyph);
+    }
+  }
   //K4A device entity
   else if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
     cam_control->compute_camera_mvp(device->cloud.object);

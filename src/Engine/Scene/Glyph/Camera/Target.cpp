@@ -34,7 +34,15 @@ void Target::update(eng::data::Entity* entity){
   //---------------------------
 
   if(eng::data::Camera* camera = dynamic_cast<eng::data::Camera*>(entity)){
-sayHello();
+
+
+    glm::mat4 translation(1.0);
+    translation[0][3] = camera->cam_COM.x;
+    translation[1][3] = camera->cam_COM.y;
+    translation[2][3] = camera->cam_COM.z;
+    object->model = translation;
+
+
   }
 
   //---------------------------
