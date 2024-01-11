@@ -31,7 +31,9 @@ public:
   mat4 compute_camera_pose();
 
   //Camera parameter
+  void set_camera_COM(vec3 value);
   void set_camera_mode();
+  void set_next_camera_mode();
 
 private:
   eng::camera::Zoom* cam_zoom;

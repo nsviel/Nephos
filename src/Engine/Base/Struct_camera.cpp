@@ -24,8 +24,11 @@ void Camera::reset(){
   this->player_mouse_sensibility = glm::vec2(0.003, 0.003);
   this->arcball_mouse_sensibility = glm::vec2(0.3, 0.2);
 
+  this->cam_F = glm::vec3(0.0f);
   this->cam_R = glm::normalize(glm::vec3(cos(angle_azimuth - M_PI/2.0f), sin(angle_azimuth - M_PI/2.0f), 0));
+  this->cam_U = glm::vec3(0.0f);
   this->cam_P = glm::vec3(-2, -2, 2);
+  this->cam_COM = glm::vec3(0.0f);
 
   this->projection = CAMERA_PROJ_PERSPECTIVE;
   this->mode = CAMERA_MODE_ARCBALL;

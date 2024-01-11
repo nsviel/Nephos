@@ -13,12 +13,14 @@ Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name
 
   Engine* engine = gui->get_engine();
   eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::camera::Node* node_camera = engine->get_node_camera();
 
   this->sce_database = node_scene->get_scene_database();
   this->sce_scene = node_scene->get_scene();
   this->sce_operation = node_scene->get_scene_operation();
   this->rnd_set = new gui::rnd::data::Set(gui, &show_set);
   this->rnd_object = new gui::rnd::data::Entity(gui, &show_object);
+  this->cam_control = node_camera->get_camera_control();
 
   //---------------------------
 }
@@ -69,7 +71,7 @@ void Scene::draw_button(){
   //Camera mode
   ImGui::SameLine();
   if(ImGui::Button(ICON_FA_CAMERA "##camera123")){
-
+    cam_control->set_next_camera_mode();
   }
 
   ImGui::PopStyleVar();

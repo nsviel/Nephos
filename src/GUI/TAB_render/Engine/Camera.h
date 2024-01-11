@@ -3,13 +3,13 @@
 #include <Engine/Base/Namespace.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Engine/Camera/Namespace.h>
 
 class GUI;
 class Panel;
 
-
-
 namespace gui::engine{
+
 
 class Camera : public gui::base::Panel
 {
@@ -28,6 +28,7 @@ public:
 
 private:
   Panel* gui_render_panel;
+  eng::camera::Control* cam_control;
   eng::data::Camera* camera;
 
   int item_width;

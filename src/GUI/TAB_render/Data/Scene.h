@@ -4,6 +4,7 @@
 #include <Utility/Specific/common.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Engine/Scene/Data/Database.h>
+#include <Engine/Camera/Namespace.h>
 
 class GUI;
 
@@ -38,6 +39,7 @@ private:
   eng::scene::Scene* sce_scene;
   eng::scene::Operation* sce_operation;
   eng::scene::Database* sce_database;
+  eng::camera::Control* cam_control;
 
   bool* panel_show;;
 };

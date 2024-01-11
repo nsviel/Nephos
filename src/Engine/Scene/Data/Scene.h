@@ -7,7 +7,6 @@
 #include <Engine/Scene/Glyph/Glyph.h>
 #include <Engine/Scene/Node.h>
 #include <Engine/Base/Namespace.h>
-#include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class VK_engine;
@@ -50,7 +49,6 @@ private:
   eng::scene::Operation* sce_operation;
   eng::scene::Loader* sce_loader;
   eng::ope::Attribut* ope_attribut;
-  eng::camera::Node* node_camera;
 
   int ID_obj;
 };

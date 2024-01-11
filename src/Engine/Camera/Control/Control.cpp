@@ -145,6 +145,20 @@ mat4 Control::compute_camera_pose(){
 }
 
 //Camera parameter
+void Control::set_camera_COM(vec3 value){
+  //---------------------------
+
+  // Calculate the displacement vector
+  vec3 displacement = value - camera->cam_COM;
+
+  // Update the camera position (cam_P) to maintain the same relative position
+  camera->cam_P += displacement;
+
+  // Update the camera center (COM)
+  camera->cam_COM = value;
+
+  //---------------------------
+}
 void Control::set_camera_mode(){
   //---------------------------
 
@@ -160,6 +174,25 @@ void Control::set_camera_mode(){
   }
 
   //---------------------------
+}
+void Control::set_next_camera_mode(){
+  //---------------------------
+
+  switch(camera->mode){
+    case CAMERA_MODE_PLAYER:{
+      camera->reset();
+      camera->mode = CAMERA_MODE_ARCBALL;
+      break;
+    }
+    case CAMERA_MODE_ARCBALL:{
+      camera->reset();
+      camera->mode = CAMERA_MODE_PLAYER;
+      break;
+    }
+  }
+
+  //---------------------------
+  this->set_camera_mode();
 }
 
 

@@ -20,6 +20,7 @@ public:
 public:
   //Main function
   void init();
+  void reset();
   void destroy();
   void draw_cloud();
 

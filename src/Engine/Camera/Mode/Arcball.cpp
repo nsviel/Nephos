@@ -100,17 +100,34 @@ void Arcball::rotate_by_angle(eng::data::Camera* camera, vec2 angle){
     cam_P.z = camera->clip_near;
   }
 
-  // step 3: Rotate the camera around the pivot point on the second axis.
+  // Step 3: Rotate the camera around the pivot point on the second axis.
   mat4x4 Rr(1.0f);
-  Rr = glm::rotate(Rr, angle.y, camera->cam_R);
+  // Consider the offset in rotation by using cam_COM as the rotation pivot
+  Rr = glm::rotate(Rr, angle.y, vec3(cam_R.x, cam_R.y, 0));
   camera->cam_P = (Rr * (cam_P - cam_COM)) + cam_COM;
 
   // Ensure bottom of camera viewport stays above z = 0
   if (camera->cam_P.z - camera->clip_near < 0.0f) {
-    camera->cam_P.z = camera->clip_near;
+      camera->cam_P.z = camera->clip_near;
   }
 
   //---------------------------
 }
+void Arcball::displace_camera_COM(const vec2& displacement){
+    //---------------------------
+
+    // Extract the camera's forward and right vectors
+    vec3 forward = normalize(camera->cam_F);
+    vec3 right = normalize(cross(camera->cam_U, forward));
+
+    // Calculate the displacement vector in the world space
+    vec3 world_displacement = displacement.x * right + displacement.y * camera->cam_U;
+
+    // Update the camera center (COM)
+    camera->cam_COM += world_displacement;
+
+    //---------------------------
+}
+
 
 }

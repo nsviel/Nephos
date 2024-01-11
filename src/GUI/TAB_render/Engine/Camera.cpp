@@ -12,7 +12,10 @@ Camera::Camera(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   //---------------------------
 
   Engine* engine = gui->get_engine();
-  this->camera = engine->get_camera();
+  eng::camera::Node* node_camera = engine->get_node_camera();
+
+  this->cam_control = node_camera->get_camera_control();
+  this->camera = node_camera->get_camera();
 
   //---------------------------
 }
@@ -34,29 +37,32 @@ void Camera::cam_parameter(){
 
   //Camera parameters
   ImGui::SliderFloat("FOV (°)", &camera->fov, 100.0f, 1.0f);
-  ImGui::DragFloat("Speed", &camera->speed_move, 0.01, 0, 20, "%.2f");
+  if(camera->mode == CAMERA_MODE_PLAYER){
+    ImGui::DragFloatRange2("Sensibility", &camera->player_mouse_sensibility.x, &camera->arcball_mouse_sensibility.y, 0.01f, 0.01f, 10.0f, "%.2f", "%.2f", ImGuiSliderFlags_AlwaysClamp);
+  }
+  if(camera->mode == CAMERA_MODE_ARCBALL){
+    ImGui::DragFloatRange2("Sensibility", &camera->arcball_mouse_sensibility.x, &camera->arcball_mouse_sensibility.y, 0.01f, 0.01f, 10.0f, "%.2f", "%.2f", ImGuiSliderFlags_AlwaysClamp);
+  }
   ImGui::DragFloatRange2("Clip", &camera->clip_near, &camera->clip_far, 0.01f, 0.01f, 1000.0f, "%.2f", "%.2f", ImGuiSliderFlags_AlwaysClamp);
   ImGui::Separator();
 
   //Camera mode
   ImGui::Columns(2);
-  static int projection = 0;
   ImGui::Text("Projection");
-  if(ImGui::RadioButton("Perspective", &projection, 0)){
-    camera->projection = CAMERA_PROJ_PERSPECTIVE;
-  }
-  if(ImGui::RadioButton("Orthographic", &projection, 1)){
-    camera->projection = CAMERA_PROJ_ORTHOGRAPHIC;
-  }
+  ImGui::RadioButton("Perspective", &camera->projection, CAMERA_PROJ_PERSPECTIVE);
+  ImGui::RadioButton("Orthographic", &camera->projection, CAMERA_PROJ_ORTHOGRAPHIC);
 
   ImGui::NextColumn();
-  static int mode = 0;
   ImGui::Text("Mode");
-  if(ImGui::RadioButton("Player", &mode, 0)){
+  if(ImGui::RadioButton("Player", &camera->mode, CAMERA_MODE_PLAYER)){
+    camera->reset();
     camera->mode = CAMERA_MODE_PLAYER;
+    cam_control->set_camera_mode();
   }
-  if(ImGui::RadioButton("Arcball", &mode, 1)){
+  if(ImGui::RadioButton("Arcball", &camera->mode, CAMERA_MODE_ARCBALL)){
+    camera->reset();
     camera->mode = CAMERA_MODE_ARCBALL;
+    cam_control->set_camera_mode();
   }
   ImGui::Columns(1);
   ImGui::Separator();

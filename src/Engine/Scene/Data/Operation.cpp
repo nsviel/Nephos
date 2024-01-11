@@ -82,10 +82,12 @@ void Operation::make_translation(eng::data::Entity* entity, vec3 translation){
   //Object entity
   if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
     ope_transform->make_translation(object, translation);
+    cam_control->set_camera_COM(object->COM);
   }
   //K4A device entity
   else if(K4A_device* device = dynamic_cast<K4A_device*>(entity)){
     ope_transform->make_translation(device->cloud.object, translation);
+    cam_control->set_camera_COM(device->cloud.object->COM);
   }
 
   //---------------------------

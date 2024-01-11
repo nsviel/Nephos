@@ -4,7 +4,6 @@
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Engine/Camera/Namespace.h>
 
 
 namespace eng::scene{
@@ -19,7 +18,6 @@ Scene::Scene(eng::scene::Node* node_scene){
   this->sce_database = node_scene->get_scene_database();
   this->sce_glyph = node_scene->get_scene_glyph();
   this->vk_engine = eng_vulkan->get_vk_engine();
-  this->node_camera = engine->get_node_camera();
   this->sce_operation = new eng::scene::Operation(node_scene);
   this->ope_attribut = new eng::ope::Attribut();
   this->sce_loader = node_scene->get_scene_loader();
