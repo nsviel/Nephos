@@ -70,7 +70,7 @@ void Control::control_mouse(){
 void Control::control_zoom(float value){
   //---------------------------
 
-  cam_zoom->compute_zoom_position(camera, value);
+  active_mode->camera_zoom(camera, value);
 
   //---------------------------
 }

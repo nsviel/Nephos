@@ -71,6 +71,15 @@ void Player::camera_mouse(eng::data::Camera* camera){
 
   //---------------------------
 }
+void Player::camera_zoom(eng::data::Camera* camera, float speed){
+  //---------------------------
+
+  //Perspective zoom
+  vec3 cam_forwardMove = camera->cam_F * speed * camera->speed_move * vec3(0.1,0.1,0.1);
+  camera->cam_P += cam_forwardMove;
+
+  //---------------------------
+}
 
 //Camera matrix
 mat4 Player::compute_camera_view(eng::data::Camera* camera){

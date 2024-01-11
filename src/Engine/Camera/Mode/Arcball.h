@@ -21,13 +21,14 @@ public:
   void camera_right(eng::data::Camera* camera, float speed);
   void camera_left(eng::data::Camera* camera, float speed);
   void camera_mouse(eng::data::Camera* camera);
+  void camera_zoom(eng::data::Camera* camera, float speed);
 
   //Camera matrix
   mat4 compute_camera_view(eng::data::Camera* camera);
 
   //Subfunction
   void rotate_by_angle(eng::data::Camera* camera, vec2 angle);
-  void displace_camera_COM(const vec2& displacement);
+  void displace_camera_COM(eng::data::Camera* camera, const vec2& displacement);
 
 private:
   vec3 origin;

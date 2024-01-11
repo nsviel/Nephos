@@ -17,7 +17,8 @@ Arcball::~Arcball(){}
 void Arcball::camera_up(eng::data::Camera* camera, float speed){
   //---------------------------
 
-  camera->cam_P += camera->cam_F * speed;
+  //camera->cam_P += camera->cam_F * speed;
+  this->displace_camera_COM(camera, vec2(speed, speed));
 
   //---------------------------
 }
@@ -58,8 +59,27 @@ void Arcball::camera_mouse(eng::data::Camera* camera){
   float yAngle = float(window_center.y - mouse_pose.y) * deltaAngleY * camera->arcball_mouse_sensibility.y;
   vec2 angle = vec2(xAngle, yAngle);
 
+  //Apply movement
   utl_window->set_mouse_pose(utl_window->get_window_center());
   this->rotate_by_angle(camera, angle);
+
+  //---------------------------
+}
+void Arcball::camera_zoom(eng::data::Camera* camera, float speed){
+  //---------------------------
+
+  // Perspective zoom
+  vec3 cam_forwardMove = camera->cam_F * speed * camera->speed_move * vec3(0.1, 0.1, 0.1);
+
+  vec3 new_pose = camera->cam_P + cam_forwardMove;
+
+  // Define the minimum distance to the COM to avoid getting too close
+  float minDistanceToCOM = 0.1;
+
+  // Check if the new pose is within the allowed range
+  if (glm::distance(new_pose, camera->cam_COM) > minDistanceToCOM) {
+      camera->cam_P = new_pose;
+  }
 
   //---------------------------
 }
@@ -113,18 +133,20 @@ void Arcball::rotate_by_angle(eng::data::Camera* camera, vec2 angle){
 
   //---------------------------
 }
-void Arcball::displace_camera_COM(const vec2& displacement){
+void Arcball::displace_camera_COM(eng::data::Camera* camera, const vec2& displacement){
     //---------------------------
 
-    // Extract the camera's forward and right vectors
-    vec3 forward = normalize(camera->cam_F);
-    vec3 right = normalize(cross(camera->cam_U, forward));
 
-    // Calculate the displacement vector in the world space
-    vec3 world_displacement = displacement.x * right + displacement.y * camera->cam_U;
+    // Extract the camera's forward, right, and up vectors
+    vec3 forward = normalize(camera->cam_F);
+    vec3 right = normalize(camera->cam_R);
+    vec3 up = normalize(camera->cam_U);
+
+    // Calculate the displacement vector in the camera's local space
+    vec3 local_displacement = displacement.y * forward;  // Displace along the camera's forward vector (XY plane)
 
     // Update the camera center (COM)
-    camera->cam_COM += world_displacement;
+    camera->cam_COM += local_displacement;
 
     //---------------------------
 }
