@@ -11,8 +11,9 @@ EDL::EDL(Engine* engine){
   //---------------------------
 
   util::Node* utility = engine->get_utility();
+  eng::camera::Node* node_camera = engine->get_node_camera();
 
-  this->camera = engine->get_camera();
+  this->camera = node_camera->get_camera();
   this->utl_window = utility->get_utl_window();
   this->edl_param = new eng::shader::EDL_param();
 

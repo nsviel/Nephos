@@ -19,10 +19,11 @@ Control::Control(GUI* gui){
   util::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
   eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::camera::Node* node_camera = engine->get_node_camera();
 
   this->engine = gui->get_engine();
   this->utl_window = utility->get_utl_window();
-  this->camera = engine->get_camera();
+  this->camera = node_camera->get_camera();
   this->node_camera = engine->get_node_camera();
   this->cam_control = node_camera->get_camera_control();
   this->sce_scene = node_scene->get_scene();

@@ -27,7 +27,6 @@ public:
 
   inline util::Node* get_utility(){return utility;}
   inline Vulkan* get_eng_vulkan(){return eng_vulkan;}
-  inline eng::data::Camera* get_camera(){return node_camera->get_camera();};
   inline eng::camera::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::shader::Node* get_node_shader(){return node_shader;}
