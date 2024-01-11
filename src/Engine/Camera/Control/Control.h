@@ -8,8 +8,9 @@
 
 class Engine;
 
-
 namespace eng::camera{
+class Manager;
+
 
 class Control
 {
@@ -37,6 +38,7 @@ public:
 
 private:
   eng::camera::Projection* cam_proj;
+  eng::camera::Manager* cam_manager;
 
   vector<eng::camera::mode::Base*> vec_mode;
   eng::camera::mode::Base* active_mode;
