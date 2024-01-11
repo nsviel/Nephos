@@ -24,6 +24,16 @@ void Manager::create_camera(){
 
   //---------------------------
 }
+void Manager::reset(){
+  //---------------------------
+
+  for(int i=0; i<vec_camera.size(); i++){
+    eng::data::Camera* camera = vec_camera[i];
+    camera->reset();
+  }
+
+  //---------------------------
+}
 
 
 }

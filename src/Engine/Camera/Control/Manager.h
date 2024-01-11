@@ -18,6 +18,7 @@ public:
 public:
   //Main function
   void create_camera();
+  void reset();
 
   inline eng::data::Camera* get_camera(int i){return vec_camera[i];}
   inline eng::data::Camera* get_current_camera(){return current_camera;}
