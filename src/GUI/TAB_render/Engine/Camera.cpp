@@ -15,7 +15,7 @@ Camera::Camera(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   eng::camera::Node* node_camera = engine->get_node_camera();
 
   this->cam_control = node_camera->get_camera_control();
-  this->camera = node_camera->get_camera();
+  this->cam_manager = node_camera->get_camera_manager();
 
   //---------------------------
 }
@@ -33,6 +33,7 @@ void Camera::design_panel(){
 
 //Subfunction
 void Camera::cam_parameter(){
+  eng::data::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   //Camera parameters
@@ -70,6 +71,7 @@ void Camera::cam_parameter(){
   //---------------------------
 }
 void Camera::cam_info(){
+  eng::data::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   //Camera position

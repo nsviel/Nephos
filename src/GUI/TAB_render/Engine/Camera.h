@@ -29,7 +29,7 @@ public:
 private:
   Panel* gui_render_panel;
   eng::camera::Control* cam_control;
-  eng::data::Camera* camera;
+  eng::camera::Manager* cam_manager;
 
   int item_width;
 };

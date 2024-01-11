@@ -15,7 +15,7 @@ Node::Node(Engine* engine){
   this->cam_manager = new eng::camera::Manager(engine);
   this->cam_control = new eng::camera::Control(engine);
   cam_manager->create_camera();
-  this->camera = cam_manager->get_camera(0);
+
   //---------------------------
 }
 Node::~Node(){
@@ -31,8 +31,7 @@ Node::~Node(){
 void Node::init(){
   //---------------------------
 
-  cam_manager->create_camera();
-  this->camera = cam_manager->get_camera(0);
+  eng::data::Camera* camera = cam_manager->get_camera(0);
   cam_control->set_camera(camera);
 
   //---------------------------
@@ -47,6 +46,7 @@ void Node::loop(){
 void Node::reset(){
   //---------------------------
 
+  eng::data::Camera* camera = cam_manager->get_camera(0);
   camera->reset();
 
   //---------------------------

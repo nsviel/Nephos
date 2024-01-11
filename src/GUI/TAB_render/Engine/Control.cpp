@@ -23,8 +23,7 @@ Control::Control(GUI* gui){
 
   this->engine = gui->get_engine();
   this->utl_window = utility->get_utl_window();
-  this->camera = node_camera->get_camera();
-  this->node_camera = engine->get_node_camera();
+  this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
   this->sce_scene = node_scene->get_scene();
   this->sce_database = node_scene->get_scene_database();
@@ -191,6 +190,7 @@ void Control::control_mouse(ImVec2 center){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
+  eng::data::Camera* camera = cam_manager->get_current_camera();
   utl_window->set_window_center(vec2(center.x, center.y));
 
   //Right click - Camera movement
