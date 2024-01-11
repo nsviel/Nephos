@@ -3,6 +3,7 @@
 #include "PSR_param.h"
 #include <Engine/Shader/Base/BASE_shader.h>
 #include <Engine/Base/Namespace.h>
+#include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
 
@@ -27,7 +28,7 @@ private:
   util::element::Window* utl_window;
   PSR_param* psr_param;
 
-  eng::data::Camera* camera;
+  eng::camera::Manager* cam_manager;
 };
 
 }

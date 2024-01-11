@@ -20,6 +20,7 @@ void Manager::create_camera(){
 
   eng::data::Camera* camera = new eng::data::Camera();
   this->vec_camera.push_back(camera);
+  this->current_camera = camera;
 
   //---------------------------
 }

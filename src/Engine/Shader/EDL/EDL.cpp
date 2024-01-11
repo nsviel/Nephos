@@ -13,7 +13,7 @@ EDL::EDL(Engine* engine){
   util::Node* utility = engine->get_utility();
   eng::camera::Node* node_camera = engine->get_node_camera();
 
-  this->camera = node_camera->get_camera();
+  this->cam_manager = node_camera->get_camera_manager();
   this->utl_window = utility->get_utl_window();
   this->edl_param = new eng::shader::EDL_param();
 
@@ -47,6 +47,7 @@ void EDL::init_shader(){
   //---------------------------
 }
 void EDL::update_shader(){
+  eng::data::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   // Depth setup

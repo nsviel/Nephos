@@ -27,6 +27,7 @@ public:
 
   inline eng::data::Camera* get_camera(){return camera;};
   inline eng::camera::Control* get_camera_control(){return cam_control;}
+  inline eng::camera::Manager* get_camera_manager(){return cam_manager;}
 
 private:
   eng::camera::Control* cam_control;
