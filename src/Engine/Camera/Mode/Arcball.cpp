@@ -148,16 +148,6 @@ void Arcball::rotate_by_angle(eng::data::Camera* camera, vec2 angle){
     camera->cam_P.z = camera->clip_near;
   }
 
-
-    //camera->angle_azimuth = atan2(forward.y, forward.x);
-    //camera->angle_elevation = asin(forward.z);
-    glm::vec3 forward = normalize(camera->cam_COM - camera->cam_P);
-    float angle_azimuth = atan2(forward.y, forward.x);
-    float angle_elevation = asin(forward.z);
-
-    say(angle_azimuth);
-
-
   //---------------------------
 }
 void Arcball::displace_camera_COM(eng::data::Camera* camera, const vec3& displacement){
