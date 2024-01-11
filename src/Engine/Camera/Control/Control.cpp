@@ -16,7 +16,6 @@ Control::Control(Engine* engine, eng::data::Camera* camera){
   util::element::Window* utl_window = utility->get_utl_window();
 
   this->cam_proj = new eng::camera::Projection(utl_window);
-  this->cam_zoom = new eng::camera::Zoom(utl_window);
 
   this->vec_mode.push_back(new eng::camera::mode::Player(utl_window));
   this->vec_mode.push_back(new eng::camera::mode::Arcball(utl_window));

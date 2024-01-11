@@ -168,10 +168,13 @@ void Arcball::displace_camera_COM(eng::data::Camera* camera, const vec3& displac
   if(displacement.z == 0){
     local_displacement.z = 0.0f;
   }
-  
+  vec3 COM_new = camera->cam_COM + local_displacement;
+
   // Displace camera accordingly
-  camera->cam_P += local_displacement;
-  camera->cam_COM += local_displacement;
+  if(COM_new.z >= 0){
+    camera->cam_P += local_displacement;
+    camera->cam_COM = COM_new;
+  }
 
   //---------------------------
 }

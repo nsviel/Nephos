@@ -36,7 +36,6 @@ public:
   void set_next_camera_mode();
 
 private:
-  eng::camera::Zoom* cam_zoom;
   eng::camera::Projection* cam_proj;
 
   vector<eng::camera::mode::Base*> vec_mode;

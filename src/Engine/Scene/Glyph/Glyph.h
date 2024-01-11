@@ -8,6 +8,7 @@
 #include <Engine/Scene/Glyph/World/Namespace.h>
 #include <Engine/Scene/Glyph/Object/Namespace.h>
 #include <Engine/Scene/Glyph/Grid/Namespace.h>
+#include <Engine/Scene/Glyph/Camera/Namespace.h>
 
 class VK_engine;
 
@@ -30,6 +31,9 @@ public:
   void create_glyph_object(eng::data::Object* object);
   void update_glyph_object(eng::data::Object* object);
   void remove_glyph_object(eng::data::Object* object);
+
+  //Glyph camera
+  void create_glyph_camera(eng::data::Camera* camera);
 
 private:
   VK_engine* vk_engine;

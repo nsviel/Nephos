@@ -134,4 +134,29 @@ void Glyph::remove_glyph_object(eng::data::Object* object){
   //---------------------------
 }
 
+//Glyph camera
+void Glyph::create_glyph_camera(eng::data::Camera* camera){
+  //---------------------------
+
+  if(camera->list_glyph.size() != 0) return;
+  camera->list_glyph.push_back(new glyph::camera::Target());
+
+  for(int i=0; i<camera->list_glyph.size(); i++){
+    eng::data::Glyph* glyph = *next(camera->list_glyph.begin(), i);
+
+    //Glyph creation
+    glyph->create();
+    sce_database->assign_ID(glyph);
+
+    //Glyph data
+    vector<eng::data::Object*> vec_object = glyph->get_vec_object();
+    for(int j=0; j<vec_object.size(); j++){
+      sce_database->assign_ID(vec_object[j]);
+      vk_engine->insert_object_in_engine(vec_object[j]);
+    }
+  }
+
+  //---------------------------
+}
+
 }
