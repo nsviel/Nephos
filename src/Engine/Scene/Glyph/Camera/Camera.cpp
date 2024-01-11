@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 
-namespace glyph::object{
+namespace glyph::camera{
 
 //Constructor / destructor
 Camera::Camera(){

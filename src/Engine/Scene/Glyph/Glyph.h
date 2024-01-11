@@ -33,7 +33,6 @@ public:
 
 private:
   VK_engine* vk_engine;
-  glyph::object::Camera* glyph_cam;
   eng::scene::Node* node_scene;
   eng::scene::Database* sce_database;
   eng::camera::Control* cam_control;

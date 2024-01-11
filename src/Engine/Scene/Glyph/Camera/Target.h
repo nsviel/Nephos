@@ -3,14 +3,14 @@
 #include <Engine/Base/Base_glyph.h>
 
 
-namespace glyph::object{
+namespace glyph::camera{
 
-class Camera : public eng::data::Glyph
+class Target : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Camera();
-  ~Camera();
+  Target();
+  ~Target();
 
 public:
   void create();

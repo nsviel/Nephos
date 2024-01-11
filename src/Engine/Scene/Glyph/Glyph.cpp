@@ -84,7 +84,6 @@ void Glyph::create_glyph_object(eng::data::Object* object){
   if(object->list_glyph.size() != 0) return;
   object->list_glyph.push_back(new glyph::object::Axis());
   object->list_glyph.push_back(new glyph::object::AABB());
-  object->list_glyph.push_back(new glyph::object::Camera());
 
   for(int i=0; i<object->list_glyph.size(); i++){
     eng::data::Glyph* glyph = *next(object->list_glyph.begin(), i);

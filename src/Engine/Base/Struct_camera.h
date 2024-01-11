@@ -1,9 +1,10 @@
 #pragma once
 
-#include <Engine/Base/Struct_entity.h>
+#include <Engine/Base/Namespace.h>
 
 #include <glm/glm.hpp>
 #include <string>
+#include <list>
 
 
 enum camera_mode{
@@ -26,6 +27,8 @@ enum camera_direction{
 };
 
 namespace eng::data{
+class Glyph;
+
 
 struct Camera : public eng::data::Entity
 {
@@ -61,6 +64,9 @@ struct Camera : public eng::data::Entity
   glm::mat4 mat_proj = glm::mat4(1);
   glm::mat4 mat_view = glm::mat4(1);
   glm::mat4 mat_vp = glm::mat4(1);
+
+  //Glyph
+  std::list<eng::data::Glyph*> list_glyph;
 
   //---------------------------
 };

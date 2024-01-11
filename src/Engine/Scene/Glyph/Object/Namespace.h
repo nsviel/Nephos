@@ -4,7 +4,6 @@
 #include <Engine/Scene/Glyph/Object/Axis.h>
 #include <Engine/Scene/Glyph/Object/Normal.h>
 #include <Engine/Scene/Glyph/Object/Tree.h>
-#include <Engine/Scene/Glyph/Object/Camera.h>
 
 
 namespace glyph::object{
@@ -14,7 +13,6 @@ namespace glyph::object{
   class Axis;
   class Normal;
   class Tree;
-  class Camera;
 
   //---------------------------
 }
