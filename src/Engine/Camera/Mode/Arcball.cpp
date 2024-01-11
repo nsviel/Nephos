@@ -18,30 +18,33 @@ void Arcball::camera_up(eng::data::Camera* camera, float speed){
   //---------------------------
 
   //camera->cam_P += camera->cam_F * speed;
-  this->displace_camera_COM(camera, vec2(speed, speed));
+  this->displace_camera_COM(camera, vec2(0, speed));
 
   //---------------------------
 }
 void Arcball::camera_down(eng::data::Camera* camera, float speed){
   //---------------------------
 
-  camera->cam_P -= camera->cam_F * speed;
+  //camera->cam_P -= camera->cam_F * speed;
+  this->displace_camera_COM(camera, vec2(0, -speed));
 
   //---------------------------
 }
 void Arcball::camera_right(eng::data::Camera* camera, float speed){
   //---------------------------
 
-  vec2 angle =vec2(-speed / 10, 0);
-  this->rotate_by_angle(camera, angle);
+  //vec2 angle =vec2(-speed / 10, 0);
+  //this->rotate_by_angle(camera, angle);
+  this->displace_camera_COM(camera, vec2(speed, 0));
 
   //---------------------------
 }
 void Arcball::camera_left(eng::data::Camera* camera, float speed){
   //---------------------------
 
-  vec2 angle =vec2(speed / 10, 0);
-  this->rotate_by_angle(camera, angle);
+  //vec2 angle =vec2(speed / 10, 0);
+  //this->rotate_by_angle(camera, angle);
+  this->displace_camera_COM(camera, vec2(-speed, 0));
 
   //---------------------------
 }
@@ -134,21 +137,24 @@ void Arcball::rotate_by_angle(eng::data::Camera* camera, vec2 angle){
   //---------------------------
 }
 void Arcball::displace_camera_COM(eng::data::Camera* camera, const vec2& displacement){
-    //---------------------------
+  //---------------------------
 
+  // Extract the camera's forward, right, and up vectors
+  vec3 forward = normalize(camera->cam_F);
+  vec3 right = normalize(camera->cam_R);
+  vec3 up = normalize(camera->cam_U);
 
-    // Extract the camera's forward, right, and up vectors
-    vec3 forward = normalize(camera->cam_F);
-    vec3 right = normalize(camera->cam_R);
-    vec3 up = normalize(camera->cam_U);
+  // Displace camera COM
+  vec3 local_displacement = displacement.y * forward + displacement.x * right;  // Displace along both forward and right vectors (XY plane)
 
-    // Calculate the displacement vector in the camera's local space
-    vec3 local_displacement = displacement.y * forward;  // Displace along the camera's forward vector (XY plane)
+  // Keep the z position constant
+  local_displacement.z = 0.0f;
 
-    // Update the camera center (COM)
-    camera->cam_COM += local_displacement;
+  // Displace camera accordingly
+  camera->cam_P += local_displacement;
+  camera->cam_COM += local_displacement;
 
-    //---------------------------
+  //---------------------------
 }
 
 
