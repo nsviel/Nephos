@@ -16,6 +16,10 @@ public:
   ~Manager();
 
 public:
+  //Main function
+  void create_camera();
+
+  inline eng::data::Camera* get_camera(int i){return vec_camera[i];}
 
 private:
   vector<eng::data::Camera*> vec_camera;

@@ -12,15 +12,16 @@ namespace eng::camera{
 Node::Node(Engine* engine){
   //---------------------------
 
-  this->camera = new eng::data::Camera();
-  this->cam_control = new eng::camera::Control(engine, camera);
-
+  this->cam_manager = new eng::camera::Manager(engine);
+  this->cam_control = new eng::camera::Control(engine);
+  cam_manager->create_camera();
+  this->camera = cam_manager->get_camera(0);
   //---------------------------
 }
 Node::~Node(){
   //---------------------------
 
-  delete camera;
+  delete cam_manager;
   delete cam_control;
 
   //---------------------------
@@ -30,7 +31,9 @@ Node::~Node(){
 void Node::init(){
   //---------------------------
 
-  cam_control->set_camera_mode();
+  cam_manager->create_camera();
+  this->camera = cam_manager->get_camera(0);
+  cam_control->set_camera(camera);
 
   //---------------------------
 }

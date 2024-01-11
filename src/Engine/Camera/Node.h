@@ -10,6 +10,7 @@ class Engine;
 
 namespace eng::camera{
 class Control;
+class Manager;
 
 
 class Node
@@ -29,6 +30,7 @@ public:
 
 private:
   eng::camera::Control* cam_control;
+  eng::camera::Manager* cam_manager;
   eng::data::Camera* camera;
 };
 

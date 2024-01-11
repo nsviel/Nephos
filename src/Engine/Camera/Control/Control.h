@@ -9,13 +9,12 @@
 class Engine;
 
 namespace eng::camera{
-class Manager;
 
 
 class Control
 {
 public:
-  Control(Engine* engine, eng::data::Camera* camera);
+  Control(Engine* engine);
   ~Control();
 
 public:
@@ -32,13 +31,13 @@ public:
   mat4 compute_camera_pose();
 
   //Camera parameter
+  void set_camera(eng::data::Camera* camera);
   void set_camera_COM(vec3 value);
   void set_camera_mode();
   void set_next_camera_mode();
 
 private:
   eng::camera::Projection* cam_proj;
-  eng::camera::Manager* cam_manager;
 
   vector<eng::camera::mode::Base*> vec_mode;
   eng::camera::mode::Base* active_mode;

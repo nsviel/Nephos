@@ -16,7 +16,7 @@ VK_instance::VK_instance(vk::structure::Vulkan* struct_vulkan){
 VK_instance::~VK_instance(){}
 
 //Main function
-void VK_instance::init_instance(){
+void VK_instance::init(){
   //---------------------------
 
   this->create_instance();
