@@ -30,7 +30,7 @@ public:
 
   //Subfunction
   void rotate_by_angle(eng::data::Camera* camera, vec2 angle);
-  void displace_camera_COM(eng::data::Camera* camera, const vec2& displacement);
+  void displace_camera_COM(eng::data::Camera* camera, const vec3& displacement);
 
 private:
   vec3 origin;

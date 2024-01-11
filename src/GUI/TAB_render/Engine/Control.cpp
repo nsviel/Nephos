@@ -108,6 +108,16 @@ void Control::control_keyboard_camMove(){
       if(io.KeysDown[549] || io.KeysDown[514]){
         cam_control->control_keyboard(CAMERA_RIGHT, is_fast);
       }
+
+      //A key
+      if(io.KeysDown[546]){
+        cam_control->control_keyboard(CAMERA_DOWN, is_fast);
+      }
+
+      //E key
+      if(io.KeysDown[550]){
+        cam_control->control_keyboard(CAMERA_UP, is_fast);
+      }
     }
   }
 

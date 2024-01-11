@@ -18,7 +18,7 @@ void Arcball::camera_forward(eng::data::Camera* camera, float speed){
   //---------------------------
 
   //camera->cam_P += camera->cam_F * speed;
-  this->displace_camera_COM(camera, vec2(0, speed));
+  this->displace_camera_COM(camera, vec3(0, speed, 0));
 
   //---------------------------
 }
@@ -26,7 +26,7 @@ void Arcball::camera_backward(eng::data::Camera* camera, float speed){
   //---------------------------
 
   //camera->cam_P -= camera->cam_F * speed;
-  this->displace_camera_COM(camera, vec2(0, -speed));
+  this->displace_camera_COM(camera, vec3(0, -speed, 0));
 
   //---------------------------
 }
@@ -35,7 +35,7 @@ void Arcball::camera_right(eng::data::Camera* camera, float speed){
 
   //vec2 angle =vec2(-speed / 10, 0);
   //this->rotate_by_angle(camera, angle);
-  this->displace_camera_COM(camera, vec2(speed, 0));
+  this->displace_camera_COM(camera, vec3(speed, 0, 0));
 
   //---------------------------
 }
@@ -44,20 +44,21 @@ void Arcball::camera_left(eng::data::Camera* camera, float speed){
 
   //vec2 angle =vec2(speed / 10, 0);
   //this->rotate_by_angle(camera, angle);
-  this->displace_camera_COM(camera, vec2(-speed, 0));
+  this->displace_camera_COM(camera, vec3(-speed, 0, 0));
 
   //---------------------------
 }
 void Arcball::camera_up(eng::data::Camera* camera, float speed){
   //---------------------------
 
-
+  this->displace_camera_COM(camera, vec3(0, 0, speed));
 
   //---------------------------
 }
 void Arcball::camera_down(eng::data::Camera* camera, float speed){
   //---------------------------
 
+  this->displace_camera_COM(camera, vec3(0, 0, -speed));
 
   //---------------------------
 }
@@ -149,7 +150,7 @@ void Arcball::rotate_by_angle(eng::data::Camera* camera, vec2 angle){
 
   //---------------------------
 }
-void Arcball::displace_camera_COM(eng::data::Camera* camera, const vec2& displacement){
+void Arcball::displace_camera_COM(eng::data::Camera* camera, const vec3& displacement){
   //---------------------------
 
   // Extract the camera's forward, right, and up vectors
@@ -158,11 +159,16 @@ void Arcball::displace_camera_COM(eng::data::Camera* camera, const vec2& displac
   vec3 up = normalize(camera->cam_U);
 
   // Displace camera COM
-  vec3 local_displacement = displacement.y * forward + displacement.x * right;  // Displace along both forward and right vectors (XY plane)
+  vec3 local_displacement = vec3(0);
+  local_displacement += displacement.y * forward;
+  local_displacement += displacement.x * right;
+  local_displacement += displacement.z * vec3(0.0f, 0.0f, 1.0f);
 
   // Keep the z position constant
-  local_displacement.z = 0.0f;
-
+  if(displacement.z == 0){
+    local_displacement.z = 0.0f;
+  }
+  
   // Displace camera accordingly
   camera->cam_P += local_displacement;
   camera->cam_COM += local_displacement;
