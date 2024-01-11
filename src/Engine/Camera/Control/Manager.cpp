@@ -9,6 +9,7 @@ namespace eng::camera{
 Manager::Manager(Engine* engine){
   //---------------------------
 
+  this->engine = engine;
 
   //---------------------------
 }
@@ -18,7 +19,12 @@ Manager::~Manager(){}
 void Manager::create_camera(){
   //---------------------------
 
+  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
+
   eng::data::Camera* camera = new eng::data::Camera();
+  sce_glyph->create_glyph_camera(camera);
+
   this->vec_camera.push_back(camera);
   this->current_camera = camera;
 

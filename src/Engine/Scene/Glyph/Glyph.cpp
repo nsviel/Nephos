@@ -146,6 +146,7 @@ void Glyph::create_glyph_camera(eng::data::Camera* camera){
 
     //Glyph creation
     glyph->create();
+    glyph->update(camera);
     sce_database->assign_ID(glyph);
 
     //Glyph data

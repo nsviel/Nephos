@@ -37,12 +37,14 @@ void Tree::create(){
 
   //---------------------------
 }
-void Tree::update(eng::data::Object* object){
+void Tree::update(eng::data::Entity* entity){
   //---------------------------
 
-  if(is_visible){
-    //octreeManager->create_octree(cloud, level);
-    vec_object[0]->xyz = object->xyz;
+  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
+    if(is_visible){
+      //octreeManager->create_octree(cloud, level);
+      vec_object[0]->xyz = object->xyz;
+    }
   }
 
   //---------------------------

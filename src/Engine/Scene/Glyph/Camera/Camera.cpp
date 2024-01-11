@@ -28,7 +28,7 @@ void Camera::create(){
 
   //---------------------------
 }
-void Camera::update(eng::data::Object* object){
+void Camera::update(eng::data::Entity* entity){
   //---------------------------
 
 

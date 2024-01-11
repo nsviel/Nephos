@@ -14,7 +14,8 @@ public:
 
 public:
   void create();
-  void update(eng::data::Object* object);
+  void update(eng::data::Entity* entity);
+  void construct(eng::data::Object* object);
 
 private:
 

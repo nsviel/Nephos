@@ -33,12 +33,14 @@ void AABB::create(){
 
   //---------------------------
 }
-void AABB::update(eng::data::Object* object){
+void AABB::update(eng::data::Entity* entity){
   //---------------------------
 
-  vec3 min = object->min;
-  vec3 max = object->max;
-  vec_object[0]->xyz = build_box(min, max);
+  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
+    vec3 min = object->min;
+    vec3 max = object->max;
+    vec_object[0]->xyz = build_box(min, max);
+  }
 
   //---------------------------
 }

@@ -24,6 +24,7 @@ public:
   inline eng::data::Camera* get_current_camera(){return current_camera;}
 
 private:
+  Engine* engine;
   vector<eng::data::Camera*> vec_camera;
   eng::data::Camera* current_camera;
 };

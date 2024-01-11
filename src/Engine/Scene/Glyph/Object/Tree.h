@@ -16,7 +16,7 @@ public:
 public:
   //Main function
   void create();
-  void update(eng::data::Object* object);
+  void update(eng::data::Entity* entity);
 
   inline bool* get_visibility(){return &is_visible;}
   inline int* get_level(){return &level;}

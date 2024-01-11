@@ -30,10 +30,12 @@ void Axis::create(){
 
   //---------------------------
 }
-void Axis::update(eng::data::Object* object){
+void Axis::update(eng::data::Entity* entity){
   //---------------------------
 
-  ope_transform->make_transformation(vec_object[0], object->COM, object->trans, object->rotat);
+  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
+    ope_transform->make_transformation(vec_object[0], object->COM, object->trans, object->rotat);
+  }
 
   //---------------------------
 }
