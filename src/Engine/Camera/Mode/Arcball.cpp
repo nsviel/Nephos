@@ -138,7 +138,7 @@ void Arcball::rotate_by_angle(eng::data::Camera* camera, vec2 angle){
   cam_P = (Rr * (cam_P - cam_COM)) + cam_COM;
 
   // Calculate the new camera position without modifying it if the bottom viewport is too close
-  if (cam_P.z - camera->clip_near < 0.0f) {
+  if (cam_P.z - camera->clip_near < 0.0f){
     cam_P.z = camera->clip_near;
   }
 
