@@ -26,7 +26,6 @@ public:
   mat4 compute_camera_view(eng::data::Camera* camera);
 
   //Subfunction
-  vec2 arcball_mouse_angle();
   void rotate_by_angle(eng::data::Camera* camera, vec2 angle);
 
 private:

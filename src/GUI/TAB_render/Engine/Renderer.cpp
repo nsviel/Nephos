@@ -101,7 +101,7 @@ void Renderer::engine_control(){
   if(ImGui::IsItemHovered()){
     ImVec2 windowPos = ImGui::GetWindowPos();
     ImVec2 windowSize = ImGui::GetWindowSize();
-    ImVec2 center = ImVec2(windowPos.x + windowSize.x * 0.5f, windowPos.y + windowSize.y * 0.5f);
+    ImVec2 center = ImVec2(windowPos.x + windowSize.x * 0.5f, windowPos.y + windowSize.y * 0.5f - 0.5f);
 
     gui_control->run_control(center);
   }

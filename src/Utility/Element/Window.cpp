@@ -85,7 +85,12 @@ vec2 Window::compute_window_dim(){
   glfwGetFramebufferSize(window, &width, &height);
   this->window_dim = vec2(width, height);
   this->window_center = glm::vec2(width/2, height/2);
-
+/*
+  std::cout<<("=====")<<std::endl;
+  //say(mouse_pose);
+  std::cout<<(window_center.x)<<std::endl;
+  std::cout<<(window_center.y)<<std::endl;
+*/
   //---------------------------
   return window_dim;
 }

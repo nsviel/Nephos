@@ -56,8 +56,8 @@ void Player::camera_mouse(eng::data::Camera* camera){
     utl_window->set_mouse_pose(window_center);
 
     // Compute new orientation
-    azimuth += camera->speed_mouse * float(window_center.x - mouse_pose.x);
-    elevation += camera->speed_mouse * float(window_center.y - mouse_pose.y);
+    azimuth += camera->player_mouse_sensibility.x * float(window_center.x - mouse_pose.x);
+    elevation += camera->player_mouse_sensibility.y * float(window_center.y - mouse_pose.y);
 
     //Limites of camera rotation
     if(elevation > M_PI/2) elevation = M_PI/2;
