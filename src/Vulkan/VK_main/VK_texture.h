@@ -24,7 +24,7 @@ public:
 
   //Texture cleaning
   void clean_texture(vk::structure::Object* object);
-  void clean_textures();
+  void clean();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

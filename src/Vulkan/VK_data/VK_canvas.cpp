@@ -18,7 +18,7 @@ VK_canvas::VK_canvas(vk::structure::Vulkan* struct_vulkan){
 VK_canvas::~VK_canvas(){}
 
 //Main function
-void VK_canvas::create_canvas(){
+void VK_canvas::init(){
   eng::data::Object* canvas_obj = new eng::data::Object();
   //---------------------------
 
@@ -52,7 +52,7 @@ void VK_canvas::create_canvas(){
 
   //---------------------------
 }
-void VK_canvas::clean_canvas(){
+void VK_canvas::clean(){
   //---------------------------
 
   vk_buffer->clean_buffers(&struct_vulkan->data.canvas);

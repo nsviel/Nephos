@@ -19,8 +19,8 @@ public:
 
 public:
   //Main functions
-  void init_all_renderpass();
-  void clean_all_renderpass();
+  void init();
+  void clean();
 
   //Subfunction
   void create_renderpass(vk::structure::Renderpass* renderpass);

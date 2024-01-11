@@ -17,8 +17,8 @@ public:
 
 public:
   //Main functions
-  void create_canvas();
-  void clean_canvas();
+  void init();
+  void clean();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

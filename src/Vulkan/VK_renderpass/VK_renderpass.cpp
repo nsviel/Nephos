@@ -21,7 +21,7 @@ VK_renderpass::VK_renderpass(vk::structure::Vulkan* struct_vulkan){
 VK_renderpass::~VK_renderpass(){}
 
 //Main function
-void VK_renderpass::init_all_renderpass(){
+void VK_renderpass::init(){
   //---------------------------
 
   //Check for renderpass demande
@@ -42,7 +42,7 @@ void VK_renderpass::init_all_renderpass(){
 
   //---------------------------
 }
-void VK_renderpass::clean_all_renderpass(){
+void VK_renderpass::clean(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){

@@ -17,7 +17,7 @@ public:
 public:
   //Main functions
   void init();
-  void clean_instance();
+  void clean();
 
   //Subfunction
   void create_instance();

@@ -58,7 +58,7 @@ void VK_data::update_object(eng::data::Object* object, vk::structure::Object* da
 
   //---------------------------
 }
-void VK_data::clean_entity_all(){
+void VK_data::clean(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->data.list_object.size(); i++){

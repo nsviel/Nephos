@@ -22,7 +22,7 @@ public:
   //Main function
   void create_swapchain();
   void recreate_swapchain();
-  void clean_swapchain();
+  void clean();
 
   //Swap chain creation
   void create_swapchain_image();

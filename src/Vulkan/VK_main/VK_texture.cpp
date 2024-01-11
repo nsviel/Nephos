@@ -87,7 +87,7 @@ void VK_texture::clean_texture(vk::structure::Object* data){
 
   //---------------------------
 }
-void VK_texture::clean_textures(){
+void VK_texture::clean(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->data.vec_texture.size(); i++){

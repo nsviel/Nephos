@@ -14,7 +14,7 @@ VK_viewport::VK_viewport(vk::structure::Vulkan* struct_vulkan){
 VK_viewport::~VK_viewport(){}
 
 //Main function
-void VK_viewport::init_viewport(){
+void VK_viewport::init(){
   vec2 win_dim = struct_vulkan->window.window_dim;
   //---------------------------
 

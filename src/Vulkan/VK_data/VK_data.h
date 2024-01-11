@@ -22,7 +22,7 @@ public:
   //Main functions
   void insert_object(eng::data::Object* object);
   void update_object(eng::data::Object* object, vk::structure::Object* data);
-  void clean_entity_all();
+  void clean();
   void clean_entity(vk::structure::Object* data);
 
   //Pipeline data description

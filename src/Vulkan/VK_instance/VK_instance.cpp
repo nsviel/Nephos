@@ -24,7 +24,7 @@ void VK_instance::init(){
 
   //---------------------------
 }
-void VK_instance::clean_instance(){
+void VK_instance::clean(){
   //---------------------------
 
   vk_validation->clean_layer();
