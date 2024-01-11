@@ -14,7 +14,7 @@ Arcball::Arcball(util::element::Window* utl_window) : Base(utl_window){
 Arcball::~Arcball(){}
 
 //Camera movement
-void Arcball::camera_up(eng::data::Camera* camera, float speed){
+void Arcball::camera_forward(eng::data::Camera* camera, float speed){
   //---------------------------
 
   //camera->cam_P += camera->cam_F * speed;
@@ -22,7 +22,7 @@ void Arcball::camera_up(eng::data::Camera* camera, float speed){
 
   //---------------------------
 }
-void Arcball::camera_down(eng::data::Camera* camera, float speed){
+void Arcball::camera_backward(eng::data::Camera* camera, float speed){
   //---------------------------
 
   //camera->cam_P -= camera->cam_F * speed;
@@ -45,6 +45,19 @@ void Arcball::camera_left(eng::data::Camera* camera, float speed){
   //vec2 angle =vec2(speed / 10, 0);
   //this->rotate_by_angle(camera, angle);
   this->displace_camera_COM(camera, vec2(-speed, 0));
+
+  //---------------------------
+}
+void Arcball::camera_up(eng::data::Camera* camera, float speed){
+  //---------------------------
+
+
+
+  //---------------------------
+}
+void Arcball::camera_down(eng::data::Camera* camera, float speed){
+  //---------------------------
+
 
   //---------------------------
 }

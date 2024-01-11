@@ -15,10 +15,12 @@ public:
 
 public:
   //Camera movement
-  virtual void camera_up(eng::data::Camera* camera, float speed){}
-  virtual void camera_down(eng::data::Camera* camera, float speed){}
+  virtual void camera_forward(eng::data::Camera* camera, float speed){}
+  virtual void camera_backward(eng::data::Camera* camera, float speed){}
   virtual void camera_right(eng::data::Camera* camera, float speed){}
   virtual void camera_left(eng::data::Camera* camera, float speed){}
+  virtual void camera_up(eng::data::Camera* camera, float speed){}
+  virtual void camera_down(eng::data::Camera* camera, float speed){}
   virtual void camera_mouse(eng::data::Camera* camera){}
   virtual void camera_zoom(eng::data::Camera* camera, float speed){}
 

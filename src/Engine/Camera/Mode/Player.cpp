@@ -14,14 +14,14 @@ Player::Player(util::element::Window* utl_window) : Base(utl_window){
 Player::~Player(){}
 
 //Camera movement
-void Player::camera_up(eng::data::Camera* camera, float speed){
+void Player::camera_forward(eng::data::Camera* camera, float speed){
   //---------------------------
 
   camera->cam_P += camera->cam_F * speed;
 
   //---------------------------
 }
-void Player::camera_down(eng::data::Camera* camera, float speed){
+void Player::camera_backward(eng::data::Camera* camera, float speed){
   //---------------------------
 
   camera->cam_P -= camera->cam_F * speed;
@@ -39,6 +39,20 @@ void Player::camera_left(eng::data::Camera* camera, float speed){
   //---------------------------
 
   camera->cam_P -= camera->cam_R * speed;
+
+  //---------------------------
+}
+void Player::camera_up(eng::data::Camera* camera, float speed){
+  //---------------------------
+
+  camera->cam_P += camera->cam_U * speed;
+
+  //---------------------------
+}
+void Player::camera_down(eng::data::Camera* camera, float speed){
+  //---------------------------
+
+  camera->cam_P -= camera->cam_U * speed;
 
   //---------------------------
 }

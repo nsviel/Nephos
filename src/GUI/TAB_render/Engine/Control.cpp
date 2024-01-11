@@ -91,12 +91,12 @@ void Control::control_keyboard_camMove(){
 
       //Z key or Up key
       if(io.KeysDown[571] || io.KeysDown[515]){
-        cam_control->control_keyboard(CAMERA_UP, is_fast);
+        cam_control->control_keyboard(CAMERA_FORWARD, is_fast);
       }
 
       //S key or Down key
       if(io.KeysDown[564] || io.KeysDown[516]){
-        cam_control->control_keyboard(CAMERA_DOWN, is_fast);
+        cam_control->control_keyboard(CAMERA_BACKWARD, is_fast);
       }
 
       //Q key or Left key

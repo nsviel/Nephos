@@ -16,10 +16,12 @@ public:
 
 public:
   //Camera movement
-  void camera_up(eng::data::Camera* camera, float speed);
-  void camera_down(eng::data::Camera* camera, float speed);
+  void camera_forward(eng::data::Camera* camera, float speed);
+  void camera_backward(eng::data::Camera* camera, float speed);
   void camera_right(eng::data::Camera* camera, float speed);
   void camera_left(eng::data::Camera* camera, float speed);
+  void camera_up(eng::data::Camera* camera, float speed);
+  void camera_down(eng::data::Camera* camera, float speed);
   void camera_mouse(eng::data::Camera* camera);
   void camera_zoom(eng::data::Camera* camera, float speed);
 

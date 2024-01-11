@@ -17,10 +17,12 @@ enum camera_projection{
 };
 
 enum camera_direction{
-  CAMERA_UP = 0,
-  CAMERA_DOWN = 1,
+  CAMERA_FORWARD = 0,
+  CAMERA_BACKWARD = 1,
   CAMERA_RIGHT = 2,
   CAMERA_LEFT = 3,
+  CAMERA_UP = 4,
+  CAMERA_DOWN = 5,
 };
 
 namespace eng::data{

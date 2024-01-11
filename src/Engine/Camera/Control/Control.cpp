@@ -37,12 +37,12 @@ void Control::control_keyboard(int direction, bool fast){
   }
 
   switch(direction){
-    case CAMERA_UP:{
-      active_mode->camera_up(camera, cam_speed);
+    case CAMERA_FORWARD:{
+      active_mode->camera_forward(camera, cam_speed);
       break;
     }
-    case CAMERA_DOWN:{
-      active_mode->camera_down(camera, cam_speed);
+    case CAMERA_BACKWARD:{
+      active_mode->camera_backward(camera, cam_speed);
       break;
     }
     case CAMERA_RIGHT:{
@@ -51,6 +51,14 @@ void Control::control_keyboard(int direction, bool fast){
     }
     case CAMERA_LEFT:{
       active_mode->camera_left(camera, cam_speed);
+      break;
+    }
+    case CAMERA_UP:{
+      active_mode->camera_up(camera, cam_speed);
+      break;
+    }
+    case CAMERA_DOWN:{
+      active_mode->camera_down(camera, cam_speed);
       break;
     }
   }
