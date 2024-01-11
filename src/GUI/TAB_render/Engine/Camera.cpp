@@ -85,8 +85,19 @@ void Camera::cam_info(){
   ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f);
 
   //Camera angles
-  ImGui::Text("Horizontal angle : %.2f°", camera->angle_azimuth * 180 / M_PI);
-  ImGui::Text("Vertical angle : %.2f°", camera->angle_elevation * 180 / M_PI);
+  if(ImGui::BeginTable("angle##camera", 2)){
+    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 125.0f);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Azimuth"); ImGui::TableNextColumn();
+    ImGui::Text("%.2f°", camera->angle_azimuth * 180 / M_PI);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Elevation"); ImGui::TableNextColumn();
+    ImGui::Text("%.2f°", camera->angle_elevation * 180 / M_PI);
+
+    ImGui::EndTable();
+  }
 
   //---------------------------
 }
