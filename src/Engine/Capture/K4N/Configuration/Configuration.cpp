@@ -34,8 +34,9 @@ void Configuration::find_playback_configuration(k4n::Device* k4n_device){
   k4a_record_configuration_t configuration = k4n_device->device.playback->get_record_configuration();
   //---------------------------
 
-  k4n_device->device.playback->set_color_conversion(K4A_IMAGE_FORMAT_COLOR_BGRA32);
-  configuration.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+ 	k4a_image_format_t required_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+  k4n_device->device.playback->set_color_conversion(required_format);
+  configuration.color_format = required_format;
 
   //General info
   k4n_device->playback.fps = find_name_from_config(configuration.camera_fps);
