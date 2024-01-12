@@ -9,8 +9,8 @@ namespace k4n::structure{
 struct Swarm{
   //---------------------------
 
-  k4n::device::Device* selected_device = nullptr;
-  std::list<k4n::device::Device*> list_device;
+  k4n::Device* selected_device = nullptr;
+  std::list<k4n::Device*> list_device;
 
   int nb_device = 0;
   int nb_capture = 0;

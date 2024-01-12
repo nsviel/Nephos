@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Device/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
 #include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Engine/Capture/K4N/Structure/Struct_swarm.h>
 #include <Engine/Scene/Data/Scene.h>
@@ -8,7 +8,7 @@
 
 class Engine;
 
-namespace k4n::device{
+namespace k4n{
 
 
 class Swarm
@@ -30,17 +30,17 @@ public:
   void manage_no_device();
 
   //Creation function
-  k4n::device::Device* create_playback(string path);
-  k4n::device::Device* create_device();
-  void close_device(k4n::device::Device* device);
+  k4n::Device* create_playback(string path);
+  k4n::Device* create_device();
+  void close_device(k4n::Device* device);
   void close_device_all();
   void selecte_next_device();
 
-  inline k4n::device::Device* get_selected_device(){return struct_swarm->selected_device;}
-  inline list<k4n::device::Device*>& get_list_device(){return struct_swarm->list_device;}
+  inline k4n::Device* get_selected_device(){return struct_swarm->selected_device;}
+  inline list<k4n::Device*>& get_list_device(){return struct_swarm->list_device;}
   inline int get_nb_device(){return struct_swarm->nb_device;}
   inline int get_nb_playback(){return struct_swarm->nb_playback;}
-  inline void set_selected_device(k4n::device::Device* device){struct_swarm->selected_device = device;}
+  inline void set_selected_device(k4n::Device* device){struct_swarm->selected_device = device;}
 
 private:
   Engine* engine;

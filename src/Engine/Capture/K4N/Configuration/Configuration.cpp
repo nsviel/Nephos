@@ -13,28 +13,28 @@ Configuration::Configuration(){
 Configuration::~Configuration(){}
 
 //Main function
-void Configuration::init_device_calibration(k4n::device::Device* k4a_device){
+void Configuration::init_device_calibration(k4n::Device* k4a_device){
   //---------------------------
 
   k4a_device->device.calibration = k4a_device->device.device->get_calibration(k4a_device->depth.config.mode, k4a_device->color.config.resolution);
 
   //---------------------------
 }
-void Configuration::init_playback_calibration(k4n::device::Device* k4a_device){
+void Configuration::init_playback_calibration(k4n::Device* k4a_device){
   //---------------------------
 
   k4a_device->device.calibration = k4a_device->device.playback->get_calibration();
 
   //---------------------------
 }
-void Configuration::init_device_transformation(k4n::device::Device* k4a_device){
+void Configuration::init_device_transformation(k4n::Device* k4a_device){
   //---------------------------
 
   k4a_device->device.transformation = k4a::transformation(k4a_device->device.calibration);
 
   //---------------------------
 }
-void Configuration::make_k4a_configuration(k4n::device::Device* k4a_device){
+void Configuration::make_k4a_configuration(k4n::Device* k4a_device){
   //---------------------------
 
   k4a_device_configuration_t k4a_config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
@@ -51,7 +51,7 @@ void Configuration::make_k4a_configuration(k4n::device::Device* k4a_device){
   //---------------------------
   k4a_device->device.k4a_config = k4a_config;
 }
-void Configuration::find_file_information(k4n::device::Device* k4a_device){
+void Configuration::find_file_information(k4n::Device* k4a_device){
   //---------------------------
 
   k4a::playback playback = k4a::playback::open(k4a_device->playback.path.c_str());

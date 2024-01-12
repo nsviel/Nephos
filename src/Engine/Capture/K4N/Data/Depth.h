@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Device/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
 #include <Utility/Specific/common.h>
 
 
@@ -15,8 +15,8 @@ public:
 
 public:
   //Main function
-  std::vector<uint8_t> convert_depth_into_color(k4n::device::Device* device);
-  void find_depth_mode_range(k4n::device::Device* device);
+  std::vector<uint8_t> convert_depth_into_color(k4n::Device* device);
+  void find_depth_mode_range(k4n::Device* device);
 
 private:
 };

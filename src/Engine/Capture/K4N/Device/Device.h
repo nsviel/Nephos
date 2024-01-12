@@ -9,7 +9,7 @@ class K4A_capture;
 class K4A_playback;
 class Engine;
 
-namespace k4n::device{
+namespace k4n{
 
 
 class Device : public eng::data::Entity

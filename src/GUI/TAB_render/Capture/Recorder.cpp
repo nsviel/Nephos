@@ -32,7 +32,7 @@ void Recorder::kinect_recorder(){
 
 //Subfunction
 void Recorder::recorder_path(){
-  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Capture/K4N/Data/Namespace.h>
-#include <Engine/Capture/K4N/Device/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
 #include <Engine/Capture/K4N/Utils/Namespace.h>
 #include <Engine/Capture/K4N/Configuration/Namespace.h>
 #include <Utility/Specific/common.h>
@@ -25,12 +25,12 @@ public:
   void run();
 
   //Subfunction
-  void start_thread(k4n::device::Device* device);
-  void run_thread(k4n::device::Device* device);
+  void start_thread(k4n::Device* device);
+  void run_thread(k4n::Device* device);
   void stop_thread();
-  void manage_pause(k4n::device::Device* k4a_device);
-  void manage_recording(k4n::device::Device* k4a_device, k4a::capture capture);
-  void manage_color_setting(k4n::device::Device* k4a_device);
+  void manage_pause(k4n::Device* k4a_device);
+  void manage_recording(k4n::Device* k4a_device, k4a::capture capture);
+  void manage_color_setting(k4n::Device* k4a_device);
 
   inline bool is_thread_running(){return thread_running;}
   inline bool* get_thread_pause(){return &thread_pause;}

@@ -29,7 +29,7 @@ K4A_playback::~K4A_playback(){
 }
 
 //Main function
-void K4A_playback::start_thread(k4n::device::Device* k4a_device){
+void K4A_playback::start_thread(k4n::Device* k4a_device){
   //---------------------------
 
   if(!thread_running){
@@ -38,7 +38,7 @@ void K4A_playback::start_thread(k4n::device::Device* k4a_device){
 
   //---------------------------
 }
-void K4A_playback::run_thread(k4n::device::Device* k4a_device){
+void K4A_playback::run_thread(k4n::Device* k4a_device){
   //---------------------------
 
   //Get info about file
@@ -111,7 +111,7 @@ void K4A_playback::manage_fps(int fps_mode){
 
   //---------------------------
 }
-void K4A_playback::find_duration(k4n::device::Device* k4a_device){
+void K4A_playback::find_duration(k4n::Device* k4a_device){
   k4n::structure::Player* player = &k4a_device->player;
   //---------------------------
 
@@ -142,7 +142,7 @@ void K4A_playback::find_duration(k4n::device::Device* k4a_device){
 
   //---------------------------
 }
-void K4A_playback::manage_query_ts(k4n::device::Device* k4a_device){
+void K4A_playback::manage_query_ts(k4n::Device* k4a_device){
   //---------------------------
 
   //If a timestamp was querry
@@ -166,7 +166,7 @@ void K4A_playback::manage_query_ts(k4n::device::Device* k4a_device){
 
   //---------------------------
 }
-void K4A_playback::manage_pause(k4n::device::Device* k4a_device){
+void K4A_playback::manage_pause(k4n::Device* k4a_device){
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -178,7 +178,7 @@ void K4A_playback::manage_pause(k4n::device::Device* k4a_device){
 
   //---------------------------
 }
-void K4A_playback::manage_restart(k4n::device::Device* k4a_device){
+void K4A_playback::manage_restart(k4n::Device* k4a_device){
   //---------------------------
 
   if(k4a_device->player.ts_cur == k4a_device->player.ts_end){
@@ -190,7 +190,7 @@ void K4A_playback::manage_restart(k4n::device::Device* k4a_device){
 
   //---------------------------
 }
-void K4A_playback::manage_recording(k4n::device::Device* k4a_device, k4a::capture capture){
+void K4A_playback::manage_recording(k4n::Device* k4a_device, k4a::capture capture){
   //---------------------------
 
   k4a::record& recorder = k4a_device->recorder.recorder;

@@ -5,7 +5,7 @@
 #include <Engine/Capture/K4N/Thread/K4A_playback.h>
 
 
-namespace k4n::device{
+namespace k4n{
 
 
 //Constructor / Destructor
