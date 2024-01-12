@@ -40,7 +40,7 @@ private:
   FPS_control* fps_control;
   eng::kinect::data::Data* k4a_data;
   eng::kinect::data::Cloud* k4a_processing;
-  eng::kinect::Configuration* k4a_config;
+  k4a::config::Configuration* k4a_config;
 
   std::thread thread;
   bool thread_running = false;

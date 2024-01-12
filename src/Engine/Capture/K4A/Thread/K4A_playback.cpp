@@ -15,7 +15,7 @@ K4A_playback::K4A_playback(Engine* engine){
 
   this->k4a_data = new eng::kinect::data::Data();
   this->k4a_processing = new eng::kinect::data::Cloud(engine);
-  this->k4a_config = new eng::kinect::Configuration();
+  this->k4a_config = new k4a::config::Configuration();
 
   //---------------------------
 }

@@ -1,7 +1,7 @@
 #include "Configuration.h"
 
 
-namespace eng::kinect{
+namespace k4a::config{
 
 //Constructor / Destructor
 Configuration::Configuration(){
