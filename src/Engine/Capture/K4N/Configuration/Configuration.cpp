@@ -48,7 +48,7 @@ void Configuration::find_playback_configuration(k4n::Device* k4n_device){
 
   k4n_device->depth.config.mode_str = find_name_from_config(configuration.depth_mode);
   k4n_device->color.config.format_str = find_name_from_config(configuration.color_format);
-  k4n_device->playback.color_resolution_str = find_name_from_config(configuration.color_resolution);
+  k4n_device->color.config.resolution_str = find_name_from_config(configuration.color_resolution);
 
   // Sync info
   k4n_device->playback.wired_sync_mode_str = find_name_from_config(configuration.wired_sync_mode);
@@ -59,8 +59,8 @@ void Configuration::find_playback_configuration(k4n::Device* k4n_device){
 
   // Device info
   k4n_device->device.playback->get_tag("K4A_DEVICE_SERIAL_NUMBER", &k4n_device->playback.device_serial_number);
-  k4n_device->device.playback->get_tag("K4A_COLOR_FIRMWARE_VERSION", &k4n_device->playback.color_firmware_version);
-  k4n_device->device.playback->get_tag("K4A_DEPTH_FIRMWARE_VERSION", &k4n_device->playback.depth_firmware_version);
+  k4n_device->device.playback->get_tag("K4A_COLOR_FIRMWARE_VERSION", &k4n_device->color.config.firmware_version);
+  k4n_device->device.playback->get_tag("K4A_DEPTH_FIRMWARE_VERSION", &k4n_device->depth.config.firmware_version);
 
   //---------------------------
 }

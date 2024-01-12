@@ -85,11 +85,11 @@ void Playback::show_info_color(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color resolution"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.color_resolution_str.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->color.config.resolution_str.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color firmware"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.color_firmware_version.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->color.config.firmware_version.c_str());
 
     ImGui::EndTable();
   }
@@ -120,7 +120,7 @@ void Playback::show_info_depth(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.depth_firmware_version.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->depth.config.firmware_version.c_str());
 
     ImGui::EndTable();
   }

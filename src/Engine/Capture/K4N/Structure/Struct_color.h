@@ -98,6 +98,7 @@ struct Color_config{
 
   std::string format_str;
   std::string resolution_str;
+  std::string firmware_version;
 
   //Control
   k4n::structure::Exposure exposure;
