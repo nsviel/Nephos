@@ -52,7 +52,7 @@ void K4A_playback::run_thread(k4n::Device* k4n_device){
   k4n_device->device.playback = &playback;
 
   k4a_config->find_file_information(k4n_device);
-  k4a_config->make_k4a_configuration(k4n_device);
+  k4a_config->make_device_configuration(k4n_device);
   k4a_config->make_playback_calibration(k4n_device);
   k4a_config->make_device_transformation(k4n_device);
 

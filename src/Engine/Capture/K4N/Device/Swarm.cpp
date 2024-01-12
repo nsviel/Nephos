@@ -52,7 +52,7 @@ void Swarm::reset_all_device(){
 void Swarm::refresh_connected_device(){
   //---------------------------
 
-  const uint32_t nb_device = k4n_device_get_installed_count();
+  const uint32_t nb_device = k4a_device_get_installed_count();
   if(nb_device != struct_swarm->nb_device){
     //If some news, run them
     if(nb_device > struct_swarm->nb_device){
@@ -93,7 +93,7 @@ void Swarm::manage_less_device(int nb_less_device){
   this->close_device_all();
 
   //If no real device create virtual one
-  uint32_t nb_device = k4n_device_get_installed_count();
+  uint32_t nb_device = k4a_device_get_installed_count();
   if(nb_device != 0){
     for(int i=0; i<nb_device; i++){
       this->create_device();
@@ -106,7 +106,7 @@ void Swarm::manage_no_device(){
   //---------------------------
 
   //If no real device create virtual one
-  uint32_t nb_device = k4n_device_get_installed_count();
+  uint32_t nb_device = k4a_device_get_installed_count();
   if(nb_device == 0 && struct_swarm->nb_playback == 0){
     this->create_playback(default_file);
   }

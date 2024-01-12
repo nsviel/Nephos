@@ -23,7 +23,7 @@ struct Device{
   k4a::transformation transformation;
 
   k4a_fps_t fps_mode = K4A_FRAMES_PER_SECOND_30;
-  k4n_device_configuration_t k4a_config;
+  k4a_device_configuration_t k4a_config;
   k4a_hardware_version_t version;
 
   //---------------------------

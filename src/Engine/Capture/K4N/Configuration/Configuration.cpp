@@ -34,10 +34,10 @@ void Configuration::make_device_transformation(k4n::Device* k4n_device){
 
   //---------------------------
 }
-void Configuration::make_k4a_configuration(k4n::Device* k4n_device){
+void Configuration::make_device_configuration(k4n::Device* k4n_device){
   //---------------------------
 
-  k4n_device_configuration_t k4a_config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
+  k4a_device_configuration_t k4a_config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
   k4a_config.color_format = k4n_device->color.config.format;
   k4a_config.color_resolution = k4n_device->color.config.enabled ? k4n_device->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
   k4a_config.depth_mode = k4n_device->depth.config.enabled ? k4n_device->depth.config.mode : K4A_DEPTH_MODE_OFF;

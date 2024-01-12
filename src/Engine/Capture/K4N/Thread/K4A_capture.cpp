@@ -51,7 +51,7 @@ void K4A_capture::run_thread(k4n::Device* k4n_device){
   //Configuration
   k4n_device->device.device = &device;
   k4n_device->device.serial_number = device.get_serialnum();
-  k4a_config->make_k4a_configuration(k4n_device);
+  k4a_config->make_device_configuration(k4n_device);
   k4a_config->make_device_calibration(k4n_device);
   k4a_config->make_device_transformation(k4n_device);
 
