@@ -12,7 +12,7 @@ Cloud::Cloud(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->kin_operation = new eng::kinect::Operation();
+  this->kin_operation = new k4a::utils::Operation();
 
   //---------------------------
 }

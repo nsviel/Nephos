@@ -4,7 +4,7 @@
 #include <Engine/Capture/K4A/Utils/Player.h>
 
 
-namespace eng::kinect{
+namespace k4a::utils{
   //---------------------------
 
   class Operation;

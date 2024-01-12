@@ -33,7 +33,7 @@ public:
 
 private:
   Engine* engine;
-  eng::kinect::Operation* kin_operation;
+  k4a::utils::Operation* kin_operation;
 
   eng::kinect::structure::Cloud* cloud;
   std::vector<glm::vec3> vec_xyz;

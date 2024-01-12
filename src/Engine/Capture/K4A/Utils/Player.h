@@ -5,7 +5,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace eng::kinect{
+namespace k4a::utils{
 
 class Player
 {

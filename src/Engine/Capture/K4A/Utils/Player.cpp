@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-namespace eng::kinect{
+namespace k4a::utils{
 
 //Constructor / Destructor
 Player::Player(){

@@ -7,7 +7,7 @@
 #include <k4arecord/playback.hpp>
 
 
-namespace eng::kinect{
+namespace k4a::utils{
 
 class Operation
 {

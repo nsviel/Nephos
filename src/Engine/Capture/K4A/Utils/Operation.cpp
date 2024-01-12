@@ -1,7 +1,7 @@
 #include "Operation.h"
 
 
-namespace eng::kinect{
+namespace k4a::utils{
 
 //Constructor / Destructor
 Operation::Operation(){
