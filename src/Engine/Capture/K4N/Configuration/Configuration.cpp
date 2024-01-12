@@ -31,36 +31,34 @@ void Configuration::make_device_configuration(k4n::Device* k4n_device){
   k4n_device->device.configuration = configuration;
 }
 void Configuration::find_playback_configuration(k4n::Device* k4n_device){
+  k4a_record_configuration_t configuration = k4n_device->device.playback->get_record_configuration();
   //---------------------------
 
-  k4a::playback playback = k4a::playback::open(k4n_device->playback.path.c_str());
-  k4a_record_configuration_t record_configuration = playback.get_record_configuration();
-
-  playback.set_color_conversion(K4A_IMAGE_FORMAT_COLOR_BGRA32);
-  record_configuration.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+  k4n_device->device.playback->set_color_conversion(K4A_IMAGE_FORMAT_COLOR_BGRA32);
+  configuration.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
 
   //General info
-  k4n_device->playback.fps = find_name_from_config(record_configuration.camera_fps);
-  k4n_device->playback.is_depth = record_configuration.depth_track_enabled;
-  k4n_device->playback.is_infrared = record_configuration.ir_track_enabled;
-  k4n_device->playback.is_imu = record_configuration.imu_track_enabled;
-  k4n_device->playback.is_color = record_configuration.color_track_enabled;
+  k4n_device->playback.fps = find_name_from_config(configuration.camera_fps);
+  k4n_device->playback.is_depth = configuration.depth_track_enabled;
+  k4n_device->playback.is_infrared = configuration.ir_track_enabled;
+  k4n_device->playback.is_imu = configuration.imu_track_enabled;
+  k4n_device->playback.is_color = configuration.color_track_enabled;
 
-  k4n_device->playback.depth_mode = find_name_from_config(record_configuration.depth_mode);
-  k4n_device->playback.color_format = find_name_from_config(record_configuration.color_format);
-  k4n_device->playback.color_resolution = find_name_from_config(record_configuration.color_resolution);
+  k4n_device->playback.depth_mode = find_name_from_config(configuration.depth_mode);
+  k4n_device->playback.color_format = find_name_from_config(configuration.color_format);
+  k4n_device->playback.color_resolution = find_name_from_config(configuration.color_resolution);
 
   // Sync info
-  k4n_device->playback.wired_sync_mode = find_name_from_config(record_configuration.wired_sync_mode);
-  k4n_device->synchro.depth_delay_off_color_us = record_configuration.depth_delay_off_color_usec;
-  k4n_device->synchro.subordinate_delay_off_master_us = record_configuration.subordinate_delay_off_master_usec;
-  k4n_device->synchro.start_timestamp_offset_us = record_configuration.start_timestamp_offset_usec;
-  k4n_device->player.duration = playback.get_recording_length().count() / 1000000.0f;
+  k4n_device->playback.wired_sync_mode = find_name_from_config(configuration.wired_sync_mode);
+  k4n_device->synchro.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
+  k4n_device->synchro.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
+  k4n_device->synchro.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
+  k4n_device->player.duration = k4n_device->device.playback->get_recording_length().count() / 1000000.0f;
 
   // Device info
-  playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &k4n_device->playback.device_serial_number);
-  playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &k4n_device->playback.color_firmware_version);
-  playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &k4n_device->playback.depth_firmware_version);
+  k4n_device->device.playback->get_tag("K4A_DEVICE_SERIAL_NUMBER", &k4n_device->playback.device_serial_number);
+  k4n_device->device.playback->get_tag("K4A_COLOR_FIRMWARE_VERSION", &k4n_device->playback.color_firmware_version);
+  k4n_device->device.playback->get_tag("K4A_DEPTH_FIRMWARE_VERSION", &k4n_device->playback.depth_firmware_version);
 
   //---------------------------
 }
