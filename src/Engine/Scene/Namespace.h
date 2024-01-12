@@ -1,7 +1,8 @@
 #pragma once
 
 #include <Engine/Scene/Data/Database.h>
-#include <Engine/Scene/Data/Loader.h>
+#include <Engine/Scene/Loader/Loader.h>
+#include <Engine/Scene/Loader/Bookmark.h>
 #include <Engine/Scene/Data/Scene.h>
 #include <Engine/Scene/Data/Operation.h>
 #include <Engine/Scene/Glyph/Glyph.h>
@@ -17,6 +18,7 @@ namespace eng::scene{
   class Node;
   class Format;
   class Loader;
+  class Bookmark;
   class Glyph;
   class Operation;
 
