@@ -2,9 +2,6 @@
 
 #include <Engine/Scene/Namespace.h>
 #include <Engine/Base/Namespace.h>
-
-#include <Engine/Base/Namespace.h>
-#include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 #include <Utility/Function/File/File.h>
@@ -12,6 +9,7 @@
 #include <string>
 #include <vector>
 
+class Engine;
 class VK_engine;
 
 namespace eng::scene{
@@ -37,6 +35,7 @@ public:
   bool is_format_supported(string format);
 
 private:
+  Engine* engine;
   VK_engine* vk_engine;
   eng::scene::Glyph* sce_glyph;
   eng::scene::Format* eng_format;

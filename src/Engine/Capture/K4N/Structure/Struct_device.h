@@ -11,11 +11,13 @@ struct Device{
   //---------------------------
 
   int index = -1;
-  std::string name = "";
-  std::string serial_number = "";
   bool data_ready = false;
   bool is_playback;
   float fps = 0;
+
+  std::string name = "";
+  std::string serial_number = "";
+  std::string fps_mode_str;
 
   k4a::device* device;
   k4a::playback* playback;

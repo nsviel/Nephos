@@ -51,14 +51,17 @@ void Configuration::find_config_fps(k4n::Device* k4n_device, k4a_record_configur
   k4n_device->device.fps_mode = configuration.camera_fps;
   switch(configuration.camera_fps){
     case K4A_FRAMES_PER_SECOND_5:{
+      k4n_device->device.mode_str = "5";
       k4n_device->device.fps = 5;
       break;
     }
     case K4A_FRAMES_PER_SECOND_15:{
+      k4n_device->device.mode_str = "15";
       k4n_device->device.fps = 15;
       break;
     }
     case K4A_FRAMES_PER_SECOND_30:{
+      k4n_device->device.mode_str = "30";
       k4n_device->device.fps = 30;
       break;
     }

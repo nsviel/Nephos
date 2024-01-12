@@ -8,6 +8,7 @@
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 #include <Utility/Function/File/Info.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
 
 namespace eng::scene{
@@ -16,7 +17,7 @@ namespace eng::scene{
 Loader::Loader(eng::scene::Node* node_scene){
   //---------------------------
 
-  Engine* engine = node_scene->get_engine();
+  this->engine = node_scene->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->sce_glyph = node_scene->get_scene_glyph();
@@ -64,7 +65,10 @@ eng::data::Entity* Loader::load_entity(std::string path){
   }
 
   if(format == "mkv"){
-
+    eng::capture::Node* node_capture = engine->get_node_capture();
+    k4n::Node* node_kinect = node_capture->get_node_kinect();
+    k4n::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
+    k4a_swarm->create_playback(path);
   }else{
     entity = load_object(path);
   }
