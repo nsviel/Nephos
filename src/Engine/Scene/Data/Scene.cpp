@@ -35,7 +35,7 @@ void Scene::init(){
   //Initial scene entities
   //vector<string> vec_path;
   //vec_path.push_back( "../media/point_cloud/dragon.ply");
-  //vector<eng::data::Object*> vec_obj = eng_loader->load_objects(vec_path);
+  //vector<eng::data::Object*> vec_obj = eng_loader->load_entitys(vec_path);
 
   //---------------------------
 }
@@ -76,7 +76,7 @@ eng::data::Entity* Scene::get_selected_entity(){
 eng::data::Entity* Scene::import_entity(std::string path){
   //---------------------------
 
-  eng::data::Object* entity = sce_loader->load_object(path);
+  eng::data::Object* entity = sce_loader->load_entity(path);
   this->insert_entity_scene(entity);
 
   sce_database->assign_ID(entity);

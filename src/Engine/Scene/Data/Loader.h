@@ -27,10 +27,10 @@ public:
 
 public:
   //Main functions
-  eng::data::Object* load_object(std::string path);
+  eng::data::Object* load_entity(std::string path);
 
   //Subfunctions
-  void transfert_data(eng::data::Object* object, eng::data::File* file_data);
+  eng::data::Object* load_object(string path);
   bool is_format_supported(string format);
 
 private:

@@ -37,7 +37,7 @@ Loader::~Loader(){
 }
 
 //Main functions
-eng::data::Object* Loader::load_object(std::string path){
+eng::data::Object* Loader::load_entity(std::string path){
   eng::data::Object* object = nullptr;
   //---------------------------
 
@@ -57,14 +57,8 @@ eng::data::Object* Loader::load_object(std::string path){
   if(format == "mkv"){
 
   }else{
-    //Create new object
-    object = new eng::data::Object();
-    object->path_file = path;
-    object->has_texture = true;
-
     //Retrieve data and insert into engine
-    eng::data::File* data = eng_format->get_data_from_file(path);
-    this->transfert_data(object, data);
+    object = load_object(path);
   }
 
   //---------------------------
@@ -72,27 +66,33 @@ eng::data::Object* Loader::load_object(std::string path){
 }
 
 //Subfunctions
-void Loader::transfert_data(eng::data::Object* object, eng::data::File* file_data){
+eng::data::Object* Loader::load_object(string path){
   //---------------------------
 
-  object->name = file_data->name;
-  object->nb_point = file_data->xyz.size();
-  object->draw_type_name = file_data->draw_type_name;
+  eng::data::File* data = eng_format->get_data_from_file(path);
 
-  object->xyz = file_data->xyz;
-  object->rgb = file_data->rgb;
-  object->uv = file_data->uv;
+  eng::data::Object* object = new eng::data::Object();
+  object->path_file = path;
+  object->has_texture = true;
+  object->name = data->name;
+  object->nb_point = data->xyz.size();
+  object->draw_type_name = data->draw_type_name;
+
+  object->xyz = data->xyz;
+  object->rgb = data->rgb;
+  object->uv = data->uv;
 
   if(object->rgb.size() == 0){
-    for(int i=0; i<file_data->xyz.size(); i++){
+    for(int i=0; i<data->xyz.size(); i++){
       object->rgb.push_back(vec4(1,1,1,1));
     }
   }
 
   //Delete raw data
-  delete file_data;
+  delete data;
 
   //---------------------------
+  return object;
 }
 bool Loader::is_format_supported(string format){
   //---------------------------
