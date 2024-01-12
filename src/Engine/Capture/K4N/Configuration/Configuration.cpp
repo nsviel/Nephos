@@ -12,21 +12,7 @@ Configuration::Configuration(){
 }
 Configuration::~Configuration(){}
 
-//Main function
-void Configuration::make_device_calibration(k4n::Device* k4n_device){
-  //---------------------------
-
-  k4n_device->device.calibration = k4n_device->device.device->get_calibration(k4n_device->depth.config.mode, k4n_device->color.config.resolution);
-
-  //---------------------------
-}
-void Configuration::make_playback_calibration(k4n::Device* k4n_device){
-  //---------------------------
-
-  k4n_device->device.calibration = k4n_device->device.playback->get_calibration();
-
-  //---------------------------
-}
+//Device function
 void Configuration::make_device_transformation(k4n::Device* k4n_device){
   //---------------------------
 
@@ -51,7 +37,25 @@ void Configuration::make_device_configuration(k4n::Device* k4n_device){
   //---------------------------
   k4n_device->device.k4a_config = k4a_config;
 }
-void Configuration::find_file_information(k4n::Device* k4n_device){
+
+//Capture function
+void Configuration::make_capture_calibration(k4n::Device* k4n_device){
+  //---------------------------
+
+  k4n_device->device.calibration = k4n_device->device.device->get_calibration(k4n_device->depth.config.mode, k4n_device->color.config.resolution);
+
+  //---------------------------
+}
+
+//Playback function
+void Configuration::find_playback_calibration(k4n::Device* k4n_device){
+  //---------------------------
+
+  k4n_device->device.calibration = k4n_device->device.playback->get_calibration();
+
+  //---------------------------
+}
+void Configuration::find_playback_configuration(k4n::Device* k4n_device){
   //---------------------------
 
   k4a::playback playback = k4a::playback::open(k4n_device->playback.path.c_str());
@@ -85,8 +89,6 @@ void Configuration::find_file_information(k4n::Device* k4n_device){
 
   //---------------------------
 }
-
-//Subfunction
 string Configuration::find_name_from_config(k4a_wired_sync_mode_t& value){
   string name = "(None)";
   //---------------------------

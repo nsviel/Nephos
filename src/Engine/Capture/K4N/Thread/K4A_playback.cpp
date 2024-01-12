@@ -16,6 +16,7 @@ K4A_playback::K4A_playback(Engine* engine){
   this->k4a_data = new k4n::data::Data();
   this->k4a_processing = new k4n::data::Cloud(engine);
   this->k4a_config = new k4n::config::Configuration();
+  this->k4n_calibration = new k4n::config::Calibration();
 
   //---------------------------
 }
@@ -51,10 +52,10 @@ void K4A_playback::run_thread(k4n::Device* k4n_device){
   k4n_device->player.play = true;
   k4n_device->device.playback = &playback;
 
-  k4a_config->find_file_information(k4n_device);
+  k4a_config->find_playback_configuration(k4n_device);
   k4a_config->make_device_configuration(k4n_device);
-  k4a_config->make_playback_calibration(k4n_device);
-  k4a_config->make_device_transformation(k4n_device);
+  k4n_calibration->find_playback_calibration(k4n_device);
+  k4n_calibration->make_device_transformation(k4n_device);
 
   //Playback thread
   k4a::capture capture;

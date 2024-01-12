@@ -15,6 +15,7 @@ K4A_capture::K4A_capture(Engine* engine){
   this->k4a_data = new k4n::data::Data();
   this->k4a_processing = new k4n::data::Cloud(engine);
   this->k4a_config = new k4n::config::Configuration();
+  this->k4n_calibration = new k4n::config::Calibration();
 
   //---------------------------
 }
@@ -52,8 +53,8 @@ void K4A_capture::run_thread(k4n::Device* k4n_device){
   k4n_device->device.device = &device;
   k4n_device->device.serial_number = device.get_serialnum();
   k4a_config->make_device_configuration(k4n_device);
-  k4a_config->make_device_calibration(k4n_device);
-  k4a_config->make_device_transformation(k4n_device);
+  k4n_calibration->make_capture_calibration(k4n_device);
+  k4n_calibration->make_device_transformation(k4n_device);
 
   //Start camera
   k4n_device->device.version = device.get_version();

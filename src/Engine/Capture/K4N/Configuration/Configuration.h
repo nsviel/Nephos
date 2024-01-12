@@ -16,14 +16,16 @@ public:
   ~Configuration();
 
 public:
-  //Main function
-  void make_playback_calibration(k4n::Device* k4n_device);
-  void make_device_calibration(k4n::Device* k4n_device);
+  //Device function
   void make_device_transformation(k4n::Device* k4n_device);
   void make_device_configuration(k4n::Device* k4n_device);
-  void find_file_information(k4n::Device* k4n_device);
 
-  //Subfunction
+  //Capture function
+  void make_capture_calibration(k4n::Device* k4n_device);
+
+  //Playback function
+  void find_playback_calibration(k4n::Device* k4n_device);
+  void find_playback_configuration(k4n::Device* k4n_device);
   string find_name_from_config(k4a_wired_sync_mode_t& value);
   string find_name_from_config(k4a_fps_t& value);
   string find_name_from_config(k4a_depth_mode_t& value);
