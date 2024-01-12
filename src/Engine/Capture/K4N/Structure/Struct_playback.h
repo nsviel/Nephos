@@ -5,6 +5,15 @@
 
 namespace k4n::structure{
 
+struct Config_int{
+  //---------------------------
+
+  std::string name;
+  int value;
+
+  //---------------------------
+};
+
 struct Playback{
   //---------------------------
 
@@ -13,11 +22,11 @@ struct Playback{
   std::string filename;
 
   //Configuration info
-  std::string fps;
-  std::string depth_mode;
-  std::string color_format;
-  std::string color_resolution;
-  std::string wired_sync_mode;
+  std::string fps_str;
+  std::string depth_mode_str;
+  std::string color_format_str;
+  std::string color_resolution_str;
+  std::string wired_sync_mode_str;
   std::string device_serial_number;
   std::string color_firmware_version;
   std::string depth_firmware_version;

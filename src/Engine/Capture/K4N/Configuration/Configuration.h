@@ -21,6 +21,10 @@ public:
   void find_playback_configuration(k4n::Device* k4n_device);
 
   //Subfunction
+  void find_config_fps(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
+
+
+
   string find_name_from_config(k4a_wired_sync_mode_t& value);
   string find_name_from_config(k4a_fps_t& value);
   string find_name_from_config(k4a_depth_mode_t& value);

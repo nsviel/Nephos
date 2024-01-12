@@ -39,18 +39,19 @@ void Configuration::find_playback_configuration(k4n::Device* k4n_device){
   configuration.color_format = required_format;
 
   //General info
-  k4n_device->playback.fps = find_name_from_config(configuration.camera_fps);
+  this->find_config_fps(k4n_device, configuration);
+
   k4n_device->playback.is_depth = configuration.depth_track_enabled;
   k4n_device->playback.is_infrared = configuration.ir_track_enabled;
   k4n_device->playback.is_imu = configuration.imu_track_enabled;
   k4n_device->playback.is_color = configuration.color_track_enabled;
 
-  k4n_device->playback.depth_mode = find_name_from_config(configuration.depth_mode);
-  k4n_device->playback.color_format = find_name_from_config(configuration.color_format);
-  k4n_device->playback.color_resolution = find_name_from_config(configuration.color_resolution);
+  k4n_device->playback.depth_mode_str = find_name_from_config(configuration.depth_mode);
+  k4n_device->playback.color_format_str = find_name_from_config(configuration.color_format);
+  k4n_device->playback.color_resolution_str = find_name_from_config(configuration.color_resolution);
 
   // Sync info
-  k4n_device->playback.wired_sync_mode = find_name_from_config(configuration.wired_sync_mode);
+  k4n_device->playback.wired_sync_mode_str = find_name_from_config(configuration.wired_sync_mode);
   k4n_device->synchro.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
   k4n_device->synchro.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
   k4n_device->synchro.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
@@ -65,6 +66,18 @@ void Configuration::find_playback_configuration(k4n::Device* k4n_device){
 }
 
 //Subfunction
+void Configuration::find_config_fps(k4n::Device* k4n_device, k4a_record_configuration_t& configuration){
+  //---------------------------
+
+
+
+  //---------------------------
+}
+
+
+
+
+
 string Configuration::find_name_from_config(k4a_wired_sync_mode_t& value){
   string name = "(None)";
   //---------------------------

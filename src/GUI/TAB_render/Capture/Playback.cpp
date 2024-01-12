@@ -58,7 +58,7 @@ void Playback::show_info_device(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Frame rate"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.fps.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->playback.fps_str.c_str());
 
     ImGui::EndTable();
   }
@@ -81,11 +81,11 @@ void Playback::show_info_color(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color format"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.color_format.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->playback.color_format_str.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color resolution"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.color_resolution.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->playback.color_resolution_str.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color firmware"); ImGui::TableNextColumn();
@@ -116,7 +116,7 @@ void Playback::show_info_depth(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.depth_mode.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->playback.depth_mode_str.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
@@ -143,7 +143,7 @@ void Playback::show_info_synch(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Sync mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.wired_sync_mode.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->playback.wired_sync_mode_str.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();
