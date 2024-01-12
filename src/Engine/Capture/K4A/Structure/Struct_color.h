@@ -3,7 +3,7 @@
 #include <k4a/k4a.hpp>
 #include <string>
 
-namespace eng::kinect::structure{
+namespace k4a::stucture{
 
 struct Exposure{
   //---------------------------
@@ -96,15 +96,15 @@ struct Color_config{
   k4a_color_resolution_t resolution = K4A_COLOR_RESOLUTION_720P;
 
   //Control
-  eng::kinect::structure::Exposure exposure;
-  eng::kinect::structure::White_balance white_balance;
-  eng::kinect::structure::Brightness brightness;
-  eng::kinect::structure::Contrast contrast;
-  eng::kinect::structure::Saturation saturation;
-  eng::kinect::structure::Sharpness sharpness;
-  eng::kinect::structure::Gain gain;
-  eng::kinect::structure::Backlight_compensation backlight_compensation;
-  eng::kinect::structure::Power_frequency power_frequency;
+  k4a::stucture::Exposure exposure;
+  k4a::stucture::White_balance white_balance;
+  k4a::stucture::Brightness brightness;
+  k4a::stucture::Contrast contrast;
+  k4a::stucture::Saturation saturation;
+  k4a::stucture::Sharpness sharpness;
+  k4a::stucture::Gain gain;
+  k4a::stucture::Backlight_compensation backlight_compensation;
+  k4a::stucture::Power_frequency power_frequency;
 
   //---------------------------
 };
@@ -112,9 +112,9 @@ struct Color_config{
 struct Color{
   //---------------------------
 
-  eng::kinect::structure::Color_config config;
-  eng::kinect::structure::Image image;
-  eng::kinect::structure::Image image_depth;
+  k4a::stucture::Color_config config;
+  k4a::stucture::Image image;
+  k4a::stucture::Image image_depth;
 
   //---------------------------
 };

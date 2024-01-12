@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace eng::kinect::structure{
+namespace k4a::stucture{
 
 struct Infrared_config{
   //---------------------------
@@ -15,8 +15,8 @@ struct Infrared_config{
 struct Infrared{
   //---------------------------
 
-  eng::kinect::structure::Infrared_config config;
-  eng::kinect::structure::Image image;
+  k4a::stucture::Infrared_config config;
+  k4a::stucture::Image image;
 
   //---------------------------
 };

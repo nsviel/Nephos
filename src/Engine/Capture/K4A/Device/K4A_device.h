@@ -31,7 +31,7 @@ public:
   void stop_threads();
   void reset_color_configuration();
 
-  inline eng::kinect::structure::Cloud* get_cloud(){return &cloud;}
+  inline k4a::stucture::Cloud* get_cloud(){return &cloud;}
 
 public:
   eng::scene::Scene* eng_scene;
@@ -40,14 +40,14 @@ public:
   K4A_capture* k4a_capture;
   K4A_playback* k4a_playback;
 
-  eng::kinect::structure::Cloud cloud;
-  eng::kinect::structure::Device device;
-  eng::kinect::structure::Synchro synchro;
-  eng::kinect::structure::Playback playback;
-  eng::kinect::structure::Player player;
-  eng::kinect::structure::Recorder recorder;
+  k4a::stucture::Cloud cloud;
+  k4a::stucture::Device device;
+  k4a::stucture::Synchro synchro;
+  k4a::stucture::Playback playback;
+  k4a::stucture::Player player;
+  k4a::stucture::Recorder recorder;
 
-  eng::kinect::structure::Color color;
-  eng::kinect::structure::Depth depth;
-  eng::kinect::structure::Infrared ir;
+  k4a::stucture::Color color;
+  k4a::stucture::Depth depth;
+  k4a::stucture::Infrared ir;
 };

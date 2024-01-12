@@ -14,7 +14,7 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Main function
-void Operation::make_colorization(eng::kinect::structure::Cloud* cloud, vector<vec4>& vec_rgba){
+void Operation::make_colorization(k4a::stucture::Cloud* cloud, vector<vec4>& vec_rgba){
   //---------------------------
 
   switch(cloud->color_mode){
@@ -34,7 +34,7 @@ void Operation::make_colorization(eng::kinect::structure::Cloud* cloud, vector<v
 
   //---------------------------
 }
-void Operation::colorization_intensity(eng::kinect::structure::Cloud* cloud, vector<vec4>& vec_rgba){
+void Operation::colorization_intensity(k4a::stucture::Cloud* cloud, vector<vec4>& vec_rgba){
   //---------------------------
 
   vec_rgba.clear();
@@ -46,7 +46,7 @@ void Operation::colorization_intensity(eng::kinect::structure::Cloud* cloud, vec
 
   //---------------------------
 }
-void Operation::colorization_heatmap(eng::kinect::structure::Cloud* cloud, vector<vec4>& vec_rgba){
+void Operation::colorization_heatmap(k4a::stucture::Cloud* cloud, vector<vec4>& vec_rgba){
   //---------------------------
 
   switch(cloud->heatmap_mode){

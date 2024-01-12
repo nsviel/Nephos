@@ -5,7 +5,7 @@
 #include <string>
 
 
-namespace eng::kinect::structure{
+namespace k4a::stucture{
 
 struct Recorder{
   //---------------------------

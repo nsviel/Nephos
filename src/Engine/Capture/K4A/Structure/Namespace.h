@@ -13,7 +13,7 @@
 #include <Engine/Capture/K4A/Structure/Struct_swarm.h>
 
 
-namespace eng::kinect::structure{
+namespace k4a::stucture{
   //---------------------------
 
   class Device;

@@ -112,7 +112,7 @@ void K4A_playback::manage_fps(int fps_mode){
   //---------------------------
 }
 void K4A_playback::find_duration(K4A_device* k4a_device){
-  eng::kinect::structure::Player* player = &k4a_device->player;
+  k4a::stucture::Player* player = &k4a_device->player;
   //---------------------------
 
   k4a::image color;

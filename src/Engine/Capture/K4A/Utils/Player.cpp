@@ -17,7 +17,7 @@ Player::~Player(){}
 
 //Main function
 void Player::play(K4A_device* k4a_device){
-  eng::kinect::structure::Player* player = &k4a_device->player;
+  k4a::stucture::Player* player = &k4a_device->player;
   //---------------------------
 
   if(!player->play){
@@ -30,7 +30,7 @@ void Player::play(K4A_device* k4a_device){
   //---------------------------
 }
 void Player::pause(K4A_device* k4a_device){
-  eng::kinect::structure::Player* player = &k4a_device->player;
+  k4a::stucture::Player* player = &k4a_device->player;
   //---------------------------
 
   player->pause = true;
@@ -38,7 +38,7 @@ void Player::pause(K4A_device* k4a_device){
   //---------------------------
 }
 void Player::stop(K4A_device* k4a_device){
-  eng::kinect::structure::Player* player = &k4a_device->player;
+  k4a::stucture::Player* player = &k4a_device->player;
   //---------------------------
 
   player->ts_seek = player->ts_beg;
@@ -48,7 +48,7 @@ void Player::stop(K4A_device* k4a_device){
   //---------------------------
 }
 void Player::restart(K4A_device* k4a_device){
-  eng::kinect::structure::Player* player = &k4a_device->player;
+  k4a::stucture::Player* player = &k4a_device->player;
   //---------------------------
 
   player->restart = !player->restart;
@@ -56,7 +56,7 @@ void Player::restart(K4A_device* k4a_device){
   //---------------------------
 }
 void Player::record(K4A_device* k4a_device){
-  eng::kinect::structure::Player* player = &k4a_device->player;
+  k4a::stucture::Player* player = &k4a_device->player;
   //---------------------------
 
   player->record = !player->record;
