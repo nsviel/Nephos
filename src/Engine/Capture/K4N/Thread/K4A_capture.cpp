@@ -14,7 +14,7 @@ K4A_capture::K4A_capture(Engine* engine){
   this->fps_control = new FPS_control(30);
   this->k4a_data = new k4n::data::Data();
   this->k4a_processing = new k4n::data::Cloud(engine);
-  this->k4a_config = new k4n::config::Configuration();
+  this->configuration = new k4n::config::Configuration();
   this->k4n_calibration = new k4n::config::Calibration();
 
   //---------------------------
@@ -52,14 +52,14 @@ void K4A_capture::run_thread(k4n::Device* k4n_device){
   //Configuration
   k4n_device->device.device = &device;
   k4n_device->device.serial_number = device.get_serialnum();
-  k4a_config->make_device_configuration(k4n_device);
+  configuration->make_device_configuration(k4n_device);
   k4n_calibration->make_capture_calibration(k4n_device);
   k4n_calibration->make_device_transformation(k4n_device);
 
   //Start camera
   k4n_device->device.version = device.get_version();
   this->manage_color_setting(k4n_device);
-  device.start_cameras(&k4n_device->device.k4a_config);
+  device.start_cameras(&k4n_device->device.configuration);
 
   //Start capture thread
   this->thread_running = true;
@@ -112,7 +112,7 @@ void K4A_capture::manage_recording(k4n::Device* k4n_device, k4a::capture capture
 
   //Start recording
   if(k4n_device->player.record && !recorder.is_valid()){
-    recorder = k4a::record::create(k4n_device->recorder.path.c_str(), *k4n_device->device.device, k4n_device->device.k4a_config);
+    recorder = k4a::record::create(k4n_device->recorder.path.c_str(), *k4n_device->device.device, k4n_device->device.configuration);
     recorder.write_header();
     k4n_device->recorder.ts_beg = k4n_device->player.ts_cur;
   }

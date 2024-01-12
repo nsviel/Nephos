@@ -12,48 +12,23 @@ Configuration::Configuration(){
 }
 Configuration::~Configuration(){}
 
-//Device function
-void Configuration::make_device_transformation(k4n::Device* k4n_device){
-  //---------------------------
-
-  k4n_device->device.transformation = k4a::transformation(k4n_device->device.calibration);
-
-  //---------------------------
-}
+//Main function
 void Configuration::make_device_configuration(k4n::Device* k4n_device){
   //---------------------------
 
-  k4a_device_configuration_t k4a_config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
-  k4a_config.color_format = k4n_device->color.config.format;
-  k4a_config.color_resolution = k4n_device->color.config.enabled ? k4n_device->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
-  k4a_config.depth_mode = k4n_device->depth.config.enabled ? k4n_device->depth.config.mode : K4A_DEPTH_MODE_OFF;
-  k4a_config.camera_fps = k4n_device->device.fps_mode;
-  k4a_config.depth_delay_off_color_usec = k4n_device->synchro.depth_delay_off_color_us;
-  k4a_config.wired_sync_mode = k4n_device->synchro.wired_sync_mode;
-  k4a_config.subordinate_delay_off_master_usec = k4n_device->synchro.subordinate_delay_off_master_us;
-  k4a_config.disable_streaming_indicator = k4n_device->synchro.disable_streaming_indicator;
-  k4a_config.synchronized_images_only = k4n_device->synchro.synchronized_images_only;
+  k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
+  configuration.color_format = k4n_device->color.config.format;
+  configuration.color_resolution = k4n_device->color.config.enabled ? k4n_device->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
+  configuration.depth_mode = k4n_device->depth.config.enabled ? k4n_device->depth.config.mode : K4A_DEPTH_MODE_OFF;
+  configuration.camera_fps = k4n_device->device.fps_mode;
+  configuration.depth_delay_off_color_usec = k4n_device->synchro.depth_delay_off_color_us;
+  configuration.wired_sync_mode = k4n_device->synchro.wired_sync_mode;
+  configuration.subordinate_delay_off_master_usec = k4n_device->synchro.subordinate_delay_off_master_us;
+  configuration.disable_streaming_indicator = k4n_device->synchro.disable_streaming_indicator;
+  configuration.synchronized_images_only = k4n_device->synchro.synchronized_images_only;
 
   //---------------------------
-  k4n_device->device.k4a_config = k4a_config;
-}
-
-//Capture function
-void Configuration::make_capture_calibration(k4n::Device* k4n_device){
-  //---------------------------
-
-  k4n_device->device.calibration = k4n_device->device.device->get_calibration(k4n_device->depth.config.mode, k4n_device->color.config.resolution);
-
-  //---------------------------
-}
-
-//Playback function
-void Configuration::find_playback_calibration(k4n::Device* k4n_device){
-  //---------------------------
-
-  k4n_device->device.calibration = k4n_device->device.playback->get_calibration();
-
-  //---------------------------
+  k4n_device->device.configuration = configuration;
 }
 void Configuration::find_playback_configuration(k4n::Device* k4n_device){
   //---------------------------
@@ -89,6 +64,8 @@ void Configuration::find_playback_configuration(k4n::Device* k4n_device){
 
   //---------------------------
 }
+
+//Subfunction
 string Configuration::find_name_from_config(k4a_wired_sync_mode_t& value){
   string name = "(None)";
   //---------------------------
@@ -243,5 +220,6 @@ string Configuration::find_name_from_config(k4a_image_format_t& value){
   //---------------------------
   return name;
 }
+
 
 }

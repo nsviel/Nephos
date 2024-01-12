@@ -40,7 +40,7 @@ private:
   FPS_control* fps_control;
   k4n::data::Data* k4a_data;
   k4n::data::Cloud* k4a_processing;
-  k4n::config::Configuration* k4a_config;
+  k4n::config::Configuration* configuration;
   k4n::config::Calibration* k4n_calibration;
 
   std::thread thread;
