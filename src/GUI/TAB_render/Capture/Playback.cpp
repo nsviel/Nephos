@@ -50,15 +50,16 @@ void Playback::show_info_device(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device S/N"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.device_serial_number.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->device.serial_number.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.is_imu ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", k4n_device->imu.config.enabled ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Frame rate"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.fps_str.c_str());
+    string fps_str = to_string(k4n_device->device.fps) + " fps";
+    ImGui::TextColored(color, "%s", fps_str.c_str());
 
     ImGui::EndTable();
   }
@@ -77,7 +78,7 @@ void Playback::show_info_color(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.is_color ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", k4n_device->color.config.enabled ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color format"); ImGui::TableNextColumn();
@@ -108,11 +109,11 @@ void Playback::show_info_depth(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.is_depth ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", k4n_device->depth.config.enabled ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("IR enabled"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.is_infrared ? "Yes" : "No");
+    ImGui::TextColored(color, "%s", k4n_device->ir.config.enabled ? "Yes" : "No");
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth mode"); ImGui::TableNextColumn();
@@ -143,7 +144,7 @@ void Playback::show_info_synch(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Sync mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.wired_sync_mode_str.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->synchro.wired_sync_mode_str.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();

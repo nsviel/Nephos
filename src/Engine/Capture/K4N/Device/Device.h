@@ -52,6 +52,7 @@ public:
   k4n::structure::Color color;
   k4n::structure::Depth depth;
   k4n::structure::Infrared ir;
+  k4n::structure::IMU imu;
 };
 
 }

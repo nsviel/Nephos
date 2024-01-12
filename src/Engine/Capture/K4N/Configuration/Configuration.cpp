@@ -41,24 +41,24 @@ void Configuration::find_playback_configuration(k4n::Device* k4n_device){
   //General info
   this->find_config_fps(k4n_device, configuration);
 
-  k4n_device->playback.is_depth = configuration.depth_track_enabled;
-  k4n_device->playback.is_infrared = configuration.ir_track_enabled;
-  k4n_device->playback.is_imu = configuration.imu_track_enabled;
-  k4n_device->playback.is_color = configuration.color_track_enabled;
+  k4n_device->depth.config.enabled = configuration.depth_track_enabled;
+  k4n_device->ir.config.enabled = configuration.ir_track_enabled;
+  k4n_device->imu.config.enabled = configuration.imu_track_enabled;
+  k4n_device->color.config.enabled = configuration.color_track_enabled;
 
   k4n_device->depth.config.mode_str = find_name_from_config(configuration.depth_mode);
   k4n_device->color.config.format_str = find_name_from_config(configuration.color_format);
   k4n_device->color.config.resolution_str = find_name_from_config(configuration.color_resolution);
 
   // Sync info
-  k4n_device->playback.wired_sync_mode_str = find_name_from_config(configuration.wired_sync_mode);
+  k4n_device->synchro.wired_sync_mode_str = find_name_from_config(configuration.wired_sync_mode);
   k4n_device->synchro.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
   k4n_device->synchro.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
   k4n_device->synchro.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
   k4n_device->player.duration = k4n_device->device.playback->get_recording_length().count() / 1000000.0f;
 
   // Device info
-  k4n_device->device.playback->get_tag("K4A_DEVICE_SERIAL_NUMBER", &k4n_device->playback.device_serial_number);
+  k4n_device->device.playback->get_tag("K4A_DEVICE_SERIAL_NUMBER", &k4n_device->device.serial_number);
   k4n_device->device.playback->get_tag("K4A_COLOR_FIRMWARE_VERSION", &k4n_device->color.config.firmware_version);
   k4n_device->device.playback->get_tag("K4A_DEPTH_FIRMWARE_VERSION", &k4n_device->depth.config.firmware_version);
 
