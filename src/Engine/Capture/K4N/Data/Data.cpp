@@ -20,23 +20,23 @@ Data::~Data(){
 }
 
 //Main function
-void Data::find_data_from_capture(k4n::Device* k4a_device, k4a::capture capture){
+void Data::find_data_from_capture(k4n::Device* k4n_device, k4a::capture capture){
   //---------------------------
 
   //Capture data
-  this->find_depth(k4a_device, capture);
-  this->find_color(k4a_device, capture);
-  this->find_ir(k4a_device, capture);
+  this->find_depth(k4n_device, capture);
+  this->find_color(k4n_device, capture);
+  this->find_ir(k4n_device, capture);
 
   //Finish
-  k4a_device->player.ts_cur = k4a_device->color.image.timestamp;
-  k4a_device->device.data_ready = true;
+  k4n_device->player.ts_cur = k4n_device->color.image.timestamp;
+  k4n_device->device.data_ready = true;
 
   //---------------------------
 }
 
 //Data function
-void Data::find_depth(k4n::Device* k4a_device, k4a::capture capture){
+void Data::find_depth(k4n::Device* k4n_device, k4a::capture capture){
   k4a::image depth = capture.get_depth_image();
   //---------------------------
 
@@ -47,22 +47,22 @@ void Data::find_depth(k4n::Device* k4a_device, k4a::capture capture){
   }
   float timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
   string format = retrieve_format_from_k4a(depth.get_format());
-  this->retrieve_data_from_capture(depth, k4a_device->depth.image.data, format);
+  this->retrieve_data_from_capture(depth, k4n_device->depth.image.data, format);
 
   //Fill data structure
-  k4a_device->depth.image.name = "depth";
-  k4a_device->depth.image.size = k4a_device->depth.image.data.size();
-  k4a_device->depth.image.width = depth.get_width_pixels();
-  k4a_device->depth.image.height = depth.get_height_pixels();
-  k4a_device->depth.image.format = format;
-  k4a_device->depth.image.temperature = capture.get_temperature_c();
-  k4a_device->depth.image.timestamp = timestamp;
-  k4a_device->depth.image.image = depth;
+  k4n_device->depth.image.name = "depth";
+  k4n_device->depth.image.size = k4n_device->depth.image.data.size();
+  k4n_device->depth.image.width = depth.get_width_pixels();
+  k4n_device->depth.image.height = depth.get_height_pixels();
+  k4n_device->depth.image.format = format;
+  k4n_device->depth.image.temperature = capture.get_temperature_c();
+  k4n_device->depth.image.timestamp = timestamp;
+  k4n_device->depth.image.image = depth;
 
   //---------------------------
   depth.reset();
 }
-void Data::find_color(k4n::Device* k4a_device, k4a::capture capture){
+void Data::find_color(k4n::Device* k4n_device, k4a::capture capture){
   k4a::image color = capture.get_color_image();
   //---------------------------
 
@@ -72,21 +72,21 @@ void Data::find_color(k4n::Device* k4a_device, k4a::capture capture){
   }
   float timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
   string format = retrieve_format_from_k4a(color.get_format());
-  this->retrieve_data_from_capture(color, k4a_device->color.image.data, format);
+  this->retrieve_data_from_capture(color, k4n_device->color.image.data, format);
 
   //Fill data structure
-  k4a_device->color.image.image = color;
-  k4a_device->color.image.name = "color";
-  k4a_device->color.image.size = k4a_device->color.image.data.size();
-  k4a_device->color.image.width = color.get_width_pixels();
-  k4a_device->color.image.height = color.get_height_pixels();
-  k4a_device->color.image.format = format;
-  k4a_device->color.image.timestamp = timestamp;
+  k4n_device->color.image.image = color;
+  k4n_device->color.image.name = "color";
+  k4n_device->color.image.size = k4n_device->color.image.data.size();
+  k4n_device->color.image.width = color.get_width_pixels();
+  k4n_device->color.image.height = color.get_height_pixels();
+  k4n_device->color.image.format = format;
+  k4n_device->color.image.timestamp = timestamp;
 
   //---------------------------
   color.reset();
 }
-void Data::find_ir(k4n::Device* k4a_device, k4a::capture capture){
+void Data::find_ir(k4n::Device* k4n_device, k4a::capture capture){
   k4a::image ir = capture.get_ir_image();
   //---------------------------
 
@@ -97,43 +97,43 @@ void Data::find_ir(k4n::Device* k4a_device, k4a::capture capture){
   }
   float timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
   string format = retrieve_format_from_k4a(ir.get_format());
-  this->retrieve_data_from_capture(ir, k4a_device->ir.image.data, format);
+  this->retrieve_data_from_capture(ir, k4n_device->ir.image.data, format);
 
   //Fill data structure
-  k4a_device->ir.image.image = ir;
-  k4a_device->ir.image.name = "ir";
-  k4a_device->ir.image.size = k4a_device->ir.image.data.size();
-  k4a_device->ir.image.width = ir.get_width_pixels();
-  k4a_device->ir.image.height = ir.get_height_pixels();
-  k4a_device->ir.image.format = format;
-  k4a_device->ir.image.timestamp = timestamp;
+  k4n_device->ir.image.image = ir;
+  k4n_device->ir.image.name = "ir";
+  k4n_device->ir.image.size = k4n_device->ir.image.data.size();
+  k4n_device->ir.image.width = ir.get_width_pixels();
+  k4n_device->ir.image.height = ir.get_height_pixels();
+  k4n_device->ir.image.format = format;
+  k4n_device->ir.image.timestamp = timestamp;
 
   //---------------------------
   ir.reset();
 }
-void Data::find_color_from_depth(k4n::Device* k4a_device, k4a::capture capture, k4a::transformation& transformation){
-  if(!k4a_device->color.image.image || !k4a_device->depth.image.image) return;
+void Data::find_color_from_depth(k4n::Device* k4n_device, k4a::capture capture, k4a::transformation& transformation){
+  if(!k4n_device->color.image.image || !k4n_device->depth.image.image) return;
   //---------------------------
 
   //Convert it into a depth POV representation
-  k4a::image color_from_depth = transformation.color_image_to_depth_camera(k4a_device->depth.image.image, k4a_device->color.image.image);
+  k4a::image color_from_depth = transformation.color_image_to_depth_camera(k4n_device->depth.image.image, k4n_device->color.image.image);
   if(!color_from_depth || !color_from_depth.is_valid()){
     return;
   }
 
   //Get specific information
-  float timestamp = k4a_device->color.image.timestamp;
-  string format = k4a_device->color.image.format;
-  this->retrieve_data_from_capture(color_from_depth, k4a_device->color.image_depth.data, format);
+  float timestamp = k4n_device->color.image.timestamp;
+  string format = k4n_device->color.image.format;
+  this->retrieve_data_from_capture(color_from_depth, k4n_device->color.image_depth.data, format);
 
   //Fill data structure
-  k4a_device->color.image_depth.image = color_from_depth;
-  k4a_device->color.image_depth.name = "color_from_depth";
-  k4a_device->color.image_depth.size = k4a_device->color.image_depth.data.size();
-  k4a_device->color.image_depth.width = color_from_depth.get_width_pixels();
-  k4a_device->color.image_depth.height = color_from_depth.get_height_pixels();
-  k4a_device->color.image_depth.format = format;
-  k4a_device->color.image_depth.timestamp = timestamp;
+  k4n_device->color.image_depth.image = color_from_depth;
+  k4n_device->color.image_depth.name = "color_from_depth";
+  k4n_device->color.image_depth.size = k4n_device->color.image_depth.data.size();
+  k4n_device->color.image_depth.width = color_from_depth.get_width_pixels();
+  k4n_device->color.image_depth.height = color_from_depth.get_height_pixels();
+  k4n_device->color.image_depth.format = format;
+  k4n_device->color.image_depth.timestamp = timestamp;
 
   //---------------------------
   color_from_depth.reset();

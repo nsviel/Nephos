@@ -28,9 +28,9 @@ public:
   void start_thread(k4n::Device* device);
   void run_thread(k4n::Device* device);
   void stop_thread();
-  void manage_pause(k4n::Device* k4a_device);
-  void manage_recording(k4n::Device* k4a_device, k4a::capture capture);
-  void manage_color_setting(k4n::Device* k4a_device);
+  void manage_pause(k4n::Device* k4n_device);
+  void manage_recording(k4n::Device* k4n_device, k4a::capture capture);
+  void manage_color_setting(k4n::Device* k4n_device);
 
   inline bool is_thread_running(){return thread_running;}
   inline bool* get_thread_pause(){return &thread_pause;}

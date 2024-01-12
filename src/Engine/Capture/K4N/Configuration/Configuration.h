@@ -17,11 +17,11 @@ public:
 
 public:
   //Main function
-  void init_playback_calibration(k4n::Device* k4a_device);
-  void init_device_calibration(k4n::Device* k4a_device);
-  void init_device_transformation(k4n::Device* k4a_device);
-  void make_k4a_configuration(k4n::Device* k4a_device);
-  void find_file_information(k4n::Device* k4a_device);
+  void make_playback_calibration(k4n::Device* k4n_device);
+  void make_device_calibration(k4n::Device* k4n_device);
+  void init_device_transformation(k4n::Device* k4n_device);
+  void make_k4a_configuration(k4n::Device* k4n_device);
+  void find_file_information(k4n::Device* k4n_device);
 
   //Subfunction
   string find_name_from_config(k4a_wired_sync_mode_t& value);

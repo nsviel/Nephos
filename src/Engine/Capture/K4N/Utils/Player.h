@@ -16,11 +16,11 @@ public:
 
 public:
   //Main function
-  void play(k4n::Device* k4a_device);
-  void pause(k4n::Device* k4a_device);
-  void stop(k4n::Device* k4a_device);
-  void restart(k4n::Device* k4a_device);
-  void record(k4n::Device* k4a_device);
+  void play(k4n::Device* k4n_device);
+  void pause(k4n::Device* k4n_device);
+  void stop(k4n::Device* k4n_device);
+  void restart(k4n::Device* k4n_device);
+  void record(k4n::Device* k4n_device);
 
 private:
   eng::ope::Transformation* ope_transform;

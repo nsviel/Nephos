@@ -28,10 +28,10 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  k4n::Device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
   //---------------------------
 
-  if(*show_window && k4a_device != nullptr){
+  if(*show_window && k4n_device != nullptr){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
@@ -61,8 +61,8 @@ void Panel::design_panel(){
 
 //Subfunction
 void Panel::show_info(){
-  k4n::Device* k4a_device = k4a_swarm->get_selected_device();
-  if(k4a_device == nullptr) return;
+  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
+  if(k4n_device == nullptr) return;
   //---------------------------
 
     ImGui::Separator();
@@ -71,30 +71,30 @@ void Panel::show_info(){
     //Name
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Name"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->playback.filename.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->playback.filename.c_str());
 
     //Path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4a_device->playback.path.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->playback.path.c_str());
 
     //Duration
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", k4a_device->player.duration);
+    ImGui::TextColored(color, "%.2f s", k4n_device->player.duration);
 
     //Recording time
-    if(k4a_device->player.record){
+    if(k4n_device->player.record){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Record"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f s", k4a_device->recorder.ts_rec);
+      ImGui::TextColored(color, "%.2f s", k4n_device->recorder.ts_rec);
     }
 
     //Playback FPS
-    if(k4a_device->device.is_playback){
+    if(k4n_device->device.is_playback){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("FPS"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f s", k4a_device->recorder.ts_rec);
+      ImGui::TextColored(color, "%.2f s", k4n_device->recorder.ts_rec);
     }
 
     ImGui::EndTable();

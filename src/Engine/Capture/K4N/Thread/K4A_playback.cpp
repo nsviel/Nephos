@@ -29,32 +29,32 @@ K4A_playback::~K4A_playback(){
 }
 
 //Main function
-void K4A_playback::start_thread(k4n::Device* k4a_device){
+void K4A_playback::start_thread(k4n::Device* k4n_device){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&K4A_playback::run_thread, this, k4a_device);
+    this->thread = std::thread(&K4A_playback::run_thread, this, k4n_device);
   }
 
   //---------------------------
 }
-void K4A_playback::run_thread(k4n::Device* k4a_device){
+void K4A_playback::run_thread(k4n::Device* k4n_device){
   //---------------------------
 
   //Get info about file
-  this->find_duration(k4a_device);
+  this->find_duration(k4n_device);
 
   //Init playback
-  k4a::playback playback = k4a::playback::open(k4a_device->playback.path.c_str());
+  k4a::playback playback = k4a::playback::open(k4n_device->playback.path.c_str());
   if(!playback) return;
   this->thread_running = true;
-  k4a_device->player.play = true;
-  k4a_device->device.playback = &playback;
+  k4n_device->player.play = true;
+  k4n_device->device.playback = &playback;
 
-  k4a_config->find_file_information(k4a_device);
-  k4a_config->make_k4a_configuration(k4a_device);
-  k4a_config->init_playback_calibration(k4a_device);
-  k4a_config->init_device_transformation(k4a_device);
+  k4a_config->find_file_information(k4n_device);
+  k4a_config->make_k4a_configuration(k4n_device);
+  k4a_config->make_playback_calibration(k4n_device);
+  k4a_config->make_device_transformation(k4n_device);
 
   //Playback thread
   k4a::capture capture;
@@ -64,18 +64,18 @@ void K4A_playback::run_thread(k4n::Device* k4a_device){
     playback.get_next_capture(&capture);
     if(!capture) continue;
 
-    k4a_data->find_data_from_capture(k4a_device, capture);
-    k4a_data->find_color_from_depth(k4a_device, capture, k4a_device->device.transformation);
+    k4a_data->find_data_from_capture(k4n_device, capture);
+    k4a_data->find_color_from_depth(k4n_device, capture, k4n_device->device.transformation);
 
-    k4a_processing->convert_into_cloud(k4a_device);
+    k4a_processing->convert_into_cloud(k4n_device);
 
-    this->manage_fps(k4a_device->device.fps_mode);
-    this->manage_pause(k4a_device);
-    this->manage_query_ts(k4a_device);
-    this->manage_restart(k4a_device);
+    this->manage_fps(k4n_device->device.fps_mode);
+    this->manage_pause(k4n_device);
+    this->manage_query_ts(k4n_device);
+    this->manage_restart(k4n_device);
 
     fps_control->stop();
-    k4a_device->device.fps = fps_counter->update();
+    k4n_device->device.fps = fps_counter->update();
   }
 
   playback.close();
@@ -111,13 +111,13 @@ void K4A_playback::manage_fps(int fps_mode){
 
   //---------------------------
 }
-void K4A_playback::find_duration(k4n::Device* k4a_device){
-  k4n::structure::Player* player = &k4a_device->player;
+void K4A_playback::find_duration(k4n::Device* k4n_device){
+  k4n::structure::Player* player = &k4n_device->player;
   //---------------------------
 
   k4a::image color;
   k4a::capture capture;
-  k4a::playback playback = k4a::playback::open(k4a_device->playback.path.c_str());
+  k4a::playback playback = k4a::playback::open(k4n_device->playback.path.c_str());
 
   //File duration
   player->duration = playback.get_recording_length().count() / 1000000.0f;
@@ -142,74 +142,74 @@ void K4A_playback::find_duration(k4n::Device* k4a_device){
 
   //---------------------------
 }
-void K4A_playback::manage_query_ts(k4n::Device* k4a_device){
+void K4A_playback::manage_query_ts(k4n::Device* k4n_device){
   //---------------------------
 
   //If a timestamp was querry
-  if(k4a_device->player.ts_seek != -1){
-    if(k4a_device->player.ts_seek > k4a_device->player.ts_end) k4a_device->player.ts_seek = k4a_device->player.ts_end;
-    if(k4a_device->player.ts_seek < k4a_device->player.ts_beg) k4a_device->player.ts_seek = k4a_device->player.ts_beg;
-    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(k4a_device->player.ts_seek));
-    k4a_device->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    k4a_device->player.ts_seek = -1;
+  if(k4n_device->player.ts_seek != -1){
+    if(k4n_device->player.ts_seek > k4n_device->player.ts_end) k4n_device->player.ts_seek = k4n_device->player.ts_end;
+    if(k4n_device->player.ts_seek < k4n_device->player.ts_beg) k4n_device->player.ts_seek = k4n_device->player.ts_beg;
+    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(k4n_device->player.ts_seek));
+    k4n_device->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    k4n_device->player.ts_seek = -1;
   }
 
   //If a timestamp forawardwas querry
-  if(k4a_device->player.ts_forward != 0){
-    float ts_forward = k4a_device->player.ts_cur + 5 * k4a_device->player.ts_forward;
-    if(ts_forward > k4a_device->player.ts_end) ts_forward = k4a_device->player.ts_end;
-    if(ts_forward < k4a_device->player.ts_beg) ts_forward = k4a_device->player.ts_beg;
+  if(k4n_device->player.ts_forward != 0){
+    float ts_forward = k4n_device->player.ts_cur + 5 * k4n_device->player.ts_forward;
+    if(ts_forward > k4n_device->player.ts_end) ts_forward = k4n_device->player.ts_end;
+    if(ts_forward < k4n_device->player.ts_beg) ts_forward = k4n_device->player.ts_beg;
     auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_forward));
-    k4a_device->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    k4a_device->player.ts_forward = 0;
+    k4n_device->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    k4n_device->player.ts_forward = 0;
   }
 
   //---------------------------
 }
-void K4A_playback::manage_pause(k4n::Device* k4a_device){
+void K4A_playback::manage_pause(k4n::Device* k4n_device){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  if(k4a_device->player.pause || !k4a_device->player.play){
-    while(k4a_device->player.pause && thread_running && k4a_device->player.ts_seek == -1 && k4a_device->player.ts_forward == 0){
+  if(k4n_device->player.pause || !k4n_device->player.play){
+    while(k4n_device->player.pause && thread_running && k4n_device->player.ts_seek == -1 && k4n_device->player.ts_forward == 0){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }
 
   //---------------------------
 }
-void K4A_playback::manage_restart(k4n::Device* k4a_device){
+void K4A_playback::manage_restart(k4n::Device* k4n_device){
   //---------------------------
 
-  if(k4a_device->player.ts_cur == k4a_device->player.ts_end){
-    k4a_device->player.play = k4a_device->player.restart;
-    k4a_device->player.pause = !k4a_device->player.restart;
-    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(k4a_device->player.ts_beg));
-    k4a_device->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+  if(k4n_device->player.ts_cur == k4n_device->player.ts_end){
+    k4n_device->player.play = k4n_device->player.restart;
+    k4n_device->player.pause = !k4n_device->player.restart;
+    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(k4n_device->player.ts_beg));
+    k4n_device->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
   }
 
   //---------------------------
 }
-void K4A_playback::manage_recording(k4n::Device* k4a_device, k4a::capture capture){
+void K4A_playback::manage_recording(k4n::Device* k4n_device, k4a::capture capture){
   //---------------------------
 
-  k4a::record& recorder = k4a_device->recorder.recorder;
+  k4a::record& recorder = k4n_device->recorder.recorder;
 
   //Start recording
-  if(k4a_device->player.record && !recorder.is_valid()){
-    recorder = k4a::record::create(k4a_device->recorder.path.c_str(), *k4a_device->device.device, k4a_device->device.k4a_config);
+  if(k4n_device->player.record && !recorder.is_valid()){
+    recorder = k4a::record::create(k4n_device->recorder.path.c_str(), *k4n_device->device.device, k4n_device->device.k4a_config);
     recorder.write_header();
-    k4a_device->recorder.ts_beg = k4a_device->player.ts_cur;
+    k4n_device->recorder.ts_beg = k4n_device->player.ts_cur;
   }
 
   //Recording
-  if(k4a_device->player.record && recorder.is_valid()){
+  if(k4n_device->player.record && recorder.is_valid()){
     recorder.write_capture(capture);
-    k4a_device->recorder.ts_rec = k4a_device->player.ts_cur - k4a_device->recorder.ts_beg;
+    k4n_device->recorder.ts_rec = k4n_device->player.ts_cur - k4n_device->recorder.ts_beg;
   }
 
   //Flush to file when finish
-  if(!k4a_device->player.record && recorder.is_valid()){
+  if(!k4n_device->player.record && recorder.is_valid()){
     recorder.flush();
     recorder.close();
   }

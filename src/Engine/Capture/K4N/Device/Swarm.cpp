@@ -29,8 +29,8 @@ void Swarm::draw_all_clouds(){
 
   //Run all thread
   for(int i=0; i<list_device.size(); i++){
-    k4n::Device* k4a_device = *std::next(list_device.begin(), i);
-    k4a_device->draw_cloud();
+    k4n::Device* k4n_device = *std::next(list_device.begin(), i);
+    k4n_device->draw_cloud();
   }
 
   //---------------------------
@@ -41,8 +41,8 @@ void Swarm::reset_all_device(){
 
   //Run all thread
   for(int i=0; i<list_device.size(); i++){
-    k4n::Device* k4a_device = *std::next(list_device.begin(), i);
-    k4a_device->player.ts_seek = k4a_device->player.ts_beg;
+    k4n::Device* k4n_device = *std::next(list_device.begin(), i);
+    k4n_device->player.ts_seek = k4n_device->player.ts_beg;
   }
 
   //---------------------------
@@ -52,7 +52,7 @@ void Swarm::reset_all_device(){
 void Swarm::refresh_connected_device(){
   //---------------------------
 
-  const uint32_t nb_device = k4a_device_get_installed_count();
+  const uint32_t nb_device = k4n_device_get_installed_count();
   if(nb_device != struct_swarm->nb_device){
     //If some news, run them
     if(nb_device > struct_swarm->nb_device){
@@ -93,7 +93,7 @@ void Swarm::manage_less_device(int nb_less_device){
   this->close_device_all();
 
   //If no real device create virtual one
-  uint32_t nb_device = k4a_device_get_installed_count();
+  uint32_t nb_device = k4n_device_get_installed_count();
   if(nb_device != 0){
     for(int i=0; i<nb_device; i++){
       this->create_device();
@@ -106,7 +106,7 @@ void Swarm::manage_no_device(){
   //---------------------------
 
   //If no real device create virtual one
-  uint32_t nb_device = k4a_device_get_installed_count();
+  uint32_t nb_device = k4n_device_get_installed_count();
   if(nb_device == 0 && struct_swarm->nb_playback == 0){
     this->create_playback(default_file);
   }
@@ -118,56 +118,56 @@ void Swarm::manage_no_device(){
 k4n::Device* Swarm::create_playback(string path){
   //---------------------------
 
-  k4n::Device* k4a_device = new k4n::Device(engine);
-  k4a_device->name = "playback_" + to_string(struct_swarm->nb_device);
-  k4a_device->device.index = struct_swarm->nb_device;
-  k4a_device->device.is_playback = true;
-  k4a_device->playback.path = path;
-  k4a_device->playback.filename = info::get_filename_from_path(path);
-  k4a_device->recorder.folder = default_folder;
-  k4a_device->recorder.path = default_folder + "record_dev_" + to_string(k4a_device->device.index) + ".mkv";
+  k4n::Device* k4n_device = new k4n::Device(engine);
+  k4n_device->name = "playback_" + to_string(struct_swarm->nb_device);
+  k4n_device->device.index = struct_swarm->nb_device;
+  k4n_device->device.is_playback = true;
+  k4n_device->playback.path = path;
+  k4n_device->playback.filename = info::get_filename_from_path(path);
+  k4n_device->recorder.folder = default_folder;
+  k4n_device->recorder.path = default_folder + "record_dev_" + to_string(k4n_device->device.index) + ".mkv";
 
-  struct_swarm->selected_device = k4a_device;
-  struct_swarm->list_device.push_back(k4a_device);
+  struct_swarm->selected_device = k4n_device;
+  struct_swarm->list_device.push_back(k4n_device);
   struct_swarm->nb_playback++;
 
-  k4a_device->init();
-  k4a_device->run_playback(path);
-  sce_scene->insert_entity_scene(k4a_device);
+  k4n_device->init();
+  k4n_device->run_playback(path);
+  sce_scene->insert_entity_scene(k4n_device);
 
   //---------------------------
-  return k4a_device;
+  return k4n_device;
 }
 k4n::Device* Swarm::create_device(){
   //---------------------------
 
-  k4n::Device* k4a_device = new k4n::Device(engine);
-  k4a_device->name = "device_" + to_string(struct_swarm->nb_capture);
-  k4a_device->device.index = struct_swarm->nb_capture;
-  k4a_device->device.is_playback = false;
-  k4a_device->recorder.folder = default_folder;
-  k4a_device->recorder.path = default_folder + "record_dev_" + to_string(k4a_device->device.index) + ".mkv";
+  k4n::Device* k4n_device = new k4n::Device(engine);
+  k4n_device->name = "device_" + to_string(struct_swarm->nb_capture);
+  k4n_device->device.index = struct_swarm->nb_capture;
+  k4n_device->device.is_playback = false;
+  k4n_device->recorder.folder = default_folder;
+  k4n_device->recorder.path = default_folder + "record_dev_" + to_string(k4n_device->device.index) + ".mkv";
 
-  struct_swarm->selected_device = k4a_device;
-  struct_swarm->list_device.push_back(k4a_device);
+  struct_swarm->selected_device = k4n_device;
+  struct_swarm->list_device.push_back(k4n_device);
   struct_swarm->nb_capture++;
 
-  k4a_device->init();
-  k4a_device->run_capture();
-  sce_scene->insert_entity_scene(k4a_device);
+  k4n_device->init();
+  k4n_device->run_capture();
+  sce_scene->insert_entity_scene(k4n_device);
 
   //---------------------------
-  return k4a_device;
+  return k4n_device;
 }
-void Swarm::close_device(k4n::Device* k4a_device){
+void Swarm::close_device(k4n::Device* k4n_device){
   list<k4n::Device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
-  k4a_device->destroy();
-  list_device.remove(k4a_device);
-  k4a_device->device.is_playback ? struct_swarm->nb_playback-- : struct_swarm->nb_capture--;
-  delete(k4a_device);
-  k4a_device = nullptr;
+  k4n_device->destroy();
+  list_device.remove(k4n_device);
+  k4n_device->device.is_playback ? struct_swarm->nb_playback-- : struct_swarm->nb_capture--;
+  delete(k4n_device);
+  k4n_device = nullptr;
 
   this->selecte_next_device();
 
@@ -178,8 +178,8 @@ void Swarm::close_device_all(){
   //---------------------------
 
   for(int i=0; i<list_device.size(); i++){
-    k4n::Device* k4a_device = *std::next(list_device.begin(), i);
-    this->close_device(k4a_device);
+    k4n::Device* k4n_device = *std::next(list_device.begin(), i);
+    this->close_device(k4n_device);
   }
 
   //---------------------------

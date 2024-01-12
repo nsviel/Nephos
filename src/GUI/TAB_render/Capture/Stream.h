@@ -30,7 +30,7 @@ public:
 
   //Device capture windows
   void draw_camera_color(k4n::Device* device, ImVec2 image_size);
-  void draw_camera_color_from_depth(k4n::Device* k4a_device, ImVec2 image_size);
+  void draw_camera_color_from_depth(k4n::Device* k4n_device, ImVec2 image_size);
   void draw_camera_depth(k4n::Device* device, ImVec2 image_size);
   void draw_camera_ir(k4n::Device* device, ImVec2 image_size);
 

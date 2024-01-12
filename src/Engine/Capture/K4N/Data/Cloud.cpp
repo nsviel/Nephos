@@ -19,20 +19,20 @@ Cloud::Cloud(Engine* engine){
 Cloud::~Cloud(){}
 
 //Main function
-void Cloud::convert_into_cloud(k4n::Device* k4a_device){
+void Cloud::convert_into_cloud(k4n::Device* k4n_device){
   //---------------------------
 
-  this->loop_init(k4a_device);
-  this->loop_data(k4a_device);
-  this->loop_end(k4a_device);
-  //this->retrieve_corner_coordinate(k4a_device);
+  this->loop_init(k4n_device);
+  this->loop_data(k4n_device);
+  this->loop_end(k4n_device);
+  //this->retrieve_corner_coordinate(k4n_device);
 
   //---------------------------
 }
 
 //Loop function
-void Cloud::loop_init(k4n::Device* k4a_device){
-  if(k4a_device->depth.image.data.empty()) return;
+void Cloud::loop_init(k4n::Device* k4n_device){
+  if(k4n_device->depth.image.data.empty()) return;
   //---------------------------
 
   vec_xyz.clear();
@@ -42,17 +42,17 @@ void Cloud::loop_init(k4n::Device* k4a_device){
 
   //---------------------------
 }
-void Cloud::loop_data(k4n::Device* k4a_device){
-  if(k4a_device->depth.image.data.empty()) return;
+void Cloud::loop_data(k4n::Device* k4n_device){
+  if(k4n_device->depth.image.data.empty()) return;
   //---------------------------
 
   // Data stuff
-  k4n::structure::Depth* depth = &k4a_device->depth;
-  k4n::structure::Infrared* ir = &k4a_device->ir;
+  k4n::structure::Depth* depth = &k4n_device->depth;
+  k4n::structure::Infrared* ir = &k4n_device->ir;
 
   // Cloud stuff
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->image.width, depth->image.height, depth->image.width * 3 * (int)sizeof(int16_t));
-  k4a_device->device.transformation.depth_image_to_point_cloud(depth->image.image, K4A_CALIBRATION_TYPE_DEPTH, &cloud_image);
+  k4n_device->device.transformation.depth_image_to_point_cloud(depth->image.image, K4A_CALIBRATION_TYPE_DEPTH, &cloud_image);
   int16_t* point_cloud_data = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
 
   // Convert point cloud data to vector<glm::vec3>
@@ -64,18 +64,18 @@ void Cloud::loop_data(k4n::Device* k4a_device){
 
     if(x != 0 && y != 0 && z != 0){
       this->retrieve_location(x, y, z);
-      this->retrieve_color(k4a_device, i);
-      this->retrieve_ir(k4a_device, i);
+      this->retrieve_color(k4n_device, i);
+      this->retrieve_ir(k4n_device, i);
     }
   }
 
   //---------------------------
 }
-void Cloud::loop_end(k4n::Device* k4a_device){
-  if(k4a_device->depth.image.data.empty()) return;
+void Cloud::loop_end(k4n::Device* k4n_device){
+  if(k4n_device->depth.image.data.empty()) return;
   //---------------------------
 
-  k4n::structure::Cloud* cloud = k4a_device->get_cloud();
+  k4n::structure::Cloud* cloud = k4n_device->get_cloud();
   std::unique_lock<std::mutex> lock(cloud->object->mutex);
 
   //Store capture data
@@ -109,16 +109,16 @@ void Cloud::retrieve_location(int& x, int& y, int& z){
 
   //---------------------------
 }
-void Cloud::retrieve_color(k4n::Device* k4a_device, int i){
+void Cloud::retrieve_color(k4n::Device* k4n_device, int i){
   //---------------------------
 
-  k4n::structure::Cloud* cloud = k4a_device->get_cloud();
+  k4n::structure::Cloud* cloud = k4n_device->get_cloud();
   glm::vec4 color;
 
   if(cloud->color_mode == 0){
     //Camera color
-    if(k4a_device->color.image_depth.data.empty()) return;
-    const vector<uint8_t>& color_data = k4a_device->color.image_depth.data;
+    if(k4n_device->color.image_depth.data.empty()) return;
+    const vector<uint8_t>& color_data = k4n_device->color.image_depth.data;
 
     int color_idx = i * 4;
     float r = static_cast<float>(color_data[color_idx + 0]) / 255.0f;
@@ -131,11 +131,11 @@ void Cloud::retrieve_color(k4n::Device* k4a_device, int i){
   //---------------------------
   vec_rgba.push_back(color);
 }
-void Cloud::retrieve_ir(k4n::Device* k4a_device, int i){
-  if(k4a_device->ir.image.data.empty()) return;
+void Cloud::retrieve_ir(k4n::Device* k4n_device, int i){
+  if(k4n_device->ir.image.data.empty()) return;
   //---------------------------
 
-  const vector<uint8_t>& ir_data = k4a_device->ir.image.data;
+  const vector<uint8_t>& ir_data = k4n_device->ir.image.data;
 
   int color_idx = i * 2;
   uint16_t value = static_cast<uint16_t>(ir_data[color_idx]) | (static_cast<uint16_t>(ir_data[color_idx + 1]) << 8);
@@ -143,7 +143,7 @@ void Cloud::retrieve_ir(k4n::Device* k4a_device, int i){
   //---------------------------
   vec_ir.push_back(value);
 }
-void Cloud::retrieve_corner_coordinate(k4n::Device* k4a_device){
+void Cloud::retrieve_corner_coordinate(k4n::Device* k4n_device){
   //---------------------------
 
   // Define your pixel coordinates and depth value
@@ -155,7 +155,7 @@ void Cloud::retrieve_corner_coordinate(k4n::Device* k4a_device){
   k4a_float2_t pixel_point = { static_cast<float>(pixel_x), static_cast<float>(pixel_y) };
   k4a_float3_t xyz;
   int is_valid;
-  k4a_calibration_2d_to_3d(&k4a_device->device.calibration, &pixel_point, depth_value, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &xyz, &is_valid);
+  k4a_calibration_2d_to_3d(&k4n_device->device.calibration, &pixel_point, depth_value, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &xyz, &is_valid);
   if(is_valid){
     glm::vec3 point(-xyz.v[2]/100.0f, -xyz.v[0]/100.0f, -xyz.v[1]/100.0f);
   }
