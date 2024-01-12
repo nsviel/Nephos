@@ -4,6 +4,8 @@
 #include <Utility/Function/File/Info.h>
 
 
+namespace k4n::device{
+
 //Constructor / Destructor
 K4A_swarm::K4A_swarm(Engine* engine){
   //---------------------------
@@ -193,4 +195,6 @@ void K4A_swarm::selecte_next_device(){
   }
 
   //---------------------------
+}
+
 }

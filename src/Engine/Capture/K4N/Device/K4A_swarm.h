@@ -6,6 +6,8 @@
 
 class Engine;
 
+namespace k4n::device{
+
 
 class K4A_swarm
 {
@@ -46,3 +48,5 @@ private:
   string default_folder;
   string default_file;
 };
+
+}

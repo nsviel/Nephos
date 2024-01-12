@@ -7,7 +7,6 @@
 
 class GUI;
 class Recorder;
-class K4A_swarm;
 
 
 namespace gui::kinect{
@@ -32,7 +31,7 @@ private:
   gui::kinect::Recorder* kin_recorder;
   gui::kinect::Player* kin_player;
   gui::kinect::Operation* kin_operation;
-  K4A_swarm* k4a_swarm;
+  k4n::device::K4A_swarm* k4a_swarm;
 };
 
 }
