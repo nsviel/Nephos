@@ -9,12 +9,12 @@ class Engine;
 namespace k4n::device{
 
 
-class K4A_swarm
+class Swarm
 {
 public:
   //Constructor / Destructor
-  K4A_swarm(Engine* engine);
-  ~K4A_swarm();
+  Swarm(Engine* engine);
+  ~Swarm();
 
 public:
   //Main function

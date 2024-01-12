@@ -1,4 +1,4 @@
-#include "K4A_swarm.h"
+#include "Swarm.h"
 
 #include <Engine/Engine.h>
 #include <Utility/Function/File/Info.h>
@@ -7,7 +7,7 @@
 namespace k4n::device{
 
 //Constructor / Destructor
-K4A_swarm::K4A_swarm(Engine* engine){
+Swarm::Swarm(Engine* engine){
   //---------------------------
 
   eng::scene::Node* node_scene = engine->get_node_scene();
@@ -20,10 +20,10 @@ K4A_swarm::K4A_swarm(Engine* engine){
 
   //---------------------------
 }
-K4A_swarm::~K4A_swarm(){}
+Swarm::~Swarm(){}
 
 //Main function
-void K4A_swarm::draw_all_clouds(){
+void Swarm::draw_all_clouds(){
   list<K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
@@ -35,7 +35,7 @@ void K4A_swarm::draw_all_clouds(){
 
   //---------------------------
 }
-void K4A_swarm::reset_all_device(){
+void Swarm::reset_all_device(){
   list<K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
@@ -49,7 +49,7 @@ void K4A_swarm::reset_all_device(){
 }
 
 //Connection function
-void K4A_swarm::refresh_connected_device(){
+void Swarm::refresh_connected_device(){
   //---------------------------
 
   const uint32_t nb_device = k4a_device_get_installed_count();
@@ -70,7 +70,7 @@ void K4A_swarm::refresh_connected_device(){
 
   //---------------------------
 }
-void K4A_swarm::manage_new_device(int nb_new_device){
+void Swarm::manage_new_device(int nb_new_device){
   list<K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
@@ -86,7 +86,7 @@ void K4A_swarm::manage_new_device(int nb_new_device){
 
   //---------------------------
 }
-void K4A_swarm::manage_less_device(int nb_less_device){
+void Swarm::manage_less_device(int nb_less_device){
   //---------------------------
 
   //Suppress all devices
@@ -102,7 +102,7 @@ void K4A_swarm::manage_less_device(int nb_less_device){
 
   //---------------------------
 }
-void K4A_swarm::manage_no_device(){
+void Swarm::manage_no_device(){
   //---------------------------
 
   //If no real device create virtual one
@@ -115,7 +115,7 @@ void K4A_swarm::manage_no_device(){
 }
 
 //Creation function
-K4A_device* K4A_swarm::create_playback(string path){
+K4A_device* Swarm::create_playback(string path){
   //---------------------------
 
   K4A_device* k4a_device = new K4A_device(engine);
@@ -138,7 +138,7 @@ K4A_device* K4A_swarm::create_playback(string path){
   //---------------------------
   return k4a_device;
 }
-K4A_device* K4A_swarm::create_device(){
+K4A_device* Swarm::create_device(){
   //---------------------------
 
   K4A_device* k4a_device = new K4A_device(engine);
@@ -159,7 +159,7 @@ K4A_device* K4A_swarm::create_device(){
   //---------------------------
   return k4a_device;
 }
-void K4A_swarm::close_device(K4A_device* k4a_device){
+void Swarm::close_device(K4A_device* k4a_device){
   list<K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
@@ -173,7 +173,7 @@ void K4A_swarm::close_device(K4A_device* k4a_device){
 
   //---------------------------
 }
-void K4A_swarm::close_device_all(){
+void Swarm::close_device_all(){
   list<K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
@@ -184,7 +184,7 @@ void K4A_swarm::close_device_all(){
 
   //---------------------------
 }
-void K4A_swarm::selecte_next_device(){
+void Swarm::selecte_next_device(){
   list<K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 

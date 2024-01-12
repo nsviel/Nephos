@@ -45,7 +45,7 @@ private:
   k4n::Node* node_kinect;
   k4n::data::Depth* k4a_depth;
   k4n::data::Infrared* k4a_infrared;
-  k4n::device::K4A_swarm* k4a_swarm;
+  k4n::device::Swarm* k4a_swarm;
 
   vector<gui::media::Stream*> vec_gui_stream;
   ImVec2 hovered_pixel;

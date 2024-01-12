@@ -2,7 +2,7 @@
 
 #include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/Device/K4A_swarm.h>
+#include <Engine/Capture/K4N/Device/Swarm.h>
 #include <Engine/Capture/K4N/Device/K4A_device.h>
 #include <Utility/Specific/common.h>
 
@@ -27,10 +27,10 @@ public:
   void loop();
   void reset();
 
-  inline k4n::device::K4A_swarm* get_k4a_swarm(){return k4a_swarm;}
+  inline k4n::device::Swarm* get_k4a_swarm(){return k4a_swarm;}
 
 private:
-  k4n::device::K4A_swarm* k4a_swarm;
+  k4n::device::Swarm* k4a_swarm;
 };
 
 }

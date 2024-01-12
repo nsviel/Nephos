@@ -1,7 +1,7 @@
 #include "Playback.h"
 
 #include <Engine/Capture/K4N/Thread/K4A_playback.h>
-#include <Engine/Capture/K4N/Device/K4A_swarm.h>
+#include <Engine/Capture/K4N/Device/Swarm.h>
 
 
 namespace gui::kinect{
