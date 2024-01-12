@@ -94,7 +94,7 @@ void Panel::show_info(){
     if(k4n_device->device.is_playback){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("FPS"); ImGui::TableNextColumn();
-      ImGui::SliderInt("##56765", &k4n_device->device.fps_query, 1, 60);
+      ImGui::SliderInt("##56765", &k4n_device->device.fps.query, 1, 60);
     }
 
     ImGui::EndTable();

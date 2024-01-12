@@ -236,7 +236,7 @@ void Stream::overlay_capture(k4n::Device* k4n_device, k4n::structure::Image* ima
 void Stream::overlay_information(k4n::Device* k4n_device, k4n::structure::Image* image){
   //---------------------------
 
-  ImGui::Text("Frame rate: %.2f fps", k4n_device->device.fps_current);
+  ImGui::Text("Frame rate: %.2f fps", k4n_device->device.fps.current);
   ImGui::Text("Timestamp: %.2f s", image->timestamp);
   if(image->temperature != -1){
     ImGui::Text("Temperature: %.2f°", image->temperature);

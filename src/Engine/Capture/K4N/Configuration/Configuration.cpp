@@ -20,7 +20,7 @@ void Configuration::make_device_configuration(k4n::Device* k4n_device){
   configuration.color_format = k4n_device->color.config.format;
   configuration.color_resolution = k4n_device->color.config.enabled ? k4n_device->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
   configuration.depth_mode = k4n_device->depth.config.enabled ? k4n_device->depth.config.mode : K4A_DEPTH_MODE_OFF;
-  configuration.camera_fps = k4n_device->device.fps_mode;
+  configuration.camera_fps = k4n_device->device.fps.mode;
   configuration.depth_delay_off_color_usec = k4n_device->synchro.depth_delay_off_color_us;
   configuration.wired_sync_mode = k4n_device->synchro.wired_sync_mode;
   configuration.subordinate_delay_off_master_usec = k4n_device->synchro.subordinate_delay_off_master_us;
@@ -48,21 +48,21 @@ void Configuration::find_playback_configuration(k4n::Device* k4n_device){
 void Configuration::find_config_fps(k4n::Device* k4n_device, k4a_record_configuration_t& configuration){
   //---------------------------
 
-  k4n_device->device.fps_mode = configuration.camera_fps;
+  k4n_device->device.fps.mode = configuration.camera_fps;
   switch(configuration.camera_fps){
     case K4A_FRAMES_PER_SECOND_5:{
-      k4n_device->device.fps_mode_str = "5";
-      k4n_device->device.fps_query = 5;
+      k4n_device->device.fps.mode_str = "5";
+      k4n_device->device.fps.query = 5;
       break;
     }
     case K4A_FRAMES_PER_SECOND_15:{
-      k4n_device->device.fps_mode_str = "15";
-      k4n_device->device.fps_query = 15;
+      k4n_device->device.fps.mode_str = "15";
+      k4n_device->device.fps.query = 15;
       break;
     }
     case K4A_FRAMES_PER_SECOND_30:{
-      k4n_device->device.fps_mode_str = "30";
-      k4n_device->device.fps_query = 30;
+      k4n_device->device.fps.mode_str = "30";
+      k4n_device->device.fps.query = 30;
       break;
     }
   }

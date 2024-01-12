@@ -29,7 +29,6 @@ public:
 
   //Subfunction
   void find_duration(k4n::Device* k4n_device);
-  void manage_fps(int fps_mode);
   void manage_query_ts(k4n::Device* device);
   void manage_pause(k4n::Device* k4n_device);
   void manage_restart(k4n::Device* device);

@@ -78,7 +78,7 @@ void K4A_capture::run_thread(k4n::Device* k4n_device){
 
     //FPS
     fps_control->stop();
-    k4n_device->device.fps_current = fps_counter->update();
+    k4n_device->device.fps.current = fps_counter->update();
   }
 
   //---------------------------

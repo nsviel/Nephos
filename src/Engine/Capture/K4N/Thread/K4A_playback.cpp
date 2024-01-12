@@ -70,13 +70,13 @@ void K4A_playback::run_thread(k4n::Device* k4n_device){
 
     k4a_processing->convert_into_cloud(k4n_device);
 
-    this->manage_fps(k4n_device->device.fps_mode);
     this->manage_pause(k4n_device);
     this->manage_query_ts(k4n_device);
     this->manage_restart(k4n_device);
 
     fps_control->stop();
-    k4n_device->device.fps_current = fps_counter->update();
+    fps_control->set_fps_max(k4n_device->device.fps.query);
+    k4n_device->device.fps.current = fps_counter->update();
   }
 
   playback.close();
@@ -95,23 +95,6 @@ void K4A_playback::stop_thread(){
 }
 
 //Subfunction
-void K4A_playback::manage_fps(int fps_mode){
-  //---------------------------
-
-  switch(fps_mode){
-    case K4A_FRAMES_PER_SECOND_5:{
-      fps_control->set_fps_max(5);
-    }
-    case K4A_FRAMES_PER_SECOND_15:{
-      fps_control->set_fps_max(15);
-    }
-    case K4A_FRAMES_PER_SECOND_30:{
-      fps_control->set_fps_max(30);
-    }
-  }
-
-  //---------------------------
-}
 void K4A_playback::find_duration(k4n::Device* k4n_device){
   k4n::structure::Player* player = &k4n_device->player;
   //---------------------------

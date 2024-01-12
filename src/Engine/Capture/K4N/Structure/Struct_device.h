@@ -7,12 +7,24 @@
 
 namespace k4n::structure{
 
+struct FPS{
+  //---------------------------
+
+  k4a_fps_t mode = K4A_FRAMES_PER_SECOND_30;
+  std::string mode_str;
+  float current = 0;
+  int query;
+
+  //---------------------------
+};
+
 struct Device{
   //---------------------------
 
   int index = -1;
   bool data_ready = false;
   bool is_playback;
+  FPS fps;
 
   std::string name = "";
   std::string serial_number = "";
@@ -24,12 +36,6 @@ struct Device{
 
   k4a_device_configuration_t configuration;
   k4a_hardware_version_t version;
-
-  //FPS
-  k4a_fps_t fps_mode = K4A_FRAMES_PER_SECOND_30;
-  std::string fps_mode_str;
-  float fps_current = 0;
-  int fps_query;
 
   //---------------------------
 };

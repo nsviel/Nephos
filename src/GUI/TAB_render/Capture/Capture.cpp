@@ -251,17 +251,17 @@ void Capture::configuration_device(){
 
   static int framerate = 0;
   if(ImGui::RadioButton("30 FPS", &framerate, 0)){
-    k4n_device->device.fps_mode = K4A_FRAMES_PER_SECOND_30;
+    k4n_device->device.fps.mode = K4A_FRAMES_PER_SECOND_30;
     k4n_device->restart_capture();
   }
   ImGui::SameLine();
   if(ImGui::RadioButton("15 FPS", &framerate, 1)){
-    k4n_device->device.fps_mode = K4A_FRAMES_PER_SECOND_15;
+    k4n_device->device.fps.mode = K4A_FRAMES_PER_SECOND_15;
     k4n_device->restart_capture();
   }
   ImGui::SameLine();
   if(ImGui::RadioButton("5 FPS", &framerate, 2)){
-    k4n_device->device.fps_mode = K4A_FRAMES_PER_SECOND_5;
+    k4n_device->device.fps.mode = K4A_FRAMES_PER_SECOND_5;
     k4n_device->restart_capture();
   }
 
