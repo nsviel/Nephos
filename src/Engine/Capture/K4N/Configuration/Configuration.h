@@ -22,14 +22,11 @@ public:
 
   //Subfunction
   void find_config_fps(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
-
-
-
-  string find_name_from_config(k4a_wired_sync_mode_t& value);
-  string find_name_from_config(k4a_fps_t& value);
-  string find_name_from_config(k4a_depth_mode_t& value);
-  string find_name_from_config(k4a_color_resolution_t& value);
-  string find_name_from_config(k4a_image_format_t& value);
+  void find_config_synchro(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
+  void find_config_depth(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
+  void find_config_color(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
+  void find_config_format(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
+  void find_config_device(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
 
 private:
 
