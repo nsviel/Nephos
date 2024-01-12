@@ -12,7 +12,7 @@ Configuration::Configuration(){
 }
 Configuration::~Configuration(){}
 
-//Main function
+//Capture configuration
 void Configuration::make_device_configuration(k4n::Device* k4n_device){
   //---------------------------
 
@@ -30,15 +30,12 @@ void Configuration::make_device_configuration(k4n::Device* k4n_device){
   //---------------------------
   k4n_device->device.configuration = configuration;
 }
+
+//Playback configuration
 void Configuration::find_playback_configuration(k4n::Device* k4n_device){
   k4a_record_configuration_t configuration = k4n_device->device.playback->get_record_configuration();
   //---------------------------
 
- 	k4a_image_format_t required_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  k4n_device->device.playback->set_color_conversion(required_format);
-  configuration.color_format = required_format;
-
-  //General info
   this->find_config_fps(k4n_device, configuration);
   this->find_config_synchro(k4n_device, configuration);
   this->find_config_depth(k4n_device, configuration);
@@ -48,8 +45,6 @@ void Configuration::find_playback_configuration(k4n::Device* k4n_device){
 
   //---------------------------
 }
-
-//Subfunction
 void Configuration::find_config_fps(k4n::Device* k4n_device, k4a_record_configuration_t& configuration){
   //---------------------------
 
@@ -134,6 +129,11 @@ void Configuration::find_config_depth(k4n::Device* k4n_device, k4a_record_config
 }
 void Configuration::find_config_color(k4n::Device* k4n_device, k4a_record_configuration_t& configuration){
   //---------------------------
+
+  //Ask for default color format
+  k4a_image_format_t required_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+  k4n_device->device.playback->set_color_conversion(required_format);
+  configuration.color_format = required_format;
 
   k4n_device->color.config.enabled = configuration.color_track_enabled;
   k4n_device->color.config.resolution = configuration.color_resolution;

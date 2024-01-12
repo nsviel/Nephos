@@ -16,11 +16,11 @@ public:
   ~Configuration();
 
 public:
-  //Main function
+  //Capture configuration
   void make_device_configuration(k4n::Device* k4n_device);
   void find_playback_configuration(k4n::Device* k4n_device);
 
-  //Subfunction
+  //Playback configuration
   void find_config_fps(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
   void find_config_synchro(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
   void find_config_depth(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
