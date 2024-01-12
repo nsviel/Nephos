@@ -26,10 +26,10 @@ public:
   void loop();
   void reset();
 
-  inline k4n::truc::Swarm* get_k4a_swarm(){return k4a_swarm;}
+  inline k4n::device::Swarm* get_k4a_swarm(){return k4a_swarm;}
 
 private:
-  k4n::truc::Swarm* k4a_swarm;
+  k4n::device::Swarm* k4a_swarm;
 };
 
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Device/K4A_device.h>
+#include <Engine/Capture/K4N/Device/Device.h>
 #include <list>
 
 
@@ -9,8 +9,8 @@ namespace k4n::structure{
 struct Swarm{
   //---------------------------
 
-  k4n::truc::K4A_device* selected_device = nullptr;
-  std::list<k4n::truc::K4A_device*> list_device;
+  k4n::device::Device* selected_device = nullptr;
+  std::list<k4n::device::Device*> list_device;
 
   int nb_device = 0;
   int nb_capture = 0;

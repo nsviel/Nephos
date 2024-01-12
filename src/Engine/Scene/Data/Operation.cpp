@@ -51,7 +51,7 @@ void Operation::update_entity(eng::data::Entity* entity){
     }
   }
   //K4A device entity
-  else if(k4n::truc::K4A_device* device = dynamic_cast<k4n::truc::K4A_device*>(entity)){
+  else if(k4n::device::Device* device = dynamic_cast<k4n::device::Device*>(entity)){
     cam_control->compute_camera_mvp(device->cloud.object);
     sce_glyph->update_glyph_object(device->cloud.object);
   }
@@ -71,10 +71,10 @@ void Operation::remove_entity(eng::data::Entity* entity){
     vk_engine->remove_object_in_engine(object);
   }
   //If entity is a k4a device
-  if(k4n::truc::K4A_device* device = dynamic_cast<k4n::truc::K4A_device*>(entity)){
+  if(k4n::device::Device* device = dynamic_cast<k4n::device::Device*>(entity)){
     eng::capture::Node* node_capture = engine->get_node_capture();
     k4n::Node* node_kinect = node_capture->get_node_kinect();
-    k4n::truc::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
+    k4n::device::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
 
     k4a_swarm->close_device(device);
   }
@@ -103,7 +103,7 @@ void Operation::switch_visibility(eng::data::Entity* entity, bool value){
     }
   }
   //K4A device entity
-  else if(k4n::truc::K4A_device* device = dynamic_cast<k4n::truc::K4A_device*>(entity)){
+  else if(k4n::device::Device* device = dynamic_cast<k4n::device::Device*>(entity)){
     device->set_visibility(value);
     this->switch_visibility(device->cloud.object, value);
   }
@@ -133,7 +133,7 @@ void Operation::make_translation(eng::data::Entity* entity, vec3 translation){
     //cam_control->set_camera_COM(object->COM);
   }
   //K4A device entity
-  else if(k4n::truc::K4A_device* device = dynamic_cast<k4n::truc::K4A_device*>(entity)){
+  else if(k4n::device::Device* device = dynamic_cast<k4n::device::Device*>(entity)){
     ope_transform->make_translation(device->cloud.object, translation);
     //cam_control->set_camera_COM(device->cloud.object->COM);
   }
@@ -149,7 +149,7 @@ void Operation::make_rotation(eng::data::Entity* entity, vec3 rotation){
     ope_transform->make_rotation(object, object->COM, rotation);
   }
   //K4A device entity
-  else if(k4n::truc::K4A_device* device = dynamic_cast<k4n::truc::K4A_device*>(entity)){
+  else if(k4n::device::Device* device = dynamic_cast<k4n::device::Device*>(entity)){
     ope_transform->make_rotation(device->cloud.object, device->cloud.object->COM, rotation);
   }
 
@@ -165,7 +165,7 @@ void Operation::make_rotation_X_90d(eng::data::Entity* entity, int value){
     ope_operation->elevate_object(object);
   }
   //K4A device entity
-  else if(k4n::truc::K4A_device* device = dynamic_cast<k4n::truc::K4A_device*>(entity)){
+  else if(k4n::device::Device* device = dynamic_cast<k4n::device::Device*>(entity)){
     ope_attribut->compute_MinMax(device->cloud.object);
     ope_transform->make_rotation_axe_X(device->cloud.object, value * 90);
     ope_operation->elevate_object(device->cloud.object);
@@ -182,7 +182,7 @@ void Operation::make_center(eng::data::Entity* entity){
     ope_operation->center_object(object);
   }
   //K4A device entity
-  else if(k4n::truc::K4A_device* device = dynamic_cast<k4n::truc::K4A_device*>(entity)){
+  else if(k4n::device::Device* device = dynamic_cast<k4n::device::Device*>(entity)){
     ope_operation->center_object(device->cloud.object);
   }
 

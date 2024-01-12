@@ -28,7 +28,7 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   //---------------------------
 
   if(*show_window && k4a_device != nullptr){
@@ -61,7 +61,7 @@ void Panel::design_panel(){
 
 //Subfunction
 void Panel::show_info(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 

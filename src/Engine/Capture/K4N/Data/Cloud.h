@@ -18,18 +18,18 @@ public:
 
 public:
   //Main function
-  void convert_into_cloud(k4n::truc::K4A_device* k4a_device);
+  void convert_into_cloud(k4n::device::Device* k4a_device);
 
   //Loop function
-  void loop_init(k4n::truc::K4A_device* k4a_device);
-  void loop_data(k4n::truc::K4A_device* k4a_device);
-  void loop_end(k4n::truc::K4A_device* k4a_device);
+  void loop_init(k4n::device::Device* k4a_device);
+  void loop_data(k4n::device::Device* k4a_device);
+  void loop_end(k4n::device::Device* k4a_device);
 
   //Subfunction
   void retrieve_location(int& x, int& y, int& z);
-  void retrieve_color(k4n::truc::K4A_device* k4a_device, int i);
-  void retrieve_ir(k4n::truc::K4A_device* k4a_device, int i);
-  void retrieve_corner_coordinate(k4n::truc::K4A_device* k4a_device);
+  void retrieve_color(k4n::device::Device* k4a_device, int i);
+  void retrieve_ir(k4n::device::Device* k4a_device, int i);
+  void retrieve_corner_coordinate(k4n::device::Device* k4a_device);
 
 private:
   Engine* engine;

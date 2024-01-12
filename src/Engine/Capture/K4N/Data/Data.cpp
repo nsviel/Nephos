@@ -20,7 +20,7 @@ Data::~Data(){
 }
 
 //Main function
-void Data::find_data_from_capture(k4n::truc::K4A_device* k4a_device, k4a::capture capture){
+void Data::find_data_from_capture(k4n::device::Device* k4a_device, k4a::capture capture){
   //---------------------------
 
   //Capture data
@@ -36,7 +36,7 @@ void Data::find_data_from_capture(k4n::truc::K4A_device* k4a_device, k4a::captur
 }
 
 //Data function
-void Data::find_depth(k4n::truc::K4A_device* k4a_device, k4a::capture capture){
+void Data::find_depth(k4n::device::Device* k4a_device, k4a::capture capture){
   k4a::image depth = capture.get_depth_image();
   //---------------------------
 
@@ -62,7 +62,7 @@ void Data::find_depth(k4n::truc::K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
   depth.reset();
 }
-void Data::find_color(k4n::truc::K4A_device* k4a_device, k4a::capture capture){
+void Data::find_color(k4n::device::Device* k4a_device, k4a::capture capture){
   k4a::image color = capture.get_color_image();
   //---------------------------
 
@@ -86,7 +86,7 @@ void Data::find_color(k4n::truc::K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
   color.reset();
 }
-void Data::find_ir(k4n::truc::K4A_device* k4a_device, k4a::capture capture){
+void Data::find_ir(k4n::device::Device* k4a_device, k4a::capture capture){
   k4a::image ir = capture.get_ir_image();
   //---------------------------
 
@@ -111,7 +111,7 @@ void Data::find_ir(k4n::truc::K4A_device* k4a_device, k4a::capture capture){
   //---------------------------
   ir.reset();
 }
-void Data::find_color_from_depth(k4n::truc::K4A_device* k4a_device, k4a::capture capture, k4a::transformation& transformation){
+void Data::find_color_from_depth(k4n::device::Device* k4a_device, k4a::capture capture, k4a::transformation& transformation){
   if(!k4a_device->color.image.image || !k4a_device->depth.image.image) return;
   //---------------------------
 

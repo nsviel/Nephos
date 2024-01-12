@@ -23,7 +23,7 @@ public:
 
 private:
   k4n::Node* node_kinect;
-  k4n::truc::Swarm* k4a_swarm;
+  k4n::device::Swarm* k4a_swarm;
 
   int item_width;
 };

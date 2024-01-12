@@ -19,7 +19,7 @@ Playback::~Playback(){}
 
 //Main function
 void Playback::kinect_playback(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr || !k4a_device->device.is_playback) return;
   //---------------------------
 
@@ -39,7 +39,7 @@ void Playback::kinect_playback(){
 
 //Design function
 void Playback::show_info_device(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 
@@ -66,7 +66,7 @@ void Playback::show_info_device(){
   //---------------------------
 }
 void Playback::show_info_color(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 
@@ -97,7 +97,7 @@ void Playback::show_info_color(){
   //---------------------------
 }
 void Playback::show_info_depth(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 
@@ -128,7 +128,7 @@ void Playback::show_info_depth(){
   //---------------------------
 }
 void Playback::show_info_synch(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 

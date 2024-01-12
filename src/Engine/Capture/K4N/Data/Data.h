@@ -16,13 +16,13 @@ public:
 
 public:
   //Main function
-  void find_data_from_capture(k4n::truc::K4A_device* device, k4a::capture capture);
+  void find_data_from_capture(k4n::device::Device* device, k4a::capture capture);
 
   //Data function
-  void find_depth(k4n::truc::K4A_device* k4a_device, k4a::capture capture);
-  void find_color(k4n::truc::K4A_device* k4a_device, k4a::capture capture);
-  void find_color_from_depth(k4n::truc::K4A_device* k4a_device, k4a::capture capture, k4a::transformation& transformation);
-  void find_ir(k4n::truc::K4A_device* k4a_device, k4a::capture capture);
+  void find_depth(k4n::device::Device* k4a_device, k4a::capture capture);
+  void find_color(k4n::device::Device* k4a_device, k4a::capture capture);
+  void find_color_from_depth(k4n::device::Device* k4a_device, k4a::capture capture, k4a::transformation& transformation);
+  void find_ir(k4n::device::Device* k4a_device, k4a::capture capture);
 
   //Subfunction
   string retrieve_format_from_k4a(k4a_image_format_t color_format);

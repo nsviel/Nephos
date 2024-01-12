@@ -9,15 +9,15 @@ class K4A_capture;
 class K4A_playback;
 class Engine;
 
-namespace k4n::truc{
+namespace k4n::device{
 
 
-class K4A_device : public eng::data::Entity
+class Device : public eng::data::Entity
 {
 public:
   //Constructor / Destructor
-  K4A_device(Engine* engine);
-  ~K4A_device();
+  Device(Engine* engine);
+  ~Device();
 
 public:
   //Main function

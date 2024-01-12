@@ -21,7 +21,7 @@ Capture::~Capture(){}
 
 //Main function
 void Capture::kinect_configuration(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr || k4a_device->device.is_playback) return;
   //---configuration_device----
 
@@ -42,7 +42,7 @@ void Capture::kinect_configuration(){
 
 //Subfunction
 void Capture::kinect_devices(){
-  list<k4n::truc::K4A_device*>& list_device = k4a_swarm->get_list_device();
+  list<k4n::device::Device*>& list_device = k4a_swarm->get_list_device();
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -62,7 +62,7 @@ void Capture::kinect_devices(){
       ImGui::TableSetupColumn("Serial number");
       ImGui::TableHeadersRow();
       for(int i=0; i<list_device.size(); i++){
-        k4n::truc::K4A_device* k4a_device = *std::next(list_device.begin(), i);
+        k4n::device::Device* k4a_device = *std::next(list_device.begin(), i);
         if(k4a_device->device.is_playback) continue;
 
         ImGui::TableNextRow();
@@ -87,7 +87,7 @@ void Capture::kinect_devices(){
   //---------------------------
 }
 void Capture::configuration_depth(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 
@@ -122,7 +122,7 @@ void Capture::configuration_depth(){
   //---------------------------
 }
 void Capture::configuration_color(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 
@@ -245,7 +245,7 @@ void Capture::configuration_color(){
   //---------------------------
 }
 void Capture::configuration_device(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 
@@ -272,7 +272,7 @@ void Capture::configuration_device(){
   //---------------------------
 }
 void Capture::firmware_info(){
-  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::device::Device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 

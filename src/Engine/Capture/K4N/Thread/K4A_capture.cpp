@@ -28,7 +28,7 @@ K4A_capture::~K4A_capture(){
 }
 
 //Main function
-void K4A_capture::start_thread(k4n::truc::K4A_device* device){
+void K4A_capture::start_thread(k4n::device::Device* device){
   //---------------------------
 
   if(!thread_running){
@@ -39,7 +39,7 @@ void K4A_capture::start_thread(k4n::truc::K4A_device* device){
 }
 
 //Subfunction
-void K4A_capture::run_thread(k4n::truc::K4A_device* k4a_device){
+void K4A_capture::run_thread(k4n::device::Device* k4a_device){
   if(k4a_device == nullptr) return;
   //---------------------------
 
@@ -92,7 +92,7 @@ void K4A_capture::stop_thread(){
 
   //---------------------------
 }
-void K4A_capture::manage_pause(k4n::truc::K4A_device* k4a_device){
+void K4A_capture::manage_pause(k4n::device::Device* k4a_device){
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -104,7 +104,7 @@ void K4A_capture::manage_pause(k4n::truc::K4A_device* k4a_device){
 
   //---------------------------
 }
-void K4A_capture::manage_recording(k4n::truc::K4A_device* k4a_device, k4a::capture capture){
+void K4A_capture::manage_recording(k4n::device::Device* k4a_device, k4a::capture capture){
   //---------------------------
 
   k4a::record& recorder = k4a_device->recorder.recorder;
@@ -130,7 +130,7 @@ void K4A_capture::manage_recording(k4n::truc::K4A_device* k4a_device, k4a::captu
 
   //---------------------------
 }
-void K4A_capture::manage_color_setting(k4n::truc::K4A_device* k4a_device){
+void K4A_capture::manage_color_setting(k4n::device::Device* k4a_device){
   //---------------------------
 
   k4a_device->device.device->set_color_control(k4a_device->color.config.exposure.command, k4a_device->color.config.exposure.mode, k4a_device->color.config.exposure.value);

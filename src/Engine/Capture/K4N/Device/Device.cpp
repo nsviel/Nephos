@@ -1,15 +1,15 @@
-#include "K4A_device.h"
+#include "Device.h"
 
 #include <Engine/Engine.h>
 #include <Engine/Capture/K4N/Thread/K4A_capture.h>
 #include <Engine/Capture/K4N/Thread/K4A_playback.h>
 
 
-namespace k4n::truc{
+namespace k4n::device{
 
 
 //Constructor / Destructor
-K4A_device::K4A_device(Engine* engine){
+Device::Device(Engine* engine){
   //---------------------------
 
   eng::scene::Node* node_scene = engine->get_node_scene();
@@ -20,11 +20,11 @@ K4A_device::K4A_device(Engine* engine){
   this->sce_glyph = node_scene->get_scene_glyph();
   this->ope_transform = new eng::ope::Transformation();
 
-  this->type = "K4A_device";
+  this->type = "Device";
 
   //---------------------------
 }
-K4A_device::~K4A_device(){
+Device::~Device(){
   //---------------------------
 
   this->destroy();
@@ -33,7 +33,7 @@ K4A_device::~K4A_device(){
 }
 
 //Main function
-void K4A_device::init(){
+void Device::init(){
   //---------------------------
 
   //Device name
@@ -48,14 +48,14 @@ void K4A_device::init(){
 
   //---------------------------
 }
-void K4A_device::reset(){
+void Device::reset(){
   //---------------------------
 
   cloud.object->reset();
 
   //---------------------------
 }
-void K4A_device::destroy(){
+void Device::destroy(){
   //---------------------------
 
   this->stop_threads();
@@ -64,7 +64,7 @@ void K4A_device::destroy(){
 
   //---------------------------
 }
-void K4A_device::draw_cloud(){
+void Device::draw_cloud(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(cloud.object->mutex);
@@ -75,7 +75,7 @@ void K4A_device::draw_cloud(){
 }
 
 //Capture function
-void K4A_device::run_capture(){
+void Device::run_capture(){
   //---------------------------
 
   if(!k4a_capture->is_thread_running()){
@@ -84,7 +84,7 @@ void K4A_device::run_capture(){
 
   //---------------------------
 }
-void K4A_device::restart_capture(){
+void Device::restart_capture(){
   //---------------------------
 
   this->stop_threads();
@@ -92,7 +92,7 @@ void K4A_device::restart_capture(){
 
   //---------------------------
 }
-void K4A_device::run_playback(string path){
+void Device::run_playback(string path){
   //---------------------------
 
   this->playback.path = path;
@@ -100,7 +100,7 @@ void K4A_device::run_playback(string path){
 
   //---------------------------
 }
-void K4A_device::stop_threads(){
+void Device::stop_threads(){
   //---------------------------
 
   this->k4a_capture->stop_thread();
@@ -108,7 +108,7 @@ void K4A_device::stop_threads(){
 
   //---------------------------
 }
-void K4A_device::reset_color_configuration(){
+void Device::reset_color_configuration(){
   //---------------------------
 
   color.config.exposure.value = 15625;
