@@ -1,8 +1,8 @@
 #include "Player.h"
 
 #include <Engine/Engine.h>
-#include <Engine/Capture/K4A/Thread/K4A_playback.h>
-#include <Engine/Capture/K4A/Device/K4A_swarm.h>
+#include <Engine/Capture/K4N/Thread/K4A_playback.h>
+#include <Engine/Capture/K4N/Device/K4A_swarm.h>
 #include <image/IconsFontAwesome6.h>
 
 

@@ -2,8 +2,8 @@
 
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4A/Namespace.h>
-#include <Engine/Capture/K4A/Utils/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
+#include <Engine/Capture/K4N/Utils/Namespace.h>
 
 class K4A_swarm;
 
@@ -33,7 +33,7 @@ public:
 
 private:
   eng::scene::Scene* sce_scene;
-  eng::kinect::Node* node_kinect;
+  k4n::Node* node_kinect;
   k4n::utils::Player* k4a_player;
   K4A_swarm* k4a_swarm;
 };

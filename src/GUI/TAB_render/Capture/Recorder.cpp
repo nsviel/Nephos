@@ -1,12 +1,12 @@
 #include "Recorder.h"
 
-#include <Engine/Capture/K4A/Device/K4A_swarm.h>
+#include <Engine/Capture/K4N/Device/K4A_swarm.h>
 
 
 namespace gui::kinect{
 
 //Constructor / Destructor
-Recorder::Recorder(eng::kinect::Node* node_kinect){
+Recorder::Recorder(k4n::Node* node_kinect){
   //---------------------------
 
   this->node_kinect = node_kinect;

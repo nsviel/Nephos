@@ -1,9 +1,9 @@
 #include "K4A_device.h"
 
 #include <Engine/Engine.h>
-#include <Engine/Capture/K4A/Utils/Namespace.h>
-#include <Engine/Capture/K4A/Thread/K4A_capture.h>
-#include <Engine/Capture/K4A/Thread/K4A_playback.h>
+#include <Engine/Capture/K4N/Utils/Namespace.h>
+#include <Engine/Capture/K4N/Thread/K4A_capture.h>
+#include <Engine/Capture/K4N/Thread/K4A_playback.h>
 
 
 //Constructor / Destructor

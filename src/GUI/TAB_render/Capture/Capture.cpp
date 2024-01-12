@@ -1,13 +1,13 @@
 #include "Capture.h"
 
 #include <GUI.h>
-#include <Engine/Capture/K4A/Device/K4A_swarm.h>
+#include <Engine/Capture/K4N/Device/K4A_swarm.h>
 
 
 namespace gui::kinect{
 
 //Constructor / Destructor
-Capture::Capture(eng::kinect::Node* node_kinect){
+Capture::Capture(k4n::Node* node_kinect){
   //---------------------------
 
   this->node_kinect = node_kinect;

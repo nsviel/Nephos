@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4A/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
 class GUI;
 class K4A_swarm;
@@ -13,7 +13,7 @@ class Capture
 {
 public:
   //Constructor / Destructor
-  Capture(eng::kinect::Node* node_kinect);
+  Capture(k4n::Node* node_kinect);
   ~Capture();
 
   //Main function
@@ -27,7 +27,7 @@ public:
   void firmware_info();
 
 private:
-  eng::kinect::Node* node_kinect;
+  k4n::Node* node_kinect;
   K4A_swarm* k4a_swarm;
 
   int item_width;

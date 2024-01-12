@@ -3,10 +3,10 @@
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <GUI/GUI_utility/Media/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4A/Device/K4A_device.h>
-#include <Engine/Capture/K4A/Namespace.h>
-#include <Engine/Capture/K4A/Structure/Namespace.h>
-#include <Engine/Capture/K4A/Data/Namespace.h>
+#include <Engine/Capture/K4N/Device/K4A_device.h>
+#include <Engine/Capture/K4N/Namespace.h>
+#include <Engine/Capture/K4N/Structure/Namespace.h>
+#include <Engine/Capture/K4N/Data/Namespace.h>
 
 class GUI;
 class K4A_swarm;
@@ -43,7 +43,7 @@ public:
 
 private:
   GUI* gui;
-  eng::kinect::Node* node_kinect;
+  k4n::Node* node_kinect;
   k4n::data::Depth* k4a_depth;
   k4n::data::Infrared* k4a_infrared;
   K4A_swarm* k4a_swarm;

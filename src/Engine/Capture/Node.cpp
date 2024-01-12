@@ -9,7 +9,7 @@ namespace eng::capture{
 Node::Node(Engine* engine){
   //---------------------------
 
-  this->node_kinect = new eng::kinect::Node(engine);
+  this->node_kinect = new k4n::Node(engine);
 
   //---------------------------
 }

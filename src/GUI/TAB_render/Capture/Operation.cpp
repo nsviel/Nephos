@@ -1,13 +1,13 @@
 #include "Operation.h"
 
 #include <GUI.h>
-#include <Engine/Capture/K4A/Device/K4A_swarm.h>
+#include <Engine/Capture/K4N/Device/K4A_swarm.h>
 
 
 namespace gui::kinect{
 
 //Constructor / Destructor
-Operation::Operation(eng::kinect::Node* node_kinect){
+Operation::Operation(k4n::Node* node_kinect){
   //---------------------------
 
   this->node_kinect = node_kinect;

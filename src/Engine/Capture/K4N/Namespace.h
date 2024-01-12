@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Engine/Capture/K4A/Node.h>
+#include <Engine/Capture/K4N/Node.h>
 
 
-namespace eng::kinect{
+namespace k4n{
   //---------------------------
 
   class Node;

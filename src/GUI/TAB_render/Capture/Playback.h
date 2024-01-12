@@ -2,7 +2,7 @@
 
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4A/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
 class K4A_swarm;
 
@@ -13,7 +13,7 @@ class Playback
 {
 public:
   //Constructor / Destructor
-  Playback(eng::kinect::Node* node_kinect);
+  Playback(k4n::Node* node_kinect);
   ~Playback();
 
   //Main function
@@ -26,7 +26,7 @@ public:
   void show_info_synch();
 
 private:
-  eng::kinect::Node* node_kinect;
+  k4n::Node* node_kinect;
   K4A_swarm* k4a_swarm;
 };
 

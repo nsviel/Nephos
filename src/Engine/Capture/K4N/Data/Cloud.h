@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Engine/Capture/K4A/Device/K4A_device.h>
+#include <Engine/Capture/K4N/Device/K4A_device.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4A/Utils/Namespace.h>
+#include <Engine/Capture/K4N/Utils/Namespace.h>
 
 class Engine;
 

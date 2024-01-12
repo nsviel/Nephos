@@ -3,7 +3,7 @@
 #include <Engine/Engine.h>
 
 
-namespace eng::kinect{
+namespace k4n{
 
 //Constructor / Destructor
 Node::Node(Engine* engine){

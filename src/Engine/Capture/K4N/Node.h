@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Engine/Capture/K4A/Structure/Namespace.h>
-#include <Engine/Capture/K4A/Namespace.h>
-#include <Engine/Capture/K4A/Device/K4A_swarm.h>
-#include <Engine/Capture/K4A/Device/K4A_device.h>
+#include <Engine/Capture/K4N/Structure/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
+#include <Engine/Capture/K4N/Device/K4A_swarm.h>
+#include <Engine/Capture/K4N/Device/K4A_device.h>
 #include <Utility/Specific/common.h>
 
 #include <k4a/k4a.h>
@@ -12,7 +12,7 @@
 class Engine;
 
 
-namespace eng::kinect{
+namespace k4n{
 
 class Node
 {
