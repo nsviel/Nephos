@@ -1,7 +1,7 @@
 #include "Set.h"
 
 #include <GUI.h>
-#include <Engine/Operation/Transformation/Attribut.h>
+#include <Engine/Engine.h>
 
 
 namespace gui::rnd::data{
@@ -9,6 +9,11 @@ namespace gui::rnd::data{
 //Constructor / Destructor
 Set::Set(GUI* gui, bool* show_window){
   //---------------------------
+
+  Engine* engine = gui->get_engine();
+  eng::scene::Node* node_scene = engine->get_node_scene();
+
+  this->sce_operation = node_scene->get_scene_operation();
 
   this->panel_show = show_window;
   this->panel_name = "Set";
@@ -60,7 +65,7 @@ void Set::set_parameter(eng::data::Set* set){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Visibility"); ImGui::TableNextColumn();
     if(ImGui::Checkbox("##4555", &set->is_visible)){
-      set->set_visibility(set->is_visible);
+      sce_operation->switch_visibility(set, set->is_visible);
     }
 
     //Name

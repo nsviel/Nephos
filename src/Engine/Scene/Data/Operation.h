@@ -22,6 +22,8 @@ public:
   //Main function
   void update_entity(eng::data::Entity* entity);
   void remove_entity(eng::data::Entity* entity);
+  void switch_visibility(eng::data::Entity* entity, bool value);
+  void switch_visibility(eng::data::Set* set, bool value);
 
   //Transformation
   void make_translation(eng::data::Entity* entity, vec3 translation);

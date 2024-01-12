@@ -115,7 +115,7 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* data =  *next(list_data.begin(), i);
-    bool& is_visible = data->object->is_visible;
+    bool is_visible = data->object->is_visible;
     bool has_topology = data->object->draw_type_name == "point";
     bool has_xyz = data->object->xyz.size() != 0;
     bool has_rgb = data->object->rgb.size() != 0;

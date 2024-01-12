@@ -20,6 +20,8 @@ struct Entity
   std::string name = "";
   std::string type = "entity";
 
+  inline void set_visibility(bool value){this->is_visible = value;}
+
   //---------------------------
 };
 

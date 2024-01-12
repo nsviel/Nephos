@@ -2,6 +2,7 @@
 
 #include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Engine/Scene/Namespace.h>
 
 class GUI;
 
@@ -26,6 +27,8 @@ public:
   inline void set_selected_set(eng::data::Set* set){this->set_selected = set;}
 
 private:
+  eng::scene::Operation* sce_operation;
+
   eng::data::Set* set_selected;
   string panel_name;
   bool* panel_show;;
