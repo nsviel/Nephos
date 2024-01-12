@@ -7,7 +7,7 @@
 class Engine;
 
 
-namespace eng::kinect::data{
+namespace k4a::data{
 
 class Cloud
 {

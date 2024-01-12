@@ -5,7 +5,7 @@
 #include <Engine/Operation/Transformation/Transformation.h>
 
 
-namespace eng::kinect::data{
+namespace k4a::data{
 
 //Constructor / Destructor
 Cloud::Cloud(Engine* engine){

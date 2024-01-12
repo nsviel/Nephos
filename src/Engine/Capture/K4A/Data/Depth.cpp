@@ -1,7 +1,7 @@
 #include "Depth.h"
 
 
-namespace eng::kinect::data{
+namespace k4a::data{
 
 //Constructor / Destructor
 Depth::Depth(){

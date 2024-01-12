@@ -12,8 +12,8 @@ K4A_capture::K4A_capture(Engine* engine){
 
   this->fps_counter = new FPS_counter();
   this->fps_control = new FPS_control(30);
-  this->k4a_data = new eng::kinect::data::Data();
-  this->k4a_processing = new eng::kinect::data::Cloud(engine);
+  this->k4a_data = new k4a::data::Data();
+  this->k4a_processing = new k4a::data::Cloud(engine);
   this->k4a_config = new k4a::config::Configuration();
 
   //---------------------------

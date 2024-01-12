@@ -4,7 +4,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace eng::kinect::data{
+namespace k4a::data{
 
 class Depth
 {

@@ -6,7 +6,7 @@
 #include <Engine/Capture/K4A/Data/Cloud.h>
 
 
-namespace eng::kinect::data{
+namespace k4a::data{
   //---------------------------
 
   class Data;

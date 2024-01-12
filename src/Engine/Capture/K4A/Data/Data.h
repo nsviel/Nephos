@@ -5,7 +5,7 @@
 #include <image/turbojpeg.h>
 
 
-namespace eng::kinect::data{
+namespace k4a::data{
 
 class Data
 {

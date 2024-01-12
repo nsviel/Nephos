@@ -1,7 +1,7 @@
 #include "Data.h"
 
 
-namespace eng::kinect::data{
+namespace k4a::data{
 
 //Constructor / Destructor
 Data::Data(){
