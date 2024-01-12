@@ -4,7 +4,7 @@
 #include <Engine/Capture/K4A/Thread/K4A_playback.h>
 
 
-namespace k4a::thread{
+namespace k4n::thread{
   //---------------------------
 
   class K4A_capture;

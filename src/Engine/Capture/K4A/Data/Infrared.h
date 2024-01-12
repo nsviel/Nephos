@@ -4,7 +4,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace k4a::data{
+namespace k4n::data{
 
 class Infrared
 {

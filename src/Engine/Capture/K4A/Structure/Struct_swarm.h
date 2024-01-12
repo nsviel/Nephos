@@ -6,7 +6,7 @@
 class K4A_device;
 
 
-namespace k4a::stucture{
+namespace k4n::structure{
 
 struct Swarm{
   //---------------------------

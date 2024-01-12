@@ -16,8 +16,8 @@ Stream::Stream(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   eng::capture::Node* node_capture = engine->get_node_capture();
 
   this->node_kinect = node_capture->get_node_kinect();
-  this->k4a_depth = new k4a::data::Depth();
-  this->k4a_infrared = new k4a::data::Infrared();
+  this->k4a_depth = new k4n::data::Depth();
+  this->k4a_infrared = new k4n::data::Infrared();
   this->k4a_swarm = node_kinect->get_k4a_swarm();
   this->gui = gui;
 
@@ -124,7 +124,7 @@ void Stream::device_tab(K4A_device* k4a_device){
 
 //Device capture windows
 void Stream::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
-  k4a::stucture::Image* data_color = &k4a_device->color.image;
+  k4n::structure::Image* data_color = &k4a_device->color.image;
   //---------------------------
 
   eng::data::Image struct_image;
@@ -140,7 +140,7 @@ void Stream::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
   //---------------------------
 }
 void Stream::draw_camera_color_from_depth(K4A_device* k4a_device, ImVec2 image_size){
-  k4a::stucture::Image* data_color = &k4a_device->color.image_depth;
+  k4n::structure::Image* data_color = &k4a_device->color.image_depth;
   //---------------------------
 
   //Il y a un probleme ici non identifié, le vecteur semble changer de taille (?)
@@ -166,7 +166,7 @@ void Stream::draw_camera_color_from_depth(K4A_device* k4a_device, ImVec2 image_s
   //---------------------------
 }
 void Stream::draw_camera_depth(K4A_device* k4a_device, ImVec2 image_size){
-  k4a::stucture::Image* data_depth = &k4a_device->depth.image;
+  k4n::structure::Image* data_depth = &k4a_device->depth.image;
   //---------------------------
 
   std::vector<uint8_t> new_buffer = k4a_depth->convert_depth_into_color(k4a_device);
@@ -184,7 +184,7 @@ void Stream::draw_camera_depth(K4A_device* k4a_device, ImVec2 image_size){
   //---------------------------
 }
 void Stream::draw_camera_ir(K4A_device* k4a_device, ImVec2 image_size){
-  k4a::stucture::Image* data_ir = &k4a_device->ir.image;
+  k4n::structure::Image* data_ir = &k4a_device->ir.image;
   //---------------------------
 
   std::vector<uint8_t> new_buffer = k4a_infrared->convert_ir_into_color(k4a_device);
@@ -203,7 +203,7 @@ void Stream::draw_camera_ir(K4A_device* k4a_device, ImVec2 image_size){
 }
 
 //Overlay
-void Stream::overlay_capture(K4A_device* k4a_device, k4a::stucture::Image* image, ImVec2 image_size, ImVec2 image_pose){
+void Stream::overlay_capture(K4A_device* k4a_device, k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose){
   //---------------------------
 
   //Hovered pixel
@@ -233,7 +233,7 @@ void Stream::overlay_capture(K4A_device* k4a_device, k4a::stucture::Image* image
 
   //---------------------------
 }
-void Stream::overlay_information(K4A_device* k4a_device, k4a::stucture::Image* image){
+void Stream::overlay_information(K4A_device* k4a_device, k4n::structure::Image* image){
   //---------------------------
 
   ImGui::Text("Frame rate: %.2f fps", k4a_device->device.fps);
@@ -244,7 +244,7 @@ void Stream::overlay_information(K4A_device* k4a_device, k4a::stucture::Image* i
 
   //---------------------------
 }
-void Stream::overlay_pixel(k4a::stucture::Image* image, ImVec2 image_size){
+void Stream::overlay_pixel(k4n::structure::Image* image, ImVec2 image_size){
   //---------------------------
 
   if(image->hovered_pixel_x != -1 && image->hovered_pixel_y != -1){
@@ -254,7 +254,7 @@ void Stream::overlay_pixel(k4a::stucture::Image* image, ImVec2 image_size){
 
   //---------------------------
 }
-void Stream::compute_hovered_pixel(k4a::stucture::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered){
+void Stream::compute_hovered_pixel(k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered){
   //---------------------------
 
   //Reinitialize coord values

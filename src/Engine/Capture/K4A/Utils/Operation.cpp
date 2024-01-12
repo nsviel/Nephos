@@ -1,7 +1,7 @@
 #include "Operation.h"
 
 
-namespace k4a::utils{
+namespace k4n::utils{
 
 //Constructor / Destructor
 Operation::Operation(){
@@ -14,7 +14,7 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Main function
-void Operation::make_colorization(k4a::stucture::Cloud* cloud, vector<vec4>& vec_rgba){
+void Operation::make_colorization(k4n::structure::Cloud* cloud, vector<vec4>& vec_rgba){
   //---------------------------
 
   switch(cloud->color_mode){
@@ -34,7 +34,7 @@ void Operation::make_colorization(k4a::stucture::Cloud* cloud, vector<vec4>& vec
 
   //---------------------------
 }
-void Operation::colorization_intensity(k4a::stucture::Cloud* cloud, vector<vec4>& vec_rgba){
+void Operation::colorization_intensity(k4n::structure::Cloud* cloud, vector<vec4>& vec_rgba){
   //---------------------------
 
   vec_rgba.clear();
@@ -46,7 +46,7 @@ void Operation::colorization_intensity(k4a::stucture::Cloud* cloud, vector<vec4>
 
   //---------------------------
 }
-void Operation::colorization_heatmap(k4a::stucture::Cloud* cloud, vector<vec4>& vec_rgba){
+void Operation::colorization_heatmap(k4n::structure::Cloud* cloud, vector<vec4>& vec_rgba){
   //---------------------------
 
   switch(cloud->heatmap_mode){

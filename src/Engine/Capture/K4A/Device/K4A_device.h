@@ -31,7 +31,7 @@ public:
   void stop_threads();
   void reset_color_configuration();
 
-  inline k4a::stucture::Cloud* get_cloud(){return &cloud;}
+  inline k4n::structure::Cloud* get_cloud(){return &cloud;}
 
 public:
   eng::scene::Scene* eng_scene;
@@ -40,14 +40,14 @@ public:
   K4A_capture* k4a_capture;
   K4A_playback* k4a_playback;
 
-  k4a::stucture::Cloud cloud;
-  k4a::stucture::Device device;
-  k4a::stucture::Synchro synchro;
-  k4a::stucture::Playback playback;
-  k4a::stucture::Player player;
-  k4a::stucture::Recorder recorder;
+  k4n::structure::Cloud cloud;
+  k4n::structure::Device device;
+  k4n::structure::Synchro synchro;
+  k4n::structure::Playback playback;
+  k4n::structure::Player player;
+  k4n::structure::Recorder recorder;
 
-  k4a::stucture::Color color;
-  k4a::stucture::Depth depth;
-  k4a::stucture::Infrared ir;
+  k4n::structure::Color color;
+  k4n::structure::Depth depth;
+  k4n::structure::Infrared ir;
 };

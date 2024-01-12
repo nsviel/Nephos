@@ -41,7 +41,7 @@ public:
 private:
   Engine* engine;
   eng::scene::Scene* sce_scene;
-  k4a::stucture::Swarm* struct_swarm;
+  k4n::structure::Swarm* struct_swarm;
 
   string default_folder;
   string default_file;

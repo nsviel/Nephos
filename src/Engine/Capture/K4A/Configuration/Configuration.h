@@ -6,7 +6,7 @@
 #include <k4arecord/playback.hpp>
 
 
-namespace k4a::config{
+namespace k4n::config{
 
 class Configuration
 {

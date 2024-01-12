@@ -5,6 +5,7 @@
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/K4A/Device/K4A_device.h>
 #include <Engine/Capture/K4A/Namespace.h>
+#include <Engine/Capture/K4A/Structure/Namespace.h>
 #include <Engine/Capture/K4A/Data/Namespace.h>
 
 class GUI;
@@ -35,16 +36,16 @@ public:
   void draw_camera_ir(K4A_device* device, ImVec2 image_size);
 
   //Overlay
-  void compute_hovered_pixel(k4a::stucture::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
-  void overlay_capture(K4A_device* device, k4a::stucture::Image* image, ImVec2 image_size, ImVec2 image_pose);
-  void overlay_information(K4A_device* device, k4a::stucture::Image* image);
-  void overlay_pixel(k4a::stucture::Image* image, ImVec2 image_size);
+  void compute_hovered_pixel(k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
+  void overlay_capture(K4A_device* device, k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose);
+  void overlay_information(K4A_device* device, k4n::structure::Image* image);
+  void overlay_pixel(k4n::structure::Image* image, ImVec2 image_size);
 
 private:
   GUI* gui;
   eng::kinect::Node* node_kinect;
-  k4a::data::Depth* k4a_depth;
-  k4a::data::Infrared* k4a_infrared;
+  k4n::data::Depth* k4a_depth;
+  k4n::data::Infrared* k4a_infrared;
   K4A_swarm* k4a_swarm;
 
   vector<gui::media::Stream*> vec_gui_stream;

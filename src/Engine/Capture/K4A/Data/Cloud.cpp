@@ -5,14 +5,14 @@
 #include <Engine/Operation/Transformation/Transformation.h>
 
 
-namespace k4a::data{
+namespace k4n::data{
 
 //Constructor / Destructor
 Cloud::Cloud(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->kin_operation = new k4a::utils::Operation();
+  this->kin_operation = new k4n::utils::Operation();
 
   //---------------------------
 }
@@ -47,8 +47,8 @@ void Cloud::loop_data(K4A_device* k4a_device){
   //---------------------------
 
   // Data stuff
-  k4a::stucture::Depth* depth = &k4a_device->depth;
-  k4a::stucture::Infrared* ir = &k4a_device->ir;
+  k4n::structure::Depth* depth = &k4a_device->depth;
+  k4n::structure::Infrared* ir = &k4a_device->ir;
 
   // Cloud stuff
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->image.width, depth->image.height, depth->image.width * 3 * (int)sizeof(int16_t));
@@ -75,7 +75,7 @@ void Cloud::loop_end(K4A_device* k4a_device){
   if(k4a_device->depth.image.data.empty()) return;
   //---------------------------
 
-  k4a::stucture::Cloud* cloud = k4a_device->get_cloud();
+  k4n::structure::Cloud* cloud = k4a_device->get_cloud();
   std::unique_lock<std::mutex> lock(cloud->object->mutex);
 
   //Store capture data
@@ -112,7 +112,7 @@ void Cloud::retrieve_location(int& x, int& y, int& z){
 void Cloud::retrieve_color(K4A_device* k4a_device, int i){
   //---------------------------
 
-  k4a::stucture::Cloud* cloud = k4a_device->get_cloud();
+  k4n::structure::Cloud* cloud = k4a_device->get_cloud();
   glm::vec4 color;
 
   if(cloud->color_mode == 0){

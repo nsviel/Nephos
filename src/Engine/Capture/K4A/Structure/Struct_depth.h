@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace k4a::stucture{
+namespace k4n::structure{
 
 struct Depth_config{
   //---------------------------
@@ -20,8 +20,8 @@ struct Depth_config{
 struct Depth{
   //---------------------------
 
-  k4a::stucture::Depth_config config;
-  k4a::stucture::Image image;
+  k4n::structure::Depth_config config;
+  k4n::structure::Image image;
 
   //---------------------------
 };

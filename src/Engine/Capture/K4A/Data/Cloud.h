@@ -7,7 +7,7 @@
 class Engine;
 
 
-namespace k4a::data{
+namespace k4n::data{
 
 class Cloud
 {
@@ -33,9 +33,9 @@ public:
 
 private:
   Engine* engine;
-  k4a::utils::Operation* kin_operation;
+  k4n::utils::Operation* kin_operation;
 
-  k4a::stucture::Cloud* cloud;
+  k4n::structure::Cloud* cloud;
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgba;
   std::vector<float> vec_ir;

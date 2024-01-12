@@ -5,7 +5,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace k4a::utils{
+namespace k4n::utils{
 
 class Player
 {

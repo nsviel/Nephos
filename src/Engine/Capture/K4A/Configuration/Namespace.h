@@ -3,7 +3,7 @@
 #include <Engine/Capture/K4A/Configuration/Configuration.h>
 
 
-namespace k4a::config{
+namespace k4n::config{
   //---------------------------
 
   class Configuration;

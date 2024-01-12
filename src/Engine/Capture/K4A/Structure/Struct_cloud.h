@@ -6,7 +6,7 @@
 #include <cstdint>
 
 
-namespace k4a::stucture{
+namespace k4n::structure{
 
 struct Cloud{
   //---------------------------

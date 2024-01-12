@@ -13,9 +13,9 @@ K4A_playback::K4A_playback(Engine* engine){
   this->fps_counter = new FPS_counter();
   this->fps_control = new FPS_control(30);
 
-  this->k4a_data = new k4a::data::Data();
-  this->k4a_processing = new k4a::data::Cloud(engine);
-  this->k4a_config = new k4a::config::Configuration();
+  this->k4a_data = new k4n::data::Data();
+  this->k4a_processing = new k4n::data::Cloud(engine);
+  this->k4a_config = new k4n::config::Configuration();
 
   //---------------------------
 }
@@ -112,7 +112,7 @@ void K4A_playback::manage_fps(int fps_mode){
   //---------------------------
 }
 void K4A_playback::find_duration(K4A_device* k4a_device){
-  k4a::stucture::Player* player = &k4a_device->player;
+  k4n::structure::Player* player = &k4a_device->player;
   //---------------------------
 
   k4a::image color;

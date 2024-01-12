@@ -5,7 +5,7 @@
 #include <string>
 
 
-namespace k4a::stucture{
+namespace k4n::structure{
 
 struct Recorder{
   //---------------------------

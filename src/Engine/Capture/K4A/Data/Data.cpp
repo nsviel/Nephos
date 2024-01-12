@@ -1,7 +1,7 @@
 #include "Data.h"
 
 
-namespace k4a::data{
+namespace k4n::data{
 
 //Constructor / Destructor
 Data::Data(){

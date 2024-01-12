@@ -34,7 +34,7 @@ public:
 private:
   eng::scene::Scene* sce_scene;
   eng::kinect::Node* node_kinect;
-  k4a::utils::Player* k4a_player;
+  k4n::utils::Player* k4a_player;
   K4A_swarm* k4a_swarm;
 };
 

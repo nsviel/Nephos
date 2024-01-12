@@ -1,7 +1,7 @@
 #include "Configuration.h"
 
 
-namespace k4a::config{
+namespace k4n::config{
 
 //Constructor / Destructor
 Configuration::Configuration(){

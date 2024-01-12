@@ -1,7 +1,7 @@
 #include "Infrared.h"
 
 
-namespace k4a::data{
+namespace k4n::data{
 
 //Constructor / Destructor
 Infrared::Infrared(){
