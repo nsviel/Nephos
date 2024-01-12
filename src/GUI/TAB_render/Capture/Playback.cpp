@@ -58,7 +58,7 @@ void Playback::show_info_device(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Frame rate"); ImGui::TableNextColumn();
-    string fps_str = to_string(k4n_device->device.fps) + " fps";
+    string fps_str = k4n_device->device.fps_mode_str + " fps";
     ImGui::TextColored(color, "%s", fps_str.c_str());
 
     ImGui::EndTable();

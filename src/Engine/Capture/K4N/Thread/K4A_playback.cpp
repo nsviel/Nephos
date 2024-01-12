@@ -76,7 +76,7 @@ void K4A_playback::run_thread(k4n::Device* k4n_device){
     this->manage_restart(k4n_device);
 
     fps_control->stop();
-    k4n_device->device.fps = fps_counter->update();
+    k4n_device->device.fps_current = fps_counter->update();
   }
 
   playback.close();
