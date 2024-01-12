@@ -15,10 +15,10 @@ namespace eng::scene{
 
   class Database;
   class Scene;
+  class Bookmark;
   class Node;
   class Format;
   class Loader;
-  class Bookmark;
   class Glyph;
   class Operation;
 

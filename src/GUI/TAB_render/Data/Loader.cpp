@@ -19,14 +19,12 @@ Loader::Loader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
 
   this->sce_scene = node_scene->get_scene();
   this->sce_loader = node_scene->get_scene_loader();
+  this->sce_bookmark = node_scene->get_scene_bookmark();
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();
   this->default_dir = file::get_current_parent_path_abs();
   this->current_dir = default_dir;
-
-  this->vec_bookmark.push_back("../media/point_cloud/bunny.ply");
-  this->vec_bookmark.push_back("../media/point_cloud/dragon.ply");
-
+  
   //---------------------------
 }
 Loader::~Loader(){}
@@ -253,6 +251,7 @@ void Loader::draw_file_content(){
 
 //Other stuff
 void Loader::draw_bookmark(){
+  vector<string> vec_bookmark = sce_bookmark->get_vec_bookmark();
   //---------------------------
 
   int size = ImGui::GetContentRegionAvail().x;

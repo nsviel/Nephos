@@ -39,13 +39,13 @@ public:
 private:
   eng::scene::Scene* sce_scene;
   eng::scene::Loader* sce_loader;
+  eng::scene::Bookmark* sce_bookmark;
   eng::ope::Transformation* ope_transform;
   eng::ope::Operation* ope_operation;
 
   vector<Item> vec_item_folder;
   vector<Item> vec_item_file;
   ImVector<int> file_selection;
-  vector<string> vec_bookmark;
   string default_dir;
   string current_dir;
   float param_scaling = 1;

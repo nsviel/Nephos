@@ -4,8 +4,22 @@ namespace fs = std::experimental::filesystem;
 
 
 namespace file{
-  //---------------------------
 
+  void check_or_create_file(std::string path){
+    bool is_exists;
+    //---------------------------
+
+    //Check file existence
+    std::ifstream infile(path.c_str());
+    is_exists = infile.good();
+
+    //Create file
+    if(is_exists == false){
+      std::ofstream file(path);
+    }
+
+    //---------------------------
+  }
   bool is_file_exist(std::string path){
     bool is_exists;
     //---------------------------
@@ -118,7 +132,24 @@ namespace file{
     //---------------------------
     return buffer;
   }
+  std::vector<std::string> read_paths_from_file(const std::string& filePath){
+    //---------------------------
 
+    std::vector<std::string> paths;
+    std::ifstream inputFile(filePath);
 
-  //---------------------------
+    if (inputFile.is_open()) {
+      std::string line;
+      while (std::getline(inputFile, line)) {
+        paths.push_back(line);
+      }
+      inputFile.close();
+    } else {
+      std::cerr << "Unable to open file: " << filePath << std::endl;
+    }
+
+    //---------------------------
+    return paths;
+  }
+
 }

@@ -14,9 +14,12 @@ public:
   ~Bookmark();
 
 public:
+  void init();
 
+  inline vector<string> get_vec_bookmark(){return vec_bookmark;}
 private:
-
+  vector<string> vec_bookmark;
+  string path_bookmark;
 };
 
 }
