@@ -12,10 +12,13 @@
 #include <string>
 #include <vector>
 
+class VK_engine;
+
 namespace eng::scene{
 class Scene;
 class Format;
 class Node;
+class Glyph;
 
 
 class Loader
@@ -27,13 +30,15 @@ public:
 
 public:
   //Main functions
-  eng::data::Object* load_entity(std::string path);
+  eng::data::Entity* load_entity(std::string path);
 
   //Subfunctions
   eng::data::Object* load_object(string path);
   bool is_format_supported(string format);
 
 private:
+  VK_engine* vk_engine;
+  eng::scene::Glyph* sce_glyph;
   eng::scene::Format* eng_format;
 
   vector<string> supported_format;

@@ -76,12 +76,9 @@ eng::data::Entity* Scene::get_selected_entity(){
 eng::data::Entity* Scene::import_entity(std::string path){
   //---------------------------
 
-  eng::data::Object* entity = sce_loader->load_entity(path);
+  eng::data::Entity* entity = sce_loader->load_entity(path);
   this->insert_entity_scene(entity);
-
   sce_database->assign_ID(entity);
-  vk_engine->insert_object_in_engine(entity);
-  sce_glyph->create_glyph_object(entity);
 
   //---------------------------
   return entity;

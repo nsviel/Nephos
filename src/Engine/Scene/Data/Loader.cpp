@@ -1,6 +1,9 @@
 #include "Loader.h"
 #include "../Format/Format.h"
 
+#include <Engine/Engine.h>
+#include <Vulkan/Vulkan.h>
+#include <Vulkan/VK_main/VK_engine.h>
 #include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
@@ -12,6 +15,12 @@ namespace eng::scene{
 //Constructor / Destructor
 Loader::Loader(eng::scene::Node* node_scene){
   //---------------------------
+
+  Engine* engine = node_scene->get_engine();
+  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+
+  this->sce_glyph = node_scene->get_scene_glyph();
+  this->vk_engine = eng_vulkan->get_vk_engine();
 
   this->eng_format = new eng::scene::Format();
 
@@ -37,8 +46,8 @@ Loader::~Loader(){
 }
 
 //Main functions
-eng::data::Object* Loader::load_entity(std::string path){
-  eng::data::Object* object = nullptr;
+eng::data::Entity* Loader::load_entity(std::string path){
+  eng::data::Entity* entity = nullptr;
   //---------------------------
 
   //Check file existence
@@ -57,12 +66,11 @@ eng::data::Object* Loader::load_entity(std::string path){
   if(format == "mkv"){
 
   }else{
-    //Retrieve data and insert into engine
-    object = load_object(path);
+    entity = load_object(path);
   }
 
   //---------------------------
-  return object;
+  return entity;
 }
 
 //Subfunctions
@@ -90,6 +98,9 @@ eng::data::Object* Loader::load_object(string path){
 
   //Delete raw data
   delete data;
+
+  vk_engine->insert_object_in_engine(object);
+  sce_glyph->create_glyph_object(object);
 
   //---------------------------
   return object;
