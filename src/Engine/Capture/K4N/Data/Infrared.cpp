@@ -13,7 +13,7 @@ Infrared::Infrared(){
 Infrared::~Infrared(){}
 
 //Main function
-std::vector<uint8_t> Infrared::convert_ir_into_color(K4A_device* device){
+std::vector<uint8_t> Infrared::convert_ir_into_color(k4n::truc::K4A_device* device){
   std::vector<uint8_t>& inputBuffer = device->ir.image.data;
   uint16_t level_min = device->ir.config.level_min;
   uint16_t level_max = device->ir.config.level_max;
@@ -36,7 +36,7 @@ std::vector<uint8_t> Infrared::convert_ir_into_color(K4A_device* device){
   //---------------------------
   return outputBuffer;
 }
-void Infrared::find_ir_level(K4A_device* device){
+void Infrared::find_ir_level(k4n::truc::K4A_device* device){
   //---------------------------
 
   if(device->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){

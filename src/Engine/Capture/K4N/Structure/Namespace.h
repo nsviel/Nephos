@@ -10,7 +10,7 @@
 #include <Engine/Capture/K4N/Structure/Struct_depth.h>
 #include <Engine/Capture/K4N/Structure/Struct_playback.h>
 #include <Engine/Capture/K4N/Structure/Struct_infrared.h>
-#include <Engine/Capture/K4N/Structure/Struct_swarm.h>
+
 
 
 namespace k4n::structure{
@@ -21,7 +21,6 @@ namespace k4n::structure{
   class Depth;
   class Infrared;
   class Playback;
-  class Swarm;
   class Image;
   class Synchro;
   class Cloud;

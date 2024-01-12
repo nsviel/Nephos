@@ -9,7 +9,7 @@ namespace k4n{
 Node::Node(Engine* engine){
   //---------------------------
 
-  this->k4a_swarm = new k4n::device::Swarm(engine);
+  this->k4a_swarm = new k4n::truc::Swarm(engine);
 
   //---------------------------
 }

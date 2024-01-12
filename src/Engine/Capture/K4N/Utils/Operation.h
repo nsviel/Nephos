@@ -2,7 +2,6 @@
 
 #include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4N/Device/K4A_device.h>
 #include <Engine/Operation/Color/Heatmap.h>
 #include <k4arecord/playback.hpp>
 

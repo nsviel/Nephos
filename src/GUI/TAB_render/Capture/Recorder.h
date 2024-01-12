@@ -2,7 +2,7 @@
 
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4N/Device/K4A_device.h>
+#include <Engine/Capture/K4N/Device/Namespace.h>
 #include <Engine/Capture/K4N/Namespace.h>
 
 
@@ -23,7 +23,7 @@ public:
 
 private:
   k4n::Node* node_kinect;
-  k4n::device::Swarm* k4a_swarm;
+  k4n::truc::Swarm* k4a_swarm;
 };
 
 }

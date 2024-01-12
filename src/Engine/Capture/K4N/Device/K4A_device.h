@@ -9,6 +9,8 @@ class K4A_capture;
 class K4A_playback;
 class Engine;
 
+namespace k4n::truc{
+
 
 class K4A_device : public eng::data::Entity
 {
@@ -51,3 +53,5 @@ public:
   k4n::structure::Depth depth;
   k4n::structure::Infrared ir;
 };
+
+}

@@ -4,7 +4,7 @@
 #include <Utility/Function/File/Info.h>
 
 
-namespace k4n::device{
+namespace k4n::truc{
 
 //Constructor / Destructor
 Swarm::Swarm(Engine* engine){
@@ -24,24 +24,24 @@ Swarm::~Swarm(){}
 
 //Main function
 void Swarm::draw_all_clouds(){
-  list<K4A_device*>& list_device = struct_swarm->list_device;
+  list<k4n::truc::K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
   //Run all thread
   for(int i=0; i<list_device.size(); i++){
-    K4A_device* k4a_device = *std::next(list_device.begin(), i);
+    k4n::truc::K4A_device* k4a_device = *std::next(list_device.begin(), i);
     k4a_device->draw_cloud();
   }
 
   //---------------------------
 }
 void Swarm::reset_all_device(){
-  list<K4A_device*>& list_device = struct_swarm->list_device;
+  list<k4n::truc::K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
   //Run all thread
   for(int i=0; i<list_device.size(); i++){
-    K4A_device* k4a_device = *std::next(list_device.begin(), i);
+    k4n::truc::K4A_device* k4a_device = *std::next(list_device.begin(), i);
     k4a_device->player.ts_seek = k4a_device->player.ts_beg;
   }
 
@@ -71,7 +71,7 @@ void Swarm::refresh_connected_device(){
   //---------------------------
 }
 void Swarm::manage_new_device(int nb_new_device){
-  list<K4A_device*>& list_device = struct_swarm->list_device;
+  list<k4n::truc::K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
   //If previsouly no device, we need to supress all default playback
@@ -115,10 +115,10 @@ void Swarm::manage_no_device(){
 }
 
 //Creation function
-K4A_device* Swarm::create_playback(string path){
+k4n::truc::K4A_device* Swarm::create_playback(string path){
   //---------------------------
 
-  K4A_device* k4a_device = new K4A_device(engine);
+  k4n::truc::K4A_device* k4a_device = new k4n::truc::K4A_device(engine);
   k4a_device->name = "playback_" + to_string(struct_swarm->nb_device);
   k4a_device->device.index = struct_swarm->nb_device;
   k4a_device->device.is_playback = true;
@@ -138,10 +138,10 @@ K4A_device* Swarm::create_playback(string path){
   //---------------------------
   return k4a_device;
 }
-K4A_device* Swarm::create_device(){
+k4n::truc::K4A_device* Swarm::create_device(){
   //---------------------------
 
-  K4A_device* k4a_device = new K4A_device(engine);
+  k4n::truc::K4A_device* k4a_device = new k4n::truc::K4A_device(engine);
   k4a_device->name = "device_" + to_string(struct_swarm->nb_capture);
   k4a_device->device.index = struct_swarm->nb_capture;
   k4a_device->device.is_playback = false;
@@ -159,8 +159,8 @@ K4A_device* Swarm::create_device(){
   //---------------------------
   return k4a_device;
 }
-void Swarm::close_device(K4A_device* k4a_device){
-  list<K4A_device*>& list_device = struct_swarm->list_device;
+void Swarm::close_device(k4n::truc::K4A_device* k4a_device){
+  list<k4n::truc::K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
   k4a_device->destroy();
@@ -174,18 +174,18 @@ void Swarm::close_device(K4A_device* k4a_device){
   //---------------------------
 }
 void Swarm::close_device_all(){
-  list<K4A_device*>& list_device = struct_swarm->list_device;
+  list<k4n::truc::K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
   for(int i=0; i<list_device.size(); i++){
-    K4A_device* k4a_device = *std::next(list_device.begin(), i);
+    k4n::truc::K4A_device* k4a_device = *std::next(list_device.begin(), i);
     this->close_device(k4a_device);
   }
 
   //---------------------------
 }
 void Swarm::selecte_next_device(){
-  list<K4A_device*>& list_device = struct_swarm->list_device;
+  list<k4n::truc::K4A_device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
   if(list_device.size() == 0){

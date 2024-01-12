@@ -52,21 +52,21 @@ void Player::player_control(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      K4A_device* k4a_device = k4a_swarm->get_selected_device();
+      k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
       k4a_device->player.pause = !k4a_device->player.pause;
       break;
     }
 
     //Left arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
-      K4A_device* k4a_device = k4a_swarm->get_selected_device();
+      k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
       k4a_device->player.ts_forward = -1;
       break;
     }
 
     //Right arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
-      K4A_device* k4a_device = k4a_swarm->get_selected_device();
+      k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
       k4a_device->player.ts_forward = 1;
       break;
     }
@@ -75,7 +75,7 @@ void Player::player_control(){
   //----------------------------
 }
 void Player::player_slider(){
-  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 
@@ -90,7 +90,7 @@ void Player::player_slider(){
 
 //Player button
 void Player::player_start(){
-  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 
@@ -114,7 +114,7 @@ void Player::player_start(){
   //---------------------------
 }
 void Player::player_stop(){
-  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr || !k4a_device->device.is_playback) return;
   //---------------------------
 
@@ -136,7 +136,7 @@ void Player::player_stop(){
   //---------------------------
 }
 void Player::player_repeat(){
-  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr || !k4a_device->device.is_playback) return;
   //---------------------------
 
@@ -158,7 +158,7 @@ void Player::player_repeat(){
   //---------------------------
 }
 void Player::player_record(){
-  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 
@@ -180,7 +180,7 @@ void Player::player_record(){
   //---------------------------
 }
 void Player::player_close(){
-  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
   if(k4a_device == nullptr) return;
   //---------------------------
 

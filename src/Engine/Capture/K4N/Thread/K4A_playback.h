@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Capture/K4N/Data/Namespace.h>
-#include <Engine/Capture/K4N/Device/K4A_device.h>
+#include <Engine/Capture/K4N/Device/Namespace.h>
 #include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Engine/Capture/K4N/Utils/Namespace.h>
 #include <Engine/Capture/K4N/Configuration/Namespace.h>
@@ -23,17 +23,17 @@ public:
 
 public:
   //Main function
-  void start_thread(K4A_device* device);
-  void run_thread(K4A_device* device);
+  void start_thread(k4n::truc::K4A_device* device);
+  void run_thread(k4n::truc::K4A_device* device);
   void stop_thread();
 
   //Subfunction
-  void find_duration(K4A_device* k4a_device);
+  void find_duration(k4n::truc::K4A_device* k4a_device);
   void manage_fps(int fps_mode);
-  void manage_query_ts(K4A_device* device);
-  void manage_pause(K4A_device* k4a_device);
-  void manage_restart(K4A_device* device);
-  void manage_recording(K4A_device* k4a_device, k4a::capture capture);
+  void manage_query_ts(k4n::truc::K4A_device* device);
+  void manage_pause(k4n::truc::K4A_device* k4a_device);
+  void manage_restart(k4n::truc::K4A_device* device);
+  void manage_recording(k4n::truc::K4A_device* k4a_device, k4a::capture capture);
 
   inline bool is_thread_running(){return thread_running;}
 

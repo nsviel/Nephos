@@ -4,7 +4,7 @@
 #include <Engine/Capture/K4N/Device/Swarm.h>
 
 
-namespace k4n::device{
+namespace k4n::truc{
   //---------------------------
 
   class K4A_device;

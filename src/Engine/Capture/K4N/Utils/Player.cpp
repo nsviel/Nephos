@@ -16,7 +16,7 @@ Player::Player(){
 Player::~Player(){}
 
 //Main function
-void Player::play(K4A_device* k4a_device){
+void Player::play(k4n::truc::K4A_device* k4a_device){
   k4n::structure::Player* player = &k4a_device->player;
   //---------------------------
 
@@ -29,7 +29,7 @@ void Player::play(K4A_device* k4a_device){
 
   //---------------------------
 }
-void Player::pause(K4A_device* k4a_device){
+void Player::pause(k4n::truc::K4A_device* k4a_device){
   k4n::structure::Player* player = &k4a_device->player;
   //---------------------------
 
@@ -37,7 +37,7 @@ void Player::pause(K4A_device* k4a_device){
 
   //---------------------------
 }
-void Player::stop(K4A_device* k4a_device){
+void Player::stop(k4n::truc::K4A_device* k4a_device){
   k4n::structure::Player* player = &k4a_device->player;
   //---------------------------
 
@@ -47,7 +47,7 @@ void Player::stop(K4A_device* k4a_device){
 
   //---------------------------
 }
-void Player::restart(K4A_device* k4a_device){
+void Player::restart(k4n::truc::K4A_device* k4a_device){
   k4n::structure::Player* player = &k4a_device->player;
   //---------------------------
 
@@ -55,7 +55,7 @@ void Player::restart(K4A_device* k4a_device){
 
   //---------------------------
 }
-void Player::record(K4A_device* k4a_device){
+void Player::record(k4n::truc::K4A_device* k4a_device){
   k4n::structure::Player* player = &k4a_device->player;
   //---------------------------
 

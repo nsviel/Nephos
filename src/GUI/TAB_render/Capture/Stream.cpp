@@ -32,7 +32,7 @@ Stream::~Stream(){}
 
 //Main function
 void Stream::run_panel(){
-  K4A_device* k4a_device = k4a_swarm->get_selected_device();
+  k4n::truc::K4A_device* k4a_device = k4a_swarm->get_selected_device();
   //---------------------------
 
   if(*show_window && k4a_device != nullptr){
@@ -58,12 +58,12 @@ void Stream::design_panel(){
 
 //All devices
 void Stream::vec_device_tab(){
-  list<K4A_device*>& list_device = k4a_swarm->get_list_device();
+  list<k4n::truc::K4A_device*>& list_device = k4a_swarm->get_list_device();
   //---------------------------
 
   if(ImGui::BeginTabBar("devices_tab##4567")){
     for(int i=0; i<list_device.size(); i++){
-      K4A_device* k4a_device = *std::next(list_device.begin(), i);
+      k4n::truc::K4A_device* k4a_device = *std::next(list_device.begin(), i);
 
       if(ImGui::BeginTabItem(k4a_device->device.name.c_str(), NULL)){
         this->device_tab(k4a_device);
@@ -76,7 +76,7 @@ void Stream::vec_device_tab(){
 
   //---------------------------
 }
-void Stream::device_tab(K4A_device* k4a_device){
+void Stream::device_tab(k4n::truc::K4A_device* k4a_device){
   if(!k4a_device->device.data_ready){return;}
   //---------------------------
 
@@ -123,7 +123,7 @@ void Stream::device_tab(K4A_device* k4a_device){
 }
 
 //Device capture windows
-void Stream::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
+void Stream::draw_camera_color(k4n::truc::K4A_device* k4a_device, ImVec2 image_size){
   k4n::structure::Image* data_color = &k4a_device->color.image;
   //---------------------------
 
@@ -139,7 +139,7 @@ void Stream::draw_camera_color(K4A_device* k4a_device, ImVec2 image_size){
 
   //---------------------------
 }
-void Stream::draw_camera_color_from_depth(K4A_device* k4a_device, ImVec2 image_size){
+void Stream::draw_camera_color_from_depth(k4n::truc::K4A_device* k4a_device, ImVec2 image_size){
   k4n::structure::Image* data_color = &k4a_device->color.image_depth;
   //---------------------------
 
@@ -165,7 +165,7 @@ void Stream::draw_camera_color_from_depth(K4A_device* k4a_device, ImVec2 image_s
 
   //---------------------------
 }
-void Stream::draw_camera_depth(K4A_device* k4a_device, ImVec2 image_size){
+void Stream::draw_camera_depth(k4n::truc::K4A_device* k4a_device, ImVec2 image_size){
   k4n::structure::Image* data_depth = &k4a_device->depth.image;
   //---------------------------
 
@@ -183,7 +183,7 @@ void Stream::draw_camera_depth(K4A_device* k4a_device, ImVec2 image_size){
 
   //---------------------------
 }
-void Stream::draw_camera_ir(K4A_device* k4a_device, ImVec2 image_size){
+void Stream::draw_camera_ir(k4n::truc::K4A_device* k4a_device, ImVec2 image_size){
   k4n::structure::Image* data_ir = &k4a_device->ir.image;
   //---------------------------
 
@@ -203,7 +203,7 @@ void Stream::draw_camera_ir(K4A_device* k4a_device, ImVec2 image_size){
 }
 
 //Overlay
-void Stream::overlay_capture(K4A_device* k4a_device, k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose){
+void Stream::overlay_capture(k4n::truc::K4A_device* k4a_device, k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose){
   //---------------------------
 
   //Hovered pixel
@@ -233,7 +233,7 @@ void Stream::overlay_capture(K4A_device* k4a_device, k4n::structure::Image* imag
 
   //---------------------------
 }
-void Stream::overlay_information(K4A_device* k4a_device, k4n::structure::Image* image){
+void Stream::overlay_information(k4n::truc::K4A_device* k4a_device, k4n::structure::Image* image){
   //---------------------------
 
   ImGui::Text("Frame rate: %.2f fps", k4a_device->device.fps);

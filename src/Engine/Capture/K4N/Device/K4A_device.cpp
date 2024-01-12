@@ -1,9 +1,11 @@
 #include "K4A_device.h"
 
 #include <Engine/Engine.h>
-#include <Engine/Capture/K4N/Utils/Namespace.h>
 #include <Engine/Capture/K4N/Thread/K4A_capture.h>
 #include <Engine/Capture/K4N/Thread/K4A_playback.h>
+
+
+namespace k4n::truc{
 
 
 //Constructor / Destructor
@@ -120,4 +122,7 @@ void K4A_device::reset_color_configuration(){
   color.config.power_frequency.value = 2;
 
   //---------------------------
+}
+
+
 }
