@@ -22,9 +22,8 @@ struct Playback{
   std::string filename;
 
   //Configuration info
+  //Virer tous ca et mettre dans les bonnes structures
   std::string fps_str;
-  std::string depth_mode_str;
-  std::string color_format_str;
   std::string color_resolution_str;
   std::string wired_sync_mode_str;
   std::string device_serial_number;

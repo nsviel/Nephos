@@ -81,7 +81,7 @@ void Playback::show_info_color(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color format"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.color_format_str.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->color.config.format_str.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color resolution"); ImGui::TableNextColumn();
@@ -116,7 +116,7 @@ void Playback::show_info_depth(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.depth_mode_str.c_str());
+    ImGui::TextColored(color, "%s", k4n_device->depth.config.mode_str.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();

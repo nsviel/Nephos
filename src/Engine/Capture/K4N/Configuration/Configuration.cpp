@@ -46,8 +46,8 @@ void Configuration::find_playback_configuration(k4n::Device* k4n_device){
   k4n_device->playback.is_imu = configuration.imu_track_enabled;
   k4n_device->playback.is_color = configuration.color_track_enabled;
 
-  k4n_device->playback.depth_mode_str = find_name_from_config(configuration.depth_mode);
-  k4n_device->playback.color_format_str = find_name_from_config(configuration.color_format);
+  k4n_device->depth.config.mode_str = find_name_from_config(configuration.depth_mode);
+  k4n_device->color.config.format_str = find_name_from_config(configuration.color_format);
   k4n_device->playback.color_resolution_str = find_name_from_config(configuration.color_resolution);
 
   // Sync info
