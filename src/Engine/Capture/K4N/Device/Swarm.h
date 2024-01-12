@@ -7,9 +7,9 @@
 #include <Utility/Specific/common.h>
 
 class Engine;
-class Swarm;
+
 namespace k4n::device{
-class Device;
+
 
 class Swarm
 {
