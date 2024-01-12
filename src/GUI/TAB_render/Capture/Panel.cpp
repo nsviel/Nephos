@@ -90,6 +90,13 @@ void Panel::show_info(){
       ImGui::TextColored(color, "%.2f s", k4a_device->recorder.ts_rec);
     }
 
+    //Playback FPS
+    if(k4a_device->device.is_playback){
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("FPS"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%.2f s", k4a_device->recorder.ts_rec);
+    }
+
     ImGui::EndTable();
   }
 

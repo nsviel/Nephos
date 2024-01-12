@@ -3,6 +3,7 @@
 #include <Engine/Capture/K4A/Data/Namespace.h>
 #include <Engine/Capture/K4A/Device/K4A_device.h>
 #include <Engine/Capture/K4A/Utils/Namespace.h>
+#include <Engine/Capture/K4A/Configuration/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
