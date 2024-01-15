@@ -35,6 +35,7 @@ void Bookmark::init(){
 
 //Item management
 void Bookmark::add_abs_path(string path){
+  if(!file::is_file_exist(path)) return;
   //---------------------------
 
   Item item;
@@ -48,6 +49,7 @@ void Bookmark::add_abs_path(string path){
   //---------------------------
 }
 void Bookmark::add_relative_path(string path){
+  if(!file::is_file_exist(path)) return;
   //---------------------------
 
   Item item;
