@@ -46,6 +46,7 @@ private:
   Engine* engine;
   eng::scene::Scene* sce_scene;
   k4n::structure::Swarm* struct_swarm;
+  k4n::Transformation* k4n_transfo;
 
   string default_folder;
   string default_file;

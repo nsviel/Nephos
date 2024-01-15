@@ -15,8 +15,9 @@ Swarm::Swarm(Engine* engine){
   this->engine = engine;
   this->sce_scene = node_scene->get_scene();
   this->struct_swarm = new k4n::structure::Swarm();
+  this->k4n_transfo = new k4n::Transformation();
   this->default_folder = "../media/record/";
-  this->default_file = "/home/aether/Desktop/versaille.mkv";
+  this->default_file = "/home/aether/Desktop/versaille_with_transfo_mat.mkv";
 
   //---------------------------
 }
@@ -134,6 +135,8 @@ k4n::Device* Swarm::create_playback(string path){
   k4n_device->init();
   k4n_device->run_playback(path);
   sce_scene->insert_entity_scene(k4n_device);
+
+  k4n_transfo->truc(path);
 
   //---------------------------
   return k4n_device;
