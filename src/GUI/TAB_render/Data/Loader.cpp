@@ -129,9 +129,9 @@ void Loader::draw_file_content(){
   flags |= ImGuiTableFlags_Sortable;
   if (ImGui::BeginTable("init_tree", 4, flags)){
     // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
-    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ColumnID_name);
-    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthStretch, 75, ColumnID_format);
-    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthStretch, 75, ColumnID_weight);
+    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ColumnID_name);
+    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, ColumnID_format);
+    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, ColumnID_weight);
     ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
     ImGui::TableHeadersRow();
 
@@ -151,6 +151,7 @@ void Loader::draw_file_content(){
       item.type = directory::is_dir_or_file(file);
       if(item.type == "directory"){
         item.name = info::get_filename_from_path(file);
+        item.path = file;
         item.icon = string(ICON_FA_FOLDER);
         item.size = "---";
         item.weight = 0;
@@ -264,12 +265,23 @@ void Loader::draw_file_content(){
 void Loader::draw_bookmark_button(Item& item){
   //---------------------------
 
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 0));
+  //Button background if already bookmarked
+  bool is_bookmarked = sce_bookmark->is_path_bookmarked(item.path);
+  int bg_alpha;
+  is_bookmarked ? bg_alpha = 255 : bg_alpha = 0;
+
+
+
+  //Draw bookmark button
+  string ID = item.path + "##bookmarkbutton";
+  ImGui::PushID(ID.c_str());
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
   ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
   if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark")){
-
+    sce_bookmark->add_abs_path(item.path);
   }
   ImGui::PopStyleColor(2);
+  ImGui::PopID();
 
   //---------------------------
 }

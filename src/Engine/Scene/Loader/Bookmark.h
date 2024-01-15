@@ -16,9 +16,12 @@ public:
 
 public:
   void init();
-  void add_item(string path, bool supressible);
+  void add_abs_path(string path);
+  void add_relative_path(string path);
+  bool is_path_bookmarked(string path);
 
   inline vector<Item> get_vec_bookmark(){return vec_bookmark;}
+
 private:
   vector<Item> vec_bookmark;
   string path_file;

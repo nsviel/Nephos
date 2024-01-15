@@ -72,6 +72,9 @@ namespace file{
     fs::path currentPath = fs::current_path();
     fs::path absolutePath = currentPath / relativePath;
 
+    // Resolve ".." and its parent folder
+    absolutePath = fs::canonical(absolutePath);
+
     //---------------------------
     return absolutePath.string();
 }
