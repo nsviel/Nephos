@@ -7,12 +7,13 @@ PLY_importer::~PLY_importer(){}
 
 //Main loader functions
 eng::data::File* PLY_importer::Loader(std::string path){
+  //---------------------------
+
   data = new eng::data::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
   data->draw_type_name = "point";
   this->face_number = 0;
-  //---------------------------
 
   //Get format type
   std::ifstream file(path);

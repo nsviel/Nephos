@@ -95,6 +95,7 @@ eng::data::Object* Loader::load_object(string path){
   object->rgb = data->rgb;
   object->uv = data->uv;
 
+  //If no color, fill it with white
   if(object->rgb.size() == 0){
     for(int i=0; i<data->xyz.size(); i++){
       object->rgb.push_back(vec4(1,1,1,1));
