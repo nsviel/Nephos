@@ -35,7 +35,7 @@ void Loader::design_panel(){
   //---------------------------
 
   if(goto_file_tab){
-    flag = ImGuiTabItemFlags_SetSelected;sayHello();
+    flag = ImGuiTabItemFlags_SetSelected;
     this->goto_file_tab = false;
   }
 
@@ -310,9 +310,13 @@ void Loader::draw_bookmark_tab(){
     //Bookmark supression
     if(item.is_supressible){
       ImGui::SameLine();
+      string ID = item.path + "##supressionbookmark";
+      ImGui::PushID(ID.c_str());
       if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
-
+        sce_bookmark->remove_path(item.path);
+        sce_bookmark->save_on_file();
       }
+      ImGui::PopID();
     }
   }
 
