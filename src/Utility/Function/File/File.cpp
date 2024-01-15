@@ -154,5 +154,21 @@ namespace file{
     //---------------------------
     return paths;
   }
+  void write_paths_to_file(const std::string& filePath, const std::vector<std::string>& paths){
+    //---------------------------
+
+    std::ofstream outputFile(filePath);
+
+    if (outputFile.is_open()) {
+      for (const std::string& path : paths) {
+        outputFile << path << '\n';
+      }
+      outputFile.close();
+    } else {
+      std::cerr << "Unable to open file for writing: " << filePath << std::endl;
+    }
+
+    //---------------------------
+}
 
 }

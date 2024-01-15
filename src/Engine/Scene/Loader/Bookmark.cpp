@@ -32,6 +32,8 @@ void Bookmark::init(){
 
   //---------------------------
 }
+
+//Item management
 void Bookmark::add_abs_path(string path){
   //---------------------------
 
@@ -41,7 +43,7 @@ void Bookmark::add_abs_path(string path){
   item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = true;
 
-  this->vec_bookmark.push_back(item);
+  this->list_bookmark.push_back(item);
 
   //---------------------------
 }
@@ -54,15 +56,42 @@ void Bookmark::add_relative_path(string path){
   item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = false;
 
-  this->vec_bookmark.push_back(item);
+  this->list_bookmark.push_back(item);
+
+  //---------------------------
+}
+void Bookmark::remove_path(string path){
+  //---------------------------
+
+  auto it = std::find_if(list_bookmark.begin(), list_bookmark.end(), [&](const Item& item) { return item.path == path; });
+  if(it != list_bookmark.end()){
+    list_bookmark.erase(it);
+  }
+
+  //---------------------------
+}
+
+//Subfunction
+void Bookmark::save_on_file(){
+  //---------------------------
+
+  vector<string> vec_path;
+  for(int i=0; i<list_bookmark.size(); i++){
+    Item& item = *next(list_bookmark.begin(), i);
+    if(item.is_supressible){
+      vec_path.push_back(item.path);
+    }
+  }
+
+  file::write_paths_to_file(path_file, vec_path);
 
   //---------------------------
 }
 bool Bookmark::is_path_bookmarked(string path){
   //---------------------------
 
-  for(int i=0; i<vec_bookmark.size(); i++){
-    Item& item = vec_bookmark[i];
+  for(int i=0; i<list_bookmark.size(); i++){
+    Item& item = *next(list_bookmark.begin(), i);
 
     if(path == item.path){
       return true;

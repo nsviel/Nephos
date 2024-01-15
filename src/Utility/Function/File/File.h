@@ -20,6 +20,7 @@ namespace file{
   bool is_device_connected(const std::string& devicePath);
   uint8_t* load_file_binary(std::string path);
   std::vector<std::string> read_paths_from_file(const std::string& filePath);
-  
+  void write_paths_to_file(const std::string& filePath, const std::vector<std::string>& paths);
+
   //---------------------------
 }

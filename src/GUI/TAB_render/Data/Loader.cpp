@@ -270,15 +270,18 @@ void Loader::draw_bookmark_button(Item& item){
   int bg_alpha;
   is_bookmarked ? bg_alpha = 255 : bg_alpha = 0;
 
-
-
   //Draw bookmark button
   string ID = item.path + "##bookmarkbutton";
   ImGui::PushID(ID.c_str());
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
   ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
   if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark")){
-    sce_bookmark->add_abs_path(item.path);
+    if(is_bookmarked){
+      sce_bookmark->remove_path(item.path);
+    }else{
+      sce_bookmark->add_abs_path(item.path);
+    }
+    sce_bookmark->save_on_file();
   }
   ImGui::PopStyleColor(2);
   ImGui::PopID();
@@ -286,11 +289,11 @@ void Loader::draw_bookmark_button(Item& item){
   //---------------------------
 }
 void Loader::draw_bookmark_tab(){
-  vector<Item> vec_bookmark = sce_bookmark->get_vec_bookmark();
+  list<Item> list_bookmark = sce_bookmark->get_list_bookmark();
   //---------------------------
 
-  for(int i=0; i<vec_bookmark.size(); i++){
-    Item item = vec_bookmark[i];
+  for(int i=0; i<list_bookmark.size(); i++){
+    Item& item = *next(list_bookmark.begin(), i);
 
     //File type icon
     ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());

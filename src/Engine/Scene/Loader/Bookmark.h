@@ -15,15 +15,22 @@ public:
   ~Bookmark();
 
 public:
+  //Main function
   void init();
+
+  //Item management
   void add_abs_path(string path);
   void add_relative_path(string path);
-  bool is_path_bookmarked(string path);
+  void remove_path(string path);
 
-  inline vector<Item> get_vec_bookmark(){return vec_bookmark;}
+  //Subfunction
+  bool is_path_bookmarked(string path);
+  void save_on_file();
+
+  inline list<Item> get_list_bookmark(){return list_bookmark;}
 
 private:
-  vector<Item> vec_bookmark;
+  list<Item> list_bookmark;
   string path_file;
 };
 
