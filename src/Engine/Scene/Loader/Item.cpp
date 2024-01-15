@@ -1,13 +1,13 @@
 #include "Item.h"
 
 
-const ImGuiTableSortSpecs* Item::s_current_sort_specs = nullptr;
+const ImGuiTableSortSpecs* Item::current_sort_specs = nullptr;
 
-bool Item::CompareWithSortSpecs(const Item& a, const Item& b){
+bool Item::compare_with_specs(const Item& a, const Item& b){
   //---------------------------
 
-  for (int n = 0; n < s_current_sort_specs->SpecsCount; n++) {
-    const ImGuiTableColumnSortSpecs* sort_spec = &s_current_sort_specs->Specs[n];
+  for (int n = 0; n < current_sort_specs->SpecsCount; n++) {
+    const ImGuiTableColumnSortSpecs* sort_spec = &current_sort_specs->Specs[n];
     int delta = 0;
     switch (sort_spec->ColumnUserID) {
       case ColumnID_name: delta = a.name.compare(b.name); break;
@@ -24,14 +24,14 @@ bool Item::CompareWithSortSpecs(const Item& a, const Item& b){
   //---------------------------
   return false;
 }
-void Item::SortWithSortSpecs(ImGuiTableSortSpecs* sort_specs, std::vector<Item>& vec_item) {
+void Item::sort_item_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<Item>& vec_item) {
   //---------------------------
 
-  s_current_sort_specs = sort_specs;
+  current_sort_specs = sort_specs;
   if (vec_item.size() > 1){
-    std::sort(vec_item.begin(), vec_item.end(), CompareWithSortSpecs);
+    std::sort(vec_item.begin(), vec_item.end(), compare_with_specs);
   }
-  s_current_sort_specs = nullptr;
+  current_sort_specs = nullptr;
 
   //---------------------------
 }

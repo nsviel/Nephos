@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Item.h"
-
 #include <Utility/Specific/common.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <Engine/Scene/Namespace.h>
+#include <Engine/Scene/Loader/Item.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 
 class GUI;
@@ -35,6 +34,7 @@ public:
   //Subfunction
   void operation_selection();
   void operation_selection(string path);
+  void operation_entity(eng::data::Entity* entity);
 
 private:
   eng::scene::Scene* sce_scene;
@@ -51,6 +51,7 @@ private:
   float param_scaling = 1;
   bool param_remove_old = true;
   bool param_centered = true;
+  bool goto_file_tab = false;
 };
 
 }

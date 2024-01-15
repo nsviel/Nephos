@@ -9,7 +9,7 @@ namespace eng::scene{
 Bookmark::Bookmark(eng::scene::Node* node_scene){
   //---------------------------
 
-  this->path_bookmark = "../media/config/bookmark.txt";
+  this->path_file = "../media/config/bookmark.txt";
 
   //---------------------------
 }
@@ -23,8 +23,8 @@ void Bookmark::init(){
   this->vec_bookmark.push_back("../media/point_cloud/dragon.ply");
 
   //Read existing bookmarks
-  file::check_or_create_file(path_bookmark);
-  vector<string> vec_path = file::read_paths_from_file(path_bookmark);
+  file::check_or_create_file(path_file);
+  vector<string> vec_path = file::read_paths_from_file(path_file);
 
   for(int i=0; i<vec_path.size(); i++){
     this->vec_bookmark.push_back(vec_path[i]);

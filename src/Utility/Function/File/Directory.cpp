@@ -73,6 +73,18 @@ namespace directory{
 
     //---------------------------
   }
+  bool is_directory(std::string path){
+    std::string type;
+    //---------------------------
+
+    struct stat s;
+    if(stat(path.c_str(), &s) == 0 && s.st_mode & S_IFDIR){
+      return true;
+    }
+
+    //---------------------------
+    return false;
+  }
   std::string is_dir_or_file(std::string path){
     std::string type;
     //---------------------------

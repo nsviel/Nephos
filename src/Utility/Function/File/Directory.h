@@ -28,6 +28,7 @@ namespace directory{
 
   //Check existence
   bool is_dir_exist(std::string path);
+  bool is_directory(std::string path);
   std::string is_dir_or_file(std::string path);
 
   //List files & paths

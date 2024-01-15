@@ -24,20 +24,26 @@ Loader::Loader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   this->ope_operation = new eng::ope::Operation();
   this->default_dir = file::get_current_parent_path_abs();
   this->current_dir = default_dir;
-  
+
   //---------------------------
 }
 Loader::~Loader(){}
 
 //Main function
 void Loader::design_panel(){
+  ImGuiTabItemFlags flag = 0;
   //---------------------------
+
+  if(goto_file_tab){
+    flag = ImGuiTabItemFlags_SetSelected;sayHello();
+    this->goto_file_tab = false;
+  }
 
   ImVec2 size = ImGui::GetContentRegionAvail();
   if(ImGui::BeginTabBar("Loader_tab##4567")){
     //File manager loader
     ImGui::SetNextItemWidth(size.x/2);
-    if(ImGui::BeginTabItem("File##50", NULL)){
+    if(ImGui::BeginTabItem("File##50", NULL, flag)){
       this->draw_file();
       ImGui::EndTabItem();
     }
@@ -166,8 +172,8 @@ void Loader::draw_file_content(){
 
     // Sort data
     if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-      Item::SortWithSortSpecs(sort_specs, vec_item_folder);
-      Item::SortWithSortSpecs(sort_specs, vec_item_file);
+      Item::sort_item_by_specs(sort_specs, vec_item_folder);
+      Item::sort_item_by_specs(sort_specs, vec_item_file);
     }
 
     // Populate the table - Folder
@@ -254,11 +260,25 @@ void Loader::draw_bookmark(){
   vector<string> vec_bookmark = sce_bookmark->get_vec_bookmark();
   //---------------------------
 
-  int size = ImGui::GetContentRegionAvail().x;
   for(int i=0; i<vec_bookmark.size(); i++){
-    string name = ICON_FA_FILE + (string)"   " + vec_bookmark[i];
-    if(ImGui::Button(name.c_str(), ImVec2(size, 0))){
-      this->operation_selection(vec_bookmark[i]);
+    string bookmark = vec_bookmark[i];
+    string icon = directory::is_directory(bookmark) ? ICON_FA_FOLDER : ICON_FA_FILE;
+    ImVec4 icon_color = directory::is_directory(bookmark) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+
+    //File type icon
+    ImGui::TextColored(icon_color, "%s", icon.c_str());
+    int size = ImGui::GetContentRegionAvail().x - 50;
+
+    //Bookmark
+    ImGui::SameLine();
+    if(ImGui::Button(bookmark.c_str(), ImVec2(size, 0))){
+      this->operation_selection(bookmark);
+    }
+
+    //Bookmark supression
+    ImGui::SameLine();
+    if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
+
     }
   }
 
@@ -337,16 +357,7 @@ void Loader::operation_selection(){
 
   for(int i=0; i<vec_path.size(); i++){
     eng::data::Entity* entity = sce_scene->import_entity(vec_path[i]);
-
-    if(entity != nullptr){
-      //Scaling
-      //ope_transform->make_scaling(object, param_scaling);
-
-      //Centered
-      if(param_centered){
-        //ope_operation->center_object(object);
-      }
-    }
+    this->operation_entity(entity);
   }
 
   //---------------------------
@@ -354,17 +365,30 @@ void Loader::operation_selection(){
 void Loader::operation_selection(string path){
   //---------------------------
 
-  //File check
-  string format = info::get_format_from_path(path);
-  if(!file::is_file_exist(path)) return;
-  if(!sce_loader->is_format_supported(format)) return;
+  if(directory::is_directory(path)){
+    this->current_dir = path;
+    this->goto_file_tab = true;
+  }else{
+    //File check
+    string format = info::get_format_from_path(path);
+    if(!file::is_file_exist(path)) return;
+    if(!sce_loader->is_format_supported(format)) return;
 
-  //Apply loading and operations
-  if(param_remove_old){
-    sce_scene->delete_entity_all();
+    //Apply loading and operations
+    if(param_remove_old){
+      sce_scene->delete_entity_all();
+    }
+
+    eng::data::Entity* entity = sce_scene->import_entity(path);
+    this->operation_entity(entity);
   }
 
-  eng::data::Entity* entity = sce_scene->import_entity(path);
+  //---------------------------
+}
+void Loader::operation_entity(eng::data::Entity* entity){
+  //---------------------------
+
+
   if(entity != nullptr){
     //Scaling
     //ope_transform->make_scaling(object, param_scaling);
