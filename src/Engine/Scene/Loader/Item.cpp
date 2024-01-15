@@ -6,6 +6,13 @@ const ImGuiTableSortSpecs* Item::current_sort_specs = nullptr;
 bool Item::compare_with_specs(const Item& a, const Item& b){
   //---------------------------
 
+  // Check if either path is ".." and handle it as a special case
+  if(a.name == ".."){
+    return true;
+  }else if (b.name == ".."){
+    return false;
+  }
+
   for (int n = 0; n < current_sort_specs->SpecsCount; n++) {
     const ImGuiTableColumnSortSpecs* sort_spec = &current_sort_specs->Specs[n];
     int delta = 0;
