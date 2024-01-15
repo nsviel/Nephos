@@ -1,6 +1,7 @@
 #include "Bookmark.h"
 
 #include <Utility/Function/File/File.h>
+#include <Utility/Function/File/Info.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -40,6 +41,7 @@ void Bookmark::add_abs_path(string path){
 
   Item item;
   item.path = path;
+  item.name = info::get_name_from_path(path);
   item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
   item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = true;
@@ -54,6 +56,7 @@ void Bookmark::add_relative_path(string path){
 
   Item item;
   item.path = file::get_absolute_path(path);
+  item.name = info::get_name_from_path(path);
   item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
   item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = false;

@@ -298,14 +298,17 @@ void Loader::draw_bookmark_tab(){
     //File type icon
     ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
 
-    //Bookmark
+    //Bookmark name button
     ImGui::SameLine();
     int trash_space = 0;
     item.is_supressible ? trash_space = 30 : 0;
     int size = ImGui::GetContentRegionAvail().x - trash_space;
-    if(ImGui::Button(item.path.c_str(), ImVec2(size, 0))){
+    ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0.04, 0.5));
+    if(ImGui::Button(item.name.c_str(), ImVec2(size, 0))){
       this->operation_selection(item.path);
     }
+    ImGui::PopStyleVar();
+    ImGui::SetItemTooltip("%s", item.path.c_str());
 
     //Bookmark supression
     if(item.is_supressible){

@@ -119,6 +119,13 @@ void Entity::entity_parameter(eng::data::Entity* entity){
     }
 
     //Format
+
+
+    //FOUTRE TOUT CE BORDER DE TYPE ENTITY DANS scene/OPERATION
+    if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
+      entity = device->cloud.object;
+    }
+
     if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Format"); ImGui::TableNextColumn();
