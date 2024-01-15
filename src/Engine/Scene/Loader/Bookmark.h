@@ -2,6 +2,7 @@
 
 #include <Engine/Scene/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Engine/Scene/Loader/Item.h>
 
 namespace eng::scene{
 
@@ -15,10 +16,11 @@ public:
 
 public:
   void init();
+  void add_item(string path, bool supressible);
 
-  inline vector<string> get_vec_bookmark(){return vec_bookmark;}
+  inline vector<Item> get_vec_bookmark(){return vec_bookmark;}
 private:
-  vector<string> vec_bookmark;
+  vector<Item> vec_bookmark;
   string path_file;
 };
 

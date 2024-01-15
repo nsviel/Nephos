@@ -28,7 +28,8 @@ public:
   void draw_file_content();
 
   //Other stuff
-  void draw_bookmark();
+  void draw_bookmark_button(Item& item);
+  void draw_bookmark_tab();
   void draw_footer();
 
   //Subfunction

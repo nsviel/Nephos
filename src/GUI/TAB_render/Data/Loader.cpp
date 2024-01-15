@@ -51,7 +51,7 @@ void Loader::design_panel(){
     //Bookmark loader
     ImGui::SetNextItemWidth(size.x/2);
     if(ImGui::BeginTabItem("Bookmark##50", NULL)){
-      this->draw_bookmark();
+      this->draw_bookmark_tab();
       ImGui::EndTabItem();
     }
 
@@ -127,11 +127,12 @@ void Loader::draw_file_content(){
   flags |= ImGuiTableFlags_RowBg;
   flags |= ImGuiTableFlags_NoBordersInBody;
   flags |= ImGuiTableFlags_Sortable;
-  if (ImGui::BeginTable("init_tree", 3, flags)){
+  if (ImGui::BeginTable("init_tree", 4, flags)){
     // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
     ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ColumnID_name);
-    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, ColumnID_format);
-    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, ColumnID_weight);
+    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthStretch, 75, ColumnID_format);
+    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthStretch, 75, ColumnID_weight);
+    ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
     ImGui::TableHeadersRow();
 
     //Item transposition
@@ -192,6 +193,8 @@ void Loader::draw_file_content(){
       ImGui::TextColored(item.color_text, "%s", item.format.c_str());
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_text, "%s", item.size.c_str());
+      ImGui::TableNextColumn();
+      this->draw_bookmark_button(item);
 
       //Selection stuff
       ImGui::SameLine();
@@ -221,6 +224,8 @@ void Loader::draw_file_content(){
       ImGui::TextColored(item.color_text, "%s", item.format.c_str());
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_text, "%s", item.size.c_str());
+      ImGui::TableNextColumn();
+      this->draw_bookmark_button(item);
 
       //Selection stuff
       ImGui::SameLine();
@@ -256,29 +261,43 @@ void Loader::draw_file_content(){
 }
 
 //Other stuff
-void Loader::draw_bookmark(){
-  vector<string> vec_bookmark = sce_bookmark->get_vec_bookmark();
+void Loader::draw_bookmark_button(Item& item){
+  //---------------------------
+
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 0));
+  ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
+  if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark")){
+
+  }
+  ImGui::PopStyleColor(2);
+
+  //---------------------------
+}
+void Loader::draw_bookmark_tab(){
+  vector<Item> vec_bookmark = sce_bookmark->get_vec_bookmark();
   //---------------------------
 
   for(int i=0; i<vec_bookmark.size(); i++){
-    string bookmark = vec_bookmark[i];
-    string icon = directory::is_directory(bookmark) ? ICON_FA_FOLDER : ICON_FA_FILE;
-    ImVec4 icon_color = directory::is_directory(bookmark) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+    Item item = vec_bookmark[i];
 
     //File type icon
-    ImGui::TextColored(icon_color, "%s", icon.c_str());
-    int size = ImGui::GetContentRegionAvail().x - 50;
+    ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
 
     //Bookmark
     ImGui::SameLine();
-    if(ImGui::Button(bookmark.c_str(), ImVec2(size, 0))){
-      this->operation_selection(bookmark);
+    int trash_space = 0;
+    item.is_supressible ? trash_space = 30 : 0;
+    int size = ImGui::GetContentRegionAvail().x - trash_space;
+    if(ImGui::Button(item.path.c_str(), ImVec2(size, 0))){
+      this->operation_selection(item.path);
     }
 
     //Bookmark supression
-    ImGui::SameLine();
-    if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
+    if(item.is_supressible){
+      ImGui::SameLine();
+      if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
 
+      }
     }
   }
 

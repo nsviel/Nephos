@@ -25,6 +25,7 @@ struct Item{
   string icon;
   ImVec4 color_icon;
   ImVec4 color_text;
+  bool is_supressible = true;
   float weight;
   int ID;
 
