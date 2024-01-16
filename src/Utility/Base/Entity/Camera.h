@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 
 #include <glm/glm.hpp>
 #include <string>
@@ -25,11 +25,11 @@ enum camera_direction{
   CAMERA_DOWN = 5,
 };
 
-namespace eng::data{
+namespace eng::base{
 class Glyph;
 
 
-class Camera : public eng::data::Entity
+class Camera : public eng::base::Entity
 {
 public:
   //Constructor / Destructor
@@ -70,7 +70,7 @@ public:
   glm::mat4 mat_vp = glm::mat4(1);
 
   //Glyph
-  std::list<eng::data::Glyph*> list_glyph;
+  std::list<eng::base::Glyph*> list_glyph;
 };
 
 

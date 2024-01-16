@@ -28,12 +28,12 @@ public:
   void remove_glyph_world();
 
   //Glyph object
-  void create_glyph_object(eng::data::Object* object);
-  void update_glyph_object(eng::data::Object* object);
-  void remove_glyph_object(eng::data::Object* object);
+  void create_glyph_object(eng::base::Object* object);
+  void update_glyph_object(eng::base::Object* object);
+  void remove_glyph_object(eng::base::Object* object);
 
   //Glyph camera
-  void create_glyph_camera(eng::data::Camera* camera);
+  void create_glyph_camera(eng::base::Camera* camera);
 
 private:
   Engine* engine;

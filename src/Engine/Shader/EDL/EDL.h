@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Engine/Shader/EDL/EDL_param.h>
 #include <Engine/Shader/Base/BASE_shader.h>
 #include <Engine/Camera/Namespace.h>
@@ -27,7 +27,7 @@ public:
 
 private:
   eng::camera::Manager* cam_manager;
-  eng::data::Camera* camera;
+  eng::base::Camera* camera;
   util::element::Window* utl_window;
   eng::shader::EDL_param* edl_param;
 };

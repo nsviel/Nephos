@@ -3,7 +3,7 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/VK_typedef.h>
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 
 
@@ -12,7 +12,7 @@ namespace vk::structure{
 struct Object{
   //---------------------------
 
-  eng::data::Object* object;
+  eng::base::Object* object;
 
   //Data
   bool has_xyz = false;

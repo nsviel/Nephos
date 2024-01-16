@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 
 #include <k4a/k4a.hpp>
 #include <cstdint>
@@ -11,7 +11,7 @@ namespace k4n::structure{
 struct Cloud{
   //---------------------------
 
-  eng::data::Object* object;
+  eng::base::Object* object;
   std::vector<glm::vec3> vec_corner;
 
   /*

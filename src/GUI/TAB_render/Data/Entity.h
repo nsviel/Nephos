@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Scene/Namespace.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Engine/Operation/Namespace.h>
 
@@ -24,15 +24,15 @@ public:
   void close_panel();
 
   //Sub functions
-  void entity_title(eng::data::Entity* entity);
-  void entity_button(eng::data::Entity* entity);
-  void entity_parameter(eng::data::Entity* entity);
+  void entity_title(eng::base::Entity* entity);
+  void entity_button(eng::base::Entity* entity);
+  void entity_parameter(eng::base::Entity* entity);
 
   //Primitive size
-  void entity_line(eng::data::Object* object);
-  void entity_point(eng::data::Object* object);
+  void entity_line(eng::base::Object* object);
+  void entity_point(eng::base::Object* object);
 
-  inline void set_entity(eng::data::Entity* entity){this->entity = entity;}
+  inline void set_entity(eng::base::Entity* entity){this->entity = entity;}
 
 private:
   Panel* gui_render_panel;
@@ -41,7 +41,7 @@ private:
   eng::scene::Scene* sce_scene;
   eng::scene::Operation* sce_operation;
 
-  eng::data::Entity* entity;
+  eng::base::Entity* entity;
   string panel_name;
   bool* panel_show;;
   int item_width;

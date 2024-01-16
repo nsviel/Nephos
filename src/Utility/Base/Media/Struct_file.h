@@ -5,7 +5,7 @@
 #include <vector>
 
 
-namespace eng::data{
+namespace eng::base{
 
 //Generique structure to parse file point clouds
 struct File{

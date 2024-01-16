@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Engine/Operation/Namespace.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -21,8 +21,8 @@ public:
 
 public:
   //Main functions
-  void center_object(eng::data::Object* object);
-  void elevate_object(eng::data::Object* object);
+  void center_object(eng::base::Object* object);
+  void elevate_object(eng::base::Object* object);
 
 private:
   eng::ope::Transformation* ope_transform;

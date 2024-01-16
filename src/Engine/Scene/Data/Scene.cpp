@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
@@ -35,18 +35,18 @@ void Scene::init(){
   //Initial scene entities
   //vector<string> vec_path;
   //vec_path.push_back( "../media/point_cloud/dragon.ply");
-  //vector<eng::data::Object*> vec_obj = eng_loader->load_entitys(vec_path);
+  //vector<eng::base::Object*> vec_obj = eng_loader->load_entitys(vec_path);
 
   //---------------------------
 }
 void Scene::loop(){
-  eng::data::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* data_set = sce_database->get_data_set();
   //----------------------------
 
   for(int i=0; i<data_set->list_set.size(); i++){
-    eng::data::Set* set = *next(data_set->list_set.begin(), i);
+    eng::base::Set* set = *next(data_set->list_set.begin(), i);
     for(int j=0; j<set->list_entity.size(); j++){
-      eng::data::Entity* entity = *next(set->list_entity.begin(), j);
+      eng::base::Entity* entity = *next(set->list_entity.begin(), j);
       entity->update_entity();
     }
   }
@@ -54,47 +54,47 @@ void Scene::loop(){
   //----------------------------
 }
 void Scene::reset(){
-  eng::data::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* data_set = sce_database->get_data_set();
   //---------------------------
 
   data_set->reset();
 
   //---------------------------
 }
-eng::data::Entity* Scene::get_selected_entity(){
-  eng::data::Set* data_set = sce_database->get_data_set();
+eng::base::Entity* Scene::get_selected_entity(){
+  eng::base::Set* data_set = sce_database->get_data_set();
   //---------------------------
 
-  eng::data::Set* set_scene = data_set->get_set("Scene");
-  eng::data::Entity* entity = set_scene->selected_entity;
+  eng::base::Set* set_scene = data_set->get_set("Scene");
+  eng::base::Entity* entity = set_scene->selected_entity;
 
   //---------------------------
   return entity;
 }
 
 //Entity
-eng::data::Entity* Scene::import_entity(std::string path){
+eng::base::Entity* Scene::import_entity(std::string path){
   //---------------------------
 
-  eng::data::Entity* entity = sce_loader->load_entity(path);
+  eng::base::Entity* entity = sce_loader->load_entity(path);
   this->insert_entity_scene(entity);
   sce_database->assign_ID(entity);
 
   //---------------------------
   return entity;
 }
-void Scene::insert_entity_scene(eng::data::Entity* entity){
-  eng::data::Set* data_set = sce_database->get_data_set();
-  eng::data::Set* set_scene = data_set->get_set("Scene");
+void Scene::insert_entity_scene(eng::base::Entity* entity){
+  eng::base::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   set_scene->insert_entity(entity);
 
   //---------------------------
 }
-void Scene::delete_entity(eng::data::Entity* entity){
-  eng::data::Set* data_set = sce_database->get_data_set();
-  eng::data::Set* set_scene = data_set->get_set("Scene");
+void Scene::delete_entity(eng::base::Entity* entity){
+  eng::base::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   //Selected next entity
@@ -102,7 +102,7 @@ void Scene::delete_entity(eng::data::Entity* entity){
 
   //Delete it from database and engine
   for(int i=0; i<set_scene->list_entity.size(); i++){
-    eng::data::Entity* entity_scene = *next(set_scene->list_entity.begin(),i);
+    eng::base::Entity* entity_scene = *next(set_scene->list_entity.begin(),i);
 
     //Check if entity is present in the scene
     if(entity->ID == entity_scene->ID){
@@ -114,12 +114,12 @@ void Scene::delete_entity(eng::data::Entity* entity){
   //---------------------------
 }
 void Scene::delete_entity_all(){
-  eng::data::Set* data_set = sce_database->get_data_set();
-  eng::data::Set* set_scene = data_set->get_set("Scene");
+  eng::base::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   for(int i=0; i<set_scene->list_entity.size(); i++){
-    eng::data::Entity* entity = *next(set_scene->list_entity.begin(),i);
+    eng::base::Entity* entity = *next(set_scene->list_entity.begin(),i);
 
     set_scene->remove_entity(entity);
     entity->remove_entity();
@@ -129,9 +129,9 @@ void Scene::delete_entity_all(){
 }
 
 //Object
-void Scene::insert_object_scene(eng::data::Object* object){
-  eng::data::Set* data_set = sce_database->get_data_set();
-  eng::data::Set* set_scene = data_set->get_set("Scene");
+void Scene::insert_object_scene(eng::base::Object* object){
+  eng::base::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   this->insert_object(object);
@@ -139,7 +139,7 @@ void Scene::insert_object_scene(eng::data::Object* object){
 
   //---------------------------
 }
-void Scene::insert_object(eng::data::Object* object){
+void Scene::insert_object(eng::base::Object* object){
   //---------------------------
 
   sce_database->assign_ID(object);
@@ -148,7 +148,7 @@ void Scene::insert_object(eng::data::Object* object){
 
   //---------------------------
 }
-void Scene::update_object(eng::data::Object* object){
+void Scene::update_object(eng::base::Object* object){
   //---------------------------
 
   vk_engine->insert_object_in_engine(object);
@@ -156,7 +156,7 @@ void Scene::update_object(eng::data::Object* object){
 
   //---------------------------
 }
-void Scene::remove_object(eng::data::Object* object){
+void Scene::remove_object(eng::base::Object* object){
   //---------------------------
 
   sce_glyph->remove_glyph_object(object);

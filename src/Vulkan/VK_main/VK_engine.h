@@ -4,7 +4,7 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Vulkan/VK_main/Namespace.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
@@ -48,8 +48,8 @@ public:
   void reload_shader(string shader, string subshader);
 
   //Data function
-  void insert_object_in_engine(eng::data::Object* object);
-  void remove_object_in_engine(eng::data::Object* object);
+  void insert_object_in_engine(eng::base::Object* object);
+  void remove_object_in_engine(eng::base::Object* object);
 
   //Renderpass function
   void add_renderpass_description(vk::structure::Renderpass* renderpass);

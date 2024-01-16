@@ -7,7 +7,7 @@ void LOG_debug::validation_message(const VkDebugUtilsMessengerCallbackDataEXT* p
 
   // Split the message into individual objects
   std::string message(pCallbackData->pMessage);
-  size_t pose_obj_start = message.find("eng::data::Object ");
+  size_t pose_obj_start = message.find("eng::base::Object ");
   std::string validation_error = message.substr(0, pose_obj_start);
 
   std::cerr << "--------------------------" << std::endl;
@@ -31,7 +31,7 @@ void LOG_debug::validation_message(const VkDebugUtilsMessengerCallbackDataEXT* p
     std::cerr << "\033[1;90m" << "hand " << "\033[0m" << handle << std::endl;
 
     // Continue searching for more objects
-    pose_obj_start = message.find("eng::data::Object ", pose_obj_end);
+    pose_obj_start = message.find("eng::base::Object ", pose_obj_end);
   }
 
   // Extract and print the MessageID and OBJ ERROR

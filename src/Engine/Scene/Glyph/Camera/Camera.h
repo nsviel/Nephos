@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Engine/Base/Entity/Glyph.h>
+#include <Utility/Base/Entity/Glyph.h>
 
 
 namespace glyph::camera{
 
-class Camera : public eng::data::Glyph
+class Camera : public eng::base::Glyph
 {
 public:
   //Constructor / Destructor
@@ -14,7 +14,7 @@ public:
 
 public:
   void create();
-  void update_glyph(eng::data::Entity* entity);
+  void update_glyph(eng::base::Entity* entity);
 
 private:
 

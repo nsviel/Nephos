@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Function/File/Info.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -20,7 +20,7 @@ public:
 
 public:
   //Main functions
-  eng::data::File* Loader(std::string pathFile);
+  eng::base::File* Loader(std::string pathFile);
 
   //Subfunction
   void load_file(std::string path);

@@ -15,8 +15,8 @@ GLTF_importer::GLTF_importer(){
 GLTF_importer::~GLTF_importer(){}
 
 //Main load functions
-eng::data::File* GLTF_importer::Loader(std::string path){
-  eng::data::File* data = new eng::data::File();
+eng::base::File* GLTF_importer::Loader(std::string path){
+  eng::base::File* data = new eng::base::File();
   //---------------------------
 
   data->name = info::get_name_from_path(path);

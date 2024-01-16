@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Engine/Engine.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 
 
 namespace gui::engine{
@@ -33,7 +33,7 @@ void Camera::design_panel(){
 
 //Subfunction
 void Camera::cam_parameter(){
-  eng::data::Camera* camera = cam_manager->get_current_camera();
+  eng::base::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   //Camera parameters
@@ -71,7 +71,7 @@ void Camera::cam_parameter(){
   //---------------------------
 }
 void Camera::cam_info(){
-  eng::data::Camera* camera = cam_manager->get_current_camera();
+  eng::base::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   //Camera position

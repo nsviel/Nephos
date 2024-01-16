@@ -11,7 +11,7 @@
 #include <mutex>
 
 
-namespace eng::data{
+namespace eng::base{
 
 //Generique data structure
 struct Data{

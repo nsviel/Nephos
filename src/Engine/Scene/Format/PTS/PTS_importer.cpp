@@ -17,10 +17,10 @@ PTS_importer::PTS_importer(){
 PTS_importer::~PTS_importer(){}
 
 //Main load functions
-eng::data::File* PTS_importer::Loader(std::string path){
+eng::base::File* PTS_importer::Loader(std::string path){
   //---------------------------
 
-  eng::data::File* data = new eng::data::File();
+  eng::base::File* data = new eng::base::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
   data->draw_type_name = "point";
@@ -52,10 +52,10 @@ eng::data::File* PTS_importer::Loader(std::string path){
   //---------------------------
   return data;
 }
-eng::data::File* PTS_importer::Loader(std::string path, int lmin, int lmax){
+eng::base::File* PTS_importer::Loader(std::string path, int lmin, int lmax){
   //---------------------------
 
-  eng::data::File* data = new eng::data::File();
+  eng::base::File* data = new eng::base::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
   data->draw_type_name = "point";
@@ -250,7 +250,7 @@ void PTS_importer::Loader_configuration(){
   //---------------------------
   endParameters = true;
 }
-void PTS_importer::Loader_data(eng::data::File* data, int FILE_config){
+void PTS_importer::Loader_data(eng::base::File* data, int FILE_config){
   std::istringstream iss(line);
   float x,y,z,r,g,b,I,nx,ny,nz;
   //---------------------------
@@ -303,7 +303,7 @@ void PTS_importer::Loader_data(eng::data::File* data, int FILE_config){
 }
 
 //Main exporter functions
-bool PTS_importer::Exporter(std::string path, eng::data::Object* object){
+bool PTS_importer::Exporter(std::string path, eng::base::Object* object){
   //---------------------------
 
   //Create file

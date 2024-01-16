@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Engine/Scene/Namespace.h>
 
@@ -21,15 +21,15 @@ public:
   void design_panel();
 
   //Sub functions
-  void set_info(eng::data::Set* set);
-  void set_parameter(eng::data::Set* set);
+  void set_info(eng::base::Set* set);
+  void set_parameter(eng::base::Set* set);
 
-  inline void set_selected_set(eng::data::Set* set){this->set_selected = set;}
+  inline void set_selected_set(eng::base::Set* set){this->set_selected = set;}
 
 private:
   eng::scene::Operation* sce_operation;
 
-  eng::data::Set* set_selected;
+  eng::base::Set* set_selected;
   string panel_name;
   bool* panel_show;;
   int item_width;

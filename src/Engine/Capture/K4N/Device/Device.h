@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Entity/Struct_entity.h>
+#include <Utility/Base/Entity/Struct_entity.h>
 #include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Engine/Scene/Namespace.h>
 #include <Utility/Specific/common.h>
@@ -12,7 +12,7 @@ class Engine;
 namespace k4n{
 
 
-class Device : public eng::data::Entity
+class Device : public eng::base::Entity
 {
 public:
   //Constructor / Destructor
@@ -38,7 +38,7 @@ public:
   void reset_color_configuration();
 
   inline k4n::structure::Cloud* get_cloud(){return &cloud;}
-  inline eng::data::Object* get_object(){return cloud.object;}
+  inline eng::base::Object* get_object(){return cloud.object;}
 
 public:
   Engine* engine;

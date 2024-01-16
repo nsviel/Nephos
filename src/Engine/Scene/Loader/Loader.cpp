@@ -4,7 +4,7 @@
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 #include <Utility/Function/File/Info.h>
@@ -47,8 +47,8 @@ Loader::~Loader(){
 }
 
 //Main functions
-eng::data::Entity* Loader::load_entity(std::string path){
-  eng::data::Entity* entity = nullptr;
+eng::base::Entity* Loader::load_entity(std::string path){
+  eng::base::Entity* entity = nullptr;
   //---------------------------
 
   //Check file existence
@@ -78,12 +78,12 @@ eng::data::Entity* Loader::load_entity(std::string path){
 }
 
 //Subfunctions
-eng::data::Object* Loader::load_object(string path){
+eng::base::Object* Loader::load_object(string path){
   //---------------------------
 
-  eng::data::File* data = eng_format->get_data_from_file(path);
+  eng::base::File* data = eng_format->get_data_from_file(path);
 
-  eng::data::Object* object = new eng::data::Object(engine);
+  eng::base::Object* object = new eng::base::Object(engine);
   object->path_file = path;
   object->file_format = info::get_format_from_path(path);
   object->data->has_texture = true;

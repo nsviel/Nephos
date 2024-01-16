@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Entity/Struct_entity.h>
+#include <Utility/Base/Entity/Struct_entity.h>
 
 #include <string>
 #include <vector>
@@ -8,7 +8,7 @@
 #include <iostream>
 
 
-namespace eng::data{
+namespace eng::base{
 
 //Set are entity container
 struct Set
@@ -20,10 +20,10 @@ struct Set
   void add_new_set(std::string name);
   void set_visibility(bool value);
   void select_next_entity();
-  void insert_entity(eng::data::Entity* entity);
-  void remove_entity(eng::data::Entity* entity);
-  eng::data::Set* get_set(std::string name);
-  eng::data::Entity* get_entity(std::string name);
+  void insert_entity(eng::base::Entity* entity);
+  void remove_entity(eng::base::Entity* entity);
+  eng::base::Set* get_set(std::string name);
+  eng::base::Entity* get_entity(std::string name);
 
   //Info
   std::string name;
@@ -33,9 +33,9 @@ struct Set
   int ID_entity = 0;
 
   //Data
-  eng::data::Entity* selected_entity = nullptr;
-  std::list<eng::data::Entity*> list_entity;
-  std::list<eng::data::Set*> list_set;
+  eng::base::Entity* selected_entity = nullptr;
+  std::list<eng::base::Entity*> list_entity;
+  std::list<eng::base::Set*> list_set;
 
   //---------------------------
 };

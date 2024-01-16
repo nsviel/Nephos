@@ -18,12 +18,12 @@ PTX_importer::PTX_importer(){
 PTX_importer::~PTX_importer(){}
 
 //Main functions
-eng::data::File* PTX_importer::Loader(std::string path){
+eng::base::File* PTX_importer::Loader(std::string path){
   list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;
   //---------------------------
 
-  data = new eng::data::File();
+  data = new eng::base::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
 

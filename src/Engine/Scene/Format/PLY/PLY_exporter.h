@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Function/File/Info.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -17,7 +17,7 @@ public:
 
 public:
   //Main functions
-  bool export_cloud(eng::data::Object* object, std::string path_dir, std::string ply_format);
+  bool export_cloud(eng::base::Object* object, std::string path_dir, std::string ply_format);
 
 private:
   std::vector<std::string> property_type;

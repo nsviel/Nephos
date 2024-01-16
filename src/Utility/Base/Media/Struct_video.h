@@ -1,22 +1,21 @@
 #pragma once
 
+#include <glm/glm.hpp>
 #include <string>
 #include <vector>
 
 
-namespace eng::data{
+namespace eng::base{
 
-struct Image{
+struct Video{
   //---------------------------
 
-  int channel_nb = 4;
-  int channel_byte = 1;
+  int64_t start_time;
+  int64_t duration;
+  int64_t bit_rate;
+  int fps;
   int width;
   int height;
-  int size;
-
-  std::vector<uint8_t> data;
-  std::string format;
 
   //---------------------------
 };

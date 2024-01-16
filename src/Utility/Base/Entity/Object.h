@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Entity/Struct_entity.h>
+#include <Utility/Base/Entity/Struct_entity.h>
 
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
@@ -14,12 +14,12 @@
 
 class Engine;
 
-namespace eng::data{
+namespace eng::base{
 class Glyph;
 class Data;
 
 
-class Object : public eng::data::Entity
+class Object : public eng::base::Entity
 {
 public:
   //Constructor / Destructor
@@ -33,13 +33,13 @@ public:
   void reset_entity();
   void visibility_entity(bool value);
 
-  inline eng::data::Object* get_object(){return this;}
+  inline eng::base::Object* get_object(){return this;}
 
 public:
   Engine* engine;
 
-  eng::data::Data* data;
-  std::list<eng::data::Glyph*> list_glyph;
+  eng::base::Data* data;
+  std::list<eng::base::Glyph*> list_glyph;
 
 
 

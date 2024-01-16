@@ -6,7 +6,7 @@
 #include <Engine/Scene/Data/Operation.h>
 #include <Engine/Scene/Glyph/Glyph.h>
 #include <Engine/Scene/Node.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class VK_engine;
@@ -28,19 +28,19 @@ public:
   void init();
   void loop();
   void reset();
-  eng::data::Entity* get_selected_entity();
+  eng::base::Entity* get_selected_entity();
 
   //Entity
-  eng::data::Entity* import_entity(std::string path);
-  void insert_entity_scene(eng::data::Entity* entity);
-  void delete_entity(eng::data::Entity* object);
+  eng::base::Entity* import_entity(std::string path);
+  void insert_entity_scene(eng::base::Entity* entity);
+  void delete_entity(eng::base::Entity* object);
   void delete_entity_all();
 
   //Object
-  void insert_object_scene(eng::data::Object* object);
-  void insert_object(eng::data::Object* object);
-  void update_object(eng::data::Object* object);
-  void remove_object(eng::data::Object* object);
+  void insert_object_scene(eng::base::Object* object);
+  void insert_object(eng::base::Object* object);
+  void update_object(eng::base::Object* object);
+  void remove_object(eng::base::Object* object);
 
 private:
   VK_engine* vk_engine;

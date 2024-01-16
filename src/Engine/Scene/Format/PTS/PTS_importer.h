@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Function/File/Info.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -20,10 +20,10 @@ public:
 
 public:
   //Main functions
-  eng::data::File* Loader(std::string pathFile);
-  eng::data::File* Loader(std::string pathFile, int lmin, int lmax);
+  eng::base::File* Loader(std::string pathFile);
+  eng::base::File* Loader(std::string pathFile, int lmin, int lmax);
 
-  bool Exporter(std::string pathFile, eng::data::Object* object);
+  bool Exporter(std::string pathFile, eng::base::Object* object);
 
   inline void set_IdataFormat(int value){this->IdataFormat = value;}
   inline void set_retrievingIntensity(bool value){this->retrieve_I = value;}
@@ -35,7 +35,7 @@ private:
   void Loader_init();
   void Loader_nbColumns();
   void Loader_configuration();
-  void Loader_data(eng::data::File* data_out, int FILE_config);
+  void Loader_data(eng::base::File* data_out, int FILE_config);
 
   //Loader sub-functions
   bool check_header(std::string pathFile);

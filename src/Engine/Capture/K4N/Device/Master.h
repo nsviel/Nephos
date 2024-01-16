@@ -1,14 +1,14 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Base/Entity/Struct_entity.h>
+#include <Utility/Base/Entity/Struct_entity.h>
 
 class Engine;
 
 namespace k4n{
 
 
-class Master : public eng::data::Entity
+class Master : public eng::base::Entity
 {
 public:
   //Constructor / Destructor

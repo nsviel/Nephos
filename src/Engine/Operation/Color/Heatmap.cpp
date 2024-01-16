@@ -28,7 +28,7 @@ Heatmap::~Heatmap(){
 }
 
 //Main function
-vector<vec4> Heatmap::heatmap_intensity(eng::data::Object* object, int diviser){
+vector<vec4> Heatmap::heatmap_intensity(eng::base::Object* object, int diviser){
   //---------------------------
 
   vector<float> I_divided = math::divise(object->Is, diviser);
@@ -38,7 +38,7 @@ vector<vec4> Heatmap::heatmap_intensity(eng::data::Object* object, int diviser){
   //---------------------------
   return heatmap;
 }
-vector<vec4> Heatmap::heatmap_height(eng::data::Object* object){
+vector<vec4> Heatmap::heatmap_height(eng::base::Object* object){
   //---------------------------
 
   vector<float> z_vec = attribManager->retrieve_z_vector(object);
@@ -48,7 +48,7 @@ vector<vec4> Heatmap::heatmap_height(eng::data::Object* object){
   //---------------------------
   return heatmap;
 }
-vector<vec4> Heatmap::heatmap_height(eng::data::Object* object, vec2 range){
+vector<vec4> Heatmap::heatmap_height(eng::base::Object* object, vec2 range){
   //---------------------------
 
   vector<float> z_vec = attribManager->retrieve_z_vector(object);
@@ -58,7 +58,7 @@ vector<vec4> Heatmap::heatmap_height(eng::data::Object* object, vec2 range){
   //---------------------------
   return heatmap;
 }
-vector<vec4> Heatmap::heatmap_range(eng::data::Object* object){
+vector<vec4> Heatmap::heatmap_range(eng::base::Object* object){
   //---------------------------
 
   vector<float>& dist = object->R;
@@ -110,7 +110,7 @@ void Heatmap::compute_heatmap(vector<float>& v_in, int size){
 
   //---------------------------
 }
-void Heatmap::heatmap_set(eng::data::Object* object, vector<float>& v_in){
+void Heatmap::heatmap_set(eng::base::Object* object, vector<float>& v_in){
   vector<vec4>& RGB = object->rgb;
   //---------------------------
 

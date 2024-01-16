@@ -42,9 +42,9 @@ void Scene::design_panel(){
 
 //Subfunction
 void Scene::draw_button(){
-  eng::data::Set* data_set = sce_database->get_data_set();
-  eng::data::Set* set_scene = data_set->get_set("Scene");
-  eng::data::Entity* entity = set_scene->selected_entity;
+  eng::base::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* set_scene = data_set->get_set("Scene");
+  eng::base::Entity* entity = set_scene->selected_entity;
   //-------------------------------
 
   if(entity == nullptr) return;
@@ -110,7 +110,7 @@ void Scene::draw_window_background(){
   //-------------------------------
 }
 void Scene::draw_tree_view(){
-  eng::data::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* data_set = sce_database->get_data_set();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;
@@ -124,7 +124,7 @@ void Scene::draw_tree_view(){
 
     //Database
     for(int row_i=0; row_i<data_set->list_set.size(); row_i++){
-      eng::data::Set* set = *next(data_set->list_set.begin(), row_i);
+      eng::base::Set* set = *next(data_set->list_set.begin(), row_i);
 
       if(set->nb_entity != 0){
         ImGui::TableNextRow();
@@ -141,7 +141,7 @@ void Scene::draw_tree_view(){
 
   //---------------------------
 }
-int Scene::data_node_tree(eng::data::Set* set) {
+int Scene::data_node_tree(eng::base::Set* set) {
   int nb_row = 0;
   //---------------------------
 
@@ -174,7 +174,7 @@ int Scene::data_node_tree(eng::data::Set* set) {
 
   // Set elements (leaf nodes) and nested set nodes
   if(is_node_open){
-    for(eng::data::Entity* entity : set->list_entity){
+    for(eng::base::Entity* entity : set->list_entity){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       nb_row++;
@@ -203,7 +203,7 @@ int Scene::data_node_tree(eng::data::Set* set) {
     }
 
     // Recursive call for nested sets
-    for(eng::data::Set* subset : set->list_set) {
+    for(eng::base::Set* subset : set->list_set) {
       nb_row += data_node_tree(subset);
     }
 

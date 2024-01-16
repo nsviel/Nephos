@@ -26,7 +26,7 @@ void Tree::create(){
   //---------------------------
 
   //Create glyph
-  eng::data::Object* object = new eng::data::Object(engine);
+  eng::base::Object* object = new eng::base::Object(engine);
   object->name = "tree";
   object->data->draw_line_width = 2;
   object->is_visible = is_visible;
@@ -37,10 +37,10 @@ void Tree::create(){
 
   //---------------------------
 }
-void Tree::update_glyph(eng::data::Entity* entity){
+void Tree::update_glyph(eng::base::Entity* entity){
   //---------------------------
 
-  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
+  if(eng::base::Object* object = dynamic_cast<eng::base::Object*>(entity)){
     if(is_visible){
       //octreeManager->create_octree(cloud, level);
       vec_object[0]->xyz = object->xyz;

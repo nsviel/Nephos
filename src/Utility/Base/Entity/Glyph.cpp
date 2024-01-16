@@ -5,7 +5,7 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
-namespace eng::data{
+namespace eng::base{
 
 //Constructor / Destructor
 Glyph::Glyph(Engine* engine){
@@ -38,7 +38,7 @@ void Glyph::visibility_entity(bool value){
   this->set_visibility(value);
 
   for(int i=0; i<vec_object.size(); i++){
-    eng::data::Object* object = vec_object[i];
+    eng::base::Object* object = vec_object[i];
     object->visibility_entity(value);
   }
 

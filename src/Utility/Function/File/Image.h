@@ -2,13 +2,13 @@
 
 #include <string>
 #include <iostream>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 
 
 namespace image{
   //---------------------------
 
-  eng::data::Image load_image(std::string path);
+  eng::base::Image load_image(std::string path);
 
   //---------------------------
 }

@@ -6,7 +6,7 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
-namespace eng::data{
+namespace eng::base{
 
 //Constructor / Destructor
 Object::Object(){
@@ -14,7 +14,7 @@ Object::Object(){
 
   this->unicolor = math::random_color();
   this->type = "Object";
-  this->data = new eng::data::Data();
+  this->data = new eng::base::Data();
 
   //---------------------------
 }
@@ -24,8 +24,8 @@ Object::Object(Engine* engine){
   this->engine = engine;
   this->unicolor = math::random_color();
   this->type = "Object";
-  this->data = new eng::data::Data();
-  
+  this->data = new eng::base::Data();
+
   //---------------------------
 }
 Object::~Object(){}
@@ -61,7 +61,7 @@ void Object::visibility_entity(bool value){
   this->set_visibility(value);
 
   for(int i=0; i<list_glyph.size(); i++){
-    eng::data::Glyph* glyph = *next(list_glyph.begin(), i);
+    eng::base::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->visibility_entity(value);
   }
 

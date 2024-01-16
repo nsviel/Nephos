@@ -1,6 +1,6 @@
 #include "Control.h"
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Engine/Engine.h>
 #include <Utility/Namespace.h>
 #include <Utility/Element/Namespace.h>
@@ -121,7 +121,7 @@ mat4 Control::compute_camera_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void Control::compute_camera_mvp(eng::data::Object* object){
+void Control::compute_camera_mvp(eng::base::Object* object){
   if(object == nullptr) return;
   //---------------------------
 
@@ -151,7 +151,7 @@ mat4 Control::compute_camera_pose(){
 }
 
 //Camera parameter
-void Control::set_camera(eng::data::Camera* camera){
+void Control::set_camera(eng::base::Camera* camera){
   //---------------------------
 
   this->camera = camera;

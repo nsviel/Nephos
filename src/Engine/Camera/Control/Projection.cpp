@@ -14,7 +14,7 @@ Projection::Projection(util::element::Window* utl_window){
 Projection::~Projection(){}
 
 //Main function
-mat4 Projection::compute_proj_perspective(eng::data::Camera* camera){
+mat4 Projection::compute_proj_perspective(eng::base::Camera* camera){
   //---------------------------
 
   float z_near = camera->clip_near;
@@ -32,7 +32,7 @@ mat4 Projection::compute_proj_perspective(eng::data::Camera* camera){
   //---------------------------
   return cam_proj;
 }
-mat4 Projection::compute_proj_ortho(eng::data::Camera* camera){
+mat4 Projection::compute_proj_ortho(eng::base::Camera* camera){
   //---------------------------
 
   float z_near = camera->clip_near;

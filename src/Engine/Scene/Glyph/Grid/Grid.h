@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Engine/Base/Entity/Glyph.h>
+#include <Utility/Base/Entity/Glyph.h>
 #include <Engine/Scene/Glyph/Grid/Namespace.h>
 
 namespace glyph::grid{
 
 
-class Grid : public eng::data::Glyph
+class Grid : public eng::base::Glyph
 {
 public:
   //Constructor / Destructor
@@ -17,7 +17,7 @@ public:
   //Main function
   void create();
   void update_glyph();
-  void insert_object_from_glyph(eng::data::Glyph* glyph);
+  void insert_object_from_glyph(eng::base::Glyph* glyph);
 
 private:
   glyph::grid::Mesh* mesh;

@@ -1,7 +1,7 @@
 #include "EDL.h"
 
 #include <Engine/Engine.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -47,7 +47,7 @@ void EDL::init_shader(){
   //---------------------------
 }
 void EDL::update_shader(){
-  eng::data::Camera* camera = cam_manager->get_current_camera();
+  eng::base::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   // Depth setup

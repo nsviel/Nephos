@@ -51,18 +51,18 @@ void Control::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  eng::data::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* data_set = sce_database->get_data_set();
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      eng::data::Set* set_scene = data_set->get_set("Scene");
+      eng::base::Set* set_scene = data_set->get_set("Scene");
       set_scene->select_next_entity();
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      eng::data::Set* set_scene = data_set->get_set("Scene");
+      eng::base::Set* set_scene = data_set->get_set("Scene");
       sce_scene->delete_entity(set_scene->selected_entity);
       break;
     }
@@ -127,7 +127,7 @@ void Control::control_keyboard_translation(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  eng::data::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* data_set = sce_database->get_data_set();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
       float translation_qtt = 0.01;
@@ -140,42 +140,42 @@ void Control::control_keyboard_translation(){
       // Z key
       if(io.KeysDown[571]){
         vec3 translation = vec3(translation_qtt, 0, 0);
-        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        eng::base::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
         vec3 translation = vec3(-translation_qtt, 0, 0);
-        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        eng::base::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
         vec3 translation = vec3(0, translation_qtt, 0);
-        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        eng::base::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
         vec3 translation = vec3(0, -translation_qtt, 0);
-        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        eng::base::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
         vec3 translation = vec3(0, 0, translation_qtt);
-        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        eng::base::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
         vec3 translation = vec3(0, 0, -translation_qtt);
-        eng::data::Entity* entity = sce_scene->get_selected_entity();
+        eng::base::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
@@ -190,7 +190,7 @@ void Control::control_mouse(ImVec2 center){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  eng::data::Camera* camera = cam_manager->get_current_camera();
+  eng::base::Camera* camera = cam_manager->get_current_camera();
   utl_window->set_window_center(vec2(center.x, center.y));
 
   //Right click - Camera movement
@@ -242,7 +242,7 @@ void Control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    eng::data::Entity* entity = sce_scene->get_selected_entity();
+    eng::base::Entity* entity = sce_scene->get_selected_entity();
     sce_operation->make_rotation(entity, R);
   }
 

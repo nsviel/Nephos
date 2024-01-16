@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Engine/Base/Entity/Glyph.h>
+#include <Utility/Base/Entity/Glyph.h>
 
 
 namespace glyph::object{
 
-class Normal : public eng::data::Glyph
+class Normal : public eng::base::Glyph
 {
 public:
   //Constructor / Destructor
@@ -13,9 +13,9 @@ public:
   ~Normal();
 
 public:
-  eng::data::Object* create(eng::data::Object* object);
-  void update_normal_cloud(eng::data::Object* object, eng::data::Object* glyph);
-  void update_normal_cloud(eng::data::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s);
+  eng::base::Object* create(eng::base::Object* object);
+  void update_normal_cloud(eng::base::Object* object, eng::base::Object* glyph);
+  void update_normal_cloud(eng::base::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s);
 
   inline bool* get_visibility(){return &visibility;}
   inline int* get_size(){return &size;}

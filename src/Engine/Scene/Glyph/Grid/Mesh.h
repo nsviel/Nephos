@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Engine/Base/Entity/Glyph.h>
+#include <Utility/Base/Entity/Glyph.h>
 
 
 namespace glyph::grid{
 
-class Mesh : public eng::data::Glyph
+class Mesh : public eng::base::Glyph
 {
 public:
   //Constructor / Destructor

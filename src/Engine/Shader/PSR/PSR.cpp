@@ -37,7 +37,7 @@ void PSR::init_shader(){
   //---------------------------
 }
 void PSR::update_shader(){
-  eng::data::Camera* camera = cam_manager->get_current_camera();
+  eng::base::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   // Depth setup

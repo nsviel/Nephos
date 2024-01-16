@@ -6,8 +6,8 @@ XYZ_importer::XYZ_importer(){}
 XYZ_importer::~XYZ_importer(){}
 
 //Main function
-eng::data::File* XYZ_importer::Loader(std::string path){
-  eng::data::File* data = new eng::data::File();
+eng::base::File* XYZ_importer::Loader(std::string path){
+  eng::base::File* data = new eng::base::File();
   //---------------------------
 
   data->name = info::get_name_from_path(path);

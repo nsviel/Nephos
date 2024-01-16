@@ -7,7 +7,7 @@ namespace eng::scene{
 Database::Database(eng::scene::Node* node_scene){
   //---------------------------
 
-  this->data_set = new eng::data::Set("Data");
+  this->data_set = new eng::base::Set("Data");
 
   //---------------------------
 }
@@ -20,12 +20,12 @@ void Database::init_set(){
   data_set->add_new_set("World");
   data_set->add_new_set("Scene");
 
-//eng::data::Set* set = data_set->get_set("Scene");
+//eng::base::Set* set = data_set->get_set("Scene");
 //set->add_new_set("coucou");
   //---------------------------
 }
 
-void Database::assign_ID(eng::data::Entity* entity){
+void Database::assign_ID(eng::base::Entity* entity){
   if(entity == nullptr) return;
   //----------------------------
 

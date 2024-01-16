@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Scene/Namespace.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 #include <Utility/Function/File/File.h>
@@ -28,10 +28,10 @@ public:
 
 public:
   //Main functions
-  eng::data::Entity* load_entity(std::string path);
+  eng::base::Entity* load_entity(std::string path);
 
   //Subfunctions
-  eng::data::Object* load_object(string path);
+  eng::base::Object* load_object(string path);
   bool is_format_supported(string format);
 
 private:

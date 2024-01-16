@@ -1,7 +1,7 @@
 #include "Manager.h"
 
 #include <Engine/Engine.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 
 
 namespace eng::camera{
@@ -25,10 +25,10 @@ void Manager::create_camera(){
   eng::scene::Node* node_scene = engine->get_node_scene();
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   eng::scene::Database* sce_database = node_scene->get_scene_database();
-  eng::data::Set* data_set = sce_database->get_data_set();
-  eng::data::Set* set_world = data_set->get_set("World");
+  eng::base::Set* data_set = sce_database->get_data_set();
+  eng::base::Set* set_world = data_set->get_set("World");
 
-  eng::data::Camera* camera = new eng::data::Camera();
+  eng::base::Camera* camera = new eng::base::Camera();
   camera->name = "camera_" + to_string(camera_ID++);
   camera->is_suppressible = false;
   camera->is_movable = false;
@@ -44,7 +44,7 @@ void Manager::reset(){
   //---------------------------
 
   for(int i=0; i<vec_camera.size(); i++){
-    eng::data::Camera* camera = vec_camera[i];
+    eng::base::Camera* camera = vec_camera[i];
     camera->reset_entity();
   }
 

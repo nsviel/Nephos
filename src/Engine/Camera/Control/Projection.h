@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
 
@@ -14,8 +14,8 @@ public:
   ~Projection();
 
 public:
-  mat4 compute_proj_perspective(eng::data::Camera* camera);
-  mat4 compute_proj_ortho(eng::data::Camera* camera);
+  mat4 compute_proj_perspective(eng::base::Camera* camera);
+  mat4 compute_proj_ortho(eng::base::Camera* camera);
 
 private:
   util::element::Window* utl_window;

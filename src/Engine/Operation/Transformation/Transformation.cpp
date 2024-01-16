@@ -10,7 +10,7 @@ Transformation::Transformation(){}
 Transformation::~Transformation(){}
 
 // Translation
-void Transformation::make_translation(eng::data::Object* object, vec3 trans){
+void Transformation::make_translation(eng::base::Object* object, vec3 trans){
   if(object == nullptr) return;
   //---------------------------
 
@@ -23,7 +23,7 @@ void Transformation::make_translation(eng::data::Object* object, vec3 trans){
 
   //---------------------------
 }
-void Transformation::make_translation(eng::data::Object* object, mat4 translation){
+void Transformation::make_translation(eng::base::Object* object, mat4 translation){
   if(object == nullptr) return;
   //---------------------------
 
@@ -38,7 +38,7 @@ void Transformation::make_translation(eng::data::Object* object, mat4 translatio
 }
 
 //Rotation
-void Transformation::make_rotation(eng::data::Object* object, vec3 COM, vec3 radian){
+void Transformation::make_rotation(eng::base::Object* object, vec3 COM, vec3 radian){
   if(object == nullptr) return;
   //---------------------------
 
@@ -52,7 +52,7 @@ void Transformation::make_rotation(eng::data::Object* object, vec3 COM, vec3 rad
 
   //---------------------------
 }
-void Transformation::make_rotation(eng::data::Object* object, vec3 degree){
+void Transformation::make_rotation(eng::base::Object* object, vec3 degree){
   if(object == nullptr) return;
   //---------------------------
 
@@ -68,7 +68,7 @@ void Transformation::make_rotation(eng::data::Object* object, vec3 degree){
 
   //---------------------------
 }
-void Transformation::make_rotation(eng::data::Object* object, vec3 COM, mat4 rotation){
+void Transformation::make_rotation(eng::base::Object* object, vec3 COM, mat4 rotation){
   if(object == nullptr) return;
   //---------------------------
 
@@ -82,7 +82,7 @@ void Transformation::make_rotation(eng::data::Object* object, vec3 COM, mat4 rot
 
   //---------------------------
 }
-void Transformation::make_rotation_axe_X(eng::data::Object* object, float degree){
+void Transformation::make_rotation_axe_X(eng::base::Object* object, float degree){
   if(object == nullptr) return;
   //---------------------------
 
@@ -107,7 +107,7 @@ void Transformation::make_rotation_axe_X(eng::data::Object* object, float degree
 }
 
 //Scaling
-void Transformation::make_scaling(eng::data::Object* object, float scale){
+void Transformation::make_scaling(eng::base::Object* object, float scale){
   if(object == nullptr) return;
   //---------------------------
 
@@ -123,7 +123,7 @@ void Transformation::make_scaling(eng::data::Object* object, float scale){
 }
 
 //Transformation
-void Transformation::make_transformation(eng::data::Object* object, vec3 COM, mat4 translation, mat4 rotation){
+void Transformation::make_transformation(eng::base::Object* object, vec3 COM, mat4 translation, mat4 rotation){
   if(object == nullptr) return;
   //---------------------------
 

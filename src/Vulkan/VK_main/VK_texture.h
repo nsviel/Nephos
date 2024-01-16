@@ -3,8 +3,8 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/VK_typedef.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Base/Namespace.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 
 
 class VK_image;
@@ -19,9 +19,9 @@ public:
 
 public:
   //Main functions
-  vk::structure::Image* load_texture(eng::data::Image* image);
+  vk::structure::Image* load_texture(eng::base::Image* image);
   void update_texture(vk::structure::Image* image);
-  VkFormat find_texture_format(eng::data::Image* image);
+  VkFormat find_texture_format(eng::base::Image* image);
 
   //Texture cleaning
   void clean_texture(vk::structure::Object* object);

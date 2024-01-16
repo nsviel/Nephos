@@ -8,7 +8,7 @@ Attribut::Attribut(){}
 Attribut::~Attribut(){}
 
 //Main function
-void Attribut::compute_MinMax(eng::data::Object* object){
+void Attribut::compute_MinMax(eng::base::Object* object){
   vector<vec3>& XYZ = object->xyz;
   if(XYZ.size() == 0) return;
   //---------------------------
@@ -37,17 +37,17 @@ void Attribut::compute_MinMax(eng::data::Object* object){
   object->max = max;
   object->COM = centroid;
 }
-void Attribut::set_visibility(eng::data::Set* set, bool visibility){
+void Attribut::set_visibility(eng::base::Set* set, bool visibility){
   //---------------------------
 
   for(int i=0; i<set->list_entity.size(); i++){
-    eng::data::Object* object = (eng::data::Object*)*next(set->list_entity.begin(), i);
+    eng::base::Object* object = (eng::base::Object*)*next(set->list_entity.begin(), i);
     object->is_visible = visibility;
   }
 
   //---------------------------
 }
-void Attribut::set_unicolor(eng::data::Object* object){
+void Attribut::set_unicolor(eng::base::Object* object){
   //---------------------------
 
   for(int i=0; i<object->rgb.size(); i++){
@@ -56,7 +56,7 @@ void Attribut::set_unicolor(eng::data::Object* object){
 
   //---------------------------
 }
-vector<float> Attribut::retrieve_z_vector(eng::data::Object* object){
+vector<float> Attribut::retrieve_z_vector(eng::base::Object* object){
   vector<vec3>& xyz = object->xyz;
   vector<float> z_vec;
   //---------------------------

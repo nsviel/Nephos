@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Engine/Base/Entity/Glyph.h>
+#include <Utility/Base/Entity/Glyph.h>
 
 
 namespace glyph::world{
 
-class Axis : public eng::data::Glyph
+class Axis : public eng::base::Glyph
 {
 public:
   //Constructor / Destructor

@@ -17,7 +17,7 @@ void AABB::create(){
   if(vec_object.size() != 0) return;
   //---------------------------
 
-  eng::data::Object* object = new eng::data::Object(engine);
+  eng::base::Object* object = new eng::base::Object(engine);
   object->name = "aabb";
   object->data->draw_line_width = 1;
   object->is_visible = false;
@@ -33,10 +33,10 @@ void AABB::create(){
 
   //---------------------------
 }
-void AABB::update_glyph(eng::data::Entity* entity){
+void AABB::update_glyph(eng::base::Entity* entity){
   //---------------------------
 
-  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
+  if(eng::base::Object* object = dynamic_cast<eng::base::Object*>(entity)){
     vec3 min = object->min;
     vec3 max = object->max;
     vec_object[0]->xyz = build_box(min, max);

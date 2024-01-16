@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Function/File/Info.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -37,7 +37,7 @@ public:
 
 public:
   //Main functions
-  eng::data::File* Loader(std::string pathFile);
+  eng::base::File* Loader(std::string pathFile);
   bool Exporter(std::string pathFile);
 
   //Subfunctions
@@ -60,7 +60,7 @@ public:
 
 private:
   //Datatypes
-  eng::data::File* data;
+  eng::base::File* data;
 
   std::list<PTXCloud*>* list_ptxCloud;
   float x, y, z, I, r, g ,b;

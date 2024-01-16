@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Engine/Base/Entity/Glyph.h>
+#include <Utility/Base/Entity/Glyph.h>
 
 #include <Engine/Operation/Transformation/Transformation.h>
 
 
 namespace glyph::object{
 
-class Axis : public eng::data::Glyph
+class Axis : public eng::base::Glyph
 {
 public:
   //Constructor / Destructor
@@ -17,7 +17,7 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph(eng::data::Entity* entity);
+  void update_glyph(eng::base::Entity* entity);
 
   //Subfunctions
   void construct();

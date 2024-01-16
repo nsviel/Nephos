@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
@@ -21,10 +21,10 @@ public:
 
 public:
   //Main functions
-  void compute_MinMax(eng::data::Object* object);
-  void set_visibility(eng::data::Set* set, bool visibility);
-  void set_unicolor(eng::data::Object* object);
-  vector<float> retrieve_z_vector(eng::data::Object* object);
+  void compute_MinMax(eng::base::Object* object);
+  void set_visibility(eng::base::Set* set, bool visibility);
+  void set_unicolor(eng::base::Object* object);
+  vector<float> retrieve_z_vector(eng::base::Object* object);
 
 private:
 };

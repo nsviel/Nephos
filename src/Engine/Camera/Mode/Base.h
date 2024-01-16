@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
 
@@ -15,17 +15,17 @@ public:
 
 public:
   //Camera movement
-  virtual void camera_forward(eng::data::Camera* camera, float speed){}
-  virtual void camera_backward(eng::data::Camera* camera, float speed){}
-  virtual void camera_right(eng::data::Camera* camera, float speed){}
-  virtual void camera_left(eng::data::Camera* camera, float speed){}
-  virtual void camera_up(eng::data::Camera* camera, float speed){}
-  virtual void camera_down(eng::data::Camera* camera, float speed){}
-  virtual void camera_mouse(eng::data::Camera* camera){}
-  virtual void camera_zoom(eng::data::Camera* camera, float speed){}
+  virtual void camera_forward(eng::base::Camera* camera, float speed){}
+  virtual void camera_backward(eng::base::Camera* camera, float speed){}
+  virtual void camera_right(eng::base::Camera* camera, float speed){}
+  virtual void camera_left(eng::base::Camera* camera, float speed){}
+  virtual void camera_up(eng::base::Camera* camera, float speed){}
+  virtual void camera_down(eng::base::Camera* camera, float speed){}
+  virtual void camera_mouse(eng::base::Camera* camera){}
+  virtual void camera_zoom(eng::base::Camera* camera, float speed){}
 
   //Camera matrix
-  virtual mat4 compute_camera_view(eng::data::Camera* camera){return mat4(1);}
+  virtual mat4 compute_camera_view(eng::base::Camera* camera){return mat4(1);}
 
 protected:
   util::element::Window* utl_window;
