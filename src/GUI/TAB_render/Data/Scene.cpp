@@ -118,6 +118,7 @@ void Scene::draw_tree_view(){
   flag_tree |= ImGuiTableFlags_NoBordersInBody;
   flag_tree |= ImGuiTableFlags_SizingFixedSame;
 
+  ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, 10);
   ImGui::SetNextWindowSize(ImVec2(400, 400));
   if(ImGui::BeginTable("data_view", 1)){
     ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch);
@@ -138,6 +139,7 @@ void Scene::draw_tree_view(){
 
     ImGui::EndTable();
   }
+  ImGui::PopStyleVar();
 
   //---------------------------
 }
