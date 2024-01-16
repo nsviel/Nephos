@@ -111,7 +111,7 @@ void Glyph::update_glyph_object(eng::data::Object* object){
     eng::data::Glyph* glyph = *next(object->list_glyph.begin(), i);
     vector<eng::data::Object*> vec_object = glyph->get_vec_object();
 
-    glyph->update(object);
+    glyph->update_glyph(object);
     for(int j=0; j<vec_object.size(); j++){
       vk_engine->insert_object_in_engine(vec_object[j]);
       cam_control->compute_camera_mvp(vec_object[j]);
@@ -147,7 +147,7 @@ void Glyph::create_glyph_camera(eng::data::Camera* camera){
 
     //Glyph creation
     glyph->create();
-    glyph->update(camera);
+    glyph->update_glyph(camera);
     sce_database->assign_ID(glyph);
 
     //Glyph data

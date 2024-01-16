@@ -32,7 +32,7 @@ void Mesh::create(){
 
   //---------------------------
 }
-void Mesh::update(int nb_cell){
+void Mesh::update_glyph(int nb_cell){
   vec_object[0]->xyz.clear();
   vec_object[0]->rgb.clear();
   //---------------------------

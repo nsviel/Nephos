@@ -24,7 +24,7 @@ void Grid::create(){
   axis.create();
   plane.create();
 
-  this->update();
+  this->update_glyph();
 
   this->insert_object_from_glyph(mesh);
   this->insert_object_from_glyph(axis);
@@ -32,12 +32,12 @@ void Grid::create(){
 
   //---------------------------
 }
-void Grid::update(){
+void Grid::update_glyph(){
   //---------------------------
 
-  mesh.update(nb_cell);
-  axis.update(nb_cell);
-  plane.update(nb_cell);
+  mesh.update_glyph(nb_cell);
+  axis.update_glyph(nb_cell);
+  plane.update_glyph(nb_cell);
 
   //---------------------------
 }

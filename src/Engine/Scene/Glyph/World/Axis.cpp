@@ -28,11 +28,11 @@ void Axis::create(){
   object->draw_type_name = "line";
   object->is_permanent = true;
   this->vec_object.push_back(object);
-  this->update();
+  this->update_glyph();
 
   //---------------------------
 }
-void Axis::update(){
+void Axis::update_glyph(){
   vector<vec3>& XYZ = vec_object[0]->xyz;
   vector<vec4>& RGB = vec_object[0]->rgb;
   float z = 0;

@@ -16,7 +16,7 @@ public:
 public:
   //Main function
   void create();
-  void update();
+  void update_glyph();
   void insert_object_from_glyph(eng::data::Glyph& glyph);
 
 private:

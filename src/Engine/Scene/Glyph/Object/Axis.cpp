@@ -30,7 +30,7 @@ void Axis::create(){
 
   //---------------------------
 }
-void Axis::update(eng::data::Entity* entity){
+void Axis::update_glyph(eng::data::Entity* entity){
   //---------------------------
 
   if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){

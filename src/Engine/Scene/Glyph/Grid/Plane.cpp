@@ -28,7 +28,7 @@ void Plane::create(){
 
   //---------------------------
 }
-void Plane::update(int nb_cell){
+void Plane::update_glyph(int nb_cell){
   vector<vec3>& XYZ = vec_object[0]->xyz;
   vector<vec4>& RGB = vec_object[0]->rgb;
   float z = -0.004;

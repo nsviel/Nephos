@@ -15,7 +15,7 @@ public:
 public:
   //Main function
   void create();
-  void update();
+  void update_glyph();
 
 private:
 };

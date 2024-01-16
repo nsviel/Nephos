@@ -23,8 +23,8 @@ public:
 
 public:
   virtual void create(){}
-  virtual void update(){}
-  virtual void update(eng::data::Entity* entity){}
+  virtual void update_glyph(){}
+  virtual void update_glyph(eng::data::Entity* entity){}
   virtual void reset(){}
 
   inline vector<eng::data::Object*> get_vec_object(){return vec_object;}

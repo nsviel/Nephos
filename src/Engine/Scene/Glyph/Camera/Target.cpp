@@ -31,7 +31,7 @@ void Target::create(){
 
   //---------------------------
 }
-void Target::update(eng::data::Entity* entity){
+void Target::update_glyph(eng::data::Entity* entity){
   eng::data::Object* object = vec_object[0];
   //---------------------------
 

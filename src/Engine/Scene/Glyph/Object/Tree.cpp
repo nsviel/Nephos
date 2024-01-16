@@ -37,7 +37,7 @@ void Tree::create(){
 
   //---------------------------
 }
-void Tree::update(eng::data::Entity* entity){
+void Tree::update_glyph(eng::data::Entity* entity){
   //---------------------------
 
   if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){

@@ -46,7 +46,7 @@ void Operation::update_entity(eng::data::Entity* entity){
   else if(eng::data::Camera* camera = dynamic_cast<eng::data::Camera*>(entity)){
     for(int i=0; i<camera->list_glyph.size(); i++){
       eng::data::Glyph* glyph = *next(camera->list_glyph.begin(), i);
-      glyph->update(camera);
+      glyph->update_glyph(camera);
       this->update_entity(glyph);
     }
   }

@@ -33,7 +33,7 @@ void AABB::create(){
 
   //---------------------------
 }
-void AABB::update(eng::data::Entity* entity){
+void AABB::update_glyph(eng::data::Entity* entity){
   //---------------------------
 
   if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){

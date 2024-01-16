@@ -17,7 +17,7 @@ public:
 public:
   //Main function
   void create();
-  void update(eng::data::Entity* entity);
+  void update_glyph(eng::data::Entity* entity);
 
   //Subfunctions
   void construct();
