@@ -27,10 +27,12 @@ public:
   void reset_entity();
   void visibility_entity(bool value);
 
+  inline std::list<entity::Entity*> get_list_entity(){return list<entity::Entity*>(list_sensor.begin(), list_sensor.end());}
+
+
 public:
   list<k4n::dev::Sensor*> list_sensor;
 
-  k4n::structure::Synchro synchro;
   k4n::structure::Player player;
   k4n::structure::Recorder recorder;
 
