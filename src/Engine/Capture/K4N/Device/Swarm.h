@@ -1,8 +1,6 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Structure/Struct_swarm.h>
 #include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Engine/Capture/K4N/Utils/Namespace.h>
 #include <Engine/Scene/Data/Scene.h>
 #include <Utility/Specific/common.h>
@@ -36,20 +34,33 @@ public:
   void close_sensor_all();
   void selecte_next_sensor();
 
-  inline k4n::dev::Sensor* get_selected_sensor(){return struct_swarm->selected_device;}
-  inline list<k4n::dev::Sensor*>& get_list_sensor(){return struct_swarm->list_sensor;}
-  inline int get_nb_dev_capture(){return struct_swarm->nb_dev_capture;}
-  inline int get_nb_dev_playback(){return struct_swarm->nb_dev_playback;}
-  inline void set_selected_device(k4n::dev::Sensor* device){struct_swarm->selected_device = device;}
+  inline k4n::dev::Sensor* get_selected_sensor(){return selected_sensor;}
+  inline list<k4n::dev::Sensor*>& get_list_sensor(){return list_sensor;}
+  inline int get_nb_dev_capture(){return nb_dev_capture;}
+  inline int get_nb_dev_playback(){return nb_dev_playback;}
+  inline void set_selected_sensor(k4n::dev::Sensor* device){selected_sensor = device;}
 
 private:
   Engine* engine;
   eng::scene::Scene* sce_scene;
-  k4n::structure::Swarm* struct_swarm;
   k4n::utils::Transformation* k4n_transfo;
 
   string default_folder;
   string default_file;
+
+
+
+
+  k4n::dev::Sensor* selected_sensor = nullptr;
+  std::list<k4n::dev::Sensor*> list_sensor;
+
+  //k4n::dev::Master* selected_master = nullptr;
+  //std::list<k4n::Master*> list_master;
+
+  int nb_dev = 0;
+  int nb_dev_capture = 0;
+  int nb_dev_playback = 0;
+
 };
 
 }

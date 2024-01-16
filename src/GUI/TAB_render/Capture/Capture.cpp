@@ -73,7 +73,7 @@ void Capture::kinect_devices(){
         ImGui::Text("%d", k4n_sensor->device.index);
         ImGui::TableNextColumn();
         if (ImGui::Selectable(k4n_sensor->device.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
-          k4a_swarm->set_selected_device(k4n_sensor);
+          k4a_swarm->set_selected_sensor(k4n_sensor);
           selected_device = i;
         }
         ImGui::PopID();

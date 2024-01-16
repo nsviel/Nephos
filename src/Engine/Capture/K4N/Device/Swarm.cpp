@@ -14,9 +14,7 @@ Swarm::Swarm(Engine* engine){
 
   this->engine = engine;
   this->sce_scene = node_scene->get_scene();
-  this->struct_swarm = new k4n::structure::Swarm();
   this->k4n_transfo = new k4n::utils::Transformation();
-  this->default_folder = "../media/record/";
   this->default_file = "/home/aether/Desktop/versaille_with_transfo_mat.mkv";
 
   //---------------------------
@@ -25,7 +23,7 @@ Swarm::~Swarm(){}
 
 //Main function
 void Swarm::draw_all_clouds(){
-  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_sensor;
+  list<k4n::dev::Sensor*>& list_device = list_sensor;
   //---------------------------
 
   //Run all thread
@@ -41,7 +39,7 @@ void Swarm::init_scene(){
 
   //If no real device create virtual one
   uint32_t nb_device = k4a_device_get_installed_count();
-  if(nb_device == 0 && struct_swarm->nb_dev_playback == 0){
+  if(nb_device == 0 && nb_dev_playback == 0){
     this->create_sensor_playback(default_file);
   }
 
@@ -53,29 +51,29 @@ void Swarm::refresh_connected_sensor(){
   //---------------------------
 
   const uint32_t nb_device = k4a_device_get_installed_count();
-  if(nb_device != struct_swarm->nb_dev_capture){
+  if(nb_device != nb_dev_capture){
     //If some news, run them
-    if(nb_device > struct_swarm->nb_dev_capture){
-      int number = nb_device - struct_swarm->nb_dev_capture;
+    if(nb_device > nb_dev_capture){
+      int number = nb_device - nb_dev_capture;
       this->manage_new_capture_sensor(number);
     }
     //If some less, supress them
-    else if(nb_device < struct_swarm->nb_dev_capture){
-      int number = struct_swarm->nb_dev_capture - nb_device;
+    else if(nb_device < nb_dev_capture){
+      int number = nb_dev_capture - nb_device;
       this->manage_less_capture_sensor(number);
     }
 
-    struct_swarm->nb_dev_capture = nb_device;
+    nb_dev_capture = nb_device;
   }
 
   //---------------------------
 }
 void Swarm::manage_new_capture_sensor(int nb_new_device){
-  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_sensor;
+  list<k4n::dev::Sensor*>& list_device = list_sensor;
   //---------------------------
 
   //If previsouly no device, we need to supress all default playback
-  if(struct_swarm->nb_dev_capture == 0){
+  if(nb_dev_capture == 0){
     this->close_sensor_all();
   }
 
@@ -108,17 +106,15 @@ k4n::dev::Sensor* Swarm::create_sensor_playback(string path){
   //---------------------------
 
   k4n::dev::Sensor* k4n_sensor = new k4n::dev::Sensor(engine);
-  k4n_sensor->name = "playback_" + to_string(struct_swarm->nb_dev_capture);
-  k4n_sensor->device.index = struct_swarm->nb_dev_capture;
+  k4n_sensor->name = "playback_" + to_string(nb_dev_capture);
+  k4n_sensor->device.index = nb_dev_capture;
   k4n_sensor->device.is_playback = true;
   k4n_sensor->playback.path = path;
   k4n_sensor->playback.filename = info::get_filename_from_path(path);
-  k4n_sensor->recorder.folder = default_folder;
-  k4n_sensor->recorder.path = default_folder + "record_dev_" + to_string(k4n_sensor->device.index) + ".mkv";
 
-  struct_swarm->selected_device = k4n_sensor;
-  struct_swarm->list_sensor.push_back(k4n_sensor);
-  struct_swarm->nb_dev_playback++;
+  selected_sensor = k4n_sensor;
+  list_sensor.push_back(k4n_sensor);
+  nb_dev_playback++;
 
   k4n_sensor->init();
   k4n_sensor->run_playback(path);
@@ -133,15 +129,13 @@ k4n::dev::Sensor* Swarm::create_sensor_capture(){
   //---------------------------
 
   k4n::dev::Sensor* k4n_sensor = new k4n::dev::Sensor(engine);
-  k4n_sensor->name = "device_" + to_string(struct_swarm->nb_dev_capture);
-  k4n_sensor->device.index = struct_swarm->nb_dev_capture;
+  k4n_sensor->name = "device_" + to_string(nb_dev_capture);
+  k4n_sensor->device.index = nb_dev_capture;
   k4n_sensor->device.is_playback = false;
-  k4n_sensor->recorder.folder = default_folder;
-  k4n_sensor->recorder.path = default_folder + "record_dev_" + to_string(k4n_sensor->device.index) + ".mkv";
 
-  struct_swarm->selected_device = k4n_sensor;
-  struct_swarm->list_sensor.push_back(k4n_sensor);
-  struct_swarm->nb_dev_capture++;
+  selected_sensor = k4n_sensor;
+  list_sensor.push_back(k4n_sensor);
+  nb_dev_capture++;
 
   k4n_sensor->init();
   k4n_sensor->run_capture();
@@ -151,12 +145,12 @@ k4n::dev::Sensor* Swarm::create_sensor_capture(){
   return k4n_sensor;
 }
 void Swarm::close_sensor(k4n::dev::Sensor* k4n_sensor){
-  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_sensor;
+  list<k4n::dev::Sensor*>& list_device = list_sensor;
   //---------------------------
 
   k4n_sensor->destroy();
   list_device.remove(k4n_sensor);
-  k4n_sensor->device.is_playback ? struct_swarm->nb_dev_playback-- : struct_swarm->nb_dev_capture--;
+  k4n_sensor->device.is_playback ? nb_dev_playback-- : nb_dev_capture--;
   delete(k4n_sensor);
   k4n_sensor = nullptr;
 
@@ -165,7 +159,7 @@ void Swarm::close_sensor(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 }
 void Swarm::close_sensor_all(){
-  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_sensor;
+  list<k4n::dev::Sensor*>& list_device = list_sensor;
   //---------------------------
 
   for(int i=0; i<list_device.size(); i++){
@@ -176,13 +170,13 @@ void Swarm::close_sensor_all(){
   //---------------------------
 }
 void Swarm::selecte_next_sensor(){
-  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_sensor;
+  list<k4n::dev::Sensor*>& list_device = list_sensor;
   //---------------------------
 
   if(list_device.size() == 0){
-    struct_swarm->selected_device = nullptr;
+    selected_sensor = nullptr;
   }else{
-    struct_swarm->selected_device = *std::next(list_device.begin(), 0);
+    selected_sensor = *std::next(list_device.begin(), 0);
   }
 
   //---------------------------
