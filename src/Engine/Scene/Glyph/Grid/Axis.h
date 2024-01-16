@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Base_glyph.h>
+#include <Engine/Entity/Base_glyph.h>
 
 
 namespace glyph::grid{

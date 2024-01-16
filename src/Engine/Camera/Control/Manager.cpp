@@ -1,6 +1,7 @@
 #include "Manager.h"
 
 #include <Engine/Engine.h>
+#include <Engine/Base/Namespace.h>
 
 
 namespace eng::camera{

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Struct_entity.h>
+#include <Engine/Entity/Struct_entity.h>
 #include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Engine/Scene/Namespace.h>
 #include <Utility/Specific/common.h>

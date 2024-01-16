@@ -6,7 +6,7 @@
 #include <Engine/Scene/Data/Operation.h>
 #include <Engine/Scene/Glyph/Glyph.h>
 #include <Engine/Scene/Node.h>
-#include <Engine/Base/Namespace.h>
+#include <Engine/Entity/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class VK_engine;

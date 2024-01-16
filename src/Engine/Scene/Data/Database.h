@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Engine/Entity/Namespace.h>
 #include <Engine/Scene/Namespace.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 
 namespace eng::scene{

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Engine/Base/Namespace.h>
-#include <Engine/Base/Namespace.h>
 #include <Utility/Function/File/Info.h>
 #include <glm/glm.hpp>
 #include <string>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Engine/Entity/Namespace.h>
 
 #include <k4a/k4a.hpp>
 #include <cstdint>

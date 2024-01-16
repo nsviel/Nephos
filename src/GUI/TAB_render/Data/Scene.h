@@ -1,10 +1,11 @@
 #pragma once
 
-#include <Engine/Base/Namespace.h>
+#include <Engine/Entity/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Engine/Scene/Data/Database.h>
 #include <Engine/Camera/Namespace.h>
+#include <Engine/Base/Namespace.h>
 
 class GUI;
 

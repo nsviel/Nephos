@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <Engine/Entity/Namespace.h>
 #include <Engine/Base/Namespace.h>
 extern "C" {
 #include <libavcodec/avcodec.h>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Base/Namespace.h>
+#include <Engine/Entity/Namespace.h>
 #include <glm/glm.hpp>
 #include <vector>
 

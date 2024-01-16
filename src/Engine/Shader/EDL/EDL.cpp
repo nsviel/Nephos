@@ -1,7 +1,7 @@
 #include "EDL.h"
 
 #include <Engine/Engine.h>
-#include <Engine/Base/Namespace.h>
+#include <Engine/Entity/Namespace.h>
 #include <Utility/Namespace.h>
 
 

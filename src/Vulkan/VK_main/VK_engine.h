@@ -4,7 +4,7 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Base/Namespace.h>
+#include <Engine/Entity/Namespace.h>
 #include <Vulkan/VK_main/Namespace.h>
 #include <Utility/Function/Timer/fct_timer.h>
 

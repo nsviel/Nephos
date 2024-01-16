@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Base/Struct_entity.h>
+#include <Engine/Entity/Struct_entity.h>
 
 #include <string>
 #include <vector>

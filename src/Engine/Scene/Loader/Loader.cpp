@@ -4,7 +4,7 @@
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Engine/Base/Namespace.h>
+#include <Engine/Entity/Namespace.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 #include <Utility/Function/File/Info.h>
