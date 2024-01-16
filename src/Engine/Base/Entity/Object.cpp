@@ -53,6 +53,18 @@ void Object::remove_entity(){
 
   //----------------------------
 }
+void Object::entity_visibility(bool value){
+  //---------------------------
+
+  this->set_visibility(value);
+
+  for(int i=0; i<list_glyph.size(); i++){
+    eng::data::Glyph* glyph = *next(list_glyph.begin(), i);
+    glyph->entity_visibility(value);
+  }
+
+  //---------------------------
+}
 void Object::reset_entity(){
   //---------------------------
 

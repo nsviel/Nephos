@@ -32,6 +32,18 @@ void Glyph::update_entity(){
 
   //----------------------------
 }
+void Glyph::entity_visibility(bool value){
+  //---------------------------
+
+  this->set_visibility(value);
+
+  for(int i=0; i<vec_object.size(); i++){
+    eng::data::Object* object = vec_object[i];
+    object->entity_visibility(value);
+  }
+
+  //---------------------------
+}
 
 
 }

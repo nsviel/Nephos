@@ -26,42 +26,13 @@ Operation::Operation(eng::scene::Node* node_scene){
 Operation::~Operation(){}
 
 //Main function
-void Operation::switch_visibility(eng::data::Entity* entity, bool value){
-  if(entity == nullptr) return;
-  //---------------------------
-
-  //If entity is an object
-  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
-    object->set_visibility(value);
-    for(int i=0; i<object->list_glyph.size(); i++){
-      eng::data::Glyph* glyph = *next(object->list_glyph.begin(), i);
-      this->switch_visibility(glyph, value);
-    }
-  }
-  //Glyph entity
-  else if(eng::data::Glyph* glyph = dynamic_cast<eng::data::Glyph*>(entity)){
-    glyph->set_visibility(value);
-    vector<eng::data::Object*> vec_object = glyph->get_vec_object();
-    for(int i=0; i<vec_object.size(); i++){
-      eng::data::Object* object = vec_object[i];
-      this->switch_visibility(object, value);
-    }
-  }
-  //K4A device entity
-  else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    device->set_visibility(value);
-    this->switch_visibility(device->cloud.object, value);
-  }
-
-  //---------------------------
-}
 void Operation::switch_visibility(eng::data::Set* set, bool value){
   if(set == nullptr) return;
   //---------------------------
 
   for(int j=0; j<set->list_entity.size(); j++){
     eng::data::Entity* entity = *next(set->list_entity.begin(), j);
-    this->switch_visibility(entity, value);
+    entity->entity_visibility(value);
   }
 
   //---------------------------

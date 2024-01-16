@@ -22,7 +22,6 @@ public:
 public:
   //Main function
   void draw_all_clouds();
-  void reset_all_device();
 
   //Connection function
   void refresh_connected_device();

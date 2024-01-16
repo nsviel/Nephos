@@ -21,7 +21,6 @@ public:
   //Main function
   void init();
   void loop();
-  void reset();
 
   inline k4n::Swarm* get_k4a_swarm(){return k4a_swarm;}
 

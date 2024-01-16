@@ -36,18 +36,6 @@ void Swarm::draw_all_clouds(){
 
   //---------------------------
 }
-void Swarm::reset_all_device(){
-  list<k4n::Device*>& list_device = struct_swarm->list_device;
-  //---------------------------
-
-  //Run all thread
-  for(int i=0; i<list_device.size(); i++){
-    k4n::Device* k4n_device = *std::next(list_device.begin(), i);
-    k4n_device->reset_entity();
-  }
-
-  //---------------------------
-}
 
 //Connection function
 void Swarm::refresh_connected_device(){

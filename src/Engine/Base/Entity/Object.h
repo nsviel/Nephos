@@ -30,6 +30,7 @@ public:
   void update_entity();
   void remove_entity();
   void reset_entity();
+  void entity_visibility(bool value);
 
 public:
   Engine* engine;

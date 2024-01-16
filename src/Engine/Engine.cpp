@@ -72,7 +72,6 @@ void Engine::reset(){
 
   node_camera->reset();
   node_scene->reset();
-  node_capture->reset();
 
   //---------------------------
 }
