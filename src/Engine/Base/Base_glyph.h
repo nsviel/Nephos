@@ -10,16 +10,8 @@ class Glyph : public eng::data::Entity
 {
 public:
   //Constructor / Destructor
-  Glyph(){
-    //---------------------------
-
-    this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
-    this->is_visible = true;
-    this->type = "Glyph";
-
-    //---------------------------
-  }
-  ~Glyph(){}
+  Glyph();
+  ~Glyph();
 
 public:
   virtual void create(){}

@@ -1,10 +1,11 @@
-#include "Struct_object.h"
+#include "Base_object.h"
 
 #include <Utility/Function/Math/fct_math.h>
 
 
 namespace eng::data{
 
+//Constructor / Destructor
 Object::Object(){
   //---------------------------
 
@@ -13,6 +14,8 @@ Object::Object(){
 
   //---------------------------
 }
+Object::~Object(){}
+
 void Object::reset(){
   //---------------------------
 

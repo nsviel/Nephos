@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Engine/Base/Struct_entity.h>
-//#include <Engine/Base/Base_glyph.h>
 
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
@@ -17,14 +16,17 @@ namespace eng::data{
 class Glyph;
 
 
-struct Object : public eng::data::Entity
+class Object : public eng::data::Entity
 {
-  //---------------------------
-
-  //Functions
+public:
+  //Constructor / Destructor
   Object();
+  ~Object();
+
+public:
   void reset();
 
+public:
   //State
   int nb_point = 0;
   int draw_line_width = 1;
@@ -67,8 +69,6 @@ struct Object : public eng::data::Entity
 
   //Glyph
   std::list<eng::data::Glyph*> list_glyph;
-
-  //---------------------------
 };
 
 }
