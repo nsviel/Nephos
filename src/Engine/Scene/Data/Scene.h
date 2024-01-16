@@ -3,7 +3,6 @@
 #include <Engine/Scene/Glyph/Glyph.h>
 #include <Engine/Operation/Namespace.h>
 #include <Engine/Scene/Data/Database.h>
-#include <Engine/Scene/Data/Operation.h>
 #include <Engine/Scene/Glyph/Glyph.h>
 #include <Engine/Scene/Node.h>
 #include <Utility/Base/Namespace.h>
@@ -46,7 +45,6 @@ private:
   VK_engine* vk_engine;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
-  eng::scene::Operation* sce_operation;
   eng::scene::Loader* sce_loader;
   eng::ope::Attribut* ope_attribut;
 

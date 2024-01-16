@@ -15,7 +15,6 @@ Entity::Entity(GUI* gui, bool* panel_show){
   eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->sce_scene = node_scene->get_scene();
-  this->sce_operation = node_scene->get_scene_operation();
   this->ope_attribut = new eng::ope::Attribut();
   this->ope_operation = new eng::ope::Operation();
 

@@ -4,7 +4,6 @@
 #include <Engine/Scene/Loader/Loader.h>
 #include <Engine/Scene/Loader/Bookmark.h>
 #include <Engine/Scene/Data/Scene.h>
-#include <Engine/Scene/Data/Operation.h>
 #include <Engine/Scene/Glyph/Glyph.h>
 #include <Engine/Scene/Format/Format.h>
 #include <Engine/Scene/Node.h>
@@ -20,7 +19,6 @@ namespace eng::scene{
   class Format;
   class Loader;
   class Glyph;
-  class Operation;
 
   //---------------------------
 }

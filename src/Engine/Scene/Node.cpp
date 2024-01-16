@@ -14,7 +14,6 @@ Node::Node(Engine* engine){
   this->sce_glyph = new eng::scene::Glyph(this);
   this->sce_loader = new eng::scene::Loader(this);
   this->sce_scene = new eng::scene::Scene(this);
-  this->sce_operation = new eng::scene::Operation(this);
   this->sce_bookmark = new eng::scene::Bookmark(this);
 
   //---------------------------

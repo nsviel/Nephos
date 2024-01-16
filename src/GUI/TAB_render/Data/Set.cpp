@@ -10,11 +10,6 @@ namespace gui::rnd::data{
 Set::Set(GUI* gui, bool* show_window){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
-  eng::scene::Node* node_scene = engine->get_node_scene();
-
-  this->sce_operation = node_scene->get_scene_operation();
-
   this->panel_show = show_window;
   this->panel_name = "Set";
   this->item_width = 100;

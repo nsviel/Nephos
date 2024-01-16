@@ -39,7 +39,6 @@ private:
   eng::ope::Attribut* ope_attribut;
   eng::ope::Operation* ope_operation;
   eng::scene::Scene* sce_scene;
-  eng::scene::Operation* sce_operation;
 
   entity::Entity* entity;
   string panel_name;

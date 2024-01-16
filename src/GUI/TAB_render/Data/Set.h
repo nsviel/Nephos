@@ -27,8 +27,6 @@ public:
   inline void set_selected_set(utl::base::Set* set){this->set_selected = set;}
 
 private:
-  eng::scene::Operation* sce_operation;
-
   utl::base::Set* set_selected;
   string panel_name;
   bool* panel_show;;

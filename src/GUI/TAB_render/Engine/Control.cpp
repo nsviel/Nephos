@@ -27,7 +27,6 @@ Control::Control(GUI* gui){
   this->cam_control = node_camera->get_camera_control();
   this->sce_scene = node_scene->get_scene();
   this->sce_database = node_scene->get_scene_database();
-  this->sce_operation = new eng::scene::Operation(node_scene);
   this->ope_transform = new eng::ope::Transformation();
 
   //---------------------------
@@ -230,7 +229,7 @@ void Control::control_mouse_wheel(){
   //Wheel actions
   if(io.MouseWheel && io.MouseDownDuration[1] == -1){
     //Rotation quantity
-    float radian = 5 * M_PI/180;
+    float radian = 5 * M_PI/180 * 50;
     vec3 R;
     if(wheel_mode == 0){
       R = vec3(0, 0, math::sign(io.MouseWheel) * radian);

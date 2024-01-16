@@ -30,7 +30,6 @@ public:
   inline eng::scene::Database* get_scene_database(){return sce_database;}
   inline eng::scene::Loader* get_scene_loader(){return sce_loader;}
   inline eng::scene::Glyph* get_scene_glyph(){return sce_glyph;}
-  inline eng::scene::Operation* get_scene_operation(){return sce_operation;}
   inline eng::scene::Bookmark* get_scene_bookmark(){return sce_bookmark;}
 
 private:
@@ -39,7 +38,6 @@ private:
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
   eng::scene::Loader* sce_loader;
-  eng::scene::Operation* sce_operation;
   eng::scene::Bookmark* sce_bookmark;
 };
 
