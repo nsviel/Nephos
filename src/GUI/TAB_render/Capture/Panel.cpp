@@ -28,7 +28,7 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
   //---------------------------
 
   if(*show_window && k4n_sensor != nullptr){
@@ -61,7 +61,7 @@ void Panel::design_panel(){
 
 //Subfunction
 void Panel::show_info(){
-  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 

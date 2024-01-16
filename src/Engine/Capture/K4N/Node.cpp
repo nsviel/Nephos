@@ -26,7 +26,7 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  k4a_swarm->refresh_connected_device();
+  k4a_swarm->refresh_connected_sensor();
   k4a_swarm->draw_all_clouds();
 
   //---------------------------

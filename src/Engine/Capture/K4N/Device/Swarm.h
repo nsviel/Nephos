@@ -25,21 +25,21 @@ public:
   void init_scene();
 
   //Connection function
-  void refresh_connected_device();
-  void manage_new_capture_device(int number);
-  void manage_less_capture_device(int number);
+  void refresh_connected_sensor();
+  void manage_new_capture_sensor(int number);
+  void manage_less_capture_sensor(int number);
 
   //Creation / supression function
-  k4n::dev::Sensor* create_device_playback(string path);
-  k4n::dev::Sensor* create_device_capture();
-  void close_device(k4n::dev::Sensor* device);
-  void close_device_all();
-  void selecte_next_device();
+  k4n::dev::Sensor* create_sensor_playback(string path);
+  k4n::dev::Sensor* create_sensor_capture();
+  void close_sensor(k4n::dev::Sensor* device);
+  void close_sensor_all();
+  void selecte_next_sensor();
 
-  inline k4n::dev::Sensor* get_selected_device(){return struct_swarm->selected_device;}
+  inline k4n::dev::Sensor* get_selected_sensor(){return struct_swarm->selected_device;}
   inline list<k4n::dev::Sensor*>& get_list_sensor(){return struct_swarm->list_sensor;}
-  inline int get_nb_device(){return struct_swarm->nb_device;}
-  inline int get_nb_playback(){return struct_swarm->nb_playback;}
+  inline int get_nb_dev_capture(){return struct_swarm->nb_dev_capture;}
+  inline int get_nb_dev_playback(){return struct_swarm->nb_dev_playback;}
   inline void set_selected_device(k4n::dev::Sensor* device){struct_swarm->selected_device = device;}
 
 private:

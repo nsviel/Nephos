@@ -44,7 +44,7 @@ void Master::remove_entity(){
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* device = *next(list_sensor.begin(), i);
-    //k4a_swarm->close_device(device);
+    //k4a_swarm->close_sensor(device);
   }
 
   //---------------------------

@@ -15,9 +15,9 @@ struct Swarm{
   //k4n::Master* selected_master = nullptr;
   //std::list<k4n::Master*> list_master;
 
-  int nb_device = 0;
-  int nb_capture = 0;
-  int nb_playback = 0;
+  int nb_dev = 0;
+  int nb_dev_capture = 0;
+  int nb_dev_playback = 0;
 
   //---------------------------
 };

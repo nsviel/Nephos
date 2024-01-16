@@ -51,21 +51,21 @@ void Player::player_control(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+      k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
       k4n_sensor->player.pause = !k4n_sensor->player.pause;
       break;
     }
 
     //Left arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
-      k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+      k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
       k4n_sensor->player.ts_forward = -1;
       break;
     }
 
     //Right arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
-      k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+      k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
       k4n_sensor->player.ts_forward = 1;
       break;
     }
@@ -74,7 +74,7 @@ void Player::player_control(){
   //----------------------------
 }
 void Player::player_slider(){
-  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
@@ -89,7 +89,7 @@ void Player::player_slider(){
 
 //Player button
 void Player::player_start(){
-  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
@@ -113,7 +113,7 @@ void Player::player_start(){
   //---------------------------
 }
 void Player::player_stop(){
-  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr || !k4n_sensor->device.is_playback) return;
   //---------------------------
 
@@ -135,7 +135,7 @@ void Player::player_stop(){
   //---------------------------
 }
 void Player::player_repeat(){
-  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr || !k4n_sensor->device.is_playback) return;
   //---------------------------
 
@@ -157,7 +157,7 @@ void Player::player_repeat(){
   //---------------------------
 }
 void Player::player_record(){
-  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
@@ -179,7 +179,7 @@ void Player::player_record(){
   //---------------------------
 }
 void Player::player_close(){
-  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
