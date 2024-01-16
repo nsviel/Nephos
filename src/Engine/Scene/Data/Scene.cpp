@@ -60,6 +60,8 @@ void Scene::reset(){
 
   //---------------------------
 }
+
+//Entity
 entity::Entity* Scene::get_selected_entity(){
   utl::base::Set* data_set = sce_database->get_data_set();
   //---------------------------
@@ -70,8 +72,6 @@ entity::Entity* Scene::get_selected_entity(){
   //---------------------------
   return entity;
 }
-
-//Entity
 entity::Entity* Scene::import_entity(std::string path){
   //---------------------------
 
@@ -147,14 +147,6 @@ void Scene::insert_object(entity::Object* object){
 
   //---------------------------
 }
-void Scene::update_object(entity::Object* object){
-  //---------------------------
-
-  vk_engine->insert_data_in_engine(object->data);
-  ope_attribut->compute_MinMax(object->data);
-
-  //---------------------------
-}
 void Scene::remove_object(entity::Object* object){
   //---------------------------
 
@@ -164,6 +156,14 @@ void Scene::remove_object(entity::Object* object){
   //---------------------------
 }
 
+//Data
+void Scene::update_data(utl::base::Data* data){
+  //---------------------------
 
+  vk_engine->insert_data_in_engine(data);
+  ope_attribut->compute_MinMax(data);
+
+  //---------------------------
+}
 
 }

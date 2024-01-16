@@ -29,8 +29,8 @@ public:
   void entity_parameter(entity::Entity* entity);
 
   //Primitive size
-  void entity_line(entity::Object* object);
-  void entity_point(entity::Object* object);
+  void data_line(utl::base::Data* data);
+  void data_point(utl::base::Data* data);
 
   inline void set_entity(entity::Entity* entity){this->entity = entity;}
 

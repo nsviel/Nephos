@@ -118,22 +118,16 @@ void Entity::entity_parameter(entity::Entity* entity){
       entity->name = str_n;
     }
 
-    //Format
-
-
-    //FOUTRE TOUT CE BORDER DE TYPE ENTITY DANS scene/OPERATION
-    if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-      entity = device->cloud.object;
-    }
-
-    if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
+    //Data info
+    utl::base::Data* data = entity->get_data();
+    if(data != nullptr){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Format"); ImGui::TableNextColumn();
       static char str_f[256];
-      strcpy(str_f, object->data->file_format.c_str());
+      strcpy(str_f, data->file_format.c_str());
       ImGui::SetNextItemWidth(item_width);
       if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
-        object->data->file_format = str_f;
+        data->file_format = str_f;
       }
 
       //Uniform collection color
@@ -141,14 +135,14 @@ void Entity::entity_parameter(entity::Entity* entity){
       ImGui::Text("Color"); ImGui::TableNextColumn();
       ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
       flags |= ImGuiColorEditFlags_AlphaBar;
-      if(ImGui::ColorEdit4("Color", (float*)&object->data->unicolor, flags)){
-        ope_attribut->set_unicolor(object->data);
-        sce_scene->update_object(object);
+      if(ImGui::ColorEdit4("Color", (float*)&data->unicolor, flags)){
+        ope_attribut->set_unicolor(data);
+        sce_scene->update_data(data);
       }
 
       //Root pos
       ImGui::TableNextRow(); ImGui::TableNextColumn();
-      vec3& root = object->data->root;
+      vec3& root = data->root;
       ImGui::Text("Root"); ImGui::TableNextColumn();
       ImGui::NextColumn();
       ImGui::Text("%.2f  %.2f  %.2f", root.x, root.y, root.z);
@@ -158,11 +152,11 @@ void Entity::entity_parameter(entity::Entity* entity){
       }
 
       //Primitive size
-      if(object->data->draw_type_name == "point"){
-        this->entity_point(object);
+      if(data->draw_type_name == "point"){
+        this->data_point(data);
       }
-      else if(object->data->draw_type_name == "line"){
-        this->entity_line(object);
+      else if(data->draw_type_name == "line"){
+        this->data_line(data);
       }
     }
 
@@ -173,7 +167,7 @@ void Entity::entity_parameter(entity::Entity* entity){
 }
 
 //Primitive size
-void Entity::entity_line(entity::Object* object){
+void Entity::data_line(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -182,30 +176,30 @@ void Entity::entity_line(entity::Object* object){
   ImGui::Text("Line width"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    object->data->draw_line_width--;
+    data->draw_line_width--;
 
-    if(object->data->draw_line_width <= 1){
-      object->data->draw_line_width = 1;
+    if(data->draw_line_width <= 1){
+      data->draw_line_width = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    object->data->draw_line_width++;
+    data->draw_line_width++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", object->data->draw_line_width);
+  ImGui::Text("%d", data->draw_line_width);
 
   //---------------------------
 }
-void Entity::entity_point(entity::Object* object){
+void Entity::data_point(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Nb point"); ImGui::TableNextColumn();
-  string nb_point = math::thousand_separator(object->data->nb_point);
+  string nb_point = math::thousand_separator(data->nb_point);
   ImGui::Text("%s", nb_point.c_str());
 
   //Point size
@@ -213,19 +207,19 @@ void Entity::entity_point(entity::Object* object){
   ImGui::Text("Point size"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    object->data->draw_point_size--;
+    data->draw_point_size--;
 
-    if(object->data->draw_point_size <= 1){
-      object->data->draw_point_size = 1;
+    if(data->draw_point_size <= 1){
+      data->draw_point_size = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    object->data->draw_point_size++;
+    data->draw_point_size++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", object->data->draw_point_size);
+  ImGui::Text("%d", data->draw_point_size);
 
   //---------------------------
 }
