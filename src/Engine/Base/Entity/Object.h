@@ -27,6 +27,7 @@ public:
   ~Object();
 
   //Main function
+  void update_entity();
   void reset();
 
 public:

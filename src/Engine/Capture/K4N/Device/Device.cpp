@@ -49,6 +49,18 @@ void Device::init(){
 
   //---------------------------
 }
+void Device::update_entity(){
+  eng::camera::Node* node_camera = engine->get_node_camera();
+  eng::camera::Control* cam_control = node_camera->get_camera_control();
+  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
+  //----------------------------
+
+  cam_control->compute_camera_mvp(cloud.object);
+  sce_glyph->update_glyph_object(cloud.object);
+
+  //----------------------------
+}
 void Device::reset(){
   //---------------------------
 

@@ -26,31 +26,6 @@ Operation::Operation(eng::scene::Node* node_scene){
 Operation::~Operation(){}
 
 //Main function
-void Operation::update_entity(eng::data::Entity* entity){
-  if(entity == nullptr) return;
-  //---------------------------
-
-  //Object entity
-  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
-    cam_control->compute_camera_mvp(object);
-    sce_glyph->update_glyph_object(object);
-  }
-  //Glyph entity
-  else if(eng::data::Glyph* glyph = dynamic_cast<eng::data::Glyph*>(entity)){
-    glyph->update_entity();
-  }
-  //Camera entity
-  else if(eng::data::Camera* camera = dynamic_cast<eng::data::Camera*>(entity)){
-    camera->update_entity();
-  }
-  //K4A device entity
-  else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    cam_control->compute_camera_mvp(device->cloud.object);
-    sce_glyph->update_glyph_object(device->cloud.object);
-  }
-
-  //---------------------------
-}
 void Operation::remove_entity(eng::data::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------

@@ -22,6 +22,7 @@ public:
 public:
   //Main function
   void init();
+  void update_entity();
   void reset();
   void destroy();
   void draw_cloud();
