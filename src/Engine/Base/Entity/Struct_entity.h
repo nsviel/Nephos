@@ -10,6 +10,7 @@ struct Entity
   //---------------------------
 
   virtual ~Entity(){}
+  virtual void update_entity(){}
   virtual void reset(){};
 
   int ID = -1;

@@ -14,7 +14,9 @@ public:
   Glyph(Engine* engine);
   ~Glyph();
 
-public:
+  //Main function
+  void update_entity();
+
   virtual void create(){}
   virtual void update_glyph(){}
   virtual void update_glyph(eng::data::Entity* entity){}

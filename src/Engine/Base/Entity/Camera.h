@@ -6,7 +6,6 @@
 #include <string>
 #include <list>
 
-
 enum camera_mode{
   CAMERA_MODE_PLAYER = 0,
   CAMERA_MODE_ARCBALL = 1,
@@ -38,6 +37,7 @@ public:
   ~Camera();
 
   //Main function
+  void update_entity();
   void reset();
 
 public:

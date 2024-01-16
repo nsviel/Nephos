@@ -15,6 +15,17 @@ Camera::Camera(){
 Camera::~Camera(){}
 
 //Main function
+void Camera::update_entity(){
+  //----------------------------
+
+  for(int i=0; i<list_glyph.size(); i++){
+    eng::data::Glyph* glyph = *next(list_glyph.begin(), i);
+    glyph->update_glyph(this);
+    glyph->update_entity();
+  }
+
+  //----------------------------
+}
 void Camera::reset(){
   //---------------------------
 

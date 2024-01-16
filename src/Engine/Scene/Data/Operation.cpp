@@ -37,18 +37,11 @@ void Operation::update_entity(eng::data::Entity* entity){
   }
   //Glyph entity
   else if(eng::data::Glyph* glyph = dynamic_cast<eng::data::Glyph*>(entity)){
-    vector<eng::data::Object*> vec_object = glyph->get_vec_object();
-    for(int i=0; i<vec_object.size(); i++){
-      cam_control->compute_camera_mvp(vec_object[i]);
-    }
+    glyph->update_entity();
   }
   //Camera entity
   else if(eng::data::Camera* camera = dynamic_cast<eng::data::Camera*>(entity)){
-    for(int i=0; i<camera->list_glyph.size(); i++){
-      eng::data::Glyph* glyph = *next(camera->list_glyph.begin(), i);
-      glyph->update_glyph(camera);
-      this->update_entity(glyph);
-    }
+    camera->update_entity();
   }
   //K4A device entity
   else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){

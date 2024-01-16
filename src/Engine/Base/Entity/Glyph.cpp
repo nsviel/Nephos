@@ -1,6 +1,7 @@
 #include "Glyph.h"
 
 #include <Engine/Engine.h>
+#include <Engine/Camera/Namespace.h>
 #include <Utility/Function/Math/fct_math.h>
 
 
@@ -19,6 +20,18 @@ Glyph::Glyph(Engine* engine){
 }
 Glyph::~Glyph(){}
 
+//Main function
+void Glyph::update_entity(){
+  eng::camera::Node* node_camera = engine->get_node_camera();
+  eng::camera::Control* cam_control = node_camera->get_camera_control();
+  //----------------------------
+
+  for(int i=0; i<vec_object.size(); i++){
+    cam_control->compute_camera_mvp(vec_object[i]);
+  }
+
+  //----------------------------
+}
 
 
 }
