@@ -35,12 +35,13 @@ void Swarm::draw_all_clouds(){
   //---------------------------
 }
 void Swarm::init_scene(){
+  string path = "/home/aether/Desktop/versaille.mkv";
   //---------------------------
 
   //If no real device create virtual one
   uint32_t nb_device = k4a_device_get_installed_count();
   if(nb_device == 0 && nb_dev_playback == 0){
-    this->create_sensor_playback("/home/aether/Desktop/versaille_with_transfo_mat.mkv");
+    this->create_sensor_playback(path);
   }
 
   //---------------------------

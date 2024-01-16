@@ -31,8 +31,6 @@ Scene::~Scene(){}
 void Scene::init(){
   //---------------------------
 
-this->import_entity("/home/aether/Desktop/versaille_with_transfo_mat.mkv");
-
   //Initial scene entities
   //vector<string> vec_path;
   //vec_path.push_back( "../media/point_cloud/dragon.ply");
