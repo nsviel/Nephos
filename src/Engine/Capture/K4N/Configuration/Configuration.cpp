@@ -13,7 +13,7 @@ Configuration::Configuration(){
 Configuration::~Configuration(){}
 
 //Capture configuration
-void Configuration::make_device_configuration(k4n::Sensor* k4n_sensor){
+void Configuration::make_device_configuration(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
@@ -32,7 +32,7 @@ void Configuration::make_device_configuration(k4n::Sensor* k4n_sensor){
 }
 
 //Playback configuration
-void Configuration::find_playback_configuration(k4n::Sensor* k4n_sensor){
+void Configuration::find_playback_configuration(k4n::dev::Sensor* k4n_sensor){
   k4a_record_configuration_t configuration = k4n_sensor->device.playback->get_record_configuration();
   //---------------------------
 
@@ -45,7 +45,7 @@ void Configuration::find_playback_configuration(k4n::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void Configuration::find_config_fps(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
+void Configuration::find_config_fps(k4n::dev::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
   //---------------------------
 
   k4n_sensor->device.fps.mode = configuration.camera_fps;
@@ -69,7 +69,7 @@ void Configuration::find_config_fps(k4n::Sensor* k4n_sensor, k4a_record_configur
 
   //---------------------------
 }
-void Configuration::find_config_synchro(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
+void Configuration::find_config_synchro(k4n::dev::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
   //---------------------------
 
   k4n_sensor->synchro.wired_sync_mode = configuration.wired_sync_mode;
@@ -94,7 +94,7 @@ void Configuration::find_config_synchro(k4n::Sensor* k4n_sensor, k4a_record_conf
 
   //---------------------------
 }
-void Configuration::find_config_depth(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
+void Configuration::find_config_depth(k4n::dev::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
   //---------------------------
 
   k4n_sensor->depth.config.enabled = configuration.depth_track_enabled;
@@ -130,7 +130,7 @@ void Configuration::find_config_depth(k4n::Sensor* k4n_sensor, k4a_record_config
 
   //---------------------------
 }
-void Configuration::find_config_color(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
+void Configuration::find_config_color(k4n::dev::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
   //---------------------------
 
   //Ask for default color format
@@ -175,7 +175,7 @@ void Configuration::find_config_color(k4n::Sensor* k4n_sensor, k4a_record_config
 
   //---------------------------
 }
-void Configuration::find_config_format(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
+void Configuration::find_config_format(k4n::dev::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
   //---------------------------
 
   k4n_sensor->color.config.format = configuration.color_format;
@@ -213,7 +213,7 @@ void Configuration::find_config_format(k4n::Sensor* k4n_sensor, k4a_record_confi
 
   //---------------------------
 }
-void Configuration::find_config_device(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
+void Configuration::find_config_device(k4n::dev::Sensor* k4n_sensor, k4a_record_configuration_t& configuration){
   //---------------------------
 
   k4n_sensor->ir.config.enabled = configuration.ir_track_enabled;

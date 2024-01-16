@@ -18,18 +18,18 @@ public:
 
 public:
   //Main function
-  void convert_into_cloud(k4n::Sensor* k4n_sensor);
+  void convert_into_cloud(k4n::dev::Sensor* k4n_sensor);
 
   //Loop function
-  void loop_init(k4n::Sensor* k4n_sensor);
-  void loop_data(k4n::Sensor* k4n_sensor);
-  void loop_end(k4n::Sensor* k4n_sensor);
+  void loop_init(k4n::dev::Sensor* k4n_sensor);
+  void loop_data(k4n::dev::Sensor* k4n_sensor);
+  void loop_end(k4n::dev::Sensor* k4n_sensor);
 
   //Subfunction
   void retrieve_location(int& x, int& y, int& z);
-  void retrieve_color(k4n::Sensor* k4n_sensor, int i);
-  void retrieve_ir(k4n::Sensor* k4n_sensor, int i);
-  void retrieve_corner_coordinate(k4n::Sensor* k4n_sensor);
+  void retrieve_color(k4n::dev::Sensor* k4n_sensor, int i);
+  void retrieve_ir(k4n::dev::Sensor* k4n_sensor, int i);
+  void retrieve_corner_coordinate(k4n::dev::Sensor* k4n_sensor);
 
 private:
   Engine* engine;

@@ -32,7 +32,7 @@ private:
   gui::kinect::Recorder* kin_recorder;
   gui::kinect::Player* kin_player;
   gui::kinect::Operation* kin_operation;
-  k4n::Swarm* k4a_swarm;
+  k4n::dev::Swarm* k4a_swarm;
 };
 
 }

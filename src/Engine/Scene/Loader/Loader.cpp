@@ -67,7 +67,7 @@ entity::Entity* Loader::load_entity(std::string path){
   if(format == "mkv"){
     eng::capture::Node* node_capture = engine->get_node_capture();
     k4n::Node* node_kinect = node_capture->get_node_kinect();
-    k4n::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
+    k4n::dev::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
     k4a_swarm->create_device_playback(path);
   }else{
     entity = load_object(path);

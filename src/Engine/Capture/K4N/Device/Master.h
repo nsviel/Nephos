@@ -6,7 +6,7 @@
 
 class Engine;
 
-namespace k4n{
+namespace k4n::dev{
 class Sensor;
 
 
@@ -29,7 +29,7 @@ public:
 public:
   Engine* engine;
 
-  list<k4n::Sensor*> list_device;
+  list<k4n::dev::Sensor*> list_device;
 };
 
 }

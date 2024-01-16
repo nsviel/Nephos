@@ -30,7 +30,7 @@ K4A_playback::~K4A_playback(){
 }
 
 //Main function
-void K4A_playback::start_thread(k4n::Sensor* k4n_sensor){
+void K4A_playback::start_thread(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   if(!thread_running){
@@ -39,7 +39,7 @@ void K4A_playback::start_thread(k4n::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void K4A_playback::run_thread(k4n::Sensor* k4n_sensor){
+void K4A_playback::run_thread(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   //Get info about file
@@ -95,7 +95,7 @@ void K4A_playback::stop_thread(){
 }
 
 //Subfunction
-void K4A_playback::find_duration(k4n::Sensor* k4n_sensor){
+void K4A_playback::find_duration(k4n::dev::Sensor* k4n_sensor){
   k4n::structure::Player* player = &k4n_sensor->player;
   //---------------------------
 
@@ -126,7 +126,7 @@ void K4A_playback::find_duration(k4n::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void K4A_playback::manage_query_ts(k4n::Sensor* k4n_sensor){
+void K4A_playback::manage_query_ts(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   //If a timestamp was querry
@@ -150,7 +150,7 @@ void K4A_playback::manage_query_ts(k4n::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void K4A_playback::manage_pause(k4n::Sensor* k4n_sensor){
+void K4A_playback::manage_pause(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -162,7 +162,7 @@ void K4A_playback::manage_pause(k4n::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void K4A_playback::manage_restart(k4n::Sensor* k4n_sensor){
+void K4A_playback::manage_restart(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   if(k4n_sensor->player.ts_cur == k4n_sensor->player.ts_end){
@@ -174,7 +174,7 @@ void K4A_playback::manage_restart(k4n::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void K4A_playback::manage_recording(k4n::Sensor* k4n_sensor, k4a::capture capture){
+void K4A_playback::manage_recording(k4n::dev::Sensor* k4n_sensor, k4a::capture capture){
   //---------------------------
 
   k4a::record& recorder = k4n_sensor->recorder.recorder;

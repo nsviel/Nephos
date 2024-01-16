@@ -10,7 +10,7 @@ class K4A_capture;
 class K4A_playback;
 class Engine;
 
-namespace k4n{
+namespace k4n::dev{
 
 
 class Sensor : public entity::Entity

@@ -15,8 +15,8 @@ public:
 
 public:
   //Main function
-  std::vector<uint8_t> convert_ir_into_color(k4n::Sensor* device);
-  void find_ir_level(k4n::Sensor* device);
+  std::vector<uint8_t> convert_ir_into_color(k4n::dev::Sensor* device);
+  void find_ir_level(k4n::dev::Sensor* device);
 
 private:
 

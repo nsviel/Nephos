@@ -29,7 +29,7 @@ K4A_capture::~K4A_capture(){
 }
 
 //Main function
-void K4A_capture::start_thread(k4n::Sensor* device){
+void K4A_capture::start_thread(k4n::dev::Sensor* device){
   //---------------------------
 
   if(!thread_running){
@@ -40,7 +40,7 @@ void K4A_capture::start_thread(k4n::Sensor* device){
 }
 
 //Subfunction
-void K4A_capture::run_thread(k4n::Sensor* k4n_sensor){
+void K4A_capture::run_thread(k4n::dev::Sensor* k4n_sensor){
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
@@ -93,7 +93,7 @@ void K4A_capture::stop_thread(){
 
   //---------------------------
 }
-void K4A_capture::manage_pause(k4n::Sensor* k4n_sensor){
+void K4A_capture::manage_pause(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -105,7 +105,7 @@ void K4A_capture::manage_pause(k4n::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void K4A_capture::manage_recording(k4n::Sensor* k4n_sensor, k4a::capture capture){
+void K4A_capture::manage_recording(k4n::dev::Sensor* k4n_sensor, k4a::capture capture){
   //---------------------------
 
   k4a::record& recorder = k4n_sensor->recorder.recorder;
@@ -131,7 +131,7 @@ void K4A_capture::manage_recording(k4n::Sensor* k4n_sensor, k4a::capture capture
 
   //---------------------------
 }
-void K4A_capture::manage_color_setting(k4n::Sensor* k4n_sensor){
+void K4A_capture::manage_color_setting(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   k4n_sensor->device.device->set_color_control(k4n_sensor->color.config.exposure.command, k4n_sensor->color.config.exposure.mode, k4n_sensor->color.config.exposure.value);

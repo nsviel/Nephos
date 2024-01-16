@@ -25,12 +25,12 @@ public:
   void run();
 
   //Subfunction
-  void start_thread(k4n::Sensor* device);
-  void run_thread(k4n::Sensor* device);
+  void start_thread(k4n::dev::Sensor* device);
+  void run_thread(k4n::dev::Sensor* device);
   void stop_thread();
-  void manage_pause(k4n::Sensor* k4n_sensor);
-  void manage_recording(k4n::Sensor* k4n_sensor, k4a::capture capture);
-  void manage_color_setting(k4n::Sensor* k4n_sensor);
+  void manage_pause(k4n::dev::Sensor* k4n_sensor);
+  void manage_recording(k4n::dev::Sensor* k4n_sensor, k4a::capture capture);
+  void manage_color_setting(k4n::dev::Sensor* k4n_sensor);
 
   inline bool is_thread_running(){return thread_running;}
   inline bool* get_thread_pause(){return &thread_pause;}

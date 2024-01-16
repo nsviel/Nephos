@@ -19,7 +19,7 @@ Cloud::Cloud(Engine* engine){
 Cloud::~Cloud(){}
 
 //Main function
-void Cloud::convert_into_cloud(k4n::Sensor* k4n_sensor){
+void Cloud::convert_into_cloud(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   this->loop_init(k4n_sensor);
@@ -31,7 +31,7 @@ void Cloud::convert_into_cloud(k4n::Sensor* k4n_sensor){
 }
 
 //Loop function
-void Cloud::loop_init(k4n::Sensor* k4n_sensor){
+void Cloud::loop_init(k4n::dev::Sensor* k4n_sensor){
   if(k4n_sensor->depth.image.data.empty()) return;
   //---------------------------
 
@@ -42,7 +42,7 @@ void Cloud::loop_init(k4n::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void Cloud::loop_data(k4n::Sensor* k4n_sensor){
+void Cloud::loop_data(k4n::dev::Sensor* k4n_sensor){
   if(k4n_sensor->depth.image.data.empty()) return;
   //---------------------------
 
@@ -71,7 +71,7 @@ void Cloud::loop_data(k4n::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void Cloud::loop_end(k4n::Sensor* k4n_sensor){
+void Cloud::loop_end(k4n::dev::Sensor* k4n_sensor){
   if(k4n_sensor->depth.image.data.empty()) return;
   //---------------------------
 
@@ -109,7 +109,7 @@ void Cloud::retrieve_location(int& x, int& y, int& z){
 
   //---------------------------
 }
-void Cloud::retrieve_color(k4n::Sensor* k4n_sensor, int i){
+void Cloud::retrieve_color(k4n::dev::Sensor* k4n_sensor, int i){
   //---------------------------
 
   k4n::structure::Cloud* cloud = k4n_sensor->get_cloud();
@@ -131,7 +131,7 @@ void Cloud::retrieve_color(k4n::Sensor* k4n_sensor, int i){
   //---------------------------
   vec_rgba.push_back(color);
 }
-void Cloud::retrieve_ir(k4n::Sensor* k4n_sensor, int i){
+void Cloud::retrieve_ir(k4n::dev::Sensor* k4n_sensor, int i){
   if(k4n_sensor->ir.image.data.empty()) return;
   //---------------------------
 
@@ -143,7 +143,7 @@ void Cloud::retrieve_ir(k4n::Sensor* k4n_sensor, int i){
   //---------------------------
   vec_ir.push_back(value);
 }
-void Cloud::retrieve_corner_coordinate(k4n::Sensor* k4n_sensor){
+void Cloud::retrieve_corner_coordinate(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   // Define your pixel coordinates and depth value

@@ -16,11 +16,11 @@ public:
 
 public:
   //Main function
-  void play(k4n::Sensor* k4n_sensor);
-  void pause(k4n::Sensor* k4n_sensor);
-  void stop(k4n::Sensor* k4n_sensor);
-  void restart(k4n::Sensor* k4n_sensor);
-  void record(k4n::Sensor* k4n_sensor);
+  void play(k4n::dev::Sensor* k4n_sensor);
+  void pause(k4n::dev::Sensor* k4n_sensor);
+  void stop(k4n::dev::Sensor* k4n_sensor);
+  void restart(k4n::dev::Sensor* k4n_sensor);
+  void record(k4n::dev::Sensor* k4n_sensor);
 
 private:
   eng::ope::Transformation* ope_transform;
