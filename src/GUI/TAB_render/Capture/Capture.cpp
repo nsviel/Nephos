@@ -41,7 +41,7 @@ void Capture::kinect_configuration(){
 
 //Subfunction
 void Capture::kinect_devices(){
-  list<k4n::dev::Sensor*>& list_device = k4a_swarm->get_list_sensor();
+  k4n::dev::Master* master = k4a_swarm->get_selected_master();
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -60,8 +60,8 @@ void Capture::kinect_devices(){
       ImGui::TableSetupColumn("ID");
       ImGui::TableSetupColumn("Serial number");
       ImGui::TableHeadersRow();
-      for(int i=0; i<list_device.size(); i++){
-        k4n::dev::Sensor* k4n_sensor = *std::next(list_device.begin(), i);
+      for(int i=0; i< master->list_sensor.size(); i++){
+        k4n::dev::Sensor* k4n_sensor = *std::next( master->list_sensor.begin(), i);
         if(k4n_sensor->device.is_playback) continue;
 
         ImGui::TableNextRow();

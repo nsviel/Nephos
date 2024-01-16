@@ -27,9 +27,10 @@ public:
   void visibility_entity(bool value);
 
 public:
-  Engine* engine;
-
   list<k4n::dev::Sensor*> list_sensor;
+
+private:
+  Engine* engine;
 };
 
 }
