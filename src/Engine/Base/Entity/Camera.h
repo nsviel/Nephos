@@ -30,13 +30,17 @@ namespace eng::data{
 class Glyph;
 
 
-struct Camera : public eng::data::Entity
+class Camera : public eng::data::Entity
 {
-  //---------------------------
-
+public:
+  //Constructor / Destructor
   Camera();
+  ~Camera();
+
+  //Main function
   void reset();
 
+public:
   //Camera pose
   glm::vec3 cam_F = glm::vec3(0.0f); // Front
   glm::vec3 cam_R = glm::vec3(0.0f); // Right
@@ -67,8 +71,7 @@ struct Camera : public eng::data::Entity
 
   //Glyph
   std::list<eng::data::Glyph*> list_glyph;
-
-  //---------------------------
 };
+
 
 }

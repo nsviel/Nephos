@@ -1,8 +1,9 @@
-#include "Struct_camera.h"
+#include "Camera.h"
 
 
 namespace eng::data{
 
+//Constructor / Destructor
 Camera::Camera(){
   //---------------------------
 
@@ -11,7 +12,9 @@ Camera::Camera(){
 
   //---------------------------
 }
+Camera::~Camera(){}
 
+//Main function
 void Camera::reset(){
   //---------------------------
 

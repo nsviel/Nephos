@@ -1,4 +1,4 @@
-#include "Base_object.h"
+#include "Object.h"
 
 #include <Utility/Function/Math/fct_math.h>
 
@@ -16,6 +16,7 @@ Object::Object(){
 }
 Object::~Object(){}
 
+//Main function
 void Object::reset(){
   //---------------------------
 

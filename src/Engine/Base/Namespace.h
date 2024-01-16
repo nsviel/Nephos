@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Engine/Base/Entity/Struct_entity.h>
-#include <Engine/Base/Entity/Base_object.h>
-#include <Engine/Base/Entity/Struct_camera.h>
-#include <Engine/Base/Entity/Base_glyph.h>
+#include <Engine/Base/Entity/Object.h>
+#include <Engine/Base/Entity/Camera.h>
+#include <Engine/Base/Entity/Glyph.h>
 #include <Engine/Base/Set/Struct_set.h>
 #include <Engine/Base/Media/Struct_file.h>
 #include <Engine/Base/Media/Struct_image.h>
