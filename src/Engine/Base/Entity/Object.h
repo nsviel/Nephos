@@ -12,6 +12,8 @@
 #include <map>
 #include <mutex>
 
+class Engine;
+
 namespace eng::data{
 class Glyph;
 
@@ -21,12 +23,15 @@ class Object : public eng::data::Entity
 public:
   //Constructor / Destructor
   Object();
+  Object(Engine* engine);
   ~Object();
 
   //Main function
   void reset();
 
 public:
+  Engine* engine;
+
   //State
   int nb_point = 0;
   int draw_line_width = 1;

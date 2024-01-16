@@ -20,7 +20,7 @@ Normal::Normal(Engine* engine) : Glyph(engine){
 Normal::~Normal(){}
 /*
 eng::data::Object* Normal::create(eng::data::Object* object){
-  eng::data::Object* glyph = new eng::data::Object();
+  eng::data::Object* glyph = new eng::data::Object(engine);
   //---------------------------
 
   //Create glyph

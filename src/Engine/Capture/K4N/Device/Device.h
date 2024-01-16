@@ -36,6 +36,7 @@ public:
   inline k4n::structure::Cloud* get_cloud(){return &cloud;}
 
 public:
+  Engine* engine;
   eng::scene::Scene* eng_scene;
   eng::scene::Glyph* sce_glyph;
   eng::ope::Transformation* ope_transform;

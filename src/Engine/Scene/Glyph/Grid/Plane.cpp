@@ -18,7 +18,7 @@ void Plane::create(){
   if(vec_object.size() != 0) return;
   //---------------------------
 
-  eng::data::Object* object = new eng::data::Object();
+  eng::data::Object* object = new eng::data::Object(engine);
   object->name = "grid_plane";
   object->is_visible = true;
   object->draw_type_name = "triangle";

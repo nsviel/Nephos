@@ -26,7 +26,7 @@ void Tree::create(){
   //---------------------------
 
   //Create glyph
-  eng::data::Object* object = new eng::data::Object();
+  eng::data::Object* object = new eng::data::Object(engine);
   object->name = "tree";
   object->draw_line_width = 2;
   object->is_visible = is_visible;

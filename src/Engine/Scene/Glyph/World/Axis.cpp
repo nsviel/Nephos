@@ -21,7 +21,7 @@ void Axis::create(){
   if(vec_object.size() != 0) return;
   //---------------------------
 
-  eng::data::Object* object = new eng::data::Object();
+  eng::data::Object* object = new eng::data::Object(engine);
   object->name = "world_axis";
   object->draw_line_width = 4;
   object->is_visible = true;

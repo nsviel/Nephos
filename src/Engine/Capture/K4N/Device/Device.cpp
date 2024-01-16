@@ -14,6 +14,7 @@ Device::Device(Engine* engine){
 
   eng::scene::Node* node_scene = engine->get_node_scene();
 
+  this->engine = engine;
   this->k4a_capture = new K4A_capture(engine);
   this->k4a_playback = new K4A_playback(engine);
   this->eng_scene = node_scene->get_scene();
@@ -41,7 +42,7 @@ void Device::init(){
   this->device.name = str_mode + to_string(device.index);
 
   //Device cloud
-  cloud.object = new eng::data::Object();
+  cloud.object = new eng::data::Object(engine);
   cloud.object->name = device.name;
   cloud.object->draw_type_name = "point";
   eng_scene->insert_object(cloud.object);

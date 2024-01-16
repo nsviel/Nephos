@@ -1,5 +1,6 @@
 #include "Object.h"
 
+#include <Engine/Engine.h>
 #include <Utility/Function/Math/fct_math.h>
 
 
@@ -9,6 +10,15 @@ namespace eng::data{
 Object::Object(){
   //---------------------------
 
+  this->unicolor = math::random_color();
+  this->type = "Object";
+
+  //---------------------------
+}
+Object::Object(Engine* engine){
+  //---------------------------
+
+  this->engine = engine;
   this->unicolor = math::random_color();
   this->type = "Object";
 

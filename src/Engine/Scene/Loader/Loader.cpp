@@ -83,7 +83,7 @@ eng::data::Object* Loader::load_object(string path){
 
   eng::data::File* data = eng_format->get_data_from_file(path);
 
-  eng::data::Object* object = new eng::data::Object();
+  eng::data::Object* object = new eng::data::Object(engine);
   object->path_file = path;
   object->file_format = info::get_format_from_path(path);
   object->has_texture = true;

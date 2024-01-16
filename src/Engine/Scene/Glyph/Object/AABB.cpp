@@ -17,7 +17,7 @@ void AABB::create(){
   if(vec_object.size() != 0) return;
   //---------------------------
 
-  eng::data::Object* object = new eng::data::Object();
+  eng::data::Object* object = new eng::data::Object(engine);
   object->name = "aabb";
   object->draw_line_width = 1;
   object->is_visible = false;
