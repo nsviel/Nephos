@@ -27,14 +27,12 @@ public:
 
   inline vector<entity::Object*>& get_vec_object(){return vec_object;}
   inline vec4* get_color(){return &color;}
-  inline bool* get_visibility(){return &is_visible;}
 
 protected:
   Engine* engine;
   vector<entity::Object*> vec_object;
 
   vec4 color;
-  bool is_visible;
 };
 
 }

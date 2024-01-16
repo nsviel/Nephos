@@ -20,7 +20,7 @@ void AABB::create(){
   entity::Object* object = new entity::Object(engine);
   object->name = "aabb";
   object->data->draw_line_width = 1;
-  object->is_visible = false;
+  object->data->is_visible = false;
   object->data->draw_type_name = "line";
   object->is_permanent = true;
   object->data->unicolor = color;

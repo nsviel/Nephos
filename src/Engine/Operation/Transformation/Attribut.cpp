@@ -37,16 +37,6 @@ void Attribut::compute_MinMax(entity::Object* object){
   object->data->max = max;
   object->data->COM = centroid;
 }
-void Attribut::set_visibility(utl::base::Set* set, bool visibility){
-  //---------------------------
-
-  for(int i=0; i<set->list_entity.size(); i++){
-    entity::Object* object = (entity::Object*)*next(set->list_entity.begin(), i);
-    object->is_visible = visibility;
-  }
-
-  //---------------------------
-}
 void Attribut::set_unicolor(entity::Object* object){
   //---------------------------
 

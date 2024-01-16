@@ -23,7 +23,7 @@ void Axis::create(){
   entity::Object* object = new entity::Object(engine);
   object->name = "axis";
   object->data->draw_line_width = 3;
-  object->is_visible = is_visible;
+  object->data->is_visible = is_visible;
   object->data->draw_type_name = "line";
   this->vec_object.push_back(object);
   this->construct();

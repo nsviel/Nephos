@@ -115,7 +115,7 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* data =  *next(list_data.begin(), i);
-    bool is_visible = data->object->is_visible;
+    bool is_visible = data->object->data->is_visible;
     bool has_topology = data->object->data->draw_type_name == "point";
     bool has_xyz = data->object->data->xyz.size() != 0;
     bool has_rgb = data->object->data->rgb.size() != 0;
@@ -142,7 +142,7 @@ void RP_scene::cmd_draw_line(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* data =  *next(list_data.begin(), i);
-    bool& is_visible = data->object->is_visible;
+    bool& is_visible = data->object->data->is_visible;
     bool has_topology = data->object->data->draw_type_name == "line";
     bool has_xyz = data->object->data->xyz.size() != 0;
     bool has_rgb = data->object->data->rgb.size() != 0;
@@ -169,7 +169,7 @@ void RP_scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* data =  *next(list_data.begin(), i);
-    bool& is_visible = data->object->is_visible;
+    bool& is_visible = data->object->data->is_visible;
     bool has_topology = data->object->data->draw_type_name == "triangle";
     bool has_xyz = data->object->data->xyz.size() != 0;
     bool has_rgb = data->object->data->rgb.size() != 0;

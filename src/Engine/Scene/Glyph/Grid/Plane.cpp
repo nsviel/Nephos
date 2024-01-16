@@ -20,7 +20,7 @@ void Plane::create(){
 
   entity::Object* object = new entity::Object(engine);
   object->name = "grid_plane";
-  object->is_visible = true;
+  object->data->is_visible = true;
   object->data->draw_type_name = "triangle";
   object->is_permanent = true;
   object->data->unicolor = color;

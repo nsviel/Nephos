@@ -104,8 +104,9 @@ void Entity::entity_parameter(entity::Entity* entity){
     //Visibility
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Visibility"); ImGui::TableNextColumn();
-    if(ImGui::Checkbox("##4555", &entity->is_visible)){
-      entity->visibility_entity(entity->is_visible);
+    bool is_visible = entity->get_visibility();
+    if(ImGui::Checkbox("##4555", &is_visible)){
+      entity->visibility_entity(is_visible);
     }
 
     //Name

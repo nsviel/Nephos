@@ -24,7 +24,7 @@ void Axis::create(){
   entity::Object* object = new entity::Object(engine);
   object->name = "world_axis";
   object->data->draw_line_width = 4;
-  object->is_visible = true;
+  object->data->is_visible = true;
   object->data->draw_type_name = "line";
   object->is_permanent = true;
   this->vec_object.push_back(object);

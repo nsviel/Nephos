@@ -20,7 +20,6 @@ void Camera::create(){
   entity::Object* object = new entity::Object(engine);
   object->name = "camera";
   object->data->draw_line_width = 1;
-  object->is_visible = true;
   object->data->draw_type_name = "line";
   object->is_permanent = true;
   object->data->unicolor = vec4(1, 1, 1, 0.2f);

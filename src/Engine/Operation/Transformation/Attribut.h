@@ -22,7 +22,6 @@ public:
 public:
   //Main functions
   void compute_MinMax(entity::Object* object);
-  void set_visibility(utl::base::Set* set, bool visibility);
   void set_unicolor(entity::Object* object);
   vector<float> retrieve_z_vector(entity::Object* object);
 

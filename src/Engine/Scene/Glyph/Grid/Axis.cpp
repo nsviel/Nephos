@@ -20,7 +20,7 @@ void Axis::create(){
   entity::Object* object = new entity::Object(engine);
   object->name = "grid_axis";
   object->data->draw_line_width = 2;
-  object->is_visible = true;
+  object->data->is_visible = true;
   object->data->draw_type_name = "line";
   object->is_permanent = true;
   object->data->unicolor = color;

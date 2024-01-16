@@ -101,7 +101,7 @@ void RP_glyph::cmd_draw_point(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
-    bool& is_visible = vk_object->object->is_visible;
+    bool& is_visible = vk_object->object->data->is_visible;
     bool is_point = vk_object->object->data->draw_type_name == "point";
     bool has_xyz = vk_object->object->data->xyz.size() != 0;
     bool has_rgb = vk_object->object->data->rgb.size() != 0;
@@ -128,7 +128,7 @@ void RP_glyph::cmd_draw_line(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
-    bool& is_visible = vk_object->object->is_visible;
+    bool& is_visible = vk_object->object->data->is_visible;
     bool is_point = vk_object->object->data->draw_type_name == "line";
     bool has_xyz = vk_object->object->data->xyz.size() != 0;
     bool has_rgb = vk_object->object->data->rgb.size() != 0;

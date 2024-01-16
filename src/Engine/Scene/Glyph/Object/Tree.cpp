@@ -29,7 +29,7 @@ void Tree::create(){
   entity::Object* object = new entity::Object(engine);
   object->name = "tree";
   object->data->draw_line_width = 2;
-  object->is_visible = is_visible;
+  object->data->is_visible = is_visible;
   object->data->draw_type_name = "line";
   object->is_permanent = true;
   object->data->unicolor = color;

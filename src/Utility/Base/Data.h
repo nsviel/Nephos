@@ -36,7 +36,8 @@ struct Data{
   bool has_normal;
   bool has_texture;
   bool has_timestamp;
-
+  bool is_visible = true;
+  
   std::vector<glm::vec3> xyz;
   std::vector<glm::vec4> rgb;
   std::vector<glm::vec3> Nxyz;
