@@ -15,7 +15,6 @@ Swarm::Swarm(Engine* engine){
   this->engine = engine;
   this->sce_scene = node_scene->get_scene();
   this->k4n_transfo = new k4n::utils::Transformation();
-  this->default_file = "/home/aether/Desktop/versaille_with_transfo_mat.mkv";
 
   //---------------------------
 }
