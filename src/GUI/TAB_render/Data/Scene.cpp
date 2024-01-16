@@ -17,8 +17,8 @@ Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name
 
   this->sce_database = node_scene->get_scene_database();
   this->sce_scene = node_scene->get_scene();
-  this->rnd_set = new gui::rnd::data::Set(gui, &show_set);
-  this->rnd_object = new gui::rnd::data::Entity(gui, &show_object);
+  this->rnd_set = new gui::rnd::data::Set(gui, &show_panel_set);
+  this->rnd_object = new gui::rnd::data::Entity(gui, &show_panel_entity);
   this->cam_control = node_camera->get_camera_control();
   this->ope_operation = new eng::ope::Operation();
 
@@ -148,18 +148,7 @@ int Scene::data_node_tree(utl::base::Set* set) {
   // Node flags
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
-  if (set->name != "World") {
-    flag_node |= ImGuiTreeNodeFlags_DefaultOpen;
-  }
-
-  // Leaf flags
-  ImGuiTreeNodeFlags flag_leaf;
-  flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
-  flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
-  flag_leaf |= ImGuiTreeNodeFlags_Leaf;
-  flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
-  //flag_leaf |= ImGuiTreeNodeFlags_Bullet;
-  flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
+  flag_node |= set->name != "World" ? ImGuiTreeNodeFlags_DefaultOpen : 0;
 
   // Set nodes
   if(set->nb_entity == 0 && set->nb_set == 0) return 0;
@@ -169,37 +158,15 @@ int Scene::data_node_tree(utl::base::Set* set) {
   // If item double-clicked
   if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
     rnd_set->set_selected_set(set);
-    this->show_set = true;
+    this->show_panel_set = true;
   }
 
   // Set elements (leaf nodes) and nested set nodes
   if(is_node_open){
-    for(entity::Entity* entity : set->list_entity){
-      ImGui::TableNextRow();
-      ImGui::TableNextColumn();
-      nb_row++;
+    for(int i=0; i<set->list_entity.size(); i++){
+      entity::Entity* entity = *next(set->list_entity.begin(), i);
 
-      // If object is selected
-      if(entity == set->selected_entity && entity->is_suppressible){
-        flag_leaf |= ImGuiTreeNodeFlags_Selected;
-      }else{
-        flag_leaf &= ~ImGuiTreeNodeFlags_Selected;
-      }
-
-      // Display leaf
-      string name = ICON_FA_FILE_O + (string)"   " + entity->name;
-      ImGui::TreeNodeEx(name.c_str(), flag_leaf);
-
-      // If item clicked
-      if (ImGui::IsItemClicked()) {
-        set->selected_entity = entity;
-      }
-
-      // If item double-clicked
-      if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
-        rnd_object->set_entity(entity);
-        this->show_object = true;
-      }
+      this->display_entity(set, entity, nb_row);
     }
 
     // Recursive call for nested sets
@@ -213,6 +180,68 @@ int Scene::data_node_tree(utl::base::Set* set) {
   //---------------------------
   return nb_row;
 }
+void Scene::display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row){
+  //---------------------------
 
+  ImGui::TableNextRow();
+  ImGui::TableNextColumn();
+  nb_row++;
+
+  // If object is selected
+  ImGuiTreeNodeFlags flag_leaf;
+  flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
+  flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
+  flag_leaf |= ImGuiTreeNodeFlags_Leaf;
+  flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
+  flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
+
+
+
+  ImGuiTreeNodeFlags flag_node;
+  flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
+  flag_node |= ImGuiTreeNodeFlags_DefaultOpen;
+  flag_node |= (entity == set->selected_entity && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
+
+  // Display leaf
+  string name = ICON_FA_FILE_O + (string)"   " + entity->name;
+  bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag_node);
+
+  if(is_node_open){
+    vector<entity::Entity*> vec_entity = entity->get_vec_entity();
+    list<entity::Entity*> list_entity = entity->get_list_entity();
+
+    for(int i=0; i<list_entity.size(); i++){
+      entity::Entity* entity = *next(list_entity.begin(), i);
+
+      if(entity == set->selected_entity && entity->is_suppressible){
+        flag_leaf |= ImGuiTreeNodeFlags_Selected;
+      }else{
+        flag_leaf &= ~ImGuiTreeNodeFlags_Selected;
+      }
+
+      string name = ICON_FA_FILE_O + (string)"   " + entity->name;
+      ImGui::TreeNodeEx(name.c_str(), flag_leaf);
+
+      // If item clicked
+      if (ImGui::IsItemClicked()) {
+        set->selected_entity = entity;
+      }
+    }
+  }
+
+
+  // If item clicked
+  if (ImGui::IsItemClicked()) {
+    set->selected_entity = entity;
+  }
+
+  // If item double-clicked
+  if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
+    rnd_object->set_entity(entity);
+    this->show_panel_entity = true;
+  }
+
+  //---------------------------
+}
 
 }

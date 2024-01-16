@@ -30,9 +30,10 @@ public:
   void draw_window_background();
   void draw_tree_view();
   int data_node_tree(utl::base::Set* set);
+  void display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row);
 
-  bool show_object   = false;
-  bool show_set      = false;
+  bool show_panel_entity   = false;
+  bool show_panel_set      = false;
 
 private:
   gui::rnd::data::Entity* rnd_object;
