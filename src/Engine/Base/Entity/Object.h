@@ -43,11 +43,6 @@ public:
 
 
 
-  //State
-  int nb_point = 0;
-  int draw_line_width = 1;
-  int draw_point_size = 5;
-
   //Infos
   std::string path_file = "";
   std::string path_save = "";
@@ -55,13 +50,6 @@ public:
   std::string file_format = "";
   std::string draw_type_name = "";
   glm::vec4 unicolor;
-
-  //Data
-  bool has_color;
-  bool has_intensity;
-  bool has_normal;
-  bool has_texture;
-  bool has_timestamp;
 
   std::vector<glm::vec3> xyz;
   std::vector<glm::vec4> rgb;

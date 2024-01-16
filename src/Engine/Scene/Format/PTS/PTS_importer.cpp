@@ -345,7 +345,7 @@ bool PTS_importer::Exporter(std::string path, eng::data::Object* object){
     }
 
     //Color
-    if(object->has_color){
+    if(object->data->has_color){
       file << std::setprecision(0) <<" "<< RGB[i].x * 255 <<" "<< RGB[i].y * 255 <<" "<< RGB[i].z * 255;
     }
 
