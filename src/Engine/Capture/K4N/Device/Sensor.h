@@ -13,12 +13,12 @@ class Engine;
 namespace k4n{
 
 
-class Device : public entity::Entity
+class Sensor : public entity::Entity
 {
 public:
   //Constructor / Destructor
-  Device(Engine* engine);
-  ~Device();
+  Sensor(Engine* engine);
+  ~Sensor();
 
 public:
   //Main function

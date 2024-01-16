@@ -16,8 +16,8 @@ Player::Player(){
 Player::~Player(){}
 
 //Main function
-void Player::play(k4n::Device* k4n_device){
-  k4n::structure::Player* player = &k4n_device->player;
+void Player::play(k4n::Sensor* k4n_sensor){
+  k4n::structure::Player* player = &k4n_sensor->player;
   //---------------------------
 
   if(!player->play){
@@ -29,16 +29,16 @@ void Player::play(k4n::Device* k4n_device){
 
   //---------------------------
 }
-void Player::pause(k4n::Device* k4n_device){
-  k4n::structure::Player* player = &k4n_device->player;
+void Player::pause(k4n::Sensor* k4n_sensor){
+  k4n::structure::Player* player = &k4n_sensor->player;
   //---------------------------
 
   player->pause = true;
 
   //---------------------------
 }
-void Player::stop(k4n::Device* k4n_device){
-  k4n::structure::Player* player = &k4n_device->player;
+void Player::stop(k4n::Sensor* k4n_sensor){
+  k4n::structure::Player* player = &k4n_sensor->player;
   //---------------------------
 
   player->ts_seek = player->ts_beg;
@@ -47,16 +47,16 @@ void Player::stop(k4n::Device* k4n_device){
 
   //---------------------------
 }
-void Player::restart(k4n::Device* k4n_device){
-  k4n::structure::Player* player = &k4n_device->player;
+void Player::restart(k4n::Sensor* k4n_sensor){
+  k4n::structure::Player* player = &k4n_sensor->player;
   //---------------------------
 
   player->restart = !player->restart;
 
   //---------------------------
 }
-void Player::record(k4n::Device* k4n_device){
-  k4n::structure::Player* player = &k4n_device->player;
+void Player::record(k4n::Sensor* k4n_sensor){
+  k4n::structure::Player* player = &k4n_sensor->player;
   //---------------------------
 
   player->record = !player->record;

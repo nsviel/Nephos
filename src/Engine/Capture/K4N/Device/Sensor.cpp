@@ -1,4 +1,4 @@
-#include "Device.h"
+#include "Sensor.h"
 
 #include <Engine/Engine.h>
 #include <Engine/Capture/K4N/Thread/K4A_capture.h>
@@ -9,7 +9,7 @@ namespace k4n{
 
 
 //Constructor / Destructor
-Device::Device(Engine* engine){
+Sensor::Sensor(Engine* engine){
   //---------------------------
 
   eng::scene::Node* node_scene = engine->get_node_scene();
@@ -21,11 +21,11 @@ Device::Device(Engine* engine){
   this->sce_glyph = node_scene->get_scene_glyph();
   this->ope_transform = new eng::ope::Transformation();
 
-  this->type = "Device";
+  this->type = "Sensor";
 
   //---------------------------
 }
-Device::~Device(){
+Sensor::~Sensor(){
   //---------------------------
 
   this->destroy();
@@ -34,14 +34,14 @@ Device::~Device(){
 }
 
 //Main function
-void Device::init(){
+void Sensor::init(){
   //---------------------------
 
-  //Device name
+  //Sensor name
   string str_mode = device.is_playback ? "playback_" : "capture_";
   this->device.name = str_mode + to_string(device.index);
 
-  //Device cloud
+  //Sensor cloud
   cloud.object = new entity::Object(engine);
   cloud.object->name = device.name;
   cloud.object->data->draw_type_name = "point";
@@ -49,14 +49,14 @@ void Device::init(){
 
   //---------------------------
 }
-void Device::reset(){
+void Sensor::reset(){
   //---------------------------
 
   cloud.object->reset_entity();
 
   //---------------------------
 }
-void Device::destroy(){
+void Sensor::destroy(){
   //---------------------------
 
   this->stop_threads();
@@ -65,7 +65,7 @@ void Device::destroy(){
 
   //---------------------------
 }
-void Device::draw_cloud(){
+void Sensor::draw_cloud(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(cloud.object->data->mutex);
@@ -76,7 +76,7 @@ void Device::draw_cloud(){
 }
 
 //Entity function
-void Device::update_entity(){
+void Sensor::update_entity(){
   eng::camera::Node* node_camera = engine->get_node_camera();
   eng::camera::Control* cam_control = node_camera->get_camera_control();
   eng::scene::Node* node_scene = engine->get_node_scene();
@@ -88,7 +88,7 @@ void Device::update_entity(){
 
   //----------------------------
 }
-void Device::remove_entity(){
+void Sensor::remove_entity(){
   eng::capture::Node* node_capture = engine->get_node_capture();
   k4n::Node* node_kinect = node_capture->get_node_kinect();
   k4n::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
@@ -98,7 +98,7 @@ void Device::remove_entity(){
 
   //---------------------------
 }
-void Device::visibility_entity(bool value){
+void Sensor::visibility_entity(bool value){
   //---------------------------
 
   this->is_visible = value;
@@ -107,7 +107,7 @@ void Device::visibility_entity(bool value){
 
   //---------------------------
 }
-void Device::reset_entity(){
+void Sensor::reset_entity(){
   //---------------------------
 
   cloud.object->reset_entity();
@@ -117,7 +117,7 @@ void Device::reset_entity(){
 }
 
 //Capture function
-void Device::run_capture(){
+void Sensor::run_capture(){
   //---------------------------
 
   if(!k4a_capture->is_thread_running()){
@@ -126,7 +126,7 @@ void Device::run_capture(){
 
   //---------------------------
 }
-void Device::restart_capture(){
+void Sensor::restart_capture(){
   //---------------------------
 
   this->stop_threads();
@@ -134,7 +134,7 @@ void Device::restart_capture(){
 
   //---------------------------
 }
-void Device::run_playback(string path){
+void Sensor::run_playback(string path){
   //---------------------------
 
   this->playback.path = path;
@@ -142,7 +142,7 @@ void Device::run_playback(string path){
 
   //---------------------------
 }
-void Device::stop_threads(){
+void Sensor::stop_threads(){
   //---------------------------
 
   this->k4a_capture->stop_thread();
@@ -150,7 +150,7 @@ void Device::stop_threads(){
 
   //---------------------------
 }
-void Device::reset_color_configuration(){
+void Sensor::reset_color_configuration(){
   //---------------------------
 
   color.config.exposure.value = 15625;

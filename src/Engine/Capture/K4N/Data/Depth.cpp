@@ -12,7 +12,7 @@ Depth::Depth(){
 Depth::~Depth(){}
 
 //Main function
-std::vector<uint8_t> Depth::convert_depth_into_color(k4n::Device* device){
+std::vector<uint8_t> Depth::convert_depth_into_color(k4n::Sensor* device){
   vector<uint8_t>& inputBuffer = device->depth.image.data;
   uint16_t range_min = device->depth.config.range_min;
   uint16_t range_max = device->depth.config.range_max;
@@ -47,7 +47,7 @@ std::vector<uint8_t> Depth::convert_depth_into_color(k4n::Device* device){
   //---------------------------
   return outputBuffer;
 }
-void Depth::find_depth_mode_range(k4n::Device* device){
+void Depth::find_depth_mode_range(k4n::Sensor* device){
   //---------------------------
 
   if(device->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){

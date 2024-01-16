@@ -20,8 +20,8 @@ Capture::~Capture(){}
 
 //Main function
 void Capture::kinect_configuration(){
-  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
-  if(k4n_device == nullptr || k4n_device->device.is_playback) return;
+  k4n::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  if(k4n_sensor == nullptr || k4n_sensor->device.is_playback) return;
   //---configuration_device----
 
   this->kinect_devices();
@@ -41,7 +41,7 @@ void Capture::kinect_configuration(){
 
 //Subfunction
 void Capture::kinect_devices(){
-  list<k4n::Device*>& list_device = k4a_swarm->get_list_device();
+  list<k4n::Sensor*>& list_device = k4a_swarm->get_list_device();
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -61,19 +61,19 @@ void Capture::kinect_devices(){
       ImGui::TableSetupColumn("Serial number");
       ImGui::TableHeadersRow();
       for(int i=0; i<list_device.size(); i++){
-        k4n::Device* k4n_device = *std::next(list_device.begin(), i);
-        if(k4n_device->device.is_playback) continue;
+        k4n::Sensor* k4n_sensor = *std::next(list_device.begin(), i);
+        if(k4n_sensor->device.is_playback) continue;
 
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
 
-        ImGui::PushID(k4n_device->device.serial_number.c_str());
+        ImGui::PushID(k4n_sensor->device.serial_number.c_str());
         ImGui::Text("Azur Kinect");
         ImGui::TableNextColumn();
-        ImGui::Text("%d", k4n_device->device.index);
+        ImGui::Text("%d", k4n_sensor->device.index);
         ImGui::TableNextColumn();
-        if (ImGui::Selectable(k4n_device->device.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
-          k4a_swarm->set_selected_device(k4n_device);
+        if (ImGui::Selectable(k4n_sensor->device.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
+          k4a_swarm->set_selected_device(k4n_sensor);
           selected_device = i;
         }
         ImGui::PopID();
@@ -86,31 +86,31 @@ void Capture::kinect_devices(){
   //---------------------------
 }
 void Capture::configuration_depth(){
-  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
-  if(k4n_device == nullptr) return;
+  k4n::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  if(k4n_sensor == nullptr) return;
   //---------------------------
 
-  ImGui::Checkbox("Depth enabled", &k4n_device->depth.config.enabled);
-  if(k4n_device->depth.config.enabled){
+  ImGui::Checkbox("Depth enabled", &k4n_sensor->depth.config.enabled);
+  if(k4n_sensor->depth.config.enabled){
     ImGui::Indent();
     if(ImGui::TreeNode("Depth configuration")){
       static int depth_mode = 1;
       if(ImGui::RadioButton("NFOV Binned", &depth_mode, 0)){
-        k4n_device->depth.config.mode = K4A_DEPTH_MODE_NFOV_2X2BINNED;
+        k4n_sensor->depth.config.mode = K4A_DEPTH_MODE_NFOV_2X2BINNED;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("NFOV Unbinned", &depth_mode, 1)){
-        k4n_device->depth.config.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
+        k4n_sensor->depth.config.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
       }
       if(ImGui::RadioButton("WFOV Binned", &depth_mode, 2)){
-        k4n_device->depth.config.mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
+        k4n_sensor->depth.config.mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("WFOV Unbinned", &depth_mode, 3)){
-        k4n_device->depth.config.mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
+        k4n_sensor->depth.config.mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
       }
       if(ImGui::RadioButton("Passive IR", &depth_mode, 4)){
-        k4n_device->depth.config.mode = K4A_DEPTH_MODE_PASSIVE_IR;
+        k4n_sensor->depth.config.mode = K4A_DEPTH_MODE_PASSIVE_IR;
       }
 
       ImGui::TreePop();
@@ -121,12 +121,12 @@ void Capture::configuration_depth(){
   //---------------------------
 }
 void Capture::configuration_color(){
-  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
-  if(k4n_device == nullptr) return;
+  k4n::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  if(k4n_sensor == nullptr) return;
   //---------------------------
 
-  ImGui::Checkbox("Color enabled", &k4n_device->color.config.enabled);
-  if(k4n_device->color.config.enabled){
+  ImGui::Checkbox("Color enabled", &k4n_sensor->color.config.enabled);
+  if(k4n_sensor->color.config.enabled){
     ImGui::Indent();
     if(ImGui::TreeNode("Color configuration")){
 
@@ -134,19 +134,19 @@ void Capture::configuration_color(){
       ImGui::Text("Format");
       static int color_format = 0;
       if(ImGui::RadioButton("BGRA", &color_format, 0)){
-        k4n_device->color.config.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+        k4n_sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("MJPG", &color_format, 1)){
-        k4n_device->color.config.format = K4A_IMAGE_FORMAT_COLOR_MJPG;
+        k4n_sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_MJPG;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("NV12", &color_format, 2)){
-        k4n_device->color.config.format = K4A_IMAGE_FORMAT_COLOR_NV12;
+        k4n_sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_NV12;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("YUY2", &color_format, 3)){
-        k4n_device->color.config.format = K4A_IMAGE_FORMAT_COLOR_YUY2;
+        k4n_sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_YUY2;
       }
 
       //Resolution
@@ -154,29 +154,29 @@ void Capture::configuration_color(){
       ImGui::Indent();
       static int color_resolution = 0;
       if(ImGui::RadioButton("720p", &color_resolution, 0)){
-        k4n_device->color.config.resolution = K4A_COLOR_RESOLUTION_720P;
+        k4n_sensor->color.config.resolution = K4A_COLOR_RESOLUTION_720P;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("1080p", &color_resolution, 1)){
-        k4n_device->color.config.resolution = K4A_COLOR_RESOLUTION_1080P;
+        k4n_sensor->color.config.resolution = K4A_COLOR_RESOLUTION_1080P;
       }
       if(ImGui::RadioButton("1440p", &color_resolution, 2)){
-        k4n_device->color.config.resolution = K4A_COLOR_RESOLUTION_1440P;
+        k4n_sensor->color.config.resolution = K4A_COLOR_RESOLUTION_1440P;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("2160p", &color_resolution, 3)){
-        k4n_device->color.config.resolution = K4A_COLOR_RESOLUTION_2160P;
+        k4n_sensor->color.config.resolution = K4A_COLOR_RESOLUTION_2160P;
       }
       ImGui::Unindent();
 
       ImGui::Text("Resolution [4:3]");
       ImGui::Indent();
       if(ImGui::RadioButton("1536p", &color_resolution, 4)){
-        k4n_device->color.config.resolution = K4A_COLOR_RESOLUTION_1536P;
+        k4n_sensor->color.config.resolution = K4A_COLOR_RESOLUTION_1536P;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("3072p", &color_resolution, 5)){
-        k4n_device->color.config.resolution = K4A_COLOR_RESOLUTION_3072P;
+        k4n_sensor->color.config.resolution = K4A_COLOR_RESOLUTION_3072P;
       }
       ImGui::Unindent();
 
@@ -186,53 +186,53 @@ void Capture::configuration_color(){
     if(ImGui::TreeNode("Color control")){
       //Exposur time
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Exposure Time", &k4n_device->color.config.exposure.value, 488, 1000000, "%d us");
+      ImGui::SliderInt("Exposure Time", &k4n_sensor->color.config.exposure.value, 488, 1000000, "%d us");
 
       //White Balance
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("White Balance", &k4n_device->color.config.white_balance.value, 2500, 12500, "%d K");
+      ImGui::SliderInt("White Balance", &k4n_sensor->color.config.white_balance.value, 2500, 12500, "%d K");
 
       //Brightness
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Brightness", &k4n_device->color.config.brightness.value, 0, 255, "%d");
+      ImGui::SliderInt("Brightness", &k4n_sensor->color.config.brightness.value, 0, 255, "%d");
 
       //Contrast
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Contrast", &k4n_device->color.config.contrast.value, 0, 10, "%d");
+      ImGui::SliderInt("Contrast", &k4n_sensor->color.config.contrast.value, 0, 10, "%d");
 
       //Saturation
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Saturation", &k4n_device->color.config.saturation.value, 0, 63, "%d");
+      ImGui::SliderInt("Saturation", &k4n_sensor->color.config.saturation.value, 0, 63, "%d");
 
       //Sharpness
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Sharpness", &k4n_device->color.config.sharpness.value, 0, 4, "%d");
+      ImGui::SliderInt("Sharpness", &k4n_sensor->color.config.sharpness.value, 0, 4, "%d");
 
       //Gain
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Gain", &k4n_device->color.config.gain.value, 0, 255, "%d");
+      ImGui::SliderInt("Gain", &k4n_sensor->color.config.gain.value, 0, 255, "%d");
 
       //Backlight Compensation
-      ImGui::Checkbox("Backlight Compensation", &k4n_device->color.config.backlight_compensation.value);
+      ImGui::Checkbox("Backlight Compensation", &k4n_sensor->color.config.backlight_compensation.value);
 
       //Power frequency
       ImGui::Text("Power Frequency");
       static int power_frequency = 0;
       if(ImGui::RadioButton("50Hz", &power_frequency, 0)){
-        k4n_device->color.config.power_frequency.value = 1;
+        k4n_sensor->color.config.power_frequency.value = 1;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("60Hz", &power_frequency, 1)){
-        k4n_device->color.config.power_frequency.value = 2;
+        k4n_sensor->color.config.power_frequency.value = 2;
       }
 
       //Refresh / reset buttons
       if (ImGui::Button("Restart")){
-        k4n_device->restart_capture();
+        k4n_sensor->restart_capture();
       }
       ImGui::SameLine();
       if (ImGui::Button("Reset to default##RGB")){
-        k4n_device->reset_color_configuration();
+        k4n_sensor->reset_color_configuration();
       }
 
       ImGui::TreePop();
@@ -244,39 +244,39 @@ void Capture::configuration_color(){
   //---------------------------
 }
 void Capture::configuration_device(){
-  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
-  if(k4n_device == nullptr) return;
+  k4n::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  if(k4n_sensor == nullptr) return;
   //---------------------------
 
   static int framerate = 0;
   if(ImGui::RadioButton("30 FPS", &framerate, 0)){
-    k4n_device->device.fps.mode = K4A_FRAMES_PER_SECOND_30;
-    k4n_device->restart_capture();
+    k4n_sensor->device.fps.mode = K4A_FRAMES_PER_SECOND_30;
+    k4n_sensor->restart_capture();
   }
   ImGui::SameLine();
   if(ImGui::RadioButton("15 FPS", &framerate, 1)){
-    k4n_device->device.fps.mode = K4A_FRAMES_PER_SECOND_15;
-    k4n_device->restart_capture();
+    k4n_sensor->device.fps.mode = K4A_FRAMES_PER_SECOND_15;
+    k4n_sensor->restart_capture();
   }
   ImGui::SameLine();
   if(ImGui::RadioButton("5 FPS", &framerate, 2)){
-    k4n_device->device.fps.mode = K4A_FRAMES_PER_SECOND_5;
-    k4n_device->restart_capture();
+    k4n_sensor->device.fps.mode = K4A_FRAMES_PER_SECOND_5;
+    k4n_sensor->restart_capture();
   }
 
-  if(ImGui::Checkbox("Disable streaming LED", &k4n_device->synchro.disable_streaming_indicator)){
-    k4n_device->restart_capture();
+  if(ImGui::Checkbox("Disable streaming LED", &k4n_sensor->synchro.disable_streaming_indicator)){
+    k4n_sensor->restart_capture();
   }
 
   //---------------------------
 }
 void Capture::firmware_info(){
-  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
-  if(k4n_device == nullptr) return;
+  k4n::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  if(k4n_sensor == nullptr) return;
   //---------------------------
 
   if (ImGui::TreeNode("Device Firmware Version Info")){
-    k4a_hardware_version_t versionInfo = k4n_device->device.version;
+    k4a_hardware_version_t versionInfo = k4n_sensor->device.version;
     ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
     if(ImGui::BeginTable("device##firmware", 2)){
       ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);

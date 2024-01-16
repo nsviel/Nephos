@@ -17,16 +17,16 @@ public:
 
 public:
   //Capture configuration
-  void make_device_configuration(k4n::Device* k4n_device);
-  void find_playback_configuration(k4n::Device* k4n_device);
+  void make_device_configuration(k4n::Sensor* k4n_sensor);
+  void find_playback_configuration(k4n::Sensor* k4n_sensor);
 
   //Playback configuration
-  void find_config_fps(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
-  void find_config_synchro(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
-  void find_config_depth(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
-  void find_config_color(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
-  void find_config_format(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
-  void find_config_device(k4n::Device* k4n_device, k4a_record_configuration_t& configuration);
+  void find_config_fps(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration);
+  void find_config_synchro(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration);
+  void find_config_depth(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration);
+  void find_config_color(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration);
+  void find_config_format(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration);
+  void find_config_device(k4n::Sensor* k4n_sensor, k4a_record_configuration_t& configuration);
 
 private:
 

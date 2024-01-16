@@ -30,8 +30,8 @@ void Recorder::kinect_recorder(){
 
 //Subfunction
 void Recorder::recorder_path(){
-  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
-  if(k4n_device == nullptr) return;
+  k4n::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  if(k4n_sensor == nullptr) return;
   //---------------------------
 
   if(ImGui::BeginTable("playback_table##general", 2)){
@@ -42,7 +42,7 @@ void Recorder::recorder_path(){
 
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4n_device->recorder.folder.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4n_sensor->recorder.folder.c_str());
 
     //File
     ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -51,7 +51,7 @@ void Recorder::recorder_path(){
 
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4n_device->recorder.path.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4n_sensor->recorder.path.c_str());
 
     ImGui::EndTable();
   }

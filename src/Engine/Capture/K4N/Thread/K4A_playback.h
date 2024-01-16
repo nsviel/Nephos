@@ -23,16 +23,16 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::Device* device);
-  void run_thread(k4n::Device* device);
+  void start_thread(k4n::Sensor* device);
+  void run_thread(k4n::Sensor* device);
   void stop_thread();
 
   //Subfunction
-  void find_duration(k4n::Device* k4n_device);
-  void manage_query_ts(k4n::Device* device);
-  void manage_pause(k4n::Device* k4n_device);
-  void manage_restart(k4n::Device* device);
-  void manage_recording(k4n::Device* k4n_device, k4a::capture capture);
+  void find_duration(k4n::Sensor* k4n_sensor);
+  void manage_query_ts(k4n::Sensor* device);
+  void manage_pause(k4n::Sensor* k4n_sensor);
+  void manage_restart(k4n::Sensor* device);
+  void manage_recording(k4n::Sensor* k4n_sensor, k4a::capture capture);
 
   inline bool is_thread_running(){return thread_running;}
 

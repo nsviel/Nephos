@@ -26,18 +26,18 @@ public:
 
   //All devices
   void vec_device_tab();
-  void device_tab(k4n::Device* device);
+  void device_tab(k4n::Sensor* device);
 
   //Device capture windows
-  void draw_camera_color(k4n::Device* device, ImVec2 image_size);
-  void draw_camera_color_from_depth(k4n::Device* k4n_device, ImVec2 image_size);
-  void draw_camera_depth(k4n::Device* device, ImVec2 image_size);
-  void draw_camera_ir(k4n::Device* device, ImVec2 image_size);
+  void draw_camera_color(k4n::Sensor* device, ImVec2 image_size);
+  void draw_camera_color_from_depth(k4n::Sensor* k4n_sensor, ImVec2 image_size);
+  void draw_camera_depth(k4n::Sensor* device, ImVec2 image_size);
+  void draw_camera_ir(k4n::Sensor* device, ImVec2 image_size);
 
   //Overlay
   void compute_hovered_pixel(k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
-  void overlay_capture(k4n::Device* device, k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose);
-  void overlay_information(k4n::Device* device, k4n::structure::Image* image);
+  void overlay_capture(k4n::Sensor* device, k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose);
+  void overlay_information(k4n::Sensor* device, k4n::structure::Image* image);
   void overlay_pixel(k4n::structure::Image* image, ImVec2 image_size);
 
 private:

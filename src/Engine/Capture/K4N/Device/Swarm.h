@@ -30,17 +30,17 @@ public:
   void manage_less_capture_device(int number);
 
   //Creation / supression function
-  k4n::Device* create_device_playback(string path);
-  k4n::Device* create_device_capture();
-  void close_device(k4n::Device* device);
+  k4n::Sensor* create_device_playback(string path);
+  k4n::Sensor* create_device_capture();
+  void close_device(k4n::Sensor* device);
   void close_device_all();
   void selecte_next_device();
 
-  inline k4n::Device* get_selected_device(){return struct_swarm->selected_device;}
-  inline list<k4n::Device*>& get_list_device(){return struct_swarm->list_device;}
+  inline k4n::Sensor* get_selected_device(){return struct_swarm->selected_device;}
+  inline list<k4n::Sensor*>& get_list_device(){return struct_swarm->list_device;}
   inline int get_nb_device(){return struct_swarm->nb_device;}
   inline int get_nb_playback(){return struct_swarm->nb_playback;}
-  inline void set_selected_device(k4n::Device* device){struct_swarm->selected_device = device;}
+  inline void set_selected_device(k4n::Sensor* device){struct_swarm->selected_device = device;}
 
 private:
   Engine* engine;

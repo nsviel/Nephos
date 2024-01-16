@@ -7,7 +7,7 @@
 class Engine;
 
 namespace k4n{
-class Device;
+class Sensor;
 
 
 class Master : public entity::Entity
@@ -29,7 +29,7 @@ public:
 public:
   Engine* engine;
 
-  list<k4n::Device*> list_device;
+  list<k4n::Sensor*> list_device;
 };
 
 }

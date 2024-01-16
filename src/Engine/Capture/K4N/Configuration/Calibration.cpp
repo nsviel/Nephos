@@ -13,24 +13,24 @@ Calibration::Calibration(){
 Calibration::~Calibration(){}
 
 //Main function
-void Calibration::make_device_transformation(k4n::Device* k4n_device){
+void Calibration::make_device_transformation(k4n::Sensor* k4n_sensor){
   //---------------------------
 
-  k4n_device->device.transformation = k4a::transformation(k4n_device->device.calibration);
-
-  //---------------------------
-}
-void Calibration::make_capture_calibration(k4n::Device* k4n_device){
-  //---------------------------
-
-  k4n_device->device.calibration = k4n_device->device.device->get_calibration(k4n_device->depth.config.mode, k4n_device->color.config.resolution);
+  k4n_sensor->device.transformation = k4a::transformation(k4n_sensor->device.calibration);
 
   //---------------------------
 }
-void Calibration::find_playback_calibration(k4n::Device* k4n_device){
+void Calibration::make_capture_calibration(k4n::Sensor* k4n_sensor){
   //---------------------------
 
-  k4n_device->device.calibration = k4n_device->device.playback->get_calibration();
+  k4n_sensor->device.calibration = k4n_sensor->device.device->get_calibration(k4n_sensor->depth.config.mode, k4n_sensor->color.config.resolution);
+
+  //---------------------------
+}
+void Calibration::find_playback_calibration(k4n::Sensor* k4n_sensor){
+  //---------------------------
+
+  k4n_sensor->device.calibration = k4n_sensor->device.playback->get_calibration();
 
   //---------------------------
 }

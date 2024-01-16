@@ -28,10 +28,10 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
+  k4n::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
   //---------------------------
 
-  if(*show_window && k4n_device != nullptr){
+  if(*show_window && k4n_sensor != nullptr){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
@@ -61,8 +61,8 @@ void Panel::design_panel(){
 
 //Subfunction
 void Panel::show_info(){
-  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
-  if(k4n_device == nullptr) return;
+  k4n::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  if(k4n_sensor == nullptr) return;
   //---------------------------
 
     ImGui::Separator();
@@ -71,30 +71,30 @@ void Panel::show_info(){
     //Name
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Name"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.filename.c_str());
+    ImGui::TextColored(color, "%s", k4n_sensor->playback.filename.c_str());
 
     //Path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_device->playback.path.c_str());
+    ImGui::TextColored(color, "%s", k4n_sensor->playback.path.c_str());
 
     //Duration
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", k4n_device->player.duration);
+    ImGui::TextColored(color, "%.2f s", k4n_sensor->player.duration);
 
     //Recording time
-    if(k4n_device->player.record){
+    if(k4n_sensor->player.record){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Record"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f s", k4n_device->recorder.ts_rec);
+      ImGui::TextColored(color, "%.2f s", k4n_sensor->recorder.ts_rec);
     }
 
     //Playback FPS
-    if(k4n_device->device.is_playback){
+    if(k4n_sensor->device.is_playback){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("FPS"); ImGui::TableNextColumn();
-      ImGui::SliderInt("##56765", &k4n_device->device.fps.query, 1, 120);
+      ImGui::SliderInt("##56765", &k4n_sensor->device.fps.query, 1, 120);
     }
 
     ImGui::EndTable();
@@ -122,9 +122,9 @@ void Panel::show_info(){
     mat[1][3] = 902.3516235351563;
     mat[2][3] = -904.981201171875;
     mat[3][3] = 1.0;
-    k4n_device->cloud.object->data->model = mat;
+    k4n_sensor->cloud.object->data->model = mat;
   }
-  mat4& mat = k4n_device->cloud.object->data->model;
+  mat4& mat = k4n_sensor->cloud.object->data->model;
   ImGui::Columns(4, "ModelMat");
   for(int i=0; i<4; i++){
     ImGui::Separator();

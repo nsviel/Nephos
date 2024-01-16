@@ -35,51 +35,51 @@ void Operation::kinect_operation(){
 
 //Subfunction
 void Operation::colorization(){
-  k4n::Device* k4n_device = k4a_swarm->get_selected_device();
-  if(k4n_device == nullptr) return;
+  k4n::Sensor* k4n_sensor = k4a_swarm->get_selected_device();
+  if(k4n_sensor == nullptr) return;
   //---------------------------
 
   //Colorization mode
   static int color_mode = 2;
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Colorization");
-  ImGui::RadioButton("RGB##colorization", &k4n_device->cloud.color_mode, 0);
+  ImGui::RadioButton("RGB##colorization", &k4n_sensor->cloud.color_mode, 0);
   ImGui::SameLine();
-  ImGui::RadioButton("##unicolor", &k4n_device->cloud.color_mode, 1);
+  ImGui::RadioButton("##unicolor", &k4n_sensor->cloud.color_mode, 1);
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
-  ImGui::ColorEdit4("##unicolor_choice", (float*)&k4n_device->cloud.object->data->unicolor, flags);
+  ImGui::ColorEdit4("##unicolor_choice", (float*)&k4n_sensor->cloud.object->data->unicolor, flags);
   ImGui::SameLine();
-  ImGui::RadioButton("I##colorization", &k4n_device->cloud.color_mode, 2);
+  ImGui::RadioButton("I##colorization", &k4n_sensor->cloud.color_mode, 2);
   ImGui::SameLine();
-  ImGui::RadioButton("Heatmap##colorization", &k4n_device->cloud.color_mode, 3);
+  ImGui::RadioButton("Heatmap##colorization", &k4n_sensor->cloud.color_mode, 3);
 
   //Intensity cursor
-  if(k4n_device->cloud.color_mode == 2){
+  if(k4n_sensor->cloud.color_mode == 2){
     ImGui::SetNextItemWidth(100);
-    ImGui::SliderInt("Intensity division", &k4n_device->cloud.intensity_division, 1, 5000);
+    ImGui::SliderInt("Intensity division", &k4n_sensor->cloud.intensity_division, 1, 5000);
   }
 
   //Heatmap mode
-  if(k4n_device->cloud.color_mode == 3){
+  if(k4n_sensor->cloud.color_mode == 3){
     ImGui::Indent();
-    ImGui::RadioButton("I##heatmap", &k4n_device->cloud.heatmap_mode, 0);
+    ImGui::RadioButton("I##heatmap", &k4n_sensor->cloud.heatmap_mode, 0);
     ImGui::SameLine();
-    ImGui::RadioButton("H##heatmap", &k4n_device->cloud.heatmap_mode, 1);
+    ImGui::RadioButton("H##heatmap", &k4n_sensor->cloud.heatmap_mode, 1);
     ImGui::SameLine();
-    ImGui::RadioButton("R##heatmap", &k4n_device->cloud.heatmap_mode, 2);
+    ImGui::RadioButton("R##heatmap", &k4n_sensor->cloud.heatmap_mode, 2);
 
     //Intensity heatmap
-    if(k4n_device->cloud.heatmap_mode == 0){
+    if(k4n_sensor->cloud.heatmap_mode == 0){
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("I diviser", &k4n_device->cloud.intensity_division, 1, 5000);
+      ImGui::SliderInt("I diviser", &k4n_sensor->cloud.intensity_division, 1, 5000);
     }
 
     //Height heatmap
-    if(k4n_device->cloud.heatmap_mode == 1){
-      float min = k4n_device->cloud.object->data->min.z + 10;
-      float max = k4n_device->cloud.object->data->min.z + 10;
+    if(k4n_sensor->cloud.heatmap_mode == 1){
+      float min = k4n_sensor->cloud.object->data->min.z + 10;
+      float max = k4n_sensor->cloud.object->data->min.z + 10;
       ImGui::SetNextItemWidth(125);
-      ImGui::DragFloatRange2("Z##321", &k4n_device->cloud.range_height.x, &k4n_device->cloud.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
+      ImGui::DragFloatRange2("Z##321", &k4n_sensor->cloud.range_height.x, &k4n_sensor->cloud.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
     }
     ImGui::Unindent();
   }

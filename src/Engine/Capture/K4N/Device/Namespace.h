@@ -6,13 +6,12 @@
 #include <Engine/Capture/K4N/Node.h>
 
 
-namespace k4n{
+namespace k4n::dev{
   //---------------------------
 
   class Master;
   class Sensor;
   class Swarm;
-  class Node;
 
   //---------------------------
 }
