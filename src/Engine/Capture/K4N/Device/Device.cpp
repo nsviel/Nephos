@@ -49,6 +49,33 @@ void Device::init(){
 
   //---------------------------
 }
+void Device::reset(){
+  //---------------------------
+
+  cloud.object->reset_entity();
+
+  //---------------------------
+}
+void Device::destroy(){
+  //---------------------------
+
+  this->stop_threads();
+  this->device.transformation.destroy();
+  eng_scene->remove_object(cloud.object);
+
+  //---------------------------
+}
+void Device::draw_cloud(){
+  //---------------------------
+
+  std::unique_lock<std::mutex> lock(cloud.object->data->mutex);
+  cloud.object->data->nb_point = cloud.object->data->xyz.size();
+  eng_scene->update_data(cloud.object->data);
+
+  //---------------------------
+}
+
+//Entity function
 void Device::update_entity(){
   eng::camera::Node* node_camera = engine->get_node_camera();
   eng::camera::Control* cam_control = node_camera->get_camera_control();
@@ -85,31 +112,6 @@ void Device::reset_entity(){
 
   cloud.object->reset_entity();
   player.ts_seek = player.ts_beg;
-
-  //---------------------------
-}
-void Device::reset(){
-  //---------------------------
-
-  cloud.object->reset_entity();
-
-  //---------------------------
-}
-void Device::destroy(){
-  //---------------------------
-
-  this->stop_threads();
-  this->device.transformation.destroy();
-  eng_scene->remove_object(cloud.object);
-
-  //---------------------------
-}
-void Device::draw_cloud(){
-  //---------------------------
-
-  std::unique_lock<std::mutex> lock(cloud.object->data->mutex);
-  cloud.object->data->nb_point = cloud.object->data->xyz.size();
-  eng_scene->update_data(cloud.object->data);
 
   //---------------------------
 }

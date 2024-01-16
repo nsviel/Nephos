@@ -22,13 +22,15 @@ public:
 public:
   //Main function
   void init();
+  void reset();
+  void destroy();
+  void draw_cloud();
+
+  //Entity function
   void update_entity();
   void remove_entity();
   void reset_entity();
   void visibility_entity(bool value);
-  void reset();
-  void destroy();
-  void draw_cloud();
 
   //Capture function
   void run_capture();
