@@ -151,29 +151,11 @@ int Scene::data_node_tree(utl::base::Set* set) {
   flag_node |= set->name != "World" ? ImGuiTreeNodeFlags_DefaultOpen : 0;
 
   // Set nodes
-  if(set->nb_entity == 0 && set->nb_set == 0) return 0;
   string name = ICON_FA_FOLDER + (string)"   " + set->name;
   bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag_node);
-
-  // If item double-clicked
-  if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
-    rnd_set->set_selected_set(set);
-    this->show_panel_set = true;
-  }
-
-  // Set elements (leaf nodes) and nested set nodes
+  this->set_double_click(set);
   if(is_node_open){
-    for(int i=0; i<set->list_entity.size(); i++){
-      entity::Entity* entity = *next(set->list_entity.begin(), i);
-
-      this->display_entity(set, entity, nb_row);
-    }
-
-    // Recursive call for nested sets
-    for(utl::base::Set* subset : set->list_set) {
-      nb_row += data_node_tree(subset);
-    }
-
+    this->set_open(set, nb_row);
     ImGui::TreePop();
   }
 
@@ -227,6 +209,8 @@ void Scene::display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_
         set->selected_entity = entity;
       }
     }
+
+    ImGui::TreePop();
   }
 
 
@@ -243,5 +227,35 @@ void Scene::display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_
 
   //---------------------------
 }
+
+//Set function
+void Scene::set_double_click(utl::base::Set* set){
+  //---------------------------
+
+  // If set is double-clicked
+  if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
+    rnd_set->set_selected_set(set);
+    this->show_panel_set = true;
+  }
+
+  //---------------------------
+}
+void Scene::set_open(utl::base::Set* set, int& nb_row){
+  //---------------------------
+
+  for(int i=0; i<set->list_entity.size(); i++){
+    entity::Entity* entity = *next(set->list_entity.begin(), i);
+
+    this->display_entity(set, entity, nb_row);
+  }
+
+  // Recursive call for nested sets
+  for(utl::base::Set* subset : set->list_set) {
+    nb_row += data_node_tree(subset);
+  }
+
+  //---------------------------
+}
+
 
 }

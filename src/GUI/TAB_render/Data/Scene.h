@@ -32,6 +32,10 @@ public:
   int data_node_tree(utl::base::Set* set);
   void display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row);
 
+  //Set function
+  void set_double_click(utl::base::Set* set);
+  void set_open(utl::base::Set* set, int& nb_row);
+
   bool show_panel_entity   = false;
   bool show_panel_set      = false;
 
