@@ -84,12 +84,12 @@ entity::Object* Loader::load_object(string path){
   utl::base::File* data = eng_format->get_data_from_file(path);
 
   entity::Object* object = new entity::Object(engine);
-  object->path_file = path;
-  object->file_format = info::get_format_from_path(path);
+  object->data->path_file = path;
+  object->data->file_format = info::get_format_from_path(path);
   object->data->has_texture = true;
   object->name = data->name;
   object->data->nb_point = data->xyz.size();
-  object->draw_type_name = data->draw_type_name;
+  object->data->draw_type_name = data->draw_type_name;
 
   object->data->xyz = data->xyz;
   object->data->rgb = data->rgb;

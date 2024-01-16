@@ -44,7 +44,7 @@ void VK_canvas::init(){
   canvas_obj->name = "canvas";
   canvas_obj->data->xyz = xyz;
   canvas_obj->data->uv = uv;
-  canvas_obj->draw_type_name = "triangle";
+  canvas_obj->data->draw_type_name = "triangle";
 
   struct_vulkan->data.canvas.object = canvas_obj;
 

@@ -22804,7 +22804,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
             case value_t::object:
             {
                 // delegate call to object_t::max_size()
-                return m_value.object->max_size();
+                return m_value.object->data->max_size();
             }
 
             case value_t::null:

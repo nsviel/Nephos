@@ -21,9 +21,9 @@ void AABB::create(){
   object->name = "aabb";
   object->data->draw_line_width = 1;
   object->is_visible = false;
-  object->draw_type_name = "line";
+  object->data->draw_type_name = "line";
   object->is_permanent = true;
-  object->unicolor = color;
+  object->data->unicolor = color;
 
   for(int i=0; i<24; i++){
     object->data->rgb.push_back(color);
@@ -37,8 +37,8 @@ void AABB::update_glyph(entity::Entity* entity){
   //---------------------------
 
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    vec3 min = object->min;
-    vec3 max = object->max;
+    vec3 min = object->data->min;
+    vec3 max = object->data->max;
     vec_object[0]->data->xyz = build_box(min, max);
   }
 

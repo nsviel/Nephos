@@ -44,7 +44,7 @@ void Device::init(){
   //Device cloud
   cloud.object = new entity::Object(engine);
   cloud.object->name = device.name;
-  cloud.object->draw_type_name = "point";
+  cloud.object->data->draw_type_name = "point";
   eng_scene->insert_object(cloud.object);
 
   //---------------------------

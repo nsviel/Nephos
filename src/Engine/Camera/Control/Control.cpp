@@ -125,11 +125,11 @@ void Control::compute_camera_mvp(entity::Object* object){
   if(object == nullptr) return;
   //---------------------------
 
-  mat4 cam_modl = glm::transpose(object->model);
+  mat4 cam_modl = glm::transpose(object->data->model);
   mat4 cam_view = compute_camera_view();
   mat4 cam_proj = compute_camera_proj();
 
-  object->mvp = cam_proj * cam_view * cam_modl;
+  object->data->mvp = cam_proj * cam_view * cam_modl;
 
   //---------------------------
 }

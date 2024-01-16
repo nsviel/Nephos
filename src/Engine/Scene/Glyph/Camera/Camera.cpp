@@ -21,9 +21,9 @@ void Camera::create(){
   object->name = "camera";
   object->data->draw_line_width = 1;
   object->is_visible = true;
-  object->draw_type_name = "line";
+  object->data->draw_type_name = "line";
   object->is_permanent = true;
-  object->unicolor = vec4(1, 1, 1, 0.2f);
+  object->data->unicolor = vec4(1, 1, 1, 0.2f);
   this->vec_object.push_back(object);
 
   //---------------------------

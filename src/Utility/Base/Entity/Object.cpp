@@ -12,9 +12,9 @@ namespace entity{
 Object::Object(){
   //---------------------------
 
-  this->unicolor = math::random_color();
   this->type = "Object";
   this->data = new utl::base::Data();
+  this->data->unicolor = math::random_color();
 
   //---------------------------
 }
@@ -22,9 +22,9 @@ Object::Object(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->unicolor = math::random_color();
   this->type = "Object";
   this->data = new utl::base::Data();
+  this->data->unicolor = math::random_color();
 
   //---------------------------
 }

@@ -19,7 +19,7 @@ void Operation::make_colorization(k4n::structure::Cloud* cloud, vector<vec4>& ve
 
   switch(cloud->color_mode){
     case 1:{//Colored unicolor
-      vec_rgba = vector<vec4> (cloud->nb_point, cloud->object->unicolor);
+      vec_rgba = vector<vec4> (cloud->nb_point, cloud->object->data->unicolor);
       break;
     }
     case 2:{//White unicolor

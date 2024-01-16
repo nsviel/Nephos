@@ -41,28 +41,6 @@ public:
 
   utl::base::Data* data;
   std::list<entity::Glyph*> list_glyph;
-
-
-
-  //Infos
-  std::string path_file = "";
-  std::string path_save = "";
-  std::string path_text = "";
-  std::string file_format = "";
-  std::string draw_type_name = "";
-  glm::vec4 unicolor;
-
-
-  //Pose
-  glm::vec3 min = glm::vec3(0.0f);
-  glm::vec3 max = glm::vec3(0.0f);
-  glm::vec3 root = glm::vec3(0.0f);
-  glm::vec3 COM = glm::vec3(0.0f);
-  glm::mat4 rotat = glm::mat4(1.0f);
-  glm::mat4 trans = glm::mat4(1.0f);
-  glm::mat4 scale = glm::mat4(1.0f);
-  glm::mat4 model = glm::mat4(1.0f);
-  glm::mat4 mvp = glm::mat4(1.0f);
 };
 
 }

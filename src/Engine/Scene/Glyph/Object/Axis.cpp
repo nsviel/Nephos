@@ -24,7 +24,7 @@ void Axis::create(){
   object->name = "axis";
   object->data->draw_line_width = 3;
   object->is_visible = is_visible;
-  object->draw_type_name = "line";
+  object->data->draw_type_name = "line";
   this->vec_object.push_back(object);
   this->construct();
 
@@ -34,7 +34,7 @@ void Axis::update_glyph(entity::Entity* entity){
   //---------------------------
 
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_transform->make_transformation(vec_object[0], object->COM, object->trans, object->rotat);
+    ope_transform->make_transformation(vec_object[0], object->data->COM, object->data->trans, object->data->rotat);
   }
 
   //---------------------------

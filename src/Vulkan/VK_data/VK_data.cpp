@@ -33,7 +33,7 @@ void VK_data::insert_object(entity::Object* object){
   descriptor_required mvp = std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS);
   data->binding.vec_required_binding.push_back(mvp);
 
-  if(object->draw_type_name == "point"){
+  if(object->data->draw_type_name == "point"){
     descriptor_required size = std::make_tuple("point_size", sizeof(int), 1, TYP_UNIFORM, TYP_SHADER_VS);
     data->binding.vec_required_binding.push_back(size);
   }

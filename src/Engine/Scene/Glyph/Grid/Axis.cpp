@@ -21,9 +21,9 @@ void Axis::create(){
   object->name = "grid_axis";
   object->data->draw_line_width = 2;
   object->is_visible = true;
-  object->draw_type_name = "line";
+  object->data->draw_type_name = "line";
   object->is_permanent = true;
-  object->unicolor = color;
+  object->data->unicolor = color;
   this->vec_object.push_back(object);
 
   //---------------------------

@@ -130,10 +130,10 @@ void Entity::entity_parameter(entity::Entity* entity){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Format"); ImGui::TableNextColumn();
       static char str_f[256];
-      strcpy(str_f, object->file_format.c_str());
+      strcpy(str_f, object->data->file_format.c_str());
       ImGui::SetNextItemWidth(item_width);
       if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
-        object->file_format = str_f;
+        object->data->file_format = str_f;
       }
 
       //Uniform collection color
@@ -141,14 +141,14 @@ void Entity::entity_parameter(entity::Entity* entity){
       ImGui::Text("Color"); ImGui::TableNextColumn();
       ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
       flags |= ImGuiColorEditFlags_AlphaBar;
-      if(ImGui::ColorEdit4("Color", (float*)&object->unicolor, flags)){
+      if(ImGui::ColorEdit4("Color", (float*)&object->data->unicolor, flags)){
         ope_attribut->set_unicolor(object);
         sce_scene->update_object(object);
       }
 
       //Root pos
       ImGui::TableNextRow(); ImGui::TableNextColumn();
-      vec3& root = object->root;
+      vec3& root = object->data->root;
       ImGui::Text("Root"); ImGui::TableNextColumn();
       ImGui::NextColumn();
       ImGui::Text("%.2f  %.2f  %.2f", root.x, root.y, root.z);
@@ -158,10 +158,10 @@ void Entity::entity_parameter(entity::Entity* entity){
       }
 
       //Primitive size
-      if(object->draw_type_name == "point"){
+      if(object->data->draw_type_name == "point"){
         this->entity_point(object);
       }
-      else if(object->draw_type_name == "line"){
+      else if(object->data->draw_type_name == "line"){
         this->entity_line(object);
       }
     }

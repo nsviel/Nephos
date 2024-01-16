@@ -25,7 +25,7 @@ void Axis::create(){
   object->name = "world_axis";
   object->data->draw_line_width = 4;
   object->is_visible = true;
-  object->draw_type_name = "line";
+  object->data->draw_type_name = "line";
   object->is_permanent = true;
   this->vec_object.push_back(object);
   this->update_glyph();

@@ -47,11 +47,11 @@ void Operation::make_rotation(entity::Entity* entity, vec3 rotation){
 
   //Object entity
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_transform->make_rotation(object, object->COM, rotation);
+    ope_transform->make_rotation(object, object->data->COM, rotation);
   }
   //K4A device entity
   else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    ope_transform->make_rotation(device->cloud.object, device->cloud.object->COM, rotation);
+    ope_transform->make_rotation(device->cloud.object, device->cloud.object->data->COM, rotation);
   }
 
   //---------------------------

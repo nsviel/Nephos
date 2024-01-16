@@ -21,9 +21,9 @@ void Plane::create(){
   entity::Object* object = new entity::Object(engine);
   object->name = "grid_plane";
   object->is_visible = true;
-  object->draw_type_name = "triangle";
+  object->data->draw_type_name = "triangle";
   object->is_permanent = true;
-  object->unicolor = color;
+  object->data->unicolor = color;
   this->vec_object.push_back(object);
 
   //---------------------------

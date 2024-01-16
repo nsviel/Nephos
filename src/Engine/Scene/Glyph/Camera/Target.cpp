@@ -23,9 +23,9 @@ void Target::create(){
   object->name = "camera_target";
   object->data->draw_line_width = 2;
   object->is_visible = true;
-  object->draw_type_name = "line";
+  object->data->draw_type_name = "line";
   object->is_permanent = true;
-  object->unicolor = vec4(1, 1, 1, 0.2f);
+  object->data->unicolor = vec4(1, 1, 1, 0.2f);
   this->vec_object.push_back(object);
   this->construct(object);
 
@@ -42,7 +42,7 @@ void Target::update_glyph(entity::Entity* entity){
     translation[0][3] = camera->cam_COM.x;
     translation[1][3] = camera->cam_COM.y;
     translation[2][3] = camera->cam_COM.z;
-    object->model = translation;
+    object->data->model = translation;
     object->is_visible = is_visible;
   }
 

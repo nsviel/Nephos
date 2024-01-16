@@ -25,9 +25,9 @@ void Mesh::create(){
   object->name = "grid_mesh";
   object->data->draw_line_width = 1;
   object->is_visible = true;
-  object->draw_type_name = "line";
+  object->data->draw_type_name = "line";
   object->is_permanent = true;
-  object->unicolor = color_mesh;
+  object->data->unicolor = color_mesh;
   this->vec_object.push_back(object);
 
   //---------------------------

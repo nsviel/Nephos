@@ -16,10 +16,10 @@ void Transformation::make_translation(entity::Object* object, vec3 trans){
 
   glm::mat4 translation = get_translation_mat(trans);
 
-  object->COM += trans;
-  object->root += trans;
-  object->trans *= translation;
-  object->model *= translation;
+  object->data->COM += trans;
+  object->data->root += trans;
+  object->data->trans *= translation;
+  object->data->model *= translation;
 
   //---------------------------
 }
@@ -29,10 +29,10 @@ void Transformation::make_translation(entity::Object* object, mat4 translation){
 
   vec3 trans = vec3(translation[0][3], translation[1][3], translation[2][3]);
 
-  object->COM += trans;
-  object->root += trans;
-  object->trans *= translation;
-  object->model *= translation;
+  object->data->COM += trans;
+  object->data->root += trans;
+  object->data->trans *= translation;
+  object->data->model *= translation;
 
   //---------------------------
 }
@@ -45,10 +45,10 @@ void Transformation::make_rotation(entity::Object* object, vec3 COM, vec3 radian
   mat4 rotation = get_rotation_mat(radian);
   mat4 COM_mat = get_translation_mat_neye(COM);
 
-  object->rotat *= rotation;
-  object->model -= COM_mat;
-  object->model *= rotation;
-  object->model += COM_mat;
+  object->data->rotat *= rotation;
+  object->data->model -= COM_mat;
+  object->data->model *= rotation;
+  object->data->model += COM_mat;
 
   //---------------------------
 }
@@ -56,15 +56,15 @@ void Transformation::make_rotation(entity::Object* object, vec3 degree){
   if(object == nullptr) return;
   //---------------------------
 
-  vec3& COM = object->COM;
+  vec3& COM = object->data->COM;
   vec3 radian = math::degree_to_radian(degree);
   mat4 rotation = get_rotation_mat(radian);
   mat4 COM_mat = get_translation_mat_neye(COM);
 
-  object->rotat *= rotation;
-  object->model -= COM_mat;
-  object->model *= rotation;
-  object->model += COM_mat;
+  object->data->rotat *= rotation;
+  object->data->model -= COM_mat;
+  object->data->model *= rotation;
+  object->data->model += COM_mat;
 
   //---------------------------
 }
@@ -72,13 +72,13 @@ void Transformation::make_rotation(entity::Object* object, vec3 COM, mat4 rotati
   if(object == nullptr) return;
   //---------------------------
 
-  //vec3& COM = object->COM;
+  //vec3& COM = object->data->COM;
   mat4 COM_mat = get_translation_mat_neye(COM);
 
-  object->rotat *= rotation;
-  object->model -= COM_mat;
-  object->model *= rotation;
-  object->model += COM_mat;
+  object->data->rotat *= rotation;
+  object->data->model -= COM_mat;
+  object->data->model *= rotation;
+  object->data->model += COM_mat;
 
   //---------------------------
 }
@@ -92,16 +92,16 @@ void Transformation::make_rotation_axe_X(entity::Object* object, float degree){
   glm::mat4 rotationMatrixXLocal = glm::rotate(glm::mat4(1.0f), radian, glm::vec3(1.0f, 0.0f, 0.0f));
 
   // Obtenez la partie de translation de la matrice modèle actuelle
-  glm::vec3 translation = glm::vec3(object->model[3]);
+  glm::vec3 translation = glm::vec3(object->data->model[3]);
 
   // Appliquez la nouvelle rotation locale à la matrice modèle
-  object->model = glm::translate(glm::mat4(1.0f), translation) * rotationMatrixXLocal * object->model;
+  object->data->model = glm::translate(glm::mat4(1.0f), translation) * rotationMatrixXLocal * object->data->model;
 
   // Mettez à jour les composantes de rotation cumulatives
-  object->rotat = rotationMatrixXLocal * object->rotat;
+  object->data->rotat = rotationMatrixXLocal * object->data->rotat;
 
   // Mettez à jour les composantes de translation cumulatives
-  object->trans = glm::translate(glm::mat4(1.0f), translation) * object->trans;
+  object->data->trans = glm::translate(glm::mat4(1.0f), translation) * object->data->trans;
 
   //---------------------------
 }
@@ -116,8 +116,8 @@ void Transformation::make_scaling(entity::Object* object, float scale){
   scaling[1][1] = scale;
   scaling[2][2] = scale;
 
-  object->scale *= scaling;
-  object->model *= scaling;
+  object->data->scale *= scaling;
+  object->data->model *= scaling;
 
   //---------------------------
 }
@@ -129,10 +129,10 @@ void Transformation::make_transformation(entity::Object* object, vec3 COM, mat4 
 
   mat4 COM_mat = get_translation_mat_neye(COM);
 
-  object->model = translation;
-  object->model -= COM_mat;
-  object->model *= rotation;
-  object->model += COM_mat;
+  object->data->model = translation;
+  object->data->model -= COM_mat;
+  object->data->model *= rotation;
+  object->data->model += COM_mat;
 
   //---------------------------
 }
