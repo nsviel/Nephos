@@ -29,7 +29,7 @@ public:
 public:
   Engine* engine;
 
-  list<k4n::dev::Sensor*> list_device;
+  list<k4n::dev::Sensor*> list_sensor;
 };
 
 }

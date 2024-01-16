@@ -41,7 +41,7 @@ void Capture::kinect_configuration(){
 
 //Subfunction
 void Capture::kinect_devices(){
-  list<k4n::dev::Sensor*>& list_device = k4a_swarm->get_list_device();
+  list<k4n::dev::Sensor*>& list_device = k4a_swarm->get_list_sensor();
   //---------------------------
 
   ImGuiTableFlags flags;

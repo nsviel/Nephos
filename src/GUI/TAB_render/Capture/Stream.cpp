@@ -57,7 +57,7 @@ void Stream::design_panel(){
 
 //All devices
 void Stream::vec_device_tab(){
-  list<k4n::dev::Sensor*>& list_device = k4a_swarm->get_list_device();
+  list<k4n::dev::Sensor*>& list_device = k4a_swarm->get_list_sensor();
   //---------------------------
 
   if(ImGui::BeginTabBar("devices_tab##4567")){

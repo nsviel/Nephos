@@ -10,7 +10,7 @@ struct Swarm{
   //---------------------------
 
   k4n::dev::Sensor* selected_device = nullptr;
-  std::list<k4n::dev::Sensor*> list_device;
+  std::list<k4n::dev::Sensor*> list_sensor;
 
   //k4n::Master* selected_master = nullptr;
   //std::list<k4n::Master*> list_master;

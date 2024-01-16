@@ -37,7 +37,7 @@ public:
   void selecte_next_device();
 
   inline k4n::dev::Sensor* get_selected_device(){return struct_swarm->selected_device;}
-  inline list<k4n::dev::Sensor*>& get_list_device(){return struct_swarm->list_device;}
+  inline list<k4n::dev::Sensor*>& get_list_sensor(){return struct_swarm->list_sensor;}
   inline int get_nb_device(){return struct_swarm->nb_device;}
   inline int get_nb_playback(){return struct_swarm->nb_playback;}
   inline void set_selected_device(k4n::dev::Sensor* device){struct_swarm->selected_device = device;}

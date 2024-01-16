@@ -25,7 +25,7 @@ Swarm::~Swarm(){}
 
 //Main function
 void Swarm::draw_all_clouds(){
-  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_device;
+  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_sensor;
   //---------------------------
 
   //Run all thread
@@ -71,7 +71,7 @@ void Swarm::refresh_connected_device(){
   //---------------------------
 }
 void Swarm::manage_new_capture_device(int nb_new_device){
-  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_device;
+  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_sensor;
   //---------------------------
 
   //If previsouly no device, we need to supress all default playback
@@ -117,7 +117,7 @@ k4n::dev::Sensor* Swarm::create_device_playback(string path){
   k4n_sensor->recorder.path = default_folder + "record_dev_" + to_string(k4n_sensor->device.index) + ".mkv";
 
   struct_swarm->selected_device = k4n_sensor;
-  struct_swarm->list_device.push_back(k4n_sensor);
+  struct_swarm->list_sensor.push_back(k4n_sensor);
   struct_swarm->nb_playback++;
 
   k4n_sensor->init();
@@ -140,7 +140,7 @@ k4n::dev::Sensor* Swarm::create_device_capture(){
   k4n_sensor->recorder.path = default_folder + "record_dev_" + to_string(k4n_sensor->device.index) + ".mkv";
 
   struct_swarm->selected_device = k4n_sensor;
-  struct_swarm->list_device.push_back(k4n_sensor);
+  struct_swarm->list_sensor.push_back(k4n_sensor);
   struct_swarm->nb_capture++;
 
   k4n_sensor->init();
@@ -151,7 +151,7 @@ k4n::dev::Sensor* Swarm::create_device_capture(){
   return k4n_sensor;
 }
 void Swarm::close_device(k4n::dev::Sensor* k4n_sensor){
-  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_device;
+  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_sensor;
   //---------------------------
 
   k4n_sensor->destroy();
@@ -165,7 +165,7 @@ void Swarm::close_device(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 }
 void Swarm::close_device_all(){
-  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_device;
+  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_sensor;
   //---------------------------
 
   for(int i=0; i<list_device.size(); i++){
@@ -176,7 +176,7 @@ void Swarm::close_device_all(){
   //---------------------------
 }
 void Swarm::selecte_next_device(){
-  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_device;
+  list<k4n::dev::Sensor*>& list_device = struct_swarm->list_sensor;
   //---------------------------
 
   if(list_device.size() == 0){

@@ -28,8 +28,8 @@ void Master::update_entity(){
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   //----------------------------
 
-  for(int i=0; i<list_device.size(); i++){
-    k4n::dev::Sensor* device = *next(list_device.begin(), i);
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* device = *next(list_sensor.begin(), i);
     cam_control->compute_camera_mvp(device->cloud.object->data);
     sce_glyph->update_glyph_object(device->cloud.object);
   }
@@ -42,8 +42,8 @@ void Master::remove_entity(){
   k4n::dev::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
   //---------------------------
 
-  for(int i=0; i<list_device.size(); i++){
-    k4n::dev::Sensor* device = *next(list_device.begin(), i);
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* device = *next(list_sensor.begin(), i);
     //k4a_swarm->close_device(device);
   }
 
@@ -54,8 +54,8 @@ void Master::visibility_entity(bool value){
 
   this->is_visible = value;
 
-  for(int i=0; i<list_device.size(); i++){
-    k4n::dev::Sensor* device = *next(list_device.begin(), i);
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* device = *next(list_sensor.begin(), i);
     device->cloud.object->visibility_entity(value);
   }
 
@@ -64,8 +64,8 @@ void Master::visibility_entity(bool value){
 void Master::reset_entity(){
   //---------------------------
 
-  for(int i=0; i<list_device.size(); i++){
-    k4n::dev::Sensor* device = *next(list_device.begin(), i);
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* device = *next(list_sensor.begin(), i);
     device->cloud.object->reset_entity();
     device->player.ts_seek = device->player.ts_beg;
   }
