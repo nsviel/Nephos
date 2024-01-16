@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Entity/Struct_entity.h>
+#include <Engine/Base/Entity/Struct_entity.h>
 
 class Engine;
 

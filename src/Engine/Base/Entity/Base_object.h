@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Entity/Struct_entity.h>
+#include <Engine/Base/Entity/Struct_entity.h>
 
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>

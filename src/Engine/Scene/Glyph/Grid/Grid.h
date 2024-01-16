@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Entity/Base_glyph.h>
+#include <Engine/Base/Entity/Base_glyph.h>
 #include <Engine/Scene/Glyph/Grid/Namespace.h>
 
 namespace glyph::grid{

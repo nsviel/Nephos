@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Entity/Namespace.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Engine/Scene/Data/Database.h>

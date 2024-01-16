@@ -2,7 +2,7 @@
 
 #include <GUI.h>
 #include <Engine/Engine.h>
-#include <Engine/Entity/Namespace.h>
+#include <Engine/Base/Namespace.h>
 
 
 namespace gui::engine{

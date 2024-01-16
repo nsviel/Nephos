@@ -3,7 +3,7 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/VK_typedef.h>
 
-#include <Engine/Entity/Namespace.h>
+#include <Engine/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 
 
