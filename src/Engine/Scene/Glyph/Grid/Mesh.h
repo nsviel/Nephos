@@ -9,7 +9,7 @@ class Mesh : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Mesh();
+  Mesh(Engine* engine);
   ~Mesh();
 
 public:

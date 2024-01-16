@@ -11,7 +11,7 @@ class Axis : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Axis();
+  Axis(Engine* engine);
   ~Axis();
 
 public:

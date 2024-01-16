@@ -10,7 +10,7 @@ class Tree : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Tree();
+  Tree(Engine* engine);
   ~Tree();
 
 public:

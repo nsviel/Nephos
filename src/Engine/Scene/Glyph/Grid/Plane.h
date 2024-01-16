@@ -9,7 +9,7 @@ class Plane : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Plane();
+  Plane(Engine* engine);
   ~Plane();
 
 public:

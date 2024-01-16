@@ -4,7 +4,7 @@
 namespace glyph::camera{
 
 //Constructor / destructor
-Camera::Camera(){
+Camera::Camera(Engine* engine) : Glyph(engine){
   //---------------------------
 
 

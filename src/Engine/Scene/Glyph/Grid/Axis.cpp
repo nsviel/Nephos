@@ -4,7 +4,7 @@
 namespace glyph::grid{
 
 //Constructor / destructor
-Axis::Axis(){
+Axis::Axis(Engine* engine) : Glyph(engine){
   //---------------------------
 
   this->color = vec4(0.4f, 0.4f, 0.4f, 1.0f);

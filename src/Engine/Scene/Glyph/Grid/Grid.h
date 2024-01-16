@@ -10,19 +10,19 @@ class Grid : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Grid();
+  Grid(Engine* engine);
   ~Grid();
 
 public:
   //Main function
   void create();
   void update_glyph();
-  void insert_object_from_glyph(eng::data::Glyph& glyph);
+  void insert_object_from_glyph(eng::data::Glyph* glyph);
 
 private:
-  glyph::grid::Mesh mesh;
-  glyph::grid::Axis axis;
-  glyph::grid::Plane plane;
+  glyph::grid::Mesh* mesh;
+  glyph::grid::Axis* axis;
+  glyph::grid::Plane* plane;
 
   int nb_cell;
 };

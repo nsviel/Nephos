@@ -9,7 +9,7 @@ class Normal : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Normal();
+  Normal(Engine* engine);
   ~Normal();
 
 public:

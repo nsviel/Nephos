@@ -9,7 +9,7 @@ class Target : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Target();
+  Target(Engine* engine);
   ~Target();
 
 public:

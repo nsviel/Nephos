@@ -3,7 +3,7 @@
 
 namespace glyph::object{
 
-AABB::AABB(){
+AABB::AABB(Engine* engine) : Glyph(engine){
   //---------------------------
 
   this->color = vec4(1.0f, 1.0f, 1.0f, 0.5f);

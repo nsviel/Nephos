@@ -4,7 +4,7 @@
 namespace glyph::grid{
 
 //Constructor / destructor
-Plane::Plane(){
+Plane::Plane(Engine* engine) : Glyph(engine){
   //---------------------------
 
   this->name = "grid_plane";

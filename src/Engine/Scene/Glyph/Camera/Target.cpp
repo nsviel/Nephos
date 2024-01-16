@@ -4,7 +4,7 @@
 namespace glyph::camera{
 
 //Constructor / destructor
-Target::Target(){
+Target::Target(Engine* engine) : Glyph(engine){
   //---------------------------
 
   this->color = vec4(1.0f, 1.0f, 1.0f, 0.5f);

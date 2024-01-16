@@ -9,7 +9,7 @@ class Camera : public eng::data::Glyph
 {
 public:
   //Constructor / Destructor
-  Camera();
+  Camera(Engine* engine);
   ~Camera();
 
 public:

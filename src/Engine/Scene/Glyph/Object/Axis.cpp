@@ -4,7 +4,7 @@
 namespace glyph::object{
 
 //Constructor / destructor
-Axis::Axis(){
+Axis::Axis(Engine* engine) : Glyph(engine){
   //---------------------------
 
   this->is_visible = true;

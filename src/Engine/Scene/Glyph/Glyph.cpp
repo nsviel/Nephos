@@ -11,7 +11,7 @@ namespace eng::scene{
 Glyph::Glyph(eng::scene::Node* node_scene){
   //---------------------------
 
-  Engine* engine = node_scene->get_engine();
+  this->engine = node_scene->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
@@ -36,8 +36,8 @@ void Glyph::create_glyph_world(){
   //---------------------------
 
   if(set_world->list_entity.size() != 0) return;
-  set_world->insert_entity(new glyph::grid::Grid());
-  set_world->insert_entity(new glyph::world::Axis());
+  set_world->insert_entity(new glyph::grid::Grid(engine));
+  set_world->insert_entity(new glyph::world::Axis(engine));
 
   for(int i=0; i<set_world->list_entity.size(); i++){
     eng::data::Entity* entity = *next(set_world->list_entity.begin(), i);
@@ -83,8 +83,8 @@ void Glyph::create_glyph_object(eng::data::Object* object){
   //---------------------------
 
   if(object->list_glyph.size() != 0) return;
-  object->list_glyph.push_back(new glyph::object::Axis());
-  object->list_glyph.push_back(new glyph::object::AABB());
+  object->list_glyph.push_back(new glyph::object::Axis(engine));
+  object->list_glyph.push_back(new glyph::object::AABB(engine));
 
   for(int i=0; i<object->list_glyph.size(); i++){
     eng::data::Glyph* glyph = *next(object->list_glyph.begin(), i);
@@ -140,7 +140,7 @@ void Glyph::create_glyph_camera(eng::data::Camera* camera){
   //---------------------------
 
   if(camera->list_glyph.size() != 0) return;
-  camera->list_glyph.push_back(new glyph::camera::Target());
+  camera->list_glyph.push_back(new glyph::camera::Target(engine));
 
   for(int i=0; i<camera->list_glyph.size(); i++){
     eng::data::Glyph* glyph = *next(camera->list_glyph.begin(), i);

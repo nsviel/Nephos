@@ -36,6 +36,7 @@ public:
   void create_glyph_camera(eng::data::Camera* camera);
 
 private:
+  Engine* engine;
   VK_engine* vk_engine;
   eng::scene::Node* node_scene;
   eng::scene::Database* sce_database;

@@ -9,7 +9,7 @@ namespace glyph::object{
 class AABB : public eng::data::Glyph
 {
 public:
-  AABB();
+  AABB(Engine* engine);
   ~AABB();
 
 public:
