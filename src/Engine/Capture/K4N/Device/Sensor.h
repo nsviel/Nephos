@@ -14,7 +14,7 @@ namespace k4n::dev{
 class Master;
 
 
-class Sensor : public entity::Entity, public k4n::dev::Device
+class Sensor : public entity::Entity
 {
 public:
   //Constructor / Destructor

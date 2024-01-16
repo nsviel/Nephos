@@ -37,7 +37,7 @@ public:
 
   inline k4n::dev::Sensor* get_selected_sensor(){return selected_sensor;}
   inline list<k4n::dev::Master*>& get_list_master(){return list_master;}
-  inline void set_selected_sensor(k4n::dev::Sensor* sensor){selected_sensor = sensor;}
+  inline void set_selected_sensor(k4n::dev::Sensor* sensor){this->selected_sensor = sensor;}
 
   inline int get_nb_dev_capture(){return nb_dev_capture;}
   inline int get_nb_dev_playback(){return nb_dev_playback;}
