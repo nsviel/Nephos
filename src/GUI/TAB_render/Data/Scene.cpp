@@ -21,6 +21,7 @@ Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name
   this->rnd_set = new gui::rnd::data::Set(gui, &show_set);
   this->rnd_object = new gui::rnd::data::Entity(gui, &show_object);
   this->cam_control = node_camera->get_camera_control();
+  this->ope_operation = new eng::ope::Operation();
 
   //---------------------------
 }
@@ -59,13 +60,13 @@ void Scene::draw_button(){
   //Centered
   ImGui::SameLine();
   if(entity->is_movable && ImGui::Button("C##centerentity", ImVec2(20, 0))){
-    sce_operation->make_center(entity);
+    ope_operation->center_object(entity->get_data());
   }
 
   //Rotation 90° around X axis
   ImGui::SameLine();
   if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
-    sce_operation->make_rotation_X_90d(entity, 1);
+    ope_operation->make_rotation_X_90d(entity->get_data(), 1);
   }
 
   //Camera mode

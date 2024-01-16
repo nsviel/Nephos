@@ -19,8 +19,6 @@ public:
   ~Operation();
 
 public:
-  void make_translation(entity::Entity* entity, vec3 translation);
-  void make_rotation(entity::Entity* entity, vec3 rotation);
   void make_rotation_X_90d(entity::Entity* entity, int value);
   void make_center(entity::Entity* entity);
 

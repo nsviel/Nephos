@@ -26,36 +26,6 @@ Operation::Operation(eng::scene::Node* node_scene){
 Operation::~Operation(){}
 
 //Main function
-void Operation::make_translation(entity::Entity* entity, vec3 translation){
-  if(entity == nullptr) return;
-  //---------------------------
-
-  //Object entity
-  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_transform->make_translation(object->get_data(), translation);
-  }
-  //K4A device entity
-  else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    ope_transform->make_translation(device->get_data(), translation);
-  }
-
-  //---------------------------
-}
-void Operation::make_rotation(entity::Entity* entity, vec3 rotation){
-  if(entity == nullptr) return;
-  //---------------------------
-
-  //Object entity
-  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_transform->make_rotation(object->get_data(), object->data->COM, rotation);
-  }
-  //K4A device entity
-  else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    ope_transform->make_rotation(device->get_data(), device->cloud.object->data->COM, rotation);
-  }
-
-  //---------------------------
-}
 void Operation::make_rotation_X_90d(entity::Entity* entity, int value){
   //---------------------------
 

@@ -86,7 +86,7 @@ void Entity::entity_button(entity::Entity* entity){
   //Centered
   ImGui::SameLine();
   if(entity->is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
-    sce_operation->make_center(entity);
+    ope_operation->center_object(entity->get_data());
   }
 
   //---------------------------

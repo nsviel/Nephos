@@ -31,5 +31,14 @@ void Operation::elevate_object(utl::base::Data* data){
 
   //---------------------------
 }
+void Operation::make_rotation_X_90d(utl::base::Data* data, int value){
+  //---------------------------
+
+  ope_attribut->compute_MinMax(data);
+  ope_transform->make_rotation_axe_X(data, value * 90);
+  this->elevate_object(data);
+
+  //---------------------------
+}
 
 }

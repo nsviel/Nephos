@@ -39,6 +39,7 @@ private:
   eng::scene::Database* sce_database;
   eng::camera::Control* cam_control;
   eng::camera::Manager* cam_manager;
+  eng::ope::Transformation* ope_transform;
 };
 
 }

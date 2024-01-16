@@ -28,6 +28,7 @@ Control::Control(GUI* gui){
   this->sce_scene = node_scene->get_scene();
   this->sce_database = node_scene->get_scene_database();
   this->sce_operation = new eng::scene::Operation(node_scene);
+  this->ope_transform = new eng::ope::Transformation();
 
   //---------------------------
 }
@@ -141,42 +142,42 @@ void Control::control_keyboard_translation(){
       if(io.KeysDown[571]){
         vec3 translation = vec3(translation_qtt, 0, 0);
         entity::Entity* entity = sce_scene->get_selected_entity();
-        sce_operation->make_translation(entity, translation);
+        ope_transform->make_translation(entity->get_data(), translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
         vec3 translation = vec3(-translation_qtt, 0, 0);
         entity::Entity* entity = sce_scene->get_selected_entity();
-        sce_operation->make_translation(entity, translation);
+        ope_transform->make_translation(entity->get_data(), translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
         vec3 translation = vec3(0, translation_qtt, 0);
         entity::Entity* entity = sce_scene->get_selected_entity();
-        sce_operation->make_translation(entity, translation);
+        ope_transform->make_translation(entity->get_data(), translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
         vec3 translation = vec3(0, -translation_qtt, 0);
         entity::Entity* entity = sce_scene->get_selected_entity();
-        sce_operation->make_translation(entity, translation);
+        ope_transform->make_translation(entity->get_data(), translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
         vec3 translation = vec3(0, 0, translation_qtt);
         entity::Entity* entity = sce_scene->get_selected_entity();
-        sce_operation->make_translation(entity, translation);
+        ope_transform->make_translation(entity->get_data(), translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
         vec3 translation = vec3(0, 0, -translation_qtt);
         entity::Entity* entity = sce_scene->get_selected_entity();
-        sce_operation->make_translation(entity, translation);
+        ope_transform->make_translation(entity->get_data(), translation);
         break;
       }
     }
@@ -243,7 +244,7 @@ void Control::control_mouse_wheel(){
 
     //Apply rotation
     entity::Entity* entity = sce_scene->get_selected_entity();
-    sce_operation->make_rotation(entity, R);
+    ope_transform->make_rotation(entity->get_data(), R);
   }
 
   //----------------------------
