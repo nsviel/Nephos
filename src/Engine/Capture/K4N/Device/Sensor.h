@@ -11,6 +11,7 @@ class K4A_playback;
 class Engine;
 
 namespace k4n::dev{
+class Master;
 
 
 class Sensor : public entity::Entity
@@ -54,6 +55,7 @@ public:
 
   entity::Object* object;
 
+  k4n::dev::Master* master;
   k4n::structure::Cloud cloud;
   k4n::structure::Device device;
   k4n::structure::Synchro synchro;

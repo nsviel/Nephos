@@ -94,7 +94,7 @@ void Sensor::remove_entity(){
   k4n::dev::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
   //---------------------------
 
-  k4a_swarm->close_sensor(this);
+  k4a_swarm->close_sensor(this, master);
 
   //---------------------------
 }

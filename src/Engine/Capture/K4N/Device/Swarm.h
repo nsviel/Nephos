@@ -31,7 +31,7 @@ public:
   //Creation / supression function
   k4n::dev::Sensor* create_sensor_playback(string path);
   k4n::dev::Sensor* create_sensor_capture();
-  void close_sensor(k4n::dev::Sensor* device);
+  void close_sensor(k4n::dev::Sensor* device, k4n::dev::Master* master);
   void close_sensor_all();
   void selecte_next_sensor();
 

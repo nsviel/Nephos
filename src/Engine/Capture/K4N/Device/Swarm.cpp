@@ -115,6 +115,7 @@ k4n::dev::Sensor* Swarm::create_sensor_playback(string path){
   k4n_sensor->device.is_playback = true;
   k4n_sensor->playback.path = path;
   k4n_sensor->playback.filename = info::get_filename_from_path(path);
+  k4n_sensor->master = master;
 
   selected_sensor = k4n_sensor;
   list_sensor.push_back(k4n_sensor);
@@ -133,13 +134,18 @@ k4n::dev::Sensor* Swarm::create_sensor_playback(string path){
 k4n::dev::Sensor* Swarm::create_sensor_capture(){
   //---------------------------
 
+  k4n::dev::Master* master = new k4n::dev::Master(engine);
+  this->list_master.push_back(master);
+
   k4n::dev::Sensor* k4n_sensor = new k4n::dev::Sensor(engine);
   k4n_sensor->name = "device_" + to_string(nb_dev_capture);
   k4n_sensor->device.index = nb_dev_capture;
   k4n_sensor->device.is_playback = false;
+  k4n_sensor->master = master;
 
   selected_sensor = k4n_sensor;
   list_sensor.push_back(k4n_sensor);
+  master->list_sensor.push_back(k4n_sensor);
   nb_dev_capture++;
 
   k4n_sensor->init();
@@ -149,14 +155,20 @@ k4n::dev::Sensor* Swarm::create_sensor_capture(){
   //---------------------------
   return k4n_sensor;
 }
-void Swarm::close_sensor(k4n::dev::Sensor* k4n_sensor){
+void Swarm::close_sensor(k4n::dev::Sensor* sensor, k4n::dev::Master* master){
   //---------------------------
 
-  k4n_sensor->destroy();
-  list_sensor.remove(k4n_sensor);
-  k4n_sensor->device.is_playback ? nb_dev_playback-- : nb_dev_capture--;
-  delete(k4n_sensor);
-  k4n_sensor = nullptr;
+
+  for(int i=0; i<master->list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor_in_list = *std::next(master->list_sensor.begin(), i);
+    if(sensor->UID == sensor_in_list->UID){
+      sensor->destroy();
+      master->list_sensor.remove(sensor);
+      sensor->device.is_playback ? nb_dev_playback-- : nb_dev_capture--;
+      delete(sensor);
+      sensor = nullptr;
+    }
+  }
 
   this->selecte_next_sensor();
 
@@ -167,7 +179,7 @@ void Swarm::close_sensor_all(){
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* k4n_sensor = *std::next(list_sensor.begin(), i);
-    this->close_sensor(k4n_sensor);
+    this->close_sensor(k4n_sensor, k4n_sensor->master);
   }
 
   //---------------------------
