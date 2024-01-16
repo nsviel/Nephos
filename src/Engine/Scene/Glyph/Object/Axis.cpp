@@ -22,7 +22,7 @@ void Axis::create(){
   //Create glyph
   eng::data::Object* object = new eng::data::Object(engine);
   object->name = "axis";
-  object->draw_line_width = 3;
+  object->data->draw_line_width = 3;
   object->is_visible = is_visible;
   object->draw_type_name = "line";
   this->vec_object.push_back(object);

@@ -45,7 +45,7 @@ void VK_data::insert_object(eng::data::Object* object){
   vk_descriptor->create_binding(&data->binding);
 
   //Insert data struct into set
-  struct_vulkan->data.list_object.push_back(data);
+  struct_vulkan->data.list_vk_object.push_back(data);
 
   //---------------------------
 }
@@ -61,8 +61,8 @@ void VK_data::update_object(eng::data::Object* object, vk::structure::Object* da
 void VK_data::clean(){
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->data.list_object.size(); i++){
-    vk::structure::Object* data = *next(struct_vulkan->data.list_object.begin(),i);
+  for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
+    vk::structure::Object* data = *next(struct_vulkan->data.list_vk_object.begin(),i);
     this->clean_entity(data);
   }
 

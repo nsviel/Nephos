@@ -123,7 +123,7 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
 
     if(is_visible && has_topology && has_xyz && has_rgb){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
-      vk_uniform->update_uniform("point_size", &data->binding, data->object->draw_point_size);
+      vk_uniform->update_uniform("point_size", &data->binding, data->object->data->draw_point_size);
 
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, data->binding.descriptor.set);
       vk_drawing->cmd_draw_data(subpass->command_buffer, data);

@@ -23,7 +23,7 @@ void Axis::create(){
 
   eng::data::Object* object = new eng::data::Object(engine);
   object->name = "world_axis";
-  object->draw_line_width = 4;
+  object->data->draw_line_width = 4;
   object->is_visible = true;
   object->draw_type_name = "line";
   object->is_permanent = true;

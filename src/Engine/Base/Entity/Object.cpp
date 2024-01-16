@@ -24,7 +24,8 @@ Object::Object(Engine* engine){
   this->engine = engine;
   this->unicolor = math::random_color();
   this->type = "Object";
-
+  this->data = new eng::data::Data();
+  
   //---------------------------
 }
 Object::~Object(){}

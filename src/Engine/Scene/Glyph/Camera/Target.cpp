@@ -21,7 +21,7 @@ void Target::create(){
 
   eng::data::Object* object = new eng::data::Object(engine);
   object->name = "camera_target";
-  object->draw_line_width = 2;
+  object->data->draw_line_width = 2;
   object->is_visible = true;
   object->draw_type_name = "line";
   object->is_permanent = true;

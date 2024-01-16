@@ -118,7 +118,7 @@ void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::O
 void VK_drawing::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* data){
   //---------------------------
 
-  vkCmdSetLineWidth(command_buffer, data->object->draw_line_width);
+  vkCmdSetLineWidth(command_buffer, data->object->data->draw_line_width);
 
   //---------------------------
 }

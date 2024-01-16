@@ -88,7 +88,7 @@ eng::data::Object* Loader::load_object(string path){
   object->file_format = info::get_format_from_path(path);
   object->has_texture = true;
   object->name = data->name;
-  object->nb_point = data->xyz.size();
+  object->data->nb_point = data->xyz.size();
   object->draw_type_name = data->draw_type_name;
 
   object->xyz = data->xyz;

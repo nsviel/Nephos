@@ -182,19 +182,19 @@ void Entity::entity_line(eng::data::Object* object){
   ImGui::Text("Line width"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    object->draw_line_width--;
+    object->data->draw_line_width--;
 
-    if(object->draw_line_width <= 1){
-      object->draw_line_width = 1;
+    if(object->data->draw_line_width <= 1){
+      object->data->draw_line_width = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    object->draw_line_width++;
+    object->data->draw_line_width++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", object->draw_line_width);
+  ImGui::Text("%d", object->data->draw_line_width);
 
   //---------------------------
 }
@@ -205,7 +205,7 @@ void Entity::entity_point(eng::data::Object* object){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Nb point"); ImGui::TableNextColumn();
-  string nb_point = math::thousand_separator(object->nb_point);
+  string nb_point = math::thousand_separator(object->data->nb_point);
   ImGui::Text("%s", nb_point.c_str());
 
   //Point size
@@ -213,19 +213,19 @@ void Entity::entity_point(eng::data::Object* object){
   ImGui::Text("Point size"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    object->draw_point_size--;
+    object->data->draw_point_size--;
 
-    if(object->draw_point_size <= 1){
-      object->draw_point_size = 1;
+    if(object->data->draw_point_size <= 1){
+      object->data->draw_point_size = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    object->draw_point_size++;
+    object->data->draw_point_size++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", object->draw_point_size);
+  ImGui::Text("%d", object->data->draw_point_size);
 
   //---------------------------
 }

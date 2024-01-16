@@ -19,7 +19,7 @@ void AABB::create(){
 
   eng::data::Object* object = new eng::data::Object(engine);
   object->name = "aabb";
-  object->draw_line_width = 1;
+  object->data->draw_line_width = 1;
   object->is_visible = false;
   object->draw_type_name = "line";
   object->is_permanent = true;
