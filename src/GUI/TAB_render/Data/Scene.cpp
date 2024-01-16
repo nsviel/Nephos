@@ -163,66 +163,27 @@ int Scene::data_node_tree(utl::base::Set* set) {
   return nb_row;
 }
 void Scene::display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row){
+  bool has_subentity = (entity->get_vec_entity().size() == 0 && entity->get_list_entity().size() == 0) ? false : true;
   //---------------------------
 
   ImGui::TableNextRow();
   ImGui::TableNextColumn();
   nb_row++;
 
-  // If object is selected
-  ImGuiTreeNodeFlags flag_leaf;
-  flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
-  flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
-  flag_leaf |= ImGuiTreeNodeFlags_Leaf;
-  flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
-  flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
-
-
-
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
   flag_node |= ImGuiTreeNodeFlags_DefaultOpen;
   flag_node |= (entity == set->selected_entity && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
+  flag_node |= has_subentity ? 0 : ImGuiTreeNodeFlags_Leaf;
 
   // Display leaf
-  string name = ICON_FA_FILE_O + (string)"   " + entity->name;
+  string icon = has_subentity ? ICON_FA_TRAIN : ICON_FA_FILE_O;
+  string name = icon + "   " + entity->name;
   bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag_node);
-
+  this->entity_click(set, entity);
   if(is_node_open){
-    vector<entity::Entity*> vec_entity = entity->get_vec_entity();
-    list<entity::Entity*> list_entity = entity->get_list_entity();
-
-    for(int i=0; i<list_entity.size(); i++){
-      entity::Entity* entity = *next(list_entity.begin(), i);
-
-      if(entity == set->selected_entity && entity->is_suppressible){
-        flag_leaf |= ImGuiTreeNodeFlags_Selected;
-      }else{
-        flag_leaf &= ~ImGuiTreeNodeFlags_Selected;
-      }
-
-      string name = ICON_FA_FILE_O + (string)"   " + entity->name;
-      ImGui::TreeNodeEx(name.c_str(), flag_leaf);
-
-      // If item clicked
-      if (ImGui::IsItemClicked()) {
-        set->selected_entity = entity;
-      }
-    }
-
+    this->entity_open(set, entity);
     ImGui::TreePop();
-  }
-
-
-  // If item clicked
-  if (ImGui::IsItemClicked()) {
-    set->selected_entity = entity;
-  }
-
-  // If item double-clicked
-  if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
-    rnd_object->set_entity(entity);
-    this->show_panel_entity = true;
   }
 
   //---------------------------
@@ -257,5 +218,45 @@ void Scene::set_open(utl::base::Set* set, int& nb_row){
   //---------------------------
 }
 
+//Entity function
+void Scene::entity_open(utl::base::Set* set, entity::Entity* entity){
+  vector<entity::Entity*> vec_entity = entity->get_vec_entity();
+  list<entity::Entity*> list_entity = entity->get_list_entity();
+  //---------------------------
+
+  ImGuiTreeNodeFlags flag_leaf;
+  flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
+  flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
+  flag_leaf |= ImGuiTreeNodeFlags_Leaf;
+  flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
+  flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
+
+  for(int i=0; i<list_entity.size(); i++){
+    entity::Entity* entity = *next(list_entity.begin(), i);
+    flag_leaf |= (entity == set->selected_entity && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
+
+    string name = ICON_FA_FILE_O + (string)"   " + entity->name;
+    ImGui::TreeNodeEx(name.c_str(), flag_leaf);
+    this->entity_click(set, entity);
+  }
+
+  //---------------------------
+}
+void Scene::entity_click(utl::base::Set* set, entity::Entity* entity){
+  //---------------------------
+
+  // If item clicked
+  if (ImGui::IsItemClicked()) {
+    set->selected_entity = entity;
+  }
+
+  // If item double-clicked
+  if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
+    rnd_object->set_entity(entity);
+    this->show_panel_entity = true;
+  }
+
+  //---------------------------
+}
 
 }

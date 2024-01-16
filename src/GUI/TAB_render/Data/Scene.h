@@ -36,6 +36,10 @@ public:
   void set_double_click(utl::base::Set* set);
   void set_open(utl::base::Set* set, int& nb_row);
 
+  //Entity function
+  void entity_open(utl::base::Set* set, entity::Entity* entity);
+  void entity_click(utl::base::Set* set, entity::Entity* entity);
+
   bool show_panel_entity   = false;
   bool show_panel_set      = false;
 
