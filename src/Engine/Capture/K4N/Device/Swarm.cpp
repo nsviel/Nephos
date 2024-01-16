@@ -106,6 +106,8 @@ k4n::dev::Sensor* Swarm::create_sensor_playback(string path){
   //---------------------------
 
   k4n::dev::Master* master = new k4n::dev::Master(engine);
+  master->name = "Master";
+  sce_scene->insert_entity_scene(master);
   this->list_master.push_back(master);
 
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
@@ -122,7 +124,6 @@ k4n::dev::Sensor* Swarm::create_sensor_playback(string path){
 
   sensor->init();
   sensor->run_playback(path);
-  sce_scene->insert_entity_scene(sensor);
 
   k4n_transfo->truc(path);
 
@@ -133,6 +134,7 @@ k4n::dev::Sensor* Swarm::create_sensor_capture(){
   //---------------------------
 
   k4n::dev::Master* master = new k4n::dev::Master(engine);
+  sce_scene->insert_entity_scene(master);
   this->list_master.push_back(master);
 
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
@@ -147,7 +149,6 @@ k4n::dev::Sensor* Swarm::create_sensor_capture(){
 
   sensor->init();
   sensor->run_capture();
-  sce_scene->insert_entity_scene(sensor);
 
   //---------------------------
   return sensor;

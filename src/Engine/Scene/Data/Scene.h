@@ -36,7 +36,6 @@ public:
   void delete_entity_all();
 
   //Object
-  void insert_object_scene(entity::Object* object);
   void insert_object(entity::Object* object);
   void remove_object(entity::Object* object);
 

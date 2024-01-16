@@ -128,16 +128,6 @@ void Scene::delete_entity_all(){
 }
 
 //Object
-void Scene::insert_object_scene(entity::Object* object){
-  utl::base::Set* data_set = sce_database->get_data_set();
-  utl::base::Set* set_scene = data_set->get_set("Scene");
-  //---------------------------
-
-  this->insert_object(object);
-  set_scene->insert_entity(object);
-
-  //---------------------------
-}
 void Scene::insert_object(entity::Object* object){
   //---------------------------
 

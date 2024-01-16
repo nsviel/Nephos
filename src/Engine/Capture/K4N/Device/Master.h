@@ -29,7 +29,6 @@ public:
 
   inline std::list<entity::Entity*> get_list_entity(){return list<entity::Entity*>(list_sensor.begin(), list_sensor.end());}
 
-
 public:
   list<k4n::dev::Sensor*> list_sensor;
 
