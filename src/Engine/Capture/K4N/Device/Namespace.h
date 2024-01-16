@@ -6,7 +6,7 @@
 #include <Engine/Capture/K4N/Node.h>
 
 
-namespace k4n::dev{
+namespace k4n{
   //---------------------------
 
   class Master;
