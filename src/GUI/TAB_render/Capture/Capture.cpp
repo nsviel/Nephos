@@ -1,7 +1,6 @@
 #include "Capture.h"
 
 #include <GUI.h>
-#include <Engine/Capture/K4N/Device/Swarm.h>
 
 
 namespace gui::kinect{

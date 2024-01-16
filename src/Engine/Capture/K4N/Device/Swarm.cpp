@@ -103,7 +103,7 @@ void Swarm::manage_less_capture_device(int nb_less_device){
   //---------------------------
 }
 
-//Creation function
+//Creation / supression function
 k4n::Device* Swarm::create_device_playback(string path){
   //---------------------------
 

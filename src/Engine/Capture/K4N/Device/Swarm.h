@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/Utils/Namespace.h>
-#include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Engine/Capture/K4N/Structure/Struct_swarm.h>
+#include <Engine/Capture/K4N/Namespace.h>
+#include <Engine/Capture/K4N/Structure/Namespace.h>
+#include <Engine/Capture/K4N/Utils/Namespace.h>
 #include <Engine/Scene/Data/Scene.h>
 #include <Utility/Specific/common.h>
 
@@ -29,7 +29,7 @@ public:
   void manage_new_capture_device(int number);
   void manage_less_capture_device(int number);
 
-  //Creation function
+  //Creation / supression function
   k4n::Device* create_device_playback(string path);
   k4n::Device* create_device_capture();
   void close_device(k4n::Device* device);

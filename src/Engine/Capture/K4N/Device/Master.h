@@ -7,6 +7,7 @@
 class Engine;
 
 namespace k4n{
+class Device;
 
 
 class Master : public entity::Entity

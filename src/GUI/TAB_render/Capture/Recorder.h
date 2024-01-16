@@ -3,7 +3,6 @@
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/Namespace.h>
 
 
 namespace gui::kinect{
