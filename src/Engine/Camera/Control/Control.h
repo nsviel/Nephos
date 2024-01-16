@@ -27,7 +27,7 @@ public:
   mat4 compute_camera_view();
   mat4 compute_camera_proj();
   mat4 compute_camera_mvp();
-  void compute_camera_mvp(entity::Object* object);
+  void compute_camera_mvp(utl::base::Data* data);
   mat4 compute_camera_pose();
 
   //Camera parameter

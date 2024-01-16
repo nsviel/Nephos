@@ -56,7 +56,7 @@ void Device::update_entity(){
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   //----------------------------
 
-  cam_control->compute_camera_mvp(cloud.object);
+  cam_control->compute_camera_mvp(cloud.object->data);
   sce_glyph->update_glyph_object(cloud.object);
 
   //----------------------------

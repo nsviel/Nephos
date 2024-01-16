@@ -27,7 +27,7 @@ void Glyph::update_entity(){
   //----------------------------
 
   for(int i=0; i<vec_object.size(); i++){
-    cam_control->compute_camera_mvp(vec_object[i]);
+    cam_control->compute_camera_mvp(vec_object[i]->data);
   }
 
   //----------------------------

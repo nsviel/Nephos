@@ -38,7 +38,7 @@ void Object::update_entity(){
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   //----------------------------
 
-  cam_control->compute_camera_mvp(this);
+  cam_control->compute_camera_mvp(data);
   sce_glyph->update_glyph_object(this);
 
   //----------------------------
