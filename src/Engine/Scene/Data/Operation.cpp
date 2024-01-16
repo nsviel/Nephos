@@ -32,11 +32,11 @@ void Operation::make_translation(entity::Entity* entity, vec3 translation){
 
   //Object entity
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_transform->make_translation(object, translation);
+    ope_transform->make_translation(object->data, translation);
   }
   //K4A device entity
   else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    ope_transform->make_translation(device->cloud.object, translation);
+    ope_transform->make_translation(device->cloud.object->data, translation);
   }
 
   //---------------------------
@@ -47,11 +47,11 @@ void Operation::make_rotation(entity::Entity* entity, vec3 rotation){
 
   //Object entity
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_transform->make_rotation(object, object->data->COM, rotation);
+    ope_transform->make_rotation(object->data, object->data->COM, rotation);
   }
   //K4A device entity
   else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    ope_transform->make_rotation(device->cloud.object, device->cloud.object->data->COM, rotation);
+    ope_transform->make_rotation(device->cloud.object->data, device->cloud.object->data->COM, rotation);
   }
 
   //---------------------------
@@ -61,15 +61,15 @@ void Operation::make_rotation_X_90d(entity::Entity* entity, int value){
 
   //Object entity
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_attribut->compute_MinMax(object);
-    ope_transform->make_rotation_axe_X(object, value * 90);
-    ope_operation->elevate_object(object);
+    ope_attribut->compute_MinMax(object->data);
+    ope_transform->make_rotation_axe_X(object->data, value * 90);
+    ope_operation->elevate_object(object->data);
   }
   //K4A device entity
   else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    ope_attribut->compute_MinMax(device->cloud.object);
-    ope_transform->make_rotation_axe_X(device->cloud.object, value * 90);
-    ope_operation->elevate_object(device->cloud.object);
+    ope_attribut->compute_MinMax(device->cloud.object->data);
+    ope_transform->make_rotation_axe_X(device->cloud.object->data, value * 90);
+    ope_operation->elevate_object(device->cloud.object->data);
   }
 
   //---------------------------
@@ -80,11 +80,11 @@ void Operation::make_center(entity::Entity* entity){
 
   //Object entity
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_operation->center_object(object);
+    ope_operation->center_object(object->data);
   }
   //K4A device entity
   else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    ope_operation->center_object(device->cloud.object);
+    ope_operation->center_object(device->cloud.object->data);
   }
 
   //---------------------------

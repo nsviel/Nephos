@@ -20,20 +20,20 @@ public:
 
 public:
   // Translation
-  void make_translation(entity::Object* object, vec3 trans);
-  void make_translation(entity::Object* object, mat4 translation);
+  void make_translation(utl::base::Data* data, vec3 trans);
+  void make_translation(utl::base::Data* data, mat4 translation);
 
   // Rotation
-  void make_rotation(entity::Object* object, vec3 COM, vec3 radian);
-  void make_rotation(entity::Object* object, vec3 degree);
-  void make_rotation(entity::Object* object, vec3 COM, mat4 rotation);
-  void make_rotation_axe_X(entity::Object* object, float degree);
+  void make_rotation(utl::base::Data* data, vec3 COM, vec3 radian);
+  void make_rotation(utl::base::Data* data, vec3 degree);
+  void make_rotation(utl::base::Data* data, vec3 COM, mat4 rotation);
+  void make_rotation_axe_X(utl::base::Data* data, float degree);
 
   //Scaling
-  void make_scaling(entity::Object* object, float scale);
+  void make_scaling(utl::base::Data* data, float scale);
 
   //Transformation
-  void make_transformation(entity::Object* object, vec3 COM, mat4 translation, mat4 rotation);
+  void make_transformation(utl::base::Data* data, vec3 COM, mat4 translation, mat4 rotation);
 
   //Subfunction
   mat4 get_translation_mat(vec3 trans);

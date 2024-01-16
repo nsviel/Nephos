@@ -152,7 +152,7 @@ void Scene::update_object(entity::Object* object){
   //---------------------------
 
   vk_engine->insert_data_in_engine(object->data);
-  ope_attribut->compute_MinMax(object);
+  ope_attribut->compute_MinMax(object->data);
 
   //---------------------------
 }
