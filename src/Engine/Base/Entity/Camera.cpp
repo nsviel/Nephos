@@ -7,7 +7,7 @@ namespace eng::data{
 Camera::Camera(){
   //---------------------------
 
-  this->reset();
+  this->reset_entity();
   this->type = "Camera";
 
   //---------------------------
@@ -26,7 +26,7 @@ void Camera::update_entity(){
 
   //----------------------------
 }
-void Camera::reset(){
+void Camera::reset_entity(){
   //---------------------------
 
   this->angle_azimuth = M_PI/4;

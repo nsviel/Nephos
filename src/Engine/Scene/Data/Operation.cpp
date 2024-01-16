@@ -32,11 +32,7 @@ void Operation::remove_entity(eng::data::Entity* entity){
 
   //If entity is an object
   if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
-    Vulkan* eng_vulkan = engine->get_eng_vulkan();
-    VK_engine* vk_engine = eng_vulkan->get_vk_engine();
-
-    sce_glyph->remove_glyph_object(object);
-    vk_engine->remove_object_in_engine(object);
+    object->remove_entity();
   }
   //If entity is a k4a device
   if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){

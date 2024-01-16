@@ -56,12 +56,12 @@ void Camera::cam_parameter(){
   ImGui::NextColumn();
   ImGui::Text("Mode");
   if(ImGui::RadioButton("Player", &camera->mode, CAMERA_MODE_PLAYER)){
-    camera->reset();
+    camera->reset_entity();
     camera->mode = CAMERA_MODE_PLAYER;
     cam_control->set_camera_mode();
   }
   if(ImGui::RadioButton("Arcball", &camera->mode, CAMERA_MODE_ARCBALL)){
-    camera->reset();
+    camera->reset_entity();
     camera->mode = CAMERA_MODE_ARCBALL;
     cam_control->set_camera_mode();
   }

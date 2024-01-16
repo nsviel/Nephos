@@ -11,7 +11,8 @@ struct Entity
 
   virtual ~Entity(){}
   virtual void update_entity(){}
-  virtual void reset(){};
+  virtual void remove_entity(){}
+  virtual void reset_entity(){};
 
   int ID = -1;
   bool is_visible = true;

@@ -38,7 +38,7 @@ public:
 
   //Main function
   void update_entity();
-  void reset();
+  void reset_entity();
 
 public:
   //Camera pose

@@ -27,7 +27,7 @@ void Set::reset(){
   //Reset all associated entities
   for(int j=0; j<list_entity.size(); j++){
     eng::data::Entity* entity = *next(list_entity.begin(), j);
-    entity->reset();
+    entity->reset_entity();
   }
 
   //Reset all associated sets

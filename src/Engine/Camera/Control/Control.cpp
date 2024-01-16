@@ -194,12 +194,12 @@ void Control::set_next_camera_mode(){
 
   switch(camera->mode){
     case CAMERA_MODE_PLAYER:{
-      camera->reset();
+      camera->reset_entity();
       camera->mode = CAMERA_MODE_ARCBALL;
       break;
     }
     case CAMERA_MODE_ARCBALL:{
-      camera->reset();
+      camera->reset_entity();
       camera->mode = CAMERA_MODE_PLAYER;
       break;
     }

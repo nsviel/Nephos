@@ -28,7 +28,8 @@ public:
 
   //Main function
   void update_entity();
-  void reset();
+  void remove_entity();
+  void reset_entity();
 
 public:
   Engine* engine;

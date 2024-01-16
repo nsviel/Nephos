@@ -64,7 +64,7 @@ void Device::update_entity(){
 void Device::reset(){
   //---------------------------
 
-  cloud.object->reset();
+  cloud.object->reset_entity();
 
   //---------------------------
 }
