@@ -109,7 +109,7 @@ void Device::draw_cloud(){
 
   std::unique_lock<std::mutex> lock(cloud.object->data->mutex);
   cloud.object->data->nb_point = cloud.object->data->xyz.size();
-  eng_scene->update_data(cloud.object);
+  eng_scene->update_data(cloud.object->data);
 
   //---------------------------
 }
