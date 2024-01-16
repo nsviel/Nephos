@@ -29,8 +29,8 @@ void Axis::create(){
   //---------------------------
 }
 void Axis::update_glyph(int nb_cell){
-  vector<vec3>& XYZ = vec_object[0]->xyz;
-  vector<vec4>& RGB = vec_object[0]->rgb;
+  vector<vec3>& XYZ = vec_object[0]->data->xyz;
+  vector<vec4>& RGB = vec_object[0]->data->rgb;
   float z = -0.001;
   //---------------------------
 

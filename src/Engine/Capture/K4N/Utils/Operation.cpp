@@ -40,7 +40,7 @@ void Operation::colorization_intensity(k4n::structure::Cloud* cloud, vector<vec4
   vec_rgba.clear();
   vec_rgba.reserve(cloud->nb_point);
   for(int i=0; i<cloud->nb_point; i++){
-    float Is = cloud->object->Is[i] / cloud->intensity_division;
+    float Is = cloud->object->data->Is[i] / cloud->intensity_division;
     vec_rgba.push_back(vec4(Is, Is, Is, 1));
   }
 

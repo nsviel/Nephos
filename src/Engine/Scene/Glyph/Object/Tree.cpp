@@ -43,7 +43,7 @@ void Tree::update_glyph(entity::Entity* entity){
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
     if(is_visible){
       //octreeManager->create_octree(cloud, level);
-      vec_object[0]->xyz = object->xyz;
+      vec_object[0]->data->xyz = object->data->xyz;
     }
   }
 

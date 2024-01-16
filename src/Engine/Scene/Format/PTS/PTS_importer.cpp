@@ -316,10 +316,10 @@ bool PTS_importer::Exporter(std::string path, entity::Object* object){
   }
 
   //Data : xyz (R) (rgb) (nxnynz)
-  std::vector<glm::vec3>& XYZ = object->xyz;
-  std::vector<glm::vec4>& RGB = object->rgb;
-  std::vector<glm::vec3>& N = object->Nxyz;
-  std::vector<float>& Is = object->Is;
+  std::vector<glm::vec3>& XYZ = object->data->xyz;
+  std::vector<glm::vec4>& RGB = object->data->rgb;
+  std::vector<glm::vec3>& N = object->data->Nxyz;
+  std::vector<float>& Is = object->data->Is;
 
   //Write in the file
   int precision = 6;
@@ -332,7 +332,7 @@ bool PTS_importer::Exporter(std::string path, entity::Object* object){
     file << std::setprecision(precision) << XYZ[i].x <<" "<< XYZ[i].y <<" "<< XYZ[i].z ;
 
     //Intensity
-    if(object->Is.size() != 0){
+    if(object->data->Is.size() != 0){
       if(export_IdataFormat == 0){
         file << std::setprecision(precision) <<" "<< Is[i];
       }
@@ -350,7 +350,7 @@ bool PTS_importer::Exporter(std::string path, entity::Object* object){
     }
 
     //Normal
-    if(object->Nxyz.size() != 0){
+    if(object->data->Nxyz.size() != 0){
       file << std::setprecision(precision) <<" "<< N[i].x <<" "<< N[i].y <<" "<< N[i].z;
     }
 

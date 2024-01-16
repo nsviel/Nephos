@@ -52,14 +52,6 @@ public:
   std::string draw_type_name = "";
   glm::vec4 unicolor;
 
-  std::vector<glm::vec3> xyz;
-  std::vector<glm::vec4> rgb;
-  std::vector<glm::vec3> Nxyz;
-  std::vector<glm::vec2> uv;
-  std::vector<float> ts;
-  std::vector<float> Is;
-  std::vector<float> R;
-  std::mutex mutex;
 
   //Pose
   glm::vec3 min = glm::vec3(0.0f);

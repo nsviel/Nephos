@@ -9,7 +9,7 @@ Attribut::~Attribut(){}
 
 //Main function
 void Attribut::compute_MinMax(entity::Object* object){
-  vector<vec3>& XYZ = object->xyz;
+  vector<vec3>& XYZ = object->data->xyz;
   if(XYZ.size() == 0) return;
   //---------------------------
 
@@ -50,14 +50,14 @@ void Attribut::set_visibility(utl::base::Set* set, bool visibility){
 void Attribut::set_unicolor(entity::Object* object){
   //---------------------------
 
-  for(int i=0; i<object->rgb.size(); i++){
-    object->rgb[i] = object->unicolor;
+  for(int i=0; i<object->data->rgb.size(); i++){
+    object->data->rgb[i] = object->unicolor;
   }
 
   //---------------------------
 }
 vector<float> Attribut::retrieve_z_vector(entity::Object* object){
-  vector<vec3>& xyz = object->xyz;
+  vector<vec3>& xyz = object->data->xyz;
   vector<float> z_vec;
   //---------------------------
 

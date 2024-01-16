@@ -91,14 +91,14 @@ entity::Object* Loader::load_object(string path){
   object->data->nb_point = data->xyz.size();
   object->draw_type_name = data->draw_type_name;
 
-  object->xyz = data->xyz;
-  object->rgb = data->rgb;
-  object->uv = data->uv;
+  object->data->xyz = data->xyz;
+  object->data->rgb = data->rgb;
+  object->data->uv = data->uv;
 
   //If no color, fill it with white
-  if(object->rgb.size() == 0){
+  if(object->data->rgb.size() == 0){
     for(int i=0; i<data->xyz.size(); i++){
-      object->rgb.push_back(vec4(1,1,1,1));
+      object->data->rgb.push_back(vec4(1,1,1,1));
     }
   }
 

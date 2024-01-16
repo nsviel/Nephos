@@ -33,8 +33,8 @@ void Mesh::create(){
   //---------------------------
 }
 void Mesh::update_glyph(int nb_cell){
-  vec_object[0]->xyz.clear();
-  vec_object[0]->rgb.clear();
+  vec_object[0]->data->xyz.clear();
+  vec_object[0]->data->rgb.clear();
   //---------------------------
 
   this->construct_mesh(nb_cell);
@@ -45,8 +45,8 @@ void Mesh::update_glyph(int nb_cell){
 
 //Subfunction
 void Mesh::construct_mesh(int nb_cell){
-  vector<vec3>& XYZ = vec_object[0]->xyz;
-  vector<vec4>& RGB = vec_object[0]->rgb;
+  vector<vec3>& XYZ = vec_object[0]->data->xyz;
+  vector<vec4>& RGB = vec_object[0]->data->rgb;
   float z = -0.002;
   //---------------------------
 
@@ -68,8 +68,8 @@ void Mesh::construct_mesh(int nb_cell){
   //---------------------------
 }
 void Mesh::construct_submesh(int nb_cell){
-  vector<vec3>& XYZ = vec_object[0]->xyz;
-  vector<vec4>& RGB = vec_object[0]->rgb;
+  vector<vec3>& XYZ = vec_object[0]->data->xyz;
+  vector<vec4>& RGB = vec_object[0]->data->rgb;
   float z = -0.003;
   //---------------------------
 

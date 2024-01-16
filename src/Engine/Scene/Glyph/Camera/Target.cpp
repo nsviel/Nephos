@@ -49,8 +49,8 @@ void Target::update_glyph(entity::Entity* entity){
   //---------------------------
 }
 void Target::construct(entity::Object* object){
-  vector<vec3>& XYZ = object->xyz;
-  vector<vec4>& RGB = object->rgb;
+  vector<vec3>& XYZ = object->data->xyz;
+  vector<vec4>& RGB = object->data->rgb;
   //---------------------------
 
   XYZ.clear();

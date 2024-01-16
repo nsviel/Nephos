@@ -107,8 +107,8 @@ void Device::destroy(){
 void Device::draw_cloud(){
   //---------------------------
 
-  std::unique_lock<std::mutex> lock(cloud.object->mutex);
-  cloud.object->data->nb_point = cloud.object->xyz.size();
+  std::unique_lock<std::mutex> lock(cloud.object->data->mutex);
+  cloud.object->data->nb_point = cloud.object->data->xyz.size();
   eng_scene->update_object(cloud.object);
 
   //---------------------------

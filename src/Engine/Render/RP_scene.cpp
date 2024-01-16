@@ -117,9 +117,9 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
     vk::structure::Object* data =  *next(list_data.begin(), i);
     bool is_visible = data->object->is_visible;
     bool has_topology = data->object->draw_type_name == "point";
-    bool has_xyz = data->object->xyz.size() != 0;
-    bool has_rgb = data->object->rgb.size() != 0;
-    bool same_length = data->object->rgb.size() == data->object->xyz.size();
+    bool has_xyz = data->object->data->xyz.size() != 0;
+    bool has_rgb = data->object->data->rgb.size() != 0;
+    bool same_length = data->object->data->rgb.size() == data->object->data->xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
@@ -144,9 +144,9 @@ void RP_scene::cmd_draw_line(vk::structure::Subpass* subpass){
     vk::structure::Object* data =  *next(list_data.begin(), i);
     bool& is_visible = data->object->is_visible;
     bool has_topology = data->object->draw_type_name == "line";
-    bool has_xyz = data->object->xyz.size() != 0;
-    bool has_rgb = data->object->rgb.size() != 0;
-    bool same_length = data->object->rgb.size() == data->object->xyz.size();
+    bool has_xyz = data->object->data->xyz.size() != 0;
+    bool has_rgb = data->object->data->rgb.size() != 0;
+    bool same_length = data->object->data->rgb.size() == data->object->data->xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb && same_length){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);
@@ -171,9 +171,9 @@ void RP_scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
     vk::structure::Object* data =  *next(list_data.begin(), i);
     bool& is_visible = data->object->is_visible;
     bool has_topology = data->object->draw_type_name == "triangle";
-    bool has_xyz = data->object->xyz.size() != 0;
-    bool has_rgb = data->object->rgb.size() != 0;
-    bool same_length = data->object->rgb.size() == data->object->xyz.size();
+    bool has_xyz = data->object->data->xyz.size() != 0;
+    bool has_rgb = data->object->data->rgb.size() != 0;
+    bool same_length = data->object->data->rgb.size() == data->object->data->xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb && same_length){
       vk_uniform->update_uniform("mvp", &data->binding, data->object->mvp);

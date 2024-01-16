@@ -110,7 +110,7 @@ void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::O
   }
   if(data->xyz.vbo != VK_NULL_HANDLE && data->has_xyz){
     vkCmdBindVertexBuffers(command_buffer, 0, 1, &data->xyz.vbo, offsets);
-    vkCmdDraw(command_buffer, data->object->xyz.size(), 1, 0, 0);
+    vkCmdDraw(command_buffer, data->object->data->xyz.size(), 1, 0, 0);
   }
 
   //---------------------------

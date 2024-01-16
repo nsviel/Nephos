@@ -26,7 +26,7 @@ void AABB::create(){
   object->unicolor = color;
 
   for(int i=0; i<24; i++){
-    object->rgb.push_back(color);
+    object->data->rgb.push_back(color);
   }
 
   this->vec_object.push_back(object);
@@ -39,7 +39,7 @@ void AABB::update_glyph(entity::Entity* entity){
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
     vec3 min = object->min;
     vec3 max = object->max;
-    vec_object[0]->xyz = build_box(min, max);
+    vec_object[0]->data->xyz = build_box(min, max);
   }
 
   //---------------------------

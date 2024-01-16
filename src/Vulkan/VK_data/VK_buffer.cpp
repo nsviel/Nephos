@@ -23,16 +23,16 @@ void VK_buffer::create_buffers(vk::structure::Object* data){
   data->has_rgb = false;
   data->has_uv = false;
 
-  if(!data->object->xyz.empty()){
-    vk_memory->transfert_buffer_to_gpu(data->object->xyz, &data->xyz);
+  if(!data->object->data->xyz.empty()){
+    vk_memory->transfert_buffer_to_gpu(data->object->data->xyz, &data->xyz);
     data->has_xyz = true;
   }
-  if(!data->object->rgb.empty()){
-    vk_memory->transfert_buffer_to_gpu(data->object->rgb, &data->rgb);
+  if(!data->object->data->rgb.empty()){
+    vk_memory->transfert_buffer_to_gpu(data->object->data->rgb, &data->rgb);
     data->has_rgb = true;
   }
-  if(!data->object->uv.empty()){
-    vk_memory->transfert_buffer_to_gpu(data->object->uv, &data->uv);
+  if(!data->object->data->uv.empty()){
+    vk_memory->transfert_buffer_to_gpu(data->object->data->uv, &data->uv);
     data->has_uv = true;
   }
 

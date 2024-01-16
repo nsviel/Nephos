@@ -42,8 +42,8 @@ void Axis::update_glyph(entity::Entity* entity){
 
 //Subfunction
 void Axis::construct(){
-  vector<vec4>& RGB = vec_object[0]->rgb;
-  vector<vec3>& XYZ = vec_object[0]->xyz;
+  vector<vec4>& RGB = vec_object[0]->data->rgb;
+  vector<vec3>& XYZ = vec_object[0]->data->xyz;
   //---------------------------
 
   //Location

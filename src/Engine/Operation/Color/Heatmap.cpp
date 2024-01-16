@@ -31,9 +31,9 @@ Heatmap::~Heatmap(){
 vector<vec4> Heatmap::heatmap_intensity(entity::Object* object, int diviser){
   //---------------------------
 
-  vector<float> I_divided = math::divise(object->Is, diviser);
+  vector<float> I_divided = math::divise(object->data->Is, diviser);
   vector<float> I_norm = math::fct_normalize(I_divided, range_intensity);
-  this->compute_heatmap(I_norm, object->xyz.size());
+  this->compute_heatmap(I_norm, object->data->xyz.size());
 
   //---------------------------
   return heatmap;
@@ -43,7 +43,7 @@ vector<vec4> Heatmap::heatmap_height(entity::Object* object){
 
   vector<float> z_vec = attribManager->retrieve_z_vector(object);
   vector<float> z_vec_norm = math::fct_normalize(z_vec, range_height);
-  this->compute_heatmap(z_vec_norm, object->xyz.size());
+  this->compute_heatmap(z_vec_norm, object->data->xyz.size());
 
   //---------------------------
   return heatmap;
@@ -53,7 +53,7 @@ vector<vec4> Heatmap::heatmap_height(entity::Object* object, vec2 range){
 
   vector<float> z_vec = attribManager->retrieve_z_vector(object);
   vector<float> z_vec_norm = math::fct_normalize(z_vec, range);
-  this->compute_heatmap(z_vec_norm, object->xyz.size());
+  this->compute_heatmap(z_vec_norm, object->data->xyz.size());
 
   //---------------------------
   return heatmap;
@@ -61,9 +61,9 @@ vector<vec4> Heatmap::heatmap_height(entity::Object* object, vec2 range){
 vector<vec4> Heatmap::heatmap_range(entity::Object* object){
   //---------------------------
 
-  vector<float>& dist = object->R;
+  vector<float>& dist = object->data->R;
   vector<float> dist_norm = math::fct_normalize(dist);
-  this->compute_heatmap(dist_norm, object->xyz.size());
+  this->compute_heatmap(dist_norm, object->data->xyz.size());
 
   //---------------------------
   return heatmap;
@@ -111,7 +111,7 @@ void Heatmap::compute_heatmap(vector<float>& v_in, int size){
   //---------------------------
 }
 void Heatmap::heatmap_set(entity::Object* object, vector<float>& v_in){
-  vector<vec4>& RGB = object->rgb;
+  vector<vec4>& RGB = object->data->rgb;
   //---------------------------
 
   //Normalization of the input vector

@@ -76,19 +76,19 @@ void Cloud::loop_end(k4n::Device* k4n_device){
   //---------------------------
 
   k4n::structure::Cloud* cloud = k4n_device->get_cloud();
-  std::unique_lock<std::mutex> lock(cloud->object->mutex);
+  std::unique_lock<std::mutex> lock(cloud->object->data->mutex);
 
   //Store capture data
   cloud->nb_point = vec_xyz.size();
-  cloud->object->xyz = vec_xyz;
-  cloud->object->Is = vec_ir;
-  cloud->object->R = vec_r;
+  cloud->object->data->xyz = vec_xyz;
+  cloud->object->data->Is = vec_ir;
+  cloud->object->data->R = vec_r;
 
   //Final colorization
   kin_operation->make_colorization(cloud, vec_rgba);
-  cloud->object->rgb = vec_rgba;
+  cloud->object->data->rgb = vec_rgba;
 
-  if(cloud->object->xyz.size() != cloud->object->rgb.size()){
+  if(cloud->object->data->xyz.size() != cloud->object->data->rgb.size()){
     cout<<"[error] cloud creation size problem"<<endl;
   }
 
