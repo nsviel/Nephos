@@ -50,7 +50,7 @@ void Glyph::create_glyph_world(){
       //Glyph data
       vector<utl::base::Data*> vec_data = glyph->get_vec_data();
       for(int j=0; j<vec_data.size(); j++){
-        //sce_database->assign_ID(vec_object[j]);
+        sce_database->assign_ID(vec_data[j]);
         //vk_engine->insert_object_in_engine(vec_object[j]);
       }
     }
@@ -96,7 +96,7 @@ void Glyph::create_glyph_object(entity::Object* object){
     //Glyph data
     vector<utl::base::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
-      //sce_database->assign_ID(vec_data[j]);
+      sce_database->assign_ID(vec_data[j]);
       //vk_engine->insert_object_in_engine(vec_data[j]);
     }
   }
@@ -153,7 +153,7 @@ void Glyph::create_glyph_camera(entity::Camera* camera){
     //Glyph data
     vector<utl::base::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
-      //sce_database->assign_ID(vec_data[j]);
+      sce_database->assign_ID(vec_data[j]);
       //vk_engine->insert_object_in_engine(vec_data[j]);
     }
   }
