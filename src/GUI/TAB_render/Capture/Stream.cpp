@@ -57,7 +57,8 @@ void Stream::design_panel(){
 
 //All devices
 void Stream::vec_device_tab(){
-  k4n::dev::Master* master = k4a_swarm->get_selected_master();
+  k4n::dev::Sensor* sensor = k4a_swarm->get_selected_sensor();
+  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   if(ImGui::BeginTabBar("devices_tab##4567")){

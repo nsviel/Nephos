@@ -107,8 +107,6 @@ k4n::dev::Sensor* Swarm::create_sensor_playback(string path){
 
   k4n::dev::Master* master = new k4n::dev::Master(engine);
   this->list_master.push_back(master);
-  this->selected_master = master;
-
 
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
   sensor->name = "playback_" + to_string(nb_dev_capture);
@@ -143,7 +141,7 @@ k4n::dev::Sensor* Swarm::create_sensor_capture(){
   sensor->device.is_playback = false;
   sensor->master = master;
 
-  selected_sensor = sensor;
+  this->selected_sensor = sensor;
   master->list_sensor.push_back(sensor);
   nb_dev_capture++;
 
@@ -169,6 +167,10 @@ void Swarm::close_sensor(k4n::dev::Sensor* sensor, k4n::dev::Master* master){
     }
   }
 
+  //a revoir
+  if(master->list_sensor.size() == 0){
+    selected_sensor = nullptr;
+  }
   this->selecte_next_sensor();
 
   //---------------------------
@@ -180,7 +182,7 @@ void Swarm::close_sensor_all(){
     k4n::dev::Master* master = *std::next(list_master.begin(), i);
     for(int j=0; j<master->list_sensor.size(); j++){
       k4n::dev::Sensor* sensor = *std::next(master->list_sensor.begin(), j);
-    this->close_sensor(sensor, sensor->master);
+      this->close_sensor(sensor, sensor->master);
     }
   }
 

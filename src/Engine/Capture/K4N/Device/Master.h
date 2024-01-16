@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Engine/Capture/K4N/Namespace.h>
+#include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Base/Entity/Struct_entity.h>
 
@@ -28,6 +29,10 @@ public:
 
 public:
   list<k4n::dev::Sensor*> list_sensor;
+
+  k4n::structure::Synchro synchro;
+  k4n::structure::Player player;
+  k4n::structure::Recorder recorder;
 
 private:
   Engine* engine;

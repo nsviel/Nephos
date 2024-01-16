@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Data.h>
+#include <vector>
 #include <string>
 
 
@@ -16,6 +17,7 @@ struct Entity
   virtual void reset_entity(){}
   virtual void visibility_entity(bool value){}
   virtual utl::base::Data* get_data(){return nullptr;}
+  virtual std::vector<entity::Entity*> get_vec_entity(){return std::vector<entity::Entity*>();}
 
   int UID = -1;
   bool is_suppressible = true;

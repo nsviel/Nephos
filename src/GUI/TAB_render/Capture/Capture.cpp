@@ -41,7 +41,8 @@ void Capture::kinect_configuration(){
 
 //Subfunction
 void Capture::kinect_devices(){
-  k4n::dev::Master* master = k4a_swarm->get_selected_master();
+  k4n::dev::Sensor* sensor = k4a_swarm->get_selected_sensor();
+  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   ImGuiTableFlags flags;

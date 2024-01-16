@@ -58,8 +58,10 @@ public:
   k4n::dev::Master* master;
   k4n::structure::Cloud cloud;
   k4n::structure::Device device;
-  k4n::structure::Synchro synchro;
   k4n::structure::Playback playback;
+
+  //MEttre ces 3 structures dans master
+  k4n::structure::Synchro synchro;
   k4n::structure::Player player;
   k4n::structure::Recorder recorder;
 
