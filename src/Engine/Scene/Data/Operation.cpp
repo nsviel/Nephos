@@ -26,25 +26,6 @@ Operation::Operation(eng::scene::Node* node_scene){
 Operation::~Operation(){}
 
 //Main function
-void Operation::remove_entity(eng::data::Entity* entity){
-  if(entity == nullptr) return;
-  //---------------------------
-
-  //If entity is an object
-  if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
-    object->remove_entity();
-  }
-  //If entity is a k4a device
-  if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    eng::capture::Node* node_capture = engine->get_node_capture();
-    k4n::Node* node_kinect = node_capture->get_node_kinect();
-    k4n::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
-
-    k4a_swarm->close_device(device);
-  }
-
-  //---------------------------
-}
 void Operation::switch_visibility(eng::data::Entity* entity, bool value){
   if(entity == nullptr) return;
   //---------------------------

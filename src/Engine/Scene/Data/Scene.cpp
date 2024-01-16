@@ -107,7 +107,7 @@ void Scene::delete_entity(eng::data::Entity* entity){
     //Check if entity is present in the scene
     if(entity->ID == entity_scene->ID){
       set_scene->remove_entity(entity);
-      sce_operation->remove_entity(entity);
+      entity->remove_entity();
     }
   }
 
@@ -122,7 +122,7 @@ void Scene::delete_entity_all(){
     eng::data::Entity* entity = *next(set_scene->list_entity.begin(),i);
 
     set_scene->remove_entity(entity);
-    sce_operation->remove_entity(entity);
+    entity->remove_entity();
   }
 
   //---------------------------

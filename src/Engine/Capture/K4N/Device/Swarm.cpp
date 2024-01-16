@@ -43,7 +43,7 @@ void Swarm::reset_all_device(){
   //Run all thread
   for(int i=0; i<list_device.size(); i++){
     k4n::Device* k4n_device = *std::next(list_device.begin(), i);
-    k4n_device->player.ts_seek = k4n_device->player.ts_beg;
+    k4n_device->reset_entity();
   }
 
   //---------------------------
