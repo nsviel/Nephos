@@ -22,13 +22,14 @@ Swarm::~Swarm(){}
 
 //Main function
 void Swarm::draw_all_clouds(){
-  list<k4n::dev::Sensor*>& list_device = list_sensor;
   //---------------------------
 
-  //Run all thread
-  for(int i=0; i<list_device.size(); i++){
-    k4n::dev::Sensor* k4n_sensor = *std::next(list_device.begin(), i);
-    k4n_sensor->draw_cloud();
+  for(int i=0; i<list_master.size(); i++){
+    k4n::dev::Master* master = *std::next(list_master.begin(), i);
+    for(int j=0; j<master->list_sensor.size(); j++){
+      k4n::dev::Sensor* sensor = *std::next(master->list_sensor.begin(), j);
+      sensor->draw_cloud();
+    }
   }
 
   //---------------------------
@@ -69,7 +70,6 @@ void Swarm::refresh_connected_sensor(){
   //---------------------------
 }
 void Swarm::manage_new_capture_sensor(int nb_new_device){
-  list<k4n::dev::Sensor*>& list_device = list_sensor;
   //---------------------------
 
   //If previsouly no device, we need to supress all default playback
@@ -105,6 +105,10 @@ void Swarm::manage_less_capture_sensor(int nb_less_device){
 k4n::dev::Sensor* Swarm::create_sensor_playback(string path){
   //---------------------------
 
+  k4n::dev::Master* master = new k4n::dev::Master(engine);
+  this->list_master.push_back(master);
+
+
   k4n::dev::Sensor* k4n_sensor = new k4n::dev::Sensor(engine);
   k4n_sensor->name = "playback_" + to_string(nb_dev_capture);
   k4n_sensor->device.index = nb_dev_capture;
@@ -114,6 +118,7 @@ k4n::dev::Sensor* Swarm::create_sensor_playback(string path){
 
   selected_sensor = k4n_sensor;
   list_sensor.push_back(k4n_sensor);
+  master->list_sensor.push_back(k4n_sensor);
   nb_dev_playback++;
 
   k4n_sensor->init();
@@ -145,11 +150,10 @@ k4n::dev::Sensor* Swarm::create_sensor_capture(){
   return k4n_sensor;
 }
 void Swarm::close_sensor(k4n::dev::Sensor* k4n_sensor){
-  list<k4n::dev::Sensor*>& list_device = list_sensor;
   //---------------------------
 
   k4n_sensor->destroy();
-  list_device.remove(k4n_sensor);
+  list_sensor.remove(k4n_sensor);
   k4n_sensor->device.is_playback ? nb_dev_playback-- : nb_dev_capture--;
   delete(k4n_sensor);
   k4n_sensor = nullptr;
@@ -159,24 +163,22 @@ void Swarm::close_sensor(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 }
 void Swarm::close_sensor_all(){
-  list<k4n::dev::Sensor*>& list_device = list_sensor;
   //---------------------------
 
-  for(int i=0; i<list_device.size(); i++){
-    k4n::dev::Sensor* k4n_sensor = *std::next(list_device.begin(), i);
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* k4n_sensor = *std::next(list_sensor.begin(), i);
     this->close_sensor(k4n_sensor);
   }
 
   //---------------------------
 }
 void Swarm::selecte_next_sensor(){
-  list<k4n::dev::Sensor*>& list_device = list_sensor;
   //---------------------------
 
-  if(list_device.size() == 0){
+  if(list_sensor.size() == 0){
     selected_sensor = nullptr;
   }else{
-    selected_sensor = *std::next(list_device.begin(), 0);
+    selected_sensor = *std::next(list_sensor.begin(), 0);
   }
 
   //---------------------------
