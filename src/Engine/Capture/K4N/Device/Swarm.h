@@ -22,16 +22,16 @@ public:
 public:
   //Main function
   void draw_all_clouds();
+  void init_scene();
 
   //Connection function
   void refresh_connected_device();
-  void manage_new_device(int number);
-  void manage_less_device(int number);
-  void manage_no_device();
+  void manage_new_capture_device(int number);
+  void manage_less_capture_device(int number);
 
   //Creation function
-  k4n::Device* create_playback(string path);
-  k4n::Device* create_device();
+  k4n::Device* create_device_playback(string path);
+  k4n::Device* create_device_capture();
   void close_device(k4n::Device* device);
   void close_device_all();
   void selecte_next_device();

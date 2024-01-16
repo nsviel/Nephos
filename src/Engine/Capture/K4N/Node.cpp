@@ -19,7 +19,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  k4a_swarm->manage_no_device();
+  k4a_swarm->init_scene();
 
   //---------------------------
 }

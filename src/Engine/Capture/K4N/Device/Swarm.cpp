@@ -36,6 +36,17 @@ void Swarm::draw_all_clouds(){
 
   //---------------------------
 }
+void Swarm::init_scene(){
+  //---------------------------
+
+  //If no real device create virtual one
+  uint32_t nb_device = k4a_device_get_installed_count();
+  if(nb_device == 0 && struct_swarm->nb_playback == 0){
+    this->create_device_playback(default_file);
+  }
+
+  //---------------------------
+}
 
 //Connection function
 void Swarm::refresh_connected_device(){
@@ -46,12 +57,12 @@ void Swarm::refresh_connected_device(){
     //If some news, run them
     if(nb_device > struct_swarm->nb_device){
       int number = nb_device - struct_swarm->nb_device;
-      this->manage_new_device(number);
+      this->manage_new_capture_device(number);
     }
     //If some less, supress them
     else if(nb_device < struct_swarm->nb_device){
       int number = struct_swarm->nb_device - nb_device;
-      this->manage_less_device(number);
+      this->manage_less_capture_device(number);
     }
 
     struct_swarm->nb_device = nb_device;
@@ -59,7 +70,7 @@ void Swarm::refresh_connected_device(){
 
   //---------------------------
 }
-void Swarm::manage_new_device(int nb_new_device){
+void Swarm::manage_new_capture_device(int nb_new_device){
   list<k4n::Device*>& list_device = struct_swarm->list_device;
   //---------------------------
 
@@ -70,12 +81,12 @@ void Swarm::manage_new_device(int nb_new_device){
 
   //Create required number of new devices
   for(int i=0; i<nb_new_device; i++){
-    this->create_device();
+    this->create_device_capture();
   }
 
   //---------------------------
 }
-void Swarm::manage_less_device(int nb_less_device){
+void Swarm::manage_less_capture_device(int nb_less_device){
   //---------------------------
 
   //Suppress all devices
@@ -85,26 +96,15 @@ void Swarm::manage_less_device(int nb_less_device){
   uint32_t nb_device = k4a_device_get_installed_count();
   if(nb_device != 0){
     for(int i=0; i<nb_device; i++){
-      this->create_device();
+      this->create_device_capture();
     }
-  }
-
-  //---------------------------
-}
-void Swarm::manage_no_device(){
-  //---------------------------
-
-  //If no real device create virtual one
-  uint32_t nb_device = k4a_device_get_installed_count();
-  if(nb_device == 0 && struct_swarm->nb_playback == 0){
-    this->create_playback(default_file);
   }
 
   //---------------------------
 }
 
 //Creation function
-k4n::Device* Swarm::create_playback(string path){
+k4n::Device* Swarm::create_device_playback(string path){
   //---------------------------
 
   k4n::Device* k4n_device = new k4n::Device(engine);
@@ -129,7 +129,7 @@ k4n::Device* Swarm::create_playback(string path){
   //---------------------------
   return k4n_device;
 }
-k4n::Device* Swarm::create_device(){
+k4n::Device* Swarm::create_device_capture(){
   //---------------------------
 
   k4n::Device* k4n_device = new k4n::Device(engine);
