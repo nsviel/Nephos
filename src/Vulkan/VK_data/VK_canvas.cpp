@@ -19,7 +19,7 @@ VK_canvas::~VK_canvas(){}
 
 //Main function
 void VK_canvas::init(){
-  entity::Object* canvas_obj = new entity::Object();
+  utl::base::Data* data = new utl::base::Data();
   //---------------------------
 
   //Generic quad coordinates and UV
@@ -41,12 +41,11 @@ void VK_canvas::init(){
   uv.push_back(vec2(1.0f,  0.0f));
   uv.push_back(vec2(0.0f,  1.0f));
 
-  canvas_obj->name = "canvas";
-  canvas_obj->data->xyz = xyz;
-  canvas_obj->data->uv = uv;
-  canvas_obj->data->draw_type_name = "triangle";
+  data->xyz = xyz;
+  data->uv = uv;
+  data->draw_type_name = "triangle";
 
-  struct_vulkan->data.canvas.object = canvas_obj;
+  struct_vulkan->data.canvas.data = data;
 
   vk_buffer->create_buffers(&struct_vulkan->data.canvas);
 

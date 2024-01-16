@@ -22,39 +22,39 @@ VK_data::VK_data(vk::structure::Vulkan* struct_vulkan){
 VK_data::~VK_data(){}
 
 //Main function
-void VK_data::insert_object(entity::Object* object){
+void VK_data::insert_object(utl::base::Data* data){
   //---------------------------
 
   //Creat new data struct
-  vk::structure::Object* data = new vk::structure::Object();
-  data->object = object;
+  vk::structure::Object* vk_object = new vk::structure::Object();
+  vk_object->data = data;
 
   //Descriptor
   descriptor_required mvp = std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS);
-  data->binding.vec_required_binding.push_back(mvp);
+  vk_object->binding.vec_required_binding.push_back(mvp);
 
-  if(object->data->draw_type_name == "point"){
+  if(data->draw_type_name == "point"){
     descriptor_required size = std::make_tuple("point_size", sizeof(int), 1, TYP_UNIFORM, TYP_SHADER_VS);
-    data->binding.vec_required_binding.push_back(size);
+    vk_object->binding.vec_required_binding.push_back(size);
   }
 
   //Apply adequat init functions
-  vk_buffer->create_buffers(data);
-  vk_command->allocate_command_buffer_secondary(data);
-  vk_descriptor->create_layout_from_required(&data->binding);
-  vk_descriptor->create_binding(&data->binding);
+  vk_buffer->create_buffers(vk_object);
+  vk_command->allocate_command_buffer_secondary(vk_object);
+  vk_descriptor->create_layout_from_required(&vk_object->binding);
+  vk_descriptor->create_binding(&vk_object->binding);
 
   //Insert data struct into set
-  struct_vulkan->data.list_vk_object.push_back(data);
+  struct_vulkan->data.list_vk_object.push_back(vk_object);
 
   //---------------------------
 }
-void VK_data::update_object(entity::Object* object, vk::structure::Object* data){
+void VK_data::update_object(utl::base::Data* data, vk::structure::Object* vk_object){
   //---------------------------
 
-  data->object = object;
-  vk_buffer->clean_buffers(data);
-  vk_buffer->create_buffers(data);
+  vk_object->data = data;
+  vk_buffer->clean_buffers(vk_object);
+  vk_buffer->create_buffers(vk_object);
 
   //---------------------------
 }
@@ -63,19 +63,19 @@ void VK_data::clean(){
 
   for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
     vk::structure::Object* data = *next(struct_vulkan->data.list_vk_object.begin(),i);
-    this->clean_entity(data);
+    this->clean_vk_object(data);
   }
 
   //---------------------------
 }
-void VK_data::clean_entity(vk::structure::Object* data){
+void VK_data::clean_vk_object(vk::structure::Object* vk_object){
   //---------------------------
 
   vkDeviceWaitIdle(struct_vulkan->device.device);
 
-  vk_buffer->clean_buffers(data);
-  vk_texture->clean_texture(data);
-  vk_descriptor->clean_binding(&data->binding);
+  vk_buffer->clean_buffers(vk_object);
+  vk_texture->clean_texture(vk_object);
+  vk_descriptor->clean_binding(&vk_object->binding);
 
   //---------------------------
 }

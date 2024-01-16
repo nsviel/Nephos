@@ -143,7 +143,7 @@ void Scene::insert_object(entity::Object* object){
   //---------------------------
 
   sce_database->assign_ID(object);
-  vk_engine->insert_object_in_engine(object);
+  vk_engine->insert_data_in_engine(object->data);
   sce_glyph->create_glyph_object(object);
 
   //---------------------------
@@ -151,7 +151,7 @@ void Scene::insert_object(entity::Object* object){
 void Scene::update_object(entity::Object* object){
   //---------------------------
 
-  vk_engine->insert_object_in_engine(object);
+  vk_engine->insert_data_in_engine(object->data);
   ope_attribut->compute_MinMax(object);
 
   //---------------------------
@@ -160,7 +160,7 @@ void Scene::remove_object(entity::Object* object){
   //---------------------------
 
   sce_glyph->remove_glyph_object(object);
-  vk_engine->remove_object_in_engine(object);
+  vk_engine->remove_data_in_engine(object->data);
 
   //---------------------------
 }

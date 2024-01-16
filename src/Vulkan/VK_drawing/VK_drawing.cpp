@@ -98,27 +98,27 @@ void VK_drawing::draw_frame_presentation(){
 }
 
 //Draw command
-void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object* data){
+void VK_drawing::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object* vk_object){
   //---------------------------
 
   VkDeviceSize offsets[] = {0};
-  if(data->rgb.vbo != VK_NULL_HANDLE && data->has_rgb){
-    vkCmdBindVertexBuffers(command_buffer, 1, 1, &data->rgb.vbo, offsets);
+  if(vk_object->rgb.vbo != VK_NULL_HANDLE && vk_object->has_rgb){
+    vkCmdBindVertexBuffers(command_buffer, 1, 1, &vk_object->rgb.vbo, offsets);
   }
-  if(data->uv.vbo != VK_NULL_HANDLE && data->has_uv){
-    vkCmdBindVertexBuffers(command_buffer, 2, 1, &data->uv.vbo, offsets);
+  if(vk_object->uv.vbo != VK_NULL_HANDLE && vk_object->has_uv){
+    vkCmdBindVertexBuffers(command_buffer, 2, 1, &vk_object->uv.vbo, offsets);
   }
-  if(data->xyz.vbo != VK_NULL_HANDLE && data->has_xyz){
-    vkCmdBindVertexBuffers(command_buffer, 0, 1, &data->xyz.vbo, offsets);
-    vkCmdDraw(command_buffer, data->object->data->xyz.size(), 1, 0, 0);
+  if(vk_object->xyz.vbo != VK_NULL_HANDLE && vk_object->has_xyz){
+    vkCmdBindVertexBuffers(command_buffer, 0, 1, &vk_object->xyz.vbo, offsets);
+    vkCmdDraw(command_buffer, vk_object->data->xyz.size(), 1, 0, 0);
   }
 
   //---------------------------
 }
-void VK_drawing::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* data){
+void VK_drawing::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* vk_object){
   //---------------------------
 
-  vkCmdSetLineWidth(command_buffer, data->object->data->draw_line_width);
+  vkCmdSetLineWidth(command_buffer, vk_object->data->draw_line_width);
 
   //---------------------------
 }

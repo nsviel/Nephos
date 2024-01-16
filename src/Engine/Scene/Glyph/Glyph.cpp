@@ -51,7 +51,7 @@ void Glyph::create_glyph_world(){
       vector<utl::base::Data*> vec_data = glyph->get_vec_data();
       for(int j=0; j<vec_data.size(); j++){
         sce_database->assign_ID(vec_data[j]);
-        //vk_engine->insert_object_in_engine(vec_object[j]);
+        vk_engine->insert_data_in_engine(vec_data[j]);
       }
     }
   }
@@ -68,7 +68,7 @@ void Glyph::remove_glyph_world(){
 
     vector<utl::base::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
-      //vk_engine->remove_object_in_engine(vec_object[j]);
+      vk_engine->remove_data_in_engine(vec_data[j]);
     }
 
     delete glyph;
@@ -97,7 +97,7 @@ void Glyph::create_glyph_object(entity::Object* object){
     vector<utl::base::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
       sce_database->assign_ID(vec_data[j]);
-      //vk_engine->insert_object_in_engine(vec_data[j]);
+      vk_engine->insert_data_in_engine(vec_data[j]);
     }
   }
 
@@ -113,7 +113,7 @@ void Glyph::update_glyph_object(entity::Object* object){
 
     glyph->update_glyph(object);
     for(int j=0; j<vec_data.size(); j++){
-      //vk_engine->insert_object_in_engine(vec_data[j]);
+      vk_engine->insert_data_in_engine(vec_data[j]);
       cam_control->compute_camera_mvp(vec_data[j]);
     }
   }
@@ -128,7 +128,7 @@ void Glyph::remove_glyph_object(entity::Object* object){
     vector<utl::base::Data*> vec_data = glyph->get_vec_data();
 
     for(int j=0; j<vec_data.size(); j++){
-      //vk_engine->remove_object_in_engine(vec_data[j]);
+      vk_engine->remove_data_in_engine(vec_data[j]);
     }
   }
 
@@ -154,7 +154,7 @@ void Glyph::create_glyph_camera(entity::Camera* camera){
     vector<utl::base::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
       sce_database->assign_ID(vec_data[j]);
-      //vk_engine->insert_object_in_engine(vec_data[j]);
+      vk_engine->insert_data_in_engine(vec_data[j]);
     }
   }
 

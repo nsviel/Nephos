@@ -105,7 +105,7 @@ entity::Object* Loader::load_object(string path){
   //Delete raw data
   delete data;
 
-  vk_engine->insert_object_in_engine(object);
+  vk_engine->insert_data_in_engine(object->data);
   sce_glyph->create_glyph_object(object);
 
   //---------------------------

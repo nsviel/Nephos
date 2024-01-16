@@ -20,10 +20,10 @@ public:
 
 public:
   //Main functions
-  void insert_object(entity::Object* object);
-  void update_object(entity::Object* object, vk::structure::Object* data);
+  void insert_object(utl::base::Data* data);
+  void update_object(utl::base::Data* data, vk::structure::Object* vk_object);
   void clean();
-  void clean_entity(vk::structure::Object* data);
+  void clean_vk_object(vk::structure::Object* vk_object);
 
   //Pipeline data description
   void pipeline_data_description(vk::structure::Pipeline* pipeline);

@@ -16,34 +16,34 @@ VK_buffer::VK_buffer(vk::structure::Vulkan* struct_vulkan){
 VK_buffer::~VK_buffer(){}
 
 //Main function
-void VK_buffer::create_buffers(vk::structure::Object* data){
+void VK_buffer::create_buffers(vk::structure::Object* vk_object){
   //---------------------------
 
-  data->has_xyz = false;
-  data->has_rgb = false;
-  data->has_uv = false;
+  vk_object->has_xyz = false;
+  vk_object->has_rgb = false;
+  vk_object->has_uv = false;
 
-  if(!data->object->data->xyz.empty()){
-    vk_memory->transfert_buffer_to_gpu(data->object->data->xyz, &data->xyz);
-    data->has_xyz = true;
+  if(!vk_object->data->xyz.empty()){
+    vk_memory->transfert_buffer_to_gpu(vk_object->data->xyz, &vk_object->xyz);
+    vk_object->has_xyz = true;
   }
-  if(!data->object->data->rgb.empty()){
-    vk_memory->transfert_buffer_to_gpu(data->object->data->rgb, &data->rgb);
-    data->has_rgb = true;
+  if(!vk_object->data->rgb.empty()){
+    vk_memory->transfert_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
+    vk_object->has_rgb = true;
   }
-  if(!data->object->data->uv.empty()){
-    vk_memory->transfert_buffer_to_gpu(data->object->data->uv, &data->uv);
-    data->has_uv = true;
+  if(!vk_object->data->uv.empty()){
+    vk_memory->transfert_buffer_to_gpu(vk_object->data->uv, &vk_object->uv);
+    vk_object->has_uv = true;
   }
 
   //---------------------------
 }
-void VK_buffer::clean_buffers(vk::structure::Object* data){
+void VK_buffer::clean_buffers(vk::structure::Object* vk_object){
   //---------------------------
 
-  this->clean_buffer(&data->xyz);
-  this->clean_buffer(&data->rgb);
-  this->clean_buffer(&data->uv);
+  this->clean_buffer(&vk_object->xyz);
+  this->clean_buffer(&vk_object->rgb);
+  this->clean_buffer(&vk_object->uv);
 
   //---------------------------
 }

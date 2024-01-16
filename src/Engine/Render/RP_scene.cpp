@@ -114,19 +114,19 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
-    vk::structure::Object* data =  *next(list_data.begin(), i);
-    bool is_visible = data->object->data->is_visible;
-    bool has_topology = data->object->data->draw_type_name == "point";
-    bool has_xyz = data->object->data->xyz.size() != 0;
-    bool has_rgb = data->object->data->rgb.size() != 0;
-    bool same_length = data->object->data->rgb.size() == data->object->data->xyz.size();
+    vk::structure::Object* vk_object =  *next(list_data.begin(), i);
+    bool is_visible = vk_object->data->is_visible;
+    bool has_topology = vk_object->data->draw_type_name == "point";
+    bool has_xyz = vk_object->data->xyz.size() != 0;
+    bool has_rgb = vk_object->data->rgb.size() != 0;
+    bool same_length = vk_object->data->rgb.size() == vk_object->data->xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb){
-      vk_uniform->update_uniform("mvp", &data->binding, data->object->data->mvp);
-      vk_uniform->update_uniform("point_size", &data->binding, data->object->data->draw_point_size);
+      vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->data->mvp);
+      vk_uniform->update_uniform("point_size", &vk_object->binding, vk_object->data->draw_point_size);
 
-      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, data->binding.descriptor.set);
-      vk_drawing->cmd_draw_data(subpass->command_buffer, data);
+      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, vk_object->binding.descriptor.set);
+      vk_drawing->cmd_draw_data(subpass->command_buffer, vk_object);
     }
   }
 
@@ -141,19 +141,19 @@ void RP_scene::cmd_draw_line(vk::structure::Subpass* subpass){
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
-    vk::structure::Object* data =  *next(list_data.begin(), i);
-    bool& is_visible = data->object->data->is_visible;
-    bool has_topology = data->object->data->draw_type_name == "line";
-    bool has_xyz = data->object->data->xyz.size() != 0;
-    bool has_rgb = data->object->data->rgb.size() != 0;
-    bool same_length = data->object->data->rgb.size() == data->object->data->xyz.size();
+    vk::structure::Object* vk_object =  *next(list_data.begin(), i);
+    bool& is_visible = vk_object->data->is_visible;
+    bool has_topology = vk_object->data->draw_type_name == "line";
+    bool has_xyz = vk_object->data->xyz.size() != 0;
+    bool has_rgb = vk_object->data->rgb.size() != 0;
+    bool same_length = vk_object->data->rgb.size() == vk_object->data->xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb && same_length){
-      vk_uniform->update_uniform("mvp", &data->binding, data->object->data->mvp);
+      vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->data->mvp);
 
-      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, data->binding.descriptor.set);
-      vk_drawing->cmd_line_with(subpass->command_buffer, data);
-      vk_drawing->cmd_draw_data(subpass->command_buffer, data);
+      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, vk_object->binding.descriptor.set);
+      vk_drawing->cmd_line_with(subpass->command_buffer, vk_object);
+      vk_drawing->cmd_draw_data(subpass->command_buffer, vk_object);
     }
   }
 
@@ -168,19 +168,19 @@ void RP_scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
-    vk::structure::Object* data =  *next(list_data.begin(), i);
-    bool& is_visible = data->object->data->is_visible;
-    bool has_topology = data->object->data->draw_type_name == "triangle";
-    bool has_xyz = data->object->data->xyz.size() != 0;
-    bool has_rgb = data->object->data->rgb.size() != 0;
-    bool same_length = data->object->data->rgb.size() == data->object->data->xyz.size();
+    vk::structure::Object* vk_object =  *next(list_data.begin(), i);
+    bool& is_visible = vk_object->data->is_visible;
+    bool has_topology = vk_object->data->draw_type_name == "triangle";
+    bool has_xyz = vk_object->data->xyz.size() != 0;
+    bool has_rgb = vk_object->data->rgb.size() != 0;
+    bool same_length = vk_object->data->rgb.size() == vk_object->data->xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb && same_length){
-      vk_uniform->update_uniform("mvp", &data->binding, data->object->data->mvp);
+      vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->data->mvp);
 
-      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, data->binding.descriptor.set);
-      vk_drawing->cmd_line_with(subpass->command_buffer, data);
-      vk_drawing->cmd_draw_data(subpass->command_buffer, data);
+      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, vk_object->binding.descriptor.set);
+      vk_drawing->cmd_line_with(subpass->command_buffer, vk_object);
+      vk_drawing->cmd_draw_data(subpass->command_buffer, vk_object);
     }
   }
 

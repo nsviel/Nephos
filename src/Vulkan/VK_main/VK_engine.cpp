@@ -147,16 +147,16 @@ void VK_engine::reload_shader(string shader, string subshader){
 }
 
 //Data function
-void VK_engine::insert_object_in_engine(entity::Object* object){
-  if(object == nullptr) return;
+void VK_engine::insert_data_in_engine(utl::base::Data* data){
+  if(data == nullptr) return;
   //---------------------------
 
-  //Check if object already in engine
+  //Check if data already in engine
   bool is_in_list = false;
-  vk::structure::Object* data;
+  vk::structure::Object* vk_object;
   for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
-    data = *next(struct_vulkan->data.list_vk_object.begin(), i);
-    if(object->UID == data->object->UID){
+    vk_object = *next(struct_vulkan->data.list_vk_object.begin(), i);
+    if(data->UID == vk_object->data->UID){
       is_in_list = true;
       break;
     }
@@ -164,22 +164,22 @@ void VK_engine::insert_object_in_engine(entity::Object* object){
 
   //If not, insert it
   if(is_in_list){
-    vk_data->update_object(object, data);
+    vk_data->update_object(data, vk_object);
   }else{
-    vk_data->insert_object(object);
+    vk_data->insert_object(data);
   }
 
   //---------------------------
 }
-void VK_engine::remove_object_in_engine(entity::Object* object){
+void VK_engine::remove_data_in_engine(utl::base::Data* data){
   //---------------------------
 
   bool is_in_list = false;
   for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
-    vk::structure::Object* data = *next(struct_vulkan->data.list_vk_object.begin(),i);
-    if(object->UID == data->object->UID){
-      vk_data->clean_entity(data);
-      struct_vulkan->data.list_vk_object.remove(data);
+    vk::structure::Object* vk_object = *next(struct_vulkan->data.list_vk_object.begin(),i);
+    if(data->UID == vk_object->data->UID){
+      vk_data->clean_vk_object(vk_object);
+      struct_vulkan->data.list_vk_object.remove(vk_object);
     }
   }
 

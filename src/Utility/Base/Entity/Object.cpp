@@ -51,7 +51,7 @@ void Object::remove_entity(){
   //----------------------------
 
   sce_glyph->remove_glyph_object(this);
-  vk_engine->remove_object_in_engine(this);
+  vk_engine->remove_data_in_engine(data);
 
   //----------------------------
 }
