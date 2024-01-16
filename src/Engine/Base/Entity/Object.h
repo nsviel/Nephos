@@ -16,6 +16,7 @@ class Engine;
 
 namespace eng::data{
 class Glyph;
+class Data;
 
 
 class Object : public eng::data::Entity
@@ -36,6 +37,11 @@ public:
 
 public:
   Engine* engine;
+
+  eng::data::Data* data;
+  std::list<eng::data::Glyph*> list_glyph;
+
+
 
   //State
   int nb_point = 0;
@@ -76,9 +82,6 @@ public:
   glm::mat4 scale = glm::mat4(1.0f);
   glm::mat4 model = glm::mat4(1.0f);
   glm::mat4 mvp = glm::mat4(1.0f);
-
-  //Glyph
-  std::list<eng::data::Glyph*> list_glyph;
 };
 
 }

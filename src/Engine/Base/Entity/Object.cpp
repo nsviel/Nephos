@@ -14,6 +14,7 @@ Object::Object(){
 
   this->unicolor = math::random_color();
   this->type = "Object";
+  this->data = new eng::data::Data();
 
   //---------------------------
 }
@@ -68,16 +69,16 @@ void Object::visibility_entity(bool value){
 void Object::reset_entity(){
   //---------------------------
 
-  this->min = glm::vec3(0.0f);
-  this->max = glm::vec3(0.0f);
-  this->root = glm::vec3(0.0f);
-  this->COM = glm::vec3(0.0f);
+  data->min = glm::vec3(0.0f);
+  data->max = glm::vec3(0.0f);
+  data->root = glm::vec3(0.0f);
+  data->COM = glm::vec3(0.0f);
 
-  this->rotat = glm::mat4(1.0f);
-  this->trans = glm::mat4(1.0f);
-  this->scale = glm::mat4(1.0f);
-  this->model = glm::mat4(1.0f);
-  this->mvp = glm::mat4(1.0f);
+  data->rotat = glm::mat4(1.0f);
+  data->trans = glm::mat4(1.0f);
+  data->scale = glm::mat4(1.0f);
+  data->model = glm::mat4(1.0f);
+  data->mvp = glm::mat4(1.0f);
 
   //---------------------------
 }
