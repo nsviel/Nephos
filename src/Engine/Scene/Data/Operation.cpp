@@ -32,11 +32,11 @@ void Operation::make_translation(entity::Entity* entity, vec3 translation){
 
   //Object entity
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_transform->make_translation(object->data, translation);
+    ope_transform->make_translation(object->get_data(), translation);
   }
   //K4A device entity
   else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    ope_transform->make_translation(device->cloud.object->data, translation);
+    ope_transform->make_translation(device->get_data(), translation);
   }
 
   //---------------------------
@@ -47,11 +47,11 @@ void Operation::make_rotation(entity::Entity* entity, vec3 rotation){
 
   //Object entity
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_transform->make_rotation(object->data, object->data->COM, rotation);
+    ope_transform->make_rotation(object->get_data(), object->data->COM, rotation);
   }
   //K4A device entity
   else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
-    ope_transform->make_rotation(device->cloud.object->data, device->cloud.object->data->COM, rotation);
+    ope_transform->make_rotation(device->get_data(), device->cloud.object->data->COM, rotation);
   }
 
   //---------------------------

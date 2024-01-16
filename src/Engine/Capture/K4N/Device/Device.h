@@ -39,6 +39,7 @@ public:
 
   inline k4n::structure::Cloud* get_cloud(){return &cloud;}
   inline entity::Object* get_object(){return cloud.object;}
+  inline utl::base::Data* get_data(){return cloud.object->data;}
 
 public:
   Engine* engine;

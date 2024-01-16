@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Base/Data.h>
 #include <string>
 
 
@@ -14,6 +15,7 @@ struct Entity
   virtual void remove_entity(){}
   virtual void reset_entity(){}
   virtual void visibility_entity(bool value){}
+  virtual utl::base::Data* get_data(){return nullptr;}
 
   int UID = -1;
   bool is_suppressible = true;

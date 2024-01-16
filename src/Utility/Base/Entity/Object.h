@@ -34,7 +34,7 @@ public:
   void reset_entity();
   void visibility_entity(bool value);
 
-  inline entity::Object* get_object(){return this;}
+  inline utl::base::Data* get_data(){return data;}
 
 public:
   Engine* engine;
