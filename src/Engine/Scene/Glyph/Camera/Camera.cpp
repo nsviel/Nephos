@@ -18,11 +18,11 @@ void Camera::create(){
   if(vec_data.size() != 0) return;
   //---------------------------
 
-  entity::Object* object = new entity::Object(engine);
-  object->data->draw_line_width = 1;
-  object->data->draw_type_name = "line";
-  object->data->unicolor = vec4(1, 1, 1, 0.2f);
-  this->vec_data.push_back(object);
+  utl::base::Data* data = new utl::base::Data();
+  data->draw_line_width = 1;
+  data->draw_type_name = "line";
+  data->unicolor = vec4(1, 1, 1, 0.2f);
+  this->vec_data.push_back(data);
 
   //---------------------------
 }

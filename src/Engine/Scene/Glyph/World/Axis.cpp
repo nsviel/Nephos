@@ -22,18 +22,18 @@ void Axis::create(){
   if(vec_data.size() != 0) return;
   //---------------------------
 
-  entity::Object* object = new entity::Object(engine);
-  object->data->draw_line_width = 4;
-  object->data->is_visible = true;
-  object->data->draw_type_name = "line";
-  this->vec_data.push_back(object);
+  utl::base::Data* data = new utl::base::Data();
+  data->draw_line_width = 4;
+  data->is_visible = true;
+  data->draw_type_name = "line";
+  this->vec_data.push_back(data);
   this->update_glyph();
 
   //---------------------------
 }
 void Axis::update_glyph(){
-  vector<vec3>& XYZ = vec_data[0]->data->xyz;
-  vector<vec4>& RGB = vec_data[0]->data->rgb;
+  vector<vec3>& XYZ = vec_data[0]->xyz;
+  vector<vec4>& RGB = vec_data[0]->rgb;
   float z = 0;
   //---------------------------
 

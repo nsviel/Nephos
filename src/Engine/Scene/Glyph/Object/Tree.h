@@ -16,7 +16,7 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph(entity::Entity* entity);
+  void update_glyph(utl::base::Data* data);
 
   inline bool* get_visibility(){return &is_visible;}
   inline int* get_level(){return &level;}

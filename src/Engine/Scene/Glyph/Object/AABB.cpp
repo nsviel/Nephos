@@ -18,28 +18,26 @@ void AABB::create(){
   if(vec_data.size() != 0) return;
   //---------------------------
 
-  entity::Object* object = new entity::Object(engine);
-  object->data->draw_line_width = 1;
-  object->data->is_visible = false;
-  object->data->draw_type_name = "line";
-  object->data->unicolor = color;
+  utl::base::Data* data = new utl::base::Data();
+  data->draw_line_width = 1;
+  data->is_visible = false;
+  data->draw_type_name = "line";
+  data->unicolor = color;
 
   for(int i=0; i<24; i++){
-    object->data->rgb.push_back(color);
+    data->rgb.push_back(color);
   }
 
-  this->vec_data.push_back(object);
+  this->vec_data.push_back(data);
 
   //---------------------------
 }
-void AABB::update_glyph(entity::Entity* entity){
+void AABB::update_glyph(utl::base::Data* data){
   //---------------------------
 
-  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    vec3 min = object->data->min;
-    vec3 max = object->data->max;
-    vec_data[0]->data->xyz = build_box(min, max);
-  }
+  vec3 min = data->min;
+  vec3 max = data->max;
+  vec_data[0]->xyz = build_box(min, max);
 
   //---------------------------
 }

@@ -27,7 +27,7 @@ void Glyph::update_entity(){
   //----------------------------
 
   for(int i=0; i<vec_data.size(); i++){
-    cam_control->compute_camera_mvp(vec_data[i]->data);
+    cam_control->compute_camera_mvp(vec_data[i]);
   }
 
   //----------------------------
@@ -37,8 +37,8 @@ void Glyph::visibility_entity(bool value){
 
   this->is_visible = value;
   for(int i=0; i<vec_data.size(); i++){
-    entity::Object* object = vec_data[i];
-    object->data->is_visible = value;
+    utl::base::Data* data = vec_data[i];
+    data->is_visible = value;
   }
 
   //---------------------------

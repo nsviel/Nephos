@@ -27,23 +27,21 @@ void Tree::create(){
   //---------------------------
 
   //Create glyph
-  entity::Object* object = new entity::Object(engine);
-  object->data->draw_line_width = 2;
-  object->data->is_visible = is_visible;
-  object->data->draw_type_name = "line";
-  object->data->unicolor = color;
-  this->vec_data.push_back(object);
+  utl::base::Data* data = new utl::base::Data();
+  data->draw_line_width = 2;
+  data->is_visible = is_visible;
+  data->draw_type_name = "line";
+  data->unicolor = color;
+  this->vec_data.push_back(data);
 
   //---------------------------
 }
-void Tree::update_glyph(entity::Entity* entity){
+void Tree::update_glyph(utl::base::Data* data){
   //---------------------------
 
-  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    if(is_visible){
-      //octreeManager->create_octree(cloud, level);
-      vec_data[0]->data->xyz = object->data->xyz;
-    }
+  if(is_visible){
+    //octreeManager->create_octree(cloud, level);
+    vec_data[0]->xyz = data->xyz;
   }
 
   //---------------------------

@@ -15,7 +15,7 @@ public:
 public:
   void create();
   void update_glyph(entity::Entity* entity);
-  void construct(entity::Object* object);
+  void construct(utl::base::Data* object);
 
 private:
   float scale;

@@ -21,29 +21,27 @@ void Axis::create(){
   //---------------------------
 
   //Create glyph
-  entity::Object* object = new entity::Object(engine);
-  object->data->draw_line_width = 3;
-  object->data->is_visible = is_visible;
-  object->data->draw_type_name = "line";
-  this->vec_data.push_back(object);
+  utl::base::Data* data = new utl::base::Data();
+  data->draw_line_width = 3;
+  data->is_visible = is_visible;
+  data->draw_type_name = "line";
+  this->vec_data.push_back(data);
   this->construct();
 
   //---------------------------
 }
-void Axis::update_glyph(entity::Entity* entity){
+void Axis::update_glyph(utl::base::Data* entity){
   //---------------------------
 
-  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_transform->make_transformation(vec_data[0], object->data->COM, object->data->trans, object->data->rotat);
-  }
+  //ope_transform->make_transformation(vec_data[0], object->data->COM, object->data->trans, object->data->rotat);
 
   //---------------------------
 }
 
 //Subfunction
 void Axis::construct(){
-  vector<vec4>& RGB = vec_data[0]->data->rgb;
-  vector<vec3>& XYZ = vec_data[0]->data->xyz;
+  vector<vec4>& RGB = vec_data[0]->rgb;
+  vector<vec3>& XYZ = vec_data[0]->xyz;
   //---------------------------
 
   //Location

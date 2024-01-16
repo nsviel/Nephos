@@ -22,18 +22,18 @@ void Mesh::create(){
   if(vec_data.size() != 0) return;
   //---------------------------
 
-  entity::Object* object = new entity::Object(engine);
-  object->data->draw_line_width = 1;
-  object->data->is_visible = true;
-  object->data->draw_type_name = "line";
-  object->data->unicolor = color_mesh;
-  this->vec_data.push_back(object);
+  utl::base::Data* data = new utl::base::Data();
+  data->draw_line_width = 1;
+  data->is_visible = true;
+  data->draw_type_name = "line";
+  data->unicolor = color_mesh;
+  this->vec_data.push_back(data);
 
   //---------------------------
 }
 void Mesh::update_glyph(int nb_cell){
-  vec_data[0]->data->xyz.clear();
-  vec_data[0]->data->rgb.clear();
+  vec_data[0]->xyz.clear();
+  vec_data[0]->rgb.clear();
   //---------------------------
 
   this->construct_mesh(nb_cell);
@@ -44,8 +44,8 @@ void Mesh::update_glyph(int nb_cell){
 
 //Subfunction
 void Mesh::construct_mesh(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->data->xyz;
-  vector<vec4>& RGB = vec_data[0]->data->rgb;
+  vector<vec3>& XYZ = vec_data[0]->xyz;
+  vector<vec4>& RGB = vec_data[0]->rgb;
   float z = -0.002;
   //---------------------------
 
@@ -67,8 +67,8 @@ void Mesh::construct_mesh(int nb_cell){
   //---------------------------
 }
 void Mesh::construct_submesh(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->data->xyz;
-  vector<vec4>& RGB = vec_data[0]->data->rgb;
+  vector<vec3>& XYZ = vec_data[0]->xyz;
+  vector<vec4>& RGB = vec_data[0]->rgb;
   float z = -0.003;
   //---------------------------
 

@@ -20,18 +20,18 @@ void Target::create(){
   if(vec_data.size() != 0) return;
   //---------------------------
 
-  entity::Object* object = new entity::Object(engine);
-  object->data->draw_line_width = 2;
-  object->data->is_visible = true;
-  object->data->draw_type_name = "line";
-  object->data->unicolor = vec4(1, 1, 1, 0.2f);
-  this->vec_data.push_back(object);
-  this->construct(object);
+  utl::base::Data* data = new utl::base::Data();
+  data->draw_line_width = 2;
+  data->is_visible = true;
+  data->draw_type_name = "line";
+  data->unicolor = vec4(1, 1, 1, 0.2f);
+  this->vec_data.push_back(data);
+  this->construct(data);
 
   //---------------------------
 }
 void Target::update_glyph(entity::Entity* entity){
-  entity::Object* object = vec_data[0];
+  utl::base::Data* data = vec_data[0];
   //---------------------------
 
   if(entity::Camera* camera = dynamic_cast<entity::Camera*>(entity)){
@@ -41,15 +41,15 @@ void Target::update_glyph(entity::Entity* entity){
     translation[0][3] = camera->cam_COM.x;
     translation[1][3] = camera->cam_COM.y;
     translation[2][3] = camera->cam_COM.z;
-    object->data->model = translation;
-    object->data->is_visible = is_visible;
+    data->model = translation;
+    data->is_visible = is_visible;
   }
 
   //---------------------------
 }
-void Target::construct(entity::Object* object){
-  vector<vec3>& XYZ = object->data->xyz;
-  vector<vec4>& RGB = object->data->rgb;
+void Target::construct(utl::base::Data* data){
+  vector<vec3>& XYZ = data->xyz;
+  vector<vec4>& RGB = data->rgb;
   //---------------------------
 
   XYZ.clear();
