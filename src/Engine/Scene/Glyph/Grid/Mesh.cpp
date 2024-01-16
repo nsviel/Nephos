@@ -7,6 +7,7 @@ namespace glyph::grid{
 Mesh::Mesh(Engine* engine) : Glyph(engine){
   //---------------------------
 
+  this->is_permanent = true;
   this->name = "grid";
   this->color_mesh = vec4(0.3f, 0.3f, 0.3f, 1.0f);
   this->color_submesh = vec4(0.24f, 0.24f, 0.24f, 1.0f);
@@ -18,23 +19,21 @@ Mesh::~Mesh(){}
 
 //Main function
 void Mesh::create(){
-  if(vec_object.size() != 0) return;
+  if(vec_data.size() != 0) return;
   //---------------------------
 
   entity::Object* object = new entity::Object(engine);
-  object->name = "grid_mesh";
   object->data->draw_line_width = 1;
   object->data->is_visible = true;
   object->data->draw_type_name = "line";
-  object->is_permanent = true;
   object->data->unicolor = color_mesh;
-  this->vec_object.push_back(object);
+  this->vec_data.push_back(object);
 
   //---------------------------
 }
 void Mesh::update_glyph(int nb_cell){
-  vec_object[0]->data->xyz.clear();
-  vec_object[0]->data->rgb.clear();
+  vec_data[0]->data->xyz.clear();
+  vec_data[0]->data->rgb.clear();
   //---------------------------
 
   this->construct_mesh(nb_cell);
@@ -45,8 +44,8 @@ void Mesh::update_glyph(int nb_cell){
 
 //Subfunction
 void Mesh::construct_mesh(int nb_cell){
-  vector<vec3>& XYZ = vec_object[0]->data->xyz;
-  vector<vec4>& RGB = vec_object[0]->data->rgb;
+  vector<vec3>& XYZ = vec_data[0]->data->xyz;
+  vector<vec4>& RGB = vec_data[0]->data->rgb;
   float z = -0.002;
   //---------------------------
 
@@ -68,8 +67,8 @@ void Mesh::construct_mesh(int nb_cell){
   //---------------------------
 }
 void Mesh::construct_submesh(int nb_cell){
-  vector<vec3>& XYZ = vec_object[0]->data->xyz;
-  vector<vec4>& RGB = vec_object[0]->data->rgb;
+  vector<vec3>& XYZ = vec_data[0]->data->xyz;
+  vector<vec4>& RGB = vec_data[0]->data->rgb;
   float z = -0.003;
   //---------------------------
 

@@ -11,6 +11,7 @@ Axis::Axis(Engine* engine) : Glyph(engine){
   this->is_visible = true;
   this->is_suppressible = false;
   this->is_movable = false;
+  this->is_permanent = true;
 
   //---------------------------
 }
@@ -18,23 +19,21 @@ Axis::~Axis(){}
 
 //Main function
 void Axis::create(){
-  if(vec_object.size() != 0) return;
+  if(vec_data.size() != 0) return;
   //---------------------------
 
   entity::Object* object = new entity::Object(engine);
-  object->name = "world_axis";
   object->data->draw_line_width = 4;
   object->data->is_visible = true;
   object->data->draw_type_name = "line";
-  object->is_permanent = true;
-  this->vec_object.push_back(object);
+  this->vec_data.push_back(object);
   this->update_glyph();
 
   //---------------------------
 }
 void Axis::update_glyph(){
-  vector<vec3>& XYZ = vec_object[0]->data->xyz;
-  vector<vec4>& RGB = vec_object[0]->data->rgb;
+  vector<vec3>& XYZ = vec_data[0]->data->xyz;
+  vector<vec4>& RGB = vec_data[0]->data->rgb;
   float z = 0;
   //---------------------------
 

@@ -7,6 +7,7 @@ namespace glyph::camera{
 Camera::Camera(Engine* engine) : Glyph(engine){
   //---------------------------
 
+  this->is_permanent = true;
 
   //---------------------------
 }
@@ -14,16 +15,14 @@ Camera::~Camera(){}
 
 //Main function
 void Camera::create(){
-  if(vec_object.size() != 0) return;
+  if(vec_data.size() != 0) return;
   //---------------------------
 
   entity::Object* object = new entity::Object(engine);
-  object->name = "camera";
   object->data->draw_line_width = 1;
   object->data->draw_type_name = "line";
-  object->is_permanent = true;
   object->data->unicolor = vec4(1, 1, 1, 0.2f);
-  this->vec_object.push_back(object);
+  this->vec_data.push_back(object);
 
   //---------------------------
 }

@@ -7,6 +7,7 @@ namespace glyph::grid{
 Plane::Plane(Engine* engine) : Glyph(engine){
   //---------------------------
 
+  this->is_permanent = true;
   this->name = "grid_plane";
   this->color = vec4(0.2f, 0.2f, 0.2f, 1.0f);
 
@@ -15,22 +16,20 @@ Plane::Plane(Engine* engine) : Glyph(engine){
 Plane::~Plane(){}
 
 void Plane::create(){
-  if(vec_object.size() != 0) return;
+  if(vec_data.size() != 0) return;
   //---------------------------
 
   entity::Object* object = new entity::Object(engine);
-  object->name = "grid_plane";
   object->data->is_visible = true;
   object->data->draw_type_name = "triangle";
-  object->is_permanent = true;
   object->data->unicolor = color;
-  this->vec_object.push_back(object);
+  this->vec_data.push_back(object);
 
   //---------------------------
 }
 void Plane::update_glyph(int nb_cell){
-  vector<vec3>& XYZ = vec_object[0]->data->xyz;
-  vector<vec4>& RGB = vec_object[0]->data->rgb;
+  vector<vec3>& XYZ = vec_data[0]->data->xyz;
+  vector<vec4>& RGB = vec_data[0]->data->rgb;
   float z = -0.004;
   //---------------------------
 

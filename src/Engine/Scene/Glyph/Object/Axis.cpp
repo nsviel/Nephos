@@ -7,6 +7,7 @@ namespace glyph::object{
 Axis::Axis(Engine* engine) : Glyph(engine){
   //---------------------------
 
+  this->is_permanent = true;
   this->is_visible = true;
   this->ope_transform = new eng::ope::Transformation();
 
@@ -16,16 +17,15 @@ Axis::~Axis(){}
 
 //Main function
 void Axis::create(){
-  if(vec_object.size() != 0) return;
+  if(vec_data.size() != 0) return;
   //---------------------------
 
   //Create glyph
   entity::Object* object = new entity::Object(engine);
-  object->name = "axis";
   object->data->draw_line_width = 3;
   object->data->is_visible = is_visible;
   object->data->draw_type_name = "line";
-  this->vec_object.push_back(object);
+  this->vec_data.push_back(object);
   this->construct();
 
   //---------------------------
@@ -34,7 +34,7 @@ void Axis::update_glyph(entity::Entity* entity){
   //---------------------------
 
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    ope_transform->make_transformation(vec_object[0], object->data->COM, object->data->trans, object->data->rotat);
+    ope_transform->make_transformation(vec_data[0], object->data->COM, object->data->trans, object->data->rotat);
   }
 
   //---------------------------
@@ -42,8 +42,8 @@ void Axis::update_glyph(entity::Entity* entity){
 
 //Subfunction
 void Axis::construct(){
-  vector<vec4>& RGB = vec_object[0]->data->rgb;
-  vector<vec3>& XYZ = vec_object[0]->data->xyz;
+  vector<vec4>& RGB = vec_data[0]->data->rgb;
+  vector<vec3>& XYZ = vec_data[0]->data->xyz;
   //---------------------------
 
   //Location

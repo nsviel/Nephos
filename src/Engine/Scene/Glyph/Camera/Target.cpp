@@ -7,6 +7,7 @@ namespace glyph::camera{
 Target::Target(Engine* engine) : Glyph(engine){
   //---------------------------
 
+  this->is_permanent = true;
   this->color = vec4(1.0f, 1.0f, 1.0f, 0.5f);
   this->scale = 0.025;
 
@@ -16,23 +17,21 @@ Target::~Target(){}
 
 //Main function
 void Target::create(){
-  if(vec_object.size() != 0) return;
+  if(vec_data.size() != 0) return;
   //---------------------------
 
   entity::Object* object = new entity::Object(engine);
-  object->name = "camera_target";
   object->data->draw_line_width = 2;
   object->data->is_visible = true;
   object->data->draw_type_name = "line";
-  object->is_permanent = true;
   object->data->unicolor = vec4(1, 1, 1, 0.2f);
-  this->vec_object.push_back(object);
+  this->vec_data.push_back(object);
   this->construct(object);
 
   //---------------------------
 }
 void Target::update_glyph(entity::Entity* entity){
-  entity::Object* object = vec_object[0];
+  entity::Object* object = vec_data[0];
   //---------------------------
 
   if(entity::Camera* camera = dynamic_cast<entity::Camera*>(entity)){

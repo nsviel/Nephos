@@ -6,6 +6,7 @@ namespace glyph::object{
 AABB::AABB(Engine* engine) : Glyph(engine){
   //---------------------------
 
+  this->is_permanent = true;
   this->color = vec4(1.0f, 1.0f, 1.0f, 0.5f);
 
   //---------------------------
@@ -14,22 +15,20 @@ AABB::~AABB(){}
 
 //Main function
 void AABB::create(){
-  if(vec_object.size() != 0) return;
+  if(vec_data.size() != 0) return;
   //---------------------------
 
   entity::Object* object = new entity::Object(engine);
-  object->name = "aabb";
   object->data->draw_line_width = 1;
   object->data->is_visible = false;
   object->data->draw_type_name = "line";
-  object->is_permanent = true;
   object->data->unicolor = color;
 
   for(int i=0; i<24; i++){
     object->data->rgb.push_back(color);
   }
 
-  this->vec_object.push_back(object);
+  this->vec_data.push_back(object);
 
   //---------------------------
 }
@@ -39,7 +38,7 @@ void AABB::update_glyph(entity::Entity* entity){
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
     vec3 min = object->data->min;
     vec3 max = object->data->max;
-    vec_object[0]->data->xyz = build_box(min, max);
+    vec_data[0]->data->xyz = build_box(min, max);
   }
 
   //---------------------------

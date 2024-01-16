@@ -21,7 +21,7 @@ Grid::Grid(Engine* engine) : Glyph(engine){
 Grid::~Grid(){}
 
 void Grid::create(){
-  if(vec_object.size() != 0) return;
+  if(vec_data.size() != 0) return;
   //---------------------------
 
   mesh->create();
@@ -48,9 +48,9 @@ void Grid::update_glyph(){
 void Grid::insert_object_from_glyph(entity::Glyph* glyph){
   //---------------------------
 
-  vector<entity::Object*>& vec_object = glyph->get_vec_object();
-  for(int i=0; i<vec_object.size(); i++){
-    this->vec_object.push_back(vec_object[i]);
+  vector<entity::Object*>& vec_data = glyph->get_vec_data();
+  for(int i=0; i<vec_data.size(); i++){
+    this->vec_data.push_back(vec_data[i]);
   }
 
   //---------------------------
