@@ -22,7 +22,7 @@ VK_data::VK_data(vk::structure::Vulkan* struct_vulkan){
 VK_data::~VK_data(){}
 
 //Main function
-void VK_data::insert_object(utl::base::Data* data){
+void VK_data::insert_data(utl::base::Data* data){
   //---------------------------
 
   //Creat new data struct
@@ -49,7 +49,7 @@ void VK_data::insert_object(utl::base::Data* data){
 
   //---------------------------
 }
-void VK_data::update_object(utl::base::Data* data, vk::structure::Object* vk_object){
+void VK_data::update_data(utl::base::Data* data, vk::structure::Object* vk_object){
   //---------------------------
 
   vk_object->data = data;

@@ -164,9 +164,9 @@ void VK_engine::insert_data_in_engine(utl::base::Data* data){
 
   //If not, insert it
   if(is_in_list){
-    vk_data->update_object(data, vk_object);
+    vk_data->update_data(data, vk_object);
   }else{
-    vk_data->insert_object(data);
+    vk_data->insert_data(data);
   }
 
   //---------------------------

@@ -20,8 +20,8 @@ public:
 
 public:
   //Main functions
-  void insert_object(utl::base::Data* data);
-  void update_object(utl::base::Data* data, vk::structure::Object* vk_object);
+  void insert_data(utl::base::Data* data);
+  void update_data(utl::base::Data* data, vk::structure::Object* vk_object);
   void clean();
   void clean_vk_object(vk::structure::Object* vk_object);
 
