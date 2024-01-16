@@ -19,6 +19,7 @@ public:
   //Main function
   void init_set();
   void assign_ID(entity::Entity* entity);
+  void assign_ID(utl::base::Data* entity);
 
   inline utl::base::Set* get_data_set(){return data_set;}
 

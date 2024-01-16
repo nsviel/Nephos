@@ -105,7 +105,7 @@ void Scene::delete_entity(entity::Entity* entity){
     entity::Entity* entity_scene = *next(set_scene->list_entity.begin(),i);
 
     //Check if entity is present in the scene
-    if(entity->ID == entity_scene->ID){
+    if(entity->UID == entity_scene->UID){
       set_scene->remove_entity(entity);
       entity->remove_entity();
     }

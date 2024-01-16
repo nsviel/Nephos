@@ -15,7 +15,7 @@ struct Entity
   virtual void reset_entity(){}
   virtual void visibility_entity(bool value){}
 
-  int ID = -1;
+  int UID = -1;
   bool is_suppressible = true;
   bool is_permanent = false;
   bool is_movable = true;

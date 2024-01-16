@@ -29,8 +29,18 @@ void Database::assign_ID(entity::Entity* entity){
   if(entity == nullptr) return;
   //----------------------------
 
-  if(entity->ID == -1){
-    entity->ID = data_set->ID_entity++;
+  if(entity->UID == -1){
+    entity->UID = data_set->UID++;
+  }
+
+  //----------------------------
+}
+void Database::assign_ID(utl::base::Data* data){
+  if(data == nullptr) return;
+  //----------------------------
+
+  if(data->UID == -1){
+    data->UID = data_set->UID++;
   }
 
   //----------------------------

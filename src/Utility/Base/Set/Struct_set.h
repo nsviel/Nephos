@@ -30,7 +30,7 @@ struct Set
   bool is_visible = true;
   int nb_entity = 0;
   int nb_set = 0;
-  int ID_entity = 0;
+  int UID = 0;
 
   //Data
   entity::Entity* selected_entity = nullptr;

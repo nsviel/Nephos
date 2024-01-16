@@ -54,7 +54,7 @@ void Set::select_next_entity(){
   for(int i=0; i<list_entity.size(); i++){
     entity::Entity* entity = *next(list_entity.begin(), i);
 
-    if(this->selected_entity->ID == entity->ID){
+    if(this->selected_entity->UID == entity->UID){
       entity::Entity* next_entity;
 
       if((i + 1) < list_entity.size()){

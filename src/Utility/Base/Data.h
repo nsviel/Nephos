@@ -18,6 +18,7 @@ struct Data{
   //---------------------------
 
   //State
+  int UID = -1;
   int nb_point = 0;
   int draw_line_width = 1;
   int draw_point_size = 5;
@@ -37,7 +38,7 @@ struct Data{
   bool has_texture;
   bool has_timestamp;
   bool is_visible = true;
-  
+
   std::vector<glm::vec3> xyz;
   std::vector<glm::vec4> rgb;
   std::vector<glm::vec3> Nxyz;
