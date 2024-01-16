@@ -12,7 +12,7 @@
 #include <matroska/KaxVersion.h>
 #include <ebml/StdIOCallback.h>
 
-namespace k4n{
+namespace k4n::utils{
 
 //Constructor / Destructor
 Transformation::Transformation(){

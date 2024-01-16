@@ -8,7 +8,7 @@ extern "C" {
 #include <libavdevice/avdevice.h>
 }
 
-namespace k4n{
+namespace k4n::utils{
 
 
 class Transformation

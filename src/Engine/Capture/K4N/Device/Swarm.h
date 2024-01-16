@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Engine/Capture/K4N/Namespace.h>
+#include <Engine/Capture/K4N/Utils/Namespace.h>
 #include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Engine/Capture/K4N/Structure/Struct_swarm.h>
 #include <Engine/Scene/Data/Scene.h>
@@ -46,7 +47,7 @@ private:
   Engine* engine;
   eng::scene::Scene* sce_scene;
   k4n::structure::Swarm* struct_swarm;
-  k4n::Transformation* k4n_transfo;
+  k4n::utils::Transformation* k4n_transfo;
 
   string default_folder;
   string default_file;
