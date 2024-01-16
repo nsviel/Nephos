@@ -71,12 +71,12 @@ void Device::remove_entity(){
 
   //---------------------------
 }
-void Device::entity_visibility(bool value){
+void Device::visibility_entity(bool value){
   //---------------------------
 
   this->set_visibility(value);
 
-  cloud.object->entity_visibility(value);
+  cloud.object->visibility_entity(value);
 
   //---------------------------
 }

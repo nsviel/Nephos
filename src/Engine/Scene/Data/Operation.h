@@ -19,10 +19,6 @@ public:
   ~Operation();
 
 public:
-  //Main function
-  void switch_visibility(eng::data::Set* set, bool value);
-
-  //Transformation
   void make_translation(eng::data::Entity* entity, vec3 translation);
   void make_rotation(eng::data::Entity* entity, vec3 rotation);
   void make_rotation_X_90d(eng::data::Entity* entity, int value);

@@ -65,7 +65,7 @@ void Set::set_parameter(eng::data::Set* set){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Visibility"); ImGui::TableNextColumn();
     if(ImGui::Checkbox("##4555", &set->is_visible)){
-      sce_operation->switch_visibility(set, set->is_visible);
+      set->set_visibility(set->is_visible);
     }
 
     //Name

@@ -17,7 +17,7 @@ public:
 
   //Main function
   void update_entity();
-  void entity_visibility(bool value);
+  void visibility_entity(bool value);
 
   virtual void create(){}
   virtual void update_glyph(){}

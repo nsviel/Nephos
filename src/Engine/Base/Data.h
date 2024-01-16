@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Engine/Base/Entity/Struct_entity.h>
-
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
 #include <Eigen/Dense>
@@ -12,30 +10,12 @@
 #include <map>
 #include <mutex>
 
-class Engine;
 
 namespace eng::data{
-class Glyph;
 
-
-class Object : public eng::data::Entity
-{
-public:
-  //Constructor / Destructor
-  Object();
-  Object(Engine* engine);
-  ~Object();
-
-  //Main function
-  void update_entity();
-  void remove_entity();
-  void reset_entity();
-  void visibility_entity(bool value);
-
-  inline eng::data::Object* get_object(){return this;}
-
-public:
-  Engine* engine;
+//Generique data structure
+struct Data{
+  //---------------------------
 
   //State
   int nb_point = 0;
@@ -76,9 +56,6 @@ public:
   glm::mat4 scale = glm::mat4(1.0f);
   glm::mat4 model = glm::mat4(1.0f);
   glm::mat4 mvp = glm::mat4(1.0f);
-
-  //Glyph
-  std::list<eng::data::Glyph*> list_glyph;
 };
 
 }

@@ -43,7 +43,7 @@ void Set::set_visibility(bool value){
 
   for(int i=0; i<list_entity.size(); i++){
     eng::data::Entity* entity = *next(list_entity.begin(), i);
-    entity->is_visible = value;
+    entity->visibility_entity(value);
   }
 
   //---------------------------

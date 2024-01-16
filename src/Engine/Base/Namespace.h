@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Base/Data.h>
 #include <Engine/Base/Entity/Struct_entity.h>
 #include <Engine/Base/Entity/Object.h>
 #include <Engine/Base/Entity/Camera.h>
@@ -13,6 +14,7 @@
 namespace eng::data{
   //---------------------------
 
+  class Data;
   class Entity;
   class Object;
   class Camera;

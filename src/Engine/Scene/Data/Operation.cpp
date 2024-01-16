@@ -26,19 +26,6 @@ Operation::Operation(eng::scene::Node* node_scene){
 Operation::~Operation(){}
 
 //Main function
-void Operation::switch_visibility(eng::data::Set* set, bool value){
-  if(set == nullptr) return;
-  //---------------------------
-
-  for(int j=0; j<set->list_entity.size(); j++){
-    eng::data::Entity* entity = *next(set->list_entity.begin(), j);
-    entity->entity_visibility(value);
-  }
-
-  //---------------------------
-}
-
-//Transformation
 void Operation::make_translation(eng::data::Entity* entity, vec3 translation){
   if(entity == nullptr) return;
   //---------------------------
@@ -46,12 +33,10 @@ void Operation::make_translation(eng::data::Entity* entity, vec3 translation){
   //Object entity
   if(eng::data::Object* object = dynamic_cast<eng::data::Object*>(entity)){
     ope_transform->make_translation(object, translation);
-    //cam_control->set_camera_COM(object->COM);
   }
   //K4A device entity
   else if(k4n::Device* device = dynamic_cast<k4n::Device*>(entity)){
     ope_transform->make_translation(device->cloud.object, translation);
-    //cam_control->set_camera_COM(device->cloud.object->COM);
   }
 
   //---------------------------

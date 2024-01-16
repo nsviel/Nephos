@@ -25,7 +25,7 @@ public:
   void update_entity();
   void remove_entity();
   void reset_entity();
-  void entity_visibility(bool value);
+  void visibility_entity(bool value);
   void reset();
   void destroy();
   void draw_cloud();
@@ -38,6 +38,7 @@ public:
   void reset_color_configuration();
 
   inline k4n::structure::Cloud* get_cloud(){return &cloud;}
+  inline eng::data::Object* get_object(){return cloud.object;}
 
 public:
   Engine* engine;
