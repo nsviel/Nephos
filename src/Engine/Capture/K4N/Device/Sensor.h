@@ -41,8 +41,8 @@ public:
   void reset_color_configuration();
 
   inline k4n::structure::Cloud* get_cloud(){return &cloud;}
-  inline entity::Object* get_object(){return cloud.object;}
-  inline utl::base::Data* get_data(){return cloud.object->data;}
+  inline entity::Object* get_object(){return object;}
+  inline utl::base::Data* get_data(){return object->data;}
 
 public:
   Engine* engine;
@@ -51,6 +51,8 @@ public:
   eng::ope::Transformation* ope_transform;
   K4A_capture* k4a_capture;
   K4A_playback* k4a_playback;
+
+  entity::Object* object;
 
   k4n::structure::Cloud cloud;
   k4n::structure::Device device;

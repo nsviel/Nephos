@@ -18,9 +18,9 @@ public:
 
 public:
   //Main function
-  void make_colorization(k4n::structure::Cloud* cloud, vector<vec4>& vec_rgba);
-  void colorization_intensity(k4n::structure::Cloud* cloud, vector<vec4>& vec_rgba);
-  void colorization_heatmap(k4n::structure::Cloud* cloud, vector<vec4>& vec_rgba);
+  void make_colorization(k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba);
+  void colorization_intensity(k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba);
+  void colorization_heatmap(k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba);
 
 private:
   eng::ope::Heatmap* ope_heatmap;

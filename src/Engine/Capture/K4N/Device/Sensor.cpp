@@ -42,17 +42,17 @@ void Sensor::init(){
   this->device.name = str_mode + to_string(device.index);
 
   //Sensor cloud
-  cloud.object = new entity::Object(engine);
-  cloud.object->name = device.name;
-  cloud.object->data->draw_type_name = "point";
-  eng_scene->insert_object(cloud.object);
+  object = new entity::Object(engine);
+  object->name = device.name;
+  object->data->draw_type_name = "point";
+  eng_scene->insert_object(object);
 
   //---------------------------
 }
 void Sensor::reset(){
   //---------------------------
 
-  cloud.object->reset_entity();
+  object->reset_entity();
 
   //---------------------------
 }
@@ -61,16 +61,16 @@ void Sensor::destroy(){
 
   this->stop_threads();
   this->device.transformation.destroy();
-  eng_scene->remove_object(cloud.object);
+  eng_scene->remove_object(object);
 
   //---------------------------
 }
 void Sensor::draw_cloud(){
   //---------------------------
 
-  std::unique_lock<std::mutex> lock(cloud.object->data->mutex);
-  cloud.object->data->nb_point = cloud.object->data->xyz.size();
-  eng_scene->update_data(cloud.object->data);
+  std::unique_lock<std::mutex> lock(object->data->mutex);
+  object->data->nb_point = object->data->xyz.size();
+  eng_scene->update_data(object->data);
 
   //---------------------------
 }
@@ -83,8 +83,8 @@ void Sensor::update_entity(){
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   //----------------------------
 
-  cam_control->compute_camera_mvp(cloud.object->data);
-  sce_glyph->update_glyph_object(cloud.object);
+  cam_control->compute_camera_mvp(object->data);
+  sce_glyph->update_glyph_object(object);
 
   //----------------------------
 }
@@ -102,15 +102,15 @@ void Sensor::visibility_entity(bool value){
   //---------------------------
 
   this->is_visible = value;
-  cloud.object->data->is_visible = value;
-  cloud.object->visibility_entity(value);
+  object->data->is_visible = value;
+  object->visibility_entity(value);
 
   //---------------------------
 }
 void Sensor::reset_entity(){
   //---------------------------
 
-  cloud.object->reset_entity();
+  object->reset_entity();
   player.ts_seek = player.ts_beg;
 
   //---------------------------

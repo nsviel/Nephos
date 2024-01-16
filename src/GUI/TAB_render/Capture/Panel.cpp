@@ -122,9 +122,9 @@ void Panel::show_info(){
     mat[1][3] = 902.3516235351563;
     mat[2][3] = -904.981201171875;
     mat[3][3] = 1.0;
-    k4n_sensor->cloud.object->data->model = mat;
+    k4n_sensor->object->data->model = mat;
   }
-  mat4& mat = k4n_sensor->cloud.object->data->model;
+  mat4& mat = k4n_sensor->object->data->model;
   ImGui::Columns(4, "ModelMat");
   for(int i=0; i<4; i++){
     ImGui::Separator();

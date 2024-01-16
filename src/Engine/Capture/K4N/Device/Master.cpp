@@ -30,8 +30,8 @@ void Master::update_entity(){
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* device = *next(list_sensor.begin(), i);
-    cam_control->compute_camera_mvp(device->cloud.object->data);
-    sce_glyph->update_glyph_object(device->cloud.object);
+    cam_control->compute_camera_mvp(device->object->data);
+    sce_glyph->update_glyph_object(device->object);
   }
 
   //----------------------------
@@ -56,7 +56,7 @@ void Master::visibility_entity(bool value){
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* device = *next(list_sensor.begin(), i);
-    device->cloud.object->visibility_entity(value);
+    device->object->visibility_entity(value);
   }
 
   //---------------------------
@@ -66,7 +66,7 @@ void Master::reset_entity(){
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* device = *next(list_sensor.begin(), i);
-    device->cloud.object->reset_entity();
+    device->object->reset_entity();
     device->player.ts_seek = device->player.ts_beg;
   }
 

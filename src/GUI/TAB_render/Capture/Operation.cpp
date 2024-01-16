@@ -47,7 +47,7 @@ void Operation::colorization(){
   ImGui::RadioButton("##unicolor", &k4n_sensor->cloud.color_mode, 1);
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
-  ImGui::ColorEdit4("##unicolor_choice", (float*)&k4n_sensor->cloud.object->data->unicolor, flags);
+  ImGui::ColorEdit4("##unicolor_choice", (float*)&k4n_sensor->object->data->unicolor, flags);
   ImGui::SameLine();
   ImGui::RadioButton("I##colorization", &k4n_sensor->cloud.color_mode, 2);
   ImGui::SameLine();
@@ -76,8 +76,8 @@ void Operation::colorization(){
 
     //Height heatmap
     if(k4n_sensor->cloud.heatmap_mode == 1){
-      float min = k4n_sensor->cloud.object->data->min.z + 10;
-      float max = k4n_sensor->cloud.object->data->min.z + 10;
+      float min = k4n_sensor->object->data->min.z + 10;
+      float max = k4n_sensor->object->data->min.z + 10;
       ImGui::SetNextItemWidth(125);
       ImGui::DragFloatRange2("Z##321", &k4n_sensor->cloud.range_height.x, &k4n_sensor->cloud.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
     }
