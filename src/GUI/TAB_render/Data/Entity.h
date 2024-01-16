@@ -24,15 +24,15 @@ public:
   void close_panel();
 
   //Sub functions
-  void entity_title(eng::base::Entity* entity);
-  void entity_button(eng::base::Entity* entity);
-  void entity_parameter(eng::base::Entity* entity);
+  void entity_title(entity::Entity* entity);
+  void entity_button(entity::Entity* entity);
+  void entity_parameter(entity::Entity* entity);
 
   //Primitive size
-  void entity_line(eng::base::Object* object);
-  void entity_point(eng::base::Object* object);
+  void entity_line(entity::Object* object);
+  void entity_point(entity::Object* object);
 
-  inline void set_entity(eng::base::Entity* entity){this->entity = entity;}
+  inline void set_entity(entity::Entity* entity){this->entity = entity;}
 
 private:
   Panel* gui_render_panel;
@@ -41,7 +41,7 @@ private:
   eng::scene::Scene* sce_scene;
   eng::scene::Operation* sce_operation;
 
-  eng::base::Entity* entity;
+  entity::Entity* entity;
   string panel_name;
   bool* panel_show;;
   int item_width;

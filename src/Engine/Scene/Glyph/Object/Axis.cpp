@@ -20,7 +20,7 @@ void Axis::create(){
   //---------------------------
 
   //Create glyph
-  eng::base::Object* object = new eng::base::Object(engine);
+  entity::Object* object = new entity::Object(engine);
   object->name = "axis";
   object->data->draw_line_width = 3;
   object->is_visible = is_visible;
@@ -30,10 +30,10 @@ void Axis::create(){
 
   //---------------------------
 }
-void Axis::update_glyph(eng::base::Entity* entity){
+void Axis::update_glyph(entity::Entity* entity){
   //---------------------------
 
-  if(eng::base::Object* object = dynamic_cast<eng::base::Object*>(entity)){
+  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
     ope_transform->make_transformation(vec_object[0], object->COM, object->trans, object->rotat);
   }
 

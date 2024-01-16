@@ -303,7 +303,7 @@ void PTS_importer::Loader_data(eng::base::File* data, int FILE_config){
 }
 
 //Main exporter functions
-bool PTS_importer::Exporter(std::string path, eng::base::Object* object){
+bool PTS_importer::Exporter(std::string path, entity::Object* object){
   //---------------------------
 
   //Create file

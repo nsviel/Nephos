@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 
-namespace eng::base{
+namespace entity{
 
 //Constructor / Destructor
 Camera::Camera(){
@@ -19,7 +19,7 @@ void Camera::update_entity(){
   //----------------------------
 
   for(int i=0; i<list_glyph.size(); i++){
-    eng::base::Glyph* glyph = *next(list_glyph.begin(), i);
+    entity::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_glyph(this);
     glyph->update_entity();
   }

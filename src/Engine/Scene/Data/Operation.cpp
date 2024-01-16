@@ -26,12 +26,12 @@ Operation::Operation(eng::scene::Node* node_scene){
 Operation::~Operation(){}
 
 //Main function
-void Operation::make_translation(eng::base::Entity* entity, vec3 translation){
+void Operation::make_translation(entity::Entity* entity, vec3 translation){
   if(entity == nullptr) return;
   //---------------------------
 
   //Object entity
-  if(eng::base::Object* object = dynamic_cast<eng::base::Object*>(entity)){
+  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
     ope_transform->make_translation(object, translation);
   }
   //K4A device entity
@@ -41,12 +41,12 @@ void Operation::make_translation(eng::base::Entity* entity, vec3 translation){
 
   //---------------------------
 }
-void Operation::make_rotation(eng::base::Entity* entity, vec3 rotation){
+void Operation::make_rotation(entity::Entity* entity, vec3 rotation){
   if(entity == nullptr) return;
   //---------------------------
 
   //Object entity
-  if(eng::base::Object* object = dynamic_cast<eng::base::Object*>(entity)){
+  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
     ope_transform->make_rotation(object, object->COM, rotation);
   }
   //K4A device entity
@@ -56,11 +56,11 @@ void Operation::make_rotation(eng::base::Entity* entity, vec3 rotation){
 
   //---------------------------
 }
-void Operation::make_rotation_X_90d(eng::base::Entity* entity, int value){
+void Operation::make_rotation_X_90d(entity::Entity* entity, int value){
   //---------------------------
 
   //Object entity
-  if(eng::base::Object* object = dynamic_cast<eng::base::Object*>(entity)){
+  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
     ope_attribut->compute_MinMax(object);
     ope_transform->make_rotation_axe_X(object, value * 90);
     ope_operation->elevate_object(object);
@@ -74,12 +74,12 @@ void Operation::make_rotation_X_90d(eng::base::Entity* entity, int value){
 
   //---------------------------
 }
-void Operation::make_center(eng::base::Entity* entity){
+void Operation::make_center(entity::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
   //Object entity
-  if(eng::base::Object* object = dynamic_cast<eng::base::Object*>(entity)){
+  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
     ope_operation->center_object(object);
   }
   //K4A device entity

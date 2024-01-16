@@ -19,10 +19,10 @@ public:
   ~Operation();
 
 public:
-  void make_translation(eng::base::Entity* entity, vec3 translation);
-  void make_rotation(eng::base::Entity* entity, vec3 rotation);
-  void make_rotation_X_90d(eng::base::Entity* entity, int value);
-  void make_center(eng::base::Entity* entity);
+  void make_translation(entity::Entity* entity, vec3 translation);
+  void make_rotation(entity::Entity* entity, vec3 rotation);
+  void make_rotation_X_90d(entity::Entity* entity, int value);
+  void make_center(entity::Entity* entity);
 
 private:
   Engine* engine;

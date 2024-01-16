@@ -27,7 +27,7 @@ public:
 
 private:
   eng::camera::Manager* cam_manager;
-  eng::base::Camera* camera;
+  entity::Camera* camera;
   util::element::Window* utl_window;
   eng::shader::EDL_param* edl_param;
 };

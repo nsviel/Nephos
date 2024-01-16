@@ -21,8 +21,8 @@ public:
 
 public:
   //Main functions
-  void center_object(eng::base::Object* object);
-  void elevate_object(eng::base::Object* object);
+  void center_object(entity::Object* object);
+  void elevate_object(entity::Object* object);
 
 private:
   eng::ope::Transformation* ope_transform;

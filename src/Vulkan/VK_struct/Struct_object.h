@@ -12,7 +12,7 @@ namespace vk::structure{
 struct Object{
   //---------------------------
 
-  eng::base::Object* object;
+  entity::Object* object;
 
   //Data
   bool has_xyz = false;

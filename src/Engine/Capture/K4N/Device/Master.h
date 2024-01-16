@@ -8,7 +8,7 @@ class Engine;
 namespace k4n{
 
 
-class Master : public eng::base::Entity
+class Master : public entity::Entity
 {
 public:
   //Constructor / Destructor

@@ -21,7 +21,7 @@ void Mesh::create(){
   if(vec_object.size() != 0) return;
   //---------------------------
 
-  eng::base::Object* object = new eng::base::Object(engine);
+  entity::Object* object = new entity::Object(engine);
   object->name = "grid_mesh";
   object->data->draw_line_width = 1;
   object->is_visible = true;

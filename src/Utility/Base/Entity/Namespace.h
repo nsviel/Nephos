@@ -11,18 +11,13 @@
 #include <Utility/Base/Media/Struct_video.h>
 
 
-namespace eng::base{
+namespace entity{
   //---------------------------
 
-  class Data;
   class Entity;
   class Object;
   class Camera;
   class Glyph;
-  class Set;
-  class File;
-  class Image;
-  class Video;
 
   //---------------------------
 }

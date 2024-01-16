@@ -140,42 +140,42 @@ void Control::control_keyboard_translation(){
       // Z key
       if(io.KeysDown[571]){
         vec3 translation = vec3(translation_qtt, 0, 0);
-        eng::base::Entity* entity = sce_scene->get_selected_entity();
+        entity::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
         vec3 translation = vec3(-translation_qtt, 0, 0);
-        eng::base::Entity* entity = sce_scene->get_selected_entity();
+        entity::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
         vec3 translation = vec3(0, translation_qtt, 0);
-        eng::base::Entity* entity = sce_scene->get_selected_entity();
+        entity::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
         vec3 translation = vec3(0, -translation_qtt, 0);
-        eng::base::Entity* entity = sce_scene->get_selected_entity();
+        entity::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
         vec3 translation = vec3(0, 0, translation_qtt);
-        eng::base::Entity* entity = sce_scene->get_selected_entity();
+        entity::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
         vec3 translation = vec3(0, 0, -translation_qtt);
-        eng::base::Entity* entity = sce_scene->get_selected_entity();
+        entity::Entity* entity = sce_scene->get_selected_entity();
         sce_operation->make_translation(entity, translation);
         break;
       }
@@ -190,7 +190,7 @@ void Control::control_mouse(ImVec2 center){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  eng::base::Camera* camera = cam_manager->get_current_camera();
+  entity::Camera* camera = cam_manager->get_current_camera();
   utl_window->set_window_center(vec2(center.x, center.y));
 
   //Right click - Camera movement
@@ -242,7 +242,7 @@ void Control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    eng::base::Entity* entity = sce_scene->get_selected_entity();
+    entity::Entity* entity = sce_scene->get_selected_entity();
     sce_operation->make_rotation(entity, R);
   }
 

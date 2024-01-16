@@ -19,7 +19,7 @@ void Target::create(){
   if(vec_object.size() != 0) return;
   //---------------------------
 
-  eng::base::Object* object = new eng::base::Object(engine);
+  entity::Object* object = new entity::Object(engine);
   object->name = "camera_target";
   object->data->draw_line_width = 2;
   object->is_visible = true;
@@ -31,11 +31,11 @@ void Target::create(){
 
   //---------------------------
 }
-void Target::update_glyph(eng::base::Entity* entity){
-  eng::base::Object* object = vec_object[0];
+void Target::update_glyph(entity::Entity* entity){
+  entity::Object* object = vec_object[0];
   //---------------------------
 
-  if(eng::base::Camera* camera = dynamic_cast<eng::base::Camera*>(entity)){
+  if(entity::Camera* camera = dynamic_cast<entity::Camera*>(entity)){
     camera->mode == CAMERA_MODE_ARCBALL ? is_visible = true : is_visible = false;
 
     glm::mat4 translation(1.0);
@@ -48,7 +48,7 @@ void Target::update_glyph(eng::base::Entity* entity){
 
   //---------------------------
 }
-void Target::construct(eng::base::Object* object){
+void Target::construct(entity::Object* object){
   vector<vec3>& XYZ = object->xyz;
   vector<vec4>& RGB = object->rgb;
   //---------------------------

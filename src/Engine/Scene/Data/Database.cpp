@@ -25,7 +25,7 @@ void Database::init_set(){
   //---------------------------
 }
 
-void Database::assign_ID(eng::base::Entity* entity){
+void Database::assign_ID(entity::Entity* entity){
   if(entity == nullptr) return;
   //----------------------------
 

@@ -20,10 +20,10 @@ struct Set
   void add_new_set(std::string name);
   void set_visibility(bool value);
   void select_next_entity();
-  void insert_entity(eng::base::Entity* entity);
-  void remove_entity(eng::base::Entity* entity);
+  void insert_entity(entity::Entity* entity);
+  void remove_entity(entity::Entity* entity);
   eng::base::Set* get_set(std::string name);
-  eng::base::Entity* get_entity(std::string name);
+  entity::Entity* get_entity(std::string name);
 
   //Info
   std::string name;
@@ -33,8 +33,8 @@ struct Set
   int ID_entity = 0;
 
   //Data
-  eng::base::Entity* selected_entity = nullptr;
-  std::list<eng::base::Entity*> list_entity;
+  entity::Entity* selected_entity = nullptr;
+  std::list<entity::Entity*> list_entity;
   std::list<eng::base::Set*> list_set;
 
   //---------------------------

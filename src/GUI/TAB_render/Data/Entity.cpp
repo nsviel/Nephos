@@ -64,7 +64,7 @@ void Entity::close_panel(){
 }
 
 //Subfunction
-void Entity::entity_title(eng::base::Entity* entity){
+void Entity::entity_title(entity::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -72,7 +72,7 @@ void Entity::entity_title(eng::base::Entity* entity){
 
   //---------------------------
 }
-void Entity::entity_button(eng::base::Entity* entity){
+void Entity::entity_button(entity::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -91,7 +91,7 @@ void Entity::entity_button(eng::base::Entity* entity){
 
   //---------------------------
 }
-void Entity::entity_parameter(eng::base::Entity* entity){
+void Entity::entity_parameter(entity::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -126,7 +126,7 @@ void Entity::entity_parameter(eng::base::Entity* entity){
       entity = device->cloud.object;
     }
 
-    if(eng::base::Object* object = dynamic_cast<eng::base::Object*>(entity)){
+    if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Format"); ImGui::TableNextColumn();
       static char str_f[256];
@@ -173,7 +173,7 @@ void Entity::entity_parameter(eng::base::Entity* entity){
 }
 
 //Primitive size
-void Entity::entity_line(eng::base::Object* object){
+void Entity::entity_line(entity::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -198,7 +198,7 @@ void Entity::entity_line(eng::base::Object* object){
 
   //---------------------------
 }
-void Entity::entity_point(eng::base::Object* object){
+void Entity::entity_point(entity::Object* object){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

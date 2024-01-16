@@ -17,7 +17,7 @@ void Camera::create(){
   if(vec_object.size() != 0) return;
   //---------------------------
 
-  eng::base::Object* object = new eng::base::Object(engine);
+  entity::Object* object = new entity::Object(engine);
   object->name = "camera";
   object->data->draw_line_width = 1;
   object->is_visible = true;
@@ -28,7 +28,7 @@ void Camera::create(){
 
   //---------------------------
 }
-void Camera::update_glyph(eng::base::Entity* entity){
+void Camera::update_glyph(entity::Entity* entity){
   //---------------------------
 
 

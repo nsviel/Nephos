@@ -26,7 +26,7 @@ void Set::reset(){
 
   //Reset all associated entities
   for(int j=0; j<list_entity.size(); j++){
-    eng::base::Entity* entity = *next(list_entity.begin(), j);
+    entity::Entity* entity = *next(list_entity.begin(), j);
     entity->reset_entity();
   }
 
@@ -42,7 +42,7 @@ void Set::set_visibility(bool value){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    eng::base::Entity* entity = *next(list_entity.begin(), i);
+    entity::Entity* entity = *next(list_entity.begin(), i);
     entity->visibility_entity(value);
   }
 
@@ -52,10 +52,10 @@ void Set::select_next_entity(){
   //----------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    eng::base::Entity* entity = *next(list_entity.begin(), i);
+    entity::Entity* entity = *next(list_entity.begin(), i);
 
     if(this->selected_entity->ID == entity->ID){
-      eng::base::Entity* next_entity;
+      entity::Entity* next_entity;
 
       if((i + 1) < list_entity.size()){
         next_entity = *next(list_entity.begin(), i + 1);
@@ -71,7 +71,7 @@ void Set::select_next_entity(){
   //----------------------------
   this->selected_entity = nullptr;
 }
-void Set::insert_entity(eng::base::Entity* entity){
+void Set::insert_entity(entity::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -81,7 +81,7 @@ void Set::insert_entity(eng::base::Entity* entity){
 
   //---------------------------
 }
-void Set::remove_entity(eng::base::Entity* entity){
+void Set::remove_entity(entity::Entity* entity){
   //---------------------------
 
   this->list_entity.remove(entity);
@@ -107,11 +107,11 @@ eng::base::Set* Set::get_set(std::string name){
   //---------------------------
   return nullptr;
 }
-eng::base::Entity* Set::get_entity(std::string name){
+entity::Entity* Set::get_entity(std::string name){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    eng::base::Entity* entity = *next(list_entity.begin(),i);
+    entity::Entity* entity = *next(list_entity.begin(),i);
     if(entity->name == name){
       return entity;
     }

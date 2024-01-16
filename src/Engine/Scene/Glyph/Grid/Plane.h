@@ -5,7 +5,7 @@
 
 namespace glyph::grid{
 
-class Plane : public eng::base::Glyph
+class Plane : public entity::Glyph
 {
 public:
   //Constructor / Destructor

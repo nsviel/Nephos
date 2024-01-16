@@ -5,7 +5,7 @@
 
 namespace glyph::grid{
 
-class Mesh : public eng::base::Glyph
+class Mesh : public entity::Glyph
 {
 public:
   //Constructor / Destructor

@@ -7,7 +7,7 @@
 
 namespace glyph::object{
 
-class Axis : public eng::base::Glyph
+class Axis : public entity::Glyph
 {
 public:
   //Constructor / Destructor
@@ -17,7 +17,7 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph(eng::base::Entity* entity);
+  void update_glyph(entity::Entity* entity);
 
   //Subfunctions
   void construct();

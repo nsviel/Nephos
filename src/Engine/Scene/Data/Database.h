@@ -18,7 +18,7 @@ public:
 
   //Main function
   void init_set();
-  void assign_ID(eng::base::Entity* entity);
+  void assign_ID(entity::Entity* entity);
 
   inline eng::base::Set* get_data_set(){return data_set;}
 

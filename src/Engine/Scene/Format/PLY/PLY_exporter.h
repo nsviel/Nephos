@@ -17,7 +17,7 @@ public:
 
 public:
   //Main functions
-  bool export_cloud(eng::base::Object* object, std::string path_dir, std::string ply_format);
+  bool export_cloud(entity::Object* object, std::string path_dir, std::string ply_format);
 
 private:
   std::vector<std::string> property_type;

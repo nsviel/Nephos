@@ -25,11 +25,11 @@ enum camera_direction{
   CAMERA_DOWN = 5,
 };
 
-namespace eng::base{
+namespace entity{
 class Glyph;
 
 
-class Camera : public eng::base::Entity
+class Camera : public entity::Entity
 {
 public:
   //Constructor / Destructor
@@ -70,7 +70,7 @@ public:
   glm::mat4 mat_vp = glm::mat4(1);
 
   //Glyph
-  std::list<eng::base::Glyph*> list_glyph;
+  std::list<entity::Glyph*> list_glyph;
 };
 
 

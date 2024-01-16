@@ -6,7 +6,7 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
-namespace eng::base{
+namespace entity{
 
 //Constructor / Destructor
 Object::Object(){
@@ -61,7 +61,7 @@ void Object::visibility_entity(bool value){
   this->set_visibility(value);
 
   for(int i=0; i<list_glyph.size(); i++){
-    eng::base::Glyph* glyph = *next(list_glyph.begin(), i);
+    entity::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->visibility_entity(value);
   }
 

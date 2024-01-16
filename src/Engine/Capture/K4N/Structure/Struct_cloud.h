@@ -11,7 +11,7 @@ namespace k4n::structure{
 struct Cloud{
   //---------------------------
 
-  eng::base::Object* object;
+  entity::Object* object;
   std::vector<glm::vec3> vec_corner;
 
   /*

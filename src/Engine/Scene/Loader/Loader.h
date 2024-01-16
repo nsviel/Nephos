@@ -28,10 +28,10 @@ public:
 
 public:
   //Main functions
-  eng::base::Entity* load_entity(std::string path);
+  entity::Entity* load_entity(std::string path);
 
   //Subfunctions
-  eng::base::Object* load_object(string path);
+  entity::Object* load_object(string path);
   bool is_format_supported(string format);
 
 private:

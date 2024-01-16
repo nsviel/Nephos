@@ -27,11 +27,11 @@ public:
   mat4 compute_camera_view();
   mat4 compute_camera_proj();
   mat4 compute_camera_mvp();
-  void compute_camera_mvp(eng::base::Object* object);
+  void compute_camera_mvp(entity::Object* object);
   mat4 compute_camera_pose();
 
   //Camera parameter
-  void set_camera(eng::base::Camera* camera);
+  void set_camera(entity::Camera* camera);
   void set_camera_COM(vec3 value);
   void set_camera_mode();
   void set_next_camera_mode();
@@ -41,7 +41,7 @@ private:
 
   vector<eng::camera::mode::Base*> vec_mode;
   eng::camera::mode::Base* active_mode;
-  eng::base::Camera* camera;
+  entity::Camera* camera;
 };
 
 }

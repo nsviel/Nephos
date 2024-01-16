@@ -5,7 +5,7 @@
 
 namespace glyph::object{
 
-class Normal : public eng::base::Glyph
+class Normal : public entity::Glyph
 {
 public:
   //Constructor / Destructor
@@ -13,9 +13,9 @@ public:
   ~Normal();
 
 public:
-  eng::base::Object* create(eng::base::Object* object);
-  void update_normal_cloud(eng::base::Object* object, eng::base::Object* glyph);
-  void update_normal_cloud(eng::base::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s);
+  entity::Object* create(entity::Object* object);
+  void update_normal_cloud(entity::Object* object, entity::Object* glyph);
+  void update_normal_cloud(entity::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s);
 
   inline bool* get_visibility(){return &visibility;}
   inline int* get_size(){return &size;}

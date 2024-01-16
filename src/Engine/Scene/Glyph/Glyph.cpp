@@ -40,15 +40,15 @@ void Glyph::create_glyph_world(){
   set_world->insert_entity(new glyph::world::Axis(engine));
 
   for(int i=0; i<set_world->list_entity.size(); i++){
-    eng::base::Entity* entity = *next(set_world->list_entity.begin(), i);
+    entity::Entity* entity = *next(set_world->list_entity.begin(), i);
 
-    if(eng::base::Glyph* glyph = dynamic_cast<eng::base::Glyph*>(entity)){
+    if(entity::Glyph* glyph = dynamic_cast<entity::Glyph*>(entity)){
       //Glyph creation
       glyph->create();
       sce_database->assign_ID(glyph);
 
       //Glyph data
-      vector<eng::base::Object*> vec_object = glyph->get_vec_object();
+      vector<entity::Object*> vec_object = glyph->get_vec_object();
       for(int j=0; j<vec_object.size(); j++){
         sce_database->assign_ID(vec_object[j]);
         vk_engine->insert_object_in_engine(vec_object[j]);
@@ -64,9 +64,9 @@ void Glyph::remove_glyph_world(){
   //---------------------------
 
   for(int i=0; i<set_world->list_entity.size(); i++){
-    eng::base::Glyph* glyph = (eng::base::Glyph*)*next(set_world->list_entity.begin(), i);
+    entity::Glyph* glyph = (entity::Glyph*)*next(set_world->list_entity.begin(), i);
 
-    vector<eng::base::Object*> vec_object = glyph->get_vec_object();
+    vector<entity::Object*> vec_object = glyph->get_vec_object();
     for(int j=0; j<vec_object.size(); j++){
       vk_engine->remove_object_in_engine(vec_object[j]);
     }
@@ -79,7 +79,7 @@ void Glyph::remove_glyph_world(){
 }
 
 //Glyph object
-void Glyph::create_glyph_object(eng::base::Object* object){
+void Glyph::create_glyph_object(entity::Object* object){
   //---------------------------
 
   if(object->list_glyph.size() != 0) return;
@@ -87,14 +87,14 @@ void Glyph::create_glyph_object(eng::base::Object* object){
   object->list_glyph.push_back(new glyph::object::AABB(engine));
 
   for(int i=0; i<object->list_glyph.size(); i++){
-    eng::base::Glyph* glyph = *next(object->list_glyph.begin(), i);
+    entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
 
     //Glyph creation
     glyph->create();
     sce_database->assign_ID(glyph);
 
     //Glyph data
-    vector<eng::base::Object*> vec_object = glyph->get_vec_object();
+    vector<entity::Object*> vec_object = glyph->get_vec_object();
     for(int j=0; j<vec_object.size(); j++){
       sce_database->assign_ID(vec_object[j]);
       vk_engine->insert_object_in_engine(vec_object[j]);
@@ -103,13 +103,13 @@ void Glyph::create_glyph_object(eng::base::Object* object){
 
   //---------------------------
 }
-void Glyph::update_glyph_object(eng::base::Object* object){
+void Glyph::update_glyph_object(entity::Object* object){
   if(object == nullptr) return;
   //---------------------------
 
   for(int i=0; i<object->list_glyph.size(); i++){
-    eng::base::Glyph* glyph = *next(object->list_glyph.begin(), i);
-    vector<eng::base::Object*> vec_object = glyph->get_vec_object();
+    entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
+    vector<entity::Object*> vec_object = glyph->get_vec_object();
 
     glyph->update_glyph(object);
     for(int j=0; j<vec_object.size(); j++){
@@ -120,12 +120,12 @@ void Glyph::update_glyph_object(eng::base::Object* object){
 
   //---------------------------
 }
-void Glyph::remove_glyph_object(eng::base::Object* object){
+void Glyph::remove_glyph_object(entity::Object* object){
   //---------------------------
 
   for(int i=0; i<object->list_glyph.size(); i++){
-    eng::base::Glyph* glyph = *next(object->list_glyph.begin(), i);
-    vector<eng::base::Object*> vec_object = glyph->get_vec_object();
+    entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
+    vector<entity::Object*> vec_object = glyph->get_vec_object();
 
     for(int j=0; j<vec_object.size(); j++){
       vk_engine->remove_object_in_engine(vec_object[j]);
@@ -136,14 +136,14 @@ void Glyph::remove_glyph_object(eng::base::Object* object){
 }
 
 //Glyph camera
-void Glyph::create_glyph_camera(eng::base::Camera* camera){
+void Glyph::create_glyph_camera(entity::Camera* camera){
   //---------------------------
 
   if(camera->list_glyph.size() != 0) return;
   camera->list_glyph.push_back(new glyph::camera::Target(engine));
 
   for(int i=0; i<camera->list_glyph.size(); i++){
-    eng::base::Glyph* glyph = *next(camera->list_glyph.begin(), i);
+    entity::Glyph* glyph = *next(camera->list_glyph.begin(), i);
 
     //Glyph creation
     glyph->create();
@@ -151,7 +151,7 @@ void Glyph::create_glyph_camera(eng::base::Camera* camera){
     sce_database->assign_ID(glyph);
 
     //Glyph data
-    vector<eng::base::Object*> vec_object = glyph->get_vec_object();
+    vector<entity::Object*> vec_object = glyph->get_vec_object();
     for(int j=0; j<vec_object.size(); j++){
       sce_database->assign_ID(vec_object[j]);
       vk_engine->insert_object_in_engine(vec_object[j]);

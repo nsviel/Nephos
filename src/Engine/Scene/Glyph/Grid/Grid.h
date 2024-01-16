@@ -6,7 +6,7 @@
 namespace glyph::grid{
 
 
-class Grid : public eng::base::Glyph
+class Grid : public entity::Glyph
 {
 public:
   //Constructor / Destructor
@@ -17,7 +17,7 @@ public:
   //Main function
   void create();
   void update_glyph();
-  void insert_object_from_glyph(eng::base::Glyph* glyph);
+  void insert_object_from_glyph(entity::Glyph* glyph);
 
 private:
   glyph::grid::Mesh* mesh;

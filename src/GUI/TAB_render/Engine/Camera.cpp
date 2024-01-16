@@ -33,7 +33,7 @@ void Camera::design_panel(){
 
 //Subfunction
 void Camera::cam_parameter(){
-  eng::base::Camera* camera = cam_manager->get_current_camera();
+  entity::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   //Camera parameters
@@ -71,7 +71,7 @@ void Camera::cam_parameter(){
   //---------------------------
 }
 void Camera::cam_info(){
-  eng::base::Camera* camera = cam_manager->get_current_camera();
+  entity::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   //Camera position

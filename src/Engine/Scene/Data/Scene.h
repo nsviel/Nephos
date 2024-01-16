@@ -28,19 +28,19 @@ public:
   void init();
   void loop();
   void reset();
-  eng::base::Entity* get_selected_entity();
+  entity::Entity* get_selected_entity();
 
   //Entity
-  eng::base::Entity* import_entity(std::string path);
-  void insert_entity_scene(eng::base::Entity* entity);
-  void delete_entity(eng::base::Entity* object);
+  entity::Entity* import_entity(std::string path);
+  void insert_entity_scene(entity::Entity* entity);
+  void delete_entity(entity::Entity* object);
   void delete_entity_all();
 
   //Object
-  void insert_object_scene(eng::base::Object* object);
-  void insert_object(eng::base::Object* object);
-  void update_object(eng::base::Object* object);
-  void remove_object(eng::base::Object* object);
+  void insert_object_scene(entity::Object* object);
+  void insert_object(entity::Object* object);
+  void update_object(entity::Object* object);
+  void remove_object(entity::Object* object);
 
 private:
   VK_engine* vk_engine;

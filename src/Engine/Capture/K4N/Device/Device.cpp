@@ -42,7 +42,7 @@ void Device::init(){
   this->device.name = str_mode + to_string(device.index);
 
   //Device cloud
-  cloud.object = new eng::base::Object(engine);
+  cloud.object = new entity::Object(engine);
   cloud.object->name = device.name;
   cloud.object->draw_type_name = "point";
   eng_scene->insert_object(cloud.object);

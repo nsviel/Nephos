@@ -397,7 +397,7 @@ void Loader::operation_selection(){
   }
 
   for(int i=0; i<vec_path.size(); i++){
-    eng::base::Entity* entity = sce_scene->import_entity(vec_path[i]);
+    entity::Entity* entity = sce_scene->import_entity(vec_path[i]);
     this->operation_entity(entity);
   }
 
@@ -420,13 +420,13 @@ void Loader::operation_selection(string path){
       sce_scene->delete_entity_all();
     }
 
-    eng::base::Entity* entity = sce_scene->import_entity(path);
+    entity::Entity* entity = sce_scene->import_entity(path);
     this->operation_entity(entity);
   }
 
   //---------------------------
 }
-void Loader::operation_entity(eng::base::Entity* entity){
+void Loader::operation_entity(entity::Entity* entity){
   //---------------------------
 
 

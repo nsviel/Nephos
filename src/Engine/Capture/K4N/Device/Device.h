@@ -12,7 +12,7 @@ class Engine;
 namespace k4n{
 
 
-class Device : public eng::base::Entity
+class Device : public entity::Entity
 {
 public:
   //Constructor / Destructor
@@ -38,7 +38,7 @@ public:
   void reset_color_configuration();
 
   inline k4n::structure::Cloud* get_cloud(){return &cloud;}
-  inline eng::base::Object* get_object(){return cloud.object;}
+  inline entity::Object* get_object(){return cloud.object;}
 
 public:
   Engine* engine;

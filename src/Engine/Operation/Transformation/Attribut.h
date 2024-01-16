@@ -21,10 +21,10 @@ public:
 
 public:
   //Main functions
-  void compute_MinMax(eng::base::Object* object);
+  void compute_MinMax(entity::Object* object);
   void set_visibility(eng::base::Set* set, bool visibility);
-  void set_unicolor(eng::base::Object* object);
-  vector<float> retrieve_z_vector(eng::base::Object* object);
+  void set_unicolor(entity::Object* object);
+  vector<float> retrieve_z_vector(entity::Object* object);
 
 private:
 };

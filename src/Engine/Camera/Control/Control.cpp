@@ -121,7 +121,7 @@ mat4 Control::compute_camera_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void Control::compute_camera_mvp(eng::base::Object* object){
+void Control::compute_camera_mvp(entity::Object* object){
   if(object == nullptr) return;
   //---------------------------
 
@@ -151,7 +151,7 @@ mat4 Control::compute_camera_pose(){
 }
 
 //Camera parameter
-void Control::set_camera(eng::base::Camera* camera){
+void Control::set_camera(entity::Camera* camera){
   //---------------------------
 
   this->camera = camera;

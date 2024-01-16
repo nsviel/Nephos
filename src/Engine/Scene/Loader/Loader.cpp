@@ -47,8 +47,8 @@ Loader::~Loader(){
 }
 
 //Main functions
-eng::base::Entity* Loader::load_entity(std::string path){
-  eng::base::Entity* entity = nullptr;
+entity::Entity* Loader::load_entity(std::string path){
+  entity::Entity* entity = nullptr;
   //---------------------------
 
   //Check file existence
@@ -78,12 +78,12 @@ eng::base::Entity* Loader::load_entity(std::string path){
 }
 
 //Subfunctions
-eng::base::Object* Loader::load_object(string path){
+entity::Object* Loader::load_object(string path){
   //---------------------------
 
   eng::base::File* data = eng_format->get_data_from_file(path);
 
-  eng::base::Object* object = new eng::base::Object(engine);
+  entity::Object* object = new entity::Object(engine);
   object->path_file = path;
   object->file_format = info::get_format_from_path(path);
   object->data->has_texture = true;

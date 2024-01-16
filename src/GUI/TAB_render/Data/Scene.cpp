@@ -44,7 +44,7 @@ void Scene::design_panel(){
 void Scene::draw_button(){
   eng::base::Set* data_set = sce_database->get_data_set();
   eng::base::Set* set_scene = data_set->get_set("Scene");
-  eng::base::Entity* entity = set_scene->selected_entity;
+  entity::Entity* entity = set_scene->selected_entity;
   //-------------------------------
 
   if(entity == nullptr) return;
@@ -174,7 +174,7 @@ int Scene::data_node_tree(eng::base::Set* set) {
 
   // Set elements (leaf nodes) and nested set nodes
   if(is_node_open){
-    for(eng::base::Entity* entity : set->list_entity){
+    for(entity::Entity* entity : set->list_entity){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       nb_row++;

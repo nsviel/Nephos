@@ -5,10 +5,11 @@
 
 class Engine;
 
-namespace eng::base{
+namespace entity{
+class Object;
 
 
-class Glyph : public eng::base::Entity
+class Glyph : public entity::Entity
 {
 public:
   //Constructor / Destructor
@@ -21,16 +22,16 @@ public:
 
   virtual void create(){}
   virtual void update_glyph(){}
-  virtual void update_glyph(eng::base::Entity* entity){}
+  virtual void update_glyph(entity::Entity* entity){}
   virtual void reset(){}
 
-  inline vector<eng::base::Object*>& get_vec_object(){return vec_object;}
+  inline vector<entity::Object*>& get_vec_object(){return vec_object;}
   inline vec4* get_color(){return &color;}
   inline bool* get_visibility(){return &is_visible;}
 
 protected:
   Engine* engine;
-  vector<eng::base::Object*> vec_object;
+  vector<entity::Object*> vec_object;
 
   vec4 color;
   bool is_visible;

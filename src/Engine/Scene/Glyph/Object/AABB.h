@@ -6,7 +6,7 @@
 
 namespace glyph::object{
 
-class AABB : public eng::base::Glyph
+class AABB : public entity::Glyph
 {
 public:
   AABB(Engine* engine);
@@ -15,7 +15,7 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph(eng::base::Entity* entity);
+  void update_glyph(entity::Entity* entity);
 
   //Subfunction
   vector<vec3> build_box(vec3 min, vec3 max);

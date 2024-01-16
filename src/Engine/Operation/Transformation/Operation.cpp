@@ -15,7 +15,7 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Main function
-void Operation::center_object(eng::base::Object* object){
+void Operation::center_object(entity::Object* object){
   //---------------------------
 
   ope_attribut->compute_MinMax(object);
@@ -23,7 +23,7 @@ void Operation::center_object(eng::base::Object* object){
 
   //---------------------------
 }
-void Operation::elevate_object(eng::base::Object* object){
+void Operation::elevate_object(entity::Object* object){
   //---------------------------
 
   ope_attribut->compute_MinMax(object);

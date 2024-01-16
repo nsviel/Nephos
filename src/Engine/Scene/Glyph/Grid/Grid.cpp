@@ -45,10 +45,10 @@ void Grid::update_glyph(){
 
   //---------------------------
 }
-void Grid::insert_object_from_glyph(eng::base::Glyph* glyph){
+void Grid::insert_object_from_glyph(entity::Glyph* glyph){
   //---------------------------
 
-  vector<eng::base::Object*>& vec_object = glyph->get_vec_object();
+  vector<entity::Object*>& vec_object = glyph->get_vec_object();
   for(int i=0; i<vec_object.size(); i++){
     this->vec_object.push_back(vec_object[i]);
   }

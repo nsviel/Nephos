@@ -5,7 +5,7 @@
 
 namespace glyph::camera{
 
-class Camera : public eng::base::Glyph
+class Camera : public entity::Glyph
 {
 public:
   //Constructor / Destructor
@@ -14,7 +14,7 @@ public:
 
 public:
   void create();
-  void update_glyph(eng::base::Entity* entity);
+  void update_glyph(entity::Entity* entity);
 
 private:
 

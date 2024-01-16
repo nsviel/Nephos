@@ -3,7 +3,7 @@
 #include <string>
 
 
-namespace eng::base{
+namespace entity{
 
 struct Entity
 {

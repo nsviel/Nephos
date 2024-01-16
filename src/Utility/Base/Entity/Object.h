@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Base/Namespace.h>
 #include <Utility/Base/Entity/Struct_entity.h>
 
 #include <glm/glm.hpp>
@@ -14,12 +15,12 @@
 
 class Engine;
 
-namespace eng::base{
+namespace entity{
 class Glyph;
 class Data;
 
 
-class Object : public eng::base::Entity
+class Object : public entity::Entity
 {
 public:
   //Constructor / Destructor
@@ -33,13 +34,13 @@ public:
   void reset_entity();
   void visibility_entity(bool value);
 
-  inline eng::base::Object* get_object(){return this;}
+  inline entity::Object* get_object(){return this;}
 
 public:
   Engine* engine;
 
   eng::base::Data* data;
-  std::list<eng::base::Glyph*> list_glyph;
+  std::list<entity::Glyph*> list_glyph;
 
 
 
