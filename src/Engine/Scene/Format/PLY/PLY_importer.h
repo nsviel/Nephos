@@ -21,7 +21,7 @@ public:
 
 public:
   //Main functions
-  eng::base::File* Loader(std::string path_file);
+  utl::base::File* Loader(std::string path_file);
 
 private:
   //Loader data
@@ -47,7 +47,7 @@ private:
   float get_uchar_from_binary(char* block_data, int& offset);
 
 private:
-  eng::base::File* data;
+  utl::base::File* data;
 
   //Parametrization
   std::vector<std::string> property_type;

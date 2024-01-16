@@ -37,7 +37,7 @@ void Attribut::compute_MinMax(entity::Object* object){
   object->max = max;
   object->COM = centroid;
 }
-void Attribut::set_visibility(eng::base::Set* set, bool visibility){
+void Attribut::set_visibility(utl::base::Set* set, bool visibility){
   //---------------------------
 
   for(int i=0; i<set->list_entity.size(); i++){

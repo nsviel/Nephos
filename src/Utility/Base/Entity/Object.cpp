@@ -14,7 +14,7 @@ Object::Object(){
 
   this->unicolor = math::random_color();
   this->type = "Object";
-  this->data = new eng::base::Data();
+  this->data = new utl::base::Data();
 
   //---------------------------
 }
@@ -24,7 +24,7 @@ Object::Object(Engine* engine){
   this->engine = engine;
   this->unicolor = math::random_color();
   this->type = "Object";
-  this->data = new eng::base::Data();
+  this->data = new utl::base::Data();
 
   //---------------------------
 }

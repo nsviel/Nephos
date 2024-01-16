@@ -51,18 +51,18 @@ void Control::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  eng::base::Set* data_set = sce_database->get_data_set();
+  utl::base::Set* data_set = sce_database->get_data_set();
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      eng::base::Set* set_scene = data_set->get_set("Scene");
+      utl::base::Set* set_scene = data_set->get_set("Scene");
       set_scene->select_next_entity();
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      eng::base::Set* set_scene = data_set->get_set("Scene");
+      utl::base::Set* set_scene = data_set->get_set("Scene");
       sce_scene->delete_entity(set_scene->selected_entity);
       break;
     }
@@ -127,7 +127,7 @@ void Control::control_keyboard_translation(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  eng::base::Set* data_set = sce_database->get_data_set();
+  utl::base::Set* data_set = sce_database->get_data_set();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
       float translation_qtt = 0.01;

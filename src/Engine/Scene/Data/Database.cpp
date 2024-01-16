@@ -7,7 +7,7 @@ namespace eng::scene{
 Database::Database(eng::scene::Node* node_scene){
   //---------------------------
 
-  this->data_set = new eng::base::Set("Data");
+  this->data_set = new utl::base::Set("Data");
 
   //---------------------------
 }
@@ -20,7 +20,7 @@ void Database::init_set(){
   data_set->add_new_set("World");
   data_set->add_new_set("Scene");
 
-//eng::base::Set* set = data_set->get_set("Scene");
+//utl::base::Set* set = data_set->get_set("Scene");
 //set->add_new_set("coucou");
   //---------------------------
 }

@@ -21,15 +21,15 @@ public:
   void design_panel();
 
   //Sub functions
-  void set_info(eng::base::Set* set);
-  void set_parameter(eng::base::Set* set);
+  void set_info(utl::base::Set* set);
+  void set_parameter(utl::base::Set* set);
 
-  inline void set_selected_set(eng::base::Set* set){this->set_selected = set;}
+  inline void set_selected_set(utl::base::Set* set){this->set_selected = set;}
 
 private:
   eng::scene::Operation* sce_operation;
 
-  eng::base::Set* set_selected;
+  utl::base::Set* set_selected;
   string panel_name;
   bool* panel_show;;
   int item_width;

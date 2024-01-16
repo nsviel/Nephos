@@ -8,7 +8,7 @@
 #include <iostream>
 
 
-namespace eng::base{
+namespace utl::base{
 
 //Set are entity container
 struct Set
@@ -22,7 +22,7 @@ struct Set
   void select_next_entity();
   void insert_entity(entity::Entity* entity);
   void remove_entity(entity::Entity* entity);
-  eng::base::Set* get_set(std::string name);
+  utl::base::Set* get_set(std::string name);
   entity::Entity* get_entity(std::string name);
 
   //Info
@@ -35,7 +35,7 @@ struct Set
   //Data
   entity::Entity* selected_entity = nullptr;
   std::list<entity::Entity*> list_entity;
-  std::list<eng::base::Set*> list_set;
+  std::list<utl::base::Set*> list_set;
 
   //---------------------------
 };

@@ -1,7 +1,7 @@
 #include "Struct_set.h"
 
 
-namespace eng::base{
+namespace utl::base{
 
 Set::Set(std::string name){
   //---------------------------
@@ -15,7 +15,7 @@ Set::Set(std::string name){
 void Set::add_new_set(std::string name){
   //---------------------------
 
-  eng::base::Set* set = new eng::base::Set(name);
+  utl::base::Set* set = new utl::base::Set(name);
   list_set.push_back(set);
   this->nb_set++;
 
@@ -32,7 +32,7 @@ void Set::reset(){
 
   //Reset all associated sets
   for(int i=0; i<list_set.size(); i++){
-    eng::base::Set* set = *next(list_set.begin(), i);
+    utl::base::Set* set = *next(list_set.begin(), i);
     set->reset();
   }
 
@@ -92,11 +92,11 @@ void Set::remove_entity(entity::Entity* entity){
 
   //---------------------------
 }
-eng::base::Set* Set::get_set(std::string name){
+utl::base::Set* Set::get_set(std::string name){
   //---------------------------
 
   for(int i=0; i<list_set.size(); i++){
-    eng::base::Set* set = *next(list_set.begin(),i);
+    utl::base::Set* set = *next(list_set.begin(),i);
     if(set->name == name){
       return set;
     }

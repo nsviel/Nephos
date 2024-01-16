@@ -19,7 +19,7 @@ public:
 
 public:
   //Main functions
-  eng::base::File* parse_packet(std::vector<int> packet);
+  utl::base::File* parse_packet(std::vector<int> packet);
 
   //Subfunctions
   void parse_vector(std::vector<int> packet);
@@ -27,7 +27,7 @@ public:
   void parse_azimuth();
   void parse_coordinates();
   void parse_timestamp();
-  void final_check(eng::base::File* cloud);
+  void final_check(utl::base::File* cloud);
 
   //Subsubfunctions
   std::vector<float> calc_timing_offsets();

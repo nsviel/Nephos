@@ -39,7 +39,7 @@ public:
 public:
   Engine* engine;
 
-  eng::base::Data* data;
+  utl::base::Data* data;
   std::list<entity::Glyph*> list_glyph;
 
 

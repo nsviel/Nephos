@@ -20,10 +20,10 @@ public:
   void init_set();
   void assign_ID(entity::Entity* entity);
 
-  inline eng::base::Set* get_data_set(){return data_set;}
+  inline utl::base::Set* get_data_set(){return data_set;}
 
 private:
-  eng::base::Set* data_set;
+  utl::base::Set* data_set;
 };
 
 }

@@ -81,7 +81,7 @@ entity::Entity* Loader::load_entity(std::string path){
 entity::Object* Loader::load_object(string path){
   //---------------------------
 
-  eng::base::File* data = eng_format->get_data_from_file(path);
+  utl::base::File* data = eng_format->get_data_from_file(path);
 
   entity::Object* object = new entity::Object(engine);
   object->path_file = path;

@@ -22,7 +22,7 @@ Stream::Stream(GUI* gui){
 Stream::~Stream(){}
 
 //Main function
-void Stream::draw_stream(eng::base::Image* image, ImVec2 image_size){
+void Stream::draw_stream(utl::base::Image* image, ImVec2 image_size){
   //---------------------------
 
   if(!image->data.empty()){
@@ -34,7 +34,7 @@ void Stream::draw_stream(eng::base::Image* image, ImVec2 image_size){
 }
 
 //Subfunction
-void Stream::convert_data_into_texture(eng::base::Image* image){
+void Stream::convert_data_into_texture(utl::base::Image* image){
   //---------------------------
 
   if(vk_image == nullptr){

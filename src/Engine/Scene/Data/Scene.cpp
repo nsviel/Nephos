@@ -40,11 +40,11 @@ void Scene::init(){
   //---------------------------
 }
 void Scene::loop(){
-  eng::base::Set* data_set = sce_database->get_data_set();
+  utl::base::Set* data_set = sce_database->get_data_set();
   //----------------------------
 
   for(int i=0; i<data_set->list_set.size(); i++){
-    eng::base::Set* set = *next(data_set->list_set.begin(), i);
+    utl::base::Set* set = *next(data_set->list_set.begin(), i);
     for(int j=0; j<set->list_entity.size(); j++){
       entity::Entity* entity = *next(set->list_entity.begin(), j);
       entity->update_entity();
@@ -54,7 +54,7 @@ void Scene::loop(){
   //----------------------------
 }
 void Scene::reset(){
-  eng::base::Set* data_set = sce_database->get_data_set();
+  utl::base::Set* data_set = sce_database->get_data_set();
   //---------------------------
 
   data_set->reset();
@@ -62,10 +62,10 @@ void Scene::reset(){
   //---------------------------
 }
 entity::Entity* Scene::get_selected_entity(){
-  eng::base::Set* data_set = sce_database->get_data_set();
+  utl::base::Set* data_set = sce_database->get_data_set();
   //---------------------------
 
-  eng::base::Set* set_scene = data_set->get_set("Scene");
+  utl::base::Set* set_scene = data_set->get_set("Scene");
   entity::Entity* entity = set_scene->selected_entity;
 
   //---------------------------
@@ -84,8 +84,8 @@ entity::Entity* Scene::import_entity(std::string path){
   return entity;
 }
 void Scene::insert_entity_scene(entity::Entity* entity){
-  eng::base::Set* data_set = sce_database->get_data_set();
-  eng::base::Set* set_scene = data_set->get_set("Scene");
+  utl::base::Set* data_set = sce_database->get_data_set();
+  utl::base::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   set_scene->insert_entity(entity);
@@ -93,8 +93,8 @@ void Scene::insert_entity_scene(entity::Entity* entity){
   //---------------------------
 }
 void Scene::delete_entity(entity::Entity* entity){
-  eng::base::Set* data_set = sce_database->get_data_set();
-  eng::base::Set* set_scene = data_set->get_set("Scene");
+  utl::base::Set* data_set = sce_database->get_data_set();
+  utl::base::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   //Selected next entity
@@ -114,8 +114,8 @@ void Scene::delete_entity(entity::Entity* entity){
   //---------------------------
 }
 void Scene::delete_entity_all(){
-  eng::base::Set* data_set = sce_database->get_data_set();
-  eng::base::Set* set_scene = data_set->get_set("Scene");
+  utl::base::Set* data_set = sce_database->get_data_set();
+  utl::base::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   for(int i=0; i<set_scene->list_entity.size(); i++){
@@ -130,8 +130,8 @@ void Scene::delete_entity_all(){
 
 //Object
 void Scene::insert_object_scene(entity::Object* object){
-  eng::base::Set* data_set = sce_database->get_data_set();
-  eng::base::Set* set_scene = data_set->get_set("Scene");
+  utl::base::Set* data_set = sce_database->get_data_set();
+  utl::base::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   this->insert_object(object);
