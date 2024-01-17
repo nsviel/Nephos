@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Base/Type/Struct_data.h>
-#include <Utility/Base/Entity/Struct_entity.h>
 #include <Utility/Specific/common.h>
 
 class Engine;

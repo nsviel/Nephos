@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Type/Struct_data.h>
-#include <Utility/Base/Entity/Struct_entity.h>
+#include <Utility/Specific/common.h>
 
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
@@ -17,7 +17,7 @@ class Engine;
 
 namespace entity{
 class Glyph;
-class Entity;
+
 
 class Object : public utl::type::Entity
 {

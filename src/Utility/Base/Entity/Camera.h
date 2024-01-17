@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Entity/Struct_entity.h>
+#include <Utility/Specific/common.h>
 
 #include <glm/glm.hpp>
 #include <string>
