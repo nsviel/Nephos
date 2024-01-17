@@ -131,7 +131,7 @@ void Scene::draw_file_tree(){
         ImGui::TableNextColumn();
 
         ImGui::PushID(set->name.c_str());
-        this->draw_tree(set);
+        this->tree_set(set);
         ImGui::PopID();
       }
     }
@@ -144,7 +144,7 @@ void Scene::draw_file_tree(){
 }
 
 //File tree
-int Scene::draw_tree(utl::base::Set* set) {
+int Scene::tree_set(utl::base::Set* set) {
   int nb_row = 0;
   //---------------------------
 
@@ -156,16 +156,16 @@ int Scene::draw_tree(utl::base::Set* set) {
   // Set nodes
   string name = set->icon + "   " + set->name;
   bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag_node);
-  this->set_double_click(set);
+  this->tree_set_double_click(set);
   if(is_node_open){
-    this->set_open(set, nb_row);
+    this->tree_set_open(set, nb_row);
     ImGui::TreePop();
   }
 
   //---------------------------
   return nb_row;
 }
-void Scene::set_double_click(utl::base::Set* set){
+void Scene::tree_set_double_click(utl::base::Set* set){
   //---------------------------
 
   // If set is double-clicked
@@ -176,7 +176,7 @@ void Scene::set_double_click(utl::base::Set* set){
 
   //---------------------------
 }
-void Scene::set_open(utl::base::Set* set, int& nb_row){
+void Scene::tree_set_open(utl::base::Set* set, int& nb_row){
   //---------------------------
 
   ImGuiTreeNodeFlags flag_leaf;
@@ -189,17 +189,17 @@ void Scene::set_open(utl::base::Set* set, int& nb_row){
   for(int i=0; i<set->list_entity.size(); i++){
     entity::Entity* entity = *next(set->list_entity.begin(), i);
 
-    this->display_entity(set, entity, nb_row);
+    this->tree_entity(set, entity, nb_row);
   }
 
   // Recursive call for nested sets
   for(utl::base::Set* subset : set->list_set) {
-    nb_row += draw_tree(subset);
+    nb_row += tree_set(subset);
   }
 
   //---------------------------
 }
-void Scene::display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row){
+void Scene::tree_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row){
   //---------------------------
 
   ImGui::TableNextRow();
