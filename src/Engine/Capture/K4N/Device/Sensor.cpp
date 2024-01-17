@@ -83,6 +83,47 @@ void Sensor::set_play(){
   //---------------------------
 }
 
+//Entity function
+void Sensor::update_entity(){
+  eng::camera::Node* node_camera = engine->get_node_camera();
+  eng::camera::Control* cam_control = node_camera->get_camera_control();
+  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
+  //----------------------------
+
+  cam_control->compute_camera_mvp(object->data);
+  sce_glyph->update_glyph_object(object);
+
+  //----------------------------
+}
+void Sensor::remove_entity(){
+  eng::capture::Node* node_capture = engine->get_node_capture();
+  k4n::Node* node_kinect = node_capture->get_node_kinect();
+  k4n::dev::Swarm* k4n_swarm = node_kinect->get_k4n_swarm();
+  //---------------------------
+
+  k4n_swarm->close_sensor(master, this);
+
+  //---------------------------
+}
+void Sensor::visibility_entity(bool value){
+  //---------------------------
+
+  this->is_visible = value;
+  object->data->is_visible = value;
+  object->visibility_entity(value);
+
+  //---------------------------
+}
+void Sensor::reset_entity(){
+  //---------------------------
+
+  object->reset_entity();
+  player.ts_seek = player.ts_beg;
+
+  //---------------------------
+}
+
 //Capture function
 void Sensor::run_capture(){
   //---------------------------

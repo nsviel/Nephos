@@ -17,21 +17,21 @@ Set::Set(std::string name){
   //---------------------------
 }
 
-//Misc function
-void Set::add_set(utl::base::Set* set){
+//Main function
+void Set::update(){
   //---------------------------
 
-  list_set.push_back(set);
-  this->nb_set++;
+  // Process entities within the current set
+  for (int i=0; i<list_entity.size(); i++){
+    entity::Entity* entity = *next(list_entity.begin(), i);
+    entity->update_entity();
+  }
 
-  //---------------------------
-}
-void Set::add_new_set(std::string name){
-  //---------------------------
-
-  utl::base::Set* set = new utl::base::Set(name);
-  list_set.push_back(set);
-  this->nb_set++;
+  // Recursively process nested sets
+  for(int i=0; i<list_set.size(); i++){
+    utl::base::Set* nested_set = *next(list_set.begin(), i);
+    nested_set->update();
+  }
 
   //---------------------------
 }
@@ -52,13 +52,22 @@ void Set::reset(){
 
   //---------------------------
 }
-void Set::set_visibility(bool value){
+
+//Add element
+void Set::add_set(utl::base::Set* set){
   //---------------------------
 
-  for(int i=0; i<list_entity.size(); i++){
-    entity::Entity* entity = *next(list_entity.begin(), i);
-    entity->visibility_entity(value);
-  }
+  list_set.push_back(set);
+  this->nb_set++;
+
+  //---------------------------
+}
+void Set::add_new_set(std::string name){
+  //---------------------------
+
+  utl::base::Set* set = new utl::base::Set(name);
+  list_set.push_back(set);
+  this->nb_set++;
 
   //---------------------------
 }
@@ -102,6 +111,18 @@ void Set::remove_entity(entity::Entity* entity){
   this->nb_entity--;
   if(list_entity.size() == 0){
     this->selected_entity = nullptr;
+  }
+
+  //---------------------------
+}
+
+//Parameter
+void Set::set_visibility(bool value){
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    entity::Entity* entity = *next(list_entity.begin(), i);
+    entity->visibility_entity(value);
   }
 
   //---------------------------

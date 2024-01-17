@@ -42,13 +42,7 @@ void Scene::loop(){
   utl::base::Set* data_set = sce_database->get_data_set();
   //----------------------------
 
-  for(int i=0; i<data_set->list_set.size(); i++){
-    utl::base::Set* set = *next(data_set->list_set.begin(), i);
-    for(int j=0; j<set->list_entity.size(); j++){
-      entity::Entity* entity = *next(set->list_entity.begin(), j);
-      entity->update_entity();
-    }
-  }
+  data_set->update();
 
   //----------------------------
 }

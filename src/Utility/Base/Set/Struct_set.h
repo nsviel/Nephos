@@ -21,6 +21,7 @@ struct Set
   Set(std::string name);
 
   //Main function
+  void update();
   void reset();
 
   //Add element
