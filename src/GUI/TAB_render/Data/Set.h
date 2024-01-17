@@ -21,13 +21,13 @@ public:
   void design_panel();
 
   //Sub functions
-  void set_info(utl::base::Set* set);
-  void set_parameter(utl::base::Set* set);
+  void set_info(utl::type::Set* set);
+  void set_parameter(utl::type::Set* set);
 
-  inline void set_selected_set(utl::base::Set* set){this->set_selected = set;}
+  inline void set_selected_set(utl::type::Set* set){this->set_selected = set;}
 
 private:
-  utl::base::Set* set_selected;
+  utl::type::Set* set_selected;
   string panel_name;
   bool* panel_show;;
   int item_width;

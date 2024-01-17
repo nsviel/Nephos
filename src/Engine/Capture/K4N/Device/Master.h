@@ -10,7 +10,7 @@ namespace k4n::dev{
 class Sensor;
 
 
-class Master : public utl::base::Set, public k4n::dev::Device
+class Master : public utl::type::Set, public k4n::dev::Device
 {
 public:
   //Constructor / Destructor

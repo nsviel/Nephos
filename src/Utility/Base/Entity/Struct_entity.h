@@ -26,7 +26,7 @@ struct Entity
   bool is_visible = true;
   std::string name = "";
   std::string type = "entity";
-  //utl::base::Set* set_parent = nullptr;
+  //utl::type::Set* set_parent = nullptr;
 
   inline bool get_visibility(){return is_visible;}
 

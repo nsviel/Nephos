@@ -1,7 +1,7 @@
 #include "Struct_set.h"
 
 
-namespace utl::base{
+namespace utl::type{
 
 Set::Set(){
   //---------------------------
@@ -29,7 +29,7 @@ void Set::update(){
 
   // Recursively process nested sets
   for(int i=0; i<list_set.size(); i++){
-    utl::base::Set* nested_set = *next(list_set.begin(), i);
+    utl::type::Set* nested_set = *next(list_set.begin(), i);
     nested_set->update();
   }
 
@@ -46,7 +46,7 @@ void Set::reset(){
 
   //Reset all associated sets
   for(int i=0; i<list_set.size(); i++){
-    utl::base::Set* set = *next(list_set.begin(), i);
+    utl::type::Set* set = *next(list_set.begin(), i);
     set->reset();
   }
 
@@ -54,7 +54,7 @@ void Set::reset(){
 }
 
 //Add element
-void Set::add_set(utl::base::Set* set){
+void Set::add_set(utl::type::Set* set){
   //---------------------------
 
   list_set.push_back(set);
@@ -65,7 +65,7 @@ void Set::add_set(utl::base::Set* set){
 void Set::add_new_set(std::string name){
   //---------------------------
 
-  utl::base::Set* set = new utl::base::Set(name);
+  utl::type::Set* set = new utl::type::Set(name);
   list_set.push_back(set);
   this->nb_set++;
 
@@ -127,11 +127,11 @@ void Set::set_visibility(bool value){
 
   //---------------------------
 }
-utl::base::Set* Set::get_set(std::string name){
+utl::type::Set* Set::get_set(std::string name){
   //---------------------------
 
   for(int i=0; i<list_set.size(); i++){
-    utl::base::Set* set = *next(list_set.begin(),i);
+    utl::type::Set* set = *next(list_set.begin(),i);
     if(set->name == name){
       return set;
     }

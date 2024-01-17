@@ -31,8 +31,8 @@ Glyph::~Glyph(){
 
 //Glyph world
 void Glyph::create_glyph_world(){
-  utl::base::Set* data_set = sce_database->get_data_set();
-  utl::base::Set* set_world = data_set->get_set("World");
+  utl::type::Set* data_set = sce_database->get_data_set();
+  utl::type::Set* set_world = data_set->get_set("World");
   //---------------------------
 
   if(set_world->list_entity.size() != 0) return;
@@ -59,8 +59,8 @@ void Glyph::create_glyph_world(){
   //---------------------------
 }
 void Glyph::remove_glyph_world(){
-  utl::base::Set* data_set = sce_database->get_data_set();
-  utl::base::Set* set_world = data_set->get_set("World");
+  utl::type::Set* data_set = sce_database->get_data_set();
+  utl::type::Set* set_world = data_set->get_set("World");
   //---------------------------
 
   for(int i=0; i<set_world->list_entity.size(); i++){

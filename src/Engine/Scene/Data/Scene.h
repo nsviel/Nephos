@@ -31,7 +31,7 @@ public:
   //Entity
   entity::Entity* get_selected_entity();
   entity::Entity* import_entity(std::string path);
-  void insert_set_scene(utl::base::Set* set);
+  void insert_set_scene(utl::type::Set* set);
   void insert_entity_scene(entity::Entity* entity);
   void delete_entity(entity::Entity* entity);
   void delete_entity_all();

@@ -7,7 +7,7 @@ namespace eng::scene{
 Database::Database(eng::scene::Node* node_scene){
   //---------------------------
 
-  this->data_set = new utl::base::Set("Data");
+  this->data_set = new utl::type::Set("Data");
 
   //---------------------------
 }

@@ -31,10 +31,10 @@ public:
   void draw_file_tree();
 
   //File tree
-  int tree_set(utl::base::Set* set);
-  void tree_set_double_click(utl::base::Set* set);
-  void tree_set_open(utl::base::Set* set, int& nb_row);
-  void tree_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row);
+  int tree_set(utl::type::Set* set);
+  void tree_set_double_click(utl::type::Set* set);
+  void tree_set_open(utl::type::Set* set, int& nb_row);
+  void tree_entity(utl::type::Set* set, entity::Entity* entity, int& nb_row);
 
   bool show_panel_entity   = false;
   bool show_panel_set      = false;

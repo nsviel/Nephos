@@ -5,7 +5,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace utl::base{
+namespace utl::type{
 
 //Set are entity container
 struct Set
@@ -21,7 +21,7 @@ struct Set
   void reset();
 
   //Add element
-  void add_set(utl::base::Set* set);
+  void add_set(utl::type::Set* set);
   void add_new_set(std::string name);
   void select_next_entity();
   void insert_entity(entity::Entity* entity);
@@ -29,7 +29,7 @@ struct Set
 
   //Parameter
   void set_visibility(bool value);
-  utl::base::Set* get_set(std::string name);
+  utl::type::Set* get_set(std::string name);
   entity::Entity* get_entity(std::string name);
 
   //Info
@@ -44,8 +44,8 @@ struct Set
   //Data
   entity::Entity* selected_entity = nullptr;
   std::list<entity::Entity*> list_entity;
-  std::list<utl::base::Set*> list_set;
-  utl::base::Set* set_parent = nullptr;
+  std::list<utl::type::Set*> list_set;
+  utl::type::Set* set_parent = nullptr;
 
   //---------------------------
 };

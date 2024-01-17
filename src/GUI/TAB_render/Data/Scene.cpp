@@ -42,8 +42,8 @@ void Scene::design_panel(){
 
 //Subfunction
 void Scene::draw_button(){
-  utl::base::Set* data_set = sce_database->get_data_set();
-  utl::base::Set* set_scene = data_set->get_set("Scene");
+  utl::type::Set* data_set = sce_database->get_data_set();
+  utl::type::Set* set_scene = data_set->get_set("Scene");
   entity::Entity* entity = set_scene->selected_entity;
   //-------------------------------
 
@@ -109,7 +109,7 @@ void Scene::draw_window_background(){
   //-------------------------------
 }
 void Scene::draw_file_tree(){
-  utl::base::Set* data_set = sce_database->get_data_set();
+  utl::type::Set* data_set = sce_database->get_data_set();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;
@@ -124,7 +124,7 @@ void Scene::draw_file_tree(){
 
     //Database
     for(int row_i=0; row_i<data_set->list_set.size(); row_i++){
-      utl::base::Set* set = *next(data_set->list_set.begin(), row_i);
+      utl::type::Set* set = *next(data_set->list_set.begin(), row_i);
 
       if(set->nb_entity != 0 || set->nb_set != 0){
         ImGui::TableNextRow();
@@ -144,7 +144,7 @@ void Scene::draw_file_tree(){
 }
 
 //File tree
-int Scene::tree_set(utl::base::Set* set) {
+int Scene::tree_set(utl::type::Set* set) {
   int nb_row = 0;
   //---------------------------
 
@@ -165,7 +165,7 @@ int Scene::tree_set(utl::base::Set* set) {
   //---------------------------
   return nb_row;
 }
-void Scene::tree_set_double_click(utl::base::Set* set){
+void Scene::tree_set_double_click(utl::type::Set* set){
   //---------------------------
 
   // If set is double-clicked
@@ -176,7 +176,7 @@ void Scene::tree_set_double_click(utl::base::Set* set){
 
   //---------------------------
 }
-void Scene::tree_set_open(utl::base::Set* set, int& nb_row){
+void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
   //---------------------------
 
   ImGuiTreeNodeFlags flag_leaf;
@@ -193,13 +193,13 @@ void Scene::tree_set_open(utl::base::Set* set, int& nb_row){
   }
 
   // Recursive call for nested sets
-  for(utl::base::Set* subset : set->list_set) {
+  for(utl::type::Set* subset : set->list_set) {
     nb_row += tree_set(subset);
   }
 
   //---------------------------
 }
-void Scene::tree_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row){
+void Scene::tree_entity(utl::type::Set* set, entity::Entity* entity, int& nb_row){
   //---------------------------
 
   ImGui::TableNextRow();
