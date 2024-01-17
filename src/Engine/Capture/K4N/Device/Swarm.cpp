@@ -35,15 +35,21 @@ void Swarm::draw_all_clouds(){
   //---------------------------
 }
 void Swarm::init_scene(){
-  string path = "/home/aether/Desktop/versaille_1.mkv";
   //---------------------------
+
+  vector<string> vec_path;
+  vec_path.push_back("/home/aether/Desktop/versaille_1.mkv");
+  vec_path.push_back("/home/aether/Desktop/versaille_2.mkv");
 
   //If no real device create virtual one
   string name = info::get_name_from_path(path);
   k4n::dev::Master* master = get_or_create_master(name);
   uint32_t nb_device = k4a_device_get_installed_count();
   if(nb_device == 0 && nb_dev_playback == 0){
-    this->create_sensor_playback(master, path);
+    for(int i=0; i<vec_path.size(); i++){
+      string path = vec_path[i];
+      this->create_sensor_playback(master, path);
+    }
   }
 
   //---------------------------
