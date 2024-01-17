@@ -34,6 +34,8 @@ private:
   gui::kinect::Player* kin_player;
   gui::kinect::Operation* kin_operation;
   k4n::dev::Swarm* k4n_swarm;
+
+  string open_tab = "";
 };
 
 }

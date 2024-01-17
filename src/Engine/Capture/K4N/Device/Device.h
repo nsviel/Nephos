@@ -7,7 +7,7 @@
 
 namespace k4n::dev{
 
-struct Device : public entity::Entity{
+struct Device{
   //---------------------------
 
   virtual void set_play(){}
@@ -20,6 +20,8 @@ struct Device : public entity::Entity{
   k4n::structure::Player player;
   k4n::structure::Recorder recorder;
   k4n::structure::Playback playback;
+
+  string device_type = "";
 
   //---------------------------
 };

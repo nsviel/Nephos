@@ -12,11 +12,11 @@ namespace k4n::dev{
 class Sensor;
 
 
-class Master : public k4n::dev::Device
+class Master : public utl::base::Set, public k4n::dev::Device
 {
 public:
   //Constructor / Destructor
-  Master(Engine* engine);
+  Master();//Engine* engine);
   ~Master();
 
 public:
@@ -43,7 +43,7 @@ public:
   list<k4n::dev::Sensor*> list_sensor;
 
 private:
-  Engine* engine;
+//  Engine* engine;
 };
 
 }

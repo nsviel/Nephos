@@ -82,6 +82,15 @@ entity::Entity* Scene::import_entity(std::string path){
   //---------------------------
   return entity;
 }
+void Scene::insert_set_scene(utl::base::Set* set){
+  utl::base::Set* data_set = sce_database->get_data_set();
+  utl::base::Set* set_scene = data_set->get_set("Scene");
+  //---------------------------
+
+  set_scene->list_set.push_back(set);
+
+  //---------------------------
+}
 void Scene::insert_entity_scene(entity::Entity* entity){
   utl::base::Set* data_set = sce_database->get_data_set();
   utl::base::Set* set_scene = data_set->get_set("Scene");

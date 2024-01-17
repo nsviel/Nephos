@@ -15,6 +15,7 @@ struct Set
 {
   //---------------------------
 
+  Set();
   Set(std::string name);
   void reset();
   void add_new_set(std::string name);
@@ -27,6 +28,7 @@ struct Set
 
   //Info
   std::string name;
+  std::string type = "set";
   bool is_visible = true;
   int nb_entity = 0;
   int nb_set = 0;

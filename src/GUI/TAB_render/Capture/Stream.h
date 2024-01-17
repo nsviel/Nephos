@@ -49,6 +49,7 @@ private:
 
   vector<gui::media::Stream*> vec_gui_stream;
   ImVec2 hovered_pixel;
+  string open_tab = "";
 };
 
 }

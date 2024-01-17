@@ -64,7 +64,13 @@ void Panel::design_panel(){
     for(int i=0; i< master->list_sensor.size(); i++){
       k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
 
-      if(ImGui::BeginTabItem(sensor->name.c_str(), NULL)){
+
+      ImGuiTabItemFlags flag = 0;
+      if(k4n_swarm->is_selected_sensor(sensor)){
+        flag = ImGuiTabItemFlags_SetSelected;
+      }
+      if(ImGui::BeginTabItem(sensor->name.c_str(), NULL, flag)){
+
         this->show_info(sensor);
         kin_capture->kinect_configuration();
         kin_playback->kinect_playback();
@@ -93,7 +99,7 @@ void Panel::show_info(k4n::dev::Device* device){
     //Type
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Type"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", device->type.c_str());
+    ImGui::TextColored(color, "%s", device->device_type.c_str());
 
     //Duration
     ImGui::TableNextRow(); ImGui::TableNextColumn();

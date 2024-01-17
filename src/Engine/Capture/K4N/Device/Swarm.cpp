@@ -192,9 +192,9 @@ k4n::dev::Master* Swarm::get_or_create_master(string name){
   }
 
   //Create the master
-  k4n::dev::Master* master = new k4n::dev::Master(engine);
+  k4n::dev::Master* master = new k4n::dev::Master();
   master->name = name;
-  sce_scene->insert_entity_scene(master);
+  sce_scene->insert_set_scene(master);
   this->list_master.push_back(master);
   this->selected_master = master;
 

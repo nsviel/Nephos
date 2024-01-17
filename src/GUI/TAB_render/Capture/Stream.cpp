@@ -65,6 +65,10 @@ void Stream::vec_device_tab(){
     for(int i=0; i< master->list_sensor.size(); i++){
       k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
 
+      ImGuiTabItemFlags flag = 0;
+      if(k4n_swarm->is_selected_sensor(sensor)){
+        flag = ImGuiTabItemFlags_SetSelected;
+      }
       if(ImGui::BeginTabItem(sensor->device.name.c_str(), NULL)){
         this->device_tab(sensor);
         ImGui::EndTabItem();

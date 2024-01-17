@@ -40,7 +40,7 @@ public:
   inline k4n::dev::Master* get_selected_master(){return selected_master;}
   inline list<k4n::dev::Master*>& get_list_master(){return list_master;}
   inline void set_selected_sensor(k4n::dev::Sensor* sensor){this->selected_sensor = sensor;}
-
+  inline bool is_selected_sensor(k4n::dev::Sensor* sensor){return selected_sensor == sensor;}
   inline int get_nb_dev_capture(){return nb_dev_capture;}
   inline int get_nb_dev_playback(){return nb_dev_playback;}
 
