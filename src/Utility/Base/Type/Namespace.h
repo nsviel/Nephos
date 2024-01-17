@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Entity/Struct_entity.h>
+#include <Utility/Base/Type/Struct_entity.h>
 #include <Utility/Base/Type/Struct_set.h>
 
 

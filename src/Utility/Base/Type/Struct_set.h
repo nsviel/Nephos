@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Entity/Struct_entity.h>
+#include <Utility/Base/Type/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 #include <Utility/Specific/common.h>
 

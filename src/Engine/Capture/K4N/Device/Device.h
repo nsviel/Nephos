@@ -2,7 +2,7 @@
 
 #include <Utility/Base/Namespace.h>
 #include <Engine/Capture/K4N/Structure/Namespace.h>
-#include <Utility/Base/Entity/Struct_entity.h>
+#include <Utility/Base/Type/Namespace.h>
 
 
 namespace k4n::dev{
