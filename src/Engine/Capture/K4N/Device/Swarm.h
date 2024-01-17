@@ -58,7 +58,6 @@ private:
   std::list<k4n::dev::Master*> list_master;
   int nb_dev_capture = 0;
   int nb_dev_playback = 0;
-
 };
 
 }
