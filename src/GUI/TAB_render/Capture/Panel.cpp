@@ -45,16 +45,31 @@ void Panel::run_panel(){
   //---------------------------
 }
 void Panel::design_panel(){
+  k4n::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
+  //Master player
   kin_player->draw_player();
-  this->show_info();
 
-  kin_capture->kinect_configuration();
-  kin_playback->kinect_playback();
+  //Sensor info & configuration
+  if(master != nullptr && ImGui::BeginTabBar("devices_tab##4567")){
+    this->show_info();
 
-  kin_operation->kinect_operation();
-  kin_recorder->kinect_recorder();
+    for(int i=0; i< master->list_sensor.size(); i++){
+      k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
+
+      if(ImGui::BeginTabItem(sensor->device.name.c_str(), NULL)){
+        kin_capture->kinect_configuration();
+        kin_playback->kinect_playback();
+
+        kin_operation->kinect_operation();
+        kin_recorder->kinect_recorder();
+        ImGui::EndTabItem();
+      }
+
+    }
+    ImGui::EndTabBar();
+  }
 
   //---------------------------
 }
