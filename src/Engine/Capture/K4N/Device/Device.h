@@ -10,6 +10,7 @@ namespace k4n::dev{
 struct Device : public entity::Entity{
   //---------------------------
 
+  virtual void set_play(){}
   virtual void set_pause(bool value){}
   virtual void set_desired_timestamp(float value){}
 

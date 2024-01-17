@@ -32,6 +32,8 @@ void Master::add_sensor(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
+
+//Player function
 void Master::set_pause(bool value){
   //---------------------------
 
@@ -50,6 +52,26 @@ void Master::set_desired_timestamp(float value){
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
     sensor->set_desired_timestamp(value);
+  }
+
+  //---------------------------
+}
+void Master::set_play(){
+  //---------------------------
+
+  k4n::utils::Player k4a_player;
+
+  if(!player.play){
+    this->player.play = true;
+    this->player.pause = false;
+  }else{
+    this->player.pause = false;
+  }
+
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
+    sensor->player.play = player.play;
+    sensor->player.pause = player.pause;
   }
 
   //---------------------------

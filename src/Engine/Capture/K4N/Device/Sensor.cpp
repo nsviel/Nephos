@@ -75,6 +75,13 @@ void Sensor::draw_cloud(){
   //---------------------------
 }
 
+//Player function
+void Sensor::set_play(){
+  //---------------------------
+
+
+  //---------------------------
+}
 
 //Entity function
 void Sensor::update_entity(){

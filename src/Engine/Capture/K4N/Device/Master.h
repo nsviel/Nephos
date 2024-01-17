@@ -22,6 +22,9 @@ public:
 public:
   //Main function
   void add_sensor(k4n::dev::Sensor* sensor);
+
+  //Player function
+  void set_play();
   void set_pause(bool value);
   void set_desired_timestamp(float value);
 

@@ -28,6 +28,9 @@ public:
   void destroy();
   void draw_cloud();
 
+  //Player functions
+  void set_play();
+
   //Entity function
   void update_entity();
   void remove_entity();
