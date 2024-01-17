@@ -32,7 +32,25 @@ void Playback::kinect_playback(){
     ImGui::Separator();
     ImGui::TreePop();
   }
+/*
+  //Playback FPS
+  if(k4n_sensor->device.is_playback){
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("FPS"); ImGui::TableNextColumn();
+    ImGui::SliderInt("##56765", &k4n_sensor->device.fps.query, 1, 120);
+  }
 
+  //Name
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Name"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%s", k4n_sensor->playback.filename.c_str());
+
+  //Path
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Path"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%s", k4n_sensor->playback.path.c_str());
+
+*/
   //---------------------------
 }
 

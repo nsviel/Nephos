@@ -24,7 +24,7 @@ Player::Player(Engine* engine){
 Player::~Player(){}
 
 //Main function
-void Player::draw_player(){
+void Player::draw_player(k4n::dev::Master* master){
   //---------------------------
 
   this->player_control();

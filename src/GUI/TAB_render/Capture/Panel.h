@@ -24,7 +24,8 @@ public:
   void design_panel();
 
   //Subfunction
-  void show_info();
+  void show_info(k4n::dev::Device* device);
+  void transfo_matrix(k4n::dev::Device* device);
 
 private:
   gui::kinect::Capture* kin_capture;

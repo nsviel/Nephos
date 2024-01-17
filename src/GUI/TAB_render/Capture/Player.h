@@ -16,7 +16,7 @@ public:
   ~Player();
 
   //Main function
-  void draw_player();
+  void draw_player(k4n::dev::Master* master);
 
   //Subfunction
   void player_control();

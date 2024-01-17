@@ -14,7 +14,7 @@ namespace k4n::dev{
 class Master;
 
 
-class Sensor : public entity::Entity, public k4n::dev::Device
+class Sensor : public k4n::dev::Device
 {
 public:
   //Constructor / Destructor
@@ -58,10 +58,7 @@ public:
   k4n::dev::Master* master;
   k4n::structure::Cloud cloud;
   k4n::structure::Device device;
-  k4n::structure::Playback playback;
   k4n::structure::Synchro synchro;
-  k4n::structure::Player player;
-  k4n::structure::Recorder recorder;
 
   k4n::structure::Color color;
   k4n::structure::Depth depth;

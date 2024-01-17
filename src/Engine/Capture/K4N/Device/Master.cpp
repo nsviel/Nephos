@@ -11,7 +11,7 @@ Master::Master(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->type = "Master";
+  this->type = "k4n::device::Master";
 
   //---------------------------
 }

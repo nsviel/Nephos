@@ -9,8 +9,8 @@ struct Playback{
   //---------------------------
 
   //File info
-  std::string path;
-  std::string filename;
+  std::string path = "";
+  std::string filename = "";
 
   //---------------------------
 };
