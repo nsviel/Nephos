@@ -22,12 +22,7 @@ public:
   //Main function
   void draw_all_clouds();
   void init_scene();
-
-  //Connection function
-  void refresh_connected_sensor();
-  void manage_new_capture_sensor(int number);
-  void manage_less_capture_sensor(int number);
-
+  
   //Sensor function
   void create_sensor_playback(string path);
   void create_sensor_playback(k4n::dev::Master* master, string path);

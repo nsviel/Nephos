@@ -27,7 +27,7 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  k4n_connection->refresh_connected_sensor();
+  k4n_connection->refresh_connected_dev();
   k4n_swarm->draw_all_clouds();
 
   //---------------------------

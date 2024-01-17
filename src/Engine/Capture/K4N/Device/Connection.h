@@ -17,7 +17,7 @@ public:
 
 public:
   //Main function
-  void refresh_connected_sensor();
+  void refresh_connected_dev();
 
   //Subfunction
   void manage_new_dev(int number);

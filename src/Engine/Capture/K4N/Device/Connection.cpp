@@ -16,7 +16,7 @@ Connection::Connection(k4n::dev::Swarm* k4n_swarm){
 Connection::~Connection(){}
 
 //Main function
-void Connection::refresh_connected_sensor(){
+void Connection::refresh_connected_dev(){
   //---------------------------
 
   const uint32_t current_nb_dev = k4a_device_get_installed_count();

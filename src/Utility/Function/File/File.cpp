@@ -28,8 +28,7 @@ namespace file{
     is_exists = infile.good();
 
     if(!is_exists){
-      std::string abs_path = get_absolute_path(path);
-      std::cout << "[error] File doesn't exists [" << abs_path << "]" << std::endl;
+      std::cout << "[error] File doesn't exists [" << path << "]" << std::endl;
     }
 
     //---------------------------
@@ -73,7 +72,11 @@ namespace file{
     fs::path absolutePath = currentPath / relativePath;
 
     // Resolve ".." and its parent folder
-    absolutePath = fs::canonical(absolutePath);
+    if(is_file_exist(absolutePath)){
+      absolutePath = fs::canonical(absolutePath);
+    }else{
+      return "";
+    }
 
     //---------------------------
     return absolutePath.string();

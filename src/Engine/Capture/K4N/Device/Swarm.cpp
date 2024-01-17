@@ -35,7 +35,7 @@ void Swarm::draw_all_clouds(){
   //---------------------------
 }
 void Swarm::init_scene(){
-  string path = "/home/aether/Desktop/versaille.mkv";
+  string path = "/home/aether/Desktop/versaille_1.mkv";
   //---------------------------
 
   //If no real device create virtual one
@@ -49,66 +49,9 @@ void Swarm::init_scene(){
   //---------------------------
 }
 
-//Connection function
-void Swarm::refresh_connected_sensor(){
-  //---------------------------
-
-  const uint32_t nb_device = k4a_device_get_installed_count();
-  if(nb_device != nb_dev_capture){
-    //If some news, run them
-    if(nb_device > nb_dev_capture){
-      int number = nb_device - nb_dev_capture;
-      this->manage_new_capture_sensor(number);
-    }
-    //If some less, supress them
-    else if(nb_device < nb_dev_capture){
-      int number = nb_dev_capture - nb_device;
-      this->manage_less_capture_sensor(number);
-    }
-
-    nb_dev_capture = nb_device;
-  }
-
-  //---------------------------
-}
-void Swarm::manage_new_capture_sensor(int nb_new_device){
-  //---------------------------
-
-  k4n::dev::Master* master = get_or_create_master("capture");
-
-  //If previsouly no device, we need to supress all default playback
-  if(nb_dev_capture == 0){
-    this->close_sensor_all();
-  }
-
-  //Create required number of new devices
-  for(int i=0; i<nb_new_device; i++){
-    this->create_sensor_capture(master);
-  }
-
-  //---------------------------
-}
-void Swarm::manage_less_capture_sensor(int nb_less_device){
-  //---------------------------
-
-  k4n::dev::Master* master = get_master_by_name("capture");
-
-  //Suppress all devices
-  this->close_sensor_all();
-
-  //If no real device create virtual one
-  uint32_t nb_device = k4a_device_get_installed_count();
-  if(nb_device != 0){
-    for(int i=0; i<nb_device; i++){
-      this->create_sensor_capture(master);
-    }
-  }
-
-  //---------------------------
-}
-
 //Sensor function
 void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
+  if(!file::is_file_exist(path)) return;
   //---------------------------
 
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
@@ -131,6 +74,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
   //---------------------------
 }
 void Swarm::create_sensor_playback(string path){
+  if(!file::is_file_exist(path)) return;
   //---------------------------
 
   k4n::dev::Master* master = selected_master;
