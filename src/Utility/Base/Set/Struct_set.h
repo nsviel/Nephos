@@ -2,11 +2,7 @@
 
 #include <Utility/Base/Entity/Struct_entity.h>
 #include <image/IconsFontAwesome6.h>
-
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
+#include <Utility/Specific/common.h>
 
 
 namespace utl::base{

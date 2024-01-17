@@ -20,7 +20,6 @@ public:
 
 public:
   //Main function
-  void draw_all_clouds();
   void init_scene();
 
   //Sensor function

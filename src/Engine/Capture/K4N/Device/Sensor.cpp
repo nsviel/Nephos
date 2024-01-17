@@ -65,15 +65,6 @@ void Sensor::destroy(){
 
   //---------------------------
 }
-void Sensor::draw_cloud(){
-  //---------------------------
-
-  std::unique_lock<std::mutex> lock(object->data->mutex);
-  object->data->nb_point = object->data->xyz.size();
-  eng_scene->update_data(object->data);
-
-  //---------------------------
-}
 
 //Player function
 void Sensor::set_play(){
@@ -93,6 +84,11 @@ void Sensor::update_entity(){
 
   cam_control->compute_camera_mvp(object->data);
   sce_glyph->update_glyph_object(object);
+
+  //Retrieve capture data
+  std::unique_lock<std::mutex> lock(object->data->mutex);
+  object->data->nb_point = object->data->xyz.size();
+  eng_scene->update_data(object->data);
 
   //----------------------------
 }

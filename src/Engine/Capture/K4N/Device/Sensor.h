@@ -26,7 +26,6 @@ public:
   void init();
   void reset();
   void destroy();
-  void draw_cloud();
 
   //Player functions
   void set_play();

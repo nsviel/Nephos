@@ -24,6 +24,7 @@ struct Data{
   int draw_point_size = 5;
 
   //Infos
+  std::string name = "";
   std::string path_file = "";
   std::string path_save = "";
   std::string path_text = "";

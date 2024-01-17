@@ -20,22 +20,34 @@ Master::Master(){//Engine* engine){
 Master::~Master(){}
 
 //Main function
-void Master::add_sensor(k4n::dev::Sensor* sensor){
+void Master::insert_sensor(k4n::dev::Sensor* sensor){
+  if(sensor == nullptr) return;
   //---------------------------
 
-  k4n::utils::Operation k4n_operation;
-  k4n_operation.playback_find_duration(sensor);
-  this->player.ts_beg = (player.ts_beg != -1) ? std::max(player.ts_beg, sensor->player.ts_beg) : sensor->player.ts_beg;
-  this->player.ts_end = (player.ts_end != -1) ? std::min(player.ts_end, sensor->player.ts_end) : sensor->player.ts_end;
-  this->player.duration = player.ts_end - player.ts_beg;
-
-  this->list_sensor.push_back(sensor);
   this->list_entity.push_back(sensor);
+  this->list_sensor.push_back(sensor);
+  this->selected_entity = sensor;
+  this->nb_entity++;
 
   //---------------------------
 }
 
 //Player function
+void Master::update_player(){
+  //---------------------------
+
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
+
+    k4n::utils::Operation k4n_operation;
+    k4n_operation.playback_find_duration(sensor);
+    this->player.ts_beg = (player.ts_beg != -1) ? std::max(player.ts_beg, sensor->player.ts_beg) : sensor->player.ts_beg;
+    this->player.ts_end = (player.ts_end != -1) ? std::min(player.ts_end, sensor->player.ts_end) : sensor->player.ts_end;
+    this->player.duration = player.ts_end - player.ts_beg;
+  }
+
+  //---------------------------
+}
 void Master::set_pause(bool value){
   //---------------------------
 

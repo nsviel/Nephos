@@ -21,19 +21,6 @@ Swarm::Swarm(Engine* engine){
 Swarm::~Swarm(){}
 
 //Main function
-void Swarm::draw_all_clouds(){
-  //---------------------------
-
-  for(int i=0; i<list_master.size(); i++){
-    k4n::dev::Master* master = *std::next(list_master.begin(), i);
-    for(int j=0; j<master->list_sensor.size(); j++){
-      k4n::dev::Sensor* sensor = *std::next(master->list_sensor.begin(), j);
-      sensor->draw_cloud();
-    }
-  }
-
-  //---------------------------
-}
 void Swarm::init_scene(){
   //---------------------------
 
@@ -70,7 +57,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
   sensor->master = master;
 
   this->selected_sensor = sensor;
-  master->add_sensor(sensor);
+  master->insert_sensor(sensor);
 
   sensor->init();
   sensor->run_playback(path);
@@ -95,7 +82,7 @@ void Swarm::create_sensor_playback(string path){
   sensor->master = master;
 
   this->selected_sensor = sensor;
-  master->insert_entity(sensor);
+  master->insert_sensor(sensor);
 
   sensor->init();
   sensor->run_playback(path);
@@ -115,7 +102,7 @@ void Swarm::create_sensor_capture(k4n::dev::Master* master){
   sensor->master = master;
 
   this->selected_sensor = sensor;
-  master->add_sensor(sensor);
+  master->insert_sensor(sensor);
 
   sensor->init();
   sensor->run_capture();

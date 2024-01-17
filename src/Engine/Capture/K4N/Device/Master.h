@@ -21,17 +21,16 @@ public:
 
 public:
   //Main function
-  void add_sensor(k4n::dev::Sensor* sensor);
+  void insert_sensor(k4n::dev::Sensor* sensor);
 
   //Player function
+  void update_player();
   void set_play();
   void set_pause(bool value);
   void set_desired_timestamp(float value);
   void set_stop();
   void set_restart();
   void set_record();
-
-  inline std::list<entity::Entity*> get_list_entity(){return list<entity::Entity*>(list_sensor.begin(), list_sensor.end());}
 
 public:
   list<k4n::dev::Sensor*> list_sensor;
