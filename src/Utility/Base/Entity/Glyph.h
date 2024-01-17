@@ -6,7 +6,6 @@
 class Engine;
 
 namespace entity{
-class Object;
 
 
 class Glyph : public entity::Entity
