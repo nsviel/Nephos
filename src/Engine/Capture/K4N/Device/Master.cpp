@@ -59,13 +59,57 @@ void Master::set_desired_timestamp(float value){
 void Master::set_play(){
   //---------------------------
 
-  k4n::utils::Player k4a_player;
-  k4a_player.play(&player);
+  if(!player.play){
+    player.play = true;
+    player.pause = false;
+  }else{
+    player.pause = false;
+  }
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
     sensor->player.play = player.play;
     sensor->player.pause = player.pause;
+  }
+
+  //---------------------------
+}
+void Master::set_stop(){
+  //---------------------------
+
+  player.ts_seek = player.ts_beg;
+  player.play = false;
+  player.pause = true;
+
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
+    sensor->player.play = player.play;
+    sensor->player.pause = player.pause;
+    sensor->player.ts_seek = player.ts_seek;
+  }
+
+  //---------------------------
+}
+void Master::set_restart(){
+  //---------------------------
+
+  player.restart = !player.restart;
+
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
+    sensor->player.restart = player.restart;
+  }
+
+  //---------------------------
+}
+void Master::set_record(){
+  //---------------------------
+
+  player.record = !player.record;
+
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
+    sensor->player.record = player.record;
   }
 
   //---------------------------

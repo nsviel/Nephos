@@ -27,6 +27,9 @@ public:
   void set_play();
   void set_pause(bool value);
   void set_desired_timestamp(float value);
+  void set_stop();
+  void set_restart();
+  void set_record();
 
   //Entity function
   void update_entity();

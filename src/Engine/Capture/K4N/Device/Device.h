@@ -12,6 +12,9 @@ struct Device : public entity::Entity{
 
   virtual void set_play(){}
   virtual void set_pause(bool value){}
+  virtual void set_stop(){}
+  virtual void set_restart(){}
+  virtual void set_record(){}
   virtual void set_desired_timestamp(float value){}
 
   k4n::structure::Player player;

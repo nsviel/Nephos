@@ -106,66 +106,60 @@ void Player::player_start(k4n::dev::Device* device){
   //---------------------------
 }
 void Player::player_stop(k4n::dev::Device* device){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-  if(k4n_sensor == nullptr || !k4n_sensor->device.is_playback) return;
   //---------------------------
 
-  if(!k4n_sensor->player.pause){
+  if(!device->player.pause){
     //Player is running
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if (ImGui::Button(ICON_FA_STOP "##37")){
-      k4a_player->stop(k4n_sensor);
+      device->set_stop();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Player is stoped
     if (ImGui::Button(ICON_FA_STOP "##37")){
-      k4a_player->stop(k4n_sensor);
+      device->set_stop();
     }
   }
 
   //---------------------------
 }
 void Player::player_repeat(k4n::dev::Device* device){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-  if(k4n_sensor == nullptr || !k4n_sensor->device.is_playback) return;
   //---------------------------
 
-  if(k4n_sensor->player.restart){
+  if(device->player.restart){
     //Repeat activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      k4a_player->restart(k4n_sensor);
+      device->set_restart();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Repeat desactivated
     if (ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      k4a_player->restart(k4n_sensor);
+      device->set_restart();
     }
   }
 
   //---------------------------
 }
 void Player::player_record(k4n::dev::Device* device){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-  if(k4n_sensor == nullptr) return;
   //---------------------------
 
-  if(k4n_sensor->player.record){
+  if(device->player.record){
     //Record activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if (ImGui::Button(ICON_FA_CIRCLE "##37")){
-      k4a_player->record(k4n_sensor);
+      device->set_record();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Record desactivated
     if (ImGui::Button(ICON_FA_CIRCLE "##37")){
-      k4a_player->record(k4n_sensor);
+      device->set_record();
     }
   }
 
