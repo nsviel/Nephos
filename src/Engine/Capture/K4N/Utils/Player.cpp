@@ -16,26 +16,7 @@ Player::Player(){
 Player::~Player(){}
 
 //Main function
-void Player::play(k4n::dev::Device* device){
-  //---------------------------
-
-  if(k4n::dev::Master* master = dynamic_cast<k4n::dev::Master*>(device)){
-    if(!master->player.play){
-      master->player.play = true;
-      master->player.pause = false;
-    }else{
-      master->player.pause = false;
-    }
-
-    for(int i=0; i<master->list_sensor.size(); i++){
-      k4n::dev::Sensor* sensor = *next(master->list_sensor.begin(), i);
-      this->play(sensor);
-    }
-  }
-
-  //---------------------------
-}
-void Player::play_(k4n::structure::Player* player){
+void Player::play(k4n::structure::Player* player){
   //---------------------------
 
   if(!player->play){

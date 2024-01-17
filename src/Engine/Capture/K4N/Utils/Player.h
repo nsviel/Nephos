@@ -16,8 +16,7 @@ public:
 
 public:
   //Main function
-  void play(k4n::dev::Device* device);
-  void play_(k4n::structure::Player* player);
+  void play(k4n::structure::Player* player);
   void pause(k4n::dev::Sensor* k4n_sensor);
   void stop(k4n::dev::Sensor* k4n_sensor);
   void restart(k4n::dev::Sensor* k4n_sensor);

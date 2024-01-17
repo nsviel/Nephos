@@ -23,11 +23,11 @@ public:
   void player_slider(k4n::dev::Device* device);
 
   //Player button
-  void player_start();
-  void player_stop();
-  void player_repeat();
-  void player_record();
-  void player_close();
+  void player_start(k4n::dev::Device* device);
+  void player_stop(k4n::dev::Device* device);
+  void player_repeat(k4n::dev::Device* device);
+  void player_record(k4n::dev::Device* device);
+  void player_close(k4n::dev::Device* device);
 
 private:
   eng::scene::Scene* sce_scene;

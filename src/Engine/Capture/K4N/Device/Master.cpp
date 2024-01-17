@@ -60,13 +60,7 @@ void Master::set_play(){
   //---------------------------
 
   k4n::utils::Player k4a_player;
-
-  if(!player.play){
-    this->player.play = true;
-    this->player.pause = false;
-  }else{
-    this->player.pause = false;
-  }
+  k4a_player.play(&player);
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);

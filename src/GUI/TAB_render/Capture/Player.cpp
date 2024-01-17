@@ -30,15 +30,15 @@ void Player::draw_player(k4n::dev::Device* device){
   this->player_control(device);
   this->player_slider(device);
 
-  this->player_start();
+  this->player_start(device);
   ImGui::SameLine();
-  this->player_stop();
+  this->player_stop(device);
   ImGui::SameLine();
-  this->player_repeat();
+  this->player_repeat(device);
   ImGui::SameLine();
-  this->player_record();
+  this->player_record(device);
   ImGui::SameLine();
-  this->player_close();
+  this->player_close(device);
 
   //---------------------------
 }
@@ -83,16 +83,14 @@ void Player::player_slider(k4n::dev::Device* device){
 }
 
 //Player button
-void Player::player_start(){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-  if(k4n_sensor == nullptr) return;
+void Player::player_start(k4n::dev::Device* device){
   //---------------------------
 
   //Play button -> if paused or not playing
-  if(k4n_sensor->player.pause){
+  if(device->player.pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##player_start")){
-      k4a_player->play(k4n_sensor);
+      device->set_play();
     }
     ImGui::PopStyleColor();
   }
@@ -100,14 +98,14 @@ void Player::player_start(){
   else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##player_pause")){
-      k4a_player->pause(k4n_sensor);
+      device->set_pause(true);
     }
     ImGui::PopStyleColor();
   }
 
   //---------------------------
 }
-void Player::player_stop(){
+void Player::player_stop(k4n::dev::Device* device){
   k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr || !k4n_sensor->device.is_playback) return;
   //---------------------------
@@ -129,7 +127,7 @@ void Player::player_stop(){
 
   //---------------------------
 }
-void Player::player_repeat(){
+void Player::player_repeat(k4n::dev::Device* device){
   k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr || !k4n_sensor->device.is_playback) return;
   //---------------------------
@@ -151,7 +149,7 @@ void Player::player_repeat(){
 
   //---------------------------
 }
-void Player::player_record(){
+void Player::player_record(k4n::dev::Device* device){
   k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
@@ -173,7 +171,7 @@ void Player::player_record(){
 
   //---------------------------
 }
-void Player::player_close(){
+void Player::player_close(k4n::dev::Device* device){
   k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
