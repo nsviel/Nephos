@@ -20,7 +20,7 @@ void Operation::playback_find_duration(k4n::dev::Sensor* k4n_sensor){
 
   k4a::image color;
   k4a::capture capture;
-  k4a::playback playback = k4a::playback::open(k4n_sensor->playback.path.c_str());
+  k4a::playback playback = k4a::playback::open(k4n_sensor->param.file_path.c_str());
 
   //File duration
   player->duration = playback.get_recording_length().count() / 1000000.0f;

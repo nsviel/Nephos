@@ -45,21 +45,21 @@ void K4A_capture::run_thread(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   //Init elements
-  k4n_sensor->device.index =0;
-  k4a::device device = k4a::device::open(k4n_sensor->device.index);
+  k4n_sensor->param.index =0;
+  k4a::device device = k4a::device::open(k4n_sensor->param.index);
   k4a::capture capture;
 
   //Configuration
-  k4n_sensor->device.device = &device;
-  k4n_sensor->device.serial_number = device.get_serialnum();
+  k4n_sensor->param.device = &device;
+  k4n_sensor->param.serial_number = device.get_serialnum();
   configuration->make_device_configuration(k4n_sensor);
   k4n_calibration->make_capture_calibration(k4n_sensor);
   k4n_calibration->make_device_transformation(k4n_sensor);
 
   //Start camera
-  k4n_sensor->device.version = device.get_version();
+  k4n_sensor->param.version = device.get_version();
   this->manage_color_setting(k4n_sensor);
-  device.start_cameras(&k4n_sensor->device.configuration);
+  device.start_cameras(&k4n_sensor->param.configuration);
 
   //Start capture thread
   this->thread_running = true;
@@ -78,7 +78,7 @@ void K4A_capture::run_thread(k4n::dev::Sensor* k4n_sensor){
 
     //FPS
     fps_control->stop();
-    k4n_sensor->device.fps.current = fps_counter->update();
+    k4n_sensor->param.fps.current = fps_counter->update();
   }
 
   //---------------------------
@@ -112,7 +112,7 @@ void K4A_capture::manage_recording(k4n::dev::Sensor* k4n_sensor, k4a::capture ca
 
   //Start recording
   if(k4n_sensor->player.record && !recorder.is_valid()){
-    recorder = k4a::record::create(k4n_sensor->recorder.path.c_str(), *k4n_sensor->device.device, k4n_sensor->device.configuration);
+    recorder = k4a::record::create(k4n_sensor->recorder.path.c_str(), *k4n_sensor->param.device, k4n_sensor->param.configuration);
     recorder.write_header();
     k4n_sensor->recorder.ts_beg = k4n_sensor->player.ts_cur;
   }
@@ -134,15 +134,15 @@ void K4A_capture::manage_recording(k4n::dev::Sensor* k4n_sensor, k4a::capture ca
 void K4A_capture::manage_color_setting(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
-  k4n_sensor->device.device->set_color_control(k4n_sensor->color.config.exposure.command, k4n_sensor->color.config.exposure.mode, k4n_sensor->color.config.exposure.value);
-  k4n_sensor->device.device->set_color_control(k4n_sensor->color.config.white_balance.command, k4n_sensor->color.config.white_balance.mode, k4n_sensor->color.config.white_balance.value);
-  k4n_sensor->device.device->set_color_control(k4n_sensor->color.config.brightness.command, k4n_sensor->color.config.brightness.mode, k4n_sensor->color.config.brightness.value);
-  k4n_sensor->device.device->set_color_control(k4n_sensor->color.config.contrast.command, k4n_sensor->color.config.contrast.mode, k4n_sensor->color.config.contrast.value);
-  k4n_sensor->device.device->set_color_control(k4n_sensor->color.config.saturation.command, k4n_sensor->color.config.saturation.mode, k4n_sensor->color.config.saturation.value);
-  k4n_sensor->device.device->set_color_control(k4n_sensor->color.config.sharpness.command, k4n_sensor->color.config.sharpness.mode, k4n_sensor->color.config.sharpness.value);
-  k4n_sensor->device.device->set_color_control(k4n_sensor->color.config.gain.command, k4n_sensor->color.config.gain.mode, k4n_sensor->color.config.gain.value);
-  k4n_sensor->device.device->set_color_control(k4n_sensor->color.config.backlight_compensation.command, k4n_sensor->color.config.backlight_compensation.mode, k4n_sensor->color.config.backlight_compensation.value);
-  k4n_sensor->device.device->set_color_control(k4n_sensor->color.config.power_frequency.command, k4n_sensor->color.config.power_frequency.mode, k4n_sensor->color.config.power_frequency.value);
+  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.exposure.command, k4n_sensor->color.config.exposure.mode, k4n_sensor->color.config.exposure.value);
+  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.white_balance.command, k4n_sensor->color.config.white_balance.mode, k4n_sensor->color.config.white_balance.value);
+  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.brightness.command, k4n_sensor->color.config.brightness.mode, k4n_sensor->color.config.brightness.value);
+  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.contrast.command, k4n_sensor->color.config.contrast.mode, k4n_sensor->color.config.contrast.value);
+  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.saturation.command, k4n_sensor->color.config.saturation.mode, k4n_sensor->color.config.saturation.value);
+  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.sharpness.command, k4n_sensor->color.config.sharpness.mode, k4n_sensor->color.config.sharpness.value);
+  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.gain.command, k4n_sensor->color.config.gain.mode, k4n_sensor->color.config.gain.value);
+  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.backlight_compensation.command, k4n_sensor->color.config.backlight_compensation.mode, k4n_sensor->color.config.backlight_compensation.value);
+  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.power_frequency.command, k4n_sensor->color.config.power_frequency.mode, k4n_sensor->color.config.power_frequency.value);
 
   //---------------------------
 }

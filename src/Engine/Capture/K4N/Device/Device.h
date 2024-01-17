@@ -19,7 +19,6 @@ struct Device{
 
   k4n::structure::Player player;
   k4n::structure::Recorder recorder;
-  k4n::structure::Playback playback;
 
   //---------------------------
 };

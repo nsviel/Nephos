@@ -31,7 +31,7 @@ void Data::find_data_from_capture(k4n::dev::Sensor* k4n_sensor, k4a::capture cap
   //Finish
   k4n_sensor->player.ts_cur = k4n_sensor->color.image.timestamp;
   k4n_sensor->master->player.ts_cur = k4n_sensor->color.image.timestamp;
-  k4n_sensor->device.data_ready = true;
+  k4n_sensor->param.data_ready = true;
 
   //---------------------------
 }

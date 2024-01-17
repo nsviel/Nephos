@@ -61,7 +61,7 @@ public:
 
   k4n::dev::Master* master;
   k4n::structure::Cloud cloud;
-  k4n::structure::Device device;
+  k4n::structure::Param param;
   k4n::structure::Synchro synchro;
 
   k4n::structure::Color color;

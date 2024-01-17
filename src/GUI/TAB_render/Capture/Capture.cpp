@@ -21,7 +21,7 @@ Capture::~Capture(){}
 //Main function
 void Capture::kinect_configuration(){
   k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-  if(k4n_sensor == nullptr || k4n_sensor->device.is_playback) return;
+  if(k4n_sensor == nullptr || k4n_sensor->param.is_playback) return;
   //---configuration_device----
 
   this->kinect_devices();
@@ -63,17 +63,17 @@ void Capture::kinect_devices(){
       ImGui::TableHeadersRow();
       for(int i=0; i< master->list_sensor.size(); i++){
         k4n::dev::Sensor* k4n_sensor = *std::next( master->list_sensor.begin(), i);
-        if(k4n_sensor->device.is_playback) continue;
+        if(k4n_sensor->param.is_playback) continue;
 
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
 
-        ImGui::PushID(k4n_sensor->device.serial_number.c_str());
+        ImGui::PushID(k4n_sensor->param.serial_number.c_str());
         ImGui::Text("Azur Kinect");
         ImGui::TableNextColumn();
-        ImGui::Text("%d", k4n_sensor->device.index);
+        ImGui::Text("%d", k4n_sensor->param.index);
         ImGui::TableNextColumn();
-        if (ImGui::Selectable(k4n_sensor->device.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
+        if (ImGui::Selectable(k4n_sensor->param.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
           k4n_swarm->set_selected_sensor(k4n_sensor);
           selected_device = i;
         }
@@ -251,17 +251,17 @@ void Capture::configuration_device(){
 
   static int framerate = 0;
   if(ImGui::RadioButton("30 FPS", &framerate, 0)){
-    k4n_sensor->device.fps.mode = K4A_FRAMES_PER_SECOND_30;
+    k4n_sensor->param.fps.mode = K4A_FRAMES_PER_SECOND_30;
     k4n_sensor->restart_capture();
   }
   ImGui::SameLine();
   if(ImGui::RadioButton("15 FPS", &framerate, 1)){
-    k4n_sensor->device.fps.mode = K4A_FRAMES_PER_SECOND_15;
+    k4n_sensor->param.fps.mode = K4A_FRAMES_PER_SECOND_15;
     k4n_sensor->restart_capture();
   }
   ImGui::SameLine();
   if(ImGui::RadioButton("5 FPS", &framerate, 2)){
-    k4n_sensor->device.fps.mode = K4A_FRAMES_PER_SECOND_5;
+    k4n_sensor->param.fps.mode = K4A_FRAMES_PER_SECOND_5;
     k4n_sensor->restart_capture();
   }
 
@@ -277,7 +277,7 @@ void Capture::firmware_info(){
   //---------------------------
 
   if (ImGui::TreeNode("Device Firmware Version Info")){
-    k4a_hardware_version_t versionInfo = k4n_sensor->device.version;
+    k4a_hardware_version_t versionInfo = k4n_sensor->param.version;
     ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
     if(ImGui::BeginTable("device##firmware", 2)){
       ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);

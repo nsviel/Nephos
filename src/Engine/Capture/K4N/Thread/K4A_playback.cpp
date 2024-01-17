@@ -44,11 +44,11 @@ void K4A_playback::run_thread(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   //Init playback
-  k4a::playback playback = k4a::playback::open(k4n_sensor->playback.path.c_str());
+  k4a::playback playback = k4a::playback::open(k4n_sensor->param.file_path.c_str());
   if(!playback) return;
   this->thread_running = true;
   k4n_sensor->player.play = true;
-  k4n_sensor->device.playback = &playback;
+  k4n_sensor->param.playback = &playback;
 
   //k4n_operation->playback_find_duration(k4n_sensor);
   k4n_configuration->find_playback_configuration(k4n_sensor);
@@ -65,7 +65,7 @@ void K4A_playback::run_thread(k4n::dev::Sensor* k4n_sensor){
     if(!capture) continue;
 
     k4a_data->find_data_from_capture(k4n_sensor, capture);
-    k4a_data->find_color_from_depth(k4n_sensor, capture, k4n_sensor->device.transformation);
+    k4a_data->find_color_from_depth(k4n_sensor, capture, k4n_sensor->param.transformation);
 
     k4a_processing->convert_into_cloud(k4n_sensor);
 
@@ -74,8 +74,8 @@ void K4A_playback::run_thread(k4n::dev::Sensor* k4n_sensor){
     this->manage_restart(k4n_sensor);
 
     fps_control->stop();
-    fps_control->set_fps_max(k4n_sensor->device.fps.query);
-    k4n_sensor->device.fps.current = fps_counter->update();
+    fps_control->set_fps_max(k4n_sensor->param.fps.query);
+    k4n_sensor->param.fps.current = fps_counter->update();
   }
 
   playback.close();
@@ -102,7 +102,7 @@ void K4A_playback::manage_query_ts(k4n::dev::Sensor* k4n_sensor){
     if(k4n_sensor->player.ts_seek > k4n_sensor->player.ts_end) k4n_sensor->player.ts_seek = k4n_sensor->player.ts_end;
     if(k4n_sensor->player.ts_seek < k4n_sensor->player.ts_beg) k4n_sensor->player.ts_seek = k4n_sensor->player.ts_beg;
     auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(k4n_sensor->player.ts_seek));
-    k4n_sensor->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    k4n_sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     k4n_sensor->player.ts_seek = -1;
   }
 
@@ -112,7 +112,7 @@ void K4A_playback::manage_query_ts(k4n::dev::Sensor* k4n_sensor){
     if(ts_forward > k4n_sensor->player.ts_end) ts_forward = k4n_sensor->player.ts_end;
     if(ts_forward < k4n_sensor->player.ts_beg) ts_forward = k4n_sensor->player.ts_beg;
     auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_forward));
-    k4n_sensor->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    k4n_sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     k4n_sensor->player.ts_forward = 0;
   }
 
@@ -137,7 +137,7 @@ void K4A_playback::manage_restart(k4n::dev::Sensor* k4n_sensor){
     k4n_sensor->player.play = k4n_sensor->player.restart;
     k4n_sensor->player.pause = !k4n_sensor->player.restart;
     auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(k4n_sensor->player.ts_beg));
-    k4n_sensor->device.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    k4n_sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
   }
 
   //---------------------------
@@ -149,7 +149,7 @@ void K4A_playback::manage_recording(k4n::dev::Sensor* k4n_sensor, k4a::capture c
 
   //Start recording
   if(k4n_sensor->player.record && !recorder.is_valid()){
-    recorder = k4a::record::create(k4n_sensor->recorder.path.c_str(), *k4n_sensor->device.device, k4n_sensor->device.configuration);
+    recorder = k4a::record::create(k4n_sensor->recorder.path.c_str(), *k4n_sensor->param.device, k4n_sensor->param.configuration);
     recorder.write_header();
     k4n_sensor->recorder.ts_beg = k4n_sensor->player.ts_cur;
   }

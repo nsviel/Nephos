@@ -19,7 +19,7 @@ Playback::~Playback(){}
 //Main function
 void Playback::kinect_playback(){
   k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-  if(k4n_sensor == nullptr || !k4n_sensor->device.is_playback) return;
+  if(k4n_sensor == nullptr || !k4n_sensor->param.is_playback) return;
   //---------------------------
 
   ImGui::Separator();
@@ -34,21 +34,21 @@ void Playback::kinect_playback(){
   }
 /*
   //Playback FPS
-  if(k4n_sensor->device.is_playback){
+  if(k4n_sensor->param.is_playback){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("FPS"); ImGui::TableNextColumn();
-    ImGui::SliderInt("##56765", &k4n_sensor->device.fps.query, 1, 120);
+    ImGui::SliderInt("##56765", &k4n_sensor->param.fps.query, 1, 120);
   }
 
   //Name
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Name"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", k4n_sensor->playback.filename.c_str());
+  ImGui::TextColored(color, "%s", k4n_sensor->param.name.c_str());
 
   //Path
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Path"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", k4n_sensor->playback.path.c_str());
+  ImGui::TextColored(color, "%s", k4n_sensor->param.file_path.c_str());
 
 */
   //---------------------------
@@ -67,7 +67,7 @@ void Playback::show_info_device(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device S/N"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", k4n_sensor->device.serial_number.c_str());
+    ImGui::TextColored(color, "%s", k4n_sensor->param.serial_number.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
@@ -75,7 +75,7 @@ void Playback::show_info_device(){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Frame rate"); ImGui::TableNextColumn();
-    string fps_str = k4n_sensor->device.fps.mode_str + " fps";
+    string fps_str = k4n_sensor->param.fps.mode_str + " fps";
     ImGui::TextColored(color, "%s", fps_str.c_str());
 
     ImGui::EndTable();

@@ -38,12 +38,12 @@ void Sensor::init(){
   //---------------------------
 
   //Sensor name
-  string str_mode = device.is_playback ? "playback_" : "capture_";
-  this->device.name = str_mode + to_string(device.index);
+  string str_mode = param.is_playback ? "playback_" : "capture_";
+  this->param.name = str_mode + to_string(param.index);
 
   //Sensor cloud
   object = new entity::Object(engine);
-  object->name = device.name;
+  object->name = param.name;
   object->data->draw_type_name = "point";
   eng_scene->insert_object(object);
 
@@ -60,7 +60,7 @@ void Sensor::destroy(){
   //---------------------------
 
   this->stop_threads();
-  this->device.transformation.destroy();
+  this->param.transformation.destroy();
   eng_scene->remove_object(object);
 
   //---------------------------
@@ -141,7 +141,7 @@ void Sensor::restart_capture(){
 void Sensor::run_playback(string path){
   //---------------------------
 
-  this->playback.path = path;
+  this->param.file_path = path;
   k4a_playback->start_thread(this);
 
   //---------------------------

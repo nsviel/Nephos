@@ -57,6 +57,7 @@ void Set::reset(){
 void Set::add_set(utl::type::Set* set){
   //---------------------------
 
+  set->set_parent = this;
   list_set.push_back(set);
   this->nb_set++;
 
@@ -66,6 +67,7 @@ void Set::add_new_set(std::string name){
   //---------------------------
 
   utl::type::Set* set = new utl::type::Set(name);
+  set->set_parent = this;
   list_set.push_back(set);
   this->nb_set++;
 
@@ -98,6 +100,7 @@ void Set::insert_entity(utl::type::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
+  entity->set_parent = this;
   this->list_entity.push_back(entity);
   this->selected_entity = entity;
   this->nb_entity++;

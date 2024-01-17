@@ -18,7 +18,7 @@ struct FPS{
   //---------------------------
 };
 
-struct Device{
+struct Param{
   //---------------------------
 
   int index = -1;
@@ -28,6 +28,9 @@ struct Device{
 
   std::string name = "";
   std::string serial_number = "";
+  std::string file_path = "";
+  std::string file_name = "";
+  std::string file_format = "";
 
   k4a::device* device;
   k4a::playback* playback;

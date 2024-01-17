@@ -65,11 +65,14 @@ void Stream::vec_device_tab(){
     for(int i=0; i< master->list_sensor.size(); i++){
       k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
 
+      static string open_tab = sensor->name;
       ImGuiTabItemFlags flag = 0;
-      if(k4n_swarm->is_selected_sensor(sensor)){
+      if(!k4n_swarm->is_selected_sensor(sensor) && sensor->name != open_tab){
         flag = ImGuiTabItemFlags_SetSelected;
+        open_tab = sensor->name;
       }
-      if(ImGui::BeginTabItem(sensor->device.name.c_str(), NULL)){
+      if(ImGui::BeginTabItem(sensor->param.name.c_str(), NULL)){
+        k4n_swarm->set_selected_sensor(sensor);
         this->device_tab(sensor);
         ImGui::EndTabItem();
       }
@@ -81,7 +84,7 @@ void Stream::vec_device_tab(){
   //---------------------------
 }
 void Stream::device_tab(k4n::dev::Sensor* sensor){
-  if(!sensor->device.data_ready){return;}
+  if(!sensor->param.data_ready){return;}
   //---------------------------
 
   //Display capture images
@@ -240,7 +243,7 @@ void Stream::overlay_capture(k4n::dev::Sensor* sensor, k4n::structure::Image* im
 void Stream::overlay_information(k4n::dev::Sensor* sensor, k4n::structure::Image* image){
   //---------------------------
 
-  ImGui::Text("Frame rate: %.2f fps", sensor->device.fps.current);
+  ImGui::Text("Frame rate: %.2f fps", sensor->param.fps.current);
   ImGui::Text("Timestamp: %.2f s", image->timestamp);
   if(image->temperature != -1){
     ImGui::Text("Temperature: %.2f°", image->temperature);

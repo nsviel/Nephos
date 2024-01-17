@@ -65,9 +65,11 @@ void Panel::design_panel(){
       k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
 
 
+      static string open_tab = sensor->name;
       ImGuiTabItemFlags flag = 0;
-      if(k4n_swarm->is_selected_sensor(sensor)){
+      if(k4n_swarm->is_selected_sensor(sensor) && sensor->name != open_tab){
         flag = ImGuiTabItemFlags_SetSelected;
+        open_tab = sensor->name;
       }
       if(ImGui::BeginTabItem(sensor->name.c_str(), NULL, flag)){
 

@@ -4,6 +4,7 @@
 
 
 namespace utl::type{
+class Set;
 
 struct Entity
 {
@@ -23,7 +24,8 @@ struct Entity
   bool is_visible = true;
   std::string name = "";
   std::string type = "entity";
-  //utl::type::Set* set_parent = nullptr;
+  
+  utl::type::Set* set_parent = nullptr;
 
   inline bool get_visibility(){return is_visible;}
 

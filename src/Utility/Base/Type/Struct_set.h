@@ -33,19 +33,19 @@ struct Set
   utl::type::Entity* get_entity(std::string name);
 
   //Info
+  int UID = 0;
+  int nb_entity = 0;
+  int nb_set = 0;
+  bool is_visible = true;
   std::string name;
   std::string type = "set";
   std::string icon = ICON_FA_FOLDER;
-  bool is_visible = true;
-  int nb_entity = 0;
-  int nb_set = 0;
-  int UID = 0;
 
   //Data
   utl::type::Entity* selected_entity = nullptr;
+  utl::type::Set* set_parent = nullptr;
   std::list<utl::type::Entity*> list_entity;
   std::list<utl::type::Set*> list_set;
-  utl::type::Set* set_parent = nullptr;
 
   //---------------------------
 };

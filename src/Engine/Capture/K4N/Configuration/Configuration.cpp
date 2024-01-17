@@ -14,14 +14,13 @@ Configuration::~Configuration(){}
 
 //Capture configuration
 void Configuration::make_device_configuration(k4n::dev::Sensor* sensor){
-  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
   configuration.color_format = sensor->color.config.format;
   configuration.color_resolution = sensor->color.config.enabled ? sensor->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
   configuration.depth_mode = sensor->depth.config.enabled ? sensor->depth.config.mode : K4A_DEPTH_MODE_OFF;
-  configuration.camera_fps = sensor->device.fps.mode;
+  configuration.camera_fps = sensor->param.fps.mode;
   configuration.depth_delay_off_color_usec = sensor->synchro.depth_delay_off_color_us;
   configuration.wired_sync_mode = sensor->synchro.wired_sync_mode;
   configuration.subordinate_delay_off_master_usec = sensor->synchro.subordinate_delay_off_master_us;
@@ -29,12 +28,12 @@ void Configuration::make_device_configuration(k4n::dev::Sensor* sensor){
   configuration.synchronized_images_only = sensor->synchro.synchronized_images_only;
 
   //---------------------------
-  sensor->device.configuration = configuration;
+  sensor->param.configuration = configuration;
 }
 
 //Playback configuration
 void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
-  k4a_record_configuration_t configuration = sensor->device.playback->get_record_configuration();
+  k4a_record_configuration_t configuration = sensor->param.playback->get_record_configuration();
   //---------------------------
 
   this->find_config_fps(sensor, configuration);
@@ -49,21 +48,21 @@ void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
 void Configuration::find_config_fps(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
   //---------------------------
 
-  sensor->device.fps.mode = configuration.camera_fps;
+  sensor->param.fps.mode = configuration.camera_fps;
   switch(configuration.camera_fps){
     case K4A_FRAMES_PER_SECOND_5:{
-      sensor->device.fps.mode_str = "5";
-      sensor->device.fps.query = 5;
+      sensor->param.fps.mode_str = "5";
+      sensor->param.fps.query = 5;
       break;
     }
     case K4A_FRAMES_PER_SECOND_15:{
-      sensor->device.fps.mode_str = "15";
-      sensor->device.fps.query = 15;
+      sensor->param.fps.mode_str = "15";
+      sensor->param.fps.query = 15;
       break;
     }
     case K4A_FRAMES_PER_SECOND_30:{
-      sensor->device.fps.mode_str = "30";
-      sensor->device.fps.query = 30;
+      sensor->param.fps.mode_str = "30";
+      sensor->param.fps.query = 30;
       break;
     }
   }
@@ -100,7 +99,7 @@ void Configuration::find_config_depth(k4n::dev::Sensor* sensor, k4a_record_confi
 
   sensor->depth.config.enabled = configuration.depth_track_enabled;
   sensor->depth.config.mode = configuration.depth_mode;
-  sensor->device.playback->get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor->depth.config.firmware_version);
+  sensor->param.playback->get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor->depth.config.firmware_version);
 
   switch (configuration.depth_mode){
     case K4A_DEPTH_MODE_OFF:{
@@ -136,12 +135,12 @@ void Configuration::find_config_color(k4n::dev::Sensor* sensor, k4a_record_confi
 
   //Ask for default color format
   k4a_image_format_t required_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  sensor->device.playback->set_color_conversion(required_format);
+  sensor->param.playback->set_color_conversion(required_format);
   configuration.color_format = required_format;
 
   sensor->color.config.enabled = configuration.color_track_enabled;
   sensor->color.config.resolution = configuration.color_resolution;
-  sensor->device.playback->get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor->color.config.firmware_version);
+  sensor->param.playback->get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor->color.config.firmware_version);
 
   switch (configuration.color_resolution){
     case K4A_COLOR_RESOLUTION_OFF:{
@@ -219,8 +218,8 @@ void Configuration::find_config_device(k4n::dev::Sensor* sensor, k4a_record_conf
 
   sensor->ir.config.enabled = configuration.ir_track_enabled;
   sensor->imu.config.enabled = configuration.imu_track_enabled;
-  sensor->player.duration = sensor->device.playback->get_recording_length().count() / 1000000.0f;
-  sensor->device.playback->get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->device.serial_number);
+  sensor->player.duration = sensor->param.playback->get_recording_length().count() / 1000000.0f;
+  sensor->param.playback->get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
 
   //---------------------------
 }

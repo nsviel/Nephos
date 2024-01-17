@@ -50,10 +50,10 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
   int index = nb_dev_playback++;
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
   sensor->name = "playback_" + to_string(index);
-  sensor->device.index = index;
-  sensor->device.is_playback = true;
-  sensor->playback.path = path;
-  sensor->playback.filename = info::get_filename_from_path(path);
+  sensor->param.index = index;
+  sensor->param.is_playback = true;
+  sensor->param.file_path = path;
+  sensor->param.file_name = info::get_filename_from_path(path);
   sensor->master = master;
 
   this->selected_sensor = sensor;
@@ -75,10 +75,10 @@ void Swarm::create_sensor_playback(string path){
   int index = nb_dev_playback++;
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
   sensor->name = "playback_" + to_string(index);
-  sensor->device.index = index;
-  sensor->device.is_playback = true;
-  sensor->playback.path = path;
-  sensor->playback.filename = info::get_filename_from_path(path);
+  sensor->param.index = index;
+  sensor->param.is_playback = true;
+  sensor->param.file_path = path;
+  sensor->param.file_name = info::get_filename_from_path(path);
   sensor->master = master;
 
   this->selected_sensor = sensor;
@@ -97,8 +97,8 @@ void Swarm::create_sensor_capture(k4n::dev::Master* master){
   int index = nb_dev_capture++;
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
   sensor->name = "device_" + to_string(index);
-  sensor->device.index = index;
-  sensor->device.is_playback = false;
+  sensor->param.index = index;
+  sensor->param.is_playback = false;
   sensor->master = master;
 
   this->selected_sensor = sensor;
@@ -117,7 +117,7 @@ void Swarm::close_sensor(k4n::dev::Master* master, k4n::dev::Sensor* sensor){
     if(sensor->UID == sensor_in_list->UID){
       sensor->destroy();
       master->list_sensor.remove(sensor);
-      sensor->device.is_playback ? nb_dev_playback-- : nb_dev_capture--;
+      sensor->param.is_playback ? nb_dev_playback-- : nb_dev_capture--;
       delete(sensor);
       sensor = nullptr;
     }

@@ -52,7 +52,7 @@ void Cloud::loop_data(k4n::dev::Sensor* k4n_sensor){
 
   // Cloud stuff
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->image.width, depth->image.height, depth->image.width * 3 * (int)sizeof(int16_t));
-  k4n_sensor->device.transformation.depth_image_to_point_cloud(depth->image.image, K4A_CALIBRATION_TYPE_DEPTH, &cloud_image);
+  k4n_sensor->param.transformation.depth_image_to_point_cloud(depth->image.image, K4A_CALIBRATION_TYPE_DEPTH, &cloud_image);
   int16_t* point_cloud_data = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
 
   // Convert point cloud data to vector<glm::vec3>
@@ -154,7 +154,7 @@ void Cloud::retrieve_corner_coordinate(k4n::dev::Sensor* k4n_sensor){
   k4a_float2_t pixel_point = { static_cast<float>(pixel_x), static_cast<float>(pixel_y) };
   k4a_float3_t xyz;
   int is_valid;
-  k4a_calibration_2d_to_3d(&k4n_sensor->device.calibration, &pixel_point, depth_value, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &xyz, &is_valid);
+  k4a_calibration_2d_to_3d(&k4n_sensor->param.calibration, &pixel_point, depth_value, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &xyz, &is_valid);
   if(is_valid){
     glm::vec3 point(-xyz.v[2]/100.0f, -xyz.v[0]/100.0f, -xyz.v[1]/100.0f);
   }
