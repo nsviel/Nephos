@@ -1,7 +1,7 @@
 #include "Master.h"
 
 #include <Engine/Engine.h>
-
+#include <Engine/Capture/K4N/Utils/Namespace.h>
 
 namespace k4n::dev{
 
@@ -13,12 +13,36 @@ Master::Master(Engine* engine){
   this->engine = engine;
   this->type = "k4n::device::Master";
 
+
   //---------------------------
 }
 Master::~Master(){}
 
 //Main function
+void Master::add_sensor(k4n::dev::Sensor* sensor){
+  //---------------------------
 
+  k4n::utils::Operation k4n_operation;
+  k4n_operation.playback_find_duration(sensor);
+  this->player.ts_beg = (player.ts_beg != -1) ? std::max(player.ts_beg, sensor->player.ts_beg) : sensor->player.ts_beg;
+  this->player.ts_end = (player.ts_end != -1) ? std::min(player.ts_end, sensor->player.ts_end) : sensor->player.ts_end;
+  this->player.duration = player.ts_end - player.ts_beg;
+
+  this->list_sensor.push_back(sensor);
+
+  //---------------------------
+}
+void Master::set_pause(bool value){
+  //---------------------------
+
+  this->player.pause = value;
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
+    sensor->set_pause(value);
+  }
+
+  //---------------------------
+}
 
 //Entity function
 void Master::update_entity(){

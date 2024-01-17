@@ -15,8 +15,9 @@ K4A_playback::K4A_playback(Engine* engine){
 
   this->k4a_data = new k4n::data::Data();
   this->k4a_processing = new k4n::data::Cloud(engine);
-  this->configuration = new k4n::config::Configuration();
+  this->k4n_configuration = new k4n::config::Configuration();
   this->k4n_calibration = new k4n::config::Calibration();
+  this->k4n_operation= new k4n::utils::Operation();
 
   //---------------------------
 }
@@ -42,9 +43,6 @@ void K4A_playback::start_thread(k4n::dev::Sensor* k4n_sensor){
 void K4A_playback::run_thread(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
-  //Get info about file
-  this->find_duration(k4n_sensor);
-
   //Init playback
   k4a::playback playback = k4a::playback::open(k4n_sensor->playback.path.c_str());
   if(!playback) return;
@@ -52,8 +50,9 @@ void K4A_playback::run_thread(k4n::dev::Sensor* k4n_sensor){
   k4n_sensor->player.play = true;
   k4n_sensor->device.playback = &playback;
 
-  configuration->find_playback_configuration(k4n_sensor);
-  configuration->make_device_configuration(k4n_sensor);
+  //k4n_operation->playback_find_duration(k4n_sensor);
+  k4n_configuration->find_playback_configuration(k4n_sensor);
+  k4n_configuration->make_device_configuration(k4n_sensor);
   k4n_calibration->find_playback_calibration(k4n_sensor);
   k4n_calibration->make_device_transformation(k4n_sensor);
 
@@ -95,37 +94,6 @@ void K4A_playback::stop_thread(){
 }
 
 //Subfunction
-void K4A_playback::find_duration(k4n::dev::Sensor* k4n_sensor){
-  k4n::structure::Player* player = &k4n_sensor->player;
-  //---------------------------
-
-  k4a::image color;
-  k4a::capture capture;
-  k4a::playback playback = k4a::playback::open(k4n_sensor->playback.path.c_str());
-
-  //File duration
-  player->duration = playback.get_recording_length().count() / 1000000.0f;
-
-  //File first timestamp
-  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
-  color = nullptr;
-  while(color == nullptr){
-    playback.get_next_capture(&capture);
-    color = capture.get_color_image();
-  }
-  player->ts_beg = color.get_device_timestamp().count() / 1000000.0f;
-
-  //File last timestamp
-  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_END);
-  color = nullptr;
-  while(color == nullptr){
-    playback.get_previous_capture(&capture);
-    color = capture.get_color_image();
-  }
-  player->ts_end = color.get_device_timestamp().count() / 1000000.0f;
-
-  //---------------------------
-}
 void K4A_playback::manage_query_ts(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 

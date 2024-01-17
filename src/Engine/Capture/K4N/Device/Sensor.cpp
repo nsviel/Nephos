@@ -75,6 +75,7 @@ void Sensor::draw_cloud(){
   //---------------------------
 }
 
+
 //Entity function
 void Sensor::update_entity(){
   eng::camera::Node* node_camera = engine->get_node_camera();

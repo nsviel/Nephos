@@ -70,7 +70,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
   sensor->master = master;
 
   this->selected_sensor = sensor;
-  master->list_sensor.push_back(sensor);
+  master->add_sensor(sensor);
 
   sensor->init();
   sensor->run_playback(path);
@@ -95,7 +95,7 @@ void Swarm::create_sensor_playback(string path){
   sensor->master = master;
 
   this->selected_sensor = sensor;
-  master->list_sensor.push_back(sensor);
+  master->add_sensor(sensor);
 
   sensor->init();
   sensor->run_playback(path);
@@ -115,7 +115,7 @@ void Swarm::create_sensor_capture(k4n::dev::Master* master){
   sensor->master = master;
 
   this->selected_sensor = sensor;
-  master->list_sensor.push_back(sensor);
+  master->add_sensor(sensor);
 
   sensor->init();
   sensor->run_capture();

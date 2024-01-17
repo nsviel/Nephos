@@ -10,10 +10,12 @@ namespace k4n::dev{
 struct Device : public entity::Entity{
   //---------------------------
 
+  virtual void set_pause(bool value){}
+
   k4n::structure::Player player;
   k4n::structure::Recorder recorder;
   k4n::structure::Playback playback;
-  
+
   //---------------------------
 };
 

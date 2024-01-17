@@ -28,7 +28,6 @@ public:
   void stop_thread();
 
   //Subfunction
-  void find_duration(k4n::dev::Sensor* k4n_sensor);
   void manage_query_ts(k4n::dev::Sensor* device);
   void manage_pause(k4n::dev::Sensor* k4n_sensor);
   void manage_restart(k4n::dev::Sensor* device);
@@ -41,8 +40,9 @@ private:
   FPS_control* fps_control;
   k4n::data::Data* k4a_data;
   k4n::data::Cloud* k4a_processing;
-  k4n::config::Configuration* configuration;
+  k4n::config::Configuration* k4n_configuration;
   k4n::config::Calibration* k4n_calibration;
+  k4n::utils::Operation* k4n_operation;
 
   std::thread thread;
   bool thread_running = false;

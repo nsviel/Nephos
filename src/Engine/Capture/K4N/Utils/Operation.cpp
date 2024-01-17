@@ -14,6 +14,39 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Main function
+void Operation::playback_find_duration(k4n::dev::Sensor* k4n_sensor){
+  k4n::structure::Player* player = &k4n_sensor->player;
+  //---------------------------
+
+  k4a::image color;
+  k4a::capture capture;
+  k4a::playback playback = k4a::playback::open(k4n_sensor->playback.path.c_str());
+
+  //File duration
+  player->duration = playback.get_recording_length().count() / 1000000.0f;
+
+  //File first timestamp
+  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
+  color = nullptr;
+  while(color == nullptr){
+    playback.get_next_capture(&capture);
+    color = capture.get_color_image();
+  }
+  player->ts_beg = color.get_device_timestamp().count() / 1000000.0f;
+
+  //File last timestamp
+  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_END);
+  color = nullptr;
+  while(color == nullptr){
+    playback.get_previous_capture(&capture);
+    color = capture.get_color_image();
+  }
+  player->ts_end = color.get_device_timestamp().count() / 1000000.0f;
+
+
+
+  //---------------------------
+}
 void Operation::make_colorization(k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
   //---------------------------
 

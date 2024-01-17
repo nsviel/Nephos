@@ -2,6 +2,7 @@
 
 #include <Engine/Capture/K4N/Namespace.h>
 #include <Engine/Capture/K4N/Structure/Namespace.h>
+
 #include <Utility/Specific/common.h>
 #include <Utility/Base/Entity/Struct_entity.h>
 
@@ -20,6 +21,8 @@ public:
 
 public:
   //Main function
+  void add_sensor(k4n::dev::Sensor* sensor);
+  void set_pause(bool value);
 
   //Entity function
   void update_entity();

@@ -24,11 +24,11 @@ Player::Player(Engine* engine){
 Player::~Player(){}
 
 //Main function
-void Player::draw_player(k4n::dev::Master* master){
+void Player::draw_player(k4n::dev::Device* device){
   //---------------------------
 
-  this->player_control();
-  this->player_slider();
+  this->player_control(device);
+  this->player_slider(device);
 
   this->player_start();
   ImGui::SameLine();
@@ -44,36 +44,33 @@ void Player::draw_player(k4n::dev::Master* master){
 }
 
 //Subfunction
-void Player::player_control(){
+void Player::player_control(k4n::dev::Device* device){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-      k4n_sensor->player.pause = !k4n_sensor->player.pause;
+      device->set_pause(!device->player.pause);
       break;
     }
 
     //Left arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
-      k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-      k4n_sensor->player.ts_forward = -1;
+      device->player.ts_forward = -1;
       break;
     }
 
     //Right arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
-      k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-      k4n_sensor->player.ts_forward = 1;
+      device->player.ts_forward = 1;
       break;
     }
   }
 
   //----------------------------
 }
-void Player::player_slider(){
+void Player::player_slider(k4n::dev::Device* device){
   k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------

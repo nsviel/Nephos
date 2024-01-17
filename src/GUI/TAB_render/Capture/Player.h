@@ -16,11 +16,11 @@ public:
   ~Player();
 
   //Main function
-  void draw_player(k4n::dev::Master* master);
+  void draw_player(k4n::dev::Device* device);
 
   //Subfunction
-  void player_control();
-  void player_slider();
+  void player_control(k4n::dev::Device* device);
+  void player_slider(k4n::dev::Device* device);
 
   //Player button
   void player_start();
