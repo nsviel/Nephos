@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Base/Entity/Struct_entity.h>
 #include <image/IconsFontAwesome6.h>
 
 namespace utl::type{
