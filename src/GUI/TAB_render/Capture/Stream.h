@@ -6,7 +6,7 @@
 #include <Engine/Capture/K4N/Namespace.h>
 #include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Engine/Capture/K4N/Data/Namespace.h>
-#include <Utility/Base/Namespace.h>
+
 
 class GUI;
 

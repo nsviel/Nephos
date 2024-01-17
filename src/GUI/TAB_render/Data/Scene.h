@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Utility/Base/Namespace.h>
+
 #include <Utility/Specific/common.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Engine/Scene/Data/Database.h>
 #include <Engine/Camera/Namespace.h>
-#include <Utility/Base/Namespace.h>
+
 
 class GUI;
 
@@ -34,7 +34,7 @@ public:
   int tree_set(utl::type::Set* set);
   void tree_set_double_click(utl::type::Set* set);
   void tree_set_open(utl::type::Set* set, int& nb_row);
-  void tree_entity(utl::type::Set* set, entity::Entity* entity, int& nb_row);
+  void tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_row);
 
   bool show_panel_entity   = false;
   bool show_panel_set      = false;

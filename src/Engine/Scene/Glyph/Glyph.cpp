@@ -40,7 +40,7 @@ void Glyph::create_glyph_world(){
   set_world->insert_entity(new glyph::world::Axis(engine));
 
   for(int i=0; i<set_world->list_entity.size(); i++){
-    entity::Entity* entity = *next(set_world->list_entity.begin(), i);
+    utl::type::Entity* entity = *next(set_world->list_entity.begin(), i);
 
     if(entity::Glyph* glyph = dynamic_cast<entity::Glyph*>(entity)){
       //Glyph creation

@@ -1,9 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Namespace.h>
-#include <glm/glm.hpp>
-#include <string>
-#include <vector>
+#include <Utility/Specific/common.h>
 
 
 class CSV_importer

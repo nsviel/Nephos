@@ -1,7 +1,7 @@
 #include "Manager.h"
 
 #include <Engine/Engine.h>
-#include <Utility/Base/Namespace.h>
+
 
 
 namespace eng::camera{

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Namespace.h>
+
 #include <Engine/Capture/K4N/Structure/Namespace.h>
 #include <Utility/Base/Entity/Namespace.h>
 

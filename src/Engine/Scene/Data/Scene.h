@@ -5,7 +5,7 @@
 #include <Engine/Scene/Data/Database.h>
 #include <Engine/Scene/Glyph/Glyph.h>
 #include <Engine/Scene/Node.h>
-#include <Utility/Base/Namespace.h>
+
 #include <Utility/Specific/common.h>
 
 class VK_engine;
@@ -29,11 +29,11 @@ public:
   void reset();
 
   //Entity
-  entity::Entity* get_selected_entity();
-  entity::Entity* import_entity(std::string path);
+  utl::type::Entity* get_selected_entity();
+  utl::type::Entity* import_entity(std::string path);
   void insert_set_scene(utl::type::Set* set);
-  void insert_entity_scene(entity::Entity* entity);
-  void delete_entity(entity::Entity* entity);
+  void insert_entity_scene(utl::type::Entity* entity);
+  void delete_entity(utl::type::Entity* entity);
   void delete_entity_all();
 
   //Object

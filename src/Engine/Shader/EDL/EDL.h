@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Namespace.h>
+
 #include <Engine/Shader/EDL/EDL_param.h>
 #include <Engine/Shader/Base/BASE_shader.h>
 #include <Engine/Camera/Namespace.h>

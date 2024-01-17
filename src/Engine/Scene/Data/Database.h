@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Utility/Base/Namespace.h>
+
 #include <Engine/Scene/Namespace.h>
-#include <Utility/Base/Namespace.h>
+
 #include <Utility/Specific/common.h>
 
 namespace eng::scene{
@@ -18,7 +18,7 @@ public:
 
   //Main function
   void init_set();
-  void assign_ID(entity::Entity* entity);
+  void assign_ID(utl::type::Entity* entity);
   void assign_ID(utl::type::Data* entity);
 
   inline utl::type::Set* get_data_set(){return data_set;}

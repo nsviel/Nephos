@@ -44,7 +44,7 @@ void Scene::design_panel(){
 void Scene::draw_button(){
   utl::type::Set* data_set = sce_database->get_data_set();
   utl::type::Set* set_scene = data_set->get_set("Scene");
-  entity::Entity* entity = set_scene->selected_entity;
+  utl::type::Entity* entity = set_scene->selected_entity;
   //-------------------------------
 
   if(entity == nullptr) return;
@@ -187,7 +187,7 @@ void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
   flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
 
   for(int i=0; i<set->list_entity.size(); i++){
-    entity::Entity* entity = *next(set->list_entity.begin(), i);
+    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
 
     this->tree_entity(set, entity, nb_row);
   }
@@ -199,7 +199,7 @@ void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
 
   //---------------------------
 }
-void Scene::tree_entity(utl::type::Set* set, entity::Entity* entity, int& nb_row){
+void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_row){
   //---------------------------
 
   ImGui::TableNextRow();

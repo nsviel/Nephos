@@ -4,7 +4,7 @@
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Utility/Base/Namespace.h>
+
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 #include <Utility/Function/File/Info.h>
@@ -47,8 +47,8 @@ Loader::~Loader(){
 }
 
 //Main functions
-entity::Entity* Loader::load_entity(std::string path){
-  entity::Entity* entity = nullptr;
+utl::type::Entity* Loader::load_entity(std::string path){
+  utl::type::Entity* entity = nullptr;
   //---------------------------
 
   //Check file existence

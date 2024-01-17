@@ -35,7 +35,7 @@ public:
   //Subfunction
   void operation_selection();
   void operation_selection(string path);
-  void operation_entity(entity::Entity* entity);
+  void operation_entity(utl::type::Entity* entity);
 
 private:
   eng::scene::Scene* sce_scene;

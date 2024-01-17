@@ -1,8 +1,7 @@
 #pragma once
 
-#include <string>
-#include <iostream>
-#include <Utility/Base/Namespace.h>
+#include <Utility/Specific/common.h>
+
 
 
 namespace image{

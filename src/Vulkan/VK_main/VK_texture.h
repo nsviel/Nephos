@@ -3,8 +3,8 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/VK_typedef.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Base/Namespace.h>
-#include <Utility/Base/Namespace.h>
+
+
 
 
 class VK_image;

@@ -23,7 +23,7 @@ void Set::update(){
 
   // Process entities within the current set
   for (int i=0; i<list_entity.size(); i++){
-    entity::Entity* entity = *next(list_entity.begin(), i);
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
     entity->update_entity();
   }
 
@@ -40,7 +40,7 @@ void Set::reset(){
 
   //Reset all associated entities
   for(int j=0; j<list_entity.size(); j++){
-    entity::Entity* entity = *next(list_entity.begin(), j);
+    utl::type::Entity* entity = *next(list_entity.begin(), j);
     entity->reset_entity();
   }
 
@@ -75,10 +75,10 @@ void Set::select_next_entity(){
   //----------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    entity::Entity* entity = *next(list_entity.begin(), i);
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
 
     if(this->selected_entity->UID == entity->UID){
-      entity::Entity* next_entity;
+      utl::type::Entity* next_entity;
 
       if((i + 1) < list_entity.size()){
         next_entity = *next(list_entity.begin(), i + 1);
@@ -94,7 +94,7 @@ void Set::select_next_entity(){
   //----------------------------
   this->selected_entity = nullptr;
 }
-void Set::insert_entity(entity::Entity* entity){
+void Set::insert_entity(utl::type::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -104,7 +104,7 @@ void Set::insert_entity(entity::Entity* entity){
 
   //---------------------------
 }
-void Set::remove_entity(entity::Entity* entity){
+void Set::remove_entity(utl::type::Entity* entity){
   //---------------------------
 
   this->list_entity.remove(entity);
@@ -121,7 +121,7 @@ void Set::set_visibility(bool value){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    entity::Entity* entity = *next(list_entity.begin(), i);
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
     entity->visibility_entity(value);
   }
 
@@ -142,11 +142,11 @@ utl::type::Set* Set::get_set(std::string name){
   //---------------------------
   return nullptr;
 }
-entity::Entity* Set::get_entity(std::string name){
+utl::type::Entity* Set::get_entity(std::string name){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    entity::Entity* entity = *next(list_entity.begin(),i);
+    utl::type::Entity* entity = *next(list_entity.begin(),i);
     if(entity->name == name){
       return entity;
     }

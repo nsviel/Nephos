@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Scene/Namespace.h>
-#include <Utility/Base/Namespace.h>
+#include <Utility/Specific/common.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 #include <Utility/Function/File/File.h>
@@ -28,7 +28,7 @@ public:
 
 public:
   //Main functions
-  entity::Entity* load_entity(std::string path);
+  utl::type::Entity* load_entity(std::string path);
 
   //Subfunctions
   entity::Object* load_object(string path);

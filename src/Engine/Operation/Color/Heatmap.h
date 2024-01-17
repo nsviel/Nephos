@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Operation/Namespace.h>
-#include <Utility/Base/Namespace.h>
+
 #include <Utility/Specific/common.h>
 
 

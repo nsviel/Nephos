@@ -30,7 +30,7 @@ void Target::create(){
 
   //---------------------------
 }
-void Target::update_glyph(entity::Entity* entity){
+void Target::update_glyph(utl::type::Entity* entity){
   utl::type::Data* data = vec_data[0];
   //---------------------------
 

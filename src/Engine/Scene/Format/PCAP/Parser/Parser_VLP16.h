@@ -2,7 +2,7 @@
 
 // Server side implementation of UDP client-server model
 
-#include <Utility/Base/Namespace.h>
+#include <Utility/Specific/common.h>
 #include <Utility/Function/Math/fct_math.h>
 #include <glm/glm.hpp>
 #include <string>

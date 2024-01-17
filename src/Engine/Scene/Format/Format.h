@@ -1,7 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Namespace.h>
-#include <string>
+#include <Utility/Specific/common.h>
 
 class PLY_importer;
 class OBJ_importer;

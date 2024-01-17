@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Namespace.h>
+#include <Utility/Base/Entity/Struct_entity.h>
 
 #include <glm/glm.hpp>
 #include <string>
@@ -29,7 +29,7 @@ namespace entity{
 class Glyph;
 
 
-class Camera : public entity::Entity
+class Camera : public utl::type::Entity
 {
 public:
   //Constructor / Destructor

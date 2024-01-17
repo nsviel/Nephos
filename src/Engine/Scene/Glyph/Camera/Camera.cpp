@@ -26,7 +26,7 @@ void Camera::create(){
 
   //---------------------------
 }
-void Camera::update_glyph(entity::Entity* entity){
+void Camera::update_glyph(utl::type::Entity* entity){
   //---------------------------
 
 

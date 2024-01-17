@@ -63,7 +63,7 @@ void Entity::close_panel(){
 }
 
 //Subfunction
-void Entity::entity_title(entity::Entity* entity){
+void Entity::entity_title(utl::type::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -71,7 +71,7 @@ void Entity::entity_title(entity::Entity* entity){
 
   //---------------------------
 }
-void Entity::entity_button(entity::Entity* entity){
+void Entity::entity_button(utl::type::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -90,7 +90,7 @@ void Entity::entity_button(entity::Entity* entity){
 
   //---------------------------
 }
-void Entity::entity_parameter(entity::Entity* entity){
+void Entity::entity_parameter(utl::type::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 

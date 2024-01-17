@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace entity{
+namespace utl::type{
 
 struct Entity
 {

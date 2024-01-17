@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-#include <Utility/Base/Namespace.h>
+
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
@@ -56,20 +56,20 @@ void Scene::reset(){
 }
 
 //Entity
-entity::Entity* Scene::get_selected_entity(){
+utl::type::Entity* Scene::get_selected_entity(){
   utl::type::Set* data_set = sce_database->get_data_set();
   //---------------------------
 
   utl::type::Set* set_scene = data_set->get_set("Scene");
-  entity::Entity* entity = set_scene->selected_entity;
+  utl::type::Entity* entity = set_scene->selected_entity;
 
   //---------------------------
   return entity;
 }
-entity::Entity* Scene::import_entity(std::string path){
+utl::type::Entity* Scene::import_entity(std::string path){
   //---------------------------
 
-  entity::Entity* entity = sce_loader->load_entity(path);
+  utl::type::Entity* entity = sce_loader->load_entity(path);
   this->insert_entity_scene(entity);
   sce_database->assign_ID(entity);
 
@@ -85,7 +85,7 @@ void Scene::insert_set_scene(utl::type::Set* set){
 
   //---------------------------
 }
-void Scene::insert_entity_scene(entity::Entity* entity){
+void Scene::insert_entity_scene(utl::type::Entity* entity){
   utl::type::Set* data_set = sce_database->get_data_set();
   utl::type::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
@@ -94,7 +94,7 @@ void Scene::insert_entity_scene(entity::Entity* entity){
 
   //---------------------------
 }
-void Scene::delete_entity(entity::Entity* entity){
+void Scene::delete_entity(utl::type::Entity* entity){
   utl::type::Set* data_set = sce_database->get_data_set();
   utl::type::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
@@ -104,7 +104,7 @@ void Scene::delete_entity(entity::Entity* entity){
 
   //Delete it from database and engine
   for(int i=0; i<set_scene->list_entity.size(); i++){
-    entity::Entity* entity_scene = *next(set_scene->list_entity.begin(),i);
+    utl::type::Entity* entity_scene = *next(set_scene->list_entity.begin(),i);
 
     //Check if entity is present in the scene
     if(entity->UID == entity_scene->UID){
@@ -121,7 +121,7 @@ void Scene::delete_entity_all(){
   //---------------------------
 
   for(int i=0; i<set_scene->list_entity.size(); i++){
-    entity::Entity* entity = *next(set_scene->list_entity.begin(),i);
+    utl::type::Entity* entity = *next(set_scene->list_entity.begin(),i);
 
     set_scene->remove_entity(entity);
     entity->remove_entity();

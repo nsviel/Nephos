@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Base/Namespace.h>
+
 #include <Vulkan/VK_struct/Namespace.h>
 
 class GUI;

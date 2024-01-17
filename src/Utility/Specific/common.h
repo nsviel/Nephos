@@ -38,6 +38,9 @@ using namespace glm;
 #include <Utility/Function/Debug/fct_terminal.h>
 #include <Utility/Function/Math/fct_math.h>
 #include <Utility/Function/Timer/fct_chrono.h> //For debuging
+#include <Utility/Base/Type/Namespace.h>
+#include <Utility/Base/Entity/Namespace.h>
+#include <Utility/Base/Media/Namespace.h>
 
 //GUI
 #include <imgui/core/imgui.h>

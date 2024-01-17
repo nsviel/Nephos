@@ -1,11 +1,12 @@
 #pragma once
 
-#include <Utility/Base/Entity/Namespace.h>
-#include <image/IconsFontAwesome6.h>
 #include <Utility/Specific/common.h>
-
+#include <Utility/Base/Entity/Struct_entity.h>
+#include <image/IconsFontAwesome6.h>
 
 namespace utl::type{
+class Entity;
+
 
 //Set are entity container
 struct Set
@@ -24,13 +25,13 @@ struct Set
   void add_set(utl::type::Set* set);
   void add_new_set(std::string name);
   void select_next_entity();
-  void insert_entity(entity::Entity* entity);
-  void remove_entity(entity::Entity* entity);
+  void insert_entity(utl::type::Entity* entity);
+  void remove_entity(utl::type::Entity* entity);
 
   //Parameter
   void set_visibility(bool value);
   utl::type::Set* get_set(std::string name);
-  entity::Entity* get_entity(std::string name);
+  utl::type::Entity* get_entity(std::string name);
 
   //Info
   std::string name;
@@ -42,8 +43,8 @@ struct Set
   int UID = 0;
 
   //Data
-  entity::Entity* selected_entity = nullptr;
-  std::list<entity::Entity*> list_entity;
+  utl::type::Entity* selected_entity = nullptr;
+  std::list<utl::type::Entity*> list_entity;
   std::list<utl::type::Set*> list_set;
   utl::type::Set* set_parent = nullptr;
 
