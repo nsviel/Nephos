@@ -13,7 +13,7 @@ Object::Object(){
   //---------------------------
 
   this->type = "Object";
-  this->data = new utl::base::Data();
+  this->data = new utl::type::Data();
   this->data->unicolor = math::random_color();
 
   //---------------------------
@@ -23,7 +23,7 @@ Object::Object(Engine* engine){
 
   this->engine = engine;
   this->type = "Object";
-  this->data = new utl::base::Data();
+  this->data = new utl::type::Data();
   this->data->unicolor = math::random_color();
 
   //---------------------------

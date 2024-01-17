@@ -21,7 +21,7 @@ void Axis::create(){
   //---------------------------
 
   //Create glyph
-  utl::base::Data* data = new utl::base::Data();
+  utl::type::Data* data = new utl::type::Data();
   data->draw_line_width = 3;
   data->is_visible = is_visible;
   data->draw_type_name = "line";
@@ -30,7 +30,7 @@ void Axis::create(){
 
   //---------------------------
 }
-void Axis::update_glyph(utl::base::Data* entity){
+void Axis::update_glyph(utl::type::Data* entity){
   //---------------------------
 
   //ope_transform->make_transformation(vec_data[0], object->data->COM, object->data->trans, object->data->rotat);

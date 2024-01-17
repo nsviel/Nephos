@@ -21,9 +21,9 @@ public:
 
 public:
   //Main functions
-  void center_object(utl::base::Data* data);
-  void elevate_object(utl::base::Data* data);
-  void make_rotation_X_90d(utl::base::Data* data, int value);
+  void center_object(utl::type::Data* data);
+  void elevate_object(utl::type::Data* data);
+  void make_rotation_X_90d(utl::type::Data* data, int value);
 
 private:
   eng::ope::Transformation* ope_transform;

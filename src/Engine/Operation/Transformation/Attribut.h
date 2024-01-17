@@ -21,9 +21,9 @@ public:
 
 public:
   //Main functions
-  void compute_MinMax(utl::base::Data* data);
-  void set_unicolor(utl::base::Data* data);
-  vector<float> retrieve_z_vector(utl::base::Data* data);
+  void compute_MinMax(utl::type::Data* data);
+  void set_unicolor(utl::type::Data* data);
+  vector<float> retrieve_z_vector(utl::type::Data* data);
 
 private:
 };

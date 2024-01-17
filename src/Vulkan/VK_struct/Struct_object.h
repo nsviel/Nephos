@@ -12,7 +12,7 @@ namespace vk::structure{
 struct Object{
   //---------------------------
 
-  utl::base::Data* data;
+  utl::type::Data* data;
 
   //Data
   bool has_xyz = false;

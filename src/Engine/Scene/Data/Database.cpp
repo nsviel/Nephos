@@ -33,7 +33,7 @@ void Database::assign_ID(entity::Entity* entity){
 
   //----------------------------
 }
-void Database::assign_ID(utl::base::Data* data){
+void Database::assign_ID(utl::type::Data* data){
   if(data == nullptr) return;
   //----------------------------
 

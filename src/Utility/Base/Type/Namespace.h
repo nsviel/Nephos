@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Utility/Base/Entity/Struct_entity.h>
+#include <Utility/Base/Type/Struct_data.h>
 #include <Utility/Base/Type/Struct_set.h>
 
 
 namespace utl::type{
   //---------------------------
 
-  class Entity;
+  class Data;
   class Set;
 
   //---------------------------

@@ -45,7 +45,7 @@ public:
 
   inline k4n::structure::Cloud* get_cloud(){return &cloud;}
   inline entity::Object* get_object(){return object;}
-  inline utl::base::Data* get_data(){return object->data;}
+  inline utl::type::Data* get_data(){return object->data;}
   inline void set_pause(bool value){player.pause = value;}
   inline void set_desired_timestamp(float value){player.ts_seek = value;}
 

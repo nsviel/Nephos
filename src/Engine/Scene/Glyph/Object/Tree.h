@@ -16,7 +16,7 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph(utl::base::Data* data);
+  void update_glyph(utl::type::Data* data);
 
   inline bool* get_visibility(){return &is_visible;}
   inline int* get_level(){return &level;}

@@ -18,7 +18,7 @@ void Camera::create(){
   if(vec_data.size() != 0) return;
   //---------------------------
 
-  utl::base::Data* data = new utl::base::Data();
+  utl::type::Data* data = new utl::type::Data();
   data->draw_line_width = 1;
   data->draw_type_name = "line";
   data->unicolor = vec4(1, 1, 1, 0.2f);

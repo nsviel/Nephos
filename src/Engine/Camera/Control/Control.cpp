@@ -121,7 +121,7 @@ mat4 Control::compute_camera_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void Control::compute_camera_mvp(utl::base::Data* data){
+void Control::compute_camera_mvp(utl::type::Data* data){
   if(data == nullptr) return;
   //---------------------------
 

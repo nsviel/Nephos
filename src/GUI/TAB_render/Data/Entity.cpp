@@ -119,7 +119,7 @@ void Entity::entity_parameter(entity::Entity* entity){
     }
 
     //Data info
-    utl::base::Data* data = entity->get_data();
+    utl::type::Data* data = entity->get_data();
     if(data != nullptr){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Format"); ImGui::TableNextColumn();
@@ -167,7 +167,7 @@ void Entity::entity_parameter(entity::Entity* entity){
 }
 
 //Primitive size
-void Entity::data_line(utl::base::Data* data){
+void Entity::data_line(utl::type::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -192,7 +192,7 @@ void Entity::data_line(utl::base::Data* data){
 
   //---------------------------
 }
-void Entity::data_point(utl::base::Data* data){
+void Entity::data_point(utl::type::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

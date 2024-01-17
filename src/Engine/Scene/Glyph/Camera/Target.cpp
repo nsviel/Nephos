@@ -20,7 +20,7 @@ void Target::create(){
   if(vec_data.size() != 0) return;
   //---------------------------
 
-  utl::base::Data* data = new utl::base::Data();
+  utl::type::Data* data = new utl::type::Data();
   data->draw_line_width = 2;
   data->is_visible = true;
   data->draw_type_name = "line";
@@ -31,7 +31,7 @@ void Target::create(){
   //---------------------------
 }
 void Target::update_glyph(entity::Entity* entity){
-  utl::base::Data* data = vec_data[0];
+  utl::type::Data* data = vec_data[0];
   //---------------------------
 
   if(entity::Camera* camera = dynamic_cast<entity::Camera*>(entity)){
@@ -47,7 +47,7 @@ void Target::update_glyph(entity::Entity* entity){
 
   //---------------------------
 }
-void Target::construct(utl::base::Data* data){
+void Target::construct(utl::type::Data* data){
   vector<vec3>& XYZ = data->xyz;
   vector<vec4>& RGB = data->rgb;
   //---------------------------

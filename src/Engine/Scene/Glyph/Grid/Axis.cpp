@@ -18,7 +18,7 @@ void Axis::create(){
   if(vec_data.size() != 0) return;
   //---------------------------
 
-  utl::base::Data* data = new utl::base::Data();
+  utl::type::Data* data = new utl::type::Data();
   data->draw_line_width = 2;
   data->is_visible = true;
   data->draw_type_name = "line";

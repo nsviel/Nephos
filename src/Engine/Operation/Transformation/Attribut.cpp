@@ -8,7 +8,7 @@ Attribut::Attribut(){}
 Attribut::~Attribut(){}
 
 //Main function
-void Attribut::compute_MinMax(utl::base::Data* data){
+void Attribut::compute_MinMax(utl::type::Data* data){
   vector<vec3>& XYZ = data->xyz;
   if(XYZ.size() == 0) return;
   //---------------------------
@@ -37,7 +37,7 @@ void Attribut::compute_MinMax(utl::base::Data* data){
   data->max = max;
   data->COM = centroid;
 }
-void Attribut::set_unicolor(utl::base::Data* data){
+void Attribut::set_unicolor(utl::type::Data* data){
   //---------------------------
 
   for(int i=0; i<data->rgb.size(); i++){
@@ -46,7 +46,7 @@ void Attribut::set_unicolor(utl::base::Data* data){
 
   //---------------------------
 }
-vector<float> Attribut::retrieve_z_vector(utl::base::Data* data){
+vector<float> Attribut::retrieve_z_vector(utl::type::Data* data){
   vector<vec3>& xyz = data->xyz;
   vector<float> z_vec;
   //---------------------------

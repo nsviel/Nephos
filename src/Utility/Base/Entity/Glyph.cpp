@@ -37,7 +37,7 @@ void Glyph::visibility_entity(bool value){
 
   this->is_visible = value;
   for(int i=0; i<vec_data.size(); i++){
-    utl::base::Data* data = vec_data[i];
+    utl::type::Data* data = vec_data[i];
     data->is_visible = value;
   }
 

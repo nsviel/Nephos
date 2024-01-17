@@ -11,7 +11,6 @@
 namespace utl::base{
   //---------------------------
 
-  class Data;
   class Set;
   class File;
   class Image;

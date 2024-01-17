@@ -34,12 +34,12 @@ public:
   void reset_entity();
   void visibility_entity(bool value);
 
-  inline utl::base::Data* get_data(){return data;}
+  inline utl::type::Data* get_data(){return data;}
 
 public:
   Engine* engine;
 
-  utl::base::Data* data;
+  utl::type::Data* data;
   std::list<entity::Glyph*> list_glyph;
 };
 

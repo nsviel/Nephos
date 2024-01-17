@@ -19,7 +19,7 @@ VK_canvas::~VK_canvas(){}
 
 //Main function
 void VK_canvas::init(){
-  utl::base::Data* data = new utl::base::Data();
+  utl::type::Data* data = new utl::type::Data();
   //---------------------------
 
   //Generic quad coordinates and UV

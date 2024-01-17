@@ -150,7 +150,7 @@ void Scene::remove_object(entity::Object* object){
 }
 
 //Data
-void Scene::update_data(utl::base::Data* data){
+void Scene::update_data(utl::type::Data* data){
   //---------------------------
 
   vk_engine->insert_data_in_engine(data);

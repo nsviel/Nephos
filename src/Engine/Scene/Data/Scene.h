@@ -41,7 +41,7 @@ public:
   void remove_object(entity::Object* object);
 
   //Data
-  void update_data(utl::base::Data* data);
+  void update_data(utl::type::Data* data);
 
 private:
   VK_engine* vk_engine;

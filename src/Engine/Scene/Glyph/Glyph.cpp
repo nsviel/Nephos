@@ -48,7 +48,7 @@ void Glyph::create_glyph_world(){
       sce_database->assign_ID(glyph);
 
       //Glyph data
-      vector<utl::base::Data*> vec_data = glyph->get_vec_data();
+      vector<utl::type::Data*> vec_data = glyph->get_vec_data();
       for(int j=0; j<vec_data.size(); j++){
         sce_database->assign_ID(vec_data[j]);
         vk_engine->insert_data_in_engine(vec_data[j]);
@@ -66,7 +66,7 @@ void Glyph::remove_glyph_world(){
   for(int i=0; i<set_world->list_entity.size(); i++){
     entity::Glyph* glyph = (entity::Glyph*)*next(set_world->list_entity.begin(), i);
 
-    vector<utl::base::Data*> vec_data = glyph->get_vec_data();
+    vector<utl::type::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
       vk_engine->remove_data_in_engine(vec_data[j]);
     }
@@ -94,7 +94,7 @@ void Glyph::create_glyph_object(entity::Object* object){
     sce_database->assign_ID(glyph);
 
     //Glyph data
-    vector<utl::base::Data*> vec_data = glyph->get_vec_data();
+    vector<utl::type::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
       sce_database->assign_ID(vec_data[j]);
       vk_engine->insert_data_in_engine(vec_data[j]);
@@ -109,7 +109,7 @@ void Glyph::update_glyph_object(entity::Object* object){
 
   for(int i=0; i<object->list_glyph.size(); i++){
     entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
-    vector<utl::base::Data*> vec_data = glyph->get_vec_data();
+    vector<utl::type::Data*> vec_data = glyph->get_vec_data();
 
     glyph->update_glyph(object);
     for(int j=0; j<vec_data.size(); j++){
@@ -125,7 +125,7 @@ void Glyph::remove_glyph_object(entity::Object* object){
 
   for(int i=0; i<object->list_glyph.size(); i++){
     entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
-    vector<utl::base::Data*> vec_data = glyph->get_vec_data();
+    vector<utl::type::Data*> vec_data = glyph->get_vec_data();
 
     for(int j=0; j<vec_data.size(); j++){
       vk_engine->remove_data_in_engine(vec_data[j]);
@@ -151,7 +151,7 @@ void Glyph::create_glyph_camera(entity::Camera* camera){
     sce_database->assign_ID(glyph);
 
     //Glyph data
-    vector<utl::base::Data*> vec_data = glyph->get_vec_data();
+    vector<utl::type::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
       sce_database->assign_ID(vec_data[j]);
       vk_engine->insert_data_in_engine(vec_data[j]);

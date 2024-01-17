@@ -11,7 +11,7 @@
 #include <mutex>
 
 
-namespace utl::base{
+namespace utl::type{
 
 //Generique data structure
 struct Data{

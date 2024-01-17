@@ -15,7 +15,7 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Main function
-void Operation::center_object(utl::base::Data* data){
+void Operation::center_object(utl::type::Data* data){
   //---------------------------
 
   ope_attribut->compute_MinMax(data);
@@ -23,7 +23,7 @@ void Operation::center_object(utl::base::Data* data){
 
   //---------------------------
 }
-void Operation::elevate_object(utl::base::Data* data){
+void Operation::elevate_object(utl::type::Data* data){
   //---------------------------
 
   ope_attribut->compute_MinMax(data);
@@ -31,7 +31,7 @@ void Operation::elevate_object(utl::base::Data* data){
 
   //---------------------------
 }
-void Operation::make_rotation_X_90d(utl::base::Data* data, int value){
+void Operation::make_rotation_X_90d(utl::type::Data* data, int value){
   //---------------------------
 
   ope_attribut->compute_MinMax(data);

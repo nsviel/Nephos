@@ -19,7 +19,7 @@ void Plane::create(){
   if(vec_data.size() != 0) return;
   //---------------------------
 
-  utl::base::Data* data = new utl::base::Data();
+  utl::type::Data* data = new utl::type::Data();
   data->is_visible = true;
   data->draw_type_name = "triangle";
   data->unicolor = color;

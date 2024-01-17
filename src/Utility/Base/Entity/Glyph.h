@@ -25,12 +25,12 @@ public:
   virtual void update_glyph(entity::Entity* entity){}
   virtual void reset(){}
 
-  inline vector<utl::base::Data*>& get_vec_data(){return vec_data;}
+  inline vector<utl::type::Data*>& get_vec_data(){return vec_data;}
   inline vec4* get_color(){return &color;}
 
 protected:
   Engine* engine;
-  vector<utl::base::Data*> vec_data;
+  vector<utl::type::Data*> vec_data;
 
   vec4 color;
 };
