@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Type/Namespace.h>
+#include <Utility/Base/Namespace.h>
 #include <vector>
 #include <list>
 #include <string>

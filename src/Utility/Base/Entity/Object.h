@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Namespace.h>
-#include <Utility/Base/Type/Namespace.h>
+#include <Utility/Base/Entity/Namespace.h>
 
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
