@@ -11,7 +11,7 @@ namespace eng::scene{
 Bookmark::Bookmark(eng::scene::Node* node_scene){
   //---------------------------
 
-  this->path_file = "../media/config/bookmark.txt";
+  this->path_bookmark_file = "../media/config/bookmark.txt";
 
   //---------------------------
 }
@@ -25,8 +25,8 @@ void Bookmark::init(){
   this->add_relative_path("../media/point_cloud/dragon.ply");
 
   //Read existing bookmarks
-  file::check_or_create_file(path_file);
-  vector<string> vec_path = file::read_paths_from_file(path_file);
+  file::check_or_create_file(path_bookmark_file);
+  vector<string> vec_path = file::read_paths_from_file(path_bookmark_file);
   for(int i=0; i<vec_path.size(); i++){
     this->add_abs_path(vec_path[i]);
   }
@@ -36,7 +36,7 @@ void Bookmark::init(){
 
 //Item management
 void Bookmark::add_abs_path(string path){
-  if(!file::is_file_exist(path)) return;
+  if(!file::is_file_exist_silent(path)) return;
   //---------------------------
 
   Item item;
@@ -51,7 +51,7 @@ void Bookmark::add_abs_path(string path){
   //---------------------------
 }
 void Bookmark::add_relative_path(string path){
-  if(!file::is_file_exist(path)) return;
+  if(!file::is_file_exist_silent(path)) return;
   //---------------------------
 
   Item item;
@@ -88,7 +88,7 @@ void Bookmark::save_on_file(){
     }
   }
 
-  file::write_paths_to_file(path_file, vec_path);
+  file::write_paths_to_file(path_bookmark_file, vec_path);
 
   //---------------------------
 }

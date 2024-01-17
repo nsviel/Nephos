@@ -34,6 +34,16 @@ namespace file{
     //---------------------------
     return is_exists;
   }
+  bool is_file_exist_silent(std::string path){
+    bool is_exists;
+    //---------------------------
+
+    std::ifstream infile(path.c_str());
+    is_exists = infile.good();
+
+    //---------------------------
+    return is_exists;
+  }
   bool is_device_connected(const std::string& devicePath) {
     int fileDescriptor = open(devicePath.c_str(), O_RDONLY);
 

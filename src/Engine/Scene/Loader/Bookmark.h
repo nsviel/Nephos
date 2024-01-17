@@ -31,7 +31,7 @@ public:
 
 private:
   list<Item> list_bookmark;
-  string path_file;
+  string path_bookmark_file;
 };
 
 }
