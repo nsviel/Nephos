@@ -17,7 +17,6 @@ class Engine;
 
 namespace entity{
 class Glyph;
-class Data;
 
 
 class Object : public entity::Entity
