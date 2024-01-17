@@ -91,10 +91,10 @@ void Sensor::update_entity(){
 void Sensor::remove_entity(){
   eng::capture::Node* node_capture = engine->get_node_capture();
   k4n::Node* node_kinect = node_capture->get_node_kinect();
-  k4n::dev::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
+  k4n::dev::Swarm* k4n_swarm = node_kinect->get_k4n_swarm();
   //---------------------------
 
-  k4a_swarm->close_sensor(this, master);
+  k4n_swarm->close_sensor(master, this);
 
   //---------------------------
 }

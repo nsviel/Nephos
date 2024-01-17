@@ -17,7 +17,7 @@ Stream::Stream(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   this->node_kinect = node_capture->get_node_kinect();
   this->k4a_depth = new k4n::data::Depth();
   this->k4a_infrared = new k4n::data::Infrared();
-  this->k4a_swarm = node_kinect->get_k4a_swarm();
+  this->k4n_swarm = node_kinect->get_k4n_swarm();
   this->gui = gui;
 
   this->vec_gui_stream.push_back(new gui::media::Stream(gui));
@@ -31,7 +31,7 @@ Stream::~Stream(){}
 
 //Main function
 void Stream::run_panel(){
-  k4n::dev::Sensor* sensor = k4a_swarm->get_selected_sensor();
+  k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
   //---------------------------
 
   if(*show_window && sensor != nullptr){
@@ -57,7 +57,7 @@ void Stream::design_panel(){
 
 //All devices
 void Stream::vec_device_tab(){
-  k4n::dev::Sensor* sensor = k4a_swarm->get_selected_sensor();
+  k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
   k4n::dev::Master* master = sensor->master;
   //---------------------------
 

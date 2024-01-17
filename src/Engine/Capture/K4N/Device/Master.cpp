@@ -39,12 +39,12 @@ void Master::update_entity(){
 void Master::remove_entity(){
   eng::capture::Node* node_capture = engine->get_node_capture();
   k4n::Node* node_kinect = node_capture->get_node_kinect();
-  k4n::dev::Swarm* k4a_swarm = node_kinect->get_k4a_swarm();
+  k4n::dev::Swarm* k4n_swarm = node_kinect->get_k4n_swarm();
   //---------------------------
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* device = *next(list_sensor.begin(), i);
-    //k4a_swarm->close_sensor(device);
+    //k4n_swarm->close_sensor(device);
   }
 
   //---------------------------

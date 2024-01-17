@@ -15,7 +15,7 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
   eng::capture::Node* node_capture = engine->get_node_capture();
   k4n::Node* node_kinect = node_capture->get_node_kinect();
 
-  this->k4a_swarm = node_kinect->get_k4a_swarm();
+  this->k4n_swarm = node_kinect->get_k4n_swarm();
   this->kin_capture = new gui::kinect::Capture(node_kinect);
   this->kin_playback = new gui::kinect::Playback(node_kinect);
   this->kin_recorder = new gui::kinect::Recorder(node_kinect);
@@ -28,7 +28,7 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
+  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   //---------------------------
 
   if(*show_window && k4n_sensor != nullptr){
@@ -61,7 +61,7 @@ void Panel::design_panel(){
 
 //Subfunction
 void Panel::show_info(){
-  k4n::dev::Sensor* k4n_sensor = k4a_swarm->get_selected_sensor();
+  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 

@@ -20,10 +20,10 @@ public:
   void init();
   void loop();
 
-  inline k4n::dev::Swarm* get_k4a_swarm(){return k4a_swarm;}
+  inline k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
 
 private:
-  k4n::dev::Swarm* k4a_swarm;
+  k4n::dev::Swarm* k4n_swarm;
 };
 
 }

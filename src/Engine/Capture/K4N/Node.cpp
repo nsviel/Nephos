@@ -9,7 +9,7 @@ namespace k4n{
 Node::Node(Engine* engine){
   //---------------------------
 
-  this->k4a_swarm = new k4n::dev::Swarm(engine);
+  this->k4n_swarm = new k4n::dev::Swarm(engine);
 
   //---------------------------
 }
@@ -19,15 +19,15 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  k4a_swarm->init_scene();
+  k4n_swarm->init_scene();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  k4a_swarm->refresh_connected_sensor();
-  k4a_swarm->draw_all_clouds();
+  k4n_swarm->refresh_connected_sensor();
+  k4n_swarm->draw_all_clouds();
 
   //---------------------------
 }

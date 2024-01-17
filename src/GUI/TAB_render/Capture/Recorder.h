@@ -22,7 +22,7 @@ public:
 
 private:
   k4n::Node* node_kinect;
-  k4n::dev::Swarm* k4a_swarm;
+  k4n::dev::Swarm* k4n_swarm;
 };
 
 }
