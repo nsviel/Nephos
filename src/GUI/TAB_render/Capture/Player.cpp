@@ -71,14 +71,12 @@ void Player::player_control(k4n::dev::Device* device){
   //----------------------------
 }
 void Player::player_slider(k4n::dev::Device* device){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-  if(k4n_sensor == nullptr) return;
   //---------------------------
 
   ImVec2 available = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(available.x);
-  if(ImGui::SliderFloat("##player_slider", &k4n_sensor->player.ts_cur, k4n_sensor->player.ts_beg, k4n_sensor->player.ts_end, "%.2f s")){
-    k4n_sensor->player.ts_seek = k4n_sensor->player.ts_cur;
+  if(ImGui::SliderFloat("##player_slider", &device->player.ts_cur, device->player.ts_beg, device->player.ts_end, "%.2f s")){
+    device->set_desired_timestamp(device->player.ts_cur);
   }
 
   //---------------------------

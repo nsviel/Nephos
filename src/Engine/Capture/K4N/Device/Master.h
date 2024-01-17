@@ -23,6 +23,7 @@ public:
   //Main function
   void add_sensor(k4n::dev::Sensor* sensor);
   void set_pause(bool value);
+  void set_desired_timestamp(float value);
 
   //Entity function
   void update_entity();
