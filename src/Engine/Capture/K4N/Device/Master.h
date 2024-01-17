@@ -31,12 +31,6 @@ public:
   void set_restart();
   void set_record();
 
-  //Entity function
-  void update_entity();
-  void remove_entity();
-  void reset_entity();
-  void visibility_entity(bool value);
-
   inline std::list<entity::Entity*> get_list_entity(){return list<entity::Entity*>(list_sensor.begin(), list_sensor.end());}
 
 public:
