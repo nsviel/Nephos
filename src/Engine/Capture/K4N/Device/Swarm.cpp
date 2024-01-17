@@ -42,14 +42,14 @@ void Swarm::init_scene(){
   vec_path.push_back("/home/aether/Desktop/versaille_2.mkv");
 
   //If no real device create virtual one
-  string name = info::get_name_from_path(path);
-  k4n::dev::Master* master = get_or_create_master(name);
-  uint32_t nb_device = k4a_device_get_installed_count();
-  if(nb_device == 0 && nb_dev_playback == 0){
-    for(int i=0; i<vec_path.size(); i++){
-      string path = vec_path[i];
-      this->create_sensor_playback(master, path);
-    }
+  k4n::dev::Master* master = get_or_create_master("versaille");
+  uint32_t current_nb_dev = k4a_device_get_installed_count();
+  if(current_nb_dev != 0) return;
+
+  //Create playback list
+  for(int i=0; i<vec_path.size(); i++){
+    string path = vec_path[i];
+    this->create_sensor_playback(master, path);
   }
 
   //---------------------------
@@ -60,9 +60,10 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
   if(!file::is_file_exist(path)) return;
   //---------------------------
 
+  int index = nb_dev_playback++;
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
-  sensor->name = "playback_" + to_string(nb_dev_capture);
-  sensor->device.index = nb_dev_capture;
+  sensor->name = "playback_" + to_string(index);
+  sensor->device.index = index;
   sensor->device.is_playback = true;
   sensor->playback.path = path;
   sensor->playback.filename = info::get_filename_from_path(path);
@@ -70,7 +71,6 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
 
   this->selected_sensor = sensor;
   master->list_sensor.push_back(sensor);
-  nb_dev_playback++;
 
   sensor->init();
   sensor->run_playback(path);
@@ -85,9 +85,10 @@ void Swarm::create_sensor_playback(string path){
 
   k4n::dev::Master* master = selected_master;
 
+  int index = nb_dev_playback++;
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
-  sensor->name = "playback_" + to_string(nb_dev_capture);
-  sensor->device.index = nb_dev_capture;
+  sensor->name = "playback_" + to_string(index);
+  sensor->device.index = index;
   sensor->device.is_playback = true;
   sensor->playback.path = path;
   sensor->playback.filename = info::get_filename_from_path(path);
@@ -95,7 +96,6 @@ void Swarm::create_sensor_playback(string path){
 
   this->selected_sensor = sensor;
   master->list_sensor.push_back(sensor);
-  nb_dev_playback++;
 
   sensor->init();
   sensor->run_playback(path);
@@ -107,15 +107,15 @@ void Swarm::create_sensor_playback(string path){
 void Swarm::create_sensor_capture(k4n::dev::Master* master){
   //---------------------------
 
+  int index = nb_dev_capture++;
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
-  sensor->name = "device_" + to_string(nb_dev_capture);
-  sensor->device.index = nb_dev_capture;
+  sensor->name = "device_" + to_string(index);
+  sensor->device.index = index;
   sensor->device.is_playback = false;
   sensor->master = master;
 
   this->selected_sensor = sensor;
   master->list_sensor.push_back(sensor);
-  nb_dev_capture++;
 
   sensor->init();
   sensor->run_capture();
