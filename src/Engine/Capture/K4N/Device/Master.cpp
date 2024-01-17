@@ -1,17 +1,16 @@
 #include "Master.h"
 
-#include <Engine/Engine.h>
 #include <Engine/Capture/K4N/Utils/Namespace.h>
 
 namespace k4n::dev{
 
 
 //Constructor / Destructor
-Master::Master(){//Engine* engine){
+Master::Master(){
   //---------------------------
 
   //this->engine = engine;
-  this->device_type = "k4n::device::Master";
+//  this->type = "k4n::device::Master";
   this->icon = ICON_FA_TRAIN;
 
 
@@ -28,6 +27,8 @@ void Master::insert_sensor(k4n::dev::Sensor* sensor){
   this->list_sensor.push_back(sensor);
   this->selected_entity = sensor;
   this->nb_entity++;
+
+  this->update_player();
 
   //---------------------------
 }

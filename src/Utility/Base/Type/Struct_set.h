@@ -45,6 +45,7 @@ struct Set
   entity::Entity* selected_entity = nullptr;
   std::list<entity::Entity*> list_entity;
   std::list<utl::base::Set*> list_set;
+  utl::base::Set* set_parent = nullptr;
 
   //---------------------------
 };

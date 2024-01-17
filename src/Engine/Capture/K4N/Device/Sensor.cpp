@@ -21,7 +21,7 @@ Sensor::Sensor(Engine* engine){
   this->sce_glyph = node_scene->get_scene_glyph();
   this->ope_transform = new eng::ope::Transformation();
 
-  this->device_type = "k4n::device::Sensor";
+  this->type = "k4n::device::Sensor";
 
   //---------------------------
 }

@@ -6,8 +6,6 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Base/Entity/Struct_entity.h>
 
-class Engine;
-
 namespace k4n::dev{
 class Sensor;
 
@@ -16,7 +14,7 @@ class Master : public utl::base::Set, public k4n::dev::Device
 {
 public:
   //Constructor / Destructor
-  Master();//Engine* engine);
+  Master();
   ~Master();
 
 public:
@@ -36,7 +34,7 @@ public:
   list<k4n::dev::Sensor*> list_sensor;
 
 private:
-//  Engine* engine;
+
 };
 
 }

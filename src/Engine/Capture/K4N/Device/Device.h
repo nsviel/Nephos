@@ -21,8 +21,6 @@ struct Device{
   k4n::structure::Recorder recorder;
   k4n::structure::Playback playback;
 
-  string device_type = "";
-
   //---------------------------
 };
 

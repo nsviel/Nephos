@@ -99,7 +99,7 @@ void Panel::show_info(k4n::dev::Device* device){
     //Type
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Type"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", device->device_type.c_str());
+    //ImGui::TextColored(color, "%s", device->type.c_str());
 
     //Duration
     ImGui::TableNextRow(); ImGui::TableNextColumn();
