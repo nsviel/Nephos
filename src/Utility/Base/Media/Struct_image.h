@@ -4,7 +4,7 @@
 #include <vector>
 
 
-namespace utl::base{
+namespace utl::media{
 
 struct Image{
   //---------------------------

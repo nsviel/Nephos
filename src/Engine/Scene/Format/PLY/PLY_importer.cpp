@@ -6,10 +6,10 @@ PLY_importer::PLY_importer(){}
 PLY_importer::~PLY_importer(){}
 
 //Main loader functions
-utl::base::File* PLY_importer::Loader(std::string path){
+utl::media::File* PLY_importer::Loader(std::string path){
   //---------------------------
 
-  data = new utl::base::File();
+  data = new utl::media::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
   data->draw_type_name = "point";

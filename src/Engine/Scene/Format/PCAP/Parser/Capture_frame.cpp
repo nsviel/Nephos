@@ -5,15 +5,15 @@
 Capture_frame::Capture_frame(){
   //---------------------------
 
-  this->frame_onrun = new utl::base::File();
-  this->frame_ended = new utl::base::File();
+  this->frame_onrun = new utl::media::File();
+  this->frame_ended = new utl::media::File();
 
   //---------------------------
 }
 Capture_frame::~Capture_frame(){}
 
 //Main function
-bool Capture_frame::build_frame(utl::base::File* data_udp){
+bool Capture_frame::build_frame(utl::media::File* data_udp){
   bool frame_ended = false;
   //---------------------------
 
@@ -65,14 +65,14 @@ void Capture_frame::reset_frame(){
   delete frame_onrun;
   delete frame_ended;
 
-  this->frame_onrun = new utl::base::File();
-  this->frame_ended = new utl::base::File();
+  this->frame_onrun = new utl::media::File();
+  this->frame_ended = new utl::media::File();
 
   //---------------------------
 }
 
 //Subfunctions
-void Capture_frame::add_cloudsToFrame(utl::base::File* data_udp){
+void Capture_frame::add_cloudsToFrame(utl::media::File* data_udp){
   //---------------------------
 
   for(int i=0; i<data_udp->xyz.size(); i++){
@@ -85,7 +85,7 @@ void Capture_frame::add_cloudsToFrame(utl::base::File* data_udp){
 
   //---------------------------
 }
-void Capture_frame::end_cloudsToFrame(utl::base::File* data_udp, int index){
+void Capture_frame::end_cloudsToFrame(utl::media::File* data_udp, int index){
   //---------------------------
 
   for(int i=0; i<index; i++){
@@ -98,7 +98,7 @@ void Capture_frame::end_cloudsToFrame(utl::base::File* data_udp, int index){
 
   *frame_ended = *frame_onrun;
   delete frame_onrun;
-  frame_onrun = new utl::base::File();
+  frame_onrun = new utl::media::File();
 
   for(int i=index; i<data_udp->xyz.size(); i++){
     frame_onrun->xyz.push_back(data_udp->xyz[i]);

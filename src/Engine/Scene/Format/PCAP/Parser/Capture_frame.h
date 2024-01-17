@@ -17,16 +17,16 @@ public:
 
 public:
   //Main functions
-  bool build_frame(utl::base::File* cloud);
+  bool build_frame(utl::media::File* cloud);
   void reset_frame();
 
   //Subfunctions
-  void add_cloudsToFrame(utl::base::File* cloud);
-  void end_cloudsToFrame(utl::base::File* cloud, int index);
+  void add_cloudsToFrame(utl::media::File* cloud);
+  void end_cloudsToFrame(utl::media::File* cloud, int index);
 
-  inline utl::base::File* get_endedFrame(){return frame_ended;}
+  inline utl::media::File* get_endedFrame(){return frame_ended;}
 
 private:
-  utl::base::File* frame_onrun;
-  utl::base::File* frame_ended;
+  utl::media::File* frame_onrun;
+  utl::media::File* frame_ended;
 };

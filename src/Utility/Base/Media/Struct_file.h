@@ -5,7 +5,7 @@
 #include <vector>
 
 
-namespace utl::base{
+namespace utl::media{
 
 //Generique structure to parse file point clouds
 struct File{

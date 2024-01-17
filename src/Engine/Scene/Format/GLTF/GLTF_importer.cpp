@@ -15,8 +15,8 @@ GLTF_importer::GLTF_importer(){
 GLTF_importer::~GLTF_importer(){}
 
 //Main load functions
-utl::base::File* GLTF_importer::Loader(std::string path){
-  utl::base::File* data = new utl::base::File();
+utl::media::File* GLTF_importer::Loader(std::string path){
+  utl::media::File* data = new utl::media::File();
   //---------------------------
 
   data->name = info::get_name_from_path(path);

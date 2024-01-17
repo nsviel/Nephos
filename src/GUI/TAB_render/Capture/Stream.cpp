@@ -131,7 +131,7 @@ void Stream::draw_camera_color(k4n::dev::Sensor* sensor, ImVec2 image_size){
   k4n::structure::Image* data_color = &sensor->color.image;
   //---------------------------
 
-  utl::base::Image struct_image;
+  utl::media::Image struct_image;
   struct_image.data = data_color->data;
   struct_image.width = data_color->width;
   struct_image.height = data_color->height;
@@ -157,7 +157,7 @@ void Stream::draw_camera_color_from_depth(k4n::dev::Sensor* sensor, ImVec2 image
 
   }*/
 
-  utl::base::Image struct_image;
+  utl::media::Image struct_image;
   struct_image.data = data_color->data;
   struct_image.width = data_color->width;
   struct_image.height = data_color->height;
@@ -175,7 +175,7 @@ void Stream::draw_camera_depth(k4n::dev::Sensor* sensor, ImVec2 image_size){
 
   std::vector<uint8_t> new_buffer = k4a_depth->convert_depth_into_color(sensor);
 
-  utl::base::Image struct_image;
+  utl::media::Image struct_image;
   struct_image.data = new_buffer;
   struct_image.width = data_depth->width;
   struct_image.height = data_depth->height;
@@ -193,7 +193,7 @@ void Stream::draw_camera_ir(k4n::dev::Sensor* sensor, ImVec2 image_size){
 
   std::vector<uint8_t> new_buffer = k4a_infrared->convert_ir_into_color(sensor);
 
-  utl::base::Image struct_image;
+  utl::media::Image struct_image;
   struct_image.data = new_buffer;
   struct_image.width = data_ir->width;
   struct_image.height = data_ir->height;

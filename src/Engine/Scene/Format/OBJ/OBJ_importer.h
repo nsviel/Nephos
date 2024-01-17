@@ -36,16 +36,16 @@ public:
 
 public:
   //Main function
-  utl::base::File* Loader(std::string filePath);
+  utl::media::File* Loader(std::string filePath);
 
   //Subfunction
   void init_params();
   std::vector<Vertex> get_data_from_file(std::istream& in);
   void parse_mtl(std::string path_obj);
-  void fill_data_file(utl::base::File* data, std::vector<Vertex>& vertex_vec);
+  void fill_data_file(utl::media::File* data, std::vector<Vertex>& vertex_vec);
 
 private:
-  utl::base::File* data_out;
+  utl::media::File* data_out;
   std::string file_mtl;
   std::string file_texture;
   bool is_face;

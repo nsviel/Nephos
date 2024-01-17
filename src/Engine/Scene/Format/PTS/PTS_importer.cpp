@@ -17,10 +17,10 @@ PTS_importer::PTS_importer(){
 PTS_importer::~PTS_importer(){}
 
 //Main load functions
-utl::base::File* PTS_importer::Loader(std::string path){
+utl::media::File* PTS_importer::Loader(std::string path){
   //---------------------------
 
-  utl::base::File* data = new utl::base::File();
+  utl::media::File* data = new utl::media::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
   data->draw_type_name = "point";
@@ -52,10 +52,10 @@ utl::base::File* PTS_importer::Loader(std::string path){
   //---------------------------
   return data;
 }
-utl::base::File* PTS_importer::Loader(std::string path, int lmin, int lmax){
+utl::media::File* PTS_importer::Loader(std::string path, int lmin, int lmax){
   //---------------------------
 
-  utl::base::File* data = new utl::base::File();
+  utl::media::File* data = new utl::media::File();
   data->name = info::get_name_from_path(path);
   data->path_file = path;
   data->draw_type_name = "point";
@@ -250,7 +250,7 @@ void PTS_importer::Loader_configuration(){
   //---------------------------
   endParameters = true;
 }
-void PTS_importer::Loader_data(utl::base::File* data, int FILE_config){
+void PTS_importer::Loader_data(utl::media::File* data, int FILE_config){
   std::istringstream iss(line);
   float x,y,z,r,g,b,I,nx,ny,nz;
   //---------------------------

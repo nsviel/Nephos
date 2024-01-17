@@ -8,7 +8,7 @@
 namespace image{
   //---------------------------
 
-  utl::base::Image load_image(std::string path);
+  utl::media::Image load_image(std::string path);
 
   //---------------------------
 }
