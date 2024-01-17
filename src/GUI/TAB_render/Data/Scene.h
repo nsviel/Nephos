@@ -28,17 +28,13 @@ public:
   //Subfunction
   void draw_button();
   void draw_window_background();
-  void draw_tree_view();
-  int data_node_tree(utl::base::Set* set);
-  void display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row);
+  void draw_file_tree();
 
-  //Set function
+  //File tree
+  int draw_tree(utl::base::Set* set);
   void set_double_click(utl::base::Set* set);
   void set_open(utl::base::Set* set, int& nb_row);
-
-  //Entity function
-  void entity_open(utl::base::Set* set, entity::Entity* entity);
-  void entity_click(utl::base::Set* set, entity::Entity* entity);
+  void display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row);
 
   bool show_panel_entity   = false;
   bool show_panel_set      = false;

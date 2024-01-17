@@ -18,6 +18,14 @@ Set::Set(std::string name){
 }
 
 //Misc function
+void Set::add_set(utl::base::Set* set){
+  //---------------------------
+
+  list_set.push_back(set);
+  this->nb_set++;
+
+  //---------------------------
+}
 void Set::add_new_set(std::string name){
   //---------------------------
 

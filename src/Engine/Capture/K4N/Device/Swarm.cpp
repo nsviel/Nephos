@@ -95,7 +95,7 @@ void Swarm::create_sensor_playback(string path){
   sensor->master = master;
 
   this->selected_sensor = sensor;
-  master->add_sensor(sensor);
+  master->insert_entity(sensor);
 
   sensor->init();
   sensor->run_playback(path);

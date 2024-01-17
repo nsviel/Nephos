@@ -87,7 +87,7 @@ void Scene::insert_set_scene(utl::base::Set* set){
   utl::base::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
-  set_scene->list_set.push_back(set);
+  set_scene->add_set(set);
 
   //---------------------------
 }

@@ -12,6 +12,7 @@ Master::Master(){//Engine* engine){
 
   //this->engine = engine;
   this->device_type = "k4n::device::Master";
+  this->icon = ICON_FA_TRAIN;
 
 
   //---------------------------

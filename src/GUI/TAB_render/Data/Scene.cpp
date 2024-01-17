@@ -35,7 +35,7 @@ void Scene::design_panel(){
 
   this->draw_button();
   this->draw_window_background();
-  this->draw_tree_view();
+  this->draw_file_tree();
 
   //---------------------------
 }
@@ -97,19 +97,18 @@ void Scene::draw_window_background(){
   int row_display_start;
   int row_display_end;
   ImGui::CalcListClipping(row_count, line_height, &row_display_start, &row_display_end);
-  for (int row_n = row_display_start; row_n < row_display_end; row_n++)
-  {
-      ImU32 col = (row_n & 1) ? col_odd : col_even;
-      if ((col & IM_COL32_A_MASK) == 0)
-          continue;
-      float y1 = y0 + (line_height * row_n);
-      float y2 = y1 + line_height;
-      draw_list->AddRectFilled(ImVec2(x1, y1), ImVec2(x2, y2), col);
+  for (int row_n = row_display_start; row_n < row_display_end; row_n++){
+    ImU32 col = (row_n & 1) ? col_odd : col_even;
+    if ((col & IM_COL32_A_MASK) == 0)
+      continue;
+    float y1 = y0 + (line_height * row_n);
+    float y2 = y1 + line_height;
+    draw_list->AddRectFilled(ImVec2(x1, y1), ImVec2(x2, y2), col);
   }
 
   //-------------------------------
 }
-void Scene::draw_tree_view(){
+void Scene::draw_file_tree(){
   utl::base::Set* data_set = sce_database->get_data_set();
   //---------------------------
 
@@ -127,12 +126,12 @@ void Scene::draw_tree_view(){
     for(int row_i=0; row_i<data_set->list_set.size(); row_i++){
       utl::base::Set* set = *next(data_set->list_set.begin(), row_i);
 
-      if(set->nb_entity != 0){
+      if(set->nb_entity != 0 || set->nb_set != 0){
         ImGui::TableNextRow();
         ImGui::TableNextColumn();
 
         ImGui::PushID(set->name.c_str());
-        this->data_node_tree(set);
+        this->draw_tree(set);
         ImGui::PopID();
       }
     }
@@ -143,7 +142,9 @@ void Scene::draw_tree_view(){
 
   //---------------------------
 }
-int Scene::data_node_tree(utl::base::Set* set) {
+
+//File tree
+int Scene::draw_tree(utl::base::Set* set) {
   int nb_row = 0;
   //---------------------------
 
@@ -153,7 +154,7 @@ int Scene::data_node_tree(utl::base::Set* set) {
   flag_node |= set->name != "World" ? ImGuiTreeNodeFlags_DefaultOpen : 0;
 
   // Set nodes
-  string name = ICON_FA_FOLDER + (string)"   " + set->name;
+  string name = set->icon + "   " + set->name;
   bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag_node);
   this->set_double_click(set);
   if(is_node_open){
@@ -164,34 +165,6 @@ int Scene::data_node_tree(utl::base::Set* set) {
   //---------------------------
   return nb_row;
 }
-void Scene::display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row){
-  bool has_subentity = (entity->get_vec_entity().size() == 0 && entity->get_list_entity().size() == 0) ? false : true;
-  //---------------------------
-
-  ImGui::TableNextRow();
-  ImGui::TableNextColumn();
-  nb_row++;
-
-  ImGuiTreeNodeFlags flag_node;
-  flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
-  flag_node |= ImGuiTreeNodeFlags_DefaultOpen;
-  flag_node |= (entity == set->selected_entity && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
-  flag_node |= has_subentity ? 0 : ImGuiTreeNodeFlags_Leaf;
-
-  // Display leaf
-  string icon = has_subentity ? ICON_FA_TRAIN : ICON_FA_FILE_O;
-  string name = icon + "   " + entity->name;
-  bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag_node);
-  this->entity_click(set, entity);
-  if(is_node_open){
-    this->entity_open(set, entity);
-    ImGui::TreePop();
-  }
-
-  //---------------------------
-}
-
-//Set function
 void Scene::set_double_click(utl::base::Set* set){
   //---------------------------
 
@@ -206,6 +179,13 @@ void Scene::set_double_click(utl::base::Set* set){
 void Scene::set_open(utl::base::Set* set, int& nb_row){
   //---------------------------
 
+  ImGuiTreeNodeFlags flag_leaf;
+  flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
+  flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
+  flag_leaf |= ImGuiTreeNodeFlags_Leaf;
+  flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
+  flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
+
   for(int i=0; i<set->list_entity.size(); i++){
     entity::Entity* entity = *next(set->list_entity.begin(), i);
 
@@ -214,17 +194,17 @@ void Scene::set_open(utl::base::Set* set, int& nb_row){
 
   // Recursive call for nested sets
   for(utl::base::Set* subset : set->list_set) {
-    nb_row += data_node_tree(subset);
+    nb_row += draw_tree(subset);
   }
 
   //---------------------------
 }
-
-//Entity function
-void Scene::entity_open(utl::base::Set* set, entity::Entity* entity){
-  vector<entity::Entity*> vec_entity = entity->get_vec_entity();
-  list<entity::Entity*> list_entity = entity->get_list_entity();
+void Scene::display_entity(utl::base::Set* set, entity::Entity* entity, int& nb_row){
   //---------------------------
+
+  ImGui::TableNextRow();
+  ImGui::TableNextColumn();
+  nb_row++;
 
   ImGuiTreeNodeFlags flag_leaf;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
@@ -232,27 +212,19 @@ void Scene::entity_open(utl::base::Set* set, entity::Entity* entity){
   flag_leaf |= ImGuiTreeNodeFlags_Leaf;
   flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
   flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
+  flag_leaf |= (entity == set->selected_entity && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
 
-  for(int i=0; i<list_entity.size(); i++){
-    entity::Entity* entity = *next(list_entity.begin(), i);
-    flag_leaf |= (entity == set->selected_entity && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
+  // Display leaf
+  string icon = ICON_FA_FILE_O;
+  string name = icon + "   " + entity->name;
+  ImGui::TreeNodeEx(name.c_str(), flag_leaf);
 
-    string name = ICON_FA_FILE_O + (string)"   " + entity->name;
-    ImGui::TreeNodeEx(name.c_str(), flag_leaf);
-    this->entity_click(set, entity);
-  }
-
-  //---------------------------
-}
-void Scene::entity_click(utl::base::Set* set, entity::Entity* entity){
-  //---------------------------
-
-  // If item clicked
+  // If entity clicked
   if (ImGui::IsItemClicked()) {
     set->selected_entity = entity;
   }
 
-  // If item double-clicked
+  // If entity double-clicked
   if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
     rnd_object->set_entity(entity);
     this->show_panel_entity = true;

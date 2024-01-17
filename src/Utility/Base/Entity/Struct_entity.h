@@ -18,8 +18,6 @@ struct Entity
   virtual void reset_entity(){}
   virtual void visibility_entity(bool value){}
   virtual utl::base::Data* get_data(){return nullptr;}
-  virtual std::vector<entity::Entity*> get_vec_entity(){return std::vector<entity::Entity*>();}
-  virtual std::list<entity::Entity*> get_list_entity(){return std::list<entity::Entity*>();}
 
   int UID = -1;
   bool is_suppressible = true;
