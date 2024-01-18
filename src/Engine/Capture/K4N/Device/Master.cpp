@@ -12,6 +12,7 @@ Master::Master(){
   //this->engine = engine;
   this->type = "k4n::device::Master";
   this->icon = ICON_FA_USER;
+  this->is_locked = true;
   this->is_suppressible = true;
 
   //---------------------------

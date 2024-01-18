@@ -14,7 +14,7 @@ file(GLOB_RECURSE ALL_SOURCES
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
-add_subdirectory(Capture/json)
+
 #-----------------
 # Dependencies
 #-----------------

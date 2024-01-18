@@ -20,7 +20,8 @@ public:
 
 public:
   //Main function
-  void truc(string path);
+  mat4 get_matrix_from_file(string path);
+  bool is_json_file(const std::string& path);
 
 private:
 
