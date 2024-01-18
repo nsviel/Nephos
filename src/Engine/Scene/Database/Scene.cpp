@@ -65,6 +65,25 @@ utl::type::Entity* Scene::import_entity(std::string path){
   set_scene->insert_entity(entity);
   this->assign_entity_UID(entity);
 
+  //If object; create dedicated glyphs
+  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
+    sce_glyph->create_glyph_object(object);
+  }
+
+  //---------------------------
+  return entity;
+}
+void Scene::import_entity(utl::type::Entity* entity){
+  //---------------------------
+
+  set_scene->insert_entity(entity);
+  this->assign_entity_UID(entity);
+
+  //If object; create dedicated glyphs
+  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
+    sce_glyph->create_glyph_object(object);
+  }
+
   //---------------------------
   return entity;
 }
@@ -100,7 +119,7 @@ void Scene::insert_object(entity::Object* object){
   //---------------------------
 
   sce_database->assign_ID(object);
-  vk_engine->insert_data_in_engine(object->data);
+  vk_engine->insert_data_in_engine(object->get_data());
   sce_glyph->create_glyph_object(object);
 
   //---------------------------
@@ -109,7 +128,7 @@ void Scene::remove_object(entity::Object* object){
   //---------------------------
 
   sce_glyph->remove_glyph_object(object);
-  vk_engine->remove_data_in_engine(object->data);
+  vk_engine->remove_data_in_engine(object->get_data());
 
   //---------------------------
 }
