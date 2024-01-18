@@ -25,7 +25,8 @@ struct Set
   void add_new_set(std::string name);
   void select_next_entity();
   void insert_entity(utl::type::Entity* entity);
-  void remove_entity(utl::type::Entity* entity);
+  void delete_entity(utl::type::Entity* entity);
+  void delete_entity_all();
 
   //Parameter
   void set_visibility(bool value);

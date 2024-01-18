@@ -81,7 +81,7 @@ void Set::select_next_entity(){
     for (int i = 0; i < list_entity.size(); i++) {
       utl::type::Entity* entity = *next(list_entity.begin(), i);
 
-      if (selected_entity->UID == entity->UID) {
+      if(selected_entity->UID == entity->UID){
         utl::type::Entity* next_entity;
 
         if ((i + 1) < list_entity.size()) {
@@ -115,13 +115,42 @@ void Set::insert_entity(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Set::remove_entity(utl::type::Entity* entity){
+void Set::delete_entity(utl::type::Entity* entity){
   //---------------------------
 
-  this->list_entity.remove(entity);
-  this->nb_entity--;
-  if(list_entity.size() == 0){
-    this->selected_entity = nullptr;
+  // Check if the current set has the query entity
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
+
+    if(selected_entity->UID == entity->UID){
+      this->list_entity.remove(entity);
+      this->nb_entity--;
+      entity->remove_entity();
+    }
+  }
+
+  // Recursively call delete_entity_recursive for each nested set
+  for(utl::type::Set* subset : list_set){
+    subset->delete_entity(entity);
+  }
+
+  //---------------------------
+}
+void Set::delete_entity_all(){
+  //---------------------------
+
+  // Check if the current set has the query entity
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
+
+    this->list_entity.remove(entity);
+    this->nb_entity--;
+    entity->remove_entity();
+  }
+
+  // Recursively call delete_entity_recursive for each nested set
+  for(utl::type::Set* subset : list_set){
+    subset->delete_entity_all();
   }
 
   //---------------------------

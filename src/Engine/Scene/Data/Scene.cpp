@@ -65,57 +65,36 @@ utl::type::Entity* Scene::import_entity(std::string path){
 
   utl::type::Entity* entity = sce_loader->load_entity(path);
   set_scene->insert_entity(entity);
-  sce_database->assign_ID(entity);
+  this->assign_entity_UID(entity);
+  this->selected_entity = entity;
 
   //---------------------------
   return entity;
 }
-void Scene::insert_set_scene(utl::type::Set* set){
-  utl::type::Set* data_set = sce_database->get_data_set();
-  utl::type::Set* set_scene = data_set->get_set("Scene");
-  //---------------------------
-
-  set_scene->add_set(set);
-
-  //---------------------------
-}
 void Scene::delete_entity(utl::type::Entity* entity){
-  utl::type::Set* data_set = sce_database->get_data_set();
-  utl::type::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
   //Selected next entity
   set_scene->select_next_entity();
 
   //Delete it from database and engine
-  for(int i=0; i<set_scene->list_entity.size(); i++){
-    utl::type::Entity* entity_scene = *next(set_scene->list_entity.begin(),i);
-
-    //Check if entity is present in the scene
-    if(entity->UID == entity_scene->UID){
-      set_scene->remove_entity(entity);
-      entity->remove_entity();
-    }
-  }
+  set_scene->delete_entity(entity);
 
   //---------------------------
 }
 void Scene::delete_entity_all(){
-  utl::type::Set* data_set = sce_database->get_data_set();
-  utl::type::Set* set_scene = data_set->get_set("Scene");
   //---------------------------
 
-  for(int i=0; i<set_scene->list_entity.size(); i++){
-    utl::type::Entity* entity = *next(set_scene->list_entity.begin(),i);
-
-    set_scene->remove_entity(entity);
-    entity->remove_entity();
-  }
+  set_scene->delete_entity_all();
 
   //---------------------------
 }
-void Scene::assign_UID(utl::type::Entity* entity){
+void Scene::assign_entity_UID(utl::type::Entity* entity){
+  //---------------------------
+
   sce_database->assign_ID(entity);
+
+  //---------------------------
 }
 
 //Object
