@@ -24,9 +24,13 @@ Swarm::~Swarm(){}
 void Swarm::init_scene(){
   //---------------------------
 
-  vector<string> vec_path;
-  vec_path.push_back("/home/aether/Desktop/versaille_1.mkv");
-  vec_path.push_back("/home/aether/Desktop/versaille_2.mkv");
+  vector<string> vec_path_file;
+  vec_path_file.push_back("/home/aether/Desktop/versaille_1.mkv");
+  vec_path_file.push_back("/home/aether/Desktop/versaille_2.mkv");
+
+  vector<string> vec_path_transfo;
+  vec_path_transfo.push_back("/home/aether/Desktop/versaille_1.json");
+  vec_path_transfo.push_back("/home/aether/Desktop/versaille_2.json");
 
   //If no real device create virtual one
   k4n::dev::Master* master = get_or_create_master("versaille");
@@ -34,15 +38,38 @@ void Swarm::init_scene(){
   if(current_nb_dev != 0) return;
 
   //Create playback list
-  for(int i=0; i<vec_path.size(); i++){
-    string path = vec_path[i];
-    this->create_sensor_playback(master, path);
+  for(int i=0; i<vec_path_file.size(); i++){
+    this->create_sensor_playback(master, vec_path_file[i], vec_path_transfo[i]);
   }
 
   //---------------------------
 }
 
 //Sensor function
+void Swarm::create_sensor_playback(k4n::dev::Master* master, string path_file, string path_transfo){
+  if(!file::is_file_exist(path)) return;
+  //---------------------------
+
+  int index = nb_dev_playback++;
+  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
+  sensor->name = "playback_" + to_string(index);
+  sensor->param.index = index;
+  sensor->param.is_playback = true;
+  sensor->param.file_path = path_file;
+  sensor->param.file_name = info::get_filename_from_path(path_file);
+  sensor->master = master;
+
+  this->selected_sensor = sensor;
+  master->insert_sensor_playback(sensor);
+
+  sensor->init();
+  sce_scene->assign_entity_UID(sensor);
+
+  utl::type::Data* data = sensor->get_data();
+  data->model = k4n_transfo->get_matrix_from_file(path_transfo);
+
+  //---------------------------
+}
 void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
   if(!file::is_file_exist(path)) return;
   //---------------------------

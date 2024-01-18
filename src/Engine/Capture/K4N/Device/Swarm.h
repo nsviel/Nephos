@@ -23,6 +23,7 @@ public:
   void init_scene();
 
   //Sensor function
+  void create_sensor_playback(k4n::dev::Master* master, string path_file, string path_transfo);
   void create_sensor_playback(string path);
   void create_sensor_playback(k4n::dev::Master* master, string path);
   void create_sensor_capture(k4n::dev::Master* master);
