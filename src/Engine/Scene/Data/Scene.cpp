@@ -36,6 +36,10 @@ void Scene::init(){
   //vec_path.push_back( "../media/point_cloud/dragon.ply");
   //vector<entity::Object*> vec_obj = eng_loader->load_entitys(vec_path);
 
+  //Get scene set
+  utl::type::Set* data_set = sce_database->get_data_set();
+  this->set_scene = data_set->get_set("Scene");
+
   //---------------------------
 }
 void Scene::loop(){
@@ -60,7 +64,7 @@ utl::type::Entity* Scene::import_entity(std::string path){
   //---------------------------
 
   utl::type::Entity* entity = sce_loader->load_entity(path);
-  this->insert_entity_scene(entity);
+  set_scene->insert_entity(entity);
   sce_database->assign_ID(entity);
 
   //---------------------------
@@ -72,15 +76,6 @@ void Scene::insert_set_scene(utl::type::Set* set){
   //---------------------------
 
   set_scene->add_set(set);
-
-  //---------------------------
-}
-void Scene::insert_entity_scene(utl::type::Entity* entity){
-  utl::type::Set* data_set = sce_database->get_data_set();
-  utl::type::Set* set_scene = data_set->get_set("Scene");
-  //---------------------------
-
-  set_scene->insert_entity(entity);
 
   //---------------------------
 }
