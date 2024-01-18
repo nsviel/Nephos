@@ -218,7 +218,6 @@ void Configuration::find_config_device(k4n::dev::Sensor* sensor, k4a_record_conf
 
   sensor->ir.config.enabled = configuration.ir_track_enabled;
   sensor->imu.config.enabled = configuration.imu_track_enabled;
-  sensor->player.duration = sensor->param.playback->get_recording_length().count() / 1000000.0f;
   sensor->param.playback->get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
 
   //---------------------------

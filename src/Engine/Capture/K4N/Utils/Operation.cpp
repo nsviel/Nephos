@@ -14,38 +14,41 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Main function
-void Operation::playback_find_duration(k4n::dev::Sensor* k4n_sensor){
-  k4n::structure::Player* player = &k4n_sensor->player;
+float Operation::find_mkv_ts_beg(string path){
   //---------------------------
 
-  k4a::image color;
-  k4a::capture capture;
-  k4a::playback playback = k4a::playback::open(k4n_sensor->param.file_path.c_str());
-
-  //File duration
-  player->duration = playback.get_recording_length().count() / 1000000.0f;
-
-  //File first timestamp
+  k4a::playback playback = k4a::playback::open(path.c_str());;
   playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
-  color = nullptr;
+
+  k4a::capture capture;
+  k4a::image color = nullptr;
   while(color == nullptr){
     playback.get_next_capture(&capture);
     color = capture.get_color_image();
   }
-  player->ts_beg = color.get_device_timestamp().count() / 1000000.0f;
 
-  //File last timestamp
+  float ts_beg = color.get_device_timestamp().count() / 1000000.0f;
+
+  //---------------------------
+  return ts_beg;
+}
+float Operation::find_mkv_ts_end(string path){
+  //---------------------------
+
+  k4a::playback playback = k4a::playback::open(path.c_str());;
   playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_END);
-  color = nullptr;
+
+  k4a::capture capture;
+  k4a::image color = nullptr;
   while(color == nullptr){
     playback.get_previous_capture(&capture);
     color = capture.get_color_image();
   }
-  player->ts_end = color.get_device_timestamp().count() / 1000000.0f;
 
-
+  float ts_end = color.get_device_timestamp().count() / 1000000.0f;
 
   //---------------------------
+  return ts_end;
 }
 void Operation::make_colorization(k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
   //---------------------------

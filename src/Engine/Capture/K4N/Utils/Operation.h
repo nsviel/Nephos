@@ -19,7 +19,8 @@ public:
 
 public:
   //Main function
-  void playback_find_duration(k4n::dev::Sensor* k4n_sensor);
+  float find_mkv_ts_beg(string path);
+  float find_mkv_ts_end(string path);
   void make_colorization(k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba);
   void colorization_intensity(k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba);
   void colorization_heatmap(k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba);

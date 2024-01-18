@@ -50,21 +50,18 @@ void Master::update_player(){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
 
     k4n::utils::Operation k4n_operation;
-    k4n_operation.playback_find_duration(sensor);
+    float ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.file_path);
+    float ts_end = k4n_operation.find_mkv_ts_end(sensor->param.file_path);
 
-    this->player.ts_beg = (player.ts_beg != -1) ? std::max(player.ts_beg, sensor->player.ts_beg) : sensor->player.ts_beg;
-    this->player.ts_end = (player.ts_end != -1) ? std::min(player.ts_end, sensor->player.ts_end) : sensor->player.ts_end;
+    this->player.ts_beg = (player.ts_beg != -1) ? std::max(player.ts_beg, ts_beg) : ts_beg;
+    this->player.ts_end = (player.ts_end != -1) ? std::min(player.ts_end, ts_end) : ts_end;
     this->player.duration = player.ts_end - player.ts_beg;
   }
 
   //Apply min max timestamp to all sensors
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-
-    sensor->player.ts_beg = player.ts_beg;
-    sensor->player.ts_end = player.ts_end;
-    sensor->player.duration = player.duration;
-    sensor->player.ts_seek = player.ts_beg;
+    sensor->player = player;
     sensor->run_playback(sensor->param.file_path);
   }
 
@@ -146,6 +143,20 @@ void Master::set_record(){
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
     sensor->player.record = player.record;
+  }
+
+  //---------------------------
+}
+void Master::manage_restart(){
+  //---------------------------
+
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
+
+    sensor->player.play = player.restart;
+    sensor->player.pause = !player.restart;
+    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_beg));
+    sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
   }
 
   //---------------------------

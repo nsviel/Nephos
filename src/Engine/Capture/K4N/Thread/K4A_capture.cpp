@@ -40,30 +40,30 @@ void K4A_capture::start_thread(k4n::dev::Sensor* device){
 }
 
 //Subfunction
-void K4A_capture::run_thread(k4n::dev::Sensor* k4n_sensor){
-  if(k4n_sensor == nullptr) return;
+void K4A_capture::run_thread(k4n::dev::Sensor* sensor){
+  if(sensor == nullptr) return;
   //---------------------------
 
   //Init elements
-  k4n_sensor->param.index =0;
-  k4a::device device = k4a::device::open(k4n_sensor->param.index);
+  sensor->param.index =0;
+  k4a::device device = k4a::device::open(sensor->param.index);
   k4a::capture capture;
 
   //Configuration
-  k4n_sensor->param.device = &device;
-  k4n_sensor->param.serial_number = device.get_serialnum();
-  configuration->make_device_configuration(k4n_sensor);
-  k4n_calibration->make_capture_calibration(k4n_sensor);
-  k4n_calibration->make_device_transformation(k4n_sensor);
+  sensor->param.device = &device;
+  sensor->param.serial_number = device.get_serialnum();
+  configuration->make_device_configuration(sensor);
+  k4n_calibration->make_capture_calibration(sensor);
+  k4n_calibration->make_device_transformation(sensor);
 
   //Start camera
-  k4n_sensor->param.version = device.get_version();
-  this->manage_color_setting(k4n_sensor);
-  device.start_cameras(&k4n_sensor->param.configuration);
+  sensor->param.version = device.get_version();
+  this->manage_color_setting(sensor);
+  device.start_cameras(&sensor->param.configuration);
 
   //Start capture thread
   this->thread_running = true;
-  while(thread_running && k4n_sensor){
+  while(thread_running && sensor){
     fps_control->start();
 
     auto timeout = std::chrono::milliseconds(2000);
@@ -71,14 +71,14 @@ void K4A_capture::run_thread(k4n::dev::Sensor* k4n_sensor){
     if(!capture) continue;
 
     //Capture data
-    k4a_data->find_data_from_capture(k4n_sensor, capture);
-    k4a_processing->convert_into_cloud(k4n_sensor);
-    this->manage_pause(k4n_sensor);
-    this->manage_recording(k4n_sensor, capture);
+    k4a_data->find_data_from_capture(sensor, capture);
+    k4a_processing->convert_into_cloud(sensor);
+    this->manage_pause(sensor);
+    this->manage_recording(sensor, capture);
 
     //FPS
     fps_control->stop();
-    k4n_sensor->param.fps.current = fps_counter->update();
+    sensor->param.fps.current = fps_counter->update();
   }
 
   //---------------------------
@@ -93,56 +93,56 @@ void K4A_capture::stop_thread(){
 
   //---------------------------
 }
-void K4A_capture::manage_pause(k4n::dev::Sensor* k4n_sensor){
+void K4A_capture::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  if(k4n_sensor->player.pause){
-    while(k4n_sensor->player.pause && thread_running){
+  if(sensor->player.pause){
+    while(sensor->player.pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }
 
   //---------------------------
 }
-void K4A_capture::manage_recording(k4n::dev::Sensor* k4n_sensor, k4a::capture capture){
+void K4A_capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
 
-  k4a::record& recorder = k4n_sensor->recorder.recorder;
+  k4a::record& recorder = sensor->recorder.recorder;
 
   //Start recording
-  if(k4n_sensor->player.record && !recorder.is_valid()){
-    recorder = k4a::record::create(k4n_sensor->recorder.path.c_str(), *k4n_sensor->param.device, k4n_sensor->param.configuration);
+  if(sensor->player.record && !recorder.is_valid()){
+    recorder = k4a::record::create(sensor->recorder.path.c_str(), *sensor->param.device, sensor->param.configuration);
     recorder.write_header();
-    k4n_sensor->recorder.ts_beg = k4n_sensor->player.ts_cur;
+    sensor->recorder.ts_beg = sensor->player.ts_cur;
   }
 
   //Recording
-  if(k4n_sensor->player.record && recorder.is_valid()){
+  if(sensor->player.record && recorder.is_valid()){
     recorder.write_capture(capture);
-    k4n_sensor->recorder.ts_rec = k4n_sensor->player.ts_cur - k4n_sensor->recorder.ts_beg;
+    sensor->recorder.ts_rec = sensor->player.ts_cur - sensor->recorder.ts_beg;
   }
 
   //Flush to file when finish
-  if(!k4n_sensor->player.record && recorder.is_valid()){
+  if(!sensor->player.record && recorder.is_valid()){
     recorder.flush();
     recorder.close();
   }
 
   //---------------------------
 }
-void K4A_capture::manage_color_setting(k4n::dev::Sensor* k4n_sensor){
+void K4A_capture::manage_color_setting(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.exposure.command, k4n_sensor->color.config.exposure.mode, k4n_sensor->color.config.exposure.value);
-  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.white_balance.command, k4n_sensor->color.config.white_balance.mode, k4n_sensor->color.config.white_balance.value);
-  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.brightness.command, k4n_sensor->color.config.brightness.mode, k4n_sensor->color.config.brightness.value);
-  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.contrast.command, k4n_sensor->color.config.contrast.mode, k4n_sensor->color.config.contrast.value);
-  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.saturation.command, k4n_sensor->color.config.saturation.mode, k4n_sensor->color.config.saturation.value);
-  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.sharpness.command, k4n_sensor->color.config.sharpness.mode, k4n_sensor->color.config.sharpness.value);
-  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.gain.command, k4n_sensor->color.config.gain.mode, k4n_sensor->color.config.gain.value);
-  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.backlight_compensation.command, k4n_sensor->color.config.backlight_compensation.mode, k4n_sensor->color.config.backlight_compensation.value);
-  k4n_sensor->param.device->set_color_control(k4n_sensor->color.config.power_frequency.command, k4n_sensor->color.config.power_frequency.mode, k4n_sensor->color.config.power_frequency.value);
+  sensor->param.device->set_color_control(sensor->color.config.exposure.command, sensor->color.config.exposure.mode, sensor->color.config.exposure.value);
+  sensor->param.device->set_color_control(sensor->color.config.white_balance.command, sensor->color.config.white_balance.mode, sensor->color.config.white_balance.value);
+  sensor->param.device->set_color_control(sensor->color.config.brightness.command, sensor->color.config.brightness.mode, sensor->color.config.brightness.value);
+  sensor->param.device->set_color_control(sensor->color.config.contrast.command, sensor->color.config.contrast.mode, sensor->color.config.contrast.value);
+  sensor->param.device->set_color_control(sensor->color.config.saturation.command, sensor->color.config.saturation.mode, sensor->color.config.saturation.value);
+  sensor->param.device->set_color_control(sensor->color.config.sharpness.command, sensor->color.config.sharpness.mode, sensor->color.config.sharpness.value);
+  sensor->param.device->set_color_control(sensor->color.config.gain.command, sensor->color.config.gain.mode, sensor->color.config.gain.value);
+  sensor->param.device->set_color_control(sensor->color.config.backlight_compensation.command, sensor->color.config.backlight_compensation.mode, sensor->color.config.backlight_compensation.value);
+  sensor->param.device->set_color_control(sensor->color.config.power_frequency.command, sensor->color.config.power_frequency.mode, sensor->color.config.power_frequency.value);
 
   //---------------------------
 }
