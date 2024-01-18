@@ -3,7 +3,7 @@
 
 #include <Utility/Specific/common.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
-#include <Engine/Scene/Data/Database.h>
+#include <Engine/Scene/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Scene/Node.h>
-#include <Engine/Scene/Data/Database.h>
+#include <Engine/Scene/Database/Database.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 

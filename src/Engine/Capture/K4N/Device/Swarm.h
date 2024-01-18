@@ -2,7 +2,7 @@
 
 #include <Engine/Capture/K4N/Namespace.h>
 #include <Engine/Capture/K4N/Utils/Namespace.h>
-#include <Engine/Scene/Data/Scene.h>
+#include <Engine/Scene/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class Engine;

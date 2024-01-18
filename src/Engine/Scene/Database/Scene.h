@@ -1,10 +1,7 @@
 #pragma once
 
-#include <Engine/Scene/Glyph/Glyph.h>
 #include <Engine/Operation/Namespace.h>
-#include <Engine/Scene/Data/Database.h>
-#include <Engine/Scene/Glyph/Glyph.h>
-#include <Engine/Scene/Node.h>
+#include <Engine/Scene/Namespace.h>
 
 #include <Utility/Specific/common.h>
 
@@ -13,6 +10,9 @@ class VK_engine;
 namespace eng::scene{
 class Glyph;
 class Operation;
+class Loader;
+class Node;
+class Database;
 
 
 class Scene
