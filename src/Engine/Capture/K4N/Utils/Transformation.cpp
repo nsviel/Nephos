@@ -34,15 +34,48 @@ mat4 Transformation::get_matrix_from_file(string path){
   json j;
   file >> j;
 
-  // Access the values
-  double m00 = j["m00"];
-  double m10 = j["m10"];
-  // ... access other values similarly
+  mat[0][0] = j["m00"];
+  mat[1][0] = j["m10"];
+  mat[2][0] = j["m20"];
+  mat[3][0] = j["m30"];
 
-  // Display the values
-  std::cout << "m00: " << m00 << std::endl;
-  std::cout << "m10: " << m10 << std::endl;
-  // ... display other values similarly
+  mat[0][1] = j["m01"];
+  mat[1][1] = j["m11"];
+  mat[2][1] = j["m21"];
+  mat[3][1] = j["m31"];
+
+  mat[0][2] = j["m02"];
+  mat[1][2] = j["m12"];
+  mat[2][2] = j["m22"];
+  mat[3][2] = j["m32"];
+
+  mat[0][3] = j["m03"];
+  mat[1][3] = j["m13"];
+  mat[2][3] = j["m23"];
+  mat[3][3] = j["m33"];
+
+
+  //Only rotation matrix
+  mat[0][0] = j["m00"];
+  mat[1][0] = j["m10"];
+  mat[2][0] = j["m20"];
+  mat[3][0] = 0.0f;
+
+  mat[0][1] = j["m01"];
+  mat[1][1] = j["m11"];
+  mat[2][1] = j["m21"];
+  mat[3][1] = 0.0f;
+
+  mat[0][2] = j["m02"];
+  mat[1][2] = j["m12"];
+  mat[2][2] = j["m22"];
+  mat[3][2] = 0.0f;
+
+  mat[0][3] = 0.0f;
+  mat[1][3] = 0.0f;
+  mat[2][3] = 0.0f;
+  mat[3][3] = 1.0f;
+
 
 
   //---------------------------

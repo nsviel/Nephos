@@ -25,11 +25,11 @@ void Swarm::init_scene(){
   //---------------------------
 
   vector<string> vec_path_file;
-  vec_path_file.push_back("/home/aether/Desktop/versaille_1.mkv");
+  vec_path_file.push_back("/home/aether/Desktop/versaille_0.mkv");
   vec_path_file.push_back("/home/aether/Desktop/versaille_2.mkv");
 
   vector<string> vec_path_transfo;
-  vec_path_transfo.push_back("/home/aether/Desktop/versaille_1.json");
+  vec_path_transfo.push_back("/home/aether/Desktop/versaille_0.json");
   vec_path_transfo.push_back("/home/aether/Desktop/versaille_2.json");
 
   //If no real device create virtual one
@@ -47,7 +47,8 @@ void Swarm::init_scene(){
 
 //Sensor function
 void Swarm::create_sensor_playback(k4n::dev::Master* master, string path_file, string path_transfo){
-  if(!file::is_file_exist(path)) return;
+  if(!file::is_file_exist(path_file)) return;
+  if(!file::is_file_exist(path_transfo)) return;
   //---------------------------
 
   int index = nb_dev_playback++;
