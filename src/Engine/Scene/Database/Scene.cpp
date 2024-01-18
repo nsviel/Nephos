@@ -63,7 +63,8 @@ utl::type::Entity* Scene::import_entity(std::string path){
 
   utl::type::Entity* entity = sce_loader->load_entity(path);
   set_scene->insert_entity(entity);
-  this->assign_entity_UID(entity);
+  sce_database->assign_ID(entity);
+  vk_engine->insert_data_in_engine(entity->get_data());
 
   //If object; create dedicated glyphs
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
@@ -77,7 +78,8 @@ void Scene::import_entity(utl::type::Entity* entity){
   //---------------------------
 
   set_scene->insert_entity(entity);
-  this->assign_entity_UID(entity);
+  sce_database->assign_ID(entity);
+  vk_engine->insert_data_in_engine(entity->get_data());
 
   //If object; create dedicated glyphs
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
@@ -85,7 +87,14 @@ void Scene::import_entity(utl::type::Entity* entity){
   }
 
   //---------------------------
-  return entity;
+}
+void Scene::update_entity(utl::type::Entity* entity){
+  //---------------------------
+
+  vk_engine->insert_data_in_engine(entity->get_data());
+  ope_attribut->compute_MinMax(entity);
+
+  //---------------------------
 }
 void Scene::delete_entity(utl::type::Entity* entity){
   //---------------------------
@@ -105,32 +114,6 @@ void Scene::assign_entity_UID(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Scene::update_entity(utl::type::Entity* entity){
-  //---------------------------
 
-  vk_engine->insert_data_in_engine(entity->get_data());
-  ope_attribut->compute_MinMax(entity);
-
-  //---------------------------
-}
-
-//Object
-void Scene::insert_object(entity::Object* object){
-  //---------------------------
-
-  sce_database->assign_ID(object);
-  vk_engine->insert_data_in_engine(object->get_data());
-  sce_glyph->create_glyph_object(object);
-
-  //---------------------------
-}
-void Scene::remove_object(entity::Object* object){
-  //---------------------------
-
-  sce_glyph->remove_glyph_object(object);
-  vk_engine->remove_data_in_engine(object->get_data());
-
-  //---------------------------
-}
 
 }

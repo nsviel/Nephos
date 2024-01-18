@@ -24,5 +24,14 @@ void World::init(){
   //---------------------------
 }
 
+//Entity function
+void World::import_entity(utl::type::Entity* entity){
+  //---------------------------
+
+  set_world->insert_entity(entity);
+  sce_database->assign_ID(entity);
+
+  //---------------------------
+}
 
 }

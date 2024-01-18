@@ -30,13 +30,9 @@ public:
   //Entity
   utl::type::Entity* import_entity(std::string path);
   void import_entity(utl::type::Entity* entity);
+  void update_entity(utl::type::Entity* entity);
   void delete_entity(utl::type::Entity* entity);
   void assign_entity_UID(utl::type::Entity* entity);
-  void update_entity(utl::type::Entity* entity);
-
-  //Object
-  void insert_object(entity::Object* object);
-  void remove_object(entity::Object* object);
 
   inline utl::type::Set* get_set_scene(){return set_scene;}
 

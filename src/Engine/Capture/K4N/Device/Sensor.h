@@ -51,7 +51,7 @@ public:
 
 public:
   Engine* engine;
-  eng::scene::Scene* eng_scene;
+  eng::scene::Scene* sce_scene;
   eng::scene::Glyph* sce_glyph;
   eng::ope::Transformation* ope_transform;
   K4A_capture* k4a_capture;

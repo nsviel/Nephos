@@ -17,7 +17,7 @@ Sensor::Sensor(Engine* engine){
   this->engine = engine;
   this->k4a_capture = new K4A_capture(engine);
   this->k4a_playback = new K4A_playback(engine);
-  this->eng_scene = node_scene->get_scene();
+  this->sce_scene = node_scene->get_scene();
   this->sce_glyph = node_scene->get_scene_glyph();
   this->ope_transform = new eng::ope::Transformation();
 
@@ -45,7 +45,7 @@ void Sensor::init(){
   object = new entity::Object(engine);
   object->name = param.name;
   object->data->draw_type_name = "point";
-  eng_scene->insert_object(object);
+  sce_scene->import_entity(object);
 
   //---------------------------
 }
@@ -61,7 +61,7 @@ void Sensor::destroy(){
 
   this->stop_threads();
   this->param.transformation.destroy();
-  eng_scene->remove_object(object);
+  sce_scene->delete_entity(object);
 
   //---------------------------
 }
@@ -88,7 +88,7 @@ void Sensor::update_entity(){
   //Retrieve capture data
   std::unique_lock<std::mutex> lock(object->data->mutex);
   object->data->nb_point = object->data->xyz.size();
-  eng_scene->update_entity(object);
+  sce_scene->update_entity(object);
 
   //----------------------------
 }
