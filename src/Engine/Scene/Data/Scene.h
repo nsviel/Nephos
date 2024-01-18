@@ -31,7 +31,6 @@ public:
   //Entity
   utl::type::Entity* import_entity(std::string path);
   void delete_entity(utl::type::Entity* entity);
-  void delete_entity_all();
   void assign_entity_UID(utl::type::Entity* entity);
 
   //Object

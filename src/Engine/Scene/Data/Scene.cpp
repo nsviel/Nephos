@@ -82,13 +82,6 @@ void Scene::delete_entity(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Scene::delete_entity_all(){
-  //---------------------------
-
-  set_scene->delete_entity_all();
-
-  //---------------------------
-}
 void Scene::assign_entity_UID(utl::type::Entity* entity){
   //---------------------------
 
