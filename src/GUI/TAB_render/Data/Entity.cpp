@@ -137,7 +137,6 @@ void Entity::entity_parameter(utl::type::Entity* entity){
       flags |= ImGuiColorEditFlags_AlphaBar;
       if(ImGui::ColorEdit4("Color", (float*)&data->unicolor, flags)){
         ope_attribut->set_unicolor(entity);
-        sce_scene->update_entity(entity);
       }
 
       //Root pos

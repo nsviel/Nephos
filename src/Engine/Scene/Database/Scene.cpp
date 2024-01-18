@@ -103,14 +103,6 @@ void Scene::init_entity(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Scene::update_entity(utl::type::Entity* entity){
-  //---------------------------
-
-  vk_engine->insert_data_in_engine(entity->get_data());
-  ope_attribut->compute_MinMax(entity);
-
-  //---------------------------
-}
 void Scene::delete_entity(utl::type::Entity* entity){
   //---------------------------
 
