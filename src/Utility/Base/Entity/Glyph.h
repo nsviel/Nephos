@@ -24,7 +24,7 @@ public:
   virtual void update_glyph(utl::type::Entity* entity){}
   virtual void reset(){}
 
-  inline vector<utl::type::Data*>& get_vec_data(){return vec_data;}
+  inline vector<utl::type::Data*> get_vec_data(){return vec_data;}
   inline vec4* get_color(){return &color;}
 
 protected:

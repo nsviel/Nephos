@@ -3,6 +3,8 @@
 #include <Engine/Scene/Namespace.h>
 #include <Utility/Specific/common.h>
 
+class VK_engine;
+
 namespace eng::scene{
 class Database;
 
@@ -24,6 +26,7 @@ public:
   inline utl::type::Set* get_set_world(){return set_world;}
 
 private:
+  VK_engine* vk_engine;
   eng::scene::Database* sce_database;
 
   utl::type::Set* set_world;
