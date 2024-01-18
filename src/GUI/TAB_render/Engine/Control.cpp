@@ -63,7 +63,7 @@ void Control::control_keyboard_oneAction(){
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
       utl::type::Set* set_scene = data_set->get_set("Scene");
-      sce_scene->delete_entity(set_scene->selected_entity);
+      sce_scene->delete_entity(sce_scene->get_selected_entity());
       break;
     }
 

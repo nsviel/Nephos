@@ -56,16 +56,6 @@ void Scene::reset(){
 }
 
 //Entity
-utl::type::Entity* Scene::get_selected_entity(){
-  utl::type::Set* data_set = sce_database->get_data_set();
-  //---------------------------
-
-  utl::type::Set* set_scene = data_set->get_set("Scene");
-  utl::type::Entity* entity = set_scene->selected_entity;
-
-  //---------------------------
-  return entity;
-}
 utl::type::Entity* Scene::import_entity(std::string path){
   //---------------------------
 
@@ -128,6 +118,9 @@ void Scene::delete_entity_all(){
   }
 
   //---------------------------
+}
+void Scene::assign_UID(utl::type::Entity* entity){
+  sce_database->assign_ID(entity);
 }
 
 //Object

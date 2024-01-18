@@ -37,6 +37,8 @@ struct Set
   int nb_entity = 0;
   int nb_set = 0;
   bool is_visible = true;
+  bool is_lockable = false;
+  bool is_locked = false;
   std::string name;
   std::string type = "set";
   std::string icon = ICON_FA_FOLDER;

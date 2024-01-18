@@ -42,9 +42,7 @@ void Scene::design_panel(){
 
 //Subfunction
 void Scene::draw_button(){
-  utl::type::Set* data_set = sce_database->get_data_set();
-  utl::type::Set* set_scene = data_set->get_set("Scene");
-  utl::type::Entity* entity = set_scene->selected_entity;
+  utl::type::Entity* entity = sce_scene->get_selected_entity();
   //-------------------------------
 
   if(entity == nullptr) return;
@@ -212,7 +210,7 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   flag_leaf |= ImGuiTreeNodeFlags_Leaf;
   flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
   flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
-  flag_leaf |= (entity == set->selected_entity && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
+  flag_leaf |= (entity == sce_scene->get_selected_entity() && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
 
   // Display leaf
   string icon = ICON_FA_FILE_O;
@@ -221,7 +219,7 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
 
   // If entity clicked
   if (ImGui::IsItemClicked()) {
-    set->selected_entity = entity;
+    sce_scene->set_selected_entity(entity);
   }
 
   // If entity double-clicked

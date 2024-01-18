@@ -76,25 +76,33 @@ void Set::add_new_set(std::string name){
 void Set::select_next_entity(){
   //----------------------------
 
-  for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+  // Check if the current set has a selected entity
+  if (selected_entity != nullptr) {
+    for (int i = 0; i < list_entity.size(); i++) {
+      utl::type::Entity* entity = *next(list_entity.begin(), i);
 
-    if(this->selected_entity->UID == entity->UID){
-      utl::type::Entity* next_entity;
+      if (selected_entity->UID == entity->UID) {
+        utl::type::Entity* next_entity;
 
-      if((i + 1) < list_entity.size()){
-        next_entity = *next(list_entity.begin(), i + 1);
-      }else{
-        next_entity = *next(list_entity.begin(), 0);
+        if ((i + 1) < list_entity.size()) {
+          next_entity = *next(list_entity.begin(), i + 1);
+        } else {
+          // If at the end of the list, wrap around to the first entity
+          next_entity = *next(list_entity.begin(), 0);
+        }
+
+        selected_entity = next_entity;
+        return;
       }
-
-      this->selected_entity = next_entity;
-      return;
     }
   }
 
+  // Recursively call select_next_entity_recursive for each nested set
+  for (Set* subset : list_set) {
+    subset->select_next_entity();
+  }
+
   //----------------------------
-  this->selected_entity = nullptr;
 }
 void Set::insert_entity(utl::type::Entity* entity){
   if(entity == nullptr) return;

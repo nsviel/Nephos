@@ -19,7 +19,7 @@ Master::Master(){
 Master::~Master(){}
 
 //Main function
-void Master::insert_sensor(k4n::dev::Sensor* sensor){
+void Master::insert_sensor_playback(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -29,6 +29,17 @@ void Master::insert_sensor(k4n::dev::Sensor* sensor){
   this->nb_entity++;
 
   this->update_player();
+
+  //---------------------------
+}
+void Master::insert_sensor_capture(k4n::dev::Sensor* sensor){
+  if(sensor == nullptr) return;
+  //---------------------------
+
+  this->list_entity.push_back(sensor);
+  this->list_sensor.push_back(sensor);
+  this->selected_entity = sensor;
+  this->nb_entity++;
 
   //---------------------------
 }

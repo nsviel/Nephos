@@ -19,7 +19,8 @@ public:
 
 public:
   //Main function
-  void insert_sensor(k4n::dev::Sensor* sensor);
+  void insert_sensor_playback(k4n::dev::Sensor* sensor);
+  void insert_sensor_capture(k4n::dev::Sensor* sensor);
 
   //Player function
   void update_player();

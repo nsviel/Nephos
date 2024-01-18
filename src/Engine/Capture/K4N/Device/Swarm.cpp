@@ -57,10 +57,11 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
   sensor->master = master;
 
   this->selected_sensor = sensor;
-  master->insert_sensor(sensor);
+  master->insert_sensor_playback(sensor);
 
   sensor->init();
   sensor->run_playback(path);
+  sce_scene->assign_UID(sensor);
 
   k4n_transfo->truc(path);
 
@@ -82,10 +83,11 @@ void Swarm::create_sensor_playback(string path){
   sensor->master = master;
 
   this->selected_sensor = sensor;
-  master->insert_sensor(sensor);
+  master->insert_sensor_playback(sensor);
 
   sensor->init();
   sensor->run_playback(path);
+  sce_scene->assign_UID(sensor);
 
   k4n_transfo->truc(path);
 
@@ -102,7 +104,8 @@ void Swarm::create_sensor_capture(k4n::dev::Master* master){
   sensor->master = master;
 
   this->selected_sensor = sensor;
-  master->insert_sensor(sensor);
+  master->insert_sensor_capture(sensor);
+  sce_scene->assign_UID(sensor);
 
   sensor->init();
   sensor->run_capture();
@@ -181,6 +184,7 @@ k4n::dev::Master* Swarm::get_or_create_master(string name){
   //Create the master
   k4n::dev::Master* master = new k4n::dev::Master();
   master->name = name;
+  master->is_lockable = true;
   sce_scene->insert_set_scene(master);
   this->list_master.push_back(master);
   this->selected_master = master;
