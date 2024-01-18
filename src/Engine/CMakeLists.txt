@@ -41,7 +41,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   -lebml
   -lmatroska
   -lebml
-  ${Matroska_INCLUDE_DIRS}
+  nlohmann_json::nlohmann_json
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
