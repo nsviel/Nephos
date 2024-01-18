@@ -77,8 +77,8 @@ void Set::select_next_entity(){
   //----------------------------
 
   // Check if the current set has a selected entity
-  if (selected_entity != nullptr) {
-    for (int i = 0; i < list_entity.size(); i++) {
+  if(selected_entity != nullptr){
+    for(int i=0; i<list_entity.size(); i++){
       utl::type::Entity* entity = *next(list_entity.begin(), i);
 
       if(selected_entity->UID == entity->UID){
@@ -87,7 +87,6 @@ void Set::select_next_entity(){
         if ((i + 1) < list_entity.size()) {
           next_entity = *next(list_entity.begin(), i + 1);
         } else {
-          // If at the end of the list, wrap around to the first entity
           next_entity = *next(list_entity.begin(), 0);
         }
 
@@ -157,6 +156,20 @@ void Set::delete_entity_all(){
 }
 
 //Parameter
+void Set::set_selected_entity(utl::type::Entity* entity){
+  //---------------------------
+
+  //Check if we have the query entity in the current set list
+  for(int i=0; i<list_entity.size(); i++) {
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
+
+    if(selected_entity->UID == entity->UID){
+      this->selected_entity = entity;
+    }
+  }
+
+  //---------------------------
+}
 void Set::set_visibility(bool value){
   //---------------------------
 

@@ -8,10 +8,13 @@ Attribut::Attribut(){}
 Attribut::~Attribut(){}
 
 //Main function
-void Attribut::compute_MinMax(utl::type::Data* data){
+void Attribut::compute_MinMax(utl::type::Entity* entity){
+  if(entity == nullptr) return;
+  utl::type::Data* data = entity->get_data();
+  //---------------------------
+
   vector<vec3>& XYZ = data->xyz;
   if(XYZ.size() == 0) return;
-  //---------------------------
 
   vec3 centroid = vec3(0, 0, 0);
   vec3 min = vec3(1000000, 1000000, 1000000);
@@ -37,7 +40,9 @@ void Attribut::compute_MinMax(utl::type::Data* data){
   data->max = max;
   data->COM = centroid;
 }
-void Attribut::set_unicolor(utl::type::Data* data){
+void Attribut::set_unicolor(utl::type::Entity* entity){
+  if(entity == nullptr) return;
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   for(int i=0; i<data->rgb.size(); i++){
@@ -46,10 +51,13 @@ void Attribut::set_unicolor(utl::type::Data* data){
 
   //---------------------------
 }
-vector<float> Attribut::retrieve_z_vector(utl::type::Data* data){
+vector<float> Attribut::retrieve_z_vector(utl::type::Entity* entity){
+  if(entity == nullptr) return vector<float>();
+  utl::type::Data* data = entity->get_data();
+  //---------------------------
+
   vector<vec3>& xyz = data->xyz;
   vector<float> z_vec;
-  //---------------------------
 
   for(int i=0; i<xyz.size(); i++){
     vec4 xyz_h = vec4(xyz[i].x, xyz[i].y, xyz[i].z, 1);

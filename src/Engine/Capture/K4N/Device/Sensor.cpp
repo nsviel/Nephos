@@ -88,7 +88,7 @@ void Sensor::update_entity(){
   //Retrieve capture data
   std::unique_lock<std::mutex> lock(object->data->mutex);
   object->data->nb_point = object->data->xyz.size();
-  eng_scene->update_data(object->data);
+  eng_scene->update_entity(object);
 
   //----------------------------
 }

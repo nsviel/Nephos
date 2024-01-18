@@ -10,8 +10,9 @@ Transformation::Transformation(){}
 Transformation::~Transformation(){}
 
 // Translation
-void Transformation::make_translation(utl::type::Data* data, vec3 trans){
-  if(data == nullptr) return;
+void Transformation::make_translation(utl::type::Entity* entity, vec3 trans){
+  if(entity == nullptr) return;
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   glm::mat4 translation = get_translation_mat(trans);
@@ -23,8 +24,9 @@ void Transformation::make_translation(utl::type::Data* data, vec3 trans){
 
   //---------------------------
 }
-void Transformation::make_translation(utl::type::Data* data, mat4 translation){
-  if(data == nullptr) return;
+void Transformation::make_translation(utl::type::Entity* entity, mat4 translation){
+  if(entity == nullptr) return;
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   vec3 trans = vec3(translation[0][3], translation[1][3], translation[2][3]);
@@ -38,8 +40,9 @@ void Transformation::make_translation(utl::type::Data* data, mat4 translation){
 }
 
 //Rotation
-void Transformation::make_rotation(utl::type::Data* data, vec3 COM, vec3 radian){
-  if(data == nullptr) return;
+void Transformation::make_rotation(utl::type::Entity* entity, vec3 COM, vec3 radian){
+  if(entity == nullptr) return;
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   mat4 rotation = get_rotation_mat(radian);
@@ -52,8 +55,9 @@ void Transformation::make_rotation(utl::type::Data* data, vec3 COM, vec3 radian)
 
   //---------------------------
 }
-void Transformation::make_rotation(utl::type::Data* data, vec3 degree){
-  if(data == nullptr) return;
+void Transformation::make_rotation(utl::type::Entity* entity, vec3 degree){
+  if(entity == nullptr) return;
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   vec3& COM = data->COM;
@@ -68,8 +72,9 @@ void Transformation::make_rotation(utl::type::Data* data, vec3 degree){
 
   //---------------------------
 }
-void Transformation::make_rotation(utl::type::Data* data, vec3 COM, mat4 rotation){
-  if(data == nullptr) return;
+void Transformation::make_rotation(utl::type::Entity* entity, vec3 COM, mat4 rotation){
+  if(entity == nullptr) return;
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   //vec3& COM = data->COM;
@@ -82,8 +87,9 @@ void Transformation::make_rotation(utl::type::Data* data, vec3 COM, mat4 rotatio
 
   //---------------------------
 }
-void Transformation::make_rotation_axe_X(utl::type::Data* data, float degree){
-  if(data == nullptr) return;
+void Transformation::make_rotation_axe_X(utl::type::Entity* entity, float degree){
+  if(entity == nullptr) return;
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   float radian = math::degree_to_radian(degree);
@@ -107,8 +113,9 @@ void Transformation::make_rotation_axe_X(utl::type::Data* data, float degree){
 }
 
 //Scaling
-void Transformation::make_scaling(utl::type::Data* data, float scale){
-  if(data == nullptr) return;
+void Transformation::make_scaling(utl::type::Entity* entity, float scale){
+  if(entity == nullptr) return;
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   glm::mat4 scaling(1.0);
@@ -123,8 +130,9 @@ void Transformation::make_scaling(utl::type::Data* data, float scale){
 }
 
 //Transformation
-void Transformation::make_transformation(utl::type::Data* data, vec3 COM, mat4 translation, mat4 rotation){
-  if(data == nullptr) return;
+void Transformation::make_transformation(utl::type::Entity* entity, vec3 COM, mat4 translation, mat4 rotation){
+  if(entity == nullptr) return;
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   mat4 COM_mat = get_translation_mat_neye(COM);

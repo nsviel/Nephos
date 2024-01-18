@@ -14,9 +14,9 @@ public:
 
 public:
   //Main functions
-  void compute_MinMax(utl::type::Data* data);
-  void set_unicolor(utl::type::Data* data);
-  vector<float> retrieve_z_vector(utl::type::Data* data);
+  void compute_MinMax(utl::type::Entity* entity);
+  void set_unicolor(utl::type::Entity* entity);
+  vector<float> retrieve_z_vector(utl::type::Entity* entity);
 
 private:
 };

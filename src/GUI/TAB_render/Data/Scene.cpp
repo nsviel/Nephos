@@ -42,7 +42,8 @@ void Scene::design_panel(){
 
 //Subfunction
 void Scene::draw_button(){
-  utl::type::Entity* entity = sce_scene->get_selected_entity();
+  utl::type::Set* set_scene = sce_scene->get_set_scene();
+  utl::type::Entity* entity = set_scene->get_selected_entity();
   //-------------------------------
 
   if(entity == nullptr) return;
@@ -57,13 +58,13 @@ void Scene::draw_button(){
   //Centered
   ImGui::SameLine();
   if(entity->is_movable && ImGui::Button("C##centerentity", ImVec2(20, 0))){
-    ope_operation->center_object(entity->get_data());
+    ope_operation->center_object(entity);
   }
 
   //Rotation 90° around X axis
   ImGui::SameLine();
   if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
-    ope_operation->make_rotation_X_90d(entity->get_data(), 1);
+    ope_operation->make_rotation_X_90d(entity, 1);
   }
 
   //Camera mode
@@ -198,6 +199,7 @@ void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
   //---------------------------
 }
 void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_row){
+  utl::type::Set* set_scene = sce_scene->get_set_scene();
   //---------------------------
 
   ImGui::TableNextRow();
@@ -210,7 +212,7 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   flag_leaf |= ImGuiTreeNodeFlags_Leaf;
   flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
   flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
-  flag_leaf |= (entity == sce_scene->get_selected_entity() && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
+  flag_leaf |= (set_scene->is_selected_entity(entity) && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
 
   // Display leaf
   string icon = ICON_FA_FILE_O;
@@ -219,7 +221,7 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
 
   // If entity clicked
   if (ImGui::IsItemClicked()) {
-    sce_scene->set_selected_entity(entity);
+    set_scene->set_selected_entity(entity);
   }
 
   // If entity double-clicked

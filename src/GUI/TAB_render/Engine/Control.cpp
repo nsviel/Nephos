@@ -55,15 +55,15 @@ void Control::control_keyboard_oneAction(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      utl::type::Set* set_scene = data_set->get_set("Scene");
+      utl::type::Set* set_scene = sce_scene->get_set_scene();
       set_scene->select_next_entity();
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      utl::type::Set* set_scene = data_set->get_set("Scene");
-      sce_scene->delete_entity(sce_scene->get_selected_entity());
+      utl::type::Set* set_scene = sce_scene->get_set_scene();
+      set_scene->delete_entity(set_scene->get_selected_entity());
       break;
     }
 
@@ -130,9 +130,11 @@ void Control::control_keyboard_translation(){
   utl::type::Set* data_set = sce_database->get_data_set();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
-      float translation_qtt = 0.01;
+      utl::type::Set* set_scene = sce_scene->get_set_scene();
+      utl::type::Entity* entity = set_scene->get_selected_entity();
 
       //Shift speed up
+      float translation_qtt = 0.01;
       if(io.KeysDown[340]){
         //translation_qtt = cloud_trans_speed * 5;
       }
@@ -140,43 +142,37 @@ void Control::control_keyboard_translation(){
       // Z key
       if(io.KeysDown[571]){
         vec3 translation = vec3(translation_qtt, 0, 0);
-        utl::type::Entity* entity = sce_scene->get_selected_entity();
-        ope_transform->make_translation(entity->get_data(), translation);
+        ope_transform->make_translation(entity, translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
         vec3 translation = vec3(-translation_qtt, 0, 0);
-        utl::type::Entity* entity = sce_scene->get_selected_entity();
-        ope_transform->make_translation(entity->get_data(), translation);
+        ope_transform->make_translation(entity, translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
         vec3 translation = vec3(0, translation_qtt, 0);
-        utl::type::Entity* entity = sce_scene->get_selected_entity();
-        ope_transform->make_translation(entity->get_data(), translation);
+        ope_transform->make_translation(entity, translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
         vec3 translation = vec3(0, -translation_qtt, 0);
-        utl::type::Entity* entity = sce_scene->get_selected_entity();
-        ope_transform->make_translation(entity->get_data(), translation);
+        ope_transform->make_translation(entity, translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
         vec3 translation = vec3(0, 0, translation_qtt);
-        utl::type::Entity* entity = sce_scene->get_selected_entity();
-        ope_transform->make_translation(entity->get_data(), translation);
+        ope_transform->make_translation(entity, translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
         vec3 translation = vec3(0, 0, -translation_qtt);
-        utl::type::Entity* entity = sce_scene->get_selected_entity();
-        ope_transform->make_translation(entity->get_data(), translation);
+        ope_transform->make_translation(entity, translation);
         break;
       }
     }
@@ -242,8 +238,9 @@ void Control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    utl::type::Entity* entity = sce_scene->get_selected_entity();
-    ope_transform->make_rotation(entity->get_data(), R);
+    utl::type::Set* set_scene = sce_scene->get_set_scene();
+    utl::type::Entity* entity = set_scene->get_selected_entity();
+    ope_transform->make_rotation(entity, R);
   }
 
   //----------------------------

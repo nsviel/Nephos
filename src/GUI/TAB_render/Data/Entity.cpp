@@ -85,7 +85,7 @@ void Entity::entity_button(utl::type::Entity* entity){
   //Centered
   ImGui::SameLine();
   if(entity->is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
-    ope_operation->center_object(entity->get_data());
+    ope_operation->center_object(entity);
   }
 
   //---------------------------
@@ -136,8 +136,8 @@ void Entity::entity_parameter(utl::type::Entity* entity){
       ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
       flags |= ImGuiColorEditFlags_AlphaBar;
       if(ImGui::ColorEdit4("Color", (float*)&data->unicolor, flags)){
-        ope_attribut->set_unicolor(data);
-        sce_scene->update_data(data);
+        ope_attribut->set_unicolor(entity);
+        sce_scene->update_entity(entity);
       }
 
       //Root pos

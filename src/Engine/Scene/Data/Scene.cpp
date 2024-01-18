@@ -21,8 +21,6 @@ Scene::Scene(eng::scene::Node* node_scene){
   this->ope_attribut = new eng::ope::Attribut();
   this->sce_loader = node_scene->get_scene_loader();
 
-  this->ID_obj = 0;
-
   //---------------------------
 }
 Scene::~Scene(){}
@@ -66,7 +64,6 @@ utl::type::Entity* Scene::import_entity(std::string path){
   utl::type::Entity* entity = sce_loader->load_entity(path);
   set_scene->insert_entity(entity);
   this->assign_entity_UID(entity);
-  this->selected_entity = entity;
 
   //---------------------------
   return entity;
@@ -89,6 +86,14 @@ void Scene::assign_entity_UID(utl::type::Entity* entity){
 
   //---------------------------
 }
+void Scene::update_entity(utl::type::Entity* entity){
+  //---------------------------
+
+  vk_engine->insert_data_in_engine(entity->get_data());
+  ope_attribut->compute_MinMax(entity);
+
+  //---------------------------
+}
 
 //Object
 void Scene::insert_object(entity::Object* object){
@@ -105,16 +110,6 @@ void Scene::remove_object(entity::Object* object){
 
   sce_glyph->remove_glyph_object(object);
   vk_engine->remove_data_in_engine(object->data);
-
-  //---------------------------
-}
-
-//Data
-void Scene::update_data(utl::type::Data* data){
-  //---------------------------
-
-  vk_engine->insert_data_in_engine(data);
-  ope_attribut->compute_MinMax(data);
 
   //---------------------------
 }

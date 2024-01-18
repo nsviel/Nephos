@@ -30,8 +30,12 @@ struct Set
 
   //Parameter
   void set_visibility(bool value);
+  void set_selected_entity(utl::type::Entity* entity);
   utl::type::Set* get_set(std::string name);
   utl::type::Entity* get_entity(std::string name);
+
+  inline bool is_selected_entity(utl::type::Entity* entity){return entity == selected_entity;}
+  inline utl::type::Entity* get_selected_entity(){return selected_entity;}
 
   //Info
   int UID = 0;

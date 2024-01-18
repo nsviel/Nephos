@@ -32,17 +32,13 @@ public:
   utl::type::Entity* import_entity(std::string path);
   void delete_entity(utl::type::Entity* entity);
   void assign_entity_UID(utl::type::Entity* entity);
+  void update_entity(utl::type::Entity* entity);
 
   //Object
   void insert_object(entity::Object* object);
   void remove_object(entity::Object* object);
 
-  //Data
-  void update_data(utl::type::Data* data);
-
   inline utl::type::Set* get_set_scene(){return set_scene;}
-  inline utl::type::Entity* get_selected_entity(){return selected_entity;}
-  inline void set_selected_entity(utl::type::Entity* entity){this->selected_entity = entity;}
 
 private:
   VK_engine* vk_engine;
@@ -52,8 +48,6 @@ private:
   eng::ope::Attribut* ope_attribut;
 
   utl::type::Set* set_scene;
-  utl::type::Entity* selected_entity = nullptr;
-  int ID_obj;
 };
 
 }
