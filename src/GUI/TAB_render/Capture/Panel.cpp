@@ -60,16 +60,16 @@ void Panel::design_panel(){
       ImGui::EndTabItem();
     }
 
-    //Master sensor tabs
+    //Master sensor tabs -> click = sensor selection
     for(int i=0; i< master->list_sensor.size(); i++){
       k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
 
-
-      static string open_tab = sensor->name;
+      //Force tab open if another sensor selected
       ImGuiTabItemFlags flag = 0;
-      if(k4n_swarm->is_selected_sensor(sensor) && sensor->name != open_tab){
+      static int UID = master->selected_entity->UID;
+      if(master->is_selected_entity(sensor) && sensor->UID != UID){
         flag = ImGuiTabItemFlags_SetSelected;
-        open_tab = sensor->name;
+        UID = master->selected_entity->UID;
       }
       if(ImGui::BeginTabItem(sensor->name.c_str(), NULL, flag)){
 
@@ -79,11 +79,20 @@ void Panel::design_panel(){
 
         kin_operation->kinect_operation();
         kin_recorder->kinect_recorder();
+
         ImGui::EndTabItem();
       }
-
     }
     ImGui::EndTabBar();
+  }
+
+  //Tab content
+  for(int i=0; i< master->list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
+
+    if(master->is_selected_entity(sensor)){
+
+    }
   }
 
   //---------------------------

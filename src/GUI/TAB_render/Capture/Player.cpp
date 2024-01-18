@@ -74,7 +74,7 @@ void Player::player_slider(k4n::dev::Device* device){
 
   ImVec2 available = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(available.x);
-  if(ImGui::SliderFloat("##player_slider", &device->player.ts_cur, device->player.ts_beg, device->player.ts_end, "%.2f s")){
+  if(ImGui::SliderFloat("##player_slider", &device->player.ts_cur, device->player.ts_beg, device->player.ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
     device->set_desired_timestamp(device->player.ts_cur);
   }
 

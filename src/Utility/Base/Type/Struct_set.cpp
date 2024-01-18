@@ -53,7 +53,7 @@ void Set::reset(){
   //---------------------------
 }
 
-//Add element
+//Entity addition
 void Set::add_set(utl::type::Set* set){
   //---------------------------
 
@@ -73,44 +73,6 @@ void Set::add_new_set(std::string name){
   this->nb_set++;
 
   //---------------------------
-}
-void Set::select_next_entity(){
-  //----------------------------
-
-  // Check if the current set has a selected entity
-  if (selected_entity != nullptr) {
-    for (auto it = list_entity.begin(); it != list_entity.end(); ++it) {
-      utl::type::Entity* entity = *it;
-
-      if (selected_entity->UID == entity->UID) {
-        auto next_it = std::next(it);
-
-        if (next_it != list_entity.end()) {
-          selected_entity = *next_it;
-        } else {
-          // If at the end of the list, cycle back to the beginning
-          selected_entity = *list_entity.begin();
-        }
-
-        set_parent->selected_entity = selected_entity;
-        return;
-      }
-    }
-  }
-
-  // Recursively call select_next_entity for each nested subset
-  for (Set* subset : list_set) {
-    subset->select_next_entity();
-
-    // Check if the selected entity is in the current subset
-    if (subset->selected_entity != nullptr) {
-      selected_entity = subset->selected_entity;
-      set_parent->selected_entity = selected_entity;
-      return; // Stop searching if found in a subset
-    }
-  }
-
-  //----------------------------
 }
 void Set::insert_entity(utl::type::Entity* entity){
   if(entity == nullptr) return;
@@ -166,21 +128,55 @@ void Set::delete_entity_all(){
   //---------------------------
 }
 
-//Parameter
-void Set::set_selected_entity(utl::type::Entity* entity){
-  //---------------------------
+//Entity selection
+void Set::select_next_entity(){
+  //----------------------------
 
-  //Check if we have the query entity in the current set list
-  for(int i=0; i<list_entity.size(); i++) {
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+  // Check if the current set has a selected entity
+  if (selected_entity != nullptr) {
+    for (auto it = list_entity.begin(); it != list_entity.end(); ++it) {
+      utl::type::Entity* entity = *it;
 
-    if(selected_entity->UID == entity->UID){
-      this->selected_entity = entity;
+      if (selected_entity->UID == entity->UID) {
+        auto next_it = std::next(it);
+
+        if (next_it != list_entity.end()) {
+          selected_entity = *next_it;
+        } else {
+          // If at the end of the list, cycle back to the beginning
+          selected_entity = *list_entity.begin();
+        }
+
+        set_parent->selected_entity = selected_entity;
+        return;
+      }
     }
   }
 
+  // Recursively call select_next_entity for each nested subset
+  for (Set* subset : list_set) {
+    subset->select_next_entity();
+
+    // Check if the selected entity is in the current subset
+    if (subset->selected_entity != nullptr) {
+      selected_entity = subset->selected_entity;
+      set_parent->selected_entity = selected_entity;
+      return; // Stop searching if found in a subset
+    }
+  }
+
+  //----------------------------
+}
+void Set::set_selected_entity(utl::type::Entity* entity_to_select){
+  //---------------------------
+
+  this->selected_entity = entity_to_select;
+  set_parent->selected_entity = selected_entity;
+
   //---------------------------
 }
+
+//Parameter
 void Set::set_visibility(bool value){
   //---------------------------
 

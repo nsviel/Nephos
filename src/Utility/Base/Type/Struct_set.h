@@ -20,21 +20,23 @@ struct Set
   void update();
   void reset();
 
-  //Add element
+  //Entity addition
   void add_set(utl::type::Set* set);
   void add_new_set(std::string name);
-  void select_next_entity();
   void insert_entity(utl::type::Entity* entity);
   void delete_entity(utl::type::Entity* entity);
   void delete_entity_all();
 
+  //Entity selection
+  void select_next_entity();
+  void set_selected_entity(utl::type::Entity* entity);
+
   //Parameter
   void set_visibility(bool value);
-  void set_selected_entity(utl::type::Entity* entity);
   utl::type::Set* get_set(std::string name);
   utl::type::Entity* get_entity(std::string name);
 
-  inline bool is_selected_entity(utl::type::Entity* entity){return entity == selected_entity;}
+  inline bool is_selected_entity(utl::type::Entity* entity){return entity->UID == selected_entity->UID;}
   inline utl::type::Entity* get_selected_entity(){return selected_entity;}
 
   //Info
