@@ -10,7 +10,7 @@ namespace k4n::dev{
 class Sensor;
 
 
-class Master : public utl::type::Set, public k4n::dev::Device
+class Master : public utl::type::Set
 {
 public:
   //Constructor / Destructor
@@ -34,6 +34,8 @@ public:
 
 public:
   list<k4n::dev::Sensor*> list_sensor;
+  k4n::structure::Player player;
+  k4n::structure::Recorder recorder;
 
 private:
 

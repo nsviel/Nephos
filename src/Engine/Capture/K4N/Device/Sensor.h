@@ -14,7 +14,7 @@ namespace k4n::dev{
 class Master;
 
 
-class Sensor : public utl::type::Entity, public k4n::dev::Device
+class Sensor : public utl::type::Entity
 {
 public:
   //Constructor / Destructor
@@ -26,9 +26,6 @@ public:
   void init();
   void reset();
   void destroy();
-
-  //Player functions
-  void set_play();
 
   //Entity function
   void update_entity();
@@ -46,8 +43,11 @@ public:
   inline k4n::structure::Cloud* get_cloud(){return &cloud;}
   inline entity::Object* get_object(){return object;}
   inline utl::type::Data* get_data(){return object->data;}
-  inline void set_pause(bool value){player.pause = value;}
-  inline void set_desired_timestamp(float value){player.ts_seek = value;}
+
+  //A VIRER !!!!!!!!!
+  k4n::structure::Player player;
+  k4n::structure::Recorder recorder;
+
 
 public:
   Engine* engine;

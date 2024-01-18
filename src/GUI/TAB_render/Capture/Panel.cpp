@@ -55,8 +55,9 @@ void Panel::design_panel(){
   if(master != nullptr && ImGui::BeginTabBar("devices_tab##4567")){
 
     //Master tab
-    if(ImGui::BeginTabItem(master->name.c_str(), NULL)){
-      this->show_info(master);
+    string name = master->icon + "  " + "Master";
+    if(ImGui::BeginTabItem(name.c_str(), NULL)){
+      this->show_info_master(master);
       ImGui::EndTabItem();
     }
 
@@ -71,9 +72,10 @@ void Panel::design_panel(){
         flag = ImGuiTabItemFlags_SetSelected;
         UID = master->selected_entity->UID;
       }
-      if(ImGui::BeginTabItem(sensor->name.c_str(), NULL, flag)){
+      string name = sensor->icon + "  " + sensor->name;
+      if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
 
-        this->show_info(sensor);
+        this->show_info_sensor(sensor);
         kin_capture->kinect_configuration();
         kin_playback->kinect_playback();
 
@@ -99,29 +101,29 @@ void Panel::design_panel(){
 }
 
 //Subfunction
-void Panel::show_info(k4n::dev::Device* device){
+void Panel::show_info_master(k4n::dev::Master* master){
   k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
   if(sensor == nullptr) return;
   //---------------------------
 
     ImGui::Separator();
-  ImVec4 color = ImVec4(0.4f,1.0f,0.4f,1.0f);
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   if(ImGui::BeginTable("Kinect_info##general", 2)){
     //Type
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Type"); ImGui::TableNextColumn();
-    //ImGui::TextColored(color, "%s", device->type.c_str());
+    ImGui::TextColored(color, "%s", master->type.c_str());
 
     //Duration
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", device->player.duration);
+    ImGui::TextColored(color, "%.2f s", master->player.duration);
 
     //Recording time
-    if(device->player.record){
+    if(master->player.record){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Record"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f s", device->recorder.ts_rec);
+      ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
     }
 
     ImGui::EndTable();
@@ -129,10 +131,20 @@ void Panel::show_info(k4n::dev::Device* device){
 
   //---------------------------
 }
-void Panel::transfo_matrix(k4n::dev::Device* device){
-  k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
+void Panel::show_info_sensor(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
+
+    ImGui::Separator();
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+  if(ImGui::BeginTable("Kinect_info##general", 2)){
+    //Type
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Type"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", sensor->type.c_str());
+
+    ImGui::EndTable();
+  }
 
   //Object model matrix
   if(ImGui::Button("...##folder_path")){

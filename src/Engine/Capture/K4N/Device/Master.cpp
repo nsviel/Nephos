@@ -10,7 +10,7 @@ Master::Master(){
   //---------------------------
 
   //this->engine = engine;
-//  this->type = "k4n::device::Master";
+  this->type = "k4n::device::Master";
   this->icon = ICON_FA_TRAIN;
 
 
@@ -73,7 +73,7 @@ void Master::set_pause(bool value){
   this->player.pause = value;
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->set_pause(value);
+    sensor->player.pause = value;
   }
 
   //---------------------------
@@ -84,7 +84,7 @@ void Master::set_desired_timestamp(float value){
   this->player.ts_seek = value;
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->set_desired_timestamp(value);
+    sensor->player.ts_seek = value;
   }
 
   //---------------------------

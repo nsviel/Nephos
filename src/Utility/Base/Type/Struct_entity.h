@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace utl::type{
@@ -27,6 +28,7 @@ struct Entity
   bool is_visible = true;
   std::string name = "";
   std::string type = "entity";
+  std::string icon = ICON_FA_FILE;
   utl::type::Set* set_parent = nullptr;
 
   //---------------------------

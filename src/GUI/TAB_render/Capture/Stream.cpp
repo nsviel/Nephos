@@ -65,14 +65,15 @@ void Stream::vec_device_tab(){
     for(int i=0; i< master->list_sensor.size(); i++){
       k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
 
-      //Force tab open if another sensor selected 
+      //Force tab open if another sensor selected
       ImGuiTabItemFlags flag = 0;
       static int UID = master->selected_entity->UID;
       if(master->is_selected_entity(sensor) && sensor->UID != UID){
         flag = ImGuiTabItemFlags_SetSelected;
         UID = master->selected_entity->UID;
       }
-      if(ImGui::BeginTabItem(sensor->param.name.c_str(), NULL, flag)){
+      string name = sensor->icon + "  " + sensor->name;
+      if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
 
         k4n_swarm->set_selected_sensor(sensor);
         this->device_tab(sensor);

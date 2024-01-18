@@ -22,6 +22,7 @@ Sensor::Sensor(Engine* engine){
   this->ope_transform = new eng::ope::Transformation();
 
   this->type = "k4n::device::Sensor";
+  this->icon = ICON_FA_CAMERA;
 
   //---------------------------
 }
@@ -62,14 +63,6 @@ void Sensor::destroy(){
   this->stop_threads();
   this->param.transformation.destroy();
   sce_scene->delete_entity(object);
-
-  //---------------------------
-}
-
-//Player function
-void Sensor::set_play(){
-  //---------------------------
-
 
   //---------------------------
 }
