@@ -16,6 +16,7 @@ Glyph::Glyph(eng::scene::Node* node_scene){
 
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->sce_database = node_scene->get_scene_database();
+  this->sce_world = node_scene->get_scene_world();
   eng::camera::Node* node_camera = engine->get_node_camera();
   this->cam_control = node_camera->get_camera_control();
 
@@ -45,12 +46,12 @@ void Glyph::create_glyph_world(){
     if(entity::Glyph* glyph = dynamic_cast<entity::Glyph*>(entity)){
       //Glyph creation
       glyph->create();
-      sce_database->assign_ID(glyph);
+      sce_database->assign_UID(glyph);
 
       //Glyph data
       vector<utl::type::Data*> vec_data = glyph->get_vec_data();
       for(int j=0; j<vec_data.size(); j++){
-        sce_database->assign_ID(vec_data[j]);
+        sce_database->assign_UID(vec_data[j]);
         vk_engine->insert_data_in_engine(vec_data[j]);
       }
     }
@@ -91,12 +92,12 @@ void Glyph::create_glyph_object(entity::Object* object){
 
     //Glyph creation
     glyph->create();
-    sce_database->assign_ID(glyph);
+    sce_database->assign_UID(glyph);
 
     //Glyph data
     vector<utl::type::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
-      sce_database->assign_ID(vec_data[j]);
+      sce_database->assign_UID(vec_data[j]);
       vk_engine->insert_data_in_engine(vec_data[j]);
     }
   }
@@ -148,12 +149,12 @@ void Glyph::create_glyph_camera(entity::Camera* camera){
     //Glyph creation
     glyph->create();
     glyph->update_glyph(camera);
-    sce_database->assign_ID(glyph);
+    sce_database->assign_UID(glyph);
 
     //Glyph data
     vector<utl::type::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
-      sce_database->assign_ID(vec_data[j]);
+      sce_database->assign_UID(vec_data[j]);
       vk_engine->insert_data_in_engine(vec_data[j]);
     }
   }

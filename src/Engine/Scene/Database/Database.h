@@ -18,8 +18,8 @@ public:
 
   //Main function
   void init_set();
-  void assign_ID(utl::type::Entity* entity);
-  void assign_ID(utl::type::Data* entity);
+  void assign_UID(utl::type::Entity* entity);
+  void assign_UID(utl::type::Data* entity);
 
   inline utl::type::Set* get_data_set(){return data_set;}
 

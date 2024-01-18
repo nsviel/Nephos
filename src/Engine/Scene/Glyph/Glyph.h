@@ -40,6 +40,7 @@ private:
   VK_engine* vk_engine;
   eng::scene::Node* node_scene;
   eng::scene::Database* sce_database;
+  eng::scene::World* sce_world;
   eng::camera::Control* cam_control;
 };
 

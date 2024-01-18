@@ -61,9 +61,10 @@ void Scene::reset(){
 utl::type::Entity* Scene::import_entity(std::string path){
   //---------------------------
 
+  //Entity importation stuff
   utl::type::Entity* entity = sce_loader->load_entity(path);
   set_scene->insert_entity(entity);
-  sce_database->assign_ID(entity);
+  sce_database->assign_UID(entity);
   vk_engine->insert_data_in_engine(entity->get_data());
 
   //If object; create dedicated glyphs
@@ -77,8 +78,9 @@ utl::type::Entity* Scene::import_entity(std::string path){
 void Scene::import_entity(utl::type::Entity* entity){
   //---------------------------
 
+  //Entity importation stuff
   set_scene->insert_entity(entity);
-  sce_database->assign_ID(entity);
+  sce_database->assign_UID(entity);
   vk_engine->insert_data_in_engine(entity->get_data());
 
   //If object; create dedicated glyphs
@@ -110,7 +112,7 @@ void Scene::delete_entity(utl::type::Entity* entity){
 void Scene::assign_entity_UID(utl::type::Entity* entity){
   //---------------------------
 
-  sce_database->assign_ID(entity);
+  sce_database->assign_UID(entity);
 
   //---------------------------
 }
