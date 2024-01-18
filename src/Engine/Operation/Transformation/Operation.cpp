@@ -80,9 +80,10 @@ void Operation::make_rotation(utl::type::Set* set, vec3 value){
   //---------------------------
 
   if(set->is_locked){
+    vec3 COM = ope_attribut->compute_centroid(set);
     for(int i=0; i<set->list_entity.size(); i++){
       utl::type::Entity* entity = *next(set->list_entity.begin(), i);
-      ope_transform->make_rotation(entity, value);
+      ope_transform->make_rotation(entity, COM, value);
     }
   }else{
     ope_transform->make_rotation(set->selected_entity, value);

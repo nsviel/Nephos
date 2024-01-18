@@ -8,8 +8,7 @@ Attribut::Attribut(){}
 Attribut::~Attribut(){}
 
 //Main function
-void Attribut::compute_centroid(utl::type::Set* set){
-  if(set == nullptr) return;
+vec3 Attribut::compute_centroid(utl::type::Set* set){
   //---------------------------
 
   vec3 centroid = vec3(0, 0, 0);
@@ -31,15 +30,15 @@ void Attribut::compute_centroid(utl::type::Set* set){
   return centroid;
 }
 vec3 Attribut::compute_centroid(utl::type::Entity* entity){
-  if(entity == nullptr) return;
   //---------------------------
 
-  vector<vec3>& XYZ = entity->data.xyz;
+  utl::type::Data* data = entity->get_data();
+  vector<vec3>& XYZ = data->xyz;
   vec3 centroid = vec3(0, 0, 0);
 
   for(int i=0; i<XYZ.size(); i++){
     vec4 xys_h = vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
-    xys_h = xys_h * entity->data.model;
+    xys_h = xys_h * data->model;
 
     for(int j=0; j<3; j++){
       centroid[j] += xys_h[j];
