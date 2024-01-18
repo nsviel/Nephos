@@ -14,7 +14,7 @@ file(GLOB_RECURSE ALL_SOURCES
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
-
+add_subdirectory(Capture/json)
 #-----------------
 # Dependencies
 #-----------------
@@ -41,7 +41,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   -lebml
   -lmatroska
   -lebml
-  nlohmann_json::nlohmann_json
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
