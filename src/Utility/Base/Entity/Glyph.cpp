@@ -2,6 +2,8 @@
 
 #include <Engine/Engine.h>
 #include <Engine/Camera/Namespace.h>
+#include <Vulkan/Vulkan.h>
+#include <Vulkan/VK_main/VK_engine.h>
 #include <Utility/Function/Math/fct_math.h>
 
 
@@ -24,9 +26,12 @@ Glyph::~Glyph(){}
 void Glyph::update_entity(){
   eng::camera::Node* node_camera = engine->get_node_camera();
   eng::camera::Control* cam_control = node_camera->get_camera_control();
+  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  VK_engine* vk_engine = eng_vulkan->get_vk_engine();
   //----------------------------
 
   for(int i=0; i<vec_data.size(); i++){
+    vk_engine->insert_data_in_engine(vec_data[i]);
     cam_control->compute_camera_mvp(vec_data[i]);
   }
 

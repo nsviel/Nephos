@@ -80,16 +80,8 @@ void Glyph::create_glyph_object(entity::Object* object){
   for(int i=0; i<object->list_glyph.size(); i++){
     entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
 
-    //Glyph creation
     glyph->create();
-    sce_database->assign_UID(glyph);
-
-    //Glyph data
-    vector<utl::type::Data*> vec_data = glyph->get_vec_data();
-    for(int j=0; j<vec_data.size(); j++){
-      sce_database->assign_UID(vec_data[j]);
-      vk_engine->insert_data_in_engine(vec_data[j]);
-    }
+    sce_world->init_entity(glyph);
   }
 
   //---------------------------
@@ -100,13 +92,9 @@ void Glyph::update_glyph_object(entity::Object* object){
 
   for(int i=0; i<object->list_glyph.size(); i++){
     entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
-    vector<utl::type::Data*> vec_data = glyph->get_vec_data();
 
     glyph->update_glyph(object);
-    for(int j=0; j<vec_data.size(); j++){
-      vk_engine->insert_data_in_engine(vec_data[j]);
-      cam_control->compute_camera_mvp(vec_data[j]);
-    }
+    glyph->update_entity();
   }
 
   //---------------------------
@@ -139,14 +127,7 @@ void Glyph::create_glyph_camera(entity::Camera* camera){
     //Glyph creation
     glyph->create();
     glyph->update_glyph(camera);
-    sce_database->assign_UID(glyph);
-
-    //Glyph data
-    vector<utl::type::Data*> vec_data = glyph->get_vec_data();
-    for(int j=0; j<vec_data.size(); j++){
-      sce_database->assign_UID(vec_data[j]);
-      vk_engine->insert_data_in_engine(vec_data[j]);
-    }
+    sce_world->init_entity(glyph);
   }
 
   //---------------------------
