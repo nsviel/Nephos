@@ -8,6 +8,51 @@ Attribut::Attribut(){}
 Attribut::~Attribut(){}
 
 //Main function
+void Attribut::compute_centroid(utl::type::Set* set){
+  if(set == nullptr) return;
+  //---------------------------
+
+  vec3 centroid = vec3(0, 0, 0);
+
+  for(int i=0; i<set->list_entity.size(); i++){
+    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+    vec3 entity_COM = compute_centroid(entity);
+
+    for(int j=0; j<3; j++){
+      centroid[j] += entity_COM[j];
+    }
+  }
+
+  for(int i=0; i<3; i++){
+    centroid[i] /= set->list_entity.size();
+  }
+
+  //---------------------------
+  return centroid;
+}
+vec3 Attribut::compute_centroid(utl::type::Entity* entity){
+  if(entity == nullptr) return;
+  //---------------------------
+
+  vector<vec3>& XYZ = entity->data.xyz;
+  vec3 centroid = vec3(0, 0, 0);
+
+  for(int i=0; i<XYZ.size(); i++){
+    vec4 xys_h = vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
+    xys_h = xys_h * entity->data.model;
+
+    for(int j=0; j<3; j++){
+      centroid[j] += xys_h[j];
+    }
+  }
+
+  for(int j=0;j<3;j++){
+    centroid[j] /= XYZ.size();
+  }
+
+  //---------------------------
+  return centroid;
+}
 void Attribut::compute_MinMax(utl::type::Entity* entity){
   if(entity == nullptr) return;
   utl::type::Data* data = entity->get_data();

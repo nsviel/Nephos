@@ -40,11 +40,12 @@ void Transformation::make_translation(utl::type::Entity* entity, mat4 translatio
 }
 
 //Rotation
-void Transformation::make_rotation(utl::type::Entity* entity, vec3 COM, vec3 radian){
+void Transformation::make_rotation(utl::type::Entity* entity, vec3 COM, vec3 degree){
   if(entity == nullptr) return;
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
+  vec3 radian = math::degree_to_radian(degree);
   mat4 rotation = get_rotation_mat(radian);
   mat4 COM_mat = get_translation_mat_neye(COM);
 

@@ -18,7 +18,7 @@ public:
   void make_translation(utl::type::Entity* entity, mat4 translation);
 
   // Rotation
-  void make_rotation(utl::type::Entity* entity, vec3 COM, vec3 radian);
+  void make_rotation(utl::type::Entity* entity, vec3 COM, vec3 degree);
   void make_rotation(utl::type::Entity* entity, vec3 degree);
   void make_rotation(utl::type::Entity* entity, vec3 COM, mat4 rotation);
   void make_rotation_axe_X(utl::type::Entity* entity, float degree);
