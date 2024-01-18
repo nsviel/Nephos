@@ -42,34 +42,36 @@ void Scene::design_panel(){
 
 //Subfunction
 void Scene::draw_button(){
-  utl::type::Set* set_scene = sce_scene->get_set_scene();
-  utl::type::Entity* entity = set_scene->get_selected_entity();
+  utl::type::Set* set = sce_scene->get_selected_set();
+  if(set == nullptr) return;
   //-------------------------------
 
-  if(entity == nullptr) return;
   ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
 
   //Suppression
-  if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##supressionentity")){
-    sce_scene->delete_entity(entity);
-    return;
+  if(ImGui::Button(ICON_FA_TRASH "##supressionentity")){
+    if(set->is_locked){
+      sce_scene->delete_set(set);
+    }else if(set->is_locked){
+      sce_scene->delete_entity(set->selected_entity);
+    }
   }
 
   //Centered
   ImGui::SameLine();
-  if(entity->is_movable && ImGui::Button("C##centerentity", ImVec2(20, 0))){
-    ope_operation->center_object(entity);
+  if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
+    ope_operation->center_object(set);
   }
 
   //Rotation 90° around X axis
   ImGui::SameLine();
   if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
-    ope_operation->make_rotation_X_90d(entity, 1);
+    ope_operation->make_rotation_X_90d(set, 1);
   }
 
   //Camera mode
   ImGui::SameLine();
-  if(ImGui::Button(ICON_FA_CAMERA "##camera123")){
+  if(ImGui::Button(ICON_FA_CAMERA_RETRO "##camera123")){
     cam_control->set_next_camera_mode();
   }
 

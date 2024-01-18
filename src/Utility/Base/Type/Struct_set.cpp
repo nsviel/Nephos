@@ -61,6 +61,7 @@ void Set::add_set(utl::type::Set* set){
   list_set.push_back(set);
   this->nb_set++;
   this->select_next_entity();
+  this->selected_set = set;
 
   //---------------------------
 }
@@ -71,6 +72,7 @@ void Set::add_new_set(std::string name){
   set->set_parent = this;
   list_set.push_back(set);
   this->nb_set++;
+  this->selected_set = set;
 
   //---------------------------
 }

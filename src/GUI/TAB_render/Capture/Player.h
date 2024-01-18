@@ -28,6 +28,7 @@ public:
   void player_repeat(k4n::dev::Master* master);
   void player_record(k4n::dev::Master* master);
   void player_close(k4n::dev::Master* master);
+  void player_lock(k4n::dev::Master* master);
 
 private:
   eng::scene::Scene* sce_scene;

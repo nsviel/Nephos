@@ -14,7 +14,14 @@ public:
   ~Operation();
 
 public:
-  //Main functions
+  //Operation on set
+  void center_object(utl::type::Set* set);
+  void elevate_object(utl::type::Set* set);
+  void make_rotation_X_90d(utl::type::Set* set, int value);
+  void make_translation(utl::type::Set* set, vec3 value);
+  void make_rotation(utl::type::Set* set, vec3 value);
+
+  //Operation on entity
   void center_object(utl::type::Entity* entity);
   void elevate_object(utl::type::Entity* entity);
   void make_rotation_X_90d(utl::type::Entity* entity, int value);

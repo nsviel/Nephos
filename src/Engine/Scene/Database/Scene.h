@@ -27,14 +27,18 @@ public:
   void loop();
   void reset();
 
-  //Entity
+  //Entity function
   utl::type::Entity* import_entity(std::string path);
   void import_entity(utl::type::Entity* entity);
   void init_entity(utl::type::Entity* entity);
   void delete_entity(utl::type::Entity* entity);
   void assign_entity_UID(utl::type::Entity* entity);
 
+  //Set function
+  void delete_set(utl::type::Set* set);
+
   inline utl::type::Set* get_set_scene(){return set_scene;}
+  inline utl::type::Set* get_selected_set(){return set_scene->selected_set;}
 
 private:
   VK_engine* vk_engine;

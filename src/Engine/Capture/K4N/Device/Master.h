@@ -36,6 +36,7 @@ public:
   list<k4n::dev::Sensor*> list_sensor;
   k4n::structure::Player player;
   k4n::structure::Recorder recorder;
+  k4n::structure::Controler controler;
 
 private:
 

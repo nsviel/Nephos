@@ -56,7 +56,7 @@ void Scene::reset(){
   //---------------------------
 }
 
-//Entity
+//Entity function
 utl::type::Entity* Scene::import_entity(std::string path){
   //---------------------------
 
@@ -104,6 +104,7 @@ void Scene::init_entity(utl::type::Entity* entity){
   //---------------------------
 }
 void Scene::delete_entity(utl::type::Entity* entity){
+  if(entity->is_suppressible == false) return;
   //---------------------------
 
   //Selected next entity
@@ -118,6 +119,20 @@ void Scene::assign_entity_UID(utl::type::Entity* entity){
   //---------------------------
 
   sce_database->assign_UID(entity);
+
+  //---------------------------
+}
+
+//Set function
+void Scene::delete_set(utl::type::Set* set){
+  if(set->is_suppressible == false) return;
+  //---------------------------
+
+  //Selected next entity
+  //set_scene->select_next_entity();
+
+  //Delete it from database and engine
+  //set_scene->delete_entity(entity);
 
   //---------------------------
 }

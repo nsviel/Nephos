@@ -11,8 +11,8 @@ Master::Master(){
 
   //this->engine = engine;
   this->type = "k4n::device::Master";
-  this->icon = ICON_FA_TRAIN;
-
+  this->icon = ICON_FA_USER;
+  this->is_suppressible = true;
 
   //---------------------------
 }
@@ -155,8 +155,7 @@ void Master::manage_restart(){
 
     sensor->player.play = player.restart;
     sensor->player.pause = !player.restart;
-    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_beg));
-    sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    sensor->player.ts_seek = player.ts_beg;
   }
 
   //---------------------------

@@ -38,6 +38,8 @@ void Player::draw_player(k4n::dev::Master* master){
   this->player_record(master);
   ImGui::SameLine();
   this->player_close(master);
+  ImGui::SameLine();
+  this->player_lock(master);
 
   //---------------------------
 }
@@ -165,15 +167,32 @@ void Player::player_record(k4n::dev::Master* master){
   //---------------------------
 }
 void Player::player_close(k4n::dev::Master* master){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-  if(k4n_sensor == nullptr) return;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
   if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-    sce_scene->delete_entity(k4n_sensor);
+    sce_scene->delete_entity(master->selected_entity);
   }
   ImGui::PopStyleColor();
+
+  //---------------------------
+}
+void Player::player_lock(k4n::dev::Master* master){
+  //---------------------------
+
+  if(master->is_locked){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
+    if(ImGui::Button(ICON_FA_LOCK "##399")){
+      master->is_locked = false;
+    }
+    ImGui::PopStyleColor();
+  }else{
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
+    if(ImGui::Button(ICON_FA_UNLOCK "##399")){
+      master->is_locked = true;
+    }
+    ImGui::PopStyleColor();
+  }
 
   //---------------------------
 }
