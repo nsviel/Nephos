@@ -63,13 +63,7 @@ utl::type::Entity* Scene::import_entity(std::string path){
   //Entity importation stuff
   utl::type::Entity* entity = sce_loader->load_entity(path);
   set_scene->insert_entity(entity);
-  sce_database->assign_UID(entity);
-  vk_engine->insert_data_in_engine(entity->get_data());
-
-  //If object; create dedicated glyphs
-  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
-    sce_glyph->create_glyph_object(object);
-  }
+  this->init_entity(entity);
 
   //---------------------------
   return entity;
@@ -79,12 +73,32 @@ void Scene::import_entity(utl::type::Entity* entity){
 
   //Entity importation stuff
   set_scene->insert_entity(entity);
+  this->init_entity(entity);
+
+  //---------------------------
+}
+void Scene::init_entity(utl::type::Entity* entity){
+  //---------------------------
+
+  //Init entity
   sce_database->assign_UID(entity);
   vk_engine->insert_data_in_engine(entity->get_data());
 
   //If object; create dedicated glyphs
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
     sce_glyph->create_glyph_object(object);
+  }
+
+  //Init entity data
+  utl::type::Data* data = entity->get_data();
+  sce_database->assign_UID(data);
+  vk_engine->insert_data_in_engine(data);
+
+  //Init entity vector data
+  vector<utl::type::Data*> vec_data = entity->get_vec_data();
+  for(int j=0; j<vec_data.size(); j++){
+    sce_database->assign_UID(vec_data[j]);
+    vk_engine->insert_data_in_engine(vec_data[j]);
   }
 
   //---------------------------

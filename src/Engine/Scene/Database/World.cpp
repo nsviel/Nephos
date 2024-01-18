@@ -37,13 +37,27 @@ void World::import_entity(utl::type::Entity* entity){
   //---------------------------
 
   set_world->insert_entity(entity);
+  this->init_entity(entity);
+
+  //---------------------------
+}
+void World::init_entity(utl::type::Entity* entity){
+  //---------------------------
+
+  //Init entity
   sce_database->assign_UID(entity);
   vk_engine->insert_data_in_engine(entity->get_data());
 
+  //Init entity data
+  utl::type::Data* data = entity->get_data();
+  sce_database->assign_UID(data);
+  vk_engine->insert_data_in_engine(data);
+
+  //Init entity vector data
   vector<utl::type::Data*> vec_data = entity->get_vec_data();
-  for(int i=0; i<vec_data.size(); i++){
-    sce_database->assign_UID(vec_data[i]);
-    vk_engine->insert_data_in_engine(vec_data[i]);
+  for(int j=0; j<vec_data.size(); j++){
+    sce_database->assign_UID(vec_data[j]);
+    vk_engine->insert_data_in_engine(vec_data[j]);
   }
 
   //---------------------------
