@@ -40,6 +40,12 @@ void World::import_entity(utl::type::Entity* entity){
   sce_database->assign_UID(entity);
   vk_engine->insert_data_in_engine(entity->get_data());
 
+  vector<utl::type::Data*> vec_data = entity->get_vec_data();
+  for(int i=0; i<vec_data.size(); i++){
+    sce_database->assign_UID(vec_data[i]);
+    vk_engine->insert_data_in_engine(vec_data[i]);
+  }
+
   //---------------------------
 }
 

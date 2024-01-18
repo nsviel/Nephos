@@ -36,25 +36,15 @@ void Glyph::create_glyph_world(){
   utl::type::Set* set_world = data_set->get_set("World");
   //---------------------------
 
-  if(set_world->list_entity.size() != 0) return;
-  set_world->insert_entity(new glyph::grid::Grid(engine));
-  set_world->insert_entity(new glyph::world::Axis(engine));
+  vector<entity::Glyph*> vec_glyph;
+  vec_glyph.push_back(new glyph::grid::Grid(engine));
+  vec_glyph.push_back(new glyph::world::Axis(engine));
 
-  for(int i=0; i<set_world->list_entity.size(); i++){
-    utl::type::Entity* entity = *next(set_world->list_entity.begin(), i);
+  for(int i=0; i<vec_glyph.size(); i++){
+    entity::Glyph* glyph = vec_glyph[i];
 
-    if(entity::Glyph* glyph = dynamic_cast<entity::Glyph*>(entity)){
-      //Glyph creation
-      glyph->create();
-      sce_database->assign_UID(glyph);
-
-      //Glyph data
-      vector<utl::type::Data*> vec_data = glyph->get_vec_data();
-      for(int j=0; j<vec_data.size(); j++){
-        sce_database->assign_UID(vec_data[j]);
-        vk_engine->insert_data_in_engine(vec_data[j]);
-      }
-    }
+    glyph->create();
+    sce_world->import_entity(glyph);
   }
 
   //---------------------------
