@@ -50,7 +50,6 @@ void K4A_playback::run_thread(k4n::dev::Sensor* k4n_sensor){
   k4n_sensor->player.play = true;
   k4n_sensor->param.playback = &playback;
 
-  //k4n_operation->playback_find_duration(k4n_sensor);
   k4n_configuration->find_playback_configuration(k4n_sensor);
   k4n_configuration->make_device_configuration(k4n_sensor);
   k4n_calibration->find_playback_calibration(k4n_sensor);
@@ -61,6 +60,10 @@ void K4A_playback::run_thread(k4n::dev::Sensor* k4n_sensor){
   while(thread_running){
     fps_control->start();
 
+    this->manage_pause(k4n_sensor);
+    this->manage_query_ts(k4n_sensor);
+    this->manage_restart(k4n_sensor);
+
     playback.get_next_capture(&capture);
     if(!capture) continue;
 
@@ -68,10 +71,6 @@ void K4A_playback::run_thread(k4n::dev::Sensor* k4n_sensor){
     k4a_data->find_color_from_depth(k4n_sensor, capture, k4n_sensor->param.transformation);
 
     k4a_processing->convert_into_cloud(k4n_sensor);
-
-    this->manage_pause(k4n_sensor);
-    this->manage_query_ts(k4n_sensor);
-    this->manage_restart(k4n_sensor);
 
     fps_control->stop();
     fps_control->set_fps_max(k4n_sensor->param.fps.query);

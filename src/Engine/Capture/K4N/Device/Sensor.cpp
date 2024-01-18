@@ -45,7 +45,7 @@ void Sensor::init(){
   object = new entity::Object(engine);
   object->name = param.name;
   object->data->draw_type_name = "point";
-  sce_scene->import_entity(object);
+  sce_scene->init_entity(object);
 
   //---------------------------
 }
@@ -134,6 +134,7 @@ void Sensor::restart_capture(){
 void Sensor::run_playback(string path){
   //---------------------------
 
+  this->stop_threads();
   this->param.file_path = path;
   k4a_playback->start_thread(this);
 

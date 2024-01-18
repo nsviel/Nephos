@@ -60,7 +60,6 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
   master->insert_sensor_playback(sensor);
 
   sensor->init();
-  sensor->run_playback(path);
   sce_scene->assign_entity_UID(sensor);
 
   k4n_transfo->truc(path);
@@ -86,7 +85,6 @@ void Swarm::create_sensor_playback(string path){
   master->insert_sensor_playback(sensor);
 
   sensor->init();
-  sensor->run_playback(path);
   sce_scene->assign_entity_UID(sensor);
 
   k4n_transfo->truc(path);

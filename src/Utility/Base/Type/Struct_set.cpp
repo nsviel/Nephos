@@ -60,6 +60,7 @@ void Set::add_set(utl::type::Set* set){
   set->set_parent = this;
   list_set.push_back(set);
   this->nb_set++;
+  this->select_next_entity();
 
   //---------------------------
 }
@@ -77,28 +78,36 @@ void Set::select_next_entity(){
   //----------------------------
 
   // Check if the current set has a selected entity
-  if(selected_entity != nullptr){
-    for(int i=0; i<list_entity.size(); i++){
-      utl::type::Entity* entity = *next(list_entity.begin(), i);
+  if (selected_entity != nullptr) {
+    for (auto it = list_entity.begin(); it != list_entity.end(); ++it) {
+      utl::type::Entity* entity = *it;
 
-      if(selected_entity->UID == entity->UID){
-        utl::type::Entity* next_entity;
+      if (selected_entity->UID == entity->UID) {
+        auto next_it = std::next(it);
 
-        if ((i + 1) < list_entity.size()) {
-          next_entity = *next(list_entity.begin(), i + 1);
+        if (next_it != list_entity.end()) {
+          selected_entity = *next_it;
         } else {
-          next_entity = *next(list_entity.begin(), 0);
+          // If at the end of the list, cycle back to the beginning
+          selected_entity = *list_entity.begin();
         }
 
-        selected_entity = next_entity;
+        set_parent->selected_entity = selected_entity;
         return;
       }
     }
   }
 
-  // Recursively call select_next_entity_recursive for each nested set
+  // Recursively call select_next_entity for each nested subset
   for (Set* subset : list_set) {
     subset->select_next_entity();
+
+    // Check if the selected entity is in the current subset
+    if (subset->selected_entity != nullptr) {
+      selected_entity = subset->selected_entity;
+      set_parent->selected_entity = selected_entity;
+      return; // Stop searching if found in a subset
+    }
   }
 
   //----------------------------
@@ -109,8 +118,10 @@ void Set::insert_entity(utl::type::Entity* entity){
 
   entity->set_parent = this;
   this->list_entity.push_back(entity);
-  this->selected_entity = entity;
   this->nb_entity++;
+
+  this->selected_entity = entity;
+  set_parent->selected_entity = entity;
 
   //---------------------------
 }
