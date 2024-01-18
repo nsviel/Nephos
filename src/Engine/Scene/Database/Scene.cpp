@@ -8,7 +8,7 @@
 
 namespace eng::scene{
 
-//ConsScenetor / DesScenetor
+//Constructor / Destructor
 Scene::Scene(eng::scene::Node* node_scene){
   //---------------------------
 
@@ -25,7 +25,7 @@ Scene::Scene(eng::scene::Node* node_scene){
 }
 Scene::~Scene(){}
 
-//Scene function
+//Main function
 void Scene::init(){
   //---------------------------
 

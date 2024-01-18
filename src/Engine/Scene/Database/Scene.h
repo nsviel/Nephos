@@ -2,7 +2,6 @@
 
 #include <Engine/Operation/Namespace.h>
 #include <Engine/Scene/Namespace.h>
-
 #include <Utility/Specific/common.h>
 
 class VK_engine;
@@ -18,12 +17,12 @@ class Database;
 class Scene
 {
 public:
-  //ConsScenetor / DesScenetor
+  //Constructor / Destructor
   Scene(eng::scene::Node* node_scene);
   ~Scene();
 
 public:
-  //Scene function
+  //Main function
   void init();
   void loop();
   void reset();
