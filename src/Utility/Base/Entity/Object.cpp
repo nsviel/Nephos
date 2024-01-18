@@ -36,10 +36,18 @@ void Object::update_entity(){
   eng::camera::Control* cam_control = node_camera->get_camera_control();
   eng::scene::Node* node_scene = engine->get_node_scene();
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
+  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  VK_engine* vk_engine = eng_vulkan->get_vk_engine();
   //----------------------------
 
   cam_control->compute_camera_mvp(data);
-  sce_glyph->update_glyph_object(this);
+  vk_engine->insert_data_in_engine(data);
+
+  for(int i=0; i<list_glyph.size(); i++){
+    entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    glyph->update_glyph(this);
+    glyph->update_entity();
+  }
 
   //----------------------------
 }

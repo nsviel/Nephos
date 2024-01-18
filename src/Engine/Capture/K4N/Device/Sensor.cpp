@@ -76,19 +76,12 @@ void Sensor::set_play(){
 
 //Entity function
 void Sensor::update_entity(){
-  eng::camera::Node* node_camera = engine->get_node_camera();
-  eng::camera::Control* cam_control = node_camera->get_camera_control();
-  eng::scene::Node* node_scene = engine->get_node_scene();
-  eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   //----------------------------
-
-  cam_control->compute_camera_mvp(object->data);
-  sce_glyph->update_glyph_object(object);
 
   //Retrieve capture data
   std::unique_lock<std::mutex> lock(object->data->mutex);
   object->data->nb_point = object->data->xyz.size();
-  sce_scene->update_entity(object);
+  object->update_entity();
 
   //----------------------------
 }

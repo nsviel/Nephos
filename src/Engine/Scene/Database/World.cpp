@@ -69,7 +69,11 @@ void World::update_entity(utl::type::Entity* entity){
   vk_engine->insert_data_in_engine(entity->get_data());
 
   //Update entity data vector
-
+  vector<utl::type::Data*> vec_data = entity->get_vec_data();
+  for(int j=0; j<vec_data.size(); j++){
+    vk_engine->insert_data_in_engine(vec_data[j]);
+    //cam_control->compute_camera_mvp(vec_data[j]);
+  }
 
   //---------------------------
 }

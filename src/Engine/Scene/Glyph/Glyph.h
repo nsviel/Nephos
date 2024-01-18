@@ -29,7 +29,6 @@ public:
 
   //Glyph object
   void create_glyph_object(entity::Object* object);
-  void update_glyph_object(entity::Object* object);
   void remove_glyph_object(entity::Object* object);
 
   //Glyph camera

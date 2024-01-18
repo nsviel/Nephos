@@ -86,19 +86,6 @@ void Glyph::create_glyph_object(entity::Object* object){
 
   //---------------------------
 }
-void Glyph::update_glyph_object(entity::Object* object){
-  if(object == nullptr) return;
-  //---------------------------
-
-  for(int i=0; i<object->list_glyph.size(); i++){
-    entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
-
-    glyph->update_glyph(object);
-    glyph->update_entity();
-  }
-
-  //---------------------------
-}
 void Glyph::remove_glyph_object(entity::Object* object){
   //---------------------------
 

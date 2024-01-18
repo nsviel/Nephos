@@ -1,10 +1,6 @@
 #include "Loader.h"
-#include "../Format/Format.h"
 
 #include <Engine/Engine.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_main/VK_engine.h>
-
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 #include <Utility/Function/File/Info.h>
@@ -18,12 +14,8 @@ Loader::Loader(eng::scene::Node* node_scene){
   //---------------------------
 
   this->engine = node_scene->get_engine();
-  Vulkan* eng_vulkan = engine->get_eng_vulkan();
-
-  this->sce_glyph = node_scene->get_scene_glyph();
-  this->vk_engine = eng_vulkan->get_vk_engine();
-
-  this->eng_format = new eng::scene::Format();
+  this->sce_scene = node_scene->get_scene();
+  this->sce_format = new eng::scene::Format();
 
   this->path_current_dir = "";
   this->supported_format.push_back("pts");
@@ -41,7 +33,7 @@ Loader::Loader(eng::scene::Node* node_scene){
 Loader::~Loader(){
   //---------------------------
 
-  delete eng_format;
+  delete sce_format;
 
   //---------------------------
 }
@@ -81,7 +73,7 @@ utl::type::Entity* Loader::load_entity(std::string path){
 entity::Object* Loader::load_object(string path){
   //---------------------------
 
-  utl::media::File* data = eng_format->get_data_from_file(path);
+  utl::media::File* data = sce_format->get_data_from_file(path);
 
   entity::Object* object = new entity::Object(engine);
   object->data->path_file = path;
@@ -105,8 +97,7 @@ entity::Object* Loader::load_object(string path){
   //Delete raw data
   delete data;
 
-  vk_engine->insert_data_in_engine(object->data);
-  sce_glyph->create_glyph_object(object);
+  sce_scene->init_entity(object);
 
   //---------------------------
   return object;
