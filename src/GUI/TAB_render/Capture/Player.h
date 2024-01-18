@@ -16,18 +16,18 @@ public:
   ~Player();
 
   //Main function
-  void draw_player(k4n::dev::Device* device);
+  void draw_player(k4n::dev::Master* master);
 
   //Subfunction
-  void player_control(k4n::dev::Device* device);
-  void player_slider(k4n::dev::Device* device);
+  void player_control(k4n::dev::Master* master);
+  void player_slider(k4n::dev::Master* master);
 
   //Player button
-  void player_start(k4n::dev::Device* device);
-  void player_stop(k4n::dev::Device* device);
-  void player_repeat(k4n::dev::Device* device);
-  void player_record(k4n::dev::Device* device);
-  void player_close(k4n::dev::Device* device);
+  void player_start(k4n::dev::Master* master);
+  void player_stop(k4n::dev::Master* master);
+  void player_repeat(k4n::dev::Master* master);
+  void player_record(k4n::dev::Master* master);
+  void player_close(k4n::dev::Master* master);
 
 private:
   eng::scene::Scene* sce_scene;

@@ -23,73 +23,73 @@ Player::Player(Engine* engine){
 Player::~Player(){}
 
 //Main function
-void Player::draw_player(k4n::dev::Device* device){
+void Player::draw_player(k4n::dev::Master* master){
   //---------------------------
 
-  this->player_control(device);
-  this->player_slider(device);
+  this->player_control(master);
+  this->player_slider(master);
 
-  this->player_start(device);
+  this->player_start(master);
   ImGui::SameLine();
-  this->player_stop(device);
+  this->player_stop(master);
   ImGui::SameLine();
-  this->player_repeat(device);
+  this->player_repeat(master);
   ImGui::SameLine();
-  this->player_record(device);
+  this->player_record(master);
   ImGui::SameLine();
-  this->player_close(device);
+  this->player_close(master);
 
   //---------------------------
 }
 
 //Subfunction
-void Player::player_control(k4n::dev::Device* device){
+void Player::player_control(k4n::dev::Master* master){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      device->set_pause(!device->player.pause);
+      master->set_pause(!master->player.pause);
       break;
     }
 
     //Left arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
-      device->player.ts_forward = -1;
+      master->player.ts_forward = -1;
       break;
     }
 
     //Right arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
-      device->player.ts_forward = 1;
+      master->player.ts_forward = 1;
       break;
     }
   }
 
   //----------------------------
 }
-void Player::player_slider(k4n::dev::Device* device){
+void Player::player_slider(k4n::dev::Master* master){
   //---------------------------
 
   ImVec2 available = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(available.x);
-  if(ImGui::SliderFloat("##player_slider", &device->player.ts_cur, device->player.ts_beg, device->player.ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
-    device->set_desired_timestamp(device->player.ts_cur);
+  if(ImGui::SliderFloat("##player_slider", &master->player.ts_cur, master->player.ts_beg, master->player.ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
+    master->set_desired_timestamp(master->player.ts_cur);
   }
 
   //---------------------------
 }
 
 //Player button
-void Player::player_start(k4n::dev::Device* device){
+void Player::player_start(k4n::dev::Master* master){
   //---------------------------
 
   //Play button -> if paused or not playing
-  if(device->player.pause){
+  if(master->player.pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##player_start")){
-      device->set_play();
+      master->set_play();
     }
     ImGui::PopStyleColor();
   }
@@ -97,74 +97,74 @@ void Player::player_start(k4n::dev::Device* device){
   else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##player_pause")){
-      device->set_pause(true);
+      master->set_pause(true);
     }
     ImGui::PopStyleColor();
   }
 
   //---------------------------
 }
-void Player::player_stop(k4n::dev::Device* device){
+void Player::player_stop(k4n::dev::Master* master){
   //---------------------------
 
-  if(!device->player.pause){
+  if(!master->player.pause){
     //Player is running
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if (ImGui::Button(ICON_FA_STOP "##37")){
-      device->set_stop();
+      master->set_stop();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Player is stoped
     if (ImGui::Button(ICON_FA_STOP "##37")){
-      device->set_stop();
+      master->set_stop();
     }
   }
 
   //---------------------------
 }
-void Player::player_repeat(k4n::dev::Device* device){
+void Player::player_repeat(k4n::dev::Master* master){
   //---------------------------
 
-  if(device->player.restart){
+  if(master->player.restart){
     //Repeat activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      device->set_restart();
+      master->set_restart();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Repeat desactivated
     if (ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      device->set_restart();
+      master->set_restart();
     }
   }
 
   //---------------------------
 }
-void Player::player_record(k4n::dev::Device* device){
+void Player::player_record(k4n::dev::Master* master){
   //---------------------------
 
-  if(device->player.record){
+  if(master->player.record){
     //Record activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if (ImGui::Button(ICON_FA_CIRCLE "##37")){
-      device->set_record();
+      master->set_record();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Record desactivated
     if (ImGui::Button(ICON_FA_CIRCLE "##37")){
-      device->set_record();
+      master->set_record();
     }
   }
 
   //---------------------------
 }
-void Player::player_close(k4n::dev::Device* device){
+void Player::player_close(k4n::dev::Master* master){
   k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
