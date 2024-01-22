@@ -52,6 +52,7 @@ struct Set
   std::string icon = ICON_FA_FOLDER;
 
   //Data
+  utl::type::Pose* pose;
   utl::type::Entity* selected_entity = nullptr;
   utl::type::Set* selected_set = nullptr;
   utl::type::Set* set_parent = nullptr;
