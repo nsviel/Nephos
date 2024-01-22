@@ -74,8 +74,8 @@ void Player::player_control(k4n::dev::Master* master){
 void Player::player_slider(k4n::dev::Master* master){
   //---------------------------
 
-  ImVec2 available = ImGui::GetContentRegionAvail();
-  ImGui::SetNextItemWidth(available.x);
+  ImVec2 width = ImGui::GetContentRegionAvail();
+  ImGui::SetNextItemWidth(width.x);
   if(ImGui::SliderFloat("##player_slider", &master->player.ts_cur, master->player.ts_beg, master->player.ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
     master->set_desired_timestamp(master->player.ts_cur);
   }
