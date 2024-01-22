@@ -16,6 +16,7 @@ public:
   //Main functions
   vec3 compute_centroid(utl::type::Set* set);
   vec3 compute_centroid(utl::type::Entity* entity);
+  void compute_MinMax(utl::type::Set* set);
   void compute_MinMax(utl::type::Entity* entity);
   void set_unicolor(utl::type::Entity* entity);
   vector<float> retrieve_z_vector(utl::type::Entity* entity);
