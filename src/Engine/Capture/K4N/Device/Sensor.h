@@ -46,6 +46,7 @@ public:
 public:
   entity::Object* object;
   k4n::dev::Master* master;
+
   k4n::structure::Param param;
   k4n::structure::Synchro synchro;
   k4n::structure::Recorder recorder;

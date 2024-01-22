@@ -79,10 +79,6 @@ void Master::set_pause(bool value){
   //---------------------------
 
   this->player.pause = value;
-  for(int i=0; i<list_sensor.size(); i++){
-    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->master->player.pause = value;
-  }
 
   //---------------------------
 }
@@ -108,27 +104,15 @@ void Master::set_play(){
     player.pause = false;
   }
 
-  for(int i=0; i<list_sensor.size(); i++){
-    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->master->player.play = player.play;
-    sensor->master->player.pause = player.pause;
-  }
-
   //---------------------------
 }
 void Master::set_stop(){
   //---------------------------
 
-  player.ts_seek = player.ts_beg;
   player.play = false;
   player.pause = true;
 
-  for(int i=0; i<list_sensor.size(); i++){
-    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->master->player.play = player.play;
-    sensor->master->player.pause = player.pause;
-    sensor->master->player.ts_seek = player.ts_seek;
-  }
+  this->manage_restart();
 
   //---------------------------
 }
@@ -137,22 +121,12 @@ void Master::set_restart(){
 
   player.restart = !player.restart;
 
-  for(int i=0; i<list_sensor.size(); i++){
-    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->master->player.restart = player.restart;
-  }
-
   //---------------------------
 }
 void Master::set_record(){
   //---------------------------
 
   player.record = !player.record;
-
-  for(int i=0; i<list_sensor.size(); i++){
-    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->master->player.record = player.record;
-  }
 
   //---------------------------
 }
@@ -161,10 +135,6 @@ void Master::manage_restart(){
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-
-    sensor->master->player.play = player.restart;
-    sensor->master->player.pause = !player.restart;
-    sensor->master->player.ts_seek = player.ts_beg;
 
     auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_beg));
     sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
