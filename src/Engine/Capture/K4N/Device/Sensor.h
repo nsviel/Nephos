@@ -45,18 +45,10 @@ public:
   inline utl::type::Data* get_data(){return object->data;}
   inline utl::type::Pose* get_pose(){return object->pose;}
 
+public:
   //A VIRER !!!!!!!!!
   k4n::structure::Player player;
   k4n::structure::Recorder recorder;
-
-
-public:
-  Engine* engine;
-  eng::scene::Scene* sce_scene;
-  eng::scene::Glyph* sce_glyph;
-  eng::ope::Transformation* ope_transform;
-  K4A_capture* k4a_capture;
-  K4A_playback* k4a_playback;
 
   entity::Object* object;
 
@@ -69,6 +61,14 @@ public:
   k4n::structure::Depth depth;
   k4n::structure::Infrared ir;
   k4n::structure::IMU imu;
+
+private:
+  Engine* engine;
+  eng::scene::Scene* sce_scene;
+  eng::scene::Glyph* sce_glyph;
+  eng::ope::Transformation* ope_transform;
+  K4A_capture* k4a_capture;
+  K4A_playback* k4a_playback;
 };
 
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Engine/Capture/K4N/Structure/Struct_recorder.h>
-#include <Engine/Capture/K4N/Structure/Struct_controler.h>
 #include <Engine/Capture/K4N/Structure/Struct_player.h>
 #include <Engine/Capture/K4N/Structure/Struct_operation.h>
 #include <Engine/Capture/K4N/Structure/Struct_param.h>
@@ -17,7 +16,6 @@ namespace k4n::structure{
   //---------------------------
 
   class Param;
-  class Controler;
   class Color;
   class Depth;
   class Infrared;
