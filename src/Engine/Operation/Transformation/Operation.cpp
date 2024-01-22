@@ -20,12 +20,14 @@ void Operation::center_object(utl::type::Set* set){
   //---------------------------
 
   if(set->is_locked){
+    vec3 COM = ope_attribut->compute_centroid(set);
     for(int i=0; i<set->list_entity.size(); i++){
       utl::type::Entity* entity = *next(set->list_entity.begin(), i);
-      this->center_object(entity);
+      this->center_object(entity, COM);
     }
   }else{
-    this->center_object(set->selected_entity);
+    utl::type::Entity* entity = set->selected_entity;
+    this->center_object(entity, entity->get_data()->COM);
   }
 
   //---------------------------
@@ -37,10 +39,11 @@ void Operation::elevate_object(utl::type::Set* set){
   if(set->is_locked){
     for(int i=0; i<set->list_entity.size(); i++){
       utl::type::Entity* entity = *next(set->list_entity.begin(), i);
-      this->elevate_object(entity);
+      this->elevate_object(entity, entity->get_data()->min);
     }
   }else{
-    this->elevate_object(set->selected_entity);
+    utl::type::Entity* entity = set->selected_entity;
+    this->elevate_object(entity, entity->get_data()->min);
   }
 
   //---------------------------
@@ -93,23 +96,23 @@ void Operation::make_rotation(utl::type::Set* set, vec3 value){
 }
 
 //Operation on entity
-void Operation::center_object(utl::type::Entity* entity){
+void Operation::center_object(utl::type::Entity* entity, vec3 COM){
   if(entity == nullptr || !entity->is_movable) return;
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
   ope_attribut->compute_MinMax(entity);
-  ope_transform->make_translation(entity, vec3(-data->COM.x, -data->COM.y, -data->min.z));
+  ope_transform->make_translation(entity, vec3(-data->COM.x, -data->COM.y, 0));
+  this->elevate_object(entity, data->min);
 
   //---------------------------
 }
-void Operation::elevate_object(utl::type::Entity* entity){
+void Operation::elevate_object(utl::type::Entity* entity, vec3 min){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   ope_attribut->compute_MinMax(entity);
-  ope_transform->make_translation(entity, vec3(0, 0, -data->min.z));
+  ope_transform->make_translation(entity, vec3(0, 0, -min.z));
 
   //---------------------------
 }
@@ -120,7 +123,7 @@ void Operation::make_rotation_X_90d(utl::type::Entity* entity, int value){
 
   ope_attribut->compute_MinMax(entity);
   ope_transform->make_rotation_axe_X(entity, value * 90);
-  this->elevate_object(entity);
+  this->elevate_object(entity, data->min);
 
   //---------------------------
 }

@@ -22,8 +22,8 @@ public:
   void make_rotation(utl::type::Set* set, vec3 value);
 
   //Operation on entity
-  void center_object(utl::type::Entity* entity);
-  void elevate_object(utl::type::Entity* entity);
+  void center_object(utl::type::Entity* entity, vec3 COM);
+  void elevate_object(utl::type::Entity* entity, vec3 min);
   void make_rotation_X_90d(utl::type::Entity* entity, int value);
 
 private:

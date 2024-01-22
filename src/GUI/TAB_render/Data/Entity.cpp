@@ -85,7 +85,7 @@ void Entity::entity_button(utl::type::Entity* entity){
   //Centered
   ImGui::SameLine();
   if(entity->is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
-    ope_operation->center_object(entity);
+    ope_operation->center_object(entity, entity->get_data()->min);
   }
 
   //---------------------------
