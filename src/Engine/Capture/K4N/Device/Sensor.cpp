@@ -101,7 +101,6 @@ void Sensor::reset_entity(){
   //---------------------------
 
   object->reset_entity();
-  player.ts_seek = player.ts_beg;
 
   //---------------------------
 }

@@ -41,6 +41,13 @@ void Master::insert_sensor_capture(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
+void Master::reset(){
+  //---------------------------
+
+  this->manage_restart();
+
+  //---------------------------
+}
 
 //Player function
 void Master::update_player(){

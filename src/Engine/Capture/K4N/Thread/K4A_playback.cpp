@@ -47,7 +47,6 @@ void K4A_playback::run_thread(k4n::dev::Sensor* sensor){
   k4a::playback playback = k4a::playback::open(sensor->param.file_path.c_str());
   if(!playback) return;
   this->thread_running = true;
-  sensor->player.play = true;
   sensor->param.playback = &playback;
 
   k4n_configuration->find_playback_configuration(sensor);
@@ -115,7 +114,7 @@ void K4A_playback::manage_restart(k4n::dev::Sensor* sensor){
 }
 void K4A_playback::manage_recording(k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
-
+/*
   k4a::record& recorder = sensor->recorder.recorder;
 
   //Start recording
@@ -136,6 +135,6 @@ void K4A_playback::manage_recording(k4n::dev::Sensor* sensor, k4a::capture captu
     recorder.flush();
     recorder.close();
   }
-
+*/
   //---------------------------
 }

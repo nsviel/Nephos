@@ -107,7 +107,7 @@ void K4A_capture::manage_pause(k4n::dev::Sensor* sensor){
 }
 void K4A_capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
-
+/*
   k4a::record& recorder = sensor->recorder.recorder;
 
   //Start recording
@@ -128,7 +128,7 @@ void K4A_capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture captur
     recorder.flush();
     recorder.close();
   }
-
+*/
   //---------------------------
 }
 void K4A_capture::manage_color_setting(k4n::dev::Sensor* sensor){

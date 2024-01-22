@@ -44,10 +44,6 @@ public:
   inline utl::type::Pose* get_pose(){return object->pose;}
 
 public:
-  //A VIRER !!!!!!!!!
-  k4n::structure::Player player;
-
-
   entity::Object* object;
   k4n::dev::Master* master;
   k4n::structure::Param param;
