@@ -39,6 +39,7 @@ public:
   Engine* engine;
 
   utl::type::Data* data;
+  utl::type::Pose* pose;
   std::list<entity::Glyph*> list_glyph;
 };
 

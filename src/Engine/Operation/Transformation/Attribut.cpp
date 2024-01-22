@@ -52,7 +52,7 @@ vec3 Attribut::compute_centroid(utl::type::Entity* entity){
   //---------------------------
   return centroid;
 }
-vec3 Attribut::compute_MinMax(utl::type::Set* set){
+void Attribut::compute_MinMax(utl::type::Set* set){
   //---------------------------
 
 

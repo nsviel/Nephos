@@ -29,8 +29,9 @@ public:
 
 protected:
   Engine* engine;
-  vector<utl::type::Data*> vec_data;
 
+  vector<utl::type::Data*> vec_data;
+  utl::type::Pose* pose;
   vec4 color;
 };
 
