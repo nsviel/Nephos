@@ -100,6 +100,14 @@ void Transformation::save_transformation_to_file(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
+void Transformation::make_transformation_identity(k4n::dev::Sensor* sensor){
+  utl::type::Pose* pose = sensor->get_pose();
+  //---------------------------
+
+  pose->model = mat4(1.0f);
+
+  //---------------------------
+}
 
 //Subfunction
 bool Transformation::is_json_file(const std::string& path){

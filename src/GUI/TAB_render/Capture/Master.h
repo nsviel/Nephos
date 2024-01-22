@@ -8,18 +8,19 @@ class GUI;
 
 namespace gui::kinect{
 
-class Operation
+class Master
 {
 public:
   //Constructor / Destructor
-  Operation(k4n::Node* node_kinect);
-  ~Operation();
+  Master(k4n::Node* node_kinect);
+  ~Master();
 
   //Main function
-  void kinect_operation();
+  void tab_master(k4n::dev::Master* master);
 
   //Subfunction
-  void colorization();
+  void show_info(k4n::dev::Master* master);
+  void show_colorization(k4n::dev::Master* master);
 
 private:
   k4n::Node* node_kinect;

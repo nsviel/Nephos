@@ -16,11 +16,12 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
   k4n::Node* node_kinect = node_capture->get_node_kinect();
 
   this->k4n_swarm = node_kinect->get_k4n_swarm();
-  this->kin_capture = new gui::kinect::Capture(node_kinect);
-  this->kin_playback = new gui::kinect::Playback(node_kinect);
-  this->kin_recorder = new gui::kinect::Recorder(node_kinect);
-  this->kin_player = new gui::kinect::Player(engine);
-  this->kin_operation = new gui::kinect::Operation(node_kinect);
+  this->k4n_transfo = new k4n::utils::Transformation();
+  this->gui_capture = new gui::kinect::Capture(node_kinect);
+  this->gui_playback = new gui::kinect::Playback(node_kinect);
+  this->gui_recorder = new gui::kinect::Recorder(node_kinect);
+  this->gui_player = new gui::kinect::Player(engine);
+  this->gui_master = new gui::kinect::Master(node_kinect);
 
   //---------------------------
 }
@@ -49,7 +50,7 @@ void Panel::design_panel(){
   //---------------------------
 
   //Master player
-  kin_player->draw_player(master);
+  gui_player->draw_player(master);
 
   //Device info & configuration
   if(master != nullptr && ImGui::BeginTabBar("devices_tab##4567")){
@@ -57,7 +58,7 @@ void Panel::design_panel(){
     //Master tab
     string name = master->icon + "  " + "Master";
     if(ImGui::BeginTabItem(name.c_str(), NULL)){
-      this->show_info_master(master);
+      gui_master->tab_master(master);
       ImGui::EndTabItem();
     }
 
@@ -76,11 +77,11 @@ void Panel::design_panel(){
       if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
 
         this->show_info_sensor(sensor);
-        kin_capture->kinect_configuration();
-        kin_playback->kinect_playback();
+        gui_capture->kinect_configuration();
+        gui_playback->kinect_playback();
 
-        kin_operation->kinect_operation();
-        kin_recorder->kinect_recorder();
+        //gui_master->kinect_operation();
+        gui_recorder->kinect_recorder();
 
         ImGui::EndTabItem();
       }
@@ -166,7 +167,10 @@ void Panel::show_info_sensor(k4n::dev::Sensor* sensor){
 
   ImVec2 width = ImGui::GetContentRegionAvail();
   if(ImGui::Button("Save##transfomatrix", ImVec2(width.x, 0))){
-
+    k4n_transfo->save_transformation_to_file(sensor);
+  }
+  if(ImGui::Button("Identity##transfomatrix", ImVec2(width.x, 0))){
+    k4n_transfo->make_transformation_identity(sensor);
   }
 
   //---------------------------

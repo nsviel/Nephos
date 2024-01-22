@@ -1,4 +1,4 @@
-#include "Operation.h"
+#include "Master.h"
 
 #include <GUI.h>
 
@@ -6,7 +6,7 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Operation::Operation(k4n::Node* node_kinect){
+Master::Master(k4n::Node* node_kinect){
   //---------------------------
 
   this->node_kinect = node_kinect;
@@ -16,25 +16,52 @@ Operation::Operation(k4n::Node* node_kinect){
 
   //---------------------------
 }
-Operation::~Operation(){}
+Master::~Master(){}
 
 //Main function
-void Operation::kinect_operation(){
+void Master::tab_master(k4n::dev::Master* master){
   //---------------------------
 
-  if(ImGui::TreeNode("Operation")){
-    ImGui::Unindent();
-    this->colorization();
-
-    ImGui::Separator();
-    ImGui::TreePop();
-  }
+  this->show_info(master);
+  ImGui::Separator();
+  this->show_colorization(master);
+  ImGui::Separator();
 
   //---------------------------
 }
 
 //Subfunction
-void Operation::colorization(){
+void Master::show_info(k4n::dev::Master* master){
+  k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
+  if(sensor == nullptr) return;
+  //---------------------------
+
+    ImGui::Separator();
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+  if(ImGui::BeginTable("Kinect_info##general", 2)){
+    //Type
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Type"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", master->type.c_str());
+
+    //Duration
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Duration"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.2f s", master->player.duration);
+
+    //Recording time
+    if(master->player.record){
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Record"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
+    }
+
+    ImGui::EndTable();
+  }
+
+  //---------------------------
+}
+void Master::show_colorization(k4n::dev::Master* master){
   k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------

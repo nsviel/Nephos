@@ -28,12 +28,13 @@ public:
   void show_info_sensor(k4n::dev::Sensor* sensor);
 
 private:
-  gui::kinect::Capture* kin_capture;
-  gui::kinect::Playback* kin_playback;
-  gui::kinect::Recorder* kin_recorder;
-  gui::kinect::Player* kin_player;
-  gui::kinect::Operation* kin_operation;
+  gui::kinect::Capture* gui_capture;
+  gui::kinect::Playback* gui_playback;
+  gui::kinect::Recorder* gui_recorder;
+  gui::kinect::Player* gui_player;
+  gui::kinect::Master* gui_master;
   k4n::dev::Swarm* k4n_swarm;
+  k4n::utils::Transformation* k4n_transfo;
 
   string open_tab = "";
 };
