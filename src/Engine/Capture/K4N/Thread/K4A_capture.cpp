@@ -97,8 +97,8 @@ void K4A_capture::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  if(sensor->player.pause){
-    while(sensor->player.pause && thread_running){
+  if(sensor->master->player.pause){
+    while(sensor->master->player.pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }
@@ -114,13 +114,13 @@ void K4A_capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture captur
   if(sensor->player.record && !recorder.is_valid()){
     recorder = k4a::record::create(sensor->recorder.path.c_str(), *sensor->param.device, sensor->param.configuration);
     recorder.write_header();
-    sensor->recorder.ts_beg = sensor->player.ts_cur;
+    sensor->recorder.ts_beg = sensor->master->player.ts_cur;
   }
 
   //Recording
   if(sensor->player.record && recorder.is_valid()){
     recorder.write_capture(capture);
-    sensor->recorder.ts_rec = sensor->player.ts_cur - sensor->recorder.ts_beg;
+    sensor->recorder.ts_rec = sensor->master->player.ts_cur - sensor->recorder.ts_beg;
   }
 
   //Flush to file when finish

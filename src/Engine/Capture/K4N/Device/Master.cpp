@@ -74,7 +74,7 @@ void Master::set_pause(bool value){
   this->player.pause = value;
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->player.pause = value;
+    sensor->master->player.pause = value;
   }
 
   //---------------------------
@@ -85,7 +85,7 @@ void Master::set_desired_timestamp(float value){
   this->player.ts_seek = value;
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->player.ts_seek = value;
+    sensor->master->player.ts_seek = value;
   }
 
   //---------------------------
@@ -102,8 +102,8 @@ void Master::set_play(){
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->player.play = player.play;
-    sensor->player.pause = player.pause;
+    sensor->master->player.play = player.play;
+    sensor->master->player.pause = player.pause;
   }
 
   //---------------------------
@@ -117,9 +117,9 @@ void Master::set_stop(){
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->player.play = player.play;
-    sensor->player.pause = player.pause;
-    sensor->player.ts_seek = player.ts_seek;
+    sensor->master->player.play = player.play;
+    sensor->master->player.pause = player.pause;
+    sensor->master->player.ts_seek = player.ts_seek;
   }
 
   //---------------------------
@@ -131,7 +131,7 @@ void Master::set_restart(){
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->player.restart = player.restart;
+    sensor->master->player.restart = player.restart;
   }
 
   //---------------------------
@@ -143,7 +143,7 @@ void Master::set_record(){
 
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->player.record = player.record;
+    sensor->master->player.record = player.record;
   }
 
   //---------------------------
@@ -154,9 +154,9 @@ void Master::manage_restart(){
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
 
-    sensor->player.play = player.restart;
-    sensor->player.pause = !player.restart;
-    sensor->player.ts_seek = player.ts_beg;
+    sensor->master->player.play = player.restart;
+    sensor->master->player.pause = !player.restart;
+    sensor->master->player.ts_seek = player.ts_beg;
   }
 
   //---------------------------

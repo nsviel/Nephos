@@ -35,7 +35,6 @@ public:
 
   //Capture function
   void run_capture();
-  void restart_capture();
   void run_playback(string path);
   void stop_threads();
   void reset_color_configuration();
@@ -47,12 +46,13 @@ public:
 public:
   //A VIRER !!!!!!!!!
   k4n::structure::Player player;
-  k4n::structure::Recorder recorder;
+
 
   entity::Object* object;
   k4n::dev::Master* master;
   k4n::structure::Param param;
   k4n::structure::Synchro synchro;
+  k4n::structure::Recorder recorder;
 
   k4n::structure::Color color;
   k4n::structure::Depth depth;

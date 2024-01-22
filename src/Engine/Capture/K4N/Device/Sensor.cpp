@@ -110,17 +110,8 @@ void Sensor::reset_entity(){
 void Sensor::run_capture(){
   //---------------------------
 
-  if(!k4a_capture->is_thread_running()){
-    k4a_capture->start_thread(this);
-  }
-
-  //---------------------------
-}
-void Sensor::restart_capture(){
-  //---------------------------
-
   this->stop_threads();
-  this->run_capture();
+  k4a_capture->start_thread(this);
 
   //---------------------------
 }
