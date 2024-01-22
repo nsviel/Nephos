@@ -55,7 +55,7 @@ void Operation::make_colorization(k4n::dev::Sensor* k4n_sensor, vector<vec4>& ve
 
   switch(k4n_sensor->cloud.color_mode){
     case 1:{//Colored unicolor
-      vec_rgba = vector<vec4> (k4n_sensor->cloud.nb_point, k4n_sensor->object->data->unicolor);
+      vec_rgba = vector<vec4> (k4n_sensor->object->data->nb_point, k4n_sensor->object->data->unicolor);
       break;
     }
     case 2:{//White unicolor
@@ -74,8 +74,8 @@ void Operation::colorization_intensity(k4n::dev::Sensor* k4n_sensor, vector<vec4
   //---------------------------
 
   vec_rgba.clear();
-  vec_rgba.reserve(k4n_sensor->cloud.nb_point);
-  for(int i=0; i<k4n_sensor->cloud.nb_point; i++){
+  vec_rgba.reserve(k4n_sensor->object->data->nb_point);
+  for(int i=0; i<k4n_sensor->object->data->nb_point; i++){
     float Is = k4n_sensor->object->data->Is[i] / k4n_sensor->cloud.intensity_division;
     vec_rgba.push_back(vec4(Is, Is, Is, 1));
   }

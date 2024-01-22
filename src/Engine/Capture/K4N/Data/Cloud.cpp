@@ -73,21 +73,22 @@ void Cloud::loop_data(k4n::dev::Sensor* k4n_sensor){
 }
 void Cloud::loop_end(k4n::dev::Sensor* k4n_sensor){
   if(k4n_sensor->depth.image.data.empty()) return;
+  utl::type::Data* data = k4n_sensor->object->data;
   //---------------------------
 
-  std::unique_lock<std::mutex> lock(k4n_sensor->object->data->mutex);
+  std::unique_lock<std::mutex> lock(data->mutex);
 
   //Store capture data
-  k4n_sensor->cloud.nb_point = vec_xyz.size();
-  k4n_sensor->object->data->xyz = vec_xyz;
-  k4n_sensor->object->data->Is = vec_ir;
-  k4n_sensor->object->data->R = vec_r;
+  data->nb_point = vec_xyz.size();
+  data->xyz = vec_xyz;
+  data->Is = vec_ir;
+  data->R = vec_r;
 
   //Final colorization
   kin_operation->make_colorization(k4n_sensor, vec_rgba);
-  k4n_sensor->object->data->rgb = vec_rgba;
+  data->rgb = vec_rgba;
 
-  if(k4n_sensor->object->data->xyz.size() != k4n_sensor->object->data->rgb.size()){
+  if(data->xyz.size() != data->rgb.size()){
     cout<<"[error] cloud creation size problem"<<endl;
   }
 
