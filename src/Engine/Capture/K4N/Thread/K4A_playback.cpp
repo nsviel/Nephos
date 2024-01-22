@@ -60,10 +60,6 @@ void K4A_playback::run_thread(k4n::dev::Sensor* sensor){
   while(thread_running){
     fps_control->start();
 
-    this->manage_pause(sensor);
-    //this->manage_query_ts(sensor);
-    this->manage_restart(sensor);
-
     playback.get_next_capture(&capture);
     if(!capture) continue;
 
@@ -71,6 +67,8 @@ void K4A_playback::run_thread(k4n::dev::Sensor* sensor){
     k4a_data->find_color_from_depth(sensor, capture, sensor->param.transformation);
 
     k4a_processing->convert_into_cloud(sensor);
+    this->manage_pause(sensor);
+    this->manage_restart(sensor);
 
     fps_control->stop();
     fps_control->set_fps_max(sensor->param.fps.query);
@@ -93,36 +91,13 @@ void K4A_playback::stop_thread(){
 }
 
 //Subfunction
-void K4A_playback::manage_query_ts(k4n::dev::Sensor* sensor){
-  //---------------------------
-
-  //If a timestamp was querry
-  if(sensor->player.ts_seek != -1){
-    if(sensor->player.ts_seek > sensor->player.ts_end) sensor->player.ts_seek = sensor->player.ts_end;
-    if(sensor->player.ts_seek < sensor->player.ts_beg) sensor->player.ts_seek = sensor->player.ts_beg;
-    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(sensor->player.ts_seek));
-    sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    sensor->player.ts_seek = -1;
-  }
-
-  //If a timestamp forawardwas querry
-  if(sensor->player.ts_forward != 0){
-    float ts_forward = sensor->color.image.timestamp + 5 * sensor->player.ts_forward;
-    if(ts_forward > sensor->player.ts_end) ts_forward = sensor->player.ts_end;
-    if(ts_forward < sensor->player.ts_beg) ts_forward = sensor->player.ts_beg;
-    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_forward));
-    sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    sensor->player.ts_forward = 0;
-  }
-
-  //---------------------------
-}
 void K4A_playback::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  if(sensor->player.pause || !sensor->player.play){
-    while(sensor->player.pause && thread_running && sensor->player.ts_seek == -1 && sensor->player.ts_forward == 0){
+  bool& is_paused = sensor->master->player.pause;
+  if(is_paused || !sensor->master->player.play){
+    while(is_paused && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }
@@ -132,7 +107,7 @@ void K4A_playback::manage_pause(k4n::dev::Sensor* sensor){
 void K4A_playback::manage_restart(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(sensor->color.image.timestamp == sensor->master->player.ts_end){
+  if(sensor->color.image.timestamp >= sensor->master->player.ts_end){
     sensor->master->manage_restart();
   }
 

@@ -28,7 +28,6 @@ public:
   void stop_thread();
 
   //Subfunction
-  void manage_query_ts(k4n::dev::Sensor* device);
   void manage_pause(k4n::dev::Sensor* sensor);
   void manage_restart(k4n::dev::Sensor* device);
   void manage_recording(k4n::dev::Sensor* sensor, k4a::capture capture);
