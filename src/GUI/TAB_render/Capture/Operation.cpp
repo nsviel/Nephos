@@ -76,8 +76,8 @@ void Operation::colorization(){
 
     //Height heatmap
     if(k4n_sensor->cloud.heatmap_mode == 1){
-      float min = k4n_sensor->object->data->min.z + 10;
-      float max = k4n_sensor->object->data->min.z + 10;
+      float min = k4n_sensor->object->pose->min.z + 10;
+      float max = k4n_sensor->object->pose->min.z + 10;
       ImGui::SetNextItemWidth(125);
       ImGui::DragFloatRange2("Z##321", &k4n_sensor->cloud.range_height.x, &k4n_sensor->cloud.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
     }

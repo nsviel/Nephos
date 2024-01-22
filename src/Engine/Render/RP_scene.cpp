@@ -122,7 +122,7 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
     bool same_length = vk_object->data->rgb.size() == vk_object->data->xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb){
-      vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->data->mvp);
+      vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->pose->mvp);
       vk_uniform->update_uniform("point_size", &vk_object->binding, vk_object->data->draw_point_size);
 
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, vk_object->binding.descriptor.set);
@@ -149,7 +149,7 @@ void RP_scene::cmd_draw_line(vk::structure::Subpass* subpass){
     bool same_length = vk_object->data->rgb.size() == vk_object->data->xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb && same_length){
-      vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->data->mvp);
+      vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->pose->mvp);
 
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, vk_object->binding.descriptor.set);
       vk_drawing->cmd_line_with(subpass->command_buffer, vk_object);
@@ -176,7 +176,7 @@ void RP_scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
     bool same_length = vk_object->data->rgb.size() == vk_object->data->xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb && same_length){
-      vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->data->mvp);
+      vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->pose->mvp);
 
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, vk_object->binding.descriptor.set);
       vk_drawing->cmd_line_with(subpass->command_buffer, vk_object);

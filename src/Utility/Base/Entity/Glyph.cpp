@@ -14,6 +14,7 @@ Glyph::Glyph(Engine* engine){
   //---------------------------
 
   this->engine = engine;
+  this->pose = new utl::type::Pose();
   this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
   this->is_visible = true;
   this->type = "Glyph";
@@ -31,8 +32,8 @@ void Glyph::update_entity(){
   //----------------------------
 
   for(int i=0; i<vec_data.size(); i++){
-    vk_engine->insert_data_in_engine(vec_data[i]);
-    cam_control->compute_camera_mvp(vec_data[i]);
+    vk_engine->insert_data_in_engine(vec_data[i], pose);
+    cam_control->compute_camera_mvp(pose);
   }
 
   //----------------------------

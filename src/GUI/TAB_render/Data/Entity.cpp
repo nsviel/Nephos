@@ -85,7 +85,7 @@ void Entity::entity_button(utl::type::Entity* entity){
   //Centered
   ImGui::SameLine();
   if(entity->is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
-    ope_operation->center_object(entity, entity->get_data()->min);
+    ope_operation->center_object(entity, entity->get_pose()->min);
   }
 
   //---------------------------
@@ -120,6 +120,7 @@ void Entity::entity_parameter(utl::type::Entity* entity){
 
     //Data info
     utl::type::Data* data = entity->get_data();
+    utl::type::Pose* pose = entity->get_pose();
     if(data != nullptr){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Format"); ImGui::TableNextColumn();
@@ -141,7 +142,7 @@ void Entity::entity_parameter(utl::type::Entity* entity){
 
       //Root pos
       ImGui::TableNextRow(); ImGui::TableNextColumn();
-      vec3& root = data->root;
+      vec3& root = pose->root;
       ImGui::Text("Root"); ImGui::TableNextColumn();
       ImGui::NextColumn();
       ImGui::Text("%.2f  %.2f  %.2f", root.x, root.y, root.z);

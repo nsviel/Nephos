@@ -30,15 +30,16 @@ vec3 Attribut::compute_centroid(utl::type::Set* set){
   return centroid;
 }
 vec3 Attribut::compute_centroid(utl::type::Entity* entity){
+  utl::type::Data* data = entity->get_data();
+  utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  utl::type::Data* data = entity->get_data();
   vector<vec3>& XYZ = data->xyz;
   vec3 centroid = vec3(0, 0, 0);
 
   for(int i=0; i<XYZ.size(); i++){
     vec4 xys_h = vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
-    xys_h = xys_h * data->model;
+    xys_h = xys_h * pose->model;
 
     for(int j=0; j<3; j++){
       centroid[j] += xys_h[j];
@@ -59,8 +60,8 @@ void Attribut::compute_MinMax(utl::type::Set* set){
   //---------------------------
 }
 void Attribut::compute_MinMax(utl::type::Entity* entity){
-  if(entity == nullptr) return;
   utl::type::Data* data = entity->get_data();
+  utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
   vector<vec3>& XYZ = data->xyz;
@@ -72,7 +73,7 @@ void Attribut::compute_MinMax(utl::type::Entity* entity){
 
   for(int i=0; i<XYZ.size(); i++){
     vec4 xys_h = vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
-    xys_h = xys_h * data->model;
+    xys_h = xys_h * pose->model;
 
     for(int j=0; j<3; j++){
       if(xys_h[j] <= min[j]) min[j] = xys_h[j];
@@ -86,9 +87,9 @@ void Attribut::compute_MinMax(utl::type::Entity* entity){
   }
 
   //---------------------------
-  data->min = min;
-  data->max = max;
-  data->COM = centroid;
+  pose->min = min;
+  pose->max = max;
+  pose->COM = centroid;
 }
 void Attribut::set_unicolor(utl::type::Entity* entity){
   if(entity == nullptr) return;
@@ -102,8 +103,8 @@ void Attribut::set_unicolor(utl::type::Entity* entity){
   //---------------------------
 }
 vector<float> Attribut::retrieve_z_vector(utl::type::Entity* entity){
-  if(entity == nullptr) return vector<float>();
   utl::type::Data* data = entity->get_data();
+  utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
   vector<vec3>& xyz = data->xyz;
@@ -111,7 +112,7 @@ vector<float> Attribut::retrieve_z_vector(utl::type::Entity* entity){
 
   for(int i=0; i<xyz.size(); i++){
     vec4 xyz_h = vec4(xyz[i].x, xyz[i].y, xyz[i].z, 1);
-    xyz_h = xyz_h * data->model;
+    xyz_h = xyz_h * pose->model;
     z_vec.push_back(xyz_h.z);
   }
 

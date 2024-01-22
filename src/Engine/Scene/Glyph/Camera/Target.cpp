@@ -41,7 +41,7 @@ void Target::update_glyph(utl::type::Entity* entity){
     translation[0][3] = camera->cam_COM.x;
     translation[1][3] = camera->cam_COM.y;
     translation[2][3] = camera->cam_COM.z;
-    data->model = translation;
+    pose->model = translation;
     data->is_visible = is_visible;
   }
 

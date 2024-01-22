@@ -15,7 +15,7 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph(utl::type::Data* entity);
+  void update_glyph(utl::type::Pose* pose);
 
   //Subfunction
   vector<vec3> build_box(vec3 min, vec3 max);

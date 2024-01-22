@@ -34,6 +34,7 @@ public:
   void visibility_entity(bool value);
 
   inline utl::type::Data* get_data(){return data;}
+  inline utl::type::Pose* get_pose(){return pose;}
 
 public:
   Engine* engine;

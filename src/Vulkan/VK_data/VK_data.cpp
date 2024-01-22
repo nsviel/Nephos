@@ -22,12 +22,13 @@ VK_data::VK_data(vk::structure::Vulkan* struct_vulkan){
 VK_data::~VK_data(){}
 
 //Main function
-void VK_data::insert_data(utl::type::Data* data){
+void VK_data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
   //---------------------------
 
   //Creat new data struct
   vk::structure::Object* vk_object = new vk::structure::Object();
   vk_object->data = data;
+  vk_object->pose = pose;
 
   //Descriptor
   descriptor_required mvp = std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS);

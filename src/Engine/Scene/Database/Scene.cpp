@@ -82,7 +82,7 @@ void Scene::init_entity(utl::type::Entity* entity){
 
   //Init entity
   sce_database->assign_UID(entity);
-  vk_engine->insert_data_in_engine(entity->get_data());
+  vk_engine->insert_data_in_engine(entity->get_data(), entity->get_pose());
 
   //If object; create dedicated glyphs
   if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
@@ -91,14 +91,15 @@ void Scene::init_entity(utl::type::Entity* entity){
 
   //Init entity data
   utl::type::Data* data = entity->get_data();
+  utl::type::Pose* pose = entity->get_pose();
   sce_database->assign_UID(data);
-  vk_engine->insert_data_in_engine(data);
+  vk_engine->insert_data_in_engine(data, pose);
 
   //Init entity vector data
   vector<utl::type::Data*> vec_data = entity->get_vec_data();
   for(int j=0; j<vec_data.size(); j++){
     sce_database->assign_UID(vec_data[j]);
-    vk_engine->insert_data_in_engine(vec_data[j]);
+    vk_engine->insert_data_in_engine(vec_data[j], entity->get_pose());
   }
 
   //---------------------------

@@ -168,9 +168,9 @@ void Panel::show_info_sensor(k4n::dev::Sensor* sensor){
     mat[1][3] = 902.3516235351563;
     mat[2][3] = -904.981201171875;
     mat[3][3] = 1.0;
-    sensor->object->data->model = mat;
+    sensor->object->pose->model = mat;
   }
-  mat4& mat = sensor->object->data->model;
+  mat4& mat = sensor->object->pose->model;
   ImGui::Columns(4, "ModelMat");
   for(int i=0; i<4; i++){
     ImGui::Separator();

@@ -13,6 +13,7 @@ struct Object{
   //---------------------------
 
   utl::type::Data* data;
+  utl::type::Pose* pose;
 
   //Data
   bool has_xyz = false;

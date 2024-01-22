@@ -13,6 +13,7 @@ Object::Object(){
   //---------------------------
 
   this->type = "Object";
+  this->pose = new utl::type::Pose();
   this->data = new utl::type::Data();
   this->data->unicolor = math::random_color();
 
@@ -23,6 +24,7 @@ Object::Object(Engine* engine){
 
   this->engine = engine;
   this->type = "Object";
+  this->pose = new utl::type::Pose();
   this->data = new utl::type::Data();
   this->data->unicolor = math::random_color();
 
@@ -40,8 +42,8 @@ void Object::update_entity(){
   VK_engine* vk_engine = eng_vulkan->get_vk_engine();
   //----------------------------
 
-  cam_control->compute_camera_mvp(data);
-  vk_engine->insert_data_in_engine(data);
+  cam_control->compute_camera_mvp(pose);
+  vk_engine->insert_data_in_engine(data, pose);
 
   for(int i=0; i<list_glyph.size(); i++){
     entity::Glyph* glyph = *next(list_glyph.begin(), i);
@@ -79,16 +81,16 @@ void Object::visibility_entity(bool value){
 void Object::reset_entity(){
   //---------------------------
 
-  data->min = glm::vec3(0.0f);
-  data->max = glm::vec3(0.0f);
-  data->root = glm::vec3(0.0f);
-  data->COM = glm::vec3(0.0f);
+  pose->min = glm::vec3(0.0f);
+  pose->max = glm::vec3(0.0f);
+  pose->root = glm::vec3(0.0f);
+  pose->COM = glm::vec3(0.0f);
 
-  data->rotat = glm::mat4(1.0f);
-  data->trans = glm::mat4(1.0f);
-  data->scale = glm::mat4(1.0f);
-  data->model = glm::mat4(1.0f);
-  data->mvp = glm::mat4(1.0f);
+  pose->rotat = glm::mat4(1.0f);
+  pose->trans = glm::mat4(1.0f);
+  pose->scale = glm::mat4(1.0f);
+  pose->model = glm::mat4(1.0f);
+  pose->mvp = glm::mat4(1.0f);
 
   //---------------------------
 }

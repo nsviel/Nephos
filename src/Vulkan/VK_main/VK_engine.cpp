@@ -147,7 +147,7 @@ void VK_engine::reload_shader(string shader, string subshader){
 }
 
 //Data function
-void VK_engine::insert_data_in_engine(utl::type::Data* data){
+void VK_engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose){
   if(data == nullptr) return;
   //---------------------------
 
@@ -166,7 +166,7 @@ void VK_engine::insert_data_in_engine(utl::type::Data* data){
   if(is_in_list){
     vk_data->update_data(data, vk_object);
   }else{
-    vk_data->insert_data(data);
+    vk_data->insert_data(data, pose);
   }
 
   //---------------------------

@@ -48,7 +48,7 @@ public:
   void reload_shader(string shader, string subshader);
 
   //Data function
-  void insert_data_in_engine(utl::type::Data* data);
+  void insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose);
   void remove_data_in_engine(utl::type::Data* data);
 
   //Renderpass function

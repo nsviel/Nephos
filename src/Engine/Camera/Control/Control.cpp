@@ -121,15 +121,15 @@ mat4 Control::compute_camera_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void Control::compute_camera_mvp(utl::type::Data* data){
-  if(data == nullptr) return;
+void Control::compute_camera_mvp(utl::type::Pose* pose){
+  if(pose == nullptr) return;
   //---------------------------
 
-  mat4 cam_modl = glm::transpose(data->model);
+  mat4 cam_modl = glm::transpose(pose->model);
   mat4 cam_view = compute_camera_view();
   mat4 cam_proj = compute_camera_proj();
 
-  data->mvp = cam_proj * cam_view * cam_modl;
+  pose->mvp = cam_proj * cam_view * cam_modl;
 
   //---------------------------
 }

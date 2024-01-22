@@ -25,6 +25,7 @@ public:
   virtual void reset(){}
 
   inline vector<utl::type::Data*> get_vec_data(){return vec_data;}
+  inline utl::type::Pose* get_pose(){return pose;}
   inline vec4* get_color(){return &color;}
 
 protected:

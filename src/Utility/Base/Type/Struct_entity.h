@@ -16,6 +16,7 @@ struct Entity
   virtual void remove_entity(){}
   virtual void reset_entity(){}
   virtual void visibility_entity(bool value){}
+  virtual utl::type::Pose* get_pose(){return nullptr;}
   virtual utl::type::Data* get_data(){return nullptr;}
   virtual vector<utl::type::Data*> get_vec_data(){return vector<utl::type::Data*>();}
 

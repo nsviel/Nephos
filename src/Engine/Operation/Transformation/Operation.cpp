@@ -27,7 +27,7 @@ void Operation::center_object(utl::type::Set* set){
     }
   }else{
     utl::type::Entity* entity = set->selected_entity;
-    this->center_object(entity, entity->get_data()->COM);
+    this->center_object(entity, entity->get_pose()->COM);
   }
 
   //---------------------------
@@ -39,11 +39,11 @@ void Operation::elevate_object(utl::type::Set* set){
   if(set->is_locked){
     for(int i=0; i<set->list_entity.size(); i++){
       utl::type::Entity* entity = *next(set->list_entity.begin(), i);
-      this->elevate_object(entity, entity->get_data()->min);
+      this->elevate_object(entity, entity->get_pose()->min);
     }
   }else{
     utl::type::Entity* entity = set->selected_entity;
-    this->elevate_object(entity, entity->get_data()->min);
+    this->elevate_object(entity, entity->get_pose()->min);
   }
 
   //---------------------------
@@ -98,12 +98,12 @@ void Operation::make_rotation(utl::type::Set* set, vec3 value){
 //Operation on entity
 void Operation::center_object(utl::type::Entity* entity, vec3 COM){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Data* data = entity->get_data();
+  utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
   ope_attribut->compute_MinMax(entity);
-  ope_transform->make_translation(entity, vec3(-data->COM.x, -data->COM.y, 0));
-  this->elevate_object(entity, data->min);
+  ope_transform->make_translation(entity, vec3(-pose->COM.x, -pose->COM.y, 0));
+  this->elevate_object(entity, pose->min);
 
   //---------------------------
 }
@@ -118,12 +118,12 @@ void Operation::elevate_object(utl::type::Entity* entity, vec3 min){
 }
 void Operation::make_rotation_X_90d(utl::type::Entity* entity, int value){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Data* data = entity->get_data();
+  utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
   ope_attribut->compute_MinMax(entity);
   ope_transform->make_rotation_axe_X(entity, value * 90);
-  this->elevate_object(entity, data->min);
+  this->elevate_object(entity, pose->min);
 
   //---------------------------
 }

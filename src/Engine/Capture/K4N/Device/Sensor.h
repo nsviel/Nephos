@@ -43,6 +43,7 @@ public:
   inline k4n::structure::Cloud* get_cloud(){return &cloud;}
   inline entity::Object* get_object(){return object;}
   inline utl::type::Data* get_data(){return object->data;}
+  inline utl::type::Pose* get_pose(){return object->pose;}
 
   //A VIRER !!!!!!!!!
   k4n::structure::Player player;
