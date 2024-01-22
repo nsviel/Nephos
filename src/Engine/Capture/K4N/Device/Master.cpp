@@ -109,10 +109,14 @@ void Master::set_play(){
 void Master::set_stop(){
   //---------------------------
 
+  //Restart playbacks
+  player.play = true;
+  player.pause = false;
+  this->manage_restart();
+
+  //Set play state
   player.play = false;
   player.pause = true;
-
-  this->manage_restart();
 
   //---------------------------
 }
@@ -141,6 +145,7 @@ void Master::manage_restart(){
   }
 
   //---------------------------
+  player.ts_cur = player.ts_beg;
 }
 void Master::manage_forward(){
   //---------------------------
