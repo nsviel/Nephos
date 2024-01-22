@@ -40,7 +40,7 @@ public:
   void stop_threads();
   void reset_color_configuration();
 
-  inline k4n::structure::Cloud* get_cloud(){return &cloud;}
+  inline k4n::structure::Operation* get_operation(){return &operation;}
   inline entity::Object* get_object(){return object;}
   inline utl::type::Data* get_data(){return object->data;}
   inline utl::type::Pose* get_pose(){return object->pose;}
@@ -61,7 +61,7 @@ public:
   entity::Object* object;
 
   k4n::dev::Master* master;
-  k4n::structure::Cloud cloud;
+  k4n::structure::Operation operation;
   k4n::structure::Param param;
   k4n::structure::Synchro synchro;
 

@@ -8,7 +8,7 @@
 
 namespace k4n::structure{
 
-struct Cloud{
+struct Operation{
   //---------------------------
 
   /*

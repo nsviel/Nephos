@@ -112,10 +112,10 @@ void Cloud::retrieve_location(int& x, int& y, int& z){
 void Cloud::retrieve_color(k4n::dev::Sensor* k4n_sensor, int i){
   //---------------------------
 
-  k4n::structure::Cloud* cloud = k4n_sensor->get_cloud();
+  k4n::structure::Operation* operation = k4n_sensor->get_operation();
   glm::vec4 color;
 
-  if(cloud->color_mode == 0){
+  if(operation->color_mode == 0){
     //Camera color
     if(k4n_sensor->color.image_depth.data.empty()) return;
     const vector<uint8_t>& color_data = k4n_sensor->color.image_depth.data;

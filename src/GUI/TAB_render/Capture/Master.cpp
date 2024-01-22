@@ -68,44 +68,44 @@ void Master::show_colorization(k4n::dev::Master* master){
   //Colorization mode
   static int color_mode = 2;
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Colorization");
-  ImGui::RadioButton("RGB##colorization", &k4n_sensor->cloud.color_mode, 0);
+  ImGui::RadioButton("RGB##colorization", &k4n_sensor->operation.color_mode, 0);
   ImGui::SameLine();
-  ImGui::RadioButton("##unicolor", &k4n_sensor->cloud.color_mode, 1);
+  ImGui::RadioButton("##unicolor", &k4n_sensor->operation.color_mode, 1);
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
   ImGui::ColorEdit4("##unicolor_choice", (float*)&k4n_sensor->object->data->unicolor, flags);
   ImGui::SameLine();
-  ImGui::RadioButton("I##colorization", &k4n_sensor->cloud.color_mode, 2);
+  ImGui::RadioButton("I##colorization", &k4n_sensor->operation.color_mode, 2);
   ImGui::SameLine();
-  ImGui::RadioButton("Heatmap##colorization", &k4n_sensor->cloud.color_mode, 3);
+  ImGui::RadioButton("Heatmap##colorization", &k4n_sensor->operation.color_mode, 3);
 
   //Intensity cursor
-  if(k4n_sensor->cloud.color_mode == 2){
+  if(k4n_sensor->operation.color_mode == 2){
     ImGui::SetNextItemWidth(100);
-    ImGui::SliderInt("Intensity division", &k4n_sensor->cloud.intensity_division, 1, 5000);
+    ImGui::SliderInt("Intensity division", &k4n_sensor->operation.intensity_division, 1, 5000);
   }
 
   //Heatmap mode
-  if(k4n_sensor->cloud.color_mode == 3){
+  if(k4n_sensor->operation.color_mode == 3){
     ImGui::Indent();
-    ImGui::RadioButton("I##heatmap", &k4n_sensor->cloud.heatmap_mode, 0);
+    ImGui::RadioButton("I##heatmap", &k4n_sensor->operation.heatmap_mode, 0);
     ImGui::SameLine();
-    ImGui::RadioButton("H##heatmap", &k4n_sensor->cloud.heatmap_mode, 1);
+    ImGui::RadioButton("H##heatmap", &k4n_sensor->operation.heatmap_mode, 1);
     ImGui::SameLine();
-    ImGui::RadioButton("R##heatmap", &k4n_sensor->cloud.heatmap_mode, 2);
+    ImGui::RadioButton("R##heatmap", &k4n_sensor->operation.heatmap_mode, 2);
 
     //Intensity heatmap
-    if(k4n_sensor->cloud.heatmap_mode == 0){
+    if(k4n_sensor->operation.heatmap_mode == 0){
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("I diviser", &k4n_sensor->cloud.intensity_division, 1, 5000);
+      ImGui::SliderInt("I diviser", &k4n_sensor->operation.intensity_division, 1, 5000);
     }
 
     //Height heatmap
-    if(k4n_sensor->cloud.heatmap_mode == 1){
+    if(k4n_sensor->operation.heatmap_mode == 1){
       float min = k4n_sensor->object->pose->min.z + 10;
       float max = k4n_sensor->object->pose->min.z + 10;
       ImGui::SetNextItemWidth(125);
-      ImGui::DragFloatRange2("Z##321", &k4n_sensor->cloud.range_height.x, &k4n_sensor->cloud.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
+      ImGui::DragFloatRange2("Z##321", &k4n_sensor->operation.range_height.x, &k4n_sensor->operation.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
     }
     ImGui::Unindent();
   }

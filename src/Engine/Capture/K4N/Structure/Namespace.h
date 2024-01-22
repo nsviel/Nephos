@@ -3,7 +3,7 @@
 #include <Engine/Capture/K4N/Structure/Struct_recorder.h>
 #include <Engine/Capture/K4N/Structure/Struct_controler.h>
 #include <Engine/Capture/K4N/Structure/Struct_player.h>
-#include <Engine/Capture/K4N/Structure/Struct_cloud.h>
+#include <Engine/Capture/K4N/Structure/Struct_operation.h>
 #include <Engine/Capture/K4N/Structure/Struct_param.h>
 #include <Engine/Capture/K4N/Structure/Struct_synchro.h>
 #include <Engine/Capture/K4N/Structure/Struct_image.h>
@@ -24,7 +24,7 @@ namespace k4n::structure{
   class IMU;
   class Image;
   class Synchro;
-  class Cloud;
+  class Operation;
   class Player;
   class Recorder;
 

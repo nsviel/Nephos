@@ -35,7 +35,6 @@ private:
   Engine* engine;
   k4n::utils::Operation* kin_operation;
 
-  k4n::structure::Cloud* cloud;
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgba;
   std::vector<float> vec_ir;
