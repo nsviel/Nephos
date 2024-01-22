@@ -31,6 +31,7 @@ public:
   void set_restart();
   void set_record();
   void manage_restart();
+  void manage_forward();
 
 public:
   list<k4n::dev::Sensor*> list_sensor;

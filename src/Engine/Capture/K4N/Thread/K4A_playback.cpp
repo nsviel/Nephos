@@ -61,7 +61,7 @@ void K4A_playback::run_thread(k4n::dev::Sensor* sensor){
     fps_control->start();
 
     this->manage_pause(sensor);
-    this->manage_query_ts(sensor);
+    //this->manage_query_ts(sensor);
     this->manage_restart(sensor);
 
     playback.get_next_capture(&capture);

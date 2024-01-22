@@ -62,7 +62,7 @@ void Master::update_player(){
   //Apply min max timestamp to all sensors
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->player = player;
+    player = player;
     sensor->run_playback(sensor->param.file_path);
   }
 
@@ -85,7 +85,8 @@ void Master::set_desired_timestamp(float value){
   this->player.ts_seek = value;
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
-    sensor->master->player.ts_seek = value;
+    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
+    sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
   }
 
   //---------------------------
@@ -157,6 +158,25 @@ void Master::manage_restart(){
     sensor->master->player.play = player.restart;
     sensor->master->player.pause = !player.restart;
     sensor->master->player.ts_seek = player.ts_beg;
+
+    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_beg));
+    sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+  }
+
+  //---------------------------
+}
+void Master::manage_forward(){
+  //---------------------------
+
+  for(int i=0; i<list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
+
+    float ts_forward = player.ts_cur + 5 * player.ts_forward;
+    if(ts_forward > player.ts_end) ts_forward = player.ts_end;
+    if(ts_forward < player.ts_beg) ts_forward = player.ts_beg;
+
+    auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_forward));
+    sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
   }
 
   //---------------------------
