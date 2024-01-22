@@ -53,7 +53,7 @@ float Operation::find_mkv_ts_end(string path){
 void Operation::make_colorization(k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
   //---------------------------
 
-  switch(k4n_sensor->operation.color_mode){
+  switch(k4n_sensor->master->operation.color_mode){
     case 1:{//Colored unicolor
       vec_rgba = vector<vec4> (k4n_sensor->object->data->nb_point, k4n_sensor->object->data->unicolor);
       break;
@@ -76,7 +76,7 @@ void Operation::colorization_intensity(k4n::dev::Sensor* k4n_sensor, vector<vec4
   vec_rgba.clear();
   vec_rgba.reserve(k4n_sensor->object->data->nb_point);
   for(int i=0; i<k4n_sensor->object->data->nb_point; i++){
-    float Is = k4n_sensor->object->data->Is[i] / k4n_sensor->operation.intensity_division;
+    float Is = k4n_sensor->object->data->Is[i] / k4n_sensor->master->operation.intensity_division;
     vec_rgba.push_back(vec4(Is, Is, Is, 1));
   }
 
@@ -85,13 +85,13 @@ void Operation::colorization_intensity(k4n::dev::Sensor* k4n_sensor, vector<vec4
 void Operation::colorization_heatmap(k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
   //---------------------------
 
-  switch(k4n_sensor->operation.heatmap_mode){
+  switch(k4n_sensor->master->operation.heatmap_mode){
     case 0:{//Intensity
-      vec_rgba = ope_heatmap->heatmap_intensity(k4n_sensor->object, k4n_sensor->operation.intensity_division);
+      vec_rgba = ope_heatmap->heatmap_intensity(k4n_sensor->object, k4n_sensor->master->operation.intensity_division);
       break;
     }
     case 1:{//Height
-      vec_rgba = ope_heatmap->heatmap_height(k4n_sensor->object, k4n_sensor->operation.range_height);
+      vec_rgba = ope_heatmap->heatmap_height(k4n_sensor->object, k4n_sensor->master->operation.range_height);
       break;
     }
     case 2:{//Range

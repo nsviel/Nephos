@@ -112,7 +112,7 @@ void Cloud::retrieve_location(int& x, int& y, int& z){
 void Cloud::retrieve_color(k4n::dev::Sensor* k4n_sensor, int i){
   //---------------------------
 
-  k4n::structure::Operation* operation = k4n_sensor->get_operation();
+  k4n::structure::Operation* operation = &k4n_sensor->master->operation;
   glm::vec4 color;
 
   if(operation->color_mode == 0){
