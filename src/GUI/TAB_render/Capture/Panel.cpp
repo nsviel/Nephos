@@ -143,39 +143,21 @@ void Panel::show_info_sensor(k4n::dev::Sensor* sensor){
     ImGui::Text("Type"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", sensor->type.c_str());
 
+    //Transformation matrix file path
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Matrix"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", sensor->param.path_transfo.c_str());
+
     ImGui::EndTable();
   }
 
   //Object model matrix
-  if(ImGui::Button("...##folder_path")){
-    mat4 mat;
-    mat[0][0] = 0.0027506351470947267;
-    mat[1][0] = -0.9997537136077881;
-    mat[2][0] = -0.022024720907211305;
-    mat[3][0] = 0.0;
-
-    mat[0][1] = 0.8231128454208374;
-    mat[1][1] = -0.010243773460388184;
-    mat[2][1] = 0.5677855610847473;
-    mat[2][1] = 0.0;
-
-    mat[0][2] = -0.5678713321685791;
-    mat[1][2] = -0.019690632820129396;
-    mat[2][2] = 0.822881817817688;
-    mat[3][2] = 0.0;
-
-    mat[0][3] = 1033.565185546875;
-    mat[1][3] = 902.3516235351563;
-    mat[2][3] = -904.981201171875;
-    mat[3][3] = 1.0;
-    sensor->object->pose->model = mat;
-  }
-  mat4& mat = sensor->object->pose->model;
+  mat4& model = sensor->object->pose->model;
   ImGui::Columns(4, "ModelMat");
   for(int i=0; i<4; i++){
     ImGui::Separator();
     for(int j=0;j<4;j++){
-      ImGui::Text("%.3f", mat[i][j]);
+      ImGui::Text("%.3f", model[i][j]);
       ImGui::NextColumn();
     }
   }

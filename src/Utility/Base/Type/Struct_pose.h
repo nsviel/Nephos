@@ -25,6 +25,7 @@ struct Pose{
   glm::mat4 trans = glm::mat4(1.0f);
   glm::mat4 scale = glm::mat4(1.0f);
   glm::mat4 model = glm::mat4(1.0f);
+  glm::mat4 model_init = glm::mat4(1.0f);
   glm::mat4 mvp = glm::mat4(1.0f);
 
   //---------------------------

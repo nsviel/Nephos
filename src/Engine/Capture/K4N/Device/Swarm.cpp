@@ -58,6 +58,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path_file, s
   sensor->param.is_playback = true;
   sensor->param.file_path = path_file;
   sensor->param.file_name = info::get_filename_from_path(path_file);
+  sensor->param.path_transfo = path_transfo;
   sensor->master = master;
 
   this->selected_sensor = sensor;
@@ -65,10 +66,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path_file, s
 
   sensor->init();
   sce_scene->assign_entity_UID(sensor);
-
-  utl::type::Pose* pose = sensor->get_pose();
-  mat4 model = k4n_transfo->get_matrix_from_file(path_transfo);
-  pose->model = model;
+  k4n_transfo->find_transformation_from_file(sensor);
 
   //---------------------------
 }
@@ -90,8 +88,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
 
   sensor->init();
   sce_scene->assign_entity_UID(sensor);
-
-  k4n_transfo->get_matrix_from_file(path);
+  k4n_transfo->find_transformation_from_file(sensor);
 
   //---------------------------
 }
@@ -115,8 +112,7 @@ void Swarm::create_sensor_playback(string path){
 
   sensor->init();
   sce_scene->assign_entity_UID(sensor);
-
-  k4n_transfo->get_matrix_from_file(path);
+  k4n_transfo->find_transformation_from_file(sensor);
 
   //---------------------------
 }

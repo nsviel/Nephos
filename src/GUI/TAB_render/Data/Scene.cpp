@@ -71,7 +71,7 @@ void Scene::draw_button(){
 
   //Camera mode
   ImGui::SameLine();
-  if(ImGui::Button(ICON_FA_CAMERA_RETRO "##camera123")){
+  if(ImGui::Button(ICON_FA_CAMERA "##camera123")){
     cam_control->set_next_camera_mode();
   }
 

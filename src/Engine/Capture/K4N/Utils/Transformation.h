@@ -1,12 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-extern "C" {
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libswscale/swscale.h>
-#include <libavdevice/avdevice.h>
-}
+#include <Engine/Capture/K4N/Namespace.h>
 
 namespace k4n::utils{
 
@@ -20,7 +15,10 @@ public:
 
 public:
   //Main function
-  mat4 get_matrix_from_file(string path);
+  void find_transformation_from_file(k4n::dev::Sensor* sensor);
+  void save_transformation_to_file(k4n::dev::Sensor* sensor);
+
+  //Subfunction
   bool is_json_file(const std::string& path);
 
 private:

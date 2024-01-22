@@ -22,7 +22,7 @@ Sensor::Sensor(Engine* engine){
   this->ope_transform = new eng::ope::Transformation();
 
   this->type = "k4n::device::Sensor";
-  this->icon = ICON_FA_CAMERA;
+  this->icon = ICON_FA_CAMERA_RETRO;
 
   //---------------------------
 }

@@ -89,7 +89,7 @@ void Object::reset_entity(){
   pose->rotat = glm::mat4(1.0f);
   pose->trans = glm::mat4(1.0f);
   pose->scale = glm::mat4(1.0f);
-  pose->model = glm::mat4(1.0f);
+  pose->model = pose->model_init;
   pose->mvp = glm::mat4(1.0f);
 
   //---------------------------
