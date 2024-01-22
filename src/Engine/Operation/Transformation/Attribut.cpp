@@ -27,7 +27,7 @@ vec3 Attribut::compute_centroid(utl::type::Set* set){
   }
 
   //---------------------------
-  set->pose->COM = centroid;
+  set->pose.COM = centroid;
   return centroid;
 }
 vec3 Attribut::compute_centroid(utl::type::Entity* entity){
@@ -55,7 +55,6 @@ vec3 Attribut::compute_centroid(utl::type::Entity* entity){
   return centroid;
 }
 void Attribut::compute_MinMax(utl::type::Set* set){
-  utl::type::Pose* pose_set = set->pose;
   //---------------------------
 
   vec3 centroid = vec3(0, 0, 0);
@@ -80,9 +79,9 @@ void Attribut::compute_MinMax(utl::type::Set* set){
   }
 
   //---------------------------
-  pose_set->min = min;
-  pose_set->max = max;
-  pose_set->COM = centroid;
+  set->pose.min = min;
+  set->pose.max = max;
+  set->pose.COM = centroid;
 }
 void Attribut::compute_MinMax(utl::type::Entity* entity){
   utl::type::Data* data = entity->get_data();

@@ -20,14 +20,16 @@ void Operation::center_object(utl::type::Set* set){
   //---------------------------
 
   if(set->is_locked){
-    vec3 COM = ope_attribut->compute_centroid(set);
+    ope_attribut->compute_MinMax(set);
     for(int i=0; i<set->list_entity.size(); i++){
       utl::type::Entity* entity = *next(set->list_entity.begin(), i);
-      this->center_object(entity, COM);
+      this->center_object(entity, set->pose.COM);
+      this->elevate_object(entity, set->pose.min);
     }
   }else{
     utl::type::Entity* entity = set->selected_entity;
     this->center_object(entity, entity->get_pose()->COM);
+    this->elevate_object(entity, entity->get_pose()->min);
   }
 
   //---------------------------
@@ -37,9 +39,10 @@ void Operation::elevate_object(utl::type::Set* set){
   //---------------------------
 
   if(set->is_locked){
+    ope_attribut->compute_MinMax(set);
     for(int i=0; i<set->list_entity.size(); i++){
       utl::type::Entity* entity = *next(set->list_entity.begin(), i);
-      this->elevate_object(entity, entity->get_pose()->min);
+      this->elevate_object(entity, set->pose.min);
     }
   }else{
     utl::type::Entity* entity = set->selected_entity;
@@ -103,7 +106,6 @@ void Operation::center_object(utl::type::Entity* entity, vec3 COM){
 
   ope_attribut->compute_MinMax(entity);
   ope_transform->make_translation(entity, vec3(-pose->COM.x, -pose->COM.y, 0));
-  this->elevate_object(entity, pose->min);
 
   //---------------------------
 }
