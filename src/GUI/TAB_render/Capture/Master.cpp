@@ -32,8 +32,7 @@ void Master::tab_master(k4n::dev::Master* master){
 
 //Subfunction
 void Master::show_info(k4n::dev::Master* master){
-  k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
-  if(sensor == nullptr) return;
+  if(master == nullptr) return;
   //---------------------------
 
     ImGui::Separator();

@@ -11,8 +11,6 @@ namespace k4n::structure{
 struct Cloud{
   //---------------------------
 
-  std::vector<glm::vec3> vec_corner;
-
   /*
   * 0 -> camera color
   * 1 -> colored unicolor
