@@ -15,7 +15,7 @@ public:
   ~Playback();
 
   //Main function
-  void kinect_playback();
+  void show_sensor_configuration();
 
   //Subfunction
   void show_info_device();

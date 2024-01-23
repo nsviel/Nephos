@@ -24,8 +24,9 @@ public:
   void design_panel();
 
   //Subfunction
-  void show_info_master(k4n::dev::Master* master);
-  void show_info_sensor(k4n::dev::Sensor* sensor);
+  void show_master_info(k4n::dev::Master* master);
+  void show_sensor_info(k4n::dev::Sensor* sensor);
+  ImGuiTabItemFlags get_tab_flag(k4n::dev::Master* master, k4n::dev::Sensor* sensor);
 
 private:
   gui::kinect::Capture* gui_capture;

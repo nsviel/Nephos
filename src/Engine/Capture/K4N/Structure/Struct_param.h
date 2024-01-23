@@ -27,9 +27,8 @@ struct Param{
   FPS fps;
 
   std::string name = "";
+  std::string format = "";
   std::string serial_number = "";
-  std::string file_name = "";
-  std::string file_format = "";
   std::string path_data = "";
   std::string path_transfo = "";
 

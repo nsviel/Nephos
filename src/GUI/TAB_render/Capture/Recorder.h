@@ -15,7 +15,7 @@ public:
   ~Recorder();
 
   //Main function
-  void kinect_recorder();
+  void show_sensor_recorder();
 
   //Subfunction
   void recorder_path();

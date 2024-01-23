@@ -17,7 +17,7 @@ Playback::Playback(k4n::Node* node_kinect){
 Playback::~Playback(){}
 
 //Main function
-void Playback::kinect_playback(){
+void Playback::show_sensor_configuration(){
   k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr || !k4n_sensor->param.is_playback) return;
   //---------------------------

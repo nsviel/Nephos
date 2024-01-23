@@ -51,7 +51,7 @@ void Connection::manage_new_dev(int nb_new_dev){
 
   //Create required number of new devices
   for(int i=0; i<nb_new_dev; i++){
-    k4n_swarm->create_sensor_capture(master);
+    k4n_swarm->create_sensor_capture();
   }
 
   //---------------------------
@@ -68,7 +68,7 @@ void Connection::manage_less_dev(int nb_less_dev){
   uint32_t current_nb_dev = k4a_device_get_installed_count();
   if(current_nb_dev != 0){
     for(int i=0; i<current_nb_dev; i++){
-      k4n_swarm->create_sensor_capture(master);
+      k4n_swarm->create_sensor_capture();
     }
   }
 

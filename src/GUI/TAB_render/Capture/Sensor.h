@@ -8,22 +8,14 @@ class GUI;
 
 namespace gui::kinect{
 
-class Capture
+class Sensor
 {
 public:
   //Constructor / Destructor
-  Capture(k4n::Node* node_kinect);
-  ~Capture();
+  Sensor(k4n::Node* node_kinect);
+  ~Sensor();
 
   //Main function
-  void show_sensor_configuration();
-
-  //Subfunction
-  void kinect_devices();
-  void configuration_depth();
-  void configuration_color();
-  void configuration_device();
-  void firmware_info();
 
 private:
   k4n::Node* node_kinect;

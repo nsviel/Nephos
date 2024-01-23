@@ -15,7 +15,7 @@ Recorder::Recorder(k4n::Node* node_kinect){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::kinect_recorder(){
+void Recorder::show_sensor_recorder(){
   //---------------------------
 
   if(ImGui::TreeNode("Recorder")){

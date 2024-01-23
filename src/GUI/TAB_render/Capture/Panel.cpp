@@ -67,21 +67,14 @@ void Panel::design_panel(){
       k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
 
       //Force tab open if another sensor selected
-      ImGuiTabItemFlags flag = 0;
-      static int UID = master->selected_entity->UID;
-      if(master->is_selected_entity(sensor) && sensor->UID != UID){
-        flag = ImGuiTabItemFlags_SetSelected;
-        UID = master->selected_entity->UID;
-      }
+      ImGuiTabItemFlags flag = get_flag_from_sensor(master, sensor);
       string name = sensor->icon + "  " + sensor->name;
       if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
 
-        this->show_info_sensor(sensor);
-        gui_capture->kinect_configuration();
-        gui_playback->kinect_playback();
-
-        //gui_master->kinect_operation();
-        gui_recorder->kinect_recorder();
+        this->show_sensor_info(sensor);
+        gui_capture->show_sensor_configuration();
+        gui_playback->show_sensor_configuration();
+        gui_recorder->show_sensor_recorder();
 
         ImGui::EndTabItem();
       }
@@ -102,7 +95,7 @@ void Panel::design_panel(){
 }
 
 //Subfunction
-void Panel::show_info_master(k4n::dev::Master* master){
+void Panel::show_master_info(k4n::dev::Master* master){
   k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
   if(sensor == nullptr) return;
   //---------------------------
@@ -132,7 +125,7 @@ void Panel::show_info_master(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Panel::show_info_sensor(k4n::dev::Sensor* sensor){
+void Panel::show_sensor_info(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -175,6 +168,18 @@ void Panel::show_info_sensor(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
+ImGuiTabItemFlags Panel::get_tab_flag(k4n::dev::Master* master, k4n::dev::Sensor* sensor){
+  //---------------------------
 
+  ImGuiTabItemFlags flag = 0;
+  static int UID = master->selected_entity->UID;
+  if(master->is_selected_entity(sensor) && sensor->UID != UID){
+    flag = ImGuiTabItemFlags_SetSelected;
+    UID = master->selected_entity->UID;
+  }
+
+  //---------------------------
+  return flag;
+}
 
 }
