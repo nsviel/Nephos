@@ -21,6 +21,7 @@ Renderer::Renderer(GUI* gui){
 
   this->utl_window = utility->get_utl_window();
   this->gui_control = new gui::engine::Control(gui);
+  //this->cam_control = new gui::engine::C(gui);
   this->gui_image = new gui::media::Image(gui);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->vk_info = eng_vulkan->get_vk_info();
@@ -105,7 +106,7 @@ void Renderer::engine_control(){
     int center_y = windowPos.y + windowSize.y * 0.5f;
     ImVec2 center = ImVec2(center_x, center_y);
 
-    gui_control->run_control(center);
+    gui_control->run_control();
   }
 
   //---------------------------

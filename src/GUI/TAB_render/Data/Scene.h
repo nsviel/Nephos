@@ -44,7 +44,7 @@ private:
   gui::rnd::data::Set* rnd_set;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
-  eng::camera::Control* cam_control;
+  camera::src::Control* cam_control;
   eng::ope::Operation* ope_operation;
 
   bool* panel_show;;

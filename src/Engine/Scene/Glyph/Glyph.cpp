@@ -17,7 +17,7 @@ Glyph::Glyph(eng::scene::Node* node_scene){
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->sce_database = node_scene->get_scene_database();
   this->sce_world = node_scene->get_scene_world();
-  eng::camera::Node* node_camera = engine->get_node_camera();
+  camera::src::Node* node_camera = engine->get_node_camera();
   this->cam_control = node_camera->get_camera_control();
 
   //---------------------------

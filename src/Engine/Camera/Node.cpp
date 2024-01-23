@@ -6,14 +6,14 @@
 #include <Utility/Element/Namespace.h>
 
 
-namespace eng::camera{
+namespace camera::src{
 
 //Constructor / Destructor
 Node::Node(Engine* engine){
   //---------------------------
 
-  this->cam_manager = new eng::camera::Manager(engine);
-  this->cam_control = new eng::camera::Control(engine);
+  this->cam_manager = new camera::src::Manager(engine);
+  this->cam_control = new camera::src::Control(engine);
 
   //---------------------------
 }

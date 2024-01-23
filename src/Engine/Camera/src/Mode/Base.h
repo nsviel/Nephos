@@ -5,7 +5,7 @@
 #include <Utility/Element/Namespace.h>
 
 
-namespace eng::camera::mode{
+namespace camera::src::mode{
 
 class Base
 {

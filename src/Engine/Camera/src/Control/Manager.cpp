@@ -4,7 +4,7 @@
 
 
 
-namespace eng::camera{
+namespace camera::src{
 
 //Constructor / Destructor
 Manager::Manager(Engine* engine){

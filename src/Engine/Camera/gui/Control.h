@@ -33,8 +33,8 @@ private:
   util::element::Window* utl_window;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
-  eng::camera::Control* cam_control;
-  eng::camera::Manager* cam_manager;
+  camera::src::Control* cam_control;
+  camera::src::Manager* cam_manager;
   eng::ope::Operation* ope_operation;
 };
 

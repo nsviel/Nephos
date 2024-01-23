@@ -6,7 +6,7 @@
 #include <Utility/Element/Namespace.h>
 
 
-namespace eng::camera{
+namespace camera::src{
 
 //Constructor / Destructor
 Control::Control(Engine* engine){
@@ -15,10 +15,10 @@ Control::Control(Engine* engine){
   util::Node* utility = engine->get_utility();
   util::element::Window* utl_window = utility->get_utl_window();
 
-  this->cam_proj = new eng::camera::Projection(utl_window);
+  this->cam_proj = new camera::src::Projection(utl_window);
 
-  this->vec_mode.push_back(new eng::camera::mode::Player(utl_window));
-  this->vec_mode.push_back(new eng::camera::mode::Arcball(utl_window));
+  this->vec_mode.push_back(new camera::src::mode::Player(utl_window));
+  this->vec_mode.push_back(new camera::src::mode::Arcball(utl_window));
 
   //---------------------------
 }

@@ -26,7 +26,7 @@ public:
   inline eng::shader::EDL_param* get_edl_param(){return edl_param;}
 
 private:
-  eng::camera::Manager* cam_manager;
+  camera::src::Manager* cam_manager;
   entity::Camera* camera;
   util::element::Window* utl_window;
   eng::shader::EDL_param* edl_param;

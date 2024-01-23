@@ -10,7 +10,7 @@ namespace gui::engine{
 Camera::Camera(Engine* engine, bool* show_window, string name){
   //---------------------------
 
-  eng::camera::Node* node_camera = engine->get_node_camera();
+  camera::src::Node* node_camera = engine->get_node_camera();
 
   this->cam_control = node_camera->get_camera_control();
   this->cam_manager = node_camera->get_camera_manager();

@@ -29,8 +29,8 @@ public:
 
 private:
   Panel* gui_render_panel;
-  eng::camera::Control* cam_control;
-  eng::camera::Manager* cam_manager;
+  camera::src::Control* cam_control;
+  camera::src::Manager* cam_manager;
 
   int item_width;
   bool* show_window;

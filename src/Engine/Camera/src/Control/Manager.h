@@ -7,7 +7,7 @@
 class Engine;
 
 
-namespace eng::camera{
+namespace camera::src{
 
 class Manager
 {

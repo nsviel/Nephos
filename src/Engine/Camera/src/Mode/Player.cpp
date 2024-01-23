@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-namespace eng::camera::mode{
+namespace camera::src::mode{
 
 //Constructor / Destructor
 Player::Player(util::element::Window* utl_window) : Base(utl_window){

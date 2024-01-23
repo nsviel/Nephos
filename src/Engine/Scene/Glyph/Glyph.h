@@ -40,7 +40,7 @@ private:
   eng::scene::Node* node_scene;
   eng::scene::Database* sce_database;
   eng::scene::World* sce_world;
-  eng::camera::Control* cam_control;
+  camera::src::Control* cam_control;
 };
 
 }

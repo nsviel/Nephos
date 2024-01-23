@@ -20,15 +20,13 @@ public:
 
 public:
   //Main function
-  void run_control(ImVec2 center);
+  void run_control();
 
   //Keyboard
   void control_keyboard_oneAction();
-  void control_keyboard_camMove();
   void control_keyboard_translation();
 
   //Mouse
-  void control_mouse(ImVec2 center);
   void control_mouse_wheel();
 
 private:
@@ -36,8 +34,8 @@ private:
   util::element::Window* utl_window;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
-  eng::camera::Control* cam_control;
-  eng::camera::Manager* cam_manager;
+  camera::src::Control* cam_control;
+  camera::src::Manager* cam_manager;
   eng::ope::Operation* ope_operation;
 };
 

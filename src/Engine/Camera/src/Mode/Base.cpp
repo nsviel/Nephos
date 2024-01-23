@@ -1,7 +1,7 @@
 #include "Base.h"
 
 
-namespace eng::camera::mode{
+namespace camera::src::mode{
 
 //Constructor / Destructor
 Base::Base(util::element::Window* utl_window){

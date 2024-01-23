@@ -5,7 +5,7 @@
 #include <Utility/Element/Namespace.h>
 
 
-namespace eng::camera{
+namespace camera::src{
 
 class Projection
 {

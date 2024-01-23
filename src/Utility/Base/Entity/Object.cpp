@@ -34,8 +34,8 @@ Object::~Object(){}
 
 //Main function
 void Object::update_entity(){
-  eng::camera::Node* node_camera = engine->get_node_camera();
-  eng::camera::Control* cam_control = node_camera->get_camera_control();
+  camera::src::Node* node_camera = engine->get_node_camera();
+  camera::src::Control* cam_control = node_camera->get_camera_control();
   eng::scene::Node* node_scene = engine->get_node_scene();
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
