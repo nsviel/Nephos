@@ -2,7 +2,7 @@
 
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 
 class VK_engine;
 class VK_imgui;
@@ -23,7 +23,7 @@ public:
   void clean();
   void loop();
   void wait();
-  void param(util::element::Window* utl_window, bool headless);
+  void param(utl::element::Window* utl_window, bool headless);
 
   inline vk::structure::Vulkan* get_struct_vulkan(){return struct_vulkan;}
   inline VK_engine* get_vk_engine(){return vk_engine;}
@@ -36,7 +36,7 @@ public:
   inline void set_prefere_dedicated_gpu(bool value){struct_vulkan->param.dedicated_gpu = value;}
 
 private:
-  util::element::Window* utl_window;
+  utl::element::Window* utl_window;
   vk::structure::Vulkan* struct_vulkan;
   VK_engine* vk_engine;
   VK_imgui* vk_imgui;

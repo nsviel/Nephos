@@ -3,7 +3,7 @@
 #include <Engine/Camera/Namespace.h>
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 
 
 namespace camera::src::mode{
@@ -11,7 +11,7 @@ namespace camera::src::mode{
 class Player : public camera::src::mode::Base
 {
 public:
-  Player(util::element::Window* utl_window);
+  Player(utl::element::Window* utl_window);
   ~Player();
 
 public:

@@ -4,7 +4,7 @@
 #include <git2.h>
 
 
-namespace util::element{
+namespace utl::element{
 
 class Git
 {

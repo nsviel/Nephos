@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 
 class Config;
 
@@ -21,10 +21,10 @@ public:
   void loop();
   void exit();
 
-  inline util::element::Window* get_utl_window(){return utl_window;}
+  inline utl::element::Window* get_utl_window(){return utl_window;}
 
 private:
-  util::element::Window* utl_window;
+  utl::element::Window* utl_window;
 };
 
 }

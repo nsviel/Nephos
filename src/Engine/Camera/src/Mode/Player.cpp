@@ -4,7 +4,7 @@
 namespace camera::src::mode{
 
 //Constructor / Destructor
-Player::Player(util::element::Window* utl_window) : Base(utl_window){
+Player::Player(utl::element::Window* utl_window) : Base(utl_window){
   //---------------------------
 
   this->mouse_pose_old = vec2(0.0f);

@@ -11,7 +11,7 @@ Database::Database(GUI* gui, bool* show_window, string name) : Panel(show_window
 
   this->path_db = "/home/aether/Desktop/todo/power.db3";
   //this->path_db = "../media/database/database.db3";
-  this->database = new util::element::Database(path_db);
+  this->database = new utl::element::Database(path_db);
 
   //---------------------------
 }

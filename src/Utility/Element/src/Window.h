@@ -16,7 +16,7 @@ using namespace glm;
 class Config;
 
 
-namespace util::element{
+namespace utl::element{
 
 class Window
 {

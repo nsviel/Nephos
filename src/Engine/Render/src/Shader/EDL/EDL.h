@@ -5,7 +5,7 @@
 #include <Engine/Render/src/Shader/Base/BASE_shader.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 
 class Engine;
 
@@ -28,7 +28,7 @@ public:
 private:
   camera::src::Manager* cam_manager;
   utl::entity::Camera* camera;
-  util::element::Window* utl_window;
+  utl::element::Window* utl_window;
   eng::shader::EDL_param* edl_param;
 };
 

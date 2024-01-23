@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 #include <GUI/GUI_main/Namespace.h>
 
 class GUI;
@@ -27,7 +27,7 @@ public:
   //Mouse
 
 private:
-  util::element::Window* utl_window;
+  utl::element::Window* utl_window;
   gui::Tab* gui_tab;
 };
 

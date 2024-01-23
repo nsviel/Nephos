@@ -3,14 +3,14 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace gui::element{
+namespace utl::element::gui{
 
 //Constructor / Destructor
 Git::Git(){
   //---------------------------
 
   //this->gui_font = gui->get_gui_font();
-  this->git = new util::element::Git();
+  this->git = new utl::element::Git();
 
   //---------------------------
 }

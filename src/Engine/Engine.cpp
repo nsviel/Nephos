@@ -1,6 +1,6 @@
 #include "Engine.h"
 
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 #include <Vulkan/Vulkan.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Render/src/Renderpass/ENG_renderpass.h>
@@ -10,7 +10,7 @@
 Engine::Engine(util::Node* utility){
   //---------------------------
 
-  util::element::Window* utl_window = utility->get_utl_window();
+  utl::element::Window* utl_window = utility->get_utl_window();
 
   this->utility = utility;
   this->eng_vulkan = new Vulkan(utl_window->get_window());

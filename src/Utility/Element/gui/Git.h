@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 
 
-namespace gui::element{
+namespace utl::element::gui{
 
 class Git
 {
@@ -22,7 +22,7 @@ public:
   void draw_branches();
 
 private:
-  util::element::Git* git;
+  utl::element::Git* git;
 };
 
 }

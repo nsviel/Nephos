@@ -9,7 +9,7 @@ namespace util{
 Node::Node(Config* config){
   //---------------------------
 
-  this->utl_window = new util::element::Window(config);
+  this->utl_window = new utl::element::Window(config);
 
   //---------------------------
   this->init();

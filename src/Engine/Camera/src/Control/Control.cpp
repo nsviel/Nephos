@@ -3,7 +3,7 @@
 
 #include <Engine/Engine.h>
 #include <Utility/Namespace.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 
 
 namespace camera::src{
@@ -13,7 +13,7 @@ Control::Control(Engine* engine){
   //---------------------------
 
   util::Node* utility = engine->get_utility();
-  util::element::Window* utl_window = utility->get_utl_window();
+  utl::element::Window* utl_window = utility->get_utl_window();
 
   this->cam_proj = new camera::src::Projection(utl_window);
 

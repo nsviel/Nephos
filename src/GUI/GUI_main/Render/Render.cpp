@@ -3,7 +3,7 @@
 #include <GUI.h>
 #include <Engine/Engine.h>
 #include <Utility/Namespace.h>
-#include <Utility/Element/Window.h>
+#include <Utility/Element/src/Namespace.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Vulkan/VK_main/VK_imgui.h>
@@ -17,7 +17,7 @@ Render::Render(GUI* gui){
 
   util::Node* utility = gui->get_utility();
   Engine* engine = gui->get_engine();
-  util::element::Window* utl_window = utility->get_utl_window();
+  utl::element::Window* utl_window = utility->get_utl_window();
 
   this->vulkan = engine->get_eng_vulkan();
   //this->vulkan = new Vulkan(utl_window);

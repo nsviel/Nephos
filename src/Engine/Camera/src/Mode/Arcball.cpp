@@ -4,7 +4,7 @@
 namespace camera::src::mode{
 
 //Constructor / Destructor
-Arcball::Arcball(util::element::Window* utl_window) : Base(utl_window){
+Arcball::Arcball(utl::element::Window* utl_window) : Base(utl_window){
   //---------------------------
 
   this->origin = vec3(0, 0, 0);

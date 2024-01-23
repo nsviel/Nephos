@@ -1,7 +1,7 @@
 #include "Git.h"
 
 
-namespace util::element{
+namespace utl::element{
 
 //Constructor / Destructor
 Git::Git(){

@@ -14,7 +14,7 @@ Menu::Menu(GUI* gui){
 
   this->gui = gui;
   this->gui_font = gui->get_gui_font();
-  this->gui_git = new gui::element::Git();
+  this->gui_git = new utl::element::gui::Git();
 
   this->show_demo = false;
 

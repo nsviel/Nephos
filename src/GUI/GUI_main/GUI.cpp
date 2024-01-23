@@ -1,7 +1,7 @@
 #include "GUI.h"
 
 #include <Engine/Engine.h>
-#include <Utility/Element/Window.h>
+#include <Utility/Element/src/Namespace.h>
 #include <GUI/GUI_main/Style/GUI_font.h>
 #include <GUI/GUI_main/Render/Render.h>
 

@@ -2,7 +2,7 @@
 
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 
 
 namespace camera::src::mode{
@@ -10,7 +10,7 @@ namespace camera::src::mode{
 class Base
 {
 public:
-  Base(util::element::Window* utl_window);
+  Base(utl::element::Window* utl_window);
   ~Base();
 
 public:
@@ -28,7 +28,7 @@ public:
   virtual mat4 compute_camera_view(utl::entity::Camera* camera){return mat4(1);}
 
 protected:
-  util::element::Window* utl_window;
+  utl::element::Window* utl_window;
 };
 
 }

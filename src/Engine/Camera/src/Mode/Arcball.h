@@ -3,7 +3,7 @@
 #include <Engine/Camera/Namespace.h>
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 
 namespace camera::src::mode{
 
@@ -11,7 +11,7 @@ namespace camera::src::mode{
 class Arcball : public camera::src::mode::Base
 {
 public:
-  Arcball(util::element::Window* utl_window);
+  Arcball(utl::element::Window* utl_window);
   ~Arcball();
 
 public:

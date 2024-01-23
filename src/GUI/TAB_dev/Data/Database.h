@@ -2,7 +2,7 @@
 
 #include <Utility/Base/GUI/Panel.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 
 class GUI;
 
@@ -26,7 +26,7 @@ public:
   void display_table();
 
 private:
-  util::element::Database* database;
+  utl::element::Database* database;
 
   string path_db;
 };

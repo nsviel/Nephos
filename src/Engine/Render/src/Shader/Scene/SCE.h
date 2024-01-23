@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/Namespace.h>
+#include <Utility/Element/src/Namespace.h>
 #include <Engine/Render/src/Shader/Base/BASE_shader.h>
 
 class Engine;
@@ -19,7 +19,7 @@ public:
   void init_shader();
 
 private:
-  util::element::Window* utl_window;
+  utl::element::Window* utl_window;
 };
 
 }

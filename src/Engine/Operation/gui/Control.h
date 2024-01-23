@@ -29,7 +29,7 @@ public:
 
 private:
   Engine* engine;
-  util::element::Window* utl_window;
+  utl::element::Window* utl_window;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
   camera::src::Control* cam_control;
