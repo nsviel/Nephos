@@ -50,7 +50,7 @@ private:
   gui::engine::Renderer* rnd_render;
   gui::engine::Camera* rnd_camera;
   gui::kinect::Stream* rnd_stream;
-  gui::kinect::Panel* rnd_kinect;
+  gui::kinect::Device* rnd_kinect;
   gui::rnd::data::Scene* rnd_scene;
   gui::rnd::data::Loader* rnd_loader;
 };

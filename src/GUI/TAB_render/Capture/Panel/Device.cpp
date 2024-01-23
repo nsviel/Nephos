@@ -1,4 +1,4 @@
-#include "Panel.h"
+#include "Device.h"
 
 #include <GUI.h>
 #include <Engine/Engine.h>
@@ -8,7 +8,7 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_window, name){
+Device::Device(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_window, name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -25,10 +25,10 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
 
   //---------------------------
 }
-Panel::~Panel(){}
+Device::~Device(){}
 
 //Main function
-void Panel::run_panel(){
+void Device::run_panel(){
   k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
   //---------------------------
 
@@ -45,7 +45,7 @@ void Panel::run_panel(){
 
   //---------------------------
 }
-void Panel::design_panel(){
+void Device::design_panel(){
   k4n::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
@@ -68,7 +68,7 @@ void Panel::design_panel(){
 }
 
 //Tab function
-void Panel::show_master_tab(k4n::dev::Master* master){
+void Device::show_master_tab(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
@@ -80,7 +80,7 @@ void Panel::show_master_tab(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Panel::show_sensor_tab(k4n::dev::Sensor* sensor){
+void Device::show_sensor_tab(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -101,7 +101,7 @@ void Panel::show_sensor_tab(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-ImGuiTabItemFlags Panel::get_tab_flag(k4n::dev::Sensor* sensor){
+ImGuiTabItemFlags Device::get_tab_flag(k4n::dev::Sensor* sensor){
   k4n::dev::Master* master = sensor->master;
   //---------------------------
 

@@ -6,7 +6,7 @@
 #include <GUI/TAB_render/Capture/Configuration/Capture.h>
 #include <GUI/TAB_render/Capture/Configuration/Playback.h>
 #include <GUI/TAB_render/Capture/Configuration/Recorder.h>
-#include <GUI/TAB_render/Capture/Panel/Panel.h>
+#include <GUI/TAB_render/Capture/Panel/Device.h>
 #include <GUI/TAB_render/Capture/Panel/Stream.h>
 
 
@@ -16,7 +16,7 @@ namespace gui::kinect{
   class Capture;
   class Playback;
   class Recorder;
-  class Panel;
+  class Device;
   class Stream;
   class Player;
   class Master;

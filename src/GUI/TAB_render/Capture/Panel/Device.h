@@ -12,12 +12,12 @@ class Recorder;
 
 namespace gui::kinect{
 
-class Panel : public gui::base::Panel
+class Device : public gui::base::Panel
 {
 public:
   //Constructor / Destructor
-  Panel(GUI* gui, bool* show_window, string name);
-  ~Panel();
+  Device(GUI* gui, bool* show_window, string name);
+  ~Device();
 
   //Main function
   void run_panel();
