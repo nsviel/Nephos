@@ -1,6 +1,6 @@
 #include "Profiler.h"
 
-#include <GUI.h>
+#include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_info.h>
 #include <Engine/Engine.h>
@@ -9,16 +9,16 @@
 namespace gui::engine{
 
 //Constructor / Destructor
-Profiler::Profiler(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Profiler::Profiler(Engine* engine, bool* show_window, string name){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
-  this->gui = gui;
   this->profiler = new gui::plot::Profiler();
   this->vk_info = eng_vulkan->get_vk_info();
 
+  this->show_window = show_window;
+  this->name = name;
   this->width = 150;
 
   //---------------------------
@@ -26,6 +26,22 @@ Profiler::Profiler(GUI* gui, bool* show_window, string name) : Panel(show_window
 Profiler::~Profiler(){}
 
 //Main function
+void Profiler::run_panel(){
+  //---------------------------
+
+  if(*show_window){
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+
+      this->design_panel();
+
+      ImGui::End();
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
 void Profiler::design_panel(){
   //---------------------------
 

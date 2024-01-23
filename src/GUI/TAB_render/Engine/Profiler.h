@@ -5,21 +5,22 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
-class GUI;
+class Engine;
 class VK_info;
 
 
 namespace gui::engine{
 
-class Profiler : public gui::base::Panel
+class Profiler
 {
 public:
   //Constructor / Destructor
-  Profiler(GUI* gui, bool* show_window, string name);
+  Profiler(Engine* engine, bool* show_window, string name);
   ~Profiler();
 
 public:
   //Main function
+  void run_panel();
   void design_panel();
 
   //Graph
@@ -33,11 +34,12 @@ public:
   void time_general(bool update);
 
 private:
-  GUI* gui;
   gui::plot::Profiler* profiler;
   VK_info* vk_info;
   Timer timer;
 
+  bool* show_window;
+  string name;
   int width;
 };
 
