@@ -5,7 +5,7 @@
 #include <Engine/Render/src/Shader/Namespace.h>
 #include <Utility/GUI/Base/Panel.h>
 #include <Utility/GUI/Editor/Namespace.h>
-#include <GUI/GUI_utility/Widget/Namespace.h>
+#include <Utility/GUI/Widget/Namespace.h>
 
 class GUI;
 class Text;

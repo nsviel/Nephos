@@ -6,7 +6,6 @@ set(LIBRARY_NAME LIBRARY_GUI)
 add_subdirectory(TAB_dev)
 add_subdirectory(TAB_render)
 add_subdirectory(GUI_main)
-add_subdirectory(GUI_utility)
 
 #-----------------
 # Compilation
@@ -24,7 +23,6 @@ target_link_libraries(${LIBRARY_NAME} INTERFACE
   LIBRARY_ENGINE
 
   LIBRARY_GUI_MAIN
-  LIBRARY_GUI_UTILITY
   LIBRARY_GUI_TAB_DEV
   LIBRARY_GUI_TAB_RENDER
 )
