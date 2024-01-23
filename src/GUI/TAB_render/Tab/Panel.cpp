@@ -27,7 +27,7 @@ void Panel::create_panels(){
   this->rnd_shader = new eng::render::gui::Shader(gui, &show_shader, "Shader");
   this->cam_panel = new eng::cam::gui::Panel(gui->get_engine(), &show_camera, "Camera");
   this->gui_device = new eng::k4n::gui::Device(gui->get_engine(), &show_kinect, "Player");
-  //this->gui_stream = new eng::k4n::gui::Stream(gui->get_engine(), &show_kinect, "Stream");
+  this->gui_stream = new eng::k4n::gui::Stream(gui->get_engine(), &show_kinect, "Stream");
   this->rnd_render = new eng::render::gui::Renderer(gui->get_engine());
   this->rnd_menu = new gui::rnd::tab::Menu(this);
 
