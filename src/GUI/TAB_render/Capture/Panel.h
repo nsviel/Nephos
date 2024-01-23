@@ -23,10 +23,12 @@ public:
   void run_panel();
   void design_panel();
 
+  //Tab function
+  void show_master_tab(k4n::dev::Master* master);
+  void show_sensor_tab(k4n::dev::Sensor* sensor);
+
   //Subfunction
-  void show_master_info(k4n::dev::Master* master);
-  void show_sensor_info(k4n::dev::Sensor* sensor);
-  ImGuiTabItemFlags get_tab_flag(k4n::dev::Master* master, k4n::dev::Sensor* sensor);
+  ImGuiTabItemFlags get_tab_flag(k4n::dev::Sensor* sensor);
 
 private:
   gui::kinect::Capture* gui_capture;
@@ -34,8 +36,8 @@ private:
   gui::kinect::Recorder* gui_recorder;
   gui::kinect::Player* gui_player;
   gui::kinect::Master* gui_master;
+  gui::kinect::Sensor* gui_sensor;
   k4n::dev::Swarm* k4n_swarm;
-  k4n::utils::Transformation* k4n_transfo;
 
   string open_tab = "";
 };

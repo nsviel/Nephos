@@ -11,7 +11,8 @@ Sensor::Sensor(k4n::Node* node_kinect){
 
   this->node_kinect = node_kinect;
   this->k4n_swarm = node_kinect->get_k4n_swarm();
-
+  this->k4n_transfo = new k4n::utils::Transformation();
+  
   this->item_width = 100;
 
   //---------------------------
@@ -19,6 +20,48 @@ Sensor::Sensor(k4n::Node* node_kinect){
 Sensor::~Sensor(){}
 
 //Main function
+void Sensor::show_info(k4n::dev::Sensor* sensor){
+  if(sensor == nullptr) return;
+  //---------------------------
 
+    ImGui::Separator();
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+  if(ImGui::BeginTable("Kinect_info##general", 2)){
+    //Type
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Type"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", sensor->type.c_str());
+
+    //Transformation matrix file path
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Matrix"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", sensor->param.path_transfo.c_str());
+
+    ImGui::EndTable();
+  }
+
+  //Object model matrix
+  mat4& model = sensor->object->pose->model;
+  ImGui::Columns(4, "ModelMat");
+  for(int i=0; i<4; i++){
+    ImGui::Separator();
+    for(int j=0;j<4;j++){
+      ImGui::Text("%.3f", model[i][j]);
+      ImGui::NextColumn();
+    }
+  }
+  ImGui::Separator();
+  ImGui::Columns(1);
+
+  ImVec2 width = ImGui::GetContentRegionAvail();
+  if(ImGui::Button("Save##transfomatrix", ImVec2(width.x, 0))){
+    k4n_transfo->save_transformation_to_file(sensor);
+  }
+  if(ImGui::Button("Identity##transfomatrix", ImVec2(width.x, 0))){
+    k4n_transfo->make_transformation_identity(sensor);
+  }
+
+  //---------------------------
+}
 
 }

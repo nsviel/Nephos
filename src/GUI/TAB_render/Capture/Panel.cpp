@@ -16,12 +16,12 @@ Panel::Panel(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_w
   k4n::Node* node_kinect = node_capture->get_node_kinect();
 
   this->k4n_swarm = node_kinect->get_k4n_swarm();
-  this->k4n_transfo = new k4n::utils::Transformation();
   this->gui_capture = new gui::kinect::Capture(node_kinect);
   this->gui_playback = new gui::kinect::Playback(node_kinect);
   this->gui_recorder = new gui::kinect::Recorder(node_kinect);
   this->gui_player = new gui::kinect::Player(engine);
   this->gui_master = new gui::kinect::Master(node_kinect);
+  this->gui_sensor = new gui::kinect::Sensor(node_kinect);
 
   //---------------------------
 }
@@ -54,121 +54,55 @@ void Panel::design_panel(){
 
   //Device info & configuration
   if(master != nullptr && ImGui::BeginTabBar("devices_tab##4567")){
-
-    //Master tab
-    string name = master->icon + "  " + "Master";
-    if(ImGui::BeginTabItem(name.c_str(), NULL)){
-      gui_master->tab_master(master);
-      ImGui::EndTabItem();
-    }
+    this->show_master_tab(master);
 
     //Master sensor tabs -> click = sensor selection
     for(int i=0; i< master->list_sensor.size(); i++){
       k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
-
-      //Force tab open if another sensor selected
-      ImGuiTabItemFlags flag = get_flag_from_sensor(master, sensor);
-      string name = sensor->icon + "  " + sensor->name;
-      if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
-
-        this->show_sensor_info(sensor);
-        gui_capture->show_sensor_configuration();
-        gui_playback->show_sensor_configuration();
-        gui_recorder->show_sensor_recorder();
-
-        ImGui::EndTabItem();
-      }
+      this->show_sensor_tab(sensor);
     }
     ImGui::EndTabBar();
   }
 
-  //Tab content
-  for(int i=0; i< master->list_sensor.size(); i++){
-    k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
+  //---------------------------
+}
 
-    if(master->is_selected_entity(sensor)){
+//Tab function
+void Panel::show_master_tab(k4n::dev::Master* master){
+  if(master == nullptr) return;
+  //---------------------------
 
-    }
+  string name = master->icon + "  " + "Master";
+  if(ImGui::BeginTabItem(name.c_str(), NULL)){
+    gui_master->tab_master(master);
+    ImGui::EndTabItem();
+  }
+
+  //---------------------------
+}
+void Panel::show_sensor_tab(k4n::dev::Sensor* sensor){
+  if(sensor == nullptr) return;
+  //---------------------------
+
+  //Force tab open if another sensor selected
+  ImGuiTabItemFlags flag = get_tab_flag(sensor);
+  string name = sensor->icon + "  " + sensor->name;
+  if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
+
+    gui_sensor->show_info(sensor);
+    gui_capture->show_sensor_configuration();
+    gui_playback->show_sensor_configuration();
+    gui_recorder->show_sensor_recorder();
+
+    ImGui::EndTabItem();
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Panel::show_master_info(k4n::dev::Master* master){
-  k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
-  if(sensor == nullptr) return;
-  //---------------------------
-
-    ImGui::Separator();
-  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  if(ImGui::BeginTable("Kinect_info##general", 2)){
-    //Type
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Type"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", master->type.c_str());
-
-    //Duration
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", master->player.duration);
-
-    //Recording time
-    if(master->player.record){
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Record"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
-    }
-
-    ImGui::EndTable();
-  }
-
-  //---------------------------
-}
-void Panel::show_sensor_info(k4n::dev::Sensor* sensor){
-  if(sensor == nullptr) return;
-  //---------------------------
-
-    ImGui::Separator();
-  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  if(ImGui::BeginTable("Kinect_info##general", 2)){
-    //Type
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Type"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->type.c_str());
-
-    //Transformation matrix file path
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Matrix"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->param.path_transfo.c_str());
-
-    ImGui::EndTable();
-  }
-
-  //Object model matrix
-  mat4& model = sensor->object->pose->model;
-  ImGui::Columns(4, "ModelMat");
-  for(int i=0; i<4; i++){
-    ImGui::Separator();
-    for(int j=0;j<4;j++){
-      ImGui::Text("%.3f", model[i][j]);
-      ImGui::NextColumn();
-    }
-  }
-  ImGui::Separator();
-  ImGui::Columns(1);
-
-  ImVec2 width = ImGui::GetContentRegionAvail();
-  if(ImGui::Button("Save##transfomatrix", ImVec2(width.x, 0))){
-    k4n_transfo->save_transformation_to_file(sensor);
-  }
-  if(ImGui::Button("Identity##transfomatrix", ImVec2(width.x, 0))){
-    k4n_transfo->make_transformation_identity(sensor);
-  }
-
-  //---------------------------
-}
-ImGuiTabItemFlags Panel::get_tab_flag(k4n::dev::Master* master, k4n::dev::Sensor* sensor){
+ImGuiTabItemFlags Panel::get_tab_flag(k4n::dev::Sensor* sensor){
+  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   ImGuiTabItemFlags flag = 0;
