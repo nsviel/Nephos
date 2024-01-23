@@ -7,7 +7,7 @@
 #include <Utility/Function/File/Info.h>
 
 
-namespace gui::rnd::data{
+namespace eng::scene::gui{
 
 //Constructor / Destructor
 Loader::Loader(Engine* engine, bool* show_window, string name) : Panel(show_window, name){

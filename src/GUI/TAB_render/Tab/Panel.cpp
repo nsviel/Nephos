@@ -20,8 +20,8 @@ Panel::~Panel(){}
 void Panel::create_panels(){
   //---------------------------
 
-  this->rnd_loader = new gui::rnd::data::Loader(gui->get_engine(), &show_loader, "Loader");
-  this->rnd_scene = new gui::rnd::data::Scene(gui->get_engine(), &show_scene, "Scene");
+  this->rnd_loader = new eng::scene::gui::Loader(gui->get_engine(), &show_loader, "Loader");
+  this->rnd_scene = new eng::scene::gui::Scene(gui->get_engine(), &show_scene, "Scene");
   this->rnd_option = new gui::rnd::tab::Option(gui, &show_option, "Option");
   this->rnd_profiler = new ope::gui::Profiler(gui->get_engine(), &show_profiler, "Profiler");
   this->rnd_shader = new eng::render::gui::Shader(gui, &show_shader, "Shader");

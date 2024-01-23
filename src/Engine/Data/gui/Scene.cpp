@@ -4,7 +4,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace gui::rnd::data{
+namespace eng::scene::gui{
 
 //Constructor / Destructor
 Scene::Scene(Engine* engine, bool* show_window, string name) : Panel(show_window, name){
@@ -15,8 +15,8 @@ Scene::Scene(Engine* engine, bool* show_window, string name) : Panel(show_window
 
   this->sce_database = node_scene->get_scene_database();
   this->sce_scene = node_scene->get_scene();
-  this->rnd_set = new gui::rnd::data::Set(&show_panel_set);
-  this->rnd_object = new gui::rnd::data::Entity(engine, &show_panel_entity);
+  this->rnd_set = new eng::scene::gui::Set(&show_panel_set);
+  this->rnd_object = new eng::scene::gui::Entity(engine, &show_panel_entity);
   this->cam_control = node_camera->get_camera_control();
   this->ope_operation = new ope::src::Operation();
 

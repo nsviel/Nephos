@@ -8,7 +8,7 @@
 class Panel;
 
 
-namespace gui::rnd::data{
+namespace eng::scene::gui{
 
 class Entity
 {

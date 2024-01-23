@@ -6,7 +6,7 @@
 #include <Engine/Data/gui/Scene.h>
 
 
-namespace gui::rnd::data{
+namespace eng::scene::gui{
   //---------------------------
 
   class Loader;

@@ -10,7 +10,7 @@
 
 class Engine;
 
-namespace gui::rnd::data{
+namespace eng::scene::gui{
 class Entity;
 class Set;
 
@@ -41,8 +41,8 @@ public:
   bool show_panel_set      = false;
 
 private:
-  gui::rnd::data::Entity* rnd_object;
-  gui::rnd::data::Set* rnd_set;
+  eng::scene::gui::Entity* rnd_object;
+  eng::scene::gui::Set* rnd_set;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
   camera::src::Control* cam_control;

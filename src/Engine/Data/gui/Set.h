@@ -4,7 +4,7 @@
 #include <Engine/Data/Namespace.h>
 
 
-namespace gui::rnd::data{
+namespace eng::scene::gui{
 
 class Set
 {

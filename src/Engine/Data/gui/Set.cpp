@@ -1,7 +1,7 @@
 #include "Set.h"
 
 
-namespace gui::rnd::data{
+namespace eng::scene::gui{
 
 //Constructor / Destructor
 Set::Set(bool* show_window){

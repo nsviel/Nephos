@@ -40,7 +40,7 @@ public:
   inline ope::gui::Profiler* get_rnd_profiler(){return rnd_profiler;}
   inline camera::gui::Panel* get_cam_panel(){return cam_panel;}
   inline eng::render::gui::Renderer* get_rnd_render(){return rnd_render;}
-  inline gui::rnd::data::Scene* get_rnd_scene(){return rnd_scene;}
+  inline eng::scene::gui::Scene* get_rnd_scene(){return rnd_scene;}
   inline gui::rnd::tab::Option* get_rnd_option(){return rnd_option;}
 
 private:
@@ -52,8 +52,8 @@ private:
   eng::render::gui::Renderer* rnd_render;
   camera::gui::Panel* cam_panel;
 
-  gui::rnd::data::Scene* rnd_scene;
-  gui::rnd::data::Loader* rnd_loader;
+  eng::scene::gui::Scene* rnd_scene;
+  eng::scene::gui::Loader* rnd_loader;
 };
 
 }

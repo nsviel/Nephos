@@ -4,7 +4,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace gui::rnd::data{
+namespace eng::scene::gui{
 
 //Constructor / Destructor
 Entity::Entity(Engine* engine, bool* panel_show){

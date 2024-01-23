@@ -9,7 +9,7 @@
 class Engine;
 
 
-namespace gui::rnd::data{
+namespace eng::scene::gui{
 
 class Loader : public utl::base::Panel
 {
