@@ -5,10 +5,10 @@
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 
-#include <Engine/Data/Glyph/World/Namespace.h>
-#include <Engine/Data/Glyph/Object/Namespace.h>
-#include <Engine/Data/Glyph/Grid/Namespace.h>
-#include <Engine/Data/Glyph/Camera/Namespace.h>
+#include <Engine/Data/src/Glyph/World/Namespace.h>
+#include <Engine/Data/src/Glyph/Object/Namespace.h>
+#include <Engine/Data/src/Glyph/Grid/Namespace.h>
+#include <Engine/Data/src/Glyph/Camera/Namespace.h>
 
 class VK_engine;
 
