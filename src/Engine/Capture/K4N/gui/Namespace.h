@@ -10,7 +10,7 @@
 #include <Engine/Capture/K4N/gui/Panel/Stream.h>
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
   //---------------------------
 
   class Capture;

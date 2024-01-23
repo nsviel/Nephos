@@ -5,7 +5,7 @@
 #include <Engine/Camera/src/Mode/Player.h>
 
 
-namespace camera::src::mode{
+namespace eng::cam::mode{
   //---------------------------
 
   class Base;

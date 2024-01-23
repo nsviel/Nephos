@@ -37,7 +37,7 @@ private:
   eng::ope::gui::Control* ope_control;
   utl::element::Window* utl_window;
   utl::gui::plot::Profiler* profiler;
-  camera::gui::Control* cam_control;
+  eng::cam::gui::Control* cam_control;
   VK_imgui* vk_imgui;
   VK_info* vk_info;
 

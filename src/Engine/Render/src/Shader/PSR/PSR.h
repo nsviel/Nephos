@@ -28,7 +28,7 @@ private:
   utl::element::Window* utl_window;
   PSR_param* psr_param;
 
-  camera::src::Manager* cam_manager;
+  eng::cam::Manager* cam_manager;
 };
 
 }

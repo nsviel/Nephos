@@ -6,7 +6,7 @@
 #include <Engine/Capture/K4N/src/Utils/Namespace.h>
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 class Player
 {

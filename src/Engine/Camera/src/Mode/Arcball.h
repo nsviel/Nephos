@@ -5,10 +5,10 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Element/src/Namespace.h>
 
-namespace camera::src::mode{
+namespace eng::cam::mode{
 
 
-class Arcball : public camera::src::mode::Base
+class Arcball : public eng::cam::mode::Base
 {
 public:
   Arcball(utl::element::Window* utl_window);

@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 //Constructor / Destructor
 Device::Device(Engine* engine, bool* show_window, string name){
@@ -14,12 +14,12 @@ Device::Device(Engine* engine, bool* show_window, string name){
   eng::k4n::Node* node_kinect = node_capture->get_node_kinect();
 
   this->k4n_swarm = node_kinect->get_k4n_swarm();
-  this->gui_capture = new gui::kinect::Capture(node_kinect);
-  this->gui_playback = new gui::kinect::Playback(node_kinect);
-  this->gui_recorder = new gui::kinect::Recorder(node_kinect);
-  this->gui_player = new gui::kinect::Player(engine);
-  this->gui_master = new gui::kinect::Master(node_kinect);
-  this->gui_sensor = new gui::kinect::Sensor(node_kinect);
+  this->gui_capture = new eng::k4n::gui::Capture(node_kinect);
+  this->gui_playback = new eng::k4n::gui::Playback(node_kinect);
+  this->gui_recorder = new eng::k4n::gui::Recorder(node_kinect);
+  this->gui_player = new eng::k4n::gui::Player(engine);
+  this->gui_master = new eng::k4n::gui::Master(node_kinect);
+  this->gui_sensor = new eng::k4n::gui::Sensor(node_kinect);
 
   this->show_window = show_window;
   this->name = name;

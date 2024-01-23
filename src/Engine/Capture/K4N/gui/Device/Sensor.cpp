@@ -1,7 +1,7 @@
 #include "Sensor.h"
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 //Constructor / Destructor
 Sensor::Sensor(eng::k4n::Node* node_kinect){

@@ -1,7 +1,7 @@
 #include "Arcball.h"
 
 
-namespace camera::src::mode{
+namespace eng::cam::mode{
 
 //Constructor / Destructor
 Arcball::Arcball(utl::element::Window* utl_window) : Base(utl_window){

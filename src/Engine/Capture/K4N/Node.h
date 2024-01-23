@@ -27,8 +27,8 @@ public:
 private:
   eng::k4n::dev::Swarm* k4n_swarm;
   eng::k4n::dev::Connection* k4n_connection;
-  //gui::kinect::Stream* rnd_stream;
-  //gui::kinect::Device* rnd_kinect;
+  //eng::k4n::gui::Stream* rnd_stream;
+  //eng::k4n::gui::Device* rnd_kinect;
 
   bool show_kinect;
 };

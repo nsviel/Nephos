@@ -6,7 +6,7 @@
 class GUI;
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 class Sensor
 {

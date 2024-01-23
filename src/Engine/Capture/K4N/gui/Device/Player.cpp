@@ -5,7 +5,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 //Constructor / Destructor
 Player::Player(Engine* engine){

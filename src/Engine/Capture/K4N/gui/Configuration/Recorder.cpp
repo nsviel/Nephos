@@ -1,7 +1,7 @@
 #include "Recorder.h"
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 //Constructor / Destructor
 Recorder::Recorder(eng::k4n::Node* node_kinect){

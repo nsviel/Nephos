@@ -25,8 +25,8 @@ Glyph::~Glyph(){}
 
 //Main function
 void Glyph::update_entity(){
-  camera::src::Node* node_camera = engine->get_node_camera();
-  camera::src::Control* cam_control = node_camera->get_camera_control();
+  eng::cam::Node* node_camera = engine->get_node_camera();
+  eng::cam::Control* cam_control = node_camera->get_camera_control();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
   VK_engine* vk_engine = eng_vulkan->get_vk_engine();
   //----------------------------

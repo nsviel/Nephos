@@ -7,7 +7,7 @@
 #include <Engine/Camera/Node.h>
 
 
-namespace camera::src{
+namespace eng::cam{
   //---------------------------
 
   class Projection;

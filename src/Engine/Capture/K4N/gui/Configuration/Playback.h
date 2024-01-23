@@ -5,7 +5,7 @@
 #include <Engine/Capture/K4N/Namespace.h>
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 class Playback
 {

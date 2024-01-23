@@ -11,7 +11,7 @@
 class Engine;
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 class Stream
 {

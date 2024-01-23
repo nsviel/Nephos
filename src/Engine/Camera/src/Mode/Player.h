@@ -6,9 +6,9 @@
 #include <Utility/Element/src/Namespace.h>
 
 
-namespace camera::src::mode{
+namespace eng::cam::mode{
 
-class Player : public camera::src::mode::Base
+class Player : public eng::cam::mode::Base
 {
 public:
   Player(utl::element::Window* utl_window);

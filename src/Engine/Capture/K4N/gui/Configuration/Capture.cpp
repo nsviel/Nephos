@@ -1,7 +1,7 @@
 #include "Capture.h"
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 //Constructor / Destructor
 Capture::Capture(eng::k4n::Node* node_kinect){

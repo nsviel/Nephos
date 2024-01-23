@@ -11,7 +11,7 @@ Scene::Scene(Engine* engine, bool* show_window, string name) : Panel(show_window
   //---------------------------
 
   eng::scene::Node* node_scene = engine->get_node_scene();
-  camera::src::Node* node_camera = engine->get_node_camera();
+  eng::cam::Node* node_camera = engine->get_node_camera();
 
   this->sce_database = node_scene->get_scene_database();
   this->sce_scene = node_scene->get_scene();

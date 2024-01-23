@@ -20,7 +20,7 @@ Renderer::Renderer(Engine* engine){
 
   this->utl_window = utility->get_utl_window();
   this->ope_control = new eng::ope::gui::Control(engine);
-  this->cam_control = new camera::gui::Control(engine);
+  this->cam_control = new eng::cam::gui::Control(engine);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->vk_info = eng_vulkan->get_vk_info();
   this->profiler = new utl::gui::plot::Profiler();

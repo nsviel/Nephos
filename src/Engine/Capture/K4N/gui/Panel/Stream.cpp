@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 //Constructor / Destructor
 Stream::Stream(Engine* engine, bool* show_window, string name){

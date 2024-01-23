@@ -7,7 +7,7 @@
 
 class Engine;
 
-namespace camera::src{
+namespace eng::cam{
 class Control;
 class Manager;
 
@@ -24,12 +24,12 @@ public:
   void loop();
   void reset();
 
-  inline camera::src::Control* get_camera_control(){return cam_control;}
-  inline camera::src::Manager* get_camera_manager(){return cam_manager;}
+  inline eng::cam::Control* get_camera_control(){return cam_control;}
+  inline eng::cam::Manager* get_camera_manager(){return cam_manager;}
 
 private:
-  camera::src::Control* cam_control;
-  camera::src::Manager* cam_manager;
+  eng::cam::Control* cam_control;
+  eng::cam::Manager* cam_manager;
 };
 
 }

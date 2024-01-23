@@ -7,7 +7,7 @@
 
 class Engine;
 
-namespace camera::src{
+namespace eng::cam{
 
 
 class Control
@@ -36,10 +36,10 @@ public:
   void set_next_camera_mode();
 
 private:
-  camera::src::Projection* cam_proj;
+  eng::cam::Projection* cam_proj;
 
-  vector<camera::src::mode::Base*> vec_mode;
-  camera::src::mode::Base* active_mode;
+  vector<eng::cam::mode::Base*> vec_mode;
+  eng::cam::mode::Base* active_mode;
   utl::entity::Camera* camera;
 };
 

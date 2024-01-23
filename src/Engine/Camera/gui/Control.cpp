@@ -9,7 +9,7 @@
 
 
 
-namespace camera::gui{
+namespace eng::cam::gui{
 
 //Constructor / Destructor
 Control::Control(Engine* engine){
@@ -18,7 +18,7 @@ Control::Control(Engine* engine){
   this->engine = engine;
   util::Node* utility = engine->get_utility();
   eng::scene::Node* node_scene = engine->get_node_scene();
-  camera::src::Node* node_camera = engine->get_node_camera();
+  eng::cam::Node* node_camera = engine->get_node_camera();
 
 
   this->utl_window = utility->get_utl_window();

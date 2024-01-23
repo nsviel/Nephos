@@ -10,7 +10,7 @@ class Engine;
 class Recorder;
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 class Device
 {
@@ -31,12 +31,12 @@ public:
   ImGuiTabItemFlags get_tab_flag(eng::k4n::dev::Sensor* sensor);
 
 private:
-  gui::kinect::Capture* gui_capture;
-  gui::kinect::Playback* gui_playback;
-  gui::kinect::Recorder* gui_recorder;
-  gui::kinect::Player* gui_player;
-  gui::kinect::Master* gui_master;
-  gui::kinect::Sensor* gui_sensor;
+  eng::k4n::gui::Capture* gui_capture;
+  eng::k4n::gui::Playback* gui_playback;
+  eng::k4n::gui::Recorder* gui_recorder;
+  eng::k4n::gui::Player* gui_player;
+  eng::k4n::gui::Master* gui_master;
+  eng::k4n::gui::Sensor* gui_sensor;
   eng::k4n::dev::Swarm* k4n_swarm;
 
   bool* show_window;

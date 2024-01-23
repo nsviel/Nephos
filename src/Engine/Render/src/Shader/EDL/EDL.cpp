@@ -11,7 +11,7 @@ EDL::EDL(Engine* engine){
   //---------------------------
 
   util::Node* utility = engine->get_utility();
-  camera::src::Node* node_camera = engine->get_node_camera();
+  eng::cam::Node* node_camera = engine->get_node_camera();
 
   this->cam_manager = node_camera->get_camera_manager();
   this->utl_window = utility->get_utl_window();

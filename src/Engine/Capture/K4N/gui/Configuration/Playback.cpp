@@ -3,7 +3,7 @@
 #include <Engine/Capture/K4N/src/Thread/K4A_playback.h>
 
 
-namespace gui::kinect{
+namespace eng::k4n::gui{
 
 //Constructor / Destructor
 Playback::Playback(eng::k4n::Node* node_kinect){

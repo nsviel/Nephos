@@ -1,7 +1,7 @@
 #include "Projection.h"
 
 
-namespace camera::src{
+namespace eng::cam{
 
 //Constructor / Destructor
 Projection::Projection(utl::element::Window* utl_window){

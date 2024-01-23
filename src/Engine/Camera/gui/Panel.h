@@ -8,7 +8,7 @@
 class Engine;
 class Panel;
 
-namespace camera::gui{
+namespace eng::cam::gui{
 
 
 class Panel
@@ -29,8 +29,8 @@ public:
 
 private:
   Panel* gui_render_panel;
-  camera::src::Control* cam_control;
-  camera::src::Manager* cam_manager;
+  eng::cam::Control* cam_control;
+  eng::cam::Manager* cam_manager;
 
   int item_width;
   bool* show_window;
