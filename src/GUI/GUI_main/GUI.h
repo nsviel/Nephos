@@ -15,7 +15,7 @@ class GUI
 {
 public:
   //Constructor / Destructor
-  GUI(util::Node* utility, Engine* engine);
+  GUI(utl::Node* utility, Engine* engine);
   ~GUI();
 
 public:
@@ -24,7 +24,7 @@ public:
   void exit();
   void wait();
 
-  inline util::Node* get_utility(){return utility;}
+  inline utl::Node* get_utility(){return utility;}
   inline Engine* get_engine(){return engine;}
 
   inline gui::Control* get_gui_control(){return gui_control;}
@@ -36,7 +36,7 @@ public:
 private:
   Engine* engine;
   Node* eng_data;
-  util::Node* utility;
+  utl::Node* utility;
 
   utl::element::Window* utl_window;
   gui::Control* gui_control;

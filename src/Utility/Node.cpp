@@ -3,7 +3,7 @@
 #include <Config.h>
 
 
-namespace util{
+namespace utl{
 
 //Constructor / Destructor
 Node::Node(Config* config){

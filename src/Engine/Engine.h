@@ -15,7 +15,7 @@ class Engine
 {
 public:
   //Constructor / Destructor
-  Engine(util::Node* utility);
+  Engine(utl::Node* utility);
   ~Engine();
 
 public:
@@ -25,7 +25,7 @@ public:
   void reset();
   void wait();
 
-  inline util::Node* get_utility(){return utility;}
+  inline utl::Node* get_utility(){return utility;}
   inline Vulkan* get_eng_vulkan(){return eng_vulkan;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
@@ -35,7 +35,7 @@ public:
 private:
   Vulkan* eng_vulkan;
   ENG_renderpass* eng_renderpass;
-  util::Node* utility;
+  utl::Node* utility;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;

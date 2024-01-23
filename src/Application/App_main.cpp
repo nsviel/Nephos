@@ -11,7 +11,7 @@ App_main::App_main(){
   //---------------------------
 
   this->config = new Config();
-  this->utility = new util::Node(config);
+  this->utility = new utl::Node(config);
   this->engine = new Engine(utility);
   this->gui = new GUI(utility, engine);
 

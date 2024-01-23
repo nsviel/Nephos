@@ -7,7 +7,7 @@
 
 
 //Constructor / Destructor
-GUI::GUI(util::Node* utility, Engine* engine){
+GUI::GUI(utl::Node* utility, Engine* engine){
   //---------------------------
 
   this->engine = engine;

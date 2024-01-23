@@ -12,7 +12,7 @@ namespace eng::cam{
 Control::Control(Engine* engine){
   //---------------------------
 
-  util::Node* utility = engine->get_utility();
+  utl::Node* utility = engine->get_utility();
   utl::element::Window* utl_window = utility->get_utl_window();
 
   this->cam_proj = new eng::cam::Projection(utl_window);

@@ -6,7 +6,7 @@
 class Config;
 
 
-namespace util{
+namespace utl{
 
 class Node
 {
