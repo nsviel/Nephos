@@ -3,11 +3,10 @@
 
 #include <Utility/Specific/common.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
-#include <GUI/TAB_render/Data/Set.h>
-#include <GUI/TAB_render/Data/Entity.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
-
+#include <Engine/Data/gui/Entity.h>
+#include <Engine/Data/gui/Set.h>
 
 class Engine;
 

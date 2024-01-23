@@ -1,8 +1,8 @@
 #pragma once
 
 #include <GUI/TAB_render/Data/Loader.h>
-#include <GUI/TAB_render/Data/Entity.h>
-#include <GUI/TAB_render/Data/Set.h>
+#include <Engine/Data/gui/Entity.h>
+#include <Engine/Data/gui/Set.h>
 #include <GUI/TAB_render/Data/Scene.h>
 
 
