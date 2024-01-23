@@ -11,8 +11,8 @@ Node::Node(Engine* engine){
 
   this->k4n_swarm = new k4n::dev::Swarm(engine);
   this->k4n_connection = new k4n::dev::Connection(k4n_swarm);
-  this->rnd_kinect = new gui::kinect::Device(engine, &show_kinect, "Player");
-  this->rnd_stream = new gui::kinect::Stream(engine, &show_kinect, "Stream");
+  //this->rnd_kinect = new gui::kinect::Device(engine, &show_kinect, "Player");
+  //this->rnd_stream = new gui::kinect::Stream(engine, &show_kinect, "Stream");
 
   //---------------------------
 }
@@ -30,8 +30,8 @@ void Node::loop(){
   //---------------------------
 
   k4n_connection->refresh_connected_dev();
-  rnd_kinect->run_panel();
-  rnd_stream->run_panel();
+  //rnd_kinect->run_panel();
+  //rnd_stream->run_panel();
 
   //---------------------------
 }
