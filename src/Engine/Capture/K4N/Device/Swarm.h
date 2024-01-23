@@ -24,7 +24,7 @@ public:
 
   //Sensor function
   void create_sensor_playback(utl::media::File& file);
-  void create_sensor_capture(k4n::dev::Master* master);
+  void create_sensor_capture();
   void close_sensor_all(k4n::dev::Master* master);
   void selecte_next_sensor();
 

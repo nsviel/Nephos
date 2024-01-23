@@ -20,17 +20,17 @@ struct Set
   void update();
   void reset();
 
-  //Entity addition
-  void add_set(utl::type::Set* set);
-  void add_new_set(std::string name);
+  //Entity function
   void insert_entity(utl::type::Entity* entity);
   void delete_entity(utl::type::Entity* entity);
   void delete_entity_all();
-
-  //Entity selection
   void select_next_entity();
   void set_selected_entity(utl::type::Entity* entity);
 
+  //Set function
+  void add_set(utl::type::Set* set);
+  void add_new_set(std::string name);
+  
   //Parameter
   void set_visibility(bool value);
   utl::type::Set* get_set(std::string name);

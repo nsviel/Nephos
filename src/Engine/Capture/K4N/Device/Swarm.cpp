@@ -27,7 +27,7 @@ Swarm::~Swarm(){}
 void Swarm::init_scene(){
   //---------------------------
 
-  //If no real device create virtual one
+  //If no real device create playback
   k4n::dev::Master* master = get_or_create_master("versaille");
   uint32_t current_nb_dev = k4a_device_get_installed_count();
   if(current_nb_dev != 0) return;
@@ -52,9 +52,11 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   if(!file::is_file_exist(file.path_data)) return;
   //---------------------------
 
+  //Associated master
   k4n::dev::Master* master = selected_master;
-
   int index = master->list_sensor.size();
+
+  //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
   sensor->name = "playback_" + to_string(index);
   sensor->param.index = index;
@@ -64,29 +66,33 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   sensor->param.file_name = info::get_filename_from_path(file.path_data);
   sensor->master = master;
 
+  //Sensor initialization
   this->selected_sensor = sensor;
   master->insert_sensor_playback(sensor);
-
   sensor->init();
   sce_scene->assign_entity_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, file.path_transfo);
 
   //---------------------------
 }
-void Swarm::create_sensor_capture(k4n::dev::Master* master){
+void Swarm::create_sensor_capture(){
   //---------------------------
 
+  //Associated master
+  k4n::dev::Master* master = get_or_create_master("Capture");
   int index = master->list_sensor.size();
+
+  //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
-  sensor->name = "device_" + to_string(index);
+  sensor->name = "capture_" + to_string(index);
   sensor->param.index = index;
   sensor->param.is_playback = false;
   sensor->master = master;
 
+  //Sensor initialization
   this->selected_sensor = sensor;
   master->insert_sensor_capture(sensor);
   sce_scene->assign_entity_UID(sensor);
-
   sensor->init();
   sensor->run_capture();
 
