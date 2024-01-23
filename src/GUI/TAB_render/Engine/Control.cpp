@@ -1,6 +1,5 @@
 #include "Control.h"
 
-#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
@@ -9,19 +8,17 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
-
 namespace gui::engine{
 
 //Constructor / Destructor
-Control::Control(GUI* gui){
+Control::Control(Engine* engine){
   //---------------------------
 
-  util::Node* utility = gui->get_utility();
-  Engine* engine = gui->get_engine();
+  util::Node* utility = engine->get_utility();
   eng::scene::Node* node_scene = engine->get_node_scene();
   camera::src::Node* node_camera = engine->get_node_camera();
 
-  this->engine = gui->get_engine();
+  this->engine = engine;
   this->utl_window = utility->get_utl_window();
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();

@@ -1,10 +1,10 @@
 #include "Renderer.h"
 
-#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Utility/Namespace.h>
 #include <Vulkan/VK_main/VK_imgui.h>
+#include <Vulkan/VK_main/VK_info.h>
 #include <Utility/Element/Window.h>
 #include <image/IconsFontAwesome6.h>
 
@@ -12,17 +12,15 @@
 namespace gui::engine{
 
 //Constructor / Destructor
-Renderer::Renderer(GUI* gui){
+Renderer::Renderer(Engine* engine){
   //---------------------------
 
-  util::Node* utility = gui->get_utility();
-  Engine* engine = gui->get_engine();
+  util::Node* utility = engine->get_utility();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->utl_window = utility->get_utl_window();
-  this->gui_control = new gui::engine::Control(gui);
+  this->gui_control = new gui::engine::Control(engine);
   this->cam_control = new camera::gui::Control(engine);
-  this->gui_image = new gui::media::Image(gui);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->vk_info = eng_vulkan->get_vk_info();
   this->profiler = new gui::plot::Profiler();

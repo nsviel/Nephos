@@ -28,7 +28,7 @@ void Panel::create_panels(){
   this->cam_panel = new camera::gui::Panel(gui->get_engine(), &show_camera, "Camera");
   //this->rnd_kinect = new gui::kinect::Device(gui->get_engine(), &show_kinect, "Player");
   //this->rnd_stream = new gui::kinect::Stream(gui->get_engine(), &show_kinect, "Stream");
-  this->rnd_render = new gui::engine::Renderer(gui);
+  this->rnd_render = new gui::engine::Renderer(gui->get_engine());
   this->rnd_menu = new gui::rnd::tab::Menu(this);
 
   //---------------------------

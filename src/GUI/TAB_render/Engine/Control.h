@@ -1,11 +1,9 @@
 #pragma once
 
-
 #include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 
-class GUI;
 class Engine;
 
 
@@ -15,7 +13,7 @@ class Control
 {
 public:
   //Constructor / Destructor
-  Control(GUI* gui);
+  Control(Engine* engine);
   ~Control();
 
 public:
