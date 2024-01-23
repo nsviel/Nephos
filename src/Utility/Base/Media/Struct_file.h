@@ -7,15 +7,16 @@
 
 namespace utl::media{
 
-//Generique structure to parse file point clouds
+//Generique structure to parse data file
 struct File{
   //---------------------------
 
   //Info
   int nb_element;
   std::string name;
-  std::string path_file;
-  std::string path;
+  std::string path_data;
+  std::string path_transfo;
+  std::string path_texture;
   std::string draw_type_name;
 
   //Data

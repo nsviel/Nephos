@@ -25,7 +25,7 @@ utl::media::File* PTX_importer::Loader(std::string path){
 
   data = new utl::media::File();
   data->name = info::get_name_from_path(path);
-  data->path_file = path;
+  data->path_data = path;
 
   //Open file
   std::ifstream infile(path);

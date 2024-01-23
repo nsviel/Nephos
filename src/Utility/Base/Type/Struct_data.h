@@ -25,9 +25,9 @@ struct Data{
 
   //Infos
   std::string name = "";
-  std::string path_file = "";
+  std::string path_data = "";
   std::string path_save = "";
-  std::string path_text = "";
+  std::string path_texture = "";
   std::string file_format = "";
   std::string draw_type_name = "";
   glm::vec4 unicolor;

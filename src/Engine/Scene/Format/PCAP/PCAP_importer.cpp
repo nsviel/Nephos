@@ -65,7 +65,7 @@ utl::media::File* PCAP_importer::Loader(std::string path){
 
   utl::media::File* data = new utl::media::File();
   data->name = info::get_name_from_path(path);
-  data->path_file = path;
+  data->path_data = path;
 
   //Set up parameters
   loop_cpt = 0;
@@ -116,7 +116,7 @@ void PCAP_importer::Loader_vlp16(utl::media::File* data, std::string path){
       utl::media::File* frame_data = new utl::media::File();
 
       frame_data->name = "frame_" + std::to_string(cpt); cpt++;
-      frame_data->path_file = path;
+      frame_data->path_data = path;
       frame_data->nb_element = frame->xyz.size();
 
       for(int j=0; j<frame->xyz.size(); j++){
@@ -146,7 +146,7 @@ void PCAP_importer::Loader_hdl32(utl::media::File* data, std::string path){
       utl::media::File* frame = frameManager.get_endedFrame();
       utl::media::File* frame_data = new utl::media::File();
 
-      frame_data->path_file = path;
+      frame_data->path_data = path;
       frame_data->nb_element = frame->xyz.size();
 
       for(int j=0; j<frame->xyz.size(); j++){

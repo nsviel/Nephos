@@ -11,7 +11,7 @@ utl::media::File* OBJ_importer::Loader(std::string path){
 
   utl::media::File* data = new utl::media::File();
   data->name = info::get_name_from_path(path);
-  data->path_file = path;
+  data->path_data = path;
 
   //Init
   this->init_params();
@@ -173,7 +173,7 @@ void OBJ_importer::fill_data_file(utl::media::File* data, std::vector<Vertex>& v
       data->uv.push_back(vertex_vec[i].texcoord);
     }
     data->draw_type_name = "triangle";
-    data->path = file_texture;
+    data->path_texture = file_texture;
   }else{
     for(int i=0; i<vertex_vec.size(); i++){
       data->xyz.push_back(vertex_vec[i].location);

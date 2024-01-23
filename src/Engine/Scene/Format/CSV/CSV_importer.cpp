@@ -19,7 +19,7 @@ utl::media::File* CSV_importer::Loader(std::string pathFile){
   //At row level
   for(int i=0; i<csvFile.size(); i++){
     utl::media::File* data_sub = new utl::media::File();
-    data_sub->path_file = pathFile;
+    data_sub->path_data = pathFile;
 
     //At field level
     int cpt_field = -1;

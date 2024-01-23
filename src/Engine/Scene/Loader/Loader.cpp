@@ -76,7 +76,7 @@ entity::Object* Loader::load_object(string path){
   utl::media::File* data = sce_format->get_data_from_file(path);
 
   entity::Object* object = new entity::Object(engine);
-  object->data->path_file = path;
+  object->data->path_data = path;
   object->data->file_format = info::get_format_from_path(path);
   object->data->has_texture = true;
   object->name = data->name;

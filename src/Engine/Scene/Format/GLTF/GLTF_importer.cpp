@@ -20,7 +20,7 @@ utl::media::File* GLTF_importer::Loader(std::string path){
   //---------------------------
 
   data->name = info::get_name_from_path(path);
-  data->path_file = path;
+  data->path_data = path;
 
   this->load_file(path);
 
