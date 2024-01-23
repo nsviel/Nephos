@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Data/Namespace.h>
+#include <Engine/Capture/K4N/src/Data/Namespace.h>
 #include <Engine/Capture/K4N/Namespace.h>
 #include <Engine/Capture/K4N/src/Utils/Namespace.h>
-#include <Engine/Capture/K4N/Configuration/Namespace.h>
+#include <Engine/Capture/K4N/src/Configuration/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
