@@ -3,7 +3,15 @@ set(LIBRARY_NAME LIBRARY_UTILITY)
 #-----------------
 # Source files
 #-----------------
-file(GLOB_RECURSE ALL_SOURCES *.cpp *.h)
+add_subdirectory(GUI)
+
+file(GLOB_RECURSE ALL_SOURCES
+  Base/*.cpp
+  Element/*.cpp
+  Function/*.cpp
+  Specific/*.cpp
+  Node.cpp
+)
 
 #-----------------
 # Compilation
