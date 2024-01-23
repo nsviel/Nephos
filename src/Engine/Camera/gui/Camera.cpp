@@ -1,6 +1,5 @@
 #include "Camera.h"
 
-#include <GUI.h>
 #include <Engine/Engine.h>
 
 
@@ -8,20 +7,37 @@
 namespace gui::engine{
 
 //Constructor / Destructor
-Camera::Camera(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Camera::Camera(Engine* engine, bool* show_window, string name){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
   eng::camera::Node* node_camera = engine->get_node_camera();
 
   this->cam_control = node_camera->get_camera_control();
   this->cam_manager = node_camera->get_camera_manager();
+  this->show_window = show_window;
+  this->name = name;
 
   //---------------------------
 }
 Camera::~Camera(){}
 
 //Main function
+void Camera::run_panel(){
+  //---------------------------
+
+  if(*show_window){
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+
+      this->design_panel();
+
+      ImGui::End();
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
 void Camera::design_panel(){
   //---------------------------
 

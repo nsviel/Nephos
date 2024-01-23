@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <GUI/TAB_render/Data/Namespace.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
+#include <Engine/Camera/gui/Camera.h>
 #include <GUI/TAB_render/Engine/Namespace.h>
 
 

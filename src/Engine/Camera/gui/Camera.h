@@ -5,20 +5,21 @@
 #include <Utility/Specific/common.h>
 #include <Engine/Camera/Namespace.h>
 
-class GUI;
+class Engine;
 class Panel;
 
 namespace gui::engine{
 
 
-class Camera : public gui::base::Panel
+class Camera
 {
 public:
   //Constructor / Destructor
-  Camera(GUI* gui, bool* show_window, string name);
+  Camera(Engine* engine, bool* show_window, string name);
   ~Camera();
 
   //Main function
+  void run_panel();
   void design_panel();
 
   //Sub functions
@@ -32,6 +33,8 @@ private:
   eng::camera::Manager* cam_manager;
 
   int item_width;
+  bool* show_window;
+  string name;
 };
 
 }
