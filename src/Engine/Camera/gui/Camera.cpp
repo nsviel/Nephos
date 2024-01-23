@@ -4,7 +4,7 @@
 
 
 
-namespace gui::engine{
+namespace camera::gui{
 
 //Constructor / Destructor
 Camera::Camera(Engine* engine, bool* show_window, string name){

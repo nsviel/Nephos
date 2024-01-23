@@ -5,6 +5,7 @@
 #include <GUI/TAB_render/Engine/Namespace.h>
 #include <GUI/GUI_utility/Media/Namespace.h>
 #include <GUI/GUI_utility/Plot/Namespace.h>
+#include <Engine/Camera/gui/Control.h>
 
 class GUI;
 class VK_imgui;
@@ -34,6 +35,7 @@ private:
   gui::media::Image* gui_image;
   util::element::Window* utl_window;
   gui::plot::Profiler* profiler;
+  camera::gui::Control* cam_control;
   VK_imgui* vk_imgui;
   VK_info* vk_info;
 

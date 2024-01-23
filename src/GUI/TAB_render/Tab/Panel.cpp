@@ -25,7 +25,7 @@ void Panel::create_panels(){
   this->rnd_option = new gui::rnd::tab::Option(gui, &show_option, "Option");
   this->rnd_profiler = new gui::engine::Profiler(gui, &show_profiler, "Profiler");
   this->rnd_shader = new gui::engine::Shader(gui, &show_shader, "Shader");
-  this->rnd_camera = new gui::engine::Camera(gui->get_engine(), &show_camera, "Camera");
+  this->rnd_camera = new camera::gui::Camera(gui->get_engine(), &show_camera, "Camera");
   //this->rnd_kinect = new gui::kinect::Device(gui->get_engine(), &show_kinect, "Player");
   //this->rnd_stream = new gui::kinect::Stream(gui->get_engine(), &show_kinect, "Stream");
   this->rnd_render = new gui::engine::Renderer(gui);

@@ -37,7 +37,7 @@ public:
 
   inline gui::engine::Shader* get_rnd_shader(){return rnd_shader;}
   inline gui::engine::Profiler* get_rnd_profiler(){return rnd_profiler;}
-  inline gui::engine::Camera* get_rnd_camera(){return rnd_camera;}
+  inline camera::gui::Camera* get_rnd_camera(){return rnd_camera;}
   inline gui::engine::Renderer* get_rnd_render(){return rnd_render;}
   inline gui::rnd::data::Scene* get_rnd_scene(){return rnd_scene;}
   inline gui::rnd::tab::Option* get_rnd_option(){return rnd_option;}
@@ -49,7 +49,7 @@ private:
   gui::engine::Shader* rnd_shader;
   gui::engine::Profiler* rnd_profiler;
   gui::engine::Renderer* rnd_render;
-  gui::engine::Camera* rnd_camera;
+  camera::gui::Camera* rnd_camera;
 
   gui::rnd::data::Scene* rnd_scene;
   gui::rnd::data::Loader* rnd_loader;

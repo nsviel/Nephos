@@ -8,7 +8,7 @@
 class Engine;
 class Panel;
 
-namespace gui::engine{
+namespace camera::gui{
 
 
 class Camera

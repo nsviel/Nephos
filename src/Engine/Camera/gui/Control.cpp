@@ -9,7 +9,7 @@
 
 
 
-namespace gui::engine{
+namespace camera::gui{
 
 //Constructor / Destructor
 Control::Control(Engine* engine){

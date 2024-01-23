@@ -8,7 +8,7 @@
 class Engine;
 
 
-namespace gui::engine{
+namespace camera::gui{
 
 class Control
 {
