@@ -17,7 +17,7 @@ Playback::Playback(k4n::Node* node_kinect){
 Playback::~Playback(){}
 
 //Main function
-void Playback::show_sensor_configuration(k4n::dev::Sensor* k4n_sensor){
+void Playback::show_sensor_configuration(k4n::src::dev::Sensor* k4n_sensor){
   if(k4n_sensor == nullptr || !k4n_sensor->param.is_playback) return;
   //---------------------------
 
@@ -55,7 +55,7 @@ void Playback::show_sensor_configuration(k4n::dev::Sensor* k4n_sensor){
 
 //Design function
 void Playback::show_info_device(){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+  k4n::src::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
@@ -83,7 +83,7 @@ void Playback::show_info_device(){
   //---------------------------
 }
 void Playback::show_info_color(){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+  k4n::src::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
@@ -114,7 +114,7 @@ void Playback::show_info_color(){
   //---------------------------
 }
 void Playback::show_info_depth(){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+  k4n::src::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
@@ -145,7 +145,7 @@ void Playback::show_info_depth(){
   //---------------------------
 }
 void Playback::show_info_synch(){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+  k4n::src::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 

@@ -5,7 +5,7 @@
 #include <string>
 
 
-namespace k4n::structure{
+namespace k4n::src::str{
 
 struct Synchro{
   //---------------------------

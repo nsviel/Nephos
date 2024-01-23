@@ -5,7 +5,7 @@
 using json = nlohmann::json;
 
 
-namespace k4n::utils{
+namespace k4n::src::utils{
 
 //Constructor / Destructor
 Transformation::Transformation(){
@@ -17,7 +17,7 @@ Transformation::Transformation(){
 Transformation::~Transformation(){}
 
 //Main function
-void Transformation::find_transformation_from_file(k4n::dev::Sensor* sensor, string path){
+void Transformation::find_transformation_from_file(k4n::src::dev::Sensor* sensor, string path){
   if(!file::is_file_exist(path)) return;
   //---------------------------
 
@@ -62,7 +62,7 @@ void Transformation::find_transformation_from_file(k4n::dev::Sensor* sensor, str
 
   //---------------------------
 }
-void Transformation::save_transformation_to_file(k4n::dev::Sensor* sensor){
+void Transformation::save_transformation_to_file(k4n::src::dev::Sensor* sensor){
   string& path = sensor->param.path_transfo;
   mat4& mat = sensor->get_pose()->model;
   //---------------------------
@@ -100,7 +100,7 @@ void Transformation::save_transformation_to_file(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Transformation::make_transformation_identity(k4n::dev::Sensor* sensor){
+void Transformation::make_transformation_identity(k4n::src::dev::Sensor* sensor){
   utl::type::Pose* pose = sensor->get_pose();
   //---------------------------
 

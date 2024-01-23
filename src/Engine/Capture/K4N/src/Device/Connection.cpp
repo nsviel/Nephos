@@ -3,10 +3,10 @@
 #include <Utility/Function/File/Info.h>
 
 
-namespace k4n::dev{
+namespace k4n::src::dev{
 
 //Constructor / Destructor
-Connection::Connection(k4n::dev::Swarm* k4n_swarm){
+Connection::Connection(k4n::src::dev::Swarm* k4n_swarm){
   //---------------------------
 
   this->k4n_swarm = k4n_swarm;
@@ -42,7 +42,7 @@ void Connection::refresh_connected_dev(){
 void Connection::manage_new_dev(int nb_new_dev){
   //---------------------------
 
-  k4n::dev::Master* master = k4n_swarm->get_or_create_master("capture");
+  k4n::src::dev::Master* master = k4n_swarm->get_or_create_master("capture");
 
   //If previsouly no device, we need to supress all default playback
   if(nb_dev == 0){
@@ -59,7 +59,7 @@ void Connection::manage_new_dev(int nb_new_dev){
 void Connection::manage_less_dev(int nb_less_dev){
   //---------------------------
 
-  k4n::dev::Master* master = k4n_swarm->get_master_by_name("capture");
+  k4n::src::dev::Master* master = k4n_swarm->get_master_by_name("capture");
 
   //Suppress all devices
   k4n_swarm->close_sensor_all(master);

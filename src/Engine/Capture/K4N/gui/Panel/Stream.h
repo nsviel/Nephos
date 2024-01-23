@@ -26,26 +26,26 @@ public:
 
   //All devices
   void vec_device_tab();
-  void device_tab(k4n::dev::Sensor* device);
+  void device_tab(k4n::src::dev::Sensor* device);
 
   //Device capture windows
-  void draw_camera_color(k4n::dev::Sensor* device, ImVec2 image_size);
-  void draw_camera_color_from_depth(k4n::dev::Sensor* k4n_sensor, ImVec2 image_size);
-  void draw_camera_depth(k4n::dev::Sensor* device, ImVec2 image_size);
-  void draw_camera_ir(k4n::dev::Sensor* device, ImVec2 image_size);
+  void draw_camera_color(k4n::src::dev::Sensor* device, ImVec2 image_size);
+  void draw_camera_color_from_depth(k4n::src::dev::Sensor* k4n_sensor, ImVec2 image_size);
+  void draw_camera_depth(k4n::src::dev::Sensor* device, ImVec2 image_size);
+  void draw_camera_ir(k4n::src::dev::Sensor* device, ImVec2 image_size);
 
   //Overlay
-  void compute_hovered_pixel(k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
-  void overlay_capture(k4n::dev::Sensor* device, k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose);
-  void overlay_information(k4n::dev::Sensor* device, k4n::structure::Image* image);
-  void overlay_pixel(k4n::structure::Image* image, ImVec2 image_size);
+  void compute_hovered_pixel(k4n::src::str::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
+  void overlay_capture(k4n::src::dev::Sensor* device, k4n::src::str::Image* image, ImVec2 image_size, ImVec2 image_pose);
+  void overlay_information(k4n::src::dev::Sensor* device, k4n::src::str::Image* image);
+  void overlay_pixel(k4n::src::str::Image* image, ImVec2 image_size);
 
 private:
   GUI* gui;
   k4n::Node* node_kinect;
-  k4n::data::Depth* k4a_depth;
-  k4n::data::Infrared* k4a_infrared;
-  k4n::dev::Swarm* k4n_swarm;
+  k4n::src::data::Depth* k4a_depth;
+  k4n::src::data::Infrared* k4a_infrared;
+  k4n::src::dev::Swarm* k4n_swarm;
 
   vector<gui::media::Stream*> vec_gui_stream;
   ImVec2 hovered_pixel;

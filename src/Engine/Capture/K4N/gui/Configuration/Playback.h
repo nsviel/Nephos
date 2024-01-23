@@ -15,7 +15,7 @@ public:
   ~Playback();
 
   //Main function
-  void show_sensor_configuration(k4n::dev::Sensor* k4n_sensor);
+  void show_sensor_configuration(k4n::src::dev::Sensor* k4n_sensor);
 
   //Subfunction
   void show_info_device();
@@ -25,7 +25,7 @@ public:
 
 private:
   k4n::Node* node_kinect;
-  k4n::dev::Swarm* k4n_swarm;
+  k4n::src::dev::Swarm* k4n_swarm;
 };
 
 }

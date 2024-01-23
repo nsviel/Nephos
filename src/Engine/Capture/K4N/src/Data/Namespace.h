@@ -6,7 +6,7 @@
 #include <Engine/Capture/K4N/src/Data/Cloud.h>
 
 
-namespace k4n::data{
+namespace k4n::src::data{
   //---------------------------
 
   class Data;

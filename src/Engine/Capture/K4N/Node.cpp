@@ -9,8 +9,8 @@ namespace k4n{
 Node::Node(Engine* engine){
   //---------------------------
 
-  this->k4n_swarm = new k4n::dev::Swarm(engine);
-  this->k4n_connection = new k4n::dev::Connection(k4n_swarm);
+  this->k4n_swarm = new k4n::src::dev::Swarm(engine);
+  this->k4n_connection = new k4n::src::dev::Connection(k4n_swarm);
   //this->rnd_kinect = new gui::kinect::Device(engine, &show_kinect, "Player");
   //this->rnd_stream = new gui::kinect::Stream(engine, &show_kinect, "Stream");
 

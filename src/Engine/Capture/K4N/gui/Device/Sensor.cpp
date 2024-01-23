@@ -9,7 +9,7 @@ Sensor::Sensor(k4n::Node* node_kinect){
 
   this->node_kinect = node_kinect;
   this->k4n_swarm = node_kinect->get_k4n_swarm();
-  this->k4n_transfo = new k4n::utils::Transformation();
+  this->k4n_transfo = new k4n::src::utils::Transformation();
 
   this->item_width = 100;
 
@@ -18,7 +18,7 @@ Sensor::Sensor(k4n::Node* node_kinect){
 Sensor::~Sensor(){}
 
 //Main function
-void Sensor::show_sensor(k4n::dev::Sensor* sensor){
+void Sensor::show_sensor(k4n::src::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -29,7 +29,7 @@ void Sensor::show_sensor(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
+void Sensor::show_sensor_info(k4n::src::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::Separator();
@@ -50,7 +50,7 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
+void Sensor::show_sensor_transfo(k4n::src::dev::Sensor* sensor){
   //---------------------------
 
   //Object model matrix

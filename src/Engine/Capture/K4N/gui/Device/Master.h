@@ -16,15 +16,15 @@ public:
   ~Master();
 
   //Main function
-  void show_master_info(k4n::dev::Master* master);
+  void show_master_info(k4n::src::dev::Master* master);
 
   //Subfunction
-  void show_info(k4n::dev::Master* master);
-  void show_colorization(k4n::dev::Master* master);
+  void show_info(k4n::src::dev::Master* master);
+  void show_colorization(k4n::src::dev::Master* master);
 
 private:
   k4n::Node* node_kinect;
-  k4n::dev::Swarm* k4n_swarm;
+  k4n::src::dev::Swarm* k4n_swarm;
 
   int item_width;
 };

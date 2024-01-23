@@ -22,11 +22,11 @@ public:
   void init();
   void loop();
 
-  inline k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
+  inline k4n::src::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
 
 private:
-  k4n::dev::Swarm* k4n_swarm;
-  k4n::dev::Connection* k4n_connection;
+  k4n::src::dev::Swarm* k4n_swarm;
+  k4n::src::dev::Connection* k4n_connection;
   //gui::kinect::Stream* rnd_stream;
   //gui::kinect::Device* rnd_kinect;
 

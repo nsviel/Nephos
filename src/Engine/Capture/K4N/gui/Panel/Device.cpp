@@ -30,7 +30,7 @@ Device::~Device(){}
 
 //Main function
 void Device::run_panel(){
-  k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
+  k4n::src::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
   //---------------------------
 
   if(*show_window && sensor != nullptr){
@@ -47,7 +47,7 @@ void Device::run_panel(){
   //---------------------------
 }
 void Device::design_panel(){
-  k4n::dev::Master* master = k4n_swarm->get_selected_master();
+  k4n::src::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
   //Master player
@@ -59,7 +59,7 @@ void Device::design_panel(){
 
     //Master sensor tabs -> click = sensor selection
     for(int i=0; i< master->list_sensor.size(); i++){
-      k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
+      k4n::src::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
       this->show_sensor_tab(sensor);
     }
     ImGui::EndTabBar();
@@ -69,7 +69,7 @@ void Device::design_panel(){
 }
 
 //Tab function
-void Device::show_master_tab(k4n::dev::Master* master){
+void Device::show_master_tab(k4n::src::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
@@ -81,7 +81,7 @@ void Device::show_master_tab(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Device::show_sensor_tab(k4n::dev::Sensor* sensor){
+void Device::show_sensor_tab(k4n::src::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -102,8 +102,8 @@ void Device::show_sensor_tab(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-ImGuiTabItemFlags Device::get_tab_flag(k4n::dev::Sensor* sensor){
-  k4n::dev::Master* master = sensor->master;
+ImGuiTabItemFlags Device::get_tab_flag(k4n::src::dev::Sensor* sensor){
+  k4n::src::dev::Master* master = sensor->master;
   //---------------------------
 
   ImGuiTabItemFlags flag = 0;

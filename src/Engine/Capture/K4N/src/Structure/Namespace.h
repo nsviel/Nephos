@@ -12,7 +12,7 @@
 #include <Engine/Capture/K4N/src/Structure/Struct_imu.h>
 
 
-namespace k4n::structure{
+namespace k4n::src::str{
   //---------------------------
 
   class Param;

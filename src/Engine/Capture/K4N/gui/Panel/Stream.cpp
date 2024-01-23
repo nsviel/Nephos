@@ -13,8 +13,8 @@ Stream::Stream(Engine* engine, bool* show_window, string name){
   eng::capture::Node* node_capture = engine->get_node_capture();
 
   this->node_kinect = node_capture->get_node_kinect();
-  this->k4a_depth = new k4n::data::Depth();
-  this->k4a_infrared = new k4n::data::Infrared();
+  this->k4a_depth = new k4n::src::data::Depth();
+  this->k4a_infrared = new k4n::src::data::Infrared();
   this->k4n_swarm = node_kinect->get_k4n_swarm();
   this->gui = gui;
 
@@ -32,7 +32,7 @@ Stream::~Stream(){}
 
 //Main function
 void Stream::run_panel(){
-  k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
+  k4n::src::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
   //---------------------------
 
   if(*show_window && sensor != nullptr){
@@ -58,13 +58,13 @@ void Stream::design_panel(){
 
 //All devices
 void Stream::vec_device_tab(){
-  k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
-  k4n::dev::Master* master = sensor->master;
+  k4n::src::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
+  k4n::src::dev::Master* master = sensor->master;
   //---------------------------
 
   if(ImGui::BeginTabBar("devices_tab##4567")){
     for(int i=0; i< master->list_sensor.size(); i++){
-      k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
+      k4n::src::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
 
       //Force tab open if another sensor selected
       ImGuiTabItemFlags flag = 0;
@@ -87,7 +87,7 @@ void Stream::vec_device_tab(){
 
   //---------------------------
 }
-void Stream::device_tab(k4n::dev::Sensor* sensor){
+void Stream::device_tab(k4n::src::dev::Sensor* sensor){
   if(!sensor->param.data_ready){return;}
   //---------------------------
 
@@ -134,8 +134,8 @@ void Stream::device_tab(k4n::dev::Sensor* sensor){
 }
 
 //Device capture windows
-void Stream::draw_camera_color(k4n::dev::Sensor* sensor, ImVec2 image_size){
-  k4n::structure::Image* data_color = &sensor->color.image;
+void Stream::draw_camera_color(k4n::src::dev::Sensor* sensor, ImVec2 image_size){
+  k4n::src::str::Image* data_color = &sensor->color.image;
   //---------------------------
 
   utl::media::Image struct_image;
@@ -150,8 +150,8 @@ void Stream::draw_camera_color(k4n::dev::Sensor* sensor, ImVec2 image_size){
 
   //---------------------------
 }
-void Stream::draw_camera_color_from_depth(k4n::dev::Sensor* sensor, ImVec2 image_size){
-  k4n::structure::Image* data_color = &sensor->color.image_depth;
+void Stream::draw_camera_color_from_depth(k4n::src::dev::Sensor* sensor, ImVec2 image_size){
+  k4n::src::str::Image* data_color = &sensor->color.image_depth;
   //---------------------------
 
   //Il y a un probleme ici non identifié, le vecteur semble changer de taille (?)
@@ -176,8 +176,8 @@ void Stream::draw_camera_color_from_depth(k4n::dev::Sensor* sensor, ImVec2 image
 
   //---------------------------
 }
-void Stream::draw_camera_depth(k4n::dev::Sensor* sensor, ImVec2 image_size){
-  k4n::structure::Image* data_depth = &sensor->depth.image;
+void Stream::draw_camera_depth(k4n::src::dev::Sensor* sensor, ImVec2 image_size){
+  k4n::src::str::Image* data_depth = &sensor->depth.image;
   //---------------------------
 
   std::vector<uint8_t> new_buffer = k4a_depth->convert_depth_into_color(sensor);
@@ -194,8 +194,8 @@ void Stream::draw_camera_depth(k4n::dev::Sensor* sensor, ImVec2 image_size){
 
   //---------------------------
 }
-void Stream::draw_camera_ir(k4n::dev::Sensor* sensor, ImVec2 image_size){
-  k4n::structure::Image* data_ir = &sensor->ir.image;
+void Stream::draw_camera_ir(k4n::src::dev::Sensor* sensor, ImVec2 image_size){
+  k4n::src::str::Image* data_ir = &sensor->ir.image;
   //---------------------------
 
   std::vector<uint8_t> new_buffer = k4a_infrared->convert_ir_into_color(sensor);
@@ -214,7 +214,7 @@ void Stream::draw_camera_ir(k4n::dev::Sensor* sensor, ImVec2 image_size){
 }
 
 //Overlay
-void Stream::overlay_capture(k4n::dev::Sensor* sensor, k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose){
+void Stream::overlay_capture(k4n::src::dev::Sensor* sensor, k4n::src::str::Image* image, ImVec2 image_size, ImVec2 image_pose){
   //---------------------------
 
   //Hovered pixel
@@ -244,7 +244,7 @@ void Stream::overlay_capture(k4n::dev::Sensor* sensor, k4n::structure::Image* im
 
   //---------------------------
 }
-void Stream::overlay_information(k4n::dev::Sensor* sensor, k4n::structure::Image* image){
+void Stream::overlay_information(k4n::src::dev::Sensor* sensor, k4n::src::str::Image* image){
   //---------------------------
 
   ImGui::Text("Frame rate: %.2f fps", sensor->param.fps.current);
@@ -255,7 +255,7 @@ void Stream::overlay_information(k4n::dev::Sensor* sensor, k4n::structure::Image
 
   //---------------------------
 }
-void Stream::overlay_pixel(k4n::structure::Image* image, ImVec2 image_size){
+void Stream::overlay_pixel(k4n::src::str::Image* image, ImVec2 image_size){
   //---------------------------
 
   if(image->hovered_pixel_x != -1 && image->hovered_pixel_y != -1){
@@ -265,7 +265,7 @@ void Stream::overlay_pixel(k4n::structure::Image* image, ImVec2 image_size){
 
   //---------------------------
 }
-void Stream::compute_hovered_pixel(k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered){
+void Stream::compute_hovered_pixel(k4n::src::str::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered){
   //---------------------------
 
   //Reinitialize coord values

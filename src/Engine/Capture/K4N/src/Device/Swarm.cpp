@@ -7,7 +7,7 @@
   Manage list<master> which is include in list<Set> of set_scene
 */
 
-namespace k4n::dev{
+namespace k4n::src::dev{
 
 //Constructor / Destructor
 Swarm::Swarm(Engine* engine){
@@ -17,7 +17,7 @@ Swarm::Swarm(Engine* engine){
 
   this->engine = engine;
   this->sce_scene = node_scene->get_scene();
-  this->k4n_transfo = new k4n::utils::Transformation();
+  this->k4n_transfo = new k4n::src::utils::Transformation();
 
   //---------------------------
 }
@@ -28,7 +28,7 @@ void Swarm::init_scene(){
   //---------------------------
 
   //If no real device create playback
-  k4n::dev::Master* master = get_or_create_master("versaille");
+  k4n::src::dev::Master* master = get_or_create_master("versaille");
   uint32_t current_nb_dev = k4a_device_get_installed_count();
   if(current_nb_dev != 0) return;
 
@@ -53,11 +53,11 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   //---------------------------
 
   //Associated master
-  k4n::dev::Master* master = selected_master;
+  k4n::src::dev::Master* master = selected_master;
   int index = master->list_sensor.size();
 
   //Sensor creation
-  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
+  k4n::src::dev::Sensor* sensor = new k4n::src::dev::Sensor(engine);
   sensor->name = "playback_" + to_string(index);
   sensor->param.format = info::get_format_from_path(file.path_data);
   sensor->param.index = index;
@@ -79,11 +79,11 @@ void Swarm::create_sensor_capture(){
   //---------------------------
 
   //Associated master
-  k4n::dev::Master* master = get_or_create_master("Capture");
+  k4n::src::dev::Master* master = get_or_create_master("Capture");
   int index = master->list_sensor.size();
 
   //Sensor creation
-  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
+  k4n::src::dev::Sensor* sensor = new k4n::src::dev::Sensor(engine);
   sensor->name = "capture_" + to_string(index);
   sensor->param.index = index;
   sensor->param.is_playback = false;
@@ -98,11 +98,11 @@ void Swarm::create_sensor_capture(){
 
   //---------------------------
 }
-void Swarm::close_sensor_all(k4n::dev::Master* master){
+void Swarm::close_sensor_all(k4n::src::dev::Master* master){
   //---------------------------
 
   for(int j=0; j<master->list_sensor.size(); j++){
-    k4n::dev::Sensor* sensor = *std::next(master->list_sensor.begin(), j);
+    k4n::src::dev::Sensor* sensor = *std::next(master->list_sensor.begin(), j);
     sensor->remove_entity();
   }
 
@@ -121,20 +121,20 @@ void Swarm::selecte_next_sensor(){
 }
 
 //Sensor function
-k4n::dev::Master* Swarm::get_or_create_master(string name){
+k4n::src::dev::Master* Swarm::get_or_create_master(string name){
   utl::type::Set* set_scene = sce_scene->get_set_scene();
   //---------------------------
 
   //Check if already existing
   for(int i=0; i<list_master.size(); i++){
-    k4n::dev::Master* master = *std::next(list_master.begin(), i);
+    k4n::src::dev::Master* master = *std::next(list_master.begin(), i);
     if(name == master->name){
       return master;
     }
   }
 
   //Create the master
-  k4n::dev::Master* master = new k4n::dev::Master();
+  k4n::src::dev::Master* master = new k4n::src::dev::Master();
   master->name = name;
   master->is_lockable = true;
   set_scene->add_set(master);
@@ -144,12 +144,12 @@ k4n::dev::Master* Swarm::get_or_create_master(string name){
   //---------------------------
   return master;
 }
-k4n::dev::Master* Swarm::get_master_by_name(string name){
+k4n::src::dev::Master* Swarm::get_master_by_name(string name){
   //---------------------------
 
   //Check if already existing
   for(int i=0; i<list_master.size(); i++){
-    k4n::dev::Master* master = *std::next(list_master.begin(), i);
+    k4n::src::dev::Master* master = *std::next(list_master.begin(), i);
     if(name == master->name){
       return master;
     }

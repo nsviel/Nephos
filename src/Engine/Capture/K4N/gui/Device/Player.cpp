@@ -23,7 +23,7 @@ Player::Player(Engine* engine){
 Player::~Player(){}
 
 //Main function
-void Player::draw_player(k4n::dev::Master* master){
+void Player::draw_player(k4n::src::dev::Master* master){
   //---------------------------
 
   this->player_control(master);
@@ -45,7 +45,7 @@ void Player::draw_player(k4n::dev::Master* master){
 }
 
 //Subfunction
-void Player::player_control(k4n::dev::Master* master){
+void Player::player_control(k4n::src::dev::Master* master){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -71,7 +71,7 @@ void Player::player_control(k4n::dev::Master* master){
 
   //----------------------------
 }
-void Player::player_slider(k4n::dev::Master* master){
+void Player::player_slider(k4n::src::dev::Master* master){
   //---------------------------
 
   ImVec2 width = ImGui::GetContentRegionAvail();
@@ -84,7 +84,7 @@ void Player::player_slider(k4n::dev::Master* master){
 }
 
 //Player button
-void Player::player_start(k4n::dev::Master* master){
+void Player::player_start(k4n::src::dev::Master* master){
   //---------------------------
 
   //Play button -> if paused or not playing
@@ -106,7 +106,7 @@ void Player::player_start(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_stop(k4n::dev::Master* master){
+void Player::player_stop(k4n::src::dev::Master* master){
   //---------------------------
 
   if(!master->player.pause){
@@ -126,7 +126,7 @@ void Player::player_stop(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_repeat(k4n::dev::Master* master){
+void Player::player_repeat(k4n::src::dev::Master* master){
   //---------------------------
 
   if(master->player.restart){
@@ -146,7 +146,7 @@ void Player::player_repeat(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_record(k4n::dev::Master* master){
+void Player::player_record(k4n::src::dev::Master* master){
   //---------------------------
 
   if(master->player.record){
@@ -166,7 +166,7 @@ void Player::player_record(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_close(k4n::dev::Master* master){
+void Player::player_close(k4n::src::dev::Master* master){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
@@ -177,7 +177,7 @@ void Player::player_close(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_lock(k4n::dev::Master* master){
+void Player::player_lock(k4n::src::dev::Master* master){
   //---------------------------
 
   if(master->is_locked){

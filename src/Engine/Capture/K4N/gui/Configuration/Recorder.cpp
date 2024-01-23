@@ -30,7 +30,7 @@ void Recorder::show_sensor_recorder(){
 
 //Subfunction
 void Recorder::recorder_path(){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+  k4n::src::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 

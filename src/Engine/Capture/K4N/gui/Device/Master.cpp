@@ -17,7 +17,7 @@ Master::Master(k4n::Node* node_kinect){
 Master::~Master(){}
 
 //Main function
-void Master::show_master_info(k4n::dev::Master* master){
+void Master::show_master_info(k4n::src::dev::Master* master){
   //---------------------------
 
   this->show_info(master);
@@ -29,7 +29,7 @@ void Master::show_master_info(k4n::dev::Master* master){
 }
 
 //Subfunction
-void Master::show_info(k4n::dev::Master* master){
+void Master::show_info(k4n::src::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
@@ -58,8 +58,8 @@ void Master::show_info(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Master::show_colorization(k4n::dev::Master* master){
-  k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
+void Master::show_colorization(k4n::src::dev::Master* master){
+  k4n::src::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
   if(master == nullptr) return;
   //---------------------------
 
