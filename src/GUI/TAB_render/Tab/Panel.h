@@ -4,7 +4,7 @@
 #include <Engine/Data/gui/Namespace.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <Engine/Camera/gui/Panel.h>
-#include <Engine/Operation/gui/Profiler.h>
+#include <Engine/Operation/gui/Namespace.h>
 #include <Engine/Render/gui/Namespace.h>
 
 
@@ -37,7 +37,7 @@ public:
   bool show_loader   = true;
 
   inline gui::engine::Shader* get_rnd_shader(){return rnd_shader;}
-  inline gui::engine::Profiler* get_rnd_profiler(){return rnd_profiler;}
+  inline ope::gui::Profiler* get_rnd_profiler(){return rnd_profiler;}
   inline camera::gui::Panel* get_cam_panel(){return cam_panel;}
   inline gui::engine::Renderer* get_rnd_render(){return rnd_render;}
   inline gui::rnd::data::Scene* get_rnd_scene(){return rnd_scene;}
@@ -48,7 +48,7 @@ private:
   gui::rnd::tab::Option* rnd_option;
   gui::rnd::tab::Menu* rnd_menu;
   gui::engine::Shader* rnd_shader;
-  gui::engine::Profiler* rnd_profiler;
+  ope::gui::Profiler* rnd_profiler;
   gui::engine::Renderer* rnd_render;
   camera::gui::Panel* cam_panel;
 

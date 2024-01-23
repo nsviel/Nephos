@@ -8,7 +8,7 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
-namespace gui::engine{
+namespace ope::gui{
 
 //Constructor / Destructor
 Control::Control(Engine* engine){

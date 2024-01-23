@@ -19,7 +19,7 @@ Renderer::Renderer(Engine* engine){
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->utl_window = utility->get_utl_window();
-  //this->ope_control = new gui::engine::Control(engine);
+  //this->ope_control = new ope::gui::Control(engine);
   this->cam_control = new camera::gui::Control(engine);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->vk_info = eng_vulkan->get_vk_info();

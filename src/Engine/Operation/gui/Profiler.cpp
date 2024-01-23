@@ -6,7 +6,7 @@
 #include <Engine/Engine.h>
 
 
-namespace gui::engine{
+namespace ope::gui{
 
 //Constructor / Destructor
 Profiler::Profiler(Engine* engine, bool* show_window, string name){
@@ -14,7 +14,7 @@ Profiler::Profiler(Engine* engine, bool* show_window, string name){
 
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
-  this->profiler = new gui::plot::Profiler();
+  //this->profiler = new gui::plot::Profiler();
   this->vk_info = eng_vulkan->get_vk_info();
 
   this->show_window = show_window;

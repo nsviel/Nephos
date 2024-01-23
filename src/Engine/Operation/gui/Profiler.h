@@ -9,7 +9,7 @@ class Engine;
 class VK_info;
 
 
-namespace gui::engine{
+namespace ope::gui{
 
 class Profiler
 {
@@ -34,7 +34,7 @@ public:
   void time_general(bool update);
 
 private:
-  gui::plot::Profiler* profiler;
+  //gui::plot::Profiler* profiler;
   VK_info* vk_info;
   Timer timer;
 

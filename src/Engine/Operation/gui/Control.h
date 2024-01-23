@@ -7,7 +7,7 @@
 class Engine;
 
 
-namespace gui::engine{
+namespace ope::gui{
 
 class Control
 {
