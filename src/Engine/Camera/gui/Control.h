@@ -22,9 +22,7 @@ public:
   void run_control(ImVec2 center);
 
   //Keyboard
-  void control_keyboard_oneAction();
   void control_keyboard_camMove();
-  void control_keyboard_translation();
 
   //Mouse
   void control_mouse(ImVec2 center);
