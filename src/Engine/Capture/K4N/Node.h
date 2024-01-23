@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/Device/Namespace.h>
+#include <Engine/Capture/K4N/src/Device/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class Engine;
