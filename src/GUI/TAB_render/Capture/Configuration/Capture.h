@@ -16,7 +16,7 @@ public:
   ~Capture();
 
   //Main function
-  void show_sensor_configuration();
+  void show_sensor_configuration(k4n::dev::Sensor* k4n_sensor);
 
   //Subfunction
   void kinect_devices();

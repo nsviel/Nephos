@@ -15,7 +15,7 @@ public:
   ~Playback();
 
   //Main function
-  void show_sensor_configuration();
+  void show_sensor_configuration(k4n::dev::Sensor* k4n_sensor);
 
   //Subfunction
   void show_info_device();

@@ -1,13 +1,13 @@
 #pragma once
 
-#include <GUI/TAB_render/Capture/Master.h>
-#include <GUI/TAB_render/Capture/Sensor.h>
-#include <GUI/TAB_render/Capture/Player.h>
-#include <GUI/TAB_render/Capture/Capture.h>
-#include <GUI/TAB_render/Capture/Playback.h>
-#include <GUI/TAB_render/Capture/Recorder.h>
-#include <GUI/TAB_render/Capture/Panel.h>
-#include <GUI/TAB_render/Capture/Stream.h>
+#include <GUI/TAB_render/Capture/Device/Master.h>
+#include <GUI/TAB_render/Capture/Device/Sensor.h>
+#include <GUI/TAB_render/Capture/Device/Player.h>
+#include <GUI/TAB_render/Capture/Configuration/Capture.h>
+#include <GUI/TAB_render/Capture/Configuration/Playback.h>
+#include <GUI/TAB_render/Capture/Configuration/Recorder.h>
+#include <GUI/TAB_render/Capture/Panel/Panel.h>
+#include <GUI/TAB_render/Capture/Panel/Stream.h>
 
 
 namespace gui::kinect{

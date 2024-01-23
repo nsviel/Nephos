@@ -19,8 +19,7 @@ Capture::Capture(k4n::Node* node_kinect){
 Capture::~Capture(){}
 
 //Main function
-void Capture::show_sensor_configuration(){
-  k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+void Capture::show_sensor_configuration(k4n::dev::Sensor* k4n_sensor){
   if(k4n_sensor == nullptr || k4n_sensor->param.is_playback) return;
   //---configuration_device----
 

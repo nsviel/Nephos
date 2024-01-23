@@ -90,9 +90,9 @@ void Panel::show_sensor_tab(k4n::dev::Sensor* sensor){
   if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
 
     gui_sensor->show_sensor(sensor);
-    gui_capture->show_sensor_configuration();
-    gui_playback->show_sensor_configuration();
-    gui_recorder->show_sensor_recorder();
+    gui_capture->show_sensor_configuration(sensor);
+    gui_playback->show_sensor_configuration(sensor);
+    //gui_recorder->show_sensor_recorder();
 
     ImGui::EndTabItem();
   }
