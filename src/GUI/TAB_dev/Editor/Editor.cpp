@@ -9,7 +9,7 @@ namespace gui::dev::editor{
 Editor::Editor(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  this->editor = new gui::editor::Text();
+  this->editor = new utl::gui::editor::Text();
 
   //---------------------------
 }

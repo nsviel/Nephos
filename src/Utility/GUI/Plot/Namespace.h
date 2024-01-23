@@ -4,7 +4,7 @@
 #include <Utility/GUI/Plot/Profiler.h>
 
 
-namespace gui::plot{
+namespace utl::gui::plot{
   //---------------------------
 
   class Plotting;

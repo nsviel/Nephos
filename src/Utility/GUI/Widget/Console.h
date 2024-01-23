@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace gui::widget{
+namespace utl::gui::widget{
 
 class Console
 {

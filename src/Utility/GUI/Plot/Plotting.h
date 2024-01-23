@@ -4,7 +4,7 @@
 #include <imgui/implot/implot.h>
 
 
-namespace gui::plot{
+namespace utl::gui::plot{
 
 class Plotting
 {

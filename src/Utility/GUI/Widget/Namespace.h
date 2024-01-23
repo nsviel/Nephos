@@ -5,7 +5,7 @@
 #include <Utility/GUI/Widget/Console.h>
 
 
-namespace gui::widget{
+namespace utl::gui::widget{
   //---------------------------
 
   class Tree;

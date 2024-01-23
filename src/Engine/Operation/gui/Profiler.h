@@ -34,7 +34,7 @@ public:
   void time_general(bool update);
 
 private:
-  //gui::plot::Profiler* profiler;
+  //utl::gui::plot::Profiler* profiler;
   VK_info* vk_info;
   Timer timer;
 

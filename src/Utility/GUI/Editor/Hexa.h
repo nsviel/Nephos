@@ -4,7 +4,7 @@
 #include <imgui/editor/editor_memory.h>
 
 
-namespace gui::editor{
+namespace utl::gui::editor{
 
 class Hexa
 {

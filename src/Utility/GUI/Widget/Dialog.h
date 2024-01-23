@@ -5,7 +5,7 @@
 class GUI;
 
 
-namespace gui::widget{
+namespace utl::gui::widget{
 
 class Dialog
 {

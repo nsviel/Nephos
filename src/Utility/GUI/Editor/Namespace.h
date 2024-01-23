@@ -5,7 +5,7 @@
 #include <Utility/GUI/Editor/Text.h>
 
 
-namespace gui::editor{
+namespace utl::gui::editor{
   //---------------------------
 
   class Hexa;

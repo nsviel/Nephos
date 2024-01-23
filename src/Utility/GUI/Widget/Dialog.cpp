@@ -2,7 +2,7 @@
 #include <GUI.h>
 
 
-namespace gui::widget{
+namespace utl::gui::widget{
 
 //Constructor / Destructor
 Dialog::Dialog(GUI* gui){

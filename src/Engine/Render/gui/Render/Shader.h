@@ -53,9 +53,9 @@ public:
 private:
   VK_engine* vk_engine;
   eng::shader::Node* node_shader;
-  gui::editor::Text* editor_vs;
-  gui::editor::Text* editor_fs;
-  gui::widget::Console* gui_console;
+  utl::gui::editor::Text* editor_vs;
+  utl::gui::editor::Text* editor_fs;
+  utl::gui::widget::Console* gui_console;
 
   vector<string> vec_shader_class;
   vector<string> vec_shader_subclass;

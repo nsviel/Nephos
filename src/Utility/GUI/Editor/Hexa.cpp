@@ -1,7 +1,7 @@
 #include "Hexa.h"
 
 
-namespace gui::editor{
+namespace utl::gui::editor{
 
 //Constructor / Destructor
 Hexa::Hexa(){

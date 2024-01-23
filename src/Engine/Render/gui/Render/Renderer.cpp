@@ -23,7 +23,7 @@ Renderer::Renderer(Engine* engine){
   this->cam_control = new camera::gui::Control(engine);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->vk_info = eng_vulkan->get_vk_info();
-  this->profiler = new gui::plot::Profiler();
+  this->profiler = new utl::gui::plot::Profiler();
 
   this->with_profiler_overlay = true;
 

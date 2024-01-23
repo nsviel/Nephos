@@ -4,7 +4,7 @@
 #include <imgui/profiler/Namespace.h>
 
 
-namespace gui::plot{
+namespace utl::gui::plot{
 
 class Profiler
 {

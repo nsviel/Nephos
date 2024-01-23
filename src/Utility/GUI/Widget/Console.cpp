@@ -1,7 +1,7 @@
 #include "Console.h"
 
 
-namespace gui::widget{
+namespace utl::gui::widget{
 
 //Constructor / Destructor
 Console::Console(){

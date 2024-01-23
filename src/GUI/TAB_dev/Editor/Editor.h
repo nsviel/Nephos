@@ -22,7 +22,7 @@ public:
   void design_panel();
 
 private:
-  gui::editor::Text* editor;
+  utl::gui::editor::Text* editor;
 };
 
 }

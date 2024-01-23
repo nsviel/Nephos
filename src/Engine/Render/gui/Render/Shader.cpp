@@ -22,9 +22,9 @@ Shader::Shader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
 
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->node_shader = engine->get_node_shader();
-  this->editor_vs = new gui::editor::Text();
-  this->editor_fs = new gui::editor::Text();
-  this->gui_console = new gui::widget::Console();
+  this->editor_vs = new utl::gui::editor::Text();
+  this->editor_fs = new utl::gui::editor::Text();
+  this->gui_console = new utl::gui::widget::Console();
 
   this->item_width = 100;
   this->ID_class = 0;

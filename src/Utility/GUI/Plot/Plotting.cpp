@@ -1,7 +1,7 @@
 #include "Plotting.h"
 
 
-namespace gui::plot{
+namespace utl::gui::plot{
 
 //Constructor / Destructor
 Plotting::Plotting(){

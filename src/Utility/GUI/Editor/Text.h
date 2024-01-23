@@ -4,7 +4,7 @@
 #include <imgui/editor/Text/editor_text.h>
 
 
-namespace gui::editor{
+namespace utl::gui::editor{
 
 class Text
 {
