@@ -1,6 +1,6 @@
 #include "Image.h"
 
-#include <GUI.h>
+#include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <GUI/GUI_main/Render/Render.h>
 #include <Utility/Function/File/Image.h>
@@ -11,11 +11,10 @@
 namespace gui::media{
 
 //Constructor / Destructor
-Image::Image(GUI* gui){
+Image::Image(Engine* engine){
   //---------------------------
 
-  Render* gui_render = gui->get_rnd_tab();
-  Vulkan* vulkan = gui_render->get_vulkan();
+  Vulkan* vulkan = engine->get_eng_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
 
   //---------------------------

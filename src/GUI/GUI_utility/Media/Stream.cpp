@@ -1,6 +1,6 @@
 #include "Stream.h"
 
-#include <GUI.h>
+#include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_texture.h>
 #include <GUI/GUI_main/Render/Render.h>
@@ -9,11 +9,10 @@
 namespace gui::media{
 
 //Constructor / Destructor
-Stream::Stream(GUI* gui){
+Stream::Stream(Engine* engine){
   //---------------------------
 
-  Render* gui_render = gui->get_rnd_tab();
-  Vulkan* vulkan = gui_render->get_vulkan();
+  Vulkan* vulkan = engine->get_eng_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
   this->vk_image = nullptr;
 

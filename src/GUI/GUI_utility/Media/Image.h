@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class GUI;
+class Engine;
 class VK_texture;
 
 
@@ -12,7 +12,7 @@ class Image
 {
 public:
   //Constructor / Destructor
-  Image(GUI* gui);
+  Image(Engine* engine);
   ~Image();
 
 public:

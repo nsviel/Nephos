@@ -4,7 +4,7 @@
 
 #include <Vulkan/VK_struct/Namespace.h>
 
-class GUI;
+class Engine;
 class VK_texture;
 
 
@@ -14,7 +14,7 @@ class Stream
 {
 public:
   //Constructor / Destructor
-  Stream(GUI* gui);
+  Stream(Engine* engine);
   ~Stream();
 
 public:

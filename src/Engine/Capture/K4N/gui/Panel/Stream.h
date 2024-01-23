@@ -41,7 +41,6 @@ public:
   void overlay_pixel(k4n::src::str::Image* image, ImVec2 image_size);
 
 private:
-  GUI* gui;
   k4n::Node* node_kinect;
   k4n::src::data::Depth* k4a_depth;
   k4n::src::data::Infrared* k4a_infrared;

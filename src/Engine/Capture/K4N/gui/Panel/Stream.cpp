@@ -16,12 +16,11 @@ Stream::Stream(Engine* engine, bool* show_window, string name){
   this->k4a_depth = new k4n::src::data::Depth();
   this->k4a_infrared = new k4n::src::data::Infrared();
   this->k4n_swarm = node_kinect->get_k4n_swarm();
-  this->gui = gui;
 
-  this->vec_gui_stream.push_back(new gui::media::Stream(gui));
-  this->vec_gui_stream.push_back(new gui::media::Stream(gui));
-  this->vec_gui_stream.push_back(new gui::media::Stream(gui));
-  this->vec_gui_stream.push_back(new gui::media::Stream(gui));
+  this->vec_gui_stream.push_back(new gui::media::Stream(engine));
+  this->vec_gui_stream.push_back(new gui::media::Stream(engine));
+  this->vec_gui_stream.push_back(new gui::media::Stream(engine));
+  this->vec_gui_stream.push_back(new gui::media::Stream(engine));
 
   this->show_window = show_window;
   this->name = name;
