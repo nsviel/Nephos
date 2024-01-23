@@ -16,24 +16,24 @@ public:
   ~Player();
 
   //Main function
-  void draw_player(k4n::src::dev::Master* master);
+  void draw_player(eng::k4n::dev::Master* master);
 
   //Subfunction
-  void player_control(k4n::src::dev::Master* master);
-  void player_slider(k4n::src::dev::Master* master);
+  void player_control(eng::k4n::dev::Master* master);
+  void player_slider(eng::k4n::dev::Master* master);
 
   //Player button
-  void player_start(k4n::src::dev::Master* master);
-  void player_stop(k4n::src::dev::Master* master);
-  void player_repeat(k4n::src::dev::Master* master);
-  void player_record(k4n::src::dev::Master* master);
-  void player_close(k4n::src::dev::Master* master);
-  void player_lock(k4n::src::dev::Master* master);
+  void player_start(eng::k4n::dev::Master* master);
+  void player_stop(eng::k4n::dev::Master* master);
+  void player_repeat(eng::k4n::dev::Master* master);
+  void player_record(eng::k4n::dev::Master* master);
+  void player_close(eng::k4n::dev::Master* master);
+  void player_lock(eng::k4n::dev::Master* master);
 
 private:
   eng::scene::Scene* sce_scene;
-  k4n::Node* node_kinect;
-  k4n::src::dev::Swarm* k4n_swarm;
+  eng::k4n::Node* node_kinect;
+  eng::k4n::dev::Swarm* k4n_swarm;
 };
 
 }

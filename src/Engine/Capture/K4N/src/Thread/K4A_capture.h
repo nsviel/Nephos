@@ -25,12 +25,12 @@ public:
   void run();
 
   //Subfunction
-  void start_thread(k4n::src::dev::Sensor* device);
-  void run_thread(k4n::src::dev::Sensor* device);
+  void start_thread(eng::k4n::dev::Sensor* device);
+  void run_thread(eng::k4n::dev::Sensor* device);
   void stop_thread();
-  void manage_pause(k4n::src::dev::Sensor* sensor);
-  void manage_recording(k4n::src::dev::Sensor* sensor, k4a::capture capture);
-  void manage_color_setting(k4n::src::dev::Sensor* sensor);
+  void manage_pause(eng::k4n::dev::Sensor* sensor);
+  void manage_recording(eng::k4n::dev::Sensor* sensor, k4a::capture capture);
+  void manage_color_setting(eng::k4n::dev::Sensor* sensor);
 
   inline bool is_thread_running(){return thread_running;}
   inline bool* get_thread_pause(){return &thread_pause;}
@@ -38,10 +38,10 @@ public:
 private:
   FPS_counter* fps_counter;
   FPS_control* fps_control;
-  k4n::src::data::Data* k4a_data;
-  k4n::src::data::Cloud* k4a_processing;
-  k4n::src::config::Configuration* configuration;
-  k4n::src::config::Calibration* k4n_calibration;
+  eng::k4n::data::Data* k4a_data;
+  eng::k4n::data::Cloud* k4a_processing;
+  eng::k4n::config::Configuration* configuration;
+  eng::k4n::config::Calibration* k4n_calibration;
 
   std::thread thread;
   bool thread_running = false;

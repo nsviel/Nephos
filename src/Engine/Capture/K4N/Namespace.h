@@ -4,7 +4,7 @@
 #include <Engine/Capture/K4N/Node.h>
 
 
-namespace k4n{
+namespace eng::k4n{
   //---------------------------
 
   class Node;

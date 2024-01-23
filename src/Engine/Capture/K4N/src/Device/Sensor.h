@@ -10,7 +10,7 @@ class K4A_capture;
 class K4A_playback;
 class Engine;
 
-namespace k4n::src::dev{
+namespace eng::k4n::dev{
 class Master;
 
 
@@ -44,16 +44,16 @@ public:
 
 public:
   utl::entity::Object* object;
-  k4n::src::dev::Master* master;
+  eng::k4n::dev::Master* master;
 
-  k4n::src::str::Param param;
-  k4n::src::str::Synchro synchro;
-  k4n::src::str::Recorder recorder;
+  eng::k4n::structure::Param param;
+  eng::k4n::structure::Synchro synchro;
+  eng::k4n::structure::Recorder recorder;
 
-  k4n::src::str::Color color;
-  k4n::src::str::Depth depth;
-  k4n::src::str::Infrared ir;
-  k4n::src::str::IMU imu;
+  eng::k4n::structure::Color color;
+  eng::k4n::structure::Depth depth;
+  eng::k4n::structure::Infrared ir;
+  eng::k4n::structure::IMU imu;
 
 private:
   Engine* engine;

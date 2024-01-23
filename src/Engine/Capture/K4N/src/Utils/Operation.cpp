@@ -1,7 +1,7 @@
 #include "Operation.h"
 
 
-namespace k4n::src::utils{
+namespace eng::k4n::utils{
 
 //Constructor / Destructor
 Operation::Operation(){
@@ -50,7 +50,7 @@ float Operation::find_mkv_ts_end(string path){
   //---------------------------
   return ts_end;
 }
-void Operation::make_colorization(k4n::src::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
+void Operation::make_colorization(eng::k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
   //---------------------------
 
   switch(k4n_sensor->master->operation.color_mode){
@@ -70,7 +70,7 @@ void Operation::make_colorization(k4n::src::dev::Sensor* k4n_sensor, vector<vec4
 
   //---------------------------
 }
-void Operation::colorization_intensity(k4n::src::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
+void Operation::colorization_intensity(eng::k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
   //---------------------------
 
   vec_rgba.clear();
@@ -82,7 +82,7 @@ void Operation::colorization_intensity(k4n::src::dev::Sensor* k4n_sensor, vector
 
   //---------------------------
 }
-void Operation::colorization_heatmap(k4n::src::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
+void Operation::colorization_heatmap(eng::k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
   //---------------------------
 
   switch(k4n_sensor->master->operation.heatmap_mode){

@@ -12,11 +12,11 @@ class Capture
 {
 public:
   //Constructor / Destructor
-  Capture(k4n::Node* node_kinect);
+  Capture(eng::k4n::Node* node_kinect);
   ~Capture();
 
   //Main function
-  void show_sensor_configuration(k4n::src::dev::Sensor* k4n_sensor);
+  void show_sensor_configuration(eng::k4n::dev::Sensor* k4n_sensor);
 
   //Subfunction
   void kinect_devices();
@@ -26,8 +26,8 @@ public:
   void firmware_info();
 
 private:
-  k4n::Node* node_kinect;
-  k4n::src::dev::Swarm* k4n_swarm;
+  eng::k4n::Node* node_kinect;
+  eng::k4n::dev::Swarm* k4n_swarm;
 
   int item_width;
 };

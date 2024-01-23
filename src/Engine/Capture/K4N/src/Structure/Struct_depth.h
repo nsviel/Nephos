@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace k4n::src::str{
+namespace eng::k4n::structure{
 
 struct Depth_config{
   //---------------------------
@@ -25,8 +25,8 @@ struct Depth_config{
 struct Depth{
   //---------------------------
 
-  k4n::src::str::Depth_config config;
-  k4n::src::str::Image image;
+  eng::k4n::structure::Depth_config config;
+  eng::k4n::structure::Image image;
 
   //---------------------------
 };

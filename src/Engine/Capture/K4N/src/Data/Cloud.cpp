@@ -5,21 +5,21 @@
 #include <Engine/Operation/src/Transformation/Transformation.h>
 
 
-namespace k4n::src::data{
+namespace eng::k4n::data{
 
 //Constructor / Destructor
 Cloud::Cloud(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->kin_operation = new k4n::src::utils::Operation();
+  this->kin_operation = new eng::k4n::utils::Operation();
 
   //---------------------------
 }
 Cloud::~Cloud(){}
 
 //Main function
-void Cloud::convert_into_cloud(k4n::src::dev::Sensor* k4n_sensor){
+void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   this->loop_init(k4n_sensor);
@@ -31,7 +31,7 @@ void Cloud::convert_into_cloud(k4n::src::dev::Sensor* k4n_sensor){
 }
 
 //Loop function
-void Cloud::loop_init(k4n::src::dev::Sensor* k4n_sensor){
+void Cloud::loop_init(eng::k4n::dev::Sensor* k4n_sensor){
   if(k4n_sensor->depth.image.data.empty()) return;
   //---------------------------
 
@@ -42,13 +42,13 @@ void Cloud::loop_init(k4n::src::dev::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void Cloud::loop_data(k4n::src::dev::Sensor* k4n_sensor){
+void Cloud::loop_data(eng::k4n::dev::Sensor* k4n_sensor){
   if(k4n_sensor->depth.image.data.empty()) return;
   //---------------------------
 
   // Data stuff
-  k4n::src::str::Depth* depth = &k4n_sensor->depth;
-  k4n::src::str::Infrared* ir = &k4n_sensor->ir;
+  eng::k4n::structure::Depth* depth = &k4n_sensor->depth;
+  eng::k4n::structure::Infrared* ir = &k4n_sensor->ir;
 
   // Cloud stuff
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->image.width, depth->image.height, depth->image.width * 3 * (int)sizeof(int16_t));
@@ -71,7 +71,7 @@ void Cloud::loop_data(k4n::src::dev::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void Cloud::loop_end(k4n::src::dev::Sensor* k4n_sensor){
+void Cloud::loop_end(eng::k4n::dev::Sensor* k4n_sensor){
   if(k4n_sensor->depth.image.data.empty()) return;
   utl::type::Data* data = k4n_sensor->object->data;
   //---------------------------
@@ -109,10 +109,10 @@ void Cloud::retrieve_location(int& x, int& y, int& z){
 
   //---------------------------
 }
-void Cloud::retrieve_color(k4n::src::dev::Sensor* k4n_sensor, int i){
+void Cloud::retrieve_color(eng::k4n::dev::Sensor* k4n_sensor, int i){
   //---------------------------
 
-  k4n::src::str::Operation* operation = &k4n_sensor->master->operation;
+  eng::k4n::structure::Operation* operation = &k4n_sensor->master->operation;
   glm::vec4 color;
 
   if(operation->color_mode == 0){
@@ -131,7 +131,7 @@ void Cloud::retrieve_color(k4n::src::dev::Sensor* k4n_sensor, int i){
   //---------------------------
   vec_rgba.push_back(color);
 }
-void Cloud::retrieve_ir(k4n::src::dev::Sensor* k4n_sensor, int i){
+void Cloud::retrieve_ir(eng::k4n::dev::Sensor* k4n_sensor, int i){
   if(k4n_sensor->ir.image.data.empty()) return;
   //---------------------------
 
@@ -143,7 +143,7 @@ void Cloud::retrieve_ir(k4n::src::dev::Sensor* k4n_sensor, int i){
   //---------------------------
   vec_ir.push_back(value);
 }
-void Cloud::retrieve_corner_coordinate(k4n::src::dev::Sensor* k4n_sensor){
+void Cloud::retrieve_corner_coordinate(eng::k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
   // Define your pixel coordinates and depth value

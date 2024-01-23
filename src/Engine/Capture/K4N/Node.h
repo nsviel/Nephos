@@ -7,7 +7,7 @@
 
 class Engine;
 
-namespace k4n{
+namespace eng::k4n{
 
 
 class Node
@@ -22,11 +22,11 @@ public:
   void init();
   void loop();
 
-  inline k4n::src::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
+  inline eng::k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
 
 private:
-  k4n::src::dev::Swarm* k4n_swarm;
-  k4n::src::dev::Connection* k4n_connection;
+  eng::k4n::dev::Swarm* k4n_swarm;
+  eng::k4n::dev::Connection* k4n_connection;
   //gui::kinect::Stream* rnd_stream;
   //gui::kinect::Device* rnd_kinect;
 

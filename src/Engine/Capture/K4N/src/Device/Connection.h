@@ -4,7 +4,7 @@
 #include <Engine/Capture/K4N/src/Device/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace k4n::src::dev{
+namespace eng::k4n::dev{
 class Swarm;
 
 
@@ -12,7 +12,7 @@ class Connection
 {
 public:
   //Constructor / Destructor
-  Connection(k4n::src::dev::Swarm* k4n_swarm);
+  Connection(eng::k4n::dev::Swarm* k4n_swarm);
   ~Connection();
 
 public:
@@ -24,7 +24,7 @@ public:
   void manage_less_dev(int number);
 
 private:
-  k4n::src::dev::Swarm* k4n_swarm;
+  eng::k4n::dev::Swarm* k4n_swarm;
 
   int nb_dev = 0;
 };

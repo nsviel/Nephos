@@ -1,7 +1,7 @@
 #include "Depth.h"
 
 
-namespace k4n::src::data{
+namespace eng::k4n::data{
 
 //Constructor / Destructor
 Depth::Depth(){
@@ -12,7 +12,7 @@ Depth::Depth(){
 Depth::~Depth(){}
 
 //Main function
-std::vector<uint8_t> Depth::convert_depth_into_color(k4n::src::dev::Sensor* device){
+std::vector<uint8_t> Depth::convert_depth_into_color(eng::k4n::dev::Sensor* device){
   vector<uint8_t>& inputBuffer = device->depth.image.data;
   uint16_t range_min = device->depth.config.range_min;
   uint16_t range_max = device->depth.config.range_max;
@@ -47,7 +47,7 @@ std::vector<uint8_t> Depth::convert_depth_into_color(k4n::src::dev::Sensor* devi
   //---------------------------
   return outputBuffer;
 }
-void Depth::find_depth_mode_range(k4n::src::dev::Sensor* device){
+void Depth::find_depth_mode_range(eng::k4n::dev::Sensor* device){
   //---------------------------
 
   if(device->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){

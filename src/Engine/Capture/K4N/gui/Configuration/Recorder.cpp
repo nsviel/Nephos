@@ -4,7 +4,7 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Recorder::Recorder(k4n::Node* node_kinect){
+Recorder::Recorder(eng::k4n::Node* node_kinect){
   //---------------------------
 
   this->node_kinect = node_kinect;
@@ -30,7 +30,7 @@ void Recorder::show_sensor_recorder(){
 
 //Subfunction
 void Recorder::recorder_path(){
-  k4n::src::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+  eng::k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 

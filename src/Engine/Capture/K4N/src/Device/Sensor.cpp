@@ -5,7 +5,7 @@
 #include <Engine/Capture/K4N/src/Thread/K4A_playback.h>
 
 
-namespace k4n::src::dev{
+namespace eng::k4n::dev{
 
 
 //Constructor / Destructor
@@ -21,7 +21,7 @@ Sensor::Sensor(Engine* engine){
   this->sce_glyph = node_scene->get_scene_glyph();
   this->ope_transform = new eng::ope::Transformation();
 
-  this->type = "k4n::src::device::Sensor";
+  this->type = "eng::k4n::device::Sensor";
   this->icon = ICON_FA_CAMERA_RETRO;
 
   //---------------------------
@@ -71,8 +71,8 @@ void Sensor::update_entity(){
 }
 void Sensor::remove_entity(){
   eng::capture::Node* node_capture = engine->get_node_capture();
-  k4n::Node* node_kinect = node_capture->get_node_kinect();
-  k4n::src::dev::Swarm* k4n_swarm = node_kinect->get_k4n_swarm();
+  eng::k4n::Node* node_kinect = node_capture->get_node_kinect();
+  eng::k4n::dev::Swarm* k4n_swarm = node_kinect->get_k4n_swarm();
   //---------------------------
 
   //First, destroy own elements

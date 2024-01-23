@@ -12,20 +12,20 @@ class Sensor
 {
 public:
   //Constructor / Destructor
-  Sensor(k4n::Node* node_kinect);
+  Sensor(eng::k4n::Node* node_kinect);
   ~Sensor();
 
   //Main function
-  void show_sensor(k4n::src::dev::Sensor* sensor);
+  void show_sensor(eng::k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void show_sensor_info(k4n::src::dev::Sensor* sensor);
-  void show_sensor_transfo(k4n::src::dev::Sensor* sensor);
+  void show_sensor_info(eng::k4n::dev::Sensor* sensor);
+  void show_sensor_transfo(eng::k4n::dev::Sensor* sensor);
 
 private:
-  k4n::Node* node_kinect;
-  k4n::src::dev::Swarm* k4n_swarm;
-  k4n::src::utils::Transformation* k4n_transfo;
+  eng::k4n::Node* node_kinect;
+  eng::k4n::dev::Swarm* k4n_swarm;
+  eng::k4n::utils::Transformation* k4n_transfo;
 
   int item_width;
 };

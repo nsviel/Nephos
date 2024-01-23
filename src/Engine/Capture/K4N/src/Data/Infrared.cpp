@@ -1,7 +1,7 @@
 #include "Infrared.h"
 
 
-namespace k4n::src::data{
+namespace eng::k4n::data{
 
 //Constructor / Destructor
 Infrared::Infrared(){
@@ -13,7 +13,7 @@ Infrared::Infrared(){
 Infrared::~Infrared(){}
 
 //Main function
-std::vector<uint8_t> Infrared::convert_ir_into_color(k4n::src::dev::Sensor* device){
+std::vector<uint8_t> Infrared::convert_ir_into_color(eng::k4n::dev::Sensor* device){
   std::vector<uint8_t>& inputBuffer = device->ir.image.data;
   uint16_t level_min = device->ir.config.level_min;
   uint16_t level_max = device->ir.config.level_max;
@@ -36,7 +36,7 @@ std::vector<uint8_t> Infrared::convert_ir_into_color(k4n::src::dev::Sensor* devi
   //---------------------------
   return outputBuffer;
 }
-void Infrared::find_ir_level(k4n::src::dev::Sensor* device){
+void Infrared::find_ir_level(eng::k4n::dev::Sensor* device){
   //---------------------------
 
   if(device->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){

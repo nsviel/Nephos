@@ -4,7 +4,7 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Capture::Capture(k4n::Node* node_kinect){
+Capture::Capture(eng::k4n::Node* node_kinect){
   //---------------------------
 
   this->node_kinect = node_kinect;
@@ -17,7 +17,7 @@ Capture::Capture(k4n::Node* node_kinect){
 Capture::~Capture(){}
 
 //Main function
-void Capture::show_sensor_configuration(k4n::src::dev::Sensor* k4n_sensor){
+void Capture::show_sensor_configuration(eng::k4n::dev::Sensor* k4n_sensor){
   if(k4n_sensor == nullptr || k4n_sensor->param.is_playback) return;
   //---configuration_device----
 
@@ -38,8 +38,8 @@ void Capture::show_sensor_configuration(k4n::src::dev::Sensor* k4n_sensor){
 
 //Subfunction
 void Capture::kinect_devices(){
-  k4n::src::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
-  k4n::src::dev::Master* master = sensor->master;
+  eng::k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
+  eng::k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -59,7 +59,7 @@ void Capture::kinect_devices(){
       ImGui::TableSetupColumn("Serial number");
       ImGui::TableHeadersRow();
       for(int i=0; i< master->list_sensor.size(); i++){
-        k4n::src::dev::Sensor* k4n_sensor = *std::next( master->list_sensor.begin(), i);
+        eng::k4n::dev::Sensor* k4n_sensor = *std::next( master->list_sensor.begin(), i);
         if(k4n_sensor->param.is_playback) continue;
 
         ImGui::TableNextRow();
@@ -84,7 +84,7 @@ void Capture::kinect_devices(){
   //---------------------------
 }
 void Capture::configuration_depth(){
-  k4n::src::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+  eng::k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
@@ -119,7 +119,7 @@ void Capture::configuration_depth(){
   //---------------------------
 }
 void Capture::configuration_color(){
-  k4n::src::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+  eng::k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
@@ -242,7 +242,7 @@ void Capture::configuration_color(){
   //---------------------------
 }
 void Capture::configuration_device(){
-  k4n::src::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+  eng::k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 
@@ -269,7 +269,7 @@ void Capture::configuration_device(){
   //---------------------------
 }
 void Capture::firmware_info(){
-  k4n::src::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
+  eng::k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
   if(k4n_sensor == nullptr) return;
   //---------------------------
 

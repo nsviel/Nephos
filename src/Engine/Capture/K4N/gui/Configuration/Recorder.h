@@ -11,7 +11,7 @@ class Recorder
 {
 public:
   //Constructor / Destructor
-  Recorder(k4n::Node* node_kinect);
+  Recorder(eng::k4n::Node* node_kinect);
   ~Recorder();
 
   //Main function
@@ -21,8 +21,8 @@ public:
   void recorder_path();
 
 private:
-  k4n::Node* node_kinect;
-  k4n::src::dev::Swarm* k4n_swarm;
+  eng::k4n::Node* node_kinect;
+  eng::k4n::dev::Swarm* k4n_swarm;
 };
 
 }

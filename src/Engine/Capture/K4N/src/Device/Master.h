@@ -6,7 +6,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Base/Entity/Namespace.h>
 
-namespace k4n::src::dev{
+namespace eng::k4n::dev{
 class Sensor;
 
 
@@ -19,8 +19,8 @@ public:
 
 public:
   //Main function
-  void insert_sensor_playback(k4n::src::dev::Sensor* sensor);
-  void insert_sensor_capture(k4n::src::dev::Sensor* sensor);
+  void insert_sensor_playback(eng::k4n::dev::Sensor* sensor);
+  void insert_sensor_capture(eng::k4n::dev::Sensor* sensor);
   void reset();
 
   //Player function
@@ -35,10 +35,10 @@ public:
   void manage_forward();
 
 public:
-  list<k4n::src::dev::Sensor*> list_sensor;
-  k4n::src::str::Player player;
-  k4n::src::str::Operation operation;
-  k4n::src::str::Recorder recorder;
+  list<eng::k4n::dev::Sensor*> list_sensor;
+  eng::k4n::structure::Player player;
+  eng::k4n::structure::Operation operation;
+  eng::k4n::structure::Recorder recorder;
 
 private:
 

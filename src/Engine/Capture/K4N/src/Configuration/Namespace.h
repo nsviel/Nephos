@@ -4,7 +4,7 @@
 #include <Engine/Capture/K4N/src/Configuration/Configuration.h>
 
 
-namespace k4n::src::config{
+namespace eng::k4n::config{
   //---------------------------
 
   class Calibration;

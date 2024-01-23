@@ -4,7 +4,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace k4n::src::data{
+namespace eng::k4n::data{
 
 class Infrared
 {
@@ -15,8 +15,8 @@ public:
 
 public:
   //Main function
-  std::vector<uint8_t> convert_ir_into_color(k4n::src::dev::Sensor* device);
-  void find_ir_level(k4n::src::dev::Sensor* device);
+  std::vector<uint8_t> convert_ir_into_color(eng::k4n::dev::Sensor* device);
+  void find_ir_level(eng::k4n::dev::Sensor* device);
 
 private:
 

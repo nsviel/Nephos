@@ -13,11 +13,11 @@ K4A_playback::K4A_playback(Engine* engine){
   this->fps_counter = new FPS_counter();
   this->fps_control = new FPS_control(30);
 
-  this->k4a_data = new k4n::src::data::Data();
-  this->k4a_processing = new k4n::src::data::Cloud(engine);
-  this->k4n_configuration = new k4n::src::config::Configuration();
-  this->k4n_calibration = new k4n::src::config::Calibration();
-  this->k4n_operation= new k4n::src::utils::Operation();
+  this->k4a_data = new eng::k4n::data::Data();
+  this->k4a_processing = new eng::k4n::data::Cloud(engine);
+  this->k4n_configuration = new eng::k4n::config::Configuration();
+  this->k4n_calibration = new eng::k4n::config::Calibration();
+  this->k4n_operation= new eng::k4n::utils::Operation();
 
   //---------------------------
 }
@@ -31,7 +31,7 @@ K4A_playback::~K4A_playback(){
 }
 
 //Main function
-void K4A_playback::start_thread(k4n::src::dev::Sensor* sensor){
+void K4A_playback::start_thread(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(!thread_running){
@@ -40,7 +40,7 @@ void K4A_playback::start_thread(k4n::src::dev::Sensor* sensor){
 
   //---------------------------
 }
-void K4A_playback::run_thread(k4n::src::dev::Sensor* sensor){
+void K4A_playback::run_thread(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Init playback
@@ -90,7 +90,7 @@ void K4A_playback::stop_thread(){
 }
 
 //Subfunction
-void K4A_playback::manage_pause(k4n::src::dev::Sensor* sensor){
+void K4A_playback::manage_pause(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -103,7 +103,7 @@ void K4A_playback::manage_pause(k4n::src::dev::Sensor* sensor){
 
   //---------------------------
 }
-void K4A_playback::manage_restart(k4n::src::dev::Sensor* sensor){
+void K4A_playback::manage_restart(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(sensor->color.image.timestamp >= sensor->master->player.ts_end){
@@ -112,7 +112,7 @@ void K4A_playback::manage_restart(k4n::src::dev::Sensor* sensor){
 
   //---------------------------
 }
-void K4A_playback::manage_recording(k4n::src::dev::Sensor* sensor, k4a::capture capture){
+void K4A_playback::manage_recording(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
 /*
   k4a::record& recorder = sensor->recorder.recorder;

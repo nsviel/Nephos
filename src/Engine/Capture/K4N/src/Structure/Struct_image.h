@@ -3,7 +3,7 @@
 #include <string>
 
 
-namespace k4n::src::str{
+namespace eng::k4n::structure{
 
 struct Image{
   //---------------------------

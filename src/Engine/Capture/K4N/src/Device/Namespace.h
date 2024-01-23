@@ -6,7 +6,7 @@
 #include <Engine/Capture/K4N/src/Device/Connection.h>
 
 
-namespace k4n::src::dev{
+namespace eng::k4n::dev{
   //---------------------------
 
   class Sensor;

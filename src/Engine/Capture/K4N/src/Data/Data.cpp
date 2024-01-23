@@ -1,7 +1,7 @@
 #include "Data.h"
 
 
-namespace k4n::src::data{
+namespace eng::k4n::data{
 
 //Constructor / Destructor
 Data::Data(){
@@ -20,7 +20,7 @@ Data::~Data(){
 }
 
 //Main function
-void Data::find_data_from_capture(k4n::src::dev::Sensor* k4n_sensor, k4a::capture capture){
+void Data::find_data_from_capture(eng::k4n::dev::Sensor* k4n_sensor, k4a::capture capture){
   //---------------------------
 
   //Capture data
@@ -36,7 +36,7 @@ void Data::find_data_from_capture(k4n::src::dev::Sensor* k4n_sensor, k4a::captur
 }
 
 //Data function
-void Data::find_depth(k4n::src::dev::Sensor* k4n_sensor, k4a::capture capture){
+void Data::find_depth(eng::k4n::dev::Sensor* k4n_sensor, k4a::capture capture){
   k4a::image depth = capture.get_depth_image();
   //---------------------------
 
@@ -62,7 +62,7 @@ void Data::find_depth(k4n::src::dev::Sensor* k4n_sensor, k4a::capture capture){
   //---------------------------
   depth.reset();
 }
-void Data::find_color(k4n::src::dev::Sensor* k4n_sensor, k4a::capture capture){
+void Data::find_color(eng::k4n::dev::Sensor* k4n_sensor, k4a::capture capture){
   k4a::image color = capture.get_color_image();
   //---------------------------
 
@@ -86,7 +86,7 @@ void Data::find_color(k4n::src::dev::Sensor* k4n_sensor, k4a::capture capture){
   //---------------------------
   color.reset();
 }
-void Data::find_ir(k4n::src::dev::Sensor* k4n_sensor, k4a::capture capture){
+void Data::find_ir(eng::k4n::dev::Sensor* k4n_sensor, k4a::capture capture){
   k4a::image ir = capture.get_ir_image();
   //---------------------------
 
@@ -111,7 +111,7 @@ void Data::find_ir(k4n::src::dev::Sensor* k4n_sensor, k4a::capture capture){
   //---------------------------
   ir.reset();
 }
-void Data::find_color_from_depth(k4n::src::dev::Sensor* k4n_sensor, k4a::capture capture, k4a::transformation& transformation){
+void Data::find_color_from_depth(eng::k4n::dev::Sensor* k4n_sensor, k4a::capture capture, k4a::transformation& transformation){
   if(!k4n_sensor->color.image.image || !k4n_sensor->depth.image.image) return;
   //---------------------------
 
