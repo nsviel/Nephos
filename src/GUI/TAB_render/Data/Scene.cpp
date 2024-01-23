@@ -1,24 +1,22 @@
 #include "Scene.h"
 
 #include <Engine/Engine.h>
-#include <GUI.h>
 #include <image/IconsFontAwesome6.h>
 
 
 namespace gui::rnd::data{
 
 //Constructor / Destructor
-Scene::Scene(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Scene::Scene(Engine* engine, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
   eng::scene::Node* node_scene = engine->get_node_scene();
   camera::src::Node* node_camera = engine->get_node_camera();
 
   this->sce_database = node_scene->get_scene_database();
   this->sce_scene = node_scene->get_scene();
-  this->rnd_set = new gui::rnd::data::Set(gui, &show_panel_set);
-  this->rnd_object = new gui::rnd::data::Entity(gui, &show_panel_entity);
+  this->rnd_set = new gui::rnd::data::Set(&show_panel_set);
+  this->rnd_object = new gui::rnd::data::Entity(engine, &show_panel_entity);
   this->cam_control = node_camera->get_camera_control();
   this->ope_operation = new eng::ope::Operation();
 

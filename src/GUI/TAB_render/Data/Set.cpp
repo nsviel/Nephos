@@ -1,13 +1,10 @@
 #include "Set.h"
 
-#include <GUI.h>
-#include <Engine/Engine.h>
-
 
 namespace gui::rnd::data{
 
 //Constructor / Destructor
-Set::Set(GUI* gui, bool* show_window){
+Set::Set(bool* show_window){
   //---------------------------
 
   this->panel_show = show_window;

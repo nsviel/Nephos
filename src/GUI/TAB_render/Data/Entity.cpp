@@ -1,6 +1,5 @@
 #include "Entity.h"
 
-#include <GUI.h>
 #include <Engine/Engine.h>
 #include <image/IconsFontAwesome6.h>
 
@@ -8,10 +7,9 @@
 namespace gui::rnd::data{
 
 //Constructor / Destructor
-Entity::Entity(GUI* gui, bool* panel_show){
+Entity::Entity(Engine* engine, bool* panel_show){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
   eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->sce_scene = node_scene->get_scene();

@@ -3,11 +3,13 @@
 
 #include <Utility/Specific/common.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
+#include <GUI/TAB_render/Data/Set.h>
+#include <GUI/TAB_render/Data/Entity.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 
 
-class GUI;
+class Engine;
 
 namespace gui::rnd::data{
 class Entity;
@@ -18,7 +20,7 @@ class Scene : public gui::base::Panel
 {
 public:
   //Constructor / Destructor
-  Scene(GUI* gui, bool* show_window, string name);
+  Scene(Engine* engine, bool* show_window, string name);
   ~Scene();
 
 public:

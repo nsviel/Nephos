@@ -1,6 +1,5 @@
 #include "Loader.h"
 
-#include <GUI.h>
 #include <Engine/Engine.h>
 #include <GUI/GUI_main/Interface/Tab.h>
 #include <Engine/Data/Namespace.h>
@@ -11,10 +10,9 @@
 namespace gui::rnd::data{
 
 //Constructor / Destructor
-Loader::Loader(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Loader::Loader(Engine* engine, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
   eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->sce_scene = node_scene->get_scene();

@@ -5,7 +5,6 @@
 #include <Utility/Specific/common.h>
 #include <Engine/Operation/Namespace.h>
 
-class GUI;
 class Panel;
 
 
@@ -15,7 +14,7 @@ class Entity
 {
 public:
   //Constructor / Destructor
-  Entity(GUI* gui, bool* show_window);
+  Entity(Engine* engine, bool* show_window);
   ~Entity();
 
   //Main function

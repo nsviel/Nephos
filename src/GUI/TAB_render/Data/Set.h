@@ -1,10 +1,7 @@
 #pragma once
 
-
 #include <Utility/Specific/common.h>
 #include <Engine/Data/Namespace.h>
-
-class GUI;
 
 
 namespace gui::rnd::data{
@@ -13,7 +10,7 @@ class Set
 {
 public:
   //Constructor / Destructor
-  Set(GUI* gui, bool* show_window);
+  Set(bool* show_window);
   ~Set();
 
   //Main function

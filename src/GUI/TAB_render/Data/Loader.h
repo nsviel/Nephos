@@ -6,7 +6,7 @@
 #include <Engine/Data/src/Loader/Item.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 
-class GUI;
+class Engine;
 
 
 namespace gui::rnd::data{
@@ -15,7 +15,7 @@ class Loader : public gui::base::Panel
 {
 public:
   //Constructor / Destructor
-  Loader(GUI* gui, bool* show_window, string name);
+  Loader(Engine* engine, bool* show_window, string name);
   ~Loader();
 
 public:
