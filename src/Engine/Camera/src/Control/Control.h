@@ -2,7 +2,6 @@
 
 
 #include <Engine/Camera/Namespace.h>
-#include <Engine/Camera/Mode/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
 
