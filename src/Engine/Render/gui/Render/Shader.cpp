@@ -11,7 +11,7 @@
 #include <Engine/Render/src/Shader/Scene/SCE.h>
 
 
-namespace gui::engine{
+namespace eng::render::gui{
 
 //Constructor / Destructor
 Shader::Shader(GUI* gui, bool* show_window, string name) : Panel(show_window, name){

@@ -9,7 +9,7 @@ class VK_info;
 
 namespace gui::rnd::tab{
 
-class Option : public gui::base::Panel
+class Option : public utl::base::Panel
 {
 public:
   //Constructor / Destructor

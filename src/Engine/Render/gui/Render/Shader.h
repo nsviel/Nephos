@@ -12,9 +12,9 @@ class Text;
 class VK_engine;
 
 
-namespace gui::engine{
+namespace eng::render::gui{
 
-class Shader : public gui::base::Panel
+class Shader : public utl::base::Panel
 {
 public:
   //Constructor / Destructor

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 #include <Engine/Render/gui/Namespace.h>
-#include <Engine/Render/gui/Media/Namespace.h>
+#include <Engine/Render/gui/Namespace.h>
 #include <Utility/GUI/Plot/Namespace.h>
 #include <Engine/Camera/gui/Control.h>
 #include <Engine/Operation/gui/Namespace.h>
@@ -12,7 +12,7 @@ class VK_imgui;
 class VK_info;
 
 
-namespace gui::engine{
+namespace eng::render::gui{
 class Control;
 
 

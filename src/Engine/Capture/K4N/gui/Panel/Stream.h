@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Base/GUI/Panel.h>
-#include <Engine/Render/gui/Media/Namespace.h>
+#include <Engine/Render/gui/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/K4N/Namespace.h>
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
@@ -46,7 +46,7 @@ private:
   k4n::src::data::Infrared* k4a_infrared;
   k4n::src::dev::Swarm* k4n_swarm;
 
-  vector<gui::media::Stream*> vec_gui_stream;
+  vector<eng::render::gui::Stream*> vec_gui_stream;
   ImVec2 hovered_pixel;
   string open_tab = "";
   bool* show_window;

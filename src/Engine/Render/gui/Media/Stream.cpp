@@ -6,7 +6,7 @@
 #include <GUI/GUI_main/Render/Render.h>
 
 
-namespace gui::media{
+namespace eng::render::gui{
 
 //Constructor / Destructor
 Stream::Stream(Engine* engine){

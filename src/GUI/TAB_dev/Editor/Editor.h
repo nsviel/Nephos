@@ -10,7 +10,7 @@ class Text;
 
 namespace gui::dev::editor{
 
-class Editor : public gui::base::Panel
+class Editor : public utl::base::Panel
 {
 public:
   //Constructor / Destructor

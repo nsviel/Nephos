@@ -8,7 +8,7 @@
 #include <Vulkan/VK_main/VK_texture.h>
 
 
-namespace gui::media{
+namespace eng::render::gui{
 
 //Constructor / Destructor
 Image::Image(Engine* engine){

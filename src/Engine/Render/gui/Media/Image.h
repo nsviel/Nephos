@@ -6,7 +6,7 @@ class Engine;
 class VK_texture;
 
 
-namespace gui::media{
+namespace eng::render::gui{
 
 class Image
 {

@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace gui::base{
+namespace utl::base{
 
 class Panel
 {

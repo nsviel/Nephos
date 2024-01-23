@@ -15,7 +15,7 @@ class Entity;
 class Set;
 
 
-class Scene : public gui::base::Panel
+class Scene : public utl::base::Panel
 {
 public:
   //Constructor / Destructor

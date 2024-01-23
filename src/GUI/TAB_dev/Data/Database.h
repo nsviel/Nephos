@@ -9,7 +9,7 @@ class GUI;
 
 namespace gui::dev::data{
 
-class Database : public gui::base::Panel
+class Database : public utl::base::Panel
 {
 public:
   //Constructor / Destructor

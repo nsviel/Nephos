@@ -36,10 +36,10 @@ public:
   bool show_option   = false;
   bool show_loader   = true;
 
-  inline gui::engine::Shader* get_rnd_shader(){return rnd_shader;}
+  inline eng::render::gui::Shader* get_rnd_shader(){return rnd_shader;}
   inline ope::gui::Profiler* get_rnd_profiler(){return rnd_profiler;}
   inline camera::gui::Panel* get_cam_panel(){return cam_panel;}
-  inline gui::engine::Renderer* get_rnd_render(){return rnd_render;}
+  inline eng::render::gui::Renderer* get_rnd_render(){return rnd_render;}
   inline gui::rnd::data::Scene* get_rnd_scene(){return rnd_scene;}
   inline gui::rnd::tab::Option* get_rnd_option(){return rnd_option;}
 
@@ -47,9 +47,9 @@ private:
   GUI* gui;
   gui::rnd::tab::Option* rnd_option;
   gui::rnd::tab::Menu* rnd_menu;
-  gui::engine::Shader* rnd_shader;
+  eng::render::gui::Shader* rnd_shader;
   ope::gui::Profiler* rnd_profiler;
-  gui::engine::Renderer* rnd_render;
+  eng::render::gui::Renderer* rnd_render;
   camera::gui::Panel* cam_panel;
 
   gui::rnd::data::Scene* rnd_scene;

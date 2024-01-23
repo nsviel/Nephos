@@ -1,7 +1,7 @@
 #include "Panel.h"
 
 
-namespace gui::base{
+namespace utl::base{
 
 //Constructor / Destructor
 Panel::Panel(bool* show_window, string name){

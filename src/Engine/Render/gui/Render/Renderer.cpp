@@ -9,7 +9,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace gui::engine{
+namespace eng::render::gui{
 
 //Constructor / Destructor
 Renderer::Renderer(Engine* engine){

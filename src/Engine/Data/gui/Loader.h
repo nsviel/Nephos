@@ -11,7 +11,7 @@ class Engine;
 
 namespace gui::rnd::data{
 
-class Loader : public gui::base::Panel
+class Loader : public utl::base::Panel
 {
 public:
   //Constructor / Destructor
