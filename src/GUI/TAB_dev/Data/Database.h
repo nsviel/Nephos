@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/GUI/Base/Panel.h>
+#include <Utility/Base/GUI/Panel.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
 

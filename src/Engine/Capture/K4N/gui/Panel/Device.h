@@ -2,7 +2,7 @@
 
 #include <Engine/Capture/K4N/Namespace.h>
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
-#include <Utility/GUI/Base/Panel.h>
+#include <Utility/Base/GUI/Panel.h>
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/K4N/gui/Namespace.h>
 
