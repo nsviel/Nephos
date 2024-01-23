@@ -17,9 +17,8 @@ Transformation::Transformation(){
 Transformation::~Transformation(){}
 
 //Main function
-void Transformation::find_transformation_from_file(k4n::dev::Sensor* sensor){
+void Transformation::find_transformation_from_file(k4n::dev::Sensor* sensor, string path){
   mat4 mat = mat4(1);
-  string& path = sensor->param.path_transfo;
   //---------------------------
 
   if(is_json_file(path) == false) return;

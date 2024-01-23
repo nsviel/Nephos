@@ -82,7 +82,7 @@ void Sensor::remove_entity(){
 
   //Second, delete set references
   master->delete_entity(this);
-  k4n_swarm->close_sensor(master, this);
+  delete(this);
 
   //---------------------------
 }

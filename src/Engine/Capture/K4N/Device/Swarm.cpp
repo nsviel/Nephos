@@ -3,6 +3,9 @@
 #include <Engine/Engine.h>
 #include <Utility/Function/File/Info.h>
 
+/*
+  Manage list<master> which is include in list<Set> of set_scene
+*/
 
 namespace k4n::dev{
 
@@ -66,7 +69,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path_file, s
 
   sensor->init();
   sce_scene->assign_entity_UID(sensor);
-  k4n_transfo->find_transformation_from_file(sensor);
+  k4n_transfo->find_transformation_from_file(sensor, path_transfo);
 
   //---------------------------
 }
@@ -88,7 +91,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
 
   sensor->init();
   sce_scene->assign_entity_UID(sensor);
-  k4n_transfo->find_transformation_from_file(sensor);
+  k4n_transfo->find_transformation_from_file(sensor, "");
 
   //---------------------------
 }
@@ -112,7 +115,7 @@ void Swarm::create_sensor_playback(string path){
 
   sensor->init();
   sce_scene->assign_entity_UID(sensor);
-  k4n_transfo->find_transformation_from_file(sensor);
+  k4n_transfo->find_transformation_from_file(sensor, "");
 
   //---------------------------
 }
@@ -135,45 +138,12 @@ void Swarm::create_sensor_capture(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Swarm::close_sensor(k4n::dev::Master* master, k4n::dev::Sensor* sensor){
-  //---------------------------
-
-  for(int i=0; i<master->list_sensor.size(); i++){
-    k4n::dev::Sensor* sensor_in_list = *std::next(master->list_sensor.begin(), i);
-    if(sensor->UID == sensor_in_list->UID){
-      master->list_sensor.remove(sensor);
-      delete(sensor);
-      sensor = nullptr;
-    }
-  }
-
-  //a revoir
-  if(master->list_sensor.size() == 0){
-    selected_sensor = nullptr;
-  }
-  this->selecte_next_sensor();
-
-  //---------------------------
-}
-void Swarm::close_sensor_all(){
-  //---------------------------
-
-  for(int i=0; i<list_master.size(); i++){
-    k4n::dev::Master* master = *std::next(list_master.begin(), i);
-    for(int j=0; j<master->list_sensor.size(); j++){
-      k4n::dev::Sensor* sensor = *std::next(master->list_sensor.begin(), j);
-      this->close_sensor(sensor->master, sensor);
-    }
-  }
-
-  //---------------------------
-}
 void Swarm::close_sensor_all(k4n::dev::Master* master){
   //---------------------------
 
   for(int j=0; j<master->list_sensor.size(); j++){
     k4n::dev::Sensor* sensor = *std::next(master->list_sensor.begin(), j);
-    this->close_sensor(master, sensor);
+    sensor->remove_entity();
   }
 
   //---------------------------

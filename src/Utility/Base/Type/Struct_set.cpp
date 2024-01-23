@@ -108,6 +108,8 @@ void Set::delete_entity(utl::type::Entity* entity){
     subset->delete_entity(entity);
   }
 
+  this->select_next_entity();
+
   //---------------------------
 }
 void Set::delete_entity_all(){
