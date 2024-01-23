@@ -1,14 +1,14 @@
 #include "Operation.h"
 
 
-namespace ope::src{
+namespace eng::ope{
 
 // Constructor / Destructor
 Operation::Operation(){
   //---------------------------
 
-  this->ope_transform = new ope::src::Transformation();
-  this->ope_attribut = new ope::src::Attribut();
+  this->ope_transform = new eng::ope::Transformation();
+  this->ope_attribut = new eng::ope::Attribut();
 
   //---------------------------
 }

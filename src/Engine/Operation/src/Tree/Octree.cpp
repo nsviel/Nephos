@@ -4,7 +4,7 @@
 #include <Utility/Specific/color.h>
 
 
-namespace ope::src{
+namespace eng::ope{
 
 //Constructor / destructor
 Octree::Octree(){

@@ -46,7 +46,7 @@ private:
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
   camera::src::Control* cam_control;
-  ope::src::Operation* ope_operation;
+  eng::ope::Operation* ope_operation;
 
   bool* panel_show;;
 };

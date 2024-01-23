@@ -59,7 +59,7 @@ private:
   Engine* engine;
   eng::scene::Scene* sce_scene;
   eng::scene::Glyph* sce_glyph;
-  ope::src::Transformation* ope_transform;
+  eng::ope::Transformation* ope_transform;
   K4A_capture* k4a_capture;
   K4A_playback* k4a_playback;
 };

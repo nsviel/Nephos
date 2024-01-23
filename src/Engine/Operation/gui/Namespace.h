@@ -4,7 +4,7 @@
 #include <Engine/Operation/gui/Profiler.h>
 
 
-namespace ope::gui{
+namespace eng::ope::gui{
   //---------------------------
 
   class Control;

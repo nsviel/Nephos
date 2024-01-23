@@ -34,7 +34,7 @@ public:
   void resize();
 
 private:
-  ope::gui::Control* ope_control;
+  eng::ope::gui::Control* ope_control;
   utl::element::Window* utl_window;
   utl::gui::plot::Profiler* profiler;
   camera::gui::Control* cam_control;

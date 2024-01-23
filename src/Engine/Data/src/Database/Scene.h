@@ -45,7 +45,7 @@ private:
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
   eng::scene::Loader* sce_loader;
-  ope::src::Attribut* ope_attribut;
+  eng::ope::Attribut* ope_attribut;
 
   utl::type::Set* set_scene;
 };

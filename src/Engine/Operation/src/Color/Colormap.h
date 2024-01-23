@@ -8,7 +8,7 @@ using namespace std;
 using namespace glm;
 
 
-namespace ope::src{
+namespace eng::ope{
 
 class Colormap
 {

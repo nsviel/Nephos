@@ -18,8 +18,8 @@ Loader::Loader(Engine* engine, bool* show_window, string name) : Panel(show_wind
   this->sce_scene = node_scene->get_scene();
   this->sce_loader = node_scene->get_scene_loader();
   this->sce_bookmark = node_scene->get_scene_bookmark();
-  this->ope_transform = new ope::src::Transformation();
-  this->ope_operation = new ope::src::Operation();
+  this->ope_transform = new eng::ope::Transformation();
+  this->ope_operation = new eng::ope::Operation();
   this->default_dir = file::get_current_parent_path_abs();
   this->current_dir = default_dir;
 

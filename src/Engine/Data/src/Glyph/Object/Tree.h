@@ -22,7 +22,7 @@ public:
   inline int* get_level(){return &level;}
 
 private:
-  ope::src::Octree* octreeManager;
+  eng::ope::Octree* octreeManager;
   int level;
 };
 

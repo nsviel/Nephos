@@ -9,7 +9,7 @@ class Engine;
 class VK_info;
 
 
-namespace ope::gui{
+namespace eng::ope::gui{
 
 class Profiler
 {

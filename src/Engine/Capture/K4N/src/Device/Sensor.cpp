@@ -19,7 +19,7 @@ Sensor::Sensor(Engine* engine){
   this->k4a_playback = new K4A_playback(engine);
   this->sce_scene = node_scene->get_scene();
   this->sce_glyph = node_scene->get_scene_glyph();
-  this->ope_transform = new ope::src::Transformation();
+  this->ope_transform = new eng::ope::Transformation();
 
   this->type = "k4n::src::device::Sensor";
   this->icon = ICON_FA_CAMERA_RETRO;

@@ -6,7 +6,7 @@
 #include <Engine/Engine.h>
 
 
-namespace ope::gui{
+namespace eng::ope::gui{
 
 //Constructor / Destructor
 Profiler::Profiler(Engine* engine, bool* show_window, string name){

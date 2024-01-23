@@ -4,7 +4,7 @@
 #include <Engine/Operation/src/Namespace.h>
 
 
-namespace ope::src{
+namespace eng::ope{
 
 class Operation
 {
@@ -27,8 +27,8 @@ public:
   void make_rotation_X_90d(utl::type::Entity* entity, int value);
 
 private:
-  ope::src::Transformation* ope_transform;
-  ope::src::Attribut* ope_attribut;
+  eng::ope::Transformation* ope_transform;
+  eng::ope::Attribut* ope_attribut;
 };
 
 }

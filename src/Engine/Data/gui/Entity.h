@@ -35,8 +35,8 @@ public:
 
 private:
   Panel* gui_render_panel;
-  ope::src::Attribut* ope_attribut;
-  ope::src::Operation* ope_operation;
+  eng::ope::Attribut* ope_attribut;
+  eng::ope::Operation* ope_operation;
   eng::scene::Scene* sce_scene;
 
   utl::type::Entity* entity;
