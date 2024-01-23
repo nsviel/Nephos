@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <Engine/Render/src/Shader/Base/BASE_shader.h>
 #include <Engine/Render/src/Shader/Namespace.h>
-#include <GUI/GUI_utility/Base/Namespace.h>
+#include <Utility/GUI/Base/Panel.h>
 #include <GUI/GUI_utility/Editor/Namespace.h>
 #include <GUI/GUI_utility/Widget/Namespace.h>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI/GUI_utility/Base/Namespace.h>
+#include <Utility/GUI/Base/Panel.h>
 #include <Engine/Render/gui/Media/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/K4N/Namespace.h>

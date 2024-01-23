@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <GUI/GUI_utility/Base/Namespace.h>
+#include <Utility/GUI/Base/Panel.h>
 
 class GUI;
 class VK_info;

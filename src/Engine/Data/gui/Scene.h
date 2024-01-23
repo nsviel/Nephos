@@ -2,7 +2,7 @@
 
 
 #include <Utility/Specific/common.h>
-#include <GUI/GUI_utility/Base/Namespace.h>
+#include <Utility/GUI/Base/Panel.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Data/gui/Entity.h>

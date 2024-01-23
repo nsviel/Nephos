@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI/GUI_utility/Base/Panel.h>
+#include <Utility/GUI/Base/Panel.h>
 
 
 namespace gui::base{

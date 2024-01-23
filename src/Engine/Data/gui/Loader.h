@@ -4,7 +4,7 @@
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Data/src/Loader/Item.h>
-#include <GUI/GUI_utility/Base/Namespace.h>
+#include <Utility/GUI/Base/Panel.h>
 
 class Engine;
 
