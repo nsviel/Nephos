@@ -4,7 +4,7 @@
 #include <GUI/TAB_render/Data/Namespace.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <GUI/TAB_render/Engine/Namespace.h>
-#include <Engine/Capture/K4N/gui/Namespace.h>
+
 
 
 class GUI;
@@ -49,8 +49,7 @@ private:
   gui::engine::Profiler* rnd_profiler;
   gui::engine::Renderer* rnd_render;
   gui::engine::Camera* rnd_camera;
-  gui::kinect::Stream* rnd_stream;
-  gui::kinect::Device* rnd_kinect;
+
   gui::rnd::data::Scene* rnd_scene;
   gui::rnd::data::Loader* rnd_loader;
 };
