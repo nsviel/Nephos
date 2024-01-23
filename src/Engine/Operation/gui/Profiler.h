@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/GUI/Base/Panel.h>
-#include <GUI/GUI_utility/Plot/Namespace.h>
+#include <Utility/GUI/Plot/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
 

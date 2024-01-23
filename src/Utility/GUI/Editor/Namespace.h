@@ -1,8 +1,8 @@
 #pragma once
 
-#include <GUI/GUI_utility/Editor/Hexa.h>
-#include <GUI/GUI_utility/Editor/Node.h>
-#include <GUI/GUI_utility/Editor/Text.h>
+#include <Utility/GUI/Editor/Hexa.h>
+#include <Utility/GUI/Editor/Node.h>
+#include <Utility/GUI/Editor/Text.h>
 
 
 namespace gui::editor{

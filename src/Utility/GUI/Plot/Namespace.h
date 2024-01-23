@@ -1,7 +1,7 @@
 #pragma once
 
-#include <GUI/GUI_utility/Plot/Plotting.h>
-#include <GUI/GUI_utility/Plot/Profiler.h>
+#include <Utility/GUI/Plot/Plotting.h>
+#include <Utility/GUI/Plot/Profiler.h>
 
 
 namespace gui::plot{

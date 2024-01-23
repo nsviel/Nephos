@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 #include <Utility/GUI/Base/Panel.h>
-#include <GUI/GUI_utility/Editor/Namespace.h>
+#include <Utility/GUI/Editor/Namespace.h>
 
 class GUI;
 class Text;
