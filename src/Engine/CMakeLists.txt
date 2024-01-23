@@ -10,7 +10,7 @@ file(GLOB_RECURSE ALL_SOURCES
   Capture/Node.cpp
   Operation/*.cpp
   Render/*.cpp
-  Scene/*.cpp
+  Data/*.cpp
   Shader/*.cpp
   Engine.cpp
 )

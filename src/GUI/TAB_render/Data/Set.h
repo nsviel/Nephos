@@ -2,7 +2,7 @@
 
 
 #include <Utility/Specific/common.h>
-#include <Engine/Scene/Namespace.h>
+#include <Engine/Data/Namespace.h>
 
 class GUI;
 

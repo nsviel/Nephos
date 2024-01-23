@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Engine/Scene/Namespace.h>
+#include <Engine/Data/Namespace.h>
 
 
 namespace eng::scene{

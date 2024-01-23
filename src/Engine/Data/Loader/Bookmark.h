@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Engine/Scene/Namespace.h>
+#include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Scene/Loader/Item.h>
+#include <Engine/Data/Loader/Item.h>
 
 namespace eng::scene{
 

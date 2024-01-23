@@ -1,7 +1,7 @@
 #include "Control.h"
 
 #include <Engine/Engine.h>
-#include <Engine/Scene/Namespace.h>
+#include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Utility/Element/Window.h>

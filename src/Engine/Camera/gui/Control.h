@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <Engine/Scene/Namespace.h>
+#include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 

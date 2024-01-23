@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Scene/Namespace.h>
+#include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>

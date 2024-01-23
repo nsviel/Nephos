@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Scene/Glyph/World/Axis.h>
+#include <Engine/Data/Glyph/World/Axis.h>
 
 
 namespace glyph::world{

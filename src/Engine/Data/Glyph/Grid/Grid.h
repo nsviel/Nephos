@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Entity/Glyph.h>
-#include <Engine/Scene/Glyph/Grid/Namespace.h>
+#include <Engine/Data/Glyph/Grid/Namespace.h>
 
 namespace glyph::grid{
 
