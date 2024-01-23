@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <GUI/TAB_render/Data/Namespace.h>
+#include <Engine/Data/gui/Namespace.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <Engine/Camera/gui/Panel.h>
 #include <GUI/TAB_render/Engine/Namespace.h>
