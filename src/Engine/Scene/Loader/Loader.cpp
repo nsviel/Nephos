@@ -60,7 +60,10 @@ utl::type::Entity* Loader::load_entity(std::string path){
     eng::capture::Node* node_capture = engine->get_node_capture();
     k4n::Node* node_kinect = node_capture->get_node_kinect();
     k4n::dev::Swarm* k4n_swarm = node_kinect->get_k4n_swarm();
-    k4n_swarm->create_sensor_playback(path);
+
+    utl::media::File file;
+    file.path_data = path;
+    k4n_swarm->create_sensor_playback(file);
   }else{
     entity = load_object(path);
   }
