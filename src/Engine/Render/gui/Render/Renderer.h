@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 #include <GUI/TAB_render/Engine/Namespace.h>
-#include <GUI/GUI_utility/Media/Namespace.h>
+#include <Engine/Render/gui/Media/Namespace.h>
 #include <GUI/GUI_utility/Plot/Namespace.h>
 #include <Engine/Camera/gui/Control.h>
 
