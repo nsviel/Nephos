@@ -116,7 +116,7 @@ void Sensor::run_playback(string path){
   //---------------------------
 
   this->stop_threads();
-  this->param.file_path = path;
+  this->param.path_data = path;
   k4a_playback->start_thread(this);
 
   //---------------------------

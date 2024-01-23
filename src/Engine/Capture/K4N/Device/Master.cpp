@@ -58,8 +58,8 @@ void Master::update_player(){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
 
     k4n::utils::Operation k4n_operation;
-    float ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.file_path);
-    float ts_end = k4n_operation.find_mkv_ts_end(sensor->param.file_path);
+    float ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.path_data);
+    float ts_end = k4n_operation.find_mkv_ts_end(sensor->param.path_data);
 
     this->player.ts_beg = (player.ts_beg != -1) ? std::max(player.ts_beg, ts_beg) : ts_beg;
     this->player.ts_end = (player.ts_end != -1) ? std::min(player.ts_end, ts_end) : ts_end;
@@ -70,7 +70,7 @@ void Master::update_player(){
   for(int i=0; i<list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *next(list_sensor.begin(), i);
     player = player;
-    sensor->run_playback(sensor->param.file_path);
+    sensor->run_playback(sensor->param.path_data);
   }
 
   //---------------------------

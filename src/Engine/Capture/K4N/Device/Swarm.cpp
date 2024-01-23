@@ -27,13 +27,13 @@ Swarm::~Swarm(){}
 void Swarm::init_scene(){
   //---------------------------
 
-  vector<string> vec_path_file;
-  vec_path_file.push_back("/home/aether/Desktop/versaille_0.mkv");
-  vec_path_file.push_back("/home/aether/Desktop/versaille_2.mkv");
+  utl::media::File file_1;
+  file_1.path_data = "/home/aether/Desktop/versaille_0.mkv";
+  file_1.path_transfo = "/home/aether/Desktop/versaille_0.json";
 
-  vector<string> vec_path_transfo;
-  vec_path_transfo.push_back("/home/aether/Desktop/versaille_0.json");
-  vec_path_transfo.push_back("/home/aether/Desktop/versaille_2.json");
+  utl::media::File file_2;
+  file_2.path_data = "/home/aether/Desktop/versaille_2.mkv";
+  file_2.path_transfo = "/home/aether/Desktop/versaille_2.json";
 
   //If no real device create virtual one
   k4n::dev::Master* master = get_or_create_master("versaille");
@@ -41,17 +41,16 @@ void Swarm::init_scene(){
   if(current_nb_dev != 0) return;
 
   //Create playback list
-  for(int i=0; i<vec_path_file.size(); i++){
-    this->create_sensor_playback(master, vec_path_file[i], vec_path_transfo[i]);
-  }
+  this->create_sensor_playback(master, file_1);
+  this->create_sensor_playback(master, file_2);
 
   //---------------------------
 }
 
 //Sensor function
-void Swarm::create_sensor_playback(k4n::dev::Master* master, string path_file, string path_transfo){
-  if(!file::is_file_exist(path_file)) return;
-  if(!file::is_file_exist(path_transfo)) return;
+void Swarm::create_sensor_playback(k4n::dev::Master* master, utl::media::File& file){
+  if(!file::is_file_exist(file.path_data)) return;
+  if(!file::is_file_exist(file.path_transfo)) return;
   //---------------------------
 
   int index = master->list_sensor.size();
@@ -59,9 +58,9 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path_file, s
   sensor->name = "playback_" + to_string(index);
   sensor->param.index = index;
   sensor->param.is_playback = true;
-  sensor->param.file_path = path_file;
-  sensor->param.file_name = info::get_filename_from_path(path_file);
-  sensor->param.path_transfo = path_transfo;
+  sensor->param.path_data = file.path_data;
+  sensor->param.file_name = info::get_filename_from_path(file.path_data);
+  sensor->param.path_transfo = file.path_transfo;
   sensor->master = master;
 
   this->selected_sensor = sensor;
@@ -69,7 +68,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path_file, s
 
   sensor->init();
   sce_scene->assign_entity_UID(sensor);
-  k4n_transfo->find_transformation_from_file(sensor, path_transfo);
+  k4n_transfo->find_transformation_from_file(sensor, file.path_transfo);
 
   //---------------------------
 }
@@ -82,7 +81,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
   sensor->name = "playback_" + to_string(index);
   sensor->param.index = index;
   sensor->param.is_playback = true;
-  sensor->param.file_path = path;
+  sensor->param.path_data = path;
   sensor->param.file_name = info::get_filename_from_path(path);
   sensor->master = master;
 
@@ -106,7 +105,7 @@ void Swarm::create_sensor_playback(string path){
   sensor->name = "playback_" + to_string(index);
   sensor->param.index = index;
   sensor->param.is_playback = true;
-  sensor->param.file_path = path;
+  sensor->param.path_data = path;
   sensor->param.file_name = info::get_filename_from_path(path);
   sensor->master = master;
 

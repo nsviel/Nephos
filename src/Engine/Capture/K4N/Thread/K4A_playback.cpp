@@ -44,7 +44,7 @@ void K4A_playback::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Init playback
-  k4a::playback playback = k4a::playback::open(sensor->param.file_path.c_str());
+  k4a::playback playback = k4a::playback::open(sensor->param.path_data.c_str());
   if(!playback) return;
   this->thread_running = true;
   sensor->param.playback = &playback;
