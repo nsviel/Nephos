@@ -2,10 +2,10 @@
 
 #include <Engine/Engine.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Engine/Render/Renderpass/RP_scene.h>
-#include <Engine/Render/Renderpass/RP_glyph.h>
-#include <Engine/Render/Renderpass/RP_edl.h>
-#include <Engine/Render/Renderpass/RP_gui.h>
+#include <Engine/Render/src/Renderpass/RP_scene.h>
+#include <Engine/Render/src/Renderpass/RP_glyph.h>
+#include <Engine/Render/src/Renderpass/RP_edl.h>
+#include <Engine/Render/src/Renderpass/RP_gui.h>
 
 
 //Constructor / Destructor

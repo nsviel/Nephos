@@ -3,7 +3,7 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Render/Shader/Namespace.h>
+#include <Engine/Render/src/Shader/Namespace.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
 class Engine;
@@ -15,12 +15,12 @@ class VK_uniform;
 class VK_drawing;
 
 
-class RP_glyph
+class RP_scene
 {
 public:
   //Constructor / Destructor
-  RP_glyph(Engine* engine);
-  ~RP_glyph();
+  RP_scene(Engine* engine);
+  ~RP_scene();
 
 public:
   //Init functions
@@ -31,6 +31,7 @@ public:
   void draw_scene(vk::structure::Subpass* subpass);
   void cmd_draw_point(vk::structure::Subpass* subpass);
   void cmd_draw_line(vk::structure::Subpass* subpass);
+  void cmd_draw_triangle(vk::structure::Subpass* subpass);
 
 private:
   eng::shader::Node* node_shader;

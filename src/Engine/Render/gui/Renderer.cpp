@@ -19,7 +19,7 @@ Renderer::Renderer(Engine* engine){
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->utl_window = utility->get_utl_window();
-  this->gui_control = new gui::engine::Control(engine);
+  //this->gui_control = new gui::engine::Control(engine);
   this->cam_control = new camera::gui::Control(engine);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->vk_info = eng_vulkan->get_vk_info();
@@ -40,7 +40,7 @@ void Renderer::design_panel(){
   if(ImGui::Begin("Renderer", NULL)){
     ImVec2 image_pose = ImGui::GetCursorScreenPos();
     this->engine_texture();
-    this->engine_control();
+    //this->engine_control();
     this->engine_overlay(image_pose);
     ImGui::End();
   }
@@ -104,7 +104,7 @@ void Renderer::engine_control(){
     int center_y = windowPos.y + windowSize.y * 0.5f;
     ImVec2 center = ImVec2(center_x, center_y);
 
-    gui_control->run_control();
+    //gui_control->run_control();
     cam_control->run_control(center);
   }
 

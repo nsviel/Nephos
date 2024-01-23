@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include <Engine/Render/Shader/EDL/EDL_param.h>
-#include <Engine/Render/Shader/Base/BASE_shader.h>
+#include <Engine/Render/src/Shader/EDL/EDL_param.h>
+#include <Engine/Render/src/Shader/Base/BASE_shader.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
