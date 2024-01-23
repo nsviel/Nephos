@@ -25,7 +25,6 @@ public:
   //Main function
   void init();
   void reset();
-  void destroy();
 
   //Entity function
   void update_entity();

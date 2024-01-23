@@ -77,7 +77,7 @@ void Entity::entity_button(utl::type::Entity* entity){
 
   //Suppression
   if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
-    sce_scene->delete_entity(entity);
+    sce_scene->delete_scene_entity(entity);
     this->close_panel();
     return;
   }

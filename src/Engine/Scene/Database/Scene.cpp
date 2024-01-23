@@ -104,7 +104,7 @@ void Scene::init_entity(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Scene::delete_entity(utl::type::Entity* entity){
+void Scene::delete_scene_entity(utl::type::Entity* entity){
   if(entity->is_suppressible == false) return;
   //---------------------------
 
@@ -133,7 +133,7 @@ void Scene::delete_set(utl::type::Set* set){
   //set_scene->select_next_entity();
 
   //Delete it from database and engine
-  //set_scene->delete_entity(entity);
+  //set_scene->delete_scene_entity(entity);
 
   //---------------------------
 }

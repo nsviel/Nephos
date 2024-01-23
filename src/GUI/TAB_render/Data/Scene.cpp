@@ -53,7 +53,7 @@ void Scene::draw_button(){
     if(set->is_locked){
       sce_scene->delete_set(set);
     }else if(set->is_locked){
-      sce_scene->delete_entity(set->selected_entity);
+      sce_scene->delete_scene_entity(set->selected_entity);
     }
   }
 

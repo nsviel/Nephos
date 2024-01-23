@@ -50,7 +50,7 @@ void Capture::kinect_devices(){
   flags |= ImGuiTableFlags_RowBg;
   static int selected_device = -1;
   if(ImGui::BeginTable("database_view", 3, flags)){
-    if(k4n_swarm->get_nb_dev_capture() == 0){
+    if(k4n_swarm->get_list_master().size() == 0){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       ImGui::TableNextColumn();

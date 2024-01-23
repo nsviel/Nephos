@@ -29,7 +29,7 @@ Sensor::Sensor(Engine* engine){
 Sensor::~Sensor(){
   //---------------------------
 
-  this->destroy();
+  this->remove_entity();
 
   //---------------------------
 }
@@ -57,15 +57,6 @@ void Sensor::reset(){
 
   //---------------------------
 }
-void Sensor::destroy(){
-  //---------------------------
-
-  this->stop_threads();
-  this->param.transformation.destroy();
-  sce_scene->delete_entity(object);
-
-  //---------------------------
-}
 
 //Entity function
 void Sensor::update_entity(){
@@ -84,6 +75,13 @@ void Sensor::remove_entity(){
   k4n::dev::Swarm* k4n_swarm = node_kinect->get_k4n_swarm();
   //---------------------------
 
+  //First, destroy own elements
+  this->stop_threads();
+  this->param.transformation.destroy();
+  this->object->remove_entity();
+
+  //Second, delete set references
+  master->delete_entity(this);
   k4n_swarm->close_sensor(master, this);
 
   //---------------------------

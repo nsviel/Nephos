@@ -51,7 +51,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path_file, s
   if(!file::is_file_exist(path_transfo)) return;
   //---------------------------
 
-  int index = nb_dev_playback++;
+  int index = master->list_sensor.size();
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
   sensor->name = "playback_" + to_string(index);
   sensor->param.index = index;
@@ -74,7 +74,7 @@ void Swarm::create_sensor_playback(k4n::dev::Master* master, string path){
   if(!file::is_file_exist(path)) return;
   //---------------------------
 
-  int index = nb_dev_playback++;
+  int index = master->list_sensor.size();
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
   sensor->name = "playback_" + to_string(index);
   sensor->param.index = index;
@@ -98,7 +98,7 @@ void Swarm::create_sensor_playback(string path){
 
   k4n::dev::Master* master = selected_master;
 
-  int index = nb_dev_playback++;
+  int index = master->list_sensor.size();
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
   sensor->name = "playback_" + to_string(index);
   sensor->param.index = index;
@@ -119,7 +119,7 @@ void Swarm::create_sensor_playback(string path){
 void Swarm::create_sensor_capture(k4n::dev::Master* master){
   //---------------------------
 
-  int index = nb_dev_capture++;
+  int index = master->list_sensor.size();
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(engine);
   sensor->name = "device_" + to_string(index);
   sensor->param.index = index;
@@ -141,9 +141,7 @@ void Swarm::close_sensor(k4n::dev::Master* master, k4n::dev::Sensor* sensor){
   for(int i=0; i<master->list_sensor.size(); i++){
     k4n::dev::Sensor* sensor_in_list = *std::next(master->list_sensor.begin(), i);
     if(sensor->UID == sensor_in_list->UID){
-      sensor->destroy();
       master->list_sensor.remove(sensor);
-      sensor->param.is_playback ? nb_dev_playback-- : nb_dev_capture--;
       delete(sensor);
       sensor = nullptr;
     }
