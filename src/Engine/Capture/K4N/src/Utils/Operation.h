@@ -4,7 +4,7 @@
 #include <Engine/Capture/K4N/src/Device/Namespace.h>
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Operation/Color/Heatmap.h>
+#include <Engine/Operation/src/Color/Heatmap.h>
 #include <k4arecord/playback.hpp>
 
 

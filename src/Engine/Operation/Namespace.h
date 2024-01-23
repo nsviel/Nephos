@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Engine/Operation/Transformation/Attribut.h>
-#include <Engine/Operation/Transformation/Transformation.h>
-#include <Engine/Operation/Transformation/Operation.h>
-#include <Engine/Operation/Color/Colormap.h>
-#include <Engine/Operation/Color/Heatmap.h>
-#include <Engine/Operation/Tree/Octree.h>
+#include <Engine/Operation/src/Transformation/Attribut.h>
+#include <Engine/Operation/src/Transformation/Transformation.h>
+#include <Engine/Operation/src/Transformation/Operation.h>
+#include <Engine/Operation/src/Color/Colormap.h>
+#include <Engine/Operation/src/Color/Heatmap.h>
+#include <Engine/Operation/src/Tree/Octree.h>
 
 
 namespace eng::ope{
