@@ -24,7 +24,7 @@ Control::Control(Engine* engine){
   this->cam_control = node_camera->get_camera_control();
   this->sce_scene = node_scene->get_scene();
   this->sce_database = node_scene->get_scene_database();
-  this->ope_operation = new eng::ope::Operation();
+  this->ope_operation = new ope::src::Operation();
 
   //---------------------------
 }

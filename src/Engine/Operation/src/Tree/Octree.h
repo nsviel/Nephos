@@ -24,7 +24,7 @@ struct Root{
 };
 
 
-namespace eng::ope{
+namespace ope::src{
 
 class Octree
 {

@@ -26,7 +26,7 @@ public:
   void colorization_heatmap(k4n::src::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba);
 
 private:
-  eng::ope::Heatmap* ope_heatmap;
+  ope::src::Heatmap* ope_heatmap;
 };
 
 }

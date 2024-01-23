@@ -8,7 +8,7 @@
 #include <Engine/Operation/src/Tree/Octree.h>
 
 
-namespace eng::ope{
+namespace ope::src{
   //---------------------------
 
   class Colormap;

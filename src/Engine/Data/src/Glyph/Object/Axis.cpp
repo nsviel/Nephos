@@ -9,7 +9,7 @@ Axis::Axis(Engine* engine) : Glyph(engine){
 
   this->is_permanent = true;
   this->is_visible = true;
-  this->ope_transform = new eng::ope::Transformation();
+  this->ope_transform = new ope::src::Transformation();
 
   //---------------------------
 }

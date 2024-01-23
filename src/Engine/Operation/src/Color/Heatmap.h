@@ -5,7 +5,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace eng::ope{
+namespace ope::src{
 
 class Heatmap
 {
@@ -27,8 +27,8 @@ public:
   inline vec2* get_range_height(){return &range_height;}
 
 private:
-  eng::ope::Colormap* colormapManager;
-  eng::ope::Attribut* attribManager;
+  ope::src::Colormap* colormapManager;
+  ope::src::Attribut* attribManager;
 
   vector<vec4> heatmap;
   vec2 range_norm;

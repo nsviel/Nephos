@@ -17,7 +17,7 @@ Scene::Scene(eng::scene::Node* node_scene){
   this->sce_database = node_scene->get_scene_database();
   this->sce_glyph = node_scene->get_scene_glyph();
   this->vk_engine = eng_vulkan->get_vk_engine();
-  this->ope_attribut = new eng::ope::Attribut();
+  this->ope_attribut = new ope::src::Attribut();
   this->sce_loader = node_scene->get_scene_loader();
 
   //---------------------------

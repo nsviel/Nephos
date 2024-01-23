@@ -18,7 +18,7 @@ Scene::Scene(Engine* engine, bool* show_window, string name) : Panel(show_window
   this->rnd_set = new gui::rnd::data::Set(&show_panel_set);
   this->rnd_object = new gui::rnd::data::Entity(engine, &show_panel_entity);
   this->cam_control = node_camera->get_camera_control();
-  this->ope_operation = new eng::ope::Operation();
+  this->ope_operation = new ope::src::Operation();
 
   //---------------------------
 }

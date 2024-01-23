@@ -41,8 +41,8 @@ private:
   eng::scene::Scene* sce_scene;
   eng::scene::Loader* sce_loader;
   eng::scene::Bookmark* sce_bookmark;
-  eng::ope::Transformation* ope_transform;
-  eng::ope::Operation* ope_operation;
+  ope::src::Transformation* ope_transform;
+  ope::src::Operation* ope_operation;
 
   vector<Item> vec_item_folder;
   vector<Item> vec_item_file;

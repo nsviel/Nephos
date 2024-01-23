@@ -34,7 +34,7 @@ private:
   eng::scene::Database* sce_database;
   camera::src::Control* cam_control;
   camera::src::Manager* cam_manager;
-  eng::ope::Operation* ope_operation;
+  ope::src::Operation* ope_operation;
 };
 
 }

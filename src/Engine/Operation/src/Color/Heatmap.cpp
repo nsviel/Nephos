@@ -3,14 +3,14 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
-namespace eng::ope{
+namespace ope::src{
 
 //Constructor / destructor
 Heatmap::Heatmap(){
   //---------------------------
 
-  this->colormapManager = new eng::ope::Colormap();
-  this->attribManager = new eng::ope::Attribut();
+  this->colormapManager = new ope::src::Colormap();
+  this->attribManager = new ope::src::Attribut();
 
   this->is_normalization = true;
   this->range_norm = vec2(0.0f, 1.0f);
