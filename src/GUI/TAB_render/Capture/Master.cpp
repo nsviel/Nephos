@@ -19,7 +19,7 @@ Master::Master(k4n::Node* node_kinect){
 Master::~Master(){}
 
 //Main function
-void Master::tab_master(k4n::dev::Master* master){
+void Master::show_master_info(k4n::dev::Master* master){
   //---------------------------
 
   this->show_info(master);

@@ -12,7 +12,7 @@ Sensor::Sensor(k4n::Node* node_kinect){
   this->node_kinect = node_kinect;
   this->k4n_swarm = node_kinect->get_k4n_swarm();
   this->k4n_transfo = new k4n::utils::Transformation();
-  
+
   this->item_width = 100;
 
   //---------------------------
@@ -20,11 +20,21 @@ Sensor::Sensor(k4n::Node* node_kinect){
 Sensor::~Sensor(){}
 
 //Main function
-void Sensor::show_info(k4n::dev::Sensor* sensor){
+void Sensor::show_sensor(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
-    ImGui::Separator();
+  this->show_sensor_info(sensor);
+  this->show_sensor_transfo(sensor);
+
+  //---------------------------
+}
+
+//Subfunction
+void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  ImGui::Separator();
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   if(ImGui::BeginTable("Kinect_info##general", 2)){
     //Type
@@ -39,6 +49,11 @@ void Sensor::show_info(k4n::dev::Sensor* sensor){
 
     ImGui::EndTable();
   }
+
+  //---------------------------
+}
+void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
+  //---------------------------
 
   //Object model matrix
   mat4& model = sensor->object->pose->model;

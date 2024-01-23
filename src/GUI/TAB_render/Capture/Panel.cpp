@@ -74,7 +74,7 @@ void Panel::show_master_tab(k4n::dev::Master* master){
 
   string name = master->icon + "  " + "Master";
   if(ImGui::BeginTabItem(name.c_str(), NULL)){
-    gui_master->tab_master(master);
+    gui_master->show_master_info(master);
     ImGui::EndTabItem();
   }
 
@@ -89,7 +89,7 @@ void Panel::show_sensor_tab(k4n::dev::Sensor* sensor){
   string name = sensor->icon + "  " + sensor->name;
   if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
 
-    gui_sensor->show_info(sensor);
+    gui_sensor->show_sensor(sensor);
     gui_capture->show_sensor_configuration();
     gui_playback->show_sensor_configuration();
     gui_recorder->show_sensor_recorder();

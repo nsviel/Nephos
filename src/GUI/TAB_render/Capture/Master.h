@@ -16,7 +16,7 @@ public:
   ~Master();
 
   //Main function
-  void tab_master(k4n::dev::Master* master);
+  void show_master_info(k4n::dev::Master* master);
 
   //Subfunction
   void show_info(k4n::dev::Master* master);
