@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/Utils/Namespace.h>
+#include <Engine/Capture/K4N/src/Utils/Namespace.h>
 #include <Engine/Scene/Namespace.h>
 #include <Utility/Specific/common.h>
 

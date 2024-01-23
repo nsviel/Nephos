@@ -1,6 +1,6 @@
 #include "Master.h"
 
-#include <Engine/Capture/K4N/Utils/Namespace.h>
+#include <Engine/Capture/K4N/src/Utils/Namespace.h>
 
 namespace k4n::dev{
 
