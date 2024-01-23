@@ -7,8 +7,8 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_validation/Struct_validation.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Engine/Shader/EDL/EDL.h>
-#include <Engine/Shader/Scene/SCE.h>
+#include <Engine/Render/Shader/EDL/EDL.h>
+#include <Engine/Render/Shader/Scene/SCE.h>
 
 
 namespace gui::engine{

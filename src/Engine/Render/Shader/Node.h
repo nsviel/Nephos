@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Shader/Namespace.h>
+#include <Engine/Render/Shader/Namespace.h>
 
 class Engine;
 

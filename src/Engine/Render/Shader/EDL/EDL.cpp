@@ -35,10 +35,10 @@ void EDL::init_shader(){
   Shader_info* shader_info = new Shader_info();
   shader_info->title = "EDL";
   shader_info->folder = "EDL";
-  shader_info->path_glsl_vs = "../src/Engine/Shader/EDL/glsl/shader_edl_vs.vert";
-  shader_info->path_glsl_fs = "../src/Engine/Shader/EDL/glsl/shader_edl_fs.frag";
-  shader_info->path_spir_vs = "../src/Engine/Shader/EDL/spir/shader_edl_vs.spv";
-  shader_info->path_spir_fs = "../src/Engine/Shader/EDL/spir/shader_edl_fs.spv";
+  shader_info->path_glsl_vs = "../src/Engine/Render/Shader/EDL/glsl/shader_edl_vs.vert";
+  shader_info->path_glsl_fs = "../src/Engine/Render/Shader/EDL/glsl/shader_edl_fs.frag";
+  shader_info->path_spir_vs = "../src/Engine/Render/Shader/EDL/spir/shader_edl_vs.spv";
+  shader_info->path_spir_fs = "../src/Engine/Render/Shader/EDL/spir/shader_edl_fs.spv";
   shader_info->compile_shader = true;
   shader_info->with_depth_test = true;
   shader_info->has_parameter = true;
