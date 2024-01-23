@@ -34,6 +34,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_VULKAN
   LIBRARY_K4N
+  LIBRARY_GUI
 
   Eigen3::Eigen # Eigen
   tins          # Sniffer
