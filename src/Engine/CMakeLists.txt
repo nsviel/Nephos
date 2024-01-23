@@ -3,13 +3,16 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 #-----------------
 # Source files
 #-----------------
+add_subdirectory(Camera)
+add_subdirectory(Operation)
+add_subdirectory(Render)
 add_subdirectory(Capture/K4N)
 
 file(GLOB_RECURSE ALL_SOURCES
-  Camera/*.cpp
+  #Camera/*.cpp
   Capture/Node.cpp
-  Operation/*.cpp
-  Render/*.cpp
+  #Operation/*.cpp
+  #Render/*.cpp
   Data/*.cpp
   Shader/*.cpp
   Engine.cpp
@@ -35,6 +38,9 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_VULKAN
   LIBRARY_K4N
   LIBRARY_GUI
+  LIBRARY_ENGINE_RENDER
+  LIBRARY_ENGINE_CAMERA
+  LIBRARY_ENGINE_OPERATION
 
   Eigen3::Eigen # Eigen
   tins          # Sniffer

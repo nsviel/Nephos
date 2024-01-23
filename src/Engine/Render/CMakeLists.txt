@@ -1,9 +1,8 @@
-set(LIBRARY_NAME LIBRARY_K4N)
+set(LIBRARY_NAME LIBRARY_ENGINE_RENDER)
 
 #-----------------
 # Source files
 #-----------------
-
 
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
@@ -23,8 +22,8 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_VULKAN
   LIBRARY_ENGINE
-
-  -lturbojpeg   # Convertion JPEG -> BRGA
+  LIBRARY_ENGINE_CAMERA
+  LIBRARY_ENGINE_OPERATION
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
