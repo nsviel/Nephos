@@ -4,7 +4,7 @@
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <GUI/GUI_utility/Base/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <GUI/TAB_render/Capture/Namespace.h>
+#include <Engine/Capture/K4N/gui/Namespace.h>
 
 class GUI;
 class Recorder;

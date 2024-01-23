@@ -1,7 +1,5 @@
 #include "Capture.h"
 
-#include <GUI.h>
-
 
 namespace gui::kinect{
 

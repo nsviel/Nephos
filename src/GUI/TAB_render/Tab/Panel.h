@@ -4,7 +4,7 @@
 #include <GUI/TAB_render/Data/Namespace.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <GUI/TAB_render/Engine/Namespace.h>
-#include <GUI/TAB_render/Capture/Namespace.h>
+#include <Engine/Capture/K4N/gui/Namespace.h>
 
 
 class GUI;
