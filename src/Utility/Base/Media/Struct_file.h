@@ -12,12 +12,12 @@ struct File{
   //---------------------------
 
   //Info
-  int nb_element;
-  std::string name;
-  std::string path_data;
-  std::string path_transfo;
-  std::string path_texture;
-  std::string draw_type_name;
+  int nb_element = 0;
+  std::string name = "";
+  std::string path_data = "";
+  std::string path_transfo = "";
+  std::string path_texture = "";
+  std::string draw_type_name = "";
 
   //Data
   std::vector<glm::vec3> xyz;

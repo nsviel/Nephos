@@ -18,7 +18,7 @@ Transformation::~Transformation(){}
 
 //Main function
 void Transformation::find_transformation_from_file(k4n::dev::Sensor* sensor, string path){
-  mat4 mat = mat4(1);
+  if(!file::is_file_exist(path)) return;
   //---------------------------
 
   if(is_json_file(path) == false) return;
@@ -35,6 +35,7 @@ void Transformation::find_transformation_from_file(k4n::dev::Sensor* sensor, str
   json j;
   file >> j;
 
+  mat4 mat = mat4(1);
   mat[0][0] = j["m00"];
   mat[1][0] = j["m10"];
   mat[2][0] = j["m20"];
