@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Operation/Namespace.h>
+#include <Engine/Operation/src/Namespace.h>
 
 
 namespace eng::ope{

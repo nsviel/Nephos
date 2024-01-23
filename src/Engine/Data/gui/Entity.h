@@ -3,7 +3,7 @@
 #include <Engine/Data/Namespace.h>
 
 #include <Utility/Specific/common.h>
-#include <Engine/Operation/Namespace.h>
+#include <Engine/Operation/src/Namespace.h>
 
 class Panel;
 

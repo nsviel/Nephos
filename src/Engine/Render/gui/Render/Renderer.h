@@ -33,7 +33,7 @@ public:
   void resize();
 
 private:
-  //gui::engine::Control* gui_control;
+  //gui::engine::Control* ope_control;
   util::element::Window* utl_window;
   gui::plot::Profiler* profiler;
   camera::gui::Control* cam_control;
