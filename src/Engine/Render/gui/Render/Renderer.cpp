@@ -19,7 +19,7 @@ Renderer::Renderer(Engine* engine){
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->utl_window = utility->get_utl_window();
-  //this->ope_control = new ope::gui::Control(engine);
+  this->ope_control = new ope::gui::Control(engine);
   this->cam_control = new camera::gui::Control(engine);
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->vk_info = eng_vulkan->get_vk_info();
@@ -70,7 +70,7 @@ void Renderer::engine_control(){
     int center_y = windowPos.y + windowSize.y * 0.5f;
     ImVec2 center = ImVec2(center_x, center_y);
 
-    //ope_control->run_control();
+    ope_control->run_control();
     cam_control->run_control(center);
   }
 

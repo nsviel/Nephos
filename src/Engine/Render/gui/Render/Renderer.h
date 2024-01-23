@@ -5,6 +5,7 @@
 #include <Engine/Render/gui/Media/Namespace.h>
 #include <Utility/GUI/Plot/Namespace.h>
 #include <Engine/Camera/gui/Control.h>
+#include <Engine/Operation/gui/Namespace.h>
 
 class Engine;
 class VK_imgui;
@@ -33,7 +34,7 @@ public:
   void resize();
 
 private:
-  //ope::gui::Control* ope_control;
+  ope::gui::Control* ope_control;
   util::element::Window* utl_window;
   gui::plot::Profiler* profiler;
   camera::gui::Control* cam_control;
