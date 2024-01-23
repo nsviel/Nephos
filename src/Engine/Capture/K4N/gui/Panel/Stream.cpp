@@ -1,6 +1,5 @@
 #include "Stream.h"
 
-#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Utility/Namespace.h>
 
@@ -8,10 +7,9 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Stream::Stream(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Stream::Stream(Engine* engine, bool* show_window, string name){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
   eng::capture::Node* node_capture = engine->get_node_capture();
 
   this->node_kinect = node_capture->get_node_kinect();
@@ -24,6 +22,9 @@ Stream::Stream(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   this->vec_gui_stream.push_back(new gui::media::Stream(gui));
   this->vec_gui_stream.push_back(new gui::media::Stream(gui));
   this->vec_gui_stream.push_back(new gui::media::Stream(gui));
+
+  this->show_window = show_window;
+  this->name = name;
 
   //---------------------------
 }

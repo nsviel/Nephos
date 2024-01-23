@@ -8,16 +8,16 @@
 #include <Engine/Capture/K4N/src/Data/Namespace.h>
 
 
-class GUI;
+class Engine;
 
 
 namespace gui::kinect{
 
-class Stream : public gui::base::Panel
+class Stream
 {
 public:
   //Constructor / Destructor
-  Stream(GUI* gui, bool* show_window, string name);
+  Stream(Engine* engine, bool* show_window, string name);
   ~Stream();
 
   //Main function
@@ -50,6 +50,8 @@ private:
   vector<gui::media::Stream*> vec_gui_stream;
   ImVec2 hovered_pixel;
   string open_tab = "";
+  bool* show_window;
+  string name;
 };
 
 }

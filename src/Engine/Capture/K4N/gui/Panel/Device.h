@@ -6,17 +6,17 @@
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/K4N/gui/Namespace.h>
 
-class GUI;
+class Engine;
 class Recorder;
 
 
 namespace gui::kinect{
 
-class Device : public gui::base::Panel
+class Device
 {
 public:
   //Constructor / Destructor
-  Device(GUI* gui, bool* show_window, string name);
+  Device(Engine* engine, bool* show_window, string name);
   ~Device();
 
   //Main function
@@ -39,6 +39,8 @@ private:
   gui::kinect::Sensor* gui_sensor;
   k4n::dev::Swarm* k4n_swarm;
 
+  bool* show_window;
+  string name;
   string open_tab = "";
 };
 

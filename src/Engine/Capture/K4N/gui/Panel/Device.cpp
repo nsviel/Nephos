@@ -1,6 +1,5 @@
 #include "Device.h"
 
-#include <GUI.h>
 #include <Engine/Engine.h>
 #include <Utility/Namespace.h>
 
@@ -8,10 +7,9 @@
 namespace gui::kinect{
 
 //Constructor / Destructor
-Device::Device(GUI* gui, bool* show_window, string name) : gui::base::Panel(show_window, name){
+Device::Device(Engine* engine, bool* show_window, string name){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
   eng::capture::Node* node_capture = engine->get_node_capture();
   k4n::Node* node_kinect = node_capture->get_node_kinect();
 
@@ -23,6 +21,9 @@ Device::Device(GUI* gui, bool* show_window, string name) : gui::base::Panel(show
   this->gui_master = new gui::kinect::Master(node_kinect);
   this->gui_sensor = new gui::kinect::Sensor(node_kinect);
 
+  this->show_window = show_window;
+  this->name = name;
+  
   //---------------------------
 }
 Device::~Device(){}
