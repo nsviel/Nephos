@@ -8,6 +8,8 @@
 
 class Engine;
 class VK_imgui;
+class VK_info;
+
 
 namespace gui::engine{
 class Control;

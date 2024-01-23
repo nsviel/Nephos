@@ -4,6 +4,7 @@
 #include <Engine/Data/gui/Namespace.h>
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <Engine/Camera/gui/Panel.h>
+#include <Engine/Operation/gui/Profiler.h>
 #include <GUI/TAB_render/Engine/Namespace.h>
 
 
