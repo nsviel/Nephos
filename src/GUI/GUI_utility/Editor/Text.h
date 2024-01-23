@@ -3,9 +3,6 @@
 #include <Utility/Specific/common.h>
 #include <imgui/editor/Text/editor_text.h>
 
-class GUI;
-class GUI_font;
-
 
 namespace gui::editor{
 
@@ -13,7 +10,7 @@ class Text
 {
 public:
   //Constructor / Destructor
-  Text(GUI* gui);
+  Text();
   ~Text();
 
 public:
@@ -38,7 +35,6 @@ public:
   inline void set_language(string value){editor->set_language_definition(value);}
 
 private:
-  GUI_font* gui_font;
   TextEditor* editor;
 
   string status;

@@ -3,9 +3,6 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
 
-class GUI_font;
-class GUI;
-
 
 namespace gui::element{
 
@@ -13,7 +10,7 @@ class Git
 {
 public:
   //Constructor / Destructor
-  Git(GUI* gui);
+  Git();
   ~Git();
 
 public:
@@ -25,7 +22,6 @@ public:
   void draw_branches();
 
 private:
-  GUI_font* gui_font;
   util::element::Git* git;
 };
 

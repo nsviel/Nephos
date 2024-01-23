@@ -1,16 +1,13 @@
 #include "Text.h"
 
-#include <GUI.h>
-#include <GUI/GUI_main/Style/GUI_font.h>
-
 
 namespace gui::editor{
 
 //Constructor / Destructor
-Text::Text(GUI* gui){
+Text::Text(){
   //---------------------------
 
-  this->gui_font = gui->get_gui_font();
+  //this->gui_font = gui->get_gui_font();
   this->editor = new TextEditor();
   editor->SetPalette(editor->get_custom_palette());
 
@@ -68,10 +65,10 @@ void Text::editor_render(){
   //---------------------------
 
   ImGuiIO& io = ImGui::GetIO();
-  ImFont* font = gui_font->get_font_editor();
-  ImGui::PushFont(font);
+  //ImFont* font = gui_font->get_font_editor();
+  //ImGui::PushFont(font);
   editor->Render("Editor");
-  ImGui::PopFont();
+  //ImGui::PopFont();
 
   //---------------------------
 }

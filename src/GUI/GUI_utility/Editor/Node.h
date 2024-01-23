@@ -3,8 +3,6 @@
 #include <Utility/Specific/common.h>
 #include <imgui/node/imgui_node_editor.h>
 
-class Node;
-
 
 namespace gui::editor{
 
@@ -12,7 +10,7 @@ class Node
 {
 public:
   //Constructor / Destructor
-  Node(Node* gui);
+  Node();
   ~Node();
 
 public:

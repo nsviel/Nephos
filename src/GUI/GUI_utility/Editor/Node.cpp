@@ -1,12 +1,11 @@
 //https://github.com/thedmd/imgui-node-editor
 #include "Node.h"
-#include <GUI.h>
 
 
 namespace gui::editor{
 
 //Constructor / Destructor
-Node::Node(Node* gui){
+Node::Node(){
   //---------------------------
 
 

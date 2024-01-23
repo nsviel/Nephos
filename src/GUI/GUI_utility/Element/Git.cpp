@@ -1,17 +1,15 @@
 #include "Git.h"
 
-#include <GUI.h>
-#include <GUI/GUI_main/Style/GUI_font.h>
 #include <image/IconsFontAwesome6.h>
 
 
 namespace gui::element{
 
 //Constructor / Destructor
-Git::Git(GUI* gui){
+Git::Git(){
   //---------------------------
 
-  this->gui_font = gui->get_gui_font();
+  //this->gui_font = gui->get_gui_font();
   this->git = new util::element::Git();
 
   //---------------------------
@@ -36,12 +34,12 @@ void Git::draw_information(){
   string last_tag = git->get_last_tag();
   ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "v%s", last_tag.c_str());
   ImGui::SameLine();
-  ImFont* font_small = gui_font->get_font_small();
-  ImGui::PushFont(font_small);
+  //ImFont* font_small = gui_font->get_font_small();
+  //ImGui::PushFont(font_small);
   if(ImGui::Button(ICON_FA_PLUS)){
     git->up_tag_version();
   }
-  ImGui::PopFont();
+  //ImGui::PopFont();
 
   //---------------------------
 }

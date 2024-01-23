@@ -1,11 +1,10 @@
 #include "Hexa.h"
-#include <GUI.h>
 
 
 namespace gui::editor{
 
 //Constructor / Destructor
-Hexa::Hexa(GUI* gui){
+Hexa::Hexa(){
   //---------------------------
 
 

@@ -3,8 +3,6 @@
 #include <Utility/Specific/common.h>
 #include <imgui/editor/editor_memory.h>
 
-class GUI;
-
 
 namespace gui::editor{
 
@@ -12,7 +10,7 @@ class Hexa
 {
 public:
   //Constructor / Destructor
-  Hexa(GUI* gui);
+  Hexa();
   ~Hexa();
 
 public:
