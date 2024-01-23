@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "Panel.h"
 
 #include <Engine/Engine.h>
 
@@ -7,7 +7,7 @@
 namespace camera::gui{
 
 //Constructor / Destructor
-Camera::Camera(Engine* engine, bool* show_window, string name){
+Panel::Panel(Engine* engine, bool* show_window, string name){
   //---------------------------
 
   camera::src::Node* node_camera = engine->get_node_camera();
@@ -19,10 +19,10 @@ Camera::Camera(Engine* engine, bool* show_window, string name){
 
   //---------------------------
 }
-Camera::~Camera(){}
+Panel::~Panel(){}
 
 //Main function
-void Camera::run_panel(){
+void Panel::run_panel(){
   //---------------------------
 
   if(*show_window){
@@ -38,7 +38,7 @@ void Camera::run_panel(){
 
   //---------------------------
 }
-void Camera::design_panel(){
+void Panel::design_panel(){
   //---------------------------
 
   this->cam_parameter();
@@ -48,7 +48,7 @@ void Camera::design_panel(){
 }
 
 //Subfunction
-void Camera::cam_parameter(){
+void Panel::cam_parameter(){
   entity::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
@@ -86,7 +86,7 @@ void Camera::cam_parameter(){
 
   //---------------------------
 }
-void Camera::cam_info(){
+void Panel::cam_info(){
   entity::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 

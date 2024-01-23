@@ -11,12 +11,12 @@ class Panel;
 namespace camera::gui{
 
 
-class Camera
+class Panel
 {
 public:
   //Constructor / Destructor
-  Camera(Engine* engine, bool* show_window, string name);
-  ~Camera();
+  Panel(Engine* engine, bool* show_window, string name);
+  ~Panel();
 
   //Main function
   void run_panel();
