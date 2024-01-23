@@ -31,7 +31,7 @@ void Scene::init(){
   //Initial scene entities
   //vector<string> vec_path;
   //vec_path.push_back( "../media/point_cloud/dragon.ply");
-  //vector<entity::Object*> vec_obj = eng_loader->load_entitys(vec_path);
+  //vector<utl::entity::Object*> vec_obj = eng_loader->load_entitys(vec_path);
 
   //Get scene set
   utl::type::Set* data_set = sce_database->get_data_set();
@@ -85,7 +85,7 @@ void Scene::init_entity(utl::type::Entity* entity){
   vk_engine->insert_data_in_engine(entity->get_data(), entity->get_pose());
 
   //If object; create dedicated glyphs
-  if(entity::Object* object = dynamic_cast<entity::Object*>(entity)){
+  if(utl::entity::Object* object = dynamic_cast<utl::entity::Object*>(entity)){
     sce_glyph->create_glyph_object(object);
   }
 

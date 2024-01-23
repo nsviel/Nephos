@@ -151,7 +151,7 @@ mat4 Control::compute_camera_pose(){
 }
 
 //Camera parameter
-void Control::set_camera(entity::Camera* camera){
+void Control::set_camera(utl::entity::Camera* camera){
   //---------------------------
 
   this->camera = camera;

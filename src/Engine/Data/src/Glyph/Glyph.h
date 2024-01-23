@@ -28,11 +28,11 @@ public:
   void remove_glyph_world();
 
   //Glyph object
-  void create_glyph_object(entity::Object* object);
-  void remove_glyph_object(entity::Object* object);
+  void create_glyph_object(utl::entity::Object* object);
+  void remove_glyph_object(utl::entity::Object* object);
 
   //Glyph camera
-  void create_glyph_camera(entity::Camera* camera);
+  void create_glyph_camera(utl::entity::Camera* camera);
 
 private:
   Engine* engine;

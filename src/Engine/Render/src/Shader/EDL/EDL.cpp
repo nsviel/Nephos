@@ -47,7 +47,7 @@ void EDL::init_shader(){
   //---------------------------
 }
 void EDL::update_shader(){
-  entity::Camera* camera = cam_manager->get_current_camera();
+  utl::entity::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   // Depth setup

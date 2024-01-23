@@ -7,7 +7,7 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
-namespace entity{
+namespace utl::entity{
 
 //Constructor / Destructor
 Glyph::Glyph(Engine* engine){

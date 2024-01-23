@@ -5,7 +5,7 @@
 
 class Engine;
 
-namespace entity{
+namespace utl::entity{
 
 
 class Glyph : public utl::type::Entity

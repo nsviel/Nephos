@@ -14,49 +14,49 @@ Player::Player(util::element::Window* utl_window) : Base(utl_window){
 Player::~Player(){}
 
 //Camera movement
-void Player::camera_forward(entity::Camera* camera, float speed){
+void Player::camera_forward(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   camera->cam_P += camera->cam_F * speed;
 
   //---------------------------
 }
-void Player::camera_backward(entity::Camera* camera, float speed){
+void Player::camera_backward(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   camera->cam_P -= camera->cam_F * speed;
 
   //---------------------------
 }
-void Player::camera_right(entity::Camera* camera, float speed){
+void Player::camera_right(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   camera->cam_P += camera->cam_R * speed;
 
   //---------------------------
 }
-void Player::camera_left(entity::Camera* camera, float speed){
+void Player::camera_left(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   camera->cam_P -= camera->cam_R * speed;
 
   //---------------------------
 }
-void Player::camera_up(entity::Camera* camera, float speed){
+void Player::camera_up(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   camera->cam_P += camera->cam_U * speed;
 
   //---------------------------
 }
-void Player::camera_down(entity::Camera* camera, float speed){
+void Player::camera_down(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   camera->cam_P -= camera->cam_U * speed;
 
   //---------------------------
 }
-void Player::camera_mouse(entity::Camera* camera){
+void Player::camera_mouse(utl::entity::Camera* camera){
   //---------------------------
 
   float& azimuth = camera->angle_azimuth;
@@ -85,7 +85,7 @@ void Player::camera_mouse(entity::Camera* camera){
 
   //---------------------------
 }
-void Player::camera_zoom(entity::Camera* camera, float speed){
+void Player::camera_zoom(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   //Perspective zoom
@@ -96,7 +96,7 @@ void Player::camera_zoom(entity::Camera* camera, float speed){
 }
 
 //Camera matrix
-mat4 Player::compute_camera_view(entity::Camera* camera){
+mat4 Player::compute_camera_view(utl::entity::Camera* camera){
   //---------------------------
 
   float azimuth = camera->angle_azimuth;

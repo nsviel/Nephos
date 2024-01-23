@@ -34,7 +34,7 @@ void Target::update_glyph(utl::type::Entity* entity){
   utl::type::Data* data = vec_data[0];
   //---------------------------
 
-  if(entity::Camera* camera = dynamic_cast<entity::Camera*>(entity)){
+  if(utl::entity::Camera* camera = dynamic_cast<utl::entity::Camera*>(entity)){
     camera->mode == CAMERA_MODE_ARCBALL ? is_visible = true : is_visible = false;
 
     glm::mat4 translation(1.0);

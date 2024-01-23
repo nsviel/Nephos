@@ -43,7 +43,7 @@ void Sensor::init(){
   this->param.name = str_mode + to_string(param.index);
 
   //Sensor cloud
-  object = new entity::Object(engine);
+  object = new utl::entity::Object(engine);
   object->name = param.name;
   object->data->draw_type_name = "point";
   sce_scene->init_entity(object);

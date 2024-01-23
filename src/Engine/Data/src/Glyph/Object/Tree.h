@@ -6,7 +6,7 @@
 
 namespace glyph::object{
 
-class Tree : public entity::Glyph
+class Tree : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor

@@ -22,7 +22,7 @@ public:
   utl::media::File* Loader(std::string pathFile);
   utl::media::File* Loader(std::string pathFile, int lmin, int lmax);
 
-  bool Exporter(std::string pathFile, entity::Object* object);
+  bool Exporter(std::string pathFile, utl::entity::Object* object);
 
   inline void set_IdataFormat(int value){this->IdataFormat = value;}
   inline void set_retrievingIntensity(bool value){this->retrieve_I = value;}

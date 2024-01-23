@@ -16,21 +16,21 @@ public:
 
 public:
   //Camera movement
-  void camera_forward(entity::Camera* camera, float speed);
-  void camera_backward(entity::Camera* camera, float speed);
-  void camera_right(entity::Camera* camera, float speed);
-  void camera_left(entity::Camera* camera, float speed);
-  void camera_up(entity::Camera* camera, float speed);
-  void camera_down(entity::Camera* camera, float speed);
-  void camera_mouse(entity::Camera* camera);
-  void camera_zoom(entity::Camera* camera, float speed);
+  void camera_forward(utl::entity::Camera* camera, float speed);
+  void camera_backward(utl::entity::Camera* camera, float speed);
+  void camera_right(utl::entity::Camera* camera, float speed);
+  void camera_left(utl::entity::Camera* camera, float speed);
+  void camera_up(utl::entity::Camera* camera, float speed);
+  void camera_down(utl::entity::Camera* camera, float speed);
+  void camera_mouse(utl::entity::Camera* camera);
+  void camera_zoom(utl::entity::Camera* camera, float speed);
 
   //Camera matrix
-  mat4 compute_camera_view(entity::Camera* camera);
+  mat4 compute_camera_view(utl::entity::Camera* camera);
 
   //Subfunction
-  void rotate_by_angle(entity::Camera* camera, vec2 angle);
-  void displace_camera_COM(entity::Camera* camera, const vec3& displacement);
+  void rotate_by_angle(utl::entity::Camera* camera, vec2 angle);
+  void displace_camera_COM(utl::entity::Camera* camera, const vec3& displacement);
 
 private:
   vec3 origin;

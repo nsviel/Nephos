@@ -97,7 +97,7 @@ void Control::control_mouse(ImVec2 center){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  entity::Camera* camera = cam_manager->get_current_camera();
+  utl::entity::Camera* camera = cam_manager->get_current_camera();
   utl_window->set_window_center(vec2(center.x, center.y));
 
   //Right click - Camera movement

@@ -26,7 +26,7 @@ public:
   utl::type::Entity* load_entity(std::string path);
 
   //Subfunctions
-  entity::Object* load_object(string path);
+  utl::entity::Object* load_object(string path);
   bool is_format_supported(string format);
 
 private:

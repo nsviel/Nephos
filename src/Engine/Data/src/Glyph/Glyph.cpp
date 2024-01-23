@@ -36,12 +36,12 @@ void Glyph::create_glyph_world(){
   utl::type::Set* set_world = data_set->get_set("World");
   //---------------------------
 
-  vector<entity::Glyph*> vec_glyph;
+  vector<utl::entity::Glyph*> vec_glyph;
   vec_glyph.push_back(new glyph::grid::Grid(engine));
   vec_glyph.push_back(new glyph::world::Axis(engine));
 
   for(int i=0; i<vec_glyph.size(); i++){
-    entity::Glyph* glyph = vec_glyph[i];
+    utl::entity::Glyph* glyph = vec_glyph[i];
 
     glyph->create();
     sce_world->import_entity(glyph);
@@ -55,7 +55,7 @@ void Glyph::remove_glyph_world(){
   //---------------------------
 
   for(int i=0; i<set_world->list_entity.size(); i++){
-    entity::Glyph* glyph = (entity::Glyph*)*next(set_world->list_entity.begin(), i);
+    utl::entity::Glyph* glyph = (utl::entity::Glyph*)*next(set_world->list_entity.begin(), i);
 
     vector<utl::type::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
@@ -70,7 +70,7 @@ void Glyph::remove_glyph_world(){
 }
 
 //Glyph object
-void Glyph::create_glyph_object(entity::Object* object){
+void Glyph::create_glyph_object(utl::entity::Object* object){
   //---------------------------
 
   if(object->list_glyph.size() != 0) return;
@@ -78,7 +78,7 @@ void Glyph::create_glyph_object(entity::Object* object){
   object->list_glyph.push_back(new glyph::object::AABB(engine));
 
   for(int i=0; i<object->list_glyph.size(); i++){
-    entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
+    utl::entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
 
     glyph->create();
     sce_world->init_entity(glyph);
@@ -86,11 +86,11 @@ void Glyph::create_glyph_object(entity::Object* object){
 
   //---------------------------
 }
-void Glyph::remove_glyph_object(entity::Object* object){
+void Glyph::remove_glyph_object(utl::entity::Object* object){
   //---------------------------
 
   for(int i=0; i<object->list_glyph.size(); i++){
-    entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
+    utl::entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
     vector<utl::type::Data*> vec_data = glyph->get_vec_data();
 
     for(int j=0; j<vec_data.size(); j++){
@@ -102,14 +102,14 @@ void Glyph::remove_glyph_object(entity::Object* object){
 }
 
 //Glyph camera
-void Glyph::create_glyph_camera(entity::Camera* camera){
+void Glyph::create_glyph_camera(utl::entity::Camera* camera){
   //---------------------------
 
   if(camera->list_glyph.size() != 0) return;
   camera->list_glyph.push_back(new glyph::camera::Target(engine));
 
   for(int i=0; i<camera->list_glyph.size(); i++){
-    entity::Glyph* glyph = *next(camera->list_glyph.begin(), i);
+    utl::entity::Glyph* glyph = *next(camera->list_glyph.begin(), i);
 
     //Glyph creation
     glyph->create();

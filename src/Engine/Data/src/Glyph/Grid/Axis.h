@@ -5,7 +5,7 @@
 
 namespace glyph::grid{
 
-class Axis : public entity::Glyph
+class Axis : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor

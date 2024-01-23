@@ -14,7 +14,7 @@ Arcball::Arcball(util::element::Window* utl_window) : Base(utl_window){
 Arcball::~Arcball(){}
 
 //Camera movement
-void Arcball::camera_forward(entity::Camera* camera, float speed){
+void Arcball::camera_forward(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   //camera->cam_P += camera->cam_F * speed;
@@ -22,7 +22,7 @@ void Arcball::camera_forward(entity::Camera* camera, float speed){
 
   //---------------------------
 }
-void Arcball::camera_backward(entity::Camera* camera, float speed){
+void Arcball::camera_backward(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   //camera->cam_P -= camera->cam_F * speed;
@@ -30,7 +30,7 @@ void Arcball::camera_backward(entity::Camera* camera, float speed){
 
   //---------------------------
 }
-void Arcball::camera_right(entity::Camera* camera, float speed){
+void Arcball::camera_right(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   //vec2 angle =vec2(-speed / 10, 0);
@@ -39,7 +39,7 @@ void Arcball::camera_right(entity::Camera* camera, float speed){
 
   //---------------------------
 }
-void Arcball::camera_left(entity::Camera* camera, float speed){
+void Arcball::camera_left(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   //vec2 angle =vec2(speed / 10, 0);
@@ -48,21 +48,21 @@ void Arcball::camera_left(entity::Camera* camera, float speed){
 
   //---------------------------
 }
-void Arcball::camera_up(entity::Camera* camera, float speed){
+void Arcball::camera_up(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   this->displace_camera_COM(camera, vec3(0, 0, speed));
 
   //---------------------------
 }
-void Arcball::camera_down(entity::Camera* camera, float speed){
+void Arcball::camera_down(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   this->displace_camera_COM(camera, vec3(0, 0, -speed));
 
   //---------------------------
 }
-void Arcball::camera_mouse(entity::Camera* camera){
+void Arcball::camera_mouse(utl::entity::Camera* camera){
   //---------------------------
 
   vec2 mouse_pose = utl_window->get_mouse_pose();
@@ -82,7 +82,7 @@ void Arcball::camera_mouse(entity::Camera* camera){
 
   //---------------------------
 }
-void Arcball::camera_zoom(entity::Camera* camera, float speed){
+void Arcball::camera_zoom(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   // Perspective zoom
@@ -102,7 +102,7 @@ void Arcball::camera_zoom(entity::Camera* camera, float speed){
 }
 
 //Camera matrix
-mat4 Arcball::compute_camera_view(entity::Camera* camera){
+mat4 Arcball::compute_camera_view(utl::entity::Camera* camera){
   mat4 cam_view;
   //---------------------------
 
@@ -118,7 +118,7 @@ mat4 Arcball::compute_camera_view(entity::Camera* camera){
 }
 
 //Subfunction
-void Arcball::rotate_by_angle(entity::Camera* camera, vec2 angle){
+void Arcball::rotate_by_angle(utl::entity::Camera* camera, vec2 angle){
   //---------------------------
 
   // Get the homogenous position of the camera and pivot point
@@ -146,7 +146,7 @@ void Arcball::rotate_by_angle(entity::Camera* camera, vec2 angle){
 
   //---------------------------
 }
-void Arcball::displace_camera_COM(entity::Camera* camera, const vec3& displacement){
+void Arcball::displace_camera_COM(utl::entity::Camera* camera, const vec3& displacement){
   //---------------------------
 
   // Extract the camera's forward, right, and up vectors

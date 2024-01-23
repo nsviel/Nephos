@@ -15,7 +15,7 @@
 
 class Engine;
 
-namespace entity{
+namespace utl::entity{
 class Glyph;
 
 
@@ -41,7 +41,7 @@ public:
 
   utl::type::Data* data;
   utl::type::Pose* pose;
-  std::list<entity::Glyph*> list_glyph;
+  std::list<utl::entity::Glyph*> list_glyph;
 };
 
 }

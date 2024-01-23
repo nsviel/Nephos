@@ -14,8 +14,8 @@ public:
   ~Projection();
 
 public:
-  mat4 compute_proj_perspective(entity::Camera* camera);
-  mat4 compute_proj_ortho(entity::Camera* camera);
+  mat4 compute_proj_perspective(utl::entity::Camera* camera);
+  mat4 compute_proj_ortho(utl::entity::Camera* camera);
 
 private:
   util::element::Window* utl_window;

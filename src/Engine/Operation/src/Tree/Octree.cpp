@@ -20,7 +20,7 @@ Octree::Octree(){
 Octree::~Octree(){}
 /*
 //Main function
-void Octree::create_octree(entity::Object* object){
+void Octree::create_octree(utl::entity::Object* object){
   this->nb_level = 6;
   //---------------------------
 
@@ -29,14 +29,14 @@ tic();
   this->build_octree(root->child);
 toc_ms("octree");
 
-  entity::Object* glyph = &cloud->glyphs["tree"];
+  utl::entity::Object* glyph = &cloud->glyphs["tree"];
   glyph->xyz = root->xyz;
   glyph->rgb = root->rgb;
 
   //---------------------------
   this->remove_octree(root);
 }
-void Octree::create_octree(entity::Object* object, int level){
+void Octree::create_octree(utl::entity::Object* object, int level){
   this->nb_level = level;
   //---------------------------
 
@@ -45,7 +45,7 @@ void Octree::create_octree(entity::Object* object, int level){
   this->build_octree(root->child);
   this->octree_time = toc_ms();
 
-  entity::Object* glyph = &cloud->glyphs["tree"];
+  utl::entity::Object* glyph = &cloud->glyphs["tree"];
   glyph->xyz = root->xyz;
   glyph->rgb = root->rgb;
 
@@ -75,7 +75,7 @@ void Octree::remove_cube(Cube* cube){
 
   //---------------------------
 }
-void Octree::build_root(entity::Object* object){
+void Octree::build_root(utl::entity::Object* object){
   //---------------------------
 
   // Create a vector of indexes

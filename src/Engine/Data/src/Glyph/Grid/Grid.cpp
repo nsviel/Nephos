@@ -45,7 +45,7 @@ void Grid::update_glyph(){
 
   //---------------------------
 }
-void Grid::insert_object_from_glyph(entity::Glyph* glyph){
+void Grid::insert_object_from_glyph(utl::entity::Glyph* glyph){
   //---------------------------
 
   vector<utl::type::Data*> vec_data = glyph->get_vec_data();

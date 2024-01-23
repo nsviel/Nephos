@@ -4,7 +4,7 @@
 #include <Utility/Base/Entity/Camera.h>
 #include <Utility/Base/Entity/Glyph.h>
 
-namespace entity{
+namespace utl::entity{
   //---------------------------
 
   class Object;

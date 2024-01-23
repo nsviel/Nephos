@@ -6,7 +6,7 @@
 #include <Utility/Function/Math/fct_math.h>
 
 
-namespace entity{
+namespace utl::entity{
 
 //Constructor / Destructor
 Object::Object(){
@@ -46,7 +46,7 @@ void Object::update_entity(){
   vk_engine->insert_data_in_engine(data, pose);
 
   for(int i=0; i<list_glyph.size(); i++){
-    entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_glyph(this);
     glyph->update_entity();
   }
@@ -72,7 +72,7 @@ void Object::visibility_entity(bool value){
   data->is_visible = value;
 
   for(int i=0; i<list_glyph.size(); i++){
-    entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->visibility_entity(value);
   }
 

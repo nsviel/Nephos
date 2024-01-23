@@ -19,8 +19,8 @@ Normal::Normal(Engine* engine) : Glyph(engine){
 }
 Normal::~Normal(){}
 /*
-entity::Object* Normal::create(entity::Object* object){
-  entity::Object* glyph = new entity::Object(engine);
+utl::entity::Object* Normal::create(utl::entity::Object* object){
+  utl::entity::Object* glyph = new utl::entity::Object(engine);
   //---------------------------
 
   //Create glyph
@@ -33,7 +33,7 @@ entity::Object* Normal::create(entity::Object* object){
   //---------------------------
   return glyph;
 }
-void Normal::update_normal_cloud(entity::Object* object, entity::Object* glyph){
+void Normal::update_normal_cloud(utl::entity::Object* object, utl::entity::Object* glyph){
   glyph->draw_point_size = size;
   //---------------------------
 
@@ -69,8 +69,8 @@ void Normal::update_normal_cloud(entity::Object* object, entity::Object* glyph){
 
   //---------------------------
 }
-void Normal::update_normal_cloud(entity::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s){
-  entity::Object* normal = &cloud->glyphs["normal"];
+void Normal::update_normal_cloud(utl::entity::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s){
+  utl::entity::Object* normal = &cloud->glyphs["normal"];
   normal->draw_point_size = size;
   //---------------------------
 

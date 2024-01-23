@@ -38,12 +38,12 @@ public:
   void stop_threads();
   void reset_color_configuration();
 
-  inline entity::Object* get_object(){return object;}
+  inline utl::entity::Object* get_object(){return object;}
   inline utl::type::Data* get_data(){return object->data;}
   inline utl::type::Pose* get_pose(){return object->pose;}
 
 public:
-  entity::Object* object;
+  utl::entity::Object* object;
   k4n::src::dev::Master* master;
 
   k4n::src::str::Param param;

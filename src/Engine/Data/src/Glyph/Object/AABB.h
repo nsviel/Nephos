@@ -6,7 +6,7 @@
 
 namespace glyph::object{
 
-class AABB : public entity::Glyph
+class AABB : public utl::entity::Glyph
 {
 public:
   AABB(Engine* engine);

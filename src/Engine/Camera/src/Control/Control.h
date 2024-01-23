@@ -30,7 +30,7 @@ public:
   mat4 compute_camera_pose();
 
   //Camera parameter
-  void set_camera(entity::Camera* camera);
+  void set_camera(utl::entity::Camera* camera);
   void set_camera_COM(vec3 value);
   void set_camera_mode();
   void set_next_camera_mode();
@@ -40,7 +40,7 @@ private:
 
   vector<camera::src::mode::Base*> vec_mode;
   camera::src::mode::Base* active_mode;
-  entity::Camera* camera;
+  utl::entity::Camera* camera;
 };
 
 }

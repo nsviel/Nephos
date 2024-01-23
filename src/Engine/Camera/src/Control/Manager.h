@@ -20,13 +20,13 @@ public:
   void create_camera();
   void reset();
 
-  inline entity::Camera* get_camera(int i){return vec_camera[i];}
-  inline entity::Camera* get_current_camera(){return current_camera;}
+  inline utl::entity::Camera* get_camera(int i){return vec_camera[i];}
+  inline utl::entity::Camera* get_current_camera(){return current_camera;}
 
 private:
   Engine* engine;
-  vector<entity::Camera*> vec_camera;
-  entity::Camera* current_camera;
+  vector<utl::entity::Camera*> vec_camera;
+  utl::entity::Camera* current_camera;
 
   int camera_ID;
 };

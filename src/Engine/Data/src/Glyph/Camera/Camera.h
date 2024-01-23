@@ -5,7 +5,7 @@
 
 namespace glyph::camera{
 
-class Camera : public entity::Glyph
+class Camera : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
