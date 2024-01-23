@@ -1,7 +1,5 @@
 #include "Sensor.h"
 
-#include <GUI.h>
-
 
 namespace gui::kinect{
 

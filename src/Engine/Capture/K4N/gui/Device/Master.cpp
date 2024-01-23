@@ -1,7 +1,5 @@
 #include "Master.h"
 
-#include <GUI.h>
-
 
 namespace gui::kinect{
 
