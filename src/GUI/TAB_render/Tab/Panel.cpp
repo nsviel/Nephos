@@ -41,7 +41,7 @@ void Panel::draw_panels(){
   rnd_shader->run_panel();
   cam_panel->run_panel();
   gui_device->run_panel();
-  //rnd_stream->run_panel();
+  gui_stream->run_panel();
   rnd_scene->run_panel();
   rnd_profiler->run_panel();
   rnd_option->run_panel();
