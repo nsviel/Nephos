@@ -1,19 +1,16 @@
 #include "Control.h"
 
-#include <Engine/Engine.h>
 #include <Engine/Camera/Namespace.h>
-#include <Utility/Namespace.h>
 #include <Utility/Element/src/Namespace.h>
 
 
 namespace eng::cam{
 
 //Constructor / Destructor
-Control::Control(Engine* engine){
+Control::Control(eng::cam::Node* cam_node){
   //---------------------------
-
-  utl::Node* utility = engine->get_utility();
-  utl::element::Window* utl_window = utility->get_utl_window();
+  
+  utl::element::Window* utl_window = cam_node->get_utl_window();
 
   this->cam_proj = new eng::cam::Projection(utl_window);
 

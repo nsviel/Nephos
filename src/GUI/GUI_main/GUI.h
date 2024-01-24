@@ -24,7 +24,7 @@ public:
   void exit();
   void wait();
 
-  inline utl::Node* get_utility(){return utility;}
+  inline utl::Node* get_node_utility(){return utility;}
   inline Engine* get_engine(){return engine;}
 
   inline gui::Control* get_gui_control(){return gui_control;}

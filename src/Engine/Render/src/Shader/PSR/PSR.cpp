@@ -9,7 +9,7 @@ namespace eng::shader{
 PSR::PSR(Engine* engine){
   //---------------------------
 
-  utl::Node* utility = engine->get_utility();
+  utl::Node* utility = engine->get_node_utility();
   eng::cam::Node* node_camera = engine->get_node_camera();
 
   this->cam_manager = node_camera->get_camera_manager();

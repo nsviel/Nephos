@@ -15,7 +15,7 @@ namespace eng::render::gui{
 Renderer::Renderer(Engine* engine){
   //---------------------------
 
-  utl::Node* utility = engine->get_utility();
+  utl::Node* utility = engine->get_node_utility();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->utl_window = utility->get_utl_window();

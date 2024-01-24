@@ -14,7 +14,7 @@ namespace eng::ope::gui{
 Control::Control(Engine* engine){
   //---------------------------
 
-  utl::Node* utility = engine->get_utility();
+  utl::Node* utility = engine->get_node_utility();
   eng::scene::Node* node_scene = engine->get_node_scene();
   eng::cam::Node* node_camera = engine->get_node_camera();
 

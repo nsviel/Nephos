@@ -12,8 +12,11 @@ namespace eng::cam{
 Node::Node(Engine* engine){
   //---------------------------
 
+  utl::Node* utl_node = engine->get_node_utility();
+
+  this->utl_window = utl_node->get_utl_window();
   this->cam_manager = new eng::cam::Manager(engine);
-  this->cam_control = new eng::cam::Control(engine);
+  this->cam_control = new eng::cam::Control(this);
 
   //---------------------------
 }

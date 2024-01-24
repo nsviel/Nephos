@@ -11,7 +11,7 @@ namespace gui{
 Control::Control(GUI* gui){
   //---------------------------
 
-  utl::Node* utility = gui->get_utility();
+  utl::Node* utility = gui->get_node_utility();
   Engine* engine = gui->get_engine();
 
   this->utl_window = utility->get_utl_window();

@@ -22,10 +22,12 @@ public:
   void loop();
   void reset();
 
+  inline utl::element::Window* get_utl_window(){return utl_window;}
   inline eng::cam::Control* get_camera_control(){return cam_control;}
   inline eng::cam::Manager* get_camera_manager(){return cam_manager;}
 
 private:
+  utl::element::Window* utl_window;
   eng::cam::Control* cam_control;
   eng::cam::Manager* cam_manager;
 };

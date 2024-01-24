@@ -26,7 +26,7 @@ public:
   void reset();
   void wait();
 
-  inline utl::Node* get_utility(){return utility;}
+  inline utl::Node* get_node_utility(){return utility;}
   inline Vulkan* get_eng_vulkan(){return eng_vulkan;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}

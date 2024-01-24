@@ -29,7 +29,6 @@ public:
   //Camera matrix
   mat4 compute_camera_view(utl::entity::Camera* camera);
 
-
 private:
   vec2 mouse_pose_old;
 };

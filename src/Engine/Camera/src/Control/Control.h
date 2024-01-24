@@ -4,8 +4,9 @@
 #include <Utility/Element/src/Namespace.h>
 
 class Engine;
-namespace eng::cam::mode{class Base;}
+namespace eng::cam{class Node;}
 namespace eng::cam{class Projection;}
+namespace eng::cam::mode{class Base;}
 
 
 namespace eng::cam{
@@ -13,7 +14,7 @@ namespace eng::cam{
 class Control
 {
 public:
-  Control(Engine* engine);
+  Control(eng::cam::Node* cam_node);
   ~Control();
 
 public:
