@@ -1,7 +1,5 @@
 #pragma once
 
-
-#include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class Engine;

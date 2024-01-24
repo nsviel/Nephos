@@ -1,16 +1,14 @@
 #pragma once
 
-
-#include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/src/Namespace.h>
 
 class Engine;
+namespace eng::cam{class Control;}
+namespace eng::cam{class Manager;}
+
 
 namespace eng::cam{
-class Control;
-class Manager;
-
 
 class Node
 {

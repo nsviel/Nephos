@@ -1,12 +1,13 @@
 #pragma once
 
-#include <Engine/Camera/Namespace.h>
-
+#include <Engine/Camera/src/Mode/Base.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Element/src/Namespace.h>
 
-namespace eng::cam::mode{
+namespace eng::cam::mode{class Base;}
 
+
+namespace eng::cam::mode{
 
 class Arcball : public eng::cam::mode::Base
 {

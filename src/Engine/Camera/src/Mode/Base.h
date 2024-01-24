@@ -1,8 +1,9 @@
 #pragma once
 
-
+#include <Engine/Camera/src/Mode/Base.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Element/src/Namespace.h>
+
+namespace utl::element{class Window;}
 
 
 namespace eng::cam::mode{

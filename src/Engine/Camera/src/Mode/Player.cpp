@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include <Engine/Camera/Namespace.h>
+
 
 namespace eng::cam::mode{
 
