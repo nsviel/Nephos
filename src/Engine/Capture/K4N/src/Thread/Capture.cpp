@@ -1,4 +1,4 @@
-#include "K4A_capture.h"
+#include "Capture.h"
 
 #include <Engine/Engine.h>
 #include <Utility/Function/Timer/FPS_counter.h>
@@ -9,7 +9,7 @@
 namespace eng::k4n::thread{
 
 //Constructor / Destructor
-K4A_capture::K4A_capture(eng::k4n::Node* k4n_node){
+Capture::Capture(eng::k4n::Node* k4n_node){
   //---------------------------
 
   this->fps_counter = new FPS_counter();
@@ -21,7 +21,7 @@ K4A_capture::K4A_capture(eng::k4n::Node* k4n_node){
 
   //---------------------------
 }
-K4A_capture::~K4A_capture(){
+Capture::~Capture(){
   //---------------------------
 
   this->stop_thread();
@@ -31,18 +31,18 @@ K4A_capture::~K4A_capture(){
 }
 
 //Main function
-void K4A_capture::start_thread(eng::k4n::dev::Sensor* device){
+void Capture::start_thread(eng::k4n::dev::Sensor* device){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&K4A_capture::run_thread, this, device);
+    this->thread = std::thread(&Capture::run_thread, this, device);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void K4A_capture::run_thread(eng::k4n::dev::Sensor* sensor){
+void Capture::run_thread(eng::k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -85,7 +85,7 @@ void K4A_capture::run_thread(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void K4A_capture::stop_thread(){
+void Capture::stop_thread(){
   //---------------------------
 
   this->thread_running = false;
@@ -95,7 +95,7 @@ void K4A_capture::stop_thread(){
 
   //---------------------------
 }
-void K4A_capture::manage_pause(eng::k4n::dev::Sensor* sensor){
+void Capture::manage_pause(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -107,7 +107,7 @@ void K4A_capture::manage_pause(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void K4A_capture::manage_recording(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
+void Capture::manage_recording(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
 /*
   k4a::record& recorder = sensor->recorder.recorder;
@@ -133,7 +133,7 @@ void K4A_capture::manage_recording(eng::k4n::dev::Sensor* sensor, k4a::capture c
 */
   //---------------------------
 }
-void K4A_capture::manage_color_setting(eng::k4n::dev::Sensor* sensor){
+void Capture::manage_color_setting(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   sensor->param.device->set_color_control(sensor->color.config.exposure.command, sensor->color.config.exposure.mode, sensor->color.config.exposure.value);

@@ -8,8 +8,8 @@
 class Engine;
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Master;}
-namespace eng::k4n::thread{class K4A_capture;}
-namespace eng::k4n::thread{class K4A_playback;}
+namespace eng::k4n::thread{class Capture;}
+namespace eng::k4n::thread{class Playback;}
 namespace eng::k4n::structure{class Param;}
 namespace eng::k4n::structure{class Synchro;}
 namespace eng::k4n::structure{class Recorder;}
@@ -67,8 +67,8 @@ private:
   eng::scene::Scene* sce_scene;
   eng::scene::Glyph* sce_glyph;
   eng::ope::Transformation* ope_transform;
-  eng::k4n::thread::K4A_capture* k4a_capture;
-  eng::k4n::thread::K4A_playback* k4a_playback;
+  eng::k4n::thread::Capture* k4a_capture;
+  eng::k4n::thread::Playback* k4a_playback;
 };
 
 }

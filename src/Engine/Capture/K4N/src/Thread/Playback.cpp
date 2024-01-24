@@ -1,4 +1,4 @@
-#include "K4A_playback.h"
+#include "Playback.h"
 
 #include <Engine/Engine.h>
 #include <Utility/Function/Timer/FPS_counter.h>
@@ -9,7 +9,7 @@
 namespace eng::k4n::thread{
 
 //Constructor / Destructor
-K4A_playback::K4A_playback(eng::k4n::Node* k4n_node){
+Playback::Playback(eng::k4n::Node* k4n_node){
   //---------------------------
 
   this->fps_counter = new FPS_counter();
@@ -23,7 +23,7 @@ K4A_playback::K4A_playback(eng::k4n::Node* k4n_node){
 
   //---------------------------
 }
-K4A_playback::~K4A_playback(){
+Playback::~Playback(){
   //---------------------------
 
   this->stop_thread();
@@ -33,16 +33,16 @@ K4A_playback::~K4A_playback(){
 }
 
 //Main function
-void K4A_playback::start_thread(eng::k4n::dev::Sensor* sensor){
+void Playback::start_thread(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&K4A_playback::run_thread, this, sensor);
+    this->thread = std::thread(&Playback::run_thread, this, sensor);
   }
 
   //---------------------------
 }
-void K4A_playback::run_thread(eng::k4n::dev::Sensor* sensor){
+void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Init playback
@@ -80,7 +80,7 @@ void K4A_playback::run_thread(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void K4A_playback::stop_thread(){
+void Playback::stop_thread(){
   //---------------------------
 
   this->thread_running = false;
@@ -92,7 +92,7 @@ void K4A_playback::stop_thread(){
 }
 
 //Subfunction
-void K4A_playback::manage_pause(eng::k4n::dev::Sensor* sensor){
+void Playback::manage_pause(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -105,7 +105,7 @@ void K4A_playback::manage_pause(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void K4A_playback::manage_restart(eng::k4n::dev::Sensor* sensor){
+void Playback::manage_restart(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(sensor->color.image.timestamp >= sensor->master->player.ts_end){
@@ -114,7 +114,7 @@ void K4A_playback::manage_restart(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void K4A_playback::manage_recording(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
+void Playback::manage_recording(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
 /*
   k4a::record& recorder = sensor->recorder.recorder;

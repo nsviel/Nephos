@@ -17,12 +17,12 @@ namespace eng::k4n::config{class Calibration;}
 
 namespace eng::k4n::thread{
 
-class K4A_capture
+class Capture
 {
 public:
   //Constructor / Destructor
-  K4A_capture(eng::k4n::Node* k4n_node);
-  ~K4A_capture();
+  Capture(eng::k4n::Node* k4n_node);
+  ~Capture();
 
 public:
   //Main function

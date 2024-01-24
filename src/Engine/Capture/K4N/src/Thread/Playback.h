@@ -18,12 +18,12 @@ namespace eng::k4n::utils{class Operation;}
 
 namespace eng::k4n::thread{
 
-class K4A_playback
+class Playback
 {
 public:
   //Constructor / Destructor
-  K4A_playback(eng::k4n::Node* k4n_node);
-  ~K4A_playback();
+  Playback(eng::k4n::Node* k4n_node);
+  ~Playback();
 
 public:
   //Main function
