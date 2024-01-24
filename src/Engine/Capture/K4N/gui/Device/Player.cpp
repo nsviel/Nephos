@@ -15,8 +15,8 @@ Player::Player(Engine* engine){
   eng::capture::Node* node_capture = engine->get_node_capture();
 
   this->sce_scene = node_scene->get_scene();
-  this->node_kinect = node_capture->get_node_kinect();
-  this->k4n_swarm = node_kinect->get_k4n_swarm();
+  this->k4a_node = node_capture->get_k4a_node();
+  this->k4n_swarm = k4a_node->get_k4n_swarm();
 
   //---------------------------
 }

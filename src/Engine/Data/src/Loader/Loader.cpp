@@ -58,8 +58,8 @@ utl::type::Entity* Loader::load_entity(std::string path){
 
   if(format == "mkv"){
     eng::capture::Node* node_capture = engine->get_node_capture();
-    eng::k4n::Node* node_kinect = node_capture->get_node_kinect();
-    eng::k4n::dev::Swarm* k4n_swarm = node_kinect->get_k4n_swarm();
+    eng::k4n::Node* k4a_node = node_capture->get_k4a_node();
+    eng::k4n::dev::Swarm* k4n_swarm = k4a_node->get_k4n_swarm();
 
     utl::media::File file;
     file.path_data = path;

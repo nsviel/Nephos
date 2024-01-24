@@ -23,6 +23,9 @@ public:
   void find_voxel_min_number_of_point(utl::type::Data* data);
   void reconstruct_data_by_goodness(utl::type::Data* data);
 
+  inline void set_voxel_size(float value){this->voxel_size = value;}
+  inline void set_minimum_pt_in_voxel(int value){this->minimum_pt_in_voxel = value;}
+
 private:
   Voxel_map voxel_map;
   float voxel_size;

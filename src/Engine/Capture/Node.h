@@ -20,10 +20,10 @@ public:
   void init();
   void loop();
 
-  inline eng::k4n::Node* get_node_kinect(){return node_kinect;}
+  inline eng::k4n::Node* get_k4a_node(){return k4a_node;}
 
 private:
-  eng::k4n::Node* node_kinect;
+  eng::k4n::Node* k4a_node;
 };
 
 }

@@ -11,15 +11,15 @@ Device::Device(Engine* engine, bool* show_window, string name){
   //---------------------------
 
   eng::capture::Node* node_capture = engine->get_node_capture();
-  eng::k4n::Node* node_kinect = node_capture->get_node_kinect();
+  eng::k4n::Node* k4a_node = node_capture->get_k4a_node();
 
-  this->k4n_swarm = node_kinect->get_k4n_swarm();
-  this->gui_capture = new eng::k4n::gui::Capture(node_kinect);
-  this->gui_playback = new eng::k4n::gui::Playback(node_kinect);
-  this->gui_recorder = new eng::k4n::gui::Recorder(node_kinect);
+  this->k4n_swarm = k4a_node->get_k4n_swarm();
+  this->gui_capture = new eng::k4n::gui::Capture(k4a_node);
+  this->gui_playback = new eng::k4n::gui::Playback(k4a_node);
+  this->gui_recorder = new eng::k4n::gui::Recorder(k4a_node);
   this->gui_player = new eng::k4n::gui::Player(engine);
-  this->gui_master = new eng::k4n::gui::Master(node_kinect);
-  this->gui_sensor = new eng::k4n::gui::Sensor(node_kinect);
+  this->gui_master = new eng::k4n::gui::Master(k4a_node);
+  this->gui_sensor = new eng::k4n::gui::Sensor(k4a_node);
 
   this->show_window = show_window;
   this->name = name;

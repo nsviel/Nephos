@@ -9,7 +9,7 @@ namespace eng::capture{
 Node::Node(Engine* engine){
   //---------------------------
 
-  this->node_kinect = new eng::k4n::Node(engine);
+  this->k4a_node = new eng::k4n::Node(engine);
 
   //---------------------------
 }
@@ -19,14 +19,14 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_kinect->init();
+  k4a_node->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  node_kinect->loop();
+  k4a_node->loop();
 
   //---------------------------
 }

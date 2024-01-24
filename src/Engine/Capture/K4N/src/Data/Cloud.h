@@ -31,6 +31,8 @@ public:
   void retrieve_ir(eng::k4n::dev::Sensor* k4n_sensor, int i);
   void retrieve_corner_coordinate(eng::k4n::dev::Sensor* k4n_sensor);
 
+  inline eng::ope::Voxelizer* get_voxelizer(){return ope_voxelizer;}
+
 private:
   Engine* engine;
   eng::k4n::utils::Operation* k4n_operation;

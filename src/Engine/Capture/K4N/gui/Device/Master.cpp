@@ -4,11 +4,11 @@
 namespace eng::k4n::gui{
 
 //Constructor / Destructor
-Master::Master(eng::k4n::Node* node_kinect){
+Master::Master(eng::k4n::Node* k4a_node){
   //---------------------------
 
-  this->node_kinect = node_kinect;
-  this->k4n_swarm = node_kinect->get_k4n_swarm();
+  this->k4a_node = k4a_node;
+  this->k4n_swarm = k4a_node->get_k4n_swarm();
 
   this->item_width = 100;
 
@@ -23,6 +23,8 @@ void Master::show_master_info(eng::k4n::dev::Master* master){
   this->show_info(master);
   ImGui::Separator();
   this->show_colorization(master);
+  ImGui::Separator();
+  this->show_voxelizer(master);
   ImGui::Separator();
 
   //---------------------------
@@ -107,6 +109,13 @@ void Master::show_colorization(eng::k4n::dev::Master* master){
     }
     ImGui::Unindent();
   }
+
+  //---------------------------
+}
+void Master::show_voxelizer(eng::k4n::dev::Master* master){
+  //---------------------------
+
+
 
   //---------------------------
 }

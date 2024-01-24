@@ -32,7 +32,7 @@ public:
 
 private:
   eng::scene::Scene* sce_scene;
-  eng::k4n::Node* node_kinect;
+  eng::k4n::Node* k4a_node;
   eng::k4n::dev::Swarm* k4n_swarm;
 };
 

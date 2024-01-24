@@ -47,8 +47,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
 }
 void Voxelizer::reconstruct_data_by_goodness(utl::type::Data* data){
   //---------------------------
-  say("---");
-say(data->xyz.size());
+
   std::vector<glm::vec3> xyz;
   std::vector<glm::vec4> rgb;
   std::vector<float> R;
@@ -68,7 +67,7 @@ say(data->xyz.size());
   data->R = R;
   data->Is = Is;
   data->nb_point = xyz.size();
-say(data->xyz.size());
+
   //---------------------------
 }
 

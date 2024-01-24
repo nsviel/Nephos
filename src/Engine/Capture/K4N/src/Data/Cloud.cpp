@@ -40,6 +40,7 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* k4n_sensor){
   vec_rgba.clear();
   vec_ir.clear();
   vec_r.clear();
+  vec_idx.clear();
 
   //---------------------------
 }
