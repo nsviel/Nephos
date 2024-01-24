@@ -21,6 +21,7 @@ public:
 public:
   void init();
   void loop();
+  void gui();
   void exit();
   void reset();
   void wait();

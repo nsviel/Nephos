@@ -22,6 +22,7 @@ public:
   //Main function
   void init();
   void loop();
+  void gui();
 
   inline Engine* get_engine(){return engine;}
   inline eng::k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}

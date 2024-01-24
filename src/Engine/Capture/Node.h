@@ -19,6 +19,7 @@ public:
   //Main function
   void init();
   void loop();
+  void gui();
 
   //inline eng::k4n::Node* get_k4n_node(){return k4n_node;}
 

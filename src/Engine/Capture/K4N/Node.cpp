@@ -32,6 +32,12 @@ void Node::loop(){
   //---------------------------
 
   k4n_connection->refresh_connected_dev();
+
+  //---------------------------
+}
+void Node::gui(){
+  //---------------------------
+
   gui_device->run_panel();
   gui_stream->run_panel();
 
