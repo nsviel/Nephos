@@ -6,13 +6,13 @@
 namespace eng::cam::gui{
 
 //Constructor / Destructor
-Panel::Panel(eng::cam::Node* node_camera, bool* show_window, string name){
+Panel::Panel(eng::cam::Node* node_camera, bool* show_window){
   //---------------------------
 
   this->cam_control = node_camera->get_camera_control();
   this->cam_manager = node_camera->get_camera_manager();
   this->show_window = show_window;
-  this->name = name;
+  this->name = "Camera";
 
   //---------------------------
 }

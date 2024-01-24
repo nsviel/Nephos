@@ -7,6 +7,7 @@ class Engine;
 namespace eng::cam{class Control;}
 namespace eng::cam{class Manager;}
 namespace eng::cam::gui{class Control;}
+namespace eng::cam::gui{class Panel;}
 
 
 namespace eng::cam{
@@ -35,6 +36,9 @@ private:
   eng::cam::Control* cam_control;
   eng::cam::Manager* cam_manager;
   eng::cam::gui::Control* gui_control;
+  eng::cam::gui::Panel* gui_panel;
+
+  bool show_panel = false;
 };
 
 }

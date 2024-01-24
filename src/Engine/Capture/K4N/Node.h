@@ -34,7 +34,7 @@ private:
   eng::k4n::gui::Device* gui_device;
   eng::k4n::gui::Stream* gui_stream;
 
-  bool show_gui = true;
+  bool show_panel = true;
 };
 
 }

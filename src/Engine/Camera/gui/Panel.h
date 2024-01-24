@@ -15,7 +15,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(eng::cam::Node* node_camera, bool* show_window, string name);
+  Panel(eng::cam::Node* node_camera, bool* show_window);
   ~Panel();
 
   //Main function

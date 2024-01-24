@@ -19,6 +19,7 @@ Node::Node(Engine* engine){
   this->cam_manager = new eng::cam::Manager(this);
   this->cam_control = new eng::cam::Control(this);
   this->gui_control = new eng::cam::gui::Control(this);
+  this->gui_panel = new eng::cam::gui::Panel(this, &show_panel);
 
   //---------------------------
 }
@@ -50,6 +51,7 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
+  gui_panel->run_panel();
   gui_control->run_control();
 
   //---------------------------
