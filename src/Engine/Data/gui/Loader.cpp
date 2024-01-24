@@ -10,24 +10,41 @@
 namespace eng::scene::gui{
 
 //Constructor / Destructor
-Loader::Loader(Engine* engine, bool* show_window, string name) : Panel(show_window, name){
+Loader::Loader(eng::scene::Node* sce_node, bool* show_window){
   //---------------------------
-
-  eng::scene::Node* sce_node = engine->get_node_scene();
 
   this->sce_scene = sce_node->get_scene();
   this->sce_loader = sce_node->get_scene_loader();
   this->sce_bookmark = sce_node->get_scene_bookmark();
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();
+
   this->default_dir = file::get_current_parent_path_abs();
   this->current_dir = default_dir;
+  this->name = "Loader";
+  this->show_window = show_window;
 
   //---------------------------
 }
 Loader::~Loader(){}
 
 //Main function
+void Loader::run_panel(){
+  //---------------------------
+
+  if(*show_window){
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+
+      this->design_panel();
+
+      ImGui::End();
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
 void Loader::design_panel(){
   ImGuiTabItemFlags flag = 0;
   //---------------------------

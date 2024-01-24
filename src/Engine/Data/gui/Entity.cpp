@@ -7,10 +7,8 @@
 namespace eng::scene::gui{
 
 //Constructor / Destructor
-Entity::Entity(Engine* engine, bool* panel_show){
+Entity::Entity(eng::scene::Node* sce_node, bool* panel_show){
   //---------------------------
-
-  eng::scene::Node* sce_node = engine->get_node_scene();
 
   this->sce_scene = sce_node->get_scene();
   this->ope_attribut = new eng::ope::Attribut();

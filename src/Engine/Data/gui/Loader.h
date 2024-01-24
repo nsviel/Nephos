@@ -11,15 +11,16 @@ class Engine;
 
 namespace eng::scene::gui{
 
-class Loader : public utl::base::Panel
+class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(Engine* engine, bool* show_window, string name);
+  Loader(eng::scene::Node* sce_node, bool* show_window);
   ~Loader();
 
 public:
   //Main function
+  void run_panel();
   void design_panel();
 
   //File stuff
@@ -53,6 +54,9 @@ private:
   bool param_remove_old = true;
   bool param_centered = true;
   bool goto_file_tab = false;
+
+  string name;
+  bool* show_window;
 };
 
 }

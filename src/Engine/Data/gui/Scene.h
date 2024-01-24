@@ -9,21 +9,22 @@
 #include <Engine/Data/gui/Set.h>
 
 class Engine;
+namespace eng::scene::gui{class Entity;}
+namespace eng::scene::gui{class Set;}
+
 
 namespace eng::scene::gui{
-class Entity;
-class Set;
 
-
-class Scene : public utl::base::Panel
+class Scene
 {
 public:
   //Constructor / Destructor
-  Scene(Engine* engine, bool* show_window, string name);
+  Scene(eng::scene::Node* sce_node, bool* show_window);
   ~Scene();
 
 public:
   //Main function
+  void run_panel();
   void design_panel();
 
   //Subfunction
@@ -48,7 +49,8 @@ private:
   eng::cam::Control* cam_control;
   eng::ope::Operation* ope_operation;
 
-  bool* panel_show;;
+  string name;
+  bool* show_window;
 };
 
 }

@@ -7,24 +7,43 @@
 namespace eng::scene::gui{
 
 //Constructor / Destructor
-Scene::Scene(Engine* engine, bool* show_window, string name) : Panel(show_window, name){
+Scene::Scene(eng::scene::Node* sce_node, bool* show_window){
   //---------------------------
 
-  eng::scene::Node* sce_node = engine->get_node_scene();
+  Engine* engine = sce_node->get_engine();
   eng::cam::Node* node_camera = engine->get_node_camera();
 
   this->sce_database = sce_node->get_scene_database();
   this->sce_scene = sce_node->get_scene();
   this->rnd_set = new eng::scene::gui::Set(&show_panel_set);
-  this->rnd_object = new eng::scene::gui::Entity(engine, &show_panel_entity);
+  this->rnd_object = new eng::scene::gui::Entity(sce_node, &show_panel_entity);
   this->cam_control = node_camera->get_camera_control();
   this->ope_operation = new eng::ope::Operation();
+
+  this->name = "Scene";
+  this->show_window = show_window;
 
   //---------------------------
 }
 Scene::~Scene(){}
 
 //Main function
+void Scene::run_panel(){
+  //---------------------------
+
+  if(*show_window){
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+
+      this->design_panel();
+
+      ImGui::End();
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
 void Scene::design_panel(){
   //---------------------------
 
