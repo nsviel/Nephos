@@ -41,7 +41,7 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
   vec_rgba.clear();
   vec_ir.clear();
   vec_r.clear();
-  vec_idx.clear();
+  vec_goodness.clear();
 
   //---------------------------
 }
@@ -80,7 +80,7 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   data->xyz = vec_xyz;
   data->Is = vec_ir;
   data->R = vec_r;
-  data->idx = vec_idx;
+  data->goodness = vec_goodness;
 
   //Final colorization
   k4n_operation->make_colorization(sensor, vec_rgba);
@@ -119,9 +119,9 @@ void Cloud::retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* dat
 
   //If null point set goodness to bad
   if(x != 0 && y != 0 && z != 0){
-    vec_idx.push_back(true);
+    vec_goodness.push_back(true);
   }else{
-    vec_idx.push_back(false);
+    vec_goodness.push_back(false);
   }
 
   //---------------------------

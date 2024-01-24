@@ -37,7 +37,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
       Voxel voxel = it->second;
       for(int i=0; i<voxel.size(); i++){
         vec4 point = voxel[i];
-        data->idx[point.w] = false;
+        data->goodness[point.w] = false;
       }
 
 		}
@@ -67,7 +67,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data, float voxe
       Voxel voxel = it->second;
       for(int i=0; i<voxel.size(); i++){
         vec4 point = voxel[i];
-        data->idx[point.w] = false;
+        data->goodness[point.w] = false;
       }
 
 		}
@@ -84,7 +84,7 @@ void Voxelizer::reconstruct_data_by_goodness(utl::type::Data* data){
   std::vector<float> Is;
 
   for(int i=0; i<data->xyz.size(); i++){
-    if(data->idx[i] == true){
+    if(data->goodness[i] == true){
       xyz.push_back(data->xyz[i]);
       rgb.push_back(data->rgb[i]);
       R.push_back(data->R[i]);

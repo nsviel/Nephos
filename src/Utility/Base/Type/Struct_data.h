@@ -44,7 +44,8 @@ struct Data{
   std::vector<glm::vec4> rgb;
   std::vector<glm::vec3> Nxyz;
   std::vector<glm::vec2> uv;
-  std::vector<bool> idx;
+  std::vector<bool> goodness;
+  std::vector<int> idx;
   std::vector<float> ts;
   std::vector<float> Is;
   std::vector<float> R;

@@ -44,7 +44,7 @@ private:
   std::vector<glm::vec4> vec_rgba;
   std::vector<float> vec_ir;
   std::vector<float> vec_r;
-  std::vector<bool> vec_idx;
+  std::vector<bool> vec_goodness;
 };
 
 }
