@@ -11,8 +11,7 @@ Node::Node(Engine* engine){
 
   this->k4n_swarm = new eng::k4n::dev::Swarm(engine);
   this->k4n_connection = new eng::k4n::dev::Connection(k4n_swarm);
-  //this->rnd_kinect = new eng::k4n::gui::Device(engine, &show_kinect, "Player");
-  //this->rnd_stream = new eng::k4n::gui::Stream(engine, &show_kinect, "Stream");
+  //this->k4a_cloud = new eng::k4n::data::Cloud(engine);
 
   //---------------------------
 }

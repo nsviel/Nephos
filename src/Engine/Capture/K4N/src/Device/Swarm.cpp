@@ -10,9 +10,11 @@
 namespace eng::k4n::dev{
 
 //Constructor / Destructor
+//Swarm::Swarm(eng::k4n::Node* k4n_node){
 Swarm::Swarm(Engine* engine){
   //---------------------------
 
+  //Engine* engine = k4n_node->get_engine();
   eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->engine = engine;

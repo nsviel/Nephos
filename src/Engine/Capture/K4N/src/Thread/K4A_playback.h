@@ -38,7 +38,7 @@ private:
   FPS_counter* fps_counter;
   FPS_control* fps_control;
   eng::k4n::data::Data* k4a_data;
-  eng::k4n::data::Cloud* k4a_processing;
+  eng::k4n::data::Cloud* k4a_cloud;
   eng::k4n::config::Configuration* k4n_configuration;
   eng::k4n::config::Calibration* k4n_calibration;
   eng::k4n::utils::Operation* k4n_operation;

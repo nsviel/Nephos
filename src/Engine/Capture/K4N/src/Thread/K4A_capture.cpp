@@ -13,7 +13,7 @@ K4A_capture::K4A_capture(Engine* engine){
   this->fps_counter = new FPS_counter();
   this->fps_control = new FPS_control(30);
   this->k4a_data = new eng::k4n::data::Data();
-  this->k4a_processing = new eng::k4n::data::Cloud(engine);
+  this->k4a_cloud = new eng::k4n::data::Cloud(engine);
   this->configuration = new eng::k4n::config::Configuration();
   this->k4n_calibration = new eng::k4n::config::Calibration();
 
@@ -72,7 +72,7 @@ void K4A_capture::run_thread(eng::k4n::dev::Sensor* sensor){
 
     //Capture data
     k4a_data->find_data_from_capture(sensor, capture);
-    k4a_processing->convert_into_cloud(sensor);
+    k4a_cloud->convert_into_cloud(sensor);
     this->manage_pause(sensor);
     this->manage_recording(sensor, capture);
 

@@ -15,6 +15,7 @@ class Swarm
 {
 public:
   //Constructor / Destructor
+  //Swarm(eng::k4n::Node* k4n_node);
   Swarm(Engine* engine);
   ~Swarm();
 
