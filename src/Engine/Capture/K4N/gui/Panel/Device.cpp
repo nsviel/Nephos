@@ -10,8 +10,6 @@ namespace eng::k4n::gui{
 Device::Device(eng::k4n::Node* k4n_node, bool* show_window, string name){
   //---------------------------
 
-  Engine* engine = k4n_node->get_engine();
-
   this->k4n_swarm = k4n_node->get_k4n_swarm();
   this->gui_capture = new eng::k4n::gui::Capture(k4n_node);
   this->gui_playback = new eng::k4n::gui::Playback(k4n_node);

@@ -1,6 +1,7 @@
 #include "Node.h"
 
 #include <Engine/Engine.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
 
 namespace eng::capture{
@@ -9,7 +10,7 @@ namespace eng::capture{
 Node::Node(Engine* engine){
   //---------------------------
 
-  //this->k4a_node = new eng::k4n::Node(engine);
+  this->k4n_node = new eng::k4n::Node(engine);
 
   //---------------------------
 }
@@ -19,14 +20,14 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  //k4a_node->init();
+  k4n_node->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  //k4a_node->loop();
+  k4n_node->loop();
 
   //---------------------------
 }

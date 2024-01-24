@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4N/Namespace.h>
 
 class Engine;
+namespace eng::k4n{class Node;}
 
 
 namespace eng::capture{
@@ -20,10 +20,10 @@ public:
   void init();
   void loop();
 
-  //inline eng::k4n::Node* get_k4a_node(){return k4a_node;}
+  //inline eng::k4n::Node* get_k4n_node(){return k4n_node;}
 
 private:
-  //eng::k4n::Node* k4a_node;
+  eng::k4n::Node* k4n_node;
 };
 
 }

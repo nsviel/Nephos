@@ -1,8 +1,7 @@
 #include "Node.h"
 
 #include <Engine/Engine.h>
-#include <Engine/Capture/K4N/src/Device/Swarm.h>
-#include <Engine/Capture/K4N/src/Device/Connection.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
 
 namespace eng::k4n{
@@ -11,9 +10,10 @@ namespace eng::k4n{
 Node::Node(Engine* engine){
   //---------------------------
 
+  this->engine = engine;
   this->k4n_swarm = new eng::k4n::dev::Swarm(this);
   this->k4n_connection = new eng::k4n::dev::Connection(this);
-  //this->k4a_cloud = new eng::k4n::data::Cloud(engine);
+  this->k4n_cloud = new eng::k4n::data::Cloud(this);
 
   //---------------------------
 }
