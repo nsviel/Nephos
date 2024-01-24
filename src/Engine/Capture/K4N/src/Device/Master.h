@@ -42,7 +42,8 @@ public:
   eng::k4n::structure::Player player;
   eng::k4n::structure::Operation operation;
   eng::k4n::structure::Recorder recorder;
-
+  eng::k4n::structure::Voxel voxel;
+  
 private:
 
 };

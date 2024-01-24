@@ -70,6 +70,7 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
 void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   if(sensor->depth.image.data.empty()) return;
   utl::type::Data* data = sensor->object->data;
+  eng::k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   std::unique_lock<std::mutex> lock(data->mutex);
@@ -86,8 +87,8 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   data->rgb = vec_rgba;
 
   //Voxelization filtering
-  float voxel_size = sensor->param.voxel.voxel_size;
-  int min_nb_point = sensor->param.voxel.min_nb_point;
+  float voxel_size = master->voxel.voxel_size;
+  int min_nb_point = master->voxel.min_nb_point;
   ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
   ope_voxelizer->reconstruct_data_by_goodness(data);
 

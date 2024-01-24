@@ -34,7 +34,6 @@ struct Param{
   bool data_ready = false;
   bool is_playback;
   FPS fps;
-  Voxel voxel;
 
   std::string name = "";
   std::string format = "";

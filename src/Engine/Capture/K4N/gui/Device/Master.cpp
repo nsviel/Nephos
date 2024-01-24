@@ -65,9 +65,10 @@ void Master::show_colorization(eng::k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Colorization");
+
   //Colorization mode
   static int color_mode = 2;
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Colorization");
   ImGui::RadioButton("RGB##colorization", &master->operation.color_mode, 0);
   ImGui::SameLine();
   ImGui::RadioButton("##unicolor", &master->operation.color_mode, 1);
@@ -115,7 +116,15 @@ void Master::show_colorization(eng::k4n::dev::Master* master){
 void Master::show_voxelizer(eng::k4n::dev::Master* master){
   //---------------------------
 
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Voxel");
 
+  //Voxel size
+  ImGui::SetNextItemWidth(100);
+  ImGui::SliderFloat("Size", &master->voxel.voxel_size, 0.1, 5, "%.2f");
+
+  //Voxel minimal number of points
+  ImGui::SetNextItemWidth(100);
+  ImGui::SliderInt("Minimum point", &master->voxel.min_nb_point, 1, 1000);
 
   //---------------------------
 }
