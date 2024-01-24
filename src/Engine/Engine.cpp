@@ -57,6 +57,7 @@ void Engine::gui(){
   //---------------------------
 
   node_capture->gui();
+  node_camera->gui();
 
   //---------------------------
 }

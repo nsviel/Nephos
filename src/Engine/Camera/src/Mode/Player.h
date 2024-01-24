@@ -4,7 +4,9 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Element/src/Namespace.h>
 
+namespace eng::cam{class Node;}
 namespace eng::cam::mode{class Base;}
+namespace utl::element{class Window;}
 
 
 namespace eng::cam::mode{
@@ -31,7 +33,7 @@ public:
 
 private:
   utl::element::Window* utl_window;
-  
+
   vec2 mouse_pose_old;
 };
 

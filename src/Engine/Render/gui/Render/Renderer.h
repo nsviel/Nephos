@@ -11,10 +11,10 @@ class Engine;
 class VK_imgui;
 class VK_info;
 
+namespace eng::render::gui{class Control;}
+
 
 namespace eng::render::gui{
-class Control;
-
 
 class Renderer
 {
@@ -38,6 +38,7 @@ private:
   utl::element::Window* utl_window;
   utl::gui::plot::Profiler* profiler;
   eng::cam::gui::Control* cam_control;
+  eng::cam::Node* cam_node;
   VK_imgui* vk_imgui;
   VK_info* vk_info;
 

@@ -1,10 +1,6 @@
 #pragma once
 
-#include <Engine/Camera/src/Mode/Base.h>
 #include <Utility/Specific/common.h>
-
-namespace eng::cam{class Node;}
-namespace utl::element{class Window;}
 
 
 namespace eng::cam::mode{
