@@ -12,13 +12,13 @@ Sensor::Sensor(eng::k4n::Node* k4n_node){
   //---------------------------
 
   Engine* engine = k4n_node->get_engine();
-  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::scene::Node* sce_node = engine->get_node_scene();
 
   this->engine = engine;
   this->k4a_capture = new eng::k4n::thread::Capture(k4n_node);
   this->k4a_playback = new eng::k4n::thread::Playback(k4n_node);
-  this->sce_scene = node_scene->get_scene();
-  this->sce_glyph = node_scene->get_scene_glyph();
+  this->sce_scene = sce_node->get_scene();
+  this->sce_glyph = sce_node->get_scene_glyph();
   this->ope_transform = new eng::ope::Transformation();
 
   this->type = "eng::k4n::device::Sensor";

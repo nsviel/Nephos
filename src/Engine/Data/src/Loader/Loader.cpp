@@ -10,11 +10,11 @@
 namespace eng::scene{
 
 //Constructor / Destructor
-Loader::Loader(eng::scene::Node* node_scene){
+Loader::Loader(eng::scene::Node* sce_node){
   //---------------------------
 
-  this->engine = node_scene->get_engine();
-  this->sce_scene = node_scene->get_scene();
+  this->engine = sce_node->get_engine();
+  this->sce_scene = sce_node->get_scene();
   this->sce_format = new eng::scene::Format();
 
   this->path_current_dir = "";

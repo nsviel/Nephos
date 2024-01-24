@@ -13,11 +13,11 @@ namespace eng::scene::gui{
 Loader::Loader(Engine* engine, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::scene::Node* sce_node = engine->get_node_scene();
 
-  this->sce_scene = node_scene->get_scene();
-  this->sce_loader = node_scene->get_scene_loader();
-  this->sce_bookmark = node_scene->get_scene_bookmark();
+  this->sce_scene = sce_node->get_scene();
+  this->sce_loader = sce_node->get_scene_loader();
+  this->sce_bookmark = sce_node->get_scene_bookmark();
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();
   this->default_dir = file::get_current_parent_path_abs();

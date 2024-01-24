@@ -18,7 +18,7 @@ class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(eng::scene::Node* node_scene);
+  Loader(eng::scene::Node* sce_node);
   ~Loader();
 
 public:

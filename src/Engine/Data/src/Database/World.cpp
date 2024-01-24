@@ -8,14 +8,14 @@
 namespace eng::scene{
 
 //Constructor / Destructor
-World::World(eng::scene::Node* node_scene){
+World::World(eng::scene::Node* sce_node){
   //---------------------------
 
-  Engine* engine = node_scene->get_engine();
+  Engine* engine = sce_node->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
-  this->sce_database = node_scene->get_scene_database();
+  this->sce_database = sce_node->get_scene_database();
 
   //---------------------------
 }

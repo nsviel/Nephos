@@ -4,7 +4,7 @@
 namespace eng::scene{
 
 //Constructor / Destructor
-Database::Database(eng::scene::Node* node_scene){
+Database::Database(eng::scene::Node* sce_node){
   //---------------------------
 
   this->data_set = new utl::type::Set("Data");

@@ -10,9 +10,9 @@ namespace eng::scene::gui{
 Entity::Entity(Engine* engine, bool* panel_show){
   //---------------------------
 
-  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::scene::Node* sce_node = engine->get_node_scene();
 
-  this->sce_scene = node_scene->get_scene();
+  this->sce_scene = sce_node->get_scene();
   this->ope_attribut = new eng::ope::Attribut();
   this->ope_operation = new eng::ope::Operation();
 

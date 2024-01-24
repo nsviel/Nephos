@@ -10,11 +10,11 @@ namespace eng::scene::gui{
 Scene::Scene(Engine* engine, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::scene::Node* sce_node = engine->get_node_scene();
   eng::cam::Node* node_camera = engine->get_node_camera();
 
-  this->sce_database = node_scene->get_scene_database();
-  this->sce_scene = node_scene->get_scene();
+  this->sce_database = sce_node->get_scene_database();
+  this->sce_scene = sce_node->get_scene();
   this->rnd_set = new eng::scene::gui::Set(&show_panel_set);
   this->rnd_object = new eng::scene::gui::Entity(engine, &show_panel_entity);
   this->cam_control = node_camera->get_camera_control();

@@ -11,7 +11,7 @@ class Bookmark
 {
 public:
   //Constructor / Destructor
-  Bookmark(eng::scene::Node* node_scene);
+  Bookmark(eng::scene::Node* sce_node);
   ~Bookmark();
 
 public:

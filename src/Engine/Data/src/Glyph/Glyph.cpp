@@ -8,15 +8,15 @@
 namespace eng::scene{
 
 //Constructor / Destructor
-Glyph::Glyph(eng::scene::Node* node_scene){
+Glyph::Glyph(eng::scene::Node* sce_node){
   //---------------------------
 
-  this->engine = node_scene->get_engine();
+  this->engine = sce_node->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
-  this->sce_database = node_scene->get_scene_database();
-  this->sce_world = node_scene->get_scene_world();
+  this->sce_database = sce_node->get_scene_database();
+  this->sce_world = sce_node->get_scene_world();
   eng::cam::Node* node_camera = engine->get_node_camera();
   this->cam_control = node_camera->get_camera_control();
 

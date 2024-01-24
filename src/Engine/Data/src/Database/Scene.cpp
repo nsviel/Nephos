@@ -8,17 +8,17 @@
 namespace eng::scene{
 
 //Constructor / Destructor
-Scene::Scene(eng::scene::Node* node_scene){
+Scene::Scene(eng::scene::Node* sce_node){
   //---------------------------
 
-  Engine* engine = node_scene->get_engine();
+  Engine* engine = sce_node->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
-  this->sce_database = node_scene->get_scene_database();
-  this->sce_glyph = node_scene->get_scene_glyph();
+  this->sce_database = sce_node->get_scene_database();
+  this->sce_glyph = sce_node->get_scene_glyph();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->ope_attribut = new eng::ope::Attribut();
-  this->sce_loader = node_scene->get_scene_loader();
+  this->sce_loader = sce_node->get_scene_loader();
 
   //---------------------------
 }

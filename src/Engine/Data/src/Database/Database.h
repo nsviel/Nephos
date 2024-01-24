@@ -13,7 +13,7 @@ class Database
 {
 public:
   //Constructor / Destructor
-  Database(eng::scene::Node* node_scene);
+  Database(eng::scene::Node* sce_node);
   ~Database();
 
   //Main function
