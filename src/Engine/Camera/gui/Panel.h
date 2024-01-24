@@ -1,21 +1,21 @@
 #pragma once
 
-
 #include <Utility/Base/GUI/Panel.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Camera/Namespace.h>
 
-class Engine;
 class Panel;
+namespace eng::cam{class Node;}
+namespace eng::cam{class Control;}
+namespace eng::cam{class Manager;}
+
 
 namespace eng::cam::gui{
-
 
 class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(Engine* engine, bool* show_window, string name);
+  Panel(eng::cam::Node* node_camera, bool* show_window, string name);
   ~Panel();
 
   //Main function

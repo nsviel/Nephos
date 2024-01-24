@@ -1,7 +1,11 @@
 #pragma once
 
-#include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
+
+namespace eng::cam{class Node;}
+namespace eng::cam{class Control;}
+namespace eng::cam{class Manager;}
+namespace utl::element{class Window;}
 
 
 namespace eng::cam::gui{

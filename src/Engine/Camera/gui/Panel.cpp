@@ -1,16 +1,13 @@
 #include "Panel.h"
 
-#include <Engine/Engine.h>
-
+#include <Engine/Camera/Namespace.h>
 
 
 namespace eng::cam::gui{
 
 //Constructor / Destructor
-Panel::Panel(Engine* engine, bool* show_window, string name){
+Panel::Panel(eng::cam::Node* node_camera, bool* show_window, string name){
   //---------------------------
-
-  eng::cam::Node* node_camera = engine->get_node_camera();
 
   this->cam_control = node_camera->get_camera_control();
   this->cam_manager = node_camera->get_camera_manager();
