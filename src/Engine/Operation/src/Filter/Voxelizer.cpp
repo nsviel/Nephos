@@ -7,6 +7,8 @@ namespace eng::ope{
 Voxelizer::Voxelizer(){
   //---------------------------
 
+  this->voxel_size = 0.25;
+  this->minimum_pt_in_voxel = 100;
 
   //---------------------------
 }
@@ -14,6 +16,7 @@ Voxelizer::~Voxelizer(){}
 
 //Main function
 void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
+  voxel_map.clear();
   //---------------------------
 
   //Insert point and index into voxel map
@@ -44,7 +47,8 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
 }
 void Voxelizer::reconstruct_data_by_goodness(utl::type::Data* data){
   //---------------------------
-
+  say("---");
+say(data->xyz.size());
   std::vector<glm::vec3> xyz;
   std::vector<glm::vec4> rgb;
   std::vector<float> R;
@@ -64,7 +68,7 @@ void Voxelizer::reconstruct_data_by_goodness(utl::type::Data* data){
   data->R = R;
   data->Is = Is;
   data->nb_point = xyz.size();
-
+say(data->xyz.size());
   //---------------------------
 }
 

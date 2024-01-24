@@ -25,8 +25,8 @@ public:
 
 private:
   Voxel_map voxel_map;
-  float voxel_size = 0.1;
-  int minimum_pt_in_voxel = 1000;
+  float voxel_size;
+  int minimum_pt_in_voxel;
 };
 
 }
