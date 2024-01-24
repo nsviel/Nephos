@@ -26,7 +26,7 @@ public:
 
   //All devices
   void vec_device_tab();
-  void device_tab(eng::k4n::dev::Sensor* device);
+  void vec_stream_tab(eng::k4n::dev::Sensor* device);
 
   //Device capture windows
   void draw_camera_color(eng::k4n::dev::Sensor* device, ImVec2 image_size);
@@ -40,6 +40,10 @@ public:
   void overlay_information(eng::k4n::dev::Sensor* device, eng::k4n::structure::Image* image);
   void overlay_pixel(eng::k4n::structure::Image* image, ImVec2 image_size);
 
+  //Subfunction
+  ImGuiTabItemFlags get_device_tab_flag(eng::k4n::dev::Sensor* sensor);
+  ImGuiTabItemFlags get_sensor_tab_flag(int tab_id);
+
 private:
   eng::k4n::Node* node_kinect;
   eng::k4n::data::Depth* k4a_depth;
@@ -49,8 +53,9 @@ private:
   vector<eng::render::gui::Stream*> vec_gui_stream;
   ImVec2 hovered_pixel;
   string open_tab = "";
-  bool* show_window;
   string name;
+  bool* show_window;
+  int current_tab_id = 0;
 };
 
 }

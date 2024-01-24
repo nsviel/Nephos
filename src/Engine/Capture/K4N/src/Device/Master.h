@@ -21,6 +21,7 @@ public:
   //Main function
   void insert_sensor_playback(eng::k4n::dev::Sensor* sensor);
   void insert_sensor_capture(eng::k4n::dev::Sensor* sensor);
+  void delete_sensor(eng::k4n::dev::Sensor* sensor);
   void reset();
 
   //Player function

@@ -70,19 +70,12 @@ void Sensor::update_entity(){
   //----------------------------
 }
 void Sensor::remove_entity(){
-  eng::capture::Node* node_capture = engine->get_node_capture();
-  eng::k4n::Node* node_kinect = node_capture->get_node_kinect();
-  eng::k4n::dev::Swarm* k4n_swarm = node_kinect->get_k4n_swarm();
   //---------------------------
 
   //First, destroy own elements
   this->stop_threads();
   this->param.transformation.destroy();
   this->object->remove_entity();
-
-  //Second, delete set references
-  master->delete_entity(this);
-  delete(this);
 
   //---------------------------
 }

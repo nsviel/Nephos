@@ -41,6 +41,15 @@ void Master::insert_sensor_capture(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
+void Master::delete_sensor(eng::k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  this->list_sensor.remove(sensor);
+  this->delete_entity(sensor);
+  delete(sensor);
+
+  //---------------------------
+}
 void Master::reset(){
   //---------------------------
 

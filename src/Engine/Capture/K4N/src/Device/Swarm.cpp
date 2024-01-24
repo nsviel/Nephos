@@ -98,6 +98,16 @@ void Swarm::create_sensor_capture(){
 
   //---------------------------
 }
+void Swarm::close_selected_sensor(){
+  eng::k4n::dev::Sensor* sensor = selected_sensor;
+  eng::k4n::dev::Master* master = sensor->master;
+  //---------------------------
+
+  this->selecte_next_sensor();
+  master->delete_sensor(sensor);
+
+  //---------------------------
+}
 void Swarm::close_sensor_all(eng::k4n::dev::Master* master){
   //---------------------------
 
