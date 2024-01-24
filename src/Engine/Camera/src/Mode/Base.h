@@ -1,15 +1,20 @@
 #pragma once
 
-#include <Utility/Element/src/Namespace.h>
-#include <Engine/Camera/Namespace.h>
 #include <Engine/Camera/src/Mode/Base.h>
 #include <Utility/Specific/common.h>
+
+namespace eng::cam{class Node;}
+namespace utl::element{class Window;}
 
 
 namespace eng::cam::mode{
 
 class Base
 {
+public:
+  Base(){}
+  ~Base(){}
+
 public:
   //Camera movement
   virtual void camera_forward(utl::entity::Camera* camera, float speed){}
