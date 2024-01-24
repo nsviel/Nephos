@@ -2,7 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Engine/Data/Namespace.h>
-#include <Engine/Operation/src/Transformation/Transformation.h>
+#include <Engine/Operation/src/Namespace.h>
 
 
 namespace eng::k4n::data{
@@ -12,7 +12,8 @@ Cloud::Cloud(Engine* engine){
   //---------------------------
 
   this->engine = engine;
-  this->kin_operation = new eng::k4n::utils::Operation();
+  this->k4n_operation = new eng::k4n::utils::Operation();
+  this->ope_voxelizer = new eng::ope::Voxelizer();
 
   //---------------------------
 }
@@ -57,16 +58,9 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* k4n_sensor){
 
   // Convert point cloud data to vector<glm::vec3>
   for(int i=0; i<cloud_image.get_size()/(3*sizeof(int16_t)); i++){
-    int depth_idx = i * 3;
-    int x = point_cloud_data[depth_idx];
-    int y = point_cloud_data[depth_idx+1];
-    int z = point_cloud_data[depth_idx+2];
-
-    if(x != 0 && y != 0 && z != 0){
-      this->retrieve_location(x, y, z);
-      this->retrieve_color(k4n_sensor, i);
-      this->retrieve_ir(k4n_sensor, i);
-    }
+    this->retrieve_location(k4n_sensor, i, point_cloud_data);
+    this->retrieve_color(k4n_sensor, i);
+    this->retrieve_ir(k4n_sensor, i);
   }
 
   //---------------------------
@@ -83,11 +77,17 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* k4n_sensor){
   data->xyz = vec_xyz;
   data->Is = vec_ir;
   data->R = vec_r;
+  data->idx = vec_idx;
 
   //Final colorization
-  kin_operation->make_colorization(k4n_sensor, vec_rgba);
+  k4n_operation->make_colorization(k4n_sensor, vec_rgba);
   data->rgb = vec_rgba;
 
+  //Voxelization filtering
+  ope_voxelizer->find_voxel_min_number_of_point(data);
+  ope_voxelizer->reconstruct_data_by_goodness(data);
+
+  //Final small check
   if(data->xyz.size() != data->rgb.size()){
     cout<<"[error] cloud creation size problem"<<endl;
   }
@@ -96,8 +96,13 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* k4n_sensor){
 }
 
 //Subfunction
-void Cloud::retrieve_location(int& x, int& y, int& z){
+void Cloud::retrieve_location(eng::k4n::dev::Sensor* k4n_sensor, int i, int16_t* data){
   //---------------------------
+
+  int depth_idx = i * 3;
+  int x = data[depth_idx];
+  int y = data[depth_idx+1];
+  int z = data[depth_idx+2];
 
   //coordinate in meter and X axis oriented.
   glm::vec3 point_m(z/1000.0f, -x/1000.0f, -y/1000.0f);
@@ -106,6 +111,13 @@ void Cloud::retrieve_location(int& x, int& y, int& z){
   //Range calculation
   float R = sqrt(pow(point_m.x, 2) + pow(point_m.y, 2) + pow(point_m.z, 2));
   vec_r.push_back(R);
+
+  //If null point set goodness to bad
+  if(x != 0 && y != 0 && z != 0){
+    vec_idx.push_back(true);
+  }else{
+    vec_idx.push_back(false);
+  }
 
   //---------------------------
 }

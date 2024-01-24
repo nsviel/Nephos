@@ -26,19 +26,21 @@ public:
   void loop_end(eng::k4n::dev::Sensor* k4n_sensor);
 
   //Subfunction
-  void retrieve_location(int& x, int& y, int& z);
+  void retrieve_location(eng::k4n::dev::Sensor* k4n_sensor, int i, int16_t* data);
   void retrieve_color(eng::k4n::dev::Sensor* k4n_sensor, int i);
   void retrieve_ir(eng::k4n::dev::Sensor* k4n_sensor, int i);
   void retrieve_corner_coordinate(eng::k4n::dev::Sensor* k4n_sensor);
 
 private:
   Engine* engine;
-  eng::k4n::utils::Operation* kin_operation;
+  eng::k4n::utils::Operation* k4n_operation;
+  eng::ope::Voxelizer* ope_voxelizer;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgba;
   std::vector<float> vec_ir;
   std::vector<float> vec_r;
+  std::vector<bool> vec_idx;
 };
 
 }
