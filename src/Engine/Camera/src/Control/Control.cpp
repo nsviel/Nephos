@@ -9,13 +9,11 @@ namespace eng::cam{
 //Constructor / Destructor
 Control::Control(eng::cam::Node* cam_node){
   //---------------------------
-  
-  utl::element::Window* utl_window = cam_node->get_utl_window();
 
-  this->cam_proj = new eng::cam::Projection(utl_window);
+  this->cam_proj = new eng::cam::Projection(cam_node);
 
-  this->vec_mode.push_back(new eng::cam::mode::Player(utl_window));
-  this->vec_mode.push_back(new eng::cam::mode::Arcball(utl_window));
+  this->vec_mode.push_back(new eng::cam::mode::Player(cam_node));
+  this->vec_mode.push_back(new eng::cam::mode::Arcball(cam_node));
 
   //---------------------------
 }

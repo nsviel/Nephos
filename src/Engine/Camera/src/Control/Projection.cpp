@@ -1,13 +1,15 @@
 #include "Projection.h"
 
+#include <Engine/Camera/Namespace.h>
+
 
 namespace eng::cam{
 
 //Constructor / Destructor
-Projection::Projection(utl::element::Window* utl_window){
+Projection::Projection(eng::cam::Node* cam_node){
   //---------------------------
 
-  this->utl_window = utl_window;
+  this->utl_window = cam_node->get_utl_window();
 
   //---------------------------
 }

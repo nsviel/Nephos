@@ -3,13 +3,15 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Element/src/Namespace.h>
 
+namespace eng::cam{class Node;}
+
 
 namespace eng::cam{
 
 class Projection
 {
 public:
-  Projection(utl::element::Window* utl_window);
+  Projection(eng::cam::Node* cam_node);
   ~Projection();
 
 public:

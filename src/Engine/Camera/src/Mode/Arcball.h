@@ -12,7 +12,7 @@ namespace eng::cam::mode{
 class Arcball : public eng::cam::mode::Base
 {
 public:
-  Arcball(utl::element::Window* utl_window);
+  Arcball(eng::cam::Node* cam_node);
   ~Arcball();
 
 public:
@@ -34,6 +34,8 @@ public:
   void displace_camera_COM(utl::entity::Camera* camera, const vec3& displacement);
 
 private:
+  utl::element::Window* utl_window;
+  
   vec3 origin;
 };
 

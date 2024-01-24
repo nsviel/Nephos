@@ -12,7 +12,7 @@ namespace eng::cam::mode{
 class Player : public eng::cam::mode::Base
 {
 public:
-  Player(utl::element::Window* utl_window);
+  Player(eng::cam::Node* cam_node);
   ~Player();
 
 public:
@@ -30,6 +30,8 @@ public:
   mat4 compute_camera_view(utl::entity::Camera* camera);
 
 private:
+  utl::element::Window* utl_window;
+  
   vec2 mouse_pose_old;
 };
 
