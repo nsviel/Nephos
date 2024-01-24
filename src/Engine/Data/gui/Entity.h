@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Engine/Data/Namespace.h>
-
 #include <Utility/Specific/common.h>
-#include <Engine/Operation/src/Namespace.h>
 
-class Panel;
+namespace eng::scene{class Node;}
+namespace eng::scene{class Scene;}
+namespace eng::ope{class Attribut;}
+namespace eng::ope{class Operation;}
 
 
 namespace eng::scene::gui{
@@ -34,7 +34,6 @@ public:
   inline void set_entity(utl::type::Entity* entity){this->entity = entity;}
 
 private:
-  Panel* gui_render_panel;
   eng::ope::Attribut* ope_attribut;
   eng::ope::Operation* ope_operation;
   eng::scene::Scene* sce_scene;

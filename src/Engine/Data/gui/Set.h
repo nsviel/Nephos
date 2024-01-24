@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Data/Namespace.h>
 
 
 namespace eng::scene::gui{

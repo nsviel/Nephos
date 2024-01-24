@@ -1,12 +1,14 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <GUI/TAB_render/Tab/Namespace.h>
-#include <Engine/Data/Namespace.h>
 #include <Engine/Data/src/Loader/Item.h>
-#include <Utility/Base/GUI/Panel.h>
 
-class Engine;
+namespace eng::scene{class Node;}
+namespace eng::scene{class Scene;}
+namespace eng::scene{class Loader;}
+namespace eng::scene{class Bookmark;}
+namespace eng::ope{class Transformation;}
+namespace eng::ope{class Operation;}
 
 
 namespace eng::scene::gui{

@@ -1,16 +1,15 @@
 #pragma once
 
-
 #include <Utility/Specific/common.h>
-#include <Utility/Base/GUI/Panel.h>
-#include <Engine/Data/Namespace.h>
-#include <Engine/Camera/Namespace.h>
-#include <Engine/Data/gui/Entity.h>
-#include <Engine/Data/gui/Set.h>
 
 class Engine;
+namespace eng::scene{class Node;}
+namespace eng::scene{class Scene;}
+namespace eng::scene{class Database;}
 namespace eng::scene::gui{class Entity;}
 namespace eng::scene::gui{class Set;}
+namespace eng::cam{class Control;}
+namespace eng::ope{class Operation;}
 
 
 namespace eng::scene::gui{

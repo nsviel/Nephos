@@ -1,5 +1,7 @@
 #include "Set.h"
 
+#include <Engine/Data/Namespace.h>
+
 
 namespace eng::scene::gui{
 
