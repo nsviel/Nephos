@@ -30,9 +30,10 @@ struct Set
   //Set function
   void add_set(utl::type::Set* set);
   void add_new_set(std::string name);
-  
+
   //Parameter
   void set_visibility(bool value);
+  int compute_number_point();
   utl::type::Set* get_set(std::string name);
   utl::type::Entity* get_entity(std::string name);
 

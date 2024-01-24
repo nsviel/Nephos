@@ -196,7 +196,7 @@ void Entity::data_point(utl::type::Data* data){
 
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Nb point"); ImGui::TableNextColumn();
+  ImGui::Text("Point No"); ImGui::TableNextColumn();
   string nb_point = math::thousand_separator(data->nb_point);
   ImGui::Text("%s", nb_point.c_str());
 

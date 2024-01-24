@@ -70,11 +70,17 @@ void Set::set_parameter(utl::type::Set* set){
       set->name = str_n;
     }
 
-    //Number of object
+    //Entity number
     ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Nb object"); ImGui::TableNextColumn();
+    ImGui::Text("Entity No"); ImGui::TableNextColumn();
     string nb_entity = math::thousand_separator(set->nb_entity);
     ImGui::Text("%s", nb_entity.c_str());
+
+    //Number of object
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Point No"); ImGui::TableNextColumn();
+    string nb_point = math::thousand_separator(set->compute_number_point());
+    ImGui::Text("%s", nb_point.c_str());
 
     ImGui::EndTable();
   }
