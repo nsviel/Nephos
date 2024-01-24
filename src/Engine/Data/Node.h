@@ -1,18 +1,16 @@
 #pragma once
 
-#include <Engine/Data/Namespace.h>
-
 class Engine;
+namespace eng::scene{class Scene;}
+namespace eng::scene{class Database;}
+namespace eng::scene{class Loader;}
+namespace eng::scene{class Glyph;}
+namespace eng::scene{class Operation;}
+namespace eng::scene{class Bookmark;}
+namespace eng::scene{class World;}
+
 
 namespace eng::scene{
-class Scene;
-class Database;
-class Loader;
-class Glyph;
-class Operation;
-class Bookmark;
-class World;
-
 
 class Node
 {
@@ -23,8 +21,9 @@ public:
 
 public:
   void init();
-  void reset();
   void loop();
+  void gui();
+  void reset();
 
   inline Engine* get_engine(){return engine;}
   inline eng::scene::Scene* get_scene(){return sce_scene;}

@@ -7,18 +7,3 @@
 #include <Engine/Data/src/Loader/Bookmark.h>
 #include <Engine/Data/src/Glyph/Glyph.h>
 #include <Engine/Data/src/Format/Format.h>
-
-
-namespace eng::scene{
-  //---------------------------
-
-  class Database;
-  class Scene;
-  class World;
-  class Bookmark;
-  class Format;
-  class Loader;
-  class Glyph;
-
-  //---------------------------
-}

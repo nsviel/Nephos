@@ -2,12 +2,14 @@
 
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Data/gui/Namespace.h>
-//#include <Engine/Capture/K4N/gui/Namespace.h>
-#include <Engine/Camera/gui/Panel.h>
 #include <Engine/Operation/gui/Namespace.h>
 #include <Engine/Render/gui/Namespace.h>
 
+namespace eng::scene::gui{class Scene;}
+namespace eng::scene::gui{class Loader;}
+namespace eng::render::gui{class Shader;}
+namespace eng::render::gui{class Renderer;}
+namespace eng::ope::gui{class Profiler;}
 
 
 class GUI;
@@ -38,10 +40,12 @@ public:
   bool show_loader   = true;
 
   inline eng::render::gui::Shader* get_rnd_shader(){return rnd_shader;}
-  inline eng::ope::gui::Profiler* get_rnd_profiler(){return rnd_profiler;}
-  inline eng::cam::gui::Panel* get_cam_panel(){return cam_panel;}
   inline eng::render::gui::Renderer* get_rnd_render(){return rnd_render;}
+
+  inline eng::ope::gui::Profiler* get_rnd_profiler(){return rnd_profiler;}
+
   inline eng::scene::gui::Scene* get_rnd_scene(){return rnd_scene;}
+
   inline gui::rnd::tab::Option* get_rnd_option(){return rnd_option;}
 
 private:
@@ -51,9 +55,6 @@ private:
   eng::render::gui::Shader* rnd_shader;
   eng::ope::gui::Profiler* rnd_profiler;
   eng::render::gui::Renderer* rnd_render;
-  eng::cam::gui::Panel* cam_panel;
-//  eng::k4n::gui::Device* gui_device;
-//  eng::k4n::gui::Stream* gui_stream;
 
   eng::scene::gui::Scene* rnd_scene;
   eng::scene::gui::Loader* rnd_loader;
