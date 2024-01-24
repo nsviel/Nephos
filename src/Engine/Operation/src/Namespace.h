@@ -6,6 +6,7 @@
 #include <Engine/Operation/src/Color/Colormap.h>
 #include <Engine/Operation/src/Color/Heatmap.h>
 #include <Engine/Operation/src/Tree/Octree.h>
+#include <Engine/Operation/src/Filter/Voxel.h>
 
 
 namespace eng::ope{
@@ -17,6 +18,7 @@ namespace eng::ope{
   class Transformation;
   class Octree;
   class Operation;
+  class Voxel;
 
   //---------------------------
 }
