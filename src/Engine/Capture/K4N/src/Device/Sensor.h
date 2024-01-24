@@ -1,24 +1,24 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/src/Structure/Namespace.h>
-#include <Utility/Base/Entity/Namespace.h>
 #include <Engine/Data/Namespace.h>
+#include <Utility/Base/Entity/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <Engine/Capture/K4N/src/Structure/Namespace.h>
 
 class K4A_capture;
 class K4A_playback;
 class Engine;
+namespace eng::k4n{class Node;}
+namespace eng::k4n::dev{class Master;}
+
 
 namespace eng::k4n::dev{
-class Master;
-
 
 class Sensor : public utl::type::Entity
 {
 public:
   //Constructor / Destructor
-  Sensor(Engine* engine);
+  Sensor(eng::k4n::Node* k4n_node);
   ~Sensor();
 
 public:

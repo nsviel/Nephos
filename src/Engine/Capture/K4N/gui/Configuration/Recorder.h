@@ -2,7 +2,10 @@
 
 #include <Utility/Base/GUI/Panel.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4N/Namespace.h>
+
+namespace eng::k4n{class Node;}
+namespace eng::k4n::dev{class Sensor;}
+namespace eng::k4n::dev{class Swarm;}
 
 
 namespace eng::k4n::gui{

@@ -1,6 +1,7 @@
 #include "Playback.h"
 
 #include <Engine/Capture/K4N/src/Thread/K4A_playback.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
 
 namespace eng::k4n::gui{

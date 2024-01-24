@@ -3,15 +3,16 @@
 #include <Engine/Engine.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Operation/src/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
 
 namespace eng::k4n::data{
 
 //Constructor / Destructor
-Cloud::Cloud(Engine* engine){
+Cloud::Cloud(eng::k4n::Node* k4n_node){
   //---------------------------
 
-  this->engine = engine;
+  this->engine = k4n_node->get_engine();
   this->k4n_operation = new eng::k4n::utils::Operation();
   this->ope_voxelizer = new eng::ope::Voxelizer();
 

@@ -17,7 +17,7 @@ class K4A_capture
 {
 public:
   //Constructor / Destructor
-  K4A_capture(Engine* engine);
+  K4A_capture(eng::k4n::Node* k4n_node);
   ~K4A_capture();
 
 public:

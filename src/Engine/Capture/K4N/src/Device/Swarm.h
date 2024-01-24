@@ -9,14 +9,14 @@ class Engine;
 
 namespace eng::k4n::dev{
 class Master;
+class Node;
 
 
 class Swarm
 {
 public:
   //Constructor / Destructor
-  //Swarm(eng::k4n::Node* k4n_node);
-  Swarm(Engine* engine);
+  Swarm(eng::k4n::Node* k4n_node);
   ~Swarm();
 
 public:
@@ -41,7 +41,7 @@ public:
   inline bool is_selected_sensor(eng::k4n::dev::Sensor* sensor){return selected_sensor == sensor;}
 
 private:
-  Engine* engine;
+  eng::k4n::Node* k4n_node;
   eng::scene::Scene* sce_scene;
   eng::k4n::utils::Transformation* k4n_transfo;
 

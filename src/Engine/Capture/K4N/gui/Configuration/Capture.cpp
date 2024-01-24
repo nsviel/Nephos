@@ -1,5 +1,7 @@
 #include "Capture.h"
 
+#include <Engine/Capture/K4N/Namespace.h>
+
 
 namespace eng::k4n::gui{
 

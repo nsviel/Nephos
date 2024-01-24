@@ -1,8 +1,10 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <image/turbojpeg.h>
+#include <k4a/k4a.hpp>
+
+namespace eng::k4n::dev{class Sensor;}
 
 
 namespace eng::k4n::data{

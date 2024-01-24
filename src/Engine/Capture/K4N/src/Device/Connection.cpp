@@ -6,10 +6,10 @@
 namespace eng::k4n::dev{
 
 //Constructor / Destructor
-Connection::Connection(eng::k4n::dev::Swarm* k4n_swarm){
+Connection::Connection(eng::k4n::Node* k4n_node){
   //---------------------------
 
-  this->k4n_swarm = k4n_swarm;
+  this->k4n_swarm = k4n_node->get_k4n_swarm();
 
   //---------------------------
 }

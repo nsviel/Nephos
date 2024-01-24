@@ -1,16 +1,14 @@
 #include "Recorder.h"
 
-#include <Engine/Engine.h>
 #include <Utility/Function/File/Info.h>
 
 
 namespace eng::k4n::dev{
 
 //Constructor / Destructor
-Recorder::Recorder(Engine* engine){
+Recorder::Recorder(){
   //---------------------------
 
-  this->engine = engine;
   this->default_folder = "../media/record/";
 
   //---------------------------

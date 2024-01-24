@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/src/Device/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class Engine;
+namespace eng::k4n::dev{class Swarm;}
+namespace eng::k4n::dev{class Connection;}
+
 
 namespace eng::k4n{
-
 
 class Node
 {

@@ -12,7 +12,7 @@ class Connection
 {
 public:
   //Constructor / Destructor
-  Connection(eng::k4n::dev::Swarm* k4n_swarm);
+  Connection(eng::k4n::Node* k4n_node);
   ~Connection();
 
 public:

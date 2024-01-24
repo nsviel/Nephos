@@ -18,7 +18,7 @@ class K4A_playback
 {
 public:
   //Constructor / Destructor
-  K4A_playback(Engine* engine);
+  K4A_playback(eng::k4n::Node* k4n_node);
   ~K4A_playback();
 
 public:

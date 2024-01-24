@@ -2,12 +2,4 @@
 
 
 #include <Engine/Capture/K4N/Node.h>
-
-
-namespace eng::k4n{
-  //---------------------------
-
-  class Node;
-
-  //---------------------------
-}
+#include <Engine/Capture/K4N/src/Device/Namespace.h>

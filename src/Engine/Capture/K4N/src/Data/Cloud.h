@@ -1,10 +1,12 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4N/src/Utils/Namespace.h>
 
 class Engine;
+namespace eng::k4n{class Node;}
+namespace eng::k4n::dev{class Sensor;}
+namespace eng::k4n::utils{class Operation;}
+namespace eng::ope{class Voxelizer;}
 
 
 namespace eng::k4n::data{
@@ -13,7 +15,7 @@ class Cloud
 {
 public:
   //Constructor / Destructor
-  Cloud(Engine* engine);
+  Cloud(eng::k4n::Node* k4n_node);
   ~Cloud();
 
 public:

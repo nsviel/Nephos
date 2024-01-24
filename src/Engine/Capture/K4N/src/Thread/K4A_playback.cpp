@@ -7,14 +7,14 @@
 
 
 //Constructor / Destructor
-K4A_playback::K4A_playback(Engine* engine){
+K4A_playback::K4A_playback(eng::k4n::Node* k4n_node){
   //---------------------------
 
   this->fps_counter = new FPS_counter();
   this->fps_control = new FPS_control(30);
 
   this->k4a_data = new eng::k4n::data::Data();
-  this->k4a_cloud = new eng::k4n::data::Cloud(engine);
+  this->k4a_cloud = new eng::k4n::data::Cloud(k4n_node);
   this->k4n_configuration = new eng::k4n::config::Configuration();
   this->k4n_calibration = new eng::k4n::config::Calibration();
   this->k4n_operation= new eng::k4n::utils::Operation();
