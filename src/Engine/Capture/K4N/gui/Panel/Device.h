@@ -8,6 +8,13 @@
 
 class Engine;
 class Recorder;
+namespace eng::k4n::gui{class Capture;}
+namespace eng::k4n::gui{class Playback;}
+namespace eng::k4n::gui{class Recorder;}
+namespace eng::k4n::gui{class Player;}
+namespace eng::k4n::gui{class Master;}
+namespace eng::k4n::gui{class Sensor;}
+namespace eng::k4n::dev{class Swarm;}
 
 
 namespace eng::k4n::gui{
@@ -16,7 +23,7 @@ class Device
 {
 public:
   //Constructor / Destructor
-  Device(eng::k4n::Node* k4n_node, bool* show_window, string name);
+  Device(eng::k4n::Node* k4n_node, bool* show_window);
   ~Device();
 
   //Main function

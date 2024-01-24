@@ -17,7 +17,7 @@ class Stream
 {
 public:
   //Constructor / Destructor
-  Stream(eng::k4n::Node* k4n_node, bool* show_window, string name);
+  Stream(eng::k4n::Node* k4n_node, bool* show_window);
   ~Stream();
 
   //Main function

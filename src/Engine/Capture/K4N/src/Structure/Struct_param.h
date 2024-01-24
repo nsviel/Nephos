@@ -18,6 +18,15 @@ struct FPS{
   //---------------------------
 };
 
+struct Voxel{
+  //---------------------------
+
+  float voxel_size = 0.25;
+  int min_nb_point = 100;
+
+  //---------------------------
+};
+
 struct Param{
   //---------------------------
 
@@ -25,6 +34,7 @@ struct Param{
   bool data_ready = false;
   bool is_playback;
   FPS fps;
+  Voxel voxel;
 
   std::string name = "";
   std::string format = "";

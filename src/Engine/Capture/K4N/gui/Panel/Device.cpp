@@ -7,7 +7,7 @@
 namespace eng::k4n::gui{
 
 //Constructor / Destructor
-Device::Device(eng::k4n::Node* k4n_node, bool* show_window, string name){
+Device::Device(eng::k4n::Node* k4n_node, bool* show_window){
   //---------------------------
 
   this->k4n_swarm = k4n_node->get_k4n_swarm();
@@ -19,7 +19,7 @@ Device::Device(eng::k4n::Node* k4n_node, bool* show_window, string name){
   this->gui_sensor = new eng::k4n::gui::Sensor(k4n_node);
 
   this->show_window = show_window;
-  this->name = name;
+  this->name = "Player";
 
   //---------------------------
 }

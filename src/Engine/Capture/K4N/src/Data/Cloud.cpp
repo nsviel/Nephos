@@ -21,20 +21,20 @@ Cloud::Cloud(eng::k4n::Node* k4n_node){
 Cloud::~Cloud(){}
 
 //Main function
-void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* k4n_sensor){
+void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
-  this->loop_init(k4n_sensor);
-  this->loop_data(k4n_sensor);
-  this->loop_end(k4n_sensor);
-  //this->retrieve_corner_coordinate(k4n_sensor);
+  this->loop_init(sensor);
+  this->loop_data(sensor);
+  this->loop_end(sensor);
+  //this->retrieve_corner_coordinate(sensor);
 
   //---------------------------
 }
 
 //Loop function
-void Cloud::loop_init(eng::k4n::dev::Sensor* k4n_sensor){
-  if(k4n_sensor->depth.image.data.empty()) return;
+void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
+  if(sensor->depth.image.data.empty()) return;
   //---------------------------
 
   vec_xyz.clear();
@@ -45,31 +45,31 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* k4n_sensor){
 
   //---------------------------
 }
-void Cloud::loop_data(eng::k4n::dev::Sensor* k4n_sensor){
-  if(k4n_sensor->depth.image.data.empty()) return;
+void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
+  if(sensor->depth.image.data.empty()) return;
   //---------------------------
 
   // Data stuff
-  eng::k4n::structure::Depth* depth = &k4n_sensor->depth;
-  eng::k4n::structure::Infrared* ir = &k4n_sensor->ir;
+  eng::k4n::structure::Depth* depth = &sensor->depth;
+  eng::k4n::structure::Infrared* ir = &sensor->ir;
 
   // Cloud stuff
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->image.width, depth->image.height, depth->image.width * 3 * (int)sizeof(int16_t));
-  k4n_sensor->param.transformation.depth_image_to_point_cloud(depth->image.image, K4A_CALIBRATION_TYPE_DEPTH, &cloud_image);
+  sensor->param.transformation.depth_image_to_point_cloud(depth->image.image, K4A_CALIBRATION_TYPE_DEPTH, &cloud_image);
   int16_t* point_cloud_data = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
 
   // Convert point cloud data to vector<glm::vec3>
   for(int i=0; i<cloud_image.get_size()/(3*sizeof(int16_t)); i++){
-    this->retrieve_location(k4n_sensor, i, point_cloud_data);
-    this->retrieve_color(k4n_sensor, i);
-    this->retrieve_ir(k4n_sensor, i);
+    this->retrieve_location(sensor, i, point_cloud_data);
+    this->retrieve_color(sensor, i);
+    this->retrieve_ir(sensor, i);
   }
 
   //---------------------------
 }
-void Cloud::loop_end(eng::k4n::dev::Sensor* k4n_sensor){
-  if(k4n_sensor->depth.image.data.empty()) return;
-  utl::type::Data* data = k4n_sensor->object->data;
+void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
+  if(sensor->depth.image.data.empty()) return;
+  utl::type::Data* data = sensor->object->data;
   //---------------------------
 
   std::unique_lock<std::mutex> lock(data->mutex);
@@ -82,11 +82,13 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* k4n_sensor){
   data->idx = vec_idx;
 
   //Final colorization
-  k4n_operation->make_colorization(k4n_sensor, vec_rgba);
+  k4n_operation->make_colorization(sensor, vec_rgba);
   data->rgb = vec_rgba;
 
   //Voxelization filtering
-  ope_voxelizer->find_voxel_min_number_of_point(data);
+  float voxel_size = sensor->param.voxel.voxel_size;
+  int min_nb_point = sensor->param.voxel.min_nb_point;
+  ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
   ope_voxelizer->reconstruct_data_by_goodness(data);
 
   //Final small check
@@ -98,7 +100,7 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* k4n_sensor){
 }
 
 //Subfunction
-void Cloud::retrieve_location(eng::k4n::dev::Sensor* k4n_sensor, int i, int16_t* data){
+void Cloud::retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* data){
   //---------------------------
 
   int depth_idx = i * 3;
@@ -123,16 +125,16 @@ void Cloud::retrieve_location(eng::k4n::dev::Sensor* k4n_sensor, int i, int16_t*
 
   //---------------------------
 }
-void Cloud::retrieve_color(eng::k4n::dev::Sensor* k4n_sensor, int i){
+void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
   //---------------------------
 
-  eng::k4n::structure::Operation* operation = &k4n_sensor->master->operation;
+  eng::k4n::structure::Operation* operation = &sensor->master->operation;
   glm::vec4 color;
 
   if(operation->color_mode == 0){
     //Camera color
-    if(k4n_sensor->color.image_depth.data.empty()) return;
-    const vector<uint8_t>& color_data = k4n_sensor->color.image_depth.data;
+    if(sensor->color.image_depth.data.empty()) return;
+    const vector<uint8_t>& color_data = sensor->color.image_depth.data;
 
     int color_idx = i * 4;
     float r = static_cast<float>(color_data[color_idx + 0]) / 255.0f;
@@ -145,11 +147,11 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* k4n_sensor, int i){
   //---------------------------
   vec_rgba.push_back(color);
 }
-void Cloud::retrieve_ir(eng::k4n::dev::Sensor* k4n_sensor, int i){
-  if(k4n_sensor->ir.image.data.empty()) return;
+void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
+  if(sensor->ir.image.data.empty()) return;
   //---------------------------
 
-  const vector<uint8_t>& ir_data = k4n_sensor->ir.image.data;
+  const vector<uint8_t>& ir_data = sensor->ir.image.data;
 
   int color_idx = i * 2;
   uint16_t value = static_cast<uint16_t>(ir_data[color_idx]) | (static_cast<uint16_t>(ir_data[color_idx + 1]) << 8);
@@ -157,7 +159,7 @@ void Cloud::retrieve_ir(eng::k4n::dev::Sensor* k4n_sensor, int i){
   //---------------------------
   vec_ir.push_back(value);
 }
-void Cloud::retrieve_corner_coordinate(eng::k4n::dev::Sensor* k4n_sensor){
+void Cloud::retrieve_corner_coordinate(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   // Define your pixel coordinates and depth value
@@ -169,7 +171,7 @@ void Cloud::retrieve_corner_coordinate(eng::k4n::dev::Sensor* k4n_sensor){
   k4a_float2_t pixel_point = { static_cast<float>(pixel_x), static_cast<float>(pixel_y) };
   k4a_float3_t xyz;
   int is_valid;
-  k4a_calibration_2d_to_3d(&k4n_sensor->param.calibration, &pixel_point, depth_value, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &xyz, &is_valid);
+  k4a_calibration_2d_to_3d(&sensor->param.calibration, &pixel_point, depth_value, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &xyz, &is_valid);
   if(is_valid){
     glm::vec3 point(-xyz.v[2]/100.0f, -xyz.v[0]/100.0f, -xyz.v[1]/100.0f);
   }

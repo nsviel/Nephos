@@ -7,7 +7,7 @@
 namespace eng::k4n::gui{
 
 //Constructor / Destructor
-Stream::Stream(eng::k4n::Node* k4n_node, bool* show_window, string name){
+Stream::Stream(eng::k4n::Node* k4n_node, bool* show_window){
   //---------------------------
 
   Engine* engine = k4n_node->get_engine();
@@ -23,7 +23,7 @@ Stream::Stream(eng::k4n::Node* k4n_node, bool* show_window, string name){
   this->vec_gui_stream.push_back(new eng::render::gui::Stream(engine));
 
   this->show_window = show_window;
-  this->name = name;
+  this->name = "Stream";
 
   //---------------------------
 }

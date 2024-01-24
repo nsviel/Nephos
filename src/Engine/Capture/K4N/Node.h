@@ -5,7 +5,8 @@
 class Engine;
 namespace eng::k4n::dev{class Swarm;}
 namespace eng::k4n::dev{class Connection;}
-namespace eng::k4n::data{class Cloud;}
+namespace eng::k4n::gui{class Device;}
+namespace eng::k4n::gui{class Stream;}
 
 
 namespace eng::k4n{
@@ -24,15 +25,15 @@ public:
 
   inline Engine* get_engine(){return engine;}
   inline eng::k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
-  inline eng::k4n::data::Cloud* get_k4n_cloud(){return k4n_cloud;}
 
 private:
   Engine* engine;
   eng::k4n::dev::Swarm* k4n_swarm;
   eng::k4n::dev::Connection* k4n_connection;
-  eng::k4n::data::Cloud* k4n_cloud;
+  eng::k4n::gui::Device* gui_device;
+  eng::k4n::gui::Stream* gui_stream;
 
-  bool show_kinect;
+  bool show_gui = true;
 };
 
 }

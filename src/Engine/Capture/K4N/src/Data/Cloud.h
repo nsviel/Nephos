@@ -20,18 +20,18 @@ public:
 
 public:
   //Main function
-  void convert_into_cloud(eng::k4n::dev::Sensor* k4n_sensor);
+  void convert_into_cloud(eng::k4n::dev::Sensor* sensor);
 
   //Loop function
-  void loop_init(eng::k4n::dev::Sensor* k4n_sensor);
-  void loop_data(eng::k4n::dev::Sensor* k4n_sensor);
-  void loop_end(eng::k4n::dev::Sensor* k4n_sensor);
+  void loop_init(eng::k4n::dev::Sensor* sensor);
+  void loop_data(eng::k4n::dev::Sensor* sensor);
+  void loop_end(eng::k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void retrieve_location(eng::k4n::dev::Sensor* k4n_sensor, int i, int16_t* data);
-  void retrieve_color(eng::k4n::dev::Sensor* k4n_sensor, int i);
-  void retrieve_ir(eng::k4n::dev::Sensor* k4n_sensor, int i);
-  void retrieve_corner_coordinate(eng::k4n::dev::Sensor* k4n_sensor);
+  void retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* data);
+  void retrieve_color(eng::k4n::dev::Sensor* sensor, int i);
+  void retrieve_ir(eng::k4n::dev::Sensor* sensor, int i);
+  void retrieve_corner_coordinate(eng::k4n::dev::Sensor* sensor);
 
   inline eng::ope::Voxelizer* get_voxelizer(){return ope_voxelizer;}
 
