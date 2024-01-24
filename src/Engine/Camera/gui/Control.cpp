@@ -1,7 +1,6 @@
 #include "Control.h"
 
 #include <Engine/Engine.h>
-#include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Utility/Element/src/Namespace.h>
@@ -12,32 +11,23 @@
 namespace eng::cam::gui{
 
 //Constructor / Destructor
-Control::Control(Engine* engine){
+Control::Control(eng::cam::Node* cam_node){
   //---------------------------
 
-  this->engine = engine;
-  utl::Node* utility = engine->get_node_utility();
-  eng::scene::Node* node_scene = engine->get_node_scene();
-  eng::cam::Node* node_camera = engine->get_node_camera();
-
-
-  this->utl_window = utility->get_utl_window();
-  this->cam_manager = node_camera->get_camera_manager();
-  this->cam_control = node_camera->get_camera_control();
-  this->sce_scene = node_scene->get_scene();
-  this->sce_database = node_scene->get_scene_database();
-  this->ope_operation = new eng::ope::Operation();
+  this->utl_window = cam_node->get_utl_window();
+  this->cam_manager = cam_node->get_camera_manager();
+  this->cam_control = cam_node->get_camera_control();
 
   //---------------------------
 }
 Control::~Control(){}
 
 //Main function
-void Control::run_control(ImVec2 center){
+void Control::run_control(){
   //---------------------------
 
   this->control_keyboard_camMove();
-  this->control_mouse(center);
+  this->control_mouse();
   this->control_mouse_wheel();
 
   //---------------------------
@@ -93,9 +83,16 @@ void Control::control_keyboard_camMove(){
 }
 
 //Mouse
-void Control::control_mouse(ImVec2 center){
+void Control::control_mouse(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
+
+  //Get center of the current panel
+  ImVec2 windowPos = ImGui::GetWindowPos();
+  ImVec2 windowSize = ImGui::GetWindowSize();
+  int center_x = windowPos.x + windowSize.x * 0.5f;
+  int center_y = windowPos.y + windowSize.y * 0.5f;
+  ImVec2 center = ImVec2(center_x, center_y);
 
   utl::entity::Camera* camera = cam_manager->get_current_camera();
   utl_window->set_window_center(vec2(center.x, center.y));

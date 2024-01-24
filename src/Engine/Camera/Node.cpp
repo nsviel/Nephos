@@ -18,7 +18,7 @@ Node::Node(Engine* engine){
   this->utl_window = utl_node->get_utl_window();
   this->cam_manager = new eng::cam::Manager(this);
   this->cam_control = new eng::cam::Control(this);
-  //this->gui_control = new eng::cam::gui::Control(engine);
+  this->gui_control = new eng::cam::gui::Control(this);
 
   //---------------------------
 }
@@ -50,7 +50,7 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-
+  gui_control->run_control();
 
   //---------------------------
 }
