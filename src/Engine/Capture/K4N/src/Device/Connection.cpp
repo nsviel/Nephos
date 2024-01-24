@@ -1,6 +1,7 @@
 #include "Connection.h"
 
 #include <Utility/Function/File/Info.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
 
 namespace eng::k4n::dev{

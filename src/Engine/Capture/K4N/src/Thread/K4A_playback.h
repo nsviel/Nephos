@@ -1,10 +1,5 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/src/Structure/Namespace.h>
-#include <Engine/Capture/K4N/src/Data/Namespace.h>
-#include <Engine/Capture/K4N/src/Utils/Namespace.h>
-#include <Engine/Capture/K4N/src/Configuration/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
@@ -12,7 +7,16 @@
 class FPS_counter;
 class FPS_control;
 class Engine;
+namespace eng::k4n{class Node;}
+namespace eng::k4n::dev{class Sensor;}
+namespace eng::k4n::data{class Data;}
+namespace eng::k4n::data{class Cloud;}
+namespace eng::k4n::config{class Configuration;}
+namespace eng::k4n::config{class Calibration;}
+namespace eng::k4n::utils{class Operation;}
 
+
+namespace eng::k4n::thread{
 
 class K4A_playback
 {
@@ -46,3 +50,6 @@ private:
   std::thread thread;
   bool thread_running = false;
 };
+
+
+}

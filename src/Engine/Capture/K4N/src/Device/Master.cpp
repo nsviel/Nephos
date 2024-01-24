@@ -1,9 +1,9 @@
 #include "Master.h"
 
-#include <Engine/Capture/K4N/src/Utils/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
+
 
 namespace eng::k4n::dev{
-
 
 //Constructor / Destructor
 Master::Master(){

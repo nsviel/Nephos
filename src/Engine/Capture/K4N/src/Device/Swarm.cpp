@@ -2,6 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Utility/Function/File/Info.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
 /*
   Manage list<master> which is include in list<Set> of set_scene

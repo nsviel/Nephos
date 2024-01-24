@@ -1,16 +1,16 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/src/Utils/Namespace.h>
 #include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class Engine;
+namespace eng::k4n{class Node;}
+namespace eng::k4n::dev{class Master;}
+namespace eng::k4n::dev{class Sensor;}
+namespace eng::k4n::utils{class Transformation;}
+
 
 namespace eng::k4n::dev{
-class Master;
-class Node;
-
 
 class Swarm
 {

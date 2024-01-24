@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Engine/Capture/K4N/src/Device/Swarm.h>
-#include <Engine/Capture/K4N/src/Device/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace eng::k4n::dev{
-class Swarm;
+namespace eng::k4n{class Node;}
+namespace eng::k4n::dev{class Swarm;}
 
+
+namespace eng::k4n::dev{
 
 class Connection
 {

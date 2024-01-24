@@ -1,14 +1,16 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
-
 #include <Utility/Specific/common.h>
 #include <Utility/Base/Entity/Namespace.h>
 
-namespace eng::k4n::dev{
-class Sensor;
+namespace eng::k4n::dev{class Sensor;}
+namespace eng::k4n::structure{class Player;}
+namespace eng::k4n::structure{class Operation;}
+namespace eng::k4n::structure{class Recorder;}
 
+
+namespace eng::k4n::dev{
 
 class Master : public utl::type::Set
 {

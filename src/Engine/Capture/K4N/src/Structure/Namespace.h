@@ -10,21 +10,3 @@
 #include <Engine/Capture/K4N/src/Structure/Struct_depth.h>
 #include <Engine/Capture/K4N/src/Structure/Struct_infrared.h>
 #include <Engine/Capture/K4N/src/Structure/Struct_imu.h>
-
-
-namespace eng::k4n::structure{
-  //---------------------------
-
-  class Param;
-  class Color;
-  class Depth;
-  class Infrared;
-  class IMU;
-  class Image;
-  class Synchro;
-  class Operation;
-  class Player;
-  class Recorder;
-
-  //---------------------------
-}

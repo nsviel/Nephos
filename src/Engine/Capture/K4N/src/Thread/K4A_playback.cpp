@@ -3,8 +3,10 @@
 #include <Engine/Engine.h>
 #include <Utility/Function/Timer/FPS_counter.h>
 #include <Utility/Function/Timer/FPS_control.h>
-#include <Engine/Capture/K4N/src/Utils/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
+
+namespace eng::k4n::thread{
 
 //Constructor / Destructor
 K4A_playback::K4A_playback(eng::k4n::Node* k4n_node){
@@ -137,4 +139,7 @@ void K4A_playback::manage_recording(eng::k4n::dev::Sensor* sensor, k4a::capture 
   }
 */
   //---------------------------
+}
+
+
 }

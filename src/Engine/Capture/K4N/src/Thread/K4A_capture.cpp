@@ -3,8 +3,10 @@
 #include <Engine/Engine.h>
 #include <Utility/Function/Timer/FPS_counter.h>
 #include <Utility/Function/Timer/FPS_control.h>
-#include <Engine/Capture/K4N/src/Utils/Namespace.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
+
+namespace eng::k4n::thread{
 
 //Constructor / Destructor
 K4A_capture::K4A_capture(eng::k4n::Node* k4n_node){
@@ -145,4 +147,7 @@ void K4A_capture::manage_color_setting(eng::k4n::dev::Sensor* sensor){
   sensor->param.device->set_color_control(sensor->color.config.power_frequency.command, sensor->color.config.power_frequency.mode, sensor->color.config.power_frequency.value);
 
   //---------------------------
+}
+
+
 }

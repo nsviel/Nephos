@@ -1,15 +1,22 @@
 #pragma once
 
+#include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <Engine/Data/Namespace.h>
 #include <Utility/Base/Entity/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4N/src/Structure/Namespace.h>
 
-class K4A_capture;
-class K4A_playback;
 class Engine;
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Master;}
+namespace eng::k4n::thread{class K4A_capture;}
+namespace eng::k4n::thread{class K4A_playback;}
+namespace eng::k4n::structure{class Param;}
+namespace eng::k4n::structure{class Synchro;}
+namespace eng::k4n::structure{class Recorder;}
+namespace eng::k4n::structure{class Color;}
+namespace eng::k4n::structure{class Depth;}
+namespace eng::k4n::structure{class Infrared;}
+namespace eng::k4n::structure{class IMU;}
 
 
 namespace eng::k4n::dev{
@@ -60,8 +67,8 @@ private:
   eng::scene::Scene* sce_scene;
   eng::scene::Glyph* sce_glyph;
   eng::ope::Transformation* ope_transform;
-  K4A_capture* k4a_capture;
-  K4A_playback* k4a_playback;
+  eng::k4n::thread::K4A_capture* k4a_capture;
+  eng::k4n::thread::K4A_playback* k4a_playback;
 };
 
 }

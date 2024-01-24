@@ -1,9 +1,7 @@
 #include "Sensor.h"
 
 #include <Engine/Engine.h>
-#include <Engine/Capture/K4N/src/Thread/K4A_capture.h>
-#include <Engine/Capture/K4N/src/Thread/K4A_playback.h>
-#include <Engine/Capture/K4N/Node.h>
+#include <Engine/Capture/K4N/Namespace.h>
 
 
 namespace eng::k4n::dev{
@@ -17,8 +15,8 @@ Sensor::Sensor(eng::k4n::Node* k4n_node){
   eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->engine = engine;
-  this->k4a_capture = new K4A_capture(k4n_node);
-  this->k4a_playback = new K4A_playback(k4n_node);
+  this->k4a_capture = new eng::k4n::thread::K4A_capture(k4n_node);
+  this->k4a_playback = new eng::k4n::thread::K4A_playback(k4n_node);
   this->sce_scene = node_scene->get_scene();
   this->sce_glyph = node_scene->get_scene_glyph();
   this->ope_transform = new eng::ope::Transformation();
