@@ -4,7 +4,7 @@
 #include <Utility/Function/File/Directory.h>
 #include <Utility/Function/File/Zenity.h>
 #include <Utility/Function/File/Info.h>
-#include <Engine/Capture/K4N/Namespace.h>
+//#include <Engine/Capture/K4N/Namespace.h>
 
 
 namespace eng::scene{
@@ -57,6 +57,7 @@ utl::type::Entity* Loader::load_entity(std::string path){
   }
 
   if(format == "mkv"){
+    /*
     eng::capture::Node* node_capture = engine->get_node_capture();
     eng::k4n::Node* k4a_node = node_capture->get_k4a_node();
     eng::k4n::dev::Swarm* k4n_swarm = k4a_node->get_k4n_swarm();
@@ -64,6 +65,7 @@ utl::type::Entity* Loader::load_entity(std::string path){
     utl::media::File file;
     file.path_data = path;
     k4n_swarm->create_sensor_playback(file);
+    */
   }else{
     entity = load_object(path);
   }

@@ -9,10 +9,7 @@ add_subdirectory(Render)
 add_subdirectory(Capture/K4N)
 
 file(GLOB_RECURSE ALL_SOURCES
-  #Camera/*.cpp
   Capture/Node.cpp
-  #Operation/*.cpp
-  #Render/*.cpp
   Data/*.cpp
   Shader/*.cpp
   Engine.cpp

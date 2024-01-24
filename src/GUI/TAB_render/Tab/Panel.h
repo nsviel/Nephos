@@ -3,7 +3,7 @@
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Engine/Data/gui/Namespace.h>
-#include <Engine/Capture/K4N/gui/Namespace.h>
+//#include <Engine/Capture/K4N/gui/Namespace.h>
 #include <Engine/Camera/gui/Panel.h>
 #include <Engine/Operation/gui/Namespace.h>
 #include <Engine/Render/gui/Namespace.h>
@@ -52,8 +52,8 @@ private:
   eng::ope::gui::Profiler* rnd_profiler;
   eng::render::gui::Renderer* rnd_render;
   eng::cam::gui::Panel* cam_panel;
-  eng::k4n::gui::Device* gui_device;
-  eng::k4n::gui::Stream* gui_stream;
+//  eng::k4n::gui::Device* gui_device;
+//  eng::k4n::gui::Stream* gui_stream;
 
   eng::scene::gui::Scene* rnd_scene;
   eng::scene::gui::Loader* rnd_loader;

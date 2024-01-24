@@ -7,19 +7,18 @@
 namespace eng::k4n::gui{
 
 //Constructor / Destructor
-Device::Device(Engine* engine, bool* show_window, string name){
+Device::Device(eng::k4n::Node* k4n_node, bool* show_window, string name){
   //---------------------------
 
-  eng::capture::Node* node_capture = engine->get_node_capture();
-  eng::k4n::Node* k4a_node = node_capture->get_k4a_node();
+  Engine* engine = k4n_node->get_engine();
 
-  this->k4n_swarm = k4a_node->get_k4n_swarm();
-  this->gui_capture = new eng::k4n::gui::Capture(k4a_node);
-  this->gui_playback = new eng::k4n::gui::Playback(k4a_node);
-  this->gui_recorder = new eng::k4n::gui::Recorder(k4a_node);
-  this->gui_player = new eng::k4n::gui::Player(engine);
-  this->gui_master = new eng::k4n::gui::Master(k4a_node);
-  this->gui_sensor = new eng::k4n::gui::Sensor(k4a_node);
+  this->k4n_swarm = k4n_node->get_k4n_swarm();
+  this->gui_capture = new eng::k4n::gui::Capture(k4n_node);
+  this->gui_playback = new eng::k4n::gui::Playback(k4n_node);
+  this->gui_recorder = new eng::k4n::gui::Recorder(k4n_node);
+  this->gui_player = new eng::k4n::gui::Player(k4n_node);
+  this->gui_master = new eng::k4n::gui::Master(k4n_node);
+  this->gui_sensor = new eng::k4n::gui::Sensor(k4n_node);
 
   this->show_window = show_window;
   this->name = name;

@@ -16,7 +16,7 @@ class Device
 {
 public:
   //Constructor / Destructor
-  Device(Engine* engine, bool* show_window, string name);
+  Device(eng::k4n::Node* k4n_node, bool* show_window, string name);
   ~Device();
 
   //Main function

@@ -12,7 +12,7 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(Engine* engine);
+  Player(eng::k4n::Node* k4n_node);
   ~Player();
 
   //Main function

@@ -8,14 +8,15 @@
 namespace eng::k4n::gui{
 
 //Constructor / Destructor
-Player::Player(Engine* engine){
+Player::Player(eng::k4n::Node* k4n_node){
   //---------------------------
 
+  Engine* engine = k4n_node->get_engine();
   eng::scene::Node* node_scene = engine->get_node_scene();
   eng::capture::Node* node_capture = engine->get_node_capture();
 
+  this->k4a_node = k4n_node;
   this->sce_scene = node_scene->get_scene();
-  this->k4a_node = node_capture->get_k4a_node();
   this->k4n_swarm = k4a_node->get_k4n_swarm();
 
   //---------------------------

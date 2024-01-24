@@ -7,12 +7,12 @@
 namespace eng::k4n::gui{
 
 //Constructor / Destructor
-Stream::Stream(Engine* engine, bool* show_window, string name){
+Stream::Stream(eng::k4n::Node* k4n_node, bool* show_window, string name){
   //---------------------------
 
-  eng::capture::Node* node_capture = engine->get_node_capture();
+  Engine* engine = k4n_node->get_engine();
 
-  this->k4a_node = node_capture->get_k4a_node();
+  this->k4a_node = k4n_node;
   this->k4a_depth = new eng::k4n::data::Depth();
   this->k4a_infrared = new eng::k4n::data::Infrared();
   this->k4n_swarm = k4a_node->get_k4n_swarm();
