@@ -1,23 +1,17 @@
 #include "Glyph.h"
 
 #include <Engine/Engine.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_renderpass/VK_pipeline.h>
-#include <Vulkan/VK_main/VK_engine.h>
-#include <Vulkan/VK_drawing/VK_viewport.h>
-#include <Vulkan/VK_binding/VK_descriptor.h>
-#include <Vulkan/VK_binding/VK_uniform.h>
-#include <Vulkan/VK_drawing/VK_drawing.h>
-#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <Engine/Render/Namespace.h>
 
 
 namespace eng::renderpass{
 
 //Constructor / Destructor
-Glyph::Glyph(Engine* engine){
+Glyph::Glyph(eng::render::Node* node_render){
   //---------------------------
 
+  Engine* engine = node_render->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 

@@ -22,7 +22,7 @@ class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(Engine* engine);
+  Glyph(eng::render::Node* node_render);
   ~Glyph();
 
 public:

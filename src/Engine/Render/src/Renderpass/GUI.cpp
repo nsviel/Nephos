@@ -1,19 +1,17 @@
 #include "GUI.h"
 
 #include <Engine/Engine.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_main/VK_imgui.h>
-#include <Vulkan/VK_main/VK_engine.h>
-#include <Vulkan/VK_drawing/VK_drawing.h>
-#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/Namespace.h>
+#include <Engine/Render/Namespace.h>
 
 
 namespace eng::renderpass{
 
 //Constructor / Destructor
-GUI::GUI(Engine* engine){
+GUI::GUI(eng::render::Node* node_render){
   //---------------------------
 
+  Engine* engine = node_render->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();

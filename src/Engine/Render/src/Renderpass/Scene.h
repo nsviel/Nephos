@@ -22,7 +22,7 @@ class Scene
 {
 public:
   //Constructor / Destructor
-  Scene(Engine* engine);
+  Scene(eng::render::Node* node_render);
   ~Scene();
 
 public:

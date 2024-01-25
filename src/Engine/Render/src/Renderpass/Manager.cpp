@@ -8,13 +8,13 @@
 namespace eng::renderpass{
 
 //Constructor / Destructor
-Manager::Manager(Engine* engine){
+Manager::Manager(eng::render::Node* node_render){
   //---------------------------
 
-  this->rp_scene = new eng::renderpass::Scene(engine);
-  this->rp_glyph = new eng::renderpass::Glyph(engine);
-  this->rp_edl = new eng::renderpass::EDL(engine);
-  this->rp_gui = new eng::renderpass::GUI(engine);
+  this->rp_scene = new eng::renderpass::Scene(node_render);
+  this->rp_glyph = new eng::renderpass::Glyph(node_render);
+  this->rp_edl = new eng::renderpass::EDL(node_render);
+  this->rp_gui = new eng::renderpass::GUI(node_render);
 
   //---------------------------
 }

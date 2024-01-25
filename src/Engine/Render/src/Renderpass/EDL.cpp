@@ -1,35 +1,28 @@
 #include "EDL.h"
 
 #include <Engine/Engine.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_renderpass/VK_pipeline.h>
-#include <Vulkan/VK_main/VK_engine.h>
-#include <Vulkan/VK_drawing/VK_viewport.h>
-#include <Vulkan/VK_drawing/VK_drawing.h>
-#include <Vulkan/VK_binding/VK_descriptor.h>
-#include <Vulkan/VK_binding/VK_uniform.h>
-#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <Engine/Render/Namespace.h>
 
 
 namespace eng::renderpass{
 
 //Constructor / Destructor
-EDL::EDL(Engine* engine){
+EDL::EDL(eng::render::Node* node_render){
   //---------------------------
 
-  eng::render::Node* node_render = engine->get_node_render();
+  Engine* engine = node_render->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
-
-  this->edl_shader = node_render->get_edl_shader();
-  this->vk_engine = eng_vulkan->get_vk_engine();
-  this->vk_pipeline = new VK_pipeline(struct_vulkan);
-  this->vk_viewport = new VK_viewport(struct_vulkan);
+sayHello();
+  this->edl_shader = node_render->get_edl_shader();sayHello();
+  this->vk_engine = eng_vulkan->get_vk_engine();sayHello();
+  this->vk_pipeline = new VK_pipeline(struct_vulkan);sayHello();
+  this->vk_viewport = new VK_viewport(struct_vulkan);sayHello();
   this->vk_descriptor = new VK_descriptor(struct_vulkan);
-  this->vk_drawing = new VK_drawing(struct_vulkan);
+  this->vk_drawing = new VK_drawing(struct_vulkan);sayHello();
   this->vk_uniform = new VK_uniform(struct_vulkan);
-
+sayHello();
   //---------------------------
 }
 EDL::~EDL(){}

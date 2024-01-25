@@ -6,6 +6,7 @@
 class Engine;
 class VK_engine;
 class VK_imgui;
+namespace eng::render{class Node;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
@@ -16,7 +17,7 @@ class GUI
 {
 public:
   //Constructor / Destructor
-  GUI(Engine* engine);
+  GUI(eng::render::Node* node_render);
   ~GUI();
 
 public:

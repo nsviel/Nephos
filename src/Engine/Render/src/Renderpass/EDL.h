@@ -3,13 +3,13 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
-class Engine;
 class VK_engine;
 class VK_pipeline;
 class VK_viewport;
 class VK_descriptor;
 class VK_uniform;
 class VK_drawing;
+namespace eng::render{class Node;}
 namespace eng::shader{class EDL;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
@@ -21,7 +21,7 @@ class EDL
 {
 public:
   //Constructor / Destructor
-  EDL(Engine* engine);
+  EDL(eng::render::Node* node_render);
   ~EDL();
 
 public:

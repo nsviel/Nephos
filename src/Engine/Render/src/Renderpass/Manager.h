@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class Engine;
+namespace eng::render{class Node;}
 namespace eng::renderpass{class EDL;}
 namespace eng::renderpass{class Scene;}
 namespace eng::renderpass{class Glyph;}
@@ -15,7 +15,7 @@ class Manager
 {
 public:
   //Constructor / Destructor
-  Manager(Engine* engine);
+  Manager(eng::render::Node* node_render);
   ~Manager();
 
 public:
