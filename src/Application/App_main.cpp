@@ -1,5 +1,5 @@
 #include "App_main.h"
-#include "../Config.h"
+#include "Config.h"
 
 #include <GUI/Node.h>
 #include <Engine/Namespace.h>

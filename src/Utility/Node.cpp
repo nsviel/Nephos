@@ -1,7 +1,7 @@
 #include "Node.h"
 
 #include <Utility/Namespace.h>
-#include <Config.h>
+#include <Application/Config.h>
 
 
 namespace utl{

@@ -14,7 +14,6 @@ add_subdirectory(Vulkan)
 # Compilation
 #-----------------
 add_executable(executable
-  Config.h
   main.cpp
 )
 
