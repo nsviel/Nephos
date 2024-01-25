@@ -2,10 +2,11 @@
 
 #include <GUI/Namespace.h>
 #include <GUI/Namespace.h>
-#include <GUI/GUI_main/Namespace.h>
+#include <GUI/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class GUI;
+namespace gui{class Menu;}
 namespace gui::rnd::tab{class Panel;}
 namespace gui::dev::tab{class Panel;}
 

@@ -4,7 +4,7 @@
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_texture.h>
 #include <Vulkan/VK_struct/Namespace.h>
-#include <GUI/GUI_main/Render/Render.h>
+#include <GUI/Namespace.h>
 
 
 namespace eng::render::gui{

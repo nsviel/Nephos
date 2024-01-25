@@ -42,8 +42,8 @@ void GUI::create_subpass(vk::structure::Renderpass* renderpass){
   utl::base::Shader_info* shader_info = new utl::base::Shader_info();
   shader_info->title = "Canvas";
   shader_info->folder = "Canvas";
-  shader_info->path_spir_vs = "../src/GUI/GUI_main/Render/Shader/spir/shader_empty_vs.spv";
-  shader_info->path_spir_fs = "../src/GUI/GUI_main/Render/Shader/spir/shader_empty_fs.spv";
+  shader_info->path_spir_vs = "../src/GUI/Render/Shader/spir/shader_empty_vs.spv";
+  shader_info->path_spir_fs = "../src/GUI/Render/Shader/spir/shader_empty_fs.spv";
   shader_info->compile_shader = false;
   shader_info->with_depth_test = false;
 
