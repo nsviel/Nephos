@@ -8,8 +8,8 @@ VK_render::VK_render(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_command = new vk::command::VK_command(struct_vulkan);
-  this->vk_submit = new vk::command::VK_submit(struct_vulkan);
+  this->vk_command = new vk::command::Command(struct_vulkan);
+  this->vk_submit = new vk::command::Submit(struct_vulkan);
   this->vk_profiler = new VK_profiler(struct_vulkan);
 
   //---------------------------

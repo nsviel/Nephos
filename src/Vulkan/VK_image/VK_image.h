@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::command{class VK_memory;}
+namespace vk::command{class Memory;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
 
@@ -30,5 +30,5 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::command::VK_memory* vk_memory;
+  vk::command::Memory* vk_memory;
 };

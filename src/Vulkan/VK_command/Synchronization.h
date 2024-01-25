@@ -8,12 +8,12 @@ namespace vk::structure{class Frame;}
 
 namespace vk::command{
 
-class VK_synchronization
+class Synchronization
 {
 public:
   //Constructor / Destructor
-  VK_synchronization(vk::structure::Vulkan* struct_vulkan);
-  ~VK_synchronization();
+  Synchronization(vk::structure::Vulkan* struct_vulkan);
+  ~Synchronization();
 
 public:
   //Main functions

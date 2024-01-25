@@ -17,7 +17,7 @@ class VK_canvas;
 class VK_extension;
 class VK_pool;
 class VK_drawing;
-namespace vk::command{class VK_synchronization;}
+namespace vk::command{class Synchronization;}
 class VK_renderpass;
 class FPS_counter;
 namespace vk::structure{class Vulkan;}
@@ -72,7 +72,7 @@ private:
   VK_data* vk_data;
   VK_viewport* vk_viewport;
   VK_reload* vk_reload;
-  vk::command::VK_synchronization* vk_synchronization;
+  vk::command::Synchronization* vk_synchronization;
   VK_frame* vk_frame;
   VK_canvas* vk_canvas;
   VK_drawing* vk_drawing;

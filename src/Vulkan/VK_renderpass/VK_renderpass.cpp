@@ -11,7 +11,7 @@ VK_renderpass::VK_renderpass(vk::structure::Vulkan* struct_vulkan){
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
   this->vk_subpass = new VK_subpass(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
-  this->vk_command = new vk::command::VK_command(struct_vulkan);
+  this->vk_command = new vk::command::Command(struct_vulkan);
 
   //---------------------------
 }

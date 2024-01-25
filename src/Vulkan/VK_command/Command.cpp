@@ -1,4 +1,4 @@
-#include "VK_command.h"
+#include "Command.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,18 +6,18 @@
 namespace vk::command{
 
 //Constructor / Destructor
-VK_command::VK_command(vk::structure::Vulkan* struct_vulkan){
+Command::Command(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_submit = new vk::command::VK_submit(struct_vulkan);
+  this->vk_submit = new vk::command::Submit(struct_vulkan);
 
   //---------------------------
 }
-VK_command::~VK_command(){}
+Command::~Command(){}
 
 //Command buffer
-void VK_command::start_command_buffer_once(VkCommandBuffer& command_buffer){
+void Command::start_command_buffer_once(VkCommandBuffer& command_buffer){
   //---------------------------
 
   VkCommandBufferBeginInfo begin_info{};
@@ -30,7 +30,7 @@ void VK_command::start_command_buffer_once(VkCommandBuffer& command_buffer){
 
   //---------------------------
 }
-void VK_command::start_command_buffer_primary(VkCommandBuffer command_buffer){
+void Command::start_command_buffer_primary(VkCommandBuffer command_buffer){
   //---------------------------
 
   VkCommandBufferBeginInfo begin_info{};
@@ -44,7 +44,7 @@ void VK_command::start_command_buffer_primary(VkCommandBuffer command_buffer){
 
   //---------------------------
 }
-void VK_command::start_command_buffer_secondary(vk::structure::Renderpass* renderpass, VkCommandBuffer command_buffer){
+void Command::start_command_buffer_secondary(vk::structure::Renderpass* renderpass, VkCommandBuffer command_buffer){
   vk::structure::Framebuffer* frame = renderpass->framebuffer;
   //---------------------------
 
@@ -73,14 +73,14 @@ void VK_command::start_command_buffer_secondary(vk::structure::Renderpass* rende
 
   //---------------------------
 }
-void VK_command::reset_command_buffer(VkCommandBuffer& command_buffer){
+void Command::reset_command_buffer(VkCommandBuffer& command_buffer){
   //---------------------------
 
   vkResetCommandBuffer(command_buffer, 0);
 
   //---------------------------
 }
-void VK_command::stop_command_buffer(VkCommandBuffer command_buffer){
+void Command::stop_command_buffer(VkCommandBuffer command_buffer){
   //---------------------------
 
   VkResult result = vkEndCommandBuffer(command_buffer);
@@ -90,7 +90,7 @@ void VK_command::stop_command_buffer(VkCommandBuffer command_buffer){
 
   //---------------------------
 }
-void VK_command::allocate_command_buffer_primary(VkCommandBuffer& command_buffer){
+void Command::allocate_command_buffer_primary(VkCommandBuffer& command_buffer){
   //---------------------------
 
   //Command buffer allocation
@@ -108,7 +108,7 @@ void VK_command::allocate_command_buffer_primary(VkCommandBuffer& command_buffer
 
   //---------------------------
 }
-void VK_command::allocate_command_buffer_secondary(vk::structure::Object* data){
+void Command::allocate_command_buffer_secondary(vk::structure::Object* data){
   //---------------------------
 
   //Command buffer allocation
@@ -127,7 +127,7 @@ void VK_command::allocate_command_buffer_secondary(vk::structure::Object* data){
 
   //---------------------------
 }
-void VK_command::clean_command_buffer(VkCommandBuffer& command_buffer){
+void Command::clean_command_buffer(VkCommandBuffer& command_buffer){
   //---------------------------
 
   vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pool.command, 1, &command_buffer);
@@ -137,7 +137,7 @@ void VK_command::clean_command_buffer(VkCommandBuffer& command_buffer){
 }
 
 //Render pass
-void VK_command::start_render_pass(vk::structure::Renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb){
+void Command::start_render_pass(vk::structure::Renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb){
   //---------------------------
 
   this->reset_command_buffer(renderpass->command_buffer);
@@ -171,7 +171,7 @@ void VK_command::start_render_pass(vk::structure::Renderpass* renderpass, VkFram
 
   //---------------------------
 }
-void VK_command::stop_render_pass(vk::structure::Renderpass* renderpass){
+void Command::stop_render_pass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vkCmdEndRenderPass(renderpass->command_buffer);
@@ -182,7 +182,7 @@ void VK_command::stop_render_pass(vk::structure::Renderpass* renderpass){
 }
 
 //Image layout transition
-void VK_command::image_layout_transition_single(vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout){
+void Command::image_layout_transition_single(vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout){
   //---------------------------
 
   VkCommandBuffer command_buffer = singletime_command_begin();
@@ -191,7 +191,7 @@ void VK_command::image_layout_transition_single(vk::structure::Image* image, VkI
 
   //---------------------------
 }
-void VK_command::image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout){
+void Command::image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout){
   //---------------------------
 
   VkImageMemoryBarrier barrier{};
@@ -248,7 +248,7 @@ void VK_command::image_layout_transition(VkCommandBuffer command_buffer, vk::str
 }
 
 //Single time command
-VkCommandBuffer VK_command::singletime_command_begin(){
+VkCommandBuffer Command::singletime_command_begin(){
   VkCommandBuffer command_buffer;
   //---------------------------
 
@@ -258,7 +258,7 @@ VkCommandBuffer VK_command::singletime_command_begin(){
   //---------------------------
   return command_buffer;
 }
-void VK_command::singletime_command_end(VkCommandBuffer command_buffer){
+void Command::singletime_command_end(VkCommandBuffer command_buffer){
   //---------------------------
 
   vkEndCommandBuffer(command_buffer);

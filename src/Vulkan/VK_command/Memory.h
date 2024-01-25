@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::command{class VK_command;}
+namespace vk::command{class Command;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
 namespace vk::structure{class Buffer;}
@@ -10,12 +10,12 @@ namespace vk::structure{class Buffer;}
 
 namespace vk::command{
 
-class VK_memory
+class Memory
 {
 public:
   //Constructor / Destructor
-  VK_memory(vk::structure::Vulkan* struct_vulkan);
-  ~VK_memory();
+  Memory(vk::structure::Vulkan* struct_vulkan);
+  ~Memory();
 
 public:
   //Image GPU function
@@ -37,7 +37,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::command::VK_command* vk_command;
+  vk::command::Command* vk_command;
 };
 
 }

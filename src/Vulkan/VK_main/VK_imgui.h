@@ -5,8 +5,8 @@
 
 class VK_engine;
 class VK_pool;
-namespace vk::command{class VK_submit;}
-namespace vk::command{class VK_command;}
+namespace vk::command{class Submit;}
+namespace vk::command{class Command;}
 class VK_surface;
 namespace vk::structure{class Vulkan;}
 
@@ -31,8 +31,8 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   VK_engine* vk_engine;
-  vk::command::VK_submit* vk_submit;
-  vk::command::VK_command* vk_command;
+  vk::command::Submit* vk_submit;
+  vk::command::Command* vk_command;
   VK_pool* vk_pool;
   VK_surface* vk_surface;
 };

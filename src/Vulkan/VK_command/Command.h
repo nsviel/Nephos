@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::command{class VK_submit;}
+namespace vk::command{class Submit;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Renderpass;}
@@ -11,12 +11,12 @@ namespace vk::structure{class Image;}
 
 namespace vk::command{
 
-class VK_command
+class Command
 {
 public:
   //Constructor / Destructor
-  VK_command(vk::structure::Vulkan* struct_vulkan);
-  ~VK_command();
+  Command(vk::structure::Vulkan* struct_vulkan);
+  ~Command();
 
 public:
   //Command buffer
@@ -43,7 +43,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::command::VK_submit* vk_submit;
+  vk::command::Submit* vk_submit;
 };
 
 }

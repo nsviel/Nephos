@@ -8,12 +8,12 @@ namespace vk::structure{class Command;}
 
 namespace vk::command{
 
-class VK_submit
+class Submit
 {
 public:
   //Constructor / Destructor
-  VK_submit(vk::structure::Vulkan* struct_vulkan);
-  ~VK_submit();
+  Submit(vk::structure::Vulkan* struct_vulkan);
+  ~Submit();
 
 public:
   //Main functions

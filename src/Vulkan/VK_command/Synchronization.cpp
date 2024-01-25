@@ -1,4 +1,4 @@
-#include "VK_synchronization.h"
+#include "Synchronization.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,17 +6,17 @@
 namespace vk::command{
 
 //Constructor / Destructor
-VK_synchronization::VK_synchronization(vk::structure::Vulkan* struct_vulkan){
+Synchronization::Synchronization(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-VK_synchronization::~VK_synchronization(){}
+Synchronization::~Synchronization(){}
 
 //Main function
-void VK_synchronization::init(){
+void Synchronization::init(){
   //---------------------------
 
   //Create semaphore - Renderpass
@@ -40,7 +40,7 @@ void VK_synchronization::init(){
 
   //---------------------------
 }
-void VK_synchronization::init_frame_sync(vk::structure::Frame* frame){
+void Synchronization::init_frame_sync(vk::structure::Frame* frame){
   //---------------------------
 
   //Create semaphore - Renderpass
@@ -64,7 +64,7 @@ void VK_synchronization::init_frame_sync(vk::structure::Frame* frame){
 
   //---------------------------
 }
-void VK_synchronization::clean(){
+void Synchronization::clean(){
   //---------------------------
 /*
   this->clean_semaphore(struct_vulkan->synchro.semaphore_image_ready);
@@ -74,7 +74,7 @@ void VK_synchronization::clean(){
 */
   //---------------------------
 }
-void VK_synchronization::clean_frame_sync(vk::structure::Frame* frame){
+void Synchronization::clean_frame_sync(vk::structure::Frame* frame){
   //---------------------------
 
   this->clean_semaphore(frame->semaphore_image_ready);
@@ -86,7 +86,7 @@ void VK_synchronization::clean_frame_sync(vk::structure::Frame* frame){
 }
 
 //Synchronization object
-void VK_synchronization::create_semaphore(VkSemaphore& semaphore){
+void Synchronization::create_semaphore(VkSemaphore& semaphore){
   //---------------------------
 
   VkSemaphoreCreateInfo semaphoreInfo{};
@@ -99,7 +99,7 @@ void VK_synchronization::create_semaphore(VkSemaphore& semaphore){
 
   //---------------------------
 }
-void VK_synchronization::create_fence(VkFence& fence){
+void Synchronization::create_fence(VkFence& fence){
   //---------------------------
 
   VkFenceCreateInfo fenceInfo{};
@@ -117,7 +117,7 @@ void VK_synchronization::create_fence(VkFence& fence){
 }
 
 //Deletetion function
-void VK_synchronization::clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore){
+void Synchronization::clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore){
   //---------------------------
 
   for(int i=0; i<vec_semaphore.size(); i++){
@@ -128,14 +128,14 @@ void VK_synchronization::clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore)
 
   //---------------------------
 }
-void VK_synchronization::clean_semaphore(VkSemaphore& semaphore){
+void Synchronization::clean_semaphore(VkSemaphore& semaphore){
   //---------------------------
 
   vkDestroySemaphore(struct_vulkan->device.device, semaphore, nullptr);
 
   //---------------------------
 }
-void VK_synchronization::clean_vec_fence(vector<VkFence>& vec_fence){
+void Synchronization::clean_vec_fence(vector<VkFence>& vec_fence){
   //---------------------------
 
   for(int i=0; i<vec_fence.size(); i++){
@@ -146,7 +146,7 @@ void VK_synchronization::clean_vec_fence(vector<VkFence>& vec_fence){
 
   //---------------------------
 }
-void VK_synchronization::clean_fence(VkFence& fence){
+void Synchronization::clean_fence(VkFence& fence){
   //---------------------------
 
   vkDestroyFence(struct_vulkan->device.device, fence, nullptr);

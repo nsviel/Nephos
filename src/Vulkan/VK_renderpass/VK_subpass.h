@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::command{class VK_command;}
+namespace vk::command{class Command;}
 class VK_attachment;
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
@@ -30,6 +30,6 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::command::VK_command* vk_command;
+  vk::command::Command* vk_command;
   VK_attachment* vk_attachment;
 };

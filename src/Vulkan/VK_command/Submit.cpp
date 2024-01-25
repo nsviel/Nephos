@@ -1,4 +1,4 @@
-#include "VK_submit.h"
+#include "Submit.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,17 +6,17 @@
 namespace vk::command{
 
 //Constructor / Destructor
-VK_submit::VK_submit(vk::structure::Vulkan* struct_vulkan){
+Submit::Submit(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-VK_submit::~VK_submit(){}
+Submit::~Submit(){}
 
 //Main function
-void VK_submit::submit_command_graphics(VkCommandBuffer command){
+void Submit::submit_command_graphics(VkCommandBuffer command){
   //---------------------------
 
   VkSubmitInfo submit_info = {};
@@ -30,7 +30,7 @@ void VK_submit::submit_command_graphics(VkCommandBuffer command){
 
   //---------------------------
 }
-void VK_submit::submit_command_render(vk::structure::Command* command){
+void Submit::submit_command_render(vk::structure::Command* command){
   //---------------------------
 
   VkSubmitInfo submit_info{};

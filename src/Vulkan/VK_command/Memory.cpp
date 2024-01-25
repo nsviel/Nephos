@@ -1,4 +1,4 @@
-#include "VK_memory.h"
+#include "Memory.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,18 +6,18 @@
 namespace vk::command{
 
 //Constructor / Destructor
-VK_memory::VK_memory(vk::structure::Vulkan* struct_vulkan){
+Memory::Memory(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_command = new vk::command::VK_command(struct_vulkan);
+  this->vk_command = new vk::command::Command(struct_vulkan);
 
   //---------------------------
 }
-VK_memory::~VK_memory(){}
+Memory::~Memory(){}
 
 //Image GPU function
-void VK_memory::transfert_image_to_gpu(vk::structure::Image* image){
+void Memory::transfert_image_to_gpu(vk::structure::Image* image){
   //---------------------------
 
   //Retrieve required buffer size
@@ -48,7 +48,7 @@ void VK_memory::transfert_image_to_gpu(vk::structure::Image* image){
 
   //---------------------------
 }
-void VK_memory::allocate_image_memory(vk::structure::Image* image){
+void Memory::allocate_image_memory(vk::structure::Image* image){
   //---------------------------
 
   VkMemoryRequirements memRequirements;
@@ -67,7 +67,7 @@ void VK_memory::allocate_image_memory(vk::structure::Image* image){
 
   //---------------------------
 }
-void VK_memory::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer){
+void Memory::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer){
   //---------------------------
 
   VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
@@ -88,7 +88,7 @@ void VK_memory::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffe
 
   //---------------------------
 }
-void VK_memory::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer){
+void Memory::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer){
   //---------------------------
 
   VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
@@ -108,7 +108,7 @@ void VK_memory::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffe
 }
 
 //Buffer GPU function
-void VK_memory::transfert_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer){
+void Memory::transfert_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer){
   //---------------------------
 
   if(vertices.size() == 0){return;}
@@ -138,7 +138,7 @@ void VK_memory::transfert_buffer_to_gpu(vector<vec2>& vertices, vk::structure::B
 
   //---------------------------
 }
-void VK_memory::transfert_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer){
+void Memory::transfert_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer){
   //---------------------------
 
   if(vertices.size() == 0){return;}
@@ -168,7 +168,7 @@ void VK_memory::transfert_buffer_to_gpu(vector<vec3>& vertices, vk::structure::B
 
   //---------------------------
 }
-void VK_memory::transfert_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer){
+void Memory::transfert_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer){
   //---------------------------
 
   if(vertices.size() == 0){return;}
@@ -198,7 +198,7 @@ void VK_memory::transfert_buffer_to_gpu(vector<vec4>& vertices, vk::structure::B
 
   //---------------------------
 }
-void VK_memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size){
+void Memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size){
   //---------------------------
 
   VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
@@ -213,7 +213,7 @@ void VK_memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize
 }
 
 //Subfunction
-void VK_memory::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBuffer& buffer){
+void Memory::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBuffer& buffer){
   //---------------------------
 
   VkBufferCreateInfo buffer_info{};
@@ -229,7 +229,7 @@ void VK_memory::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, V
 
   //---------------------------
 }
-void VK_memory::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& buffer_memory){
+void Memory::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& buffer_memory){
   //---------------------------
 
   //Get buffer memory requirement
@@ -253,7 +253,7 @@ void VK_memory::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& b
 
   //---------------------------
 }
-uint32_t VK_memory::find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags properties){
+uint32_t Memory::find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags properties){
   //---------------------------
 
   VkPhysicalDeviceMemoryProperties memProperties;
