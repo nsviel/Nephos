@@ -22,6 +22,7 @@ public:
 
 public:
   //Main functions
+  void run_panel();
   void design_panel();
 
   //Subfunction

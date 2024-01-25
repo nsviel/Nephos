@@ -32,10 +32,10 @@ void Panel::draw_panels(){
   //---------------------------
 
   rnd_menu->run_tab_menu();
-//  rnd_shader->run_panel();
+
   rnd_profiler->run_panel();
   rnd_option->run_panel();
-  //rnd_render->design_panel();
+
 
   //---------------------------
 }

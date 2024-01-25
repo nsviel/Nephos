@@ -30,19 +30,26 @@ Renderer::Renderer(Engine* engine){
 Renderer::~Renderer(){}
 
 //Main function
-void Renderer::design_panel(){
+void Renderer::run_panel(){
   //---------------------------
 
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
   ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
   if(ImGui::Begin(name.c_str(), NULL)){
-    ImVec2 image_pose = ImGui::GetCursorScreenPos();
-    this->engine_texture();
-    this->engine_control();
-    this->engine_overlay(image_pose);
+    this->design_panel();
     ImGui::End();
   }
   ImGui::PopStyleVar();
+
+  //---------------------------
+}
+void Renderer::design_panel(){
+  //---------------------------
+
+  ImVec2 image_pose = ImGui::GetCursorScreenPos();
+  this->engine_texture();
+  this->engine_control();
+  this->engine_overlay(image_pose);
 
   //---------------------------
 }
