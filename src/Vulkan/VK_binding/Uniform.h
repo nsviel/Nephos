@@ -10,12 +10,12 @@ namespace vk::structure{class Uniform;}
 
 namespace vk::binding{
   
-class VK_uniform
+class Uniform
 {
 public:
   //Constructor / Destructor
-  VK_uniform(vk::structure::Vulkan* struct_vulkan);
-  ~VK_uniform();
+  Uniform(vk::structure::Vulkan* struct_vulkan);
+  ~Uniform();
 
 public:
   //Main functions

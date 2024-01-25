@@ -9,12 +9,12 @@ namespace vk::structure{class Sampler;}
 
 namespace vk::binding{
 
-class VK_sampler
+class Sampler
 {
 public:
   //Constructor / Destructor
-  VK_sampler(vk::structure::Vulkan* struct_vulkan);
-  ~VK_sampler();
+  Sampler(vk::structure::Vulkan* struct_vulkan);
+  ~Sampler();
 
 public:
   //Main functions

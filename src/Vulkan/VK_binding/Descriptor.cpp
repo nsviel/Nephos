@@ -10,8 +10,8 @@ Descriptor::Descriptor(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_uniform = new vk::binding::VK_uniform(struct_vulkan);
-  this->vk_sampler = new vk::binding::VK_sampler(struct_vulkan);
+  this->vk_uniform = new vk::binding::Uniform(struct_vulkan);
+  this->vk_sampler = new vk::binding::Sampler(struct_vulkan);
 
   //---------------------------
 }

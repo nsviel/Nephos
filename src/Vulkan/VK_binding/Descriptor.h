@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::binding{class VK_uniform;}
-namespace vk::binding{class VK_sampler;}
+namespace vk::binding{class Uniform;}
+namespace vk::binding{class Sampler;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Binding;}
 namespace vk::structure{class Image;}
@@ -37,8 +37,8 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::binding::VK_uniform* vk_uniform;
-  vk::binding::VK_sampler* vk_sampler;
+  vk::binding::Uniform* vk_uniform;
+  vk::binding::Sampler* vk_sampler;
 };
 
 }

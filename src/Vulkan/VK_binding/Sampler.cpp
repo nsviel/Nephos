@@ -1,4 +1,4 @@
-#include "VK_sampler.h"
+#include "Sampler.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,17 +6,17 @@
 namespace vk::binding{
 
 //Constructor / Destructor
-VK_sampler::VK_sampler(vk::structure::Vulkan* struct_vulkan){
+Sampler::Sampler(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-VK_sampler::~VK_sampler(){}
+Sampler::~Sampler(){}
 
 //Main function
-void VK_sampler::create_sampler(vk::structure::Binding* binding){
+void Sampler::create_sampler(vk::structure::Binding* binding){
   binding->vec_sampler.clear();
   //---------------------------
 
@@ -37,7 +37,7 @@ void VK_sampler::create_sampler(vk::structure::Binding* binding){
 
   //---------------------------
 }
-vk::structure::Sampler* VK_sampler::create_sampler_obj(string name, int binding, VkDescriptorType type){
+vk::structure::Sampler* Sampler::create_sampler_obj(string name, int binding, VkDescriptorType type){
   vk::structure::Sampler* sampler = new vk::structure::Sampler();
   //---------------------------
 

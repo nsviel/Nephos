@@ -21,7 +21,7 @@ EDL::EDL(eng::render::Node* node_render){
   this->vk_viewport = new VK_viewport(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
   this->vk_drawing = new VK_drawing(struct_vulkan);
-  this->vk_uniform = new vk::binding::VK_uniform(struct_vulkan);
+  this->vk_uniform = new vk::binding::Uniform(struct_vulkan);
 
   //---------------------------
 }

@@ -1,4 +1,4 @@
-#include "VK_uniform.h"
+#include "Uniform.h"
 
 #include <Vulkan/Namespace.h>
 #include <Engine/Render/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::binding{
 
 //Constructor / Destructor
-VK_uniform::VK_uniform(vk::structure::Vulkan* struct_vulkan){
+Uniform::Uniform(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -15,10 +15,10 @@ VK_uniform::VK_uniform(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_uniform::~VK_uniform(){}
+Uniform::~Uniform(){}
 
 //Uniform creation
-void VK_uniform::create_uniform_buffers(vk::structure::Binding* binding){
+void Uniform::create_uniform_buffers(vk::structure::Binding* binding){
   binding->vec_uniform.clear();
   //---------------------------
 
@@ -40,7 +40,7 @@ void VK_uniform::create_uniform_buffers(vk::structure::Binding* binding){
 
   //---------------------------
 }
-vk::structure::Uniform* VK_uniform::create_uniform_buffer(string name, size_t size, int binding){
+vk::structure::Uniform* Uniform::create_uniform_buffer(string name, size_t size, int binding){
   vk::structure::Uniform* uniform = new vk::structure::Uniform();
   //---------------------------
 
@@ -55,7 +55,7 @@ vk::structure::Uniform* VK_uniform::create_uniform_buffer(string name, size_t si
   //---------------------------
   return uniform;
 }
-void VK_uniform::clean_uniform(vk::structure::Binding* binding){
+void Uniform::clean_uniform(vk::structure::Binding* binding){
   //---------------------------
 
   for(int i=0; i<binding->vec_uniform.size(); i++){
@@ -68,7 +68,7 @@ void VK_uniform::clean_uniform(vk::structure::Binding* binding){
 }
 
 //Uniform update
-template <typename T> void VK_uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, T value){
+template <typename T> void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, T value){
   bool has_been_found = false;
   //---------------------------
 
@@ -98,8 +98,8 @@ template <typename T> void VK_uniform::update_uniform(string uniform_name, vk::s
 
   //---------------------------
 }
-template void VK_uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, glm::mat4 value);
-template void VK_uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, int value);
-template void VK_uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, eng::shader::EDL_param value);
+template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, glm::mat4 value);
+template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, int value);
+template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, eng::shader::EDL_param value);
 
 }
