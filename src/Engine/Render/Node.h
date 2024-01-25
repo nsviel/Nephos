@@ -19,6 +19,7 @@ public:
 
 public:
   //Main function
+  void init();
   void gui();
 
   inline eng::shader::EDL* get_edl_shader(){return edl_shader;}

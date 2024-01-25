@@ -33,7 +33,6 @@ Shader::Shader(Engine* engine, bool* show_window){
   editor_fs->set_language("glsl");
 
   //---------------------------
-  this->init_panel();
 }
 Shader::~Shader(){}
 

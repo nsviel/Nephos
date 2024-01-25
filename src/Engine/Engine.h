@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Utility/Specific/common.h>
+
 class Param;
 class Vulkan;
 class ENG_renderpass;
