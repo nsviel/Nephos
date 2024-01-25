@@ -20,7 +20,7 @@ Loader::Loader(eng::scene::Node* sce_node, bool* show_window){
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();
 
-  this->default_dir = file::get_current_parent_path_abs();
+  this->default_dir = utl::fct::file::get_current_parent_path_abs();
   this->current_dir = default_dir;
   this->name = "Loader";
   this->show_window = show_window;
@@ -133,7 +133,7 @@ void Loader::draw_file_header(){
   //---------------------------
 }
 void Loader::draw_file_content(){
-  vector<string> vec_current_files = directory::list_all_path(current_dir);
+  vector<string> vec_current_files = utl::fct::directory::list_all_path(current_dir);
   //---------------------------
 
   static ImGuiTableFlags flags;
@@ -158,15 +158,15 @@ void Loader::draw_file_content(){
     for(int i=0; i<vec_current_files.size(); i++){
       Item item;
       string file = vec_current_files[i];
-      string filename = info::get_filename_from_path(file);
+      string filename = utl::fct::info::get_filename_from_path(file);
       //Remove hidden files
       if(filename[0] == '.' && filename[1] != '.') continue;
 
       //Get file info
       item.ID = ID++;
-      item.type = directory::is_dir_or_file(file);
+      item.type = utl::fct::directory::is_dir_or_file(file);
       if(item.type == "directory"){
-        item.name = info::get_filename_from_path(file);
+        item.name = utl::fct::info::get_filename_from_path(file);
         item.path = file;
         item.icon = string(ICON_FA_FOLDER);
         item.size = "---";
@@ -177,11 +177,11 @@ void Loader::draw_file_content(){
         vec_item_folder.push_back(item);
       }else if(item.type == "file"){
         item.path = file;
-        item.name = info::get_name_from_path(file);
+        item.name = utl::fct::info::get_name_from_path(file);
         item.icon = string(ICON_FA_FILE);
-        item.size = info::get_file_formatted_size(file);
-        item.weight = info::get_file_size(file);
-        item.format = info::get_format_from_path(file);
+        item.size = utl::fct::info::get_file_formatted_size(file);
+        item.weight = utl::fct::info::get_file_size(file);
+        item.format = utl::fct::info::get_format_from_path(file);
         item.color_icon = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         item.color_text = sce_loader->is_format_supported(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_item_file.push_back(item);
@@ -423,13 +423,13 @@ void Loader::operation_selection(){
 void Loader::operation_selection(string path){
   //---------------------------
 
-  if(directory::is_directory(path)){
+  if(utl::fct::directory::is_directory(path)){
     this->current_dir = path;
     this->goto_file_tab = true;
   }else{
     //File check
-    string format = info::get_format_from_path(path);
-    if(!file::is_file_exist(path)) return;
+    string format = utl::fct::info::get_format_from_path(path);
+    if(!utl::fct::file::is_file_exist(path)) return;
     if(!sce_loader->is_format_supported(format)) return;
 
     //Apply loading and operations

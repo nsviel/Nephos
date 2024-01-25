@@ -6,7 +6,7 @@
 #include <experimental/filesystem>
 
 
-namespace info{
+namespace utl::fct::info{
   //---------------------------
 
   //Retrieve string info from path

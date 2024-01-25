@@ -21,7 +21,7 @@ utl::media::File* PTS_importer::Loader(std::string path){
   //---------------------------
 
   utl::media::File* data = new utl::media::File();
-  data->name = info::get_name_from_path(path);
+  data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
   data->draw_type_name = "point";
 
@@ -56,7 +56,7 @@ utl::media::File* PTS_importer::Loader(std::string path, int lmin, int lmax){
   //---------------------------
 
   utl::media::File* data = new utl::media::File();
-  data->name = info::get_name_from_path(path);
+  data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
   data->draw_type_name = "point";
 
@@ -572,7 +572,7 @@ int PTS_importer::check_configuration(std::string path){
 int PTS_importer::check_size(std::string path, bool FILE_hasHeader){
   //---------------------------
 
-  int FILE_size = info::get_file_nbPoint(path);
+  int FILE_size = utl::fct::info::get_file_nbPoint(path);
   if(FILE_size > nbptMax){
     std::cout << "Too much points : "<< FILE_size << ">"<< nbptMax << std::endl;
   }

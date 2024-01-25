@@ -27,8 +27,8 @@ void Bookmark::init(){
   this->add_relative_path("../media/point_cloud/dragon.ply");
 
   //Read existing bookmarks
-  file::check_or_create_file(path_bookmark_file);
-  vector<string> vec_path = file::read_paths_from_file(path_bookmark_file);
+  utl::fct::file::check_or_create_file(path_bookmark_file);
+  vector<string> vec_path = utl::fct::file::read_paths_from_file(path_bookmark_file);
   for(int i=0; i<vec_path.size(); i++){
     this->add_abs_path(vec_path[i]);
   }
@@ -38,14 +38,14 @@ void Bookmark::init(){
 
 //Item management
 void Bookmark::add_abs_path(string path){
-  if(!file::is_file_exist_silent(path)) return;
+  if(!utl::fct::file::is_file_exist_silent(path)) return;
   //---------------------------
 
   Item item;
   item.path = path;
-  item.name = info::get_name_from_path(path);
-  item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
-  item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+  item.name = utl::fct::info::get_name_from_path(path);
+  item.icon = utl::fct::directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
+  item.color_icon = utl::fct::directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = true;
 
   this->list_bookmark.push_back(item);
@@ -53,14 +53,14 @@ void Bookmark::add_abs_path(string path){
   //---------------------------
 }
 void Bookmark::add_relative_path(string path){
-  if(!file::is_file_exist_silent(path)) return;
+  if(!utl::fct::file::is_file_exist_silent(path)) return;
   //---------------------------
 
   Item item;
-  item.path = file::get_absolute_path(path);
-  item.name = info::get_name_from_path(path);
-  item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
-  item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+  item.path = utl::fct::file::get_absolute_path(path);
+  item.name = utl::fct::info::get_name_from_path(path);
+  item.icon = utl::fct::directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
+  item.color_icon = utl::fct::directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = false;
 
   this->list_bookmark.push_back(item);
@@ -90,7 +90,7 @@ void Bookmark::save_on_file(){
     }
   }
 
-  file::write_paths_to_file(path_bookmark_file, vec_path);
+  utl::fct::file::write_paths_to_file(path_bookmark_file, vec_path);
 
   //---------------------------
 }

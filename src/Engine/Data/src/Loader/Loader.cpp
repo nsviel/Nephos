@@ -46,13 +46,13 @@ utl::type::Entity* Loader::load_entity(std::string path){
   //---------------------------
 
   //Check file existence
-  if(file::is_file_exist(path) == false){
+  if(utl::fct::file::is_file_exist(path) == false){
     cout<<"[error] File doesn't exists at "<<path<<endl;
     return nullptr;
   }
 
   //Check file format
-  string format = info::get_format_from_path(path);
+  string format = utl::fct::info::get_format_from_path(path);
   if(!is_format_supported(format)){
     cout<<"[error] File format not supported -> "<<format<<endl;
     return nullptr;
@@ -84,7 +84,7 @@ utl::entity::Object* Loader::load_object(string path){
 
   utl::entity::Object* object = new utl::entity::Object(engine);
   object->data->path_data = path;
-  object->data->file_format = info::get_format_from_path(path);
+  object->data->file_format = utl::fct::info::get_format_from_path(path);
   object->data->has_texture = true;
   object->name = data->name;
   object->data->nb_point = data->xyz.size();

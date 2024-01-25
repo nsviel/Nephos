@@ -10,7 +10,7 @@ utl::media::File* OBJ_importer::Loader(std::string path){
   //---------------------------
 
   utl::media::File* data = new utl::media::File();
-  data->name = info::get_name_from_path(path);
+  data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
 
   //Init
@@ -138,7 +138,7 @@ void OBJ_importer::parse_mtl(std::string path_obj){
   //---------------------------
 
   // Retrieve mtl file path
-  std::string path = info::get_path_from_filepath(path_obj);
+  std::string path = utl::fct::info::get_path_from_filepath(path_obj);
   std::string path_mtl = path + file_mtl;
 
   //Open mtl file

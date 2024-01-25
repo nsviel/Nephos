@@ -43,7 +43,7 @@ MyFile* Format::get_data_from_file(std::string path){
   MyFile* data;
   //---------------------------
 
-  std::string format = info::get_format_from_path(path);
+  std::string format = utl::fct::info::get_format_from_path(path);
   if     (format == "ply"){
     data = ply_import->Loader(path);
   }

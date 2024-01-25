@@ -1,7 +1,7 @@
 #include "Info.h"
 
 
-namespace info{
+namespace utl::fct::info{
 
 //Retrieve string info from path
 std::string get_name_from_path(std::string path){

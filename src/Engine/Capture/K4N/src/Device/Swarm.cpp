@@ -52,7 +52,7 @@ void Swarm::init_scene(){
 
 //Sensor function
 void Swarm::create_sensor_playback(utl::media::File& file){
-  if(!file::is_file_exist(file.path_data)) return;
+  if(!utl::fct::file::is_file_exist(file.path_data)) return;
   //---------------------------
 
   //Associated master
@@ -62,7 +62,7 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   //Sensor creation
   eng::k4n::dev::Sensor* sensor = new eng::k4n::dev::Sensor(k4n_node);
   sensor->name = "playback_" + to_string(index);
-  sensor->param.format = info::get_format_from_path(file.path_data);
+  sensor->param.format = utl::fct::info::get_format_from_path(file.path_data);
   sensor->param.index = index;
   sensor->param.is_playback = true;
   sensor->param.path_data = file.path_data;

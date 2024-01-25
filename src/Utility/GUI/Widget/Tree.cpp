@@ -65,10 +65,10 @@ void Tree::construct_node(string path, vector<Tree_node*>& nodes){
 
     //Save root
     Tree_node* node = new Tree_node();
-    node->name = info::get_filename_from_path(path);
-    node->type = info::get_type_from_path(path);
+    node->name = utl::fct::info::get_filename_from_path(path);
+    node->type = utl::fct::info::get_type_from_path(path);
     node->path = path;
-    node->size = info::get_file_size(path);
+    node->size = utl::fct::info::get_file_size(path);
     nodes.push_back(node);
 
     //Recussively check all child leafs
@@ -84,10 +84,10 @@ void Tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>& nod
     if(vec_path[i] != ""){
       Tree_node* node = new Tree_node();
 
-      node->name = info::get_filename_from_path(vec_path[i]);
-      node->type = info::get_type_from_path(vec_path[i]);
+      node->name = utl::fct::info::get_filename_from_path(vec_path[i]);
+      node->type = utl::fct::info::get_type_from_path(vec_path[i]);
       node->path = vec_path[i];
-      node->size = info::get_file_size(vec_path[i]);
+      node->size = utl::fct::info::get_file_size(vec_path[i]);
       node->leaf_nb = 1;
       node->leaf_idx = 1;
       node->already_open = true;
@@ -100,7 +100,7 @@ void Tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>& nod
   //---------------------------
 }
 void Tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* parent){
-  vector<string> list_path = directory::list_all_path(path);
+  vector<string> list_path = utl::fct::directory::list_all_path(path);
   //---------------------------
 
   bool is_sub_folder = false;
@@ -113,14 +113,14 @@ void Tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* pa
     string path_file = list_path[i];
 
     Tree_node* node = new Tree_node();
-    node->name = info::get_filename_from_path(path_file);
-    node->type = info::get_type_from_path(path_file);
+    node->name = utl::fct::info::get_filename_from_path(path_file);
+    node->type = utl::fct::info::get_type_from_path(path_file);
     node->path = path_file;
 
     if(node->type != "Folder"){
       if(check_display_file_format(path_file)){
         node->leaf_nb = 0;
-        node->size = info::get_file_size(path_file);
+        node->size = utl::fct::info::get_file_size(path_file);
         nodes.push_back(node);
       }else{
         parent->leaf_nb--;
@@ -210,7 +210,7 @@ void Tree::display_node_root(vector<Tree_node*>& all_nodes){
   //---------------------------
 }
 bool Tree::check_display_file_format(string path){
-  string format = info::get_format_from_path(path);
+  string format = utl::fct::info::get_format_from_path(path);
   //---------------------------
 
   for(int i=0; i<filler->accepted_format.size(); i++){

@@ -1,7 +1,7 @@
 #include "Directory.h"
 
 
-namespace directory{
+namespace utl::fct::directory{
   //---------------------------
 
   //Directory operations
