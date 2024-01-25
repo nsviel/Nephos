@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class Vulkan;
 class VK_engine;
 class VK_imgui;
+namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Subpass;}
 
 
 namespace gui{
