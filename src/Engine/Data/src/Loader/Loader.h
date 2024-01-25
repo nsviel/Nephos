@@ -1,18 +1,14 @@
 #pragma once
 
-#include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Function/File/Directory.h>
-#include <Utility/Function/File/Zenity.h>
-#include <Utility/Function/File/File.h>
 
 class Engine;
+namespace eng::scene{class Scene;}
+namespace eng::scene{class Format;}
+namespace eng::scene{class Node;}
+
 
 namespace eng::scene{
-class Scene;
-class Format;
-class Node;
-
 
 class Loader
 {

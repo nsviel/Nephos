@@ -3,6 +3,8 @@
 #include <Engine/Data/Namespace.h>
 #include <Engine/Operation/src/Namespace.h>
 #include <Utility/Function/File/Info.h>
+#include <Utility/Function/File/File.h>
+#include <Utility/Function/File/Directory.h>
 #include <image/IconsFontAwesome6.h>
 
 

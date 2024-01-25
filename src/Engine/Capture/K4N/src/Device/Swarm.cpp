@@ -2,6 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Utility/Function/File/Info.h>
+#include <Utility/Function/File/File.h>
 #include <Engine/Capture/K4N/Namespace.h>
 
 /*

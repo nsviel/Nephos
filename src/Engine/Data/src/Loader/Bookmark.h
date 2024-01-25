@@ -1,11 +1,12 @@
 #pragma once
 
-#include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Data/src/Loader/Item.h>
+
+class Item;
+namespace eng::scene{class Node;}
+
 
 namespace eng::scene{
-
 
 class Bookmark
 {

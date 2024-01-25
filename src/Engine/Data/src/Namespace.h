@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Engine/Data/src/Loader/Item.h>
 #include <Engine/Data/src/Database/Database.h>
 #include <Engine/Data/src/Database/Scene.h>
 #include <Engine/Data/src/Database/World.h>
