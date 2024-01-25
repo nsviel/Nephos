@@ -5,7 +5,7 @@
 
 namespace eng::render{
 
-Node::Node(Engine* engine){
+Node::Node(eng::Engine* engine){
   //---------------------------
 
   this->engine = engine;

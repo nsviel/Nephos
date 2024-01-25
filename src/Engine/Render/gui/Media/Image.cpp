@@ -8,7 +8,7 @@
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Image::Image(Engine* engine){
+Image::Image(eng::Engine* engine){
   //---------------------------
 
   Vulkan* vulkan = engine->get_eng_vulkan();

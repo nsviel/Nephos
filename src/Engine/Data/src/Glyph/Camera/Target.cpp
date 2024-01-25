@@ -4,7 +4,7 @@
 namespace glyph::camera{
 
 //Constructor / destructor
-Target::Target(Engine* engine) : Glyph(engine){
+Target::Target(eng::Engine* engine) : Glyph(engine){
   //---------------------------
 
   this->is_permanent = true;

@@ -12,7 +12,7 @@
 namespace eng::ope::gui{
 
 //Constructor / Destructor
-Control::Control(Engine* engine){
+Control::Control(eng::Engine* engine){
   //---------------------------
 
   utl::Node* utility = engine->get_node_utility();

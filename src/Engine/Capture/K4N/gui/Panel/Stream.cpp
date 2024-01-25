@@ -10,7 +10,7 @@ namespace eng::k4n::gui{
 Stream::Stream(eng::k4n::Node* k4n_node, bool* show_window){
   //---------------------------
 
-  Engine* engine = k4n_node->get_engine();
+  eng::Engine* engine = k4n_node->get_engine();
 
   this->k4a_node = k4n_node;
   this->k4a_depth = new eng::k4n::data::Depth();

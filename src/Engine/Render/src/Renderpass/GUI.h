@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
-class Engine;
+namespace eng{class Engine;}
 class VK_engine;
 class VK_imgui;
 namespace eng::render{class Node;}

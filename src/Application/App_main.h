@@ -3,7 +3,7 @@
 #include <Utility/Namespace.h>
 
 class Config;
-class Engine;
+namespace eng{class Engine;}
 class GUI;
 
 
@@ -25,7 +25,7 @@ public:
 
 private:
   Config* config;
-  Engine* engine;
+  eng::Engine* engine;
   utl::Node* utility;
   GUI* gui;
 };

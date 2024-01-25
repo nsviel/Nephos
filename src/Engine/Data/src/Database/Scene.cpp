@@ -13,7 +13,7 @@ namespace eng::scene{
 Scene::Scene(eng::scene::Node* sce_node){
   //---------------------------
 
-  Engine* engine = sce_node->get_engine();
+  eng::Engine* engine = sce_node->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->sce_database = sce_node->get_scene_database();

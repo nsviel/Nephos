@@ -12,7 +12,7 @@ Control::Control(GUI* gui){
   //---------------------------
 
   utl::Node* utility = gui->get_node_utility();
-  Engine* engine = gui->get_engine();
+  eng::Engine* engine = gui->get_engine();
 
   this->utl_window = utility->get_utl_window();
   this->gui_tab = gui->get_gui_tab();

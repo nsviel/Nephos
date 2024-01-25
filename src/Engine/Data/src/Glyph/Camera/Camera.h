@@ -9,7 +9,7 @@ class Camera : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Camera(Engine* engine);
+  Camera(eng::Engine* engine);
   ~Camera();
 
 public:

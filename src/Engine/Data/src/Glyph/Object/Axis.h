@@ -11,7 +11,7 @@ class Axis : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Axis(Engine* engine);
+  Axis(eng::Engine* engine);
   ~Axis();
 
 public:

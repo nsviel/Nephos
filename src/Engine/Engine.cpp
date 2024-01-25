@@ -5,6 +5,8 @@
 #include <Utility/Namespace.h>
 
 
+namespace eng{
+
 //Constructor / Destructor
 Engine::Engine(utl::Node* node_utility){
   //---------------------------
@@ -75,4 +77,6 @@ void Engine::reset(){
   node_scene->reset();
 
   //---------------------------
+}
+
 }

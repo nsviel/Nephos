@@ -6,7 +6,7 @@
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/K4N/gui/Namespace.h>
 
-class Engine;
+namespace eng{class Engine;}
 class Recorder;
 namespace eng::k4n::gui{class Capture;}
 namespace eng::k4n::gui{class Playback;}

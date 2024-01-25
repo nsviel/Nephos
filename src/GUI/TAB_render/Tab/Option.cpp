@@ -12,7 +12,7 @@ namespace gui::rnd::tab{
 Option::Option(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
+  eng::Engine* engine = gui->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->gui = gui;

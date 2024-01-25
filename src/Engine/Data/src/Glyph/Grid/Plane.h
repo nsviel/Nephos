@@ -9,7 +9,7 @@ class Plane : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Plane(Engine* engine);
+  Plane(eng::Engine* engine);
   ~Plane();
 
 public:

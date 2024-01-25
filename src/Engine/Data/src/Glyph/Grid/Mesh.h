@@ -9,7 +9,7 @@ class Mesh : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Mesh(Engine* engine);
+  Mesh(eng::Engine* engine);
   ~Mesh();
 
 public:

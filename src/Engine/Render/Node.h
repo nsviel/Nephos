@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class Engine;
+namespace eng{class Engine;}
 namespace eng::renderpass{class Manager;}
 namespace eng::shader{class EDL;}
 namespace eng::shader{class SCE;}
@@ -15,7 +15,7 @@ namespace eng::render{
 class Node
 {
 public:
-  Node(Engine* engine);
+  Node(eng::Engine* engine);
   ~Node();
 
 public:
@@ -23,12 +23,12 @@ public:
   void init();
   void gui();
 
-  inline Engine* get_engine(){return engine;}
+  inline eng::Engine* get_engine(){return engine;}
   inline eng::shader::EDL* get_shader_edl(){return shader_edl;}
   inline eng::shader::SCE* get_shader_scene(){return shader_scene;}
 
 private:
-  Engine* engine;
+  eng::Engine* engine;
   eng::renderpass::Manager* eng_renderpass;
   eng::shader::EDL* shader_edl;
   eng::shader::SCE* shader_scene;

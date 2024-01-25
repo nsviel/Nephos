@@ -10,7 +10,7 @@
 namespace utl::entity{
 
 //Constructor / Destructor
-Glyph::Glyph(Engine* engine){
+Glyph::Glyph(eng::Engine* engine){
   //---------------------------
 
   this->engine = engine;

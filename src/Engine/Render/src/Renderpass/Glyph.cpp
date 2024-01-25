@@ -11,7 +11,7 @@ namespace eng::renderpass{
 Glyph::Glyph(eng::render::Node* node_render){
   //---------------------------
 
-  Engine* engine = node_render->get_engine();
+  eng::Engine* engine = node_render->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 

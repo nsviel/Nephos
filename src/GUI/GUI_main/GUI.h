@@ -6,7 +6,7 @@
 #include <Utility/Namespace.h>
 #include <Utility/Element/src/Namespace.h>
 
-class Engine;
+namespace eng{class Engine;}
 class Node;
 class GUI_font;
 
@@ -15,7 +15,7 @@ class GUI
 {
 public:
   //Constructor / Destructor
-  GUI(utl::Node* utility, Engine* engine);
+  GUI(utl::Node* utility, eng::Engine* engine);
   ~GUI();
 
 public:
@@ -25,7 +25,7 @@ public:
   void wait();
 
   inline utl::Node* get_node_utility(){return utility;}
-  inline Engine* get_engine(){return engine;}
+  inline eng::Engine* get_engine(){return engine;}
 
   inline gui::Control* get_gui_control(){return gui_control;}
   inline gui::Style* get_gui_style(){return gui_style;}
@@ -34,7 +34,7 @@ public:
   inline gui::Render* get_rnd_tab(){return gui_render;}
 
 private:
-  Engine* engine;
+  eng::Engine* engine;
   Node* eng_data;
   utl::Node* utility;
 

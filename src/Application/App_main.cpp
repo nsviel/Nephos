@@ -12,7 +12,7 @@ App_main::App_main(){
 
   this->config = new Config();
   this->utility = new utl::Node(config);
-  this->engine = new Engine(utility);
+  this->engine = new eng::Engine(utility);
   this->gui = new GUI(utility, engine);
 
   //---------------------------

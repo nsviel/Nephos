@@ -3,7 +3,7 @@
 
 namespace glyph::object{
 
-AABB::AABB(Engine* engine) : Glyph(engine){
+AABB::AABB(eng::Engine* engine) : Glyph(engine){
   //---------------------------
 
   this->is_permanent = true;

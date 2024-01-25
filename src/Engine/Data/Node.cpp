@@ -6,7 +6,7 @@
 namespace eng::scene{
 
 //Constructor / Destructor
-Node::Node(Engine* engine){
+Node::Node(eng::Engine* engine){
   //---------------------------
 
   this->engine = engine;

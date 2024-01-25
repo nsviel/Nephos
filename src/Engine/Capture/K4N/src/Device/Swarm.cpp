@@ -14,7 +14,7 @@ namespace eng::k4n::dev{
 Swarm::Swarm(eng::k4n::Node* k4n_node){
   //---------------------------
 
-  Engine* engine = k4n_node->get_engine();
+  eng::Engine* engine = k4n_node->get_engine();
   eng::scene::Node* sce_node = engine->get_node_scene();
 
   this->k4n_node = k4n_node;

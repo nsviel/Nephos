@@ -13,7 +13,7 @@ namespace eng::scene::gui{
 Scene::Scene(eng::scene::Node* sce_node, bool* show_window){
   //---------------------------
 
-  Engine* engine = sce_node->get_engine();
+  eng::Engine* engine = sce_node->get_engine();
   eng::cam::Node* node_camera = engine->get_node_camera();
 
   this->sce_database = sce_node->get_scene_database();

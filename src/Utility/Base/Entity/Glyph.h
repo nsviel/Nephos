@@ -3,7 +3,7 @@
 #include <Utility/Base/Type/Struct_data.h>
 #include <Utility/Specific/common.h>
 
-class Engine;
+namespace eng{class Engine;}
 
 namespace utl::entity{
 
@@ -12,7 +12,7 @@ class Glyph : public utl::type::Entity
 {
 public:
   //Constructor / Destructor
-  Glyph(Engine* engine);
+  Glyph(eng::Engine* engine);
   ~Glyph();
 
   //Main function
@@ -29,7 +29,7 @@ public:
   inline vec4* get_color(){return &color;}
 
 protected:
-  Engine* engine;
+  eng::Engine* engine;
 
   vector<utl::type::Data*> vec_data;
   utl::type::Pose* pose;

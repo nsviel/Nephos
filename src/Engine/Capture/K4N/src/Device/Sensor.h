@@ -5,7 +5,7 @@
 #include <Utility/Base/Entity/Namespace.h>
 #include <Utility/Specific/common.h>
 
-class Engine;
+namespace eng{class Engine;}
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Master;}
 namespace eng::k4n::thread{class Capture;}
@@ -64,7 +64,7 @@ public:
   eng::k4n::structure::IMU imu;
 
 private:
-  Engine* engine;
+  eng::Engine* engine;
   eng::scene::Scene* sce_scene;
   eng::scene::Glyph* sce_glyph;
   eng::ope::Transformation* ope_transform;

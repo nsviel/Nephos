@@ -7,7 +7,7 @@
 namespace eng::capture{
 
 //Constructor / Destructor
-Node::Node(Engine* engine){
+Node::Node(eng::Engine* engine){
   //---------------------------
 
   this->k4n_node = new eng::k4n::Node(engine);

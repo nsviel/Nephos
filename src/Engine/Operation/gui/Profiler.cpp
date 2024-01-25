@@ -8,7 +8,7 @@
 namespace eng::ope::gui{
 
 //Constructor / Destructor
-Profiler::Profiler(Engine* engine, bool* show_window){
+Profiler::Profiler(eng::Engine* engine, bool* show_window){
   //---------------------------
 
   Vulkan* eng_vulkan = engine->get_eng_vulkan();

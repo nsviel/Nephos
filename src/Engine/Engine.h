@@ -12,6 +12,8 @@ namespace eng::capture{class Node;}
 namespace eng::ope{class Node;}
 
 
+namespace eng{
+
 class Engine
 {
 public:
@@ -43,3 +45,5 @@ private:
   eng::render::Node* node_render;
   eng::ope::Node* node_operation;
 };
+
+}

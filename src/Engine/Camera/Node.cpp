@@ -9,7 +9,7 @@
 namespace eng::cam{
 
 //Constructor / Destructor
-Node::Node(Engine* engine){
+Node::Node(eng::Engine* engine){
   //---------------------------
 
   utl::Node* utl_node = engine->get_node_utility();

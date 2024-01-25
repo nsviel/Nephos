@@ -21,7 +21,7 @@ Object::Object(){
 
   //---------------------------
 }
-Object::Object(Engine* engine){
+Object::Object(eng::Engine* engine){
   //---------------------------
 
   this->engine = engine;

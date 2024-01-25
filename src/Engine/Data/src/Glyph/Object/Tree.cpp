@@ -6,7 +6,7 @@
 namespace glyph::object{
 
 //Constructor / destructor
-Tree::Tree(Engine* engine) : Glyph(engine){
+Tree::Tree(eng::Engine* engine) : Glyph(engine){
   //---------------------------
 
   this->octreeManager = new eng::ope::Octree();

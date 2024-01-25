@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class Engine;
+namespace eng{class Engine;}
 namespace eng::ope::gui{class Profiler;}
 
 
@@ -12,7 +12,7 @@ class Node
 {
 public:
   //Constructor / Destructor
-  Node(Engine* engine);
+  Node(eng::Engine* engine);
   ~Node();
 
 public:

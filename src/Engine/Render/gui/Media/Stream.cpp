@@ -10,7 +10,7 @@
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Stream::Stream(Engine* engine){
+Stream::Stream(eng::Engine* engine){
   //---------------------------
 
   Vulkan* vulkan = engine->get_eng_vulkan();
