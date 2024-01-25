@@ -1,5 +1,7 @@
 #include "VK_profiler.h"
 
+#include <Vulkan/Namespace.h>
+
 
 //Constructor / Destructor
 VK_profiler::VK_profiler(vk::structure::Vulkan* struct_vulkan){

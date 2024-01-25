@@ -1,8 +1,9 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
+
+namespace vk::structure{class Vulkan;}
 
 
 class VK_profiler

@@ -1,14 +1,13 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/VK_typedef.h>
 #include <Utility/Specific/common.h>
-
-
-
 
 class VK_image;
 class VK_memory;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Image;}
+namespace vk::structure{class Object;}
+
 
 class VK_texture
 {

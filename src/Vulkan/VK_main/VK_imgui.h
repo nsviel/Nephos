@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <imgui/implot/implot.h>
 
@@ -9,6 +8,7 @@ class VK_pool;
 class VK_submit;
 class VK_command;
 class VK_surface;
+namespace vk::structure{class Vulkan;}
 
 
 class VK_imgui

@@ -1,8 +1,6 @@
 #include "VK_texture.h"
 
-#include <Vulkan/VK_image/VK_image.h>
-#include <Vulkan/VK_command/VK_memory.h>
-#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <Utility/Function/File/File.h>
 #include <Utility/Function/File/Image.h>
 

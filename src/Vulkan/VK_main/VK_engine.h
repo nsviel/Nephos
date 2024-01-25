@@ -1,11 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_struct/VK_typedef.h>
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
-
-#include <Vulkan/VK_main/Namespace.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
 class VK_surface;
@@ -25,6 +20,9 @@ class VK_drawing;
 class VK_synchronization;
 class VK_renderpass;
 class FPS_counter;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Object;}
 
 
 class VK_engine
@@ -56,10 +54,9 @@ public:
   void add_renderpass_description(vk::structure::Renderpass* renderpass);
   vk::structure::Renderpass* get_renderpass(int i);
   vk::structure::Renderpass* get_renderpass_presentation(int i);
-
-  inline vk::structure::Object* get_canvas(){return &struct_vulkan->data.canvas;}
-  inline std::list<vk::structure::Object*> get_list_data(){return struct_vulkan->data.list_vk_object;}
-  inline void set_window(GLFWwindow* window){struct_vulkan->window.glfw_window = window;}
+  vk::structure::Object* get_canvas();
+  std::list<vk::structure::Object*> get_list_data();
+  void set_window(GLFWwindow* window);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

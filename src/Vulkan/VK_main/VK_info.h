@@ -1,7 +1,9 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
+
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Task;}
 
 
 class VK_info
@@ -13,11 +15,11 @@ public:
 
 public:
   //Main functions
-  inline string get_gpu_name(){return struct_vulkan->device.physical_device.name;}
-  inline float get_fps(){return struct_vulkan->profiler.engine_fps;}
-  inline int* get_fps_max(){return &struct_vulkan->param.max_fps;}
-  inline vec4* get_color_background(){return &struct_vulkan->param.background_color;}
-  inline vector<vk::structure::Task>& get_profiler_data(){return struct_vulkan->profiler.vec_task;}
+  string get_gpu_name();
+  float get_fps();
+  int* get_fps_max();
+  vec4* get_color_background();
+  vector<vk::structure::Task>& get_profiler_data();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

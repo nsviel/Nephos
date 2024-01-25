@@ -1,25 +1,8 @@
 #include "VK_engine.h"
 
-#include <Vulkan/VK_main/Namespace.h>
-
-#include <Utility/Function/Timer/FPS_counter.h>
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_data/VK_data.h>
-#include <Vulkan/VK_device/VK_device.h>
-#include <Vulkan/VK_presentation/VK_surface.h>
-#include <Vulkan/VK_instance/VK_instance.h>
-#include <Vulkan/VK_instance/VK_extension.h>
-#include <Vulkan/VK_data/VK_canvas.h>
-#include <Vulkan/VK_binding/VK_descriptor.h>
-#include <Vulkan/VK_instance/VK_pool.h>
-#include <Vulkan/VK_main/VK_texture.h>
-#include <Vulkan/VK_presentation/VK_swapchain.h>
-#include <Vulkan/VK_presentation/VK_frame.h>
-#include <Vulkan/VK_command/VK_synchronization.h>
-#include <Vulkan/VK_shader/VK_reload.h>
-#include <Vulkan/VK_drawing/VK_viewport.h>
-#include <Vulkan/VK_drawing/VK_drawing.h>
 #include <Vulkan/Namespace.h>
+#include <Utility/Function/Timer/fct_timer.h>
+#include <Utility/Function/Timer/FPS_counter.h>
 
 
 //Constructor / Destructor
@@ -208,4 +191,17 @@ vk::structure::Renderpass* VK_engine::get_renderpass_presentation(int i){
   return struct_vulkan->render.get_renderpass_byName("gui");
 
   //---------------------------
+}
+vk::structure::Object* VK_engine::get_canvas(){
+  //---------------------------
+
+  return &struct_vulkan->data.canvas;
+
+  //---------------------------
+}
+std::list<vk::structure::Object*> VK_engine::get_list_data(){
+  return struct_vulkan->data.list_vk_object;
+}
+void VK_engine::set_window(GLFWwindow* window){
+  struct_vulkan->window.glfw_window = window;
 }
