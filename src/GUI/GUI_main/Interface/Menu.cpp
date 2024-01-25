@@ -2,7 +2,7 @@
 
 #include <GUI/GUI.h>
 #include <Vulkan/Vulkan.h>
-#include <GUI/GUI_main/Style/GUI_font.h>
+#include <GUI/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 

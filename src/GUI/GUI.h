@@ -7,6 +7,7 @@
 #include <Utility/Element/src/Namespace.h>
 
 namespace eng{class Node;}
+namespace gui{class Style;}
 class Node;
 class GUI_font;
 

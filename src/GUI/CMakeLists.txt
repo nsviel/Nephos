@@ -3,12 +3,8 @@ set(LIBRARY_NAME LIBRARY_GUI)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(TAB_dev)
-add_subdirectory(TAB_render)
-add_subdirectory(GUI_main)
-
 file(GLOB_RECURSE ALL_SOURCES
-  GUI.cpp
+  *.cpp
 )
 
 #-----------------
@@ -24,10 +20,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_UTILITY_GUI
   LIBRARY_ENGINE
-
-  LIBRARY_GUI_MAIN
-  LIBRARY_GUI_TAB_DEV
-  LIBRARY_GUI_TAB_RENDER
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

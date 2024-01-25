@@ -2,7 +2,7 @@
 
 #include <Engine/Node.h>
 #include <Utility/Element/src/Namespace.h>
-#include <GUI/GUI_main/Style/GUI_font.h>
+#include <GUI/Namespace.h>
 #include <GUI/GUI_main/Render/Render.h>
 
 
