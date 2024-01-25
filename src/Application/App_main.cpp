@@ -2,7 +2,8 @@
 #include "../Config.h"
 
 #include <GUI.h>
-#include <Engine/Node.h>
+#include <Engine/Namespace.h>
+#include <Utility/Namespace.h>
 #include <iostream>
 
 
@@ -11,9 +12,9 @@ App_main::App_main(){
   //---------------------------
 
   this->config = new Config();
-  this->utility = new utl::Node(config);
-  this->engine = new eng::Node(utility);
-  this->gui = new GUI(utility, engine);
+  this->node_utility = new utl::Node(config);
+  this->node_engine = new eng::Node(node_utility);
+  this->gui = new GUI(node_utility, node_engine);
 
   //---------------------------
 }
@@ -34,7 +35,7 @@ void App_main::run(){
 void App_main::init(){
   //---------------------------
 
-  engine->init();
+  node_engine->init();
   gui->init();
 
   //---------------------------
@@ -45,10 +46,10 @@ void App_main::loop(){
   auto start_time = std::chrono::steady_clock::now();
   while(config->run_app){
     gui->loop();
-    engine->loop();
-    utility->loop();
+    node_engine->loop();
+    node_utility->loop();
   }
-  engine->wait();
+  node_engine->wait();
   gui->wait();
 
   //---------------------------
@@ -57,8 +58,8 @@ void App_main::end(){
   //---------------------------
 
   gui->exit();
-  engine->exit();
-  utility->exit();
+  node_engine->exit();
+  node_utility->exit();
 
   //---------------------------
 }

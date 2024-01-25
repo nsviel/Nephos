@@ -1,9 +1,8 @@
 #pragma once
 
-#include <Utility/Namespace.h>
-
 class Config;
 namespace eng{class Node;}
+namespace utl{class Node;}
 class GUI;
 
 
@@ -25,7 +24,7 @@ public:
 
 private:
   Config* config;
-  eng::Node* engine;
-  utl::Node* utility;
+  eng::Node* node_engine;
+  utl::Node* node_utility;
   GUI* gui;
 };
