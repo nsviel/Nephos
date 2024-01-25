@@ -43,7 +43,7 @@ void Scene::init_renderpass(){
   vk_engine->add_renderpass_description(renderpass);
 }
 void Scene::create_subpass(vk::structure::Renderpass* renderpass){
-  eng::shader::SCE* sce_shader = node_render->get_sce_shader();
+  eng::shader::SCE* shader_scene = node_render->get_shader_scene();
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
@@ -56,7 +56,7 @@ void Scene::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.name = "line";
   pipeline->definition.topology = "line";
   pipeline->definition.purpose = "graphics";
-  pipeline->definition.shader = sce_shader->get_shader_info("Line");
+  pipeline->definition.shader = shader_scene->get_shader_info("Line");
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
@@ -67,7 +67,7 @@ void Scene::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.name = "point";
   pipeline->definition.topology = "point";
   pipeline->definition.purpose = "graphics";
-  pipeline->definition.shader = sce_shader->get_shader_info("Point");
+  pipeline->definition.shader = shader_scene->get_shader_info("Point");
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
@@ -79,7 +79,7 @@ void Scene::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.name = "triangle";
   pipeline->definition.topology = "triangle";
   pipeline->definition.purpose = "graphics";
-  pipeline->definition.shader = sce_shader->get_shader_info("Triangle");
+  pipeline->definition.shader = shader_scene->get_shader_info("Triangle");
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));

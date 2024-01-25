@@ -24,14 +24,14 @@ public:
   void gui();
 
   inline Engine* get_engine(){return engine;}
-  inline eng::shader::EDL* get_edl_shader(){return edl_shader;}
-  inline eng::shader::SCE* get_sce_shader(){return sce_shader;}
+  inline eng::shader::EDL* get_shader_edl(){return shader_edl;}
+  inline eng::shader::SCE* get_shader_scene(){return shader_scene;}
 
 private:
   Engine* engine;
   eng::renderpass::Manager* eng_renderpass;
-  eng::shader::EDL* edl_shader;
-  eng::shader::SCE* sce_shader;
+  eng::shader::EDL* shader_edl;
+  eng::shader::SCE* shader_scene;
   eng::render::gui::Shader* gui_shader;
   eng::render::gui::Renderer* gui_render;
 

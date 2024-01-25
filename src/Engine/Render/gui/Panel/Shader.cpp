@@ -193,12 +193,12 @@ void Shader::retrieve_shader_subclasses(){
 
   vector<utl::base::Shader_info*> vec_shader_info;
   if(selection == "EDL"){
-    eng::shader::EDL* edl_shader = node_render->get_edl_shader();
-    vec_shader_info = edl_shader->get_vec_shader_info();
+    eng::shader::EDL* shader_edl = node_render->get_shader_edl();
+    vec_shader_info = shader_edl->get_vec_shader_info();
   }
   else if(selection == "Scene"){
-    eng::shader::SCE* sce_shader = node_render->get_sce_shader();
-    vec_shader_info = sce_shader->get_vec_shader_info();
+    eng::shader::SCE* shader_scene = node_render->get_shader_scene();
+    vec_shader_info = shader_scene->get_vec_shader_info();
   }
 
   this->vec_shader_subclass.clear();
@@ -230,12 +230,12 @@ string Shader::get_path_vs_from_selection(){
   string path_vs = "";
 
   if(selection == "EDL"){
-    eng::shader::EDL* edl_shader = node_render->get_edl_shader();
-    path_vs = edl_shader->get_glsl_path_vs(ID_subclass);
+    eng::shader::EDL* shader_edl = node_render->get_shader_edl();
+    path_vs = shader_edl->get_glsl_path_vs(ID_subclass);
   }
   else if(selection == "Scene"){
-    eng::shader::SCE* sce_shader = node_render->get_sce_shader();
-    path_vs = sce_shader->get_glsl_path_vs(ID_subclass);
+    eng::shader::SCE* shader_scene = node_render->get_shader_scene();
+    path_vs = shader_scene->get_glsl_path_vs(ID_subclass);
   }
 
   //---------------------------
@@ -248,12 +248,12 @@ string Shader::get_path_fs_from_selection(){
   string path_fs = "";
 
   if(selection == "EDL"){
-    eng::shader::EDL* edl_shader = node_render->get_edl_shader();
-    path_fs = edl_shader->get_glsl_path_fs(ID_subclass);
+    eng::shader::EDL* shader_edl = node_render->get_shader_edl();
+    path_fs = shader_edl->get_glsl_path_fs(ID_subclass);
   }
   else if(selection == "Scene"){
-    eng::shader::SCE* sce_shader = node_render->get_sce_shader();
-    path_fs = sce_shader->get_glsl_path_fs(ID_subclass);
+    eng::shader::SCE* shader_scene = node_render->get_shader_scene();
+    path_fs = shader_scene->get_glsl_path_fs(ID_subclass);
   }
 
   //---------------------------
@@ -271,23 +271,23 @@ void Shader::show_parameter(){
   //---------------------------
 }
 void Shader::parameter_EDL(){
-  eng::shader::EDL* edl_shader = node_render->get_edl_shader();
-  eng::shader::EDL_param* edl_param = edl_shader->get_edl_param();
+  eng::shader::EDL* shader_edl = node_render->get_shader_edl();
+  eng::shader::EDL_param* edl_param = shader_edl->get_edl_param();
   //---------------------------
 
   ImGui::SetNextItemWidth(item_width);
   if(ImGui::Checkbox("Activated", &edl_param->activated)){
-    edl_shader->update_shader();
+    shader_edl->update_shader();
   }
 
   ImGui::SetNextItemWidth(item_width);
   if(ImGui::SliderFloat("Radius", &edl_param->radius, 1.0f, 5.0f)){
-    edl_shader->update_shader();
+    shader_edl->update_shader();
   }
 
   ImGui::SetNextItemWidth(item_width);
   if(ImGui::SliderFloat("Strength", &edl_param->strength, 1.0f, 100.0f)){
-      edl_shader->update_shader();
+      shader_edl->update_shader();
     }
 
   //---------------------------

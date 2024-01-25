@@ -15,7 +15,7 @@ EDL::EDL(eng::render::Node* node_render){
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 
-  this->edl_shader = node_render->get_edl_shader();
+  this->shader_edl = node_render->get_shader_edl();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
   this->vk_viewport = new VK_viewport(struct_vulkan);
@@ -53,7 +53,7 @@ void EDL::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.name = "triangle_EDL";
   pipeline->definition.topology = "triangle";
   pipeline->definition.purpose = "graphics";
-  pipeline->definition.shader = edl_shader->get_shader_info("EDL");
+  pipeline->definition.shader = shader_edl->get_shader_info("EDL");
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("tex_coord");
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_color", 0, 1, TYP_IMAGE_SAMPLER, TYP_SHADER_FS));
@@ -91,12 +91,12 @@ void EDL::update_descriptor(vk::structure::Subpass* subpass){
 void EDL::draw_command(vk::structure::Subpass* subpass){
   //---------------------------
 
-  eng::shader::EDL_param* edl_param = edl_shader->get_edl_param();
+  eng::shader::EDL_param* edl_param = shader_edl->get_edl_param();
   vk::structure::Pipeline* pipeline = subpass->get_pipeline();
 
   vk_viewport->cmd_viewport(subpass->command_buffer);
   vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
-  edl_shader->update_shader();
+  shader_edl->update_shader();
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
   vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, pipeline->binding.descriptor.set);
   vk_drawing->cmd_draw_data(subpass->command_buffer, vk_engine->get_canvas());
