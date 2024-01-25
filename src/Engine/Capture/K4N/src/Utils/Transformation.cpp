@@ -2,8 +2,7 @@
 
 #include <Utility/Function/File/File.h>
 #include <nlohmann/json.hpp>
-
-using json = nlohmann::json;
+#include <filesystem>
 
 
 namespace eng::k4n::utils{
@@ -33,7 +32,7 @@ void Transformation::find_transformation_from_file(eng::k4n::dev::Sensor* sensor
   }
 
   // Parse the JSON data
-  json j;
+  nlohmann::json j;
   file >> j;
 
   mat4 mat = mat4(1);
@@ -69,7 +68,7 @@ void Transformation::save_transformation_to_file(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   // Create a JSON object to store the matrix values
-  json j;
+  nlohmann::json j;
   j["m00"] = mat[0][0];
   j["m10"] = mat[1][0];
   j["m20"] = mat[2][0];

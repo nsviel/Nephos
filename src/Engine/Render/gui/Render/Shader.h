@@ -1,20 +1,18 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Render/src/Shader/Base/BASE_shader.h>
-#include <Engine/Render/src/Shader/Namespace.h>
-#include <Utility/Base/GUI/Panel.h>
-#include <Utility/GUI/Editor/Namespace.h>
-#include <Utility/GUI/Widget/Namespace.h>
 
 class GUI;
 class Text;
 class VK_engine;
+namespace eng::shader{class Node;}
+namespace utl::gui::widget{class Console;}
+namespace utl::gui::editor{class Text;}
 
 
 namespace eng::render::gui{
 
-class Shader : public utl::base::Panel
+class Shader
 {
 public:
   //Constructor / Destructor
@@ -23,6 +21,7 @@ public:
 
 public:
   //Main function
+  void run_panel();
   void init_panel();
   void design_panel();
 
@@ -70,6 +69,9 @@ private:
   int item_width;
   int ID_class;
   int ID_subclass;
+
+  string name;
+  bool* show_window;
 };
 
 }

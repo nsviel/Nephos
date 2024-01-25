@@ -7,14 +7,16 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_validation/Struct_validation.h>
 #include <Vulkan/VK_main/VK_engine.h>
-#include <Engine/Render/src/Shader/EDL/EDL.h>
-#include <Engine/Render/src/Shader/Scene/SCE.h>
+#include <Engine/Render/Namespace.h>
+#include <Utility/Base/GUI/Panel.h>
+#include <Utility/GUI/Editor/Namespace.h>
+#include <Utility/GUI/Widget/Namespace.h>
 
 
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Shader::Shader(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Shader::Shader(GUI* gui, bool* show_window, string name){
   //---------------------------
 
   Engine* engine = gui->get_engine();
@@ -32,6 +34,8 @@ Shader::Shader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
   this->has_been_reloaded = true;
   this->read_only = false;
   this->read_only_forced = false;
+  this->show_window = show_window;
+  this->name = name;
 
   editor_vs->set_language("glsl");
   editor_fs->set_language("glsl");
@@ -42,6 +46,22 @@ Shader::Shader(GUI* gui, bool* show_window, string name) : Panel(show_window, na
 Shader::~Shader(){}
 
 //Main function
+void Shader::run_panel(){
+  //---------------------------
+
+  if(*show_window){
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+
+      this->design_panel();
+
+      ImGui::End();
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
 void Shader::init_panel(){
   //---------------------------
 
