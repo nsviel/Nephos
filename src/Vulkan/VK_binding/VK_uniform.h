@@ -8,6 +8,8 @@ namespace vk::structure{class Binding;}
 namespace vk::structure{class Uniform;}
 
 
+namespace vk::binding{
+  
 class VK_uniform
 {
 public:
@@ -28,3 +30,5 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   VK_memory* vk_memory;
 };
+
+}

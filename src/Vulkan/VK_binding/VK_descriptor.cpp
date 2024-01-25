@@ -3,13 +3,15 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::binding{
+
 //Constructor / Destructor
 VK_descriptor::VK_descriptor(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_uniform = new VK_uniform(struct_vulkan);
-  this->vk_sampler = new VK_sampler(struct_vulkan);
+  this->vk_uniform = new vk::binding::VK_uniform(struct_vulkan);
+  this->vk_sampler = new vk::binding::VK_sampler(struct_vulkan);
 
   //---------------------------
 }
@@ -227,4 +229,6 @@ VkDescriptorSetLayout VK_descriptor::create_layout(vector<VkDescriptorSetLayoutB
 
   //---------------------------
   return descriptor_layout;
+}
+
 }

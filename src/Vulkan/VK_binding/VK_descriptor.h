@@ -2,13 +2,15 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_uniform;
-class VK_sampler;
+namespace vk::binding{class VK_uniform;}
+namespace vk::binding{class VK_sampler;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Binding;}
 namespace vk::structure{class Image;}
 namespace vk::structure{class Pipeline;}
 
+
+namespace vk::binding{
 
 class VK_descriptor
 {
@@ -35,6 +37,8 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_uniform* vk_uniform;
-  VK_sampler* vk_sampler;
+  vk::binding::VK_uniform* vk_uniform;
+  vk::binding::VK_sampler* vk_sampler;
 };
+
+}

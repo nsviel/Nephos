@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_descriptor;
+namespace vk::binding{class VK_descriptor;}
 class VK_viewport;
 class VK_shader;
 class VK_data;
@@ -46,7 +46,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_descriptor* vk_descriptor;
+  vk::binding::VK_descriptor* vk_descriptor;
   VK_shader* vk_shader;
   VK_data* vk_data;
 };

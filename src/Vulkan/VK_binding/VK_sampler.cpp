@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::binding{
+
 //Constructor / Destructor
 VK_sampler::VK_sampler(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -45,4 +47,6 @@ vk::structure::Sampler* VK_sampler::create_sampler_obj(string name, int binding,
 
   //---------------------------
   return sampler;
+}
+
 }

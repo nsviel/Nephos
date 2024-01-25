@@ -7,6 +7,8 @@ namespace vk::structure{class Binding;}
 namespace vk::structure{class Sampler;}
 
 
+namespace vk::binding{
+
 class VK_sampler
 {
 public:
@@ -22,3 +24,5 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
 };
+
+}

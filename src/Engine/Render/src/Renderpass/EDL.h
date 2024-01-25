@@ -6,8 +6,8 @@
 class VK_engine;
 class VK_pipeline;
 class VK_viewport;
-class VK_descriptor;
-class VK_uniform;
+namespace vk::binding{class VK_descriptor;}
+namespace vk::binding{class VK_uniform;}
 class VK_drawing;
 namespace eng::render{class Node;}
 namespace eng::shader{class EDL;}
@@ -39,8 +39,8 @@ private:
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
   VK_viewport* vk_viewport;
-  VK_descriptor* vk_descriptor;
-  VK_uniform* vk_uniform;
+  vk::binding::VK_descriptor* vk_descriptor;
+  vk::binding::VK_uniform* vk_uniform;
   VK_drawing* vk_drawing;
 
   Timer timer;
