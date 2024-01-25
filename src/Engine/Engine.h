@@ -3,12 +3,13 @@
 #include <Utility/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Data/Namespace.h>
-#include <Engine/Render/src/Shader/Namespace.h>
+#include <Engine/Render/Namespace.h>
 #include <Engine/Capture/Node.h>
 
 class Param;
 class Vulkan;
 class ENG_renderpass;
+namespace eng::cam{class Node;}
 
 
 class Engine
