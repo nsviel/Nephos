@@ -1,15 +1,13 @@
 #pragma once
 
-#include <Utility/Namespace.h>
-#include <Engine/Camera/Namespace.h>
-#include <Engine/Data/Namespace.h>
-#include <Engine/Render/Namespace.h>
-#include <Engine/Capture/Node.h>
-
 class Param;
 class Vulkan;
 class ENG_renderpass;
+namespace utl{class Node;}
 namespace eng::cam{class Node;}
+namespace eng::scene{class Node;}
+namespace eng::shader{class Node;}
+namespace eng::capture{class Node;}
 
 
 class Engine

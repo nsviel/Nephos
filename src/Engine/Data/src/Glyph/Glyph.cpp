@@ -3,14 +3,8 @@
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Engine/Engine.h>
-#include <Engine/Data/Node.h>
-#include <Engine/Data/src/Database/Database.h>
 #include <Engine/Camera/Namespace.h>
-
-#include <Engine/Data/src/Glyph/World/Namespace.h>
-#include <Engine/Data/src/Glyph/Object/Namespace.h>
-#include <Engine/Data/src/Glyph/Grid/Namespace.h>
-#include <Engine/Data/src/Glyph/Camera/Namespace.h>
+#include <Engine/Data/Namespace.h>
 
 
 namespace eng::scene{

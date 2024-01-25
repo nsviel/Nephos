@@ -1,10 +1,13 @@
 #pragma once
 
 #include <Utility/Base/Entity/Glyph.h>
-#include <Engine/Data/src/Glyph/Grid/Namespace.h>
+
+namespace glyph::grid{class Mesh;}
+namespace glyph::grid{class Axis;}
+namespace glyph::grid{class Plane;}
+
 
 namespace glyph::grid{
-
 
 class Grid : public utl::entity::Glyph
 {

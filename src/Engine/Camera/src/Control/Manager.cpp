@@ -2,6 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Engine/Camera/Namespace.h>
+#include <Engine/Data/Namespace.h>
 
 
 namespace eng::cam{

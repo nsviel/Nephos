@@ -1,9 +1,14 @@
 #include "Engine.h"
 
-#include <Utility/Element/src/Namespace.h>
 #include <Vulkan/Vulkan.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Render/Namespace.h>
+#include <Engine/Camera/Namespace.h>
+#include <Engine/Data/Namespace.h>
+#include <Engine/Render/Namespace.h>
+#include <Engine/Capture/Node.h>
+#include <Utility/Element/src/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 //Constructor / Destructor
