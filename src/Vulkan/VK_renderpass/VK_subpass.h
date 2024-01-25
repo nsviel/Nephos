@@ -1,10 +1,12 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class VK_command;
 class VK_attachment;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Subpass;}
 
 
 class VK_subpass

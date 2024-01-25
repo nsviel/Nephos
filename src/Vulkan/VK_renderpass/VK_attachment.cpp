@@ -1,8 +1,6 @@
 #include "VK_attachment.h"
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_image/VK_color.h>
-#include <Vulkan/VK_image/VK_depth.h>
+#include <Vulkan/Namespace.h>
 
 /*
   Attachment index is defined as follow:

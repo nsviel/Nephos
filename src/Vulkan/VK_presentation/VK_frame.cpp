@@ -1,13 +1,6 @@
 #include "VK_frame.h"
 
-#include <Vulkan/VK_main/VK_engine.h>
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_command/VK_command.h>
-#include <Vulkan/VK_command/VK_synchronization.h>
-#include <Vulkan/VK_renderpass/VK_framebuffer.h>
-#include <Vulkan/VK_image/VK_depth.h>
-#include <Vulkan/VK_image/VK_color.h>
-#include <Vulkan/VK_image/VK_image.h>
+#include <Vulkan/Namespace.h>
 
 
 //Constructor / Destructor

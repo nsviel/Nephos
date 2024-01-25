@@ -1,8 +1,6 @@
 #include "VK_presentation.h"
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_presentation/VK_swapchain.h>
-#include <Vulkan/VK_presentation/VK_surface.h>
+#include <Vulkan/Namespace.h>
 
 
 //Constructor / Destructor

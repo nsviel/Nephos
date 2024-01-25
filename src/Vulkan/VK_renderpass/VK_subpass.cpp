@@ -1,8 +1,6 @@
 #include "VK_subpass.h"
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_command/VK_command.h>
-#include <Vulkan/VK_renderpass/VK_attachment.h>
+#include <Vulkan/Namespace.h>
 
 /*
   Attachment index is defined as follow:

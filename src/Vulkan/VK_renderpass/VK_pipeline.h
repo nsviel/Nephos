@@ -1,13 +1,14 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
-
 
 class VK_descriptor;
 class VK_viewport;
 class VK_shader;
 class VK_data;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Pipeline;}
 
 
 class VK_pipeline

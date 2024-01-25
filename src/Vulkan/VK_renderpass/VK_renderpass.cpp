@@ -1,9 +1,5 @@
 #include "VK_renderpass.h"
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_renderpass/VK_pipeline.h>
-#include <Vulkan/VK_renderpass/VK_framebuffer.h>
-#include <Vulkan/VK_command/VK_command.h>
 #include <Vulkan/Namespace.h>
 
 

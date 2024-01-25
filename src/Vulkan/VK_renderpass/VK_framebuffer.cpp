@@ -1,9 +1,6 @@
 #include "VK_framebuffer.h"
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_image/VK_depth.h>
-#include <Vulkan/VK_image/VK_color.h>
-#include <Vulkan/VK_image/VK_image.h>
+#include <Vulkan/Namespace.h>
 
 
 //Constructor / Destructor

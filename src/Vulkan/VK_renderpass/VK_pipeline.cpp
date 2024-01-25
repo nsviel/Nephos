@@ -1,9 +1,6 @@
 #include "VK_pipeline.h"
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_binding/VK_descriptor.h>
-#include <Vulkan/VK_data/VK_data.h>
-#include <Vulkan/VK_shader/VK_shader.h>
+#include <Vulkan/Namespace.h>
 
 
 //Constructor / Destructor

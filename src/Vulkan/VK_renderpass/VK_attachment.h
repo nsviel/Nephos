@@ -1,10 +1,11 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class VK_color;
 class VK_depth;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Attachment;}
 
 
 class VK_attachment

@@ -1,13 +1,13 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Vulkan/VK_main/Namespace.h>
-
 
 class VK_pipeline;
 class VK_framebuffer;
 class VK_command;
 class VK_subpass;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Renderpass;}
 
 
 class VK_renderpass
