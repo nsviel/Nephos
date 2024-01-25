@@ -6,6 +6,8 @@ namespace gui{class Node;}
 class VK_imgui;
 
 
+namespace gui::style{
+
 class GUI_font
 {
 public:
@@ -39,3 +41,5 @@ private:
   ImFont* font_gui;
   ImFont* font_small;
 };
+
+}

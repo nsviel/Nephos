@@ -5,6 +5,8 @@
 #include <image/IconsFontAwesome6.h>
 
 
+namespace gui::style{
+
 //Constructor / Destructor
 GUI_font::GUI_font(gui::Node* gui){
   //---------------------------
@@ -113,4 +115,6 @@ void GUI_font::combo_font_editor(){
   }
 
   //---------------------------
+}
+
 }

@@ -1,8 +1,8 @@
 #include "Node.h"
 
-#include <Engine/Node.h>
-#include <Utility/Element/src/Namespace.h>
+#include <Engine/Namespace.h>
 #include <GUI/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace gui{
@@ -17,7 +17,7 @@ Node::Node(utl::Node* utility, eng::Node* engine){
 
   this->gui_render = new gui::Render(this);
   this->gui_style = new gui::Style(this);
-  this->gui_font = new GUI_font(this);
+  this->gui_font = new gui::style::GUI_font(this);
   this->gui_tab = new gui::Tab(this);
   this->gui_control = new gui::Control(this);
   this->gui_docking = new gui::Docking(this);
