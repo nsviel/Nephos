@@ -1,18 +1,17 @@
 #pragma once
 
-#include <Engine/Operation/src/Namespace.h>
-#include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class VK_engine;
+namespace eng::scene{class Node;}
+namespace eng::scene{class Glyph;}
+namespace eng::scene{class Operation;}
+namespace eng::scene{class Loader;}
+namespace eng::scene{class Database;}
+namespace eng::ope{class Attribut;}
+
 
 namespace eng::scene{
-class Glyph;
-class Operation;
-class Loader;
-class Node;
-class Database;
-
 
 class Scene
 {

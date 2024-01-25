@@ -1,6 +1,8 @@
 #include "Scene.h"
 
 #include <Engine/Engine.h>
+#include <Engine/Operation/src/Namespace.h>
+#include <Engine/Data/Namespace.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_engine.h>
 

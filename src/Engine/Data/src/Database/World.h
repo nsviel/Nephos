@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class VK_engine;
+namespace eng::scene{class Node;}
+namespace eng::scene{class Database;}
+
 
 namespace eng::scene{
-class Database;
-
 
 class World
 {
