@@ -1,11 +1,10 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
-
 
 class VK_buffer;
 class VK_data;
+namespace vk::structure{class Vulkan;}
 
 
 class VK_canvas

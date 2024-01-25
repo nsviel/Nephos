@@ -1,10 +1,6 @@
 #include "VK_data.h"
 
-#include <Vulkan/VK_data/VK_buffer.h>
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_main/VK_texture.h>
-#include <Vulkan/VK_command/VK_command.h>
-#include <Vulkan/VK_binding/VK_descriptor.h>
+#include <Vulkan/Namespace.h>
 
 
 //Constructor / Destructor
