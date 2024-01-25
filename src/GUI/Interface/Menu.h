@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Namespace.h>
 
-class GUI;
+namespace gui{class Node;}
 class GUI_font;
 
 
@@ -13,7 +13,7 @@ class Menu
 {
 public:
   //Constructor / Destructor
-  Menu(GUI* gui);
+  Menu(gui::Node* gui);
   ~Menu();
 
 public:
@@ -24,7 +24,7 @@ public:
   void menu_git();
 
 private:
-  GUI* gui;
+  gui::Node* gui;
   GUI_font* gui_font;
   utl::element::gui::Git* gui_git;
 

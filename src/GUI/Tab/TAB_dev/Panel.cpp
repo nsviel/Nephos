@@ -1,12 +1,12 @@
 #include "Panel.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 
 
 namespace gui::dev::tab{
 
 //Constructor / Destructor
-Panel::Panel(GUI* gui){
+Panel::Panel(gui::Node* gui){
   //---------------------------
 
   this->gui = gui;

@@ -1,6 +1,6 @@
 #include "Command.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 #include <image/IconsFontAwesome6.h>
 #include <GUI/Namespace.h>
 
@@ -8,7 +8,7 @@
 namespace gui::dev::editor{
 
 //Constructor / Destructor
-Command::Command(GUI* gui){
+Command::Command(gui::Node* gui){
   //---------------------------
 
   Tab* gui_tab = gui->get_gui_tab();

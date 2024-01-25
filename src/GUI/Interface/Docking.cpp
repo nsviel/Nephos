@@ -1,12 +1,12 @@
 #include "Docking.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 
 
 namespace gui{
 
 //Constructor / Destructor
-Docking::Docking(GUI* gui){
+Docking::Docking(gui::Node* gui){
   //---------------------------
 
 

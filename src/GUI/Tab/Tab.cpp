@@ -1,13 +1,13 @@
 #include "Tab.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 #include <Vulkan/Vulkan.h>
 
 
 namespace gui{
 
 //Constructor / Destructor
-Tab::Tab(GUI* gui){
+Tab::Tab(gui::Node* gui){
   //---------------------------
 
   this->rnd_panel = new gui::rnd::tab::Panel(gui);

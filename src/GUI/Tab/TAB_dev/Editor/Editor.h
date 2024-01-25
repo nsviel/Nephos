@@ -2,7 +2,7 @@
 
 #include <Utility/Namespace.h>
 
-class GUI;
+namespace gui{class Node;}
 class Text;
 
 
@@ -12,7 +12,7 @@ class Editor : public utl::base::Panel
 {
 public:
   //Constructor / Destructor
-  Editor(GUI* gui, bool* show_window, string name);
+  Editor(gui::Node* gui, bool* show_window, string name);
   ~Editor();
 
 public:

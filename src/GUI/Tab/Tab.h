@@ -5,7 +5,7 @@
 #include <GUI/Namespace.h>
 #include <Utility/Specific/common.h>
 
-class GUI;
+namespace gui{class Node;}
 namespace gui{class Menu;}
 namespace gui::rnd::tab{class Panel;}
 namespace gui::dev::tab{class Panel;}
@@ -17,7 +17,7 @@ class Tab
 {
 public:
   //Constructor / Destructor
-  Tab(GUI* gui);
+  Tab(gui::Node* gui);
   ~Tab();
 
 public:
@@ -34,7 +34,7 @@ public:
   inline gui::dev::tab::Panel* get_dev_panel(){return dev_panel;}
 
 private:
-  GUI* gui;
+  gui::Node* gui;
   gui::Menu* gui_menu;
   gui::rnd::tab::Panel* rnd_panel;
   gui::dev::tab::Panel* dev_panel;

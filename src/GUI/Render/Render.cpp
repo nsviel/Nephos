@@ -1,6 +1,6 @@
 #include "Render.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 #include <Engine/Node.h>
 #include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
@@ -9,7 +9,7 @@
 namespace gui{
 
 //Constructor / Destructor
-Render::Render(GUI* gui){
+Render::Render(gui::Node* gui){
   //---------------------------
 
   utl::Node* utility = gui->get_node_utility();

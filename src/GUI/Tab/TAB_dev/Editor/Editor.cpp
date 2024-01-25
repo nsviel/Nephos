@@ -1,12 +1,12 @@
 #include "Editor.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 
 
 namespace gui::dev::editor{
 
 //Constructor / Destructor
-Editor::Editor(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Editor::Editor(gui::Node* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   this->editor = new utl::gui::editor::Text();

@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Base/GUI/Panel.h>
 
-class GUI;
+namespace gui{class Node;}
 class VK_info;
 
 
@@ -13,7 +13,7 @@ class Option : public utl::base::Panel
 {
 public:
   //Constructor / Destructor
-  Option(GUI* gui, bool* show_window, string name);
+  Option(gui::Node* gui, bool* show_window, string name);
   ~Option();
 
 public:
@@ -25,7 +25,7 @@ public:
   void option_fps();
 
 private:
-  GUI* gui;
+  gui::Node* gui;
   VK_info* vk_info;
 
   int width;

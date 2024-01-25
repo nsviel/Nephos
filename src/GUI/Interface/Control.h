@@ -4,7 +4,7 @@
 #include <Utility/Element/src/Namespace.h>
 #include <GUI/Namespace.h>
 
-class GUI;
+namespace gui{class Node;}
 
 namespace gui{
 class Tab;
@@ -14,7 +14,7 @@ class Control
 {
 public:
   //Constructor / Destructor
-  Control(GUI* gui);
+  Control(gui::Node* gui);
   ~Control();
 
 public:

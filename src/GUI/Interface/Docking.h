@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class GUI;
+namespace gui{class Node;}
 
 
 namespace gui{
@@ -11,7 +11,7 @@ class Docking
 {
 public:
   //Constructor / Destructor
-  Docking(GUI* gui);
+  Docking(gui::Node* gui);
   ~Docking();
 
 public:

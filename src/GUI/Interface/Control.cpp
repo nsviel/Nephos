@@ -1,6 +1,6 @@
 #include "Control.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 #include <Engine/Node.h>
 #include <Utility/Namespace.h>
 
@@ -8,7 +8,7 @@
 namespace gui{
 
 //Constructor / Destructor
-Control::Control(GUI* gui){
+Control::Control(gui::Node* gui){
   //---------------------------
 
   utl::Node* utility = gui->get_node_utility();

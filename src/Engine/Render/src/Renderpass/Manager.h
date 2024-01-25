@@ -7,6 +7,7 @@ namespace eng::renderpass{class EDL;}
 namespace eng::renderpass{class Scene;}
 namespace eng::renderpass{class Glyph;}
 namespace eng::renderpass{class GUI;}
+namespace eng::renderpass{namespace gui{class Node;}}
 
 
 namespace eng::renderpass{

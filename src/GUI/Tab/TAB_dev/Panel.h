@@ -3,7 +3,7 @@
 #include <GUI/Namespace.h>
 #include <Utility/Specific/common.h>
 
-class GUI;
+namespace gui{class Node;}
 namespace gui::dev::tab{class Command;}
 namespace gui::dev::tab{class Menu;}
 namespace gui::dev::tab{class Panel;}
@@ -18,7 +18,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(GUI* gui);
+  Panel(gui::Node* gui);
   ~Panel();
 
 public:
@@ -32,7 +32,7 @@ public:
   bool show_database = true;
 
 private:
-  GUI* gui;
+  gui::Node* gui;
   gui::dev::tab::Menu* menu;
   gui::dev::editor::Command* command;
   gui::dev::data::Database* database;

@@ -1,6 +1,6 @@
 #include "Shader.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>

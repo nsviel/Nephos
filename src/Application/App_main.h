@@ -3,7 +3,7 @@
 class Config;
 namespace eng{class Node;}
 namespace utl{class Node;}
-class GUI;
+namespace gui{class Node;}
 
 
 class App_main
@@ -26,5 +26,5 @@ private:
   Config* config;
   eng::Node* node_engine;
   utl::Node* node_utility;
-  GUI* gui;
+  gui::Node* node_gui;
 };

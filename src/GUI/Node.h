@@ -1,7 +1,6 @@
 #pragma once
 
 #include <GUI/Namespace.h>
-#include <GUI/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Namespace.h>
 #include <Utility/Element/src/Namespace.h>
@@ -12,12 +11,14 @@ class Node;
 class GUI_font;
 
 
-class GUI
+namespace gui{
+
+class Node
 {
 public:
   //Constructor / Destructor
-  GUI(utl::Node* utility, eng::Node* engine);
-  ~GUI();
+  Node(utl::Node* utility, eng::Node* engine);
+  ~Node();
 
 public:
   void init();
@@ -47,3 +48,5 @@ private:
   gui::Tab* gui_tab;
   gui::Render* gui_render;
 };
+
+}

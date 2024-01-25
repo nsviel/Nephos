@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class GUI;
+namespace gui{class Node;}
 namespace eng::k4n{class Node;}
 namespace eng::k4n::utils{class Transformation;}
 namespace eng::k4n::dev{class Swarm;}

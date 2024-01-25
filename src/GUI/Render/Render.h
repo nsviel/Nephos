@@ -4,7 +4,7 @@
 #include <Vulkan/VK_main/VK_info.h>
 #include <GUI/Namespace.h>
 
-class GUI;
+namespace gui{class Node;}
 class Vulkan;
 class VK_engine;
 class VK_render;
@@ -18,7 +18,7 @@ class Render
 {
 public:
   //Constructor / Destructor
-  Render(GUI* gui);
+  Render(gui::Node* gui);
   ~Render();
 
 public:

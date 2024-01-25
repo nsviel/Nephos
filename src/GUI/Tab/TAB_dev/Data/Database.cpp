@@ -1,12 +1,12 @@
 #include "Database.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 
 
 namespace gui::dev::data{
 
 //Constructor / Destructor
-Database::Database(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Database::Database(gui::Node* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   this->path_db = "/home/aether/Desktop/todo/power.db3";

@@ -4,7 +4,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Element/src/Namespace.h>
 
-class GUI;
+namespace gui{class Node;}
 
 
 namespace gui::dev::data{
@@ -13,7 +13,7 @@ class Database : public utl::base::Panel
 {
 public:
   //Constructor / Destructor
-  Database(GUI* gui, bool* show_window, string name);
+  Database(gui::Node* gui, bool* show_window, string name);
   ~Database();
 
 public:

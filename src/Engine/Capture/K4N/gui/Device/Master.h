@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <Engine/Capture/K4N/Namespace.h>
 
-class GUI;
+namespace gui{class Node;}
 
 
 namespace eng::k4n::gui{

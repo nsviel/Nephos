@@ -1,6 +1,6 @@
 #include "Option.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 #include <Engine/Node.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_info.h>
@@ -9,7 +9,7 @@
 namespace gui::rnd::tab{
 
 //Constructor / Destructor
-Option::Option(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
+Option::Option(gui::Node* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
   eng::Node* engine = gui->get_engine();

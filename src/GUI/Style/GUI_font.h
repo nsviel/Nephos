@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class GUI;
+namespace gui{class Node;}
 class VK_imgui;
 
 
@@ -10,7 +10,7 @@ class GUI_font
 {
 public:
   //Constructor / Destructor
-  GUI_font(GUI* gui);
+  GUI_font(gui::Node* gui);
   ~GUI_font();
 
 public:

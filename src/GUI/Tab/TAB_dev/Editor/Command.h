@@ -3,7 +3,7 @@
 #include <GUI/Namespace.h>
 #include <Utility/Specific/common.h>
 
-class GUI;
+namespace gui{class Node;}
 
 namespace gui::dev::editor{
 
@@ -12,7 +12,7 @@ class Command
 {
 public:
   //Constructor / Destructor
-  Command(GUI* gui);
+  Command(gui::Node* gui);
   ~Command();
 
 public:
@@ -23,7 +23,7 @@ public:
   //Subfunctions
 
 private:
-  GUI* gui;
+  gui::Node* gui;
   //gui::dev::tab::Panel* gui_panel;
 };
 

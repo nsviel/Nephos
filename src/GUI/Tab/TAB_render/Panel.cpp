@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 #include <image/IconsFontAwesome6.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Operation/Namespace.h>
@@ -9,7 +9,7 @@
 namespace gui::rnd::tab{
 
 //Constructor / Destructor
-Panel::Panel(GUI* gui){
+Panel::Panel(gui::Node* gui){
   //---------------------------
 
   this->gui = gui;

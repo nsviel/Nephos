@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class GUI;
+namespace gui{class Node;}
 
 
 namespace gui{
@@ -11,7 +11,7 @@ class Style
 {
 public:
   //Constructor / Destructor
-  Style(GUI* gui);
+  Style(gui::Node* gui);
   ~Style();
 
 public:

@@ -1,6 +1,6 @@
 #include "GUI_font.h"
 
-#include <GUI/GUI.h>
+#include <GUI/Node.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_imgui.h>
 #include <Vulkan/VK_struct/Namespace.h>
@@ -8,7 +8,7 @@
 
 
 //Constructor / Destructor
-GUI_font::GUI_font(GUI* gui){
+GUI_font::GUI_font(gui::Node* gui){
   //---------------------------
 
   gui::Render* gui_render = gui->get_rnd_tab();

@@ -1,13 +1,14 @@
-#include "GUI.h"
+#include "Node.h"
 
 #include <Engine/Node.h>
 #include <Utility/Element/src/Namespace.h>
 #include <GUI/Namespace.h>
-#include <GUI/Namespace.h>
 
+
+namespace gui{
 
 //Constructor / Destructor
-GUI::GUI(utl::Node* utility, eng::Node* engine){
+Node::Node(utl::Node* utility, eng::Node* engine){
   //---------------------------
 
   this->engine = engine;
@@ -23,7 +24,7 @@ GUI::GUI(utl::Node* utility, eng::Node* engine){
 
   //---------------------------
 }
-GUI::~GUI(){
+Node::~Node(){
   //---------------------------
 
   delete gui_tab;
@@ -33,7 +34,7 @@ GUI::~GUI(){
 }
 
 //Main function
-void GUI::init(){
+void Node::init(){
   //---------------------------
 
   gui_render->init();
@@ -43,7 +44,7 @@ void GUI::init(){
 
   //---------------------------
 }
-void GUI::loop(){
+void Node::loop(){
   //---------------------------
 
   gui_render->new_frame();
@@ -57,17 +58,19 @@ void GUI::loop(){
 
   //---------------------------
 }
-void GUI::exit(){
+void Node::exit(){
   //---------------------------
 
   gui_render->clean();
 
   //---------------------------
 }
-void GUI::wait(){
+void Node::wait(){
   //---------------------------
 
   //gui_render->wait();
 
   //---------------------------
+}
+
 }

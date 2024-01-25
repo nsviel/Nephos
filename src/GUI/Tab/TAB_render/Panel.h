@@ -6,7 +6,7 @@
 
 namespace eng::scene::gui{class Scene;}
 namespace eng::scene::gui{class Loader;}
-class GUI;
+namespace gui{class Node;}
 namespace gui::rnd::tab{class Menu;}
 
 
@@ -16,7 +16,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(GUI* gui);
+  Panel(gui::Node* gui);
   ~Panel();
 
 public:
@@ -34,7 +34,7 @@ public:
   bool show_loader   = true;
 
 private:
-  GUI* gui;
+  gui::Node* gui;
   gui::rnd::tab::Option* rnd_option;
   gui::rnd::tab::Menu* rnd_menu;
 };
