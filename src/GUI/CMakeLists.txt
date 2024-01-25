@@ -7,16 +7,19 @@ add_subdirectory(TAB_dev)
 add_subdirectory(TAB_render)
 add_subdirectory(GUI_main)
 
+file(GLOB_RECURSE ALL_SOURCES
+  GUI.cpp
+)
+
 #-----------------
 # Compilation
 #-----------------
-add_library(${LIBRARY_NAME} INTERFACE
-)
+add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 
 #-----------------
 # Dependencies
 #-----------------
-target_link_libraries(${LIBRARY_NAME} INTERFACE
+target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
   LIBRARY_UTILITY
   LIBRARY_UTILITY_GUI
@@ -27,6 +30,6 @@ target_link_libraries(${LIBRARY_NAME} INTERFACE
   LIBRARY_GUI_TAB_RENDER
 )
 
-target_include_directories(${LIBRARY_NAME} INTERFACE
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
+target_include_directories(${LIBRARY_NAME} PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>   # include module directory
 )

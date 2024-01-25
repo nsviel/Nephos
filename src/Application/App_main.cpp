@@ -1,7 +1,7 @@
 #include "App_main.h"
 #include "../Config.h"
 
-#include <GUI.h>
+#include <GUI/GUI.h>
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <iostream>

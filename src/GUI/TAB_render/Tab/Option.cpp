@@ -1,6 +1,6 @@
 #include "Option.h"
 
-#include <GUI.h>
+#include <GUI/GUI.h>
 #include <Engine/Node.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_info.h>

@@ -1,6 +1,6 @@
 #include "Database.h"
 
-#include <GUI.h>
+#include <GUI/GUI.h>
 
 
 namespace gui::dev::data{

@@ -1,5 +1,5 @@
 #include "Dialog.h"
-#include <GUI.h>
+#include <GUI/GUI.h>
 
 
 namespace utl::gui::widget{

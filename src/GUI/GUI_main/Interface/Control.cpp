@@ -1,6 +1,6 @@
 #include "Control.h"
 
-#include <GUI.h>
+#include <GUI/GUI.h>
 #include <Engine/Node.h>
 #include <Utility/Namespace.h>
 

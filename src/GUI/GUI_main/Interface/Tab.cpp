@@ -1,6 +1,6 @@
 #include "Tab.h"
 
-#include <GUI.h>
+#include <GUI/GUI.h>
 #include <Vulkan/Vulkan.h>
 
 

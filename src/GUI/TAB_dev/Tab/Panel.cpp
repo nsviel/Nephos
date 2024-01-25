@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-#include <GUI.h>
+#include <GUI/GUI.h>
 
 
 namespace gui::dev::tab{

@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-#include <GUI.h>
+#include <GUI/GUI.h>
 #include <Engine/Node.h>
 #include <GUI/GUI_main/Interface/Tab.h>
 #include <image/IconsFontAwesome6.h>
