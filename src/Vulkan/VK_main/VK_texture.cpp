@@ -1,8 +1,7 @@
 #include "VK_texture.h"
 
 #include <Vulkan/Namespace.h>
-#include <Utility/Function/File/File.h>
-#include <Utility/Function/File/Image.h>
+#include <Utility/Namespace.h>
 
 
 //Constructor / Destructor

@@ -1,8 +1,7 @@
 #include "Swarm.h"
 
 #include <Engine/Engine.h>
-#include <Utility/Function/File/Info.h>
-#include <Utility/Function/File/File.h>
+#include <Utility/Namespace.h>
 #include <Engine/Capture/K4N/Namespace.h>
 
 /*

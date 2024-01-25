@@ -1,7 +1,6 @@
 #include "Tree.h"
 
-#include <Utility/Function/File/Directory.h>
-#include <Utility/Function/File/Info.h>
+#include <Utility/Namespace.h>
 
 
 namespace utl::gui::widget{
