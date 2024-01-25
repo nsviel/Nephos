@@ -3,8 +3,8 @@
 #include <Utility/Specific/common.h>
 
 class VK_profiler;
-class VK_command;
-class VK_submit;
+namespace vk::command{class VK_command;}
+namespace vk::command{class VK_submit;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 
@@ -28,7 +28,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_command* vk_command;
-  VK_submit* vk_submit;
+  vk::command::VK_command* vk_command;
+  vk::command::VK_submit* vk_submit;
   VK_profiler* vk_profiler;
 };

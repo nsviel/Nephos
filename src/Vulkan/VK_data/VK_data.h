@@ -4,7 +4,7 @@
 
 class VK_buffer;
 class VK_texture;
-class VK_command;
+namespace vk::command{class VK_command;}
 namespace vk::binding{class Descriptor;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
@@ -35,6 +35,6 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
   VK_texture* vk_texture;
-  VK_command* vk_command;
+  vk::command::VK_command* vk_command;
   vk::binding::Descriptor* vk_descriptor;
 };

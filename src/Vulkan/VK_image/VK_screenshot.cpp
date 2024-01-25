@@ -10,11 +10,11 @@ VK_screenshot::VK_screenshot(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_memory = new VK_memory(struct_vulkan);
+  this->vk_memory = new vk::command::VK_memory(struct_vulkan);
   this->vk_image = new VK_image(struct_vulkan);
-  this->vk_command = new VK_command(struct_vulkan);
+  this->vk_command = new vk::command::VK_command(struct_vulkan);
   this->vk_texture = new VK_texture(struct_vulkan);
-  this->vk_memory = new VK_memory(struct_vulkan);
+  this->vk_memory = new vk::command::VK_memory(struct_vulkan);
 
   //---------------------------
 }

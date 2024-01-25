@@ -20,7 +20,7 @@ VK_subpass::VK_subpass(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_command = new VK_command(struct_vulkan);
+  this->vk_command = new vk::command::VK_command(struct_vulkan);
   this->vk_attachment = new VK_attachment(struct_vulkan);
 
   //---------------------------

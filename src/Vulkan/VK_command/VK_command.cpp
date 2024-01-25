@@ -3,12 +3,14 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::command{
+
 //Constructor / Destructor
 VK_command::VK_command(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_submit = new VK_submit(struct_vulkan);
+  this->vk_submit = new vk::command::VK_submit(struct_vulkan);
 
   //---------------------------
 }
@@ -265,4 +267,6 @@ void VK_command::singletime_command_end(VkCommandBuffer command_buffer){
   this->clean_command_buffer(command_buffer);
 
   //---------------------------
+}
+
 }

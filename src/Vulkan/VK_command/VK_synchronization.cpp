@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::command{
+
 //Constructor / Destructor
 VK_synchronization::VK_synchronization(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -150,4 +152,6 @@ void VK_synchronization::clean_fence(VkFence& fence){
   vkDestroyFence(struct_vulkan->device.device, fence, nullptr);
 
   //---------------------------
+}
+
 }

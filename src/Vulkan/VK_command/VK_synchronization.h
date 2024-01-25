@@ -6,6 +6,8 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Frame;}
 
 
+namespace vk::command{
+
 class VK_synchronization
 {
 public:
@@ -33,3 +35,5 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
 };
+
+}

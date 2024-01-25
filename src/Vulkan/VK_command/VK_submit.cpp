@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::command{
+
 //Constructor / Destructor
 VK_submit::VK_submit(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -49,4 +51,6 @@ void VK_submit::submit_command_render(vk::structure::Command* command){
   }
 
   //---------------------------
+}
+
 }

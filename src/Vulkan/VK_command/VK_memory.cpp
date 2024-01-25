@@ -3,12 +3,14 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::command{
+
 //Constructor / Destructor
 VK_memory::VK_memory(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_command = new VK_command(struct_vulkan);
+  this->vk_command = new vk::command::VK_command(struct_vulkan);
 
   //---------------------------
 }
@@ -266,4 +268,6 @@ uint32_t VK_memory::find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags 
   throw std::runtime_error("failed to find suitable memory type!");
 
   //---------------------------
+}
+
 }

@@ -2,12 +2,14 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_submit;
+namespace vk::command{class VK_submit;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Image;}
 
+
+namespace vk::command{
 
 class VK_command
 {
@@ -41,5 +43,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_submit* vk_submit;
+  vk::command::VK_submit* vk_submit;
 };
+
+}

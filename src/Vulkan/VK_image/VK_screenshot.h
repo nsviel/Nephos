@@ -9,9 +9,9 @@ extern "C" {
 }
 
 class VK_image;
-class VK_command;
+namespace vk::command{class VK_command;}
 class VK_texture;
-class VK_memory;
+namespace vk::command{class VK_memory;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
 
@@ -33,8 +33,8 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_memory* vk_memory;
+  vk::command::VK_memory* vk_memory;
   VK_image* vk_image;
-  VK_command* vk_command;
+  vk::command::VK_command* vk_command;
   VK_texture* vk_texture;
 };

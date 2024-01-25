@@ -4,7 +4,7 @@
 
 class VK_pipeline;
 class VK_framebuffer;
-class VK_command;
+namespace vk::command{class VK_command;}
 class VK_subpass;
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
@@ -31,5 +31,5 @@ private:
   VK_pipeline* vk_pipeline;
   VK_subpass* vk_subpass;
   VK_framebuffer* vk_framebuffer;
-  VK_command* vk_command;
+  vk::command::VK_command* vk_command;
 };

@@ -11,7 +11,7 @@ Uniform::Uniform(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_memory = new VK_memory(struct_vulkan);
+  this->vk_memory = new vk::command::VK_memory(struct_vulkan);
 
   //---------------------------
 }
