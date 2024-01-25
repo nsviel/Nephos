@@ -11,7 +11,7 @@ namespace eng::ope::gui{
 Profiler::Profiler(eng::Node* engine, bool* show_window){
   //---------------------------
 
-  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Node* eng_vulkan = engine->get_eng_vulkan();
 
   //this->profiler = new utl::gui::plot::Profiler();
   this->vk_info = eng_vulkan->get_vk_info();

@@ -3,7 +3,7 @@
 #include <Engine/Node.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Data/Namespace.h>
-#include <Vulkan/Vulkan.h>
+#include <Vulkan/Node.h>
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Utility/Function/Math/fct_math.h>
 
@@ -40,7 +40,7 @@ void Object::update_entity(){
   eng::cam::Control* cam_control = node_camera->get_camera_control();
   eng::scene::Node* sce_node = engine->get_node_scene();
   eng::scene::Glyph* sce_glyph = sce_node->get_scene_glyph();
-  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Node* eng_vulkan = engine->get_eng_vulkan();
   VK_engine* vk_engine = eng_vulkan->get_vk_engine();
   //----------------------------
 
@@ -56,7 +56,7 @@ void Object::update_entity(){
   //----------------------------
 }
 void Object::remove_entity(){
-  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Node* eng_vulkan = engine->get_eng_vulkan();
   VK_engine* vk_engine = eng_vulkan->get_vk_engine();
   eng::scene::Node* sce_node = engine->get_node_scene();
   eng::scene::Glyph* sce_glyph = sce_node->get_scene_glyph();

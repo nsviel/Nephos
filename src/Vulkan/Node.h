@@ -12,12 +12,12 @@ namespace vk::structure{class Vulkan;}
 
 namespace vk{
 
-class Vulkan
+class Node
 {
 public:
   //Constructor / Destructor
-  Vulkan(GLFWwindow* window);
-  ~Vulkan();
+  Node(GLFWwindow* window);
+  ~Node();
 
 public:
   //Main functions

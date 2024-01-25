@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk{class Vulkan;}
+namespace vk{class Node;}
 class VK_engine;
 class VK_render;
 class VK_imgui;
@@ -24,11 +24,11 @@ public:
   void clean();
   void new_frame();
 
-  inline vk::Vulkan* get_vulkan(){return vulkan;}
+  inline vk::Node* get_vulkan(){return vulkan;}
 
 private:
   gui::Renderpass* gui_renderpass;
-  vk::Vulkan* vulkan;
+  vk::Node* vulkan;
   VK_engine* vk_engine;
   VK_render* vk_render;
   VK_imgui* vk_imgui;

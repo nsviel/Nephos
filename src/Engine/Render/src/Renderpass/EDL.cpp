@@ -12,7 +12,7 @@ EDL::EDL(eng::render::Node* node_render){
   //---------------------------
 
   eng::Node* engine = node_render->get_engine();
-  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Node* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 
   this->shader_edl = node_render->get_shader_edl();

@@ -3,7 +3,7 @@
 #include <Engine/Node.h>
 #include <Engine/Operation/Namespace.h>
 #include <Engine/Data/Namespace.h>
-#include <Vulkan/Vulkan.h>
+#include <Vulkan/Node.h>
 #include <Vulkan/VK_main/VK_engine.h>
 
 
@@ -14,7 +14,7 @@ Scene::Scene(eng::scene::Node* sce_node){
   //---------------------------
 
   eng::Node* engine = sce_node->get_engine();
-  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Node* eng_vulkan = engine->get_eng_vulkan();
 
   this->sce_database = sce_node->get_scene_database();
   this->sce_glyph = sce_node->get_scene_glyph();

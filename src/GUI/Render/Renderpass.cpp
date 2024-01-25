@@ -6,7 +6,7 @@
 namespace gui{
 
 //Constructor / Destructor
-Renderpass::Renderpass(vk::Vulkan* vulkan){
+Renderpass::Renderpass(vk::Node* vulkan){
   //---------------------------
 
   this->vk_imgui = vulkan->get_vk_imgui();

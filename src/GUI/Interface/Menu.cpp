@@ -41,7 +41,7 @@ void Menu::menu_option(){
     gui_font->combo_font_editor();
 
     Render* gui_render = gui->get_rnd_tab();
-    vk::Vulkan* vulkan = gui_render->get_vulkan();
+    vk::Node* vulkan = gui_render->get_vulkan();
     VK_info* vk_info = vulkan->get_vk_info();
     float fps = vk_info->get_fps();
     ImGui::Text("%.2f", fps);

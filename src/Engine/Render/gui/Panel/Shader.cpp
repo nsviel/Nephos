@@ -13,7 +13,7 @@ Shader::Shader(eng::render::Node* node_render, bool* show_window){
   //---------------------------
 
   eng::Node* engine = node_render->get_engine();
-  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Node* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->node_render = engine->get_node_render();

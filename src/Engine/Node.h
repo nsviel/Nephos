@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 class Param;
-namespace vk{class Vulkan;}
+namespace vk{class Node;}
 namespace utl{class Node;}
 namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
@@ -30,14 +30,14 @@ public:
   void wait();
 
   inline utl::Node* get_node_utility(){return node_utility;}
-  inline vk::Vulkan* get_eng_vulkan(){return eng_vulkan;}
+  inline vk::Node* get_eng_vulkan(){return eng_vulkan;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::render::Node* get_node_render(){return node_render;}
   inline eng::capture::Node* get_node_capture(){return node_capture;}
 
 private:
-  vk::Vulkan* eng_vulkan;
+  vk::Node* eng_vulkan;
   utl::Node* node_utility;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;

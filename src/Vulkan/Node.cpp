@@ -1,4 +1,4 @@
-#include "Vulkan.h"
+#include "Node.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk{
 
 //Constructor / Destructor
-Vulkan::Vulkan(GLFWwindow* window){
+Node::Node(GLFWwindow* window){
   //---------------------------
 
   this->struct_vulkan = new vk::structure::Vulkan(window);
@@ -18,17 +18,17 @@ Vulkan::Vulkan(GLFWwindow* window){
 
   //---------------------------
 }
-Vulkan::~Vulkan(){}
+Node::~Node(){}
 
 //Main function
-void Vulkan::init(){
+void Node::init(){
   //---------------------------
 
   vk_engine->init();
 
   //---------------------------
 }
-void Vulkan::loop(){
+void Node::loop(){
   //---------------------------
 
   //struct_vulkan->window.window_dim = utl_window->compute_window_dim();
@@ -37,14 +37,14 @@ void Vulkan::loop(){
 
   //---------------------------
 }
-void Vulkan::clean(){
+void Node::clean(){
   //---------------------------
 
   vk_engine->clean();
 
   //---------------------------
 }
-void Vulkan::wait(){
+void Node::wait(){
   //---------------------------
 
   vk_engine->device_wait_idle();
@@ -53,7 +53,7 @@ void Vulkan::wait(){
 }
 
 //Parameter function
-void Vulkan::param(utl::element::Window* utl_window, bool headless){
+void Node::param(utl::element::Window* utl_window, bool headless){
   //---------------------------
 
 

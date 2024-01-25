@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk{class Vulkan;}
+namespace vk{class Node;}
 class VK_engine;
 class VK_imgui;
 namespace vk::structure{class Renderpass;}
@@ -15,7 +15,7 @@ class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::Vulkan* vulkan);
+  Renderpass(vk::Node* vulkan);
   ~Renderpass();
 
 public:

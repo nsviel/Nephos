@@ -1,7 +1,7 @@
 #include "Stream.h"
 
 #include <Engine/Node.h>
-#include <Vulkan/Vulkan.h>
+#include <Vulkan/Node.h>
 #include <Vulkan/VK_main/VK_texture.h>
 #include <Vulkan/VK_struct/Namespace.h>
 #include <GUI/Namespace.h>
@@ -13,7 +13,7 @@ namespace eng::render::gui{
 Stream::Stream(eng::Node* engine){
   //---------------------------
 
-  vk::Vulkan* vulkan = engine->get_eng_vulkan();
+  vk::Node* vulkan = engine->get_eng_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
   this->vk_image = nullptr;
 

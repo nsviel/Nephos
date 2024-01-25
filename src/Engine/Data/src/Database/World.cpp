@@ -2,7 +2,7 @@
 
 #include <Engine/Node.h>
 #include <Engine/Data/Namespace.h>
-#include <Vulkan/Vulkan.h>
+#include <Vulkan/Node.h>
 #include <Vulkan/VK_main/VK_engine.h>
 
 
@@ -13,7 +13,7 @@ World::World(eng::scene::Node* sce_node){
   //---------------------------
 
   eng::Node* engine = sce_node->get_engine();
-  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Node* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->sce_database = sce_node->get_scene_database();
