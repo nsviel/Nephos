@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Data/src/Loader/Item.h>
 
+class Item;
 namespace eng::scene{class Node;}
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Loader;}
