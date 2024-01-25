@@ -2,7 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Engine/Data/Namespace.h>
-#include <Engine/Operation/src/Namespace.h>
+#include <Engine/Operation/Namespace.h>
 #include <Engine/Capture/K4N/Namespace.h>
 
 

@@ -1,8 +1,9 @@
 #pragma once
 
-#include <Engine/Operation/src/Namespace.h>
-
 #include <Utility/Specific/common.h>
+
+namespace eng::ope{class Colormap;}
+namespace eng::ope{class Attribut;}
 
 
 namespace eng::ope{
@@ -19,7 +20,7 @@ public:
   vector<vec4> heatmap_height(utl::entity::Object* object);
   vector<vec4> heatmap_height(utl::entity::Object* object, vec2 range);
   vector<vec4> heatmap_range(utl::entity::Object* object);
-  
+
   //Heatmap functions
   void compute_heatmap(vector<float>& v_in, int size);
   void heatmap_set(utl::entity::Object* object, vector<float>& v_in);

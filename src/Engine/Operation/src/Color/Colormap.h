@@ -1,11 +1,6 @@
 #pragma once
 
-#include <glm/glm.hpp>
-#include <string>
-#include <vector>
-
-using namespace std;
-using namespace glm;
+#include <Utility/Specific/common.h>
 
 
 namespace eng::ope{

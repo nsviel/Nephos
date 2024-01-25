@@ -3,6 +3,7 @@
 #include <GUI.h>
 #include <image/IconsFontAwesome6.h>
 #include <Engine/Data/Namespace.h>
+#include <Engine/Operation/Namespace.h>
 
 
 namespace gui::rnd::tab{

@@ -7,18 +7,3 @@
 #include <Engine/Operation/src/Color/Heatmap.h>
 #include <Engine/Operation/src/Tree/Octree.h>
 #include <Engine/Operation/src/Filter/Voxelizer.h>
-
-
-namespace eng::ope{
-  //---------------------------
-
-  class Colormap;
-  class Heatmap;
-  class Attribut;
-  class Transformation;
-  class Octree;
-  class Operation;
-  class Voxelizer;
-
-  //---------------------------
-}

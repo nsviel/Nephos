@@ -1,11 +1,14 @@
 #pragma once
 
-#include <Engine/Data/Namespace.h>
-#include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class Engine;
 namespace eng::ope{class Operation;}
+namespace utl::element{class Window;}
+namespace eng::scene{class Scene;}
+namespace eng::scene{class Database;}
+namespace eng::cam{class Control;}
+namespace eng::cam{class Manager;}
 
 
 namespace eng::ope::gui{

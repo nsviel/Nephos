@@ -2,6 +2,7 @@
 
 #include <Engine/Engine.h>
 #include <Engine/Capture/K4N/Namespace.h>
+#include <Engine/Operation/Namespace.h>
 
 
 namespace eng::k4n::dev{

@@ -5,12 +5,12 @@
 #include <Engine/Render/gui/Namespace.h>
 #include <Utility/GUI/Plot/Namespace.h>
 #include <Engine/Camera/gui/Control.h>
-#include <Engine/Operation/gui/Namespace.h>
+#include <Engine/Operation/Namespace.h>
 
 class Engine;
 class VK_imgui;
 class VK_info;
-
+namespace eng::ope::gui{class Control;}
 namespace eng::render::gui{class Control;}
 
 

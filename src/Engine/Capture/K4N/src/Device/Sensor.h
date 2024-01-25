@@ -17,6 +17,7 @@ namespace eng::k4n::structure{class Color;}
 namespace eng::k4n::structure{class Depth;}
 namespace eng::k4n::structure{class Infrared;}
 namespace eng::k4n::structure{class IMU;}
+namespace eng::ope{class Transformation;}
 
 
 namespace eng::k4n::dev{

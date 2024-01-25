@@ -1,6 +1,7 @@
 #include "Heatmap.h"
 
 #include <Utility/Function/Math/fct_math.h>
+#include <Engine/Operation/Namespace.h>
 
 
 namespace eng::ope{

@@ -2,7 +2,6 @@
 
 #include <GUI/TAB_render/Tab/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Operation/gui/Namespace.h>
 #include <Engine/Render/gui/Namespace.h>
 
 namespace eng::scene::gui{class Scene;}

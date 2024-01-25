@@ -3,7 +3,7 @@
 #include <Engine/Engine.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
-#include <Engine/Operation/src/Namespace.h>
+#include <Engine/Operation/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
