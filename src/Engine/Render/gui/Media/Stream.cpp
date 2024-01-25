@@ -3,6 +3,7 @@
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_texture.h>
+#include <Vulkan/VK_struct/Namespace.h>
 #include <GUI/GUI_main/Render/Render.h>
 
 

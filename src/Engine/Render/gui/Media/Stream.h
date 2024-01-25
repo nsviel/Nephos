@@ -2,10 +2,9 @@
 
 #include <Utility/Specific/common.h>
 
-#include <Vulkan/VK_struct/Namespace.h>
-
 class Engine;
 class VK_texture;
+namespace vk::structure{class Image;}
 
 
 namespace eng::render::gui{
