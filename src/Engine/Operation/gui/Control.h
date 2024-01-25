@@ -5,6 +5,7 @@
 #include <Utility/Specific/common.h>
 
 class Engine;
+namespace eng::ope{class Operation;}
 
 
 namespace eng::ope::gui{

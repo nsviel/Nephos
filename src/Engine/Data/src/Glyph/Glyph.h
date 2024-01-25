@@ -1,16 +1,12 @@
 #pragma once
 
-#include <Engine/Data/Node.h>
-#include <Engine/Data/src/Database/Database.h>
-#include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
 
-#include <Engine/Data/src/Glyph/World/Namespace.h>
-#include <Engine/Data/src/Glyph/Object/Namespace.h>
-#include <Engine/Data/src/Glyph/Grid/Namespace.h>
-#include <Engine/Data/src/Glyph/Camera/Namespace.h>
-
 class VK_engine;
+namespace eng::scene{class Node;}
+namespace eng::scene{class Database;}
+namespace eng::scene{class World;}
+namespace eng::cam{class Control;}
 
 
 namespace eng::scene{

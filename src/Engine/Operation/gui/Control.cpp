@@ -3,6 +3,7 @@
 #include <Engine/Engine.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
+#include <Engine/Operation/src/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Utility/Element/src/Namespace.h>
 #include <Utility/Function/Math/fct_math.h>
