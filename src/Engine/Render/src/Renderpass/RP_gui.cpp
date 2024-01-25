@@ -8,6 +8,8 @@
 #include <Vulkan/VK_struct/Namespace.h>
 
 
+namespace eng::renderpass{
+
 //Constructor / Destructor
 RP_gui::RP_gui(Engine* engine){
   //---------------------------
@@ -68,4 +70,6 @@ void RP_gui::draw(vk::structure::Subpass* subpass){
   vk_imgui->draw(subpass->command_buffer);
 
   //---------------------------
+}
+
 }

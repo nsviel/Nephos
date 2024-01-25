@@ -9,10 +9,10 @@
 ENG_renderpass::ENG_renderpass(Engine* engine){
   //---------------------------
 
-  this->rp_scene = new RP_scene(engine);
-  this->rp_glyph = new RP_glyph(engine);
-  this->rp_edl = new RP_edl(engine);
-  this->rp_gui = new RP_gui(engine);
+  this->rp_scene = new eng::renderpass::RP_scene(engine);
+  this->rp_glyph = new eng::renderpass::RP_glyph(engine);
+  this->rp_edl = new eng::renderpass::RP_edl(engine);
+  this->rp_gui = new eng::renderpass::RP_gui(engine);
 
   //---------------------------
 }

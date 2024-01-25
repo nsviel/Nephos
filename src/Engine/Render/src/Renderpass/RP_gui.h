@@ -10,6 +10,8 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
 
+namespace eng::renderpass{
+
 class RP_gui
 {
 public:
@@ -28,3 +30,5 @@ private:
   VK_engine* vk_engine;
   VK_imgui* vk_imgui;
 };
+
+}

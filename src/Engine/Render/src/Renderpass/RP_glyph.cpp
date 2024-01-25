@@ -12,6 +12,8 @@
 #include <Engine/Render/Namespace.h>
 
 
+namespace eng::renderpass{
+
 //Constructor / Destructor
 RP_glyph::RP_glyph(Engine* engine){
   //---------------------------
@@ -145,4 +147,6 @@ void RP_glyph::cmd_draw_line(vk::structure::Subpass* subpass){
   }
 
   //---------------------------
+}
+
 }

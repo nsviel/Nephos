@@ -12,6 +12,8 @@
 #include <Engine/Render/Namespace.h>
 
 
+namespace eng::renderpass{
+
 //Constructor / Destructor
 RP_scene::RP_scene(Engine* engine){
   //---------------------------
@@ -186,4 +188,6 @@ void RP_scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
   }
 
   //---------------------------
+}
+
 }

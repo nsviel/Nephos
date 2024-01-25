@@ -3,10 +3,10 @@
 #include <Utility/Specific/common.h>
 
 class Engine;
-class RP_scene;
-class RP_glyph;
-class RP_edl;
-class RP_gui;
+namespace eng::renderpass{class RP_edl;}
+namespace eng::renderpass{class RP_scene;}
+namespace eng::renderpass{class RP_glyph;}
+namespace eng::renderpass{class RP_gui;}
 
 
 class ENG_renderpass
@@ -21,8 +21,8 @@ public:
   void init();
 
 private:
-  RP_scene* rp_scene;
-  RP_glyph* rp_glyph;
-  RP_edl* rp_edl;
-  RP_gui* rp_gui;
+  eng::renderpass::RP_scene* rp_scene;
+  eng::renderpass::RP_glyph* rp_glyph;
+  eng::renderpass::RP_edl* rp_edl;
+  eng::renderpass::RP_gui* rp_gui;
 };

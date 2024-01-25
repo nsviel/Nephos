@@ -12,6 +12,8 @@
 #include <Engine/Render/Namespace.h>
 
 
+namespace eng::renderpass{
+
 //Constructor / Destructor
 RP_edl::RP_edl(Engine* engine){
   //---------------------------
@@ -107,4 +109,6 @@ void RP_edl::draw_command(vk::structure::Subpass* subpass){
   vk_drawing->cmd_draw_data(subpass->command_buffer, vk_engine->get_canvas());
 
   //---------------------------
+}
+
 }

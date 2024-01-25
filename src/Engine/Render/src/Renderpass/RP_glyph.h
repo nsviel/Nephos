@@ -16,6 +16,8 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
 
+namespace eng::renderpass{
+
 class RP_glyph
 {
 public:
@@ -46,3 +48,5 @@ private:
   Timer timer;
   float time_renderpass;
 };
+
+}
