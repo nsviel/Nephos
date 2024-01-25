@@ -1,18 +1,16 @@
 #pragma once
 
-#include <GUI/TAB_render/Tab/Namespace.h>
+#include <GUI/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Engine/Render/gui/Namespace.h>
 
 namespace eng::scene::gui{class Scene;}
 namespace eng::scene::gui{class Loader;}
-
-
 class GUI;
+namespace gui::rnd::tab{class Menu;}
+
 
 namespace gui::rnd::tab{
-class Menu;
-
 
 class Panel
 {

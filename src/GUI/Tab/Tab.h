@@ -1,11 +1,13 @@
 #pragma once
 
-#include <GUI/TAB_dev/Tab/Namespace.h>
-#include <GUI/TAB_render/Tab/Namespace.h>
+#include <GUI/Namespace.h>
+#include <GUI/Namespace.h>
 #include <GUI/GUI_main/Namespace.h>
 #include <Utility/Specific/common.h>
 
 class GUI;
+namespace gui::rnd::tab{class Panel;}
+namespace gui::dev::tab{class Panel;}
 
 
 namespace gui{

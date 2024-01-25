@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <GUI/TAB_render/Tab/Namespace.h>
+#include <GUI/Namespace.h>
 
-namespace gui::rnd::tab{
+namespace gui::dev::tab{
 class Panel;
 
 
@@ -11,7 +11,7 @@ class Menu
 {
 public:
   //Constructor / Destructor
-  Menu(gui::rnd::tab::Panel* rnd_panel);
+  Menu(gui::dev::tab::Panel* panel);
   ~Menu();
 
 public:
@@ -19,11 +19,11 @@ public:
   void run_tab_menu();
 
   //Subfunctions
-  void loader_dialog();
-  void loader_panel();
+  void open_panels();
 
 private:
-  gui::rnd::tab::Panel* rnd_panel;
+  gui::dev::tab::Panel* panel;
+
 };
 
 }

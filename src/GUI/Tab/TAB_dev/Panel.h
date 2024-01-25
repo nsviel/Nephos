@@ -1,18 +1,18 @@
 #pragma once
 
-#include <GUI/TAB_dev/Tab/Namespace.h>
+#include <GUI/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <GUI/TAB_dev/Editor/Namespace.h>
-#include <GUI/TAB_dev/Data/Namespace.h>
-#include <GUI/TAB_dev/Tab/Namespace.h>
 
 class GUI;
+namespace gui::dev::tab{class Command;}
+namespace gui::dev::tab{class Menu;}
+namespace gui::dev::tab{class Panel;}
+namespace gui::dev::editor{class Command;}
+namespace gui::dev::editor{class Editor;}
+namespace gui::dev::data{class Database;}
+
 
 namespace gui::dev::tab{
-class Command;
-class Menu;
-class Panel;
-
 
 class Panel
 {
@@ -30,7 +30,7 @@ public:
   void run_editors();
 
   bool show_database = true;
-  
+
 private:
   GUI* gui;
   gui::dev::tab::Menu* menu;

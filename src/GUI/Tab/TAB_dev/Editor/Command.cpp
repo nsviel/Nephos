@@ -2,7 +2,7 @@
 
 #include <GUI/GUI.h>
 #include <image/IconsFontAwesome6.h>
-#include <GUI/TAB_dev/Tab/Namespace.h>
+#include <GUI/Namespace.h>
 
 
 namespace gui::dev::editor{

@@ -2,7 +2,7 @@
 
 #include <GUI/GUI.h>
 #include <Engine/Node.h>
-#include <GUI/GUI_main/Interface/Tab.h>
+#include <GUI/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
