@@ -40,11 +40,7 @@ public:
 
   inline eng::render::gui::Shader* get_rnd_shader(){return rnd_shader;}
   inline eng::render::gui::Renderer* get_rnd_render(){return rnd_render;}
-
   inline eng::ope::gui::Profiler* get_rnd_profiler(){return rnd_profiler;}
-
-  inline eng::scene::gui::Scene* get_rnd_scene(){return rnd_scene;}
-
   inline gui::rnd::tab::Option* get_rnd_option(){return rnd_option;}
 
 private:
@@ -54,9 +50,6 @@ private:
   eng::render::gui::Shader* rnd_shader;
   eng::ope::gui::Profiler* rnd_profiler;
   eng::render::gui::Renderer* rnd_render;
-
-  eng::scene::gui::Scene* rnd_scene;
-  eng::scene::gui::Loader* rnd_loader;
 };
 
 }

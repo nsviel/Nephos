@@ -8,6 +8,8 @@ namespace eng::scene{class Glyph;}
 namespace eng::scene{class Operation;}
 namespace eng::scene{class Bookmark;}
 namespace eng::scene{class World;}
+namespace eng::scene::gui{class Scene;}
+namespace eng::scene::gui{class Loader;}
 
 
 namespace eng::scene{
@@ -41,6 +43,11 @@ private:
   eng::scene::Loader* sce_loader;
   eng::scene::Bookmark* sce_bookmark;
   eng::scene::World* sce_world;
+  eng::scene::gui::Scene* gui_scene;
+  eng::scene::gui::Loader* gui_loader;
+
+  bool show_scene = true;
+  bool show_loader = true;
 };
 
 }

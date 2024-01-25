@@ -16,6 +16,8 @@ Node::Node(Engine* engine){
   this->sce_loader = new eng::scene::Loader(this);
   this->sce_scene = new eng::scene::Scene(this);
   this->sce_bookmark = new eng::scene::Bookmark(this);
+  this->gui_loader = new eng::scene::gui::Loader(this, &show_loader);
+  this->gui_scene = new eng::scene::gui::Scene(this, &show_scene);
 
   //---------------------------
 }
@@ -51,7 +53,8 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-
+  gui_loader->run_panel();
+  gui_scene->run_panel();
 
   //---------------------------
 }
