@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Engine/Render/src/Shader/EDL/EDL_param.h>
 #include <Utility/Specific/common.h>
 
-
 class VK_memory;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Binding;}
+namespace vk::structure{class Uniform;}
 
 
 class VK_uniform

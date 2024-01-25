@@ -1,9 +1,10 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
-
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Binding;}
+namespace vk::structure{class Sampler;}
 
 
 class VK_sampler

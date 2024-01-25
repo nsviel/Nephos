@@ -1,11 +1,13 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
-
 
 class VK_uniform;
 class VK_sampler;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Binding;}
+namespace vk::structure{class Image;}
+namespace vk::structure{class Pipeline;}
 
 
 class VK_descriptor
