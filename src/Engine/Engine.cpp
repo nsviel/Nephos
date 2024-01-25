@@ -17,19 +17,12 @@ Engine::Engine(utl::Node* utility){
   this->node_scene = new eng::scene::Node(this);
   this->node_shader = new eng::shader::Node(this);
   this->node_capture = new eng::capture::Node(this);
+  this->node_operation = new eng::ope::Node(this);
   this->eng_renderpass = new ENG_renderpass(this);
 
   //---------------------------
 }
-Engine::~Engine(){
-  //---------------------------
-
-  delete node_camera;
-  delete node_shader;
-  delete node_scene;
-
-  //---------------------------
-}
+Engine::~Engine(){}
 
 void Engine::init(){
   //---------------------------
@@ -59,6 +52,7 @@ void Engine::gui(){
   node_camera->gui();
   node_scene->gui();
   node_shader->gui();
+  node_operation->gui();
 
   //---------------------------
 }

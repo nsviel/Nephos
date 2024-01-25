@@ -23,7 +23,6 @@ void Panel::create_panels(){
   //---------------------------
 
   this->rnd_option = new gui::rnd::tab::Option(gui, &show_option, "Option");
-  this->rnd_profiler = new eng::ope::gui::Profiler(gui->get_engine(), &show_profiler, "Profiler");
   this->rnd_menu = new gui::rnd::tab::Menu(this);
 
   //---------------------------
@@ -32,8 +31,6 @@ void Panel::draw_panels(){
   //---------------------------
 
   rnd_menu->run_tab_menu();
-
-  rnd_profiler->run_panel();
   rnd_option->run_panel();
 
 

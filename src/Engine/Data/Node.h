@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Utility/Specific/common.h>
+
 class Engine;
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Database;}

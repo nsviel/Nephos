@@ -10,6 +10,7 @@ namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::shader{class Node;}
 namespace eng::capture{class Node;}
+namespace eng::ope{class Node;}
 
 
 class Engine
@@ -42,4 +43,5 @@ private:
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;
   eng::shader::Node* node_shader;
+  eng::ope::Node* node_operation;
 };
