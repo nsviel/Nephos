@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
-#include <Utility/Element/src/Namespace.h>
 #include <Engine/Render/src/Shader/Base/BASE_shader.h>
+#include <Utility/Specific/common.h>
 
 class Engine;
+namespace utl::element{class Window;}
 
 
 namespace eng::shader{
