@@ -1,9 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Render/src/Shader/Namespace.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
 class Engine;
@@ -13,6 +10,10 @@ class VK_viewport;
 class VK_descriptor;
 class VK_uniform;
 class VK_drawing;
+namespace eng::shader{class Node;}
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Subpass;}
+namespace vk::structure{class Renderpass;}
 
 
 class RP_glyph

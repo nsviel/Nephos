@@ -5,10 +5,11 @@
 #include <Vulkan/VK_renderpass/VK_pipeline.h>
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Vulkan/VK_drawing/VK_viewport.h>
-#include <Engine/Render/src/Shader/Scene/SCE.h>
 #include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/VK_binding/VK_uniform.h>
 #include <Vulkan/VK_drawing/VK_drawing.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Engine/Render/Namespace.h>
 
 
 //Constructor / Destructor

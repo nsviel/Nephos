@@ -8,9 +8,8 @@
 #include <Vulkan/VK_drawing/VK_drawing.h>
 #include <Vulkan/VK_binding/VK_descriptor.h>
 #include <Vulkan/VK_binding/VK_uniform.h>
-
-#include <Engine/Render/src/Shader/EDL/EDL.h>
-#include <Engine/Render/src/Shader/EDL/EDL_param.h>
+#include <Vulkan/VK_struct/Namespace.h>
+#include <Engine/Render/Namespace.h>
 
 
 //Constructor / Destructor

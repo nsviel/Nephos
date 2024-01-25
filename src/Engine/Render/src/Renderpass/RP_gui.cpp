@@ -5,6 +5,7 @@
 #include <Vulkan/VK_main/VK_imgui.h>
 #include <Vulkan/VK_main/VK_engine.h>
 #include <Vulkan/VK_drawing/VK_drawing.h>
+#include <Vulkan/VK_struct/Namespace.h>
 
 
 //Constructor / Destructor
