@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+
 struct Shader_info{
   //---------------------------
 
@@ -18,7 +19,6 @@ struct Shader_info{
 
   //---------------------------
 };
-
 
 class BASE_shader
 {

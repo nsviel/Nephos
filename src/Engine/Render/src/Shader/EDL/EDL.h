@@ -1,13 +1,14 @@
 #pragma once
 
-
-#include <Engine/Render/src/Shader/EDL/EDL_param.h>
 #include <Engine/Render/src/Shader/Base/BASE_shader.h>
-#include <Engine/Camera/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Element/src/Namespace.h>
 
 class Engine;
+class BASE_shader;
+namespace eng::shader{class EDL_param;}
+namespace eng::cam{class Manager;}
+namespace utl::entity{class Camera;}
+namespace utl::element{class Window;}
 
 
 namespace eng::shader{
@@ -27,9 +28,9 @@ public:
 
 private:
   eng::cam::Manager* cam_manager;
+  eng::shader::EDL_param* edl_param;
   utl::entity::Camera* camera;
   utl::element::Window* utl_window;
-  eng::shader::EDL_param* edl_param;
 };
 
 }
