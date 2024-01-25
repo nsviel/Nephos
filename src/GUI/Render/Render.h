@@ -1,18 +1,15 @@
 #pragma once
 
-#include <Vulkan/VK_main/VK_engine.h>
-#include <Vulkan/VK_main/VK_info.h>
-#include <GUI/Namespace.h>
-
 namespace gui{class Node;}
 class Vulkan;
 class VK_engine;
 class VK_render;
 class VK_imgui;
 
-namespace gui{
-class Renderpass;
+namespace gui{class Renderpass;}
 
+
+namespace gui{
 
 class Render
 {

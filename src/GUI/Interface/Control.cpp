@@ -1,7 +1,7 @@
 #include "Control.h"
 
-#include <GUI/Node.h>
-#include <Engine/Node.h>
+#include <GUI/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 
 

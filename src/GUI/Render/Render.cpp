@@ -4,7 +4,9 @@
 #include <Engine/Node.h>
 #include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
-
+#include <Vulkan/VK_main/VK_engine.h>
+#include <Vulkan/VK_main/VK_info.h>
+#include <GUI/Namespace.h>
 
 namespace gui{
 

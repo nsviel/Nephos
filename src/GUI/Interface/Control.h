@@ -1,14 +1,13 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/src/Namespace.h>
-#include <GUI/Namespace.h>
 
 namespace gui{class Node;}
+namespace gui{class Tab;}
+namespace utl::element{class Window;}
+
 
 namespace gui{
-class Tab;
-
 
 class Control
 {

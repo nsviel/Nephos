@@ -1,6 +1,6 @@
 #include "Docking.h"
 
-#include <GUI/Node.h>
+#include <GUI/Namespace.h>
 
 
 namespace gui{

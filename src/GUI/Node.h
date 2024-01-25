@@ -6,8 +6,12 @@
 #include <Utility/Element/src/Namespace.h>
 
 namespace eng{class Node;}
+namespace utl{class Node;}
+namespace gui{class Control;}
 namespace gui{class Style;}
-class Node;
+namespace gui{class Tab;}
+namespace gui{class Render;}
+namespace gui{class Docking;}
 class GUI_font;
 
 
@@ -28,7 +32,6 @@ public:
 
   inline utl::Node* get_node_utility(){return utility;}
   inline eng::Node* get_engine(){return engine;}
-
   inline gui::Control* get_gui_control(){return gui_control;}
   inline gui::Style* get_gui_style(){return gui_style;}
   inline gui::Tab* get_gui_tab(){return gui_tab;}

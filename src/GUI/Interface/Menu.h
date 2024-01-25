@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Namespace.h>
 
 namespace gui{class Node;}
+namespace utl::element::gui{class Git;}
 class GUI_font;
 
 
