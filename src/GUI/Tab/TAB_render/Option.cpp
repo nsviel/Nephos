@@ -1,15 +1,15 @@
 #include "Option.h"
 
-#include <GUI/Node.h>
-#include <Engine/Node.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_main/VK_info.h>
+#include <GUI/Namespace.h>
+#include <Engine/Namespace.h>
+#include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace gui::rnd::tab{
 
 //Constructor / Destructor
-Option::Option(gui::Node* gui, bool* show_window, string name) : Panel(show_window, name){
+Option::Option(gui::Node* gui, bool* show_window, string name){
   //---------------------------
 
   eng::Node* engine = gui->get_engine();
@@ -19,12 +19,30 @@ Option::Option(gui::Node* gui, bool* show_window, string name) : Panel(show_wind
   this->vk_info = eng_vulkan->get_vk_info();
 
   this->width = 150;
+  this->name = name;
+  this->show_window = show_window;
 
   //---------------------------
 }
 Option::~Option(){}
 
 //Main function
+void Option::run_panel(){
+  //---------------------------
+
+  if(*show_window){
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+
+      this->design_panel();
+
+      ImGui::End();
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
 void Option::design_panel(){
   //---------------------------
 

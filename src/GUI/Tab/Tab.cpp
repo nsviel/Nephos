@@ -1,7 +1,7 @@
 #include "Tab.h"
 
-#include <GUI/Node.h>
-#include <Vulkan/Vulkan.h>
+#include <Vulkan/Namespace.h>
+#include <GUI/Namespace.h>
 
 
 namespace gui{

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <GUI/Namespace.h>
 
 namespace gui::rnd::tab{class Panel;}
 

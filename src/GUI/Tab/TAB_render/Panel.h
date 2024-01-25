@@ -1,12 +1,11 @@
 #pragma once
 
-#include <GUI/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Render/gui/Namespace.h>
 
 namespace eng::scene::gui{class Scene;}
 namespace eng::scene::gui{class Loader;}
 namespace gui{class Node;}
+namespace gui::rnd::tab{class Option;}
 namespace gui::rnd::tab{class Menu;}
 
 

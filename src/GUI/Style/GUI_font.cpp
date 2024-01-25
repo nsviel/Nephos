@@ -1,9 +1,7 @@
 #include "GUI_font.h"
 
-#include <GUI/Node.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_main/VK_imgui.h>
-#include <Vulkan/VK_struct/Namespace.h>
+#include <GUI/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 

@@ -1,8 +1,5 @@
 #pragma once
 
-#include <GUI/Namespace.h>
-#include <GUI/Namespace.h>
-#include <GUI/Namespace.h>
 #include <Utility/Specific/common.h>
 
 namespace gui{class Node;}

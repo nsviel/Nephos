@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Base/GUI/Panel.h>
 
 namespace gui{class Node;}
 class VK_info;
@@ -9,7 +8,7 @@ class VK_info;
 
 namespace gui::rnd::tab{
 
-class Option : public utl::base::Panel
+class Option
 {
 public:
   //Constructor / Destructor
@@ -18,6 +17,7 @@ public:
 
 public:
   //Main function
+  void run_panel();
   void design_panel();
 
   //Subfunctions
@@ -29,6 +29,8 @@ private:
   VK_info* vk_info;
 
   int width;
+  string name;
+  bool* show_window;
 };
 
 }
