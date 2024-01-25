@@ -3,7 +3,7 @@
 #include <Engine/Render/Namespace.h>
 
 
-namespace eng::shader{
+namespace eng::render{
 
 Node::Node(Engine* engine){
   //---------------------------

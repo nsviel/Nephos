@@ -10,7 +10,7 @@ class VK_viewport;
 class VK_descriptor;
 class VK_uniform;
 class VK_drawing;
-namespace eng::shader{class Node;}
+namespace eng::render{class Node;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
@@ -37,7 +37,7 @@ public:
   void cmd_draw_triangle(vk::structure::Subpass* subpass);
 
 private:
-  eng::shader::Node* node_shader;
+  eng::render::Node* node_render;
   vk::structure::Vulkan* struct_vulkan;
   VK_descriptor* vk_descriptor;
   VK_uniform* vk_uniform;

@@ -18,11 +18,11 @@ namespace eng::renderpass{
 EDL::EDL(Engine* engine){
   //---------------------------
 
-  eng::shader::Node* node_shader = engine->get_node_shader();
+  eng::render::Node* node_render = engine->get_node_render();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 
-  this->edl_shader = node_shader->get_edl_shader();
+  this->edl_shader = node_render->get_edl_shader();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
   this->vk_viewport = new VK_viewport(struct_vulkan);

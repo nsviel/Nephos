@@ -21,7 +21,7 @@ Glyph::Glyph(Engine* engine){
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 
-  this->node_shader = engine->get_node_shader();
+  this->node_render = engine->get_node_render();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
   this->vk_viewport = new VK_viewport(struct_vulkan);
@@ -49,7 +49,7 @@ void Glyph::init_renderpass(){
   vk_engine->add_renderpass_description(renderpass);
 }
 void Glyph::create_subpass(vk::structure::Renderpass* renderpass){
-  eng::shader::SCE* sce_shader = node_shader->get_sce_shader();
+  eng::shader::SCE* sce_shader = node_render->get_sce_shader();
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();

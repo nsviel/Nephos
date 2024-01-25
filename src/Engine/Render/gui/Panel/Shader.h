@@ -5,7 +5,7 @@
 class Engine;
 class Text;
 class VK_engine;
-namespace eng::shader{class Node;}
+namespace eng::render{class Node;}
 namespace utl::gui::widget{class Console;}
 namespace utl::gui::editor{class Text;}
 
@@ -51,7 +51,7 @@ public:
 
 private:
   VK_engine* vk_engine;
-  eng::shader::Node* node_shader;
+  eng::render::Node* node_render;
   utl::gui::editor::Text* editor_vs;
   utl::gui::editor::Text* editor_fs;
   utl::gui::widget::Console* gui_console;

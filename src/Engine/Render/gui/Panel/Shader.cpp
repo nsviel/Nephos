@@ -15,7 +15,7 @@ Shader::Shader(Engine* engine, bool* show_window){
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
-  this->node_shader = engine->get_node_shader();
+  this->node_render = engine->get_node_render();
   this->editor_vs = new utl::gui::editor::Text();
   this->editor_fs = new utl::gui::editor::Text();
   this->gui_console = new utl::gui::widget::Console();
@@ -192,11 +192,11 @@ void Shader::retrieve_shader_subclasses(){
 
   vector<utl::base::Shader_info*> vec_shader_info;
   if(selection == "EDL"){
-    eng::shader::EDL* edl_shader = node_shader->get_edl_shader();
+    eng::shader::EDL* edl_shader = node_render->get_edl_shader();
     vec_shader_info = edl_shader->get_vec_shader_info();
   }
   else if(selection == "Scene"){
-    eng::shader::SCE* sce_shader = node_shader->get_sce_shader();
+    eng::shader::SCE* sce_shader = node_render->get_sce_shader();
     vec_shader_info = sce_shader->get_vec_shader_info();
   }
 
@@ -229,11 +229,11 @@ string Shader::get_path_vs_from_selection(){
   string path_vs = "";
 
   if(selection == "EDL"){
-    eng::shader::EDL* edl_shader = node_shader->get_edl_shader();
+    eng::shader::EDL* edl_shader = node_render->get_edl_shader();
     path_vs = edl_shader->get_glsl_path_vs(ID_subclass);
   }
   else if(selection == "Scene"){
-    eng::shader::SCE* sce_shader = node_shader->get_sce_shader();
+    eng::shader::SCE* sce_shader = node_render->get_sce_shader();
     path_vs = sce_shader->get_glsl_path_vs(ID_subclass);
   }
 
@@ -247,11 +247,11 @@ string Shader::get_path_fs_from_selection(){
   string path_fs = "";
 
   if(selection == "EDL"){
-    eng::shader::EDL* edl_shader = node_shader->get_edl_shader();
+    eng::shader::EDL* edl_shader = node_render->get_edl_shader();
     path_fs = edl_shader->get_glsl_path_fs(ID_subclass);
   }
   else if(selection == "Scene"){
-    eng::shader::SCE* sce_shader = node_shader->get_sce_shader();
+    eng::shader::SCE* sce_shader = node_render->get_sce_shader();
     path_fs = sce_shader->get_glsl_path_fs(ID_subclass);
   }
 
@@ -270,7 +270,7 @@ void Shader::show_parameter(){
   //---------------------------
 }
 void Shader::parameter_EDL(){
-  eng::shader::EDL* edl_shader = node_shader->get_edl_shader();
+  eng::shader::EDL* edl_shader = node_render->get_edl_shader();
   eng::shader::EDL_param* edl_param = edl_shader->get_edl_param();
   //---------------------------
 

@@ -11,12 +11,12 @@ namespace eng::renderpass{class GUI;}
 
 namespace eng::renderpass{
 
-class ENG_renderpass
+class Manager
 {
 public:
   //Constructor / Destructor
-  ENG_renderpass(Engine* engine);
-  ~ENG_renderpass();
+  Manager(Engine* engine);
+  ~Manager();
 
 public:
   //Main functions

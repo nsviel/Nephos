@@ -9,7 +9,7 @@ namespace eng::render::gui{class Shader;}
 namespace eng::render::gui{class Renderer;}
 
 
-namespace eng::shader{
+namespace eng::render{
 
 class Node
 {

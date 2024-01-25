@@ -1,4 +1,4 @@
-#include "ENG_renderpass.h"
+#include "Manager.h"
 
 #include <Engine/Engine.h>
 #include <Vulkan/VK_main/VK_engine.h>
@@ -8,7 +8,7 @@
 namespace eng::renderpass{
 
 //Constructor / Destructor
-ENG_renderpass::ENG_renderpass(Engine* engine){
+Manager::Manager(Engine* engine){
   //---------------------------
 
   this->rp_scene = new eng::renderpass::Scene(engine);
@@ -18,10 +18,10 @@ ENG_renderpass::ENG_renderpass(Engine* engine){
 
   //---------------------------
 }
-ENG_renderpass::~ENG_renderpass(){}
+Manager::~Manager(){}
 
 //Main function
-void ENG_renderpass::init(){
+void Manager::init(){
   //---------------------------
 
   rp_scene->init_renderpass();
