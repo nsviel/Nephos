@@ -9,10 +9,9 @@
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Shader::Shader(GUI* gui, bool* show_window, string name){
+Shader::Shader(Engine* engine, bool* show_window){
   //---------------------------
 
-  Engine* engine = gui->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
@@ -28,7 +27,7 @@ Shader::Shader(GUI* gui, bool* show_window, string name){
   this->read_only = false;
   this->read_only_forced = false;
   this->show_window = show_window;
-  this->name = name;
+  this->name = "Shader";
 
   editor_vs->set_language("glsl");
   editor_fs->set_language("glsl");

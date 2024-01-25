@@ -6,8 +6,6 @@
 
 namespace eng::scene::gui{class Scene;}
 namespace eng::scene::gui{class Loader;}
-namespace eng::render::gui{class Shader;}
-namespace eng::render::gui{class Renderer;}
 namespace eng::ope::gui{class Profiler;}
 
 
@@ -38,8 +36,6 @@ public:
   bool show_option   = false;
   bool show_loader   = true;
 
-  inline eng::render::gui::Shader* get_rnd_shader(){return rnd_shader;}
-  inline eng::render::gui::Renderer* get_rnd_render(){return rnd_render;}
   inline eng::ope::gui::Profiler* get_rnd_profiler(){return rnd_profiler;}
   inline gui::rnd::tab::Option* get_rnd_option(){return rnd_option;}
 
@@ -47,9 +43,7 @@ private:
   GUI* gui;
   gui::rnd::tab::Option* rnd_option;
   gui::rnd::tab::Menu* rnd_menu;
-  eng::render::gui::Shader* rnd_shader;
   eng::ope::gui::Profiler* rnd_profiler;
-  eng::render::gui::Renderer* rnd_render;
 };
 
 }

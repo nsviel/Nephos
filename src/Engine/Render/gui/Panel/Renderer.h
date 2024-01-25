@@ -38,6 +38,7 @@ private:
   VK_imgui* vk_imgui;
   VK_info* vk_info;
 
+  string name;
   bool has_been_initialized;
   bool with_profiler_overlay;
 };

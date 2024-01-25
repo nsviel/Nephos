@@ -2,5 +2,5 @@
 
 #include <Engine/Render/gui/Media/Image.h>
 #include <Engine/Render/gui/Media/Stream.h>
-#include <Engine/Render/gui/Render/Renderer.h>
-#include <Engine/Render/gui/Render/Shader.h>
+#include <Engine/Render/gui/Panel/Renderer.h>
+#include <Engine/Render/gui/Panel/Shader.h>

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class GUI;
+class Engine;
 class Text;
 class VK_engine;
 namespace eng::shader{class Node;}
@@ -16,7 +16,7 @@ class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(GUI* gui, bool* show_window, string name);
+  Shader(Engine* engine, bool* show_window);
   ~Shader();
 
 public:
