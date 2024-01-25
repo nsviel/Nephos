@@ -8,7 +8,7 @@
 namespace eng::ope::gui{
 
 //Constructor / Destructor
-Profiler::Profiler(Engine* engine, bool* show_window, string name){
+Profiler::Profiler(Engine* engine, bool* show_window){
   //---------------------------
 
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
@@ -17,7 +17,7 @@ Profiler::Profiler(Engine* engine, bool* show_window, string name){
   this->vk_info = eng_vulkan->get_vk_info();
 
   this->show_window = show_window;
-  this->name = name;
+  this->name = "Profiler";
   this->width = 150;
 
   //---------------------------

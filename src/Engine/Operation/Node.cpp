@@ -9,7 +9,7 @@ namespace eng::ope{
 Node::Node(Engine* engine){
   //---------------------------
 
-  //this->gui_profiler = new eng::ope::gui::Profiler(gui->get_engine(), &show_profiler, "Profiler");
+  this->gui_profiler = new eng::ope::gui::Profiler(engine, &show_profiler);
 
   //---------------------------
 }
@@ -31,7 +31,7 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-  //gui_profiler->run_panel();
+  gui_profiler->run_panel();
 
   //---------------------------
 }

@@ -13,7 +13,7 @@ class Profiler
 {
 public:
   //Constructor / Destructor
-  Profiler(Engine* engine, bool* show_window, string name);
+  Profiler(Engine* engine, bool* show_window);
   ~Profiler();
 
 public:

@@ -23,6 +23,8 @@ public:
 
 private:
   eng::ope::gui::Profiler* gui_profiler;
+
+  bool show_profiler;
 };
 
 }
