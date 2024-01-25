@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/src/Namespace.h>
 
 class Config;
+namespace utl::element{class Window;}
 
 
 namespace utl{

@@ -1,5 +1,6 @@
 #include "Node.h"
 
+#include <Utility/Namespace.h>
 #include <Config.h>
 
 
