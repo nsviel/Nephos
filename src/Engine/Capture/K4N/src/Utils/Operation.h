@@ -1,11 +1,10 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/src/Device/Namespace.h>
-#include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Operation/src/Color/Heatmap.h>
 #include <k4arecord/playback.hpp>
+
+namespace eng::k4n::dev{class Sensor;}
+namespace eng::ope{class Heatmap;}
 
 
 namespace eng::k4n::utils{

@@ -1,10 +1,9 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace eng::k4n::dev{
 
+namespace eng::k4n::dev{
 
 class Recorder
 {

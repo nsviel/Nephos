@@ -1,10 +1,11 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4N/Namespace.h>
+
+namespace eng::k4n::dev{class Sensor;}
+
 
 namespace eng::k4n::utils{
-
 
 class Transformation
 {

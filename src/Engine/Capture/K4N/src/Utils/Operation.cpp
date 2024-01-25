@@ -1,5 +1,8 @@
 #include "Operation.h"
 
+#include <Engine/Capture/K4N/Namespace.h>
+#include <Engine/Operation/src/Color/Heatmap.h>
+
 
 namespace eng::k4n::utils{
 
