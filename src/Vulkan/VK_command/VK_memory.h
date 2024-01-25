@@ -1,10 +1,11 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
-
 class VK_command;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Image;}
+namespace vk::structure{class Buffer;}
 
 
 class VK_memory

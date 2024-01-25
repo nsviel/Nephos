@@ -1,11 +1,12 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
-
 class VK_submit;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Object;}
+namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Image;}
 
 
 class VK_command

@@ -1,6 +1,6 @@
 #include "VK_submit.h"
 
-#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
 //Constructor / Destructor

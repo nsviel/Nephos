@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
-
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Command;}
 
 
 class VK_submit
