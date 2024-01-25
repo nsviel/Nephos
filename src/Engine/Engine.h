@@ -4,7 +4,6 @@
 
 class Param;
 class Vulkan;
-namespace eng::renderpass{class Manager;}
 namespace utl{class Node;}
 namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
@@ -37,7 +36,6 @@ public:
 
 private:
   Vulkan* eng_vulkan;
-  eng::renderpass::Manager* eng_renderpass;
   utl::Node* node_utility;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;

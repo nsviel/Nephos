@@ -11,9 +11,9 @@ Node::Node(Engine* engine){
   this->engine = engine;
   this->edl_shader = new eng::shader::EDL(this);
   this->sce_shader = new eng::shader::SCE(this);
+  this->eng_renderpass = new eng::renderpass::Manager(this);
   this->gui_shader = new eng::render::gui::Shader(this, &show_panel);
   this->gui_render = new eng::render::gui::Renderer(this);
-  this->eng_renderpass = new eng::renderpass::Manager(this);
 
   this->show_panel = false;
 
