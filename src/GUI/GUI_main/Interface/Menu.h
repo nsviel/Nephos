@@ -1,8 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/src/Namespace.h>
-#include <Utility/Element/gui/Namespace.h>
+#include <Utility/Namespace.h>
 
 class GUI;
 class GUI_font;

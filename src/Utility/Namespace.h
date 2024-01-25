@@ -1,12 +1,5 @@
 #pragma once
 
 #include <Utility/Node.h>
-
-
-namespace utl{
-  //---------------------------
-
-  class Node;
-
-  //---------------------------
-}
+#include <Utility/Base/Namespace.h>
+#include <Utility/Element/Namespace.h>
