@@ -13,7 +13,7 @@ Node::Node(Engine* engine){
   this->sce_shader = new eng::shader::SCE(this);
   this->gui_shader = new eng::render::gui::Shader(this, &show_panel);
   this->gui_render = new eng::render::gui::Renderer(this);
-  //this->eng_renderpass = new eng::renderpass::Manager(engine);
+  this->eng_renderpass = new eng::renderpass::Manager(this);
 
   this->show_panel = false;
 
@@ -32,7 +32,8 @@ Node::~Node(){
 void Node::init(){
   //---------------------------
 
-  gui_shader->init_panel();
+  //gui_shader->init_panel();
+  eng_renderpass->init();
 
   //---------------------------
 }

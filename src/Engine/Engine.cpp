@@ -18,7 +18,7 @@ Engine::Engine(utl::Node* node_utility){
   this->node_capture = new eng::capture::Node(this);
   this->node_operation = new eng::ope::Node(this);
   this->node_render = new eng::render::Node(this);
-  this->eng_renderpass = new eng::renderpass::Manager(node_render);
+  //this->eng_renderpass = new eng::renderpass::Manager(node_render);
 
   //---------------------------
 }
@@ -27,7 +27,8 @@ Engine::~Engine(){}
 void Engine::init(){
   //---------------------------
 
-  eng_renderpass->init();
+  //eng_renderpass->init();
+  node_render->init();
   eng_vulkan->init();
   node_scene->init();
   node_capture->init();
