@@ -19,6 +19,7 @@
 #include <Vulkan/VK_shader/VK_reload.h>
 #include <Vulkan/VK_drawing/VK_viewport.h>
 #include <Vulkan/VK_drawing/VK_drawing.h>
+#include <Vulkan/Namespace.h>
 
 
 //Constructor / Destructor

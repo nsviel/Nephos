@@ -1,14 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_renderpass/VK_renderpass.h>
-#include <Vulkan/VK_renderpass/VK_subpass.h>
-
-
-namespace vk{
-  //---------------------------
-
-  class Renderpass;
-  class Subpass;
-
-  //---------------------------
-}
+#include <Vulkan/VK_main/VK_engine.h>
+#include <Vulkan/VK_main/VK_imgui.h>
+#include <Vulkan/VK_main/VK_info.h>
+#include <Vulkan/VK_main/VK_texture.h>

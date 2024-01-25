@@ -24,35 +24,3 @@
 #include <Vulkan/VK_struct/Struct_viewport.h>
 #include <Vulkan/VK_struct/Struct_window.h>
 #include <Vulkan/VK_struct/Struct_vulkan.h>
-
-
-namespace vk::structure{
-  //---------------------------
-
-  class Attachment;
-  class Binding;
-  class Buffer;
-  class Command;
-  class Object;
-  class Data;
-  class Device;
-  class Frame;
-  class Framebuffer;
-  class Image;
-  class Profiler;
-  class Instance;
-  class Parameter;
-  class Physical_device;
-  class Pipeline;
-  class Pool;
-  class Render;
-  class Renderpass;
-  class Subpass;
-  class Swapchain;
-  class Synchro;
-  class Viewport;
-  class Window;
-  class Vulkan;
-
-  //---------------------------
-}

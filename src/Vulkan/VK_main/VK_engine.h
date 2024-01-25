@@ -23,6 +23,7 @@ class VK_extension;
 class VK_pool;
 class VK_drawing;
 class VK_synchronization;
+class VK_renderpass;
 class FPS_counter;
 
 
