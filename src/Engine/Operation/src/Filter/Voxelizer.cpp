@@ -1,5 +1,7 @@
 #include "Voxelizer.h"
 
+#include <Engine/Operation/Namespace.h>
+
 
 namespace eng::ope{
 

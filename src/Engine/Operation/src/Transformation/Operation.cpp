@@ -1,5 +1,7 @@
 #include "Operation.h"
 
+#include <Engine/Operation/Namespace.h>
+
 
 namespace eng::ope{
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Operation/Namespace.h>
 #include <tsl/robin_map.h>
 
 typedef int key;

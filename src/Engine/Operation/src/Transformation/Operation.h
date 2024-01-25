@@ -1,7 +1,9 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Operation/Namespace.h>
+
+namespace eng::ope{class Transformation;}
+namespace eng::ope{class Attribut;}
 
 
 namespace eng::ope{
