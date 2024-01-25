@@ -4,7 +4,6 @@
 #include <Utility/Specific/common.h>
 
 class Engine;
-class BASE_shader;
 namespace eng::shader{class EDL_param;}
 namespace eng::cam{class Manager;}
 namespace utl::entity{class Camera;}
