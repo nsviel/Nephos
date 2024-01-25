@@ -2,9 +2,9 @@
 
 #include <Utility/Specific/common.h>
 
-class Engine;
 class VK_imgui;
 class VK_info;
+namespace eng::render{class Node;}
 namespace eng::cam{class Node;}
 namespace eng::ope::gui{class Control;}
 namespace utl::element{class Window;}
@@ -17,7 +17,7 @@ class Renderer
 {
 public:
   //Constructor / Destructor
-  Renderer(Engine* engine);
+  Renderer(eng::render::Node* node_render);
   ~Renderer();
 
 public:

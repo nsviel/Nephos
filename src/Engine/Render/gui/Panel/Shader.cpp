@@ -9,9 +9,10 @@
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Shader::Shader(Engine* engine, bool* show_window){
+Shader::Shader(eng::render::Node* node_render, bool* show_window){
   //---------------------------
 
+  Engine* engine = node_render->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();

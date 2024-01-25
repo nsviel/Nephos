@@ -3,7 +3,7 @@
 #include <Utility/Base/Shader/BASE_shader.h>
 #include <Utility/Specific/common.h>
 
-class Engine;
+namespace eng::render{class Node;}
 namespace utl::element{class Window;}
 
 
@@ -12,7 +12,7 @@ namespace eng::shader{
 class SCE : public utl::base::BASE_shader
 {
 public:
-  SCE(Engine* engine);
+  SCE(eng::render::Node* node_render);
   ~SCE();
 
   //Main function

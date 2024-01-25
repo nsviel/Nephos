@@ -15,9 +15,9 @@ Engine::Engine(utl::Node* node_utility){
   this->eng_vulkan = new Vulkan(utl_window->get_window());
   this->node_camera = new eng::cam::Node(this);
   this->node_scene = new eng::scene::Node(this);
-  this->node_render = new eng::render::Node(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_operation = new eng::ope::Node(this);
+  this->node_render = new eng::render::Node(this);
   this->eng_renderpass = new eng::renderpass::Manager(this);
 
   //---------------------------

@@ -8,9 +8,10 @@
 
 namespace eng::shader{
 
-EDL::EDL(Engine* engine){
+EDL::EDL(eng::render::Node* node_render){
   //---------------------------
 
+  Engine* engine = node_render->get_engine();
   utl::Node* utility = engine->get_node_utility();
   eng::cam::Node* node_camera = engine->get_node_camera();
 

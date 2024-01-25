@@ -8,10 +8,12 @@ namespace eng::render{
 Node::Node(Engine* engine){
   //---------------------------
 
-  this->edl_shader = new eng::shader::EDL(engine);
-  this->sce_shader = new eng::shader::SCE(engine);
-  this->gui_shader = new eng::render::gui::Shader(engine, &show_panel);
-  this->gui_render = new eng::render::gui::Renderer(engine);
+  this->engine = engine;
+  //this->eng_renderpass = new eng::renderpass::Manager(engine);
+  this->edl_shader = new eng::shader::EDL(this);
+  this->sce_shader = new eng::shader::SCE(this);
+  this->gui_shader = new eng::render::gui::Shader(this, &show_panel);
+  this->gui_render = new eng::render::gui::Renderer(this);
 
   this->show_panel = false;
 

@@ -9,13 +9,14 @@
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Renderer::Renderer(Engine* engine){
+Renderer::Renderer(eng::render::Node* node_render){
   //---------------------------
 
-  utl::Node* utility = engine->get_node_utility();
+  Engine* engine = node_render->get_engine();
+  utl::Node* node_utility = engine->get_node_utility();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
-  this->utl_window = utility->get_utl_window();
+  this->utl_window = node_utility->get_utl_window();
   this->ope_control = new eng::ope::gui::Control(engine);
   this->node_camera = engine->get_node_camera();
   this->vk_imgui = eng_vulkan->get_vk_imgui();

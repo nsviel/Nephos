@@ -3,7 +3,7 @@
 #include <Utility/Base/Shader/BASE_shader.h>
 #include <Utility/Specific/common.h>
 
-class Engine;
+namespace eng::render{class Node;}
 namespace eng::shader{class EDL_param;}
 namespace eng::cam{class Manager;}
 namespace utl::entity{class Camera;}
@@ -16,7 +16,7 @@ class EDL : public utl::base::BASE_shader
 {
 public:
   //Contrustor / destructor
-  EDL(Engine* engine);
+  EDL(eng::render::Node* node_render);
   ~EDL();
 
   //Main function

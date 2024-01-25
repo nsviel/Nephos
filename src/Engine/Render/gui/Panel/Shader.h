@@ -2,9 +2,9 @@
 
 #include <Utility/Specific/common.h>
 
-class Engine;
 class Text;
 class VK_engine;
+namespace eng::render{class Node;}
 namespace eng::render{class Node;}
 namespace utl::gui::widget{class Console;}
 namespace utl::gui::editor{class Text;}
@@ -16,7 +16,7 @@ class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(Engine* engine, bool* show_window);
+  Shader(eng::render::Node* node_render, bool* show_window);
   ~Shader();
 
 public:
