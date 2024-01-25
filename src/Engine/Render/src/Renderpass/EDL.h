@@ -10,20 +10,19 @@ class VK_viewport;
 class VK_descriptor;
 class VK_uniform;
 class VK_drawing;
-namespace eng::shader{class Node;}
-namespace vk::structure{class Vulkan;}
+namespace eng::shader{class EDL;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
 
 namespace eng::renderpass{
 
-class RP_scene
+class EDL
 {
 public:
   //Constructor / Destructor
-  RP_scene(Engine* engine);
-  ~RP_scene();
+  EDL(Engine* engine);
+  ~EDL();
 
 public:
   //Init functions
@@ -31,20 +30,18 @@ public:
   void create_subpass(vk::structure::Renderpass* renderpass);
 
   //Draw function
-  void draw_scene(vk::structure::Subpass* subpass);
-  void cmd_draw_point(vk::structure::Subpass* subpass);
-  void cmd_draw_line(vk::structure::Subpass* subpass);
-  void cmd_draw_triangle(vk::structure::Subpass* subpass);
+  void draw_edl(vk::structure::Subpass* subpass);
+  void update_descriptor(vk::structure::Subpass* subpass);
+  void draw_command(vk::structure::Subpass* subpass);
 
 private:
-  eng::shader::Node* node_shader;
-  vk::structure::Vulkan* struct_vulkan;
-  VK_descriptor* vk_descriptor;
-  VK_uniform* vk_uniform;
-  VK_drawing* vk_drawing;
+  eng::shader::EDL* edl_shader;
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
   VK_viewport* vk_viewport;
+  VK_descriptor* vk_descriptor;
+  VK_uniform* vk_uniform;
+  VK_drawing* vk_drawing;
 
   Timer timer;
   float time_renderpass;

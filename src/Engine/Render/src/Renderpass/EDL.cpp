@@ -1,4 +1,4 @@
-#include "RP_edl.h"
+#include "EDL.h"
 
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
@@ -15,7 +15,7 @@
 namespace eng::renderpass{
 
 //Constructor / Destructor
-RP_edl::RP_edl(Engine* engine){
+EDL::EDL(Engine* engine){
   //---------------------------
 
   eng::shader::Node* node_shader = engine->get_node_shader();
@@ -32,10 +32,10 @@ RP_edl::RP_edl(Engine* engine){
 
   //---------------------------
 }
-RP_edl::~RP_edl(){}
+EDL::~EDL(){}
 
 //Init function
-void RP_edl::init_renderpass(){
+void EDL::init_renderpass(){
   //---------------------------
 
   //Renderpass
@@ -49,12 +49,12 @@ void RP_edl::init_renderpass(){
   //---------------------------
   vk_engine->add_renderpass_description(renderpass);
 }
-void RP_edl::create_subpass(vk::structure::Renderpass* renderpass){
+void EDL::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = "shader";
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){RP_edl::draw_edl(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){EDL::draw_edl(subpass);};
 
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle_EDL";
@@ -73,7 +73,7 @@ void RP_edl::create_subpass(vk::structure::Renderpass* renderpass){
 }
 
 //Draw function
-void RP_edl::draw_edl(vk::structure::Subpass* subpass){
+void EDL::draw_edl(vk::structure::Subpass* subpass){
   //---------------------------
 
   this->update_descriptor(subpass);
@@ -81,7 +81,7 @@ void RP_edl::draw_edl(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void RP_edl::update_descriptor(vk::structure::Subpass* subpass){
+void EDL::update_descriptor(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk::structure::Renderpass* renderpass_scene = vk_engine->get_renderpass(0);
@@ -95,7 +95,7 @@ void RP_edl::update_descriptor(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void RP_edl::draw_command(vk::structure::Subpass* subpass){
+void EDL::draw_command(vk::structure::Subpass* subpass){
   //---------------------------
 
   eng::shader::EDL_param* edl_param = edl_shader->get_edl_param();

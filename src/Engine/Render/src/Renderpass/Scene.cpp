@@ -1,4 +1,4 @@
-#include "RP_scene.h"
+#include "Scene.h"
 
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
@@ -15,7 +15,7 @@
 namespace eng::renderpass{
 
 //Constructor / Destructor
-RP_scene::RP_scene(Engine* engine){
+Scene::Scene(Engine* engine){
   //---------------------------
 
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
@@ -31,10 +31,10 @@ RP_scene::RP_scene(Engine* engine){
 
   //---------------------------
 }
-RP_scene::~RP_scene(){}
+Scene::~Scene(){}
 
 //Init function
-void RP_scene::init_renderpass(){
+void Scene::init_renderpass(){
   //---------------------------
 
   //Renderpass
@@ -48,13 +48,13 @@ void RP_scene::init_renderpass(){
   //---------------------------
   vk_engine->add_renderpass_description(renderpass);
 }
-void RP_scene::create_subpass(vk::structure::Renderpass* renderpass){
+void Scene::create_subpass(vk::structure::Renderpass* renderpass){
   eng::shader::SCE* sce_shader = node_shader->get_sce_shader();
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = "shader";
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){RP_scene::draw_scene(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){Scene::draw_scene(subpass);};
 
   //Line pipeline
   vk::structure::Pipeline* pipeline;
@@ -96,7 +96,7 @@ void RP_scene::create_subpass(vk::structure::Renderpass* renderpass){
 }
 
 //Draw function
-void RP_scene::draw_scene(vk::structure::Subpass* subpass){
+void Scene::draw_scene(vk::structure::Subpass* subpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
@@ -108,7 +108,7 @@ void RP_scene::draw_scene(vk::structure::Subpass* subpass){
   //---------------------------
   this->time_renderpass = timer.stop_ms(t1);
 }
-void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
+void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
   list<vk::structure::Object*> list_data = vk_engine->get_list_data();
   //---------------------------
 
@@ -135,7 +135,7 @@ void RP_scene::cmd_draw_point(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void RP_scene::cmd_draw_line(vk::structure::Subpass* subpass){
+void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
   list<vk::structure::Object*> list_data = vk_engine->get_list_data();
   //---------------------------
 
@@ -162,7 +162,7 @@ void RP_scene::cmd_draw_line(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void RP_scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
+void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
   list<vk::structure::Object*> list_data = vk_engine->get_list_data();
   //---------------------------
 

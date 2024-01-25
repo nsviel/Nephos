@@ -12,12 +12,12 @@ namespace vk::structure{class Renderpass;}
 
 namespace eng::renderpass{
 
-class RP_gui
+class GUI
 {
 public:
   //Constructor / Destructor
-  RP_gui(Engine* engine);
-  ~RP_gui();
+  GUI(Engine* engine);
+  ~GUI();
 
 public:
   //Main functions

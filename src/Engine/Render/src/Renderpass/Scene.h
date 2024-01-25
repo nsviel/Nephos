@@ -18,12 +18,12 @@ namespace vk::structure{class Renderpass;}
 
 namespace eng::renderpass{
 
-class RP_glyph
+class Scene
 {
 public:
   //Constructor / Destructor
-  RP_glyph(Engine* engine);
-  ~RP_glyph();
+  Scene(Engine* engine);
+  ~Scene();
 
 public:
   //Init functions
@@ -34,6 +34,7 @@ public:
   void draw_scene(vk::structure::Subpass* subpass);
   void cmd_draw_point(vk::structure::Subpass* subpass);
   void cmd_draw_line(vk::structure::Subpass* subpass);
+  void cmd_draw_triangle(vk::structure::Subpass* subpass);
 
 private:
   eng::shader::Node* node_shader;

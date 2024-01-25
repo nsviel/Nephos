@@ -1,4 +1,4 @@
-#include "RP_glyph.h"
+#include "Glyph.h"
 
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
@@ -15,7 +15,7 @@
 namespace eng::renderpass{
 
 //Constructor / Destructor
-RP_glyph::RP_glyph(Engine* engine){
+Glyph::Glyph(Engine* engine){
   //---------------------------
 
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
@@ -31,10 +31,10 @@ RP_glyph::RP_glyph(Engine* engine){
 
   //---------------------------
 }
-RP_glyph::~RP_glyph(){}
+Glyph::~Glyph(){}
 
 //Init function
-void RP_glyph::init_renderpass(){
+void Glyph::init_renderpass(){
   //---------------------------
 
   //Renderpass
@@ -48,13 +48,13 @@ void RP_glyph::init_renderpass(){
   //---------------------------
   vk_engine->add_renderpass_description(renderpass);
 }
-void RP_glyph::create_subpass(vk::structure::Renderpass* renderpass){
+void Glyph::create_subpass(vk::structure::Renderpass* renderpass){
   eng::shader::SCE* sce_shader = node_shader->get_sce_shader();
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = "shader";
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){RP_glyph::draw_scene(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){Glyph::draw_scene(subpass);};
 
   vk::structure::Pipeline* pipeline;
   pipeline = new vk::structure::Pipeline();
@@ -83,7 +83,7 @@ void RP_glyph::create_subpass(vk::structure::Renderpass* renderpass){
 }
 
 //Draw function
-void RP_glyph::draw_scene(vk::structure::Subpass* subpass){
+void Glyph::draw_scene(vk::structure::Subpass* subpass){
   timer_time t1 = timer.start_t();
   //---------------------------
 
@@ -94,7 +94,7 @@ void RP_glyph::draw_scene(vk::structure::Subpass* subpass){
   //---------------------------
   this->time_renderpass = timer.stop_ms(t1);
 }
-void RP_glyph::cmd_draw_point(vk::structure::Subpass* subpass){
+void Glyph::cmd_draw_point(vk::structure::Subpass* subpass){
   list<vk::structure::Object*> list_data = vk_engine->get_list_data();
   //---------------------------
 
@@ -121,7 +121,7 @@ void RP_glyph::cmd_draw_point(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void RP_glyph::cmd_draw_line(vk::structure::Subpass* subpass){
+void Glyph::cmd_draw_line(vk::structure::Subpass* subpass){
   list<vk::structure::Object*> list_data = vk_engine->get_list_data();
   //---------------------------
 
