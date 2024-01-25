@@ -11,7 +11,7 @@ namespace eng::cam{
 class Manager
 {
 public:
-  Manager(eng::cam::Node* cam_node);
+  Manager(eng::cam::Node* node_camera);
   ~Manager();
 
 public:

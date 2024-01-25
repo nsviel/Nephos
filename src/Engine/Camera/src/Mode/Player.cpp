@@ -6,10 +6,10 @@
 namespace eng::cam::mode{
 
 //Constructor / Destructor
-Player::Player(eng::cam::Node* cam_node){
+Player::Player(eng::cam::Node* node_camera){
   //---------------------------
 
-  this->utl_window = cam_node->get_utl_window();
+  this->utl_window = node_camera->get_utl_window();
 
   this->mouse_pose_old = vec2(0.0f);
 

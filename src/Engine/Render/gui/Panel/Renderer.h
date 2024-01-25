@@ -27,12 +27,11 @@ public:
 
   //Subfunction
   void engine_texture();
-  void engine_control();
   void engine_overlay(ImVec2 image_pose);
   void resize();
 
 private:
-  eng::cam::Node* cam_node;
+  eng::cam::Node* node_camera;
   eng::ope::gui::Control* ope_control;
   utl::element::Window* utl_window;
   utl::gui::plot::Profiler* profiler;

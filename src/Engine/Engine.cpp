@@ -49,7 +49,6 @@ void Engine::gui(){
   //---------------------------
 
   node_capture->gui();
-  node_camera->gui();
   node_scene->gui();
   node_shader->gui();
   node_operation->gui();

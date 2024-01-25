@@ -14,7 +14,7 @@ namespace eng::cam{
 class Control
 {
 public:
-  Control(eng::cam::Node* cam_node);
+  Control(eng::cam::Node* node_camera);
   ~Control();
 
 public:

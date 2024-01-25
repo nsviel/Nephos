@@ -8,10 +8,10 @@
 namespace eng::cam{
 
 //Constructor / Destructor
-Manager::Manager(eng::cam::Node* cam_node){
+Manager::Manager(eng::cam::Node* node_camera){
   //---------------------------
 
-  this->engine = cam_node->get_engine();
+  this->engine = node_camera->get_engine();
 
   this->camera_ID = 0;
 

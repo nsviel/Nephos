@@ -6,10 +6,10 @@
 namespace eng::cam{
 
 //Constructor / Destructor
-Projection::Projection(eng::cam::Node* cam_node){
+Projection::Projection(eng::cam::Node* node_camera){
   //---------------------------
 
-  this->utl_window = cam_node->get_utl_window();
+  this->utl_window = node_camera->get_utl_window();
 
   //---------------------------
 }

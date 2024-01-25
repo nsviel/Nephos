@@ -17,7 +17,7 @@ Renderer::Renderer(Engine* engine){
 
   this->utl_window = utility->get_utl_window();
   this->ope_control = new eng::ope::gui::Control(engine);
-  this->cam_node = engine->get_node_camera();
+  this->node_camera = engine->get_node_camera();
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->vk_info = eng_vulkan->get_vk_info();
   this->profiler = new utl::gui::plot::Profiler();
@@ -48,7 +48,6 @@ void Renderer::design_panel(){
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   this->engine_texture();
-  this->engine_control();
   this->engine_overlay(image_pose);
 
   //---------------------------
@@ -62,15 +61,9 @@ void Renderer::engine_texture(){
   ImTextureID texture = vk_imgui->rendered_texture();
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
-
-  //---------------------------
-}
-void Renderer::engine_control(){
-  //---------------------------
-
   if(ImGui::IsItemHovered()){
     ope_control->run_control();
-    cam_node->gui();
+    node_camera->gui();
   }
 
   //---------------------------

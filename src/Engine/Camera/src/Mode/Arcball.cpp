@@ -6,10 +6,10 @@
 namespace eng::cam::mode{
 
 //Constructor / Destructor
-Arcball::Arcball(eng::cam::Node* cam_node){
+Arcball::Arcball(eng::cam::Node* node_camera){
   //---------------------------
 
-  this->utl_window = cam_node->get_utl_window();
+  this->utl_window = node_camera->get_utl_window();
   
   this->origin = vec3(0, 0, 0);
 

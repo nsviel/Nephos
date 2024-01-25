@@ -8,12 +8,12 @@
 namespace eng::cam::gui{
 
 //Constructor / Destructor
-Control::Control(eng::cam::Node* cam_node){
+Control::Control(eng::cam::Node* node_camera){
   //---------------------------
 
-  this->utl_window = cam_node->get_utl_window();
-  this->cam_manager = cam_node->get_camera_manager();
-  this->cam_control = cam_node->get_camera_control();
+  this->utl_window = node_camera->get_utl_window();
+  this->cam_manager = node_camera->get_camera_manager();
+  this->cam_control = node_camera->get_camera_control();
 
   //---------------------------
 }

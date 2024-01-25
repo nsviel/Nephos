@@ -14,7 +14,7 @@ namespace eng::cam::mode{
 class Player : public eng::cam::mode::Base
 {
 public:
-  Player(eng::cam::Node* cam_node);
+  Player(eng::cam::Node* node_camera);
   ~Player();
 
 public:

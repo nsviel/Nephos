@@ -14,7 +14,7 @@ namespace eng::cam::mode{
 class Arcball : public eng::cam::mode::Base
 {
 public:
-  Arcball(eng::cam::Node* cam_node);
+  Arcball(eng::cam::Node* node_camera);
   ~Arcball();
 
 public:

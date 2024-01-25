@@ -11,7 +11,7 @@ namespace eng::cam{
 class Projection
 {
 public:
-  Projection(eng::cam::Node* cam_node);
+  Projection(eng::cam::Node* node_camera);
   ~Projection();
 
 public:
