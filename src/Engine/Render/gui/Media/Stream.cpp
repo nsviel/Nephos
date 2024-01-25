@@ -1,6 +1,6 @@
 #include "Stream.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_texture.h>
 #include <Vulkan/VK_struct/Namespace.h>
@@ -10,7 +10,7 @@
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Stream::Stream(eng::Engine* engine){
+Stream::Stream(eng::Node* engine){
   //---------------------------
 
   Vulkan* vulkan = engine->get_eng_vulkan();

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 namespace eng::k4n{class Node;}
 
 
@@ -12,7 +12,7 @@ class Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Engine* engine);
+  Node(eng::Node* engine);
   ~Node();
 
 public:

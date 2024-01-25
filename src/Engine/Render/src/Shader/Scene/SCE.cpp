@@ -1,6 +1,6 @@
 #include "SCE.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Engine/Render/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -10,7 +10,7 @@ namespace eng::shader{
 SCE::SCE(eng::render::Node* node_render){
   //---------------------------
 
-  eng::Engine* engine = node_render->get_engine();
+  eng::Node* engine = node_render->get_engine();
   utl::Node* utility = engine->get_node_utility();
 
   this->utl_window = utility->get_utl_window();

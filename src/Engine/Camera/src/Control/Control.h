@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Element/src/Namespace.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 namespace eng::cam{class Node;}
 namespace eng::cam{class Projection;}
 namespace eng::cam::mode{class Base;}

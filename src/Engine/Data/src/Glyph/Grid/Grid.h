@@ -13,7 +13,7 @@ class Grid : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Grid(eng::Engine* engine);
+  Grid(eng::Node* engine);
   ~Grid();
 
 public:

@@ -1,13 +1,13 @@
 #include "Node.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Engine/Capture/Namespace.h>
 
 
 namespace eng::capture{
 
 //Constructor / Destructor
-Node::Node(eng::Engine* engine){
+Node::Node(eng::Node* engine){
   //---------------------------
 
   this->k4n_node = new eng::k4n::Node(engine);

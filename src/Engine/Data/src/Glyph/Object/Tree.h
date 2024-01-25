@@ -10,7 +10,7 @@ class Tree : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Tree(eng::Engine* engine);
+  Tree(eng::Node* engine);
   ~Tree();
 
 public:

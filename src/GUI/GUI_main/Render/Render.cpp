@@ -1,7 +1,7 @@
 #include "Render.h"
 
 #include <GUI.h>
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
 
@@ -13,7 +13,7 @@ Render::Render(GUI* gui){
   //---------------------------
 
   utl::Node* utility = gui->get_node_utility();
-  eng::Engine* engine = gui->get_engine();
+  eng::Node* engine = gui->get_engine();
   utl::element::Window* utl_window = utility->get_utl_window();
 
   this->vulkan = engine->get_eng_vulkan();

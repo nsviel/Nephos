@@ -1,6 +1,6 @@
 #include "Profiler.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -8,7 +8,7 @@
 namespace eng::ope::gui{
 
 //Constructor / Destructor
-Profiler::Profiler(eng::Engine* engine, bool* show_window){
+Profiler::Profiler(eng::Node* engine, bool* show_window){
   //---------------------------
 
   Vulkan* eng_vulkan = engine->get_eng_vulkan();

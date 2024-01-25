@@ -6,7 +6,7 @@
 
 class FPS_counter;
 class FPS_control;
-namespace eng{class Engine;}
+namespace eng{class Node;}
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Sensor;}
 namespace eng::k4n::data{class Data;}

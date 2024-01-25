@@ -12,7 +12,7 @@ namespace eng::render::gui{
 Renderer::Renderer(eng::render::Node* node_render){
   //---------------------------
 
-  eng::Engine* engine = node_render->get_engine();
+  eng::Node* engine = node_render->get_engine();
   utl::Node* node_utility = engine->get_node_utility();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 

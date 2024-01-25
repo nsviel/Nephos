@@ -9,7 +9,7 @@ class Normal : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Normal(eng::Engine* engine);
+  Normal(eng::Node* engine);
   ~Normal();
 
 public:

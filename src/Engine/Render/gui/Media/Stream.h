@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 class VK_texture;
 namespace vk::structure{class Image;}
 
@@ -13,7 +13,7 @@ class Stream
 {
 public:
   //Constructor / Destructor
-  Stream(eng::Engine* engine);
+  Stream(eng::Node* engine);
   ~Stream();
 
 public:

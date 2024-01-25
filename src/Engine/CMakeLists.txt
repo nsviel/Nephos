@@ -12,7 +12,7 @@ file(GLOB_RECURSE ALL_SOURCES
   Capture/Node.cpp
   Data/*.cpp
   Shader/*.cpp
-  Engine.cpp
+  Node.cpp
 )
 
 #-----------------

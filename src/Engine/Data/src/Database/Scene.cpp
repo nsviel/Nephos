@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Engine/Operation/Namespace.h>
 #include <Engine/Data/Namespace.h>
 #include <Vulkan/Vulkan.h>
@@ -13,7 +13,7 @@ namespace eng::scene{
 Scene::Scene(eng::scene::Node* sce_node){
   //---------------------------
 
-  eng::Engine* engine = sce_node->get_engine();
+  eng::Node* engine = sce_node->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->sce_database = sce_node->get_scene_database();

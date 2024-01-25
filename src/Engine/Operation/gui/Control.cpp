@@ -1,6 +1,6 @@
 #include "Control.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Operation/Namespace.h>
@@ -12,7 +12,7 @@
 namespace eng::ope::gui{
 
 //Constructor / Destructor
-Control::Control(eng::Engine* engine){
+Control::Control(eng::Node* engine){
   //---------------------------
 
   utl::Node* utility = engine->get_node_utility();

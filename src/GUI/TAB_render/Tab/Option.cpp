@@ -1,7 +1,7 @@
 #include "Option.h"
 
 #include <GUI.h>
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Vulkan/Vulkan.h>
 #include <Vulkan/VK_main/VK_info.h>
 
@@ -12,7 +12,7 @@ namespace gui::rnd::tab{
 Option::Option(GUI* gui, bool* show_window, string name) : Panel(show_window, name){
   //---------------------------
 
-  eng::Engine* engine = gui->get_engine();
+  eng::Node* engine = gui->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->gui = gui;

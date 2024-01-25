@@ -1,6 +1,6 @@
 #include "Object.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Data/Namespace.h>
 #include <Vulkan/Vulkan.h>
@@ -21,7 +21,7 @@ Object::Object(){
 
   //---------------------------
 }
-Object::Object(eng::Engine* engine){
+Object::Object(eng::Node* engine){
   //---------------------------
 
   this->engine = engine;

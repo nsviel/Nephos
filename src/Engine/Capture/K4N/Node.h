@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 namespace eng::k4n::dev{class Swarm;}
 namespace eng::k4n::dev{class Connection;}
 namespace eng::k4n::gui{class Device;}
@@ -15,7 +15,7 @@ class Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Engine* engine);
+  Node(eng::Node* engine);
   ~Node();
 
 public:
@@ -24,11 +24,11 @@ public:
   void loop();
   void gui();
 
-  inline eng::Engine* get_engine(){return engine;}
+  inline eng::Node* get_engine(){return engine;}
   inline eng::k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
 
 private:
-  eng::Engine* engine;
+  eng::Node* engine;
   eng::k4n::dev::Swarm* k4n_swarm;
   eng::k4n::dev::Connection* k4n_connection;
   eng::k4n::gui::Device* gui_device;

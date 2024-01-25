@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Utility/Element/src/Namespace.h>
@@ -9,7 +9,7 @@
 namespace eng::cam{
 
 //Constructor / Destructor
-Node::Node(eng::Engine* engine){
+Node::Node(eng::Node* engine){
   //---------------------------
 
   utl::Node* utl_node = engine->get_node_utility();

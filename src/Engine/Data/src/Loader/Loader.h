@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Format;}
 namespace eng::scene{class Node;}
@@ -26,7 +26,7 @@ public:
   bool is_format_supported(string format);
 
 private:
-  eng::Engine* engine;
+  eng::Node* engine;
   eng::scene::Format* sce_format;
   eng::scene::Scene* sce_scene;
 

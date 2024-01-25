@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Capture/Namespace.h>
 #include <Engine/Data/Namespace.h>

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 namespace eng::ope{class Operation;}
 namespace utl::element{class Window;}
 namespace eng::scene{class Scene;}
@@ -17,7 +17,7 @@ class Control
 {
 public:
   //Constructor / Destructor
-  Control(eng::Engine* engine);
+  Control(eng::Node* engine);
   ~Control();
 
 public:
@@ -32,7 +32,7 @@ public:
   void control_mouse_wheel();
 
 private:
-  eng::Engine* engine;
+  eng::Node* engine;
   utl::element::Window* utl_window;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;

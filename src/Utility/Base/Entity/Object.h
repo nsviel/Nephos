@@ -13,7 +13,7 @@
 #include <map>
 #include <mutex>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 
 namespace utl::entity{
 class Glyph;
@@ -24,7 +24,7 @@ class Object : public utl::type::Entity
 public:
   //Constructor / Destructor
   Object();
-  Object(eng::Engine* engine);
+  Object(eng::Node* engine);
   ~Object();
 
   //Main function
@@ -37,7 +37,7 @@ public:
   inline utl::type::Pose* get_pose(){return pose;}
 
 public:
-  eng::Engine* engine;
+  eng::Node* engine;
 
   utl::type::Data* data;
   utl::type::Pose* pose;

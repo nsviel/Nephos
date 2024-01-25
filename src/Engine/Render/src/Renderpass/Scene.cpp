@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Engine/Render/Namespace.h>
 
@@ -11,7 +11,7 @@ namespace eng::renderpass{
 Scene::Scene(eng::render::Node* node_render){
   //---------------------------
 
-  eng::Engine* engine = node_render->get_engine();
+  eng::Node* engine = node_render->get_engine();
   Vulkan* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 

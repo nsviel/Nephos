@@ -3,7 +3,7 @@
 #include <Engine/Data/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Master;}
 namespace eng::k4n::dev{class Sensor;}

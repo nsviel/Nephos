@@ -8,7 +8,7 @@
 #include <Engine/Capture/K4N/src/Data/Namespace.h>
 
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 
 
 namespace eng::k4n::gui{

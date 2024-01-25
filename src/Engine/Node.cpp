@@ -1,4 +1,4 @@
-#include "Engine.h"
+#include "Node.h"
 
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
@@ -8,7 +8,7 @@
 namespace eng{
 
 //Constructor / Destructor
-Engine::Engine(utl::Node* node_utility){
+Node::Node(utl::Node* node_utility){
   //---------------------------
 
   utl::element::Window* utl_window = node_utility->get_utl_window();
@@ -23,9 +23,9 @@ Engine::Engine(utl::Node* node_utility){
 
   //---------------------------
 }
-Engine::~Engine(){}
+Node::~Node(){}
 
-void Engine::init(){
+void Node::init(){
   //---------------------------
 
   node_render->init();
@@ -36,7 +36,7 @@ void Engine::init(){
 
   //---------------------------
 }
-void Engine::loop(){
+void Node::loop(){
   //---------------------------
 
   node_camera->loop();
@@ -46,7 +46,7 @@ void Engine::loop(){
 
   //---------------------------
 }
-void Engine::gui(){
+void Node::gui(){
   //---------------------------
 
   node_capture->gui();
@@ -56,21 +56,21 @@ void Engine::gui(){
 
   //---------------------------
 }
-void Engine::exit(){
+void Node::exit(){
   //---------------------------
 
   eng_vulkan->clean();
 
   //---------------------------
 }
-void Engine::wait(){
+void Node::wait(){
   //---------------------------
 
   eng_vulkan->wait();
 
   //---------------------------
 }
-void Engine::reset(){
+void Node::reset(){
   //---------------------------
 
   node_camera->reset();

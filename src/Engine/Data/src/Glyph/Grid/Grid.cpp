@@ -6,7 +6,7 @@
 namespace glyph::grid{
 
 //Constructor / destructor
-Grid::Grid(eng::Engine* engine) : Glyph(engine){
+Grid::Grid(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
   this->name = "grid";

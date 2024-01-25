@@ -4,7 +4,7 @@
 namespace glyph::grid{
 
 //Constructor / destructor
-Mesh::Mesh(eng::Engine* engine) : Glyph(engine){
+Mesh::Mesh(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
   this->is_permanent = true;

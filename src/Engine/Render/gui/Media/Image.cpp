@@ -1,6 +1,6 @@
 #include "Image.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Function/File/Image.h>
 
@@ -8,7 +8,7 @@
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Image::Image(eng::Engine* engine){
+Image::Image(eng::Node* engine){
   //---------------------------
 
   Vulkan* vulkan = engine->get_eng_vulkan();

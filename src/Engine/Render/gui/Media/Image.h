@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 class VK_texture;
 
 
@@ -12,7 +12,7 @@ class Image
 {
 public:
   //Constructor / Destructor
-  Image(eng::Engine* engine);
+  Image(eng::Node* engine);
   ~Image();
 
 public:

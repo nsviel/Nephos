@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 namespace eng::cam{class Node;}
 
 
@@ -23,7 +23,7 @@ public:
   inline utl::entity::Camera* get_current_camera(){return current_camera;}
 
 private:
-  eng::Engine* engine;
+  eng::Node* engine;
   vector<utl::entity::Camera*> vec_camera;
   utl::entity::Camera* current_camera;
 

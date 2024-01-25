@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Engine/Data/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Operation/Namespace.h>
@@ -13,7 +13,7 @@ namespace eng::scene::gui{
 Scene::Scene(eng::scene::Node* sce_node, bool* show_window){
   //---------------------------
 
-  eng::Engine* engine = sce_node->get_engine();
+  eng::Node* engine = sce_node->get_engine();
   eng::cam::Node* node_camera = engine->get_node_camera();
 
   this->sce_database = sce_node->get_scene_database();

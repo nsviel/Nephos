@@ -1,6 +1,6 @@
 #include "Sensor.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Engine/Capture/K4N/Namespace.h>
 #include <Engine/Operation/Namespace.h>
 
@@ -12,7 +12,7 @@ namespace eng::k4n::dev{
 Sensor::Sensor(eng::k4n::Node* k4n_node){
   //---------------------------
 
-  eng::Engine* engine = k4n_node->get_engine();
+  eng::Node* engine = k4n_node->get_engine();
   eng::scene::Node* sce_node = engine->get_node_scene();
 
   this->engine = engine;

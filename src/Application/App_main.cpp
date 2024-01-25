@@ -2,7 +2,7 @@
 #include "../Config.h"
 
 #include <GUI.h>
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <iostream>
 
 
@@ -12,7 +12,7 @@ App_main::App_main(){
 
   this->config = new Config();
   this->utility = new utl::Node(config);
-  this->engine = new eng::Engine(utility);
+  this->engine = new eng::Node(utility);
   this->gui = new GUI(utility, engine);
 
   //---------------------------

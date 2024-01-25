@@ -14,12 +14,12 @@ namespace eng::ope{class Node;}
 
 namespace eng{
 
-class Engine
+class Node
 {
 public:
   //Constructor / Destructor
-  Engine(utl::Node* node_utility);
-  ~Engine();
+  Node(utl::Node* node_utility);
+  ~Node();
 
 public:
   void init();

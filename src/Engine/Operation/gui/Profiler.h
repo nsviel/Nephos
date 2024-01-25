@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 class VK_info;
 
 
@@ -13,7 +13,7 @@ class Profiler
 {
 public:
   //Constructor / Destructor
-  Profiler(eng::Engine* engine, bool* show_window);
+  Profiler(eng::Node* engine, bool* show_window);
   ~Profiler();
 
 public:

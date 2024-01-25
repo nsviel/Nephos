@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class Loader;}
@@ -20,7 +20,7 @@ class Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Engine* engine);
+  Node(eng::Node* engine);
   ~Node();
 
 public:
@@ -29,7 +29,7 @@ public:
   void gui();
   void reset();
 
-  inline eng::Engine* get_engine(){return engine;}
+  inline eng::Node* get_engine(){return engine;}
   inline eng::scene::Scene* get_scene(){return sce_scene;}
   inline eng::scene::Database* get_scene_database(){return sce_database;}
   inline eng::scene::Loader* get_scene_loader(){return sce_loader;}
@@ -38,7 +38,7 @@ public:
   inline eng::scene::World* get_scene_world(){return sce_world;}
 
 private:
-  eng::Engine* engine;
+  eng::Node* engine;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;

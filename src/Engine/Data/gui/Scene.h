@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Engine;}
+namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Database;}

@@ -1,6 +1,6 @@
 #include "Capture.h"
 
-#include <Engine/Engine.h>
+#include <Engine/Node.h>
 #include <Utility/Function/Timer/FPS_counter.h>
 #include <Utility/Function/Timer/FPS_control.h>
 #include <Engine/Capture/K4N/Namespace.h>
