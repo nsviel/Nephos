@@ -1,12 +1,8 @@
 #include "Renderer.h"
 
-#include <Engine/Engine.h>
-#include <Engine/Render/Namespace.h>
-#include <Engine/Camera/Namespace.h>
-#include <Engine/Operation/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Utility/GUI/Plot/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 

@@ -1,8 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
-#include <Utility/Base/GUI/Panel.h>
-#include <Utility/GUI/Editor/Namespace.h>
+#include <Utility/Namespace.h>
 
 class GUI;
 class Text;

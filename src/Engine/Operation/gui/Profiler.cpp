@@ -1,9 +1,8 @@
 #include "Profiler.h"
 
 #include <Engine/Engine.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_main/VK_info.h>
-#include <Utility/GUI/Plot/Namespace.h>
+#include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::ope::gui{

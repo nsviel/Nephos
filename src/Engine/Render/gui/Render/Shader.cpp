@@ -1,13 +1,9 @@
 #include "Shader.h"
 
 #include <GUI.h>
-#include <Engine/Engine.h>
-#include <Engine/Render/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
-
-#include <Utility/Base/GUI/Panel.h>
-#include <Utility/GUI/Editor/Namespace.h>
-#include <Utility/GUI/Widget/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::render::gui{
