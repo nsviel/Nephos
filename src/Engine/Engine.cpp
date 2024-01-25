@@ -18,7 +18,7 @@ Engine::Engine(utl::Node* utility){
   this->node_shader = new eng::shader::Node(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_operation = new eng::ope::Node(this);
-  this->eng_renderpass = new ENG_renderpass(this);
+  this->eng_renderpass = new eng::renderpass::ENG_renderpass(this);
 
   //---------------------------
 }

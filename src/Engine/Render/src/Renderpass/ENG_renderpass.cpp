@@ -5,6 +5,8 @@
 #include <Engine/Render/Namespace.h>
 
 
+namespace eng::renderpass{
+
 //Constructor / Destructor
 ENG_renderpass::ENG_renderpass(Engine* engine){
   //---------------------------
@@ -28,4 +30,6 @@ void ENG_renderpass::init(){
   rp_gui->init_renderpass();
 
   //---------------------------
+}
+
 }

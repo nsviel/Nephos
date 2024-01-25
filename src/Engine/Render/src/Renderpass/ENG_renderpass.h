@@ -9,6 +9,8 @@ namespace eng::renderpass{class Glyph;}
 namespace eng::renderpass{class GUI;}
 
 
+namespace eng::renderpass{
+
 class ENG_renderpass
 {
 public:
@@ -26,3 +28,5 @@ private:
   eng::renderpass::EDL* rp_edl;
   eng::renderpass::GUI* rp_gui;
 };
+
+}
