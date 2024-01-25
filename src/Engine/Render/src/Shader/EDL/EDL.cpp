@@ -3,7 +3,6 @@
 #include <Engine/Engine.h>
 #include <Engine/Render/Namespace.h>
 #include <Engine/Camera/Namespace.h>
-#include <Utility/Element/src/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -34,7 +33,7 @@ void EDL::init_shader(){
   edl_param->radius = 1.0;
 
   //Add shader info
-  Shader_info* shader_info = new Shader_info();
+  utl::base::Shader_info* shader_info = new utl::base::Shader_info();
   shader_info->title = "EDL";
   shader_info->folder = "EDL";
   shader_info->path_glsl_vs = "../src/Engine/Render/src/Shader/EDL/glsl/shader_edl_vs.vert";

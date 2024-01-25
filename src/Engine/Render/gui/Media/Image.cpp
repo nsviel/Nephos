@@ -1,8 +1,7 @@
 #include "Image.h"
 
 #include <Engine/Engine.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_main/VK_texture.h>
+#include <Vulkan/Namespace.h>
 #include <Utility/Function/File/Image.h>
 
 

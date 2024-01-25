@@ -1,8 +1,7 @@
 #pragma once
 
-#include <Vulkan/VK_struct/VK_typedef.h>
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Engine/Render/src/Shader/Base/BASE_shader.h>
+#include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 #include <Utility/Specific/common.h>
 
 
@@ -17,7 +16,7 @@ struct Pipeline_definition{
   std::string topology = "";
   std::string purpose = "";
 
-  Shader_info* shader;
+  utl::base::Shader_info* shader;
   std::vector<std::string> vec_data_name;
   vec_descriptor_required binding;
 

@@ -1,6 +1,7 @@
 #include "VK_shader.h"
 
-#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 #include <Utility/Function/File/File.h>
 
 
@@ -115,7 +116,7 @@ std::vector<char> VK_shader::read_file(const std::string& path){
   //---------------------------
   return buffer;
 }
-void VK_shader::recompile_shader(Shader_info* shader_info){
+void VK_shader::recompile_shader(utl::base::Shader_info* shader_info){
   //---------------------------
 
   //Compile shader from GLSL to SPIR-V

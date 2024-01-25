@@ -39,7 +39,7 @@ void RP_gui::init_renderpass(){
 void RP_gui::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  Shader_info* shader_info = new Shader_info();
+  utl::base::Shader_info* shader_info = new utl::base::Shader_info();
   shader_info->title = "Canvas";
   shader_info->folder = "Canvas";
   shader_info->path_spir_vs = "../src/GUI/GUI_main/Render/Shader/spir/shader_empty_vs.spv";

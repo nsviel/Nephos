@@ -2,12 +2,9 @@
 
 #include <GUI.h>
 #include <Engine/Engine.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_shader/VK_reload.h>
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_validation/Struct_validation.h>
-#include <Vulkan/VK_main/VK_engine.h>
 #include <Engine/Render/Namespace.h>
+#include <Vulkan/Namespace.h>
+
 #include <Utility/Base/GUI/Panel.h>
 #include <Utility/GUI/Editor/Namespace.h>
 #include <Utility/GUI/Widget/Namespace.h>
@@ -199,7 +196,7 @@ void Shader::retrieve_shader_subclasses(){
 
   string selection = vec_shader_class[ID_class];
 
-  vector<Shader_info*> vec_shader_info;
+  vector<utl::base::Shader_info*> vec_shader_info;
   if(selection == "EDL"){
     eng::shader::EDL* edl_shader = node_shader->get_edl_shader();
     vec_shader_info = edl_shader->get_vec_shader_info();

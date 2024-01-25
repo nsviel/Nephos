@@ -1,9 +1,7 @@
 #include "Vulkan.h"
 
-#include <Vulkan/VK_main/VK_engine.h>
-#include <Vulkan/VK_main/VK_imgui.h>
-#include <Vulkan/VK_main/VK_info.h>
-#include <Vulkan/VK_main/VK_texture.h>
+#include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 //Constructor / Destructor
@@ -51,6 +49,8 @@ void Vulkan::wait(){
 
   //---------------------------
 }
+
+//Parameter function
 void Vulkan::param(utl::element::Window* utl_window, bool headless){
   //---------------------------
 

@@ -3,10 +3,7 @@
 #include <GUI.h>
 #include <Engine/Engine.h>
 #include <Utility/Namespace.h>
-#include <Utility/Element/src/Namespace.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_main/VK_engine.h>
-#include <Vulkan/VK_main/VK_imgui.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace gui{
@@ -24,9 +21,6 @@ Render::Render(GUI* gui){
   this->vk_engine = vulkan->get_vk_engine();
   this->gui_renderpass = new gui::Renderpass(vulkan);
   this->vk_imgui = vulkan->get_vk_imgui();
-
-  vulkan->set_headless(false);
-  vulkan->set_name("GUI_backend");
 
   //---------------------------
 }

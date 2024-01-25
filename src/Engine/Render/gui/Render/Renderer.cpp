@@ -4,11 +4,8 @@
 #include <Engine/Render/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Operation/Namespace.h>
-#include <Vulkan/Vulkan.h>
-#include <Vulkan/VK_main/VK_imgui.h>
-#include <Vulkan/VK_main/VK_info.h>
+#include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Utility/Element/src/Namespace.h>
 #include <Utility/GUI/Plot/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Render/src/Shader/Base/BASE_shader.h>
+#include <Utility/Base/Shader/BASE_shader.h>
 #include <Utility/Specific/common.h>
 
 class Engine;
@@ -12,7 +12,7 @@ namespace utl::element{class Window;}
 
 namespace eng::shader{
 
-class EDL : public BASE_shader
+class EDL : public utl::base::BASE_shader
 {
 public:
   //Contrustor / destructor

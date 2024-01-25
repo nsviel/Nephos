@@ -1,6 +1,8 @@
 #include "BASE_shader.h"
 
 
+namespace utl::base{
+
 BASE_shader::BASE_shader(){
   //---------------------------
 
@@ -8,7 +10,7 @@ BASE_shader::BASE_shader(){
 }
 BASE_shader::~BASE_shader(){}
 
-Shader_info* BASE_shader::get_shader_info(string title){
+utl::base::Shader_info* BASE_shader::get_shader_info(string title){
   //---------------------------
 
   for(int i=0; i<vec_shader_info.size(); i++){
@@ -37,4 +39,6 @@ string BASE_shader::get_glsl_path_fs(int ID_subclass){
 
   //---------------------------
   return path_fs;
+}
+
 }

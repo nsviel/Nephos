@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
-
 class VK_pipeline;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Renderpass;}
+namespace vk::structure{class Pipeline;}
 
 
 class VK_reload
