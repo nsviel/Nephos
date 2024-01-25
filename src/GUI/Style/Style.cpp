@@ -8,7 +8,7 @@ namespace gui{
 Style::Style(gui::Node* gui){
   //---------------------------
 
-
+  this->gui_color = new gui::style::Color(gui);
 
   //---------------------------
 }
@@ -19,7 +19,7 @@ void Style::gui_style(){
   //---------------------------
 
   this->style_window();
-  gui::color::apply();
+  gui_color->apply();
 
   //---------------------------
 }

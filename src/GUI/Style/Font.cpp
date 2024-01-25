@@ -1,4 +1,4 @@
-#include "GUI_font.h"
+#include "Font.h"
 
 #include <GUI/Namespace.h>
 #include <Vulkan/Namespace.h>
@@ -8,7 +8,7 @@
 namespace gui::style{
 
 //Constructor / Destructor
-GUI_font::GUI_font(gui::Node* gui){
+Font::Font(gui::Node* gui){
   //---------------------------
 
   gui::Render* gui_render = gui->get_rnd_tab();
@@ -17,10 +17,10 @@ GUI_font::GUI_font(gui::Node* gui){
 
   //---------------------------
 }
-GUI_font::~GUI_font(){}
+Font::~Font(){}
 
 //Main function
-void GUI_font::init_gui_font(){
+void Font::init_gui_font(){
   //---------------------------
 
   this->gui_select_font();
@@ -30,7 +30,7 @@ void GUI_font::init_gui_font(){
 }
 
 //Subfunction
-void GUI_font::gui_select_font(){
+void Font::gui_select_font(){
   ImGuiIO io = ImGui::GetIO();
   static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
   //---------------------------
@@ -79,7 +79,7 @@ void GUI_font::gui_select_font(){
 
   //---------------------------
 }
-void GUI_font::combo_font_gui(){
+void Font::combo_font_gui(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
@@ -98,7 +98,7 @@ void GUI_font::combo_font_gui(){
 
   //---------------------------
 }
-void GUI_font::combo_font_editor(){
+void Font::combo_font_editor(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 

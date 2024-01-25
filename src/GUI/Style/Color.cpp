@@ -1,19 +1,29 @@
 #include "Color.h"
 
-#include <Utility/Specific/common.h>
+#include <GUI/Namespace.h>
 
 
-namespace gui::color{
+namespace gui::style{
 
-void apply(){
+//Constructor / Destructor
+Color::Color(gui::Node* gui){
   //---------------------------
 
-  gui::color::window();
-  gui::color::widget();
 
   //---------------------------
 }
-void window(){
+Color::~Color(){}
+
+//Main function
+void Color::apply(){
+  //---------------------------
+
+  this->color_window();
+  this->color_widget();
+
+  //---------------------------
+}
+void Color::color_window(){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -31,7 +41,7 @@ void window(){
 
   //---------------------------
 }
-void widget(){
+void Color::color_widget(){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

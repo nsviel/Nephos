@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace gui{class Node;}
-namespace gui::style{class GUI_font;}
+namespace gui::style{class Font;}
 namespace utl::element::gui{class Git;}
 
 
@@ -25,7 +25,7 @@ public:
 
 private:
   gui::Node* gui;
-  gui::style::GUI_font* gui_font;
+  gui::style::Font* gui_font;
   utl::element::gui::Git* gui_git;
 
   bool show_demo;

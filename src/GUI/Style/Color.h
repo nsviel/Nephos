@@ -1,10 +1,27 @@
 #pragma once
 
+#include <Utility/Specific/common.h>
 
-namespace gui::color{
+namespace gui{class Node;}
 
-void apply();
-void window();
-void widget();
+
+namespace gui::style{
+
+class Color
+{
+public:
+  //Constructor / Destructor
+  Color(gui::Node* gui);
+  ~Color();
+
+public:
+  //Main functions
+  void apply();
+  void color_window();
+  void color_widget();
+
+private:
+
+};
 
 }

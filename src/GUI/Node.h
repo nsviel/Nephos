@@ -10,7 +10,7 @@ namespace gui{class Style;}
 namespace gui{class Tab;}
 namespace gui{class Render;}
 namespace gui{class Docking;}
-namespace gui::style{class GUI_font;}
+namespace gui::style{class Font;}
 
 
 namespace gui{
@@ -33,7 +33,7 @@ public:
   inline gui::Control* get_gui_control(){return gui_control;}
   inline gui::Style* get_gui_style(){return gui_style;}
   inline gui::Tab* get_gui_tab(){return gui_tab;}
-  inline gui::style::GUI_font* get_gui_font(){return gui_font;}
+  inline gui::style::Font* get_gui_font(){return gui_font;}
   inline gui::Render* get_rnd_tab(){return gui_render;}
 
 private:
@@ -45,7 +45,7 @@ private:
   gui::Control* gui_control;
   gui::Style* gui_style;
   gui::Docking* gui_docking;
-  gui::style::GUI_font* gui_font;
+  gui::style::Font* gui_font;
   gui::Tab* gui_tab;
   gui::Render* gui_render;
 };

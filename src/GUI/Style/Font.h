@@ -8,12 +8,12 @@ class VK_imgui;
 
 namespace gui::style{
 
-class GUI_font
+class Font
 {
 public:
   //Constructor / Destructor
-  GUI_font(gui::Node* gui);
-  ~GUI_font();
+  Font(gui::Node* gui);
+  ~Font();
 
 public:
   //Main functions
