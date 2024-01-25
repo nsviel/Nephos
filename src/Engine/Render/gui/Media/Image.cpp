@@ -2,10 +2,8 @@
 
 #include <Engine/Engine.h>
 #include <Vulkan/Vulkan.h>
-#include <GUI/GUI_main/Render/Render.h>
-#include <Utility/Function/File/Image.h>
-
 #include <Vulkan/VK_main/VK_texture.h>
+#include <Utility/Function/File/Image.h>
 
 
 namespace eng::render::gui{
