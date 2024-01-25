@@ -1,9 +1,6 @@
 #include "VK_render.h"
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_command/VK_submit.h>
-#include <Vulkan/VK_command/VK_command.h>
-#include <Vulkan/VK_instance/VK_profiler.h>
+#include <Vulkan/Namespace.h>
 
 
 //Constructor / Destructor

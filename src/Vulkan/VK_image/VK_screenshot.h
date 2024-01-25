@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Vulkan/VK_struct/VK_typedef.h>
 #include <Utility/Specific/common.h>
 
 extern "C" {
@@ -10,11 +8,12 @@ extern "C" {
 #include <libswscale/swscale.h>
 }
 
-
 class VK_image;
 class VK_command;
 class VK_texture;
 class VK_memory;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Image;}
 
 
 class VK_screenshot

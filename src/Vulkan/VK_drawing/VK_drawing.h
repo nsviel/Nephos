@@ -1,11 +1,12 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
 class VK_presentation;
 class VK_render;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Object;}
 
 
 class VK_drawing

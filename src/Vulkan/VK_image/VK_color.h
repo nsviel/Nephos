@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Utility/Specific/common.h>
 
-
 class VK_image;
+namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Image;}
 
 
 class VK_color
