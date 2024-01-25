@@ -7,7 +7,7 @@ class VK_surface;
 class VK_instance;
 class VK_device;
 class VK_swapchain;
-namespace vk::binding{class VK_descriptor;}
+namespace vk::binding{class Descriptor;}
 class VK_texture;
 class VK_data;
 class VK_viewport;
@@ -66,7 +66,7 @@ private:
   VK_device* vk_device;
   VK_swapchain* vk_swapchain;
   VK_renderpass* vk_renderpass;
-  vk::binding::VK_descriptor* vk_descriptor;
+  vk::binding::Descriptor* vk_descriptor;
   VK_texture* vk_texture;
   VK_pool* vk_pool;
   VK_data* vk_data;

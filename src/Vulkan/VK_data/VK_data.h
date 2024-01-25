@@ -5,7 +5,7 @@
 class VK_buffer;
 class VK_texture;
 class VK_command;
-namespace vk::binding{class VK_descriptor;}
+namespace vk::binding{class Descriptor;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Pipeline;}
@@ -36,5 +36,5 @@ private:
   VK_buffer* vk_buffer;
   VK_texture* vk_texture;
   VK_command* vk_command;
-  vk::binding::VK_descriptor* vk_descriptor;
+  vk::binding::Descriptor* vk_descriptor;
 };

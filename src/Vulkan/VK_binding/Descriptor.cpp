@@ -1,4 +1,4 @@
-#include "VK_descriptor.h"
+#include "Descriptor.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::binding{
 
 //Constructor / Destructor
-VK_descriptor::VK_descriptor(vk::structure::Vulkan* struct_vulkan){
+Descriptor::Descriptor(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -15,10 +15,10 @@ VK_descriptor::VK_descriptor(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_descriptor::~VK_descriptor(){}
+Descriptor::~Descriptor(){}
 
 //Main function
-void VK_descriptor::create_binding(vk::structure::Binding* binding){
+void Descriptor::create_binding(vk::structure::Binding* binding){
   //---------------------------
 
   vk_uniform->create_uniform_buffers(binding);
@@ -28,7 +28,7 @@ void VK_descriptor::create_binding(vk::structure::Binding* binding){
 
   //---------------------------
 }
-void VK_descriptor::clean_binding(vk::structure::Binding* binding){
+void Descriptor::clean_binding(vk::structure::Binding* binding){
   //---------------------------
 
   vkDestroyDescriptorSetLayout(struct_vulkan->device.device, binding->descriptor.layout, nullptr);
@@ -38,7 +38,7 @@ void VK_descriptor::clean_binding(vk::structure::Binding* binding){
 }
 
 //Descriptor set update
-void VK_descriptor::update_descriptor_uniform(vk::structure::Binding* binding){
+void Descriptor::update_descriptor_uniform(vk::structure::Binding* binding){
   //---------------------------
 
   //Make list of writeable uniform
@@ -74,7 +74,7 @@ void VK_descriptor::update_descriptor_uniform(vk::structure::Binding* binding){
 
   //---------------------------
 }
-void VK_descriptor::update_descriptor_sampler(vk::structure::Binding* binding, vector<vk::structure::Image*> vec_image){
+void Descriptor::update_descriptor_sampler(vk::structure::Binding* binding, vector<vk::structure::Image*> vec_image){
   //---------------------------
 
   //For each sampler struct in binding struct search for image with same name in vec_image
@@ -113,7 +113,7 @@ void VK_descriptor::update_descriptor_sampler(vk::structure::Binding* binding, v
 
   //---------------------------
 }
-void VK_descriptor::update_descriptor_sampler(vk::structure::Binding* binding, vk::structure::Image* image){
+void Descriptor::update_descriptor_sampler(vk::structure::Binding* binding, vk::structure::Image* image){
   //---------------------------
 
   vk::structure::Sampler* sampler = nullptr;
@@ -156,14 +156,14 @@ void VK_descriptor::update_descriptor_sampler(vk::structure::Binding* binding, v
 }
 
 //Subfunction
-void VK_descriptor::cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set){
+void Descriptor::cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set){
   //---------------------------
 
   vkCmdBindDescriptorSets(command_buffer, TYP_BIND_PIPELINE_GRAPHICS, pipeline->layout, 0, 1, &set, 0, nullptr);
 
   //---------------------------
 }
-void VK_descriptor::allocate_descriptor_set(vk::structure::Binding* binding){
+void Descriptor::allocate_descriptor_set(vk::structure::Binding* binding){
   //---------------------------
 
   VkDescriptorSetAllocateInfo allocation_info{};
@@ -181,7 +181,7 @@ void VK_descriptor::allocate_descriptor_set(vk::structure::Binding* binding){
 
   //---------------------------
 }
-void VK_descriptor::create_layout_from_required(vk::structure::Binding* binding){
+void Descriptor::create_layout_from_required(vk::structure::Binding* binding){
   vec_descriptor_required& vec_required_binding = binding->vec_required_binding;
   //---------------------------
 
@@ -211,7 +211,7 @@ void VK_descriptor::create_layout_from_required(vk::structure::Binding* binding)
 
 }
 
-VkDescriptorSetLayout VK_descriptor::create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding){
+VkDescriptorSetLayout Descriptor::create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding){
   //---------------------------
 
   //Combination and info

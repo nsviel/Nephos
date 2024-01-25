@@ -12,12 +12,12 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::binding{
 
-class VK_descriptor
+class Descriptor
 {
 public:
   //Constructor / Destructor
-  VK_descriptor(vk::structure::Vulkan* struct_vulkan);
-  ~VK_descriptor();
+  Descriptor(vk::structure::Vulkan* struct_vulkan);
+  ~Descriptor();
 
 public:
   //Main functions
