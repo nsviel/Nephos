@@ -10,6 +10,8 @@ namespace utl::element{class Window;}
 namespace vk::structure{class Vulkan;}
 
 
+namespace vk{
+
 class Vulkan
 {
 public:
@@ -41,3 +43,5 @@ private:
   VK_info* vk_info;
   VK_texture* vk_texture;
 };
+
+}

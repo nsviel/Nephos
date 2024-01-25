@@ -12,7 +12,7 @@ GUI::GUI(eng::render::Node* node_render){
   //---------------------------
 
   eng::Node* engine = node_render->get_engine();
-  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->vk_imgui = eng_vulkan->get_vk_imgui();

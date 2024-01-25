@@ -13,7 +13,7 @@ Option::Option(gui::Node* gui, bool* show_window, string name){
   //---------------------------
 
   eng::Node* engine = gui->get_engine();
-  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->gui = gui;
   this->vk_info = eng_vulkan->get_vk_info();

@@ -14,7 +14,7 @@ Scene::Scene(eng::scene::Node* sce_node){
   //---------------------------
 
   eng::Node* engine = sce_node->get_engine();
-  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->sce_database = sce_node->get_scene_database();
   this->sce_glyph = sce_node->get_scene_glyph();

@@ -12,7 +12,7 @@ Scene::Scene(eng::render::Node* node_render){
   //---------------------------
 
   eng::Node* engine = node_render->get_engine();
-  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
   vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
 
   this->node_render = node_render;

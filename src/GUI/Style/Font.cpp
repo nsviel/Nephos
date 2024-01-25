@@ -12,7 +12,7 @@ Font::Font(gui::Node* gui){
   //---------------------------
 
   gui::Render* gui_render = gui->get_rnd_tab();
-  Vulkan* vulkan = gui_render->get_vulkan();
+  vk::Vulkan* vulkan = gui_render->get_vulkan();
   this->vk_imgui = vulkan->get_vk_imgui();
 
   //---------------------------

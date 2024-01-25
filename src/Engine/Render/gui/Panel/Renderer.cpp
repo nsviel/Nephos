@@ -14,7 +14,7 @@ Renderer::Renderer(eng::render::Node* node_render){
 
   eng::Node* engine = node_render->get_engine();
   utl::Node* node_utility = engine->get_node_utility();
-  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->utl_window = node_utility->get_utl_window();
   this->ope_control = new eng::ope::gui::Control(engine);

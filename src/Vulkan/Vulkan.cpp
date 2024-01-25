@@ -4,6 +4,8 @@
 #include <Utility/Namespace.h>
 
 
+namespace vk{
+
 //Constructor / Destructor
 Vulkan::Vulkan(GLFWwindow* window){
   //---------------------------
@@ -56,4 +58,6 @@ void Vulkan::param(utl::element::Window* utl_window, bool headless){
 
 
   //---------------------------
+}
+
 }

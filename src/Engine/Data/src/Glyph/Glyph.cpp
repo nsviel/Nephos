@@ -14,7 +14,7 @@ Glyph::Glyph(eng::scene::Node* sce_node){
   //---------------------------
 
   this->engine = sce_node->get_engine();
-  Vulkan* eng_vulkan = engine->get_eng_vulkan();
+  vk::Vulkan* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->sce_database = sce_node->get_scene_database();
