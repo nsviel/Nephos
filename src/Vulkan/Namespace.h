@@ -4,7 +4,7 @@
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_binding/Namespace.h>
 #include <Vulkan/VK_command/Namespace.h>
-#include <Vulkan/VK_data/Namespace.h>
+#include <Vulkan/Data/Namespace.h>
 #include <Vulkan/VK_device/Namespace.h>
 #include <Vulkan/VK_drawing/Namespace.h>
 #include <Vulkan/VK_image/Namespace.h>

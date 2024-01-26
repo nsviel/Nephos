@@ -3,18 +3,18 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::data{class Buffer;}
-namespace vk::data{class VK_data;}
+namespace vk::data{class Data;}
 namespace vk::structure{class Vulkan;}
 
 
 namespace vk::data{
 
-class VK_canvas
+class Canvas
 {
 public:
   //Constructor / Destructor
-  VK_canvas(vk::structure::Vulkan* struct_vulkan);
-  ~VK_canvas();
+  Canvas(vk::structure::Vulkan* struct_vulkan);
+  ~Canvas();
 
 public:
   //Main functions
@@ -24,7 +24,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   Buffer* vk_buffer;
-  vk::data::VK_data* vk_data;
+  vk::data::Data* vk_data;
 };
 
 }

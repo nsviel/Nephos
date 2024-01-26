@@ -1,4 +1,4 @@
-#include "VK_canvas.h"
+#include "Canvas.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,19 +6,19 @@
 namespace vk::data{
 
 //Constructor / Destructor
-VK_canvas::VK_canvas(vk::structure::Vulkan* struct_vulkan){
+Canvas::Canvas(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
   this->vk_buffer = new Buffer(struct_vulkan);
-  this->vk_data = new vk::data::VK_data(struct_vulkan);
+  this->vk_data = new vk::data::Data(struct_vulkan);
 
   //---------------------------
 }
-VK_canvas::~VK_canvas(){}
+Canvas::~Canvas(){}
 
 //Main function
-void VK_canvas::init(){
+void Canvas::init(){
   utl::type::Data* data = new utl::type::Data();
   //---------------------------
 
@@ -51,7 +51,7 @@ void VK_canvas::init(){
 
   //---------------------------
 }
-void VK_canvas::clean(){
+void Canvas::clean(){
   //---------------------------
 
   vk_buffer->clean_buffers(&struct_vulkan->data.canvas);

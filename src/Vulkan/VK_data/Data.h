@@ -13,12 +13,12 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::data{
 
-class VK_data
+class Data
 {
 public:
   //Constructor / Destructor
-  VK_data(vk::structure::Vulkan* struct_vulkan);
-  ~VK_data();
+  Data(vk::structure::Vulkan* struct_vulkan);
+  ~Data();
 
 public:
   //Main functions

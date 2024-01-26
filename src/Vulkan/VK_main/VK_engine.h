@@ -9,11 +9,11 @@ class VK_device;
 class VK_swapchain;
 namespace vk::binding{class Descriptor;}
 class VK_texture;
-namespace vk::data{class VK_data;}
+namespace vk::data{class Data;}
 class VK_viewport;
 class VK_reload;
 class VK_frame;
-namespace vk::data{class VK_canvas;}
+namespace vk::data{class Canvas;}
 class VK_extension;
 class VK_pool;
 class VK_drawing;
@@ -69,12 +69,12 @@ private:
   vk::binding::Descriptor* vk_descriptor;
   VK_texture* vk_texture;
   VK_pool* vk_pool;
-  vk::data::VK_data* vk_data;
+  vk::data::Data* vk_data;
   VK_viewport* vk_viewport;
   VK_reload* vk_reload;
   vk::command::Synchronization* vk_synchronization;
   VK_frame* vk_frame;
-  vk::data::VK_canvas* vk_canvas;
+  vk::data::Canvas* vk_canvas;
   VK_drawing* vk_drawing;
   FPS_counter* fps_counter;
 

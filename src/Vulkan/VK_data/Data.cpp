@@ -1,4 +1,4 @@
-#include "VK_data.h"
+#include "Data.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::data{
 
 //Constructor / Destructor
-VK_data::VK_data(vk::structure::Vulkan* struct_vulkan){
+Data::Data(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -17,10 +17,10 @@ VK_data::VK_data(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_data::~VK_data(){}
+Data::~Data(){}
 
 //Main function
-void VK_data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
+void Data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
   //---------------------------
 
   //Creat new data struct
@@ -48,7 +48,7 @@ void VK_data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
 
   //---------------------------
 }
-void VK_data::update_data(utl::type::Data* data, vk::structure::Object* vk_object){
+void Data::update_data(utl::type::Data* data, vk::structure::Object* vk_object){
   //---------------------------
 
   vk_object->data = data;
@@ -57,7 +57,7 @@ void VK_data::update_data(utl::type::Data* data, vk::structure::Object* vk_objec
 
   //---------------------------
 }
-void VK_data::clean(){
+void Data::clean(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
@@ -67,7 +67,7 @@ void VK_data::clean(){
 
   //---------------------------
 }
-void VK_data::clean_vk_object(vk::structure::Object* vk_object){
+void Data::clean_vk_object(vk::structure::Object* vk_object){
   //---------------------------
 
   vkDeviceWaitIdle(struct_vulkan->device.device);
@@ -80,7 +80,7 @@ void VK_data::clean_vk_object(vk::structure::Object* vk_object){
 }
 
 //Data description
-void VK_data::pipeline_data_description(vk::structure::Pipeline* pipeline){
+void Data::pipeline_data_description(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   this->pipeline_binding_description(pipeline);
@@ -89,7 +89,7 @@ void VK_data::pipeline_data_description(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void VK_data::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
+void Data::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
   vector<VkVertexInputAttributeDescription> attribut_description;
   //---------------------------
 
@@ -126,7 +126,7 @@ void VK_data::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
   //---------------------------
   pipeline->info.attribut_description = attribut_description;
 }
-void VK_data::pipeline_binding_description(vk::structure::Pipeline* pipeline){
+void Data::pipeline_binding_description(vk::structure::Pipeline* pipeline){
   vector<VkVertexInputBindingDescription> data_description;
   //---------------------------
 
@@ -160,7 +160,7 @@ void VK_data::pipeline_binding_description(vk::structure::Pipeline* pipeline){
   //---------------------------
   pipeline->info.data_description = data_description;
 }
-void VK_data::pipeline_vertex_input_info(vk::structure::Pipeline* pipeline){
+void Data::pipeline_vertex_input_info(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineVertexInputStateCreateInfo vertex_input_info{};
