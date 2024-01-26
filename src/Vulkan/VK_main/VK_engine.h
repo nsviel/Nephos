@@ -15,7 +15,7 @@ class VK_reload;
 class VK_frame;
 namespace vk::data{class Canvas;}
 namespace vk::instance{class Extension;}
-namespace vk::instance{class VK_pool;}
+namespace vk::instance{class Pool;}
 namespace vk::draw{class Drawer;}
 namespace vk::command{class Synchronization;}
 class VK_renderpass;
@@ -68,7 +68,7 @@ private:
   VK_renderpass* vk_renderpass;
   vk::binding::Descriptor* vk_descriptor;
   VK_texture* vk_texture;
-  vk::instance::VK_pool* vk_pool;
+  vk::instance::Pool* vk_pool;
   vk::data::Data* vk_data;
   vk::draw::Viewport* vk_viewport;
   VK_reload* vk_reload;

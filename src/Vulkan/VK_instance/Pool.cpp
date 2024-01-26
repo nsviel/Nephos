@@ -1,4 +1,4 @@
-#include "VK_pool.h"
+#include "Pool.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,17 +6,17 @@
 namespace vk::instance{
 
 //Constructor / Destructor
-VK_pool::VK_pool(vk::structure::Vulkan* struct_vulkan){
+Pool::Pool(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-VK_pool::~VK_pool(){}
+Pool::~Pool(){}
 
 //Main function
-void VK_pool::init(){
+void Pool::init(){
   //---------------------------
 
   this->create_descriptor_pool();
@@ -24,7 +24,7 @@ void VK_pool::init(){
 
   //---------------------------
 }
-void VK_pool::clean(){
+void Pool::clean(){
   //---------------------------
 
   this->clean_descriptor_pool();
@@ -34,7 +34,7 @@ void VK_pool::clean(){
 }
 
 //Descriptor pool
-void VK_pool::create_descriptor_pool(){
+void Pool::create_descriptor_pool(){
   //---------------------------
 
   int pool_nb_uniform = 1000;
@@ -69,7 +69,7 @@ void VK_pool::create_descriptor_pool(){
 
   //---------------------------
 }
-void VK_pool::reset_descriptor_pool(){
+void Pool::reset_descriptor_pool(){
   //---------------------------
 
   VkResult result = vkResetDescriptorPool(struct_vulkan->device.device, struct_vulkan->pool.descriptor, 0);
@@ -79,7 +79,7 @@ void VK_pool::reset_descriptor_pool(){
 
   //---------------------------
 }
-void VK_pool::clean_descriptor_pool(){
+void Pool::clean_descriptor_pool(){
   //---------------------------
 
   vkDestroyDescriptorPool(struct_vulkan->device.device, struct_vulkan->pool.descriptor, nullptr);
@@ -88,7 +88,7 @@ void VK_pool::clean_descriptor_pool(){
 }
 
 //Command pool
-void VK_pool::create_command_pool(){
+void Pool::create_command_pool(){
   //---------------------------
 
   //Command pool info
@@ -105,7 +105,7 @@ void VK_pool::create_command_pool(){
 
   //---------------------------
 }
-void VK_pool::reset_command_pool(){
+void Pool::reset_command_pool(){
   //---------------------------
 
   VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->pool.command, 0);
@@ -115,7 +115,7 @@ void VK_pool::reset_command_pool(){
 
   //---------------------------
 }
-void VK_pool::clean_command_pool(){
+void Pool::clean_command_pool(){
   //---------------------------
 
   vkDestroyCommandPool(struct_vulkan->device.device, struct_vulkan->pool.command, nullptr);

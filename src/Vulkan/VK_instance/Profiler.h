@@ -8,12 +8,12 @@ namespace vk::structure{class Vulkan;}
 
 namespace vk::instance{
 
-class VK_profiler
+class Profiler
 {
 public:
   //Constructor / Destructor
-  VK_profiler(vk::structure::Vulkan* struct_vulkan);
-  ~VK_profiler();
+  Profiler(vk::structure::Vulkan* struct_vulkan);
+  ~Profiler();
 
 public:
   //Main functions

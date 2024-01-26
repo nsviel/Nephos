@@ -8,7 +8,7 @@ VK_imgui::VK_imgui(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_pool = new vk::instance::VK_pool(struct_vulkan);
+  this->vk_pool = new vk::instance::Pool(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_submit = new vk::command::Submit(struct_vulkan);
   this->vk_engine = new VK_engine(struct_vulkan);

@@ -7,12 +7,12 @@ namespace vk::structure{class Vulkan;}
 
 namespace vk::instance{
 
-class VK_pool
+class Pool
 {
 public:
   //Constructor / Destructor
-  VK_pool(vk::structure::Vulkan* struct_vulkan);
-  ~VK_pool();
+  Pool(vk::structure::Vulkan* struct_vulkan);
+  ~Pool();
 
 public:
   //Main functions

@@ -1,4 +1,4 @@
-#include "VK_profiler.h"
+#include "Profiler.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,24 +6,24 @@
 namespace vk::instance{
 
 //Constructor / Destructor
-VK_profiler::VK_profiler(vk::structure::Vulkan* struct_vulkan){
+Profiler::Profiler(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-VK_profiler::~VK_profiler(){}
+Profiler::~Profiler(){}
 
 //Main function
-void VK_profiler::start(){
+void Profiler::start(){
   //---------------------------
 
   this->time_beg = timer.get_time();
 
   //---------------------------
 }
-void VK_profiler::stop(string name){
+void Profiler::stop(string name){
   //---------------------------
 
   timer_time time_end = timer.get_time();

@@ -12,7 +12,7 @@ Renderer::Renderer(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_submit = new vk::command::Submit(struct_vulkan);
-  this->vk_profiler = new vk::instance::VK_profiler(struct_vulkan);
+  this->vk_profiler = new vk::instance::Profiler(struct_vulkan);
 
   //---------------------------
 }
