@@ -6,6 +6,8 @@ class VK_validation;
 namespace vk::structure{class Vulkan;}
 
 
+namespace vk::instance{
+
 class VK_instance
 {
 public:
@@ -25,3 +27,5 @@ private:
   VK_validation* vk_validation;
   vk::structure::Vulkan* struct_vulkan;
 };
+
+}

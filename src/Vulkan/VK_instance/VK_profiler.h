@@ -6,6 +6,8 @@
 namespace vk::structure{class Vulkan;}
 
 
+namespace vk::instance{
+
 class VK_profiler
 {
 public:
@@ -23,3 +25,5 @@ private:
   Timer timer;
   timer_time time_beg;
 };
+
+}

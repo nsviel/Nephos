@@ -5,6 +5,8 @@
 namespace vk::structure{class Vulkan;}
 
 
+namespace vk::instance{
+
 class VK_pool
 {
 public:
@@ -30,3 +32,5 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
 };
+
+}

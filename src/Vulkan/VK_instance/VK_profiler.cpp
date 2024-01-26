@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::instance{
+
 //Constructor / Destructor
 VK_profiler::VK_profiler(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -31,4 +33,6 @@ void VK_profiler::stop(string name){
   struct_vulkan->profiler.vec_task.push_back(task);
 
   //---------------------------
+}
+
 }

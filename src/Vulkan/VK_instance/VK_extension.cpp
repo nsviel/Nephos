@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::instance{
+
 //Constructor / Destructor
 VK_extension::VK_extension(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -56,4 +58,6 @@ void VK_extension::extension_window(){
   }
 
   //---------------------------
+}
+
 }

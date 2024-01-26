@@ -4,7 +4,7 @@
 #include <imgui/implot/implot.h>
 
 class VK_engine;
-class VK_pool;
+namespace vk::instance{class VK_pool;}
 namespace vk::command{class Submit;}
 namespace vk::command{class Command;}
 class VK_surface;
@@ -33,6 +33,6 @@ private:
   VK_engine* vk_engine;
   vk::command::Submit* vk_submit;
   vk::command::Command* vk_command;
-  VK_pool* vk_pool;
+  vk::instance::VK_pool* vk_pool;
   VK_surface* vk_surface;
 };

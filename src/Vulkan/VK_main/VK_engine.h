@@ -4,7 +4,7 @@
 #include <Utility/Function/Timer/fct_timer.h>
 
 class VK_surface;
-class VK_instance;
+namespace vk::instance{class VK_instance;}
 class VK_swapchain;
 namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
@@ -14,8 +14,8 @@ namespace vk::draw{class Viewport;}
 class VK_reload;
 class VK_frame;
 namespace vk::data{class Canvas;}
-class VK_extension;
-class VK_pool;
+namespace vk::instance{class VK_extension;}
+namespace vk::instance{class VK_pool;}
 namespace vk::draw{class Drawer;}
 namespace vk::command{class Synchronization;}
 class VK_renderpass;
@@ -60,15 +60,15 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_extension* vk_extension;
+  vk::instance::VK_extension* vk_extension;
   VK_surface* vk_surface;
-  VK_instance* vk_instance;
+  vk::instance::VK_instance* vk_instance;
   vk::device::Logical* vk_device;
   VK_swapchain* vk_swapchain;
   VK_renderpass* vk_renderpass;
   vk::binding::Descriptor* vk_descriptor;
   VK_texture* vk_texture;
-  VK_pool* vk_pool;
+  vk::instance::VK_pool* vk_pool;
   vk::data::Data* vk_data;
   vk::draw::Viewport* vk_viewport;
   VK_reload* vk_reload;

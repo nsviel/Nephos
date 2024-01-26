@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::instance{
+
 //Constructor / Destructor
 VK_pool::VK_pool(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -119,4 +121,6 @@ void VK_pool::clean_command_pool(){
   vkDestroyCommandPool(struct_vulkan->device.device, struct_vulkan->pool.command, nullptr);
 
   //---------------------------
+}
+
 }
