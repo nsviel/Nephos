@@ -5,6 +5,8 @@
 #include <image/stb_image_write.h>
 
 
+namespace vk::image{
+
 //Constructor / Destructor
 VK_screenshot::VK_screenshot(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -144,4 +146,6 @@ VkDeviceSize VK_screenshot::calculate_image_size(VkFormat format, VkExtent3D ext
 
   //---------------------------
   return imageSize;
+}
+
 }
