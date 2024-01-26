@@ -1,4 +1,4 @@
-#include "VK_device.h"
+#include "Logical.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::device{
 
 //Constructor / Destructor
-VK_device::VK_device(vk::structure::Vulkan* struct_vulkan){
+Logical::Logical(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -14,10 +14,10 @@ VK_device::VK_device(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_device::~VK_device(){}
+Logical::~Logical(){}
 
 //Main functions
-void VK_device::init(){
+void Logical::init(){
   //---------------------------
 
   vk_physical_device->init();
@@ -26,7 +26,7 @@ void VK_device::init(){
 
   //---------------------------
 }
-void VK_device::clean(){
+void Logical::clean(){
   //---------------------------
 
   vkDestroyDevice(struct_vulkan->device.device, nullptr);
@@ -35,7 +35,7 @@ void VK_device::clean(){
 }
 
 //Subfunction
-void VK_device::create_logical_device(){
+void Logical::create_logical_device(){
   //---------------------------
 
   //Get GPU queue families
@@ -81,7 +81,7 @@ void VK_device::create_logical_device(){
 
   //---------------------------
 }
-void VK_device::find_device_queue_handles(){
+void Logical::find_device_queue_handles(){
   //---------------------------
 
   int& queue_graphics = struct_vulkan->device.physical_device.queue_graphics_idx;

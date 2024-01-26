@@ -6,7 +6,7 @@
 class VK_surface;
 class VK_instance;
 class VK_swapchain;
-namespace vk::device{class VK_device;}
+namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
 class VK_texture;
 namespace vk::data{class Data;}
@@ -63,7 +63,7 @@ private:
   VK_extension* vk_extension;
   VK_surface* vk_surface;
   VK_instance* vk_instance;
-  vk::device::VK_device* vk_device;
+  vk::device::Logical* vk_device;
   VK_swapchain* vk_swapchain;
   VK_renderpass* vk_renderpass;
   vk::binding::Descriptor* vk_descriptor;

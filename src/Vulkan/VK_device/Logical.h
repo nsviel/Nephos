@@ -8,12 +8,12 @@ namespace vk::structure{class Vulkan;}
 
 namespace vk::device{
 
-class VK_device
+class Logical
 {
 public:
   //Constructor / Destructor
-  VK_device(vk::structure::Vulkan* struct_vulkan);
-  ~VK_device();
+  Logical(vk::structure::Vulkan* struct_vulkan);
+  ~Logical();
 
 public:
   //Main functions
