@@ -6,7 +6,7 @@ class VK_image;
 namespace vk::command{class Synchronization;}
 namespace vk::image{class Color;}
 class VK_framebuffer;
-namespace vk::image{class VK_depth;}
+namespace vk::image{class Depth;}
 namespace vk::structure{class Vulkan;}
 
 
@@ -28,5 +28,5 @@ private:
   VK_framebuffer* vk_framebuffer;
   VK_image* vk_image;
   vk::image::Color* vk_color;
-  vk::image::VK_depth* vk_depth;
+  vk::image::Depth* vk_depth;
 };

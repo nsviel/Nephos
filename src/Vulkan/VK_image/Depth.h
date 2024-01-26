@@ -6,14 +6,15 @@ class VK_image;
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
 
+
 namespace vk::image{
 
-class VK_depth
+class Depth
 {
 public:
   //Constructor / Destructor
-  VK_depth(vk::structure::Vulkan* struct_vulkan);
-  ~VK_depth();
+  Depth(vk::structure::Vulkan* struct_vulkan);
+  ~Depth();
 
 public:
   //Main functions

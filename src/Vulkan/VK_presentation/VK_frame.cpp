@@ -12,7 +12,7 @@ VK_frame::VK_frame(vk::structure::Vulkan* struct_vulkan){
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
   this->vk_image = new VK_image(struct_vulkan);
   this->vk_color = new vk::image::Color(struct_vulkan);
-  this->vk_depth = new vk::image::VK_depth(struct_vulkan);
+  this->vk_depth = new vk::image::Depth(struct_vulkan);
 
   //---------------------------
 }

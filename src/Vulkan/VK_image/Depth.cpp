@@ -1,4 +1,4 @@
-#include "VK_depth.h"
+#include "Depth.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::image{
 
 //Constructor / Destructor
-VK_depth::VK_depth(vk::structure::Vulkan* struct_vulkan){
+Depth::Depth(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -14,10 +14,10 @@ VK_depth::VK_depth(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_depth::~VK_depth(){}
+Depth::~Depth(){}
 
 //Main function
-void VK_depth::create_depth_image(vk::structure::Image* depth){
+void Depth::create_depth_image(vk::structure::Image* depth){
   //---------------------------
 
   //Create frame depth image
@@ -33,7 +33,7 @@ void VK_depth::create_depth_image(vk::structure::Image* depth){
 }
 
 //Subfunctions
-VkFormat VK_depth::find_depth_format(){
+VkFormat Depth::find_depth_format(){
   //---------------------------
 
   vector<VkFormat> format_candidates;
@@ -49,7 +49,7 @@ VkFormat VK_depth::find_depth_format(){
   //---------------------------
   return format;
 }
-VkFormat VK_depth::find_supported_format(const std::vector<VkFormat>& format_candidates, VkImageTiling tiling, VkFormatFeatureFlags features){
+VkFormat Depth::find_supported_format(const std::vector<VkFormat>& format_candidates, VkImageTiling tiling, VkFormatFeatureFlags features){
   //---------------------------
 
   for(VkFormat format : format_candidates){
@@ -78,7 +78,7 @@ VkFormat VK_depth::find_supported_format(const std::vector<VkFormat>& format_can
 
   //---------------------------
 }
-bool VK_depth::find_stencil_component(VkFormat format){
+bool Depth::find_stencil_component(VkFormat format){
   //For depth image transition
   //---------------------------
 

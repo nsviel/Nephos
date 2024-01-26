@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::image{class Color;}
-namespace vk::image{class VK_depth;}
+namespace vk::image{class Depth;}
 class VK_image;
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
@@ -33,6 +33,6 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::image::Color* vk_color;
-  vk::image::VK_depth* vk_depth;
+  vk::image::Depth* vk_depth;
   VK_image* vk_image;
 };
