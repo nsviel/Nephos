@@ -9,7 +9,7 @@ VK_texture::VK_texture(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_image = new vk::image::VK_image(struct_vulkan);
+  this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_memory = new vk::command::Memory(struct_vulkan);
 
   //---------------------------

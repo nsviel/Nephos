@@ -1,4 +1,4 @@
-#include "VK_image.h"
+#include "Image.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::image{
 
 //Constructor / Destructor
-VK_image::VK_image(vk::structure::Vulkan* struct_vulkan){
+Image::Image(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -14,10 +14,10 @@ VK_image::VK_image(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_image::~VK_image(){}
+Image::~Image(){}
 
 //Main function
-void VK_image::create_image(vk::structure::Image* image){
+void Image::create_image(vk::structure::Image* image){
   //---------------------------
 
   this->create_image_obj(image);
@@ -27,7 +27,7 @@ void VK_image::create_image(vk::structure::Image* image){
 
   //---------------------------
 }
-void VK_image::clean_image(vk::structure::Image* image){
+void Image::clean_image(vk::structure::Image* image){
   //---------------------------
 
   vkDestroySampler(struct_vulkan->device.device, image->sampler, nullptr);
@@ -41,7 +41,7 @@ void VK_image::clean_image(vk::structure::Image* image){
 }
 
 //Image vulkan creation
-void VK_image::create_image_obj(vk::structure::Image* image){
+void Image::create_image_obj(vk::structure::Image* image){
   //---------------------------
 
   VkImageCreateInfo image_info{};
@@ -66,7 +66,7 @@ void VK_image::create_image_obj(vk::structure::Image* image){
 
   //---------------------------
 }
-void VK_image::create_image_view(vk::structure::Image* image){
+void Image::create_image_view(vk::structure::Image* image){
   //---------------------------
 
   VkImageViewCreateInfo view_info{};
@@ -89,7 +89,7 @@ void VK_image::create_image_view(vk::structure::Image* image){
 
   //---------------------------
 }
-void VK_image::create_image_sampler(vk::structure::Image* texture){
+void Image::create_image_sampler(vk::structure::Image* texture){
   //---------------------------
 
   VkSamplerCreateInfo sampler_info{};
@@ -116,7 +116,7 @@ void VK_image::create_image_sampler(vk::structure::Image* texture){
 }
 
 //subfunction
-void VK_image::compute_mipmap(vk::structure::Image* image){
+void Image::compute_mipmap(vk::structure::Image* image){
   //---------------------------
 
   uint32_t max_level = static_cast<uint32_t>(std::floor(std::log2(std::max(image->width, image->height)))) + 1;
@@ -131,7 +131,7 @@ void VK_image::compute_mipmap(vk::structure::Image* image){
 
   //---------------------------
 }
-void VK_image::generate_mipmap(vk::structure::Image* image){
+void Image::generate_mipmap(vk::structure::Image* image){
   //---------------------------
 
 

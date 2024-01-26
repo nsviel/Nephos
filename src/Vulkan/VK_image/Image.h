@@ -9,12 +9,12 @@ namespace vk::structure{class Image;}
 
 namespace vk::image{
 
-class VK_image
+class Image
 {
 public:
   //Constructor / Destructor
-  VK_image(vk::structure::Vulkan* struct_vulkan);
-  ~VK_image();
+  Image(vk::structure::Vulkan* struct_vulkan);
+  ~Image();
 
 public:
   //Main function
