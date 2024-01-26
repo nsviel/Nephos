@@ -1,4 +1,4 @@
-#include "VK_render.h"
+#include "Renderer.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-VK_render::VK_render(vk::structure::Vulkan* struct_vulkan){
+Renderer::Renderer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -16,10 +16,10 @@ VK_render::VK_render(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_render::~VK_render(){}
+Renderer::~Renderer(){}
 
 //Main function
-void VK_render::run_renderpass(vk::structure::Renderpass* renderpass){
+void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
   vk_profiler->start();
   //---------------------------
 
@@ -29,7 +29,7 @@ void VK_render::run_renderpass(vk::structure::Renderpass* renderpass){
 
   //---------------------------
 }
-void VK_render::submit_command(vk::structure::Renderpass* renderpass){
+void Renderer::submit_command(vk::structure::Renderpass* renderpass){
   vk::structure::Command& command = renderpass->command;
   //---------------------------
 
@@ -42,7 +42,7 @@ void VK_render::submit_command(vk::structure::Renderpass* renderpass){
 }
 
 //Subfunction
-void VK_render::start_renderpass(vk::structure::Renderpass* renderpass){
+void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   VkFramebuffer fbo;
@@ -59,7 +59,7 @@ void VK_render::start_renderpass(vk::structure::Renderpass* renderpass){
 
   //---------------------------
 }
-void VK_render::draw_subpass(vk::structure::Renderpass* renderpass){
+void Renderer::draw_subpass(vk::structure::Renderpass* renderpass){
   vk::structure::Command command;
   //---------------------------
 
@@ -74,7 +74,7 @@ void VK_render::draw_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
   renderpass->command = command;
 }
-void VK_render::wait_end_rendering(VkFence& fence){
+void Renderer::wait_end_rendering(VkFence& fence){
   //---------------------------
 
   vkWaitForFences(struct_vulkan->device.device, 1, &fence, VK_TRUE, UINT64_MAX);

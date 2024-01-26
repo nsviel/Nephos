@@ -10,7 +10,7 @@ VK_drawing::VK_drawing(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_render = new vk::draw::VK_render(struct_vulkan);
+  this->vk_render = new vk::draw::Renderer(struct_vulkan);
   this->vk_presentation = new VK_presentation(struct_vulkan);
 
   //---------------------------

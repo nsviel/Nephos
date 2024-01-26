@@ -11,12 +11,12 @@ namespace vk::structure{class Renderpass;}
 
 namespace vk::draw{
 
-class VK_render
+class Renderer
 {
 public:
   //Constructor / Destructor
-  VK_render(vk::structure::Vulkan* struct_vulkan);
-  ~VK_render();
+  Renderer(vk::structure::Vulkan* struct_vulkan);
+  ~Renderer();
 
 public:
   //Main functions
