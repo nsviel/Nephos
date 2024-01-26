@@ -69,7 +69,7 @@ private:
   vk::binding::Descriptor* vk_descriptor;
   VK_texture* vk_texture;
   VK_pool* vk_pool;
-  VK_data* vk_data;
+  vk::data::VK_data* vk_data;
   VK_viewport* vk_viewport;
   VK_reload* vk_reload;
   vk::command::Synchronization* vk_synchronization;

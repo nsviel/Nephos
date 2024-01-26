@@ -48,5 +48,5 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::binding::Descriptor* vk_descriptor;
   VK_shader* vk_shader;
-  VK_data* vk_data;
+  vk::data::VK_data* vk_data;
 };

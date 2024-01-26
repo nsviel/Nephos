@@ -24,7 +24,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   VK_buffer* vk_buffer;
-  VK_data* vk_data;
+  vk::data::VK_data* vk_data;
 };
 
 }
