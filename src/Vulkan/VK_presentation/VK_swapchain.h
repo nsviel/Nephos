@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_physical_device;
+namespace vk::device{class VK_physical_device;}
 class VK_viewport;
 class VK_frame;
 class VK_framebuffer;
@@ -33,7 +33,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   VK_viewport* vk_viewport;
-  VK_physical_device* vk_physical_device;
+  vk::device::VK_physical_device* vk_physical_device;
   VK_frame* vk_frame;
   VK_framebuffer* vk_framebuffer;
   VK_surface* vk_surface;

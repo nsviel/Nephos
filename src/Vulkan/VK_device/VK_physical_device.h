@@ -6,6 +6,8 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Physical_device;}
 
 
+namespace vk::device{
+
 class VK_physical_device
 {
 public:
@@ -40,3 +42,5 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
 };
+
+}

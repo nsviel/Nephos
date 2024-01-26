@@ -3,12 +3,14 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::device{
+
 //Constructor / Destructor
 VK_device::VK_device(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_physical_device = new VK_physical_device(struct_vulkan);
+  this->vk_physical_device = new vk::device::VK_physical_device(struct_vulkan);
 
   //---------------------------
 }
@@ -93,4 +95,6 @@ void VK_device::find_device_queue_handles(){
   }
 
   //---------------------------
+}
+
 }

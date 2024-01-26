@@ -2,9 +2,11 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_physical_device;
+namespace vk::device{class VK_physical_device;}
 namespace vk::structure{class Vulkan;}
 
+
+namespace vk::device{
 
 class VK_device
 {
@@ -24,5 +26,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_physical_device* vk_physical_device;
+  vk::device::VK_physical_device* vk_physical_device;
 };
+
+}

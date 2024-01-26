@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::device{
+
 //Constructor / Destructor
 VK_physical_device::VK_physical_device(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -400,4 +402,6 @@ void VK_physical_device::find_max_usable_sample_count(vk::structure::Physical_de
 
   //---------------------------
   physical_device.max_sample_count = max_sample;
+}
+
 }
