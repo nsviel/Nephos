@@ -10,7 +10,7 @@ Logical::Logical(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_physical_device = new vk::device::VK_physical_device(struct_vulkan);
+  this->vk_physical_device = new vk::device::Physical(struct_vulkan);
 
   //---------------------------
 }

@@ -8,12 +8,12 @@ namespace vk::structure{class Physical_device;}
 
 namespace vk::device{
 
-class VK_physical_device
+class Physical
 {
 public:
   //Constructor / Destructor
-  VK_physical_device(vk::structure::Vulkan* struct_vulkan);
-  ~VK_physical_device();
+  Physical(vk::structure::Vulkan* struct_vulkan);
+  ~Physical();
 
 public:
   //Main functions

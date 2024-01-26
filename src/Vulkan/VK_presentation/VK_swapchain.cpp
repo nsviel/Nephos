@@ -8,7 +8,7 @@ VK_swapchain::VK_swapchain(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_physical_device = new vk::device::VK_physical_device(struct_vulkan);
+  this->vk_physical_device = new vk::device::Physical(struct_vulkan);
   this->vk_viewport = new VK_viewport(struct_vulkan);
   this->vk_frame = new VK_frame(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
