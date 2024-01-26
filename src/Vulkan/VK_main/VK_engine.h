@@ -10,7 +10,7 @@ namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
 class VK_texture;
 namespace vk::data{class Data;}
-namespace vk::draw{class VK_viewport;}
+namespace vk::draw{class Viewport;}
 class VK_reload;
 class VK_frame;
 namespace vk::data{class Canvas;}
@@ -70,7 +70,7 @@ private:
   VK_texture* vk_texture;
   VK_pool* vk_pool;
   vk::data::Data* vk_data;
-  vk::draw::VK_viewport* vk_viewport;
+  vk::draw::Viewport* vk_viewport;
   VK_reload* vk_reload;
   vk::command::Synchronization* vk_synchronization;
   VK_frame* vk_frame;

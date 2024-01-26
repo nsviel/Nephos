@@ -8,11 +8,11 @@ namespace vk::structure{class Viewport;}
 
 namespace vk::draw{
 
-class VK_viewport
+class Viewport
 {
 public:
-  VK_viewport(vk::structure::Vulkan* struct_vulkan);
-  ~VK_viewport();
+  Viewport(vk::structure::Vulkan* struct_vulkan);
+  ~Viewport();
 
 public:
   //Main function

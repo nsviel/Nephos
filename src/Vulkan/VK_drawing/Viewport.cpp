@@ -1,4 +1,4 @@
-#include "VK_viewport.h"
+#include "Viewport.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,17 +6,17 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-VK_viewport::VK_viewport(vk::structure::Vulkan* struct_vulkan){
+Viewport::Viewport(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-VK_viewport::~VK_viewport(){}
+Viewport::~Viewport(){}
 
 //Main function
-void VK_viewport::init(){
+void Viewport::init(){
   vec2 win_dim = struct_vulkan->window.window_dim;
   //---------------------------
 
@@ -36,7 +36,7 @@ void VK_viewport::init(){
 
   //---------------------------
 }
-void VK_viewport::cmd_viewport(VkCommandBuffer& command_buffer){
+void Viewport::cmd_viewport(VkCommandBuffer& command_buffer){
   //---------------------------
 
   //Viewport
@@ -47,7 +47,7 @@ void VK_viewport::cmd_viewport(VkCommandBuffer& command_buffer){
 
   //---------------------------
 }
-void VK_viewport::update_viewport(){
+void Viewport::update_viewport(){
   vec2 win_dim = struct_vulkan->window.window_dim;
   //---------------------------
 
@@ -64,7 +64,7 @@ void VK_viewport::update_viewport(){
 }
 
 //Subfunction
-vk::structure::Viewport* VK_viewport::create_viewport(){
+vk::structure::Viewport* Viewport::create_viewport(){
   vec2 win_dim = struct_vulkan->window.window_dim;
   //---------------------------
 

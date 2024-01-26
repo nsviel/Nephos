@@ -5,7 +5,7 @@
 
 class VK_engine;
 class VK_pipeline;
-namespace vk::draw{class VK_viewport;}
+namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
 namespace vk::draw{class VK_drawing;}
@@ -38,7 +38,7 @@ private:
   eng::shader::EDL* shader_edl;
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
-  vk::draw::VK_viewport* vk_viewport;
+  vk::draw::Viewport* vk_viewport;
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
   vk::draw::VK_drawing* vk_drawing;
