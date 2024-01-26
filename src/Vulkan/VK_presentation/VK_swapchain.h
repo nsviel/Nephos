@@ -33,7 +33,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   VK_viewport* vk_viewport;
-  vk::device::Physical* vk_physical_device;
+  vk::device::Physical* dev_physical;
   VK_frame* vk_frame;
   VK_framebuffer* vk_framebuffer;
   VK_surface* vk_surface;

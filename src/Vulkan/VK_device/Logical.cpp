@@ -10,7 +10,7 @@ Logical::Logical(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_physical_device = new vk::device::Physical(struct_vulkan);
+  this->dev_physical = new vk::device::Physical(struct_vulkan);
 
   //---------------------------
 }
@@ -20,7 +20,7 @@ Logical::~Logical(){}
 void Logical::init(){
   //---------------------------
 
-  vk_physical_device->init();
+  dev_physical->init();
   this->create_logical_device();
   this->find_device_queue_handles();
 

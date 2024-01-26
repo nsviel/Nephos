@@ -26,7 +26,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::device::Physical* vk_physical_device;
+  vk::device::Physical* dev_physical;
 };
 
 }

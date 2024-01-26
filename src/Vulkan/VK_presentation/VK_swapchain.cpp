@@ -8,7 +8,7 @@ VK_swapchain::VK_swapchain(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_physical_device = new vk::device::Physical(struct_vulkan);
+  this->dev_physical = new vk::device::Physical(struct_vulkan);
   this->vk_viewport = new VK_viewport(struct_vulkan);
   this->vk_frame = new VK_frame(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
@@ -22,7 +22,7 @@ VK_swapchain::~VK_swapchain(){}
 void VK_swapchain::create_swapchain(){
   //---------------------------
 
-  vk_physical_device->compute_extent();
+  dev_physical->compute_extent();
   this->find_swapchain_surface_format();
   this->find_swapchain_max_nb_image();
   this->find_swapchain_presentation_mode();
