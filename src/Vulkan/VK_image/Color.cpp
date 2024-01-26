@@ -1,4 +1,4 @@
-#include "VK_color.h"
+#include "Color.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::image{
 
 //Constructor / Destructor
-VK_color::VK_color(vk::structure::Vulkan* struct_vulkan){
+Color::Color(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -14,10 +14,10 @@ VK_color::VK_color(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_color::~VK_color(){}
+Color::~Color(){}
 
 //Main function
-void VK_color::create_color_image(vk::structure::Image* color){
+void Color::create_color_image(vk::structure::Image* color){
   //---------------------------
 
   //Create frame color image
@@ -33,7 +33,7 @@ void VK_color::create_color_image(vk::structure::Image* color){
 }
 
 //Subfunction
-VkSurfaceFormatKHR VK_color::retrieve_surface_format(const std::vector<VkSurfaceFormatKHR>& dev_format){
+VkSurfaceFormatKHR Color::retrieve_surface_format(const std::vector<VkSurfaceFormatKHR>& dev_format){
   //---------------------------
 
   //Check if standar RGB is available
@@ -48,7 +48,7 @@ VkSurfaceFormatKHR VK_color::retrieve_surface_format(const std::vector<VkSurface
   //---------------------------
   return dev_format[0];
 }
-VkFormat VK_color::find_color_format(){
+VkFormat Color::find_color_format(){
   VkFormat format;
   //---------------------------
 

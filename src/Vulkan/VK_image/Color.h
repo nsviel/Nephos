@@ -8,13 +8,13 @@ namespace vk::structure{class Image;}
 
 
 namespace vk::image{
-  
-class VK_color
+
+class Color
 {
 public:
   //Constructor / Destructor
-  VK_color(vk::structure::Vulkan* struct_vulkan);
-  ~VK_color();
+  Color(vk::structure::Vulkan* struct_vulkan);
+  ~Color();
 
 public:
   //Main functions

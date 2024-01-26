@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::image{class VK_color;}
-class VK_depth;
+namespace vk::image{class Color;}
+namespace vk::image{class VK_depth;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Attachment;}
 
@@ -28,6 +28,6 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::image::VK_color* vk_color;
-  VK_depth* vk_depth;
+  vk::image::Color* vk_color;
+  vk::image::VK_depth* vk_depth;
 };
