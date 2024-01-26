@@ -18,10 +18,10 @@ Glyph::Glyph(eng::render::Node* node_render){
   this->node_render = engine->get_node_render();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->vk_pipeline = new VK_pipeline(struct_vulkan);
-  this->vk_viewport = new VK_viewport(struct_vulkan);
+  this->vk_viewport = new vk::draw::VK_viewport(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
   this->vk_uniform = new vk::binding::Uniform(struct_vulkan);
-  this->vk_drawing = new VK_drawing(struct_vulkan);
+  this->vk_drawing = new vk::draw::VK_drawing(struct_vulkan);
 
   //---------------------------
 }

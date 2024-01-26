@@ -9,6 +9,8 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 
 
+namespace vk::draw{
+
 class VK_render
 {
 public:
@@ -32,3 +34,5 @@ private:
   vk::command::Submit* vk_submit;
   VK_profiler* vk_profiler;
 };
+
+}

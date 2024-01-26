@@ -6,10 +6,10 @@
 namespace eng{class Node;}
 class VK_engine;
 class VK_pipeline;
-class VK_viewport;
+namespace vk::draw{class VK_viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
-class VK_drawing;
+namespace vk::draw{class VK_drawing;}
 namespace eng::render{class Node;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Subpass;}
@@ -41,10 +41,10 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
-  VK_drawing* vk_drawing;
+  vk::draw::VK_drawing* vk_drawing;
   VK_engine* vk_engine;
   VK_pipeline* vk_pipeline;
-  VK_viewport* vk_viewport;
+  vk::draw::VK_viewport* vk_viewport;
 
   Timer timer;
   float time_renderpass;

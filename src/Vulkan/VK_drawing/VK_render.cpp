@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::draw{
+
 //Constructor / Destructor
 VK_render::VK_render(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -79,4 +81,6 @@ void VK_render::wait_end_rendering(VkFence& fence){
   vkResetFences(struct_vulkan->device.device, 1, &fence);
 
   //---------------------------
+}
+
 }

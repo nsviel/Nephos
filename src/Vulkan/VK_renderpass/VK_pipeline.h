@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::binding{class Descriptor;}
-class VK_viewport;
+namespace vk::draw{class VK_viewport;}
 class VK_shader;
 namespace vk::data{class Data;}
 namespace vk::structure{class Vulkan;}

@@ -10,13 +10,13 @@ namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
 class VK_texture;
 namespace vk::data{class Data;}
-class VK_viewport;
+namespace vk::draw{class VK_viewport;}
 class VK_reload;
 class VK_frame;
 namespace vk::data{class Canvas;}
 class VK_extension;
 class VK_pool;
-class VK_drawing;
+namespace vk::draw{class VK_drawing;}
 namespace vk::command{class Synchronization;}
 class VK_renderpass;
 class FPS_counter;
@@ -70,12 +70,12 @@ private:
   VK_texture* vk_texture;
   VK_pool* vk_pool;
   vk::data::Data* vk_data;
-  VK_viewport* vk_viewport;
+  vk::draw::VK_viewport* vk_viewport;
   VK_reload* vk_reload;
   vk::command::Synchronization* vk_synchronization;
   VK_frame* vk_frame;
   vk::data::Canvas* vk_canvas;
-  VK_drawing* vk_drawing;
+  vk::draw::VK_drawing* vk_drawing;
   FPS_counter* fps_counter;
 
   Timer timer;

@@ -4,10 +4,12 @@
 #include <Utility/Function/Timer/fct_timer.h>
 
 class VK_presentation;
-class VK_render;
+namespace vk::draw{class VK_render;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
 
+
+namespace vk::draw{
 
 class VK_drawing
 {
@@ -29,7 +31,9 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   VK_presentation* vk_presentation;
-  VK_render* vk_render;
+  vk::draw::VK_render* vk_render;
 
   Timer timer;
 };
+
+}

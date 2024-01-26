@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::draw{
+
 //Constructor / Destructor
 VK_viewport::VK_viewport(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -83,4 +85,6 @@ vk::structure::Viewport* VK_viewport::create_viewport(){
 
   //---------------------------
   return viewport;
+}
+
 }

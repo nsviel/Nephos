@@ -3,12 +3,14 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::draw{
+
 //Constructor / Destructor
 VK_drawing::VK_drawing(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_render = new VK_render(struct_vulkan);
+  this->vk_render = new vk::draw::VK_render(struct_vulkan);
   this->vk_presentation = new VK_presentation(struct_vulkan);
 
   //---------------------------
@@ -119,4 +121,6 @@ void VK_drawing::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::O
   vkCmdSetLineWidth(command_buffer, vk_object->data->draw_line_width);
 
   //---------------------------
+}
+
 }

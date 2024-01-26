@@ -13,7 +13,7 @@ VK_engine::VK_engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_pool = new VK_pool(struct_vulkan);
   this->vk_extension = new VK_extension(struct_vulkan);
   this->vk_instance = new VK_instance(struct_vulkan);
-  this->vk_viewport = new VK_viewport(struct_vulkan);
+  this->vk_viewport = new vk::draw::VK_viewport(struct_vulkan);
   this->vk_surface = new VK_surface(struct_vulkan);
   this->vk_device = new vk::device::Logical(struct_vulkan);
   this->vk_texture = new VK_texture(struct_vulkan);
@@ -24,7 +24,7 @@ VK_engine::VK_engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_reload = new VK_reload(struct_vulkan);
   this->vk_frame = new VK_frame(struct_vulkan);
   this->vk_canvas = new vk::data::Canvas(struct_vulkan);
-  this->vk_drawing = new VK_drawing(struct_vulkan);
+  this->vk_drawing = new vk::draw::VK_drawing(struct_vulkan);
   this->vk_synchronization = new vk::command::Synchronization(struct_vulkan);
   this->fps_counter = new FPS_counter();
 
