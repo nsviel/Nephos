@@ -4,7 +4,7 @@
 
 namespace vk::image{class Color;}
 namespace vk::image{class Depth;}
-class VK_image;
+namespace vk::image{class VK_image;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Framebuffer;}
@@ -34,5 +34,5 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::image::Color* vk_color;
   vk::image::Depth* vk_depth;
-  VK_image* vk_image;
+  vk::image::VK_image* vk_image;
 };

@@ -10,7 +10,7 @@ Depth::Depth(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_image = new VK_image(struct_vulkan);
+  this->vk_image = new vk::image::VK_image(struct_vulkan);
 
   //---------------------------
 }

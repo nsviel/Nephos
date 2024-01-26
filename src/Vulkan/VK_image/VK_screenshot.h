@@ -8,7 +8,7 @@ extern "C" {
 #include <libswscale/swscale.h>
 }
 
-class VK_image;
+namespace vk::image{class VK_image;}
 namespace vk::command{class Command;}
 class VK_texture;
 namespace vk::command{class Memory;}
@@ -34,7 +34,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::command::Memory* vk_memory;
-  VK_image* vk_image;
+  vk::image::VK_image* vk_image;
   vk::command::Command* vk_command;
   VK_texture* vk_texture;
 };

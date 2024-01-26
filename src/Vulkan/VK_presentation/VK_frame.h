@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_image;
+namespace vk::image{class VK_image;}
 namespace vk::command{class Synchronization;}
 namespace vk::image{class Color;}
 class VK_framebuffer;
@@ -26,7 +26,7 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::command::Synchronization* vk_synchronization;
   VK_framebuffer* vk_framebuffer;
-  VK_image* vk_image;
+  vk::image::VK_image* vk_image;
   vk::image::Color* vk_color;
   vk::image::Depth* vk_depth;
 };

@@ -7,6 +7,8 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
 
 
+namespace vk::image{
+
 class VK_image
 {
 public:
@@ -32,3 +34,5 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::command::Memory* vk_memory;
 };
+
+}

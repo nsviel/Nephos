@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::image{
+
 //Constructor / Destructor
 VK_image::VK_image(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -134,4 +136,6 @@ void VK_image::generate_mipmap(vk::structure::Image* image){
 
 
   //---------------------------
+}
+
 }
