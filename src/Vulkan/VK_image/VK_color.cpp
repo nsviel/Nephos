@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::image{
+
 //Constructor / Destructor
 VK_color::VK_color(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -60,4 +62,6 @@ VkFormat VK_color::find_color_format(){
 
   //---------------------------
   return format;
+}
+
 }

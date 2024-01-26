@@ -20,7 +20,7 @@ VK_attachment::VK_attachment(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_color = new VK_color(struct_vulkan);
+  this->vk_color = new vk::image::VK_color(struct_vulkan);
   this->vk_depth = new VK_depth(struct_vulkan);
 
   //---------------------------

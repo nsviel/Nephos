@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_color;
+namespace vk::image{class VK_color;}
 class VK_depth;
 class VK_image;
 namespace vk::structure{class Vulkan;}
@@ -32,7 +32,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_color* vk_color;
+  vk::image::VK_color* vk_color;
   VK_depth* vk_depth;
   VK_image* vk_image;
 };
