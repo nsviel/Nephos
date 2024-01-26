@@ -2,10 +2,12 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_buffer;
-class VK_data;
+namespace vk::data{class VK_buffer;}
+namespace vk::data{class VK_data;}
 namespace vk::structure{class Vulkan;}
 
+
+namespace vk::data{
 
 class VK_canvas
 {
@@ -24,3 +26,5 @@ private:
   VK_buffer* vk_buffer;
   VK_data* vk_data;
 };
+
+}

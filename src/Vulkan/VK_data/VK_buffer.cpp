@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::data{
+
 //Constructor / Destructor
 VK_buffer::VK_buffer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -58,4 +60,6 @@ void VK_buffer::clean_buffer(vk::structure::Buffer* buffer){
   }
 
   //---------------------------
+}
+
 }

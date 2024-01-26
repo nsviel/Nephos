@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::data{
+
 //Constructor / Destructor
 VK_data::VK_data(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -170,4 +172,6 @@ void VK_data::pipeline_vertex_input_info(vk::structure::Pipeline* pipeline){
 
   //---------------------------
   pipeline->info.vertex_input_info = vertex_input_info;
+}
+
 }

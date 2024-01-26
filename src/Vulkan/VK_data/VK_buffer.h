@@ -8,6 +8,8 @@ namespace vk::structure{class Object;}
 namespace vk::structure{class Buffer;}
 
 
+namespace vk::data{
+
 class VK_buffer
 {
 public:
@@ -25,3 +27,5 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::command::Memory* vk_memory;
 };
+
+}

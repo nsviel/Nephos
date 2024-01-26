@@ -9,11 +9,11 @@ class VK_device;
 class VK_swapchain;
 namespace vk::binding{class Descriptor;}
 class VK_texture;
-class VK_data;
+namespace vk::data{class VK_data;}
 class VK_viewport;
 class VK_reload;
 class VK_frame;
-class VK_canvas;
+namespace vk::data{class VK_canvas;}
 class VK_extension;
 class VK_pool;
 class VK_drawing;

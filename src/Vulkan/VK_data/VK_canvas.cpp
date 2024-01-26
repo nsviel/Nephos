@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::data{
+
 //Constructor / Destructor
 VK_canvas::VK_canvas(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -55,4 +57,6 @@ void VK_canvas::clean(){
   vk_buffer->clean_buffers(&struct_vulkan->data.canvas);
 
   //---------------------------
+}
+
 }

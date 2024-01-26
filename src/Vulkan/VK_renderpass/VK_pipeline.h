@@ -5,7 +5,7 @@
 namespace vk::binding{class Descriptor;}
 class VK_viewport;
 class VK_shader;
-class VK_data;
+namespace vk::data{class VK_data;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
