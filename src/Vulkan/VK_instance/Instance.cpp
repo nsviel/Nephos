@@ -1,4 +1,4 @@
-#include "VK_instance.h"
+#include "Instance.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::instance{
 
 //Constructor / Destructor
-VK_instance::VK_instance(vk::structure::Vulkan* struct_vulkan){
+Instance::Instance(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -14,10 +14,10 @@ VK_instance::VK_instance(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_instance::~VK_instance(){}
+Instance::~Instance(){}
 
 //Main function
-void VK_instance::init(){
+void Instance::init(){
   //---------------------------
 
   this->create_instance();
@@ -25,7 +25,7 @@ void VK_instance::init(){
 
   //---------------------------
 }
-void VK_instance::clean(){
+void Instance::clean(){
   //---------------------------
 
   vk_validation->clean_layer();
@@ -35,7 +35,7 @@ void VK_instance::clean(){
 }
 
 //Subfunction
-void VK_instance::create_instance(){
+void Instance::create_instance(){
   //---------------------------
 
   //Application info

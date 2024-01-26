@@ -1,4 +1,4 @@
-#include "VK_extension.h"
+#include "Extension.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,17 +6,17 @@
 namespace vk::instance{
 
 //Constructor / Destructor
-VK_extension::VK_extension(vk::structure::Vulkan* struct_vulkan){
+Extension::Extension(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-VK_extension::~VK_extension(){}
+Extension::~Extension(){}
 
 //Main functions
-void VK_extension::init(){
+void Extension::init(){
   //---------------------------
 
   this->extension_instance();
@@ -27,7 +27,7 @@ void VK_extension::init(){
 }
 
 //Subfunction
-void VK_extension::extension_instance(){
+void Extension::extension_instance(){
   //---------------------------
 
   struct_vulkan->instance.extension_instance.clear();
@@ -37,7 +37,7 @@ void VK_extension::extension_instance(){
 
   //---------------------------
 }
-void VK_extension::extension_device(){
+void Extension::extension_device(){
   //---------------------------
 
   struct_vulkan->instance.extension_device.clear();
@@ -46,7 +46,7 @@ void VK_extension::extension_device(){
 
   //---------------------------
 }
-void VK_extension::extension_window(){
+void Extension::extension_window(){
   //---------------------------
 
   uint32_t glfw_extension_nb = 0;

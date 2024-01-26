@@ -11,8 +11,8 @@ VK_engine::VK_engine(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_pool = new vk::instance::VK_pool(struct_vulkan);
-  this->vk_extension = new vk::instance::VK_extension(struct_vulkan);
-  this->vk_instance = new vk::instance::VK_instance(struct_vulkan);
+  this->vk_extension = new vk::instance::Extension(struct_vulkan);
+  this->vk_instance = new vk::instance::Instance(struct_vulkan);
   this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
   this->vk_surface = new VK_surface(struct_vulkan);
   this->vk_device = new vk::device::Logical(struct_vulkan);

@@ -2,28 +2,29 @@
 
 #include <Utility/Specific/common.h>
 
+class VK_validation;
 namespace vk::structure{class Vulkan;}
 
 
 namespace vk::instance{
 
-class VK_extension
+class Instance
 {
 public:
   //Constructor / Destructor
-  VK_extension(vk::structure::Vulkan* struct_vulkan);
-  ~VK_extension();
+  Instance(vk::structure::Vulkan* struct_vulkan);
+  ~Instance();
 
 public:
   //Main functions
   void init();
+  void clean();
 
   //Subfunction
-  void extension_instance();
-  void extension_window();
-  void extension_device();
+  void create_instance();
 
 private:
+  VK_validation* vk_validation;
   vk::structure::Vulkan* struct_vulkan;
 };
 
