@@ -18,12 +18,12 @@ namespace vk::structure{class Image;}
 
 namespace vk::image{
 
-class VK_screenshot
+class Screenshot
 {
 public:
   //Constructor / Destructor
-  VK_screenshot(vk::structure::Vulkan* struct_vulkan);
-  ~VK_screenshot();
+  Screenshot(vk::structure::Vulkan* struct_vulkan);
+  ~Screenshot();
 
 public:
   //Main functions

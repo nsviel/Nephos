@@ -1,4 +1,4 @@
-#include "VK_screenshot.h"
+#include "Screenshot.h"
 
 #include <Vulkan/Namespace.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -8,7 +8,7 @@
 namespace vk::image{
 
 //Constructor / Destructor
-VK_screenshot::VK_screenshot(vk::structure::Vulkan* struct_vulkan){
+Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -20,10 +20,10 @@ VK_screenshot::VK_screenshot(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_screenshot::~VK_screenshot(){}
+Screenshot::~Screenshot(){}
 
 //Main function
-void VK_screenshot::make_screenshot(vk::structure::Image* image){
+void Screenshot::make_screenshot(vk::structure::Image* image){
   //---------------------------
 
   //Create stagging buffer
@@ -55,7 +55,7 @@ void VK_screenshot::make_screenshot(vk::structure::Image* image){
 
   //---------------------------
 }
-void VK_screenshot::save_to_bin(vk::structure::Image* image){
+void Screenshot::save_to_bin(vk::structure::Image* image){
   //---------------------------
 
   //Create stagging buffer
@@ -109,7 +109,7 @@ void VK_screenshot::save_to_bin(vk::structure::Image* image){
 }
 
 //Subfunction
-VkDeviceSize VK_screenshot::calculate_image_size(VkFormat format, VkExtent3D extent){
+VkDeviceSize Screenshot::calculate_image_size(VkFormat format, VkExtent3D extent){
   //---------------------------
 
   // Get the number of bytes per pixel for the specified format
