@@ -18,12 +18,12 @@ VK_engine::VK_engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_device = new VK_device(struct_vulkan);
   this->vk_texture = new VK_texture(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
-  this->vk_data = new VK_data(struct_vulkan);
+  this->vk_data = new vk::data::VK_data(struct_vulkan);
   this->vk_swapchain = new VK_swapchain(struct_vulkan);
   this->vk_renderpass = new VK_renderpass(struct_vulkan);
   this->vk_reload = new VK_reload(struct_vulkan);
   this->vk_frame = new VK_frame(struct_vulkan);
-  this->vk_canvas = new VK_canvas(struct_vulkan);
+  this->vk_canvas = new vk::data::VK_canvas(struct_vulkan);
   this->vk_drawing = new VK_drawing(struct_vulkan);
   this->vk_synchronization = new vk::command::Synchronization(struct_vulkan);
   this->fps_counter = new FPS_counter();

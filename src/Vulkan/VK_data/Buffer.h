@@ -10,12 +10,12 @@ namespace vk::structure{class Buffer;}
 
 namespace vk::data{
 
-class VK_buffer
+class Buffer
 {
 public:
   //Constructor / Destructor
-  VK_buffer(vk::structure::Vulkan* struct_vulkan);
-  ~VK_buffer();
+  Buffer(vk::structure::Vulkan* struct_vulkan);
+  ~Buffer();
 
 public:
   //Main functions

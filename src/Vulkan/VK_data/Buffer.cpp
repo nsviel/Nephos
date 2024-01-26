@@ -1,4 +1,4 @@
-#include "VK_buffer.h"
+#include "Buffer.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::data{
 
 //Constructor / Destructor
-VK_buffer::VK_buffer(vk::structure::Vulkan* struct_vulkan){
+Buffer::Buffer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -14,10 +14,10 @@ VK_buffer::VK_buffer(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_buffer::~VK_buffer(){}
+Buffer::~Buffer(){}
 
 //Main function
-void VK_buffer::create_buffers(vk::structure::Object* vk_object){
+void Buffer::create_buffers(vk::structure::Object* vk_object){
   //---------------------------
 
   vk_object->has_xyz = false;
@@ -39,7 +39,7 @@ void VK_buffer::create_buffers(vk::structure::Object* vk_object){
 
   //---------------------------
 }
-void VK_buffer::clean_buffers(vk::structure::Object* vk_object){
+void Buffer::clean_buffers(vk::structure::Object* vk_object){
   //---------------------------
 
   this->clean_buffer(&vk_object->xyz);
@@ -48,7 +48,7 @@ void VK_buffer::clean_buffers(vk::structure::Object* vk_object){
 
   //---------------------------
 }
-void VK_buffer::clean_buffer(vk::structure::Buffer* buffer){
+void Buffer::clean_buffer(vk::structure::Buffer* buffer){
   //---------------------------
 
   if(buffer->vbo != VK_NULL_HANDLE){

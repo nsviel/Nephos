@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::data{class VK_buffer;}
+namespace vk::data{class Buffer;}
 class VK_texture;
 namespace vk::command{class Command;}
 namespace vk::binding{class Descriptor;}
@@ -35,7 +35,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_buffer* vk_buffer;
+  Buffer* vk_buffer;
   VK_texture* vk_texture;
   vk::command::Command* vk_command;
   vk::binding::Descriptor* vk_descriptor;

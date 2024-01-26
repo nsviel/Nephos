@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::data{class VK_buffer;}
+namespace vk::data{class Buffer;}
 namespace vk::data{class VK_data;}
 namespace vk::structure{class Vulkan;}
 
@@ -23,7 +23,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_buffer* vk_buffer;
+  Buffer* vk_buffer;
   vk::data::VK_data* vk_data;
 };
 

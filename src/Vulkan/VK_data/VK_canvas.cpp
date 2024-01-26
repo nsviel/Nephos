@@ -10,8 +10,8 @@ VK_canvas::VK_canvas(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_buffer = new VK_buffer(struct_vulkan);
-  this->vk_data = new VK_data(struct_vulkan);
+  this->vk_buffer = new Buffer(struct_vulkan);
+  this->vk_data = new vk::data::VK_data(struct_vulkan);
 
   //---------------------------
 }
