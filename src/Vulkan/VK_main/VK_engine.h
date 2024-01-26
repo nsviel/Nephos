@@ -16,7 +16,7 @@ class VK_frame;
 namespace vk::data{class Canvas;}
 class VK_extension;
 class VK_pool;
-namespace vk::draw{class VK_drawing;}
+namespace vk::draw{class Drawer;}
 namespace vk::command{class Synchronization;}
 class VK_renderpass;
 class FPS_counter;
@@ -75,7 +75,7 @@ private:
   vk::command::Synchronization* vk_synchronization;
   VK_frame* vk_frame;
   vk::data::Canvas* vk_canvas;
-  vk::draw::VK_drawing* vk_drawing;
+  vk::draw::Drawer* vk_drawing;
   FPS_counter* fps_counter;
 
   Timer timer;

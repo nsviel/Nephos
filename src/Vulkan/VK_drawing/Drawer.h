@@ -11,12 +11,12 @@ namespace vk::structure{class Object;}
 
 namespace vk::draw{
 
-class VK_drawing
+class Drawer
 {
 public:
   //Constructor / Destructor
-  VK_drawing(vk::structure::Vulkan* struct_vulkan);
-  ~VK_drawing();
+  Drawer(vk::structure::Vulkan* struct_vulkan);
+  ~Drawer();
 
 public:
   //Main functions
