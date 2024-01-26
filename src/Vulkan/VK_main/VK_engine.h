@@ -74,7 +74,7 @@ private:
   VK_reload* vk_reload;
   vk::command::Synchronization* vk_synchronization;
   VK_frame* vk_frame;
-  VK_canvas* vk_canvas;
+  vk::data::VK_canvas* vk_canvas;
   VK_drawing* vk_drawing;
   FPS_counter* fps_counter;
 
