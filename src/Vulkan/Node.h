@@ -6,8 +6,8 @@ namespace vk::main{class Engine;}
 namespace vk::main{class Imgui;}
 namespace vk::main{class Info;}
 namespace vk::main{class Texture;}
-namespace utl::element{class Window;}
 namespace vk::structure{class Vulkan;}
+namespace utl::element{class Window;}
 
 
 namespace vk{
