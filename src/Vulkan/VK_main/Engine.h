@@ -8,7 +8,7 @@ namespace vk::instance{class Instance;}
 class VK_swapchain;
 namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
-namespace vk::main{class VK_texture;}
+namespace vk::main{class Texture;}
 namespace vk::data{class Data;}
 namespace vk::draw{class Viewport;}
 class VK_reload;
@@ -69,7 +69,7 @@ private:
   VK_swapchain* vk_swapchain;
   VK_renderpass* vk_renderpass;
   vk::binding::Descriptor* vk_descriptor;
-  vk::main::VK_texture* vk_texture;
+  vk::main::Texture* vk_texture;
   vk::instance::Pool* vk_pool;
   vk::data::Data* vk_data;
   vk::draw::Viewport* vk_viewport;

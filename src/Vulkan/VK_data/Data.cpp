@@ -11,7 +11,7 @@ Data::Data(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_buffer = new Buffer(struct_vulkan);
-  this->vk_texture = new vk::main::VK_texture(struct_vulkan);
+  this->vk_texture = new vk::main::Texture(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
 

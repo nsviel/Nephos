@@ -2,7 +2,7 @@
 
 #include <Engine/Node.h>
 #include <Vulkan/Node.h>
-#include <Vulkan/VK_main/VK_texture.h>
+#include <Vulkan/VK_main/Texture.h>
 #include <Vulkan/VK_struct/Namespace.h>
 #include <GUI/Namespace.h>
 

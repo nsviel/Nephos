@@ -8,12 +8,12 @@ namespace vk::structure{class Task;}
 
 namespace vk::main{
 
-class VK_info
+class Info
 {
 public:
   //Constructor / Destructor
-  VK_info(vk::structure::Vulkan* struct_vulkan);
-  ~VK_info();
+  Info(vk::structure::Vulkan* struct_vulkan);
+  ~Info();
 
 public:
   //Main functions

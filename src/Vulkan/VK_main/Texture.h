@@ -11,12 +11,12 @@ namespace vk::structure{class Object;}
 
 namespace vk::main{
 
-class VK_texture
+class Texture
 {
 public:
   //Constructor / Destructor
-  VK_texture(vk::structure::Vulkan* struct_vulkan);
-  ~VK_texture();
+  Texture(vk::structure::Vulkan* struct_vulkan);
+  ~Texture();
 
 public:
   //Main functions

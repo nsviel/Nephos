@@ -10,7 +10,7 @@ extern "C" {
 
 namespace vk::image{class Image;}
 namespace vk::command{class Command;}
-namespace vk::main{class VK_texture;}
+namespace vk::main{class Texture;}
 namespace vk::command{class Memory;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
@@ -38,7 +38,7 @@ private:
   vk::command::Memory* vk_memory;
   vk::image::Image* vk_image;
   vk::command::Command* vk_command;
-  vk::main::VK_texture* vk_texture;
+  vk::main::Texture* vk_texture;
 };
 
 }

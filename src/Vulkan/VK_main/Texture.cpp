@@ -1,4 +1,4 @@
-#include "VK_texture.h"
+#include "Texture.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::main{
 
 //Constructor / Destructor
-VK_texture::VK_texture(vk::structure::Vulkan* struct_vulkan){
+Texture::Texture(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -16,10 +16,10 @@ VK_texture::VK_texture(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_texture::~VK_texture(){}
+Texture::~Texture(){}
 
 //Main function
-vk::structure::Image* VK_texture::load_texture(utl::media::Image* struct_image){
+vk::structure::Image* Texture::load_texture(utl::media::Image* struct_image){
   //---------------------------
 
   vk::structure::Image* image = new vk::structure::Image();
@@ -38,14 +38,14 @@ vk::structure::Image* VK_texture::load_texture(utl::media::Image* struct_image){
   //---------------------------
   return image;
 }
-void VK_texture::update_texture(vk::structure::Image* image){
+void Texture::update_texture(vk::structure::Image* image){
   //---------------------------
 
   vk_memory->transfert_image_to_gpu(image);
 
   //---------------------------
 }
-VkFormat VK_texture::find_texture_format(utl::media::Image* image){
+VkFormat Texture::find_texture_format(utl::media::Image* image){
   VkFormat format;
   //---------------------------
 
@@ -76,7 +76,7 @@ VkFormat VK_texture::find_texture_format(utl::media::Image* image){
 }
 
 //Texture cleaning
-void VK_texture::clean_texture(vk::structure::Object* data){
+void Texture::clean_texture(vk::structure::Object* data){
   //---------------------------
 
   for(int i=0; i<data->list_texture.size(); i++){
@@ -86,7 +86,7 @@ void VK_texture::clean_texture(vk::structure::Object* data){
 
   //---------------------------
 }
-void VK_texture::clean(){
+void Texture::clean(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->data.vec_texture.size(); i++){

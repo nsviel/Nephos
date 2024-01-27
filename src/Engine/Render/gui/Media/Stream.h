@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
-namespace vk::main{class VK_texture;}
+namespace vk::main{class Texture;}
 namespace vk::structure{class Image;}
 
 
@@ -25,7 +25,7 @@ public:
   void render_image(ImVec2& imageSize);
 
 private:
-  vk::main::VK_texture* vk_texture;
+  vk::main::Texture* vk_texture;
 
   vk::structure::Image* vk_image;
   ImTextureID texture;

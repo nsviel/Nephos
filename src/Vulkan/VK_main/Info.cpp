@@ -1,4 +1,4 @@
-#include "VK_info.h"
+#include "Info.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,29 +6,29 @@
 namespace vk::main{
 
 //Constructor / Destructor
-VK_info::VK_info(vk::structure::Vulkan* struct_vulkan){
+Info::Info(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-VK_info::~VK_info(){}
+Info::~Info(){}
 
 //Main function
-string VK_info::get_gpu_name(){
+string Info::get_gpu_name(){
   return struct_vulkan->device.physical_device.name;
 }
-float VK_info::get_fps(){
+float Info::get_fps(){
   return struct_vulkan->profiler.engine_fps;
 }
-int* VK_info::get_fps_max(){
+int* Info::get_fps_max(){
   return &struct_vulkan->param.max_fps;
 }
-vec4* VK_info::get_color_background(){
+vec4* Info::get_color_background(){
   return &struct_vulkan->param.background_color;
 }
-vector<vk::structure::Task>& VK_info::get_profiler_data(){
+vector<vk::structure::Task>& Info::get_profiler_data(){
   return struct_vulkan->profiler.vec_task;
 }
 

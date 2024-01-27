@@ -15,7 +15,7 @@ Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
   this->vk_memory = new vk::command::Memory(struct_vulkan);
   this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
-  this->vk_texture = new vk::main::VK_texture(struct_vulkan);
+  this->vk_texture = new vk::main::Texture(struct_vulkan);
   this->vk_memory = new vk::command::Memory(struct_vulkan);
 
   //---------------------------
