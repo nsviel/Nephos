@@ -1,10 +1,10 @@
-#include "FPS_counter.h"
+#include "Counter.h"
 
 
 namespace utl::fps{
 
 // Constructor / Destructor
-FPS_counter::FPS_counter(){
+Counter::Counter(){
   //---------------------------
 
   this->last_time = std::chrono::steady_clock::now();
@@ -12,10 +12,10 @@ FPS_counter::FPS_counter(){
   //---------------------------
 }
 
-FPS_counter::~FPS_counter(){}
+Counter::~Counter(){}
 
 // Main function
-float FPS_counter::update(){
+float Counter::update(){
   //---------------------------
 
   auto now = std::chrono::steady_clock::now();

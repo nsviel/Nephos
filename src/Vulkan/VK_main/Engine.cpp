@@ -27,7 +27,7 @@ Engine::Engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_canvas = new vk::data::Canvas(struct_vulkan);
   this->vk_drawing = new vk::draw::Drawer(struct_vulkan);
   this->vk_synchronization = new vk::command::Synchronization(struct_vulkan);
-  this->fps_counter = new utl::fps::FPS_counter();
+  this->fps_counter = new utl::fps::Counter();
 
   //---------------------------
 }

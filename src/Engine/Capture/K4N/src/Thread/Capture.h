@@ -4,8 +4,8 @@
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
 
-namespace utl::fps{class FPS_counter;}
-namespace utl::fps{class FPS_control;}
+namespace utl::fps{class Counter;}
+namespace utl::fps{class Control;}
 namespace eng{class Node;}
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Sensor;}
@@ -40,8 +40,8 @@ public:
   inline bool* get_thread_pause(){return &thread_pause;}
 
 private:
-  utl::fps::FPS_counter* fps_counter;
-  utl::fps::FPS_control* fps_control;
+  utl::fps::Counter* fps_counter;
+  utl::fps::Control* fps_control;
   eng::k4n::data::Data* k4a_data;
   eng::k4n::data::Cloud* k4a_cloud;
   eng::k4n::config::Configuration* configuration;

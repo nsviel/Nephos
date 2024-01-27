@@ -1,10 +1,10 @@
-#include "FPS_control.h"
+#include "Control.h"
 
 
 namespace utl::fps{
 
 // Constructor / Destructor
-FPS_control::FPS_control(int fps_max){
+Control::Control(int fps_max){
   //---------------------------
 
   this->fps_max = fps_max;
@@ -12,17 +12,17 @@ FPS_control::FPS_control(int fps_max){
   //---------------------------
 }
 
-FPS_control::~FPS_control(){}
+Control::~Control(){}
 
 // Main function
-void FPS_control::start(){
+void Control::start(){
   //---------------------------
 
   this->start_time = std::chrono::steady_clock::now();
 
   //---------------------------
 }
-void FPS_control::stop(){
+void Control::stop(){
   //---------------------------
 
   auto now = std::chrono::steady_clock::now();

@@ -8,11 +8,11 @@
 
 namespace utl::fps{
 
-class FPS_control
+class Control
 {
 public:
-  FPS_control(int fps_max);
-  ~FPS_control();
+  Control(int fps_max);
+  ~Control();
 
   //Main function
   void start();

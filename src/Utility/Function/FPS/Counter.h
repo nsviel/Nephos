@@ -8,11 +8,11 @@
 
 namespace utl::fps{
 
-class FPS_counter
+class Counter
 {
 public:
-  FPS_counter();
-  ~FPS_counter();
+  Counter();
+  ~Counter();
 
   //Main function
   float update();

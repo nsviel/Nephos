@@ -22,7 +22,7 @@ class VK_renderpass;
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
-namespace utl::fps{class FPS_counter;}
+namespace utl::fps{class Counter;}
 
 
 namespace vk::main{
@@ -78,7 +78,7 @@ private:
   VK_frame* vk_frame;
   vk::data::Canvas* vk_canvas;
   vk::draw::Drawer* vk_drawing;
-  utl::fps::FPS_counter* fps_counter;
+  utl::fps::Counter* fps_counter;
 
   Timer timer;
 };
