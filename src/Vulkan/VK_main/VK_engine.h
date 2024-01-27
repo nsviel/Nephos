@@ -25,6 +25,8 @@ namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
 
 
+namespace vk::main{
+
 class VK_engine
 {
 public:
@@ -80,3 +82,5 @@ private:
 
   Timer timer;
 };
+
+}

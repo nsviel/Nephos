@@ -4,8 +4,8 @@
 #include <Utility/Function/Timer/fct_timer.h>
 
 namespace eng{class Node;}
-class VK_engine;
-class VK_imgui;
+namespace vk::main{class VK_engine;}
+namespace vk::main{class VK_imgui;}
 namespace eng::render{class Node;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
@@ -28,8 +28,8 @@ public:
   void draw(vk::structure::Subpass* subpass);
 
 private:
-  VK_engine* vk_engine;
-  VK_imgui* vk_imgui;
+  vk::main::VK_engine* vk_engine;
+  vk::main::VK_imgui* vk_imgui;
 };
 
 }

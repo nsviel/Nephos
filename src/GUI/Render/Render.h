@@ -1,9 +1,9 @@
 #pragma once
 
 namespace vk{class Node;}
-class VK_engine;
+namespace vk::main{class VK_engine;}
 namespace vk::draw{class Renderer;}
-class VK_imgui;
+namespace vk::main{class VK_imgui;}
 namespace gui{class Node;}
 namespace gui{class Renderpass;}
 
@@ -29,9 +29,9 @@ public:
 private:
   gui::Renderpass* gui_renderpass;
   vk::Node* vulkan;
-  VK_engine* vk_engine;
+  vk::main::VK_engine* vk_engine;
   vk::draw::Renderer* vk_render;
-  VK_imgui* vk_imgui;
+  vk::main::VK_imgui* vk_imgui;
 };
 
 }

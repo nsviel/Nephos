@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_imgui;
+namespace vk::main{class VK_imgui;}
 class VK_info;
 namespace eng::render{class Node;}
 namespace eng::cam{class Node;}
@@ -35,7 +35,7 @@ private:
   eng::ope::gui::Control* ope_control;
   utl::element::Window* utl_window;
   utl::gui::plot::Profiler* profiler;
-  VK_imgui* vk_imgui;
+  vk::main::VK_imgui* vk_imgui;
   VK_info* vk_info;
 
   string name;

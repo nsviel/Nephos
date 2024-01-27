@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_engine;
+namespace vk::main{class VK_engine;}
 namespace eng::scene{class Node;}
 namespace eng::scene{class Glyph;}
 namespace eng::scene{class Operation;}
@@ -40,7 +40,7 @@ public:
   inline utl::type::Set* get_selected_set(){return set_scene->selected_set;}
 
 private:
-  VK_engine* vk_engine;
+  vk::main::VK_engine* vk_engine;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
   eng::scene::Loader* sce_loader;

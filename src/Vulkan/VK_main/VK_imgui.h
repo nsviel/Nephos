@@ -3,13 +3,15 @@
 #include <Utility/Specific/common.h>
 #include <imgui/implot/implot.h>
 
-class VK_engine;
+namespace vk::main{class VK_engine;}
 namespace vk::instance{class Pool;}
 namespace vk::command{class Submit;}
 namespace vk::command{class Command;}
 class VK_surface;
 namespace vk::structure{class Vulkan;}
 
+
+namespace vk::main{
 
 class VK_imgui
 {
@@ -30,9 +32,11 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_engine* vk_engine;
+  vk::main::VK_engine* vk_engine;
   vk::command::Submit* vk_submit;
   vk::command::Command* vk_command;
   vk::instance::Pool* vk_pool;
   VK_surface* vk_surface;
 };
+
+}

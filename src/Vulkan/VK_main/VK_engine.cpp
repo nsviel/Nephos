@@ -5,6 +5,8 @@
 #include <Utility/Function/Timer/FPS_counter.h>
 
 
+namespace vk::main{
+
 //Constructor / Destructor
 VK_engine::VK_engine(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -204,4 +206,6 @@ std::list<vk::structure::Object*> VK_engine::get_list_data(){
 }
 void VK_engine::set_window(GLFWwindow* window){
   struct_vulkan->window.glfw_window = window;
+}
+
 }

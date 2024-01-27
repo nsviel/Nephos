@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 class Text;
-class VK_engine;
+namespace vk::main{class VK_engine;}
 namespace eng::render{class Node;}
 namespace eng::render{class Node;}
 namespace utl::gui::widget{class Console;}
@@ -50,7 +50,7 @@ public:
   string get_path_fs_from_selection();
 
 private:
-  VK_engine* vk_engine;
+  vk::main::VK_engine* vk_engine;
   eng::render::Node* node_render;
   utl::gui::editor::Text* editor_vs;
   utl::gui::editor::Text* editor_fs;

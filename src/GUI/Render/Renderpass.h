@@ -3,8 +3,8 @@
 #include <Utility/Specific/common.h>
 
 namespace vk{class Node;}
-class VK_engine;
-class VK_imgui;
+namespace vk::main{class VK_engine;}
+namespace vk::main{class VK_imgui;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
 
@@ -27,8 +27,8 @@ public:
   void draw(vk::structure::Subpass* subpass);
 
 private:
-  VK_imgui* vk_imgui;
-  VK_engine* vk_engine;
+  vk::main::VK_imgui* vk_imgui;
+  vk::main::VK_engine* vk_engine;
 };
 
 }

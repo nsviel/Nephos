@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::main{
+
 //Constructor / Destructor
 VK_imgui::VK_imgui(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -11,7 +13,7 @@ VK_imgui::VK_imgui(vk::structure::Vulkan* struct_vulkan){
   this->vk_pool = new vk::instance::Pool(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_submit = new vk::command::Submit(struct_vulkan);
-  this->vk_engine = new VK_engine(struct_vulkan);
+  this->vk_engine = new vk::main::VK_engine(struct_vulkan);
   this->vk_surface = new VK_surface(struct_vulkan);
 
   //---------------------------
@@ -116,4 +118,6 @@ bool VK_imgui::check_window_resize(){
 
   //---------------------------
   return has_been_resized;
+}
+
 }
