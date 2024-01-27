@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::main{class VK_engine;}
-namespace vk::main{class VK_imgui;}
+namespace vk::main{class Engine;}
+namespace vk::main{class Imgui;}
 class VK_info;
 class VK_texture;
 namespace utl::element{class Window;}
@@ -30,16 +30,16 @@ public:
   void param(utl::element::Window* utl_window, bool headless);
 
   inline vk::structure::Vulkan* get_struct_vulkan(){return struct_vulkan;}
-  inline vk::main::VK_engine* get_vk_engine(){return vk_engine;}
-  inline vk::main::VK_imgui* get_vk_imgui(){return vk_imgui;}
+  inline vk::main::Engine* get_vk_engine(){return vk_engine;}
+  inline vk::main::Imgui* get_vk_imgui(){return vk_imgui;}
   inline VK_info* get_vk_info(){return vk_info;}
   inline VK_texture* get_vk_texture(){return vk_texture;}
 
 private:
   utl::element::Window* utl_window;
   vk::structure::Vulkan* struct_vulkan;
-  vk::main::VK_engine* vk_engine;
-  vk::main::VK_imgui* vk_imgui;
+  vk::main::Engine* vk_engine;
+  vk::main::Imgui* vk_imgui;
   VK_info* vk_info;
   VK_texture* vk_texture;
 };

@@ -1,4 +1,4 @@
-#include "VK_engine.h"
+#include "Engine.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Function/Timer/fct_timer.h>
@@ -8,7 +8,7 @@
 namespace vk::main{
 
 //Constructor / Destructor
-VK_engine::VK_engine(vk::structure::Vulkan* struct_vulkan){
+Engine::Engine(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -32,10 +32,10 @@ VK_engine::VK_engine(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_engine::~VK_engine(){}
+Engine::~Engine(){}
 
 //Init function
-void VK_engine::init(){
+void Engine::init(){
   timer_time t1 = timer.start_t();
   //---------------------------
 
@@ -48,7 +48,7 @@ void VK_engine::init(){
   //---------------------------
   struct_vulkan->profiler.engine_init = timer.stop_us(t1) / 1000;
 }
-void VK_engine::init_engine_presentation(){
+void Engine::init_engine_presentation(){
   //---------------------------
 
   //Instance
@@ -67,7 +67,7 @@ void VK_engine::init_engine_presentation(){
 
   //---------------------------
 }
-void VK_engine::init_engine_headless(){
+void Engine::init_engine_headless(){
   //---------------------------
 
   //Instance
@@ -86,7 +86,7 @@ void VK_engine::init_engine_headless(){
 }
 
 //Main function
-void VK_engine::loop(){
+void Engine::loop(){
   struct_vulkan->profiler.time_ref = std::chrono::system_clock::now();
   struct_vulkan->profiler.vec_task.clear();
   //---------------------------
@@ -96,7 +96,7 @@ void VK_engine::loop(){
   //---------------------------
   struct_vulkan->profiler.engine_fps = fps_counter->update();
 }
-void VK_engine::clean(){
+void Engine::clean(){
   //---------------------------
 
   vk_synchronization->clean();
@@ -114,7 +114,7 @@ void VK_engine::clean(){
 }
 
 //Specific function
-void VK_engine::device_wait_idle(){
+void Engine::device_wait_idle(){
   //---------------------------
 
   VkResult result = vkDeviceWaitIdle(struct_vulkan->device.device);
@@ -124,7 +124,7 @@ void VK_engine::device_wait_idle(){
 
   //---------------------------
 }
-void VK_engine::reload_shader(string shader, string subshader){
+void Engine::reload_shader(string shader, string subshader){
   //---------------------------
 
   vk_reload->hot_shader_reload(shader, subshader);
@@ -133,7 +133,7 @@ void VK_engine::reload_shader(string shader, string subshader){
 }
 
 //Data function
-void VK_engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose){
+void Engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose){
   if(data == nullptr) return;
   //---------------------------
 
@@ -157,7 +157,7 @@ void VK_engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* po
 
   //---------------------------
 }
-void VK_engine::remove_data_in_engine(utl::type::Data* data){
+void Engine::remove_data_in_engine(utl::type::Data* data){
   //---------------------------
 
   bool is_in_list = false;
@@ -173,38 +173,38 @@ void VK_engine::remove_data_in_engine(utl::type::Data* data){
 }
 
 //Renderpass function
-void VK_engine::add_renderpass_description(vk::structure::Renderpass* renderpass){
+void Engine::add_renderpass_description(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   struct_vulkan->render.vec_renderpass.push_back(renderpass);
 
   //---------------------------
 }
-vk::structure::Renderpass* VK_engine::get_renderpass(int i){
+vk::structure::Renderpass* Engine::get_renderpass(int i){
   //---------------------------
 
   return struct_vulkan->render.vec_renderpass[i];
 
   //---------------------------
 }
-vk::structure::Renderpass* VK_engine::get_renderpass_presentation(int i){
+vk::structure::Renderpass* Engine::get_renderpass_presentation(int i){
   //---------------------------
 
   return struct_vulkan->render.get_renderpass_byName("gui");
 
   //---------------------------
 }
-vk::structure::Object* VK_engine::get_canvas(){
+vk::structure::Object* Engine::get_canvas(){
   //---------------------------
 
   return &struct_vulkan->data.canvas;
 
   //---------------------------
 }
-std::list<vk::structure::Object*> VK_engine::get_list_data(){
+std::list<vk::structure::Object*> Engine::get_list_data(){
   return struct_vulkan->data.list_vk_object;
 }
-void VK_engine::set_window(GLFWwindow* window){
+void Engine::set_window(GLFWwindow* window){
   struct_vulkan->window.glfw_window = window;
 }
 

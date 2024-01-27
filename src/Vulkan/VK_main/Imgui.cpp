@@ -1,4 +1,4 @@
-#include "VK_imgui.h"
+#include "Imgui.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,22 +6,22 @@
 namespace vk::main{
 
 //Constructor / Destructor
-VK_imgui::VK_imgui(vk::structure::Vulkan* struct_vulkan){
+Imgui::Imgui(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
   this->vk_pool = new vk::instance::Pool(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_submit = new vk::command::Submit(struct_vulkan);
-  this->vk_engine = new vk::main::VK_engine(struct_vulkan);
+  this->vk_engine = new vk::main::Engine(struct_vulkan);
   this->vk_surface = new VK_surface(struct_vulkan);
 
   //---------------------------
 }
-VK_imgui::~VK_imgui(){}
+Imgui::~Imgui(){}
 
 //Main function
-void VK_imgui::init(){
+void Imgui::init(){
   vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
   //---------------------------
 
@@ -49,7 +49,7 @@ void VK_imgui::init(){
 
   //---------------------------
 }
-void VK_imgui::draw(VkCommandBuffer& command_buffer){
+void Imgui::draw(VkCommandBuffer& command_buffer){
   //---------------------------
 
   ImDrawData* draw_data = ImGui::GetDrawData();
@@ -57,7 +57,7 @@ void VK_imgui::draw(VkCommandBuffer& command_buffer){
 
   //---------------------------
 }
-void VK_imgui::load_font(){
+void Imgui::load_font(){
   VkResult result;
   //---------------------------
 
@@ -76,7 +76,7 @@ void VK_imgui::load_font(){
 
   //---------------------------
 }
-void VK_imgui::clean(){
+void Imgui::clean(){
   //---------------------------
 
   ImGui_ImplVulkan_Shutdown();
@@ -87,7 +87,7 @@ void VK_imgui::clean(){
   //---------------------------
 }
 
-ImTextureID VK_imgui::rendered_texture(){
+ImTextureID Imgui::rendered_texture(){
   static ImTextureID texture = 0;
   //---------------------------
 
@@ -104,7 +104,7 @@ ImTextureID VK_imgui::rendered_texture(){
   //---------------------------
   return texture;
 }
-bool VK_imgui::check_window_resize(){
+bool Imgui::check_window_resize(){
   //---------------------------
 
   bool has_been_resized = false;

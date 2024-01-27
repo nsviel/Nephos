@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
-namespace vk::main{class VK_engine;}
+namespace vk::main{class Engine;}
 class VK_pipeline;
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
@@ -36,7 +36,7 @@ public:
 
 private:
   eng::shader::EDL* shader_edl;
-  vk::main::VK_engine* vk_engine;
+  vk::main::Engine* vk_engine;
   VK_pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::binding::Descriptor* vk_descriptor;

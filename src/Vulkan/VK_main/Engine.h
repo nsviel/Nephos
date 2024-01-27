@@ -27,12 +27,12 @@ namespace vk::structure{class Object;}
 
 namespace vk::main{
 
-class VK_engine
+class Engine
 {
 public:
   //Constructor / Destructor
-  VK_engine(vk::structure::Vulkan* struct_vulkan);
-  ~VK_engine();
+  Engine(vk::structure::Vulkan* struct_vulkan);
+  ~Engine();
 
 public:
   //Init function

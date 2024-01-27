@@ -4,7 +4,7 @@
 #include <Utility/Function/Timer/fct_timer.h>
 
 namespace eng{class Node;}
-namespace vk::main{class VK_engine;}
+namespace vk::main{class Engine;}
 class VK_pipeline;
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
@@ -42,7 +42,7 @@ private:
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
   vk::draw::Drawer* vk_drawing;
-  vk::main::VK_engine* vk_engine;
+  vk::main::Engine* vk_engine;
   VK_pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
 
