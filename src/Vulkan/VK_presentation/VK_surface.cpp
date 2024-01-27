@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::presentation{
+
 //Constructor / Destructor
 VK_surface::VK_surface(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -57,4 +59,6 @@ void VK_surface::check_for_resizing(){
 
   //---------------------------
   struct_vulkan->window.is_resized = is_resized;
+}
+
 }

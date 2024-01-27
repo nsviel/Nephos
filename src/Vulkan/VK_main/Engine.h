@@ -3,16 +3,16 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
-class VK_surface;
+namespace vk::presentation{class VK_surface;}
 namespace vk::instance{class Instance;}
-class VK_swapchain;
+namespace vk::presentation{class VK_swapchain;}
 namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
 namespace vk::main{class Texture;}
 namespace vk::data{class Data;}
 namespace vk::draw{class Viewport;}
 class VK_reload;
-class VK_frame;
+namespace vk::presentation{class VK_frame;}
 namespace vk::data{class Canvas;}
 namespace vk::instance{class Extension;}
 namespace vk::instance{class Pool;}
@@ -63,10 +63,10 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::instance::Extension* vk_extension;
-  VK_surface* vk_surface;
+  vk::presentation::VK_surface* vk_surface;
   vk::instance::Instance* vk_instance;
   vk::device::Logical* vk_device;
-  VK_swapchain* vk_swapchain;
+  vk::presentation::VK_swapchain* vk_swapchain;
   VK_renderpass* vk_renderpass;
   vk::binding::Descriptor* vk_descriptor;
   vk::main::Texture* vk_texture;
@@ -75,7 +75,7 @@ private:
   vk::draw::Viewport* vk_viewport;
   VK_reload* vk_reload;
   vk::command::Synchronization* vk_synchronization;
-  VK_frame* vk_frame;
+  vk::presentation::VK_frame* vk_frame;
   vk::data::Canvas* vk_canvas;
   vk::draw::Drawer* vk_drawing;
   utl::fps::Counter* fps_counter;

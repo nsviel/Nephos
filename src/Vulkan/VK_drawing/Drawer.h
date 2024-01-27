@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
-class VK_presentation;
+namespace vk::presentation{class VK_presentation;}
 namespace vk::draw{class Renderer;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
@@ -30,7 +30,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_presentation* vk_presentation;
+  vk::presentation::VK_presentation* vk_presentation;
   vk::draw::Renderer* vk_render;
 
   Timer timer;

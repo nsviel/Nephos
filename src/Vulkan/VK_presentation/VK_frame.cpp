@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::presentation{
+
 //Constructor / Destructor
 VK_frame::VK_frame(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -57,4 +59,6 @@ void VK_frame::clean_frame(){
   vec_frame.clear();
 
   //---------------------------
+}
+
 }

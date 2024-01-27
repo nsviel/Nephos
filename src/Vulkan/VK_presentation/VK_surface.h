@@ -5,6 +5,8 @@
 namespace vk::structure{class Vulkan;}
 
 
+namespace vk::presentation{
+
 class VK_surface
 {
 public:
@@ -24,3 +26,5 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
 };
+
+}

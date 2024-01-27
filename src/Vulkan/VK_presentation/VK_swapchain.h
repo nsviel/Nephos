@@ -4,11 +4,13 @@
 
 namespace vk::device{class Physical;}
 namespace vk::draw{class Viewport;}
-class VK_frame;
+namespace vk::presentation{class VK_frame;}
 class VK_framebuffer;
-class VK_surface;
+namespace vk::presentation{class VK_surface;}
 namespace vk::structure{class Vulkan;}
 
+
+namespace vk::presentation{
 
 class VK_swapchain
 {
@@ -34,7 +36,9 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::draw::Viewport* vk_viewport;
   vk::device::Physical* dev_physical;
-  VK_frame* vk_frame;
+  vk::presentation::VK_frame* vk_frame;
   VK_framebuffer* vk_framebuffer;
-  VK_surface* vk_surface;
+  vk::presentation::VK_surface* vk_surface;
 };
+
+}

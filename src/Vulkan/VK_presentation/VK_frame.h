@@ -10,6 +10,8 @@ namespace vk::image{class Depth;}
 namespace vk::structure{class Vulkan;}
 
 
+namespace vk::presentation{
+
 class VK_frame
 {
 public:
@@ -30,3 +32,5 @@ private:
   vk::image::Color* vk_color;
   vk::image::Depth* vk_depth;
 };
+
+}

@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::presentation{
+
 //Constructor / Destructor
 VK_swapchain::VK_swapchain(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -169,4 +171,6 @@ void VK_swapchain::find_swapchain_presentation_mode(){
 
   //---------------------------
   struct_vulkan->swapchain.presentation_mode = presentation_mode;
+}
+
 }

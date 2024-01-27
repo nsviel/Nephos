@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::presentation{
+
 //Constructor / Destructor
 VK_presentation::VK_presentation(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -75,4 +77,6 @@ void VK_presentation::next_frame_ID(){
   swapchain->frame_presentation_ID = current_ID;
 
   //---------------------------
+}
+
 }
