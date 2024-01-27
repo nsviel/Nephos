@@ -1,5 +1,8 @@
 #include "FPS_counter.h"
 
+
+namespace utl::fps{
+
 // Constructor / Destructor
 FPS_counter::FPS_counter(){
   //---------------------------
@@ -22,4 +25,6 @@ float FPS_counter::update(){
 
   //---------------------------
   return fps;
+}
+
 }

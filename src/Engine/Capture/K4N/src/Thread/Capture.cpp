@@ -10,8 +10,8 @@ namespace eng::k4n::thread{
 Capture::Capture(eng::k4n::Node* k4n_node){
   //---------------------------
 
-  this->fps_counter = new FPS_counter();
-  this->fps_control = new FPS_control(30);
+  this->fps_counter = new utl::fps::FPS_counter();
+  this->fps_control = new utl::fps::FPS_control(30);
   this->k4a_data = new eng::k4n::data::Data();
   this->k4a_cloud = new eng::k4n::data::Cloud(k4n_node);
   this->configuration = new eng::k4n::config::Configuration();

@@ -1,5 +1,8 @@
 #include "FPS_control.h"
 
+
+namespace utl::fps{
+
 // Constructor / Destructor
 FPS_control::FPS_control(int fps_max){
   //---------------------------
@@ -31,4 +34,6 @@ void FPS_control::stop(){
   }
 
   //---------------------------
+}
+
 }

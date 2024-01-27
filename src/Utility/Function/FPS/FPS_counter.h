@@ -6,6 +6,8 @@
 #include <thread>
 
 
+namespace utl::fps{
+
 class FPS_counter
 {
 public:
@@ -21,3 +23,5 @@ private:
   std::chrono::time_point<std::chrono::steady_clock> last_time;
   float fps = 0;
 };
+
+}

@@ -6,6 +6,8 @@
 #include <thread>
 
 
+namespace utl::fps{
+
 class FPS_control
 {
 public:
@@ -23,3 +25,5 @@ private:
   std::chrono::time_point<std::chrono::steady_clock> start_time;
   int fps_max = 60;
 };
+
+}

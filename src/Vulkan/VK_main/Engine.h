@@ -19,10 +19,10 @@ namespace vk::instance{class Pool;}
 namespace vk::draw{class Drawer;}
 namespace vk::command{class Synchronization;}
 class VK_renderpass;
-class FPS_counter;
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
+namespace utl::fps{class FPS_counter;}
 
 
 namespace vk::main{
@@ -78,7 +78,7 @@ private:
   VK_frame* vk_frame;
   vk::data::Canvas* vk_canvas;
   vk::draw::Drawer* vk_drawing;
-  FPS_counter* fps_counter;
+  utl::fps::FPS_counter* fps_counter;
 
   Timer timer;
 };
