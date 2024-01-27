@@ -15,6 +15,8 @@
     - 4 texture
 */
 
+namespace vk::renderpass{
+
 //Constructor / Destructor
 VK_subpass::VK_subpass(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -165,4 +167,6 @@ void VK_subpass::create_subpass_description(vk::structure::Subpass* subpass){
   //---------------------------
   subpass->description = subpass_description;
   subpass->dependency = subpass_dependency;
+}
+
 }

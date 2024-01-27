@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_pipeline;
+namespace vk::renderpass{class VK_pipeline;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
@@ -22,5 +22,5 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  VK_pipeline* vk_pipeline;
+  vk::renderpass::VK_pipeline* vk_pipeline;
 };

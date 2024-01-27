@@ -13,7 +13,7 @@ Swapchain::Swapchain(vk::structure::Vulkan* struct_vulkan){
   this->dev_physical = new vk::device::Physical(struct_vulkan);
   this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
   this->vk_frame = new Frame(struct_vulkan);
-  this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
+  this->vk_framebuffer = new vk::renderpass::VK_framebuffer(struct_vulkan);
   this->vk_surface = new Surface(struct_vulkan);
 
   //---------------------------

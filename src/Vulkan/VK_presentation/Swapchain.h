@@ -5,7 +5,7 @@
 namespace vk::device{class Physical;}
 namespace vk::draw{class Viewport;}
 namespace vk::presentation{class Frame;}
-class VK_framebuffer;
+namespace vk::renderpass{class VK_framebuffer;}
 namespace vk::presentation{class Surface;}
 namespace vk::structure{class Vulkan;}
 
@@ -37,7 +37,7 @@ private:
   vk::draw::Viewport* vk_viewport;
   vk::device::Physical* dev_physical;
   vk::presentation::Frame* vk_frame;
-  VK_framebuffer* vk_framebuffer;
+  vk::renderpass::VK_framebuffer* vk_framebuffer;
   vk::presentation::Surface* vk_surface;
 };
 

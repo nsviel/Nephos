@@ -8,6 +8,8 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Attachment;}
 
 
+namespace vk::renderpass{
+
 class VK_attachment
 {
 public:
@@ -31,3 +33,5 @@ private:
   vk::image::Color* vk_color;
   vk::image::Depth* vk_depth;
 };
+
+}

@@ -11,6 +11,8 @@ namespace vk::structure{class Framebuffer;}
 namespace vk::structure{class Frame;}
 
 
+namespace vk::renderpass{
+
 class VK_framebuffer
 {
 public:
@@ -36,3 +38,5 @@ private:
   vk::image::Depth* vk_depth;
   vk::image::Image* vk_image;
 };
+
+}

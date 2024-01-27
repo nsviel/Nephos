@@ -3,11 +3,13 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::command{class Command;}
-class VK_attachment;
+namespace vk::renderpass{class VK_attachment;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
 
+
+namespace vk::renderpass{
 
 class VK_subpass
 {
@@ -31,5 +33,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::command::Command* vk_command;
-  VK_attachment* vk_attachment;
+  vk::renderpass::VK_attachment* vk_attachment;
 };
+
+}

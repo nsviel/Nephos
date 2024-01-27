@@ -5,7 +5,7 @@
 namespace vk::image{class Image;}
 namespace vk::command{class Synchronization;}
 namespace vk::image{class Color;}
-class VK_framebuffer;
+namespace vk::renderpass{class VK_framebuffer;}
 namespace vk::image{class Depth;}
 namespace vk::structure{class Vulkan;}
 
@@ -27,7 +27,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::command::Synchronization* vk_synchronization;
-  VK_framebuffer* vk_framebuffer;
+  vk::renderpass::VK_framebuffer* vk_framebuffer;
   vk::image::Image* vk_image;
   vk::image::Color* vk_color;
   vk::image::Depth* vk_depth;

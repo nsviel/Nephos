@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::renderpass{
+
 //Constructor / Destructor
 VK_pipeline::VK_pipeline(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -309,4 +311,6 @@ void VK_pipeline::check_struct_pipeline_input(vk::structure::Pipeline* pipeline)
   //if(pipeline->binding.vec_required_binding.size() == 0) cout<<"[error] Pipeline init input -> no vec_required_binding"<<endl;
 
   //---------------------------
+}
+
 }

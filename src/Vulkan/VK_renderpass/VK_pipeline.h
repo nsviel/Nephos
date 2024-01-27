@@ -11,6 +11,8 @@ namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 
 
+namespace vk::renderpass{
+
 class VK_pipeline
 {
 public:
@@ -50,3 +52,5 @@ private:
   VK_shader* vk_shader;
   vk::data::Data* vk_data;
 };
+
+}

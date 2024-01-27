@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::renderpass{
+
 //Constructor / Destructor
 VK_framebuffer::VK_framebuffer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -130,4 +132,6 @@ void VK_framebuffer::clean_framebuffer_obj(VkFramebuffer& fbo){
   vkDestroyFramebuffer(struct_vulkan->device.device, fbo, nullptr);
 
   //---------------------------
+}
+
 }

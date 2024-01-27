@@ -15,6 +15,8 @@
     - 4 texture
 */
 
+namespace vk::renderpass{
+
 //Constructor / Destructor
 VK_attachment::VK_attachment(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -107,4 +109,6 @@ void VK_attachment::depth_reference(vk::structure::Attachment& depth){
 
   //---------------------------
   depth.reference = reference;
+}
+
 }
