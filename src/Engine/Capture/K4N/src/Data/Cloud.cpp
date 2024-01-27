@@ -38,7 +38,7 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   vec_xyz.clear();
-  vec_rgba.clear();
+  vec_rgb.clear();
   vec_ir.clear();
   vec_r.clear();
   vec_goodness.clear();
@@ -84,8 +84,8 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   data->goodness = vec_goodness;
 
   //Final colorization
-  k4n_operation->make_colorization(sensor, vec_rgba);
-  data->rgb = vec_rgba;
+  k4n_operation->make_colorization(sensor, vec_rgb);
+  data->rgb = vec_rgb;
 
   //Voxelization filtering
   float voxel_size = master->voxel.voxel_size;
@@ -118,12 +118,7 @@ void Cloud::retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* dat
   float R = sqrt(pow(point_m.x, 2) + pow(point_m.y, 2) + pow(point_m.z, 2));
   vec_r.push_back(R);
 
-  //If null point set goodness to bad
-  if(x != 0 && y != 0 && z != 0){
-    vec_goodness.push_back(true);
-  }else{
-    vec_goodness.push_back(false);
-  }
+
 
   //---------------------------
 }
@@ -131,7 +126,7 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
   //---------------------------
 
   eng::k4n::structure::Operation* operation = &sensor->master->operation;
-  glm::vec4 color;
+  glm::vec4 color = vec4(1, 1, 1, 1);
 
   if(operation->color_mode == 0){
     //Camera color
@@ -147,7 +142,7 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
   }
 
   //---------------------------
-  vec_rgba.push_back(color);
+  vec_rgb.push_back(color);
 }
 void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
   if(sensor->ir.image.data.empty()) return;
@@ -162,12 +157,23 @@ void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
   vec_ir.push_back(value);
 }
 void Cloud::retrieve_goodness(int i){
+  bool goodness = true;
   //---------------------------
 
-  //Decaler tout ce qui touche au point goodness retrieve_corner_coordinate
+  //location -> If null point set goodness to bad
+  vec3 xyz = vec_xyz[i];
+  if(xyz.x == 0 && xyz.y == 0 && xyz.z == 0){
+    goodness = false;
+  }
+
+  //color -> If null color set goodness to bad
+  vec4 rgb = vec_rgb[i];
+  if(rgb.x == 0 && rgb.y == 0 && rgb.z == 0){
+    goodness = false;
+  }
 
   //---------------------------
-  //vec_goodness.push_back(value);
+  vec_goodness.push_back(goodness);
 }
 void Cloud::retrieve_corner_coordinate(eng::k4n::dev::Sensor* sensor){
   //---------------------------
