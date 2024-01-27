@@ -11,7 +11,7 @@ Pipeline::Pipeline(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
-  this->vk_shader = new VK_shader(struct_vulkan);
+  this->vk_shader = new vk::shader::VK_shader(struct_vulkan);
   this->vk_data = new vk::data::Data(struct_vulkan);
 
   //---------------------------

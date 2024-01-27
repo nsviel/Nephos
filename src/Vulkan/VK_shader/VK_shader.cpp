@@ -5,6 +5,8 @@
 #include <Utility/Function/File/File.h>
 
 
+namespace vk::shader{
+
 //Constructor / Destructor
 VK_shader::VK_shader(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -138,4 +140,6 @@ void VK_shader::run_recompilation(string path_glsl, string path_spir){
   }
 
   //---------------------------
+}
+
 }

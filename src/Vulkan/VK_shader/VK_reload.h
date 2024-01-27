@@ -8,6 +8,8 @@ namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 
 
+namespace vk::shader{
+
 class VK_reload
 {
 public:
@@ -24,3 +26,5 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::renderpass::Pipeline* vk_pipeline;
 };
+
+}

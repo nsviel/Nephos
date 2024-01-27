@@ -4,7 +4,7 @@
 
 namespace vk::binding{class Descriptor;}
 namespace vk::draw{class Viewport;}
-class VK_shader;
+namespace vk::shader{class VK_shader;}
 namespace vk::data{class Data;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
@@ -49,7 +49,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::binding::Descriptor* vk_descriptor;
-  VK_shader* vk_shader;
+  vk::shader::VK_shader* vk_shader;
   vk::data::Data* vk_data;
 };
 

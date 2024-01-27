@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::shader{
+
 //Constructor / Destructor
 VK_reload::VK_reload(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -43,4 +45,6 @@ void VK_reload::recreate_pipeline(vk::structure::Renderpass* renderpass, vk::str
   vk_pipeline->create_pipeline_struct(renderpass, pipeline);
 
   //---------------------------
+}
+
 }

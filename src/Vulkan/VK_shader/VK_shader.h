@@ -7,6 +7,8 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Pipeline;}
 
 
+namespace vk::shader{
+
 class VK_shader
 {
 public:
@@ -31,3 +33,5 @@ private:
 
   string path_output;
 };
+
+}
