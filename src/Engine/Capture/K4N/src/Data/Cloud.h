@@ -31,6 +31,7 @@ public:
   void retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* data);
   void retrieve_color(eng::k4n::dev::Sensor* sensor, int i);
   void retrieve_ir(eng::k4n::dev::Sensor* sensor, int i);
+  void retrieve_goodness(int i);
   void retrieve_corner_coordinate(eng::k4n::dev::Sensor* sensor);
 
   inline eng::ope::Voxelizer* get_voxelizer(){return ope_voxelizer;}

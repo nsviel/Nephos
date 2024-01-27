@@ -63,6 +63,7 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
     this->retrieve_location(sensor, i, point_cloud_data);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
+    this->retrieve_goodness(i);
   }
 
   //---------------------------
@@ -159,6 +160,14 @@ void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
 
   //---------------------------
   vec_ir.push_back(value);
+}
+void Cloud::retrieve_goodness(int i){
+  //---------------------------
+
+  //Decaler tout ce qui touche au point goodness retrieve_corner_coordinate
+
+  //---------------------------
+  //vec_goodness.push_back(value);
 }
 void Cloud::retrieve_corner_coordinate(eng::k4n::dev::Sensor* sensor){
   //---------------------------
