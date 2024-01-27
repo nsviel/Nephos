@@ -1,10 +1,12 @@
-#include "VK_validation.h"
+#include "Layer.h"
 
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::validation{
+
 //Constructor / Destructor
-VK_validation::VK_validation(vk::structure::Vulkan* struct_vulkan){
+Layer::Layer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -16,10 +18,10 @@ VK_validation::VK_validation(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_validation::~VK_validation(){}
+Layer::~Layer(){}
 
 //Main function
-void VK_validation::create_validation_layer(){
+void Layer::create_validation_layer(){
   if(!with_validation_layer) return;
   //---------------------------
 
@@ -43,7 +45,7 @@ void VK_validation::create_validation_layer(){
 
   //---------------------------
 }
-void VK_validation::clean_layer(){
+void Layer::clean_layer(){
   //---------------------------
 
   if(with_validation_layer){
@@ -54,7 +56,7 @@ void VK_validation::clean_layer(){
 }
 
 //Extension
-void* VK_validation::find_validation_extension(){
+void* Layer::find_validation_extension(){
   //---------------------------
 
   if(with_validation_layer && check_validation_layer_support()){
@@ -67,7 +69,7 @@ void* VK_validation::find_validation_extension(){
   //---------------------------
   return nullptr;
 }
-void* VK_validation::extension_debug(void* ptr){
+void* Layer::extension_debug(void* ptr){
   //---------------------------
 
   EXT_debug_info = {};
@@ -85,7 +87,7 @@ void* VK_validation::extension_debug(void* ptr){
   //---------------------------
   return &EXT_debug_info;
 }
-void* VK_validation::extension_feature(void* ptr){
+void* Layer::extension_feature(void* ptr){
   //---------------------------
 
   if(with_best_practice){
@@ -106,7 +108,7 @@ void* VK_validation::extension_feature(void* ptr){
 }
 
 //Subfunction
-bool VK_validation::check_validation_layer_support(){
+bool Layer::check_validation_layer_support(){
   //---------------------------
 
   //Checks if all of the requested layers are available
@@ -135,7 +137,7 @@ bool VK_validation::check_validation_layer_support(){
   //---------------------------
   return true;
 }
-VkResult VK_validation::create_debug_EXT(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugUtilsMessengerEXT* pDebugMessenger) {
+VkResult Layer::create_debug_EXT(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugUtilsMessengerEXT* pDebugMessenger) {
   //---------------------------
 
   auto func = (PFN_vkCreateDebugUtilsMessengerEXT) vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
@@ -147,7 +149,7 @@ VkResult VK_validation::create_debug_EXT(VkInstance instance, const VkDebugUtils
 
   //---------------------------
 }
-void VK_validation::destroy_debug_EXT(VkInstance instance, VkDebugUtilsMessengerEXT EXT_debug, const VkAllocationCallbacks* pAllocator) {
+void Layer::destroy_debug_EXT(VkInstance instance, VkDebugUtilsMessengerEXT EXT_debug, const VkAllocationCallbacks* pAllocator) {
   //---------------------------
 
   auto func = (PFN_vkDestroyDebugUtilsMessengerEXT) vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
@@ -156,4 +158,6 @@ void VK_validation::destroy_debug_EXT(VkInstance instance, VkDebugUtilsMessenger
   }
 
   //---------------------------
+}
+
 }

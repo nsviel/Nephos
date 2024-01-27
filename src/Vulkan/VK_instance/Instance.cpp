@@ -10,7 +10,7 @@ Instance::Instance(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_validation = new VK_validation(struct_vulkan);
+  this->vk_validation = new vk::validation::Layer(struct_vulkan);
 
   //---------------------------
 }

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class VK_validation;
+namespace vk::validation{class Layer;}
 namespace vk::structure{class Vulkan;}
 
 
@@ -24,7 +24,7 @@ public:
   void create_instance();
 
 private:
-  VK_validation* vk_validation;
+  vk::validation::Layer* vk_validation;
   vk::structure::Vulkan* struct_vulkan;
 };
 

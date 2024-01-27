@@ -5,12 +5,14 @@
 namespace vk::structure{class Vulkan;}
 
 
-class VK_validation
+namespace vk::validation{
+
+class Layer
 {
 public:
   //Constructor / Destructor
-  VK_validation(vk::structure::Vulkan* struct_vulkan);
-  ~VK_validation();
+  Layer(vk::structure::Vulkan* struct_vulkan);
+  ~Layer();
 
 public:
   //Main functions
@@ -42,3 +44,5 @@ private:
   vector<VkValidationFeatureEnableEXT> EXT_enables;
   VkValidationFeaturesEXT EXT_feature;
 };
+
+}
