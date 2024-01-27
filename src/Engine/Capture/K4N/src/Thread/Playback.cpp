@@ -1,9 +1,7 @@
 #include "Playback.h"
 
-#include <Engine/Node.h>
-#include <Utility/Function/Timer/FPS_counter.h>
-#include <Utility/Function/Timer/FPS_control.h>
-#include <Engine/Capture/K4N/Namespace.h>
+#include <Engine/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::k4n::thread{

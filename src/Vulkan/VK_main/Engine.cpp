@@ -1,8 +1,7 @@
 #include "Engine.h"
 
 #include <Vulkan/Namespace.h>
-#include <Utility/Function/Timer/fct_timer.h>
-#include <Utility/Function/Timer/FPS_counter.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::main{
