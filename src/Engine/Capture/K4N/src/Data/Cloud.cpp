@@ -134,9 +134,9 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
     const vector<uint8_t>& color_data = sensor->color.image_depth.data;
 
     int color_idx = i * 4;
-    float r = static_cast<float>(color_data[color_idx + 0]) / 255.0f;
+    float r = static_cast<float>(color_data[color_idx + 2]) / 255.0f;
     float g = static_cast<float>(color_data[color_idx + 1]) / 255.0f;
-    float b = static_cast<float>(color_data[color_idx + 2]) / 255.0f;
+    float b = static_cast<float>(color_data[color_idx + 0]) / 255.0f;
     float a = 1.0f;
     color = vec4(r, g, b, a);
   }
@@ -167,6 +167,7 @@ void Cloud::retrieve_goodness(int i){
   }
 
   //color -> If null color set goodness to bad
+  //Maybe will be corrected with custom color to depth projection
   vec4 rgb = vec_rgb[i];
   if(rgb.x == 0 && rgb.y == 0 && rgb.z == 0){
     goodness = false;

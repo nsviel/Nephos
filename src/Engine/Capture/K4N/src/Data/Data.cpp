@@ -153,7 +153,7 @@ string Data::retrieve_format_from_k4a(k4a_image_format_t color_format){
   }else if(color_format == K4A_IMAGE_FORMAT_COLOR_YUY2){
     format = "YUY2";
   }else if(color_format == K4A_IMAGE_FORMAT_COLOR_BGRA32){
-    format = "R8G8B8A8_SRGB";
+    format = "B8G8R8A8_SRGB";
   }else if(color_format == K4A_IMAGE_FORMAT_DEPTH16){
     format = "DEPTH16";
   }else if(color_format == K4A_IMAGE_FORMAT_IR16){
@@ -169,33 +169,15 @@ string Data::retrieve_format_from_k4a(k4a_image_format_t color_format){
   //---------------------------
   return format;
 }
-k4a::image Data::retrieve_image_from_capture(k4a::image& image){
-  k4a::image new_image;
-  //---------------------------
-
-  string format = retrieve_format_from_k4a(image.get_format());
-  if(format == "R8G8B8A8_SRGB"){
-    new_image = image;
-  }else if(format == "MJPEG"){
-    int width = image.get_width_pixels();
-    int height = image.get_height_pixels();
-    int size = image.get_size();
-    uint8_t* mpeg = image.get_buffer();
-    new_image = k4a::image::create_from_buffer(K4A_IMAGE_FORMAT_COLOR_BGRA32, width, height, width * 4, mpeg, size, nullptr, nullptr);
-  }
-
-  //---------------------------
-  return new_image;
-}
 void Data::retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data, string& format){
   //---------------------------
 
   if(format == "MJPEG"){
     this->retrieve_bgra_from_mjpeg(image, data);
-    format = "R8G8B8A8_SRGB";
+    format = "B8G8R8A8_SRGB";
   }else{
     data = std::vector<uint8_t>(image.get_buffer(), image.get_buffer() + image.get_size());
-    format = "R8G8B8A8_SRGB";
+    format = "B8G8R8A8_SRGB";
   }
 
   //---------------------------

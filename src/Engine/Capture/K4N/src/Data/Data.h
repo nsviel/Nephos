@@ -28,7 +28,6 @@ public:
 
   //Subfunction
   string retrieve_format_from_k4a(k4a_image_format_t color_format);
-  k4a::image retrieve_image_from_capture(k4a::image& image);
   void retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data, string& format);
   void retrieve_bgra_from_mjpeg(k4a::image& image, vector<uint8_t>& data);
 
