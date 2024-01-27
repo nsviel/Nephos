@@ -1,4 +1,4 @@
-#include "VK_renderpass.h"
+#include "Renderpass.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-VK_renderpass::VK_renderpass(vk::structure::Vulkan* struct_vulkan){
+Renderpass::Renderpass(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -17,10 +17,10 @@ VK_renderpass::VK_renderpass(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_renderpass::~VK_renderpass(){}
+Renderpass::~Renderpass(){}
 
 //Main function
-void VK_renderpass::init(){
+void Renderpass::init(){
   //---------------------------
 
   //Check for renderpass demande
@@ -41,7 +41,7 @@ void VK_renderpass::init(){
 
   //---------------------------
 }
-void VK_renderpass::clean(){
+void Renderpass::clean(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
@@ -53,7 +53,7 @@ void VK_renderpass::clean(){
 }
 
 //Subfunction
-void VK_renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
+void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   //Get all related subpass descriptions, attachments and dependencies
@@ -93,7 +93,7 @@ void VK_renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
 
   //---------------------------
 }
-void VK_renderpass::clean_renderpass(vk::structure::Renderpass* renderpass){
+void Renderpass::clean_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk_framebuffer->clean_framebuffer(renderpass);
