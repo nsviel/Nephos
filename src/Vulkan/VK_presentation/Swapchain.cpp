@@ -1,4 +1,4 @@
-#include "VK_swapchain.h"
+#include "Swapchain.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,22 +6,22 @@
 namespace vk::presentation{
 
 //Constructor / Destructor
-VK_swapchain::VK_swapchain(vk::structure::Vulkan* struct_vulkan){
+Swapchain::Swapchain(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
   this->dev_physical = new vk::device::Physical(struct_vulkan);
   this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
-  this->vk_frame = new VK_frame(struct_vulkan);
+  this->vk_frame = new Frame(struct_vulkan);
   this->vk_framebuffer = new VK_framebuffer(struct_vulkan);
   this->vk_surface = new VK_surface(struct_vulkan);
 
   //---------------------------
 }
-VK_swapchain::~VK_swapchain(){}
+Swapchain::~Swapchain(){}
 
 //Swap chain function
-void VK_swapchain::create_swapchain(){
+void Swapchain::create_swapchain(){
   //---------------------------
 
   dev_physical->compute_extent();
@@ -34,7 +34,7 @@ void VK_swapchain::create_swapchain(){
 
   //---------------------------
 }
-void VK_swapchain::recreate_swapchain(){
+void Swapchain::recreate_swapchain(){
   //---------------------------
 
   //Minimization managment
@@ -57,7 +57,7 @@ void VK_swapchain::recreate_swapchain(){
 
   //---------------------------
 }
-void VK_swapchain::clean(){
+void Swapchain::clean(){
   //---------------------------
 
   vkDestroySwapchainKHR(struct_vulkan->device.device, struct_vulkan->swapchain.swapchain, nullptr);
@@ -67,7 +67,7 @@ void VK_swapchain::clean(){
 }
 
 //Swap chain creation
-void VK_swapchain::create_swapchain_image(){
+void Swapchain::create_swapchain_image(){
   //---------------------------
 
   //For swapchain image we use vkGetSwapchainImagesKHR instead of VkImageCreateInfo
@@ -82,7 +82,7 @@ void VK_swapchain::create_swapchain_image(){
 
   //---------------------------
 }
-void VK_swapchain::create_swapchain_obj(){
+void Swapchain::create_swapchain_obj(){
   //---------------------------
 
   uint32_t queueFamilyIndices[] = {
@@ -124,7 +124,7 @@ void VK_swapchain::create_swapchain_obj(){
 
   //---------------------------
 }
-void VK_swapchain::find_swapchain_max_nb_image(){
+void Swapchain::find_swapchain_max_nb_image(){
   VkSurfaceCapabilitiesKHR surface_capability = struct_vulkan->device.physical_device.capabilities;
   //---------------------------
 
@@ -137,7 +137,7 @@ void VK_swapchain::find_swapchain_max_nb_image(){
   //---------------------------
   struct_vulkan->swapchain.max_nb_frame = nb_image;
 }
-void VK_swapchain::find_swapchain_surface_format(){
+void Swapchain::find_swapchain_surface_format(){
   vector<VkSurfaceFormatKHR>& dev_format = struct_vulkan->device.physical_device.formats;
   VkSurfaceFormatKHR swapchain_format = dev_format[0];
   //---------------------------
@@ -153,7 +153,7 @@ void VK_swapchain::find_swapchain_surface_format(){
   //---------------------------
   struct_vulkan->swapchain.format = swapchain_format;
 }
-void VK_swapchain::find_swapchain_presentation_mode(){
+void Swapchain::find_swapchain_presentation_mode(){
   vector<VkPresentModeKHR>& dev_mode = struct_vulkan->device.physical_device.presentation_mode;
   //---------------------------
 

@@ -20,10 +20,10 @@ Engine::Engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_texture = new vk::main::Texture(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
   this->vk_data = new vk::data::Data(struct_vulkan);
-  this->vk_swapchain = new vk::presentation::VK_swapchain(struct_vulkan);
+  this->vk_swapchain = new vk::presentation::Swapchain(struct_vulkan);
   this->vk_renderpass = new VK_renderpass(struct_vulkan);
   this->vk_reload = new VK_reload(struct_vulkan);
-  this->vk_frame = new vk::presentation::VK_frame(struct_vulkan);
+  this->vk_frame = new vk::presentation::Frame(struct_vulkan);
   this->vk_canvas = new vk::data::Canvas(struct_vulkan);
   this->vk_drawing = new vk::draw::Drawer(struct_vulkan);
   this->vk_synchronization = new vk::command::Synchronization(struct_vulkan);

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::presentation{class VK_swapchain;}
+namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class VK_surface;}
 namespace vk::structure{class Vulkan;}
 
@@ -28,7 +28,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::presentation::VK_surface* vk_surface;
-  vk::presentation::VK_swapchain* vk_swapchain;
+  vk::presentation::Swapchain* vk_swapchain;
 };
 
 }

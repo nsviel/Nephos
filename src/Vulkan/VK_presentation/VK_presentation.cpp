@@ -10,7 +10,7 @@ VK_presentation::VK_presentation(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_swapchain = new VK_swapchain(struct_vulkan);
+  this->vk_swapchain = new Swapchain(struct_vulkan);
   this->vk_surface = new VK_surface(struct_vulkan);
 
   //---------------------------

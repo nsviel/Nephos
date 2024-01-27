@@ -5,14 +5,14 @@
 
 namespace vk::presentation{class VK_surface;}
 namespace vk::instance{class Instance;}
-namespace vk::presentation{class VK_swapchain;}
+namespace vk::presentation{class Swapchain;}
 namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
 namespace vk::main{class Texture;}
 namespace vk::data{class Data;}
 namespace vk::draw{class Viewport;}
 class VK_reload;
-namespace vk::presentation{class VK_frame;}
+namespace vk::presentation{class Frame;}
 namespace vk::data{class Canvas;}
 namespace vk::instance{class Extension;}
 namespace vk::instance{class Pool;}
@@ -66,7 +66,7 @@ private:
   vk::presentation::VK_surface* vk_surface;
   vk::instance::Instance* vk_instance;
   vk::device::Logical* vk_device;
-  vk::presentation::VK_swapchain* vk_swapchain;
+  vk::presentation::Swapchain* vk_swapchain;
   VK_renderpass* vk_renderpass;
   vk::binding::Descriptor* vk_descriptor;
   vk::main::Texture* vk_texture;
@@ -75,7 +75,7 @@ private:
   vk::draw::Viewport* vk_viewport;
   VK_reload* vk_reload;
   vk::command::Synchronization* vk_synchronization;
-  vk::presentation::VK_frame* vk_frame;
+  vk::presentation::Frame* vk_frame;
   vk::data::Canvas* vk_canvas;
   vk::draw::Drawer* vk_drawing;
   utl::fps::Counter* fps_counter;

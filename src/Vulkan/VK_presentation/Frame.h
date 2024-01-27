@@ -12,12 +12,12 @@ namespace vk::structure{class Vulkan;}
 
 namespace vk::presentation{
 
-class VK_frame
+class Frame
 {
 public:
   //Constructor / Destructor
-  VK_frame(vk::structure::Vulkan* struct_vulkan);
-  ~VK_frame();
+  Frame(vk::structure::Vulkan* struct_vulkan);
+  ~Frame();
 
 public:
   //Main function

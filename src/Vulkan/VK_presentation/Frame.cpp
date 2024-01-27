@@ -1,4 +1,4 @@
-#include "VK_frame.h"
+#include "Frame.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::presentation{
 
 //Constructor / Destructor
-VK_frame::VK_frame(vk::structure::Vulkan* struct_vulkan){
+Frame::Frame(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -18,10 +18,10 @@ VK_frame::VK_frame(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_frame::~VK_frame(){}
+Frame::~Frame(){}
 
 //Main function
-void VK_frame::create_frame(){
+void Frame::create_frame(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->swapchain.vec_swapchain_image.size(); i++){
@@ -43,7 +43,7 @@ void VK_frame::create_frame(){
 
   //---------------------------
 }
-void VK_frame::clean_frame(){
+void Frame::clean_frame(){
   vector<vk::structure::Frame*>& vec_frame = struct_vulkan->swapchain.vec_frame;
   //---------------------------
 
