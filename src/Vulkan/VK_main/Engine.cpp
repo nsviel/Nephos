@@ -15,7 +15,7 @@ Engine::Engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_extension = new vk::instance::Extension(struct_vulkan);
   this->vk_instance = new vk::instance::Instance(struct_vulkan);
   this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
-  this->vk_surface = new vk::presentation::VK_surface(struct_vulkan);
+  this->vk_surface = new vk::presentation::Surface(struct_vulkan);
   this->vk_device = new vk::device::Logical(struct_vulkan);
   this->vk_texture = new vk::main::Texture(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);

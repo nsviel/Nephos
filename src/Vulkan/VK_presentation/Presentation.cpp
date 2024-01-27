@@ -1,4 +1,4 @@
-#include "VK_presentation.h"
+#include "Presentation.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,19 +6,19 @@
 namespace vk::presentation{
 
 //Constructor / Destructor
-VK_presentation::VK_presentation(vk::structure::Vulkan* struct_vulkan){
+Presentation::Presentation(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
   this->vk_swapchain = new Swapchain(struct_vulkan);
-  this->vk_surface = new VK_surface(struct_vulkan);
+  this->vk_surface = new Surface(struct_vulkan);
 
   //---------------------------
 }
-VK_presentation::~VK_presentation(){}
+Presentation::~Presentation(){}
 
 //Main function
-void VK_presentation::acquire_next_image(VkSemaphore& semaphore){
+void Presentation::acquire_next_image(VkSemaphore& semaphore){
   vk::structure::Swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
@@ -33,7 +33,7 @@ void VK_presentation::acquire_next_image(VkSemaphore& semaphore){
 
   //---------------------------
 }
-void VK_presentation::image_presentation(VkSemaphore& semaphore, VkFence& fence){
+void Presentation::image_presentation(VkSemaphore& semaphore, VkFence& fence){
   //---------------------------
 
   this->submit_presentation(semaphore);
@@ -43,7 +43,7 @@ void VK_presentation::image_presentation(VkSemaphore& semaphore, VkFence& fence)
 }
 
 //Subfunction
-void VK_presentation::submit_presentation(VkSemaphore& semaphore){
+void Presentation::submit_presentation(VkSemaphore& semaphore){
   vk::structure::Swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
@@ -68,7 +68,7 @@ void VK_presentation::submit_presentation(VkSemaphore& semaphore){
 
   //---------------------------
 }
-void VK_presentation::next_frame_ID(){
+void Presentation::next_frame_ID(){
   vk::structure::Swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 

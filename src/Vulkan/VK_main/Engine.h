@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/fct_timer.h>
 
-namespace vk::presentation{class VK_surface;}
+namespace vk::presentation{class Surface;}
 namespace vk::instance{class Instance;}
 namespace vk::presentation{class Swapchain;}
 namespace vk::device{class Logical;}
@@ -63,7 +63,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::instance::Extension* vk_extension;
-  vk::presentation::VK_surface* vk_surface;
+  vk::presentation::Surface* vk_surface;
   vk::instance::Instance* vk_instance;
   vk::device::Logical* vk_device;
   vk::presentation::Swapchain* vk_swapchain;

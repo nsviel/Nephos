@@ -3,18 +3,18 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::presentation{class Swapchain;}
-namespace vk::presentation{class VK_surface;}
+namespace vk::presentation{class Surface;}
 namespace vk::structure{class Vulkan;}
 
 
 namespace vk::presentation{
 
-class VK_presentation
+class Presentation
 {
 public:
   //Constructor / Destructor
-  VK_presentation(vk::structure::Vulkan* struct_vulkan);
-  ~VK_presentation();
+  Presentation(vk::structure::Vulkan* struct_vulkan);
+  ~Presentation();
 
 public:
   //Main functions
@@ -27,7 +27,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::presentation::VK_surface* vk_surface;
+  vk::presentation::Surface* vk_surface;
   vk::presentation::Swapchain* vk_swapchain;
 };
 

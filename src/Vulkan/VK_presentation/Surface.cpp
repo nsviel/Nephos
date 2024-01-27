@@ -1,4 +1,4 @@
-#include "VK_surface.h"
+#include "Surface.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,17 +6,17 @@
 namespace vk::presentation{
 
 //Constructor / Destructor
-VK_surface::VK_surface(vk::structure::Vulkan* struct_vulkan){
+Surface::Surface(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-VK_surface::~VK_surface(){}
+Surface::~Surface(){}
 
 //Main function
-void VK_surface::init(){
+void Surface::init(){
   //---------------------------
 
   this->compute_window_dim();
@@ -27,7 +27,7 @@ void VK_surface::init(){
 
   //---------------------------
 }
-void VK_surface::clean(){
+void Surface::clean(){
   //---------------------------
 
   vkDestroySurfaceKHR(struct_vulkan->instance.instance, struct_vulkan->window.surface, nullptr);
@@ -36,7 +36,7 @@ void VK_surface::clean(){
 }
 
 //Subfunction
-vec2 VK_surface::compute_window_dim(){
+vec2 Surface::compute_window_dim(){
   //---------------------------
 
   int width, height;
@@ -46,7 +46,7 @@ vec2 VK_surface::compute_window_dim(){
   //---------------------------
   return struct_vulkan->window.window_dim;
 }
-void VK_surface::check_for_resizing(){
+void Surface::check_for_resizing(){
   static vec2 window_dim = struct_vulkan->window.window_dim;
   //---------------------------
 

@@ -7,12 +7,12 @@ namespace vk::structure{class Vulkan;}
 
 namespace vk::presentation{
 
-class VK_surface
+class Surface
 {
 public:
   //Constructor / Destructor
-  VK_surface(vk::structure::Vulkan* struct_vulkan);
-  ~VK_surface();
+  Surface(vk::structure::Vulkan* struct_vulkan);
+  ~Surface();
 
 public:
   //Main functions

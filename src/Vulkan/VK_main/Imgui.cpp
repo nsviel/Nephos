@@ -14,7 +14,7 @@ Imgui::Imgui(vk::structure::Vulkan* struct_vulkan){
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_submit = new vk::command::Submit(struct_vulkan);
   this->vk_engine = new vk::main::Engine(struct_vulkan);
-  this->vk_surface = new vk::presentation::VK_surface(struct_vulkan);
+  this->vk_surface = new vk::presentation::Surface(struct_vulkan);
 
   //---------------------------
 }
