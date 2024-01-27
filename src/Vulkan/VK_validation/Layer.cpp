@@ -36,7 +36,7 @@ void Layer::create_validation_layer(){
   create_info.messageType =
     VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | \
     VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
-  create_info.pfnUserCallback = callback_debug;
+  create_info.pfnUserCallback = vk::validation::Callback;
 
   VkResult result = create_debug_EXT(struct_vulkan->instance.instance, &create_info, nullptr, &EXT_debug);
   if(result != VK_SUCCESS){
@@ -81,7 +81,7 @@ void* Layer::extension_debug(void* ptr){
   EXT_debug_info.messageType =
     VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | \
     VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
-  EXT_debug_info.pfnUserCallback = callback_debug;
+  EXT_debug_info.pfnUserCallback = vk::validation::Callback;
   EXT_debug_info.pNext = ptr;
 
   //---------------------------
