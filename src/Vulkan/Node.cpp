@@ -13,8 +13,8 @@ Node::Node(GLFWwindow* window){
   this->struct_vulkan = new vk::structure::Vulkan(window);
   this->vk_engine = new vk::main::Engine(struct_vulkan);
   this->vk_imgui = new vk::main::Imgui(struct_vulkan);
-  this->vk_info = new VK_info(struct_vulkan);
-  this->vk_texture = new VK_texture(struct_vulkan);
+  this->vk_info = new vk::main::VK_info(struct_vulkan);
+  this->vk_texture = new vk::main::VK_texture(struct_vulkan);
 
   //---------------------------
 }

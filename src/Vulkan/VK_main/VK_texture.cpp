@@ -4,6 +4,8 @@
 #include <Utility/Namespace.h>
 
 
+namespace vk::main{
+
 //Constructor / Destructor
 VK_texture::VK_texture(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -92,4 +94,6 @@ void VK_texture::clean(){
   }
 
   //---------------------------
+}
+
 }

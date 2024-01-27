@@ -4,7 +4,7 @@
 #include <Utility/Function/Timer/fct_timer.h>
 
 namespace eng{class Node;}
-class VK_info;
+namespace vk::main{class VK_info;}
 
 
 namespace eng::ope::gui{
@@ -33,7 +33,7 @@ public:
 
 private:
   //utl::gui::plot::Profiler* profiler;
-  VK_info* vk_info;
+  vk::main::VK_info* vk_info;
   Timer timer;
 
   bool* show_window;

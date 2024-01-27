@@ -9,6 +9,8 @@ namespace vk::structure{class Image;}
 namespace vk::structure{class Object;}
 
 
+namespace vk::main{
+
 class VK_texture
 {
 public:
@@ -31,3 +33,5 @@ private:
   vk::image::Image* vk_image;
   vk::command::Memory* vk_memory;
 };
+
+}

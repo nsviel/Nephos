@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::main{class Imgui;}
-class VK_info;
+namespace vk::main{class VK_info;}
 namespace eng::render{class Node;}
 namespace eng::cam{class Node;}
 namespace eng::ope::gui{class Control;}
@@ -36,7 +36,7 @@ private:
   utl::element::Window* utl_window;
   utl::gui::plot::Profiler* profiler;
   vk::main::Imgui* vk_imgui;
-  VK_info* vk_info;
+  vk::main::VK_info* vk_info;
 
   string name;
   bool has_been_initialized;

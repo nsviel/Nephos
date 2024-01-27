@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 
 
+namespace vk::main{
+
 //Constructor / Destructor
 VK_info::VK_info(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
@@ -28,4 +30,6 @@ vec4* VK_info::get_color_background(){
 }
 vector<vk::structure::Task>& VK_info::get_profiler_data(){
   return struct_vulkan->profiler.vec_task;
+}
+
 }

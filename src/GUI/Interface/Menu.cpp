@@ -42,7 +42,7 @@ void Menu::menu_option(){
 
     Render* gui_render = gui->get_rnd_tab();
     vk::Node* vulkan = gui_render->get_vulkan();
-    VK_info* vk_info = vulkan->get_vk_info();
+    vk::main::VK_info* vk_info = vulkan->get_vk_info();
     float fps = vk_info->get_fps();
     ImGui::Text("%.2f", fps);
     ImGui::EndMenu();

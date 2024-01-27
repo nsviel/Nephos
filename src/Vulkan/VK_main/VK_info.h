@@ -6,6 +6,8 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Task;}
 
 
+namespace vk::main{
+
 class VK_info
 {
 public:
@@ -24,3 +26,5 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
 };
+
+}

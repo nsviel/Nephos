@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace gui{class Node;}
-class VK_info;
+namespace vk::main{class VK_info;}
 
 
 namespace gui::rnd::tab{
@@ -26,7 +26,7 @@ public:
 
 private:
   gui::Node* gui;
-  VK_info* vk_info;
+  vk::main::VK_info* vk_info;
 
   int width;
   string name;
