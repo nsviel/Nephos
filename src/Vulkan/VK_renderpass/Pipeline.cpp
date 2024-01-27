@@ -1,4 +1,4 @@
-#include "VK_pipeline.h"
+#include "Pipeline.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-VK_pipeline::VK_pipeline(vk::structure::Vulkan* struct_vulkan){
+Pipeline::Pipeline(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -16,10 +16,10 @@ VK_pipeline::VK_pipeline(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_pipeline::~VK_pipeline(){}
+Pipeline::~Pipeline(){}
 
 //Main function
-void VK_pipeline::create_pipeline(vk::structure::Renderpass* renderpass){
+void Pipeline::create_pipeline(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
@@ -33,14 +33,14 @@ void VK_pipeline::create_pipeline(vk::structure::Renderpass* renderpass){
 
   //---------------------------
 }
-void VK_pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline){
+void Pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   vkCmdBindPipeline(command_buffer, TYP_BIND_PIPELINE_GRAPHICS, pipeline->pipeline);
 
   //---------------------------
 }
-void VK_pipeline::clean_pipeline(vk::structure::Renderpass* renderpass){
+void Pipeline::clean_pipeline(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
@@ -56,7 +56,7 @@ void VK_pipeline::clean_pipeline(vk::structure::Renderpass* renderpass){
 }
 
 //Pipeline creation / cleaning
-void VK_pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
+void Pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Pipeline layout & binding
@@ -81,7 +81,7 @@ void VK_pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, 
 
   //---------------------------
 }
-void VK_pipeline::create_pipeline_obj(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
+void Pipeline::create_pipeline_obj(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkGraphicsPipelineCreateInfo pipeline_info{};
@@ -111,7 +111,7 @@ void VK_pipeline::create_pipeline_obj(vk::structure::Renderpass* renderpass, vk:
 
   //---------------------------
 }
-void VK_pipeline::create_pipeline_layout(vk::structure::Pipeline* pipeline){
+void Pipeline::create_pipeline_layout(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Push constant for MVP matrix
@@ -136,7 +136,7 @@ void VK_pipeline::create_pipeline_layout(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void VK_pipeline::clean_pipeline_struct(vk::structure::Pipeline* pipeline){
+void Pipeline::clean_pipeline_struct(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   vkDestroyPipeline(struct_vulkan->device.device, pipeline->pipeline, nullptr);
@@ -145,7 +145,7 @@ void VK_pipeline::clean_pipeline_struct(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void VK_pipeline::clean_pipeline_shader_module(vk::structure::Pipeline* pipeline){
+void Pipeline::clean_pipeline_shader_module(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   for(int i=0; i<pipeline->info.vec_shader_couple.size(); i++){
@@ -160,7 +160,7 @@ void VK_pipeline::clean_pipeline_shader_module(vk::structure::Pipeline* pipeline
 }
 
 //Pipeline element
-void VK_pipeline::find_pipeline_dynamic_state(vk::structure::Pipeline* pipeline){
+void Pipeline::find_pipeline_dynamic_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   pipeline->info.dynamic_state_object.clear();
@@ -178,7 +178,7 @@ void VK_pipeline::find_pipeline_dynamic_state(vk::structure::Pipeline* pipeline)
   //---------------------------
   pipeline->info.dynamic_state = dynamic_state;
 }
-void VK_pipeline::find_pipeline_viewport_state(vk::structure::Pipeline* pipeline){
+void Pipeline::find_pipeline_viewport_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Viewport info
@@ -192,7 +192,7 @@ void VK_pipeline::find_pipeline_viewport_state(vk::structure::Pipeline* pipeline
   //---------------------------
   pipeline->info.viewport_state = viewport_state;
 }
-void VK_pipeline::find_pipeline_rasterization_state(vk::structure::Pipeline* pipeline){
+void Pipeline::find_pipeline_rasterization_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineRasterizationStateCreateInfo rasterizer{};
@@ -211,7 +211,7 @@ void VK_pipeline::find_pipeline_rasterization_state(vk::structure::Pipeline* pip
   //---------------------------
   pipeline->info.rasterizer = rasterizer;
 }
-void VK_pipeline::find_pipeline_multisampling_state(vk::structure::Pipeline* pipeline){
+void Pipeline::find_pipeline_multisampling_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineMultisampleStateCreateInfo multisampling{};
@@ -226,7 +226,7 @@ void VK_pipeline::find_pipeline_multisampling_state(vk::structure::Pipeline* pip
   //---------------------------
   pipeline->info.multisampling = multisampling;
 }
-void VK_pipeline::find_pipeline_depth_state(vk::structure::Pipeline* pipeline){
+void Pipeline::find_pipeline_depth_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineDepthStencilStateCreateInfo depth_stencil = {};
@@ -244,7 +244,7 @@ void VK_pipeline::find_pipeline_depth_state(vk::structure::Pipeline* pipeline){
   //---------------------------
   pipeline->info.depth_stencil = depth_stencil;
 }
-void VK_pipeline::find_pipeline_blend_attachment_state(vk::structure::Pipeline* pipeline){
+void Pipeline::find_pipeline_blend_attachment_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineColorBlendAttachmentState color_blend_attachment{};
@@ -261,7 +261,7 @@ void VK_pipeline::find_pipeline_blend_attachment_state(vk::structure::Pipeline* 
 
   pipeline->info.color_blend_attachment = color_blend_attachment;
 }
-void VK_pipeline::find_pipeline_blend_state(vk::structure::Pipeline* pipeline){
+void Pipeline::find_pipeline_blend_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineColorBlendStateCreateInfo color_blend_info{};
@@ -278,7 +278,7 @@ void VK_pipeline::find_pipeline_blend_state(vk::structure::Pipeline* pipeline){
   //---------------------------
   pipeline->info.color_blend_info = color_blend_info;
 }
-void VK_pipeline::find_pipeline_topology_state(vk::structure::Pipeline* pipeline){
+void Pipeline::find_pipeline_topology_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineInputAssemblyStateCreateInfo input_assembly{};
@@ -300,7 +300,7 @@ void VK_pipeline::find_pipeline_topology_state(vk::structure::Pipeline* pipeline
 }
 
 //Subfunction
-void VK_pipeline::check_struct_pipeline_input(vk::structure::Pipeline* pipeline){
+void Pipeline::check_struct_pipeline_input(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   if(pipeline->definition.name == "") cout<<"[error] Pipeline init input -> no name"<<endl;

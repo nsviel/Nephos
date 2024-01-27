@@ -17,7 +17,7 @@ EDL::EDL(eng::render::Node* node_render){
 
   this->shader_edl = node_render->get_shader_edl();
   this->vk_engine = eng_vulkan->get_vk_engine();
-  this->vk_pipeline = new vk::renderpass::VK_pipeline(struct_vulkan);
+  this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
   this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
   this->vk_drawing = new vk::draw::Drawer(struct_vulkan);

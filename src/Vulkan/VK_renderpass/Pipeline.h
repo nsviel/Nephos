@@ -13,12 +13,12 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::renderpass{
 
-class VK_pipeline
+class Pipeline
 {
 public:
   //Constructor / Destructor
-  VK_pipeline(vk::structure::Vulkan* struct_vulkan);
-  ~VK_pipeline();
+  Pipeline(vk::structure::Vulkan* struct_vulkan);
+  ~Pipeline();
 
 public:
   //Main function

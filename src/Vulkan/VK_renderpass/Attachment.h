@@ -10,12 +10,12 @@ namespace vk::structure{class Attachment;}
 
 namespace vk::renderpass{
 
-class VK_attachment
+class Attachment
 {
 public:
   //Constructor / Destructor
-  VK_attachment(vk::structure::Vulkan* struct_vulkan);
-  ~VK_attachment();
+  Attachment(vk::structure::Vulkan* struct_vulkan);
+  ~Attachment();
 
 public:
   //Color attachment

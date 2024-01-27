@@ -5,7 +5,7 @@
 
 namespace eng{class Node;}
 namespace vk::main{class Engine;}
-namespace vk::renderpass{class VK_pipeline;}
+namespace vk::renderpass{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
@@ -42,7 +42,7 @@ private:
   vk::binding::Uniform* vk_uniform;
   vk::draw::Drawer* vk_drawing;
   vk::main::Engine* vk_engine;
-  vk::renderpass::VK_pipeline* vk_pipeline;
+  vk::renderpass::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
 
   Timer timer;

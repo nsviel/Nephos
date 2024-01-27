@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::command{class Command;}
-namespace vk::renderpass{class VK_attachment;}
+namespace vk::renderpass{class Attachment;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
@@ -11,12 +11,12 @@ namespace vk::structure{class Subpass;}
 
 namespace vk::renderpass{
 
-class VK_subpass
+class Subpass
 {
 public:
   //Constructor / Destructor
-  VK_subpass(vk::structure::Vulkan* struct_vulkan);
-  ~VK_subpass();
+  Subpass(vk::structure::Vulkan* struct_vulkan);
+  ~Subpass();
 
 public:
   //Main functions
@@ -33,7 +33,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::command::Command* vk_command;
-  vk::renderpass::VK_attachment* vk_attachment;
+  vk::renderpass::Attachment* vk_attachment;
 };
 
 }

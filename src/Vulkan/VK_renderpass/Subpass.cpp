@@ -1,4 +1,4 @@
-#include "VK_subpass.h"
+#include "Subpass.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -18,19 +18,19 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-VK_subpass::VK_subpass(vk::structure::Vulkan* struct_vulkan){
+Subpass::Subpass(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
   this->vk_command = new vk::command::Command(struct_vulkan);
-  this->vk_attachment = new VK_attachment(struct_vulkan);
+  this->vk_attachment = new Attachment(struct_vulkan);
 
   //---------------------------
 }
-VK_subpass::~VK_subpass(){}
+Subpass::~Subpass(){}
 
 //Main function
-void VK_subpass::create_subpass(vk::structure::Renderpass* renderpass){
+void Subpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
@@ -57,7 +57,7 @@ void VK_subpass::create_subpass(vk::structure::Renderpass* renderpass){
 }
 
 //Subpass type
-void VK_subpass::create_subpass_shader(vk::structure::Subpass* subpass){
+void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
   //---------------------------
 
   // Color
@@ -86,7 +86,7 @@ void VK_subpass::create_subpass_shader(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void VK_subpass::create_subpass_transfert(vk::structure::Subpass* subpass){
+void Subpass::create_subpass_transfert(vk::structure::Subpass* subpass){
   //---------------------------
 
   // Depth
@@ -107,7 +107,7 @@ void VK_subpass::create_subpass_transfert(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void VK_subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
+void Subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
   //---------------------------
 
   // Color
@@ -130,7 +130,7 @@ void VK_subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
 }
 
 //Subfunction
-void VK_subpass::create_subpass_description(vk::structure::Subpass* subpass){
+void Subpass::create_subpass_description(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Format elements

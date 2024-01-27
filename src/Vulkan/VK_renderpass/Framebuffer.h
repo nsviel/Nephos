@@ -13,12 +13,12 @@ namespace vk::structure{class Frame;}
 
 namespace vk::renderpass{
 
-class VK_framebuffer
+class Framebuffer
 {
 public:
   //Constructor / Destructor
-  VK_framebuffer(vk::structure::Vulkan* struct_vulkan);
-  ~VK_framebuffer();
+  Framebuffer(vk::structure::Vulkan* struct_vulkan);
+  ~Framebuffer();
 
 public:
   //Main function

@@ -17,7 +17,7 @@ Glyph::Glyph(eng::render::Node* node_render){
 
   this->node_render = engine->get_node_render();
   this->vk_engine = eng_vulkan->get_vk_engine();
-  this->vk_pipeline = new vk::renderpass::VK_pipeline(struct_vulkan);
+  this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
   this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
   this->vk_uniform = new vk::binding::Uniform(struct_vulkan);

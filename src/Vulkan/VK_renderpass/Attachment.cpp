@@ -1,4 +1,4 @@
-#include "VK_attachment.h"
+#include "Attachment.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -18,7 +18,7 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-VK_attachment::VK_attachment(vk::structure::Vulkan* struct_vulkan){
+Attachment::Attachment(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -27,10 +27,10 @@ VK_attachment::VK_attachment(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_attachment::~VK_attachment(){}
+Attachment::~Attachment(){}
 
 //Color attachment
-void VK_attachment::color_description(vk::structure::Attachment& color){
+void Attachment::color_description(vk::structure::Attachment& color){
   //---------------------------
 
   VkAttachmentDescription description{};
@@ -46,7 +46,7 @@ void VK_attachment::color_description(vk::structure::Attachment& color){
   //---------------------------
   color.description = description;
 }
-void VK_attachment::color_reference(vk::structure::Attachment& color){
+void Attachment::color_reference(vk::structure::Attachment& color){
   //---------------------------
 
   VkAttachmentReference reference{};
@@ -56,7 +56,7 @@ void VK_attachment::color_reference(vk::structure::Attachment& color){
   //---------------------------
   color.reference = reference;
 }
-void VK_attachment::color_resolve_description(vk::structure::Attachment& color_resolve){
+void Attachment::color_resolve_description(vk::structure::Attachment& color_resolve){
   //---------------------------
 
   VkAttachmentDescription description{};
@@ -72,7 +72,7 @@ void VK_attachment::color_resolve_description(vk::structure::Attachment& color_r
   //---------------------------
   color_resolve.description = description;
 }
-void VK_attachment::color_resolve_reference(vk::structure::Attachment& color_resolve){
+void Attachment::color_resolve_reference(vk::structure::Attachment& color_resolve){
   //---------------------------
 
   VkAttachmentReference reference{};
@@ -84,7 +84,7 @@ void VK_attachment::color_resolve_reference(vk::structure::Attachment& color_res
 }
 
 //Depth attachment
-void VK_attachment::depth_description(vk::structure::Attachment& depth){
+void Attachment::depth_description(vk::structure::Attachment& depth){
   //---------------------------
 
   VkAttachmentDescription description{};
@@ -100,7 +100,7 @@ void VK_attachment::depth_description(vk::structure::Attachment& depth){
   //---------------------------
   depth.description = description;
 }
-void VK_attachment::depth_reference(vk::structure::Attachment& depth){
+void Attachment::depth_reference(vk::structure::Attachment& depth){
   //---------------------------
 
   VkAttachmentReference reference{};

@@ -1,4 +1,4 @@
-#include "VK_framebuffer.h"
+#include "Framebuffer.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-VK_framebuffer::VK_framebuffer(vk::structure::Vulkan* struct_vulkan){
+Framebuffer::Framebuffer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -16,10 +16,10 @@ VK_framebuffer::VK_framebuffer(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_framebuffer::~VK_framebuffer(){}
+Framebuffer::~Framebuffer(){}
 
 //FBO creation
-void VK_framebuffer::create_framebuffers(){
+void Framebuffer::create_framebuffers(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
@@ -29,7 +29,7 @@ void VK_framebuffer::create_framebuffers(){
 
   //---------------------------
 }
-void VK_framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
+void Framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk::structure::Framebuffer* framebuffer = new vk::structure::Framebuffer();
@@ -47,7 +47,7 @@ void VK_framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
 
   //---------------------------
 }
-void VK_framebuffer::clean_framebuffers(){
+void Framebuffer::clean_framebuffers(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
@@ -57,7 +57,7 @@ void VK_framebuffer::clean_framebuffers(){
 
   //---------------------------
 }
-void VK_framebuffer::clean_framebuffer(vk::structure::Renderpass* renderpass){
+void Framebuffer::clean_framebuffer(vk::structure::Renderpass* renderpass){
   vk::structure::Framebuffer* framebuffer = renderpass->framebuffer;
   //---------------------------
 
@@ -71,7 +71,7 @@ void VK_framebuffer::clean_framebuffer(vk::structure::Renderpass* renderpass){
 }
 
 //Subfunction
-void VK_framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* renderpass, vk::structure::Framebuffer* framebuffer){
+void Framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* renderpass, vk::structure::Framebuffer* framebuffer){
   //---------------------------
 
   //Create frambuffer
@@ -99,7 +99,7 @@ void VK_framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* re
   //---------------------------
   framebuffer->fbo = fbo;
 }
-void VK_framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* renderpass, vk::structure::Frame* frame){
+void Framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* renderpass, vk::structure::Frame* frame){
   //---------------------------
 
   //Create frambuffer
@@ -126,7 +126,7 @@ void VK_framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* ren
   //---------------------------
   frame->fbo = fbo;
 }
-void VK_framebuffer::clean_framebuffer_obj(VkFramebuffer& fbo){
+void Framebuffer::clean_framebuffer_obj(VkFramebuffer& fbo){
   //---------------------------
 
   vkDestroyFramebuffer(struct_vulkan->device.device, fbo, nullptr);

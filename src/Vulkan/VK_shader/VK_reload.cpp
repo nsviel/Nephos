@@ -8,7 +8,7 @@ VK_reload::VK_reload(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_pipeline = new vk::renderpass::VK_pipeline(struct_vulkan);
+  this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
 
   //---------------------------
 }

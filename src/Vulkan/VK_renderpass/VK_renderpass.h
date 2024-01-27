@@ -2,10 +2,10 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::renderpass{class VK_pipeline;}
-namespace vk::renderpass{class VK_framebuffer;}
+namespace vk::renderpass{class Pipeline;}
+namespace vk::renderpass{class Framebuffer;}
 namespace vk::command{class Command;}
-namespace vk::renderpass{class VK_subpass;}
+namespace vk::renderpass{class Subpass;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 
@@ -30,9 +30,9 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::renderpass::VK_pipeline* vk_pipeline;
-  VK_subpass* vk_subpass;
-  vk::renderpass::VK_framebuffer* vk_framebuffer;
+  vk::renderpass::Pipeline* vk_pipeline;
+  Subpass* vk_subpass;
+  vk::renderpass::Framebuffer* vk_framebuffer;
   vk::command::Command* vk_command;
 };
 

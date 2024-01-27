@@ -4,7 +4,7 @@
 #include <Utility/Function/Timer/fct_timer.h>
 
 namespace vk::main{class Engine;}
-namespace vk::renderpass{class VK_pipeline;}
+namespace vk::renderpass{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
@@ -37,7 +37,7 @@ public:
 private:
   eng::shader::EDL* shader_edl;
   vk::main::Engine* vk_engine;
-  vk::renderpass::VK_pipeline* vk_pipeline;
+  vk::renderpass::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
