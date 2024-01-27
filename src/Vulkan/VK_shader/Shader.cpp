@@ -1,4 +1,4 @@
-#include "VK_shader.h"
+#include "Shader.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,7 +8,7 @@
 namespace vk::shader{
 
 //Constructor / Destructor
-VK_shader::VK_shader(vk::structure::Vulkan* struct_vulkan){
+Shader::Shader(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -18,10 +18,10 @@ VK_shader::VK_shader(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_shader::~VK_shader(){}
+Shader::~Shader(){}
 
 //Main function
-void VK_shader::create_pipeline_shader(vk::structure::Pipeline* pipeline){
+void Shader::create_pipeline_shader(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   this->create_pipeline_shader_module(pipeline);
@@ -31,7 +31,7 @@ void VK_shader::create_pipeline_shader(vk::structure::Pipeline* pipeline){
 }
 
 //Subfunction
-void VK_shader::create_pipeline_shader_module(vk::structure::Pipeline* pipeline){
+void Shader::create_pipeline_shader_module(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Load spir format shaders
@@ -50,7 +50,7 @@ void VK_shader::create_pipeline_shader_module(vk::structure::Pipeline* pipeline)
 
   //---------------------------
 }
-void VK_shader::create_pipeline_shader_info(vk::structure::Pipeline* pipeline){
+void Shader::create_pipeline_shader_info(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   pair<VkShaderModule, VkShaderModule>& shader_couple = pipeline->info.vec_shader_couple[0];
@@ -77,7 +77,7 @@ void VK_shader::create_pipeline_shader_info(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-VkShaderModule VK_shader::create_shader_module(const std::vector<char>& code){
+VkShaderModule Shader::create_shader_module(const std::vector<char>& code){
   //Shader modules are just a thin wrapper around the shader bytecode
   //---------------------------
 
@@ -99,7 +99,7 @@ VkShaderModule VK_shader::create_shader_module(const std::vector<char>& code){
 }
 
 //Subfunction
-std::vector<char> VK_shader::read_file(const std::string& path){
+std::vector<char> Shader::read_file(const std::string& path){
   std::ifstream file(path, std::ios::ate | std::ios::binary);
   //---------------------------
 
@@ -118,7 +118,7 @@ std::vector<char> VK_shader::read_file(const std::string& path){
   //---------------------------
   return buffer;
 }
-void VK_shader::recompile_shader(utl::base::Shader_info* shader_info){
+void Shader::recompile_shader(utl::base::Shader_info* shader_info){
   //---------------------------
 
   //Compile shader from GLSL to SPIR-V
@@ -129,7 +129,7 @@ void VK_shader::recompile_shader(utl::base::Shader_info* shader_info){
 
   //---------------------------
 }
-void VK_shader::run_recompilation(string path_glsl, string path_spir){
+void Shader::run_recompilation(string path_glsl, string path_spir){
   //---------------------------
 
   string command = "../src/Utility/Specific/compile.sh " + path_glsl + " " + path_spir + " >> " + path_output +" 2>&1";

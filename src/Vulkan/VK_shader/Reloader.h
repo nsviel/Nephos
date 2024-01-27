@@ -10,12 +10,12 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::shader{
 
-class VK_reload
+class Reloader
 {
 public:
   //Constructor / Destructor
-  VK_reload(vk::structure::Vulkan* struct_vulkan);
-  ~VK_reload();
+  Reloader(vk::structure::Vulkan* struct_vulkan);
+  ~Reloader();
 
 public:
   //Main function

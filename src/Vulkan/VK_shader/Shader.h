@@ -9,12 +9,12 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::shader{
 
-class VK_shader
+class Shader
 {
 public:
   //Constructor / Destructor
-  VK_shader(vk::structure::Vulkan* struct_vulkan);
-  ~VK_shader();
+  Shader(vk::structure::Vulkan* struct_vulkan);
+  ~Shader();
 
 public:
   //Main function

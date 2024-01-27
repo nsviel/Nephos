@@ -1,4 +1,4 @@
-#include "VK_reload.h"
+#include "Reloader.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::shader{
 
 //Constructor / Destructor
-VK_reload::VK_reload(vk::structure::Vulkan* struct_vulkan){
+Reloader::Reloader(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -14,10 +14,10 @@ VK_reload::VK_reload(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-VK_reload::~VK_reload(){}
+Reloader::~Reloader(){}
 
 //Main function
-void VK_reload::hot_shader_reload(string shader_1, string shader_2){
+void Reloader::hot_shader_reload(string shader_1, string shader_2){
   //---------------------------
 
   if(shader_1 == "Scene"){
@@ -37,7 +37,7 @@ void VK_reload::hot_shader_reload(string shader_1, string shader_2){
 
   //---------------------------
 }
-void VK_reload::recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
+void Reloader::recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
   vkDeviceWaitIdle(struct_vulkan->device.device);
