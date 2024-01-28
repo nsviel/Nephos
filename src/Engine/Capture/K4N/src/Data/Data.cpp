@@ -28,9 +28,11 @@ void Data::find_data_from_capture(eng::k4n::dev::Sensor* sensor, k4a::capture ca
   //Capture data
   this->find_depth(sensor, capture);
   this->find_color(sensor, capture);
-  this->find_color_to_depth(sensor, capture, sensor->param.transformation);
   this->find_ir(sensor, capture);
 
+  //Transformed data
+  this->find_color_to_depth(sensor, capture, sensor->param.transformation);
+  this->find_depth_to_color(sensor, capture, sensor->param.transformation);
 
   //Finish
   sensor->master->player.ts_cur = sensor->color.data.timestamp;
@@ -51,17 +53,19 @@ void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   }
   float timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
   string format = retrieve_format_from_k4a(depth.get_format());
-  this->retrieve_data_from_capture(depth, sensor->depth.data.buffer, format);
 
-  //Fill data structure
-  sensor->depth.data.name = "depth";
+  //Buffer
+  this->retrieve_data_from_capture(depth, sensor->depth.data.buffer, format);
   sensor->depth.data.size = sensor->depth.data.buffer.size();
+
+  //Data
+  sensor->depth.data.image = depth;
+  sensor->depth.data.name = "depth";
   sensor->depth.data.width = depth.get_width_pixels();
   sensor->depth.data.height = depth.get_height_pixels();
   sensor->depth.data.format = format;
   sensor->depth.data.temperature = capture.get_temperature_c();
   sensor->depth.data.timestamp = timestamp;
-  sensor->depth.data.image = depth;
 
   //---------------------------
   depth.reset();
@@ -122,18 +126,26 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   //---------------------------
 
   //Convert it into a depth POV representation
-  sensor->depth.data_to_color.image = k4a::image::create(K4A_IMAGE_FORMAT_DEPTH16,
-                                             sensor->param.calibration.color_camera_calibration.resolution_width,
-                                             sensor->param.calibration.color_camera_calibration.resolution_height,
-                                             sensor->param.calibration.color_camera_calibration.resolution_width *
-                                                 static_cast<int>(sizeof(uint16_t*)));
+  k4a::image image_transformed = k4a::image::create(K4A_IMAGE_FORMAT_DEPTH16,
+    sensor->param.calibration.color_camera_calibration.resolution_width,
+    sensor->param.calibration.color_camera_calibration.resolution_height,
+    sensor->param.calibration.color_camera_calibration.resolution_width *
+    static_cast<int>(sizeof(uint16_t)));
 
-  transformation.depth_image_to_color_camera(sensor->depth.data.image, sensor->depth.data_to_color.image);
-  /*if(!sensor->depth.data_to_color.image || !sensor->depth.data_to_color.image.is_valid()){
+  transformation.depth_image_to_color_camera(sensor->depth.data.image, &image_transformed);
+  if(!image_transformed || !image_transformed.is_valid()){
     return;
   }
+/*
+  //Buffer
+  string format = retrieve_format_from_k4a(depth.get_format());
+  this->retrieve_data_from_capture(image_transformed, sensor->depth.data.buffer, sensor->depth.data.format);
+  sensor->depth.data.size = sensor->depth.data.buffer.size();
 
-  sensor->depth.data.image = sensor->depth.data.data_to_color.image;
+  //Data
+  sensor->depth.data.image = image_transformed;
+  sensor->depth.data.width = image_transformed.get_width_pixels();
+  sensor->depth.data.height = image_transformed.get_height_pixels();
 */
   //---------------------------
 }
