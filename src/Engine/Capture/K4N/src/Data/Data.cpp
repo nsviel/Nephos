@@ -31,7 +31,7 @@ void Data::find_data_from_capture(eng::k4n::dev::Sensor* sensor, k4a::capture ca
   this->find_ir(sensor, capture);
 
   //Transformed data
-  this->find_color_to_depth(sensor, capture, sensor->param.transformation);
+  //this->find_color_to_depth(sensor, capture, sensor->param.transformation);
   this->find_depth_to_color(sensor, capture, sensor->param.transformation);
 
   //Finish
@@ -139,13 +139,16 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   }
 
   //Buffer
-  this->retrieve_data_from_capture(image_transformed, sensor->depth.data.buffer, sensor->depth.data.format);
-  sensor->depth.data.size = sensor->depth.data.buffer.size();
+  string format = sensor->depth.data.format;
+  this->retrieve_data_from_capture(image_transformed, sensor->depth.data_to_color.buffer, format);
+  sensor->depth.data_to_color.size = sensor->depth.data.buffer.size();
 
   //Data
-  sensor->depth.data.image = image_transformed;
-  sensor->depth.data.width = image_transformed.get_width_pixels();
-  sensor->depth.data.height = image_transformed.get_height_pixels();
+  sensor->depth.data_to_color.image = image_transformed;
+  sensor->depth.data_to_color.name = "depth_to_color";
+  sensor->depth.data_to_color.width = image_transformed.get_width_pixels();
+  sensor->depth.data_to_color.height = image_transformed.get_height_pixels();
+  sensor->depth.data_to_color.format = format;
 
   //---------------------------
 }

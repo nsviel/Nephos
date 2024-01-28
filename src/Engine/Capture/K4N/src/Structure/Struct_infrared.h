@@ -19,7 +19,8 @@ struct Infrared{
 
   eng::k4n::structure::Infrared_config config;
   eng::k4n::structure::Data data;
-
+  eng::k4n::structure::Data data_to_color;
+  
   //---------------------------
 };
 
