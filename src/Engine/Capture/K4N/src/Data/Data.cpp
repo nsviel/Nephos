@@ -43,18 +43,17 @@ void Data::find_data_from_capture(eng::k4n::dev::Sensor* sensor, k4a::capture ca
 
 //Data function
 void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
-  k4a::image depth = capture.get_depth_image();
   //---------------------------
 
-  //Get specific information
+  //Get k4a image
+  k4a::image depth = capture.get_depth_image();
   if(!depth || !depth.is_valid()){
     cout<<"[error] kinect depth image invalid"<<endl;
     return;
   }
-  float timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
-  string format = retrieve_format_from_k4a(depth.get_format());
 
   //Buffer
+  string format = retrieve_format_from_k4a(depth.get_format());
   this->retrieve_data_from_capture(depth, sensor->depth.data.buffer, format);
   sensor->depth.data.size = sensor->depth.data.buffer.size();
 
@@ -65,56 +64,58 @@ void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   sensor->depth.data.height = depth.get_height_pixels();
   sensor->depth.data.format = format;
   sensor->depth.data.temperature = capture.get_temperature_c();
-  sensor->depth.data.timestamp = timestamp;
+  sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
 
   //---------------------------
   depth.reset();
 }
 void Data::find_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
-  k4a::image color = capture.get_color_image();
   //---------------------------
 
-  //Get specific information
+  //Get k4a image
+  k4a::image color = capture.get_color_image();
   if(!color || !color.is_valid()){
     return;
   }
-  float timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
+
+  //Buffer
   string format = retrieve_format_from_k4a(color.get_format());
   this->retrieve_data_from_capture(color, sensor->color.data.buffer, format);
+  sensor->color.data.size = sensor->color.data.buffer.size();
 
-  //Fill data structure
+  //Data
   sensor->color.data.image = color;
   sensor->color.data.name = "color";
-  sensor->color.data.size = sensor->color.data.buffer.size();
   sensor->color.data.width = color.get_width_pixels();
   sensor->color.data.height = color.get_height_pixels();
   sensor->color.data.format = format;
-  sensor->color.data.timestamp = timestamp;
+  sensor->color.data.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
 
   //---------------------------
   color.reset();
 }
 void Data::find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
-  k4a::image ir = capture.get_ir_image();
   //---------------------------
 
-  //Get specific information
+  //Get k4a image
+  k4a::image ir = capture.get_ir_image();
   if(!ir || !ir.is_valid()){
     cout<<"[error] kinect ir image invalid"<<endl;
     return;
   }
-  float timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
+
+  //Buffer
   string format = retrieve_format_from_k4a(ir.get_format());
   this->retrieve_data_from_capture(ir, sensor->ir.data.buffer, format);
+  sensor->ir.data.size = sensor->ir.data.buffer.size();
 
-  //Fill data structure
+  //Data
   sensor->ir.data.image = ir;
   sensor->ir.data.name = "ir";
-  sensor->ir.data.size = sensor->ir.data.buffer.size();
   sensor->ir.data.width = ir.get_width_pixels();
   sensor->ir.data.height = ir.get_height_pixels();
   sensor->ir.data.format = format;
-  sensor->ir.data.timestamp = timestamp;
+  sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
 
   //---------------------------
   ir.reset();
