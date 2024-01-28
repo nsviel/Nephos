@@ -120,7 +120,7 @@ void Data::find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
 void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
   if(!sensor->color.data.image || !sensor->depth.data.image) return;
   //---------------------------
-/*
+
   //Convert it into a depth POV representation
   sensor->depth.data_to_color.image = k4a::image::create(K4A_IMAGE_FORMAT_DEPTH16,
                                              sensor->param.calibration.color_camera_calibration.resolution_width,
@@ -129,7 +129,7 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
                                                  static_cast<int>(sizeof(uint16_t*)));
 
   transformation.depth_image_to_color_camera(sensor->depth.data.image, sensor->depth.data_to_color.image);
-  if(!sensor->depth.data_to_color.image || !sensor->depth.data_to_color.image.is_valid()){
+  /*if(!sensor->depth.data_to_color.image || !sensor->depth.data_to_color.image.is_valid()){
     return;
   }
 
