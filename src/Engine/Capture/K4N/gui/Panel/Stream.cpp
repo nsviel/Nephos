@@ -150,7 +150,7 @@ void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   //---------------------------
 }
 void Stream::draw_camera_color_from_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  eng::k4n::structure::Data* data_color = &sensor->color.data_color_to_depth;
+  eng::k4n::structure::Data* data_color = &sensor->color.data_to_depth;
   //---------------------------
 
   utl::media::Image struct_image;

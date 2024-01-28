@@ -130,8 +130,8 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
 
   if(operation->color_mode == 0){
     //Camera color
-    if(sensor->color.data_color_to_depth.buffer.empty()) return;
-    const vector<uint8_t>& color_data = sensor->color.data_color_to_depth.buffer;
+    if(sensor->color.data_to_depth.buffer.empty()) return;
+    const vector<uint8_t>& color_data = sensor->color.data_to_depth.buffer;
 
     int color_idx = i * 4;
     float r = static_cast<float>(color_data[color_idx + 2]) / 255.0f;

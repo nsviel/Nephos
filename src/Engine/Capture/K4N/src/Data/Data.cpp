@@ -122,26 +122,20 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   //---------------------------
 /*
   //Convert it into a depth POV representation
-  transformation.depth_image_to_color_camera(sensor->depth.data.image, sensor->depth.data.image_to_color);
-  if(!sensor->depth.data.image_to_color || !sensor->depth.data.image_to_color.is_valid()){
+  sensor->depth.data_to_color.image = k4a::image::create(K4A_IMAGE_FORMAT_DEPTH16,
+                                             sensor->param.calibration.color_camera_calibration.resolution_width,
+                                             sensor->param.calibration.color_camera_calibration.resolution_height,
+                                             sensor->param.calibration.color_camera_calibration.resolution_width *
+                                                 static_cast<int>(sizeof(uint16_t*)));
+
+  transformation.depth_image_to_color_camera(sensor->depth.data.image, sensor->depth.data_to_color.image);
+  if(!sensor->depth.data_to_color.image || !sensor->depth.data_to_color.image.is_valid()){
     return;
   }
 
-  //Get specific information
-  float timestamp = sensor->depth.data.timestamp;
-  string format = sensor->depth.data.format;
-  this->retrieve_data_from_capture(sensor->depth.data.image_to_color, sensor->depth.data_to_color.data, format);
-
-  //Fill data structure
-  sensor->color.data_color_to_depth.name = "depth_to_color";
-  sensor->color.data_color_to_depth.size = sensor->color.data_color_to_depth.buffer.size();
-  sensor->color.data_color_to_depth.width = color_from_depth.get_width_pixels();
-  sensor->color.data_color_to_depth.height = color_from_depth.get_height_pixels();
-  sensor->color.data_color_to_depth.format = format;
-  sensor->color.data_color_to_depth.timestamp = timestamp;
-
+  sensor->depth.data.image = sensor->depth.data.data_to_color.image;
+*/
   //---------------------------
-  color_from_depth.reset();*/
 }
 void Data::find_color_to_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
   if(!sensor->color.data.image || !sensor->depth.data.image) return;
@@ -156,16 +150,16 @@ void Data::find_color_to_depth(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   //Get specific information
   float timestamp = sensor->color.data.timestamp;
   string format = sensor->color.data.format;
-  this->retrieve_data_from_capture(color_from_depth, sensor->color.data_color_to_depth.buffer, format);
+  this->retrieve_data_from_capture(color_from_depth, sensor->color.data_to_depth.buffer, format);
 
   //Fill data structure
-  sensor->color.data_color_to_depth.image = color_from_depth;
-  sensor->color.data_color_to_depth.name = "color_to_depth";
-  sensor->color.data_color_to_depth.size = sensor->color.data_color_to_depth.buffer.size();
-  sensor->color.data_color_to_depth.width = color_from_depth.get_width_pixels();
-  sensor->color.data_color_to_depth.height = color_from_depth.get_height_pixels();
-  sensor->color.data_color_to_depth.format = format;
-  sensor->color.data_color_to_depth.timestamp = timestamp;
+  sensor->color.data_to_depth.image = color_from_depth;
+  sensor->color.data_to_depth.name = "color_to_depth";
+  sensor->color.data_to_depth.size = sensor->color.data_to_depth.buffer.size();
+  sensor->color.data_to_depth.width = color_from_depth.get_width_pixels();
+  sensor->color.data_to_depth.height = color_from_depth.get_height_pixels();
+  sensor->color.data_to_depth.format = format;
+  sensor->color.data_to_depth.timestamp = timestamp;
 
   //---------------------------
   color_from_depth.reset();
