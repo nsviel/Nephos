@@ -137,9 +137,8 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   if(!image_transformed || !image_transformed.is_valid()){
     return;
   }
-/*
+
   //Buffer
-  string format = retrieve_format_from_k4a(depth.get_format());
   this->retrieve_data_from_capture(image_transformed, sensor->depth.data.buffer, sensor->depth.data.format);
   sensor->depth.data.size = sensor->depth.data.buffer.size();
 
@@ -147,7 +146,7 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   sensor->depth.data.image = image_transformed;
   sensor->depth.data.width = image_transformed.get_width_pixels();
   sensor->depth.data.height = image_transformed.get_height_pixels();
-*/
+
   //---------------------------
 }
 void Data::find_color_to_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
