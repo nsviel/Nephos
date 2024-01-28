@@ -119,7 +119,7 @@ struct Color{
 
   eng::k4n::structure::Color_config config;
   eng::k4n::structure::Image image;
-  eng::k4n::structure::Image image_depth;
+  eng::k4n::structure::Image image_to_depth;
 
   //---------------------------
 };

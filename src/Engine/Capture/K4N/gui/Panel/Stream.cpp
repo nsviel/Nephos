@@ -138,7 +138,7 @@ void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   //---------------------------
 
   utl::media::Image struct_image;
-  struct_image.data = data_color->data;
+  struct_image.data = data_color->buffer;
   struct_image.width = data_color->width;
   struct_image.height = data_color->height;
   struct_image.format = data_color->format;
@@ -150,21 +150,11 @@ void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   //---------------------------
 }
 void Stream::draw_camera_color_from_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  eng::k4n::structure::Image* data_color = &sensor->color.image_depth;
+  eng::k4n::structure::Image* data_color = &sensor->color.image_to_depth;
   //---------------------------
 
-  //Il y a un probleme ici non identifié, le vecteur semble changer de taille (?)
-  /*int size = sensor->color.image_depth.data.size();
-  for(int i=0; i<sensor->color.image_depth.data.size(); i++){
-    if(float(sensor->color.image_depth.data[i]) != 255.0f){
-      say("nop");
-      say(float(sensor->color.image_depth.data[i]));
-    }
-
-  }*/
-
   utl::media::Image struct_image;
-  struct_image.data = data_color->data;
+  struct_image.data = data_color->buffer;
   struct_image.width = data_color->width;
   struct_image.height = data_color->height;
   struct_image.format = data_color->format;
@@ -290,7 +280,7 @@ void Stream::compute_hovered_pixel(eng::k4n::structure::Image* image, ImVec2 ima
     image->hovered_pixel_y = hoveredUIPixel.y * uiCoordinateToImageCoordinateRatio;
 
     //Pixel value
-    const std::vector<uint8_t>& data = image->data;
+    const std::vector<uint8_t>& data = image->buffer;
     size_t index = size_t(image->hovered_pixel_y) * size_t(image->width * 2) + size_t(image->hovered_pixel_x * 2);
     uint16_t pixelData = static_cast<uint16_t>(data[index]) | (static_cast<uint16_t>(data[index + 1]) << 8);
     image->hovered_pixel_m = pixelData / 1000.0f;

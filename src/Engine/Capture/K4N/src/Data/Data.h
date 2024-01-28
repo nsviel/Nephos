@@ -21,10 +21,13 @@ public:
   void find_data_from_capture(eng::k4n::dev::Sensor* device, k4a::capture capture);
 
   //Data function
-  void find_depth(eng::k4n::dev::Sensor* k4n_sensor, k4a::capture capture);
-  void find_color(eng::k4n::dev::Sensor* k4n_sensor, k4a::capture capture);
-  void find_color_from_depth(eng::k4n::dev::Sensor* k4n_sensor, k4a::capture capture, k4a::transformation& transformation);
-  void find_ir(eng::k4n::dev::Sensor* k4n_sensor, k4a::capture capture);
+  void find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture);
+  void find_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture);
+  void find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture);
+
+  //Transformed data
+  void find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
+  void find_color_to_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
 
   //Subfunction
   string retrieve_format_from_k4a(k4a_image_format_t color_format);

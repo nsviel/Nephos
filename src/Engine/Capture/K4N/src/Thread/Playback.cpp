@@ -56,6 +56,7 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
 
   //Playback thread
   k4a::capture capture;
+  //sensor->param.transformation = k4a::transformation(sensor->param.calibration);
   while(thread_running){
     fps_control->start();
 
@@ -63,7 +64,7 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
     if(!capture) continue;
 
     k4a_data->find_data_from_capture(sensor, capture);
-    k4a_data->find_color_from_depth(sensor, capture, sensor->param.transformation);
+    
 
     k4a_cloud->convert_into_cloud(sensor);
     this->manage_pause(sensor);

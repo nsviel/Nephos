@@ -34,7 +34,7 @@ void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* sensor){
 
 //Loop function
 void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
-  if(sensor->depth.image.data.empty()) return;
+  if(sensor->depth.image.buffer.empty()) return;
   //---------------------------
 
   vec_xyz.clear();
@@ -46,7 +46,7 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
-  if(sensor->depth.image.data.empty()) return;
+  if(sensor->depth.image.buffer.empty()) return;
   //---------------------------
 
   // Data stuff
@@ -69,7 +69,7 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
-  if(sensor->depth.image.data.empty()) return;
+  if(sensor->depth.image.buffer.empty()) return;
   utl::type::Data* data = sensor->object->data;
   eng::k4n::dev::Master* master = sensor->master;
   //---------------------------
@@ -130,8 +130,8 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
 
   if(operation->color_mode == 0){
     //Camera color
-    if(sensor->color.image_depth.data.empty()) return;
-    const vector<uint8_t>& color_data = sensor->color.image_depth.data;
+    if(sensor->color.image_to_depth.buffer.empty()) return;
+    const vector<uint8_t>& color_data = sensor->color.image_to_depth.buffer;
 
     int color_idx = i * 4;
     float r = static_cast<float>(color_data[color_idx + 2]) / 255.0f;
@@ -145,10 +145,10 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
   vec_rgb.push_back(color);
 }
 void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
-  if(sensor->ir.image.data.empty()) return;
+  if(sensor->ir.image.buffer.empty()) return;
   //---------------------------
 
-  const vector<uint8_t>& ir_data = sensor->ir.image.data;
+  const vector<uint8_t>& ir_data = sensor->ir.image.buffer;
 
   int color_idx = i * 2;
   uint16_t value = static_cast<uint16_t>(ir_data[color_idx]) | (static_cast<uint16_t>(ir_data[color_idx + 1]) << 8);
