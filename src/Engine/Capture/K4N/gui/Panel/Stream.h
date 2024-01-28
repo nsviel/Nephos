@@ -35,10 +35,10 @@ public:
   void draw_camera_ir(eng::k4n::dev::Sensor* device, ImVec2 image_size);
 
   //Overlay
-  void compute_hovered_pixel(eng::k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
-  void overlay_capture(eng::k4n::dev::Sensor* device, eng::k4n::structure::Image* image, ImVec2 image_size, ImVec2 image_pose);
-  void overlay_information(eng::k4n::dev::Sensor* device, eng::k4n::structure::Image* image);
-  void overlay_pixel(eng::k4n::structure::Image* image, ImVec2 image_size);
+  void compute_hovered_pixel(eng::k4n::structure::Data* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
+  void overlay_capture(eng::k4n::dev::Sensor* device, eng::k4n::structure::Data* image, ImVec2 image_size, ImVec2 image_pose);
+  void overlay_information(eng::k4n::dev::Sensor* device, eng::k4n::structure::Data* image);
+  void overlay_pixel(eng::k4n::structure::Data* image, ImVec2 image_size);
 
   //Subfunction
   ImGuiTabItemFlags get_device_tab_flag(eng::k4n::dev::Sensor* sensor);

@@ -26,8 +26,8 @@ struct Depth{
   //---------------------------
 
   eng::k4n::structure::Depth_config config;
-  eng::k4n::structure::Image image;
-  eng::k4n::structure::Image image_to_color;
+  eng::k4n::structure::Data data;
+  eng::k4n::structure::Data data_depth_to_color;
 
   //---------------------------
 };

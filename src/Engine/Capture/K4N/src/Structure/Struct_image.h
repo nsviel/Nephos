@@ -5,7 +5,7 @@
 
 namespace eng::k4n::structure{
 
-struct Image{
+struct Data{
   //---------------------------
 
   k4a::image image;

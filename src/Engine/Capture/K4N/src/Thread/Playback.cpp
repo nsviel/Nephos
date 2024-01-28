@@ -64,7 +64,7 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
     if(!capture) continue;
 
     k4a_data->find_data_from_capture(sensor, capture);
-    
+
 
     k4a_cloud->convert_into_cloud(sensor);
     this->manage_pause(sensor);
@@ -107,7 +107,7 @@ void Playback::manage_pause(eng::k4n::dev::Sensor* sensor){
 void Playback::manage_restart(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(sensor->color.image.timestamp >= sensor->master->player.ts_end){
+  if(sensor->color.data.timestamp >= sensor->master->player.ts_end){
     sensor->master->manage_restart();
   }
 
@@ -122,13 +122,13 @@ void Playback::manage_recording(eng::k4n::dev::Sensor* sensor, k4a::capture capt
   if(sensor->player.record && !recorder.is_valid()){
     recorder = k4a::record::create(sensor->recorder.path.c_str(), *sensor->param.device, sensor->param.configuration);
     recorder.write_header();
-    sensor->recorder.ts_beg = sensor->color.image.timestamp;
+    sensor->recorder.ts_beg = sensor->color.data.timestamp;
   }
 
   //Recording
   if(sensor->player.record && recorder.is_valid()){
     recorder.write_capture(capture);
-    sensor->recorder.ts_rec = sensor->color.image.timestamp - sensor->recorder.ts_beg;
+    sensor->recorder.ts_rec = sensor->color.data.timestamp - sensor->recorder.ts_beg;
   }
 
   //Flush to file when finish

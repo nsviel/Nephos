@@ -7,7 +7,7 @@ struct Infrared_config{
   //---------------------------
 
   bool enabled = true;
-  
+
   uint16_t level_min = 0;
   uint16_t level_max = 1000;
 
@@ -18,7 +18,7 @@ struct Infrared{
   //---------------------------
 
   eng::k4n::structure::Infrared_config config;
-  eng::k4n::structure::Image image;
+  eng::k4n::structure::Data data;
 
   //---------------------------
 };
