@@ -1,6 +1,7 @@
 #include "Voxelizer.h"
 
 #include <Engine/Operation/Namespace.h>
+#include <cstdlib>
 
 
 namespace eng::ope{
@@ -11,6 +12,7 @@ Voxelizer::Voxelizer(){
 
   this->voxel_size = 0.25;
   this->min_nb_point = 100;
+  this->max_nb_point = 300;
 
   //---------------------------
 }
@@ -32,8 +34,8 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
     voxel_map[key].push_back(point);
 	}
 
-  //Check if number of point is good and set goodness accordingly
   for(auto it = voxel_map.begin(); it != voxel_map.end(); it++){
+    //If no enough point in voxel, disabled them all
 		if(it->second.size() < min_nb_point){
 
       Voxel voxel = it->second;
@@ -62,8 +64,8 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data, float voxe
     voxel_map[key].push_back(point);
 	}
 
-  //Check if number of point is good and set goodness accordingly
   for(auto it = voxel_map.begin(); it != voxel_map.end(); it++){
+    //If no enough point in voxel, disabled them all
 		if(it->second.size() < min_nb_point){
 
       Voxel voxel = it->second;

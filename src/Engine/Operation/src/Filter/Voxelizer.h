@@ -30,6 +30,7 @@ private:
   Voxel_map voxel_map;
   float voxel_size;
   int min_nb_point;
+  int max_nb_point;
 };
 
 }

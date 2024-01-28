@@ -116,8 +116,6 @@ void Cloud::retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* dat
   float R = sqrt(pow(point_m.x, 2) + pow(point_m.y, 2) + pow(point_m.z, 2));
   vec_r.push_back(R);
 
-
-
   //---------------------------
 }
 void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
@@ -131,10 +129,10 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
     if(sensor->color.data.buffer.empty()) return;
     const vector<uint8_t>& color_data = sensor->color.data.buffer;
 
-    int color_idx = i * 4;
-    float r = static_cast<float>(color_data[color_idx + 2]) / 255.0f;
-    float g = static_cast<float>(color_data[color_idx + 1]) / 255.0f;
-    float b = static_cast<float>(color_data[color_idx + 0]) / 255.0f;
+    int index = i * 4;
+    float r = static_cast<float>(color_data[index + 2]) / 255.0f;
+    float g = static_cast<float>(color_data[index + 1]) / 255.0f;
+    float b = static_cast<float>(color_data[index + 0]) / 255.0f;
     float a = 1.0f;
     color = vec4(r, g, b, a);
   }
@@ -146,10 +144,10 @@ void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
   if(sensor->ir.data.buffer.empty()) return;
   //---------------------------
 
-  const vector<uint8_t>& ir_data = sensor->ir.data.buffer;
+  const vector<uint8_t>& ir_buffer = sensor->ir.data.buffer;
 
-  int color_idx = i * 2;
-  uint16_t value = static_cast<uint16_t>(ir_data[color_idx]) | (static_cast<uint16_t>(ir_data[color_idx + 1]) << 8);
+  int index = i * 2;
+  uint16_t value = 0;//static_cast<uint16_t>(ir_buffer[index]) | (static_cast<uint16_t>(ir_buffer[index + 1]) << 8);
 
   //---------------------------
   vec_ir.push_back(value);
