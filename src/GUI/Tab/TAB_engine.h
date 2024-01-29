@@ -8,20 +8,23 @@ namespace gui{class Node;}
 namespace gui::rnd::tab{class Option;}
 
 
-
 namespace gui::rnd::tab{
 
-class Panel
+class TAB_engine
 {
 public:
   //Constructor / Destructor
-  Panel(gui::Node* gui);
-  ~Panel();
+  TAB_engine(gui::Node* gui);
+  ~TAB_engine();
 
 public:
   //Main functions
   void init_tab();
   void draw_tab();
+  void open_panels();
+
+  //Subfunction
+  void draw_menu();
 
   bool show_camera   = false;
   bool show_shader   = false;

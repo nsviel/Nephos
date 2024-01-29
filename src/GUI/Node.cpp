@@ -18,10 +18,10 @@ Node::Node(utl::Node* utility, eng::Node* engine){
   this->gui_render = new gui::Render(this);
   this->gui_style = new gui::style::Config(this);
   this->gui_font = new gui::style::Font(this);
+  this->gui_theme = new gui::style::Theme(this);
   this->gui_tab = new gui::interface::Tab(this);
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
-  this->gui_theme = new gui::style::Theme(this);
 
   //---------------------------
 }
@@ -70,7 +70,7 @@ void Node::exit(){
 void Node::wait(){
   //---------------------------
 
-  //gui_render->wait();
+
 
   //---------------------------
 }

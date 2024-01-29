@@ -6,12 +6,12 @@ namespace eng{class Node;}
 namespace utl{class Node;}
 namespace utl::element{class Window;}
 namespace gui::interface{class Control;}
-namespace gui::style{class Config;}
-namespace gui::interface{class Tab;}
-namespace gui{class Render;}
 namespace gui::interface{class Docking;}
+namespace gui::interface{class Tab;}
+namespace gui::style{class Config;}
 namespace gui::style{class Font;}
 namespace gui::style{class Theme;}
+namespace gui{class Render;}
 
 
 namespace gui{
@@ -39,16 +39,15 @@ public:
 
 private:
   eng::Node* engine;
-  Node* eng_data;
   utl::Node* utility;
 
   utl::element::Window* utl_window;
   gui::interface::Control* gui_control;
-  gui::Config* gui_style;
   gui::interface::Docking* gui_docking;
+  gui::interface::Tab* gui_tab;
+  gui::style::Config* gui_style;
   gui::style::Font* gui_font;
   gui::style::Theme* gui_theme;
-  gui::interface::Tab* gui_tab;
   gui::Render* gui_render;
 };
 
