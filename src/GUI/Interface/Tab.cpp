@@ -1,5 +1,6 @@
 #include "Tab.h"
 
+#include <Dev/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <GUI/Namespace.h>
@@ -12,7 +13,7 @@ Tab::Tab(gui::Node* gui){
   //---------------------------
 
   this->eng_tab = new eng::gui::Tab(gui->get_engine());
-  this->dev_tab = new gui::dev::tab::Panel(gui);
+  this->dev_tab = new dev::gui::Tab();
   this->gui_menu = new gui::interface::Menu(gui);
 
   this->active_tab = "Render";
@@ -32,14 +33,6 @@ Tab::~Tab(){
 }
 
 //Main function
-void Tab::init_tab(){
-  //---------------------------
-
-  eng_tab->init_tab();
-  dev_tab->init_tab();
-
-  //---------------------------
-}
 void Tab::run_tab(){
   //---------------------------
 

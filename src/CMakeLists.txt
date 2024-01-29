@@ -7,7 +7,7 @@ add_subdirectory(Application)
 add_subdirectory(Utility)
 add_subdirectory(Engine)
 add_subdirectory(GUI)
-add_subdirectory(Splatting)
+add_subdirectory(Dev)
 add_subdirectory(Vulkan)
 
 #-----------------
@@ -25,6 +25,6 @@ target_link_libraries(${EXECUTABLE_NAME}
   LIBRARY_ENGINE
   LIBRARY_GUI
   LIBRARY_UTILITY
-  LIBRARY_SPLATTING
+  LIBRARY_DEV
   LIBRARY_VULKAN
 )

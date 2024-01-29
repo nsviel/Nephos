@@ -18,13 +18,6 @@ Tab::Tab(eng::Node* node_engine){
 Tab::~Tab(){}
 
 //Main function
-void Tab::init_tab(){
-  //---------------------------
-
-
-
-  //---------------------------
-}
 void Tab::draw_tab(){
   //---------------------------
 

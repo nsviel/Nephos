@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_SPLATTING)
+set(LIBRARY_NAME LIBRARY_DEV)
 
 #-----------------
 # Source files
@@ -19,6 +19,8 @@ find_package(Python REQUIRED COMPONENTS Interpreter Development)
 include_directories(${Python_INCLUDE_DIRS})
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
+  LIBRARY_UTILITY
+
   ${Python_LIBRARIES}
 
   Python::Python

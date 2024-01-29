@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <GUI/Namespace.h>
 
-namespace gui::dev::tab{
+namespace dev::gui{
 class Panel;
 
 
@@ -11,7 +11,7 @@ class Menu
 {
 public:
   //Constructor / Destructor
-  Menu(gui::dev::tab::Panel* panel);
+  Menu(dev::gui::Tab* dev_tab);
   ~Menu();
 
 public:
@@ -22,7 +22,7 @@ public:
   void open_panels();
 
 private:
-  gui::dev::tab::Panel* panel;
+  dev::gui::Tab* dev_tab;
 
 };
 

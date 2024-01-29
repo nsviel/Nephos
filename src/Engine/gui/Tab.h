@@ -17,7 +17,6 @@ public:
 
 public:
   //Main functions
-  void init_tab();
   void draw_tab();
   void open_panels();
 

@@ -5,7 +5,7 @@
 namespace gui{class Node;}
 namespace gui::interface{class Menu;}
 namespace eng::gui{class Tab;}
-namespace gui::dev::tab{class Panel;}
+namespace dev::gui{class Tab;}
 
 
 namespace gui::interface{
@@ -19,7 +19,6 @@ public:
 
 public:
   //Main functions
-  void init_tab();
   void run_tab();
 
   //Tab function
@@ -31,7 +30,7 @@ private:
   gui::Node* gui;
   gui::interface::Menu* gui_menu;
   eng::gui::Tab* eng_tab;
-  gui::dev::tab::Panel* dev_tab;
+  dev::gui::Tab* dev_tab;
 
   vector<string> vec_tab;
   string active_tab;

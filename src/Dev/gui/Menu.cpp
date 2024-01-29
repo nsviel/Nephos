@@ -3,13 +3,13 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace gui::dev::tab{
+namespace dev::gui{
 
 //Constructor / Destructor
-Menu::Menu(gui::dev::tab::Panel* panel){
+Menu::Menu(dev::gui::Tab* dev_tab){
   //---------------------------
 
-  this->panel = panel;
+  this->dev_tab = dev_tab;
 
   //---------------------------
 }
@@ -33,7 +33,6 @@ void Menu::run_tab_menu(){
 void Menu::open_panels(){
   //---------------------------
 
-  ImGui::Checkbox(ICON_FA_KEY " Database##456", &panel->show_database);
 
   //---------------------------
 }
