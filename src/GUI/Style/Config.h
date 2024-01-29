@@ -8,12 +8,12 @@ namespace gui::style{class Theme;}
 
 namespace gui{
 
-class Style
+class Config
 {
 public:
   //Constructor / Destructor
-  Style(gui::Node* gui);
-  ~Style();
+  Config(gui::Node* gui);
+  ~Config();
 
 public:
   //Main function

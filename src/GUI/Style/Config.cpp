@@ -1,20 +1,20 @@
-#include "Style.h"
+#include "Config.h"
 
 
 namespace gui{
 
 //Constructor / Destructor
-Style::Style(gui::Node* gui){
+Config::Config(gui::Node* gui){
   //---------------------------
 
 
 
   //---------------------------
 }
-Style::~Style(){}
+Config::~Config(){}
 
 //Main function
-void Style::init_style(){
+void Config::init_style(){
   //---------------------------
 
   this->style_window();
@@ -23,7 +23,7 @@ void Style::init_style(){
 }
 
 //Subfunction
-void Style::style_window(){
+void Config::style_window(){
   ImGuiStyle& style = ImGui::GetStyle();
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------

@@ -6,7 +6,7 @@ namespace eng{class Node;}
 namespace utl{class Node;}
 namespace utl::element{class Window;}
 namespace gui::interface{class Control;}
-namespace gui{class Style;}
+namespace gui{class Config;}
 namespace gui::interface{class Tab;}
 namespace gui{class Render;}
 namespace gui::interface{class Docking;}
@@ -32,7 +32,7 @@ public:
   inline utl::Node* get_node_utility(){return utility;}
   inline eng::Node* get_engine(){return engine;}
   inline gui::interface::Control* get_gui_control(){return gui_control;}
-  inline gui::Style* get_gui_style(){return gui_style;}
+  inline gui::Config* get_gui_style(){return gui_style;}
   inline gui::interface::Tab* get_gui_tab(){return gui_tab;}
   inline gui::style::Font* get_gui_font(){return gui_font;}
   inline gui::Render* get_rnd_tab(){return gui_render;}
@@ -44,7 +44,7 @@ private:
 
   utl::element::Window* utl_window;
   gui::interface::Control* gui_control;
-  gui::Style* gui_style;
+  gui::Config* gui_style;
   gui::interface::Docking* gui_docking;
   gui::style::Font* gui_font;
   gui::style::Theme* gui_theme;
