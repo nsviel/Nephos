@@ -27,7 +27,7 @@ public:
 
   //Transformed data
   void find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
-  void find_depth_to_color_custom(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
+  void find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
   void find_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
   void find_color_to_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
 

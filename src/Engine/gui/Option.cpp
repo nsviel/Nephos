@@ -6,20 +6,18 @@
 #include <Utility/Namespace.h>
 
 
-namespace gui::rnd::tab{
+namespace eng::gui{
 
 //Constructor / Destructor
-Option::Option(gui::Node* gui, bool* show_window, string name){
+Option::Option(eng::Node* node_engine, bool* show_window){
   //---------------------------
 
-  eng::Node* engine = gui->get_engine();
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
+  vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
 
-  this->gui = gui;
   this->vk_info = eng_vulkan->get_vk_info();
 
   this->width = 150;
-  this->name = name;
+  this->name = "Option";
   this->show_window = show_window;
 
   //---------------------------

@@ -6,3 +6,4 @@
 #include <Engine/Data/Namespace.h>
 #include <Engine/Operation/Namespace.h>
 #include <Engine/Render/Namespace.h>
+#include <Engine/gui/Namespace.h>

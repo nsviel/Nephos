@@ -31,9 +31,7 @@ void Data::find_data_from_capture(eng::k4n::dev::Sensor* sensor, k4a::capture ca
   this->find_ir(sensor, capture);
 
   //Transformed data
-  //this->find_color_to_depth(sensor, capture, sensor->param.transformation);
-  this->find_depth_to_color_custom(sensor, capture, sensor->param.transformation);
-  //this->find_ir_to_color(sensor, capture, sensor->param.transformation);
+  this->find_depth_and_ir_to_color(sensor, capture, sensor->param.transformation);
 
   //Finish
   sensor->master->player.ts_cur = sensor->color.data.timestamp;
@@ -153,7 +151,7 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
 
   //---------------------------
 }
-void Data::find_depth_to_color_custom(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
+void Data::find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
   if(!sensor->color.data.image || !sensor->depth.data.image) return;
   //---------------------------
 

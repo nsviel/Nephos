@@ -1,5 +1,6 @@
 #include "Tab.h"
 
+#include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <GUI/Namespace.h>
 
@@ -10,8 +11,8 @@ namespace gui::interface{
 Tab::Tab(gui::Node* gui){
   //---------------------------
 
-  this->rnd_panel = new gui::rnd::tab::Panel(gui);
-  this->dev_panel = new gui::dev::tab::Panel(gui);
+  this->eng_tab = new eng::gui::Tab(gui->get_engine());
+  this->dev_tab = new gui::dev::tab::Panel(gui);
   this->gui_menu = new gui::interface::Menu(gui);
 
   this->active_tab = "Render";
@@ -24,8 +25,8 @@ Tab::Tab(gui::Node* gui){
 Tab::~Tab(){
   //---------------------------
 
-  delete rnd_panel;
-  delete dev_panel;
+  delete eng_tab;
+  delete dev_tab;
 
   //---------------------------
 }
@@ -34,8 +35,8 @@ Tab::~Tab(){
 void Tab::init_tab(){
   //---------------------------
 
-  rnd_panel->init_tab();
-  dev_panel->init_tab();
+  eng_tab->init_tab();
+  dev_tab->init_tab();
 
   //---------------------------
 }
@@ -83,10 +84,10 @@ void Tab::draw_tab(){
 
   //Draw selected tab panels
   if(active_tab == "Render"){
-    rnd_panel->draw_tab();
+    eng_tab->draw_tab();
   }
   else if(active_tab == "Dev"){
-    dev_panel->draw_tab();
+    dev_tab->draw_tab();
   }
 
   //---------------------------

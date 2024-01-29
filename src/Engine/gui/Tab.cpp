@@ -1,41 +1,41 @@
-#include "TAB_engine.h"
+#include "Tab.h"
 
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
-namespace gui::rnd::tab{
+namespace eng::gui{
 
 //Constructor / Destructor
-TAB_engine::TAB_engine(gui::Node* gui){
+Tab::Tab(eng::Node* node_engine){
   //---------------------------
 
-  this->gui = gui;
+  this->gui_option = new eng::gui::Option(node_engine, &show_option);
 
   //---------------------------
 }
-TAB_engine::~TAB_engine(){}
+Tab::~Tab(){}
 
 //Main function
-void TAB_engine::init_tab(){
+void Tab::init_tab(){
   //---------------------------
 
-  this->rnd_option = new gui::rnd::tab::Option(gui, &show_option, "Option");
+
 
   //---------------------------
 }
-void TAB_engine::draw_tab(){
+void Tab::draw_tab(){
   //---------------------------
 
   this->draw_menu();
-  rnd_option->run_panel();
+  gui_option->run_panel();
 
   //---------------------------
 }
 
 //Subfunction
-void TAB_engine::draw_menu(){
+void Tab::draw_menu(){
   //---------------------------
 
   ImGui::BeginMainMenuBar();

@@ -2,20 +2,18 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng::scene::gui{class Scene;}
-namespace eng::scene::gui{class Loader;}
-namespace gui{class Node;}
-namespace gui::rnd::tab{class Option;}
+namespace eng{class Node;}
+namespace eng::gui{class Option;}
 
 
-namespace gui::rnd::tab{
+namespace eng::gui{
 
-class TAB_engine
+class Tab
 {
 public:
   //Constructor / Destructor
-  TAB_engine(gui::Node* gui);
-  ~TAB_engine();
+  Tab(eng::Node* node_engine);
+  ~Tab();
 
 public:
   //Main functions
@@ -35,8 +33,7 @@ public:
   bool show_loader   = true;
 
 private:
-  gui::Node* gui;
-  gui::rnd::tab::Option* rnd_option;
+  eng::gui::Option* gui_option;
 };
 
 }

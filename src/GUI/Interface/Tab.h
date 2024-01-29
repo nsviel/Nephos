@@ -4,7 +4,7 @@
 
 namespace gui{class Node;}
 namespace gui::interface{class Menu;}
-namespace gui::rnd::tab{class Panel;}
+namespace eng::gui{class Tab;}
 namespace gui::dev::tab{class Panel;}
 
 
@@ -27,14 +27,11 @@ public:
   void draw_tab();
   void next_tab();
 
-  inline gui::rnd::tab::Panel* get_rnd_panel(){return rnd_panel;}
-  inline gui::dev::tab::Panel* get_dev_panel(){return dev_panel;}
-
 private:
   gui::Node* gui;
   gui::interface::Menu* gui_menu;
-  gui::rnd::tab::Panel* rnd_panel;
-  gui::dev::tab::Panel* dev_panel;
+  eng::gui::Tab* eng_tab;
+  gui::dev::tab::Panel* dev_tab;
 
   vector<string> vec_tab;
   string active_tab;

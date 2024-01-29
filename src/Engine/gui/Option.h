@@ -2,17 +2,17 @@
 
 #include <Utility/Specific/common.h>
 
-namespace gui{class Node;}
+namespace eng{class Node;}
 namespace vk::main{class Info;}
 
 
-namespace gui::rnd::tab{
+namespace eng::gui{
 
 class Option
 {
 public:
   //Constructor / Destructor
-  Option(gui::Node* gui, bool* show_window, string name);
+  Option(eng::Node* node_engine, bool* show_window);
   ~Option();
 
 public:
@@ -25,7 +25,6 @@ public:
   void option_fps();
 
 private:
-  gui::Node* gui;
   vk::main::Info* vk_info;
 
   int width;
