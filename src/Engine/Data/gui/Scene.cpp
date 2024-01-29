@@ -209,7 +209,6 @@ void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
 
   for(int i=0; i<set->list_entity.size(); i++){
     utl::type::Entity* entity = *next(set->list_entity.begin(), i);
-
     this->tree_entity(set, entity, nb_row);
   }
 

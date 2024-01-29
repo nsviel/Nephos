@@ -75,7 +75,6 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   std::unique_lock<std::mutex> lock(data->mutex);
 
   //Store capture data
-  data->nb_point = vec_xyz.size();
   data->xyz = vec_xyz;
   data->Is = vec_ir;
   data->R = vec_r;

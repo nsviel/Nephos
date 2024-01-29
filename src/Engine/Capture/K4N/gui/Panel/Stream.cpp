@@ -108,7 +108,7 @@ void Stream::vec_stream_tab(eng::k4n::dev::Sensor* sensor){
 
     ImGui::SetNextItemWidth(100);
     flag = get_sensor_tab_flag(2);
-    if (ImGui::BeginTabItem("Color from depth##4567", NULL)){
+    if(!sensor->color.data_to_depth.buffer.empty() && ImGui::BeginTabItem("Color from depth##4567", NULL)){
       this->draw_camera_color_from_depth(sensor, image_size);
       ImGui::EndTabItem();
     }
