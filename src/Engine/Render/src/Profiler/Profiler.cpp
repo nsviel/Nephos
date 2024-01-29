@@ -18,14 +18,14 @@ Profiler::Profiler(eng::render::Node* node_render){
 Profiler::~Profiler(){}
 
 //Main function
-void Profiler::start(){
+void Profiler::task_start(){
   //---------------------------
 
   this->time_beg = timer.get_time();
 
   //---------------------------
 }
-void Profiler::stop(string name){
+void Profiler::task_stop(string name){
   //---------------------------
 
   timer_time time_end = timer.get_time();

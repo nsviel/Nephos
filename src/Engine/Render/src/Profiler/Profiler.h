@@ -18,8 +18,8 @@ public:
 
 public:
   //Main function
-  void start();
-  void stop(string name);
+  void task_start();
+  void task_stop(string name);
 
 private:
   utl::timer::Chrono timer;

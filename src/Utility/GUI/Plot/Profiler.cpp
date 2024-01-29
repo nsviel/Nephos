@@ -30,6 +30,7 @@ Profiler::~Profiler(){}
 void Profiler::init(){
   //---------------------------
 
+  //Profiler bar colors in order of appearance
   vec_color.clear();
   vec_color.push_back(ImProfil::color::turqoise);
   vec_color.push_back(ImProfil::color::greenSea);
