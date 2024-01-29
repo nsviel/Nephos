@@ -1,6 +1,6 @@
 #include "Tree.h"
 
-#include <Utility/Function/Math/fct_math.h>
+#include <Utility/Function/Math/Math.h>
 
 
 namespace glyph::object{

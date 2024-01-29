@@ -36,7 +36,7 @@ using namespace glm;
 
 //Function
 #include <Utility/Function/Debug/Namespace.h>
-#include <Utility/Function/Math/fct_math.h>
+#include <Utility/Function/Math/Math.h>
 #include <Utility/Base/Namespace.h>
 
 //GUI

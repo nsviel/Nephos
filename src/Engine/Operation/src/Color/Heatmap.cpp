@@ -1,6 +1,6 @@
 #include "Heatmap.h"
 
-#include <Utility/Function/Math/fct_math.h>
+#include <Utility/Function/Math/Math.h>
 #include <Engine/Operation/Namespace.h>
 
 

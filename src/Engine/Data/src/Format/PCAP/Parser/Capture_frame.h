@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Function/Math/fct_math.h>
+#include <Utility/Function/Math/Math.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>

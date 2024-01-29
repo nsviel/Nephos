@@ -1,4 +1,4 @@
-#include "fct_math.h"
+#include "Math.h"
 
 
 namespace math{

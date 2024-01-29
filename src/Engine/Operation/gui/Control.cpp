@@ -6,7 +6,7 @@
 #include <Engine/Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Utility/Element/src/Namespace.h>
-#include <Utility/Function/Math/fct_math.h>
+#include <Utility/Function/Math/Math.h>
 
 
 namespace eng::ope::gui{

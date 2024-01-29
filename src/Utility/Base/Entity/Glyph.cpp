@@ -4,7 +4,7 @@
 #include <Engine/Camera/Namespace.h>
 #include <Vulkan/Node.h>
 #include <Vulkan/VK_main/Engine.h>
-#include <Utility/Function/Math/fct_math.h>
+#include <Utility/Function/Math/Math.h>
 
 
 namespace utl::entity{
