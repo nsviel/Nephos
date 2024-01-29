@@ -1,7 +1,7 @@
 #include "Config.h"
 
 
-namespace gui{
+namespace gui::style{
 
 //Constructor / Destructor
 Config::Config(gui::Node* gui){

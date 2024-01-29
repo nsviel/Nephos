@@ -3,10 +3,9 @@
 #include <Utility/Specific/common.h>
 
 namespace gui{class Node;}
-namespace gui::style{class Theme;}
 
 
-namespace gui{
+namespace gui::style{
 
 class Config
 {

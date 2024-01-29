@@ -16,7 +16,7 @@ Node::Node(utl::Node* utility, eng::Node* engine){
   this->utl_window = utility->get_utl_window();
 
   this->gui_render = new gui::Render(this);
-  this->gui_style = new gui::Config(this);
+  this->gui_style = new gui::style::Config(this);
   this->gui_font = new gui::style::Font(this);
   this->gui_tab = new gui::interface::Tab(this);
   this->gui_control = new gui::interface::Control(this);
