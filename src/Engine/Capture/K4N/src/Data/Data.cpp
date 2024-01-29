@@ -32,7 +32,7 @@ void Data::find_data_from_capture(eng::k4n::dev::Sensor* sensor, k4a::capture ca
 
   //Transformed data
   //this->find_color_to_depth(sensor, capture, sensor->param.transformation);
-  this->find_depth_to_color(sensor, capture, sensor->param.transformation);
+  this->find_depth_to_color_custom(sensor, capture, sensor->param.transformation);
   //this->find_ir_to_color(sensor, capture, sensor->param.transformation);
 
   //Finish
@@ -128,28 +128,91 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   //---------------------------
 
   //Convert it into a depth POV representation
-  k4a::image image_transformed = k4a::image::create(K4A_IMAGE_FORMAT_DEPTH16,
+  k4a::image depth_transformed = k4a::image::create(K4A_IMAGE_FORMAT_DEPTH16,
     sensor->param.calibration.color_camera_calibration.resolution_width,
     sensor->param.calibration.color_camera_calibration.resolution_height,
     sensor->param.calibration.color_camera_calibration.resolution_width *
     static_cast<int>(sizeof(uint16_t)));
 
-  transformation.depth_image_to_color_camera(sensor->depth.data.image, &image_transformed);
-  if(!image_transformed || !image_transformed.is_valid()){
+  transformation.depth_image_to_color_camera(sensor->depth.data.image, &depth_transformed);
+  if(!depth_transformed || !depth_transformed.is_valid()){
     return;
   }
 
   //Buffer
   string format = sensor->depth.data.format;
-  this->retrieve_data_from_capture(image_transformed, sensor->depth.data_to_color.buffer, format);
+  this->retrieve_data_from_capture(depth_transformed, sensor->depth.data_to_color.buffer, format);
   sensor->depth.data_to_color.size = sensor->depth.data.buffer.size();
 
   //Data
-  sensor->depth.data_to_color.image = image_transformed;
+  sensor->depth.data_to_color.image = depth_transformed;
   sensor->depth.data_to_color.name = "depth_to_color";
-  sensor->depth.data_to_color.width = image_transformed.get_width_pixels();
-  sensor->depth.data_to_color.height = image_transformed.get_height_pixels();
+  sensor->depth.data_to_color.width = depth_transformed.get_width_pixels();
+  sensor->depth.data_to_color.height = depth_transformed.get_height_pixels();
   sensor->depth.data_to_color.format = format;
+
+  //---------------------------
+}
+void Data::find_depth_to_color_custom(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
+  if(!sensor->color.data.image || !sensor->depth.data.image) return;
+  //---------------------------
+
+  //Depth images
+  k4a::image depth = k4a::image::create_from_buffer(
+    K4A_IMAGE_FORMAT_DEPTH16,
+    sensor->depth.data.width,
+    sensor->depth.data.height,
+    sensor->depth.data.width * static_cast<int>(sizeof(uint16_t)),
+    sensor->depth.data.buffer.data(),
+    sensor->depth.data.buffer.size(),
+    nullptr,
+    nullptr);
+  k4a::image depth_transformed = k4a::image::create(K4A_IMAGE_FORMAT_DEPTH16,
+    sensor->param.calibration.color_camera_calibration.resolution_width,
+    sensor->param.calibration.color_camera_calibration.resolution_height,
+    sensor->param.calibration.color_camera_calibration.resolution_width *
+    static_cast<int>(sizeof(uint16_t)));
+
+  //IR images
+  k4a::image ir = k4a::image::create_from_buffer(
+      K4A_IMAGE_FORMAT_CUSTOM16,
+      sensor->ir.data.width,
+      sensor->ir.data.height,
+      sensor->ir.data.width * static_cast<int>(sizeof(uint16_t)),
+      sensor->ir.data.buffer.data(),
+      sensor->ir.data.buffer.size(),
+      nullptr,
+      nullptr);
+  k4a::image ir_transformed = k4a::image::create(
+        K4A_IMAGE_FORMAT_CUSTOM16,
+        sensor->param.calibration.color_camera_calibration.resolution_width,
+        sensor->param.calibration.color_camera_calibration.resolution_height,
+        sensor->param.calibration.color_camera_calibration.resolution_width *
+        static_cast<int>(sizeof(uint16_t)));
+
+  uint32_t value_no_data = 0;
+  transformation.depth_image_to_color_camera_custom(depth, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_NEAREST, value_no_data);
+  if(!depth_transformed || !depth_transformed.is_valid()){
+    return;
+  }
+
+  //Depth transformed
+  this->retrieve_data_from_capture(depth_transformed, sensor->depth.data_to_color.buffer, sensor->depth.data.format);
+  sensor->depth.data_to_color.size = sensor->depth.data_to_color.buffer.size();
+  sensor->depth.data_to_color.image = depth_transformed;
+  sensor->depth.data_to_color.name = "depth_to_color";
+  sensor->depth.data_to_color.width = depth_transformed.get_width_pixels();
+  sensor->depth.data_to_color.height = depth_transformed.get_height_pixels();
+  sensor->depth.data_to_color.format = sensor->depth.data.format;
+
+  //IR transformed
+  this->retrieve_data_from_capture(ir_transformed, sensor->ir.data_to_color.buffer, sensor->ir.data.format);
+  sensor->ir.data_to_color.size = sensor->ir.data_to_color.buffer.size();
+  sensor->ir.data_to_color.image = ir_transformed;
+  sensor->ir.data_to_color.name = "ir_to_color";
+  sensor->ir.data_to_color.width = ir_transformed.get_width_pixels();
+  sensor->ir.data_to_color.height = ir_transformed.get_height_pixels();
+  sensor->ir.data_to_color.format = sensor->ir.data.format;
 
   //---------------------------
 }
