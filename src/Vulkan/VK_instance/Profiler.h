@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Function/Timer/fct_timer.h>
+#include <Utility/Function/Timer/Chrono.h>
 
 namespace vk::structure{class Vulkan;}
 
@@ -22,7 +22,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  utl::Timer timer;
+  utl::timer::Chrono timer;
   timer_time time_beg;
 };
 

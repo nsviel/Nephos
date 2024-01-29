@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 #include <Engine/Render/src/Profiler/Struct_profiler.h>
-#include <Utility/Function/Timer/fct_timer.h>
+#include <Utility/Function/Timer/Chrono.h>
 
 namespace eng::render{class Node;}
 
@@ -22,7 +22,7 @@ public:
   void stop(string name);
 
 private:
-  utl::Timer timer;
+  utl::timer::Chrono timer;
 
   std::chrono::time_point<std::chrono::system_clock> time_ref;
   vector<eng::profiler::Task> vec_task;

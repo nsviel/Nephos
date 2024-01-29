@@ -3,14 +3,14 @@
 typedef decltype(std::chrono::high_resolution_clock::now()) timer_time;
 
 
-namespace utl{
+namespace utl::timer{
 
-class Timer
+class Chrono
 {
 public:
   //Constructor / Destructor
-  Timer(){}
-  ~Timer(){}
+  Chrono(){}
+  ~Chrono(){}
 
 public:
   timer_time start_t(){
