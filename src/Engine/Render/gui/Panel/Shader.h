@@ -5,7 +5,6 @@
 class Text;
 namespace vk::main{class Engine;}
 namespace eng::render{class Node;}
-namespace eng::render{class Node;}
 namespace utl::gui::widget{class Console;}
 namespace utl::gui::editor{class Text;}
 

@@ -8,6 +8,7 @@ namespace eng::shader{class EDL;}
 namespace eng::shader{class SCE;}
 namespace eng::render::gui{class Shader;}
 namespace eng::render::gui{class Renderer;}
+namespace eng::render::gui{class Profiler;}
 
 
 namespace eng::render{
@@ -34,8 +35,10 @@ private:
   eng::shader::SCE* shader_scene;
   eng::render::gui::Shader* gui_shader;
   eng::render::gui::Renderer* gui_render;
+  eng::render::gui::Profiler* gui_profiler;
 
-  bool show_panel;
+  bool show_shader;
+  bool show_profiler;
 };
 
 }

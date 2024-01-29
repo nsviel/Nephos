@@ -19,6 +19,7 @@ public:
   //Main function
   void init();
   void loop();
+  void gui();
   void exit();
 
   inline utl::element::Window* get_utl_window(){return utl_window;}

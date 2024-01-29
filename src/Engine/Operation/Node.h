@@ -3,7 +3,6 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
-namespace eng::ope::gui{class Profiler;}
 
 
 namespace eng::ope{
@@ -22,8 +21,6 @@ public:
   void reset();
 
 private:
-  eng::ope::gui::Profiler* gui_profiler;
-
   bool show_profiler;
 };
 

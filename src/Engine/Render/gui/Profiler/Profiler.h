@@ -4,17 +4,18 @@
 #include <Utility/Function/Timer/fct_timer.h>
 
 namespace eng{class Node;}
+namespace eng::render{class Node;}
 namespace vk::main{class Info;}
 namespace utl::gui::plot{class Profiler;}
 
 
-namespace eng::ope::gui{
+namespace eng::render::gui{
 
 class Profiler
 {
 public:
   //Constructor / Destructor
-  Profiler(eng::Node* engine, bool* show_window);
+  Profiler(eng::render::Node* node_render, bool* show_window);
   ~Profiler();
 
 public:
@@ -25,13 +26,7 @@ public:
   //Subfunction
   void device_model();
   void main_loop_fps();
-  void draw_cpu_graph();
-
-
-
-  void engine_text_info();
-  void time_drawig(bool update);
-
+  void draw_graphs();
 
 private:
   utl::gui::plot::Profiler* profiler;
