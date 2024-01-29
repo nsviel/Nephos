@@ -21,6 +21,7 @@ Node::Node(utl::Node* utility, eng::Node* engine){
   this->gui_tab = new gui::interface::Tab(this);
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
+  this->gui_theme = new gui::style::Theme(this);
 
   //---------------------------
 }
@@ -41,6 +42,7 @@ void Node::init(){
   gui_tab->init_tab();
   gui_font->init_font();
   gui_style->init_style();
+  gui_theme->init_theme();
 
   //---------------------------
 }

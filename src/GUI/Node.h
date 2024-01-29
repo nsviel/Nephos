@@ -11,6 +11,7 @@ namespace gui::interface{class Tab;}
 namespace gui{class Render;}
 namespace gui::interface{class Docking;}
 namespace gui::style{class Font;}
+namespace gui::style{class Theme;}
 
 
 namespace gui{
@@ -46,6 +47,7 @@ private:
   gui::Style* gui_style;
   gui::interface::Docking* gui_docking;
   gui::style::Font* gui_font;
+  gui::style::Theme* gui_theme;
   gui::interface::Tab* gui_tab;
   gui::Render* gui_render;
 };

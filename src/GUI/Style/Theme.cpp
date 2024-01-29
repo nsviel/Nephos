@@ -1,4 +1,4 @@
-#include "Color.h"
+#include "Theme.h"
 
 #include <GUI/Namespace.h>
 
@@ -6,16 +6,16 @@
 namespace gui::style{
 
 //Constructor / Destructor
-Color::Color(gui::Node* gui){
+Theme::Theme(gui::Node* gui){
   //---------------------------
 
 
   //---------------------------
 }
-Color::~Color(){}
+Theme::~Theme(){}
 
 //Main function
-void Color::init_theme(){
+void Theme::init_theme(){
   //---------------------------
 
   this->color_window();
@@ -25,7 +25,7 @@ void Color::init_theme(){
 }
 
 //Subfunction
-void Color::color_window(){
+void Theme::color_window(){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -43,7 +43,7 @@ void Color::color_window(){
 
   //---------------------------
 }
-void Color::color_widget(){
+void Theme::color_widget(){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

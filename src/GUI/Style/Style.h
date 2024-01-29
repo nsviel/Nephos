@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace gui{class Node;}
-namespace gui::style{class Color;}
+namespace gui::style{class Theme;}
 
 
 namespace gui{
@@ -23,7 +23,6 @@ public:
   void style_window();
 
 private:
-  gui::style::Color* gui_color;
 };
 
 }

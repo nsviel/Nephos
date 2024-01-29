@@ -7,12 +7,12 @@ namespace gui{class Node;}
 
 namespace gui::style{
 
-class Color
+class Theme
 {
 public:
   //Constructor / Destructor
-  Color(gui::Node* gui);
-  ~Color();
+  Theme(gui::Node* gui);
+  ~Theme();
 
 public:
   //Main functions

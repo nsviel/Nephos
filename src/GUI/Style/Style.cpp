@@ -1,5 +1,4 @@
 #include "Style.h"
-#include "Color.h"
 
 
 namespace gui{
@@ -8,7 +7,7 @@ namespace gui{
 Style::Style(gui::Node* gui){
   //---------------------------
 
-  this->gui_color = new gui::style::Color(gui);
+
 
   //---------------------------
 }
@@ -19,7 +18,6 @@ void Style::init_style(){
   //---------------------------
 
   this->style_window();
-  gui_color->init_theme();
 
   //---------------------------
 }
