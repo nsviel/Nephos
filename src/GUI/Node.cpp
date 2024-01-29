@@ -39,8 +39,8 @@ void Node::init(){
 
   gui_render->init();
   gui_tab->init_tab();
-  gui_font->init_gui_font();
-  gui_style->gui_style();
+  gui_font->init_font();
+  gui_style->init_style();
 
   //---------------------------
 }

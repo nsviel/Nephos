@@ -15,11 +15,11 @@ Style::Style(gui::Node* gui){
 Style::~Style(){}
 
 //Main function
-void Style::gui_style(){
+void Style::init_style(){
   //---------------------------
 
   this->style_window();
-  gui_color->apply();
+  gui_color->init_theme();
 
   //---------------------------
 }

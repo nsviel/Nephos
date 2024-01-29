@@ -16,7 +16,9 @@ public:
 
 public:
   //Main functions
-  void apply();
+  void init_theme();
+
+  //Subfunction
   void color_window();
   void color_widget();
 

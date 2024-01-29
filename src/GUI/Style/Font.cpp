@@ -20,7 +20,7 @@ Font::Font(gui::Node* gui){
 Font::~Font(){}
 
 //Main function
-void Font::init_gui_font(){
+void Font::init_font(){
   //---------------------------
 
   this->gui_select_font();

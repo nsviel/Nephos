@@ -17,7 +17,7 @@ public:
 
 public:
   //Main functions
-  void init_gui_font();
+  void init_font();
 
   //Subfunction
   void combo_font_gui();

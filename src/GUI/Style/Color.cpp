@@ -15,7 +15,7 @@ Color::Color(gui::Node* gui){
 Color::~Color(){}
 
 //Main function
-void Color::apply(){
+void Color::init_theme(){
   //---------------------------
 
   this->color_window();
@@ -23,6 +23,8 @@ void Color::apply(){
 
   //---------------------------
 }
+
+//Subfunction
 void Color::color_window(){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------

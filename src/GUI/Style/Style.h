@@ -17,7 +17,7 @@ public:
 
 public:
   //Main function
-  void gui_style();
+  void init_style();
 
   //Subfunction
   void style_window();
