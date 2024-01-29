@@ -1,5 +1,7 @@
-#include "fct_error.h"
+#include "Error.h"
 
+
+namespace{
 
 void warning_shaderNotFound(std::string name){
   //---------------------------
@@ -15,4 +17,6 @@ void error_fileDoesNotExists(std::string path){
   std::cout<<"[error] File "<<path<<" does not exists."<<std::endl;
 
   //---------------------------
+}
+
 }
