@@ -3,12 +3,12 @@
 #include <Utility/Specific/common.h>
 
 namespace gui{class Node;}
-namespace gui{class Menu;}
+namespace gui::interface{class Menu;}
 namespace gui::rnd::tab{class Panel;}
 namespace gui::dev::tab{class Panel;}
 
 
-namespace gui{
+namespace gui::interface{
 
 class Tab
 {
@@ -32,7 +32,7 @@ public:
 
 private:
   gui::Node* gui;
-  gui::Menu* gui_menu;
+  gui::interface::Menu* gui_menu;
   gui::rnd::tab::Panel* rnd_panel;
   gui::dev::tab::Panel* dev_panel;
 

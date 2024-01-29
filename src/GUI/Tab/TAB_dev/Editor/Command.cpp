@@ -11,7 +11,7 @@ namespace gui::dev::editor{
 Command::Command(gui::Node* gui){
   //---------------------------
 
-  Tab* gui_tab = gui->get_gui_tab();
+  //Tab* gui_tab = gui->get_gui_tab();
   //gui::dev::tab::Tab* dev_tab = gui_tab->get_dev_tab();
   this->gui = gui;
   //this->gui_panel = dev_tab->get_panel();

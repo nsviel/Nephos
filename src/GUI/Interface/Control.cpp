@@ -5,7 +5,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace gui{
+namespace gui::interface{
 
 //Constructor / Destructor
 Control::Control(gui::Node* gui){

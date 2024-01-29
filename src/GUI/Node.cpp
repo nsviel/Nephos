@@ -18,9 +18,9 @@ Node::Node(utl::Node* utility, eng::Node* engine){
   this->gui_render = new gui::Render(this);
   this->gui_style = new gui::Style(this);
   this->gui_font = new gui::style::Font(this);
-  this->gui_tab = new gui::Tab(this);
-  this->gui_control = new gui::Control(this);
-  this->gui_docking = new gui::Docking(this);
+  this->gui_tab = new gui::interface::Tab(this);
+  this->gui_control = new gui::interface::Control(this);
+  this->gui_docking = new gui::interface::Docking(this);
 
   //---------------------------
 }

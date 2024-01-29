@@ -6,7 +6,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace gui{
+namespace gui::interface{
 
 //Constructor / Destructor
 Menu::Menu(gui::Node* gui){

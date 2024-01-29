@@ -4,7 +4,7 @@
 #include <GUI/Namespace.h>
 
 
-namespace gui{
+namespace gui::interface{
 
 //Constructor / Destructor
 Tab::Tab(gui::Node* gui){
@@ -12,7 +12,7 @@ Tab::Tab(gui::Node* gui){
 
   this->rnd_panel = new gui::rnd::tab::Panel(gui);
   this->dev_panel = new gui::dev::tab::Panel(gui);
-  this->gui_menu = new gui::Menu(gui);
+  this->gui_menu = new gui::interface::Menu(gui);
 
   this->active_tab = "Render";
   this->tab_to_open = "";

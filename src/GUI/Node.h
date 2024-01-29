@@ -5,11 +5,11 @@
 namespace eng{class Node;}
 namespace utl{class Node;}
 namespace utl::element{class Window;}
-namespace gui{class Control;}
+namespace gui::interface{class Control;}
 namespace gui{class Style;}
-namespace gui{class Tab;}
+namespace gui::interface{class Tab;}
 namespace gui{class Render;}
-namespace gui{class Docking;}
+namespace gui::interface{class Docking;}
 namespace gui::style{class Font;}
 
 
@@ -30,9 +30,9 @@ public:
 
   inline utl::Node* get_node_utility(){return utility;}
   inline eng::Node* get_engine(){return engine;}
-  inline gui::Control* get_gui_control(){return gui_control;}
+  inline gui::interface::Control* get_gui_control(){return gui_control;}
   inline gui::Style* get_gui_style(){return gui_style;}
-  inline gui::Tab* get_gui_tab(){return gui_tab;}
+  inline gui::interface::Tab* get_gui_tab(){return gui_tab;}
   inline gui::style::Font* get_gui_font(){return gui_font;}
   inline gui::Render* get_rnd_tab(){return gui_render;}
 
@@ -42,11 +42,11 @@ private:
   utl::Node* utility;
 
   utl::element::Window* utl_window;
-  gui::Control* gui_control;
+  gui::interface::Control* gui_control;
   gui::Style* gui_style;
-  gui::Docking* gui_docking;
+  gui::interface::Docking* gui_docking;
   gui::style::Font* gui_font;
-  gui::Tab* gui_tab;
+  gui::interface::Tab* gui_tab;
   gui::Render* gui_render;
 };
 

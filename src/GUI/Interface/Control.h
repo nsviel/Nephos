@@ -3,11 +3,11 @@
 #include <Utility/Specific/common.h>
 
 namespace gui{class Node;}
-namespace gui{class Tab;}
+namespace gui::interface{class Tab;}
 namespace utl::element{class Window;}
 
 
-namespace gui{
+namespace gui::interface{
 
 class Control
 {
@@ -27,7 +27,7 @@ public:
 
 private:
   utl::element::Window* utl_window;
-  gui::Tab* gui_tab;
+  gui::interface::Tab* gui_tab;
 };
 
 }

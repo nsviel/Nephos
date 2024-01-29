@@ -5,7 +5,7 @@
 namespace gui{class Node;}
 
 
-namespace gui{
+namespace gui::interface{
 
 class Docking
 {

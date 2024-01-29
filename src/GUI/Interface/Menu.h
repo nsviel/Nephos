@@ -7,7 +7,7 @@ namespace gui::style{class Font;}
 namespace utl::element::gui{class Git;}
 
 
-namespace gui{
+namespace gui::interface{
 
 class Menu
 {

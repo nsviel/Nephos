@@ -3,7 +3,7 @@
 #include <GUI/Namespace.h>
 
 
-namespace gui{
+namespace gui::interface{
 
 //Constructor / Destructor
 Docking::Docking(gui::Node* gui){
