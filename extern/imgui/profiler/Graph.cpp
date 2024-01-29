@@ -118,8 +118,10 @@ void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 
     size_t frameIndex = (current_frameIndex - frameIndexOffset - 1 - frameNumber + 2 * frames.size()) % frames.size();
 
     glm::vec2 framePos = graph_pose + glm::vec2(graph_size.x - 1 - frame_width - (frame_width + frame_spacing) * frameNumber, graph_size.y - 1);
-    if(framePos.x < graph_pose.x + 1)
+    if(framePos.x < graph_pose.x + 1){
       break;
+    }
+
     glm::vec2 taskPos = framePos + glm::vec2(0.0f, 0.0f);
     auto &frame = frames[frameIndex];
     for (const auto& task : frame.tasks){

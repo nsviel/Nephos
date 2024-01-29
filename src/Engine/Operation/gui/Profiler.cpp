@@ -44,6 +44,7 @@ void Profiler::design_panel(){
 
   this->device_model();
   this->main_loop_fps();
+  this->draw_cpu_graph();
 
   //---------------------------
 }

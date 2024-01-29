@@ -21,15 +21,15 @@ public:
   Window();
 
   //Main function
+  void init_graph();
   void render_window();
   void render_overlay(ImVec2 image_pose);
 
   //Subfunction
-  void init_graph();
-  void fps_counter();
   void display_option();
 
-  ImProfil::Graph* graph;
+  ImProfil::Graph* graph_cpu;
+  ImProfil::Graph* graph_gpu;
   using TimePoint = std::chrono::time_point<std::chrono::system_clock>;
   TimePoint prev_fps_frame_time;
   size_t fps_frames_count;
