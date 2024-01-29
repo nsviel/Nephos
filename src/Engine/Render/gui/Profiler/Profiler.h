@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Function/Timer/fct_timer.h>
 
 namespace eng{class Node;}
 namespace eng::render{class Node;}
@@ -31,7 +30,6 @@ public:
 private:
   utl::gui::plot::Profiler* profiler;
   vk::main::Info* vk_info;
-  Timer timer;
 
   bool* show_window;
   string name;
