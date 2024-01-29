@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Function/Timer/fct_timer.h>
 
 namespace eng{class Node;}
 namespace vk::main{class Engine;}
@@ -45,9 +44,6 @@ private:
   vk::main::Engine* vk_engine;
   vk::renderpass::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
-
-  Timer timer;
-  float time_renderpass;
 };
 
 }

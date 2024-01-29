@@ -91,7 +91,6 @@ void Scene::create_subpass(vk::structure::Renderpass* renderpass){
 
 //Draw function
 void Scene::draw_scene(vk::structure::Subpass* subpass){
-  timer_time t1 = timer.start_t();
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass->command_buffer);
@@ -100,7 +99,6 @@ void Scene::draw_scene(vk::structure::Subpass* subpass){
   this->cmd_draw_triangle(subpass);
 
   //---------------------------
-  this->time_renderpass = timer.stop_ms(t1);
 }
 void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
   list<vk::structure::Object*> list_data = vk_engine->get_list_data();

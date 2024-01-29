@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Function/Timer/fct_timer.h>
 
 namespace eng{class Node;}
 namespace vk::main{class Engine;}

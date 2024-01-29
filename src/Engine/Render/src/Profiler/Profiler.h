@@ -1,6 +1,8 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <Engine/Render/src/Profiler/Struct_profiler.h>
+#include <Utility/Function/Timer/fct_timer.h>
 
 namespace eng::render{class Node;}
 
@@ -16,10 +18,15 @@ public:
 
 public:
   //Main function
-
+  void start();
+  void stop(string name);
 
 private:
+  utl::Timer timer;
 
+  std::chrono::time_point<std::chrono::system_clock> time_ref;
+  vector<eng::profiler::Task> vec_task;
+  timer_time time_beg;
 };
 
 }

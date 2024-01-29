@@ -35,7 +35,6 @@ Engine::~Engine(){}
 
 //Init function
 void Engine::init(){
-  timer_time t1 = timer.start_t();
   //---------------------------
 
   if(struct_vulkan->param.headless){
@@ -45,7 +44,6 @@ void Engine::init(){
   }
 
   //---------------------------
-  struct_vulkan->profiler.engine_init = timer.stop_us(t1) / 1000;
 }
 void Engine::init_engine_presentation(){
   //---------------------------

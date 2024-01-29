@@ -22,7 +22,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  Timer timer;
+  utl::Timer timer;
   timer_time time_beg;
 };
 

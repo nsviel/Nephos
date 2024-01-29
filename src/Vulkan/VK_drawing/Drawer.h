@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Function/Timer/fct_timer.h>
 
 namespace vk::presentation{class Presentation;}
 namespace vk::draw{class Renderer;}
@@ -32,8 +31,6 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::presentation::Presentation* vk_presentation;
   vk::draw::Renderer* vk_render;
-
-  Timer timer;
 };
 
 }

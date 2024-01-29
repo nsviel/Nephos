@@ -3,6 +3,8 @@
 typedef decltype(std::chrono::high_resolution_clock::now()) timer_time;
 
 
+namespace utl{
+
 class Timer
 {
 public:
@@ -57,3 +59,5 @@ private:
   std::chrono::high_resolution_clock::time_point t1;
   std::chrono::high_resolution_clock::time_point t2;
 };
+
+}

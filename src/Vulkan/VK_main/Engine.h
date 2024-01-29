@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Function/Timer/fct_timer.h>
 
 namespace vk::presentation{class Surface;}
 namespace vk::instance{class Instance;}
@@ -79,8 +78,6 @@ private:
   vk::data::Canvas* vk_canvas;
   vk::draw::Drawer* vk_drawing;
   utl::fps::Counter* fps_counter;
-
-  Timer timer;
 };
 
 }
