@@ -31,11 +31,11 @@ Tab::~Tab(){
 }
 
 //Main function
-void Tab::create_panels(){
+void Tab::init_tab(){
   //---------------------------
 
-  rnd_panel->create_panels();
-  dev_panel->create_panels();
+  rnd_panel->init_tab();
+  dev_panel->init_tab();
 
   //---------------------------
 }
@@ -46,16 +46,16 @@ void Tab::run_tab(){
   ImGui::BeginMainMenuBar();
   gui_menu->menu();
   ImGui::Separator();
-  this->tabs();
+  this->draw_tab_menu();
   ImGui::Dummy(ImVec2(100.0f, 0.0f)); // empty space
   ImGui::EndMainMenuBar();
-  this->draw_panels();
+  this->draw_tab();
 
   //---------------------------
 }
 
 //Tab function
-void Tab::tabs(){
+void Tab::draw_tab_menu(){
   ImGuiTabItemFlags flag;
   //---------------------------
 
@@ -78,15 +78,15 @@ void Tab::tabs(){
 
   //---------------------------
 }
-void Tab::draw_panels(){
+void Tab::draw_tab(){
   //---------------------------
 
   //Draw selected tab panels
   if(active_tab == "Render"){
-    rnd_panel->draw_panels();
+    rnd_panel->draw_tab();
   }
   else if(active_tab == "Dev"){
-    dev_panel->draw_panels();
+    dev_panel->draw_tab();
   }
 
   //---------------------------

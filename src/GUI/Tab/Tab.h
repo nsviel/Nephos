@@ -19,12 +19,12 @@ public:
 
 public:
   //Main functions
-  void create_panels();
+  void init_tab();
   void run_tab();
 
   //Tab function
-  void tabs();
-  void draw_panels();
+  void draw_tab_menu();
+  void draw_tab();
   void next_tab();
 
   inline gui::rnd::tab::Panel* get_rnd_panel(){return rnd_panel;}

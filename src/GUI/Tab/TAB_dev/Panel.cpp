@@ -18,7 +18,7 @@ Panel::Panel(gui::Node* gui){
 Panel::~Panel(){}
 
 //Main function
-void Panel::create_panels(){
+void Panel::init_tab(){
   //---------------------------
 
   static bool truc = true;
@@ -27,7 +27,7 @@ void Panel::create_panels(){
 
   //---------------------------
 }
-void Panel::draw_panels(){
+void Panel::draw_tab(){
   //---------------------------
 
   menu->run_tab_menu();

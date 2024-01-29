@@ -1,9 +1,9 @@
-#include "Window.h"
+#include "Renderer.h"
 
 
 namespace ImProfil{
 
-Window::Window(){
+Renderer::Renderer(){
   //---------------------------
 
   this->stop_profiling = false;
@@ -22,7 +22,7 @@ Window::Window(){
 }
 
 //Main function
-void Window::init_graph(){
+void Renderer::init_graph(){
   //---------------------------
 
   //CPU graph
@@ -39,7 +39,7 @@ void Window::init_graph(){
 
   //---------------------------
 }
-void Window::render_window(){
+void Renderer::render_window(){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));
@@ -65,7 +65,7 @@ void Window::render_window(){
 
   //---------------------------
 }
-void Window::render_overlay(ImVec2 image_pose){
+void Renderer::render_overlay(ImVec2 image_pose){
   //---------------------------
 
   ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
@@ -97,7 +97,7 @@ void Window::render_overlay(ImVec2 image_pose){
 }
 
 //Subfunction
-void Window::display_option(){
+void Renderer::display_option(){
   //---------------------------
 
   ImGui::Columns(2);

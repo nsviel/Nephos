@@ -23,8 +23,8 @@ public:
 
 public:
   //Main functions
-  void create_panels();
-  void draw_panels();
+  void init_tab();
+  void draw_tab();
 
   //Subfunction
   void run_editors();

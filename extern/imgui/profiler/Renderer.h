@@ -16,9 +16,9 @@ namespace ImProfil{
 class Graph;
 
 
-class Window{
+class Renderer{
 public:
-  Window();
+  Renderer();
 
   //Main function
   void init_graph();

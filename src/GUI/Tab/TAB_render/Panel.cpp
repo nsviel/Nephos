@@ -18,7 +18,7 @@ Panel::Panel(gui::Node* gui){
 Panel::~Panel(){}
 
 //Main function
-void Panel::create_panels(){
+void Panel::init_tab(){
   //---------------------------
 
   this->rnd_option = new gui::rnd::tab::Option(gui, &show_option, "Option");
@@ -26,7 +26,7 @@ void Panel::create_panels(){
 
   //---------------------------
 }
-void Panel::draw_panels(){
+void Panel::draw_tab(){
   //---------------------------
 
   rnd_menu->run_tab_menu();

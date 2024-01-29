@@ -27,7 +27,7 @@ public:
   uint32_t next_color();
 
 private:
-  ImProfil::Window profiler;
+  ImProfil::Renderer renderer;
 
   vector<ImProfil::Graph_task> vec_task;
   vector<uint32_t> vec_color;
