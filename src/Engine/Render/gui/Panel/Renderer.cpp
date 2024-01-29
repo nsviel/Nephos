@@ -49,7 +49,7 @@ void Renderer::design_panel(){
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   this->engine_texture();
-  this->engine_overlay(image_pose);
+  //this->engine_overlay(image_pose);
 
   //---------------------------
 }
@@ -80,7 +80,7 @@ void Renderer::engine_overlay(ImVec2 image_pose){
     profiler->add_task(task.time_beg, task.time_end, task.name);
   }
 
-  profiler->loop(image_pose);
+  profiler->loop_overlay(image_pose);
 
   //---------------------------
 }

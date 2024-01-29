@@ -5,6 +5,7 @@
 
 namespace eng{class Node;}
 namespace vk::main{class Info;}
+namespace utl::gui::plot{class Profiler;}
 
 
 namespace eng::ope::gui{
@@ -21,18 +22,19 @@ public:
   void run_panel();
   void design_panel();
 
-  //Graph
-  void engine_render_graph();
-
-  //Text
-  void engine_text_info();
+  //Subfunction
   void device_model();
-  bool time_update();
+  void main_loop_fps();
+  void draw_cpu_graph();
+
+
+
+  void engine_text_info();
   void time_drawig(bool update);
-  void time_general(bool update);
+
 
 private:
-  //utl::gui::plot::Profiler* profiler;
+  utl::gui::plot::Profiler* profiler;
   vk::main::Info* vk_info;
   Timer timer;
 

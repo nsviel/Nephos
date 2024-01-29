@@ -16,7 +16,8 @@ public:
 public:
   //Main function
   void init();
-  void loop(ImVec2 image_pose);
+  void loop_overlay(ImVec2 image_pose);
+  void loop_window();
   void reset();
 
   //Subfunction

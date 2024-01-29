@@ -22,7 +22,7 @@ Window::Window(){
 }
 
 //Main function
-void Window::Render_window(){
+void Window::render_window(){
   //---------------------------
 
   this->fps_counter();
@@ -45,7 +45,7 @@ void Window::Render_window(){
 
   //---------------------------
 }
-void Window::Render_overlay(ImVec2 image_pose){
+void Window::render_overlay(ImVec2 image_pose){
   //---------------------------
 
   ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
