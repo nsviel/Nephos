@@ -13,7 +13,7 @@ class Profiler
 {
 public:
   //Constructor / Destructor
-  Profiler(eng::render::Node* node_render, bool* show_window);
+  Profiler(eng::render::Node* node_render);
   ~Profiler();
 
 public:

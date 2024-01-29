@@ -8,7 +8,7 @@
 namespace eng::render{
 
 //Constructor / Destructor
-Profiler::Profiler(eng::render::Node* node_render, bool* show_window){
+Profiler::Profiler(eng::render::Node* node_render){
   //---------------------------
 
 
