@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Engine/Scene/Namespace.h>
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
+namespace eng::scene{class Scene;}
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Master;}
 namespace eng::k4n::dev{class Sensor;}
@@ -36,8 +36,8 @@ public:
   inline list<eng::k4n::dev::Master*>& get_list_master(){return list_master;}
 
 private:
-  eng::k4n::Node* node_k4n;
   eng::scene::Scene* sce_scene;
+  eng::k4n::Node* node_k4n;
   eng::k4n::utils::Transformation* k4n_transfo;
 
   eng::k4n::dev::Master* selected_master = nullptr;

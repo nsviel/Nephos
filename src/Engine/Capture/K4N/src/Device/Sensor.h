@@ -1,11 +1,11 @@
 #pragma once
 
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
-#include <Engine/Scene/Namespace.h>
-#include <Utility/Base/Entity/Namespace.h>
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
+namespace eng::scene{class Scene;}
+namespace eng::scene{class Glyph;}
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Master;}
 namespace eng::k4n::thread{class Capture;}

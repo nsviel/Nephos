@@ -1,12 +1,10 @@
 #include "Sensor.h"
 
-#include <Engine/Node.h>
-#include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Operation/Namespace.h>
+#include <Engine/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::k4n::dev{
-
 
 //Constructor / Destructor
 Sensor::Sensor(eng::k4n::Node* node_k4n){

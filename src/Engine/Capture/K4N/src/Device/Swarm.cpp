@@ -1,12 +1,8 @@
 #include "Swarm.h"
 
-#include <Engine/Node.h>
+#include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Engine/Capture/K4N/Namespace.h>
 
-/*
-  Manage list<master> which is include in list<Set> of set_scene
-*/
 
 namespace eng::k4n::dev{
 
