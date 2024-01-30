@@ -63,7 +63,6 @@ void Master::show_info(eng::k4n::dev::Master* master){
   //---------------------------
 }
 void Master::show_colorization(eng::k4n::dev::Master* master){
-  eng::k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
   if(master == nullptr) return;
   //---------------------------
 
@@ -76,7 +75,7 @@ void Master::show_colorization(eng::k4n::dev::Master* master){
   ImGui::RadioButton("##unicolor", &master->operation.color_mode, 1);
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
-  ImGui::ColorEdit4("##unicolor_choice", (float*)&sensor->object->data->unicolor, flags);
+  ImGui::ColorEdit4("##unicolor_choice", (float*)&master->operation.unicolor, flags);
   ImGui::SameLine();
   ImGui::RadioButton("I##colorization", &master->operation.color_mode, 2);
   ImGui::SameLine();
@@ -105,14 +104,14 @@ void Master::show_colorization(eng::k4n::dev::Master* master){
 
     //Height heatmap
     if(master->operation.heatmap_mode == 1){
-      float min = sensor->object->pose->min.z + 10;
-      float max = sensor->object->pose->min.z + 10;
+      float min = master->pose.min.z + 10;
+      float max = master->pose.max.z + 10;
       ImGui::SetNextItemWidth(125);
       ImGui::DragFloatRange2("Z##321", &master->operation.range_height.x, &master->operation.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
     }
     ImGui::Unindent();
   }
-
+sayHello();
   //---------------------------
 }
 void Master::show_voxelizer(eng::k4n::dev::Master* master){

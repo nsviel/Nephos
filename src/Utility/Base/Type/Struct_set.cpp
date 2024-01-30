@@ -136,16 +136,22 @@ void Set::delete_entity_all(){
 void Set::select_next_entity(){
   //----------------------------
 
+  if(list_entity.size() == 0){
+    this->selected_entity = nullptr;
+    set_parent->selected_entity = nullptr;
+    return;
+  }
+
   // Check if the current set has a selected entity
-  if (selected_entity != nullptr) {
-    for (auto it = list_entity.begin(); it != list_entity.end(); ++it) {
+  if(selected_entity != nullptr){
+    for(auto it = list_entity.begin(); it != list_entity.end(); ++it){
       utl::type::Entity* entity = *it;
 
-      if (selected_entity->UID == entity->UID) {
+      if(selected_entity->UID == entity->UID){
         auto next_it = std::next(it);
 
-        if (next_it != list_entity.end()) {
-          selected_entity = *next_it;
+        if(next_it != list_entity.end()){
+          this->selected_entity = *next_it;
         } else {
           // If at the end of the list, cycle back to the beginning
           selected_entity = *list_entity.begin();
