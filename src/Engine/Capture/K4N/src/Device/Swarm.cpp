@@ -44,7 +44,7 @@ void Swarm::init_scene(){
 
   //Create playback list
   this->create_sensor_playback(file_1);
-  //this->create_sensor_playback(file_2);
+  this->create_sensor_playback(file_2);
 
   //---------------------------
 }
@@ -103,6 +103,7 @@ void Swarm::create_sensor_capture(){
 void Swarm::close_master(eng::k4n::dev::Master* master){
   //---------------------------
 
+  master->delete_all_sensor();
   this->list_master.remove(master);
 
   //---------------------------

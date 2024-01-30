@@ -246,8 +246,8 @@ void Stream::overlay_pixel(eng::k4n::structure::Data* image, ImVec2 image_size){
   //---------------------------
 
   if(image->hovered_pixel_x != -1 && image->hovered_pixel_y != -1){
-    ImGui::Text("Hovered pixel: %.0f %.0f", image->hovered_pixel_x, image->hovered_pixel_y);
-    ImGui::Text("Hovered pixel: %.3f", image->hovered_pixel_m);
+    ImGui::Text("Pixel coord: %.0f %.0f", image->hovered_pixel_x, image->hovered_pixel_y);
+    ImGui::Text("Pixel value: %.3f", image->hovered_pixel_m);
   }
 
   //---------------------------
