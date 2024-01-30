@@ -16,7 +16,7 @@ Graph::Graph(size_t frame_size){
   }
 
   this->frame_size = frame_size;
-  this->frame_width = 3;
+  this->frame_width = 1;
   this->frame_spacing = 1;
   this->use_colored_legend_text = true;
   this->border_color = 0x00ffffff;

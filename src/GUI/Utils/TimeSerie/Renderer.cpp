@@ -9,26 +9,14 @@ Renderer::Renderer(){
   //---------------------------
 
   this->frame_offset = 0;
-  this->frame_width = 1;
-  this->frame_spacing = 1;
-  this->prev_fps_frame_time = std::chrono::system_clock::now();
   this->legend_width = 200;
   this->max_graph_height = 300;
+  this->graph = new utl::gui::serie::Graph(300);
 
   //---------------------------
-  this->init_graph();
 }
 
 //Main function
-void Renderer::init_graph(){
-  //---------------------------
-
-  this->graph = new utl::gui::serie::Graph(300);
-  graph->frame_width = frame_width;
-  graph->frame_spacing = frame_spacing;
-
-  //---------------------------
-}
 void Renderer::render_window(ImVec2 size){
   //---------------------------
 

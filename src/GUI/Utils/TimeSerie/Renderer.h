@@ -14,7 +14,6 @@ public:
 
 public:
   //Main function
-  void init_graph();
   void render_window(ImVec2 size);
   void render_overlay(ImVec2 image_pose);
 
@@ -23,8 +22,6 @@ public:
 
 private:
   int frame_offset;
-  int frame_width;
-  int frame_spacing;
   int legend_width;
   int max_graph_height;
 };

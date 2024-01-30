@@ -26,12 +26,6 @@ public:
   void render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, uint32_t col);
   void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, uint32_t col, utl::gui::serie::Graph_task task);
 
-  int frame_width;
-  int frame_spacing;
-  bool use_colored_legend_text;
-  float maxFrameTime = 1.0f / 30.0f;
-
-private:
   //Element
   void draw_line(ImDrawList *draw_list, float width, float height, uint32_t color);
   void draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, uint32_t col, bool filled);
@@ -46,6 +40,10 @@ private:
   int border_color;
   int frame_size;
   int frame_max_task;
+  int frame_width;
+  int frame_spacing;
+  bool use_colored_legend_text;
+  float maxFrameTime = 1.0f / 30.0f;
 };
 
 }
