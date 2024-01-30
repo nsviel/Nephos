@@ -1,6 +1,6 @@
 #include "Profiler.h"
 
-#include <GUI/Utils/Profiler/Namespace.h>
+#include <GUI/Utils/TimeSerie/Namespace.h>
 
 
 /*

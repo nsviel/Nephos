@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI/Utils/Profiler/Namespace.h>
+#include <GUI/Utils/TimeSerie/Namespace.h>
 #include <Utility/Specific/common.h>
 
 

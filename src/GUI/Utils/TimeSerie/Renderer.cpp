@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-#include <GUI/Utils/Profiler/Namespace.h>
+#include <GUI/Utils/TimeSerie/Namespace.h>
 
 
 namespace profiler::gui{

@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <string>
 
+
 namespace profiler::gui::color{
 
 //https://flatuicolors.com/palette/defo
