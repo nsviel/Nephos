@@ -9,7 +9,7 @@ namespace eng::gui{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  Panel* opt_panel = new_panel("Option##456", ICON_FA_COG, false);
+  utl::gui::Panel* opt_panel = new_panel("Option##456", ICON_FA_COG, false);
   //---------------------------
 
   this->node_engine = node_engine;
@@ -35,16 +35,16 @@ void Node::draw_menu(){
 
   ImGui::BeginMainMenuBar();
   if(ImGui::BeginMenu("Panel##111")){
-    vector<Panel*> vec_panel = node_engine->get_vec_panel();
+    vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
     for(int i=0; i<vec_panel.size(); i++){
-      Panel* panel = vec_panel[i];
+      utl::gui::Panel* panel = vec_panel[i];
       string title = panel->icon + " " + panel->name;
       ImGui::Checkbox(title.c_str(), &panel->is_open);
     }
     ImGui::EndMenu();
   }
   if(ImGui::MenuItem("Loader")){
-    vector<Panel*> vec_panel = node_engine->get_vec_panel();
+    vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
     for(int i=0; i<vec_panel.size(); i++){
       if(vec_panel[i]->name == "Loader"){
         vec_panel[i]->is_open = !vec_panel[i]->is_open;

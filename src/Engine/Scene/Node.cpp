@@ -19,8 +19,8 @@ Node::Node(eng::Node* engine){
   this->sce_loader = new eng::scene::Loader(this);
   this->sce_scene = new eng::scene::Scene(this);
   this->sce_bookmark = new eng::scene::Bookmark(this);
-  this->gui_loader = new eng::scene::gui::Loader(this, &sce_panel->is_open);
-  this->gui_scene = new eng::scene::gui::Scene(this, &ldr_panel->is_open);
+  this->gui_loader = new eng::scene::gui::Loader(this, &ldr_panel->is_open);
+  this->gui_scene = new eng::scene::gui::Scene(this, &sce_panel->is_open);
 
   //---------------------------
 }
