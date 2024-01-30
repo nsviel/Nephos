@@ -3,8 +3,6 @@ set(LIBRARY_NAME LIBRARY_UTILITY)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(GUI)
-
 file(GLOB_RECURSE ALL_SOURCES
   Base/*.cpp
   Element/*.cpp
@@ -29,7 +27,6 @@ find_package(k4a REQUIRED)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
   LIBRARY_ENGINE
-  LIBRARY_UTILITY_GUI
 
   ${k4a_LIBS}
   Eigen3::Eigen # Eigen
