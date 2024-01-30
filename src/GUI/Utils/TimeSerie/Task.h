@@ -4,7 +4,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace profiler::gui{
+namespace utl::gui::serie{
 
 struct Task{
   //---------------------------
@@ -32,7 +32,7 @@ struct Graph_task{
 };
 
 struct Frame_data{
-  std::vector<profiler::gui::Graph_task> tasks;
+  std::vector<utl::gui::serie::Graph_task> tasks;
   std::vector<size_t> taskStatsIndex;
 };
 

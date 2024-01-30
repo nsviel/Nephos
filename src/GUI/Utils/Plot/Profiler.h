@@ -3,8 +3,8 @@
 #include <GUI/Utils/TimeSerie/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace profiler::gui{class Renderer;}
-namespace profiler::gui{class Graph_task;}
+namespace utl::gui::serie{class Renderer;}
+namespace utl::gui::serie{class Graph_task;}
 
 
 namespace utl::gui::plot{
@@ -30,9 +30,9 @@ public:
   uint32_t next_color();
 
 private:
-  profiler::gui::Renderer renderer;
+  utl::gui::serie::Renderer renderer;
 
-  vector<profiler::gui::Graph_task> vec_task;
+  vector<utl::gui::serie::Graph_task> vec_task;
   vector<uint32_t> vec_color;
   int max_nb_data;
   int idx_color;

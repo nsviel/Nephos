@@ -3,7 +3,7 @@
 #include <GUI/Utils/TimeSerie/Namespace.h>
 
 
-namespace profiler::gui{
+namespace utl::gui::serie{
 
 //Constructor
 Graph::Graph(size_t frame_size){
@@ -25,7 +25,7 @@ Graph::Graph(size_t frame_size){
 }
 
 //Main function
-void Graph::load_frame_data(const std::vector<profiler::gui::Graph_task>& tasks){
+void Graph::load_frame_data(const std::vector<utl::gui::serie::Graph_task>& tasks){
   //---------------------------
 
   size_t count = tasks.size();
@@ -160,7 +160,7 @@ void Graph::render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 
   size_t tasksToShow = std::min<size_t>(taskStats.size(), maxTasksCount);
   size_t tasksShownCount = 0;
   for(size_t taskIndex = 0; taskIndex < current_frame.tasks.size(); taskIndex++){
-    profiler::gui::Graph_task& task = current_frame.tasks[taskIndex];
+    utl::gui::serie::Graph_task& task = current_frame.tasks[taskIndex];
     auto &stat = taskStats[current_frame.taskStatsIndex[taskIndex]];
 
     if(stat.priorityOrder >= tasksToShow){
@@ -204,13 +204,13 @@ void Graph::render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, gl
 
   //---------------------------
 }
-void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, uint32_t col, profiler::gui::Graph_task task){
+void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, uint32_t col, utl::gui::serie::Graph_task task){
   //---------------------------
 
   glm::vec2 textMargin = glm::vec2(5.0f, -3.0f);
   float nameOffset = 40.0f;
 
-  uint32_t textColor = use_colored_legend_text ? task.color : profiler::gui::color::imguiText;
+  uint32_t textColor = use_colored_legend_text ? task.color : utl::gui::serie::color::imguiText;
 
   float taskTimeMs = float(task.endTime - task.startTime);
   std::ostringstream timeText;

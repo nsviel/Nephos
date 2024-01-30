@@ -2,10 +2,10 @@
 
 #include <Utility/Specific/common.h>
 
-namespace profiler::gui{class Graph;}
+namespace utl::gui::serie{class Graph;}
 
 
-namespace profiler::gui{
+namespace utl::gui::serie{
 
 class Renderer{
 public:
@@ -22,8 +22,8 @@ public:
   void display_option();
 
 public:
-  profiler::gui::Graph* graph_cpu;
-  profiler::gui::Graph* graph_gpu;
+  utl::gui::serie::Graph* graph_cpu;
+  utl::gui::serie::Graph* graph_gpu;
 
 private:
   using TimePoint = std::chrono::time_point<std::chrono::system_clock>;

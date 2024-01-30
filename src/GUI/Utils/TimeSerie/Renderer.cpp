@@ -3,7 +3,7 @@
 #include <GUI/Utils/TimeSerie/Namespace.h>
 
 
-namespace profiler::gui{
+namespace utl::gui::serie{
 
 Renderer::Renderer(){
   //---------------------------
@@ -28,13 +28,13 @@ void Renderer::init_graph(){
   //---------------------------
 
   //CPU graph
-  this->graph_cpu = new profiler::gui::Graph(300);
+  this->graph_cpu = new utl::gui::serie::Graph(300);
   graph_cpu->frame_width = frame_width;
   graph_cpu->frame_spacing = frame_spacing;
   graph_cpu->use_colored_legend_text = use_colored_legend_text;
 
   //GPU graph
-  this->graph_gpu = new profiler::gui::Graph(300);
+  this->graph_gpu = new utl::gui::serie::Graph(300);
   graph_gpu->frame_width = frame_width;
   graph_gpu->frame_spacing = frame_spacing;
   graph_gpu->use_colored_legend_text = use_colored_legend_text;
