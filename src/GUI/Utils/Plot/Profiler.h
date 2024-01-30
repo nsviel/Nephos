@@ -24,9 +24,7 @@ public:
   void reset();
 
   //Subfunction
-  void add_task(float time_beg, float time_end, string name, string color);
   void add_task(float time_beg, float time_end, string name);
-  uint32_t determine_color(string color);
   uint32_t next_color();
 
 private:

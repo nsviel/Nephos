@@ -9,14 +9,15 @@ namespace eng::k4n{
 
 //Constructor / Destructor
 Node::Node(eng::Node* engine){
-  utl::gui::Panel* k4n_panel = new_panel("Kinect", ICON_FA_FILM, true);
+  utl::gui::Panel* ply_panel = new_panel("Player", ICON_FA_FILM, true);
+  utl::gui::Panel* str_panel = new_panel("Stream", ICON_FA_FILM, true);
   //---------------------------
 
   this->engine = engine;
   this->k4n_swarm = new eng::k4n::dev::Swarm(this);
   this->k4n_connection = new eng::k4n::dev::Connection(this);
-  this->gui_stream = new eng::k4n::gui::Stream(this, &k4n_panel->is_open);
-  this->gui_device = new eng::k4n::gui::Player(this, &k4n_panel->is_open);
+  this->gui_stream = new eng::k4n::gui::Stream(this, &ply_panel->is_open);
+  this->gui_device = new eng::k4n::gui::Player(this, &str_panel->is_open);
   this->gui_control = new eng::k4n::gui::Control(this);
 
   //---------------------------
