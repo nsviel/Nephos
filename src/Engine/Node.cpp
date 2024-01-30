@@ -17,9 +17,9 @@ Node::Node(utl::Node* node_utility){
   this->eng_vulkan = new vk::Node(utl_window->get_window());
   this->node_camera = new eng::cam::Node(this);
   this->node_scene = new eng::scene::Node(this);
-  this->node_capture = new eng::capture::Node(this);
   this->node_operation = new eng::ope::Node(this);
   this->node_render = new eng::render::Node(this);
+  this->node_capture = new eng::capture::Node(this);
   this->node_gui = new eng::gui::Node(this);
 
   this->add_node_panel(node_camera);
@@ -56,10 +56,10 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-  node_capture->gui();
+  node_operation->gui();
   node_scene->gui();
   node_render->gui();
-  node_operation->gui();
+  node_capture->gui();
   node_camera->gui();
   node_gui->gui();
 

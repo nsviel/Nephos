@@ -293,12 +293,12 @@ ImGuiTabItemFlags Stream::get_device_tab_flag(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGuiTabItemFlags flag = 0;
-  static int UID = master->selected_entity->UID;
+  /*static int UID = master->selected_entity->UID;
   if(master->is_selected_entity(sensor) && sensor->UID != UID){
     flag = ImGuiTabItemFlags_SetSelected;
     UID = master->selected_entity->UID;
     current_tab_id = 0;
-  }
+  }*/
 
   //---------------------------
   return flag;
@@ -307,11 +307,11 @@ ImGuiTabItemFlags Stream::get_sensor_tab_flag(int tab_id){
   //---------------------------
 
   ImGuiTabItemFlags flag = 0;
-  static int UID = current_tab_id;
+  /*static int UID = current_tab_id;
   if(current_tab_id == tab_id && tab_id != UID){
     flag = ImGuiTabItemFlags_SetSelected;
     UID = tab_id;
-  }
+  }*/
 
   //---------------------------
   return flag;
