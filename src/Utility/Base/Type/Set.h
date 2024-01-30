@@ -58,10 +58,10 @@ public:
   //Data
   utl::type::Pose pose;
   utl::type::Entity* selected_entity = nullptr;
-  utl::type::Set* selected_set = nullptr;
+  utl::type::Set* selected_set = this;
   utl::type::Set* set_parent = nullptr;
   std::list<utl::type::Entity*> list_entity;
-  std::list<utl::type::Set*> list_set;
+  std::list<utl::type::Set*> list_subset;
 };
 
 }

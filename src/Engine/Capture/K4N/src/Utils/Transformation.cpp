@@ -19,7 +19,7 @@ Transformation::~Transformation(){}
 
 //Main function
 void Transformation::find_transformation_from_file(eng::k4n::dev::Sensor* sensor, string path){
-  if(!utl::fct::file::is_file_exist(path)) return;
+  if(path != "" && !utl::fct::file::is_file_exist(path)) return;
   //---------------------------
 
   if(is_json_file(path) == false) return;

@@ -28,8 +28,8 @@ void Set::update(){
   }
 
   // Recursively process nested sets
-  for(int i=0; i<list_set.size(); i++){
-    utl::type::Set* nested_set = *next(list_set.begin(), i);
+  for(int i=0; i<list_subset.size(); i++){
+    utl::type::Set* nested_set = *next(list_subset.begin(), i);
     nested_set->update();
   }
 
@@ -45,8 +45,8 @@ void Set::reset(){
   }
 
   //Reset all associated sets
-  for(int i=0; i<list_set.size(); i++){
-    utl::type::Set* set = *next(list_set.begin(), i);
+  for(int i=0; i<list_subset.size(); i++){
+    utl::type::Set* set = *next(list_subset.begin(), i);
     set->reset();
   }
 
@@ -58,10 +58,12 @@ void Set::add_set(utl::type::Set* set){
   //---------------------------
 
   set->set_parent = this;
-  list_set.push_back(set);
+  list_subset.push_back(set);
   this->nb_set++;
   this->select_next_entity();
-  this->selected_set = set;
+  if(set->nb_entity != 0){
+    this->selected_set = set;
+  }
 
   //---------------------------
 }
@@ -70,7 +72,7 @@ void Set::add_new_set(std::string name){
 
   utl::type::Set* set = new utl::type::Set(name);
   set->set_parent = this;
-  list_set.push_back(set);
+  list_subset.push_back(set);
   this->nb_set++;
   this->selected_set = set;
 
@@ -109,7 +111,7 @@ void Set::delete_entity(utl::type::Entity* entity){
   }
 
   // Recursively call delete_entity for each nested set
-  for(utl::type::Set* subset : list_set){
+  for(utl::type::Set* subset : list_subset){
     subset->delete_entity(entity);
   }
 
@@ -128,7 +130,7 @@ void Set::delete_entity_all(){
   }
 
   // Recursively call delete_entity_recursive for each nested set
-  for(utl::type::Set* subset : list_set){
+  for(utl::type::Set* subset : list_subset){
     subset->delete_entity_all();
   }
 
@@ -174,7 +176,7 @@ void Set::select_next_entity(){
   }
 
   // Recursively call select_next_entity for each nested subset
-  for (Set* subset : list_set) {
+  for (Set* subset : list_subset) {
     subset->select_next_entity();
 
     // Check if the selected entity is in the current subset
@@ -219,8 +221,8 @@ int Set::compute_number_point(){
   }
 
   // Recursively add points from nested subsets
-  for(int i=0; i<list_set.size(); i++){
-    utl::type::Set* subset = *next(list_set.begin(), i);
+  for(int i=0; i<list_subset.size(); i++){
+    utl::type::Set* subset = *next(list_subset.begin(), i);
     nb_point += subset->compute_number_point();
   }
 
@@ -230,8 +232,8 @@ int Set::compute_number_point(){
 utl::type::Set* Set::get_set(std::string name){
   //---------------------------
 
-  for(int i=0; i<list_set.size(); i++){
-    utl::type::Set* set = *next(list_set.begin(),i);
+  for(int i=0; i<list_subset.size(); i++){
+    utl::type::Set* set = *next(list_subset.begin(),i);
     if(set->name == name){
       return set;
     }

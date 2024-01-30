@@ -21,6 +21,8 @@ public:
   void loop();
   void gui();
 
+  eng::k4n::Node* get_node_k4n(){return node_k4n;}
+
 private:
   eng::k4n::Node* node_k4n;
 };

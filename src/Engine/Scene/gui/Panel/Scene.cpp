@@ -144,8 +144,8 @@ void Scene::draw_file_tree(){
     ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch);
 
     //Database
-    for(int row_i=0; row_i<data_set->list_set.size(); row_i++){
-      utl::type::Set* set = *next(data_set->list_set.begin(), row_i);
+    for(int row_i=0; row_i<data_set->list_subset.size(); row_i++){
+      utl::type::Set* set = *next(data_set->list_subset.begin(), row_i);
 
       if(set->nb_entity != 0 || set->nb_set != 0){
         ImGui::TableNextRow();
@@ -215,7 +215,7 @@ void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
   }
 
   // Recursive call for nested sets
-  for(utl::type::Set* subset : set->list_set) {
+  for(utl::type::Set* subset : set->list_subset) {
     nb_row += tree_set(subset);
   }
 
