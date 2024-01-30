@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Type/Struct_data.h>
+#include <Utility/Base/Type/Data.h>
 #include <Utility/Specific/common.h>
 
 #include <glm/glm.hpp>
