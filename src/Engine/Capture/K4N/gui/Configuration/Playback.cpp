@@ -7,11 +7,11 @@
 namespace eng::k4n::gui{
 
 //Constructor / Destructor
-Playback::Playback(eng::k4n::Node* k4a_node){
+Playback::Playback(eng::k4n::Node* node_k4n){
   //---------------------------
 
-  this->k4a_node = k4a_node;
-  this->k4n_swarm = k4a_node->get_k4n_swarm();
+  this->node_k4n = node_k4n;
+  this->k4n_swarm = node_k4n->get_k4n_swarm();
 
   //---------------------------
 }

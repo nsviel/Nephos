@@ -22,7 +22,7 @@ class Playback
 {
 public:
   //Constructor / Destructor
-  Playback(eng::k4n::Node* k4n_node);
+  Playback(eng::k4n::Node* node_k4n);
   ~Playback();
 
 public:

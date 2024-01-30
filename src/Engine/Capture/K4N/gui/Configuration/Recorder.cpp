@@ -6,22 +6,22 @@
 namespace eng::k4n::gui{
 
 //Constructor / Destructor
-Recorder::Recorder(eng::k4n::Node* k4a_node){
+Recorder::Recorder(eng::k4n::Node* node_k4n){
   //---------------------------
 
-  this->k4a_node = k4a_node;
-  this->k4n_swarm = k4a_node->get_k4n_swarm();
+  this->node_k4n = node_k4n;
+  this->k4n_swarm = node_k4n->get_k4n_swarm();
 
   //---------------------------
 }
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::show_sensor_recorder(){
+void Recorder::show_sensor_recorder(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(ImGui::TreeNode("Recorder")){
-    this->recorder_path();
+    this->recorder_path(sensor);
 
     ImGui::Separator();
     ImGui::TreePop();
@@ -31,9 +31,8 @@ void Recorder::show_sensor_recorder(){
 }
 
 //Subfunction
-void Recorder::recorder_path(){
-  eng::k4n::dev::Sensor* k4n_sensor = k4n_swarm->get_selected_sensor();
-  if(k4n_sensor == nullptr) return;
+void Recorder::recorder_path(eng::k4n::dev::Sensor* sensor){
+  if(sensor == nullptr) return;
   //---------------------------
 
   if(ImGui::BeginTable("playback_table##general", 2)){
@@ -44,7 +43,7 @@ void Recorder::recorder_path(){
 
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4n_sensor->recorder.folder.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->recorder.folder.c_str());
 
     //File
     ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -53,7 +52,7 @@ void Recorder::recorder_path(){
 
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", k4n_sensor->recorder.path.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->recorder.path.c_str());
 
     ImGui::EndTable();
   }

@@ -26,7 +26,7 @@ class Sensor : public utl::type::Entity
 {
 public:
   //Constructor / Destructor
-  Sensor(eng::k4n::Node* k4n_node);
+  Sensor(eng::k4n::Node* node_k4n);
   ~Sensor();
 
 public:

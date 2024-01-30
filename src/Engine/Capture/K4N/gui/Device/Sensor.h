@@ -15,7 +15,7 @@ class Sensor
 {
 public:
   //Constructor / Destructor
-  Sensor(eng::k4n::Node* k4a_node);
+  Sensor(eng::k4n::Node* node_k4n);
   ~Sensor();
 
   //Main function
@@ -26,7 +26,7 @@ public:
   void show_sensor_transfo(eng::k4n::dev::Sensor* sensor);
 
 private:
-  eng::k4n::Node* k4a_node;
+  eng::k4n::Node* node_k4n;
   eng::k4n::dev::Swarm* k4n_swarm;
   eng::k4n::utils::Transformation* k4n_transfo;
 

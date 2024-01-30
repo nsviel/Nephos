@@ -13,7 +13,7 @@ class Playback
 {
 public:
   //Constructor / Destructor
-  Playback(eng::k4n::Node* k4a_node);
+  Playback(eng::k4n::Node* node_k4n);
   ~Playback();
 
   //Main function
@@ -26,7 +26,7 @@ public:
   void show_info_synch(eng::k4n::dev::Sensor* sensor);
 
 private:
-  eng::k4n::Node* k4a_node;
+  eng::k4n::Node* node_k4n;
   eng::k4n::dev::Swarm* k4n_swarm;
 };
 

@@ -16,7 +16,7 @@ class Swarm
 {
 public:
   //Constructor / Destructor
-  Swarm(eng::k4n::Node* k4n_node);
+  Swarm(eng::k4n::Node* node_k4n);
   ~Swarm();
 
 public:
@@ -42,7 +42,7 @@ public:
   inline bool is_selected_sensor(eng::k4n::dev::Sensor* sensor){return selected_sensor == sensor;}
 
 private:
-  eng::k4n::Node* k4n_node;
+  eng::k4n::Node* node_k4n;
   eng::scene::Scene* sce_scene;
   eng::k4n::utils::Transformation* k4n_transfo;
 

@@ -9,10 +9,10 @@
 namespace eng::k4n::data{
 
 //Constructor / Destructor
-Cloud::Cloud(eng::k4n::Node* k4n_node){
+Cloud::Cloud(eng::k4n::Node* node_k4n){
   //---------------------------
 
-  this->engine = k4n_node->get_node_engine();
+  this->engine = node_k4n->get_node_engine();
   this->k4n_operation = new eng::k4n::utils::Operation();
   this->ope_voxelizer = new eng::ope::Voxelizer();
 

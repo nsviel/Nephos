@@ -11,13 +11,13 @@
 namespace eng::k4n::dev{
 
 //Constructor / Destructor
-Swarm::Swarm(eng::k4n::Node* k4n_node){
+Swarm::Swarm(eng::k4n::Node* node_k4n){
   //---------------------------
 
-  eng::Node* engine = k4n_node->get_node_engine();
+  eng::Node* engine = node_k4n->get_node_engine();
   eng::scene::Node* sce_node = engine->get_node_scene();
 
-  this->k4n_node = k4n_node;
+  this->node_k4n = node_k4n;
   this->sce_scene = sce_node->get_scene();
   this->k4n_transfo = new eng::k4n::utils::Transformation();
 
@@ -59,7 +59,7 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   int index = master->list_sensor.size();
 
   //Sensor creation
-  eng::k4n::dev::Sensor* sensor = new eng::k4n::dev::Sensor(k4n_node);
+  eng::k4n::dev::Sensor* sensor = new eng::k4n::dev::Sensor(node_k4n);
   sensor->name = "playback_" + to_string(index);
   sensor->param.format = utl::fct::info::get_format_from_path(file.path_data);
   sensor->param.index = index;
@@ -85,7 +85,7 @@ void Swarm::create_sensor_capture(){
   int index = master->list_sensor.size();
 
   //Sensor creation
-  eng::k4n::dev::Sensor* sensor = new eng::k4n::dev::Sensor(k4n_node);
+  eng::k4n::dev::Sensor* sensor = new eng::k4n::dev::Sensor(node_k4n);
   sensor->name = "capture_" + to_string(index);
   sensor->param.index = index;
   sensor->param.is_playback = false;

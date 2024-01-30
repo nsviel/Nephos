@@ -7,16 +7,16 @@
 namespace eng::k4n::gui{
 
 //Constructor / Destructor
-Device::Device(eng::k4n::Node* k4n_node, bool* show_window){
+Device::Device(eng::k4n::Node* node_k4n, bool* show_window){
   //---------------------------
 
-  this->k4n_swarm = k4n_node->get_k4n_swarm();
-  this->gui_capture = new eng::k4n::gui::Capture(k4n_node);
-  this->gui_playback = new eng::k4n::gui::Playback(k4n_node);
-  this->gui_recorder = new eng::k4n::gui::Recorder(k4n_node);
-  this->gui_player = new eng::k4n::gui::Player(k4n_node);
-  this->gui_master = new eng::k4n::gui::Master(k4n_node);
-  this->gui_sensor = new eng::k4n::gui::Sensor(k4n_node);
+  this->k4n_swarm = node_k4n->get_k4n_swarm();
+  this->gui_capture = new eng::k4n::gui::Capture(node_k4n);
+  this->gui_playback = new eng::k4n::gui::Playback(node_k4n);
+  this->gui_recorder = new eng::k4n::gui::Recorder(node_k4n);
+  this->gui_player = new eng::k4n::gui::Player(node_k4n);
+  this->gui_master = new eng::k4n::gui::Master(node_k4n);
+  this->gui_sensor = new eng::k4n::gui::Sensor(node_k4n);
 
   this->show_window = show_window;
   this->name = "Player";
@@ -65,7 +65,7 @@ void Device::design_panel(){
   //---------------------------
 }
 
-//Tab function
+//Device function
 void Device::show_master_tab(eng::k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
@@ -90,7 +90,7 @@ void Device::show_sensor_tab(eng::k4n::dev::Sensor* sensor){
     gui_sensor->show_sensor(sensor);
     gui_capture->show_sensor_configuration(sensor);
     gui_playback->show_sensor_configuration(sensor);
-    //gui_recorder->show_sensor_recorder();
+    //gui_recorder->show_sensor_recorder(sensor);
 
     ImGui::EndTabItem();
   }

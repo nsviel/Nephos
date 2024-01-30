@@ -7,13 +7,13 @@
 namespace eng::k4n::thread{
 
 //Constructor / Destructor
-Capture::Capture(eng::k4n::Node* k4n_node){
+Capture::Capture(eng::k4n::Node* node_k4n){
   //---------------------------
 
   this->fps_counter = new utl::fps::Counter();
   this->fps_control = new utl::fps::Control(30);
   this->k4a_data = new eng::k4n::data::Data();
-  this->k4a_cloud = new eng::k4n::data::Cloud(k4n_node);
+  this->k4a_cloud = new eng::k4n::data::Cloud(node_k4n);
   this->configuration = new eng::k4n::config::Configuration();
   this->k4n_calibration = new eng::k4n::config::Calibration();
 

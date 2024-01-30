@@ -6,27 +6,24 @@ namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Swarm;}
 
 
-namespace eng::k4n::dev{
+namespace eng::k4n::gui{
 
-class Connection
+class Control
 {
 public:
   //Constructor / Destructor
-  Connection(eng::k4n::Node* node_k4n);
-  ~Connection();
+  Control(eng::k4n::Node* node_k4n);
+  ~Control();
 
 public:
   //Main function
-  void refresh_connected_dev();
+  void run_control();
 
-  //Subfunction
-  void manage_new_dev(int number);
-  void manage_less_dev(int number);
+  //Keyboard
+  void control_keyboard();
 
 private:
   eng::k4n::dev::Swarm* k4n_swarm;
-
-  int nb_dev = 0;
 };
 
 }

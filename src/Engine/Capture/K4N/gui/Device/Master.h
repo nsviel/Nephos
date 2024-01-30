@@ -13,7 +13,7 @@ class Master
 {
 public:
   //Constructor / Destructor
-  Master(eng::k4n::Node* k4a_node);
+  Master(eng::k4n::Node* node_k4n);
   ~Master();
 
   //Main function
@@ -25,7 +25,7 @@ public:
   void show_voxelizer(eng::k4n::dev::Master* master);
 
 private:
-  eng::k4n::Node* k4a_node;
+  eng::k4n::Node* node_k4n;
   eng::k4n::dev::Swarm* k4n_swarm;
 
   int item_width;

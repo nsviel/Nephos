@@ -14,7 +14,7 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(eng::k4n::Node* k4n_node);
+  Player(eng::k4n::Node* node_k4n);
   ~Player();
 
   //Main function
@@ -34,7 +34,7 @@ public:
 
 private:
   eng::scene::Scene* sce_scene;
-  eng::k4n::Node* k4a_node;
+  eng::k4n::Node* node_k4n;
   eng::k4n::dev::Swarm* k4n_swarm;
 };
 

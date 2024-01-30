@@ -18,7 +18,7 @@ class Stream
 {
 public:
   //Constructor / Destructor
-  Stream(eng::k4n::Node* k4n_node, bool* show_window);
+  Stream(eng::k4n::Node* node_k4n, bool* show_window);
   ~Stream();
 
   //Main function
@@ -46,7 +46,7 @@ public:
   ImGuiTabItemFlags get_sensor_tab_flag(int tab_id);
 
 private:
-  eng::k4n::Node* k4a_node;
+  eng::k4n::Node* node_k4n;
   eng::k4n::data::Depth* k4a_depth;
   eng::k4n::data::Infrared* k4a_infrared;
   eng::k4n::dev::Swarm* k4n_swarm;
