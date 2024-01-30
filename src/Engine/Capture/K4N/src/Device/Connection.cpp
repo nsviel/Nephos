@@ -47,7 +47,7 @@ void Connection::manage_new_dev(int nb_new_dev){
 
   //If previsouly no device, we need to supress all default playback
   if(nb_dev == 0){
-    k4n_swarm->close_sensor_all(master);
+    master->delete_all_sensor();
   }
 
   //Create required number of new devices
@@ -63,7 +63,7 @@ void Connection::manage_less_dev(int nb_less_dev){
   eng::k4n::dev::Master* master = k4n_swarm->get_master_by_name("capture");
 
   //Suppress all devices
-  k4n_swarm->close_sensor_all(master);
+  master->delete_all_sensor();
 
   //If no real device create virtual one
   uint32_t current_nb_dev = k4a_device_get_installed_count();

@@ -50,6 +50,26 @@ void Master::delete_sensor(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
+void Master::delete_all_sensor(){
+  //---------------------------
+
+  for(int j=0; j<list_sensor.size(); j++){
+    eng::k4n::dev::Sensor* sensor = *std::next(list_sensor.begin(), j);
+    this->delete_sensor(sensor);
+  }
+
+  //---------------------------
+}
+void Master::delete_selected_sensor(){
+  eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(selected_entity);
+  //---------------------------
+
+  this->list_sensor.remove(sensor);
+  this->delete_entity(sensor);
+  delete(sensor);
+
+  //---------------------------
+}
 void Master::reset(){
   //---------------------------
 

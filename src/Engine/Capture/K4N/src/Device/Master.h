@@ -24,6 +24,8 @@ public:
   void insert_sensor_playback(eng::k4n::dev::Sensor* sensor);
   void insert_sensor_capture(eng::k4n::dev::Sensor* sensor);
   void delete_sensor(eng::k4n::dev::Sensor* sensor);
+  void delete_all_sensor();
+  void delete_selected_sensor();
   void reset();
 
   //Player function
@@ -43,7 +45,7 @@ public:
   eng::k4n::structure::Operation operation;
   eng::k4n::structure::Recorder recorder;
   eng::k4n::structure::Voxel voxel;
-  
+
 private:
 
 };

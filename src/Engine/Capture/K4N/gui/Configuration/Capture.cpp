@@ -72,7 +72,7 @@ void Capture::list_device(eng::k4n::dev::Sensor* sensor){
         ImGui::Text("%d", sensor->param.index);
         ImGui::TableNextColumn();
         if (ImGui::Selectable(sensor->param.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
-          k4n_swarm->set_selected_sensor(sensor);
+          master->set_selected_entity(sensor);
           selected_device = i;
         }
         ImGui::PopID();

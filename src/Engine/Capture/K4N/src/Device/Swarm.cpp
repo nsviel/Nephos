@@ -69,7 +69,6 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   sensor->master = master;
 
   //Sensor initialization
-  this->selected_sensor = sensor;
   master->insert_sensor_playback(sensor);
   sensor->init();
   sce_scene->assign_entity_UID(sensor);
@@ -92,43 +91,11 @@ void Swarm::create_sensor_capture(){
   sensor->master = master;
 
   //Sensor initialization
-  this->selected_sensor = sensor;
   master->insert_sensor_capture(sensor);
   sce_scene->assign_entity_UID(sensor);
   sensor->init();
   sensor->run_capture();
 
-  //---------------------------
-}
-void Swarm::close_selected_sensor(){
-  eng::k4n::dev::Sensor* sensor = selected_sensor;
-  eng::k4n::dev::Master* master = sensor->master;
-  //---------------------------
-
-  this->selecte_next_sensor();
-  master->delete_sensor(sensor);
-
-  //---------------------------
-}
-void Swarm::close_sensor_all(eng::k4n::dev::Master* master){
-  //---------------------------
-
-  for(int j=0; j<master->list_sensor.size(); j++){
-    eng::k4n::dev::Sensor* sensor = *std::next(master->list_sensor.begin(), j);
-    sensor->remove_entity();
-  }
-
-  //---------------------------
-}
-void Swarm::selecte_next_sensor(){
-  //---------------------------
-/*
-  if(list_sensor.size() == 0){
-    selected_sensor = nullptr;
-  }else{
-    selected_sensor = *std::next(list_sensor.begin(), 0);
-  }
-*/
   //---------------------------
 }
 

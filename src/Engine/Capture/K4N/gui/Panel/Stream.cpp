@@ -67,7 +67,7 @@ void Stream::vec_device_tab(eng::k4n::dev::Master* master){
       ImGuiTabItemFlags flag = get_device_tab_flag(sensor);
       string name = sensor->icon + "  " + sensor->name;
       if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
-        k4n_swarm->set_selected_sensor(sensor);
+        master->set_selected_entity(sensor);
         this->vec_stream_tab(sensor);
         ImGui::EndTabItem();
       }
