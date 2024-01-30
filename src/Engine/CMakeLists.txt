@@ -10,7 +10,7 @@ add_subdirectory(Capture/K4N)
 
 file(GLOB_RECURSE ALL_SOURCES
   Capture/Node.cpp
-  Data/*.cpp
+  Scene/*.cpp
   Shader/*.cpp
   gui/*cpp
   Node.cpp

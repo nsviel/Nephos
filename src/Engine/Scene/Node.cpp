@@ -1,12 +1,14 @@
 #include "Node.h"
 
-#include <Engine/Data/Namespace.h>
+#include <Engine/Scene/Namespace.h>
 
 
 namespace eng::scene{
 
 //Constructor / Destructor
 Node::Node(eng::Node* engine){
+  Panel* sce_panel = new Panel("Scene", true);
+  Panel* ldr_panel = new Panel("Loader", true);
   //---------------------------
 
   this->engine = engine;
@@ -16,8 +18,8 @@ Node::Node(eng::Node* engine){
   this->sce_loader = new eng::scene::Loader(this);
   this->sce_scene = new eng::scene::Scene(this);
   this->sce_bookmark = new eng::scene::Bookmark(this);
-  this->gui_loader = new eng::scene::gui::Loader(this, &show_loader);
-  this->gui_scene = new eng::scene::gui::Scene(this, &show_scene);
+  this->gui_loader = new eng::scene::gui::Loader(this, &sce_panel->second);
+  this->gui_scene = new eng::scene::gui::Scene(this, &ldr_panel->second);
 
   //---------------------------
 }

@@ -22,10 +22,10 @@ public:
   virtual void exit(){}
   virtual void wait(){}
 
-  inline vector<Panel> get_vec_panel(){return vec_panel;}
+  inline vector<Panel*> get_vec_panel(){return vec_panel;}
 
-private:
-  vector<Panel> vec_panel;
+protected:
+  vector<Panel*> vec_panel;
 };
 
 }

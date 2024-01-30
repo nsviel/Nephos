@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-#include <Engine/Data/Namespace.h>
+#include <Engine/Scene/Namespace.h>
 #include <Engine/Operation/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 

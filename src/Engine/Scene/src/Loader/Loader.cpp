@@ -1,7 +1,7 @@
 #include "Loader.h"
 
 #include <Engine/Node.h>
-#include <Engine/Data/Namespace.h>
+#include <Engine/Scene/Namespace.h>
 #include <Utility/Namespace.h>
 //#include <Engine/Capture/K4N/Namespace.h>
 

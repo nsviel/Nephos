@@ -1,7 +1,7 @@
 #include "World.h"
 
 #include <Engine/Node.h>
-#include <Engine/Data/Namespace.h>
+#include <Engine/Scene/Namespace.h>
 #include <Vulkan/Node.h>
 #include <Vulkan/VK_main/Engine.h>
 

@@ -1,6 +1,6 @@
 #include "Loader.h"
 
-#include <Engine/Data/Namespace.h>
+#include <Engine/Scene/Namespace.h>
 #include <Engine/Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <image/IconsFontAwesome6.h>
