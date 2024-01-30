@@ -1,4 +1,4 @@
-#include "Tab.h"
+#include "Node.h"
 
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
@@ -8,7 +8,7 @@
 namespace eng::gui{
 
 //Constructor / Destructor
-Tab::Tab(eng::Node* node_engine){
+Node::Node(eng::Node* node_engine){
   //---------------------------
 
   this->node_engine = node_engine;
@@ -16,10 +16,10 @@ Tab::Tab(eng::Node* node_engine){
 
   //---------------------------
 }
-Tab::~Tab(){}
+Node::~Node(){}
 
 //Main function
-void Tab::draw_tab(){
+void Node::draw_tab(){
   //---------------------------
 
   this->draw_menu();
@@ -29,7 +29,7 @@ void Tab::draw_tab(){
 }
 
 //Subfunction
-void Tab::draw_menu(){
+void Node::draw_menu(){
   //---------------------------
 
   ImGui::BeginMainMenuBar();

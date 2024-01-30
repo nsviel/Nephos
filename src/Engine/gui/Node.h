@@ -8,12 +8,12 @@ namespace eng::gui{class Option;}
 
 namespace eng::gui{
 
-class Tab
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Tab(eng::Node* node_engine);
-  ~Tab();
+  Node(eng::Node* node_engine);
+  ~Node();
 
 public:
   //Main functions

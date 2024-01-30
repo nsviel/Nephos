@@ -12,7 +12,9 @@ namespace gui::interface{
 Tab::Tab(gui::Node* gui){
   //---------------------------
 
-  this->eng_tab = new eng::gui::Tab(gui->get_node_engine());
+  eng::Node* node_engine = gui->get_node_engine();
+
+  this->node_eng_gui = new eng::gui::Node(node_engine);
   this->dev_tab = new dev::gui::Tab();
   this->gui_menu = new gui::interface::Menu(gui);
 
@@ -26,7 +28,7 @@ Tab::Tab(gui::Node* gui){
 Tab::~Tab(){
   //---------------------------
 
-  delete eng_tab;
+  delete node_eng_gui;
   delete dev_tab;
 
   //---------------------------
@@ -77,7 +79,7 @@ void Tab::draw_tab(){
 
   //Draw selected tab panels
   if(active_tab == "Render"){
-    eng_tab->draw_tab();
+    node_eng_gui->draw_tab();
   }
   else if(active_tab == "Dev"){
     dev_tab->draw_tab();
