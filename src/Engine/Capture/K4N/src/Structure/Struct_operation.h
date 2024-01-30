@@ -17,7 +17,7 @@ struct Operation{
   * 2 -> white unicolor
   * 3 -> heatmap
   */
-  int color_mode = 2;
+  int color_mode = 0;
   int heatmap_mode = 0;
   int intensity_division = 1000;
   glm::vec2 range_height = glm::vec2(-1, 1);

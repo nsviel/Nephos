@@ -39,7 +39,7 @@ void Swarm::init_scene(){
   file_2.path_transfo = "/home/aether/Desktop/versaille_2.json";
 
   //Create playback list
-  //this->create_sensor_playback(file_1);
+  this->create_sensor_playback(file_1);
   //this->create_sensor_playback(file_2);
 
   //---------------------------

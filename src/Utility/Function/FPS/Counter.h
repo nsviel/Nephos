@@ -4,6 +4,8 @@
 #include <vector>
 #include <chrono>
 #include <thread>
+#include <queue>
+#include <numeric>
 
 
 namespace utl::fps{
@@ -16,12 +18,14 @@ public:
 
   //Main function
   float update();
+  float calculate_mean_fps();
 
-  inline float get_fps() const { return fps;}
+  inline float get_fps() const { return mean_fps;}
 
 private:
   std::chrono::time_point<std::chrono::steady_clock> last_time;
-  float fps = 0;
+  std::queue<float> fps_queue;
+  float mean_fps = 0;
 };
 
 }
