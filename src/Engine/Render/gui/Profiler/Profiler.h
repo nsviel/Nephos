@@ -27,7 +27,7 @@ public:
   void main_loop_fps();
   void draw_graphs();
 
-  void draw_graph_cpu();
+  void draw_graph();
 
 private:
   utl::gui::plot::Profiler* profiler;

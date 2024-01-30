@@ -91,25 +91,25 @@ void Profiler::draw_graphs(){
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("All##4568", NULL)){
       image_size = ImVec2(image_size.x, image_size.y/3-3.33);
-      this->draw_graph_cpu();
+      this->draw_graph();
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("CPU##4567", NULL)){
-      this->draw_graph_cpu();
+      this->draw_graph();
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("GPU##4567", NULL)){
-      this->draw_graph_cpu();
+      this->draw_graph();
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Capture##4567", NULL)){
-      this->draw_graph_cpu();
+      this->draw_graph();
       ImGui::EndTabItem();
     }
     ImGui::EndTabBar();
@@ -118,7 +118,7 @@ void Profiler::draw_graphs(){
   //---------------------------
 }
 
-void Profiler::draw_graph_cpu(){
+void Profiler::draw_graph(){
   //---------------------------
 
   profiler->reset();
