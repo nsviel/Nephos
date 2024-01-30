@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Scene/gui/Loader.h>
-#include <Engine/Scene/gui/Entity.h>
-#include <Engine/Scene/gui/Set.h>
-#include <Engine/Scene/gui/Scene.h>
+#include <Engine/Scene/gui/Panel/Loader.h>
+#include <Engine/Scene/gui/Panel/Entity.h>
+#include <Engine/Scene/gui/Panel/Set.h>
+#include <Engine/Scene/gui/Panel/Scene.h>

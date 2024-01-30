@@ -92,28 +92,7 @@ void Entity::entity_parameter(utl::type::Entity* entity){
   //---------------------------
 
   if(ImGui::BeginTable("entity##table", 2, ImGuiTableFlags_BordersInnerV)){
-    //Type
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Type"); ImGui::TableNextColumn();
-    ImGui::Text("%s", entity->type.c_str());
-
-    //Visibility
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Visibility"); ImGui::TableNextColumn();
-    bool is_visible = entity->get_visibility();
-    if(ImGui::Checkbox("##4555", &is_visible)){
-      entity->visibility_entity(is_visible);
-    }
-
-    //Name
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Name"); ImGui::TableNextColumn();
-    static char str_n[256];
-    strcpy(str_n, entity->name.c_str());
-    ImGui::SetNextItemWidth(item_width);
-    if(ImGui::InputText("##name", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
-      entity->name = str_n;
-    }
+    this->general_info(entity);
 
     //Data info
     utl::type::Data* data = entity->get_data();
@@ -163,7 +142,35 @@ void Entity::entity_parameter(utl::type::Entity* entity){
   //---------------------------
 }
 
-//Primitive size
+//Parameter
+void Entity::general_info(utl::type::Entity* entity){
+  //---------------------------
+
+  //Type
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Type"); ImGui::TableNextColumn();
+  ImGui::Text("%s", entity->type.c_str());
+
+  //Visibility
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Visibility"); ImGui::TableNextColumn();
+  bool is_visible = entity->get_visibility();
+  if(ImGui::Checkbox("##4555", &is_visible)){
+    entity->visibility_entity(is_visible);
+  }
+
+  //Name
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Name"); ImGui::TableNextColumn();
+  static char str_n[256];
+  strcpy(str_n, entity->name.c_str());
+  ImGui::SetNextItemWidth(item_width);
+  if(ImGui::InputText("##name", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
+    entity->name = str_n;
+  }
+
+  //---------------------------
+}
 void Entity::data_line(utl::type::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------

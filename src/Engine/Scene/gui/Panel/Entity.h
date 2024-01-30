@@ -27,7 +27,8 @@ public:
   void entity_button(utl::type::Entity* entity);
   void entity_parameter(utl::type::Entity* entity);
 
-  //Primitive size
+  //Parameter
+  void general_info(utl::type::Entity* entity);
   void data_line(utl::type::Data* data);
   void data_point(utl::type::Data* data);
 
