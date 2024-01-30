@@ -17,19 +17,12 @@ public:
 
 public:
   //Main functions
+  void init();
   void draw_tab();
   void open_panels();
 
   //Subfunction
   void draw_menu();
-
-  bool show_camera   = false;
-  bool show_shader   = false;
-  bool show_kinect   = true;
-  bool show_profiler = true;
-  bool show_scene    = true;
-  bool show_option   = false;
-  bool show_loader   = true;
 
 private:
   eng::Node* node_engine;
