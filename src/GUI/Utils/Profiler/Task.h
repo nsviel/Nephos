@@ -3,7 +3,8 @@
 #include <cstdint>
 #include <string>
 
-namespace ImProfil{
+
+namespace profiler::gui{
 
 struct Task{
   //---------------------------
@@ -22,7 +23,7 @@ struct Graph_task{
   double endTime;
   std::string name;
   uint32_t color;
-  
+
   double GetLength(){
     return endTime - startTime;
   }

@@ -2,10 +2,10 @@
 
 #include <Utility/Specific/common.h>
 
+namespace profiler::gui{class Graph;}
 
-namespace ImProfil{
-class Graph;
 
+namespace profiler::gui{
 
 class Renderer{
 public:
@@ -19,8 +19,8 @@ public:
   //Subfunction
   void display_option();
 
-  ImProfil::Graph* graph_cpu;
-  ImProfil::Graph* graph_gpu;
+  profiler::gui::Graph* graph_cpu;
+  profiler::gui::Graph* graph_gpu;
   using TimePoint = std::chrono::time_point<std::chrono::system_clock>;
   TimePoint prev_fps_frame_time;
   size_t fps_frames_count;

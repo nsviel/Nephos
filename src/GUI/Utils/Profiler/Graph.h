@@ -1,15 +1,14 @@
 #pragma once
 
-#include "Task.h"
-#include "Color.h"
-
 #include <Utility/Specific/common.h>
 
+namespace profiler::gui{class Graph_task;}
 
-namespace ImProfil{
+
+namespace profiler::gui{
 
 struct FrameData{
-  std::vector<ImProfil::Graph_task> tasks;
+  std::vector<profiler::gui::Graph_task> tasks;
   std::vector<size_t> taskStatsIndex;
 };
 struct TaskStats{
@@ -27,7 +26,7 @@ public:
 
 public:
   //Main function
-  void load_frame_data(const std::vector<ImProfil::Graph_task>& tasks);
+  void load_frame_data(const std::vector<profiler::gui::Graph_task>& tasks);
   void rebuild_task_stats(size_t endFrame, size_t framesCount);
 
   //Rendering
@@ -35,7 +34,7 @@ public:
   void render_graph(ImDrawList *draw_list, glm::vec2 graphPos, glm::vec2 graphSize, size_t frameIndexOffset);
   void render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 legendSize, size_t frameIndexOffset);
   void render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, uint32_t col);
-  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, uint32_t col, ImProfil::Graph_task task);
+  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, uint32_t col, profiler::gui::Graph_task task);
 
   int frame_width;
   int frame_spacing;

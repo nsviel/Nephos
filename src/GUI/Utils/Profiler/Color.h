@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <string>
 
-namespace ImProfil::color{
+namespace profiler::gui::color{
 
 //https://flatuicolors.com/palette/defo
 #define RGBA_LE(col) (((col & 0xff000000) >> (3 * 8)) + ((col & 0x00ff0000) >> (1 * 8)) + ((col & 0x0000ff00) << (1 * 8)) + ((col & 0x000000ff) << (3 * 8)))

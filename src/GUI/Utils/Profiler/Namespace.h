@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Task.h"
+#include <GUI/Utils/Profiler/Task.h>
 #include "Renderer.h"
 #include "Graph.h"
 #include "Color.h"

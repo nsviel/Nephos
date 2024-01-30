@@ -3,7 +3,8 @@
 #include <GUI/Utils/Profiler/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace ImProfil{class Renderer;}
+namespace profiler::gui{class Renderer;}
+namespace profiler::gui{class Graph_task;}
 
 
 namespace utl::gui::plot{
@@ -29,9 +30,9 @@ public:
   uint32_t next_color();
 
 private:
-  ImProfil::Renderer renderer;
+  profiler::gui::Renderer renderer;
 
-  vector<ImProfil::Graph_task> vec_task;
+  vector<profiler::gui::Graph_task> vec_task;
   vector<uint32_t> vec_color;
   int max_nb_data;
   int idx_color;
