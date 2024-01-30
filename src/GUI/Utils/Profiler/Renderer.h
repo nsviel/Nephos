@@ -9,8 +9,10 @@ namespace profiler::gui{
 
 class Renderer{
 public:
+  //Constructor / Destructor
   Renderer();
 
+public:
   //Main function
   void init_graph();
   void render_window();
@@ -19,8 +21,11 @@ public:
   //Subfunction
   void display_option();
 
+public:
   profiler::gui::Graph* graph_cpu;
   profiler::gui::Graph* graph_gpu;
+
+private:
   using TimePoint = std::chrono::time_point<std::chrono::system_clock>;
   TimePoint prev_fps_frame_time;
   size_t fps_frames_count;

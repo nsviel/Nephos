@@ -52,7 +52,7 @@ void Graph::load_frame_data(const std::vector<profiler::gui::Graph_task>& tasks)
     if(it == taskNameToStatsIndex.end())
     {
       taskNameToStatsIndex[task.name] = taskStats.size();
-      TaskStats taskStat;
+      Task_stats taskStat;
       taskStat.maxTime = -1.0;
       taskStats.push_back(taskStat);
     }
@@ -102,7 +102,7 @@ void Graph::render_timings(int graphWidth, int legendWidth, int height, int fram
   //---------------------------
 
   ImDrawList* draw_list = ImGui::GetWindowDrawList();
-  const glm::vec2 widgetPos = Vec2(ImGui::GetCursorScreenPos());
+  const glm::vec2 widgetPos = glm::vec2(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y);
   this->render_graph(draw_list, widgetPos, glm::vec2(graphWidth, height), frameIndexOffset);
   this->render_legend(draw_list, widgetPos + glm::vec2(graphWidth, 0.0f), glm::vec2(legendWidth, height), frameIndexOffset);
   ImGui::Dummy(ImVec2(float(graphWidth + legendWidth), float(height)));

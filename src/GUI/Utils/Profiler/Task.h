@@ -1,7 +1,7 @@
 #pragma once
 
-#include <cstdint>
-#include <string>
+#include <GUI/Utils/Profiler/Namespace.h>
+#include <Utility/Specific/common.h>
 
 
 namespace profiler::gui{
@@ -29,6 +29,17 @@ struct Graph_task{
   }
 
   //---------------------------
+};
+
+struct Frame_data{
+  std::vector<profiler::gui::Graph_task> tasks;
+  std::vector<size_t> taskStatsIndex;
+};
+
+struct Task_stats{
+  double maxTime;
+  size_t priorityOrder;
+  size_t onScreenIndex;
 };
 
 }

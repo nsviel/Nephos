@@ -1,22 +1,12 @@
 #pragma once
 
+#include <GUI/Utils/Profiler/Namespace.h>
 #include <Utility/Specific/common.h>
 
 namespace profiler::gui{class Graph_task;}
 
 
 namespace profiler::gui{
-
-struct FrameData{
-  std::vector<profiler::gui::Graph_task> tasks;
-  std::vector<size_t> taskStatsIndex;
-};
-struct TaskStats{
-  double maxTime;
-  size_t priorityOrder;
-  size_t onScreenIndex;
-};
-inline glm::vec2 Vec2(ImVec2 vec){return glm::vec2(vec.x, vec.y);}
 
 class Graph
 {
@@ -48,9 +38,10 @@ private:
   void draw_text(ImDrawList *draw_list, glm::vec2 point, uint32_t col, const char *text);
   void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, uint32_t col, bool filled);
 
-  std::vector<TaskStats> taskStats;
+private:
+  std::vector<Task_stats> taskStats;
   std::map<std::string, size_t> taskNameToStatsIndex;
-  std::vector<FrameData> frames;
+  std::vector<Frame_data> frames;
   size_t current_frameIndex = 0;
   int border_color;
   int frame_size;
