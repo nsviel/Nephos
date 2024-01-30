@@ -28,9 +28,13 @@ public:
   void entity_parameter(utl::type::Entity* entity);
 
   //Parameter
-  void general_info(utl::type::Entity* entity);
-  void data_line(utl::type::Data* data);
-  void data_point(utl::type::Data* data);
+  void entity_info(utl::type::Entity* entity);
+  void data_info(utl::type::Entity* entity);
+  void pose_info(utl::type::Entity* entity);
+
+  //Primitive
+  void primitive_line(utl::type::Data* data);
+  void primitive_point(utl::type::Data* data);
 
   inline void set_entity(utl::type::Entity* entity){this->entity = entity;}
 

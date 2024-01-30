@@ -92,49 +92,9 @@ void Entity::entity_parameter(utl::type::Entity* entity){
   //---------------------------
 
   if(ImGui::BeginTable("entity##table", 2, ImGuiTableFlags_BordersInnerV)){
-    this->general_info(entity);
-
-    //Data info
-    utl::type::Data* data = entity->get_data();
-    utl::type::Pose* pose = entity->get_pose();
-    if(data != nullptr){
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Format"); ImGui::TableNextColumn();
-      static char str_f[256];
-      strcpy(str_f, data->file_format.c_str());
-      ImGui::SetNextItemWidth(item_width);
-      if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
-        data->file_format = str_f;
-      }
-
-      //Uniform collection color
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Color"); ImGui::TableNextColumn();
-      ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
-      flags |= ImGuiColorEditFlags_AlphaBar;
-      if(ImGui::ColorEdit4("Color", (float*)&data->unicolor, flags)){
-        ope_attribut->set_unicolor(entity);
-      }
-
-      //Root pos
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      vec3& root = pose->root;
-      ImGui::Text("Root"); ImGui::TableNextColumn();
-      ImGui::NextColumn();
-      ImGui::Text("%.2f  %.2f  %.2f", root.x, root.y, root.z);
-      ImGui::SameLine();
-      if(ImGui::Button("R", ImVec2(15,0))){
-        root = vec3(0,0,0);
-      }
-
-      //Primitive size
-      if(data->draw_type_name == "point"){
-        this->data_point(data);
-      }
-      else if(data->draw_type_name == "line"){
-        this->data_line(data);
-      }
-    }
+    this->entity_info(entity);
+    this->data_info(entity);
+    this->pose_info(entity);
 
     ImGui::EndTable();
   }
@@ -143,7 +103,7 @@ void Entity::entity_parameter(utl::type::Entity* entity){
 }
 
 //Parameter
-void Entity::general_info(utl::type::Entity* entity){
+void Entity::entity_info(utl::type::Entity* entity){
   //---------------------------
 
   //Type
@@ -171,7 +131,60 @@ void Entity::general_info(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Entity::data_line(utl::type::Data* data){
+void Entity::data_info(utl::type::Entity* entity){
+  utl::type::Data* data = entity->get_data();
+  if(data == nullptr) return;
+  //---------------------------
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Format"); ImGui::TableNextColumn();
+  static char str_f[256];
+  strcpy(str_f, data->file_format.c_str());
+  ImGui::SetNextItemWidth(item_width);
+  if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
+    data->file_format = str_f;
+  }
+
+  //Uniform collection color
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Color"); ImGui::TableNextColumn();
+  ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
+  flags |= ImGuiColorEditFlags_AlphaBar;
+  if(ImGui::ColorEdit4("Color", (float*)&data->unicolor, flags)){
+    ope_attribut->set_unicolor(entity);
+  }
+
+  //Primitive size
+  if(data->draw_type_name == "point"){
+    this->primitive_point(data);
+  }
+  else if(data->draw_type_name == "line"){
+    this->primitive_line(data);
+  }
+
+  //---------------------------
+}
+void Entity::pose_info(utl::type::Entity* entity){
+  utl::type::Pose* pose = entity->get_pose();
+  if(pose == nullptr) return;
+  //---------------------------
+
+  //Root pos
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  vec3& root = pose->root;
+  ImGui::Text("Root"); ImGui::TableNextColumn();
+  ImGui::NextColumn();
+  ImGui::Text("%.2f  %.2f  %.2f", root.x, root.y, root.z);
+  ImGui::SameLine();
+  if(ImGui::Button("R", ImVec2(15,0))){
+    root = vec3(0,0,0);
+  }
+
+  //---------------------------
+}
+
+//Primitive
+void Entity::primitive_line(utl::type::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -196,7 +209,7 @@ void Entity::data_line(utl::type::Data* data){
 
   //---------------------------
 }
-void Entity::data_point(utl::type::Data* data){
+void Entity::primitive_point(utl::type::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
