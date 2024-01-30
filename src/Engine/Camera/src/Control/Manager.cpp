@@ -23,9 +23,9 @@ Manager::~Manager(){}
 void Manager::create_camera(){
   //---------------------------
 
-  eng::scene::Node* sce_node = engine->get_node_scene();
-  eng::scene::Glyph* sce_glyph = sce_node->get_scene_glyph();
-  eng::scene::Database* sce_database = sce_node->get_scene_database();
+  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
+  eng::scene::Database* sce_database = node_scene->get_scene_database();
   utl::type::Set* data_set = sce_database->get_data_set();
   utl::type::Set* set_world = data_set->get_set("World");
 

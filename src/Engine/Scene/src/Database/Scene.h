@@ -17,7 +17,7 @@ class Scene
 {
 public:
   //Constructor / Destructor
-  Scene(eng::scene::Node* sce_node);
+  Scene(eng::scene::Node* node_scene);
   ~Scene();
 
 public:

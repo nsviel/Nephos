@@ -27,13 +27,21 @@ Glyph::~Glyph(){}
 void Glyph::update_entity(){
   eng::cam::Node* node_camera = engine->get_node_camera();
   eng::cam::Control* cam_control = node_camera->get_camera_control();
+  //----------------------------
+
+  for(int i=0; i<vec_data.size(); i++){
+    cam_control->compute_camera_mvp(pose);
+  }
+
+  //----------------------------
+}
+void Glyph::update_data(){
   vk::Node* eng_vulkan = engine->get_eng_vulkan();
   vk::main::Engine* vk_engine = eng_vulkan->get_vk_engine();
   //----------------------------
 
   for(int i=0; i<vec_data.size(); i++){
     vk_engine->insert_data_in_engine(vec_data[i], pose);
-    cam_control->compute_camera_mvp(pose);
   }
 
   //----------------------------

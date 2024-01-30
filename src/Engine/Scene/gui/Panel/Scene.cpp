@@ -10,16 +10,16 @@
 namespace eng::scene::gui{
 
 //Constructor / Destructor
-Scene::Scene(eng::scene::Node* sce_node, bool* show_window){
+Scene::Scene(eng::scene::Node* node_scene, bool* show_window){
   //---------------------------
 
-  eng::Node* engine = sce_node->get_node_engine();
+  eng::Node* engine = node_scene->get_node_engine();
   eng::cam::Node* node_camera = engine->get_node_camera();
 
-  this->sce_database = sce_node->get_scene_database();
-  this->sce_scene = sce_node->get_scene();
+  this->sce_database = node_scene->get_scene_database();
+  this->sce_scene = node_scene->get_scene();
   this->rnd_set = new eng::scene::gui::Set(&show_panel_set);
-  this->rnd_object = new eng::scene::gui::Entity(sce_node, &show_panel_entity);
+  this->rnd_object = new eng::scene::gui::Entity(node_scene, &show_panel_entity);
   this->cam_control = node_camera->get_camera_control();
   this->ope_operation = new eng::ope::Operation();
 

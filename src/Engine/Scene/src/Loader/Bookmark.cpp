@@ -8,7 +8,7 @@
 namespace eng::scene{
 
 //Constructor / Destructor
-Bookmark::Bookmark(eng::scene::Node* sce_node){
+Bookmark::Bookmark(eng::scene::Node* node_scene){
   //---------------------------
 
   this->path_bookmark_file = "../media/config/bookmark.txt";

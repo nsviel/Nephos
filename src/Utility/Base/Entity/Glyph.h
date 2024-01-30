@@ -17,6 +17,7 @@ public:
 
   //Main function
   void update_entity();
+  void update_data();
   void visibility_entity(bool value);
 
   virtual void create(){}

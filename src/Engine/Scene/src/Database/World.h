@@ -13,7 +13,7 @@ class World
 {
 public:
   //Constructor / Destructor
-  World(eng::scene::Node* sce_node);
+  World(eng::scene::Node* node_scene);
   ~World();
 
 public:

@@ -9,12 +9,12 @@
 namespace eng::scene::gui{
 
 //Constructor / Destructor
-Loader::Loader(eng::scene::Node* sce_node, bool* show_window){
+Loader::Loader(eng::scene::Node* node_scene, bool* show_window){
   //---------------------------
 
-  this->sce_scene = sce_node->get_scene();
-  this->sce_loader = sce_node->get_scene_loader();
-  this->sce_bookmark = sce_node->get_scene_bookmark();
+  this->sce_scene = node_scene->get_scene();
+  this->sce_loader = node_scene->get_scene_loader();
+  this->sce_bookmark = node_scene->get_scene_bookmark();
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();
 
@@ -392,7 +392,7 @@ void Loader::draw_footer(){
 //Subfunction
 void Loader::operation_selection(){
   //---------------------------
-sayHello();
+
   //Retrieve all good selected files to load
   vector<string> vec_path;
   for(int i=0; i<vec_item_file.size(); i++){
@@ -421,10 +421,13 @@ sayHello();
 void Loader::operation_selection(string path){
   //---------------------------
 
+  //If selection is a directory go display his content
   if(utl::fct::directory::is_directory(path)){
     this->current_dir = path;
     this->goto_file_tab = true;
-  }else{
+  }
+  //If selection is a file go load it
+  else{
     //File check
     string format = utl::fct::info::get_format_from_path(path);
     if(!utl::fct::file::is_file_exist(path)) return;

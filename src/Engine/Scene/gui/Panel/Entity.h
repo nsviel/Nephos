@@ -14,7 +14,7 @@ class Entity
 {
 public:
   //Constructor / Destructor
-  Entity(eng::scene::Node* sce_node, bool* show_window);
+  Entity(eng::scene::Node* node_scene, bool* show_window);
   ~Entity();
 
   //Main function

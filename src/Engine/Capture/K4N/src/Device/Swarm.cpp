@@ -11,10 +11,10 @@ Swarm::Swarm(eng::k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* engine = node_k4n->get_node_engine();
-  eng::scene::Node* sce_node = engine->get_node_scene();
+  eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->node_k4n = node_k4n;
-  this->sce_scene = sce_node->get_scene();
+  this->sce_scene = node_scene->get_scene();
   this->k4n_transfo = new eng::k4n::utils::Transformation();
 
   //---------------------------

@@ -16,15 +16,15 @@ Control::Control(eng::Node* engine){
   //---------------------------
 
   utl::Node* utility = engine->get_node_utility();
-  eng::scene::Node* sce_node = engine->get_node_scene();
+  eng::scene::Node* node_scene = engine->get_node_scene();
   eng::cam::Node* node_camera = engine->get_node_camera();
 
   this->engine = engine;
   this->utl_window = utility->get_utl_window();
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
-  this->sce_scene = sce_node->get_scene();
-  this->sce_database = sce_node->get_scene_database();
+  this->sce_scene = node_scene->get_scene();
+  this->sce_database = node_scene->get_scene_database();
   this->ope_operation = new eng::ope::Operation();
 
   //---------------------------

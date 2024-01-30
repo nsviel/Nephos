@@ -15,7 +15,7 @@ class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(eng::scene::Node* sce_node);
+  Glyph(eng::scene::Node* node_scene);
   ~Glyph();
 
 public:
@@ -33,7 +33,7 @@ public:
 private:
   eng::Node* engine;
   vk::main::Engine* vk_engine;
-  eng::scene::Node* sce_node;
+  eng::scene::Node* node_scene;
   eng::scene::Database* sce_database;
   eng::scene::World* sce_world;
   eng::cam::Control* cam_control;
