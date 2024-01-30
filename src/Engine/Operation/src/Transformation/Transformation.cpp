@@ -48,11 +48,17 @@ void Transformation::make_rotation(utl::type::Entity* entity, vec3 COM, vec3 deg
   vec3 radian = math::degree_to_radian(degree);
   mat4 rotation = get_rotation_mat(radian);
   mat4 COM_mat = get_translation_mat_neye(COM);
+  mat4 root_mat = get_translation_mat_neye(pose->root);
 
   pose->rotat *= rotation;
+
+  //Rotation around COM
   pose->model -= COM_mat;
   pose->model *= rotation;
   pose->model += COM_mat;
+
+  // Apply rotation to the root
+  pose->root = mat3(rotation) * (pose->root - COM) + COM;
 
   //---------------------------
 }
@@ -67,9 +73,14 @@ void Transformation::make_rotation(utl::type::Entity* entity, vec3 degree){
   mat4 COM_mat = get_translation_mat_neye(COM);
 
   pose->rotat *= rotation;
+
+  //Rotation around COM
   pose->model -= COM_mat;
   pose->model *= rotation;
   pose->model += COM_mat;
+
+  // Apply rotation to the root
+  pose->root = mat3(rotation) * (pose->root - COM) + COM;
 
   //---------------------------
 }
@@ -82,9 +93,14 @@ void Transformation::make_rotation(utl::type::Entity* entity, vec3 COM, mat4 rot
   mat4 COM_mat = get_translation_mat_neye(COM);
 
   pose->rotat *= rotation;
+
+  //Rotation around COM
   pose->model -= COM_mat;
   pose->model *= rotation;
   pose->model += COM_mat;
+
+  // Apply rotation to the root
+  pose->root = mat3(rotation) * (pose->root - COM) + COM;
 
   //---------------------------
 }
