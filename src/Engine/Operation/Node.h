@@ -7,7 +7,7 @@ namespace eng{class Node;}
 
 namespace eng::ope{
 
-class Node
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor

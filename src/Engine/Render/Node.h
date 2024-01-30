@@ -14,7 +14,7 @@ namespace eng::render::gui{class Profiler;}
 
 namespace eng::render{
 
-class Node
+class Node : public utl::type::Node
 {
 public:
   Node(eng::Node* engine);

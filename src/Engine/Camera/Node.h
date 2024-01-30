@@ -12,7 +12,7 @@ namespace eng::cam::gui{class Panel;}
 
 namespace eng::cam{
 
-class Node
+class Node : public utl::type::Node
 {
 public:
   Node(eng::Node* engine);

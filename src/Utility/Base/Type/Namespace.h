@@ -4,3 +4,4 @@
 #include <Utility/Base/Type/Struct_data.h>
 #include <Utility/Base/Type/Struct_entity.h>
 #include <Utility/Base/Type/Struct_set.h>
+#include <Utility/Base/Type/Struct_node.h>

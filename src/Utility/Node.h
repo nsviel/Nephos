@@ -8,7 +8,7 @@ namespace utl::element{class Window;}
 
 namespace utl{
 
-class Node
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor

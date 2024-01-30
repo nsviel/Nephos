@@ -16,7 +16,7 @@ namespace eng::scene::gui{class Loader;}
 
 namespace eng::scene{
 
-class Node
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor

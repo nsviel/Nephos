@@ -11,7 +11,7 @@ namespace eng::k4n::gui{class Stream;}
 
 namespace eng::k4n{
 
-class Node
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor

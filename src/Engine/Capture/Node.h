@@ -8,7 +8,7 @@ namespace eng::k4n{class Node;}
 
 namespace eng::capture{
 
-class Node
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor

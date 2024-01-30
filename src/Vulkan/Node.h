@@ -12,7 +12,7 @@ namespace utl::element{class Window;}
 
 namespace vk{
 
-class Node
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor

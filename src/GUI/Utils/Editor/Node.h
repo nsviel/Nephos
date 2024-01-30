@@ -6,7 +6,7 @@
 
 namespace utl::gui::editor{
 
-class Node
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
