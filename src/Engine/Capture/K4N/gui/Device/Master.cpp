@@ -111,7 +111,7 @@ void Master::show_colorization(eng::k4n::dev::Master* master){
     }
     ImGui::Unindent();
   }
-sayHello();
+
   //---------------------------
 }
 void Master::show_voxelizer(eng::k4n::dev::Master* master){

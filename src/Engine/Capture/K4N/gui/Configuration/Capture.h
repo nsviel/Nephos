@@ -18,14 +18,14 @@ public:
   ~Capture();
 
   //Main function
-  void show_sensor_configuration(eng::k4n::dev::Sensor* k4n_sensor);
+  void show_sensor_configuration(eng::k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void kinect_devices();
-  void configuration_depth();
-  void configuration_color();
-  void configuration_device();
-  void firmware_info();
+  void list_device(eng::k4n::dev::Sensor* sensor);
+  void configuration_depth(eng::k4n::dev::Sensor* sensor);
+  void configuration_color(eng::k4n::dev::Sensor* sensor);
+  void configuration_device(eng::k4n::dev::Sensor* sensor);
+  void firmware_info(eng::k4n::dev::Sensor* sensor);
 
 private:
   eng::k4n::Node* k4a_node;

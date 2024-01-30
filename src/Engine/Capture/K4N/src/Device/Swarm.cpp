@@ -133,6 +133,13 @@ void Swarm::selecte_next_sensor(){
 }
 
 //Sensor function
+void Swarm::close_master(eng::k4n::dev::Master* master){
+  //---------------------------
+
+  this->list_master.remove(master);
+
+  //---------------------------
+}
 eng::k4n::dev::Master* Swarm::get_or_create_master(string name){
   utl::type::Set* set_scene = sce_scene->get_set_scene();
   //---------------------------

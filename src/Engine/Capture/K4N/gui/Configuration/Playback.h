@@ -17,13 +17,13 @@ public:
   ~Playback();
 
   //Main function
-  void show_sensor_configuration(eng::k4n::dev::Sensor* k4n_sensor);
+  void show_sensor_configuration(eng::k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void show_info_device();
-  void show_info_color();
-  void show_info_depth();
-  void show_info_synch();
+  void show_info_device(eng::k4n::dev::Sensor* sensor);
+  void show_info_color(eng::k4n::dev::Sensor* sensor);
+  void show_info_depth(eng::k4n::dev::Sensor* sensor);
+  void show_info_synch(eng::k4n::dev::Sensor* sensor);
 
 private:
   eng::k4n::Node* k4a_node;
