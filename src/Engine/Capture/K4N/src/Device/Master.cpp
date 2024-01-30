@@ -21,22 +21,12 @@ Master::Master(){
 Master::~Master(){}
 
 //Main function
-void Master::insert_sensor_playback(eng::k4n::dev::Sensor* sensor){
+void Master::insert_sensor(eng::k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
   this->insert_entity(sensor);
   this->player_update();
-
-  //---------------------------
-}
-void Master::insert_sensor_capture(eng::k4n::dev::Sensor* sensor){
-  if(sensor == nullptr) return;
-  //---------------------------
-
-  this->list_entity.push_back(sensor);
-  this->selected_entity = sensor;
-  this->nb_entity++;
 
   //---------------------------
 }
@@ -57,13 +47,20 @@ void Master::player_update(){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 
     if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
-      eng::k4n::utils::Operation k4n_operation;
-      float ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.path_data);
-      float ts_end = k4n_operation.find_mkv_ts_end(sensor->param.path_data);
+      if(sensor->param.is_playback){
+        eng::k4n::utils::Operation k4n_operation;
+        float ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.path_data);
+        float ts_end = k4n_operation.find_mkv_ts_end(sensor->param.path_data);
 
-      this->player.ts_beg = (player.ts_beg != -1) ? std::max(player.ts_beg, ts_beg) : ts_beg;
-      this->player.ts_end = (player.ts_end != -1) ? std::min(player.ts_end, ts_end) : ts_end;
-      this->player.duration = player.ts_end - player.ts_beg;
+        this->player.ts_beg = (player.ts_beg != -1) ? std::max(player.ts_beg, ts_beg) : ts_beg;
+        this->player.ts_end = (player.ts_end != -1) ? std::min(player.ts_end, ts_end) : ts_end;
+        this->player.duration = player.ts_end - player.ts_beg;
+      }else{
+        this->player.ts_beg = 0;
+        this->player.ts_end = 0;
+        this->player.duration = 0;
+      }
+
     }
   }
 
