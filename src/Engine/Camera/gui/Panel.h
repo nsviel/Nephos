@@ -1,9 +1,7 @@
 #pragma once
 
-#include <Utility/Base/GUI/Panel.h>
 #include <Utility/Specific/common.h>
 
-class Panel;
 namespace eng::cam{class Node;}
 namespace eng::cam{class Control;}
 namespace eng::cam{class Manager;}

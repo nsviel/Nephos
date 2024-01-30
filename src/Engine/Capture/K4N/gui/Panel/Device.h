@@ -1,13 +1,9 @@
 #pragma once
 
-#include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/src/Structure/Namespace.h>
-#include <Utility/Base/GUI/Panel.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4N/gui/Namespace.h>
 
 namespace eng{class Node;}
-class Recorder;
+namespace eng::k4n{class Node;}
 namespace eng::k4n::gui{class Capture;}
 namespace eng::k4n::gui{class Playback;}
 namespace eng::k4n::gui{class Recorder;}
@@ -15,6 +11,8 @@ namespace eng::k4n::gui{class Player;}
 namespace eng::k4n::gui{class Master;}
 namespace eng::k4n::gui{class Sensor;}
 namespace eng::k4n::dev{class Swarm;}
+namespace eng::k4n::dev{class Master;}
+namespace eng::k4n::dev{class Sensor;}
 
 
 namespace eng::k4n::gui{

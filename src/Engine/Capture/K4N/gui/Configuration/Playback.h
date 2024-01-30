@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Base/GUI/Panel.h>
 #include <Utility/Specific/common.h>
 
 namespace eng::k4n{class Node;}

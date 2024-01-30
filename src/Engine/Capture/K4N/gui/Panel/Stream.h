@@ -1,14 +1,15 @@
 #pragma once
 
-#include <Utility/Base/GUI/Panel.h>
-#include <Engine/Render/gui/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/src/Structure/Namespace.h>
-#include <Engine/Capture/K4N/src/Data/Namespace.h>
-
 
 namespace eng{class Node;}
+namespace eng::k4n{class Node;}
+namespace eng::k4n::data{class Depth;}
+namespace eng::k4n::data{class Infrared;}
+namespace eng::k4n::dev{class Swarm;}
+namespace eng::k4n::dev{class Sensor;}
+namespace eng::render::gui{class Stream;}
+namespace eng::k4n::structure{class Data;}
 
 
 namespace eng::k4n::gui{

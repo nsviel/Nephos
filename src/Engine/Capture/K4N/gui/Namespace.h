@@ -8,19 +8,3 @@
 #include <Engine/Capture/K4N/gui/Configuration/Recorder.h>
 #include <Engine/Capture/K4N/gui/Panel/Device.h>
 #include <Engine/Capture/K4N/gui/Panel/Stream.h>
-
-
-namespace eng::k4n::gui{
-  //---------------------------
-
-  class Capture;
-  class Playback;
-  class Recorder;
-  class Device;
-  class Stream;
-  class Player;
-  class Master;
-  class Sensor;
-
-  //---------------------------
-}

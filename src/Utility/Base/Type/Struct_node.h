@@ -2,6 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
+using Panel = std::pair<std::string, bool>;
+
 
 namespace utl::type{
 
@@ -20,8 +22,10 @@ public:
   virtual void exit(){}
   virtual void wait(){}
 
-private:
+  inline vector<Panel> get_vec_panel(){return vec_panel;}
 
+private:
+  vector<Panel> vec_panel;
 };
 
 }

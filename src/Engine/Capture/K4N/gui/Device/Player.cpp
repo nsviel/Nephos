@@ -1,7 +1,6 @@
 #include "Player.h"
 
-#include <Engine/Node.h>
-#include <Engine/Capture/K4N/src/Thread/Playback.h>
+#include <Engine/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 

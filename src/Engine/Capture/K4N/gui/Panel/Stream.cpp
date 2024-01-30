@@ -1,6 +1,6 @@
 #include "Stream.h"
 
-#include <Engine/Node.h>
+#include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 
 

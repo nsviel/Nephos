@@ -3,9 +3,10 @@
 #include <Utility/Specific/common.h>
 #include <GUI/Namespace.h>
 
-namespace dev::gui{
-class Panel;
+namespace dev::gui{class Tab;}
 
+
+namespace dev::gui{
 
 class Menu
 {

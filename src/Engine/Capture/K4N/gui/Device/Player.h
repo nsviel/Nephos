@@ -1,9 +1,11 @@
 #pragma once
 
-#include <Utility/Base/GUI/Panel.h>
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/K4N/Namespace.h>
-#include <Engine/Capture/K4N/src/Utils/Namespace.h>
+
+namespace eng::k4n{class Node;}
+namespace eng::k4n::dev{class Master;}
+namespace eng::k4n::dev{class Swarm;}
+namespace eng::scene{class Scene;}
 
 
 namespace eng::k4n::gui{
