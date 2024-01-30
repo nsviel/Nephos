@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Base/Shader/Shader.h>
 #include <Utility/Specific/common.h>
 
 namespace eng::render{class Node;}
@@ -9,7 +8,7 @@ namespace utl::element{class Window;}
 
 namespace eng::shader{
 
-class SCE : public utl::base::Shader
+class SCE : public utl::shader::Base
 {
 public:
   SCE(eng::render::Node* node_render);

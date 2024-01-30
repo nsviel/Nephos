@@ -1,8 +1,6 @@
 #include "EDL.h"
 
-#include <Engine/Node.h>
-#include <Engine/Render/Namespace.h>
-#include <Engine/Camera/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 
 

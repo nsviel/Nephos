@@ -3,14 +3,14 @@
 #include <Utility/Specific/common.h>
 
 
-namespace utl::base{
+namespace utl::shader{
 
-class Shader
+class Base
 {
 public:
   //Contrustor / destructor
-  Shader();
-  ~Shader();
+  Base();
+  ~Base();
 
   utl::shader::Info* get_shader_info(string title);
   string get_glsl_path_vs(int ID_subclass);
