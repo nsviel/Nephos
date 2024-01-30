@@ -17,9 +17,7 @@ public:
 
 public:
   //Main functions
-  void init();
-  void draw_tab();
-  void open_panels();
+  void gui();
 
   //Subfunction
   void draw_menu();

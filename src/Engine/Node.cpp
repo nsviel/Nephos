@@ -21,11 +21,13 @@ Node::Node(utl::Node* node_utility){
   this->node_capture = new eng::capture::Node(this);
   this->node_operation = new eng::ope::Node(this);
   this->node_render = new eng::render::Node(this);
+  this->node_gui = new eng::gui::Node(this);
 
   this->add_node_panel(node_camera);
   this->add_node_panel(node_scene);
   this->add_node_panel(node_capture);
   this->add_node_panel(node_render);
+  this->add_node_panel(node_gui);
 
   //---------------------------
 }
@@ -59,6 +61,7 @@ void Node::gui(){
   node_scene->gui();
   node_render->gui();
   node_operation->gui();
+  node_gui->gui();
 
   //---------------------------
 }

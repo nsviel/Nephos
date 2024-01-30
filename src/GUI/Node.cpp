@@ -50,11 +50,8 @@ void Node::loop(){
 
   gui_render->new_frame();
   gui_docking->docker_space_main();
-
-  engine->gui();
   gui_tab->run_tab();
   gui_control->run_control();
-
   gui_render->loop();
 
   //---------------------------

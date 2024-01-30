@@ -20,14 +20,7 @@ Node::Node(eng::Node* node_engine){
 Node::~Node(){}
 
 //Main function
-void Node::init(){
-  //---------------------------
-
-  this->add_node_panel(node_engine);
-
-  //---------------------------
-}
-void Node::draw_tab(){
+void Node::gui(){
   //---------------------------
 
   this->draw_menu();
@@ -42,6 +35,7 @@ void Node::draw_menu(){
 
   ImGui::BeginMainMenuBar();
   if(ImGui::BeginMenu("Panel##111")){
+    vector<Panel*> vec_panel = node_engine->get_vec_panel();
     for(int i=0; i<vec_panel.size(); i++){
       Panel* panel = vec_panel[i];
       string title = panel->icon + panel->name;
@@ -50,6 +44,7 @@ void Node::draw_menu(){
     ImGui::EndMenu();
   }
   if(ImGui::MenuItem("Loader")){
+    vector<Panel*> vec_panel = node_engine->get_vec_panel();
     for(int i=0; i<vec_panel.size(); i++){
       if(vec_panel[i]->name == "Loader"){
         vec_panel[i]->is_open = !vec_panel[i]->is_open;

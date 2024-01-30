@@ -10,6 +10,7 @@ namespace eng::scene{class Node;}
 namespace eng::render{class Node;}
 namespace eng::capture{class Node;}
 namespace eng::ope{class Node;}
+namespace eng::gui{class Node;}
 
 
 namespace eng{
@@ -45,6 +46,7 @@ private:
   eng::capture::Node* node_capture;
   eng::render::Node* node_render;
   eng::ope::Node* node_operation;
+  eng::gui::Node* node_gui;
 };
 
 }

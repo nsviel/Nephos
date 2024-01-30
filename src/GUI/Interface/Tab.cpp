@@ -12,27 +12,18 @@ namespace gui::interface{
 Tab::Tab(gui::Node* gui){
   //---------------------------
 
-  eng::Node* node_engine = gui->get_node_engine();
-
-  this->node_eng_gui = new eng::gui::Node(node_engine);
+  this->node_engine = gui->get_node_engine();
   this->dev_tab = new dev::gui::Tab();
   this->gui_menu = new gui::interface::Menu(gui);
 
-  this->active_tab = "Render";
+  this->active_tab = "Engine";
   this->tab_to_open = "";
-  this->vec_tab.push_back("Render");
+  this->vec_tab.push_back("Engine");
   this->vec_tab.push_back("Dev");
 
   //---------------------------
 }
-Tab::~Tab(){
-  //---------------------------
-
-  delete node_eng_gui;
-  delete dev_tab;
-
-  //---------------------------
-}
+Tab::~Tab(){}
 
 //Main function
 void Tab::run_tab(){
@@ -78,8 +69,8 @@ void Tab::draw_tab(){
   //---------------------------
 
   //Draw selected tab panels
-  if(active_tab == "Render"){
-    node_eng_gui->draw_tab();
+  if(active_tab == "Engine"){
+    node_engine->gui();
   }
   else if(active_tab == "Dev"){
     dev_tab->draw_tab();

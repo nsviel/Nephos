@@ -3,8 +3,8 @@
 #include <Utility/Specific/common.h>
 
 namespace gui{class Node;}
+namespace eng{class Node;}
 namespace gui::interface{class Menu;}
-namespace eng::gui{class Node;}
 namespace dev::gui{class Tab;}
 
 
@@ -27,9 +27,8 @@ public:
   void next_tab();
 
 private:
-  gui::Node* gui;
+  eng::Node* node_engine;
   gui::interface::Menu* gui_menu;
-  eng::gui::Node* node_eng_gui;
   dev::gui::Tab* dev_tab;
 
   vector<string> vec_tab;
