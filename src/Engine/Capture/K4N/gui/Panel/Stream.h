@@ -8,6 +8,7 @@ namespace eng::k4n::data{class Depth;}
 namespace eng::k4n::data{class Infrared;}
 namespace eng::k4n::dev{class Swarm;}
 namespace eng::k4n::dev{class Sensor;}
+namespace eng::k4n::dev{class Master;}
 namespace eng::render::gui{class Stream;}
 namespace eng::k4n::structure{class Data;}
 
@@ -23,10 +24,10 @@ public:
 
   //Main function
   void run_panel();
-  void design_panel();
+  void design_panel(eng::k4n::dev::Master* master);
 
   //All devices
-  void vec_device_tab();
+  void vec_device_tab(eng::k4n::dev::Master* master);
   void vec_stream_tab(eng::k4n::dev::Sensor* device);
 
   //Device capture windows

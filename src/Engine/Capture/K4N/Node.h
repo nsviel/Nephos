@@ -5,7 +5,7 @@
 namespace eng{class Node;}
 namespace eng::k4n::dev{class Swarm;}
 namespace eng::k4n::dev{class Connection;}
-namespace eng::k4n::gui{class Device;}
+namespace eng::k4n::gui{class Player;}
 namespace eng::k4n::gui{class Stream;}
 namespace eng::k4n::gui{class Control;}
 
@@ -33,7 +33,7 @@ private:
   eng::Node* engine;
   eng::k4n::dev::Swarm* k4n_swarm;
   eng::k4n::dev::Connection* k4n_connection;
-  eng::k4n::gui::Device* gui_device;
+  eng::k4n::gui::Player* gui_device;
   eng::k4n::gui::Stream* gui_stream;
   eng::k4n::gui::Control* gui_control;
 };

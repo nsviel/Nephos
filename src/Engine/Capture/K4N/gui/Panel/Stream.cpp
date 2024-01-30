@@ -31,14 +31,14 @@ Stream::~Stream(){}
 
 //Main function
 void Stream::run_panel(){
-  eng::k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
+  eng::k4n::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
-  if(*show_window && sensor != nullptr){
+  if(*show_window && master != nullptr){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel();
+      this->design_panel(master);
 
       ImGui::End();
     }
@@ -47,18 +47,16 @@ void Stream::run_panel(){
 
   //---------------------------
 }
-void Stream::design_panel(){
+void Stream::design_panel(eng::k4n::dev::Master* master){
   //---------------------------
 
-  this->vec_device_tab();
+  this->vec_device_tab(master);
 
   //---------------------------
 }
 
 //All devices
-void Stream::vec_device_tab(){
-  eng::k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
-  eng::k4n::dev::Master* master = sensor->master;
+void Stream::vec_device_tab(eng::k4n::dev::Master* master){
   //---------------------------
 
   if(ImGui::BeginTabBar("devices_tab##4567")){
