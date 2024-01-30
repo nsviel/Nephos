@@ -2,7 +2,6 @@
 
 #include <Engine/Capture/K4N/gui/Device/Master.h>
 #include <Engine/Capture/K4N/gui/Device/Sensor.h>
-#include <Engine/Capture/K4N/gui/Device/Player.h>
 #include <Engine/Capture/K4N/gui/Configuration/Capture.h>
 #include <Engine/Capture/K4N/gui/Configuration/Playback.h>
 #include <Engine/Capture/K4N/gui/Configuration/Recorder.h>

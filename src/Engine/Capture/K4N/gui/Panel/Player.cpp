@@ -1,29 +1,69 @@
 #include "Player.h"
 
 #include <Engine/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::k4n::gui{
 
 //Constructor / Destructor
-Player::Player(eng::k4n::Node* node_k4n){
+Player::Player(eng::k4n::Node* node_k4n, bool* show_window){
   //---------------------------
 
-  eng::Node* engine = node_k4n->get_node_engine();
-  eng::scene::Node* sce_node = engine->get_node_scene();
-  eng::capture::Node* node_capture = engine->get_node_capture();
-
   this->node_k4n = node_k4n;
-  this->sce_scene = sce_node->get_scene();
   this->k4n_swarm = node_k4n->get_k4n_swarm();
+  this->gui_capture = new eng::k4n::gui::Capture(node_k4n);
+  this->gui_playback = new eng::k4n::gui::Playback(node_k4n);
+  this->gui_recorder = new eng::k4n::gui::Recorder(node_k4n);
+  this->gui_master = new eng::k4n::gui::Master(node_k4n);
+  this->gui_sensor = new eng::k4n::gui::Sensor(node_k4n);
+
+  this->show_window = show_window;
+  this->name = "Player";
 
   //---------------------------
 }
 Player::~Player(){}
 
 //Main function
+void Player::run_panel(){
+  eng::k4n::dev::Sensor* sensor = k4n_swarm->get_selected_sensor();
+  //---------------------------
 
+  if(*show_window && sensor != nullptr){
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+
+      this->design_panel();
+
+      ImGui::End();
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
+void Player::design_panel(){
+  eng::k4n::dev::Master* master = k4n_swarm->get_selected_master();
+  //---------------------------
+
+  //Master player
+  this->draw_player(master);
+
+  //Device info & configuration
+  if(master != nullptr && ImGui::BeginTabBar("devices_tab##4567")){
+    this->show_master_tab(master);
+
+    //Master sensor tabs -> click = sensor selection
+    for(int i=0; i< master->list_sensor.size(); i++){
+      eng::k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
+      this->show_sensor_tab(sensor);
+    }
+    ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
 
 //Player function
 void Player::draw_player(eng::k4n::dev::Master* master){
@@ -168,6 +208,55 @@ void Player::player_lock(eng::k4n::dev::Master* master){
   }
 
   //---------------------------
+}
+
+//Device function
+void Player::show_master_tab(eng::k4n::dev::Master* master){
+  if(master == nullptr) return;
+  //---------------------------
+
+  string name = master->icon + "  " + "Master";
+  if(ImGui::BeginTabItem(name.c_str(), NULL)){
+    gui_master->show_master_info(master);
+    ImGui::EndTabItem();
+  }
+
+  //---------------------------
+}
+void Player::show_sensor_tab(eng::k4n::dev::Sensor* sensor){
+  if(sensor == nullptr) return;
+  //---------------------------
+
+  //Force tab open if another sensor selected
+  ImGuiTabItemFlags flag = get_tab_flag(sensor);
+  string name = sensor->icon + "  " + sensor->name;
+  if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
+
+    gui_sensor->show_sensor(sensor);
+    gui_capture->show_sensor_configuration(sensor);
+    gui_playback->show_sensor_configuration(sensor);
+    //gui_recorder->show_sensor_recorder(sensor);
+
+    ImGui::EndTabItem();
+  }
+
+  //---------------------------
+}
+
+//Subfunction
+ImGuiTabItemFlags Player::get_tab_flag(eng::k4n::dev::Sensor* sensor){
+  eng::k4n::dev::Master* master = sensor->master;
+  //---------------------------
+
+  ImGuiTabItemFlags flag = 0;
+  static int UID = master->selected_entity->UID;
+  if(master->is_selected_entity(sensor) && sensor->UID != UID){
+    flag = ImGuiTabItemFlags_SetSelected;
+    UID = master->selected_entity->UID;
+  }
+
+  //---------------------------
+  return flag;
 }
 
 }
