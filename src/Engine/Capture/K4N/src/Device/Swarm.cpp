@@ -26,7 +26,7 @@ void Swarm::init_scene(){
   //---------------------------
 
   //If no real device create playback
-  eng::k4n::dev::Master* master = get_or_create_master("versaille");
+  eng::k4n::dev::Master* master = get_or_create_master("Master");
   uint32_t current_nb_dev = k4a_device_get_installed_count();
   if(current_nb_dev != 0) return;
 

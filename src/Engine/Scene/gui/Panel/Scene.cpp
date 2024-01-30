@@ -169,7 +169,7 @@ int Scene::tree_set(utl::type::Set* set) {
   int nb_row = 0;
   //---------------------------
 
-  if(set->nb_entity == 0) return 0;
+  if(set->get_nb_entity() == 0) return 0;
 
   // Node flags
   ImGuiTreeNodeFlags flag_node;

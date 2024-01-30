@@ -199,6 +199,20 @@ void Set::set_selected_entity(utl::type::Entity* entity_to_select){
 }
 
 //Subfunction
+int Set::get_nb_entity(){
+  int nb_entity = 0;
+  //---------------------------
+
+  nb_entity += list_entity.size();
+
+  for(int i=0; i<list_subset.size(); i++){
+    utl::type::Set* subset = *next(list_subset.begin(), i);
+    nb_entity += subset->get_nb_entity();
+  }
+
+  //---------------------------
+  return nb_entity;
+}
 void Set::set_visibility(bool value){
   //---------------------------
 

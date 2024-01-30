@@ -34,11 +34,11 @@ public:
 
   //Subfunction
   void set_visibility(bool value);
+  int get_nb_entity();
   int compute_number_point();
   utl::type::Set* get_set(std::string name);
   utl::type::Entity* get_entity(std::string name);
 
-  inline int get_nb_entity(){return list_entity.size();}
   inline bool is_selected_entity(utl::type::Entity* entity){return entity->UID == selected_entity->UID;}
   inline utl::type::Entity* get_selected_entity(){return selected_entity;}
 
