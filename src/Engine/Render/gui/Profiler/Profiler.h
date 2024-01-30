@@ -27,6 +27,8 @@ public:
   void main_loop_fps();
   void draw_graphs();
 
+  void draw_graph_cpu();
+
 private:
   utl::gui::plot::Profiler* profiler;
   vk::main::Info* vk_info;

@@ -85,6 +85,42 @@ void Profiler::main_loop_fps(){
 void Profiler::draw_graphs(){
   //---------------------------
 
+  if(ImGui::BeginTabBar("device_tab##4567")){
+    ImVec2 image_size = ImGui::GetContentRegionAvail();
+
+    ImGui::SetNextItemWidth(100);
+    if (ImGui::BeginTabItem("All##4568", NULL)){
+      image_size = ImVec2(image_size.x, image_size.y/3-3.33);
+      this->draw_graph_cpu();
+      ImGui::EndTabItem();
+    }
+
+    ImGui::SetNextItemWidth(100);
+    if (ImGui::BeginTabItem("CPU##4567", NULL)){
+      this->draw_graph_cpu();
+      ImGui::EndTabItem();
+    }
+
+    ImGui::SetNextItemWidth(100);
+    if(ImGui::BeginTabItem("GPU##4567", NULL)){
+      this->draw_graph_cpu();
+      ImGui::EndTabItem();
+    }
+
+    ImGui::SetNextItemWidth(100);
+    if (ImGui::BeginTabItem("Capture##4567", NULL)){
+      this->draw_graph_cpu();
+      ImGui::EndTabItem();
+    }
+    ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
+
+void Profiler::draw_graph_cpu(){
+  //---------------------------
+
   profiler->reset();
   vector<vk::structure::Task>& vec_gpu_task = vk_info->get_profiler_data();
   for(int i=0; i<vec_gpu_task.size(); i++){

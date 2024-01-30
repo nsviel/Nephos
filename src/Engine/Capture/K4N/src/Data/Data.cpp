@@ -189,7 +189,7 @@ void Data::find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::captur
         static_cast<int>(sizeof(uint16_t)));
 
   uint32_t value_no_data = 0;
-  transformation.depth_image_to_color_camera_custom(depth, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_NEAREST, value_no_data);
+  transformation.depth_image_to_color_camera_custom(depth, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_LINEAR, value_no_data);
   if(!depth_transformed || !depth_transformed.is_valid()){
     return;
   }
