@@ -28,13 +28,13 @@ public:
   void reset();
 
   //Player function
-  void update_player();
-  void set_play();
-  void set_pause(bool value);
-  void set_desired_timestamp(float value);
-  void set_stop();
-  void set_restart();
-  void set_record();
+  void player_update();
+  void player_play();
+  void player_pause(bool value);
+  void player_query_ts(float value);
+  void player_stop();
+  void player_restart();
+  void player_record();
   void manage_restart();
   void manage_forward();
 

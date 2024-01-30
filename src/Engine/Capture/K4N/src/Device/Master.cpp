@@ -27,7 +27,7 @@ void Master::insert_sensor_playback(eng::k4n::dev::Sensor* sensor){
 
   this->insert_entity(sensor);
   this->list_sensor.push_back(sensor);
-  this->update_player();
+  this->player_update();
 
   //---------------------------
 }
@@ -78,7 +78,7 @@ void Master::reset(){
 }
 
 //Player function
-void Master::update_player(){
+void Master::player_update(){
   //---------------------------
 
   //Search for min max timestamp
@@ -103,14 +103,14 @@ void Master::update_player(){
 
   //---------------------------
 }
-void Master::set_pause(bool value){
+void Master::player_pause(bool value){
   //---------------------------
 
   this->player.pause = value;
 
   //---------------------------
 }
-void Master::set_desired_timestamp(float value){
+void Master::player_query_ts(float value){
   //---------------------------
 
   this->player.ts_seek = value;
@@ -122,7 +122,7 @@ void Master::set_desired_timestamp(float value){
 
   //---------------------------
 }
-void Master::set_play(){
+void Master::player_play(){
   //---------------------------
 
   if(!player.play){
@@ -134,7 +134,7 @@ void Master::set_play(){
 
   //---------------------------
 }
-void Master::set_stop(){
+void Master::player_stop(){
   //---------------------------
 
   //Restart playbacks
@@ -148,14 +148,14 @@ void Master::set_stop(){
 
   //---------------------------
 }
-void Master::set_restart(){
+void Master::player_restart(){
   //---------------------------
 
   player.restart = !player.restart;
 
   //---------------------------
 }
-void Master::set_record(){
+void Master::player_record(){
   //---------------------------
 
   player.record = !player.record;

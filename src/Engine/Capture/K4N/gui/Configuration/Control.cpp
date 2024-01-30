@@ -34,7 +34,7 @@ void Control::control_keyboard(){
 
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      master->set_pause(!master->player.pause);
+      master->player_pause(!master->player.pause);
       break;
     }
 
