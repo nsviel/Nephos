@@ -413,8 +413,11 @@ void Loader::operation_selection(){
 
   for(int i=0; i<vec_path.size(); i++){
     utl::type::Entity* entity = sce_loader->load_entity(vec_path[i]);
-    sce_scene->import_entity(entity);
-    this->operation_entity(entity);
+
+    if(entity != nullptr){
+      sce_scene->import_entity(entity);
+      this->operation_entity(entity);
+    }
   }
 
   //---------------------------
@@ -441,8 +444,10 @@ void Loader::operation_selection(string path){
     }
 
     utl::type::Entity* entity = sce_loader->load_entity(path);
-    sce_scene->import_entity(entity);
-    this->operation_entity(entity);
+    if(entity != nullptr){
+      sce_scene->import_entity(entity);
+      this->operation_entity(entity);
+    }
   }
 
   //---------------------------
