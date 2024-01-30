@@ -1,5 +1,7 @@
 #include "Renderer.h"
 
+#include <GUI/Utils/Profiler/Namespace.h>
+
 
 namespace ImProfil{
 

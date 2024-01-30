@@ -2,15 +2,8 @@
 
 #include "Task.h"
 #include "Color.h"
-#include "../core/imgui.h"
 
-#include <glm/glm.hpp>
-#include <array>
-#include <map>
-#include <vector>
-#include <iostream>
-#include <algorithm>
-#include <sstream>
+#include <Utility/Specific/common.h>
 
 
 namespace ImProfil{

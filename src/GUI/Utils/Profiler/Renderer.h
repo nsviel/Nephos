@@ -1,15 +1,6 @@
 #pragma once
 
-#include "Namespace.h"
-#include "Graph.h"
-#include "Color.h"
-#include "../core/imgui.h"
-
-#include <array>
-#include <map>
-#include <vector>
-#include <iostream>
-#include <chrono>
+#include <Utility/Specific/common.h>
 
 
 namespace ImProfil{

@@ -1,7 +1,9 @@
 #pragma once
 
+#include <GUI/Utils/Profiler/Namespace.h>
 #include <Utility/Specific/common.h>
-#include <imgui/profiler/Namespace.h>
+
+namespace ImProfil{class Renderer;}
 
 
 namespace utl::gui::plot{
