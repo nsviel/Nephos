@@ -10,6 +10,7 @@ namespace eng::k4n::gui{
 Device::Device(eng::k4n::Node* node_k4n, bool* show_window){
   //---------------------------
 
+  this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->gui_capture = new eng::k4n::gui::Capture(node_k4n);
   this->gui_playback = new eng::k4n::gui::Playback(node_k4n);
@@ -48,7 +49,7 @@ void Device::design_panel(){
   //---------------------------
 
   //Master player
-  gui_player->draw_player(master);
+  this->draw_player(master);
 
   //Device info & configuration
   if(master != nullptr && ImGui::BeginTabBar("devices_tab##4567")){
@@ -60,6 +61,151 @@ void Device::design_panel(){
       this->show_sensor_tab(sensor);
     }
     ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
+
+//Player function
+void Device::draw_player(eng::k4n::dev::Master* master){
+  //---------------------------
+
+  node_k4n->control();
+  this->player_slider(master);
+
+  this->player_start(master);
+  ImGui::SameLine();
+  this->player_stop(master);
+  ImGui::SameLine();
+  this->player_repeat(master);
+  ImGui::SameLine();
+  this->player_record(master);
+  ImGui::SameLine();
+  this->player_close(master);
+  ImGui::SameLine();
+  this->player_lock(master);
+
+  //---------------------------
+}
+void Device::player_slider(eng::k4n::dev::Master* master){
+  //---------------------------
+
+  ImVec2 width = ImGui::GetContentRegionAvail();
+  ImGui::SetNextItemWidth(width.x);
+  if(ImGui::SliderFloat("##player_slider", &master->player.ts_cur, master->player.ts_beg, master->player.ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
+    master->set_desired_timestamp(master->player.ts_cur);
+  }
+
+  //---------------------------
+}
+void Device::player_start(eng::k4n::dev::Master* master){
+  //---------------------------
+
+  //Play button -> if paused or not playing
+  if(master->player.pause){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
+    if(ImGui::Button(ICON_FA_PLAY "##player_start")){
+      master->set_play();
+    }
+    ImGui::PopStyleColor();
+  }
+  //Pause button -> if not paused and playing
+  else{
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
+    if(ImGui::Button(ICON_FA_PAUSE "##player_pause")){
+      master->set_pause(true);
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //---------------------------
+}
+void Device::player_stop(eng::k4n::dev::Master* master){
+  //---------------------------
+
+  if(!master->player.pause){
+    //Player is running
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
+    if (ImGui::Button(ICON_FA_STOP "##37")){
+      master->set_stop();
+    }
+    ImGui::PopStyleColor();
+  }
+  else{
+    //Player is stoped
+    if (ImGui::Button(ICON_FA_STOP "##37")){
+      master->set_stop();
+    }
+  }
+
+  //---------------------------
+}
+void Device::player_repeat(eng::k4n::dev::Master* master){
+  //---------------------------
+
+  if(master->player.restart){
+    //Repeat activated
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
+    if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
+      master->set_restart();
+    }
+    ImGui::PopStyleColor();
+  }
+  else{
+    //Repeat desactivated
+    if (ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
+      master->set_restart();
+    }
+  }
+
+  //---------------------------
+}
+void Device::player_record(eng::k4n::dev::Master* master){
+  //---------------------------
+
+  if(master->player.record){
+    //Record activated
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
+    if (ImGui::Button(ICON_FA_CIRCLE "##37")){
+      master->set_record();
+    }
+    ImGui::PopStyleColor();
+  }
+  else{
+    //Record desactivated
+    if (ImGui::Button(ICON_FA_CIRCLE "##37")){
+      master->set_record();
+    }
+  }
+
+  //---------------------------
+}
+void Device::player_close(eng::k4n::dev::Master* master){
+  //---------------------------
+
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
+  if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
+    k4n_swarm->close_selected_sensor();
+  }
+  ImGui::PopStyleColor();
+
+  //---------------------------
+}
+void Device::player_lock(eng::k4n::dev::Master* master){
+  //---------------------------
+
+  if(master->is_locked){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
+    if(ImGui::Button(ICON_FA_LOCK "##399")){
+      master->is_locked = false;
+    }
+    ImGui::PopStyleColor();
+  }else{
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
+    if(ImGui::Button(ICON_FA_UNLOCK "##399")){
+      master->is_locked = true;
+    }
+    ImGui::PopStyleColor();
   }
 
   //---------------------------

@@ -23,10 +23,13 @@ Player::Player(eng::k4n::Node* node_k4n){
 Player::~Player(){}
 
 //Main function
+
+
+//Player function
 void Player::draw_player(eng::k4n::dev::Master* master){
   //---------------------------
 
-  this->player_control(master);
+  node_k4n->control();
   this->player_slider(master);
 
   this->player_start(master);
@@ -43,34 +46,6 @@ void Player::draw_player(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-
-//Subfunction
-void Player::player_control(eng::k4n::dev::Master* master){
-  ImGuiIO io = ImGui::GetIO();
-  //----------------------------
-
-  for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
-    //Tab key
-    if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      master->set_pause(!master->player.pause);
-      break;
-    }
-
-    //Left arrow key
-    if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
-      master->player.ts_forward = -1;
-      break;
-    }
-
-    //Right arrow key
-    if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
-      master->player.ts_forward = 1;
-      break;
-    }
-  }
-
-  //----------------------------
-}
 void Player::player_slider(eng::k4n::dev::Master* master){
   //---------------------------
 
@@ -82,8 +57,6 @@ void Player::player_slider(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-
-//Player button
 void Player::player_start(eng::k4n::dev::Master* master){
   //---------------------------
 

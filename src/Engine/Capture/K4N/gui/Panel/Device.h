@@ -28,7 +28,17 @@ public:
   void run_panel();
   void design_panel();
 
-  //Tab function
+  //Player function
+  void draw_player(eng::k4n::dev::Master* master);
+  void player_slider(eng::k4n::dev::Master* master);
+  void player_start(eng::k4n::dev::Master* master);
+  void player_stop(eng::k4n::dev::Master* master);
+  void player_repeat(eng::k4n::dev::Master* master);
+  void player_record(eng::k4n::dev::Master* master);
+  void player_close(eng::k4n::dev::Master* master);
+  void player_lock(eng::k4n::dev::Master* master);
+
+  //Device function
   void show_master_tab(eng::k4n::dev::Master* master);
   void show_sensor_tab(eng::k4n::dev::Sensor* sensor);
 
@@ -36,6 +46,7 @@ public:
   ImGuiTabItemFlags get_tab_flag(eng::k4n::dev::Sensor* sensor);
 
 private:
+  eng::k4n::Node* node_k4n;
   eng::k4n::gui::Capture* gui_capture;
   eng::k4n::gui::Playback* gui_playback;
   eng::k4n::gui::Recorder* gui_recorder;

@@ -17,6 +17,7 @@ Node::Node(eng::Node* engine){
   this->k4n_connection = new eng::k4n::dev::Connection(this);
   this->gui_device = new eng::k4n::gui::Device(this, &k4n_panel->is_open);
   this->gui_stream = new eng::k4n::gui::Stream(this, &k4n_panel->is_open);
+  this->gui_control = new eng::k4n::gui::Control(this);
 
   //---------------------------
 }
@@ -42,6 +43,13 @@ void Node::gui(){
 
   gui_device->run_panel();
   gui_stream->run_panel();
+
+  //---------------------------
+}
+void Node::control(){
+  //---------------------------
+
+  gui_control->run_control();
 
   //---------------------------
 }

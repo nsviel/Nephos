@@ -18,13 +18,14 @@ public:
   ~Player();
 
   //Main function
-  void draw_player(eng::k4n::dev::Master* master);
+
 
   //Subfunction
-  void player_control(eng::k4n::dev::Master* master);
-  void player_slider(eng::k4n::dev::Master* master);
 
-  //Player button
+
+  //Player function
+  void draw_player(eng::k4n::dev::Master* master);
+  void player_slider(eng::k4n::dev::Master* master);
   void player_start(eng::k4n::dev::Master* master);
   void player_stop(eng::k4n::dev::Master* master);
   void player_repeat(eng::k4n::dev::Master* master);
