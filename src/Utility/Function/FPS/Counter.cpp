@@ -28,8 +28,8 @@ float Counter::update(){
   fps_queue.push(current_fps);
 
   // Maintain the queue size at 10 (remove the oldest element if necessary)
-  if (fps_queue.size() > 10) {
-     fps_queue.pop();
+  if(fps_queue.size() > 10){
+    fps_queue.pop();
   }
 
   // Calculate and update the mean FPS
