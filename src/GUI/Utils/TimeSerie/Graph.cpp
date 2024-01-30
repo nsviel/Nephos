@@ -98,18 +98,18 @@ void Graph::rebuild_task_stats(size_t endFrame, size_t framesCount){
 }
 
 //Rendering
-void Graph::render_timings(int graphWidth, int legendWidth, int height, int frameIndexOffset){
+void Graph::render_timings(int graphWidth, int legendWidth, int height){
   //---------------------------
 
   ImDrawList* draw_list = ImGui::GetWindowDrawList();
   const glm::vec2 widgetPos = glm::vec2(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y);
-  this->render_graph(draw_list, widgetPos, glm::vec2(graphWidth, height), frameIndexOffset);
-  this->render_legend(draw_list, widgetPos + glm::vec2(graphWidth, 0.0f), glm::vec2(legendWidth, height), frameIndexOffset);
+  this->render_graph(draw_list, widgetPos, glm::vec2(graphWidth, height));
+  this->render_legend(draw_list, widgetPos + glm::vec2(graphWidth, 0.0f), glm::vec2(legendWidth, height));
   ImGui::Dummy(ImVec2(float(graphWidth + legendWidth), float(height)));
 
   //---------------------------
 }
-void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 graph_size, size_t frameIndexOffset){
+void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 graph_size){
   //---------------------------
 
   this->draw_rect(draw_list, graph_pose, graph_pose + graph_size, border_color, false);
@@ -117,7 +117,7 @@ void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 
   float heightThreshold = 1.0f;
 
   for (size_t frameNumber = 0; frameNumber < frames.size(); frameNumber++){
-    size_t frameIndex = (current_frameIndex - frameIndexOffset - 1 - frameNumber + 2 * frames.size()) % frames.size();
+    size_t frameIndex = (current_frameIndex - 1 - frameNumber + 2 * frames.size()) % frames.size();
 
     glm::vec2 framePos = graph_pose + glm::vec2(graph_size.x - 1 - frame_width - (frame_width + frame_spacing) * frameNumber, graph_size.y - 1);
     if(framePos.x < graph_pose.x + 1){
@@ -138,7 +138,7 @@ void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 
 
   //---------------------------
 }
-void Graph::render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 legendSize, size_t frameIndexOffset){
+void Graph::render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 legendSize){
   //---------------------------
 
   float markerLeftRectMargin = 3.0f;
@@ -150,7 +150,7 @@ void Graph::render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 
   float markerRightRectHeight = 10.0f;
   float markerRightRectSpacing = 4.0f;
 
-  auto &current_frame = frames[(current_frameIndex - frameIndexOffset - 1 + 2 * frames.size()) % frames.size()];
+  auto &current_frame = frames[(current_frameIndex - 1 + 2 * frames.size()) % frames.size()];
   size_t maxTasksCount = size_t(legendSize.y / (markerRightRectHeight + markerRightRectSpacing));
 
   for (auto &taskStat : taskStats){

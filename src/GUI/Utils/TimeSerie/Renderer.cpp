@@ -8,7 +8,6 @@ namespace utl::gui::serie{
 Renderer::Renderer(){
   //---------------------------
 
-  this->frame_offset = 0;
   this->legend_width = 200;
   this->max_graph_height = 300;
   this->graph = new utl::gui::serie::Graph(300);
@@ -28,7 +27,7 @@ void Renderer::render_window(ImVec2 size){
   int graph_width = int(size.x) - legend_width;
 
   ImGui::BeginChild("##cpuProfiler", ImVec2(0, size.y));
-  graph->render_timings(graph_width, legend_width, graph_height_available, frame_offset);
+  graph->render_timings(graph_width, legend_width, graph_height_available);
   ImGui::End();
 /*
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() + available_size.y + 5);
@@ -65,7 +64,7 @@ void Renderer::render_overlay(ImVec2 image_pose){
   int graph_height = std::min(max_graph_height, graph_height_available);
   int graph_width = int(available_size.x) - legend_width;
 
-  graph->render_timings(graph_width, legend_width, graph_height_available, frame_offset);
+  graph->render_timings(graph_width, legend_width, graph_height_available);
 
   ImGui::End();
 

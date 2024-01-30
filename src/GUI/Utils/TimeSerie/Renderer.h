@@ -21,7 +21,6 @@ public:
   utl::gui::serie::Graph* graph;
 
 private:
-  int frame_offset;
   int legend_width;
   int max_graph_height;
 };
