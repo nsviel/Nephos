@@ -12,6 +12,8 @@ Node::Node(eng::Node* engine){
 
   this->node_k4n = new eng::k4n::Node(engine);
 
+  this->add_node_panel(node_k4n);
+
   //---------------------------
 }
 Node::~Node(){}

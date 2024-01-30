@@ -1,13 +1,14 @@
 #include "Node.h"
 
 #include <Engine/Render/Namespace.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace eng::render{
 
 Node::Node(eng::Node* engine){
-  Panel* sha_panel = new_panel("Shader", false);
-  Panel* prf_panel = new_panel("Profiler", true);
+  Panel* sha_panel = new_panel("Shader", ICON_FA_ROAD, false);
+  Panel* prf_panel = new_panel("Profiler", ICON_FA_ROAD, true);
   //---------------------------
 
   this->engine = engine;
@@ -16,9 +17,9 @@ Node::Node(eng::Node* engine){
   this->eng_renderpass = new eng::renderpass::Manager(this);
   this->cpu_profiler = new eng::render::Profiler(this);
   this->gpu_profiler = new eng::render::Profiler(this);
-  this->gui_shader = new eng::render::gui::Shader(this, &sha_panel->second);
+  this->gui_shader = new eng::render::gui::Shader(this, &sha_panel->is_open);
   this->gui_render = new eng::render::gui::Renderer(this);
-  this->gui_profiler = new eng::render::gui::Profiler(this, &prf_panel->second);
+  this->gui_profiler = new eng::render::gui::Profiler(this, &prf_panel->is_open);
 
   //---------------------------
 }

@@ -4,13 +4,14 @@
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Utility/Element/src/Namespace.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace eng::cam{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  Panel* cam_panel = new_panel("Camera", false);
+  Panel* cam_panel = new_panel("Camera", ICON_FA_CAMERA, false);
   //---------------------------
 
   utl::Node* node_utility = node_engine->get_node_utility();
@@ -20,7 +21,7 @@ Node::Node(eng::Node* node_engine){
   this->cam_manager = new eng::cam::Manager(this);
   this->cam_control = new eng::cam::Control(this);
   this->gui_control = new eng::cam::gui::Control(this);
-  this->gui_panel = new eng::cam::gui::Panel(this, &cam_panel->second);
+  this->gui_panel = new eng::cam::gui::Panel(this, &cam_panel->is_open);
 
   //---------------------------
 }
