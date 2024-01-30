@@ -9,6 +9,7 @@ namespace eng{
 
 //Constructor / Destructor
 Node::Node(utl::Node* node_utility){
+  Panel* cam_panel = new_panel("Option", ICON_FA_COG, false);
   //---------------------------
 
   utl::element::Window* utl_window = node_utility->get_utl_window();

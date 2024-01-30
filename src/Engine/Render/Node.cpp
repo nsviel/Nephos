@@ -8,7 +8,7 @@ namespace eng::render{
 
 Node::Node(eng::Node* engine){
   Panel* sha_panel = new_panel("Shader", ICON_FA_ROAD, false);
-  Panel* prf_panel = new_panel("Profiler", ICON_FA_ROAD, true);
+  Panel* prf_panel = new_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
   this->engine = engine;

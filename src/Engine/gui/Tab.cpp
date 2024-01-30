@@ -11,6 +11,7 @@ namespace eng::gui{
 Tab::Tab(eng::Node* node_engine){
   //---------------------------
 
+  this->node_engine = node_engine;
   this->gui_option = new eng::gui::Option(node_engine, &show_option);
 
   //---------------------------
@@ -33,16 +34,21 @@ void Tab::draw_menu(){
 
   ImGui::BeginMainMenuBar();
   if(ImGui::BeginMenu("Panel##111")){
-    ImGui::Checkbox(ICON_FA_COG " Option##456", &show_option);
-    ImGui::Checkbox(ICON_FA_PLAY " Scene##456", &show_scene);
-    ImGui::Checkbox(ICON_FA_ARROW_ROTATE_RIGHT " Profiler##456", &show_profiler);
-    ImGui::Checkbox(ICON_FA_CAMERA " Camera##456", &show_camera);
-    ImGui::Checkbox(ICON_FA_ROAD " Shader##456", &show_shader);
-    ImGui::Checkbox(ICON_FA_FILM " Kinect##456", &show_kinect);
+    vector<Panel*> vec_panel = node_engine->get_vec_panel();
+    for(int i=0; i<vec_panel.size(); i++){
+      Panel* panel = vec_panel[i];
+      string title = panel->icon + panel->name;
+      ImGui::Checkbox(title.c_str(), &panel->is_open);
+    }
     ImGui::EndMenu();
   }
   if(ImGui::MenuItem("Loader")){
-    show_loader = !show_loader;
+    vector<Panel*> vec_panel = node_engine->get_vec_panel();
+    for(int i=0; i<vec_panel.size(); i++){
+      if(vec_panel[i]->name == "Loader"){
+        vec_panel[i]->is_open = !vec_panel[i]->is_open;
+      }
+    }
   }
   ImGui::EndMainMenuBar();
 

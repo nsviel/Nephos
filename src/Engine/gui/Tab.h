@@ -32,6 +32,7 @@ public:
   bool show_loader   = true;
 
 private:
+  eng::Node* node_engine;
   eng::gui::Option* gui_option;
 };
 
