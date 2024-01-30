@@ -21,6 +21,8 @@ Node::Node(utl::Node* node_utility){
   this->node_operation = new eng::ope::Node(this);
   this->node_render = new eng::render::Node(this);
 
+  this->add_node_panel(node_camera);
+
   //---------------------------
 }
 Node::~Node(){}

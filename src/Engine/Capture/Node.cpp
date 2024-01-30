@@ -10,7 +10,7 @@ namespace eng::capture{
 Node::Node(eng::Node* engine){
   //---------------------------
 
-  this->k4n_node = new eng::k4n::Node(engine);
+  this->node_k4n = new eng::k4n::Node(engine);
 
   //---------------------------
 }
@@ -20,24 +20,25 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  k4n_node->init();
+  node_k4n->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  k4n_node->loop();
+  node_k4n->loop();
 
   //---------------------------
 }
 void Node::gui(){
   //---------------------------
 
-  k4n_node->gui();
+  node_k4n->gui();
 
   //---------------------------
 }
+
 
 
 }

@@ -22,7 +22,7 @@ public:
   void gui();
 
 private:
-  eng::k4n::Node* k4n_node;
+  eng::k4n::Node* node_k4n;
 };
 
 }
