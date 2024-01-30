@@ -169,6 +169,8 @@ int Scene::tree_set(utl::type::Set* set) {
   int nb_row = 0;
   //---------------------------
 
+  if(set->nb_entity == 0) return 0;
+
   // Node flags
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;

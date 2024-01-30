@@ -392,7 +392,7 @@ void Loader::draw_footer(){
 //Subfunction
 void Loader::operation_selection(){
   //---------------------------
-
+sayHello();
   //Retrieve all good selected files to load
   vector<string> vec_path;
   for(int i=0; i<vec_item_file.size(); i++){
