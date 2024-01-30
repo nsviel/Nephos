@@ -33,8 +33,6 @@ private:
   eng::k4n::dev::Connection* k4n_connection;
   eng::k4n::gui::Device* gui_device;
   eng::k4n::gui::Stream* gui_stream;
-
-  bool show_panel = true;
 };
 
 }

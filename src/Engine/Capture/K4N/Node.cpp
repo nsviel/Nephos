@@ -8,13 +8,14 @@ namespace eng::k4n{
 
 //Constructor / Destructor
 Node::Node(eng::Node* engine){
+  Panel* k4n_panel = new_panel("Kinect", true);
   //---------------------------
 
   this->engine = engine;
   this->k4n_swarm = new eng::k4n::dev::Swarm(this);
   this->k4n_connection = new eng::k4n::dev::Connection(this);
-  this->gui_device = new eng::k4n::gui::Device(this, &show_panel);
-  this->gui_stream = new eng::k4n::gui::Stream(this, &show_panel);
+  this->gui_device = new eng::k4n::gui::Device(this, &k4n_panel->second);
+  this->gui_stream = new eng::k4n::gui::Stream(this, &k4n_panel->second);
 
   //---------------------------
 }

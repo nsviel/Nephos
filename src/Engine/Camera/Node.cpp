@@ -10,7 +10,7 @@ namespace eng::cam{
 
 //Constructor / Destructor
 Node::Node(eng::Node* engine){
-  Panel* cam_panel = new Panel("Camera", false);
+  Panel* cam_panel = new_panel("Camera", false);
   //---------------------------
 
   utl::Node* utl_node = engine->get_node_utility();
@@ -21,7 +21,6 @@ Node::Node(eng::Node* engine){
   this->cam_control = new eng::cam::Control(this);
   this->gui_control = new eng::cam::gui::Control(this);
   this->gui_panel = new eng::cam::gui::Panel(this, &cam_panel->second);
-  this->vec_panel.push_back(cam_panel);
 
   //---------------------------
 }

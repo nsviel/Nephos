@@ -37,8 +37,6 @@ private:
   eng::cam::Manager* cam_manager;
   eng::cam::gui::Control* gui_control;
   eng::cam::gui::Panel* gui_panel;
-
-  bool show_panel = false;
 };
 
 }
