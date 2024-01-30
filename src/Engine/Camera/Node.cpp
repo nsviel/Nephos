@@ -11,7 +11,7 @@ namespace eng::cam{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  Panel* cam_panel = new_panel("Camera", ICON_FA_CAMERA, false);
+  utl::gui::Panel* cam_panel = new_panel("Camera", ICON_FA_CAMERA, false);
   //---------------------------
 
   utl::Node* node_utility = node_engine->get_node_utility();

@@ -9,7 +9,7 @@ namespace eng::k4n{
 
 //Constructor / Destructor
 Node::Node(eng::Node* engine){
-  Panel* k4n_panel = new_panel("Kinect", ICON_FA_FILM, true);
+  utl::gui::Panel* k4n_panel = new_panel("Kinect", ICON_FA_FILM, true);
   //---------------------------
 
   this->engine = engine;
