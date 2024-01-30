@@ -412,7 +412,8 @@ void Loader::operation_selection(){
   }
 
   for(int i=0; i<vec_path.size(); i++){
-    utl::type::Entity* entity = sce_scene->import_entity(vec_path[i]);
+    utl::type::Entity* entity = sce_loader->load_entity(vec_path[i]);
+    sce_scene->import_entity(entity);
     this->operation_entity(entity);
   }
 
@@ -439,7 +440,8 @@ void Loader::operation_selection(string path){
       set_scene->delete_entity_all();
     }
 
-    utl::type::Entity* entity = sce_scene->import_entity(path);
+    utl::type::Entity* entity = sce_loader->load_entity(path);
+    sce_scene->import_entity(entity);
     this->operation_entity(entity);
   }
 

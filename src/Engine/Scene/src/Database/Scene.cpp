@@ -20,7 +20,6 @@ Scene::Scene(eng::scene::Node* node_scene){
   this->sce_glyph = node_scene->get_scene_glyph();
   this->vk_engine = eng_vulkan->get_vk_engine();
   this->ope_attribut = new eng::ope::Attribut();
-  this->sce_loader = node_scene->get_scene_loader();
 
   //---------------------------
 }
@@ -59,17 +58,6 @@ void Scene::reset(){
 }
 
 //Entity function
-utl::type::Entity* Scene::import_entity(std::string path){
-  //---------------------------
-
-  //Entity importation stuff
-  utl::type::Entity* entity = sce_loader->load_entity(path);
-  set_scene->insert_entity(entity);
-  this->init_entity(entity);
-
-  //---------------------------
-  return entity;
-}
 void Scene::import_entity(utl::type::Entity* entity){
   //---------------------------
 
@@ -103,7 +91,7 @@ void Scene::init_entity(utl::type::Entity* entity){
     sce_database->assign_UID(vec_data[j]);
     vk_engine->insert_data_in_engine(vec_data[j], entity->get_pose());
   }
-sayHello();
+
   //---------------------------
 }
 void Scene::delete_scene_entity(utl::type::Entity* entity){

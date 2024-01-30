@@ -6,7 +6,6 @@ namespace vk::main{class Engine;}
 namespace eng::scene{class Node;}
 namespace eng::scene{class Glyph;}
 namespace eng::scene{class Operation;}
-namespace eng::scene{class Loader;}
 namespace eng::scene{class Database;}
 namespace eng::ope{class Attribut;}
 
@@ -27,7 +26,6 @@ public:
   void reset();
 
   //Entity function
-  utl::type::Entity* import_entity(std::string path);
   void import_entity(utl::type::Entity* entity);
   void init_entity(utl::type::Entity* entity);
   void delete_scene_entity(utl::type::Entity* entity);
@@ -43,7 +41,6 @@ private:
   vk::main::Engine* vk_engine;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
-  eng::scene::Loader* sce_loader;
   eng::ope::Attribut* ope_attribut;
 
   utl::type::Set* set_scene;
