@@ -10,7 +10,7 @@ namespace eng::shader{
 SCE::SCE(eng::render::Node* node_render){
   //---------------------------
 
-  eng::Node* engine = node_render->get_engine();
+  eng::Node* engine = node_render->get_node_engine();
   utl::Node* utility = engine->get_node_utility();
 
   this->utl_window = utility->get_utl_window();

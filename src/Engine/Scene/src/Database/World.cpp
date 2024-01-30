@@ -12,7 +12,7 @@ namespace eng::scene{
 World::World(eng::scene::Node* sce_node){
   //---------------------------
 
-  eng::Node* engine = sce_node->get_engine();
+  eng::Node* engine = sce_node->get_node_engine();
   vk::Node* eng_vulkan = engine->get_eng_vulkan();
 
   this->vk_engine = eng_vulkan->get_vk_engine();

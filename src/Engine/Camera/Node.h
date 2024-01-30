@@ -15,7 +15,7 @@ namespace eng::cam{
 class Node : public utl::type::Node
 {
 public:
-  Node(eng::Node* engine);
+  Node(eng::Node* node_engine);
   ~Node();
 
 public:
@@ -25,13 +25,13 @@ public:
   void gui();
   void reset();
 
-  inline eng::Node* get_engine(){return engine;}
+  inline eng::Node* get_node_engine(){return node_engine;}
   inline utl::element::Window* get_utl_window(){return utl_window;}
   inline eng::cam::Control* get_camera_control(){return cam_control;}
   inline eng::cam::Manager* get_camera_manager(){return cam_manager;}
 
 private:
-  eng::Node* engine;
+  eng::Node* node_engine;
   utl::element::Window* utl_window;
   eng::cam::Control* cam_control;
   eng::cam::Manager* cam_manager;

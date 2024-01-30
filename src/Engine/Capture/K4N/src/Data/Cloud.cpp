@@ -12,7 +12,7 @@ namespace eng::k4n::data{
 Cloud::Cloud(eng::k4n::Node* k4n_node){
   //---------------------------
 
-  this->engine = k4n_node->get_engine();
+  this->engine = k4n_node->get_node_engine();
   this->k4n_operation = new eng::k4n::utils::Operation();
   this->ope_voxelizer = new eng::ope::Voxelizer();
 

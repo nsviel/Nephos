@@ -10,7 +10,7 @@ namespace eng::k4n::gui{
 Player::Player(eng::k4n::Node* k4n_node){
   //---------------------------
 
-  eng::Node* engine = k4n_node->get_engine();
+  eng::Node* engine = k4n_node->get_node_engine();
   eng::scene::Node* sce_node = engine->get_node_scene();
   eng::capture::Node* node_capture = engine->get_node_capture();
 

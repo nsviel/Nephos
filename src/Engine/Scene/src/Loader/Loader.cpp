@@ -12,7 +12,7 @@ namespace eng::scene{
 Loader::Loader(eng::scene::Node* sce_node){
   //---------------------------
 
-  this->engine = sce_node->get_engine();
+  this->engine = sce_node->get_node_engine();
   this->sce_scene = sce_node->get_scene();
   this->sce_format = new eng::scene::Format();
 

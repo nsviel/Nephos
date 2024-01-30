@@ -9,14 +9,14 @@
 namespace eng::cam{
 
 //Constructor / Destructor
-Node::Node(eng::Node* engine){
+Node::Node(eng::Node* node_engine){
   Panel* cam_panel = new_panel("Camera", false);
   //---------------------------
 
-  utl::Node* utl_node = engine->get_node_utility();
+  utl::Node* node_utility = node_engine->get_node_utility();
 
-  this->engine = engine;
-  this->utl_window = utl_node->get_utl_window();
+  this->node_engine = node_engine;
+  this->utl_window = node_utility->get_utl_window();
   this->cam_manager = new eng::cam::Manager(this);
   this->cam_control = new eng::cam::Control(this);
   this->gui_control = new eng::cam::gui::Control(this);

@@ -31,6 +31,8 @@ public:
   inline vector<Panel*> get_vec_panel(){return vec_panel;}
 
 protected:
+  utl::type::Node* node_up;
+  vector<utl::type::Node*> node_down;
   vector<Panel*> vec_panel;
 };
 

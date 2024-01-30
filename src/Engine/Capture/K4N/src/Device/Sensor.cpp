@@ -12,7 +12,7 @@ namespace eng::k4n::dev{
 Sensor::Sensor(eng::k4n::Node* k4n_node){
   //---------------------------
 
-  eng::Node* engine = k4n_node->get_engine();
+  eng::Node* engine = k4n_node->get_node_engine();
   eng::scene::Node* sce_node = engine->get_node_scene();
 
   this->engine = engine;

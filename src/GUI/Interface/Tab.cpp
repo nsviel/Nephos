@@ -12,7 +12,7 @@ namespace gui::interface{
 Tab::Tab(gui::Node* gui){
   //---------------------------
 
-  this->eng_tab = new eng::gui::Tab(gui->get_engine());
+  this->eng_tab = new eng::gui::Tab(gui->get_node_engine());
   this->dev_tab = new dev::gui::Tab();
   this->gui_menu = new gui::interface::Menu(gui);
 

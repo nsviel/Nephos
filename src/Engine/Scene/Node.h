@@ -29,7 +29,7 @@ public:
   void gui();
   void reset();
 
-  inline eng::Node* get_engine(){return engine;}
+  inline eng::Node* get_node_engine(){return engine;}
   inline eng::scene::Scene* get_scene(){return sce_scene;}
   inline eng::scene::Database* get_scene_database(){return sce_database;}
   inline eng::scene::Loader* get_scene_loader(){return sce_loader;}

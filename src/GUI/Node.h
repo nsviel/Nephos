@@ -30,7 +30,7 @@ public:
   void wait();
 
   inline utl::Node* get_node_utility(){return utility;}
-  inline eng::Node* get_engine(){return engine;}
+  inline eng::Node* get_node_engine(){return engine;}
   inline gui::interface::Control* get_gui_control(){return gui_control;}
   inline gui::style::Config* get_gui_style(){return gui_style;}
   inline gui::interface::Tab* get_gui_tab(){return gui_tab;}

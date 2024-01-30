@@ -11,7 +11,7 @@ namespace eng::cam{
 Manager::Manager(eng::cam::Node* node_camera){
   //---------------------------
 
-  this->engine = node_camera->get_engine();
+  this->engine = node_camera->get_node_engine();
 
   this->camera_ID = 0;
 

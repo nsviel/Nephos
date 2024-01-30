@@ -13,7 +13,7 @@ Render::Render(gui::Node* gui){
   //---------------------------
 
   utl::Node* utility = gui->get_node_utility();
-  eng::Node* engine = gui->get_engine();
+  eng::Node* engine = gui->get_node_engine();
   utl::element::Window* utl_window = utility->get_utl_window();
 
   this->vulkan = engine->get_eng_vulkan();

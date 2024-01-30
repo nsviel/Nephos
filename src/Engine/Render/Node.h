@@ -25,7 +25,7 @@ public:
   void init();
   void gui();
 
-  inline eng::Node* get_engine(){return engine;}
+  inline eng::Node* get_node_engine(){return engine;}
   inline eng::shader::EDL* get_shader_edl(){return shader_edl;}
   inline eng::shader::SCE* get_shader_scene(){return shader_scene;}
 
@@ -39,9 +39,6 @@ private:
   eng::render::gui::Shader* gui_shader;
   eng::render::gui::Renderer* gui_render;
   eng::render::gui::Profiler* gui_profiler;
-
-  bool show_shader;
-  bool show_profiler;
 };
 
 }

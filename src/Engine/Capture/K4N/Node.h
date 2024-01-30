@@ -24,7 +24,7 @@ public:
   void loop();
   void gui();
 
-  inline eng::Node* get_engine(){return engine;}
+  inline eng::Node* get_node_engine(){return engine;}
   inline eng::k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
 
 private:
