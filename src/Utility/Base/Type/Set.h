@@ -3,19 +3,19 @@
 #include <Utility/Specific/common.h>
 #include <image/IconsFontAwesome6.h>
 
+namespace utl::type{class Entity;}
+
+
 namespace utl::type{
-class Entity;
 
-
-//Set are entity container
-struct Set
+class Set
 {
-  //---------------------------
-
-  //Constructor
+public:
   Set();
   Set(std::string name);
+  ~Set(){}
 
+public:
   //Main function
   void update();
   void reset();
@@ -40,6 +40,7 @@ struct Set
   inline bool is_selected_entity(utl::type::Entity* entity){return entity->UID == selected_entity->UID;}
   inline utl::type::Entity* get_selected_entity(){return selected_entity;}
 
+public:
   //Info
   int UID = 0;
   int nb_entity = 0;
@@ -59,8 +60,6 @@ struct Set
   utl::type::Set* set_parent = nullptr;
   std::list<utl::type::Entity*> list_entity;
   std::list<utl::type::Set*> list_set;
-
-  //---------------------------
 };
 
 }
