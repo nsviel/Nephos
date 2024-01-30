@@ -38,6 +38,52 @@ void Master::reset(){
   //---------------------------
 }
 
+//Master function
+void Master::manage_restart(){
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
+
+    if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
+      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_beg));
+      sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    }
+  }
+
+  //---------------------------
+  player.ts_cur = player.ts_beg;
+}
+void Master::manage_forward(){
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
+
+    if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
+      float ts_forward = player.ts_cur + 5 * player.ts_forward;
+      if(ts_forward > player.ts_end) ts_forward = player.ts_end;
+      if(ts_forward < player.ts_beg) ts_forward = player.ts_beg;
+
+      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_forward));
+      sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    }
+  }
+
+  //---------------------------
+}
+void Master::manage_suppression(eng::k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  if(is_locked){
+    this->delete_entity_all();
+  }else{
+    this->delete_entity(sensor);
+  }
+
+  //---------------------------
+}
+
 //Player function
 void Master::player_update(){
   //---------------------------
@@ -137,40 +183,5 @@ void Master::player_record(){
 
   //---------------------------
 }
-void Master::manage_restart(){
-  //---------------------------
-
-  for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
-
-    if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
-      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_beg));
-      sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    }
-  }
-
-  //---------------------------
-  player.ts_cur = player.ts_beg;
-}
-void Master::manage_forward(){
-  //---------------------------
-
-  for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
-
-    if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
-      float ts_forward = player.ts_cur + 5 * player.ts_forward;
-      if(ts_forward > player.ts_end) ts_forward = player.ts_end;
-      if(ts_forward < player.ts_beg) ts_forward = player.ts_beg;
-
-      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_forward));
-      sensor->param.playback->seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    }
-  }
-
-  //---------------------------
-}
-
-
 
 }

@@ -75,7 +75,7 @@ void Sensor::remove_entity(){
   this->stop_threads();
   this->param.transformation.destroy();
   this->object->remove_entity();
-  this->master->delete_entity(this);
+  this->master->manage_suppression(this);
 
   //---------------------------
 }

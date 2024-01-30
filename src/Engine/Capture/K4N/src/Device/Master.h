@@ -23,6 +23,11 @@ public:
   void insert_sensor(eng::k4n::dev::Sensor* sensor);
   void reset();
 
+  //Master function
+  void manage_restart();
+  void manage_forward();
+  void manage_suppression(eng::k4n::dev::Sensor* sensor);
+
   //Player function
   void player_update();
   void player_play();
@@ -31,8 +36,6 @@ public:
   void player_stop();
   void player_restart();
   void player_record();
-  void manage_restart();
-  void manage_forward();
 
 public:
   eng::k4n::structure::Player player;
