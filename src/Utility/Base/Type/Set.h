@@ -20,6 +20,10 @@ struct Set
   void update();
   void reset();
 
+  //Set function
+  void add_set(utl::type::Set* set);
+  void add_new_set(std::string name);
+
   //Entity function
   void insert_entity(utl::type::Entity* entity);
   void delete_entity(utl::type::Entity* entity);
@@ -27,11 +31,7 @@ struct Set
   void select_next_entity();
   void set_selected_entity(utl::type::Entity* entity);
 
-  //Set function
-  void add_set(utl::type::Set* set);
-  void add_new_set(std::string name);
-
-  //Parameter
+  //Subfunction
   void set_visibility(bool value);
   int compute_number_point();
   utl::type::Set* get_set(std::string name);

@@ -64,9 +64,7 @@ void Master::delete_selected_sensor(){
   eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(selected_entity);
   //---------------------------
 
-  this->list_sensor.remove(sensor);
-  this->delete_entity(sensor);
-  delete(sensor);
+  this->delete_sensor(sensor);
 
   //---------------------------
 }

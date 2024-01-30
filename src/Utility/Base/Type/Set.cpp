@@ -53,7 +53,7 @@ void Set::reset(){
   //---------------------------
 }
 
-//Entity addition
+//Set function
 void Set::add_set(utl::type::Set* set){
   //---------------------------
 
@@ -76,6 +76,8 @@ void Set::add_new_set(std::string name){
 
   //---------------------------
 }
+
+//Entity function
 void Set::insert_entity(utl::type::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
@@ -131,8 +133,6 @@ void Set::delete_entity_all(){
 
   //---------------------------
 }
-
-//Entity selection
 void Set::select_next_entity(){
   //----------------------------
 
@@ -186,7 +186,7 @@ void Set::set_selected_entity(utl::type::Entity* entity_to_select){
   //---------------------------
 }
 
-//Parameter
+//Subfunction
 void Set::set_visibility(bool value){
   //---------------------------
 

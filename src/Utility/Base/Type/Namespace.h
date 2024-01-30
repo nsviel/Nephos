@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Utility/Base/Type/Struct_pose.h>
-#include <Utility/Base/Type/Struct_data.h>
-#include <Utility/Base/Type/Struct_entity.h>
-#include <Utility/Base/Type/Struct_set.h>
-#include <Utility/Base/Type/Struct_node.h>
+#include <Utility/Base/Type/Pose.h>
+#include <Utility/Base/Type/Data.h>
+#include <Utility/Base/Type/Entity.h>
+#include <Utility/Base/Type/Set.h>
+#include <Utility/Base/Type/Node.h>

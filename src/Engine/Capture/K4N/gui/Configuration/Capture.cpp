@@ -59,7 +59,7 @@ void Capture::list_device(eng::k4n::dev::Sensor* sensor){
       ImGui::TableSetupColumn("ID");
       ImGui::TableSetupColumn("Serial number");
       ImGui::TableHeadersRow();
-      for(int i=0; i< master->list_sensor.size(); i++){
+      for(int i=0; i<master->list_sensor.size(); i++){
         eng::k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
         if(sensor->param.is_playback) continue;
 
