@@ -171,16 +171,17 @@ void Entity::pose_info(utl::type::Entity* entity){
 
   //Root pos
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  vec3& root = pose->root;
   ImGui::Text("Root"); ImGui::TableNextColumn();
   ImGui::NextColumn();
-  float* floatArray = reinterpret_cast<float*>(&root);
-  if(ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f")){
-
+  float floatArray[3];
+  std::memcpy(floatArray, &pose->root, sizeof(float) * 3);
+  if(ImGui::DragFloat3("##434", floatArray, 0.01f, -100.0f, 100.0f, "%.2f")){
+    glm::vec3 new_root(floatArray[0], floatArray[1], floatArray[2]);
+    ope_operation->make_translation_from_root(entity, new_root);
   }
   ImGui::SameLine();
   if(ImGui::Button("R", ImVec2(15,0))){
-    root = vec3(0,0,0);
+    ope_operation->make_translation_from_root(entity, vec3(0, 0, 0));
   }
 
   //---------------------------

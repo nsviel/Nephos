@@ -27,6 +27,7 @@ public:
   void center_object(utl::type::Entity* entity, vec3 COM);
   void elevate_object(utl::type::Entity* entity, vec3 min);
   void make_rotation_X_90d(utl::type::Entity* entity, int value);
+  void make_translation_from_root(utl::type::Entity* entity, vec3 new_root);
 
 private:
   eng::ope::Transformation* ope_transform;

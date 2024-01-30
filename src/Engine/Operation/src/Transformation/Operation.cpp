@@ -131,5 +131,14 @@ void Operation::make_rotation_X_90d(utl::type::Entity* entity, int value){
 
   //---------------------------
 }
+void Operation::make_translation_from_root(utl::type::Entity* entity, vec3 new_root){
+  if(entity == nullptr) return;
+  //---------------------------
+
+  vec3 translation = new_root - entity->get_pose()->root;
+  ope_transform->make_translation(entity, translation);
+
+  //---------------------------
+}
 
 }
