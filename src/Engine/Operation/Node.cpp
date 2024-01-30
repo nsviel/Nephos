@@ -6,8 +6,10 @@
 namespace eng::ope{
 
 //Constructor / Destructor
-Node::Node(eng::Node* engine){
+Node::Node(eng::Node* node_engine){
   //---------------------------
+
+  this->ope_control = new eng::ope::gui::Control(node_engine);
 
   //---------------------------
 }
@@ -26,10 +28,10 @@ void Node::loop(){
 
   //---------------------------
 }
-void Node::gui(){
+void Node::control(){
   //---------------------------
 
-
+  ope_control->run_control();
 
   //---------------------------
 }

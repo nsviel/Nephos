@@ -23,6 +23,7 @@ public:
   void init();
   void loop();
   void gui();
+  void control();
   void reset();
 
   inline eng::Node* get_node_engine(){return node_engine;}

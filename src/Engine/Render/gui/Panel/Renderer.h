@@ -6,7 +6,7 @@ namespace vk::main{class Imgui;}
 namespace vk::main{class Info;}
 namespace eng::render{class Node;}
 namespace eng::cam{class Node;}
-namespace eng::ope::gui{class Control;}
+namespace eng::ope{class Node;}
 namespace utl::element{class Window;}
 namespace utl::gui::plot{class Profiler;}
 
@@ -32,7 +32,7 @@ public:
 
 private:
   eng::cam::Node* node_camera;
-  eng::ope::gui::Control* ope_control;
+  eng::ope::Node* node_operation;
   utl::element::Window* utl_window;
   utl::gui::plot::Profiler* profiler;
   vk::main::Imgui* vk_imgui;

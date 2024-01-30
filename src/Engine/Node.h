@@ -37,6 +37,7 @@ public:
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::render::Node* get_node_render(){return node_render;}
   inline eng::capture::Node* get_node_capture(){return node_capture;}
+  inline eng::ope::Node* get_node_operation(){return node_operation;}
 
 private:
   vk::Node* eng_vulkan;

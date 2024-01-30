@@ -13,13 +13,13 @@ namespace eng::render::gui{
 Renderer::Renderer(eng::render::Node* node_render){
   //---------------------------
 
-  eng::Node* engine = node_render->get_node_engine();
-  utl::Node* node_utility = engine->get_node_utility();
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
+  eng::Node* node_engine = node_render->get_node_engine();
+  utl::Node* node_utility = node_engine->get_node_utility();
+  vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
 
   this->utl_window = node_utility->get_utl_window();
-  this->ope_control = new eng::ope::gui::Control(engine);
-  this->node_camera = engine->get_node_camera();
+  this->node_operation = node_engine->get_node_operation();
+  this->node_camera = node_engine->get_node_camera();
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->vk_info = eng_vulkan->get_vk_info();
   this->profiler = new utl::gui::plot::Profiler();
@@ -64,8 +64,8 @@ void Renderer::engine_texture(){
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
   if(ImGui::IsItemHovered()){
-    ope_control->run_control();
-    node_camera->gui();
+    node_operation->control();
+    node_camera->control();
   }
 
   //---------------------------
