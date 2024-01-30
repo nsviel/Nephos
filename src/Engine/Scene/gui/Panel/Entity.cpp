@@ -174,7 +174,10 @@ void Entity::pose_info(utl::type::Entity* entity){
   vec3& root = pose->root;
   ImGui::Text("Root"); ImGui::TableNextColumn();
   ImGui::NextColumn();
-  ImGui::Text("%.2f  %.2f  %.2f", root.x, root.y, root.z);
+  float* floatArray = reinterpret_cast<float*>(&root);
+  if(ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f")){
+
+  }
   ImGui::SameLine();
   if(ImGui::Button("R", ImVec2(15,0))){
     root = vec3(0,0,0);

@@ -34,7 +34,7 @@ void Renderpass::init_renderpass(){
 void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  utl::base::Shader_info* shader_info = new utl::base::Shader_info();
+  utl::shader::Info* shader_info = new utl::shader::Info();
   shader_info->title = "Canvas";
   shader_info->folder = "Canvas";
   shader_info->path_spir_vs = "../src/GUI/Render/Shader/spir/shader_empty_vs.spv";

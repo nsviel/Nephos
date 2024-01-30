@@ -22,11 +22,11 @@ SCE::~SCE(){}
 
 //Main function
 void SCE::init_shader(){
-  utl::base::Shader_info* shader_info;
+  utl::shader::Info* shader_info;
   //---------------------------
 
   //Add shader info - Line
-  shader_info = new utl::base::Shader_info();
+  shader_info = new utl::shader::Info();
   shader_info->title = "Line";
   shader_info->folder = "Scene";
   shader_info->path_glsl_vs = "../src/Engine/Render/src/Shader/Scene/glsl/shader_line_vs.vert";
@@ -38,7 +38,7 @@ void SCE::init_shader(){
   this->vec_shader_info.push_back(shader_info);
 
   //Add shader info - Point
-  shader_info = new utl::base::Shader_info();
+  shader_info = new utl::shader::Info();
   shader_info->title = "Point";
   shader_info->folder = "Scene";
   shader_info->path_glsl_vs = "../src/Engine/Render/src/Shader/Scene/glsl/shader_point_vs.vert";
@@ -50,7 +50,7 @@ void SCE::init_shader(){
   this->vec_shader_info.push_back(shader_info);
 
   //Add shader info - Triangle
-  shader_info = new utl::base::Shader_info();
+  shader_info = new utl::shader::Info();
   shader_info->title = "Triangle";
   shader_info->folder = "Scene";
   shader_info->path_glsl_vs = "../src/Engine/Render/src/Shader/Scene/glsl/shader_line_vs.vert";

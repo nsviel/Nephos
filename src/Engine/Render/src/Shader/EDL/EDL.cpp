@@ -34,7 +34,7 @@ void EDL::init_shader(){
   edl_param->radius = 1.0;
 
   //Add shader info
-  utl::base::Shader_info* shader_info = new utl::base::Shader_info();
+  utl::shader::Info* shader_info = new utl::shader::Info();
   shader_info->title = "EDL";
   shader_info->folder = "EDL";
   shader_info->path_glsl_vs = "../src/Engine/Render/src/Shader/EDL/glsl/shader_edl_vs.vert";

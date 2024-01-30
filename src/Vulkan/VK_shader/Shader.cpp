@@ -118,7 +118,7 @@ std::vector<char> Shader::read_file(const std::string& path){
   //---------------------------
   return buffer;
 }
-void Shader::recompile_shader(utl::base::Shader_info* shader_info){
+void Shader::recompile_shader(utl::shader::Info* shader_info){
   //---------------------------
 
   //Compile shader from GLSL to SPIR-V

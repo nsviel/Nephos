@@ -191,7 +191,7 @@ void Shader::retrieve_shader_subclasses(){
 
   string selection = vec_shader_class[ID_class];
 
-  vector<utl::base::Shader_info*> vec_shader_info;
+  vector<utl::shader::Info*> vec_shader_info;
   if(selection == "EDL"){
     eng::shader::EDL* shader_edl = node_render->get_shader_edl();
     vec_shader_info = shader_edl->get_vec_shader_info();

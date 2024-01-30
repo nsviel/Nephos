@@ -16,7 +16,7 @@ struct Pipeline_definition{
   std::string topology = "";
   std::string purpose = "";
 
-  utl::base::Shader_info* shader;
+  utl::shader::Info* shader;
   std::vector<std::string> vec_data_name;
   vec_descriptor_required binding;
 

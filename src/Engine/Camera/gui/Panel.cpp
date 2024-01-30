@@ -89,13 +89,12 @@ void Panel::cam_info(){
 
   //Camera position
   ImGui::Text("Pose");
-  vec3* cam_position = &camera->cam_P;
-  float* floatArray = &cam_position[0].x;
+  float* floatArray = reinterpret_cast<float*>(&camera->cam_P);
+  ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f");
+  ImGui::SameLine();
   if(ImGui::Button("R")){
     camera->cam_P = vec3(0, 0, 0);
   }
-  ImGui::SameLine();
-  ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f);
 
   //Camera angles
   if(ImGui::BeginTable("angle##camera", 2)){

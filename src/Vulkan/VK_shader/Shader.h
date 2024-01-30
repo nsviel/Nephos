@@ -25,7 +25,7 @@ public:
   //Subfunction
   VkShaderModule create_shader_module(const std::vector<char>& code);
   std::vector<char> read_file(const std::string& filename);
-  void recompile_shader(utl::base::Shader_info* shader_info);
+  void recompile_shader(utl::shader::Info* shader_info);
   void run_recompilation(string path_glsl, string path_spir);
 
 private:
