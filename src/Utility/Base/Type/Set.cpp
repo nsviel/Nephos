@@ -102,15 +102,16 @@ void Set::delete_entity(utl::type::Entity* entity){
       this->list_entity.remove(entity);
       this->nb_entity--;
       entity->remove_entity();
+      this->select_next_entity();
+      delete entity;
+      return;
     }
   }
 
-  // Recursively call delete_entity_recursive for each nested set
+  // Recursively call delete_entity for each nested set
   for(utl::type::Set* subset : list_set){
     subset->delete_entity(entity);
   }
-
-  this->select_next_entity();
 
   //---------------------------
 }
@@ -130,6 +131,15 @@ void Set::delete_entity_all(){
   for(utl::type::Set* subset : list_set){
     subset->delete_entity_all();
   }
+
+  //---------------------------
+}
+void Set::delete_entity_selected(){
+  //---------------------------
+
+  this->list_entity.remove(selected_entity);
+  this->nb_entity--;
+  selected_entity->remove_entity();
 
   //---------------------------
 }

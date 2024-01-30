@@ -60,18 +60,19 @@ void Stream::vec_device_tab(eng::k4n::dev::Master* master){
   //---------------------------
 
   if(ImGui::BeginTabBar("devices_tab##4567")){
-    for(int i=0; i< master->list_sensor.size(); i++){
-      eng::k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
+    for(int i=0; i< master->list_entity.size(); i++){
+      utl::type::Entity* entity = *next(master->list_entity.begin(), i);
 
-      //Force tab open if another sensor selected
-      ImGuiTabItemFlags flag = get_device_tab_flag(sensor);
-      string name = sensor->icon + "  " + sensor->name;
-      if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
-        master->set_selected_entity(sensor);
-        this->vec_stream_tab(sensor);
-        ImGui::EndTabItem();
+      if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
+        //Force tab open if another sensor selected
+        ImGuiTabItemFlags flag = get_device_tab_flag(sensor);
+        string name = sensor->icon + "  " + sensor->name;
+        if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
+          master->set_selected_entity(sensor);
+          this->vec_stream_tab(sensor);
+          ImGui::EndTabItem();
+        }
       }
-
     }
     ImGui::EndTabBar();
   }

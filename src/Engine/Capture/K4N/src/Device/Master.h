@@ -22,9 +22,6 @@ public:
   //Main function
   void insert_sensor_playback(eng::k4n::dev::Sensor* sensor);
   void insert_sensor_capture(eng::k4n::dev::Sensor* sensor);
-  void delete_sensor(eng::k4n::dev::Sensor* sensor);
-  void delete_all_sensor();
-  void delete_selected_sensor();
   void reset();
 
   //Player function
@@ -39,7 +36,6 @@ public:
   void manage_forward();
 
 public:
-  list<eng::k4n::dev::Sensor*> list_sensor;
   eng::k4n::structure::Player player;
   eng::k4n::structure::Operation operation;
   eng::k4n::structure::Recorder recorder;

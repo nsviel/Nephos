@@ -59,23 +59,26 @@ void Capture::list_device(eng::k4n::dev::Sensor* sensor){
       ImGui::TableSetupColumn("ID");
       ImGui::TableSetupColumn("Serial number");
       ImGui::TableHeadersRow();
-      for(int i=0; i<master->list_sensor.size(); i++){
-        eng::k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
-        if(sensor->param.is_playback) continue;
+      for(int i=0; i<master->list_entity.size(); i++){
+        utl::type::Entity* entity = *next(master->list_entity.begin(), i);
 
-        ImGui::TableNextRow();
-        ImGui::TableNextColumn();
+        if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
+          if(sensor->param.is_playback) continue;
 
-        ImGui::PushID(sensor->param.serial_number.c_str());
-        ImGui::Text("Azur Kinect");
-        ImGui::TableNextColumn();
-        ImGui::Text("%d", sensor->param.index);
-        ImGui::TableNextColumn();
-        if (ImGui::Selectable(sensor->param.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
-          master->set_selected_entity(sensor);
-          selected_device = i;
+          ImGui::TableNextRow();
+          ImGui::TableNextColumn();
+
+          ImGui::PushID(sensor->param.serial_number.c_str());
+          ImGui::Text("Azur Kinect");
+          ImGui::TableNextColumn();
+          ImGui::Text("%d", sensor->param.index);
+          ImGui::TableNextColumn();
+          if (ImGui::Selectable(sensor->param.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
+            master->set_selected_entity(sensor);
+            selected_device = i;
+          }
+          ImGui::PopID();
         }
-        ImGui::PopID();
       }
     }
 

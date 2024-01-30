@@ -28,6 +28,7 @@ public:
   void insert_entity(utl::type::Entity* entity);
   void delete_entity(utl::type::Entity* entity);
   void delete_entity_all();
+  void delete_entity_selected();
   void select_next_entity();
   void set_selected_entity(utl::type::Entity* entity);
 
@@ -37,6 +38,7 @@ public:
   utl::type::Set* get_set(std::string name);
   utl::type::Entity* get_entity(std::string name);
 
+  inline int get_nb_entity(){return list_entity.size();}
   inline bool is_selected_entity(utl::type::Entity* entity){return entity->UID == selected_entity->UID;}
   inline utl::type::Entity* get_selected_entity(){return selected_entity;}
 

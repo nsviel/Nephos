@@ -52,7 +52,7 @@ void Swarm::create_sensor_playback(utl::media::File& file){
 
   //Associated master
   eng::k4n::dev::Master* master = selected_master;
-  int index = master->list_sensor.size();
+  int index = master->get_nb_entity();
 
   //Sensor creation
   eng::k4n::dev::Sensor* sensor = new eng::k4n::dev::Sensor(node_k4n);
@@ -77,7 +77,7 @@ void Swarm::create_sensor_capture(){
 
   //Associated master
   eng::k4n::dev::Master* master = get_or_create_master("Capture");
-  int index = master->list_sensor.size();
+  int index = master->get_nb_entity();
 
   //Sensor creation
   eng::k4n::dev::Sensor* sensor = new eng::k4n::dev::Sensor(node_k4n);
@@ -99,7 +99,7 @@ void Swarm::create_sensor_capture(){
 void Swarm::close_master(eng::k4n::dev::Master* master){
   //---------------------------
 
-  master->delete_all_sensor();
+  master->delete_entity_all();
   this->list_master.remove(master);
 
   //---------------------------

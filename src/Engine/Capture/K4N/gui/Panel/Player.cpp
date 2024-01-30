@@ -54,9 +54,12 @@ void Player::design_panel(eng::k4n::dev::Master* master){
     this->show_master_tab(master);
 
     //Master sensor tabs -> click = sensor selection
-    for(int i=0; i< master->list_sensor.size(); i++){
-      eng::k4n::dev::Sensor* sensor = *std::next( master->list_sensor.begin(), i);
-      this->show_sensor_tab(sensor);
+    for(int i=0; i< master->list_entity.size(); i++){
+      utl::type::Entity* entity = *next(master->list_entity.begin(), i);
+
+      if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
+        this->show_sensor_tab(sensor);
+      }
     }
     ImGui::EndTabBar();
   }
@@ -183,7 +186,7 @@ void Player::player_close(eng::k4n::dev::Master* master){
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
   if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-    master->delete_selected_sensor();
+    master->delete_entity_selected();
   }
   ImGui::PopStyleColor();
 
