@@ -20,9 +20,9 @@ public:
   void rebuild_task_stats(size_t endFrame, size_t framesCount);
 
   //Rendering
-  void render_timings(ImVec2 size);
-  void render_graph(ImDrawList *draw_list, glm::vec2 graphPos, glm::vec2 graphSize);
-  void render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 legendSize);
+  void render_graph(ImVec2 size);
+  void render_serie(ImDrawList *draw_list);
+  void render_legend(ImDrawList *draw_list);
   void render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
   void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Graph_task task);
 
@@ -39,13 +39,16 @@ private:
   std::vector<Frame_data> frames;
   size_t current_frame_index = 0;
   vec4 border_color;
+  vec2 graph_dim;
+  vec2 graph_pose;
+  vec2 legend_dim;
+  vec2 legend_pose;
   int frame_size;
   int frame_max_task;
   int frame_width;
   int frame_spacing;
   float max_frame_time = 1.0f / 30.0f;
   int legend_width;
-  int max_graph_height;
 };
 
 }

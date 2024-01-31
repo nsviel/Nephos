@@ -22,13 +22,13 @@ void Renderer::render_window(ImVec2 size){
 
 
   ImGui::BeginChild("##cpuProfiler", ImVec2(0, size.y));
-  graph_0->render_timings(size);
+  graph_0->render_graph(size);
   ImGui::End();
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() + size.y + 5);
 
   ImGui::BeginChild("##gpuProfiler", ImVec2(0, size.y));
-  graph_1->render_timings(size);
+  graph_1->render_graph(size);
   ImGui::End();
 
   ImGui::PopStyleColor();
@@ -55,7 +55,7 @@ void Renderer::render_overlay(ImVec2 image_pose){
 
   ImVec2 available_size = ImGui::GetContentRegionAvail();
 
-  graph_0->render_timings(available_size);
+  graph_0->render_graph(available_size);
 
   ImGui::End();
 

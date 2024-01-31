@@ -16,7 +16,6 @@ Graph::Graph(){
     frame.tasks.reserve(frame_max_task);
   }
   this->legend_width = 200;
-  this->max_graph_height = 300;
   this->frame_width = 1;
   this->frame_spacing = 1;
   this->border_color = vec4(255, 255, 255, 0);
@@ -100,33 +99,34 @@ void Graph::rebuild_task_stats(size_t frame_end, size_t framesCount){
 }
 
 //Rendering
-void Graph::render_timings(ImVec2 size){
+void Graph::render_graph(ImVec2 size){
+  const glm::vec2 widget_pose = glm::vec2(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y);
   //---------------------------
 
-  int margin_size = int(ImGui::GetStyle().ItemSpacing.y);
-  int graph_height_available = (int(size.y) - margin_size);
-  int graph_height = std::min(max_graph_height, graph_height_available);
-  int graph_width = int(size.x) - legend_width;
+  this->graph_dim.x = int(size.x) - legend_width;
+  this->graph_dim.y = int(size.y);
+  this->graph_pose = widget_pose;
+
+  this->legend_dim = glm::vec2(legend_width, graph_dim.y);
+  this->legend_pose = widget_pose + glm::vec2(graph_dim.x, 0.0f);
 
   ImDrawList* draw_list = ImGui::GetWindowDrawList();
-  const glm::vec2 widgetPos = glm::vec2(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y);
-  this->render_graph(draw_list, widgetPos, glm::vec2(graph_width, graph_height));
-  this->render_legend(draw_list, widgetPos + glm::vec2(graph_width, 0.0f), glm::vec2(legend_width, graph_height));
-  ImGui::Dummy(ImVec2(float(graph_width + legend_width), float(graph_height)));
+  this->render_serie(draw_list);
+  this->render_legend(draw_list);
 
   //---------------------------
 }
-void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 graph_size){
+void Graph::render_serie(ImDrawList *draw_list){
   //---------------------------
 
-  this->draw_rect(draw_list, graph_pose, graph_pose + graph_size, border_color, false);
-  this->draw_line(draw_list, graph_size.x, 0.5, vec4(255, 255, 255, 255));
+  this->draw_rect(draw_list, graph_pose, graph_pose + graph_dim, border_color, false);
+  this->draw_line(draw_list, graph_dim.x, 0.5, vec4(255, 255, 255, 255));
   float heightThreshold = 1.0f;
 
   for(size_t frame_number = 0; frame_number < frames.size(); frame_number++){
     size_t frame_index = (current_frame_index - 1 - frame_number + 2 * frames.size()) % frames.size();
 
-    glm::vec2 framePos = graph_pose + glm::vec2(graph_size.x - 1 - frame_width - (frame_width + frame_spacing) * frame_number, graph_size.y - 1);
+    glm::vec2 framePos = graph_pose + glm::vec2(graph_dim.x - 1 - frame_width - (frame_width + frame_spacing) * frame_number, graph_dim.y - 1);
     if(framePos.x < graph_pose.x + 1){
       break;
     }
@@ -134,8 +134,8 @@ void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 
     glm::vec2 taskPos = framePos + glm::vec2(0.0f, 0.0f);
     auto &frame = frames[frame_index];
     for(const auto& task : frame.tasks){
-      float taskStartHeight = (float(task.start_time) / max_frame_time) * graph_size.y;
-      float taskEndHeight = (float(task.end_time) / max_frame_time) * graph_size.y;
+      float taskStartHeight = (float(task.start_time) / max_frame_time) * graph_dim.y;
+      float taskEndHeight = (float(task.end_time) / max_frame_time) * graph_dim.y;
       //taskMaxCosts[task.name] = std::max(taskMaxCosts[task.name], task.end_time - task.start_time);
       if(abs(taskEndHeight - taskStartHeight) > heightThreshold){
         this->draw_rect(draw_list, taskPos + glm::vec2(0.0f, -taskStartHeight), taskPos + glm::vec2(frame_width, -taskEndHeight), task.color, true);
@@ -145,7 +145,7 @@ void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 
 
   //---------------------------
 }
-void Graph::render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 legendSize){
+void Graph::render_legend(ImDrawList *draw_list){
   //---------------------------
 
   float markerLeftRectMargin = 3.0f;
@@ -158,7 +158,7 @@ void Graph::render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 
   float markerRightRectSpacing = 4.0f;
 
   auto &current_frame = frames[(current_frame_index - 1 + 2 * frames.size()) % frames.size()];
-  size_t maxTasksCount = size_t(legendSize.y / (markerRightRectHeight + markerRightRectSpacing));
+  size_t maxTasksCount = size_t(graph_dim.y / (markerRightRectHeight + markerRightRectSpacing));
 
   for(auto &task_stat : vec_task_stat){
     task_stat.on_screen_index = size_t(-1);
@@ -181,13 +181,13 @@ void Graph::render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 
       continue;
     }
 
-    float taskStartHeight = (float(task.start_time) / max_frame_time) * legendSize.y;
-    float taskEndHeight = (float(task.end_time) / max_frame_time) * legendSize.y;
-    glm::vec2 markerLeftRectMin = legendPos + glm::vec2(markerLeftRectMargin, legendSize.y);
+    float taskStartHeight = (float(task.start_time) / max_frame_time) * graph_dim.y;
+    float taskEndHeight = (float(task.end_time) / max_frame_time) * graph_dim.y;
+    glm::vec2 markerLeftRectMin = legend_pose + glm::vec2(markerLeftRectMargin, graph_dim.y);
     glm::vec2 markerLeftRectMax = markerLeftRectMin + glm::vec2(markerLeftRectWidth, 0.0f);
     markerLeftRectMin.y -= taskStartHeight;
     markerLeftRectMax.y -= taskEndHeight;
-    glm::vec2 markerRightRectMin = legendPos + glm::vec2(markerLeftRectMargin + markerLeftRectWidth + markerMidWidth, legendSize.y - markerRigthRectMargin - (markerRightRectHeight + markerRightRectSpacing) * stat.on_screen_index);
+    glm::vec2 markerRightRectMin = legend_pose + glm::vec2(markerLeftRectMargin + markerLeftRectWidth + markerMidWidth, graph_dim.y - markerRigthRectMargin - (markerRightRectHeight + markerRightRectSpacing) * stat.on_screen_index);
     glm::vec2 markerRightRectMax = markerRightRectMin + glm::vec2(markerRightRectWidth, -markerRightRectHeight);
 
     this->render_task_marker(draw_list, markerLeftRectMin, markerLeftRectMax, markerRightRectMin, markerRightRectMax, task.color);
