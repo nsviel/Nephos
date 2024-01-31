@@ -25,7 +25,7 @@ Graph::Graph(){
 }
 
 //Main function
-void Graph::load_graph_data(const std::vector<utl::gui::serie::Graph_task>& vec_task){
+void Graph::load_graph_data(const std::vector<utl::gui::serie::Task>& vec_task){
   //update the graph with new task data
   //---------------------------
 
@@ -201,7 +201,7 @@ void Graph::render_legend(ImDrawList *draw_list){
   // Iterate through vec_task in the current bar
   size_t cpt_task = 0;
   for(size_t task_index = 0; task_index < current_bar.vec_task.size(); task_index++){
-    utl::gui::serie::Graph_task& task = current_bar.vec_task[task_index];
+    utl::gui::serie::Task& task = current_bar.vec_task[task_index];
     auto &stat = vec_task_stat[current_bar.task_stat_index[task_index]];
 
     // Skip vec_task beyond the maximum number to show
@@ -251,7 +251,7 @@ void Graph::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, 
 
   //---------------------------
 }
-void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Graph_task task){
+void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Task task){
   //---------------------------
 
   glm::vec2 text_margin = glm::vec2(5.0f, -3.0f);

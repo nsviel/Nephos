@@ -4,7 +4,7 @@
 #include <Utility/Specific/common.h>
 
 namespace utl::gui::serie{class Renderer;}
-namespace utl::gui::serie{class Graph_task;}
+namespace utl::gui::serie{class Task;}
 
 
 namespace utl::gui::plot{
@@ -30,7 +30,7 @@ public:
 private:
   utl::gui::serie::Renderer renderer;
 
-  vector<utl::gui::serie::Graph_task> vec_task;
+  vector<utl::gui::serie::Task> vec_task;
   vector<vec4> vec_color;
   int max_nb_data;
   int idx_color;

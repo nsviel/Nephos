@@ -3,7 +3,7 @@
 #include <GUI/Utils/TimeSerie/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace utl::gui::serie{class Graph_task;}
+namespace utl::gui::serie{class Task;}
 
 
 namespace utl::gui::serie{
@@ -16,7 +16,7 @@ public:
 
 public:
   //Main function
-  void load_graph_data(const std::vector<utl::gui::serie::Graph_task>& vec_task);
+  void load_graph_data(const std::vector<utl::gui::serie::Task>& vec_task);
   void rebuild_task_stats(size_t endFrame);
 
   //Rendering
@@ -24,7 +24,7 @@ public:
   void render_serie(ImDrawList *draw_list);
   void render_legend(ImDrawList *draw_list);
   void render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
-  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Graph_task task);
+  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Task task);
 
 private:
   //Primitives

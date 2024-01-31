@@ -66,10 +66,10 @@ void Profiler::reset(){
 void Profiler::add_task(float time_beg, float time_end, string name){
   //---------------------------
 
-  utl::gui::serie::Graph_task graph_task;
+  utl::gui::serie::Task task;
   vec4 color = next_color();
-  graph_task = {time_beg, time_end, name, color};
-  vec_task.push_back(graph_task);
+  task = {time_beg, time_end, name, color};
+  vec_task.push_back(task);
   if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
 
   //---------------------------
