@@ -71,7 +71,7 @@ void Renderer::engine_texture(){
   //---------------------------
 }
 void Renderer::engine_overlay(ImVec2 image_pose){
-  if(!with_profiler_overlay) return;
+  /*if(!with_profiler_overlay) return;
   //---------------------------
 
   profiler->reset();
@@ -81,7 +81,7 @@ void Renderer::engine_overlay(ImVec2 image_pose){
     profiler->add_task(task.time_beg, task.time_end, task.name);
   }
 
-  profiler->loop_overlay(image_pose);
+  profiler->loop_overlay(image_pose);*/
 
   //---------------------------
 }

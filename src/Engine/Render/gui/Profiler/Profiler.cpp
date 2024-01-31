@@ -120,7 +120,7 @@ void Profiler::draw_graphs(){
 
 void Profiler::draw_graph(){
   //---------------------------
-
+/*
   profiler->reset();
   vector<vk::structure::Task>& vec_gpu_task = vk_info->get_profiler_data();
   for(int i=0; i<vec_gpu_task.size(); i++){
@@ -129,7 +129,7 @@ void Profiler::draw_graph(){
   }
 
   profiler->loop_window();
-
+*/
   //---------------------------
 }
 

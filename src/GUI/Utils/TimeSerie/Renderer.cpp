@@ -10,12 +10,44 @@ Renderer::Renderer(){
 
   this->graph_0 = new utl::gui::serie::Graph();
   this->graph_1 = new utl::gui::serie::Graph();
+  this->idx_color = 0;
+  this->max_nb_data = 100;
 
   //---------------------------
   this->init_color();
 }
 
 //Main function
+void Renderer::loop_overlay(ImVec2 image_pose){
+  //---------------------------
+/*
+  renderer.graph_0->load_graph_data(vec_task);
+  renderer.render_overlay(image_pose);
+*/
+  //---------------------------
+}
+void Renderer::loop_window(){
+  //---------------------------
+/*
+  renderer.graph_0->load_graph_data(vec_task);
+  renderer.graph_1->load_graph_data(vec_task);
+  ImVec2 available_size = ImGui::GetContentRegionAvail();
+  available_size.y = available_size.y / 2 - 2.5;
+  renderer.render_child(available_size);
+*/
+  //---------------------------
+}
+void Renderer::add_task(float time_beg, float time_end, string name){
+  //---------------------------
+/*
+  utl::gui::serie::Task task;
+  vec4 color = renderer.get_next_color();
+  task = {time_beg, time_end, name, color};
+  vec_task.push_back(task);
+  if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
+*/
+  //---------------------------
+}
 void Renderer::render_child(ImVec2 size){
   //---------------------------
 
@@ -61,6 +93,14 @@ void Renderer::render_overlay(ImVec2 image_pose){
 
   //---------------------------
 }
+void Renderer::reset(){
+  //---------------------------
+
+  this->vec_task.clear();
+  this->idx_color = 0;
+
+  //---------------------------
+}
 
 //Subfunction
 void Renderer::init_color(){
@@ -82,7 +122,6 @@ vec4 Renderer::get_next_color(){
   vec4 color;
   //---------------------------
 
-  static int idx_color = 0;
   color = vec_color[idx_color];
   idx_color++;
 
