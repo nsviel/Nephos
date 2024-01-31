@@ -15,9 +15,8 @@ Graph::Graph(){
   this->bar_max_nb_task = 100;
   this->vec_bar.resize(bar_max_nb);
   this->legend_width = 200;
-  this->border_color = vec4(255, 255, 255, 0);
-  this->max_time_ms = 30;
-  this->max_bar_time = max_time_ms / 1000.0f;
+  this->border_color = vec4(255, 255, 255, 25);
+  this->max_time_s = 33.5f / 1000.0f;
 
   for(utl::improfil::Bar& bar : vec_bar){
     bar.vec_task.reserve(bar_max_nb_task);
@@ -145,11 +144,11 @@ void Graph::render_serie(ImDrawList *draw_list){
   this->draw_rect(draw_list, graph_pose, graph_pose + graph_dim, border_color, false);
 
   // Line to see objective
-  this->draw_line(draw_list, graph_dim.x, 0.5, vec4(255, 255, 255, 255));
+  this->draw_line_at_time(draw_list, 16.7f, vec4(44, 150, 44, 150));
+  this->draw_line_at_time(draw_list, 33.3f, vec4(150, 150, 44, 150));
 
+  float scaling_factor = graph_dim.y / max_time_s;
   float height_threshold = 1.0f;
-  float scaling_factor = graph_dim.y / max_time_ms;
-
   for (int i = 0; i < vec_bar.size(); i++){
     // Get bar index compared to the current bar
     size_t bar_idx = (current_bar_idx - 1 - i + 2 * vec_bar.size()) % vec_bar.size();
@@ -168,8 +167,8 @@ void Graph::render_serie(ImDrawList *draw_list){
     utl::improfil::Bar& bar = vec_bar[bar_idx];
     for (const auto& task : bar.vec_task){
       // Calculate the heights based on task start and end times
-      float task_start_height = (float(task.time_beg) / max_bar_time) * scaling_factor;
-      float task_end_height = (float(task.time_end) / max_bar_time) * scaling_factor;
+      float task_start_height = float(task.time_beg) * scaling_factor;
+      float task_end_height = float(task.time_end) * scaling_factor;
 
       if (abs(task_end_height - task_start_height) > height_threshold){
         glm::vec2 rect_start = bar_pose + glm::vec2(0.0f, -task_start_height);
@@ -177,19 +176,6 @@ void Graph::render_serie(ImDrawList *draw_list){
         this->draw_rect(draw_list, rect_start, rect_end, task.color, true);
       }
     }
-
-    // Add a constant line bar at 16.7ms (60 fps)
-    float fpsLineHeight = (16.7f / max_bar_time) * scaling_factor;  // Corrected calculation
-    glm::vec2 lineStart = graph_pose + glm::vec2(0.0f, -fpsLineHeight);
-    glm::vec2 lineEnd = graph_pose + glm::vec2(graph_dim.x, -fpsLineHeight);
-    vec4 fpsLineColor = vec4(255, 0, 0, 255);  // Red color for the constant line
-    this->draw_rect(draw_list, lineStart, lineEnd, fpsLineColor, true);
-
-    // Add text next to the constant line bar
-    glm::vec2 textPosition = graph_pose + glm::vec2(graph_dim.x + 5.0f, -fpsLineHeight - 5.0f);
-    std::ostringstream fpsText;
-    fpsText << "60 fps";
-    this->draw_text(draw_list, textPosition, fpsLineColor, fpsText.str().c_str());
   }
 
   //---------------------------
@@ -235,9 +221,9 @@ void Graph::render_legend(ImDrawList *draw_list){
     }
 
     // Calculate heights for task rendering
-    float scaling_factor = graph_dim.y / max_time_ms;
-    float task_start_height = (float(task.time_beg) / max_bar_time) * scaling_factor;
-    float task_end_height = (float(task.time_end) / max_bar_time) * scaling_factor;
+    float scaling_factor = graph_dim.y / max_time_s;
+    float task_start_height = float(task.time_beg) * scaling_factor;
+    float task_end_height = float(task.time_end) * scaling_factor;
 
     // Calculate positions for left and right markers
     glm::vec2 markerLeftRectMin = legend_pose + glm::vec2(markerLeftRectMargin, graph_dim.y);
@@ -290,10 +276,17 @@ void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, v
 }
 
 //Primitives
-void Graph::draw_line(ImDrawList *draw_list, float width, float height, vec4 color){
+void Graph::draw_line_at_time(ImDrawList *draw_list, float time_ms, vec4 color){
   //---------------------------
 
-  draw_list->AddRectFilled(ImVec2(0, height), ImVec2(width, height + 1), IM_COL32(color.x, color.y, color.z, color.w));
+  float scaling_factor = graph_dim.y / max_time_s;
+
+  float line_time = time_ms / 1000.0f * scaling_factor;
+  glm::vec2 line_beg;
+  line_beg.x = graph_pose.x;
+  line_beg.y = graph_pose.y + graph_dim.y - line_time - 1;
+  glm::vec2 line_end = graph_pose + glm::vec2(graph_dim.x, graph_dim.y - line_time);
+  this->draw_rect(draw_list, line_beg, line_end, color, true);
 
   //---------------------------
 }

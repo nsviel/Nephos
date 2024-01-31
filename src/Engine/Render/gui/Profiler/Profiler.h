@@ -30,7 +30,8 @@ public:
   void draw_graph();
 
 private:
-  utl::improfil::Manager* improfil;
+  utl::improfil::Manager* cpu_profiler;
+  utl::improfil::Manager* gpu_profiler;
   vk::main::Info* vk_info;
 
   bool* show_window;

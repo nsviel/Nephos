@@ -15,8 +15,6 @@ public:
 
 public:
   //Main function
-  void loop_overlay(ImVec2 image_pose);
-  void loop_window();
   void render_child(ImVec2 size);
   void render_overlay(ImVec2 image_pose);
   void add_task(float time_beg, float time_end, string name);
@@ -26,10 +24,8 @@ public:
   vec4 get_next_color();
   void reset();
 
-public:
-  utl::improfil::Graph* graph_1;
-  utl::improfil::Graph* graph_0;
 private:
+  utl::improfil::Graph* graph;
   vector<utl::improfil::Task> vec_task;
   vector<vec4> vec_color;
   int idx_color;

@@ -30,7 +30,7 @@ public:
 
 private:
   //Primitives
-  void draw_line(ImDrawList *draw_list, float width, float height, vec4 color);
+  void draw_line_at_time(ImDrawList *draw_list, float time_ms, vec4 color);
   void draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, vec4 color, bool filled);
   void draw_text(ImDrawList *draw_list, glm::vec2 point, vec4 col, const char *text);
   void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled);
@@ -40,13 +40,12 @@ private:
   std::map<std::string, size_t> map_task_to_stat_idx;
   std::vector<utl::improfil::Bar> vec_bar;
   size_t current_bar_idx = 0;
-  float max_bar_time = 1.0f / 30.0f;
   vec4 border_color;
   vec2 graph_dim;
   vec2 graph_pose;
   vec2 legend_dim;
   vec2 legend_pose;
-  int max_time_ms;
+  float max_time_s;
   int legend_width;
   int bar_max_nb;
   int bar_max_nb_task;

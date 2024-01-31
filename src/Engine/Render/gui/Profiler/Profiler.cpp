@@ -15,7 +15,8 @@ Profiler::Profiler(eng::render::Node* node_render, bool* show_window){
   eng::Node* engine = node_render->get_node_engine();
   vk::Node* eng_vulkan = engine->get_eng_vulkan();
 
-  this->improfil = new utl::improfil::Manager();
+  this->cpu_profiler = new utl::improfil::Manager();
+  this->gpu_profiler = new utl::improfil::Manager();
   this->vk_info = eng_vulkan->get_vk_info();
 
   this->show_window = show_window;
@@ -120,16 +121,18 @@ void Profiler::draw_graphs(){
 
 void Profiler::draw_graph(){
   //---------------------------
-  //improfil->plot_constant_in_time();
+  //cpu_profiler->plot_constant_in_time();
 
-  improfil->reset();
+  cpu_profiler->reset();
   vector<vk::structure::Task>& vec_gpu_task = vk_info->get_profiler_data();
   for(int i=0; i<vec_gpu_task.size(); i++){
     vk::structure::Task task = vec_gpu_task[i];
-    improfil->add_task(task.time_beg, task.time_end, task.name);
+    cpu_profiler->add_task(task.time_beg, task.time_end, task.name);
   }
 
-  improfil->loop_window();
+  ImVec2 available_size = ImGui::GetContentRegionAvail();
+  available_size.y = available_size.y / 2 - 2.5;
+  cpu_profiler->render_child(available_size);
 
   //---------------------------
 }
