@@ -23,10 +23,10 @@ void Profiler::init(){
 
   //Profiler bar colors in order of appearance
   vec_color.clear();
-  vec_color.push_back(utl::gui::serie::colormap::viridis_0);
-  vec_color.push_back(utl::gui::serie::colormap::viridis_1);
-  vec_color.push_back(utl::gui::serie::colormap::viridis_2);
-  vec_color.push_back(utl::gui::serie::colormap::viridis_3);
+  vec_color.push_back(utl::gui::serie::color::viridis_0);
+  vec_color.push_back(utl::gui::serie::color::viridis_1);
+  vec_color.push_back(utl::gui::serie::color::viridis_2);
+  vec_color.push_back(utl::gui::serie::color::viridis_3);
 
   //---------------------------
 }
