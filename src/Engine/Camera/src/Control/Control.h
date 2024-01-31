@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Element/src/Namespace.h>
+#include <Utility/Element/Namespace.h>
 
 namespace eng{class Node;}
 namespace eng::cam{class Node;}

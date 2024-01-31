@@ -2,7 +2,7 @@
 
 #include <Engine/Camera/src/Mode/Base.h>
 #include <Utility/Specific/common.h>
-#include <Utility/Element/src/Namespace.h>
+#include <Utility/Element/Namespace.h>
 
 namespace eng::cam{class Node;}
 namespace eng::cam::mode{class Base;}

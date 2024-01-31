@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Engine/Render/Namespace.h>
+#include <Engine/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 

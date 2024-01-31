@@ -1,7 +1,7 @@
 #include "Control.h"
 
 #include <Engine/Camera/Namespace.h>
-#include <Utility/Element/src/Namespace.h>
+#include <Utility/Element/Namespace.h>
 
 
 namespace eng::cam{

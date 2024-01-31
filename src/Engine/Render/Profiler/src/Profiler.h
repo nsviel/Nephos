@@ -1,7 +1,7 @@
 #pragma once
 
+#include "Struct_profiler.h"
 #include <Utility/Specific/common.h>
-#include <Engine/Render/src/Profiler/Struct_profiler.h>
 #include <Utility/Function/Timer/Chrono.h>
 
 namespace eng::render{class Node;}
