@@ -37,9 +37,9 @@ struct Frame_data{
 };
 
 struct Task_stats{
-  double maxTime;
-  size_t priorityOrder;
-  size_t onScreenIndex;
+  double max_time;
+  size_t priority_order;
+  size_t on_screen_index;
 };
 
 }
