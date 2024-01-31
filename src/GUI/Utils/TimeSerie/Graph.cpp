@@ -159,17 +159,17 @@ void Graph::render_serie(ImDrawList *draw_list){
 void Graph::render_legend(ImDrawList *draw_list){
   //---------------------------
 
-  float markerLeftRectMargin = 3.0f;
-  float markerLeftRectWidth = 5.0f;
   float max_frame_time = 1.0f / 30.0f;
   float markerMidWidth = 30.0f;
+  float markerLeftRectMargin = 3.0f;
+  float markerLeftRectWidth = 5.0f;
   float markerRightRectWidth = 10.0f;
   float markerRigthRectMargin = 3.0f;
   float markerRightRectHeight = 10.0f;
   float markerRightRectSpacing = 4.0f;
 
-  auto &current_frame = vec_frame[(current_frame_idx - 1 + 2 * vec_frame.size()) % vec_frame.size()];
-  size_t maxTasksCount = size_t(graph_dim.y / (markerRightRectHeight + markerRightRectSpacing));
+  Frame_data& current_frame = vec_frame[(current_frame_idx - 1 + 2 * vec_frame.size()) % vec_frame.size()];
+  size_t maxTasksCount = 4;// size_t(graph_dim.y / (markerRightRectHeight + markerRightRectSpacing));
 
   for(auto &task_stat : vec_task_stat){
     task_stat.on_screen_index = size_t(-1);
