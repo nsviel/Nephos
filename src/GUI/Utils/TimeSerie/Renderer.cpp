@@ -8,7 +8,8 @@ namespace utl::gui::serie{
 Renderer::Renderer(){
   //---------------------------
 
-  this->graph = new utl::gui::serie::Graph();
+  this->graph_0 = new utl::gui::serie::Graph();
+  this->graph_1 = new utl::gui::serie::Graph();
 
   //---------------------------
 }
@@ -21,15 +22,15 @@ void Renderer::render_window(ImVec2 size){
 
 
   ImGui::BeginChild("##cpuProfiler", ImVec2(0, size.y));
-  graph->render_timings(size);
+  graph_0->render_timings(size);
   ImGui::End();
-/*
-  ImGui::SetCursorPosY(ImGui::GetCursorPosY() + available_size.y + 5);
 
-  ImGui::BeginChild("##gpuProfiler", ImVec2(0, available_size.y));
-  graph_gpu->render_timings(graph_width, legend_width, graph_height_available, frame_offset);
+  ImGui::SetCursorPosY(ImGui::GetCursorPosY() + size.y + 5);
+
+  ImGui::BeginChild("##gpuProfiler", ImVec2(0, size.y));
+  graph_1->render_timings(size);
   ImGui::End();
-*/
+
   ImGui::PopStyleColor();
 
   //---------------------------
@@ -54,7 +55,7 @@ void Renderer::render_overlay(ImVec2 image_pose){
 
   ImVec2 available_size = ImGui::GetContentRegionAvail();
 
-  graph->render_timings(available_size);
+  graph_0->render_timings(available_size);
 
   ImGui::End();
 

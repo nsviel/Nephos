@@ -18,8 +18,8 @@ public:
   void render_overlay(ImVec2 image_pose);
 
 public:
-  utl::gui::serie::Graph* graph;
-
+  utl::gui::serie::Graph* graph_1;
+  utl::gui::serie::Graph* graph_0;
 private:
 
 };
