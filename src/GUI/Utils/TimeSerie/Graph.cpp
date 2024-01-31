@@ -9,43 +9,45 @@ namespace utl::gui::serie{
 Graph::Graph(){
   //---------------------------
 
-  this->frame_size = 300;
-  this->frame_max_task = 100;
-  this->vec_frame.resize(frame_size);
-  for(utl::gui::serie::Frame& frame : vec_frame){
-    frame.tasks.reserve(frame_max_task);
-  }
+  this->bar_max_nb = 300;
+  this->bar_width = 2;
+  this->bar_gap = 1;
+  this->bar_max_nb_task = 100;
+  this->vec_bar.resize(bar_max_nb);
   this->legend_width = 200;
-  this->frame_width = 1;
-  this->frame_spacing = 1;
   this->border_color = vec4(255, 255, 255, 0);
+
+  for(utl::gui::serie::Bar& bar : vec_bar){
+    bar.vec_task.reserve(bar_max_nb_task);
+  }
 
   //---------------------------
 }
 
 //Main function
-void Graph::load_frame_data(const std::vector<utl::gui::serie::Graph_task>& tasks){
+void Graph::load_frame_data(const std::vector<utl::gui::serie::Graph_task>& vec_task){
+  //update the graph with new task data
   //---------------------------
 
-  size_t count = tasks.size();
-  utl::gui::serie::Frame& current_frame = vec_frame[current_frame_idx];
-  current_frame.tasks.resize(0);
+  size_t count = vec_task.size();
+  utl::gui::serie::Bar& current_frame = vec_bar[current_frame_idx];
+  current_frame.vec_task.resize(0);
   for(size_t task_index = 0; task_index < count; task_index++){
     if(task_index == 0)
-      current_frame.tasks.push_back(tasks[task_index]);
+      current_frame.vec_task.push_back(vec_task[task_index]);
     else{
-      if(tasks[task_index - 1].color != tasks[task_index].color || tasks[task_index - 1].name != tasks[task_index].name){
-        current_frame.tasks.push_back(tasks[task_index]);
+      if(vec_task[task_index - 1].color != vec_task[task_index].color || vec_task[task_index - 1].name != vec_task[task_index].name){
+        current_frame.vec_task.push_back(vec_task[task_index]);
       }
       else{
-        current_frame.tasks.back().end_time = tasks[task_index].end_time;
+        current_frame.vec_task.back().end_time = vec_task[task_index].end_time;
       }
     }
   }
-  current_frame.task_stat_index.resize(current_frame.tasks.size());
+  current_frame.task_stat_index.resize(current_frame.vec_task.size());
 
-  for(size_t task_index = 0; task_index < current_frame.tasks.size(); task_index++){
-    auto &task = current_frame.tasks[task_index];
+  for(size_t task_index = 0; task_index < current_frame.vec_task.size(); task_index++){
+    auto &task = current_frame.vec_task[task_index];
     auto it = task_name_to_stat_index.find(task.name);
     if(it == task_name_to_stat_index.end()){
       task_name_to_stat_index[task.name] = vec_task_stat.size();
@@ -55,7 +57,7 @@ void Graph::load_frame_data(const std::vector<utl::gui::serie::Graph_task>& task
     }
     current_frame.task_stat_index[task_index] = task_name_to_stat_index[task.name];
   }
-  current_frame_idx = (current_frame_idx + 1) % vec_frame.size();
+  current_frame_idx = (current_frame_idx + 1) % vec_bar.size();
 
   this->rebuild_task_stats(current_frame_idx);
 
@@ -71,12 +73,12 @@ void Graph::rebuild_task_stats(size_t frame_end){
     task_stat.on_screen_index = size_t(-1);
   }
 
-  for(size_t frame_number=0; frame_number<frame_size; frame_number++){
-    size_t frame_idx = (frame_end - 1 - frame_number + vec_frame.size()) % vec_frame.size();
-    utl::gui::serie::Frame& frame = vec_frame[frame_idx];
+  for(size_t frame_number=0; frame_number<bar_max_nb; frame_number++){
+    size_t frame_idx = (frame_end - 1 - frame_number + vec_bar.size()) % vec_bar.size();
+    utl::gui::serie::Bar& frame = vec_bar[frame_idx];
 
-    for(size_t task_index=0; task_index<frame.tasks.size(); task_index++){
-      auto &task = frame.tasks[task_index];
+    for(size_t task_index=0; task_index<frame.vec_task.size(); task_index++){
+      auto &task = frame.vec_task[task_index];
       auto &stats = vec_task_stat[frame.task_stat_index[task_index]];
       stats.max_time = std::max(stats.max_time, task.end_time - task.start_time);
     }
@@ -126,12 +128,12 @@ void Graph::render_serie(ImDrawList *draw_list){
   this->draw_line(draw_list, graph_dim.x, 0.5, vec4(255, 255, 255, 255));
 
   float height_threshold = 1.0f;
-  for(int i=0; i<vec_frame.size(); i++){
+  for(int i=0; i<vec_bar.size(); i++){
     //Get frame index compared to the current frame
-    size_t frame_idx = (current_frame_idx - 1 - i + 2 * vec_frame.size()) % vec_frame.size();
+    size_t frame_idx = (current_frame_idx - 1 - i + 2 * vec_bar.size()) % vec_bar.size();
 
     // Calculate the position of the frame
-    float x_offset = graph_dim.x - 1 - frame_width - (frame_width + frame_spacing) * i;
+    float x_offset = graph_dim.x - 1 - bar_width - (bar_width + bar_gap) * i;
     float y_offset = graph_dim.y - 1;
     glm::vec2 offset(x_offset, y_offset);
     glm::vec2 frame_pose = graph_pose + offset;
@@ -140,15 +142,15 @@ void Graph::render_serie(ImDrawList *draw_list){
     }
 
     // Iterate through each task in the ith frame
-    utl::gui::serie::Frame& frame = vec_frame[frame_idx];
-    for(const auto& task : frame.tasks){
+    utl::gui::serie::Bar& frame = vec_bar[frame_idx];
+    for(const auto& task : frame.vec_task){
       // Calculate the heights based on task start and end times
       float task_start_height = (float(task.start_time) / max_frame_time) * graph_dim.y;
       float task_end_height = (float(task.end_time) / max_frame_time) * graph_dim.y;
 
       if(abs(task_end_height - task_start_height) > height_threshold){
         glm::vec2 rect_start = frame_pose + glm::vec2(0.0f, -task_start_height);
-        glm::vec2 rect_end = frame_pose + glm::vec2(frame_width, -task_end_height);
+        glm::vec2 rect_end = frame_pose + glm::vec2(bar_width, -task_end_height);
         this->draw_rect(draw_list, rect_start, rect_end, task.color, true);
       }
     }
@@ -169,22 +171,22 @@ void Graph::render_legend(ImDrawList *draw_list){
   float markerRightRectSpacing = 4.0f;
 
   //Initialization
-  utl::gui::serie::Frame& current_frame = vec_frame[(current_frame_idx - 1 + 2 * vec_frame.size()) % vec_frame.size()];
+  utl::gui::serie::Bar& current_frame = vec_bar[(current_frame_idx - 1 + 2 * vec_bar.size()) % vec_bar.size()];
   for(auto &task_stat : vec_task_stat){
     task_stat.on_screen_index = size_t(-1);
   }
 
-  //Find number of displayed tasks
+  //Find number of displayed vec_task
   size_t max_task = size_t(graph_dim.y / (markerRightRectHeight + markerRightRectSpacing));
   size_t nb_task = std::min<size_t>(vec_task_stat.size(), max_task);
 
-  // Iterate through tasks in the current frame
+  // Iterate through vec_task in the current frame
   size_t cpt_task = 0;
-  for(size_t task_index = 0; task_index < current_frame.tasks.size(); task_index++){
-    utl::gui::serie::Graph_task& task = current_frame.tasks[task_index];
+  for(size_t task_index = 0; task_index < current_frame.vec_task.size(); task_index++){
+    utl::gui::serie::Graph_task& task = current_frame.vec_task[task_index];
     auto &stat = vec_task_stat[current_frame.task_stat_index[task_index]];
 
-    // Skip tasks beyond the maximum number to show
+    // Skip vec_task beyond the maximum number to show
     if(stat.priority_order >= nb_task){
       continue;
     }

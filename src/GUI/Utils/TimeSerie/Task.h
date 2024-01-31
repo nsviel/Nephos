@@ -31,10 +31,10 @@ struct Graph_task{
   //---------------------------
 };
 
-struct Frame{
+struct Bar{
   //---------------------------
 
-  std::vector<utl::gui::serie::Graph_task> tasks;
+  std::vector<utl::gui::serie::Graph_task> vec_task;
   std::vector<size_t> task_stat_index;
 
   //---------------------------
