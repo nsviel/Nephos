@@ -40,12 +40,13 @@ private:
   std::map<std::string, size_t> map_task_to_stat_idx;
   std::vector<utl::gui::serie::Bar> vec_bar;
   size_t current_bar_idx = 0;
-  float max_bar_time = 1.0f / 30.0f;
+  float max_bar_time;
   vec4 border_color;
   vec2 graph_dim;
   vec2 graph_pose;
   vec2 legend_dim;
   vec2 legend_pose;
+  int max_time_ms;
   int legend_width;
   int bar_max_nb;
   int bar_max_nb_task;

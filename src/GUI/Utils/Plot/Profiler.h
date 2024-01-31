@@ -18,14 +18,12 @@ public:
 
 public:
   //Main function
-  void init();
   void loop_overlay(ImVec2 image_pose);
   void loop_window();
   void reset();
 
   //Subfunction
   void add_task(float time_beg, float time_end, string name);
-  vec4 next_color();
 
 private:
   utl::gui::serie::Renderer renderer;

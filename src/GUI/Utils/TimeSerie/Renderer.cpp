@@ -12,25 +12,25 @@ Renderer::Renderer(){
   this->graph_1 = new utl::gui::serie::Graph();
 
   //---------------------------
+  this->init_color();
 }
 
 //Main function
-void Renderer::render_window(ImVec2 size){
+void Renderer::render_child(ImVec2 size){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));
-
-
   ImGui::BeginChild("##cpuProfiler", ImVec2(0, size.y));
   graph_0->render_graph(size);
   ImGui::End();
+  ImGui::PopStyleColor();
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() + size.y + 5);
 
+  ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));
   ImGui::BeginChild("##gpuProfiler", ImVec2(0, size.y));
   graph_1->render_graph(size);
   ImGui::End();
-
   ImGui::PopStyleColor();
 
   //---------------------------
@@ -62,5 +62,34 @@ void Renderer::render_overlay(ImVec2 image_pose){
   //---------------------------
 }
 
+//Subfunction
+void Renderer::init_color(){
+  //---------------------------
+
+  //Profiler bar colors in order of appearance
+  vec_color.clear();
+  vec_color.push_back(utl::gui::serie::color::viridis_3);
+  vec_color.push_back(utl::gui::serie::color::viridis_4);
+  vec_color.push_back(utl::gui::serie::color::viridis_5);
+  vec_color.push_back(utl::gui::serie::color::viridis_6);
+  vec_color.push_back(utl::gui::serie::color::viridis_7);
+  vec_color.push_back(utl::gui::serie::color::viridis_8);
+  vec_color.push_back(utl::gui::serie::color::viridis_9);
+
+  //---------------------------
+}
+vec4 Renderer::get_next_color(){
+  vec4 color;
+  //---------------------------
+
+  static int idx_color = 0;
+  color = vec_color[idx_color];
+  idx_color++;
+
+  if(idx_color >= vec_color.size()) idx_color = 0;
+
+  //---------------------------
+  return color;
+}
 
 }

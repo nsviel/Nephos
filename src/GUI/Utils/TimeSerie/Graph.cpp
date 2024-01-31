@@ -16,6 +16,8 @@ Graph::Graph(){
   this->vec_bar.resize(bar_max_nb);
   this->legend_width = 200;
   this->border_color = vec4(255, 255, 255, 0);
+  this->max_time_ms = 30;
+  this->max_bar_time = max_time_ms / 1000.0f;
 
   for(utl::gui::serie::Bar& bar : vec_bar){
     bar.vec_task.reserve(bar_max_nb_task);
@@ -139,15 +141,17 @@ void Graph::render_graph(ImVec2 size){
 void Graph::render_serie(ImDrawList *draw_list){
   //---------------------------
 
-  //Serie outline
+  // Serie outline
   this->draw_rect(draw_list, graph_pose, graph_pose + graph_dim, border_color, false);
 
-  //Line to see objective
+  // Line to see objective
   this->draw_line(draw_list, graph_dim.x, 0.5, vec4(255, 255, 255, 255));
 
   float height_threshold = 1.0f;
-  for(int i=0; i<vec_bar.size(); i++){
-    //Get bar index compared to the current bar
+  float scaling_factor = graph_dim.y / max_time_ms;
+
+  for (int i = 0; i < vec_bar.size(); i++){
+    // Get bar index compared to the current bar
     size_t bar_idx = (current_bar_idx - 1 - i + 2 * vec_bar.size()) % vec_bar.size();
 
     // Calculate the position of the bar
@@ -155,23 +159,37 @@ void Graph::render_serie(ImDrawList *draw_list){
     float y_offset = graph_dim.y - 1;
     glm::vec2 offset(x_offset, y_offset);
     glm::vec2 bar_pose = graph_pose + offset;
-    if(bar_pose.x < graph_pose.x + 1){
+
+    if (bar_pose.x < graph_pose.x + 1){
       break;
     }
 
     // Iterate through each task in the ith bar
     utl::gui::serie::Bar& bar = vec_bar[bar_idx];
-    for(const auto& task : bar.vec_task){
+    for (const auto& task : bar.vec_task){
       // Calculate the heights based on task start and end times
-      float task_start_height = (float(task.time_beg) / max_bar_time) * graph_dim.y;
-      float task_end_height = (float(task.time_end) / max_bar_time) * graph_dim.y;
+      float task_start_height = (float(task.time_beg) / max_bar_time) * scaling_factor;
+      float task_end_height = (float(task.time_end) / max_bar_time) * scaling_factor;
 
-      if(abs(task_end_height - task_start_height) > height_threshold){
+      if (abs(task_end_height - task_start_height) > height_threshold){
         glm::vec2 rect_start = bar_pose + glm::vec2(0.0f, -task_start_height);
         glm::vec2 rect_end = bar_pose + glm::vec2(bar_width, -task_end_height);
         this->draw_rect(draw_list, rect_start, rect_end, task.color, true);
       }
     }
+
+    // Add a constant line bar at 16.7ms (60 fps)
+    float fpsLineHeight = (16.7f / max_bar_time) * scaling_factor;  // Corrected calculation
+    glm::vec2 lineStart = graph_pose + glm::vec2(0.0f, -fpsLineHeight);
+    glm::vec2 lineEnd = graph_pose + glm::vec2(graph_dim.x, -fpsLineHeight);
+    vec4 fpsLineColor = vec4(255, 0, 0, 255);  // Red color for the constant line
+    this->draw_rect(draw_list, lineStart, lineEnd, fpsLineColor, true);
+
+    // Add text next to the constant line bar
+    glm::vec2 textPosition = graph_pose + glm::vec2(graph_dim.x + 5.0f, -fpsLineHeight - 5.0f);
+    std::ostringstream fpsText;
+    fpsText << "60 fps";
+    this->draw_text(draw_list, textPosition, fpsLineColor, fpsText.str().c_str());
   }
 
   //---------------------------
@@ -179,7 +197,6 @@ void Graph::render_serie(ImDrawList *draw_list){
 void Graph::render_legend(ImDrawList *draw_list){
   //---------------------------
 
-  float max_bar_time = 1.0f / 30.0f;
   float markerMidWidth = 30.0f;
   float markerLeftRectMargin = 3.0f;
   float markerLeftRectWidth = 5.0f;
@@ -218,8 +235,9 @@ void Graph::render_legend(ImDrawList *draw_list){
     }
 
     // Calculate heights for task rendering
-    float task_start_height = (float(task.time_beg) / max_bar_time) * graph_dim.y;
-    float task_end_height = (float(task.time_end) / max_bar_time) * graph_dim.y;
+    float scaling_factor = graph_dim.y / max_time_ms;
+    float task_start_height = (float(task.time_beg) / max_bar_time) * scaling_factor;
+    float task_end_height = (float(task.time_end) / max_bar_time) * scaling_factor;
 
     // Calculate positions for left and right markers
     glm::vec2 markerLeftRectMin = legend_pose + glm::vec2(markerLeftRectMargin, graph_dim.y);
