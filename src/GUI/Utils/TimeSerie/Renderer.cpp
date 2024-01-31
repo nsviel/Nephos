@@ -10,7 +10,7 @@ Renderer::Renderer(){
 
   this->legend_width = 200;
   this->max_graph_height = 300;
-  this->graph = new utl::gui::serie::Graph();
+  this->graph = new utl::gui::serie::Graph(300);
 
   //---------------------------
 }
