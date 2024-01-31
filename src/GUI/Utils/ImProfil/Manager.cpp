@@ -48,26 +48,17 @@ void Manager::render_overlay(ImVec2 image_pose){
   //---------------------------
 }
 void Manager::render_child(ImVec2 dimension){
+  string title = name + "##graph";
   //---------------------------
 
   this->graph->load_graph_data(vec_task);
 
   ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));
-  ImGui::BeginChild("##cpuProfiler", ImVec2(0, dimension.y));
+  ImGui::BeginChild(title.c_str(), ImVec2(0, dimension.y));
   graph->render_graph(dimension);
   ImGui::End();
   ImGui::PopStyleColor();
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() + dimension.y + 5);
-
-  /*
-
-
-    ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));
-    ImGui::BeginChild("##gpuProfiler", ImVec2(0, size.y));
-    graph_1->render_graph(size);
-    ImGui::End();
-    ImGui::PopStyleColor();
-  */
 
   //---------------------------
 }

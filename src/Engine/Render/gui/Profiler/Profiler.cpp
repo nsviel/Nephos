@@ -88,32 +88,32 @@ void Profiler::draw_graph(){
   //---------------------------
 
   if(ImGui::BeginTabBar("device_tab##4567")){
-    ImVec2 image_size = ImGui::GetContentRegionAvail();
+    ImVec2 dimension = ImGui::GetContentRegionAvail();
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("All##4568", NULL)){
-      image_size = ImVec2(image_size.x, image_size.y/3-3.33);
-      this->draw_profiler_cpu(image_size);
-      this->draw_profiler_gpu(image_size);
-      this->draw_profiler_capture(image_size);
+      dimension = ImVec2(dimension.x, dimension.y/3 - 3.33);
+      this->draw_profiler_cpu(dimension);
+      this->draw_profiler_gpu(dimension);
+      this->draw_profiler_capture(dimension);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("CPU##4567", NULL)){
-      this->draw_profiler_cpu(image_size);
+      this->draw_profiler_cpu(dimension);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("GPU##4567", NULL)){
-      this->draw_profiler_gpu(image_size);
+      this->draw_profiler_gpu(dimension);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Capture##4567", NULL)){
-      this->draw_profiler_capture(image_size);
+      this->draw_profiler_capture(dimension);
       ImGui::EndTabItem();
     }
     ImGui::EndTabBar();
@@ -137,9 +137,7 @@ void Profiler::draw_profiler_cpu(ImVec2 dimensions){
   }
 
   //Render graph
-  ImVec2 available_size = ImGui::GetContentRegionAvail();
-  available_size.y = available_size.y / 2 - 2.5;
-  cpu_profiler->render_child(available_size);
+  cpu_profiler->render_child(dimensions);
 
   //---------------------------
 }
@@ -157,9 +155,7 @@ void Profiler::draw_profiler_gpu(ImVec2 dimensions){
   }
 
   //Render graph
-  ImVec2 available_size = ImGui::GetContentRegionAvail();
-  available_size.y = available_size.y / 2 - 2.5;
-  gpu_profiler->render_child(available_size);
+  gpu_profiler->render_child(dimensions);
 
   //---------------------------
 }
@@ -177,9 +173,7 @@ void Profiler::draw_profiler_capture(ImVec2 dimensions){
   }
 
   //Render graph
-  ImVec2 available_size = ImGui::GetContentRegionAvail();
-  available_size.y = available_size.y / 2 - 2.5;
-  cap_profiler->render_child(available_size);
+  cap_profiler->render_child(dimensions);
 
   //---------------------------
 }
