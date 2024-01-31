@@ -46,7 +46,7 @@ void Graph::load_graph_data(const std::vector<utl::gui::serie::Graph_task>& vec_
       else{
         // If the current and previous tasks have the same color and name,
         // update the end time of the last task in the current bar
-        current_bar.vec_task.back().end_time = vec_task[task_index].end_time;
+        current_bar.vec_task.back().time_end = vec_task[task_index].time_end;
       }
     }
   }
@@ -98,7 +98,7 @@ void Graph::rebuild_task_stats(size_t bar_end){
     for(size_t task_index=0; task_index<bar.vec_task.size(); task_index++){
       auto &task = bar.vec_task[task_index];
       auto &stats = vec_task_stat[bar.task_stat_index[task_index]];
-      stats.max_time = std::max(stats.max_time, task.end_time - task.start_time);
+      stats.max_time = std::max(stats.max_time, task.time_end - task.time_beg);
     }
   }
 
@@ -163,8 +163,8 @@ void Graph::render_serie(ImDrawList *draw_list){
     utl::gui::serie::Bar& bar = vec_bar[bar_idx];
     for(const auto& task : bar.vec_task){
       // Calculate the heights based on task start and end times
-      float task_start_height = (float(task.start_time) / max_bar_time) * graph_dim.y;
-      float task_end_height = (float(task.end_time) / max_bar_time) * graph_dim.y;
+      float task_start_height = (float(task.time_beg) / max_bar_time) * graph_dim.y;
+      float task_end_height = (float(task.time_end) / max_bar_time) * graph_dim.y;
 
       if(abs(task_end_height - task_start_height) > height_threshold){
         glm::vec2 rect_start = bar_pose + glm::vec2(0.0f, -task_start_height);
@@ -218,8 +218,8 @@ void Graph::render_legend(ImDrawList *draw_list){
     }
 
     // Calculate heights for task rendering
-    float task_start_height = (float(task.start_time) / max_bar_time) * graph_dim.y;
-    float task_end_height = (float(task.end_time) / max_bar_time) * graph_dim.y;
+    float task_start_height = (float(task.time_beg) / max_bar_time) * graph_dim.y;
+    float task_end_height = (float(task.time_end) / max_bar_time) * graph_dim.y;
 
     // Calculate positions for left and right markers
     glm::vec2 markerLeftRectMin = legend_pose + glm::vec2(markerLeftRectMargin, graph_dim.y);
@@ -258,7 +258,7 @@ void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, v
   float name_offset = 40.0f;
   vec4 text_color = task.color;
 
-  float taskTimeMs = float(task.end_time - task.start_time);
+  float taskTimeMs = float(task.time_end - task.time_beg);
   std::ostringstream timeText;
   timeText.precision(2);
   timeText << std::fixed << std::string("[") << (taskTimeMs * 1000.0f);

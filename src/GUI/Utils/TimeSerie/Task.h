@@ -19,13 +19,13 @@ struct Task{
 struct Graph_task{
   //---------------------------
 
-  double start_time;
-  double end_time;
+  double time_beg;
+  double time_end;
   std::string name;
   vec4 color;
 
   double GetLength(){
-    return end_time - start_time;
+    return time_end - time_beg;
   }
 
   //---------------------------

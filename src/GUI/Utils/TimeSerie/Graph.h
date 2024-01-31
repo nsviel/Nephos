@@ -37,7 +37,7 @@ private:
   std::vector<Task_stats> vec_task_stat;
   std::map<std::string, size_t> task_name_to_stat_index;
   std::vector<utl::gui::serie::Bar> vec_bar;
-  size_t current_frame_idx = 0;
+  size_t current_bar_idx = 0;
   vec4 border_color;
   vec2 graph_dim;
   vec2 graph_pose;
@@ -47,7 +47,7 @@ private:
   int bar_max_nb_task;
   int bar_width;
   int bar_gap;
-  float max_frame_time = 1.0f / 30.0f;
+  float max_bar_time = 1.0f / 30.0f;
   int legend_width;
 };
 
