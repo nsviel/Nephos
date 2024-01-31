@@ -22,7 +22,7 @@ struct Graph_task{
   double start_time;
   double end_time;
   std::string name;
-  uint32_t color;
+  vec4 color;
 
   double GetLength(){
     return end_time - start_time;

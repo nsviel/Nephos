@@ -23,21 +23,21 @@ public:
   void render_timings(int graphWidth, int legendWidth, int height);
   void render_graph(ImDrawList *draw_list, glm::vec2 graphPos, glm::vec2 graphSize);
   void render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 legendSize);
-  void render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, uint32_t col);
-  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, uint32_t col, utl::gui::serie::Graph_task task);
+  void render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
+  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Graph_task task);
 
 private:
-  void draw_line(ImDrawList *draw_list, float width, float height, uint32_t color);
-  void draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, uint32_t col, bool filled);
-  void draw_text(ImDrawList *draw_list, glm::vec2 point, uint32_t col, const char *text);
-  void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, uint32_t col, bool filled);
+  void draw_line(ImDrawList *draw_list, float width, float height, vec4 color);
+  void draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, vec4 color, bool filled);
+  void draw_text(ImDrawList *draw_list, glm::vec2 point, vec4 col, const char *text);
+  void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled);
 
 private:
   std::vector<Task_stats> vec_task_stat;
   std::map<std::string, size_t> task_name_to_stat_index;
   std::vector<Frame_data> frames;
   size_t current_frame_index = 0;
-  int border_color;
+  vec4 border_color;
   int frame_size;
   int frame_max_task;
   int frame_width;

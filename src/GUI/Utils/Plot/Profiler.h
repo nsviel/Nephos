@@ -25,7 +25,7 @@ public:
 
   //Subfunction
   void add_task(float time_beg, float time_end, string name);
-  uint32_t next_color();
+  vec4 next_color();
 
 private:
   utl::gui::serie::Renderer renderer;

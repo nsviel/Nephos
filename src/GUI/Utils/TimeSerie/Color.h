@@ -1,7 +1,6 @@
 #pragma once
 
-#include <cstdint>
-#include <string>
+#include <Utility/Specific/common.h>
 
 
 namespace utl::gui::serie::color{

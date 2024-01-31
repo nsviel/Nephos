@@ -41,6 +41,11 @@ void Profiler::init(){
   vec_color.push_back(utl::gui::serie::color::silver);
   vec_color.push_back(utl::gui::serie::color::imguiText);
 
+  vec_color_f.push_back(utl::gui::serie::colormap::viridis_0);
+  vec_color_f.push_back(utl::gui::serie::colormap::viridis_1);
+  vec_color_f.push_back(utl::gui::serie::colormap::viridis_2);
+  vec_color_f.push_back(utl::gui::serie::colormap::viridis_3);
+
   //---------------------------
 }
 void Profiler::loop_overlay(ImVec2 image_pose){
@@ -76,21 +81,21 @@ void Profiler::add_task(float time_beg, float time_end, string name){
   //---------------------------
 
   utl::gui::serie::Graph_task graph_task;
-  uint32_t color = next_color();
+  vec4 color = next_color();
   graph_task = {time_beg, time_end, name, color};
   vec_task.push_back(graph_task);
   if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
 
   //---------------------------
 }
-uint32_t Profiler::next_color(){
-  uint32_t color;
+vec4 Profiler::next_color(){
+  vec4 color;
   //---------------------------
 
-  color = vec_color[idx_color];
+  color = vec_color_f[idx_color];
   idx_color++;
 
-  if(idx_color >= vec_color.size()) idx_color = 0;
+  if(idx_color >= vec_color_f.size()) idx_color = 0;
 
   //---------------------------
   return color;

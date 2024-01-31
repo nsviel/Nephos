@@ -18,7 +18,7 @@ Graph::Graph(){
 
   this->frame_width = 1;
   this->frame_spacing = 1;
-  this->border_color = 0x00ffffff;
+  this->border_color = vec4(255, 255, 255, 255);
 
   //---------------------------
 }
@@ -114,7 +114,7 @@ void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 
   //---------------------------
 
   this->draw_rect(draw_list, graph_pose, graph_pose + graph_size, border_color, false);
-  this->draw_line(draw_list, graph_size.x, 0.5, 0xffffffff);
+  this->draw_line(draw_list, graph_size.x, 0.5, vec4(255, 255, 255, 255));
   float heightThreshold = 1.0f;
 
   for(size_t frame_number = 0; frame_number < frames.size(); frame_number++){
@@ -190,28 +190,28 @@ void Graph::render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 
 
   //---------------------------
 }
-void Graph::render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, uint32_t col){
+void Graph::render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 color){
   //---------------------------
 
-  this->draw_rect(draw_list, leftMinPoint, leftMaxPoint, col, true);
-  this->draw_rect(draw_list, rightMinPoint, rightMaxPoint, col, true);
+  this->draw_rect(draw_list, leftMinPoint, leftMaxPoint, color, true);
+  this->draw_rect(draw_list, rightMinPoint, rightMaxPoint, color, true);
   std::array<ImVec2, 4> points = {
     ImVec2(leftMaxPoint.x, leftMinPoint.y),
     ImVec2(leftMaxPoint.x, leftMaxPoint.y),
     ImVec2(rightMinPoint.x, rightMaxPoint.y),
     ImVec2(rightMinPoint.x, rightMinPoint.y)
   };
-  draw_list->AddConvexPolyFilled(points.data(), int(points.size()), col);
+  draw_list->AddConvexPolyFilled(points.data(), int(points.size()), IM_COL32(color.x, color.y, color.z, color.w));
 
   //---------------------------
 }
-void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, uint32_t col, utl::gui::serie::Graph_task task){
+void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Graph_task task){
   //---------------------------
 
   glm::vec2 textMargin = glm::vec2(5.0f, -3.0f);
   float nameOffset = 40.0f;
 
-  uint32_t textColor = task.color;
+  vec4 textColor = task.color;
 
   float taskTimeMs = float(task.end_time - task.start_time);
   std::ostringstream timeText;
@@ -225,37 +225,37 @@ void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, u
 }
 
 //Element
-void Graph::draw_line(ImDrawList *draw_list, float width, float height, uint32_t color){
+void Graph::draw_line(ImDrawList *draw_list, float width, float height, vec4 color){
   //---------------------------
 
-  draw_list->AddRectFilled(ImVec2(0, height), ImVec2(width, height + 1), color);
+  draw_list->AddRectFilled(ImVec2(0, height), ImVec2(width, height + 1), IM_COL32(color.x, color.y, color.z, color.w));
 
   //---------------------------
 }
-void Graph::draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, uint32_t color, bool filled = true){
+void Graph::draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, vec4 color, bool filled = true){
   //---------------------------
 
   if(filled)
-    draw_list->AddRectFilled(ImVec2(minPoint.x, minPoint.y), ImVec2(maxPoint.x, maxPoint.y), color);
+    draw_list->AddRectFilled(ImVec2(minPoint.x, minPoint.y), ImVec2(maxPoint.x, maxPoint.y), IM_COL32(color.x, color.y, color.z, color.w));
   else
-    draw_list->AddRect(ImVec2(minPoint.x, minPoint.y), ImVec2(maxPoint.x, maxPoint.y), color);
+    draw_list->AddRect(ImVec2(minPoint.x, minPoint.y), ImVec2(maxPoint.x, maxPoint.y), IM_COL32(color.x, color.y, color.z, color.w));
 
   //---------------------------
 }
-void Graph::draw_text(ImDrawList *draw_list, glm::vec2 point, uint32_t col, const char *text){
+void Graph::draw_text(ImDrawList *draw_list, glm::vec2 point, vec4 color, const char *text){
   //---------------------------
 
-  draw_list->AddText(ImVec2(point.x, point.y), col, text);
+  draw_list->AddText(ImVec2(point.x, point.y), IM_COL32(color.x, color.y, color.z, color.w), text);
 
   //---------------------------
 }
-void Graph::draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, uint32_t col, bool filled = true){
+void Graph::draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled = true){
   //---------------------------
 
   if(filled)
-    draw_list->AddTriangleFilled(ImVec2(points[0].x, points[0].y), ImVec2(points[1].x, points[1].y), ImVec2(points[2].x, points[2].y), col);
+    draw_list->AddTriangleFilled(ImVec2(points[0].x, points[0].y), ImVec2(points[1].x, points[1].y), ImVec2(points[2].x, points[2].y), IM_COL32(color.x, color.y, color.z, color.w));
   else
-    draw_list->AddTriangle(ImVec2(points[0].x, points[0].y), ImVec2(points[1].x, points[1].y), ImVec2(points[2].x, points[2].y), col);
+    draw_list->AddTriangle(ImVec2(points[0].x, points[0].y), ImVec2(points[1].x, points[1].y), ImVec2(points[2].x, points[2].y), IM_COL32(color.x, color.y, color.z, color.w));
 
   //---------------------------
 }
