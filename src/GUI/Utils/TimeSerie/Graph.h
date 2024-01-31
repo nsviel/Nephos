@@ -16,7 +16,7 @@ public:
 
 public:
   //Main function
-  void load_frame_data(const std::vector<utl::gui::serie::Graph_task>& vec_task);
+  void load_graph_data(const std::vector<utl::gui::serie::Graph_task>& vec_task);
   void rebuild_task_stats(size_t endFrame);
 
   //Rendering

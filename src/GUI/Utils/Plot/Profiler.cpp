@@ -36,7 +36,7 @@ void Profiler::init(){
 void Profiler::loop_overlay(ImVec2 image_pose){
   //---------------------------
 
-  renderer.graph_0->load_frame_data(vec_task);
+  renderer.graph_0->load_graph_data(vec_task);
   renderer.render_overlay(image_pose);
 
   //---------------------------
@@ -44,8 +44,8 @@ void Profiler::loop_overlay(ImVec2 image_pose){
 void Profiler::loop_window(){
   //---------------------------
 
-  renderer.graph_0->load_frame_data(vec_task);
-  renderer.graph_1->load_frame_data(vec_task);
+  renderer.graph_0->load_graph_data(vec_task);
+  renderer.graph_1->load_graph_data(vec_task);
   ImVec2 available_size = ImGui::GetContentRegionAvail();
   available_size.y = available_size.y / 2 - 2.5;
   renderer.render_window(available_size);
