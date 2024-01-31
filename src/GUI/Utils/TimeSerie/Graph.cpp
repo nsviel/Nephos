@@ -15,10 +15,11 @@ Graph::Graph(){
   for(auto &frame : frames){
     frame.tasks.reserve(frame_max_task);
   }
-
+  this->legend_width = 200;
+  this->max_graph_height = 300;
   this->frame_width = 1;
   this->frame_spacing = 1;
-  this->border_color = vec4(255, 255, 255, 255);
+  this->border_color = vec4(255, 255, 255, 0);
 
   //---------------------------
 }
@@ -99,14 +100,19 @@ void Graph::rebuild_task_stats(size_t frame_end, size_t framesCount){
 }
 
 //Rendering
-void Graph::render_timings(int graphWidth, int legendWidth, int height){
+void Graph::render_timings(ImVec2 size){
   //---------------------------
+
+  int margin_size = int(ImGui::GetStyle().ItemSpacing.y);
+  int graph_height_available = (int(size.y) - margin_size);
+  int graph_height = std::min(max_graph_height, graph_height_available);
+  int graph_width = int(size.x) - legend_width;
 
   ImDrawList* draw_list = ImGui::GetWindowDrawList();
   const glm::vec2 widgetPos = glm::vec2(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y);
-  this->render_graph(draw_list, widgetPos, glm::vec2(graphWidth, height));
-  this->render_legend(draw_list, widgetPos + glm::vec2(graphWidth, 0.0f), glm::vec2(legendWidth, height));
-  ImGui::Dummy(ImVec2(float(graphWidth + legendWidth), float(height)));
+  this->render_graph(draw_list, widgetPos, glm::vec2(graph_width, graph_height));
+  this->render_legend(draw_list, widgetPos + glm::vec2(graph_width, 0.0f), glm::vec2(legend_width, graph_height));
+  ImGui::Dummy(ImVec2(float(graph_width + legend_width), float(graph_height)));
 
   //---------------------------
 }
@@ -224,7 +230,7 @@ void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, v
   //---------------------------
 }
 
-//Element
+//Primitives
 void Graph::draw_line(ImDrawList *draw_list, float width, float height, vec4 color){
   //---------------------------
 

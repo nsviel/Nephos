@@ -21,8 +21,7 @@ public:
   utl::gui::serie::Graph* graph;
 
 private:
-  int legend_width;
-  int max_graph_height;
+
 };
 
 }

@@ -8,8 +8,6 @@ namespace utl::gui::serie{
 Renderer::Renderer(){
   //---------------------------
 
-  this->legend_width = 200;
-  this->max_graph_height = 300;
   this->graph = new utl::gui::serie::Graph();
 
   //---------------------------
@@ -21,13 +19,9 @@ void Renderer::render_window(ImVec2 size){
 
   ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));
 
-  int margin_size = int(ImGui::GetStyle().ItemSpacing.y);
-  int graph_height_available = (int(size.y) - margin_size);
-  int graph_height = std::min(max_graph_height, graph_height_available);
-  int graph_width = int(size.x) - legend_width;
 
   ImGui::BeginChild("##cpuProfiler", ImVec2(0, size.y));
-  graph->render_timings(graph_width, legend_width, graph_height_available);
+  graph->render_timings(size);
   ImGui::End();
 /*
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() + available_size.y + 5);
@@ -59,12 +53,8 @@ void Renderer::render_overlay(ImVec2 image_pose){
   ImGui::Begin("##profiler_overlay", 0, flags);
 
   ImVec2 available_size = ImGui::GetContentRegionAvail();
-  int margin_size = int(ImGui::GetStyle().ItemSpacing.y);
-  int graph_height_available = (int(available_size.y) - margin_size);
-  int graph_height = std::min(max_graph_height, graph_height_available);
-  int graph_width = int(available_size.x) - legend_width;
 
-  graph->render_timings(graph_width, legend_width, graph_height_available);
+  graph->render_timings(available_size);
 
   ImGui::End();
 

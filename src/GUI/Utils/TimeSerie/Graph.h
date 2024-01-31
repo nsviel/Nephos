@@ -20,13 +20,14 @@ public:
   void rebuild_task_stats(size_t endFrame, size_t framesCount);
 
   //Rendering
-  void render_timings(int graphWidth, int legendWidth, int height);
+  void render_timings(ImVec2 size);
   void render_graph(ImDrawList *draw_list, glm::vec2 graphPos, glm::vec2 graphSize);
   void render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 legendSize);
   void render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
   void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Graph_task task);
 
 private:
+  //Primitives
   void draw_line(ImDrawList *draw_list, float width, float height, vec4 color);
   void draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, vec4 color, bool filled);
   void draw_text(ImDrawList *draw_list, glm::vec2 point, vec4 col, const char *text);
@@ -43,6 +44,8 @@ private:
   int frame_width;
   int frame_spacing;
   float max_frame_time = 1.0f / 30.0f;
+  int legend_width;
+  int max_graph_height;
 };
 
 }

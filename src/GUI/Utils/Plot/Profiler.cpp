@@ -23,28 +23,10 @@ void Profiler::init(){
 
   //Profiler bar colors in order of appearance
   vec_color.clear();
-  vec_color.push_back(utl::gui::serie::color::turqoise);
-  vec_color.push_back(utl::gui::serie::color::greenSea);
-  vec_color.push_back(utl::gui::serie::color::emerald);
-  vec_color.push_back(utl::gui::serie::color::nephritis);
-  vec_color.push_back(utl::gui::serie::color::peterRiver);
-  vec_color.push_back(utl::gui::serie::color::belizeHole);
-  vec_color.push_back(utl::gui::serie::color::amethyst);
-  vec_color.push_back(utl::gui::serie::color::wisteria);
-  vec_color.push_back(utl::gui::serie::color::sunFlower);
-  vec_color.push_back(utl::gui::serie::color::orange);
-  vec_color.push_back(utl::gui::serie::color::carrot);
-  vec_color.push_back(utl::gui::serie::color::pumpkin);
-  vec_color.push_back(utl::gui::serie::color::alizarin);
-  vec_color.push_back(utl::gui::serie::color::pomegranate);
-  vec_color.push_back(utl::gui::serie::color::clouds);
-  vec_color.push_back(utl::gui::serie::color::silver);
-  vec_color.push_back(utl::gui::serie::color::imguiText);
-
-  vec_color_f.push_back(utl::gui::serie::colormap::viridis_0);
-  vec_color_f.push_back(utl::gui::serie::colormap::viridis_1);
-  vec_color_f.push_back(utl::gui::serie::colormap::viridis_2);
-  vec_color_f.push_back(utl::gui::serie::colormap::viridis_3);
+  vec_color.push_back(utl::gui::serie::colormap::viridis_0);
+  vec_color.push_back(utl::gui::serie::colormap::viridis_1);
+  vec_color.push_back(utl::gui::serie::colormap::viridis_2);
+  vec_color.push_back(utl::gui::serie::colormap::viridis_3);
 
   //---------------------------
 }
@@ -92,10 +74,10 @@ vec4 Profiler::next_color(){
   vec4 color;
   //---------------------------
 
-  color = vec_color_f[idx_color];
+  color = vec_color[idx_color];
   idx_color++;
 
-  if(idx_color >= vec_color_f.size()) idx_color = 0;
+  if(idx_color >= vec_color.size()) idx_color = 0;
 
   //---------------------------
   return color;
