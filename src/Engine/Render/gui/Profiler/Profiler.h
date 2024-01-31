@@ -23,8 +23,7 @@ public:
   void design_panel();
 
   //Subfunction
-  void device_model();
-  void main_loop_fps();
+  void main_info();
   void draw_graph();
 
   //Profiler graphs

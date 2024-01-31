@@ -46,41 +46,38 @@ void Profiler::run_panel(){
 void Profiler::design_panel(){
   //---------------------------
 
-  this->device_model();
-  this->main_loop_fps();
+  this->main_info();
   this->draw_graph();
 
   //---------------------------
 }
 
 //Subfunction
-void Profiler::device_model(){
+void Profiler::main_info(){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
   if(ImGui::BeginTable("render##device", 2)){
     ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
 
+    //GPU device
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", vk_info->get_gpu_name().c_str());
 
+    //Main loop fps
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Loop"); ImGui::TableNextColumn();
+    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / vk_info->get_fps());
+    ImGui::SameLine();
+    ImGui::Text(" ms/frame [");
+    ImGui::SameLine();
+    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", vk_info->get_fps()); //io.Framerate
+    ImGui::SameLine();
+    ImGui::Text(" FPS ]");
+
     ImGui::EndTable();
   }
-
-  //---------------------------
-}
-void Profiler::main_loop_fps(){
-  ImGuiIO io = ImGui::GetIO();
-  //---------------------------
-
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / vk_info->get_fps());
-  ImGui::SameLine();
-  ImGui::Text(" ms/frame [");
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", vk_info->get_fps()); //io.Framerate
-  ImGui::SameLine();
-  ImGui::Text(" FPS ]");
 
   //---------------------------
 }
