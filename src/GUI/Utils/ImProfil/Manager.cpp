@@ -5,9 +5,10 @@
 
 namespace utl::improfil{
 
-Manager::Manager(){
+Manager::Manager(string name){
   //---------------------------
 
+  this-> name = name;
   this->graph = new utl::improfil::Graph();
   this->idx_color = 0;
   this->max_nb_data = 100;
@@ -15,6 +16,7 @@ Manager::Manager(){
   //---------------------------
   this->init_color();
 }
+Manager::~Manager(){}
 
 //Main function
 void Manager::render_overlay(ImVec2 image_pose){
@@ -55,9 +57,10 @@ void Manager::render_child(ImVec2 dimension){
   graph->render_graph(dimension);
   ImGui::End();
   ImGui::PopStyleColor();
+  ImGui::SetCursorPosY(ImGui::GetCursorPosY() + dimension.y + 5);
 
   /*
-    ImGui::SetCursorPosY(ImGui::GetCursorPosY() + size.y + 5);
+
 
     ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));
     ImGui::BeginChild("##gpuProfiler", ImVec2(0, size.y));

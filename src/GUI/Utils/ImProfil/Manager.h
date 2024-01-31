@@ -11,7 +11,8 @@ namespace utl::improfil{
 class Manager{
 public:
   //Constructor / Destructor
-  Manager();
+  Manager(string name);
+  ~Manager();
 
 public:
   //Main function
@@ -28,8 +29,9 @@ private:
   utl::improfil::Graph* graph;
   vector<utl::improfil::Task> vec_task;
   vector<vec4> vec_color;
+  string name;
   int idx_color;
-    int max_nb_data;
+  int max_nb_data;
 };
 
 }

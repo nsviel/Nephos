@@ -13,6 +13,7 @@ class Graph
 public:
   //Constructor
   Graph();
+  ~Graph();
 
 public:
   //Main function

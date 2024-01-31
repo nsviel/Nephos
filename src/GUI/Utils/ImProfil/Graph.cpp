@@ -24,6 +24,7 @@ Graph::Graph(){
 
   //---------------------------
 }
+Graph::~Graph(){}
 
 //Main function
 void Graph::load_graph_data(const std::vector<utl::improfil::Task>& vec_task){
@@ -120,12 +121,12 @@ void Graph::rebuild_task_stats(size_t bar_end){
 }
 
 //Rendering
-void Graph::render_graph(ImVec2 size){
+void Graph::render_graph(ImVec2 dimension){
   const glm::vec2 widget_pose = glm::vec2(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y);
   //---------------------------
 
-  this->graph_dim.x = int(size.x) - legend_width;
-  this->graph_dim.y = int(size.y);
+  this->graph_dim.x = int(dimension.x) - legend_width;
+  this->graph_dim.y = int(dimension.y);
   this->graph_pose = widget_pose;
 
   this->legend_dim = glm::vec2(legend_width, graph_dim.y);

@@ -25,13 +25,17 @@ public:
   //Subfunction
   void device_model();
   void main_loop_fps();
-  void draw_graphs();
-
   void draw_graph();
+
+  //Profiler graphs
+  void draw_profiler_cpu(ImVec2 dimensions);
+  void draw_profiler_gpu(ImVec2 dimensions);
+  void draw_profiler_capture(ImVec2 dimensions);
 
 private:
   utl::improfil::Manager* cpu_profiler;
   utl::improfil::Manager* gpu_profiler;
+  utl::improfil::Manager* cap_profiler;
   vk::main::Info* vk_info;
 
   bool* show_window;
