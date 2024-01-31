@@ -12,7 +12,7 @@ class Graph
 {
 public:
   //Constructor
-  Graph(size_t frame_size);
+  Graph();
 
 public:
   //Main function

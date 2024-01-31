@@ -6,16 +6,16 @@
 namespace utl::gui::serie{
 
 //Constructor
-Graph::Graph(size_t frame_size){
+Graph::Graph(){
   //---------------------------
 
+  this->frame_size = 300;
   this->frame_max_task = 100;
   this->frames.resize(frame_size);
   for(auto &frame : frames){
     frame.tasks.reserve(frame_max_task);
   }
 
-  this->frame_size = frame_size;
   this->frame_width = 1;
   this->frame_spacing = 1;
   this->use_colored_legend_text = true;
@@ -39,11 +39,11 @@ void Graph::load_frame_data(const std::vector<utl::gui::serie::Graph_task>& task
         current_frame.tasks.push_back(tasks[taskIndex]);
       }
       else{
-        current_frame.tasks.back().endTime = tasks[taskIndex].endTime;
+        current_frame.tasks.back().end_time = tasks[taskIndex].end_time;
       }
     }
   }
-  current_frame.taskStatsIndex.resize(current_frame.tasks.size());
+  current_frame.task_stat_index.resize(current_frame.tasks.size());
 
   for (size_t taskIndex = 0; taskIndex < current_frame.tasks.size(); taskIndex++){
     auto &task = current_frame.tasks[taskIndex];
@@ -51,10 +51,10 @@ void Graph::load_frame_data(const std::vector<utl::gui::serie::Graph_task>& task
     if(it == taskNameToStatsIndex.end()){
       taskNameToStatsIndex[task.name] = taskStats.size();
       Task_stats taskStat;
-      taskStat.maxTime = -1.0;
+      taskStat.max_time = -1.0;
       taskStats.push_back(taskStat);
     }
-    current_frame.taskStatsIndex[taskIndex] = taskNameToStatsIndex[task.name];
+    current_frame.task_stat_index[taskIndex] = taskNameToStatsIndex[task.name];
   }
   current_frameIndex = (current_frameIndex + 1) % frames.size();
 
@@ -66,9 +66,9 @@ void Graph::rebuild_task_stats(size_t endFrame, size_t framesCount){
   //---------------------------
 
   for (auto &taskStat : taskStats){
-    taskStat.maxTime = -1.0f;
-    taskStat.priorityOrder = size_t(-1);
-    taskStat.onScreenIndex = size_t(-1);
+    taskStat.max_time = -1.0f;
+    taskStat.priority_order = size_t(-1);
+    taskStat.on_screen_index = size_t(-1);
   }
 
   for (size_t frameNumber = 0; frameNumber < framesCount; frameNumber++){
@@ -77,8 +77,8 @@ void Graph::rebuild_task_stats(size_t endFrame, size_t framesCount){
     for (size_t taskIndex = 0; taskIndex < frame.tasks.size(); taskIndex++)
     {
       auto &task = frame.tasks[taskIndex];
-      auto &stats = taskStats[frame.taskStatsIndex[taskIndex]];
-      stats.maxTime = std::max(stats.maxTime, task.endTime - task.startTime);
+      auto &stats = taskStats[frame.task_stat_index[taskIndex]];
+      stats.max_time = std::max(stats.max_time, task.end_time - task.start_time);
     }
   }
   std::vector<size_t> statPriorities;
@@ -87,10 +87,10 @@ void Graph::rebuild_task_stats(size_t endFrame, size_t framesCount){
     statPriorities[statIndex] = statIndex;
   }
 
-  std::sort(statPriorities.begin(), statPriorities.end(), [this](size_t left, size_t right) {return taskStats[left].maxTime > taskStats[right].maxTime; });
+  std::sort(statPriorities.begin(), statPriorities.end(), [this](size_t left, size_t right) {return taskStats[left].max_time > taskStats[right].max_time; });
   for (size_t statNumber = 0; statNumber < taskStats.size(); statNumber++){
     size_t statIndex = statPriorities[statNumber];
-    taskStats[statIndex].priorityOrder = statNumber;
+    taskStats[statIndex].priority_order = statNumber;
   }
 
   //---------------------------
@@ -126,9 +126,9 @@ void Graph::render_graph(ImDrawList *draw_list, glm::vec2 graph_pose, glm::vec2 
     glm::vec2 taskPos = framePos + glm::vec2(0.0f, 0.0f);
     auto &frame = frames[frameIndex];
     for (const auto& task : frame.tasks){
-      float taskStartHeight = (float(task.startTime) / maxFrameTime) * graph_size.y;
-      float taskEndHeight = (float(task.endTime) / maxFrameTime) * graph_size.y;
-      //taskMaxCosts[task.name] = std::max(taskMaxCosts[task.name], task.endTime - task.startTime);
+      float taskStartHeight = (float(task.start_time) / maxFrameTime) * graph_size.y;
+      float taskEndHeight = (float(task.end_time) / maxFrameTime) * graph_size.y;
+      //taskMaxCosts[task.name] = std::max(taskMaxCosts[task.name], task.end_time - task.start_time);
       if(abs(taskEndHeight - taskStartHeight) > heightThreshold){
         this->draw_rect(draw_list, taskPos + glm::vec2(0.0f, -taskStartHeight), taskPos + glm::vec2(frame_width, -taskEndHeight), task.color, true);
       }
@@ -153,33 +153,33 @@ void Graph::render_legend(ImDrawList *draw_list, glm::vec2 legendPos, glm::vec2 
   size_t maxTasksCount = size_t(legendSize.y / (markerRightRectHeight + markerRightRectSpacing));
 
   for (auto &taskStat : taskStats){
-    taskStat.onScreenIndex = size_t(-1);
+    taskStat.on_screen_index = size_t(-1);
   }
 
   size_t tasksToShow = std::min<size_t>(taskStats.size(), maxTasksCount);
   size_t tasksShownCount = 0;
   for(size_t taskIndex = 0; taskIndex < current_frame.tasks.size(); taskIndex++){
     utl::gui::serie::Graph_task& task = current_frame.tasks[taskIndex];
-    auto &stat = taskStats[current_frame.taskStatsIndex[taskIndex]];
+    auto &stat = taskStats[current_frame.task_stat_index[taskIndex]];
 
-    if(stat.priorityOrder >= tasksToShow){
+    if(stat.priority_order >= tasksToShow){
       continue;
     }
 
-    if(stat.onScreenIndex == size_t(-1)){
-      stat.onScreenIndex = tasksShownCount++;
+    if(stat.on_screen_index == size_t(-1)){
+      stat.on_screen_index = tasksShownCount++;
     }
     else{
       continue;
     }
 
-    float taskStartHeight = (float(task.startTime) / maxFrameTime) * legendSize.y;
-    float taskEndHeight = (float(task.endTime) / maxFrameTime) * legendSize.y;
+    float taskStartHeight = (float(task.start_time) / maxFrameTime) * legendSize.y;
+    float taskEndHeight = (float(task.end_time) / maxFrameTime) * legendSize.y;
     glm::vec2 markerLeftRectMin = legendPos + glm::vec2(markerLeftRectMargin, legendSize.y);
     glm::vec2 markerLeftRectMax = markerLeftRectMin + glm::vec2(markerLeftRectWidth, 0.0f);
     markerLeftRectMin.y -= taskStartHeight;
     markerLeftRectMax.y -= taskEndHeight;
-    glm::vec2 markerRightRectMin = legendPos + glm::vec2(markerLeftRectMargin + markerLeftRectWidth + markerMidWidth, legendSize.y - markerRigthRectMargin - (markerRightRectHeight + markerRightRectSpacing) * stat.onScreenIndex);
+    glm::vec2 markerRightRectMin = legendPos + glm::vec2(markerLeftRectMargin + markerLeftRectWidth + markerMidWidth, legendSize.y - markerRigthRectMargin - (markerRightRectHeight + markerRightRectSpacing) * stat.on_screen_index);
     glm::vec2 markerRightRectMax = markerRightRectMin + glm::vec2(markerRightRectWidth, -markerRightRectHeight);
 
     this->render_task_marker(draw_list, markerLeftRectMin, markerLeftRectMax, markerRightRectMin, markerRightRectMax, task.color);
@@ -211,7 +211,7 @@ void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, u
 
   uint32_t textColor = use_colored_legend_text ? task.color : utl::gui::serie::color::imguiText;
 
-  float taskTimeMs = float(task.endTime - task.startTime);
+  float taskTimeMs = float(task.end_time - task.start_time);
   std::ostringstream timeText;
   timeText.precision(2);
   timeText << std::fixed << std::string("[") << (taskTimeMs * 1000.0f);

@@ -19,13 +19,13 @@ struct Task{
 struct Graph_task{
   //---------------------------
 
-  double startTime;
-  double endTime;
+  double start_time;
+  double end_time;
   std::string name;
   uint32_t color;
 
   double GetLength(){
-    return endTime - startTime;
+    return end_time - start_time;
   }
 
   //---------------------------
@@ -33,13 +33,13 @@ struct Graph_task{
 
 struct Frame_data{
   std::vector<utl::gui::serie::Graph_task> tasks;
-  std::vector<size_t> taskStatsIndex;
+  std::vector<size_t> task_stat_index;
 };
 
 struct Task_stats{
-  double maxTime;
-  size_t priorityOrder;
-  size_t onScreenIndex;
+  double max_time;
+  size_t priority_order;
+  size_t on_screen_index;
 };
 
 }
