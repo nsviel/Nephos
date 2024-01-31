@@ -33,7 +33,7 @@ private:
   void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, uint32_t col, bool filled);
 
 private:
-  std::vector<Task_stats> task_stat;
+  std::vector<Task_stats> vec_task_stat;
   std::map<std::string, size_t> task_name_to_stat_index;
   std::vector<Frame_data> frames;
   size_t current_frame_index = 0;

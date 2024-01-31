@@ -32,6 +32,7 @@ private:
 
   vector<utl::gui::serie::Graph_task> vec_task;
   vector<uint32_t> vec_color;
+  vector<vec4> vec_color_f;
   int max_nb_data;
   int idx_color;
 };

@@ -32,14 +32,22 @@ struct Graph_task{
 };
 
 struct Frame_data{
+  //---------------------------
+
   std::vector<utl::gui::serie::Graph_task> tasks;
   std::vector<size_t> task_stat_index;
+
+  //---------------------------
 };
 
 struct Task_stats{
+  //---------------------------
+
   double max_time;
   size_t priority_order;
   size_t on_screen_index;
+
+  //---------------------------
 };
 
 }
