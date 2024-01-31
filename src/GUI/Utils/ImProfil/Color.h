@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 
 
-namespace utl::gui::serie::color{
+namespace utl::improfil::color{
   //---------------------------
 
   inline glm::vec4 viridis_0(68, 1, 84, 255);

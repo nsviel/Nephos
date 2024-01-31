@@ -4,7 +4,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace utl::gui::serie{
+namespace utl::improfil{
 
 struct Task{
   //---------------------------
@@ -20,7 +20,7 @@ struct Task{
 struct Bar{
   //---------------------------
 
-  std::vector<utl::gui::serie::Task> vec_task;
+  std::vector<utl::improfil::Task> vec_task;
   std::vector<size_t> task_stat_index;
 
   //---------------------------

@@ -4,21 +4,18 @@
 #include <imgui/implot/implot.h>
 
 
-namespace utl::gui::plot{
+namespace utl::implot{
 
-class Plotting
+class Style
 {
 public:
   //Constructor / Destructor
-  Plotting();
-  ~Plotting();
+  Style();
+  ~Style();
 
 public:
   //Main function
-  void plot_constant_in_time();
-
-  //Subfunction
-  void implot_style();
+  void make_style();
 
 private:
 };

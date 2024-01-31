@@ -1,15 +1,15 @@
-#include "Renderer.h"
+#include "Manager.h"
 
 #include <GUI/Utils/ImProfil/Namespace.h>
 
 
-namespace utl::gui::serie{
+namespace utl::improfil{
 
-Renderer::Renderer(){
+Manager::Manager(){
   //---------------------------
 
-  this->graph_0 = new utl::gui::serie::Graph();
-  this->graph_1 = new utl::gui::serie::Graph();
+  this->graph_0 = new utl::improfil::Graph();
+  this->graph_1 = new utl::improfil::Graph();
   this->idx_color = 0;
   this->max_nb_data = 100;
 
@@ -18,7 +18,7 @@ Renderer::Renderer(){
 }
 
 //Main function
-void Renderer::loop_overlay(ImVec2 image_pose){
+void Manager::loop_overlay(ImVec2 image_pose){
   //---------------------------
 /*
   renderer.graph_0->load_graph_data(vec_task);
@@ -26,29 +26,29 @@ void Renderer::loop_overlay(ImVec2 image_pose){
 */
   //---------------------------
 }
-void Renderer::loop_window(){
+void Manager::loop_window(){
   //---------------------------
-/*
-  renderer.graph_0->load_graph_data(vec_task);
-  renderer.graph_1->load_graph_data(vec_task);
+
+  this->graph_0->load_graph_data(vec_task);
+  this->graph_1->load_graph_data(vec_task);
   ImVec2 available_size = ImGui::GetContentRegionAvail();
   available_size.y = available_size.y / 2 - 2.5;
-  renderer.render_child(available_size);
-*/
+  this->render_child(available_size);
+
   //---------------------------
 }
-void Renderer::add_task(float time_beg, float time_end, string name){
+void Manager::add_task(float time_beg, float time_end, string name){
   //---------------------------
-/*
-  utl::gui::serie::Task task;
-  vec4 color = renderer.get_next_color();
+
+  utl::improfil::Task task;
+  vec4 color = get_next_color();
   task = {time_beg, time_end, name, color};
   vec_task.push_back(task);
   if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
-*/
+
   //---------------------------
 }
-void Renderer::render_child(ImVec2 size){
+void Manager::render_child(ImVec2 size){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));
@@ -67,7 +67,7 @@ void Renderer::render_child(ImVec2 size){
 
   //---------------------------
 }
-void Renderer::render_overlay(ImVec2 image_pose){
+void Manager::render_overlay(ImVec2 image_pose){
   //---------------------------
 
   ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
@@ -93,7 +93,7 @@ void Renderer::render_overlay(ImVec2 image_pose){
 
   //---------------------------
 }
-void Renderer::reset(){
+void Manager::reset(){
   //---------------------------
 
   this->vec_task.clear();
@@ -103,22 +103,22 @@ void Renderer::reset(){
 }
 
 //Subfunction
-void Renderer::init_color(){
+void Manager::init_color(){
   //---------------------------
 
   //Profiler bar colors in order of appearance
   vec_color.clear();
-  vec_color.push_back(utl::gui::serie::color::viridis_3);
-  vec_color.push_back(utl::gui::serie::color::viridis_4);
-  vec_color.push_back(utl::gui::serie::color::viridis_5);
-  vec_color.push_back(utl::gui::serie::color::viridis_6);
-  vec_color.push_back(utl::gui::serie::color::viridis_7);
-  vec_color.push_back(utl::gui::serie::color::viridis_8);
-  vec_color.push_back(utl::gui::serie::color::viridis_9);
+  vec_color.push_back(utl::improfil::color::viridis_3);
+  vec_color.push_back(utl::improfil::color::viridis_4);
+  vec_color.push_back(utl::improfil::color::viridis_5);
+  vec_color.push_back(utl::improfil::color::viridis_6);
+  vec_color.push_back(utl::improfil::color::viridis_7);
+  vec_color.push_back(utl::improfil::color::viridis_8);
+  vec_color.push_back(utl::improfil::color::viridis_9);
 
   //---------------------------
 }
-vec4 Renderer::get_next_color(){
+vec4 Manager::get_next_color(){
   vec4 color;
   //---------------------------
 

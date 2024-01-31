@@ -3,7 +3,7 @@
 #include <GUI/Utils/ImProfil/Namespace.h>
 
 
-namespace utl::gui::serie{
+namespace utl::improfil{
 
 //Constructor
 Graph::Graph(){
@@ -19,7 +19,7 @@ Graph::Graph(){
   this->max_time_ms = 30;
   this->max_bar_time = max_time_ms / 1000.0f;
 
-  for(utl::gui::serie::Bar& bar : vec_bar){
+  for(utl::improfil::Bar& bar : vec_bar){
     bar.vec_task.reserve(bar_max_nb_task);
   }
 
@@ -27,12 +27,12 @@ Graph::Graph(){
 }
 
 //Main function
-void Graph::load_graph_data(const std::vector<utl::gui::serie::Task>& vec_task){
+void Graph::load_graph_data(const std::vector<utl::improfil::Task>& vec_task){
   //update the graph with new task data
   //---------------------------
 
   // Get the current bar that needs to be updated and clear it
-  utl::gui::serie::Bar& current_bar = vec_bar[current_bar_idx];
+  utl::improfil::Bar& current_bar = vec_bar[current_bar_idx];
   current_bar.vec_task.resize(0);
 
   // Iterate through each task in the input data
@@ -66,7 +66,7 @@ void Graph::load_graph_data(const std::vector<utl::gui::serie::Task>& vec_task){
     // If the task name is not found, add it to the map and create a new task_stats entry
     if(it == map_task_to_stat_idx.end()){
       map_task_to_stat_idx[task.name] = vec_stat.size();
-      utl::gui::serie::Stat task_stats;
+      utl::improfil::Stat task_stats;
       task_stats.max_time = -1.0;
       vec_stat.push_back(task_stats);
     }
@@ -95,7 +95,7 @@ void Graph::rebuild_task_stats(size_t bar_end){
 
   for(size_t bar_number=0; bar_number<bar_max_nb; bar_number++){
     size_t bar_idx = (bar_end - 1 - bar_number + vec_bar.size()) % vec_bar.size();
-    utl::gui::serie::Bar& bar = vec_bar[bar_idx];
+    utl::improfil::Bar& bar = vec_bar[bar_idx];
 
     for(size_t task_index=0; task_index<bar.vec_task.size(); task_index++){
       auto &task = bar.vec_task[task_index];
@@ -165,7 +165,7 @@ void Graph::render_serie(ImDrawList *draw_list){
     }
 
     // Iterate through each task in the ith bar
-    utl::gui::serie::Bar& bar = vec_bar[bar_idx];
+    utl::improfil::Bar& bar = vec_bar[bar_idx];
     for (const auto& task : bar.vec_task){
       // Calculate the heights based on task start and end times
       float task_start_height = (float(task.time_beg) / max_bar_time) * scaling_factor;
@@ -206,7 +206,7 @@ void Graph::render_legend(ImDrawList *draw_list){
   float markerRightRectSpacing = 4.0f;
 
   //Initialization
-  utl::gui::serie::Bar& current_bar = vec_bar[(current_bar_idx - 1 + 2 * vec_bar.size()) % vec_bar.size()];
+  utl::improfil::Bar& current_bar = vec_bar[(current_bar_idx - 1 + 2 * vec_bar.size()) % vec_bar.size()];
   for(auto &task_stat : vec_stat){
     task_stat.on_screen_index = size_t(-1);
   }
@@ -218,7 +218,7 @@ void Graph::render_legend(ImDrawList *draw_list){
   // Iterate through vec_task in the current bar
   size_t cpt_task = 0;
   for(size_t task_index = 0; task_index < current_bar.vec_task.size(); task_index++){
-    utl::gui::serie::Task& task = current_bar.vec_task[task_index];
+    utl::improfil::Task& task = current_bar.vec_task[task_index];
     auto &stat = vec_stat[current_bar.task_stat_index[task_index]];
 
     // Skip vec_task beyond the maximum number to show
@@ -271,7 +271,7 @@ void Graph::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, 
 
   //---------------------------
 }
-void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Task task){
+void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::improfil::Task task){
   //---------------------------
 
   glm::vec2 text_margin = glm::vec2(5.0f, -3.0f);

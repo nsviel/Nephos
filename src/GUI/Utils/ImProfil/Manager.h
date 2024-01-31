@@ -3,15 +3,15 @@
 #include <GUI/Utils/ImProfil/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace utl::gui::serie{class Graph;}
+namespace utl::improfil{class Graph;}
 
 
-namespace utl::gui::serie{
+namespace utl::improfil{
 
-class Renderer{
+class Manager{
 public:
   //Constructor / Destructor
-  Renderer();
+  Manager();
 
 public:
   //Main function
@@ -27,10 +27,10 @@ public:
   void reset();
 
 public:
-  utl::gui::serie::Graph* graph_1;
-  utl::gui::serie::Graph* graph_0;
+  utl::improfil::Graph* graph_1;
+  utl::improfil::Graph* graph_0;
 private:
-  vector<utl::gui::serie::Task> vec_task;
+  vector<utl::improfil::Task> vec_task;
   vector<vec4> vec_color;
   int idx_color;
     int max_nb_data;

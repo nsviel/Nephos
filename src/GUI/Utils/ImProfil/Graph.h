@@ -3,10 +3,10 @@
 #include <GUI/Utils/ImProfil/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace utl::gui::serie{class Task;}
+namespace utl::improfil{class Task;}
 
 
-namespace utl::gui::serie{
+namespace utl::improfil{
 
 class Graph
 {
@@ -16,7 +16,7 @@ public:
 
 public:
   //Main function
-  void load_graph_data(const std::vector<utl::gui::serie::Task>& vec_task);
+  void load_graph_data(const std::vector<utl::improfil::Task>& vec_task);
   void rebuild_task_stats(size_t endFrame);
 
   //Rendering
@@ -26,7 +26,7 @@ public:
 
   //Subfunction
   void render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
-  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Task task);
+  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::improfil::Task task);
 
 private:
   //Primitives
@@ -38,7 +38,7 @@ private:
 private:
   std::vector<Stat> vec_stat;
   std::map<std::string, size_t> map_task_to_stat_idx;
-  std::vector<utl::gui::serie::Bar> vec_bar;
+  std::vector<utl::improfil::Bar> vec_bar;
   size_t current_bar_idx = 0;
   float max_bar_time = 1.0f / 30.0f;
   vec4 border_color;
