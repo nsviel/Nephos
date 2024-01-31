@@ -27,6 +27,7 @@ Node::Node(utl::Node* node_utility){
   this->add_node_panel(node_capture);
   this->add_node_panel(node_render);
   this->add_node_panel(node_gui);
+  this->add_node_panel(node_utility);
 
   //---------------------------
 }

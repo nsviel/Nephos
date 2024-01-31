@@ -8,6 +8,7 @@ namespace utl{
 
 //Constructor / Destructor
 Node::Node(Config* config){
+  utl::gui::Panel* prf_panel = new_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
   this->utl_window = new utl::element::Window(config);
