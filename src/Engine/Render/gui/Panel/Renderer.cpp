@@ -22,9 +22,7 @@ Renderer::Renderer(eng::render::Node* node_render){
   this->node_camera = node_engine->get_node_camera();
   this->vk_imgui = eng_vulkan->get_vk_imgui();
   this->vk_info = eng_vulkan->get_vk_info();
-  this->profiler = new utl::gui::plot::Profiler();
 
-  this->with_profiler_overlay = true;
   this->name = "Renderer";
 
   //---------------------------
@@ -50,7 +48,6 @@ void Renderer::design_panel(){
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   this->engine_texture();
-  //this->engine_overlay(image_pose);
 
   //---------------------------
 }
@@ -67,21 +64,6 @@ void Renderer::engine_texture(){
     node_operation->control();
     node_camera->control();
   }
-
-  //---------------------------
-}
-void Renderer::engine_overlay(ImVec2 image_pose){
-  /*if(!with_profiler_overlay) return;
-  //---------------------------
-
-  profiler->reset();
-  vector<vk::structure::Task>& vec_gpu_task = vk_info->get_profiler_data();
-  for(int i=0; i<vec_gpu_task.size(); i++){
-    vk::structure::Task task = vec_gpu_task[i];
-    profiler->add_task(task.time_beg, task.time_end, task.name);
-  }
-
-  profiler->loop_overlay(image_pose);*/
 
   //---------------------------
 }

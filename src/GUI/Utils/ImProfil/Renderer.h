@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI/Utils/TimeSerie/Namespace.h>
+#include <GUI/Utils/ImProfil/Namespace.h>
 #include <Utility/Specific/common.h>
 
 namespace utl::gui::serie{class Graph;}

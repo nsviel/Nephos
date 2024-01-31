@@ -5,15 +5,16 @@
 
 namespace utl::gui::plot{
 
-class Profiler
+class TimeSerie
 {
 public:
   //Constructor / Destructor
-  Profiler();
-  ~Profiler();
+  TimeSerie();
+  ~TimeSerie();
 
 public:
   //Main function
+  void plot_constant_in_time();
 
 private:
 };

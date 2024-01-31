@@ -5,7 +5,7 @@
 namespace eng{class Node;}
 namespace eng::render{class Node;}
 namespace vk::main{class Info;}
-namespace utl::gui::plot{class Profiler;}
+namespace utl::gui::plot{class TimeSerie;}
 
 
 namespace eng::render::gui{
@@ -30,7 +30,7 @@ public:
   void draw_graph();
 
 private:
-  utl::gui::plot::Profiler* profiler;
+  utl::gui::plot::TimeSerie* gui_plot;
   vk::main::Info* vk_info;
 
   bool* show_window;

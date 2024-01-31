@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-#include <GUI/Utils/TimeSerie/Namespace.h>
+#include <GUI/Utils/ImProfil/Namespace.h>
 
 
 namespace utl::gui::serie{

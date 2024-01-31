@@ -8,7 +8,6 @@ namespace eng::render{class Node;}
 namespace eng::cam{class Node;}
 namespace eng::ope{class Node;}
 namespace utl::element{class Window;}
-namespace utl::gui::plot{class Profiler;}
 
 
 namespace eng::render::gui{
@@ -27,20 +26,17 @@ public:
 
   //Subfunction
   void engine_texture();
-  void engine_overlay(ImVec2 image_pose);
   void resize();
 
 private:
   eng::cam::Node* node_camera;
   eng::ope::Node* node_operation;
   utl::element::Window* utl_window;
-  utl::gui::plot::Profiler* profiler;
   vk::main::Imgui* vk_imgui;
   vk::main::Info* vk_info;
 
   string name;
   bool has_been_initialized;
-  bool with_profiler_overlay;
 };
 
 }
