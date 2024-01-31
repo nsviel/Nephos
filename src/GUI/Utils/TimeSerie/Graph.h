@@ -36,8 +36,8 @@ private:
 private:
   std::vector<Task_stats> vec_task_stat;
   std::map<std::string, size_t> task_name_to_stat_index;
-  std::vector<Frame_data> frames;
-  size_t current_frame_index = 0;
+  std::vector<Frame_data> vec_frame;
+  size_t current_frame_idx = 0;
   vec4 border_color;
   vec2 graph_dim;
   vec2 graph_pose;
