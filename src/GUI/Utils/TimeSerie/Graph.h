@@ -23,6 +23,8 @@ public:
   void render_graph(ImVec2 size);
   void render_serie(ImDrawList *draw_list);
   void render_legend(ImDrawList *draw_list);
+
+  //Subfunction
   void render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
   void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Task task);
 
@@ -34,21 +36,21 @@ private:
   void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled);
 
 private:
-  std::vector<Task_stats> vec_task_stat;
-  std::map<std::string, size_t> task_name_to_stat_index;
+  std::vector<Stat> vec_stat;
+  std::map<std::string, size_t> map_task_to_stat_idx;
   std::vector<utl::gui::serie::Bar> vec_bar;
   size_t current_bar_idx = 0;
+  float max_bar_time = 1.0f / 30.0f;
   vec4 border_color;
   vec2 graph_dim;
   vec2 graph_pose;
   vec2 legend_dim;
   vec2 legend_pose;
+  int legend_width;
   int bar_max_nb;
   int bar_max_nb_task;
   int bar_width;
   int bar_gap;
-  float max_bar_time = 1.0f / 30.0f;
-  int legend_width;
 };
 
 }

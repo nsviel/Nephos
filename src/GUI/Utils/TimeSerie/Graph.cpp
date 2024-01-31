@@ -59,18 +59,18 @@ void Graph::load_graph_data(const std::vector<utl::gui::serie::Task>& vec_task){
     auto &task = current_bar.vec_task[task_index];
 
     // Check if the task name exists in the map
-    auto it = task_name_to_stat_index.find(task.name);
+    auto it = map_task_to_stat_idx.find(task.name);
 
     // If the task name is not found, add it to the map and create a new task_stats entry
-    if(it == task_name_to_stat_index.end()){
-      task_name_to_stat_index[task.name] = vec_task_stat.size();
-      Task_stats task_stats;
+    if(it == map_task_to_stat_idx.end()){
+      map_task_to_stat_idx[task.name] = vec_stat.size();
+      utl::gui::serie::Stat task_stats;
       task_stats.max_time = -1.0;
-      vec_task_stat.push_back(task_stats);
+      vec_stat.push_back(task_stats);
     }
 
     // Set the task_stat_index for the current task in the current bar
-    current_bar.task_stat_index[task_index] = task_name_to_stat_index[task.name];
+    current_bar.task_stat_index[task_index] = map_task_to_stat_idx[task.name];
   }
 
   // Move to the next bar in the circular buffer
@@ -85,7 +85,7 @@ void Graph::rebuild_task_stats(size_t bar_end){
   //---------------------------
 
   //Reset task
-  for(auto &task_stat : vec_task_stat){
+  for(auto &task_stat : vec_stat){
     task_stat.max_time = -1.0f;
     task_stat.priority_order = size_t(-1);
     task_stat.on_screen_index = size_t(-1);
@@ -97,22 +97,22 @@ void Graph::rebuild_task_stats(size_t bar_end){
 
     for(size_t task_index=0; task_index<bar.vec_task.size(); task_index++){
       auto &task = bar.vec_task[task_index];
-      auto &stats = vec_task_stat[bar.task_stat_index[task_index]];
+      auto &stats = vec_stat[bar.task_stat_index[task_index]];
       stats.max_time = std::max(stats.max_time, task.time_end - task.time_beg);
     }
   }
 
   //Reorder task according to their priority
   std::vector<size_t> stat_priority;
-  stat_priority.resize(vec_task_stat.size());
-  for(size_t stat_index = 0; stat_index < vec_task_stat.size(); stat_index++){
+  stat_priority.resize(vec_stat.size());
+  for(size_t stat_index = 0; stat_index < vec_stat.size(); stat_index++){
     stat_priority[stat_index] = stat_index;
   }
 
-  std::sort(stat_priority.begin(), stat_priority.end(), [this](size_t left, size_t right) {return vec_task_stat[left].max_time > vec_task_stat[right].max_time; });
-  for(size_t stat_number = 0; stat_number < vec_task_stat.size(); stat_number++){
+  std::sort(stat_priority.begin(), stat_priority.end(), [this](size_t left, size_t right) {return vec_stat[left].max_time > vec_stat[right].max_time; });
+  for(size_t stat_number = 0; stat_number < vec_stat.size(); stat_number++){
     size_t stat_index = stat_priority[stat_number];
-    vec_task_stat[stat_index].priority_order = stat_number;
+    vec_stat[stat_index].priority_order = stat_number;
   }
 
   //---------------------------
@@ -190,19 +190,19 @@ void Graph::render_legend(ImDrawList *draw_list){
 
   //Initialization
   utl::gui::serie::Bar& current_bar = vec_bar[(current_bar_idx - 1 + 2 * vec_bar.size()) % vec_bar.size()];
-  for(auto &task_stat : vec_task_stat){
+  for(auto &task_stat : vec_stat){
     task_stat.on_screen_index = size_t(-1);
   }
 
   //Find number of displayed vec_task
   size_t max_task = size_t(graph_dim.y / (markerRightRectHeight + markerRightRectSpacing));
-  size_t nb_task = std::min<size_t>(vec_task_stat.size(), max_task);
+  size_t nb_task = std::min<size_t>(vec_stat.size(), max_task);
 
   // Iterate through vec_task in the current bar
   size_t cpt_task = 0;
   for(size_t task_index = 0; task_index < current_bar.vec_task.size(); task_index++){
     utl::gui::serie::Task& task = current_bar.vec_task[task_index];
-    auto &stat = vec_task_stat[current_bar.task_stat_index[task_index]];
+    auto &stat = vec_stat[current_bar.task_stat_index[task_index]];
 
     // Skip vec_task beyond the maximum number to show
     if(stat.priority_order >= nb_task){
@@ -236,6 +236,8 @@ void Graph::render_legend(ImDrawList *draw_list){
 
   //---------------------------
 }
+
+//Subfunction
 void Graph::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 color){
   //---------------------------
 

@@ -26,7 +26,7 @@ struct Bar{
   //---------------------------
 };
 
-struct Task_stats{
+struct Stat{
   //---------------------------
 
   double max_time;
