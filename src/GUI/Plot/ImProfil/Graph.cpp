@@ -142,11 +142,19 @@ void Graph::render_serie(ImDrawList *draw_list){
   //---------------------------
 
   // Serie outline
-  this->draw_rect(draw_list, graph_pose, graph_pose + graph_dim, border_color, false);
+  //this->draw_rect(draw_list, graph_pose, graph_pose + graph_dim, border_color, false);
+  this->draw_zone(draw_list, 0, 16.7f, vec4(44, 150, 44, 30));
+  this->draw_line_at_time(draw_list, 16.7f, 1, vec4(44, 150, 44, 100));
+  this->draw_line_at_time(draw_list, 33.3f, 1, vec4(150, 150, 44, 150));
+  //this->draw_zone(draw_list, 16.7, 33.3f, vec4(150, 150, 44, 40));
 
-  // Line to see objective
-  this->draw_line_at_time(draw_list, 16.7f, vec4(44, 150, 44, 150));
-  this->draw_line_at_time(draw_list, 33.3f, vec4(150, 150, 44, 150));
+  //Tics
+  this->draw_line_at_time(draw_list, 5.0f, 1, vec4(255, 255, 255, 20));
+  this->draw_line_at_time(draw_list, 10.0f, 2, vec4(255, 255, 255, 20));
+  this->draw_line_at_time(draw_list, 15.0f, 1, vec4(255, 255, 255, 20));
+  this->draw_line_at_time(draw_list, 20.0f, 2, vec4(255, 255, 255, 20));
+  this->draw_line_at_time(draw_list, 25.0f, 1, vec4(255, 255, 255, 20));
+  this->draw_line_at_time(draw_list, 30.0f, 2, vec4(255, 255, 255, 20));
 
   float scaling_factor = graph_dim.y / max_time_s;
   float height_threshold = 1.0f;
@@ -277,7 +285,7 @@ void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, v
 }
 
 //Primitives
-void Graph::draw_line_at_time(ImDrawList *draw_list, float time_ms, vec4 color){
+void Graph::draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickness, vec4 color){
   //---------------------------
 
   float scaling_factor = graph_dim.y / max_time_s;
@@ -285,8 +293,26 @@ void Graph::draw_line_at_time(ImDrawList *draw_list, float time_ms, vec4 color){
   float line_time = time_ms / 1000.0f * scaling_factor;
   glm::vec2 line_beg;
   line_beg.x = graph_pose.x;
-  line_beg.y = graph_pose.y + graph_dim.y - line_time - 1;
+  line_beg.y = graph_pose.y + graph_dim.y - line_time - thickness;
   glm::vec2 line_end = graph_pose + glm::vec2(graph_dim.x, graph_dim.y - line_time);
+  this->draw_rect(draw_list, line_beg, line_end, color, true);
+
+  //---------------------------
+}
+void Graph::draw_zone(ImDrawList *draw_list, float time_beg_ms, float time_end_ms, vec4 color){
+  //---------------------------
+
+  float scaling_factor = graph_dim.y / max_time_s;
+
+  float line_time_beg = time_beg_ms / 1000.0f * scaling_factor;
+  float line_time_end = time_end_ms / 1000.0f * scaling_factor;
+  glm::vec2 line_beg;
+  line_beg.x = graph_pose.x;
+  line_beg.y = graph_pose.y + graph_dim.y - line_time_beg;
+  glm::vec2 line_end;
+  line_end.x = graph_pose.x + graph_dim.x;
+  line_end.y = graph_pose.y + graph_dim.y - line_time_end;
+
   this->draw_rect(draw_list, line_beg, line_end, color, true);
 
   //---------------------------

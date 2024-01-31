@@ -31,7 +31,8 @@ public:
 
 private:
   //Primitives
-  void draw_line_at_time(ImDrawList *draw_list, float time_ms, vec4 color);
+  void draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickness, vec4 color);
+  void draw_zone(ImDrawList *draw_list, float time_beg_ms, float time_end_ms, vec4 color);
   void draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, vec4 color, bool filled);
   void draw_text(ImDrawList *draw_list, glm::vec2 point, vec4 col, const char *text);
   void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled);
