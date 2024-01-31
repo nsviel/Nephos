@@ -31,7 +31,7 @@ struct Graph_task{
   //---------------------------
 };
 
-struct Frame_data{
+struct Frame{
   //---------------------------
 
   std::vector<utl::gui::serie::Graph_task> tasks;

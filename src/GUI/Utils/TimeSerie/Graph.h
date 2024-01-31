@@ -17,13 +17,13 @@ public:
 public:
   //Main function
   void load_frame_data(const std::vector<utl::gui::serie::Graph_task>& tasks);
-  void rebuild_task_stats(size_t endFrame, size_t framesCount);
+  void rebuild_task_stats(size_t endFrame);
 
   //Rendering
   void render_graph(ImVec2 size);
   void render_serie(ImDrawList *draw_list);
   void render_legend(ImDrawList *draw_list);
-  void render_task_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
+  void render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
   void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::gui::serie::Graph_task task);
 
 private:
@@ -36,7 +36,7 @@ private:
 private:
   std::vector<Task_stats> vec_task_stat;
   std::map<std::string, size_t> task_name_to_stat_index;
-  std::vector<Frame_data> vec_frame;
+  std::vector<utl::gui::serie::Frame> vec_frame;
   size_t current_frame_idx = 0;
   vec4 border_color;
   vec2 graph_dim;
