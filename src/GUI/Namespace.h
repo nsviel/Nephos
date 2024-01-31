@@ -5,3 +5,4 @@
 #include <GUI/Interface/Namespace.h>
 #include <GUI/Render/Namespace.h>
 #include <GUI/Utils/Namespace.h>
+#include <GUI/Plot/Namespace.h>

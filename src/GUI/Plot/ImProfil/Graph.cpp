@@ -1,6 +1,6 @@
 #include "Graph.h"
 
-#include <GUI/Utils/ImProfil/Namespace.h>
+#include <GUI/Plot/Namespace.h>
 
 
 namespace utl::improfil{

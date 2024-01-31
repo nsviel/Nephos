@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI/Utils/ImProfil/Namespace.h>
+#include <GUI/Plot/Namespace.h>
 #include <Utility/Specific/common.h>
 
 namespace utl::improfil{class Task;}
