@@ -10,6 +10,8 @@
 
 namespace utl::fps{
 
+typedef std::chrono::high_resolution_clock::time_point Timepoint;
+
 class Counter
 {
 public:
@@ -23,7 +25,7 @@ public:
   inline float get_fps() const { return mean_fps;}
 
 private:
-  std::chrono::time_point<std::chrono::steady_clock> last_time;
+  Timepoint last_time;
   std::queue<float> fps_queue;
   float mean_fps = 0;
 };
