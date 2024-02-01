@@ -1,6 +1,7 @@
 #include "Renderer.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::draw{
@@ -12,7 +13,6 @@ Renderer::Renderer(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_submit = new vk::command::Submit(struct_vulkan);
-  this->vk_profiler = new vk::instance::Profiler(struct_vulkan);
 
   //---------------------------
 }
@@ -20,7 +20,7 @@ Renderer::~Renderer(){}
 
 //Main function
 void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
-  vk_profiler->start();
+  struct_vulkan->profiler.task_start();
   //---------------------------
 
   this->start_renderpass(renderpass);
@@ -38,7 +38,7 @@ void Renderer::submit_command(vk::structure::Renderpass* renderpass){
 
   //---------------------------
   string name = "rp_" + renderpass->name;
-  vk_profiler->stop(name);
+  struct_vulkan->profiler.task_stop(name);
 }
 
 //Subfunction

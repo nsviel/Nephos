@@ -1,14 +1,12 @@
 #include "Profiler.h"
 
-#include <Engine/Namespace.h>
-#include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace eng::render{
+namespace utl::element{
 
 //Constructor / Destructor
-Profiler::Profiler(eng::render::Node* node_render){
+Profiler::Profiler(){
   //---------------------------
 
 
@@ -18,6 +16,15 @@ Profiler::Profiler(eng::render::Node* node_render){
 Profiler::~Profiler(){}
 
 //Main function
+void Profiler::clear(){
+  //---------------------------
+
+  this->vec_task.clear();
+
+  //---------------------------
+}
+
+//Task function
 void Profiler::task_start(){
   //---------------------------
 

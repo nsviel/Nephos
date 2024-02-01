@@ -11,7 +11,6 @@
 #include <Vulkan/VK_struct/Struct_device.h>
 #include <Vulkan/VK_struct/Struct_framebuffer.h>
 #include <Vulkan/VK_struct/Struct_parameter.h>
-#include <Vulkan/VK_struct/Struct_profiler.h>
 #include <Vulkan/VK_struct/Struct_instance.h>
 #include <Vulkan/VK_struct/Struct_pipeline.h>
 #include <Vulkan/VK_struct/Struct_pool.h>

@@ -25,7 +25,7 @@ private:
 
   std::chrono::time_point<std::chrono::system_clock> time_ref;
   vector<utl::type::Task> vec_task;
-  timer_time time_beg;
+  utl::timer::Timepoint task_beg;
 };
 
 }

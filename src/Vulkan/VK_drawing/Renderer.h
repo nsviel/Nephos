@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::instance{class Profiler;}
 namespace vk::command{class Command;}
 namespace vk::command{class Submit;}
 namespace vk::structure{class Vulkan;}
@@ -32,7 +31,6 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::command::Command* vk_command;
   vk::command::Submit* vk_submit;
-  vk::instance::Profiler* vk_profiler;
 };
 
 }

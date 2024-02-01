@@ -1,9 +1,9 @@
 #pragma once
 
-typedef decltype(std::chrono::high_resolution_clock::now()) timer_time;
-
 
 namespace utl::timer{
+
+typedef std::chrono::time_point<std::chrono::system_clock> Timepoint;
 
 class Chrono
 {
@@ -13,35 +13,35 @@ public:
   ~Chrono(){}
 
 public:
-  timer_time start_t(){
+  utl::timer::Timepoint start_t(){
     this->t1 = std::chrono::high_resolution_clock::now();
     return t1;
   }
-  timer_time get_time(){
-    timer_time time = std::chrono::high_resolution_clock::now();
+  utl::timer::Timepoint get_time(){
+    utl::timer::Timepoint time = std::chrono::high_resolution_clock::now();
     return time;
   }
-  float stop_s(timer_time t1){
+  float stop_s(utl::timer::Timepoint t1){
     this->t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
     return duration.count() / 1000.0f;
   }
-  float stop_ms(timer_time t1){
+  float stop_ms(utl::timer::Timepoint t1){
     this->t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
     return duration.count() / 1000.0f;
   }
-  float stop_us(timer_time t1){
+  float stop_us(utl::timer::Timepoint t1){
     this->t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1);
     return duration.count() / 1000.0f;
   }
-  float stop_ns(timer_time t1){
+  float stop_ns(utl::timer::Timepoint t1){
     this->t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1);
     return duration.count();
   }
-  double duration_s(timer_time t1, timer_time t2){
+  double duration_s(utl::timer::Timepoint t1, utl::timer::Timepoint t2){
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
     return duration.count() / 1000000.0f;
   }

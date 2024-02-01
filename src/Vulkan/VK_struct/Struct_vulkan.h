@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Namespace.h>
+#include <Utility/Namespace.h>
 #include <string>
 
 
@@ -15,11 +16,11 @@ struct Vulkan{
   vk::structure::Instance instance;
   vk::structure::Device device;
   vk::structure::Swapchain swapchain;
-  vk::structure::Profiler profiler;
   vk::structure::Data data;
   vk::structure::Parameter param;
   vk::structure::Pool pool;
   vk::structure::Synchro synchro;
+  utl::element::Profiler profiler;
 
   Vulkan(GLFWwindow* window){
     this->window.glfw_window = window;

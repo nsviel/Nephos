@@ -15,12 +15,8 @@ namespace vk::structure{
 struct Parameter{
   //---------------------------
 
-  //Time stuff
-  int fps_max = 120;
-  float fps_current = 0;
-  vector<utl::type::Task> vec_task;
-
   //Configuration stuff
+  int fps_max = 120;
   bool headless = false;
   bool dedicated_gpu = true;
   glm::vec4 background_color = glm::vec4(0.4f, 0.4f, 0.4f, 1);
