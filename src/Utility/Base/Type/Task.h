@@ -11,7 +11,8 @@ struct Task{
   double time_beg;
   double time_end;
   std::string name;
-
+  vec4 color;
+  
   //---------------------------
 };
 

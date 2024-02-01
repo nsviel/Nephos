@@ -6,21 +6,10 @@
 
 namespace utl::improfil{
 
-struct Task{
-  //---------------------------
-
-  double time_beg;
-  double time_end;
-  std::string name;
-  vec4 color;
-
-  //---------------------------
-};
-
 struct Bar{
   //---------------------------
 
-  std::vector<utl::improfil::Task> vec_task;
+  std::vector<utl::type::Task> vec_task;
   std::vector<size_t> task_stat_index;
 
   //---------------------------

@@ -9,7 +9,7 @@ namespace utl::improfil{
 Graph::Graph(){
   //---------------------------
 
-  this->bar_max_nb = 100;
+  this->bar_max_nb = 200;
   this->bar_width = 2;
   this->bar_gap = 1;
   this->bar_max_nb_task = 100;
@@ -27,7 +27,7 @@ Graph::Graph(){
 Graph::~Graph(){}
 
 //Main function
-void Graph::load_graph_data(const std::vector<utl::improfil::Task>& vec_task){
+void Graph::load_graph_data(const std::vector<utl::type::Task>& vec_task){
   //update the graph with new task data
   //---------------------------
 
@@ -213,7 +213,7 @@ void Graph::render_legend(ImDrawList *draw_list){
   // Iterate through vec_task in the current bar
   size_t cpt_task = 0;
   for(size_t task_index = 0; task_index < current_bar.vec_task.size(); task_index++){
-    utl::improfil::Task& task = current_bar.vec_task[task_index];
+    utl::type::Task& task = current_bar.vec_task[task_index];
     auto &stat = vec_stat[current_bar.task_stat_index[task_index]];
 
     // Skip vec_task beyond the maximum number to show
@@ -266,7 +266,7 @@ void Graph::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, 
 
   //---------------------------
 }
-void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::improfil::Task task){
+void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::type::Task task){
   //---------------------------
 
   glm::vec2 text_margin = glm::vec2(5.0f, -3.0f);

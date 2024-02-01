@@ -65,11 +65,19 @@ void Manager::render_child(ImVec2 dimension){
 void Manager::add_task(float time_beg, float time_end, string name){
   //---------------------------
 
-  utl::improfil::Task task;
+  utl::type::Task task;
   vec4 color = get_next_color();
   task = {time_beg, time_end, name, color};
   vec_task.push_back(task);
   if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
+
+  //---------------------------
+}
+void Manager::add_vec_task(vector<utl::type::Task>& vec_task){
+  //---------------------------
+
+  this->idx_color = 0;
+  this->vec_task = vec_task;
 
   //---------------------------
 }
