@@ -128,7 +128,7 @@ void Profiler::draw_profiler_cpu(ImVec2 dimensions){
   cpu_profiler->reset();
 
   //Assign tasks
-  utl::element::Profiler* profiler = node_engine->get_eng_profiler();
+  utl::element::Profiler* profiler = node_engine->get_cpu_profiler();
   vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
   for(int i=0; i<vec_gpu_task.size(); i++){
     utl::type::Task task = vec_gpu_task[i];
