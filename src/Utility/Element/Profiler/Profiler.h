@@ -15,8 +15,8 @@ public:
 
 public:
   //Main function
-  void clear();
-  void time_reference();
+  void loop_begin();
+  void loop_end();
 
   //Task function
   void task_begin(string name);
@@ -29,6 +29,7 @@ public:
 private:
   utl::timer::Chrono timer;
 
+  vector<utl::type::Task> vec_task_current;
   vector<utl::type::Task> vec_task;
   utl::timer::Timepoint reference;
   float fps;

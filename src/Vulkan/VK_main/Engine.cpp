@@ -84,7 +84,7 @@ void Engine::init_engine_headless(){
 
 //Main function
 void Engine::loop(){
-  struct_vulkan->profiler.time_reference();
+  struct_vulkan->profiler.loop_begin();
   //---------------------------
 
   vk_drawing->draw_frame();

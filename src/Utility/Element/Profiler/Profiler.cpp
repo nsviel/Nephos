@@ -16,18 +16,18 @@ Profiler::Profiler(){
 Profiler::~Profiler(){}
 
 //Main function
-void Profiler::clear(){
+void Profiler::loop_begin(){
   //---------------------------
 
-  this->vec_task.clear();
+  this->vec_task_current.clear();
+  this->reference = timer.get_time();
 
   //---------------------------
 }
-void Profiler::time_reference(){
+void Profiler::loop_end(){
   //---------------------------
 
-  this->clear();
-  this->reference = timer.get_time();
+  this->vec_task = vec_task_current;
 
   //---------------------------
 }
@@ -37,9 +37,9 @@ void Profiler::task_begin(string name){
   //---------------------------
 
   //Check if tasj already exists
-  if(vec_task.size() != 0){
-    for(int i=0; i<vec_task.size(); i++){
-      utl::type::Task& task = vec_task[i];
+  if(vec_task_current.size() != 0){
+    for(int i=0; i<vec_task_current.size(); i++){
+      utl::type::Task& task = vec_task_current[i];
 
       if(task.name == name){
         cout<<"[error] task already exists -> "<<name<<endl;
@@ -52,15 +52,15 @@ void Profiler::task_begin(string name){
   utl::timer::Timepoint task_beg = timer.get_time();
   double A = timer.duration_s(reference, task_beg);
   utl::type::Task task = {A, 0, name};
-  this->vec_task.push_back(task);
+  this->vec_task_current.push_back(task);
 
   //---------------------------
 }
 void Profiler::task_end(string name){
   //---------------------------
 
-  for(int i=0; i<vec_task.size(); i++){
-    utl::type::Task& task = vec_task[i];
+  for(int i=0; i<vec_task_current.size(); i++){
+    utl::type::Task& task = vec_task_current[i];
 
     if(task.name == name){
       utl::timer::Timepoint task_end = timer.get_time();

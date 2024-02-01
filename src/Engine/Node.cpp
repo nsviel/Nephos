@@ -59,7 +59,7 @@ void Node::loop(){
 
 }
 void Node::gui(){
-  cpu_profiler->task_begin("gui");
+  cpu_profiler->task_begin("eng::gui");
   //---------------------------
 
   node_scene->gui();
@@ -67,10 +67,10 @@ void Node::gui(){
   node_capture->gui();
   node_camera->gui();
   node_gui->gui();
-  node_operation->gui();
 
   //---------------------------
-  cpu_profiler->task_end("gui");
+  cpu_profiler->task_end("eng::gui");
+  node_operation->gui();
 }
 void Node::exit(){
   //---------------------------

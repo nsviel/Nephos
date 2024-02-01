@@ -46,10 +46,11 @@ void App_main::loop(){
 
   auto start_time = std::chrono::steady_clock::now();
   while(config->run_app){
-    cpu_profiler->time_reference();
+    cpu_profiler->loop_begin();
     node_engine->loop();
     node_utility->loop();
     node_gui->loop();
+    cpu_profiler->loop_end();
   }
   node_engine->wait();
   node_gui->wait();
