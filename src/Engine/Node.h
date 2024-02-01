@@ -11,6 +11,7 @@ namespace eng::render{class Node;}
 namespace eng::capture{class Node;}
 namespace eng::ope{class Node;}
 namespace eng::gui{class Node;}
+namespace eng::render::gui{class Profiler;}
 
 
 namespace eng{
@@ -48,6 +49,7 @@ private:
   eng::render::Node* node_render;
   eng::ope::Node* node_operation;
   eng::gui::Node* node_gui;
+  eng::render::gui::Profiler* gui_profiler;
 };
 
 }

@@ -9,10 +9,9 @@
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Profiler::Profiler(eng::render::Node* node_render, bool* show_window){
+Profiler::Profiler(eng::Node* engine, bool* show_window){
   //---------------------------
 
-  eng::Node* engine = node_render->get_node_engine();
   vk::Node* eng_vulkan = engine->get_eng_vulkan();
 
   this->cpu_profiler = new utl::improfil::Manager("cpu");

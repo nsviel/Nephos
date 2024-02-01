@@ -7,3 +7,4 @@
 #include <Engine/Operation/Namespace.h>
 #include <Engine/Render/Namespace.h>
 #include <Engine/gui/Namespace.h>
+#include <Engine/Profiler/Namespace.h>

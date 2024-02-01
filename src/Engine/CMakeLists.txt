@@ -12,6 +12,7 @@ file(GLOB_RECURSE ALL_SOURCES
   Capture/Node.cpp
   Scene/*.cpp
   Shader/*.cpp
+  Profiler/*cpp
   gui/*cpp
   Node.cpp
 )
