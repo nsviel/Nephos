@@ -33,14 +33,14 @@ void Profiler::time_reference(){
 }
 
 //Task function
-void Profiler::task_start(){
+void Profiler::task_begin(){
   //---------------------------
 
   this->task_beg = timer.get_time();
 
   //---------------------------
 }
-void Profiler::task_stop(string name){
+void Profiler::task_end(string name){
   //---------------------------
 
   utl::timer::Timepoint task_end = timer.get_time();

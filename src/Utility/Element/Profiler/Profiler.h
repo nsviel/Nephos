@@ -19,8 +19,8 @@ public:
   void time_reference();
 
   //Task function
-  void task_start();
-  void task_stop(string name);
+  void task_begin();
+  void task_end(string name);
 
   inline vector<utl::type::Task>& get_vec_task(){return vec_task;}
   inline float get_fps(){return fps;}

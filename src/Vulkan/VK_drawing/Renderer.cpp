@@ -20,7 +20,7 @@ Renderer::~Renderer(){}
 
 //Main function
 void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
-  struct_vulkan->profiler.task_start();
+  struct_vulkan->profiler.task_begin();
   //---------------------------
 
   this->start_renderpass(renderpass);
@@ -38,7 +38,7 @@ void Renderer::submit_command(vk::structure::Renderpass* renderpass){
 
   //---------------------------
   string name = "rp_" + renderpass->name;
-  struct_vulkan->profiler.task_stop(name);
+  struct_vulkan->profiler.task_end(name);
 }
 
 //Subfunction

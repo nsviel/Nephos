@@ -9,11 +9,12 @@
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Profiler::Profiler(eng::Node* engine, bool* show_window){
+Profiler::Profiler(eng::Node* node_engine, bool* show_window){
   //---------------------------
 
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
+  vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
 
+  this->node_engine = node_engine;
   this->cpu_profiler = new utl::improfil::Manager("cpu");
   this->gpu_profiler = new utl::improfil::Manager("gpu");
   this->cap_profiler = new utl::improfil::Manager("capture");
@@ -67,7 +68,7 @@ void Profiler::main_info(){
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Loop"); ImGui::TableNextColumn();
-    utl::element::Profiler* profiler = vk_info->get_profiler();
+    utl::element::Profiler* profiler = vk_info->get_gpu_profiler();
     ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / profiler->get_fps());
     ImGui::SameLine();
     ImGui::Text(" ms/frame [");
@@ -127,7 +128,8 @@ void Profiler::draw_profiler_cpu(ImVec2 dimensions){
   cpu_profiler->reset();
 
   //Assign tasks
-  vector<utl::type::Task>& vec_gpu_task = vk_info->get_profiler_data();
+  utl::element::Profiler* profiler = node_engine->get_eng_profiler();
+  vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
   for(int i=0; i<vec_gpu_task.size(); i++){
     utl::type::Task task = vec_gpu_task[i];
     cpu_profiler->add_task(task.time_beg, task.time_end, task.name);
@@ -145,7 +147,8 @@ void Profiler::draw_profiler_gpu(ImVec2 dimensions){
   gpu_profiler->reset();
 
   //Assign tasks
-  vector<utl::type::Task>& vec_gpu_task = vk_info->get_profiler_data();
+  utl::element::Profiler* profiler = vk_info->get_gpu_profiler();
+  vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
   for(int i=0; i<vec_gpu_task.size(); i++){
     utl::type::Task task = vec_gpu_task[i];
     gpu_profiler->add_task(task.time_beg, task.time_end, task.name);
@@ -163,7 +166,8 @@ void Profiler::draw_profiler_capture(ImVec2 dimensions){
   cap_profiler->reset();
 
   //Assign tasks
-  vector<utl::type::Task>& vec_gpu_task = vk_info->get_profiler_data();
+  utl::element::Profiler* profiler = vk_info->get_gpu_profiler();
+  vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
   for(int i=0; i<vec_gpu_task.size(); i++){
     utl::type::Task task = vec_gpu_task[i];
     cap_profiler->add_task(task.time_beg, task.time_end, task.name);

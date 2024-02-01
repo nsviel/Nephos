@@ -14,6 +14,7 @@ Node::Node(utl::Node* node_utility){
   utl::element::Window* utl_window = node_utility->get_utl_window();
 
   this->node_utility = node_utility;
+  this->eng_profiler = new utl::element::Profiler();
   this->eng_vulkan = new vk::Node(utl_window->get_window());
   this->node_camera = new eng::cam::Node(this);
   this->node_scene = new eng::scene::Node(this);
@@ -45,6 +46,8 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
+  eng_profiler->time_reference();
+  eng_profiler->task_begin();
   //---------------------------
 
   node_camera->loop();
@@ -53,6 +56,7 @@ void Node::loop(){
   node_capture->loop();
 
   //---------------------------
+  eng_profiler->task_end("engine");
 }
 void Node::gui(){
   //---------------------------

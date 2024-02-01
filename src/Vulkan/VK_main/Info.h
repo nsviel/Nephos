@@ -19,10 +19,9 @@ public:
 public:
   //Main functions
   string get_gpu_name();
-  utl::element::Profiler* get_profiler();
+  utl::element::Profiler* get_gpu_profiler();
   int* get_fps_max();
   vec4* get_color_background();
-  vector<utl::type::Task>& get_profiler_data();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

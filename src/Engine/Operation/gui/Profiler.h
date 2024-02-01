@@ -32,6 +32,7 @@ public:
   void draw_profiler_capture(ImVec2 dimensions);
 
 private:
+  eng::Node* node_engine;
   utl::improfil::Manager* cpu_profiler;
   utl::improfil::Manager* gpu_profiler;
   utl::improfil::Manager* cap_profiler;

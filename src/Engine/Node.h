@@ -5,6 +5,7 @@
 class Param;
 namespace vk{class Node;}
 namespace utl{class Node;}
+namespace utl::element{class Profiler;}
 namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::render{class Node;}
@@ -33,6 +34,7 @@ public:
 
   inline utl::Node* get_node_utility(){return node_utility;}
   inline vk::Node* get_eng_vulkan(){return eng_vulkan;}
+  inline utl::element::Profiler* get_eng_profiler(){return eng_profiler;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::render::Node* get_node_render(){return node_render;}
@@ -42,6 +44,7 @@ public:
 private:
   vk::Node* eng_vulkan;
   utl::Node* node_utility;
+  utl::element::Profiler* eng_profiler;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;
