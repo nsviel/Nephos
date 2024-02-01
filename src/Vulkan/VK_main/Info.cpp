@@ -1,6 +1,7 @@
 #include "Info.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::main{
@@ -19,8 +20,8 @@ Info::~Info(){}
 string Info::get_gpu_name(){
   return struct_vulkan->device.physical_device.name;
 }
-float Info::get_fps(){
-  return struct_vulkan->profiler.get_fps();
+utl::element::Profiler* Info::get_profiler(){
+  return &struct_vulkan->profiler;
 }
 int* Info::get_fps_max(){
   return &struct_vulkan->param.fps_max;

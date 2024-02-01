@@ -43,8 +43,8 @@ void Menu::menu_option(){
     Render* gui_render = gui->get_rnd_tab();
     vk::Node* vulkan = gui_render->get_vulkan();
     vk::main::Info* vk_info = vulkan->get_vk_info();
-    float fps = vk_info->get_fps();
-    ImGui::Text("%.2f", fps);
+    utl::element::Profiler* profiler = vk_info->get_profiler();
+    ImGui::Text("%.2f", profiler->get_fps());
     ImGui::EndMenu();
   }
 

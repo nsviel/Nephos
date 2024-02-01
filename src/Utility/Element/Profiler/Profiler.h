@@ -24,7 +24,7 @@ public:
 
   inline vector<utl::type::Task>& get_vec_task(){return vec_task;}
   inline float get_fps(){return fps;}
-  inline void set_fps(float value){this->fps = fps;}
+  inline void set_fps(float value){this->fps = value;}
 
 private:
   utl::timer::Chrono timer;

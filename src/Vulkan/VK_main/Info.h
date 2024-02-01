@@ -4,6 +4,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Task;}
+namespace utl::element{class Profiler;}
 
 
 namespace vk::main{
@@ -18,7 +19,7 @@ public:
 public:
   //Main functions
   string get_gpu_name();
-  float get_fps();
+  utl::element::Profiler* get_profiler();
   int* get_fps_max();
   vec4* get_color_background();
   vector<utl::type::Task>& get_profiler_data();

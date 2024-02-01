@@ -67,11 +67,12 @@ void Profiler::main_info(){
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Loop"); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / vk_info->get_fps());
+    utl::element::Profiler* profiler = vk_info->get_profiler();
+    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / profiler->get_fps());
     ImGui::SameLine();
     ImGui::Text(" ms/frame [");
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", vk_info->get_fps()); //io.Framerate
+    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", profiler->get_fps()); //io.Framerate
     ImGui::SameLine();
     ImGui::Text(" FPS ]");
 
