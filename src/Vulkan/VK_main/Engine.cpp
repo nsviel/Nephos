@@ -84,14 +84,14 @@ void Engine::init_engine_headless(){
 
 //Main function
 void Engine::loop(){
-  struct_vulkan->profiler.time_ref = std::chrono::system_clock::now();
-  struct_vulkan->profiler.clear();
+  struct_vulkan->profiler.time_reference();
   //---------------------------
 
   vk_drawing->draw_frame();
 
   //---------------------------
-  struct_vulkan->profiler.set_fps(fps_counter->update());
+  float fps = fps_counter->update();
+  struct_vulkan->profiler.set_fps(fps);
 }
 void Engine::clean(){
   //---------------------------

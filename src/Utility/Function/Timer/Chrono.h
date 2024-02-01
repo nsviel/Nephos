@@ -3,7 +3,7 @@
 
 namespace utl::timer{
 
-typedef std::chrono::time_point<std::chrono::system_clock> Timepoint;
+typedef std::chrono::high_resolution_clock::time_point Timepoint;
 
 class Chrono
 {
@@ -56,8 +56,8 @@ public:
   }
 
 private:
-  std::chrono::high_resolution_clock::time_point t1;
-  std::chrono::high_resolution_clock::time_point t2;
+  Timepoint t1;
+  Timepoint t2;
 };
 
 }

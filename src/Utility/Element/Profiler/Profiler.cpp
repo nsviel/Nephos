@@ -23,6 +23,14 @@ void Profiler::clear(){
 
   //---------------------------
 }
+void Profiler::time_reference(){
+  //---------------------------
+
+  this->clear();
+  this->reference = timer.get_time();
+
+  //---------------------------
+}
 
 //Task function
 void Profiler::task_start(){
@@ -36,8 +44,8 @@ void Profiler::task_stop(string name){
   //---------------------------
 
   utl::timer::Timepoint task_end = timer.get_time();
-  double A = timer.duration_s(time_ref, task_beg);
-  double B = timer.duration_s(time_ref, task_end);
+  double A = timer.duration_s(reference, task_beg);
+  double B = timer.duration_s(reference, task_end);
   utl::type::Task task = {A, B, name};
   this->vec_task.push_back(task);
 
