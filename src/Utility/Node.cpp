@@ -7,11 +7,12 @@
 namespace utl{
 
 //Constructor / Destructor
-Node::Node(Config* config){
+Node::Node(Config* config, utl::element::Profiler* cpu_profiler){
   utl::gui::Panel* prf_panel = new_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
   this->utl_window = new utl::element::Window(config);
+  this->cpu_profiler = cpu_profiler;
 
   //---------------------------
   this->init();

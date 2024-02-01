@@ -1,6 +1,7 @@
 #pragma once
 
 class Config;
+namespace utl::element{class Profiler;}
 namespace eng{class Node;}
 namespace utl{class Node;}
 namespace gui{class Node;}
@@ -24,6 +25,7 @@ public:
 
 private:
   Config* config;
+  utl::element::Profiler* cpu_profiler;
   eng::Node* node_engine;
   utl::Node* node_utility;
   gui::Node* node_gui;

@@ -4,6 +4,7 @@
 
 class Config;
 namespace utl::element{class Window;}
+namespace utl::element{class Profiler;}
 
 
 namespace utl{
@@ -12,7 +13,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(Config* config);
+  Node(Config* config, utl::element::Profiler* cpu_profiler);
   ~Node();
 
 public:
@@ -26,6 +27,7 @@ public:
 
 private:
   utl::element::Window* utl_window;
+  utl::element::Profiler* cpu_profiler;
 };
 
 }

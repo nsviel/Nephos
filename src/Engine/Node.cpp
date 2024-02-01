@@ -56,9 +56,11 @@ void Node::loop(){
   node_capture->loop();
 
   //---------------------------
-  cpu_profiler->task_end("engine");
+  cpu_profiler->task_end("operation");
+
 }
 void Node::gui(){
+  cpu_profiler->task_begin();
   //---------------------------
 
   node_operation->gui();
@@ -69,6 +71,7 @@ void Node::gui(){
   node_gui->gui();
 
   //---------------------------
+  cpu_profiler->task_end("gui");
 }
 void Node::exit(){
   //---------------------------
