@@ -56,8 +56,8 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
 
   //Playback thread
   k4a::capture capture;
-  sensor->cap_profiler->time_reference();
   while(thread_running){
+    sensor->cap_profiler->time_reference();
     sensor->cap_profiler->task_begin("capture");
     fps_control->start();
 

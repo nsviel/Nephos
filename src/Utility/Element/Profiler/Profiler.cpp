@@ -42,7 +42,7 @@ void Profiler::task_begin(string name){
       utl::type::Task& task = vec_task[i];
 
       if(task.name == name){
-        cout<<"[error] task already exists"<<endl;
+        cout<<"[error] task already exists -> "<<name<<endl;
         return;
       }
     }
