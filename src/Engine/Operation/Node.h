@@ -4,6 +4,7 @@
 
 namespace eng{class Node;}
 namespace eng::ope::gui{class Control;}
+namespace eng::render::gui{class Profiler;}
 
 
 namespace eng::ope{
@@ -17,12 +18,13 @@ public:
 
 public:
   void init();
-  void loop();
+  void gui();
   void control();
   void reset();
 
 private:
   eng::ope::gui::Control* ope_control;
+  eng::render::gui::Profiler* gui_profiler;
 };
 
 }

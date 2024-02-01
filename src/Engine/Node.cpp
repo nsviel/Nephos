@@ -9,7 +9,6 @@ namespace eng{
 
 //Constructor / Destructor
 Node::Node(utl::Node* node_utility){
-  utl::gui::Panel* prf_panel = new_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
   utl::element::Window* utl_window = node_utility->get_utl_window();
@@ -22,8 +21,8 @@ Node::Node(utl::Node* node_utility){
   this->node_render = new eng::render::Node(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_gui = new eng::gui::Node(this);
-  this->gui_profiler = new eng::render::gui::Profiler(this, &prf_panel->is_open);
 
+  this->add_node_panel(node_operation);
   this->add_node_panel(node_camera);
   this->add_node_panel(node_scene);
   this->add_node_panel(node_capture);
@@ -64,8 +63,7 @@ void Node::gui(){
   node_capture->gui();
   node_camera->gui();
   node_gui->gui();
-  gui_profiler->run_panel();
-  
+
   //---------------------------
 }
 void Node::exit(){
