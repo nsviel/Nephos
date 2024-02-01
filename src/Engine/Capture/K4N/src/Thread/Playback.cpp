@@ -56,8 +56,9 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
 
   //Playback thread
   k4a::capture capture;
-  //sensor->param.transformation = k4a::transformation(sensor->param.calibration);
+  sensor->cap_profiler->time_reference();
   while(thread_running){
+    sensor->cap_profiler->task_begin();
     fps_control->start();
 
     playback.get_next_capture(&capture);
@@ -73,6 +74,7 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
     fps_control->stop();
     fps_control->set_fps_max(sensor->param.fps.query);
     sensor->param.fps.current = fps_counter->update();
+    sensor->cap_profiler->task_end("capture");
   }
 
   playback.close();

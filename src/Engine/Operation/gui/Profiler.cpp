@@ -162,11 +162,20 @@ void Profiler::draw_profiler_gpu(ImVec2 dimensions){
 void Profiler::draw_profiler_capture(ImVec2 dimensions){
   //---------------------------
 
+  eng::capture::Node* node_capture = node_engine->get_node_capture();
+  eng::k4n::Node* node_k4n = node_capture->get_node_k4n();
+  eng::k4n::dev::Swarm* k4n_swarm = node_k4n->get_k4n_swarm();
+  eng::k4n::dev::Master* master = k4n_swarm->get_selected_master();
+
+
+  if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(master->selected_entity)){
+
+
   //Reset graph
   cap_profiler->reset();
 
   //Assign tasks
-  utl::element::Profiler* profiler = vk_info->get_gpu_profiler();
+  utl::element::Profiler* profiler = sensor->cap_profiler;
   vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
   for(int i=0; i<vec_gpu_task.size(); i++){
     utl::type::Task task = vec_gpu_task[i];
@@ -175,7 +184,7 @@ void Profiler::draw_profiler_capture(ImVec2 dimensions){
 
   //Render graph
   cap_profiler->render_child(dimensions);
-
+}
   //---------------------------
 }
 

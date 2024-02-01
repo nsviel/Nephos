@@ -18,6 +18,7 @@ namespace eng::k4n::structure{class Depth;}
 namespace eng::k4n::structure{class Infrared;}
 namespace eng::k4n::structure{class IMU;}
 namespace eng::ope{class Transformation;}
+namespace utl::element{class Profiler;}
 
 
 namespace eng::k4n::dev{
@@ -52,6 +53,7 @@ public:
 
 public:
   utl::entity::Object* object;
+  utl::element::Profiler* cap_profiler;
   eng::k4n::dev::Master* master;
 
   eng::k4n::structure::Param param;
