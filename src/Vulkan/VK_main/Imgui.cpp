@@ -86,6 +86,22 @@ void Imgui::clean(){
 
   //---------------------------
 }
+void Imgui::render(){
+  //---------------------------
+
+  ImGui::Render();
+
+  //---------------------------
+}
+void Imgui::new_frame(){
+  //---------------------------
+
+  ImGui_ImplVulkan_NewFrame();
+  ImGui_ImplGlfw_NewFrame();
+  ImGui::NewFrame();
+
+  //---------------------------
+}
 
 ImTextureID Imgui::rendered_texture(){
   static ImTextureID texture = 0;

@@ -26,6 +26,8 @@ public:
   void draw(VkCommandBuffer& command_buffer);
   void load_font();
   void clean();
+  void render();
+  void new_frame();
 
   ImTextureID rendered_texture();
   bool check_window_resize();

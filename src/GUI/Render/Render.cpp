@@ -37,7 +37,7 @@ void Render::init(){
 void Render::loop(){
   //---------------------------
 
-  ImGui::Render();
+  vk_imgui->render();
 
   //---------------------------
 }
@@ -51,9 +51,7 @@ void Render::clean(){
 void Render::new_frame(){
   //---------------------------
 
-  ImGui_ImplVulkan_NewFrame();
-  ImGui_ImplGlfw_NewFrame();
-  ImGui::NewFrame();
+  vk_imgui->new_frame();
 
   //---------------------------
 }
