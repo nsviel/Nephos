@@ -73,11 +73,15 @@ void Manager::add_task(float time_beg, float time_end, string name){
 
   //---------------------------
 }
-void Manager::add_vec_task(vector<utl::type::Task>& vec_task){
+void Manager::add_vec_task(vector<utl::type::Task> vec_task){
   //---------------------------
 
-  this->idx_color = 0;
   this->vec_task = vec_task;
+
+  for(int i=0; i<vec_task.size(); i++){
+    utl::type::Task& task = vec_task[i];
+    task.color = get_next_color();
+  }
 
   //---------------------------
 }

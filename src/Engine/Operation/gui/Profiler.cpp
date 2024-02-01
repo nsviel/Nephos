@@ -169,23 +169,21 @@ void Profiler::draw_profiler_capture(ImVec2 dimensions){
 
 
   if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(master->selected_entity)){
+    //Reset graph
+    cap_profiler->reset();
 
-  //Reset graph
+    //Assign tasks
+    utl::element::Profiler* profiler = sensor->cap_profiler;
+    vector<utl::type::Task>& vec_task = profiler->get_vec_task();
+    for(int i=0; i<vec_task.size(); i++){
+      utl::type::Task task = vec_task[i];
+      cap_profiler->add_task(task.time_beg, task.time_end, task.name);
+    }
 
-
-  //Assign tasks
-  utl::element::Profiler* profiler = sensor->cap_profiler;
-  cap_profiler->add_vec_task(profiler->get_vec_task());
-  /*
-  vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
-  for(int i=0; i<vec_gpu_task.size(); i++){
-    utl::type::Task task = vec_gpu_task[i];
-    cap_profiler->add_task(task.time_beg, task.time_end, task.name);
+    //Render graph
+    cap_profiler->render_child(dimensions);
   }
-*/
-  //Render graph
-  cap_profiler->render_child(dimensions);
-}
+
   //---------------------------
 }
 

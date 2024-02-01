@@ -15,6 +15,9 @@ public:
 
 public:
   //Main function
+  void clear();
+
+  //Loop function
   void loop_begin();
   void loop_end();
 

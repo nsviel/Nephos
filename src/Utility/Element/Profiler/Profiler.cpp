@@ -16,6 +16,16 @@ Profiler::Profiler(){
 Profiler::~Profiler(){}
 
 //Main function
+void Profiler::clear(){
+  //---------------------------
+
+  this->vec_task_current.clear();
+  this->vec_task.clear();
+
+  //---------------------------
+}
+
+//Loop function
 void Profiler::loop_begin(){
   //---------------------------
 
@@ -68,8 +78,6 @@ void Profiler::task_end(string name){
       return;
     }
   }
-
-  cout<<"[error] task didn't starts"<<endl;
 
   //---------------------------
 }

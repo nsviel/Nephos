@@ -107,11 +107,13 @@ void Playback::stop_thread(){
 
 //Subfunction
 void Playback::manage_pause(eng::k4n::dev::Sensor* sensor){
+  utl::element::Profiler* profiler = sensor->cap_profiler;
   //---------------------------
 
   //If pause, wait until end pause or end thread
   bool& is_paused = sensor->master->player.pause;
   if(is_paused || !sensor->master->player.play){
+    profiler->clear();
     while(is_paused && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
