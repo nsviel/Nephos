@@ -21,7 +21,7 @@ public:
   float get_fps();
   int* get_fps_max();
   vec4* get_color_background();
-  vector<vk::structure::Task>& get_profiler_data();
+  vector<utl::type::Task>& get_profiler_data();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

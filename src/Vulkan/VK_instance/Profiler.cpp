@@ -29,8 +29,8 @@ void Profiler::stop(string name){
   timer_time time_end = timer.get_time();
   double A = timer.duration_s(struct_vulkan->profiler.time_ref, time_beg);
   double B = timer.duration_s(struct_vulkan->profiler.time_ref, time_end);
-  vk::structure::Task task = {A, B, name};
-  struct_vulkan->profiler.vec_task.push_back(task);
+  utl::type::Task task = {A, B, name};
+  struct_vulkan->param.vec_task.push_back(task);
 
   //---------------------------
 }

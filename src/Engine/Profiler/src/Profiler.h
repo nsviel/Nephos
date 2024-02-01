@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Struct_profiler.h"
 #include <Utility/Specific/common.h>
 #include <Utility/Function/Timer/Chrono.h>
 
@@ -25,7 +24,7 @@ private:
   utl::timer::Chrono timer;
 
   std::chrono::time_point<std::chrono::system_clock> time_ref;
-  vector<eng::profiler::Task> vec_task;
+  vector<utl::type::Task> vec_task;
   timer_time time_beg;
 };
 

@@ -126,9 +126,9 @@ void Profiler::draw_profiler_cpu(ImVec2 dimensions){
   cpu_profiler->reset();
 
   //Assign tasks
-  vector<vk::structure::Task>& vec_gpu_task = vk_info->get_profiler_data();
+  vector<utl::type::Task>& vec_gpu_task = vk_info->get_profiler_data();
   for(int i=0; i<vec_gpu_task.size(); i++){
-    vk::structure::Task task = vec_gpu_task[i];
+    utl::type::Task task = vec_gpu_task[i];
     cpu_profiler->add_task(task.time_beg, task.time_end, task.name);
   }
 
@@ -144,9 +144,9 @@ void Profiler::draw_profiler_gpu(ImVec2 dimensions){
   gpu_profiler->reset();
 
   //Assign tasks
-  vector<vk::structure::Task>& vec_gpu_task = vk_info->get_profiler_data();
+  vector<utl::type::Task>& vec_gpu_task = vk_info->get_profiler_data();
   for(int i=0; i<vec_gpu_task.size(); i++){
-    vk::structure::Task task = vec_gpu_task[i];
+    utl::type::Task task = vec_gpu_task[i];
     gpu_profiler->add_task(task.time_beg, task.time_end, task.name);
   }
 
@@ -162,9 +162,9 @@ void Profiler::draw_profiler_capture(ImVec2 dimensions){
   cap_profiler->reset();
 
   //Assign tasks
-  vector<vk::structure::Task>& vec_gpu_task = vk_info->get_profiler_data();
+  vector<utl::type::Task>& vec_gpu_task = vk_info->get_profiler_data();
   for(int i=0; i<vec_gpu_task.size(); i++){
-    vk::structure::Task task = vec_gpu_task[i];
+    utl::type::Task task = vec_gpu_task[i];
     cap_profiler->add_task(task.time_beg, task.time_end, task.name);
   }
 

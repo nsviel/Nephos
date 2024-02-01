@@ -31,7 +31,7 @@ void Profiler::task_stop(string name){
   timer_time time_end = timer.get_time();
   double A = timer.duration_s(time_ref, time_beg);
   double B = timer.duration_s(time_ref, time_end);
-  eng::profiler::Task task = {A, B, name};
+  utl::type::Task task = {A, B, name};
   this->vec_task.push_back(task);
 
   //---------------------------
