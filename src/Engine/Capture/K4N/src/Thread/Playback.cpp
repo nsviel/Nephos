@@ -41,6 +41,7 @@ void Playback::start_thread(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
+  utl::element::Profiler* profiler = sensor->cap_profiler;
   //---------------------------
 
   //Init playback
@@ -57,25 +58,36 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
   //Playback thread
   k4a::capture capture;
   while(thread_running){
-    sensor->cap_profiler->loop_begin();
-    sensor->cap_profiler->task_begin("capture");
+    profiler->loop_begin();
     fps_control->start();
 
+    //Next capture
+    profiler->task_begin("capture");
     playback.get_next_capture(&capture);
+    profiler->task_end("capture");
     if(!capture) continue;
 
+    //Find data from capture
+    profiler->task_begin("data");
     k4a_data->find_data_from_capture(sensor, capture);
+    profiler->task_end("data");
 
-
+    //Convert data into cloud
+    profiler->task_begin("cloud");
     k4a_cloud->convert_into_cloud(sensor);
+    profiler->task_end("cloud");
+
+    //Manage event
+    profiler->task_begin("event");
     this->manage_pause(sensor);
     this->manage_restart(sensor);
+    profiler->task_end("event");
 
     fps_control->stop();
     fps_control->set_fps_max(sensor->param.fps.query);
     sensor->param.fps.current = fps_counter->update();
-    sensor->cap_profiler->task_end("capture");
-    sensor->cap_profiler->loop_end();
+
+    profiler->loop_end();
   }
 
   playback.close();

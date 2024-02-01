@@ -12,6 +12,7 @@ namespace eng::scene{class Bookmark;}
 namespace eng::scene{class World;}
 namespace eng::scene::gui{class Scene;}
 namespace eng::scene::gui{class Loader;}
+namespace utl::element{class Profiler;}
 
 
 namespace eng::scene{
@@ -20,7 +21,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* engine);
+  Node(eng::Node* node_engine);
   ~Node();
 
 public:
@@ -29,7 +30,7 @@ public:
   void gui();
   void reset();
 
-  inline eng::Node* get_node_engine(){return engine;}
+  inline eng::Node* get_node_engine(){return node_engine;}
   inline eng::scene::Scene* get_scene(){return sce_scene;}
   inline eng::scene::Database* get_scene_database(){return sce_database;}
   inline eng::scene::Loader* get_scene_loader(){return sce_loader;}
@@ -38,7 +39,7 @@ public:
   inline eng::scene::World* get_scene_world(){return sce_world;}
 
 private:
-  eng::Node* engine;
+  eng::Node* node_engine;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
@@ -47,7 +48,8 @@ private:
   eng::scene::World* sce_world;
   eng::scene::gui::Scene* gui_scene;
   eng::scene::gui::Loader* gui_loader;
-
+  utl::element::Profiler* cpu_profiler;
+  
   bool show_scene = true;
   bool show_loader = true;
 };

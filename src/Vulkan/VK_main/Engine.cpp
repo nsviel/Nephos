@@ -92,6 +92,7 @@ void Engine::loop(){
   //---------------------------
   float fps = fps_counter->update();
   struct_vulkan->profiler.set_fps(fps);
+  struct_vulkan->profiler.loop_end();
 }
 void Engine::clean(){
   //---------------------------

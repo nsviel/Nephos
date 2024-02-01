@@ -1,9 +1,7 @@
 #include "Cloud.h"
 
-#include <Engine/Node.h>
-#include <Engine/Scene/Namespace.h>
-#include <Engine/Operation/Namespace.h>
-#include <Engine/Capture/K4N/Namespace.h>
+#include <Engine/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::k4n::data{
@@ -48,21 +46,26 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
 void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
   if(sensor->depth.data_to_color.buffer.empty()) return;
   if(sensor->depth.data_to_color.image.get_width_pixels() != 1280) return;
+  utl::element::Profiler* profiler = sensor->cap_profiler;
   //---------------------------
 
   // Cloud stuff
+  profiler->task_begin("cloud::depth");
   eng::k4n::structure::Depth* depth = &sensor->depth;
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->data_to_color.width, depth->data_to_color.height, depth->data_to_color.width * sizeof(int16_t) * 3);
   sensor->param.transformation.depth_image_to_point_cloud(depth->data_to_color.image, K4A_CALIBRATION_TYPE_COLOR, &cloud_image);
   int16_t* point_cloud_data = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
+  profiler->task_end("cloud::depth");
 
   // Convert point cloud data to vector<glm::vec3>
+  profiler->task_begin("cloud::data");
   for(int i=0; i<cloud_image.get_size()/(3*sizeof(int16_t)); i++){
     this->retrieve_location(sensor, i, point_cloud_data);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
     this->retrieve_goodness(i);
   }
+  profiler->task_end("cloud::data");
 
   //---------------------------
 }
@@ -70,6 +73,7 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   if(sensor->depth.data.buffer.empty()) return;
   utl::type::Data* data = sensor->object->data;
   eng::k4n::dev::Master* master = sensor->master;
+  utl::element::Profiler* profiler = sensor->cap_profiler;
   //---------------------------
 
   std::unique_lock<std::mutex> lock(data->mutex);
@@ -81,14 +85,18 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   data->goodness = vec_goodness;
 
   //Final colorization
+  profiler->task_begin("cloud::color");
   k4n_operation->make_colorization(sensor, vec_rgb);
+  profiler->task_end("cloud::color");
   data->rgb = vec_rgb;
 
   //Voxelization filtering
+  profiler->task_begin("cloud::voxel");
   float voxel_size = master->voxel.voxel_size;
   int min_nb_point = master->voxel.min_nb_point;
   ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
   ope_voxelizer->reconstruct_data_by_goodness(data);
+  profiler->task_end("cloud::voxel");
 
   //Final small check
   if(data->xyz.size() != data->rgb.size()){
