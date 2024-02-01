@@ -28,6 +28,7 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
+  cpu_profiler->task_begin("utility");
   //---------------------------
 
   utl_window->manage_input();
@@ -35,6 +36,7 @@ void Node::loop(){
   utl_window->check_for_resizing();
 
   //---------------------------
+  cpu_profiler->task_end("utility");
 }
 void Node::exit(){
   //---------------------------

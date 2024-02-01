@@ -33,21 +33,43 @@ void Profiler::time_reference(){
 }
 
 //Task function
-void Profiler::task_begin(){
+void Profiler::task_begin(string name){
   //---------------------------
 
-  this->task_beg = timer.get_time();
+  //Check if tasj already exists
+  if(vec_task.size() != 0){
+    for(int i=0; i<vec_task.size(); i++){
+      utl::type::Task& task = vec_task[i];
+
+      if(task.name == name){
+        cout<<"[error] task already exists"<<endl;
+        return;
+      }
+    }
+  }
+
+  //Insert task in vector
+  utl::timer::Timepoint task_beg = timer.get_time();
+  double A = timer.duration_s(reference, task_beg);
+  utl::type::Task task = {A, 0, name};
+  this->vec_task.push_back(task);
 
   //---------------------------
 }
 void Profiler::task_end(string name){
   //---------------------------
 
-  utl::timer::Timepoint task_end = timer.get_time();
-  double A = timer.duration_s(reference, task_beg);
-  double B = timer.duration_s(reference, task_end);
-  utl::type::Task task = {A, B, name};
-  this->vec_task.push_back(task);
+  for(int i=0; i<vec_task.size(); i++){
+    utl::type::Task& task = vec_task[i];
+
+    if(task.name == name){
+      utl::timer::Timepoint task_end = timer.get_time();
+      task.time_end = timer.duration_s(reference, task_end);
+      return;
+    }
+  }
+
+  cout<<"[error] task didn't starts"<<endl;
 
   //---------------------------
 }

@@ -24,6 +24,7 @@ public:
   void exit();
 
   inline utl::element::Window* get_utl_window(){return utl_window;}
+  inline utl::element::Profiler* get_cpu_profiler(){return cpu_profiler;}
 
 private:
   utl::element::Window* utl_window;

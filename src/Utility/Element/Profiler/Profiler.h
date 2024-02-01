@@ -19,7 +19,7 @@ public:
   void time_reference();
 
   //Task function
-  void task_begin();
+  void task_begin(string name);
   void task_end(string name);
 
   inline vector<utl::type::Task>& get_vec_task(){return vec_task;}
@@ -31,7 +31,6 @@ private:
 
   vector<utl::type::Task> vec_task;
   utl::timer::Timepoint reference;
-  utl::timer::Timepoint task_beg;
   float fps;
 };
 

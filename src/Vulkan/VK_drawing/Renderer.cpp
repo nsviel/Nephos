@@ -20,7 +20,8 @@ Renderer::~Renderer(){}
 
 //Main function
 void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
-  struct_vulkan->profiler.task_begin();
+  string name = "rp_" + renderpass->name;
+  struct_vulkan->profiler.task_begin(name);
   //---------------------------
 
   this->start_renderpass(renderpass);
