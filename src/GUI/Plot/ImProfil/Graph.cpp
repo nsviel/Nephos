@@ -9,7 +9,7 @@ namespace utl::improfil{
 Graph::Graph(){
   //---------------------------
 
-  this->bar_max_nb = 300;
+  this->bar_max_nb = 100;
   this->bar_width = 2;
   this->bar_gap = 1;
   this->bar_max_nb_task = 100;
