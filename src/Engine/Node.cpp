@@ -11,11 +11,9 @@ namespace eng{
 Node::Node(utl::Node* node_utility){
   //---------------------------
 
-  utl::element::Window* utl_window = node_utility->get_utl_window();
-
   this->node_utility = node_utility;
   this->cpu_profiler = node_utility->get_cpu_profiler();
-  this->eng_vulkan = new vk::Node(utl_window->get_window());
+  this->eng_vulkan = new vk::Node(this);
   this->node_camera = new eng::cam::Node(this);
   this->node_scene = new eng::scene::Node(this);
   this->node_operation = new eng::ope::Node(this);

@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+namespace eng{class Node;}
 namespace vk::main{class Engine;}
 namespace vk::main{class Imgui;}
 namespace vk::main{class Info;}
@@ -16,7 +17,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(GLFWwindow* window);
+  Node(eng::Node* node_engine);
   ~Node();
 
 public:
