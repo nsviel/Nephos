@@ -102,13 +102,13 @@ void Drawer::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Objec
   //---------------------------
 
   VkDeviceSize offsets[] = {0};
-  if(vk_object->rgb.vbo != VK_NULL_HANDLE && vk_object->has_rgb){
+  if(vk_object->rgb.vbo != VK_NULL_HANDLE){
     vkCmdBindVertexBuffers(command_buffer, 1, 1, &vk_object->rgb.vbo, offsets);
   }
-  if(vk_object->uv.vbo != VK_NULL_HANDLE && vk_object->has_uv){
+  if(vk_object->uv.vbo != VK_NULL_HANDLE){
     vkCmdBindVertexBuffers(command_buffer, 2, 1, &vk_object->uv.vbo, offsets);
   }
-  if(vk_object->xyz.vbo != VK_NULL_HANDLE && vk_object->has_xyz){
+  if(vk_object->xyz.vbo != VK_NULL_HANDLE){
     vkCmdBindVertexBuffers(command_buffer, 0, 1, &vk_object->xyz.vbo, offsets);
     vkCmdDraw(command_buffer, vk_object->data->xyz.size(), 1, 0, 0);
   }

@@ -20,33 +20,18 @@ Buffer::~Buffer(){}
 void Buffer::create_buffers(vk::structure::Object* vk_object){
   //---------------------------
 
-  //Init data boolean
-  vk_object->has_xyz = false;
-  vk_object->has_rgb = false;
-  vk_object->has_uv = false;
-
-  //Create buffer and actualize data boolean
-  if(!vk_object->data->xyz.empty()){
-    vk_memory->transfert_buffer_to_gpu(vk_object->data->xyz, &vk_object->xyz);
-    vk_object->has_xyz = true;
-  }
-  if(!vk_object->data->rgb.empty()){
-    vk_memory->transfert_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
-    vk_object->has_rgb = true;
-  }
-  if(!vk_object->data->uv.empty()){
-    vk_memory->transfert_buffer_to_gpu(vk_object->data->uv, &vk_object->uv);
-    vk_object->has_uv = true;
-  }
+  vk_memory->transfert_buffer_to_gpu(vk_object->data->xyz, &vk_object->xyz);
+  vk_memory->transfert_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
+  vk_memory->transfert_buffer_to_gpu(vk_object->data->uv, &vk_object->uv);
 
   //---------------------------
 }
 void Buffer::update_buffer(vk::structure::Object* vk_object){
   //---------------------------
 
-  if(vk_object->has_xyz) vk_memory->update_buffer_to_gpu(vk_object->data->xyz, &vk_object->xyz);
-  if(vk_object->has_rgb) vk_memory->update_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
-  if(vk_object->has_uv)  vk_memory->update_buffer_to_gpu(vk_object->data->uv,  &vk_object->uv);
+  vk_memory->update_buffer_to_gpu(vk_object->data->xyz, &vk_object->xyz);
+  vk_memory->update_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
+  vk_memory->update_buffer_to_gpu(vk_object->data->uv,  &vk_object->uv);
 
   //---------------------------
 }

@@ -140,7 +140,7 @@ void Engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose)
   vk::structure::Object* vk_object;
   for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
     vk_object = *next(struct_vulkan->data.list_vk_object.begin(), i);
-    say(vk_object->has_xyz);
+
     if(data->UID == vk_object->data->UID){
       is_in_list = true;
       break;

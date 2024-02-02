@@ -52,7 +52,7 @@ void Data::update_data(utl::type::Data* data, vk::structure::Object* vk_object){
   //---------------------------
 
   vk_object->data = data;
-  vk_buffer->update_buffer(vk_object);
+  //vk_buffer->update_buffer(vk_object);
   //vk_buffer->create_buffers(vk_object);
 
   //---------------------------
