@@ -12,9 +12,9 @@ Manager::Manager(string name){
   this->graph = new utl::improfil::Graph();
   this->idx_color = 0;
   this->max_nb_data = 100;
+  this->vec_color = utl::improfil::colormap::viridis;
 
   //---------------------------
-  this->init_color();
 }
 Manager::~Manager(){}
 
@@ -95,21 +95,6 @@ void Manager::reset(){
 }
 
 //Subfunction
-void Manager::init_color(){
-  //---------------------------
-
-  //Profiler bar colors in order of appearance
-  vec_color.clear();
-  vec_color.push_back(utl::improfil::color::viridis_3);
-  vec_color.push_back(utl::improfil::color::viridis_4);
-  vec_color.push_back(utl::improfil::color::viridis_5);
-  vec_color.push_back(utl::improfil::color::viridis_6);
-  vec_color.push_back(utl::improfil::color::viridis_7);
-  vec_color.push_back(utl::improfil::color::viridis_8);
-  vec_color.push_back(utl::improfil::color::viridis_9);
-
-  //---------------------------
-}
 vec4 Manager::get_next_color(){
   vec4 color;
   //---------------------------

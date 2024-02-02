@@ -156,15 +156,6 @@ void Data::find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::captur
   //---------------------------
 
   //Depth images
-  k4a::image depth = k4a::image::create_from_buffer(
-    K4A_IMAGE_FORMAT_DEPTH16,
-    sensor->depth.data.width,
-    sensor->depth.data.height,
-    sensor->depth.data.width * static_cast<int>(sizeof(uint16_t)),
-    sensor->depth.data.buffer.data(),
-    sensor->depth.data.buffer.size(),
-    nullptr,
-    nullptr);
   k4a::image depth_transformed = k4a::image::create(K4A_IMAGE_FORMAT_DEPTH16,
     sensor->param.calibration.color_camera_calibration.resolution_width,
     sensor->param.calibration.color_camera_calibration.resolution_height,
@@ -173,23 +164,23 @@ void Data::find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::captur
 
   //IR images
   k4a::image ir = k4a::image::create_from_buffer(
-      K4A_IMAGE_FORMAT_CUSTOM16,
-      sensor->ir.data.width,
-      sensor->ir.data.height,
-      sensor->ir.data.width * static_cast<int>(sizeof(uint16_t)),
-      sensor->ir.data.buffer.data(),
-      sensor->ir.data.buffer.size(),
-      nullptr,
-      nullptr);
+    K4A_IMAGE_FORMAT_CUSTOM16,
+    sensor->ir.data.width,
+    sensor->ir.data.height,
+    sensor->ir.data.width * static_cast<int>(sizeof(uint16_t)),
+    sensor->ir.data.buffer.data(),
+    sensor->ir.data.buffer.size(),
+    nullptr,
+    nullptr);
   k4a::image ir_transformed = k4a::image::create(
-        K4A_IMAGE_FORMAT_CUSTOM16,
-        sensor->param.calibration.color_camera_calibration.resolution_width,
-        sensor->param.calibration.color_camera_calibration.resolution_height,
-        sensor->param.calibration.color_camera_calibration.resolution_width *
-        static_cast<int>(sizeof(uint16_t)));
+    K4A_IMAGE_FORMAT_CUSTOM16,
+    sensor->param.calibration.color_camera_calibration.resolution_width,
+    sensor->param.calibration.color_camera_calibration.resolution_height,
+    sensor->param.calibration.color_camera_calibration.resolution_width *
+    static_cast<int>(sizeof(uint16_t)));
 
   uint32_t value_no_data = 0;
-  transformation.depth_image_to_color_camera_custom(depth, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_LINEAR, value_no_data);
+  transformation.depth_image_to_color_camera_custom(sensor->depth.data.image, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_LINEAR, value_no_data);
   if(!depth_transformed || !depth_transformed.is_valid()){
     return;
   }

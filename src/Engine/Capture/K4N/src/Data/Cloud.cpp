@@ -25,7 +25,6 @@ void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* sensor){
   this->loop_init(sensor);
   this->loop_data(sensor);
   this->loop_end(sensor);
-  //this->retrieve_corner_coordinate(sensor);
 
   //---------------------------
 }
@@ -50,12 +49,12 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   // Cloud stuff
-  profiler->task_begin("cloud::depth");
+  profiler->task_begin("cloud::transformation");
   eng::k4n::structure::Depth* depth = &sensor->depth;
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->data_to_color.width, depth->data_to_color.height, depth->data_to_color.width * sizeof(int16_t) * 3);
   sensor->param.transformation.depth_image_to_point_cloud(depth->data_to_color.image, K4A_CALIBRATION_TYPE_COLOR, &cloud_image);
   int16_t* point_cloud_data = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
-  profiler->task_end("cloud::depth");
+  profiler->task_end("cloud::transformation");
 
   // Convert point cloud data to vector<glm::vec3>
   profiler->task_begin("cloud::data");
@@ -76,7 +75,9 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   utl::element::Profiler* profiler = sensor->cap_profiler;
   //---------------------------
 
+  profiler->task_begin("cloud::lock");
   std::unique_lock<std::mutex> lock(data->mutex);
+  profiler->task_end("cloud::lock");
 
   //Store capture data
   data->xyz = vec_xyz;
@@ -85,9 +86,9 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   data->goodness = vec_goodness;
 
   //Final colorization
-  profiler->task_begin("cloud::color");
+  profiler->task_begin("cloud::colorization");
   k4n_operation->make_colorization(sensor, vec_rgb);
-  profiler->task_end("cloud::color");
+  profiler->task_end("cloud::colorization");
   data->rgb = vec_rgb;
 
   //Voxelization filtering

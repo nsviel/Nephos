@@ -22,7 +22,6 @@ public:
   void add_vec_task(vector<utl::type::Task> vec_task);
 
   //Subfunction
-  void init_color();
   vec4 get_next_color();
   void reset();
 

@@ -10,7 +10,7 @@ Graph::Graph(){
   //---------------------------
 
   this->bar_max_nb = 200;
-  this->bar_width = 2;
+  this->bar_width = 4;
   this->bar_gap = 1;
   this->bar_max_nb_task = 100;
   this->vec_bar.resize(bar_max_nb);
