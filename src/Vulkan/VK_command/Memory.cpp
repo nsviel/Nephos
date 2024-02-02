@@ -215,6 +215,8 @@ void Memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize si
 void Memory::update_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer){
   //---------------------------
 
+  if(buffer->mem == VK_NULL_HANDLE) return;
+
   // Map the buffer memory
   void* mapped_memory;
   if (vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, vertices.size() * sizeof(glm::vec2), 0, &mapped_memory) != VK_SUCCESS) {
@@ -232,6 +234,8 @@ void Memory::update_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer*
 void Memory::update_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer){
   //---------------------------
 
+  if(buffer->mem == VK_NULL_HANDLE) return;
+
   // Map the buffer memory
   void* mapped_memory;
   if (vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, vertices.size() * sizeof(glm::vec3), 0, &mapped_memory) != VK_SUCCESS) {
@@ -248,6 +252,8 @@ void Memory::update_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer*
 }
 void Memory::update_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer){
   //---------------------------
+
+  if(buffer->mem == VK_NULL_HANDLE) return;
 
   // Map the buffer memory
   void* mapped_memory;

@@ -38,6 +38,7 @@ void Data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
   }
 
   //Apply adequat init functions
+  this->check_data(vk_object);
   vk_buffer->create_buffers(vk_object);
   vk_command->allocate_command_buffer_secondary(vk_object);
   vk_descriptor->create_layout_from_required(&vk_object->binding);
@@ -52,8 +53,8 @@ void Data::update_data(utl::type::Data* data, vk::structure::Object* vk_object){
   //---------------------------
 
   vk_object->data = data;
-  //vk_buffer->update_buffer(vk_object);
-  //vk_buffer->create_buffers(vk_object);
+  this->check_data(vk_object);
+  vk_buffer->create_or_update_buffer(vk_object);
 
   //---------------------------
 }
@@ -75,6 +76,16 @@ void Data::clean_vk_object(vk::structure::Object* vk_object){
   vk_buffer->clean_buffers(vk_object);
   vk_texture->clean_texture(vk_object);
   vk_descriptor->clean_binding(&vk_object->binding);
+
+  //---------------------------
+}
+void Data::check_data(vk::structure::Object* vk_object){
+  utl::type::Data* data = vk_object->data;
+  //---------------------------
+
+  vk_object->has_xyz = true;//(data->xyz.size() == 0) ? false : true;
+  vk_object->has_rgb = (data->rgb.size() == 0) ? false : true;
+  vk_object->has_uv =  (data->uv.size()  == 0) ? false : true;
 
   //---------------------------
 }

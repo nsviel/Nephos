@@ -26,6 +26,7 @@ public:
   void update_data(utl::type::Data* data, vk::structure::Object* vk_object);
   void clean();
   void clean_vk_object(vk::structure::Object* vk_object);
+  void check_data(vk::structure::Object* vk_object);
 
   //Pipeline data description
   void pipeline_data_description(vk::structure::Pipeline* pipeline);
