@@ -43,7 +43,7 @@ void Drawer::draw_frame_headless(){
   for(int i=0; i<nb_renderpass; i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
-    string name = "rp_" + renderpass->name;
+    string name = "eng::rp::" + renderpass->name;
     struct_vulkan->cpu_profiler->task_begin(name);
     vk_render->run_renderpass(renderpass);
 
@@ -76,6 +76,8 @@ void Drawer::draw_frame_presentation(){
   for(int i=0; i<nb_renderpass; i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
+    string name = "eng::rp::" + renderpass->name;
+    struct_vulkan->cpu_profiler->task_begin(name);
     vk_render->run_renderpass(renderpass);
 
     vk::structure::Command& command = renderpass->command;
@@ -83,6 +85,7 @@ void Drawer::draw_frame_presentation(){
     command.vec_semaphore_done.push_back(semaphore_done);
     command.fence = (i == nb_renderpass-1) ? frame->fence : VK_NULL_HANDLE;
     vk_render->submit_command(renderpass);
+    struct_vulkan->cpu_profiler->task_end(name);
 
     semaphore_wait = frame->vec_semaphore_render[i];
     semaphore_done = frame->vec_semaphore_render[i+1];

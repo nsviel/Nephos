@@ -16,9 +16,9 @@ namespace utl::improfil::colormap {
     glm::vec4(180, 222, 44, 255),
     glm::vec4(253, 231, 37, 255),
     glm::vec4(255, 255, 0, 255),   // Yellow
-    glm::vec4(255, 165, 0, 255),  // Orange
-    glm::vec4(255, 69, 0, 255),   // Red-Orange
-    glm::vec4(255, 0, 0, 255)     // Red
+    glm::vec4(255, 200, 0, 255),   // Light Orange
+    glm::vec4(255, 150, 0, 255),   // Dark Orange
+    glm::vec4(255, 100, 0, 255)    // Red-Orange
   };
 
   //---------------------------

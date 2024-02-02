@@ -24,6 +24,7 @@ Profiler::Profiler(eng::Node* node_engine, bool* show_window){
   this->show_window = show_window;
   this->name = "Profiler";
   this->width = 150;
+  this->pause = false;
 
   //---------------------------
 }
@@ -48,7 +49,9 @@ void Profiler::design_panel(){
   //---------------------------
 
   this->main_info();
+  this->main_button();
   this->draw_graph();
+  this->draw_timeline();
 
   //---------------------------
 }
@@ -79,6 +82,28 @@ void Profiler::main_info(){
     ImGui::Text(" FPS ]");
 
     ImGui::EndTable();
+  }
+
+  //---------------------------
+}
+void Profiler::main_button(){
+  //---------------------------
+
+  //Play button -> if paused or not playing
+  if(pause){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
+    if(ImGui::Button(ICON_FA_PLAY "##profiler_play")){
+      this->pause = false;
+    }
+    ImGui::PopStyleColor();
+  }
+  //Pause button -> if not paused and playing
+  else{
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
+    if(ImGui::Button(ICON_FA_PAUSE "##profiler_pause")){
+      this->pause = true;
+    }
+    ImGui::PopStyleColor();
   }
 
   //---------------------------
@@ -123,39 +148,49 @@ void Profiler::draw_graph(){
 
 //Profiler graphs
 void Profiler::draw_profiler_cpu(ImVec2 dimensions){
+  utl::element::Profiler* profiler = node_utility->get_cpu_profiler();
   //---------------------------
 
-  //Reset graph
-  gui_cpu->reset();
+  if(!pause){
+    //Reset graph
+    gui_cpu->reset();
 
-  //Assign tasks
-  utl::element::Profiler* profiler = node_utility->get_cpu_profiler();
-  vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
-  for(int i=0; i<vec_gpu_task.size(); i++){
-    utl::type::Task task = vec_gpu_task[i];
-    gui_cpu->add_task(task.time_beg, task.time_end, task.name);
+    //Assign tasks
+    vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
+    for(int i=0; i<vec_gpu_task.size(); i++){
+      utl::type::Task task = vec_gpu_task[i];
+      gui_cpu->add_task(task.time_beg, task.time_end, task.name);
+    }
+
+    //load data
+    gui_cpu->load_data_to_graph();
   }
 
-  //Render graph
+  //Render profiler
   gui_cpu->render_child(dimensions);
 
   //---------------------------
 }
 void Profiler::draw_profiler_gpu(ImVec2 dimensions){
+  utl::element::Profiler* profiler = node_utility->get_gpu_profiler();
   //---------------------------
 
-  //Reset graph
-  gui_gpu->reset();
+  if(!pause){
+    //Reset graph
+    gui_gpu->reset();
 
-  //Assign tasks
-  utl::element::Profiler* profiler = node_utility->get_gpu_profiler();
-  vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
-  for(int i=0; i<vec_gpu_task.size(); i++){
-    utl::type::Task task = vec_gpu_task[i];
-    gui_gpu->add_task(task.time_beg, task.time_end, task.name);
+    //Assign tasks
+    vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
+    for(int i=0; i<vec_gpu_task.size(); i++){
+      utl::type::Task task = vec_gpu_task[i];
+      gui_gpu->add_task(task.time_beg, task.time_end, task.name);
+    }
+
+    //load data
+    gui_gpu->load_data_to_graph();
   }
 
-  //Render graph
+  //Render profiler
   gui_gpu->render_child(dimensions);
 
   //---------------------------
@@ -170,20 +205,32 @@ void Profiler::draw_profiler_capture(ImVec2 dimensions){
 
 
   if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(master->selected_entity)){
-    //Reset graph
-    gui_capture->reset();
-
-    //Assign tasks
     utl::element::Profiler* profiler = sensor->cap_profiler;
-    vector<utl::type::Task>& vec_task = profiler->get_vec_task();
-    for(int i=0; i<vec_task.size(); i++){
-      utl::type::Task task = vec_task[i];
-      gui_capture->add_task(task.time_beg, task.time_end, task.name);
+
+    if(!pause){
+      //Reset graph
+      gui_capture->reset();
+
+      //Assign tasks
+      vector<utl::type::Task>& vec_task = profiler->get_vec_task();
+      for(int i=0; i<vec_task.size(); i++){
+        utl::type::Task task = vec_task[i];
+        gui_capture->add_task(task.time_beg, task.time_end, task.name);
+      }
+
+      //load data
+      gui_capture->load_data_to_graph();
     }
 
-    //Render graph
+    //Render profiler
     gui_capture->render_child(dimensions);
   }
+
+  //---------------------------
+}
+void Profiler::draw_timeline(){
+  //---------------------------
+
 
   //---------------------------
 }

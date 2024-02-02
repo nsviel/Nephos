@@ -51,14 +51,19 @@ void Manager::render_child(ImVec2 dimension){
   string title = name + "##graph";
   //---------------------------
 
-  this->graph->load_graph_data(vec_task);
-
   ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));
   ImGui::BeginChild(title.c_str(), ImVec2(0, dimension.y));
   graph->render_graph(dimension);
   ImGui::End();
   ImGui::PopStyleColor();
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() + dimension.y + 5);
+
+  //---------------------------
+}
+void Manager::load_data_to_graph(){
+  //---------------------------
+
+  this->graph->load_graph_data(vec_task);
 
   //---------------------------
 }
