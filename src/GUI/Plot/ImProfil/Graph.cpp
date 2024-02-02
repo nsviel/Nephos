@@ -237,8 +237,8 @@ void Graph::render_legend(ImDrawList *draw_list){
 //Subfunction
 void Graph::render_background_tics(ImDrawList *draw_list){
   //---------------------------
-say(max_time_s);
-  for(float time = 0.0f; time <= max_time_s/1000.0f; time += 5.0f) {
+
+  for(float time = 0.0f; time <= max_time_s*1000.0f; time += 5.0f) {
     int lineWidth = (int)(time / 5.0f) % 2 == 0 ? 1 : 2;
     vec4 color(255, 255, 255, 20);
     this->draw_line_at_time(draw_list, time, lineWidth, color);

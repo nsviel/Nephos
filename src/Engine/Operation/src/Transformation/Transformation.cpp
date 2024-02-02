@@ -147,9 +147,7 @@ void Transformation::make_scaling(utl::type::Entity* entity, float scale){
 }
 
 //Transformation
-void Transformation::make_transformation(utl::type::Entity* entity, vec3 COM, mat4 translation, mat4 rotation){
-  if(entity == nullptr) return;
-  utl::type::Pose* pose = entity->get_pose();
+void Transformation::make_transformation(utl::type::Pose* pose, vec3 COM, mat4 translation, mat4 rotation){
   //---------------------------
 
   mat4 COM_mat = get_translation_mat_neye(COM);

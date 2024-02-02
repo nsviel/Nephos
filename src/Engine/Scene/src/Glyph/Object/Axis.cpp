@@ -30,10 +30,11 @@ void Axis::create(){
 
   //---------------------------
 }
-void Axis::update_glyph(utl::type::Data* entity){
+void Axis::update_glyph(utl::type::Entity* entity){
   //---------------------------
 
-  //ope_transform->make_transformation(vec_data[0], object->pose->COM, object->data->trans, object->data->rotat);
+  utl::type::Pose* entity_pose = entity->get_pose();
+  pose->model = entity_pose->model;
 
   //---------------------------
 }

@@ -27,7 +27,7 @@ public:
   void make_scaling(utl::type::Entity* entity, float scale);
 
   //Transformation
-  void make_transformation(utl::type::Entity* entity, vec3 COM, mat4 translation, mat4 rotation);
+  void make_transformation(utl::type::Pose* pose, vec3 COM, mat4 translation, mat4 rotation);
 
   //Subfunction
   mat4 get_translation_mat(vec3 trans);
