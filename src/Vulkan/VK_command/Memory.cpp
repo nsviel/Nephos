@@ -108,12 +108,12 @@ void Memory::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer){
 }
 
 //Buffer GPU function
-void Memory::create_empty_buffer(vk::structure::Buffer* buffer, VkDeviceSize buffer_size){
-  if(buffer_size == 0) return;
+void Memory::create_empty_buffer(vk::structure::Buffer* buffer){
+  if(buffer->size == 0) return;
     //---------------------------
 
     // Create an empty buffer with the specified size
-    this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
+    this->create_gpu_buffer(buffer->size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
     this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
 
     //---------------------------

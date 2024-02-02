@@ -20,20 +20,20 @@ Buffer::~Buffer(){}
 void Buffer::create_buffers(vk::structure::Object* vk_object){
   //---------------------------
 
+  //Check for buffer creation validity
+  utl::type::Data* data = vk_object->data;
+  if(data->nb_point == -1) data->nb_point = data->xyz.size();
+  if(data->nb_point == 0 && data->nb_data_max == -1) return;
+  int max_data = (data->nb_data_max == -1) ? data->nb_point : data->nb_data_max;
+
   //Find buffer size
-  int nb_data = vk_object->data->xyz.size();
-  int nb_data_max = vk_object->data->nb_data_max;
-  if(nb_data == 0 && nb_data_max == -1) return;
-  int max_data = (vk_object->data->nb_data_max == -1) ? vk_object->data->xyz.size() : vk_object->data->nb_data_max;
+  vk_object->xyz.size = sizeof(glm::vec3) * max_data;
+  vk_object->rgb.size = sizeof(glm::vec4) * max_data;
+  vk_object->uv.size  = sizeof(glm::vec2) * max_data;
 
-
-  VkDeviceSize buffer_size;
-  buffer_size = sizeof(glm::vec3) * max_data;
-  vk_memory->create_empty_buffer(&vk_object->xyz, buffer_size);
-  buffer_size = sizeof(glm::vec4) * max_data;
-  vk_memory->create_empty_buffer(&vk_object->rgb, buffer_size);
-  buffer_size = sizeof(glm::vec2) * max_data;
-  vk_memory->create_empty_buffer(&vk_object->uv, buffer_size);
+  vk_memory->create_empty_buffer(&vk_object->xyz);
+  vk_memory->create_empty_buffer(&vk_object->rgb);
+  vk_memory->create_empty_buffer(&vk_object->uv);
 
 
 
