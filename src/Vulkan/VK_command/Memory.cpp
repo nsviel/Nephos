@@ -115,22 +115,23 @@ void Memory::create_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer*
 
   VkBuffer staging_buffer;
   VkDeviceMemory staging_memory;
-  VkDeviceSize size = sizeof(vertices[0]) * buffer->max_data;
+  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->max_data;
+  VkDeviceSize data_size = sizeof(vertices[0]) * vertices.size();
 
   // Initialize staging buffer
-  this->create_gpu_buffer(size, TYP_BUFFER_USAGE_SRC, staging_buffer);
+  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_SRC, staging_buffer);
   this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_memory);
 
   // Copy the vertex data from the CPU to the GPU
   void* staging_data;
-  vkMapMemory(struct_vulkan->device.device, staging_memory, 0, size, 0, &staging_data);
-  memcpy(staging_data, vertices.data(), static_cast<size_t>(size));
+  vkMapMemory(struct_vulkan->device.device, staging_memory, 0, data_size, 0, &staging_data);
+  memcpy(staging_data, vertices.data(), static_cast<size_t>(data_size));
   vkUnmapMemory(struct_vulkan->device.device, staging_memory);
 
   // Initialize destination buffer
-  this->create_gpu_buffer(size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
+  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
   this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
-  this->copy_buffer(staging_buffer, buffer->vbo, size);
+  this->copy_buffer(staging_buffer, buffer->vbo, data_size);
 
   // Cleanup staging buffer resources
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
@@ -145,22 +146,23 @@ void Memory::create_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer*
 
   VkBuffer staging_buffer;
   VkDeviceMemory staging_memory;
-  VkDeviceSize size = sizeof(vertices[0]) * buffer->max_data;
+  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->max_data;
+  VkDeviceSize data_size = sizeof(vertices[0]) * vertices.size();
 
   // Initialize staging buffer
-  this->create_gpu_buffer(size, TYP_BUFFER_USAGE_SRC, staging_buffer);
+  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_SRC, staging_buffer);
   this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_memory);
 
   // Copy the vertex data from the CPU to the GPU
   void* staging_data;
-  vkMapMemory(struct_vulkan->device.device, staging_memory, 0, size, 0, &staging_data);
-  memcpy(staging_data, vertices.data(), static_cast<size_t>(size));
+  vkMapMemory(struct_vulkan->device.device, staging_memory, 0, data_size, 0, &staging_data);
+  memcpy(staging_data, vertices.data(), static_cast<size_t>(data_size));
   vkUnmapMemory(struct_vulkan->device.device, staging_memory);
 
   // Initialize destination buffer
-  this->create_gpu_buffer(size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
+  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
   this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
-  this->copy_buffer(staging_buffer, buffer->vbo, size);
+  this->copy_buffer(staging_buffer, buffer->vbo, data_size);
 
   // Cleanup staging buffer resources
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
@@ -175,22 +177,23 @@ void Memory::create_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer*
 
   VkBuffer staging_buffer;
   VkDeviceMemory staging_memory;
-  VkDeviceSize size = sizeof(vertices[0]) * buffer->max_data;
+  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->max_data;
+  VkDeviceSize data_size = sizeof(vertices[0]) * vertices.size();
 
   // Initialize staging buffer
-  this->create_gpu_buffer(size, TYP_BUFFER_USAGE_SRC, staging_buffer);
+  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_SRC, staging_buffer);
   this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_memory);
 
   // Copy the vertex data from the CPU to the GPU
   void* staging_data;
-  vkMapMemory(struct_vulkan->device.device, staging_memory, 0, size, 0, &staging_data);
-  memcpy(staging_data, vertices.data(), static_cast<size_t>(size));
+  vkMapMemory(struct_vulkan->device.device, staging_memory, 0, data_size, 0, &staging_data);
+  memcpy(staging_data, vertices.data(), static_cast<size_t>(data_size));
   vkUnmapMemory(struct_vulkan->device.device, staging_memory);
 
   // Initialize destination buffer
-  this->create_gpu_buffer(size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
+  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
   this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
-  this->copy_buffer(staging_buffer, buffer->vbo, size);
+  this->copy_buffer(staging_buffer, buffer->vbo, data_size);
 
   // Cleanup staging buffer resources
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
