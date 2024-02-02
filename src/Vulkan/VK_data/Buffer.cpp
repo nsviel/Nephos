@@ -40,7 +40,6 @@ void Buffer::create_or_update_buffer(vk::structure::Object* vk_object){
 
   if(vk_object->xyz.vbo == VK_NULL_HANDLE){
     vk_memory->transfert_buffer_to_gpu(vk_object->data->xyz, &vk_object->xyz);
-    sayHello();
   }else{
     vk_memory->update_buffer_to_gpu(vk_object->data->xyz, &vk_object->xyz);
   }
@@ -48,13 +47,13 @@ void Buffer::create_or_update_buffer(vk::structure::Object* vk_object){
   if(vk_object->rgb.vbo == VK_NULL_HANDLE){
     vk_memory->transfert_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
   }else{
-    //vk_memory->update_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
+    vk_memory->update_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
   }
 
   if(vk_object->uv.vbo == VK_NULL_HANDLE){
     vk_memory->transfert_buffer_to_gpu(vk_object->data->uv, &vk_object->uv);
   }else{
-    //vk_memory->update_buffer_to_gpu(vk_object->data->uv, &vk_object->uv);
+    vk_memory->update_buffer_to_gpu(vk_object->data->uv, &vk_object->uv);
   }
 
   //---------------------------
