@@ -69,16 +69,18 @@ void EDL::create_subpass(vk::structure::Renderpass* renderpass){
 void EDL::draw_edl(vk::structure::Subpass* subpass){
   //---------------------------
 
-  this->update_descriptor(subpass);
+  this->update_binding(subpass);
   this->draw_command(subpass);
 
   //---------------------------
 }
-void EDL::update_descriptor(vk::structure::Subpass* subpass){
+void EDL::update_binding(vk::structure::Subpass* subpass){
   //---------------------------
 
+  eng::shader::EDL_param* edl_param = shader_edl->get_edl_param();
   vk::structure::Renderpass* renderpass_scene = vk_engine->get_renderpass(0);
   vk::structure::Framebuffer* frame_scene = renderpass_scene->framebuffer;
+  vk::structure::Pipeline* pipeline = subpass->get_pipeline();
 
   for(int i=0; i<subpass->vec_pipeline.size(); i++){
     vk::structure::Pipeline* pipeline = subpass->vec_pipeline[i];
@@ -86,18 +88,18 @@ void EDL::update_descriptor(vk::structure::Subpass* subpass){
     vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->depth);
   }
 
+  shader_edl->update_shader();
+  vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
+
   //---------------------------
 }
 void EDL::draw_command(vk::structure::Subpass* subpass){
   //---------------------------
 
-  eng::shader::EDL_param* edl_param = shader_edl->get_edl_param();
   vk::structure::Pipeline* pipeline = subpass->get_pipeline();
 
   vk_viewport->cmd_viewport(subpass->command_buffer);
   vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
-  shader_edl->update_shader();
-  vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
   vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, pipeline->binding.descriptor.set);
   vk_drawing->cmd_draw_data(subpass->command_buffer, vk_engine->get_canvas());
 
