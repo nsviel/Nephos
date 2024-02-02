@@ -69,7 +69,7 @@ void Profiler::main_info(){
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Loop"); ImGui::TableNextColumn();
-    utl::element::Profiler* profiler = node_utility->get_gui_cpu();
+    utl::element::Profiler* profiler = node_utility->get_cpu_profiler();
     ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / profiler->get_fps());
     ImGui::SameLine();
     ImGui::Text(" ms/frame [");
@@ -129,7 +129,7 @@ void Profiler::draw_profiler_cpu(ImVec2 dimensions){
   gui_cpu->reset();
 
   //Assign tasks
-  utl::element::Profiler* profiler = node_utility->get_gui_cpu();
+  utl::element::Profiler* profiler = node_utility->get_cpu_profiler();
   vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
   for(int i=0; i<vec_gpu_task.size(); i++){
     utl::type::Task task = vec_gpu_task[i];
@@ -148,7 +148,7 @@ void Profiler::draw_profiler_gpu(ImVec2 dimensions){
   gui_gpu->reset();
 
   //Assign tasks
-  utl::element::Profiler* profiler = node_utility->get_gui_gpu();
+  utl::element::Profiler* profiler = node_utility->get_gpu_profiler();
   vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
   for(int i=0; i<vec_gpu_task.size(); i++){
     utl::type::Task task = vec_gpu_task[i];
@@ -174,7 +174,7 @@ void Profiler::draw_profiler_capture(ImVec2 dimensions){
     gui_capture->reset();
 
     //Assign tasks
-    utl::element::Profiler* profiler = sensor->gui_capture;
+    utl::element::Profiler* profiler = sensor->cap_profiler;
     vector<utl::type::Task>& vec_task = profiler->get_vec_task();
     for(int i=0; i<vec_task.size(); i++){
       utl::type::Task task = vec_task[i];
