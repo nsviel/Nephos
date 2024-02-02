@@ -92,12 +92,14 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   data->rgb = vec_rgb;
 
   //Voxelization filtering
+  /*
   profiler->task_begin("cloud::voxel");
   float voxel_size = master->voxel.voxel_size;
   int min_nb_point = master->voxel.min_nb_point;
   ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
   ope_voxelizer->reconstruct_data_by_goodness(data);
   profiler->task_end("cloud::voxel");
+  */
 
   //Final small check
   if(data->xyz.size() != data->rgb.size()){

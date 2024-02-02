@@ -41,8 +41,8 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
     size_t voxel_size = it->second.size();
 		if(voxel_size < min_nb_point){
 
-      Voxel voxel = it->second;
-      #pragma omp simd
+      const Voxel& voxel = it->second;
+      #pragma omp parallel for
       for(int i=0; i<voxel_size; i++){
         vec4 point = voxel[i];
         data->goodness[point.w] = false;
@@ -90,14 +90,41 @@ void Voxelizer::reconstruct_data_by_goodness(utl::type::Data* data){
   // Use std::remove_if to move the unwanted elements to the end
   auto newEnd = std::remove_if(data->goodness.begin(), data->goodness.end(), [](bool g) { return !g; });
 
-  // Erase the unwanted elements from the vectors
-  data->xyz.erase(data->xyz.begin() + (newEnd - data->goodness.begin()), data->xyz.end());
-  data->rgb.erase(data->rgb.begin() + (newEnd - data->goodness.begin()), data->rgb.end());
-  data->R.erase(data->R.begin() + (newEnd - data->goodness.begin()), data->R.end());
-  data->Is.erase(data->Is.begin() + (newEnd - data->goodness.begin()), data->Is.end());
+  // Erase the unwanted elements from the vectors using erase-remove idiom
+  data->xyz.erase(std::remove_if(data->xyz.begin(), data->xyz.end(), [&](const auto& val) { return !data->goodness[&val - &data->xyz[0]]; }), data->xyz.end());
+  data->rgb.erase(std::remove_if(data->rgb.begin(), data->rgb.end(), [&](const auto& val) { return !data->goodness[&val - &data->rgb[0]]; }), data->rgb.end());
+  data->R.erase(std::remove_if(data->R.begin(), data->R.end(), [&](const auto& val) { return !data->goodness[&val - &data->R[0]]; }), data->R.end());
+  data->Is.erase(std::remove_if(data->Is.begin(), data->Is.end(), [&](const auto& val) { return !data->goodness[&val - &data->Is[0]]; }), data->Is.end());
 
   // Update the nb_point
   data->nb_point = data->xyz.size();
+
+  /*
+  std::vector<glm::vec3> xyz;
+  std::vector<glm::vec4> rgb;
+  std::vector<float> R;
+  std::vector<float> Is;
+
+  xyz.reserve(data->xyz.size());
+  rgb.reserve(data->xyz.size());
+  R.reserve(data->xyz.size());
+  Is.reserve(data->xyz.size());
+
+  for(int i=0; i<data->xyz.size(); i++){
+    if(data->goodness[i] == true){
+      xyz.push_back(data->xyz[i]);
+      rgb.push_back(data->rgb[i]);
+      R.push_back(data->R[i]);
+      Is.push_back(data->Is[i]);
+    }
+  }
+
+  data->xyz = xyz;
+  data->rgb = rgb;
+  data->R = R;
+  data->Is = Is;
+  data->nb_point = xyz.size();
+  */
 
   //---------------------------
 }
