@@ -35,25 +35,11 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
   vk_memory->create_empty_buffer(&vk_object->buffer.rgb);
   vk_memory->create_empty_buffer(&vk_object->buffer.uv);
 
-
-
-create_or_update_buffer(vk_object);
-
-
-
+  this->update_buffer(vk_object);
 
   //---------------------------
 }
 void Buffer::update_buffer(vk::structure::Object* vk_object){
-  //---------------------------
-
-  vk_memory->update_buffer_to_gpu(vk_object->data->xyz, &vk_object->buffer.xyz);
-  vk_memory->update_buffer_to_gpu(vk_object->data->rgb, &vk_object->buffer.rgb);
-  vk_memory->update_buffer_to_gpu(vk_object->data->uv,  &vk_object->buffer.uv);
-
-  //---------------------------
-}
-void Buffer::create_or_update_buffer(vk::structure::Object* vk_object){
   //---------------------------
 
   if(vk_object->data->xyz.size() != 0){
