@@ -16,7 +16,7 @@ Graph::Graph(){
   this->vec_bar.resize(bar_max_nb);
   this->legend_width = 200;
   this->border_color = vec4(255, 255, 255, 25);
-  this->max_time_s = 100.5f / 1000.0f;
+  this->max_time_s = 50.0f / 1000.0f;
 
   for(utl::improfil::Bar& bar : vec_bar){
     bar.vec_task.reserve(bar_max_nb_task);

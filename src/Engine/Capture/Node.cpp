@@ -27,13 +27,11 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
-  cpu_profiler->task_begin("eng::capture");
   //---------------------------
 
   node_k4n->loop();
 
   //---------------------------
-  cpu_profiler->task_end("eng::capture");
 }
 void Node::gui(){
   //---------------------------

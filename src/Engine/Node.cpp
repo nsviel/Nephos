@@ -50,9 +50,18 @@ void Node::loop(){
   //---------------------------
 
   node_camera->loop();
+
+  cpu_profiler->task_begin("eng::scene");
   node_scene->loop();
+  cpu_profiler->task_end("eng::scene");
+
+  cpu_profiler->task_begin("eng::vulkan");
   eng_vulkan->loop();
+  cpu_profiler->task_end("eng::vulkan");
+
+  cpu_profiler->task_begin("eng::capture");
   node_capture->loop();
+  cpu_profiler->task_end("eng::capture");
 
   //---------------------------
   cpu_profiler->task_end("eng");

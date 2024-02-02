@@ -48,13 +48,11 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
-  cpu_profiler->task_begin("eng::scene");
   //---------------------------
 
   sce_scene->loop();
 
   //---------------------------
-  cpu_profiler->task_end("eng::scene");
 }
 void Node::gui(){
   //---------------------------
