@@ -12,8 +12,7 @@ App_main::App_main(){
   //---------------------------
 
   this->config = new Config();
-  this->cpu_profiler = new utl::element::Profiler();
-  this->node_utility = new utl::Node(config, cpu_profiler);
+  this->node_utility = new utl::Node(config);
   this->node_engine = new eng::Node(node_utility);
   this->node_gui = new gui::Node(node_utility, node_engine);
 
@@ -43,6 +42,7 @@ void App_main::init(){
   //---------------------------
 }
 void App_main::loop(){
+  utl::element::Profiler* cpu_profiler = node_utility->get_cpu_profiler();
   //---------------------------
 
   auto start_time = std::chrono::steady_clock::now();
