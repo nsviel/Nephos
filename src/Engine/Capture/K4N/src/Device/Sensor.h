@@ -36,7 +36,7 @@ public:
   void reset();
 
   //Entity function
-  void update_entity();
+  void update_pose();
   void remove_entity();
   void reset_entity();
   void visibility_entity(bool value);

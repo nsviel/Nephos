@@ -35,22 +35,32 @@ Object::Object(eng::Node* engine){
 Object::~Object(){}
 
 //Main function
-void Object::update_entity(){
-  eng::cam::Node* node_camera = engine->get_node_camera();
-  eng::cam::Control* cam_control = node_camera->get_camera_control();
-  eng::scene::Node* node_scene = engine->get_node_scene();
-  eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
+void Object::update_data(){
   vk::Node* eng_vulkan = engine->get_eng_vulkan();
   vk::main::Engine* vk_engine = eng_vulkan->get_vk_engine();
   //----------------------------
 
-  cam_control->compute_camera_mvp(pose);
   vk_engine->insert_data_in_engine(data, pose);
+
+  //----------------------------
+}
+void Object::update_pose(){
+  eng::cam::Node* node_camera = engine->get_node_camera();
+  eng::cam::Control* cam_control = node_camera->get_camera_control();
+  //----------------------------
+
+  cam_control->compute_camera_mvp(pose);
+  this->update_glyph();
+
+  //----------------------------
+}
+void Object::update_glyph(){
+  //----------------------------
 
   for(int i=0; i<list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_glyph(this);
-    glyph->update_entity();
+    glyph->update_pose();
   }
 
   //----------------------------

@@ -21,7 +21,7 @@ void Camera::update_entity(){
   for(int i=0; i<list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_glyph(this);
-    glyph->update_entity();
+    glyph->update_pose();
   }
 
   //----------------------------

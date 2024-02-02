@@ -24,7 +24,7 @@ void Set::update(){
   // Process entities within the current set
   for (int i=0; i<list_entity.size(); i++){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
-    entity->update_entity();
+    entity->update_pose();
   }
 
   // Recursively process nested sets

@@ -16,8 +16,8 @@ public:
   ~Glyph();
 
   //Main function
-  void update_entity();
   void update_data();
+  void update_pose();
   void visibility_entity(bool value);
 
   virtual void create(){}

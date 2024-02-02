@@ -59,13 +59,14 @@ void Sensor::reset(){
 }
 
 //Entity function
-void Sensor::update_entity(){
+void Sensor::update_pose(){
   //----------------------------
 
   //Retrieve capture data
   std::unique_lock<std::mutex> lock(object->data->mutex);
   object->data->nb_point = object->data->xyz.size();
-  object->update_entity();
+  object->update_data();
+  object->update_pose();
 
   //----------------------------
 }
