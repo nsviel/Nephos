@@ -27,29 +27,29 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
   int max_data = (data->nb_data_max == -1) ? data->nb_point : data->nb_data_max;
 
   //Find buffer size
-  vk_object->xyz.size = sizeof(glm::vec3) * max_data;
-  vk_object->rgb.size = sizeof(glm::vec4) * max_data;
-  vk_object->uv.size  = sizeof(glm::vec2) * max_data;
+  vk_object->buffer.xyz.size = sizeof(glm::vec3) * max_data;
+  vk_object->buffer.rgb.size = sizeof(glm::vec4) * max_data;
+  vk_object->buffer.uv.size  = sizeof(glm::vec2) * max_data;
 
-  vk_memory->create_empty_buffer(&vk_object->xyz);
-  vk_memory->create_empty_buffer(&vk_object->rgb);
-  vk_memory->create_empty_buffer(&vk_object->uv);
+  vk_memory->create_empty_buffer(&vk_object->buffer.xyz);
+  vk_memory->create_empty_buffer(&vk_object->buffer.rgb);
+  vk_memory->create_empty_buffer(&vk_object->buffer.uv);
 
 
 
   if(vk_object->data->xyz.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec3) * vk_object->data->xyz.size();
-    vk_memory->fill_buffer_data(&vk_object->xyz, vk_object->data->xyz.data(), data_size);
+    vk_memory->fill_buffer_data(&vk_object->buffer.xyz, vk_object->data->xyz.data(), data_size);
   }
 
   if(vk_object->data->rgb.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec4) * vk_object->data->rgb.size();
-    vk_memory->fill_buffer_data(&vk_object->rgb, vk_object->data->rgb.data(), data_size);
+    vk_memory->fill_buffer_data(&vk_object->buffer.rgb, vk_object->data->rgb.data(), data_size);
   }
 
   if(vk_object->data->uv.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec2) * vk_object->data->uv.size();
-    vk_memory->fill_buffer_data(&vk_object->uv, vk_object->data->uv.data(), data_size);
+    vk_memory->fill_buffer_data(&vk_object->buffer.uv, vk_object->data->uv.data(), data_size);
   }
 
 
@@ -59,9 +59,9 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
 void Buffer::update_buffer(vk::structure::Object* vk_object){
   //---------------------------
 
-  vk_memory->update_buffer_to_gpu(vk_object->data->xyz, &vk_object->xyz);
-  vk_memory->update_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
-  vk_memory->update_buffer_to_gpu(vk_object->data->uv,  &vk_object->uv);
+  vk_memory->update_buffer_to_gpu(vk_object->data->xyz, &vk_object->buffer.xyz);
+  vk_memory->update_buffer_to_gpu(vk_object->data->rgb, &vk_object->buffer.rgb);
+  vk_memory->update_buffer_to_gpu(vk_object->data->uv,  &vk_object->buffer.uv);
 
   //---------------------------
 }
@@ -70,25 +70,25 @@ void Buffer::create_or_update_buffer(vk::structure::Object* vk_object){
 
   //A VIRER PUISQUEON VA CREER DES BUFFER DE TAILLE FIXE et quon fill après
 
-  if(vk_object->xyz.vbo == VK_NULL_HANDLE){
-    //vk_object->xyz.max_data = vk_object->data->nb_data_max;
-    //vk_memory->create_buffer_to_gpu(vk_object->data->xyz, &vk_object->xyz);
+  if(vk_object->buffer.xyz.vbo == VK_NULL_HANDLE){
+    //vk_object->buffer.xyz.max_data = vk_object->data->nb_data_max;
+    //vk_memory->create_buffer_to_gpu(vk_object->data->xyz, &vk_object->buffer.xyz);
   }else{
-    //vk_memory->update_buffer_to_gpu(vk_object->data->xyz, &vk_object->xyz);
+    //vk_memory->update_buffer_to_gpu(vk_object->data->xyz, &vk_object->buffer.xyz);
   }
 
-  if(vk_object->rgb.vbo == VK_NULL_HANDLE){
-    //vk_object->rgb.max_data = vk_object->data->nb_data_max;
-    //vk_memory->create_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
+  if(vk_object->buffer.rgb.vbo == VK_NULL_HANDLE){
+    //vk_object->buffer.rgb.max_data = vk_object->data->nb_data_max;
+    //vk_memory->create_buffer_to_gpu(vk_object->data->rgb, &vk_object->buffer.rgb);
   }else{
-    //vk_memory->update_buffer_to_gpu(vk_object->data->rgb, &vk_object->rgb);
+    //vk_memory->update_buffer_to_gpu(vk_object->data->rgb, &vk_object->buffer.rgb);
   }
 
-  if(vk_object->uv.vbo == VK_NULL_HANDLE){
-    //vk_object->uv.max_data  = vk_object->data->nb_data_max;
-    //vk_memory->create_buffer_to_gpu(vk_object->data->uv, &vk_object->uv);
+  if(vk_object->buffer.uv.vbo == VK_NULL_HANDLE){
+    //vk_object->buffer.uv.max_data  = vk_object->data->nb_data_max;
+    //vk_memory->create_buffer_to_gpu(vk_object->data->uv, &vk_object->buffer.uv);
   }else{
-    //vk_memory->update_buffer_to_gpu(vk_object->data->uv, &vk_object->uv);
+    //vk_memory->update_buffer_to_gpu(vk_object->data->uv, &vk_object->buffer.uv);
   }
 
   //---------------------------
@@ -97,9 +97,9 @@ void Buffer::create_or_update_buffer(vk::structure::Object* vk_object){
 void Buffer::clean_buffers(vk::structure::Object* vk_object){
   //---------------------------
 
-  this->clean_buffer(&vk_object->xyz);
-  this->clean_buffer(&vk_object->rgb);
-  this->clean_buffer(&vk_object->uv);
+  this->clean_buffer(&vk_object->buffer.xyz);
+  this->clean_buffer(&vk_object->buffer.rgb);
+  this->clean_buffer(&vk_object->buffer.uv);
 
   //---------------------------
 }

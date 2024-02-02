@@ -9,6 +9,16 @@
 
 namespace vk::structure{
 
+struct Buffers{
+  //---------------------------
+
+  vk::structure::Buffer xyz;
+  vk::structure::Buffer rgb;
+  vk::structure::Buffer uv;
+
+  //---------------------------
+};
+
 struct Object{
   //---------------------------
 
@@ -21,9 +31,7 @@ struct Object{
   bool has_uv = false;
 
   //Buffer
-  vk::structure::Buffer xyz;
-  vk::structure::Buffer rgb;
-  vk::structure::Buffer uv;
+  vk::structure::Buffers buffer;
 
   //Binding
   list<Image*> list_texture;
