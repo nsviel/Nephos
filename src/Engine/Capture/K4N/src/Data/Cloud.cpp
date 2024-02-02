@@ -180,13 +180,13 @@ void Cloud::retrieve_goodness(int i){
 void Cloud::insert_data(){
   //---------------------------
 
-//  if(goodness == true){
+  if(goodness == true){
     vec_xyz.push_back(xyz);
     vec_rgb.push_back(rgb);
     vec_ir.push_back(ir);
     vec_r.push_back(R);
     vec_goodness.push_back(goodness);
-//  }
+  }
 
   //---------------------------
 }
