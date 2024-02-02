@@ -20,7 +20,8 @@ struct Vulkan{
   vk::structure::Parameter param;
   vk::structure::Pool pool;
   vk::structure::Synchro synchro;
-  utl::element::Profiler profiler;
+  utl::element::Profiler* cpu_profiler;
+  utl::element::Profiler* gpu_profiler;
 
   Vulkan(GLFWwindow* window){
     this->window.glfw_window = window;

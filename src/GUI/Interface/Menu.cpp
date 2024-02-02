@@ -12,6 +12,7 @@ namespace gui::interface{
 Menu::Menu(gui::Node* gui){
   //---------------------------
 
+  this->node_utility = gui->get_node_utility();
   this->gui = gui;
   this->gui_font = gui->get_gui_font();
   this->gui_git = new utl::element::gui::Git();
@@ -43,7 +44,7 @@ void Menu::menu_option(){
     Render* gui_render = gui->get_rnd_tab();
     vk::Node* vulkan = gui_render->get_vulkan();
     vk::main::Info* vk_info = vulkan->get_vk_info();
-    utl::element::Profiler* profiler = vk_info->get_gpu_profiler();
+    utl::element::Profiler* profiler = node_utility->get_cpu_profiler();
     ImGui::Text("%.2f", profiler->get_fps());
     ImGui::EndMenu();
   }

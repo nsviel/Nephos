@@ -16,7 +16,6 @@ struct Parameter{
   //---------------------------
 
   //Configuration stuff
-  int fps_max = 120;
   bool headless = false;
   bool dedicated_gpu = true;
   glm::vec4 background_color = glm::vec4(0.4f, 0.4f, 0.4f, 1);

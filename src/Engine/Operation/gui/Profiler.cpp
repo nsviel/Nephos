@@ -68,7 +68,7 @@ void Profiler::main_info(){
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Loop"); ImGui::TableNextColumn();
-    utl::element::Profiler* profiler = vk_info->get_gpu_profiler();
+    utl::element::Profiler* profiler = node_engine->get_cpu_profiler();
     ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / profiler->get_fps());
     ImGui::SameLine();
     ImGui::Text(" ms/frame [");
@@ -147,7 +147,7 @@ void Profiler::draw_profiler_gpu(ImVec2 dimensions){
   gpu_profiler->reset();
 
   //Assign tasks
-  utl::element::Profiler* profiler = vk_info->get_gpu_profiler();
+  utl::element::Profiler* profiler = node_engine->get_cpu_profiler();
   vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
   for(int i=0; i<vec_gpu_task.size(); i++){
     utl::type::Task task = vec_gpu_task[i];

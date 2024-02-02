@@ -2,13 +2,13 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Node;}
+namespace utl{class Node;}
+namespace utl::element{class Window;}
 namespace vk::main{class Engine;}
 namespace vk::main{class Imgui;}
 namespace vk::main{class Info;}
 namespace vk::main{class Texture;}
 namespace vk::structure{class Vulkan;}
-namespace utl::element{class Window;}
 
 
 namespace vk{
@@ -17,7 +17,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(utl::Node* node_utility);
   ~Node();
 
 public:
@@ -26,9 +26,6 @@ public:
   void clean();
   void loop();
   void wait();
-
-  //Parameter function
-  void param(utl::element::Window* utl_window, bool headless);
 
   inline vk::structure::Vulkan* get_struct_vulkan(){return struct_vulkan;}
   inline vk::main::Engine* get_vk_engine(){return vk_engine;}

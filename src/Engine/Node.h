@@ -6,6 +6,7 @@ class Param;
 namespace vk{class Node;}
 namespace utl{class Node;}
 namespace utl::element{class Profiler;}
+namespace utl::fps{class Counter;}
 namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::render{class Node;}
@@ -45,6 +46,7 @@ private:
   vk::Node* eng_vulkan;
   utl::Node* node_utility;
   utl::element::Profiler* cpu_profiler;
+  utl::fps::Counter* fps_counter;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;

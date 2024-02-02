@@ -21,7 +21,6 @@ namespace vk::renderpass{class Renderpass;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
-namespace utl::fps{class Counter;}
 
 
 namespace vk::main{
@@ -77,7 +76,6 @@ private:
   vk::presentation::Frame* vk_frame;
   vk::data::Canvas* vk_canvas;
   vk::draw::Drawer* vk_drawing;
-  utl::fps::Counter* fps_counter;
 };
 
 }

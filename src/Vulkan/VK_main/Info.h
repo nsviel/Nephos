@@ -19,8 +19,6 @@ public:
 public:
   //Main functions
   string get_gpu_name();
-  utl::element::Profiler* get_gpu_profiler();
-  int* get_fps_max();
   vec4* get_color_background();
 
 private:

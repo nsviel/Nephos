@@ -13,13 +13,14 @@ Node::Node(utl::Node* node_utility){
 
   this->node_utility = node_utility;
   this->cpu_profiler = node_utility->get_cpu_profiler();
-  this->eng_vulkan = new vk::Node(this);
+  this->eng_vulkan = new vk::Node(node_utility);
   this->node_camera = new eng::cam::Node(this);
   this->node_scene = new eng::scene::Node(this);
   this->node_operation = new eng::ope::Node(this);
   this->node_render = new eng::render::Node(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_gui = new eng::gui::Node(this);
+  this->fps_counter = new utl::fps::Counter();
 
   this->add_node_panel(node_operation);
   this->add_node_panel(node_camera);
@@ -63,7 +64,7 @@ void Node::loop(){
 
   //---------------------------
   cpu_profiler->task_end("eng");
-
+  cpu_profiler->set_fps(fps_counter->update());
 }
 void Node::gui(){
   cpu_profiler->task_begin("eng::gui");

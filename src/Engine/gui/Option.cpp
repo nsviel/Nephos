@@ -64,12 +64,12 @@ void Option::option_color(){
 }
 void Option::option_fps(){
   //---------------------------
-
+/*
   //FPS max value
   int* fps_max = vk_info->get_fps_max();
   ImGui::SetNextItemWidth(150);
   ImGui::SliderInt("FPS max", fps_max, 10, 1000);
-
+*/
   //---------------------------
 }
 
