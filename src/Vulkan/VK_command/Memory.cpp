@@ -108,6 +108,34 @@ void Memory::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer){
 }
 
 //Buffer GPU function
+void Memory::create_empty_buffer(vk::structure::Buffer* buffer, VkDeviceSize buffer_size){
+  if(buffer_size == 0) return;
+    //---------------------------
+
+    // Create an empty buffer with the specified size
+    this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
+    this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
+
+    //---------------------------
+}
+void Memory::fill_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize) {
+    //---------------------------
+
+    if (dataSize == 0) {
+        throw std::runtime_error("Data size is zero!");
+    }
+
+    // Map the buffer's memory and copy the data
+    void* mappedMemory;
+    VkResult result = vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, dataSize, 0, &mappedMemory);
+    if (result != VK_SUCCESS) {
+        throw std::runtime_error("Failed to map buffer memory!");
+    }
+    memcpy(mappedMemory, data, static_cast<size_t>(dataSize));
+    vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
+
+    //---------------------------
+}
 void Memory::create_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer){
   //---------------------------
 
@@ -285,7 +313,7 @@ void Memory::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBu
   VkResult result = vkCreateBuffer(struct_vulkan->device.device, &buffer_info, nullptr, &buffer);
 
   if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to create buffer!");
+    throw std::runtime_error("[error] failed to create gpu buffer");
   }
 
   //---------------------------
