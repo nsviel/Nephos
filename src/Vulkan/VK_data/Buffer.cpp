@@ -44,17 +44,17 @@ void Buffer::update_buffer(vk::structure::Object* vk_object){
 
   if(vk_object->data->xyz.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec3) * vk_object->data->xyz.size();
-    vk_memory->fill_buffer_data(&vk_object->buffer.xyz, vk_object->data->xyz.data(), data_size);
+    vk_memory->update_buffer_data(&vk_object->buffer.xyz, vk_object->data->xyz.data(), data_size);
   }
 
   if(vk_object->data->rgb.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec4) * vk_object->data->rgb.size();
-    vk_memory->fill_buffer_data(&vk_object->buffer.rgb, vk_object->data->rgb.data(), data_size);
+    vk_memory->update_buffer_data(&vk_object->buffer.rgb, vk_object->data->rgb.data(), data_size);
   }
 
   if(vk_object->data->uv.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec2) * vk_object->data->uv.size();
-    vk_memory->fill_buffer_data(&vk_object->buffer.uv, vk_object->data->uv.data(), data_size);
+    vk_memory->update_buffer_data(&vk_object->buffer.uv, vk_object->data->uv.data(), data_size);
   }
 
   //---------------------------

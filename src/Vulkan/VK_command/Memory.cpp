@@ -118,7 +118,7 @@ void Memory::create_empty_buffer(vk::structure::Buffer* buffer){
 
     //---------------------------
 }
-void Memory::fill_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize) {
+void Memory::update_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize) {
     //---------------------------
 
     if (dataSize == 0) {
@@ -136,99 +136,6 @@ void Memory::fill_buffer_data(vk::structure::Buffer* buffer, const void* data, V
 
     //---------------------------
 }
-void Memory::create_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer){
-  //---------------------------
-
-  if(vertices.size() == 0){return;}
-
-  VkBuffer staging_buffer;
-  VkDeviceMemory staging_memory;
-  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->size;
-  VkDeviceSize data_size = sizeof(vertices[0]) * vertices.size();
-
-  // Initialize staging buffer
-  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_SRC, staging_buffer);
-  this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_memory);
-
-  // Copy the vertex data from the CPU to the GPU
-  void* staging_data;
-  vkMapMemory(struct_vulkan->device.device, staging_memory, 0, data_size, 0, &staging_data);
-  memcpy(staging_data, vertices.data(), static_cast<size_t>(data_size));
-  vkUnmapMemory(struct_vulkan->device.device, staging_memory);
-
-  // Initialize destination buffer
-  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
-  this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
-  this->copy_buffer(staging_buffer, buffer->vbo, data_size);
-
-  // Cleanup staging buffer resources
-  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, staging_memory, nullptr);
-
-  //---------------------------
-}
-void Memory::create_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer){
-  //---------------------------
-
-  if(vertices.size() == 0){return;}
-
-  VkBuffer staging_buffer;
-  VkDeviceMemory staging_memory;
-  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->size;
-  VkDeviceSize data_size = sizeof(vertices[0]) * vertices.size();
-
-  // Initialize staging buffer
-  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_SRC, staging_buffer);
-  this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_memory);
-
-  // Copy the vertex data from the CPU to the GPU
-  void* staging_data;
-  vkMapMemory(struct_vulkan->device.device, staging_memory, 0, data_size, 0, &staging_data);
-  memcpy(staging_data, vertices.data(), static_cast<size_t>(data_size));
-  vkUnmapMemory(struct_vulkan->device.device, staging_memory);
-
-  // Initialize destination buffer
-  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
-  this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
-  this->copy_buffer(staging_buffer, buffer->vbo, data_size);
-
-  // Cleanup staging buffer resources
-  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, staging_memory, nullptr);
-
-  //---------------------------
-}
-void Memory::create_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer){
-  //---------------------------
-
-  if(vertices.size() == 0){return;}
-
-  VkBuffer staging_buffer;
-  VkDeviceMemory staging_memory;
-  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->size;
-  VkDeviceSize data_size = sizeof(vertices[0]) * vertices.size();
-
-  // Initialize staging buffer
-  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_SRC, staging_buffer);
-  this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_memory);
-
-  // Copy the vertex data from the CPU to the GPU
-  void* staging_data;
-  vkMapMemory(struct_vulkan->device.device, staging_memory, 0, data_size, 0, &staging_data);
-  memcpy(staging_data, vertices.data(), static_cast<size_t>(data_size));
-  vkUnmapMemory(struct_vulkan->device.device, staging_memory);
-
-  // Initialize destination buffer
-  this->create_gpu_buffer(buffer_size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
-  this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
-  this->copy_buffer(staging_buffer, buffer->vbo, data_size);
-
-  // Cleanup staging buffer resources
-  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, staging_memory, nullptr);
-
-  //---------------------------
-}
 void Memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size){
   //---------------------------
 
@@ -239,64 +146,6 @@ void Memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize si
   vkCmdCopyBuffer(command_buffer, srcBuffer, dstBuffer, 1, &region);
 
   vk_command->singletime_command_end(command_buffer);
-
-  //---------------------------
-}
-
-void Memory::update_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer){
-  //---------------------------
-
-  if(buffer->mem == VK_NULL_HANDLE) return;
-
-  // Map the buffer memory
-  void* mapped_memory;
-  if (vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, vertices.size() * sizeof(glm::vec2), 0, &mapped_memory) != VK_SUCCESS) {
-    throw std::runtime_error("Failed to map buffer memory!");
-  }
-
-  // Copy the vector data to the mapped memory
-  memcpy(mapped_memory, vertices.data(), vertices.size() * sizeof(glm::vec2));
-
-  // Unmap the buffer memory
-  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
-
-  //---------------------------
-}
-void Memory::update_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer){
-  //---------------------------
-
-  if(buffer->mem == VK_NULL_HANDLE) return;
-
-  // Map the buffer memory
-  void* mapped_memory;
-  if (vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, vertices.size() * sizeof(glm::vec3), 0, &mapped_memory) != VK_SUCCESS) {
-    throw std::runtime_error("Failed to map buffer memory!");
-  }
-
-  // Copy the vector data to the mapped memory
-  memcpy(mapped_memory, vertices.data(), vertices.size() * sizeof(glm::vec3));
-
-  // Unmap the buffer memory
-  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
-
-  //---------------------------
-}
-void Memory::update_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer){
-  //---------------------------
-
-  if(buffer->mem == VK_NULL_HANDLE) return;
-
-  // Map the buffer memory
-  void* mapped_memory;
-  if (vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, vertices.size() * sizeof(glm::vec4), 0, &mapped_memory) != VK_SUCCESS) {
-    throw std::runtime_error("Failed to map buffer memory!");
-  }
-
-  // Copy the vector data to the mapped memory
-  memcpy(mapped_memory, vertices.data(), vertices.size() * sizeof(glm::vec4));
-
-  // Unmap the buffer memory
-  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
 
   //---------------------------
 }

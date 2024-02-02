@@ -10,7 +10,7 @@ namespace eng::k4n{
 //Constructor / Destructor
 Node::Node(eng::Node* engine){
   utl::gui::Panel* ply_panel = new_panel("Player", ICON_FA_PLAY, true);
-  utl::gui::Panel* str_panel = new_panel("Stream", ICON_FA_FILM, true);
+  utl::gui::Panel* str_panel = new_panel("Stream", ICON_FA_FILM, false);
   //---------------------------
 
   this->engine = engine;

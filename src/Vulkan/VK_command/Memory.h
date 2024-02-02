@@ -26,15 +26,8 @@ public:
 
   //Buffer GPU function
   void create_empty_buffer(vk::structure::Buffer* buffer);
-  void fill_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize);
-  void create_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer);
-  void create_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer);
-  void create_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer);
+  void update_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize);
   void copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
-
-  void update_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer);
-  void update_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer);
-  void update_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer);
 
   //Subfunction
   void bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
