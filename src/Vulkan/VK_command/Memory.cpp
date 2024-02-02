@@ -291,17 +291,17 @@ void Memory::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buff
   //---------------------------
 
   //Get buffer memory requirement
-  VkMemoryRequirements buffer_mem_requirement;
-  vkGetBufferMemoryRequirements(struct_vulkan->device.device, buffer, &buffer_mem_requirement);
+  VkMemoryRequirements memory_requirement;
+  vkGetBufferMemoryRequirements(struct_vulkan->device.device, buffer, &memory_requirement);
 
   //Buffer allocation info
-  VkMemoryAllocateInfo buffer_allocation_info{};
-  buffer_allocation_info.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
-  buffer_allocation_info.allocationSize = buffer_mem_requirement.size;
-  buffer_allocation_info.memoryTypeIndex = find_memory_type(buffer_mem_requirement.memoryTypeBits, properties);
+  VkMemoryAllocateInfo allocation_info{};
+  allocation_info.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+  allocation_info.allocationSize = memory_requirement.size;
+  allocation_info.memoryTypeIndex = find_memory_type(memory_requirement.memoryTypeBits, properties | VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT);
 
   //Allocate buffer memory on the GPU
-  VkResult result = vkAllocateMemory(struct_vulkan->device.device, &buffer_allocation_info, nullptr, &buffer_memory);
+  VkResult result = vkAllocateMemory(struct_vulkan->device.device, &allocation_info, nullptr, &buffer_memory);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate buffer memory!");
   }
