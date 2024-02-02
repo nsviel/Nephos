@@ -15,12 +15,11 @@ Camera::Camera(){
 Camera::~Camera(){}
 
 //Main function
-void Camera::update_entity(){
+void Camera::update_pose(){
   //----------------------------
 
   for(int i=0; i<list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->update_glyph(this);
     glyph->update_pose();
   }
 

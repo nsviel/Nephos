@@ -37,7 +37,7 @@ public:
   ~Camera();
 
   //Main function
-  void update_entity();
+  void update_pose();
   void reset_entity();
 
 public:
