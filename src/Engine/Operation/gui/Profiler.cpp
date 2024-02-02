@@ -106,6 +106,15 @@ void Profiler::main_button(){
     ImGui::PopStyleColor();
   }
 
+  //Graph max time
+  ImGui::SameLine();
+  ImGui::SetNextItemWidth(150);
+  if(ImGui::SliderInt("Y axis", &max_time, 10, 100, "%d ms")){
+    gui_cpu->set_time_max(max_time);
+    gui_gpu->set_time_max(max_time);
+    gui_capture->set_time_max(max_time);
+  }
+
   //---------------------------
 }
 void Profiler::draw_graph(){

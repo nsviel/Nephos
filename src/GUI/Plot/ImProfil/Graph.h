@@ -31,6 +31,8 @@ public:
   void render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
   void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::type::Task task);
 
+  inline float* get_max_time(){return &max_time_s;}
+
 private:
   //Primitives
   void draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickness, vec4 color);

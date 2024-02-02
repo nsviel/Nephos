@@ -112,5 +112,13 @@ vec4 Manager::get_next_color(){
   //---------------------------
   return color;
 }
+void Manager::set_time_max(int value){
+  //---------------------------
+
+  float* time_max = graph->get_max_time();
+  *time_max = float(value) / 1000;
+
+  //---------------------------
+}
 
 }

@@ -24,6 +24,7 @@ public:
 
   //Subfunction
   vec4 get_next_color();
+  void set_time_max(int value);
   void reset();
 
 private:

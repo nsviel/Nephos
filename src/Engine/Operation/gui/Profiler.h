@@ -45,6 +45,7 @@ private:
   bool* show_window;
   string name;
   bool pause;
+  int max_time = 50;
   int width;
 };
 
