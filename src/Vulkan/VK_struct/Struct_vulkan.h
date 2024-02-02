@@ -14,6 +14,7 @@ struct Vulkan{
     utl::element::Window* utl_window = node_utility->get_utl_window();
     this->window.glfw_window = utl_window->get_window();
     this->cpu_profiler = node_utility->get_cpu_profiler();
+    this->gpu_profiler = node_utility->get_gpu_profiler();
   }
 
   std::string name;

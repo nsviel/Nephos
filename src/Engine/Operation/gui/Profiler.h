@@ -5,6 +5,7 @@
 namespace eng{class Node;}
 namespace eng::render{class Node;}
 namespace vk::main{class Info;}
+namespace utl{class Node;}
 namespace utl::improfil{class Manager;}
 
 
@@ -33,9 +34,10 @@ public:
 
 private:
   eng::Node* node_engine;
-  utl::improfil::Manager* cpu_profiler;
-  utl::improfil::Manager* gpu_profiler;
-  utl::improfil::Manager* cap_profiler;
+  utl::Node* node_utility;
+  utl::improfil::Manager* gui_cpu;
+  utl::improfil::Manager* gui_gpu;
+  utl::improfil::Manager* gui_capture;
   vk::main::Info* vk_info;
 
   bool* show_window;

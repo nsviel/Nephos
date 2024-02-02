@@ -15,9 +15,10 @@ Profiler::Profiler(eng::Node* node_engine, bool* show_window){
   vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
 
   this->node_engine = node_engine;
-  this->cpu_profiler = new utl::improfil::Manager("cpu");
-  this->gpu_profiler = new utl::improfil::Manager("gpu");
-  this->cap_profiler = new utl::improfil::Manager("capture");
+  this->node_utility = node_engine->get_node_utility();
+  this->gui_cpu = new utl::improfil::Manager("cpu");
+  this->gui_gpu = new utl::improfil::Manager("gpu");
+  this->gui_capture = new utl::improfil::Manager("capture");
   this->vk_info = eng_vulkan->get_vk_info();
 
   this->show_window = show_window;
@@ -68,7 +69,7 @@ void Profiler::main_info(){
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Loop"); ImGui::TableNextColumn();
-    utl::element::Profiler* profiler = node_engine->get_cpu_profiler();
+    utl::element::Profiler* profiler = node_utility->get_gui_cpu();
     ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / profiler->get_fps());
     ImGui::SameLine();
     ImGui::Text(" ms/frame [");
@@ -125,18 +126,18 @@ void Profiler::draw_profiler_cpu(ImVec2 dimensions){
   //---------------------------
 
   //Reset graph
-  cpu_profiler->reset();
+  gui_cpu->reset();
 
   //Assign tasks
-  utl::element::Profiler* profiler = node_engine->get_cpu_profiler();
+  utl::element::Profiler* profiler = node_utility->get_gui_cpu();
   vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
   for(int i=0; i<vec_gpu_task.size(); i++){
     utl::type::Task task = vec_gpu_task[i];
-    cpu_profiler->add_task(task.time_beg, task.time_end, task.name);
+    gui_cpu->add_task(task.time_beg, task.time_end, task.name);
   }
 
   //Render graph
-  cpu_profiler->render_child(dimensions);
+  gui_cpu->render_child(dimensions);
 
   //---------------------------
 }
@@ -144,18 +145,18 @@ void Profiler::draw_profiler_gpu(ImVec2 dimensions){
   //---------------------------
 
   //Reset graph
-  gpu_profiler->reset();
+  gui_gpu->reset();
 
   //Assign tasks
-  utl::element::Profiler* profiler = node_engine->get_cpu_profiler();
+  utl::element::Profiler* profiler = node_utility->get_gui_gpu();
   vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
   for(int i=0; i<vec_gpu_task.size(); i++){
     utl::type::Task task = vec_gpu_task[i];
-    gpu_profiler->add_task(task.time_beg, task.time_end, task.name);
+    gui_gpu->add_task(task.time_beg, task.time_end, task.name);
   }
 
   //Render graph
-  gpu_profiler->render_child(dimensions);
+  gui_gpu->render_child(dimensions);
 
   //---------------------------
 }
@@ -170,18 +171,18 @@ void Profiler::draw_profiler_capture(ImVec2 dimensions){
 
   if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(master->selected_entity)){
     //Reset graph
-    cap_profiler->reset();
+    gui_capture->reset();
 
     //Assign tasks
-    utl::element::Profiler* profiler = sensor->cap_profiler;
+    utl::element::Profiler* profiler = sensor->gui_capture;
     vector<utl::type::Task>& vec_task = profiler->get_vec_task();
     for(int i=0; i<vec_task.size(); i++){
       utl::type::Task task = vec_task[i];
-      cap_profiler->add_task(task.time_beg, task.time_end, task.name);
+      gui_capture->add_task(task.time_beg, task.time_end, task.name);
     }
 
     //Render graph
-    cap_profiler->render_child(dimensions);
+    gui_capture->render_child(dimensions);
   }
 
   //---------------------------
