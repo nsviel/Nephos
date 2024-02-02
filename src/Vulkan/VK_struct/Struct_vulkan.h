@@ -10,6 +10,12 @@ namespace vk::structure{
 struct Vulkan{
   //---------------------------
 
+  Vulkan(utl::Node* node_utility){
+    utl::element::Window* utl_window = node_utility->get_utl_window();
+    this->window.glfw_window = utl_window->get_window();
+    this->cpu_profiler = node_utility->get_cpu_profiler();
+  }
+
   std::string name;
   vk::structure::Render render;
   vk::structure::Window window;
@@ -22,10 +28,6 @@ struct Vulkan{
   vk::structure::Synchro synchro;
   utl::element::Profiler* cpu_profiler;
   utl::element::Profiler* gpu_profiler;
-
-  Vulkan(GLFWwindow* window){
-    this->window.glfw_window = window;
-  }
 
   //---------------------------
 };

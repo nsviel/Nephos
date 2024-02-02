@@ -14,8 +14,9 @@ Node::Node(Config* config, utl::element::Profiler* cpu_profiler){
   this->utl_window = new utl::element::Window(config);
   this->cpu_profiler = cpu_profiler;
 
+  utl_window->create_window();
+
   //---------------------------
-  this->init();
 }
 Node::~Node(){}
 
@@ -23,7 +24,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  utl_window->create_window();
+
 
   //---------------------------
 }

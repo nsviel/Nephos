@@ -36,6 +36,7 @@ void App_main::run(){
 void App_main::init(){
   //---------------------------
 
+  node_utility->init();
   node_engine->init();
   node_gui->init();
 

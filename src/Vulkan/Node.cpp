@@ -10,9 +10,7 @@ namespace vk{
 Node::Node(utl::Node* node_utility){
   //---------------------------
 
-  utl::element::Window* utl_window = node_utility->get_utl_window();
-
-  this->struct_vulkan = new vk::structure::Vulkan(utl_window->get_window());
+  this->struct_vulkan = new vk::structure::Vulkan(node_utility);
   this->vk_engine = new vk::main::Engine(struct_vulkan);
   this->vk_imgui = new vk::main::Imgui(struct_vulkan);
   this->vk_info = new vk::main::Info(struct_vulkan);
