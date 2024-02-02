@@ -12,7 +12,6 @@ struct Entity
   //---------------------------
 
   virtual ~Entity(){}
-        virtual void update_entity(){}
   virtual void update_data(){}
   virtual void update_pose(){}
   virtual void remove_entity(){}

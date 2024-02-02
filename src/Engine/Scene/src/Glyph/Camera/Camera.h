@@ -14,7 +14,6 @@ public:
 
 public:
   void create();
-  void update_glyph(utl::type::Entity* entity);
 
 private:
 
