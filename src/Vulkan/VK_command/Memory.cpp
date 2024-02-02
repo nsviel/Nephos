@@ -143,7 +143,7 @@ void Memory::create_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer*
 
   VkBuffer staging_buffer;
   VkDeviceMemory staging_memory;
-  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->max_data;
+  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->size;
   VkDeviceSize data_size = sizeof(vertices[0]) * vertices.size();
 
   // Initialize staging buffer
@@ -174,7 +174,7 @@ void Memory::create_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer*
 
   VkBuffer staging_buffer;
   VkDeviceMemory staging_memory;
-  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->max_data;
+  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->size;
   VkDeviceSize data_size = sizeof(vertices[0]) * vertices.size();
 
   // Initialize staging buffer
@@ -205,7 +205,7 @@ void Memory::create_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer*
 
   VkBuffer staging_buffer;
   VkDeviceMemory staging_memory;
-  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->max_data;
+  VkDeviceSize buffer_size = sizeof(vertices[0]) * buffer->size;
   VkDeviceSize data_size = sizeof(vertices[0]) * vertices.size();
 
   // Initialize staging buffer
