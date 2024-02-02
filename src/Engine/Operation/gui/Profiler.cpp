@@ -232,34 +232,6 @@ void Profiler::draw_timeline(){
   //---------------------------
 
 
-  // Get the ImGui draw list
-  ImDrawList* drawList = ImGui::GetWindowDrawList();
-
-  // Define timeline parameters
-  float startX = ImGui::GetCursorScreenPos().x + 10;
-  float startY = ImGui::GetCursorScreenPos().y + 10;
-  float timelineWidth = 400.0f;
-  float timelineHeight = 20.0f;
-  float duration = 100.0f;  // Example duration in seconds
-  float currentTime = 50.0f;  // Example current time in seconds
-
-
-  // Draw the timeline background
-  ImVec2 timelineStart(startX, startY);
-  ImVec2 timelineEnd(startX + timelineWidth, startY + timelineHeight);
-  drawList->AddRectFilled(timelineStart, timelineEnd, IM_COL32(50, 50, 50, 255));
-
-  // Draw the timeline border
-  drawList->AddRect(timelineStart, timelineEnd, IM_COL32(255, 255, 255, 255));
-
-  // Calculate the position of the current time indicator
-  float indicatorX = startX + (currentTime / duration) * timelineWidth;
-  ImVec2 indicatorStart(indicatorX, startY);
-  ImVec2 indicatorEnd(indicatorX + 1.0f, startY + timelineHeight);
-
-  // Draw the current time indicator
-  drawList->AddRectFilled(indicatorStart, indicatorEnd, IM_COL32(255, 0, 0, 255));
-
   //---------------------------
 }
 

@@ -26,6 +26,8 @@ public:
   void render_legend(ImDrawList *draw_list);
 
   //Subfunction
+  void render_background_tics(ImDrawList *draw_list);
+  void render_serie_task_rect(ImDrawList *draw_list, utl::type::Task& task, glm::vec2 bar_pose);
   void render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
   void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::type::Task task);
 
