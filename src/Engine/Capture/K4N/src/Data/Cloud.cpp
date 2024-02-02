@@ -63,6 +63,7 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
     this->retrieve_goodness(i);
+    this->insert_data();
   }
   profiler->task_end("cloud::data");
 
@@ -84,6 +85,7 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   data->Is = vec_ir;
   data->R = vec_r;
   data->goodness = vec_goodness;
+  data->nb_point = vec_xyz.size();
 
   //Final colorization
   profiler->task_begin("cloud::colorization");
@@ -119,20 +121,16 @@ void Cloud::retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* dat
   int z = data[depth_idx+2];
 
   //coordinate in meter and X axis oriented.
-  glm::vec3 point_m(z/1000.0f, -x/1000.0f, -y/1000.0f);
-  vec_xyz.push_back(point_m);
+  xyz = vec3(z/1000.0f, -x/1000.0f, -y/1000.0f);
 
   //Range calculation
-  float R = sqrt(pow(point_m.x, 2) + pow(point_m.y, 2) + pow(point_m.z, 2));
-  vec_r.push_back(R);
+  R = sqrt(pow(xyz.x, 2) + pow(xyz.y, 2) + pow(xyz.z, 2));
 
   //---------------------------
 }
 void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
-  //---------------------------
-
   eng::k4n::structure::Operation* operation = &sensor->master->operation;
-  glm::vec4 color = vec4(1, 1, 1, 1);
+  //---------------------------
 
   if(operation->color_mode == 0){
     //Camera color
@@ -144,11 +142,12 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
     float g = static_cast<float>(color_data[index + 1]) / 255.0f;
     float b = static_cast<float>(color_data[index + 0]) / 255.0f;
     float a = 1.0f;
-    color = vec4(r, g, b, a);
+    rgb = vec4(r, g, b, a);
+  }else{
+    rgb = vec4(1, 1, 1, 1);
   }
 
   //---------------------------
-  vec_rgb.push_back(color);
 }
 void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
   if(sensor->ir.data.buffer.empty()) return;
@@ -157,50 +156,41 @@ void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
   const vector<uint8_t>& ir_buffer = sensor->ir.data_to_color.buffer;
 
   int index = i * 2;
-  uint16_t value = static_cast<uint16_t>(ir_buffer[index]) | (static_cast<uint16_t>(ir_buffer[index + 1]) << 8);
+  ir = static_cast<uint16_t>(ir_buffer[index]) | (static_cast<uint16_t>(ir_buffer[index + 1]) << 8);
 
   //---------------------------
-  vec_ir.push_back(value);
 }
 void Cloud::retrieve_goodness(int i){
-  bool goodness = true;
+  goodness = true;
   //---------------------------
 
   //location -> If null point set goodness to bad
-  vec3 xyz = vec_xyz[i];
   if(xyz.x == 0 && xyz.y == 0 && xyz.z == 0){
     goodness = false;
   }
 
   //color -> If null color set goodness to bad
   //Maybe will be corrected with custom color to depth projection
-  vec4 rgb = vec_rgb[i];
   if(rgb.x == 0 && rgb.y == 0 && rgb.z == 0){
     goodness = false;
   }
 
   //---------------------------
-  vec_goodness.push_back(goodness);
 }
-void Cloud::retrieve_corner_coordinate(eng::k4n::dev::Sensor* sensor){
+void Cloud::insert_data(){
   //---------------------------
 
-  // Define your pixel coordinates and depth value
-  int pixel_x = 640;  // replace ... with your pixel x-coordinate
-  int pixel_y = 220;  // replace ... with your pixel y-coordinate
-  float depth_value = 1749;  // replace ... with your depth value
-
-  // Convert pixel coordinates and depth value to 3D coordinates
-  k4a_float2_t pixel_point = { static_cast<float>(pixel_x), static_cast<float>(pixel_y) };
-  k4a_float3_t xyz;
-  int is_valid;
-  k4a_calibration_2d_to_3d(&sensor->param.calibration, &pixel_point, depth_value, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &xyz, &is_valid);
-  if(is_valid){
-    glm::vec3 point(-xyz.v[2]/100.0f, -xyz.v[0]/100.0f, -xyz.v[1]/100.0f);
-  }
+//  if(goodness == true){
+    vec_xyz.push_back(xyz);
+    vec_rgb.push_back(rgb);
+    vec_ir.push_back(ir);
+    vec_r.push_back(R);
+    vec_goodness.push_back(goodness);
+//  }
 
   //---------------------------
 }
+
 
 
 }

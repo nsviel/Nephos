@@ -32,7 +32,7 @@ public:
   void retrieve_color(eng::k4n::dev::Sensor* sensor, int i);
   void retrieve_ir(eng::k4n::dev::Sensor* sensor, int i);
   void retrieve_goodness(int i);
-  void retrieve_corner_coordinate(eng::k4n::dev::Sensor* sensor);
+  void insert_data();
 
   inline eng::ope::Voxelizer* get_voxelizer(){return ope_voxelizer;}
 
@@ -46,6 +46,12 @@ private:
   std::vector<float> vec_ir;
   std::vector<float> vec_r;
   std::vector<bool> vec_goodness;
+
+  glm::vec3 xyz;
+  glm::vec4 rgb;
+  float ir;
+  float R;
+  bool goodness;
 };
 
 }

@@ -25,9 +25,9 @@ public:
   void copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer);
 
   //Buffer GPU function
-  void transfert_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer);
-  void transfert_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer);
-  void transfert_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer);
+  void create_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer);
+  void create_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer);
+  void create_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer);
   void copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
 
   void update_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer);

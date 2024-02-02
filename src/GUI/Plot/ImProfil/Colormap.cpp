@@ -5,7 +5,6 @@ namespace utl::improfil::colormap {
   //---------------------------
 
   std::vector<glm::vec4> viridis = {
-    glm::vec4(68, 1, 84, 255),
     glm::vec4(72, 40, 120, 255),
     glm::vec4(62, 74, 137, 255),
     glm::vec4(49, 104, 142, 255),

@@ -108,14 +108,14 @@ void Memory::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer){
 }
 
 //Buffer GPU function
-void Memory::transfert_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer){
+void Memory::create_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer){
   //---------------------------
 
   if(vertices.size() == 0){return;}
 
   VkBuffer staging_buffer;
   VkDeviceMemory staging_memory;
-  VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
+  VkDeviceSize size = sizeof(vertices[0]) * buffer->max_data;
 
   // Initialize staging buffer
   this->create_gpu_buffer(size, TYP_BUFFER_USAGE_SRC, staging_buffer);
@@ -138,14 +138,14 @@ void Memory::transfert_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buff
 
   //---------------------------
 }
-void Memory::transfert_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer){
+void Memory::create_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer){
   //---------------------------
 
   if(vertices.size() == 0){return;}
 
   VkBuffer staging_buffer;
   VkDeviceMemory staging_memory;
-  VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
+  VkDeviceSize size = sizeof(vertices[0]) * buffer->max_data;
 
   // Initialize staging buffer
   this->create_gpu_buffer(size, TYP_BUFFER_USAGE_SRC, staging_buffer);
@@ -168,14 +168,14 @@ void Memory::transfert_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buff
 
   //---------------------------
 }
-void Memory::transfert_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer){
+void Memory::create_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer){
   //---------------------------
 
   if(vertices.size() == 0){return;}
 
   VkBuffer staging_buffer;
   VkDeviceMemory staging_memory;
-  VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
+  VkDeviceSize size = sizeof(vertices[0]) * buffer->max_data;
 
   // Initialize staging buffer
   this->create_gpu_buffer(size, TYP_BUFFER_USAGE_SRC, staging_buffer);

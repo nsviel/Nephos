@@ -19,7 +19,8 @@ struct Data{
 
   //State
   int UID = -1;
-  int nb_point = 0;
+  int nb_point = -1;
+  int nb_data_max = -1;
   int draw_line_width = 1;
   int draw_point_size = 5;
 
