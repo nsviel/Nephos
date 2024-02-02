@@ -212,6 +212,58 @@ void Memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize si
   //---------------------------
 }
 
+void Memory::update_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer){
+  //---------------------------
+
+  // Map the buffer memory
+  void* mapped_memory;
+  if (vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, vertices.size() * sizeof(glm::vec2), 0, &mapped_memory) != VK_SUCCESS) {
+    throw std::runtime_error("Failed to map buffer memory!");
+  }
+
+  // Copy the vector data to the mapped memory
+  memcpy(mapped_memory, vertices.data(), vertices.size() * sizeof(glm::vec2));
+
+  // Unmap the buffer memory
+  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
+
+  //---------------------------
+}
+void Memory::update_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer){
+  //---------------------------
+
+  // Map the buffer memory
+  void* mapped_memory;
+  if (vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, vertices.size() * sizeof(glm::vec3), 0, &mapped_memory) != VK_SUCCESS) {
+    throw std::runtime_error("Failed to map buffer memory!");
+  }
+
+  // Copy the vector data to the mapped memory
+  memcpy(mapped_memory, vertices.data(), vertices.size() * sizeof(glm::vec3));
+
+  // Unmap the buffer memory
+  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
+
+  //---------------------------
+}
+void Memory::update_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer){
+  //---------------------------
+
+  // Map the buffer memory
+  void* mapped_memory;
+  if (vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, vertices.size() * sizeof(glm::vec4), 0, &mapped_memory) != VK_SUCCESS) {
+    throw std::runtime_error("Failed to map buffer memory!");
+  }
+
+  // Copy the vector data to the mapped memory
+  memcpy(mapped_memory, vertices.data(), vertices.size() * sizeof(glm::vec4));
+
+  // Unmap the buffer memory
+  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
+
+  //---------------------------
+}
+
 //Subfunction
 void Memory::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBuffer& buffer){
   //---------------------------

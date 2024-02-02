@@ -30,6 +30,10 @@ public:
   void transfert_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer);
   void copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
 
+  void update_buffer_to_gpu(vector<vec2>& vertices, vk::structure::Buffer* buffer);
+  void update_buffer_to_gpu(vector<vec3>& vertices, vk::structure::Buffer* buffer);
+  void update_buffer_to_gpu(vector<vec4>& vertices, vk::structure::Buffer* buffer);
+
   //Subfunction
   void bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
   void create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBuffer& buffer);
