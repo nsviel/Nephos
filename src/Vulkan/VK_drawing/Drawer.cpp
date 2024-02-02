@@ -43,11 +43,14 @@ void Drawer::draw_frame_headless(){
   for(int i=0; i<nb_renderpass; i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
 
+    string name = "rp_" + renderpass->name;
+    struct_vulkan->cpu_profiler->task_begin(name);
     vk_render->run_renderpass(renderpass);
 
     vk::structure::Command& command = renderpass->command;
     command.fence = (i == nb_renderpass-1) ? struct_vulkan->synchro.fence : VK_NULL_HANDLE;
     vk_render->submit_command(renderpass);
+    struct_vulkan->cpu_profiler->task_end(name);
 
     semaphore_wait = struct_vulkan->synchro.vec_semaphore_render[i];
     semaphore_done = struct_vulkan->synchro.vec_semaphore_render[i+1];
