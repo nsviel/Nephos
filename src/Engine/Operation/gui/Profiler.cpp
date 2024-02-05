@@ -9,12 +9,12 @@
 namespace eng::render::gui{
 
 //Constructor / Destructor
-Profiler::Profiler(eng::Node* node_engine, bool* show_window){
+Profiler::Profiler(eng::ope::Node* node_operation, bool* show_window){
   //---------------------------
 
+  this->node_engine = node_operation->get_node_engine();
   vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
 
-  this->node_engine = node_engine;
   this->node_utility = node_engine->get_node_utility();
   this->gui_cpu = new utl::improfil::Manager("cpu");
   this->gui_gpu = new utl::improfil::Manager("gpu");

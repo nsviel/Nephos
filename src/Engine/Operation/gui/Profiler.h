@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
+namespace eng::ope{class Node;}
 namespace eng::render{class Node;}
 namespace vk::main{class Info;}
 namespace utl{class Node;}
@@ -15,7 +16,7 @@ class Profiler
 {
 public:
   //Constructor / Destructor
-  Profiler(eng::Node* engine, bool* show_window);
+  Profiler(eng::ope::Node* node_operation, bool* show_window);
   ~Profiler();
 
 public:

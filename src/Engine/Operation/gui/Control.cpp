@@ -7,20 +7,21 @@
 namespace eng::ope::gui{
 
 //Constructor / Destructor
-Control::Control(eng::Node* engine){
+Control::Control(eng::ope::Node* node_operation){
   //---------------------------
 
-  utl::Node* utility = engine->get_node_utility();
-  eng::scene::Node* node_scene = engine->get_node_scene();
-  eng::cam::Node* node_camera = engine->get_node_camera();
+  this->node_engine = node_operation->get_node_engine();
+  utl::Node* utility = node_engine->get_node_utility();
+  eng::scene::Node* node_scene = node_engine->get_node_scene();
+  eng::cam::Node* node_camera = node_engine->get_node_camera();
 
-  this->engine = engine;
   this->utl_window = utility->get_utl_window();
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
   this->sce_scene = node_scene->get_scene();
   this->sce_database = node_scene->get_scene_database();
   this->ope_operation = new eng::ope::Operation();
+  //eng::ope::Wheel* ope_wheel = get_ope_wheel(){return ope_wheel;}
 
   //---------------------------
 }
@@ -60,7 +61,7 @@ void Control::control_keyboard_oneAction(){
 
     //R key - Reset
     if(ImGui::IsKeyPressed(ImGuiKey_R)){
-      engine->reset();
+      node_engine->reset();
       break;
     }
   }
@@ -132,7 +133,7 @@ void Control::control_mouse_wheel(){
 
   //Wheel click - Change mouse wheel mode
   if(ImGui::IsMouseClicked(2)){
-    wheel_mode++;
+    wheel_mode--;
     if(wheel_mode >= sizeof(Wheel_mode)) wheel_mode = 0;
   }
 

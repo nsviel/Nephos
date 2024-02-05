@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
+namespace eng::ope{class Wheel;}
 namespace eng::ope::gui{class Control;}
 namespace eng::render::gui{class Profiler;}
 
@@ -22,10 +23,14 @@ public:
   void control();
   void reset();
 
-  inline eng::ope::gui::Control* get_ope_control(){return ope_control;}
+  inline eng::Node* get_node_engine(){return node_engine;}
+  inline eng::ope::Wheel* get_ope_wheel(){return ope_wheel;}
+  inline eng::ope::gui::Control* get_gui_control(){return gui_control;}
 
 private:
-  eng::ope::gui::Control* ope_control;
+  eng::Node* node_engine;
+  eng::ope::Wheel* ope_wheel;
+  eng::ope::gui::Control* gui_control;
   eng::render::gui::Profiler* gui_profiler;
 };
 

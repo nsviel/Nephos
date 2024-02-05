@@ -3,12 +3,13 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
+namespace eng::ope{class Node;}
 namespace eng::ope{class Operation;}
-namespace utl::element{class Window;}
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Database;}
 namespace eng::cam{class Control;}
 namespace eng::cam{class Manager;}
+namespace utl::element{class Window;}
 
 
 namespace eng::ope::gui{
@@ -17,7 +18,7 @@ class Control
 {
 public:
   //Constructor / Destructor
-  Control(eng::Node* engine);
+  Control(eng::ope::Node* node_operation);
   ~Control();
 
 public:
@@ -32,7 +33,7 @@ public:
   void control_mouse_wheel();
 
 private:
-  eng::Node* engine;
+  eng::Node* node_engine;
   utl::element::Window* utl_window;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;

@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
+namespace eng::ope{class Node;}
 namespace eng::ope{class Operation;}
 namespace eng::scene{class Scene;}
 namespace eng::cam{class Control;}
@@ -21,17 +22,19 @@ class Wheel
 {
 public:
   //Constructor / Destructor
-  Wheel(eng::Node* engine);
+  Wheel(eng::ope::Node* node_operation);
   ~Wheel();
 
 public:
   //Main function
-
+  void change_mode();
 
 private:
   eng::scene::Scene* sce_scene;
   eng::cam::Control* cam_control;
   eng::ope::Operation* ope_operation;
+
+  int mode;
 };
 
 }
