@@ -7,3 +7,4 @@
 #include <Engine/Operation/src/Color/Heatmap.h>
 #include <Engine/Operation/src/Tree/Octree.h>
 #include <Engine/Operation/src/Filter/Voxelizer.h>
+#include <Engine/Operation/src/Mouse/Wheel.h>

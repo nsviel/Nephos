@@ -22,6 +22,8 @@ public:
   void control();
   void reset();
 
+  inline eng::ope::gui::Control* get_ope_control(){return ope_control;}
+
 private:
   eng::ope::gui::Control* ope_control;
   eng::render::gui::Profiler* gui_profiler;

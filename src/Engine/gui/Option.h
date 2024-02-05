@@ -22,7 +22,7 @@ public:
 
   //Subfunctions
   void option_color();
-  void option_fps();
+  void option_wheel();
 
 private:
   vk::main::Info* vk_info;

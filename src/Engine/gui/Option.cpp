@@ -13,6 +13,7 @@ Option::Option(eng::Node* node_engine, bool* show_window){
   //---------------------------
 
   vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
+  eng::ope::Node* node_operation = node_engine->get_node_operation();
 
   this->vk_info = eng_vulkan->get_vk_info();
 
@@ -44,9 +45,8 @@ void Option::run_panel(){
 void Option::design_panel(){
   //---------------------------
 
-  this->option_fps();
-  ImGui::Separator();
   this->option_color();
+  this->option_wheel();
 
   //---------------------------
 }
@@ -61,15 +61,12 @@ void Option::option_color(){
   ImGui::ColorEdit4("Background", (float*)screen_color);
 
   //---------------------------
+  ImGui::Separator();
 }
-void Option::option_fps(){
+void Option::option_wheel(){
   //---------------------------
-/*
-  //FPS max value
-  int* fps_max = vk_info->get_fps_max();
-  ImGui::SetNextItemWidth(150);
-  ImGui::SliderInt("FPS max", fps_max, 10, 1000);
-*/
+
+
   //---------------------------
 }
 

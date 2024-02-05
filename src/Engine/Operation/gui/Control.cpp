@@ -1,12 +1,7 @@
 #include "Control.h"
 
-#include <Engine/Node.h>
-#include <Engine/Scene/Namespace.h>
-#include <Engine/Camera/Namespace.h>
-#include <Engine/Operation/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Utility/Element/Namespace.h>
-#include <Utility/Function/Math/Math.h>
 
 
 namespace eng::ope::gui{
@@ -131,7 +126,7 @@ void Control::control_keyboard_translation(){
 
 //Mouse
 void Control::control_mouse_wheel(){
-  static int wheel_mode = WHEEL_R_Z;
+  static int wheel_mode = WHEEL_CAM_Z;
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
