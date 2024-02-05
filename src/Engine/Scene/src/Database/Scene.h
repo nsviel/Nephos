@@ -35,7 +35,7 @@ public:
   void delete_set(utl::type::Set* set);
 
   inline utl::type::Set* get_set_scene(){return set_scene;}
-  inline utl::type::Set* get_selected_set(){return set_scene->selected_set;}
+  inline utl::type::Entity* get_selected_entity(){return set_scene->selected_entity;}
 
 private:
   vk::main::Engine* vk_engine;

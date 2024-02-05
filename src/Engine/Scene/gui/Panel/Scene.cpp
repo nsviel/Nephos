@@ -62,13 +62,14 @@ void Scene::design_panel(){
 
 //Subfunction
 void Scene::draw_button(){
-  utl::type::Set* set = sce_scene->get_selected_set();
-  if(set == nullptr) return;
+  utl::type::Entity* entity = sce_scene->get_selected_entity();
+  if(entity == nullptr) return;
   //-------------------------------
 
   ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
 
   //Suppression
+  utl::type::Set* set = entity->set_parent;
   if(ImGui::Button(ICON_FA_TRASH "##supressionentity")){
     if(set->is_locked){
       sce_scene->delete_set(set);

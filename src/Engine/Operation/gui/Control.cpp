@@ -79,7 +79,7 @@ void Control::control_keyboard_translation(){
   utl::type::Set* data_set = sce_database->get_data_set();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
-      utl::type::Set* set = sce_scene->get_selected_set();
+      utl::type::Entity* entity = sce_scene->get_selected_entity();
 
       //Shift speed up
       float translation_qtt = 0.01;
@@ -90,37 +90,37 @@ void Control::control_keyboard_translation(){
       // Z key
       if(io.KeysDown[571]){
         vec3 translation = vec3(translation_qtt, 0, 0);
-        ope_operation->make_translation(set, translation);
+        ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
         vec3 translation = vec3(-translation_qtt, 0, 0);
-        ope_operation->make_translation(set, translation);
+        ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
         vec3 translation = vec3(0, translation_qtt, 0);
-        ope_operation->make_translation(set, translation);
+        ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
         vec3 translation = vec3(0, -translation_qtt, 0);
-        ope_operation->make_translation(set, translation);
+        ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
         vec3 translation = vec3(0, 0, translation_qtt);
-        ope_operation->make_translation(set, translation);
+        ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
         vec3 translation = vec3(0, 0, -translation_qtt);
-        ope_operation->make_translation(set, translation);
+        ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
     }
@@ -157,8 +157,8 @@ void Control::control_mouse_wheel(){
     }
 
     //Apply rotation
-    utl::type::Set* set = sce_scene->get_selected_set();
-    ope_operation->make_rotation(set, R);
+    utl::type::Entity* entity = sce_scene->get_selected_entity();
+    ope_operation->make_rotation(entity->set_parent, R);
   }
 
   //----------------------------
