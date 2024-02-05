@@ -15,6 +15,7 @@ Option::Option(eng::Node* node_engine, bool* show_window){
   vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
   eng::ope::Node* node_operation = node_engine->get_node_operation();
 
+  this->ope_wheel = node_operation->get_ope_wheel();
   this->vk_info = eng_vulkan->get_vk_info();
 
   this->width = 150;
@@ -66,6 +67,9 @@ void Option::option_color(){
 void Option::option_wheel(){
   //---------------------------
 
+  vector<const char*> vec_mode = ope_wheel->get_vec_mode();
+  int* mode = ope_wheel->get_mode();
+  ImGui::Combo("Wheel mode", mode, vec_mode.data(), vec_mode.size());
 
   //---------------------------
 }

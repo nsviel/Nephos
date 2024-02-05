@@ -70,8 +70,8 @@ void Wheel::make_action(float direction){
 }
 
 //Subfunction
-vector<string> Wheel::get_vec_mode(){
-  vector<string> vec_mode;
+vector<const char*> Wheel::get_vec_mode(){
+  vector<const char*> vec_mode;
   //---------------------------
 
   vec_mode.push_back("WHEEL_R_X");
@@ -80,6 +80,7 @@ vector<string> Wheel::get_vec_mode(){
   vec_mode.push_back("WHEEL_CAM_Z");
 
   //---------------------------
+  return vec_mode;
 }
 
 }

@@ -31,7 +31,9 @@ public:
   void make_action(float direction);
 
   //Subfunction
-  vector<string> get_vec_mode();
+  vector<const char*> get_vec_mode();
+
+  inline int* get_mode(){return &mode;}
 
 private:
   eng::scene::Scene* sce_scene;

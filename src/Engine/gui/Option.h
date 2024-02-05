@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
+namespace eng::ope{class Wheel;}
 namespace vk::main{class Info;}
 
 
@@ -25,6 +26,7 @@ public:
   void option_wheel();
 
 private:
+  eng::ope::Wheel* ope_wheel;
   vk::main::Info* vk_info;
 
   int width;
