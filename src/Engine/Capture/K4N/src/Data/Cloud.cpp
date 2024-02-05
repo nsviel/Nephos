@@ -44,7 +44,7 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
 }
 void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
   if(sensor->depth.data_to_color.buffer.empty()) return;
-  if(sensor->depth.data_to_color.image.get_width_pixels() != 1280) return;
+  if(sensor->depth.data_to_color.k4a_image.get_width_pixels() != 1280) return;
   utl::element::Profiler* profiler = sensor->cap_profiler;
   //---------------------------
 
@@ -52,7 +52,7 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
   profiler->task_begin("cloud::transformation");
   eng::k4n::structure::Depth* depth = &sensor->depth;
   k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->data_to_color.width, depth->data_to_color.height, depth->data_to_color.width * sizeof(int16_t) * 3);
-  sensor->param.transformation.depth_image_to_point_cloud(depth->data_to_color.image, K4A_CALIBRATION_TYPE_COLOR, &cloud_image);
+  sensor->param.transformation.depth_image_to_point_cloud(depth->data_to_color.k4a_image, K4A_CALIBRATION_TYPE_COLOR, &cloud_image);
   int16_t* point_cloud_data = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
   profiler->task_end("cloud::transformation");
 

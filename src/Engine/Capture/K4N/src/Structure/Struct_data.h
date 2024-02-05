@@ -8,7 +8,7 @@ namespace eng::k4n::structure{
 struct Data{
   //---------------------------
 
-  k4a::image image;
+  k4a::image k4a_image;
   std::string name;
   std::string format;
   std::vector<uint8_t> buffer;
