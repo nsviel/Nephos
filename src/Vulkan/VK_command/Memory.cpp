@@ -26,25 +26,25 @@ void Memory::transfert_image_to_gpu(vk::structure::Image* image){
   VkDeviceSize tex_size = image->buffer->size();
 
   //Create stagging buffer
-  VkBuffer staging_buffer;
-  VkDeviceMemory staging_memory;
-  this->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
-  this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_memory);
+  vk::structure::Buffer buffer;
+  buffer.size = image->buffer->size();
+  this->create_gpu_buffer(buffer.size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, buffer.vbo);
+  this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, buffer.vbo, buffer.mem);
 
   //Copy data to stagging buffer
   void* staging_data;
-  vkMapMemory(struct_vulkan->device.device, staging_memory, 0, tex_size, 0, &staging_data);
+  vkMapMemory(struct_vulkan->device.device, buffer.mem, 0, tex_size, 0, &staging_data);
   memcpy(staging_data, image->buffer->data(), tex_size);
-  vkUnmapMemory(struct_vulkan->device.device, staging_memory);
+  vkUnmapMemory(struct_vulkan->device.device, buffer.mem);
 
   //Image transition from undefined layout to read only layout
   vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
-  this->copy_buffer_to_image(image, staging_buffer);
+  this->copy_buffer_to_image(image, buffer.vbo);
   vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //Free memory
-  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, staging_memory, nullptr);
+  vkDestroyBuffer(struct_vulkan->device.device, buffer.vbo, nullptr);
+  vkFreeMemory(struct_vulkan->device.device, buffer.mem, nullptr);
 
   //---------------------------
 }
@@ -122,14 +122,14 @@ void Memory::update_buffer_data(vk::structure::Buffer* buffer, const void* data,
     //---------------------------
 
     if (dataSize == 0) {
-        throw std::runtime_error("Data size is zero!");
+      throw std::runtime_error("Data size is zero!");
     }
 
     // Map the buffer's memory and copy the data
     void* mappedMemory;
     VkResult result = vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, dataSize, 0, &mappedMemory);
     if (result != VK_SUCCESS) {
-        throw std::runtime_error("Failed to map buffer memory!");
+      throw std::runtime_error("Failed to map buffer memory!");
     }
     memcpy(mappedMemory, data, static_cast<size_t>(dataSize));
     vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
