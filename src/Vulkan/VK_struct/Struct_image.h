@@ -21,7 +21,8 @@ struct Image{
   uint32_t size = 0;
   uint32_t mip_level_max = 1;
   uint32_t mip_level = 1;
-  std::vector<uint8_t>* buffer;
+  std::vector<uint8_t>* data;
+  vk::structure::Buffer buffer;
 
   //Image info
   VkImage image;

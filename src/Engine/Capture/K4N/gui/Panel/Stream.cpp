@@ -136,14 +136,14 @@ void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   eng::k4n::structure::Data* data_color = &sensor->color.data;
   //---------------------------
 
-  utl::media::Image struct_image;
-  struct_image.buffer = data_color->buffer;
-  struct_image.width = data_color->width;
-  struct_image.height = data_color->height;
-  struct_image.format = data_color->format;
+  utl::media::Image utl_image;
+  utl_image.data = data_color->buffer;
+  utl_image.width = data_color->width;
+  utl_image.height = data_color->height;
+  utl_image.format = data_color->format;
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[0]->draw_stream(&struct_image, image_size);
+  vec_gui_stream[0]->draw_stream(&utl_image, image_size);
   this->overlay_capture(sensor, data_color, image_size, image_pose);
 
   //---------------------------
@@ -152,14 +152,14 @@ void Stream::draw_camera_color_from_depth(eng::k4n::dev::Sensor* sensor, ImVec2 
   eng::k4n::structure::Data* data_color = &sensor->color.data_to_depth;
   //---------------------------
 
-  utl::media::Image struct_image;
-  struct_image.buffer = data_color->buffer;
-  struct_image.width = data_color->width;
-  struct_image.height = data_color->height;
-  struct_image.format = data_color->format;
+  utl::media::Image utl_image;
+  utl_image.data = data_color->buffer;
+  utl_image.width = data_color->width;
+  utl_image.height = data_color->height;
+  utl_image.format = data_color->format;
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[3]->draw_stream(&struct_image, image_size);
+  vec_gui_stream[3]->draw_stream(&utl_image, image_size);
   this->overlay_capture(sensor, data_color, image_size, image_pose);
 
   //---------------------------
@@ -168,16 +168,14 @@ void Stream::draw_camera_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   eng::k4n::structure::Data* data_depth = &sensor->depth.data;
   //---------------------------
 
-  std::vector<uint8_t> new_buffer = k4a_depth->convert_depth_into_color(sensor);
-
-  utl::media::Image struct_image;
-  struct_image.buffer = new_buffer;
-  struct_image.width = data_depth->width;
-  struct_image.height = data_depth->height;
-  struct_image.format = "R8G8B8A8_SRGB";
+  utl::media::Image utl_image;
+  utl_image.data = k4a_depth->convert_depth_into_color(sensor);
+  utl_image.width = data_depth->width;
+  utl_image.height = data_depth->height;
+  utl_image.format = "R8G8B8A8_SRGB";
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[1]->draw_stream(&struct_image, image_size);
+  vec_gui_stream[1]->draw_stream(&utl_image, image_size);
   this->overlay_capture(sensor, data_depth, image_size, image_pose);
 
   //---------------------------
@@ -186,16 +184,14 @@ void Stream::draw_camera_ir(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
   eng::k4n::structure::Data* data_ir = &sensor->ir.data;
   //---------------------------
 
-  std::vector<uint8_t> new_buffer = k4a_infrared->convert_ir_into_color(sensor);
-
-  utl::media::Image struct_image;
-  struct_image.buffer = new_buffer;
-  struct_image.width = data_ir->width;
-  struct_image.height = data_ir->height;
-  struct_image.format = "B8G8R8A8_SRGB";
+  utl::media::Image utl_image;
+  utl_image.data = k4a_infrared->convert_ir_into_color(sensor);
+  utl_image.width = data_ir->width;
+  utl_image.height = data_ir->height;
+  utl_image.format = "B8G8R8A8_SRGB";
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[2]->draw_stream(&struct_image, image_size);
+  vec_gui_stream[2]->draw_stream(&utl_image, image_size);
   this->overlay_capture(sensor, data_ir, image_size, image_pose);
 
   //---------------------------
