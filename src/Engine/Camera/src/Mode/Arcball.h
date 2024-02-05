@@ -26,6 +26,7 @@ public:
   void camera_up(utl::entity::Camera* camera, float speed);
   void camera_down(utl::entity::Camera* camera, float speed);
   void camera_mouse(utl::entity::Camera* camera);
+  void camera_wheel(utl::entity::Camera* camera, float speed);
   void camera_zoom(utl::entity::Camera* camera, float speed);
 
   //Camera matrix

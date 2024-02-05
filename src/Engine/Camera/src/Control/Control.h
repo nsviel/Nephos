@@ -21,6 +21,7 @@ public:
   //Camera movement
   void control_keyboard(int direction, bool fast);
   void control_mouse();
+  void control_wheel(float value);
   void control_zoom(float value);
 
   //Camera matrix

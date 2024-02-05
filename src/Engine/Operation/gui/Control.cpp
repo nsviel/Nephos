@@ -146,19 +146,33 @@ void Control::control_mouse_wheel(){
     //Rotation quantity
     float radian = 5 * M_PI/180 * 50;
     vec3 R;
-    if(wheel_mode == WHEEL_R_Z){
-      R = vec3(0, 0, math::sign(io.MouseWheel) * radian);
-    }
-    else if(wheel_mode == WHEEL_R_Y){
-      R = vec3(0, math::sign(io.MouseWheel) * radian, 0);
-    }
-    else if(wheel_mode == WHEEL_R_X){
-      R = vec3(math::sign(io.MouseWheel) * radian, 0, 0);
-    }
 
-    //Apply rotation
-    utl::type::Entity* entity = sce_scene->get_selected_entity();
-    ope_operation->make_rotation(entity->set_parent, R);
+    switch (wheel_mode) {
+    case WHEEL_R_Z:{
+      utl::type::Entity* entity = sce_scene->get_selected_entity();
+      R = vec3(0, 0, math::sign(io.MouseWheel) * radian);
+      ope_operation->make_rotation(entity->set_parent, R);
+      break;
+    }
+    case WHEEL_R_Y:{
+      utl::type::Entity* entity = sce_scene->get_selected_entity();
+      R = vec3(0, math::sign(io.MouseWheel) * radian, 0);
+      ope_operation->make_rotation(entity->set_parent, R);
+      break;
+    }
+    case WHEEL_R_X:{
+      utl::type::Entity* entity = sce_scene->get_selected_entity();
+      R = vec3(math::sign(io.MouseWheel) * radian, 0, 0);
+      ope_operation->make_rotation(entity->set_parent, R);
+      break;
+    }
+    case WHEEL_CAM_Z:{
+      cam_control->control_wheel(math::sign(io.MouseWheel) * radian);
+      break;
+    }
+    default:
+      break;
+    }
   }
 
   //----------------------------

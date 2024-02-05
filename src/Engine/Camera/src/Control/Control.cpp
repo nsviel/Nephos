@@ -75,6 +75,13 @@ void Control::control_zoom(float value){
 
   //---------------------------
 }
+void Control::control_wheel(float value){
+  //---------------------------
+
+  active_mode->camera_wheel(camera, value);
+
+  //---------------------------
+}
 
 //Camera matrix
 mat4 Control::compute_camera_view(){

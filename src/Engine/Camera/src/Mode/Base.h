@@ -20,6 +20,7 @@ public:
   virtual void camera_up(utl::entity::Camera* camera, float speed){}
   virtual void camera_down(utl::entity::Camera* camera, float speed){}
   virtual void camera_mouse(utl::entity::Camera* camera){}
+  virtual void camera_wheel(utl::entity::Camera* camera, float speed){}
   virtual void camera_zoom(utl::entity::Camera* camera, float speed){}
 
   //Camera matrix

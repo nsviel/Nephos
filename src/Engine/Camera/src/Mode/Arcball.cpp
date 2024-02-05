@@ -80,6 +80,18 @@ void Arcball::camera_mouse(utl::entity::Camera* camera){
 
   //---------------------------
 }
+void Arcball::camera_wheel(utl::entity::Camera* camera, float speed){
+  //---------------------------
+
+  // Calculate the rotation angle around the z-axis
+  float lambda = 0.05;
+  vec2 angle = vec2(speed * lambda, 0.0f); // Rotation only around the z-axis
+
+  // Apply rotation
+  this->rotate_by_angle(camera, angle);
+
+  //---------------------------
+}
 void Arcball::camera_zoom(utl::entity::Camera* camera, float speed){
   //---------------------------
 
