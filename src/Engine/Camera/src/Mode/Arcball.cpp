@@ -10,7 +10,7 @@ Arcball::Arcball(eng::cam::Node* node_camera){
   //---------------------------
 
   this->utl_window = node_camera->get_utl_window();
-  
+
   this->origin = vec3(0, 0, 0);
 
   //---------------------------
@@ -21,7 +21,6 @@ Arcball::~Arcball(){}
 void Arcball::camera_forward(utl::entity::Camera* camera, float speed){
   //---------------------------
 
-  //camera->cam_P += camera->cam_F * speed;
   this->displace_camera_COM(camera, vec3(0, speed, 0));
 
   //---------------------------
@@ -29,7 +28,6 @@ void Arcball::camera_forward(utl::entity::Camera* camera, float speed){
 void Arcball::camera_backward(utl::entity::Camera* camera, float speed){
   //---------------------------
 
-  //camera->cam_P -= camera->cam_F * speed;
   this->displace_camera_COM(camera, vec3(0, -speed, 0));
 
   //---------------------------
@@ -37,8 +35,6 @@ void Arcball::camera_backward(utl::entity::Camera* camera, float speed){
 void Arcball::camera_right(utl::entity::Camera* camera, float speed){
   //---------------------------
 
-  //vec2 angle =vec2(-speed / 10, 0);
-  //this->rotate_by_angle(camera, angle);
   this->displace_camera_COM(camera, vec3(speed, 0, 0));
 
   //---------------------------
@@ -46,8 +42,6 @@ void Arcball::camera_right(utl::entity::Camera* camera, float speed){
 void Arcball::camera_left(utl::entity::Camera* camera, float speed){
   //---------------------------
 
-  //vec2 angle =vec2(speed / 10, 0);
-  //this->rotate_by_angle(camera, angle);
   this->displace_camera_COM(camera, vec3(-speed, 0, 0));
 
   //---------------------------

@@ -131,14 +131,14 @@ void Control::control_keyboard_translation(){
 
 //Mouse
 void Control::control_mouse_wheel(){
-  static int wheel_mode = 0;
+  static int wheel_mode = WHEEL_R_Z;
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
   //Wheel click - Change mouse wheel mode
   if(ImGui::IsMouseClicked(2)){
     wheel_mode++;
-    if(wheel_mode >= 3) wheel_mode = 0;
+    if(wheel_mode >= sizeof(Wheel_mode)) wheel_mode = 0;
   }
 
   //Wheel actions
@@ -146,13 +146,13 @@ void Control::control_mouse_wheel(){
     //Rotation quantity
     float radian = 5 * M_PI/180 * 50;
     vec3 R;
-    if(wheel_mode == 0){
+    if(wheel_mode == WHEEL_R_Z){
       R = vec3(0, 0, math::sign(io.MouseWheel) * radian);
     }
-    else if(wheel_mode == 1){
+    else if(wheel_mode == WHEEL_R_Y){
       R = vec3(0, math::sign(io.MouseWheel) * radian, 0);
     }
-    else if(wheel_mode == 2){
+    else if(wheel_mode == WHEEL_R_X){
       R = vec3(math::sign(io.MouseWheel) * radian, 0, 0);
     }
 
