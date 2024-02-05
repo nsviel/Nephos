@@ -23,7 +23,7 @@ void Memory::transfert_image_to_gpu(vk::structure::Image* image){
   //Retrieve required buffer size
   //VkMemoryRequirements memory_requirement;
   //vkGetImageMemoryRequirements(struct_vulkan->device.device, image->image, &memory_requirement);
-  VkDeviceSize tex_size = image->data.size();
+  VkDeviceSize tex_size = image->buffer.size();
 
   //Create stagging buffer
   VkBuffer staging_buffer;
@@ -34,7 +34,7 @@ void Memory::transfert_image_to_gpu(vk::structure::Image* image){
   //Copy data to stagging buffer
   void* staging_data;
   vkMapMemory(struct_vulkan->device.device, staging_memory, 0, tex_size, 0, &staging_data);
-  memcpy(staging_data, image->data.data(), tex_size);
+  memcpy(staging_data, image->buffer.data(), tex_size);
   vkUnmapMemory(struct_vulkan->device.device, staging_memory);
 
   //Image transition from undefined layout to read only layout
