@@ -21,7 +21,7 @@ Control::Control(eng::ope::Node* node_operation){
   this->sce_scene = node_scene->get_scene();
   this->sce_database = node_scene->get_scene_database();
   this->ope_operation = new eng::ope::Operation();
-  //eng::ope::Wheel* ope_wheel = get_ope_wheel(){return ope_wheel;}
+  this->ope_wheel = node_operation->get_ope_wheel();
 
   //---------------------------
 }
@@ -133,8 +133,7 @@ void Control::control_mouse_wheel(){
 
   //Wheel click - Change mouse wheel mode
   if(ImGui::IsMouseClicked(2)){
-    wheel_mode--;
-    if(wheel_mode >= sizeof(Wheel_mode)) wheel_mode = 0;
+    ope_wheel->change_mode();
   }
 
   //Wheel actions

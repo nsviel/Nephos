@@ -5,6 +5,7 @@
 namespace eng{class Node;}
 namespace eng::ope{class Node;}
 namespace eng::ope{class Operation;}
+namespace eng::ope{class Wheel;}
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Database;}
 namespace eng::cam{class Control;}
@@ -40,6 +41,7 @@ private:
   eng::cam::Control* cam_control;
   eng::cam::Manager* cam_manager;
   eng::ope::Operation* ope_operation;
+  eng::ope::Wheel* ope_wheel;
 };
 
 }
