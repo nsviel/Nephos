@@ -34,7 +34,7 @@ struct Object{
   vk::structure::Buffers buffer;
 
   //Binding
-  list<Image*> list_texture;
+  list<Texture*> list_texture;
   VkCommandBuffer command_buffer_secondary;
   vk::structure::Binding binding;
 

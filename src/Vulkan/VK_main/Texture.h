@@ -5,7 +5,7 @@
 namespace vk::image{class Image;}
 namespace vk::command{class Memory;}
 namespace vk::structure{class Vulkan;}
-namespace vk::structure{class Image;}
+namespace vk::structure{class Texture;}
 namespace vk::structure{class Object;}
 
 
@@ -20,8 +20,8 @@ public:
 
 public:
   //Main functions
-  vk::structure::Image* load_texture(utl::media::Image* image);
-  void update_texture(vk::structure::Image* image);
+  vk::structure::Texture* load_texture(utl::media::Image* texture);
+  void update_texture(vk::structure::Texture* texture);
   VkFormat find_texture_format(utl::media::Image* image);
 
   //Texture cleaning
