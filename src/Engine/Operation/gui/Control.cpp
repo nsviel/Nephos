@@ -127,7 +127,6 @@ void Control::control_keyboard_translation(){
 
 //Mouse
 void Control::control_mouse_wheel(){
-  static int wheel_mode = WHEEL_CAM_Z;
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -138,36 +137,8 @@ void Control::control_mouse_wheel(){
 
   //Wheel actions
   if(io.MouseWheel && io.MouseDownDuration[1] == -1){
-    //Rotation quantity
-    float radian = 5 * M_PI/180 * 50;
-    vec3 R;
-
-    switch (wheel_mode) {
-    case WHEEL_R_Z:{
-      utl::type::Entity* entity = sce_scene->get_selected_entity();
-      R = vec3(0, 0, math::sign(io.MouseWheel) * radian);
-      ope_operation->make_rotation(entity->set_parent, R);
-      break;
-    }
-    case WHEEL_R_Y:{
-      utl::type::Entity* entity = sce_scene->get_selected_entity();
-      R = vec3(0, math::sign(io.MouseWheel) * radian, 0);
-      ope_operation->make_rotation(entity->set_parent, R);
-      break;
-    }
-    case WHEEL_R_X:{
-      utl::type::Entity* entity = sce_scene->get_selected_entity();
-      R = vec3(math::sign(io.MouseWheel) * radian, 0, 0);
-      ope_operation->make_rotation(entity->set_parent, R);
-      break;
-    }
-    case WHEEL_CAM_Z:{
-      cam_control->control_wheel(math::sign(io.MouseWheel) * radian);
-      break;
-    }
-    default:
-      break;
-    }
+    float direction = math::sign(io.MouseWheel);
+    ope_wheel->make_action(direction);
   }
 
   //----------------------------

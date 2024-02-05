@@ -28,6 +28,10 @@ public:
 public:
   //Main function
   void change_mode();
+  void make_action(float direction);
+
+  //Subfunction
+  vector<string> get_vec_mode();
 
 private:
   eng::scene::Scene* sce_scene;
