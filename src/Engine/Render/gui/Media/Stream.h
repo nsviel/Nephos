@@ -18,11 +18,11 @@ public:
 
 public:
   //Main function
-  void draw_stream(utl::media::Image* struct_image, ImVec2 image_size);
+  void draw_stream(utl::media::Image* utl_image, ImVec2 size);
 
   //Subfunction
-  void convert_data_into_texture(utl::media::Image* struct_image);
-  void render_image(ImVec2& imageSize);
+  void convert_data_into_texture(utl::media::Image* utl_image);
+  void render_image(ImVec2& size);
 
 private:
   vk::main::Texture* vk_texture;
