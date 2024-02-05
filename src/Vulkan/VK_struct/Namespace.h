@@ -5,7 +5,6 @@
 #include <Vulkan/VK_struct/Struct_buffer.h>
 #include <Vulkan/VK_struct/Struct_command.h>
 #include <Vulkan/VK_struct/Struct_image.h>
-#include <Vulkan/VK_struct/Struct_texture.h>
 #include <Vulkan/VK_struct/Struct_object.h>
 #include <Vulkan/VK_struct/Struct_data.h>
 #include <Vulkan/VK_struct/Struct_physical_device.h>

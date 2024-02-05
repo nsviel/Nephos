@@ -19,10 +19,10 @@ Texture::Texture(vk::structure::Vulkan* struct_vulkan){
 Texture::~Texture(){}
 
 //Main function
-vk::structure::Texture* Texture::load_texture(utl::media::Image* struct_image){
+vk::structure::Image* Texture::load_texture(utl::media::Image* struct_image){
   //---------------------------
 
-  vk::structure::Texture* texture = new vk::structure::Texture();
+  vk::structure::Image* texture = new vk::structure::Image();
 
   //texture->utl_image = struct_image;
   texture->width = struct_image->width;
@@ -40,7 +40,7 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* struct_image){
   //---------------------------
   return texture;
 }
-void Texture::update_texture(vk::structure::Texture* texture){
+void Texture::update_texture(vk::structure::Image* texture){
   //---------------------------
 
   vk_memory->transfert_image_to_gpu(texture);
@@ -82,7 +82,7 @@ void Texture::clean_texture(vk::structure::Object* data){
   //---------------------------
 
   for(int i=0; i<data->list_texture.size(); i++){
-    vk::structure::Texture* texture = *next(data->list_texture.begin(), i);
+    vk::structure::Image* texture = *next(data->list_texture.begin(), i);
     vk_image->clean_image(texture);
   }
 

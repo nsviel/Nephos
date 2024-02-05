@@ -4,7 +4,7 @@
 
 namespace eng{class Node;}
 namespace vk::main{class Texture;}
-namespace vk::structure{class Texture;}
+namespace vk::structure{class Image;}
 
 
 namespace eng::render::gui{
@@ -27,7 +27,7 @@ public:
 private:
   vk::main::Texture* vk_texture;
 
-  vk::structure::Texture* vk_image;
+  vk::structure::Image* vk_image;
   ImTextureID texture;
 };
 
