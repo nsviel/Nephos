@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Engine/Capture/K4N/src/Structure/Struct_recorder.h>
+#include <Engine/Capture/K4N/src/Structure/Struct_image.h>
 #include <Engine/Capture/K4N/src/Structure/Struct_player.h>
 #include <Engine/Capture/K4N/src/Structure/Struct_operation.h>
 #include <Engine/Capture/K4N/src/Structure/Struct_param.h>

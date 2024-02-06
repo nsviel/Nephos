@@ -4,3 +4,4 @@
 #include <Engine/Capture/K4N/src/Data/Depth.h>
 #include <Engine/Capture/K4N/src/Data/Infrared.h>
 #include <Engine/Capture/K4N/src/Data/Cloud.h>
+#include <Engine/Capture/K4N/src/Data/Image.h>

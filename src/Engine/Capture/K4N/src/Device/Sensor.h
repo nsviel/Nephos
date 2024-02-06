@@ -17,9 +17,9 @@ namespace eng::k4n::structure{class Color;}
 namespace eng::k4n::structure{class Depth;}
 namespace eng::k4n::structure{class Infrared;}
 namespace eng::k4n::structure{class IMU;}
+namespace eng::k4n::structure{class Image;}
 namespace eng::ope{class Transformation;}
 namespace utl::element{class Profiler;}
-namespace utl::media{class Image;}
 
 
 namespace eng::k4n::dev{
@@ -57,9 +57,7 @@ public:
   eng::k4n::dev::Master* master;
 
   utl::entity::Object object;
-  utl::media::Image image_color;
-  utl::media::Image image_depth;
-  utl::media::Image image_ir;
+  eng::k4n::structure::Image image;
 
   eng::k4n::structure::Param param;
   eng::k4n::structure::Synchro synchro;
