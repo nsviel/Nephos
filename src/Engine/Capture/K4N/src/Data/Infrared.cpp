@@ -17,7 +17,7 @@ Infrared::~Infrared(){}
 //Main function
 std::vector<uint8_t> Infrared::convert_ir_into_color(eng::k4n::dev::Sensor* sensor){
   k4n::structure::Data* data = &sensor->ir.data;
-  uint8_t* inputBuffer = data->buffer_raw;
+  uint8_t* inputBuffer = data->buffer;
   uint16_t level_min = sensor->ir.config.level_min;
   uint16_t level_max = sensor->ir.config.level_max;
   //---------------------------

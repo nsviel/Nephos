@@ -16,7 +16,7 @@ Depth::~Depth(){}
 //Main function
 std::vector<uint8_t> Depth::convert_depth_into_color(eng::k4n::dev::Sensor* sensor){
   k4n::structure::Data* data = &sensor->depth.data;
-  uint8_t* inputBuffer = data->buffer_raw;
+  uint8_t* inputBuffer = data->buffer;
   uint16_t range_min = sensor->depth.config.range_min;
   uint16_t range_max = sensor->depth.config.range_max;
   //---------------------------
@@ -52,7 +52,7 @@ std::vector<uint8_t> Depth::convert_depth_into_color(eng::k4n::dev::Sensor* sens
 }
 void Depth::convert_depth_into_color_(eng::k4n::dev::Sensor* sensor){
   k4n::structure::Data* data = &sensor->depth.data;
-  uint8_t* inputBuffer = data->buffer_raw;
+  uint8_t* inputBuffer = data->buffer;
   uint16_t range_min = sensor->depth.config.range_min;
   uint16_t range_max = sensor->depth.config.range_max;
   //---------------------------
@@ -86,7 +86,7 @@ void Depth::convert_depth_into_color_(eng::k4n::dev::Sensor* sensor){
   }
 
   data->size = cpt;
-  data->buffer_raw = outputBuffer;
+  data->buffer = outputBuffer;
 
   //---------------------------
 }

@@ -41,7 +41,7 @@ void Image::copy_image_color(eng::k4n::dev::Sensor* sensor){
   eng::k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  image->color.data_vec = std::vector<uint8_t>(sensor->color.data.buffer_raw, sensor->color.data.buffer_raw + sensor->color.data.size);
+  image->color.data_vec = std::vector<uint8_t>(sensor->color.data.buffer, sensor->color.data.buffer + sensor->color.data.size);
   image->color.size = image->color.data_vec.size();
   image->color.width = sensor->color.data.width;
   image->color.height = sensor->color.data.height;

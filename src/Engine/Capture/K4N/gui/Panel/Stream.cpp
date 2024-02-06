@@ -146,7 +146,7 @@ void Stream::draw_camera_color_from_depth(eng::k4n::dev::Sensor* sensor, ImVec2 
   //---------------------------
 
   utl::media::Image utl_image;
-  utl_image.data_raw = data->buffer_raw;
+  utl_image.data_raw = data->buffer;
   utl_image.size = data->size;
   utl_image.width = data->width;
   utl_image.height = data->height;
@@ -259,7 +259,7 @@ void Stream::compute_hovered_pixel(eng::k4n::structure::Data* image, ImVec2 imag
     image->hovered_pixel_y = hoveredUIPixel.y * uiCoordinateToImageCoordinateRatio;
 
     //Pixel value
-    const uint8_t* data = image->buffer_raw;
+    const uint8_t* data = image->buffer;
     size_t index = size_t(image->hovered_pixel_y) * size_t(image->width * 2) + size_t(image->hovered_pixel_x * 2);
     uint16_t pixelData = static_cast<uint16_t>(data[index]) | (static_cast<uint16_t>(data[index + 1]) << 8);
     image->hovered_pixel_m = pixelData / 1000.0f;
