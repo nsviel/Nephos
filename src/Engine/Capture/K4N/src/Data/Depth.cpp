@@ -15,13 +15,14 @@ Depth::~Depth(){}
 
 //Main function
 std::vector<uint8_t> Depth::convert_depth_into_color(eng::k4n::dev::Sensor* device){
-  vector<uint8_t>& inputBuffer = device->depth.data.buffer_vec;
+  k4n::structure::Data* data = &device->depth.data;
+  uint8_t* inputBuffer = data->buffer_raw;
   uint16_t range_min = device->depth.config.range_min;
   uint16_t range_max = device->depth.config.range_max;
   //---------------------------
 
-  std::vector<uint8_t> outputBuffer(inputBuffer.size() * 4, 0);
-  for (int i = 0, j = 0; i < inputBuffer.size(); i += 2, j += 4) {
+  std::vector<uint8_t> outputBuffer(data->size * 4, 0);
+  for (int i = 0, j = 0; i < data->size; i += 2, j += 4) {
     uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
 
     float R = 0.0f;
