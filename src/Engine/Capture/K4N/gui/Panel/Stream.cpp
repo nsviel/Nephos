@@ -137,7 +137,6 @@ void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   //---------------------------
 
   utl::media::Image utl_image;
-  utl_image.data_vec = data->buffer_vec;
   utl_image.data_raw = data->buffer_raw;
   utl_image.size = data->size;
   utl_image.width = data->width;
@@ -155,7 +154,6 @@ void Stream::draw_camera_color_from_depth(eng::k4n::dev::Sensor* sensor, ImVec2 
   //---------------------------
 
   utl::media::Image utl_image;
-  utl_image.data_vec = data->buffer_vec;
   utl_image.data_raw = data->buffer_raw;
   utl_image.size = data->size;
   utl_image.width = data->width;
