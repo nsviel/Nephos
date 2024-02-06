@@ -20,11 +20,12 @@ Memory::~Memory(){}
 void Memory::transfert_image_to_gpu(vk::structure::Texture* texture){
   //---------------------------
 
-  vk::structure::Image* image = &texture->vk_image;
+  vk::structure::Image* vk_image = &texture->vk_image;
+  utl::media::Image* utl_image = texture->utl_image;
 
   //Create stagging buffer
-  vk::structure::Buffer* buffer = &image->buffer;
-  buffer->size = image->data->size();
+  vk::structure::Buffer* buffer = &texture->buffer;
+  buffer->size = utl_image->data.size();
 
   //if(buffer->vbo == VK_NULL_HANDLE){
     this->create_gpu_buffer(buffer->size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, buffer->vbo);
@@ -34,13 +35,13 @@ void Memory::transfert_image_to_gpu(vk::structure::Texture* texture){
   //Copy data to stagging buffer
   void* staging_data;
   vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, buffer->size, 0, &staging_data);
-  memcpy(staging_data, image->data->data(), buffer->size);
+  memcpy(staging_data, utl_image->data.data(), buffer->size);
   vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
 
   //Image transition from undefined layout to read only layout
-  vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
-  this->copy_buffer_to_image(image, buffer->vbo);
-  vk_command->image_layout_transition_single(image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk_command->image_layout_transition_single(vk_image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
+  this->copy_buffer_to_image(vk_image, buffer->vbo);
+  vk_command->image_layout_transition_single(vk_image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //Free memory
   vkDestroyBuffer(struct_vulkan->device.device, buffer->vbo, nullptr);

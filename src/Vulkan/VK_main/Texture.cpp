@@ -27,7 +27,6 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* struct_image){
   texture->utl_image = struct_image;
   texture->vk_image.width = struct_image->width;
   texture->vk_image.height = struct_image->height;
-  texture->vk_image.data = &struct_image->data;
 
   texture->vk_image.format = find_texture_format(struct_image);
   texture->vk_image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
