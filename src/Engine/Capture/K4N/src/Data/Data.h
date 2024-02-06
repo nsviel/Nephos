@@ -5,6 +5,8 @@
 #include <k4a/k4a.hpp>
 
 namespace eng::k4n::dev{class Sensor;}
+namespace eng::k4n::data{class Depth;}
+namespace eng::k4n::data{class Infrared;}
 
 
 namespace eng::k4n::data{
@@ -37,6 +39,8 @@ public:
   void retrieve_bgra_from_mjpeg(k4a::image& image, vector<uint8_t>& data);
 
 private:
+  eng::k4n::data::Depth* k4a_depth;
+  eng::k4n::data::Infrared* k4a_infrared;
   tjhandle tj_handle;
 };
 

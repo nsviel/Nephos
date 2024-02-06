@@ -171,19 +171,8 @@ void Stream::draw_camera_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   //---------------------------
 
   utl::media::Image utl_image;
-
-
-/*
-  k4a_depth->convert_depth_into_color_(sensor);
-  utl_image.data_raw = data->buffer_raw;
-  utl_image.size = data->size;
-*/
-
-  utl_image.data_vec = k4a_depth->convert_depth_into_color(sensor);
-  utl_image.size = utl_image.data_vec.size();
-
-
-
+  utl_image.data_vec = data->buffer_vec;
+  utl_image.size = data->buffer_vec.size();
   utl_image.width = data->width;
   utl_image.height = data->height;
   utl_image.format = "R8G8B8A8_SRGB";
@@ -199,8 +188,8 @@ void Stream::draw_camera_ir(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
   //---------------------------
 
   utl::media::Image utl_image;
-  utl_image.data_vec = k4a_infrared->convert_ir_into_color(sensor);
-  utl_image.size = utl_image.data_vec.size();
+  utl_image.data_vec = data->buffer_vec;
+  utl_image.size = data->buffer_vec.size();
   utl_image.width = data->width;
   utl_image.height = data->height;
   utl_image.format = "B8G8R8A8_SRGB";
