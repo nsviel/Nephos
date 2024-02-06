@@ -19,31 +19,31 @@ Texture::Texture(vk::structure::Vulkan* struct_vulkan){
 Texture::~Texture(){}
 
 //Main function
-vk::structure::Image* Texture::load_texture(utl::media::Image* struct_image){
+vk::structure::Texture* Texture::load_texture(utl::media::Image* struct_image){
   //---------------------------
 
-  vk::structure::Image* texture = new vk::structure::Image();
+  vk::structure::Texture* texture = new vk::structure::Texture();
 
-  //texture->utl_image = struct_image;
-  texture->width = struct_image->width;
-  texture->height = struct_image->height;
-  texture->data = &struct_image->data;
+  texture->utl_image = struct_image;
+  texture->vk_image.width = struct_image->width;
+  texture->vk_image.height = struct_image->height;
+  texture->vk_image.data = &struct_image->data;
 
-  texture->format = find_texture_format(struct_image);
-  texture->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  texture->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
-  vk_image->create_image(texture);
-  vk_memory->transfert_image_to_gpu(texture);
+  texture->vk_image.format = find_texture_format(struct_image);
+  texture->vk_image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  texture->vk_image.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
+  vk_image->create_image(&texture->vk_image);
+  vk_memory->transfert_image_to_gpu(&texture->vk_image);
 
   struct_vulkan->data.vec_texture.push_back(texture);
 
   //---------------------------
   return texture;
 }
-void Texture::update_texture(vk::structure::Image* texture){
+void Texture::update_texture(vk::structure::Texture* texture){
   //---------------------------
 
-  vk_memory->transfert_image_to_gpu(texture);
+  vk_memory->transfert_image_to_gpu(&texture->vk_image);
 
   //---------------------------
 }
@@ -82,8 +82,8 @@ void Texture::clean_texture(vk::structure::Object* data){
   //---------------------------
 
   for(int i=0; i<data->list_texture.size(); i++){
-    vk::structure::Image* texture = *next(data->list_texture.begin(), i);
-    vk_image->clean_image(texture);
+    vk::structure::Texture* texture = *next(data->list_texture.begin(), i);
+    vk_image->clean_image(&texture->vk_image);
   }
 
   //---------------------------
@@ -92,7 +92,8 @@ void Texture::clean(){
   //---------------------------
 
   for(int i=0; i<struct_vulkan->data.vec_texture.size(); i++){
-    vk_image->clean_image(struct_vulkan->data.vec_texture[i]);
+    vk::structure::Texture* texture = struct_vulkan->data.vec_texture[i];
+    vk_image->clean_image(&texture->vk_image);
   }
 
   //---------------------------
