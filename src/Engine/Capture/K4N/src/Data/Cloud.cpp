@@ -20,6 +20,9 @@ Cloud::~Cloud(){}
 
 //Main function
 void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* sensor){
+  if(!sensor->depth.data_to_color.k4a_image.is_valid()) return;
+  if(sensor->depth.data_to_color.k4a_image.get_width_pixels() != 1280) return;
+  if(!sensor->ir.data.k4a_image.is_valid()) return;
   //---------------------------
 
   this->loop_init(sensor);
@@ -31,7 +34,6 @@ void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* sensor){
 
 //Loop function
 void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
-  if(sensor->depth.data.buffer_vec.empty()) return;
   //---------------------------
 
   vec_xyz.clear();
@@ -43,8 +45,6 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
-  if(sensor->depth.data_to_color.buffer_vec.empty()) return;
-  if(sensor->depth.data_to_color.k4a_image.get_width_pixels() != 1280) return;
   utl::element::Profiler* profiler = sensor->cap_profiler;
   //---------------------------
 
@@ -70,7 +70,6 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
-  if(sensor->depth.data.buffer_vec.empty()) return;
   utl::type::Data* data = sensor->object->data;
   eng::k4n::dev::Master* master = sensor->master;
   utl::element::Profiler* profiler = sensor->cap_profiler;
@@ -150,7 +149,6 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
   //---------------------------
 }
 void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
-  if(sensor->ir.data.buffer_vec.empty()) return;
   //---------------------------
 
   const vector<uint8_t>& ir_buffer = sensor->ir.data_to_color.buffer_vec;
