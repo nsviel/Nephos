@@ -31,9 +31,9 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
   vk_object->buffer.rgb.size = sizeof(glm::vec4) * max_data;
   vk_object->buffer.uv.size  = sizeof(glm::vec2) * max_data;
 
-  vk_memory->create_empty_buffer(&vk_object->buffer.xyz);
-  vk_memory->create_empty_buffer(&vk_object->buffer.rgb);
-  vk_memory->create_empty_buffer(&vk_object->buffer.uv);
+  vk_memory->create_empty_vertex_buffer(&vk_object->buffer.xyz);
+  vk_memory->create_empty_vertex_buffer(&vk_object->buffer.rgb);
+  vk_memory->create_empty_vertex_buffer(&vk_object->buffer.uv);
 
   this->update_buffer(vk_object);
 

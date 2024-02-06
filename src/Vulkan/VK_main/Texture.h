@@ -7,6 +7,7 @@ namespace vk::command{class Memory;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Texture;}
 namespace vk::structure{class Object;}
+namespace vk::data{class Buffer;}
 
 
 namespace vk::main{
@@ -32,6 +33,7 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::image::Image* vk_image;
   vk::command::Memory* vk_memory;
+  vk::data::Buffer* vk_buffer;
 };
 
 }
