@@ -28,13 +28,13 @@ public:
 
 public:
   //Main function
-  void start_thread(eng::k4n::dev::Sensor* device);
-  void run_thread(eng::k4n::dev::Sensor* device);
+  void start_thread(eng::k4n::dev::Sensor* sensor);
+  void run_thread(eng::k4n::dev::Sensor* sensor);
   void stop_thread();
 
   //Subfunction
   void manage_pause(eng::k4n::dev::Sensor* sensor);
-  void manage_restart(eng::k4n::dev::Sensor* device);
+  void manage_restart(eng::k4n::dev::Sensor* sensor);
   void manage_recording(eng::k4n::dev::Sensor* sensor, k4a::capture capture);
 
   inline bool is_thread_running(){return thread_running;}

@@ -17,7 +17,9 @@ public:
 
 public:
   //Main function
-  void refresh_connected_dev();
+  void start_thread();
+  void run_thread();
+  void stop_thread();
 
   //Subfunction
   void manage_new_dev(int number);
@@ -26,6 +28,8 @@ public:
 private:
   eng::k4n::dev::Swarm* k4n_swarm;
 
+  std::thread thread;
+  bool thread_running = false;
   int nb_dev = 0;
 };
 

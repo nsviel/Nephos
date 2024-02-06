@@ -29,13 +29,13 @@ void Node::init(){
   //---------------------------
 
   k4n_swarm->init_scene();
+  k4n_connection->start_thread();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  k4n_connection->refresh_connected_dev();
 
   //---------------------------
 }

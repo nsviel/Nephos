@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Engine/Capture/K4N/Namespace.h>
+#include <chrono>
 
 
 namespace eng::k4n::dev{
@@ -14,26 +15,62 @@ Connection::Connection(eng::k4n::Node* node_k4n){
 
   //---------------------------
 }
-Connection::~Connection(){}
-
-//Main function
-void Connection::refresh_connected_dev(){
+Connection::~Connection(){
   //---------------------------
 
-  const uint32_t current_nb_dev = k4a_device_get_installed_count();
-  if(current_nb_dev != nb_dev){
-    //If some news, run them
-    if(current_nb_dev > nb_dev){
-      int number = current_nb_dev - nb_dev;
-      this->manage_new_dev(number);
-    }
-    //If some less, supress them
-    else if(current_nb_dev < nb_dev){
-      int number = nb_dev - current_nb_dev;
-      this->manage_less_dev(number);
+  this->stop_thread();
+  this->thread.join();
+
+  //---------------------------
+}
+
+//Main function
+void Connection::start_thread(){
+  //---------------------------
+
+  if(!thread_running){
+    this->thread = std::thread(&Connection::run_thread, this);
+  }
+
+  //---------------------------
+}
+void Connection::run_thread(){
+  //---------------------------
+
+  //Refresh connected sensors
+  this->thread_running = true;
+  while(thread_running){
+    //Get number of connected devices
+    const uint32_t current_nb_dev = k4a_device_get_installed_count();
+
+    //Action on changement
+    if(current_nb_dev != nb_dev){
+      //If some news, run them
+      if(current_nb_dev > nb_dev){
+        int number = current_nb_dev - nb_dev;
+        this->manage_new_dev(number);
+      }
+      //If some less, supress them
+      else if(current_nb_dev < nb_dev){
+        int number = nb_dev - current_nb_dev;
+        this->manage_less_dev(number);
+      }
+
+      nb_dev = current_nb_dev;
     }
 
-    nb_dev = current_nb_dev;
+    //Little sleep
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  }
+
+  //---------------------------
+}
+void Connection::stop_thread(){
+  //---------------------------
+
+  this->thread_running = false;
+  if(thread.joinable()){
+    thread.join();
   }
 
   //---------------------------
