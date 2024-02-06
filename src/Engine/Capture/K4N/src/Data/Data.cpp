@@ -78,16 +78,13 @@ void Data::find_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
     return;
   }
 
-  //Buffer
-  string format = retrieve_format_from_k4a(color.get_format());
-  this->retrieve_data_from_capture(color, sensor->color.data.buffer_vec, format);
-
   //Data
   sensor->color.data.name = "color";
   sensor->color.data.k4a_image = color;
   sensor->color.data.size = color.get_size();
   sensor->color.data.width = color.get_width_pixels();
   sensor->color.data.height = color.get_height_pixels();
+  sensor->color.data.buffer_raw = color.get_buffer();
   sensor->color.data.format = retrieve_format_from_k4a(color.get_format());
   sensor->color.data.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
 
