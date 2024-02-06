@@ -93,13 +93,17 @@ VkFormat Texture::find_texture_format(utl::media::Image* image){
 }
 
 //Texture cleaning
-void Texture::clean_texture(vk::structure::Object* data){
+void Texture::clean_texture(vk::structure::Object* vk_object){
   //---------------------------
 
-  for(int i=0; i<data->list_texture.size(); i++){
-    vk::structure::Texture* texture = *next(data->list_texture.begin(), i);
+  for(auto it = vk_object->list_texture.begin(); it != vk_object->list_texture.end();){
+    vk::structure::Texture* texture = *it;
+    
     vk_image->clean_image(&texture->vk_image);
     vk_buffer->clean_buffer(&texture->buffer);
+
+    delete texture;
+    it = vk_object->list_texture.erase(it);
   }
 
   //---------------------------

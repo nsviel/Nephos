@@ -23,18 +23,18 @@ struct Image{
   uint32_t mip_level = 1;
 
   //Image info
-  VkImage image;
-  VkImageView view;
-  VkImageTiling tiling;
-  VkImageUsageFlags usage;
-  VkImageAspectFlags aspect;
-  VkImageLayout layout;
+  VkImage image = VK_NULL_HANDLE;
+  VkImageView view = VK_NULL_HANDLE;
+  VkImageTiling tiling = VK_IMAGE_TILING_OPTIMAL;
+  VkImageUsageFlags usage = 0;
+  VkImageAspectFlags aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  VkImageLayout layout = VK_IMAGE_LAYOUT_UNDEFINED;
 
   //Other info
   VkFormat format = VK_FORMAT_R8G8B8A8_SRGB;
-  VkDeviceMemory mem;
-  VkMemoryPropertyFlags properties;
-  VkSampler sampler;
+  VkDeviceMemory mem = VK_NULL_HANDLE;
+  VkMemoryPropertyFlags properties = 0;
+  VkSampler sampler = VK_NULL_HANDLE;
 
   //---------------------------
 };

@@ -14,6 +14,8 @@ struct Texture{
   vk::structure::Image vk_image;
   vk::structure::Buffer buffer;
 
+  std::string name = "hello";
+
   //---------------------------
 };
 

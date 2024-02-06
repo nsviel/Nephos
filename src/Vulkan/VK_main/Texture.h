@@ -26,7 +26,7 @@ public:
   VkFormat find_texture_format(utl::media::Image* image);
 
   //Texture cleaning
-  void clean_texture(vk::structure::Object* object);
+  void clean_texture(vk::structure::Object* vk_object);
   void clean();
 
 private:
