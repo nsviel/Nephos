@@ -25,8 +25,8 @@ Stream::~Stream(){}
 void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
   //---------------------------
 
-  if(!utl_image->data_vec.empty()){
-    this->convert_data_into_texture(utl_image);
+  if(utl_image->size != 0){
+    this->convert_data_into_texture(utl_image, size);
     this->render_image(size);
   }
 
@@ -34,11 +34,12 @@ void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
 }
 
 //Subfunction
-void Stream::convert_data_into_texture(utl::media::Image* utl_image){
+void Stream::convert_data_into_texture(utl::media::Image* utl_image, ImVec2& size){
   //---------------------------
 
   if(texture == nullptr){
     texture = vk_texture->load_texture(utl_image);
+    if(texture == nullptr) return;
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->vk_image.sampler, texture->vk_image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     this->imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
   }else{
@@ -46,12 +47,14 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image){
     vk_texture->update_texture(texture);
   }
 
+    ImGui::Image(imgui_texture, size);
+
   //---------------------------
 }
 void Stream::render_image(ImVec2& size){
   //---------------------------
 
-  ImGui::Image(imgui_texture, size);
+
 
   //---------------------------
 }

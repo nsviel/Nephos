@@ -19,14 +19,16 @@ Texture::Texture(vk::structure::Vulkan* struct_vulkan){
 Texture::~Texture(){}
 
 //Main function
-vk::structure::Texture* Texture::load_texture(utl::media::Image* struct_image){
+vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
   //---------------------------
 
+  if(utl_image->data_vec.size() == 0)return nullptr;
+
   vk::structure::Texture* texture = new vk::structure::Texture();
-  texture->utl_image = struct_image;
-  texture->vk_image.width = struct_image->width;
-  texture->vk_image.height = struct_image->height;
-  texture->vk_image.format = find_texture_format(struct_image);
+  texture->utl_image = utl_image;
+  texture->vk_image.width = utl_image->width;
+  texture->vk_image.height = utl_image->height;
+  texture->vk_image.format = find_texture_format(utl_image);
   texture->vk_image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   texture->vk_image.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
   vk_image->create_image(&texture->vk_image);
@@ -39,6 +41,8 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* struct_image){
 }
 void Texture::update_texture(vk::structure::Texture* texture){
   //---------------------------
+
+  if(texture->utl_image->data_vec.size() == 0)return;
 
   vk_memory->transfert_texture_to_gpu(texture);
 
