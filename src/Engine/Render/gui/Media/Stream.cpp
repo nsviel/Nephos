@@ -25,7 +25,7 @@ Stream::~Stream(){}
 void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
   //---------------------------
 
-  if(!utl_image->data.empty()){
+  if(!utl_image->data_vec.empty()){
     this->convert_data_into_texture(utl_image);
     this->render_image(size);
   }

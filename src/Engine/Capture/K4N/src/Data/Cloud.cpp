@@ -31,7 +31,7 @@ void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* sensor){
 
 //Loop function
 void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
-  if(sensor->depth.data.buffer.empty()) return;
+  if(sensor->depth.data.buffer_vec.empty()) return;
   //---------------------------
 
   vec_xyz.clear();
@@ -43,7 +43,7 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
-  if(sensor->depth.data_to_color.buffer.empty()) return;
+  if(sensor->depth.data_to_color.buffer_vec.empty()) return;
   if(sensor->depth.data_to_color.k4a_image.get_width_pixels() != 1280) return;
   utl::element::Profiler* profiler = sensor->cap_profiler;
   //---------------------------
@@ -70,7 +70,7 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
-  if(sensor->depth.data.buffer.empty()) return;
+  if(sensor->depth.data.buffer_vec.empty()) return;
   utl::type::Data* data = sensor->object->data;
   eng::k4n::dev::Master* master = sensor->master;
   utl::element::Profiler* profiler = sensor->cap_profiler;
@@ -134,8 +134,8 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
 
   if(operation->color_mode == 0){
     //Camera color
-    if(sensor->color.data.buffer.empty()) return;
-    const vector<uint8_t>& color_data = sensor->color.data.buffer;
+    if(sensor->color.data.buffer_vec.empty()) return;
+    const vector<uint8_t>& color_data = sensor->color.data.buffer_vec;
 
     int index = i * 4;
     float r = static_cast<float>(color_data[index + 2]) / 255.0f;
@@ -150,10 +150,10 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
   //---------------------------
 }
 void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
-  if(sensor->ir.data.buffer.empty()) return;
+  if(sensor->ir.data.buffer_vec.empty()) return;
   //---------------------------
 
-  const vector<uint8_t>& ir_buffer = sensor->ir.data_to_color.buffer;
+  const vector<uint8_t>& ir_buffer = sensor->ir.data_to_color.buffer_vec;
 
   int index = i * 2;
   ir = static_cast<uint16_t>(ir_buffer[index]) | (static_cast<uint16_t>(ir_buffer[index + 1]) << 8);

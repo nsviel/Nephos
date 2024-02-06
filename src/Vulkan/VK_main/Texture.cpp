@@ -23,11 +23,9 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* struct_image){
   //---------------------------
 
   vk::structure::Texture* texture = new vk::structure::Texture();
-
   texture->utl_image = struct_image;
   texture->vk_image.width = struct_image->width;
   texture->vk_image.height = struct_image->height;
-
   texture->vk_image.format = find_texture_format(struct_image);
   texture->vk_image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   texture->vk_image.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;

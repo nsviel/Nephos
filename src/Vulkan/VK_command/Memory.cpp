@@ -26,7 +26,7 @@ void Memory::transfert_texture_to_gpu(vk::structure::Texture* texture){
   vk::structure::Buffer* buffer = &texture->buffer;
 
   //Create stagging buffer
-  buffer->size = utl_image->data.size();
+  buffer->size = utl_image->data_vec.size();
 
   //if(buffer->vbo == VK_NULL_HANDLE){
     this->create_gpu_buffer(buffer->size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, buffer->vbo);
@@ -36,7 +36,7 @@ void Memory::transfert_texture_to_gpu(vk::structure::Texture* texture){
   //Copy data to stagging buffer
   void* staging_data;
   vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, buffer->size, 0, &staging_data);
-  memcpy(staging_data, utl_image->data.data(), buffer->size);
+  memcpy(staging_data, utl_image->data_vec.data(), buffer->size);
   vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
 
   //Image transition from undefined layout to read only layout

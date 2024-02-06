@@ -107,7 +107,7 @@ void Stream::vec_stream_tab(eng::k4n::dev::Sensor* sensor){
 
     ImGui::SetNextItemWidth(100);
     flag = get_sensor_tab_flag(2);
-    if(!sensor->color.data_to_depth.buffer.empty() && ImGui::BeginTabItem("Color from depth##4567", NULL)){
+    if(sensor->color.data_to_depth.k4a_image.is_valid() && ImGui::BeginTabItem("Color from depth##4567", NULL)){
       this->draw_camera_color_from_depth(sensor, image_size);
       ImGui::EndTabItem();
     }
@@ -133,66 +133,68 @@ void Stream::vec_stream_tab(eng::k4n::dev::Sensor* sensor){
 
 //Device capture windows
 void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  eng::k4n::structure::Data* data_color = &sensor->color.data;
+  eng::k4n::structure::Data* data = &sensor->color.data;
   //---------------------------
 
   utl::media::Image utl_image;
-  utl_image.data = data_color->buffer;
-  utl_image.width = data_color->width;
-  utl_image.height = data_color->height;
-  utl_image.format = data_color->format;
+  utl_image.data_vec = data->buffer_vec;
+  utl_image.data_raw = data->buffer_raw;
+  utl_image.width = data->width;
+  utl_image.height = data->height;
+  utl_image.format = data->format;
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[0]->draw_stream(&utl_image, image_size);
-  this->overlay_capture(sensor, data_color, image_size, image_pose);
+  this->overlay_capture(sensor, data, image_size, image_pose);
 
   //---------------------------
 }
 void Stream::draw_camera_color_from_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  eng::k4n::structure::Data* data_color = &sensor->color.data_to_depth;
+  eng::k4n::structure::Data* data = &sensor->color.data_to_depth;
   //---------------------------
 
   utl::media::Image utl_image;
-  utl_image.data = data_color->buffer;
-  utl_image.width = data_color->width;
-  utl_image.height = data_color->height;
-  utl_image.format = data_color->format;
+  utl_image.data_vec = data->buffer_vec;
+  utl_image.data_raw = data->buffer_raw;
+  utl_image.width = data->width;
+  utl_image.height = data->height;
+  utl_image.format = data->format;
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[3]->draw_stream(&utl_image, image_size);
-  this->overlay_capture(sensor, data_color, image_size, image_pose);
+  this->overlay_capture(sensor, data, image_size, image_pose);
 
   //---------------------------
 }
 void Stream::draw_camera_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  eng::k4n::structure::Data* data_depth = &sensor->depth.data;
+  eng::k4n::structure::Data* data = &sensor->depth.data;
   //---------------------------
 
   utl::media::Image utl_image;
-  utl_image.data = k4a_depth->convert_depth_into_color(sensor);
-  utl_image.width = data_depth->width;
-  utl_image.height = data_depth->height;
+  utl_image.data_vec = k4a_depth->convert_depth_into_color(sensor);
+  utl_image.width = data->width;
+  utl_image.height = data->height;
   utl_image.format = "R8G8B8A8_SRGB";
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[1]->draw_stream(&utl_image, image_size);
-  this->overlay_capture(sensor, data_depth, image_size, image_pose);
+  this->overlay_capture(sensor, data, image_size, image_pose);
 
   //---------------------------
 }
 void Stream::draw_camera_ir(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  eng::k4n::structure::Data* data_ir = &sensor->ir.data;
+  eng::k4n::structure::Data* data = &sensor->ir.data;
   //---------------------------
 
   utl::media::Image utl_image;
-  utl_image.data = k4a_infrared->convert_ir_into_color(sensor);
-  utl_image.width = data_ir->width;
-  utl_image.height = data_ir->height;
+  utl_image.data_vec = k4a_infrared->convert_ir_into_color(sensor);
+  utl_image.width = data->width;
+  utl_image.height = data->height;
   utl_image.format = "B8G8R8A8_SRGB";
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[2]->draw_stream(&utl_image, image_size);
-  this->overlay_capture(sensor, data_ir, image_size, image_pose);
+  this->overlay_capture(sensor, data, image_size, image_pose);
 
   //---------------------------
 }
@@ -275,7 +277,7 @@ void Stream::compute_hovered_pixel(eng::k4n::structure::Data* image, ImVec2 imag
     image->hovered_pixel_y = hoveredUIPixel.y * uiCoordinateToImageCoordinateRatio;
 
     //Pixel value
-    const std::vector<uint8_t>& data = image->buffer;
+    const std::vector<uint8_t>& data = image->buffer_vec;
     size_t index = size_t(image->hovered_pixel_y) * size_t(image->width * 2) + size_t(image->hovered_pixel_x * 2);
     uint16_t pixelData = static_cast<uint16_t>(data[index]) | (static_cast<uint16_t>(data[index + 1]) << 8);
     image->hovered_pixel_m = pixelData / 1000.0f;

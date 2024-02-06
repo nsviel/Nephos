@@ -15,7 +15,8 @@ struct Image{
   int height;
   int size;
 
-  std::vector<uint8_t> data;
+  uint8_t* data_raw;
+  std::vector<uint8_t> data_vec;
   std::string format;
 
   //---------------------------
