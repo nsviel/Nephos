@@ -169,8 +169,8 @@ void Stream::draw_camera_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   //---------------------------
 
   utl::media::Image utl_image;
-  utl_image.data_vec = data->buffer_vec;
-  utl_image.size = data->buffer_vec.size();
+  utl_image.data_vec = data->utl_image.data_vec;
+  utl_image.size = data->utl_image.size;
   utl_image.width = data->width;
   utl_image.height = data->height;
   utl_image.format = "R8G8B8A8_SRGB";

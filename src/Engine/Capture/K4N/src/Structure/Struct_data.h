@@ -14,6 +14,8 @@ struct Data{
   std::vector<uint8_t> buffer_vec;
   uint8_t* buffer_raw;
 
+  utl::media::Image utl_image;
+
   int width;
   int height;
   int size;

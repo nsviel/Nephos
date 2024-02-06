@@ -60,8 +60,17 @@ void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   sensor->depth.data.buffer_raw = depth.get_buffer();
   sensor->depth.data.size = depth.get_size();
 
-  //sensor->depth.data.buffer_vec = k4a_depth->convert_depth_into_color(sensor);
-  //sensor->depth.data.size = sensor->depth.data.buffer_vec.size();
+
+
+
+
+  sensor->depth.data.utl_image.data_vec = k4a_depth->convert_depth_into_color(sensor);
+  sensor->depth.data.utl_image.size = sensor->depth.data.utl_image.data_vec.size();
+  sensor->depth.data.utl_image.width = sensor->depth.data.width;
+  sensor->depth.data.utl_image.height = sensor->depth.data.height;
+
+
+
 
 
   sensor->depth.data.format = retrieve_format_from_k4a(depth.get_format());
