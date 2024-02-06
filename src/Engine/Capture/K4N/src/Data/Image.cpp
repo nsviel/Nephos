@@ -46,6 +46,7 @@ void Image::copy_image_color(eng::k4n::dev::Sensor* sensor){
   image->color.width = sensor->color.data.width;
   image->color.height = sensor->color.data.height;
   image->color.format = sensor->color.data.format;
+  image->color.new_data = true;
 
   //---------------------------
 }
@@ -58,6 +59,7 @@ void Image::copy_image_depth(eng::k4n::dev::Sensor* sensor){
   image->depth.width = sensor->depth.data.width;
   image->depth.height = sensor->depth.data.height;
   image->depth.format = "R8G8B8A8_SRGB";
+  image->depth.new_data = true;
 
   //---------------------------
 }
@@ -70,6 +72,7 @@ void Image::copy_image_ir(eng::k4n::dev::Sensor* sensor){
   image->ir.width = sensor->ir.data.width;
   image->ir.height = sensor->ir.data.height;
   image->ir.format = "R8G8B8A8_SRGB";
+  image->ir.new_data = true;
 
   //---------------------------
 }

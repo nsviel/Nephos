@@ -17,6 +17,7 @@ struct Image{
 
   std::vector<uint8_t> data;
   std::string format;
+  bool new_data;
 
   //---------------------------
 };
