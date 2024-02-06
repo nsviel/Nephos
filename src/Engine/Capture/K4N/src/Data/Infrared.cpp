@@ -16,23 +16,24 @@ Infrared::~Infrared(){}
 
 //Main function
 std::vector<uint8_t> Infrared::convert_ir_into_color(eng::k4n::dev::Sensor* device){
-  std::vector<uint8_t>& inputBuffer = device->ir.data.buffer_vec;
+  k4n::structure::Data* data = &device->ir.data;
+  uint8_t* inputBuffer = data->buffer_raw;
   uint16_t level_min = device->ir.config.level_min;
   uint16_t level_max = device->ir.config.level_max;
   //---------------------------
 
-  std::vector<uint8_t> outputBuffer(inputBuffer.size() * 4, 0);
+  std::vector<uint8_t> outputBuffer(data->size * 4, 0);
 
-  for (int i = 0, j = 0; i < inputBuffer.size(); i += 2, j += 4) {
-      uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
+  for (int i = 0, j = 0; i < data->size; i += 2, j += 4) {
+    uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
 
-      r = std::min(r, level_max);
-      uint8_t value = static_cast<uint8_t>((r - level_min) * (255.0f / (level_max - level_min)));
+    r = std::min(r, level_max);
+    uint8_t value = static_cast<uint8_t>((r - level_min) * (255.0f / (level_max - level_min)));
 
-      outputBuffer[j] = value;
-      outputBuffer[j + 1] = value;
-      outputBuffer[j + 2] = value;
-      outputBuffer[j + 3] = 255;
+    outputBuffer[j] = value;
+    outputBuffer[j + 1] = value;
+    outputBuffer[j + 2] = value;
+    outputBuffer[j + 3] = 255;
   }
 
   //---------------------------

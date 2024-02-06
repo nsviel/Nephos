@@ -93,16 +93,13 @@ void Data::find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   k4a::image ir = capture.get_ir_image();
   if(!ir.is_valid()) return;
 
-  //Buffer
-  string format = retrieve_format_from_k4a(ir.get_format());
-  this->retrieve_data_from_capture(ir, sensor->ir.data.buffer_vec, format);
-
   //Data
   sensor->ir.data.name = "ir";
   sensor->ir.data.k4a_image = ir;
   sensor->ir.data.size = ir.get_size();
   sensor->ir.data.width = ir.get_width_pixels();
   sensor->ir.data.height = ir.get_height_pixels();
+  sensor->ir.data.buffer_raw = ir.get_buffer();
   sensor->ir.data.format = retrieve_format_from_k4a(ir.get_format());
   sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
 
@@ -157,8 +154,8 @@ void Data::find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::captur
     sensor->ir.data.width,
     sensor->ir.data.height,
     sensor->ir.data.width * static_cast<int>(sizeof(uint16_t)),
-    sensor->ir.data.buffer_vec.data(),
-    sensor->ir.data.buffer_vec.size(),
+    sensor->ir.data.buffer_raw,
+    sensor->ir.data.size,
     nullptr,
     nullptr);
   k4a::image ir_transformed = k4a::image::create(
@@ -212,8 +209,8 @@ void Data::find_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture,
     sensor->ir.data.width,
     sensor->ir.data.height,
     sensor->ir.data.width * static_cast<int>(sizeof(uint16_t)),
-    sensor->ir.data.buffer_vec.data(),
-    sensor->ir.data.buffer_vec.size(),
+    sensor->ir.data.buffer_raw,
+    sensor->ir.data.size,
     nullptr,
     nullptr);
 
