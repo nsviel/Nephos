@@ -118,17 +118,13 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   transformation.depth_image_to_color_camera(sensor->depth.data.k4a_image, &depth_transformed);
   if(!depth_transformed.is_valid()) return;
 
-  //Buffer
-  string format = sensor->depth.data.format;
-  this->retrieve_data_from_capture(depth_transformed, sensor->depth.data_to_color.buffer_vec, format);
-
-
   //Data
   sensor->depth.data_to_color.name = "depth_to_color";
   sensor->depth.data_to_color.k4a_image = depth_transformed;
   sensor->depth.data_to_color.size = depth_transformed.get_size();
   sensor->depth.data_to_color.width = depth_transformed.get_width_pixels();
   sensor->depth.data_to_color.height = depth_transformed.get_height_pixels();
+  sensor->depth.data_to_color.buffer_raw = depth_transformed.get_buffer();
   sensor->depth.data_to_color.format = sensor->depth.data.format;
 
   //---------------------------
@@ -210,16 +206,13 @@ void Data::find_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture,
   transformation.depth_image_to_color_camera(ir, &ir_transformed);
   if(!ir_transformed.is_valid()) return;
 
-  //Buffer
-  string format = sensor->ir.data.format;
-  this->retrieve_data_from_capture(ir_transformed, sensor->ir.data_to_color.buffer_vec, format);
-
   //Data
   sensor->ir.data_to_color.name = "depth_to_color";
   sensor->ir.data_to_color.k4a_image = ir_transformed;
   sensor->ir.data_to_color.size = ir_transformed.get_size();
   sensor->ir.data_to_color.width = ir_transformed.get_width_pixels();
   sensor->ir.data_to_color.height = ir_transformed.get_height_pixels();
+  sensor->ir.data_to_color.buffer_raw = ir_transformed.get_buffer();
   sensor->ir.data_to_color.format = sensor->ir.data.format;
 
   //---------------------------
@@ -232,17 +225,13 @@ void Data::find_color_to_depth(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   k4a::image color_from_depth = transformation.color_image_to_depth_camera(sensor->depth.data.k4a_image, sensor->color.data.k4a_image);
   if(!color_from_depth.is_valid()) return;
 
-  //Get specific information
-  float timestamp = sensor->color.data.timestamp;
-  string format = sensor->color.data.format;
-  this->retrieve_data_from_capture(color_from_depth, sensor->color.data_to_depth.buffer_vec, format);
-
   //Fill data structure
   sensor->color.data_to_depth.name = "color_to_depth";
   sensor->color.data_to_depth.k4a_image = color_from_depth;
   sensor->color.data_to_depth.size = color_from_depth.get_size();
   sensor->color.data_to_depth.width = color_from_depth.get_width_pixels();
   sensor->color.data_to_depth.height = color_from_depth.get_height_pixels();
+  sensor->color.data_to_depth.buffer_raw = color_from_depth.get_buffer();
   sensor->color.data_to_depth.format = sensor->color.data.format;
   sensor->color.data_to_depth.timestamp = sensor->color.data.timestamp;
 
