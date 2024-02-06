@@ -23,16 +23,26 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
   if(utl_image->format == "") return nullptr;
   //---------------------------
 
+  //Create texture container
   vk::structure::Texture* texture = new vk::structure::Texture();
   texture->utl_image = utl_image;
-  texture->vk_image.width = utl_image->width;
-  texture->vk_image.height = utl_image->height;
-  texture->vk_image.format = find_texture_format(utl_image);
-  texture->vk_image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  texture->vk_image.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
-  vk_image->create_image(&texture->vk_image);
-  vk_memory->transfert_texture_to_gpu(texture);
 
+  //Create associated vk_image
+  vk::structure::Image* image = &texture->vk_image;
+  image->width = utl_image->width;
+  image->height = utl_image->height;
+  image->format = find_texture_format(utl_image);
+  image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
+  vk_image->create_image(image);
+
+  //Create associated buffer
+  vk::structure::Buffer* buffer = &texture->buffer;
+  buffer->size = utl_image->size;
+  vk_memory->create_empty_buffer(buffer);
+
+  //Fill and store
+  vk_memory->transfert_texture_to_gpu(texture);
   struct_vulkan->data.vec_texture.push_back(texture);
 
   //---------------------------

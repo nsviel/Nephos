@@ -124,20 +124,20 @@ void Memory::create_empty_buffer(vk::structure::Buffer* buffer){
 
   //---------------------------
 }
-void Memory::update_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize) {
+void Memory::update_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
     //---------------------------
 
-    if (dataSize == 0) {
+    if (data_size == 0) {
       throw std::runtime_error("Data size is zero!");
     }
 
     // Map the buffer's memory and copy the data
     void* mappedMemory;
-    VkResult result = vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, dataSize, 0, &mappedMemory);
+    VkResult result = vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, data_size, 0, &mappedMemory);
     if (result != VK_SUCCESS) {
       throw std::runtime_error("Failed to map buffer memory!");
     }
-    memcpy(mappedMemory, data, static_cast<size_t>(dataSize));
+    memcpy(mappedMemory, data, static_cast<size_t>(data_size));
     vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
 
     //---------------------------
