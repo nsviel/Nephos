@@ -61,14 +61,6 @@ void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   sensor->depth.data.temperature = capture.get_temperature_c();
   sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
 
-  //Image
-  utl::media::Image& image = sensor->depth.data.utl_image;
-  image.data_vec = k4a_depth->convert_depth_into_color(sensor);
-  image.size = image.data_vec.size();
-  image.width = sensor->depth.data.width;
-  image.height = sensor->depth.data.height;
-  image.format = "R8G8B8A8_SRGB";
-
   //---------------------------
   depth.reset();
 }
@@ -88,14 +80,6 @@ void Data::find_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   sensor->color.data.buffer_raw = color.get_buffer();
   sensor->color.data.format = retrieve_format_from_k4a(color.get_format());
   sensor->color.data.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
-
-  //Image
-  utl::media::Image& image = sensor->color.data.utl_image;
-  image.data_vec = std::vector<uint8_t>(sensor->color.data.buffer_raw, sensor->color.data.buffer_raw + sensor->color.data.size);
-  image.size = image.data_vec.size();
-  image.width = sensor->color.data.width;
-  image.height = sensor->color.data.height;
-  image.format = sensor->color.data.format;
 
   //---------------------------
   color.reset();
@@ -117,14 +101,6 @@ void Data::find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   sensor->ir.data.size = ir.get_size();
   sensor->ir.data.format = retrieve_format_from_k4a(ir.get_format());
   sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
-
-  //Image
-  utl::media::Image& image = sensor->ir.data.utl_image;
-  image.data_vec = k4a_infrared->convert_ir_into_color(sensor);
-  image.size = image.data_vec.size();
-  image.width = sensor->ir.data.width;
-  image.height = sensor->ir.data.height;
-  image.format = "R8G8B8A8_SRGB";
 
   //---------------------------
   ir.reset();

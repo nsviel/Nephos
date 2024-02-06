@@ -131,14 +131,13 @@ void Stream::vec_stream_tab(eng::k4n::dev::Sensor* sensor){
 
 //Device capture windows
 void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  eng::k4n::structure::Data* data = &sensor->color.data;
   //---------------------------
 
-  utl::media::Image utl_image = data->utl_image;
+  std::unique_lock<std::mutex> lock(sensor->image.mutex);
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[0]->draw_stream(&utl_image, image_size);
-  this->overlay_capture(sensor, data, image_size, image_pose);
+  vec_gui_stream[0]->draw_stream(&sensor->image.color, image_size);
+  this->overlay_capture(sensor, &sensor->color.data, image_size, image_pose);
 
   //---------------------------
 }
@@ -160,26 +159,24 @@ void Stream::draw_camera_color_from_depth(eng::k4n::dev::Sensor* sensor, ImVec2 
   //---------------------------
 }
 void Stream::draw_camera_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  eng::k4n::structure::Data* data = &sensor->depth.data;
   //---------------------------
 
-  utl::media::Image utl_image = data->utl_image;
+  std::unique_lock<std::mutex> lock(sensor->image.mutex);
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[1]->draw_stream(&utl_image, image_size);
-  this->overlay_capture(sensor, data, image_size, image_pose);
+  vec_gui_stream[1]->draw_stream(&sensor->image.depth, image_size);
+  this->overlay_capture(sensor, &sensor->depth.data, image_size, image_pose);
 
   //---------------------------
 }
 void Stream::draw_camera_ir(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  eng::k4n::structure::Data* data = &sensor->ir.data;
   //---------------------------
 
-  utl::media::Image utl_image = data->utl_image;
-
+  std::unique_lock<std::mutex> lock(sensor->image.mutex);
+  
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[2]->draw_stream(&utl_image, image_size);
-  this->overlay_capture(sensor, data, image_size, image_pose);
+  vec_gui_stream[2]->draw_stream(&sensor->image.ir, image_size);
+  this->overlay_capture(sensor, &sensor->ir.data, image_size, image_pose);
 
   //---------------------------
 }

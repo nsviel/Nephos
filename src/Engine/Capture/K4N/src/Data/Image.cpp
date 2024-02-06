@@ -27,9 +27,11 @@ void Image::make_images(eng::k4n::dev::Sensor* sensor){
   profiler->task_end("image::lock");
 
   //Image data copy
+  profiler->task_begin("image::data");
   this->copy_image_color(sensor);
   this->copy_image_depth(sensor);
   this->copy_image_ir(sensor);
+  profiler->task_end("image::data");
 
   //---------------------------
 }

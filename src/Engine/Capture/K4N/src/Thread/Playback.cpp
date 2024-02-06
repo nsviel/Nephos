@@ -83,11 +83,10 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
     profiler->task_end("image");
 
     //Manage event
-    profiler->task_begin("event");
     this->manage_pause(sensor);
     this->manage_restart(sensor);
-    profiler->task_end("event");
 
+    //FPS control
     fps_control->stop();
     fps_control->set_fps_max(sensor->param.fps.query);
     sensor->param.fps.current = fps_counter->update();
