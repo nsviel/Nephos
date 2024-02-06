@@ -11,10 +11,7 @@ struct Data{
   k4a::image k4a_image;
   std::string name;
   std::string format;
-  std::vector<uint8_t> buffer_vec;
   uint8_t* buffer_raw;
-
-  utl::media::Image utl_image;
 
   int width;
   int height;

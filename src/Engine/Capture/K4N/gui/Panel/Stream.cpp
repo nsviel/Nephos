@@ -173,7 +173,7 @@ void Stream::draw_camera_ir(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(sensor->image.mutex);
-  
+
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[2]->draw_stream(&sensor->image.ir, image_size);
   this->overlay_capture(sensor, &sensor->ir.data, image_size, image_pose);
@@ -259,7 +259,7 @@ void Stream::compute_hovered_pixel(eng::k4n::structure::Data* image, ImVec2 imag
     image->hovered_pixel_y = hoveredUIPixel.y * uiCoordinateToImageCoordinateRatio;
 
     //Pixel value
-    const std::vector<uint8_t>& data = image->buffer_vec;
+    const uint8_t* data = image->buffer_raw;
     size_t index = size_t(image->hovered_pixel_y) * size_t(image->width * 2) + size_t(image->hovered_pixel_x * 2);
     uint16_t pixelData = static_cast<uint16_t>(data[index]) | (static_cast<uint16_t>(data[index + 1]) << 8);
     image->hovered_pixel_m = pixelData / 1000.0f;
