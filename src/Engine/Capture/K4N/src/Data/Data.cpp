@@ -46,10 +46,7 @@ void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
 
   //Get k4a image
   k4a::image depth = capture.get_depth_image();
-  if(!depth || !depth.is_valid()){
-    cout<<"[error] kinect depth image invalid"<<endl;
-    return;
-  }
+  if(!depth.is_valid()) return;
 
   //Buffer
   string format = retrieve_format_from_k4a(depth.get_format());
@@ -74,9 +71,7 @@ void Data::find_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
 
   //Get k4a image
   k4a::image color = capture.get_color_image();
-  if(!color || !color.is_valid()){
-    return;
-  }
+  if(!color.is_valid()) return;
 
   //Data
   sensor->color.data.name = "color";
@@ -96,10 +91,7 @@ void Data::find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
 
   //Get k4a image
   k4a::image ir = capture.get_ir_image();
-  if(!ir || !ir.is_valid()){
-    cout<<"[error] kinect ir image invalid"<<endl;
-    return;
-  }
+  if(!ir.is_valid()) return;
 
   //Buffer
   string format = retrieve_format_from_k4a(ir.get_format());
@@ -131,9 +123,7 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
     static_cast<int>(sizeof(uint16_t)));
 
   transformation.depth_image_to_color_camera(sensor->depth.data.k4a_image, &depth_transformed);
-  if(!depth_transformed || !depth_transformed.is_valid()){
-    return;
-  }
+  if(!depth_transformed.is_valid()) return;
 
   //Buffer
   string format = sensor->depth.data.format;
@@ -180,9 +170,7 @@ void Data::find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::captur
 
   uint32_t value_no_data = 0;
   transformation.depth_image_to_color_camera_custom(sensor->depth.data.k4a_image, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_LINEAR, value_no_data);
-  if(!depth_transformed || !depth_transformed.is_valid()){
-    return;
-  }
+  if(!depth_transformed.is_valid()) return;
 
   //Depth transformed
   this->retrieve_data_from_capture(depth_transformed, sensor->depth.data_to_color.buffer_vec, sensor->depth.data.format);
@@ -230,9 +218,7 @@ void Data::find_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture,
     nullptr);
 
   transformation.depth_image_to_color_camera(ir, &ir_transformed);
-  if (!ir_transformed || !ir_transformed.is_valid()) {
-    return;
-  }
+  if(!ir_transformed.is_valid()) return;
 
   //Buffer
   string format = sensor->ir.data.format;
@@ -254,9 +240,7 @@ void Data::find_color_to_depth(eng::k4n::dev::Sensor* sensor, k4a::capture captu
 
   //Convert it into a depth POV representation
   k4a::image color_from_depth = transformation.color_image_to_depth_camera(sensor->depth.data.k4a_image, sensor->color.data.k4a_image);
-  if(!color_from_depth || !color_from_depth.is_valid()){
-    return;
-  }
+  if(!color_from_depth.is_valid()) return;
 
   //Get specific information
   float timestamp = sensor->color.data.timestamp;
