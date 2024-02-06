@@ -22,7 +22,7 @@ std::vector<uint8_t> Depth::convert_depth_into_color(eng::k4n::dev::Sensor* devi
   //---------------------------
 
   std::vector<uint8_t> outputBuffer(data->size * 4, 0);
-  for (int i = 0, j = 0; i < data->size; i += 2, j += 4) {
+  for(int i=0, j=0; i<data->size; i+=2, j+=4){
     uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
 
     float R = 0.0f;

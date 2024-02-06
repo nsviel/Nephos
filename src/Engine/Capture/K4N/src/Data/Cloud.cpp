@@ -50,15 +50,15 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
 
   // Cloud stuff
   profiler->task_begin("cloud::transformation");
-  eng::k4n::structure::Depth* depth = &sensor->depth;
-  k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->data_to_color.width, depth->data_to_color.height, depth->data_to_color.width * sizeof(int16_t) * 3);
-  sensor->param.transformation.depth_image_to_point_cloud(depth->data_to_color.k4a_image, K4A_CALIBRATION_TYPE_COLOR, &cloud_image);
+  k4a::image cloud_image;
+  this->retrieve_cloud(sensor, cloud_image);
   int16_t* point_cloud_data = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
+  int point_cloud_size = cloud_image.get_size() / (3*sizeof(int16_t));
   profiler->task_end("cloud::transformation");
 
   // Convert point cloud data to vector<glm::vec3>
   profiler->task_begin("cloud::data");
-  for(int i=0; i<cloud_image.get_size()/(3*sizeof(int16_t)); i++){
+  for(int i=0; i<point_cloud_size; i++){
     this->retrieve_location(sensor, i, point_cloud_data);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
@@ -110,7 +110,19 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 
-//Subfunction
+//Data retrieval
+void Cloud::retrieve_cloud(eng::k4n::dev::Sensor* sensor, k4a::image& cloud_image){
+  eng::k4n::structure::Depth* depth = &sensor->depth;
+  //---------------------------
+
+  //Create cloud image
+  cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->data_to_color.width, depth->data_to_color.height, depth->data_to_color.width * sizeof(int16_t) * 3);
+
+  //Transform depth into cloud
+  sensor->param.transformation.depth_image_to_point_cloud(depth->data_to_color.k4a_image, K4A_CALIBRATION_TYPE_COLOR, &cloud_image);
+
+  //---------------------------
+}
 void Cloud::retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* data){
   //---------------------------
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <k4a/k4a.hpp>
 
 namespace eng{class Node;}
 namespace eng::k4n{class Node;}
@@ -27,7 +28,8 @@ public:
   void loop_data(eng::k4n::dev::Sensor* sensor);
   void loop_end(eng::k4n::dev::Sensor* sensor);
 
-  //Subfunction
+  //Data retrieval
+  void retrieve_cloud(eng::k4n::dev::Sensor* sensor, k4a::image& cloud_image);
   void retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* data);
   void retrieve_color(eng::k4n::dev::Sensor* sensor, int i);
   void retrieve_ir(eng::k4n::dev::Sensor* sensor, int i);
