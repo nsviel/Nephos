@@ -13,8 +13,6 @@ Stream::Stream(eng::k4n::Node* node_k4n, bool* show_window){
   eng::Node* engine = node_k4n->get_node_engine();
 
   this->node_k4n = node_k4n;
-  this->k4a_depth = new eng::k4n::data::Depth();
-  this->k4a_infrared = new eng::k4n::data::Infrared();
   this->k4n_swarm = node_k4n->get_k4n_swarm();
 
   this->vec_gui_stream.push_back(new eng::render::gui::Stream(engine));

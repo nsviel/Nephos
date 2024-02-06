@@ -4,8 +4,6 @@
 
 namespace eng{class Node;}
 namespace eng::k4n{class Node;}
-namespace eng::k4n::data{class Depth;}
-namespace eng::k4n::data{class Infrared;}
 namespace eng::k4n::dev{class Swarm;}
 namespace eng::k4n::dev{class Sensor;}
 namespace eng::k4n::dev{class Master;}
@@ -48,8 +46,6 @@ public:
 
 private:
   eng::k4n::Node* node_k4n;
-  eng::k4n::data::Depth* k4a_depth;
-  eng::k4n::data::Infrared* k4a_infrared;
   eng::k4n::dev::Swarm* k4n_swarm;
 
   vector<eng::render::gui::Stream*> vec_gui_stream;
