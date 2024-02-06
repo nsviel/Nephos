@@ -32,7 +32,7 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* struct_image){
   texture->vk_image.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   texture->vk_image.usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
   vk_image->create_image(&texture->vk_image);
-  vk_memory->transfert_image_to_gpu(texture);
+  vk_memory->transfert_texture_to_gpu(texture);
 
   struct_vulkan->data.vec_texture.push_back(texture);
 
@@ -42,7 +42,7 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* struct_image){
 void Texture::update_texture(vk::structure::Texture* texture){
   //---------------------------
 
-  vk_memory->transfert_image_to_gpu(texture);
+  vk_memory->transfert_texture_to_gpu(texture);
 
   //---------------------------
 }
