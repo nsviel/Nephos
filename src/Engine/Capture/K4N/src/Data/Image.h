@@ -21,6 +21,11 @@ public:
   //Main function
   void make_images(eng::k4n::dev::Sensor* sensor);
 
+  //Subfunction
+  void copy_image_color(eng::k4n::dev::Sensor* sensor);
+  void copy_image_depth(eng::k4n::dev::Sensor* sensor);
+  void copy_image_ir(eng::k4n::dev::Sensor* sensor);
+
 private:
   eng::k4n::data::Depth* k4a_depth;
   eng::k4n::data::Infrared* k4a_infrared;

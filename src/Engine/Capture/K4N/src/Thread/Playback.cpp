@@ -15,6 +15,7 @@ Playback::Playback(eng::k4n::Node* node_k4n){
 
   this->k4a_data = new eng::k4n::data::Data();
   this->k4a_cloud = new eng::k4n::data::Cloud(node_k4n);
+  this->k4n_image = new eng::k4n::data::Image();
   this->k4n_configuration = new eng::k4n::config::Configuration();
   this->k4n_calibration = new eng::k4n::config::Calibration();
   this->k4n_operation= new eng::k4n::utils::Operation();
@@ -76,6 +77,10 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
     profiler->task_begin("cloud");
     k4a_cloud->convert_into_cloud(sensor);
     profiler->task_end("cloud");
+
+    profiler->task_begin("image");
+    k4n_image->make_images(sensor);
+    profiler->task_end("image");
 
     //Manage event
     profiler->task_begin("event");

@@ -11,6 +11,7 @@ namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Sensor;}
 namespace eng::k4n::data{class Data;}
 namespace eng::k4n::data{class Cloud;}
+namespace eng::k4n::data{class Image;}
 namespace eng::k4n::config{class Configuration;}
 namespace eng::k4n::config{class Calibration;}
 namespace eng::k4n::utils{class Operation;}
@@ -43,6 +44,7 @@ private:
   utl::fps::Control* fps_control;
   eng::k4n::data::Data* k4a_data;
   eng::k4n::data::Cloud* k4a_cloud;
+  eng::k4n::data::Image* k4n_image;
   eng::k4n::config::Configuration* k4n_configuration;
   eng::k4n::config::Calibration* k4n_calibration;
   eng::k4n::utils::Operation* k4n_operation;
