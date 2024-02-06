@@ -25,9 +25,6 @@ void Memory::transfert_texture_to_gpu(vk::structure::Texture* texture){
   utl::media::Image* utl_image = texture->utl_image;
   vk::structure::Buffer* buffer = &texture->buffer;
 
-
-
-
   //Copy data to stagging buffer
   void* staging_data;
   vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, buffer->size, 0, &staging_data);

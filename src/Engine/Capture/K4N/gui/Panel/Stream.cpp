@@ -62,10 +62,8 @@ void Stream::vec_device_tab(eng::k4n::dev::Master* master){
       utl::type::Entity* entity = *next(master->list_entity.begin(), i);
 
       if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
-        //Force tab open if another sensor selected
-        ImGuiTabItemFlags flag = get_device_tab_flag(sensor);
         string name = sensor->icon + "  " + sensor->name;
-        if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
+        if(ImGui::BeginTabItem(name.c_str(), NULL)){
           master->set_selected_entity(sensor);
           this->vec_stream_tab(sensor);
           ImGui::EndTabItem();
@@ -130,23 +128,6 @@ void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[0]->draw_stream(&sensor->image.color, image_size);
   this->overlay_capture(sensor, &sensor->color.data, image_size, image_pose);
-
-  //---------------------------
-}
-void Stream::draw_camera_color_from_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  /*eng::k4n::structure::Data* data = &sensor->color.data_to_depth;
-  //---------------------------
-
-  utl::media::Image utl_image;
-  utl_image.data_raw = data->buffer;
-  utl_image.size = data->size;
-  utl_image.width = data->width;
-  utl_image.height = data->height;
-  utl_image.format = data->format;
-
-  ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[3]->draw_stream(&utl_image, image_size);
-  this->overlay_capture(sensor, data, image_size, image_pose);*/
 
   //---------------------------
 }
