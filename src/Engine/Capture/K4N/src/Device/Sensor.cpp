@@ -43,18 +43,18 @@ void Sensor::init(){
   this->param.name = str_mode + to_string(param.index);
 
   //Sensor cloud
-  object = new utl::entity::Object(engine);
-  object->name = param.name;
-  object->data->draw_type_name = "point";
-  object->data->nb_data_max = 1000000;
-  sce_scene->init_entity(object);
+  object = utl::entity::Object(engine);
+  object.name = param.name;
+  object.data->draw_type_name = "point";
+  object.data->nb_data_max = 1000000;
+  sce_scene->init_entity(&object);
 
   //---------------------------
 }
 void Sensor::reset(){
   //---------------------------
 
-  object->reset_entity();
+  object.reset_entity();
 
   //---------------------------
 }
@@ -64,9 +64,9 @@ void Sensor::update_pose(){
   //----------------------------
 
   //Retrieve capture data
-  std::unique_lock<std::mutex> lock(object->data->mutex);
-  object->update_data();
-  object->update_pose();
+  std::unique_lock<std::mutex> lock(object.data->mutex);
+  object.update_data();
+  object.update_pose();
 
   //----------------------------
 }
@@ -76,7 +76,7 @@ void Sensor::remove_entity(){
   //First, destroy own elements
   this->stop_threads();
   this->param.transformation.destroy();
-  this->object->remove_entity();
+  this->object.remove_entity();
   this->master->manage_suppression(this);
 
   //---------------------------
@@ -85,15 +85,15 @@ void Sensor::visibility_entity(bool value){
   //---------------------------
 
   this->is_visible = value;
-  object->data->is_visible = value;
-  object->visibility_entity(value);
+  object.data->is_visible = value;
+  object.visibility_entity(value);
 
   //---------------------------
 }
 void Sensor::reset_entity(){
   //---------------------------
 
-  object->reset_entity();
+  object.reset_entity();
 
   //---------------------------
 }

@@ -134,12 +134,7 @@ void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   eng::k4n::structure::Data* data = &sensor->color.data;
   //---------------------------
 
-  utl::media::Image utl_image;
-  utl_image.data_vec = data->utl_image.data_vec;
-  utl_image.size = data->utl_image.size;
-  utl_image.width = data->width;
-  utl_image.height = data->height;
-  utl_image.format = data->format;
+  utl::media::Image utl_image = data->utl_image;
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[0]->draw_stream(&utl_image, image_size);
@@ -168,12 +163,7 @@ void Stream::draw_camera_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   eng::k4n::structure::Data* data = &sensor->depth.data;
   //---------------------------
 
-  utl::media::Image utl_image;
-  utl_image.data_vec = data->utl_image.data_vec;
-  utl_image.size = data->utl_image.size;
-  utl_image.width = data->width;
-  utl_image.height = data->height;
-  utl_image.format = "R8G8B8A8_SRGB";
+  utl::media::Image utl_image = data->utl_image;
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[1]->draw_stream(&utl_image, image_size);
@@ -185,12 +175,7 @@ void Stream::draw_camera_ir(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
   eng::k4n::structure::Data* data = &sensor->ir.data;
   //---------------------------
 
-  utl::media::Image utl_image;
-  utl_image.data_vec = data->utl_image.data_vec;
-  utl_image.size = data->utl_image.size;
-  utl_image.width = data->width;
-  utl_image.height = data->height;
-  utl_image.format = "B8G8R8A8_SRGB";
+  utl::media::Image utl_image = data->utl_image;
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[2]->draw_stream(&utl_image, image_size);

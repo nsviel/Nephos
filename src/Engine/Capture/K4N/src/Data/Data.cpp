@@ -67,7 +67,7 @@ void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   image.size = image.data_vec.size();
   image.width = sensor->depth.data.width;
   image.height = sensor->depth.data.height;
-  image.format = sensor->depth.data.format;
+  image.format = "R8G8B8A8_SRGB";
 
   //---------------------------
   depth.reset();
@@ -124,7 +124,7 @@ void Data::find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   image.size = image.data_vec.size();
   image.width = sensor->ir.data.width;
   image.height = sensor->ir.data.height;
-  image.format = sensor->ir.data.format;
+  image.format = "R8G8B8A8_SRGB";
 
   //---------------------------
   ir.reset();

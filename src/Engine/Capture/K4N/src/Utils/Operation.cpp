@@ -53,52 +53,55 @@ float Operation::find_mkv_ts_end(string path){
   //---------------------------
   return ts_end;
 }
-void Operation::make_colorization(eng::k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
+void Operation::make_colorization(eng::k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
   //---------------------------
 
-  switch(k4n_sensor->master->operation.color_mode){
+  switch(sensor->master->operation.color_mode){
     case 1:{//Colored unicolor
-      vec_rgba = vector<vec4> (k4n_sensor->object->data->xyz.size(), k4n_sensor->object->data->unicolor);
+      utl::type::Data* data = sensor->get_data();
+      vec_rgba = vector<vec4> (data->xyz.size(), data->unicolor);
       break;
     }
     case 2:{//White unicolor
-      this->colorization_intensity(k4n_sensor, vec_rgba);
+      this->colorization_intensity(sensor, vec_rgba);
       break;
     }
     case 3:{//Heatmap
-      this->colorization_heatmap(k4n_sensor, vec_rgba);
+      this->colorization_heatmap(sensor, vec_rgba);
       break;
     }
   }
 
   //---------------------------
 }
-void Operation::colorization_intensity(eng::k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
+void Operation::colorization_intensity(eng::k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
+  utl::type::Data* data = sensor->get_data();
   //---------------------------
 
   vec_rgba.clear();
-  vec_rgba.reserve(k4n_sensor->object->data->xyz.size());
-  for(int i=0; i<k4n_sensor->object->data->xyz.size(); i++){
-    float Is = k4n_sensor->object->data->Is[i] / k4n_sensor->master->operation.intensity_division;
+  vec_rgba.reserve(data->xyz.size());
+  for(int i=0; i<data->xyz.size(); i++){
+    float Is = data->Is[i] / sensor->master->operation.intensity_division;
     vec_rgba.push_back(vec4(Is, Is, Is, 1));
   }
 
   //---------------------------
 }
-void Operation::colorization_heatmap(eng::k4n::dev::Sensor* k4n_sensor, vector<vec4>& vec_rgba){
+void Operation::colorization_heatmap(eng::k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
+  utl::entity::Object* object = sensor->get_object();
   //---------------------------
 
-  switch(k4n_sensor->master->operation.heatmap_mode){
+  switch(sensor->master->operation.heatmap_mode){
     case 0:{//Intensity
-      vec_rgba = ope_heatmap->heatmap_intensity(k4n_sensor->object, k4n_sensor->master->operation.intensity_division);
+      vec_rgba = ope_heatmap->heatmap_intensity(object, sensor->master->operation.intensity_division);
       break;
     }
     case 1:{//Height
-      vec_rgba = ope_heatmap->heatmap_height(k4n_sensor->object, k4n_sensor->master->operation.range_height);
+      vec_rgba = ope_heatmap->heatmap_height(object, sensor->master->operation.range_height);
       break;
     }
     case 2:{//Range
-      vec_rgba = ope_heatmap->heatmap_range(k4n_sensor->object);
+      vec_rgba = ope_heatmap->heatmap_range(object);
       break;
     }
   }

@@ -70,7 +70,7 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
-  utl::type::Data* data = sensor->object->data;
+  utl::type::Data* data = sensor->get_data();
   eng::k4n::dev::Master* master = sensor->master;
   utl::element::Profiler* profiler = sensor->cap_profiler;
   //---------------------------

@@ -19,6 +19,7 @@ namespace eng::k4n::structure{class Infrared;}
 namespace eng::k4n::structure{class IMU;}
 namespace eng::ope{class Transformation;}
 namespace utl::element{class Profiler;}
+namespace utl::media{class Image;}
 
 
 namespace eng::k4n::dev{
@@ -47,14 +48,18 @@ public:
   void stop_threads();
   void reset_color_configuration();
 
-  inline utl::entity::Object* get_object(){return object;}
-  inline utl::type::Data* get_data(){return object->data;}
-  inline utl::type::Pose* get_pose(){return object->pose;}
+  inline utl::entity::Object* get_object(){return &object;}
+  inline utl::type::Data* get_data(){return object.data;}
+  inline utl::type::Pose* get_pose(){return object.pose;}
 
 public:
-  utl::entity::Object* object;
   utl::element::Profiler* cap_profiler;
   eng::k4n::dev::Master* master;
+
+  utl::entity::Object object;
+  utl::media::Image image_color;
+  utl::media::Image image_depth;
+  utl::media::Image image_ir;
 
   eng::k4n::structure::Param param;
   eng::k4n::structure::Synchro synchro;

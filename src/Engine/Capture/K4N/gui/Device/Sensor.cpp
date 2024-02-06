@@ -56,7 +56,8 @@ void Sensor::show_sensor_transfo(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Object model matrix
-  mat4& model = sensor->object->pose->model;
+  utl::entity::Object* object = sensor->get_object();
+  mat4& model = object->pose->model;
   ImGui::Columns(4, "ModelMat");
   for(int i=0; i<4; i++){
     ImGui::Separator();
