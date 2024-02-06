@@ -22,7 +22,7 @@ Texture::~Texture(){}
 vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
   //---------------------------
 
-  if(utl_image->data_vec.size() == 0)return nullptr;
+
 
   vk::structure::Texture* texture = new vk::structure::Texture();
   texture->utl_image = utl_image;
@@ -41,8 +41,6 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
 }
 void Texture::update_texture(vk::structure::Texture* texture){
   //---------------------------
-
-  if(texture->utl_image->data_vec.size() == 0)return;
 
   vk_memory->transfert_texture_to_gpu(texture);
 
