@@ -79,18 +79,20 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   std::unique_lock<std::mutex> lock(data->mutex);
   profiler->task_end("cloud::lock");
 
-  //Store capture data
+  //Cloud data copy
+  profiler->task_begin("cloud::copying");
   data->xyz = vec_xyz;
   data->Is = vec_ir;
   data->R = vec_r;
   data->goodness = vec_goodness;
   data->nb_point = vec_xyz.size();
+  profiler->task_end("cloud::copying");
 
   //Final colorization
   profiler->task_begin("cloud::colorization");
   k4n_operation->make_colorization(sensor, vec_rgb);
-  profiler->task_end("cloud::colorization");
   data->rgb = vec_rgb;
+  profiler->task_end("cloud::colorization");
 
   //Voxelization filtering
   /*
@@ -101,11 +103,6 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   ope_voxelizer->reconstruct_data_by_goodness(data);
   profiler->task_end("cloud::voxel");
   */
-
-  //Final small check
-  if(data->xyz.size() != data->rgb.size()){
-    cout<<"[error] cloud creation size problem"<<endl;
-  }
 
   //---------------------------
 }
