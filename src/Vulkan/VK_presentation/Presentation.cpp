@@ -36,8 +36,11 @@ void Presentation::acquire_next_image(VkSemaphore& semaphore){
 void Presentation::image_presentation(VkSemaphore& semaphore, VkFence& fence){
   //---------------------------
 
+
   this->submit_presentation(semaphore);
   this->next_frame_ID();
+
+
 
   //---------------------------
 }

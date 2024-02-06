@@ -158,13 +158,13 @@ void Swapchain::find_swapchain_presentation_mode(){
   //---------------------------
 
   //4 possible modes:
-  //- VK_PRESENT_MODE_IMMEDIATE_KHR
-  //- VK_PRESENT_MODE_FIFO_KHR
-  //- VK_PRESENT_MODE_FIFO_RELAXED_KHR
-  //- VK_PRESENT_MODE_MAILBOX_KHR
+  //- VK_PRESENT_MODE_IMMEDIATE_KHR -> no VSync
+  //- VK_PRESENT_MODE_FIFO_KHR -> VSync + VBI
+  //- VK_PRESENT_MODE_FIFO_RELAXED_KHR -> VSync
+  //- VK_PRESENT_MODE_MAILBOX_KHR -> VSync + triple buffering
   VkPresentModeKHR presentation_mode = VK_PRESENT_MODE_FIFO_KHR;
   for(const auto& mode : dev_mode){
-    if(mode == VK_PRESENT_MODE_MAILBOX_KHR){
+    if(mode == VK_PRESENT_MODE_IMMEDIATE_KHR){
       presentation_mode = mode;
     }
   }
