@@ -20,9 +20,8 @@ Texture::~Texture(){}
 
 //Main function
 vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
+  if(utl_image->format == "") return nullptr;
   //---------------------------
-
-
 
   vk::structure::Texture* texture = new vk::structure::Texture();
   texture->utl_image = utl_image;
