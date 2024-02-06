@@ -62,7 +62,7 @@ void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   sensor->depth.data.size = depth.get_size();
   sensor->depth.data.width = depth.get_width_pixels();
   sensor->depth.data.height = depth.get_height_pixels();
-  sensor->depth.data.format = format;
+  sensor->depth.data.format = retrieve_format_from_k4a(depth.get_format());
   sensor->depth.data.temperature = capture.get_temperature_c();
   sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
 
@@ -88,7 +88,7 @@ void Data::find_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   sensor->color.data.size = color.get_size();
   sensor->color.data.width = color.get_width_pixels();
   sensor->color.data.height = color.get_height_pixels();
-  sensor->color.data.format = format;
+  sensor->color.data.format = retrieve_format_from_k4a(color.get_format());
   sensor->color.data.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
 
   //---------------------------
@@ -114,7 +114,7 @@ void Data::find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   sensor->ir.data.size = ir.get_size();
   sensor->ir.data.width = ir.get_width_pixels();
   sensor->ir.data.height = ir.get_height_pixels();
-  sensor->ir.data.format = format;
+  sensor->ir.data.format = retrieve_format_from_k4a(ir.get_format());
   sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
 
   //---------------------------
@@ -149,7 +149,7 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   sensor->depth.data_to_color.size = depth_transformed.get_size();
   sensor->depth.data_to_color.width = depth_transformed.get_width_pixels();
   sensor->depth.data_to_color.height = depth_transformed.get_height_pixels();
-  sensor->depth.data_to_color.format = format;
+  sensor->depth.data_to_color.format = sensor->depth.data.format;
 
   //---------------------------
 }
@@ -247,7 +247,7 @@ void Data::find_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture,
   sensor->ir.data_to_color.size = ir_transformed.get_size();
   sensor->ir.data_to_color.width = ir_transformed.get_width_pixels();
   sensor->ir.data_to_color.height = ir_transformed.get_height_pixels();
-  sensor->ir.data_to_color.format = format;
+  sensor->ir.data_to_color.format = sensor->ir.data.format;
 
   //---------------------------
 }
@@ -272,8 +272,8 @@ void Data::find_color_to_depth(eng::k4n::dev::Sensor* sensor, k4a::capture captu
   sensor->color.data_to_depth.size = color_from_depth.get_size();
   sensor->color.data_to_depth.width = color_from_depth.get_width_pixels();
   sensor->color.data_to_depth.height = color_from_depth.get_height_pixels();
-  sensor->color.data_to_depth.format = format;
-  sensor->color.data_to_depth.timestamp = timestamp;
+  sensor->color.data_to_depth.format = sensor->color.data.format;
+  sensor->color.data_to_depth.timestamp = sensor->color.data.timestamp;
 
   //---------------------------
   color_from_depth.reset();
