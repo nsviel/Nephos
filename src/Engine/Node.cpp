@@ -58,10 +58,6 @@ void Node::loop(){
   eng_vulkan->loop();
   cpu_profiler->task_end("eng::vulkan");
 
-  cpu_profiler->task_begin("eng::capture");
-  node_capture->loop();
-  cpu_profiler->task_end("eng::capture");
-
   //---------------------------
   cpu_profiler->task_end("eng");
   cpu_profiler->set_fps(fps_counter->update());

@@ -52,6 +52,12 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
 void Texture::update_texture(vk::structure::Texture* texture){
   //---------------------------
 
+  //Check if size hasn't changed
+  if(texture->buffer.size != texture->utl_image->size){
+    texture = nullptr;
+    return;
+  }
+
   vk_memory->transfert_texture_to_gpu(texture);
 
   //---------------------------

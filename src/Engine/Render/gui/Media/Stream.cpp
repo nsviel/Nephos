@@ -46,6 +46,7 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image, ImVec2& siz
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->vk_image.sampler, texture->vk_image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     this->imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
   }else if(utl_image->new_data){
+    //update texture data
     vk_texture->update_texture(texture);
     utl_image->new_data = false;
   }

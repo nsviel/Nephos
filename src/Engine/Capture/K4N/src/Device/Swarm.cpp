@@ -38,8 +38,14 @@ void Swarm::init_scene(){
   file_2.path_data = "/home/aether/Desktop/versaille_2.mkv";
   file_2.path_transfo = "/home/aether/Desktop/versaille_2.json";
 
+  utl::media::File file_3;
+  file_3.path_data = "/home/aether/Desktop/output.mkv";
+
+  utl::media::File file_4;
+  file_4.path_data = "/home/aether/Desktop/cerfav_8.mkv";
+
   //Create playback list
-  this->create_sensor_playback(file_1);
+  this->create_sensor_playback(file_3);
   //this->create_sensor_playback(file_2);
 
   //---------------------------
