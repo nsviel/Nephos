@@ -17,8 +17,10 @@ Memory::Memory(vk::structure::Vulkan* struct_vulkan){
 Memory::~Memory(){}
 
 //Image GPU function
-void Memory::transfert_image_to_gpu(vk::structure::Image* image){
+void Memory::transfert_image_to_gpu(vk::structure::Texture* texture){
   //---------------------------
+
+  vk::structure::Image* image = &texture->vk_image;
 
   //Create stagging buffer
   vk::structure::Buffer* buffer = &image->buffer;
