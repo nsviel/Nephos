@@ -98,12 +98,12 @@ void Texture::clean_texture(vk::structure::Object* vk_object){
 
   for(auto it = vk_object->list_texture.begin(); it != vk_object->list_texture.end();){
     vk::structure::Texture* texture = *it;
-    
+
     vk_image->clean_image(&texture->vk_image);
     vk_buffer->clean_buffer(&texture->buffer);
 
-    delete texture;
-    it = vk_object->list_texture.erase(it);
+    //delete texture;
+    //it = vk_object->list_texture.erase(it);
   }
 
   //---------------------------

@@ -87,10 +87,11 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
     this->manage_restart(sensor);
 
     //FPS control
+    profiler->task_begin("sleep");
     fps_control->stop();
     fps_control->set_fps_max(sensor->param.fps.query);
     sensor->param.fps.current = fps_counter->update();
-
+    profiler->task_end("sleep", vec4(50, 50, 50, 255));
     profiler->loop_end();
   }
 

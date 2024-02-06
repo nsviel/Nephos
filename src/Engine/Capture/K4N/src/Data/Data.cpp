@@ -25,15 +25,20 @@ Data::~Data(){
 
 //Main function
 void Data::find_data_from_capture(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
+  utl::element::Profiler* profiler = sensor->cap_profiler;
   //---------------------------
 
   //Capture data
+  profiler->task_begin("data::base");
   this->find_depth(sensor, capture);
   this->find_color(sensor, capture);
   this->find_ir(sensor, capture);
+  profiler->task_end("data::base");
 
   //Transformed data
+  profiler->task_begin("data::transformation");
   this->find_depth_and_ir_to_color(sensor, capture, sensor->param.transformation);
+  profiler->task_end("data::transformation");
 
   //Finish
   sensor->master->player.ts_cur = sensor->color.data.timestamp;

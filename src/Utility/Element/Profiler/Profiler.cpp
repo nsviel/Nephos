@@ -95,6 +95,8 @@ void Profiler::task_end(string name, vec4 color){
     }
   }
 
+  cout<<"[error] task no started"<<endl;
+
   //---------------------------
 }
 

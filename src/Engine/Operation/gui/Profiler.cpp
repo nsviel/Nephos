@@ -167,6 +167,7 @@ void Profiler::draw_profiler_cpu(ImVec2 dimensions){
     vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
     for(int i=0; i<vec_gpu_task.size(); i++){
       utl::type::Task task = vec_gpu_task[i];
+
       if(task.color == vec4(0, 0, 0, 0)){
         gui_cpu->add_task(task.time_beg, task.time_end, task.name);
       }else{
@@ -195,7 +196,12 @@ void Profiler::draw_profiler_gpu(ImVec2 dimensions){
     vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
     for(int i=0; i<vec_gpu_task.size(); i++){
       utl::type::Task task = vec_gpu_task[i];
-      gui_gpu->add_task(task.time_beg, task.time_end, task.name);
+
+      if(task.color == vec4(0, 0, 0, 0)){
+        gui_gpu->add_task(task.time_beg, task.time_end, task.name);
+      }else{
+        gui_gpu->add_task(task.time_beg, task.time_end, task.name, task.color);
+      }
     }
 
     //load data
@@ -227,7 +233,12 @@ void Profiler::draw_profiler_capture(ImVec2 dimensions){
       vector<utl::type::Task>& vec_task = profiler->get_vec_task();
       for(int i=0; i<vec_task.size(); i++){
         utl::type::Task task = vec_task[i];
-        gui_capture->add_task(task.time_beg, task.time_end, task.name);
+
+        if(task.color == vec4(0, 0, 0, 0)){
+          gui_capture->add_task(task.time_beg, task.time_end, task.name);
+        }else{
+          gui_capture->add_task(task.time_beg, task.time_end, task.name, task.color);
+        }
       }
 
       //load data
