@@ -24,6 +24,7 @@ public:
   //Task function
   void task_begin(string name);
   void task_end(string name);
+  void task_end(string name, vec4 color);
 
   inline vector<utl::type::Task>& get_vec_task(){return vec_task;}
   inline float get_fps(){return fps;}

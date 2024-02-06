@@ -51,7 +51,6 @@ void Profiler::design_panel(){
   this->main_info();
   this->main_button();
   this->draw_graph();
-  this->draw_timeline();
 
   //---------------------------
 }
@@ -168,7 +167,11 @@ void Profiler::draw_profiler_cpu(ImVec2 dimensions){
     vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
     for(int i=0; i<vec_gpu_task.size(); i++){
       utl::type::Task task = vec_gpu_task[i];
-      gui_cpu->add_task(task.time_beg, task.time_end, task.name);
+      if(task.color == vec4(0, 0, 0, 0)){
+        gui_cpu->add_task(task.time_beg, task.time_end, task.name);
+      }else{
+        gui_cpu->add_task(task.time_beg, task.time_end, task.name, task.color);
+      }
     }
 
     //load data
@@ -237,12 +240,5 @@ void Profiler::draw_profiler_capture(ImVec2 dimensions){
 
   //---------------------------
 }
-void Profiler::draw_timeline(){
-  //---------------------------
-
-
-  //---------------------------
-}
-
 
 }

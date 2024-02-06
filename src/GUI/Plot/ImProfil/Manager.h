@@ -20,6 +20,7 @@ public:
   void render_overlay(ImVec2 image_pose);
   void load_data_to_graph();
   void add_task(float time_beg, float time_end, string name);
+  void add_task(float time_beg, float time_end, string name, vec4 color);
   void add_vec_task(vector<utl::type::Task> vec_task);
 
   //Subfunction

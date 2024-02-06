@@ -28,7 +28,6 @@ public:
   void main_info();
   void main_button();
   void draw_graph();
-  void draw_timeline();
 
   //Profiler graphs
   void draw_profiler_cpu(ImVec2 dimensions);

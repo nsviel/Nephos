@@ -78,6 +78,16 @@ void Manager::add_task(float time_beg, float time_end, string name){
 
   //---------------------------
 }
+void Manager::add_task(float time_beg, float time_end, string name, vec4 color){
+  //---------------------------
+
+  utl::type::Task task;
+  task = {time_beg, time_end, name, color};
+  vec_task.push_back(task);
+  if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
+
+  //---------------------------
+}
 void Manager::add_vec_task(vector<utl::type::Task> vec_task){
   //---------------------------
 

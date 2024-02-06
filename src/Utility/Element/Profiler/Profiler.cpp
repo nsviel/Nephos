@@ -81,5 +81,21 @@ void Profiler::task_end(string name){
 
   //---------------------------
 }
+void Profiler::task_end(string name, vec4 color){
+  //---------------------------
+
+  for(int i=0; i<vec_task_current.size(); i++){
+    utl::type::Task& task = vec_task_current[i];
+
+    if(task.name == name){
+      utl::timer::Timepoint task_end = timer.get_time();
+      task.time_end = timer.duration_s(reference, task_end);
+      task.color = color;
+      return;
+    }
+  }
+
+  //---------------------------
+}
 
 }

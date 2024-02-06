@@ -15,6 +15,7 @@ App_main::App_main(){
   this->node_utility = new utl::Node(config);
   this->node_engine = new eng::Node(node_utility);
   this->node_gui = new gui::Node(node_utility, node_engine);
+  this->fps_control = new utl::fps::Control(120);
 
   //---------------------------
 }
@@ -48,9 +49,15 @@ void App_main::loop(){
   auto start_time = std::chrono::steady_clock::now();
   while(config->run_app){
     cpu_profiler->loop_begin();
+
+    fps_control->start();
     node_engine->loop();
     node_utility->loop();
     node_gui->loop();
+
+    cpu_profiler->task_begin("sleep");
+    fps_control->stop();
+    cpu_profiler->task_end("sleep", vec4(50, 50, 50, 255));
     cpu_profiler->loop_end();
   }
   node_engine->wait();
