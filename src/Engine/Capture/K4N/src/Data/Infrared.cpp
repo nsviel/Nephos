@@ -15,11 +15,11 @@ Infrared::Infrared(){
 Infrared::~Infrared(){}
 
 //Main function
-std::vector<uint8_t> Infrared::convert_ir_into_color(eng::k4n::dev::Sensor* device){
-  k4n::structure::Data* data = &device->ir.data;
+std::vector<uint8_t> Infrared::convert_ir_into_color(eng::k4n::dev::Sensor* sensor){
+  k4n::structure::Data* data = &sensor->ir.data;
   uint8_t* inputBuffer = data->buffer_raw;
-  uint16_t level_min = device->ir.config.level_min;
-  uint16_t level_max = device->ir.config.level_max;
+  uint16_t level_min = sensor->ir.config.level_min;
+  uint16_t level_max = sensor->ir.config.level_max;
   //---------------------------
 
   std::vector<uint8_t> outputBuffer(data->size * 4, 0);
@@ -39,16 +39,16 @@ std::vector<uint8_t> Infrared::convert_ir_into_color(eng::k4n::dev::Sensor* devi
   //---------------------------
   return outputBuffer;
 }
-void Infrared::find_ir_level(eng::k4n::dev::Sensor* device){
+void Infrared::find_ir_level(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(device->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){
-    device->ir.config.level_min = 0;
-    device->ir.config.level_max = 100;
+  if(sensor->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){
+    sensor->ir.config.level_min = 0;
+    sensor->ir.config.level_max = 100;
   }
   else{
-    device->depth.config.range_min = 0;
-    device->depth.config.range_max = 1000;
+    sensor->depth.config.range_min = 0;
+    sensor->depth.config.range_max = 1000;
   }
 
   //---------------------------

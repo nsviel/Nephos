@@ -25,15 +25,15 @@ void Memory::transfert_texture_to_gpu(vk::structure::Texture* texture){
   utl::media::Image* utl_image = texture->utl_image;
   vk::structure::Buffer* buffer = &texture->buffer;
 
-
-  if(utl_image->data_vec.size() == 0)
-  utl_image->data_vec = std::vector<uint8_t>(utl_image->data_raw, utl_image->data_raw + utl_image->size);
-
 /*
   say("---");
   say(utl_image->data_vec.size());
   say(utl_image->size);
 */
+  if(utl_image->data_vec.size() == 0)
+  utl_image->data_vec = std::vector<uint8_t>(utl_image->data_raw, utl_image->data_raw + utl_image->size);
+
+
 
   //Create stagging buffer
   buffer->size = utl_image->size;

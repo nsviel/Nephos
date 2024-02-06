@@ -14,11 +14,11 @@ Depth::Depth(){
 Depth::~Depth(){}
 
 //Main function
-std::vector<uint8_t> Depth::convert_depth_into_color(eng::k4n::dev::Sensor* device){
-  k4n::structure::Data* data = &device->depth.data;
+std::vector<uint8_t> Depth::convert_depth_into_color(eng::k4n::dev::Sensor* sensor){
+  k4n::structure::Data* data = &sensor->depth.data;
   uint8_t* inputBuffer = data->buffer_raw;
-  uint16_t range_min = device->depth.config.range_min;
-  uint16_t range_max = device->depth.config.range_max;
+  uint16_t range_min = sensor->depth.config.range_min;
+  uint16_t range_max = sensor->depth.config.range_max;
   //---------------------------
 
   std::vector<uint8_t> outputBuffer(data->size * 4, 0);
@@ -50,15 +50,16 @@ std::vector<uint8_t> Depth::convert_depth_into_color(eng::k4n::dev::Sensor* devi
   //---------------------------
   return outputBuffer;
 }
-void Depth::convert_depth_into_color_(eng::k4n::dev::Sensor* device){
-  k4n::structure::Data* data = &device->depth.data;
+void Depth::convert_depth_into_color_(eng::k4n::dev::Sensor* sensor){
+  k4n::structure::Data* data = &sensor->depth.data;
   uint8_t* inputBuffer = data->buffer_raw;
-  uint16_t range_min = device->depth.config.range_min;
-  uint16_t range_max = device->depth.config.range_max;
+  uint16_t range_min = sensor->depth.config.range_min;
+  uint16_t range_max = sensor->depth.config.range_max;
   //---------------------------
 
   uint8_t* outputBuffer = new uint8_t[data->size * 4]();
-  for (int i = 0, j = 0; i < data->size; i += 2, j += 4) {
+  int cpt = 0;
+  for(int i=0, j=0; i<data->size; i+=2, j+=4){
     uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
 
     float R = 0.0f;
@@ -81,31 +82,32 @@ void Depth::convert_depth_into_color_(eng::k4n::dev::Sensor* device){
     outputBuffer[j + 1] = static_cast<uint8_t>(G * 255);
     outputBuffer[j + 2] = static_cast<uint8_t>(B * 255);
     outputBuffer[j + 3] = 255;
+    cpt = cpt +4;
   }
 
-  data->size = data->size * 4;
+  data->size = cpt;
   data->buffer_raw = outputBuffer;
 
   //---------------------------
 }
-void Depth::find_depth_mode_range(eng::k4n::dev::Sensor* device){
+void Depth::find_depth_mode_range(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(device->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){
-    device->depth.config.range_min = 500;
-    device->depth.config.range_max = 5800;
+  if(sensor->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){
+    sensor->depth.config.range_min = 500;
+    sensor->depth.config.range_max = 5800;
   }
-  else if(device->depth.config.mode == K4A_DEPTH_MODE_NFOV_UNBINNED){
-    device->depth.config.range_min = 500;
-    device->depth.config.range_max = 4000;
+  else if(sensor->depth.config.mode == K4A_DEPTH_MODE_NFOV_UNBINNED){
+    sensor->depth.config.range_min = 500;
+    sensor->depth.config.range_max = 4000;
   }
-  else if(device->depth.config.mode == K4A_DEPTH_MODE_WFOV_2X2BINNED){
-    device->depth.config.range_min = 250;
-    device->depth.config.range_max = 3000;
+  else if(sensor->depth.config.mode == K4A_DEPTH_MODE_WFOV_2X2BINNED){
+    sensor->depth.config.range_min = 250;
+    sensor->depth.config.range_max = 3000;
   }
-  else if(device->depth.config.mode == K4A_DEPTH_MODE_WFOV_UNBINNED){
-    device->depth.config.range_min = 250;
-    device->depth.config.range_max = 2500;
+  else if(sensor->depth.config.mode == K4A_DEPTH_MODE_WFOV_UNBINNED){
+    sensor->depth.config.range_min = 250;
+    sensor->depth.config.range_max = 2500;
   }
 
   //---------------------------
