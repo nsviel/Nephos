@@ -142,7 +142,7 @@ void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
   //---------------------------
 }
 void Stream::draw_camera_color_from_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
-  eng::k4n::structure::Data* data = &sensor->color.data_to_depth;
+  /*eng::k4n::structure::Data* data = &sensor->color.data_to_depth;
   //---------------------------
 
   utl::media::Image utl_image;
@@ -154,7 +154,7 @@ void Stream::draw_camera_color_from_depth(eng::k4n::dev::Sensor* sensor, ImVec2 
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_gui_stream[3]->draw_stream(&utl_image, image_size);
-  this->overlay_capture(sensor, data, image_size, image_pose);
+  this->overlay_capture(sensor, data, image_size, image_pose);*/
 
   //---------------------------
 }

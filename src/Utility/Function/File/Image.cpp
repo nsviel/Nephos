@@ -13,8 +13,8 @@ namespace utl::fct::image{
     utl::media::Image image;
     uint8_t* data = stbi_load(path.c_str(), &image.width, &image.height, &image.channel_nb, STBI_rgb_alpha);
     size_t size = static_cast<size_t>(image.width) * static_cast<size_t>(image.height) * static_cast<size_t>(image.channel_nb);
-    image.data_vec = std::vector<uint8_t>(data, data + size);
-    if(image.data_vec.empty()){
+    image.data = std::vector<uint8_t>(data, data + size);
+    if(image.data.empty()){
       std::cout<<"[error] failed to load texture image"<<std::endl;
     }
 
