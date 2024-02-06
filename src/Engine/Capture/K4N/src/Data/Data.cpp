@@ -48,11 +48,6 @@ void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   k4a::image depth = capture.get_depth_image();
   if(!depth.is_valid()) return;
 
-  //Buffer
-  string format = retrieve_format_from_k4a(depth.get_format());
-  this->retrieve_data_from_capture(depth, sensor->depth.data.buffer_vec, format);
-
-
   //Data
   sensor->depth.data.name = "depth";
   sensor->depth.data.k4a_image = depth;
