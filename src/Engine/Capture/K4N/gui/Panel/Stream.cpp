@@ -84,10 +84,9 @@ void Stream::vec_stream_tab(eng::k4n::dev::Sensor* sensor){
   //Display capture images
   if(ImGui::BeginTabBar("device_tab##4567")){
     ImVec2 image_size = ImGui::GetContentRegionAvail();
-    ImGuiTabItemFlags flag;
 
+    // Color & Depth & ir
     ImGui::SetNextItemWidth(100);
-    flag = get_sensor_tab_flag(0);
     if (ImGui::BeginTabItem("All##4567", NULL)){
       image_size = ImVec2(image_size.x, image_size.y/3-3.33);
       this->draw_camera_color(sensor, image_size);
@@ -96,29 +95,22 @@ void Stream::vec_stream_tab(eng::k4n::dev::Sensor* sensor){
       ImGui::EndTabItem();
     }
 
+    //Color only
     ImGui::SetNextItemWidth(100);
-    flag = get_sensor_tab_flag(1);
     if (ImGui::BeginTabItem("Color##4567", NULL)){
       this->draw_camera_color(sensor, image_size);
       ImGui::EndTabItem();
     }
 
+    //Depth only
     ImGui::SetNextItemWidth(100);
-    flag = get_sensor_tab_flag(2);
-    if(sensor->color.data_to_depth.k4a_image.is_valid() && ImGui::BeginTabItem("Color from depth##4567", NULL)){
-      this->draw_camera_color_from_depth(sensor, image_size);
-      ImGui::EndTabItem();
-    }
-
-    ImGui::SetNextItemWidth(100);
-    flag = get_sensor_tab_flag(3);
     if (ImGui::BeginTabItem("Depth##4567", NULL)){
       this->draw_camera_depth(sensor, image_size);
       ImGui::EndTabItem();
     }
 
+    //IR only
     ImGui::SetNextItemWidth(100);
-    flag = get_sensor_tab_flag(4);
     if (ImGui::BeginTabItem("IR##4567", NULL)){
       this->draw_camera_ir(sensor, image_size);
       ImGui::EndTabItem();
@@ -266,36 +258,6 @@ void Stream::compute_hovered_pixel(eng::k4n::structure::Data* image, ImVec2 imag
   }
 
   //---------------------------
-}
-
-//Subfunction
-ImGuiTabItemFlags Stream::get_device_tab_flag(eng::k4n::dev::Sensor* sensor){
-  eng::k4n::dev::Master* master = sensor->master;
-  //---------------------------
-
-  ImGuiTabItemFlags flag = 0;
-  /*static int UID = master->selected_entity->UID;
-  if(master->is_selected_entity(sensor) && sensor->UID != UID){
-    flag = ImGuiTabItemFlags_SetSelected;
-    UID = master->selected_entity->UID;
-    current_tab_id = 0;
-  }*/
-
-  //---------------------------
-  return flag;
-}
-ImGuiTabItemFlags Stream::get_sensor_tab_flag(int tab_id){
-  //---------------------------
-
-  ImGuiTabItemFlags flag = 0;
-  /*static int UID = current_tab_id;
-  if(current_tab_id == tab_id && tab_id != UID){
-    flag = ImGuiTabItemFlags_SetSelected;
-    UID = tab_id;
-  }*/
-
-  //---------------------------
-  return flag;
 }
 
 }

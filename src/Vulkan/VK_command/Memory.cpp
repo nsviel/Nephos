@@ -28,10 +28,6 @@ void Memory::transfert_texture_to_gpu(vk::structure::Texture* texture){
 
 
 
-  //Create stagging buffer
-  buffer->size = utl_image->size;
-  if(buffer->size == 0)return;
-
   //Copy data to stagging buffer
   void* staging_data;
   vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, buffer->size, 0, &staging_data);
@@ -42,10 +38,6 @@ void Memory::transfert_texture_to_gpu(vk::structure::Texture* texture){
   vk_command->image_layout_transition_single(vk_image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
   this->copy_buffer_to_image(vk_image, buffer->vbo);
   vk_command->image_layout_transition_single(vk_image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-
-  //Free memory
-  //vkDestroyBuffer(struct_vulkan->device.device, buffer->vbo, nullptr);
-  //vkFreeMemory(struct_vulkan->device.device, buffer->mem, nullptr);
 
   //---------------------------
 }

@@ -40,10 +40,6 @@ public:
   void overlay_information(eng::k4n::dev::Sensor* device, eng::k4n::structure::Data* image);
   void overlay_pixel(eng::k4n::structure::Data* image, ImVec2 image_size);
 
-  //Subfunction
-  ImGuiTabItemFlags get_device_tab_flag(eng::k4n::dev::Sensor* sensor);
-  ImGuiTabItemFlags get_sensor_tab_flag(int tab_id);
-
 private:
   eng::k4n::Node* node_k4n;
   eng::k4n::dev::Swarm* k4n_swarm;
