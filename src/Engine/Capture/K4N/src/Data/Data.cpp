@@ -166,24 +166,21 @@ void Data::find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::captur
   if(!depth_transformed.is_valid()) return;
 
   //Depth transformed
-  this->retrieve_data_from_capture(depth_transformed, sensor->depth.data_to_color.buffer_vec, sensor->depth.data.format);
-
   sensor->depth.data_to_color.name = "depth_to_color";
   sensor->depth.data_to_color.k4a_image = depth_transformed;
   sensor->depth.data_to_color.size = depth_transformed.get_size();
   sensor->depth.data_to_color.width = depth_transformed.get_width_pixels();
   sensor->depth.data_to_color.height = depth_transformed.get_height_pixels();
+  sensor->depth.data_to_color.buffer_raw = depth_transformed.get_buffer();
   sensor->depth.data_to_color.format = sensor->depth.data.format;
 
   //IR transformed
-  this->retrieve_data_from_capture(ir_transformed, sensor->ir.data_to_color.buffer_vec, sensor->ir.data.format);
-
-
   sensor->ir.data_to_color.name = "ir_to_color";
   sensor->ir.data_to_color.k4a_image = ir_transformed;
   sensor->ir.data_to_color.size = ir_transformed.get_size();
   sensor->ir.data_to_color.width = ir_transformed.get_width_pixels();
   sensor->ir.data_to_color.height = ir_transformed.get_height_pixels();
+  sensor->ir.data_to_color.buffer_raw = ir_transformed.get_buffer();
   sensor->ir.data_to_color.format = sensor->ir.data.format;
 
   //---------------------------

@@ -152,7 +152,7 @@ void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
 void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
   //---------------------------
 
-  const vector<uint8_t>& ir_buffer = sensor->ir.data_to_color.buffer_vec;
+  const uint8_t* ir_buffer = sensor->ir.data_to_color.buffer_raw;
 
   int index = i * 2;
   ir = static_cast<uint16_t>(ir_buffer[index]) | (static_cast<uint16_t>(ir_buffer[index + 1]) << 8);
