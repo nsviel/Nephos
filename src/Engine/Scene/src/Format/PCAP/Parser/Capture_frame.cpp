@@ -42,7 +42,6 @@ bool Capture_frame::build_frame(utl::media::File* data_udp){
       }
     }
 
-    //say(data_udp->A[data_udp->A.size()-1]);
     //Then: first case or no index found
     if(frame_index == -1){
       this->add_cloudsToFrame(data_udp);

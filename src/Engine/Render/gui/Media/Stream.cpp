@@ -37,10 +37,6 @@ void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
 void Stream::convert_data_into_texture(utl::media::Image* utl_image, ImVec2& size){
   //---------------------------
 
-  if (texture != nullptr &&texture->vk_image.sampler == VK_NULL_HANDLE) {
-say("coucou");
-}
-
   if(texture == nullptr){
     //Load texture into vulkan
     texture = vk_texture->load_texture(utl_image);

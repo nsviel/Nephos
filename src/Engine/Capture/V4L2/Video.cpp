@@ -68,7 +68,7 @@ uint8_t* Video::acquire_next_frame(){
     //Free packet
     av_packet_unref(packet);
   }
-  else{say("reboot");
+  else{
     this->reboot_video();
   }
 
@@ -94,8 +94,6 @@ void Video::clean_video(){
   av_packet_free(&packet);
   avcodec_close(codec_context);
   avformat_close_input(&video_context);
-
-  say("video with ffmpeg ok");
 
   //---------------------------
 }

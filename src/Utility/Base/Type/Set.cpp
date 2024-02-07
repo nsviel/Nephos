@@ -94,6 +94,7 @@ void Set::insert_entity(utl::type::Entity* entity){
   //---------------------------
 }
 void Set::delete_entity(utl::type::Entity* entity){
+  if(entity == nullptr) return;
   //---------------------------
 
   // Check if the current set has the query entity
@@ -106,6 +107,7 @@ void Set::delete_entity(utl::type::Entity* entity){
       entity->remove_entity();
       this->select_next_entity();
       delete entity;
+      entity = nullptr;
       return;
     }
   }
