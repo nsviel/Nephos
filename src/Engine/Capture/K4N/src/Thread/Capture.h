@@ -4,8 +4,6 @@
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
 
-namespace prf::fps{class Counter;}
-namespace prf::fps{class Control;}
 namespace eng{class Node;}
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Sensor;}
@@ -40,8 +38,6 @@ public:
   inline bool* get_thread_pause(){return &thread_pause;}
 
 private:
-  prf::fps::Counter* fps_counter;
-  prf::fps::Control* fps_control;
   eng::k4n::data::Data* k4a_data;
   eng::k4n::data::Cloud* k4a_cloud;
   eng::k4n::config::Configuration* configuration;

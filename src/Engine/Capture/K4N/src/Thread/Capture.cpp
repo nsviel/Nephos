@@ -10,8 +10,6 @@ namespace eng::k4n::thread{
 Capture::Capture(eng::k4n::Node* node_k4n){
   //---------------------------
 
-  this->fps_counter = new prf::fps::Counter();
-  this->fps_control = new prf::fps::Control(30);
   this->k4a_data = new eng::k4n::data::Data();
   this->k4a_cloud = new eng::k4n::data::Cloud(node_k4n);
   this->configuration = new eng::k4n::config::Configuration();
@@ -46,6 +44,7 @@ void Capture::run_thread(eng::k4n::dev::Sensor* sensor){
 
   //Init elements
   sensor->param.index =0;
+  prf::Tasker* profiler = sensor->tasker_capture;
   k4a::device device = k4a::device::open(sensor->param.index);
   k4a::capture capture;
 
@@ -64,7 +63,7 @@ void Capture::run_thread(eng::k4n::dev::Sensor* sensor){
   //Start capture thread
   this->thread_running = true;
   while(thread_running && sensor){
-    fps_control->start_loop();
+    profiler->loop_begin(sensor->param.fps.query);
 
     auto timeout = std::chrono::milliseconds(2000);
     device.get_capture(&capture, timeout);
@@ -73,12 +72,11 @@ void Capture::run_thread(eng::k4n::dev::Sensor* sensor){
     //Capture data
     k4a_data->find_data_from_capture(sensor, capture);
     k4a_cloud->convert_into_cloud(sensor);
+
+    //Manage event
     this->manage_pause(sensor);
     this->manage_recording(sensor, capture);
-
-    //FPS
-    fps_control->stop_loop();
-    sensor->param.fps.current = fps_counter->update();
+    profiler->loop_end();
   }
 
   //---------------------------

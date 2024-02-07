@@ -11,9 +11,6 @@ namespace eng::k4n::thread{
 Playback::Playback(eng::k4n::Node* node_k4n){
   //---------------------------
 
-  this->fps_counter = new prf::fps::Counter();
-  this->fps_control = new prf::fps::Control(30);
-
   this->k4a_data = new eng::k4n::data::Data();
   this->k4a_cloud = new eng::k4n::data::Cloud(node_k4n);
   this->k4n_image = new eng::k4n::data::Image();
@@ -60,8 +57,7 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
   //Playback thread
   k4a::capture capture;
   while(thread_running){
-    profiler->loop_begin();
-    fps_control->start_loop();
+    profiler->loop_begin(sensor->param.fps.query);
 
     //Next capture
     profiler->task_begin("capture");
@@ -86,13 +82,6 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
     //Manage event
     this->manage_pause(sensor);
     this->manage_restart(sensor);
-
-    //FPS control
-    profiler->task_begin("sleep");
-    fps_control->stop_loop();
-    fps_control->set_fps_max(sensor->param.fps.query);
-    sensor->param.fps.current = fps_counter->update();
-    profiler->task_end("sleep", vec4(50, 50, 50, 255));
     profiler->loop_end();
   }
 
