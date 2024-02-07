@@ -26,7 +26,7 @@ void Command_buffer::init(){
 
     this->allocate_command_buffer_primary(&command_buffer);
     command_buffer.is_available = true;
-    command_buffer.is_for_submit = false;
+    command_buffer.is_recorded = false;
     vec_command_buffer.push_back(command_buffer);
   }
 
@@ -42,7 +42,7 @@ void Command_buffer::reset(){
 
     vkResetCommandBuffer(command_buffer->command, 0);
     command_buffer->is_available = true;
-    command_buffer->is_for_submit = false;
+    command_buffer->is_recorded = false;
   }
 
   //---------------------------
@@ -65,16 +65,19 @@ void Command_buffer::submit(){
   std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
   //---------------------------
 
-  //Clear all old command buffer
+  //Submit all recorder command buffer
   for(int i=0; i<vec_command_buffer.size(); i++){
     vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
 
-    if(command_buffer->is_for_submit){
+    if(command_buffer->is_recorded){
       vk_submit->submit_command_graphics(command_buffer->command);
       vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
-      command_buffer->is_for_submit = false;
+      command_buffer->is_recorded = false;
     }
   }
+
+  //Reset all command buffer
+  vk_command_buffer->reset();
 
   //---------------------------
 }
@@ -88,7 +91,7 @@ vk::structure::Command_buffer* Command_buffer::acquire_free_command_buffer(){
   for(int i=0; i<vec_command_buffer.size(); i++){
     vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
 
-    if(command_buffer->is_available && command_buffer->is_for_submit == false){
+    if(command_buffer->is_available && command_buffer->is_recorded == false){
       command_buffer->is_available = false;
       return command_buffer;
     }
@@ -135,7 +138,7 @@ void Command_buffer::end_command_buffer(vk::structure::Command_buffer* command_b
   //---------------------------
 
   vkEndCommandBuffer(command_buffer->command);
-  command_buffer->is_for_submit = true;
+  command_buffer->is_recorded = true;
 
   //---------------------------
 }

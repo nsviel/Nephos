@@ -158,7 +158,6 @@ void Memory::update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Bu
 
 
   // Create command buffer to cpy on gpu
-  vk_command_buffer->reset();
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
   vk_command_buffer->start_command_buffer(command_buffer);
 
@@ -167,7 +166,7 @@ void Memory::update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Bu
   vkCmdCopyBuffer(command_buffer->command, stagger->vbo, buffer->vbo, 1, &copyRegion);
 
   vk_command_buffer->end_command_buffer(command_buffer);
-  vk_command_buffer->submit();
+
 
   //---------------------------
 }

@@ -60,6 +60,7 @@ void Engine::loop(){
   //---------------------------
 
   vk_drawing->draw_frame();
+  vk_command_buffer->submit();
 
   //---------------------------
 }
