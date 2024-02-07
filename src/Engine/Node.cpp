@@ -21,7 +21,7 @@ Node::Node(utl::Node* node_utility){
   this->node_render = new eng::render::Node(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_gui = new eng::gui::Node(this);
-  this->fps_counter = new utl::fps::Counter();
+  this->fps_counter = new prf::fps::Counter();
   this->tasker_cpu = node_profiler->get_tasker_cpu();
 
   this->add_node_panel(node_operation);

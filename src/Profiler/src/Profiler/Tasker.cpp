@@ -1,6 +1,6 @@
 #include "Tasker.h"
 
-#include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace prf{
@@ -59,7 +59,7 @@ void Tasker::task_begin(string name){
   }
 
   //Insert task in vector
-  utl::timer::Timepoint task_beg = timer.get_time();
+  prf::timer::Timepoint task_beg = timer.get_time();
   double A = timer.duration_s(reference, task_beg);
   utl::type::Task task = {A, 0, name};
   this->vec_task_current.push_back(task);
@@ -73,7 +73,7 @@ void Tasker::task_end(string name){
     utl::type::Task& task = vec_task_current[i];
 
     if(task.name == name){
-      utl::timer::Timepoint task_end = timer.get_time();
+      prf::timer::Timepoint task_end = timer.get_time();
       task.time_end = timer.duration_s(reference, task_end);
       return;
     }
@@ -88,7 +88,7 @@ void Tasker::task_end(string name, vec4 color){
     utl::type::Task& task = vec_task_current[i];
 
     if(task.name == name){
-      utl::timer::Timepoint task_end = timer.get_time();
+      prf::timer::Timepoint task_end = timer.get_time();
       task.time_end = timer.duration_s(reference, task_end);
       task.color = color;
       return;

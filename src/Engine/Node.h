@@ -7,7 +7,7 @@ namespace vk{class Node;}
 namespace utl{class Node;}
 namespace prf{class Node;}
 namespace prf{class Tasker;}
-namespace utl::fps{class Counter;}
+namespace prf::fps{class Counter;}
 namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::render{class Node;}
@@ -48,7 +48,7 @@ private:
   utl::Node* node_utility;
   prf::Node* node_profiler;
   prf::Tasker* tasker_cpu;
-  utl::fps::Counter* fps_counter;
+  prf::fps::Counter* fps_counter;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;

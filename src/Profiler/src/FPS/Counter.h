@@ -8,7 +8,7 @@
 #include <numeric>
 
 
-namespace utl::fps{
+namespace prf::fps{
 
 class Counter
 {

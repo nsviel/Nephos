@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Utility/Function/Timer/Chrono.h>
+#include <Profiler/src/Timer/Chrono.h>
 
 
 namespace prf{
@@ -31,11 +31,11 @@ public:
   inline void set_fps(float value){this->fps = value;}
 
 private:
-  utl::timer::Chrono timer;
+  prf::timer::Chrono timer;
 
   vector<utl::type::Task> vec_task_current;
   vector<utl::type::Task> vec_task;
-  utl::timer::Timepoint reference;
+  prf::timer::Timepoint reference;
   float fps;
 };
 
