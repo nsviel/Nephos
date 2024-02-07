@@ -12,6 +12,7 @@ namespace prf::gui{
 Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
+  this->profiler = node_profiler->get_profiler();
   this->tasker_cpu = node_profiler->get_tasker_cpu();
   this->tasker_gpu = node_profiler->get_tasker_gpu();
   this->tasker_cap = node_profiler->get_tasker_cap();
@@ -60,12 +61,12 @@ void Panel::main_info(){
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
   if(ImGui::BeginTable("render##device", 2)){
     ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
-/*
+
     //GPU device
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", vk_info->get_gpu_name().c_str());
-*/
+    ImGui::TextColored(color, "%s", profiler->get_gpu_dev().c_str());
+
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Loop"); ImGui::TableNextColumn();
@@ -85,7 +86,7 @@ void Panel::main_info(){
 void Panel::main_button(){
   //---------------------------
 
-  //Play button -> if paused or not playing
+  //Play button -> if paused
   if(pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##profiler_play")){
@@ -93,7 +94,7 @@ void Panel::main_button(){
     }
     ImGui::PopStyleColor();
   }
-  //Pause button -> if not paused and playing
+  //Pause button -> if not paused
   else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##profiler_pause")){
@@ -181,7 +182,6 @@ void Panel::draw_profiler_cpu(ImVec2 dimensions){
   //---------------------------
 }
 void Panel::draw_profiler_gpu(ImVec2 dimensions){
-/*  prf::Tasker* profiler = node_utility->get_tasker_gpu();
   //---------------------------
 
   if(!pause){
@@ -189,7 +189,7 @@ void Panel::draw_profiler_gpu(ImVec2 dimensions){
     gui_gpu->reset();
 
     //Assign tasks
-    vector<prf::type::Task>& vec_gpu_task = profiler->get_vec_task();
+    vector<prf::type::Task>& vec_gpu_task = tasker_gpu->get_vec_task();
     for(int i=0; i<vec_gpu_task.size(); i++){
       prf::type::Task task = vec_gpu_task[i];
 
@@ -206,7 +206,7 @@ void Panel::draw_profiler_gpu(ImVec2 dimensions){
 
   //Render profiler
   gui_gpu->render_child(dimensions);
-*/
+
   //---------------------------
 }
 void Panel::draw_profiler_capture(ImVec2 dimensions){

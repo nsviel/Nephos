@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace prf{class Node;}
+namespace prf{class Manager;}
 namespace prf{class Tasker;}
 namespace prf::improfil{class Manager;}
 
@@ -32,6 +33,7 @@ public:
   void draw_profiler_capture(ImVec2 dimensions);
 
 private:
+  prf::Manager* profiler;
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;
   prf::Tasker* tasker_cap;

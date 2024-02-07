@@ -17,8 +17,10 @@ public:
   //Main function
 
 
-private:
+  inline string get_gpu_dev(){return gpu_dev;}
 
+private:
+  string gpu_dev;
 };
 
 }
