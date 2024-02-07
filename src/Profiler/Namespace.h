@@ -5,5 +5,6 @@
 #include <Profiler/src/FPS/Control.h>
 #include <Profiler/src/Timer/Chrono.h>
 #include <Profiler/src/Profiler/Tasker.h>
+#include <Profiler/src/Profiler/Manager.h>
 #include <Profiler/gui/Panel.h>
 #include <Profiler/gui/ImProfil/Namespace.h>

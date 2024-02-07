@@ -9,7 +9,8 @@ namespace prf{
 Tasker::Tasker(){
   //---------------------------
 
-
+  this->fps_control = new prf::fps::Control(120);
+  this->is_fps_control = false;
 
   //---------------------------
 }
@@ -31,12 +32,32 @@ void Tasker::loop_begin(){
 
   this->vec_task_current.clear();
   this->reference = timer.get_time();
+  this->is_fps_control = false;
+
+  //---------------------------
+}
+void Tasker::loop_begin(int fps){
+  //---------------------------
+
+  this->vec_task_current.clear();
+  this->reference = timer.get_time();
+  this->is_fps_control = true;
+  fps_control->set_fps_max(fps);
+  fps_control->start_loop();
 
   //---------------------------
 }
 void Tasker::loop_end(){
   //---------------------------
 
+  //Control fps and measure sleep time
+  if(is_fps_control){
+    this->task_begin("sleep");
+    fps_control->stop_loop();
+    this->task_end("sleep", vec4(50, 50, 50, 255));
+  }
+
+  //Update disposal task vector by this loop task vector
   this->vec_task = vec_task_current;
 
   //---------------------------

@@ -17,7 +17,6 @@ App_main::App_main(){
   this->node_utility = new utl::Node(config, node_profiler);
   this->node_engine = new eng::Node(node_utility);
   this->node_gui = new gui::Node(node_utility, node_engine);
-  this->fps_control = new prf::fps::Control(120);
 
   //---------------------------
 }
@@ -50,16 +49,12 @@ void App_main::loop(){
 
   auto start_time = std::chrono::steady_clock::now();
   while(config->run_app){
-    tasker_cpu->loop_begin(); // Inclure fps control dans profiler (?)
-    fps_control->start_loop();
+    tasker_cpu->loop_begin(120);
 
     node_engine->loop();
     node_utility->loop();
     node_gui->loop();
 
-    tasker_cpu->task_begin("sleep");  //Quoiqu'il en soit il faut clear cette partie ! et refaire profiler gui panel marcher
-    fps_control->stop_loop();
-    tasker_cpu->task_end("sleep", vec4(50, 50, 50, 255));
     tasker_cpu->loop_end();
   }
   node_engine->wait();

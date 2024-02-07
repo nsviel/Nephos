@@ -3,6 +3,8 @@
 #include <Utility/Specific/common.h>
 #include <Profiler/src/Timer/Chrono.h>
 
+namespace prf::fps{class Control;}
+
 
 namespace prf{
 
@@ -19,6 +21,7 @@ public:
 
   //Loop function
   void loop_begin();
+  void loop_begin(int fps);
   void loop_end();
 
   //Task function
@@ -32,10 +35,12 @@ public:
 
 private:
   prf::timer::Chrono timer;
+  prf::fps::Control* fps_control;
 
   vector<utl::type::Task> vec_task_current;
   vector<utl::type::Task> vec_task;
   prf::timer::Timepoint reference;
+  bool is_fps_control;
   float fps;
 };
 
