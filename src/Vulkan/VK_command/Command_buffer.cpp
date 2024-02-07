@@ -47,6 +47,16 @@ void Command_buffer::reset(){
 
   //---------------------------
 }
+void Command_buffer::reset(vk::structure::Command_buffer* command_buffer){
+  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
+  //---------------------------
+
+  vkResetCommandBuffer(command_buffer->command, 0);
+  command_buffer->is_available = true;
+  command_buffer->is_recorded = false;
+
+  //---------------------------
+}
 void Command_buffer::clean(){
   std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
   //---------------------------
@@ -78,6 +88,20 @@ void Command_buffer::submit(){
 
   //Reset all command buffer
   this->reset();
+
+  //---------------------------
+}
+void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
+  //---------------------------
+
+  if(command_buffer->is_recorded){
+    vk_submit->submit_command_graphics(command_buffer->command);
+    vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
+    command_buffer->is_recorded = false;
+  }
+
+  //Reset all command buffer
+  this->reset(command_buffer);
 
   //---------------------------
 }

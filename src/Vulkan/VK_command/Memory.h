@@ -7,6 +7,7 @@ namespace vk::command{class Command;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
 namespace vk::structure{class Texture;}
+namespace vk::structure{class Command_buffer;}
 namespace vk::structure{class Buffer;}
 
 
@@ -23,7 +24,7 @@ public:
   //Image GPU function
   void transfert_texture_to_gpu(vk::structure::Texture* texture);
   void allocate_image_memory(vk::structure::Image* image);
-  void copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer);
+  void copy_buffer_to_image(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer);
   void copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer);
 
   //Buffer GPU function

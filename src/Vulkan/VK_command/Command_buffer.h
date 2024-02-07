@@ -20,8 +20,10 @@ public:
   //Main function
   void init();
   void reset();
+  void reset(vk::structure::Command_buffer* command_buffer);
   void clean();
   void submit();
+  void submit(vk::structure::Command_buffer* command_buffer);
 
   //Subfunction
   vk::structure::Command_buffer* acquire_free_command_buffer();

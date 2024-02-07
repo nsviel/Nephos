@@ -33,9 +33,15 @@ void Memory::transfert_texture_to_gpu(vk::structure::Texture* texture){
   vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
 
   //Image transition from undefined layout to read only layout
-  vk_command->image_layout_transition_single(vk_image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
-  this->copy_buffer_to_image(vk_image, buffer->vbo);
-  vk_command->image_layout_transition_single(vk_image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
+  vk_command_buffer->start_command_buffer(command_buffer);
+
+  vk_command->image_layout_transition_single(command_buffer, vk_image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
+  this->copy_buffer_to_image(command_buffer, vk_image, buffer->vbo);
+  vk_command->image_layout_transition_single(command_buffer, vk_image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+
+  vk_command_buffer->end_command_buffer(command_buffer);
+  vk_command_buffer->submit(command_buffer);
 
   //---------------------------
 }
@@ -58,10 +64,10 @@ void Memory::allocate_image_memory(vk::structure::Image* image){
 
   //---------------------------
 }
-void Memory::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer){
+void Memory::copy_buffer_to_image(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer){
   //---------------------------
 
-  VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
+
 
   VkBufferImageCopy region{};
   region.bufferOffset = 0;
@@ -73,9 +79,8 @@ void Memory::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer){
   region.imageSubresource.layerCount = 1;
   region.imageOffset = {0, 0, 0};
   region.imageExtent = {image->width, image->height, 1};
-  vkCmdCopyBufferToImage(command_buffer, buffer, image->image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+  vkCmdCopyBufferToImage(command_buffer->command, buffer, image->image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 
-  vk_command->singletime_command_end(command_buffer);
 
   //---------------------------
 }

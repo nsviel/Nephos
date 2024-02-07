@@ -25,7 +25,7 @@ Screenshot::~Screenshot(){}
 //Main function
 void Screenshot::make_screenshot(vk::structure::Image* image){
   //---------------------------
-
+/*
   //Create stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
@@ -52,12 +52,12 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
   //Free memory
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
   vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
-
+*/
   //---------------------------
 }
 void Screenshot::save_to_bin(vk::structure::Image* image){
   //---------------------------
-
+/*
   //Create stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
@@ -104,7 +104,7 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
   //Free memory
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
   vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
-
+*/
   //---------------------------
 }
 

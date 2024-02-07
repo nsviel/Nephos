@@ -7,6 +7,8 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Image;}
+namespace vk::structure{class Command_buffer;}
+namespace vk::command{class Command_buffer;}
 
 
 namespace vk::command{
@@ -35,7 +37,7 @@ public:
 
   //Image layout transition
   void image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image* image, VkImageLayout oldLayout, VkImageLayout newLayout);
-  void image_layout_transition_single(vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout);
+  void image_layout_transition_single(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout);
 
   //Single time command
   VkCommandBuffer singletime_command_begin();
@@ -44,6 +46,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::command::Submit* vk_submit;
+  vk::command::Command_buffer* vk_command_buffer;
 };
 
 }

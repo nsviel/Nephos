@@ -11,6 +11,7 @@ Command::Command(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_submit = new vk::command::Submit(struct_vulkan);
+  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
 
   //---------------------------
 }
@@ -182,12 +183,11 @@ void Command::stop_render_pass(vk::structure::Renderpass* renderpass){
 }
 
 //Image layout transition
-void Command::image_layout_transition_single(vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout){
+void Command::image_layout_transition_single(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout){
   //---------------------------
 
-  VkCommandBuffer command_buffer = singletime_command_begin();
-  this->image_layout_transition(command_buffer, image, old_layout, new_layout);
-  this->singletime_command_end(command_buffer);
+
+  this->image_layout_transition(command_buffer->command, image, old_layout, new_layout);
 
   //---------------------------
 }
