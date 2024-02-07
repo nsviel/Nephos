@@ -15,8 +15,8 @@ public:
   ~Control();
 
   //Main function
-  void start();
-  void stop();
+  void start_loop();
+  void stop_loop();
 
   inline void set_fps_max(int value){this->fps_max = value;}
   inline int get_fps_max(){return fps_max;}

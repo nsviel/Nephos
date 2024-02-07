@@ -64,7 +64,7 @@ void Capture::run_thread(eng::k4n::dev::Sensor* sensor){
   //Start capture thread
   this->thread_running = true;
   while(thread_running && sensor){
-    fps_control->start();
+    fps_control->start_loop();
 
     auto timeout = std::chrono::milliseconds(2000);
     device.get_capture(&capture, timeout);
@@ -77,7 +77,7 @@ void Capture::run_thread(eng::k4n::dev::Sensor* sensor){
     this->manage_recording(sensor, capture);
 
     //FPS
-    fps_control->stop();
+    fps_control->stop_loop();
     sensor->param.fps.current = fps_counter->update();
   }
 

@@ -215,7 +215,7 @@ void Panel::draw_profiler_gpu(ImVec2 dimensions){
 }
 void Panel::draw_profiler_capture(ImVec2 dimensions){
   //---------------------------
-
+/*
   eng::capture::Node* node_capture = node_engine->get_node_capture();
   eng::k4n::Node* node_k4n = node_capture->get_node_k4n();
   eng::k4n::dev::Swarm* k4n_swarm = node_k4n->get_k4n_swarm();
@@ -248,7 +248,7 @@ void Panel::draw_profiler_capture(ImVec2 dimensions){
     //Render profiler
     gui_capture->render_child(dimensions);
   }
-
+*/
   //---------------------------
 }
 

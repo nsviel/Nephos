@@ -61,7 +61,7 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
   k4a::capture capture;
   while(thread_running){
     profiler->loop_begin();
-    fps_control->start();
+    fps_control->start_loop();
 
     //Next capture
     profiler->task_begin("capture");
@@ -89,7 +89,7 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
 
     //FPS control
     profiler->task_begin("sleep");
-    fps_control->stop();
+    fps_control->stop_loop();
     fps_control->set_fps_max(sensor->param.fps.query);
     sensor->param.fps.current = fps_counter->update();
     profiler->task_end("sleep", vec4(50, 50, 50, 255));

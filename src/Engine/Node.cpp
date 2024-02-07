@@ -77,7 +77,7 @@ void Node::gui(){
   tasker_cpu->task_end("eng::gui");
 
   tasker_cpu->task_begin("gui::profiler");
-  //node_profiler->gui();
+  node_profiler->gui();
   tasker_cpu->task_end("gui::profiler");
 
   //---------------------------

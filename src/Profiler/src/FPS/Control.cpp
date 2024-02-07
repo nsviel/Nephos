@@ -15,14 +15,14 @@ Control::Control(int fps_max){
 Control::~Control(){}
 
 // Main function
-void Control::start(){
+void Control::start_loop(){
   //---------------------------
 
   this->start_time = std::chrono::steady_clock::now();
 
   //---------------------------
 }
-void Control::stop(){
+void Control::stop_loop(){
   //---------------------------
 
   auto now = std::chrono::steady_clock::now();
