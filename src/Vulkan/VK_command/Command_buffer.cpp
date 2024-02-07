@@ -46,7 +46,7 @@ void Command_buffer::reset(){
 }
 
 //Subfunction
-vk::structure::Command_buffer Command_buffer::acquire_free_command_buffer(){
+vk::structure::Command_buffer& Command_buffer::acquire_free_command_buffer(){
   std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
   //---------------------------
 
