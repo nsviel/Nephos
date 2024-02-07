@@ -3,21 +3,20 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
-namespace eng::ope{class Node;}
-namespace eng::render{class Node;}
+namespace profiler{class Node;}
 namespace vk::main{class Info;}
 namespace utl{class Node;}
 namespace utl::improfil{class Manager;}
 
 
-namespace eng::render::gui{
+namespace profiler::gui{
 
-class Profiler
+class Panel
 {
 public:
   //Constructor / Destructor
-  Profiler(eng::ope::Node* node_operation, bool* show_window);
-  ~Profiler();
+  Panel(profiler::Node* node_profiler, bool* show_window);
+  ~Panel();
 
 public:
   //Main function

@@ -5,7 +5,6 @@
 namespace eng{class Node;}
 namespace eng::ope{class Wheel;}
 namespace eng::ope::gui{class Control;}
-namespace eng::render::gui{class Profiler;}
 
 
 namespace eng::ope{
@@ -31,7 +30,6 @@ private:
   eng::Node* node_engine;
   eng::ope::Wheel* ope_wheel;
   eng::ope::gui::Control* gui_control;
-  eng::render::gui::Profiler* gui_profiler;
 };
 
 }

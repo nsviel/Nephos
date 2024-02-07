@@ -19,6 +19,7 @@ Node::Node(utl::Node* node_utility){
   this->node_operation = new eng::ope::Node(this);
   this->node_render = new eng::render::Node(this);
   this->node_capture = new eng::capture::Node(this);
+  this->node_profiler = new profiler::Node(this);
   this->node_gui = new eng::gui::Node(this);
   this->fps_counter = new utl::fps::Counter();
 
@@ -27,6 +28,7 @@ Node::Node(utl::Node* node_utility){
   this->add_node_panel(node_scene);
   this->add_node_panel(node_capture);
   this->add_node_panel(node_render);
+  this->add_node_panel(node_profiler);
   this->add_node_panel(node_gui);
 
   //---------------------------
@@ -73,9 +75,9 @@ void Node::gui(){
   node_gui->gui();
   cpu_profiler->task_end("eng::gui");
 
-  cpu_profiler->task_begin("ope::gui");
-  node_operation->gui();
-  cpu_profiler->task_end("ope::gui");
+  cpu_profiler->task_begin("gui::profiler");
+  node_profiler->gui();
+  cpu_profiler->task_end("gui::profiler");
 
   //---------------------------
 }

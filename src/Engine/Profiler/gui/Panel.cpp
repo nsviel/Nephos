@@ -1,4 +1,4 @@
-#include "Profiler.h"
+#include "Panel.h"
 
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
@@ -6,13 +6,13 @@
 #include <Utility/Namespace.h>
 
 
-namespace eng::render::gui{
+namespace profiler::gui{
 
 //Constructor / Destructor
-Profiler::Profiler(eng::ope::Node* node_operation, bool* show_window){
+Panel::Panel(profiler::Node* node_profiler, bool* show_window){
   //---------------------------
 
-  this->node_engine = node_operation->get_node_engine();
+  this->node_engine = node_profiler->get_node_engine();
   vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
 
   this->node_utility = node_engine->get_node_utility();
@@ -28,10 +28,10 @@ Profiler::Profiler(eng::ope::Node* node_operation, bool* show_window){
 
   //---------------------------
 }
-Profiler::~Profiler(){}
+Panel::~Panel(){}
 
 //Main function
-void Profiler::run_panel(){
+void Panel::run_panel(){
   //---------------------------
 
   if(*show_window){
@@ -45,7 +45,7 @@ void Profiler::run_panel(){
 
   //---------------------------
 }
-void Profiler::design_panel(){
+void Panel::design_panel(){
   //---------------------------
 
   this->main_info();
@@ -56,7 +56,7 @@ void Profiler::design_panel(){
 }
 
 //Subfunction
-void Profiler::main_info(){
+void Panel::main_info(){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
@@ -85,7 +85,7 @@ void Profiler::main_info(){
 
   //---------------------------
 }
-void Profiler::main_button(){
+void Panel::main_button(){
   //---------------------------
 
   //Play button -> if paused or not playing
@@ -116,7 +116,7 @@ void Profiler::main_button(){
 
   //---------------------------
 }
-void Profiler::draw_graph(){
+void Panel::draw_graph(){
   //---------------------------
 
   if(ImGui::BeginTabBar("device_tab##4567")){
@@ -155,7 +155,7 @@ void Profiler::draw_graph(){
 }
 
 //Profiler graphs
-void Profiler::draw_profiler_cpu(ImVec2 dimensions){
+void Panel::draw_profiler_cpu(ImVec2 dimensions){
   utl::element::Profiler* profiler = node_utility->get_cpu_profiler();
   //---------------------------
 
@@ -184,7 +184,7 @@ void Profiler::draw_profiler_cpu(ImVec2 dimensions){
 
   //---------------------------
 }
-void Profiler::draw_profiler_gpu(ImVec2 dimensions){
+void Panel::draw_profiler_gpu(ImVec2 dimensions){
   utl::element::Profiler* profiler = node_utility->get_gpu_profiler();
   //---------------------------
 
@@ -213,7 +213,7 @@ void Profiler::draw_profiler_gpu(ImVec2 dimensions){
 
   //---------------------------
 }
-void Profiler::draw_profiler_capture(ImVec2 dimensions){
+void Panel::draw_profiler_capture(ImVec2 dimensions){
   //---------------------------
 
   eng::capture::Node* node_capture = node_engine->get_node_capture();
