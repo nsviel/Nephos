@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace eng::k4n::dev{
@@ -14,7 +15,7 @@ Sensor::Sensor(eng::k4n::Node* node_k4n){
   eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->engine = engine;
-  this->cap_profiler = new utl::element::Profiler();
+  this->tasker_capture = new prf::Tasker();
   this->k4a_capture = new eng::k4n::thread::Capture(node_k4n);
   this->k4a_playback = new eng::k4n::thread::Playback(node_k4n);
   this->sce_scene = node_scene->get_scene();

@@ -1,17 +1,19 @@
 #include "Node.h"
 
-#include <Engine/Namespace.h>
+#include <Profiler/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
-namespace profiler{
+namespace prf{
 
-Node::Node(eng::Node* engine){
+Node::Node(){
   utl::gui::Panel* prf_panel = new_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
-  this->engine = engine;
-  this->gui_panel = new profiler::gui::Panel(this, &prf_panel->is_open);
+  this->gui_panel = new prf::gui::Panel(this, &prf_panel->is_open);
+  this->tasker_cpu = new prf::Tasker();
+  this->tasker_gpu = new prf::Tasker();
+  this->tasker_capture = new prf::Tasker();
 
   //---------------------------
 }

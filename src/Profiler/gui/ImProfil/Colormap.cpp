@@ -1,7 +1,7 @@
 #include "Colormap.h"
 
 
-namespace utl::improfil::colormap {
+namespace prf::improfil::colormap {
   //---------------------------
 
   std::vector<glm::vec4> viridis = {

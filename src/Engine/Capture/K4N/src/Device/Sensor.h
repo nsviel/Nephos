@@ -19,7 +19,7 @@ namespace eng::k4n::structure{class Infrared;}
 namespace eng::k4n::structure{class IMU;}
 namespace eng::k4n::structure{class Image;}
 namespace eng::ope{class Transformation;}
-namespace utl::element{class Profiler;}
+namespace prf{class Tasker;}
 
 
 namespace eng::k4n::dev{
@@ -53,7 +53,7 @@ public:
   inline utl::type::Pose* get_pose(){return object.pose;}
 
 public:
-  utl::element::Profiler* cap_profiler;
+  prf::Tasker* tasker_capture;
   eng::k4n::dev::Master* master;
 
   utl::entity::Object object;

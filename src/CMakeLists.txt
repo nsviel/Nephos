@@ -9,6 +9,7 @@ add_subdirectory(Engine)
 add_subdirectory(GUI)
 add_subdirectory(Dev)
 add_subdirectory(Vulkan)
+add_subdirectory(Profiler)
 
 #-----------------
 # Compilation
@@ -27,4 +28,5 @@ target_link_libraries(${EXECUTABLE_NAME}
   LIBRARY_UTILITY
   LIBRARY_DEV
   LIBRARY_VULKAN
+  LIBRARY_PROFILER
 )

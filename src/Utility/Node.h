@@ -3,8 +3,8 @@
 #include <Utility/Specific/common.h>
 
 class Config;
+namespace prf{class Node;}
 namespace utl::element{class Window;}
-namespace utl::element{class Profiler;}
 
 
 namespace utl{
@@ -13,7 +13,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(Config* config);
+  Node(Config* config, prf::Node* node_profiler);
   ~Node();
 
 public:
@@ -24,13 +24,11 @@ public:
   void exit();
 
   inline utl::element::Window* get_utl_window(){return utl_window;}
-  inline utl::element::Profiler* get_cpu_profiler(){return cpu_profiler;}
-  inline utl::element::Profiler* get_gpu_profiler(){return gpu_profiler;}
+  inline prf::Node* get_node_profiler(){return node_profiler;}
 
 private:
+  prf::Node* node_profiler;
   utl::element::Window* utl_window;
-  utl::element::Profiler* cpu_profiler;
-  utl::element::Profiler* gpu_profiler;
 };
 
 }

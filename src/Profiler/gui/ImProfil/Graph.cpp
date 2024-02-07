@@ -1,9 +1,9 @@
 #include "Graph.h"
 
-#include <GUI/Plot/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
-namespace utl::improfil{
+namespace prf::improfil{
 
 //Constructor
 Graph::Graph(){
@@ -18,7 +18,7 @@ Graph::Graph(){
   this->border_color = vec4(255, 255, 255, 25);
   this->max_time_s = 50.0f / 1000.0f;
 
-  for(utl::improfil::Bar& bar : vec_bar){
+  for(prf::improfil::Bar& bar : vec_bar){
     bar.vec_task.reserve(bar_max_nb_task);
   }
 
@@ -32,7 +32,7 @@ void Graph::load_graph_data(const std::vector<utl::type::Task>& vec_task){
   //---------------------------
 
   // Get the current bar that needs to be updated and clear it
-  utl::improfil::Bar& current_bar = vec_bar[current_bar_idx];
+  prf::improfil::Bar& current_bar = vec_bar[current_bar_idx];
   current_bar.vec_task.resize(0);
 
   // Iterate through each task in the input data
@@ -66,7 +66,7 @@ void Graph::load_graph_data(const std::vector<utl::type::Task>& vec_task){
     // If the task name is not found, add it to the map and create a new task_stats entry
     if(it == map_task_to_stat_idx.end()){
       map_task_to_stat_idx[task.name] = vec_stat.size();
-      utl::improfil::Stat task_stats;
+      prf::improfil::Stat task_stats;
       task_stats.max_time = -1.0;
       vec_stat.push_back(task_stats);
     }
@@ -95,7 +95,7 @@ void Graph::rebuild_task_stats(size_t bar_end){
 
   for(size_t bar_number=0; bar_number<bar_max_nb; bar_number++){
     size_t bar_idx = (bar_end - 1 - bar_number + vec_bar.size()) % vec_bar.size();
-    utl::improfil::Bar& bar = vec_bar[bar_idx];
+    prf::improfil::Bar& bar = vec_bar[bar_idx];
 
     for(size_t task_index=0; task_index<bar.vec_task.size(); task_index++){
       auto &task = bar.vec_task[task_index];
@@ -158,7 +158,7 @@ void Graph::render_serie(ImDrawList *draw_list){
     }
 
     // Iterate through each task in the ith bar
-    utl::improfil::Bar& bar = vec_bar[bar_idx];
+    prf::improfil::Bar& bar = vec_bar[bar_idx];
     for(utl::type::Task& task : bar.vec_task){
       this->render_serie_task_rect(draw_list, task, bar_pose);
     }
@@ -185,7 +185,7 @@ void Graph::render_legend(ImDrawList *draw_list){
   float markerRightRectSpacing = 4.0f;
 
   //Initialization
-  utl::improfil::Bar& current_bar = vec_bar[(current_bar_idx - 1 + 2 * vec_bar.size()) % vec_bar.size()];
+  prf::improfil::Bar& current_bar = vec_bar[(current_bar_idx - 1 + 2 * vec_bar.size()) % vec_bar.size()];
   for(auto &task_stat : vec_stat){
     task_stat.on_screen_index = size_t(-1);
   }

@@ -21,7 +21,7 @@ Node::Node(eng::Node* node_engine){
   this->sce_bookmark = new eng::scene::Bookmark(this);
   this->gui_loader = new eng::scene::gui::Loader(this, &ldr_panel->is_open);
   this->gui_scene = new eng::scene::gui::Scene(this, &sce_panel->is_open);
-  this->cpu_profiler = node_engine->get_cpu_profiler();
+  this->tasker_cpu = node_engine->get_tasker_cpu();
 
   //---------------------------
 }

@@ -3,10 +3,11 @@
 #include <GUI/Plot/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace utl::improfil{class Task;}
+namespace prf::improfil{class Bar;}
+namespace prf::improfil{class Stat;}
 
 
-namespace utl::improfil{
+namespace prf::improfil{
 
 class Graph
 {
@@ -42,9 +43,9 @@ private:
   void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled);
 
 private:
-  std::vector<Stat> vec_stat;
+  std::vector<prf::improfil::Stat> vec_stat;
   std::map<std::string, size_t> map_task_to_stat_idx;
-  std::vector<utl::improfil::Bar> vec_bar;
+  std::vector<prf::improfil::Bar> vec_bar;
   size_t current_bar_idx = 0;
   vec4 border_color;
   vec2 graph_dim;

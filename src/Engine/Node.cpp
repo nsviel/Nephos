@@ -3,6 +3,7 @@
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace eng{
@@ -12,16 +13,16 @@ Node::Node(utl::Node* node_utility){
   //---------------------------
 
   this->node_utility = node_utility;
-  this->cpu_profiler = node_utility->get_cpu_profiler();
+  this->node_profiler = node_utility->get_node_profiler();
   this->eng_vulkan = new vk::Node(node_utility);
   this->node_camera = new eng::cam::Node(this);
   this->node_scene = new eng::scene::Node(this);
   this->node_operation = new eng::ope::Node(this);
   this->node_render = new eng::render::Node(this);
   this->node_capture = new eng::capture::Node(this);
-  this->node_profiler = new profiler::Node(this);
   this->node_gui = new eng::gui::Node(this);
   this->fps_counter = new utl::fps::Counter();
+  this->tasker_cpu = node_profiler->get_tasker_cpu();
 
   this->add_node_panel(node_operation);
   this->add_node_panel(node_camera);
@@ -47,37 +48,37 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
-  cpu_profiler->task_begin("eng");
+  tasker_cpu->task_begin("eng");
   //---------------------------
 
   node_camera->loop();
 
-  cpu_profiler->task_begin("eng::scene");
+  tasker_cpu->task_begin("eng::scene");
   node_scene->loop();
-  cpu_profiler->task_end("eng::scene");
+  tasker_cpu->task_end("eng::scene");
 
-  cpu_profiler->task_begin("eng::vulkan");
+  tasker_cpu->task_begin("eng::vulkan");
   eng_vulkan->loop();
-  cpu_profiler->task_end("eng::vulkan");
+  tasker_cpu->task_end("eng::vulkan");
 
   //---------------------------
-  cpu_profiler->task_end("eng");
-  cpu_profiler->set_fps(fps_counter->update());
+  tasker_cpu->task_end("eng");
+  tasker_cpu->set_fps(fps_counter->update());
 }
 void Node::gui(){
   //---------------------------
 
-  cpu_profiler->task_begin("eng::gui");
+  tasker_cpu->task_begin("eng::gui");
   node_scene->gui();
   node_render->gui();
   node_capture->gui();
   node_camera->gui();
   node_gui->gui();
-  cpu_profiler->task_end("eng::gui");
+  tasker_cpu->task_end("eng::gui");
 
-  cpu_profiler->task_begin("gui::profiler");
-  node_profiler->gui();
-  cpu_profiler->task_end("gui::profiler");
+  tasker_cpu->task_begin("gui::profiler");
+  //node_profiler->gui();
+  tasker_cpu->task_end("gui::profiler");
 
   //---------------------------
 }

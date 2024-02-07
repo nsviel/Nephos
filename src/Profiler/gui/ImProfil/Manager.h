@@ -3,10 +3,10 @@
 #include <GUI/Plot/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace utl::improfil{class Graph;}
+namespace prf::improfil{class Graph;}
 
 
-namespace utl::improfil{
+namespace prf::improfil{
 
 class Manager{
 public:
@@ -29,7 +29,7 @@ public:
   void reset();
 
 private:
-  utl::improfil::Graph* graph;
+  prf::improfil::Graph* graph;
   vector<utl::type::Task> vec_task;
   vector<vec4> vec_color;
   string name;

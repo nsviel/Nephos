@@ -1,18 +1,18 @@
 #include "Manager.h"
 
-#include <GUI/Plot/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
-namespace utl::improfil{
+namespace prf::improfil{
 
 Manager::Manager(string name){
   //---------------------------
 
   this-> name = name;
-  this->graph = new utl::improfil::Graph();
+  this->graph = new prf::improfil::Graph();
   this->idx_color = 0;
   this->max_nb_data = 100;
-  this->vec_color = utl::improfil::colormap::viridis;
+  this->vec_color = prf::improfil::colormap::viridis;
 
   //---------------------------
 }

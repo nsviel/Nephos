@@ -6,20 +6,20 @@
 #include <Utility/Namespace.h>
 
 
-namespace profiler::gui{
+namespace prf::gui{
 
 //Constructor / Destructor
-Panel::Panel(profiler::Node* node_profiler, bool* show_window){
+Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
-  this->node_engine = node_profiler->get_node_engine();
-  vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
+  //this->node_engine = node_profiler->get_node_engine();
+  //vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
 
-  this->node_utility = node_engine->get_node_utility();
-  this->gui_cpu = new utl::improfil::Manager("cpu");
-  this->gui_gpu = new utl::improfil::Manager("gpu");
-  this->gui_capture = new utl::improfil::Manager("capture");
-  this->vk_info = eng_vulkan->get_vk_info();
+  //this->node_utility = node_engine->get_node_utility();
+  this->gui_cpu = new prf::improfil::Manager("cpu");
+  this->gui_gpu = new prf::improfil::Manager("gpu");
+  this->gui_capture = new prf::improfil::Manager("capture");
+  //this->vk_info = eng_vulkan->get_vk_info();
 
   this->show_window = show_window;
   this->name = "Profiler";
@@ -62,7 +62,7 @@ void Panel::main_info(){
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
   if(ImGui::BeginTable("render##device", 2)){
     ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
-
+/*
     //GPU device
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
@@ -71,7 +71,7 @@ void Panel::main_info(){
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Loop"); ImGui::TableNextColumn();
-    utl::element::Profiler* profiler = node_utility->get_cpu_profiler();
+    prf::Tasker* profiler = node_utility->get_tasker_cpu();
     ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / profiler->get_fps());
     ImGui::SameLine();
     ImGui::Text(" ms/frame [");
@@ -79,7 +79,7 @@ void Panel::main_info(){
     ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", profiler->get_fps()); //io.Framerate
     ImGui::SameLine();
     ImGui::Text(" FPS ]");
-
+*/
     ImGui::EndTable();
   }
 
@@ -156,7 +156,7 @@ void Panel::draw_graph(){
 
 //Profiler graphs
 void Panel::draw_profiler_cpu(ImVec2 dimensions){
-  utl::element::Profiler* profiler = node_utility->get_cpu_profiler();
+/*  prf::Tasker* profiler = node_utility->get_tasker_cpu();
   //---------------------------
 
   if(!pause){
@@ -181,11 +181,11 @@ void Panel::draw_profiler_cpu(ImVec2 dimensions){
 
   //Render profiler
   gui_cpu->render_child(dimensions);
-
+*/
   //---------------------------
 }
 void Panel::draw_profiler_gpu(ImVec2 dimensions){
-  utl::element::Profiler* profiler = node_utility->get_gpu_profiler();
+/*  prf::Tasker* profiler = node_utility->get_tasker_gpu();
   //---------------------------
 
   if(!pause){
@@ -210,7 +210,7 @@ void Panel::draw_profiler_gpu(ImVec2 dimensions){
 
   //Render profiler
   gui_gpu->render_child(dimensions);
-
+*/
   //---------------------------
 }
 void Panel::draw_profiler_capture(ImVec2 dimensions){
@@ -223,7 +223,7 @@ void Panel::draw_profiler_capture(ImVec2 dimensions){
 
 
   if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(master->selected_entity)){
-    utl::element::Profiler* profiler = sensor->cap_profiler;
+    prf::Tasker* profiler = sensor->tasker_capture;
 
     if(!pause){
       //Reset graph

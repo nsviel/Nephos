@@ -4,6 +4,7 @@
 #include <GUI/Node.h>
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 #include <iostream>
 
 
@@ -12,7 +13,8 @@ App_main::App_main(){
   //---------------------------
 
   this->config = new Config();
-  this->node_utility = new utl::Node(config);
+  this->node_profiler = new prf::Node();
+  this->node_utility = new utl::Node(config, node_profiler);
   this->node_engine = new eng::Node(node_utility);
   this->node_gui = new gui::Node(node_utility, node_engine);
   this->fps_control = new utl::fps::Control(120);
@@ -43,22 +45,22 @@ void App_main::init(){
   //---------------------------
 }
 void App_main::loop(){
-  utl::element::Profiler* cpu_profiler = node_utility->get_cpu_profiler();
+  prf::Tasker* tasker_cpu = node_profiler->get_tasker_cpu();
   //---------------------------
 
   auto start_time = std::chrono::steady_clock::now();
   while(config->run_app){
-    cpu_profiler->loop_begin();
+    tasker_cpu->loop_begin();
 
     fps_control->start();
     node_engine->loop();
     node_utility->loop();
     node_gui->loop();
 
-    cpu_profiler->task_begin("sleep");
+    tasker_cpu->task_begin("sleep");
     fps_control->stop();
-    cpu_profiler->task_end("sleep", vec4(50, 50, 50, 255));
-    cpu_profiler->loop_end();
+    tasker_cpu->task_end("sleep", vec4(50, 50, 50, 255));
+    tasker_cpu->loop_end();
   }
   node_engine->wait();
   node_gui->wait();

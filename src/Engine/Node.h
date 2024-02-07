@@ -5,9 +5,9 @@
 class Param;
 namespace vk{class Node;}
 namespace utl{class Node;}
-namespace utl::element{class Profiler;}
+namespace prf{class Node;}
+namespace prf{class Tasker;}
 namespace utl::fps{class Counter;}
-namespace profiler{class Node;}
 namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::render{class Node;}
@@ -36,7 +36,7 @@ public:
 
   inline utl::Node* get_node_utility(){return node_utility;}
   inline vk::Node* get_eng_vulkan(){return eng_vulkan;}
-  inline utl::element::Profiler* get_cpu_profiler(){return cpu_profiler;}
+  inline prf::Tasker* get_tasker_cpu(){return tasker_cpu;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::render::Node* get_node_render(){return node_render;}
@@ -46,12 +46,12 @@ public:
 private:
   vk::Node* eng_vulkan;
   utl::Node* node_utility;
-  utl::element::Profiler* cpu_profiler;
+  prf::Node* node_profiler;
+  prf::Tasker* tasker_cpu;
   utl::fps::Counter* fps_counter;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;
-  profiler::Node* node_profiler;
   eng::render::Node* node_render;
   eng::ope::Node* node_operation;
   eng::gui::Node* node_gui;

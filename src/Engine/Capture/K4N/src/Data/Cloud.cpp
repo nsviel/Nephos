@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace eng::k4n::data{
@@ -45,7 +46,7 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
-  utl::element::Profiler* profiler = sensor->cap_profiler;
+  prf::Tasker* profiler = sensor->tasker_capture;
   //---------------------------
 
   // Cloud stuff
@@ -72,7 +73,7 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
 void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   utl::type::Data* data = sensor->get_data();
   eng::k4n::dev::Master* master = sensor->master;
-  utl::element::Profiler* profiler = sensor->cap_profiler;
+  prf::Tasker* profiler = sensor->tasker_capture;
   //---------------------------
 
   profiler->task_begin("cloud::lock");

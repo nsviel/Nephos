@@ -1,22 +1,22 @@
-#include "Profiler.h"
+#include "Tasker.h"
 
 #include <Utility/Namespace.h>
 
 
-namespace utl::element{
+namespace prf{
 
 //Constructor / Destructor
-Profiler::Profiler(){
+Tasker::Tasker(){
   //---------------------------
 
 
 
   //---------------------------
 }
-Profiler::~Profiler(){}
+Tasker::~Tasker(){}
 
 //Main function
-void Profiler::clear(){
+void Tasker::clear(){
   //---------------------------
 
   this->vec_task_current.clear();
@@ -26,7 +26,7 @@ void Profiler::clear(){
 }
 
 //Loop function
-void Profiler::loop_begin(){
+void Tasker::loop_begin(){
   //---------------------------
 
   this->vec_task_current.clear();
@@ -34,7 +34,7 @@ void Profiler::loop_begin(){
 
   //---------------------------
 }
-void Profiler::loop_end(){
+void Tasker::loop_end(){
   //---------------------------
 
   this->vec_task = vec_task_current;
@@ -43,7 +43,7 @@ void Profiler::loop_end(){
 }
 
 //Task function
-void Profiler::task_begin(string name){
+void Tasker::task_begin(string name){
   //---------------------------
 
   //Check if tasj already exists
@@ -66,7 +66,7 @@ void Profiler::task_begin(string name){
 
   //---------------------------
 }
-void Profiler::task_end(string name){
+void Tasker::task_end(string name){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){
@@ -81,7 +81,7 @@ void Profiler::task_end(string name){
 
   //---------------------------
 }
-void Profiler::task_end(string name, vec4 color){
+void Tasker::task_end(string name, vec4 color){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){

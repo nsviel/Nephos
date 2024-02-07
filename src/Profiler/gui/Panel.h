@@ -3,19 +3,19 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
-namespace profiler{class Node;}
+namespace prf{class Node;}
 namespace vk::main{class Info;}
 namespace utl{class Node;}
-namespace utl::improfil{class Manager;}
+namespace prf::improfil{class Manager;}
 
 
-namespace profiler::gui{
+namespace prf::gui{
 
 class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(profiler::Node* node_profiler, bool* show_window);
+  Panel(prf::Node* node_profiler, bool* show_window);
   ~Panel();
 
 public:
@@ -36,9 +36,9 @@ public:
 private:
   eng::Node* node_engine;
   utl::Node* node_utility;
-  utl::improfil::Manager* gui_cpu;
-  utl::improfil::Manager* gui_gpu;
-  utl::improfil::Manager* gui_capture;
+  prf::improfil::Manager* gui_cpu;
+  prf::improfil::Manager* gui_gpu;
+  prf::improfil::Manager* gui_capture;
   vk::main::Info* vk_info;
 
   bool* show_window;

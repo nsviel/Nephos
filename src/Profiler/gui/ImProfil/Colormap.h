@@ -4,7 +4,7 @@
 #include <vector>
 
 
-namespace utl::improfil::colormap{
+namespace prf::improfil::colormap{
   //---------------------------
 
   extern std::vector<glm::vec4> viridis;

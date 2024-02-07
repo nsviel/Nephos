@@ -1,6 +1,7 @@
 #pragma once
 
 class Config;
+namespace prf{class Node;}
 namespace eng{class Node;}
 namespace utl{class Node;}
 namespace gui{class Node;}
@@ -26,6 +27,7 @@ public:
 private:
   Config* config;
   utl::fps::Control* fps_control;
+  prf::Node* node_profiler;
   eng::Node* node_engine;
   utl::Node* node_utility;
   gui::Node* node_gui;

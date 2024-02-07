@@ -4,14 +4,14 @@
 #include <Utility/Function/Timer/Chrono.h>
 
 
-namespace utl::element{
+namespace prf{
 
-class Profiler
+class Tasker
 {
 public:
   //Constructor / Destructor
-  Profiler();
-  ~Profiler();
+  Tasker();
+  ~Tasker();
 
 public:
   //Main function

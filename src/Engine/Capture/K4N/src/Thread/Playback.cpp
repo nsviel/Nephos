@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace eng::k4n::thread{
@@ -42,7 +43,7 @@ void Playback::start_thread(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
-  utl::element::Profiler* profiler = sensor->cap_profiler;
+  prf::Tasker* profiler = sensor->tasker_capture;
   //---------------------------
 
   //Init playback
@@ -112,7 +113,7 @@ void Playback::stop_thread(){
 
 //Subfunction
 void Playback::manage_pause(eng::k4n::dev::Sensor* sensor){
-  utl::element::Profiler* profiler = sensor->cap_profiler;
+  prf::Tasker* profiler = sensor->tasker_capture;
   //---------------------------
 
   //If pause, wait until end pause or end thread

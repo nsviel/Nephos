@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Namespace.h>
+#include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 #include <string>
 
@@ -11,10 +12,11 @@ struct Vulkan{
   //---------------------------
 
   Vulkan(utl::Node* node_utility){
+    prf::Node* node_profiler = node_utility->get_node_profiler();
     utl::element::Window* utl_window = node_utility->get_utl_window();
     this->window.glfw_window = utl_window->get_window();
-    this->cpu_profiler = node_utility->get_cpu_profiler();
-    this->gpu_profiler = node_utility->get_gpu_profiler();
+    this->tasker_cpu = node_profiler->get_tasker_cpu();
+    this->tasker_gpu = node_profiler->get_tasker_gpu();
   }
 
   std::string name;
@@ -27,8 +29,8 @@ struct Vulkan{
   vk::structure::Parameter param;
   vk::structure::Pool pool;
   vk::structure::Synchro synchro;
-  utl::element::Profiler* cpu_profiler;
-  utl::element::Profiler* gpu_profiler;
+  prf::Tasker* tasker_cpu;
+  prf::Tasker* tasker_gpu;
 
   //---------------------------
 };

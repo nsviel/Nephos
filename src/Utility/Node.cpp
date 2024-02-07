@@ -1,5 +1,6 @@
 #include "Node.h"
 
+#include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Application/Config.h>
 
@@ -7,13 +8,11 @@
 namespace utl{
 
 //Constructor / Destructor
-Node::Node(Config* config){
-  utl::gui::Panel* prf_panel = new_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
+Node::Node(Config* config, prf::Node* node_profiler){
   //---------------------------
 
+  this->node_profiler = node_profiler;
   this->utl_window = new utl::element::Window(config);
-  this->cpu_profiler = new utl::element::Profiler();
-  this->gpu_profiler = new utl::element::Profiler();
 
   utl_window->create_window();
 
@@ -30,7 +29,6 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
-  cpu_profiler->task_begin("utility");
   //---------------------------
 
   utl_window->manage_input();
@@ -38,7 +36,6 @@ void Node::loop(){
   utl_window->check_for_resizing();
 
   //---------------------------
-  cpu_profiler->task_end("utility");
 }
 void Node::exit(){
   //---------------------------

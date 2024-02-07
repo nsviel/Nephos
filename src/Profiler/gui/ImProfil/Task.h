@@ -1,10 +1,10 @@
 #pragma once
 
-#include <GUI/Plot/Namespace.h>
+#include <Profiler/Namespace.h>
 #include <Utility/Specific/common.h>
 
 
-namespace utl::improfil{
+namespace prf::improfil{
 
 struct Bar{
   //---------------------------
