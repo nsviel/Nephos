@@ -12,7 +12,7 @@ struct Texture{
 
   utl::media::Image* utl_image;
   vk::structure::Image vk_image;
-  vk::structure::Buffer buffer;
+  vk::structure::Buffer stagger;
 
   std::string name = "hello";
 

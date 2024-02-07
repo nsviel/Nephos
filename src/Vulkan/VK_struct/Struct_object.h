@@ -13,8 +13,11 @@ struct Buffers{
   //---------------------------
 
   vk::structure::Buffer xyz;
+  vk::structure::Buffer xyz_stagger;
   vk::structure::Buffer rgb;
+  vk::structure::Buffer rgb_stagger;
   vk::structure::Buffer uv;
+  vk::structure::Buffer uv_stagger;
 
   //---------------------------
 };

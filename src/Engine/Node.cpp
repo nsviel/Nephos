@@ -53,6 +53,7 @@ void Node::loop(){
   //---------------------------
 
   node_camera->loop();
+  node_capture->loop();
 
   tasker_cpu->task_begin("eng::scene");
   node_scene->loop();

@@ -23,7 +23,7 @@ void Memory::transfert_texture_to_gpu(vk::structure::Texture* texture){
   //Get texture structures
   vk::structure::Image* vk_image = &texture->vk_image;
   utl::media::Image* utl_image = texture->utl_image;
-  vk::structure::Buffer* buffer = &texture->buffer;
+  vk::structure::Buffer* buffer = &texture->stagger;
 
   //Copy data to stagging buffer
   void* staging_data;
@@ -98,7 +98,7 @@ void Memory::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer){
 }
 
 //Buffer GPU function
-void Memory::create_empty_texture_buffer(vk::structure::Buffer* buffer){
+void Memory::create_empty_stagger_buffer(vk::structure::Buffer* buffer){
   if(buffer->size == 0) return;
   //---------------------------
 
@@ -119,22 +119,47 @@ void Memory::create_empty_vertex_buffer(vk::structure::Buffer* buffer){
   //---------------------------
 }
 void Memory::update_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
-    //---------------------------
+  //---------------------------
 
-    if (data_size == 0) {
-      throw std::runtime_error("Data size is zero!");
-    }
+  if (data_size == 0) {
+    throw std::runtime_error("Data size is zero!");
+  }
 
-    // Map the buffer's memory and copy the data
-    void* mappedMemory;
-    VkResult result = vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, data_size, 0, &mappedMemory);
-    if (result != VK_SUCCESS) {
-      throw std::runtime_error("Failed to map buffer memory!");
-    }
-    memcpy(mappedMemory, data, static_cast<size_t>(data_size));
-    vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
+  // Map the buffer's memory and copy the data
+  void* mappedMemory;
+  VkResult result = vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, data_size, 0, &mappedMemory);
+  if (result != VK_SUCCESS) {
+    throw std::runtime_error("Failed to map buffer memory!");
+  }
+  memcpy(mappedMemory, data, static_cast<size_t>(data_size));
+  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
 
-    //---------------------------
+  //---------------------------
+}
+void Memory::update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize data_size){
+  //---------------------------
+
+  if (data_size == 0) {
+    throw std::runtime_error("Data size is zero!");
+  }
+
+  // Map the buffer's memory and copy the data
+  void* mappedMemory;
+  VkResult result = vkMapMemory(struct_vulkan->device.device, stagger->mem, 0, data_size, 0, &mappedMemory);
+  if (result != VK_SUCCESS) {
+    throw std::runtime_error("Failed to map buffer memory!");
+  }
+  memcpy(mappedMemory, data, static_cast<size_t>(data_size));
+  vkUnmapMemory(struct_vulkan->device.device, stagger->mem);
+
+  // Copy data from staging buffer to main buffer
+  VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
+  VkBufferCopy copyRegion = {};
+  copyRegion.size = data_size;
+  vkCmdCopyBuffer(command_buffer, stagger->vbo, buffer->vbo, 1, &copyRegion);
+  vk_command->singletime_command_end(command_buffer);
+
+  //---------------------------
 }
 void Memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size){
   //---------------------------

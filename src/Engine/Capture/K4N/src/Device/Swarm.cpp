@@ -47,14 +47,22 @@ void Swarm::init_scene(){
   file_4.path_data = "/home/aether/Desktop/cerfav_8.mkv";
 
   //Create playback list
-  this->create_sensor_playback(file_3);
-  //this->create_sensor_playback(file_2);
+  this->create_sensor_playback(file_1);
+  this->create_sensor_playback(file_2);
 
   //---------------------------
 }
 void Swarm::update_profiler(){
+  if(selected_master == nullptr) return;
   //---------------------------
-sayHello();
+
+  prf::Tasker* tasker_cap = profiler->get_tasker_cap();
+  utl::type::Entity* entity = selected_master->selected_entity;
+
+  if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
+    vector<prf::type::Task>& vec_task = sensor->tasker_cap->get_vec_task();
+    tasker_cap->set_vec_task(vec_task);
+  }
 
   //---------------------------
 }

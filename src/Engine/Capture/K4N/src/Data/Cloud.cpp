@@ -105,6 +105,10 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   profiler->task_end("cloud::voxel");
   */
 
+  //Update object data
+  utl::entity::Object* object = sensor->get_object();
+  //object->update_data();
+
   //---------------------------
 }
 

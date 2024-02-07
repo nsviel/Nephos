@@ -38,9 +38,9 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
   vk_image->create_image(image);
 
   //Create associated buffer
-  vk::structure::Buffer* buffer = &texture->buffer;
+  vk::structure::Buffer* buffer = &texture->stagger;
   buffer->size = utl_image->size;
-  vk_memory->create_empty_texture_buffer(buffer);
+  vk_memory->create_empty_stagger_buffer(buffer);
 
   //Fill and store
   vk_memory->transfert_texture_to_gpu(texture);
@@ -53,7 +53,7 @@ void Texture::update_texture(vk::structure::Texture* texture){
   //---------------------------
 
   //Check if size hasn't changed
-  if(texture->buffer.size != texture->utl_image->size){
+  if(texture->stagger.size != texture->utl_image->size){
     texture = nullptr;
     return;
   }
@@ -100,7 +100,7 @@ void Texture::clean_texture(vk::structure::Object* vk_object){
     vk::structure::Texture* texture = *it;
 
     vk_image->clean_image(&texture->vk_image);
-    vk_buffer->clean_buffer(&texture->buffer);
+    vk_buffer->clean_buffer(&texture->stagger);
 
     //delete texture;
     //it = vk_object->list_texture.erase(it);
@@ -114,7 +114,7 @@ void Texture::clean(){
   for(int i=0; i<struct_vulkan->data.vec_texture.size(); i++){
     vk::structure::Texture* texture = struct_vulkan->data.vec_texture[i];
     vk_image->clean_image(&texture->vk_image);
-    vk_buffer->clean_buffer(&texture->buffer);
+    vk_buffer->clean_buffer(&texture->stagger);
   }
 
   //---------------------------
