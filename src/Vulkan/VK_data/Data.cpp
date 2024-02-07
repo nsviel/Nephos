@@ -54,15 +54,6 @@ void Data::update_data(utl::type::Data* data, vk::structure::Object* vk_object){
 
   vk_object->data = data;
   this->check_data(vk_object);
-  vk_buffer->update_buffer(vk_object);
-
-  //---------------------------
-}
-void Data::update_data_test(utl::type::Data* data, vk::structure::Object* vk_object){
-  //---------------------------
-
-  vk_object->data = data;
-  this->check_data(vk_object);
   vk_buffer->update_buffer_test(vk_object);
 
   //---------------------------

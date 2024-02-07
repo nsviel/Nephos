@@ -173,7 +173,7 @@ void Headless::insert_data_in_engine_test(utl::type::Data* data, utl::type::Pose
   }
 
   if(is_in_list){
-    vk_data->update_data_test(data, vk_object);
+    vk_data->update_data(data, vk_object);
   }
 
   //---------------------------

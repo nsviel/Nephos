@@ -29,7 +29,6 @@ public:
 
   //Main function
   void update_data();
-  void update_data_test();
   void update_pose();
   void update_glyph();
   void remove_entity();

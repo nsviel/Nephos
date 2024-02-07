@@ -71,7 +71,7 @@ void Sensor::update_pose(){
 
   //Retrieve capture data
   std::unique_lock<std::mutex> lock(object.data->mutex);
-  object.update_data_test();
+  object.update_data();
   object.update_pose();
 
   //----------------------------

@@ -44,15 +44,6 @@ void Object::update_data(){
 
   //----------------------------
 }
-void Object::update_data_test(){
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
-  vk::main::Engine* vk_engine = eng_vulkan->get_vk_engine();
-  //----------------------------
-
-  vk_engine->insert_data_in_engine_test(data, pose);
-
-  //----------------------------
-}
 void Object::update_pose(){
   eng::cam::Node* node_camera = engine->get_node_camera();
   eng::cam::Control* cam_control = node_camera->get_camera_control();

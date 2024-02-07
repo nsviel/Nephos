@@ -46,7 +46,6 @@ public:
 
   //Data function
   void insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose);
-  void insert_data_in_engine_test(utl::type::Data* data, utl::type::Pose* pose);
   void remove_data_in_engine(utl::type::Data* data);
 
   //Renderpass function
