@@ -17,8 +17,13 @@ public:
 
 public:
   //Main function
-  void add_command_buffer(VkCommandBuffer& command_buffer);
-  void reset_all_command_buffer();
+  void init();
+  void reset();
+
+  //Subfunction
+  VkCommandBuffer allocate_command_buffer_primary();
+  void start_command_buffer(VkCommandBuffer& command_buffer);
+  void end_command_buffer(VkCommandBuffer& command_buffer);
 
 private:
   vk::structure::Vulkan* struct_vulkan;
