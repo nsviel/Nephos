@@ -18,19 +18,6 @@ Command::Command(vk::structure::Vulkan* struct_vulkan){
 Command::~Command(){}
 
 //Command buffer
-void Command::start_command_buffer_once(VkCommandBuffer& command_buffer){
-  //---------------------------
-
-  VkCommandBufferBeginInfo begin_info{};
-  begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-  begin_info.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-  VkResult result = vkBeginCommandBuffer(command_buffer, &begin_info);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to begin recording command buffer!");
-  }
-
-  //---------------------------
-}
 void Command::start_command_buffer_primary(VkCommandBuffer command_buffer){
   //---------------------------
 
@@ -128,18 +115,26 @@ void Command::allocate_command_buffer_secondary(vk::structure::Object* data){
 
   //---------------------------
 }
-void Command::clean_command_buffer(VkCommandBuffer& command_buffer){
-  //---------------------------
-
-  vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pool.command, 1, &command_buffer);
-  struct_vulkan->pool.nb_command_buffer--;
-
-  //---------------------------
-}
 
 //Render pass
 void Command::start_render_pass(vk::structure::Renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb){
   //---------------------------
+
+/*
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
+  vk_command_buffer->start_command_buffer(command_buffer);
+
+  renderpass->command_buffer = command_buffer.command;
+
+
+  vk_command_buffer->end_command_buffer(command_buffer);
+  //vk_command_buffer->submit(command_buffer);
+*/
+
+//IL faut d'abord changer els comman,d buffer de renderpass et subpass et les remplacer par
+//vk::structure::command buffer !!!!!!!!!!!!!!!!
+
+
 
   this->reset_command_buffer(renderpass->command_buffer);
   this->start_command_buffer_primary(renderpass->command_buffer);
@@ -239,26 +234,5 @@ void Command::image_layout_transition(VkCommandBuffer command_buffer, vk::struct
   //---------------------------
 }
 
-//Single time command
-VkCommandBuffer Command::singletime_command_begin(){
-  VkCommandBuffer command_buffer;
-  //---------------------------
-
-  this->allocate_command_buffer_primary(command_buffer);
-  this->start_command_buffer_once(command_buffer);
-
-  //---------------------------
-  return command_buffer;
-}
-void Command::singletime_command_end(VkCommandBuffer command_buffer){
-  //---------------------------
-
-  vkEndCommandBuffer(command_buffer);
-  vk_submit->submit_command_graphics(command_buffer);
-  vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
-  this->clean_command_buffer(command_buffer);
-
-  //---------------------------
-}
 
 }

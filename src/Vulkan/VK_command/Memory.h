@@ -32,7 +32,6 @@ public:
   void create_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceSize size);
   void update_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize);
   void update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize dataSize);
-  void copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
 
   //Subfunction
   void bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);

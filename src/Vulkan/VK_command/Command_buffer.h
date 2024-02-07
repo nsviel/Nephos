@@ -20,9 +20,11 @@ public:
   //Main function
   void init();
   void reset();
-  void reset(vk::structure::Command_buffer* command_buffer);
   void clean();
   void submit();
+
+  //Per command buffer
+  void reset(vk::structure::Command_buffer* command_buffer);
   void submit(vk::structure::Command_buffer* command_buffer);
 
   //Subfunction

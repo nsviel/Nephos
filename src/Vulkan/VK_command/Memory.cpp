@@ -168,19 +168,6 @@ void Memory::update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Bu
 
   //---------------------------
 }
-void Memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size){
-  //---------------------------
-sayHello();
-  VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
-
-  VkBufferCopy region{};
-  region.size = size;
-  vkCmdCopyBuffer(command_buffer, srcBuffer, dstBuffer, 1, &region);
-
-  vk_command->singletime_command_end(command_buffer);
-
-  //---------------------------
-}
 
 //Subfunction
 void Memory::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBuffer& buffer){
