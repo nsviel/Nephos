@@ -16,6 +16,7 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
 
   //this->node_utility = node_engine->get_node_utility();
+  this->tasker_cpu = node_profiler->get_tasker_cpu();
   this->gui_cpu = new prf::improfil::Manager("cpu");
   this->gui_gpu = new prf::improfil::Manager("gpu");
   this->gui_capture = new prf::improfil::Manager("capture");
@@ -67,7 +68,7 @@ void Panel::main_info(){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", vk_info->get_gpu_name().c_str());
-
+*/
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Loop"); ImGui::TableNextColumn();
@@ -79,7 +80,7 @@ void Panel::main_info(){
     ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", profiler->get_fps()); //io.Framerate
     ImGui::SameLine();
     ImGui::Text(" FPS ]");
-*/
+
     ImGui::EndTable();
   }
 
@@ -156,7 +157,7 @@ void Panel::draw_graph(){
 
 //Profiler graphs
 void Panel::draw_profiler_cpu(ImVec2 dimensions){
-/*  prf::Tasker* profiler = node_utility->get_tasker_cpu();
+  prf::Tasker* profiler = node_utility->get_tasker_cpu();
   //---------------------------
 
   if(!pause){
@@ -181,7 +182,7 @@ void Panel::draw_profiler_cpu(ImVec2 dimensions){
 
   //Render profiler
   gui_cpu->render_child(dimensions);
-*/
+
   //---------------------------
 }
 void Panel::draw_profiler_gpu(ImVec2 dimensions){
