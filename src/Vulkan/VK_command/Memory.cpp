@@ -170,7 +170,7 @@ void Memory::update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Bu
 }
 void Memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size){
   //---------------------------
-
+sayHello();
   VkCommandBuffer command_buffer = vk_command->singletime_command_begin();
 
   VkBufferCopy region{};
