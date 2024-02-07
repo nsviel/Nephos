@@ -35,7 +35,7 @@ public:
 
   inline utl::Node* get_node_utility(){return node_utility;}
   inline vk::Node* get_eng_vulkan(){return eng_vulkan;}
-  inline prf::Tasker* get_tasker_cpu(){return tasker_cpu;}
+  inline prf::Node* get_node_profiler(){return node_profiler;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::render::Node* get_node_render(){return node_render;}

@@ -36,6 +36,7 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
+  k4n_swarm->update_profiler();
 
   //---------------------------
 }

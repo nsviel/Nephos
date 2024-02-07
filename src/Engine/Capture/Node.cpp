@@ -10,7 +10,6 @@ Node::Node(eng::Node* node_engine){
   //---------------------------
 
   this->node_k4n = new eng::k4n::Node(node_engine);
-  this->tasker_cpu = node_engine->get_tasker_cpu();
 
   this->add_node_panel(node_k4n);
 

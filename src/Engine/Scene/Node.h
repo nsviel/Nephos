@@ -12,7 +12,6 @@ namespace eng::scene{class Bookmark;}
 namespace eng::scene{class World;}
 namespace eng::scene::gui{class Scene;}
 namespace eng::scene::gui{class Loader;}
-namespace prf{class Tasker;}
 
 
 namespace eng::scene{
@@ -48,8 +47,7 @@ private:
   eng::scene::World* sce_world;
   eng::scene::gui::Scene* gui_scene;
   eng::scene::gui::Loader* gui_loader;
-  prf::Tasker* tasker_cpu;
-  
+
   bool show_scene = true;
   bool show_loader = true;
 };

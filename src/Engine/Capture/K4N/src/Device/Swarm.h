@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+namespace prf{class Manager;}
 namespace eng{class Node;}
 namespace eng::scene{class Scene;}
 namespace eng::k4n{class Node;}
@@ -22,6 +23,7 @@ public:
 public:
   //Main function
   void init_scene();
+  void update_profiler();
 
   //Sensor function
   void create_sensor_playback(utl::media::File& file);
@@ -36,6 +38,7 @@ public:
   inline list<eng::k4n::dev::Master*>& get_list_master(){return list_master;}
 
 private:
+  prf::Manager* profiler;
   eng::scene::Scene* sce_scene;
   eng::k4n::Node* node_k4n;
   eng::k4n::utils::Transformation* k4n_transfo;

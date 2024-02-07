@@ -1,7 +1,7 @@
 #include "Swarm.h"
 
 #include <Engine/Namespace.h>
-#include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace eng::k4n::dev{
@@ -10,10 +10,12 @@ namespace eng::k4n::dev{
 Swarm::Swarm(eng::k4n::Node* node_k4n){
   //---------------------------
 
-  eng::Node* engine = node_k4n->get_node_engine();
-  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::Node* node_engine = node_k4n->get_node_engine();
+  eng::scene::Node* node_scene = node_engine->get_node_scene();
+  prf::Node* node_profiler = node_engine->get_node_profiler();
 
   this->node_k4n = node_k4n;
+  this->profiler = node_profiler->get_profiler();
   this->sce_scene = node_scene->get_scene();
   this->k4n_transfo = new eng::k4n::utils::Transformation();
 
@@ -47,6 +49,12 @@ void Swarm::init_scene(){
   //Create playback list
   this->create_sensor_playback(file_3);
   //this->create_sensor_playback(file_2);
+
+  //---------------------------
+}
+void Swarm::update_profiler(){
+  //---------------------------
+sayHello();
 
   //---------------------------
 }
