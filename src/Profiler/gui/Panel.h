@@ -2,10 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Node;}
 namespace prf{class Node;}
-namespace vk::main{class Info;}
-namespace utl{class Node;}
+namespace prf{class Tasker;}
 namespace prf::improfil{class Manager;}
 
 
@@ -34,12 +32,12 @@ public:
   void draw_profiler_capture(ImVec2 dimensions);
 
 private:
-  eng::Node* node_engine;
-  utl::Node* node_utility;
+  prf::Tasker* tasker_cpu;
+  prf::Tasker* tasker_gpu;
+  prf::Tasker* tasker_cap;
   prf::improfil::Manager* gui_cpu;
   prf::improfil::Manager* gui_gpu;
   prf::improfil::Manager* gui_capture;
-  vk::main::Info* vk_info;
 
   bool* show_window;
   string name;

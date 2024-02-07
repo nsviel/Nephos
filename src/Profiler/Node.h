@@ -21,13 +21,13 @@ public:
 
   inline prf::Tasker* get_tasker_cpu(){return tasker_cpu;}
   inline prf::Tasker* get_tasker_gpu(){return tasker_gpu;}
-  inline prf::Tasker* get_tasker_capture(){return tasker_capture;}
+  inline prf::Tasker* get_tasker_cap(){return tasker_cap;}
 
 private:
   prf::gui::Panel* gui_panel;
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;
-  prf::Tasker* tasker_capture;
+  prf::Tasker* tasker_cap;
 };
 
 }

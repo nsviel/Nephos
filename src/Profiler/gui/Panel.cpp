@@ -12,15 +12,12 @@ namespace prf::gui{
 Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
-  //this->node_engine = node_profiler->get_node_engine();
-  //vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
-
-  //this->node_utility = node_engine->get_node_utility();
   this->tasker_cpu = node_profiler->get_tasker_cpu();
+  this->tasker_gpu = node_profiler->get_tasker_gpu();
+  this->tasker_cap = node_profiler->get_tasker_cap();
   this->gui_cpu = new prf::improfil::Manager("cpu");
   this->gui_gpu = new prf::improfil::Manager("gpu");
   this->gui_capture = new prf::improfil::Manager("capture");
-  //this->vk_info = eng_vulkan->get_vk_info();
 
   this->show_window = show_window;
   this->name = "Profiler";
@@ -72,12 +69,11 @@ void Panel::main_info(){
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Loop"); ImGui::TableNextColumn();
-    prf::Tasker* profiler = node_utility->get_tasker_cpu();
-    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / profiler->get_fps());
+    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / tasker_cpu->get_fps());
     ImGui::SameLine();
     ImGui::Text(" ms/frame [");
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", profiler->get_fps()); //io.Framerate
+    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", tasker_cpu->get_fps()); //io.Framerate
     ImGui::SameLine();
     ImGui::Text(" FPS ]");
 
@@ -157,7 +153,6 @@ void Panel::draw_graph(){
 
 //Profiler graphs
 void Panel::draw_profiler_cpu(ImVec2 dimensions){
-  prf::Tasker* profiler = node_utility->get_tasker_cpu();
   //---------------------------
 
   if(!pause){
@@ -165,7 +160,7 @@ void Panel::draw_profiler_cpu(ImVec2 dimensions){
     gui_cpu->reset();
 
     //Assign tasks
-    vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
+    vector<utl::type::Task>& vec_gpu_task = tasker_cpu->get_vec_task();
     for(int i=0; i<vec_gpu_task.size(); i++){
       utl::type::Task task = vec_gpu_task[i];
 

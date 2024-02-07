@@ -10,10 +10,10 @@ Node::Node(){
   utl::gui::Panel* prf_panel = new_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
-  this->gui_panel = new prf::gui::Panel(this, &prf_panel->is_open);
   this->tasker_cpu = new prf::Tasker();
   this->tasker_gpu = new prf::Tasker();
-  this->tasker_capture = new prf::Tasker();
+  this->tasker_cap = new prf::Tasker();
+  this->gui_panel = new prf::gui::Panel(this, &prf_panel->is_open);
 
   //---------------------------
 }
