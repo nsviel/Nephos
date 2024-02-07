@@ -1,12 +1,12 @@
 #include "Window.h"
 
-#include <Application/Config.h>
+#include <Application/Configuration.h>
 
 
 namespace utl::element{
 
 //Constructor / Destructor
-Window::Window(Config* config){
+Window::Window(Configuration* config){
   //---------------------------
 
   this->config = config;

@@ -1,5 +1,5 @@
 #include "App_main.h"
-#include "Config.h"
+#include "Configuration.h"
 
 #include <GUI/Node.h>
 #include <Engine/Namespace.h>
@@ -12,7 +12,7 @@
 App_main::App_main(){
   //---------------------------
 
-  this->config = new Config();
+  this->config = new Configuration();
   this->node_profiler = new prf::Node();
   this->node_utility = new utl::Node(config, node_profiler);
   this->node_engine = new eng::Node(node_utility);

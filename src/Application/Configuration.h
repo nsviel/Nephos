@@ -4,7 +4,7 @@
 #include <string>
 
 
-struct Config{
+struct Configuration{
   //---------------------------
 
   std::string window_title = "Nephos";

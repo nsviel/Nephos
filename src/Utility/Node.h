@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class Config;
+class Configuration;
 namespace prf{class Node;}
 namespace utl::element{class Window;}
 
@@ -13,7 +13,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(Config* config, prf::Node* node_profiler);
+  Node(Configuration* config, prf::Node* node_profiler);
   ~Node();
 
 public:

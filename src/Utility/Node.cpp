@@ -2,13 +2,13 @@
 
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Application/Config.h>
+#include <Application/Configuration.h>
 
 
 namespace utl{
 
 //Constructor / Destructor
-Node::Node(Config* config, prf::Node* node_profiler){
+Node::Node(Configuration* config, prf::Node* node_profiler){
   //---------------------------
 
   this->node_profiler = node_profiler;

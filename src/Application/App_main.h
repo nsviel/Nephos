@@ -1,6 +1,6 @@
 #pragma once
 
-class Config;
+class Configuration;
 namespace prf{class Node;}
 namespace eng{class Node;}
 namespace utl{class Node;}
@@ -24,7 +24,7 @@ public:
   void end();
 
 private:
-  Config* config;
+  Configuration* config;
   prf::Node* node_profiler;
   eng::Node* node_engine;
   utl::Node* node_utility;

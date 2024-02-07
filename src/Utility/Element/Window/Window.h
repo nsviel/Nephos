@@ -13,7 +13,7 @@
 using namespace std;
 using namespace glm;
 
-class Config;
+class Configuration;
 
 
 namespace utl::element{
@@ -22,7 +22,7 @@ class Window
 {
 public:
   //Constructor / Destructor
-  Window(Config* config);
+  Window(Configuration* config);
   ~Window();
 
 public:
@@ -51,7 +51,7 @@ public:
   inline void set_window_center(vec2 value){this->window_center = value;}
 
 private:
-  Config* config;
+  Configuration* config;
   GLFWwindow* window;
 
   vec2 window_dim;
