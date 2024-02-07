@@ -99,21 +99,23 @@ void Memory::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer){
 }
 
 //Buffer GPU function
-void Memory::create_empty_stagger_buffer(vk::structure::Buffer* buffer){
-  if(buffer->size == 0) return;
+void Memory::create_empty_stagger_buffer(vk::structure::Buffer* buffer, VkDeviceSize size){
+  if(size == 0) return;
   //---------------------------
 
   // Create an empty buffer with the specified size
+  buffer->size = size;
   this->create_gpu_buffer(buffer->size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, buffer->vbo);
   this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, buffer->vbo, buffer->mem);
 
   //---------------------------
 }
-void Memory::create_empty_vertex_buffer(vk::structure::Buffer* buffer){
-  if(buffer->size == 0) return;
+void Memory::create_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceSize size){
+  if(size == 0) return;
   //---------------------------
 
   // Create an empty buffer with the specified size
+  buffer->size = size;
   this->create_gpu_buffer(buffer->size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
   this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
 

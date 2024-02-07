@@ -39,7 +39,10 @@ void Command_buffer::reset(){
   //Clear all old command buffer
   for(int i=0; i<vec_command_buffer.size(); i++){
     vk::structure::Command_buffer& command_buffer = vec_command_buffer[i];
+    
     vkResetCommandBuffer(command_buffer.command, 0);
+    command_buffer.is_available = true;
+    command_buffer.is_for_submit = false;
   }
 
   //---------------------------
@@ -56,6 +59,7 @@ vk::structure::Command_buffer& Command_buffer::acquire_free_command_buffer(){
 
     if(command_buffer.is_available && command_buffer.is_for_submit == false){
       command_buffer.is_available = false;
+      say(i);
       return command_buffer;
     }
   }
@@ -100,6 +104,7 @@ void Command_buffer::end_command_buffer(vk::structure::Command_buffer& command_b
   //---------------------------
 
   vkEndCommandBuffer(command_buffer.command);
+  command_buffer.is_for_submit = true;
 
   //---------------------------
 }

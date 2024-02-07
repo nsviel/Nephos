@@ -39,8 +39,7 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
 
   //Create associated buffer
   vk::structure::Buffer* buffer = &texture->stagger;
-  buffer->size = utl_image->size;
-  vk_memory->create_empty_stagger_buffer(buffer);
+  vk_memory->create_empty_stagger_buffer(buffer, utl_image->size);
 
   //Fill and store
   vk_memory->transfert_texture_to_gpu(texture);
