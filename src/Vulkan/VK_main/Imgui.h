@@ -24,13 +24,17 @@ public:
   //Main functions
   void init();
   void draw(VkCommandBuffer& command_buffer);
-  void load_font();
   void clean();
   void render();
   void new_frame();
 
+  void create_context();
   ImTextureID rendered_texture();
   bool check_window_resize();
+
+  //Font
+  void select_font();
+  void load_font();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

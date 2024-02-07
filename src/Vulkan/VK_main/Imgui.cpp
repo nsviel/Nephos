@@ -47,6 +47,9 @@ void Imgui::init(){
   init_info.QueueFamily = struct_vulkan->device.physical_device.queue_graphics_idx;
   ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
 
+  this->select_font();
+  this->load_font();
+
   //---------------------------
 }
 void Imgui::draw(VkCommandBuffer& command_buffer){
@@ -56,25 +59,6 @@ void Imgui::draw(VkCommandBuffer& command_buffer){
   if(draw_data == nullptr) return;
 
   ImGui_ImplVulkan_RenderDrawData(draw_data, command_buffer);
-
-  //---------------------------
-}
-void Imgui::load_font(){
-  VkResult result;
-  //---------------------------
-
-  vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
-
-  vk_pool->reset_command_pool();
-  vk_command->start_command_buffer_once(renderpass->command_buffer);
-
-  ImGui_ImplVulkan_CreateFontsTexture(renderpass->command_buffer);
-
-  vk_command->stop_command_buffer(renderpass->command_buffer);
-  vk_submit->submit_command_graphics(renderpass->command_buffer);
-  vk_engine->device_wait_idle();
-
-  ImGui_ImplVulkan_DestroyFontUploadObjects();
 
   //---------------------------
 }
@@ -105,6 +89,35 @@ void Imgui::new_frame(){
   //---------------------------
 }
 
+void Imgui::create_context(){
+  vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
+  //---------------------------
+
+  // Setup Dear ImGui context
+  IMGUI_CHECKVERSION();
+  ImGui::CreateContext();
+  ImPlot::CreateContext();
+  ImGui::StyleColorsDark();
+
+  // Setup Platform/Renderer bindings
+  ImGui_ImplGlfw_InitForVulkan(struct_vulkan->window.glfw_window, true);
+  ImGui_ImplVulkan_InitInfo init_info = {};
+  init_info.Instance = struct_vulkan->instance.instance;
+  init_info.PhysicalDevice = struct_vulkan->device.physical_device.physical_device;
+  init_info.Device = struct_vulkan->device.device;
+  init_info.Queue = struct_vulkan->device.queue_graphics;
+  init_info.DescriptorPool = struct_vulkan->pool.descriptor;
+  init_info.PipelineCache = VK_NULL_HANDLE;
+  init_info.MinImageCount = 2;
+  init_info.ImageCount = 2;
+  init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
+  init_info.Subpass = 0;
+  init_info.QueueFamily = struct_vulkan->device.physical_device.queue_graphics_idx;
+  ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
+
+
+  //---------------------------
+}
 ImTextureID Imgui::rendered_texture(){
   static ImTextureID texture = 0;
   //---------------------------
@@ -136,6 +149,75 @@ bool Imgui::check_window_resize(){
 
   //---------------------------
   return has_been_resized;
+}
+
+//Font
+void Imgui::select_font(){
+  ImGuiIO io = ImGui::GetIO();
+  static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+  //---------------------------
+
+  //Configuration - texte
+  ImFontConfig config_text;
+  config_text.GlyphExtraSpacing.x = 1.0f;
+
+  //Configuration - texte
+  ImFontConfig config_editor;
+  config_editor.GlyphExtraSpacing.x = 2.0f;
+  config_editor.OversampleH = 4.0f;
+  config_editor.OversampleV = 4.0f;
+
+  //Configuration - icon
+  ImFontConfig config_icon;
+  config_icon.MergeMode = true;
+  config_icon.GlyphMinAdvanceX = 15.0f; //Monospace icons
+
+  //Load all droidsans font with size from 13 to 23
+  float font_size;
+  font_size = 10.0f;
+  ImFont* font_gui;
+  for(int i=0; i<15; i++){
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_text);
+    io.Fonts->AddFontFromFileTTF("../media/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
+    font_size += 1.0f;
+
+    if(i == 3){
+      font_gui = font;
+    }
+  }
+
+  font_size = 13.0f;
+  for(int i=0; i<10; i++){
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_editor);
+    font_size += 1.0f;
+  }
+
+  //Buid the font database
+  io.Fonts->Build();
+
+  //Setup fonts
+  ImGui::GetIO().FontDefault = font_gui;
+
+  //---------------------------
+}
+void Imgui::load_font(){
+  VkResult result;
+  //---------------------------
+
+  vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
+
+  vk_pool->reset_command_pool();
+  vk_command->start_command_buffer_once(renderpass->command_buffer);
+
+  ImGui_ImplVulkan_CreateFontsTexture(renderpass->command_buffer);
+
+  vk_command->stop_command_buffer(renderpass->command_buffer);
+  vk_submit->submit_command_graphics(renderpass->command_buffer);
+  vk_engine->device_wait_idle();
+
+  ImGui_ImplVulkan_DestroyFontUploadObjects();
+
+  //---------------------------
 }
 
 }

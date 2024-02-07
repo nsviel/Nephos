@@ -8,6 +8,7 @@ namespace vk::presentation{class Swapchain;}
 namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
 namespace vk::main{class Texture;}
+namespace vk::main{class Imgui;}
 namespace vk::data{class Data;}
 namespace vk::draw{class Viewport;}
 namespace vk::shader{class Reloader;}
@@ -79,6 +80,7 @@ private:
   vk::presentation::Frame* vk_frame;
   vk::data::Canvas* vk_canvas;
   vk::draw::Drawer* vk_drawing;
+  vk::main::Imgui* vk_imgui;
 };
 
 }

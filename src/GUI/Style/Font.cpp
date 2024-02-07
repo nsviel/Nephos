@@ -23,8 +23,8 @@ Font::~Font(){}
 void Font::init_font(){
   //---------------------------
 
-  this->gui_select_font();
-  vk_imgui->load_font();
+  //this->gui_select_font();
+  //vk_imgui->load_font();
 
   //---------------------------
 }
