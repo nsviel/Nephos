@@ -31,6 +31,7 @@ public:
   void task_end(string name);
   void task_end(string name, vec4 color);
 
+  inline void set_vec_task(vector<prf::type::Task>& value){this->vec_task = value;}
   inline vector<prf::type::Task>& get_vec_task(){return vec_task;}
   inline float get_loop_fps(){return loop_fps;}
 

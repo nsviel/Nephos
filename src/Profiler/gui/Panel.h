@@ -28,9 +28,9 @@ public:
   void draw_graph();
 
   //Profiler graphs
-  void draw_profiler_cpu(ImVec2 dimensions);
-  void draw_profiler_gpu(ImVec2 dimensions);
-  void draw_profiler_capture(ImVec2 dimensions);
+  void draw_profiler_cpu(ImVec2 graph_dim);
+  void draw_profiler_gpu(ImVec2 graph_dim);
+  void draw_profiler_capture(ImVec2 graph_dim);
 
 private:
   prf::Manager* profiler;

@@ -118,32 +118,32 @@ void Panel::draw_graph(){
   //---------------------------
 
   if(ImGui::BeginTabBar("device_tab##4567")){
-    ImVec2 dimension = ImGui::GetContentRegionAvail();
+    ImVec2 graph_dim = ImGui::GetContentRegionAvail();
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("All##4568", NULL)){
-      dimension = ImVec2(dimension.x, dimension.y/3 - 3.33);
-      this->draw_profiler_cpu(dimension);
-      this->draw_profiler_gpu(dimension);
-      this->draw_profiler_capture(dimension);
+      graph_dim = ImVec2(graph_dim.x, graph_dim.y/3 - 3.33);
+      this->draw_profiler_cpu(graph_dim);
+      this->draw_profiler_gpu(graph_dim);
+      this->draw_profiler_capture(graph_dim);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("CPU##4567", NULL)){
-      this->draw_profiler_cpu(dimension);
+      this->draw_profiler_cpu(graph_dim);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("GPU##4567", NULL)){
-      this->draw_profiler_gpu(dimension);
+      this->draw_profiler_gpu(graph_dim);
       ImGui::EndTabItem();
     }
 
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Capture##4567", NULL)){
-      this->draw_profiler_capture(dimension);
+      this->draw_profiler_capture(graph_dim);
       ImGui::EndTabItem();
     }
     ImGui::EndTabBar();
@@ -153,7 +153,7 @@ void Panel::draw_graph(){
 }
 
 //Profiler graphs
-void Panel::draw_profiler_cpu(ImVec2 dimensions){
+void Panel::draw_profiler_cpu(ImVec2 graph_dim){
   //---------------------------
 
   if(!pause){
@@ -161,9 +161,9 @@ void Panel::draw_profiler_cpu(ImVec2 dimensions){
     gui_cpu->reset();
 
     //Assign tasks
-    vector<prf::type::Task>& vec_gpu_task = tasker_cpu->get_vec_task();
-    for(int i=0; i<vec_gpu_task.size(); i++){
-      prf::type::Task task = vec_gpu_task[i];
+    vector<prf::type::Task>& vec_task = tasker_cpu->get_vec_task();
+    for(int i=0; i<vec_task.size(); i++){
+      prf::type::Task task = vec_task[i];
 
       if(task.color == vec4(0, 0, 0, 0)){
         gui_cpu->add_task(task.time_beg, task.time_end, task.name);
@@ -177,11 +177,11 @@ void Panel::draw_profiler_cpu(ImVec2 dimensions){
   }
 
   //Render profiler
-  gui_cpu->render_child(dimensions);
+  gui_cpu->render_child(graph_dim);
 
   //---------------------------
 }
-void Panel::draw_profiler_gpu(ImVec2 dimensions){
+void Panel::draw_profiler_gpu(ImVec2 graph_dim){
   //---------------------------
 
   if(!pause){
@@ -189,9 +189,9 @@ void Panel::draw_profiler_gpu(ImVec2 dimensions){
     gui_gpu->reset();
 
     //Assign tasks
-    vector<prf::type::Task>& vec_gpu_task = tasker_gpu->get_vec_task();
-    for(int i=0; i<vec_gpu_task.size(); i++){
-      prf::type::Task task = vec_gpu_task[i];
+    vector<prf::type::Task>& vec_task = tasker_gpu->get_vec_task();
+    for(int i=0; i<vec_task.size(); i++){
+      prf::type::Task task = vec_task[i];
 
       if(task.color == vec4(0, 0, 0, 0)){
         gui_gpu->add_task(task.time_beg, task.time_end, task.name);
@@ -205,46 +205,36 @@ void Panel::draw_profiler_gpu(ImVec2 dimensions){
   }
 
   //Render profiler
-  gui_gpu->render_child(dimensions);
+  gui_gpu->render_child(graph_dim);
 
   //---------------------------
 }
-void Panel::draw_profiler_capture(ImVec2 dimensions){
+void Panel::draw_profiler_capture(ImVec2 graph_dim){
   //---------------------------
-/*
-  eng::capture::Node* node_capture = node_engine->get_node_capture();
-  eng::k4n::Node* node_k4n = node_capture->get_node_k4n();
-  eng::k4n::dev::Swarm* k4n_swarm = node_k4n->get_k4n_swarm();
-  eng::k4n::dev::Master* master = k4n_swarm->get_selected_master();
 
+  if(!pause){
+    //Reset graph
+    gui_capture->reset();
 
-  if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(master->selected_entity)){
-    prf::Tasker* profiler = sensor->tasker_cap;
+    //Assign tasks
+    vector<prf::type::Task>& vec_task = tasker_cap->get_vec_task();
+    for(int i=0; i<vec_task.size(); i++){
+      prf::type::Task task = vec_task[i];
 
-    if(!pause){
-      //Reset graph
-      gui_capture->reset();
-
-      //Assign tasks
-      vector<prf::type::Task>& vec_task = profiler->get_vec_task();
-      for(int i=0; i<vec_task.size(); i++){
-        prf::type::Task task = vec_task[i];
-
-        if(task.color == vec4(0, 0, 0, 0)){
-          gui_capture->add_task(task.time_beg, task.time_end, task.name);
-        }else{
-          gui_capture->add_task(task.time_beg, task.time_end, task.name, task.color);
-        }
+      if(task.color == vec4(0, 0, 0, 0)){
+        gui_capture->add_task(task.time_beg, task.time_end, task.name);
+      }else{
+        gui_capture->add_task(task.time_beg, task.time_end, task.name, task.color);
       }
-
-      //load data
-      gui_capture->load_data_to_graph();
     }
 
-    //Render profiler
-    gui_capture->render_child(dimensions);
+    //load data
+    gui_capture->load_data_to_graph();
   }
-*/
+
+  //Render profiler
+  gui_capture->render_child(graph_dim);
+
   //---------------------------
 }
 
