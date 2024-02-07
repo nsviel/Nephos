@@ -3,7 +3,6 @@
 #include <Utility/Specific/common.h>
 #include <imgui/implot/implot.h>
 
-namespace vk::main{class Engine;}
 namespace vk::instance{class Pool;}
 namespace vk::command{class Submit;}
 namespace vk::command{class Command;}
@@ -38,7 +37,6 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::main::Engine* vk_engine;
   vk::command::Submit* vk_submit;
   vk::command::Command* vk_command;
   vk::instance::Pool* vk_pool;

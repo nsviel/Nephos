@@ -13,7 +13,6 @@ Imgui::Imgui(vk::structure::Vulkan* struct_vulkan){
   this->vk_pool = new vk::instance::Pool(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_submit = new vk::command::Submit(struct_vulkan);
-  this->vk_engine = new vk::main::Engine(struct_vulkan);
   this->vk_surface = new vk::presentation::Surface(struct_vulkan);
 
   //---------------------------
@@ -22,31 +21,9 @@ Imgui::~Imgui(){}
 
 //Main function
 void Imgui::init(){
-  vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
   //---------------------------
 
-  // Setup Dear ImGui context
-  IMGUI_CHECKVERSION();
-  ImGui::CreateContext();
-  ImPlot::CreateContext();
-  ImGui::StyleColorsDark();
-
-  // Setup Platform/Renderer bindings
-  ImGui_ImplGlfw_InitForVulkan(struct_vulkan->window.glfw_window, true);
-  ImGui_ImplVulkan_InitInfo init_info = {};
-  init_info.Instance = struct_vulkan->instance.instance;
-  init_info.PhysicalDevice = struct_vulkan->device.physical_device.physical_device;
-  init_info.Device = struct_vulkan->device.device;
-  init_info.Queue = struct_vulkan->device.queue_graphics;
-  init_info.DescriptorPool = struct_vulkan->pool.descriptor;
-  init_info.PipelineCache = VK_NULL_HANDLE;
-  init_info.MinImageCount = 2;
-  init_info.ImageCount = 2;
-  init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
-  init_info.Subpass = 0;
-  init_info.QueueFamily = struct_vulkan->device.physical_device.queue_graphics_idx;
-  ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
-
+  this->create_context();
   this->select_font();
   this->load_font();
 
@@ -201,7 +178,6 @@ void Imgui::select_font(){
   //---------------------------
 }
 void Imgui::load_font(){
-  VkResult result;
   //---------------------------
 
   vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
@@ -213,7 +189,10 @@ void Imgui::load_font(){
 
   vk_command->stop_command_buffer(renderpass->command_buffer);
   vk_submit->submit_command_graphics(renderpass->command_buffer);
-  vk_engine->device_wait_idle();
+  VkResult result = vkDeviceWaitIdle(struct_vulkan->device.device);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] device wait idle");
+  }
 
   ImGui_ImplVulkan_DestroyFontUploadObjects();
 
