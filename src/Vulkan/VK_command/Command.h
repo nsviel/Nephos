@@ -37,7 +37,6 @@ public:
 
   //Image layout transition
   void image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image* image, VkImageLayout oldLayout, VkImageLayout newLayout);
-  void image_layout_transition_single(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout);
 
   //Single time command
   VkCommandBuffer singletime_command_begin();

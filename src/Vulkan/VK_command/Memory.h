@@ -25,7 +25,7 @@ public:
   void transfert_texture_to_gpu(vk::structure::Texture* texture);
   void allocate_image_memory(vk::structure::Image* image);
   void copy_buffer_to_image(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer);
-  void copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer);
+  void copy_image_to_buffer(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer);
 
   //Buffer GPU function
   void create_empty_stagger_buffer(vk::structure::Buffer* buffer, VkDeviceSize size);

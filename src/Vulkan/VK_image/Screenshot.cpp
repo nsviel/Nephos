@@ -17,6 +17,7 @@ Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_texture = new vk::main::Texture(struct_vulkan);
   this->vk_memory = new vk::command::Memory(struct_vulkan);
+  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
 
   //---------------------------
 }
@@ -25,7 +26,7 @@ Screenshot::~Screenshot(){}
 //Main function
 void Screenshot::make_screenshot(vk::structure::Image* image){
   //---------------------------
-/*
+
   //Create stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
@@ -33,8 +34,19 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
   vk_memory->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_memory->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
-  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_memory->copy_image_to_buffer(image, staging_buffer);
+
+  //Image transition from undefined layout to read only layout
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
+  vk_command_buffer->start_command_buffer(command_buffer);
+
+  vk_command->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_memory->copy_image_to_buffer(command_buffer, image, staging_buffer);
+
+  vk_command_buffer->end_command_buffer(command_buffer);
+  vk_command_buffer->submit(command_buffer);
+
+
+
 
   VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
   VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
@@ -52,12 +64,12 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
   //Free memory
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
   vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
-*/
+
   //---------------------------
 }
 void Screenshot::save_to_bin(vk::structure::Image* image){
   //---------------------------
-/*
+
   //Create stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
@@ -65,8 +77,19 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
   vk_memory->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_memory->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
-  vk_command->image_layout_transition_single(image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_memory->copy_image_to_buffer(image, staging_buffer);
+
+  //Image transition from undefined layout to read only layout
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
+  vk_command_buffer->start_command_buffer(command_buffer);
+
+  vk_command->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_memory->copy_image_to_buffer(command_buffer, image, staging_buffer);
+
+  vk_command_buffer->end_command_buffer(command_buffer);
+  vk_command_buffer->submit(command_buffer);
+
+
+
 
   VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
   VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
@@ -104,7 +127,7 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
   //Free memory
   vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
   vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
-*/
+
   //---------------------------
 }
 
