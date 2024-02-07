@@ -40,8 +40,8 @@ void Submit::submit_command_render(vk::structure::Command* command){
 
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  submit_info.waitSemaphoreCount = command->vec_semaphore_wait.size();
-  submit_info.pWaitSemaphores = command->vec_semaphore_wait.data();
+  submit_info.waitSemaphoreCount = command->vec_semaphore_processing.size();
+  submit_info.pWaitSemaphores = command->vec_semaphore_processing.data();
   submit_info.pWaitDstStageMask = command->vec_wait_stage.data();
   submit_info.signalSemaphoreCount = command->vec_semaphore_done.size();
   submit_info.pSignalSemaphores = command->vec_semaphore_done.data();

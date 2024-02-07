@@ -15,7 +15,7 @@ struct Command{
   int nb_command_buffer = 100;
 
   //Synchronization
-  std::vector<VkSemaphore> vec_semaphore_wait;
+  std::vector<VkSemaphore> vec_semaphore_processing;
   std::vector<VkSemaphore> vec_semaphore_done;
   VkFence fence = VK_NULL_HANDLE;
 

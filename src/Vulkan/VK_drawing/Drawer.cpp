@@ -79,7 +79,7 @@ void Drawer::draw_frame_presentation(){
     vk_render->run_renderpass(renderpass);
 
     vk::structure::Command& command = renderpass->command;
-    command.vec_semaphore_wait.push_back(semaphore_wait);
+    command.vec_semaphore_processing.push_back(semaphore_wait);
     command.vec_semaphore_done.push_back(semaphore_done);
     command.fence = (i == nb_renderpass-1) ? frame->fence : VK_NULL_HANDLE;
     vk_render->submit_command(renderpass);
