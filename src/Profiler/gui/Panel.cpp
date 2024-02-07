@@ -219,7 +219,7 @@ void Panel::draw_profiler_capture(ImVec2 dimensions){
 
 
   if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(master->selected_entity)){
-    prf::Tasker* profiler = sensor->tasker_capture;
+    prf::Tasker* profiler = sensor->tasker_cap;
 
     if(!pause){
       //Reset graph

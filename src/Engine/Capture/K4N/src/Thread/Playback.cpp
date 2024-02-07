@@ -40,7 +40,7 @@ void Playback::start_thread(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
-  prf::Tasker* profiler = sensor->tasker_capture;
+  prf::Tasker* tasker_cap = sensor->tasker_cap;
   //---------------------------
 
   //Init playback
@@ -57,32 +57,32 @@ void Playback::run_thread(eng::k4n::dev::Sensor* sensor){
   //Playback thread
   k4a::capture capture;
   while(thread_running){
-    profiler->loop_begin(sensor->param.fps.query);
+    tasker_cap->loop_begin(sensor->param.fps.query);
 
     //Next capture
-    profiler->task_begin("capture");
+    tasker_cap->task_begin("capture");
     playback.get_next_capture(&capture);
-    profiler->task_end("capture");
+    tasker_cap->task_end("capture");
     if(!capture) continue;
 
     //Find data from capture
-    profiler->task_begin("data");
+    tasker_cap->task_begin("data");
     k4a_data->find_data_from_capture(sensor, capture);
-    profiler->task_end("data");
+    tasker_cap->task_end("data");
 
     //Convert data into cloud
-    profiler->task_begin("cloud");
+    tasker_cap->task_begin("cloud");
     k4a_cloud->convert_into_cloud(sensor);
-    profiler->task_end("cloud");
+    tasker_cap->task_end("cloud");
 
-    profiler->task_begin("image");
+    tasker_cap->task_begin("image");
     k4n_image->make_images(sensor);
-    profiler->task_end("image");
+    tasker_cap->task_end("image");
 
     //Manage event
     this->manage_pause(sensor);
     this->manage_restart(sensor);
-    profiler->loop_end();
+    tasker_cap->loop_end();
   }
 
   playback.close();
@@ -102,13 +102,13 @@ void Playback::stop_thread(){
 
 //Subfunction
 void Playback::manage_pause(eng::k4n::dev::Sensor* sensor){
-  prf::Tasker* profiler = sensor->tasker_capture;
+  prf::Tasker* tasker_cap = sensor->tasker_cap;
   //---------------------------
 
   //If pause, wait until end pause or end thread
   bool& is_paused = sensor->master->player.pause;
   if(is_paused || !sensor->master->player.play){
-    profiler->clear();
+    tasker_cap->clear();
     while(is_paused && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }

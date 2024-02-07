@@ -15,11 +15,11 @@ Sensor::Sensor(eng::k4n::Node* node_k4n){
   eng::scene::Node* node_scene = engine->get_node_scene();
 
   this->engine = engine;
-  this->tasker_capture = new prf::Tasker();
-  this->k4a_capture = new eng::k4n::thread::Capture(node_k4n);
-  this->k4a_playback = new eng::k4n::thread::Playback(node_k4n);
   this->sce_scene = node_scene->get_scene();
   this->sce_glyph = node_scene->get_scene_glyph();
+  this->tasker_cap = new prf::Tasker();
+  this->k4n_capture = new eng::k4n::thread::Capture(node_k4n);
+  this->k4n_playback = new eng::k4n::thread::Playback(node_k4n);
   this->ope_transform = new eng::ope::Transformation();
 
   this->type = "eng::k4n::device::Sensor";
@@ -31,6 +31,11 @@ Sensor::~Sensor(){
   //---------------------------
 
   this->remove_entity();
+
+  delete tasker_cap;
+  delete k4n_capture;
+  delete k4n_playback;
+  delete ope_transform;
 
   //---------------------------
 }
@@ -104,7 +109,7 @@ void Sensor::run_capture(){
   //---------------------------
 
   this->stop_threads();
-  k4a_capture->start_thread(this);
+  k4n_capture->start_thread(this);
 
   //---------------------------
 }
@@ -113,15 +118,15 @@ void Sensor::run_playback(string path){
 
   this->stop_threads();
   this->param.path_data = path;
-  k4a_playback->start_thread(this);
+  k4n_playback->start_thread(this);
 
   //---------------------------
 }
 void Sensor::stop_threads(){
   //---------------------------
 
-  this->k4a_capture->stop_thread();
-  this->k4a_playback->stop_thread();
+  this->k4n_capture->stop_thread();
+  this->k4n_playback->stop_thread();
 
   //---------------------------
 }

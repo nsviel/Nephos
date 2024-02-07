@@ -44,7 +44,7 @@ void Capture::run_thread(eng::k4n::dev::Sensor* sensor){
 
   //Init elements
   sensor->param.index =0;
-  prf::Tasker* profiler = sensor->tasker_capture;
+  prf::Tasker* tasker_cap = sensor->tasker_cap;
   k4a::device device = k4a::device::open(sensor->param.index);
   k4a::capture capture;
 
@@ -63,7 +63,7 @@ void Capture::run_thread(eng::k4n::dev::Sensor* sensor){
   //Start capture thread
   this->thread_running = true;
   while(thread_running && sensor){
-    profiler->loop_begin(sensor->param.fps.query);
+    tasker_cap->loop_begin(sensor->param.fps.query);
 
     auto timeout = std::chrono::milliseconds(2000);
     device.get_capture(&capture, timeout);
@@ -76,7 +76,7 @@ void Capture::run_thread(eng::k4n::dev::Sensor* sensor){
     //Manage event
     this->manage_pause(sensor);
     this->manage_recording(sensor, capture);
-    profiler->loop_end();
+    tasker_cap->loop_end();
   }
 
   //---------------------------

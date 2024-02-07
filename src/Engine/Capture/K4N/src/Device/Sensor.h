@@ -53,7 +53,7 @@ public:
   inline utl::type::Pose* get_pose(){return object.pose;}
 
 public:
-  prf::Tasker* tasker_capture;
+  prf::Tasker* tasker_cap;
   eng::k4n::dev::Master* master;
 
   utl::entity::Object object;
@@ -73,8 +73,8 @@ private:
   eng::scene::Scene* sce_scene;
   eng::scene::Glyph* sce_glyph;
   eng::ope::Transformation* ope_transform;
-  eng::k4n::thread::Capture* k4a_capture;
-  eng::k4n::thread::Playback* k4a_playback;
+  eng::k4n::thread::Capture* k4n_capture;
+  eng::k4n::thread::Playback* k4n_playback;
 };
 
 }

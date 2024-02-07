@@ -26,7 +26,7 @@ Data::~Data(){
 
 //Main function
 void Data::find_data_from_capture(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
-  prf::Tasker* profiler = sensor->tasker_capture;
+  prf::Tasker* profiler = sensor->tasker_cap;
   //---------------------------
 
   //Capture data
