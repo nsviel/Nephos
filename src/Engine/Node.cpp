@@ -12,8 +12,10 @@ namespace eng{
 Node::Node(utl::Node* node_utility){
   //---------------------------
 
-  this->node_utility = node_utility;
   this->node_profiler = node_utility->get_node_profiler();
+  prf::Manager* profiler = node_profiler->get_profiler();
+
+  this->node_utility = node_utility;
   this->eng_vulkan = new vk::Node(node_utility);
   this->node_camera = new eng::cam::Node(this);
   this->node_scene = new eng::scene::Node(this);
@@ -21,7 +23,7 @@ Node::Node(utl::Node* node_utility){
   this->node_render = new eng::render::Node(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_gui = new eng::gui::Node(this);
-  this->tasker_cpu = node_profiler->get_tasker_cpu();
+  this->tasker_cpu = profiler->get_tasker_cpu();
 
   this->add_node_panel(node_operation);
   this->add_node_panel(node_camera);

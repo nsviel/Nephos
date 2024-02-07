@@ -13,9 +13,9 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
   this->profiler = node_profiler->get_profiler();
-  this->tasker_cpu = node_profiler->get_tasker_cpu();
-  this->tasker_gpu = node_profiler->get_tasker_gpu();
-  this->tasker_cap = node_profiler->get_tasker_cap();
+  this->tasker_cpu = profiler->get_tasker_cpu();
+  this->tasker_gpu = profiler->get_tasker_gpu();
+  this->tasker_cap = profiler->get_tasker_cap();
   this->gui_cpu = new prf::improfil::Manager("cpu");
   this->gui_gpu = new prf::improfil::Manager("gpu");
   this->gui_capture = new prf::improfil::Manager("capture");

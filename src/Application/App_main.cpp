@@ -44,7 +44,8 @@ void App_main::init(){
   //---------------------------
 }
 void App_main::loop(){
-  prf::Tasker* tasker_cpu = node_profiler->get_tasker_cpu();
+  prf::Manager* profiler = node_profiler->get_profiler();
+  prf::Tasker* tasker_cpu = profiler->get_tasker_cpu();
   //---------------------------
 
   auto start_time = std::chrono::steady_clock::now();
