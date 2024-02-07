@@ -70,7 +70,7 @@ void Manager::load_data_to_graph(){
 void Manager::add_task(float time_beg, float time_end, string name){
   //---------------------------
 
-  utl::type::Task task;
+  prf::type::Task task;
   vec4 color = get_next_color();
   task = {time_beg, time_end, name, color};
   vec_task.push_back(task);
@@ -81,20 +81,20 @@ void Manager::add_task(float time_beg, float time_end, string name){
 void Manager::add_task(float time_beg, float time_end, string name, vec4 color){
   //---------------------------
 
-  utl::type::Task task;
+  prf::type::Task task;
   task = {time_beg, time_end, name, color};
   vec_task.push_back(task);
   if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
 
   //---------------------------
 }
-void Manager::add_vec_task(vector<utl::type::Task> vec_task){
+void Manager::add_vec_task(vector<prf::type::Task> vec_task){
   //---------------------------
 
   this->vec_task = vec_task;
 
   for(int i=0; i<vec_task.size(); i++){
-    utl::type::Task& task = vec_task[i];
+    prf::type::Task& task = vec_task[i];
     task.color = get_next_color();
   }
 

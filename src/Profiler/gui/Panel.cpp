@@ -160,9 +160,9 @@ void Panel::draw_profiler_cpu(ImVec2 dimensions){
     gui_cpu->reset();
 
     //Assign tasks
-    vector<utl::type::Task>& vec_gpu_task = tasker_cpu->get_vec_task();
+    vector<prf::type::Task>& vec_gpu_task = tasker_cpu->get_vec_task();
     for(int i=0; i<vec_gpu_task.size(); i++){
-      utl::type::Task task = vec_gpu_task[i];
+      prf::type::Task task = vec_gpu_task[i];
 
       if(task.color == vec4(0, 0, 0, 0)){
         gui_cpu->add_task(task.time_beg, task.time_end, task.name);
@@ -189,9 +189,9 @@ void Panel::draw_profiler_gpu(ImVec2 dimensions){
     gui_gpu->reset();
 
     //Assign tasks
-    vector<utl::type::Task>& vec_gpu_task = profiler->get_vec_task();
+    vector<prf::type::Task>& vec_gpu_task = profiler->get_vec_task();
     for(int i=0; i<vec_gpu_task.size(); i++){
-      utl::type::Task task = vec_gpu_task[i];
+      prf::type::Task task = vec_gpu_task[i];
 
       if(task.color == vec4(0, 0, 0, 0)){
         gui_gpu->add_task(task.time_beg, task.time_end, task.name);
@@ -226,9 +226,9 @@ void Panel::draw_profiler_capture(ImVec2 dimensions){
       gui_capture->reset();
 
       //Assign tasks
-      vector<utl::type::Task>& vec_task = profiler->get_vec_task();
+      vector<prf::type::Task>& vec_task = profiler->get_vec_task();
       for(int i=0; i<vec_task.size(); i++){
-        utl::type::Task task = vec_task[i];
+        prf::type::Task task = vec_task[i];
 
         if(task.color == vec4(0, 0, 0, 0)){
           gui_capture->add_task(task.time_beg, task.time_end, task.name);

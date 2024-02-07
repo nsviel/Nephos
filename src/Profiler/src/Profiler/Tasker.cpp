@@ -70,7 +70,7 @@ void Tasker::task_begin(string name){
   //Check if tasj already exists
   if(vec_task_current.size() != 0){
     for(int i=0; i<vec_task_current.size(); i++){
-      utl::type::Task& task = vec_task_current[i];
+      prf::type::Task& task = vec_task_current[i];
 
       if(task.name == name){
         cout<<"[error] task already exists -> "<<name<<endl;
@@ -82,7 +82,7 @@ void Tasker::task_begin(string name){
   //Insert task in vector
   prf::timer::Timepoint task_beg = timer.get_time();
   double A = timer.duration_s(reference, task_beg);
-  utl::type::Task task = {A, 0, name};
+  prf::type::Task task = {A, 0, name};
   this->vec_task_current.push_back(task);
 
   //---------------------------
@@ -91,7 +91,7 @@ void Tasker::task_end(string name){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){
-    utl::type::Task& task = vec_task_current[i];
+    prf::type::Task& task = vec_task_current[i];
 
     if(task.name == name){
       prf::timer::Timepoint task_end = timer.get_time();
@@ -106,7 +106,7 @@ void Tasker::task_end(string name, vec4 color){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){
-    utl::type::Task& task = vec_task_current[i];
+    prf::type::Task& task = vec_task_current[i];
 
     if(task.name == name){
       prf::timer::Timepoint task_end = timer.get_time();

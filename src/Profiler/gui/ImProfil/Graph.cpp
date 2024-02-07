@@ -27,7 +27,7 @@ Graph::Graph(){
 Graph::~Graph(){}
 
 //Main function
-void Graph::load_graph_data(const std::vector<utl::type::Task>& vec_task){
+void Graph::load_graph_data(const std::vector<prf::type::Task>& vec_task){
   //update the graph with new task data
   //---------------------------
 
@@ -159,7 +159,7 @@ void Graph::render_serie(ImDrawList *draw_list){
 
     // Iterate through each task in the ith bar
     prf::improfil::Bar& bar = vec_bar[bar_idx];
-    for(utl::type::Task& task : bar.vec_task){
+    for(prf::type::Task& task : bar.vec_task){
       this->render_serie_task_rect(draw_list, task, bar_pose);
     }
   }
@@ -197,7 +197,7 @@ void Graph::render_legend(ImDrawList *draw_list){
   // Iterate through vec_task in the current bar
   size_t cpt_task = 0;
   for(size_t task_index = 0; task_index < current_bar.vec_task.size(); task_index++){
-    utl::type::Task& task = current_bar.vec_task[task_index];
+    prf::type::Task& task = current_bar.vec_task[task_index];
     auto &stat = vec_stat[current_bar.task_stat_index[task_index]];
 
     // Skip vec_task beyond the maximum number to show
@@ -246,7 +246,7 @@ void Graph::render_background_tics(ImDrawList *draw_list){
 
   //---------------------------
 }
-void Graph::render_serie_task_rect(ImDrawList *draw_list, utl::type::Task& task, glm::vec2 bar_pose){
+void Graph::render_serie_task_rect(ImDrawList *draw_list, prf::type::Task& task, glm::vec2 bar_pose){
   float height_threshold = 1.0f;
   //---------------------------
 
@@ -278,7 +278,7 @@ void Graph::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, 
 
   //---------------------------
 }
-void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::type::Task task){
+void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::type::Task task){
   //---------------------------
 
   glm::vec2 text_margin = glm::vec2(5.0f, -3.0f);
