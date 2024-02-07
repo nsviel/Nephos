@@ -153,6 +153,8 @@ void Memory::update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Bu
   memcpy(mappedMemory, data, static_cast<size_t>(data_size));
   vkUnmapMemory(struct_vulkan->device.device, stagger->mem);
 
+
+/*
   // Create command buffer to cpy on gpu
   VkCommandBuffer command_buffer = vk_command_buffer->allocate_command_buffer_primary();
   vk_command_buffer->start_command_buffer(command_buffer);
@@ -160,9 +162,9 @@ void Memory::update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Bu
   VkBufferCopy copyRegion = {};
   copyRegion.size = data_size;
   vkCmdCopyBuffer(command_buffer, stagger->vbo, buffer->vbo, 1, &copyRegion);
-  
-  vk_command_buffer->end_command_buffer(command_buffer);
 
+  vk_command_buffer->end_command_buffer(command_buffer);
+*/
   //---------------------------
 }
 void Memory::copy_buffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size){
