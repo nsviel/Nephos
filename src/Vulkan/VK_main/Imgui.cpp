@@ -12,6 +12,7 @@ Imgui::Imgui(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_pool = new vk::instance::Pool(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
+  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   this->vk_submit = new vk::command::Submit(struct_vulkan);
   this->vk_surface = new vk::presentation::Surface(struct_vulkan);
 
@@ -32,16 +33,20 @@ void Imgui::init(){
 void Imgui::draw(VkCommandBuffer& command_buffer){
   //---------------------------
 
+
   ImDrawData* draw_data = ImGui::GetDrawData();
   if(draw_data == nullptr) return;
 
   ImGui_ImplVulkan_RenderDrawData(draw_data, command_buffer);
+
+
 
   //---------------------------
 }
 void Imgui::clean(){
   //---------------------------
 
+  ImGui_ImplVulkan_DestroyFontUploadObjects();
   ImGui_ImplVulkan_Shutdown();
   ImGui_ImplGlfw_Shutdown();
   ImPlot::DestroyContext();
@@ -180,21 +185,12 @@ void Imgui::select_font(){
 void Imgui::load_font(){
   //---------------------------
 
-  vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
+  vk_command_buffer->start_command_buffer(command_buffer);
 
-  vk_pool->reset_command_pool();
-  vk_command->start_command_buffer_once(renderpass->command_buffer);
+  ImGui_ImplVulkan_CreateFontsTexture(command_buffer->command);
 
-  ImGui_ImplVulkan_CreateFontsTexture(renderpass->command_buffer);
-
-  vk_command->stop_command_buffer(renderpass->command_buffer);
-  vk_submit->submit_command_graphics(renderpass->command_buffer);
-  VkResult result = vkDeviceWaitIdle(struct_vulkan->device.device);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] device wait idle");
-  }
-
-  ImGui_ImplVulkan_DestroyFontUploadObjects();
+  vk_command_buffer->end_command_buffer(command_buffer);
 
   //---------------------------
 }

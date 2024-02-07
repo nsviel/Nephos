@@ -60,7 +60,7 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
 //Draw function
 void Renderpass::draw(vk::structure::Subpass* subpass){
   //---------------------------
-
+  // NOT USED
   vk_imgui->draw(subpass->command_buffer);
 
   //---------------------------
