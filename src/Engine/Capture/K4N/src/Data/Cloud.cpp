@@ -107,7 +107,7 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
 
   //Update object data
   utl::entity::Object* object = sensor->get_object();
-  //object->update_data();
+  object->update_data_test();
 
   //---------------------------
 }

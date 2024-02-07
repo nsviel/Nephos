@@ -151,6 +151,28 @@ void Engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose)
 
   //---------------------------
 }
+void Engine::insert_data_in_engine_test(utl::type::Data* data, utl::type::Pose* pose){
+  if(data == nullptr) return;
+  //---------------------------
+
+  //Check if data already in engine
+  bool is_in_list = false;
+  vk::structure::Object* vk_object;
+  for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
+    vk_object = *next(struct_vulkan->data.list_vk_object.begin(), i);
+
+    if(data->UID == vk_object->data->UID){
+      is_in_list = true;
+      break;
+    }
+  }
+
+  if(is_in_list){
+    vk_data->update_data_test(data, vk_object);
+  }
+
+  //---------------------------
+}
 void Engine::remove_data_in_engine(utl::type::Data* data){
   //---------------------------
 
