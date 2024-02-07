@@ -10,6 +10,7 @@ Tasker::Tasker(){
   //---------------------------
 
   this->fps_control = new prf::fps::Control(120);
+  this->fps_counter = new prf::fps::Counter();
   this->is_fps_control = false;
 
   //---------------------------
@@ -56,6 +57,9 @@ void Tasker::loop_end(){
     fps_control->stop_loop();
     this->task_end("sleep", vec4(50, 50, 50, 255));
   }
+
+  //Get loop fps
+  this->loop_fps = fps_counter->update();
 
   //Update disposal task vector by this loop task vector
   this->vec_task = vec_task_current;

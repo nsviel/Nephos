@@ -46,7 +46,7 @@ void Menu::menu_option(){
     vk::main::Info* vk_info = vulkan->get_vk_info();
     prf::Node* node_profiler = node_utility->get_node_profiler();
     prf::Tasker* profiler = node_profiler->get_tasker_cpu();
-    ImGui::Text("%.2f", profiler->get_fps());
+    ImGui::Text("%.2f", profiler->get_loop_fps());
     ImGui::EndMenu();
   }
 
