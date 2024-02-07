@@ -77,7 +77,7 @@ void Command_buffer::submit(){
   }
 
   //Reset all command buffer
-  vk_command_buffer->reset();
+  this->reset();
 
   //---------------------------
 }
