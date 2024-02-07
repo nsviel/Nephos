@@ -10,7 +10,7 @@ struct Pool{
 
   //Command
   VkCommandPool command;
-  uint32_t nb_command_allocated = 0;
+  uint32_t nb_command_buffer = 0;
 
   //Descriptor
   VkDescriptorPool descriptor;

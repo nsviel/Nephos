@@ -100,10 +100,10 @@ void Command::allocate_command_buffer_primary(VkCommandBuffer& command_buffer){
   alloc_info.commandPool = struct_vulkan->pool.command;
   alloc_info.commandBufferCount = 1;
   VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &command_buffer);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to allocate command buffers!");
+  if(result == VK_SUCCESS){
+    struct_vulkan->pool.nb_command_buffer++;
   }else{
-    struct_vulkan->pool.nb_command_allocated++;
+    throw std::runtime_error("[error] failed to allocate command buffers!");
   }
 
   //---------------------------
@@ -122,7 +122,7 @@ void Command::allocate_command_buffer_secondary(vk::structure::Object* data){
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }else{
-    struct_vulkan->pool.nb_command_allocated++;
+    struct_vulkan->pool.nb_command_buffer++;
   }
 
   //---------------------------
@@ -131,7 +131,7 @@ void Command::clean_command_buffer(VkCommandBuffer& command_buffer){
   //---------------------------
 
   vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pool.command, 1, &command_buffer);
-  struct_vulkan->pool.nb_command_allocated--;
+  struct_vulkan->pool.nb_command_buffer--;
 
   //---------------------------
 }
