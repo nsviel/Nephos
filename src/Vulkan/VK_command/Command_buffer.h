@@ -20,12 +20,13 @@ public:
   //Main function
   void init();
   void reset();
+  void clean();
 
   //Subfunction
-  vk::structure::Command_buffer& acquire_free_command_buffer();
-  void allocate_command_buffer_primary(vk::structure::Command_buffer& command_buffer);
-  void start_command_buffer(vk::structure::Command_buffer& command_buffer);
-  void end_command_buffer(vk::structure::Command_buffer& command_buffer);
+  vk::structure::Command_buffer* acquire_free_command_buffer();
+  void allocate_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
+  void start_command_buffer(vk::structure::Command_buffer* command_buffer);
+  void end_command_buffer(vk::structure::Command_buffer* command_buffer);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

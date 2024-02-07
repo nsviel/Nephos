@@ -27,16 +27,20 @@ namespace vk::structure{class Object;}
 
 namespace vk::main{
 
-class Engine
+class Headless
 {
 public:
   //Constructor / Destructor
-  Engine(vk::structure::Vulkan* struct_vulkan);
-  ~Engine();
+  Headless(vk::structure::Vulkan* struct_vulkan);
+  ~Headless();
 
 public:
-  //Main functions
+  //Init function
   void init();
+  void init_engine_presentation();
+  void init_engine_headless();
+
+  //Main functions
   void loop();
   void clean();
 
