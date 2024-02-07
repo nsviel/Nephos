@@ -79,6 +79,7 @@ void Command_buffer::end_command_buffer(VkCommandBuffer& command_buffer){
   //---------------------------
 
   vkEndCommandBuffer(command_buffer);
+  struct_vulkan->command.vec_command_buffer.push_back(command_buffer);
 
   //---------------------------
 }

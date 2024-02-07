@@ -27,6 +27,7 @@ Engine::Engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_canvas = new vk::data::Canvas(struct_vulkan);
   this->vk_drawing = new vk::draw::Drawer(struct_vulkan);
   this->vk_synchronization = new vk::command::Synchronization(struct_vulkan);
+  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
 
   //---------------------------
 }
@@ -53,6 +54,7 @@ void Engine::init_engine_presentation(){
   vk_surface->init();
   vk_device->init();
   vk_pool->init();
+  vk_command_buffer->init();
   vk_canvas->init();
 
   //Render

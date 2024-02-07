@@ -17,6 +17,7 @@ namespace vk::instance{class Extension;}
 namespace vk::instance{class Pool;}
 namespace vk::draw{class Drawer;}
 namespace vk::command{class Synchronization;}
+namespace vk::command{class Command_buffer;}
 namespace vk::renderpass{class Renderpass;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
@@ -67,6 +68,7 @@ private:
   vk::device::Logical* vk_device;
   vk::presentation::Swapchain* vk_swapchain;
   vk::renderpass::Renderpass* vk_renderpass;
+  vk::command::Command_buffer* vk_command_buffer;
   vk::binding::Descriptor* vk_descriptor;
   vk::main::Texture* vk_texture;
   vk::instance::Pool* vk_pool;

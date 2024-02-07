@@ -33,11 +33,11 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
   vk_object->buffer.rgb_stagger.size = sizeof(glm::vec4) * max_data;
   vk_object->buffer.uv.size  = sizeof(glm::vec2) * max_data;
   vk_object->buffer.uv_stagger.size  = sizeof(glm::vec2) * max_data;
-
+/*
   vk_memory->create_empty_stagger_buffer(&vk_object->buffer.xyz_stagger);
   vk_memory->create_empty_stagger_buffer(&vk_object->buffer.rgb_stagger);
   vk_memory->create_empty_stagger_buffer(&vk_object->buffer.uv_stagger);
-
+*/
   vk_memory->create_empty_vertex_buffer(&vk_object->buffer.xyz);
   vk_memory->create_empty_vertex_buffer(&vk_object->buffer.rgb);
   vk_memory->create_empty_vertex_buffer(&vk_object->buffer.uv);
@@ -85,11 +85,11 @@ void Buffer::clean_buffers(vk::structure::Object* vk_object){
   this->clean_buffer(&vk_object->buffer.xyz);
   this->clean_buffer(&vk_object->buffer.rgb);
   this->clean_buffer(&vk_object->buffer.uv);
-
+/*
   this->clean_buffer(&vk_object->buffer.xyz_stagger);
   this->clean_buffer(&vk_object->buffer.rgb_stagger);
   this->clean_buffer(&vk_object->buffer.uv_stagger);
-
+*/
   //---------------------------
 }
 void Buffer::clean_buffer(vk::structure::Buffer* buffer){
