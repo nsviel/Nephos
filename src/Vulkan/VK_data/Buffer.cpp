@@ -70,9 +70,10 @@ void Buffer::update_buffer(vk::structure::Object* vk_object){
 void Buffer::update_buffer_test(vk::structure::Object* vk_object){
   //---------------------------
 
-  VkDeviceSize data_size = sizeof(glm::vec3) * vk_object->data->xyz.size();
-  vk_memory->update_buffer_data(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vk_object->data->xyz.data(), data_size);
-
+  if(vk_object->data->xyz.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec3) * vk_object->data->xyz.size();
+    vk_memory->update_buffer_data(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vk_object->data->xyz.data(), data_size);
+  }
 
   //---------------------------
 }

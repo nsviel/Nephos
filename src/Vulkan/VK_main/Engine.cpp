@@ -44,7 +44,7 @@ void Engine::init(){
   vk_surface->init();
   vk_device->init();
   vk_pool->init();
-  //vk_command_buffer->init();
+  vk_command_buffer->init();
   vk_canvas->init();
 
   //Render

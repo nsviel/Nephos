@@ -21,6 +21,7 @@ public:
   void init();
   void reset();
   void clean();
+  void submit();
 
   //Subfunction
   vk::structure::Command_buffer* acquire_free_command_buffer();

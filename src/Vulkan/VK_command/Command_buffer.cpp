@@ -61,6 +61,23 @@ void Command_buffer::clean(){
 
   //---------------------------
 }
+void Command_buffer::submit(){
+  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
+  //---------------------------
+
+  //Clear all old command buffer
+  for(int i=0; i<vec_command_buffer.size(); i++){
+    vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
+
+    if(command_buffer->is_for_submit){
+      vk_submit->submit_command_graphics(command_buffer->command);
+      vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
+      command_buffer->is_for_submit = false;
+    }
+  }
+
+  //---------------------------
+}
 
 //Subfunction
 vk::structure::Command_buffer* Command_buffer::acquire_free_command_buffer(){
