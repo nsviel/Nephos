@@ -16,7 +16,7 @@ struct Renderpass{
 
   //Renderpass stuff
   VkRenderPass renderpass;
-  vk::structure::Command_buffer command_buffer;
+  vk::structure::Command_buffer* command_buffer;
   vk::structure::Framebuffer* framebuffer;
   vk::structure::Command command;
 

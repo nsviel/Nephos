@@ -150,7 +150,7 @@ void Command_buffer::start_command_buffer(vk::structure::Command_buffer* command
 
   VkCommandBufferBeginInfo begin_info{};
   begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-  begin_info.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+  begin_info.flags = 0;
   VkResult result = vkBeginCommandBuffer(command_buffer->command, &begin_info);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to begin recording command buffer!");
@@ -161,7 +161,11 @@ void Command_buffer::start_command_buffer(vk::structure::Command_buffer* command
 void Command_buffer::end_command_buffer(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
-  vkEndCommandBuffer(command_buffer->command);
+  VkResult result = vkEndCommandBuffer(command_buffer->command);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to record command buffer!");
+  }
+
   command_buffer->is_recorded = true;
 
   //---------------------------

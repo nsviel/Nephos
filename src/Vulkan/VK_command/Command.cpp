@@ -124,7 +124,7 @@ void Command::start_render_pass(vk::structure::Renderpass* renderpass, VkFramebu
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
   vk_command_buffer->start_command_buffer(command_buffer);
 
-  renderpass->command_buffer.command = command_buffer.command;
+  renderpass->command_buffer->command = command_buffer.command;
 
 
   vk_command_buffer->end_command_buffer(command_buffer);
@@ -135,10 +135,16 @@ void Command::start_render_pass(vk::structure::Renderpass* renderpass, VkFramebu
 //vk::structure::command buffer !!!!!!!!!!!!!!!!
 
 
+vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
 
 
-  vkResetCommandBuffer(renderpass->command_buffer.command, 0);
-  this->start_command_buffer_primary(renderpass->command_buffer.command);
+//vk_command_buffer->end_command_buffer(command_buffer);
+
+
+renderpass->command_buffer = vk_command_buffer->acquire_free_command_buffer();
+vk_command_buffer->start_command_buffer(renderpass->command_buffer);
+
+
 
   std::array<VkClearValue, 2> clear_value{};
   clear_value[0].color = {{
@@ -164,16 +170,16 @@ void Command::start_render_pass(vk::structure::Renderpass* renderpass, VkFramebu
     content = VK_SUBPASS_CONTENTS_INLINE;
   }
 
-  vkCmdBeginRenderPass(renderpass->command_buffer.command, &renderpass_info, content);
+  vkCmdBeginRenderPass(renderpass->command_buffer->command, &renderpass_info, content);
 
   //---------------------------
 }
 void Command::stop_render_pass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  vkCmdEndRenderPass(renderpass->command_buffer.command);
+  vkCmdEndRenderPass(renderpass->command_buffer->command);
 
-  this->stop_command_buffer(renderpass->command_buffer.command);
+  this->stop_command_buffer(renderpass->command_buffer->command);
 
   //---------------------------
 }
