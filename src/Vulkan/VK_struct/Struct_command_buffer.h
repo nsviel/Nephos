@@ -10,7 +10,7 @@ struct Command_buffer{
 
   //Command
   VkCommandBuffer command = VK_NULL_HANDLE;
-  VkFence fence;
+  VkFence fence = VK_NULL_HANDLE;
   bool is_available = true;
   bool is_recorded = false;
   bool is_resetable = true;
