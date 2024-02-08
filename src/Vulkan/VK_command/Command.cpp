@@ -17,134 +17,14 @@ Command::Command(vk::structure::Vulkan* struct_vulkan){
 }
 Command::~Command(){}
 
-//Command buffer
-void Command::start_command_buffer_primary(VkCommandBuffer command_buffer){
-  //---------------------------
-
-  VkCommandBufferBeginInfo begin_info{};
-  begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-  begin_info.flags = 0;
-
-  VkResult result = vkBeginCommandBuffer(command_buffer, &begin_info);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to begin recording command buffer!");
-  }
-
-  //---------------------------
-}
-void Command::start_command_buffer_secondary(vk::structure::Renderpass* renderpass, VkCommandBuffer command_buffer){
-  vk::structure::Framebuffer* frame = renderpass->framebuffer;
-  //---------------------------
-
-  // Create a VkCommandBufferInheritanceInfo structure
-  VkCommandBufferInheritanceInfo inheritanceInfo = {};
-  inheritanceInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO;
-  inheritanceInfo.pNext = nullptr;
-  inheritanceInfo.renderPass = renderpass->renderpass; // The render pass to inherit from
-  inheritanceInfo.subpass = 0;       // The subpass to inherit from
-  inheritanceInfo.framebuffer = frame->fbo; // The framebuffer to inherit from
-  inheritanceInfo.occlusionQueryEnable = VK_FALSE; // Whether to enable occlusion query
-  inheritanceInfo.queryFlags = 0; // Query flags (if any)
-  inheritanceInfo.pipelineStatistics = 0; // Pipeline statistics (if any)
-
-  // Create a VkCommandBufferBeginInfo structure and set the inheritance info
-  VkCommandBufferBeginInfo begin_info = {};
-  begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-  begin_info.pNext = nullptr;
-  begin_info.flags = VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT; // Optional flags
-  begin_info.pInheritanceInfo = &inheritanceInfo;
-
-  VkResult result = vkBeginCommandBuffer(command_buffer, &begin_info);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to begin recording command buffer!");
-  }
-
-  //---------------------------
-}
-void Command::reset_command_buffer(VkCommandBuffer& command_buffer){
-  //---------------------------
-
-  vkResetCommandBuffer(command_buffer, 0);
-
-  //---------------------------
-}
-void Command::stop_command_buffer(VkCommandBuffer command_buffer){
-  //---------------------------
-
-  VkResult result = vkEndCommandBuffer(command_buffer);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to record command buffer!");
-  }
-
-  //---------------------------
-}
-void Command::allocate_command_buffer_primary(VkCommandBuffer& command_buffer){
-  //---------------------------
-
-  //Command buffer allocation
-  VkCommandBufferAllocateInfo alloc_info{};
-  alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-  alloc_info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-  alloc_info.commandPool = struct_vulkan->pool.command;
-  alloc_info.commandBufferCount = 1;
-  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &command_buffer);
-  if(result == VK_SUCCESS){
-    struct_vulkan->pool.nb_command_buffer++;
-  }else{
-    throw std::runtime_error("[error] failed to allocate command buffers!");
-  }
-
-  //---------------------------
-}
-void Command::allocate_command_buffer_secondary(vk::structure::Object* data){
-  //---------------------------
-
-  //Command buffer allocation
-  VkCommandBufferAllocateInfo alloc_info{};
-  alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-  alloc_info.level = VK_COMMAND_BUFFER_LEVEL_SECONDARY;
-  alloc_info.commandPool = struct_vulkan->pool.command;
-  alloc_info.commandBufferCount = 1;
-
-  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &data->command_buffer_secondary);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to allocate command buffers!");
-  }else{
-    struct_vulkan->pool.nb_command_buffer++;
-  }
-
-  //---------------------------
-}
-
 //Render pass
 void Command::start_render_pass(vk::structure::Renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb){
   //---------------------------
 
-/*
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
-  vk_command_buffer->start_command_buffer(command_buffer);
-
-  renderpass->command_buffer->command = command_buffer.command;
-
-
-  vk_command_buffer->end_command_buffer(command_buffer);
-  //vk_command_buffer->submit(command_buffer);
-*/
-
-//IL faut d'abord changer els comman,d buffer de renderpass et subpass et les remplacer par
-//vk::structure::command buffer !!!!!!!!!!!!!!!!
-
 
 vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
-
-
-//vk_command_buffer->end_command_buffer(command_buffer);
-
-//vk_command_buffer->start_command_buffer(command_buffer);
 renderpass->command_buffer = vk_command_buffer->acquire_free_command_buffer();
-
-
-  this->start_command_buffer_primary(renderpass->command_buffer->command);
+vk_command_buffer->start_command_buffer_primary(renderpass->command_buffer);
 
   std::array<VkClearValue, 2> clear_value{};
   clear_value[0].color = {{
@@ -179,7 +59,11 @@ void Command::stop_render_pass(vk::structure::Renderpass* renderpass){
 
   vkCmdEndRenderPass(renderpass->command_buffer->command);
 
-  this->stop_command_buffer(renderpass->command_buffer->command);
+  VkResult result = vkEndCommandBuffer(renderpass->command_buffer->command);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to record command buffer!");
+  }
+  //vk_command_buffer->end_command_buffer(renderpass->command_buffer);
 
   //---------------------------
 }

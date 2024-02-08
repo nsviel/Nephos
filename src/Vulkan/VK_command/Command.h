@@ -21,14 +21,6 @@ public:
   ~Command();
 
 public:
-  //Command buffer
-  void start_command_buffer_primary(VkCommandBuffer command_buffer);
-  void start_command_buffer_secondary(vk::structure::Renderpass* renderpass, VkCommandBuffer command_buffer);
-  void reset_command_buffer(VkCommandBuffer& command_buffer);
-  void stop_command_buffer(VkCommandBuffer command_buffer);
-  void allocate_command_buffer_primary(VkCommandBuffer& command_buffer);
-  void allocate_command_buffer_secondary(vk::structure::Object* data);
-
   //Render pass
   void start_render_pass(vk::structure::Renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb);
   void stop_render_pass(vk::structure::Renderpass* renderpass);

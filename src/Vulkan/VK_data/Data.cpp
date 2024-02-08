@@ -12,7 +12,7 @@ Data::Data(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_buffer = new Buffer(struct_vulkan);
   this->vk_texture = new vk::main::Texture(struct_vulkan);
-  this->vk_command = new vk::command::Command(struct_vulkan);
+  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
 
   //---------------------------
@@ -40,7 +40,7 @@ void Data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
   //Apply adequat init functions
   this->check_data(vk_object);
   vk_buffer->create_buffers(vk_object);
-  vk_command->allocate_command_buffer_secondary(vk_object);
+  vk_command_buffer->allocate_command_buffer_secondary(vk_object);
   vk_descriptor->create_layout_from_required(&vk_object->binding);
   vk_descriptor->create_binding(&vk_object->binding);
 

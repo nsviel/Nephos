@@ -145,6 +145,25 @@ void Command_buffer::allocate_command_buffer_primary(vk::structure::Command_buff
 
   //---------------------------
 }
+void Command_buffer::allocate_command_buffer_secondary(vk::structure::Object* data){
+  //---------------------------
+
+  //Command buffer allocation
+  VkCommandBufferAllocateInfo alloc_info{};
+  alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+  alloc_info.level = VK_COMMAND_BUFFER_LEVEL_SECONDARY;
+  alloc_info.commandPool = struct_vulkan->pool.command;
+  alloc_info.commandBufferCount = 1;
+
+  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &data->command_buffer_secondary);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to allocate command buffers!");
+  }else{
+    struct_vulkan->pool.nb_command_buffer++;
+  }
+
+  //---------------------------
+}
 void Command_buffer::start_command_buffer_primary(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
