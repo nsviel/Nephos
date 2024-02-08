@@ -10,11 +10,12 @@ Frame::Frame(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_synchronization = new vk::synchro::Synchronization(struct_vulkan);
+  this->vk_synchronization = new vk::synchro::Semaphore(struct_vulkan);
   this->vk_framebuffer = new vk::renderpass::Framebuffer(struct_vulkan);
   this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_color = new vk::image::Color(struct_vulkan);
   this->vk_depth = new vk::image::Depth(struct_vulkan);
+  this->vk_fence = new vk::synchro::Fence(struct_vulkan);
 
   //---------------------------
 }
@@ -36,7 +37,8 @@ void Frame::create_frame(){
     vk_depth->create_depth_image(&frame->depth);
     vk_image->create_image_view(&frame->color);
     vk_framebuffer->create_framebuffer_swapchain(renderpass, frame);
-    vk_synchronization->init_frame_sync(frame);
+    vk_synchronization->init_frame_semaphore(frame);
+    vk_fence->create_fence(frame->fence);
 
     struct_vulkan->swapchain.vec_frame.push_back(frame);
   }
@@ -53,7 +55,8 @@ void Frame::clean_frame(){
     vkDestroyImageView(struct_vulkan->device.device, frame->color.view, nullptr);
     vk_image->clean_image(&frame->depth);
     vk_framebuffer->clean_framebuffer_obj(frame->fbo);
-    vk_synchronization->clean_frame_sync(frame);
+    vk_synchronization->clean_frame_semaphore(frame);
+    vk_fence->clean_fence(frame->fence);
     delete frame;
   }
   vec_frame.clear();

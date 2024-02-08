@@ -3,7 +3,8 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::image{class Image;}
-namespace vk::synchro{class Synchronization;}
+namespace vk::synchro{class Semaphore;}
+namespace vk::synchro{class Fence;}
 namespace vk::image{class Color;}
 namespace vk::renderpass{class Framebuffer;}
 namespace vk::image{class Depth;}
@@ -26,7 +27,8 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::synchro::Synchronization* vk_synchronization;
+  vk::synchro::Semaphore* vk_synchronization;
+  vk::synchro::Fence* vk_fence;
   vk::renderpass::Framebuffer* vk_framebuffer;
   vk::image::Image* vk_image;
   vk::image::Color* vk_color;

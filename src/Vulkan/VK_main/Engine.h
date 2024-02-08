@@ -17,7 +17,7 @@ namespace vk::data{class Canvas;}
 namespace vk::instance{class Extension;}
 namespace vk::instance{class Pool;}
 namespace vk::draw{class Drawer;}
-namespace vk::synchro{class Synchronization;}
+namespace vk::synchro{class Semaphore;}
 namespace vk::command{class Command_buffer;}
 namespace vk::synchro{class Fence;}
 namespace vk::renderpass{class Renderpass;}
@@ -72,7 +72,7 @@ private:
   vk::data::Data* vk_data;
   vk::draw::Viewport* vk_viewport;
   vk::shader::Reloader* vk_reload;
-  vk::synchro::Synchronization* vk_synchronization;
+  vk::synchro::Semaphore* vk_synchronization;
   vk::presentation::Frame* vk_frame;
   vk::data::Canvas* vk_canvas;
   vk::draw::Drawer* vk_drawing;

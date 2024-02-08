@@ -1,4 +1,4 @@
-#include "Synchronization.h"
+#include "Semaphore.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,17 +6,17 @@
 namespace vk::synchro{
 
 //Constructor / Destructor
-Synchronization::Synchronization(vk::structure::Vulkan* struct_vulkan){
+Semaphore::Semaphore(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-Synchronization::~Synchronization(){}
+Semaphore::~Semaphore(){}
 
 //Main function
-void Synchronization::init(){
+void Semaphore::init(){
   //---------------------------
 
   //Create semaphore - Renderpass
@@ -36,11 +36,19 @@ void Synchronization::init(){
   this->create_semaphore(semaphore_render_done);
   struct_vulkan->synchro.semaphore_render_done = semaphore_render_done;
 
-  this->create_fence(struct_vulkan->synchro.fence);
-
   //---------------------------
 }
-void Synchronization::init_frame_sync(vk::structure::Frame* frame){
+void Semaphore::clean(){
+  //---------------------------
+/*
+  this->clean_semaphore(struct_vulkan->synchro.semaphore_image_ready);
+  this->clean_semaphore(struct_vulkan->synchro.semaphore_render_done);
+  this->clean_vec_semaphore(struct_vulkan->synchro.vec_semaphore_render);
+*/
+  //---------------------------
+}
+
+void Semaphore::init_frame_semaphore(vk::structure::Frame* frame){
   //---------------------------
 
   //Create semaphore - Renderpass
@@ -60,33 +68,19 @@ void Synchronization::init_frame_sync(vk::structure::Frame* frame){
   this->create_semaphore(semaphore_render_done);
   frame->semaphore_render_done = semaphore_render_done;
 
-  this->create_fence(frame->fence);
-
   //---------------------------
 }
-void Synchronization::clean(){
-  //---------------------------
-/*
-  this->clean_semaphore(struct_vulkan->synchro.semaphore_image_ready);
-  this->clean_semaphore(struct_vulkan->synchro.semaphore_render_done);
-  this->clean_vec_semaphore(struct_vulkan->synchro.vec_semaphore_render);
-  this->clean_fence(struct_vulkan->synchro.fence);
-*/
-  //---------------------------
-}
-void Synchronization::clean_frame_sync(vk::structure::Frame* frame){
+void Semaphore::clean_frame_semaphore(vk::structure::Frame* frame){
   //---------------------------
 
   this->clean_semaphore(frame->semaphore_image_ready);
   this->clean_semaphore(frame->semaphore_render_done);
   this->clean_vec_semaphore(frame->vec_semaphore_render);
-  this->clean_fence(frame->fence);
 
   //---------------------------
 }
 
-//Synchronization object
-void Synchronization::create_semaphore(VkSemaphore& semaphore){
+void Semaphore::create_semaphore(VkSemaphore& semaphore){
   //---------------------------
 
   VkSemaphoreCreateInfo semaphoreInfo{};
@@ -99,25 +93,7 @@ void Synchronization::create_semaphore(VkSemaphore& semaphore){
 
   //---------------------------
 }
-void Synchronization::create_fence(VkFence& fence){
-  //---------------------------
-
-  VkFenceCreateInfo fenceInfo{};
-  fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
-  fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
-
-  VkResult result = vkCreateFence(struct_vulkan->device.device, &fenceInfo, nullptr, &fence);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create fence");
-  }
-
-  vkResetFences(struct_vulkan->device.device, 1, &fence);
-
-  //---------------------------
-}
-
-//Deletetion function
-void Synchronization::clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore){
+void Semaphore::clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore){
   //---------------------------
 
   for(int i=0; i<vec_semaphore.size(); i++){
@@ -128,30 +104,13 @@ void Synchronization::clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore){
 
   //---------------------------
 }
-void Synchronization::clean_semaphore(VkSemaphore& semaphore){
+void Semaphore::clean_semaphore(VkSemaphore& semaphore){
   //---------------------------
 
   vkDestroySemaphore(struct_vulkan->device.device, semaphore, nullptr);
 
   //---------------------------
 }
-void Synchronization::clean_vec_fence(vector<VkFence>& vec_fence){
-  //---------------------------
 
-  for(int i=0; i<vec_fence.size(); i++){
-    VkFence& fence = vec_fence[i];
-    this->clean_fence(fence);
-  }
-  vec_fence.clear();
-
-  //---------------------------
-}
-void Synchronization::clean_fence(VkFence& fence){
-  //---------------------------
-
-  vkDestroyFence(struct_vulkan->device.device, fence, nullptr);
-
-  //---------------------------
-}
 
 }
