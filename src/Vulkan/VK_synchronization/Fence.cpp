@@ -33,7 +33,7 @@ void Fence::init(){
 }
 
 //Subfunction
-vk::structure::Fence* Command_buffer::query_free_fence(){
+vk::structure::Fence* Fence::query_free_fence(){
   std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.pool;
   //---------------------------
 
@@ -52,6 +52,28 @@ vk::structure::Fence* Command_buffer::query_free_fence(){
 
   //---------------------------
   return nullptr;
+}
+bool Fence::is_fence_available(VkFence& fence){
+  bool is_available = false;
+  //---------------------------
+
+  VkResult result = vkGetFenceStatus(struct_vulkan->device.device, fence);
+
+  //Operation completed
+  if(result == VK_SUCCESS){
+    is_available = true;
+  }
+  //Operation is running
+  else if(result == VK_NOT_READY){
+    is_available = false;
+  }
+  //Error in fence status check
+  else{
+
+  }
+
+  //---------------------------
+  return is_available;
 }
 void Fence::create_fence(VkFence& fence){
   //---------------------------

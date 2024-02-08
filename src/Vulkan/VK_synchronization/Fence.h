@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Fence;}
 
 
 namespace vk::synchro{
