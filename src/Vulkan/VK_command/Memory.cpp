@@ -10,9 +10,6 @@ Memory::Memory(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  //this->vk_image = new vk::image::Image(struct_vulkan);
-  this->vk_command = new vk::command::Command(struct_vulkan);
-  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
 
   //---------------------------
 }

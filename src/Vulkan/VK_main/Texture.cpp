@@ -43,7 +43,7 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
   vk_memory->create_empty_stagger_buffer(buffer, utl_image->size);
 
   //Fill and store
-  vk_transfert->transfert_texture_to_gpu(texture);
+  vk_transfert->copy_texture_to_gpu(texture);
   struct_vulkan->data.vec_texture.push_back(texture);
 
   //---------------------------
@@ -58,7 +58,7 @@ void Texture::update_texture(vk::structure::Texture* texture){
     return;
   }
 
-  vk_transfert->transfert_texture_to_gpu(texture);
+  vk_transfert->copy_texture_to_gpu(texture);
 
   //---------------------------
 }

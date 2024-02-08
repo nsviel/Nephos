@@ -10,8 +10,7 @@ Transfert::Transfert(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  //this->vk_image = new vk::image::Image(struct_vulkan);
-  this->vk_command = new vk::command::Command(struct_vulkan);
+  this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
 
   //---------------------------
@@ -19,7 +18,7 @@ Transfert::Transfert(vk::structure::Vulkan* struct_vulkan){
 Transfert::~Transfert(){}
 
 //Image GPU function
-void Transfert::transfert_texture_to_gpu(vk::structure::Texture* texture){
+void Transfert::copy_texture_to_gpu(vk::structure::Texture* texture){
   //---------------------------
 
   //Get texture structures
@@ -37,9 +36,9 @@ void Transfert::transfert_texture_to_gpu(vk::structure::Texture* texture){
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
-  vk_command->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
+  vk_image->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
   this->copy_buffer_to_image(command_buffer, image, buffer->vbo);
-  vk_command->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk_image->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   vk_command_buffer->end_command_buffer(command_buffer);
   vk_command_buffer->submit(command_buffer);
@@ -79,7 +78,7 @@ void Transfert::copy_image_to_buffer(vk::structure::Command_buffer* command_buff
 }
 
 //Buffer GPU function
-void Transfert::update_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
+void Transfert::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
   //---------------------------
 
   if (data_size == 0) {
@@ -97,7 +96,7 @@ void Transfert::update_buffer_data(vk::structure::Buffer* buffer, const void* da
 
   //---------------------------
 }
-void Transfert::update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize data_size){
+void Transfert::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize data_size){
   //---------------------------
 
   if (data_size == 0) {
