@@ -16,7 +16,7 @@ class GUI
 {
 public:
   //Constructor / Destructor
-  GUI(vk::render::Node* node_render);
+  GUI(vk::Node* node_vulkan);
   ~GUI();
 
 public:

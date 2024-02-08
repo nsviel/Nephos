@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+namespace vk{class Node;}
 namespace vk::main{class Engine;}
 namespace vk::renderpass{class Pipeline;}
 namespace vk::draw{class Viewport;}
@@ -20,7 +21,7 @@ class EDL
 {
 public:
   //Constructor / Destructor
-  EDL(vk::render::Node* node_render);
+  EDL(vk::Node* node_vulkan);
   ~EDL();
 
 public:

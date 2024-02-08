@@ -1,22 +1,19 @@
 #include "Scene.h"
 
-#include <Engine/Node.h>
 #include <Vulkan/Namespace.h>
-#include <Engine/Render/Namespace.h>
 
 
 namespace vk::renderpass{
 
 //Constructor / Destructor
-Scene::Scene(vk::render::Node* node_render){
+Scene::Scene(vk::Node* node_vulkan){
   //---------------------------
 
-  eng::Node* engine = node_render->get_node_engine();
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
-  vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
+  vk::render::Node* node_render = node_vulkan->get_node_render();
+  vk::structure::Vulkan* struct_vulkan = node_vulkan->get_struct_vulkan();
 
-  this->node_render = node_render;
-  this->vk_engine = eng_vulkan->get_vk_engine();
+  this->shader_scene = node_render->get_shader_scene();
+  this->vk_engine = node_vulkan->get_vk_engine();
   this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
   this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
@@ -43,7 +40,6 @@ void Scene::init_renderpass(){
   vk_engine->add_renderpass_description(renderpass);
 }
 void Scene::create_subpass(vk::structure::Renderpass* renderpass){
-  eng::shader::SCE* shader_scene = node_render->get_shader_scene();
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();

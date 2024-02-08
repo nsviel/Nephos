@@ -10,6 +10,7 @@ namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
 namespace vk::draw{class Drawer;}
 namespace vk::render{class Node;}
+namespace vk::render{class Scene;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
@@ -21,7 +22,7 @@ class Scene
 {
 public:
   //Constructor / Destructor
-  Scene(vk::render::Node* node_render);
+  Scene(vk::Node* node_vulkan);
   ~Scene();
 
 public:
@@ -36,6 +37,7 @@ public:
   void cmd_draw_triangle(vk::structure::Subpass* subpass);
 
 private:
+  vk::render::Scene* shader_scene;
   vk::render::Node* node_render;
   vk::structure::Vulkan* struct_vulkan;
   vk::binding::Descriptor* vk_descriptor;

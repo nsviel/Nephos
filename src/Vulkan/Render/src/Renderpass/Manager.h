@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::render{class Node;}
+namespace vk{class Node;}
 namespace vk::renderpass{class EDL;}
 namespace vk::renderpass{class Scene;}
 namespace vk::renderpass{class GUI;}
@@ -14,7 +14,7 @@ class Manager
 {
 public:
   //Constructor / Destructor
-  Manager(vk::render::Node* node_render);
+  Manager(vk::Node* node_vulkan);
   ~Manager();
 
 public:
