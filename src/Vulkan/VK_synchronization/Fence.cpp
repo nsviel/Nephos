@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::command{
+namespace vk::synchro{
 
 //Constructor / Destructor
 Fence::Fence(vk::structure::Vulkan* struct_vulkan){

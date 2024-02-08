@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::command{
+namespace vk::synchro{
 
 //Constructor / Destructor
 Synchronization::Synchronization(vk::structure::Vulkan* struct_vulkan){

@@ -6,7 +6,7 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Frame;}
 
 
-namespace vk::command{
+namespace vk::synchro{
 
 class Synchronization
 {

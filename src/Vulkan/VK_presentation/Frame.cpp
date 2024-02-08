@@ -10,7 +10,7 @@ Frame::Frame(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_synchronization = new vk::command::Synchronization(struct_vulkan);
+  this->vk_synchronization = new vk::synchro::Synchronization(struct_vulkan);
   this->vk_framebuffer = new vk::renderpass::Framebuffer(struct_vulkan);
   this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_color = new vk::image::Color(struct_vulkan);
