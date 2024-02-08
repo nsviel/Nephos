@@ -138,7 +138,7 @@ void Command::start_render_pass(vk::structure::Renderpass* renderpass, VkFramebu
 vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
 
 
-//vk_command_buffer->end_command_buffer(command_buffer);
+//
 
 
 renderpass->command_buffer = vk_command_buffer->acquire_free_command_buffer();
@@ -179,7 +179,7 @@ void Command::stop_render_pass(vk::structure::Renderpass* renderpass){
 
   vkCmdEndRenderPass(renderpass->command_buffer->command);
 
-  this->stop_command_buffer(renderpass->command_buffer->command);
+vk_command_buffer->end_command_buffer(command_buffer);
 
   //---------------------------
 }
