@@ -36,7 +36,7 @@ void Swapchain::create_swapchain(){
 }
 void Swapchain::recreate_swapchain(){
   //---------------------------
-sayHello();
+
   //Minimization managment
   int width = 0, height = 0;
   while(width == 0 || height == 0){
@@ -54,7 +54,7 @@ sayHello();
   this->create_swapchain();
   vk_frame->create_frame();
   vk_framebuffer->create_framebuffers();
-sayHello();
+
   //---------------------------
 }
 void Swapchain::clean(){
