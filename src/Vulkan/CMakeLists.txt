@@ -3,7 +3,22 @@ set(LIBRARY_NAME LIBRARY_VULKAN)
 #-----------------
 # Source files
 #-----------------
-file(GLOB_RECURSE ALL_SOURCES *.cpp)
+file(GLOB_RECURSE ALL_SOURCES
+  VK_binding/*.cpp
+  VK_command/*.cpp
+  VK_data/*.cpp
+  VK_device/*.cpp
+  VK_drawing/*.cpp
+  VK_image/*.cpp
+  VK_instance/*.cpp
+  VK_main/*.cpp
+  VK_presentation/*.cpp
+  VK_renderpass/*.cpp
+  VK_shader/*.cpp
+  VK_struct/*.cpp
+  VK_validation/*.cpp
+  Node.cpp
+)
 
 #-----------------
 # Compilation

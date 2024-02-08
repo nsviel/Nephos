@@ -1,0 +1,50 @@
+#include "Node.h"
+
+#include <Vulkan/Render/Namespace.h>
+#include <image/IconsFontAwesome6.h>
+
+
+namespace vk::render{
+
+Node::Node(vk::Node* node_vulkan){
+  utl::gui::Panel* sha_panel = new_panel("Shader", ICON_FA_ROAD, false);
+  //---------------------------
+
+  this->node_vulkan = node_vulkan;
+  this->shader_edl = new vk::render::EDL(this);
+  this->shader_scene = new vk::render::SCE(this);
+  this->eng_renderpass = new vk::renderpass::Manager(this);
+  this->gui_shader = new vk::render::gui::Shader(this, &sha_panel->is_open);
+  this->gui_render = new vk::render::gui::Renderer(this);
+
+  //---------------------------
+}
+Node::~Node(){
+  //---------------------------
+
+  delete shader_edl;
+  delete shader_scene;
+
+  //---------------------------
+}
+
+//Main function
+void Node::init(){
+  //---------------------------
+
+  //gui_shader->init_panel();
+  eng_renderpass->init();
+
+  //---------------------------
+}
+void Node::gui(){
+  //---------------------------
+
+  gui_shader->run_panel();
+  gui_render->run_panel();
+
+  //---------------------------
+}
+
+
+}
