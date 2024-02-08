@@ -22,17 +22,12 @@ public:
   ~Memory();
 
 public:
-  //Image GPU function
-  void transfert_texture_to_gpu(vk::structure::Texture* texture);
+  //Image memory
   void allocate_image_memory(vk::structure::Image* image);
-  void copy_buffer_to_image(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer);
-  void copy_image_to_buffer(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer);
 
-  //Buffer GPU function
+  //Buffer memory
   void create_empty_stagger_buffer(vk::structure::Buffer* buffer, VkDeviceSize size);
   void create_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceSize size);
-  void update_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize);
-  void update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize dataSize);
 
   //Subfunction
   void bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);

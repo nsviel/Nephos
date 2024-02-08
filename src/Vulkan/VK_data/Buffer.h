@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::command{class Memory;}
+namespace vk::command{class Transfert;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Buffer;}
@@ -28,6 +29,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::command::Memory* vk_memory;
+  vk::command::Transfert* vk_transfert;
 };
 
 }

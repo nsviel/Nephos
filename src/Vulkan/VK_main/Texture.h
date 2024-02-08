@@ -4,6 +4,7 @@
 
 namespace vk::image{class Image;}
 namespace vk::command{class Memory;}
+namespace vk::command{class Transfert;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Texture;}
 namespace vk::structure{class Object;}
@@ -31,9 +32,10 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::image::Image* vk_image;
   vk::command::Memory* vk_memory;
+  vk::command::Transfert* vk_transfert;
   vk::data::Buffer* vk_buffer;
+  vk::image::Image* vk_image;
 };
 
 }

@@ -18,6 +18,7 @@ Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
   this->vk_texture = new vk::main::Texture(struct_vulkan);
   this->vk_memory = new vk::command::Memory(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
+  this->vk_transfert = new vk::command::Transfert(struct_vulkan);
 
   //---------------------------
 }
@@ -40,7 +41,7 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_memory->copy_image_to_buffer(command_buffer, image, staging_buffer);
+  vk_transfert->copy_image_to_buffer(command_buffer, image, staging_buffer);
 
   vk_command_buffer->end_command_buffer(command_buffer);
   vk_command_buffer->submit(command_buffer);
@@ -83,7 +84,7 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_memory->copy_image_to_buffer(command_buffer, image, staging_buffer);
+  vk_transfert->copy_image_to_buffer(command_buffer, image, staging_buffer);
 
   vk_command_buffer->end_command_buffer(command_buffer);
   vk_command_buffer->submit(command_buffer);

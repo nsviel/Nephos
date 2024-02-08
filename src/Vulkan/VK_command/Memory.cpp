@@ -19,33 +19,6 @@ Memory::Memory(vk::structure::Vulkan* struct_vulkan){
 Memory::~Memory(){}
 
 //Image GPU function
-void Memory::transfert_texture_to_gpu(vk::structure::Texture* texture){
-  //---------------------------
-
-  //Get texture structures
-  vk::structure::Image* image = &texture->vk_image;
-  utl::media::Image* utl_image = texture->utl_image;
-  vk::structure::Buffer* buffer = &texture->stagger;
-
-  //Copy data to stagging buffer
-  void* staging_data;
-  vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, buffer->size, 0, &staging_data);
-  memcpy(staging_data, utl_image->data.data(), buffer->size);
-  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
-
-  //Image transition from undefined layout to read only layout
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
-
-  vk_command->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
-  this->copy_buffer_to_image(command_buffer, image, buffer->vbo);
-  vk_command->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-
-  vk_command_buffer->end_command_buffer(command_buffer);
-  vk_command_buffer->submit(command_buffer);
-
-  //---------------------------
-}
 void Memory::allocate_image_memory(vk::structure::Image* image){
   //---------------------------
 
@@ -62,37 +35,6 @@ void Memory::allocate_image_memory(vk::structure::Image* image){
   }
 
   vkBindImageMemory(struct_vulkan->device.device, image->image, image->mem, 0);
-
-  //---------------------------
-}
-void Memory::copy_buffer_to_image(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer){
-  //---------------------------
-
-  VkBufferImageCopy region{};
-  region.bufferOffset = 0;
-  region.bufferRowLength = 0;
-  region.bufferImageHeight = 0;
-  region.imageSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
-  region.imageSubresource.mipLevel = 0;
-  region.imageSubresource.baseArrayLayer = 0;
-  region.imageSubresource.layerCount = 1;
-  region.imageOffset = {0, 0, 0};
-  region.imageExtent = {image->width, image->height, 1};
-  vkCmdCopyBufferToImage(command_buffer->command, buffer, image->image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
-
-  //---------------------------
-}
-void Memory::copy_image_to_buffer(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer){
-  //---------------------------
-
-  VkBufferImageCopy region{};
-  region.bufferOffset = 0,
-  region.bufferRowLength = 0,
-  region.bufferImageHeight = 0,
-  region.imageSubresource = {VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1},
-  region.imageOffset = {0, 0, 0},
-  region.imageExtent = {image->width, image->height, 1};
-  vkCmdCopyImageToBuffer(command_buffer->command, image->image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, buffer, 1, &region);
 
   //---------------------------
 }
@@ -117,55 +59,6 @@ void Memory::create_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceS
   buffer->size = size;
   this->create_gpu_buffer(buffer->size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
   this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
-
-  //---------------------------
-}
-void Memory::update_buffer_data(vk::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
-  //---------------------------
-
-  if (data_size == 0) {
-    throw std::runtime_error("Data size is zero!");
-  }
-
-  // Map the buffer's memory and copy the data
-  void* mappedMemory;
-  VkResult result = vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, data_size, 0, &mappedMemory);
-  if (result != VK_SUCCESS) {
-    throw std::runtime_error("Failed to map buffer memory!");
-  }
-  memcpy(mappedMemory, data, static_cast<size_t>(data_size));
-  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
-
-  //---------------------------
-}
-void Memory::update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize data_size){
-  //---------------------------
-
-  if (data_size == 0) {
-    throw std::runtime_error("Data size is zero!");
-  }
-
-  // Map the buffer's memory and copy the data
-  void* mappedMemory;
-  VkResult result = vkMapMemory(struct_vulkan->device.device, stagger->mem, 0, data_size, 0, &mappedMemory);
-  if (result != VK_SUCCESS) {
-    throw std::runtime_error("Failed to map buffer memory!");
-  }
-  memcpy(mappedMemory, data, static_cast<size_t>(data_size));
-  vkUnmapMemory(struct_vulkan->device.device, stagger->mem);
-
-
-
-  // Create command buffer to cpy on gpu
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
-
-  VkBufferCopy copyRegion = {};
-  copyRegion.size = data_size;
-  vkCmdCopyBuffer(command_buffer->command, stagger->vbo, buffer->vbo, 1, &copyRegion);
-
-  vk_command_buffer->end_command_buffer(command_buffer);
-
 
   //---------------------------
 }
