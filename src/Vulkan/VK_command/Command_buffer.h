@@ -5,6 +5,7 @@
 namespace vk::command{class Submit;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command_buffer;}
+namespace vk::structure{class Renderpass;}
 
 
 namespace vk::command{
@@ -30,7 +31,8 @@ public:
   //Subfunction
   vk::structure::Command_buffer* acquire_free_command_buffer();
   void allocate_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
-  void start_command_buffer(vk::structure::Command_buffer* command_buffer);
+  void start_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
+  void start_command_buffer_secondary(vk::structure::Renderpass* renderpass);
   void end_command_buffer(vk::structure::Command_buffer* command_buffer);
 
 private:

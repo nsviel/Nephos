@@ -186,7 +186,7 @@ void Imgui::load_font(){
   //---------------------------
 
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
-  vk_command_buffer->start_command_buffer(command_buffer);
+  vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   ImGui_ImplVulkan_CreateFontsTexture(command_buffer->command);
 

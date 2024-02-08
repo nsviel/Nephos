@@ -34,7 +34,7 @@ void Memory::transfert_texture_to_gpu(vk::structure::Texture* texture){
 
   //Image transition from undefined layout to read only layout
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
-  vk_command_buffer->start_command_buffer(command_buffer);
+  vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   vk_command->image_layout_transition(command_buffer->command, vk_image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
   this->copy_buffer_to_image(command_buffer, vk_image, buffer->vbo);
@@ -157,7 +157,7 @@ void Memory::update_buffer_data(vk::structure::Buffer* buffer, vk::structure::Bu
 
   // Create command buffer to cpy on gpu
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
-  vk_command_buffer->start_command_buffer(command_buffer);
+  vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   VkBufferCopy copyRegion = {};
   copyRegion.size = data_size;
