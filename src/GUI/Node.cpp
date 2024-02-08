@@ -52,7 +52,7 @@ void Node::loop(){
   gui_docking->docker_space_main();
   gui_tab->run_tab();
   gui_control->run_control();
-  gui_render->loop();
+  gui_render->render();
 
   //---------------------------
 }

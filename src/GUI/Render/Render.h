@@ -19,7 +19,7 @@ public:
 public:
   //Main functions
   void init();
-  void loop();
+  void render();
   void clean();
   void new_frame();
 

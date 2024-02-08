@@ -52,6 +52,10 @@ void Node::loop(){
   tasker_cpu->task_begin("eng");
   //---------------------------
 
+  tasker_cpu->task_begin("eng::vulkan");
+  eng_vulkan->loop();
+  tasker_cpu->task_end("eng::vulkan");
+
   node_camera->loop();
   node_capture->loop();
 
@@ -59,9 +63,7 @@ void Node::loop(){
   node_scene->loop();
   tasker_cpu->task_end("eng::scene");
 
-  tasker_cpu->task_begin("eng::vulkan");
-  eng_vulkan->loop();
-  tasker_cpu->task_end("eng::vulkan");
+
 
   //---------------------------
   tasker_cpu->task_end("eng");

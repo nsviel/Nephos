@@ -32,7 +32,7 @@ void Render::init(){
 
   //---------------------------
 }
-void Render::loop(){
+void Render::render(){
   //---------------------------
 
   vk_imgui->render();

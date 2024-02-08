@@ -79,7 +79,7 @@ void Command_buffer::submit(){
   vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
 
   //Reset all command buffer
-  //this->reset();
+  this->reset();
 
   //---------------------------
 }
