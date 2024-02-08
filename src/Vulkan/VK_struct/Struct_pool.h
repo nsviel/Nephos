@@ -9,7 +9,8 @@ struct Pool_command_buffer{
   //---------------------------
 
   VkCommandPool command;
-  uint32_t size = 0;
+  std::vector<vk::structure::Command_buffer> pool;
+  uint32_t size = 100;
 
   //---------------------------
 };

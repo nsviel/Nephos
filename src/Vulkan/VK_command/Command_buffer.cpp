@@ -17,10 +17,10 @@ Command_buffer::~Command_buffer(){}
 
 //Main function
 void Command_buffer::init(){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
+  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->command.nb_command_buffer; i++){
+  for(int i=0; i<struct_vulkan->pools.command_buffer.size; i++){
     vk::structure::Command_buffer command_buffer;
 
     //Fence
@@ -40,7 +40,7 @@ void Command_buffer::init(){
   //---------------------------
 }
 void Command_buffer::reset(){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
+  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   //Clear all old command buffer
@@ -57,7 +57,7 @@ void Command_buffer::reset(){
   //---------------------------
 }
 void Command_buffer::clean(){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
+  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   //Clear all old command buffer
@@ -68,13 +68,13 @@ void Command_buffer::clean(){
     vkDestroyFence(struct_vulkan->device.device, command_buffer->fence, nullptr);
 
     //Command buffer
-    vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pool.command_buffer.command, 1, &command_buffer->command);
+    vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pools.command_buffer.command, 1, &command_buffer->command);
   }
 
   //---------------------------
 }
 void Command_buffer::submit(){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
+  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   //Submit all recorder command buffer
@@ -99,7 +99,7 @@ void Command_buffer::submit(){
 
 //Per command buffer
 void Command_buffer::reset(vk::structure::Command_buffer* command_buffer){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
+  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   if(command_buffer->is_resetable){
@@ -128,7 +128,7 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
 
 //Command buffer lifetime
 vk::structure::Command_buffer* Command_buffer::acquire_free_command_buffer(){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
+  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   //Find the first free command buffer
@@ -155,7 +155,7 @@ void Command_buffer::allocate_command_buffer_primary(vk::structure::Command_buff
   VkCommandBufferAllocateInfo alloc_info{};
   alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
   alloc_info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-  alloc_info.commandPool = struct_vulkan->pool.command_buffer.command;
+  alloc_info.commandPool = struct_vulkan->pools.command_buffer.command;
   alloc_info.commandBufferCount = 1;
   VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &command_buffer->command);
   if(result != VK_SUCCESS){
@@ -171,7 +171,7 @@ void Command_buffer::allocate_command_buffer_secondary(vk::structure::Object* da
   VkCommandBufferAllocateInfo alloc_info{};
   alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
   alloc_info.level = VK_COMMAND_BUFFER_LEVEL_SECONDARY;
-  alloc_info.commandPool = struct_vulkan->pool.command_buffer.command;
+  alloc_info.commandPool = struct_vulkan->pools.command_buffer.command;
   alloc_info.commandBufferCount = 1;
 
   VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &data->command_buffer_secondary);

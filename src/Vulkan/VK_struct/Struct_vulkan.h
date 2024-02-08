@@ -28,7 +28,7 @@ struct Vulkan{
   vk::structure::Swapchain swapchain;
   vk::structure::Data data;
   vk::structure::Parameter param;
-  vk::structure::Pool pool;
+  vk::structure::Pool pools;
   vk::structure::Synchro synchro;
   vk::structure::Command command;
   prf::Tasker* tasker_cpu;

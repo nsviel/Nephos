@@ -168,7 +168,7 @@ void Descriptor::allocate_descriptor_set(vk::structure::Binding* binding){
 
   VkDescriptorSetAllocateInfo allocation_info{};
   allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-  allocation_info.descriptorPool = struct_vulkan->pool.descriptor;
+  allocation_info.descriptorPool = struct_vulkan->pools.descriptor;
   allocation_info.descriptorSetCount = 1;
   allocation_info.pSetLayouts = &binding->descriptor.layout;
 
@@ -176,7 +176,7 @@ void Descriptor::allocate_descriptor_set(vk::structure::Binding* binding){
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate descriptor sets!");
   }else{
-    struct_vulkan->pool.nb_descriptor_allocated++;
+    struct_vulkan->pools.nb_descriptor_allocated++;
   }
 
   //---------------------------
