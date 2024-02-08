@@ -10,6 +10,7 @@ Command_buffer::Command_buffer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
+  this->vk_fence = new vk::synchro::Fence(struct_vulkan);
 
   //---------------------------
 }
@@ -23,13 +24,6 @@ void Command_buffer::init(){
   for(int i=0; i<struct_vulkan->pools.command_buffer.size; i++){
     vk::structure::Command_buffer command_buffer;
 
-    //Fence
-    VkFenceCreateInfo fence_info = {};
-    fence_info.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
-    fence_info.flags = 0;
-    vkCreateFence(struct_vulkan->device.device, &fence_info, nullptr, &command_buffer.fence);
-
-    //Command buffer
     this->create_command_buffer_primary(&command_buffer);
     command_buffer.is_available = true;
     command_buffer.is_recorded = false;
@@ -64,10 +58,6 @@ void Command_buffer::clean(){
   for(int i=0; i<pool.size(); i++){
     vk::structure::Command_buffer* command_buffer = &pool[i];
 
-    //Fence
-    vkDestroyFence(struct_vulkan->device.device, command_buffer->fence, nullptr);
-
-    //Command buffer
     vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pools.command_buffer.command, 1, &command_buffer->command);
   }
 
@@ -77,6 +67,8 @@ void Command_buffer::submit(){
   std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
+  //vk::structure::Fence* fence = vk_fence->query_free_fence();
+
   //Submit all recorder command buffer
   vector<VkCommandBuffer> vec_command;
   for(int i=0; i<pool.size(); i++){
@@ -85,6 +77,7 @@ void Command_buffer::submit(){
     if(command_buffer->is_recorded){
       vec_command.push_back(command_buffer->command);
       command_buffer->is_recorded = false;
+      //command_buffer->fence = fence;
     }
   }
 
