@@ -11,8 +11,8 @@ Node::Node(vk::Node* node_vulkan){
   //---------------------------
 
   this->node_vulkan = node_vulkan;
-  this->shader_edl = new vk::render::EDL(this);
-  this->shader_scene = new vk::render::SCE(this);
+  this->shader_edl = new vk::render::EDL(node_vulkan);
+  this->shader_scene = new vk::render::SCE(node_vulkan);
   this->eng_renderpass = new vk::renderpass::Manager(node_vulkan);
   this->gui_shader = new vk::render::gui::Shader(node_vulkan, &sha_panel->is_open);
   this->gui_render = new vk::render::gui::Renderer(node_vulkan);

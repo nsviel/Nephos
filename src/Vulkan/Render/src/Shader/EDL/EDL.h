@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::render{class Node;}
+namespace vk{class Node;}
 namespace vk::render{class EDL_param;}
 namespace eng::cam{class Manager;}
 namespace utl::entity{class Camera;}
@@ -15,7 +15,7 @@ class EDL : public utl::shader::Base
 {
 public:
   //Contrustor / destructor
-  EDL(vk::render::Node* node_render);
+  EDL(vk::Node* node_vulkan);
   ~EDL();
 
   //Main function

@@ -7,13 +7,9 @@
 
 namespace vk::render{
 
-SCE::SCE(vk::render::Node* node_render){
+SCE::SCE(vk::Node* node_vulkan){
   //---------------------------
 
-  eng::Node* engine = node_render->get_node_engine();
-  utl::Node* utility = engine->get_node_utility();
-
-  this->utl_window = utility->get_utl_window();
 
   //---------------------------
   this->init_shader();

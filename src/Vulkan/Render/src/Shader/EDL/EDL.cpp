@@ -6,10 +6,9 @@
 
 namespace vk::render{
 
-EDL::EDL(vk::render::Node* node_render){
+EDL::EDL(vk::Node* node_vulkan){
   //---------------------------
 
-  vk::Node* node_vulkan = node_render->get_node_engine();
   utl::Node* utility = engine->get_node_utility();
   eng::cam::Node* node_camera = engine->get_node_camera();
 
