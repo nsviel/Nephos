@@ -76,8 +76,9 @@ void Command_buffer::submit(){
   }
 
   this->submit_command_buffer(vec_command);
+  tic();
   vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
-
+toc_us("hey");
   //Reset all command buffer
   this->reset();
 
