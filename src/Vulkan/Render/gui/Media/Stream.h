@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Node;}
+namespace vk{class Node;}
 namespace vk::main{class Texture;}
 namespace vk::structure{class Texture;}
 
@@ -13,7 +13,7 @@ class Stream
 {
 public:
   //Constructor / Destructor
-  Stream(eng::Node* engine);
+  Stream(vk::Node* node_vulkan);
   ~Stream();
 
 public:

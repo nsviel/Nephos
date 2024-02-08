@@ -3,8 +3,9 @@
 #include <Utility/Specific/common.h>
 
 class Text;
-namespace vk::main{class Engine;}
+namespace vk{class Node;}
 namespace vk::render{class Node;}
+namespace vk::main{class Engine;}
 namespace utl::gui::widget{class Console;}
 namespace utl::gui::editor{class Text;}
 
@@ -15,7 +16,7 @@ class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(vk::render::Node* node_render, bool* show_window);
+  Shader(vk::Node* node_vulkan, bool* show_window);
   ~Shader();
 
 public:

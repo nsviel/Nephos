@@ -1,6 +1,5 @@
 #include "Image.h"
 
-#include <Engine/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Function/File/Image.h>
 
@@ -8,11 +7,10 @@
 namespace vk::render::gui{
 
 //Constructor / Destructor
-Image::Image(eng::Node* engine){
+Image::Image(vk::Node* node_vulkan){
   //---------------------------
 
-  vk::Node* vulkan = engine->get_eng_vulkan();
-  this->vk_texture = vulkan->get_vk_texture();
+  this->vk_texture = node_vulkan->get_vk_texture();
 
   //---------------------------
 }

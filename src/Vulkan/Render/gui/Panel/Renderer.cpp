@@ -1,27 +1,19 @@
 #include "Renderer.h"
 
-#include <GUI/Namespace.h>
-#include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Utility/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
 namespace vk::render::gui{
 
 //Constructor / Destructor
-Renderer::Renderer(vk::render::Node* node_render){
+Renderer::Renderer(vk::Node* node_vulkan){
   //---------------------------
 
-  eng::Node* node_engine = node_render->get_node_engine();
-  utl::Node* node_utility = node_engine->get_node_utility();
-  vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
-
-  this->utl_window = node_utility->get_utl_window();
-  this->node_operation = node_engine->get_node_operation();
-  this->node_camera = node_engine->get_node_camera();
-  this->vk_imgui = eng_vulkan->get_vk_imgui();
-  this->vk_info = eng_vulkan->get_vk_info();
+  //this->node_operation = node_engine->get_node_operation();
+  //this->node_camera = node_engine->get_node_camera();
+  this->vk_imgui = node_vulkan->get_vk_imgui();
+  this->vk_info = node_vulkan->get_vk_info();
 
   this->name = "Renderer";
 
@@ -61,8 +53,8 @@ void Renderer::engine_texture(){
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
   if(ImGui::IsItemHovered()){
-    node_operation->control();
-    node_camera->control();
+    //node_operation->control();
+    //node_camera->control();
   }
 
   //---------------------------

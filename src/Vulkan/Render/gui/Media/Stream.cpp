@@ -1,6 +1,5 @@
 #include "Stream.h"
 
-#include <Engine/Node.h>
 #include <Vulkan/Namespace.h>
 #include <GUI/Namespace.h>
 
@@ -8,11 +7,10 @@
 namespace vk::render::gui{
 
 //Constructor / Destructor
-Stream::Stream(eng::Node* engine){
+Stream::Stream(vk::Node* node_vulkan){
   //---------------------------
 
-  vk::Node* vulkan = engine->get_eng_vulkan();
-  this->vk_texture = vulkan->get_vk_texture();
+  this->vk_texture = node_vulkan->get_vk_texture();
   this->texture = nullptr;
   this->imgui_texture = 0;
 
