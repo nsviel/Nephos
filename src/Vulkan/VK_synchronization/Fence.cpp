@@ -33,6 +33,26 @@ void Fence::init(){
 }
 
 //Subfunction
+vk::structure::Fence* Command_buffer::query_free_fence(){
+  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.pool;
+  //---------------------------
+
+  //Find the first free command buffer
+  for(int i=0; i<pool.size(); i++){
+    vk::structure::Fence* fence = &pool[i];
+
+    if(fence->is_available){
+      fence->is_available = false;
+      return fence;
+    }
+  }
+
+  //Error message
+  cout<<"[error] not enough fence"<<endl;
+
+  //---------------------------
+  return nullptr;
+}
 void Fence::create_fence(VkFence& fence){
   //---------------------------
 

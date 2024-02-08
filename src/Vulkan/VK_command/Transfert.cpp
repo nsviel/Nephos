@@ -33,7 +33,7 @@ void Transfert::copy_texture_to_gpu(vk::structure::Texture* texture){
   vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
 
   //Image transition from undefined layout to read only layout
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   vk_image->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
@@ -115,7 +115,7 @@ void Transfert::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::B
 
 
   // Create command buffer to cpy on gpu
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   VkBufferCopy copyRegion = {};

@@ -37,7 +37,7 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
 
 
   //Image transition from undefined layout to read only layout
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
@@ -80,7 +80,7 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
 
 
   //Image transition from undefined layout to read only layout
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);

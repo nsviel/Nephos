@@ -61,8 +61,8 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
   }
 
 
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->acquire_free_command_buffer();
-  renderpass->command_buffer = vk_command_buffer->acquire_free_command_buffer();
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
+  renderpass->command_buffer = vk_command_buffer->query_free_command_buffer();
   vk_command_buffer->start_command_buffer_primary(renderpass->command_buffer);
 
     std::array<VkClearValue, 2> clear_value{};

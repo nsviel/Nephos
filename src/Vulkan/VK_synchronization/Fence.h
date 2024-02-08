@@ -17,6 +17,9 @@ public:
 public:
   //Main functions
   void init();
+
+  //Subfunction
+  vk::structure::Fence* query_free_fence();
   void create_fence(VkFence& fence);
   void clean_fence(VkFence& fence);
 

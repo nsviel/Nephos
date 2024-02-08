@@ -127,7 +127,7 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
 }
 
 //Command buffer lifetime
-vk::structure::Command_buffer* Command_buffer::acquire_free_command_buffer(){
+vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(){
   std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
