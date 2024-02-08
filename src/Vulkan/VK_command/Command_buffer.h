@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::command{class Submit;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::structure{class Renderpass;}
@@ -40,7 +39,6 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::command::Submit* vk_submit;
 };
 
 }

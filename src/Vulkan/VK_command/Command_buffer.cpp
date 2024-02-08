@@ -10,7 +10,6 @@ Command_buffer::Command_buffer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_submit = new vk::command::Submit(struct_vulkan);
 
   //---------------------------
 }

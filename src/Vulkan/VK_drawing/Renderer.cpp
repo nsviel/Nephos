@@ -13,7 +13,6 @@ Renderer::Renderer(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
-  this->vk_submit = new vk::command::Submit(struct_vulkan);
 
   //---------------------------
 }
@@ -41,7 +40,7 @@ void Renderer::submit_command(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-  vk_submit->submit_rendering_command_buffer(&command);
+  vk_command->submit_command(&command);
 
   //---------------------------
 }
