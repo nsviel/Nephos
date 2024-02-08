@@ -59,7 +59,7 @@ void Engine::init(){
 void Engine::loop(){
   //---------------------------
 
-  //vk_command_buffer->reset();
+  vk_command_buffer->reset();
   vk_drawing->draw_frame();
   vk_command_buffer->submit();
   //vk_imgui->render();
