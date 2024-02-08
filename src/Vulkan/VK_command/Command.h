@@ -22,8 +22,7 @@ public:
 
 public:
   //Render pass
-  void start_render_pass(vk::structure::Renderpass* renderpass, VkFramebuffer& fbo, bool with_secondary_cb);
-  void stop_render_pass(vk::structure::Renderpass* renderpass);
+
 
   //Image layout transition
   void image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image* image, VkImageLayout oldLayout, VkImageLayout newLayout);

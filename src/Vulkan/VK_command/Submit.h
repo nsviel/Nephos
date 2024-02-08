@@ -17,7 +17,6 @@ public:
 
 public:
   //Main functions
-  void submit_command_graphics(VkCommandBuffer command);
   void submit_rendering_command_buffer(vk::structure::Command* commands);
 
 private:
