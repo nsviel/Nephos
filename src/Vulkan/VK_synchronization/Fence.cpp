@@ -17,13 +17,22 @@ Fence::~Fence(){}
 
 //Main function
 void Fence::init(){
+  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.pool;
   //---------------------------
+
+  for(int i=0; i<struct_vulkan->pools.fence.size; i++){
+    vk::structure::Fence vk_fence;
+
+    this->create_fence(vk_fence.fence);
+    pool.push_back(vk_fence);
+  }
 
   this->create_fence(struct_vulkan->synchro.fence);
 
   //---------------------------
 }
 
+//Subfunction
 void Fence::create_fence(VkFence& fence){
   //---------------------------
 

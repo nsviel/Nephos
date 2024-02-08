@@ -15,12 +15,22 @@ struct Pool_command_buffer{
   //---------------------------
 };
 
+struct Pool_fence{
+  //---------------------------
+
+  std::vector<vk::structure::Fence> pool;
+  uint32_t size = 100;
+
+  //---------------------------
+};
+
 
 struct Pool{
   //---------------------------
 
   //Command
   Pool_command_buffer command_buffer;
+  Pool_fence fence;
 
   //Descriptor
   VkDescriptorPool descriptor;

@@ -17,7 +17,7 @@ Command_buffer::~Command_buffer(){}
 
 //Main function
 void Command_buffer::init(){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
+  std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   for(int i=0; i<struct_vulkan->pools.command_buffer.size; i++){
@@ -34,18 +34,18 @@ void Command_buffer::init(){
     command_buffer.is_available = true;
     command_buffer.is_recorded = false;
 
-    vec_command_buffer.push_back(command_buffer);
+    pool.push_back(command_buffer);
   }
 
   //---------------------------
 }
 void Command_buffer::reset(){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
+  std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   //Clear all old command buffer
-  for(int i=0; i<vec_command_buffer.size(); i++){
-    vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
+  for(int i=0; i<pool.size(); i++){
+    vk::structure::Command_buffer* command_buffer = &pool[i];
 
     if(command_buffer->is_resetable){
       //vkResetCommandBuffer(command_buffer->command, 0);
@@ -57,12 +57,12 @@ void Command_buffer::reset(){
   //---------------------------
 }
 void Command_buffer::clean(){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
+  std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   //Clear all old command buffer
-  for(int i=0; i<vec_command_buffer.size(); i++){
-    vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
+  for(int i=0; i<pool.size(); i++){
+    vk::structure::Command_buffer* command_buffer = &pool[i];
 
     //Fence
     vkDestroyFence(struct_vulkan->device.device, command_buffer->fence, nullptr);
@@ -74,13 +74,13 @@ void Command_buffer::clean(){
   //---------------------------
 }
 void Command_buffer::submit(){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
+  std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   //Submit all recorder command buffer
   vector<VkCommandBuffer> vec_command;
-  for(int i=0; i<vec_command_buffer.size(); i++){
-    vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
+  for(int i=0; i<pool.size(); i++){
+    vk::structure::Command_buffer* command_buffer = &pool[i];
 
     if(command_buffer->is_recorded){
       vec_command.push_back(command_buffer->command);
@@ -99,7 +99,7 @@ void Command_buffer::submit(){
 
 //Per command buffer
 void Command_buffer::reset(vk::structure::Command_buffer* command_buffer){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
+  std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   if(command_buffer->is_resetable){
@@ -128,12 +128,12 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
 
 //Command buffer lifetime
 vk::structure::Command_buffer* Command_buffer::acquire_free_command_buffer(){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->pools.command_buffer.pool;
+  std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   //Find the first free command buffer
-  for(int i=0; i<vec_command_buffer.size(); i++){
-    vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
+  for(int i=0; i<pool.size(); i++){
+    vk::structure::Command_buffer* command_buffer = &pool[i];
 
     if(command_buffer->is_available && command_buffer->is_recorded == false){
       vkResetCommandBuffer(command_buffer->command, 0);
