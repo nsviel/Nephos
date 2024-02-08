@@ -16,7 +16,10 @@ public:
 
 public:
   //Main functions
-
+  void init();
+  void create_fence(VkFence& fence);
+  void clean_fence(VkFence& fence);
+  
 private:
   vk::structure::Vulkan* struct_vulkan;
 };

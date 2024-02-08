@@ -29,6 +29,7 @@ Engine::Engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_synchronization = new vk::command::Synchronization(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   this->vk_imgui = new vk::main::Imgui(struct_vulkan);
+  this->vk_fence = new vk::command::Fence(struct_vulkan);
 
   //---------------------------
 }

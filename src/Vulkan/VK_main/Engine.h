@@ -19,6 +19,7 @@ namespace vk::instance{class Pool;}
 namespace vk::draw{class Drawer;}
 namespace vk::command{class Synchronization;}
 namespace vk::command{class Command_buffer;}
+namespace vk::command{class Fence;}
 namespace vk::renderpass{class Renderpass;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
@@ -76,6 +77,7 @@ private:
   vk::data::Canvas* vk_canvas;
   vk::draw::Drawer* vk_drawing;
   vk::main::Imgui* vk_imgui;
+  vk::command::Fence* vk_fence;
 };
 
 }
