@@ -93,7 +93,7 @@ void Scene::create_subpass(vk::structure::Renderpass* renderpass){
 void Scene::draw_scene(vk::structure::Subpass* subpass){
   //---------------------------
 
-  vk_viewport->cmd_viewport(subpass->command_buffer);
+  vk_viewport->cmd_viewport(subpass->command_buffer.command);
   this->cmd_draw_point(subpass);
   this->cmd_draw_line(subpass);
   this->cmd_draw_triangle(subpass);
@@ -105,7 +105,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("point");
-  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
+  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer.command, pipeline);
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
@@ -120,8 +120,8 @@ void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
       vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->pose->mvp);
       vk_uniform->update_uniform("point_size", &vk_object->binding, vk_object->data->draw_point_size);
 
-      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, vk_object->binding.descriptor.set);
-      vk_drawing->cmd_draw_data(subpass->command_buffer, vk_object);
+      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer.command, pipeline, vk_object->binding.descriptor.set);
+      vk_drawing->cmd_draw_data(subpass->command_buffer.command, vk_object);
     }
   }
 
@@ -132,7 +132,7 @@ void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("line");
-  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
+  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer.command, pipeline);
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
@@ -146,9 +146,9 @@ void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
     if(is_visible && has_topology && has_xyz && has_rgb && same_length){
       vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->pose->mvp);
 
-      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, vk_object->binding.descriptor.set);
-      vk_drawing->cmd_line_with(subpass->command_buffer, vk_object);
-      vk_drawing->cmd_draw_data(subpass->command_buffer, vk_object);
+      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer.command, pipeline, vk_object->binding.descriptor.set);
+      vk_drawing->cmd_line_with(subpass->command_buffer.command, vk_object);
+      vk_drawing->cmd_draw_data(subpass->command_buffer.command, vk_object);
     }
   }
 
@@ -159,7 +159,7 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("triangle");
-  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
+  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer.command, pipeline);
 
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
@@ -173,9 +173,9 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
     if(is_visible && has_topology && has_xyz && has_rgb && same_length){
       vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->pose->mvp);
 
-      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, vk_object->binding.descriptor.set);
-      vk_drawing->cmd_line_with(subpass->command_buffer, vk_object);
-      vk_drawing->cmd_draw_data(subpass->command_buffer, vk_object);
+      vk_descriptor->cmd_bind_descriptor(subpass->command_buffer.command, pipeline, vk_object->binding.descriptor.set);
+      vk_drawing->cmd_line_with(subpass->command_buffer.command, vk_object);
+      vk_drawing->cmd_draw_data(subpass->command_buffer.command, vk_object);
     }
   }
 

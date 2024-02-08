@@ -36,7 +36,7 @@ void Renderpass::init(){
     this->create_renderpass(renderpass);
     vk_pipeline->create_pipeline(renderpass);
     vk_framebuffer->create_framebuffer(renderpass);
-    vk_command->allocate_command_buffer_primary(renderpass->command_buffer);
+    vk_command->allocate_command_buffer_primary(renderpass->command_buffer.command);
   }
 
   //---------------------------

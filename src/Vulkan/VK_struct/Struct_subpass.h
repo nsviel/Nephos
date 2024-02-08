@@ -13,7 +13,7 @@ struct Subpass{
   std::string target;
   VkSubpassDescription description;
   VkSubpassDependency dependency;
-  VkCommandBuffer command_buffer;
+  vk::structure::Command_buffer command_buffer;
 
   //Attachment
   vk::structure::Attachment depth;

@@ -98,10 +98,10 @@ void EDL::draw_command(vk::structure::Subpass* subpass){
 
   vk::structure::Pipeline* pipeline = subpass->get_pipeline();
 
-  vk_viewport->cmd_viewport(subpass->command_buffer);
-  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer, pipeline);
-  vk_descriptor->cmd_bind_descriptor(subpass->command_buffer, pipeline, pipeline->binding.descriptor.set);
-  vk_drawing->cmd_draw_data(subpass->command_buffer, vk_engine->get_canvas());
+  vk_viewport->cmd_viewport(subpass->command_buffer.command);
+  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer.command, pipeline);
+  vk_descriptor->cmd_bind_descriptor(subpass->command_buffer.command, pipeline, pipeline->binding.descriptor.set);
+  vk_drawing->cmd_draw_data(subpass->command_buffer.command, vk_engine->get_canvas());
 
   //---------------------------
 }
