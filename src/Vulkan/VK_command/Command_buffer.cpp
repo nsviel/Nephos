@@ -23,9 +23,17 @@ void Command_buffer::init(){
   for(int i=0; i<struct_vulkan->command.nb_command_buffer; i++){
     vk::structure::Command_buffer command_buffer;
 
+    //Fence
+    VkFenceCreateInfo fence_info = {};
+    fence_info.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+    fence_info.flags = 0;
+    vkCreateFence(struct_vulkan->device.device, &fence_info, nullptr, &command_buffer.fence);
+
+    //Command buffer
     this->allocate_command_buffer_primary(&command_buffer);
     command_buffer.is_available = true;
     command_buffer.is_recorded = false;
+
     vec_command_buffer.push_back(command_buffer);
   }
 
@@ -39,9 +47,11 @@ void Command_buffer::reset(){
   for(int i=0; i<vec_command_buffer.size(); i++){
     vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
 
-    vkResetCommandBuffer(command_buffer->command, 0);
-    command_buffer->is_available = true;
-    command_buffer->is_recorded = false;
+    if(command_buffer->is_resetable){
+      //vkResetCommandBuffer(command_buffer->command, 0);
+      command_buffer->is_available = true;
+      command_buffer->is_recorded = false;
+    }
   }
 
   //---------------------------
@@ -54,6 +64,10 @@ void Command_buffer::clean(){
   for(int i=0; i<vec_command_buffer.size(); i++){
     vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
 
+    //Fence
+    vkDestroyFence(struct_vulkan->device.device, command_buffer->fence, nullptr);
+
+    //Command buffer
     vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pool.command, 1, &command_buffer->command);
     struct_vulkan->pool.nb_command_buffer--;
   }
@@ -76,9 +90,8 @@ void Command_buffer::submit(){
   }
 
   this->submit_command_buffer(vec_command);
-  tic();
   vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
-toc_us("hey");
+
   //Reset all command buffer
   this->reset();
 
@@ -90,9 +103,11 @@ void Command_buffer::reset(vk::structure::Command_buffer* command_buffer){
   std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
   //---------------------------
 
-  vkResetCommandBuffer(command_buffer->command, 0);
-  command_buffer->is_available = true;
-  command_buffer->is_recorded = false;
+  if(command_buffer->is_resetable){
+    vkResetCommandBuffer(command_buffer->command, 0);
+    command_buffer->is_available = true;
+    command_buffer->is_recorded = false;
+  }
 
   //---------------------------
 }
@@ -122,6 +137,7 @@ vk::structure::Command_buffer* Command_buffer::acquire_free_command_buffer(){
     vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
 
     if(command_buffer->is_available && command_buffer->is_recorded == false){
+      vkResetCommandBuffer(command_buffer->command, 0);
       command_buffer->is_available = false;
       return command_buffer;
     }
