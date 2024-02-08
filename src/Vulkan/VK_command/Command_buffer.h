@@ -24,14 +24,14 @@ public:
   void clean();
   void submit();
 
-  //Per command buffer
+  //Command buffer function
+  void create_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
+  void create_command_buffer_secondary(vk::structure::Object* data);
   void reset(vk::structure::Command_buffer* command_buffer);
   void submit(vk::structure::Command_buffer* command_buffer);
 
   //Command buffer lifetime
   vk::structure::Command_buffer* query_free_command_buffer();
-  void allocate_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
-  void allocate_command_buffer_secondary(vk::structure::Object* data);
   void start_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
   void start_command_buffer_secondary(vk::structure::Renderpass* renderpass);
   void end_command_buffer(vk::structure::Command_buffer* command_buffer);
