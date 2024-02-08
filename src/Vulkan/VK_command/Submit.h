@@ -18,7 +18,7 @@ public:
 public:
   //Main functions
   void submit_command_graphics(VkCommandBuffer command);
-  void submit_command_render(vk::structure::Command* commands);
+  void submit_rendering_command_buffer(vk::structure::Command* commands);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

@@ -25,12 +25,12 @@ void Submit::submit_command_graphics(VkCommandBuffer command){
   submit_info.pCommandBuffers = &command;
   VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, VK_NULL_HANDLE);
   if(result != VK_SUCCESS){
-    throw std::runtime_error("gui font error");
+    throw std::runtime_error("[error] command buffer queue submission");
   }
 
   //---------------------------
 }
-void Submit::submit_command_render(vk::structure::Command* command){
+void Submit::submit_rendering_command_buffer(vk::structure::Command* command){
   //---------------------------
 
   vector<VkCommandBuffer> vec_command_buffer;
@@ -52,7 +52,7 @@ void Submit::submit_command_render(vk::structure::Command* command){
   VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, command->fence);
 
   if(result != VK_SUCCESS){
-    throw std::runtime_error("failed to submit draw command buffer!");
+    throw std::runtime_error("[error] command buffer queue submission");
   }
 
   //---------------------------

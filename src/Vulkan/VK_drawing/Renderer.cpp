@@ -33,7 +33,7 @@ void Renderer::submit_command(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-  vk_submit->submit_command_render(&command);
+  vk_submit->submit_rendering_command_buffer(&command);
 
   //---------------------------
 }

@@ -47,16 +47,6 @@ void Command_buffer::reset(){
 
   //---------------------------
 }
-void Command_buffer::reset(vk::structure::Command_buffer* command_buffer){
-  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
-  //---------------------------
-
-  vkResetCommandBuffer(command_buffer->command, 0);
-  command_buffer->is_available = true;
-  command_buffer->is_recorded = false;
-
-  //---------------------------
-}
 void Command_buffer::clean(){
   std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
   //---------------------------
@@ -91,11 +81,24 @@ void Command_buffer::submit(){
 
   //---------------------------
 }
+
+//Per command buffer
+void Command_buffer::reset(vk::structure::Command_buffer* command_buffer){
+  std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
+  //---------------------------
+
+  vkResetCommandBuffer(command_buffer->command, 0);
+  command_buffer->is_available = true;
+  command_buffer->is_recorded = false;
+
+  //---------------------------
+}
 void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
   if(command_buffer->is_recorded){
-    vk_submit->submit_command_graphics(command_buffer->command);
+    vector<VkCommandBuffer> vec_command(1, command_buffer->command);
+    this->submit_command_buffer(vec_command);
     vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
     command_buffer->is_recorded = false;
   }
@@ -106,7 +109,7 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 }
 
-//Subfunction
+//Command buffer lifetime
 vk::structure::Command_buffer* Command_buffer::acquire_free_command_buffer(){
   std::vector<vk::structure::Command_buffer>& vec_command_buffer = struct_vulkan->command.vec_command_buffer;
   //---------------------------
@@ -215,6 +218,20 @@ void Command_buffer::end_command_buffer(vk::structure::Command_buffer* command_b
   }
 
   command_buffer->is_recorded = true;
+
+  //---------------------------
+}
+void Command_buffer::submit_command_buffer(vector<VkCommandBuffer>& vec_command){
+  //---------------------------
+
+  VkSubmitInfo submit_info = {};
+  submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+  submit_info.commandBufferCount = vec_command.size();
+  submit_info.pCommandBuffers = vec_command.data();
+  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, VK_NULL_HANDLE);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] command buffer queue submission");
+  }
 
   //---------------------------
 }
