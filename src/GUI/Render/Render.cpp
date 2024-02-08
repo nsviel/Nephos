@@ -19,7 +19,6 @@ Render::Render(gui::Node* gui){
   this->vulkan = engine->get_eng_vulkan();
   //this->vulkan = new Vulkan(utl_window);
   this->vk_engine = vulkan->get_vk_engine();
-  this->gui_renderpass = new gui::Renderpass(vulkan);
   this->vk_imgui = vulkan->get_vk_imgui();
 
   //---------------------------

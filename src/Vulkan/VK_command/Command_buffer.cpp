@@ -66,15 +66,18 @@ void Command_buffer::submit(){
   //---------------------------
 
   //Submit all recorder command buffer
+  vector<VkCommandBuffer> vec_command;
   for(int i=0; i<vec_command_buffer.size(); i++){
     vk::structure::Command_buffer* command_buffer = &vec_command_buffer[i];
 
     if(command_buffer->is_recorded){
-      vk_submit->submit_command_graphics(command_buffer->command);
-      vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
+      vec_command.push_back(command_buffer->command);
       command_buffer->is_recorded = false;
     }
   }
+
+  this->submit_command_buffer(vec_command);
+  vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
 
   //Reset all command buffer
   this->reset();
