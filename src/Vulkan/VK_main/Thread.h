@@ -25,6 +25,7 @@ public:
   void submit_commands();
 
   //Subfunction
+  void create_thread_command_pool();
   vk::pool::Command_buffer* query_current_command_pool();
 
 private:
