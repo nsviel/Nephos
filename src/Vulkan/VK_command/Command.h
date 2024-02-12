@@ -22,6 +22,7 @@ public:
   void submit_command(vk::structure::Command* commands);
 
   //Subfunction
+  void reset_for_submission();
   void prepare_submission(vk::structure::Command* command);
   void queue_submission();
   void wait_and_reset(vk::structure::Command* command);

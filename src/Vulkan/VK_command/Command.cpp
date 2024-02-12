@@ -28,13 +28,17 @@ void Command::submit_command_thread(vk::structure::Command* command){
 void Command::submit_vec_command(){
   //---------------------------
 
+  this->reset_for_submission();
   for(int i=0; i<vec_command.size(); i++){
     vk::structure::Command* command = vec_command[i];
-
     this->prepare_submission(command);
-    this->queue_submission();
-    this->wait_and_reset(command);
+  }
 
+  this->queue_submission();
+
+  for(int i=0; i<vec_command.size(); i++){
+    vk::structure::Command* command = vec_command[i];
+    this->wait_and_reset(command);
     delete command;
   }
 
@@ -45,6 +49,7 @@ void Command::submit_vec_command(){
 void Command::submit_command(vk::structure::Command* command){
   //---------------------------
 
+  this->reset_for_submission();
   this->prepare_submission(command);
   this->queue_submission();
   this->wait_and_reset(command);
@@ -53,11 +58,21 @@ void Command::submit_command(vk::structure::Command* command){
 }
 
 //Subfunction
+void Command::reset_for_submission(){
+  //---------------------------
+
+  this->fence = VK_NULL_HANDLE;
+  this->vec_command_buffer.clear();
+  this->vec_semaphore_processing.clear();
+  this->vec_semaphore_done.clear();
+  this->vec_wait_stage.clear();
+
+  //---------------------------
+}
 void Command::prepare_submission(vk::structure::Command* command){
   //---------------------------
 
   //Command buffer
-  this->vec_command_buffer.clear();
   for(int i=0; i<command->vec_command_buffer.size(); i++){
     vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
     this->vec_command_buffer.push_back(command_buffer->command);
@@ -68,7 +83,6 @@ void Command::prepare_submission(vk::structure::Command* command){
   this->vec_semaphore_done = command->vec_semaphore_done;
 
   //Fence
-  this->fence = VK_NULL_HANDLE;
   if(command->fence != nullptr){
     this->fence = command->fence->fence;
   }
