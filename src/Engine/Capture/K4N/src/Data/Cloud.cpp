@@ -193,7 +193,7 @@ void Cloud::retrieve_goodness(int i){
 void Cloud::insert_data(){
   //---------------------------
 
-  if(goodness == true){
+  if(1){//goodness == true){
     vec_xyz.push_back(xyz);
     vec_rgb.push_back(rgb);
     vec_ir.push_back(ir);
