@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+namespace vk::command{class Command;}
 namespace vk::command{class Command_buffer;}
 namespace vk::image{class Image;}
 namespace vk::structure{class Vulkan;}
@@ -34,6 +35,7 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::image::Image* vk_image;
   vk::command::Command_buffer* vk_command_buffer;
+  vk::command::Command* vk_command;
 };
 
 }

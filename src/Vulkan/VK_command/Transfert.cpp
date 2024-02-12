@@ -12,6 +12,7 @@ Transfert::Transfert(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
+  this->vk_command = new vk::command::Command(struct_vulkan);
 
   //---------------------------
 }
@@ -123,6 +124,9 @@ void Transfert::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::B
   vkCmdCopyBuffer(command_buffer->command, stagger->vbo, buffer->vbo, 1, &copyRegion);
 
   vk_command_buffer->end_command_buffer(command_buffer);
+  vk::structure::Command command;
+  command.vec_command_buffer.push_back(command_buffer);
+  vk_command->submit_command(&command);
 
   //---------------------------
 }
