@@ -47,11 +47,11 @@ void Command::submit_vec_command(){
 */
   //---------------------------
 }
-void Command::submit_command(vk::structure::Command* command, vk::structure::Fence* fence){
+void Command::submit_command(vk::structure::Command* command){
   //---------------------------
 
   this->reset_for_submission();
-  this->prepare_submission(command, fence);
+  this->prepare_submission(command);
   this->queue_submission();
   this->wait_and_reset(command);
 
@@ -70,13 +70,11 @@ void Command::reset_for_submission(){
 
   //---------------------------
 }
-void Command::prepare_submission(vk::structure::Command* command, vk::structure::Fence* fence){
+void Command::prepare_submission(vk::structure::Command* command){
   //---------------------------
 
   //Fence
-  if(fence != nullptr){
-    this->fence = fence->fence;
-  }
+  this->fence = vk_fence->query_free_fence();
 
   //Command buffer
   for(int i=0; i<command->vec_command_buffer.size(); i++){
@@ -105,7 +103,7 @@ void Command::queue_submission(){
   submit_info.pCommandBuffers = vec_command_buffer.data();
 
   //Very slow operation, need as low command as possible
-  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, fence);
+  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, fence->fence);
 
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
@@ -129,7 +127,7 @@ void Command::wait_and_reset(vk::structure::Command* command){
     }
   }
 
-
+  vk_fence->reset_fence(fence);
 
   //---------------------------
 }

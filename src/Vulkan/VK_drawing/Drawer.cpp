@@ -52,7 +52,7 @@ void Drawer::draw_frame(){
 
 
   for(int i=0; i<vec_command.size(); i++){
-    vk_command->submit_command(&vec_command[i], nullptr);
+    vk_command->submit_command(&vec_command[i]);
   }
 
   vk_presentation->image_presentation(semaphore->end);

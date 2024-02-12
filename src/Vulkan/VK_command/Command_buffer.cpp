@@ -68,8 +68,6 @@ void Command_buffer::submit_pool(){
   std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
-  //vk::structure::Fence* fence = vk_fence->query_free_fence();
-
   //Submit all recorder command buffer
   vk::structure::Command command;
   vector<VkCommandBuffer> vec_command;
@@ -81,7 +79,7 @@ void Command_buffer::submit_pool(){
     }
   }
 
-  vk_command->submit_command(&command, nullptr);
+  vk_command->submit_command(&command);
 
   //---------------------------
 }
@@ -137,7 +135,7 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
   if(command_buffer->is_recorded){
     vk::structure::Command command;
     command.vec_command_buffer.push_back(command_buffer);
-    vk_command->submit_command(&command, nullptr);
+    vk_command->submit_command(&command);
   }
 
   //---------------------------

@@ -21,11 +21,11 @@ public:
   //Main function
   void submit_vec_command();
   void submit_command_thread(vk::structure::Command* command);
-  void submit_command(vk::structure::Command* command, vk::structure::Fence* fence);
+  void submit_command(vk::structure::Command* command);
 
   //Subfunction
   void reset_for_submission();
-  void prepare_submission(vk::structure::Command* command, vk::structure::Fence* fence);
+  void prepare_submission(vk::structure::Command* command);
   void queue_submission();
   void wait_and_reset(vk::structure::Command* command);
 
@@ -41,7 +41,7 @@ private:
   std::vector<VkPipelineStageFlags> vec_wait_stage;
   std::vector<VkSemaphore> vec_semaphore_processing;
   std::vector<VkSemaphore> vec_semaphore_done;
-  VkFence fence = VK_NULL_HANDLE;
+  vk::structure::Fence* fence;
 };
 
 }
