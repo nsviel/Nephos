@@ -71,18 +71,20 @@ void Command_buffer::submit(){
   //vk::structure::Fence* fence = vk_fence->query_free_fence();
 
   //Submit all recorder command buffer
+  vk::structure::Command command;
   vector<VkCommandBuffer> vec_command;
   for(int i=0; i<pool.size(); i++){
     vk::structure::Command_buffer* command_buffer = &pool[i];
 
     if(command_buffer->is_recorded){
-      vec_command.push_back(command_buffer->command);
+      command.vec_command_buffer.push_back(command_buffer->command);
+
       command_buffer->is_recorded = false;
       //command_buffer->fence = fence;
     }
   }
 
-  this->submit_vec_command_buffer(vec_command);
+  vk_command->submit_command(&command);
   vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
 
   //Reset all command buffer
@@ -142,9 +144,9 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
 
   if(command_buffer->is_recorded){
     vk::structure::Command command;
-  //  command.vec_command_buffer.push_back(command_buffer);
-    vector<VkCommandBuffer> vec_command(1, command_buffer->command);
-    this->submit_vec_command_buffer(vec_command);
+    command.vec_command_buffer.push_back(command_buffer->command);
+    vk_command->submit_command(&command);
+
     vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
     command_buffer->is_recorded = false;
   }
@@ -228,20 +230,6 @@ void Command_buffer::end_command_buffer(vk::structure::Command_buffer* command_b
   }
 
   command_buffer->is_recorded = true;
-
-  //---------------------------
-}
-void Command_buffer::submit_vec_command_buffer(vector<VkCommandBuffer>& vec_command){
-  //---------------------------
-
-  VkSubmitInfo submit_info = {};
-  submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  submit_info.commandBufferCount = vec_command.size();
-  submit_info.pCommandBuffers = vec_command.data();
-  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, VK_NULL_HANDLE);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] command buffer queue submission");
-  }
 
   //---------------------------
 }

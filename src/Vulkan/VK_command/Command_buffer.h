@@ -38,7 +38,6 @@ public:
   void start_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
   void start_command_buffer_secondary(vk::structure::Renderpass* renderpass);
   void end_command_buffer(vk::structure::Command_buffer* command_buffer);
-  void submit_vec_command_buffer(vector<VkCommandBuffer>& vec_command);
 
 private:
   vk::structure::Vulkan* struct_vulkan;
