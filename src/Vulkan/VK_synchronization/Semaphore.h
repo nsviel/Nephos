@@ -4,6 +4,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Frame;}
+namespace vk::structure{class Semaphore;}
 
 
 namespace vk::synchro{
@@ -16,6 +17,17 @@ public:
   ~Semaphore();
 
 public:
+  //Main functions
+  void init_pool();
+  void clean_pool();
+
+  //Semaphore function
+  void create_semaphore(vk::structure::Semaphore* semaphore);
+  void clean_semaphore(vk::structure::Semaphore* semaphore);
+
+
+
+  //OLD
   //Main functions
   void init();
   void clean();

@@ -17,9 +17,9 @@ namespace vk::data{class Canvas;}
 namespace vk::instance{class Extension;}
 namespace vk::instance{class Pool;}
 namespace vk::draw{class Drawer;}
-namespace vk::synchro{class Semaphore;}
 namespace vk::command{class Command_buffer;}
 namespace vk::synchro{class Fence;}
+namespace vk::synchro{class Semaphore;}
 namespace vk::renderpass{class Renderpass;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
@@ -78,6 +78,7 @@ private:
   vk::draw::Drawer* vk_drawing;
   vk::main::Imgui* vk_imgui;
   vk::synchro::Fence* vk_fence;
+  vk::synchro::Semaphore* vk_semaphore;
 };
 
 }

@@ -16,6 +16,57 @@ Semaphore::Semaphore(vk::structure::Vulkan* struct_vulkan){
 Semaphore::~Semaphore(){}
 
 //Main function
+void Semaphore::init_pool(){
+  std::vector<vk::structure::Semaphore>& pool = struct_vulkan->pools.semaphore.pool;
+  //---------------------------
+
+  for(int i=0; i<struct_vulkan->pools.semaphore.size; i++){
+    vk::structure::Semaphore vk_semaphore;
+
+    this->create_semaphore(&vk_semaphore);
+
+    pool.push_back(vk_semaphore);
+  }
+
+  //---------------------------
+}
+void Semaphore::clean_pool(){
+  std::vector<vk::structure::Semaphore>& pool = struct_vulkan->pools.semaphore.pool;
+  //---------------------------
+
+  for(int i=0; i<struct_vulkan->pools.semaphore.size; i++){
+    vk::structure::Semaphore* vk_semaphore = &pool[i];
+
+    this->clean_semaphore(vk_semaphore);
+  }
+
+  //---------------------------
+}
+
+//Semaphore function
+void Semaphore::create_semaphore(vk::structure::Semaphore* semaphore){
+  //---------------------------
+
+  VkSemaphoreCreateInfo info{};
+  info.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+
+  VkResult result = vkCreateSemaphore(struct_vulkan->device.device, &info, nullptr, &semaphore->semaphore);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to create semaphore");
+  }
+
+  //---------------------------
+}
+void Semaphore::clean_semaphore(vk::structure::Semaphore* semaphore){
+  //---------------------------
+
+  vkDestroySemaphore(struct_vulkan->device.device, semaphore->semaphore, nullptr);
+
+  //---------------------------
+}
+
+
+// OLD
 void Semaphore::init(){
   //---------------------------
 
@@ -84,10 +135,10 @@ void Semaphore::clean_frame_semaphore(vk::structure::Frame* frame){
 void Semaphore::create_semaphore(VkSemaphore& semaphore){
   //---------------------------
 
-  VkSemaphoreCreateInfo semaphoreInfo{};
-  semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+  VkSemaphoreCreateInfo info{};
+  info.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
 
-  VkResult result = vkCreateSemaphore(struct_vulkan->device.device, &semaphoreInfo, nullptr, &semaphore);
+  VkResult result = vkCreateSemaphore(struct_vulkan->device.device, &info, nullptr, &semaphore);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create semaphore");
   }
