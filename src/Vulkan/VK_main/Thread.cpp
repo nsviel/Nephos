@@ -21,7 +21,7 @@ Thread::~Thread(){}
 void Thread::init(){
   //---------------------------
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
-  
+
   //Main thread command buffer pool
   THREAD_ID thread_ID = std::this_thread::get_id();
   struct_vulkan->pools.command_buffer[thread_ID] = vk::pool::Command_buffer();
@@ -29,6 +29,16 @@ void Thread::init(){
   vk::pool::Command_buffer* pool = query_current_command_pool();
   vk_pool->create_command_pool(pool);
   vk_command_buffer->init_pool(pool);
+
+  //---------------------------
+}
+void Thread::reset(){
+  //---------------------------
+
+  for(auto& pair : struct_vulkan->pools.command_buffer){
+    vk::pool::Command_buffer* pool = &pair.second;
+    vk_command_buffer->reset_pool(pool);
+  }
 
   //---------------------------
 }

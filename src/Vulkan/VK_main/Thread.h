@@ -20,6 +20,7 @@ public:
 public:
   //Main functions
   void init();
+  void reset();
   void clean();
 
   //Subfunction

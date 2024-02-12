@@ -34,8 +34,7 @@ void Command_buffer::init_pool(vk::pool::Command_buffer* pool){
 
   //---------------------------
 }
-void Command_buffer::reset_pool(){
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+void Command_buffer::reset_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
   //Clear all old command buffer

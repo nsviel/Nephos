@@ -67,7 +67,7 @@ void Engine::loop(){
 
   vk_drawing->draw_frame();
   vk_command_buffer->submit_pool();
-  vk_command_buffer->reset_pool();
+  vk_thread->reset();
   vk_semaphore->reset_pool();
   //vk_imgui->render();
   //vk_imgui->new_frame();
