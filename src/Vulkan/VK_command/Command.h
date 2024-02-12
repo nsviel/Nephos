@@ -21,11 +21,11 @@ public:
   //Main function
   void submit_vec_command();
   void submit_command_thread(vk::structure::Command* command);
-  void submit_command(vk::structure::Command* command);
+  void submit_command(vk::structure::Command* command, vk::structure::Fence* fence);
 
   //Subfunction
   void reset_for_submission();
-  void prepare_submission(vk::structure::Command* command);
+  void prepare_submission(vk::structure::Command* command, vk::structure::Fence* fence);
   void queue_submission();
   void wait_and_reset(vk::structure::Command* command);
 

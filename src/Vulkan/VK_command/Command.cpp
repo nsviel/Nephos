@@ -28,7 +28,7 @@ void Command::submit_command_thread(vk::structure::Command* command){
 }
 void Command::submit_vec_command(){
   //---------------------------
-
+/*
   this->reset_for_submission();
   for(int i=0; i<vec_command.size(); i++){
     vk::structure::Command* command = vec_command[i];
@@ -44,14 +44,14 @@ void Command::submit_vec_command(){
   }
 
   vec_command.clear();
-
+*/
   //---------------------------
 }
-void Command::submit_command(vk::structure::Command* command){
+void Command::submit_command(vk::structure::Command* command, vk::structure::Fence* fence){
   //---------------------------
 
   this->reset_for_submission();
-  this->prepare_submission(command);
+  this->prepare_submission(command, fence);
   this->queue_submission();
   this->wait_and_reset(command);
 
@@ -70,7 +70,7 @@ void Command::reset_for_submission(){
 
   //---------------------------
 }
-void Command::prepare_submission(vk::structure::Command* command){
+void Command::prepare_submission(vk::structure::Command* command, vk::structure::Fence* fence){
   //---------------------------
 
   //Command buffer
@@ -84,8 +84,8 @@ void Command::prepare_submission(vk::structure::Command* command){
   this->vec_semaphore_done = command->vec_semaphore_done;
 
   //Fence
-  if(command->fence != nullptr){
-    this->fence = command->fence->fence;
+  if(fence != nullptr){
+    this->fence = fence->fence;
   }
 
   //Submission

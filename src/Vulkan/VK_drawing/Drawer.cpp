@@ -55,7 +55,7 @@ void Drawer::draw_frame(){
   vk::structure::Fence* fence = vk_fence->query_free_fence();
   for(int i=0; i<vec_command.size(); i++){
     vec_command[i].fence = (i == vec_command.size()-1) ? fence : nullptr;
-    vk_command->submit_command(&vec_command[i]);
+    vk_command->submit_command(&vec_command[i], vec_command[i].fence);
   }
 
 
