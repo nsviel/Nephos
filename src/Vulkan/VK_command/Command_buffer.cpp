@@ -81,7 +81,7 @@ void Command_buffer::submit(){
     }
   }
 
-  vk_command->submit_command(&command);
+  vk_command->submit_command(&command, VK_NULL_HANDLE);
 
   //---------------------------
 }
@@ -137,7 +137,7 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
   if(command_buffer->is_recorded){
     vk::structure::Command command;
     command.vec_command_buffer.push_back(command_buffer);
-    vk_command->submit_command(&command);
+    vk_command->submit_command(&command, VK_NULL_HANDLE);
   }
 
   //---------------------------

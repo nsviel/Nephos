@@ -55,13 +55,13 @@ void Drawer::draw_frame(){
 
   for(int i=0; i<nb_renderpass; i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
-    vk_command->submit_command(&renderpass->command);
+    //vk::structure::Fence* fence = vk_fence->query_free_fence();
+    vk_command->submit_command(&renderpass->command, VK_NULL_HANDLE);
   }
 
 
   VkSemaphore semaphore = frame->vec_semaphore_render[nb_renderpass-1];
   vk_render->wait_end_rendering(frame->fence);
-
   vk_presentation->image_presentation(semaphore, frame->fence);
 
   //---------------------------

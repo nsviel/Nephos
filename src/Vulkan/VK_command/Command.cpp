@@ -18,11 +18,11 @@ Command::~Command(){}
 //Main function
 void Command::submit_command_thread(vk::structure::Command* command){
   //---------------------------
-
+/*
   this->thread = std::thread([this, command](){
     this->submit_command(command);
   });
-
+*/
   //---------------------------
 }
 void Command::submit_vec_command(){
@@ -46,8 +46,10 @@ void Command::submit_vec_command(){
 
   //---------------------------
 }
-void Command::submit_command(vk::structure::Command* command){
+void Command::submit_command(vk::structure::Command* command, vk::structure::Fence* fence){
   //---------------------------
+
+  this->fence = fence->fence;
 
   this->reset_for_submission();
   this->prepare_submission(command);

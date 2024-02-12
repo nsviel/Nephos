@@ -4,6 +4,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command;}
+namespace vk::structure{class Fence;}
 
 
 namespace vk::command{
@@ -19,7 +20,7 @@ public:
   //Main function
   void submit_vec_command();
   void submit_command_thread(vk::structure::Command* command);
-  void submit_command(vk::structure::Command* commands);
+  void submit_command(vk::structure::Command* command, vk::structure::Fence* fence);
 
   //Subfunction
   void reset_for_submission();
