@@ -74,40 +74,7 @@ void Fence::reset_fence(vk::structure::Fence* fence){
     cout<<"[error] reseting fence"<<endl;
   }
 
-  vk_fence->is_available = true;
-
-  //---------------------------
-}
-void Fence::create_fence(VkFence& fence){
-  //---------------------------
-
-  VkFenceCreateInfo fenceInfo{};
-  fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
-  fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
-
-  VkResult result = vkCreateFence(struct_vulkan->device.device, &fenceInfo, nullptr, &fence);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create fence");
-  }
-
-  vkResetFences(struct_vulkan->device.device, 1, &fence);
-
-  //---------------------------
-}
-void Fence::clean_fence(VkFence& fence){
-  //---------------------------
-
-  vkDestroyFence(struct_vulkan->device.device, fence, nullptr);
-
-  //---------------------------
-}
-void Fence::reset_fence(VkFence& fence){
-  //---------------------------
-
-  VkResult result = vkResetFences(struct_vulkan->device.device, 1, &fence);
-  if (result != VK_SUCCESS) {
-    cout<<"[error] reseting fence"<<endl;
-  }
+  fence->is_available = true;
 
   //---------------------------
 }

@@ -24,9 +24,6 @@ public:
   void create_fence(vk::structure::Fence* fence);
   void clean_fence(vk::structure::Fence* fence);
   void reset_fence(vk::structure::Fence* fence);
-  void create_fence(VkFence& fence);
-  void clean_fence(VkFence& fence);
-  void reset_fence(VkFence& fence);
 
   //Subfunction
   vk::structure::Fence* query_free_fence();
