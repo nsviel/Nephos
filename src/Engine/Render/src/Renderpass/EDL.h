@@ -31,7 +31,7 @@ public:
   //Draw function
   void draw_edl(vk::structure::Subpass* subpass);
   void update_binding(vk::structure::Subpass* subpass);
-  void draw_command(vk::structure::Subpass* subpass);
+  void draw_canvas(vk::structure::Subpass* subpass);
 
 private:
   eng::shader::EDL* shader_edl;

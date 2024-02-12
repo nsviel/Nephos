@@ -70,7 +70,7 @@ void EDL::draw_edl(vk::structure::Subpass* subpass){
   //---------------------------
 
   this->update_binding(subpass);
-  this->draw_command(subpass);
+  this->draw_canvas(subpass);
 
   //---------------------------
 }
@@ -91,16 +91,15 @@ void EDL::update_binding(vk::structure::Subpass* subpass){
   shader_edl->update_shader();
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
 
-  //---------------------------
-}
-void EDL::draw_command(vk::structure::Subpass* subpass){
-  //---------------------------
-
-  vk::structure::Pipeline* pipeline = subpass->get_pipeline();
-
-  vk_viewport->cmd_viewport(subpass->command_buffer->command);
   vk_pipeline->cmd_bind_pipeline(subpass->command_buffer->command, pipeline);
   vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, pipeline->binding.descriptor.set);
+
+  //---------------------------
+}
+void EDL::draw_canvas(vk::structure::Subpass* subpass){
+  //---------------------------
+
+  vk_viewport->cmd_viewport(subpass->command_buffer->command);
   vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_engine->get_canvas());
 
   //---------------------------

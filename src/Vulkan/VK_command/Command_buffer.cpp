@@ -181,7 +181,7 @@ void Command_buffer::start_command_buffer_primary(vk::structure::Command_buffer*
 void Command_buffer::start_command_buffer_secondary(vk::structure::Renderpass* renderpass){
   vk::structure::Framebuffer* frame = renderpass->framebuffer;
   //---------------------------
-
+/*
   // Create a VkCommandBufferInheritanceInfo structure
   VkCommandBufferInheritanceInfo inheritanceInfo = {};
   inheritanceInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO;
@@ -200,11 +200,11 @@ void Command_buffer::start_command_buffer_secondary(vk::structure::Renderpass* r
   begin_info.flags = VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT; // Optional flags
   begin_info.pInheritanceInfo = &inheritanceInfo;
 
-  VkResult result = vkBeginCommandBuffer(renderpass->command_buffer->command, &begin_info);
+  VkResult result = vkBeginCommandBuffer(renderpasx<sqss->command_buffer->command, &begin_info);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to begin recording command buffer!");
   }
-
+*/
   //---------------------------
 }
 void Command_buffer::end_command_buffer(vk::structure::Command_buffer* command_buffer){
