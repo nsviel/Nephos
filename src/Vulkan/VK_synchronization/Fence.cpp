@@ -24,6 +24,8 @@ void Fence::init(){
     vk::structure::Fence vk_fence;
 
     this->create_fence(&vk_fence);
+    this->reset_fence(&vk_fence);
+
     pool.push_back(vk_fence);
   }
 
@@ -36,7 +38,7 @@ void Fence::clean(){
   for(int i=0; i<struct_vulkan->pools.fence.size; i++){
     vk::structure::Fence* vk_fence = &pool[i];
 
-    this->create_fence(vk_fence);
+    this->clean_fence(vk_fence);
   }
 
   //---------------------------
@@ -67,7 +69,12 @@ void Fence::clean_fence(vk::structure::Fence* fence){
 void Fence::reset_fence(vk::structure::Fence* fence){
   //---------------------------
 
-  vkDestroyFence(struct_vulkan->device.device, fence->fence, nullptr);
+  VkResult result = vkResetFences(struct_vulkan->device.device, 1, &fence->fence);
+  if (result != VK_SUCCESS) {
+    cout<<"[error] reseting fence"<<endl;
+  }
+
+  vk_fence->is_available = true;
 
   //---------------------------
 }

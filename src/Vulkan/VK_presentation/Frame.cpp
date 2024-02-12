@@ -38,7 +38,7 @@ void Frame::create_frame(){
     vk_image->create_image_view(&frame->color);
     vk_framebuffer->create_framebuffer_swapchain(renderpass, frame);
     vk_synchronization->init_frame_semaphore(frame);
-    vk_fence->create_fence(frame->fence_old);
+    frame->fence = vk_fence->query_free_fence();
 
     struct_vulkan->swapchain.vec_frame.push_back(frame);
   }
@@ -56,7 +56,6 @@ void Frame::clean_frame(){
     vk_image->clean_image(&frame->depth);
     vk_framebuffer->clean_framebuffer_obj(frame->fbo);
     vk_synchronization->clean_frame_semaphore(frame);
-    vk_fence->clean_fence(frame->fence_old);
     delete frame;
   }
   vec_frame.clear();

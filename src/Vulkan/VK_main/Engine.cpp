@@ -45,6 +45,7 @@ void Engine::init(){
   vk_surface->init();
   vk_device->init();
   vk_pool->init();
+  vk_fence->init();
   vk_command_buffer->init();
   vk_canvas->init();
 
@@ -80,6 +81,7 @@ void Engine::clean(){
   vk_canvas->clean();
   vk_data->clean();
   vk_command_buffer->clean();
+  vk_fence->clean();
   vk_pool->clean();
   vk_device->clean();
   vk_surface->clean();

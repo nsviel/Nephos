@@ -81,7 +81,7 @@ void Drawer::draw_frame_presentation(){
     vk::structure::Command& command = renderpass->command;
     command.vec_semaphore_processing.push_back(semaphore_wait);
     command.vec_semaphore_done.push_back(semaphore_done);
-    command.fence = (i == nb_renderpass-1) ? frame->fence_old : VK_NULL_HANDLE;
+    command.fence = (i == nb_renderpass-1) ? frame->fence->fence : VK_NULL_HANDLE;
     vk_render->submit_command(renderpass);
     struct_vulkan->tasker_cpu->task_end(name);
 
@@ -91,7 +91,7 @@ void Drawer::draw_frame_presentation(){
 
 
   VkSemaphore semaphore = frame->vec_semaphore_render[nb_renderpass-1];
-  VkFence fence = frame->fence_old;
+  VkFence fence = frame->fence->fence;
   vk_render->wait_end_rendering(fence);
 
   vk_presentation->image_presentation(semaphore, fence);
