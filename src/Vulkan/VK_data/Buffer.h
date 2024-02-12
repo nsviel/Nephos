@@ -22,7 +22,6 @@ public:
   //Main functions
   void create_buffers(vk::structure::Object* vk_object);
   void update_buffer(vk::structure::Object* vk_object);
-  void update_buffer_test(vk::structure::Object* vk_object);
   void clean_buffers(vk::structure::Object* vk_object);
   void clean_buffer(vk::structure::Buffer* buffer);
 

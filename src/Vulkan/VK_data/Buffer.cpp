@@ -50,29 +50,6 @@ void Buffer::update_buffer(vk::structure::Object* vk_object){
 
   if(vk_object->data->xyz.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec3) * vk_object->data->xyz.size();
-    //vk_transfert->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vk_object->data->xyz.data(), data_size);
-    vk_transfert->copy_data_to_gpu(&vk_object->buffer.xyz, vk_object->data->xyz.data(), data_size);
-  }
-
-  if(vk_object->data->rgb.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec4) * vk_object->data->rgb.size();
-    //vk_transfert->copy_data_to_gpu(&vk_object->buffer.rgb, &vk_object->buffer.rgb_stagger, vk_object->data->rgb.data(), data_size);
-    vk_transfert->copy_data_to_gpu(&vk_object->buffer.rgb, vk_object->data->rgb.data(), data_size);
-  }
-
-  if(vk_object->data->uv.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec2) * vk_object->data->uv.size();
-    //vk_transfert->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, vk_object->data->uv.data(), data_size);
-    vk_transfert->copy_data_to_gpu(&vk_object->buffer.uv, vk_object->data->uv.data(), data_size);
-  }
-
-  //---------------------------
-}
-void Buffer::update_buffer_test(vk::structure::Object* vk_object){
-  //---------------------------
-
-  if(vk_object->data->xyz.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec3) * vk_object->data->xyz.size();
     vk_transfert->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vk_object->data->xyz.data(), data_size);
   }
 
