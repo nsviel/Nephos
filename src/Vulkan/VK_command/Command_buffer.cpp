@@ -83,9 +83,6 @@ void Command_buffer::submit(){
 
   vk_command->submit_command(&command);
 
-  //Reset all command buffer
-  this->reset();
-
   //---------------------------
 }
 
@@ -124,7 +121,6 @@ void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data
   //---------------------------
 }
 void Command_buffer::reset(vk::structure::Command_buffer* command_buffer){
-  std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
   if(command_buffer->is_resetable){
@@ -143,9 +139,6 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
     command.vec_command_buffer.push_back(command_buffer);
     vk_command->submit_command(&command);
   }
-
-  //Reset all command buffer
-  this->reset(command_buffer);
 
   //---------------------------
 }
