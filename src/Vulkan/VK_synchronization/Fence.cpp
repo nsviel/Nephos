@@ -17,7 +17,7 @@ Fence::~Fence(){}
 
 //Pool function
 void Fence::init_pool(){
-  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.pool;
+  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.tank;
   //---------------------------
 
   for(int i=0; i<struct_vulkan->pools.fence.size; i++){
@@ -32,7 +32,7 @@ void Fence::init_pool(){
   //---------------------------
 }
 void Fence::clean_pool(){
-  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.pool;
+  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.tank;
   //---------------------------
 
   for(int i=0; i<struct_vulkan->pools.fence.size; i++){
@@ -82,7 +82,7 @@ void Fence::reset_fence(vk::structure::Fence* fence){
 
 //Subfunction
 vk::structure::Fence* Fence::query_free_fence(){
-  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.pool;
+  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.tank;
   //---------------------------
 
   //Find the first free command buffer

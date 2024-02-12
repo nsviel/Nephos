@@ -9,6 +9,7 @@ namespace vk::structure{class Object;}
 namespace vk::structure{class Fence;}
 namespace vk::synchro{class Fence;}
 namespace vk::command{class Command;}
+namespace vk::main{class Thread;}
 
 
 namespace vk::command{
@@ -43,6 +44,7 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::synchro::Fence* vk_fence;
   vk::command::Command* vk_command;
+  vk::main::Thread* vk_thread;
 };
 
 }

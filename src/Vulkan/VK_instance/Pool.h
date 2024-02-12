@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::structure{class Vulkan;}
+namespace vk::main{class Thread;}
 
 
 namespace vk::instance{
@@ -31,6 +32,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
+  vk::main::Thread* vk_thread;
 };
 
 }
