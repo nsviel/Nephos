@@ -25,7 +25,6 @@ public:
   void submit_commands();
 
   //Subfunction
-  vk::pool::Command_buffer* query_command_pool(int ID);
   vk::pool::Command_buffer* query_free_command_pool();
 
 private:

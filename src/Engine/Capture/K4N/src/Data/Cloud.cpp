@@ -77,7 +77,7 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   //---------------------------
 
   profiler->task_begin("cloud::lock");
-  std::unique_lock<std::mutex> lock(data->mutex);
+  //std::unique_lock<std::mutex> lock(data->mutex);
   profiler->task_end("cloud::lock");
 
   //Cloud data copy
@@ -107,7 +107,7 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
 
   //Update object data
   utl::entity::Object* object = sensor->get_object();
-  //object->update_data();
+  object->update_data();
 
   //---------------------------
 }

@@ -20,6 +20,7 @@ public:
   void init();
   void loop();
   void gui();
+  void exit();
 
   eng::k4n::Node* get_node_k4n(){return node_k4n;}
 

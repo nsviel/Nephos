@@ -30,6 +30,7 @@ public:
   void create_sensor_capture();
 
   //Master function
+  void close_all_master();
   void close_master(eng::k4n::dev::Master* master);
   eng::k4n::dev::Master* get_or_create_master(string name);
   eng::k4n::dev::Master* get_master_by_name(string name);

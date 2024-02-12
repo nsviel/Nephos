@@ -73,16 +73,6 @@ void Thread::clean(){
 }
 
 //Subfunction
-vk::pool::Command_buffer* Thread::query_command_pool(int ID){
-  vk::pool::Command_buffer* command_pool = nullptr;
-  //---------------------------
-
-  vk::pool::Thread* pool = &struct_vulkan->pools.thread;
-  command_pool = &pool->tank[0];
-
-  //---------------------------
-  return command_pool;
-}
 vk::pool::Command_buffer* Thread::query_free_command_pool(){
   vk::pool::Thread* pool = &struct_vulkan->pools.thread;
   //---------------------------

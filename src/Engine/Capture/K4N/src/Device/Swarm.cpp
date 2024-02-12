@@ -126,6 +126,16 @@ void Swarm::close_master(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
+void Swarm::close_all_master(){
+  //---------------------------
+
+  for(int i=0; i<list_master.size(); i++){
+    eng::k4n::dev::Master* master = *std::next(list_master.begin(), i);
+    master->delete_entity_all();
+  }
+
+  //---------------------------
+}
 eng::k4n::dev::Master* Swarm::get_or_create_master(string name){
   utl::type::Set* set_scene = sce_scene->get_set_scene();
   //---------------------------
