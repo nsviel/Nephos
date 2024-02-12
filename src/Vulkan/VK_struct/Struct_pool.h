@@ -51,7 +51,7 @@ namespace vk::structure{
 struct Pool{
   //---------------------------
 
-  std::map<std::string, vk::pool::Command_buffer> command_buffer;
+  std::map<THREAD_ID, vk::pool::Command_buffer> command_buffer;
   vk::pool::Fence fence;
   vk::pool::Semaphore semaphore;
   vk::pool::Descriptor descriptor;

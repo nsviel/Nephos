@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::structure{class Vulkan;}
+namespace vk::pool{class Command_buffer;}
 namespace vk::main{class Thread;}
 
 
@@ -26,9 +27,9 @@ public:
   void clean_descriptor_pool();
 
   //Command pool
-  void create_command_pool();
-  void reset_command_pool();
-  void clean_command_pool();
+  void create_command_pool(vk::pool::Command_buffer* pool);
+  void reset_command_pool(vk::pool::Command_buffer* pool);
+  void clean_command_pool(vk::pool::Command_buffer* pool);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

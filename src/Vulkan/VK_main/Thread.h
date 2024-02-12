@@ -18,6 +18,8 @@ public:
 public:
   //Main functions
   void init();
+
+  //Subfunction
   vk::pool::Command_buffer* query_current_command_pool();
 
 private:

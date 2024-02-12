@@ -19,15 +19,19 @@ Thread::~Thread(){}
 void Thread::init(){
   //---------------------------
 
-  struct_vulkan->pools.command_buffer["main"] = vk::pool::Command_buffer();
+  //Main thread command buffer pool
+  THREAD_ID thread_ID = std::this_thread::get_id();
+  struct_vulkan->pools.command_buffer[thread_ID] = vk::pool::Command_buffer();
 
   //---------------------------
 }
+
+//Subfunction
 vk::pool::Command_buffer* Thread::query_current_command_pool(){
   //---------------------------
 
   THREAD_ID thread_ID = std::this_thread::get_id();
-  vk::pool::Command_buffer* pool = &struct_vulkan->pools.command_buffer["main"];
+  vk::pool::Command_buffer* pool = &struct_vulkan->pools.command_buffer[thread_ID];
 
   //---------------------------
   return pool;

@@ -21,7 +21,9 @@ void Pool::init(){
   //---------------------------
 
   this->create_descriptor_pool();
-  this->create_command_pool();
+
+  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+  this->create_command_pool(pool);
 
   //---------------------------
 }
@@ -29,7 +31,9 @@ void Pool::clean(){
   //---------------------------
 
   this->clean_descriptor_pool();
-  this->clean_command_pool();
+
+  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+  this->clean_command_pool(pool);
 
   //---------------------------
 }
@@ -89,8 +93,7 @@ void Pool::clean_descriptor_pool(){
 }
 
 //Command pool
-void Pool::create_command_pool(){
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+void Pool::create_command_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
   //Command pool info
@@ -107,8 +110,7 @@ void Pool::create_command_pool(){
 
   //---------------------------
 }
-void Pool::reset_command_pool(){
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+void Pool::reset_command_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
   VkResult result = vkResetCommandPool(struct_vulkan->device.device, pool->memory, 0);
@@ -118,8 +120,7 @@ void Pool::reset_command_pool(){
 
   //---------------------------
 }
-void Pool::clean_command_pool(){
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+void Pool::clean_command_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
   vkDestroyCommandPool(struct_vulkan->device.device, pool->memory, nullptr);
