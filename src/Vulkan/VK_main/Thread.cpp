@@ -31,8 +31,10 @@ void Thread::init(){
 void Thread::clean(){
   //---------------------------
 
-  vk::pool::Command_buffer* pool = query_current_command_pool();
-  vk_pool->clean_command_pool(pool);
+  for(auto& pair : struct_vulkan->pools.command_buffer){
+    vk::pool::Command_buffer* pool = &pair.second;
+    vk_pool->clean_command_pool(pool);
+  }
 
   //---------------------------
 }
