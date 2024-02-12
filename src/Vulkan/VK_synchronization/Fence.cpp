@@ -23,16 +23,54 @@ void Fence::init(){
   for(int i=0; i<struct_vulkan->pools.fence.size; i++){
     vk::structure::Fence vk_fence;
 
-    this->create_fence(vk_fence.fence);
+    this->create_fence(&vk_fence);
     pool.push_back(vk_fence);
   }
 
-  this->create_fence(struct_vulkan->synchro.fence);
+  //---------------------------
+}
+void Fence::clean(){
+  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.pool;
+  //---------------------------
+
+  for(int i=0; i<struct_vulkan->pools.fence.size; i++){
+    vk::structure::Fence* vk_fence = &pool[i];
+
+    this->create_fence(vk_fence);
+  }
 
   //---------------------------
 }
 
 //Fence function
+void Fence::create_fence(vk::structure::Fence* fence){
+  //---------------------------
+
+  VkFenceCreateInfo info{};
+  info.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+  info.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+
+  VkResult result = vkCreateFence(struct_vulkan->device.device, &info, nullptr, &fence->fence);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to create fence");
+  }
+
+  //---------------------------
+}
+void Fence::clean_fence(vk::structure::Fence* fence){
+  //---------------------------
+
+  vkDestroyFence(struct_vulkan->device.device, fence->fence, nullptr);
+
+  //---------------------------
+}
+void Fence::reset_fence(vk::structure::Fence* fence){
+  //---------------------------
+
+  vkDestroyFence(struct_vulkan->device.device, fence->fence, nullptr);
+
+  //---------------------------
+}
 void Fence::create_fence(VkFence& fence){
   //---------------------------
 
