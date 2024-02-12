@@ -125,6 +125,7 @@ void Command::wait_and_reset(vk::structure::Command* command){
       vkResetCommandBuffer(command_buffer->command, 0);
       command_buffer->is_available = true;
       command_buffer->is_recorded = false;
+      command_buffer->fence = nullptr;
     }
   }
 

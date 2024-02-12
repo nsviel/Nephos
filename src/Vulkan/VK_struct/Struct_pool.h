@@ -47,7 +47,7 @@ struct Pool_descriptor{
 struct Pool{
   //---------------------------
 
-  Pool_command_buffer command_buffer;
+  std::map<std::string, vk::structure::Pool_command_buffer> command_buffer;
   Pool_fence fence;
   Pool_semaphore semaphore;
   Pool_descriptor descriptor;
