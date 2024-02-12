@@ -19,8 +19,17 @@ public:
   //Main function
   void submit_command(vk::structure::Command* commands);
 
+  //Subfunction
+  void queue_submission();
+
 private:
   vk::structure::Vulkan* struct_vulkan;
+
+  std::vector<VkCommandBuffer> vec_command_buffer;
+  std::vector<VkPipelineStageFlags> vec_wait_stage;
+  std::vector<VkSemaphore> vec_semaphore_processing;
+  std::vector<VkSemaphore> vec_semaphore_done;
+  VkFence fence = VK_NULL_HANDLE;
 };
 
 }

@@ -19,20 +19,34 @@ Command::~Command(){}
 void Command::submit_command(vk::structure::Command* command){
   //---------------------------
 
+  this->vec_semaphore_processing = command->vec_semaphore_processing;
+  this->vec_wait_stage = command->vec_wait_stage;
+  this->vec_semaphore_done = command->vec_semaphore_done;
+  this->vec_command_buffer = command->vec_command_buffer;
+
+  this->fence = VK_NULL_HANDLE;
+  if(command->fence != nullptr){
+    this->fence = command->fence->fence;
+  }
+
+  this->queue_submission();
+
+  //---------------------------
+}
+
+//Subfunction
+void Command::queue_submission(){
+  //---------------------------
+
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  submit_info.waitSemaphoreCount = command->vec_semaphore_processing.size();
-  submit_info.pWaitSemaphores = command->vec_semaphore_processing.data();
-  submit_info.pWaitDstStageMask = command->vec_wait_stage.data();
-  submit_info.signalSemaphoreCount = command->vec_semaphore_done.size();
-  submit_info.pSignalSemaphores = command->vec_semaphore_done.data();
-  submit_info.commandBufferCount = command->vec_command_buffer.size();
-  submit_info.pCommandBuffers = command->vec_command_buffer.data();
-
-  VkFence fence = VK_NULL_HANDLE;
-  if(command->fence != nullptr){
-    fence = command->fence->fence;
-  }
+  submit_info.waitSemaphoreCount = vec_semaphore_processing.size();
+  submit_info.pWaitSemaphores = vec_semaphore_processing.data();
+  submit_info.pWaitDstStageMask = vec_wait_stage.data();
+  submit_info.signalSemaphoreCount = vec_semaphore_done.size();
+  submit_info.pSignalSemaphores = vec_semaphore_done.data();
+  submit_info.commandBufferCount = vec_command_buffer.size();
+  submit_info.pCommandBuffers = vec_command_buffer.data();
 
   //Very slow operation, need as low command as possible
   VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, fence);
