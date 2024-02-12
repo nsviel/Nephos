@@ -48,7 +48,6 @@ void Engine::init(){
   vk_thread->init();
   vk_pool->init();
   vk_fence->init_pool();
-  vk_command_buffer->init_pool();
   vk_canvas->init();
 
   //Render

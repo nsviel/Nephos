@@ -4,6 +4,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command_buffer;}
+namespace vk::pool{class Command_buffer;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Fence;}
@@ -23,7 +24,7 @@ public:
 
 public:
   //Pool function
-  void init_pool();
+  void init_pool(vk::pool::Command_buffer* pool);
   void reset_pool();
   void clean_pool();
   void submit_pool();

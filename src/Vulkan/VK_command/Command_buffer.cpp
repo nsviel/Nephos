@@ -19,8 +19,7 @@ Command_buffer::Command_buffer(vk::structure::Vulkan* struct_vulkan){
 Command_buffer::~Command_buffer(){}
 
 //Pool function
-void Command_buffer::init_pool(){
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+void Command_buffer::init_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
   for(int i=0; i<pool->size; i++){
