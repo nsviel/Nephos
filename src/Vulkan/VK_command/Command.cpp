@@ -25,6 +25,23 @@ void Command::submit_command_thread(vk::structure::Command* command){
 
   //---------------------------
 }
+void Command::submit_vec_command(){
+  //---------------------------
+
+  for(int i=0; i<vec_command.size(); i++){
+    vk::structure::Command* command = vec_command[i];
+
+    this->prepare_submission(command);
+    this->queue_submission();
+    this->wait_and_reset(command);
+
+    delete command;
+  }
+
+  vec_command.clear();
+
+  //---------------------------
+}
 void Command::submit_command(vk::structure::Command* command){
   //---------------------------
 

@@ -17,6 +17,7 @@ public:
 
 public:
   //Main function
+  void submit_vec_command();
   void submit_command_thread(vk::structure::Command* command);
   void submit_command(vk::structure::Command* commands);
 
@@ -25,8 +26,11 @@ public:
   void queue_submission();
   void wait_and_reset(vk::structure::Command* command);
 
+  inline void add_command_to_submit(vk::structure::Command* command){this->vec_command.push_back(command);}
+
 private:
   vk::structure::Vulkan* struct_vulkan;
+  vector<vk::structure::Command*> vec_command;
 
   std::thread thread;
   std::vector<VkCommandBuffer> vec_command_buffer;
