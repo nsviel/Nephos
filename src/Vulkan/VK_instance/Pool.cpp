@@ -62,7 +62,7 @@ void Pool::create_descriptor_pool(){
   pool_info.maxSets = 1000 * IM_ARRAYSIZE(pool_size);
   pool_info.poolSizeCount = (uint32_t)IM_ARRAYSIZE(pool_size);
   pool_info.pPoolSizes = pool_size;
-  VkResult result = vkCreateDescriptorPool(struct_vulkan->device.device, &pool_info, nullptr, &struct_vulkan->pools.descriptor);
+  VkResult result = vkCreateDescriptorPool(struct_vulkan->device.device, &pool_info, nullptr, &struct_vulkan->pools.descriptor.memory);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create gui");
   }
@@ -72,7 +72,7 @@ void Pool::create_descriptor_pool(){
 void Pool::reset_descriptor_pool(){
   //---------------------------
 
-  VkResult result = vkResetDescriptorPool(struct_vulkan->device.device, struct_vulkan->pools.descriptor, 0);
+  VkResult result = vkResetDescriptorPool(struct_vulkan->device.device, struct_vulkan->pools.descriptor.memory, 0);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to reset descripto pool");
   }
@@ -82,7 +82,7 @@ void Pool::reset_descriptor_pool(){
 void Pool::clean_descriptor_pool(){
   //---------------------------
 
-  vkDestroyDescriptorPool(struct_vulkan->device.device, struct_vulkan->pools.descriptor, nullptr);
+  vkDestroyDescriptorPool(struct_vulkan->device.device, struct_vulkan->pools.descriptor.memory, nullptr);
 
   //---------------------------
 }
@@ -98,7 +98,7 @@ void Pool::create_command_pool(){
   poolInfo.queueFamilyIndex = struct_vulkan->device.physical_device.queue_graphics_idx;
 
   //Command pool creation
-  VkResult result = vkCreateCommandPool(struct_vulkan->device.device, &poolInfo, nullptr, &struct_vulkan->pools.command_buffer.command);
+  VkResult result = vkCreateCommandPool(struct_vulkan->device.device, &poolInfo, nullptr, &struct_vulkan->pools.command_buffer.memory);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create command pool!");
   }
@@ -108,7 +108,7 @@ void Pool::create_command_pool(){
 void Pool::reset_command_pool(){
   //---------------------------
 
-  VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->pools.command_buffer.command, 0);
+  VkResult result = vkResetCommandPool(struct_vulkan->device.device, struct_vulkan->pools.command_buffer.memory, 0);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to reset command pool");
   }
@@ -118,7 +118,7 @@ void Pool::reset_command_pool(){
 void Pool::clean_command_pool(){
   //---------------------------
 
-  vkDestroyCommandPool(struct_vulkan->device.device, struct_vulkan->pools.command_buffer.command, nullptr);
+  vkDestroyCommandPool(struct_vulkan->device.device, struct_vulkan->pools.command_buffer.memory, nullptr);
 
   //---------------------------
 }

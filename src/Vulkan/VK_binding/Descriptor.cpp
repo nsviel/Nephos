@@ -168,15 +168,13 @@ void Descriptor::allocate_descriptor_set(vk::structure::Binding* binding){
 
   VkDescriptorSetAllocateInfo allocation_info{};
   allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-  allocation_info.descriptorPool = struct_vulkan->pools.descriptor;
+  allocation_info.descriptorPool = struct_vulkan->pools.descriptor.memory;
   allocation_info.descriptorSetCount = 1;
   allocation_info.pSetLayouts = &binding->descriptor.layout;
 
   VkResult result = vkAllocateDescriptorSets(struct_vulkan->device.device, &allocation_info, &binding->descriptor.set);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate descriptor sets!");
-  }else{
-    struct_vulkan->pools.nb_descriptor_allocated++;
   }
 
   //---------------------------

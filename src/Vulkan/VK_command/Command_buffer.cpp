@@ -58,7 +58,7 @@ void Command_buffer::clean(){
   for(int i=0; i<pool.size(); i++){
     vk::structure::Command_buffer* command_buffer = &pool[i];
 
-    vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pools.command_buffer.command, 1, &command_buffer->command);
+    vkFreeCommandBuffers(struct_vulkan->device.device, struct_vulkan->pools.command_buffer.memory, 1, &command_buffer->command);
   }
 
   //---------------------------
@@ -98,7 +98,7 @@ void Command_buffer::create_command_buffer_primary(vk::structure::Command_buffer
   VkCommandBufferAllocateInfo alloc_info{};
   alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
   alloc_info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-  alloc_info.commandPool = struct_vulkan->pools.command_buffer.command;
+  alloc_info.commandPool = struct_vulkan->pools.command_buffer.memory;
   alloc_info.commandBufferCount = 1;
   VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &command_buffer->command);
   if(result != VK_SUCCESS){
@@ -114,7 +114,7 @@ void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data
   VkCommandBufferAllocateInfo alloc_info{};
   alloc_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
   alloc_info.level = VK_COMMAND_BUFFER_LEVEL_SECONDARY;
-  alloc_info.commandPool = struct_vulkan->pools.command_buffer.command;
+  alloc_info.commandPool = struct_vulkan->pools.command_buffer.memory;
   alloc_info.commandBufferCount = 1;
 
   VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &data->command_buffer_secondary);

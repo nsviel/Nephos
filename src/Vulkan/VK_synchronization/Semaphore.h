@@ -20,6 +20,7 @@ public:
   void init();
   void clean();
 
+  //Semaphore function
   void init_frame_semaphore(vk::structure::Frame* frame);
   void clean_frame_semaphore(vk::structure::Frame* frame);
 

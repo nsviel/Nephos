@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Struct_attachment.h>
+#include <Vulkan/VK_struct/Struct_descriptor.h>
 #include <Vulkan/VK_struct/Struct_binding.h>
 #include <Vulkan/VK_struct/Struct_buffer.h>
 #include <Vulkan/VK_struct/Struct_command_buffer.h>
@@ -8,6 +9,7 @@
 #include <Vulkan/VK_struct/Struct_image.h>
 #include <Vulkan/VK_struct/Struct_texture.h>
 #include <Vulkan/VK_struct/Struct_object.h>
+#include <Vulkan/VK_struct/Struct_semaphore.h>
 #include <Vulkan/VK_struct/Struct_data.h>
 #include <Vulkan/VK_struct/Struct_physical_device.h>
 #include <Vulkan/VK_struct/Struct_device.h>

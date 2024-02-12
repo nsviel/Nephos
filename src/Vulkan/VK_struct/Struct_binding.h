@@ -19,15 +19,6 @@ typedef std::tuple<std::string, std::size_t, int, VkDescriptorType, VkShaderStag
 namespace vk::structure{
 
 //Structures
-struct Descriptor{
-  //---------------------------
-
-  VkDescriptorSetLayout layout;
-  VkDescriptorSet set;
-
-  //---------------------------
-};
-
 struct Uniform{
   //---------------------------
 

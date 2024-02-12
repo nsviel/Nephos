@@ -48,6 +48,7 @@ void Semaphore::clean(){
   //---------------------------
 }
 
+//Semaphore function
 void Semaphore::init_frame_semaphore(vk::structure::Frame* frame){
   //---------------------------
 
@@ -112,5 +113,6 @@ void Semaphore::clean_semaphore(VkSemaphore& semaphore){
   //---------------------------
 }
 
+//Subfunction
 
 }
