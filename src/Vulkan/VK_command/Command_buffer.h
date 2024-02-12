@@ -32,7 +32,6 @@ public:
   //Command buffer function
   void create_command_buffer_primary(vk::pool::Command_buffer* pool, vk::structure::Command_buffer* command_buffer);
   void create_command_buffer_secondary(vk::structure::Object* data);
-  void reset(vk::structure::Command_buffer* command_buffer);
   void submit(vk::structure::Command_buffer* command_buffer);
 
   //Command buffer lifetime

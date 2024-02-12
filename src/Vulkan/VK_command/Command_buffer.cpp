@@ -116,17 +116,6 @@ void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data
 
   //---------------------------
 }
-void Command_buffer::reset(vk::structure::Command_buffer* command_buffer){
-  //---------------------------
-
-  if(command_buffer->is_resetable){
-    vkResetCommandBuffer(command_buffer->command, 0);
-    command_buffer->is_available = true;
-    command_buffer->is_recorded = false;
-  }
-
-  //---------------------------
-}
 void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
@@ -149,8 +138,7 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(){
   for(int i=0; i<pool->size; i++){
     vk::structure::Command_buffer* command_buffer = &pool->tank[i];
 
-    if(command_buffer->is_available && command_buffer->is_recorded == false){
-      vkResetCommandBuffer(command_buffer->command, 0);
+    if(command_buffer->is_available && !command_buffer->is_recorded){
       command_buffer->is_available = false;
       return command_buffer;
     }
