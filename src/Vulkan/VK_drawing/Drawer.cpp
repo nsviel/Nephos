@@ -27,6 +27,7 @@ void Drawer::draw_frame(){
   vk::structure::Frame* frame = struct_vulkan->swapchain.get_frame_presentation();
   VkSemaphore semaphore_wait = frame->semaphore_image_ready;
   VkSemaphore semaphore_done = frame->vec_semaphore_render[0];
+  VkSemaphore semaphore_last;
   vk_presentation->acquire_next_image(semaphore_wait);
 
 
@@ -42,6 +43,7 @@ void Drawer::draw_frame(){
     vk_render->run_renderpass(renderpass);
 
     vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
+
     vk::structure::Command command;
     command.vec_command_buffer.push_back(renderpass->command_buffer);
     command.vec_semaphore_processing.push_back(semaphore_wait);
@@ -52,7 +54,10 @@ void Drawer::draw_frame(){
     struct_vulkan->tasker_cpu->task_end(name);
     semaphore_wait = frame->vec_semaphore_render[i];
     semaphore_done = frame->vec_semaphore_render[i+1];
+    semaphore_last = frame->vec_semaphore_render[i];
   }
+
+
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
   //vk_command->submit_command(&command_all, fence);
@@ -67,9 +72,10 @@ void Drawer::draw_frame(){
     }
   }
 
-  VkSemaphore semaphore = frame->vec_semaphore_render[nb_renderpass-1];
+
+
   vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
-  vk_presentation->image_presentation(semaphore);
+  vk_presentation->image_presentation(semaphore_last);
   vk_fence->reset_fence(fence);
 
   //---------------------------
