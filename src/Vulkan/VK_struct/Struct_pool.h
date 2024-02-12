@@ -11,6 +11,8 @@ struct Command_buffer{
   VkCommandPool memory;
   std::vector<vk::structure::Command_buffer> tank;
   uint32_t size = 100;
+  bool is_available = true;
+  std::thread::id thread_ID;
 
   //---------------------------
 };

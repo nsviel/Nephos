@@ -23,21 +23,17 @@ void Thread::init(){
 
   vk::pool::Thread* pool = &struct_vulkan->pools.thread;
 
-  vk::pool::Command_buffer command_pool;
-  vk_pool->create_command_pool(&command_pool);
-  vk_command_buffer->init_pool(&command_pool);
-  pool->tank.push_back(command_pool);
-
-
-/*
-  //Secondary threads
-  vk::pool::Thread* pool = &struct_vulkan->pools.thread;
   for(int i=0; i<pool->size; i++){
-    vk::pool::Command_buffer* command_pool = &pool->tank[i];
+    vk::pool::Command_buffer command_pool;
+    command_pool.is_available = (i == 0) ? false : true;
+    command_pool.thread_ID = (i == 0) ? std::this_thread::get_id() : std::thread::id();
 
+    vk_pool->create_command_pool(&command_pool);
+    vk_command_buffer->init_pool(&command_pool);
 
+    pool->tank.push_back(command_pool);
   }
-*/
+
   //---------------------------
 }
 void Thread::reset(){
@@ -86,6 +82,36 @@ vk::pool::Command_buffer* Thread::query_command_pool(int ID){
 
   //---------------------------
   return command_pool;
+}
+vk::pool::Command_buffer* Thread::query_free_command_pool(){
+  vk::pool::Thread* pool = &struct_vulkan->pools.thread;
+  //---------------------------
+
+  //Check if current thread has already an associate command poop
+  std::thread::id thread_ID = std::this_thread::get_id();
+  for(int i=0; i<pool->tank.size(); i++){
+    vk::pool::Command_buffer* command_pool = &pool->tank[i];
+
+    if(thread_ID == command_pool->thread_ID){
+      return command_pool;
+    }
+  }
+
+  //Else send a new one
+  for(int i=0; i<pool->tank.size(); i++){
+    vk::pool::Command_buffer* command_pool = &pool->tank[i];
+
+    if(command_pool->thread_ID == std::thread::id()){
+      command_pool->thread_ID = std::this_thread::get_id();
+      return command_pool;
+    }
+  }
+
+  //Error message
+  cout<<"[error] not enough free command pool"<<endl;
+
+  //---------------------------
+  return nullptr;
 }
 
 }

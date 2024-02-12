@@ -26,6 +26,7 @@ public:
 
   //Subfunction
   vk::pool::Command_buffer* query_command_pool(int ID);
+  vk::pool::Command_buffer* query_free_command_pool();
 
 private:
   vk::structure::Vulkan* struct_vulkan;
