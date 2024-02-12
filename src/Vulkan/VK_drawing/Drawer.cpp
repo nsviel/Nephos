@@ -24,42 +24,28 @@ Drawer::~Drawer(){}
 void Drawer::draw_frame(){
   //---------------------------
 
-  vk::structure::Frame* frame = struct_vulkan->swapchain.get_frame_presentation();
-
-
-  vk::structure::Semaphore* semaphore_start = vk_semaphore->query_free_semaphore();
-  VkSemaphore semaphore_wait = frame->semaphore_image_ready;
-  VkSemaphore semaphore_done = frame->vec_semaphore_render[0];
-  VkSemaphore semaphore_last;
-  vk_presentation->acquire_next_image(semaphore_wait);
-
-
-  vk::structure::Command command_all;
+  vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
+  vk_presentation->acquire_next_image(semaphore->end);
 
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    vk::structure::Command command;
+
+    command.vec_semaphore_processing.push_back(semaphore->end);
 
     string name = "eng::rp::" + renderpass->name;
     struct_vulkan->tasker_cpu->task_begin(name);
     vk_render->run_renderpass(renderpass);
 
-
-
-    vk::structure::Command command;
+    semaphore = vk_semaphore->query_free_semaphore();
     command.vec_command_buffer.push_back(renderpass->command_buffer);
-    command.vec_semaphore_processing.push_back(semaphore_wait);
-    command.vec_semaphore_done.push_back(semaphore_done);
+    command.vec_semaphore_done.push_back(semaphore->end);
     command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
     renderpass->command = command;
 
     struct_vulkan->tasker_cpu->task_end(name);
-
-    vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
-    semaphore_wait = frame->vec_semaphore_render[i];
-    semaphore_done = frame->vec_semaphore_render[i+1];
-    semaphore_last = semaphore_wait;
   }
 
 
@@ -80,7 +66,7 @@ void Drawer::draw_frame(){
 
 
   vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
-  vk_presentation->image_presentation(semaphore_last);
+  vk_presentation->image_presentation(semaphore->end);
   vk_fence->reset_fence(fence);
 
   //---------------------------
