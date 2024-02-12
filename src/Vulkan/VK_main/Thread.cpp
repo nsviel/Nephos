@@ -42,11 +42,23 @@ void Thread::reset(){
 
   //---------------------------
 }
+void Thread::submit_commands(){
+  //---------------------------
+
+  for(auto& pair : struct_vulkan->pools.command_buffer){
+    vk::pool::Command_buffer* pool = &pair.second;
+    vk_command_buffer->submit_pool(pool);
+    vk_command_buffer->reset_pool(pool);
+  }
+
+  //---------------------------
+}
 void Thread::clean(){
   //---------------------------
 
   for(auto& pair : struct_vulkan->pools.command_buffer){
     vk::pool::Command_buffer* pool = &pair.second;
+    vk_command_buffer->clean_pool(pool);
     vk_pool->clean_command_pool(pool);
   }
 

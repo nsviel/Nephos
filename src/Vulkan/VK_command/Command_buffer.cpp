@@ -50,8 +50,7 @@ void Command_buffer::reset_pool(vk::pool::Command_buffer* pool){
 
   //---------------------------
 }
-void Command_buffer::clean_pool(){
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+void Command_buffer::clean_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
   //Clear all old command buffer
@@ -63,8 +62,7 @@ void Command_buffer::clean_pool(){
 
   //---------------------------
 }
-void Command_buffer::submit_pool(){
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+void Command_buffer::submit_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
   //Submit all recorder command buffer

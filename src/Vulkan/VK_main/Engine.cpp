@@ -66,8 +66,7 @@ void Engine::loop(){
   //vk_imgui->render();
 
   vk_drawing->draw_frame();
-  vk_command_buffer->submit_pool();
-  vk_thread->reset();
+  vk_thread->submit_commands();
   vk_semaphore->reset_pool();
   //vk_imgui->render();
   //vk_imgui->new_frame();
@@ -82,7 +81,6 @@ void Engine::clean(){
   vk_swapchain->clean();
   vk_canvas->clean();
   vk_data->clean();
-  vk_command_buffer->clean_pool();
   vk_fence->clean_pool();
   vk_semaphore->clean_pool();
   vk_thread->clean();

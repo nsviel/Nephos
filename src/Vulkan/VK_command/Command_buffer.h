@@ -26,8 +26,8 @@ public:
   //Pool function
   void init_pool(vk::pool::Command_buffer* pool);
   void reset_pool(vk::pool::Command_buffer* pool);
-  void clean_pool();
-  void submit_pool();
+  void clean_pool(vk::pool::Command_buffer* pool);
+  void submit_pool(vk::pool::Command_buffer* pool);
 
   //Command buffer function
   void create_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
