@@ -29,7 +29,6 @@ struct Vulkan{
   vk::structure::Data data;
   vk::structure::Parameter param;
   vk::structure::Pool pools;
-  vk::structure::Synchro synchro;
   vk::structure::Command command;
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;

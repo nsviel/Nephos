@@ -15,7 +15,6 @@ Frame::Frame(vk::structure::Vulkan* struct_vulkan){
   this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_color = new vk::image::Color(struct_vulkan);
   this->vk_depth = new vk::image::Depth(struct_vulkan);
-  this->vk_fence = new vk::synchro::Fence(struct_vulkan);
 
   //---------------------------
 }

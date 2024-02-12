@@ -11,8 +11,6 @@ struct Frame{
 
   //Main object
   VkFramebuffer fbo;
-  VkSemaphore semaphore_image_ready;
-  std::vector<VkSemaphore> vec_semaphore_render;
 
   //Attachment
   Image color;
