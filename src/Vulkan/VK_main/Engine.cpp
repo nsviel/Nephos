@@ -68,6 +68,7 @@ void Engine::loop(){
   vk_drawing->draw_frame();
   vk_command_buffer->submit();
   vk_command_buffer->reset();
+  vk_semaphore->reset();
   //vk_imgui->render();
   //vk_imgui->new_frame();
 

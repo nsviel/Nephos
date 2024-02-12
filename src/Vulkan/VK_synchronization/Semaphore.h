@@ -20,6 +20,7 @@ public:
   //Main functions
   void init_pool();
   void clean_pool();
+  void reset();
 
   //Semaphore function
   void create_semaphore(vk::structure::Semaphore* semaphore);

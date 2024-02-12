@@ -37,8 +37,18 @@ void Semaphore::clean_pool(){
 
   for(int i=0; i<struct_vulkan->pools.semaphore.size; i++){
     vk::structure::Semaphore* vk_semaphore = &pool[i];
-
     this->clean_semaphore(vk_semaphore);
+  }
+
+  //---------------------------
+}
+void Semaphore::reset(){
+  std::vector<vk::structure::Semaphore>& pool = struct_vulkan->pools.semaphore.pool;
+  //---------------------------
+
+  for(int i=0; i<struct_vulkan->pools.semaphore.size; i++){
+    vk::structure::Semaphore* vk_semaphore = &pool[i];
+    vk_semaphore->is_available = true;
   }
 
   //---------------------------

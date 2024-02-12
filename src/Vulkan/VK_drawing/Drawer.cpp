@@ -13,6 +13,7 @@ Drawer::Drawer(vk::structure::Vulkan* struct_vulkan){
   this->vk_render = new vk::draw::Renderer(struct_vulkan);
   this->vk_presentation = new vk::presentation::Presentation(struct_vulkan);
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
+  this->vk_semaphore = new vk::synchro::Semaphore(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
 
   //---------------------------
@@ -40,6 +41,7 @@ void Drawer::draw_frame(){
     struct_vulkan->tasker_cpu->task_begin(name);
     vk_render->run_renderpass(renderpass);
 
+    vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
     vk::structure::Command command;
     command.vec_command_buffer.push_back(renderpass->command_buffer);
     command.vec_semaphore_processing.push_back(semaphore_wait);
