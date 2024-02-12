@@ -11,6 +11,7 @@ Command_buffer::Command_buffer(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
+  this->vk_command = new vk::command::Command(struct_vulkan);
 
   //---------------------------
 }
@@ -140,6 +141,8 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
   if(command_buffer->is_recorded){
+    vk::structure::Command command;
+  //  command.vec_command_buffer.push_back(command_buffer);
     vector<VkCommandBuffer> vec_command(1, command_buffer->command);
     this->submit_vec_command_buffer(vec_command);
     vkQueueWaitIdle(struct_vulkan->device.queue_graphics);

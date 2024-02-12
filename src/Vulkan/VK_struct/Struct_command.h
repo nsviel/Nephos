@@ -10,7 +10,7 @@ struct Command{
   //---------------------------
 
   //Command
-  std::vector<vk::structure::Command_buffer> vec_command_buffer;
+  std::vector<VkCommandBuffer> vec_command_buffer;
   std::vector<VkPipelineStageFlags> vec_wait_stage;
 
   //Synchronization

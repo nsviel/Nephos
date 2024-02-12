@@ -105,9 +105,7 @@ void Renderer::draw_subpass(vk::structure::Renderpass* renderpass){
     subpass->draw_task(subpass);
   }
 
-  vk::structure::Command_buffer command_buffer;
-  command_buffer.command = renderpass->command_buffer->command;
-  command.vec_command_buffer.push_back(command_buffer);
+  command.vec_command_buffer.push_back(renderpass->command_buffer->command);
 
   //---------------------------
   renderpass->command = command;

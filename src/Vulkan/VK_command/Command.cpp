@@ -19,11 +19,6 @@ Command::~Command(){}
 void Command::submit_command(vk::structure::Command* command){
   //---------------------------
 
-  vector<VkCommandBuffer> vec_command_buffer;
-  for(int i=0; i<command->vec_command_buffer.size(); i++){
-    vec_command_buffer.push_back(command->vec_command_buffer[i].command);
-  }
-
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   submit_info.waitSemaphoreCount = command->vec_semaphore_processing.size();
@@ -31,8 +26,8 @@ void Command::submit_command(vk::structure::Command* command){
   submit_info.pWaitDstStageMask = command->vec_wait_stage.data();
   submit_info.signalSemaphoreCount = command->vec_semaphore_done.size();
   submit_info.pSignalSemaphores = command->vec_semaphore_done.data();
-  submit_info.commandBufferCount = vec_command_buffer.size();
-  submit_info.pCommandBuffers = vec_command_buffer.data();
+  submit_info.commandBufferCount = command->vec_command_buffer.size();
+  submit_info.pCommandBuffers = command->vec_command_buffer.data();
 
   VkFence fence = VK_NULL_HANDLE;
   if(command->fence != nullptr){

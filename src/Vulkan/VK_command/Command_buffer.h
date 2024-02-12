@@ -8,6 +8,7 @@ namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Fence;}
 namespace vk::synchro{class Fence;}
+namespace vk::command{class Command;}
 
 
 namespace vk::command{
@@ -42,6 +43,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::synchro::Fence* vk_fence;
+  vk::command::Command* vk_command;
 };
 
 }
