@@ -24,6 +24,7 @@ void Semaphore::init_pool(){
     vk::structure::Semaphore vk_semaphore;
 
     this->create_semaphore(&vk_semaphore);
+    vk_semaphore.is_available = true;
 
     pool.push_back(vk_semaphore);
   }
@@ -45,12 +46,18 @@ void Semaphore::clean_pool(){
 
 //Semaphore function
 void Semaphore::create_semaphore(vk::structure::Semaphore* semaphore){
+  VkResult result;
   //---------------------------
 
   VkSemaphoreCreateInfo info{};
   info.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
 
-  VkResult result = vkCreateSemaphore(struct_vulkan->device.device, &info, nullptr, &semaphore->semaphore);
+  result = vkCreateSemaphore(struct_vulkan->device.device, &info, nullptr, &semaphore->begin);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to create semaphore");
+  }
+
+  result = vkCreateSemaphore(struct_vulkan->device.device, &info, nullptr, &semaphore->end);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create semaphore");
   }
@@ -60,7 +67,8 @@ void Semaphore::create_semaphore(vk::structure::Semaphore* semaphore){
 void Semaphore::clean_semaphore(vk::structure::Semaphore* semaphore){
   //---------------------------
 
-  vkDestroySemaphore(struct_vulkan->device.device, semaphore->semaphore, nullptr);
+  vkDestroySemaphore(struct_vulkan->device.device, semaphore->begin, nullptr);
+  vkDestroySemaphore(struct_vulkan->device.device, semaphore->end, nullptr);
 
   //---------------------------
 }
