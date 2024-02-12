@@ -27,6 +27,8 @@ void Drawer::draw_frame(){
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
   vk_presentation->acquire_next_image(semaphore->end);
 
+  vector<vk::structure::Command> vec_command;
+
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
@@ -43,7 +45,7 @@ void Drawer::draw_frame(){
     command.vec_command_buffer.push_back(renderpass->command_buffer);
     command.vec_semaphore_done.push_back(semaphore->end);
     command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-    renderpass->command = command;
+    vec_command.push_back(command);
 
     struct_vulkan->tasker_cpu->task_end(name);
   }
@@ -51,15 +53,11 @@ void Drawer::draw_frame(){
 
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
-  //vk_command->submit_command(&command_all, fence);
-
-  for(int i=0; i<nb_renderpass; i++){
-    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
-
-    if(i != nb_renderpass-1){
-      vk_command->submit_command(&renderpass->command, nullptr);
+  for(int i=0; i<vec_command.size(); i++){
+    if(i != vec_command.size()-1){
+      vk_command->submit_command(&vec_command[i], nullptr);
     }else{
-      vk_command->submit_command(&renderpass->command, fence);
+      vk_command->submit_command(&vec_command[i], fence);
     }
   }
 

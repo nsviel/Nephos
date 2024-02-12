@@ -19,10 +19,6 @@ struct Renderpass{
   VkRenderPass renderpass;
   vk::structure::Framebuffer* framebuffer;
 
-
-  //A VIRER
-  vk::structure::Command command;
-
   //---------------------------
 };
 
