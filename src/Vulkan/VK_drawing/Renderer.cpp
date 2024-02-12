@@ -88,7 +88,6 @@ void Renderer::stop_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 }
 void Renderer::draw_subpass(vk::structure::Renderpass* renderpass){
-  vk::structure::Command command;
   //---------------------------
 
   for(int j=0; j<renderpass->vec_subpass.size(); j++){
@@ -97,10 +96,7 @@ void Renderer::draw_subpass(vk::structure::Renderpass* renderpass){
     subpass->draw_task(subpass);
   }
 
-  command.vec_command_buffer.push_back(renderpass->command_buffer);
-
   //---------------------------
-  renderpass->command = command;
 }
 void Renderer::wait_end_rendering(vk::structure::Fence* fence){
   //---------------------------

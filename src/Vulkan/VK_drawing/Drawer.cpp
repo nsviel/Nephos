@@ -40,13 +40,15 @@ void Drawer::draw_frame(){
     struct_vulkan->tasker_cpu->task_begin(name);
     vk_render->run_renderpass(renderpass);
 
-    vk::structure::Command& command = renderpass->command;
+    vk::structure::Command command;
+    command.vec_command_buffer.push_back(renderpass->command_buffer);
     command.vec_semaphore_processing.push_back(semaphore_wait);
     command.vec_semaphore_done.push_back(semaphore_done);
     command.fence = (i == nb_renderpass-1) ? frame->fence : nullptr;
     command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-    struct_vulkan->tasker_cpu->task_end(name);
+    renderpass->command = command;
 
+    struct_vulkan->tasker_cpu->task_end(name);
     semaphore_wait = frame->vec_semaphore_render[i];
     semaphore_done = frame->vec_semaphore_render[i+1];
   }
