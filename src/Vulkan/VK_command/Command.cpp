@@ -114,7 +114,8 @@ void Command::queue_submission(){
 void Command::wait_and_reset(vk::structure::Command* command){
   //---------------------------
 
-  vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
+  //vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
+  vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
 
   //Reset command buffer
   for(int i=0; i<command->vec_command_buffer.size(); i++){
