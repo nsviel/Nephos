@@ -46,7 +46,6 @@ void Engine::init(){
   vk_device->init();
   vk_pool->init();
   vk_fence->init();
-  vk_semaphore->init_pool();
   vk_command_buffer->init();
   vk_canvas->init();
 
@@ -55,6 +54,7 @@ void Engine::init(){
   vk_viewport->init();
   vk_renderpass->init();
   vk_imgui->init();
+  vk_semaphore->init_pool();
   vk_frame->create_frame();
 
   //---------------------------

@@ -29,17 +29,6 @@ public:
   //Subfunction
   vk::structure::Semaphore* query_free_semaphore();
 
-
-
-  //OLD
-  //Semaphore function
-  void init_frame_semaphore(vk::structure::Frame* frame);
-  void clean_frame_semaphore(vk::structure::Frame* frame);
-
-  void create_semaphore(VkSemaphore& semaphore);
-  void clean_vec_semaphore(vector<VkSemaphore>& vec_semaphore);
-  void clean_semaphore(VkSemaphore& semaphore);
-
 private:
   vk::structure::Vulkan* struct_vulkan;
 };
