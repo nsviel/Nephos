@@ -22,11 +22,14 @@ Renderer::~Renderer(){}
 void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
+  renderpass->command_buffer = command_buffer;
+
   this->start_renderpass(renderpass);
   this->draw_subpass(renderpass);
+  this->stop_renderpass(renderpass);
 
-  vkCmdEndRenderPass(renderpass->command_buffer->command);
-  vk_command_buffer->end_command_buffer(renderpass->command_buffer);
+  vk_command_buffer->end_command_buffer(command_buffer);
 
   //---------------------------
 }
@@ -55,10 +58,7 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
     cout<<"[error] Renderpass target not recognized ["<<renderpass->target<<"]"<<endl;
   }
 
-
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
-  renderpass->command_buffer = command_buffer;
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
+  vk_command_buffer->start_command_buffer_primary(renderpass->command_buffer);
 
   std::array<VkClearValue, 2> clear_value{};
   clear_value[0].color = {{
@@ -85,7 +85,14 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
     content = VK_SUBPASS_CONTENTS_INLINE;
   }
 
-  vkCmdBeginRenderPass(command_buffer->command, &renderpass_info, content);
+  vkCmdBeginRenderPass(renderpass->command_buffer->command, &renderpass_info, content);
+
+  //---------------------------
+}
+void Renderer::stop_renderpass(vk::structure::Renderpass* renderpass){
+  //---------------------------
+
+  vkCmdEndRenderPass(renderpass->command_buffer->command);
 
   //---------------------------
 }
