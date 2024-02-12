@@ -28,6 +28,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
 
+  std::thread thread;
   std::vector<VkCommandBuffer> vec_command_buffer;
   std::vector<VkPipelineStageFlags> vec_wait_stage;
   std::vector<VkSemaphore> vec_semaphore_processing;

@@ -19,6 +19,10 @@ Command::~Command(){}
 void Command::submit_command_thread(vk::structure::Command* command){
   //---------------------------
 
+  this->thread = std::thread([this, command](){
+    this->submit_command(command);
+  });
+
   //---------------------------
 }
 void Command::submit_command(vk::structure::Command* command){
