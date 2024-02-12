@@ -86,6 +86,7 @@ void Engine::clean(){
   vk_command_buffer->clean_pool();
   vk_fence->clean_pool();
   vk_semaphore->clean_pool();
+  vk_thread->clean();
   vk_pool->clean();
   vk_device->clean();
   vk_surface->clean();

@@ -10,7 +10,6 @@ Pool::Pool(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_thread = new vk::main::Thread(struct_vulkan);
 
   //---------------------------
 }
@@ -22,18 +21,12 @@ void Pool::init(){
 
   this->create_descriptor_pool();
 
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
-  this->create_command_pool(pool);
-
   //---------------------------
 }
 void Pool::clean(){
   //---------------------------
 
   this->clean_descriptor_pool();
-
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
-  this->clean_command_pool(pool);
 
   //---------------------------
 }

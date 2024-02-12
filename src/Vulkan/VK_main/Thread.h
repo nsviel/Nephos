@@ -4,6 +4,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::pool{class Command_buffer;}
+namespace vk::instance{class Pool;}
 
 
 namespace vk::main{
@@ -18,12 +19,14 @@ public:
 public:
   //Main functions
   void init();
+  void clean();
 
   //Subfunction
   vk::pool::Command_buffer* query_current_command_pool();
 
 private:
   vk::structure::Vulkan* struct_vulkan;
+  vk::instance::Pool* vk_pool;
 };
 
 }
