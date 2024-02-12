@@ -27,32 +27,28 @@ void Drawer::draw_frame(){
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
   vk_presentation->acquire_next_image(semaphore->end);
 
-  vector<vk::structure::Command> vec_command;
-
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
-    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
-    vk::structure::Command command;
-
-    command.vec_semaphore_processing.push_back(semaphore->end);
-
     string name = "eng::rp::" + renderpass->name;
     struct_vulkan->tasker_cpu->task_begin(name);
+
+    //Retrieve structures
+    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    vk::structure::Command command;
+    command.vec_semaphore_processing.push_back(semaphore->end);
+
+    //Run renderpass
     vk_render->run_renderpass(renderpass);
 
+    //Complete command with semaphore
     semaphore = vk_semaphore->query_free_semaphore();
     command.vec_command_buffer.push_back(renderpass->command_buffer);
     command.vec_semaphore_done.push_back(semaphore->end);
     command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-    vec_command.push_back(command);
+    vk_command->submit_command(&command);
 
     struct_vulkan->tasker_cpu->task_end(name);
-  }
-
-
-  for(int i=0; i<vec_command.size(); i++){
-    vk_command->submit_command(&vec_command[i]);
   }
 
   vk_presentation->image_presentation(semaphore->end);
