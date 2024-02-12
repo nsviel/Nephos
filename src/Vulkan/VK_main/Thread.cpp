@@ -19,15 +19,11 @@ Thread::~Thread(){}
 //Main function
 void Thread::init(){
   //---------------------------
+
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
 
   //Main thread command buffer pool
-  THREAD_ID thread_ID = std::this_thread::get_id();
-  struct_vulkan->pools.command_buffer[thread_ID] = vk::pool::Command_buffer();
-
-  vk::pool::Command_buffer* pool = query_current_command_pool();
-  vk_pool->create_command_pool(pool);
-  vk_command_buffer->init_pool(pool);
+  this->create_thread_command_pool();
 
   //---------------------------
 }
@@ -65,11 +61,22 @@ void Thread::clean(){
 }
 
 //Subfunction
-void Thread::create_thread_command_pool(){
+bool Thread::is_thread_in_engine(std::thread::id thread_ID){
+  //---------------------------
+
+  auto it = struct_vulkan->pools.command_buffer.find(thread_ID);
+  if(it == struct_vulkan->pools.command_buffer.end()){
+    return false;
+  }
+
+  //---------------------------
+  return true;
+}
+vk::pool::Command_buffer* Thread::create_thread_command_pool(){
   //---------------------------
 
   //Main thread command buffer pool
-  THREAD_ID thread_ID = std::this_thread::get_id();
+  std::thread::id thread_ID = std::this_thread::get_id();
   struct_vulkan->pools.command_buffer[thread_ID] = vk::pool::Command_buffer();
 
   vk::pool::Command_buffer* pool = query_current_command_pool();
@@ -77,12 +84,18 @@ void Thread::create_thread_command_pool(){
   vk_command_buffer->init_pool(pool);
 
   //---------------------------
+  return pool;
 }
 vk::pool::Command_buffer* Thread::query_current_command_pool(){
+  vk::pool::Command_buffer* pool = nullptr;
   //---------------------------
 
-  THREAD_ID thread_ID = std::this_thread::get_id();
-  vk::pool::Command_buffer* pool = &struct_vulkan->pools.command_buffer[thread_ID];
+  std::thread::id thread_ID = std::this_thread::get_id();
+  if(is_thread_in_engine(thread_ID)){
+    pool = &struct_vulkan->pools.command_buffer[thread_ID];
+  }else{
+    pool = create_thread_command_pool();
+  }
 
   //---------------------------
   return pool;

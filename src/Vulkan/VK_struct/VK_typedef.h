@@ -3,8 +3,6 @@
 #include <Utility/Specific/common.h>
 
 
-using THREAD_ID = std::thread::id;
-
 //Memory
 typedef VkMemoryPropertyFlags memory_flag;
 constexpr memory_flag TYP_MEMORY_GPU = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;

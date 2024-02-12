@@ -25,7 +25,8 @@ public:
   void submit_commands();
 
   //Subfunction
-  void create_thread_command_pool();
+  bool is_thread_in_engine(std::thread::id thread_ID);
+  vk::pool::Command_buffer* create_thread_command_pool();
   vk::pool::Command_buffer* query_current_command_pool();
 
 private:
