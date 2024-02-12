@@ -83,11 +83,15 @@ void Drawer::draw_frame_presentation(){
     command.vec_semaphore_processing.push_back(semaphore_wait);
     command.vec_semaphore_done.push_back(semaphore_done);
     command.fence = (i == nb_renderpass-1) ? frame->fence : nullptr;
-    vk_render->submit_command(renderpass);
     struct_vulkan->tasker_cpu->task_end(name);
 
     semaphore_wait = frame->vec_semaphore_render[i];
     semaphore_done = frame->vec_semaphore_render[i+1];
+  }
+
+  for(int i=0; i<nb_renderpass; i++){
+    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    vk_render->submit_command(renderpass);
   }
 
 
