@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::structure{class Vulkan;}
-namespace vk::structure{class Pool_command_buffer;}
+namespace vk::pool{class Command_buffer;}
 
 
 namespace vk::main{
@@ -17,7 +17,8 @@ public:
 
 public:
   //Main functions
-
+  void init();
+  vk::pool::Command_buffer* query_current_command_pool();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

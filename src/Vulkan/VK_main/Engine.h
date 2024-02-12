@@ -8,6 +8,7 @@ namespace vk::presentation{class Swapchain;}
 namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
 namespace vk::main{class Texture;}
+namespace vk::main{class Thread;}
 namespace vk::main{class Imgui;}
 namespace vk::data{class Data;}
 namespace vk::draw{class Viewport;}
@@ -78,6 +79,7 @@ private:
   vk::main::Imgui* vk_imgui;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;
+  vk::main::Thread* vk_thread;
 };
 
 }

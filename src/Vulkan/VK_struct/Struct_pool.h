@@ -3,9 +3,9 @@
 #include <Utility/Specific/common.h>
 
 
-namespace vk::structure{
+namespace vk::pool{
 
-struct Pool_command_buffer{
+struct Command_buffer{
   //---------------------------
 
   VkCommandPool memory;
@@ -15,7 +15,7 @@ struct Pool_command_buffer{
   //---------------------------
 };
 
-struct Pool_fence{
+struct Fence{
   //---------------------------
 
   std::vector<vk::structure::Fence> pool;
@@ -24,7 +24,7 @@ struct Pool_fence{
   //---------------------------
 };
 
-struct Pool_semaphore{
+struct Semaphore{
   //---------------------------
 
   std::vector<vk::structure::Semaphore> pool;
@@ -33,7 +33,7 @@ struct Pool_semaphore{
   //---------------------------
 };
 
-struct Pool_descriptor{
+struct Descriptor{
   //---------------------------
 
   VkDescriptorPool memory;
@@ -43,14 +43,18 @@ struct Pool_descriptor{
   //---------------------------
 };
 
+}
+
+
+namespace vk::structure{
 
 struct Pool{
   //---------------------------
 
-  std::map<std::string, vk::structure::Pool_command_buffer> command_buffer;
-  Pool_fence fence;
-  Pool_semaphore semaphore;
-  Pool_descriptor descriptor;
+  std::map<std::string, vk::pool::Command_buffer> command_buffer;
+  vk::pool::Fence fence;
+  vk::pool::Semaphore semaphore;
+  vk::pool::Descriptor descriptor;
 
   //---------------------------
 };

@@ -91,8 +91,6 @@ void Pool::clean_descriptor_pool(){
 void Pool::create_command_pool(){
   //---------------------------
 
-  struct_vulkan->pools.command_buffer["main"] = vk::structure::Pool_command_buffer();
-
   //Command pool info
   VkCommandPoolCreateInfo poolInfo{};
   poolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
