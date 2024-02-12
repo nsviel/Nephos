@@ -22,8 +22,6 @@ public:
 public:
   //Main functions
   void draw_frame();
-  void draw_frame_headless();
-  void draw_frame_presentation();
 
   //Draw command
   void cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object* data);

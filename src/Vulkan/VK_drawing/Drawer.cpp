@@ -14,56 +14,13 @@ Drawer::Drawer(vk::structure::Vulkan* struct_vulkan){
   this->vk_presentation = new vk::presentation::Presentation(struct_vulkan);
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
-  
+
   //---------------------------
 }
 Drawer::~Drawer(){}
 
 //Main function
 void Drawer::draw_frame(){
-
-  //---------------------------
-
-  if(struct_vulkan->param.headless){
-    this->draw_frame_headless();
-  }
-  else{
-    this->draw_frame_presentation();
-  }
-
-  //---------------------------
-
-}
-void Drawer::draw_frame_headless(){
-  //---------------------------
-
-  VkSemaphore semaphore_wait = struct_vulkan->synchro.semaphore_image_ready;
-  VkSemaphore semaphore_done = struct_vulkan->synchro.vec_semaphore_render[0];
-
-  //Renderpass
-  int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
-  for(int i=0; i<nb_renderpass; i++){
-    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
-
-    string name = "eng::rp::" + renderpass->name;
-    struct_vulkan->tasker_cpu->task_begin(name);
-    vk_render->run_renderpass(renderpass);
-
-    vk::structure::Command& command = renderpass->command;
-    command.fence = (i == nb_renderpass-1) ? vk_fence->query_free_fence() : nullptr;
-    vk_render->submit_command(renderpass);
-    struct_vulkan->tasker_cpu->task_end(name);
-
-    semaphore_wait = struct_vulkan->synchro.vec_semaphore_render[i];
-    semaphore_done = struct_vulkan->synchro.vec_semaphore_render[i+1];
-  }
-
-  vk::structure::Fence* fence = struct_vulkan->synchro.fence;
-  vk_render->wait_end_rendering(fence);
-
-  //---------------------------
-}
-void Drawer::draw_frame_presentation(){
   //---------------------------
 
   vk::structure::Frame* frame = struct_vulkan->swapchain.get_frame_presentation();
