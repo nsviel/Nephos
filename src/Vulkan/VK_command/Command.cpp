@@ -73,23 +73,21 @@ void Command::reset_for_submission(){
 void Command::prepare_submission(vk::structure::Command* command, vk::structure::Fence* fence){
   //---------------------------
 
+  //Fence
+  if(fence != nullptr){
+    this->fence = fence->fence;
+  }
+
   //Command buffer
   for(int i=0; i<command->vec_command_buffer.size(); i++){
     vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
+    command_buffer->fence = fence;
     this->vec_command_buffer.push_back(command_buffer->command);
   }
 
   this->vec_semaphore_processing = command->vec_semaphore_processing;
   this->vec_wait_stage = command->vec_wait_stage;
   this->vec_semaphore_done = command->vec_semaphore_done;
-
-  //Fence
-  if(fence != nullptr){
-    this->fence = fence->fence;
-  }
-
-  //Submission
-  //this->queue_submission();
 
   //---------------------------
 }
