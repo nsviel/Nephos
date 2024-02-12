@@ -110,38 +110,6 @@ vk::structure::Semaphore* Semaphore::query_free_semaphore(){
 
 
 // OLD
-void Semaphore::init(){
-  //---------------------------
-
-  //Create semaphore - Renderpass
-  for(int i=0; i<4; i++){
-    VkSemaphore semaphore;
-    this->create_semaphore(semaphore);
-    struct_vulkan->synchro.vec_semaphore_render.push_back(semaphore);
-  }
-
-  //Create semaphore - Image ready
-  VkSemaphore semaphore_image_ready;
-  this->create_semaphore(semaphore_image_ready);
-  struct_vulkan->synchro.semaphore_image_ready = semaphore_image_ready;
-
-  //Create semaphore - Image ready
-  VkSemaphore semaphore_render_done;
-  this->create_semaphore(semaphore_render_done);
-  struct_vulkan->synchro.semaphore_render_done = semaphore_render_done;
-
-  //---------------------------
-}
-void Semaphore::clean(){
-  //---------------------------
-/*
-  this->clean_semaphore(struct_vulkan->synchro.semaphore_image_ready);
-  this->clean_semaphore(struct_vulkan->synchro.semaphore_render_done);
-  this->clean_vec_semaphore(struct_vulkan->synchro.vec_semaphore_render);
-*/
-  //---------------------------
-}
-
 //Semaphore function
 void Semaphore::init_frame_semaphore(vk::structure::Frame* frame){
   //---------------------------

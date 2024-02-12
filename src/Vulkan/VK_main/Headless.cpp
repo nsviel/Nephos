@@ -76,7 +76,6 @@ void Headless::init_engine_headless(){
   vk_device->init();
   vk_pool->init();
   vk_canvas->init();
-  vk_synchronization->init();
 
   //Render
   vk_viewport->init();
@@ -96,7 +95,6 @@ void Headless::loop(){
 void Headless::clean(){
   //---------------------------
 
-  vk_synchronization->clean();
   vk_texture->clean();
   vk_renderpass->clean();
   vk_swapchain->clean();

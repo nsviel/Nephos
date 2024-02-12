@@ -25,6 +25,9 @@ void Drawer::draw_frame(){
   //---------------------------
 
   vk::structure::Frame* frame = struct_vulkan->swapchain.get_frame_presentation();
+
+
+  vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
   VkSemaphore semaphore_wait = frame->semaphore_image_ready;
   VkSemaphore semaphore_done = frame->vec_semaphore_render[0];
   VkSemaphore semaphore_last;
@@ -42,7 +45,7 @@ void Drawer::draw_frame(){
     struct_vulkan->tasker_cpu->task_begin(name);
     vk_render->run_renderpass(renderpass);
 
-    vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
+
 
     vk::structure::Command command;
     command.vec_command_buffer.push_back(renderpass->command_buffer);

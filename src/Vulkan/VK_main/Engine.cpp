@@ -26,7 +26,6 @@ Engine::Engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_frame = new vk::presentation::Frame(struct_vulkan);
   this->vk_canvas = new vk::data::Canvas(struct_vulkan);
   this->vk_drawing = new vk::draw::Drawer(struct_vulkan);
-  this->vk_synchronization = new vk::synchro::Semaphore(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   this->vk_imgui = new vk::main::Imgui(struct_vulkan);
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
@@ -77,7 +76,6 @@ void Engine::loop(){
 void Engine::clean(){
   //---------------------------
 
-  vk_synchronization->clean();
   vk_texture->clean();
   vk_renderpass->clean();
   vk_swapchain->clean();

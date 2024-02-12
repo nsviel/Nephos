@@ -72,7 +72,6 @@ private:
   vk::data::Data* vk_data;
   vk::draw::Viewport* vk_viewport;
   vk::shader::Reloader* vk_reload;
-  vk::synchro::Semaphore* vk_synchronization;
   vk::presentation::Frame* vk_frame;
   vk::data::Canvas* vk_canvas;
   vk::draw::Drawer* vk_drawing;
