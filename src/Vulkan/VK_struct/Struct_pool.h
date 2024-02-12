@@ -60,7 +60,6 @@ namespace vk::structure{
 struct Pool{
   //---------------------------
 
-  std::map<int, vk::pool::Command_buffer> command_buffer;
   vk::pool::Thread thread;
   vk::pool::Fence fence;
   vk::pool::Semaphore semaphore;
