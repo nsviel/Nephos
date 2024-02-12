@@ -81,7 +81,7 @@ void Command_buffer::submit_pool(){
     }
   }
 
-  vk_command->submit_command(&command, nullptr);
+  vk_command->submit_command(&command);
 
   //---------------------------
 }
@@ -137,7 +137,7 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
   if(command_buffer->is_recorded){
     vk::structure::Command command;
     command.vec_command_buffer.push_back(command_buffer);
-    vk_command->submit_command(&command, nullptr);
+    vk_command->submit_command(&command);
   }
 
   //---------------------------

@@ -21,7 +21,7 @@ public:
   //Main function
   void submit_vec_command();
   void submit_command_thread(vk::structure::Command* command);
-  void submit_command(vk::structure::Command* command, vk::structure::Fence* fence);
+  void submit_command(vk::structure::Command* command);
 
   //Subfunction
   void reset_for_submission();

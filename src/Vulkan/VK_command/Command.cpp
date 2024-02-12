@@ -47,22 +47,13 @@ void Command::submit_vec_command(){
 
   //---------------------------
 }
-void Command::submit_command(vk::structure::Command* command, vk::structure::Fence* fence){
+void Command::submit_command(vk::structure::Command* command){
   //---------------------------
 
-
-
   this->reset_for_submission();
-
-  if(fence != nullptr){
-    this->fence = fence->fence;
-  }
-
-
   this->prepare_submission(command);
   this->queue_submission();
   this->wait_and_reset(command);
-
 
   //---------------------------
 }
@@ -94,7 +85,7 @@ void Command::prepare_submission(vk::structure::Command* command){
 
   //Fence
   if(command->fence != nullptr){
-  //  this->fence = command->fence->fence;
+    this->fence = command->fence->fence;
   }
 
   //Submission
