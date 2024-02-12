@@ -82,7 +82,6 @@ void Command_buffer::submit(){
   }
 
   vk_command->submit_command(&command);
-  vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
 
   //Reset all command buffer
   this->reset();
@@ -143,9 +142,6 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
     vk::structure::Command command;
     command.vec_command_buffer.push_back(command_buffer);
     vk_command->submit_command(&command);
-
-    vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
-    command_buffer->is_recorded = false;
   }
 
   //Reset all command buffer

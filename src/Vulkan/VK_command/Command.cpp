@@ -16,11 +16,17 @@ Command::Command(vk::structure::Vulkan* struct_vulkan){
 Command::~Command(){}
 
 //Main function
+void Command::submit_command_thread(vk::structure::Command* command){
+  //---------------------------
+
+  //---------------------------
+}
 void Command::submit_command(vk::structure::Command* command){
   //---------------------------
 
   this->prepare_submission(command);
   this->queue_submission();
+  this->wait_and_reset(command);
 
   //---------------------------
 }
@@ -70,6 +76,13 @@ void Command::queue_submission(){
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }
+
+  //---------------------------
+}
+void Command::wait_and_reset(vk::structure::Command* command){
+  //---------------------------
+
+  vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
 
   //---------------------------
 }

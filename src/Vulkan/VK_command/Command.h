@@ -17,11 +17,13 @@ public:
 
 public:
   //Main function
+  void submit_command_thread(vk::structure::Command* command);
   void submit_command(vk::structure::Command* commands);
 
   //Subfunction
   void prepare_submission(vk::structure::Command* command);
   void queue_submission();
+  void wait_and_reset(vk::structure::Command* command);
 
 private:
   vk::structure::Vulkan* struct_vulkan;
