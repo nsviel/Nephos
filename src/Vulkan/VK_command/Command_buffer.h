@@ -21,11 +21,11 @@ public:
   ~Command_buffer();
 
 public:
-  //Main function
-  void init();
-  void reset();
-  void clean();
-  void submit();
+  //Pool function
+  void init_pool();
+  void reset_pool();
+  void clean_pool();
+  void submit_pool();
 
   //Command buffer function
   void create_command_buffer_primary(vk::structure::Command_buffer* command_buffer);

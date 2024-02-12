@@ -17,10 +17,10 @@ public:
   ~Semaphore();
 
 public:
-  //Main functions
+  //Pool function
   void init_pool();
   void clean_pool();
-  void reset();
+  void reset_pool();
 
   //Semaphore function
   void create_semaphore(vk::structure::Semaphore* semaphore);

@@ -16,9 +16,9 @@ public:
   ~Fence();
 
 public:
-  //Main functions
-  void init();
-  void clean();
+  //Pool function
+  void init_pool();
+  void clean_pool();
 
   //Fence function
   void create_fence(vk::structure::Fence* fence);

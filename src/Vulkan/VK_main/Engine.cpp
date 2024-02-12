@@ -45,8 +45,8 @@ void Engine::init(){
   vk_surface->init();
   vk_device->init();
   vk_pool->init();
-  vk_fence->init();
-  vk_command_buffer->init();
+  vk_fence->init_pool();
+  vk_command_buffer->init_pool();
   vk_canvas->init();
 
   //Render
@@ -65,9 +65,9 @@ void Engine::loop(){
   //vk_imgui->render();
 
   vk_drawing->draw_frame();
-  vk_command_buffer->submit();
-  vk_command_buffer->reset();
-  vk_semaphore->reset();
+  vk_command_buffer->submit_pool();
+  vk_command_buffer->reset_pool();
+  vk_semaphore->reset_pool();
   //vk_imgui->render();
   //vk_imgui->new_frame();
 
@@ -81,8 +81,8 @@ void Engine::clean(){
   vk_swapchain->clean();
   vk_canvas->clean();
   vk_data->clean();
-  vk_command_buffer->clean();
-  vk_fence->clean();
+  vk_command_buffer->clean_pool();
+  vk_fence->clean_pool();
   vk_semaphore->clean_pool();
   vk_pool->clean();
   vk_device->clean();

@@ -55,7 +55,7 @@ void Headless::init_engine_presentation(){
   vk_surface->init();
   vk_device->init();
   vk_pool->init();
-  vk_command_buffer->init();
+  vk_command_buffer->init_pool();
   vk_canvas->init();
 
   //Render
@@ -100,7 +100,7 @@ void Headless::clean(){
   vk_swapchain->clean();
   vk_canvas->clean();
   vk_data->clean();
-  vk_command_buffer->clean();
+  vk_command_buffer->clean_pool();
   vk_pool->clean();
   vk_device->clean();
   vk_surface->clean();

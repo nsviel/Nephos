@@ -17,8 +17,8 @@ Command_buffer::Command_buffer(vk::structure::Vulkan* struct_vulkan){
 }
 Command_buffer::~Command_buffer(){}
 
-//Main function
-void Command_buffer::init(){
+//Pool function
+void Command_buffer::init_pool(){
   std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
@@ -34,7 +34,7 @@ void Command_buffer::init(){
 
   //---------------------------
 }
-void Command_buffer::reset(){
+void Command_buffer::reset_pool(){
   std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
@@ -51,7 +51,7 @@ void Command_buffer::reset(){
 
   //---------------------------
 }
-void Command_buffer::clean(){
+void Command_buffer::clean_pool(){
   std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 
@@ -64,7 +64,7 @@ void Command_buffer::clean(){
 
   //---------------------------
 }
-void Command_buffer::submit(){
+void Command_buffer::submit_pool(){
   std::vector<vk::structure::Command_buffer>& pool = struct_vulkan->pools.command_buffer.pool;
   //---------------------------
 

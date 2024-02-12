@@ -15,8 +15,8 @@ Fence::Fence(vk::structure::Vulkan* struct_vulkan){
 }
 Fence::~Fence(){}
 
-//Main function
-void Fence::init(){
+//Pool function
+void Fence::init_pool(){
   std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.pool;
   //---------------------------
 
@@ -31,7 +31,7 @@ void Fence::init(){
 
   //---------------------------
 }
-void Fence::clean(){
+void Fence::clean_pool(){
   std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.pool;
   //---------------------------
 

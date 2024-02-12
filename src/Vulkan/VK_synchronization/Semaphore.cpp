@@ -15,7 +15,7 @@ Semaphore::Semaphore(vk::structure::Vulkan* struct_vulkan){
 }
 Semaphore::~Semaphore(){}
 
-//Main function
+//Pool function
 void Semaphore::init_pool(){
   std::vector<vk::structure::Semaphore>& pool = struct_vulkan->pools.semaphore.pool;
   //---------------------------
@@ -42,7 +42,7 @@ void Semaphore::clean_pool(){
 
   //---------------------------
 }
-void Semaphore::reset(){
+void Semaphore::reset_pool(){
   std::vector<vk::structure::Semaphore>& pool = struct_vulkan->pools.semaphore.pool;
   //---------------------------
 
