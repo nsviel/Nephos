@@ -100,11 +100,13 @@ vk::structure::Fence* Fence::query_free_fence(){
   //---------------------------
   return nullptr;
 }
-bool Fence::is_fence_available(VkFence& fence){
+bool Fence::is_fence_available(vk::structure::Fence* fence){
   bool is_available = false;
   //---------------------------
 
-  VkResult result = vkGetFenceStatus(struct_vulkan->device.device, fence);
+  if(fence == nullptr) return true;
+
+  VkResult result = vkGetFenceStatus(struct_vulkan->device.device, fence->fence);
 
   //Operation completed
   if(result == VK_SUCCESS){

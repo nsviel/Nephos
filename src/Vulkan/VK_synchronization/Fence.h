@@ -27,7 +27,7 @@ public:
 
   //Subfunction
   vk::structure::Fence* query_free_fence();
-  bool is_fence_available(VkFence& fence);
+  bool is_fence_available(vk::structure::Fence* fence);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

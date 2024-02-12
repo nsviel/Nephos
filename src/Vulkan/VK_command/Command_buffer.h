@@ -6,6 +6,7 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
+namespace vk::structure{class Fence;}
 namespace vk::synchro{class Fence;}
 
 
@@ -36,7 +37,7 @@ public:
   void start_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
   void start_command_buffer_secondary(vk::structure::Renderpass* renderpass);
   void end_command_buffer(vk::structure::Command_buffer* command_buffer);
-  void submit_command_buffer(vector<VkCommandBuffer>& vec_command);
+  void submit_vec_command_buffer(vector<VkCommandBuffer>& vec_command);
 
 private:
   vk::structure::Vulkan* struct_vulkan;
