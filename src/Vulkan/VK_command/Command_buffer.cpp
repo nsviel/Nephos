@@ -24,8 +24,7 @@ void Command_buffer::init_pool(vk::pool::Command_buffer* pool){
 
   for(int i=0; i<pool->size; i++){
     vk::structure::Command_buffer command_buffer;
-
-    this->create_command_buffer_primary(&command_buffer);
+    this->create_command_buffer_primary(pool, &command_buffer);
     command_buffer.is_available = true;
     command_buffer.is_recorded = false;
 
@@ -82,8 +81,7 @@ void Command_buffer::submit_pool(vk::pool::Command_buffer* pool){
 }
 
 //Command buffer function
-void Command_buffer::create_command_buffer_primary(vk::structure::Command_buffer* command_buffer){
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+void Command_buffer::create_command_buffer_primary(vk::pool::Command_buffer* pool, vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
   //Command buffer allocation
@@ -92,6 +90,7 @@ void Command_buffer::create_command_buffer_primary(vk::structure::Command_buffer
   alloc_info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
   alloc_info.commandPool = pool->memory;
   alloc_info.commandBufferCount = 1;
+
   VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &command_buffer->command);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
@@ -100,7 +99,7 @@ void Command_buffer::create_command_buffer_primary(vk::structure::Command_buffer
   //---------------------------
 }
 void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data){
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+  vk::pool::Command_buffer* pool = vk_thread->query_command_pool(0);
   //---------------------------
 
   //Command buffer allocation
@@ -142,7 +141,8 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
 
 //Command buffer lifetime
 vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(){
-  vk::pool::Command_buffer* pool = vk_thread->query_current_command_pool();
+  vk::pool::Command_buffer* pool = vk_thread->query_command_pool(0);
+  if(pool == nullptr) return nullptr;
   //---------------------------
 
   //Find the first free command buffer

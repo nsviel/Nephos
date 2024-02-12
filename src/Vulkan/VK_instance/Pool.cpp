@@ -90,13 +90,13 @@ void Pool::create_command_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
   //Command pool info
-  VkCommandPoolCreateInfo poolInfo{};
-  poolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-  poolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
-  poolInfo.queueFamilyIndex = struct_vulkan->device.physical_device.queue_graphics_idx;
+  VkCommandPoolCreateInfo pool_info{};
+  pool_info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+  pool_info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+  pool_info.queueFamilyIndex = struct_vulkan->device.physical_device.queue_graphics_idx;
 
   //Command pool creation
-  VkResult result = vkCreateCommandPool(struct_vulkan->device.device, &poolInfo, nullptr, &pool->memory);
+  VkResult result = vkCreateCommandPool(struct_vulkan->device.device, &pool_info, nullptr, &pool->memory);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create command pool!");
   }

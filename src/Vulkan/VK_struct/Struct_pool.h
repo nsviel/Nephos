@@ -43,6 +43,15 @@ struct Descriptor{
   //---------------------------
 };
 
+struct Thread{
+  //---------------------------
+
+  std::vector<vk::pool::Command_buffer> tank;
+  uint32_t size = 10;
+
+  //---------------------------
+};
+
 }
 
 
@@ -51,7 +60,8 @@ namespace vk::structure{
 struct Pool{
   //---------------------------
 
-  std::map<std::thread::id, vk::pool::Command_buffer> command_buffer;
+  std::map<int, vk::pool::Command_buffer> command_buffer;
+  vk::pool::Thread thread;
   vk::pool::Fence fence;
   vk::pool::Semaphore semaphore;
   vk::pool::Descriptor descriptor;

@@ -114,8 +114,8 @@ void Transfert::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::B
 
   // Create command buffer to cpy on gpu
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
+  if(command_buffer == nullptr) return;
 
-  if(command_buffer->fence != nullptr){ sayHello();}
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   VkBufferCopy copyRegion = {};
