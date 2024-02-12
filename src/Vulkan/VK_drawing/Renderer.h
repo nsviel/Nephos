@@ -5,6 +5,7 @@
 namespace vk::command{class Command_buffer;}
 namespace vk::command{class Command;}
 namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Fence;}
 namespace vk::structure{class Renderpass;}
 
 
@@ -25,7 +26,7 @@ public:
   //Subfunction
   void start_renderpass(vk::structure::Renderpass* renderpass);
   void draw_subpass(vk::structure::Renderpass* renderpass);
-  void wait_end_rendering(VkFence& fence);
+  void wait_end_rendering(vk::structure::Fence* fence);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

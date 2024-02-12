@@ -5,6 +5,7 @@
 namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class Surface;}
 namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Fence;}
 
 
 namespace vk::presentation{
@@ -19,7 +20,7 @@ public:
 public:
   //Main functions
   void acquire_next_image(VkSemaphore& semaphore);
-  void image_presentation(VkSemaphore& semaphore, VkFence& fence);
+  void image_presentation(VkSemaphore& semaphore, vk::structure::Fence* fence);
 
   //Subfunction
   void submit_presentation(VkSemaphore& semaphore);

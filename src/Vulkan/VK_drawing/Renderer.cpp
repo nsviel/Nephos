@@ -112,11 +112,11 @@ void Renderer::draw_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
   renderpass->command = command;
 }
-void Renderer::wait_end_rendering(VkFence& fence){
+void Renderer::wait_end_rendering(vk::structure::Fence* fence){
   //---------------------------
 
-  vkWaitForFences(struct_vulkan->device.device, 1, &fence, VK_TRUE, UINT64_MAX);
-  vkResetFences(struct_vulkan->device.device, 1, &fence);
+  vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
+  vkResetFences(struct_vulkan->device.device, 1, &fence->fence);
 
   //---------------------------
 }

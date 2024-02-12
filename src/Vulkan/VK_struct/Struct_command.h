@@ -16,7 +16,7 @@ struct Command{
   //Synchronization
   std::vector<VkSemaphore> vec_semaphore_processing;
   std::vector<VkSemaphore> vec_semaphore_done;
-  VkFence fence = VK_NULL_HANDLE;
+  vk::structure::Fence* fence = nullptr;
 
   //---------------------------
 };
