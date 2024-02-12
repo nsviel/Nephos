@@ -65,6 +65,31 @@ void Semaphore::clean_semaphore(vk::structure::Semaphore* semaphore){
   //---------------------------
 }
 
+//Subfunction
+vk::structure::Semaphore* Semaphore::query_free_semaphore(){
+  std::vector<vk::structure::Semaphore>& pool = struct_vulkan->pools.semaphore.pool;
+  //---------------------------
+
+  //Find the first free command buffer
+  for(int i=0; i<pool.size(); i++){
+    vk::structure::Semaphore* vk_semaphore = &pool[i];
+
+    if(vk_semaphore->is_available){
+      vk_semaphore->is_available = false;
+      return vk_semaphore;
+    }
+  }
+
+  //Error message
+  cout<<"[error] not enough semaphore"<<endl;
+
+  //---------------------------
+  return nullptr;
+}
+
+
+
+
 
 // OLD
 void Semaphore::init(){

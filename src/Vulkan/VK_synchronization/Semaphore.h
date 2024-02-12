@@ -25,6 +25,9 @@ public:
   void create_semaphore(vk::structure::Semaphore* semaphore);
   void clean_semaphore(vk::structure::Semaphore* semaphore);
 
+  //Subfunction
+  vk::structure::Semaphore* query_free_semaphore();
+
 
 
   //OLD
