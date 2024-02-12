@@ -78,9 +78,6 @@ void Command_buffer::submit(){
 
     if(command_buffer->is_recorded){
       command.vec_command_buffer.push_back(command_buffer);
-
-      command_buffer->is_recorded = false;
-      //command_buffer->fence = fence;
     }
   }
 

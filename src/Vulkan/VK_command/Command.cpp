@@ -19,6 +19,16 @@ Command::~Command(){}
 void Command::submit_command(vk::structure::Command* command){
   //---------------------------
 
+  this->prepare_submission(command);
+  this->queue_submission();
+
+  //---------------------------
+}
+
+//Subfunction
+void Command::prepare_submission(vk::structure::Command* command){
+  //---------------------------
+
   //Command buffer
   this->vec_command_buffer.clear();
   for(int i=0; i<command->vec_command_buffer.size(); i++){
@@ -37,12 +47,10 @@ void Command::submit_command(vk::structure::Command* command){
   }
 
   //Submission
-  this->queue_submission();
+  //this->queue_submission();
 
   //---------------------------
 }
-
-//Subfunction
 void Command::queue_submission(){
   //---------------------------
 

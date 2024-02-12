@@ -20,6 +20,7 @@ public:
   void submit_command(vk::structure::Command* commands);
 
   //Subfunction
+  void prepare_submission(vk::structure::Command* command);
   void queue_submission();
 
 private:
