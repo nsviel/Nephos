@@ -33,7 +33,7 @@ void Presentation::acquire_next_image(VkSemaphore& semaphore){
 
   //---------------------------
 }
-void Presentation::image_presentation(VkSemaphore& semaphore, vk::structure::Fence* fence){
+void Presentation::image_presentation(VkSemaphore& semaphore){
   //---------------------------
 
 

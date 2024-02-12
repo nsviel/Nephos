@@ -38,7 +38,6 @@ void Frame::create_frame(){
     vk_image->create_image_view(&frame->color);
     vk_framebuffer->create_framebuffer_swapchain(renderpass, frame);
     vk_synchronization->init_frame_semaphore(frame);
-    frame->fence = vk_fence->query_free_fence();
 
     struct_vulkan->swapchain.vec_frame.push_back(frame);
   }

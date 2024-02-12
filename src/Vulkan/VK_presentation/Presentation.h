@@ -20,7 +20,7 @@ public:
 public:
   //Main functions
   void acquire_next_image(VkSemaphore& semaphore);
-  void image_presentation(VkSemaphore& semaphore, vk::structure::Fence* fence);
+  void image_presentation(VkSemaphore& semaphore);
 
   //Subfunction
   void submit_presentation(VkSemaphore& semaphore);

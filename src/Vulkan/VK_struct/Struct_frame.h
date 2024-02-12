@@ -14,7 +14,6 @@ struct Frame{
   VkSemaphore semaphore_image_ready;
   VkSemaphore semaphore_render_done;
   std::vector<VkSemaphore> vec_semaphore_render;
-  vk::structure::Fence* fence = nullptr;
 
   //Attachment
   Image color;

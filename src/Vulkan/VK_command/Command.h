@@ -5,6 +5,7 @@
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command;}
 namespace vk::structure{class Fence;}
+namespace vk::synchro{class Fence;}
 
 
 namespace vk::command{
@@ -33,6 +34,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vector<vk::structure::Command*> vec_command;
+  vk::synchro::Fence* vk_fence;
 
   std::thread thread;
   std::vector<VkCommandBuffer> vec_command_buffer;

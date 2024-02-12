@@ -67,6 +67,7 @@ void Fence::clean_fence(vk::structure::Fence* fence){
   //---------------------------
 }
 void Fence::reset_fence(vk::structure::Fence* fence){
+  if(fence == nullptr) return;
   //---------------------------
 
   VkResult result = vkResetFences(struct_vulkan->device.device, 1, &fence->fence);

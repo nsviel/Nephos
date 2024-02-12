@@ -27,7 +27,6 @@ public:
   void start_renderpass(vk::structure::Renderpass* renderpass);
   void stop_renderpass(vk::structure::Renderpass* renderpass);
   void draw_subpass(vk::structure::Renderpass* renderpass);
-  void wait_end_rendering(vk::structure::Fence* fence);
 
 private:
   vk::structure::Vulkan* struct_vulkan;
