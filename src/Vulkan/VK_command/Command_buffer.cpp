@@ -77,7 +77,7 @@ void Command_buffer::submit(){
     vk::structure::Command_buffer* command_buffer = &pool[i];
 
     if(command_buffer->is_recorded){
-      command.vec_command_buffer.push_back(command_buffer->command);
+      command.vec_command_buffer.push_back(command_buffer);
 
       command_buffer->is_recorded = false;
       //command_buffer->fence = fence;
@@ -144,7 +144,7 @@ void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
 
   if(command_buffer->is_recorded){
     vk::structure::Command command;
-    command.vec_command_buffer.push_back(command_buffer->command);
+    command.vec_command_buffer.push_back(command_buffer);
     vk_command->submit_command(&command);
 
     vkQueueWaitIdle(struct_vulkan->device.queue_graphics);

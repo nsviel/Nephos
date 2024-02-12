@@ -19,16 +19,24 @@ Command::~Command(){}
 void Command::submit_command(vk::structure::Command* command){
   //---------------------------
 
+  //Command buffer
+  this->vec_command_buffer.clear();
+  for(int i=0; i<command->vec_command_buffer.size(); i++){
+    vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
+    this->vec_command_buffer.push_back(command_buffer->command);
+  }
+
   this->vec_semaphore_processing = command->vec_semaphore_processing;
   this->vec_wait_stage = command->vec_wait_stage;
   this->vec_semaphore_done = command->vec_semaphore_done;
-  this->vec_command_buffer = command->vec_command_buffer;
 
+  //Fence
   this->fence = VK_NULL_HANDLE;
   if(command->fence != nullptr){
     this->fence = command->fence->fence;
   }
 
+  //Submission
   this->queue_submission();
 
   //---------------------------
