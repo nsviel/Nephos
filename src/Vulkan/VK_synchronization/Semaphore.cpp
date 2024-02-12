@@ -126,18 +126,12 @@ void Semaphore::init_frame_semaphore(vk::structure::Frame* frame){
   this->create_semaphore(semaphore_image_ready);
   frame->semaphore_image_ready = semaphore_image_ready;
 
-  //Create semaphore - Image ready
-  VkSemaphore semaphore_render_done;
-  this->create_semaphore(semaphore_render_done);
-  frame->semaphore_render_done = semaphore_render_done;
-
   //---------------------------
 }
 void Semaphore::clean_frame_semaphore(vk::structure::Frame* frame){
   //---------------------------
 
   this->clean_semaphore(frame->semaphore_image_ready);
-  this->clean_semaphore(frame->semaphore_render_done);
   this->clean_vec_semaphore(frame->vec_semaphore_render);
 
   //---------------------------
