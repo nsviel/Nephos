@@ -13,7 +13,8 @@ Drawer::Drawer(vk::structure::Vulkan* struct_vulkan){
   this->vk_render = new vk::draw::Renderer(struct_vulkan);
   this->vk_presentation = new vk::presentation::Presentation(struct_vulkan);
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
-
+  this->vk_command = new vk::command::Command(struct_vulkan);
+  
   //---------------------------
 }
 Drawer::~Drawer(){}
@@ -70,6 +71,9 @@ void Drawer::draw_frame_presentation(){
   VkSemaphore semaphore_done = frame->vec_semaphore_render[0];
   vk_presentation->acquire_next_image(semaphore_wait);
 
+
+  vk::structure::Command command_all;
+
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
@@ -83,6 +87,7 @@ void Drawer::draw_frame_presentation(){
     command.vec_semaphore_processing.push_back(semaphore_wait);
     command.vec_semaphore_done.push_back(semaphore_done);
     command.fence = (i == nb_renderpass-1) ? frame->fence : nullptr;
+    command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
     struct_vulkan->tasker_cpu->task_end(name);
 
     semaphore_wait = frame->vec_semaphore_render[i];
@@ -91,7 +96,7 @@ void Drawer::draw_frame_presentation(){
 
   for(int i=0; i<nb_renderpass; i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
-    vk_render->submit_command(renderpass);
+    vk_command->submit_command(&renderpass->command);
   }
 
 

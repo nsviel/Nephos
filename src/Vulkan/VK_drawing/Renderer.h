@@ -22,7 +22,6 @@ public:
 public:
   //Main functions
   void run_renderpass(vk::structure::Renderpass* renderpass);
-  void submit_command(vk::structure::Renderpass* renderpass);
 
   //Subfunction
   void start_renderpass(vk::structure::Renderpass* renderpass);

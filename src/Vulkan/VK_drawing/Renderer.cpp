@@ -33,15 +33,6 @@ void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
 
   //---------------------------
 }
-void Renderer::submit_command(vk::structure::Renderpass* renderpass){
-  vk::structure::Command& command = renderpass->command;
-  //---------------------------
-
-  command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-  vk_command->submit_command(&command);
-
-  //---------------------------
-}
 
 //Subfunction
 void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){

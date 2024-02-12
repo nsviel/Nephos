@@ -7,6 +7,7 @@ namespace vk::draw{class Renderer;}
 namespace vk::synchro{class Fence;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
+namespace vk::command{class Command;}
 
 
 namespace vk::draw{
@@ -33,6 +34,7 @@ private:
   vk::presentation::Presentation* vk_presentation;
   vk::draw::Renderer* vk_render;
   vk::synchro::Fence* vk_fence;
+  vk::command::Command* vk_command;
 };
 
 }
