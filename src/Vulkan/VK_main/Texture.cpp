@@ -21,33 +21,35 @@ Texture::Texture(vk::structure::Vulkan* struct_vulkan){
 Texture::~Texture(){}
 
 //Main function
-vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
-  if(utl_image->format == "") return nullptr;
+void Texture::clean(){
+  list<vk::structure::Texture*>& list_vk_texture = struct_vulkan->data.list_vk_texture;
   //---------------------------
 
-  //Create texture container
-  vk::structure::Texture* texture = new vk::structure::Texture();
-  texture->utl_image = utl_image;
+  for(int i=0; i<list_vk_texture.size(); i++){
+    vk::structure::Texture* texture = *next(list_vk_texture.begin(),i);
 
-  //Create associated vk_image
-  vk::structure::Image* image = &texture->vk_image;
-  image->width = utl_image->width;
-  image->height = utl_image->height;
-  image->format = find_texture_format(utl_image);
-  image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-  image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
-  vk_image->create_image(image);
-
-  //Create associated buffer
-  vk::structure::Buffer* buffer = &texture->stagger;
-  vk_memory->create_empty_stagger_buffer(buffer, utl_image->size);
-
-  //Fill and store
-  vk_transfert->copy_texture_to_gpu(texture);
-  struct_vulkan->data.vec_texture.push_back(texture);
+    vk_image->clean_image(&texture->vk_image);
+    vk_buffer->clean_buffer(&texture->stagger);
+  }
 
   //---------------------------
-  return texture;
+}
+
+//Texture function
+void Texture::clean_texture(vk::structure::Object* vk_object){
+  //---------------------------
+
+  for(auto it = vk_object->list_vk_texture.begin(); it != vk_object->list_vk_texture.end();){
+    vk::structure::Texture* texture = *it;
+
+    vk_image->clean_image(&texture->vk_image);
+    vk_buffer->clean_buffer(&texture->stagger);
+
+    //delete texture;
+    //it = vk_object->list_vk_texture.erase(it);
+  }
+
+  //---------------------------
 }
 void Texture::update_texture(vk::structure::Texture* texture){
   //---------------------------
@@ -91,33 +93,43 @@ VkFormat Texture::find_texture_format(utl::media::Image* image){
   //---------------------------
   return format;
 }
-
-//Texture cleaning
-void Texture::clean_texture(vk::structure::Object* vk_object){
+vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
+  if(utl_image->format == "") return nullptr;
   //---------------------------
 
-  for(auto it = vk_object->list_texture.begin(); it != vk_object->list_texture.end();){
-    vk::structure::Texture* texture = *it;
+  //Create texture container
+  vk::structure::Texture* texture = new vk::structure::Texture();
+  texture->utl_image = utl_image;
 
-    vk_image->clean_image(&texture->vk_image);
-    vk_buffer->clean_buffer(&texture->stagger);
+  //Create associated vk_image
+  vk::structure::Image* image = &texture->vk_image;
+  image->width = utl_image->width;
+  image->height = utl_image->height;
+  image->format = find_texture_format(utl_image);
+  image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+  image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
+  vk_image->create_image(image);
 
-    //delete texture;
-    //it = vk_object->list_texture.erase(it);
-  }
+  //Create associated buffer
+  vk::structure::Buffer* buffer = &texture->stagger;
+  vk_memory->create_empty_stagger_buffer(buffer, utl_image->size);
+
+  //Fill and store
+  vk_transfert->copy_texture_to_gpu(texture);
+  struct_vulkan->data.list_vk_texture.push_back(texture);
 
   //---------------------------
+  return texture;
 }
-void Texture::clean(){
+vk::structure::Texture* Texture::find_texture(string name){
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->data.vec_texture.size(); i++){
-    vk::structure::Texture* texture = struct_vulkan->data.vec_texture[i];
-    vk_image->clean_image(&texture->vk_image);
-    vk_buffer->clean_buffer(&texture->stagger);
-  }
+  //Create texture container
+  vk::structure::Texture* texture = new vk::structure::Texture();
+
 
   //---------------------------
+  return texture;
 }
 
 }

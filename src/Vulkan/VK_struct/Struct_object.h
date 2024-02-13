@@ -37,7 +37,7 @@ struct Object{
   vk::structure::Buffers buffer;
 
   //Binding
-  std::list<vk::structure::Texture*> list_texture;
+  std::list<vk::structure::Texture*> list_vk_texture;
   VkCommandBuffer command_buffer_secondary;
   vk::structure::Binding binding;
 

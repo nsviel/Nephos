@@ -11,7 +11,7 @@ struct Data{
   //---------------------------
 
   vk::structure::Object canvas;
-  std::vector<vk::structure::Texture*> vec_texture;
+  std::list<vk::structure::Texture*> list_vk_texture;
   std::list<vk::structure::Object*> list_vk_object;
 
   //---------------------------

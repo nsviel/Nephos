@@ -34,7 +34,7 @@ public:
   void retrieve_color(eng::k4n::dev::Sensor* sensor, int i);
   void retrieve_ir(eng::k4n::dev::Sensor* sensor, int i);
   void retrieve_goodness(int i);
-  void insert_data();
+  void insert_data(int i);
 
   inline eng::ope::Voxelizer* get_voxelizer(){return ope_voxelizer;}
 
@@ -53,7 +53,7 @@ private:
   glm::vec4 rgb;
   float ir;
   float R;
-  bool goodness;
+  bool goodness = true;
 };
 
 }

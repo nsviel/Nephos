@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <execution>
 
 
 namespace eng::k4n::data{
@@ -57,14 +58,20 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
   int point_cloud_size = cloud_image.get_size() / (3*sizeof(int16_t));
   profiler->task_end("cloud::transformation");
 
-  // Convert point cloud data to vector<glm::vec3>
+  vec_xyz.reserve(point_cloud_size);
+  vec_rgb.reserve(point_cloud_size);
+  vec_ir.reserve(point_cloud_size);
+  vec_r.reserve(point_cloud_size);
+  vec_goodness.reserve(point_cloud_size);
+
   profiler->task_begin("cloud::data");
+  #pragma omp parallel for
   for(int i=0; i<point_cloud_size; i++){
     this->retrieve_location(sensor, i, point_cloud_data);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
     this->retrieve_goodness(i);
-    this->insert_data();
+    this->insert_data(i);
   }
   profiler->task_end("cloud::data");
 
@@ -76,11 +83,12 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   prf::Tasker* profiler = sensor->tasker_cap;
   //---------------------------
 
-  profiler->task_begin("cloud::lock");
+  //profiler->task_begin("cloud::lock");
   //std::unique_lock<std::mutex> lock(data->mutex);
-  profiler->task_end("cloud::lock");
+  //profiler->task_end("cloud::lock");
 
   //Cloud data copy
+  //COPIER LES DONN2ES DIRECTEMENT
   profiler->task_begin("cloud::copying");
   data->xyz = vec_xyz;
   data->Is = vec_ir;
@@ -106,8 +114,10 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   */
 
   //Update object data
+  profiler->task_begin("cloud::update");
   utl::entity::Object* object = sensor->get_object();
   object->update_data();
+  profiler->task_end("cloud::update");
 
   //---------------------------
 }
@@ -134,10 +144,14 @@ void Cloud::retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* dat
   int z = data[depth_idx+2];
 
   //coordinate in meter and X axis oriented.
-  xyz = vec3(z/1000.0f, -x/1000.0f, -y/1000.0f);
+  float inv_scale = 1.0f / 1000.0f;
+  float x_m = -x * inv_scale;
+  float y_m = -y * inv_scale;
+  float z_m = z * inv_scale;
+  xyz = vec3(z_m, x_m, y_m);
 
   //Range calculation
-  R = sqrt(pow(xyz.x, 2) + pow(xyz.y, 2) + pow(xyz.z, 2));
+  R = x_m * x_m + y_m * y_m + z_m * z_m;
 
   //---------------------------
 }
@@ -174,23 +188,16 @@ void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
   //---------------------------
 }
 void Cloud::retrieve_goodness(int i){
-  goodness = true;
   //---------------------------
 
-  //location -> If null point set goodness to bad
-  if(xyz.x == 0 && xyz.y == 0 && xyz.z == 0){
-    goodness = false;
-  }
+  // Location -> If null point set goodness to bad
+  // Color -> If null color set goodness to bad
+  //goodness = !(xyz.x == 0 && xyz.y == 0 && xyz.z == 0) && !(rgb.x == 0 && rgb.y == 0 && rgb.z == 0);
 
-  //color -> If null color set goodness to bad
-  //Maybe will be corrected with custom color to depth projection
-  if(rgb.x == 0 && rgb.y == 0 && rgb.z == 0){
-    goodness = false;
-  }
 
   //---------------------------
 }
-void Cloud::insert_data(){
+void Cloud::insert_data(int i){
   //---------------------------
 
   if(1){//goodness == true){
@@ -200,6 +207,16 @@ void Cloud::insert_data(){
     vec_r.push_back(R);
     vec_goodness.push_back(goodness);
   }
+
+  /*
+  if(goodness == true){
+    data->xyz.push_back(xyz);
+    data->rgb.push_back(rgb);
+    data->Is.push_back(ir);
+    data->R.push_back(R);
+    data->goodness.push_back(goodness);
+  }
+  */
 
   //---------------------------
 }
