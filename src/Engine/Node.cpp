@@ -13,7 +13,7 @@ Node::Node(utl::Node* node_utility){
   //---------------------------
 
   this->node_profiler = node_utility->get_node_profiler();
-  prf::Manager* profiler = node_profiler->get_profiler();
+  prf::Manager* profiler = node_profiler->get_profiler_manager();
 
   this->node_utility = node_utility;
   this->eng_vulkan = new vk::Node(node_utility);

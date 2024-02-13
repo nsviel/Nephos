@@ -1,0 +1,29 @@
+#pragma once
+
+#include <Utility/Specific/common.h>
+#include <Profiler/src/Timer/Chrono.h>
+
+namespace prf::vulkan{class Device;}
+namespace prf::vulkan{class Info;}
+
+
+namespace prf::vulkan{
+
+class Manager
+{
+public:
+  //Constructor / Destructor
+  Manager();
+  ~Manager();
+
+public:
+  //Main function
+  inline vector<prf::vulkan::Device>& get_info_device(){return vec_device;}
+  inline prf::vulkan::Info* get_info_vulkan(){return info_vulkan;}
+
+private:
+  vector<prf::vulkan::Device> vec_device;
+  prf::vulkan::Info* info_vulkan;
+};
+
+}

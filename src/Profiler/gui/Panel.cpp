@@ -12,10 +12,11 @@ namespace prf::gui{
 Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
-  this->profiler = node_profiler->get_profiler();
-  this->tasker_cpu = profiler->get_tasker_cpu();
-  this->tasker_gpu = profiler->get_tasker_gpu();
-  this->tasker_cap = profiler->get_tasker_cap();
+  this->profiler_manager = node_profiler->get_profiler_manager();
+  this->vulkan_manager = node_profiler->get_vulkan_manager();
+  this->tasker_cpu = profiler_manager->get_tasker_cpu();
+  this->tasker_gpu = profiler_manager->get_tasker_gpu();
+  this->tasker_cap = profiler_manager->get_tasker_cap();
   this->gui_cpu = new prf::improfil::Manager("cpu");
   this->gui_gpu = new prf::improfil::Manager("gpu");
   this->gui_capture = new prf::improfil::Manager("capture");
@@ -65,7 +66,7 @@ void Panel::main_info(){
     //GPU device
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
-    //ImGui::TextColored(color, "%s", profiler->get_gpu_dev().c_str());
+  //  ImGui::TextColored(color, "%s", info_vulkan->gpu_name.c_str());
 
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -253,6 +254,24 @@ void Panel::draw_profiler_vulkan(ImVec2 graph_dim){
   //---------------------------
 
 
+
+
+    //GPU device
+    string gpu_name;
+    bool has_extension_support;
+    uint32_t max_image_dim;
+    int vendorID;
+
+    //GPU queues
+    int queue_graphics_idx = -1;
+    int queue_transfer_idx = -1;
+    int queue_presentation_idx = -1;
+    uint32_t nb_queue_family = 0;
+    uint32_t nb_queue_graphics = 0;
+    uint32_t nb_queue_compute = 0;
+    uint32_t nb_queue_transfer = 0;
+    uint32_t nb_queue_sparseBinding = 0;
+    uint32_t nb_queue_presentation = 0;
 
   //---------------------------
 }

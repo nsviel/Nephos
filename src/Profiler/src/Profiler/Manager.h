@@ -3,7 +3,6 @@
 #include <Utility/Specific/common.h>
 #include <Profiler/src/Timer/Chrono.h>
 
-namespace prf::type{class Vulkan;}
 namespace prf{class Tasker;}
 
 
@@ -18,13 +17,11 @@ public:
 
 public:
   //Main function
-  inline prf::type::Vulkan* get_info_vulkan(){return info_vulkan;}
   inline prf::Tasker* get_tasker_cpu(){return tasker_cpu;}
   inline prf::Tasker* get_tasker_gpu(){return tasker_gpu;}
   inline prf::Tasker* get_tasker_cap(){return tasker_cap;}
 
 private:
-  prf::type::Vulkan* info_vulkan;
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;
   prf::Tasker* tasker_cap;

@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace prf::gui{class Panel;}
+namespace prf::vulkan{class Manager;}
 namespace prf{class Manager;}
 
 
@@ -19,11 +20,13 @@ public:
   void init();
   void gui();
 
-  inline prf::Manager* get_profiler(){return profiler;}
+  inline prf::Manager* get_profiler_manager(){return profiler_manager;}
+  inline prf::vulkan::Manager* get_vulkan_manager(){return vulkan_manager;}
 
 private:
   prf::gui::Panel* gui_panel;
-  prf::Manager* profiler;
+  prf::vulkan::Manager* vulkan_manager;
+  prf::Manager* profiler_manager;
 };
 
 }

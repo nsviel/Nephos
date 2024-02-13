@@ -3,12 +3,12 @@
 #include <Utility/Specific/common.h>
 
 
-namespace prf::type{
+namespace prf::vulkan{
 
-struct Vulkan{
+struct Info{
   //---------------------------
 
-  
+
 
   //---------------------------
 };

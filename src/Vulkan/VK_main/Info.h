@@ -18,6 +18,7 @@ public:
 
 public:
   //Main functions
+  void fill_info();
   string get_gpu_name();
   vec4* get_color_background();
 

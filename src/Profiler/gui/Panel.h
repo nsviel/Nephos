@@ -5,6 +5,7 @@
 namespace prf{class Node;}
 namespace prf{class Manager;}
 namespace prf{class Tasker;}
+namespace prf::vulkan{class Manager;}
 namespace prf::improfil{class Manager;}
 
 
@@ -34,7 +35,8 @@ public:
   void draw_profiler_vulkan(ImVec2 graph_dim);
 
 private:
-  prf::Manager* profiler;
+  prf::Manager* profiler_manager;
+  prf::vulkan::Manager* vulkan_manager;
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;
   prf::Tasker* tasker_cap;

@@ -3,15 +3,13 @@
 #include <Profiler/Namespace.h>
 
 
-namespace prf{
+namespace prf::vulkan{
 
 //Constructor / Destructor
 Manager::Manager(){
   //---------------------------
 
-  this->tasker_cpu = new prf::Tasker();
-  this->tasker_gpu = new prf::Tasker();
-  this->tasker_cap = new prf::Tasker();
+  this->info_vulkan = new prf::vulkan::Info();
 
   //---------------------------
 }
