@@ -63,8 +63,6 @@ void Node::loop(){
   node_scene->loop();
   tasker_cpu->task_end("eng::scene");
 
-
-
   //---------------------------
   tasker_cpu->task_end("eng");
 }

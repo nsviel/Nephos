@@ -8,7 +8,7 @@ namespace vk::pool{
 struct Command_buffer{
   //---------------------------
 
-  VkCommandPool memory;
+  VkCommandPool allocator;
   std::vector<vk::structure::Command_buffer> tank;
   uint32_t size = 100;
   bool is_available = true;
