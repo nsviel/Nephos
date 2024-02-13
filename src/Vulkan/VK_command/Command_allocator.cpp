@@ -1,12 +1,12 @@
-#include "Thread.h"
+#include "Command_allocator.h"
 
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::main{
+namespace vk::command{
 
 //Constructor / Destructor
-Thread::Thread(vk::structure::Vulkan* struct_vulkan){
+Command_allocator::Command_allocator(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -14,14 +14,14 @@ Thread::Thread(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-Thread::~Thread(){}
+Command_allocator::~Command_allocator(){}
 
 //Main function
-void Thread::init(){
+void Command_allocator::init(){
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   //---------------------------
 
-  vk::pool::Thread* pool = &struct_vulkan->pools.thread;
+  vk::pool::Command* pool = &struct_vulkan->pools.command;
 
   for(int i=0; i<pool->size; i++){
     vk::pool::Command_buffer command_pool;
@@ -36,8 +36,8 @@ void Thread::init(){
 
   //---------------------------
 }
-void Thread::reset(){
-  vk::pool::Thread* pool = &struct_vulkan->pools.thread;
+void Command_allocator::reset(){
+  vk::pool::Command* pool = &struct_vulkan->pools.command;
   //---------------------------
 
   for(int i=0; i<pool->tank.size(); i++){
@@ -47,8 +47,8 @@ void Thread::reset(){
 
   //---------------------------
 }
-void Thread::submit_commands(){
-  vk::pool::Thread* pool = &struct_vulkan->pools.thread;
+void Command_allocator::submit_commands(){
+  vk::pool::Command* pool = &struct_vulkan->pools.command;
   //---------------------------
 
   for(int i=0; i<pool->tank.size(); i++){
@@ -59,8 +59,8 @@ void Thread::submit_commands(){
 
   //---------------------------
 }
-void Thread::clean(){
-  vk::pool::Thread* pool = &struct_vulkan->pools.thread;
+void Command_allocator::clean(){
+  vk::pool::Command* pool = &struct_vulkan->pools.command;
   //---------------------------
 
   for(int i=0; i<pool->tank.size(); i++){
@@ -73,8 +73,8 @@ void Thread::clean(){
 }
 
 //Subfunction
-vk::pool::Command_buffer* Thread::query_free_command_pool(){
-  vk::pool::Thread* pool = &struct_vulkan->pools.thread;
+vk::pool::Command_buffer* Command_allocator::query_free_command_pool(){
+  vk::pool::Command* pool = &struct_vulkan->pools.command;
   //---------------------------
 
   //Check if current thread has already an associate command poop

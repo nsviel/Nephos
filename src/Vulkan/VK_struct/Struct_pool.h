@@ -45,7 +45,7 @@ struct Descriptor{
   //---------------------------
 };
 
-struct Thread{
+struct Command{
   //---------------------------
 
   std::vector<vk::pool::Command_buffer> tank;
@@ -62,7 +62,7 @@ namespace vk::structure{
 struct Pool{
   //---------------------------
 
-  vk::pool::Thread thread;
+  vk::pool::Command command;
   vk::pool::Fence fence;
   vk::pool::Semaphore semaphore;
   vk::pool::Descriptor descriptor;

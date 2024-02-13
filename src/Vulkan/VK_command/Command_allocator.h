@@ -8,14 +8,14 @@ namespace vk::command{class Command_buffer;}
 namespace vk::instance{class Pool;}
 
 
-namespace vk::main{
+namespace vk::command{
 
-class Thread
+class Command_allocator
 {
 public:
   //Constructor / Destructor
-  Thread(vk::structure::Vulkan* struct_vulkan);
-  ~Thread();
+  Command_allocator(vk::structure::Vulkan* struct_vulkan);
+  ~Command_allocator();
 
 public:
   //Main functions

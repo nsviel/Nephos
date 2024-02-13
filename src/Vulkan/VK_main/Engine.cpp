@@ -30,7 +30,7 @@ Engine::Engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_imgui = new vk::main::Imgui(struct_vulkan);
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
   this->vk_semaphore = new vk::synchro::Semaphore(struct_vulkan);
-  this->vk_thread = new vk::main::Thread(struct_vulkan);
+  this->vk_command_allocator = new vk::command::Command_allocator(struct_vulkan);
 
   //---------------------------
 }
@@ -45,7 +45,7 @@ void Engine::init(){
   vk_instance->init();
   vk_surface->init();
   vk_device->init();
-  vk_thread->init();
+  vk_command_allocator->init();
   vk_pool->init();
   vk_fence->init_pool();
   vk_canvas->init();
@@ -66,7 +66,7 @@ void Engine::loop(){
   //vk_imgui->render();
 
   vk_drawing->draw_frame();
-  vk_thread->submit_commands();
+  vk_command_allocator->submit_commands();
   vk_semaphore->reset_pool();
   //vk_imgui->render();
   //vk_imgui->new_frame();
@@ -83,7 +83,7 @@ void Engine::clean(){
   vk_data->clean();
   vk_fence->clean_pool();
   vk_semaphore->clean_pool();
-  vk_thread->clean();
+  vk_command_allocator->clean();
   vk_pool->clean();
   vk_device->clean();
   vk_surface->clean();
