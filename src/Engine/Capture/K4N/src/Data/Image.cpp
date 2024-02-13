@@ -23,10 +23,6 @@ void Image::make_images(eng::k4n::dev::Sensor* sensor){
   eng::k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  profiler->task_begin("image::lock");
-  std::unique_lock<std::mutex> lock(image->mutex);
-  profiler->task_end("image::lock");
-
   //Image data copy
   profiler->task_begin("image::data");
   this->copy_image_color(sensor);
