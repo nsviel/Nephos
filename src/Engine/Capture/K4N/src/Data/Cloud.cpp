@@ -54,22 +54,25 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
   profiler->task_begin("cloud::transformation");
   k4a::image cloud_image;
   this->retrieve_cloud(sensor, cloud_image);
-  int16_t* point_cloud_data = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
-  int point_cloud_size = cloud_image.get_size() / (3*sizeof(int16_t));
+  const int16_t* data_xyz = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
+  this->point_cloud_size = cloud_image.get_size() / (3*sizeof(int16_t));
   profiler->task_end("cloud::transformation");
 
-  vec_xyz.reserve(point_cloud_size);
-  vec_rgb.reserve(point_cloud_size);
-  vec_ir.reserve(point_cloud_size);
-  vec_r.reserve(point_cloud_size);
-  vec_goodness.reserve(point_cloud_size);
+  vec_xyz = vector<vec3>(point_cloud_size);
+  vec_rgb = vector<vec4>(point_cloud_size);
+  vec_ir = vector<float>(point_cloud_size);
+  vec_r = vector<float>(point_cloud_size);
+  vec_goodness = vector<bool>(point_cloud_size);
+
+  const uint8_t* data_rgb = sensor->color.data.buffer;
+  const uint8_t* data_ir = sensor->ir.data_to_color.buffer;
 
   profiler->task_begin("cloud::data");
   #pragma omp parallel for
   for(int i=0; i<point_cloud_size; i++){
-    this->retrieve_location(sensor, i, point_cloud_data);
-    this->retrieve_color(sensor, i);
-    this->retrieve_ir(sensor, i);
+    this->retrieve_location(i, data_xyz);
+    this->retrieve_color(i, data_rgb);
+    this->retrieve_ir(i, data_ir);
     this->retrieve_goodness(i);
     this->insert_data(i);
   }
@@ -83,12 +86,7 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   prf::Tasker* profiler = sensor->tasker_cap;
   //---------------------------
 
-  //profiler->task_begin("cloud::lock");
-  //std::unique_lock<std::mutex> lock(data->mutex);
-  //profiler->task_end("cloud::lock");
-
   //Cloud data copy
-  //COPIER LES DONN2ES DIRECTEMENT
   profiler->task_begin("cloud::copying");
   data->xyz = vec_xyz;
   data->Is = vec_ir;
@@ -104,14 +102,12 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
   profiler->task_end("cloud::colorization");
 
   //Voxelization filtering
-  /*
-  profiler->task_begin("cloud::voxel");
-  float voxel_size = master->voxel.voxel_size;
-  int min_nb_point = master->voxel.min_nb_point;
-  ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
-  ope_voxelizer->reconstruct_data_by_goodness(data);
-  profiler->task_end("cloud::voxel");
-  */
+  //profiler->task_begin("cloud::voxel");
+  //float voxel_size = master->voxel.voxel_size;
+  //int min_nb_point = master->voxel.min_nb_point;
+  //ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
+  //ope_voxelizer->reconstruct_data_by_goodness(data);
+  //profiler->task_end("cloud::voxel");
 
   //Update object data
   profiler->task_begin("cloud::update");
@@ -135,13 +131,13 @@ void Cloud::retrieve_cloud(eng::k4n::dev::Sensor* sensor, k4a::image& cloud_imag
 
   //---------------------------
 }
-void Cloud::retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* data){
+void Cloud::retrieve_location(int i, const int16_t* data_xyz){
   //---------------------------
 
   int depth_idx = i * 3;
-  int x = data[depth_idx];
-  int y = data[depth_idx+1];
-  int z = data[depth_idx+2];
+  int x = data_xyz[depth_idx];
+  int y = data_xyz[depth_idx+1];
+  int z = data_xyz[depth_idx+2];
 
   //coordinate in meter and X axis oriented.
   float inv_scale = 1.0f / 1000.0f;
@@ -155,35 +151,23 @@ void Cloud::retrieve_location(eng::k4n::dev::Sensor* sensor, int i, int16_t* dat
 
   //---------------------------
 }
-void Cloud::retrieve_color(eng::k4n::dev::Sensor* sensor, int i){
-  eng::k4n::structure::Operation* operation = &sensor->master->operation;
+void Cloud::retrieve_color(int i, const uint8_t* data_rgb){
   //---------------------------
 
-  //Camera color
-  if(operation->color_mode == 0){
-    const uint8_t* color_data = sensor->color.data.buffer;
-
-    int index = i * 4;
-    float r = static_cast<float>(color_data[index + 2]) / 255.0f;
-    float g = static_cast<float>(color_data[index + 1]) / 255.0f;
-    float b = static_cast<float>(color_data[index + 0]) / 255.0f;
-    float a = 1.0f;
-    rgb = vec4(r, g, b, a);
-  }
-  //Else white
-  else{
-    rgb = vec4(1, 1, 1, 1);
-  }
+  int index = i * 4;
+  float r = static_cast<float>(data_rgb[index + 2]) / 255.0f;
+  float g = static_cast<float>(data_rgb[index + 1]) / 255.0f;
+  float b = static_cast<float>(data_rgb[index + 0]) / 255.0f;
+  float a = 1.0f;
+  rgb = vec4(r, g, b, a);
 
   //---------------------------
 }
-void Cloud::retrieve_ir(eng::k4n::dev::Sensor* sensor, int i){
+void Cloud::retrieve_ir(int i, const uint8_t* data_ir){
   //---------------------------
 
-  const uint8_t* ir_buffer = sensor->ir.data_to_color.buffer;
-
   int index = i * 2;
-  ir = static_cast<uint16_t>(ir_buffer[index]) | (static_cast<uint16_t>(ir_buffer[index + 1]) << 8);
+  ir = static_cast<uint16_t>(data_ir[index]) | (static_cast<uint16_t>(data_ir[index + 1]) << 8);
 
   //---------------------------
 }
@@ -200,23 +184,11 @@ void Cloud::retrieve_goodness(int i){
 void Cloud::insert_data(int i){
   //---------------------------
 
-  if(1){//goodness == true){
-    vec_xyz.push_back(xyz);
-    vec_rgb.push_back(rgb);
-    vec_ir.push_back(ir);
-    vec_r.push_back(R);
-    vec_goodness.push_back(goodness);
-  }
-
-  /*
-  if(goodness == true){
-    data->xyz.push_back(xyz);
-    data->rgb.push_back(rgb);
-    data->Is.push_back(ir);
-    data->R.push_back(R);
-    data->goodness.push_back(goodness);
-  }
-  */
+  vec_xyz[i] = xyz;
+  vec_rgb[i] = rgb;
+  vec_ir[i] = ir;
+  vec_r[i] = R;
+  vec_goodness[i] = goodness;
 
   //---------------------------
 }

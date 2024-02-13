@@ -28,7 +28,7 @@ double compute_distance(Eigen::Vector4d pt1, Eigen::Vector4d pt2);
 double compute_distance(Eigen::Vector4d pt1, Eigen::Vector3d pt2);
 bool is_nan(glm::vec3 vec);
 bool is_nan(Eigen::Vector3d vec);
-std::vector<float> divise(std::vector<float>& vec, int diviser);
+void divise_vec(std::vector<float>& vec, int diviser);
 
 //Basic function
 std::vector<float> compute_inv(std::vector<float>& vec);
@@ -59,7 +59,7 @@ glm::vec3 fct_min_vec3(std::vector<glm::vec3> XYZ);
 //Normalization
 std::vector<float> fct_normalize(std::vector<float>& vec);
 std::vector<double> fct_normalize(std::vector<double>& vec);
-std::vector<float> fct_normalize(std::vector<float>& vec, glm::vec2 range);
+void Normalize(std::vector<float>& vec, glm::vec2 range);
 std::vector<float> fct_normalize(std::vector<float>& vec, float value_to_avoid);
 std::vector<float> fct_normalize_01(std::vector<float>& vec);
 std::vector<float> fct_crossProduct(std::vector<float>& vec_A, std::vector<float>& vec_B);

@@ -59,7 +59,7 @@ void Operation::make_colorization(eng::k4n::dev::Sensor* sensor, vector<vec4>& v
   switch(sensor->master->operation.color_mode){
     case 1:{//Colored unicolor
       utl::type::Data* data = sensor->get_data();
-      vec_rgba = vector<vec4> (data->xyz.size(), data->unicolor);
+      vec_rgba = vector<vec4>(vec_rgba.size(), data->unicolor);
       break;
     }
     case 2:{//White unicolor
@@ -78,11 +78,9 @@ void Operation::colorization_intensity(eng::k4n::dev::Sensor* sensor, vector<vec
   utl::type::Data* data = sensor->get_data();
   //---------------------------
 
-  vec_rgba.clear();
-  vec_rgba.reserve(data->xyz.size());
   for(int i=0; i<data->xyz.size(); i++){
     float Is = data->Is[i] / sensor->master->operation.intensity_division;
-    vec_rgba.push_back(vec4(Is, Is, Is, 1));
+    vec_rgba[i] = vec4(Is, Is, Is, 1);
   }
 
   //---------------------------

@@ -364,19 +364,15 @@ float sign(float value){
 
   //---------------------------
 }
-std::vector<float> divise(std::vector<float>& vec, int diviser){
-  std::vector<float> vec_out;
+void divise_vec(std::vector<float>& vec, int diviser){
   //---------------------------
 
   int size = vec.size();
-  vec_out.reserve(size);
-
   for(int i=0; i<size; i++){
-    vec_out.push_back(vec[i] / diviser);
+    vec[i] /= diviser;
   }
 
   //---------------------------
-  return vec_out;
 }
 
 //Minimum / Maximum
@@ -568,8 +564,7 @@ std::vector<double> fct_normalize(std::vector<double>& vec){
   //-----------------------------
   return vec_out;
 }
-std::vector<float> fct_normalize(std::vector<float>& vec, glm::vec2 range){
-  std::vector<float> vec_out(vec);
+void Normalize(std::vector<float>& vec, glm::vec2 range){
   int size = vec.size();
   //-----------------------------
 
@@ -579,15 +574,14 @@ std::vector<float> fct_normalize(std::vector<float>& vec, glm::vec2 range){
 
   //Normalization
   for(int i=0; i<size; i++){
-    if(vec_out[i] < min || vec_out[i] > max){
-      vec_out[i] = -1;
+    if(vec[i] < min || vec[i] > max){
+      vec[i] = -1;
     }else{
-      vec_out[i] = (vec[i] - min) / (max - min);
+      vec[i] = (vec[i] - min) / (max - min);
     }
   }
 
   //-----------------------------
-  return vec_out;
 }
 std::vector<float> fct_normalize(std::vector<float>& vec, float value_to_avoid){
   std::vector<float> vec_out(vec);
