@@ -13,7 +13,7 @@ Heatmap::Heatmap(){
   this->colormapManager = new eng::ope::Colormap();
   this->attribManager = new eng::ope::Attribut();
 
-  this->is_normalization = true;
+  this->is_normalization = false;
   this->range_norm = vec2(0.0f, 1.0f);
   this->range_height = vec2(-1.0f, 2.0f);
   this->range_intensity = vec2(0.0f, 1.0f);
