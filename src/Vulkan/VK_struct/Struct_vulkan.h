@@ -11,6 +11,7 @@ namespace vk::structure{
 struct Vulkan{
   //---------------------------
 
+  //Constructor
   Vulkan(utl::Node* node_utility){
     prf::Node* node_profiler = node_utility->get_node_profiler();
     prf::Manager* profiler = node_profiler->get_profiler();
@@ -20,7 +21,11 @@ struct Vulkan{
     this->tasker_gpu = profiler->get_tasker_gpu();
   }
 
+  //General
   std::string name;
+  int UID = 0;
+
+  //Structure
   vk::structure::Render render;
   vk::structure::Window window;
   vk::structure::Instance instance;
@@ -30,6 +35,8 @@ struct Vulkan{
   vk::structure::Parameter param;
   vk::structure::Pool pools;
   vk::structure::Command command;
+
+  //Profiling
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;
 

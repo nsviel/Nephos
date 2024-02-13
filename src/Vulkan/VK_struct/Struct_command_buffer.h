@@ -9,6 +9,8 @@ namespace vk::structure{
 struct Command_buffer{
   //---------------------------
 
+  int UID = 0;
+
   //Command
   VkCommandBuffer command = VK_NULL_HANDLE;
   vk::structure::Fence* fence = nullptr;

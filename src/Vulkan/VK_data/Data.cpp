@@ -14,6 +14,7 @@ Data::Data(vk::structure::Vulkan* struct_vulkan){
   this->vk_texture = new vk::main::Texture(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
+  this->vk_uid = new vk::instance::UID(struct_vulkan);
 
   //---------------------------
 }
@@ -27,6 +28,7 @@ void Data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
   vk::structure::Object* vk_object = new vk::structure::Object();
   vk_object->data = data;
   vk_object->pose = pose;
+  vk_object->UID = vk_uid->query_free_UID();
 
   //Descriptor
   descriptor_required mvp = std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS);

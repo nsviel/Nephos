@@ -9,6 +9,7 @@ namespace vk::binding{class Descriptor;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Pipeline;}
+namespace vk::instance{class UID;}
 
 
 namespace vk::data{
@@ -40,6 +41,7 @@ private:
   vk::main::Texture* vk_texture;
   vk::command::Command_buffer* vk_command_buffer;
   vk::binding::Descriptor* vk_descriptor;
+  vk::instance::UID* vk_uid;
 };
 
 }

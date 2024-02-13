@@ -16,6 +16,13 @@ UID::UID(vk::structure::Vulkan* struct_vulkan){
 UID::~UID(){}
 
 //Main functions
+int UID::query_free_UID(){
+  //---------------------------
 
+
+
+  //---------------------------
+  return struct_vulkan->UID++;
+}
 
 }

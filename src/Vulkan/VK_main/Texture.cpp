@@ -15,6 +15,7 @@ Texture::Texture(vk::structure::Vulkan* struct_vulkan){
   this->vk_memory = new vk::command::Memory(struct_vulkan);
   this->vk_buffer = new vk::data::Buffer(struct_vulkan);
   this->vk_transfert = new vk::command::Transfert(struct_vulkan);
+  this->vk_uid = new vk::instance::UID(struct_vulkan);
 
   //---------------------------
 }
@@ -100,6 +101,8 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
   //Create texture container
   vk::structure::Texture* texture = new vk::structure::Texture();
   texture->utl_image = utl_image;
+  texture->UID = vk_uid->query_free_UID();
+  say(texture->UID);
 
   //Create associated vk_image
   vk::structure::Image* image = &texture->vk_image;
@@ -108,6 +111,7 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
   image->format = find_texture_format(utl_image);
   image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
+
   vk_image->create_image(image);
 
   //Create associated buffer

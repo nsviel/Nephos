@@ -16,7 +16,7 @@ public:
 
 public:
   //Main functions
-
+  int query_free_UID();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

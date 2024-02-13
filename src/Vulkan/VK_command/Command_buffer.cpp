@@ -13,6 +13,7 @@ Command_buffer::Command_buffer(vk::structure::Vulkan* struct_vulkan){
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_thread = new vk::main::Thread(struct_vulkan);
+  this->vk_uid = new vk::instance::UID(struct_vulkan);
 
   //---------------------------
 }
@@ -27,6 +28,7 @@ void Command_buffer::init_pool(vk::pool::Command_buffer* pool){
     this->create_command_buffer_primary(pool, &command_buffer);
     command_buffer.is_available = true;
     command_buffer.is_recorded = false;
+    command_buffer.UID = vk_uid->query_free_UID();
 
     pool->tank.push_back(command_buffer);
   }

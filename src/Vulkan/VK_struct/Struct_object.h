@@ -25,6 +25,8 @@ struct Buffers{
 struct Object{
   //---------------------------
 
+  int UID = 0;
+  
   utl::type::Data* data;
   utl::type::Pose* pose;
 
