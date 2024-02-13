@@ -38,7 +38,8 @@ vector<vec4> Heatmap::heatmap_intensity(utl::entity::Object* object, int diviser
   math::Normalize(Is, range_intensity);
 
   //Compute heatmap
-  this->compute_heatmap(Is, object->data->xyz.size());
+  vector<vec4> heatmap = vector<vec4>(object->data->xyz.size());
+  this->compute_heatmap(Is, heatmap);
 
   //---------------------------
   return heatmap;
@@ -52,7 +53,8 @@ vector<vec4> Heatmap::heatmap_height(utl::entity::Object* object){
   math::Normalize(z_vec, range_height);
 
   //Compute heatmap
-  this->compute_heatmap(z_vec, object->data->xyz.size());
+  vector<vec4> heatmap = vector<vec4>(object->data->xyz.size());
+  this->compute_heatmap(z_vec, heatmap);
 
   //---------------------------
   return heatmap;
@@ -66,7 +68,8 @@ vector<vec4> Heatmap::heatmap_height(utl::entity::Object* object, vec2 range){
   math::Normalize(z_vec, range);
 
   //Compute heatmap
-  this->compute_heatmap(z_vec, object->data->xyz.size());
+  vector<vec4> heatmap = vector<vec4>(object->data->xyz.size());
+  this->compute_heatmap(z_vec, heatmap);
 
   //---------------------------
   return heatmap;
@@ -79,18 +82,17 @@ vector<vec4> Heatmap::heatmap_range(utl::entity::Object* object){
   math::Normalize(R);
 
   //Compute heatmap
-  this->compute_heatmap(R, object->data->xyz.size());
+  vector<vec4> heatmap = vector<vec4>(object->data->xyz.size());
+  this->compute_heatmap(R, heatmap);
 
   //---------------------------
   return heatmap;
 }
 
 //Processing functions
-void Heatmap::compute_heatmap(vector<float>& v_in, int size){
-  //---------------------------
+void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
 
-  heatmap.clear();
-  heatmap.reserve(size);
+  //---------------------------
 
   //Normalization of the input vector
   vector<float> v_norm;
@@ -102,7 +104,8 @@ void Heatmap::compute_heatmap(vector<float>& v_in, int size){
 
   //Compute heatmap from input vector
   vec4 color;
-  for(int i=0; i<size; i++){
+  #pragma omp parallel for
+  for(int i=0; i<heatmap.size(); i++){
     if(v_in[i] != -1 && isnan(v_norm[i]) == false){
       vector<vec3>* colormap = colormapManager->get_colormap_selected();
 
@@ -121,7 +124,7 @@ void Heatmap::compute_heatmap(vector<float>& v_in, int size){
       color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
-    heatmap.push_back(color);
+    heatmap[i] = color;
   }
 
   //---------------------------
