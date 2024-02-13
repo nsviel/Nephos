@@ -252,7 +252,19 @@ void Panel::draw_profiler_capture(ImVec2 graph_dim){
   //---------------------------
 }
 void Panel::draw_profiler_vulkan(ImVec2 graph_dim){
+  vector<prf::vulkan::Device>& vec_device = vulkan_manager->get_info_device();
   //---------------------------
+
+
+
+  if(ImGui::BeginTabBar("vulkan_profiler_tab##4567")){
+    for(int i=0; i< vec_device.size(); i++){
+      prf::vulkan::Device& device = vec_device[i];
+
+
+    }
+    ImGui::EndTabBar();
+  }
 
 
 
