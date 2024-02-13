@@ -68,7 +68,7 @@ void Node::loop(){
   //---------------------------
   tasker_cpu->task_end("eng");
 }
-void Node::gui(){ 
+void Node::gui(){
   //---------------------------
 
   tasker_cpu->task_begin("eng::gui");

@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <map>
+#include <mutex>
 
 
 namespace utl::type{
@@ -48,6 +50,7 @@ struct Data{
   std::vector<float> ts;
   std::vector<float> Is;
   std::vector<float> R;
+  std::mutex mutex;
 
   //---------------------------
 };

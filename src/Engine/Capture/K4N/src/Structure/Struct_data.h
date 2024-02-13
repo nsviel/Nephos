@@ -13,9 +13,9 @@ struct Data{
   std::string format;
   uint8_t* buffer;
 
-  int width;
-  int height;
-  int size;
+  int width = 0;
+  int height = 0;
+  int size = 0;
 
   float timestamp;
   float temperature = -1;
