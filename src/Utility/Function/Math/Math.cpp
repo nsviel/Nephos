@@ -368,6 +368,7 @@ void divise_vec(std::vector<float>& vec, int diviser){
   //---------------------------
 
   int size = vec.size();
+  #pragma omp parallel for
   for(int i=0; i<size; i++){
     vec[i] /= diviser;
   }
@@ -573,6 +574,7 @@ void Normalize(std::vector<float>& vec, glm::vec2 range){
   float max = (float)range.y;
 
   //Normalization
+  #pragma omp parallel for
   for(int i=0; i<size; i++){
     if(vec[i] < min || vec[i] > max){
       vec[i] = -1;

@@ -126,22 +126,22 @@ void Attribut::set_unicolor(utl::type::Entity* entity){
 
   //---------------------------
 }
-vector<float> Attribut::retrieve_z_vector(utl::type::Entity* entity){
+void Attribut::retrieve_z_vector(utl::type::Entity* entity, vector<float>& z_vec){
   utl::type::Data* data = entity->get_data();
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
   vector<vec3>& xyz = data->xyz;
-  vector<float> z_vec;
+  z_vec = vector<float>(xyz.size());
 
+  #pragma omp parallel for
   for(int i=0; i<xyz.size(); i++){
     vec4 xyz_h = vec4(xyz[i].x, xyz[i].y, xyz[i].z, 1);
     xyz_h = xyz_h * pose->model;
-    z_vec.push_back(xyz_h.z);
+    z_vec[i] = xyz_h.z;
   }
 
   //---------------------------
-  return z_vec;
 }
 
 }

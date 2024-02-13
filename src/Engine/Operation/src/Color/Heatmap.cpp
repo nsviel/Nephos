@@ -43,7 +43,8 @@ vector<vec4> Heatmap::heatmap_intensity(utl::entity::Object* object, int diviser
 vector<vec4> Heatmap::heatmap_height(utl::entity::Object* object){
   //---------------------------
 
-  vector<float> z_vec = attribManager->retrieve_z_vector(object);
+  vector<float> z_vec;
+  attribManager->retrieve_z_vector(object, z_vec);
   math::Normalize(z_vec, range_height);
   this->compute_heatmap(z_vec, object->data->xyz.size());
 
@@ -53,7 +54,8 @@ vector<vec4> Heatmap::heatmap_height(utl::entity::Object* object){
 vector<vec4> Heatmap::heatmap_height(utl::entity::Object* object, vec2 range){
   //---------------------------
 
-  vector<float> z_vec = attribManager->retrieve_z_vector(object);
+  vector<float> z_vec;
+  attribManager->retrieve_z_vector(object, z_vec);
   math::Normalize(z_vec, range);
   this->compute_heatmap(z_vec, object->data->xyz.size());
 
