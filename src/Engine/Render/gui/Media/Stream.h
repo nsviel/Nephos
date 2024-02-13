@@ -29,7 +29,7 @@ private:
   vk::main::Texture* vk_texture;
   vk::main::Imgui* vk_imgui;
 
-  vk::structure::Texture* texture;
+  int vk_texture_UID;
   ImTextureID imgui_texture;
 };
 

@@ -52,8 +52,11 @@ void Texture::clean_texture(vk::structure::Object* vk_object){
 
   //---------------------------
 }
-void Texture::update_texture(vk::structure::Texture* texture){
+void Texture::update_texture(int UID){
   //---------------------------
+
+  vk::structure::Texture* texture = query_texture(UID);
+  if(texture == nullptr) return;
 
   //Check if size hasn't changed
   if(texture->stagger.size != texture->utl_image->size){

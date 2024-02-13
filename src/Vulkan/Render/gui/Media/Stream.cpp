@@ -44,7 +44,7 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image, ImVec2& siz
     this->imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
   }else if(utl_image->new_data){
     //update texture data
-    vk_texture->update_texture(texture);
+  //  vk_texture->update_texture(texture);
     utl_image->new_data = false;
   }
 
