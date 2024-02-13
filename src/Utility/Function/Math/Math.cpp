@@ -584,8 +584,7 @@ void Normalize(std::vector<float>& vec, glm::vec2 range){
 
   //-----------------------------
 }
-std::vector<float> fct_normalize(std::vector<float>& vec, float value_to_avoid){
-  std::vector<float> vec_out(vec);
+void Normalize(std::vector<float>& vec, float value_to_avoid){
   int size = vec.size();
   //-----------------------------
 
@@ -594,22 +593,20 @@ std::vector<float> fct_normalize(std::vector<float>& vec, float value_to_avoid){
   float max = vec[0];
   for(int i=0; i<size; i++){
     if(vec[i] != value_to_avoid){
-      if(vec[i] > max && vec[i] != value_to_avoid) max = vec[i];
-      else if(vec[i] < min && vec[i] != value_to_avoid) min = vec[i];
+      if(vec[i] > max) max = vec[i];
+      else if(vec[i] < min) min = vec[i];
     }
   }
 
   //Normalization
+  #pragma omp parallel for
   for(int i=0; i<size; i++){
     if(vec[i] != value_to_avoid){
-      vec_out[i] = (vec[i] - min) / (max - min);
-    }else{
-      vec_out[i] = vec[i];
+      vec[i] = (vec[i] - min) / (max - min);
     }
   }
 
   //-----------------------------
-  return vec_out;
 }
 std::vector<float> fct_standardize(std::vector<float>& vec, float value_to_avoid){
   std::vector<float> vec_out(vec);

@@ -31,7 +31,6 @@ private:
   eng::ope::Colormap* colormapManager;
   eng::ope::Attribut* attribManager;
 
-  vector<vec4> heatmap;
   vec2 range_norm;
   vec2 range_height;
   vec2 range_intensity;

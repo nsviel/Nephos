@@ -91,25 +91,22 @@ vector<vec4> Heatmap::heatmap_range(utl::entity::Object* object){
 
 //Processing functions
 void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
-
   //---------------------------
 
   //Normalization of the input vector
-  vector<float> v_norm;
   if(is_normalization){
-    v_norm = math::fct_normalize(v_in, -1);
-  }else{
-    v_norm = v_in;
+    math::Normalize(v_in, -1);
   }
 
   //Compute heatmap from input vector
-  vec4 color;
   #pragma omp parallel for
   for(int i=0; i<heatmap.size(); i++){
-    if(v_in[i] != -1 && isnan(v_norm[i]) == false){
+    vec4 color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+
+    if(v_in[i] != -1 && isnan(v_in[i]) == false){
       vector<vec3>* colormap = colormapManager->get_colormap_selected();
 
-      float value = v_norm[i] * (colormap->size()-1);        // Will multiply value by 3.
+      float value = v_in[i] * (colormap->size()-1);        // Will multiply value by 3.
       float idx1  = floor(value);                  // Our desired color will be after this index.
       float idx2  = idx1 + 1;                        // ... and before this index (inclusive).
       float fractBetween = value - float(idx1);    // Distance between the two indexes (0-1).
@@ -119,9 +116,6 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
       float blue  = ((*colormap)[idx2][2] - (*colormap)[idx1][2]) * fractBetween + (*colormap)[idx1][2];
 
       color = vec4(red, green, blue, 1.0f);
-    }
-    else{
-      color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
     heatmap[i] = color;
@@ -134,19 +128,16 @@ void Heatmap::heatmap_set(utl::entity::Object* object, vector<float>& v_in){
   //---------------------------
 
   //Normalization of the input vector
-  vector<float> v_norm;
   if(is_normalization){
-    v_norm = math::fct_normalize(v_in, -1);
-  }else{
-    v_norm = v_in;
+    math::Normalize(v_in, -1);
   }
 
   //Compute heatmap from input vector
   for(int i=0; i<RGB.size(); i++){
-    if(v_in[i] != -1 && isnan(v_norm[i]) == false){
+    if(v_in[i] != -1 && isnan(v_in[i]) == false){
       vector<vec3>* colormap = colormapManager->get_colormap_selected();
 
-      float value = v_norm[i] * (colormap->size()-1);        // Will multiply value by 3.
+      float value = v_in[i] * (colormap->size()-1);        // Will multiply value by 3.
       float idx1  = floor(value);                  // Our desired color will be after this index.
       float idx2  = idx1 + 1;                        // ... and before this index (inclusive).
       float fractBetween = value - float(idx1);    // Distance between the two indexes (0-1).
