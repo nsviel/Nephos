@@ -29,7 +29,7 @@ Heatmap::~Heatmap(){
 }
 
 //Main function
-vector<vec4> Heatmap::heatmap_intensity(utl::entity::Object* object, int diviser){
+void Heatmap::heatmap_intensity(vector<vec4>& vec_rgba, utl::entity::Object* object, int diviser){
   //---------------------------
 
   //Prepare data
@@ -38,13 +38,12 @@ vector<vec4> Heatmap::heatmap_intensity(utl::entity::Object* object, int diviser
   math::Normalize(Is, range_intensity);
 
   //Compute heatmap
-  vector<vec4> heatmap = vector<vec4>(object->data->xyz.size());
-  this->compute_heatmap(Is, heatmap);
+  vec_rgba = vector<vec4>(object->data->xyz.size());
+  this->compute_heatmap(Is, vec_rgba);
 
   //---------------------------
-  return heatmap;
 }
-vector<vec4> Heatmap::heatmap_height(utl::entity::Object* object){
+void Heatmap::heatmap_height(vector<vec4>& vec_rgba, utl::entity::Object* object){
   //---------------------------
 
   //Prepare data
@@ -53,13 +52,12 @@ vector<vec4> Heatmap::heatmap_height(utl::entity::Object* object){
   math::Normalize(z_vec, range_height);
 
   //Compute heatmap
-  vector<vec4> heatmap = vector<vec4>(object->data->xyz.size());
-  this->compute_heatmap(z_vec, heatmap);
+  vec_rgba = vector<vec4>(object->data->xyz.size());
+  this->compute_heatmap(z_vec, vec_rgba);
 
   //---------------------------
-  return heatmap;
 }
-vector<vec4> Heatmap::heatmap_height(utl::entity::Object* object, vec2 range){
+void Heatmap::heatmap_height(vector<vec4>& vec_rgba, utl::entity::Object* object, vec2 range){
   //---------------------------
 
   //Prepare data
@@ -68,13 +66,12 @@ vector<vec4> Heatmap::heatmap_height(utl::entity::Object* object, vec2 range){
   math::Normalize(z_vec, range);
 
   //Compute heatmap
-  vector<vec4> heatmap = vector<vec4>(object->data->xyz.size());
-  this->compute_heatmap(z_vec, heatmap);
+  vec_rgba = vector<vec4>(object->data->xyz.size());
+  this->compute_heatmap(z_vec, vec_rgba);
 
   //---------------------------
-  return heatmap;
 }
-vector<vec4> Heatmap::heatmap_range(utl::entity::Object* object){
+void Heatmap::heatmap_range(vector<vec4>& vec_rgba, utl::entity::Object* object){
   //---------------------------
 
   //Prepare data
@@ -82,11 +79,10 @@ vector<vec4> Heatmap::heatmap_range(utl::entity::Object* object){
   math::Normalize(R);
 
   //Compute heatmap
-  vector<vec4> heatmap = vector<vec4>(object->data->xyz.size());
-  this->compute_heatmap(R, heatmap);
+  vec_rgba = vector<vec4>(object->data->xyz.size());
+  this->compute_heatmap(R, vec_rgba);
 
   //---------------------------
-  return heatmap;
 }
 
 //Processing functions
@@ -99,13 +95,13 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
   }
 
   //Compute heatmap from input vector
+  vector<vec3>* colormap = colormapManager->get_colormap_selected();
+
   #pragma omp parallel for
   for(int i=0; i<heatmap.size(); i++){
     vec4 color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
     if(v_in[i] != -1 && isnan(v_in[i]) == false){
-      vector<vec3>* colormap = colormapManager->get_colormap_selected();
-
       float value = v_in[i] * (colormap->size()-1);        // Will multiply value by 3.
       float idx1  = floor(value);                  // Our desired color will be after this index.
       float idx2  = idx1 + 1;                        // ... and before this index (inclusive).

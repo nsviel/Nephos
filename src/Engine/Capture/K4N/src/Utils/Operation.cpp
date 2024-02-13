@@ -91,15 +91,15 @@ void Operation::colorization_heatmap(eng::k4n::dev::Sensor* sensor, vector<vec4>
 
   switch(sensor->master->operation.heatmap_mode){
     case 0:{//Intensity
-      vec_rgba = ope_heatmap->heatmap_intensity(object, sensor->master->operation.intensity_division);
+      ope_heatmap->heatmap_intensity(vec_rgba, object, sensor->master->operation.intensity_division);
       break;
     }
     case 1:{//Height
-      vec_rgba = ope_heatmap->heatmap_height(object, sensor->master->operation.range_height);
+      ope_heatmap->heatmap_height(vec_rgba, object, sensor->master->operation.range_height);
       break;
     }
     case 2:{//Range
-      vec_rgba = ope_heatmap->heatmap_range(object);
+      ope_heatmap->heatmap_range(vec_rgba, object);
       break;
     }
   }
