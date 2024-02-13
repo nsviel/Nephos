@@ -6,6 +6,7 @@
 #include <Profiler/src/Timer/Chrono.h>
 #include <Profiler/src/Profiler/Task.h>
 #include <Profiler/src/Profiler/Tasker.h>
+#include <Profiler/src/Profiler/Vulkan.h>
 #include <Profiler/src/Profiler/Manager.h>
 #include <Profiler/gui/Panel.h>
 #include <Profiler/gui/ImProfil/Namespace.h>

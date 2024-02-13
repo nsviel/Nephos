@@ -39,6 +39,7 @@ struct Vulkan{
   //Profiling
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;
+  prf::type::Vulkan* prf_vulkan;
 
   //---------------------------
 };
