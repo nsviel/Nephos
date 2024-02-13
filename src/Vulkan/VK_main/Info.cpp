@@ -38,22 +38,28 @@ void Info::fill_vulkan_device(prf::vulkan::Manager* prf_vulkan){
   vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
   //---------------------------
 
-  prf::vulkan::Device device_info;
-  device_info.name = struct_vulkan->device.physical_device.name;
-  device_info.has_extension_support = struct_vulkan->device.physical_device.has_extension_support;
-  device_info.max_image_dim = struct_vulkan->device.physical_device.max_image_dim;
-  device_info.vendorID = struct_vulkan->device.physical_device.vendorID;
+  for(int i=0; i<struct_vulkan->instance.vec_physical_device.size(); i++){
+    vk::structure::Physical_device& physical_device = struct_vulkan->instance.vec_physical_device[i];
+    prf::vulkan::Device device_info;
 
-  device_info.queue_graphics_idx = struct_vulkan->device.physical_device.queue_graphics_idx;
-  device_info.queue_transfer_idx = struct_vulkan->device.physical_device.queue_transfer_idx;
-  device_info.queue_presentation_idx = struct_vulkan->device.physical_device.queue_presentation_idx;
+    device_info.name = physical_device.name;
+    device_info.has_extension_support = physical_device.has_extension_support;
+    device_info.max_image_dim = physical_device.max_image_dim;
+    device_info.vendorID = physical_device.vendorID;
 
-  device_info.nb_queue_family = struct_vulkan->device.physical_device.nb_queue_family;
-  device_info.nb_queue_graphics = struct_vulkan->device.physical_device.nb_queue_graphics;
-  device_info.nb_queue_compute = struct_vulkan->device.physical_device.nb_queue_compute;
-  device_info.nb_queue_transfer = struct_vulkan->device.physical_device.nb_queue_transfer;
-  device_info.nb_queue_sparseBinding = struct_vulkan->device.physical_device.nb_queue_sparseBinding;
-  device_info.nb_queue_presentation = struct_vulkan->device.physical_device.nb_queue_presentation;
+    device_info.queue_graphics_idx = physical_device.queue_graphics_idx;
+    device_info.queue_transfer_idx = physical_device.queue_transfer_idx;
+    device_info.queue_presentation_idx = physical_device.queue_presentation_idx;
+
+    device_info.nb_queue_family = physical_device.nb_queue_family;
+    device_info.nb_queue_graphics = physical_device.nb_queue_graphics;
+    device_info.nb_queue_compute = physical_device.nb_queue_compute;
+    device_info.nb_queue_transfer = physical_device.nb_queue_transfer;
+    device_info.nb_queue_sparseBinding = physical_device.nb_queue_sparseBinding;
+    device_info.nb_queue_presentation = physical_device.nb_queue_presentation;
+
+    vec_device.push_back(device_info);
+  }
 
   //---------------------------
 }

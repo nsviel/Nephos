@@ -5,6 +5,7 @@
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Task;}
 namespace prf{class Tasker;}
+namespace prf::vulkan{class Manager;}
 
 
 namespace vk::main{
