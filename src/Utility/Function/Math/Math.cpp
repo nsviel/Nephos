@@ -523,8 +523,7 @@ glm::vec3 fct_max_vec3(std::vector<glm::vec3> XYZ){
 }
 
 //Normalization
-std::vector<float> fct_normalize(std::vector<float>& vec){
-  std::vector<float> vec_out(vec);
+void Normalize(std::vector<float>& vec){
   int size = vec.size();
   //-----------------------------
 
@@ -537,12 +536,12 @@ std::vector<float> fct_normalize(std::vector<float>& vec){
   }
 
   //Normalization
+  #pragma omp parallel for
   for(int i=0; i<size; i++){
-    vec_out[i] = (vec[i] - min) / (max - min);
+    vec[i] = (vec[i] - min) / (max - min);
   }
 
   //-----------------------------
-  return vec_out;
 }
 std::vector<double> fct_normalize(std::vector<double>& vec){
   std::vector<double> vec_out(vec);

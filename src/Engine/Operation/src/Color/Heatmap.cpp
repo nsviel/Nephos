@@ -65,9 +65,9 @@ vector<vec4> Heatmap::heatmap_height(utl::entity::Object* object, vec2 range){
 vector<vec4> Heatmap::heatmap_range(utl::entity::Object* object){
   //---------------------------
 
-  vector<float>& dist = object->data->R;
-  vector<float> dist_norm = math::fct_normalize(dist);
-  this->compute_heatmap(dist_norm, object->data->xyz.size());
+  vector<float> R = object->data->R;
+  math::Normalize(R);
+  this->compute_heatmap(R, object->data->xyz.size());
 
   //---------------------------
   return heatmap;

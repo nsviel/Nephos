@@ -57,7 +57,7 @@ glm::vec3 fct_min_z(std::vector<glm::vec3> vec);
 glm::vec3 fct_min_vec3(std::vector<glm::vec3> XYZ);
 
 //Normalization
-std::vector<float> fct_normalize(std::vector<float>& vec);
+void Normalize(std::vector<float>& vec);
 std::vector<double> fct_normalize(std::vector<double>& vec);
 void Normalize(std::vector<float>& vec, glm::vec2 range);
 std::vector<float> fct_normalize(std::vector<float>& vec, float value_to_avoid);
