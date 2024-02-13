@@ -37,12 +37,12 @@ void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
 void Stream::convert_data_into_texture(utl::media::Image* utl_image, ImVec2& size){
   //---------------------------
 
+  //Load texture into vulkan
   if(imgui_texture == 0){
-    //Load texture into vulkan
     this->vk_texture_UID = vk_texture->load_texture(utl_image);
     this->imgui_texture = vk_imgui->create_imgui_texture(vk_texture_UID);
+  //update texture data
   }else if(utl_image->new_data){
-    //update texture data
     vk_texture->update_texture(vk_texture_UID);
     utl_image->new_data = false;
   }

@@ -96,13 +96,14 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
 
   //Compute heatmap from input vector
   vector<vec3>* colormap = colormapManager->get_colormap_selected();
+  const size_t colormap_size = colormap->size();
 
   #pragma omp parallel for
   for(int i=0; i<heatmap.size(); i++){
     vec4 color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
-    if(v_in[i] != -1 && isnan(v_in[i]) == false){
-      float value = v_in[i] * (colormap->size()-1);        // Will multiply value by 3.
+    if(v_in[i] != -1){
+      float value = v_in[i] * (colormap_size - 1);        // Will multiply value by 3.
       float idx1  = floor(value);                  // Our desired color will be after this index.
       float idx2  = idx1 + 1;                        // ... and before this index (inclusive).
       float fractBetween = value - float(idx1);    // Distance between the two indexes (0-1).

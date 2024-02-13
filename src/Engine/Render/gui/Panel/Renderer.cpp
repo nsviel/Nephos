@@ -57,7 +57,7 @@ void Renderer::engine_texture(){
   //---------------------------
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  ImTextureID texture = vk_imgui->rendered_texture();
+  ImTextureID texture = vk_imgui->query_engine_texture();
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
   if(ImGui::IsItemHovered()){

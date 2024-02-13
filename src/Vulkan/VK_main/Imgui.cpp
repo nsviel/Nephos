@@ -85,7 +85,7 @@ ImTextureID Imgui::create_imgui_texture(int UID){
   //---------------------------
   return imgui_texture;
 }
-ImTextureID Imgui::rendered_texture(){
+ImTextureID Imgui::query_engine_texture(){
   static ImTextureID texture = 0;
   //---------------------------
 

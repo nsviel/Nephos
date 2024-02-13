@@ -30,7 +30,7 @@ public:
   void new_frame();
 
   ImTextureID create_imgui_texture(int UID);
-  ImTextureID rendered_texture();
+  ImTextureID query_engine_texture();
   void create_context();
   bool check_window_resize();
 
