@@ -14,6 +14,7 @@ Imgui::Imgui(vk::structure::Vulkan* struct_vulkan){
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   this->vk_surface = new vk::presentation::Surface(struct_vulkan);
+  this->vk_texture = new vk::main::Texture(struct_vulkan);
 
   //---------------------------
 }
@@ -70,6 +71,37 @@ void Imgui::new_frame(){
   //---------------------------
 }
 
+//Imgui with vulkan function
+ImTextureID Imgui::create_imgui_texture(int UID){
+  //---------------------------
+
+  vk::structure::Texture* texture = vk_texture->query_texture(UID);
+  if(texture == nullptr) return 0;
+
+  //Retrieve descriptor from vulkan texture
+  VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->vk_image.sampler, texture->vk_image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  ImTextureID imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
+
+  //---------------------------
+  return imgui_texture;
+}
+ImTextureID Imgui::rendered_texture(){
+  static ImTextureID texture = 0;
+  //---------------------------
+
+  bool has_been_resized = check_window_resize();
+
+  if(texture == 0 || struct_vulkan->window.is_resized || has_been_resized){
+    vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
+    vk::structure::Image* image = &renderpass->framebuffer->color;
+
+    VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    texture = reinterpret_cast<ImTextureID>(descriptor);
+  }
+
+  //---------------------------
+  return texture;
+}
 void Imgui::create_context(){
   vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
   //---------------------------
@@ -98,23 +130,6 @@ void Imgui::create_context(){
 
 
   //---------------------------
-}
-ImTextureID Imgui::rendered_texture(){
-  static ImTextureID texture = 0;
-  //---------------------------
-
-  bool has_been_resized = check_window_resize();
-
-  if(texture == 0 || struct_vulkan->window.is_resized || has_been_resized){
-    vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
-    vk::structure::Image* image = &renderpass->framebuffer->color;
-
-    VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-    texture = reinterpret_cast<ImTextureID>(descriptor);
-  }
-
-  //---------------------------
-  return texture;
 }
 bool Imgui::check_window_resize(){
   //---------------------------

@@ -29,8 +29,8 @@ public:
   void clean_texture(vk::structure::Object* vk_object);
   void update_texture(vk::structure::Texture* texture);
   VkFormat find_texture_format(utl::media::Image* image);
-  vk::structure::Texture* load_texture(utl::media::Image* texture);
-  vk::structure::Texture* find_texture(string name);
+  int load_texture(utl::media::Image* texture);
+  vk::structure::Texture* query_texture(int UID);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

@@ -9,6 +9,7 @@ namespace vk::command{class Command_buffer;}
 namespace vk::presentation{class Surface;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command_buffer;}
+namespace vk::main{class Texture;}
 
 
 namespace vk::main{
@@ -28,8 +29,9 @@ public:
   void render();
   void new_frame();
 
-  void create_context();
+  ImTextureID create_imgui_texture(int UID);
   ImTextureID rendered_texture();
+  void create_context();
   bool check_window_resize();
 
   //Font
@@ -43,6 +45,7 @@ private:
   vk::command::Command_buffer* vk_command_buffer;
   vk::instance::Pool* vk_pool;
   vk::presentation::Surface* vk_surface;
+  vk::main::Texture* vk_texture;
 };
 
 }

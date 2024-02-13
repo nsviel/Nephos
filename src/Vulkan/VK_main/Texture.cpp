@@ -94,15 +94,18 @@ VkFormat Texture::find_texture_format(utl::media::Image* image){
   //---------------------------
   return format;
 }
-vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
-  if(utl_image->format == "") return nullptr;
+int Texture::load_texture(utl::media::Image* utl_image){
   //---------------------------
+
+  if(utl_image->format == ""){
+    cout<<"[error] not texture format found"<<endl;
+    return 0;
+  }
 
   //Create texture container
   vk::structure::Texture* texture = new vk::structure::Texture();
   texture->utl_image = utl_image;
   texture->UID = vk_uid->query_free_UID();
-  say(texture->UID);
 
   //Create associated vk_image
   vk::structure::Image* image = &texture->vk_image;
@@ -123,17 +126,22 @@ vk::structure::Texture* Texture::load_texture(utl::media::Image* utl_image){
   struct_vulkan->data.list_vk_texture.push_back(texture);
 
   //---------------------------
-  return texture;
+  return texture->UID;
 }
-vk::structure::Texture* Texture::find_texture(string name){
+vk::structure::Texture* Texture::query_texture(int UID){
+  list<vk::structure::Texture*>& list_vk_texture = struct_vulkan->data.list_vk_texture;
   //---------------------------
 
-  //Create texture container
-  vk::structure::Texture* texture = new vk::structure::Texture();
+  for(int i=0; i<list_vk_texture.size(); i++){
+    vk::structure::Texture* texture = *next(list_vk_texture.begin(),i);
 
+    if(texture->UID == UID){
+      return texture;
+    }
+  }
 
   //---------------------------
-  return texture;
+  return nullptr;
 }
 
 }

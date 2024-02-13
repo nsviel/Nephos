@@ -50,7 +50,8 @@ void Image::load_image_static(string path){
   if(texture == nullptr){
     utl::media::Image struct_image = utl::fct::image::load_image(path);
     struct_image.format = "R8G8B8A8_SRGB";
-    texture = vk_texture->load_texture(&struct_image);
+    int UID = vk_texture->load_texture(&struct_image);
+    texture = vk_texture->query_texture(UID);
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->vk_image.sampler, texture->vk_image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     this->imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
   }
@@ -63,7 +64,8 @@ void Image::load_image_dynamic(string path){
 
   utl::media::Image struct_image = utl::fct::image::load_image(path);
   struct_image.format = "R8G8B8A8_SRGB";
-  texture = vk_texture->load_texture(&struct_image);
+  int UID = vk_texture->load_texture(&struct_image);
+  texture = vk_texture->query_texture(UID);
   VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->vk_image.sampler, texture->vk_image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   this->imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
 
@@ -75,7 +77,8 @@ void Image::load_image_bin(string path){
 
   utl::media::Image struct_image = utl::fct::image::load_image(path);
   struct_image.format = "R8G8B8A8_SRGB";
-  texture = vk_texture->load_texture(&struct_image);
+  int UID = vk_texture->load_texture(&struct_image);
+  texture = vk_texture->query_texture(UID);
   VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->vk_image.sampler, texture->vk_image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   this->imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
 

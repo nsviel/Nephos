@@ -15,6 +15,7 @@ Stream::Stream(eng::Node* engine){
 
   vk::Node* vulkan = engine->get_eng_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
+  this->vk_imgui = vulkan->get_vk_imgui();
   this->texture = nullptr;
   this->imgui_texture = 0;
 
@@ -39,12 +40,8 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image, ImVec2& siz
 
   if(texture == nullptr){
     //Load texture into vulkan
-    texture = vk_texture->load_texture(utl_image);
-    if(texture == nullptr) return;
-
-    //Retrieve descriptor from vulkan texture
-    VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->vk_image.sampler, texture->vk_image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-    this->imgui_texture = reinterpret_cast<ImTextureID>(descriptor);
+    int UID = vk_texture->load_texture(utl_image);
+    this->imgui_texture = vk_imgui->create_imgui_texture(UID);
   }else if(utl_image->new_data){
     //update texture data
     vk_texture->update_texture(texture);

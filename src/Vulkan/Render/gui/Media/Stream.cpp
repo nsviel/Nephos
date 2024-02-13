@@ -35,7 +35,8 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image, ImVec2& siz
 
   if(texture == nullptr){
     //Load texture into vulkan
-    texture = vk_texture->load_texture(utl_image);
+    int UID = vk_texture->load_texture(utl_image);
+    texture = vk_texture->query_texture(UID);
     if(texture == nullptr) return;
 
     //Retrieve descriptor from vulkan texture
