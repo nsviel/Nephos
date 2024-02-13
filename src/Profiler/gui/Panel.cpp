@@ -64,9 +64,10 @@ void Panel::main_info(){
     ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
 
     //GPU device
+    prf::vulkan::Info* info_vulkan = vulkan_manager->get_info_vulkan();
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
-  //  ImGui::TextColored(color, "%s", info_vulkan->gpu_name.c_str());
+    ImGui::TextColored(color, "%s", info_vulkan->selected_gpu.c_str());
 
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();

@@ -8,7 +8,7 @@ namespace prf::vulkan{
 struct Info{
   //---------------------------
 
-
+  string selected_gpu;
 
   //---------------------------
 };

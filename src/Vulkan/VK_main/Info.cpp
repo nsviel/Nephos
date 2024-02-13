@@ -16,12 +16,27 @@ Info::Info(vk::structure::Vulkan* struct_vulkan){
 }
 Info::~Info(){}
 
-//Main function
+//Profiler vulkan info
 void Info::fill_info(){
   prf::vulkan::Manager* prf_vulkan = struct_vulkan->prf_vulkan;
   //---------------------------
 
+  this->fill_vulkan_info(prf_vulkan);
+  this->fill_vulkan_device(prf_vulkan);
+
+  //---------------------------
+}
+void Info::fill_vulkan_info(prf::vulkan::Manager* prf_vulkan){
+  prf::vulkan::Info* info_vulkan = prf_vulkan->get_info_vulkan();
+  //---------------------------
+
+  info_vulkan->selected_gpu = struct_vulkan->device.physical_device.name;
+
+  //---------------------------
+}
+void Info::fill_vulkan_device(prf::vulkan::Manager* prf_vulkan){
   vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
+  //---------------------------
 
   prf::vulkan::Device device_info;
   device_info.name = struct_vulkan->device.physical_device.name;
@@ -42,6 +57,8 @@ void Info::fill_info(){
 
   //---------------------------
 }
+
+//Subfunction
 string Info::get_gpu_name(){
   return struct_vulkan->device.physical_device.name;
 }
