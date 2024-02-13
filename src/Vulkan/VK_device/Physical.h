@@ -36,6 +36,7 @@ public:
   void find_presentation_mode(vk::structure::Physical_device& dev_physical);
   void find_queue_nb_family(vk::structure::Physical_device& dev_physical);
   void find_queue_graphics_idx(vk::structure::Physical_device& dev_physical);
+  void find_queue_transfer_idx(vk::structure::Physical_device& dev_physical);
   void find_queue_presentation_idx(vk::structure::Physical_device& dev_physical);
   void find_max_usable_sample_count(vk::structure::Physical_device& dev_physical);
 

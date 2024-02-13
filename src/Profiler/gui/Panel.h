@@ -31,6 +31,7 @@ public:
   void draw_profiler_cpu(ImVec2 graph_dim);
   void draw_profiler_gpu(ImVec2 graph_dim);
   void draw_profiler_capture(ImVec2 graph_dim);
+  void draw_profiler_vulkan(ImVec2 graph_dim);
 
 private:
   prf::Manager* profiler;

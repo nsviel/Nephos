@@ -22,6 +22,7 @@ struct Physical_device{
   bool has_extension_support;
   uint32_t max_image_dim;
   int queue_graphics_idx = -1;
+  int queue_transfer_idx = -1;
   int queue_presentation_idx = -1;
   int selection_score;
   int vendorID;

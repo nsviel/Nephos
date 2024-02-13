@@ -65,7 +65,7 @@ void Panel::main_info(){
     //GPU device
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", profiler->get_gpu_dev().c_str());
+    //ImGui::TextColored(color, "%s", profiler->get_gpu_dev().c_str());
 
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -120,6 +120,7 @@ void Panel::draw_graph(){
   if(ImGui::BeginTabBar("device_tab##4567")){
     ImVec2 graph_dim = ImGui::GetContentRegionAvail();
 
+    //All profiling graphs
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("All##4568", NULL)){
       graph_dim = ImVec2(graph_dim.x, graph_dim.y/3 - 3.33);
@@ -129,23 +130,34 @@ void Panel::draw_graph(){
       ImGui::EndTabItem();
     }
 
+    //CPU graph
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("CPU##4567", NULL)){
       this->draw_profiler_cpu(graph_dim);
       ImGui::EndTabItem();
     }
 
+    //GPU graph
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("GPU##4567", NULL)){
       this->draw_profiler_gpu(graph_dim);
       ImGui::EndTabItem();
     }
 
+    //Capture graph
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("Capture##4567", NULL)){
       this->draw_profiler_capture(graph_dim);
       ImGui::EndTabItem();
     }
+
+    //Vulkan graph
+    ImGui::SetNextItemWidth(100);
+    if (ImGui::BeginTabItem("Vulkan##4567", NULL)){
+      this->draw_profiler_vulkan(graph_dim);
+      ImGui::EndTabItem();
+    }
+
     ImGui::EndTabBar();
   }
 
@@ -234,6 +246,13 @@ void Panel::draw_profiler_capture(ImVec2 graph_dim){
 
   //Render profiler
   gui_capture->render_child(graph_dim);
+
+  //---------------------------
+}
+void Panel::draw_profiler_vulkan(ImVec2 graph_dim){
+  //---------------------------
+
+
 
   //---------------------------
 }

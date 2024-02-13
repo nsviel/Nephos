@@ -147,6 +147,7 @@ bool Physical::device_suitability_onscreen(vk::structure::Physical_device& dev_p
   //Queue suitable
   this->find_queue_nb_family(dev_physical);
   this->find_queue_graphics_idx(dev_physical);
+  this->find_queue_transfer_idx(dev_physical);
   this->find_queue_presentation_idx(dev_physical);
   if(dev_physical.queue_graphics_idx == -1){
     return false;
@@ -356,6 +357,26 @@ void Physical::find_queue_graphics_idx(vk::structure::Physical_device& dev_physi
     //Querying for graphics family
     if(queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT){
       dev_physical.queue_graphics_idx = i;
+      return;
+    }
+    i++;
+  }
+
+  //---------------------------
+}
+void Physical::find_queue_transfer_idx(vk::structure::Physical_device& dev_physical){
+  //---------------------------
+
+  // List queue families
+  std::vector<VkQueueFamilyProperties> vec_queueFamily(dev_physical.nb_queue_family);
+  vkGetPhysicalDeviceQueueFamilyProperties(dev_physical.physical_device, &dev_physical.nb_queue_family, vec_queueFamily.data());
+
+  // Search for specific properties (e.g., transfer)
+  int i = 0;
+  for(const auto& queueFamily : vec_queueFamily){
+    // Querying for transfer family
+    if(queueFamily.queueFlags & VK_QUEUE_TRANSFER_BIT){
+      dev_physical.queue_transfer_idx = i;
       return;
     }
     i++;

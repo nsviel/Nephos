@@ -18,18 +18,14 @@ public:
 public:
   //Main function
 
-
-  inline string get_gpu_dev(){return gpu_dev;}
   inline prf::Tasker* get_tasker_cpu(){return tasker_cpu;}
   inline prf::Tasker* get_tasker_gpu(){return tasker_gpu;}
   inline prf::Tasker* get_tasker_cap(){return tasker_cap;}
-  
+
 private:
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;
   prf::Tasker* tasker_cap;
-
-  string gpu_dev;
 };
 
 }
