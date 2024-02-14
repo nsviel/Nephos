@@ -160,12 +160,7 @@ bool Physical::device_suitability_onscreen(vk::structure::Physical_device& dev_p
   if(dev_physical.queue_family_presentation_idx == -1){
     return false;
   }
-
-  say("---");
-  say(dev_physical.queue_family_presentation_idx);
-  say(dev_physical.queue_family_graphics_idx);
-  say(dev_physical.queue_family_transfer_idx);
-
+  
   //Extension suitable
   this->find_physical_device_support(dev_physical);
   if(dev_physical.has_extension_support == false){

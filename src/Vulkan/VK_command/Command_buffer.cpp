@@ -72,7 +72,7 @@ void Command_buffer::submit_pool(vk::pool::Command_buffer* pool){
   for(int i=0; i<pool->size; i++){
     vk::structure::Command_buffer* command_buffer = &pool->tank[i];
 
-    if(command_buffer->is_recorded){sayHello();
+    if(command_buffer->is_recorded){
       command->vec_command_buffer.push_back(command_buffer);
     //  struct_vulkan->queue.transfer->add_command(command_buffer);
     }
