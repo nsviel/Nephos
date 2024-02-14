@@ -357,28 +357,6 @@ void Physical::find_queue_nb_family(vk::structure::Physical_device& dev_physical
 void Physical::find_queue_graphics_idx(vk::structure::Physical_device& dev_physical){
   //---------------------------
 
-
-  // List queue families
-  std::vector<VkQueueFamilyProperties2> vec_queueFamily(dev_physical.nb_queue_family);
-  for (auto& queueFamily : vec_queueFamily) {
-      queueFamily.sType = VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2;
-      queueFamily.pNext = nullptr;
-  }
-  vkGetPhysicalDeviceQueueFamilyProperties2(dev_physical.physical_device, &dev_physical.nb_queue_family, vec_queueFamily.data());
-
-  // Search for specific properties (e.g., graphics)
-  for (int i = 0; i < vec_queueFamily.size(); i++) {
-      const auto& queueFamily = vec_queueFamily[i].queueFamilyProperties;
-
-      // Querying for graphics family
-      if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
-          dev_physical.queue_family_graphics_idx = static_cast<uint32_t>(i);
-          return;
-      }
-  }
-
-/*
-
   //List queue families
   std::vector<VkQueueFamilyProperties> vec_queueFamily(dev_physical.nb_queue_family );
   vkGetPhysicalDeviceQueueFamilyProperties(dev_physical.physical_device, &dev_physical.nb_queue_family , vec_queueFamily.data());
@@ -393,7 +371,7 @@ void Physical::find_queue_graphics_idx(vk::structure::Physical_device& dev_physi
       return;
     }
   }
-*/
+
   //---------------------------
 }
 void Physical::find_queue_transfer_idx(vk::structure::Physical_device& dev_physical){
