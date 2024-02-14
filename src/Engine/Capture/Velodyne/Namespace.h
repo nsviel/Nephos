@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Engine/Capture/Velodyne/PCAP/Importer.h>
-#include <Engine/Capture/Velodyne/Parser/Namespace.h>
-#include <Engine/Capture/Velodyne/Processing/Namespace.h>
+#include <Engine/Capture/Velodyne/src/Namespace.h>
+#include <Engine/Capture/Velodyne/gui/Namespace.h>
 #include <Engine/Capture/Velodyne/Node.h>
