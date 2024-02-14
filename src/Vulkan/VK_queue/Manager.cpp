@@ -20,6 +20,7 @@ void Manager::init(){
   //---------------------------
 
   struct_vulkan->queue.transfer = new vk::queue::Transfer(struct_vulkan);
+  struct_vulkan->queue.graphics = new vk::queue::Graphics(struct_vulkan);
 
   //---------------------------
 }

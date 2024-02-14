@@ -47,7 +47,7 @@ void Drawer::draw_frame(){
     command->vec_semaphore_done.push_back(semaphore->end);
     command->vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
     vk_command->submit_command(command);
-    //struct_vulkan->graphics->add_command(command);
+
 
     struct_vulkan->tasker_cpu->task_end(name);
   }

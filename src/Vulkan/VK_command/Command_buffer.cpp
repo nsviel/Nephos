@@ -67,18 +67,20 @@ void Command_buffer::submit_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
   //Submit all recorder command buffer
-  vk::structure::Command command;
+  vk::structure::Command* command = new vk::structure::Command();
   vector<VkCommandBuffer> vec_command;
   for(int i=0; i<pool->size; i++){
     vk::structure::Command_buffer* command_buffer = &pool->tank[i];
 
-    if(command_buffer->is_recorded){
-      command.vec_command_buffer.push_back(command_buffer);
+    if(command_buffer->is_recorded){sayHello();
+      command->vec_command_buffer.push_back(command_buffer);
     //  struct_vulkan->queue.transfer->add_command(command_buffer);
     }
   }
 
-  vk_command->submit_command(&command);
+  vk_command->submit_command(command);
+  delete command;
+  //struct_vulkan->queue.graphics->add_command(command);
 
 
   //---------------------------
@@ -116,17 +118,6 @@ void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data
   VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &data->command_buffer_secondary);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
-  }
-
-  //---------------------------
-}
-void Command_buffer::submit(vk::structure::Command_buffer* command_buffer){
-  //---------------------------
-
-  if(command_buffer->is_recorded){
-    vk::structure::Command command;
-    command.vec_command_buffer.push_back(command_buffer);
-    vk_command->submit_command(&command);
   }
 
   //---------------------------
