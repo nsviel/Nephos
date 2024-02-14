@@ -103,7 +103,6 @@ void Transfer::post_submission(){
     if(command_buffer->is_resetable){
       command_buffer->is_available = true;
       command_buffer->is_recorded = false;
-      command_buffer->fence = nullptr;
     }
   }
 

@@ -122,10 +122,8 @@ void Graphics::post_submission(){
       vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
 
       if(command_buffer->is_resetable){
-        vkResetCommandBuffer(command_buffer->command, 0);
         command_buffer->is_available = true;
         command_buffer->is_recorded = false;
-        command_buffer->fence = nullptr;
       }
     }
   }

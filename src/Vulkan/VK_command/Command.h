@@ -37,7 +37,6 @@ private:
   std::vector<VkPipelineStageFlags> vec_wait_stage;
   std::vector<VkSemaphore> vec_semaphore_processing;
   std::vector<VkSemaphore> vec_semaphore_done;
-  vk::structure::Fence* fence;
 };
 
 }

@@ -32,7 +32,6 @@ void Command::submit_command(vk::structure::Command* command){
 void Command::reset_for_submission(){
   //---------------------------
 
-  this->fence = VK_NULL_HANDLE;
   this->vec_command_buffer.clear();
   this->vec_semaphore_processing.clear();
   this->vec_semaphore_done.clear();
@@ -43,13 +42,9 @@ void Command::reset_for_submission(){
 void Command::prepare_submission(vk::structure::Command* command){
   //---------------------------
 
-  //Fence
-  this->fence = vk_fence->query_free_fence();
-
   //Command buffer
   for(int i=0; i<command->vec_command_buffer.size(); i++){
     vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
-    command_buffer->fence = fence;
     this->vec_command_buffer.push_back(command_buffer->command);
   }
 
@@ -62,6 +57,8 @@ void Command::prepare_submission(vk::structure::Command* command){
 void Command::queue_submission(){
   //---------------------------
 
+  vk::structure::Fence* fence = vk_fence->query_free_fence();
+
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   submit_info.waitSemaphoreCount = vec_semaphore_processing.size();
@@ -72,34 +69,28 @@ void Command::queue_submission(){
   submit_info.commandBufferCount = vec_command_buffer.size();
   submit_info.pCommandBuffers = vec_command_buffer.data();
 
-  //Very slow operation, need as low command as possible
   VkResult result = vkQueueSubmit(struct_vulkan->device.queue.graphics, 1, &submit_info, fence->fence);
-
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }
+
+  vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
+  vk_fence->reset_fence(fence);
 
   //---------------------------
 }
 void Command::wait_and_reset(vk::structure::Command* command){
   //---------------------------
 
-  //vkQueueWaitIdle(struct_vulkan->device.queue.graphics);
-  vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
-
   //Reset command buffer
   for(int i=0; i<command->vec_command_buffer.size(); i++){
     vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
 
     if(command_buffer->is_resetable){
-      vkResetCommandBuffer(command_buffer->command, 0);
       command_buffer->is_available = true;
       command_buffer->is_recorded = false;
-      command_buffer->fence = nullptr;
     }
   }
-
-  vk_fence->reset_fence(fence);
 
   //---------------------------
 }
