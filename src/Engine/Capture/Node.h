@@ -4,6 +4,7 @@
 
 namespace eng{class Node;}
 namespace eng::k4n{class Node;}
+namespace velodyne{class Node;}
 
 
 namespace eng::capture{
@@ -26,6 +27,7 @@ public:
 
 private:
   eng::k4n::Node* node_k4n;
+  velodyne::Node* node_velodyne;
 };
 
 }
