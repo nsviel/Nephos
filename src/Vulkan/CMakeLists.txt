@@ -19,6 +19,7 @@ file(GLOB_RECURSE ALL_SOURCES
   VK_validation/*.cpp
   VK_synchronization/*.cpp
   VK_thread/*.cpp
+  VK_memory/*.cpp
   Node.cpp
 )
 
