@@ -35,18 +35,19 @@ void Drawer::draw_frame(){
     struct_vulkan->tasker_cpu->task_begin(name);
 
     //Create command
-    vk::structure::Command command;
-    command.vec_semaphore_processing.push_back(semaphore->end);
+    vk::structure::Command* command = new vk::structure::Command();
+    command->vec_semaphore_processing.push_back(semaphore->end);
 
     //Run renderpass
     vk_render->run_renderpass(renderpass);
 
     //Complete and submit command with semaphore
     semaphore = vk_semaphore->query_free_semaphore();
-    command.vec_command_buffer.push_back(renderpass->command_buffer);
-    command.vec_semaphore_done.push_back(semaphore->end);
-    command.vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-    vk_command->submit_command(&command);
+    command->vec_command_buffer.push_back(renderpass->command_buffer);
+    command->vec_semaphore_done.push_back(semaphore->end);
+    command->vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
+    vk_command->submit_command(command);
+    //struct_vulkan->graphics->add_command(command);
 
     struct_vulkan->tasker_cpu->task_end(name);
   }

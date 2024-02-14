@@ -1,4 +1,4 @@
-#include "Graphics.h"
+#include "Presentation.h"
 
 #include <Vulkan/Namespace.h>
 #include <thread>
@@ -7,7 +7,7 @@
 namespace vk::queue{
 
 //Constructor / Destructor
-Graphics::Graphics(vk::structure::Vulkan* struct_vulkan){
+Presentation::Presentation(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -16,19 +16,19 @@ Graphics::Graphics(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
   this->start_thread();
 }
-Graphics::~Graphics(){}
+Presentation::~Presentation(){}
 
 //Main functions
-void Graphics::start_thread(){
+void Presentation::start_thread(){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&Graphics::run_thread, this);
+    this->thread = std::thread(&Presentation::run_thread, this);
   }
 
   //---------------------------
 }
-void Graphics::run_thread(){
+void Presentation::run_thread(){
   //---------------------------
 
   thread_running = true;
@@ -42,7 +42,7 @@ void Graphics::run_thread(){
 
   //---------------------------
 }
-void Graphics::add_command(vk::structure::Command* command){
+void Presentation::add_command(vk::structure::Command* command){
   //---------------------------
 
   vec_command_prepa.push_back(command);
@@ -51,7 +51,7 @@ void Graphics::add_command(vk::structure::Command* command){
 }
 
 //Subfunction
-void Graphics::wait_for_command(){
+void Presentation::wait_for_command(){
   //---------------------------
 
   while(vec_command_prepa.empty()){
@@ -60,7 +60,7 @@ void Graphics::wait_for_command(){
 
   //---------------------------
 }
-void Graphics::reset_for_submission(){
+void Presentation::reset_for_submission(){
   //---------------------------
 
   this->vec_command_buffer.clear();
@@ -70,7 +70,7 @@ void Graphics::reset_for_submission(){
 
   //---------------------------
 }
-void Graphics::prepare_submission(){
+void Presentation::prepare_submission(){
   //---------------------------
 
   for(int i=0; i<vec_command_onrun.size(); i++){
@@ -90,7 +90,7 @@ void Graphics::prepare_submission(){
 
   //---------------------------
 }
-void Graphics::queue_submission(){
+void Presentation::queue_submission(){
   //---------------------------
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
@@ -110,7 +110,7 @@ void Graphics::queue_submission(){
 
   //---------------------------
 }
-void Graphics::post_submission(){
+void Presentation::post_submission(){
   //---------------------------
 
   for(int i=0; i<vec_command_onrun.size(); i++){

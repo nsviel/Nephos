@@ -74,10 +74,12 @@ void Command_buffer::submit_pool(vk::pool::Command_buffer* pool){
 
     if(command_buffer->is_recorded){
       command.vec_command_buffer.push_back(command_buffer);
+      struct_vulkan->transfer->add_command(command_buffer);
     }
   }
 
-  vk_command->submit_command(&command);
+//  vk_command->submit_command(&command);
+
 
   //---------------------------
 }
