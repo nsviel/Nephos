@@ -12,14 +12,14 @@ namespace vk::structure{class Command_buffer;}
 namespace vk::structure{class Buffer;}
 
 
-namespace vk::command{
+namespace vk::memory{
 
-class Transfert
+class Transfer
 {
 public:
   //Constructor / Destructor
-  Transfert(vk::structure::Vulkan* struct_vulkan);
-  ~Transfert();
+  Transfer(vk::structure::Vulkan* struct_vulkan);
+  ~Transfer();
 
 public:
   //Image copy function

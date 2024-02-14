@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::command{class Memory;}
-namespace vk::command{class Transfert;}
+namespace vk::memory{class Memory;}
+namespace vk::memory{class Transfer;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Buffer;}
@@ -27,8 +27,8 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::command::Memory* vk_memory;
-  vk::command::Transfert* vk_transfert;
+  vk::memory::Memory* vk_memory;
+  vk::memory::Transfer* vk_transfert;
 };
 
 }

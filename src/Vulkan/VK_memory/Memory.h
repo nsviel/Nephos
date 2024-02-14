@@ -7,7 +7,7 @@ namespace vk::structure{class Image;}
 namespace vk::structure{class Buffer;}
 
 
-namespace vk::command{
+namespace vk::memory{
 
 class Memory
 {

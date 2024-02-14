@@ -1,12 +1,12 @@
-#include "Transfert.h"
+#include "Transfer.h"
 
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::command{
+namespace vk::memory{
 
 //Constructor / Destructor
-Transfert::Transfert(vk::structure::Vulkan* struct_vulkan){
+Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -16,10 +16,10 @@ Transfert::Transfert(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-Transfert::~Transfert(){}
+Transfer::~Transfer(){}
 
 //Image GPU function
-void Transfert::copy_texture_to_gpu(vk::structure::Texture* texture){
+void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
   //---------------------------
 
   //Get texture structures
@@ -46,7 +46,7 @@ void Transfert::copy_texture_to_gpu(vk::structure::Texture* texture){
 
   //---------------------------
 }
-void Transfert::copy_buffer_to_image(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer){
+void Transfer::copy_buffer_to_image(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer){
   //---------------------------
 
   VkBufferImageCopy region{};
@@ -63,7 +63,7 @@ void Transfert::copy_buffer_to_image(vk::structure::Command_buffer* command_buff
 
   //---------------------------
 }
-void Transfert::copy_image_to_buffer(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer){
+void Transfer::copy_image_to_buffer(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer){
   //---------------------------
 
   VkBufferImageCopy region{};
@@ -79,7 +79,7 @@ void Transfert::copy_image_to_buffer(vk::structure::Command_buffer* command_buff
 }
 
 //Buffer GPU function
-void Transfert::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
+void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
   //---------------------------
 
   if (data_size == 0) {
@@ -97,7 +97,7 @@ void Transfert::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data
 
   //---------------------------
 }
-void Transfert::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize data_size){
+void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize data_size){
   //---------------------------
 
   if (data_size == 0) {

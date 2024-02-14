@@ -10,8 +10,8 @@ Buffer::Buffer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_memory = new vk::command::Memory(struct_vulkan);
-  this->vk_transfert = new vk::command::Transfert(struct_vulkan);
+  this->vk_memory = new vk::memory::Memory(struct_vulkan);
+  this->vk_transfert = new vk::memory::Transfer(struct_vulkan);
 
   //---------------------------
 }

@@ -12,13 +12,13 @@ Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_memory = new vk::command::Memory(struct_vulkan);
+  this->vk_memory = new vk::memory::Memory(struct_vulkan);
   this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_texture = new vk::main::Texture(struct_vulkan);
-  this->vk_memory = new vk::command::Memory(struct_vulkan);
+  this->vk_memory = new vk::memory::Memory(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
-  this->vk_transfert = new vk::command::Transfert(struct_vulkan);
+  this->vk_transfert = new vk::memory::Transfer(struct_vulkan);
 
   //---------------------------
 }

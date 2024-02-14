@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::command{
+namespace vk::memory{
 
 //Constructor / Destructor
 Memory::Memory(vk::structure::Vulkan* struct_vulkan){
