@@ -1,23 +1,9 @@
-// (!) not more than one curl command per second
-// so just one command per function
-//Input : udp packets
-//Output : Subset pointer
-
 #include "Capture.h"
-#include "Parser_VLP16.h"
 
-#include "../Processing/Capture_frame.h"
-#include "../Processing/Capture_server.h"
-#include "../../Node_interface.h"
-
-#include "../../../Engine/Node_engine.h"
-#include "../../../Scene/Node_scene.h"
-#include "../../../Load/Node_load.h"
-#include "../../../Load/Processing/Extractor.h"
+#include <Engine/Capture/Velodyne/Namespace.h>
 
 #include <jsoncpp/json/value.h>
 #include <jsoncpp/json/json.h>
-
 #include <unistd.h>
 #include <fstream>
 #include <curl/curl.h>
@@ -35,9 +21,9 @@ Capture::Capture(Node_interface* node_interface){
   Node_load* node_load = node_interface->get_node_load();
 
   this->extractManager = new Extractor();
-  this->serverManager = new Capture_server();
-  this->frameManager = new Capture_frame();
-  this->vlp16Parser = new Parser_VLP16();
+  this->velo_server = new velodyne::Server();
+  this->velo_frame = new velodyne::Frame();
+  this->parser_vlp16 = new velodyne::parser::VLP16();
   this->subset_capture = new Cloud();
 
   this->time_frame = 0;
@@ -72,25 +58,25 @@ void Capture::start_watcher(int port){
     int port = capture_port;
     int size_max = 1248;
 
-    serverManager->capture_init(port, size_max);
+    velo_server->capture_init(port, size_max);
 
     while (run_capture){
       //Get packet in decimal format
       auto start = high_resolution_clock::now();
-      vector<int> packet_dec = serverManager->capture_packet();
+      vector<int> packet_dec = velo_server->capture_packet();
       auto stop = high_resolution_clock::now();
       this->time_packet = duration_cast<microseconds>(stop - start).count() / 1000;
 
       //Parse decimal packet into point cloud
       if(packet_dec.size() != 0){
-        utl::media::File* data_cap = vlp16Parser->parse_packet(packet_dec);
+        utl::media::File* data_cap = parser_vlp16->parse_packet(packet_dec);
 
         //Iteratively build a complete frame
-        bool frame_rev = frameManager->build_frame(data_cap);
+        bool frame_rev = velo_frame->build_frame(data_cap);
 
         // If frame revolution, make some ope
         if(frame_rev){
-          utl::media::File* frame = frameManager->get_endedFrame();
+          utl::media::File* frame = velo_frame->get_endedFrame();
           this->udp_capture = *frame;
 
           //Time
@@ -109,7 +95,7 @@ void Capture::start_watcher(int port){
       }
     }
 
-    serverManager->capture_stop();
+    velo_server->capture_stop();
   });
   thread_capture.detach();
 
@@ -119,7 +105,7 @@ void Capture::stop_watcher(){
   //---------------------------
 
   this->run_capture = false;
-  frameManager->reset_frame();
+  velo_frame->reset_frame();
 
   //---------------------------
 }

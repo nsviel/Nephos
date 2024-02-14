@@ -1,3 +1,7 @@
+#include "VLP16.h"
+
+#include <chrono>
+
 /*
 *  1 packet = 1 data-frame = 1248 total bytes = 1206 used bytes = 1200 data + 4 timestamp + 2 factory bytes
 *  1 packet data = 1200 bytes = 12 blocks of 100 bytes = 24 firing sequences of the 16 laser
@@ -5,12 +9,6 @@
 *  1 frame = 360° rotation of the lasers
 *  if data size equal 1206, this is a laser fire data, else about 512, it is a position packet or GPS packet
 */
-
-#include "VLP16.h"
-
-#include "../../../Specific/Function/fct_math.h"
-
-#include <chrono>
 
 
 namespace velodyne::parser{

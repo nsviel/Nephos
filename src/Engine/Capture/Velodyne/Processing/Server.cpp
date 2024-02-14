@@ -1,7 +1,6 @@
 #include "Server.h"
 
-#include "../../IO/Socket/Socket_server.h"
-#include "../../IO/Socket/Socket_client.h"
+#include <Engine/Capture/Namespace.h>
 
 #include <stdio.h>
 #include <stdlib.h>

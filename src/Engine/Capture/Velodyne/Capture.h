@@ -8,9 +8,9 @@
 class Node_interface;
 class Extractor;
 
-class Capture_frame;
-class Capture_server;
-class Parser_VLP16;
+namespace velodyne{class Frame;}
+namespace velodyne{class Server;}
+namespace velodyne::parser{class VLP16;}
 
 
 namespace velodyne{
@@ -56,9 +56,9 @@ public:
 
 private:
   Extractor* extractManager;
-  Capture_frame* frameManager;
-  Capture_server* serverManager;
-  Parser_VLP16* vlp16Parser;
+  velodyne::Frame* velo_frame;
+  velodyne::Server* velo_server;
+  velodyne::parser::VLP16* parser_vlp16;
 
   Cloud* subset_capture;
   utl::media::File udp_capture;
