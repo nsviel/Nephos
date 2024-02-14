@@ -1,5 +1,5 @@
 #include "Node.h"
-
+/*
 #include "src/SLAM.h"
 #include "src/SLAM_parameter.h"
 #include "GUI/GUI_Slam.h"
@@ -81,4 +81,4 @@ void Node::online(Collection* collection, int subset_ID){
   //---------------------------
 }
 
-}
+}*/
