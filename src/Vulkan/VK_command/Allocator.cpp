@@ -1,4 +1,4 @@
-#include "Command_allocator.h"
+#include "Allocator.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::command{
 
 //Constructor / Destructor
-Command_allocator::Command_allocator(vk::structure::Vulkan* struct_vulkan){
+Allocator::Allocator(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -14,10 +14,10 @@ Command_allocator::Command_allocator(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-Command_allocator::~Command_allocator(){}
+Allocator::~Allocator(){}
 
 //Main function
-void Command_allocator::init(){
+void Allocator::init(){
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   //---------------------------
 
@@ -36,7 +36,7 @@ void Command_allocator::init(){
 
   //---------------------------
 }
-void Command_allocator::reset(){
+void Allocator::reset(){
   vk::pool::Command* pool = &struct_vulkan->pools.command;
   //---------------------------
 
@@ -47,7 +47,7 @@ void Command_allocator::reset(){
 
   //---------------------------
 }
-void Command_allocator::submit_commands(){
+void Allocator::submit_commands(){
   vk::pool::Command* pool = &struct_vulkan->pools.command;
   //---------------------------
 
@@ -59,7 +59,7 @@ void Command_allocator::submit_commands(){
 
   //---------------------------
 }
-void Command_allocator::clean(){
+void Allocator::clean(){
   vk::pool::Command* pool = &struct_vulkan->pools.command;
   //---------------------------
 
@@ -73,7 +73,7 @@ void Command_allocator::clean(){
 }
 
 //Subfunction
-vk::pool::Command_buffer* Command_allocator::query_free_command_pool(){
+vk::pool::Command_buffer* Allocator::query_free_command_pool(){
   vk::pool::Command* pool = &struct_vulkan->pools.command;
   //---------------------------
 

@@ -12,7 +12,7 @@ Command_buffer::Command_buffer(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
-  this->vk_thread = new vk::command::Command_allocator(struct_vulkan);
+  this->vk_thread = new vk::command::Allocator(struct_vulkan);
   this->vk_uid = new vk::instance::UID(struct_vulkan);
 
   //---------------------------

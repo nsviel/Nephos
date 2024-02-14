@@ -10,12 +10,12 @@ namespace vk::instance{class Pool;}
 
 namespace vk::command{
 
-class Command_allocator
+class Allocator
 {
 public:
   //Constructor / Destructor
-  Command_allocator(vk::structure::Vulkan* struct_vulkan);
-  ~Command_allocator();
+  Allocator(vk::structure::Vulkan* struct_vulkan);
+  ~Allocator();
 
 public:
   //Main functions
