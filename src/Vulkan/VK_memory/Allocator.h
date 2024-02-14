@@ -9,20 +9,20 @@ namespace vk::structure{class Buffer;}
 
 namespace vk::memory{
 
-class Memory
+class Allocator
 {
 public:
   //Constructor / Destructor
-  Memory(vk::structure::Vulkan* struct_vulkan);
-  ~Memory();
+  Allocator(vk::structure::Vulkan* struct_vulkan);
+  ~Allocator();
 
 public:
   //Image memory
   void allocate_image_memory(vk::structure::Image* image);
 
   //Buffer memory
-  void create_empty_stagger_buffer(vk::structure::Buffer* buffer, VkDeviceSize size);
-  void create_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceSize size);
+  void allocate_empty_stagger_buffer(vk::structure::Buffer* buffer, VkDeviceSize size);
+  void allocate_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceSize size);
 
   //Subfunction
   void bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);

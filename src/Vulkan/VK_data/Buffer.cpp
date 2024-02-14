@@ -10,8 +10,8 @@ Buffer::Buffer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_memory = new vk::memory::Memory(struct_vulkan);
-  this->vk_transfert = new vk::memory::Transfer(struct_vulkan);
+  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
+  this->vk_mem_transfer = new vk::memory::Transfer(struct_vulkan);
 
   //---------------------------
 }
@@ -30,16 +30,16 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
 
   //Find buffer size
   size = sizeof(glm::vec3) * max_data;
-  vk_memory->create_empty_vertex_buffer(&vk_object->buffer.xyz, size);
-  vk_memory->create_empty_stagger_buffer(&vk_object->buffer.xyz_stagger, size);
+  vk_mem_allocator->allocate_empty_vertex_buffer(&vk_object->buffer.xyz, size);
+  vk_mem_allocator->allocate_empty_stagger_buffer(&vk_object->buffer.xyz_stagger, size);
 
   size = sizeof(glm::vec4) * max_data;
-  vk_memory->create_empty_vertex_buffer(&vk_object->buffer.rgb, size);
-  vk_memory->create_empty_stagger_buffer(&vk_object->buffer.rgb_stagger, size);
+  vk_mem_allocator->allocate_empty_vertex_buffer(&vk_object->buffer.rgb, size);
+  vk_mem_allocator->allocate_empty_stagger_buffer(&vk_object->buffer.rgb_stagger, size);
 
   size  = sizeof(glm::vec2) * max_data;
-  vk_memory->create_empty_vertex_buffer(&vk_object->buffer.uv, size);
-  vk_memory->create_empty_stagger_buffer(&vk_object->buffer.uv_stagger, size);
+  vk_mem_allocator->allocate_empty_vertex_buffer(&vk_object->buffer.uv, size);
+  vk_mem_allocator->allocate_empty_stagger_buffer(&vk_object->buffer.uv_stagger, size);
 
   this->update_buffer(vk_object);
 
@@ -50,17 +50,17 @@ void Buffer::update_buffer(vk::structure::Object* vk_object){
 
   if(vk_object->data->xyz.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec3) * vk_object->data->xyz.size();
-    vk_transfert->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vk_object->data->xyz.data(), data_size);
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vk_object->data->xyz.data(), data_size);
   }
 
   if(vk_object->data->rgb.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec4) * vk_object->data->rgb.size();
-    vk_transfert->copy_data_to_gpu(&vk_object->buffer.rgb, &vk_object->buffer.rgb_stagger, vk_object->data->rgb.data(), data_size);
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgb, &vk_object->buffer.rgb_stagger, vk_object->data->rgb.data(), data_size);
   }
 
   if(vk_object->data->uv.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec2) * vk_object->data->uv.size();
-    vk_transfert->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, vk_object->data->uv.data(), data_size);
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, vk_object->data->uv.data(), data_size);
   }
 
   //---------------------------

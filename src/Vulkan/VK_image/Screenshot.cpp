@@ -12,13 +12,13 @@ Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_memory = new vk::memory::Memory(struct_vulkan);
+  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
   this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_texture = new vk::main::Texture(struct_vulkan);
-  this->vk_memory = new vk::memory::Memory(struct_vulkan);
+  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
-  this->vk_transfert = new vk::memory::Transfer(struct_vulkan);
+  this->vk_mem_transfer = new vk::memory::Transfer(struct_vulkan);
 
   //---------------------------
 }
@@ -32,8 +32,8 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
   VkDeviceSize tex_size = image->width * image->height * 4;
-  vk_memory->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
-  vk_memory->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+  vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
+  vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
 
   //Image transition from undefined layout to read only layout
@@ -41,7 +41,7 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_transfert->copy_image_to_buffer(command_buffer, image, staging_buffer);
+  vk_mem_transfer->copy_image_to_buffer(command_buffer, image, staging_buffer);
 
   vk_command_buffer->end_command_buffer(command_buffer);
   vk_command_buffer->submit(command_buffer);
@@ -75,8 +75,8 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
   VkDeviceSize tex_size = image->width * image->height * 4;
-  vk_memory->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
-  vk_memory->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+  vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
+  vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
 
   //Image transition from undefined layout to read only layout
@@ -84,7 +84,7 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_transfert->copy_image_to_buffer(command_buffer, image, staging_buffer);
+  vk_mem_transfer->copy_image_to_buffer(command_buffer, image, staging_buffer);
 
   vk_command_buffer->end_command_buffer(command_buffer);
   vk_command_buffer->submit(command_buffer);

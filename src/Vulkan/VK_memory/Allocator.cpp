@@ -1,4 +1,4 @@
-#include "Memory.h"
+#include "Allocator.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,17 +6,17 @@
 namespace vk::memory{
 
 //Constructor / Destructor
-Memory::Memory(vk::structure::Vulkan* struct_vulkan){
+Allocator::Allocator(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
 
   //---------------------------
 }
-Memory::~Memory(){}
+Allocator::~Allocator(){}
 
 //Image GPU function
-void Memory::allocate_image_memory(vk::structure::Image* image){
+void Allocator::allocate_image_memory(vk::structure::Image* image){
   //---------------------------
 
   VkMemoryRequirements memRequirements;
@@ -37,7 +37,7 @@ void Memory::allocate_image_memory(vk::structure::Image* image){
 }
 
 //Buffer GPU function
-void Memory::create_empty_stagger_buffer(vk::structure::Buffer* buffer, VkDeviceSize size){
+void Allocator::allocate_empty_stagger_buffer(vk::structure::Buffer* buffer, VkDeviceSize size){
   if(size == 0) return;
   //---------------------------
 
@@ -48,7 +48,7 @@ void Memory::create_empty_stagger_buffer(vk::structure::Buffer* buffer, VkDevice
 
   //---------------------------
 }
-void Memory::create_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceSize size){
+void Allocator::allocate_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceSize size){
   if(size == 0) return;
   //---------------------------
 
@@ -61,7 +61,7 @@ void Memory::create_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceS
 }
 
 //Subfunction
-void Memory::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBuffer& buffer){
+void Allocator::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBuffer& buffer){
   //---------------------------
 
   VkBufferCreateInfo buffer_info{};
@@ -77,7 +77,7 @@ void Memory::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, VkBu
 
   //---------------------------
 }
-void Memory::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& buffer_memory){
+void Allocator::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& buffer_memory){
   //---------------------------
 
   //Get buffer memory requirement
@@ -101,7 +101,7 @@ void Memory::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buff
 
   //---------------------------
 }
-uint32_t Memory::find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags properties){
+uint32_t Allocator::find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags properties){
   //---------------------------
 
   VkPhysicalDeviceMemoryProperties memProperties;

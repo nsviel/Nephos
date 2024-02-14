@@ -10,7 +10,7 @@ Image::Image(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_memory = new vk::memory::Memory(struct_vulkan);
+  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
 
   //---------------------------
 }
@@ -21,7 +21,7 @@ void Image::create_image(vk::structure::Image* image){
   //---------------------------
 
   this->create_image_obj(image);
-  vk_memory->allocate_image_memory(image);
+  vk_mem_allocator->allocate_image_memory(image);
   this->create_image_view(image);
   this->create_image_sampler(image);
 

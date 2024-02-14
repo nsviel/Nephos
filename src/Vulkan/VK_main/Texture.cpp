@@ -12,9 +12,9 @@ Texture::Texture(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_image = new vk::image::Image(struct_vulkan);
-  this->vk_memory = new vk::memory::Memory(struct_vulkan);
+  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
   this->vk_buffer = new vk::data::Buffer(struct_vulkan);
-  this->vk_transfert = new vk::memory::Transfer(struct_vulkan);
+  this->vk_mem_transfer = new vk::memory::Transfer(struct_vulkan);
   this->vk_uid = new vk::instance::UID(struct_vulkan);
 
   //---------------------------
@@ -64,7 +64,7 @@ void Texture::update_texture(int UID){
     return;
   }
 
-  vk_transfert->copy_texture_to_gpu(texture);
+  vk_mem_transfer->copy_texture_to_gpu(texture);
 
   //---------------------------
 }
@@ -122,10 +122,10 @@ int Texture::load_texture(utl::media::Image* utl_image){
 
   //Create associated buffer
   vk::structure::Buffer* buffer = &texture->stagger;
-  vk_memory->create_empty_stagger_buffer(buffer, utl_image->size);
+  vk_mem_allocator->allocate_empty_stagger_buffer(buffer, utl_image->size);
 
   //Fill and store
-  vk_transfert->copy_texture_to_gpu(texture);
+  vk_mem_transfer->copy_texture_to_gpu(texture);
   struct_vulkan->data.list_vk_texture.push_back(texture);
 
   //---------------------------

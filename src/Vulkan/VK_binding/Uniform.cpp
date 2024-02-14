@@ -11,7 +11,7 @@ Uniform::Uniform(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_memory = new vk::memory::Memory(struct_vulkan);
+  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
 
   //---------------------------
 }
@@ -48,8 +48,8 @@ vk::structure::Uniform* Uniform::create_uniform_buffer(string name, size_t size,
     uniform->binding = binding;
     uniform->size = size;
 
-    vk_memory->create_gpu_buffer(size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
-    vk_memory->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
+    vk_mem_allocator->create_gpu_buffer(size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
+    vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
     vkMapMemory(struct_vulkan->device.device, uniform->mem, 0, size, 0, &uniform->mapped);
 
   //---------------------------

@@ -11,7 +11,7 @@ extern "C" {
 namespace vk::image{class Image;}
 namespace vk::command{class Command;}
 namespace vk::main{class Texture;}
-namespace vk::memory{class Memory;}
+namespace vk::memory{class Allocator;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
 namespace vk::command{class Command_buffer;}
@@ -37,12 +37,12 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::memory::Memory* vk_memory;
+  vk::memory::Allocator* vk_mem_allocator;
   vk::image::Image* vk_image;
   vk::command::Command* vk_command;
   vk::main::Texture* vk_texture;
   vk::command::Command_buffer* vk_command_buffer;
-  vk::memory::Transfer* vk_transfert;
+  vk::memory::Transfer* vk_mem_transfer;
 };
 
 }

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::memory{class Memory;}
+namespace vk::memory{class Allocator;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
 
@@ -33,7 +33,7 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::memory::Memory* vk_memory;
+  vk::memory::Allocator* vk_mem_allocator;
 };
 
 }

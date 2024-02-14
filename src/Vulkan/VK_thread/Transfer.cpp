@@ -12,12 +12,19 @@ Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
-  
+
   //---------------------------
 }
 Transfer::~Transfer(){}
 
 //Main functions
+void Transfer::start_thread(){
+  //---------------------------
+
+
+
+  //---------------------------
+}
 void Transfer::submit_command(vk::structure::Command* command){
   //---------------------------
 
