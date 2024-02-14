@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Engine/Capture/Velodyne/Processing/Server.h>
-#include <Engine/Capture/Velodyne/Processing/Frame.h>
-#include <Engine/Capture/Velodyne/Processing/Capture.h>
+#include <Engine/Capture/Velodyne/src/Processing/Server.h>
+#include <Engine/Capture/Velodyne/src/Processing/Frame.h>
+#include <Engine/Capture/Velodyne/src/Processing/Capture.h>

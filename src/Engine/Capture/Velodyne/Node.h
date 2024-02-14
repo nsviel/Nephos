@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Engine/Capture/Velodyne/Processing/Capture.h>
 
 //namespace velodyne{class Capture;}
 
