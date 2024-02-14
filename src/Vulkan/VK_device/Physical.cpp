@@ -161,6 +161,11 @@ bool Physical::device_suitability_onscreen(vk::structure::Physical_device& dev_p
     return false;
   }
 
+  say("---");
+  say(dev_physical.queue_family_presentation_idx);
+  say(dev_physical.queue_family_graphics_idx);
+  say(dev_physical.queue_family_transfer_idx);
+
   //Extension suitable
   this->find_physical_device_support(dev_physical);
   if(dev_physical.has_extension_support == false){
@@ -352,21 +357,43 @@ void Physical::find_queue_nb_family(vk::structure::Physical_device& dev_physical
 void Physical::find_queue_graphics_idx(vk::structure::Physical_device& dev_physical){
   //---------------------------
 
+
+  // List queue families
+  std::vector<VkQueueFamilyProperties2> vec_queueFamily(dev_physical.nb_queue_family);
+  for (auto& queueFamily : vec_queueFamily) {
+      queueFamily.sType = VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2;
+      queueFamily.pNext = nullptr;
+  }
+  vkGetPhysicalDeviceQueueFamilyProperties2(dev_physical.physical_device, &dev_physical.nb_queue_family, vec_queueFamily.data());
+
+  // Search for specific properties (e.g., graphics)
+  for (int i = 0; i < vec_queueFamily.size(); i++) {
+      const auto& queueFamily = vec_queueFamily[i].queueFamilyProperties;
+
+      // Querying for graphics family
+      if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
+          dev_physical.queue_family_graphics_idx = static_cast<uint32_t>(i);
+          return;
+      }
+  }
+
+/*
+
   //List queue families
   std::vector<VkQueueFamilyProperties> vec_queueFamily(dev_physical.nb_queue_family );
   vkGetPhysicalDeviceQueueFamilyProperties(dev_physical.physical_device, &dev_physical.nb_queue_family , vec_queueFamily.data());
 
   //Search for specific properties (e.g, graphics)
-  int i = 0;
-  for(const auto& queueFamily : vec_queueFamily){
+  for(int i=0; i<vec_queueFamily.size(); i++){
+    const auto& queueFamily = vec_queueFamily[i];
+
     //Querying for graphics family
     if(queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT){
-      dev_physical.queue_family_graphics_idx = i;
+      dev_physical.queue_family_graphics_idx = static_cast<uint32_t>(i);
       return;
     }
-    i++;
   }
-
+*/
   //---------------------------
 }
 void Physical::find_queue_transfer_idx(vk::structure::Physical_device& dev_physical){
@@ -377,14 +404,14 @@ void Physical::find_queue_transfer_idx(vk::structure::Physical_device& dev_physi
   vkGetPhysicalDeviceQueueFamilyProperties(dev_physical.physical_device, &dev_physical.nb_queue_family, vec_queueFamily.data());
 
   // Search for specific properties (e.g., transfer)
-  int i = 0;
-  for(const auto& queueFamily : vec_queueFamily){
+  for(int i=0; i<vec_queueFamily.size(); i++){
+    const auto& queueFamily = vec_queueFamily[i];
+
     // Querying for transfer family
     if(queueFamily.queueFlags & VK_QUEUE_TRANSFER_BIT){
-      dev_physical.queue_family_transfer_idx = i;
+      dev_physical.queue_family_transfer_idx = static_cast<uint32_t>(i);
       return;
     }
-    i++;
   }
 
   //---------------------------
@@ -397,16 +424,16 @@ void Physical::find_queue_presentation_idx(vk::structure::Physical_device& dev_p
   vkGetPhysicalDeviceQueueFamilyProperties(dev_physical.physical_device, &dev_physical.nb_queue_family , vec_queueFamily.data());
 
   //Search for specific properties (e.g, graphics)
-  int i = 0;
-  for(const auto& queueFamily : vec_queueFamily) {
+  for(int i=0; i<vec_queueFamily.size(); i++){
+    const auto& queueFamily = vec_queueFamily[i];
+
     //Querying for presentation family
     VkBool32 presentSupport = false;
-    vkGetPhysicalDeviceSurfaceSupportKHR(dev_physical.physical_device, i, struct_vulkan->window.surface, &presentSupport);
+    vkGetPhysicalDeviceSurfaceSupportKHR(dev_physical.physical_device, static_cast<uint32_t>(i), struct_vulkan->window.surface, &presentSupport);
     if(presentSupport){
-      dev_physical.queue_family_presentation_idx = i;
+      dev_physical.queue_family_presentation_idx = static_cast<uint32_t>(i);
       return;
     }
-    i++;
   }
 
   //---------------------------
