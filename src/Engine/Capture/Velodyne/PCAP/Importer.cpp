@@ -1,8 +1,6 @@
 #include "Importer.h"
 
-#include "Parser/Parser_VLP16.h"
-#include "Parser/Parser_HDL32.h"
-#include "Parser/Capture_frame.h"
+#include <Engine/Capture/Velodyne/Namespace.h>
 
 
 using namespace Tins;
@@ -103,18 +101,18 @@ utl::media::File* Importer::Loader(std::string path){
 }
 
 void Importer::Loader_vlp16(utl::media::File* data, std::string path){
-  Capture_frame frameManager;
-  Parser_VLP16 udpManager;
+  velodyne::Frame velo_frame;
+  velodyne::parser::VLP16 parser;
   //---------------------------
 
   int cpt = 0;
   for(int i=0; i<file_packets.size(); i++){
 
-    utl::media::File* cloud = udpManager.parse_packet(file_packets[i]);
-    bool frame_rev = frameManager.build_frame(cloud);
+    utl::media::File* cloud = parser.parse_packet(file_packets[i]);
+    bool frame_rev = velo_frame.build_frame(cloud);
 
     if(frame_rev){
-      utl::media::File* frame = frameManager.get_endedFrame();
+      utl::media::File* frame = velo_frame.get_endedFrame();
       utl::media::File* frame_data = new utl::media::File();
 
       frame_data->name = "frame_" + std::to_string(cpt); cpt++;
@@ -136,16 +134,16 @@ void Importer::Loader_vlp16(utl::media::File* data, std::string path){
   //---------------------------
 }
 void Importer::Loader_hdl32(utl::media::File* data, std::string path){
-  Capture_frame frameManager;
-  Parser_HDL32 udpManager;
+  velodyne::Frame velo_frame;
+  velodyne::parser::HDL32 parser;
   //---------------------------
 
   for(int i=0; i<file_packets.size(); i++){
-    utl::media::File* cloud = udpManager.parse_packet(file_packets[i]);
-    bool frame_rev = frameManager.build_frame(cloud);
+    utl::media::File* cloud = parser.parse_packet(file_packets[i]);
+    bool frame_rev = velo_frame.build_frame(cloud);
 
     if(frame_rev){
-      utl::media::File* frame = frameManager.get_endedFrame();
+      utl::media::File* frame = velo_frame.get_endedFrame();
       utl::media::File* frame_data = new utl::media::File();
 
       frame_data->path_data = path;

@@ -12,7 +12,6 @@ Format::Format(){
   this->ply_import = new format::ply::Importer();
   this->obj_import = new format::obj::Importer();
   this->csv_import = new format::csv::Importer();
-  this->pcap_import = new format::pcap::Importer();
   this->pts_import = new format::pts::Importer();
   this->ptx_import = new format::ptx::Importer();
   this->xyz_import = new format::xyz::Importer();
@@ -25,7 +24,6 @@ Format::~Format(){
   delete ply_import;
   delete obj_import;
   delete csv_import;
-  delete pcap_import;
   delete pts_import;
   delete ptx_import;
   delete xyz_import;
@@ -49,7 +47,7 @@ MyFile* Format::get_data_from_file(std::string path){
     data = csv_import->Loader(path);
   }
   else if(format == "pcap"){
-    data = pcap_import->Loader(path);
+    //data = pcap_import->Loader(path);
   }
   else if(format == "pts"){
     data = pts_import->Loader(path);

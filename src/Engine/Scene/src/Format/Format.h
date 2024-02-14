@@ -4,7 +4,6 @@
 
 namespace format::obj{class Importer;}
 namespace format::csv{class Importer;}
-namespace format::pcap{class Importer;}
 namespace format::ply{class Importer;}
 namespace format::pts{class Importer;}
 namespace format::ptx{class Importer;}
@@ -30,7 +29,6 @@ private:
   format::ply::Importer* ply_import;
   format::obj::Importer* obj_import;
   format::csv::Importer* csv_import;
-  format::pcap::Importer* pcap_import;
   format::pts::Importer* pts_import;
   format::ptx::Importer* ptx_import;
   format::xyz::Importer* xyz_import;
