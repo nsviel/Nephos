@@ -8,7 +8,7 @@ namespace vk::structure{class Fence;}
 namespace vk::synchro{class Fence;}
 
 
-namespace vk::thread{
+namespace vk::queue{
 
 class Transfer
 {

@@ -17,36 +17,6 @@ Command::Command(vk::structure::Vulkan* struct_vulkan){
 Command::~Command(){}
 
 //Main function
-void Command::submit_command_thread(vk::structure::Command* command){
-  //---------------------------
-/*
-  this->thread = std::thread([this, command](){
-    this->submit_command(command);
-  });
-*/
-  //---------------------------
-}
-void Command::submit_vec_command(){
-  //---------------------------
-/*
-  this->reset_for_submission();
-  for(int i=0; i<vec_command.size(); i++){
-    vk::structure::Command* command = vec_command[i];
-    this->prepare_submission(command);
-  }
-
-  this->queue_submission();
-
-  for(int i=0; i<vec_command.size(); i++){
-    vk::structure::Command* command = vec_command[i];
-    this->wait_and_reset(command);
-    delete command;
-  }
-
-  vec_command.clear();
-*/
-  //---------------------------
-}
 void Command::submit_command(vk::structure::Command* command){
   //---------------------------
 

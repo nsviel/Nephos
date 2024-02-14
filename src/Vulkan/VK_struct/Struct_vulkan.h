@@ -38,8 +38,8 @@ struct Vulkan{
   vk::structure::Pool pools;
   vk::structure::Command command;
 
-  //Thread
-  vk::thread::Transfer* transfer;
+  //Queue
+  vk::queue::Transfer* transfer;
 
   //Profiling
   prf::Tasker* tasker_cpu;

@@ -31,7 +31,7 @@ Engine::Engine(vk::structure::Vulkan* struct_vulkan){
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
   this->vk_semaphore = new vk::synchro::Semaphore(struct_vulkan);
   this->vk_command_allocator = new vk::command::Allocator(struct_vulkan);
-  struct_vulkan->transfer = new vk::thread::Transfer(struct_vulkan);
+  struct_vulkan->transfer = new vk::queue::Transfer(struct_vulkan);
 
   //---------------------------
 }

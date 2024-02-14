@@ -19,8 +19,6 @@ public:
 
 public:
   //Main function
-  void submit_vec_command();
-  void submit_command_thread(vk::structure::Command* command);
   void submit_command(vk::structure::Command* command);
 
   //Subfunction

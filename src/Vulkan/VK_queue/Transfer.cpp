@@ -4,7 +4,7 @@
 #include <thread>
 
 
-namespace vk::thread{
+namespace vk::queue{
 
 //Constructor / Destructor
 Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
@@ -84,7 +84,7 @@ void Transfer::queue_submission(){
 
   vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
   vk_fence->reset_fence(fence);
-  
+
   //---------------------------
 }
 void Transfer::post_submission(){

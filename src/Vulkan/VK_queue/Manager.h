@@ -5,18 +5,19 @@
 namespace vk::structure{class Vulkan;}
 
 
-namespace vk::thread{
+namespace vk::queue{
 
-class Thread
+class Manager
 {
 public:
   //Constructor / Destructor
-  Thread(vk::structure::Vulkan* struct_vulkan);
-  ~Thread();
+  Manager(vk::structure::Vulkan* struct_vulkan);
+  ~Manager();
 
 public:
   //Main functions
-
+  void init();
+  
 private:
   vk::structure::Vulkan* struct_vulkan;
 };

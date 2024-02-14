@@ -58,22 +58,10 @@ void Allocator::submit_commands(){
   }
   */
 
+  //Submit man thread commands
   vk::pool::Command_buffer* command_pool = &pool->tank[0];
   vk_command_buffer->submit_pool(command_pool);
   vk_command_buffer->reset_pool(command_pool);
-
-
-
-vk::command::Command* vk_command = new vk::command::Command(struct_vulkan);
-command_pool = &pool->tank[1];
-
-  for(int i=0; i<pool->size; i++){
-    vk::structure::Command_buffer* command_buffer = &command_pool->tank[i];
-    struct_vulkan->transfer->add_command(command_buffer);
-  }
-say(std::this_thread::get_id());
-  //vk_command->submit_command(&command);
-
 
   //---------------------------
 }
