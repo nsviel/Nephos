@@ -34,19 +34,17 @@ void Transfer::run_thread(){
   thread_running = true;
   while(thread_running){
     this->wait_for_command();
+    this->queue_submission();
+    this->post_submission();
+  }
 
-    int nb_command = vec_command.size();
-    for(int i=0; i<nb_command; i++){
-      vk::structure::Command* command = vec_command[i];
+  //---------------------------
+}
+void Transfer::add_command(vk::structure::Command_buffer* command){
+  //---------------------------
 
-      this->reset_for_submission();
-      this->prepare_submission(command);
-      this->queue_submission();
-      this->wait_and_reset(command);
-    }
-
-    //Remove submetetd commands
-    vec_command.erase(std::remove(vec_command.begin(), vec_command.end(), nullptr), vec_command.end());
+  if(command->is_recorded){
+    vec_command_prepa.push_back(command);
   }
 
   //---------------------------
@@ -56,31 +54,15 @@ void Transfer::run_thread(){
 void Transfer::wait_for_command(){
   //---------------------------
 
-  while(vec_command.empty()){
+  while(vec_command_prepa.empty()){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
-  //---------------------------
-}
-void Transfer::reset_for_submission(){
-  //---------------------------
+  this->vec_command_onrun = vec_command_prepa;
+  this->vec_command_prepa.clear();
 
-  this->fence = VK_NULL_HANDLE;
-  this->vec_command_buffer.clear();
-
-  //---------------------------
-}
-void Transfer::prepare_submission(vk::structure::Command* command){
-  //---------------------------
-
-  //Fence
-  this->fence = vk_fence->query_free_fence();
-
-  //Command buffer
-  for(int i=0; i<command->vec_command_buffer.size(); i++){
-    vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
-    command_buffer->fence = fence;
-    this->vec_command_buffer.push_back(command_buffer->command);
+  for(int i=0; i<vec_command_onrun.size(); i++){
+    this->vec_command_buffer.push_back(vec_command_onrun[i]->command);
   }
 
   //---------------------------
@@ -88,29 +70,29 @@ void Transfer::prepare_submission(vk::structure::Command* command){
 void Transfer::queue_submission(){
   //---------------------------
 
+  vk::structure::Fence* fence = vk_fence->query_free_fence();
+
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
   submit_info.commandBufferCount = vec_command_buffer.size();
   submit_info.pCommandBuffers = vec_command_buffer.data();
 
-  //Very slow operation, need as low command as possible
   VkResult result = vkQueueSubmit(struct_vulkan->device.queue.transfer, 1, &submit_info, fence->fence);
-
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }
 
+  vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
+  vk_fence->reset_fence(fence);
+  
   //---------------------------
 }
-void Transfer::wait_and_reset(vk::structure::Command* command){
+void Transfer::post_submission(){
   //---------------------------
 
-  //vkQueueWaitIdle(struct_vulkan->device.queue.graphics);
-  vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
-
   //Reset command buffer
-  for(int i=0; i<command->vec_command_buffer.size(); i++){
-    vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
+  for(int i=0; i<vec_command_onrun.size(); i++){
+    vk::structure::Command_buffer* command_buffer = vec_command_onrun[i];
 
     if(command_buffer->is_resetable){
       vkResetCommandBuffer(command_buffer->command, 0);
@@ -120,8 +102,8 @@ void Transfer::wait_and_reset(vk::structure::Command* command){
     }
   }
 
-  vk_fence->reset_fence(fence);
-  command = nullptr;
+  this->vec_command_onrun.clear();
+  this->vec_command_buffer.clear();
 
   //---------------------------
 }

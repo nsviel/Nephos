@@ -125,6 +125,10 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Bu
 
   vk_command_buffer->end_command_buffer(command_buffer);
 
+  //vk::structure::Command* command = new vk::structure::Command();
+  //command->vec_command_buffer.push_back(command_buffer);
+  //struct_vulkan->transfer->add_command(command);
+
   //---------------------------
 }
 

@@ -178,7 +178,7 @@ void Command_buffer::start_command_buffer_secondary(vk::structure::Renderpass* r
   inheritanceInfo.framebuffer = frame->fbo; // The framebuffer to inherit from
   inheritanceInfo.occlusionQueryEnable = VK_FALSE; // Whether to enable occlusion query
   inheritanceInfo.queryFlags = 0; // Query flags (if any)
-  inheritanceInfo.pipelineStatistics = 0; // Pipeline statistics (if any)
+  inheritanceInfo.pipelinesubmit_commandStatistics = 0; // Pipeline statistics (if any)
 
   // Create a VkCommandBufferBeginInfo structure and set the inheritance info
   VkCommandBufferBeginInfo begin_info = {};
