@@ -23,7 +23,7 @@ Cloud::~Cloud(){}
 //Main function
 void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* sensor){
   if(!sensor->depth.data_to_color.k4a_image.is_valid()) return;
-  if(sensor->depth.data_to_color.k4a_image.get_width_pixels() != 1280) return;
+  if(sensor->depth.data_to_color.k4a_image.get_width_pixels() < 1000) return;
   if(!sensor->ir.data.k4a_image.is_valid()) return;
   //---------------------------
 

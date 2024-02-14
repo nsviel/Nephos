@@ -52,7 +52,7 @@ void Sensor::init(){
   object = utl::entity::Object(engine);
   object.name = param.name;
   object.data->draw_type_name = "point";
-  object.data->nb_data_max = 1000000;
+  object.data->nb_data_max = 10000000;
   sce_scene->init_entity(&object);
 
   //---------------------------
