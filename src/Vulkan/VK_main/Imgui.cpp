@@ -30,16 +30,13 @@ void Imgui::init(){
 
   //---------------------------
 }
-void Imgui::draw(VkCommandBuffer& command_buffer){
+void Imgui::draw(vk::structure::Command_buffer* command_buffer){
   //---------------------------
-
 
   ImDrawData* draw_data = ImGui::GetDrawData();
   if(draw_data == nullptr) return;
 
-  ImGui_ImplVulkan_RenderDrawData(draw_data, command_buffer);
-
-
+  ImGui_ImplVulkan_RenderDrawData(draw_data, command_buffer->command);
 
   //---------------------------
 }

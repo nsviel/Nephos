@@ -24,7 +24,7 @@ public:
 public:
   //Main functions
   void init();
-  void draw(VkCommandBuffer& command_buffer);
+  void draw(vk::structure::Command_buffer* command_buffer);
   void clean();
   void render();
   void new_frame();

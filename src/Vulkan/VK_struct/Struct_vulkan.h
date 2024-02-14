@@ -37,10 +37,7 @@ struct Vulkan{
   vk::structure::Parameter param;
   vk::structure::Pool pools;
   vk::structure::Command command;
-
-  //Queue
-  vk::queue::Transfer* transfer;
-  vk::queue::Graphics* graphics;
+  vk::structure::Queue_class queue;
 
   //Profiling
   prf::Tasker* tasker_cpu;

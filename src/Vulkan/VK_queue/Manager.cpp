@@ -19,7 +19,7 @@ Manager::~Manager(){}
 void Manager::init(){
   //---------------------------
 
-  struct_vulkan->transfer = new vk::queue::Transfer(struct_vulkan);
+  struct_vulkan->queue.transfer = new vk::queue::Transfer(struct_vulkan);
 
   //---------------------------
 }

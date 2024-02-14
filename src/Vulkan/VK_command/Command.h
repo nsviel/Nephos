@@ -27,8 +27,6 @@ public:
   void queue_submission();
   void wait_and_reset(vk::structure::Command* command);
 
-  inline void add_command_to_submit(vk::structure::Command* command){this->vec_command.push_back(command);}
-
 private:
   vk::structure::Vulkan* struct_vulkan;
   vector<vk::structure::Command*> vec_command;
