@@ -1,21 +1,21 @@
 #include "Frame.h"
 
 
-namespace eng::vlp16{
+namespace velodyne{
 
 //Constructor / Destructor
 Frame::Frame(){
   //---------------------------
 
-  this->frame_onrun = new Data_file();
-  this->frame_ended = new Data_file();
+  this->frame_onrun = new utl::media::File();
+  this->frame_ended = new utl::media::File();
 
   //---------------------------
 }
 Frame::~Frame(){}
 
 //Main function
-bool Frame::build_frame(Data_file* data_udp){
+bool Frame::build_frame(utl::media::File* data_udp){
   bool frame_ended = false;
   //---------------------------
 
@@ -68,14 +68,14 @@ void Frame::reset_frame(){
   delete frame_onrun;
   delete frame_ended;
 
-  this->frame_onrun = new Data_file();
-  this->frame_ended = new Data_file();
+  this->frame_onrun = new utl::media::File();
+  this->frame_ended = new utl::media::File();
 
   //---------------------------
 }
 
 //Subfunctions
-void Frame::add_cloudsToFrame(Data_file* data_udp){
+void Frame::add_cloudsToFrame(utl::media::File* data_udp){
   //---------------------------
 
   for(int i=0; i<data_udp->xyz.size(); i++){
@@ -88,7 +88,7 @@ void Frame::add_cloudsToFrame(Data_file* data_udp){
 
   //---------------------------
 }
-void Frame::end_cloudsToFrame(Data_file* data_udp, int index){
+void Frame::end_cloudsToFrame(utl::media::File* data_udp, int index){
   //---------------------------
 
   for(int i=0; i<index; i++){
@@ -101,7 +101,7 @@ void Frame::end_cloudsToFrame(Data_file* data_udp, int index){
 
   *frame_ended = *frame_onrun;
   delete frame_onrun;
-  frame_onrun = new Data_file();
+  frame_onrun = new utl::media::File();
 
   for(int i=index; i<data_udp->xyz.size(); i++){
     frame_onrun->xyz.push_back(data_udp->xyz[i]);

@@ -2,13 +2,12 @@
 
 // Server side implementation of UDP client-server model
 
-#include "../../../common.h"
+#include <Utility/Specific/common.h>
 
-class Socket_server;
-class Socket_client;
+namespace eng::socket{class Server;}
 
 
-namespace eng::vlp16{
+namespace velodyne{
 
 class Server
 {
@@ -24,8 +23,7 @@ public:
   vector<int> capture_packet();
 
 private:
-  Socket_server* sock_server;
-  Socket_client* sock_client;
+  eng::socket::Server* sock_server;
 };
 
 }

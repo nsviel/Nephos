@@ -14,14 +14,13 @@
 #include <bitset>
 
 
-namespace eng::vlp16{
+namespace velodyne{
 
 //Constructor / Destructor
 Server::Server(){
   //---------------------------
 
-  this->sock_server = new Socket_server();
-  this->sock_client = new Socket_client();
+  this->sock_server = new eng::socket::Server();
 
   //---------------------------
 }
@@ -29,7 +28,6 @@ Server::~Server(){
   //---------------------------
 
   delete sock_server;
-  delete sock_client;
 
   //---------------------------
 }
