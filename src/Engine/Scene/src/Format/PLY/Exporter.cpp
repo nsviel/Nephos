@@ -1,14 +1,14 @@
-#include "PLY_exporter.h"
+#include "Exporter.h"
 
 
 namespace format::ply{
 
 //Constructor / Destructor
-PLY_exporter::PLY_exporter(){}
-PLY_exporter::~PLY_exporter(){}
+Exporter::Exporter(){}
+Exporter::~Exporter(){}
 
 //Main exporter functions
-bool PLY_exporter::export_cloud(utl::entity::Object* object, std::string path_dir, std::string ply_format){
+bool Exporter::export_cloud(utl::entity::Object* object, std::string path_dir, std::string ply_format){
   std::string filePath = path_dir + object->name + ".tmp";
   std::string filePath_end = path_dir + object->name + ".ply";
   //---------------------------

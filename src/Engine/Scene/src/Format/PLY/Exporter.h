@@ -9,12 +9,12 @@
 
 namespace format::ply{
 
-class PLY_exporter
+class Exporter
 {
 public:
   //Constructor / Destructor
-  PLY_exporter();
-  ~PLY_exporter();
+  Exporter();
+  ~Exporter();
 
 public:
   //Main functions
