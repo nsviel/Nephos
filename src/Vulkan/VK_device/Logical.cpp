@@ -22,7 +22,7 @@ void Logical::init(){
 
   dev_physical->init();
   this->create_logical_device();
-  this->find_device_queue_handles();
+  this->find_device_queue();
 
   //---------------------------
 }
@@ -81,17 +81,25 @@ void Logical::create_logical_device(){
 
   //---------------------------
 }
-void Logical::find_device_queue_handles(){
+void Logical::find_device_queue(){
   //---------------------------
 
+  //Graphics
   int& queue_graphics = struct_vulkan->device.physical_device.queue_graphics_idx;
   if(queue_graphics != -1){
-    vkGetDeviceQueue(struct_vulkan->device.device, queue_graphics, 0, &struct_vulkan->device.queue_graphics);
+    vkGetDeviceQueue(struct_vulkan->device.device, queue_graphics, 0, &struct_vulkan->device.queue.graphics);
   }
 
+  //Presentation
   int& queue_presentation = struct_vulkan->device.physical_device.queue_presentation_idx;
   if(queue_presentation != -1){
-    vkGetDeviceQueue(struct_vulkan->device.device, queue_presentation, 0, &struct_vulkan->device.queue_presentation);
+    vkGetDeviceQueue(struct_vulkan->device.device, queue_presentation, 0, &struct_vulkan->device.queue.presentation);
+  }
+
+  //Transfer
+  int& queue_transfer = struct_vulkan->device.physical_device.queue_transfer_idx;
+  if(queue_transfer != -1){
+    vkGetDeviceQueue(struct_vulkan->device.device, queue_transfer, 0, &struct_vulkan->device.queue.transfer);
   }
 
   //---------------------------

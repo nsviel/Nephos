@@ -7,6 +7,7 @@
 #include <Vulkan/VK_struct/Struct_command_buffer.h>
 #include <Vulkan/VK_struct/Struct_command.h>
 #include <Vulkan/VK_struct/Struct_image.h>
+#include <Vulkan/VK_struct/Struct_queue.h>
 #include <Vulkan/VK_struct/Struct_texture.h>
 #include <Vulkan/VK_struct/Struct_object.h>
 #include <Vulkan/VK_struct/Struct_semaphore.h>

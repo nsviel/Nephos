@@ -103,7 +103,7 @@ void Command::queue_submission(){
   submit_info.pCommandBuffers = vec_command_buffer.data();
 
   //Very slow operation, need as low command as possible
-  VkResult result = vkQueueSubmit(struct_vulkan->device.queue_graphics, 1, &submit_info, fence->fence);
+  VkResult result = vkQueueSubmit(struct_vulkan->device.queue.graphics, 1, &submit_info, fence->fence);
 
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
@@ -114,7 +114,7 @@ void Command::queue_submission(){
 void Command::wait_and_reset(vk::structure::Command* command){
   //---------------------------
 
-  //vkQueueWaitIdle(struct_vulkan->device.queue_graphics);
+  //vkQueueWaitIdle(struct_vulkan->device.queue.graphics);
   vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
 
   //Reset command buffer

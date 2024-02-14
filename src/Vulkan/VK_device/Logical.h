@@ -22,7 +22,7 @@ public:
 
   //Subfunction
   void create_logical_device();
-  void find_device_queue_handles();
+  void find_device_queue();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

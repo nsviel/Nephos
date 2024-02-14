@@ -6,12 +6,12 @@
 
 namespace vk::structure{
 
-struct Device{
+struct Queue{
   //---------------------------
 
-  VkDevice device;
-  vk::structure::Queue queue;
-  vk::structure::Physical_device physical_device;
+  VkQueue graphics;
+  VkQueue presentation;
+  VkQueue transfer;
 
   //---------------------------
 };

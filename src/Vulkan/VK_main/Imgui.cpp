@@ -118,7 +118,7 @@ void Imgui::create_context(){
   init_info.Instance = struct_vulkan->instance.instance;
   init_info.PhysicalDevice = struct_vulkan->device.physical_device.physical_device;
   init_info.Device = struct_vulkan->device.device;
-  init_info.Queue = struct_vulkan->device.queue_graphics;
+  init_info.Queue = struct_vulkan->device.queue.graphics;
   init_info.DescriptorPool = struct_vulkan->pools.descriptor.memory;
   init_info.PipelineCache = VK_NULL_HANDLE;
   init_info.MinImageCount = 2;
