@@ -147,12 +147,17 @@ bool Physical::device_suitability_onscreen(vk::structure::Physical_device& dev_p
   //Queue suitable
   this->find_queue_nb_family(dev_physical);
   this->find_queue_graphics_idx(dev_physical);
-  this->find_queue_transfer_idx(dev_physical);
-  this->find_queue_presentation_idx(dev_physical);
-  if(dev_physical.queue_graphics_idx == -1){
+  if(dev_physical.queue_family_graphics_idx == -1){
     return false;
   }
-  if(dev_physical.queue_presentation_idx == -1 && struct_vulkan->param.headless == false){
+
+  this->find_queue_transfer_idx(dev_physical);
+  if(dev_physical.queue_family_transfer_idx == -1){
+    return false;
+  }
+
+  this->find_queue_presentation_idx(dev_physical);
+  if(dev_physical.queue_family_presentation_idx == -1){
     return false;
   }
 
@@ -190,7 +195,7 @@ bool Physical::device_suitability_offscreen(vk::structure::Physical_device& dev_
   //Queue suitable
   this->find_queue_nb_family(dev_physical);
   this->find_queue_graphics_idx(dev_physical);
-  if(dev_physical.queue_graphics_idx == -1){
+  if(dev_physical.queue_family_graphics_idx == -1){
     return false;
   }
 
@@ -356,7 +361,7 @@ void Physical::find_queue_graphics_idx(vk::structure::Physical_device& dev_physi
   for(const auto& queueFamily : vec_queueFamily){
     //Querying for graphics family
     if(queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT){
-      dev_physical.queue_graphics_idx = i;
+      dev_physical.queue_family_graphics_idx = i;
       return;
     }
     i++;
@@ -376,7 +381,7 @@ void Physical::find_queue_transfer_idx(vk::structure::Physical_device& dev_physi
   for(const auto& queueFamily : vec_queueFamily){
     // Querying for transfer family
     if(queueFamily.queueFlags & VK_QUEUE_TRANSFER_BIT){
-      dev_physical.queue_transfer_idx = i;
+      dev_physical.queue_family_transfer_idx = i;
       return;
     }
     i++;
@@ -398,7 +403,7 @@ void Physical::find_queue_presentation_idx(vk::structure::Physical_device& dev_p
     VkBool32 presentSupport = false;
     vkGetPhysicalDeviceSurfaceSupportKHR(dev_physical.physical_device, i, struct_vulkan->window.surface, &presentSupport);
     if(presentSupport){
-      dev_physical.queue_presentation_idx = i;
+      dev_physical.queue_family_presentation_idx = i;
       return;
     }
     i++;

@@ -86,12 +86,12 @@ void Swapchain::create_swapchain_obj(){
   //---------------------------
 
   uint32_t queueFamilyIndices[] = {
-    (unsigned int) struct_vulkan->device.physical_device.queue_graphics_idx,
-    (unsigned int) struct_vulkan->device.physical_device.queue_presentation_idx
+    (unsigned int) struct_vulkan->device.physical_device.queue_family_graphics_idx,
+    (unsigned int) struct_vulkan->device.physical_device.queue_family_presentation_idx
   };
 
   VkSwapchainCreateInfoKHR create_info{};
-  if(struct_vulkan->device.physical_device.queue_graphics_idx != struct_vulkan->device.physical_device.queue_presentation_idx){
+  if(struct_vulkan->device.physical_device.queue_family_graphics_idx != struct_vulkan->device.physical_device.queue_family_presentation_idx){
     create_info.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
     create_info.queueFamilyIndexCount = 2;
     create_info.pQueueFamilyIndices = queueFamilyIndices;

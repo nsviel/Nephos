@@ -47,9 +47,9 @@ void Info::fill_vulkan_device(prf::vulkan::Manager* prf_vulkan){
     device_info.max_image_dim = physical_device.max_image_dim;
     device_info.vendorID = physical_device.vendorID;
 
-    device_info.queue_graphics_idx = physical_device.queue_graphics_idx;
-    device_info.queue_transfer_idx = physical_device.queue_transfer_idx;
-    device_info.queue_presentation_idx = physical_device.queue_presentation_idx;
+    device_info.queue_family_graphics_idx = physical_device.queue_family_graphics_idx;
+    device_info.queue_family_transfer_idx = physical_device.queue_family_transfer_idx;
+    device_info.queue_family_presentation_idx = physical_device.queue_family_presentation_idx;
 
     device_info.nb_queue_family = physical_device.nb_queue_family;
     device_info.nb_queue_graphics = physical_device.nb_queue_graphics;

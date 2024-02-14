@@ -15,9 +15,9 @@ struct Device{
   int vendorID;
 
   //GPU queues
-  int queue_graphics_idx = -1;
-  int queue_transfer_idx = -1;
-  int queue_presentation_idx = -1;
+  int queue_family_graphics_idx = -1;
+  int queue_family_transfer_idx = -1;
+  int queue_family_presentation_idx = -1;
   uint32_t nb_queue_family = 0;
   uint32_t nb_queue_graphics = 0;
   uint32_t nb_queue_compute = 0;

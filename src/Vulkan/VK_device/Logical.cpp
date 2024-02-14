@@ -40,8 +40,8 @@ void Logical::create_logical_device(){
 
   //Get GPU queue families
   std::set<int> set_queue = {
-    struct_vulkan->device.physical_device.queue_graphics_idx,
-    struct_vulkan->device.physical_device.queue_presentation_idx
+    struct_vulkan->device.physical_device.queue_family_graphics_idx,
+    struct_vulkan->device.physical_device.queue_family_presentation_idx
   };
 
   //Create queue on device
@@ -85,19 +85,19 @@ void Logical::find_device_queue(){
   //---------------------------
 
   //Graphics
-  int& queue_graphics = struct_vulkan->device.physical_device.queue_graphics_idx;
+  int& queue_graphics = struct_vulkan->device.physical_device.queue_family_graphics_idx;
   if(queue_graphics != -1){
     vkGetDeviceQueue(struct_vulkan->device.device, queue_graphics, 0, &struct_vulkan->device.queue.graphics);
   }
 
   //Presentation
-  int& queue_presentation = struct_vulkan->device.physical_device.queue_presentation_idx;
+  int& queue_presentation = struct_vulkan->device.physical_device.queue_family_presentation_idx;
   if(queue_presentation != -1){
     vkGetDeviceQueue(struct_vulkan->device.device, queue_presentation, 0, &struct_vulkan->device.queue.presentation);
   }
 
   //Transfer
-  int& queue_transfer = struct_vulkan->device.physical_device.queue_transfer_idx;
+  int& queue_transfer = struct_vulkan->device.physical_device.queue_family_transfer_idx;
   if(queue_transfer != -1){
     vkGetDeviceQueue(struct_vulkan->device.device, queue_transfer, 0, &struct_vulkan->device.queue.transfer);
   }

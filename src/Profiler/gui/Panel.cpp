@@ -289,15 +289,15 @@ void Panel::draw_profiler_vulkan(ImVec2 graph_dim){
           //Queue stuff
           ImGui::TableNextRow(); ImGui::TableNextColumn();
           ImGui::Text("Queue graphics ID"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.queue_graphics_idx);
+          ImGui::TextColored(color, "%d", device.queue_family_graphics_idx);
 
           ImGui::TableNextRow(); ImGui::TableNextColumn();
           ImGui::Text("Queue transfer ID"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.queue_transfer_idx);
+          ImGui::TextColored(color, "%d", device.queue_family_transfer_idx);
 
           ImGui::TableNextRow(); ImGui::TableNextColumn();
           ImGui::Text("Queue presentation ID"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.queue_presentation_idx);
+          ImGui::TextColored(color, "%d", device.queue_family_presentation_idx);
 
           ImGui::TableNextRow(); ImGui::TableNextColumn();
           ImGui::Text("No family queues"); ImGui::TableNextColumn();
