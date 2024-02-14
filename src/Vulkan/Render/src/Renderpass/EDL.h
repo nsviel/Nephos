@@ -8,7 +8,7 @@ namespace vk::renderpass{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
-namespace vk::draw{class Drawer;}
+namespace vk::draw{class Graphical;}
 namespace vk::render{class Node;}
 namespace vk::render{class EDL;}
 namespace vk::structure{class Subpass;}
@@ -41,7 +41,7 @@ private:
   vk::draw::Viewport* vk_viewport;
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
-  vk::draw::Drawer* vk_drawing;
+  vk::draw::Graphical* vk_drawing;
 };
 
 }

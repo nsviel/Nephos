@@ -8,7 +8,7 @@ namespace vk::renderpass{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
-namespace vk::draw{class Drawer;}
+namespace vk::draw{class Graphical;}
 namespace eng::render{class Node;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Subpass;}
@@ -40,7 +40,7 @@ private:
   vk::structure::Vulkan* struct_vulkan;
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
-  vk::draw::Drawer* vk_drawing;
+  vk::draw::Graphical* vk_drawing;
   vk::main::Graphical* vk_graphical;
   vk::renderpass::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;

@@ -30,12 +30,12 @@ namespace vk::queue{class Manager;}
 
 namespace vk::main{
 
-class Graphical
+class Headless
 {
 public:
   //Constructor / Destructor
-  Graphical(vk::structure::Vulkan* struct_vulkan);
-  ~Graphical();
+  Headless(vk::structure::Vulkan* struct_vulkan);
+  ~Headless();
 
 public:
   //Main functions

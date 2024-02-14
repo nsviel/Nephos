@@ -1,4 +1,4 @@
-#include "Graphical.h"
+#include "Headless.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Graphical::Graphical(vk::structure::Vulkan* struct_vulkan){
+Headless::Headless(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -35,16 +35,15 @@ Graphical::Graphical(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-Graphical::~Graphical(){}
+Headless::~Headless(){}
 
 //Main function
-void Graphical::init(){
+void Headless::init(){
   //---------------------------
 
   //Instance
   vk_extension->init();
   vk_instance->init();
-  vk_surface->init();
   vk_device->init();
   vk_command_allocator->init();
   vk_queue->init();
@@ -53,16 +52,14 @@ void Graphical::init(){
   vk_canvas->init();
 
   //Render
-  vk_swapchain->create_swapchain();
   vk_viewport->init();
   vk_renderpass->init();
   vk_imgui->init();
   vk_semaphore->init_pool();
-  vk_frame->create_frame();
 
   //---------------------------
 }
-void Graphical::loop(){
+void Headless::loop(){
   //---------------------------
 
   vk_drawing->draw_frame();
@@ -71,7 +68,7 @@ void Graphical::loop(){
 
   //---------------------------
 }
-void Graphical::clean(){
+void Headless::clean(){
   //---------------------------
 
   vk_texture->clean();
@@ -91,7 +88,7 @@ void Graphical::clean(){
 }
 
 //Specific function
-void Graphical::device_wait_idle(){
+void Headless::device_wait_idle(){
   //---------------------------
 
   VkResult result = vkDeviceWaitIdle(struct_vulkan->device.device);
@@ -101,7 +98,7 @@ void Graphical::device_wait_idle(){
 
   //---------------------------
 }
-void Graphical::reload_shader(string shader, string subshader){
+void Headless::reload_shader(string shader, string subshader){
   //---------------------------
 
   vk_reload->hot_shader_reload(shader, subshader);
@@ -110,7 +107,7 @@ void Graphical::reload_shader(string shader, string subshader){
 }
 
 //Data function
-void Graphical::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose){
+void Headless::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose){
   if(data == nullptr) return;
   //---------------------------
 
@@ -135,7 +132,7 @@ void Graphical::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* po
 
   //---------------------------
 }
-void Graphical::remove_data_in_engine(utl::type::Data* data){
+void Headless::remove_data_in_engine(utl::type::Data* data){
   //---------------------------
 
   bool is_in_list = false;
@@ -151,38 +148,38 @@ void Graphical::remove_data_in_engine(utl::type::Data* data){
 }
 
 //Renderpass function
-void Graphical::add_renderpass_description(vk::structure::Renderpass* renderpass){
+void Headless::add_renderpass_description(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   struct_vulkan->render.vec_renderpass.push_back(renderpass);
 
   //---------------------------
 }
-vk::structure::Renderpass* Graphical::get_renderpass(int i){
+vk::structure::Renderpass* Headless::get_renderpass(int i){
   //---------------------------
 
   return struct_vulkan->render.vec_renderpass[i];
 
   //---------------------------
 }
-vk::structure::Renderpass* Graphical::get_renderpass_presentation(int i){
+vk::structure::Renderpass* Headless::get_renderpass_presentation(int i){
   //---------------------------
 
   return struct_vulkan->render.get_renderpass_byName("gui");
 
   //---------------------------
 }
-vk::structure::Object* Graphical::get_canvas(){
+vk::structure::Object* Headless::get_canvas(){
   //---------------------------
 
   return &struct_vulkan->data.canvas;
 
   //---------------------------
 }
-std::list<vk::structure::Object*> Graphical::get_list_data(){
+std::list<vk::structure::Object*> Headless::get_list_data(){
   return struct_vulkan->data.list_vk_object;
 }
-void Graphical::set_window(GLFWwindow* window){
+void Headless::set_window(GLFWwindow* window){
   struct_vulkan->window.glfw_window = window;
 }
 

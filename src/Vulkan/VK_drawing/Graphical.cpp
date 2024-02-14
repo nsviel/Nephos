@@ -1,4 +1,4 @@
-#include "Drawer.h"
+#include "Graphical.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-Drawer::Drawer(vk::structure::Vulkan* struct_vulkan){
+Graphical::Graphical(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -18,10 +18,10 @@ Drawer::Drawer(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-Drawer::~Drawer(){}
+Graphical::~Graphical(){}
 
 //Main function
-void Drawer::draw_frame(){
+void Graphical::draw_frame(){
   //---------------------------
 
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
@@ -59,7 +59,7 @@ void Drawer::draw_frame(){
 }
 
 //Draw command
-void Drawer::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object* vk_object){
+void Graphical::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object* vk_object){
   //---------------------------
 
   VkDeviceSize offsets[] = {0};
@@ -76,7 +76,7 @@ void Drawer::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Objec
 
   //---------------------------
 }
-void Drawer::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* vk_object){
+void Graphical::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* vk_object){
   //---------------------------
 
   vkCmdSetLineWidth(command_buffer, vk_object->data->draw_line_width);

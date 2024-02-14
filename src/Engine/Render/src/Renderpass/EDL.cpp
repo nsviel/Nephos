@@ -20,7 +20,7 @@ EDL::EDL(eng::render::Node* node_render){
   this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
   this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
-  this->vk_drawing = new vk::draw::Drawer(struct_vulkan);
+  this->vk_drawing = new vk::draw::Graphical(struct_vulkan);
   this->vk_uniform = new vk::binding::Uniform(struct_vulkan);
 
   //---------------------------

@@ -13,12 +13,12 @@ namespace vk::command{class Command;}
 
 namespace vk::draw{
 
-class Drawer
+class Graphical
 {
 public:
   //Constructor / Destructor
-  Drawer(vk::structure::Vulkan* struct_vulkan);
-  ~Drawer();
+  Graphical(vk::structure::Vulkan* struct_vulkan);
+  ~Graphical();
 
 public:
   //Main functions
