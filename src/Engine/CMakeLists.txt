@@ -6,10 +6,9 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 add_subdirectory(Camera)
 add_subdirectory(Operation)
 add_subdirectory(Render)
-add_subdirectory(Capture/K4N)
+add_subdirectory(Capture)
 
 file(GLOB_RECURSE ALL_SOURCES
-  Capture/Node.cpp
   Scene/*.cpp
   Shader/*.cpp
   Profiler/*cpp

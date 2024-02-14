@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_K4N)
+set(LIBRARY_NAME LIBRARY_VELODYNE)
 
 #-----------------
 # Source files
@@ -21,8 +21,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_VULKAN
   LIBRARY_ENGINE
-
-  -lturbojpeg   # Convertion JPEG -> BRGA
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

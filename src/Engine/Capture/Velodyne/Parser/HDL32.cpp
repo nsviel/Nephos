@@ -244,7 +244,7 @@ void HDL32::final_check(utl::media::File* cloud){
   vector<float> I_b;
   vector<float> A_b;
   vector<float> t_b;
-  for (auto i: fct_sortByIndexes(packet_A)){
+  for (auto i: math::sort_by_indexes(packet_A)){
     xyz_b.push_back(packet_xyz[i]);
     t_b.push_back(packet_t[i]);
     R_b.push_back(packet_R[i]);
@@ -257,7 +257,7 @@ void HDL32::final_check(utl::media::File* cloud){
   cloud->ts = t_b;
   cloud->R = R_b;
   cloud->A = A_b;
-  cloud->I = I_b;
+  cloud->Is = I_b;
 
   //Check data size
   if(packet_xyz.size() != packet_R.size()){

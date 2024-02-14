@@ -81,7 +81,7 @@ void Frame::add_data_to_frame(utl::media::File* data){
   for(int i=0; i<data->xyz.size(); i++){
     frame_onrun->xyz.push_back(data->xyz[i]);
     frame_onrun->R.push_back(data->R[i]);
-    frame_onrun->I.push_back(data->I[i]/255);
+    frame_onrun->Is.push_back(data->Is[i]/255);
     frame_onrun->A.push_back(data->A[i]);
     frame_onrun->ts.push_back(data->ts[i]);
   }
@@ -94,7 +94,7 @@ void Frame::end_data_to_frame(utl::media::File* data, int index){
   for(int i=0; i<index; i++){
     frame_onrun->xyz.push_back(data->xyz[i]);
     frame_onrun->R.push_back(data->R[i]);
-    frame_onrun->I.push_back(data->I[i]/255);
+    frame_onrun->Is.push_back(data->Is[i]/255);
     frame_onrun->A.push_back(data->A[i]);
     frame_onrun->ts.push_back(data->ts[i]);
   }
@@ -106,7 +106,7 @@ void Frame::end_data_to_frame(utl::media::File* data, int index){
   for(int i=index; i<data->xyz.size(); i++){
     frame_onrun->xyz.push_back(data->xyz[i]);
     frame_onrun->R.push_back(data->R[i]);
-    frame_onrun->I.push_back(data->I[i]/255);
+    frame_onrun->Is.push_back(data->Is[i]/255);
     frame_onrun->A.push_back(data->A[i]);
     frame_onrun->ts.push_back(data->ts[i]);
   }

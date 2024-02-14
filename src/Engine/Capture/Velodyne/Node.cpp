@@ -9,6 +9,7 @@ namespace velodyne{
 Node::Node(){
   //---------------------------
 
+  //this->velo_capture = new velodyne::Capture();
 
   //---------------------------
 }

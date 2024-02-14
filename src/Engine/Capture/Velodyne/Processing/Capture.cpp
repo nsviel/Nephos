@@ -23,7 +23,6 @@ Capture::Capture(){
   this->parser_vlp16 = new velodyne::parser::VLP16();
 
   this->lidar_ip = "192.168.1.201";
-  this->is_first_run = true;
   this->thread_running = false;
 
   //---------------------------
@@ -48,6 +47,8 @@ void Capture::run_thread(int port){
 
   this->thread_running = true;
   while(thread_running){
+    vector<int> packet_dec = velo_server->capture();
+
     //Parse decimal packet into point cloud
     if(packet_dec.size() != 0){
       utl::media::File* data_cap = parser_vlp16->parse_packet(packet_dec);
@@ -62,10 +63,9 @@ void Capture::run_thread(int port){
 
         //Do not record the first frame
         if(is_first_run == false){
-          this->is_newSubset = true;
+          //this->is_newSubset = true;
         }else{
-          this->is_first_run = false;
-          this->is_rotating = true;
+          is_first_run = false;
         }
       }
     }

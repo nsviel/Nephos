@@ -40,7 +40,7 @@ void Server::binding(int port, int packet_size){
   this->disconnect();
 
   //Made new connection
-  sock_server->socket_binding(port, packet_size);
+  sock_server->binding(port, packet_size);
 
   //---------------------------
 }
@@ -48,8 +48,8 @@ void Server::disconnect(){
   //---------------------------
 
   if(sock_server->get_is_binded()){
-    sock_server->socket_disconnect();
-    sock_server->socket_disconnect();
+    sock_server->disconnect();
+    sock_server->disconnect();
   }
 
   //---------------------------
@@ -59,7 +59,7 @@ vector<int> Server::capture(){
   //---------------------------
 
   if(sock_server->get_is_binded()){
-    sock_server->socket_recv_data();
+    sock_server->recv_data();
     data_dec = sock_server->get_data_dec();
   }
 
