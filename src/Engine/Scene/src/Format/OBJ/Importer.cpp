@@ -1,12 +1,14 @@
-#include "OBJ_importer.h"
+#include "Importer.h"
 
+
+namespace format::obj{
 
 //Constructor / Destructor
-OBJ_importer::OBJ_importer(){}
-OBJ_importer::~OBJ_importer(){}
+Importer::Importer(){}
+Importer::~Importer(){}
 
 //Main function
-utl::media::File* OBJ_importer::Loader(std::string path){
+utl::media::File* Importer::Loader(std::string path){
   //---------------------------
 
   utl::media::File* data = new utl::media::File();
@@ -33,7 +35,7 @@ utl::media::File* OBJ_importer::Loader(std::string path){
 }
 
 //Subfunction
-void OBJ_importer::init_params(){
+void Importer::init_params(){
   //---------------------------
 
   this->file_mtl = "";
@@ -41,7 +43,7 @@ void OBJ_importer::init_params(){
 
   //---------------------------
 }
-std::vector<Vertex> OBJ_importer::get_data_from_file(std::istream& file){
+std::vector<Vertex> Importer::get_data_from_file(std::istream& file){
   //---------------------------
 
   //Initiate std::vectors
@@ -133,7 +135,7 @@ std::vector<Vertex> OBJ_importer::get_data_from_file(std::istream& file){
   //---------------------------
   return vertex_vec;
 }
-void OBJ_importer::parse_mtl(std::string path_obj){
+void Importer::parse_mtl(std::string path_obj){
   if(file_mtl == ""){return;}
   //---------------------------
 
@@ -163,7 +165,7 @@ void OBJ_importer::parse_mtl(std::string path_obj){
 
   //---------------------------
 }
-void OBJ_importer::fill_data_file(utl::media::File* data, std::vector<Vertex>& vertex_vec){
+void Importer::fill_data_file(utl::media::File* data, std::vector<Vertex>& vertex_vec){
   //---------------------------
 
   if(is_face){
@@ -183,4 +185,6 @@ void OBJ_importer::fill_data_file(utl::media::File* data, std::vector<Vertex>& v
 
 
   //---------------------------
+}
+
 }

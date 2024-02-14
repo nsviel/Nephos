@@ -1,6 +1,7 @@
 #include "Format.h"
+
+#include <Engine/Scene/src/Format/Namespace.h>
 #include "PLY/PLY_importer.h"
-#include "OBJ/OBJ_importer.h"
 #include "CSV/CSV_importer.h"
 #include "PCAP/PCAP_importer.h"
 #include "PTS/PTS_importer.h"
@@ -15,7 +16,7 @@ Format::Format(){
   //---------------------------
 
   this->ply_import = new PLY_importer();
-  this->obj_import = new OBJ_importer();
+  this->obj_import = new format::obj::Importer();
   this->csv_import = new CSV_importer();
   this->pcap_import = new PCAP_importer();
   this->pts_import = new PTS_importer();

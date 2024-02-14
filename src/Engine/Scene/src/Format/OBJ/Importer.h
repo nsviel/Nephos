@@ -8,6 +8,8 @@
 #include <fstream>
 
 
+namespace format::obj{
+
 struct Vertex{
   //---------------------------
 
@@ -26,13 +28,12 @@ struct Vertex_ref{
   //---------------------------
 };
 
-
-class OBJ_importer
+class Importer
 {
 public:
   //Constructor / Destructor
-  OBJ_importer();
-  ~OBJ_importer();
+  Importer();
+  ~Importer();
 
 public:
   //Main function
@@ -50,3 +51,5 @@ private:
   std::string file_texture;
   bool is_face;
 };
+
+}

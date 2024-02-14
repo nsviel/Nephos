@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
+namespace format::obj{class Importer;}
 class PLY_importer;
-class OBJ_importer;
 class CSV_importer;
 class PCAP_importer;
 class PTS_importer;
@@ -27,7 +27,7 @@ public:
 
 private:
   PLY_importer* ply_import;
-  OBJ_importer* obj_import;
+  format::obj::Importer* obj_import;
   CSV_importer* csv_import;
   PCAP_importer* pcap_import;
   PTS_importer* pts_import;
