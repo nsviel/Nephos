@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::main{class Engine;}
+namespace vk::main{class Graphical;}
 namespace eng::scene{class Node;}
 namespace eng::scene{class Database;}
 
@@ -27,7 +27,7 @@ public:
   inline utl::type::Set* get_set_world(){return set_world;}
 
 private:
-  vk::main::Engine* vk_engine;
+  vk::main::Graphical* vk_graphical;
   eng::scene::Database* sce_database;
 
   utl::type::Set* set_world;

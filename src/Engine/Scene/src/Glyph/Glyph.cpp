@@ -1,7 +1,7 @@
 #include "Glyph.h"
 
 #include <Vulkan/Node.h>
-#include <Vulkan/VK_main/Engine.h>
+#include <Vulkan/VK_main/Graphical.h>
 #include <Engine/Node.h>
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Scene/Namespace.h>
@@ -16,7 +16,7 @@ Glyph::Glyph(eng::scene::Node* node_scene){
   this->engine = node_scene->get_node_engine();
   vk::Node* eng_vulkan = engine->get_eng_vulkan();
 
-  this->vk_engine = eng_vulkan->get_vk_engine();
+  this->vk_graphical = eng_vulkan->get_vk_graphical();
   this->sce_database = node_scene->get_scene_database();
   this->sce_world = node_scene->get_scene_world();
   eng::cam::Node* node_camera = engine->get_node_camera();
@@ -61,7 +61,7 @@ void Glyph::remove_glyph_world(){
 
     vector<utl::type::Data*> vec_data = glyph->get_vec_data();
     for(int j=0; j<vec_data.size(); j++){
-      vk_engine->remove_data_in_engine(vec_data[j]);
+      vk_graphical->remove_data_in_engine(vec_data[j]);
     }
 
     delete glyph;
@@ -96,7 +96,7 @@ void Glyph::remove_glyph_object(utl::entity::Object* object){
     vector<utl::type::Data*> vec_data = glyph->get_vec_data();
 
     for(int j=0; j<vec_data.size(); j++){
-      vk_engine->remove_data_in_engine(vec_data[j]);
+      vk_graphical->remove_data_in_engine(vec_data[j]);
     }
   }
 

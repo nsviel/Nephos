@@ -3,7 +3,7 @@
 #include <Engine/Node.h>
 #include <Engine/Scene/Namespace.h>
 #include <Vulkan/Node.h>
-#include <Vulkan/VK_main/Engine.h>
+#include <Vulkan/VK_main/Graphical.h>
 
 
 namespace eng::scene{
@@ -15,7 +15,7 @@ World::World(eng::scene::Node* node_scene){
   eng::Node* engine = node_scene->get_node_engine();
   vk::Node* eng_vulkan = engine->get_eng_vulkan();
 
-  this->vk_engine = eng_vulkan->get_vk_engine();
+  this->vk_graphical = eng_vulkan->get_vk_graphical();
   this->sce_database = node_scene->get_scene_database();
 
   //---------------------------
@@ -47,18 +47,18 @@ void World::init_entity(utl::type::Entity* entity){
 
   //Init entity
   sce_database->assign_UID(entity);
-  vk_engine->insert_data_in_engine(entity->get_data(), entity->get_pose());
+  vk_graphical->insert_data_in_engine(entity->get_data(), entity->get_pose());
 
   //Init entity data
   utl::type::Data* data = entity->get_data();
   sce_database->assign_UID(data);
-  vk_engine->insert_data_in_engine(entity->get_data(), entity->get_pose());
+  vk_graphical->insert_data_in_engine(entity->get_data(), entity->get_pose());
 
   //Init entity data vector
   vector<utl::type::Data*> vec_data = entity->get_vec_data();
   for(int j=0; j<vec_data.size(); j++){
     sce_database->assign_UID(vec_data[j]);
-    vk_engine->insert_data_in_engine(vec_data[j], entity->get_pose());
+    vk_graphical->insert_data_in_engine(vec_data[j], entity->get_pose());
   }
 
   //---------------------------

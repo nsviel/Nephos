@@ -11,7 +11,7 @@ Shader::Shader(vk::Node* node_vulkan, bool* show_window){
   //---------------------------
 
   this->node_render = node_vulkan->get_node_render();
-  this->vk_engine = node_vulkan->get_vk_engine();
+  this->vk_graphical = node_vulkan->get_vk_graphical();
   this->editor_vs = new utl::gui::editor::Text();
   this->editor_fs = new utl::gui::editor::Text();
   this->gui_console = new utl::gui::widget::Console();
@@ -355,7 +355,7 @@ void Shader::reload_vulkan_shader(){
   gui_console->clear_log();
   string shader_class = vec_shader_class[ID_class];
   string shader_subclass = vec_shader_subclass[ID_subclass];
-  vk_engine->reload_shader(shader_class, shader_subclass);
+  vk_graphical->reload_shader(shader_class, shader_subclass);
   this->has_been_reloaded = true;
 
   //---------------------------

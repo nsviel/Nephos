@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::main{class Engine;}
+namespace vk::main{class Graphical;}
 namespace eng::scene{class Node;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class World;}
@@ -32,7 +32,7 @@ public:
 
 private:
   eng::Node* engine;
-  vk::main::Engine* vk_engine;
+  vk::main::Graphical* vk_graphical;
   eng::scene::Node* node_scene;
   eng::scene::Database* sce_database;
   eng::scene::World* sce_world;

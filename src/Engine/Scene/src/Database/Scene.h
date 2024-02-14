@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::main{class Engine;}
+namespace vk::main{class Graphical;}
 namespace eng::scene{class Node;}
 namespace eng::scene{class Glyph;}
 namespace eng::scene{class Operation;}
@@ -38,7 +38,7 @@ public:
   inline utl::type::Entity* get_selected_entity(){return set_scene->selected_entity;}
 
 private:
-  vk::main::Engine* vk_engine;
+  vk::main::Graphical* vk_graphical;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
   eng::ope::Attribut* ope_attribut;

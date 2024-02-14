@@ -13,7 +13,7 @@ Scene::Scene(vk::Node* node_vulkan){
   vk::structure::Vulkan* struct_vulkan = node_vulkan->get_struct_vulkan();
 
   this->shader_scene = node_render->get_shader_scene();
-  this->vk_engine = node_vulkan->get_vk_engine();
+  this->vk_graphical = node_vulkan->get_vk_graphical();
   this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
   this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
@@ -37,7 +37,7 @@ void Scene::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  vk_engine->add_renderpass_description(renderpass);
+  vk_graphical->add_renderpass_description(renderpass);
 }
 void Scene::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
@@ -97,7 +97,7 @@ void Scene::draw_scene(vk::structure::Subpass* subpass){
   //---------------------------
 }
 void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
-  list<vk::structure::Object*> list_data = vk_engine->get_list_data();
+  list<vk::structure::Object*> list_data = vk_graphical->get_list_data();
   //---------------------------
 
   vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("point");
@@ -124,7 +124,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
   //---------------------------
 }
 void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
-  list<vk::structure::Object*> list_data = vk_engine->get_list_data();
+  list<vk::structure::Object*> list_data = vk_graphical->get_list_data();
   //---------------------------
 
   vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("line");
@@ -151,7 +151,7 @@ void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
   //---------------------------
 }
 void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
-  list<vk::structure::Object*> list_data = vk_engine->get_list_data();
+  list<vk::structure::Object*> list_data = vk_graphical->get_list_data();
   //---------------------------
 
   vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("triangle");

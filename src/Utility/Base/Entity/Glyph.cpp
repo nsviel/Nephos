@@ -3,7 +3,7 @@
 #include <Engine/Node.h>
 #include <Engine/Camera/Namespace.h>
 #include <Vulkan/Node.h>
-#include <Vulkan/VK_main/Engine.h>
+#include <Vulkan/VK_main/Graphical.h>
 #include <Utility/Function/Math/Math.h>
 
 
@@ -26,11 +26,11 @@ Glyph::~Glyph(){}
 //Main function
 void Glyph::update_data(){
   vk::Node* eng_vulkan = engine->get_eng_vulkan();
-  vk::main::Engine* vk_engine = eng_vulkan->get_vk_engine();
+  vk::main::Graphical* vk_graphical = eng_vulkan->get_vk_graphical();
   //----------------------------
 
   for(int i=0; i<vec_data.size(); i++){
-    vk_engine->insert_data_in_engine(vec_data[i], pose);
+    vk_graphical->insert_data_in_engine(vec_data[i], pose);
   }
 
   //----------------------------

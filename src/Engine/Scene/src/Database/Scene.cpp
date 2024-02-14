@@ -4,7 +4,7 @@
 #include <Engine/Operation/Namespace.h>
 #include <Engine/Scene/Namespace.h>
 #include <Vulkan/Node.h>
-#include <Vulkan/VK_main/Engine.h>
+#include <Vulkan/VK_main/Graphical.h>
 
 
 namespace eng::scene{
@@ -18,7 +18,7 @@ Scene::Scene(eng::scene::Node* node_scene){
 
   this->sce_database = node_scene->get_scene_database();
   this->sce_glyph = node_scene->get_scene_glyph();
-  this->vk_engine = eng_vulkan->get_vk_engine();
+  this->vk_graphical = eng_vulkan->get_vk_graphical();
   this->ope_attribut = new eng::ope::Attribut();
 
   //---------------------------
@@ -72,7 +72,7 @@ void Scene::init_entity(utl::type::Entity* entity){
 
   //Init entity
   sce_database->assign_UID(entity);
-  vk_engine->insert_data_in_engine(entity->get_data(), entity->get_pose());
+  vk_graphical->insert_data_in_engine(entity->get_data(), entity->get_pose());
 
   //If object; create dedicated glyphs
   if(utl::entity::Object* object = dynamic_cast<utl::entity::Object*>(entity)){
@@ -83,13 +83,13 @@ void Scene::init_entity(utl::type::Entity* entity){
   utl::type::Data* data = entity->get_data();
   utl::type::Pose* pose = entity->get_pose();
   sce_database->assign_UID(data);
-  vk_engine->insert_data_in_engine(data, pose);
+  vk_graphical->insert_data_in_engine(data, pose);
 
   //Init entity vector data
   vector<utl::type::Data*> vec_data = entity->get_vec_data();
   for(int j=0; j<vec_data.size(); j++){
     sce_database->assign_UID(vec_data[j]);
-    vk_engine->insert_data_in_engine(vec_data[j], entity->get_pose());
+    vk_graphical->insert_data_in_engine(vec_data[j], entity->get_pose());
   }
 
   //---------------------------

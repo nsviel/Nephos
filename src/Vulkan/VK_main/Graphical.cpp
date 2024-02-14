@@ -1,4 +1,4 @@
-#include "Engine.h"
+#include "Graphical.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Engine::Engine(vk::structure::Vulkan* struct_vulkan){
+Graphical::Graphical(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -35,10 +35,10 @@ Engine::Engine(vk::structure::Vulkan* struct_vulkan){
 
   //---------------------------
 }
-Engine::~Engine(){}
+Graphical::~Graphical(){}
 
 //Main function
-void Engine::init(){
+void Graphical::init(){
   //---------------------------
 
   //Instance
@@ -62,20 +62,16 @@ void Engine::init(){
 
   //---------------------------
 }
-void Engine::loop(){
+void Graphical::loop(){
   //---------------------------
-
-  //vk_imgui->render();
 
   vk_drawing->draw_frame();
   vk_command_allocator->submit_commands();
   vk_semaphore->reset_pool();
-  //vk_imgui->render();
-  //vk_imgui->new_frame();
 
   //---------------------------
 }
-void Engine::clean(){
+void Graphical::clean(){
   //---------------------------
 
   vk_texture->clean();
@@ -95,7 +91,7 @@ void Engine::clean(){
 }
 
 //Specific function
-void Engine::device_wait_idle(){
+void Graphical::device_wait_idle(){
   //---------------------------
 
   VkResult result = vkDeviceWaitIdle(struct_vulkan->device.device);
@@ -105,7 +101,7 @@ void Engine::device_wait_idle(){
 
   //---------------------------
 }
-void Engine::reload_shader(string shader, string subshader){
+void Graphical::reload_shader(string shader, string subshader){
   //---------------------------
 
   vk_reload->hot_shader_reload(shader, subshader);
@@ -114,7 +110,7 @@ void Engine::reload_shader(string shader, string subshader){
 }
 
 //Data function
-void Engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose){
+void Graphical::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose){
   if(data == nullptr) return;
   //---------------------------
 
@@ -139,7 +135,7 @@ void Engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose)
 
   //---------------------------
 }
-void Engine::remove_data_in_engine(utl::type::Data* data){
+void Graphical::remove_data_in_engine(utl::type::Data* data){
   //---------------------------
 
   bool is_in_list = false;
@@ -155,38 +151,38 @@ void Engine::remove_data_in_engine(utl::type::Data* data){
 }
 
 //Renderpass function
-void Engine::add_renderpass_description(vk::structure::Renderpass* renderpass){
+void Graphical::add_renderpass_description(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   struct_vulkan->render.vec_renderpass.push_back(renderpass);
 
   //---------------------------
 }
-vk::structure::Renderpass* Engine::get_renderpass(int i){
+vk::structure::Renderpass* Graphical::get_renderpass(int i){
   //---------------------------
 
   return struct_vulkan->render.vec_renderpass[i];
 
   //---------------------------
 }
-vk::structure::Renderpass* Engine::get_renderpass_presentation(int i){
+vk::structure::Renderpass* Graphical::get_renderpass_presentation(int i){
   //---------------------------
 
   return struct_vulkan->render.get_renderpass_byName("gui");
 
   //---------------------------
 }
-vk::structure::Object* Engine::get_canvas(){
+vk::structure::Object* Graphical::get_canvas(){
   //---------------------------
 
   return &struct_vulkan->data.canvas;
 
   //---------------------------
 }
-std::list<vk::structure::Object*> Engine::get_list_data(){
+std::list<vk::structure::Object*> Graphical::get_list_data(){
   return struct_vulkan->data.list_vk_object;
 }
-void Engine::set_window(GLFWwindow* window){
+void Graphical::set_window(GLFWwindow* window){
   struct_vulkan->window.glfw_window = window;
 }
 

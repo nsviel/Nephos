@@ -4,7 +4,7 @@
 #include <Engine/Camera/Namespace.h>
 #include <Engine/Scene/Namespace.h>
 #include <Vulkan/Node.h>
-#include <Vulkan/VK_main/Engine.h>
+#include <Vulkan/VK_main/Graphical.h>
 #include <Utility/Function/Math/Math.h>
 
 
@@ -37,10 +37,10 @@ Object::~Object(){}
 //Main function
 void Object::update_data(){
   vk::Node* eng_vulkan = engine->get_eng_vulkan();
-  vk::main::Engine* vk_engine = eng_vulkan->get_vk_engine();
+  vk::main::Graphical* vk_graphical = eng_vulkan->get_vk_graphical();
   //----------------------------
 
-  vk_engine->insert_data_in_engine(data, pose);
+  vk_graphical->insert_data_in_engine(data, pose);
 
   //----------------------------
 }
@@ -67,13 +67,13 @@ void Object::update_glyph(){
 }
 void Object::remove_entity(){
   vk::Node* eng_vulkan = engine->get_eng_vulkan();
-  vk::main::Engine* vk_engine = eng_vulkan->get_vk_engine();
+  vk::main::Graphical* vk_graphical = eng_vulkan->get_vk_graphical();
   eng::scene::Node* node_scene = engine->get_node_scene();
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   //----------------------------
 
   sce_glyph->remove_glyph_object(this);
-  vk_engine->remove_data_in_engine(data);
+  vk_graphical->remove_data_in_engine(data);
 
   //----------------------------
 }

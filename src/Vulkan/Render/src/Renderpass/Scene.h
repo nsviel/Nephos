@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk{class Node;}
-namespace vk::main{class Engine;}
+namespace vk::main{class Graphical;}
 namespace vk::renderpass{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
@@ -43,7 +43,7 @@ private:
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
   vk::draw::Drawer* vk_drawing;
-  vk::main::Engine* vk_engine;
+  vk::main::Graphical* vk_graphical;
   vk::renderpass::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
 };

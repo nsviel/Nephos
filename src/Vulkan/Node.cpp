@@ -11,7 +11,7 @@ Node::Node(utl::Node* node_utility){
   //---------------------------
 
   this->struct_vulkan = new vk::structure::Vulkan(node_utility);
-  this->vk_engine = new vk::main::Engine(struct_vulkan);
+  this->vk_graphical = new vk::main::Graphical(struct_vulkan);
   this->vk_imgui = new vk::main::Imgui(struct_vulkan);
   this->vk_info = new vk::main::Info(struct_vulkan);
   this->vk_texture = new vk::main::Texture(struct_vulkan);
@@ -24,7 +24,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  vk_engine->init();
+  vk_graphical->init();
   vk_info->fill_info();
 
   //---------------------------
@@ -32,21 +32,21 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  vk_engine->loop();
+  vk_graphical->loop();
 
   //---------------------------
 }
 void Node::clean(){
   //---------------------------
 
-  vk_engine->clean();
+  vk_graphical->clean();
 
   //---------------------------
 }
 void Node::wait(){
   //---------------------------
 
-  vk_engine->device_wait_idle();
+  vk_graphical->device_wait_idle();
 
   //---------------------------
 }
