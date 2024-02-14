@@ -1,9 +1,8 @@
-#ifndef SOCKET_SERVER_H
-#define SOCKET_SERVER_H
+#pragma once
 
 // Server side implementation of UDP client-server model
 
-#include "../../../common.h"
+#include <Utility/Specific/common.h>
 
 
 namespace eng::socket{
@@ -36,5 +35,3 @@ private:
 };
 
 }
-
-#endif

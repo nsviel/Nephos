@@ -11,7 +11,7 @@
 #include <bitset>
 
 
-namespace util::v4l2{
+namespace eng::socket{
 
 //Constructor / Destructor
 Server::Server(){
