@@ -14,6 +14,7 @@ Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
 
   //---------------------------
+  this->start_thread();
 }
 Transfer::~Transfer(){}
 
@@ -21,22 +22,46 @@ Transfer::~Transfer(){}
 void Transfer::start_thread(){
   //---------------------------
 
-
+  if(!thread_running){
+    this->thread = std::thread(&Transfer::run_thread, this);
+  }
 
   //---------------------------
 }
-void Transfer::submit_command(vk::structure::Command* command){
+void Transfer::run_thread(){
   //---------------------------
 
-  this->reset_for_submission();
-  this->prepare_submission(command);
-  this->queue_submission();
-  this->wait_and_reset(command);
+  thread_running = true;
+  while(thread_running){
+    this->wait_for_command();
+
+    int nb_command = vec_command.size();
+    for(int i=0; i<nb_command; i++){
+      vk::structure::Command* command = vec_command[i];
+
+      this->reset_for_submission();
+      this->prepare_submission(command);
+      this->queue_submission();
+      this->wait_and_reset(command);
+    }
+
+    //Remove submetetd commands
+    vec_command.erase(std::remove(vec_command.begin(), vec_command.end(), nullptr), vec_command.end());
+  }
 
   //---------------------------
 }
 
 //Subfunction
+void Transfer::wait_for_command(){
+  //---------------------------
+
+  while(vec_command.empty()){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  //---------------------------
+}
 void Transfer::reset_for_submission(){
   //---------------------------
 
@@ -96,6 +121,7 @@ void Transfer::wait_and_reset(vk::structure::Command* command){
   }
 
   vk_fence->reset_fence(fence);
+  command = nullptr;
 
   //---------------------------
 }

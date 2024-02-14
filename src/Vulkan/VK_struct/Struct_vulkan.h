@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 #include <string>
@@ -37,6 +37,9 @@ struct Vulkan{
   vk::structure::Parameter param;
   vk::structure::Pool pools;
   vk::structure::Command command;
+
+  //Thread
+  vk::thread::Transfer* transfer;
 
   //Profiling
   prf::Tasker* tasker_cpu;

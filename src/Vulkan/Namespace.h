@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Vulkan/Node.h>
+#include <Vulkan/VK_thread/Namespace.h>
 #include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_binding/Namespace.h>
 #include <Vulkan/VK_command/Namespace.h>
@@ -15,6 +16,5 @@
 #include <Vulkan/VK_shader/Namespace.h>
 #include <Vulkan/VK_validation/Namespace.h>
 #include <Vulkan/VK_synchronization/Namespace.h>
-#include <Vulkan/VK_thread/Namespace.h>
 #include <Vulkan/VK_memory/Namespace.h>
 //#include <Vulkan/Render/Namespace.h>
