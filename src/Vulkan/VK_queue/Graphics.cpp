@@ -1,4 +1,4 @@
-#include "Transfer.h"
+#include "Graphics.h"
 
 #include <Vulkan/Namespace.h>
 #include <thread>
@@ -7,7 +7,7 @@
 namespace vk::queue{
 
 //Constructor / Destructor
-Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
+Graphics::Graphics(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -16,24 +16,25 @@ Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
   this->start_thread();
 }
-Transfer::~Transfer(){}
+Graphics::~Graphics(){}
 
 //Main functions
-void Transfer::start_thread(){
+void Graphics::start_thread(){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&Transfer::run_thread, this);
+    this->thread = std::thread(&Graphics::run_thread, this);
   }
 
   //---------------------------
 }
-void Transfer::run_thread(){
+void Graphics::run_thread(){
   //---------------------------
 
   thread_running = true;
   while(thread_running){
     this->wait_for_command();
+    this->reset_for_submission();
     this->prepare_submission();
     this->queue_submission();
     this->post_submission();
@@ -41,18 +42,16 @@ void Transfer::run_thread(){
 
   //---------------------------
 }
-void Transfer::add_command(vk::structure::Command_buffer* command){
+void Graphics::add_command(vk::structure::Command* command){
   //---------------------------
 
-  if(command->is_recorded){
-    vec_command_prepa.push_back(command);
-  }
+  vec_command_prepa.push_back(command);
 
   //---------------------------
 }
 
 //Subfunction
-void Transfer::wait_for_command(){
+void Graphics::wait_for_command(){
   //---------------------------
 
   while(vec_command_prepa.empty()){
@@ -61,19 +60,37 @@ void Transfer::wait_for_command(){
 
   //---------------------------
 }
-void Transfer::prepare_submission(){
+void Graphics::reset_for_submission(){
   //---------------------------
 
-  this->vec_command_onrun = vec_command_prepa;
-  this->vec_command_prepa.clear();
+  this->vec_command_buffer.clear();
+  this->vec_semaphore_processing.clear();
+  this->vec_semaphore_done.clear();
+  this->vec_wait_stage.clear();
+
+  //---------------------------
+}
+void Graphics::prepare_submission(){
+  //---------------------------
 
   for(int i=0; i<vec_command_onrun.size(); i++){
-    this->vec_command_buffer.push_back(vec_command_onrun[i]->command);
+    vk::structure::Command* command = vec_command_onrun[i];
+
+    //Command buffer
+    for(int i=0; i<command->vec_command_buffer.size(); i++){
+      vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
+      this->vec_command_buffer.push_back(command_buffer->command);
+    }
+
+    //Synchro stuff
+    this->vec_semaphore_processing = command->vec_semaphore_processing;
+    this->vec_wait_stage = command->vec_wait_stage;
+    this->vec_semaphore_done = command->vec_semaphore_done;
   }
 
   //---------------------------
 }
-void Transfer::queue_submission(){
+void Graphics::queue_submission(){
   //---------------------------
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
@@ -93,18 +110,22 @@ void Transfer::queue_submission(){
 
   //---------------------------
 }
-void Transfer::post_submission(){
+void Graphics::post_submission(){
   //---------------------------
 
-  //Reset command buffer
   for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command_buffer* command_buffer = vec_command_onrun[i];
+    vk::structure::Command* command = vec_command_onrun[i];
 
-    if(command_buffer->is_resetable){
-      vkResetCommandBuffer(command_buffer->command, 0);
-      command_buffer->is_available = true;
-      command_buffer->is_recorded = false;
-      command_buffer->fence = nullptr;
+    //Reset command buffer
+    for(int i=0; i<command->vec_command_buffer.size(); i++){
+      vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
+
+      if(command_buffer->is_resetable){
+        vkResetCommandBuffer(command_buffer->command, 0);
+        command_buffer->is_available = true;
+        command_buffer->is_recorded = false;
+        command_buffer->fence = nullptr;
+      }
     }
   }
 

@@ -25,6 +25,7 @@ namespace vk::renderpass{class Renderpass;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
+namespace vk::queue{class Manager;}
 
 
 namespace vk::main{
@@ -80,6 +81,7 @@ private:
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;
   vk::command::Allocator* vk_command_allocator;
+  vk::queue::Manager* vk_queue;
 };
 
 }

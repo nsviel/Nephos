@@ -40,6 +40,7 @@ struct Vulkan{
 
   //Queue
   vk::queue::Transfer* transfer;
+  vk::queue::Graphics* graphics;
 
   //Profiling
   prf::Tasker* tasker_cpu;
