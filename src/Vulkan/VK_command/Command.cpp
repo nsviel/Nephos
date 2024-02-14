@@ -32,6 +32,11 @@ void Command::submit_command(vk::structure::Command* command){
 void Command::reset_for_submission(){
   //---------------------------
 
+  std::thread::id threadId = std::this_thread::get_id();
+
+// Output the thread ID
+std::cout << "Thread ID: " << threadId << std::endl;
+
   this->fence = VK_NULL_HANDLE;
   this->vec_command_buffer.clear();
   this->vec_semaphore_processing.clear();
