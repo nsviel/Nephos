@@ -11,12 +11,14 @@
 #include <gltf/tiny_gltf.h>
 
 
-class GLTF_importer
+namespace format::gltf{
+
+class Importer
 {
 public:
   //Constructor / Destructor
-  GLTF_importer();
-  ~GLTF_importer();
+  Importer();
+  ~Importer();
 
 public:
   //Main functions
@@ -28,3 +30,5 @@ public:
 private:
   tinygltf::Model model;
 };
+
+}

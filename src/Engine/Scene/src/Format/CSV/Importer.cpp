@@ -1,15 +1,17 @@
-#include "CSV_importer.h"
+#include "Importer.h"
 #include "Parser/CSV_state.h"
 
 #include <fstream>
 
 
+namespace format::csv{
+
 //Constructor / Destructor
-CSV_importer::CSV_importer(){}
-CSV_importer::~CSV_importer(){}
+Importer::Importer(){}
+Importer::~Importer(){}
 
 //Main function
-utl::media::File* CSV_importer::Loader(std::string pathFile){
+utl::media::File* Importer::Loader(std::string pathFile){
   utl::media::File* data;
   //---------------------------
 
@@ -69,4 +71,6 @@ utl::media::File* CSV_importer::Loader(std::string pathFile){
 
   //---------------------------
   return data;
+}
+
 }

@@ -1,21 +1,22 @@
-#include "GLTF_importer.h"
+#include "Importer.h"
 
 #define TINYGLTF_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 
 
+namespace format::gltf{
 
 //Constructor / Destructor
-GLTF_importer::GLTF_importer(){
+Importer::Importer(){
   //---------------------------
 
   //---------------------------
 }
-GLTF_importer::~GLTF_importer(){}
+Importer::~Importer(){}
 
 //Main load functions
-utl::media::File* GLTF_importer::Loader(std::string path){
+utl::media::File* Importer::Loader(std::string path){
   utl::media::File* data = new utl::media::File();
   //---------------------------
 
@@ -29,7 +30,7 @@ utl::media::File* GLTF_importer::Loader(std::string path){
 }
 
 //Subfunction
-void GLTF_importer::load_file(std::string path){
+void Importer::load_file(std::string path){
   //---------------------------
 
   tinygltf::TinyGLTF loader;
@@ -49,4 +50,6 @@ void GLTF_importer::load_file(std::string path){
   }
 
   //---------------------------
+}
+
 }

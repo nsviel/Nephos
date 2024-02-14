@@ -12,12 +12,14 @@
 #include <bitset>
 
 
-class PCAP_importer
+namespace format::pcap{
+
+class Importer
 {
 public:
   //Constructor / Destructor
-  PCAP_importer();
-  ~PCAP_importer();
+  Importer();
+  ~Importer();
 
 public:
   utl::media::File* Loader(std::string pathFile);
@@ -37,3 +39,5 @@ private:
   int packet_beg;
   int packet_end;
 };
+
+}

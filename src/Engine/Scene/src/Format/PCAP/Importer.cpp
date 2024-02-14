@@ -1,4 +1,4 @@
-#include "PCAP_importer.h"
+#include "Importer.h"
 
 #include "Parser/Parser_VLP16.h"
 #include "Parser/Parser_HDL32.h"
@@ -13,8 +13,10 @@ int loop_end(0);
 int loop_cpt(0);
 
 
+namespace format::pcap{
+
 //Constructor / Destructor
-PCAP_importer::PCAP_importer(){
+Importer::Importer(){
   //---------------------------
 
   this->LiDAR_model = "vlp16";
@@ -24,7 +26,7 @@ PCAP_importer::PCAP_importer(){
 
   //---------------------------
 }
-PCAP_importer::~PCAP_importer(){}
+Importer::~Importer(){}
 
 //PCAP reader callback
 bool parse_packets(const PDU& packet){
@@ -59,7 +61,7 @@ bool count_packets(const PDU &){
 }
 
 //Main function
-utl::media::File* PCAP_importer::Loader(std::string path){
+utl::media::File* Importer::Loader(std::string path){
   file_packets.clear();
   //---------------------------
 
@@ -100,7 +102,7 @@ utl::media::File* PCAP_importer::Loader(std::string path){
   return data;
 }
 
-void PCAP_importer::Loader_vlp16(utl::media::File* data, std::string path){
+void Importer::Loader_vlp16(utl::media::File* data, std::string path){
   Capture_frame frameManager;
   Parser_VLP16 udpManager;
   //---------------------------
@@ -133,7 +135,7 @@ void PCAP_importer::Loader_vlp16(utl::media::File* data, std::string path){
 
   //---------------------------
 }
-void PCAP_importer::Loader_hdl32(utl::media::File* data, std::string path){
+void Importer::Loader_hdl32(utl::media::File* data, std::string path){
   Capture_frame frameManager;
   Parser_HDL32 udpManager;
   //---------------------------
@@ -163,7 +165,7 @@ void PCAP_importer::Loader_hdl32(utl::media::File* data, std::string path){
 
   //---------------------------
 }
-int PCAP_importer::get_file_length(std::string path){
+int Importer::get_file_length(std::string path){
   lenght = 0;
   //---------------------------
 
@@ -172,4 +174,6 @@ int PCAP_importer::get_file_length(std::string path){
 
   //---------------------------
   return lenght;
+}
+
 }
