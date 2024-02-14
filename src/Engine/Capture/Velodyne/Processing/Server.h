@@ -18,9 +18,9 @@ public:
 
 public:
   //Main functions
-  void capture_init(int port, int packet_size);
-  void capture_stop();
-  vector<int> capture_packet();
+  void binding(int port, int packet_size);
+  void disconnect();
+  vector<int> capture();
 
 private:
   eng::socket::Server* sock_server;
