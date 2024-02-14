@@ -78,9 +78,11 @@ void Command_buffer::submit_pool(vk::pool::Command_buffer* pool){
     }
   }
 
+
+  //struct_vulkan->queue.graphics->add_command(command);
   vk_command->submit_command(command);
   delete command;
-  //struct_vulkan->queue.graphics->add_command(command);
+
 
 
   //---------------------------
@@ -134,6 +136,7 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(){
     vk::structure::Command_buffer* command_buffer = &pool->tank[i];
 
     if(command_buffer->is_available && !command_buffer->is_recorded){
+      vkResetCommandBuffer(command_buffer->command, 0);
       command_buffer->is_available = false;
       return command_buffer;
     }
