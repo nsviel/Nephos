@@ -1,10 +1,6 @@
 #include "Format.h"
 
 #include <Engine/Scene/src/Format/Namespace.h>
-#include "PLY/PLY_importer.h"
-#include "PTS/PTS_importer.h"
-#include "PTX/PTX_importer.h"
-#include "XYZ/XYZ_importer.h"
 
 
 namespace eng::scene{
@@ -13,13 +9,13 @@ namespace eng::scene{
 Format::Format(){
   //---------------------------
 
-  this->ply_import = new PLY_importer();
+  this->ply_import = new format::ply::Importer();
   this->obj_import = new format::obj::Importer();
   this->csv_import = new format::csv::Importer();
   this->pcap_import = new format::pcap::Importer();
-  this->pts_import = new PTS_importer();
-  this->ptx_import = new PTX_importer();
-  this->xyz_import = new XYZ_importer();
+  this->pts_import = new format::pts::Importer();
+  this->ptx_import = new format::ptx::Importer();
+  this->xyz_import = new format::xyz::Importer();
 
   //---------------------------
 }

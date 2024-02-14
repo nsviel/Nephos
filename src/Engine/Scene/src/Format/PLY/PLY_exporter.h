@@ -7,6 +7,8 @@
 #include <vector>
 
 
+namespace format::ply{
+
 class PLY_exporter
 {
 public:
@@ -33,3 +35,5 @@ private:
   int property_number;
   int header_size;
 };
+
+}

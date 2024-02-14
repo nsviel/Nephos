@@ -1,8 +1,10 @@
-#include "PTS_importer.h"
+#include "Importer.h"
 
+
+namespace format::pts{
 
 //Constructor / Destructor
-PTS_importer::PTS_importer(){
+Importer::Importer(){
   //---------------------------
 
   this->nbptMax = 40000000;
@@ -14,10 +16,10 @@ PTS_importer::PTS_importer(){
 
   //---------------------------
 }
-PTS_importer::~PTS_importer(){}
+Importer::~Importer(){}
 
 //Main load functions
-utl::media::File* PTS_importer::Loader(std::string path){
+utl::media::File* Importer::Loader(std::string path){
   //---------------------------
 
   utl::media::File* data = new utl::media::File();
@@ -52,7 +54,7 @@ utl::media::File* PTS_importer::Loader(std::string path){
   //---------------------------
   return data;
 }
-utl::media::File* PTS_importer::Loader(std::string path, int lmin, int lmax){
+utl::media::File* Importer::Loader(std::string path, int lmin, int lmax){
   //---------------------------
 
   utl::media::File* data = new utl::media::File();
@@ -97,7 +99,7 @@ utl::media::File* PTS_importer::Loader(std::string path, int lmin, int lmax){
 }
 
 //Sub load functions
-void PTS_importer::Loader_init(){
+void Importer::Loader_init(){
   //---------------------------
 
   this->config = -1;
@@ -109,7 +111,7 @@ void PTS_importer::Loader_init(){
 
   //---------------------------
 }
-void PTS_importer::Loader_nbColumns(){
+void Importer::Loader_nbColumns(){
   //Extraction of each column
   bool endLoop = false;
   std::string line_loop = line;
@@ -128,7 +130,7 @@ void PTS_importer::Loader_nbColumns(){
 
   //---------------------------
 }
-void PTS_importer::Loader_configuration(){
+void Importer::Loader_configuration(){
   //---------------------------
 
   switch(line_columns.size()){
@@ -250,7 +252,7 @@ void PTS_importer::Loader_configuration(){
   //---------------------------
   endParameters = true;
 }
-void PTS_importer::Loader_data(utl::media::File* data, int FILE_config){
+void Importer::Loader_data(utl::media::File* data, int FILE_config){
   std::istringstream iss(line);
   float x,y,z,r,g,b,I,nx,ny,nz;
   //---------------------------
@@ -303,7 +305,7 @@ void PTS_importer::Loader_data(utl::media::File* data, int FILE_config){
 }
 
 //Main exporter functions
-bool PTS_importer::Exporter(std::string path, utl::entity::Object* object){
+bool Importer::Exporter(std::string path, utl::entity::Object* object){
   //---------------------------
 
   //Create file
@@ -364,7 +366,7 @@ bool PTS_importer::Exporter(std::string path, utl::entity::Object* object){
 }
 
 //Checking functions
-bool PTS_importer::check_header(std::string path){
+bool Importer::check_header(std::string path){
   std::string line;
   std::ifstream FILE(path);
   getline(FILE, line);
@@ -389,7 +391,7 @@ bool PTS_importer::check_header(std::string path){
   }
   return false;
 }
-int PTS_importer::check_configuration(std::string path){
+int Importer::check_configuration(std::string path){
   std::string line_loop;
   std::ifstream FILE(path);
   //---------------------------
@@ -569,7 +571,7 @@ int PTS_importer::check_configuration(std::string path){
   }
   return config;
 }
-int PTS_importer::check_size(std::string path, bool FILE_hasHeader){
+int Importer::check_size(std::string path, bool FILE_hasHeader){
   //---------------------------
 
   int FILE_size = utl::fct::info::get_file_nbPoint(path);
@@ -582,4 +584,6 @@ int PTS_importer::check_size(std::string path, bool FILE_hasHeader){
 
   //---------------------------
   return FILE_size;
+}
+
 }

@@ -1,12 +1,14 @@
-#include "PLY_importer.h"
+#include "Importer.h"
 
+
+namespace format::ply{
 
 //Constructor / Destructor
-PLY_importer::PLY_importer(){}
-PLY_importer::~PLY_importer(){}
+Importer::Importer(){}
+Importer::~Importer(){}
 
 //Main loader functions
-utl::media::File* PLY_importer::Loader(std::string path){
+utl::media::File* Importer::Loader(std::string path){
   //---------------------------
 
   data = new utl::media::File();
@@ -78,7 +80,7 @@ utl::media::File* PLY_importer::Loader(std::string path){
 }
 
 //Loader data
-void PLY_importer::Loader_header(std::ifstream& file){
+void Importer::Loader_header(std::ifstream& file){
   this->property_name.clear();
   this->property_type.clear();
   this->property_size.clear();
@@ -162,7 +164,7 @@ void PLY_importer::Loader_header(std::ifstream& file){
 
   //---------------------------
 }
-void PLY_importer::Loader_ascii(std::ifstream& file){
+void Importer::Loader_ascii(std::ifstream& file){
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -213,7 +215,7 @@ void PLY_importer::Loader_ascii(std::ifstream& file){
   //---------------------------
   data->nb_element = data->xyz.size();
 }
-void PLY_importer::Loader_ascii_withface(std::ifstream& file){
+void Importer::Loader_ascii_withface(std::ifstream& file){
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -290,7 +292,7 @@ void PLY_importer::Loader_ascii_withface(std::ifstream& file){
   //---------------------------
   data->nb_element = data->xyz.size();
 }
-void PLY_importer::Loader_bin_little_endian(std::ifstream& file){
+void Importer::Loader_bin_little_endian(std::ifstream& file){
   //---------------------------
 
   //Read data
@@ -380,7 +382,7 @@ void PLY_importer::Loader_bin_little_endian(std::ifstream& file){
 
   //---------------------------
 }
-void PLY_importer::Loader_bin_little_endian_withface(std::ifstream& file){
+void Importer::Loader_bin_little_endian_withface(std::ifstream& file){
   //---------------------------
 
   //Read data
@@ -465,7 +467,7 @@ void PLY_importer::Loader_bin_little_endian_withface(std::ifstream& file){
   //---------------------------
   data->nb_element = data->xyz.size();
 }
-void PLY_importer::Loader_bin_big_endian(std::ifstream& file){
+void Importer::Loader_bin_big_endian(std::ifstream& file){
   //---------------------------
 
   //Read data
@@ -516,7 +518,7 @@ void PLY_importer::Loader_bin_big_endian(std::ifstream& file){
 
   //---------------------------
 }
-void PLY_importer::Loader_bin_big_endian_withface(std::ifstream& file){
+void Importer::Loader_bin_big_endian_withface(std::ifstream& file){
   //---------------------------
 
   //Read data
@@ -603,7 +605,7 @@ void PLY_importer::Loader_bin_big_endian_withface(std::ifstream& file){
 }
 
 //Loader subfunctions
-float PLY_importer::reverse_float(const float inFloat){
+float Importer::reverse_float(const float inFloat){
    float retVal;
    char *floatToConvert = ( char* ) & inFloat;
    char *returnFloat = ( char* ) & retVal;
@@ -616,7 +618,7 @@ float PLY_importer::reverse_float(const float inFloat){
 
    return retVal;
 }
-int PLY_importer::reverse_int(const int inInt){
+int Importer::reverse_int(const int inInt){
    int retVal;
    char *intToConvert = ( char* ) & inInt;
    char *returnInt = ( char* ) & retVal;
@@ -629,7 +631,7 @@ int PLY_importer::reverse_int(const int inInt){
 
    return retVal;
 }
-void PLY_importer::reorder_by_timestamp(){
+void Importer::reorder_by_timestamp(){
   std::vector<glm::vec3> pos;
   std::vector<float> ts;
   std::vector<float> Is;
@@ -658,7 +660,7 @@ void PLY_importer::reorder_by_timestamp(){
 
   //---------------------------
 }
-int PLY_importer::get_id_property(std::string name){
+int Importer::get_id_property(std::string name){
   //---------------------------
 
   for(int i=0; i<property_name.size(); i++){
@@ -670,7 +672,7 @@ int PLY_importer::get_id_property(std::string name){
   //---------------------------
   return -1;
 }
-float PLY_importer::get_float_from_binary(char* block_data, int& offset){
+float Importer::get_float_from_binary(char* block_data, int& offset){
   //---------------------------
 
   float value = static_cast<float>(*reinterpret_cast<float*>(block_data + offset));
@@ -679,7 +681,7 @@ float PLY_importer::get_float_from_binary(char* block_data, int& offset){
   //---------------------------
   return value;
 }
-float PLY_importer::get_double_from_binary(char* block_data, int& offset){
+float Importer::get_double_from_binary(char* block_data, int& offset){
   //---------------------------
 
   float value = static_cast<float>(*reinterpret_cast<double*>(block_data + offset));
@@ -688,7 +690,7 @@ float PLY_importer::get_double_from_binary(char* block_data, int& offset){
   //---------------------------
   return value;
 }
-float PLY_importer::get_int_from_binary(char* block_data, int& offset){
+float Importer::get_int_from_binary(char* block_data, int& offset){
   //---------------------------
 
   float value = static_cast<float>(*reinterpret_cast<int*>(block_data + offset));
@@ -697,7 +699,7 @@ float PLY_importer::get_int_from_binary(char* block_data, int& offset){
   //---------------------------
   return value;
 }
-float PLY_importer::get_uint8_from_binary(char* block_data, int& offset){
+float Importer::get_uint8_from_binary(char* block_data, int& offset){
   //---------------------------
 
   float value = static_cast<float>(*reinterpret_cast<uint8_t*>(block_data + offset));
@@ -706,7 +708,7 @@ float PLY_importer::get_uint8_from_binary(char* block_data, int& offset){
   //---------------------------
   return value;
 }
-float PLY_importer::get_uint16_from_binary(char* block_data, int& offset){
+float Importer::get_uint16_from_binary(char* block_data, int& offset){
   //---------------------------
 
   float value = static_cast<float>(*reinterpret_cast<uint16_t*>(block_data + offset));
@@ -715,7 +717,7 @@ float PLY_importer::get_uint16_from_binary(char* block_data, int& offset){
   //---------------------------
   return value;
 }
-float PLY_importer::get_uint32_from_binary(char* block_data, int& offset){
+float Importer::get_uint32_from_binary(char* block_data, int& offset){
   //---------------------------
 
   float value = static_cast<float>(*reinterpret_cast<uint32_t*>(block_data + offset));
@@ -724,7 +726,7 @@ float PLY_importer::get_uint32_from_binary(char* block_data, int& offset){
   //---------------------------
   return value;
 }
-float PLY_importer::get_uchar_from_binary(char* block_data, int& offset){
+float Importer::get_uchar_from_binary(char* block_data, int& offset){
   //---------------------------
 
   float value = static_cast<float>(*reinterpret_cast<unsigned char*>(block_data + offset));
@@ -732,4 +734,6 @@ float PLY_importer::get_uchar_from_binary(char* block_data, int& offset){
 
   //---------------------------
   return value;
+}
+
 }

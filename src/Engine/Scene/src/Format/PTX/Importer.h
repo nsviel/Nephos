@@ -11,6 +11,8 @@
 #include <list>
 
 
+namespace format::ptx{
+
 struct PTXCloud{
   //---------------------------
 
@@ -28,12 +30,12 @@ struct PTXCloud{
 };
 
 
-class PTX_importer
+class Importer
 {
 public:
   //Constructor / Destructor
-  PTX_importer();
-  ~PTX_importer();
+  Importer();
+  ~Importer();
 
 public:
   //Main functions
@@ -72,3 +74,5 @@ private:
   int PC_line;
   int IdataFormat;
 };
+
+}

@@ -1,6 +1,8 @@
 #include "PLY_exporter.h"
 
 
+namespace format::ply{
+
 //Constructor / Destructor
 PLY_exporter::PLY_exporter(){}
 PLY_exporter::~PLY_exporter(){}
@@ -14,4 +16,6 @@ bool PLY_exporter::export_cloud(utl::entity::Object* object, std::string path_di
 
   //---------------------------
   return true;
+}
+
 }

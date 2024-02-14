@@ -12,12 +12,14 @@
 #include <cstdint>
 
 
-class PLY_importer
+namespace format::ply{
+
+class Importer
 {
 public:
   //Constructor / Destructor
-  PLY_importer();
-  ~PLY_importer();
+  Importer();
+  ~Importer();
 
 public:
   //Main functions
@@ -64,3 +66,5 @@ private:
   int property_number;
   int header_size;
 };
+
+}

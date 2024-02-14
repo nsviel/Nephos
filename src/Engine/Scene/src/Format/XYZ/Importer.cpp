@@ -1,12 +1,14 @@
-#include "XYZ_importer.h"
+#include "Importer.h"
 
+
+namespace format::xyz{
 
 //Constructor / Destructor
-XYZ_importer::XYZ_importer(){}
-XYZ_importer::~XYZ_importer(){}
+Importer::Importer(){}
+Importer::~Importer(){}
 
 //Main function
-utl::media::File* XYZ_importer::Loader(std::string path){
+utl::media::File* Importer::Loader(std::string path){
   utl::media::File* data = new utl::media::File();
   //---------------------------
 
@@ -30,4 +32,6 @@ utl::media::File* XYZ_importer::Loader(std::string path){
 
   //---------------------------
   return data;
+}
+
 }

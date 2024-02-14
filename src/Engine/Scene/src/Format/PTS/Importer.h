@@ -10,12 +10,14 @@
 #include <iostream>
 
 
-class PTS_importer
+namespace format::pts{
+
+class Importer
 {
 public:
   //Constructor / Destructor
-  PTS_importer();
-  ~PTS_importer();
+  Importer();
+  ~Importer();
 
 public:
   //Main functions
@@ -55,5 +57,6 @@ private:
   int nbptMax;
   int FILE_size, FILE_config;
   int IdataFormat, export_IdataFormat;
-
 };
+
+}

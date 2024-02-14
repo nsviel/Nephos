@@ -1,8 +1,10 @@
-#include "PTX_importer.h"
+#include "Importer.h"
 
+
+namespace format::ptx{
 
 //Constructor / Destructor
-PTX_importer::PTX_importer(){
+Importer::Importer(){
   //---------------------------
 
   this->option_separateCloud = false;
@@ -15,10 +17,10 @@ PTX_importer::PTX_importer(){
 
   //---------------------------
 }
-PTX_importer::~PTX_importer(){}
+Importer::~Importer(){}
 
 //Main functions
-utl::media::File* PTX_importer::Loader(std::string path){
+utl::media::File* Importer::Loader(std::string path){
   list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;
   //---------------------------
@@ -73,7 +75,7 @@ utl::media::File* PTX_importer::Loader(std::string path){
   data->nb_element = data->xyz.size();
   return data;
 }
-bool PTX_importer::Exporter(std::string path){
+bool Importer::Exporter(std::string path){
   //---------------------------
 
   //Create file
@@ -157,7 +159,7 @@ bool PTX_importer::Exporter(std::string path){
 }
 
 //Subfunctions
-void PTX_importer::Loader_header(PTXCloud* cloud){
+void Importer::Loader_header(PTXCloud* cloud){
   //---------------------------
 
   //Scanner registered position
@@ -182,7 +184,7 @@ void PTX_importer::Loader_header(PTXCloud* cloud){
 
   //---------------------------
 }
-void PTX_importer::Loader_data(PTXCloud* cloud){
+void Importer::Loader_data(PTXCloud* cloud){
   //---------------------------
 
   if(PC_line > 9){
@@ -212,7 +214,7 @@ void PTX_importer::Loader_data(PTXCloud* cloud){
 
   //---------------------------
 }
-void PTX_importer::Loader_assembling(){
+void Importer::Loader_assembling(){
   //Assemble into an unique cloud
   //---------------------------
 
@@ -227,7 +229,7 @@ void PTX_importer::Loader_assembling(){
   }
   //---------------------------
 }
-void PTX_importer::Loader_cloudTransformation(){
+void Importer::Loader_cloudTransformation(){
   std::cout <<"---> Apply ptx cloud transformation"<< std::endl;
   //---------------------------
 
@@ -248,7 +250,7 @@ void PTX_importer::Loader_cloudTransformation(){
 
   //---------------------------
 }
-void PTX_importer::Loader_scannerAtOrigin(){
+void Importer::Loader_scannerAtOrigin(){
   std::cout <<"---> Set cloud origin at scanner position"<< std::endl;
   //---------------------------
 
@@ -279,11 +281,13 @@ void PTX_importer::Loader_scannerAtOrigin(){
 }
 
 //Retrieve format info from path
-std::string PTX_importer::get_format_from_path(std::string path){
+std::string Importer::get_format_from_path(std::string path){
   if(path != ""){
     std::string name_format = path.substr(path.find_last_of("/\\") + 1);
     return name_format.substr(name_format.find_last_of("."), std::string::npos);
   }else{
     return "";
   }
+}
+
 }

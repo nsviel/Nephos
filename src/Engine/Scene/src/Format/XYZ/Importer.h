@@ -7,12 +7,14 @@
 #include <vector>
 
 
-class XYZ_importer
+namespace format::xyz{
+
+class Importer
 {
 public:
   //Constructor / Destructor
-  XYZ_importer();
-  ~XYZ_importer();
+  Importer();
+  ~Importer();
 
 public:
   utl::media::File* Loader(std::string filePath);
@@ -21,3 +23,5 @@ private:
   //Datatypes
   utl::media::File* data_out;
 };
+
+}

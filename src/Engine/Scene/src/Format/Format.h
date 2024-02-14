@@ -5,10 +5,11 @@
 namespace format::obj{class Importer;}
 namespace format::csv{class Importer;}
 namespace format::pcap{class Importer;}
-class PLY_importer;
-class PTS_importer;
-class PTX_importer;
-class XYZ_importer;
+namespace format::ply{class Importer;}
+namespace format::pts{class Importer;}
+namespace format::ptx{class Importer;}
+namespace format::xyz{class Importer;}
+
 
 using MyFile = utl::media::File;
 
@@ -26,13 +27,13 @@ public:
   MyFile* get_data_from_file(std::string path);
 
 private:
-  PLY_importer* ply_import;
+  format::ply::Importer* ply_import;
   format::obj::Importer* obj_import;
   format::csv::Importer* csv_import;
   format::pcap::Importer* pcap_import;
-  PTS_importer* pts_import;
-  PTX_importer* ptx_import;
-  XYZ_importer* xyz_import;
+  format::pts::Importer* pts_import;
+  format::ptx::Importer* ptx_import;
+  format::xyz::Importer* xyz_import;
 };
 
 }
