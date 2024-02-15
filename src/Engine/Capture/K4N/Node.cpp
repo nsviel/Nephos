@@ -1,7 +1,7 @@
 #include "Node.h"
 
 #include <Engine/Node.h>
-#include <Engine/Capture/K4N/Namespace.h>
+#include <K4N/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 

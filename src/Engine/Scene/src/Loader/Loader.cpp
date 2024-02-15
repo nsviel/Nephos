@@ -23,7 +23,6 @@ Loader::Loader(eng::scene::Node* node_scene){
   this->supported_format.push_back("ptx");
   this->supported_format.push_back("csv");
   this->supported_format.push_back("las");
-  this->supported_format.push_back("mkv");
 
   //---------------------------
 }

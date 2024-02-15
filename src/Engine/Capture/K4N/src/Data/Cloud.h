@@ -3,7 +3,6 @@
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 
-namespace eng{class Node;}
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Sensor;}
 namespace eng::k4n::utils{class Operation;}
@@ -39,7 +38,6 @@ public:
   inline eng::ope::Voxelizer* get_voxelizer(){return ope_voxelizer;}
 
 private:
-  eng::Node* engine;
   eng::k4n::utils::Operation* k4n_operation;
   eng::ope::Voxelizer* ope_voxelizer;
 

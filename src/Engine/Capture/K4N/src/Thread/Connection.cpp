@@ -1,7 +1,7 @@
 #include "Connection.h"
 
 #include <Utility/Namespace.h>
-#include <Engine/Capture/K4N/Namespace.h>
+#include <K4N/Namespace.h>
 #include <chrono>
 
 

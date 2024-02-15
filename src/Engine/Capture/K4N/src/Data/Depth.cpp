@@ -1,6 +1,6 @@
 #include "Depth.h"
 
-#include <Engine/Capture/K4N/Namespace.h>
+#include <K4N/Namespace.h>
 
 
 namespace eng::k4n::data{

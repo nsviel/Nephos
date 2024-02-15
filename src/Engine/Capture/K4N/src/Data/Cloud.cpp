@@ -1,6 +1,6 @@
 #include "Cloud.h"
 
-#include <Engine/Namespace.h>
+#include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <execution>
@@ -12,9 +12,8 @@ namespace eng::k4n::data{
 Cloud::Cloud(eng::k4n::Node* node_k4n){
   //---------------------------
 
-  this->engine = node_k4n->get_node_engine();
   this->k4n_operation = new eng::k4n::utils::Operation();
-  this->ope_voxelizer = new eng::ope::Voxelizer();
+  //this->ope_voxelizer = new eng::ope::Voxelizer();
 
   //---------------------------
 }

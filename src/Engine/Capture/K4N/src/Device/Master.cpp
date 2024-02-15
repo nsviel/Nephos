@@ -1,6 +1,6 @@
 #include "Master.h"
 
-#include <Engine/Capture/K4N/Namespace.h>
+#include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
 
 
