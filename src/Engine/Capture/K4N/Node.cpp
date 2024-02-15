@@ -26,6 +26,7 @@ Node::~Node(){}
 
 //Main function
 void Node::init(){
+  //eng::scene::Loader* loader
   //---------------------------
 
   k4n_swarm->init_scene();
