@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Engine/Scene/Node.h>
-#include <Engine/Scene/src/Namespace.h>
-#include <Engine/Scene/gui/Namespace.h>
+#include <Scene/Node.h>
+#include <Scene/src/Namespace.h>
+#include <Scene/gui/Namespace.h>

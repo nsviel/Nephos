@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Capture/Node.h>
-#include <K4N/Namespace.h>
-#include <Engine/Capture/Velodyne/Namespace.h>
-#include <Engine/Capture/Socket/Namespace.h>
+#include <Capture/Node.h>
+#include <Capture/K4N/Namespace.h>
+#include <Capture/Velodyne/Namespace.h>
+#include <Capture/Socket/Namespace.h>

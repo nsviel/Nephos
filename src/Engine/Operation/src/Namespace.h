@@ -1,10 +1,8 @@
 #pragma once
 
-#include <Engine/Operation/src/Transformation/Attribut.h>
-#include <Engine/Operation/src/Transformation/Transformation.h>
-#include <Engine/Operation/src/Transformation/Operation.h>
-#include <Engine/Operation/src/Color/Colormap.h>
-#include <Engine/Operation/src/Color/Heatmap.h>
-#include <Engine/Operation/src/Tree/Octree.h>
-#include <Engine/Operation/src/Filter/Voxelizer.h>
-#include <Engine/Operation/src/Mouse/Wheel.h>
+#include <Operation/src/Transformation/Namespace.h>
+#include <Operation/src/Color/Colormap.h>
+#include <Operation/src/Color/Heatmap.h>
+#include <Operation/src/Tree/Octree.h>
+#include <Operation/src/Filter/Voxelizer.h>
+#include <Operation/src/Mouse/Wheel.h>

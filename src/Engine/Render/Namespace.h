@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Engine/Render/Node.h>
-#include <Engine/Render/src/Namespace.h>
-#include <Engine/Render/gui/Namespace.h>
+#include <Render/Node.h>
+#include <Render/src/Namespace.h>
+#include <Render/gui/Namespace.h>
