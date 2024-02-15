@@ -97,7 +97,6 @@ void Arcball::camera_zoom(utl::entity::Camera* camera, float speed){
 
   // Perspective zoom
   vec3 cam_forwardMove = camera->cam_F * speed * camera->speed_move * vec3(0.1, 0.1, 0.1);
-
   vec3 new_pose = camera->cam_P + cam_forwardMove;
 
   // Define the minimum distance to the COM to avoid getting too close
@@ -105,7 +104,7 @@ void Arcball::camera_zoom(utl::entity::Camera* camera, float speed){
 
   // Check if the new pose is within the allowed range
   if (glm::distance(new_pose, camera->cam_COM) > minDistanceToCOM) {
-      camera->cam_P = new_pose;
+    camera->cam_P = new_pose;
   }
 
   //---------------------------

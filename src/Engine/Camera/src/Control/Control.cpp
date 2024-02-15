@@ -71,7 +71,16 @@ void Control::control_mouse(){
 void Control::control_zoom(float value){
   //---------------------------
 
-  active_mode->camera_zoom(camera, value);
+  switch(camera->projection){
+    case CAMERA_PROJ_PERSPECTIVE:{
+      active_mode->camera_zoom(camera, value);
+      break;
+    }
+    case CAMERA_PROJ_ORTHOGRAPHIC:{
+      cam_proj->ortho_zoom(camera, value);
+      break;
+    }
+  }
 
   //---------------------------
 }

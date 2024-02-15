@@ -40,6 +40,7 @@ mat4 Projection::compute_proj_ortho(utl::entity::Camera* camera){
   float z_near = camera->clip_near;
   float z_far = camera->clip_far;
   float zoom = camera->zoom;
+
   mat4 cam_proj = ortho(-5.f - zoom, 5.f + zoom, -5.f - zoom, 5.f + zoom, z_near, z_far);
   cam_proj[1][1] *= -1; // Because glm is designed for OpenGL convention
 
@@ -47,6 +48,15 @@ mat4 Projection::compute_proj_ortho(utl::entity::Camera* camera){
 
   //---------------------------
   return cam_proj;
+}
+
+//Subfunction
+void Projection::ortho_zoom(utl::entity::Camera* camera, float value){
+  //---------------------------
+
+  camera->zoom -= value / 10;
+
+  //---------------------------
 }
 
 }
