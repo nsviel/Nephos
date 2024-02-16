@@ -13,14 +13,14 @@ namespace eng::scene::gui{
 Scene::Scene(eng::scene::Node* node_scene, bool* show_window){
   //---------------------------
 
-  eng::Node* engine = node_scene->get_node_engine();
-  eng::cam::Node* node_camera = engine->get_node_camera();
+  this->engine = node_scene->get_node_engine();
+
 
   this->sce_database = node_scene->get_scene_database();
   this->sce_scene = node_scene->get_scene();
   this->rnd_set = new eng::scene::gui::Set(&show_panel_set);
   this->rnd_object = new eng::scene::gui::Entity(node_scene, &show_panel_entity);
-  this->cam_control = node_camera->get_camera_control();
+
   this->ope_operation = new eng::ope::Operation();
 
   this->name = "Scene";
@@ -93,6 +93,8 @@ void Scene::draw_button(){
   //Camera mode
   ImGui::SameLine();
   if(ImGui::Button(ICON_FA_CAMERA "##camera123")){
+    eng::cam::Node* node_camera = engine->get_node_camera();
+    this->cam_control = node_camera->get_camera_control();
     cam_control->set_next_camera_mode();
   }
 

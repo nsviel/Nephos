@@ -10,7 +10,9 @@ namespace eng::cam::gui{
 Control::Control(eng::cam::Node* node_camera){
   //---------------------------
 
-  this->utl_window = node_camera->get_utl_window();
+  utl::Node* node_utility = node_camera->get_node_utility();
+
+  this->utl_window = node_utility->get_utl_window();
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
 

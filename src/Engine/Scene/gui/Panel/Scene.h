@@ -41,6 +41,7 @@ public:
   bool show_panel_set      = false;
 
 private:
+  eng::Node* engine;
   eng::scene::gui::Entity* rnd_object;
   eng::scene::gui::Set* rnd_set;
   eng::scene::Scene* sce_scene;

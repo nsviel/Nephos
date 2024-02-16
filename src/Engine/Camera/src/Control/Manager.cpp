@@ -1,7 +1,6 @@
 #include "Manager.h"
 
 #include <Camera/Namespace.h>
-#include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 
 
@@ -11,7 +10,7 @@ namespace eng::cam{
 Manager::Manager(eng::cam::Node* node_camera){
   //---------------------------
 
-  this->node_engine = node_camera->get_node_engine();
+  this->node_scene = node_camera->get_node_scene();
 
   this->camera_ID = 0;
 
@@ -23,7 +22,6 @@ Manager::~Manager(){}
 void Manager::create_camera(){
   //---------------------------
 
-  eng::scene::Node* node_scene = node_engine->get_node_scene();
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   eng::scene::Database* sce_database = node_scene->get_scene_database();
   utl::type::Set* data_set = sce_database->get_data_set();

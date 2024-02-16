@@ -1,6 +1,7 @@
 #include "Arcball.h"
 
 #include <Camera/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::cam::mode{
@@ -9,7 +10,9 @@ namespace eng::cam::mode{
 Arcball::Arcball(eng::cam::Node* node_camera){
   //---------------------------
 
-  this->utl_window = node_camera->get_utl_window();
+  utl::Node* node_utility = node_camera->get_node_utility();
+
+  this->utl_window = node_utility->get_utl_window();
 
   this->origin = vec3(0, 0, 0);
 

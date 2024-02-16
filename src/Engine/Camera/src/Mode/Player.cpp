@@ -1,6 +1,7 @@
 #include "Player.h"
 
 #include <Camera/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::cam::mode{
@@ -9,7 +10,9 @@ namespace eng::cam::mode{
 Player::Player(eng::cam::Node* node_camera){
   //---------------------------
 
-  this->utl_window = node_camera->get_utl_window();
+  utl::Node* node_utility = node_camera->get_node_utility();
+
+  this->utl_window = node_utility->get_utl_window();
 
   this->mouse_pose_old = vec2(0.0f);
 

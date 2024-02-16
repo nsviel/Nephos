@@ -22,8 +22,8 @@ Node::Node(App_main* upnode){
   prf::Manager* profiler = node_profiler->get_profiler_manager();
 
   this->eng_vulkan = new vk::Node(node_utility);
-  this->node_camera = new eng::cam::Node(this);
   this->node_scene = new eng::scene::Node(this);
+  this->node_camera = new eng::cam::Node(this);
   this->node_operation = new eng::ope::Node(this);
   this->node_render = new eng::render::Node(this);
   this->node_capture = new eng::capture::Node(this);

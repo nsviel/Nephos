@@ -3,7 +3,9 @@
 #include <Utility/Specific/common.h>
 #include <Utility/Element/Namespace.h>
 
+namespace utl{class Node;}
 namespace eng{class Node;}
+namespace eng::scene{class Node;}
 namespace eng::cam{class Control;}
 namespace eng::cam{class Manager;}
 namespace eng::cam::gui{class Control;}
@@ -26,14 +28,15 @@ public:
   void control();
   void reset();
 
-  inline eng::Node* get_node_engine(){return node_engine;}
-  inline utl::element::Window* get_utl_window(){return utl_window;}
+  inline utl::Node* get_node_utility(){return node_utility;}
+  inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::cam::Control* get_camera_control(){return cam_control;}
   inline eng::cam::Manager* get_camera_manager(){return cam_manager;}
 
 private:
-  eng::Node* node_engine;
-  utl::element::Window* utl_window;
+  eng::scene::Node* node_scene;
+
+  utl::Node* node_utility;
   eng::cam::Control* cam_control;
   eng::cam::Manager* cam_manager;
   eng::cam::gui::Control* gui_control;
