@@ -7,12 +7,14 @@
 
 namespace eng::render{
 
-Node::Node(eng::Node* engine){
+Node::Node(eng::Node* node_engine){
   utl::gui::Panel* sha_panel = new_panel("Shader", ICON_FA_ROAD, false);
   //---------------------------
 
   //Dependancy
-  this->engine = engine;
+  this->node_engine = node_engine;
+  this->node_utility = node_engine->get_node_utility();
+  this->node_vulkan = node_engine->get_node_vulkan();
 
   //Child
   this->shader_edl = new eng::shader::EDL(this);

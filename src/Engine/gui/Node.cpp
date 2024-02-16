@@ -14,9 +14,11 @@ Node::Node(eng::Node* node_engine){
 
   //Dependancy
   this->node_engine = node_engine;
+  this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_operation = node_engine->get_node_operation();
 
   //Child
-  this->gui_option = new eng::gui::Option(node_engine, &opt_panel->is_open);
+  this->gui_option = new eng::gui::Option(this, &opt_panel->is_open);
 
   //---------------------------
 }

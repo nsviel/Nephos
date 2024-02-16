@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Node;}
+namespace eng::gui{class Node;}
 namespace eng::ope{class Wheel;}
 namespace vk::main{class Info;}
 
@@ -13,7 +13,7 @@ class Option
 {
 public:
   //Constructor / Destructor
-  Option(eng::Node* node_engine, bool* show_window);
+  Option(eng::gui::Node* node_gui, bool* show_window);
   ~Option();
 
 public:

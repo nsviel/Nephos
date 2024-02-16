@@ -17,8 +17,8 @@ Renderer::Renderer(eng::render::Node* node_render){
   //---------------------------
 
   eng::Node* node_engine = node_render->get_node_engine();
-  utl::Node* node_utility = node_engine->get_node_utility();
-  vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  utl::Node* node_utility = node_render->get_node_utility();
+  vk::Node* node_vulkan = node_render->get_node_vulkan();
 
   this->utl_window = node_utility->get_utl_window();
   this->node_operation = node_engine->get_node_operation();
