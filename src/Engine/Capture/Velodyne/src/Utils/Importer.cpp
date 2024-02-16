@@ -3,6 +3,8 @@
 #include <Velodyne/Namespace.h>
 
 
+namespace velodyne{
+
 using namespace Tins;
 std::vector<std::vector<int>> file_packets;
 size_t lenght(0);
@@ -10,8 +12,6 @@ int loop_beg(0);
 int loop_end(0);
 int loop_cpt(0);
 
-
-namespace velodyne{
 
 //Constructor / Destructor
 Importer::Importer(){

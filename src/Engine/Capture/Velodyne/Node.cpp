@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Velodyne/Namespace.h>
+#include <Velodyne/src/Utils/Importer.h>
 
 
 namespace velodyne{
