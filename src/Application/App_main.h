@@ -23,7 +23,9 @@ public:
   void loop();
   void end();
 
+  inline Configuration* get_configuration(){return config;}
   inline utl::Node* get_node_utility(){return node_utility;}
+  inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
 private:

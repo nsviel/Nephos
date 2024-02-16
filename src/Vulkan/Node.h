@@ -34,7 +34,6 @@ public:
   inline vk::main::Texture* get_vk_texture(){return vk_texture;}
 
 private:
-  utl::element::Window* utl_window;
   vk::structure::Vulkan* struct_vulkan;
   vk::main::Graphical* vk_graphical;
   vk::main::Imgui* vk_imgui;

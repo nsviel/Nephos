@@ -1,5 +1,6 @@
 #include "Node.h"
 
+#include <Application/App_main.h>
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Application/Configuration.h>
@@ -8,10 +9,12 @@
 namespace utl{
 
 //Constructor / Destructor
-Node::Node(Configuration* config, prf::Node* node_profiler){
+Node::Node(App_main* node_app){
   //---------------------------
 
-  this->node_profiler = node_profiler;
+  Configuration* config = node_app->get_configuration();
+
+  this->node_profiler = node_app->get_node_profiler();
   this->utl_window = new utl::element::Window(config);
 
   utl_window->create_window();

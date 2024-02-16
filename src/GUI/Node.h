@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+class App_main;
 namespace eng{class Node;}
 namespace utl{class Node;}
 namespace utl::element{class Window;}
@@ -20,7 +21,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(utl::Node* utility, eng::Node* engine);
+  Node(App_main* node_app);
   ~Node();
 
 public:
@@ -29,8 +30,9 @@ public:
   void exit();
   void wait();
 
-  inline utl::Node* get_node_utility(){return utility;}
-  inline eng::Node* get_node_engine(){return engine;}
+  inline utl::Node* get_node_utility(){return node_utility;}
+  inline eng::Node* get_node_engine(){return node_engine;}
+
   inline gui::interface::Control* get_gui_control(){return gui_control;}
   inline gui::style::Config* get_gui_style(){return gui_style;}
   inline gui::interface::Tab* get_gui_tab(){return gui_tab;}
@@ -38,10 +40,11 @@ public:
   inline gui::Render* get_rnd_tab(){return gui_render;}
 
 private:
-  eng::Node* engine;
-  utl::Node* utility;
+  //Dependancy
+  eng::Node* node_engine;
+  utl::Node* node_utility;
 
-  utl::element::Window* utl_window;
+  //Child
   gui::interface::Control* gui_control;
   gui::interface::Docking* gui_docking;
   gui::interface::Tab* gui_tab;

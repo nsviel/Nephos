@@ -1,5 +1,6 @@
 #include "Node.h"
 
+#include <Application/App_main.h>
 #include <Engine/Namespace.h>
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,12 +9,11 @@
 namespace gui{
 
 //Constructor / Destructor
-Node::Node(utl::Node* utility, eng::Node* engine){
+Node::Node(App_main* node_app){
   //---------------------------
 
-  this->engine = engine;
-  this->utility = utility;
-  this->utl_window = utility->get_utl_window();
+  this->node_engine = node_app->get_node_engine();
+  this->node_utility = node_app->get_node_utility();
 
   this->gui_render = new gui::Render(this);
   this->gui_style = new gui::style::Config(this);

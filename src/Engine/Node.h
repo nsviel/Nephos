@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/common.h>
 
-class Param;
 class App_main;
 namespace vk{class Node;}
 namespace utl{class Node;}
