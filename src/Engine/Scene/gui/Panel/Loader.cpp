@@ -14,6 +14,7 @@ Loader::Loader(eng::scene::Node* node_scene, bool* show_window){
 
   this->sce_scene = node_scene->get_scene();
   this->sce_loader = node_scene->get_scene_loader();
+  this->sce_format = node_scene->get_scene_format();
   this->sce_bookmark = node_scene->get_scene_bookmark();
   this->ope_transform = new eng::ope::Transformation();
   this->ope_operation = new eng::ope::Operation();
@@ -181,7 +182,7 @@ void Loader::draw_file_content(){
         item.weight = utl::fct::info::get_file_size(file);
         item.format = utl::fct::info::get_format_from_path(file);
         item.color_icon = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
-        item.color_text = sce_loader->is_format_supported(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+        item.color_text = sce_format->is_format_supported(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_item_file.push_back(item);
       }
     }
@@ -398,7 +399,7 @@ void Loader::operation_selection(){
   for(int i=0; i<vec_item_file.size(); i++){
     Item& item = vec_item_file[i];
     if(file_selection.contains(item.ID)){
-      if(sce_loader->is_format_supported(item.format)){
+      if(sce_format->is_format_supported(item.format)){
         vec_path.push_back(item.path);
       }
     }
@@ -435,7 +436,7 @@ void Loader::operation_selection(string path){
     //File check
     string format = utl::fct::info::get_format_from_path(path);
     if(!utl::fct::file::is_file_exist(path)) return;
-    if(!sce_loader->is_format_supported(format)) return;
+    if(!sce_format->is_format_supported(format)) return;
 
     //Apply loading and operations
     if(param_remove_old){

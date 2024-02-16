@@ -15,8 +15,6 @@ Loader::Loader(eng::scene::Node* node_scene){
   this->sce_scene = node_scene->get_scene();
   this->sce_format = node_scene->get_scene_format();
 
-  this->init();
-
   //---------------------------
 }
 Loader::~Loader(){
@@ -28,20 +26,6 @@ Loader::~Loader(){
 }
 
 //Main functions
-void Loader::init(){
-  //---------------------------
-
-  sce_param->supported_format.push_back("pts");
-  sce_param->supported_format.push_back("obj");
-  sce_param->supported_format.push_back("ply");
-  sce_param->supported_format.push_back("xyz");
-  sce_param->supported_format.push_back("pcap");
-  sce_param->supported_format.push_back("ptx");
-  sce_param->supported_format.push_back("csv");
-  sce_param->supported_format.push_back("las");
-
-  //---------------------------
-}
 utl::type::Entity* Loader::load_entity(std::string path){
   utl::type::Entity* entity = nullptr;
   //---------------------------
@@ -54,7 +38,7 @@ utl::type::Entity* Loader::load_entity(std::string path){
 
   //Check file format
   string format = utl::fct::info::get_format_from_path(path);
-  if(!is_format_supported(format)){
+  if(!sce_format->is_format_supported(format)){
     cout<<"[error] File format not supported -> "<<format<<endl;
     return nullptr;
   }
@@ -107,18 +91,6 @@ utl::entity::Object* Loader::load_object(string path){
 
   //---------------------------
   return object;
-}
-bool Loader::is_format_supported(string format){
-  //---------------------------
-
-  for(int i=0; i<sce_param->supported_format.size(); i++){
-    if(format == sce_param->supported_format[i]){
-      return true;
-    }
-  }
-
-  //---------------------------
-  return false;
 }
 
 

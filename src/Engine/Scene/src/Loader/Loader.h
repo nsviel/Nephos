@@ -20,12 +20,10 @@ public:
 
 public:
   //Main functions
-  void init();
   utl::type::Entity* load_entity(std::string path);
 
   //Subfunctions
-  utl::entity::Object* load_object(string path);
-  bool is_format_supported(string format);
+  utl::entity::Object* load_object(std::string path);
 
 private:
   eng::Node* engine;
