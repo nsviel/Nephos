@@ -13,7 +13,7 @@ Loader::Loader(eng::scene::Node* node_scene){
   this->sce_param = node_scene->get_scene_param();
   this->engine = node_scene->get_node_engine();
   this->sce_scene = node_scene->get_scene();
-  this->sce_format = new eng::scene::Format();
+  this->sce_format = node_scene->get_scene_format();
 
   this->init();
 
