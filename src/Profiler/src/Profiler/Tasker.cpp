@@ -12,6 +12,7 @@ Tasker::Tasker(string name){
   this->name = name;
   this->fps_control = new prf::fps::Control(120);
   this->fps_counter = new prf::fps::Counter();
+  this->gui_graph = new prf::improfil::Manager(name);
   this->is_fps_control = false;
 
   //---------------------------

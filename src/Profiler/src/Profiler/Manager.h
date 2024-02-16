@@ -17,9 +17,11 @@ public:
 
 public:
   //Main function
+
   inline prf::Tasker* get_tasker_cpu(){return tasker_cpu;}
   inline prf::Tasker* get_tasker_gpu(){return tasker_gpu;}
   inline prf::Tasker* get_tasker_cap(){return tasker_cap;}
+  inline vector<prf::Tasker*> get_vec_tasker(){return vec_tasker;}
 
 private:
   vector<prf::Tasker*> vec_tasker;

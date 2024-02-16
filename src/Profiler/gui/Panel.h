@@ -28,14 +28,15 @@ public:
   void main_button();
   void draw_graph();
 
-  //Profiler graphs
+  //Profiler 
+  void draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim);
   void draw_profiler_cpu(ImVec2 graph_dim);
   void draw_profiler_gpu(ImVec2 graph_dim);
   void draw_profiler_capture(ImVec2 graph_dim);
   void draw_profiler_vulkan(ImVec2 graph_dim);
 
 private:
-  prf::Manager* prf_profiler;
+  prf::Manager* prf_manager;
   prf::vulkan::Manager* prf_vulkan;
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;
@@ -44,6 +45,7 @@ private:
   prf::improfil::Manager* gui_gpu;
   prf::improfil::Manager* gui_capture;
 
+  vector<prf::improfil::Manager*> vec_graph;
   bool* show_window;
   string name;
   bool pause;

@@ -12,11 +12,11 @@ namespace prf::gui{
 Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
-  this->prf_profiler = node_profiler->get_prf_manager();
+  this->prf_manager = node_profiler->get_prf_manager();
   this->prf_vulkan = node_profiler->get_prf_vulkan();
-  this->tasker_cpu = prf_profiler->get_tasker_cpu();
-  this->tasker_gpu = prf_profiler->get_tasker_gpu();
-  this->tasker_cap = prf_profiler->get_tasker_cap();
+  this->tasker_cpu = prf_manager->get_tasker_cpu();
+  this->tasker_gpu = prf_manager->get_tasker_gpu();
+  this->tasker_cap = prf_manager->get_tasker_cap();
   this->gui_cpu = new prf::improfil::Manager("cpu");
   this->gui_gpu = new prf::improfil::Manager("gpu");
   this->gui_capture = new prf::improfil::Manager("capture");
@@ -117,6 +117,7 @@ void Panel::main_button(){
   //---------------------------
 }
 void Panel::draw_graph(){
+  vector<prf::Tasker*> vec_tasker = prf_manager->get_vec_tasker();
   //---------------------------
 
   if(ImGui::BeginTabBar("device_tab##4567")){
@@ -125,10 +126,11 @@ void Panel::draw_graph(){
     //All profiling graphs
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("All##4568", NULL)){
-      graph_dim = ImVec2(graph_dim.x, graph_dim.y/3 - 3.33);
-      this->draw_profiler_cpu(graph_dim);
-      this->draw_profiler_gpu(graph_dim);
-      this->draw_profiler_capture(graph_dim);
+      graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker.size() - 3);
+
+      for(int i=0; i<vec_tasker.size(); i++){
+        this->draw_tasker_graph(vec_tasker[i], graph_dim);
+      }
       ImGui::EndTabItem();
     }
 
@@ -167,6 +169,35 @@ void Panel::draw_graph(){
 }
 
 //Profiler graphs
+void Panel::draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim){
+  prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
+  //---------------------------
+
+  if(!pause){
+    //Reset graph
+    gui_graph->reset();
+
+    //Assign tasks
+    vector<prf::type::Task>& vec_task = tasker->get_vec_task();
+    for(int i=0; i<vec_task.size(); i++){
+      prf::type::Task task = vec_task[i];
+
+      if(task.color == vec4(0, 0, 0, 0)){
+        gui_graph->add_task(task.time_beg, task.time_end, task.name);
+      }else{
+        gui_graph->add_task(task.time_beg, task.time_end, task.name, task.color);
+      }
+    }
+
+    //load data
+    gui_graph->load_data_to_graph();
+  }
+
+  //Render profiler
+  gui_graph->render_child(graph_dim);
+
+  //---------------------------
+}
 void Panel::draw_profiler_cpu(ImVec2 graph_dim){
   //---------------------------
 
