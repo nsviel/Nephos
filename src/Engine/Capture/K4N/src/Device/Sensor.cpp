@@ -13,13 +13,13 @@ namespace k4n::dev{
 Sensor::Sensor(k4n::Node* node_k4n){
   //---------------------------
 
-  eng::Node* engine = node_k4n->get_node_engine();
+  eng::Node* node_engine = node_k4n->get_node_engine();
   eng::scene::Node* node_scene = node_k4n->get_node_scene();
 
-  this->engine = engine;
+  this->node_engine = node_engine;
   this->sce_scene = node_scene->get_scene();
   this->sce_glyph = node_scene->get_scene_glyph();
-  this->tasker_cap = new prf::Tasker();
+  this->tasker_cap = new prf::Tasker("thread::capture");
   this->k4n_capture = new k4n::thread::Capture(node_k4n);
   this->k4n_playback = new k4n::thread::Playback(node_k4n);
   this->ope_transform = new eng::ope::Transformation();
@@ -51,7 +51,7 @@ void Sensor::init(){
   this->param.name = str_mode + to_string(param.index);
 
   //Sensor cloud
-  object = utl::entity::Object(engine);
+  object = utl::entity::Object(node_engine);
   object.name = param.name;
   object.data->draw_type_name = "point";
   object.data->nb_data_max = 10000000;

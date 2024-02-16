@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+namespace vk{class Node;}
 namespace eng{class Node;}
 namespace eng::scene{class Parameter;}
 namespace eng::scene{class Scene;}
@@ -32,7 +33,8 @@ public:
   void reset();
 
   inline eng::Node* get_node_engine(){return node_engine;}
-  
+  inline vk::Node* get_node_vulkan(){return node_vulkan;}
+
   inline eng::scene::Parameter* get_scene_param(){return sce_param;}
   inline eng::scene::Scene* get_scene(){return sce_scene;}
   inline eng::scene::Format* get_scene_format(){return sce_format;}
@@ -45,6 +47,7 @@ public:
 private:
   //Dependancy
   eng::Node* node_engine;
+  vk::Node* node_vulkan;
 
   //Child
   eng::scene::Parameter* sce_param;

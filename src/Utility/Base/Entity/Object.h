@@ -24,7 +24,7 @@ class Object : public utl::type::Entity
 public:
   //Constructor / Destructor
   Object();
-  Object(eng::Node* engine);
+  Object(eng::Node* node_engine);
   ~Object();
 
   //Main function
@@ -39,7 +39,7 @@ public:
   inline utl::type::Pose* get_pose(){return pose;}
 
 public:
-  eng::Node* engine;
+  eng::Node* node_engine;
 
   utl::type::Data* data;
   utl::type::Pose* pose;

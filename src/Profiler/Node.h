@@ -20,13 +20,13 @@ public:
   void init();
   void gui();
 
-  inline prf::Manager* get_prf_profiler(){return prf_profiler;}
+  inline prf::Manager* get_prf_manager(){return prf_manager;}
   inline prf::vulkan::Manager* get_prf_vulkan(){return prf_vulkan;}
 
 private:
   prf::gui::Panel* gui_panel;
   prf::vulkan::Manager* prf_vulkan;
-  prf::Manager* prf_profiler;
+  prf::Manager* prf_manager;
 };
 
 }

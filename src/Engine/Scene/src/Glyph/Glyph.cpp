@@ -12,9 +12,9 @@ namespace eng::scene{
 Glyph::Glyph(eng::scene::Node* node_scene){
   //---------------------------
 
-  this->engine = node_scene->get_node_engine();
-  vk::Node* node_vulkan = engine->get_node_vulkan();
+  vk::Node* node_vulkan = node_scene->get_node_vulkan();
 
+  this->node_engine = node_scene->get_node_engine();
   this->vk_graphical = node_vulkan->get_vk_graphical();
   this->sce_database = node_scene->get_scene_database();
   this->sce_world = node_scene->get_scene_world();
@@ -36,8 +36,8 @@ void Glyph::create_glyph_world(){
   //---------------------------
 
   vector<utl::entity::Glyph*> vec_glyph;
-  vec_glyph.push_back(new glyph::grid::Grid(engine));
-  vec_glyph.push_back(new glyph::world::Axis(engine));
+  vec_glyph.push_back(new glyph::grid::Grid(node_engine));
+  vec_glyph.push_back(new glyph::world::Axis(node_engine));
 
   for(int i=0; i<vec_glyph.size(); i++){
     utl::entity::Glyph* glyph = vec_glyph[i];
@@ -73,8 +73,8 @@ void Glyph::create_glyph_object(utl::entity::Object* object){
   //---------------------------
 
   if(object->list_glyph.size() != 0) return;
-  object->list_glyph.push_back(new glyph::object::Axis(engine));
-  object->list_glyph.push_back(new glyph::object::AABB(engine));
+  object->list_glyph.push_back(new glyph::object::Axis(node_engine));
+  object->list_glyph.push_back(new glyph::object::AABB(node_engine));
 
   for(int i=0; i<object->list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
@@ -105,7 +105,7 @@ void Glyph::create_glyph_camera(utl::entity::Camera* camera){
   //---------------------------
 
   if(camera->list_glyph.size() != 0) return;
-  camera->list_glyph.push_back(new glyph::camera::Target(engine));
+  camera->list_glyph.push_back(new glyph::camera::Target(node_engine));
 
   for(int i=0; i<camera->list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(camera->list_glyph.begin(), i);

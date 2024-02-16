@@ -10,10 +10,10 @@
 namespace utl::entity{
 
 //Constructor / Destructor
-Glyph::Glyph(eng::Node* engine){
+Glyph::Glyph(eng::Node* node_engine){
   //---------------------------
 
-  this->engine = engine;
+  this->node_engine = node_engine;
   this->pose = new utl::type::Pose();
   this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
   this->is_visible = true;
@@ -25,7 +25,7 @@ Glyph::~Glyph(){}
 
 //Main function
 void Glyph::update_data(){
-  vk::Node* node_vulkan = engine->get_node_vulkan();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
 
@@ -36,7 +36,7 @@ void Glyph::update_data(){
   //----------------------------
 }
 void Glyph::update_pose(){
-  eng::cam::Node* node_camera = engine->get_node_camera();
+  eng::cam::Node* node_camera = node_engine->get_node_camera();
   eng::cam::Control* cam_control = node_camera->get_camera_control();
   //----------------------------
 

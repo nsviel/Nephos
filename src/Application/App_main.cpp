@@ -44,7 +44,7 @@ void App_main::init(){
   //---------------------------
 }
 void App_main::loop(){
-  prf::Manager* profiler = node_profiler->get_prf_profiler();
+  prf::Manager* profiler = node_profiler->get_prf_manager();
   prf::Tasker* tasker_cpu = profiler->get_tasker_cpu();
   //---------------------------
 

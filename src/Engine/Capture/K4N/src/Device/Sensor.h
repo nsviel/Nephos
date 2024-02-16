@@ -69,7 +69,7 @@ public:
   k4n::structure::IMU imu;
 
 private:
-  eng::Node* engine;
+  eng::Node* node_engine;
   eng::scene::Scene* sce_scene;
   eng::scene::Glyph* sce_glyph;
   eng::ope::Transformation* ope_transform;

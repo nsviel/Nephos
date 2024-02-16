@@ -15,6 +15,7 @@ Node::Node(eng::Node* node_engine){
 
   //Dependancy
   this->node_engine = node_engine;
+  this->node_vulkan = node_engine->get_node_vulkan();
 
   //Child
   this->sce_param = new eng::scene::Parameter();

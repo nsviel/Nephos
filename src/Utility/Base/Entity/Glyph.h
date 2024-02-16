@@ -12,7 +12,7 @@ class Glyph : public utl::type::Entity
 {
 public:
   //Constructor / Destructor
-  Glyph(eng::Node* engine);
+  Glyph(eng::Node* node_engine);
   ~Glyph();
 
   //Main function
@@ -30,7 +30,7 @@ public:
   inline vec4* get_color(){return &color;}
 
 protected:
-  eng::Node* engine;
+  eng::Node* node_engine;
 
   vector<utl::type::Data*> vec_data;
   utl::type::Pose* pose;

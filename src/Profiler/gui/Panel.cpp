@@ -12,7 +12,7 @@ namespace prf::gui{
 Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
-  this->prf_profiler = node_profiler->get_prf_profiler();
+  this->prf_profiler = node_profiler->get_prf_manager();
   this->prf_vulkan = node_profiler->get_prf_vulkan();
   this->tasker_cpu = prf_profiler->get_tasker_cpu();
   this->tasker_gpu = prf_profiler->get_tasker_gpu();

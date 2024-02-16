@@ -14,7 +14,7 @@ class Tasker
 {
 public:
   //Constructor / Destructor
-  Tasker();
+  Tasker(string name);
   ~Tasker();
 
 public:
@@ -43,6 +43,7 @@ private:
   vector<prf::type::Task> vec_task_current;
   vector<prf::type::Task> vec_task;
   prf::timer::Timepoint reference;
+  string name;
   bool is_fps_control;
   float loop_fps;
 };
