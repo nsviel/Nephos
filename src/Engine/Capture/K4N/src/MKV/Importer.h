@@ -7,7 +7,7 @@ namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Swarm;}
 
 
-namespace format::mkv{
+namespace eng::k4n{
 
 class Importer : public utl::type::Importer
 {
@@ -18,7 +18,6 @@ public:
 
 public:
   //Main function
-  void init();
   void import(string path);
 
 private:

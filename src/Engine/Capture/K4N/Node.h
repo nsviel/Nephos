@@ -16,7 +16,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* engine);
+  Node(eng::Node* node_engine);
   ~Node();
 
 public:
@@ -27,11 +27,11 @@ public:
   void control();
   void exit();
 
-  inline eng::Node* get_node_engine(){return engine;}
+  inline eng::Node* get_node_engine(){return node_engine;}
   inline eng::k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
 
 private:
-  eng::Node* engine;
+  eng::Node* node_engine;
   eng::k4n::dev::Swarm* k4n_swarm;
   eng::k4n::dev::Connection* k4n_connection;
   eng::k4n::gui::Player* gui_device;

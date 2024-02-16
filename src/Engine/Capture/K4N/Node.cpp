@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Engine/Node.h>
+#include <Engine/Namespace.h>
 #include <K4N/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
@@ -8,12 +8,12 @@
 namespace eng::k4n{
 
 //Constructor / Destructor
-Node::Node(eng::Node* engine){
+Node::Node(eng::Node* node_engine){
   utl::gui::Panel* ply_panel = new_panel("Player", ICON_FA_PLAY, true);
   utl::gui::Panel* str_panel = new_panel("Stream", ICON_FA_FILM, true);
   //---------------------------
 
-  this->engine = engine;
+  this->node_engine = node_engine;
   this->k4n_swarm = new eng::k4n::dev::Swarm(this);
   this->k4n_connection = new eng::k4n::dev::Connection(this);
   this->gui_stream = new eng::k4n::gui::Stream(this, &str_panel->is_open);
@@ -26,9 +26,11 @@ Node::~Node(){}
 
 //Main function
 void Node::init(){
-  //eng::scene::Loader* loader
+  eng::scene::Node* node_scene = node_engine->get_node_scene();
+  eng::scene::Format* sce_format = node_scene->get_scene_format();
   //---------------------------
 
+  sce_format->insert_importer(new eng::k4n::Importer(this));
   k4n_swarm->init_scene();
   k4n_connection->start_thread();
 

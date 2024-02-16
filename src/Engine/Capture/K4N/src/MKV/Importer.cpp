@@ -4,7 +4,7 @@
 #include <K4N/Namespace.h>
 
 
-namespace format::mkv{
+namespace eng::k4n{
 
 //Constructor / Destructor
 Importer::Importer(eng::k4n::Node* node_k4n){
@@ -20,13 +20,6 @@ Importer::Importer(eng::k4n::Node* node_k4n){
 Importer::~Importer(){}
 
 //Main function
-void Importer::init(){
-  //---------------------------
-
-  eng::scene::Node* node_scene = node_engine->get_node_scene();
-
-  //---------------------------
-}
 void Importer::import(string path){
   //---------------------------
 
