@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
+namespace eng::capture{class Node;}
 
 
 namespace velodyne{
@@ -11,7 +12,7 @@ class Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(eng::capture::Node* node_capture);
   ~Node();
 
 public:

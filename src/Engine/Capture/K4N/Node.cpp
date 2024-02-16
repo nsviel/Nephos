@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <K4N/Namespace.h>
+#include <Capture/Namespace.h>
 #include <Scene/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
@@ -9,16 +10,16 @@
 namespace k4n{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
+Node::Node(eng::capture::Node* node_capture){
   utl::gui::Panel* ply_panel = new_panel("Player", ICON_FA_PLAY, true);
   utl::gui::Panel* str_panel = new_panel("Stream", ICON_FA_FILM, true);
   //---------------------------
 
   //Dependancies
-  this->node_engine = node_engine;
-  this->node_scene = node_engine->get_node_scene();
-  this->node_profiler = node_engine->get_node_profiler();
-  
+  this->node_engine = node_capture->get_node_engine();
+  this->node_scene = node_capture->get_node_scene();
+  this->node_profiler = node_capture->get_node_profiler();
+
   //Subnodes
   this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::dev::Connection(this);

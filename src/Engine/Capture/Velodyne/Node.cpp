@@ -1,6 +1,7 @@
 #include "Node.h"
 
 #include <Engine/Namespace.h>
+#include <Capture/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Velodyne/Namespace.h>
 
@@ -9,10 +10,10 @@
 namespace velodyne{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
+Node::Node(eng::capture::Node* node_capture){
   //---------------------------
 
-  this->node_engine = node_engine;
+  this->node_engine = node_capture->get_node_engine();
   //this->velo_capture = new velodyne::Capture();
 
   //---------------------------

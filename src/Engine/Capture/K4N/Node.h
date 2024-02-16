@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace prf{class Node;}
-namespace eng{class Node;}
+namespace eng::capture{class Node;}
 namespace eng::scene{class Node;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::dev{class Connection;}
@@ -18,7 +18,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(eng::capture::Node* node_capture);
   ~Node();
 
 public:

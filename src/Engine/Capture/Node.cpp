@@ -17,8 +17,8 @@ Node::Node(eng::Node* node_engine){
   this->node_profiler = node_engine->get_node_profiler();
 
   //Subnodes
-  this->node_k4n = new k4n::Node(node_engine);
-  this->node_velodyne = new velodyne::Node(node_engine);
+  this->node_k4n = new k4n::Node(this);
+  this->node_velodyne = new velodyne::Node(this);
 
   this->add_node_panel(node_k4n);
 
