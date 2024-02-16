@@ -37,7 +37,7 @@ public:
 
 public:
   //Main function
-  utl::media::File* Loader(std::string filePath);
+  utl::media::File* import_data(std::string filePath);
 
   //Subfunction
   void init_params();

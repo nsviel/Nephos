@@ -14,7 +14,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main loader functions
-utl::media::File* Importer::Loader(std::string path){
+utl::media::File* Importer::import_data(std::string path){
   //---------------------------
 
   data = new utl::media::File();

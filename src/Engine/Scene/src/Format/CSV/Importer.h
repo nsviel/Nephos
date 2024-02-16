@@ -13,7 +13,7 @@ public:
   ~Importer();
 
 public:
-  utl::media::File* Loader(std::string pathFile);
+  utl::media::File* import_data(std::string pathFile);
 
 private:
   //Datatypes
