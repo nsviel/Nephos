@@ -1,6 +1,6 @@
 #include "Capture.h"
 
-#include <Engine/Capture/Velodyne/Namespace.h>
+#include <Velodyne/Namespace.h>
 
 #include <jsoncpp/json/value.h>
 #include <jsoncpp/json/json.h>

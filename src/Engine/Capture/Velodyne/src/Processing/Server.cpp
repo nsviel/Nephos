@@ -1,6 +1,6 @@
 #include "Server.h"
 
-#include <Engine/Capture/Namespace.h>
+#include <Capture/Namespace.h>
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,6 +1,6 @@
 #include "Importer.h"
 
-#include <Engine/Capture/Velodyne/Namespace.h>
+#include <Velodyne/Namespace.h>
 
 
 using namespace Tins;
