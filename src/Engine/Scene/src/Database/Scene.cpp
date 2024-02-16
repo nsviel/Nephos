@@ -1,10 +1,9 @@
 #include "Scene.h"
 
-#include <Engine/Node.h>
-#include <Engine/Operation/Namespace.h>
-#include <Engine/Scene/Namespace.h>
-#include <Vulkan/Node.h>
-#include <Vulkan/VK_main/Graphical.h>
+#include <Engine/Namespace.h>
+#include <Operation/Namespace.h>
+#include <Scene/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace eng::scene{

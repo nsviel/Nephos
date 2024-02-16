@@ -6,5 +6,5 @@
 #include <Scene/src/Database/World.h>
 #include <Scene/src/Loader/Loader.h>
 #include <Scene/src/Loader/Bookmark.h>
-#include <Scene/src/Format/Format.h>
+#include <Scene/src/Format/Namespace.h>
 #include <Scene/src/Glyph/Namespace.h>

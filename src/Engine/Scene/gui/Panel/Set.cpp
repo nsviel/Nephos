@@ -1,6 +1,6 @@
 #include "Set.h"
 
-#include <Engine/Scene/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace eng::scene::gui{

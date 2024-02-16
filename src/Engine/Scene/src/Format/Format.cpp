@@ -1,6 +1,6 @@
 #include "Format.h"
 
-#include <Engine/Scene/src/Format/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace eng::scene{

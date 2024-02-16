@@ -11,7 +11,7 @@ Loader::Loader(eng::scene::Node* node_scene){
   //---------------------------
 
   this->sce_param = node_scene->get_scene_param();
-  this->engine = node_scene->get_node_engine();
+  this->node_engine = node_scene->get_node_engine();
   this->sce_scene = node_scene->get_scene();
   this->sce_format = node_scene->get_scene_format();
 
@@ -44,7 +44,7 @@ utl::type::Entity* Loader::load_entity(std::string path){
   }
 
   if(format == "mkv"){
-    eng::capture::Node* node_capture = engine->get_node_capture();
+    eng::capture::Node* node_capture = node_engine->get_node_capture();
     k4n::Node* node_k4n = node_capture->get_node_k4n();
     k4n::dev::Swarm* k4n_swarm = node_k4n->get_k4n_swarm();
 
@@ -65,7 +65,7 @@ utl::entity::Object* Loader::load_object(string path){
 
   utl::media::File* data = sce_format->import_data_from_path(path);
 
-  utl::entity::Object* object = new utl::entity::Object(engine);
+  utl::entity::Object* object = new utl::entity::Object(node_engine);
   object->data->path_data = path;
   object->data->file_format = utl::fct::info::get_format_from_path(path);
   object->data->has_texture = true;

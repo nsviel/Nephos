@@ -26,7 +26,7 @@ public:
   utl::entity::Object* load_object(std::string path);
 
 private:
-  eng::Node* engine;
+  eng::Node* node_engine;
   eng::scene::Format* sce_format;
   eng::scene::Scene* sce_scene;
   eng::scene::Parameter* sce_param;
