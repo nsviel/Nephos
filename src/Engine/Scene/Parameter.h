@@ -5,18 +5,10 @@
 
 namespace eng::scene{
 
-struct Loader_data{
+struct Parameter : public utl::type::Parameter{
   //---------------------------
 
   vector<string> supported_format;
-
-  //---------------------------
-};
-
-struct Data{
-  //---------------------------
-
-  Loader_data loader;
 
   //---------------------------
 };

@@ -16,6 +16,15 @@ Format::Format(){
   this->ptx_import = new format::ptx::Importer();
   this->xyz_import = new format::xyz::Importer();
 
+  this->supported_format.push_back("pts");
+  this->supported_format.push_back("obj");
+  this->supported_format.push_back("ply");
+  this->supported_format.push_back("xyz");
+  this->supported_format.push_back("pcap");
+  this->supported_format.push_back("ptx");
+  this->supported_format.push_back("csv");
+  this->supported_format.push_back("las");
+
   //---------------------------
 }
 Format::~Format(){
@@ -61,6 +70,18 @@ MyFile* Format::get_data_from_file(std::string path){
 
   //---------------------------
   return data;
+}
+bool Format::is_format_supported(string format){
+  //---------------------------
+
+  for(int i=0; i<supported_format.size(); i++){
+    if(format == supported_format[i]){
+      return true;
+    }
+  }
+
+  //---------------------------
+  return false;
 }
 
 }

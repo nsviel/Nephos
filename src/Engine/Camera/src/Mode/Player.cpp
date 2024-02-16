@@ -93,7 +93,7 @@ void Player::camera_zoom(utl::entity::Camera* camera, float speed){
   //---------------------------
 
   //Perspective zoom
-  vec3 cam_forwardMove = camera->cam_F * speed * camera->speed_move * vec3(0.1,0.1,0.1);
+  vec3 cam_forwardMove = camera->cam_F * speed * camera->velocity * vec3(0.1,0.1,0.1);
   camera->cam_P += cam_forwardMove;
 
   //---------------------------

@@ -23,7 +23,11 @@ public:
   ~Format();
 
 public:
+  //Main function
   MyFile* get_data_from_file(std::string path);
+
+  //Subfunction
+  bool is_format_supported(string format);
 
 private:
   format::ply::Importer* ply_import;
@@ -32,6 +36,8 @@ private:
   format::pts::Importer* pts_import;
   format::ptx::Importer* ptx_import;
   format::xyz::Importer* xyz_import;
+
+  vector<string> supported_format;
 };
 
 }

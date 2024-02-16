@@ -13,6 +13,7 @@ Node::Node(eng::Node* node_engine){
   //---------------------------
 
   this->node_engine = node_engine;
+  this->sce_param = new eng::scene::Parameter();
   this->sce_database = new eng::scene::Database(this);
   this->sce_world = new eng::scene::World(this);
   this->sce_glyph = new eng::scene::Glyph(this);

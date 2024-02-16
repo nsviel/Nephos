@@ -54,7 +54,7 @@ public:
 
   //Camera paramater
   float fov = 0;
-  float speed_move;
+  float velocity;
   float zoom = 0;
   float clip_near;
   float clip_far;

@@ -32,7 +32,7 @@ void Camera::reset_entity(){
   this->angle_azimuth = M_PI/4;
   this->angle_elevation = -M_PI/6;
   this->fov = 65;
-  this->speed_move = 3;
+  this->velocity = 3;
   this->clip_far = 100.0;
   this->clip_near = 0.01;
 

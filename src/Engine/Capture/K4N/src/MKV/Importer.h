@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+namespace eng{class Node;}
 namespace eng::k4n{class Node;}
 namespace eng::k4n::dev{class Swarm;}
 
@@ -16,9 +17,12 @@ public:
   ~Importer();
 
 public:
+  //Main function
+  void init();
   void import(string path);
 
 private:
+  eng::Node* node_engine;
   eng::k4n::dev::Swarm* k4n_swarm;
 };
 

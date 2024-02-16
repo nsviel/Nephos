@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
+namespace eng::scene{class Parameter;}
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class Loader;}
@@ -39,6 +40,7 @@ public:
 
 private:
   eng::Node* node_engine;
+  eng::scene::Parameter* sce_param;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
