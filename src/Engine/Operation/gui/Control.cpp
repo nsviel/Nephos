@@ -2,6 +2,8 @@
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Camera/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace eng::ope::gui{

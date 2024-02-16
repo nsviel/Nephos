@@ -1,6 +1,8 @@
 #include "Swarm.h"
 
 #include <Engine/Namespace.h>
+#include <K4N/Namespace.h>
+#include <Scene/Namespace.h>
 #include <Profiler/Namespace.h>
 
 

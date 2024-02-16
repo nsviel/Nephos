@@ -1,6 +1,8 @@
 #include "Wheel.h"
 
 #include <Engine/Namespace.h>
+#include <Camera/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace eng::ope{

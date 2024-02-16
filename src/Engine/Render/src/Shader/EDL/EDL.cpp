@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Camera/Namespace.h>
 
 
 namespace eng::shader{

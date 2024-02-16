@@ -1,6 +1,8 @@
 #include "Sensor.h"
 
 #include <Engine/Namespace.h>
+#include <K4N/Namespace.h>
+#include <Scene/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 

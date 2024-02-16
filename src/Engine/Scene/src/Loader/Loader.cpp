@@ -2,6 +2,8 @@
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Scene/Namespace.h>
+#include <Capture/Namespace.h>
 
 
 namespace eng::scene{

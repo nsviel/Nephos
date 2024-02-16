@@ -1,6 +1,7 @@
 #include "Node.h"
 
 #include <Engine/Namespace.h>
+#include <Capture/Namespace.h>
 
 
 namespace eng::capture{

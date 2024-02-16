@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <K4N/Namespace.h>
+#include <Scene/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
