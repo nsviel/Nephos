@@ -7,6 +7,7 @@
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Capture/Namespace.h>
+#include <Render/Namespace.h>
 
 
 namespace eng{

@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <K4N/Namespace.h>
+#include <Render/Namespace.h>
 
 
 namespace k4n::gui{
