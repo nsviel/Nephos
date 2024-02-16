@@ -11,7 +11,7 @@ int loop_end(0);
 int loop_cpt(0);
 
 
-namespace format::pcap{
+namespace velodyne{
 
 //Constructor / Destructor
 Importer::Importer(){
@@ -21,6 +21,7 @@ Importer::Importer(){
   this->packet_range_on = false;
   this->packet_beg = 0;
   this->packet_end = 0;
+  this->format = "pcap";
 
   //---------------------------
 }
@@ -59,11 +60,11 @@ bool count_packets(const PDU &){
 }
 
 //Main function
-utl::media::File* Importer::Loader(std::string path){
+utl::media::File* Importer::import_data(std::string path){
   file_packets.clear();
   //---------------------------
 
-  utl::media::File* data = new utl::media::File();
+  data = new utl::media::File();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
 
@@ -100,6 +101,7 @@ utl::media::File* Importer::Loader(std::string path){
   return data;
 }
 
+//Subfunction
 void Importer::Loader_vlp16(utl::media::File* data, std::string path){
   velodyne::Frame velo_frame;
   velodyne::parser::VLP16 parser;

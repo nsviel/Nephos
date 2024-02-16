@@ -12,9 +12,9 @@
 #include <bitset>
 
 
-namespace format::pcap{
+namespace velodyne{
 
-class Importer
+class Importer : public utl::type::Importer
 {
 public:
   //Constructor / Destructor
@@ -22,8 +22,10 @@ public:
   ~Importer();
 
 public:
-  utl::media::File* Loader(std::string pathFile);
+  //Main function
+  utl::media::File* import_data(std::string pathFile);
 
+  //Subfunction
   void Loader_vlp16(utl::media::File* data, std::string pathFile);
   void Loader_hdl32(utl::media::File* data, std::string pathFile);
   int get_file_length(std::string pathFile);
