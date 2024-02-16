@@ -36,8 +36,8 @@ Object::~Object(){}
 
 //Main function
 void Object::update_data(){
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
-  vk::main::Graphical* vk_graphical = eng_vulkan->get_vk_graphical();
+  vk::Node* node_vulkan = engine->get_node_vulkan();
+  vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
 
   vk_graphical->insert_data_in_engine(data, pose);
@@ -66,8 +66,8 @@ void Object::update_glyph(){
   //----------------------------
 }
 void Object::remove_entity(){
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
-  vk::main::Graphical* vk_graphical = eng_vulkan->get_vk_graphical();
+  vk::Node* node_vulkan = engine->get_node_vulkan();
+  vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   eng::scene::Node* node_scene = engine->get_node_scene();
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   //----------------------------

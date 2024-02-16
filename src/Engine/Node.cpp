@@ -23,7 +23,7 @@ Node::Node(App_main* upnode){
 
   //Child
   prf::Manager* profiler = node_profiler->get_profiler_manager();
-  this->eng_vulkan = new vk::Node(node_utility);
+  this->node_vulkan = new vk::Node(node_utility);
   this->node_scene = new eng::scene::Node(this);
   this->node_camera = new eng::cam::Node(this);
   this->node_operation = new eng::ope::Node(this);
@@ -49,7 +49,7 @@ void Node::init(){
   //---------------------------
 
   node_render->init();
-  eng_vulkan->init();
+  node_vulkan->init();
   node_scene->init();
   node_capture->init();
   node_camera->init();
@@ -61,7 +61,7 @@ void Node::loop(){
   //---------------------------
 
   tasker_cpu->task_begin("eng::vulkan");
-  eng_vulkan->loop();
+  node_vulkan->loop();
   tasker_cpu->task_end("eng::vulkan");
 
   node_camera->loop();
@@ -95,14 +95,14 @@ void Node::exit(){
   //---------------------------
 
   node_capture->exit();
-  eng_vulkan->clean();
+  node_vulkan->clean();
 
   //---------------------------
 }
 void Node::wait(){
   //---------------------------
 
-  eng_vulkan->wait();
+  node_vulkan->wait();
 
   //---------------------------
 }

@@ -13,9 +13,9 @@ Control::Control(eng::ope::Node* node_operation){
   //---------------------------
 
   this->node_engine = node_operation->get_node_engine();
-  utl::Node* utility = node_engine->get_node_utility();
-  eng::scene::Node* node_scene = node_engine->get_node_scene();
-  eng::cam::Node* node_camera = node_engine->get_node_camera();
+  utl::Node* utility = node_operation->get_node_utility();
+  eng::scene::Node* node_scene = node_operation->get_node_scene();
+  eng::cam::Node* node_camera = node_operation->get_node_camera();
 
   this->utl_window = utility->get_utl_window();
   this->cam_manager = node_camera->get_camera_manager();

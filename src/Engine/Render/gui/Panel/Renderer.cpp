@@ -18,13 +18,13 @@ Renderer::Renderer(eng::render::Node* node_render){
 
   eng::Node* node_engine = node_render->get_node_engine();
   utl::Node* node_utility = node_engine->get_node_utility();
-  vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
   this->utl_window = node_utility->get_utl_window();
   this->node_operation = node_engine->get_node_operation();
   this->node_camera = node_engine->get_node_camera();
-  this->vk_imgui = eng_vulkan->get_vk_imgui();
-  this->vk_info = eng_vulkan->get_vk_info();
+  this->vk_imgui = node_vulkan->get_vk_imgui();
+  this->vk_info = node_vulkan->get_vk_info();
 
   this->name = "Renderer";
 

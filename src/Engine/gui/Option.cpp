@@ -13,11 +13,11 @@ namespace eng::gui{
 Option::Option(eng::Node* node_engine, bool* show_window){
   //---------------------------
 
-  vk::Node* eng_vulkan = node_engine->get_eng_vulkan();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
   eng::ope::Node* node_operation = node_engine->get_node_operation();
 
   this->ope_wheel = node_operation->get_ope_wheel();
-  this->vk_info = eng_vulkan->get_vk_info();
+  this->vk_info = node_vulkan->get_vk_info();
 
   this->width = 150;
   this->name = "Option";

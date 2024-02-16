@@ -35,7 +35,7 @@ public:
   void wait();
 
   inline utl::Node* get_node_utility(){return node_utility;}
-  inline vk::Node* get_eng_vulkan(){return eng_vulkan;}
+  inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
@@ -49,7 +49,7 @@ private:
   prf::Node* node_profiler;
 
   //Child
-  vk::Node* eng_vulkan;
+  vk::Node* node_vulkan;
   prf::Tasker* tasker_cpu;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;

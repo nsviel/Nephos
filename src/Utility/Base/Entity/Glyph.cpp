@@ -25,8 +25,8 @@ Glyph::~Glyph(){}
 
 //Main function
 void Glyph::update_data(){
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
-  vk::main::Graphical* vk_graphical = eng_vulkan->get_vk_graphical();
+  vk::Node* node_vulkan = engine->get_node_vulkan();
+  vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
 
   for(int i=0; i<vec_data.size(); i++){

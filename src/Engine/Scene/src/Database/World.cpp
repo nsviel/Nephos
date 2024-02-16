@@ -12,9 +12,9 @@ World::World(eng::scene::Node* node_scene){
   //---------------------------
 
   eng::Node* engine = node_scene->get_node_engine();
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
+  vk::Node* node_vulkan = engine->get_node_vulkan();
 
-  this->vk_graphical = eng_vulkan->get_vk_graphical();
+  this->vk_graphical = node_vulkan->get_vk_graphical();
   this->sce_database = node_scene->get_scene_database();
 
   //---------------------------

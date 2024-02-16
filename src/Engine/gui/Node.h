@@ -23,7 +23,10 @@ public:
   void draw_menu();
 
 private:
+  //Dependancy
   eng::Node* node_engine;
+
+  //Child
   eng::gui::Option* gui_option;
 };
 

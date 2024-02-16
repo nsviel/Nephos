@@ -11,7 +11,7 @@ namespace eng::render::gui{
 Image::Image(eng::Node* engine){
   //---------------------------
 
-  vk::Node* vulkan = engine->get_eng_vulkan();
+  vk::Node* vulkan = engine->get_node_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
 
   //---------------------------

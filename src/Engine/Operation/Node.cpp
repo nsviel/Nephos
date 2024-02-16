@@ -1,6 +1,9 @@
 #include "Node.h"
 
-#include <Engine/Operation/Namespace.h>
+#include <Utility/Namespace.h>
+#include <Engine/Namespace.h>
+#include <Scene/Namespace.h>
+#include <Camera/Namespace.h>
 
 
 namespace eng::ope{
@@ -11,6 +14,9 @@ Node::Node(eng::Node* node_engine){
 
   //Dependancy
   this->node_engine = node_engine;
+  this->node_utility = node_engine->get_node_utility();
+  this->node_scene = node_engine->get_node_scene();
+  this->node_camera = node_engine->get_node_camera();
 
   //Child
   this->ope_wheel = new eng::ope::Wheel(this);

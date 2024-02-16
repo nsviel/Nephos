@@ -13,7 +13,7 @@ namespace eng::render::gui{
 Stream::Stream(eng::Node* engine){
   //---------------------------
 
-  vk::Node* vulkan = engine->get_eng_vulkan();
+  vk::Node* vulkan = engine->get_node_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
   this->vk_imgui = vulkan->get_vk_imgui();
   this->imgui_texture = 0;

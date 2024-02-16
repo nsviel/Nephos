@@ -12,11 +12,11 @@ EDL::EDL(eng::render::Node* node_render){
   //---------------------------
 
   eng::Node* engine = node_render->get_node_engine();
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
-  vk::structure::Vulkan* struct_vulkan = eng_vulkan->get_struct_vulkan();
+  vk::Node* node_vulkan = engine->get_node_vulkan();
+  vk::structure::Vulkan* struct_vulkan = node_vulkan->get_struct_vulkan();
 
   this->shader_edl = node_render->get_shader_edl();
-  this->vk_graphical = eng_vulkan->get_vk_graphical();
+  this->vk_graphical = node_vulkan->get_vk_graphical();
   this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
   this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);

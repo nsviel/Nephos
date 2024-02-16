@@ -13,11 +13,11 @@ namespace eng::render::gui{
 Shader::Shader(eng::render::Node* node_render, bool* show_window){
   //---------------------------
 
-  eng::Node* engine = node_render->get_node_engine();
-  vk::Node* eng_vulkan = engine->get_eng_vulkan();
+  eng::Node* node_engine = node_render->get_node_engine();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
-  this->vk_graphical = eng_vulkan->get_vk_graphical();
-  this->node_render = engine->get_node_render();
+  this->vk_graphical = node_vulkan->get_vk_graphical();
+  this->node_render = node_engine->get_node_render();
   this->editor_vs = new utl::gui::editor::Text();
   this->editor_fs = new utl::gui::editor::Text();
   this->gui_console = new utl::gui::widget::Console();
