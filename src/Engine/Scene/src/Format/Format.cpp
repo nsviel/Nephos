@@ -29,7 +29,7 @@ Format::~Format(){
 }
 
 //Main functions
-utl::media::File* Format::import_data_from_path(std::string path){
+utl::media::File* Format::import_from_path(std::string path){
   utl::media::File* data;
   //---------------------------
 
@@ -38,11 +38,11 @@ utl::media::File* Format::import_data_from_path(std::string path){
     utl::type::Importer* importer = vec_importer[i];
 
     if(format == importer->format){
-      data = importer->import_data(path);
+      data = importer->import(path);
     }
   }
 
-  //--------------------------import_data_from_path
+  //---------------------------
   return data;
 }
 

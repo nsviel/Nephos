@@ -20,7 +20,7 @@ Importer::Importer(k4n::Node* node_k4n){
 Importer::~Importer(){}
 
 //Main function
-void Importer::import(string path){
+utl::media::File* Importer::import(string path){
   //---------------------------
 
   utl::media::File file;
@@ -28,6 +28,7 @@ void Importer::import(string path){
   k4n_swarm->create_sensor_playback(file);
 
   //---------------------------
+  return nullptr;
 }
 
 

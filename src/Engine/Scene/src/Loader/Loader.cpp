@@ -45,17 +45,7 @@ utl::type::Entity* Loader::load_entity(std::string path){
     return nullptr;
   }
 
-  if(format == "mkv"){
-    eng::capture::Node* node_capture = node_engine->get_node_capture();
-    k4n::Node* node_k4n = node_capture->get_node_k4n();
-    k4n::dev::Swarm* k4n_swarm = node_k4n->get_k4n_swarm();
-
-    utl::media::File file;
-    file.path_data = path;
-    k4n_swarm->create_sensor_playback(file);
-  }else{
-    entity = load_object(path);
-  }
+  entity = load_object(path);
 
   //---------------------------
   return entity;
@@ -65,7 +55,8 @@ utl::type::Entity* Loader::load_entity(std::string path){
 utl::entity::Object* Loader::load_object(string path){
   //---------------------------
 
-  utl::media::File* data = sce_format->import_data_from_path(path);
+  utl::media::File* data = sce_format->import_from_path(path);
+  if(data == nullptr) return nullptr;
 
   utl::entity::Object* object = new utl::entity::Object(node_engine);
   object->data->path_data = path;

@@ -23,7 +23,7 @@ public:
 
 public:
   //Main function
-  utl::media::File* import_data(std::string pathFile);
+  utl::media::File* import(std::string pathFile);
 
   //Subfunction
   void Loader_vlp16(utl::media::File* data, std::string pathFile);

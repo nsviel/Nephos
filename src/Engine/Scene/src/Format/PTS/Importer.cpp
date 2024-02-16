@@ -20,7 +20,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main load functions
-utl::media::File* Importer::import_data(std::string path){
+utl::media::File* Importer::import(std::string path){
   //---------------------------
 
   data = new utl::media::File();
@@ -55,7 +55,7 @@ utl::media::File* Importer::import_data(std::string path){
   //---------------------------
   return data;
 }
-utl::media::File* Importer::import_data(std::string path, int lmin, int lmax){
+utl::media::File* Importer::import(std::string path, int lmin, int lmax){
   //---------------------------
 
   utl::media::File* data = new utl::media::File();

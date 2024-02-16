@@ -21,7 +21,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main functions
-utl::media::File* Importer::import_data(std::string path){
+utl::media::File* Importer::import(std::string path){
   list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;
   //---------------------------

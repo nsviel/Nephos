@@ -9,8 +9,7 @@ namespace utl::type{
 struct Importer{
   //---------------------------
 
-  virtual void import(std::string path){}
-  virtual utl::media::File* import_data(std::string path){return nullptr;}
+  virtual utl::media::File* import(std::string path){return nullptr;}
 
   utl::media::File* data = nullptr;
   std::string format = "";

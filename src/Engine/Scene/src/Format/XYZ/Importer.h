@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  utl::media::File* import_data(std::string filePath);
+  utl::media::File* import(std::string filePath);
 
 private:
 };

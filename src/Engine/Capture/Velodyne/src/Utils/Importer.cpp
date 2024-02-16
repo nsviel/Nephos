@@ -60,7 +60,7 @@ bool count_packets(const PDU &){
 }
 
 //Main function
-utl::media::File* Importer::import_data(std::string path){
+utl::media::File* Importer::import(std::string path){
   file_packets.clear();
   //---------------------------
 

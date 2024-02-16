@@ -39,7 +39,7 @@ public:
 
 public:
   //Main functions
-  utl::media::File* import_data(std::string pathFile);
+  utl::media::File* import(std::string pathFile);
   bool Exporter(std::string pathFile);
 
   //Subfunctions

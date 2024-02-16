@@ -21,10 +21,10 @@ public:
 
 public:
   //Main functions
-  utl::media::File* import_data(std::string pathFile);
-  utl::media::File* import_data(std::string pathFile, int lmin, int lmax);
+  utl::media::File* import(std::string path);
+  utl::media::File* import(std::string path, int lmin, int lmax);
 
-  bool Exporter(std::string pathFile, utl::entity::Object* object);
+  bool Exporter(std::string path, utl::entity::Object* object);
 
   inline void set_IdataFormat(int value){this->IdataFormat = value;}
   inline void set_retrievingIntensity(bool value){this->retrieve_I = value;}
@@ -39,9 +39,9 @@ private:
   void Loader_data(utl::media::File* data_out, int FILE_config);
 
   //Loader sub-functions
-  bool check_header(std::string pathFile);
-  int check_configuration(std::string pathFile);
-  int check_size(std::string pathFile, bool FILE_hasHeader);
+  bool check_header(std::string path);
+  int check_configuration(std::string path);
+  int check_size(std::string path, bool FILE_hasHeader);
 
 private:
   std::vector<float> line_columns;
