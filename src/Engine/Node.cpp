@@ -14,12 +14,12 @@
 namespace eng{
 
 //Constructor / Destructor
-Node::Node(App_main* upnode){
+Node::Node(App_main* node_app){
   //---------------------------
 
   //Dependancy
-  this->node_profiler = upnode->get_node_profiler();
-  this->node_utility = upnode->get_node_utility();
+  this->node_profiler = node_app->get_node_profiler();
+  this->node_utility = node_app->get_node_utility();
 
   //Child
   prf::Manager* profiler = node_profiler->get_profiler_manager();

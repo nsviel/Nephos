@@ -23,8 +23,6 @@ Node::Node(utl::Node* utility, eng::Node* engine){
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
 
-  this->name = "GUI";
-
   //---------------------------
 }
 Node::~Node(){

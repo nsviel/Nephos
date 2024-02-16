@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Render/Namespace.h>
+#include <Camera/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -12,9 +13,10 @@ Node::Node(eng::Node* node_engine){
   //---------------------------
 
   //Dependancy
-  this->node_engine = node_engine;
   this->node_utility = node_engine->get_node_utility();
   this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_operation = node_engine->get_node_operation();
+  this->node_camera = node_engine->get_node_camera();
 
   //Child
   this->shader_edl = new eng::shader::EDL(this);

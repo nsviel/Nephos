@@ -22,7 +22,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(App_main* upnode);
+  Node(App_main* node_app);
   ~Node();
 
 public:

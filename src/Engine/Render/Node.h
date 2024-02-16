@@ -4,7 +4,10 @@
 
 namespace vk{class Node;}
 namespace utl{class Node;}
-namespace eng{class Node;}
+namespace eng::cam{class Node;}
+namespace eng::scene{class Node;}
+namespace eng::ope{class Node;}
+
 namespace eng::renderpass{class Manager;}
 namespace eng::render{class Profiler;}
 namespace eng::shader{class EDL;}
@@ -28,15 +31,17 @@ public:
 
   inline utl::Node* get_node_utility(){return node_utility;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
-  inline eng::Node* get_node_engine(){return node_engine;}
-  
+  inline eng::cam::Node* get_node_camera(){return node_camera;}
+  inline eng::ope::Node* get_node_operation(){return node_operation;}
+
   inline eng::shader::EDL* get_shader_edl(){return shader_edl;}
   inline eng::shader::SCE* get_shader_scene(){return shader_scene;}
 
 private:
   //Dependancy
   vk::Node* node_vulkan;
-  eng::Node* node_engine;
+  eng::ope::Node* node_operation;
+  eng::cam::Node* node_camera;
   utl::Node* node_utility;
 
   //Child

@@ -16,13 +16,12 @@ namespace eng::render::gui{
 Renderer::Renderer(eng::render::Node* node_render){
   //---------------------------
 
-  eng::Node* node_engine = node_render->get_node_engine();
   utl::Node* node_utility = node_render->get_node_utility();
   vk::Node* node_vulkan = node_render->get_node_vulkan();
 
+  this->node_operation = node_render->get_node_operation();
+  this->node_camera = node_render->get_node_camera();
   this->utl_window = node_utility->get_utl_window();
-  this->node_operation = node_engine->get_node_operation();
-  this->node_camera = node_engine->get_node_camera();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_info = node_vulkan->get_vk_info();
 

@@ -15,7 +15,6 @@ Node::Node(Configuration* config, prf::Node* node_profiler){
   this->utl_window = new utl::element::Window(config);
 
   utl_window->create_window();
-  this->name = "Utility";
 
   //---------------------------
 }

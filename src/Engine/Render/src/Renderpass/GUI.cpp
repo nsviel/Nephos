@@ -11,8 +11,7 @@ namespace eng::renderpass{
 GUI::GUI(eng::render::Node* node_render){
   //---------------------------
 
-  eng::Node* engine = node_render->get_node_engine();
-  vk::Node* node_vulkan = engine->get_node_vulkan();
+  vk::Node* node_vulkan = node_render->get_node_vulkan();
 
   this->vk_graphical = node_vulkan->get_vk_graphical();
   this->vk_imgui = node_vulkan->get_vk_imgui();

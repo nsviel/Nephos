@@ -11,8 +11,7 @@ namespace eng::renderpass{
 Scene::Scene(eng::render::Node* node_render){
   //---------------------------
 
-  eng::Node* engine = node_render->get_node_engine();
-  vk::Node* node_vulkan = engine->get_node_vulkan();
+  vk::Node* node_vulkan = node_render->get_node_vulkan();
   vk::structure::Vulkan* struct_vulkan = node_vulkan->get_struct_vulkan();
 
   this->node_render = node_render;

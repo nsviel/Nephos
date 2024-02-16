@@ -10,8 +10,6 @@ namespace vk::render::gui{
 Renderer::Renderer(vk::Node* node_vulkan){
   //---------------------------
 
-  //this->node_operation = node_engine->get_node_operation();
-  //this->node_camera = node_engine->get_node_camera();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_info = node_vulkan->get_vk_info();
 
