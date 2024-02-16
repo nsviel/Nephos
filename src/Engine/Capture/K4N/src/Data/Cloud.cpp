@@ -6,13 +6,13 @@
 #include <execution>
 
 
-namespace eng::k4n::data{
+namespace k4n::data{
 
 //Constructor / Destructor
-Cloud::Cloud(eng::k4n::Node* node_k4n){
+Cloud::Cloud(k4n::Node* node_k4n){
   //---------------------------
 
-  this->k4n_operation = new eng::k4n::utils::Operation();
+  this->k4n_operation = new k4n::utils::Operation();
   //this->ope_voxelizer = new eng::ope::Voxelizer();
 
   //---------------------------
@@ -20,7 +20,7 @@ Cloud::Cloud(eng::k4n::Node* node_k4n){
 Cloud::~Cloud(){}
 
 //Main function
-void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* sensor){
+void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
   if(!sensor->depth.data_to_color.k4a_image.is_valid()) return;
   if(sensor->depth.data_to_color.k4a_image.get_width_pixels() < 1000) return;
   if(!sensor->ir.data.k4a_image.is_valid()) return;
@@ -34,7 +34,7 @@ void Cloud::convert_into_cloud(eng::k4n::dev::Sensor* sensor){
 }
 
 //Loop function
-void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
+void Cloud::loop_init(k4n::dev::Sensor* sensor){
   //---------------------------
 
   vec_xyz.clear();
@@ -45,7 +45,7 @@ void Cloud::loop_init(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
+void Cloud::loop_data(k4n::dev::Sensor* sensor){
   prf::Tasker* profiler = sensor->tasker_cap;
   //---------------------------
 
@@ -79,9 +79,9 @@ void Cloud::loop_data(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
+void Cloud::loop_end(k4n::dev::Sensor* sensor){
   utl::type::Data* data = sensor->get_data();
-  eng::k4n::dev::Master* master = sensor->master;
+  k4n::dev::Master* master = sensor->master;
   prf::Tasker* profiler = sensor->tasker_cap;
   //---------------------------
 
@@ -118,8 +118,8 @@ void Cloud::loop_end(eng::k4n::dev::Sensor* sensor){
 }
 
 //Data retrieval
-void Cloud::retrieve_cloud(eng::k4n::dev::Sensor* sensor, k4a::image& cloud_image){
-  eng::k4n::structure::Depth* depth = &sensor->depth;
+void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image){
+  k4n::structure::Depth* depth = &sensor->depth;
   //---------------------------
 
   //Create cloud image

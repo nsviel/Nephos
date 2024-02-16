@@ -1,22 +1,22 @@
 #include "Player.h"
 
-#include <Engine/Namespace.h>
+#include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 //Constructor / Destructor
-Player::Player(eng::k4n::Node* node_k4n, bool* show_window){
+Player::Player(k4n::Node* node_k4n, bool* show_window){
   //---------------------------
 
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
-  this->gui_capture = new eng::k4n::gui::Capture(node_k4n);
-  this->gui_playback = new eng::k4n::gui::Playback(node_k4n);
-  this->gui_recorder = new eng::k4n::gui::Recorder(node_k4n);
-  this->gui_master = new eng::k4n::gui::Master(node_k4n);
-  this->gui_sensor = new eng::k4n::gui::Sensor(node_k4n);
+  this->gui_capture = new k4n::gui::Capture(node_k4n);
+  this->gui_playback = new k4n::gui::Playback(node_k4n);
+  this->gui_recorder = new k4n::gui::Recorder(node_k4n);
+  this->gui_master = new k4n::gui::Master(node_k4n);
+  this->gui_sensor = new k4n::gui::Sensor(node_k4n);
 
   this->show_window = show_window;
   this->name = "Player";
@@ -27,7 +27,7 @@ Player::~Player(){}
 
 //Main function
 void Player::run_panel(){
-  eng::k4n::dev::Master* master = k4n_swarm->get_selected_master();
+  k4n::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
   if(*show_window && master != nullptr && master->nb_entity != 0){
@@ -43,7 +43,7 @@ void Player::run_panel(){
 
   //---------------------------
 }
-void Player::design_panel(eng::k4n::dev::Master* master){
+void Player::design_panel(k4n::dev::Master* master){
   //---------------------------
 
   //Master player
@@ -57,7 +57,7 @@ void Player::design_panel(eng::k4n::dev::Master* master){
     for(int i=0; i< master->list_entity.size(); i++){
       utl::type::Entity* entity = *next(master->list_entity.begin(), i);
 
-      if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
+      if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
         this->show_sensor_tab(sensor);
       }
     }
@@ -68,7 +68,7 @@ void Player::design_panel(eng::k4n::dev::Master* master){
 }
 
 //Player function
-void Player::draw_player(eng::k4n::dev::Master* master){
+void Player::draw_player(k4n::dev::Master* master){
   //---------------------------
 
   node_k4n->control();
@@ -88,7 +88,7 @@ void Player::draw_player(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_slider(eng::k4n::dev::Master* master){
+void Player::player_slider(k4n::dev::Master* master){
   //---------------------------
 
   ImVec2 width = ImGui::GetContentRegionAvail();
@@ -99,7 +99,7 @@ void Player::player_slider(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_start(eng::k4n::dev::Master* master){
+void Player::player_start(k4n::dev::Master* master){
   //---------------------------
 
   //Play button -> if paused or not playing
@@ -121,7 +121,7 @@ void Player::player_start(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_stop(eng::k4n::dev::Master* master){
+void Player::player_stop(k4n::dev::Master* master){
   //---------------------------
 
   if(!master->player.pause){
@@ -141,7 +141,7 @@ void Player::player_stop(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_repeat(eng::k4n::dev::Master* master){
+void Player::player_repeat(k4n::dev::Master* master){
   //---------------------------
 
   if(master->player.restart){
@@ -161,7 +161,7 @@ void Player::player_repeat(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_record(eng::k4n::dev::Master* master){
+void Player::player_record(k4n::dev::Master* master){
   //---------------------------
 
   if(master->player.record){
@@ -181,7 +181,7 @@ void Player::player_record(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_close(eng::k4n::dev::Master* master){
+void Player::player_close(k4n::dev::Master* master){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
@@ -192,7 +192,7 @@ void Player::player_close(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::player_lock(eng::k4n::dev::Master* master){
+void Player::player_lock(k4n::dev::Master* master){
   //---------------------------
 
   if(master->is_locked){
@@ -213,7 +213,7 @@ void Player::player_lock(eng::k4n::dev::Master* master){
 }
 
 //Device function
-void Player::show_master_tab(eng::k4n::dev::Master* master){
+void Player::show_master_tab(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
@@ -225,7 +225,7 @@ void Player::show_master_tab(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Player::show_sensor_tab(eng::k4n::dev::Sensor* sensor){
+void Player::show_sensor_tab(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -246,8 +246,8 @@ void Player::show_sensor_tab(eng::k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-ImGuiTabItemFlags Player::get_tab_flag(eng::k4n::dev::Sensor* sensor){
-  eng::k4n::dev::Master* master = sensor->master;
+ImGuiTabItemFlags Player::get_tab_flag(k4n::dev::Sensor* sensor){
+  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   ImGuiTabItemFlags flag = 0;

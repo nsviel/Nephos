@@ -5,10 +5,10 @@
 #include <Profiler/Namespace.h>
 
 
-namespace eng::k4n::dev{
+namespace k4n::dev{
 
 //Constructor / Destructor
-Sensor::Sensor(eng::k4n::Node* node_k4n){
+Sensor::Sensor(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* engine = node_k4n->get_node_engine();
@@ -18,11 +18,11 @@ Sensor::Sensor(eng::k4n::Node* node_k4n){
   this->sce_scene = node_scene->get_scene();
   this->sce_glyph = node_scene->get_scene_glyph();
   this->tasker_cap = new prf::Tasker();
-  this->k4n_capture = new eng::k4n::thread::Capture(node_k4n);
-  this->k4n_playback = new eng::k4n::thread::Playback(node_k4n);
+  this->k4n_capture = new k4n::thread::Capture(node_k4n);
+  this->k4n_playback = new k4n::thread::Playback(node_k4n);
   this->ope_transform = new eng::ope::Transformation();
 
-  this->type = "eng::k4n::device::Sensor";
+  this->type = "k4n::device::Sensor";
   this->icon = ICON_FA_CAMERA_RETRO;
 
   //---------------------------

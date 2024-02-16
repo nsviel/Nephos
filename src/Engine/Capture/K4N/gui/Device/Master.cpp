@@ -3,10 +3,10 @@
 #include <K4N/Namespace.h>
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 //Constructor / Destructor
-Master::Master(eng::k4n::Node* node_k4n){
+Master::Master(k4n::Node* node_k4n){
   //---------------------------
 
   this->node_k4n = node_k4n;
@@ -19,7 +19,7 @@ Master::Master(eng::k4n::Node* node_k4n){
 Master::~Master(){}
 
 //Main function
-void Master::show_master_info(eng::k4n::dev::Master* master){
+void Master::show_master_info(k4n::dev::Master* master){
   //---------------------------
 
   this->show_info(master);
@@ -33,7 +33,7 @@ void Master::show_master_info(eng::k4n::dev::Master* master){
 }
 
 //Subfunction
-void Master::show_info(eng::k4n::dev::Master* master){
+void Master::show_info(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
@@ -62,7 +62,7 @@ void Master::show_info(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Master::show_colorization(eng::k4n::dev::Master* master){
+void Master::show_colorization(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
@@ -114,7 +114,7 @@ void Master::show_colorization(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Master::show_voxelizer(eng::k4n::dev::Master* master){
+void Master::show_voxelizer(k4n::dev::Master* master){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Voxel");

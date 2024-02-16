@@ -6,29 +6,29 @@
 namespace eng{class Node;}
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Glyph;}
-namespace eng::k4n{class Node;}
-namespace eng::k4n::dev{class Master;}
-namespace eng::k4n::thread{class Capture;}
-namespace eng::k4n::thread{class Playback;}
-namespace eng::k4n::structure{class Param;}
-namespace eng::k4n::structure{class Synchro;}
-namespace eng::k4n::structure{class Recorder;}
-namespace eng::k4n::structure{class Color;}
-namespace eng::k4n::structure{class Depth;}
-namespace eng::k4n::structure{class Infrared;}
-namespace eng::k4n::structure{class IMU;}
-namespace eng::k4n::structure{class Image;}
+namespace k4n{class Node;}
+namespace k4n::dev{class Master;}
+namespace k4n::thread{class Capture;}
+namespace k4n::thread{class Playback;}
+namespace k4n::structure{class Param;}
+namespace k4n::structure{class Synchro;}
+namespace k4n::structure{class Recorder;}
+namespace k4n::structure{class Color;}
+namespace k4n::structure{class Depth;}
+namespace k4n::structure{class Infrared;}
+namespace k4n::structure{class IMU;}
+namespace k4n::structure{class Image;}
 namespace eng::ope{class Transformation;}
 namespace prf{class Tasker;}
 
 
-namespace eng::k4n::dev{
+namespace k4n::dev{
 
 class Sensor : public utl::type::Entity
 {
 public:
   //Constructor / Destructor
-  Sensor(eng::k4n::Node* node_k4n);
+  Sensor(k4n::Node* node_k4n);
   ~Sensor();
 
 public:
@@ -54,27 +54,27 @@ public:
 
 public:
   prf::Tasker* tasker_cap;
-  eng::k4n::dev::Master* master;
+  k4n::dev::Master* master;
 
   utl::entity::Object object;
-  eng::k4n::structure::Image image;
+  k4n::structure::Image image;
 
-  eng::k4n::structure::Param param;
-  eng::k4n::structure::Synchro synchro;
-  eng::k4n::structure::Recorder recorder;
+  k4n::structure::Param param;
+  k4n::structure::Synchro synchro;
+  k4n::structure::Recorder recorder;
 
-  eng::k4n::structure::Color color;
-  eng::k4n::structure::Depth depth;
-  eng::k4n::structure::Infrared ir;
-  eng::k4n::structure::IMU imu;
+  k4n::structure::Color color;
+  k4n::structure::Depth depth;
+  k4n::structure::Infrared ir;
+  k4n::structure::IMU imu;
 
 private:
   eng::Node* engine;
   eng::scene::Scene* sce_scene;
   eng::scene::Glyph* sce_glyph;
   eng::ope::Transformation* ope_transform;
-  eng::k4n::thread::Capture* k4n_capture;
-  eng::k4n::thread::Playback* k4n_playback;
+  k4n::thread::Capture* k4n_capture;
+  k4n::thread::Playback* k4n_playback;
 };
 
 }

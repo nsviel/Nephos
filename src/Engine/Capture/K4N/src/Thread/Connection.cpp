@@ -5,10 +5,10 @@
 #include <chrono>
 
 
-namespace eng::k4n::dev{
+namespace k4n::dev{
 
 //Constructor / Destructor
-Connection::Connection(eng::k4n::Node* node_k4n){
+Connection::Connection(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_swarm = node_k4n->get_k4n_swarm();
@@ -80,7 +80,7 @@ void Connection::stop_thread(){
 void Connection::manage_new_dev(int nb_new_dev){
   //---------------------------
 
-  eng::k4n::dev::Master* master = k4n_swarm->get_or_create_master("capture");
+  k4n::dev::Master* master = k4n_swarm->get_or_create_master("capture");
 
   //If previsouly no device, we need to supress all default playback
   if(nb_dev == 0){
@@ -97,7 +97,7 @@ void Connection::manage_new_dev(int nb_new_dev){
 void Connection::manage_less_dev(int nb_less_dev){
   //---------------------------
 
-  eng::k4n::dev::Master* master = k4n_swarm->get_master_by_name("capture");
+  k4n::dev::Master* master = k4n_swarm->get_master_by_name("capture");
 
   //Suppress all devices
   master->delete_entity_all();

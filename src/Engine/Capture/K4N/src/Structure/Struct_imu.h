@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace eng::k4n::structure{
+namespace k4n::structure{
 
 struct IMU_config{
   //---------------------------
@@ -14,7 +14,7 @@ struct IMU_config{
 struct IMU{
   //---------------------------
 
-  eng::k4n::structure::IMU_config config;
+  k4n::structure::IMU_config config;
 
   //---------------------------
 };

@@ -3,10 +3,10 @@
 #include <K4N/Namespace.h>
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 //Constructor / Destructor
-Capture::Capture(eng::k4n::Node* node_k4n){
+Capture::Capture(k4n::Node* node_k4n){
   //---------------------------
 
   this->node_k4n = node_k4n;
@@ -19,7 +19,7 @@ Capture::Capture(eng::k4n::Node* node_k4n){
 Capture::~Capture(){}
 
 //Main function
-void Capture::show_sensor_configuration(eng::k4n::dev::Sensor* sensor){
+void Capture::show_sensor_configuration(k4n::dev::Sensor* sensor){
   if(sensor == nullptr || sensor->param.is_playback) return;
   //---configuration_device----
 
@@ -39,8 +39,8 @@ void Capture::show_sensor_configuration(eng::k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Capture::list_device(eng::k4n::dev::Sensor* sensor){
-  eng::k4n::dev::Master* master = sensor->master;
+void Capture::list_device(k4n::dev::Sensor* sensor){
+  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -62,7 +62,7 @@ void Capture::list_device(eng::k4n::dev::Sensor* sensor){
       for(int i=0; i<master->list_entity.size(); i++){
         utl::type::Entity* entity = *next(master->list_entity.begin(), i);
 
-        if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
+        if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
           if(sensor->param.is_playback) continue;
 
           ImGui::TableNextRow();
@@ -87,7 +87,7 @@ void Capture::list_device(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Capture::configuration_depth(eng::k4n::dev::Sensor* sensor){
+void Capture::configuration_depth(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -121,7 +121,7 @@ void Capture::configuration_depth(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Capture::configuration_color(eng::k4n::dev::Sensor* sensor){
+void Capture::configuration_color(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -243,7 +243,7 @@ void Capture::configuration_color(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Capture::configuration_device(eng::k4n::dev::Sensor* sensor){
+void Capture::configuration_device(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -269,7 +269,7 @@ void Capture::configuration_device(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Capture::firmware_info(eng::k4n::dev::Sensor* sensor){
+void Capture::firmware_info(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 

@@ -3,13 +3,13 @@
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
 
-namespace eng::k4n::dev{class Sensor;}
-namespace eng::k4n::structure{class Player;}
-namespace eng::k4n::structure{class Operation;}
-namespace eng::k4n::structure{class Recorder;}
+namespace k4n::dev{class Sensor;}
+namespace k4n::structure{class Player;}
+namespace k4n::structure{class Operation;}
+namespace k4n::structure{class Recorder;}
 
 
-namespace eng::k4n::dev{
+namespace k4n::dev{
 
 class Master : public utl::type::Set
 {
@@ -20,13 +20,13 @@ public:
 
 public:
   //Main function
-  void insert_sensor(eng::k4n::dev::Sensor* sensor);
+  void insert_sensor(k4n::dev::Sensor* sensor);
   void reset();
 
   //Master function
   void manage_restart();
   void manage_forward();
-  void manage_suppression(eng::k4n::dev::Sensor* sensor);
+  void manage_suppression(k4n::dev::Sensor* sensor);
 
   //Player function
   void player_update();
@@ -38,10 +38,10 @@ public:
   void player_record();
 
 public:
-  eng::k4n::structure::Player player;
-  eng::k4n::structure::Operation operation;
-  eng::k4n::structure::Recorder recorder;
-  eng::k4n::structure::Voxel voxel;
+  k4n::structure::Player player;
+  k4n::structure::Operation operation;
+  k4n::structure::Recorder recorder;
+  k4n::structure::Voxel voxel;
 
 private:
 

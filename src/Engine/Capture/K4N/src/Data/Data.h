@@ -4,12 +4,12 @@
 #include <image/turbojpeg.h>
 #include <k4a/k4a.hpp>
 
-namespace eng::k4n::dev{class Sensor;}
-namespace eng::k4n::data{class Depth;}
-namespace eng::k4n::data{class Infrared;}
+namespace k4n::dev{class Sensor;}
+namespace k4n::data{class Depth;}
+namespace k4n::data{class Infrared;}
 
 
-namespace eng::k4n::data{
+namespace k4n::data{
 
 class Data
 {
@@ -20,18 +20,18 @@ public:
 
 public:
   //Main function
-  void find_data_from_capture(eng::k4n::dev::Sensor* device, k4a::capture capture);
+  void find_data_from_capture(k4n::dev::Sensor* device, k4a::capture capture);
 
   //Data function
-  void find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture);
-  void find_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture);
-  void find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture);
+  void find_depth(k4n::dev::Sensor* sensor, k4a::capture capture);
+  void find_color(k4n::dev::Sensor* sensor, k4a::capture capture);
+  void find_ir(k4n::dev::Sensor* sensor, k4a::capture capture);
 
   //Transformed data
-  void find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
-  void find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
-  void find_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
-  void find_color_to_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
+  void find_depth_to_color(k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
+  void find_depth_and_ir_to_color(k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
+  void find_ir_to_color(k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
+  void find_color_to_depth(k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation);
 
   //Subfunction
   string retrieve_format_from_k4a(k4a_image_format_t color_format);
@@ -39,8 +39,8 @@ public:
   void retrieve_bgra_from_mjpeg(k4a::image& image, vector<uint8_t>& data);
 
 private:
-  eng::k4n::data::Depth* k4a_depth;
-  eng::k4n::data::Infrared* k4a_infrared;
+  k4n::data::Depth* k4a_depth;
+  k4n::data::Infrared* k4a_infrared;
   tjhandle tj_handle;
 };
 

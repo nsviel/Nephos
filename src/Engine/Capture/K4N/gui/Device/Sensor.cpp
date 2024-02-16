@@ -3,15 +3,15 @@
 #include <K4N/Namespace.h>
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 //Constructor / Destructor
-Sensor::Sensor(eng::k4n::Node* node_k4n){
+Sensor::Sensor(k4n::Node* node_k4n){
   //---------------------------
 
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
-  this->k4n_transfo = new eng::k4n::utils::Transformation();
+  this->k4n_transfo = new k4n::utils::Transformation();
 
   this->item_width = 100;
 
@@ -20,7 +20,7 @@ Sensor::Sensor(eng::k4n::Node* node_k4n){
 Sensor::~Sensor(){}
 
 //Main function
-void Sensor::show_sensor(eng::k4n::dev::Sensor* sensor){
+void Sensor::show_sensor(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -31,7 +31,7 @@ void Sensor::show_sensor(eng::k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Sensor::show_sensor_info(eng::k4n::dev::Sensor* sensor){
+void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::Separator();
@@ -52,7 +52,7 @@ void Sensor::show_sensor_info(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Sensor::show_sensor_transfo(eng::k4n::dev::Sensor* sensor){
+void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Object model matrix

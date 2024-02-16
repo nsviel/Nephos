@@ -3,12 +3,12 @@
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 
-namespace eng::k4n::dev{class Sensor;}
-namespace eng::k4n::data{class Depth;}
-namespace eng::k4n::data{class Infrared;}
+namespace k4n::dev{class Sensor;}
+namespace k4n::data{class Depth;}
+namespace k4n::data{class Infrared;}
 
 
-namespace eng::k4n::data{
+namespace k4n::data{
 
 class Image
 {
@@ -19,16 +19,16 @@ public:
 
 public:
   //Main function
-  void make_images(eng::k4n::dev::Sensor* sensor);
+  void make_images(k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void copy_image_color(eng::k4n::dev::Sensor* sensor);
-  void copy_image_depth(eng::k4n::dev::Sensor* sensor);
-  void copy_image_ir(eng::k4n::dev::Sensor* sensor);
+  void copy_image_color(k4n::dev::Sensor* sensor);
+  void copy_image_depth(k4n::dev::Sensor* sensor);
+  void copy_image_ir(k4n::dev::Sensor* sensor);
 
 private:
-  eng::k4n::data::Depth* k4a_depth;
-  eng::k4n::data::Infrared* k4a_infrared;
+  k4n::data::Depth* k4a_depth;
+  k4n::data::Infrared* k4a_infrared;
 };
 
 }

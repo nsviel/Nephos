@@ -3,7 +3,7 @@
 #include <k4a/k4a.hpp>
 #include <string>
 
-namespace eng::k4n::structure{
+namespace k4n::structure{
 
 struct Exposure{
   //---------------------------
@@ -101,15 +101,15 @@ struct Color_config{
   std::string firmware_version;
 
   //Control
-  eng::k4n::structure::Exposure exposure;
-  eng::k4n::structure::White_balance white_balance;
-  eng::k4n::structure::Brightness brightness;
-  eng::k4n::structure::Contrast contrast;
-  eng::k4n::structure::Saturation saturation;
-  eng::k4n::structure::Sharpness sharpness;
-  eng::k4n::structure::Gain gain;
-  eng::k4n::structure::Backlight_compensation backlight_compensation;
-  eng::k4n::structure::Power_frequency power_frequency;
+  k4n::structure::Exposure exposure;
+  k4n::structure::White_balance white_balance;
+  k4n::structure::Brightness brightness;
+  k4n::structure::Contrast contrast;
+  k4n::structure::Saturation saturation;
+  k4n::structure::Sharpness sharpness;
+  k4n::structure::Gain gain;
+  k4n::structure::Backlight_compensation backlight_compensation;
+  k4n::structure::Power_frequency power_frequency;
 
   //---------------------------
 };
@@ -117,9 +117,9 @@ struct Color_config{
 struct Color{
   //---------------------------
 
-  eng::k4n::structure::Color_config config;
-  eng::k4n::structure::Data data;
-  eng::k4n::structure::Data data_to_depth;
+  k4n::structure::Color_config config;
+  k4n::structure::Data data;
+  k4n::structure::Data data_to_depth;
 
   //---------------------------
 };

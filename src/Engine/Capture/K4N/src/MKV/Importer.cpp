@@ -4,10 +4,10 @@
 #include <K4N/Namespace.h>
 
 
-namespace eng::k4n{
+namespace k4n{
 
 //Constructor / Destructor
-Importer::Importer(eng::k4n::Node* node_k4n){
+Importer::Importer(k4n::Node* node_k4n){
   //---------------------------
 
   this->node_engine = node_k4n->get_node_engine();

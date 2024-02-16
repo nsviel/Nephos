@@ -2,29 +2,29 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng::k4n{class Node;}
-namespace eng::k4n::dev{class Sensor;}
-namespace eng::k4n::dev{class Swarm;}
+namespace k4n{class Node;}
+namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Swarm;}
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 class Recorder
 {
 public:
   //Constructor / Destructor
-  Recorder(eng::k4n::Node* node_k4n);
+  Recorder(k4n::Node* node_k4n);
   ~Recorder();
 
   //Main function
-  void show_sensor_recorder(eng::k4n::dev::Sensor* sensor);
+  void show_sensor_recorder(k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void recorder_path(eng::k4n::dev::Sensor* sensor);
+  void recorder_path(k4n::dev::Sensor* sensor);
 
 private:
-  eng::k4n::Node* node_k4n;
-  eng::k4n::dev::Swarm* k4n_swarm;
+  k4n::Node* node_k4n;
+  k4n::dev::Swarm* k4n_swarm;
 };
 
 }

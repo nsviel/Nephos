@@ -3,7 +3,7 @@
 #include <K4N/Namespace.h>
 
 
-namespace eng::k4n::data{
+namespace k4n::data{
 
 //Constructor / Destructor
 Depth::Depth(){
@@ -14,7 +14,7 @@ Depth::Depth(){
 Depth::~Depth(){}
 
 //Main function
-std::vector<uint8_t> Depth::convert_depth_into_color(eng::k4n::dev::Sensor* sensor){
+std::vector<uint8_t> Depth::convert_depth_into_color(k4n::dev::Sensor* sensor){
   k4n::structure::Data* data = &sensor->depth.data;
   uint8_t* inputBuffer = data->buffer;
   uint16_t range_min = sensor->depth.config.range_min;
@@ -50,7 +50,7 @@ std::vector<uint8_t> Depth::convert_depth_into_color(eng::k4n::dev::Sensor* sens
   //---------------------------
   return outputBuffer;
 }
-void Depth::convert_depth_into_color_(eng::k4n::dev::Sensor* sensor){
+void Depth::convert_depth_into_color_(k4n::dev::Sensor* sensor){
   k4n::structure::Data* data = &sensor->depth.data;
   uint8_t* inputBuffer = data->buffer;
   uint16_t range_min = sensor->depth.config.range_min;
@@ -90,7 +90,7 @@ void Depth::convert_depth_into_color_(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Depth::find_depth_mode_range(eng::k4n::dev::Sensor* sensor){
+void Depth::find_depth_mode_range(k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(sensor->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){

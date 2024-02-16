@@ -1,12 +1,12 @@
 #include "Control.h"
 
-#include <Engine/Namespace.h>
+#include <K4N/Namespace.h>
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 //Constructor / Destructor
-Control::Control(eng::k4n::Node* node_k4n){
+Control::Control(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_swarm = node_k4n->get_k4n_swarm();
@@ -30,7 +30,7 @@ void Control::control_keyboard(){
   //----------------------------
 
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
-    eng::k4n::dev::Master* master = k4n_swarm->get_selected_master();
+    k4n::dev::Master* master = k4n_swarm->get_selected_master();
 
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){

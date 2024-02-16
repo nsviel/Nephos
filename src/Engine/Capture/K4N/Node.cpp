@@ -5,7 +5,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace eng::k4n{
+namespace k4n{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
@@ -14,11 +14,11 @@ Node::Node(eng::Node* node_engine){
   //---------------------------
 
   this->node_engine = node_engine;
-  this->k4n_swarm = new eng::k4n::dev::Swarm(this);
-  this->k4n_connection = new eng::k4n::dev::Connection(this);
-  this->gui_stream = new eng::k4n::gui::Stream(this, &str_panel->is_open);
-  this->gui_device = new eng::k4n::gui::Player(this, &ply_panel->is_open);
-  this->gui_control = new eng::k4n::gui::Control(this);
+  this->k4n_swarm = new k4n::dev::Swarm(this);
+  this->k4n_connection = new k4n::dev::Connection(this);
+  this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);
+  this->gui_device = new k4n::gui::Player(this, &ply_panel->is_open);
+  this->gui_control = new k4n::gui::Control(this);
 
   //---------------------------
 }
@@ -30,7 +30,7 @@ void Node::init(){
   eng::scene::Format* sce_format = node_scene->get_scene_format();
   //---------------------------
 
-  sce_format->insert_importer(new eng::k4n::Importer(this));
+  sce_format->insert_importer(new k4n::Importer(this));
   k4n_swarm->init_scene();
   k4n_connection->start_thread();
 

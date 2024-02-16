@@ -4,7 +4,7 @@
 #include <Engine/Operation/src/Color/Heatmap.h>
 
 
-namespace eng::k4n::utils{
+namespace k4n::utils{
 
 //Constructor / Destructor
 Operation::Operation(){
@@ -53,7 +53,7 @@ float Operation::find_mkv_ts_end(string path){
   //---------------------------
   return ts_end;
 }
-void Operation::make_colorization(eng::k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
+void Operation::make_colorization(k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
   //---------------------------
 
   switch(sensor->master->operation.color_mode){
@@ -74,7 +74,7 @@ void Operation::make_colorization(eng::k4n::dev::Sensor* sensor, vector<vec4>& v
 
   //---------------------------
 }
-void Operation::colorization_intensity(eng::k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
+void Operation::colorization_intensity(k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
   utl::type::Data* data = sensor->get_data();
   //---------------------------
 
@@ -85,7 +85,7 @@ void Operation::colorization_intensity(eng::k4n::dev::Sensor* sensor, vector<vec
 
   //---------------------------
 }
-void Operation::colorization_heatmap(eng::k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
+void Operation::colorization_heatmap(k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
   utl::entity::Object* object = sensor->get_object();
   //---------------------------
 

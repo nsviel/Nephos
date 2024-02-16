@@ -2,17 +2,17 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng::k4n{class Node;}
-namespace eng::k4n::dev{class Swarm;}
+namespace k4n{class Node;}
+namespace k4n::dev{class Swarm;}
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 class Control
 {
 public:
   //Constructor / Destructor
-  Control(eng::k4n::Node* node_k4n);
+  Control(k4n::Node* node_k4n);
   ~Control();
 
 public:
@@ -23,7 +23,7 @@ public:
   void control_keyboard();
 
 private:
-  eng::k4n::dev::Swarm* k4n_swarm;
+  k4n::dev::Swarm* k4n_swarm;
 };
 
 }

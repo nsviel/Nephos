@@ -4,15 +4,15 @@
 #include <Profiler/Namespace.h>
 
 
-namespace eng::k4n::data{
+namespace k4n::data{
 
 //Constructor / Destructor
 Data::Data(){
   //---------------------------
 
   this->tj_handle = tjInitDecompress();
-  this->k4a_depth = new eng::k4n::data::Depth();
-  this->k4a_infrared = new eng::k4n::data::Infrared();
+  this->k4a_depth = new k4n::data::Depth();
+  this->k4a_infrared = new k4n::data::Infrared();
 
   //---------------------------
 }
@@ -25,7 +25,7 @@ Data::~Data(){
 }
 
 //Main function
-void Data::find_data_from_capture(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
+void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture capture){
   prf::Tasker* profiler = sensor->tasker_cap;
   //---------------------------
 
@@ -49,7 +49,7 @@ void Data::find_data_from_capture(eng::k4n::dev::Sensor* sensor, k4a::capture ca
 }
 
 //Data function
-void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
+void Data::find_depth(k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
 
   //Get k4a image
@@ -70,7 +70,7 @@ void Data::find_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
   depth.reset();
 }
-void Data::find_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
+void Data::find_color(k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
 
   //Get k4a image
@@ -90,7 +90,7 @@ void Data::find_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
   color.reset();
 }
-void Data::find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
+void Data::find_ir(k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
 
   //Get k4a image
@@ -113,7 +113,7 @@ void Data::find_ir(eng::k4n::dev::Sensor* sensor, k4a::capture capture){
 }
 
 //Transformed data
-void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
+void Data::find_depth_to_color(k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 
@@ -138,7 +138,7 @@ void Data::find_depth_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture captu
 
   //---------------------------
 }
-void Data::find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
+void Data::find_depth_and_ir_to_color(k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 
@@ -190,7 +190,7 @@ void Data::find_depth_and_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::captur
 
   //---------------------------
 }
-void Data::find_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
+void Data::find_ir_to_color(k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
   if(!sensor->color.data.k4a_image || !sensor->ir.data.k4a_image) return;
   //---------------------------
 
@@ -226,7 +226,7 @@ void Data::find_ir_to_color(eng::k4n::dev::Sensor* sensor, k4a::capture capture,
 
   //---------------------------
 }
-void Data::find_color_to_depth(eng::k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
+void Data::find_color_to_depth(k4n::dev::Sensor* sensor, k4a::capture capture, k4a::transformation& transformation){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 

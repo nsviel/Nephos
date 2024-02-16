@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
-namespace eng::k4n{class Node;}
+namespace k4n{class Node;}
 namespace velodyne{class Node;}
 
 
@@ -23,10 +23,10 @@ public:
   void gui();
   void exit();
 
-  eng::k4n::Node* get_node_k4n(){return node_k4n;}
+  k4n::Node* get_node_k4n(){return node_k4n;}
 
 private:
-  eng::k4n::Node* node_k4n;
+  k4n::Node* node_k4n;
   velodyne::Node* node_velodyne;
 };
 

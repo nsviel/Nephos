@@ -4,23 +4,23 @@
 #include <Profiler/Namespace.h>
 
 
-namespace eng::k4n::data{
+namespace k4n::data{
 
 //Constructor / Destructor
 Image::Image(){
   //---------------------------
 
-  this->k4a_depth = new eng::k4n::data::Depth();
-  this->k4a_infrared = new eng::k4n::data::Infrared();
+  this->k4a_depth = new k4n::data::Depth();
+  this->k4a_infrared = new k4n::data::Infrared();
 
   //---------------------------
 }
 Image::~Image(){}
 
 //Main function
-void Image::make_images(eng::k4n::dev::Sensor* sensor){
+void Image::make_images(k4n::dev::Sensor* sensor){
   prf::Tasker* profiler = sensor->tasker_cap;
-  eng::k4n::structure::Image* image = &sensor->image;
+  k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
   //Image data copy
@@ -34,8 +34,8 @@ void Image::make_images(eng::k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Image::copy_image_color(eng::k4n::dev::Sensor* sensor){
-  eng::k4n::structure::Image* image = &sensor->image;
+void Image::copy_image_color(k4n::dev::Sensor* sensor){
+  k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
   image->color.data = std::vector<uint8_t>(sensor->color.data.buffer, sensor->color.data.buffer + sensor->color.data.size);
@@ -47,8 +47,8 @@ void Image::copy_image_color(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Image::copy_image_depth(eng::k4n::dev::Sensor* sensor){
-  eng::k4n::structure::Image* image = &sensor->image;
+void Image::copy_image_depth(k4n::dev::Sensor* sensor){
+  k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
   image->depth.data = k4a_depth->convert_depth_into_color(sensor);
@@ -60,8 +60,8 @@ void Image::copy_image_depth(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Image::copy_image_ir(eng::k4n::dev::Sensor* sensor){
-  eng::k4n::structure::Image* image = &sensor->image;
+void Image::copy_image_ir(k4n::dev::Sensor* sensor){
+  k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
   image->ir.data = k4a_infrared->convert_ir_into_color(sensor);

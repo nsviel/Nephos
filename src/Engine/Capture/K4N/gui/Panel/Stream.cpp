@@ -4,21 +4,21 @@
 #include <Utility/Namespace.h>
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 //Constructor / Destructor
-Stream::Stream(eng::k4n::Node* node_k4n, bool* show_window){
+Stream::Stream(k4n::Node* node_k4n, bool* show_window){
   //---------------------------
 
-  eng::Node* engine = node_k4n->get_node_engine();
+  eng::Node* node_engine = node_k4n->get_node_engine();
 
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
 
-  this->vec_gui_stream.push_back(new eng::render::gui::Stream(engine));
-  this->vec_gui_stream.push_back(new eng::render::gui::Stream(engine));
-  this->vec_gui_stream.push_back(new eng::render::gui::Stream(engine));
-  this->vec_gui_stream.push_back(new eng::render::gui::Stream(engine));
+  this->vec_gui_stream.push_back(new eng::render::gui::Stream(node_engine));
+  this->vec_gui_stream.push_back(new eng::render::gui::Stream(node_engine));
+  this->vec_gui_stream.push_back(new eng::render::gui::Stream(node_engine));
+  this->vec_gui_stream.push_back(new eng::render::gui::Stream(node_engine));
 
   this->show_window = show_window;
   this->name = "Stream";
@@ -29,7 +29,7 @@ Stream::~Stream(){}
 
 //Main function
 void Stream::run_panel(){
-  eng::k4n::dev::Master* master = k4n_swarm->get_selected_master();
+  k4n::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
   if(*show_window && master != nullptr && master->nb_entity != 0){
@@ -45,7 +45,7 @@ void Stream::run_panel(){
 
   //---------------------------
 }
-void Stream::design_panel(eng::k4n::dev::Master* master){
+void Stream::design_panel(k4n::dev::Master* master){
   //---------------------------
 
   this->vec_device_tab(master);
@@ -54,14 +54,14 @@ void Stream::design_panel(eng::k4n::dev::Master* master){
 }
 
 //All devices
-void Stream::vec_device_tab(eng::k4n::dev::Master* master){
+void Stream::vec_device_tab(k4n::dev::Master* master){
   //---------------------------
 
   if(ImGui::BeginTabBar("devices_tab##4567")){
     for(int i=0; i< master->list_entity.size(); i++){
       utl::type::Entity* entity = *next(master->list_entity.begin(), i);
 
-      if(eng::k4n::dev::Sensor* sensor = dynamic_cast<eng::k4n::dev::Sensor*>(entity)){
+      if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
         string name = sensor->icon + "  " + sensor->name;
         if(ImGui::BeginTabItem(name.c_str(), NULL)){
           master->set_selected_entity(sensor);
@@ -75,7 +75,7 @@ void Stream::vec_device_tab(eng::k4n::dev::Master* master){
 
   //---------------------------
 }
-void Stream::vec_stream_tab(eng::k4n::dev::Sensor* sensor){
+void Stream::vec_stream_tab(k4n::dev::Sensor* sensor){
   if(!sensor->param.data_ready){return;}
   //---------------------------
 
@@ -120,7 +120,7 @@ void Stream::vec_stream_tab(eng::k4n::dev::Sensor* sensor){
 }
 
 //Device capture windows
-void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
+void Stream::draw_camera_color(k4n::dev::Sensor* sensor, ImVec2 image_size){
   //---------------------------
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
@@ -129,7 +129,7 @@ void Stream::draw_camera_color(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
 
   //---------------------------
 }
-void Stream::draw_camera_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
+void Stream::draw_camera_depth(k4n::dev::Sensor* sensor, ImVec2 image_size){
   //---------------------------
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
@@ -138,7 +138,7 @@ void Stream::draw_camera_depth(eng::k4n::dev::Sensor* sensor, ImVec2 image_size)
 
   //---------------------------
 }
-void Stream::draw_camera_ir(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
+void Stream::draw_camera_ir(k4n::dev::Sensor* sensor, ImVec2 image_size){
   //---------------------------
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
@@ -149,7 +149,7 @@ void Stream::draw_camera_ir(eng::k4n::dev::Sensor* sensor, ImVec2 image_size){
 }
 
 //Overlay
-void Stream::overlay_capture(eng::k4n::dev::Sensor* sensor, eng::k4n::structure::Data* image, ImVec2 image_size, ImVec2 image_pose){
+void Stream::overlay_capture(k4n::dev::Sensor* sensor, k4n::structure::Data* image, ImVec2 image_size, ImVec2 image_pose){
   //---------------------------
 
   //Hovered pixel
@@ -179,7 +179,7 @@ void Stream::overlay_capture(eng::k4n::dev::Sensor* sensor, eng::k4n::structure:
 
   //---------------------------
 }
-void Stream::overlay_information(eng::k4n::dev::Sensor* sensor, eng::k4n::structure::Data* image){
+void Stream::overlay_information(k4n::dev::Sensor* sensor, k4n::structure::Data* image){
   //---------------------------
 
   ImGui::Text("Frame rate: %.2f fps", sensor->param.fps.current);
@@ -190,7 +190,7 @@ void Stream::overlay_information(eng::k4n::dev::Sensor* sensor, eng::k4n::struct
 
   //---------------------------
 }
-void Stream::overlay_pixel(eng::k4n::structure::Data* image, ImVec2 image_size){
+void Stream::overlay_pixel(k4n::structure::Data* image, ImVec2 image_size){
   //---------------------------
 
   if(image->hovered_pixel_x != -1 && image->hovered_pixel_y != -1){
@@ -200,7 +200,7 @@ void Stream::overlay_pixel(eng::k4n::structure::Data* image, ImVec2 image_size){
 
   //---------------------------
 }
-void Stream::compute_hovered_pixel(eng::k4n::structure::Data* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered){
+void Stream::compute_hovered_pixel(k4n::structure::Data* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered){
   //---------------------------
 
   //Reinitialize coord values

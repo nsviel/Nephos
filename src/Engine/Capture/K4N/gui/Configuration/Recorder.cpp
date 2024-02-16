@@ -3,10 +3,10 @@
 #include <K4N/Namespace.h>
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 //Constructor / Destructor
-Recorder::Recorder(eng::k4n::Node* node_k4n){
+Recorder::Recorder(k4n::Node* node_k4n){
   //---------------------------
 
   this->node_k4n = node_k4n;
@@ -17,7 +17,7 @@ Recorder::Recorder(eng::k4n::Node* node_k4n){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::show_sensor_recorder(eng::k4n::dev::Sensor* sensor){
+void Recorder::show_sensor_recorder(k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(ImGui::TreeNode("Recorder")){
@@ -31,7 +31,7 @@ void Recorder::show_sensor_recorder(eng::k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Recorder::recorder_path(eng::k4n::dev::Sensor* sensor){
+void Recorder::recorder_path(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 

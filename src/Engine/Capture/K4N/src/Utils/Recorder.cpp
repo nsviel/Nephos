@@ -4,7 +4,7 @@
 #include <Utility/Function/File/Info.h>
 
 
-namespace eng::k4n::dev{
+namespace k4n::dev{
 
 //Constructor / Destructor
 Recorder::Recorder(){

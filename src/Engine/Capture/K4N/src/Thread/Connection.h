@@ -2,17 +2,17 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng::k4n{class Node;}
-namespace eng::k4n::dev{class Swarm;}
+namespace k4n{class Node;}
+namespace k4n::dev{class Swarm;}
 
 
-namespace eng::k4n::dev{
+namespace k4n::dev{
 
 class Connection
 {
 public:
   //Constructor / Destructor
-  Connection(eng::k4n::Node* node_k4n);
+  Connection(k4n::Node* node_k4n);
   ~Connection();
 
 public:
@@ -26,7 +26,7 @@ public:
   void manage_less_dev(int number);
 
 private:
-  eng::k4n::dev::Swarm* k4n_swarm;
+  k4n::dev::Swarm* k4n_swarm;
 
   std::thread thread;
   bool thread_running = false;

@@ -1,13 +1,12 @@
 #include "Playback.h"
 
-#include <Engine/Capture/K4N/src/Thread/Playback.h>
 #include <K4N/Namespace.h>
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 //Constructor / Destructor
-Playback::Playback(eng::k4n::Node* node_k4n){
+Playback::Playback(k4n::Node* node_k4n){
   //---------------------------
 
   this->node_k4n = node_k4n;
@@ -18,7 +17,7 @@ Playback::Playback(eng::k4n::Node* node_k4n){
 Playback::~Playback(){}
 
 //Main function
-void Playback::show_sensor_configuration(eng::k4n::dev::Sensor* sensor){
+void Playback::show_sensor_configuration(k4n::dev::Sensor* sensor){
   if(sensor == nullptr || !sensor->param.is_playback) return;
   //---------------------------
 
@@ -55,7 +54,7 @@ void Playback::show_sensor_configuration(eng::k4n::dev::Sensor* sensor){
 }
 
 //Design function
-void Playback::show_info_device(eng::k4n::dev::Sensor* sensor){
+void Playback::show_info_device(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Device");
@@ -81,7 +80,7 @@ void Playback::show_info_device(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::show_info_color(eng::k4n::dev::Sensor* sensor){
+void Playback::show_info_color(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
@@ -110,7 +109,7 @@ void Playback::show_info_color(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::show_info_depth(eng::k4n::dev::Sensor* sensor){
+void Playback::show_info_depth(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
@@ -139,7 +138,7 @@ void Playback::show_info_depth(eng::k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::show_info_synch(eng::k4n::dev::Sensor* sensor){
+void Playback::show_info_synch(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);

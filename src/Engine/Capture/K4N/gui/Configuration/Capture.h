@@ -3,33 +3,33 @@
 #include <Utility/Specific/common.h>
 
 namespace gui{class Node;}
-namespace eng::k4n{class Node;}
-namespace eng::k4n::dev{class Sensor;}
-namespace eng::k4n::dev{class Swarm;}
+namespace k4n{class Node;}
+namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Swarm;}
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 class Capture
 {
 public:
   //Constructor / Destructor
-  Capture(eng::k4n::Node* node_k4n);
+  Capture(k4n::Node* node_k4n);
   ~Capture();
 
   //Main function
-  void show_sensor_configuration(eng::k4n::dev::Sensor* sensor);
+  void show_sensor_configuration(k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void list_device(eng::k4n::dev::Sensor* sensor);
-  void configuration_depth(eng::k4n::dev::Sensor* sensor);
-  void configuration_color(eng::k4n::dev::Sensor* sensor);
-  void configuration_device(eng::k4n::dev::Sensor* sensor);
-  void firmware_info(eng::k4n::dev::Sensor* sensor);
+  void list_device(k4n::dev::Sensor* sensor);
+  void configuration_depth(k4n::dev::Sensor* sensor);
+  void configuration_color(k4n::dev::Sensor* sensor);
+  void configuration_device(k4n::dev::Sensor* sensor);
+  void firmware_info(k4n::dev::Sensor* sensor);
 
 private:
-  eng::k4n::Node* node_k4n;
-  eng::k4n::dev::Swarm* k4n_swarm;
+  k4n::Node* node_k4n;
+  k4n::dev::Swarm* k4n_swarm;
 
   int item_width;
 };

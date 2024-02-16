@@ -3,32 +3,32 @@
 #include <Utility/Specific/common.h>
 
 namespace gui{class Node;}
-namespace eng::k4n{class Node;}
-namespace eng::k4n::utils{class Transformation;}
-namespace eng::k4n::dev{class Swarm;}
-namespace eng::k4n::dev{class Sensor;}
+namespace k4n{class Node;}
+namespace k4n::utils{class Transformation;}
+namespace k4n::dev{class Swarm;}
+namespace k4n::dev{class Sensor;}
 
 
-namespace eng::k4n::gui{
+namespace k4n::gui{
 
 class Sensor
 {
 public:
   //Constructor / Destructor
-  Sensor(eng::k4n::Node* node_k4n);
+  Sensor(k4n::Node* node_k4n);
   ~Sensor();
 
   //Main function
-  void show_sensor(eng::k4n::dev::Sensor* sensor);
+  void show_sensor(k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void show_sensor_info(eng::k4n::dev::Sensor* sensor);
-  void show_sensor_transfo(eng::k4n::dev::Sensor* sensor);
+  void show_sensor_info(k4n::dev::Sensor* sensor);
+  void show_sensor_transfo(k4n::dev::Sensor* sensor);
 
 private:
-  eng::k4n::Node* node_k4n;
-  eng::k4n::dev::Swarm* k4n_swarm;
-  eng::k4n::utils::Transformation* k4n_transfo;
+  k4n::Node* node_k4n;
+  k4n::dev::Swarm* k4n_swarm;
+  k4n::utils::Transformation* k4n_transfo;
 
   int item_width;
 };
