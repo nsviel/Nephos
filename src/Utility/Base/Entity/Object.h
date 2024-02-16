@@ -13,7 +13,10 @@
 #include <map>
 #include <mutex>
 
+namespace vk{class Node;}
 namespace eng{class Node;}
+namespace eng::cam{class Node;}
+
 
 namespace utl::entity{
 class Glyph;
@@ -39,8 +42,11 @@ public:
   inline utl::type::Pose* get_pose(){return pose;}
 
 public:
-  eng::Node* node_engine;
+  //Dependancy
+  vk::Node* node_vulkan;
+  eng::cam::Node* node_camera;
 
+  //Child
   utl::type::Data* data;
   utl::type::Pose* pose;
   std::list<utl::entity::Glyph*> list_glyph;

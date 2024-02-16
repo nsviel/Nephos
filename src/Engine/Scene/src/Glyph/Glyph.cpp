@@ -85,20 +85,6 @@ void Glyph::create_glyph_object(utl::entity::Object* object){
 
   //---------------------------
 }
-void Glyph::remove_glyph_object(utl::entity::Object* object){
-  //---------------------------
-
-  for(int i=0; i<object->list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
-    vector<utl::type::Data*> vec_data = glyph->get_vec_data();
-
-    for(int j=0; j<vec_data.size(); j++){
-      vk_graphical->remove_data_in_engine(vec_data[j]);
-    }
-  }
-
-  //---------------------------
-}
 
 //Glyph camera
 void Glyph::create_glyph_camera(utl::entity::Camera* camera){

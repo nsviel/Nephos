@@ -24,11 +24,13 @@ Object::Object(){
 Object::Object(eng::Node* node_engine){
   //---------------------------
 
-  this->node_engine = node_engine;
   this->type = "Object";
   this->pose = new utl::type::Pose();
   this->data = new utl::type::Data();
   this->data->unicolor = math::random_color();
+
+  this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_camera = node_engine->get_node_camera();
 
   //---------------------------
 }
@@ -43,7 +45,6 @@ Object::~Object(){
 
 //Main function
 void Object::update_data(){
-  vk::Node* node_vulkan = node_engine->get_node_vulkan();
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
 
@@ -52,7 +53,6 @@ void Object::update_data(){
   //----------------------------
 }
 void Object::update_pose(){
-  eng::cam::Node* node_camera = node_engine->get_node_camera();
   eng::cam::Control* cam_control = node_camera->get_camera_control();
   //----------------------------
 
@@ -73,14 +73,17 @@ void Object::update_glyph(){
   //----------------------------
 }
 void Object::remove_entity(){
-  vk::Node* node_vulkan = node_engine->get_node_vulkan();
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
-  eng::scene::Node* node_scene = node_engine->get_node_scene();
-  eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   //----------------------------
 
-  sce_glyph->remove_glyph_object(this);
-  vk_graphical->remove_data_in_engine(data);
+  //Remove glyph data
+  for(int i=0; i<list_glyph.size(); i++){
+    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    glyph->clear_data();
+  }
+
+  //Remove this data
+  vk_graphical->remove_data_in_engine(this->data);
 
   //----------------------------
 }

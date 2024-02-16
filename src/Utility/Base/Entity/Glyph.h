@@ -3,10 +3,12 @@
 #include <Utility/Base/Type/Data.h>
 #include <Utility/Specific/common.h>
 
+namespace vk{class Node;}
 namespace eng{class Node;}
+namespace eng::cam{class Node;}
+
 
 namespace utl::entity{
-
 
 class Glyph : public utl::type::Entity
 {
@@ -18,6 +20,7 @@ public:
   //Main function
   void update_data();
   void update_pose();
+  void clear_data();
   void visibility_entity(bool value);
 
   virtual void create(){}
@@ -30,8 +33,11 @@ public:
   inline vec4* get_color(){return &color;}
 
 protected:
-  eng::Node* node_engine;
+  //Dependancy
+  vk::Node* node_vulkan;
+  eng::cam::Node* node_camera;
 
+  //Child
   vector<utl::type::Data*> vec_data;
   utl::type::Pose* pose;
   vec4 color;
