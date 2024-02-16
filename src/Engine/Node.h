@@ -44,9 +44,12 @@ public:
   inline eng::ope::Node* get_node_operation(){return node_operation;}
 
 private:
-  vk::Node* eng_vulkan;
+  //Dependancies
   utl::Node* node_utility;
   prf::Node* node_profiler;
+
+  //Subnodes
+  vk::Node* eng_vulkan;
   prf::Tasker* tasker_cpu;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;

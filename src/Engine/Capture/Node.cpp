@@ -10,6 +10,11 @@ namespace eng::capture{
 Node::Node(eng::Node* node_engine){
   //---------------------------
 
+  //Dependancies
+  this->node_engine = node_engine;
+  this->node_scene = node_engine->get_node_scene();
+
+  //Subnodes
   this->node_k4n = new k4n::Node(node_engine);
   this->node_velodyne = new velodyne::Node(node_engine);
 

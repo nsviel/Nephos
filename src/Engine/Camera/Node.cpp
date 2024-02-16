@@ -13,8 +13,11 @@ Node::Node(eng::Node* node_engine){
   utl::gui::Panel* cam_panel = new_panel("Camera", ICON_FA_CAMERA, false);
   //---------------------------
 
+  //Dependancies
   this->node_utility = node_engine->get_node_utility();
   this->node_scene = node_engine->get_node_scene();
+
+  //Subnodes
   this->cam_manager = new eng::cam::Manager(this);
   this->cam_control = new eng::cam::Control(this);
   this->gui_control = new eng::cam::gui::Control(this);

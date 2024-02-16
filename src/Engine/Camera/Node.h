@@ -34,9 +34,11 @@ public:
   inline eng::cam::Manager* get_camera_manager(){return cam_manager;}
 
 private:
+  //Dependancies
+  utl::Node* node_utility;
   eng::scene::Node* node_scene;
 
-  utl::Node* node_utility;
+  //Subnodes
   eng::cam::Control* cam_control;
   eng::cam::Manager* cam_manager;
   eng::cam::gui::Control* gui_control;

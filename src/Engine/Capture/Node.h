@@ -23,9 +23,16 @@ public:
   void gui();
   void exit();
 
-  k4n::Node* get_node_k4n(){return node_k4n;}
+  inline eng::Node* get_node_engine(){return node_engine;}
+  inline k4n::Node* get_node_k4n(){return node_k4n;}
+  eng::scene::Node* node_scene = engine->get_node_scene();
 
 private:
+  //Dependancies
+  eng::Node* node_engine;
+  eng::scene::Node* node_scene;
+
+  //Subnodes
   k4n::Node* node_k4n;
   velodyne::Node* node_velodyne;
 };
