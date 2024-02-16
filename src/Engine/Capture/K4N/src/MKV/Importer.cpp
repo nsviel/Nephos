@@ -13,7 +13,7 @@ Importer::Importer(eng::k4n::Node* node_k4n){
   this->node_engine = node_k4n->get_node_engine();
   this->k4n_swarm = node_k4n->get_k4n_swarm();
 
-  this->supported_format.push_back("mkv");
+  this->format = "mkv";
 
   //---------------------------
 }

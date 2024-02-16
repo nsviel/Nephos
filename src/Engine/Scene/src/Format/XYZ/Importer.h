@@ -9,7 +9,7 @@
 
 namespace format::xyz{
 
-class Importer
+class Importer : public utl::type::Importer
 {
 public:
   //Constructor / Destructor
@@ -21,8 +21,6 @@ public:
   utl::media::File* Loader(std::string filePath);
 
 private:
-  utl::media::File* data_out;
-  std::string format;
 };
 
 }
