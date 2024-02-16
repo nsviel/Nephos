@@ -10,9 +10,6 @@ namespace format::ptx{class Importer;}
 namespace format::xyz{class Importer;}
 
 
-using MyFile = utl::media::File;
-
-
 namespace eng::scene{
 
 class Format
@@ -24,20 +21,14 @@ public:
 
 public:
   //Main function
-  MyFile* get_data_from_file(std::string path);
+  utl::media::File* import_data_from_path(std::string path);
 
   //Subfunction
+  void insert_importer(utl::type::Importer* importer);
   bool is_format_supported(string format);
 
 private:
-  format::ply::Importer* ply_import;
-  format::obj::Importer* obj_import;
-  format::csv::Importer* csv_import;
-  format::pts::Importer* pts_import;
-  format::ptx::Importer* ptx_import;
-  format::xyz::Importer* xyz_import;
-
-  vector<string> supported_format;
+  vector<utl::type::Importer*> vec_importer;
 };
 
 }

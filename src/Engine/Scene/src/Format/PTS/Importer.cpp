@@ -23,7 +23,7 @@ Importer::~Importer(){}
 utl::media::File* Importer::import_data(std::string path){
   //---------------------------
 
-  utl::media::File* data = new utl::media::File();
+  data = new utl::media::File();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
   data->draw_type_name = "point";
@@ -55,7 +55,7 @@ utl::media::File* Importer::import_data(std::string path){
   //---------------------------
   return data;
 }
-utl::media::File* Importer::Loader(std::string path, int lmin, int lmax){
+utl::media::File* Importer::import_data(std::string path, int lmin, int lmax){
   //---------------------------
 
   utl::media::File* data = new utl::media::File();

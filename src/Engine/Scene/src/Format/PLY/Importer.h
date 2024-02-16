@@ -14,7 +14,7 @@
 
 namespace format::ply{
 
-class Importer
+class Importer : public utl::type::Importer
 {
 public:
   //Constructor / Destructor
@@ -49,14 +49,10 @@ private:
   float get_uchar_from_binary(char* block_data, int& offset);
 
 private:
-  utl::media::File* data;
-
-  //Parametrization
   std::vector<std::string> property_type;
   std::vector<std::string> property_name;
   std::vector<int> property_size;
   std::string property_format;
-  std::string format;
   bool is_timestamp;
   bool is_intensity;
   bool is_normal;

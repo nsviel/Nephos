@@ -13,7 +13,7 @@
 
 namespace format::gltf{
 
-class Importer
+class Importer : public utl::type::Importer
 {
 public:
   //Constructor / Destructor
@@ -29,7 +29,6 @@ public:
 
 private:
   tinygltf::Model model;
-  std::string format;
 };
 
 }

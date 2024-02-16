@@ -9,73 +9,58 @@ namespace eng::scene{
 Format::Format(){
   //---------------------------
 
-  this->ply_import = new format::ply::Importer();
-  this->obj_import = new format::obj::Importer();
-  this->csv_import = new format::csv::Importer();
-  this->pts_import = new format::pts::Importer();
-  this->ptx_import = new format::ptx::Importer();
-  this->xyz_import = new format::xyz::Importer();
-
-  this->supported_format.push_back("pts");
-  this->supported_format.push_back("obj");
-  this->supported_format.push_back("ply");
-  this->supported_format.push_back("xyz");
-  this->supported_format.push_back("pcap");
-  this->supported_format.push_back("ptx");
-  this->supported_format.push_back("csv");
-  this->supported_format.push_back("las");
+  this->insert_importer(new format::ply::Importer());
+  this->insert_importer(new format::obj::Importer());
+  this->insert_importer(new format::csv::Importer());
+  this->insert_importer(new format::pts::Importer());
+  this->insert_importer(new format::ptx::Importer());
+  this->insert_importer(new format::xyz::Importer());
 
   //---------------------------
 }
 Format::~Format(){
   //---------------------------
 
-  delete ply_import;
-  delete obj_import;
-  delete csv_import;
-  delete pts_import;
-  delete ptx_import;
-  delete xyz_import;
+  for(int i=0; i<vec_importer.size(); i++){
+    delete vec_importer[i];
+  }
 
   //---------------------------
 }
 
 //Main functions
-MyFile* Format::get_data_from_file(std::string path){
-  MyFile* data;
+utl::media::File* Format::import_data_from_path(std::string path){
+  utl::media::File* data;
   //---------------------------
 
   std::string format = utl::fct::info::get_format_from_path(path);
-  if     (format == "ply"){
-    data = ply_import->Loader(path);
-  }
-  else if(format == "obj"){
-    data = obj_import->Loader(path);
-  }
-  else if(format == "csv"){
-    data = csv_import->Loader(path);
-  }
-  else if(format == "pcap"){
-    //data = pcap_import->Loader(path);
-  }
-  else if(format == "pts"){
-    data = pts_import->Loader(path);
-  }
-  else if(format == "ptx"){
-    data = ptx_import->Loader(path);
-  }
-  else if(format == "xyz"){
-    data = xyz_import->Loader(path);
+  for(int i=0; i<vec_importer.size(); i++){
+    utl::type::Importer* importer = vec_importer[i];
+
+    if(format == importer->format){
+      data = importer->import_data(path);
+    }
   }
 
-  //---------------------------
+  //--------------------------import_data_from_path
   return data;
+}
+
+//Subfunction
+void Format::insert_importer(utl::type::Importer* importer){
+  //---------------------------
+
+  this->vec_importer.push_back(importer);
+
+  //---------------------------
 }
 bool Format::is_format_supported(string format){
   //---------------------------
 
-  for(int i=0; i<supported_format.size(); i++){
-    if(format == supported_format[i]){
+  for(int i=0; i<vec_importer.size(); i++){
+    utl::type::Importer* importer = vec_importer[i];
+
+    if(format == importer->format){
       return true;
     }
   }

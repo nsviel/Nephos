@@ -79,7 +79,7 @@ utl::type::Entity* Loader::load_entity(std::string path){
 utl::entity::Object* Loader::load_object(string path){
   //---------------------------
 
-  utl::media::File* data = sce_format->get_data_from_file(path);
+  utl::media::File* data = sce_format->import_data_from_path(path);
 
   utl::entity::Object* object = new utl::entity::Object(engine);
   object->data->path_data = path;

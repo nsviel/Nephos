@@ -12,8 +12,8 @@ struct Importer{
   virtual void import(std::string path){}
   virtual utl::media::File* import_data(std::string path){return nullptr;}
 
-  utl::media::File* data_out;
-  std::string format;
+  utl::media::File* data = nullptr;
+  std::string format = "";
 
   //---------------------------
 };

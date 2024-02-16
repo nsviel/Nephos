@@ -5,7 +5,7 @@
 
 namespace format::csv{
 
-class Importer
+class Importer : public utl::type::Importer
 {
 public:
   //Constructor / Destructor
@@ -16,9 +16,6 @@ public:
   utl::media::File* import_data(std::string pathFile);
 
 private:
-  //Datatypes
-  utl::media::File* data_out;
-  std::string format;
 };
 
 }

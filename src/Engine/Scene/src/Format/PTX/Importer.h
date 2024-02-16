@@ -30,7 +30,7 @@ struct PTXCloud{
 };
 
 
-class Importer
+class Importer : public utl::type::Importer
 {
 public:
   //Constructor / Destructor
@@ -61,9 +61,7 @@ public:
   inline void set_notUseZValue(bool value){this->option_notUseZValue = value;}
 
 private:
-  utl::media::File* data;
   std::list<PTXCloud*>* list_ptxCloud;
-  std::string format;
   float x, y, z, I, r, g ,b;
   bool option_separateCloud;
   bool option_scannerAtOrigin;

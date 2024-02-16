@@ -28,7 +28,7 @@ struct Vertex_ref{
   //---------------------------
 };
 
-class Importer
+class Importer : public utl::type::Importer
 {
 public:
   //Constructor / Destructor
@@ -46,10 +46,8 @@ public:
   void fill_data_file(utl::media::File* data, std::vector<Vertex>& vertex_vec);
 
 private:
-  utl::media::File* data_out;
   std::string file_mtl;
   std::string file_texture;
-  std::string format;
   bool is_face;
 };
 
