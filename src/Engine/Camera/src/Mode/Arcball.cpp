@@ -1,6 +1,6 @@
 #include "Arcball.h"
 
-#include <Engine/Camera/Namespace.h>
+#include <Camera/Namespace.h>
 
 
 namespace eng::cam::mode{

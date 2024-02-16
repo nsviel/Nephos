@@ -23,7 +23,7 @@ public:
   inline utl::entity::Camera* get_current_camera(){return current_camera;}
 
 private:
-  eng::Node* engine;
+  eng::Node* node_engine;
   vector<utl::entity::Camera*> vec_camera;
   utl::entity::Camera* current_camera;
 

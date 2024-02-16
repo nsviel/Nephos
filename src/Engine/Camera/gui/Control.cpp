@@ -1,8 +1,7 @@
 #include "Control.h"
 
-#include <Engine/Camera/Namespace.h>
-#include <Utility/Element/Namespace.h>
-#include <Utility/Function/Math/Math.h>
+#include <Camera/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::cam::gui{

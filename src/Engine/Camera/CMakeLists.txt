@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_ENGINE_CAMERA)
+set(LIBRARY_NAME LIBRARY_CAMERA)
 
 #-----------------
 # Source files

@@ -1,9 +1,8 @@
 #include "Node.h"
 
-#include <Engine/Node.h>
-#include <Engine/Camera/Namespace.h>
+#include <Engine/Namespace.h>
+#include <Camera/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Utility/Element/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
