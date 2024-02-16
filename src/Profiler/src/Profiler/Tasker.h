@@ -36,6 +36,7 @@ public:
   inline vector<prf::type::Task>& get_vec_task(){return vec_task;}
   inline float get_loop_fps(){return loop_fps;}
   inline prf::improfil::Manager* get_gui_graph(){return gui_graph;}
+  inline std::string get_name(){return name;}
 
 private:
   prf::timer::Chrono timer;

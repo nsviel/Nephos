@@ -123,7 +123,7 @@ void Panel::draw_graph(){
   if(ImGui::BeginTabBar("device_tab##4567")){
     ImVec2 graph_dim = ImGui::GetContentRegionAvail();
 
-    //All profiling graphs
+    //All profiler graphs
     ImGui::SetNextItemWidth(100);
     if (ImGui::BeginTabItem("All##4568", NULL)){
       graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker.size() - 3);
@@ -134,25 +134,16 @@ void Panel::draw_graph(){
       ImGui::EndTabItem();
     }
 
-    //CPU graph
-    ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("CPU##4567", NULL)){
-      this->draw_profiler_cpu(graph_dim);
-      ImGui::EndTabItem();
-    }
+    //One by one profiler graphs
+    for(int i=0; i<vec_tasker.size(); i++){
+      prf::Tasker* tasker = vec_tasker[i];
 
-    //GPU graph
-    ImGui::SetNextItemWidth(100);
-    if(ImGui::BeginTabItem("GPU##4567", NULL)){
-      this->draw_profiler_gpu(graph_dim);
-      ImGui::EndTabItem();
-    }
-
-    //Capture graph
-    ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("Capture##4567", NULL)){
-      this->draw_profiler_capture(graph_dim);
-      ImGui::EndTabItem();
+      ImGui::SetNextItemWidth(100);
+      string title = tasker->get_name() + "##45454";
+      if (ImGui::BeginTabItem(title.c_str(), NULL)){
+        this->draw_tasker_graph(tasker, graph_dim);
+        ImGui::EndTabItem();
+      }
     }
 
     //Vulkan graph
