@@ -11,12 +11,12 @@ namespace eng::capture{
 Node::Node(eng::Node* node_engine){
   //---------------------------
 
-  //Dependancies
+  //Dependancy
   this->node_engine = node_engine;
   this->node_scene = node_engine->get_node_scene();
   this->node_profiler = node_engine->get_node_profiler();
 
-  //Subnodes
+  //Child
   this->node_k4n = new k4n::Node(this);
   this->node_velodyne = new velodyne::Node(this);
 

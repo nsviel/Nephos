@@ -31,12 +31,12 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
   
 private:
-  //Dependancies
+  //Dependancy
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
   prf::Node* node_profiler;
 
-  //Subnodes
+  //Child
   k4n::Node* node_k4n;
   velodyne::Node* node_velodyne;
 };

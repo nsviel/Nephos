@@ -17,11 +17,11 @@ namespace eng{
 Node::Node(App_main* upnode){
   //---------------------------
 
-  //Dependancies
+  //Dependancy
   this->node_profiler = upnode->get_node_profiler();
   this->node_utility = upnode->get_node_utility();
 
-  //Subnodes
+  //Child
   prf::Manager* profiler = node_profiler->get_profiler_manager();
   this->eng_vulkan = new vk::Node(node_utility);
   this->node_scene = new eng::scene::Node(this);

@@ -27,7 +27,10 @@ public:
   inline eng::ope::gui::Control* get_gui_control(){return gui_control;}
 
 private:
+  //Dependancy
   eng::Node* node_engine;
+
+  //Child
   eng::ope::Wheel* ope_wheel;
   eng::ope::gui::Control* gui_control;
 };

@@ -13,7 +13,10 @@ Node::Node(eng::Node* node_engine){
   utl::gui::Panel* ldr_panel = new_panel("Loader", ICON_FA_FOLDER, false);
   //---------------------------
 
+  //Dependancy
   this->node_engine = node_engine;
+
+  //Child
   this->sce_param = new eng::scene::Parameter();
   this->sce_database = new eng::scene::Database(this);
   this->sce_world = new eng::scene::World(this);

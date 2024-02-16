@@ -35,12 +35,12 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
 private:
-  //Dependancies
+  //Dependancy
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
   prf::Node* node_profiler;
 
-  //Subnodes
+  //Child
   k4n::dev::Swarm* k4n_swarm;
   k4n::dev::Connection* k4n_connection;
   k4n::gui::Player* gui_device;

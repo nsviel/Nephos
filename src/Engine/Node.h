@@ -44,11 +44,11 @@ public:
   inline eng::ope::Node* get_node_operation(){return node_operation;}
 
 private:
-  //Dependancies
+  //Dependancy
   utl::Node* node_utility;
   prf::Node* node_profiler;
 
-  //Subnodes
+  //Child
   vk::Node* eng_vulkan;
   prf::Tasker* tasker_cpu;
   eng::cam::Node* node_camera;

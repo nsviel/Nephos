@@ -29,7 +29,10 @@ public:
   inline eng::shader::SCE* get_shader_scene(){return shader_scene;}
 
 private:
+  //Dependancy
   eng::Node* engine;
+
+  //Child
   eng::renderpass::Manager* eng_renderpass;
   eng::shader::EDL* shader_edl;
   eng::shader::SCE* shader_scene;

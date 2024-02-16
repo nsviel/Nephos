@@ -11,7 +11,10 @@ Node::Node(eng::Node* engine){
   utl::gui::Panel* sha_panel = new_panel("Shader", ICON_FA_ROAD, false);
   //---------------------------
 
+  //Dependancy
   this->engine = engine;
+
+  //Child
   this->shader_edl = new eng::shader::EDL(this);
   this->shader_scene = new eng::shader::SCE(this);
   this->eng_renderpass = new eng::renderpass::Manager(this);

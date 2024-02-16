@@ -12,7 +12,10 @@ Node::Node(eng::Node* node_engine){
   utl::gui::Panel* opt_panel = new_panel("Option##456", ICON_FA_COG, false);
   //---------------------------
 
+  //Dependancy
   this->node_engine = node_engine;
+
+  //Child
   this->gui_option = new eng::gui::Option(node_engine, &opt_panel->is_open);
 
   //---------------------------

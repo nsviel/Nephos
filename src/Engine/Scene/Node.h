@@ -42,7 +42,10 @@ public:
   inline eng::scene::World* get_scene_world(){return sce_world;}
 
 private:
+  //Dependancy
   eng::Node* node_engine;
+
+  //Child
   eng::scene::Parameter* sce_param;
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;

@@ -9,7 +9,10 @@ namespace eng::ope{
 Node::Node(eng::Node* node_engine){
   //---------------------------
 
+  //Dependancy
   this->node_engine = node_engine;
+
+  //Child
   this->ope_wheel = new eng::ope::Wheel(this);
   this->gui_control = new eng::ope::gui::Control(this);
 
