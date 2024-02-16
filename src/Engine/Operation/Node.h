@@ -29,6 +29,7 @@ public:
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline utl::Node* get_node_utility(){return node_utility;}
+  
   inline eng::ope::Wheel* get_ope_wheel(){return ope_wheel;}
   inline eng::ope::gui::Control* get_gui_control(){return gui_control;}
 

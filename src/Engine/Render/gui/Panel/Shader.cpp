@@ -14,7 +14,7 @@ Shader::Shader(eng::render::Node* node_render, bool* show_window){
   //---------------------------
 
   eng::Node* node_engine = node_render->get_node_engine();
-  vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  vk::Node* node_vulkan = node_render->get_node_vulkan();
 
   this->vk_graphical = node_vulkan->get_vk_graphical();
   this->node_render = node_engine->get_node_render();

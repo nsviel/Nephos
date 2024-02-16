@@ -35,8 +35,9 @@ public:
   void wait();
 
   inline utl::Node* get_node_utility(){return node_utility;}
-  inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
+
+  inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::render::Node* get_node_render(){return node_render;}

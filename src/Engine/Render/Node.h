@@ -29,6 +29,7 @@ public:
   inline utl::Node* get_node_utility(){return node_utility;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::Node* get_node_engine(){return node_engine;}
+  
   inline eng::shader::EDL* get_shader_edl(){return shader_edl;}
   inline eng::shader::SCE* get_shader_scene(){return shader_scene;}
 

@@ -30,6 +30,7 @@ public:
 
   inline utl::Node* get_node_utility(){return node_utility;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
+
   inline eng::cam::Control* get_camera_control(){return cam_control;}
   inline eng::cam::Manager* get_camera_manager(){return cam_manager;}
 

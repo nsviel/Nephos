@@ -32,6 +32,7 @@ public:
   void reset();
 
   inline eng::Node* get_node_engine(){return node_engine;}
+  
   inline eng::scene::Parameter* get_scene_param(){return sce_param;}
   inline eng::scene::Scene* get_scene(){return sce_scene;}
   inline eng::scene::Format* get_scene_format(){return sce_format;}
