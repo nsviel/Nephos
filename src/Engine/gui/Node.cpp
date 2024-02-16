@@ -9,7 +9,7 @@ namespace eng::gui{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* opt_panel = new_panel("Option##456", ICON_FA_COG, false);
+  utl::gui::Panel* opt_panel = add_panel("Option##456", ICON_FA_COG, false);
   //---------------------------
 
   //Dependancy

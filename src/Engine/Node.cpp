@@ -32,14 +32,12 @@ Node::Node(App_main* upnode){
   this->node_gui = new eng::gui::Node(this);
   this->tasker_cpu = profiler->get_tasker_cpu();
 
-  this->add_node_panel(node_operation);
   this->add_node_panel(node_camera);
   this->add_node_panel(node_scene);
   this->add_node_panel(node_capture);
   this->add_node_panel(node_render);
   this->add_node_panel(node_profiler);
   this->add_node_panel(node_gui);
-  this->name = "Engine";
 
   //---------------------------
 }

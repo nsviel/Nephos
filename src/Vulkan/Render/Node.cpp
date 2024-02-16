@@ -7,7 +7,7 @@
 namespace vk::render{
 
 Node::Node(vk::Node* node_vulkan){
-  utl::gui::Panel* sha_panel = new_panel("Shader", ICON_FA_ROAD, false);
+  utl::gui::Panel* sha_panel = add_panel("Shader", ICON_FA_ROAD, false);
   //---------------------------
 
   this->node_vulkan = node_vulkan;

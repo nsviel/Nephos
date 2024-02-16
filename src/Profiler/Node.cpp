@@ -7,7 +7,7 @@
 namespace prf{
 
 Node::Node(){
-  utl::gui::Panel* prf_panel = new_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
+  utl::gui::Panel* prf_panel = add_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
   this->profiler_manager = new prf::Manager();

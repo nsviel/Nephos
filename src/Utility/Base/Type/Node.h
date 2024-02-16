@@ -21,7 +21,7 @@ public:
   virtual void exit(){}
   virtual void wait(){}
 
-  utl::gui::Panel* new_panel(string name, string icon, bool value){
+  utl::gui::Panel* add_panel(string name, string icon, bool value){
     //---------------------------
 
     utl::gui::Panel* panel = new utl::gui::Panel(name, icon, value);
@@ -29,21 +29,6 @@ public:
 
     //---------------------------
     return panel;
-  }
-  utl::type::Node* get_node(string name){
-    //---------------------------
-
-    for(int i=0; i<vec_node.size(); i++){
-      utl::type::Node* node = vec_node[i];
-      if(node->name == name){
-        return node;
-      }
-    }
-
-    cout<<"[error] Node "<<name<<" doesn't exists"<<endl;
-
-    //---------------------------
-    return nullptr;
   }
   void add_node_panel(utl::type::Node* node){
     //---------------------------
@@ -60,7 +45,6 @@ protected:
   utl::type::Node* upnode;
   vector<utl::type::Node*> vec_node;
   vector<utl::gui::Panel*> vec_panel;
-  std::string name = "";
 };
 
 }

@@ -8,7 +8,7 @@
 namespace eng::render{
 
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* sha_panel = new_panel("Shader", ICON_FA_ROAD, false);
+  utl::gui::Panel* sha_panel = add_panel("Shader", ICON_FA_ROAD, false);
   //---------------------------
 
   //Dependancy

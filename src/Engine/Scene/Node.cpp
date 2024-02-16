@@ -9,8 +9,8 @@ namespace eng::scene{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* sce_panel = new_panel("Scene", ICON_FA_FILE, false);
-  utl::gui::Panel* ldr_panel = new_panel("Loader", ICON_FA_FOLDER, false);
+  utl::gui::Panel* sce_panel = add_panel("Scene", ICON_FA_FILE, false);
+  utl::gui::Panel* ldr_panel = add_panel("Loader", ICON_FA_FOLDER, false);
   //---------------------------
 
   //Dependancy
