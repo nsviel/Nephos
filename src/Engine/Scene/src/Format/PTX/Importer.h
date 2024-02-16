@@ -61,10 +61,9 @@ public:
   inline void set_notUseZValue(bool value){this->option_notUseZValue = value;}
 
 private:
-  //Datatypes
   utl::media::File* data;
-
   std::list<PTXCloud*>* list_ptxCloud;
+  std::string format;
   float x, y, z, I, r, g ,b;
   bool option_separateCloud;
   bool option_scannerAtOrigin;

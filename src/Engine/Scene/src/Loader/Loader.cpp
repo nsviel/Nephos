@@ -10,19 +10,12 @@ namespace eng::scene{
 Loader::Loader(eng::scene::Node* node_scene){
   //---------------------------
 
+  this->sce_param = node_scene->get_scene_param();
   this->engine = node_scene->get_node_engine();
   this->sce_scene = node_scene->get_scene();
   this->sce_format = new eng::scene::Format();
 
-  this->path_current_dir = "";
-  this->supported_format.push_back("pts");
-  this->supported_format.push_back("obj");
-  this->supported_format.push_back("ply");
-  this->supported_format.push_back("xyz");
-  this->supported_format.push_back("pcap");
-  this->supported_format.push_back("ptx");
-  this->supported_format.push_back("csv");
-  this->supported_format.push_back("las");
+  this->init();
 
   //---------------------------
 }
@@ -35,6 +28,20 @@ Loader::~Loader(){
 }
 
 //Main functions
+void Loader::init(){
+  //---------------------------
+
+  sce_param->supported_format.push_back("pts");
+  sce_param->supported_format.push_back("obj");
+  sce_param->supported_format.push_back("ply");
+  sce_param->supported_format.push_back("xyz");
+  sce_param->supported_format.push_back("pcap");
+  sce_param->supported_format.push_back("ptx");
+  sce_param->supported_format.push_back("csv");
+  sce_param->supported_format.push_back("las");
+
+  //---------------------------
+}
 utl::type::Entity* Loader::load_entity(std::string path){
   utl::type::Entity* entity = nullptr;
   //---------------------------
@@ -104,8 +111,8 @@ utl::entity::Object* Loader::load_object(string path){
 bool Loader::is_format_supported(string format){
   //---------------------------
 
-  for(int i=0; i<supported_format.size(); i++){
-    if(format == supported_format[i]){
+  for(int i=0; i<sce_param->supported_format.size(); i++){
+    if(format == sce_param->supported_format[i]){
       return true;
     }
   }

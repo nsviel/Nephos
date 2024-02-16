@@ -55,6 +55,7 @@ private:
   std::vector<std::string> property_type;
   std::vector<std::string> property_name;
   std::vector<int> property_size;
+  std::string property_format;
   std::string format;
   bool is_timestamp;
   bool is_intensity;

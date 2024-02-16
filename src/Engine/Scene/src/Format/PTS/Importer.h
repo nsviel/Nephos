@@ -47,6 +47,7 @@ private:
   std::vector<float> line_columns;
   std::vector<std::string> dataFormat;
   std::string line;
+  std::string format;
   bool endHeader, FILE_hasHeader;
   bool endParameters;
   bool hasColor;

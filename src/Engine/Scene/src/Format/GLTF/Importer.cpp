@@ -11,6 +11,8 @@ namespace format::gltf{
 Importer::Importer(){
   //---------------------------
 
+  this->format = "gltf";
+
   //---------------------------
 }
 Importer::~Importer(){}

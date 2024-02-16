@@ -4,7 +4,13 @@
 namespace format::obj{
 
 //Constructor / Destructor
-Importer::Importer(){}
+Importer::Importer(){
+  //---------------------------
+
+  this->format = "obj";
+
+  //---------------------------
+}
 Importer::~Importer(){}
 
 //Main function

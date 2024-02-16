@@ -13,6 +13,7 @@ Importer::Importer(){
   this->retrieve_N = true;
   this->IdataFormat = 2;
   this->export_IdataFormat = 2;
+  this->format = "pts";
 
   //---------------------------
 }

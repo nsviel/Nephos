@@ -49,6 +49,7 @@ private:
   utl::media::File* data_out;
   std::string file_mtl;
   std::string file_texture;
+  std::string format;
   bool is_face;
 };
 

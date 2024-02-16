@@ -18,6 +18,7 @@ public:
 private:
   //Datatypes
   utl::media::File* data_out;
+  std::string format;
 };
 
 }

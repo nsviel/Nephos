@@ -4,7 +4,13 @@
 namespace format::xyz{
 
 //Constructor / Destructor
-Importer::Importer(){}
+Importer::Importer(){
+  //---------------------------
+
+  this->format = "xyz";
+
+  //---------------------------
+}
 Importer::~Importer(){}
 
 //Main function

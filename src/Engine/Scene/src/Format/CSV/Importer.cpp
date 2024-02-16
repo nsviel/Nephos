@@ -7,7 +7,13 @@
 namespace format::csv{
 
 //Constructor / Destructor
-Importer::Importer(){}
+Importer::Importer(){
+  //---------------------------
+
+  this->format = "csv";
+
+  //---------------------------
+}
 Importer::~Importer(){}
 
 //Main function

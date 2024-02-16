@@ -17,11 +17,12 @@ public:
   ~Importer();
 
 public:
+  //Main function
   utl::media::File* Loader(std::string filePath);
 
 private:
-  //Datatypes
   utl::media::File* data_out;
+  std::string format;
 };
 
 }

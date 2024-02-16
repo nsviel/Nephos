@@ -4,7 +4,13 @@
 namespace format::ply{
 
 //Constructor / Destructor
-Importer::Importer(){}
+Importer::Importer(){
+  //---------------------------
+
+  this->format = "ply";
+
+  //---------------------------
+}
 Importer::~Importer(){}
 
 //Main loader functions
@@ -22,7 +28,7 @@ utl::media::File* Importer::Loader(std::string path){
   this->Loader_header(file);
 
   //Open data
-  if (format == "ascii"){
+  if (property_format == "ascii"){
 
     //Open file
     std::ifstream file(path);
@@ -40,7 +46,7 @@ utl::media::File* Importer::Loader(std::string path){
     file.close();
 
   }
-  else if (format == "binary_little_endian"){
+  else if (property_format == "binary_little_endian"){
     //Open file
     std::ifstream file(path, std::ios::binary);
 
@@ -57,7 +63,7 @@ utl::media::File* Importer::Loader(std::string path){
     //Close file
     file.close();
   }
-  else if (format == "binary_big_endian"){
+  else if (property_format == "binary_big_endian"){
     //Open file
     std::ifstream file(path, std::ios::binary);
 
@@ -100,7 +106,7 @@ void Importer::Loader_header(std::ifstream& file){
     iss >> h1 >> h2 >> h3 >> h4;
 
     //Retrieve format
-    if(h1 == "format") format = h2;
+    if(h1 == "format") property_format = h2;
 
     //Retrieve number of point
     if(h1 + h2 == "elementvertex"){

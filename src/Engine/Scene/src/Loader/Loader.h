@@ -6,6 +6,7 @@ namespace eng{class Node;}
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Format;}
 namespace eng::scene{class Node;}
+namespace eng::scene{class Parameter;}
 
 
 namespace eng::scene{
@@ -19,6 +20,7 @@ public:
 
 public:
   //Main functions
+  void init();
   utl::type::Entity* load_entity(std::string path);
 
   //Subfunctions
@@ -29,9 +31,7 @@ private:
   eng::Node* engine;
   eng::scene::Format* sce_format;
   eng::scene::Scene* sce_scene;
-
-  vector<string> supported_format;
-  std::string path_current_dir;
+  eng::scene::Parameter* sce_param;
 };
 
 }

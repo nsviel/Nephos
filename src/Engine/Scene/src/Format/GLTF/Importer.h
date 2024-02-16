@@ -29,6 +29,7 @@ public:
 
 private:
   tinygltf::Model model;
+  std::string format;
 };
 
 }
