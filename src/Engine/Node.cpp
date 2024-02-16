@@ -22,7 +22,7 @@ Node::Node(App_main* node_app){
   this->node_utility = node_app->get_node_utility();
 
   //Child
-  prf::Manager* profiler = node_profiler->get_profiler_manager();
+  prf::Manager* profiler = node_profiler->get_prf_profiler();
   this->node_vulkan = new vk::Node(node_utility);
   this->node_scene = new eng::scene::Node(this);
   this->node_camera = new eng::cam::Node(this);

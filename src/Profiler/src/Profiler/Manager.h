@@ -22,6 +22,7 @@ public:
   inline prf::Tasker* get_tasker_cap(){return tasker_cap;}
 
 private:
+  vector<prf::Tasker*> vec_tasker;
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;
   prf::Tasker* tasker_cap;

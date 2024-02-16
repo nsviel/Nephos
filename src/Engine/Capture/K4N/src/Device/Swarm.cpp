@@ -17,7 +17,7 @@ Swarm::Swarm(k4n::Node* node_k4n){
   prf::Node* node_profiler = node_k4n->get_node_profiler();
 
   this->node_k4n = node_k4n;
-  this->profiler = node_profiler->get_profiler_manager();
+  this->profiler = node_profiler->get_prf_profiler();
   this->sce_scene = node_scene->get_scene();
   this->k4n_transfo = new k4n::utils::Transformation();
 

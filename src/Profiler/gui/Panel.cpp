@@ -12,11 +12,11 @@ namespace prf::gui{
 Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
-  this->profiler_manager = node_profiler->get_profiler_manager();
-  this->vulkan_manager = node_profiler->get_vulkan_manager();
-  this->tasker_cpu = profiler_manager->get_tasker_cpu();
-  this->tasker_gpu = profiler_manager->get_tasker_gpu();
-  this->tasker_cap = profiler_manager->get_tasker_cap();
+  this->prf_profiler = node_profiler->get_prf_profiler();
+  this->prf_vulkan = node_profiler->get_prf_vulkan();
+  this->tasker_cpu = prf_profiler->get_tasker_cpu();
+  this->tasker_gpu = prf_profiler->get_tasker_gpu();
+  this->tasker_cap = prf_profiler->get_tasker_cap();
   this->gui_cpu = new prf::improfil::Manager("cpu");
   this->gui_gpu = new prf::improfil::Manager("gpu");
   this->gui_capture = new prf::improfil::Manager("capture");
@@ -64,7 +64,7 @@ void Panel::main_info(){
     ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
 
     //GPU device
-    prf::vulkan::Info* info_vulkan = vulkan_manager->get_info_vulkan();
+    prf::vulkan::Info* info_vulkan = prf_vulkan->get_info_vulkan();
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", info_vulkan->selected_gpu.c_str());
@@ -252,7 +252,7 @@ void Panel::draw_profiler_capture(ImVec2 graph_dim){
   //---------------------------
 }
 void Panel::draw_profiler_vulkan(ImVec2 graph_dim){
-  vector<prf::vulkan::Device>& vec_device = vulkan_manager->get_info_device();
+  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);

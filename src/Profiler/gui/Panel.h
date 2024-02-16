@@ -35,8 +35,8 @@ public:
   void draw_profiler_vulkan(ImVec2 graph_dim);
 
 private:
-  prf::Manager* profiler_manager;
-  prf::vulkan::Manager* vulkan_manager;
+  prf::Manager* prf_profiler;
+  prf::vulkan::Manager* prf_vulkan;
   prf::Tasker* tasker_cpu;
   prf::Tasker* tasker_gpu;
   prf::Tasker* tasker_cap;
