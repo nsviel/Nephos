@@ -13,6 +13,7 @@ Node::Node(){
   this->profiler_manager = new prf::Manager();
   this->vulkan_manager = new prf::vulkan::Manager();
   this->gui_panel = new prf::gui::Panel(this, &prf_panel->is_open);
+  this->name = "Profiler";
 
   //---------------------------
 }

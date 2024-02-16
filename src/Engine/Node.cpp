@@ -1,5 +1,6 @@
 #include "Node.h"
 
+#include <Application/App_main.h>
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
@@ -13,13 +14,13 @@
 namespace eng{
 
 //Constructor / Destructor
-Node::Node(utl::Node* node_utility){
+Node::Node(App_main* upnode){
   //---------------------------
 
-  this->node_profiler = node_utility->get_node_profiler();
+  this->node_profiler = upnode->get_node_profiler();
+  this->node_utility = upnode->get_node_utility();
   prf::Manager* profiler = node_profiler->get_profiler_manager();
 
-  this->node_utility = node_utility;
   this->eng_vulkan = new vk::Node(node_utility);
   this->node_camera = new eng::cam::Node(this);
   this->node_scene = new eng::scene::Node(this);
@@ -36,6 +37,7 @@ Node::Node(utl::Node* node_utility){
   this->add_node_panel(node_render);
   this->add_node_panel(node_profiler);
   this->add_node_panel(node_gui);
+  this->name = "Engine";
 
   //---------------------------
 }

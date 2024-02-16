@@ -15,9 +15,9 @@ App_main::App_main(){
   this->config = new Configuration();
   this->node_profiler = new prf::Node();
   this->node_utility = new utl::Node(config, node_profiler);
-  this->node_engine = new eng::Node(node_utility);
+  this->node_engine = new eng::Node(this);
   this->node_gui = new gui::Node(node_utility, node_engine);
-
+  
   //---------------------------
 }
 App_main::~App_main(){}

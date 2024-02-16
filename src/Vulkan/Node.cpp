@@ -16,6 +16,8 @@ Node::Node(utl::Node* node_utility){
   this->vk_info = new vk::main::Info(struct_vulkan);
   this->vk_texture = new vk::main::Texture(struct_vulkan);
 
+  this->name = "Vulkan";
+
   //---------------------------
 }
 Node::~Node(){}

@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 class Param;
+class App_main;
 namespace vk{class Node;}
 namespace utl{class Node;}
 namespace prf{class Node;}
@@ -21,7 +22,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(utl::Node* node_utility);
+  Node(App_main* upnode);
   ~Node();
 
 public:

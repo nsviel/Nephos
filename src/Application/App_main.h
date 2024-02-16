@@ -23,6 +23,9 @@ public:
   void loop();
   void end();
 
+  inline utl::Node* get_node_utility(){return node_utility;}
+  inline prf::Node* get_node_profiler(){return node_profiler;}
+
 private:
   Configuration* config;
   prf::Node* node_profiler;
