@@ -14,12 +14,6 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
 
   this->prf_manager = node_profiler->get_prf_manager();
   this->prf_vulkan = node_profiler->get_prf_vulkan();
-  this->tasker_cpu = prf_manager->get_tasker_cpu();
-  this->tasker_gpu = prf_manager->get_tasker_gpu();
-  this->tasker_cap = prf_manager->get_tasker_cap();
-  this->gui_cpu = new prf::improfil::Manager("cpu");
-  this->gui_gpu = new prf::improfil::Manager("gpu");
-  this->gui_capture = new prf::improfil::Manager("capture");
 
   this->show_window = show_window;
   this->name = "Profiler";
@@ -68,7 +62,7 @@ void Panel::main_info(){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", info_vulkan->selected_gpu.c_str());
-
+/*
     //Main loop fps
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Loop"); ImGui::TableNextColumn();
@@ -79,7 +73,7 @@ void Panel::main_info(){
     ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", tasker_cpu->get_loop_fps()); //io.Framerate
     ImGui::SameLine();
     ImGui::Text(" FPS ]");
-
+*/
     ImGui::EndTable();
   }
 
@@ -109,9 +103,7 @@ void Panel::main_button(){
   ImGui::SameLine();
   ImGui::SetNextItemWidth(150);
   if(ImGui::SliderInt("Y axis", &max_time, 10, 100, "%d ms")){
-    gui_cpu->set_time_max(max_time);
-    gui_gpu->set_time_max(max_time);
-    gui_capture->set_time_max(max_time);
+    this->set_graphs_max_time(max_time);
   }
 
   //---------------------------
@@ -186,90 +178,6 @@ void Panel::draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim){
 
   //Render profiler
   gui_graph->render_child(graph_dim);
-
-  //---------------------------
-}
-void Panel::draw_profiler_cpu(ImVec2 graph_dim){
-  //---------------------------
-
-  if(!pause){
-    //Reset graph
-    gui_cpu->reset();
-
-    //Assign tasks
-    vector<prf::type::Task>& vec_task = tasker_cpu->get_vec_task();
-    for(int i=0; i<vec_task.size(); i++){
-      prf::type::Task task = vec_task[i];
-
-      if(task.color == vec4(0, 0, 0, 0)){
-        gui_cpu->add_task(task.time_beg, task.time_end, task.name);
-      }else{
-        gui_cpu->add_task(task.time_beg, task.time_end, task.name, task.color);
-      }
-    }
-
-    //load data
-    gui_cpu->load_data_to_graph();
-  }
-
-  //Render profiler
-  gui_cpu->render_child(graph_dim);
-
-  //---------------------------
-}
-void Panel::draw_profiler_gpu(ImVec2 graph_dim){
-  //---------------------------
-
-  if(!pause){
-    //Reset graph
-    gui_gpu->reset();
-
-    //Assign tasks
-    vector<prf::type::Task>& vec_task = tasker_gpu->get_vec_task();
-    for(int i=0; i<vec_task.size(); i++){
-      prf::type::Task task = vec_task[i];
-
-      if(task.color == vec4(0, 0, 0, 0)){
-        gui_gpu->add_task(task.time_beg, task.time_end, task.name);
-      }else{
-        gui_gpu->add_task(task.time_beg, task.time_end, task.name, task.color);
-      }
-    }
-
-    //load data
-    gui_gpu->load_data_to_graph();
-  }
-
-  //Render profiler
-  gui_gpu->render_child(graph_dim);
-
-  //---------------------------
-}
-void Panel::draw_profiler_capture(ImVec2 graph_dim){
-  //---------------------------
-
-  if(!pause){
-    //Reset graph
-    gui_capture->reset();
-
-    //Assign tasks
-    vector<prf::type::Task>& vec_task = tasker_cap->get_vec_task();
-    for(int i=0; i<vec_task.size(); i++){
-      prf::type::Task task = vec_task[i];
-
-      if(task.color == vec4(0, 0, 0, 0)){
-        gui_capture->add_task(task.time_beg, task.time_end, task.name);
-      }else{
-        gui_capture->add_task(task.time_beg, task.time_end, task.name, task.color);
-      }
-    }
-
-    //load data
-    gui_capture->load_data_to_graph();
-  }
-
-  //Render profiler
-  gui_capture->render_child(graph_dim);
 
   //---------------------------
 }
@@ -353,6 +261,19 @@ void Panel::draw_profiler_vulkan(ImVec2 graph_dim){
 
     }
     ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
+void Panel::set_graphs_max_time(int& value){
+  vector<prf::Tasker*> vec_tasker = prf_manager->get_vec_tasker();
+  //---------------------------
+
+  for(int i=0; i<vec_tasker.size(); i++){
+    prf::Tasker* tasker = vec_tasker[i];
+    prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
+    
+    gui_graph->set_time_max(max_time);
   }
 
   //---------------------------
