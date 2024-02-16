@@ -14,7 +14,12 @@ Node::Node(eng::Node* node_engine){
   utl::gui::Panel* str_panel = new_panel("Stream", ICON_FA_FILM, true);
   //---------------------------
 
+  //Dependancies
   this->node_engine = node_engine;
+  this->node_scene = node_engine->get_node_scene();
+  this->node_profiler = node_engine->get_node_profiler();
+  
+  //Subnodes
   this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::dev::Connection(this);
   this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);

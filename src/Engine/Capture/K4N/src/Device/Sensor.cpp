@@ -14,7 +14,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* engine = node_k4n->get_node_engine();
-  eng::scene::Node* node_scene = engine->get_node_scene();
+  eng::scene::Node* node_scene = node_k4n->get_node_scene();
 
   this->engine = engine;
   this->sce_scene = node_scene->get_scene();
