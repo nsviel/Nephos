@@ -34,6 +34,7 @@ void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
   if(!sensor->depth.cloud.k4a_image.is_valid()) return;
   if(!sensor->ir.cloud.k4a_image.is_valid()) return;
   if(sensor->color.cloud.buffer == nullptr) return;
+  if(sensor->color.cloud.size != sensor->depth.cloud.size * 2) return;
   //---------------------------
 
   this->loop_init(sensor);
@@ -59,13 +60,21 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor){
   prf::Tasker* tasker = sensor->tasker;
   //---------------------------
 
-  // Cloud stuff
-  tasker->task_begin("cloud::transformation");
+  //Color
+  k4a::image image_color = sensor->color.cloud.k4a_image;
+  const uint8_t* buffer_color = sensor->color.cloud.buffer;
+
+  //Infrared
+  k4a::image image_ir = sensor->ir.cloud.k4a_image;
+  const uint8_t* buffer_ir = sensor->ir.cloud.buffer;
+
+  //Cloud XYZ
+  //tasker->task_begin("cloud::transformation");
   k4a::image cloud_image;
   this->retrieve_cloud(sensor, cloud_image);
   const int16_t* data_xyz = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
   this->point_cloud_size = cloud_image.get_size() / (3*sizeof(int16_t));
-  tasker->task_end("cloud::transformation");
+  //tasker->task_end("cloud::transformation");
 
   vec_xyz = vector<vec3>(point_cloud_size);
   vec_rgb = vector<vec4>(point_cloud_size);
@@ -73,19 +82,16 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor){
   vec_r = vector<float>(point_cloud_size);
   vec_goodness = vector<bool>(point_cloud_size);
 
-  const uint8_t* data_rgb = sensor->color.cloud.buffer;
-  const uint8_t* data_ir = sensor->ir.cloud.buffer;
-
-  tasker->task_begin("cloud::data");
+  //tasker->task_begin("cloud::data");
   #pragma omp parallel for
   for(int i=0; i<point_cloud_size; i++){
     this->retrieve_location(i, data_xyz);
-    this->retrieve_color(i, data_rgb);
-    this->retrieve_ir(i, data_ir);
+    this->retrieve_color(i, buffer_color);
+    this->retrieve_ir(i, buffer_ir);
     this->retrieve_goodness(i);
     this->insert_data(i);
   }
-  tasker->task_end("cloud::data");
+  //tasker->task_end("cloud::data");
 
   //---------------------------
 }
@@ -96,33 +102,33 @@ void Cloud::loop_end(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Cloud data copy
-  tasker->task_begin("cloud::copying");
+  //tasker->task_begin("cloud::copying");
   data->xyz = vec_xyz;
   data->Is = vec_ir;
   data->R = vec_r;
   data->goodness = vec_goodness;
   data->nb_point = vec_xyz.size();
-  tasker->task_end("cloud::copying");
+  //tasker->task_end("cloud::copying");
 
   //Final colorization
-  tasker->task_begin("cloud::colorization");
+  //tasker->task_begin("cloud::colorization");
   k4n_operation->make_colorization(sensor, vec_rgb);
   data->rgb = vec_rgb;
-  tasker->task_end("cloud::colorization");
+  //tasker->task_end("cloud::colorization");
 
   //Voxelization filtering
-  //tasker->task_begin("cloud::voxel");
+  ////tasker->task_begin("cloud::voxel");
   //float voxel_size = master->voxel.voxel_size;
   //int min_nb_point = master->voxel.min_nb_point;
   //ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
   //ope_voxelizer->reconstruct_data_by_goodness(data);
-  //tasker->task_end("cloud::voxel");
+  ////tasker->task_end("cloud::voxel");
 
   //Update object data
-  tasker->task_begin("cloud::update");
+  //tasker->task_begin("cloud::update");
   utl::entity::Object* object = sensor->get_object();
   object->update_data();
-  tasker->task_end("cloud::update");
+  //tasker->task_end("cloud::update");
 
   //---------------------------
 }
@@ -163,11 +169,11 @@ void Cloud::retrieve_location(int i, const int16_t* data_xyz){
 void Cloud::retrieve_color(int i, const uint8_t* data_rgb){
   if(data_rgb == nullptr) return;
   //---------------------------
-say("---");
+
   int index = i * 4;
-  float r = static_cast<float>(data_rgb[index + 2]) / 255.0f;sayHello();
-  float g = static_cast<float>(data_rgb[index + 1]) / 255.0f;sayHello();
-  float b = static_cast<float>(data_rgb[index + 0]) / 255.0f;sayHello();
+  float r = static_cast<float>(data_rgb[index + 2]) / 255.0f;
+  float g = static_cast<float>(data_rgb[index + 1]) / 255.0f;
+  float b = static_cast<float>(data_rgb[index + 0]) / 255.0f;
   float a = 1.0f;
   rgb = vec4(r, g, b, a);
 
