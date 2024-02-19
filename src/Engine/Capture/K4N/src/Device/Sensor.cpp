@@ -21,7 +21,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->sce_glyph = node_scene->get_scene_glyph();
   this->k4n_capture = new k4n::thread::Capture(node_k4n);
   this->k4n_playback = new k4n::thread::Playback(node_k4n);
-  this->ope_transform = new eng::ope::Transformation();
+  this->k4n_processing = new k4n::thread::Processing(node_k4n);
 
   this->type = "k4n::device::Sensor";
   this->icon = ICON_FA_CAMERA_RETRO;
@@ -33,10 +33,9 @@ Sensor::~Sensor(){
 
   this->remove_entity();
 
-  delete tasker;
   delete k4n_capture;
   delete k4n_playback;
-  delete ope_transform;
+  delete k4n_processing;
 
   //---------------------------
 }
@@ -52,7 +51,7 @@ void Sensor::init(){
   //Sensor tasker
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  this->tasker = prf_manager->new_tasker(param.name, "thread::capture");
+  this->tasker = prf_manager->new_tasker(param.name, "k4n::sensor");
 
   //Sensor cloud
   object = utl::entity::Object(node_engine);
