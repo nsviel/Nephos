@@ -22,8 +22,8 @@ Cloud::~Cloud(){}
 //Main function
 void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
   if(!sensor->depth.cloud.k4a_image.is_valid()) return;
-  if(sensor->depth.cloud.k4a_image.get_width_pixels() < 1000) return;
-  if(!sensor->ir.data.k4a_image.is_valid()) return;
+  if(!sensor->ir.cloud.k4a_image.is_valid()) return;
+  if(sensor->color.cloud.buffer == nullptr) return;
   //---------------------------
 
   this->loop_init(sensor);
@@ -124,10 +124,10 @@ void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image){
 
   //Create cloud image
   cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->cloud.width, depth->cloud.height, depth->cloud.width * sizeof(int16_t) * 3);
-
+//sayHello();
   //Transform depth into cloud
-  sensor->param.transformation.depth_image_to_point_cloud(depth->cloud.k4a_image, K4A_CALIBRATION_TYPE_COLOR, &cloud_image);
-
+  sensor->param.transformation.depth_image_to_point_cloud(depth->cloud.k4a_image, K4A_CALIBRATION_TYPE_DEPTH, &cloud_image);
+//sayHello();
   //---------------------------
 }
 void Cloud::retrieve_location(int i, const int16_t* data_xyz){
@@ -151,6 +151,7 @@ void Cloud::retrieve_location(int i, const int16_t* data_xyz){
   //---------------------------
 }
 void Cloud::retrieve_color(int i, const uint8_t* data_rgb){
+  if(data_rgb == nullptr) return;
   //---------------------------
 
   int index = i * 4;

@@ -123,6 +123,9 @@ void Data::find_data_cloud(k4n::dev::Sensor* sensor, k4a::capture capture){
       break;
     }
     case k4n::transformation::COLOR_TO_DEPTH:{
+      this->find_color_to_depth(sensor, capture, sensor->param.transformation);
+      sensor->depth.cloud = sensor->depth.data;
+      sensor->ir.cloud = sensor->ir.data;
       break;
     }
   }
@@ -261,7 +264,7 @@ void Data::find_color_to_depth(k4n::dev::Sensor* sensor, k4a::capture capture, k
   sensor->color.cloud.timestamp = sensor->color.data.timestamp;
 
   //---------------------------
-  color_from_depth.reset();
+  //color_from_depth.reset();
 }
 
 //Subfunction

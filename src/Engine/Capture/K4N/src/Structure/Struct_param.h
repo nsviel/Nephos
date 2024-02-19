@@ -40,7 +40,7 @@ struct Param{
   //---------------------------
 
   int index = -1;
-  int transformation_mode = k4n::transformation::DEPTH_TO_COLOR;
+  int transformation_mode = k4n::transformation::COLOR_TO_DEPTH;
   bool data_ready = false;
   bool is_playback;
   FPS fps;
