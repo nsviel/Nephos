@@ -22,7 +22,7 @@ Node::Node(eng::capture::Node* node_capture){
 
   //Child
   this->k4n_swarm = new k4n::dev::Swarm(this);
-  this->k4n_connection = new k4n::dev::Connection(this);
+  this->k4n_connection = new k4n::thread::Connection(this);
   this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);
   this->gui_device = new k4n::gui::Player(this, &ply_panel->is_open);
   this->gui_control = new k4n::gui::Control(this);

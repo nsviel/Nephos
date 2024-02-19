@@ -5,7 +5,7 @@
 #include <chrono>
 
 
-namespace k4n::dev{
+namespace k4n::thread{
 
 //Constructor / Destructor
 Connection::Connection(k4n::Node* node_k4n){

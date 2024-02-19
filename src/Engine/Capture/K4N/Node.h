@@ -6,7 +6,7 @@ namespace prf{class Node;}
 namespace eng::capture{class Node;}
 namespace eng::scene{class Node;}
 namespace k4n::dev{class Swarm;}
-namespace k4n::dev{class Connection;}
+namespace k4n::thread{class Connection;}
 namespace k4n::gui{class Player;}
 namespace k4n::gui{class Stream;}
 namespace k4n::gui{class Control;}
@@ -43,7 +43,7 @@ private:
 
   //Child
   k4n::dev::Swarm* k4n_swarm;
-  k4n::dev::Connection* k4n_connection;
+  k4n::thread::Connection* k4n_connection;
   k4n::gui::Player* gui_device;
   k4n::gui::Stream* gui_stream;
   k4n::gui::Control* gui_control;
