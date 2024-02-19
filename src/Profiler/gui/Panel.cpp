@@ -117,7 +117,7 @@ void Panel::draw_graph(){
 
     //All profiler graphs
     ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("All##4568", NULL)){
+    if(vec_tasker.size() > 1 && ImGui::BeginTabItem("All##4568", NULL)){
       graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker.size() - 3);
 
       for(int i=0; i<vec_tasker.size(); i++){
@@ -272,7 +272,7 @@ void Panel::set_graphs_max_time(int& value){
   for(int i=0; i<vec_tasker.size(); i++){
     prf::Tasker* tasker = vec_tasker[i];
     prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
-    
+
     gui_graph->set_time_max(max_time);
   }
 

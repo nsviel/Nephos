@@ -119,7 +119,7 @@ struct Color{
 
   k4n::structure::Color_config config;
   k4n::structure::Data data;
-  k4n::structure::Data data_to_depth;
+  k4n::structure::Data cloud;
 
   //---------------------------
 };

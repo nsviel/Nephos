@@ -27,7 +27,7 @@ struct Depth{
 
   k4n::structure::Depth_config config;
   k4n::structure::Data data;
-  k4n::structure::Data data_to_color;
+  k4n::structure::Data cloud;
 
   //---------------------------
 };
