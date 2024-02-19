@@ -49,7 +49,7 @@ void Sensor::init(){
   string str_mode = param.is_playback ? "playback_" : "capture_";
   this->param.name = str_mode + to_string(param.index);
 
-  //Sensor profiler
+  //Sensor tasker
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   this->tasker_cap = prf_manager->new_tasker(param.name, "thread::capture");

@@ -53,7 +53,7 @@ public:
   inline utl::type::Pose* get_pose(){return object.pose;}
 
 public:
-  prf::Tasker* tasker_cap;
+  prf::Tasker* tasker_cap = nullptr;
   k4n::dev::Master* master;
 
   utl::entity::Object object;
