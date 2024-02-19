@@ -116,7 +116,7 @@ void Data::find_data_ir(k4n::dev::Sensor* sensor, k4a::capture capture){
 void Data::find_data_cloud(k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
 
-  switch(sensor->param.transformation_mode){
+  switch(sensor->master->operation.transformation_mode){
     case k4n::transformation::DEPTH_TO_COLOR:{
       this->find_depth_and_ir_to_color(sensor, capture, sensor->param.transformation);
       sensor->color.cloud = sensor->color.data;

@@ -22,6 +22,7 @@ public:
   //Subfunction
   void show_info(k4n::dev::Master* master);
   void show_colorization(k4n::dev::Master* master);
+  void show_transformation(k4n::dev::Master* master);
   void show_voxelizer(k4n::dev::Master* master);
 
 private:

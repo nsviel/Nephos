@@ -26,6 +26,8 @@ void Master::show_master_info(k4n::dev::Master* master){
   ImGui::Separator();
   this->show_colorization(master);
   ImGui::Separator();
+  this->show_transformation(master);
+  ImGui::Separator();
   this->show_voxelizer(master);
   ImGui::Separator();
 
@@ -111,6 +113,17 @@ void Master::show_colorization(k4n::dev::Master* master){
     }
     ImGui::Unindent();
   }
+
+  //---------------------------
+}
+void Master::show_transformation(k4n::dev::Master* master){
+  //---------------------------
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
+
+  int transformation_mode = 0;
+  ImGui::RadioButton("Depth to color", &master->operation.transformation_mode, k4n::transformation::DEPTH_TO_COLOR);
+  ImGui::RadioButton("Color to depth", &master->operation.transformation_mode, k4n::transformation::COLOR_TO_DEPTH);
 
   //---------------------------
 }
