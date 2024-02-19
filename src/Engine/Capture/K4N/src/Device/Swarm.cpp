@@ -50,7 +50,7 @@ void Swarm::init_scene(){
 
   //Create playback list
   this->create_sensor_playback(file_1);
-  this->create_sensor_playback(file_2);
+  //this->create_sensor_playback(file_2);
   //this->create_sensor_playback(file_4);
 
   //---------------------------
@@ -76,8 +76,9 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   sensor->master = master;
 
   //Sensor initialization
-  master->insert_sensor(sensor);
   sensor->init();
+  master->insert_sensor(sensor);
+
   sce_scene->assign_entity_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, file.path_transfo);
 
@@ -98,9 +99,10 @@ void Swarm::create_sensor_capture(){
   sensor->master = master;
 
   //Sensor initialization
+  sensor->init();
   master->insert_sensor(sensor);
   sce_scene->assign_entity_UID(sensor);
-  sensor->init();
+
   sensor->run_capture();
 
   //---------------------------

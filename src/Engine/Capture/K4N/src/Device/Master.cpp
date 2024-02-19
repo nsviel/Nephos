@@ -23,6 +23,10 @@ Master::~Master(){}
 //Main function
 void Master::insert_sensor(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
+  if(sensor->tasker == nullptr){
+    cout<<"[error] sensor must be initialized before added to master"<<endl;
+    return;
+  }
   //---------------------------
 
   this->insert_entity(sensor);

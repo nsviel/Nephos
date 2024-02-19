@@ -136,11 +136,13 @@ void Panel::draw_graph_all(){
   //---------------------------
 
   //Find not empty taskers
-  vector<prf::Tasker*> vec_tasker = prf_manager->get_vec_tasker();
+  list<prf::Tasker*> list_tasker = prf_manager->get_list_tasker();
   vector<prf::Tasker*> vec_tasker_not_empty;
-  for(int i=0; i<vec_tasker.size(); i++){
-    if(!vec_tasker[i]->is_empty()){
-      vec_tasker_not_empty.push_back(vec_tasker[i]);
+  for(int i=0; i<list_tasker.size(); i++){
+    prf::Tasker* tasker = *next(list_tasker.begin(), i);
+
+    if(!tasker->is_empty()){
+      vec_tasker_not_empty.push_back(tasker);
     }
   }
   if(vec_tasker_not_empty.size() < 2) return;
@@ -171,9 +173,9 @@ void Panel::draw_graph_unique(){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
 
-  vector<prf::Tasker*> vec_tasker = prf_manager->get_vec_tasker();
-  for(int i=0; i<vec_tasker.size(); i++){
-    prf::Tasker* tasker = vec_tasker[i];
+  list<prf::Tasker*> list_tasker = prf_manager->get_list_tasker();
+  for(int i=0; i<list_tasker.size(); i++){
+    prf::Tasker* tasker = *next(list_tasker.begin(), i);
     if(tasker->is_empty()) continue;
 
     ImGui::SetNextItemWidth(100);
@@ -316,11 +318,11 @@ void Panel::draw_profiler_vulkan(ImVec2 graph_dim){
   //---------------------------
 }
 void Panel::set_graphs_max_time(int& value){
-  vector<prf::Tasker*> vec_tasker = prf_manager->get_vec_tasker();
+  list<prf::Tasker*> list_tasker = prf_manager->get_list_tasker();
   //---------------------------
 
-  for(int i=0; i<vec_tasker.size(); i++){
-    prf::Tasker* tasker = vec_tasker[i];
+  for(int i=0; i<list_tasker.size(); i++){
+    prf::Tasker* tasker = *next(list_tasker.begin(), i);
     prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
 
     gui_graph->set_time_max(max_time);

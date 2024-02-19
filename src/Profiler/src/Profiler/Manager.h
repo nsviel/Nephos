@@ -18,12 +18,13 @@ public:
 public:
   //Main function
   prf::Tasker* new_tasker(string name, string type);
+  void remove_tasker(prf::Tasker* tasker);
 
   inline prf::Tasker* get_tasker_main(){return tasker_main;}
-  inline vector<prf::Tasker*> get_vec_tasker(){return vec_tasker;}
+  inline std::list<prf::Tasker*> get_list_tasker(){return list_tasker;}
 
 private:
-  vector<prf::Tasker*> vec_tasker;
+  std::list<prf::Tasker*> list_tasker;
   prf::Tasker* tasker_main;
 };
 

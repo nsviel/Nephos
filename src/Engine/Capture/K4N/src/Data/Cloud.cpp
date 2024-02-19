@@ -46,16 +46,16 @@ void Cloud::loop_init(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::loop_data(k4n::dev::Sensor* sensor){
-  prf::Tasker* profiler = sensor->tasker_cap;
+  prf::Tasker* tasker = sensor->tasker;
   //---------------------------
 
   // Cloud stuff
-  profiler->task_begin("cloud::transformation");
+  tasker->task_begin("cloud::transformation");
   k4a::image cloud_image;
   this->retrieve_cloud(sensor, cloud_image);
   const int16_t* data_xyz = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
   this->point_cloud_size = cloud_image.get_size() / (3*sizeof(int16_t));
-  profiler->task_end("cloud::transformation");
+  tasker->task_end("cloud::transformation");
 
   vec_xyz = vector<vec3>(point_cloud_size);
   vec_rgb = vector<vec4>(point_cloud_size);
@@ -66,7 +66,7 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor){
   const uint8_t* data_rgb = sensor->color.cloud.buffer;
   const uint8_t* data_ir = sensor->ir.cloud.buffer;
 
-  profiler->task_begin("cloud::data");
+  tasker->task_begin("cloud::data");
   #pragma omp parallel for
   for(int i=0; i<point_cloud_size; i++){
     this->retrieve_location(i, data_xyz);
@@ -75,44 +75,44 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor){
     this->retrieve_goodness(i);
     this->insert_data(i);
   }
-  profiler->task_end("cloud::data");
+  tasker->task_end("cloud::data");
 
   //---------------------------
 }
 void Cloud::loop_end(k4n::dev::Sensor* sensor){
   utl::type::Data* data = sensor->get_data();
   k4n::dev::Master* master = sensor->master;
-  prf::Tasker* profiler = sensor->tasker_cap;
+  prf::Tasker* tasker = sensor->tasker;
   //---------------------------
 
   //Cloud data copy
-  profiler->task_begin("cloud::copying");
+  tasker->task_begin("cloud::copying");
   data->xyz = vec_xyz;
   data->Is = vec_ir;
   data->R = vec_r;
   data->goodness = vec_goodness;
   data->nb_point = vec_xyz.size();
-  profiler->task_end("cloud::copying");
+  tasker->task_end("cloud::copying");
 
   //Final colorization
-  profiler->task_begin("cloud::colorization");
+  tasker->task_begin("cloud::colorization");
   k4n_operation->make_colorization(sensor, vec_rgb);
   data->rgb = vec_rgb;
-  profiler->task_end("cloud::colorization");
+  tasker->task_end("cloud::colorization");
 
   //Voxelization filtering
-  //profiler->task_begin("cloud::voxel");
+  //tasker->task_begin("cloud::voxel");
   //float voxel_size = master->voxel.voxel_size;
   //int min_nb_point = master->voxel.min_nb_point;
   //ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
   //ope_voxelizer->reconstruct_data_by_goodness(data);
-  //profiler->task_end("cloud::voxel");
+  //tasker->task_end("cloud::voxel");
 
   //Update object data
-  profiler->task_begin("cloud::update");
+  tasker->task_begin("cloud::update");
   utl::entity::Object* object = sensor->get_object();
   object->update_data();
-  profiler->task_end("cloud::update");
+  tasker->task_end("cloud::update");
 
   //---------------------------
 }

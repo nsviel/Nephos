@@ -33,7 +33,7 @@ Sensor::~Sensor(){
 
   this->remove_entity();
 
-  delete tasker_cap;
+  delete tasker;
   delete k4n_capture;
   delete k4n_playback;
   delete ope_transform;
@@ -52,7 +52,7 @@ void Sensor::init(){
   //Sensor tasker
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  this->tasker_cap = prf_manager->new_tasker(param.name, "thread::capture");
+  this->tasker = prf_manager->new_tasker(param.name, "thread::capture");
 
   //Sensor cloud
   object = utl::entity::Object(node_engine);
@@ -85,7 +85,12 @@ void Sensor::update_pose(){
 void Sensor::remove_entity(){
   //---------------------------
 
-  //First, destroy own elements
+  //Remove tasker
+  prf::Node* node_profiler = node_engine->get_node_profiler();
+  prf::Manager* prf_manager = node_profiler->get_prf_manager();
+  prf_manager->remove_tasker(tasker);
+
+  //Remove sensor elements
   this->stop_threads();
   this->param.transformation.destroy();
   this->object.remove_entity();

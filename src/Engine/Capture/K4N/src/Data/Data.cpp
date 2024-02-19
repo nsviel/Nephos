@@ -26,20 +26,20 @@ Data::~Data(){
 
 //Main function
 void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture capture){
-  prf::Tasker* profiler = sensor->tasker_cap;
+  prf::Tasker* tasker = sensor->tasker;
   //---------------------------
 
   //Capture data
-  profiler->task_begin("data::base");
+  tasker->task_begin("data::base");
   this->find_data_depth(sensor, capture);
   this->find_data_color(sensor, capture);
   this->find_data_ir(sensor, capture);
-  profiler->task_end("data::base");
+  tasker->task_end("data::base");
 
   //Cloud data
-  profiler->task_begin("data::transformation");
+  tasker->task_begin("data::transformation");
   this->find_data_cloud(sensor, capture);
-  profiler->task_end("data::transformation");
+  tasker->task_end("data::transformation");
 
   //Finish
   sensor->master->player.ts_cur = sensor->color.data.timestamp;

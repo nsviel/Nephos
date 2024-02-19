@@ -40,7 +40,7 @@ void Playback::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Playback::run_thread(k4n::dev::Sensor* sensor){
-  prf::Tasker* tasker_cap = sensor->tasker_cap;
+  prf::Tasker* tasker = sensor->tasker;
   //---------------------------
 
   //Init playback
@@ -57,32 +57,32 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   //Playback thread
   k4a::capture capture;
   while(thread_running){
-    tasker_cap->loop_begin(sensor->param.fps.query);
+    tasker->loop_begin(sensor->param.fps.query);
 
     //Next capture
-    tasker_cap->task_begin("capture");
+    tasker->task_begin("capture");
     playback.get_next_capture(&capture);
-    tasker_cap->task_end("capture");
+    tasker->task_end("capture");
     if(!capture) continue;
 
     //Find data from capture
-    tasker_cap->task_begin("data");
+    tasker->task_begin("data");
     k4a_data->find_data_from_capture(sensor, capture);
-    tasker_cap->task_end("data");
+    tasker->task_end("data");
 
     //Convert data into cloud
-    tasker_cap->task_begin("cloud");
+    tasker->task_begin("cloud");
     k4a_cloud->convert_into_cloud(sensor);
-    tasker_cap->task_end("cloud");
+    tasker->task_end("cloud");
 
-    tasker_cap->task_begin("image");
+    tasker->task_begin("image");
     k4n_image->make_images(sensor);
-    tasker_cap->task_end("image");
+    tasker->task_end("image");
 
     //Manage event
     this->manage_pause(sensor);
     this->manage_restart(sensor);
-    tasker_cap->loop_end();
+    tasker->loop_end();
   }
 
   playback.close();
@@ -102,13 +102,13 @@ void Playback::stop_thread(){
 
 //Subfunction
 void Playback::manage_pause(k4n::dev::Sensor* sensor){
-  prf::Tasker* tasker_cap = sensor->tasker_cap;
+  prf::Tasker* tasker = sensor->tasker;
   //---------------------------
 
   //If pause, wait until end pause or end thread
   bool& is_paused = sensor->master->player.pause;
   if(is_paused || !sensor->master->player.play){
-    tasker_cap->clear();
+    tasker->clear();
     while(is_paused && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }

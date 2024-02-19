@@ -20,10 +20,18 @@ prf::Tasker* Manager::new_tasker(string name, string type){
   //---------------------------
 
   prf::Tasker* tasker = new prf::Tasker(name, type);
-  this->vec_tasker.push_back(tasker);
+  this->list_tasker.push_back(tasker);
 
   //---------------------------
   return tasker;
+}
+void Manager::remove_tasker(prf::Tasker* tasker){
+  //---------------------------
+
+  this->list_tasker.remove(tasker);
+  delete tasker;
+
+  //---------------------------
 }
 
 }
