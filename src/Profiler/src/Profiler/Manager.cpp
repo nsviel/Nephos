@@ -9,18 +9,17 @@ namespace prf{
 Manager::Manager(){
   //---------------------------
 
-  this->tasker_main = new_tasker("cpu");
-  this->tasker_cap = new_tasker("thread::capture");
+  this->tasker_main = new_tasker("cpu", "thread::main");
 
   //---------------------------
 }
 Manager::~Manager(){}
 
 //Main function
-prf::Tasker* Manager::new_tasker(string name){
+prf::Tasker* Manager::new_tasker(string name, string type){
   //---------------------------
 
-  prf::Tasker* tasker = new prf::Tasker(name);
+  prf::Tasker* tasker = new prf::Tasker(name, type);
   this->vec_tasker.push_back(tasker);
 
   //---------------------------

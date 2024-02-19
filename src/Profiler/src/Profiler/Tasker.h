@@ -15,7 +15,7 @@ class Tasker
 {
 public:
   //Constructor / Destructor
-  Tasker(string name);
+  Tasker(string name, string type);
   ~Tasker();
 
 public:
@@ -49,6 +49,7 @@ private:
   vector<prf::type::Task> vec_task_current;
   vector<prf::type::Task> vec_task;
   string name;
+  string type;
   float loop_fps;
   bool is_fps_control;
 };

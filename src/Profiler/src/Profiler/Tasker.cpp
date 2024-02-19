@@ -6,10 +6,11 @@
 namespace prf{
 
 //Constructor / Destructor
-Tasker::Tasker(string name){
+Tasker::Tasker(string name, string type){
   //---------------------------
 
   this->name = name;
+  this->type = type;
   this->fps_control = new prf::fps::Control(120);
   this->fps_counter = new prf::fps::Counter();
   this->gui_graph = new prf::improfil::Manager(name);

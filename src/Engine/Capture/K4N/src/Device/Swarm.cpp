@@ -55,20 +55,6 @@ void Swarm::init_scene(){
 
   //---------------------------
 }
-void Swarm::update_profiler(){
-  if(selected_master == nullptr) return;
-  //---------------------------
-
-  prf::Tasker* tasker_cap = profiler->get_tasker_cap();
-  utl::type::Entity* entity = selected_master->selected_entity;
-
-  if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-    vector<prf::type::Task>& vec_task = sensor->tasker_cap->get_vec_task();
-    tasker_cap->set_vec_task(vec_task);
-  }
-
-  //---------------------------
-}
 
 //Sensor function
 void Swarm::create_sensor_playback(utl::media::File& file){

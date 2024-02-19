@@ -19,7 +19,6 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->node_engine = node_engine;
   this->sce_scene = node_scene->get_scene();
   this->sce_glyph = node_scene->get_scene_glyph();
-  this->tasker_cap = new prf::Tasker("thread::capture");
   this->k4n_capture = new k4n::thread::Capture(node_k4n);
   this->k4n_playback = new k4n::thread::Playback(node_k4n);
   this->ope_transform = new eng::ope::Transformation();
@@ -49,6 +48,11 @@ void Sensor::init(){
   //Sensor name
   string str_mode = param.is_playback ? "playback_" : "capture_";
   this->param.name = str_mode + to_string(param.index);
+
+  //Sensor profiler
+  prf::Node* node_profiler = node_engine->get_node_profiler();
+  prf::Manager* prf_manager = node_profiler->get_prf_manager();
+  this->tasker_cap = prf_manager->new_tasker(param.name, "thread::capture");
 
   //Sensor cloud
   object = utl::entity::Object(node_engine);

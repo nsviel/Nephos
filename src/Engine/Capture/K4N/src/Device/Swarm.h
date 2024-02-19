@@ -23,7 +23,6 @@ public:
 public:
   //Main function
   void init_scene();
-  void update_profiler();
 
   //Sensor function
   void create_sensor_playback(utl::media::File& file);
