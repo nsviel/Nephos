@@ -72,7 +72,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
 
     //Convert data into cloud
     tasker->task_begin("cloud");
-    k4a_cloud->convert_into_cloud(sensor);
+    k4a_cloud->start_thread(sensor);
     tasker->task_end("cloud");
 
     tasker->task_begin("image");

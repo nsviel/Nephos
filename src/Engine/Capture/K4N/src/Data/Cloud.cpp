@@ -20,6 +20,16 @@ Cloud::Cloud(k4n::Node* node_k4n){
 Cloud::~Cloud(){}
 
 //Main function
+void Cloud::start_thread(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  if(thread.joinable()){
+    thread.join();
+  }
+  this->thread = std::thread(&Cloud::convert_into_cloud, this, sensor);
+
+  //---------------------------
+}
 void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
   if(!sensor->depth.cloud.k4a_image.is_valid()) return;
   if(!sensor->ir.cloud.k4a_image.is_valid()) return;
@@ -153,11 +163,11 @@ void Cloud::retrieve_location(int i, const int16_t* data_xyz){
 void Cloud::retrieve_color(int i, const uint8_t* data_rgb){
   if(data_rgb == nullptr) return;
   //---------------------------
-
+say("---");
   int index = i * 4;
-  float r = static_cast<float>(data_rgb[index + 2]) / 255.0f;
-  float g = static_cast<float>(data_rgb[index + 1]) / 255.0f;
-  float b = static_cast<float>(data_rgb[index + 0]) / 255.0f;
+  float r = static_cast<float>(data_rgb[index + 2]) / 255.0f;sayHello();
+  float g = static_cast<float>(data_rgb[index + 1]) / 255.0f;sayHello();
+  float b = static_cast<float>(data_rgb[index + 0]) / 255.0f;sayHello();
   float a = 1.0f;
   rgb = vec4(r, g, b, a);
 

@@ -20,6 +20,7 @@ public:
 
 public:
   //Main function
+  void start_thread(k4n::dev::Sensor* sensor);
   void convert_into_cloud(k4n::dev::Sensor* sensor);
 
   //Loop function
@@ -47,6 +48,8 @@ private:
   std::vector<float> vec_r;
   std::vector<bool> vec_goodness;
 
+  std::thread thread;
+  bool thread_running = false;
   int16_t* point_cloud_data;
   int point_cloud_size;
   glm::vec3 xyz;
