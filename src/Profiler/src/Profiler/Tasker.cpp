@@ -18,7 +18,15 @@ Tasker::Tasker(string name, string type){
 
   //---------------------------
 }
-Tasker::~Tasker(){}
+Tasker::~Tasker(){
+  //---------------------------
+
+  delete fps_control;
+  delete fps_counter;
+  delete gui_graph;
+
+  //---------------------------
+}
 
 //Main function
 void Tasker::clear(){
