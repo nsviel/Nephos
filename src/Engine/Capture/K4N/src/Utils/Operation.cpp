@@ -57,16 +57,16 @@ void Operation::make_colorization(k4n::dev::Sensor* sensor, vector<vec4>& vec_rg
   //---------------------------
 
   switch(sensor->master->operation.color_mode){
-    case 1:{//Colored unicolor
+    case k4n::color::UNICOLOR:{
       utl::type::Data* data = sensor->get_data();
       vec_rgba = vector<vec4>(vec_rgba.size(), data->unicolor);
       break;
     }
-    case 2:{//White unicolor
+    case k4n::color::INTENSITY:{
       this->colorization_intensity(sensor, vec_rgba);
       break;
     }
-    case 3:{//Heatmap
+    case k4n::color::HEATMAP:{
       this->colorization_heatmap(sensor, vec_rgba);
       break;
     }
@@ -90,15 +90,15 @@ void Operation::colorization_heatmap(k4n::dev::Sensor* sensor, vector<vec4>& vec
   //---------------------------
 
   switch(sensor->master->operation.heatmap_mode){
-    case 0:{//Intensity
+    case k4n::color::heatmap::INTENSITY:{
       ope_heatmap->heatmap_intensity(vec_rgba, object, sensor->master->operation.intensity_division);
       break;
     }
-    case 1:{//Height
+    case k4n::color::heatmap::HEIGHT:{
       ope_heatmap->heatmap_height(vec_rgba, object, sensor->master->operation.range_height);
       break;
     }
-    case 2:{//Range
+    case k4n::color::heatmap::RANGE:{
       ope_heatmap->heatmap_range(vec_rgba, object);
       break;
     }

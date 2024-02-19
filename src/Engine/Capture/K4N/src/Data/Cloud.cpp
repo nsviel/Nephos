@@ -124,10 +124,10 @@ void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image){
 
   //Create cloud image
   cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->cloud.width, depth->cloud.height, depth->cloud.width * sizeof(int16_t) * 3);
-//sayHello();
+
   //Transform depth into cloud
-  sensor->param.transformation.depth_image_to_point_cloud(depth->cloud.k4a_image, K4A_CALIBRATION_TYPE_DEPTH, &cloud_image);
-//sayHello();
+  sensor->param.transformation.depth_image_to_point_cloud(depth->cloud.k4a_image, depth->cloud.calibration_type, &cloud_image);
+
   //---------------------------
 }
 void Cloud::retrieve_location(int i, const int16_t* data_xyz){

@@ -120,12 +120,14 @@ void Data::find_data_cloud(k4n::dev::Sensor* sensor, k4a::capture capture){
     case k4n::transformation::DEPTH_TO_COLOR:{
       this->find_depth_and_ir_to_color(sensor, capture, sensor->param.transformation);
       sensor->color.cloud = sensor->color.data;
+      sensor->depth.cloud.calibration_type = K4A_CALIBRATION_TYPE_COLOR;
       break;
     }
     case k4n::transformation::COLOR_TO_DEPTH:{
       this->find_color_to_depth(sensor, capture, sensor->param.transformation);
       sensor->depth.cloud = sensor->depth.data;
       sensor->ir.cloud = sensor->ir.data;
+      sensor->depth.cloud.calibration_type = K4A_CALIBRATION_TYPE_DEPTH;
       break;
     }
   }
