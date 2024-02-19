@@ -109,43 +109,70 @@ void Panel::main_button(){
   //---------------------------
 }
 void Panel::draw_graph(){
-  vector<prf::Tasker*> vec_tasker = prf_manager->get_vec_tasker();
   //---------------------------
 
   if(ImGui::BeginTabBar("device_tab##4567")){
-    ImVec2 graph_dim = ImGui::GetContentRegionAvail();
-
-    //All profiler graphs
-    ImGui::SetNextItemWidth(100);
-    if(vec_tasker.size() > 1 && ImGui::BeginTabItem("All##4568", NULL)){
-      graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker.size() - 3);
-
-      for(int i=0; i<vec_tasker.size(); i++){
-        this->draw_tasker_graph(vec_tasker[i], graph_dim);
-      }
-      ImGui::EndTabItem();
-    }
-
-    //One by one profiler graphs
-    for(int i=0; i<vec_tasker.size(); i++){
-      prf::Tasker* tasker = vec_tasker[i];
-
-      ImGui::SetNextItemWidth(100);
-      string title = tasker->get_name() + "##45454";
-      if (ImGui::BeginTabItem(title.c_str(), NULL)){
-        this->draw_tasker_graph(tasker, graph_dim);
-        ImGui::EndTabItem();
-      }
-    }
-
-    //Vulkan graph
-    ImGui::SetNextItemWidth(100);
-    if (ImGui::BeginTabItem("Vulkan##4567", NULL)){
-      this->draw_profiler_vulkan(graph_dim);
-      ImGui::EndTabItem();
-    }
+    this->draw_graph_all();
+    this->draw_graph_unique();
+    this->draw_graph_vulkan();
 
     ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
+void Panel::draw_graph_all(){
+  ImVec2 graph_dim = ImGui::GetContentRegionAvail();
+  //---------------------------
+
+  //Find not empty taskers
+  vector<prf::Tasker*> vec_tasker = prf_manager->get_vec_tasker();
+  vector<prf::Tasker*> vec_tasker_not_empty;
+  for(int i=0; i<vec_tasker.size(); i++){
+    if(!vec_tasker[i]->is_empty()){
+      vec_tasker_not_empty.push_back(vec_tasker[i]);
+    }
+  }
+
+  //All not empty tasker graphs
+  ImGui::SetNextItemWidth(100);
+  if(vec_tasker_not_empty.size() > 1 && ImGui::BeginTabItem("All##4568", NULL)){
+    graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker_not_empty.size() - 3);
+
+    for(int i=0; i<vec_tasker_not_empty.size(); i++){
+      this->draw_tasker_graph(vec_tasker_not_empty[i], graph_dim);
+    }
+    ImGui::EndTabItem();
+  }
+
+  //---------------------------
+}
+void Panel::draw_graph_unique(){
+  ImVec2 graph_dim = ImGui::GetContentRegionAvail();
+  //---------------------------
+
+  vector<prf::Tasker*> vec_tasker = prf_manager->get_vec_tasker();
+  for(int i=0; i<vec_tasker.size(); i++){
+    prf::Tasker* tasker = vec_tasker[i];
+
+    ImGui::SetNextItemWidth(100);
+    string title = tasker->get_name() + "##45454";
+    if (ImGui::BeginTabItem(title.c_str(), NULL)){
+      this->draw_tasker_graph(tasker, graph_dim);
+      ImGui::EndTabItem();
+    }
+  }
+
+  //---------------------------
+}
+void Panel::draw_graph_vulkan(){
+  ImVec2 graph_dim = ImGui::GetContentRegionAvail();
+  //---------------------------
+
+  ImGui::SetNextItemWidth(100);
+  if (ImGui::BeginTabItem("Vulkan##4567", NULL)){
+    this->draw_profiler_vulkan(graph_dim);
+    ImGui::EndTabItem();
   }
 
   //---------------------------

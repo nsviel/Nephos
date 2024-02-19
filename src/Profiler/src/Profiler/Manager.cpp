@@ -9,19 +9,22 @@ namespace prf{
 Manager::Manager(){
   //---------------------------
 
-  this->tasker_cpu = new prf::Tasker("cpu");
-  this->tasker_gpu = new prf::Tasker("gpu");
-  this->tasker_cap = new prf::Tasker("thread::capture");
-
-  this->vec_tasker.push_back(tasker_cpu);
-  //this->vec_tasker.push_back(tasker_gpu);
-  this->vec_tasker.push_back(tasker_cap);
-
+  this->tasker_cpu = new_tasker("cpu");
+  this->tasker_cap = new_tasker("thread::capture");
+  
   //---------------------------
 }
 Manager::~Manager(){}
 
 //Main function
+prf::Tasker* Manager::new_tasker(string name){
+  //---------------------------
 
+  prf::Tasker* tasker = new prf::Tasker(name);
+  this->vec_tasker.push_back(tasker);
+
+  //---------------------------
+  return tasker;
+}
 
 }

@@ -6,6 +6,13 @@
 namespace prf{class Tasker;}
 
 
+namespace prf::tasker{
+enum ID{
+  MAIN_CPU = 0,
+  MAIN_GPU = 1,
+};
+}
+
 namespace prf{
 
 class Manager
@@ -17,16 +24,15 @@ public:
 
 public:
   //Main function
+  prf::Tasker* new_tasker(string name);
 
   inline prf::Tasker* get_tasker_cpu(){return tasker_cpu;}
-  inline prf::Tasker* get_tasker_gpu(){return tasker_gpu;}
   inline prf::Tasker* get_tasker_cap(){return tasker_cap;}
   inline vector<prf::Tasker*> get_vec_tasker(){return vec_tasker;}
 
 private:
   vector<prf::Tasker*> vec_tasker;
   prf::Tasker* tasker_cpu;
-  prf::Tasker* tasker_gpu;
   prf::Tasker* tasker_cap;
 };
 

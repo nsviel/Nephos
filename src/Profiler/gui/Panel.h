@@ -27,6 +27,9 @@ public:
   void main_info();
   void main_button();
   void draw_graph();
+  void draw_graph_all();
+  void draw_graph_unique();
+  void draw_graph_vulkan();
 
   //Profiler
   void draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim);

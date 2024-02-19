@@ -37,6 +37,7 @@ public:
   inline float get_loop_fps(){return loop_fps;}
   inline prf::improfil::Manager* get_gui_graph(){return gui_graph;}
   inline std::string get_name(){return name;}
+  inline bool is_empty(){return vec_task.empty();}
 
 private:
   prf::timer::Chrono timer;
@@ -48,8 +49,8 @@ private:
   vector<prf::type::Task> vec_task_current;
   vector<prf::type::Task> vec_task;
   string name;
-  bool is_fps_control;
   float loop_fps;
+  bool is_fps_control;
 };
 
 }
