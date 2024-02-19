@@ -5,6 +5,15 @@
 #include <string>
 
 
+namespace k4n::transformation{
+
+enum Mode{
+  DEPTH_TO_COLOR = 0,
+  COLOR_TO_DEPTH = 1,
+};
+
+}
+
 namespace k4n::structure{
 
 struct FPS{
@@ -31,6 +40,7 @@ struct Param{
   //---------------------------
 
   int index = -1;
+  int transformation_mode = k4n::transformation::DEPTH_TO_COLOR;
   bool data_ready = false;
   bool is_playback;
   FPS fps;

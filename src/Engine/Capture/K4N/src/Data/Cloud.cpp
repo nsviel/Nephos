@@ -63,7 +63,7 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor){
   vec_r = vector<float>(point_cloud_size);
   vec_goodness = vector<bool>(point_cloud_size);
 
-  const uint8_t* data_rgb = sensor->color.data.buffer;
+  const uint8_t* data_rgb = sensor->color.cloud.buffer;
   const uint8_t* data_ir = sensor->ir.cloud.buffer;
 
   profiler->task_begin("cloud::data");
