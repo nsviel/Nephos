@@ -26,13 +26,13 @@ public:
   //Main function
   prf::Tasker* new_tasker(string name);
 
-  inline prf::Tasker* get_tasker_cpu(){return tasker_cpu;}
+  inline prf::Tasker* get_tasker_main(){return tasker_main;}
   inline prf::Tasker* get_tasker_cap(){return tasker_cap;}
   inline vector<prf::Tasker*> get_vec_tasker(){return vec_tasker;}
 
 private:
   vector<prf::Tasker*> vec_tasker;
-  prf::Tasker* tasker_cpu;
+  prf::Tasker* tasker_main;
   prf::Tasker* tasker_cap;
 };
 

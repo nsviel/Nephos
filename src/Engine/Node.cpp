@@ -30,7 +30,7 @@ Node::Node(App_main* node_app){
   this->node_render = new eng::render::Node(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_gui = new eng::gui::Node(this);
-  this->tasker_cpu = profiler->get_tasker_cpu();
+  this->tasker_main = profiler->get_tasker_main();
 
   this->add_node_panel(node_camera);
   this->add_node_panel(node_scene);
@@ -55,37 +55,37 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
-  tasker_cpu->task_begin("eng");
+  tasker_main->task_begin("eng");
   //---------------------------
 
-  tasker_cpu->task_begin("eng::vulkan");
+  tasker_main->task_begin("eng::vulkan");
   node_vulkan->loop();
-  tasker_cpu->task_end("eng::vulkan");
+  tasker_main->task_end("eng::vulkan");
 
   node_camera->loop();
   node_capture->loop();
 
-  tasker_cpu->task_begin("eng::scene");
+  tasker_main->task_begin("eng::scene");
   node_scene->loop();
-  tasker_cpu->task_end("eng::scene");
+  tasker_main->task_end("eng::scene");
 
   //---------------------------
-  tasker_cpu->task_end("eng");
+  tasker_main->task_end("eng");
 }
 void Node::gui(){
   //---------------------------
 
-  tasker_cpu->task_begin("eng::gui");
+  tasker_main->task_begin("eng::gui");
   node_scene->gui();
   node_render->gui();
   node_capture->gui();
   node_camera->gui();
   node_gui->gui();
-  tasker_cpu->task_end("eng::gui");
+  tasker_main->task_end("eng::gui");
 
-  tasker_cpu->task_begin("gui::profiler");
+  tasker_main->task_begin("gui::profiler");
   node_profiler->gui();
-  tasker_cpu->task_end("gui::profiler");
+  tasker_main->task_end("gui::profiler");
 
   //---------------------------
 }

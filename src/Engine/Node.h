@@ -50,7 +50,7 @@ private:
 
   //Child
   vk::Node* node_vulkan;
-  prf::Tasker* tasker_cpu;
+  prf::Tasker* tasker_main;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;

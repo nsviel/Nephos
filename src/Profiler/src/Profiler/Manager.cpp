@@ -9,9 +9,9 @@ namespace prf{
 Manager::Manager(){
   //---------------------------
 
-  this->tasker_cpu = new_tasker("cpu");
+  this->tasker_main = new_tasker("cpu");
   this->tasker_cap = new_tasker("thread::capture");
-  
+
   //---------------------------
 }
 Manager::~Manager(){}

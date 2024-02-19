@@ -32,7 +32,7 @@ void Graphical::draw_frame(){
   for(int i=0; i<nb_renderpass; i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     string name = "eng::rp::" + renderpass->name;
-    struct_vulkan->tasker_cpu->task_begin(name);
+    struct_vulkan->tasker_main->task_begin(name);
 
     //Create command
     vk::structure::Command* command = new vk::structure::Command();
@@ -50,7 +50,7 @@ void Graphical::draw_frame(){
     //struct_vulkan->queue.graphics->add_command(command);
 
 
-    struct_vulkan->tasker_cpu->task_end(name);
+    struct_vulkan->tasker_main->task_end(name);
   }
 
   vk_presentation->image_presentation(semaphore->end);

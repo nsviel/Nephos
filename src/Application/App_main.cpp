@@ -45,18 +45,18 @@ void App_main::init(){
 }
 void App_main::loop(){
   prf::Manager* profiler = node_profiler->get_prf_manager();
-  prf::Tasker* tasker_cpu = profiler->get_tasker_cpu();
+  prf::Tasker* tasker_main = profiler->get_tasker_main();
   //---------------------------
 
   auto start_time = std::chrono::steady_clock::now();
   while(config->run_app){
-    tasker_cpu->loop_begin(120);
+    tasker_main->loop_begin(120);
 
     node_engine->loop();
     node_utility->loop();
     node_gui->loop();
 
-    tasker_cpu->loop_end();
+    tasker_main->loop_end();
   }
   node_engine->wait();
   node_gui->wait();

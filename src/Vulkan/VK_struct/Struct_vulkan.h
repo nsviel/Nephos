@@ -18,7 +18,7 @@ struct Vulkan{
     utl::element::Window* utl_window = node_utility->get_utl_window();
 
     this->window.glfw_window = utl_window->get_window();
-    this->tasker_cpu = prf_profiler->get_tasker_cpu();
+    this->tasker_main = prf_profiler->get_tasker_main();
     this->tasker_gpu = prf_profiler->new_tasker("gpu");
     this->prf_vulkan = node_profiler->get_prf_vulkan();
   }
@@ -40,7 +40,7 @@ struct Vulkan{
   vk::structure::Queue_class queue;
 
   //Profiling
-  prf::Tasker* tasker_cpu;
+  prf::Tasker* tasker_main;
   prf::Tasker* tasker_gpu;
   prf::vulkan::Manager* prf_vulkan;
 
