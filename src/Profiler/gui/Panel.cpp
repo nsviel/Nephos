@@ -133,10 +133,19 @@ void Panel::draw_graph_all(){
       vec_tasker_not_empty.push_back(vec_tasker[i]);
     }
   }
+  if(vec_tasker_not_empty.size() < 2) return;
+
+  //Stuff to force first-opened tab
+  static bool first_tab_open = true;
+  ImGuiTabItemFlags flag = 0;
+  if(first_tab_open){
+    flag = ImGuiTabItemFlags_SetSelected;
+    first_tab_open = false;
+  }
 
   //All not empty tasker graphs
   ImGui::SetNextItemWidth(100);
-  if(vec_tasker_not_empty.size() > 1 && ImGui::BeginTabItem("All##4568", NULL)){
+  if(ImGui::BeginTabItem("All##4568", NULL, flag)){
     graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker_not_empty.size() - 3);
 
     for(int i=0; i<vec_tasker_not_empty.size(); i++){
@@ -154,6 +163,7 @@ void Panel::draw_graph_unique(){
   vector<prf::Tasker*> vec_tasker = prf_manager->get_vec_tasker();
   for(int i=0; i<vec_tasker.size(); i++){
     prf::Tasker* tasker = vec_tasker[i];
+    if(tasker->is_empty()) continue;
 
     ImGui::SetNextItemWidth(100);
     string title = tasker->get_name() + "##45454";
