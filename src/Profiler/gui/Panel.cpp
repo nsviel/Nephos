@@ -62,18 +62,26 @@ void Panel::main_info(){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", info_vulkan->selected_gpu.c_str());
-/*
-    //Main loop fps
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Loop"); ImGui::TableNextColumn();
-    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / tasker_main->get_loop_fps());
-    ImGui::SameLine();
-    ImGui::Text(" ms/frame [");
-    ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", tasker_main->get_loop_fps()); //io.Framerate
-    ImGui::SameLine();
-    ImGui::Text(" FPS ]");
-*/
+
+    //Selected tasker
+    if(selected_tasker != nullptr){
+      //Type
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Type"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%s", selected_tasker->get_type().c_str());
+
+      //FPS
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Loop"); ImGui::TableNextColumn();
+      ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / selected_tasker->get_loop_fps());
+      ImGui::SameLine();
+      ImGui::Text(" ms/frame [");
+      ImGui::SameLine();
+      ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", selected_tasker->get_loop_fps()); //io.Framerate
+      ImGui::SameLine();
+      ImGui::Text(" FPS ]");
+    }
+
     ImGui::EndTable();
   }
 
@@ -121,6 +129,8 @@ void Panel::draw_graph(){
 
   //---------------------------
 }
+
+//Graph subfunction
 void Panel::draw_graph_all(){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
@@ -146,6 +156,7 @@ void Panel::draw_graph_all(){
   //All not empty tasker graphs
   ImGui::SetNextItemWidth(100);
   if(ImGui::BeginTabItem("All##4568", NULL, flag)){
+    this->selected_tasker = prf_manager->get_tasker_main();
     graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker_not_empty.size() - 3);
 
     for(int i=0; i<vec_tasker_not_empty.size(); i++){
@@ -168,6 +179,7 @@ void Panel::draw_graph_unique(){
     ImGui::SetNextItemWidth(100);
     string title = tasker->get_name() + "##45454";
     if (ImGui::BeginTabItem(title.c_str(), NULL)){
+      this->selected_tasker = tasker;
       this->draw_tasker_graph(tasker, graph_dim);
       ImGui::EndTabItem();
     }
@@ -181,6 +193,7 @@ void Panel::draw_graph_vulkan(){
 
   ImGui::SetNextItemWidth(100);
   if (ImGui::BeginTabItem("Vulkan##4567", NULL)){
+    this->selected_tasker = prf_manager->get_tasker_main();
     this->draw_profiler_vulkan(graph_dim);
     ImGui::EndTabItem();
   }

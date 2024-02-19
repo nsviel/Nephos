@@ -27,6 +27,8 @@ public:
   void main_info();
   void main_button();
   void draw_graph();
+
+  //Graph subfunction
   void draw_graph_all();
   void draw_graph_unique();
   void draw_graph_vulkan();
@@ -39,6 +41,7 @@ public:
 private:
   prf::Manager* prf_manager;
   prf::vulkan::Manager* prf_vulkan;
+  prf::Tasker* selected_tasker;
 
   bool* show_window;
   string name;

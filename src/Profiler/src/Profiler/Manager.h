@@ -25,7 +25,6 @@ public:
 private:
   vector<prf::Tasker*> vec_tasker;
   prf::Tasker* tasker_main;
-  prf::Tasker* tasker_cap;
 };
 
 }
