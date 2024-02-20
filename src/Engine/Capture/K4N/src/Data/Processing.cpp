@@ -37,7 +37,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
 
   //Voxelization filtering
   tasker->task_begin("voxel");
-  //this->voxelize_object(sensor);
+  this->voxelize_object(sensor);
   tasker->task_end("voxel");
 
   //Update object data
