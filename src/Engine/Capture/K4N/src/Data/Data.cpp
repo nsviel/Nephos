@@ -14,6 +14,7 @@ Data::Data(){
   this->k4a_depth = new k4n::data::Depth();
   this->k4a_infrared = new k4n::data::Infrared();
   this->k4a_cloud = new k4n::data::Cloud();
+  this->k4n_image = new k4n::data::Image();
 
   //---------------------------
 }
@@ -52,6 +53,9 @@ void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture capture
 
   //Convert data into cloud
   k4a_cloud->start_thread(sensor);
+
+  //Encode image as texture
+  k4n_image->start_thread(sensor);
 
   //---------------------------
 }

@@ -29,16 +29,28 @@ void Image::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Image::make_images(k4n::dev::Sensor* sensor){
-  prf::Tasker* tasker = sensor->profiler->get_tasker("capture");
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  //Image data copy
-  tasker->task_begin("image::data");
+  prf::Tasker* tasker = sensor->profiler->get_tasker("image");
+  tasker->loop_begin();
+
+  //Color image
+  tasker->task_begin("color");
   this->copy_image_color(sensor);
+  tasker->task_end("color");
+
+  //Depth image
+  tasker->task_begin("depth");
   this->copy_image_depth(sensor);
+  tasker->task_end("depth");
+
+  //Infrared image
+  tasker->task_begin("infrared");
   this->copy_image_ir(sensor);
-  tasker->task_end("image::data");
+  tasker->task_end("infrared");
+
+  tasker->loop_end();
 
   //---------------------------
 }

@@ -55,6 +55,7 @@ void Sensor::init(){
   this->profiler->new_tasker("capture");
   this->profiler->new_tasker("data");
   this->profiler->new_tasker("cloud");
+  this->profiler->new_tasker("image");
   this->profiler->new_tasker("postprocessing");
 
   //Sensor cloud

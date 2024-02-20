@@ -12,7 +12,6 @@ Playback::Playback(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4a_data = new k4n::data::Data();
-  this->k4n_image = new k4n::data::Image();
   this->k4n_configuration = new k4n::config::Configuration();
   this->k4n_calibration = new k4n::config::Calibration();
   this->k4n_operation= new k4n::utils::Operation();
@@ -68,12 +67,6 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
     tasker->task_begin("data");
     k4a_data->find_data_from_capture(sensor, capture);
     tasker->task_end("data");
-
-
-
-    tasker->task_begin("image");
-    k4n_image->start_thread(sensor);
-    tasker->task_end("image");
 
     //Manage event
     this->manage_pause(sensor);

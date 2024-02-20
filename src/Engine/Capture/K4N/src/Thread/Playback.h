@@ -8,7 +8,6 @@ namespace eng{class Node;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::data{class Data;}
-namespace k4n::data{class Image;}
 namespace k4n::config{class Configuration;}
 namespace k4n::config{class Calibration;}
 namespace k4n::utils{class Operation;}
@@ -38,7 +37,6 @@ public:
 
 private:
   k4n::data::Data* k4a_data;
-  k4n::data::Image* k4n_image;
   k4n::config::Configuration* k4n_configuration;
   k4n::config::Calibration* k4n_calibration;
   k4n::utils::Operation* k4n_operation;

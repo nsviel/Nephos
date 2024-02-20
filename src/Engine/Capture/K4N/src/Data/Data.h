@@ -8,6 +8,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::data{class Depth;}
 namespace k4n::data{class Infrared;}
 namespace k4n::data{class Cloud;}
+namespace k4n::data{class Image;}
 
 
 namespace k4n::data{
@@ -44,6 +45,8 @@ private:
   k4n::data::Depth* k4a_depth;
   k4n::data::Infrared* k4a_infrared;
   k4n::data::Cloud* k4a_cloud;
+  k4n::data::Image* k4n_image;
+  
   tjhandle tj_handle;
 };
 
