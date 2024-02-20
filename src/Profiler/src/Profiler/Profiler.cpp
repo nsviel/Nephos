@@ -21,6 +21,18 @@ Profiler::~Profiler(){
 }
 
 //Main function
+void Profiler::clear(){
+  //---------------------------
+
+  for(int i=0; i<vec_tasker.size(); i++){
+    prf::Tasker* tasker = vec_tasker[i];
+    tasker->clear();
+  }
+
+  //---------------------------
+}
+
+//Tasker function
 prf::Tasker* Profiler::new_tasker(string name){
   //---------------------------
 

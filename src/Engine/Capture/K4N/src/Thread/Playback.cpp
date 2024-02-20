@@ -40,8 +40,7 @@ void Playback::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Playback::run_thread(k4n::dev::Sensor* sensor){
-  prf::Profiler* profiler = sensor->profiler;
-  prf::Tasker* tasker = profiler->get_tasker("capture");
+  prf::Tasker* tasker = sensor->profiler->get_tasker("capture");
   //---------------------------
 
   //Init playback
@@ -72,9 +71,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
     tasker->task_end("data");
 
     //Convert data into cloud
-    tasker->task_begin("cloud");
     k4a_cloud->start_thread(sensor);
-    tasker->task_end("cloud");
 
     tasker->task_begin("image");
     k4n_image->make_images(sensor);
@@ -103,14 +100,12 @@ void Playback::stop_thread(){
 
 //Subfunction
 void Playback::manage_pause(k4n::dev::Sensor* sensor){
-  prf::Profiler* profiler = sensor->profiler;
-  prf::Tasker* tasker = profiler->get_tasker("capture");
   //---------------------------
 
   //If pause, wait until end pause or end thread
   bool& is_paused = sensor->master->player.pause;
   if(is_paused || !sensor->master->player.play){
-    tasker->clear();
+    sensor->profiler->clear();
     while(is_paused && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }

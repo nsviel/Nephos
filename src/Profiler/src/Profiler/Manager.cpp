@@ -28,6 +28,13 @@ prf::Profiler* Manager::new_profiler(string name, string type){
   //---------------------------
   return profiler;
 }
+void Manager::new_profiler(prf::Profiler* profiler){
+  //---------------------------
+
+  this->list_profiler.push_back(profiler);
+
+  //---------------------------
+}
 void Manager::remove_profiler(prf::Profiler* profiler){
   //---------------------------
 

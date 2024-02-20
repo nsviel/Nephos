@@ -17,6 +17,9 @@ public:
 
 public:
   //Main function
+  void clear();
+
+  //Tasker function
   prf::Tasker* new_tasker(string name);
   prf::Tasker* get_tasker(string name);
   prf::vulkan::Manager* get_tasker_vulkan();

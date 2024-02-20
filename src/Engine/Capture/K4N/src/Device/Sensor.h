@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Profiler/src/Profiler/Profiler.h>
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
 
@@ -53,7 +54,7 @@ public:
   inline utl::type::Pose* get_pose(){return object.pose;}
 
 public:
-  prf::Profiler* profiler = nullptr;
+  prf::Profiler* profiler;
   k4n::dev::Master* master;
 
   utl::entity::Object object;

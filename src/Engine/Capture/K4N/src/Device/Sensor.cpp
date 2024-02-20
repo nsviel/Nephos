@@ -48,7 +48,7 @@ void Sensor::init(){
   string str_mode = param.is_playback ? "playback_" : "capture_";
   this->param.name = str_mode + to_string(param.index);
 
-  //Sensor tasker
+  //Sensor profiler
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   this->profiler = prf_manager->new_profiler(param.name, "k4n::sensor");

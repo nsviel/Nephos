@@ -19,6 +19,7 @@ public:
 public:
   //Main function
   prf::Profiler* new_profiler(string name, string type);
+  void new_profiler(prf::Profiler* profiler);
   void remove_profiler(prf::Profiler* profiler);
 
   inline prf::Profiler* get_profiler_main(){return profiler_main;}
