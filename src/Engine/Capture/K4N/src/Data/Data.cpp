@@ -27,29 +27,21 @@ Data::~Data(){
 }
 
 //Main function
-void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture capture){
-  prf::Tasker* tasker = sensor->profiler->get_tasker("data");
+void Data::start_thread(k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
 
-  tasker->loop_begin();
+  if(thread.joinable()){
+    thread.join();
+  }
+  this->thread = std::thread(&Data::run_thread, this, sensor, capture);
 
-  //Capture data
-  tasker->task_begin("data::base");
-  this->find_data_depth(sensor, capture);
-  this->find_data_color(sensor, capture);
-  this->find_data_ir(sensor, capture);
-  tasker->task_end("data::base");
+  //---------------------------
+}
+void Data::run_thread(k4n::dev::Sensor* sensor, k4a::capture capture){
+  //---------------------------
 
-  //Cloud data
-  tasker->task_begin("data::transformation");
-  this->find_data_cloud(sensor, capture);
-  tasker->task_end("data::transformation");
-
-  //Finish
-  sensor->master->player.ts_cur = sensor->color.data.timestamp;
-  sensor->param.data_ready = true;
-
-  tasker->loop_end();
+  //Retrieve data from capture
+  this->find_data_from_capture(sensor, capture);
 
   //Convert data into cloud
   k4a_cloud->start_thread(sensor);
@@ -61,6 +53,40 @@ void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture capture
 }
 
 //Data function
+void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture capture){
+  prf::Tasker* tasker = sensor->profiler->get_tasker("data");
+  //---------------------------
+
+  tasker->loop_begin();
+
+  //Depth data
+  tasker->task_begin("depth");
+  this->find_data_depth(sensor, capture);
+  tasker->task_end("depth");
+
+  //Color data
+  tasker->task_begin("color");
+  this->find_data_color(sensor, capture);
+  tasker->task_end("color");
+
+  //Infrared data
+  tasker->task_begin("infrared");
+  this->find_data_ir(sensor, capture);
+  tasker->task_end("infrared");
+
+  //Cloud data
+  tasker->task_begin("transformation");
+  this->find_data_cloud(sensor, capture);
+  tasker->task_end("transformation");
+
+  //Finish
+  sensor->master->player.ts_cur = sensor->color.data.timestamp;
+  sensor->param.data_ready = true;
+
+  tasker->loop_end();
+
+  //---------------------------
+}
 void Data::find_data_depth(k4n::dev::Sensor* sensor, k4a::capture capture){
   //---------------------------
 

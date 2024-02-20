@@ -22,9 +22,11 @@ public:
 
 public:
   //Main function
-  void find_data_from_capture(k4n::dev::Sensor* device, k4a::capture capture);
+  void start_thread(k4n::dev::Sensor* sensor, k4a::capture capture);
+  void run_thread(k4n::dev::Sensor* sensor, k4a::capture capture);
 
   //Data function
+  void find_data_from_capture(k4n::dev::Sensor* device, k4a::capture capture);
   void find_data_depth(k4n::dev::Sensor* sensor, k4a::capture capture);
   void find_data_color(k4n::dev::Sensor* sensor, k4a::capture capture);
   void find_data_ir(k4n::dev::Sensor* sensor, k4a::capture capture);
@@ -46,7 +48,8 @@ private:
   k4n::data::Infrared* k4a_infrared;
   k4n::data::Cloud* k4a_cloud;
   k4n::data::Image* k4n_image;
-  
+
+  std::thread thread;
   tjhandle tj_handle;
 };
 

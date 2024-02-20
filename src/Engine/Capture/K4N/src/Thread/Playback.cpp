@@ -64,9 +64,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
     if(!capture) continue;
 
     //Find data from capture
-    tasker->task_begin("data");
-    k4a_data->find_data_from_capture(sensor, capture);
-    tasker->task_end("data");
+    k4a_data->start_thread(sensor, capture);
 
     //Manage event
     this->manage_pause(sensor);

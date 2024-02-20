@@ -8,12 +8,12 @@ namespace k4n::dev{class Swarm;}
 
 namespace k4n::thread{
 
-class Postprocessing
+class Processing
 {
 public:
   //Constructor / Destructor
-  Postprocessing(k4n::Node* node_k4n);
-  ~Postprocessing();
+  Processing(k4n::Node* node_k4n);
+  ~Processing();
 
 public:
   //Main function

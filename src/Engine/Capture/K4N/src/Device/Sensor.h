@@ -11,7 +11,6 @@ namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::thread{class Capture;}
 namespace k4n::thread{class Playback;}
-namespace k4n::thread{class Postprocessing;}
 namespace k4n::structure{class Param;}
 namespace k4n::structure{class Synchro;}
 namespace k4n::structure{class Recorder;}
@@ -75,7 +74,6 @@ private:
   eng::scene::Glyph* sce_glyph;
   k4n::thread::Capture* k4n_capture;
   k4n::thread::Playback* k4n_playback;
-  k4n::thread::Postprocessing* k4n_processing;
 };
 
 }
