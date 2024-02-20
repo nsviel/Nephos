@@ -40,7 +40,8 @@ void Playback::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Playback::run_thread(k4n::dev::Sensor* sensor){
-  prf::Tasker* tasker = sensor->tasker;
+  prf::Profiler* profiler = sensor->profiler;
+  prf::Tasker* tasker = profiler->get_tasker("capture");
   //---------------------------
 
   //Init playback
@@ -102,7 +103,8 @@ void Playback::stop_thread(){
 
 //Subfunction
 void Playback::manage_pause(k4n::dev::Sensor* sensor){
-  prf::Tasker* tasker = sensor->tasker;
+  prf::Profiler* profiler = sensor->profiler;
+  prf::Tasker* tasker = profiler->get_tasker("capture");
   //---------------------------
 
   //If pause, wait until end pause or end thread

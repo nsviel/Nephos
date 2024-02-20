@@ -19,7 +19,7 @@ namespace k4n::structure{class Depth;}
 namespace k4n::structure{class Infrared;}
 namespace k4n::structure{class IMU;}
 namespace k4n::structure{class Image;}
-namespace prf{class Tasker;}
+namespace prf{class Profiler;}
 
 
 namespace k4n::dev{
@@ -53,7 +53,7 @@ public:
   inline utl::type::Pose* get_pose(){return object.pose;}
 
 public:
-  prf::Tasker* tasker = nullptr;
+  prf::Profiler* profiler = nullptr;
   k4n::dev::Master* master;
 
   utl::entity::Object object;

@@ -13,8 +13,6 @@ Manager::Manager(){
   profiler_main->new_tasker("cpu");
   profiler_main->new_tasker("gpu");
 
-  new_profiler("truc", "thread::truc");
-
   //---------------------------
 }
 Manager::~Manager(){}
@@ -34,23 +32,6 @@ void Manager::remove_profiler(prf::Profiler* profiler){
 
   this->list_profiler.remove(profiler);
   delete profiler;
-
-  //---------------------------
-}
-
-
-
-
-prf::Tasker* Manager::new_tasker(string name){
-  //---------------------------
-
-  prf::Tasker* tasker = new prf::Tasker(name);
-
-  //---------------------------
-  return tasker;
-}
-void Manager::remove_tasker(prf::Tasker* tasker){
-  //---------------------------
 
   //---------------------------
 }

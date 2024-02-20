@@ -57,7 +57,8 @@ void Cloud::loop_init(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::loop_data(k4n::dev::Sensor* sensor){
-  prf::Tasker* tasker = sensor->tasker;
+  prf::Profiler* profiler = sensor->profiler;
+  prf::Tasker* tasker = profiler->get_tasker("data");
   //---------------------------
 
   //Color
@@ -98,7 +99,8 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor){
 void Cloud::loop_end(k4n::dev::Sensor* sensor){
   utl::type::Data* data = sensor->get_data();
   k4n::dev::Master* master = sensor->master;
-  prf::Tasker* tasker = sensor->tasker;
+  prf::Profiler* profiler = sensor->profiler;
+  prf::Tasker* tasker = profiler->get_tasker("cloud");
   //---------------------------
 
   //Cloud data copy

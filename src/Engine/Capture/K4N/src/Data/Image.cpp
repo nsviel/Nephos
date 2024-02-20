@@ -19,7 +19,8 @@ Image::~Image(){}
 
 //Main function
 void Image::make_images(k4n::dev::Sensor* sensor){
-  prf::Tasker* tasker = sensor->tasker;
+  prf::Profiler* profiler = sensor->profiler;
+  prf::Tasker* tasker = profiler->get_tasker("capture");
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 

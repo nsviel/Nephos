@@ -51,7 +51,11 @@ void Sensor::init(){
   //Sensor tasker
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  this->tasker = prf_manager->new_tasker(param.name);//, "k4n::sensor"
+  this->profiler = prf_manager->new_profiler(param.name, "k4n::sensor");
+  this->profiler->new_tasker("capture");
+  this->profiler->new_tasker("data");
+  this->profiler->new_tasker("cloud");
+  this->profiler->new_tasker("postprocessing");
 
   //Sensor cloud
   object = utl::entity::Object(node_engine);
@@ -93,7 +97,7 @@ void Sensor::remove_entity(){
   //Remove tasker
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  prf_manager->remove_tasker(tasker);
+  prf_manager->remove_profiler(profiler);
 
   //---------------------------
 }
