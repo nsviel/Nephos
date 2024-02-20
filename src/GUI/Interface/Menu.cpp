@@ -44,10 +44,13 @@ void Menu::menu_option(){
     Render* gui_render = gui->get_rnd_tab();
     vk::Node* vulkan = gui_render->get_vulkan();
     vk::main::Info* vk_info = vulkan->get_vk_info();
+
+
     prf::Node* node_profiler = node_utility->get_node_profiler();
-    prf::Manager* profiler = node_profiler->get_prf_manager();
-    prf::Tasker* tasker_main = profiler->get_tasker_main();
-    ImGui::Text("%.2f", tasker_main->get_loop_fps());
+    prf::Manager* prf_manager = node_profiler->get_prf_manager();
+    prf::Profiler* profiler = prf_manager->get_profiler_main();
+    prf::Tasker* tasker_cpu = profiler->get_tasker("cpu");
+    ImGui::Text("%.2f", tasker_cpu->get_loop_fps());
     ImGui::EndMenu();
   }
 

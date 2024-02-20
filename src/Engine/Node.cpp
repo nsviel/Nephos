@@ -22,7 +22,6 @@ Node::Node(App_main* node_app){
   this->node_utility = node_app->get_node_utility();
 
   //Child
-  prf::Manager* profiler = node_profiler->get_prf_manager();
   this->node_vulkan = new vk::Node(node_utility);
   this->node_scene = new eng::scene::Node(this);
   this->node_camera = new eng::cam::Node(this);
@@ -30,7 +29,10 @@ Node::Node(App_main* node_app){
   this->node_render = new eng::render::Node(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_gui = new eng::gui::Node(this);
-  this->tasker_main = profiler->get_tasker_main();
+
+  prf::Manager* prf_manager = node_profiler->get_prf_manager();
+  prf::Profiler* profiler = prf_manager->get_profiler_main();
+  this->tasker_main =  profiler->get_tasker("cpu");
 
   this->add_node_panel(node_camera);
   this->add_node_panel(node_scene);

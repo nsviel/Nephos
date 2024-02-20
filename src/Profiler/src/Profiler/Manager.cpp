@@ -12,6 +12,7 @@ Manager::Manager(){
   this->tasker_main = new_tasker("cpu");
 
   this->profiler_main = new_profiler("Main", "thread::main");
+  profiler_main->new_tasker("cpu");
   new_profiler("truc", "thread::truc");
 
   //---------------------------

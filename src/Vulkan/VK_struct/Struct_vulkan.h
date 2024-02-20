@@ -14,12 +14,17 @@ struct Vulkan{
   //Constructor
   Vulkan(utl::Node* node_utility){
     prf::Node* node_profiler = node_utility->get_node_profiler();
-    prf::Manager* prf_profiler = node_profiler->get_prf_manager();
+    prf::Manager* prf_manager = node_profiler->get_prf_manager();
     utl::element::Window* utl_window = node_utility->get_utl_window();
 
+
+
+    prf::Profiler* profiler = prf_manager->get_profiler_main();
+
+
     this->window.glfw_window = utl_window->get_window();
-    this->tasker_main = prf_profiler->get_tasker_main();
-    this->tasker_gpu = prf_profiler->new_tasker("gpu");
+    this->tasker_main = profiler->get_tasker("cpu");
+    this->tasker_gpu = profiler->new_tasker("gpu");
     this->prf_vulkan = node_profiler->get_prf_vulkan();
   }
 

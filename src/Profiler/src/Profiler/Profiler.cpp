@@ -30,6 +30,21 @@ prf::Tasker* Profiler::new_tasker(string name){
   //---------------------------
   return tasker;
 }
+prf::Tasker* Profiler::get_tasker(string name){
+  //---------------------------
+
+  for(int i=0; i<vec_tasker.size(); i++){
+    prf::Tasker* tasker = vec_tasker[i];
+    if(tasker->get_name() == name){
+      return tasker;
+    }
+  }
+
+  cout<<"[error] tasker with name "<<name<<" doesn't exists"<<endl;
+
+  //---------------------------
+  return nullptr;
+}
 void Profiler::remove_tasker(prf::Tasker* tasker){
   //---------------------------
 

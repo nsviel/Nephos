@@ -179,7 +179,8 @@ void Panel::draw_graph_all(){
   //All not empty tasker graphs
   ImGui::SetNextItemWidth(100);
   if(ImGui::BeginTabItem("All##4568", NULL, flag)){
-    this->selected_tasker = prf_manager->get_tasker_main();
+    prf::Profiler* profiler = prf_manager->get_profiler_main();
+    this->selected_tasker = profiler->get_tasker("cpu");
     graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker_not_empty.size() - 3);
 
     for(int i=0; i<vec_tasker_not_empty.size(); i++){
@@ -216,7 +217,8 @@ void Panel::draw_graph_vulkan(){
 
   ImGui::SetNextItemWidth(100);
   if (ImGui::BeginTabItem("Vulkan##4567", NULL)){
-    this->selected_tasker = prf_manager->get_tasker_main();
+    prf::Profiler* profiler = prf_manager->get_profiler_main();
+    this->selected_tasker = profiler->get_tasker("cpu");
     this->draw_profiler_vulkan(graph_dim);
     ImGui::EndTabItem();
   }
