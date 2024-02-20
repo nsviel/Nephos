@@ -124,6 +124,8 @@ void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::Tasker* tasker){
   data->R = vec_r;
   data->goodness = vec_goodness;
   data->nb_point = vec_xyz.size();
+  data->width = sensor->depth.cloud.width;
+  data->height = sensor->depth.cloud.height;
   tasker->task_end("copying");
 
   //Final colorization

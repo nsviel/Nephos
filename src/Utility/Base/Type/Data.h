@@ -23,6 +23,8 @@ struct Data{
   int nb_data_max = -1;
   int draw_line_width = 1;
   int draw_point_size = 5;
+  int width = -1;
+  int height = -1;
 
   //Infos
   std::string name = "";

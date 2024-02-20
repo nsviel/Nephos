@@ -17,54 +17,79 @@ Triangulation::~Triangulation(){}
 
 //Main function
 void Triangulation::make_triangulation(utl::type::Data* data){
+  if(data->xyz.size() == 0) return;
+  if(data->width == -1 || data->height == -1) return;
   //---------------------------
 
-  if(data->xyz.size() == 0) return;
-
+  //Prepare data
   vector<vec3> xyz;
   vector<vec4> rgb;
   vector<float> Is;
   vec3 empty = vec3(0, 0, 0);
-  constexpr float max_distance_threshold = 0.2f; // Adjust threshold as needed
+  float threshold = 0.5f;
 
-  for (size_t i = 0; i < data->xyz.size() - 2; i++) {
-      const vec3& point_1 = data->xyz[i];
-      const vec3& point_2 = data->xyz[i + 1];
-      const vec3& point_3 = data->xyz[i + 2];
+  //Loop
+  for(int i=0; i<data->height - 1; i++){
+    for(int j=0; j<data->width - 1; j++){
+      // Calculate the indices of the four points
+      int index_1 = i * data->width + j;
+      int index_2 = index_1 + 1;
+      int index_3 = (i + 1) * data->width + j;
+      int index_4 = index_3 + 1;
 
-      // Calculate distances between adjacent points
-      float distance_12 = glm::length(point_2 - point_1);
-      float distance_23 = glm::length(point_3 - point_2);
-      float distance_31 = glm::length(point_1 - point_3);
+      const vec3& point_1 = data->xyz[index_1];
+      const vec3& point_2 = data->xyz[index_2];
+      const vec3& point_3 = data->xyz[index_3];
+      const vec3& point_4 = data->xyz[index_4];
 
-      // Check if all distances are below the threshold
-      if (distance_12 < max_distance_threshold &&
-          distance_23 < max_distance_threshold &&
-          distance_31 < max_distance_threshold) {
-          // Push back vertices and colors
+      float distance_1_2 = glm::distance(point_1, point_2);
+      float distance_1_3 = glm::distance(point_1, point_3);
+      float distance_2_3 = glm::distance(point_2, point_3);
+
+      if(point_1 != empty && point_2 != empty && point_3 != empty){
+        if(distance_1_2 <= threshold && distance_1_3 <= threshold && distance_2_3 <= threshold){
           xyz.push_back(point_1);
+          xyz.push_back(point_3);
+          xyz.push_back(point_2);
+
+          rgb.push_back(data->rgb[index_1]);
+          rgb.push_back(data->rgb[index_3]);
+          rgb.push_back(data->rgb[index_2]);
+
+          Is.push_back(data->Is[index_1]);
+          Is.push_back(data->Is[index_3]);
+          Is.push_back(data->Is[index_2]);
+        }
+      }
+
+      float distance_2_4 = glm::distance(point_2, point_4);
+      float distance_3_4 = glm::distance(point_3, point_4);
+
+      if(point_2 != empty && point_4 != empty && point_3 != empty){
+        if(distance_2_4 <= threshold && distance_3_4 <= threshold && distance_2_3 <= threshold){
           xyz.push_back(point_2);
           xyz.push_back(point_3);
+          xyz.push_back(point_4);
 
-          rgb.push_back(data->rgb[i]);
-          rgb.push_back(data->rgb[i + 1]);
-          rgb.push_back(data->rgb[i + 2]);
+          rgb.push_back(data->rgb[index_2]);
+          rgb.push_back(data->rgb[index_3]);
+          rgb.push_back(data->rgb[index_4]);
 
-          Is.push_back(data->Is[i]);
-          Is.push_back(data->Is[i + 1]);
-          Is.push_back(data->Is[i + 2]);
+          Is.push_back(data->Is[index_2]);
+          Is.push_back(data->Is[index_3]);
+          Is.push_back(data->Is[index_4]);
+        }
       }
-  }
 
-  /*
+    }
+  }
+  
   data->draw_type_name = "triangle";
-  say("ok");
   data->xyz = xyz;
   data->rgb = rgb;
   data->Is = Is;
   data->nb_point = xyz.size();
-  */
-  
+
   //---------------------------
 }
 
