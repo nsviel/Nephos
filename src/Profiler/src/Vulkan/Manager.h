@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 #include <Profiler/src/Timer/Chrono.h>
+#include <Profiler/src/Profiler/Tasker.h>
 
 namespace prf::vulkan{class Device;}
 namespace prf::vulkan{class Info;}
@@ -14,7 +15,7 @@ class Manager : public prf::Tasker
 {
 public:
   //Constructor / Destructor
-  Manager();
+  Manager(string name);
   ~Manager();
 
 public:

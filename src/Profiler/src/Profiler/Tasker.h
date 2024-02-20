@@ -16,7 +16,7 @@ class Tasker
 public:
   //Constructor / Destructor
   Tasker(string name);
-  ~Tasker();
+  virtual ~Tasker();
 
 public:
   //Main function

@@ -10,7 +10,7 @@ Node::Node(){
   utl::gui::Panel* prf_panel = add_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
-  this->prf_vulkan = new prf::vulkan::Manager();
+  this->prf_vulkan = new prf::vulkan::Manager("vulkan");
   this->prf_manager = new prf::Manager();
   this->gui_panel = new prf::gui::Panel(this, &prf_panel->is_open);
 

@@ -58,10 +58,9 @@ void Panel::main_info(){
     ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
 
     //GPU device
-    prf::vulkan::Info* info_vulkan = prf_vulkan->get_info_vulkan();
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", info_vulkan->selected_gpu.c_str());
+    ImGui::TextColored(color, "%s", gpu.c_str());
 
     //Selected tasker
     if(selected_tasker != nullptr){
@@ -145,7 +144,6 @@ void Panel::draw_graph(prf::Profiler* profiler){
   if(ImGui::BeginTabBar("tasker_gui##4567")){
     this->draw_graph_all(profiler);
     this->draw_graph_unique(profiler);
-    this->draw_graph_vulkan(profiler);
 
     ImGui::EndTabBar();
   }
@@ -202,24 +200,29 @@ void Panel::draw_graph_unique(prf::Profiler* profiler){
 
     ImGui::SetNextItemWidth(100);
     string title = tasker->get_name() + "##45454";
-    if (ImGui::BeginTabItem(title.c_str(), NULL)){
+    if(ImGui::BeginTabItem(title.c_str(), NULL)){
       this->selected_tasker = tasker;
       this->draw_tasker_graph(tasker, graph_dim);
       ImGui::EndTabItem();
+    }
+
+    if(prf::vulkan::Manager* vulkan = dynamic_cast<prf::vulkan::Manager*>(tasker)){
+      this->draw_graph_vulkan(vulkan);
     }
   }
 
   //---------------------------
 }
-void Panel::draw_graph_vulkan(prf::Profiler* profiler){
+void Panel::draw_graph_vulkan(prf::vulkan::Manager* vulkan){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
 
+  prf::vulkan::Info* info_vulkan = vulkan->get_info_vulkan();
+  this->gpu = info_vulkan->selected_gpu;
+
   ImGui::SetNextItemWidth(100);
   if (ImGui::BeginTabItem("Vulkan##4567", NULL)){
-    prf::Profiler* profiler = prf_manager->get_profiler_main();
-    this->selected_tasker = profiler->get_tasker("cpu");
-    this->draw_profiler_vulkan(graph_dim);
+    this->draw_profiler_vulkan(vulkan, graph_dim);
     ImGui::EndTabItem();
   }
 
@@ -256,8 +259,8 @@ void Panel::draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim){
 
   //---------------------------
 }
-void Panel::draw_profiler_vulkan(ImVec2 graph_dim){
-  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
+void Panel::draw_profiler_vulkan(prf::vulkan::Manager* vulkan, ImVec2 graph_dim){
+  vector<prf::vulkan::Device>& vec_device = vulkan->get_info_device();
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);

@@ -6,7 +6,7 @@
 namespace prf::vulkan{
 
 //Constructor / Destructor
-Manager::Manager(){
+Manager::Manager(string name) : Tasker(name){
   //---------------------------
 
   this->info_vulkan = new prf::vulkan::Info();

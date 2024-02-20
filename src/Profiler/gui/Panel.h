@@ -33,11 +33,11 @@ public:
   void draw_graph(prf::Profiler* profiler);
   void draw_graph_all(prf::Profiler* profiler);
   void draw_graph_unique(prf::Profiler* profiler);
-  void draw_graph_vulkan(prf::Profiler* profiler);
+  void draw_graph_vulkan(prf::vulkan::Manager* vulkan);
 
   //Profiler
   void draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim);
-  void draw_profiler_vulkan(ImVec2 graph_dim);
+  void draw_profiler_vulkan(prf::vulkan::Manager* vulkan, ImVec2 graph_dim);
   void set_graphs_max_time(int& value);
 
 private:
@@ -46,6 +46,7 @@ private:
   prf::Tasker* selected_tasker;
 
   bool* show_window;
+  string gpu = "";
   string name;
   bool pause;
   int max_time = 50;
