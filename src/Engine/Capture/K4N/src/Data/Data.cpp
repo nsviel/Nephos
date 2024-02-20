@@ -29,6 +29,8 @@ void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture capture
   prf::Tasker* tasker = sensor->profiler->get_tasker("data");
   //---------------------------
 
+  tasker->loop_begin();
+
   //Capture data
   tasker->task_begin("data::base");
   this->find_data_depth(sensor, capture);
@@ -44,6 +46,8 @@ void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture capture
   //Finish
   sensor->master->player.ts_cur = sensor->color.data.timestamp;
   sensor->param.data_ready = true;
+
+  tasker->loop_end();
 
   //---------------------------
 }

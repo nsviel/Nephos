@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 
+namespace prf{class Tasker;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
@@ -25,8 +26,8 @@ public:
 
   //Loop function
   void loop_init(k4n::dev::Sensor* sensor);
-  void loop_data(k4n::dev::Sensor* sensor);
-  void loop_end(k4n::dev::Sensor* sensor);
+  void loop_data(k4n::dev::Sensor* sensor, prf::Tasker* tasker);
+  void loop_end(k4n::dev::Sensor* sensor, prf::Tasker* tasker);
 
   //Data retrieval
   void retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image);
