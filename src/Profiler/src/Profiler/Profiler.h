@@ -18,6 +18,7 @@ public:
   //Main function
   prf::Tasker* new_tasker(string name);
   prf::Tasker* get_tasker(string name);
+  void new_tasker(prf::Tasker* tasker);
   void remove_tasker(prf::Tasker* tasker);
 
   inline std::vector<prf::Tasker*> get_vec_tasker(){return vec_tasker;}

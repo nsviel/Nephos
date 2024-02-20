@@ -30,6 +30,13 @@ prf::Tasker* Profiler::new_tasker(string name){
   //---------------------------
   return tasker;
 }
+void Profiler::new_tasker(prf::Tasker* tasker){
+  //---------------------------
+
+  this->vec_tasker.push_back(tasker);
+
+  //---------------------------
+}
 prf::Tasker* Profiler::get_tasker(string name){
   //---------------------------
 
