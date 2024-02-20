@@ -16,7 +16,7 @@ class Cloud
 {
 public:
   //Constructor / Destructor
-  Cloud(k4n::Node* node_k4n);
+  Cloud();
   ~Cloud();
 
 public:

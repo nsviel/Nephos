@@ -12,7 +12,6 @@ Playback::Playback(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4a_data = new k4n::data::Data();
-  this->k4a_cloud = new k4n::data::Cloud(node_k4n);
   this->k4n_image = new k4n::data::Image();
   this->k4n_configuration = new k4n::config::Configuration();
   this->k4n_calibration = new k4n::config::Calibration();
@@ -70,8 +69,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
     k4a_data->find_data_from_capture(sensor, capture);
     tasker->task_end("data");
 
-    //Convert data into cloud
-    k4a_cloud->start_thread(sensor);
+
 
     tasker->task_begin("image");
     k4n_image->make_images(sensor);

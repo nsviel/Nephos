@@ -11,7 +11,7 @@ Capture::Capture(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4a_data = new k4n::data::Data();
-  this->k4a_cloud = new k4n::data::Cloud(node_k4n);
+  this->k4a_cloud = new k4n::data::Cloud();
   this->configuration = new k4n::config::Configuration();
   this->k4n_calibration = new k4n::config::Calibration();
 

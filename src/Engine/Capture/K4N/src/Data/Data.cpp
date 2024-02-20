@@ -13,6 +13,7 @@ Data::Data(){
   this->tj_handle = tjInitDecompress();
   this->k4a_depth = new k4n::data::Depth();
   this->k4a_infrared = new k4n::data::Infrared();
+  this->k4a_cloud = new k4n::data::Cloud();
 
   //---------------------------
 }
@@ -48,6 +49,9 @@ void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture capture
   sensor->param.data_ready = true;
 
   tasker->loop_end();
+
+  //Convert data into cloud
+  k4a_cloud->start_thread(sensor);
 
   //---------------------------
 }

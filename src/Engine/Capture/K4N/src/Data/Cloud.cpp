@@ -9,7 +9,7 @@
 namespace k4n::data{
 
 //Constructor / Destructor
-Cloud::Cloud(k4n::Node* node_k4n){
+Cloud::Cloud(){
   //---------------------------
 
   this->k4n_operation = new k4n::utils::Operation();
