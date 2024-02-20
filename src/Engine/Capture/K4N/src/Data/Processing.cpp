@@ -13,6 +13,7 @@ Processing::Processing(){
   //---------------------------
 
   this->ope_voxelizer = new eng::ope::Voxelizer();
+  this->ope_triangulation = new eng::ope::Triangulation();
 
   //---------------------------
 }
@@ -40,6 +41,11 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   //this->voxelize_object(sensor);
   tasker->task_end("voxel");
 
+  //Triangulation
+  tasker->task_begin("triangulation");
+  this->triangularize_object(sensor);
+  tasker->task_end("triangulation");
+
   //Update object data
   tasker->task_begin("update");
   this->update_object(sensor);
@@ -61,6 +67,15 @@ void Processing::voxelize_object(k4n::dev::Sensor* sensor){
   int min_nb_point = master->voxel.min_nb_point;
   ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
   ope_voxelizer->reconstruct_data_by_goodness(data);
+
+  //---------------------------
+}
+void Processing::triangularize_object(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  utl::type::Data* data = sensor->get_data();
+
+  ope_triangulation->make_triangulation(data);
 
   //---------------------------
 }

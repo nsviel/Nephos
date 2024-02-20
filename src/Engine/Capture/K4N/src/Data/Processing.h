@@ -4,6 +4,7 @@
 
 namespace k4n::dev{class Sensor;}
 namespace eng::ope{class Voxelizer;}
+namespace eng::ope{class Triangulation;}
 
 
 namespace k4n::data{
@@ -22,10 +23,12 @@ public:
 
   //Subfunction
   void voxelize_object(k4n::dev::Sensor* sensor);
+  void triangularize_object(k4n::dev::Sensor* sensor);
   void update_object(k4n::dev::Sensor* sensor);
 
 private:
   eng::ope::Voxelizer* ope_voxelizer;
+  eng::ope::Triangulation* ope_triangulation;
 
   std::thread thread;
 };

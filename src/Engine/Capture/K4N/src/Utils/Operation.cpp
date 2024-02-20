@@ -53,6 +53,8 @@ float Operation::find_mkv_ts_end(string path){
   //---------------------------
   return ts_end;
 }
+
+//Colorization function
 void Operation::make_colorization(k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
   //---------------------------
 
@@ -68,6 +70,10 @@ void Operation::make_colorization(k4n::dev::Sensor* sensor, vector<vec4>& vec_rg
     }
     case k4n::color::HEATMAP:{
       this->colorization_heatmap(sensor, vec_rgba);
+      break;
+    }
+    case k4n::color::STRUCTURE:{
+      this->colorization_structure(sensor, vec_rgba);
       break;
     }
   }
@@ -102,6 +108,33 @@ void Operation::colorization_heatmap(k4n::dev::Sensor* sensor, vector<vec4>& vec
       ope_heatmap->heatmap_range(vec_rgba, object);
       break;
     }
+  }
+
+  //---------------------------
+}
+void Operation::colorization_structure(k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
+  //---------------------------
+
+  utl::type::Data* data = sensor->get_data();
+
+  // Define a color gradient from red to blue
+  const vec3 green(0.0f, 1.0f, 0.0f);
+  const vec3 blue(0.0f, 0.0f, 1.0f);
+
+  // Calculate the step size for color interpolation
+  float step = 1.0f / (data->xyz.size() - 1);
+
+  // Loop through the points and assign colors
+  vector<vec4> rgb;
+  for (size_t i = 0; i < data->xyz.size(); ++i) {
+    // Interpolate between red and blue based on the index
+    float t = step * i;
+    float r = (1.0f - t) * green.r + t * blue.r;
+    float g = (1.0f - t) * green.g + t * blue.g;
+    float b = (1.0f - t) * green.b + t * blue.b;
+
+    // Add the interpolated color to the vector
+    vec_rgba[i] = vec4(r, g, b, 1);
   }
 
   //---------------------------

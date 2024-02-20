@@ -19,6 +19,7 @@ enum Mode{
   UNICOLOR = 1,
   INTENSITY = 2,
   HEATMAP = 3,
+  STRUCTURE = 4,
 };
 }
 
@@ -38,7 +39,7 @@ struct Operation{
   int color_mode = k4n::color::CAMERA;
   int heatmap_mode = k4n::color::heatmap::INTENSITY;
   int intensity_division = 1000;
-  int transformation_mode = k4n::transformation::DEPTH_TO_COLOR;
+  int transformation_mode = k4n::transformation::COLOR_TO_DEPTH;
   glm::vec2 range_height = glm::vec2(-1, 1);
   glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
 

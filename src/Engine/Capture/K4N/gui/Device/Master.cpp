@@ -81,6 +81,8 @@ void Master::show_colorization(k4n::dev::Master* master){
   ImGui::RadioButton("I##colorization", &master->operation.color_mode, k4n::color::INTENSITY);
   ImGui::SameLine();
   ImGui::RadioButton("Heatmap##colorization", &master->operation.color_mode, k4n::color::HEATMAP);
+  ImGui::SameLine();
+  ImGui::RadioButton("Structure##colorization", &master->operation.color_mode, k4n::color::STRUCTURE);
 
   //Intensity cursor
   if(master->operation.color_mode == k4n::color::INTENSITY){
