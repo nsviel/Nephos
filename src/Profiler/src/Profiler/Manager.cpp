@@ -9,10 +9,10 @@ namespace prf{
 Manager::Manager(){
   //---------------------------
 
-  this->tasker_main = new_tasker("cpu");
-
   this->profiler_main = new_profiler("Main", "thread::main");
   profiler_main->new_tasker("cpu");
+  profiler_main->new_tasker("gpu");
+
   new_profiler("truc", "thread::truc");
 
   //---------------------------
@@ -45,16 +45,12 @@ prf::Tasker* Manager::new_tasker(string name){
   //---------------------------
 
   prf::Tasker* tasker = new prf::Tasker(name);
-  this->list_tasker.push_back(tasker);
 
   //---------------------------
   return tasker;
 }
 void Manager::remove_tasker(prf::Tasker* tasker){
   //---------------------------
-
-  this->list_tasker.remove(tasker);
-  delete tasker;
 
   //---------------------------
 }

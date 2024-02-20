@@ -5,6 +5,7 @@
 namespace prf{class Node;}
 namespace prf{class Manager;}
 namespace prf{class Tasker;}
+namespace prf{class Profiler;}
 namespace prf::vulkan{class Manager;}
 namespace prf::improfil{class Manager;}
 
@@ -29,10 +30,10 @@ public:
   void draw_profiler();
 
   //Graph subfunction
-  void draw_graph();
-  void draw_graph_all();
-  void draw_graph_unique();
-  void draw_graph_vulkan();
+  void draw_graph(prf::Profiler* profiler);
+  void draw_graph_all(prf::Profiler* profiler);
+  void draw_graph_unique(prf::Profiler* profiler);
+  void draw_graph_vulkan(prf::Profiler* profiler);
 
   //Profiler
   void draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim);

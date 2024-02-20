@@ -30,14 +30,9 @@ public:
   inline prf::Profiler* get_profiler_main(){return profiler_main;}
   inline std::list<prf::Profiler*> get_list_profiler(){return list_profiler;}
 
-  inline std::list<prf::Tasker*> get_list_tasker(){return list_tasker;}
-
 private:
   std::list<prf::Profiler*> list_profiler;
   prf::Profiler* profiler_main;
-
-  std::list<prf::Tasker*> list_tasker;
-  prf::Tasker* tasker_main;
 };
 
 }
