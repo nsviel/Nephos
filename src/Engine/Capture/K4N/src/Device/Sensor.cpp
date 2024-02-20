@@ -54,7 +54,7 @@ void Sensor::init(){
   this->profiler->new_tasker("data");
   this->profiler->new_tasker("cloud");
   this->profiler->new_tasker("image");
-  this->profiler->new_tasker("postprocessing");
+  this->profiler->new_tasker("processing");
 
   //Sensor cloud
   object = utl::entity::Object(node_engine);

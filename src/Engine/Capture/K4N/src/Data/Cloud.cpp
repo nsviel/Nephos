@@ -13,7 +13,7 @@ Cloud::Cloud(){
   //---------------------------
 
   this->k4n_operation = new k4n::utils::Operation();
-  //this->ope_voxelizer = new eng::ope::Voxelizer();
+  this->k4n_processing = new k4n::data::Processing();
 
   //---------------------------
 }
@@ -26,10 +26,23 @@ void Cloud::start_thread(k4n::dev::Sensor* sensor){
   if(thread.joinable()){
     thread.join();
   }
-  this->thread = std::thread(&Cloud::convert_into_cloud, this, sensor);
+  this->thread = std::thread(&Cloud::run_thread, this, sensor);
 
   //---------------------------
 }
+void Cloud::run_thread(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  //Convert data into a cloud
+  this->convert_into_cloud(sensor);
+
+  //Update object data
+  k4n_processing->start_thread(sensor);
+
+  //---------------------------
+}
+
+//Cloud function
 void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
   if(!sensor->depth.cloud.k4a_image.is_valid()) return;
   if(!sensor->ir.cloud.k4a_image.is_valid()) return;
@@ -48,8 +61,6 @@ void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-
-//Loop function
 void Cloud::loop_init(k4n::dev::Sensor* sensor){
   //---------------------------
 
@@ -120,20 +131,6 @@ void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::Tasker* tasker){
   k4n_operation->make_colorization(sensor, vec_rgb);
   data->rgb = vec_rgb;
   tasker->task_end("colorization");
-
-  //Voxelization filtering
-  ////tasker->task_begin("voxel");
-  //float voxel_size = master->voxel.voxel_size;
-  //int min_nb_point = master->voxel.min_nb_point;
-  //ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
-  //ope_voxelizer->reconstruct_data_by_goodness(data);
-  ////tasker->task_end("voxel");
-
-  //Update object data
-  tasker->task_begin("update");
-  utl::entity::Object* object = sensor->get_object();
-  object->update_data();
-  tasker->task_end("update");
 
   //---------------------------
 }

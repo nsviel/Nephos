@@ -5,6 +5,7 @@
 
 namespace prf{class Tasker;}
 namespace k4n{class Node;}
+namespace k4n::data{class Processing;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
 
@@ -21,9 +22,10 @@ public:
 public:
   //Main function
   void start_thread(k4n::dev::Sensor* sensor);
-  void convert_into_cloud(k4n::dev::Sensor* sensor);
+  void run_thread(k4n::dev::Sensor* sensor);
 
-  //Loop function
+  //Cloud function
+  void convert_into_cloud(k4n::dev::Sensor* sensor);
   void loop_init(k4n::dev::Sensor* sensor);
   void loop_data(k4n::dev::Sensor* sensor, prf::Tasker* tasker);
   void loop_end(k4n::dev::Sensor* sensor, prf::Tasker* tasker);
@@ -38,6 +40,7 @@ public:
 
 private:
   k4n::utils::Operation* k4n_operation;
+  k4n::data::Processing* k4n_processing;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgb;

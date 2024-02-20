@@ -6,13 +6,12 @@
 #include <K4N/Namespace.h>
 
 
-namespace k4n::thread{
+namespace k4n::data{
 
 //Constructor / Destructor
-Processing::Processing(k4n::Node* node_k4n){
+Processing::Processing(){
   //---------------------------
 
-  this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->ope_voxelizer = new eng::ope::Voxelizer();
 
   //---------------------------
@@ -23,6 +22,9 @@ Processing::~Processing(){}
 void Processing::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  if(thread.joinable()){
+    thread.join();
+  }
   this->thread = std::thread(&Processing::run_thread, this, sensor);
 
   //---------------------------
