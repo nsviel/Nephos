@@ -5,11 +5,12 @@
 
 namespace prf::vulkan{class Device;}
 namespace prf::vulkan{class Info;}
+namespace prf{class Tasker;}
 
 
 namespace prf::vulkan{
 
-class Manager
+class Manager : public prf::Tasker
 {
 public:
   //Constructor / Destructor
