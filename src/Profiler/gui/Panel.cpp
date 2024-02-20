@@ -195,16 +195,17 @@ void Panel::draw_graph_unique(prf::Profiler* profiler){
   vector<prf::Tasker*> vec_tasker = profiler->get_vec_tasker();
   for(int i=0; i<vec_tasker.size(); i++){
     prf::Tasker* tasker = vec_tasker[i];
-    if(tasker->is_empty()) continue;
 
+    //Improfil graphs
     ImGui::SetNextItemWidth(100);
     string title = tasker->get_name() + "##45454";
-    if(ImGui::BeginTabItem(title.c_str(), NULL)){
+    if(!tasker->is_empty() && ImGui::BeginTabItem(title.c_str(), NULL)){
       this->selected_tasker = tasker;
       this->draw_tasker_graph(tasker, graph_dim);
       ImGui::EndTabItem();
     }
 
+    //Vulkan info
     if(prf::vulkan::Manager* vulkan = dynamic_cast<prf::vulkan::Manager*>(tasker)){
       this->draw_graph_vulkan(vulkan);
     }

@@ -73,20 +73,22 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::Tasker* tasker){
   const uint8_t* buffer_ir = sensor->ir.cloud.buffer;
 
   //Cloud XYZ
-  tasker->task_begin("cloud::transformation");
+  tasker->task_begin("transformation");
   k4a::image cloud_image;
   this->retrieve_cloud(sensor, cloud_image);
   const int16_t* data_xyz = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
   this->point_cloud_size = cloud_image.get_size() / (3*sizeof(int16_t));
-  tasker->task_end("cloud::transformation");
+  tasker->task_end("transformation");
 
+  tasker->task_begin("reserve");
   vec_xyz = vector<vec3>(point_cloud_size);
   vec_rgb = vector<vec4>(point_cloud_size);
   vec_ir = vector<float>(point_cloud_size);
   vec_r = vector<float>(point_cloud_size);
   vec_goodness = vector<bool>(point_cloud_size);
+  tasker->task_end("reserve");
 
-  tasker->task_begin("cloud::data");
+  tasker->task_begin("data");
   #pragma omp parallel for
   for(int i=0; i<point_cloud_size; i++){
     this->retrieve_location(i, data_xyz);
@@ -95,7 +97,7 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::Tasker* tasker){
     this->retrieve_goodness(i);
     this->insert_data(i);
   }
-  tasker->task_end("cloud::data");
+  tasker->task_end("data");
 
   //---------------------------
 }
@@ -105,33 +107,33 @@ void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::Tasker* tasker){
   //---------------------------
 
   //Cloud data copy
-  tasker->task_begin("cloud::copying");
+  tasker->task_begin("copying");
   data->xyz = vec_xyz;
   data->Is = vec_ir;
   data->R = vec_r;
   data->goodness = vec_goodness;
   data->nb_point = vec_xyz.size();
-  tasker->task_end("cloud::copying");
+  tasker->task_end("copying");
 
   //Final colorization
-  tasker->task_begin("cloud::colorization");
+  tasker->task_begin("colorization");
   k4n_operation->make_colorization(sensor, vec_rgb);
   data->rgb = vec_rgb;
-  tasker->task_end("cloud::colorization");
+  tasker->task_end("colorization");
 
   //Voxelization filtering
-  ////tasker->task_begin("cloud::voxel");
+  ////tasker->task_begin("voxel");
   //float voxel_size = master->voxel.voxel_size;
   //int min_nb_point = master->voxel.min_nb_point;
   //ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
   //ope_voxelizer->reconstruct_data_by_goodness(data);
-  ////tasker->task_end("cloud::voxel");
+  ////tasker->task_end("voxel");
 
   //Update object data
-  tasker->task_begin("cloud::update");
+  tasker->task_begin("update");
   utl::entity::Object* object = sensor->get_object();
   object->update_data();
-  tasker->task_end("cloud::update");
+  tasker->task_end("update");
 
   //---------------------------
 }
