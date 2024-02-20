@@ -26,6 +26,7 @@ public:
   //Subfunction
   void main_info();
   void main_button();
+  void draw_profiler();
   void draw_graph();
 
   //Graph subfunction

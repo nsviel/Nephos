@@ -2,6 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
+namespace prf{class Tasker;}
+
 
 namespace prf{
 
@@ -16,7 +18,10 @@ public:
   //Main function
 
 
+  inline std::vector<prf::Tasker*> get_vec_tasker(){return vec_tasker;}
+
 private:
+  std::vector<prf::Tasker*> vec_tasker;
   string name;
 };
 

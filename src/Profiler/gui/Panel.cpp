@@ -44,7 +44,7 @@ void Panel::design_panel(){
 
   this->main_info();
   this->main_button();
-  this->draw_graph();
+  this->draw_profiler();
 
   //---------------------------
 }
@@ -116,10 +116,21 @@ void Panel::main_button(){
 
   //---------------------------
 }
+void Panel::draw_profiler(){
+  //---------------------------
+
+  if(ImGui::BeginTabBar("profiler_gui##4567")){
+    this->draw_graph();
+
+    ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
 void Panel::draw_graph(){
   //---------------------------
 
-  if(ImGui::BeginTabBar("device_tab##4567")){
+  if(ImGui::BeginTabBar("tasker_gui##4567")){
     this->draw_graph_all();
     this->draw_graph_unique();
     this->draw_graph_vulkan();
