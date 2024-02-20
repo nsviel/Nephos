@@ -72,7 +72,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
 
 
     tasker->task_begin("image");
-    k4n_image->make_images(sensor);
+    k4n_image->start_thread(sensor);
     tasker->task_end("image");
 
     //Manage event

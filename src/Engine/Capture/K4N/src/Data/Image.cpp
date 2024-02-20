@@ -18,6 +18,16 @@ Image::Image(){
 Image::~Image(){}
 
 //Main function
+void Image::start_thread(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  if(thread.joinable()){
+    thread.join();
+  }
+  this->thread = std::thread(&Image::make_images, this, sensor);
+
+  //---------------------------
+}
 void Image::make_images(k4n::dev::Sensor* sensor){
   prf::Tasker* tasker = sensor->profiler->get_tasker("capture");
   k4n::structure::Image* image = &sensor->image;

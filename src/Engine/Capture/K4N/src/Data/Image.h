@@ -19,6 +19,7 @@ public:
 
 public:
   //Main function
+  void start_thread(k4n::dev::Sensor* sensor);
   void make_images(k4n::dev::Sensor* sensor);
 
   //Subfunction
@@ -29,6 +30,8 @@ public:
 private:
   k4n::data::Depth* k4a_depth;
   k4n::data::Infrared* k4a_infrared;
+
+  std::thread thread;
 };
 
 }
