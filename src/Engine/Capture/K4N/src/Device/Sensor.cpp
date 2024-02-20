@@ -51,7 +51,7 @@ void Sensor::init(){
   //Sensor tasker
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  this->tasker = prf_manager->new_tasker(param.name, "k4n::sensor");
+  this->tasker = prf_manager->new_tasker(param.name);//, "k4n::sensor"
 
   //Sensor cloud
   object = utl::entity::Object(node_engine);

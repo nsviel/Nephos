@@ -27,9 +27,9 @@ public:
   void main_info();
   void main_button();
   void draw_profiler();
-  void draw_graph();
 
   //Graph subfunction
+  void draw_graph();
   void draw_graph_all();
   void draw_graph_unique();
   void draw_graph_vulkan();

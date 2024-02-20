@@ -68,7 +68,7 @@ void Panel::main_info(){
       //Type
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Type"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", selected_tasker->get_type().c_str());
+      //ImGui::TextColored(color, "%s", selected_tasker->get_type().c_str());
 
       //FPS
       ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -117,16 +117,28 @@ void Panel::main_button(){
   //---------------------------
 }
 void Panel::draw_profiler(){
+  std::list<prf::Profiler*> list_profiler = prf_manager->get_list_profiler();
   //---------------------------
 
   if(ImGui::BeginTabBar("profiler_gui##4567")){
-    this->draw_graph();
+    for(int i=0; i<list_profiler.size(); i++){
+      prf::Profiler* profiler = *next(list_profiler.begin(), i);
+
+      ImGui::SetNextItemWidth(100);
+      if(ImGui::BeginTabItem(profiler->get_name().c_str())){
+        this->draw_graph();
+        ImGui::EndTabItem();
+      }
+    }
 
     ImGui::EndTabBar();
   }
 
   //---------------------------
 }
+
+
+//Graph subfunction
 void Panel::draw_graph(){
   //---------------------------
 
@@ -140,8 +152,6 @@ void Panel::draw_graph(){
 
   //---------------------------
 }
-
-//Graph subfunction
 void Panel::draw_graph_all(){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------

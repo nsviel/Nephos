@@ -11,18 +11,22 @@ class Profiler
 {
 public:
   //Constructor / Destructor
-  Profiler(string name);
+  Profiler(string name, string type);
   ~Profiler();
 
 public:
   //Main function
-
+  prf::Tasker* new_tasker(string name);
+  void remove_tasker(prf::Tasker* tasker);
 
   inline std::vector<prf::Tasker*> get_vec_tasker(){return vec_tasker;}
+  inline std::string get_name(){return name;}
+  inline std::string get_type(){return type;}
 
 private:
   std::vector<prf::Tasker*> vec_tasker;
   string name;
+  string type;
 };
 
 }

@@ -18,7 +18,13 @@ public:
 
 public:
   //Main function
-  prf::Tasker* new_tasker(string name, string type);
+  prf::Profiler* new_profiler(string name, string type);
+  void remove_profiler(prf::Profiler* profiler);
+
+
+
+
+  prf::Tasker* new_tasker(string name);
   void remove_tasker(prf::Tasker* tasker);
 
   inline prf::Profiler* get_profiler_main(){return profiler_main;}

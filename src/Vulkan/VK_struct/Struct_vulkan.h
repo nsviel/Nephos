@@ -19,7 +19,7 @@ struct Vulkan{
 
     this->window.glfw_window = utl_window->get_window();
     this->tasker_main = prf_profiler->get_tasker_main();
-    this->tasker_gpu = prf_profiler->new_tasker("gpu", "thread::main");
+    this->tasker_gpu = prf_profiler->new_tasker("gpu");
     this->prf_vulkan = node_profiler->get_prf_vulkan();
   }
 
