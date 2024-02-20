@@ -6,8 +6,8 @@ namespace prf{class Node;}
 namespace prf{class Manager;}
 namespace prf{class Tasker;}
 namespace prf{class Profiler;}
-namespace prf::vulkan{class Manager;}
 namespace prf::improfil{class Manager;}
+namespace prf::vulkan{class Manager;}
 
 
 namespace prf::gui{
@@ -42,7 +42,6 @@ public:
 
 private:
   prf::Manager* prf_manager;
-  prf::vulkan::Manager* prf_vulkan;
   prf::Tasker* selected_tasker;
 
   bool* show_window;

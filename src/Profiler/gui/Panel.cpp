@@ -13,7 +13,6 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
   this->prf_manager = node_profiler->get_prf_manager();
-  this->prf_vulkan = node_profiler->get_prf_vulkan();
 
   this->show_window = show_window;
   this->name = "Profiler";

@@ -25,7 +25,7 @@ struct Vulkan{
     this->window.glfw_window = utl_window->get_window();
     this->tasker_main = profiler->get_tasker("cpu");
     this->tasker_gpu = profiler->get_tasker("gpu");
-    this->prf_vulkan = node_profiler->get_prf_vulkan();
+    this->prf_vulkan = profiler->get_tasker_vulkan();
   }
 
   //General

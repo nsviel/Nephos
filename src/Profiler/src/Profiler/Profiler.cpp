@@ -52,6 +52,23 @@ prf::Tasker* Profiler::get_tasker(string name){
   //---------------------------
   return nullptr;
 }
+prf::vulkan::Manager* Profiler::get_tasker_vulkan(){
+  //---------------------------
+
+  for(int i=0; i<vec_tasker.size(); i++){
+    prf::Tasker* tasker = vec_tasker[i];
+
+    if(prf::vulkan::Manager* vulkan = dynamic_cast<prf::vulkan::Manager*>(tasker)){
+      return vulkan;
+    }
+  }
+
+  cout<<"[error] tasker vulkan doesn't exists"<<endl;
+
+  //---------------------------
+  return nullptr;
+}
+
 void Profiler::remove_tasker(prf::Tasker* tasker){
   //---------------------------
 
