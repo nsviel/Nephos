@@ -7,7 +7,6 @@ namespace prf{class Tasker;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
-namespace eng::ope{class Voxelizer;}
 
 
 namespace k4n::data{
@@ -37,11 +36,8 @@ public:
   void retrieve_goodness(int i);
   void insert_data(int i);
 
-  inline eng::ope::Voxelizer* get_voxelizer(){return ope_voxelizer;}
-
 private:
   k4n::utils::Operation* k4n_operation;
-  eng::ope::Voxelizer* ope_voxelizer;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgb;
