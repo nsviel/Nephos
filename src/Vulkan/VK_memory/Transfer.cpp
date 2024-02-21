@@ -80,11 +80,8 @@ void Transfer::copy_image_to_buffer(vk::structure::Command_buffer* command_buffe
 
 //Buffer GPU function
 void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
+  if(data_size == 0) return;
   //---------------------------
-
-  if (data_size == 0) {
-    throw std::runtime_error("Data size is zero!");
-  }
 
   // Map the buffer's memory and copy the data
   void* mappedMemory;
@@ -98,11 +95,8 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data,
   //---------------------------
 }
 void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize data_size){
+  if(data_size == 0) return;
   //---------------------------
-
-  if (data_size == 0) {
-    throw std::runtime_error("Data size is zero!");
-  }
 
   // Map the buffer's memory and copy the data
   void* mappedMemory;
