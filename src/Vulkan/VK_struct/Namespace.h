@@ -18,6 +18,7 @@
 #include <Vulkan/VK_struct/Struct_parameter.h>
 #include <Vulkan/VK_struct/Struct_instance.h>
 #include <Vulkan/VK_struct/Struct_pipeline.h>
+#include <Vulkan/VK_struct/Struct_query.h>
 #include <Vulkan/VK_struct/Struct_fence.h>
 #include <Vulkan/VK_struct/Struct_pool.h>
 #include <Vulkan/VK_struct/Struct_subpass.h>

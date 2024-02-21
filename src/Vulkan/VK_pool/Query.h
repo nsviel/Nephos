@@ -3,6 +3,8 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Command_buffer;}
+namespace vk::structure{class Query;}
 
 
 namespace vk::instance{
@@ -15,8 +17,10 @@ public:
   ~Query();
 
 public:
-  //Main functions
-
+  //Main function
+  vk::structure::Query create_query_pool();
+  void begin_query_pass(vk::structure::Command_buffer* command_buffer, vk::structure::Query* query);
+  void find_query_timestamp(vk::structure::Query* query);
 
 private:
   vk::structure::Vulkan* struct_vulkan;
