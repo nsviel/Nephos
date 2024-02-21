@@ -67,7 +67,9 @@ void Graphical::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Ob
   }
   if(vk_object->buffer.xyz.vbo != VK_NULL_HANDLE){
     vkCmdBindVertexBuffers(command_buffer, 0, 1, &vk_object->buffer.xyz.vbo, offsets);
-    vkCmdDraw(command_buffer, vk_object->data->point.xyz.size(), 1, 0, 0);
+
+    utl::type::Vertice* vertice = vk_object->data->get_vertice();
+    vkCmdDraw(command_buffer, vertice->xyz.size(), 1, 0, 0);
   }
 
   //---------------------------

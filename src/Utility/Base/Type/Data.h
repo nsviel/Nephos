@@ -46,6 +46,25 @@ struct Vertice{
 struct Data{
   //---------------------------
 
+  utl::type::Vertice* get_vertice(){
+    utl::type::Vertice* vertice = nullptr;
+    switch(draw_type){
+      case utl::topology::POINT:{
+        vertice = &point;
+        break;
+      }
+      case utl::topology::LINE:{
+        vertice = &line;
+        break;
+      }
+      case utl::topology::TRIANGLE:{
+        vertice = &triangle;
+        break;
+      }
+    }
+    return vertice;
+  }
+
   //State
   int UID = -1;
   int nb_data_max = -1;

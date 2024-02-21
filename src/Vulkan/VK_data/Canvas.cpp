@@ -43,6 +43,7 @@ void Canvas::init(){
 
   data->triangle.xyz = xyz;
   data->triangle.uv = uv;
+  data->triangle.size = xyz.size();
   data->draw_type = utl::topology::TRIANGLE;
 
   struct_vulkan->data.canvas.data = data;

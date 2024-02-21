@@ -44,40 +44,23 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
 }
 void Buffer::update_buffer(vk::structure::Object* vk_object){
   utl::type::Data* data = vk_object->data;
+  utl::type::Vertice* vertice = data->get_vertice();
   //---------------------------
 
-  VkDeviceSize data_size;
-  vector<vec3>* xyz;
-  vector<vec4>* rgb;
-  vector<vec2>* uv;
-
-  switch(data->draw_type){
-    case utl::topology::POINT:{
-      xyz = &data->point.xyz;
-      rgb = &data->point.rgb;
-      break;
-    }
-    case utl::topology::LINE:{
-      xyz = &data->line.xyz;
-      rgb = &data->line.rgb;
-      break;
-    }
-    case utl::topology::TRIANGLE:{
-      xyz = &data->triangle.xyz;
-      rgb = &data->triangle.rgb;
-      uv = &data->triangle.uv;
-      break;
-    }
+  if(vertice->xyz.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec3) * vertice->xyz.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vertice->xyz.data(), data_size);
   }
 
-  data_size = sizeof(glm::vec3) * xyz->size();
-  vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, xyz->data(), data_size);
+  if(vertice->rgb.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec4) * vertice->rgb.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgb, &vk_object->buffer.rgb_stagger, vertice->rgb.data(), data_size);
+  }
 
-  data_size = sizeof(glm::vec4) * rgb->size();
-  vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgb, &vk_object->buffer.rgb_stagger, rgb->data(), data_size);
-
-  data_size = sizeof(glm::vec2) * uv->size();
-  vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, uv->data(), data_size);
+  if(vertice->uv.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec2) * vertice->uv.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, vertice->uv.data(), data_size);
+  }
 
   //---------------------------
 }
