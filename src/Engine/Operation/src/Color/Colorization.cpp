@@ -16,70 +16,73 @@ Colorization::Colorization(){
 Colorization::~Colorization(){}
 
 //Main function
-void Colorization::make_colorization(utl::type::Data* data, int color_mode, int heatmap_mode){
+void Colorization::make_colorization(utl::type::Entity* entity, ope::color::Configuration& config){
   //---------------------------
-/*
-  switch(color_mode){
-    case k4n::color::UNICOLOR:{
-      this->colorization_unicolor(data);
+
+  switch(config.color_mode){
+    case ope::color::UNICOLOR:{
+      this->colorization_unicolor(entity);
       break;
     }
-    case k4n::color::INTENSITY:{
-      this->colorization_intensity(data);
+    case ope::color::INTENSITY:{
+      this->colorization_intensity(entity, config);
       break;
     }
-    case k4n::color::HEATMAP:{
-      this->colorization_heatmap(data, heatmap_mode);
+    case ope::color::HEATMAP:{
+      this->colorization_heatmap(entity, config);
       break;
     }
-    case k4n::color::STRUCTURE:{
-      this->colorization_structure(data);
+    case ope::color::STRUCTURE:{
+      this->colorization_structure(entity);
       break;
     }
   }
-*/
+
   //---------------------------
 }
 
 //Subfunction
-void Colorization::colorization_unicolor(utl::type::Data* data){
+void Colorization::colorization_unicolor(utl::type::Entity* entity){
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   data->rgb = vector<vec4>(data->rgb.size(), data->unicolor);
 
   //---------------------------
 }
-void Colorization::colorization_intensity(utl::type::Data* data){
+void Colorization::colorization_intensity(utl::type::Entity* entity, ope::color::Configuration& config){
+  utl::type::Data* data = entity->get_data();
   //---------------------------
-/*
+
   for(int i=0; i<data->xyz.size(); i++){
-    float Is = data->Is[i] / sensor->master->operation.intensity_division;
+    float Is = data->Is[i] / config.intensity_division;
     data->rgb[i] = vec4(Is, Is, Is, 1);
   }
-*/
+
   //---------------------------
 }
-void Colorization::colorization_heatmap(utl::type::Data* data, int heatmap_mode){
+void Colorization::colorization_heatmap(utl::type::Entity* entity, ope::color::Configuration& config){
   //---------------------------
-/*
-  switch(sensor->master->operation.heatmap_mode){
-    case k4n::color::heatmap::INTENSITY:{
-      ope_heatmap->heatmap_intensity(vec_rgba, object, sensor->master->operation.intensity_division);
+
+  switch(config.heatmap_mode){
+    case ope::color::heatmap::INTENSITY:{
+      ope_heatmap->heatmap_intensity(entity, config.intensity_division);
       break;
     }
-    case k4n::color::heatmap::HEIGHT:{
-      ope_heatmap->heatmap_height(vec_rgba, object, sensor->master->operation.range_height);
+    case ope::color::heatmap::HEIGHT:{
+      ope_heatmap->heatmap_height(entity, config.heatmap_range_height);
       break;
     }
-    case k4n::color::heatmap::RANGE:{
-      ope_heatmap->heatmap_range(vec_rgba, object);
+    case ope::color::heatmap::RANGE:{
+      ope_heatmap->heatmap_range(entity);
       break;
     }
   }
-*/
+
   //---------------------------
 }
-void Colorization::colorization_structure(utl::type::Data* data){
+void Colorization::colorization_structure(utl::type::Entity* entity){
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   // Define a color gradient from red to blue

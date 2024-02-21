@@ -1,7 +1,7 @@
 #include "Operation.h"
 
 #include <K4N/Namespace.h>
-#include <Engine/Operation/src/Color/Heatmap.h>
+#include <Operation/Namespace.h>
 
 
 namespace k4n::utils{
@@ -58,6 +58,12 @@ float Operation::find_mkv_ts_end(string path){
 void Operation::make_colorization(k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
   //---------------------------
 
+  ope::color::Configuration config;
+  config.color_mode = sensor->master->operation.color_mode;
+  config.heatmap_mode = sensor->master->operation.heatmap_mode;
+  config.intensity_division = sensor->master->operation.intensity_division;
+  config.heatmap_range_height = sensor->master->operation.range_height;
+/*
   switch(sensor->master->operation.color_mode){
     case k4n::color::UNICOLOR:{
       utl::type::Data* data = sensor->get_data();
@@ -77,7 +83,7 @@ void Operation::make_colorization(k4n::dev::Sensor* sensor, vector<vec4>& vec_rg
       break;
     }
   }
-
+*/
   //---------------------------
 }
 void Operation::colorization_intensity(k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){
@@ -95,21 +101,23 @@ void Operation::colorization_heatmap(k4n::dev::Sensor* sensor, vector<vec4>& vec
   utl::entity::Object* object = sensor->get_object();
   //---------------------------
 
+/*
+
   switch(sensor->master->operation.heatmap_mode){
     case k4n::color::heatmap::INTENSITY:{
-      ope_heatmap->heatmap_intensity(vec_rgba, object, sensor->master->operation.intensity_division);
+      ope_heatmap->heatmap_intensity(object, sensor->master->operation.intensity_division);
       break;
     }
     case k4n::color::heatmap::HEIGHT:{
-      ope_heatmap->heatmap_height(vec_rgba, object, sensor->master->operation.range_height);
+      ope_heatmap->heatmap_height(object, sensor->master->operation.range_height);
       break;
     }
     case k4n::color::heatmap::RANGE:{
-      ope_heatmap->heatmap_range(vec_rgba, object);
+      ope_heatmap->heatmap_range(object);
       break;
     }
   }
-
+*/
   //---------------------------
 }
 void Operation::colorization_structure(k4n::dev::Sensor* sensor, vector<vec4>& vec_rgba){

@@ -29,58 +29,58 @@ Heatmap::~Heatmap(){
 }
 
 //Main function
-void Heatmap::heatmap_intensity(vector<vec4>& vec_rgba, utl::entity::Object* object, int diviser){
+void Heatmap::heatmap_intensity(utl::type::Entity* entity, int diviser){
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   //Prepare data
-  vector<float> Is = object->data->Is;
+  vector<float> Is = data->Is;
   math::divise_vec(Is, diviser);
   math::Normalize(Is, range_intensity);
 
   //Compute heatmap
-  vec_rgba = vector<vec4>(object->data->xyz.size());
-  this->compute_heatmap(Is, vec_rgba);
+  this->compute_heatmap(Is, data->rgb);
 
   //---------------------------
 }
-void Heatmap::heatmap_height(vector<vec4>& vec_rgba, utl::entity::Object* object){
+void Heatmap::heatmap_height(utl::type::Entity* entity){
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   //Prepare data
   vector<float> z_vec;
-  attribManager->retrieve_z_vector(object, z_vec);
+  attribManager->retrieve_z_vector(entity, z_vec);
   math::Normalize(z_vec, range_height);
 
   //Compute heatmap
-  vec_rgba = vector<vec4>(object->data->xyz.size());
-  this->compute_heatmap(z_vec, vec_rgba);
+  this->compute_heatmap(z_vec, data->rgb);
 
   //---------------------------
 }
-void Heatmap::heatmap_height(vector<vec4>& vec_rgba, utl::entity::Object* object, vec2 range){
+void Heatmap::heatmap_height(utl::type::Entity* entity, vec2 range){
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   //Prepare data
   vector<float> z_vec;
-  attribManager->retrieve_z_vector(object, z_vec);
+  attribManager->retrieve_z_vector(entity, z_vec);
   math::Normalize(z_vec, range);
 
   //Compute heatmap
-  vec_rgba = vector<vec4>(object->data->xyz.size());
-  this->compute_heatmap(z_vec, vec_rgba);
+  this->compute_heatmap(z_vec, data->rgb);
 
   //---------------------------
 }
-void Heatmap::heatmap_range(vector<vec4>& vec_rgba, utl::entity::Object* object){
+void Heatmap::heatmap_range(utl::type::Entity* entity){
+  utl::type::Data* data = entity->get_data();
   //---------------------------
 
   //Prepare data
-  vector<float> R = object->data->R;
+  vector<float> R = data->R;
   math::Normalize(R);
 
   //Compute heatmap
-  vec_rgba = vector<vec4>(object->data->xyz.size());
-  this->compute_heatmap(R, vec_rgba);
+  this->compute_heatmap(R, data->rgb);
 
   //---------------------------
 }
@@ -120,8 +120,9 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
 
   //---------------------------
 }
-void Heatmap::heatmap_set(utl::entity::Object* object, vector<float>& v_in){
-  vector<vec4>& RGB = object->data->rgb;
+void Heatmap::heatmap_set(utl::type::Entity* entity, vector<float>& v_in){
+  utl::type::Data* data = entity->get_data();
+  vector<vec4>& RGB = data->rgb;
   //---------------------------
 
   //Normalization of the input vector

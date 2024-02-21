@@ -16,14 +16,14 @@ public:
   ~Heatmap();
 
   //Main function
-  void heatmap_intensity(vector<vec4>& vec_rgba, utl::entity::Object* object, int diviser);
-  void heatmap_height(vector<vec4>& vec_rgba, utl::entity::Object* object);
-  void heatmap_height(vector<vec4>& vec_rgba, utl::entity::Object* object, vec2 range);
-  void heatmap_range(vector<vec4>& vec_rgba, utl::entity::Object* object);
+  void heatmap_intensity(utl::type::Entity* entity, int diviser);
+  void heatmap_height(utl::type::Entity* entity);
+  void heatmap_height(utl::type::Entity* entity, vec2 range);
+  void heatmap_range(utl::type::Entity* entity);
 
   //Heatmap functions
   void compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap);
-  void heatmap_set(utl::entity::Object* object, vector<float>& v_in);
+  void heatmap_set(utl::type::Entity* entity, vector<float>& v_in);
 
   inline vec2* get_range_height(){return &range_height;}
 
