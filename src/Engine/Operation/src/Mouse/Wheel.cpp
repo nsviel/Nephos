@@ -5,10 +5,10 @@
 #include <Scene/Namespace.h>
 
 
-namespace eng::ope{
+namespace ope{
 
 //Constructor / Destructor
-Wheel::Wheel(eng::ope::Node* node_operation){
+Wheel::Wheel(ope::Node* node_operation){
   //---------------------------
 
   eng::Node* node_engine = node_operation->get_node_engine();
@@ -17,7 +17,7 @@ Wheel::Wheel(eng::ope::Node* node_operation){
 
   this->cam_control = node_camera->get_camera_control();
   this->sce_scene = node_scene->get_scene();
-  this->ope_operation = new eng::ope::Operation();
+  this->ope_operation = new ope::Operation();
 
   this->mode = WHEEL_CAM_Z;
 

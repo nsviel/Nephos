@@ -19,7 +19,7 @@ Scene::Scene(eng::scene::Node* node_scene, bool* show_window){
   this->rnd_set = new eng::scene::gui::Set(&show_panel_set);
   this->rnd_object = new eng::scene::gui::Entity(node_scene, &show_panel_entity);
 
-  this->ope_operation = new eng::ope::Operation();
+  this->ope_operation = new ope::Operation();
 
   this->name = "Scene";
   this->show_window = show_window;

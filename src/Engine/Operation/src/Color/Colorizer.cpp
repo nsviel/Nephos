@@ -9,7 +9,7 @@ namespace ope::color{
 Colorizer::Colorizer(){
   //---------------------------
 
-  this->ope_heatmap = new eng::ope::Heatmap();
+  this->ope_heatmap = new ope::Heatmap();
 
   //---------------------------
 }

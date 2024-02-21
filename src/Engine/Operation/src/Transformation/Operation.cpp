@@ -1,16 +1,16 @@
 #include "Operation.h"
 
-#include <Engine/Operation/Namespace.h>
+#include <Operation/Namespace.h>
 
 
-namespace eng::ope{
+namespace ope{
 
 // Constructor / Destructor
 Operation::Operation(){
   //---------------------------
 
-  this->ope_transform = new eng::ope::Transformation();
-  this->ope_attribut = new eng::ope::Attribut();
+  this->ope_transform = new ope::Transformation();
+  this->ope_attribut = new ope::Attribut();
 
   //---------------------------
 }

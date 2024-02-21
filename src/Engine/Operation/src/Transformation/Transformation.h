@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace eng::ope{
+namespace ope{
 
 class Transformation
 {

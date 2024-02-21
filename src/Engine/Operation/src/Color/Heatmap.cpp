@@ -4,14 +4,14 @@
 #include <Engine/Operation/Namespace.h>
 
 
-namespace eng::ope{
+namespace ope{
 
 //Constructor / destructor
 Heatmap::Heatmap(){
   //---------------------------
 
-  this->colormapManager = new eng::ope::Colormap();
-  this->attribManager = new eng::ope::Attribut();
+  this->colormapManager = new ope::Colormap();
+  this->attribManager = new ope::Attribut();
 
   this->is_normalization = false;
   this->range_norm = vec2(0.0f, 1.0f);

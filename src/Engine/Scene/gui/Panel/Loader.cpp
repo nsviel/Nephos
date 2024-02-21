@@ -16,8 +16,8 @@ Loader::Loader(eng::scene::Node* node_scene, bool* show_window){
   this->sce_loader = node_scene->get_scene_loader();
   this->sce_format = node_scene->get_scene_format();
   this->sce_bookmark = node_scene->get_scene_bookmark();
-  this->ope_transform = new eng::ope::Transformation();
-  this->ope_operation = new eng::ope::Operation();
+  this->ope_transform = new ope::Transformation();
+  this->ope_operation = new ope::Operation();
 
   this->default_dir = utl::fct::file::get_current_parent_path_abs();
   this->current_dir = default_dir;

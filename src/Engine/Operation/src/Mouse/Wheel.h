@@ -3,8 +3,8 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
-namespace eng::ope{class Node;}
-namespace eng::ope{class Operation;}
+namespace ope{class Node;}
+namespace ope{class Operation;}
 namespace eng::scene{class Scene;}
 namespace eng::cam{class Control;}
 
@@ -16,13 +16,13 @@ enum Wheel_mode{
 };
 
 
-namespace eng::ope{
+namespace ope{
 
 class Wheel
 {
 public:
   //Constructor / Destructor
-  Wheel(eng::ope::Node* node_operation);
+  Wheel(ope::Node* node_operation);
   ~Wheel();
 
 public:
@@ -38,7 +38,7 @@ public:
 private:
   eng::scene::Scene* sce_scene;
   eng::cam::Control* cam_control;
-  eng::ope::Operation* ope_operation;
+  ope::Operation* ope_operation;
 
   int mode;
 };

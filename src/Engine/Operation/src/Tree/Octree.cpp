@@ -1,10 +1,11 @@
 #include "Octree.h"
 
+#include <Operation/Namespace.h>
 #include <Utility/Function/Math/Math.h>
 #include <Utility/Specific/color.h>
 
 
-namespace eng::ope{
+namespace ope::tree{
 
 //Constructor / destructor
 Octree::Octree(){
@@ -52,7 +53,7 @@ void Octree::create_octree(utl::entity::Object* object, int level){
   //---------------------------
   this->remove_octree(root);
 }
-void Octree::remove_octree(Root* root){
+void Octree::remove_octree(ope::tree::Root* root){
   //---------------------------
 
   this->remove_cube(root->child);
@@ -95,10 +96,10 @@ void Octree::build_root(utl::entity::Object* object){
 
   //Initiate octree root
   if(root == nullptr){
-    this->root = new Root();
+    this->root = new ope::tree::Root();
   }else{
     // /this->remove_octree(root);
-    this->root = new Root();
+    this->root = new ope::tree::Root();
   }
   root->xyz_subset = &cloud->xyz;
   root->xyz = compute_cube_location(cube->min, cube->max);

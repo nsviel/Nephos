@@ -8,8 +8,8 @@ namespace eng::scene{class Scene;}
 namespace eng::scene{class Loader;}
 namespace eng::scene{class Bookmark;}
 namespace eng::scene{class Format;}
-namespace eng::ope{class Transformation;}
-namespace eng::ope{class Operation;}
+namespace ope{class Transformation;}
+namespace ope{class Operation;}
 
 
 namespace eng::scene::gui{
@@ -46,8 +46,8 @@ private:
   eng::scene::Loader* sce_loader;
   eng::scene::Bookmark* sce_bookmark;
   eng::scene::Format* sce_format;
-  eng::ope::Transformation* ope_transform;
-  eng::ope::Operation* ope_operation;
+  ope::Transformation* ope_transform;
+  ope::Operation* ope_operation;
 
   vector<Item> vec_item_folder;
   vector<Item> vec_item_file;

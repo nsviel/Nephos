@@ -14,7 +14,7 @@ Option::Option(eng::gui::Node* node_gui, bool* show_window){
   //---------------------------
 
   vk::Node* node_vulkan = node_gui->get_node_vulkan();
-  eng::ope::Node* node_operation = node_gui->get_node_operation();
+  ope::Node* node_operation = node_gui->get_node_operation();
 
   this->ope_wheel = node_operation->get_ope_wheel();
   this->vk_info = node_vulkan->get_vk_info();

@@ -11,7 +11,7 @@ namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::render{class Node;}
 namespace eng::capture{class Node;}
-namespace eng::ope{class Node;}
+namespace ope{class Node;}
 namespace eng::gui{class Node;}
 
 
@@ -41,7 +41,7 @@ public:
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::render::Node* get_node_render(){return node_render;}
   inline eng::capture::Node* get_node_capture(){return node_capture;}
-  inline eng::ope::Node* get_node_operation(){return node_operation;}
+  inline ope::Node* get_node_operation(){return node_operation;}
 
 private:
   //Dependancy
@@ -55,7 +55,7 @@ private:
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;
   eng::render::Node* node_render;
-  eng::ope::Node* node_operation;
+  ope::Node* node_operation;
   eng::gui::Node* node_gui;
 };
 

@@ -6,7 +6,7 @@
 #include <Camera/Namespace.h>
 
 
-namespace eng::ope{
+namespace ope{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
@@ -19,8 +19,8 @@ Node::Node(eng::Node* node_engine){
   this->node_camera = node_engine->get_node_camera();
 
   //Child
-  this->ope_wheel = new eng::ope::Wheel(this);
-  this->gui_control = new eng::ope::gui::Control(this);
+  this->ope_wheel = new ope::Wheel(this);
+  this->gui_control = new ope::gui::Control(this);
 
   //---------------------------
 }

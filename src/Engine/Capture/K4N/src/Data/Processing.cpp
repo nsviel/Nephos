@@ -12,8 +12,8 @@ namespace k4n::data{
 Processing::Processing(){
   //---------------------------
 
-  this->ope_voxelizer = new eng::ope::Voxelizer();
-  this->ope_trianguler = new eng::ope::Triangulation();
+  this->ope_voxelizer = new ope::Voxelizer();
+  this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
 
   //---------------------------

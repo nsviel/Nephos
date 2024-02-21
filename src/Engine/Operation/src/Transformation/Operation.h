@@ -2,11 +2,11 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng::ope{class Transformation;}
-namespace eng::ope{class Attribut;}
+namespace ope{class Transformation;}
+namespace ope{class Attribut;}
 
 
-namespace eng::ope{
+namespace ope{
 
 class Operation
 {
@@ -30,8 +30,8 @@ public:
   void make_translation_from_root(utl::type::Entity* entity, vec3 new_root);
 
 private:
-  eng::ope::Transformation* ope_transform;
-  eng::ope::Attribut* ope_attribut;
+  ope::Transformation* ope_transform;
+  ope::Attribut* ope_attribut;
 };
 
 }

@@ -12,8 +12,8 @@ Entity::Entity(eng::scene::Node* node_scene, bool* panel_show){
   //---------------------------
 
   this->sce_scene = node_scene->get_scene();
-  this->ope_attribut = new eng::ope::Attribut();
-  this->ope_operation = new eng::ope::Operation();
+  this->ope_attribut = new ope::Attribut();
+  this->ope_operation = new ope::Operation();
 
   this->panel_show = panel_show;
   this->panel_name = "Entity";

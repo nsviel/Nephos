@@ -3,28 +3,9 @@
 #include <Utility/Specific/common.h>
 
 
-struct Cube{
-  int level;
-  Cube* child[8];
-
-  vec3 min;
-  vec3 max;
-  vec3 center;
-
-  vector<int> idx_cube;
-  vector<int> idx_child;
-};
-struct Root{
-  Cube* child;
-
-  vector<vec3>* xyz_subset;
-  vector<vec3> xyz;
-  vector<vec4> rgb;
-  vector<vec4> level_rgb;
-};
-
-
-namespace eng::ope{
+namespace ope::tree{
+class Root;
+class Cube;
 
 class Octree
 {
@@ -36,21 +17,21 @@ public:
 public:
   void create_octree(utl::entity::Object* object);
   void create_octree(utl::entity::Object* object, int level);
-  void remove_octree(Root* root);
+  void remove_octree(ope::tree::Root* root);
 
   //Sub functions
-  void remove_cube(Cube* cube);
+  void remove_cube(ope::tree::Cube* cube);
   void build_root(utl::entity::Object* object);
-  void build_octree(Cube* cube_parent);
+  void build_octree(ope::tree::Cube* cube_parent);
   vector<vec3> compute_cube_location(vec3 min, vec3 max);
   vector<vec4> compute_cube_color(int size);
   vector<vec4> compute_cube_color(int size, vec4 rgb);
-  void compute_cube_division(Cube* cube);
-  vector<int> compute_idx_from_point(vec3 min, vec3 max, Cube* cube_parent);
+  void compute_cube_division(ope::tree::Cube* cube);
+  vector<int> compute_idx_from_point(vec3 min, vec3 max, ope::tree::Cube* cube_parent);
   bool is_at_least_one_value(vector<int> vec);
 
 private:
-  Root* root;
+  ope::tree::Root* root;
   vec4 octree_color;
   bool with_rdm_color;
   int octree_time;

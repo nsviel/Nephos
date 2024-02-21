@@ -9,7 +9,7 @@ namespace eng::scene{class Database;}
 namespace eng::scene::gui{class Entity;}
 namespace eng::scene::gui{class Set;}
 namespace eng::cam{class Control;}
-namespace eng::ope{class Operation;}
+namespace ope{class Operation;}
 
 
 namespace eng::scene::gui{
@@ -47,7 +47,7 @@ private:
   eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
   eng::cam::Control* cam_control;
-  eng::ope::Operation* ope_operation;
+  ope::Operation* ope_operation;
 
   string name;
   bool* show_window;

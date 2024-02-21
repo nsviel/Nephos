@@ -3,8 +3,8 @@
 #include <Utility/Specific/common.h>
 
 namespace k4n::dev{class Sensor;}
-namespace eng::ope{class Voxelizer;}
-namespace eng::ope{class Triangulation;}
+namespace ope{class Voxelizer;}
+namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
 
 
@@ -28,8 +28,8 @@ public:
   void update_object(k4n::dev::Sensor* sensor);
 
 private:
-  eng::ope::Voxelizer* ope_voxelizer;
-  eng::ope::Triangulation* ope_trianguler;
+  ope::Voxelizer* ope_voxelizer;
+  ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
 
   std::thread thread;

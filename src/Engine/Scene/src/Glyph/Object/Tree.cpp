@@ -9,7 +9,7 @@ namespace glyph::object{
 Tree::Tree(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
-  this->octreeManager = new eng::ope::Octree();
+  this->octreeManager = new ope::tree::Octree();
 
   this->name = "tree";
     this->is_permanent = true;

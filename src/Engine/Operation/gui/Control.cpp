@@ -6,10 +6,10 @@
 #include <Scene/Namespace.h>
 
 
-namespace eng::ope::gui{
+namespace ope::gui{
 
 //Constructor / Destructor
-Control::Control(eng::ope::Node* node_operation){
+Control::Control(ope::Node* node_operation){
   //---------------------------
 
   this->node_engine = node_operation->get_node_engine();
@@ -22,7 +22,7 @@ Control::Control(eng::ope::Node* node_operation){
   this->cam_control = node_camera->get_camera_control();
   this->sce_scene = node_scene->get_scene();
   this->sce_database = node_scene->get_scene_database();
-  this->ope_operation = new eng::ope::Operation();
+  this->ope_operation = new ope::Operation();
   this->ope_wheel = node_operation->get_ope_wheel();
 
   //---------------------------

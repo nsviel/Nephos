@@ -3,9 +3,9 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
-namespace eng::ope{class Node;}
-namespace eng::ope{class Operation;}
-namespace eng::ope{class Wheel;}
+namespace ope{class Node;}
+namespace ope{class Operation;}
+namespace ope{class Wheel;}
 namespace eng::scene{class Scene;}
 namespace eng::scene{class Database;}
 namespace eng::cam{class Control;}
@@ -13,13 +13,13 @@ namespace eng::cam{class Manager;}
 namespace utl::element{class Window;}
 
 
-namespace eng::ope::gui{
+namespace ope::gui{
 
 class Control
 {
 public:
   //Constructor / Destructor
-  Control(eng::ope::Node* node_operation);
+  Control(ope::Node* node_operation);
   ~Control();
 
 public:
@@ -40,8 +40,8 @@ private:
   eng::scene::Database* sce_database;
   eng::cam::Control* cam_control;
   eng::cam::Manager* cam_manager;
-  eng::ope::Operation* ope_operation;
-  eng::ope::Wheel* ope_wheel;
+  ope::Operation* ope_operation;
+  ope::Wheel* ope_wheel;
 };
 
 }

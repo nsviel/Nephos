@@ -4,7 +4,7 @@
 #include <cstdlib>
 
 
-namespace eng::ope{
+namespace ope{
 
 // Constructor / Destructor
 Voxelizer::Voxelizer(){

@@ -3,7 +3,7 @@
 #include <Utility/Function/Math/Math.h>
 
 
-namespace eng::ope{
+namespace ope{
 
 //Constructor / destructor
 Colormap::Colormap(){

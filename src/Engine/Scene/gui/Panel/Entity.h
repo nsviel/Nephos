@@ -4,8 +4,8 @@
 
 namespace eng::scene{class Node;}
 namespace eng::scene{class Scene;}
-namespace eng::ope{class Attribut;}
-namespace eng::ope{class Operation;}
+namespace ope{class Attribut;}
+namespace ope{class Operation;}
 
 
 namespace eng::scene::gui{
@@ -39,8 +39,8 @@ public:
   inline void set_entity(utl::type::Entity* entity){this->entity = entity;}
 
 private:
-  eng::ope::Attribut* ope_attribut;
-  eng::ope::Operation* ope_operation;
+  ope::Attribut* ope_attribut;
+  ope::Operation* ope_operation;
   eng::scene::Scene* sce_scene;
 
   utl::type::Entity* entity;

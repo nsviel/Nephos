@@ -8,7 +8,7 @@ typedef std::vector<glm::vec4> Voxel;
 typedef tsl::robin_map<key, Voxel> Voxel_map;
 
 
-namespace eng::ope{
+namespace ope{
 
 class Voxelizer
 {

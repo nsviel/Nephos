@@ -1,7 +1,7 @@
 #include "Attribut.h"
 
 
-namespace eng::ope{
+namespace ope{
 
 // Constructor / Destructor
 Attribut::Attribut(){}

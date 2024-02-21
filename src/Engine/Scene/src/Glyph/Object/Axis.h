@@ -23,7 +23,7 @@ public:
   void construct();
 
 private:
-  eng::ope::Transformation* ope_transform;
+  ope::Transformation* ope_transform;
 
   bool is_visible;
 };
