@@ -44,8 +44,8 @@ void Mesh::update_glyph(int nb_cell){
 
 //Subfunction
 void Mesh::construct_mesh(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->point.xyz;
-  vector<vec4>& RGB = vec_data[0]->point.rgb;
+  vector<vec3>& XYZ = vec_data[0]->line.xyz;
+  vector<vec4>& RGB = vec_data[0]->line.rgb;
   float z = -0.002;
   //---------------------------
 
@@ -67,8 +67,8 @@ void Mesh::construct_mesh(int nb_cell){
   //---------------------------
 }
 void Mesh::construct_submesh(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->point.xyz;
-  vector<vec4>& RGB = vec_data[0]->point.rgb;
+  vector<vec3>& XYZ = vec_data[0]->line.xyz;
+  vector<vec4>& RGB = vec_data[0]->line.rgb;
   float z = -0.003;
   //---------------------------
 

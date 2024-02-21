@@ -41,8 +41,8 @@ void Axis::update_glyph(utl::type::Entity* entity){
 
 //Subfunction
 void Axis::construct(){
-  vector<vec4>& RGB = vec_data[0]->point.rgb;
-  vector<vec3>& XYZ = vec_data[0]->point.xyz;
+  vector<vec4>& RGB = vec_data[0]->line.rgb;
+  vector<vec3>& XYZ = vec_data[0]->line.xyz;
   //---------------------------
 
   //Location

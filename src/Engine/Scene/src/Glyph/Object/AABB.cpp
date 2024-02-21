@@ -37,7 +37,7 @@ void AABB::update_glyph(utl::type::Pose* pose){
 
   vec3 min = pose->min;
   vec3 max = pose->max;
-  vec_data[0]->point.xyz = build_box(min, max);
+  vec_data[0]->line.xyz = build_box(min, max);
 
   //---------------------------
 }

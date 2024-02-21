@@ -28,8 +28,8 @@ void Axis::create(){
   //---------------------------
 }
 void Axis::update_glyph(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->point.xyz;
-  vector<vec4>& RGB = vec_data[0]->point.rgb;
+  vector<vec3>& XYZ = vec_data[0]->line.xyz;
+  vector<vec4>& RGB = vec_data[0]->line.rgb;
   float z = -0.001;
   //---------------------------
 

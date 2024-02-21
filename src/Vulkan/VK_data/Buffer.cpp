@@ -95,21 +95,10 @@ void Buffer::clean_buffer(vk::structure::Buffer* buffer){
 //Subfunction
 int Buffer::get_size_buffer(vk::structure::Object* vk_object){
   utl::type::Data* data = vk_object->data;
+  utl::type::Vertice* vertice = data->get_vertice();
   //---------------------------
 
-  int max_data = 0;
-  if(data->nb_data_max != -1){
-    max_data = data->nb_data_max;
-  }
-  else if(data->point.size != -1){
-    max_data = data->point.size;
-  }
-  else if(data->line.size != -1){
-    max_data = data->line.size;
-  }
-  else if(data->triangle.size != -1){
-    max_data = data->triangle.size;
-  }
+  int max_data = (data->nb_data_max != -1) ? data->nb_data_max : vertice->xyz.size();
 
   //---------------------------
   return max_data;

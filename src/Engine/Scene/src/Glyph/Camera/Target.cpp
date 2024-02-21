@@ -48,8 +48,8 @@ void Target::update_glyph(utl::type::Entity* entity){
   //---------------------------
 }
 void Target::construct(utl::type::Data* data){
-  vector<vec3>& XYZ = data->point.xyz;
-  vector<vec4>& RGB = data->point.rgb;
+  vector<vec3>& XYZ = data->line.xyz;
+  vector<vec4>& RGB = data->line.rgb;
   //---------------------------
 
   XYZ.clear();

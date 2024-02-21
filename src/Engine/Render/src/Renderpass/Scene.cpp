@@ -138,9 +138,9 @@ void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
     bool& is_visible = vk_object->data->is_visible;
     bool has_topology = vk_object->data->draw_type == utl::topology::LINE;
-    bool has_xyz = vk_object->data->point.xyz.size() != 0;
-    bool has_rgb = vk_object->data->point.rgb.size() != 0;
-    bool same_length = vk_object->data->point.rgb.size() == vk_object->data->point.xyz.size();
+    bool has_xyz = vk_object->data->line.xyz.size() != 0;
+    bool has_rgb = vk_object->data->line.rgb.size() != 0;
+    bool same_length = vk_object->data->line.rgb.size() == vk_object->data->line.xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb && same_length){
       vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->pose->mvp);
@@ -165,9 +165,9 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
     bool& is_visible = vk_object->data->is_visible;
     bool has_topology = vk_object->data->draw_type == utl::topology::TRIANGLE;
-    bool has_xyz = vk_object->data->point.xyz.size() != 0;
-    bool has_rgb = vk_object->data->point.rgb.size() != 0;
-    bool same_length = vk_object->data->point.rgb.size() == vk_object->data->point.xyz.size();
+    bool has_xyz = vk_object->data->triangle.xyz.size() != 0;
+    bool has_rgb = vk_object->data->triangle.rgb.size() != 0;
+    bool same_length = vk_object->data->triangle.rgb.size() == vk_object->data->triangle.xyz.size();
 
     if(is_visible && has_topology && has_xyz && has_rgb && same_length){
       vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->pose->mvp);

@@ -28,8 +28,8 @@ void Plane::create(){
   //---------------------------
 }
 void Plane::update_glyph(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->point.xyz;
-  vector<vec4>& RGB = vec_data[0]->point.rgb;
+  vector<vec3>& XYZ = vec_data[0]->triangle.xyz;
+  vector<vec4>& RGB = vec_data[0]->triangle.rgb;
   float z = -0.004;
   //---------------------------
 
