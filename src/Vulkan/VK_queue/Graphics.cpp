@@ -1,7 +1,6 @@
 #include "Graphics.h"
 
 #include <Vulkan/Namespace.h>
-#include <thread>
 
 
 namespace vk::queue{
@@ -14,52 +13,22 @@ Graphics::Graphics(vk::structure::Vulkan* struct_vulkan){
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
 
   //---------------------------
-  this->start_thread();
 }
 Graphics::~Graphics(){}
 
-//Main functions
-void Graphics::start_thread(){
+//Main function
+void Graphics::submit_command(vk::structure::Command* command){
   //---------------------------
 
-  if(!thread_running){
-    this->thread = std::thread(&Graphics::run_thread, this);
-  }
-
-  //---------------------------
-}
-void Graphics::run_thread(){
-  //---------------------------
-
-  thread_running = true;
-  while(thread_running){
-    this->wait_for_command();
-    this->reset_for_submission();
-    this->prepare_submission();
-    this->queue_submission();
-    this->post_submission();
-  }
-
-  //---------------------------
-}
-void Graphics::add_command(vk::structure::Command* command){
-  //---------------------------
-
-  vec_command_prepa.push_back(command);
+  this->reset_for_submission();
+  this->prepare_submission(command);
+  this->queue_submission();
+  this->wait_and_reset(command);
 
   //---------------------------
 }
 
 //Subfunction
-void Graphics::wait_for_command(){
-  //---------------------------
-
-  while(vec_command_prepa.empty()){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
-}
 void Graphics::reset_for_submission(){
   //---------------------------
 
@@ -70,23 +39,18 @@ void Graphics::reset_for_submission(){
 
   //---------------------------
 }
-void Graphics::prepare_submission(){
+void Graphics::prepare_submission(vk::structure::Command* command){
   //---------------------------
 
-  for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command* command = vec_command_onrun[i];
-
-    //Command buffer
-    for(int i=0; i<command->vec_command_buffer.size(); i++){
-      vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
-      this->vec_command_buffer.push_back(command_buffer->command);
-    }
-
-    //Synchro stuff
-    this->vec_semaphore_processing = command->vec_semaphore_processing;
-    this->vec_wait_stage = command->vec_wait_stage;
-    this->vec_semaphore_done = command->vec_semaphore_done;
+  //Command buffer
+  for(int i=0; i<command->vec_command_buffer.size(); i++){
+    vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
+    this->vec_command_buffer.push_back(command_buffer->command);
   }
+
+  this->vec_semaphore_processing = command->vec_semaphore_processing;
+  this->vec_wait_stage = command->vec_wait_stage;
+  this->vec_semaphore_done = command->vec_semaphore_done;
 
   //---------------------------
 }
@@ -97,6 +61,11 @@ void Graphics::queue_submission(){
 
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+  submit_info.waitSemaphoreCount = vec_semaphore_processing.size();
+  submit_info.pWaitSemaphores = vec_semaphore_processing.data();
+  submit_info.pWaitDstStageMask = vec_wait_stage.data();
+  submit_info.signalSemaphoreCount = vec_semaphore_done.size();
+  submit_info.pSignalSemaphores = vec_semaphore_done.data();
   submit_info.commandBufferCount = vec_command_buffer.size();
   submit_info.pCommandBuffers = vec_command_buffer.data();
 
@@ -110,25 +79,18 @@ void Graphics::queue_submission(){
 
   //---------------------------
 }
-void Graphics::post_submission(){
+void Graphics::wait_and_reset(vk::structure::Command* command){
   //---------------------------
 
-  for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command* command = vec_command_onrun[i];
+  //Reset command buffer
+  for(int i=0; i<command->vec_command_buffer.size(); i++){
+    vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
 
-    //Reset command buffer
-    for(int i=0; i<command->vec_command_buffer.size(); i++){
-      vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
-
-      if(command_buffer->is_resetable){
-        command_buffer->is_available = true;
-        command_buffer->is_recorded = false;
-      }
+    if(command_buffer->is_resetable){
+      command_buffer->is_available = true;
+      command_buffer->is_recorded = false;
     }
   }
-
-  this->vec_command_onrun.clear();
-  this->vec_command_buffer.clear();
 
   //---------------------------
 }

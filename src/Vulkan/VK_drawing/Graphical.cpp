@@ -13,7 +13,6 @@ Graphical::Graphical(vk::structure::Vulkan* struct_vulkan){
   this->vk_render = new vk::draw::Renderer(struct_vulkan);
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
   this->vk_semaphore = new vk::synchro::Semaphore(struct_vulkan);
-  this->vk_command = new vk::command::Command(struct_vulkan);
 
   //---------------------------
 }
@@ -45,9 +44,7 @@ void Graphical::draw_frame(){
     command->vec_command_buffer.push_back(renderpass->command_buffer);
     command->vec_semaphore_done.push_back(semaphore->end);
     command->vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-    vk_command->submit_command(command);
-    //struct_vulkan->queue.graphics->add_command(command);
-
+    struct_vulkan->queue.graphics->submit_command(command);
 
     struct_vulkan->tasker_main->task_end(name);
   }

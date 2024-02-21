@@ -8,35 +8,40 @@ namespace vk::structure{class Fence;}
 namespace vk::synchro{class Fence;}
 
 
-namespace vk::command{
+namespace vk::queue{
 
-class Command
+class Graphics0
 {
 public:
   //Constructor / Destructor
-  Command(vk::structure::Vulkan* struct_vulkan);
-  ~Command();
+  Graphics0(vk::structure::Vulkan* struct_vulkan);
+  ~Graphics0();
 
 public:
-  //Main function
-  void submit_command(vk::structure::Command* command);
+  //Main functions
+  void start_thread();
+  void run_thread();
+  void add_command(vk::structure::Command* command);
 
   //Subfunction
   void reset_for_submission();
-  void prepare_submission(vk::structure::Command* command);
+  void prepare_submission();
+  void wait_for_command();
   void queue_submission();
-  void wait_and_reset(vk::structure::Command* command);
+  void post_submission();
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vector<vk::structure::Command*> vec_command;
   vk::synchro::Fence* vk_fence;
 
-  std::thread thread;
+  std::vector<vk::structure::Command*> vec_command_prepa;
+  std::vector<vk::structure::Command*> vec_command_onrun;
   std::vector<VkCommandBuffer> vec_command_buffer;
   std::vector<VkPipelineStageFlags> vec_wait_stage;
   std::vector<VkSemaphore> vec_semaphore_processing;
   std::vector<VkSemaphore> vec_semaphore_done;
+  std::thread thread;
+  bool thread_running = false;
 };
 
 }

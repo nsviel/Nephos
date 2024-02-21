@@ -22,7 +22,6 @@ Subpass::Subpass(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_attachment = new Attachment(struct_vulkan);
 
   //---------------------------

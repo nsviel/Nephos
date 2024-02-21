@@ -13,7 +13,6 @@ Renderpass::Renderpass(vk::structure::Vulkan* struct_vulkan){
   this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
   this->vk_subpass = new Subpass(struct_vulkan);
   this->vk_framebuffer = new vk::renderpass::Framebuffer(struct_vulkan);
-  this->vk_command = new vk::command::Command(struct_vulkan);
 
   //---------------------------
 }
@@ -36,7 +35,7 @@ void Renderpass::init(){
     this->create_renderpass(renderpass);
     vk_pipeline->create_pipeline(renderpass);
     vk_framebuffer->create_framebuffer(renderpass);
-  
+
   }
 
   //---------------------------

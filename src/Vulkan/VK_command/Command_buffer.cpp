@@ -11,7 +11,6 @@ Command_buffer::Command_buffer(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
-  this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_thread = new vk::command::Allocator(struct_vulkan);
   this->vk_uid = new vk::instance::UID(struct_vulkan);
   this->vk_query = new vk::instance::Query(struct_vulkan);
@@ -45,7 +44,6 @@ void Command_buffer::reset_pool(vk::pool::Command_buffer* pool){
     vk::structure::Command_buffer* command_buffer = &pool->tank[i];
 
     if(command_buffer->is_resetable){
-      //vkResetCommandBuffer(command_buffer->command, 0);
       command_buffer->is_available = true;
       command_buffer->is_recorded = false;
     }
@@ -70,23 +68,17 @@ void Command_buffer::submit_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
   //Submit all recorder command buffer
-  vk::structure::Command* command = new vk::structure::Command();
   vector<VkCommandBuffer> vec_command;
   for(int i=0; i<pool->size; i++){
     vk::structure::Command_buffer* command_buffer = &pool->tank[i];
 
     if(command_buffer->is_recorded){
+      vk::structure::Command* command = new vk::structure::Command();
       command->vec_command_buffer.push_back(command_buffer);
-      //struct_vulkan->queue.transfer->add_command(command_buffer);
+
+      struct_vulkan->queue.graphics->submit_command(command);
     }
   }
-
-
-  //struct_vulkan->queue.graphics->add_command(command);
-  vk_command->submit_command(command);
-  delete command;
-
-
 
   //---------------------------
 }

@@ -3,7 +3,6 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::command{class Command_buffer;}
-namespace vk::command{class Command;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Fence;}
 namespace vk::structure{class Renderpass;}
@@ -30,7 +29,6 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::command::Command* vk_command;
   vk::command::Command_buffer* vk_command_buffer;
 };
 

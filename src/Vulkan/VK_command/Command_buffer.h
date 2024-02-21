@@ -9,7 +9,6 @@ namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Fence;}
 namespace vk::synchro{class Fence;}
-namespace vk::command{class Command;}
 namespace vk::command{class Allocator;}
 namespace vk::instance{class UID;}
 namespace vk::instance{class Query;}
@@ -44,7 +43,6 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::synchro::Fence* vk_fence;
-  vk::command::Command* vk_command;
   vk::command::Allocator* vk_thread;
   vk::instance::Query* vk_query;
   vk::instance::UID* vk_uid;

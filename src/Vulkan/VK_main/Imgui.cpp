@@ -11,7 +11,6 @@ Imgui::Imgui(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_pool = new vk::instance::Pool(struct_vulkan);
-  this->vk_command = new vk::command::Command(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   this->vk_surface = new vk::presentation::Surface(struct_vulkan);
   this->vk_texture = new vk::main::Texture(struct_vulkan);
