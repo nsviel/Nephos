@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/common.h>
 
-namespace vk::presentation{class Presentation;}
 namespace vk::draw{class Renderer;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
@@ -30,7 +29,6 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::presentation::Presentation* vk_presentation;
   vk::draw::Renderer* vk_render;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;

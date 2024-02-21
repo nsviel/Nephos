@@ -1,7 +1,6 @@
 #include "Presentation.h"
 
 #include <Vulkan/Namespace.h>
-#include <thread>
 
 
 namespace vk::queue{
@@ -11,124 +10,74 @@ Presentation::Presentation(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_fence = new vk::synchro::Fence(struct_vulkan);
+  this->vk_swapchain = new vk::presentation::Swapchain(struct_vulkan);
+  this->vk_surface = new vk::presentation::Surface(struct_vulkan);
 
   //---------------------------
-  this->start_thread();
 }
 Presentation::~Presentation(){}
 
-//Main functions
-void Presentation::start_thread(){
+//Main function
+void Presentation::acquire_next_image(VkSemaphore& semaphore){
+  vk::structure::Swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
-  if(!thread_running){
-    this->thread = std::thread(&Presentation::run_thread, this);
+  //Acquiring an image from the swap chain
+  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.handle, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
+  if(result == VK_ERROR_OUT_OF_DATE_KHR){
+    vk_swapchain->recreate_swapchain();
+    return;
+  }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
+    throw std::runtime_error("[error] failed to acquire swap chain image!");
   }
 
   //---------------------------
 }
-void Presentation::run_thread(){
+void Presentation::image_presentation(VkSemaphore& semaphore){
   //---------------------------
 
-  thread_running = true;
-  while(thread_running){
-    this->wait_for_command();
-    this->reset_for_submission();
-    this->prepare_submission();
-    this->queue_submission();
-    this->post_submission();
-  }
 
-  //---------------------------
-}
-void Presentation::add_command(vk::structure::Command* command){
-  //---------------------------
+  this->submit_presentation(semaphore);
+  this->next_frame_ID();
 
-  vec_command_prepa.push_back(command);
+
 
   //---------------------------
 }
 
 //Subfunction
-void Presentation::wait_for_command(){
+void Presentation::submit_presentation(VkSemaphore& semaphore){
+  vk::structure::Swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
-  while(vec_command_prepa.empty()){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  VkPresentInfoKHR presentation_info{};
+  presentation_info.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+  presentation_info.waitSemaphoreCount = 1;
+  presentation_info.pWaitSemaphores = &semaphore;
+  presentation_info.swapchainCount = 1;
+  presentation_info.pSwapchains = &swapchain->swapchain;
+  presentation_info.pImageIndices = &swapchain->frame_presentation_ID;
+  presentation_info.pResults = nullptr; // Optional
+
+  VkResult result = vkQueuePresentKHR(struct_vulkan->device.queue.presentation, &presentation_info);
+
+  //Window resizing
+  vk_surface->check_for_resizing();
+  if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || struct_vulkan->window.is_resized){
+    vk_swapchain->recreate_swapchain();
+  }else if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to present swap chain image!");
   }
 
   //---------------------------
 }
-void Presentation::reset_for_submission(){
+void Presentation::next_frame_ID(){
+  vk::structure::Swapchain* swapchain = &struct_vulkan->swapchain;
   //---------------------------
 
-  this->vec_command_buffer.clear();
-  this->vec_semaphore_processing.clear();
-  this->vec_semaphore_done.clear();
-  this->vec_wait_stage.clear();
-
-  //---------------------------
-}
-void Presentation::prepare_submission(){
-  //---------------------------
-
-  for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command* command = vec_command_onrun[i];
-
-    //Command buffer
-    for(int i=0; i<command->vec_command_buffer.size(); i++){
-      vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
-      this->vec_command_buffer.push_back(command_buffer->command);
-    }
-
-    //Synchro stuff
-    this->vec_semaphore_processing = command->vec_semaphore_processing;
-    this->vec_wait_stage = command->vec_wait_stage;
-    this->vec_semaphore_done = command->vec_semaphore_done;
-  }
-
-  //---------------------------
-}
-void Presentation::queue_submission(){
-  //---------------------------
-
-  vk::structure::Fence* fence = vk_fence->query_free_fence();
-
-  VkSubmitInfo submit_info{};
-  submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  submit_info.commandBufferCount = vec_command_buffer.size();
-  submit_info.pCommandBuffers = vec_command_buffer.data();
-
-  VkResult result = vkQueueSubmit(struct_vulkan->device.queue.presentation, 1, &submit_info, fence->fence);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] command buffer queue submission");
-  }
-
-  vkWaitForFences(struct_vulkan->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
-  vk_fence->reset_fence(fence);
-
-  //---------------------------
-}
-void Presentation::post_submission(){
-  //---------------------------
-
-  for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command* command = vec_command_onrun[i];
-
-    //Reset command buffer
-    for(int i=0; i<command->vec_command_buffer.size(); i++){
-      vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
-
-      if(command_buffer->is_resetable){
-        command_buffer->is_available = true;
-        command_buffer->is_recorded = false;
-      }
-    }
-  }
-
-  this->vec_command_onrun.clear();
-  this->vec_command_buffer.clear();
+  int current_ID = swapchain->frame_presentation_ID;
+  current_ID = (current_ID + 1) % struct_vulkan->instance.max_frame_inflight;
+  swapchain->frame_presentation_ID = current_ID;
 
   //---------------------------
 }

@@ -11,7 +11,6 @@ Graphical::Graphical(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_render = new vk::draw::Renderer(struct_vulkan);
-  this->vk_presentation = new vk::presentation::Presentation(struct_vulkan);
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
   this->vk_semaphore = new vk::synchro::Semaphore(struct_vulkan);
   this->vk_command = new vk::command::Command(struct_vulkan);
@@ -25,7 +24,7 @@ void Graphical::draw_frame(){
   //---------------------------
 
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
-  vk_presentation->acquire_next_image(semaphore->end);
+  struct_vulkan->queue.presentation->acquire_next_image(semaphore->end);
 
   //Renderpass
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
@@ -53,7 +52,7 @@ void Graphical::draw_frame(){
     struct_vulkan->tasker_main->task_end(name);
   }
 
-  vk_presentation->image_presentation(semaphore->end);
+  struct_vulkan->queue.presentation->image_presentation(semaphore->end);
 
   //---------------------------
 }
