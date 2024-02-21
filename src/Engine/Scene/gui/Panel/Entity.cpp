@@ -197,19 +197,19 @@ void Entity::primitive_line(utl::type::Data* data){
   ImGui::Text("Line width"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    data->draw_line_width--;
+    data->line.width--;
 
-    if(data->draw_line_width <= 1){
-      data->draw_line_width = 1;
+    if(data->line.width <= 1){
+      data->line.width = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    data->draw_line_width++;
+    data->line.width++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", data->draw_line_width);
+  ImGui::Text("%d", data->line.width);
 
   //---------------------------
 }
@@ -220,7 +220,7 @@ void Entity::primitive_point(utl::type::Data* data){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Point No"); ImGui::TableNextColumn();
-  string nb_point = math::thousand_separator(data->nb_point);
+  string nb_point = math::thousand_separator(data->point.size);
   ImGui::Text("%s", nb_point.c_str());
 
   //Point size
@@ -228,19 +228,19 @@ void Entity::primitive_point(utl::type::Data* data){
   ImGui::Text("Point size"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    data->draw_point_size--;
+    data->point.width--;
 
-    if(data->draw_point_size <= 1){
-      data->draw_point_size = 1;
+    if(data->point.width <= 1){
+      data->point.width = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    data->draw_point_size++;
+    data->point.width++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", data->draw_point_size);
+  ImGui::Text("%d", data->point.width);
 
   //---------------------------
 }

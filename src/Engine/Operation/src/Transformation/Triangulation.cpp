@@ -17,7 +17,7 @@ Triangulation::~Triangulation(){}
 
 //Main function
 void Triangulation::make_triangulation(utl::type::Data* data){
-  if(data->xyz.size() == 0) return;
+  if(data->point.xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
 
@@ -37,10 +37,10 @@ void Triangulation::make_triangulation(utl::type::Data* data){
       int index_3 = (i + 1) * data->width + j;
       int index_4 = index_3 + 1;
 
-      const vec3& point_1 = data->xyz[index_1];
-      const vec3& point_2 = data->xyz[index_2];
-      const vec3& point_3 = data->xyz[index_3];
-      const vec3& point_4 = data->xyz[index_4];
+      const vec3& point_1 = data->point.xyz[index_1];
+      const vec3& point_2 = data->point.xyz[index_2];
+      const vec3& point_3 = data->point.xyz[index_3];
+      const vec3& point_4 = data->point.xyz[index_4];
 
       float distance_1_2 = glm::distance(point_1, point_2);
       float distance_1_3 = glm::distance(point_1, point_3);
@@ -52,13 +52,13 @@ void Triangulation::make_triangulation(utl::type::Data* data){
           xyz.push_back(point_3);
           xyz.push_back(point_2);
 
-          rgb.push_back(data->rgb[index_1]);
-          rgb.push_back(data->rgb[index_3]);
-          rgb.push_back(data->rgb[index_2]);
+          rgb.push_back(data->point.rgb[index_1]);
+          rgb.push_back(data->point.rgb[index_3]);
+          rgb.push_back(data->point.rgb[index_2]);
 
-          Is.push_back(data->Is[index_1]);
-          Is.push_back(data->Is[index_3]);
-          Is.push_back(data->Is[index_2]);
+          Is.push_back(data->point.Is[index_1]);
+          Is.push_back(data->point.Is[index_3]);
+          Is.push_back(data->point.Is[index_2]);
         }
       }
 
@@ -71,24 +71,24 @@ void Triangulation::make_triangulation(utl::type::Data* data){
           xyz.push_back(point_3);
           xyz.push_back(point_4);
 
-          rgb.push_back(data->rgb[index_2]);
-          rgb.push_back(data->rgb[index_3]);
-          rgb.push_back(data->rgb[index_4]);
+          rgb.push_back(data->point.rgb[index_2]);
+          rgb.push_back(data->point.rgb[index_3]);
+          rgb.push_back(data->point.rgb[index_4]);
 
-          Is.push_back(data->Is[index_2]);
-          Is.push_back(data->Is[index_3]);
-          Is.push_back(data->Is[index_4]);
+          Is.push_back(data->point.Is[index_2]);
+          Is.push_back(data->point.Is[index_3]);
+          Is.push_back(data->point.Is[index_4]);
         }
       }
 
     }
   }
-  
+
   data->draw_type_name = "triangle";
-  data->xyz = xyz;
-  data->rgb = rgb;
-  data->Is = Is;
-  data->nb_point = xyz.size();
+  data->point.xyz = xyz;
+  data->point.rgb = rgb;
+  data->point.Is = Is;
+  data->point.size = xyz.size();
 
   //---------------------------
 }

@@ -23,7 +23,7 @@ void Axis::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
-  data->draw_line_width = 4;
+  data->line.width = 4;
   data->is_visible = true;
   data->draw_type_name = "line";
   this->vec_data.push_back(data);
@@ -32,8 +32,8 @@ void Axis::create(){
   //---------------------------
 }
 void Axis::update_glyph(){
-  vector<vec3>& XYZ = vec_data[0]->xyz;
-  vector<vec4>& RGB = vec_data[0]->rgb;
+  vector<vec3>& XYZ = vec_data[0]->point.xyz;
+  vector<vec4>& RGB = vec_data[0]->point.rgb;
   float z = 0;
   //---------------------------
 

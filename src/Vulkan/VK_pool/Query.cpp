@@ -70,7 +70,6 @@ void Query::find_query_timestamp(vk::structure::Command_buffer* command_buffer){
 
   float delta = float(timestamps[1] - timestamps[0]) * struct_vulkan->device.physical_device.timestamp_period / 1000000000.0f;
   command_buffer->timestamp = delta;
-  say(delta);
 
   struct_vulkan->tasker_gpu->task_end(command_buffer->name, delta);
 

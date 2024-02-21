@@ -19,7 +19,7 @@ void Camera::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
-  data->draw_line_width = 1;
+  data->line.width = 1;
   data->draw_type_name = "line";
   data->unicolor = vec4(1, 1, 1, 0.2f);
   this->vec_data.push_back(data);

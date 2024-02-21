@@ -19,7 +19,7 @@ void Axis::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
-  data->draw_line_width = 2;
+  data->line.width = 2;
   data->is_visible = true;
   data->draw_type_name = "line";
   data->unicolor = color;
@@ -28,8 +28,8 @@ void Axis::create(){
   //---------------------------
 }
 void Axis::update_glyph(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->xyz;
-  vector<vec4>& RGB = vec_data[0]->rgb;
+  vector<vec3>& XYZ = vec_data[0]->point.xyz;
+  vector<vec4>& RGB = vec_data[0]->point.rgb;
   float z = -0.001;
   //---------------------------
 

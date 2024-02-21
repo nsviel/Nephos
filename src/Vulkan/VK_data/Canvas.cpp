@@ -41,8 +41,8 @@ void Canvas::init(){
   uv.push_back(vec2(1.0f,  0.0f));
   uv.push_back(vec2(0.0f,  1.0f));
 
-  data->xyz = xyz;
-  data->uv = uv;
+  data->point.xyz = xyz;
+  data->triangle.uv = uv;
   data->draw_type_name = "triangle";
 
   struct_vulkan->data.canvas.data = data;

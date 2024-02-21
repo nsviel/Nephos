@@ -22,7 +22,7 @@ void Axis::create(){
 
   //Create glyph
   utl::type::Data* data = new utl::type::Data();
-  data->draw_line_width = 3;
+  data->line.width = 3;
   data->is_visible = is_visible;
   data->draw_type_name = "line";
   this->vec_data.push_back(data);
@@ -41,8 +41,8 @@ void Axis::update_glyph(utl::type::Entity* entity){
 
 //Subfunction
 void Axis::construct(){
-  vector<vec4>& RGB = vec_data[0]->rgb;
-  vector<vec3>& XYZ = vec_data[0]->xyz;
+  vector<vec4>& RGB = vec_data[0]->point.rgb;
+  vector<vec3>& XYZ = vec_data[0]->point.xyz;
   //---------------------------
 
   //Location

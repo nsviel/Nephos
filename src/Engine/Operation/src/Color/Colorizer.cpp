@@ -47,7 +47,7 @@ void Colorizer::colorization_unicolor(utl::type::Entity* entity, ope::color::Con
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
-  data->rgb = vector<vec4>(data->rgb.size(), config.unicolor);
+  data->point.rgb = vector<vec4>(data->point.rgb.size(), config.unicolor);
 
   //---------------------------
 }
@@ -55,9 +55,9 @@ void Colorizer::colorization_intensity(utl::type::Entity* entity, ope::color::Co
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
-  for(int i=0; i<data->xyz.size(); i++){
-    float Is = data->Is[i] / config.intensity_division;
-    data->rgb[i] = vec4(Is, Is, Is, 1);
+  for(int i=0; i<data->point.xyz.size(); i++){
+    float Is = data->point.Is[i] / config.intensity_division;
+    data->point.rgb[i] = vec4(Is, Is, Is, 1);
   }
 
   //---------------------------
@@ -90,10 +90,10 @@ void Colorizer::colorization_structure(utl::type::Entity* entity){
   vector<vec3>& colormap = ope_colormap->get_colormap_selected();
 
   // Calculate the step size for color interpolation
-  float step = 1.0f / (data->xyz.size() - 1);
+  float step = 1.0f / (data->point.xyz.size() - 1);
 
   // Loop through the points and assign colors
-  for(int i = 0; i < data->xyz.size(); ++i) {
+  for(int i = 0; i < data->point.xyz.size(); ++i) {
     // Calculate the index in the colormap based on the normalized position
     int colormap_index = step * float(i) * colormap.size() - 1;
 
@@ -104,7 +104,7 @@ void Colorizer::colorization_structure(utl::type::Entity* entity){
     vec3 interpolated_color = (1.0f - t) * color1 + t * color2;
 
     // Add the interpolated color to the vector
-    data->rgb[i] = vec4(interpolated_color, 1.0f);
+    data->point.rgb[i] = vec4(interpolated_color, 1.0f);
   }
 
   //---------------------------

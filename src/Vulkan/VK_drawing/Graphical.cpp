@@ -67,7 +67,7 @@ void Graphical::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Ob
   }
   if(vk_object->buffer.xyz.vbo != VK_NULL_HANDLE){
     vkCmdBindVertexBuffers(command_buffer, 0, 1, &vk_object->buffer.xyz.vbo, offsets);
-    vkCmdDraw(command_buffer, vk_object->data->xyz.size(), 1, 0, 0);
+    vkCmdDraw(command_buffer, vk_object->data->point.xyz.size(), 1, 0, 0);
   }
 
   //---------------------------
@@ -75,7 +75,7 @@ void Graphical::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Ob
 void Graphical::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* vk_object){
   //---------------------------
 
-  vkCmdSetLineWidth(command_buffer, vk_object->data->draw_line_width);
+  vkCmdSetLineWidth(command_buffer, vk_object->data->line.width);
 
   //---------------------------
 }

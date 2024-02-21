@@ -85,9 +85,9 @@ void Data::check_data(vk::structure::Object* vk_object){
   utl::type::Data* data = vk_object->data;
   //---------------------------
 
-  vk_object->has_xyz = true;//(data->xyz.size() == 0) ? false : true;
-  vk_object->has_rgb = (data->rgb.size() == 0) ? false : true;
-  vk_object->has_uv =  (data->uv.size()  == 0) ? false : true;
+  vk_object->has_xyz = true;//(data->point.xyz.size() == 0) ? false : true;
+  vk_object->has_rgb = (data->point.rgb.size() == 0) ? false : true;
+  vk_object->has_uv =  (data->triangle.uv.size()  == 0) ? false : true;
 
   //---------------------------
 }

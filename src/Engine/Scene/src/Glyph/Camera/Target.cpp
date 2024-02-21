@@ -21,7 +21,7 @@ void Target::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
-  data->draw_line_width = 2;
+  data->line.width = 2;
   data->is_visible = true;
   data->draw_type_name = "line";
   data->unicolor = vec4(1, 1, 1, 0.2f);
@@ -48,8 +48,8 @@ void Target::update_glyph(utl::type::Entity* entity){
   //---------------------------
 }
 void Target::construct(utl::type::Data* data){
-  vector<vec3>& XYZ = data->xyz;
-  vector<vec4>& RGB = data->rgb;
+  vector<vec3>& XYZ = data->point.xyz;
+  vector<vec4>& RGB = data->point.rgb;
   //---------------------------
 
   XYZ.clear();

@@ -233,7 +233,7 @@ int Set::compute_number_point(){
   for(int i=0; i<list_entity.size(); i++){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
     utl::type::Data* data = entity->get_data();
-    nb_point += data->nb_point;
+    nb_point += data->point.size;
   }
 
   // Recursively add points from nested subsets

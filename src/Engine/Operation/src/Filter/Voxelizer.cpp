@@ -26,7 +26,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
   //Insert point and index into voxel map
   int cpt = 0;
   #pragma omp parallel for
-	for(const vec3& point : data->xyz){
+	for(const vec3& point : data->point.xyz){
     int kx = static_cast<int>(point.x / voxel_size);
     int ky = static_cast<int>(point.y / voxel_size);
     int kz = static_cast<int>(point.z / voxel_size);
@@ -45,7 +45,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
       #pragma omp parallel for
       for(int i=0; i<voxel_size; i++){
         vec4 point = voxel[i];
-        data->goodness[point.w] = false;
+        data->point.goodness[point.w] = false;
       }
 
 		}
@@ -59,13 +59,13 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data, float voxe
 
   //Insert point and index into voxel map
   #pragma omp parallel for
-	for(int i=0; i<data->xyz.size(); i++){
-    int kx = static_cast<int>(data->xyz[i].x / voxel_size);
-    int ky = static_cast<int>(data->xyz[i].y / voxel_size);
-    int kz = static_cast<int>(data->xyz[i].z / voxel_size);
+	for(int i=0; i<data->point.xyz.size(); i++){
+    int kx = static_cast<int>(data->point.xyz[i].x / voxel_size);
+    int ky = static_cast<int>(data->point.xyz[i].y / voxel_size);
+    int kz = static_cast<int>(data->point.xyz[i].z / voxel_size);
     int kw = i;
     int key = (kx*2000 + ky)*1000 + kz;
-    vec4 point = vec4(data->xyz[i].x, data->xyz[i].y, data->xyz[i].z, i);
+    vec4 point = vec4(data->point.xyz[i].x, data->point.xyz[i].y, data->point.xyz[i].z, i);
     voxel_map[key].push_back(point);
 	}
 
@@ -76,7 +76,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data, float voxe
       Voxel voxel = it->second;
       for(int i=0; i<voxel.size(); i++){
         vec4 point = voxel[i];
-        data->goodness[point.w] = false;
+        data->point.goodness[point.w] = false;
       }
 
 		}
@@ -88,16 +88,16 @@ void Voxelizer::reconstruct_data_by_goodness(utl::type::Data* data){
   //---------------------------
 
   // Use std::remove_if to move the unwanted elements to the end
-  auto newEnd = std::remove_if(data->goodness.begin(), data->goodness.end(), [](bool g) { return !g; });
+  auto newEnd = std::remove_if(data->point.goodness.begin(), data->point.goodness.end(), [](bool g) { return !g; });
 
   // Erase the unwanted elements from the vectors using erase-remove idiom
-  data->xyz.erase(std::remove_if(data->xyz.begin(), data->xyz.end(), [&](const auto& val) { return !data->goodness[&val - &data->xyz[0]]; }), data->xyz.end());
-  data->rgb.erase(std::remove_if(data->rgb.begin(), data->rgb.end(), [&](const auto& val) { return !data->goodness[&val - &data->rgb[0]]; }), data->rgb.end());
-  data->R.erase(std::remove_if(data->R.begin(), data->R.end(), [&](const auto& val) { return !data->goodness[&val - &data->R[0]]; }), data->R.end());
-  data->Is.erase(std::remove_if(data->Is.begin(), data->Is.end(), [&](const auto& val) { return !data->goodness[&val - &data->Is[0]]; }), data->Is.end());
+  data->point.xyz.erase(std::remove_if(data->point.xyz.begin(), data->point.xyz.end(), [&](const auto& val) { return !data->point.goodness[&val - &data->point.xyz[0]]; }), data->point.xyz.end());
+  data->point.rgb.erase(std::remove_if(data->point.rgb.begin(), data->point.rgb.end(), [&](const auto& val) { return !data->point.goodness[&val - &data->point.rgb[0]]; }), data->point.rgb.end());
+  data->point.R.erase(std::remove_if(data->point.R.begin(), data->point.R.end(), [&](const auto& val) { return !data->point.goodness[&val - &data->point.R[0]]; }), data->point.R.end());
+  data->point.Is.erase(std::remove_if(data->point.Is.begin(), data->point.Is.end(), [&](const auto& val) { return !data->point.goodness[&val - &data->point.Is[0]]; }), data->point.Is.end());
 
   // Update the nb_point
-  data->nb_point = data->xyz.size();
+  data->point.size = data->point.xyz.size();
 
   /*
   std::vector<glm::vec3> xyz;
@@ -105,25 +105,25 @@ void Voxelizer::reconstruct_data_by_goodness(utl::type::Data* data){
   std::vector<float> R;
   std::vector<float> Is;
 
-  xyz.reserve(data->xyz.size());
-  rgb.reserve(data->xyz.size());
-  R.reserve(data->xyz.size());
-  Is.reserve(data->xyz.size());
+  xyz.reserve(data->point.xyz.size());
+  rgb.reserve(data->point.xyz.size());
+  R.reserve(data->point.xyz.size());
+  Is.reserve(data->point.xyz.size());
 
-  for(int i=0; i<data->xyz.size(); i++){
-    if(data->goodness[i] == true){
-      xyz.push_back(data->xyz[i]);
-      rgb.push_back(data->rgb[i]);
-      R.push_back(data->R[i]);
-      Is.push_back(data->Is[i]);
+  for(int i=0; i<data->point.xyz.size(); i++){
+    if(data->point.goodness[i] == true){
+      xyz.push_back(data->point.xyz[i]);
+      rgb.push_back(data->point.rgb[i]);
+      R.push_back(data->point.R[i]);
+      Is.push_back(data->point.Is[i]);
     }
   }
 
-  data->xyz = xyz;
-  data->rgb = rgb;
-  data->R = R;
-  data->Is = Is;
-  data->nb_point = xyz.size();
+  data->point.xyz = xyz;
+  data->point.rgb = rgb;
+  data->point.R = R;
+  data->point.Is = Is;
+  data->point.size = xyz.size();
   */
 
   //---------------------------

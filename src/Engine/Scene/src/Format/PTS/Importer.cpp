@@ -319,10 +319,10 @@ bool Importer::Exporter(std::string path, utl::entity::Object* object){
   }
 
   //Data : xyz (R) (rgb) (nxnynz)
-  std::vector<glm::vec3>& XYZ = object->data->xyz;
-  std::vector<glm::vec4>& RGB = object->data->rgb;
-  std::vector<glm::vec3>& N = object->data->Nxyz;
-  std::vector<float>& Is = object->data->Is;
+  std::vector<glm::vec3>& XYZ = object->data->point.xyz;
+  std::vector<glm::vec4>& RGB = object->data->point.rgb;
+  std::vector<glm::vec3>& N = object->data->point.Nxyz;
+  std::vector<float>& Is = object->data->point.Is;
 
   //Write in the file
   int precision = 6;
@@ -335,7 +335,7 @@ bool Importer::Exporter(std::string path, utl::entity::Object* object){
     file << std::setprecision(precision) << XYZ[i].x <<" "<< XYZ[i].y <<" "<< XYZ[i].z ;
 
     //Intensity
-    if(object->data->Is.size() != 0){
+    if(object->data->point.Is.size() != 0){
       if(export_IdataFormat == 0){
         file << std::setprecision(precision) <<" "<< Is[i];
       }
@@ -353,7 +353,7 @@ bool Importer::Exporter(std::string path, utl::entity::Object* object){
     }
 
     //Normal
-    if(object->data->Nxyz.size() != 0){
+    if(object->data->point.Nxyz.size() != 0){
       file << std::setprecision(precision) <<" "<< N[i].x <<" "<< N[i].y <<" "<< N[i].z;
     }
 

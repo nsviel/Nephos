@@ -24,9 +24,9 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
 
   //Check for buffer creation validity
   utl::type::Data* data = vk_object->data;
-  if(data->nb_point == -1) data->nb_point = data->xyz.size();
-  if(data->nb_point == 0 && data->nb_data_max == -1) return;
-  int max_data = (data->nb_data_max == -1) ? data->nb_point : data->nb_data_max;
+  if(data->point.size == -1) data->point.size = data->point.xyz.size();
+  if(data->point.size == 0 && data->nb_data_max == -1) return;
+  int max_data = (data->nb_data_max == -1) ? data->point.size : data->nb_data_max;
 
   //Find buffer size
   size = sizeof(glm::vec3) * max_data;
@@ -48,19 +48,19 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
 void Buffer::update_buffer(vk::structure::Object* vk_object){
   //---------------------------
 
-  if(vk_object->data->xyz.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec3) * vk_object->data->xyz.size();
-    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vk_object->data->xyz.data(), data_size);
+  if(vk_object->data->point.xyz.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec3) * vk_object->data->point.xyz.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vk_object->data->point.xyz.data(), data_size);
   }
 
-  if(vk_object->data->rgb.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec4) * vk_object->data->rgb.size();
-    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgb, &vk_object->buffer.rgb_stagger, vk_object->data->rgb.data(), data_size);
+  if(vk_object->data->point.rgb.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec4) * vk_object->data->point.rgb.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgb, &vk_object->buffer.rgb_stagger, vk_object->data->point.rgb.data(), data_size);
   }
 
-  if(vk_object->data->uv.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec2) * vk_object->data->uv.size();
-    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, vk_object->data->uv.data(), data_size);
+  if(vk_object->data->triangle.uv.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec2) * vk_object->data->triangle.uv.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, vk_object->data->triangle.uv.data(), data_size);
   }
 
   //---------------------------

@@ -63,17 +63,17 @@ utl::entity::Object* Loader::load_object(string path){
   object->data->file_format = utl::fct::info::get_format_from_path(path);
   object->data->has_texture = true;
   object->name = data->name;
-  object->data->nb_point = data->xyz.size();
+  object->data->point.size = data->xyz.size();
   object->data->draw_type_name = data->draw_type_name;
 
-  object->data->xyz = data->xyz;
-  object->data->rgb = data->rgb;
-  object->data->uv = data->uv;
+  object->data->point.xyz = data->xyz;
+  object->data->point.rgb = data->rgb;
+  object->data->triangle.uv = data->uv;
 
   //If no color, fill it with white
-  if(object->data->rgb.size() == 0){
+  if(object->data->point.rgb.size() == 0){
     for(int i=0; i<data->xyz.size(); i++){
-      object->data->rgb.push_back(vec4(1,1,1,1));
+      object->data->point.rgb.push_back(vec4(1,1,1,1));
     }
   }
 
