@@ -17,4 +17,5 @@
 #include <Vulkan/VK_validation/Namespace.h>
 #include <Vulkan/VK_synchronization/Namespace.h>
 #include <Vulkan/VK_memory/Namespace.h>
+#include <Vulkan/VK_pool/Namespace.h>
 //#include <Vulkan/Render/Namespace.h>

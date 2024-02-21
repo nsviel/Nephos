@@ -20,6 +20,7 @@ file(GLOB_RECURSE ALL_SOURCES
   VK_synchronization/*.cpp
   VK_queue/*.cpp
   VK_memory/*.cpp
+  VK_pool/*.cpp
   Node.cpp
 )
 
