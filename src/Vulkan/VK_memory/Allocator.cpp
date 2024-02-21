@@ -20,18 +20,18 @@ void Allocator::allocate_image_memory(vk::structure::Image* image){
   //---------------------------
 
   VkMemoryRequirements memRequirements;
-  vkGetImageMemoryRequirements(struct_vulkan->device.device, image->image, &memRequirements);
+  vkGetImageMemoryRequirements(struct_vulkan->device.handle, image->image, &memRequirements);
 
   VkMemoryAllocateInfo allocInfo{};
   allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
   allocInfo.allocationSize = memRequirements.size;
   allocInfo.memoryTypeIndex = find_memory_type(memRequirements.memoryTypeBits, TYP_MEMORY_GPU);
-  VkResult result = vkAllocateMemory(struct_vulkan->device.device, &allocInfo, nullptr, &image->mem);
+  VkResult result = vkAllocateMemory(struct_vulkan->device.handle, &allocInfo, nullptr, &image->mem);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate image memory!");
   }
 
-  vkBindImageMemory(struct_vulkan->device.device, image->image, image->mem, 0);
+  vkBindImageMemory(struct_vulkan->device.handle, image->image, image->mem, 0);
 
   //---------------------------
 }
@@ -69,7 +69,7 @@ void Allocator::create_gpu_buffer(VkDeviceSize size, VkBufferUsageFlags usage, V
   buffer_info.size = size;
   buffer_info.usage = usage;
   buffer_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
-  VkResult result = vkCreateBuffer(struct_vulkan->device.device, &buffer_info, nullptr, &buffer);
+  VkResult result = vkCreateBuffer(struct_vulkan->device.handle, &buffer_info, nullptr, &buffer);
 
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create gpu buffer");
@@ -82,7 +82,7 @@ void Allocator::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& b
 
   //Get buffer memory requirement
   VkMemoryRequirements memory_requirement;
-  vkGetBufferMemoryRequirements(struct_vulkan->device.device, buffer, &memory_requirement);
+  vkGetBufferMemoryRequirements(struct_vulkan->device.handle, buffer, &memory_requirement);
 
   //Buffer allocation info
   VkMemoryAllocateInfo allocation_info{};
@@ -91,13 +91,13 @@ void Allocator::bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& b
   allocation_info.memoryTypeIndex = find_memory_type(memory_requirement.memoryTypeBits, properties | VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT);
 
   //Allocate buffer memory on the GPU
-  VkResult result = vkAllocateMemory(struct_vulkan->device.device, &allocation_info, nullptr, &buffer_memory);
+  VkResult result = vkAllocateMemory(struct_vulkan->device.handle, &allocation_info, nullptr, &buffer_memory);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate buffer memory!");
   }
 
   //Bind the buffer with memory on the GPU side
-  vkBindBufferMemory(struct_vulkan->device.device, buffer, buffer_memory, 0);
+  vkBindBufferMemory(struct_vulkan->device.handle, buffer, buffer_memory, 0);
 
   //---------------------------
 }

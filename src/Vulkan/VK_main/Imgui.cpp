@@ -114,7 +114,7 @@ void Imgui::create_context(){
   ImGui_ImplVulkan_InitInfo init_info = {};
   init_info.Instance = struct_vulkan->instance.instance;
   init_info.PhysicalDevice = struct_vulkan->device.physical_device.physical_device;
-  init_info.Device = struct_vulkan->device.device;
+  init_info.Device = struct_vulkan->device.handle;
   init_info.Queue = struct_vulkan->device.queue.graphics;
   init_info.DescriptorPool = struct_vulkan->pools.descriptor.memory;
   init_info.PipelineCache = VK_NULL_HANDLE;

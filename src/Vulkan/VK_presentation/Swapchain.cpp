@@ -44,7 +44,7 @@ void Swapchain::recreate_swapchain(){
     glfwWaitEvents();
   }
 
-  vkDeviceWaitIdle(struct_vulkan->device.device);
+  vkDeviceWaitIdle(struct_vulkan->device.handle);
 
   //Clean old swapchain
   vk_framebuffer->clean_framebuffers();
@@ -60,7 +60,7 @@ void Swapchain::recreate_swapchain(){
 void Swapchain::clean(){
   //---------------------------
 
-  vkDestroySwapchainKHR(struct_vulkan->device.device, struct_vulkan->swapchain.swapchain, nullptr);
+  vkDestroySwapchainKHR(struct_vulkan->device.handle, struct_vulkan->swapchain.swapchain, nullptr);
   vk_frame->clean_frame();
 
   //---------------------------
@@ -74,11 +74,11 @@ void Swapchain::create_swapchain_image(){
   //to get the correct image which are managed by the presentation engine
 
   //Empty swapchain image
-  vkGetSwapchainImagesKHR(struct_vulkan->device.device, struct_vulkan->swapchain.swapchain, &struct_vulkan->swapchain.max_nb_frame, nullptr);
+  vkGetSwapchainImagesKHR(struct_vulkan->device.handle, struct_vulkan->swapchain.swapchain, &struct_vulkan->swapchain.max_nb_frame, nullptr);
 
   //Fill swapchain image
   struct_vulkan->swapchain.vec_swapchain_image.resize(struct_vulkan->swapchain.max_nb_frame);
-  vkGetSwapchainImagesKHR(struct_vulkan->device.device, struct_vulkan->swapchain.swapchain, &struct_vulkan->swapchain.max_nb_frame, struct_vulkan->swapchain.vec_swapchain_image.data());
+  vkGetSwapchainImagesKHR(struct_vulkan->device.handle, struct_vulkan->swapchain.swapchain, &struct_vulkan->swapchain.max_nb_frame, struct_vulkan->swapchain.vec_swapchain_image.data());
 
   //---------------------------
 }
@@ -117,7 +117,7 @@ void Swapchain::create_swapchain_obj(){
   VkSurfaceCapabilitiesKHR surface_capability = struct_vulkan->device.physical_device.capabilities;
   create_info.preTransform = surface_capability.currentTransform;
 
-  VkResult result = vkCreateSwapchainKHR(struct_vulkan->device.device, &create_info, nullptr, &struct_vulkan->swapchain.swapchain);
+  VkResult result = vkCreateSwapchainKHR(struct_vulkan->device.handle, &create_info, nullptr, &struct_vulkan->swapchain.swapchain);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create swap chain!");
   }

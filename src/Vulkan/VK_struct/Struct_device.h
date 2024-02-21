@@ -9,7 +9,7 @@ namespace vk::structure{
 struct Device{
   //---------------------------
 
-  VkDevice device;
+  VkDevice handle;
   vk::structure::Queue_object queue;
   vk::structure::Physical_device physical_device;
 

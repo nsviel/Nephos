@@ -74,6 +74,7 @@ void Physical::find_physical_devices(){
     vk::structure::Physical_device dev_physical;
     dev_physical.physical_device = device;
     this->find_physical_device_properties(dev_physical);
+    this->find_physical_device_limits(dev_physical);
     struct_vulkan->instance.vec_physical_device.push_back(dev_physical);
   }
 
@@ -160,7 +161,7 @@ bool Physical::device_suitability_onscreen(vk::structure::Physical_device& dev_p
   if(dev_physical.queue_family_presentation_idx == -1){
     return false;
   }
-  
+
   //Extension suitable
   this->find_physical_device_support(dev_physical);
   if(dev_physical.has_extension_support == false){
@@ -219,6 +220,26 @@ bool Physical::device_suitability_offscreen(vk::structure::Physical_device& dev_
 }
 
 //Specific properties
+void Physical::find_physical_device_limits(vk::structure::Physical_device& dev_physical){
+  //---------------------------
+
+  VkPhysicalDeviceProperties device_properties;
+  vkGetPhysicalDeviceProperties(dev_physical.physical_device, &device_properties);
+
+  if(device_properties.limits.timestampPeriod == 0){
+    throw std::runtime_error{"The selected device does not support timestamp queries!"};
+  }
+
+  if(!device_properties.limits.timestampComputeAndGraphics){
+  	/*// Check if the graphics queue used in this sample supports time stamps
+  	VkQueueFamilyProperties graphics_queue_family_properties = device->get_suitable_graphics_queue().get_properties();
+  	if (graphics_queue_family_properties.timestampValidBits == 0){
+  		throw std::runtime_error{"The selected graphics queue family does not support timestamp queries!"};
+  	}*/
+  }
+
+  //---------------------------
+}
 void Physical::find_physical_device_properties(vk::structure::Physical_device& dev_physical){
   //---------------------------
 

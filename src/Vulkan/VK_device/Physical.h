@@ -28,6 +28,7 @@ public:
   //Specific properties
   void find_physical_devices();
   void find_physical_device_best();
+  void find_physical_device_limits(vk::structure::Physical_device& dev_physical);
   void find_physical_device_properties(vk::structure::Physical_device& dev_physical);
   void find_physical_device_features(vk::structure::Physical_device& dev_physical);
   void find_physical_device_support(vk::structure::Physical_device& dev_physical);

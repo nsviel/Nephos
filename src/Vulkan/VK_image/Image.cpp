@@ -30,12 +30,12 @@ void Image::create_image(vk::structure::Image* image){
 void Image::clean_image(vk::structure::Image* image){
   //---------------------------
 
-  vkDestroySampler(struct_vulkan->device.device, image->sampler, nullptr);
+  vkDestroySampler(struct_vulkan->device.handle, image->sampler, nullptr);
 
   if(image->view != nullptr)
-  vkDestroyImageView(struct_vulkan->device.device, image->view, nullptr);
-  vkDestroyImage(struct_vulkan->device.device, image->image, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, image->mem, nullptr);
+  vkDestroyImageView(struct_vulkan->device.handle, image->view, nullptr);
+  vkDestroyImage(struct_vulkan->device.handle, image->image, nullptr);
+  vkFreeMemory(struct_vulkan->device.handle, image->mem, nullptr);
 
   //---------------------------
 }
@@ -59,7 +59,7 @@ void Image::create_image_obj(vk::structure::Image* image){
   image_info.samples = struct_vulkan->device.physical_device.max_sample_count;
   image_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
-  VkResult result = vkCreateImage(struct_vulkan->device.device, &image_info, nullptr, &image->image);
+  VkResult result = vkCreateImage(struct_vulkan->device.handle, &image_info, nullptr, &image->image);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create image!");
   }
@@ -82,7 +82,7 @@ void Image::create_image_view(vk::structure::Image* image){
   view_info.image = image->image;
   view_info.flags = 0;
 
-  VkResult result = vkCreateImageView(struct_vulkan->device.device, &view_info, nullptr, &image->view);
+  VkResult result = vkCreateImageView(struct_vulkan->device.handle, &view_info, nullptr, &image->view);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create texture image view!");
   }
@@ -107,7 +107,7 @@ void Image::create_image_sampler(vk::structure::Image* texture){
   sampler_info.compareOp = VK_COMPARE_OP_ALWAYS;
   sampler_info.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
 
-  VkResult result = vkCreateSampler(struct_vulkan->device.device, &sampler_info, nullptr, &texture->sampler);
+  VkResult result = vkCreateSampler(struct_vulkan->device.handle, &sampler_info, nullptr, &texture->sampler);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create texture sampler!");
   }

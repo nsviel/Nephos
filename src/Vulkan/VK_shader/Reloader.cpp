@@ -40,7 +40,7 @@ void Reloader::hot_shader_reload(string shader_1, string shader_2){
 void Reloader::recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  vkDeviceWaitIdle(struct_vulkan->device.device);
+  vkDeviceWaitIdle(struct_vulkan->device.handle);
   vk_pipeline->clean_pipeline_struct(pipeline);
   vk_pipeline->create_pipeline_struct(renderpass, pipeline);
 

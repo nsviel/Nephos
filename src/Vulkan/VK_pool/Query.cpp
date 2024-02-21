@@ -27,7 +27,7 @@ vk::structure::Query Query::create_query_pool(){
   info.sType = VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO;
   info.queryType = VK_QUERY_TYPE_TIMESTAMP;
   info.queryCount = query_pool.nb_query; // Number of timestamp queries to perform
-  vkCreateQueryPool(struct_vulkan->device.device, &info, nullptr, &query_pool.pool);
+  vkCreateQueryPool(struct_vulkan->device.handle, &info, nullptr, &query_pool.pool);
 
   //---------------------------
   return query_pool;
@@ -35,32 +35,32 @@ vk::structure::Query Query::create_query_pool(){
 void Query::clean_query_pool(vk::structure::Query* query_pool){
   //---------------------------
 
-  vkResetQueryPool(struct_vulkan->device.device, query_pool->pool, 0, query_pool->nb_query);
+  vkResetQueryPool(struct_vulkan->device.handle, query_pool->pool, 0, query_pool->nb_query);
 
   //---------------------------
 }
 
 //Subfunction
-void Query::begin_query_pass(vk::structure::Command_buffer* command_buffer, vk::structure::Query* query){
+void Query::begin_query_pass(vk::structure::Command_buffer* command_buffer){
   //---------------------------
-
+/*
   // Begin the query pass
-  vkCmdResetQueryPool(command_buffer->command, query->pool, 0, query->nb_query);
-  vkCmdBeginQuery(command_buffer->command, query->pool, 0, 0);
+  vkCmdResetQueryPool(command_buffer->command, command_buffer->query.pool, 0, command_buffer->query.nb_query);
+  vkCmdBeginQuery(command_buffer->command, command_buffer->query.pool, 0, 0);
 
   // Insert vkCmdWriteTimestamp commands where needed
-  vkCmdWriteTimestamp(command_buffer->command, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, query->pool, 0);
+  vkCmdWriteTimestamp(command_buffer->command, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, command_buffer->query.pool, 0);
 
   // End the query pass
-  vkCmdEndQuery(command_buffer->command, query->pool, 0);
-
+  vkCmdEndQuery(command_buffer->command, command_buffer->query.pool, 0);
+*/
   //---------------------------
 }
 void Query::find_query_timestamp(vk::structure::Query* query){
   //---------------------------
 
   uint64_t timestamps[query->nb_query];
-  vkGetQueryPoolResults(struct_vulkan->device.device, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT);
+  vkGetQueryPoolResults(struct_vulkan->device.handle, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT);
 
   //---------------------------
 }

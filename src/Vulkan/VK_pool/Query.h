@@ -22,7 +22,7 @@ public:
   void clean_query_pool(vk::structure::Query* query_pool);
 
   //Subfunction
-  void begin_query_pass(vk::structure::Command_buffer* command_buffer, vk::structure::Query* query);
+  void begin_query_pass(vk::structure::Command_buffer* command_buffer);
   void find_query_timestamp(vk::structure::Query* query);
 
 private:

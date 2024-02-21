@@ -23,7 +23,7 @@ void Presentation::acquire_next_image(VkSemaphore& semaphore){
   //---------------------------
 
   //Acquiring an image from the swap chain
-  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.device, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
+  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.handle, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     vk_swapchain->recreate_swapchain();
     return;

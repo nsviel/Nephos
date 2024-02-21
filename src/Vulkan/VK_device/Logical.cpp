@@ -29,7 +29,7 @@ void Logical::init(){
 void Logical::clean(){
   //---------------------------
 
-  vkDestroyDevice(struct_vulkan->device.device, nullptr);
+  vkDestroyDevice(struct_vulkan->device.handle, nullptr);
 
   //---------------------------
 }
@@ -77,7 +77,7 @@ void Logical::create_logical_device(){
   create_info.enabledLayerCount = 0;
 
   //Creating the logical device
-  VkResult result = vkCreateDevice(struct_vulkan->device.physical_device.physical_device, &create_info, nullptr, &struct_vulkan->device.device);
+  VkResult result = vkCreateDevice(struct_vulkan->device.physical_device.physical_device, &create_info, nullptr, &struct_vulkan->device.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create logical device!");
   }
@@ -90,19 +90,19 @@ void Logical::find_device_queue(){
   //Graphics
   int& queue_family_graphics = struct_vulkan->device.physical_device.queue_family_graphics_idx;
   if(queue_family_graphics != -1){
-    vkGetDeviceQueue(struct_vulkan->device.device, queue_family_graphics, 0, &struct_vulkan->device.queue.graphics);
+    vkGetDeviceQueue(struct_vulkan->device.handle, queue_family_graphics, 0, &struct_vulkan->device.queue.graphics);
   }
 
   //Presentation
   int& queue_family_presentation = struct_vulkan->device.physical_device.queue_family_presentation_idx;
   if(queue_family_presentation != -1){
-    vkGetDeviceQueue(struct_vulkan->device.device, queue_family_presentation, 1, &struct_vulkan->device.queue.presentation);
+    vkGetDeviceQueue(struct_vulkan->device.handle, queue_family_presentation, 1, &struct_vulkan->device.queue.presentation);
   }
 
   //Transfer
   int& queue_family_transfer = struct_vulkan->device.physical_device.queue_family_transfer_idx;
   if(queue_family_transfer != -1){
-    vkGetDeviceQueue(struct_vulkan->device.device, queue_family_transfer, 2, &struct_vulkan->device.queue.transfer);
+    vkGetDeviceQueue(struct_vulkan->device.handle, queue_family_transfer, 2, &struct_vulkan->device.queue.transfer);
   }
 
   //---------------------------

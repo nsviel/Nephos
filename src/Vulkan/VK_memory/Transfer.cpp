@@ -29,9 +29,9 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
 
   //Copy data to stagging buffer
   void* staging_data;
-  vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, buffer->size, 0, &staging_data);
+  vkMapMemory(struct_vulkan->device.handle, buffer->mem, 0, buffer->size, 0, &staging_data);
   memcpy(staging_data, utl_image->data.data(), buffer->size);
-  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
+  vkUnmapMemory(struct_vulkan->device.handle, buffer->mem);
 
   //Image transition from undefined layout to read only layout
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
@@ -88,12 +88,12 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data,
 
   // Map the buffer's memory and copy the data
   void* mappedMemory;
-  VkResult result = vkMapMemory(struct_vulkan->device.device, buffer->mem, 0, data_size, 0, &mappedMemory);
+  VkResult result = vkMapMemory(struct_vulkan->device.handle, buffer->mem, 0, data_size, 0, &mappedMemory);
   if (result != VK_SUCCESS) {
     throw std::runtime_error("Failed to map buffer memory!");
   }
   memcpy(mappedMemory, data, static_cast<size_t>(data_size));
-  vkUnmapMemory(struct_vulkan->device.device, buffer->mem);
+  vkUnmapMemory(struct_vulkan->device.handle, buffer->mem);
 
   //---------------------------
 }
@@ -106,12 +106,12 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Bu
 
   // Map the buffer's memory and copy the data
   void* mappedMemory;
-  VkResult result = vkMapMemory(struct_vulkan->device.device, stagger->mem, 0, data_size, 0, &mappedMemory);
+  VkResult result = vkMapMemory(struct_vulkan->device.handle, stagger->mem, 0, data_size, 0, &mappedMemory);
   if (result != VK_SUCCESS) {
     throw std::runtime_error("Failed to map buffer memory!");
   }
   memcpy(mappedMemory, data, static_cast<size_t>(data_size));
-  vkUnmapMemory(struct_vulkan->device.device, stagger->mem);
+  vkUnmapMemory(struct_vulkan->device.handle, stagger->mem);
 
   // Create command buffer to cpy on gpu
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();

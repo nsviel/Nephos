@@ -105,7 +105,7 @@ void Presentation::queue_submission(){
     throw std::runtime_error("[error] command buffer queue submission");
   }
 
-  vkWaitForFences(struct_vulkan->device.device, 1, &fence->fence, VK_TRUE, UINT64_MAX);
+  vkWaitForFences(struct_vulkan->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
   vk_fence->reset_fence(fence);
 
   //---------------------------

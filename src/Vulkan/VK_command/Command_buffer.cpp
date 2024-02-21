@@ -60,7 +60,7 @@ void Command_buffer::clean_pool(vk::pool::Command_buffer* pool){
   for(int i=0; i<pool->size; i++){
     vk::structure::Command_buffer* command_buffer = &pool->tank[i];
 
-    vkFreeCommandBuffers(struct_vulkan->device.device, pool->allocator, 1, &command_buffer->command);
+    vkFreeCommandBuffers(struct_vulkan->device.handle, pool->allocator, 1, &command_buffer->command);
     vk_query->clean_query_pool(&command_buffer->query);
   }
 
@@ -102,7 +102,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::Command_buffer* poo
   alloc_info.commandPool = pool->allocator;
   alloc_info.commandBufferCount = 1;
 
-  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &command_buffer->command);
+  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.handle, &alloc_info, &command_buffer->command);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }
@@ -120,7 +120,7 @@ void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data
   alloc_info.commandPool = pool->allocator;
   alloc_info.commandBufferCount = 1;
 
-  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.device, &alloc_info, &data->command_buffer_secondary);
+  VkResult result = vkAllocateCommandBuffers(struct_vulkan->device.handle, &alloc_info, &data->command_buffer_secondary);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }
@@ -161,6 +161,8 @@ void Command_buffer::start_command_buffer_primary(vk::structure::Command_buffer*
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to begin recording command buffer!");
   }
+
+  vk_query->begin_query_pass(command_buffer);
 
   //---------------------------
 }

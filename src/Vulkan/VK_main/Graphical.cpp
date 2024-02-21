@@ -94,7 +94,7 @@ void Graphical::clean(){
 void Graphical::device_wait_idle(){
   //---------------------------
 
-  VkResult result = vkDeviceWaitIdle(struct_vulkan->device.device);
+  VkResult result = vkDeviceWaitIdle(struct_vulkan->device.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] device wait idle");
   }

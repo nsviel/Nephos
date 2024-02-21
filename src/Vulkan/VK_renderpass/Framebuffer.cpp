@@ -91,7 +91,7 @@ void Framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* rende
   framebufferInfo.layers = 1;
 
   VkFramebuffer fbo;
-  VkResult result = vkCreateFramebuffer(struct_vulkan->device.device, &framebufferInfo, nullptr, &fbo);
+  VkResult result = vkCreateFramebuffer(struct_vulkan->device.handle, &framebufferInfo, nullptr, &fbo);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create framebuffer!");
   }
@@ -118,7 +118,7 @@ void Framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* render
   framebufferInfo.layers = 1;
 
   VkFramebuffer fbo;
-  VkResult result = vkCreateFramebuffer(struct_vulkan->device.device, &framebufferInfo, nullptr, &fbo);
+  VkResult result = vkCreateFramebuffer(struct_vulkan->device.handle, &framebufferInfo, nullptr, &fbo);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create framebuffer!");
   }
@@ -129,7 +129,7 @@ void Framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* render
 void Framebuffer::clean_framebuffer_obj(VkFramebuffer& fbo){
   //---------------------------
 
-  vkDestroyFramebuffer(struct_vulkan->device.device, fbo, nullptr);
+  vkDestroyFramebuffer(struct_vulkan->device.handle, fbo, nullptr);
 
   //---------------------------
 }

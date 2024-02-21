@@ -83,11 +83,11 @@ void Buffer::clean_buffer(vk::structure::Buffer* buffer){
   //---------------------------
 
   if(buffer->vbo != VK_NULL_HANDLE){
-    vkDestroyBuffer(struct_vulkan->device.device, buffer->vbo, nullptr);
+    vkDestroyBuffer(struct_vulkan->device.handle, buffer->vbo, nullptr);
   }
 
   if(buffer->mem != VK_NULL_HANDLE){
-    vkFreeMemory(struct_vulkan->device.device, buffer->mem, nullptr);
+    vkFreeMemory(struct_vulkan->device.handle, buffer->mem, nullptr);
   }
 
   //---------------------------

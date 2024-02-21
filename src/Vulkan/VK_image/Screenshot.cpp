@@ -54,17 +54,17 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
 
   // 3. Save staging buffer data to file
   void* mappedData;
-  vkMapMemory(struct_vulkan->device.device, staging_mem, 0, bufferSize, 0, &mappedData);
+  vkMapMemory(struct_vulkan->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   int channels = 4;  // Assuming RGBA data, adjust as needed
   std::string filename = "output.jpg";  // Adjust the file name and format as needed
   if (stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
     throw std::runtime_error("Failed to write PNG file!");
 }
-  vkUnmapMemory(struct_vulkan->device.device, staging_mem);
+  vkUnmapMemory(struct_vulkan->device.handle, staging_mem);
 
   //Free memory
-  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
+  vkDestroyBuffer(struct_vulkan->device.handle, staging_buffer, nullptr);
+  vkFreeMemory(struct_vulkan->device.handle, staging_mem, nullptr);
 
   //---------------------------
 }
@@ -98,7 +98,7 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
   // 3. Save staging buffer data to file
   void* mappedData;
   void* pixelData = malloc(bufferSize);
-  VkResult mapResult =vkMapMemory(struct_vulkan->device.device, staging_mem, 0, bufferSize, 0, &mappedData);
+  VkResult mapResult =vkMapMemory(struct_vulkan->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   //  memcpy(pixelData, mappedData, static_cast<size_t>(tex_size));
 
   if (mapResult == VK_SUCCESS) {
@@ -119,15 +119,15 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
           fprintf(stderr, "Error opening file for writing: %s\n", "truc.bin");
       }
 
-      vkUnmapMemory(struct_vulkan->device.device, staging_mem);
+      vkUnmapMemory(struct_vulkan->device.handle, staging_mem);
   } else {
       // Handle error if memory mapping fails
       fprintf(stderr, "Error mapping memory: %d\n", mapResult);
   }
 
   //Free memory
-  vkDestroyBuffer(struct_vulkan->device.device, staging_buffer, nullptr);
-  vkFreeMemory(struct_vulkan->device.device, staging_mem, nullptr);
+  vkDestroyBuffer(struct_vulkan->device.handle, staging_buffer, nullptr);
+  vkFreeMemory(struct_vulkan->device.handle, staging_mem, nullptr);
 
   //---------------------------
 }

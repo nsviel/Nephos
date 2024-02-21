@@ -86,7 +86,7 @@ void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
   renderpass_info.pDependencies = vec_dependency.data();
 
   //Render pass creation
-  VkResult result = vkCreateRenderPass(struct_vulkan->device.device, &renderpass_info, nullptr, &renderpass->renderpass);
+  VkResult result = vkCreateRenderPass(struct_vulkan->device.handle, &renderpass_info, nullptr, &renderpass->renderpass);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create render pass!");
   }
@@ -97,7 +97,7 @@ void Renderpass::clean_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk_framebuffer->clean_framebuffer(renderpass);
-  vkDestroyRenderPass(struct_vulkan->device.device, renderpass->renderpass, nullptr);
+  vkDestroyRenderPass(struct_vulkan->device.handle, renderpass->renderpass, nullptr);
   vk_pipeline->clean_pipeline(renderpass);
 
   //---------------------------

@@ -73,7 +73,7 @@ void Data::clean(){
 void Data::clean_vk_object(vk::structure::Object* vk_object){
   //---------------------------
 
-  vkDeviceWaitIdle(struct_vulkan->device.device);
+  vkDeviceWaitIdle(struct_vulkan->device.handle);
 
   vk_buffer->clean_buffers(vk_object);
   vk_texture->clean_texture(vk_object);
