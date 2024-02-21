@@ -8,7 +8,7 @@ namespace vk::structure{
 struct Physical_device{
   //---------------------------
 
-  VkPhysicalDevice physical_device;
+  VkPhysicalDevice handle;
   VkPhysicalDeviceProperties properties;
   VkSurfaceCapabilitiesKHR capabilities;
   VkPhysicalDeviceFeatures features;

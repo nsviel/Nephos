@@ -77,7 +77,7 @@ void Logical::create_logical_device(){
   create_info.enabledLayerCount = 0;
 
   //Creating the logical device
-  VkResult result = vkCreateDevice(struct_vulkan->device.physical_device.physical_device, &create_info, nullptr, &struct_vulkan->device.handle);
+  VkResult result = vkCreateDevice(struct_vulkan->device.physical_device.handle, &create_info, nullptr, &struct_vulkan->device.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create logical device!");
   }

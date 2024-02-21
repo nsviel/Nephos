@@ -138,13 +138,13 @@ VkDeviceSize Screenshot::calculate_image_size(VkFormat format, VkExtent3D extent
 
   // Get the number of bytes per pixel for the specified format
   VkFormatProperties formatProperties;
-  vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.physical_device.physical_device, format, &formatProperties);
+  vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.physical_device.handle, format, &formatProperties);
 
   if ((formatProperties.linearTilingFeatures & VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT) == 0) {
     // Format does not support linear tiling, use optimal tiling instead
     // You may need to handle this differently based on your specific requirements
     // In this example, we'll assume optimal tiling support
-    vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.physical_device.physical_device, format, &formatProperties);
+    vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.physical_device.handle, format, &formatProperties);
   }
 
   VkDeviceSize bytesPerPixel = 0;
