@@ -25,6 +25,7 @@ void Triangulation::make_triangulation(utl::type::Data* data){
   vector<vec3> xyz;
   vector<vec4> rgb;
   vector<float> Is;
+  vector<vec3> Nxyz;
   vec3 empty = vec3(0, 0, 0);
   float threshold = 0.5f;
 
@@ -59,6 +60,12 @@ void Triangulation::make_triangulation(utl::type::Data* data){
           Is.push_back(data->point.Is[index_1]);
           Is.push_back(data->point.Is[index_3]);
           Is.push_back(data->point.Is[index_2]);
+
+          // Compute triangle normal
+          glm::vec3 normal = glm::normalize(glm::cross(point_2 - point_1, point_3 - point_1));
+          Nxyz.push_back(normal);
+          Nxyz.push_back(normal);
+          Nxyz.push_back(normal);
         }
       }
 
@@ -78,15 +85,23 @@ void Triangulation::make_triangulation(utl::type::Data* data){
           Is.push_back(data->point.Is[index_2]);
           Is.push_back(data->point.Is[index_3]);
           Is.push_back(data->point.Is[index_4]);
+
+          // Compute triangle normal
+          glm::vec3 normal = glm::normalize(glm::cross(point_2 - point_1, point_3 - point_1));
+          Nxyz.push_back(normal);
+          Nxyz.push_back(normal);
+          Nxyz.push_back(normal);
         }
       }
 
     }
   }
 
+  //data->draw_type = utl::topology::TRIANGLE;
   data->triangle.xyz = xyz;
   data->triangle.rgb = rgb;
   data->triangle.Is = Is;
+  data->triangle.Nxyz = Nxyz;
   data->triangle.size = xyz.size();
 
   //---------------------------

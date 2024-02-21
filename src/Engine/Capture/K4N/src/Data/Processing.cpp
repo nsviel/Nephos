@@ -49,7 +49,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
 
   //Triangulation
   tasker->task_begin("triangulation");
-  //this->triangularize_object(sensor);
+  this->triangularize_object(sensor);
   tasker->task_end("triangulation");
 
   //Update object data
