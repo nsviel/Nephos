@@ -87,7 +87,7 @@ void Graphics::post_submission(vk::structure::Command* command){
     vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
 
     //Command buffer timestamp
-    vk_query->find_query_timestamp(&command_buffer->query);
+    vk_query->find_query_timestamp(command_buffer);
 
     //Command buffer reset
     if(command_buffer->is_resetable){

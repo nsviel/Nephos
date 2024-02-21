@@ -29,7 +29,9 @@ public:
 
   //Task function
   void task_begin(string name);
+  void task_begin(string name, float time);
   void task_end(string name);
+  void task_end(string name, float time);
   void task_end(string name, vec4 color);
 
   inline void set_vec_task(vector<prf::type::Task>& value){this->vec_task = value;}

@@ -24,7 +24,7 @@ public:
   //Subfunction
   void begin_query_pass(vk::structure::Command_buffer* command_buffer);
   void end_query_pass(vk::structure::Command_buffer* command_buffer);
-  void find_query_timestamp(vk::structure::Query* query);
+  void find_query_timestamp(vk::structure::Command_buffer* command_buffer);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

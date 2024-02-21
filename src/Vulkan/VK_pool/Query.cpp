@@ -59,14 +59,20 @@ void Query::end_query_pass(vk::structure::Command_buffer* command_buffer){
 
   //---------------------------
 }
-void Query::find_query_timestamp(vk::structure::Query* query){
+void Query::find_query_timestamp(vk::structure::Command_buffer* command_buffer){
+  vk::structure::Query* query = &command_buffer->query;
   //---------------------------
+
+  struct_vulkan->tasker_gpu->task_begin(command_buffer->name, 0);
 
   uint64_t timestamps[query->nb_query];
   vkGetQueryPoolResults(struct_vulkan->device.handle, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT);
 
-  float delta_in_ms = float(timestamps[1] - timestamps[0]) * struct_vulkan->device.physical_device.timestamp_period / 1000000.0f;
-  std::cout << "Timestamp " << delta_in_ms << std::endl;
+  float delta = float(timestamps[1] - timestamps[0]) * struct_vulkan->device.physical_device.timestamp_period / 1000000000.0f;
+  command_buffer->timestamp = delta;
+  say(delta);
+
+  struct_vulkan->tasker_gpu->task_end(command_buffer->name, delta);
 
   //---------------------------
 }

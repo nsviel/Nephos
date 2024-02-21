@@ -101,6 +101,27 @@ void Tasker::task_begin(string name){
 
   //---------------------------
 }
+void Tasker::task_begin(string name, float time){
+  //---------------------------
+
+  //Check if tasj already exists
+  if(vec_task_current.size() != 0){
+    for(int i=0; i<vec_task_current.size(); i++){
+      prf::type::Task& task = vec_task_current[i];
+
+      if(task.name == name){
+        cout<<"[error] task already exists -> "<<name<<endl;
+        return;
+      }
+    }
+  }
+
+  //Insert task in vector
+  prf::type::Task task = {time, 0, name};
+  this->vec_task_current.push_back(task);
+
+  //---------------------------
+}
 void Tasker::task_end(string name){
   //---------------------------
 
@@ -110,6 +131,21 @@ void Tasker::task_end(string name){
     if(task.name == name){
       prf::timer::Timepoint task_end = timer.get_time();
       task.time_end = timer.duration_s(reference, task_end);
+      return;
+    }
+  }
+
+  //---------------------------
+}
+void Tasker::task_end(string name, float time){
+  //---------------------------
+
+  for(int i=0; i<vec_task_current.size(); i++){
+    prf::type::Task& task = vec_task_current[i];
+
+    if(task.name == name){
+      prf::timer::Timepoint task_end = timer.get_time();
+      task.time_end = time;
       return;
     }
   }

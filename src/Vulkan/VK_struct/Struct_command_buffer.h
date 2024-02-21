@@ -15,6 +15,7 @@ struct Command_buffer{
   string name = "";
   vk::structure::Query query;
   VkCommandBuffer command = VK_NULL_HANDLE;
+  float timestamp = 0;
   bool is_available = true;
   bool is_recorded = false;
   bool is_resetable = true;
