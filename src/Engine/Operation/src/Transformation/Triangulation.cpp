@@ -25,11 +25,13 @@ void Triangulation::make_triangulation(utl::type::Data* data){
   vector<vec3> xyz;
   vector<vec4> rgb;
   vector<float> Is;
-  vector<vec3> Nxyz;
+  vector<vec3> Nxyz_triangle;
+  vector<vec3> Nxyz_point;
   vec3 empty = vec3(0, 0, 0);
   float threshold = 0.5f;
 
   //Loop
+  #pragma omp parallel for collapse(2) schedule(static)
   for(int i=0; i<data->height - 1; i++){
     for(int j=0; j<data->width - 1; j++){
       // Calculate the indices of the four points
@@ -47,33 +49,35 @@ void Triangulation::make_triangulation(utl::type::Data* data){
       float distance_1_3 = glm::distance(point_1, point_3);
       float distance_2_3 = glm::distance(point_2, point_3);
 
-      if(point_1 != empty && point_2 != empty && point_3 != empty){
-        if(distance_1_2 <= threshold && distance_1_3 <= threshold && distance_2_3 <= threshold){
-          xyz.push_back(point_1);
-          xyz.push_back(point_3);
-          xyz.push_back(point_2);
+      if(point_1 != empty && point_2 != empty && point_3 != empty &&
+        distance_1_2 <= threshold && distance_1_3 <= threshold && distance_2_3 <= threshold){
+        xyz.push_back(point_1);
+        xyz.push_back(point_3);
+        xyz.push_back(point_2);
 
-          rgb.push_back(data->point.rgb[index_1]);
-          rgb.push_back(data->point.rgb[index_3]);
-          rgb.push_back(data->point.rgb[index_2]);
+        rgb.push_back(data->point.rgb[index_1]);
+        rgb.push_back(data->point.rgb[index_3]);
+        rgb.push_back(data->point.rgb[index_2]);
 
-          Is.push_back(data->point.Is[index_1]);
-          Is.push_back(data->point.Is[index_3]);
-          Is.push_back(data->point.Is[index_2]);
+        Is.push_back(data->point.Is[index_1]);
+        Is.push_back(data->point.Is[index_3]);
+        Is.push_back(data->point.Is[index_2]);
 
-          // Compute triangle normal
-          glm::vec3 normal = glm::normalize(glm::cross(point_2 - point_1, point_3 - point_1));
-          Nxyz.push_back(normal);
-          Nxyz.push_back(normal);
-          Nxyz.push_back(normal);
-        }
+        // Compute triangle normal
+        glm::vec3 normal = glm::normalize(glm::cross(point_2 - point_1, point_3 - point_1));
+        Nxyz_triangle.push_back(normal);
+        Nxyz_triangle.push_back(normal);
+        Nxyz_triangle.push_back(normal);
+        Nxyz_point.push_back(normal);
+      }else{
+        Nxyz_point.push_back(empty);
       }
 
       float distance_2_4 = glm::distance(point_2, point_4);
       float distance_3_4 = glm::distance(point_3, point_4);
 
-      if(point_2 != empty && point_4 != empty && point_3 != empty){
-        if(distance_2_4 <= threshold && distance_3_4 <= threshold && distance_2_3 <= threshold){
+      if(point_2 != empty && point_4 != empty && point_3 != empty &&
+        distance_2_4 <= threshold && distance_3_4 <= threshold && distance_2_3 <= threshold){
           xyz.push_back(point_2);
           xyz.push_back(point_3);
           xyz.push_back(point_4);
@@ -88,10 +92,12 @@ void Triangulation::make_triangulation(utl::type::Data* data){
 
           // Compute triangle normal
           glm::vec3 normal = glm::normalize(glm::cross(point_2 - point_1, point_3 - point_1));
-          Nxyz.push_back(normal);
-          Nxyz.push_back(normal);
-          Nxyz.push_back(normal);
-        }
+          Nxyz_triangle.push_back(normal);
+          Nxyz_triangle.push_back(normal);
+          Nxyz_triangle.push_back(normal);
+          Nxyz_point.push_back(normal);
+      }else{
+        Nxyz_point.push_back(empty);
       }
 
     }
@@ -101,8 +107,9 @@ void Triangulation::make_triangulation(utl::type::Data* data){
   data->triangle.xyz = xyz;
   data->triangle.rgb = rgb;
   data->triangle.Is = Is;
-  data->triangle.Nxyz = Nxyz;
+  data->triangle.Nxyz = Nxyz_triangle;
   data->triangle.size = xyz.size();
+  data->point.Nxyz = Nxyz_point;
 
   //---------------------------
 }

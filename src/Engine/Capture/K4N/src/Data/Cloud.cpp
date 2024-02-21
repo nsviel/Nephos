@@ -92,11 +92,11 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::Tasker* tasker){
   tasker->task_end("transformation");
 
   tasker->task_begin("reserve");
-  vec_xyz = vector<vec3>(point_cloud_size);
-  vec_rgb = vector<vec4>(point_cloud_size);
-  vec_ir = vector<float>(point_cloud_size);
-  vec_r = vector<float>(point_cloud_size);
-  vec_goodness = vector<bool>(point_cloud_size);
+  vec_xyz.reserve(point_cloud_size);
+  vec_rgb.reserve(point_cloud_size);
+  vec_ir.reserve(point_cloud_size);
+  vec_r.reserve(point_cloud_size);
+  vec_goodness.reserve(point_cloud_size);
   tasker->task_end("reserve");
 
   tasker->task_begin("data");
@@ -199,11 +199,11 @@ void Cloud::retrieve_goodness(int i){
 void Cloud::insert_data(int i){
   //---------------------------
 
-  vec_xyz[i] = xyz;
-  vec_rgb[i] = rgb;
-  vec_ir[i] = ir;
-  vec_r[i] = R;
-  vec_goodness[i] = goodness;
+  vec_xyz.push_back(xyz);
+  vec_rgb.push_back(rgb);
+  vec_ir.push_back(ir);
+  vec_r.push_back(R);
+  vec_goodness.push_back(goodness);
 
   //---------------------------
 }
