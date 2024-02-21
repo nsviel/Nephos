@@ -2,7 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
-namespace ope{class Heatmap;}
+namespace ope::color{class Heatmap;}
+namespace ope::color{class Colormap;}
 
 
 namespace ope::color{
@@ -52,7 +53,8 @@ public:
   void colorization_structure(utl::type::Entity* entity);
 
 private:
-  ope::Heatmap* ope_heatmap;
+  ope::color::Heatmap* ope_heatmap;
+  ope::color::Colormap* ope_colormap;
 };
 
 }

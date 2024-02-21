@@ -9,7 +9,8 @@ namespace ope::color{
 Colorizer::Colorizer(){
   //---------------------------
 
-  this->ope_heatmap = new ope::Heatmap();
+  this->ope_heatmap = new ope::color::Heatmap();
+  this->ope_colormap = new ope::color::Colormap();
 
   //---------------------------
 }
@@ -86,23 +87,25 @@ void Colorizer::colorization_structure(utl::type::Entity* entity){
   //---------------------------
 
   // Define a color gradient from red to blue
-  const vec3 green(0.0f, 1.0f, 0.0f);
-  const vec3 blue(0.0f, 0.0f, 1.0f);
+  vector<vec3>& colormap = ope_colormap->get_colormap_selected();
 
   // Calculate the step size for color interpolation
   float step = 1.0f / (data->xyz.size() - 1);
 
   // Loop through the points and assign colors
   vector<vec4> rgb;
-  for (size_t i = 0; i < data->xyz.size(); ++i) {
-    // Interpolate between red and blue based on the index
-    float t = step * i;
-    float r = (1.0f - t) * green.r + t * blue.r;
-    float g = (1.0f - t) * green.g + t * blue.g;
-    float b = (1.0f - t) * green.b + t * blue.b;
+  for(int i = 0; i < data->xyz.size(); ++i) {
+    // Calculate the index in the colormap based on the normalized position
+    int colormap_index = step * float(i) * colormap.size() - 1;
+
+    // Interpolate between colors based on the index
+    float t = step * i * (colormap.size() - 1) - colormap_index;
+    const vec3& color1 = colormap[colormap_index];
+    const vec3& color2 = colormap[colormap_index + 1];
+    vec3 interpolated_color = (1.0f - t) * color1 + t * color2;
 
     // Add the interpolated color to the vector
-    data->rgb[i] = vec4(r, g, b, 1);
+    data->rgb[i] = vec4(interpolated_color, 1.0f);
   }
 
   //---------------------------

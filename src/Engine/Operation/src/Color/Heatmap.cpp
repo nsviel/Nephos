@@ -1,17 +1,17 @@
 #include "Heatmap.h"
 
 #include <Utility/Function/Math/Math.h>
-#include <Engine/Operation/Namespace.h>
+#include <Operation/Namespace.h>
 
 
-namespace ope{
+namespace ope::color{
 
 //Constructor / destructor
 Heatmap::Heatmap(){
   //---------------------------
 
-  this->colormapManager = new ope::Colormap();
-  this->attribManager = new ope::Attribut();
+  this->ope_colormap = new ope::color::Colormap();
+  this->ope_attribut = new ope::Attribut();
 
   this->is_normalization = false;
   this->range_norm = vec2(0.0f, 1.0f);
@@ -23,7 +23,7 @@ Heatmap::Heatmap(){
 Heatmap::~Heatmap(){
   //---------------------------
 
-  delete colormapManager;
+  delete ope_colormap;
 
   //---------------------------
 }
@@ -49,7 +49,7 @@ void Heatmap::heatmap_height(utl::type::Entity* entity){
 
   //Prepare data
   vector<float> z_vec;
-  attribManager->retrieve_z_vector(entity, z_vec);
+  ope_attribut->retrieve_z_vector(entity, z_vec);
   math::Normalize(z_vec, range_height);
 
   //Compute heatmap
@@ -63,7 +63,7 @@ void Heatmap::heatmap_height(utl::type::Entity* entity, vec2 range){
 
   //Prepare data
   vector<float> z_vec;
-  attribManager->retrieve_z_vector(entity, z_vec);
+  ope_attribut->retrieve_z_vector(entity, z_vec);
   math::Normalize(z_vec, range);
 
   //Compute heatmap
@@ -95,8 +95,8 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
   }
 
   //Compute heatmap from input vector
-  vector<vec3>* colormap = colormapManager->get_colormap_selected();
-  const size_t colormap_size = colormap->size();
+  vector<vec3>& colormap = ope_colormap->get_colormap_selected();
+  const size_t colormap_size = colormap.size();
 
   #pragma omp parallel for
   for(int i=0; i<heatmap.size(); i++){
@@ -108,9 +108,9 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
       float idx2  = idx1 + 1;                        // ... and before this index (inclusive).
       float fractBetween = value - float(idx1);    // Distance between the two indexes (0-1).
 
-      float red   = ((*colormap)[idx2][0] - (*colormap)[idx1][0]) * fractBetween + (*colormap)[idx1][0];
-      float green = ((*colormap)[idx2][1] - (*colormap)[idx1][1]) * fractBetween + (*colormap)[idx1][1];
-      float blue  = ((*colormap)[idx2][2] - (*colormap)[idx1][2]) * fractBetween + (*colormap)[idx1][2];
+      float red   = ((colormap)[idx2][0] - (colormap)[idx1][0]) * fractBetween + (colormap)[idx1][0];
+      float green = ((colormap)[idx2][1] - (colormap)[idx1][1]) * fractBetween + (colormap)[idx1][1];
+      float blue  = ((colormap)[idx2][2] - (colormap)[idx1][2]) * fractBetween + (colormap)[idx1][2];
 
       color = vec4(red, green, blue, 1.0f);
     }
@@ -133,16 +133,16 @@ void Heatmap::heatmap_set(utl::type::Entity* entity, vector<float>& v_in){
   //Compute heatmap from input vector
   for(int i=0; i<RGB.size(); i++){
     if(v_in[i] != -1 && isnan(v_in[i]) == false){
-      vector<vec3>* colormap = colormapManager->get_colormap_selected();
+      vector<vec3>& colormap = ope_colormap->get_colormap_selected();
 
-      float value = v_in[i] * (colormap->size()-1);        // Will multiply value by 3.
+      float value = v_in[i] * (colormap.size()-1);        // Will multiply value by 3.
       float idx1  = floor(value);                  // Our desired color will be after this index.
       float idx2  = idx1 + 1;                        // ... and before this index (inclusive).
       float fractBetween = value - float(idx1);    // Distance between the two indexes (0-1).
 
-      float red   = ((*colormap)[idx2][0] - (*colormap)[idx1][0]) * fractBetween + (*colormap)[idx1][0];
-      float green = ((*colormap)[idx2][1] - (*colormap)[idx1][1]) * fractBetween + (*colormap)[idx1][1];
-      float blue  = ((*colormap)[idx2][2] - (*colormap)[idx1][2]) * fractBetween + (*colormap)[idx1][2];
+      float red   = ((colormap)[idx2][0] - (colormap)[idx1][0]) * fractBetween + (colormap)[idx1][0];
+      float green = ((colormap)[idx2][1] - (colormap)[idx1][1]) * fractBetween + (colormap)[idx1][1];
+      float blue  = ((colormap)[idx2][2] - (colormap)[idx1][2]) * fractBetween + (colormap)[idx1][2];
 
       RGB[i] = vec4(red, green, blue, 1.0f);
     }

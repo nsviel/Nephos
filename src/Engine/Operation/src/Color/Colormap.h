@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace ope{
+namespace ope::color{
 
 class Colormap
 {
@@ -17,7 +17,7 @@ public:
   void choose(string name);
   vec4 random_color();
 
-  inline vector<vec3>* get_colormap_selected(){return &colormap_selected;}
+  inline vector<vec3>& get_colormap_selected(){return colormap_selected;}
 
 private:
   vector<string> colormap_name;
