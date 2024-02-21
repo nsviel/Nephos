@@ -11,6 +11,7 @@ Graphics::Graphics(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
+  this->vk_query = new vk::instance::Query(struct_vulkan);
 
   //---------------------------
 }
@@ -23,7 +24,7 @@ void Graphics::submit_command(vk::structure::Command* command){
   this->reset_for_submission();
   this->prepare_submission(command);
   this->queue_submission();
-  this->wait_and_reset(command);
+  this->post_submission(command);
 
   //---------------------------
 }
@@ -79,13 +80,16 @@ void Graphics::queue_submission(){
 
   //---------------------------
 }
-void Graphics::wait_and_reset(vk::structure::Command* command){
+void Graphics::post_submission(vk::structure::Command* command){
   //---------------------------
 
-  //Reset command buffer
   for(int i=0; i<command->vec_command_buffer.size(); i++){
     vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
 
+    //Command buffer timestamp
+    vk_query->find_query_timestamp(&command_buffer->query);
+
+    //Command buffer reset
     if(command_buffer->is_resetable){
       command_buffer->is_available = true;
       command_buffer->is_recorded = false;

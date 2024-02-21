@@ -190,6 +190,8 @@ void Command_buffer::start_command_buffer_secondary(vk::structure::Renderpass* r
 void Command_buffer::end_command_buffer(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
+  vk_query->end_query_pass(command_buffer);
+
   VkResult result = vkEndCommandBuffer(command_buffer->command);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to record command buffer!");

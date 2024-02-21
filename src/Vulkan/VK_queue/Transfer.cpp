@@ -12,7 +12,8 @@ Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
-
+  this->vk_query = new vk::instance::Query(struct_vulkan);
+  
   //---------------------------
   this->start_thread();
 }
