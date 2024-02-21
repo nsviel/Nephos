@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 #include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_struct/Struct_fence.h>
 
 
 namespace vk::structure{

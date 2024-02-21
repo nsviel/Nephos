@@ -32,6 +32,15 @@ vk::structure::Query Query::create_query_pool(){
   //---------------------------
   return query_pool;
 }
+void Query::clean_query_pool(vk::structure::Query* query_pool){
+  //---------------------------
+
+  vkResetQueryPool(struct_vulkan->device.device, query_pool->pool, 0, query_pool->nb_query);
+
+  //---------------------------
+}
+
+//Subfunction
 void Query::begin_query_pass(vk::structure::Command_buffer* command_buffer, vk::structure::Query* query){
   //---------------------------
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
-#include <Vulkan/VK_struct/Struct_fence.h>
+#include <Vulkan/VK_struct/Struct_query.h>
 
 
 namespace vk::structure{
