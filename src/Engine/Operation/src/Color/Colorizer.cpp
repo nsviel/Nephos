@@ -22,7 +22,7 @@ void Colorizer::make_colorization(utl::type::Entity* entity, ope::color::Configu
 
   switch(config.color_mode){
     case ope::color::UNICOLOR:{
-      this->colorization_unicolor(entity);
+      this->colorization_unicolor(entity, config);
       break;
     }
     case ope::color::INTENSITY:{
@@ -43,11 +43,11 @@ void Colorizer::make_colorization(utl::type::Entity* entity, ope::color::Configu
 }
 
 //Subfunction
-void Colorizer::colorization_unicolor(utl::type::Entity* entity){
+void Colorizer::colorization_unicolor(utl::type::Entity* entity, ope::color::Configuration& config){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
-  data->rgb = vector<vec4>(data->rgb.size(), data->unicolor);
+  data->rgb = vector<vec4>(data->rgb.size(), config.unicolor);
 
   //---------------------------
 }
@@ -93,7 +93,6 @@ void Colorizer::colorization_structure(utl::type::Entity* entity){
   float step = 1.0f / (data->xyz.size() - 1);
 
   // Loop through the points and assign colors
-  vector<vec4> rgb;
   for(int i = 0; i < data->xyz.size(); ++i) {
     // Calculate the index in the colormap based on the normalized position
     int colormap_index = step * float(i) * colormap.size() - 1;

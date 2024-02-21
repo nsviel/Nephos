@@ -23,6 +23,7 @@ public:
   void run_thread(k4n::dev::Sensor* sensor);
 
   //Subfunction
+  void colorize_object(k4n::dev::Sensor* sensor);
   void voxelize_object(k4n::dev::Sensor* sensor);
   void triangularize_object(k4n::dev::Sensor* sensor);
   void update_object(k4n::dev::Sensor* sensor);

@@ -39,12 +39,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
 
   //Colorizer
   tasker->task_begin("colorization");
-  ope::color::Configuration config;
-  config.color_mode = sensor->master->operation.color_mode;
-  config.heatmap_mode = sensor->master->operation.heatmap_mode;
-  config.intensity_division = sensor->master->operation.intensity_division;
-  config.heatmap_range_height = sensor->master->operation.range_height;
-  ope_colorizer->make_colorization(sensor, config);
+  this->colorize_object(sensor);
   tasker->task_end("colorization");
 
   //Voxelization filtering
@@ -68,6 +63,20 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
+void Processing::colorize_object(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  ope::color::Configuration config;
+  config.color_mode = sensor->master->operation.color_mode;
+  config.heatmap_mode = sensor->master->operation.heatmap_mode;
+  config.intensity_division = sensor->master->operation.intensity_division;
+  config.heatmap_range_height = sensor->master->operation.range_height;
+  config.unicolor = sensor->master->operation.unicolor;
+
+  ope_colorizer->make_colorization(sensor, config);
+
+  //---------------------------
+}
 void Processing::voxelize_object(k4n::dev::Sensor* sensor){
   //---------------------------
 

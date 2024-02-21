@@ -11,10 +11,11 @@ namespace ope::color{
 struct Configuration{
   //---------------------------
 
-  int color_mode;
-  int heatmap_mode;
+  vec4 unicolor;
   vec2 heatmap_range_height;
   float intensity_division;
+  int color_mode;
+  int heatmap_mode;
 
   //---------------------------
 };
@@ -47,7 +48,7 @@ public:
   void make_colorization(utl::type::Entity* entity, ope::color::Configuration& config);
 
   //Subfunction
-  void colorization_unicolor(utl::type::Entity* entity);
+  void colorization_unicolor(utl::type::Entity* entity, ope::color::Configuration& config);
   void colorization_intensity(utl::type::Entity* entity, ope::color::Configuration& config);
   void colorization_heatmap(utl::type::Entity* entity, ope::color::Configuration& config);
   void colorization_structure(utl::type::Entity* entity);
