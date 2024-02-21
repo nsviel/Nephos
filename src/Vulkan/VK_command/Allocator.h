@@ -25,7 +25,7 @@ public:
   void submit_commands();
 
   //Subfunction
-  vk::pool::Command_buffer* query_free_command_pool();
+  vk::pool::Command_buffer* query_free_allocator_pool();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

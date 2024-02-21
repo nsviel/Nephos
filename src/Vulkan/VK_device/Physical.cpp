@@ -225,18 +225,21 @@ void Physical::find_physical_device_limits(vk::structure::Physical_device& physi
 
   VkPhysicalDeviceProperties device_properties;
   vkGetPhysicalDeviceProperties(physical_device.handle, &device_properties);
+  VkPhysicalDeviceLimits device_limits = device_properties.limits;
 
-  if(device_properties.limits.timestampPeriod == 0){
-    throw std::runtime_error{"The selected device does not support timestamp queries!"};
+  if(device_limits.timestampPeriod == 0){
+    //throw std::runtime_error{"The selected device does not support timestamp queries!"};
   }
 
-  if(!device_properties.limits.timestampComputeAndGraphics){
+  if(!device_limits.timestampComputeAndGraphics){
   	/*// Check if the graphics queue used in this sample supports time stamps
   	VkQueueFamilyProperties graphics_queue_family_properties = device->get_suitable_graphics_queue().get_properties();
   	if (graphics_queue_family_properties.timestampValidBits == 0){
   		throw std::runtime_error{"The selected graphics queue family does not support timestamp queries!"};
   	}*/
   }
+
+  physical_device.timestamp_period = device_limits.timestampPeriod;
 
   //---------------------------
 }

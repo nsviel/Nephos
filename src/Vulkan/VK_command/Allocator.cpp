@@ -79,7 +79,7 @@ void Allocator::clean(){
 }
 
 //Subfunction
-vk::pool::Command_buffer* Allocator::query_free_command_pool(){
+vk::pool::Command_buffer* Allocator::query_free_allocator_pool(){
   vk::pool::Command* pool = &struct_vulkan->pools.command;
   //---------------------------
 

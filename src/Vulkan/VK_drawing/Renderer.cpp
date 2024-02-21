@@ -23,6 +23,7 @@ void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
 
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
   renderpass->command_buffer = command_buffer;
+  command_buffer->name = renderpass->name;
 
   this->start_renderpass(renderpass);
   this->draw_subpass(renderpass);

@@ -12,6 +12,7 @@ struct Command_buffer{
   int UID = 0;
 
   //Command
+  string name = "";
   vk::structure::Query query;
   VkCommandBuffer command = VK_NULL_HANDLE;
   bool is_available = true;

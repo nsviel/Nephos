@@ -20,7 +20,7 @@ vk::structure::Query Query::create_query_pool(){
   vk::structure::Query query_pool;
   //---------------------------
 
-  query_pool.nb_query = 6;
+  query_pool.nb_query = 2;
 
   // Allocate space in the query pool for timestamp queries
   VkQueryPoolCreateInfo info = {};
@@ -63,13 +63,10 @@ void Query::find_query_timestamp(vk::structure::Query* query){
   //---------------------------
 
   uint64_t timestamps[query->nb_query];
-  //vkGetQueryPoolResults(struct_vulkan->device.handle, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT | VK_QUERY_RESULT_WAIT_BIT);
+  vkGetQueryPoolResults(struct_vulkan->device.handle, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT);
 
-  // Print timestamps
-  say("---");
-  for (size_t i = 0; i < query->nb_query; ++i) {
-    std::cout << "Timestamp[" << i << "]: " << timestamps[i] << std::endl;
-  }
+  float delta_in_ms = float(timestamps[1] - timestamps[0]) * struct_vulkan->device.physical_device.timestamp_period / 1000000.0f;
+  std::cout << "Timestamp " << delta_in_ms << std::endl;
 
   //---------------------------
 }

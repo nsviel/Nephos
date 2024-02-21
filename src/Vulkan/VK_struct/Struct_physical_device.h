@@ -21,6 +21,7 @@ struct Physical_device{
   std::string name;
   bool has_extension_support;
   uint32_t max_image_dim;
+  uint64_t timestamp_period;
   int queue_family_graphics_idx = -1;
   int queue_family_transfer_idx = -1;
   int queue_family_presentation_idx = -1;

@@ -102,7 +102,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::Command_buffer* poo
   //---------------------------
 }
 void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data){
-  vk::pool::Command_buffer* pool = vk_thread->query_free_command_pool();
+  vk::pool::Command_buffer* pool = vk_thread->query_free_allocator_pool();
   //---------------------------
 
   //Command buffer allocation
@@ -122,7 +122,7 @@ void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data
 
 //Command buffer lifetime
 vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(){
-  vk::pool::Command_buffer* pool = vk_thread->query_free_command_pool();
+  vk::pool::Command_buffer* pool = vk_thread->query_free_allocator_pool();
   if(pool == nullptr) return nullptr;
   //---------------------------
 
