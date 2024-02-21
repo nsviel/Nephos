@@ -1,4 +1,4 @@
-#include "Colorization.h"
+#include "Colorizer.h"
 
 #include <Operation/Namespace.h>
 
@@ -6,17 +6,17 @@
 namespace ope::color{
 
 //Constructor / Destructor
-Colorization::Colorization(){
+Colorizer::Colorizer(){
   //---------------------------
 
   this->ope_heatmap = new eng::ope::Heatmap();
 
   //---------------------------
 }
-Colorization::~Colorization(){}
+Colorizer::~Colorizer(){}
 
 //Main function
-void Colorization::make_colorization(utl::type::Entity* entity, ope::color::Configuration& config){
+void Colorizer::make_colorization(utl::type::Entity* entity, ope::color::Configuration& config){
   //---------------------------
 
   switch(config.color_mode){
@@ -42,7 +42,7 @@ void Colorization::make_colorization(utl::type::Entity* entity, ope::color::Conf
 }
 
 //Subfunction
-void Colorization::colorization_unicolor(utl::type::Entity* entity){
+void Colorizer::colorization_unicolor(utl::type::Entity* entity){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
@@ -50,7 +50,7 @@ void Colorization::colorization_unicolor(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Colorization::colorization_intensity(utl::type::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_intensity(utl::type::Entity* entity, ope::color::Configuration& config){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
@@ -61,7 +61,7 @@ void Colorization::colorization_intensity(utl::type::Entity* entity, ope::color:
 
   //---------------------------
 }
-void Colorization::colorization_heatmap(utl::type::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_heatmap(utl::type::Entity* entity, ope::color::Configuration& config){
   //---------------------------
 
   switch(config.heatmap_mode){
@@ -81,7 +81,7 @@ void Colorization::colorization_heatmap(utl::type::Entity* entity, ope::color::C
 
   //---------------------------
 }
-void Colorization::colorization_structure(utl::type::Entity* entity){
+void Colorizer::colorization_structure(utl::type::Entity* entity){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 

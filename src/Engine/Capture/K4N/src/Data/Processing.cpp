@@ -13,7 +13,8 @@ Processing::Processing(){
   //---------------------------
 
   this->ope_voxelizer = new eng::ope::Voxelizer();
-  this->ope_triangulation = new eng::ope::Triangulation();
+  this->ope_trianguler = new eng::ope::Triangulation();
+  this->ope_colorizer = new ope::color::Colorizer();
 
   //---------------------------
 }
@@ -35,6 +36,16 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
 
   prf::Tasker* tasker = sensor->profiler->get_tasker("processing");
   tasker->loop_begin();
+
+  //Colorizer
+  tasker->task_begin("colorization");
+  ope::color::Configuration config;
+  config.color_mode = sensor->master->operation.color_mode;
+  config.heatmap_mode = sensor->master->operation.heatmap_mode;
+  config.intensity_division = sensor->master->operation.intensity_division;
+  config.heatmap_range_height = sensor->master->operation.range_height;
+  ope_colorizer->make_colorization(sensor, config);
+  tasker->task_end("colorization");
 
   //Voxelization filtering
   tasker->task_begin("voxel");
@@ -75,7 +86,7 @@ void Processing::triangularize_object(k4n::dev::Sensor* sensor){
 
   utl::type::Data* data = sensor->get_data();
 
-  ope_triangulation->make_triangulation(data);
+  ope_trianguler->make_triangulation(data);
 
   //---------------------------
 }

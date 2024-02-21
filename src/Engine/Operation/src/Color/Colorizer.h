@@ -34,12 +34,12 @@ enum Mode{
 };
 }
 
-class Colorization
+class Colorizer
 {
 public:
   //Constructor / Destructor
-  Colorization();
-  ~Colorization();
+  Colorizer();
+  ~Colorizer();
 
 public:
   //Main function

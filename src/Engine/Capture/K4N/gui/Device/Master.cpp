@@ -71,42 +71,42 @@ void Master::show_colorization(k4n::dev::Master* master){
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Colorization");
 
   //Colorization mode
-  ImGui::RadioButton("RGB##colorization", &master->operation.color_mode, k4n::color::CAMERA);
+  ImGui::RadioButton("RGB##colorization", &master->operation.color_mode, ope::color::CAMERA);
   ImGui::SameLine();
-  ImGui::RadioButton("##unicolor", &master->operation.color_mode, k4n::color::UNICOLOR);
+  ImGui::RadioButton("##unicolor", &master->operation.color_mode, ope::color::UNICOLOR);
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
   ImGui::ColorEdit4("##unicolor_choice", (float*)&master->operation.unicolor, flags);
   ImGui::SameLine();
-  ImGui::RadioButton("I##colorization", &master->operation.color_mode, k4n::color::INTENSITY);
+  ImGui::RadioButton("I##colorization", &master->operation.color_mode, ope::color::INTENSITY);
   ImGui::SameLine();
-  ImGui::RadioButton("Heatmap##colorization", &master->operation.color_mode, k4n::color::HEATMAP);
+  ImGui::RadioButton("Heatmap##colorization", &master->operation.color_mode, ope::color::HEATMAP);
   ImGui::SameLine();
-  ImGui::RadioButton("Structure##colorization", &master->operation.color_mode, k4n::color::STRUCTURE);
+  ImGui::RadioButton("Structure##colorization", &master->operation.color_mode, ope::color::STRUCTURE);
 
   //Intensity cursor
-  if(master->operation.color_mode == k4n::color::INTENSITY){
+  if(master->operation.color_mode == ope::color::INTENSITY){
     ImGui::SetNextItemWidth(100);
     ImGui::SliderInt("Intensity division", &master->operation.intensity_division, 1, 5000);
   }
 
   //Heatmap mode
-  if(master->operation.color_mode == k4n::color::HEATMAP){
+  if(master->operation.color_mode == ope::color::HEATMAP){
     ImGui::Indent();
-    ImGui::RadioButton("I##heatmap", &master->operation.heatmap_mode, k4n::color::heatmap::INTENSITY);
+    ImGui::RadioButton("I##heatmap", &master->operation.heatmap_mode, ope::color::heatmap::INTENSITY);
     ImGui::SameLine();
-    ImGui::RadioButton("H##heatmap", &master->operation.heatmap_mode, k4n::color::heatmap::HEIGHT);
+    ImGui::RadioButton("H##heatmap", &master->operation.heatmap_mode, ope::color::heatmap::HEIGHT);
     ImGui::SameLine();
-    ImGui::RadioButton("R##heatmap", &master->operation.heatmap_mode, k4n::color::heatmap::RANGE);
+    ImGui::RadioButton("R##heatmap", &master->operation.heatmap_mode, ope::color::heatmap::RANGE);
 
     //Intensity heatmap
-    if(master->operation.heatmap_mode == k4n::color::heatmap::INTENSITY){
+    if(master->operation.heatmap_mode == ope::color::heatmap::INTENSITY){
       ImGui::SetNextItemWidth(100);
       ImGui::SliderInt("I diviser", &master->operation.intensity_division, 1, 5000);
     }
 
     //Height heatmap
-    if(master->operation.heatmap_mode == k4n::color::heatmap::HEIGHT){
+    if(master->operation.heatmap_mode == ope::color::heatmap::HEIGHT){
       float min = master->pose.min.z + 10;
       float max = master->pose.max.z + 10;
       ImGui::SetNextItemWidth(125);
