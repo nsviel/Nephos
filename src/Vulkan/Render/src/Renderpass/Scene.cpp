@@ -50,7 +50,7 @@ void Scene::create_subpass(vk::structure::Renderpass* renderpass){
   vk::structure::Pipeline* pipeline;
   pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "line";
-  pipeline->definition.topology = "line";
+  pipeline->definition.topology = utl::topology::LINE;
   pipeline->definition.purpose = "graphics";
   pipeline->definition.shader = shader_scene->get_shader_info("Line");
   pipeline->definition.vec_data_name.push_back("location");
@@ -61,7 +61,7 @@ void Scene::create_subpass(vk::structure::Renderpass* renderpass){
   //Point pipeline
   pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "point";
-  pipeline->definition.topology = "point";
+  pipeline->definition.topology = utl::topology::POINT;
   pipeline->definition.purpose = "graphics";
   pipeline->definition.shader = shader_scene->get_shader_info("Point");
   pipeline->definition.vec_data_name.push_back("location");
@@ -73,7 +73,7 @@ void Scene::create_subpass(vk::structure::Renderpass* renderpass){
   //Triangle pipeline
   pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle";
-  pipeline->definition.topology = "triangle";
+  pipeline->definition.topology = utl::topology::TRIANGLE;
   pipeline->definition.purpose = "graphics";
   pipeline->definition.shader = shader_scene->get_shader_info("Triangle");
   pipeline->definition.vec_data_name.push_back("location");
@@ -107,7 +107,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
     bool is_visible = vk_object->data->is_visible;
-    bool has_topology = vk_object->data->draw_type_name == "point";
+    bool has_topology = vk_object->data->draw_type == utl::topology::POINT;
     bool has_xyz = vk_object->data->point.xyz.size() != 0;
     bool has_rgb = vk_object->data->point.rgb.size() != 0;
     bool same_length = vk_object->data->point.rgb.size() == vk_object->data->point.xyz.size();
@@ -134,7 +134,7 @@ void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
     bool& is_visible = vk_object->data->is_visible;
-    bool has_topology = vk_object->data->draw_type_name == "line";
+    bool has_topology = vk_object->data->draw_type == utl::topology::LINE;
     bool has_xyz = vk_object->data->point.xyz.size() != 0;
     bool has_rgb = vk_object->data->point.rgb.size() != 0;
     bool same_length = vk_object->data->point.rgb.size() == vk_object->data->point.xyz.size();
@@ -161,7 +161,7 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
     bool& is_visible = vk_object->data->is_visible;
-    bool has_topology = vk_object->data->draw_type_name == "triangle";
+    bool has_topology = vk_object->data->draw_type == utl::topology::TRIANGLE;
     bool has_xyz = vk_object->data->point.xyz.size() != 0;
     bool has_rgb = vk_object->data->point.rgb.size() != 0;
     bool same_length = vk_object->data->point.rgb.size() == vk_object->data->point.xyz.size();

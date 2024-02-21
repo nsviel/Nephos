@@ -25,6 +25,9 @@ public:
   void clean_buffers(vk::structure::Object* vk_object);
   void clean_buffer(vk::structure::Buffer* buffer);
 
+  //Subfunction
+  int get_size_buffer(vk::structure::Object* vk_object);
+
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::memory::Allocator* vk_mem_allocator;

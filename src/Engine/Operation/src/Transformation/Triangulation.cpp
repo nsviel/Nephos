@@ -84,11 +84,10 @@ void Triangulation::make_triangulation(utl::type::Data* data){
     }
   }
 
-  data->draw_type_name = "triangle";
-  data->point.xyz = xyz;
-  data->point.rgb = rgb;
-  data->point.Is = Is;
-  data->point.size = xyz.size();
+  data->triangle.xyz = xyz;
+  data->triangle.rgb = rgb;
+  data->triangle.Is = Is;
+  data->triangle.size = xyz.size();
 
   //---------------------------
 }

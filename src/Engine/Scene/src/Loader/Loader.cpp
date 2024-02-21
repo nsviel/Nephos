@@ -64,7 +64,7 @@ utl::entity::Object* Loader::load_object(string path){
   object->data->has_texture = true;
   object->name = data->name;
   object->data->point.size = data->xyz.size();
-  object->data->draw_type_name = data->draw_type_name;
+  object->data->draw_type = data->draw_type;
 
   object->data->point.xyz = data->xyz;
   object->data->point.rgb = data->rgb;

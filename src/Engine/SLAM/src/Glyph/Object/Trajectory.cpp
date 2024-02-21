@@ -30,7 +30,7 @@ void Trajectory::create(){
   trajectory->name = "trajectory";
   trajectory->draw_line_width = width;
   trajectory->is_visible = false;
-  trajectory->draw_type_name = "line";
+  trajectory->draw_type = utl::topology::LINE;
   trajectory->is_permanent = true;
   trajectory->unicolor = color;
 

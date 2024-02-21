@@ -180,13 +180,13 @@ void Importer::fill_data_file(utl::media::File* data, std::vector<Vertex>& verte
       data->Nxyz.push_back(vertex_vec[i].normal);
       data->uv.push_back(vertex_vec[i].texcoord);
     }
-    data->draw_type_name = "triangle";
+    data->draw_type = utl::topology::TRIANGLE;
     data->path_texture = file_texture;
   }else{
     for(int i=0; i<vertex_vec.size(); i++){
       data->xyz.push_back(vertex_vec[i].location);
     }
-    data->draw_type_name = "point";
+    data->draw_type = utl::topology::POINT;
   }
 
 

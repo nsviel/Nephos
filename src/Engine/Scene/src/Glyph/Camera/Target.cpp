@@ -23,7 +23,7 @@ void Target::create(){
   utl::type::Data* data = new utl::type::Data();
   data->line.width = 2;
   data->is_visible = true;
-  data->draw_type_name = "line";
+  data->draw_type = utl::topology::LINE;
   data->unicolor = vec4(1, 1, 1, 0.2f);
   this->vec_data.push_back(data);
   this->construct(data);

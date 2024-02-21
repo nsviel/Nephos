@@ -26,7 +26,7 @@ void Car::create_glyph(){
   glyph->name = "car";
   glyph->draw_line_width = width;
   glyph->is_visible = false;
-  glyph->draw_type_name = "triangle";
+  glyph->draw_type = utl::topology::TRIANGLE;
   glyph->is_permanent = true;
   glyph->unicolor = color;
 

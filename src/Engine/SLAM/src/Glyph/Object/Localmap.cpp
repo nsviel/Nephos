@@ -43,7 +43,7 @@ void Localmap::create_localmap(){
   //Create glyph
   localmap->name = "localmap";
   localmap->draw_point_size = 1;
-  localmap->draw_type_name = "point";
+  localmap->draw_type = utl::topology::POINT;
   localmap->unicolor = color;
   localmap->is_visible = false;
   localmap->is_permanent = true;
@@ -57,7 +57,7 @@ void Localmap::create_localcloud(){
   //Create glyph
   localcloud->name = "localcloud";
   localcloud->draw_point_size = 1;
-  localcloud->draw_type_name = "point";
+  localcloud->draw_type = utl::topology::POINT;
   localcloud->unicolor = color;
   localcloud->is_visible = false;
   localcloud->is_permanent = true;

@@ -22,11 +22,8 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
   VkDeviceSize size;
   //---------------------------
 
-  //Check for buffer creation validity
-  utl::type::Data* data = vk_object->data;
-  if(data->point.size == -1) data->point.size = data->point.xyz.size();
-  if(data->point.size == 0 && data->nb_data_max == -1) return;
-  int max_data = (data->nb_data_max == -1) ? data->point.size : data->nb_data_max;
+  int max_data = get_size_buffer(vk_object);
+  if(max_data == 0) return;
 
   //Find buffer size
   size = sizeof(glm::vec3) * max_data;
@@ -92,5 +89,29 @@ void Buffer::clean_buffer(vk::structure::Buffer* buffer){
 
   //---------------------------
 }
+
+//Subfunction
+int Buffer::get_size_buffer(vk::structure::Object* vk_object){
+  utl::type::Data* data = vk_object->data;
+  //---------------------------
+
+  int max_data = 0;
+  if(data->nb_data_max != -1){
+    max_data = data->nb_data_max;
+  }
+  else if(data->point.size != -1){
+    max_data = data->point.size;
+  }
+  else if(data->line.size != -1){
+    max_data = data->line.size;
+  }
+  else if(data->triangle.size != -1){
+    max_data = data->triangle.size;
+  }
+
+  //---------------------------
+  return max_data;
+}
+
 
 }

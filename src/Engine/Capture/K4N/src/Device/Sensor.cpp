@@ -59,7 +59,7 @@ void Sensor::init(){
   //Sensor cloud
   object = utl::entity::Object(node_engine);
   object.name = param.name;
-  object.data->draw_type_name = "point";
+  object.data->draw_type = utl::topology::POINT;
   object.data->nb_data_max = 10000000;
   sce_scene->init_entity(&object);
 

@@ -13,11 +13,12 @@ struct File{
 
   //Info
   int nb_element = 0;
+  int draw_type = utl::topology::POINT;
+
   std::string name = "";
   std::string path_data = "";
   std::string path_transfo = "";
   std::string path_texture = "";
-  std::string draw_type_name = "";
 
   //Data
   std::vector<glm::vec3> xyz;

@@ -20,7 +20,7 @@ utl::media::File* Importer::import(std::string path){
   data = new utl::media::File();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
-  data->draw_type_name = "point";
+  data->draw_type = utl::topology::POINT;
   this->face_number = 0;
 
   //Get format type
@@ -288,10 +288,10 @@ void Importer::Loader_ascii_withface(std::ifstream& file){
 
     //Deduce drawing type
     if(nb_vertice == 3){
-      data->draw_type_name = "triangle";
+      data->draw_type = utl::topology::TRIANGLE;
     }
     else if(nb_vertice == 4){
-      data->draw_type_name = "quad";
+      data->draw_type = utl::topology::QUAD;
     }
   }
 
@@ -464,10 +464,10 @@ void Importer::Loader_bin_little_endian_withface(std::ifstream& file){
 
   //Deduce drawing type
   if(nb_vertice == 3){
-    data->draw_type_name = "triangle";
+    data->draw_type = utl::topology::TRIANGLE;
   }
   else if(nb_vertice == 4){
-    data->draw_type_name = "quad";
+    data->draw_type = utl::topology::QUAD;
   }
 
   //---------------------------
@@ -600,10 +600,10 @@ void Importer::Loader_bin_big_endian_withface(std::ifstream& file){
 
   //Deduce drawing type
   if(nb_vertice == 3){
-    data->draw_type_name = "triangle";
+    data->draw_type = utl::topology::TRIANGLE;
   }
   else if(nb_vertice == 4){
-    data->draw_type_name = "quad";
+    data->draw_type = utl::topology::QUAD;
   }
 
   //---------------------------

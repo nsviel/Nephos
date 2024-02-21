@@ -30,7 +30,7 @@ void Tree::create(){
   utl::type::Data* data = new utl::type::Data();
   data->line.width = 2;
   data->is_visible = is_visible;
-  data->draw_type_name = "line";
+  data->draw_type = utl::topology::LINE;
   data->unicolor = color;
   this->vec_data.push_back(data);
 

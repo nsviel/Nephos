@@ -21,7 +21,7 @@ void Keypoint::create_glyph(Cloud* cloud){
   //Create glyph
   keypoint.name = "keypoint";
   keypoint.draw_point_size = 10;
-  keypoint.draw_type_name = "point";
+  keypoint.draw_type = utl::topology::POINT;
   keypoint.unicolor = color;
   keypoint.is_visible = is_visible;
 

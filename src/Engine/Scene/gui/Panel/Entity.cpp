@@ -155,11 +155,15 @@ void Entity::data_info(utl::type::Entity* entity){
   }
 
   //Primitive size
-  if(data->draw_type_name == "point"){
-    this->primitive_point(data);
-  }
-  else if(data->draw_type_name == "line"){
-    this->primitive_line(data);
+  switch(data->draw_type){
+    case utl::topology::POINT:{
+      this->primitive_point(data);
+      break;
+    }
+    case utl::topology::LINE:{
+      this->primitive_line(data);
+      break;
+    }
   }
 
   //---------------------------

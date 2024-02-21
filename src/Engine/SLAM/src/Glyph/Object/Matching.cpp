@@ -21,7 +21,7 @@ void Matching::create_glyph(){
 
   matching->name = "matching";
   matching->draw_line_width = 100;
-  matching->draw_type_name = "line";
+  matching->draw_type = utl::topology::LINE;
   matching->unicolor = color;
   matching->is_visible = true;
   matching->is_permanent = true;

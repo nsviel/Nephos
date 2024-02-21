@@ -21,7 +21,7 @@ void Plane::create(){
 
   utl::type::Data* data = new utl::type::Data();
   data->is_visible = true;
-  data->draw_type_name = "triangle";
+  data->draw_type = utl::topology::TRIANGLE;
   data->unicolor = color;
   this->vec_data.push_back(data);
 

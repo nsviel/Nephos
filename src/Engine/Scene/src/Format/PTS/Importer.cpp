@@ -26,7 +26,7 @@ utl::media::File* Importer::import(std::string path){
   data = new utl::media::File();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
-  data->draw_type_name = "point";
+  data->draw_type = utl::topology::POINT;
 
   //Initialization
   this->Loader_init();
@@ -61,7 +61,7 @@ utl::media::File* Importer::import(std::string path, int lmin, int lmax){
   utl::media::File* data = new utl::media::File();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
-  data->draw_type_name = "point";
+  data->draw_type = utl::topology::POINT;
 
   //Initialization
   this->Loader_init();

@@ -11,6 +11,17 @@
 #include <mutex>
 
 
+namespace utl::topology{
+
+enum Type{
+  POINT = 0,
+  LINE = 1,
+  TRIANGLE = 2,
+  QUAD = 3,
+};
+
+}
+
 namespace utl::type{
 
 struct Vertice{
@@ -38,6 +49,7 @@ struct Data{
   //State
   int UID = -1;
   int nb_data_max = -1;
+  int draw_type = utl::topology::POINT;
   int width = -1;
   int height = -1;
 
@@ -47,7 +59,6 @@ struct Data{
   std::string path_save = "";
   std::string path_texture = "";
   std::string file_format = "";
-  std::string draw_type_name = "";
   glm::vec4 unicolor;
 
   //Data

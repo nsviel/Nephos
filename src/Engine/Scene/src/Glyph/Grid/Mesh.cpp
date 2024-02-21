@@ -25,7 +25,7 @@ void Mesh::create(){
   utl::type::Data* data = new utl::type::Data();
   data->line.width = 1;
   data->is_visible = true;
-  data->draw_type_name = "line";
+  data->draw_type = utl::topology::LINE;
   data->unicolor = color_mesh;
   this->vec_data.push_back(data);
 

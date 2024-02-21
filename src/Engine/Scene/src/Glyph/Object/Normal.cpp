@@ -26,7 +26,7 @@ utl::entity::Object* Normal::create(utl::entity::Object* object){
   //Create glyph
   glyph->name = "normal";
   glyph->draw_line_width = width;
-  glyph->draw_type_name = "line";
+  glyph->draw_type = utl::topology::LINE;
   glyph->unicolor = color;
   glyph->is_visible = is_visible;
 

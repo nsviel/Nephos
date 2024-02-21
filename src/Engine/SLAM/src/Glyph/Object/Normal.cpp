@@ -26,7 +26,7 @@ void Normal::create_glyph(Cloud* cloud){
   //Create glyph
   normal.name = "normal";
   normal.draw_line_width = width;
-  normal.draw_type_name = "line";
+  normal.draw_type = utl::topology::LINE;
   normal.unicolor = color;
   normal.is_visible = is_visible;
 
