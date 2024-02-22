@@ -172,10 +172,10 @@ void Triangulation::compute_normal_with_neighbors(utl::type::Data* data, int ktr
   //---------------------------
 
   //Prepare data
-  vector<vec3> Nxyz;
-  Nxyz.reserve(data->point.xyz.size());
+  vector<vec3> Nxyz(data->point.xyz.size(), vec3(0.0f));
   vec3 empty = vec3(0, 0, 0);
-  float threshold = 0.5f;
+  float threshold = 0.1f;
+  int knn = 2;
 
   //Loop
 tic();
@@ -184,39 +184,19 @@ tic();
     for(int j=0; j<data->width; j++){
       // Calculate the indices of the neighbor points
       vector<vec3> vec_nn;
+      vector<int> vec_idx;
       vec3& point = data->point.xyz[i * data->width + j];
-      if(point == empty){
-        Nxyz.push_back(empty);
-        continue;
-      }
+      if(point == empty || Nxyz[i * data->width + j] != empty) continue;
 
-      int knn = 1;
-      for(int k=-knn; k<=knn; k++){
-        int i_neighbor = (i + k) * data->width;
-        if(i_neighbor < 0) continue;
-
-        for(int l=-knn; l<=knn; l++){
-          int j_neighbor = j + l;
-          if(j_neighbor < 0) continue;
-
-          vec3& nn = data->point.xyz[i_neighbor + j_neighbor];
-
-          if(nn != empty){
-            float dist = glm::distance(point, nn);
-            if(dist < threshold){
-              vec_nn.push_back(nn);
-            }
-          }
-
-        }
-      }
-
-      //Compute covariance
+      this->compute_knn(point, vec_nn, vec_idx, knn, data, i, j, threshold);
       glm::mat3 covariance = compute_covariance(vec_nn);
       glm::vec3 normal = compute_normal_from_covariance(covariance);
       this->compute_normal_orientation(normal, point);
 
-      Nxyz.push_back(normal);
+      Nxyz[i * data->width + j] = normal;
+      for(int m=0; m<vec_idx.size(); m++){
+        Nxyz[vec_idx[m]] = normal;
+      }
     }
   }
 toc_ms("hey");
@@ -227,6 +207,32 @@ toc_ms("hey");
 }
 
 //Subfunction
+void Triangulation::compute_knn(vec3& point, vector<vec3>& vec_nn, vector<int>& vec_idx, int knn, utl::type::Data* data, int i, int j, float threshold){
+  //---------------------------
+
+  for(int k=-knn; k<=knn; k++){
+    int i_neighbor = (i + k) * data->width;
+    if(i_neighbor < 0) continue;
+
+    for(int l=-knn; l<=knn; l++){
+      int j_neighbor = j + l;
+      if(j_neighbor < 0) continue;
+
+      vec3& nn = data->point.xyz[i_neighbor + j_neighbor];
+
+      if(nn != vec3(0, 0, 0)){
+        float dist = glm::distance(point, nn);
+        if(dist < threshold){
+          vec_nn.push_back(nn);
+          vec_idx.push_back(i_neighbor + j_neighbor);
+        }
+      }
+
+    }
+  }
+
+  //---------------------------
+}
 glm::mat3 Triangulation::compute_covariance(const std::vector<glm::vec3>& points){
   //---------------------------
 
