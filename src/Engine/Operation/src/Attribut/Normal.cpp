@@ -1,4 +1,4 @@
-#include "Triangulation.h"
+#include "Normal.h"
 
 #include <Engine/Operation/Namespace.h>
 #include <cstdlib>
@@ -7,113 +7,16 @@
 namespace ope{
 
 // Constructor / Destructor
-Triangulation::Triangulation(){
+Normal::Normal(){
   //---------------------------
 
 
   //---------------------------
 }
-Triangulation::~Triangulation(){}
+Normal::~Normal(){}
 
 //Main function
-void Triangulation::make_triangulation(utl::type::Data* data){
-  if(data->point.xyz.size() == 0) return;
-  if(data->width == -1 || data->height == -1) return;
-  //---------------------------
-
-  //Prepare data
-  vector<vec3> xyz;
-  vector<vec4> rgb;
-  vector<float> Is;
-  vector<vec3> Nxyz_triangle;
-  vector<vec3> Nxyz_point;
-  vec3 empty = vec3(0, 0, 0);
-  float threshold = 0.5f;
-
-  //Loop
-  #pragma omp parallel for collapse(2) schedule(static)
-  for(int i=0; i<data->height - 1; i++){
-    for(int j=0; j<data->width - 1; j++){
-      // Calculate the indices of the four points
-      int index_1 = i * data->width + j;
-      int index_2 = index_1 + 1;
-      int index_3 = (i + 1) * data->width + j;
-      int index_4 = index_3 + 1;
-
-      const vec3& point_1 = data->point.xyz[index_1];
-      const vec3& point_2 = data->point.xyz[index_2];
-      const vec3& point_3 = data->point.xyz[index_3];
-      const vec3& point_4 = data->point.xyz[index_4];
-
-      float distance_1_2 = glm::distance(point_1, point_2);
-      float distance_1_3 = glm::distance(point_1, point_3);
-      float distance_2_3 = glm::distance(point_2, point_3);
-
-      if(point_1 != empty && point_2 != empty && point_3 != empty &&
-        distance_1_2 <= threshold && distance_1_3 <= threshold && distance_2_3 <= threshold){
-        xyz.push_back(point_1);
-        xyz.push_back(point_3);
-        xyz.push_back(point_2);
-
-        rgb.push_back(data->point.rgb[index_1]);
-        rgb.push_back(data->point.rgb[index_3]);
-        rgb.push_back(data->point.rgb[index_2]);
-
-        Is.push_back(data->point.Is[index_1]);
-        Is.push_back(data->point.Is[index_3]);
-        Is.push_back(data->point.Is[index_2]);
-
-        // Compute triangle normal
-        glm::vec3 normal = glm::normalize(glm::cross(point_2 - point_1, point_3 - point_1));
-        Nxyz_triangle.push_back(normal);
-        Nxyz_triangle.push_back(normal);
-        Nxyz_triangle.push_back(normal);
-        Nxyz_point.push_back(normal);
-      }else{
-        Nxyz_point.push_back(empty);
-      }
-
-      float distance_2_4 = glm::distance(point_2, point_4);
-      float distance_3_4 = glm::distance(point_3, point_4);
-
-      if(point_2 != empty && point_4 != empty && point_3 != empty &&
-        distance_2_4 <= threshold && distance_3_4 <= threshold && distance_2_3 <= threshold){
-          xyz.push_back(point_2);
-          xyz.push_back(point_3);
-          xyz.push_back(point_4);
-
-          rgb.push_back(data->point.rgb[index_2]);
-          rgb.push_back(data->point.rgb[index_3]);
-          rgb.push_back(data->point.rgb[index_4]);
-
-          Is.push_back(data->point.Is[index_2]);
-          Is.push_back(data->point.Is[index_3]);
-          Is.push_back(data->point.Is[index_4]);
-
-          // Compute triangle normal
-          glm::vec3 normal = glm::normalize(glm::cross(point_2 - point_1, point_3 - point_1));
-          Nxyz_triangle.push_back(normal);
-          Nxyz_triangle.push_back(normal);
-          Nxyz_triangle.push_back(normal);
-          Nxyz_point.push_back(normal);
-      }else{
-        Nxyz_point.push_back(empty);
-      }
-
-    }
-  }
-
-  //data->draw_type = utl::topology::TRIANGLE;
-  data->triangle.xyz = xyz;
-  data->triangle.rgb = rgb;
-  data->triangle.Is = Is;
-  data->triangle.Nxyz = Nxyz_triangle;
-  data->triangle.size = xyz.size();
-  data->point.Nxyz = Nxyz_point;
-
-  //---------------------------
-}
-void Triangulation::compute_normal_from_grid(utl::type::Data* data){
+void Normal::compute_normal_from_grid(utl::type::Data* data){
   if(data->point.xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
@@ -166,7 +69,7 @@ void Triangulation::compute_normal_from_grid(utl::type::Data* data){
 
   //---------------------------
 }
-void Triangulation::compute_normal_with_neighbors(utl::type::Data* data, int ktruc) {
+void Normal::compute_normal_with_neighbors(utl::type::Data* data, int ktruc) {
   if(data->point.xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
@@ -205,7 +108,7 @@ void Triangulation::compute_normal_with_neighbors(utl::type::Data* data, int ktr
 }
 
 //Subfunction
-void Triangulation::compute_knn(vec3& point, vector<vec3>& vec_nn, vector<int>& vec_idx, int knn, utl::type::Data* data, int i, int j, float threshold){
+void Normal::compute_knn(vec3& point, vector<vec3>& vec_nn, vector<int>& vec_idx, int knn, utl::type::Data* data, int i, int j, float threshold){
   //---------------------------
 
   for(int k=-knn; k<=knn; k++){
@@ -231,7 +134,7 @@ void Triangulation::compute_knn(vec3& point, vector<vec3>& vec_nn, vector<int>& 
 
   //---------------------------
 }
-glm::mat3 Triangulation::compute_covariance(const std::vector<glm::vec3>& points){
+glm::mat3 Normal::compute_covariance(const std::vector<glm::vec3>& points){
   //---------------------------
 
   glm::vec3 centroid(0.0f);
@@ -250,7 +153,7 @@ glm::mat3 Triangulation::compute_covariance(const std::vector<glm::vec3>& points
   //---------------------------
   return covariance;
 }
-glm::vec3 Triangulation::compute_normal_from_covariance(const glm::mat3& covariance){
+glm::vec3 Normal::compute_normal_from_covariance(const glm::mat3& covariance){
   //---------------------------
 
   // Convert glm::mat3 to Eigen::Matrix3f
@@ -275,7 +178,7 @@ glm::vec3 Triangulation::compute_normal_from_covariance(const glm::mat3& covaria
   //---------------------------
   return normal;
 }
-void Triangulation::compute_normal_orientation(glm::vec3& normal, const glm::vec3& point){
+void Normal::compute_normal_orientation(glm::vec3& normal, const glm::vec3& point){
   //---------------------------
 
   // Check orientation towards the origin
