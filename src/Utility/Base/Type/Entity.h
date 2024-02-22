@@ -16,7 +16,7 @@ struct Entity
   virtual void update_pose(){}
   virtual void remove_entity(){}
   virtual void reset_entity(){}
-  virtual void visibility_entity(bool value){}
+  virtual void set_visibility(bool value){}
   virtual utl::type::Pose* get_pose(){return nullptr;}
   virtual utl::type::Data* get_data(){return nullptr;}
   virtual vector<utl::type::Data*> get_vec_data(){return vector<utl::type::Data*>();}
@@ -29,7 +29,7 @@ struct Entity
   bool is_movable = true;
   bool is_visible = true;
   std::string name = "";
-  std::string type = "entity";
+  std::string entity_type = "base";
   std::string icon = ICON_FA_FILE;
   utl::type::Set* set_parent = nullptr;
 

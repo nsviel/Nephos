@@ -12,7 +12,7 @@ namespace utl::entity{
 Object::Object(){
   //---------------------------
 
-  this->type = "Object";
+  this->entity_type = "entity::Object";
   this->pose = new utl::type::Pose();
   this->data = new utl::type::Data();
   this->data->unicolor = math::random_color();
@@ -22,7 +22,7 @@ Object::Object(){
 Object::Object(eng::Node* node_engine){
   //---------------------------
 
-  this->type = "Object";
+  this->entity_type = "entity::Object";
   this->pose = new utl::type::Pose();
   this->data = new utl::type::Data();
   this->data->unicolor = math::random_color();
@@ -93,7 +93,7 @@ void Object::remove_entity(){
 
   //----------------------------
 }
-void Object::visibility_entity(bool value){
+void Object::set_visibility(bool value){
   //---------------------------
 
   this->is_visible = value;
@@ -101,7 +101,7 @@ void Object::visibility_entity(bool value){
 
   for(int i=0; i<list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->visibility_entity(value);
+    glyph->set_visibility(value);
   }
 
   //---------------------------

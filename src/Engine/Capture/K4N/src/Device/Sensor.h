@@ -40,7 +40,7 @@ public:
   void update_pose();
   void remove_entity();
   void reset_entity();
-  void visibility_entity(bool value);
+  void set_visibility(bool value);
 
   //Capture function
   void run_capture();

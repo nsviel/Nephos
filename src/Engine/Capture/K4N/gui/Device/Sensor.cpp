@@ -40,7 +40,7 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
     //Type
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Type"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->type.c_str());
+    ImGui::TextColored(color, "%s", sensor->entity_type.c_str());
 
     //Transformation matrix file path
     ImGui::TableNextRow(); ImGui::TableNextColumn();

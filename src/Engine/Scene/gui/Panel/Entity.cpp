@@ -109,14 +109,14 @@ void Entity::entity_info(utl::type::Entity* entity){
   //Type
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Type"); ImGui::TableNextColumn();
-  ImGui::Text("%s", entity->type.c_str());
+  ImGui::Text("%s", entity->entity_type.c_str());
 
   //Visibility
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Visibility"); ImGui::TableNextColumn();
   bool is_visible = entity->get_visibility();
   if(ImGui::Checkbox("##4555", &is_visible)){
-    entity->visibility_entity(is_visible);
+    entity->set_visibility(is_visible);
   }
 
   //Name

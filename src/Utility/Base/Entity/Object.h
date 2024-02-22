@@ -16,11 +16,19 @@
 namespace vk{class Node;}
 namespace eng{class Node;}
 namespace eng::cam{class Node;}
+namespace utl::entity{class Glyph;}
 
+
+namespace utl::entity::object{
+enum Glyph{
+  AABB = 0,
+  AXIS = 1,
+  NORMAL = 2,
+  TREE = 3,
+};
+}
 
 namespace utl::entity{
-class Glyph;
-
 
 class Object : public utl::type::Entity
 {
@@ -36,7 +44,7 @@ public:
   void update_glyph();
   void remove_entity();
   void reset_entity();
-  void visibility_entity(bool value);
+  void set_visibility(bool value);
 
   inline utl::type::Data* get_data(){return data;}
   inline utl::type::Pose* get_pose(){return pose;}

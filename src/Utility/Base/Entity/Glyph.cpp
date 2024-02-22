@@ -15,7 +15,7 @@ Glyph::Glyph(eng::Node* node_engine){
   this->pose = new utl::type::Pose();
   this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
   this->is_visible = true;
-  this->type = "Glyph";
+  this->entity_type = "entity::Glyph";
 
   this->node_vulkan = node_engine->get_node_vulkan();
   this->node_camera = node_engine->get_node_camera();
@@ -61,7 +61,7 @@ void Glyph::update_pose(utl::type::Entity* entity){
 
   //----------------------------
 }
-void Glyph::visibility_entity(bool value){
+void Glyph::set_visibility(bool value){
   //---------------------------
 
   this->is_visible = value;

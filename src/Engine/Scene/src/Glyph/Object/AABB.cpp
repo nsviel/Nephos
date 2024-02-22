@@ -8,6 +8,7 @@ AABB::AABB(eng::Node* engine) : Glyph(engine){
 
   this->is_permanent = true;
   this->color = vec4(1.0f, 1.0f, 1.0f, 0.5f);
+  this->type = utl::entity::object::AABB;
 
   //---------------------------
 }

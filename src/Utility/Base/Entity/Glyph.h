@@ -21,7 +21,7 @@ public:
   void clear();
   void update_data();
   void update_pose();
-  void visibility_entity(bool value);
+  void set_visibility(bool value);
 
   virtual void create(){}
   virtual void reset(){}
@@ -44,6 +44,7 @@ protected:
   utl::type::Pose* pose;
   bool need_update = false;
   vec4 color;
+  int type;
 };
 
 }

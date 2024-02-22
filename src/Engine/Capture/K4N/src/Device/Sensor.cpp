@@ -22,7 +22,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->k4n_capture = new k4n::thread::Capture(node_k4n);
   this->k4n_playback = new k4n::thread::Playback(node_k4n);
 
-  this->type = "k4n::device::Sensor";
+  this->entity_type = "k4n::device::Sensor";
   this->icon = ICON_FA_CAMERA_RETRO;
 
   //---------------------------
@@ -100,12 +100,12 @@ void Sensor::remove_entity(){
 
   //---------------------------
 }
-void Sensor::visibility_entity(bool value){
+void Sensor::set_visibility(bool value){
   //---------------------------
 
   this->is_visible = value;
   object.data->is_visible = value;
-  object.visibility_entity(value);
+  object.set_visibility(value);
 
   //---------------------------
 }

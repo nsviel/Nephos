@@ -8,7 +8,7 @@ Camera::Camera(){
   //---------------------------
 
   this->reset_entity();
-  this->type = "Camera";
+  this->entity_type = "entity::Camera";
 
   //---------------------------
 }

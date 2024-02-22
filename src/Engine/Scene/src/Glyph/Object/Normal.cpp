@@ -61,8 +61,11 @@ void Normal::construct(utl::type::Entity* entity){
 
   //Data glyph
   utl::type::Data* data_glyph = vec_data[0];
-  vector<vec3>& xyz_g = data_glyph->line.xyz;
-  vector<vec4>& rgb_g = data_glyph->line.rgb;
+  vector<vec3> xyz_g;
+  vector<vec4> rgb_g;
+
+  xyz_g.reserve(data_glyph->line.xyz.size());
+  rgb_g.reserve(data_glyph->line.rgb.size());
 
   //Data entity
   utl::type::Data* data_entity = entity->get_data();
@@ -71,10 +74,6 @@ void Normal::construct(utl::type::Entity* entity){
 
   //Check vector length
   if(xyz_e.size() == 0 || Nxyz_e.size() == 0 || Nxyz_e.size() != xyz_e.size()) return;
-
-  //Clear old glyph values
-  xyz_g.clear();
-  rgb_g.clear();
 
   //Construct glyph
   float lgt = 0.05 * size;
@@ -92,6 +91,9 @@ void Normal::construct(utl::type::Entity* entity){
     rgb_g.push_back(data_glyph->unicolor);
     rgb_g.push_back(data_glyph->unicolor);
   }
+
+  data_glyph->line.xyz = xyz_g;
+  data_glyph->line.rgb = rgb_g;
 
   //---------------------------
 }

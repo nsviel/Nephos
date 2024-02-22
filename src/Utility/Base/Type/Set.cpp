@@ -220,7 +220,7 @@ void Set::set_visibility(bool value){
 
   for(int i=0; i<list_entity.size(); i++){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
-    entity->visibility_entity(value);
+    entity->set_visibility(value);
   }
 
   //---------------------------
