@@ -33,6 +33,9 @@ struct Operation{
   float voxel_size = 0.25;
   int voxel_min_point = 100;
 
+  //Normal
+  int normal_knn = 2;
+
   //---------------------------
 };
 

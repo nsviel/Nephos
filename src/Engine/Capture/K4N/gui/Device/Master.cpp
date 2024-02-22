@@ -78,6 +78,7 @@ void Master::show_processing(k4n::dev::Master* master){
 
   this->show_colorization(master);
   this->show_voxelization(master);
+  this->show_normal(master);
 
   //---------------------------
 }
@@ -151,6 +152,18 @@ void Master::show_voxelization(k4n::dev::Master* master){
   //Voxel minimal number of points
   ImGui::SetNextItemWidth(100);
   ImGui::SliderInt("Minimum point", &master->operation.voxel_min_point, 1, 1000);
+
+  //---------------------------
+  ImGui::Separator();
+}
+void Master::show_normal(k4n::dev::Master* master){
+  if(master == nullptr) return;
+  //---------------------------
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
+
+  ImGui::SetNextItemWidth(100);
+  ImGui::SliderInt("kNN", &master->operation.normal_knn, 1, 10);
 
   //---------------------------
   ImGui::Separator();
