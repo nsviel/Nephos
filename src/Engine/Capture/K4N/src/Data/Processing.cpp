@@ -15,6 +15,7 @@ Processing::Processing(){
   this->ope_voxelizer = new ope::Voxelizer();
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
+  this->ope_normal = new ope::attribut::Normal();
 
   //---------------------------
 }
@@ -55,7 +56,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   //Triangulation
   tasker->task_begin("normal");
   utl::type::Data* data = sensor->get_data();
-  ope_trianguler->compute_normal_with_neighbors(data, 10);
+  ope_normal->compute_normal_with_neighbors(data, 2);
   tasker->task_end("normal");
 
   //Update object data

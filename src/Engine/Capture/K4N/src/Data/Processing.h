@@ -6,6 +6,7 @@ namespace k4n::dev{class Sensor;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
+namespace ope::attribut{class Normal;}
 
 
 namespace k4n::data{
@@ -32,6 +33,7 @@ private:
   ope::Voxelizer* ope_voxelizer;
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
+  ope::attribut::Normal* ope_normal;
 
   std::thread thread;
 };

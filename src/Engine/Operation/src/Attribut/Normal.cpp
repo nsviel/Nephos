@@ -69,7 +69,7 @@ void Normal::compute_normal_from_grid(utl::type::Data* data){
 
   //---------------------------
 }
-void Normal::compute_normal_with_neighbors(utl::type::Data* data, int ktruc) {
+void Normal::compute_normal_with_neighbors(utl::type::Data* data, int knn){
   if(data->point.xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
@@ -78,7 +78,6 @@ void Normal::compute_normal_with_neighbors(utl::type::Data* data, int ktruc) {
   vector<vec3> Nxyz(data->point.xyz.size(), vec3(0.0f));
   vec3 empty = vec3(0, 0, 0);
   float threshold = 0.1f;
-  int knn = 2;
 
   //Loop
   #pragma omp parallel for collapse(2) schedule(static)
