@@ -13,9 +13,11 @@ public:
   ~Normal();
 
 public:
-  utl::entity::Object* create(utl::entity::Object* object);
-  void update_normal_cloud(utl::entity::Object* object, utl::entity::Object* glyph);
-  void update_normal_cloud(utl::entity::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s);
+  //Main function
+  void create();
+
+  //Construct
+  void construct(utl::type::Entity* entity);
 
   inline bool* get_visibility(){return &visibility;}
   inline int* get_size(){return &size;}
@@ -23,8 +25,8 @@ public:
 private:
   bool visibility;
   vec4 color;
-  int size;
   int width;
+  int size;
 };
 
 }

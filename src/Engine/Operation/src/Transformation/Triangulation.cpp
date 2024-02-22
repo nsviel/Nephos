@@ -113,7 +113,55 @@ void Triangulation::make_triangulation(utl::type::Data* data){
 
   //---------------------------
 }
+void Triangulation::compute_normal_from_grid(utl::type::Data* data){
+  if(data->point.xyz.size() == 0) return;
+  if(data->width == -1 || data->height == -1) return;
+  //---------------------------
 
+  //Prepare data
+  vector<vec3> Nxyz(data->point.xyz.size(), vec3(0.0f));
+  vec3 empty = vec3(0, 0, 0);
+  float threshold = 0.5f;
+
+  //Loop
+  #pragma omp parallel for collapse(2) schedule(static)
+  for(int i=0; i<data->height - 1; i+=2){
+    for(int j=0; j<data->width - 1; j+=2){
+      // Calculate the indices of the three points
+      int index_1, index_2, index_3;
+      if (i % 2 == 0) {
+        index_1 = i * data->width + j;
+        index_2 = index_1 + 1;
+        index_3 = (i + 1) * data->width + j;
+      } else {
+        index_1 = i * data->width + j;
+        index_2 = index_1 + 1;
+        index_3 = (i - 1) * data->width + j + 1;
+      }
+
+      const vec3& point_1 = data->point.xyz[index_1];
+      const vec3& point_2 = data->point.xyz[index_2];
+      const vec3& point_3 = data->point.xyz[index_3];
+
+      float distance_1_2 = glm::distance(point_1, point_2);
+      float distance_1_3 = glm::distance(point_1, point_3);
+      float distance_2_3 = glm::distance(point_2, point_3);
+
+      if(point_1 != empty && point_2 != empty && point_3 != empty &&
+        distance_1_2 <= threshold && distance_1_3 <= threshold && distance_2_3 <= threshold){
+        // Compute triangle normal
+        glm::vec3 normal = glm::normalize(glm::cross(point_2 - point_1, point_3 - point_1));
+        Nxyz[index_1] = normal;
+        Nxyz[index_2] = normal;
+        Nxyz[index_3] = normal;
+      }
+    }
+  }
+
+  data->point.Nxyz = Nxyz;
+
+  //---------------------------
+}
 
 
 

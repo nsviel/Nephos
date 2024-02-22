@@ -38,7 +38,7 @@ void Axis::update_glyph(utl::type::Entity* entity){
 
   //---------------------------
 }
-
+  
 //Subfunction
 void Axis::construct(){
   vector<vec4>& RGB = vec_data[0]->line.rgb;

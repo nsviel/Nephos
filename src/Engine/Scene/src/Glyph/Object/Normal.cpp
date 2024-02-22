@@ -9,102 +9,68 @@ namespace glyph::object{
 Normal::Normal(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
-  this->name = "normal";
-  this->width = 1;
-  this->size = 1;
-  this->is_visible = false;
+  this->width = 2;
+  this->size = 2;
+  this->is_visible = true;
   this->color = vec4(0.11f, 0.35f, 0.69f, 1.0f);
 
   //---------------------------
 }
 Normal::~Normal(){}
-/*
-utl::entity::Object* Normal::create(utl::entity::Object* object){
-  utl::entity::Object* glyph = new utl::entity::Object(engine);
+
+//Main function
+void Normal::create(){
+  if(vec_data.size() != 0) return;
   //---------------------------
 
   //Create glyph
-  glyph->name = "normal";
-  glyph->draw_line_width = width;
-  glyph->draw_type = utl::topology::LINE;
-  glyph->unicolor = color;
-  glyph->is_visible = is_visible;
+  utl::type::Data* data = new utl::type::Data();
+  data->line.width = width;
+  data->is_visible = is_visible;
+  data->draw_type = utl::topology::LINE;
+  data->unicolor = vec4(1, 0, 0, 1);
+  this->vec_data.push_back(data);
 
   //---------------------------
-  return glyph;
 }
-void Normal::update_normal_cloud(utl::entity::Object* object, utl::entity::Object* glyph){
-  glyph->draw_point_size = size;
+
+//Subfunction
+void Normal::construct(utl::type::Entity* entity){
   //---------------------------
 
-  //Get vector values
-  vector<vec3>& xyz_s = cloud->xyz;
-  vector<vec3>& Nxyz_s = cloud->Nxyz;
-  vector<vec3>& xyz_n = glyph->xyz;
-  vector<vec4>& rgb_n = glyph->rgb;
+  //Data glyph
+  utl::type::Data* data_glyph = vec_data[0];
+  vector<vec3>& xyz_g = data_glyph->line.xyz;
+  vector<vec4>& rgb_g = data_glyph->line.rgb;
+
+  //Data entity
+  utl::type::Data* data_entity = entity->get_data();
+  vector<vec3>& xyz_e = data_entity->point.xyz;
+  vector<vec3>& Nxyz_e = data_entity->point.Nxyz;
 
   //Check vector length
-  if(xyz_s.size() == 0 || Nxyz_s.size() == 0 || Nxyz_s.size() != xyz_s.size()){
-    return;
-  }
+  if(xyz_e.size() == 0 || Nxyz_e.size() == 0 || Nxyz_e.size() != xyz_e.size()) return;
 
   //Clear old glyph values
-  xyz_n.clear();
-  rgb_n.clear();
+  xyz_g.clear();
+  rgb_g.clear();
 
   //Construct glyph
-  float lgt = 0.05 * glyph->draw_point_size;
-  for(int i=0; i<xyz_s.size(); i++){
-    vec3& xyz = xyz_s[i];
-    vec3& nxyz = Nxyz_s[i];
+  float lgt = 0.05 * size;
+  for(int i=0; i<xyz_e.size(); i++){
+    vec3& xyz = xyz_e[i];
+    vec3& nxyz = Nxyz_e[i];
 
     vec3 vec_n = vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
 
-    xyz_n.push_back(xyz);
-    xyz_n.push_back(vec_n);
+    xyz_g.push_back(xyz);
+    xyz_g.push_back(vec_n);
 
-    rgb_n.push_back(glyph->unicolor);
-    rgb_n.push_back(glyph->unicolor);
+    rgb_g.push_back(data_glyph->unicolor);
+    rgb_g.push_back(data_glyph->unicolor);
   }
 
   //---------------------------
 }
-void Normal::update_normal_cloud(utl::entity::Object* object, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s){
-  utl::entity::Object* normal = &cloud->glyphs["normal"];
-  normal->draw_point_size = size;
-  //---------------------------
-
-  //Get vector values
-  vector<vec3>& xyz_n = normal->xyz;
-  vector<vec4>& rgb_n = normal->rgb;
-
-  //Check vector length
-  if(xyz_s.size() == 0 || Nxyz_s.size() == 0 || Nxyz_s.size() != xyz_s.size()){
-    return;
-  }
-
-  //Clear old normal values
-  xyz_n.clear();
-  rgb_n.clear();
-
-  //Construct normal
-  float lgt = 0.05 * normal->draw_point_size;
-  for(int i=0; i<xyz_s.size(); i++){
-    vec3& xyz = xyz_s[i];
-    vec3& nxyz = Nxyz_s[i];
-
-    if(math::is_nan(nxyz)) continue;
-
-    vec3 vec_n = vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
-
-    xyz_n.push_back(xyz);
-    xyz_n.push_back(vec_n);
-
-    rgb_n.push_back(normal->unicolor);
-    rgb_n.push_back(normal->unicolor);
-  }
-
-  //---------------------------
-}*/
 
 }
