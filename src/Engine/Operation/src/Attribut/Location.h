@@ -3,14 +3,14 @@
 #include <Utility/Specific/common.h>
 
 
-namespace ope{
+namespace ope::attribut{
 
-class Attribut
+class Location
 {
 public:
   // Constructor / Destructor
-  Attribut();
-  ~Attribut();
+  Location();
+  ~Location();
 
 public:
   //Main functions

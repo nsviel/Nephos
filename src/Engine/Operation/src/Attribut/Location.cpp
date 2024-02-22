@@ -1,14 +1,14 @@
-#include "Attribut.h"
+#include "Location.h"
 
 
-namespace ope{
+namespace ope::attribut{
 
 // Constructor / Destructor
-Attribut::Attribut(){}
-Attribut::~Attribut(){}
+Location::Location(){}
+Location::~Location(){}
 
 //Main function
-vec3 Attribut::compute_centroid(utl::type::Set* set){
+vec3 Location::compute_centroid(utl::type::Set* set){
   //---------------------------
 
   vec3 centroid = vec3(0, 0, 0);
@@ -30,7 +30,7 @@ vec3 Attribut::compute_centroid(utl::type::Set* set){
   set->pose.COM = centroid;
   return centroid;
 }
-vec3 Attribut::compute_centroid(utl::type::Entity* entity){
+vec3 Location::compute_centroid(utl::type::Entity* entity){
   utl::type::Data* data = entity->get_data();
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
@@ -54,7 +54,7 @@ vec3 Attribut::compute_centroid(utl::type::Entity* entity){
   //---------------------------
   return centroid;
 }
-void Attribut::compute_MinMax(utl::type::Set* set){
+void Location::compute_MinMax(utl::type::Set* set){
   //---------------------------
 
   vec3 centroid = vec3(0, 0, 0);
@@ -83,7 +83,7 @@ void Attribut::compute_MinMax(utl::type::Set* set){
   set->pose.max = max;
   set->pose.COM = centroid;
 }
-void Attribut::compute_MinMax(utl::type::Entity* entity){
+void Location::compute_MinMax(utl::type::Entity* entity){
   utl::type::Data* data = entity->get_data();
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
@@ -115,7 +115,7 @@ void Attribut::compute_MinMax(utl::type::Entity* entity){
   pose->max = max;
   pose->COM = centroid;
 }
-void Attribut::set_unicolor(utl::type::Entity* entity){
+void Location::set_unicolor(utl::type::Entity* entity){
   if(entity == nullptr) return;
   utl::type::Data* data = entity->get_data();
   //---------------------------
@@ -126,7 +126,7 @@ void Attribut::set_unicolor(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Attribut::retrieve_z_vector(utl::type::Entity* entity, vector<float>& z_vec){
+void Location::retrieve_z_vector(utl::type::Entity* entity, vector<float>& z_vec){
   utl::type::Data* data = entity->get_data();
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------

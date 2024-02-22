@@ -4,7 +4,7 @@
 #include <cstdlib>
 
 
-namespace ope{
+namespace ope::attribut{
 
 // Constructor / Destructor
 Normal::Normal(){

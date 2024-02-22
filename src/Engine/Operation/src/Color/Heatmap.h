@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace ope::color{class Colormap;}
-namespace ope{class Attribut;}
+namespace ope::attribut{class Location;}
 
 
 namespace ope::color{
@@ -29,7 +29,7 @@ public:
 
 private:
   ope::color::Colormap* ope_colormap;
-  ope::Attribut* ope_attribut;
+  ope::attribut::Location* ope_location;
 
   vec2 range_norm;
   vec2 range_height;

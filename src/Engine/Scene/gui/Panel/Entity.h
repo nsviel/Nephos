@@ -4,7 +4,7 @@
 
 namespace eng::scene{class Node;}
 namespace eng::scene{class Scene;}
-namespace ope{class Attribut;}
+namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
 
 
@@ -39,7 +39,7 @@ public:
   inline void set_entity(utl::type::Entity* entity){this->entity = entity;}
 
 private:
-  ope::Attribut* ope_attribut;
+  ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
   eng::scene::Scene* sce_scene;
 

@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace ope{class Transformation;}
-namespace ope{class Attribut;}
+namespace ope::attribut{class Location;}
 
 
 namespace ope{
@@ -31,7 +31,7 @@ public:
 
 private:
   ope::Transformation* ope_transform;
-  ope::Attribut* ope_attribut;
+  ope::attribut::Location* ope_location;
 };
 
 }

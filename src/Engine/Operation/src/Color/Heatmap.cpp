@@ -11,7 +11,7 @@ Heatmap::Heatmap(){
   //---------------------------
 
   this->ope_colormap = new ope::color::Colormap();
-  this->ope_attribut = new ope::Attribut();
+  this->ope_location = new ope::attribut::Location();
 
   this->is_normalization = false;
   this->range_norm = vec2(0.0f, 1.0f);
@@ -49,7 +49,7 @@ void Heatmap::heatmap_height(utl::type::Entity* entity){
 
   //Prepare data
   vector<float> z_vec;
-  ope_attribut->retrieve_z_vector(entity, z_vec);
+  ope_location->retrieve_z_vector(entity, z_vec);
   math::Normalize(z_vec, range_height);
 
   //Compute heatmap
@@ -63,7 +63,7 @@ void Heatmap::heatmap_height(utl::type::Entity* entity, vec2 range){
 
   //Prepare data
   vector<float> z_vec;
-  ope_attribut->retrieve_z_vector(entity, z_vec);
+  ope_location->retrieve_z_vector(entity, z_vec);
   math::Normalize(z_vec, range);
 
   //Compute heatmap

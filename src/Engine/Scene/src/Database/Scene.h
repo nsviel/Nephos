@@ -7,7 +7,6 @@ namespace eng::scene{class Node;}
 namespace eng::scene{class Glyph;}
 namespace eng::scene{class Operation;}
 namespace eng::scene{class Database;}
-namespace ope{class Attribut;}
 
 
 namespace eng::scene{
@@ -41,7 +40,6 @@ private:
   vk::main::Graphical* vk_graphical;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
-  ope::Attribut* ope_attribut;
 
   utl::type::Set* set_scene;
 };

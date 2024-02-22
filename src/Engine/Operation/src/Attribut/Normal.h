@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace ope{
+namespace ope::attribut{
 
 class Normal
 {

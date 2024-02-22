@@ -12,7 +12,7 @@ Entity::Entity(eng::scene::Node* node_scene, bool* panel_show){
   //---------------------------
 
   this->sce_scene = node_scene->get_scene();
-  this->ope_attribut = new ope::Attribut();
+  this->ope_location = new ope::attribut::Location();
   this->ope_operation = new ope::Operation();
 
   this->panel_show = panel_show;
@@ -151,7 +151,7 @@ void Entity::data_info(utl::type::Entity* entity){
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
   flags |= ImGuiColorEditFlags_AlphaBar;
   if(ImGui::ColorEdit4("Color", (float*)&data->unicolor, flags)){
-    ope_attribut->set_unicolor(entity);
+    ope_location->set_unicolor(entity);
   }
 
   //Primitive size
