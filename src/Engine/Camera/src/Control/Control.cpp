@@ -14,6 +14,7 @@ Control::Control(eng::cam::Node* node_camera){
 
   this->vec_mode.push_back(new eng::cam::mode::Player(node_camera));
   this->vec_mode.push_back(new eng::cam::mode::Arcball(node_camera));
+  this->active_mode = vec_mode[0];
 
   //---------------------------
 }
@@ -103,7 +104,8 @@ mat4 Control::compute_camera_view(){
   return cam_view;
 }
 mat4 Control::compute_camera_proj(){
-  mat4 projection;
+  glm::mat4 projection = glm::mat4(1.0f);
+  if(camera == nullptr) return projection;
   //---------------------------
 
   switch(camera->projection){

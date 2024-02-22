@@ -1,5 +1,5 @@
 #include "Target.h"
-
+#include <Engine/Camera/Namespace.h>
 
 namespace glyph::camera{
 
@@ -34,6 +34,8 @@ void Target::update_glyph(utl::type::Entity* entity){
   utl::type::Data* data = vec_data[0];
   //---------------------------
 
+
+
   if(utl::entity::Camera* camera = dynamic_cast<utl::entity::Camera*>(entity)){
     camera->mode == CAMERA_MODE_ARCBALL ? is_visible = true : is_visible = false;
 
@@ -43,6 +45,10 @@ void Target::update_glyph(utl::type::Entity* entity){
     translation[2][3] = camera->cam_COM.z;
     pose->model = translation;
     data->is_visible = is_visible;
+
+
+      eng::cam::Control* cam_control = node_camera->get_camera_control();
+      cam_control->compute_camera_mvp(pose);
   }
 
   //---------------------------

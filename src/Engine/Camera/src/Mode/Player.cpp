@@ -104,6 +104,8 @@ void Player::camera_zoom(utl::entity::Camera* camera, float speed){
 
 //Camera matrix
 mat4 Player::compute_camera_view(utl::entity::Camera* camera){
+  glm::mat4 cam_view = glm::mat4(1.0f);
+  if(camera == nullptr) return cam_view;
   //---------------------------
 
   float azimuth = camera->angle_azimuth;
@@ -116,7 +118,7 @@ mat4 Player::compute_camera_view(utl::entity::Camera* camera){
   vec3 cam_target = camera->cam_P + camera->cam_F;
 
   //Compute view matrix
-  mat4 cam_view = lookAt(camera->cam_P, cam_target, camera->cam_U);
+  cam_view = lookAt(camera->cam_P, cam_target, camera->cam_U);
 
   camera->mat_view = cam_view;
 

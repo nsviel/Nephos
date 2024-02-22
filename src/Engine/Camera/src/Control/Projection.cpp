@@ -20,6 +20,8 @@ Projection::~Projection(){}
 
 //Main function
 mat4 Projection::compute_proj_perspective(utl::entity::Camera* camera){
+  glm::mat4 cam_proj = glm::mat4(1.0f);
+  if(camera == nullptr) return cam_proj;
   //---------------------------
 
   float z_near = camera->clip_near;
@@ -29,7 +31,7 @@ mat4 Projection::compute_proj_perspective(utl::entity::Camera* camera){
   vec2 window_dim = utl_window->get_window_dim();
   float ratio = window_dim.x / window_dim.y;
 
-  mat4 cam_proj = perspective(fov, ratio, z_near, z_far);
+  cam_proj = perspective(fov, ratio, z_near, z_far);
   cam_proj[1][1] *= -1; // Because glm is designed for OpenGL convention
 
   camera->mat_proj = cam_proj;
@@ -38,13 +40,15 @@ mat4 Projection::compute_proj_perspective(utl::entity::Camera* camera){
   return cam_proj;
 }
 mat4 Projection::compute_proj_ortho(utl::entity::Camera* camera){
+  glm::mat4 cam_proj = glm::mat4(1.0f);
+  if(camera == nullptr) return cam_proj;
   //---------------------------
 
   float z_near = camera->clip_near;
   float z_far = camera->clip_far;
   float zoom = camera->zoom;
 
-  mat4 cam_proj = ortho(-5.f - zoom, 5.f + zoom, -5.f - zoom, 5.f + zoom, z_near, z_far);
+  cam_proj = ortho(-5.f - zoom, 5.f + zoom, -5.f - zoom, 5.f + zoom, z_near, z_far);
   cam_proj[1][1] *= -1; // Because glm is designed for OpenGL convention
 
   camera->mat_proj = cam_proj;

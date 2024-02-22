@@ -42,7 +42,7 @@ private:
 
   vector<eng::cam::mode::Base*> vec_mode;
   eng::cam::mode::Base* active_mode;
-  utl::entity::Camera* camera;
+  utl::entity::Camera* camera = nullptr;
 };
 
 }
