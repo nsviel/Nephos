@@ -162,6 +162,11 @@ void Master::show_normal(k4n::dev::Master* master){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
 
+  if(ImGui::Checkbox("Visible##2242", &master->operation.normal_visible)){
+    master->visibility_normal();
+  }
+  ImGui::SameLine();
+
   ImGui::SetNextItemWidth(100);
   ImGui::SliderInt("kNN", &master->operation.normal_knn, 1, 10);
 

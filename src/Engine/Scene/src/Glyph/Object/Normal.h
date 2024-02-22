@@ -22,7 +22,6 @@ public:
   void construct(utl::type::Entity* entity);
   glm::vec4 generate_random_color();
 
-  inline bool* get_visibility(){return &visibility;}
   inline int* get_size(){return &size;}
 
 private:

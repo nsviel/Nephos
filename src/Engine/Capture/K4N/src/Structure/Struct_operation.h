@@ -34,6 +34,7 @@ struct Operation{
   int voxel_min_point = 100;
 
   //Normal
+  bool normal_visible = false;
   int normal_knn = 2;
 
   //---------------------------
