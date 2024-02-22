@@ -46,13 +46,6 @@ void Object::update_data(){
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
 
-  //Update own glyph data
-  for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->update_glyph(this);
-    glyph->update_data();
-  }
-
   //Update own data
   vk_graphical->insert_data_in_engine(data, pose);
 
@@ -69,6 +62,18 @@ void Object::update_pose(){
   for(int i=0; i<list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_pose(this);
+  }
+
+  //----------------------------
+}
+void Object::update_glyph(){
+  //----------------------------
+
+  //Update own glyph data
+  for(int i=0; i<list_glyph.size(); i++){
+    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    glyph->update_glyph(this);
+    glyph->update_data();
   }
 
   //----------------------------
