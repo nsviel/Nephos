@@ -50,7 +50,7 @@ void Swarm::init_scene(){
 
   //Create playback list
   this->create_sensor_playback(file_1);
-  //this->create_sensor_playback(file_2);
+  this->create_sensor_playback(file_2);
   //this->create_sensor_playback(file_4);
 
   //---------------------------
