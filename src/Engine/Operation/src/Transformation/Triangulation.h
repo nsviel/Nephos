@@ -16,7 +16,13 @@ public:
   //Main function
   void make_triangulation(utl::type::Data* data);
   void compute_normal_from_grid(utl::type::Data* data);
-  
+  void compute_normal_with_neighbors(utl::type::Data* data, int k);
+
+  //Subfunction
+  glm::mat3 compute_covariance(const std::vector<glm::vec3>& points);
+  glm::vec3 compute_normal_from_covariance(const glm::mat3& covariance);
+  void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point);
+
 private:
 
 };

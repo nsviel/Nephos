@@ -124,15 +124,16 @@ void Triangulation::compute_normal_from_grid(utl::type::Data* data){
   float threshold = 0.5f;
 
   //Loop
+  bool toggle = true;
   #pragma omp parallel for collapse(2) schedule(static)
-  for(int i=0; i<data->height - 1; i+=2){
+  for(int i=0; i<data->height - 1; i++){
     for(int j=0; j<data->width - 1; j+=2){
       // Calculate the indices of the three points
       int index_1, index_2, index_3;
-      if (i % 2 == 0) {
+      if(toggle){
         index_1 = i * data->width + j;
-        index_2 = index_1 + 1;
-        index_3 = (i + 1) * data->width + j;
+        index_3 = index_1 + 1;
+        index_2 = (i + 1) * data->width + j;
       } else {
         index_1 = i * data->width + j;
         index_2 = index_1 + 1;
@@ -156,13 +157,133 @@ void Triangulation::compute_normal_from_grid(utl::type::Data* data){
         Nxyz[index_3] = normal;
       }
     }
+
+    if(toggle) i += 1;
+    toggle = !toggle;
   }
 
   data->point.Nxyz = Nxyz;
 
   //---------------------------
 }
+void Triangulation::compute_normal_with_neighbors(utl::type::Data* data, int ktruc) {
+  if(data->point.xyz.size() == 0) return;
+  if(data->width == -1 || data->height == -1) return;
+  //---------------------------
 
+  //Prepare data
+  vector<vec3> Nxyz;
+  Nxyz.reserve(data->point.xyz.size());
+  vec3 empty = vec3(0, 0, 0);
+  float threshold = 0.5f;
+
+  //Loop
+tic();
+  #pragma omp parallel for collapse(2) schedule(static)
+  for(int i=0; i<data->height; i++){
+    for(int j=0; j<data->width; j++){
+      // Calculate the indices of the neighbor points
+      vector<vec3> vec_nn;
+      vec3& point = data->point.xyz[i * data->width + j];
+      if(point == empty){
+        Nxyz.push_back(empty);
+        continue;
+      }
+
+      int knn = 3;
+      for(int k=-knn; k<=knn; k++){
+        int i_neighbor = (i + k) * data->width;
+        if(i_neighbor < 0) continue;
+
+        for(int l=-knn; l<=knn; l++){
+          int j_neighbor = j + l;
+          if(j_neighbor < 0) continue;
+
+          vec3& nn = data->point.xyz[i_neighbor + j_neighbor];
+
+          if(nn != empty){
+            float dist = glm::distance(point, nn);
+            if(dist < threshold){
+              vec_nn.push_back(nn);
+            }
+          }
+
+        }
+      }
+
+      //Compute covariance
+      glm::mat3 covariance = compute_covariance(vec_nn);
+      glm::vec3 normal = compute_normal_from_covariance(covariance);
+      this->compute_normal_orientation(normal, point);
+
+      Nxyz.push_back(normal);
+    }
+  }
+toc_ms("hey");
+
+  data->point.Nxyz = Nxyz;
+
+  //---------------------------
+}
+
+//Subfunction
+glm::mat3 Triangulation::compute_covariance(const std::vector<glm::vec3>& points){
+  //---------------------------
+
+  glm::vec3 centroid(0.0f);
+  for (const auto& point : points) {
+      centroid += point;
+  }
+  centroid /= static_cast<float>(points.size());
+
+  glm::mat3 covariance(0.0f);
+  for (const auto& point : points) {
+      glm::vec3 deviation = point - centroid;
+      covariance += glm::outerProduct(deviation, deviation);
+  }
+  covariance /= static_cast<float>(points.size());
+
+  //---------------------------
+  return covariance;
+}
+glm::vec3 Triangulation::compute_normal_from_covariance(const glm::mat3& covariance){
+  //---------------------------
+
+  // Convert glm::mat3 to Eigen::Matrix3f
+  Eigen::Matrix3f eigenCovariance;
+  for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+      eigenCovariance(i, j) = covariance[i][j];
+    }
+  }
+
+  // Calculate the eigenvalues and eigenvectors of the covariance matrix
+  Eigen::SelfAdjointEigenSolver<Eigen::Matrix3f> eigensolver(eigenCovariance);
+  Eigen::Vector3f eigenvalues = eigensolver.eigenvalues();
+  Eigen::Matrix3f eigenvectors = eigensolver.eigenvectors();
+
+  // The eigenvector corresponding to the smallest eigenvalue represents the normal
+  Eigen::Vector3f normalEigen = eigenvectors.col(0);
+
+  // Convert Eigen::Vector3f to glm::vec3
+  glm::vec3 normal(normalEigen[0], normalEigen[1], normalEigen[2]);
+
+  //---------------------------
+  return normal;
+}
+void Triangulation::compute_normal_orientation(glm::vec3& normal, const glm::vec3& point){
+  //---------------------------
+
+  // Check orientation towards the origin
+  glm::vec3 centroid(0.0f); // Assuming the origin is (0, 0, 0)
+  float dotProduct = glm::dot(normal, centroid - point);
+  if (dotProduct < 0.0f) {
+    // Invert the normal
+    normal = -normal;
+  }
+
+  //---------------------------
+}
 
 
 

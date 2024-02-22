@@ -55,7 +55,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   //Triangulation
   tasker->task_begin("normal");
   utl::type::Data* data = sensor->get_data();
-  ope_trianguler->compute_normal_from_grid(data);
+  ope_trianguler->compute_normal_with_neighbors(data, 10);
   tasker->task_end("normal");
 
   //Update object data

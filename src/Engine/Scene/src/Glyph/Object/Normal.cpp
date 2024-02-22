@@ -10,7 +10,7 @@ Normal::Normal(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
   this->width = 2;
-  this->size = 2;
+  this->size = 1;
   this->is_visible = true;
   this->color = vec4(0.11f, 0.35f, 0.69f, 1.0f);
   this->need_update = true;

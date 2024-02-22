@@ -86,25 +86,43 @@ void Colorizer::colorization_structure(utl::type::Entity* entity){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
+  // Calculate the number of points in each row and column
+  int num_rows = data->height;
+  int num_cols = data->width;
+
   // Define a color gradient from red to blue
   vector<vec3>& colormap = ope_colormap->get_colormap_selected();
 
-  // Calculate the step size for color interpolation
-  float step = 1.0f / (data->point.xyz.size() - 1);
+  // Calculate the step size for color interpolation along rows and columns
+  float row_step = 1.0f / (num_rows - 1);
+  float col_step = 1.0f / (num_cols - 1);
 
   // Loop through the points and assign colors
-  for(int i = 0; i < data->point.xyz.size(); ++i) {
-    // Calculate the index in the colormap based on the normalized position
-    int colormap_index = step * float(i) * colormap.size() - 1;
+  int index = 0;
+  for(int i = 0; i < num_rows; ++i) {
+      for(int j = 0; j < num_cols; ++j) {
+          // Calculate the index in the colormap based on the normalized position
+          int colormap_index = row_step * i * (colormap.size() - 1);
 
-    // Interpolate between colors based on the index
-    float t = step * i * (colormap.size() - 1) - colormap_index;
-    const vec3& color1 = colormap[colormap_index];
-    const vec3& color2 = colormap[colormap_index + 1];
-    vec3 interpolated_color = (1.0f - t) * color1 + t * color2;
+          // Interpolate between colors based on the index along rows
+          const vec3& color1_row = colormap[colormap_index];
+          const vec3& color2_row = colormap[colormap_index + 1];
+          float t_row = static_cast<float>(i % num_rows) / (num_rows - 1); // Interpolation factor along rows
+          vec3 interpolated_color_row = (1.0f - t_row) * color1_row + t_row * color2_row;
 
-    // Add the interpolated color to the vector
-    data->point.rgb[i] = vec4(interpolated_color, 1.0f);
+          // Interpolate between colors based on the index along columns
+          const vec3& color1_col = colormap[colormap_index];
+          const vec3& color2_col = colormap[colormap_index + 1];
+          float t_col = static_cast<float>(j % num_cols) / (num_cols - 1); // Interpolation factor along columns
+          vec3 interpolated_color_col = (1.0f - t_col) * color1_col + t_col * color2_col;
+
+          // Combine the interpolated colors for rows and columns
+          vec3 final_color = (interpolated_color_row + interpolated_color_col) * 0.5f;
+
+          // Add the final color to the vector
+          data->point.rgb[index] = vec4(final_color, 1.0f);
+          ++index;
+      }
   }
 
   //---------------------------
