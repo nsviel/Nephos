@@ -190,7 +190,7 @@ tic();
         continue;
       }
 
-      int knn = 3;
+      int knn = 1;
       for(int k=-knn; k<=knn; k++){
         int i_neighbor = (i + k) * data->width;
         if(i_neighbor < 0) continue;

@@ -30,7 +30,7 @@ void Normal::create(){
   data->is_visible = is_visible;
   data->nb_data_max = 1000000;
   data->draw_type = utl::topology::LINE;
-  data->unicolor = vec4(1, 0, 0, 1);
+  data->unicolor = vec4(0, 0.7, 0.7, 1);
   this->vec_data.push_back(data);
 
   //---------------------------
@@ -73,16 +73,29 @@ void Normal::construct(utl::type::Entity* entity){
     vec3& xyz = xyz_e[i];
     vec3& nxyz = Nxyz_e[i];
 
-    vec3 vec_n = vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
+    if(nxyz == vec3(0, 0, 0)) continue;
+
+    vec3 xyz_n = vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
 
     xyz_g.push_back(xyz);
-    xyz_g.push_back(vec_n);
+    xyz_g.push_back(xyz_n);
 
     rgb_g.push_back(data_glyph->unicolor);
     rgb_g.push_back(data_glyph->unicolor);
   }
 
   //---------------------------
+}
+glm::vec4 Normal::generate_random_color(){
+  //---------------------------
+
+  float Red = float(rand()%101)/100;
+  float Green = float(rand()%101)/100;
+  float Blue = float(rand()%101)/100;
+  glm::vec4 color = glm::vec4(Red, Green, Blue, 1.0f);
+
+  //---------------------------
+  return color;
 }
 
 }
