@@ -1,5 +1,7 @@
 #include "Axis.h"
 
+#include <Engine/Camera/Namespace.h>
+
 
 namespace glyph::object{
 
@@ -30,15 +32,18 @@ void Axis::create(){
 
   //---------------------------
 }
-void Axis::update_glyph(utl::type::Entity* entity){
+void Axis::update_pose(utl::type::Entity* entity){
   //---------------------------
 
   utl::type::Pose* entity_pose = entity->get_pose();
   pose->model = entity_pose->model;
 
+  eng::cam::Control* cam_control = node_camera->get_camera_control();
+  cam_control->compute_camera_mvp(pose);
+
   //---------------------------
 }
-  
+
 //Subfunction
 void Axis::construct(){
   vector<vec4>& RGB = vec_data[0]->line.rgb;

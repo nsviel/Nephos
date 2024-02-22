@@ -1,5 +1,6 @@
 #include "Normal.h"
 
+#include <Engine/Camera/Namespace.h>
 #include <Utility/Function/Math/Math.h>
 
 
@@ -35,11 +36,19 @@ void Normal::create(){
 
   //---------------------------
 }
-void Normal::update_glyph(utl::type::Entity* entity){
+void Normal::update_pose(utl::type::Entity* entity){
   //---------------------------
 
   utl::type::Pose* entity_pose = entity->get_pose();
   pose->model = entity_pose->model;
+
+  eng::cam::Control* cam_control = node_camera->get_camera_control();
+  cam_control->compute_camera_mvp(pose);
+
+  //---------------------------
+}
+void Normal::update_glyph(utl::type::Entity* entity){
+  //---------------------------
 
   this->construct(entity);
 

@@ -15,6 +15,7 @@ public:
 public:
   //Main function
   void create();
+  void update_pose(utl::type::Entity* entity);
   void update_glyph(utl::type::Entity* entity);
 
   //Construct

@@ -53,6 +53,14 @@ void Glyph::update_pose(){
 
   //----------------------------
 }
+void Glyph::update_pose(utl::type::Entity* entity){
+  eng::cam::Control* cam_control = node_camera->get_camera_control();
+  //----------------------------
+
+  cam_control->compute_camera_mvp(pose);
+
+  //----------------------------
+}
 void Glyph::visibility_entity(bool value){
   //---------------------------
 

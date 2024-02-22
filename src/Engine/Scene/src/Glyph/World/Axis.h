@@ -17,6 +17,9 @@ public:
   void create();
   void update_glyph();
 
+  //Subfunction
+  void construct();
+
 private:
 };
 

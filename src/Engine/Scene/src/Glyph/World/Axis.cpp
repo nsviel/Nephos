@@ -32,6 +32,15 @@ void Axis::create(){
   //---------------------------
 }
 void Axis::update_glyph(){
+  //---------------------------
+
+  this->construct();
+
+  //---------------------------
+}
+
+//Subfunction
+void Axis::construct(){
   vector<vec3>& XYZ = vec_data[0]->line.xyz;
   vector<vec4>& RGB = vec_data[0]->line.rgb;
   float z = 0;
