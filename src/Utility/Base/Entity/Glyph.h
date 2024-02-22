@@ -18,15 +18,15 @@ public:
   ~Glyph();
 
   //Main function
+  void clear();
   void update_data();
   void update_pose();
-  void clear_data();
   void visibility_entity(bool value);
 
   virtual void create(){}
+  virtual void reset(){}
   virtual void update_glyph(){}
   virtual void update_glyph(utl::type::Entity* entity){}
-  virtual void reset(){}
 
   inline vector<utl::type::Data*> get_vec_data(){return vec_data;}
   inline utl::type::Pose* get_pose(){return pose;}

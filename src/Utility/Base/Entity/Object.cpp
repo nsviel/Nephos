@@ -50,13 +50,6 @@ void Object::update_data(){
 
   vk_graphical->insert_data_in_engine(data, pose);
 
-  for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
-    if(glyph->is_need_update()){
-      glyph->update_data();
-    }
-  }
-
   //----------------------------
 }
 void Object::update_pose(){
@@ -64,17 +57,29 @@ void Object::update_pose(){
   //----------------------------
 
   cam_control->compute_camera_mvp(pose);
-  this->update_glyph();
+  this->update_glyph_pose();
 
   //----------------------------
 }
-void Object::update_glyph(){
+void Object::update_glyph_pose(){
   //----------------------------
 
   for(int i=0; i<list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_glyph(this);
     glyph->update_pose();
+  }
+
+  //----------------------------
+}
+void Object::update_glyph_data(){
+  //----------------------------
+
+  for(int i=0; i<list_glyph.size(); i++){
+    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    if(glyph->is_need_update()){
+      glyph->update_data();
+    }
   }
 
   //----------------------------
@@ -86,7 +91,7 @@ void Object::remove_entity(){
   //Remove glyph data
   for(int i=0; i<list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->clear_data();
+    glyph->clear();
   }
 
   //Remove this data
