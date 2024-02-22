@@ -93,19 +93,6 @@ void Object::remove_entity(){
 
   //----------------------------
 }
-void Object::set_visibility(bool value){
-  //---------------------------
-
-  this->is_visible = value;
-  data->is_visible = value;
-
-  for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->set_visibility(value);
-  }
-
-  //---------------------------
-}
 void Object::reset_entity(){
   //---------------------------
 
@@ -121,6 +108,36 @@ void Object::reset_entity(){
   pose->mvp = glm::mat4(1.0f);
 
   //---------------------------
+}
+
+//Subfunction
+void Object::set_visibility(bool value){
+  //---------------------------
+
+  this->is_visible = value;
+  data->is_visible = value;
+
+  for(int i=0; i<list_glyph.size(); i++){
+    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    glyph->set_visibility(value);
+  }
+
+  //---------------------------
+}
+utl::entity::Glyph* Object::get_glyph(int type){
+  utl::entity::Glyph* glyph = nullptr;
+  //---------------------------
+
+  for(int i=0; i<list_glyph.size(); i++){
+    utl::entity::Glyph* glyph_vec = *next(list_glyph.begin(), i);
+    if(glyph_vec->get_type() == type){
+      glyph = glyph_vec;
+      break;
+    }
+  }
+
+  //---------------------------
+  return glyph;
 }
 
 }

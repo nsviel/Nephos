@@ -33,6 +33,7 @@ public:
   inline utl::type::Pose* get_pose(){return pose;}
   inline vec4* get_color(){return &color;}
   inline bool is_need_update(){return need_update;}
+  inline int get_type(){return type;}
 
 protected:
   //Dependancy
