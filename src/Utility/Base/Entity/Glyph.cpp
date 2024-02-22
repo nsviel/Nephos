@@ -1,9 +1,8 @@
 #include "Glyph.h"
 
-#include <Engine/Node.h>
+#include <Engine/Namespace.h>
 #include <Engine/Camera/Namespace.h>
-#include <Vulkan/Node.h>
-#include <Vulkan/VK_main/Graphical.h>
+#include <Vulkan/Namespace.h>
 #include <Utility/Function/Math/Math.h>
 
 
@@ -50,9 +49,7 @@ void Glyph::update_pose(){
   eng::cam::Control* cam_control = node_camera->get_camera_control();
   //----------------------------
 
-  for(int i=0; i<vec_data.size(); i++){
-    cam_control->compute_camera_mvp(pose);
-  }
+  cam_control->compute_camera_mvp(pose);
 
   //----------------------------
 }

@@ -1,10 +1,8 @@
 #include "Object.h"
 
-#include <Engine/Node.h>
+#include <Engine/Namespace.h>
 #include <Engine/Camera/Namespace.h>
-#include <Engine/Scene/Namespace.h>
-#include <Vulkan/Node.h>
-#include <Vulkan/VK_main/Graphical.h>
+#include <Vulkan/Namespace.h>
 #include <Utility/Function/Math/Math.h>
 
 

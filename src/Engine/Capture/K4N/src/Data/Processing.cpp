@@ -57,10 +57,6 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   tasker->task_begin("normal");
   utl::type::Data* data = sensor->get_data();
   ope_normal->compute_normal_with_neighbors(data, 2);
-
-  utl::entity::Object* object = sensor->get_object();
-  //object->update_glyph_data();
-
   tasker->task_end("normal");
 
   //Update object data
