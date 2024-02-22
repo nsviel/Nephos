@@ -73,7 +73,7 @@ void Normal::construct(utl::type::Entity* entity){
     vec3& xyz = xyz_e[i];
     vec3& nxyz = Nxyz_e[i];
 
-    if(nxyz == vec3(0, 0, 0)) continue;
+    if(nxyz == vec3(0, 0, 0)) sayHello();//continue;
 
     vec3 xyz_n = vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
 
