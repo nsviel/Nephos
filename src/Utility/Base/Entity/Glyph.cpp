@@ -26,22 +26,22 @@ Glyph::Glyph(eng::Node* node_engine){
 Glyph::~Glyph(){}
 
 //Main function
+void Glyph::clear(){
+  vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
+  //----------------------------
+
+  for(int j=0; j<vec_data.size(); j++){
+    vk_graphical->remove_data_in_engine(vec_data[j]);
+  }
+
+  //----------------------------
+}
 void Glyph::update_data(){
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
 
   for(int i=0; i<vec_data.size(); i++){
     vk_graphical->insert_data_in_engine(vec_data[i], pose);
-  }
-
-  //----------------------------
-}
-void Glyph::clear_data(){
-  vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
-  //----------------------------
-
-  for(int j=0; j<vec_data.size(); j++){
-    vk_graphical->remove_data_in_engine(vec_data[j]);
   }
 
   //----------------------------

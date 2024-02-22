@@ -33,8 +33,6 @@ public:
   //Main function
   void update_data();
   void update_pose();
-  void update_glyph_pose();
-  void update_glyph_data();
   void remove_entity();
   void reset_entity();
   void visibility_entity(bool value);

@@ -48,7 +48,16 @@ void Object::update_data(){
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
 
+  //Update own data
   vk_graphical->insert_data_in_engine(data, pose);
+
+  //Update own glyph data
+  for(int i=0; i<list_glyph.size(); i++){
+    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    if(glyph->is_need_update()){
+      glyph->update_data();
+    }
+  }
 
   //----------------------------
 }
@@ -56,30 +65,14 @@ void Object::update_pose(){
   eng::cam::Control* cam_control = node_camera->get_camera_control();
   //----------------------------
 
+  //Update own pose
   cam_control->compute_camera_mvp(pose);
-  this->update_glyph_pose();
 
-  //----------------------------
-}
-void Object::update_glyph_pose(){
-  //----------------------------
-
+  //Update own glyph pose
   for(int i=0; i<list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_glyph(this);
     glyph->update_pose();
-  }
-
-  //----------------------------
-}
-void Object::update_glyph_data(){
-  //----------------------------
-
-  for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
-    if(glyph->is_need_update()){
-      glyph->update_data();
-    }
   }
 
   //----------------------------
