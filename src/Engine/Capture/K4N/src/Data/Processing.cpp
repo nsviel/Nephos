@@ -90,8 +90,8 @@ void Processing::voxelize_object(k4n::dev::Sensor* sensor){
   utl::type::Data* data = sensor->get_data();
   k4n::dev::Master* master = sensor->master;
 
-  float voxel_size = master->voxel.voxel_size;
-  int min_nb_point = master->voxel.min_nb_point;
+  float voxel_size = master->operation.voxel_size;
+  int min_nb_point = master->operation.voxel_min_point;
   ope_voxelizer->find_voxel_min_number_of_point(data, voxel_size, min_nb_point);
   ope_voxelizer->reconstruct_data_by_goodness(data);
 

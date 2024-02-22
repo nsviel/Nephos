@@ -23,13 +23,8 @@ void Master::show_master_info(k4n::dev::Master* master){
   //---------------------------
 
   this->show_info(master);
-  ImGui::Separator();
-  this->show_colorization(master);
-  ImGui::Separator();
   this->show_transformation(master);
-  ImGui::Separator();
-  this->show_voxelizer(master);
-  ImGui::Separator();
+  this->show_processing(master);
 
   //---------------------------
 }
@@ -63,7 +58,31 @@ void Master::show_info(k4n::dev::Master* master){
   }
 
   //---------------------------
+  ImGui::Separator();
 }
+void Master::show_transformation(k4n::dev::Master* master){
+  //---------------------------
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
+
+  int transformation_mode = 0;
+  ImGui::RadioButton("Depth to color", &master->operation.transformation_mode, k4n::transformation::DEPTH_TO_COLOR);
+  ImGui::SameLine();
+  ImGui::RadioButton("Color to depth", &master->operation.transformation_mode, k4n::transformation::COLOR_TO_DEPTH);
+
+  //---------------------------
+  ImGui::Separator();
+}
+void Master::show_processing(k4n::dev::Master* master){
+  //---------------------------
+
+  this->show_colorization(master);
+  this->show_voxelization(master);
+
+  //---------------------------
+}
+
+//Processing function
 void Master::show_colorization(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
@@ -116,32 +135,25 @@ void Master::show_colorization(k4n::dev::Master* master){
   }
 
   //---------------------------
+  ImGui::Separator();
 }
-void Master::show_transformation(k4n::dev::Master* master){
+void Master::show_voxelization(k4n::dev::Master* master){
+  if(master == nullptr) return;
   //---------------------------
 
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
-
-  int transformation_mode = 0;
-  ImGui::RadioButton("Depth to color", &master->operation.transformation_mode, k4n::transformation::DEPTH_TO_COLOR);
-  ImGui::RadioButton("Color to depth", &master->operation.transformation_mode, k4n::transformation::COLOR_TO_DEPTH);
-
-  //---------------------------
-}
-void Master::show_voxelizer(k4n::dev::Master* master){
-  //---------------------------
-
+  if(!master->operation.voxelization) return;
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Voxel");
 
   //Voxel size
   ImGui::SetNextItemWidth(100);
-  ImGui::SliderFloat("Size", &master->voxel.voxel_size, 0.1, 5, "%.2f");
+  ImGui::SliderFloat("Size", &master->operation.voxel_size, 0.1, 5, "%.2f");
 
   //Voxel minimal number of points
   ImGui::SetNextItemWidth(100);
-  ImGui::SliderInt("Minimum point", &master->voxel.min_nb_point, 1, 1000);
+  ImGui::SliderInt("Minimum point", &master->operation.voxel_min_point, 1, 1000);
 
   //---------------------------
+  ImGui::Separator();
 }
 
 }

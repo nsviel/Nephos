@@ -21,9 +21,12 @@ public:
 
   //Subfunction
   void show_info(k4n::dev::Master* master);
-  void show_colorization(k4n::dev::Master* master);
   void show_transformation(k4n::dev::Master* master);
-  void show_voxelizer(k4n::dev::Master* master);
+  void show_processing(k4n::dev::Master* master);
+
+  //Processing function
+  void show_colorization(k4n::dev::Master* master);
+  void show_voxelization(k4n::dev::Master* master);
 
 private:
   k4n::Node* node_k4n;
