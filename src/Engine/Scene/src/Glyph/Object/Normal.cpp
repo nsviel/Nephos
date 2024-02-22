@@ -13,6 +13,7 @@ Normal::Normal(eng::Node* engine) : Glyph(engine){
   this->size = 2;
   this->is_visible = true;
   this->color = vec4(0.11f, 0.35f, 0.69f, 1.0f);
+  this->need_update = true;
 
   //---------------------------
 }
@@ -27,9 +28,20 @@ void Normal::create(){
   utl::type::Data* data = new utl::type::Data();
   data->line.width = width;
   data->is_visible = is_visible;
+  data->nb_data_max = 1000000;
   data->draw_type = utl::topology::LINE;
   data->unicolor = vec4(1, 0, 0, 1);
   this->vec_data.push_back(data);
+
+  //---------------------------
+}
+void Normal::update_glyph(utl::type::Entity* entity){
+  //---------------------------
+
+  utl::type::Pose* entity_pose = entity->get_pose();
+  pose->model = entity_pose->model;
+
+  this->construct(entity);
 
   //---------------------------
 }

@@ -50,6 +50,13 @@ void Object::update_data(){
 
   vk_graphical->insert_data_in_engine(data, pose);
 
+  for(int i=0; i<list_glyph.size(); i++){
+    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    if(glyph->is_need_update()){
+      glyph->update_data();
+    }
+  }
+
   //----------------------------
 }
 void Object::update_pose(){

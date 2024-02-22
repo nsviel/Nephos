@@ -75,6 +75,7 @@ void Glyph::create_glyph_object(utl::entity::Object* object){
   if(object->list_glyph.size() != 0) return;
   object->list_glyph.push_back(new glyph::object::Axis(node_engine));
   object->list_glyph.push_back(new glyph::object::AABB(node_engine));
+  object->list_glyph.push_back(new glyph::object::Normal(node_engine));
 
   for(int i=0; i<object->list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
