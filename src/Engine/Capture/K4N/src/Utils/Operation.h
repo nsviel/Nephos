@@ -17,6 +17,7 @@ public:
 
 public:
   //Main function
+  void compute_normal_from_depth_image(k4n::dev::Sensor* sensor);
   float find_mkv_ts_beg(string path);
   float find_mkv_ts_end(string path);
 

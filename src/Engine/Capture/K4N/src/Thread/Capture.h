@@ -19,7 +19,7 @@ class Capture
 {
 public:
   //Constructor / Destructor
-  Capture(k4n::Node* node_k4n);
+  Capture();
   ~Capture();
 
 public:

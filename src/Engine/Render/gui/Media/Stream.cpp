@@ -43,7 +43,7 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image, ImVec2& siz
     this->imgui_texture = vk_imgui->create_imgui_texture(vk_texture_UID);
   //update texture data
   }else if(utl_image->new_data){
-    vk_texture->update_texture(vk_texture_UID);
+    vk_texture->update_texture(utl_image, vk_texture_UID);
     utl_image->new_data = false;
   }
 

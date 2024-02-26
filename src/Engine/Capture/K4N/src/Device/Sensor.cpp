@@ -10,17 +10,16 @@
 namespace k4n::dev{
 
 //Constructor / Destructor
-Sensor::Sensor(k4n::Node* node_k4n){
+Sensor::Sensor(k4n::structure::Struct_k4n* struct_k4n){
   //---------------------------
 
-  eng::Node* node_engine = node_k4n->get_node_engine();
-  eng::scene::Node* node_scene = node_k4n->get_node_scene();
+  eng::scene::Node* node_scene = struct_k4n->node_scene;
 
-  this->node_engine = node_engine;
+  this->node_engine = struct_k4n->node_engine;
   this->sce_scene = node_scene->get_scene();
   this->sce_glyph = node_scene->get_scene_glyph();
-  this->k4n_capture = new k4n::thread::Capture(node_k4n);
-  this->k4n_playback = new k4n::thread::Playback(node_k4n);
+  this->k4n_capture = new k4n::thread::Capture();
+  this->k4n_playback = new k4n::thread::Playback();
 
   this->entity_type = "k4n::device::Sensor";
   this->icon = ICON_FA_CAMERA_RETRO;

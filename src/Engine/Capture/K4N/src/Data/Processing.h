@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace k4n::dev{class Sensor;}
+namespace k4n::utils{class Operation;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
@@ -34,6 +35,7 @@ private:
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
   ope::attribut::Normal* ope_normal;
+  k4n::utils::Operation* k4n_operation;
 
   std::thread thread;
 };

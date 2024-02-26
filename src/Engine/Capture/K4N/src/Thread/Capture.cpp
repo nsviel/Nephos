@@ -7,7 +7,7 @@
 namespace k4n::thread{
 
 //Constructor / Destructor
-Capture::Capture(k4n::Node* node_k4n){
+Capture::Capture(){
   //---------------------------
 
   this->k4a_data = new k4n::data::Data();

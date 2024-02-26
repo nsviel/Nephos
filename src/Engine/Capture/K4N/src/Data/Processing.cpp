@@ -16,6 +16,7 @@ Processing::Processing(){
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::attribut::Normal();
+  this->k4n_operation = new k4n::utils::Operation();
 
   //---------------------------
 }
@@ -57,6 +58,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   tasker->task_begin("normal");
   utl::type::Data* data = sensor->get_data();
   ope_normal->compute_normal_with_neighbors(data, sensor->master->operation.normal_knn);
+  //k4n_operation->compute_normal_from_depth_image(sensor);
   tasker->task_end("normal");
 
   //Update object data

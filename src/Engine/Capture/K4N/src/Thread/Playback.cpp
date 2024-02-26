@@ -8,7 +8,7 @@
 namespace k4n::thread{
 
 //Constructor / Destructor
-Playback::Playback(k4n::Node* node_k4n){
+Playback::Playback(){
   //---------------------------
 
   this->k4a_data = new k4n::data::Data();

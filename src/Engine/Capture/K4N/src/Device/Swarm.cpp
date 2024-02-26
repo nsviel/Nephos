@@ -9,14 +9,13 @@
 namespace k4n::dev{
 
 //Constructor / Destructor
-Swarm::Swarm(k4n::Node* node_k4n){
+Swarm::Swarm(k4n::structure::Struct_k4n* struct_k4n){
   //---------------------------
 
-  eng::Node* node_engine = node_k4n->get_node_engine();
-  eng::scene::Node* node_scene = node_k4n->get_node_scene();
-  prf::Node* node_profiler = node_k4n->get_node_profiler();
+  eng::scene::Node* node_scene = struct_k4n->node_scene;
+  prf::Node* node_profiler = struct_k4n->node_profiler;
 
-  this->node_k4n = node_k4n;
+  this->struct_k4n = struct_k4n;
   this->profiler = node_profiler->get_prf_manager();
   this->sce_scene = node_scene->get_scene();
   this->k4n_transfo = new k4n::utils::Transformation();
@@ -62,11 +61,11 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   //---------------------------
 
   //Associated master
-  k4n::dev::Master* master = selected_master;
+  k4n::dev::Master* master = struct_k4n->selected_master;
   int index = master->get_nb_entity();
 
   //Sensor creation
-  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
+  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
   sensor->name = "playback_" + to_string(index);
   sensor->param.format = utl::fct::info::get_format_from_path(file.path_data);
   sensor->param.index = index;
@@ -92,7 +91,7 @@ void Swarm::create_sensor_capture(){
   int index = master->get_nb_entity();
 
   //Sensor creation
-  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
+  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
   sensor->name = "capture_" + to_string(index);
   sensor->param.index = index;
   sensor->param.is_playback = false;
@@ -113,15 +112,15 @@ void Swarm::close_master(k4n::dev::Master* master){
   //---------------------------
 
   master->delete_entity_all();
-  this->list_master.remove(master);
+  struct_k4n->list_master.remove(master);
 
   //---------------------------
 }
 void Swarm::close_all_master(){
   //---------------------------
 
-  for(int i=0; i<list_master.size(); i++){
-    k4n::dev::Master* master = *std::next(list_master.begin(), i);
+  for(int i=0; i<struct_k4n->list_master.size(); i++){
+    k4n::dev::Master* master = *std::next(struct_k4n->list_master.begin(), i);
     master->delete_entity_all();
   }
 
@@ -132,8 +131,8 @@ k4n::dev::Master* Swarm::get_or_create_master(string name){
   //---------------------------
 
   //Check if already existing
-  for(int i=0; i<list_master.size(); i++){
-    k4n::dev::Master* master = *std::next(list_master.begin(), i);
+  for(int i=0; i<struct_k4n->list_master.size(); i++){
+    k4n::dev::Master* master = *std::next(struct_k4n->list_master.begin(), i);
     if(name == master->name){
       return master;
     }
@@ -144,8 +143,8 @@ k4n::dev::Master* Swarm::get_or_create_master(string name){
   master->name = name;
   master->is_lockable = true;
   set_scene->add_set(master);
-  this->list_master.push_back(master);
-  this->selected_master = master;
+  struct_k4n->list_master.push_back(master);
+  struct_k4n->selected_master = master;
 
   //---------------------------
   return master;
@@ -154,8 +153,8 @@ k4n::dev::Master* Swarm::get_master_by_name(string name){
   //---------------------------
 
   //Check if already existing
-  for(int i=0; i<list_master.size(); i++){
-    k4n::dev::Master* master = *std::next(list_master.begin(), i);
+  for(int i=0; i<struct_k4n->list_master.size(); i++){
+    k4n::dev::Master* master = *std::next(struct_k4n->list_master.begin(), i);
     if(name == master->name){
       return master;
     }
@@ -163,6 +162,12 @@ k4n::dev::Master* Swarm::get_master_by_name(string name){
 
   //---------------------------
   return nullptr;
+}
+k4n::dev::Master* Swarm::get_selected_master(){
+  return struct_k4n->selected_master;
+}
+list<k4n::dev::Master*>& Swarm::get_list_master(){
+  return struct_k4n->list_master;
 }
 
 }

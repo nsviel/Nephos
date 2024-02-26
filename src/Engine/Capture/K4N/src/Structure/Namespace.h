@@ -11,3 +11,4 @@
 #include <K4N/src/Structure/Struct_depth.h>
 #include <K4N/src/Structure/Struct_infrared.h>
 #include <K4N/src/Structure/Struct_imu.h>
+#include <K4N/src/Structure/Struct_k4n.h>
