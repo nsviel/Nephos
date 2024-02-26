@@ -66,7 +66,7 @@ void Node::control(){
 
   //---------------------------
 }
-void Node::exit(){
+void Node::clean(){
   //---------------------------
 
   k4n_swarm->close_all_master();

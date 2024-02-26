@@ -9,6 +9,7 @@ namespace vk::main{class Imgui;}
 namespace vk::main{class Info;}
 namespace vk::main{class Texture;}
 namespace vk::structure{class Vulkan;}
+namespace vk::synchro{class Synchro;}
 
 
 namespace vk{
@@ -39,6 +40,7 @@ private:
   vk::main::Imgui* vk_imgui;
   vk::main::Info* vk_info;
   vk::main::Texture* vk_texture;
+  vk::synchro::Synchro* vk_synchro;
 };
 
 }

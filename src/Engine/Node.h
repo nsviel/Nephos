@@ -31,7 +31,7 @@ public:
   void gui();
   void exit();
   void reset();
-  void wait();
+  void clean();
 
   inline utl::Node* get_node_utility(){return node_utility;}
   inline prf::Node* get_node_profiler(){return node_profiler;}

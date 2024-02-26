@@ -28,7 +28,6 @@ public:
   void init();
   void loop();
   void exit();
-  void wait();
 
   inline utl::Node* get_node_utility(){return node_utility;}
   inline eng::Node* get_node_engine(){return node_engine;}

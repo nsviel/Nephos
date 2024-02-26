@@ -10,6 +10,7 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Pipeline;}
 namespace vk::instance{class UID;}
+namespace vk::synchro{class Synchro;}
 
 
 namespace vk::data{
@@ -42,6 +43,7 @@ private:
   vk::command::Command_buffer* vk_command_buffer;
   vk::binding::Descriptor* vk_descriptor;
   vk::instance::UID* vk_uid;
+  vk::synchro::Synchro* vk_synchro;
 };
 
 }

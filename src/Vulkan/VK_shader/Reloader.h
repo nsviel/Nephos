@@ -6,6 +6,7 @@ namespace vk::renderpass{class Pipeline;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
+namespace vk::synchro{class Synchro;}
 
 
 namespace vk::shader{
@@ -25,6 +26,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::renderpass::Pipeline* vk_pipeline;
+  vk::synchro::Synchro* vk_synchro;
 };
 
 }

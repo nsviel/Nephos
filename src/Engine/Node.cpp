@@ -91,10 +91,10 @@ void Node::gui(){
 
   //---------------------------
 }
-void Node::exit(){
+void Node::clean(){
   //---------------------------
 
-  node_capture->exit();
+  node_capture->clean();
   node_vulkan->clean();
 
   //---------------------------

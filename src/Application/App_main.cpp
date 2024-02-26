@@ -63,7 +63,6 @@ void App_main::loop(){
     tasker_gpu->loop_end();
   }
   node_engine->wait();
-  node_gui->wait();
 
   //---------------------------
 }

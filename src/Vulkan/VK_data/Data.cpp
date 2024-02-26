@@ -15,6 +15,7 @@ Data::Data(vk::structure::Vulkan* struct_vulkan){
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
   this->vk_uid = new vk::instance::UID(struct_vulkan);
+  this->vk_synchro = new vk::synchro::Synchro(struct_vulkan);
 
   //---------------------------
 }
@@ -73,11 +74,11 @@ void Data::clean(){
 void Data::clean_vk_object(vk::structure::Object* vk_object){
   //---------------------------
 
-  vkDeviceWaitIdle(struct_vulkan->device.handle);
-
+  vk_synchro->wait_idle();
   vk_buffer->clean_buffers(vk_object);
   vk_texture->clean_texture(vk_object);
   vk_descriptor->clean_binding(&vk_object->binding);
+  vk_synchro->end_idle();
 
   //---------------------------
 }

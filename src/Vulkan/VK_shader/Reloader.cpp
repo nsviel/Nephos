@@ -11,6 +11,7 @@ Reloader::Reloader(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
+  this->vk_synchro = new vk::synchro::Synchro(struct_vulkan);
 
   //---------------------------
 }
@@ -40,9 +41,10 @@ void Reloader::hot_shader_reload(string shader_1, string shader_2){
 void Reloader::recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  vkDeviceWaitIdle(struct_vulkan->device.handle);
+  vk_synchro->wait_idle();
   vk_pipeline->clean_pipeline_struct(pipeline);
   vk_pipeline->create_pipeline_struct(renderpass, pipeline);
+  vk_synchro->end_idle();
 
   //---------------------------
 }

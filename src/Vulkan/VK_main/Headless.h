@@ -44,7 +44,6 @@ public:
   void clean();
 
   //Specific function
-  void device_wait_idle();
   void reload_shader(string shader, string subshader);
 
   //Data function

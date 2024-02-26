@@ -28,7 +28,7 @@ public:
   void loop();
   void gui();
   void control();
-  void exit();
+  void clean();
 
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::Node* get_node_engine(){return node_engine;}
