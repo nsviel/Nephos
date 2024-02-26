@@ -26,10 +26,14 @@ public:
   void draw_graph_all(prf::graph::Profiler* profiler);
   void draw_graph_unique(prf::graph::Profiler* profiler);
   void draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim);
+  void set_graphs_max_time(int value);
+
+  inline bool& get_pause(){return pause;}
 
 private:
   prf::Manager* prf_manager;
   prf::graph::Tasker* selected_tasker;
+  bool pause;
 };
 
 }

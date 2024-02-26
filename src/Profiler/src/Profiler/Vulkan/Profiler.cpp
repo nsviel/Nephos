@@ -9,7 +9,7 @@ namespace prf::vulkan{
 Profiler::Profiler(string name, string type) : prf::type::Profiler(name, type){
   //---------------------------
 
-  this->info_vulkan = new prf::vulkan::Info();
+  this->info = new prf::vulkan::Info();
 
   //---------------------------
 }

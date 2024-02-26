@@ -30,7 +30,6 @@ public:
   void main_info();
   void main_button();
   void draw_profiler();
-  void set_graphs_max_time(int& value);
 
 private:
   prf::Manager* prf_manager;
@@ -41,7 +40,6 @@ private:
   bool* show_window;
   string gpu = "";
   string name;
-  bool pause;
   int max_time = 50;
   int width;
 };

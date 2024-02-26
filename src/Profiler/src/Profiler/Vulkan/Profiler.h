@@ -24,12 +24,12 @@ public:
 
   inline vector<prf::vulkan::Device>& get_info_device(){return vec_device;}
   inline vector<prf::vulkan::Thread>& get_vec_thread(){return vec_thread;}
-  inline prf::vulkan::Info* get_info_vulkan(){return info_vulkan;}
+  inline prf::vulkan::Info* get_info(){return info;}
 
 private:
   vector<prf::vulkan::Device> vec_device;
   vector<prf::vulkan::Thread> vec_thread;
-  prf::vulkan::Info* info_vulkan;
+  prf::vulkan::Info* info;
 };
 
 }

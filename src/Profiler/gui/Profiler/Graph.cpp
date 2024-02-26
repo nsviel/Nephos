@@ -12,6 +12,7 @@ Graph::Graph(prf::Node* node_profiler){
   //---------------------------
 
   this->prf_manager = node_profiler->get_prf_manager();
+  this->pause = false;
 
   //---------------------------
 }
@@ -39,6 +40,7 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   //Find not empty taskers
   vector<prf::graph::Tasker*> vec_tasker = profiler->get_vec_tasker();
   vector<prf::graph::Tasker*> vec_tasker_not_empty;
+
   for(int i=0; i<vec_tasker.size(); i++){
     prf::graph::Tasker* tasker = vec_tasker[i];
 
@@ -101,6 +103,7 @@ void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim){
 
     //Assign tasks
     vector<prf::graph::Task>& vec_task = tasker->get_vec_task();
+
     for(int i=0; i<vec_task.size(); i++){
       prf::graph::Task task = vec_task[i];
 
@@ -117,6 +120,27 @@ void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim){
 
   //Render profiler
   gui_graph->render_child(graph_dim);
+
+  //---------------------------
+}
+void Graph::set_graphs_max_time(int value){
+  std::list<prf::type::Profiler*> list_profiler = prf_manager->get_list_profiler();
+  //---------------------------
+
+  for(int i=0; i<list_profiler.size(); i++){
+    prf::type::Profiler* profiler = *next(list_profiler.begin(), i);
+
+    if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
+      vector<prf::graph::Tasker*> vec_tasker = graph->get_vec_tasker();
+
+      for(int i=0; i<vec_tasker.size(); i++){
+        prf::graph::Tasker* tasker = vec_tasker[i];
+        prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
+
+        gui_graph->set_time_max(value);
+      }
+    }
+  }
 
   //---------------------------
 }

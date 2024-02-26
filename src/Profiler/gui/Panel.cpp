@@ -20,7 +20,6 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
   this->show_window = show_window;
   this->name = "Profiler";
   this->width = 150;
-  this->pause = false;
 
   //---------------------------
 }
@@ -62,6 +61,8 @@ void Panel::main_info(){
     //GPU device
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device"); ImGui::TableNextColumn();
+    prf::vulkan::Profiler* profiler_vulkan = prf_manager->get_profiler_vulkan();
+    string gpu = profiler_vulkan->get_info()->selected_gpu;
     ImGui::TextColored(color, "%s", gpu.c_str());
 
     //Selected tasker
@@ -89,13 +90,14 @@ void Panel::main_info(){
   //---------------------------
 }
 void Panel::main_button(){
+  bool& pause = gui_graph->get_pause();
   //---------------------------
 
   //Play button -> if paused
   if(pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##profiler_play")){
-      this->pause = false;
+      pause = false;
     }
     ImGui::PopStyleColor();
   }
@@ -103,7 +105,7 @@ void Panel::main_button(){
   else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##profiler_pause")){
-      this->pause = true;
+      pause = true;
     }
     ImGui::PopStyleColor();
   }
@@ -112,7 +114,7 @@ void Panel::main_button(){
   ImGui::SameLine();
   ImGui::SetNextItemWidth(150);
   if(ImGui::SliderInt("Y axis", &max_time, 10, 100, "%d ms")){
-    this->set_graphs_max_time(max_time);
+    gui_graph->set_graphs_max_time(max_time);
   }
 
   //---------------------------
@@ -140,29 +142,6 @@ void Panel::draw_profiler(){
     }
 
     ImGui::EndTabBar();
-  }
-
-  //---------------------------
-}
-void Panel::set_graphs_max_time(int& value){
-  std::list<prf::type::Profiler*> list_profiler = prf_manager->get_list_profiler();
-  //---------------------------
-
-  if(ImGui::BeginTabBar("profiler_gui##4567")){
-    for(int i=0; i<list_profiler.size(); i++){
-      prf::type::Profiler* profiler = *next(list_profiler.begin(), i);
-
-      if(prf::graph::Profiler* profiler = dynamic_cast<prf::graph::Profiler*>(profiler)){
-        vector<prf::graph::Tasker*> vec_tasker = profiler->get_vec_tasker();
-
-        for(int i=0; i<vec_tasker.size(); i++){
-          prf::graph::Tasker* tasker = vec_tasker[i];
-          prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
-
-          gui_graph->set_time_max(max_time);
-        }
-      }
-    }
   }
 
   //---------------------------

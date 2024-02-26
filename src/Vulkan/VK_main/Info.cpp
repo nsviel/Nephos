@@ -27,7 +27,7 @@ void Info::fill_info(){
   //---------------------------
 }
 void Info::fill_vulkan_info(prf::vulkan::Profiler* prf_vulkan){
-  prf::vulkan::Info* info_vulkan = prf_vulkan->get_info_vulkan();
+  prf::vulkan::Info* info_vulkan = prf_vulkan->get_info();
   //---------------------------
 
   info_vulkan->selected_gpu = struct_vulkan->device.physical_device.name;
