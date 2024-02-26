@@ -6,6 +6,7 @@
 
 namespace prf::vulkan{class Device;}
 namespace prf::vulkan{class Info;}
+namespace prf::vulkan{class Thread;}
 namespace prf{class Tasker;}
 
 
@@ -25,6 +26,7 @@ public:
 
 private:
   vector<prf::vulkan::Device> vec_device;
+  vector<prf::vulkan::Thread> vec_thread;
   prf::vulkan::Info* info_vulkan;
 };
 
