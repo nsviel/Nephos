@@ -13,7 +13,7 @@ Manager::Manager(){
   profiler_main->new_tasker("cpu");
   profiler_main->new_tasker("gpu");
   this->add_profiler(profiler_main);
-  this->profiler_vulkan = new prf::vulkan::Profiler("vulkan", "thread::main");
+  this->profiler_vulkan = new prf::vulkan::Profiler("Vulkan", "thread::main");
   this->add_profiler(profiler_vulkan);
 
   //---------------------------

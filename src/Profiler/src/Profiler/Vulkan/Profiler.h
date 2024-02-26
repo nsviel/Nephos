@@ -7,7 +7,7 @@
 namespace prf::vulkan{class Device;}
 namespace prf::vulkan{class Info;}
 namespace prf::vulkan{class Thread;}
-namespace prf::graph{class Profiler;}
+namespace prf::type{class Profiler;}
 
 
 namespace prf::vulkan{

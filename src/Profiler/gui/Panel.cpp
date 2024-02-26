@@ -1,5 +1,6 @@
 #include "Panel.h"
 
+#include <Profiler/Namespace.h>
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
@@ -55,7 +56,7 @@ void Panel::main_info(){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
-  if(ImGui::BeginTable("render##device", 2)){
+  if(ImGui::BeginTable("profiler_panel##info", 2)){
     ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
 
     //GPU device
@@ -120,7 +121,7 @@ void Panel::draw_profiler(){
   std::list<prf::type::Profiler*> list_profiler = prf_manager->get_list_profiler();
   //---------------------------
 
-  if(ImGui::BeginTabBar("profiler_gui##4567")){
+  if(ImGui::BeginTabBar("profiler_panel##graph")){
     for(int i=0; i<list_profiler.size(); i++){
       prf::type::Profiler* profiler = *next(list_profiler.begin(), i);
 
@@ -128,11 +129,11 @@ void Panel::draw_profiler(){
       if(ImGui::BeginTabItem(profiler->get_name().c_str())){
         //Vulkan tab
         if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler)){
-          gui_vulkan->draw_graph(vulkan);
+          gui_vulkan->draw_profiler(vulkan);
         }
         //Graph tab
         else if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
-          gui_graph->draw_graph(graph);
+          gui_graph->draw_profiler(graph);
         }
         ImGui::EndTabItem();
       }

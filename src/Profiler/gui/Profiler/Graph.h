@@ -20,11 +20,11 @@ public:
 
 public:
   //Main function
-  void draw_graph(prf::graph::Profiler* profiler);
+  void draw_profiler(prf::graph::Profiler* profiler);
+
+  //Subfunction
   void draw_graph_all(prf::graph::Profiler* profiler);
   void draw_graph_unique(prf::graph::Profiler* profiler);
-
-  //Profiler
   void draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim);
 
 private:

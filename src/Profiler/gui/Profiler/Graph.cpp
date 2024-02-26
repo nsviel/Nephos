@@ -18,7 +18,7 @@ Graph::Graph(prf::Node* node_profiler){
 Graph::~Graph(){}
 
 //Main function
-void Graph::draw_graph(prf::graph::Profiler* profiler){
+void Graph::draw_profiler(prf::graph::Profiler* profiler){
   //---------------------------
 
   if(ImGui::BeginTabBar("tasker_gui##4567")){
@@ -30,6 +30,8 @@ void Graph::draw_graph(prf::graph::Profiler* profiler){
 
   //---------------------------
 }
+
+//Subfunction
 void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
@@ -89,8 +91,6 @@ void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
 
   //---------------------------
 }
-
-//Profiler graphs
 void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim){
   prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
   //---------------------------

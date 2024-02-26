@@ -18,34 +18,22 @@ Vulkan::Vulkan(prf::Node* node_profiler){
 Vulkan::~Vulkan(){}
 
 //Main function
-void Vulkan::draw_graph(prf::vulkan::Profiler* prf_vulkan){
+void Vulkan::draw_profiler(prf::vulkan::Profiler* prf_vulkan){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
 
-  ImGui::SetNextItemWidth(100);
-  if (ImGui::BeginTabItem("Vulkan##4567", NULL)){
-    this->draw_profiler(prf_vulkan, graph_dim);
-    ImGui::EndTabItem();
-  }
-
-  //---------------------------
-}
-
-//Profiler graphs
-void Vulkan::draw_profiler(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
-  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
-  //---------------------------
-
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
-  if(ImGui::BeginTabBar("vulkan_profiler_tab##4567")){
+  if(ImGui::BeginTabBar("Vulkan##profiler_vulkan")){
     //Thread tab
-    if(ImGui::BeginTabItem("Thread##eee", NULL)){
+    ImGui::SetNextItemWidth(100);
+    if(ImGui::BeginTabItem("Thread##profiler_vulkan", NULL)){
       this->draw_thread(prf_vulkan, graph_dim);
       ImGui::EndTabItem();
     }
 
     //Device tab
-    if(ImGui::BeginTabItem("Device##eee", NULL)){
+    ImGui::SetNextItemWidth(100);
+    if(ImGui::BeginTabItem("Device##profiler_vulkan", NULL)){
       this->draw_device(prf_vulkan, graph_dim);
       ImGui::EndTabItem();
     }
@@ -54,13 +42,15 @@ void Vulkan::draw_profiler(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
 
   //---------------------------
 }
+
+//Subfunction
 void Vulkan::draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
   vector<prf::vulkan::Thread>& vec_thread = prf_vulkan->get_vec_thread();
   //---------------------------
 
   ImVec4 green = ImVec4(0.5, 1, 0.5, 1);
   ImVec4 blue = ImVec4(0.5, 0.5, 1, 1);
-  if(ImGui::BeginTable("thread##4567", 2)){
+  if(ImGui::BeginTable("vulkan_thread##table", 2)){
 
     for(int i=0; i<vec_thread.size(); i++){
       prf::vulkan::Thread& thread = vec_thread[i];
@@ -88,13 +78,13 @@ void Vulkan::draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
-  if(ImGui::BeginTabBar("vulkan_profiler_tab##4567")){
+  if(ImGui::BeginTabBar("vulkan_device##tab_bar")){
     for(int i=0; i< vec_device.size(); i++){
       prf::vulkan::Device& device = vec_device[i];
 
       if(ImGui::BeginTabItem(device.name.c_str(), NULL)){
 
-        if(ImGui::BeginTable("vulkan_device##profiler", 2)){
+        if(ImGui::BeginTable("vulkan_device##table", 2)){
           ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthStretch, 75.0f);
 
           //GPU name

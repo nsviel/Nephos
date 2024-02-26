@@ -17,10 +17,9 @@ public:
 
 public:
   //Main function
-  void draw_graph(prf::vulkan::Profiler* prf_vulkan);
+  void draw_profiler(prf::vulkan::Profiler* prf_vulkan);
 
-  //Profiler
-  void draw_profiler(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
+  //Subfunction
   void draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
   void draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
 
