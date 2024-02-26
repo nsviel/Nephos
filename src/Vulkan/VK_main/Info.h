@@ -20,8 +20,8 @@ public:
 public:
   //Profiler vulkan info
   void fill_info();
-  void fill_vulkan_info(prf::vulkan::Manager* prf_vulkan);
-  void fill_vulkan_device(prf::vulkan::Manager* prf_vulkan);
+  void fill_vulkan_info(prf::vulkan::Manager* tasker_vulkan);
+  void fill_vulkan_device(prf::vulkan::Manager* tasker_vulkan);
 
   //Subfunction
   string get_gpu_name();

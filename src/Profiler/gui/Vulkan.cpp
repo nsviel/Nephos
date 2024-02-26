@@ -18,13 +18,13 @@ Vulkan::Vulkan(prf::Node* node_profiler){
 Vulkan::~Vulkan(){}
 
 //Main function
-void Vulkan::draw_graph(prf::vulkan::Manager* prf_vulkan){
+void Vulkan::draw_graph(prf::vulkan::Manager* tasker_vulkan){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
 
   ImGui::SetNextItemWidth(100);
   if (ImGui::BeginTabItem("Vulkan##4567", NULL)){
-    this->draw_profiler(prf_vulkan, graph_dim);
+    this->draw_profiler(tasker_vulkan, graph_dim);
     ImGui::EndTabItem();
   }
 
@@ -32,8 +32,8 @@ void Vulkan::draw_graph(prf::vulkan::Manager* prf_vulkan){
 }
 
 //Profiler graphs
-void Vulkan::draw_profiler(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim){
-  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
+void Vulkan::draw_profiler(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim){
+  vector<prf::vulkan::Device>& vec_device = tasker_vulkan->get_info_device();
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
@@ -42,12 +42,12 @@ void Vulkan::draw_profiler(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim){
       prf::vulkan::Device& device = vec_device[i];
 
       if(ImGui::BeginTabItem("Thread##eee", NULL)){
-        this->draw_thread(prf_vulkan, graph_dim);
+        this->draw_thread(tasker_vulkan, graph_dim);
         ImGui::EndTabItem();
       }
 
       if(ImGui::BeginTabItem("Device##eee", NULL)){
-        this->draw_device(prf_vulkan, graph_dim);
+        this->draw_device(tasker_vulkan, graph_dim);
         ImGui::EndTabItem();
       }
 
@@ -57,16 +57,37 @@ void Vulkan::draw_profiler(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim){
 
   //---------------------------
 }
-void Vulkan::draw_thread(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim){
-  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
+void Vulkan::draw_thread(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim){
+  vector<prf::vulkan::Thread>& vec_thread = tasker_vulkan->get_vec_thread();
   //---------------------------
 
+  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  if(ImGui::BeginTable("thread##4567", 2)){
+    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthStretch, 75.0f);
 
+    for(int i=0; i<vec_thread.size(); i++){
+      prf::vulkan::Thread& thread = vec_thread[i];
+
+      //Thread name
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Name"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%s", thread.name.c_str());
+
+      //Thread ID
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Vendor ID"); ImGui::TableNextColumn();
+      std::stringstream ss;
+      ss << thread.ID;
+      ImGui::TextColored(color, "%s", ss.str().c_str());
+
+    }
+    ImGui::EndTable();
+  }
 
   //---------------------------
 }
-void Vulkan::draw_device(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim){
-  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
+void Vulkan::draw_device(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim){
+  vector<prf::vulkan::Device>& vec_device = tasker_vulkan->get_info_device();
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);

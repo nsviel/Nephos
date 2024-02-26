@@ -17,12 +17,12 @@ public:
 
 public:
   //Main function
-  void draw_graph(prf::vulkan::Manager* prf_vulkan);
+  void draw_graph(prf::vulkan::Manager* tasker_vulkan);
 
   //Profiler
-  void draw_profiler(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim);
-  void draw_thread(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim);
-  void draw_device(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim);
+  void draw_profiler(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim);
+  void draw_thread(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim);
+  void draw_device(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim);
 
 private:
 };

@@ -23,6 +23,7 @@ public:
   //Main function
   inline vector<prf::vulkan::Device>& get_info_device(){return vec_device;}
   inline prf::vulkan::Info* get_info_vulkan(){return info_vulkan;}
+  inline vector<prf::vulkan::Thread>& get_vec_thread(){return vec_thread;}
 
 private:
   vector<prf::vulkan::Device> vec_device;
