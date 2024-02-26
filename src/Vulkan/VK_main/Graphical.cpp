@@ -132,8 +132,8 @@ void Graphical::remove_data_in_engine(utl::type::Data* data){
   for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
     vk::structure::Object* vk_object = *next(struct_vulkan->data.list_vk_object.begin(),i);
     if(data->UID == vk_object->data->UID){
-      vk_data->clean_vk_object(vk_object);
       struct_vulkan->data.list_vk_object.remove(vk_object);
+      vk_data->clean_vk_object(vk_object);
     }
   }
 

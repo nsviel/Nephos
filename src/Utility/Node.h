@@ -21,7 +21,7 @@ public:
   void init();
   void loop();
   void gui();
-  void exit();
+  void clean();
 
   inline utl::element::Window* get_utl_window(){return utl_window;}
   inline prf::Node* get_node_profiler(){return node_profiler;}

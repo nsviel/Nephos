@@ -56,7 +56,7 @@ void Node::loop(){
 
   //---------------------------
 }
-void Node::exit(){
+void Node::clean(){
   //---------------------------
 
   gui_render->clean();

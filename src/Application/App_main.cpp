@@ -62,16 +62,15 @@ void App_main::loop(){
     tasker_cpu->loop_end();
     tasker_gpu->loop_end();
   }
-  node_engine->wait();
 
   //---------------------------
 }
 void App_main::end(){
   //---------------------------
 
-  node_gui->exit();
-  node_engine->exit();
-  node_utility->exit();
+  node_gui->clean();
+  node_engine->clean();
+  node_utility->clean();
 
   //---------------------------
 }

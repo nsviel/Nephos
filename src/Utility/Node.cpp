@@ -40,7 +40,7 @@ void Node::loop(){
 
   //---------------------------
 }
-void Node::exit(){
+void Node::clean(){
   //---------------------------
 
   utl_window->destroy_window();

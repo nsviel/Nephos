@@ -40,14 +40,9 @@ void Node::loop(){
 void Node::clean(){
   //---------------------------
 
-  vk_graphical->clean();
-
-  //---------------------------
-}
-void Node::wait(){
-  //---------------------------
-
   vk_synchro->wait_idle();
+  vk_graphical->clean();
+  vk_synchro->end_idle();
 
   //---------------------------
 }

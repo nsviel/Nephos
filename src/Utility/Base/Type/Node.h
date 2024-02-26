@@ -18,7 +18,7 @@ public:
   virtual void loop(){}
   virtual void gui(){}
   virtual void reset(){}
-  virtual void exit(){}
+  virtual void clean(){}
   virtual void wait(){}
 
   utl::gui::Panel* add_panel(string name, string icon, bool value){

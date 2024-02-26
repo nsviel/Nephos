@@ -26,7 +26,6 @@ public:
   void init();
   void clean();
   void loop();
-  void wait();
 
   inline vk::structure::Vulkan* get_struct_vulkan(){return struct_vulkan;}
   inline vk::main::Graphical* get_vk_graphical(){return vk_graphical;}
