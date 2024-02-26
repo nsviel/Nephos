@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Profiler/src/Profiler/Profiler.h>
+#include <Profiler/Namespace.h>
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
 
@@ -19,7 +19,7 @@ namespace k4n::structure{class Depth;}
 namespace k4n::structure{class Infrared;}
 namespace k4n::structure{class IMU;}
 namespace k4n::structure{class Image;}
-namespace prf{class Profiler;}
+namespace prf::graph{class Profiler;}
 
 
 namespace k4n::dev{
@@ -53,7 +53,7 @@ public:
   inline utl::type::Pose* get_pose(){return object.pose;}
 
 public:
-  prf::Profiler* profiler;
+  prf::graph::Profiler* profiler;
   k4n::dev::Master* master;
 
   utl::entity::Object object;

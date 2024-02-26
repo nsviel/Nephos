@@ -4,7 +4,7 @@
 #include <Utility/Specific/common.h>
 
 namespace prf::improfil{class Graph;}
-namespace prf::type{class Task;}
+namespace prf::graph{class Task;}
 
 
 namespace prf::improfil{
@@ -22,7 +22,7 @@ public:
   void load_data_to_graph();
   void add_task(float time_beg, float time_end, string name);
   void add_task(float time_beg, float time_end, string name, vec4 color);
-  void add_vec_task(vector<prf::type::Task> vec_task);
+  void add_vec_task(vector<prf::graph::Task> vec_task);
 
   //Subfunction
   vec4 get_next_color();
@@ -31,7 +31,7 @@ public:
 
 private:
   prf::improfil::Graph* graph;
-  vector<prf::type::Task> vec_task;
+  vector<prf::graph::Task> vec_task;
   vector<vec4> vec_color;
   string name;
   int idx_color;

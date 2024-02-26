@@ -48,8 +48,8 @@ void Menu::menu_option(){
 
     prf::Node* node_profiler = node_utility->get_node_profiler();
     prf::Manager* prf_manager = node_profiler->get_prf_manager();
-    prf::Profiler* profiler = prf_manager->get_profiler_main();
-    prf::Tasker* tasker_cpu = profiler->get_tasker("cpu");
+    prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
+    prf::graph::Tasker* tasker_cpu = profiler->get_tasker("cpu");
     ImGui::Text("%.2f", tasker_cpu->get_loop_fps());
     ImGui::EndMenu();
   }

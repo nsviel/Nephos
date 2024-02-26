@@ -9,34 +9,26 @@ namespace prf{
 Manager::Manager(){
   //---------------------------
 
-  this->profiler_main = new_profiler("Main", "thread::main");
+  this->profiler_main = new prf::graph::Profiler("Main", "thread::main");
   profiler_main->new_tasker("cpu");
   profiler_main->new_tasker("gpu");
+  this->add_profiler(profiler_main);
   this->profiler_vulkan = new prf::vulkan::Profiler("vulkan", "thread::main");
-  this->new_profiler(profiler_vulkan);
+  this->add_profiler(profiler_vulkan);
 
   //---------------------------
 }
 Manager::~Manager(){}
 
 //Main function
-prf::Profiler* Manager::new_profiler(string name, string type){
-  //---------------------------
-
-  prf::Profiler* profiler = new prf::Profiler(name, type);
-  this->list_profiler.push_back(profiler);
-
-  //---------------------------
-  return profiler;
-}
-void Manager::new_profiler(prf::Profiler* profiler){
+void Manager::add_profiler(prf::type::Profiler* profiler){
   //---------------------------
 
   this->list_profiler.push_back(profiler);
 
   //---------------------------
 }
-void Manager::remove_profiler(prf::Profiler* profiler){
+void Manager::remove_profiler(prf::type::Profiler* profiler){
   //---------------------------
 
   this->list_profiler.remove(profiler);

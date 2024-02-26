@@ -32,7 +32,7 @@ void Image::make_images(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  prf::Tasker* tasker = sensor->profiler->get_tasker("image");
+  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("image");
   tasker->loop_begin();
 
   //Color image

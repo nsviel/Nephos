@@ -36,7 +36,7 @@ void Processing::start_thread(k4n::dev::Sensor* sensor){
 void Processing::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  prf::Tasker* tasker = sensor->profiler->get_tasker("processing");
+  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("processing");
   tasker->loop_begin();
 
   //Colorizer

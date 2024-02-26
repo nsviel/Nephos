@@ -6,7 +6,7 @@ class App_main;
 namespace vk{class Node;}
 namespace utl{class Node;}
 namespace prf{class Node;}
-namespace prf{class Tasker;}
+namespace prf::graph{class Tasker;}
 namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::render{class Node;}
@@ -49,7 +49,7 @@ private:
 
   //Child
   vk::Node* node_vulkan;
-  prf::Tasker* tasker_main;
+  prf::graph::Tasker* tasker_main;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;

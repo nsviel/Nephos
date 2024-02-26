@@ -45,9 +45,9 @@ void App_main::init(){
 }
 void App_main::loop(){
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  prf::Profiler* profiler = prf_manager->get_profiler_main();
-  prf::Tasker* tasker_cpu = profiler->get_tasker("cpu");
-  prf::Tasker* tasker_gpu = profiler->get_tasker("gpu");
+  prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
+  prf::graph::Tasker* tasker_cpu = profiler->get_tasker("cpu");
+  prf::graph::Tasker* tasker_gpu = profiler->get_tasker("gpu");
   //---------------------------
 
   auto start_time = std::chrono::steady_clock::now();

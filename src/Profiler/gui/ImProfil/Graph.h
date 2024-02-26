@@ -5,7 +5,7 @@
 
 namespace prf::improfil{class Bar;}
 namespace prf::improfil{class Stat;}
-namespace prf::type{class Task;}
+namespace prf::graph{class Task;}
 
 
 namespace prf::improfil{
@@ -19,7 +19,7 @@ public:
 
 public:
   //Main function
-  void load_graph_data(const std::vector<prf::type::Task>& vec_task);
+  void load_graph_data(const std::vector<prf::graph::Task>& vec_task);
   void rebuild_task_stats(size_t endFrame);
 
   //Rendering
@@ -29,9 +29,9 @@ public:
 
   //Subfunction
   void render_background_tics(ImDrawList *draw_list);
-  void render_serie_task_rect(ImDrawList *draw_list, prf::type::Task& task, glm::vec2 bar_pose);
+  void render_serie_task_rect(ImDrawList *draw_list, prf::graph::Task& task, glm::vec2 bar_pose);
   void render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
-  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::type::Task task);
+  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::graph::Task task);
 
   inline float* get_max_time(){return &max_time_s;}
 

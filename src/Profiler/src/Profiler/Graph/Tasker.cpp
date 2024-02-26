@@ -3,7 +3,7 @@
 #include <Profiler/Namespace.h>
 
 
-namespace prf{
+namespace prf::graph{
 
 //Constructor / Destructor
 Tasker::Tasker(string name){
@@ -84,7 +84,7 @@ void Tasker::task_begin(string name){
   //Check if tasj already exists
   if(vec_task_current.size() != 0){
     for(int i=0; i<vec_task_current.size(); i++){
-      prf::type::Task& task = vec_task_current[i];
+      prf::graph::Task& task = vec_task_current[i];
 
       if(task.name == name){
         cout<<"[error] task already exists -> "<<name<<endl;
@@ -96,7 +96,7 @@ void Tasker::task_begin(string name){
   //Insert task in vector
   prf::timer::Timepoint task_beg = timer.get_time();
   double A = timer.duration_s(reference, task_beg);
-  prf::type::Task task = {A, 0, name};
+  prf::graph::Task task = {A, 0, name};
   this->vec_task_current.push_back(task);
 
   //---------------------------
@@ -107,7 +107,7 @@ void Tasker::task_begin(string name, float time){
   //Check if tasj already exists
   if(vec_task_current.size() != 0){
     for(int i=0; i<vec_task_current.size(); i++){
-      prf::type::Task& task = vec_task_current[i];
+      prf::graph::Task& task = vec_task_current[i];
 
       if(task.name == name){
         cout<<"[error] task already exists -> "<<name<<endl;
@@ -117,7 +117,7 @@ void Tasker::task_begin(string name, float time){
   }
 
   //Insert task in vector
-  prf::type::Task task = {time, 0, name};
+  prf::graph::Task task = {time, 0, name};
   this->vec_task_current.push_back(task);
 
   //---------------------------
@@ -126,7 +126,7 @@ void Tasker::task_end(string name){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){
-    prf::type::Task& task = vec_task_current[i];
+    prf::graph::Task& task = vec_task_current[i];
 
     if(task.name == name){
       prf::timer::Timepoint task_end = timer.get_time();
@@ -141,7 +141,7 @@ void Tasker::task_end(string name, float time){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){
-    prf::type::Task& task = vec_task_current[i];
+    prf::graph::Task& task = vec_task_current[i];
 
     if(task.name == name){
       prf::timer::Timepoint task_end = timer.get_time();
@@ -156,7 +156,7 @@ void Tasker::task_end(string name, vec4 color){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){
-    prf::type::Task& task = vec_task_current[i];
+    prf::graph::Task& task = vec_task_current[i];
 
     if(task.name == name){
       prf::timer::Timepoint task_end = timer.get_time();

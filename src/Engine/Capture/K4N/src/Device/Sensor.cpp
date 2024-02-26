@@ -48,12 +48,13 @@ void Sensor::init(){
   //Sensor profiler
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  this->profiler = prf_manager->new_profiler(param.name, "k4n::sensor");
+  this->profiler = new prf::graph::Profiler(param.name, "k4n::sensor");
   this->profiler->new_tasker("capture");
   this->profiler->new_tasker("data");
   this->profiler->new_tasker("cloud");
   this->profiler->new_tasker("image");
   this->profiler->new_tasker("processing");
+  prf_manager->add_profiler(profiler);
 
   //Sensor cloud
   object = utl::entity::Object(node_engine);

@@ -50,7 +50,7 @@ void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
   if(sensor->color.cloud.size != sensor->depth.cloud.size * 2) return;
   //---------------------------
 
-  prf::Tasker* tasker = sensor->profiler->get_tasker("cloud");
+  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("cloud");
   tasker->loop_begin();
 
   this->loop_init(sensor);
@@ -72,7 +72,7 @@ void Cloud::loop_init(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::Tasker* tasker){
+void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   //---------------------------
 
   //Color
@@ -112,7 +112,7 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::Tasker* tasker){
 
   //---------------------------
 }
-void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::Tasker* tasker){
+void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   utl::type::Data* data = sensor->get_data();
   k4n::dev::Master* master = sensor->master;
   //---------------------------

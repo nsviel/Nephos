@@ -13,7 +13,7 @@ struct Profiler{
   Profiler(utl::Node* node_utility){
     prf::Node* node_profiler = node_utility->get_node_profiler();
     prf::Manager* prf_manager = node_profiler->get_prf_manager();
-    prf::Profiler* profiler = prf_manager->get_profiler_main();
+    prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
 
     this->tasker_main = profiler->get_tasker("cpu");
     this->tasker_gpu = profiler->get_tasker("gpu");
@@ -27,8 +27,8 @@ struct Profiler{
     vec_thread.push_back(thread_prf);
   }
 
-  prf::Tasker* tasker_main;
-  prf::Tasker* tasker_gpu;
+  prf::graph::Tasker* tasker_main;
+  prf::graph::Tasker* tasker_gpu;
   prf::vulkan::Profiler* prf_vulkan;
 
   //---------------------------

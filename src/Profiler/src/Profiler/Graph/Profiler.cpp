@@ -3,14 +3,11 @@
 #include <Profiler/Namespace.h>
 
 
-namespace prf{
+namespace prf::graph{
 
 //Constructor / Destructor
-Profiler::Profiler(string name, string type){
+Profiler::Profiler(string name, string type) : prf::type::Profiler(name, type){
   //---------------------------
-
-  this->name = name;
-  this->type = type;
 
   //---------------------------
 }
@@ -25,7 +22,7 @@ void Profiler::clear(){
   //---------------------------
 
   for(int i=0; i<vec_tasker.size(); i++){
-    prf::Tasker* tasker = vec_tasker[i];
+    prf::graph::Tasker* tasker = vec_tasker[i];
     tasker->clear();
   }
 
@@ -33,27 +30,27 @@ void Profiler::clear(){
 }
 
 //Tasker function
-prf::Tasker* Profiler::new_tasker(string name){
+prf::graph::Tasker* Profiler::new_tasker(string name){
   //---------------------------
 
-  prf::Tasker* tasker = new prf::Tasker(name);
+  prf::graph::Tasker* tasker = new prf::graph::Tasker(name);
   this->vec_tasker.push_back(tasker);
 
   //---------------------------
   return tasker;
 }
-void Profiler::new_tasker(prf::Tasker* tasker){
+void Profiler::new_tasker(prf::graph::Tasker* tasker){
   //---------------------------
 
   this->vec_tasker.push_back(tasker);
 
   //---------------------------
 }
-prf::Tasker* Profiler::get_tasker(string name){
+prf::graph::Tasker* Profiler::get_tasker(string name){
   //---------------------------
 
   for(int i=0; i<vec_tasker.size(); i++){
-    prf::Tasker* tasker = vec_tasker[i];
+    prf::graph::Tasker* tasker = vec_tasker[i];
     if(tasker->get_name() == name){
       return tasker;
     }
@@ -64,24 +61,8 @@ prf::Tasker* Profiler::get_tasker(string name){
   //---------------------------
   return nullptr;
 }
-prf::vulkan::Profiler* Profiler::get_prf_vulkan(){
-  //---------------------------
 
-  for(int i=0; i<vec_tasker.size(); i++){
-    prf::Tasker* tasker = vec_tasker[i];
-
-    if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(tasker)){
-      return vulkan;
-    }
-  }
-
-  cout<<"[error] tasker vulkan doesn't exists"<<endl;
-
-  //---------------------------
-  return nullptr;
-}
-
-void Profiler::remove_tasker(prf::Tasker* tasker){
+void Profiler::remove_tasker(prf::graph::Tasker* tasker){
   //---------------------------
 
 

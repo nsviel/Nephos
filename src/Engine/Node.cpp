@@ -31,7 +31,7 @@ Node::Node(App_main* node_app){
   this->node_gui = new eng::gui::Node(this);
 
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  prf::Profiler* profiler = prf_manager->get_profiler_main();
+  prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
   this->tasker_main =  profiler->get_tasker("cpu");
 
   this->add_node_panel(node_camera);

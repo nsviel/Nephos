@@ -116,16 +116,23 @@ void Panel::main_button(){
   //---------------------------
 }
 void Panel::draw_profiler(){
-  std::list<prf::Profiler*> list_profiler = prf_manager->get_list_profiler();
+  std::list<prf::type::Profiler*> list_profiler = prf_manager->get_list_profiler();
   //---------------------------
 
   if(ImGui::BeginTabBar("profiler_gui##4567")){
     for(int i=0; i<list_profiler.size(); i++){
-      prf::Profiler* profiler = *next(list_profiler.begin(), i);
+      prf::type::Profiler* profiler = *next(list_profiler.begin(), i);
 
       ImGui::SetNextItemWidth(100);
       if(ImGui::BeginTabItem(profiler->get_name().c_str())){
-        this->draw_graph(profiler);
+        //Vulkan tab
+        if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler)){
+          gui_vulkan->draw_graph(vulkan);
+        }
+        //Graph tab
+        else if(prf::graph::Profiler* profiler = dynamic_cast<prf::graph::Profiler*>(profiler)){
+          this->draw_graph(profiler);
+        }
         ImGui::EndTabItem();
       }
     }
@@ -138,7 +145,7 @@ void Panel::draw_profiler(){
 
 
 //Graph subfunction
-void Panel::draw_graph(prf::Profiler* profiler){
+void Panel::draw_graph(prf::graph::Profiler* profiler){
   //---------------------------
 
   if(ImGui::BeginTabBar("tasker_gui##4567")){
@@ -150,15 +157,15 @@ void Panel::draw_graph(prf::Profiler* profiler){
 
   //---------------------------
 }
-void Panel::draw_graph_all(prf::Profiler* profiler){
+void Panel::draw_graph_all(prf::graph::Profiler* profiler){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
 
   //Find not empty taskers
-  vector<prf::Tasker*> vec_tasker = profiler->get_vec_tasker();
-  vector<prf::Tasker*> vec_tasker_not_empty;
+  vector<prf::graph::Tasker*> vec_tasker = profiler->get_vec_tasker();
+  vector<prf::graph::Tasker*> vec_tasker_not_empty;
   for(int i=0; i<vec_tasker.size(); i++){
-    prf::Tasker* tasker = vec_tasker[i];
+    prf::graph::Tasker* tasker = vec_tasker[i];
 
     if(!tasker->is_empty()){
       vec_tasker_not_empty.push_back(tasker);
@@ -177,7 +184,7 @@ void Panel::draw_graph_all(prf::Profiler* profiler){
   //All not empty tasker graphs
   ImGui::SetNextItemWidth(100);
   if(ImGui::BeginTabItem("All##4568", NULL, flag)){
-    prf::Profiler* profiler = prf_manager->get_profiler_main();
+    prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
     this->selected_tasker = profiler->get_tasker("cpu");
     graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker_not_empty.size() - 3);
 
@@ -189,13 +196,13 @@ void Panel::draw_graph_all(prf::Profiler* profiler){
 
   //---------------------------
 }
-void Panel::draw_graph_unique(prf::Profiler* profiler){
+void Panel::draw_graph_unique(prf::graph::Profiler* profiler){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
 
-  vector<prf::Tasker*> vec_tasker = profiler->get_vec_tasker();
+  vector<prf::graph::Tasker*> vec_tasker = profiler->get_vec_tasker();
   for(int i=0; i<vec_tasker.size(); i++){
-    prf::Tasker* tasker = vec_tasker[i];
+    prf::graph::Tasker* tasker = vec_tasker[i];
 
     //Improfil graphs
     ImGui::SetNextItemWidth(100);
@@ -205,18 +212,13 @@ void Panel::draw_graph_unique(prf::Profiler* profiler){
       this->draw_tasker_graph(tasker, graph_dim);
       ImGui::EndTabItem();
     }
-
-    //Vulkan info
-    if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(tasker)){
-      gui_vulkan->draw_graph(vulkan);
-    }
   }
 
   //---------------------------
 }
 
 //Profiler graphs
-void Panel::draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim){
+void Panel::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim){
   prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
   //---------------------------
 
@@ -225,9 +227,9 @@ void Panel::draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim){
     gui_graph->reset();
 
     //Assign tasks
-    vector<prf::type::Task>& vec_task = tasker->get_vec_task();
+    vector<prf::graph::Task>& vec_task = tasker->get_vec_task();
     for(int i=0; i<vec_task.size(); i++){
-      prf::type::Task task = vec_task[i];
+      prf::graph::Task task = vec_task[i];
 
       if(task.color == vec4(0, 0, 0, 0)){
         gui_graph->add_task(task.time_beg, task.time_end, task.name);
@@ -246,19 +248,22 @@ void Panel::draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim){
   //---------------------------
 }
 void Panel::set_graphs_max_time(int& value){
-  std::list<prf::Profiler*> list_profiler = prf_manager->get_list_profiler();
+  std::list<prf::type::Profiler*> list_profiler = prf_manager->get_list_profiler();
   //---------------------------
 
   if(ImGui::BeginTabBar("profiler_gui##4567")){
     for(int i=0; i<list_profiler.size(); i++){
-      prf::Profiler* profiler = *next(list_profiler.begin(), i);
-      vector<prf::Tasker*> vec_tasker = profiler->get_vec_tasker();
+      prf::type::Profiler* profiler = *next(list_profiler.begin(), i);
 
-      for(int i=0; i<vec_tasker.size(); i++){
-        prf::Tasker* tasker = vec_tasker[i];
-        prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
+      if(prf::graph::Profiler* profiler = dynamic_cast<prf::graph::Profiler*>(profiler)){
+        vector<prf::graph::Tasker*> vec_tasker = profiler->get_vec_tasker();
 
-        gui_graph->set_time_max(max_time);
+        for(int i=0; i<vec_tasker.size(); i++){
+          prf::graph::Tasker* tasker = vec_tasker[i];
+          prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
+
+          gui_graph->set_time_max(max_time);
+        }
       }
     }
   }

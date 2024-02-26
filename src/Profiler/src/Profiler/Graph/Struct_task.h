@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 
-namespace prf::type{
+namespace prf::graph{
 
 struct Task{
   //---------------------------

@@ -38,7 +38,7 @@ void Playback::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Playback::run_thread(k4n::dev::Sensor* sensor){
-  prf::Tasker* tasker = sensor->profiler->get_tasker("capture");
+  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
   k4n::dev::Master* master = sensor->master;
   //---------------------------
 

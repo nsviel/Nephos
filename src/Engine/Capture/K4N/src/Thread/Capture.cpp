@@ -45,7 +45,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
 
   //Init elements
   sensor->param.index =0;
-  prf::Tasker* tasker = sensor->profiler->get_tasker("capture");
+  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
   k4a::device device = k4a::device::open(sensor->param.index);
   k4a::capture capture;
 
