@@ -27,6 +27,13 @@ void Node::init(){
   vk_graphical->init();
   vk_info->fill_info();
 
+  //Save thread information
+  prf::vulkan::Thread thread_prf;
+  thread_prf.ID = std::this_thread::get_id();
+  thread_prf.name = "Main";
+  vector<prf::vulkan::Thread>& vec_thread = struct_vulkan->tasker_vulkan->get_vec_thread();
+  vec_thread.push_back(thread_prf);
+
   //---------------------------
 }
 void Node::loop(){
