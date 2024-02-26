@@ -41,6 +41,39 @@ void Vulkan::draw_profiler(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim){
     for(int i=0; i< vec_device.size(); i++){
       prf::vulkan::Device& device = vec_device[i];
 
+      if(ImGui::BeginTabItem("Thread##eee", NULL)){
+        this->draw_thread(prf_vulkan, graph_dim);
+        ImGui::EndTabItem();
+      }
+
+      if(ImGui::BeginTabItem("Device##eee", NULL)){
+        this->draw_device(prf_vulkan, graph_dim);
+        ImGui::EndTabItem();
+      }
+
+    }
+    ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
+void Vulkan::draw_thread(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim){
+  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
+  //---------------------------
+
+
+
+  //---------------------------
+}
+void Vulkan::draw_device(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim){
+  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
+  //---------------------------
+
+  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  if(ImGui::BeginTabBar("vulkan_profiler_tab##4567")){
+    for(int i=0; i< vec_device.size(); i++){
+      prf::vulkan::Device& device = vec_device[i];
+
       if(ImGui::BeginTabItem(device.name.c_str(), NULL)){
 
         if(ImGui::BeginTable("vulkan_device##profiler", 2)){

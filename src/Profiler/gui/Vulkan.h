@@ -21,6 +21,8 @@ public:
 
   //Profiler
   void draw_profiler(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim);
+  void draw_thread(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim);
+  void draw_device(prf::vulkan::Manager* prf_vulkan, ImVec2 graph_dim);
 
 private:
 };
