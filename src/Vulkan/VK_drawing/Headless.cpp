@@ -30,7 +30,7 @@ void Headless::draw_frame(){
   for(int i=0; i<nb_renderpass; i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
     string name = "eng::rp::" + renderpass->name;
-    struct_vulkan->tasker_main->task_begin(name);
+    struct_vulkan->profiler->tasker_main->task_begin(name);
 
     //Create command
     vk::structure::Command* command = new vk::structure::Command();
@@ -46,7 +46,7 @@ void Headless::draw_frame(){
     command->vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
 
     struct_vulkan->queue.graphics->submit_command(command);
-    struct_vulkan->tasker_main->task_end(name);
+    struct_vulkan->profiler->tasker_main->task_end(name);
   }
 
   //---------------------------

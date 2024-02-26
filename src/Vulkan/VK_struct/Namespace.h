@@ -22,6 +22,7 @@
 #include <Vulkan/VK_struct/Struct_fence.h>
 #include <Vulkan/VK_struct/Struct_pool.h>
 #include <Vulkan/VK_struct/Struct_subpass.h>
+#include <Vulkan/VK_struct/Struct_profiler.h>
 #include <Vulkan/VK_struct/Struct_renderpass.h>
 #include <Vulkan/VK_struct/Struct_render.h>
 #include <Vulkan/VK_struct/Struct_frame.h>

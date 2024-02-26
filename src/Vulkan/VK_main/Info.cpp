@@ -18,7 +18,7 @@ Info::~Info(){}
 
 //Profiler vulkan info
 void Info::fill_info(){
-  prf::vulkan::Manager* tasker_vulkan = struct_vulkan->tasker_vulkan;
+  prf::vulkan::Manager* tasker_vulkan = struct_vulkan->profiler->tasker_vulkan;
   //---------------------------
 
   this->fill_vulkan_info(tasker_vulkan);
