@@ -64,13 +64,13 @@ prf::Tasker* Profiler::get_tasker(string name){
   //---------------------------
   return nullptr;
 }
-prf::vulkan::Manager* Profiler::get_tasker_vulkan(){
+prf::vulkan::Profiler* Profiler::get_prf_vulkan(){
   //---------------------------
 
   for(int i=0; i<vec_tasker.size(); i++){
     prf::Tasker* tasker = vec_tasker[i];
 
-    if(prf::vulkan::Manager* vulkan = dynamic_cast<prf::vulkan::Manager*>(tasker)){
+    if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(tasker)){
       return vulkan;
     }
   }

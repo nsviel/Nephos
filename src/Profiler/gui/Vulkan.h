@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace prf{class Node;}
-namespace prf::vulkan{class Manager;}
+namespace prf::vulkan{class Profiler;}
 
 
 namespace prf::gui{
@@ -17,12 +17,12 @@ public:
 
 public:
   //Main function
-  void draw_graph(prf::vulkan::Manager* tasker_vulkan);
+  void draw_graph(prf::vulkan::Profiler* prf_vulkan);
 
   //Profiler
-  void draw_profiler(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim);
-  void draw_thread(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim);
-  void draw_device(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim);
+  void draw_profiler(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
+  void draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
+  void draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
 
 private:
 };

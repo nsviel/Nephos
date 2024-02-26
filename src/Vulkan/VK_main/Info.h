@@ -5,7 +5,7 @@
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Task;}
 namespace prf{class Tasker;}
-namespace prf::vulkan{class Manager;}
+namespace prf::vulkan{class Profiler;}
 
 
 namespace vk::main{
@@ -20,8 +20,8 @@ public:
 public:
   //Profiler vulkan info
   void fill_info();
-  void fill_vulkan_info(prf::vulkan::Manager* tasker_vulkan);
-  void fill_vulkan_device(prf::vulkan::Manager* tasker_vulkan);
+  void fill_vulkan_info(prf::vulkan::Profiler* prf_vulkan);
+  void fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan);
 
   //Subfunction
   string get_gpu_name();

@@ -7,7 +7,7 @@ namespace prf{class Manager;}
 namespace prf{class Tasker;}
 namespace prf{class Profiler;}
 namespace prf::improfil{class Manager;}
-namespace prf::vulkan{class Manager;}
+namespace prf::vulkan{class Profiler;}
 namespace prf::gui{class Vulkan;}
 
 

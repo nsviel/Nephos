@@ -18,13 +18,13 @@ Vulkan::Vulkan(prf::Node* node_profiler){
 Vulkan::~Vulkan(){}
 
 //Main function
-void Vulkan::draw_graph(prf::vulkan::Manager* tasker_vulkan){
+void Vulkan::draw_graph(prf::vulkan::Profiler* prf_vulkan){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
 
   ImGui::SetNextItemWidth(100);
   if (ImGui::BeginTabItem("Vulkan##4567", NULL)){
-    this->draw_profiler(tasker_vulkan, graph_dim);
+    this->draw_profiler(prf_vulkan, graph_dim);
     ImGui::EndTabItem();
   }
 
@@ -32,21 +32,21 @@ void Vulkan::draw_graph(prf::vulkan::Manager* tasker_vulkan){
 }
 
 //Profiler graphs
-void Vulkan::draw_profiler(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim){
-  vector<prf::vulkan::Device>& vec_device = tasker_vulkan->get_info_device();
+void Vulkan::draw_profiler(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
+  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
   if(ImGui::BeginTabBar("vulkan_profiler_tab##4567")){
     //Thread tab
     if(ImGui::BeginTabItem("Thread##eee", NULL)){
-      this->draw_thread(tasker_vulkan, graph_dim);
+      this->draw_thread(prf_vulkan, graph_dim);
       ImGui::EndTabItem();
     }
 
     //Device tab
     if(ImGui::BeginTabItem("Device##eee", NULL)){
-      this->draw_device(tasker_vulkan, graph_dim);
+      this->draw_device(prf_vulkan, graph_dim);
       ImGui::EndTabItem();
     }
     ImGui::EndTabBar();
@@ -54,8 +54,8 @@ void Vulkan::draw_profiler(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim
 
   //---------------------------
 }
-void Vulkan::draw_thread(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim){
-  vector<prf::vulkan::Thread>& vec_thread = tasker_vulkan->get_vec_thread();
+void Vulkan::draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
+  vector<prf::vulkan::Thread>& vec_thread = prf_vulkan->get_vec_thread();
   //---------------------------
 
   ImVec4 green = ImVec4(0.5, 1, 0.5, 1);
@@ -83,8 +83,8 @@ void Vulkan::draw_thread(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim){
 
   //---------------------------
 }
-void Vulkan::draw_device(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim){
-  vector<prf::vulkan::Device>& vec_device = tasker_vulkan->get_info_device();
+void Vulkan::draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
+  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);

@@ -18,24 +18,24 @@ Info::~Info(){}
 
 //Profiler vulkan info
 void Info::fill_info(){
-  prf::vulkan::Manager* tasker_vulkan = struct_vulkan->profiler->tasker_vulkan;
+  prf::vulkan::Profiler* prf_vulkan = struct_vulkan->profiler->prf_vulkan;
   //---------------------------
 
-  this->fill_vulkan_info(tasker_vulkan);
-  this->fill_vulkan_device(tasker_vulkan);
+  this->fill_vulkan_info(prf_vulkan);
+  this->fill_vulkan_device(prf_vulkan);
 
   //---------------------------
 }
-void Info::fill_vulkan_info(prf::vulkan::Manager* tasker_vulkan){
-  prf::vulkan::Info* info_vulkan = tasker_vulkan->get_info_vulkan();
+void Info::fill_vulkan_info(prf::vulkan::Profiler* prf_vulkan){
+  prf::vulkan::Info* info_vulkan = prf_vulkan->get_info_vulkan();
   //---------------------------
 
   info_vulkan->selected_gpu = struct_vulkan->device.physical_device.name;
 
   //---------------------------
 }
-void Info::fill_vulkan_device(prf::vulkan::Manager* tasker_vulkan){
-  vector<prf::vulkan::Device>& vec_device = tasker_vulkan->get_info_device();
+void Info::fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan){
+  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
   //---------------------------
 
   for(int i=0; i<struct_vulkan->instance.vec_physical_device.size(); i++){

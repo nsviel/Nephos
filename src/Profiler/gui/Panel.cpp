@@ -207,7 +207,7 @@ void Panel::draw_graph_unique(prf::Profiler* profiler){
     }
 
     //Vulkan info
-    if(prf::vulkan::Manager* vulkan = dynamic_cast<prf::vulkan::Manager*>(tasker)){
+    if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(tasker)){
       gui_vulkan->draw_graph(vulkan);
     }
   }

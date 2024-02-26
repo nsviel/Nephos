@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace prf{class Tasker;}
-namespace prf::vulkan{class Manager;}
+namespace prf::vulkan{class Profiler;}
 
 
 namespace prf{
@@ -22,7 +22,7 @@ public:
   //Tasker function
   prf::Tasker* new_tasker(string name);
   prf::Tasker* get_tasker(string name);
-  prf::vulkan::Manager* get_tasker_vulkan();
+  prf::vulkan::Profiler* get_prf_vulkan();
   void new_tasker(prf::Tasker* tasker);
   void remove_tasker(prf::Tasker* tasker);
 

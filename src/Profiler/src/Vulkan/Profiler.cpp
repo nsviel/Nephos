@@ -1,4 +1,4 @@
-#include "Manager.h"
+#include "Profiler.h"
 
 #include <Profiler/Namespace.h>
 
@@ -6,14 +6,14 @@
 namespace prf::vulkan{
 
 //Constructor / Destructor
-Manager::Manager(string name) : Tasker(name){
+Profiler::Profiler(string name, string type) : prf::Profiler(name, type){
   //---------------------------
 
   this->info_vulkan = new prf::vulkan::Info();
 
   //---------------------------
 }
-Manager::~Manager(){}
+Profiler::~Profiler(){}
 
 //Main function
 
