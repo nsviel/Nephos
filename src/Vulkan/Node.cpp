@@ -26,7 +26,7 @@ void Node::init(){
 
   vk_graphical->init();
   vk_info->fill_info();
-  
+
   //---------------------------
 }
 void Node::loop(){

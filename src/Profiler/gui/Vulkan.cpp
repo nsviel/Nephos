@@ -38,19 +38,16 @@ void Vulkan::draw_profiler(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
   if(ImGui::BeginTabBar("vulkan_profiler_tab##4567")){
-    for(int i=0; i< vec_device.size(); i++){
-      prf::vulkan::Device& device = vec_device[i];
+    //Thread tab
+    if(ImGui::BeginTabItem("Thread##eee", NULL)){
+      this->draw_thread(tasker_vulkan, graph_dim);
+      ImGui::EndTabItem();
+    }
 
-      if(ImGui::BeginTabItem("Thread##eee", NULL)){
-        this->draw_thread(tasker_vulkan, graph_dim);
-        ImGui::EndTabItem();
-      }
-
-      if(ImGui::BeginTabItem("Device##eee", NULL)){
-        this->draw_device(tasker_vulkan, graph_dim);
-        ImGui::EndTabItem();
-      }
-
+    //Device tab
+    if(ImGui::BeginTabItem("Device##eee", NULL)){
+      this->draw_device(tasker_vulkan, graph_dim);
+      ImGui::EndTabItem();
     }
     ImGui::EndTabBar();
   }
@@ -61,9 +58,9 @@ void Vulkan::draw_thread(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim){
   vector<prf::vulkan::Thread>& vec_thread = tasker_vulkan->get_vec_thread();
   //---------------------------
 
-  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  ImVec4 green = ImVec4(0.5, 1, 0.5, 1);
+  ImVec4 blue = ImVec4(0.5, 0.5, 1, 1);
   if(ImGui::BeginTable("thread##4567", 2)){
-    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthStretch, 75.0f);
 
     for(int i=0; i<vec_thread.size(); i++){
       prf::vulkan::Thread& thread = vec_thread[i];
@@ -71,14 +68,14 @@ void Vulkan::draw_thread(prf::vulkan::Manager* tasker_vulkan, ImVec2 graph_dim){
       //Thread name
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Name"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%s", thread.name.c_str());
+      ImGui::TextColored(green, "%s", thread.name.c_str());
 
       //Thread ID
       ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Vendor ID"); ImGui::TableNextColumn();
+      ImGui::Text("ID"); ImGui::TableNextColumn();
       std::stringstream ss;
       ss << thread.ID;
-      ImGui::TextColored(color, "%s", ss.str().c_str());
+      ImGui::TextColored(blue, "%s", ss.str().c_str());
 
     }
     ImGui::EndTable();

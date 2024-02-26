@@ -19,6 +19,7 @@ struct ID{
 struct Class{
   //---------------------------
 
+  bool standby = false;
   vk::queue::Transfer* transfer;
   vk::queue::Graphics* graphics;
   vk::queue::Presentation* presentation;

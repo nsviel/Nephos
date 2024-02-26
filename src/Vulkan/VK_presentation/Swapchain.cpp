@@ -15,6 +15,7 @@ Swapchain::Swapchain(vk::structure::Vulkan* struct_vulkan){
   this->vk_frame = new Frame(struct_vulkan);
   this->vk_framebuffer = new vk::renderpass::Framebuffer(struct_vulkan);
   this->vk_surface = new Surface(struct_vulkan);
+  this->vk_synchro = new vk::synchro::Synchro(struct_vulkan);
 
   //---------------------------
 }
@@ -44,9 +45,8 @@ void Swapchain::recreate_swapchain(){
     glfwWaitEvents();
   }
 
-  vkDeviceWaitIdle(struct_vulkan->device.handle);
-
   //Clean old swapchain
+  vk_synchro->wait_idle();
   vk_framebuffer->clean_framebuffers();
   this->clean();
 
@@ -54,6 +54,7 @@ void Swapchain::recreate_swapchain(){
   this->create_swapchain();
   vk_frame->create_frame();
   vk_framebuffer->create_framebuffers();
+  vk_synchro->end_idle();
 
   //---------------------------
 }

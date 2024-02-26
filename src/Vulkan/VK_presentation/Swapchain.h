@@ -8,6 +8,7 @@ namespace vk::presentation{class Frame;}
 namespace vk::renderpass{class Framebuffer;}
 namespace vk::presentation{class Surface;}
 namespace vk::structure{class Vulkan;}
+namespace vk::synchro{class Synchro;}
 
 
 namespace vk::presentation{
@@ -39,6 +40,7 @@ private:
   vk::presentation::Frame* vk_frame;
   vk::renderpass::Framebuffer* vk_framebuffer;
   vk::presentation::Surface* vk_surface;
+  vk::synchro::Synchro* vk_synchro;
 };
 
 }

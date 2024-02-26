@@ -62,9 +62,24 @@ void Transfer::add_command(vk::structure::Command_buffer* command){
 
 //Subfunction
 void Transfer::wait_for_command(){
+  //For internal thread to wait for to submit commands
   //---------------------------
 
-  while(vec_command_prepa.empty()){
+  this->queue_idle = true;
+
+  while(vec_command_prepa.empty() || struct_vulkan->queue.standby){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  this->queue_idle = false;
+
+  //---------------------------
+}
+void Transfer::wait_for_idle(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(queue_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 

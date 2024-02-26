@@ -47,6 +47,8 @@ void Buffer::update_buffer(vk::structure::Object* vk_object){
   utl::type::Vertice* vertice = data->get_vertice();
   //---------------------------
 
+  //Peut etre canvas qui essaye de s'uploader en meme temps que other data ?
+
   if(vertice->xyz.size() != 0){
     VkDeviceSize data_size = sizeof(glm::vec3) * vertice->xyz.size();
     vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vertice->xyz.data(), data_size);

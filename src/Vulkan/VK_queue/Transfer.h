@@ -26,9 +26,12 @@ public:
 
   //Subfunction
   void wait_for_command();
+  void wait_for_idle();
   void prepare_submission();
   void queue_submission();
   void post_submission();
+
+  inline bool is_queue_idle(){return queue_idle;}
 
 private:
   vk::structure::Vulkan* struct_vulkan;
@@ -40,6 +43,8 @@ private:
   std::vector<VkCommandBuffer> vec_command_buffer;
   std::thread thread;
   bool thread_running = false;
+  bool queue_idle = true;
+  bool queue_standby = false;
 };
 
 }
