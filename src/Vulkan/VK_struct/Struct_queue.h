@@ -4,9 +4,9 @@
 #include <Utility/Specific/common.h>
 
 
-namespace vk::structure{
+namespace vk::structure::queue{
 
-struct Queue_object{
+struct ID{
   //---------------------------
 
   VkQueue graphics;
@@ -16,7 +16,7 @@ struct Queue_object{
   //---------------------------
 };
 
-struct Queue_class{
+struct Class{
   //---------------------------
 
   vk::queue::Transfer* transfer;

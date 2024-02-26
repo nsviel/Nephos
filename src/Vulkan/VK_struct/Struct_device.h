@@ -10,7 +10,7 @@ struct Device{
   //---------------------------
 
   VkDevice handle;
-  vk::structure::Queue_object queue;
+  vk::structure::queue::ID queue;
   vk::structure::Physical_device physical_device;
 
   //---------------------------

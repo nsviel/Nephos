@@ -8,6 +8,7 @@ namespace prf{class Tasker;}
 namespace prf{class Profiler;}
 namespace prf::improfil{class Manager;}
 namespace prf::vulkan{class Manager;}
+namespace prf::gui{class Vulkan;}
 
 
 namespace prf::gui{
@@ -33,16 +34,15 @@ public:
   void draw_graph(prf::Profiler* profiler);
   void draw_graph_all(prf::Profiler* profiler);
   void draw_graph_unique(prf::Profiler* profiler);
-  void draw_graph_vulkan(prf::vulkan::Manager* vulkan);
 
   //Profiler
   void draw_tasker_graph(prf::Tasker* tasker, ImVec2 graph_dim);
-  void draw_profiler_vulkan(prf::vulkan::Manager* vulkan, ImVec2 graph_dim);
   void set_graphs_max_time(int& value);
 
 private:
   prf::Manager* prf_manager;
   prf::Tasker* selected_tasker;
+  prf::gui::Vulkan* gui_vulkan;
 
   bool* show_window;
   string gpu = "";

@@ -42,7 +42,7 @@ struct Vulkan{
   vk::structure::Parameter param;
   vk::structure::Pool pools;
   vk::structure::Command command;
-  vk::structure::Queue_class queue;
+  vk::structure::queue::Class queue;
 
   //Profiling
   prf::Tasker* tasker_main;

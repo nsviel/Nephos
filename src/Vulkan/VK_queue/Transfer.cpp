@@ -13,7 +13,7 @@ Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
   this->vk_query = new vk::instance::Query(struct_vulkan);
-  
+
   //---------------------------
   this->start_thread();
 }
@@ -89,6 +89,13 @@ void Transfer::queue_submission(){
     throw std::runtime_error("[error] command buffer queue submission");
   }
 
+/*
+  say("---");
+sayHello();
+
+std::thread::id threadId = std::this_thread::get_id();
+std::cout << "Thread ID: " << threadId << std::endl;
+*/
   vkWaitForFences(struct_vulkan->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
   vk_fence->reset_fence(fence);
 

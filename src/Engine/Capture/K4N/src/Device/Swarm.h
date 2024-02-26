@@ -29,6 +29,7 @@ public:
   void create_sensor_capture();
 
   //Master function
+  void manage_resynchronization();
   void close_all_master();
   void close_master(k4n::dev::Master* master);
   k4n::dev::Master* get_or_create_master(string name);
