@@ -15,7 +15,7 @@ class Graph
 {
 public:
   //Constructor / Destructor
-  Graph(prf::Node* node_profiler, bool* show_window);
+  Graph(prf::Node* node_profiler);
   ~Graph();
 
 public:

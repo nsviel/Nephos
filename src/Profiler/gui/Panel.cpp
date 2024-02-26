@@ -131,8 +131,8 @@ void Panel::draw_profiler(){
           gui_vulkan->draw_graph(vulkan);
         }
         //Graph tab
-        else if(prf::graph::Profiler* profiler = dynamic_cast<prf::graph::Profiler*>(profiler)){
-          gui_graph->draw_graph(profiler);
+        else if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
+          gui_graph->draw_graph(graph);
         }
         ImGui::EndTabItem();
       }

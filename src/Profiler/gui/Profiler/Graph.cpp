@@ -1,13 +1,14 @@
 #include "Graph.h"
 
 #include <Engine/Namespace.h>
+#include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 
 
 namespace prf::gui{
 
 //Constructor / Destructor
-Graph::Graph(prf::Node* node_profiler, bool* show_window){
+Graph::Graph(prf::Node* node_profiler){
   //---------------------------
 
   this->prf_manager = node_profiler->get_prf_manager();
