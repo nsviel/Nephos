@@ -47,6 +47,11 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
     ImGui::Text("File"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", sensor->param.path_file.c_str());
 
+    //File size
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Size"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.2f Mo", sensor->param.file_size);
+
     //Transformation matrix file path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Matrix"); ImGui::TableNextColumn();

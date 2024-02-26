@@ -24,6 +24,7 @@ struct Param{
   int index = -1;
   bool data_ready = false;
   bool is_playback;
+  float file_size = 0;
   FPS fps;
 
   std::string name = "";

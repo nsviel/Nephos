@@ -69,6 +69,7 @@ void Normal::construct(utl::type::Entity* entity){
   rgb_g.reserve(data_glyph->line.rgb.size());
 
   //Data entity
+  utl::type::Pose* pose_entity = entity->get_pose();
   utl::type::Data* data_entity = entity->get_data();
   vector<vec3>& xyz_e = data_entity->point.xyz;
   vector<vec3>& Nxyz_e = data_entity->point.Nxyz;
@@ -85,12 +86,14 @@ void Normal::construct(utl::type::Entity* entity){
     if(nxyz == vec3(0, 0, 0)) continue;
 
     vec3 xyz_n = vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
+    vec4 nxyz_h = vec4(nxyz.x,  nxyz.y,  nxyz.z, 1) * pose_entity->rotat;
+    vec4 rgb_n = vec4(abs(nxyz_h.x),  abs(nxyz_h.y), abs(nxyz_h.z), 1);
 
     xyz_g.push_back(xyz);
     xyz_g.push_back(xyz_n);
 
-    rgb_g.push_back(data_glyph->unicolor);
-    rgb_g.push_back(data_glyph->unicolor);
+    rgb_g.push_back(rgb_n);
+    rgb_g.push_back(rgb_n);
   }
 
   data_glyph->line.xyz = xyz_g;

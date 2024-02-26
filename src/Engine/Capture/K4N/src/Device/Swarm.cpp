@@ -68,6 +68,7 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
   sensor->name = "playback_" + to_string(index);
   sensor->param.format = utl::fct::info::get_format_from_path(file.path_data);
+  sensor->param.file_size = utl::fct::info::get_file_size(file.path_data);
   sensor->param.index = index;
   sensor->param.is_playback = true;
   sensor->param.path_file = file.path_data;
