@@ -40,6 +40,7 @@ void Capture::start_thread(k4n::dev::Sensor* device){
 //Subfunction
 void Capture::run_thread(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
+  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   //Init elements
@@ -63,7 +64,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   //Start capture thread
   this->thread_running = true;
   while(thread_running && sensor){
-    tasker->loop_begin(sensor->param.fps.query);
+    tasker->loop_begin(master->operation.fps);
 
     auto timeout = std::chrono::milliseconds(2000);
     device.get_capture(&capture, timeout);

@@ -36,7 +36,7 @@ void Master::show_info(k4n::dev::Master* master){
 
     ImGui::Separator();
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  if(ImGui::BeginTable("Kinect_info##general", 2)){
+  if(ImGui::BeginTable("master##info", 2)){
     //Type
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Type"); ImGui::TableNextColumn();
@@ -46,6 +46,12 @@ void Master::show_info(k4n::dev::Master* master){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%.2f s", master->player.duration);
+
+    //FPS
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("FPS"); ImGui::TableNextColumn();
+    ImGui::SetNextItemWidth(125);
+    ImGui::SliderInt("##56765", &master->operation.fps, 1, 120);
 
     //Recording time
     if(master->player.record){

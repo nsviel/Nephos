@@ -99,8 +99,8 @@ void Master::player_update(){
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       if(sensor->param.is_playback){
         k4n::utils::Operation k4n_operation;
-        float ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.path_data);
-        float ts_end = k4n_operation.find_mkv_ts_end(sensor->param.path_data);
+        float ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.path_file);
+        float ts_end = k4n_operation.find_mkv_ts_end(sensor->param.path_file);
 
         this->player.ts_beg = (player.ts_beg != -1) ? std::max(player.ts_beg, ts_beg) : ts_beg;
         this->player.ts_end = (player.ts_end != -1) ? std::min(player.ts_end, ts_end) : ts_end;
@@ -119,7 +119,7 @@ void Master::player_update(){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      sensor->run_playback(sensor->param.path_data);
+      sensor->run_playback(sensor->param.path_file);
     }
   }
 

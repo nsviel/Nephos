@@ -70,7 +70,7 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   sensor->param.format = utl::fct::info::get_format_from_path(file.path_data);
   sensor->param.index = index;
   sensor->param.is_playback = true;
-  sensor->param.path_data = file.path_data;
+  sensor->param.path_file = file.path_data;
   sensor->param.path_transfo = file.path_transfo;
   sensor->master = master;
 

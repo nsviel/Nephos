@@ -31,25 +31,7 @@ void Playback::show_sensor_configuration(k4n::dev::Sensor* sensor){
     ImGui::Separator();
     ImGui::TreePop();
   }
-/*
-  //Playback FPS
-  if(sensor->param.is_playback){
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("FPS"); ImGui::TableNextColumn();
-    ImGui::SliderInt("##56765", &sensor->param.fps.query, 1, 120);
-  }
 
-  //Name
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Name"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->param.name.c_str());
-
-  //Path
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Path"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->param.file_path.c_str());
-
-*/
   //---------------------------
 }
 

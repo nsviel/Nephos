@@ -39,10 +39,11 @@ void Playback::start_thread(k4n::dev::Sensor* sensor){
 }
 void Playback::run_thread(k4n::dev::Sensor* sensor){
   prf::Tasker* tasker = sensor->profiler->get_tasker("capture");
+  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   //Init playback
-  k4a::playback playback = k4a::playback::open(sensor->param.path_data.c_str());
+  k4a::playback playback = k4a::playback::open(sensor->param.path_file.c_str());
   if(!playback) return;
   this->thread_running = true;
   sensor->param.playback = &playback;
@@ -55,7 +56,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   //Playback thread
   k4a::capture capture;
   while(thread_running){
-    tasker->loop_begin(sensor->param.fps.query);
+    tasker->loop_begin(master->operation.fps);
 
     //Next capture
     tasker->task_begin("capture");

@@ -22,6 +22,7 @@ struct Operation{
   int transformation_mode = k4n::transformation::COLOR_TO_DEPTH;
 
   //Colorization
+  int fps = 30;
   int color_mode = ope::color::CAMERA;
   int heatmap_mode = ope::color::heatmap::INTENSITY;
   int intensity_division = 1000;
