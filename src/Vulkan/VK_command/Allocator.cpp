@@ -71,6 +71,7 @@ void Allocator::clean(){
 
   for(int i=0; i<pool->tank.size(); i++){
     vk::pool::Command_buffer* command_pool = &pool->tank[i];
+
     vk_command_buffer->clean_pool(command_pool);
     vk_pool->clean_command_pool(command_pool);
   }

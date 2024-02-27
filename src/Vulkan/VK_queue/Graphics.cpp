@@ -21,10 +21,24 @@ Graphics::~Graphics(){}
 void Graphics::submit_command(vk::structure::Command* command){
   //---------------------------
 
+  this->queue_idle = false;
+
   this->reset_for_submission();
   this->prepare_submission(command);
   this->queue_submission();
   this->post_submission(command);
+
+
+
+  //---------------------------
+}
+void Graphics::wait_for_idle(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(queue_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
 
   //---------------------------
 }
@@ -93,8 +107,12 @@ void Graphics::post_submission(vk::structure::Command* command){
     if(command_buffer->is_resetable){
       command_buffer->is_available = true;
       command_buffer->is_recorded = false;
+      command_buffer->query.is_in_use = false;
+
     }
   }
+
+  this->queue_idle = true;
 
   //---------------------------
 }

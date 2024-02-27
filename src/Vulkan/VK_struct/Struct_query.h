@@ -8,8 +8,9 @@ namespace vk::structure{
 struct Query{
   //---------------------------
 
-  VkQueryPool pool;
+  VkQueryPool pool = VK_NULL_HANDLE;
   int nb_query = 100;
+  bool is_in_use = false;
 
   //---------------------------
 };

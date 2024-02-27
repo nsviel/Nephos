@@ -30,6 +30,7 @@ void Logical::clean(){
   //---------------------------
 
   vkDestroyDevice(struct_vulkan->device.handle, nullptr);
+  struct_vulkan->device.handle = VK_NULL_HANDLE;
 
   //---------------------------
 }

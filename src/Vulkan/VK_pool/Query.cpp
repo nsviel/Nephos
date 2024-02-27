@@ -17,10 +17,10 @@ Query::~Query(){}
 
 //Main function
 vk::structure::Query Query::create_query_pool(){
-  vk::structure::Query query_pool;
   //---------------------------
 
-  query_pool.nb_query = 2;
+  vk::structure::Query query_pool;
+  query_pool.nb_query = 10;
 
   // Allocate space in the query pool for timestamp queries
   VkQueryPoolCreateInfo info = {};
@@ -35,7 +35,7 @@ vk::structure::Query Query::create_query_pool(){
 void Query::clean_query_pool(vk::structure::Query* query_pool){
   //---------------------------
 
-  vkResetQueryPool(struct_vulkan->device.handle, query_pool->pool, 0, query_pool->nb_query);
+  vkDestroyQueryPool(struct_vulkan->device.handle, query_pool->pool, nullptr);
 
   //---------------------------
 }
@@ -45,6 +45,7 @@ void Query::begin_query_pass(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
   // Begin the query pass
+  command_buffer->query.is_in_use = true;
   vkCmdResetQueryPool(command_buffer->command, command_buffer->query.pool, 0, command_buffer->query.nb_query);
 
   // Insert vkCmdWriteTimestamp commands where needed

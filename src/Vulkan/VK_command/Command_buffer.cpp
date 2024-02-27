@@ -58,8 +58,8 @@ void Command_buffer::clean_pool(vk::pool::Command_buffer* pool){
   for(int i=0; i<pool->size; i++){
     vk::structure::Command_buffer* command_buffer = &pool->tank[i];
 
-    vkFreeCommandBuffers(struct_vulkan->device.handle, pool->allocator, 1, &command_buffer->command);
     vk_query->clean_query_pool(&command_buffer->query);
+    vkFreeCommandBuffers(struct_vulkan->device.handle, pool->allocator, 1, &command_buffer->command);
   }
 
   //---------------------------
