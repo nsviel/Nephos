@@ -16,7 +16,6 @@ Stream::Stream(eng::Node* engine){
   vk::Node* vulkan = engine->get_node_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
   this->vk_imgui = vulkan->get_vk_imgui();
-  this->imgui_texture = 0;
 
   //---------------------------
 }
@@ -27,33 +26,33 @@ void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
   if(utl_image->size == 0) return;
   //---------------------------
 
-  this->convert_data_into_texture(utl_image, size);
-  this->render_image(size);
+  this->convert_data_into_texture(utl_image);
+  this->render_image(utl_image, size);
 
   //---------------------------
 }
 
 //Subfunction
-void Stream::convert_data_into_texture(utl::media::Image* utl_image, ImVec2& size){
+void Stream::convert_data_into_texture(utl::media::Image* utl_image){
   //---------------------------
 
   //Load texture into vulkan
-  if(imgui_texture == 0){
-    this->vk_texture_UID = vk_texture->load_texture(utl_image);
-    this->imgui_texture = vk_imgui->create_imgui_texture(vk_texture_UID);
+  if(utl_image->texture_ID == -1){
+    utl_image->texture_ID = vk_texture->load_texture(utl_image);
+    utl_image->gui_texture_ID = vk_imgui->create_imgui_texture(utl_image->texture_ID);
   //update texture data
   }else if(utl_image->new_data){
-    vk_texture->update_texture(utl_image, vk_texture_UID);
+    vk_texture->update_texture(utl_image, utl_image->texture_ID);
     utl_image->new_data = false;
   }
 
   //---------------------------
 }
-void Stream::render_image(ImVec2& size){
-  if(imgui_texture == 0) return;
+void Stream::render_image(utl::media::Image* utl_image, ImVec2& size){
+  if(utl_image->texture_ID == -1) return;
   //---------------------------
 
-  ImGui::Image(imgui_texture, size);
+  ImGui::Image(utl_image->gui_texture_ID, size);
 
   //---------------------------
 }

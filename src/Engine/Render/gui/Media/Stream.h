@@ -22,15 +22,12 @@ public:
   void draw_stream(utl::media::Image* utl_image, ImVec2 size);
 
   //Subfunction
-  void convert_data_into_texture(utl::media::Image* utl_image, ImVec2& size);
-  void render_image(ImVec2& size);
+  void convert_data_into_texture(utl::media::Image* utl_image);
+  void render_image(utl::media::Image* utl_image, ImVec2& size);
 
 private:
   vk::main::Texture* vk_texture;
   vk::main::Imgui* vk_imgui;
-
-  int vk_texture_UID;
-  ImTextureID imgui_texture;
 };
 
 }
