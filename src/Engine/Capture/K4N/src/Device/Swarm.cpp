@@ -45,12 +45,12 @@ void Swarm::init_scene(){
   file_3.path_data = "/home/aether/Desktop/output.mkv";
 
   utl::media::File file_4;
-  file_4.path_data = "/home/aether/Desktop/cerfav_8.mkv";
+  file_4.path_data = "/home/aether/Desktop/cerfav_3_1.mkv";
 
   //Create playback list
-  this->create_sensor_playback(file_1);
-  this->create_sensor_playback(file_2);
-  //this->create_sensor_playback(file_4);
+  //this->create_sensor_playback(file_1);
+  //this->create_sensor_playback(file_2);
+  this->create_sensor_playback(file_4);
 
   //---------------------------
 }

@@ -12,6 +12,7 @@ Image::Image(){
 
   this->k4a_depth = new k4n::data::Depth();
   this->k4a_infrared = new k4n::data::Infrared();
+  this->thread = std::thread([](){});
 
   //---------------------------
 }
@@ -21,9 +22,10 @@ Image::~Image(){}
 void Image::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(thread.joinable()){
-    thread.join();
+  while(!thread.joinable()){say("waiting");
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+  thread.join();
   this->thread = std::thread(&Image::make_images, this, sensor);
 
   //---------------------------

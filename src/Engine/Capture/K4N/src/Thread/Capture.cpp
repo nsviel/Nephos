@@ -42,7 +42,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   k4n::dev::Master* master = sensor->master;
   //---------------------------
-
+/*
   //Init elements
   sensor->param.index =0;
   prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
@@ -79,7 +79,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     this->manage_recording(sensor, capture);
     tasker->loop_end();
   }
-
+*/
   //---------------------------
 }
 void Capture::stop_thread(){

@@ -38,6 +38,7 @@ private:
   k4n::utils::Operation* k4n_operation;
 
   std::thread thread;
+  bool thread_finished;
 };
 
 }

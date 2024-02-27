@@ -88,6 +88,7 @@ void Master::manage_suppression(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Master::manage_resynchronization(){
+  if(list_entity.size() <= 1) return;
   //---------------------------
 
   //We take the first sensor color timestamp as a reference

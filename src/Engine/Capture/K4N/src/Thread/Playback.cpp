@@ -54,16 +54,18 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   k4n_calibration->make_device_transformation(sensor);
 
   //Playback thread
-  k4a::capture capture;
   while(thread_running){
     tasker->loop_begin(master->operation.fps);
-
+say("----");
     //Next capture
     tasker->task_begin("capture");
-    playback.get_next_capture(&capture);
+    k4a::capture* capture = new k4a::capture();
+    bool ok = playback.get_next_capture(capture);
+    if(!capture->is_valid()) continue;
+    if(!ok) sensor->master->manage_restart();
     tasker->task_end("capture");
-    if(!capture) continue;
 
+say("capture");
     //Find data from capture
     k4a_data->start_thread(sensor, capture);
 
