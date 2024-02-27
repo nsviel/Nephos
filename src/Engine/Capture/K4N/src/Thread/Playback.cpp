@@ -55,17 +55,11 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
 
   //Playback thread
   while(thread_running){
-    tasker->loop_begin(master->operation.fps);
-say("----");
     //Next capture
-    tasker->task_begin("capture");
-    k4a::capture* capture = new k4a::capture();
-    bool ok = playback.get_next_capture(capture);
+    tasker->loop_begin(master->operation.fps);
+    k4a::capture* capture = manage_capture(sensor, playback);
     if(!capture->is_valid()) continue;
-    if(!ok) sensor->master->manage_restart();
-    tasker->task_end("capture");
 
-say("capture");
     //Find data from capture
     k4a_data->start_thread(sensor, capture);
 
@@ -91,6 +85,22 @@ void Playback::stop_thread(){
 }
 
 //Subfunction
+k4a::capture* Playback::manage_capture(k4n::dev::Sensor* sensor, k4a::playback& playback){
+  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
+  k4n::dev::Master* master = sensor->master;
+  //---------------------------
+
+  tasker->task_begin("capture");
+
+  k4a::capture* capture = new k4a::capture();
+  bool ok = playback.get_next_capture(capture);
+  if(!ok) sensor->master->manage_restart();
+
+  tasker->task_end("capture");
+
+  //---------------------------
+  return capture;
+}
 void Playback::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 
