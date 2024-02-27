@@ -34,6 +34,9 @@ public:
   void task_end(string name, float time);
   void task_end(string name, vec4 color);
 
+  void task_follow_begin(string name);
+  void task_follow_end(string name, float time);
+
   inline void set_vec_task(vector<prf::graph::Task>& value){this->vec_task = value;}
   inline vector<prf::graph::Task>& get_vec_task(){return vec_task;}
   inline float get_loop_fps(){return loop_fps;}

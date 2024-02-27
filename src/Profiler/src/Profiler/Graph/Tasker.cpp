@@ -122,6 +122,36 @@ void Tasker::task_begin(string name, float time){
 
   //---------------------------
 }
+void Tasker::task_follow_begin(string name){
+  //---------------------------
+
+  float time_beg = 0;
+  int index = vec_task_current.size() - 1;
+  if(index >= 0){
+    prf::graph::Task& previous_task = vec_task_current[index];
+    time_beg = previous_task.time_end;
+  }
+
+  //Insert task in vector
+  prf::graph::Task task = {time_beg, 0, name};
+  this->vec_task_current.push_back(task);
+
+  //---------------------------
+}
+void Tasker::task_follow_end(string name, float time){
+  //---------------------------
+
+  for(int i=0; i<vec_task_current.size(); i++){
+    prf::graph::Task& task = vec_task_current[i];
+
+    if(task.name == name){
+      task.time_end = task.time_beg + time;
+      return;
+    }
+  }
+
+  //---------------------------
+}
 void Tasker::task_end(string name){
   //---------------------------
 
@@ -144,7 +174,6 @@ void Tasker::task_end(string name, float time){
     prf::graph::Task& task = vec_task_current[i];
 
     if(task.name == name){
-      prf::timer::Timepoint task_end = timer.get_time();
       task.time_end = time;
       return;
     }
