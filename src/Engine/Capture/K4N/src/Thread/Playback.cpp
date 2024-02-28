@@ -28,6 +28,7 @@ Playback::~Playback(){
 
 //Main function
 void Playback::start_thread(k4n::dev::Sensor* sensor){
+  if(sensor == nullptr) return;
   //---------------------------
 
   if(!thread_running){
@@ -44,15 +45,15 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   //Init playback
   k4a::playback playback = k4a::playback::open(sensor->param.path_file.c_str());
   if(!playback) return;
-  this->thread_running = true;
   sensor->param.playback = &playback;
 
   k4n_configuration->find_playback_configuration(sensor);
-  k4n_configuration->make_device_configuration(sensor);
   k4n_calibration->find_playback_calibration(sensor);
+  k4n_configuration->make_device_configuration(sensor);
   k4n_calibration->make_device_transformation(sensor);
 
   //Playback thread
+  this->thread_running = true;
   while(thread_running){
     //Next capture
     tasker->loop_begin(master->operation.fps);

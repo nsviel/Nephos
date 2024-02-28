@@ -5,6 +5,13 @@
 #include <string>
 
 
+namespace k4n::mode{
+enum Mode{
+  CAPTURE = 0,
+  PLAYBACK = 1,
+};
+}
+
 namespace k4n::structure{
 
 struct FPS{
@@ -23,7 +30,7 @@ struct Param{
 
   int index = -1;
   bool data_ready = false;
-  bool is_playback;
+  int mode = k4n::mode::PLAYBACK;
   float file_size = 0;
   FPS fps;
 

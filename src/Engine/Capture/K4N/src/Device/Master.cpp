@@ -118,7 +118,7 @@ void Master::player_update(){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      if(sensor->param.is_playback){
+      if(sensor->param.mode == k4n::mode::PLAYBACK){
         k4n::utils::Operation k4n_operation;
         float ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.path_file);
         float ts_end = k4n_operation.find_mkv_ts_end(sensor->param.path_file);

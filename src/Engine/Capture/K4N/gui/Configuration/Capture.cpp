@@ -20,7 +20,7 @@ Capture::~Capture(){}
 
 //Main function
 void Capture::show_sensor_configuration(k4n::dev::Sensor* sensor){
-  if(sensor == nullptr || sensor->param.is_playback) return;
+  if(sensor == nullptr || sensor->param.mode == k4n::mode::CAPTURE) return;
   //---configuration_device----
 
   this->list_device(sensor);
@@ -63,7 +63,7 @@ void Capture::list_device(k4n::dev::Sensor* sensor){
         utl::type::Entity* entity = *next(master->list_entity.begin(), i);
 
         if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-          if(sensor->param.is_playback) continue;
+          if(sensor->param.mode == k4n::mode::PLAYBACK) continue;
 
           ImGui::TableNextRow();
           ImGui::TableNextColumn();

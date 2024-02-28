@@ -42,7 +42,7 @@ void Sensor::init(){
   //---------------------------
 
   //Sensor name
-  string str_mode = param.is_playback ? "playback_" : "capture_";
+  string str_mode = (param.mode == k4n::mode::PLAYBACK) ? "playback_" : "capture_";
   this->param.name = str_mode + to_string(param.index);
 
   //Sensor profiler

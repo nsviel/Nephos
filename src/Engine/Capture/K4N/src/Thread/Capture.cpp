@@ -26,57 +26,56 @@ Capture::~Capture(){
 }
 
 //Main function
-void Capture::start_thread(k4n::dev::Sensor* device){
+void Capture::start_thread(k4n::dev::Sensor* sensor){
+  if(sensor == nullptr) return;
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&Capture::run_thread, this, device);
+    this->thread = std::thread(&Capture::run_thread, this, sensor);
   }
 
   //---------------------------
 }
 void Capture::run_thread(k4n::dev::Sensor* sensor){
-  if(sensor == nullptr) return;
+  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
   k4n::dev::Master* master = sensor->master;
   //---------------------------
-/*
-  //Init elements
-  sensor->param.index =0;
-  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
-  k4a::device device = k4a::device::open(sensor->param.index);
-  k4a::capture capture;
 
-  //Configuration
+  //Init elements
+  sensor->param.index = 0;
+  k4a::device device = k4a::device::open(sensor->param.index);
   sensor->param.device = &device;
   sensor->param.serial_number = device.get_serialnum();
+  sensor->param.version = device.get_version();
+
+  //Configuration
   configuration->make_device_configuration(sensor);
   k4n_calibration->make_capture_calibration(sensor);
   k4n_calibration->make_device_transformation(sensor);
 
   //Start camera
-  sensor->param.version = device.get_version();
   this->manage_color_setting(sensor);
   device.start_cameras(&sensor->param.configuration);
 
   //Start capture thread
+  k4a::capture capture;
   this->thread_running = true;
   while(thread_running && sensor){
+    //Next capture
     tasker->loop_begin(master->operation.fps);
-
-    auto timeout = std::chrono::milliseconds(2000);
-    device.get_capture(&capture, timeout);
-    if(!capture) continue;
+    bool ok = device.get_capture(&capture, std::chrono::milliseconds(2000));
+    if(!ok) continue;
 
     //Capture data
-    k4a_data->find_data_from_capture(sensor, capture);
-    k4a_cloud->convert_into_cloud(sensor);
+    //k4a_data->find_data_from_capture(sensor, capture);
+    //k4a_cloud->convert_into_cloud(sensor);
 
     //Manage event
     this->manage_pause(sensor);
     this->manage_recording(sensor, capture);
     tasker->loop_end();
   }
-*/
+
   //---------------------------
 }
 void Capture::stop_thread(){
@@ -95,8 +94,10 @@ void Capture::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  if(sensor->master->player.pause){
-    while(sensor->master->player.pause && thread_running){
+  bool& is_paused = sensor->master->player.pause;
+  if(is_paused || !sensor->master->player.play){
+    sensor->profiler->clear();
+    while(is_paused && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }

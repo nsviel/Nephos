@@ -70,7 +70,7 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   sensor->param.format = utl::fct::info::get_format_from_path(file.path_data);
   sensor->param.file_size = utl::fct::info::get_file_size(file.path_data);
   sensor->param.index = index;
-  sensor->param.is_playback = true;
+  sensor->param.mode = k4n::mode::PLAYBACK;
   sensor->param.path_file = file.path_data;
   sensor->param.path_transfo = file.path_transfo;
   sensor->master = master;
@@ -78,7 +78,6 @@ void Swarm::create_sensor_playback(utl::media::File& file){
   //Sensor initialization
   sensor->init();
   master->insert_sensor(sensor);
-
   sce_scene->assign_entity_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, file.path_transfo);
 
@@ -95,14 +94,13 @@ void Swarm::create_sensor_capture(){
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
   sensor->name = "capture_" + to_string(index);
   sensor->param.index = index;
-  sensor->param.is_playback = false;
+  sensor->param.mode = k4n::mode::CAPTURE;
   sensor->master = master;
 
   //Sensor initialization
   sensor->init();
   master->insert_sensor(sensor);
   sce_scene->assign_entity_UID(sensor);
-
   sensor->run_capture();
 
   //---------------------------

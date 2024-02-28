@@ -18,7 +18,7 @@ Playback::~Playback(){}
 
 //Main function
 void Playback::show_sensor_configuration(k4n::dev::Sensor* sensor){
-  if(sensor == nullptr || !sensor->param.is_playback) return;
+  if(sensor == nullptr || sensor->param.mode == k4n::mode::CAPTURE) return;
   //---------------------------
 
   ImGui::Separator();
