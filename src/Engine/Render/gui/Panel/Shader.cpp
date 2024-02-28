@@ -56,7 +56,7 @@ void Shader::run_panel(){
 }
 void Shader::init_panel(){
   //---------------------------
-sayHello();
+
   vec_shader_class.push_back("Scene");
   vec_shader_class.push_back("EDL");
   vec_shader_class.push_back("Canvas");

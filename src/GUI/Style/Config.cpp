@@ -37,7 +37,6 @@ void Config::style_window(){
   style.FrameRounding = 0.0f;
   style.PopupRounding = 0.0f;
   style.WindowMenuButtonPosition = ImGuiDir_None; // Docking Tab Menu
-  style.WindowPadding = ImVec2(0.0f, 0.0f); 
 
   //Formatting -> size
   style.FrameBorderSize = 0.0f;

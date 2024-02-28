@@ -66,7 +66,8 @@ void Vulkan::draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
       std::stringstream ss;
       ss << thread.ID;
       ImGui::TextColored(blue, "%s", ss.str().c_str());
-
+      
+      ImGui::Separator();
     }
     ImGui::EndTable();
   }
