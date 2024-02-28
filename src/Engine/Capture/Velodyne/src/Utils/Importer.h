@@ -26,8 +26,12 @@ public:
   utl::file::Set* import(std::string pathFile);
 
   //Subfunction
-  void Loader_vlp16(utl::file::Set* set, std::string pathFile);
-  void Loader_hdl32(utl::file::Set* set, std::string pathFile);
+  void importer_init(std::string path);
+  void importer_sniffing(std::string path);
+  void importer_parsing(utl::file::Set* set, std::string path);
+  
+  void loader_vlp16(utl::file::Set* set, std::string pathFile);
+  void loader_hdl32(utl::file::Set* set, std::string pathFile);
   int get_file_length(std::string pathFile);
 
   inline void set_lidar_model(std::string value){this->LiDAR_model = value;}
