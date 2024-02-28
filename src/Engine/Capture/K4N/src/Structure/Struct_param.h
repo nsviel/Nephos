@@ -40,7 +40,7 @@ struct Param{
   std::string path_file = "";
   std::string path_transfo = "";
 
-  k4a::device* device;
+  k4a::device device;
   k4a::playback playback;
   k4a::calibration calibration;
   k4a::transformation transformation;

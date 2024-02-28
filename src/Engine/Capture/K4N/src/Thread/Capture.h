@@ -29,8 +29,9 @@ public:
   void stop_thread();
 
   //Subfunction
+  k4a::capture* manage_capture(k4n::dev::Sensor* sensor);
   void manage_pause(k4n::dev::Sensor* sensor);
-  void manage_recording(k4n::dev::Sensor* sensor, k4a::capture capture);
+  void manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture);
   void manage_color_setting(k4n::dev::Sensor* sensor);
 
   inline bool is_thread_running(){return thread_running;}
