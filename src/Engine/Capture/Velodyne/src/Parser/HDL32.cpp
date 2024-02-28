@@ -24,8 +24,8 @@ HDL32::HDL32(){
 HDL32::~HDL32(){}
 
 //Main function
-utl::media::File* HDL32::parse_packet(vector<int> packet){
-  utl::media::File* cloud = new utl::media::File();
+utl::file::Entity* HDL32::parse_packet(vector<int> packet){
+  utl::file::Entity* cloud = new utl::file::Entity();
   //---------------------------
 
   //Packet timestamp
@@ -215,7 +215,7 @@ void HDL32::parse_timestamp(){
 
   //---------------------------
 }
-void HDL32::final_check(utl::media::File* cloud){
+void HDL32::final_check(utl::file::Entity* cloud){
   //---------------------------
 
   //Supress points when no distance are measured

@@ -21,12 +21,12 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main functions
-utl::media::File* Importer::import(std::string path){
+utl::file::Entity* Importer::import(std::string path){
   list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;
   //---------------------------
 
-  data = new utl::media::File();
+  data = new utl::file::Entity();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
 

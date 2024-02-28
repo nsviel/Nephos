@@ -22,7 +22,7 @@ public:
 
 public:
   //Main functions
-  utl::media::File* import(std::string pathFile);
+  utl::file::Entity* import(std::string pathFile);
 
   //Subfunction
   void load_file(std::string path);

@@ -14,8 +14,8 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::media::File* Importer::import(std::string path){
-  utl::media::File* data = new utl::media::File();
+utl::file::Entity* Importer::import(std::string path){
+  utl::file::Entity* data = new utl::file::Entity();
   //---------------------------
 
   data->name = utl::fct::info::get_name_from_path(path);

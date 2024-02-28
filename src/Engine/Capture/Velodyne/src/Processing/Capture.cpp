@@ -51,14 +51,14 @@ void Capture::run_thread(int port){
 
     //Parse decimal packet into point cloud
     if(packet_dec.size() != 0){
-      utl::media::File* data_cap = parser_vlp16->parse_packet(packet_dec);
+      utl::file::Entity* data_cap = parser_vlp16->parse_packet(packet_dec);
 
       //Iteratively build a complete frame
       bool frame_rev = velo_frame->build_frame(data_cap);
 
       // If frame revolution, make some ope
       if(frame_rev){
-        utl::media::File* frame = velo_frame->get_endedFrame();
+        utl::file::Entity* frame = velo_frame->get_endedFrame();
         this->utl_file = *frame;
 
         //Do not record the first frame

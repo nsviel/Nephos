@@ -33,7 +33,7 @@ private:
   velodyne::parser::VLP16* parser_vlp16;
 
   utl::entity::Object* object;
-  utl::media::File utl_file;
+  utl::file::Entity utl_file;
 
   string lidar_ip;
   bool thread_running;

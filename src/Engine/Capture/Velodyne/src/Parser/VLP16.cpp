@@ -26,8 +26,8 @@ VLP16::VLP16(){
 VLP16::~VLP16(){}
 
 //Main function
-utl::media::File* VLP16::parse_packet(vector<int> packet_dec){
-  utl::media::File* data_udp = new utl::media::File();
+utl::file::Entity* VLP16::parse_packet(vector<int> packet_dec){
+  utl::file::Entity* data_udp = new utl::file::Entity();
   //---------------------------
 
   if(parse_header(packet_dec)){
@@ -249,7 +249,7 @@ void VLP16::parse_timestamp(){
 }
 
 //final processing functions
-void VLP16::reorder_by_azimuth(utl::media::File* cloud){
+void VLP16::reorder_by_azimuth(utl::file::Entity* cloud){
   //---------------------------
 
   //Reorder points in function of their azimuth

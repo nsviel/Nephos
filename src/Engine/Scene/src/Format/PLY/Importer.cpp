@@ -14,10 +14,10 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main loader functions
-utl::media::File* Importer::import(std::string path){
+utl::file::Entity* Importer::import(std::string path){
   //---------------------------
 
-  data = new utl::media::File();
+  data = new utl::file::Entity();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
   data->draw_type = utl::topology::POINT;

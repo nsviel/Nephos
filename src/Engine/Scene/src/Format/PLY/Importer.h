@@ -23,7 +23,7 @@ public:
 
 public:
   //Main functions
-  utl::media::File* import(std::string path_file);
+  utl::file::Entity* import(std::string path_file);
 
 private:
   //Loader data

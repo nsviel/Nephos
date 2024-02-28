@@ -33,18 +33,18 @@ void Swarm::init_scene(){
   uint32_t current_nb_dev = k4a_device_get_installed_count();
   if(current_nb_dev != 0) return;
 
-  utl::media::File file_1;
+  utl::file::Entity file_1;
   file_1.path_data = "/home/aether/Desktop/versaille_0.mkv";
   file_1.path_transfo = "/home/aether/Desktop/versaille_0.json";
 
-  utl::media::File file_2;
+  utl::file::Entity file_2;
   file_2.path_data = "/home/aether/Desktop/versaille_2.mkv";
   file_2.path_transfo = "/home/aether/Desktop/versaille_2.json";
 
-  utl::media::File file_3;
+  utl::file::Entity file_3;
   file_3.path_data = "/home/aether/Desktop/output.mkv";
 
-  utl::media::File file_4;
+  utl::file::Entity file_4;
   file_4.path_data = "/home/aether/Desktop/cerfav_3_1.mkv";
 
   //Create playback list
@@ -56,7 +56,7 @@ void Swarm::init_scene(){
 }
 
 //Sensor function
-void Swarm::create_sensor_playback(utl::media::File& file){
+void Swarm::create_sensor_playback(utl::file::Entity& file){
   if(!utl::fct::file::is_file_exist(file.path_data)) return;
   //---------------------------
 

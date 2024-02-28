@@ -55,7 +55,7 @@ utl::type::Entity* Loader::load_entity(std::string path){
 utl::entity::Object* Loader::load_object(string path){
   //---------------------------
 
-  utl::media::File* data = sce_format->import_from_path(path);
+  utl::file::Entity* data = sce_format->import_from_path(path);
   if(data == nullptr) return nullptr;
 
   utl::entity::Object* object = new utl::entity::Object(node_engine);

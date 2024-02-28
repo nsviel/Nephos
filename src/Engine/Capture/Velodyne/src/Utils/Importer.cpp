@@ -5,7 +5,6 @@
 
 namespace velodyne{
 
-using namespace Tins;
 std::vector<std::vector<int>> file_packets;
 size_t lenght(0);
 int loop_beg(0);
@@ -28,12 +27,12 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //PCAP reader callback
-bool parse_packets(const PDU& packet){
+bool parse_packets(const Tins::PDU& packet){
   //---------------------------
 
   if(loop_cpt >= loop_beg && loop_cpt < loop_end){
     //Retrieve data packet
-    const RawPDU raw = packet.rfind_pdu<RawPDU>();
+    const Tins::RawPDU raw = packet.rfind_pdu<Tins::RawPDU>();
     std::vector<uint8_t> buffer = raw.payload();
 
     //Convert into decimal vector
@@ -54,39 +53,34 @@ bool parse_packets(const PDU& packet){
   //---------------------------
   return true;
 }
-bool count_packets(const PDU &){
+bool count_packets(const Tins::PDU &){
     lenght++;
     return true;
 }
 
 //Main function
-utl::media::File* Importer::import(std::string path){
+utl::file::Entity* Importer::import(std::string path){
   file_packets.clear();
   //---------------------------
 
-  data = new utl::media::File();
+  data = new utl::file::Entity();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
 
   //Set up parameters
   loop_cpt = 0;
-  if(packet_range_on){
-    loop_beg = packet_beg;
-    loop_end = packet_end;
-  }else{
-    loop_beg = 0;
-    loop_end = get_file_length(path);
-  }
-
+  loop_beg = 0;
+  loop_end = get_file_length(path);
+say(loop_end);
   //Check if vlp16 or hdl32
-  if (path.find("HDL32") != std::string::npos){
+  if(path.find("HDL32") != std::string::npos){
     this->LiDAR_model = "hdl32";
   }else{
     this->LiDAR_model = "vlp16";
   }
 
   //Sniff UDP packets
-  FileSniffer sniffer(path);
+  Tins::FileSniffer sniffer(path);
   sniffer.sniff_loop(parse_packets);
 
   //Parse data
@@ -102,7 +96,7 @@ utl::media::File* Importer::import(std::string path){
 }
 
 //Subfunction
-void Importer::Loader_vlp16(utl::media::File* data, std::string path){
+void Importer::Loader_vlp16(utl::file::Entity* data, std::string path){
   velodyne::Frame velo_frame;
   velodyne::parser::VLP16 parser;
   //---------------------------
@@ -110,12 +104,12 @@ void Importer::Loader_vlp16(utl::media::File* data, std::string path){
   int cpt = 0;
   for(int i=0; i<file_packets.size(); i++){
 
-    utl::media::File* cloud = parser.parse_packet(file_packets[i]);
+    utl::file::Entity* cloud = parser.parse_packet(file_packets[i]);
     bool frame_rev = velo_frame.build_frame(cloud);
 
     if(frame_rev){
-      utl::media::File* frame = velo_frame.get_endedFrame();
-      utl::media::File* frame_data = new utl::media::File();
+      utl::file::Entity* frame = velo_frame.get_endedFrame();
+      utl::file::Entity* frame_data = new utl::file::Entity();
 
       frame_data->name = "frame_" + std::to_string(cpt); cpt++;
       frame_data->path_data = path;
@@ -135,18 +129,18 @@ void Importer::Loader_vlp16(utl::media::File* data, std::string path){
 
   //---------------------------
 }
-void Importer::Loader_hdl32(utl::media::File* data, std::string path){
+void Importer::Loader_hdl32(utl::file::Entity* data, std::string path){
   velodyne::Frame velo_frame;
   velodyne::parser::HDL32 parser;
   //---------------------------
 
   for(int i=0; i<file_packets.size(); i++){
-    utl::media::File* cloud = parser.parse_packet(file_packets[i]);
+    utl::file::Entity* cloud = parser.parse_packet(file_packets[i]);
     bool frame_rev = velo_frame.build_frame(cloud);
 
     if(frame_rev){
-      utl::media::File* frame = velo_frame.get_endedFrame();
-      utl::media::File* frame_data = new utl::media::File();
+      utl::file::Entity* frame = velo_frame.get_endedFrame();
+      utl::file::Entity* frame_data = new utl::file::Entity();
 
       frame_data->path_data = path;
       frame_data->nb_element = frame->xyz.size();
@@ -169,7 +163,7 @@ int Importer::get_file_length(std::string path){
   lenght = 0;
   //---------------------------
 
-  FileSniffer sniffer(path);
+  Tins::FileSniffer sniffer(path);
   sniffer.sniff_loop(count_packets);
 
   //---------------------------

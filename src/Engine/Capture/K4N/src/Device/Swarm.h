@@ -25,7 +25,7 @@ public:
   void init_scene();
 
   //Sensor function
-  void create_sensor_playback(utl::media::File& file);
+  void create_sensor_playback(utl::file::Entity& file);
   void create_sensor_capture();
 
   //Master function

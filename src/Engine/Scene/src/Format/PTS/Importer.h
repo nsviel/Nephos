@@ -21,8 +21,8 @@ public:
 
 public:
   //Main functions
-  utl::media::File* import(std::string path);
-  utl::media::File* import(std::string path, int lmin, int lmax);
+  utl::file::Entity* import(std::string path);
+  utl::file::Entity* import(std::string path, int lmin, int lmax);
 
   bool Exporter(std::string path, utl::entity::Object* object);
 
@@ -36,7 +36,7 @@ private:
   void Loader_init();
   void Loader_nbColumns();
   void Loader_configuration();
-  void Loader_data(utl::media::File* data_out, int FILE_config);
+  void Loader_data(utl::file::Entity* data_out, int FILE_config);
 
   //Loader sub-functions
   bool check_header(std::string path);

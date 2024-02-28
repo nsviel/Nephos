@@ -5,15 +5,29 @@
 #include <vector>
 
 
-namespace utl::media{
+namespace utl::file{
 
-//Generique structure to parse data file
-struct File{
+enum Type{
+  ENTITY = 0,
+  SET = 1,
+};
+
+
+struct Data{
+  //---------------------------
+
+  int type;
+
+  //---------------------------
+};
+
+struct Entity : public utl::file::Data{
   //---------------------------
 
   //Info
   int nb_element = 0;
   int draw_type = utl::topology::POINT;
+  int type = utl::file::ENTITY;
 
   std::string name = "";
   std::string path_data = "";
@@ -31,7 +45,16 @@ struct File{
   std::vector<float> R;
   std::vector<float> A;
 
-  std::vector<File*> vec_data;
+  std::vector<utl::file::Entity*> vec_data;
+
+  //---------------------------
+};
+
+struct Set : public utl::file::Data{
+  //---------------------------
+
+  int type = utl::file::SET;
+  std::vector<utl::file::Entity*> vec_data;
 
   //---------------------------
 };

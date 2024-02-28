@@ -20,10 +20,10 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main load functions
-utl::media::File* Importer::import(std::string path){
+utl::file::Entity* Importer::import(std::string path){
   //---------------------------
 
-  data = new utl::media::File();
+  data = new utl::file::Entity();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
   data->draw_type = utl::topology::POINT;
@@ -55,10 +55,10 @@ utl::media::File* Importer::import(std::string path){
   //---------------------------
   return data;
 }
-utl::media::File* Importer::import(std::string path, int lmin, int lmax){
+utl::file::Entity* Importer::import(std::string path, int lmin, int lmax){
   //---------------------------
 
-  utl::media::File* data = new utl::media::File();
+  utl::file::Entity* data = new utl::file::Entity();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
   data->draw_type = utl::topology::POINT;
@@ -253,7 +253,7 @@ void Importer::Loader_configuration(){
   //---------------------------
   endParameters = true;
 }
-void Importer::Loader_data(utl::media::File* data, int FILE_config){
+void Importer::Loader_data(utl::file::Entity* data, int FILE_config){
   std::istringstream iss(line);
   float x,y,z,r,g,b,I,nx,ny,nz;
   //---------------------------
