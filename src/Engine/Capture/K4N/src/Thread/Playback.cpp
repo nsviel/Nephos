@@ -22,7 +22,6 @@ Playback::~Playback(){
   //---------------------------
 
   this->stop_thread();
-  this->thread.join();
 
   //---------------------------
 }

@@ -54,7 +54,7 @@ void Data::run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
   k4a_cloud->start_thread(sensor);
 
   //Encode image as texture
-  //k4n_image->start_thread(sensor);
+  k4n_image->start_thread(sensor);
 
   //---------------------------
   this->thread_finished = true;

@@ -21,7 +21,6 @@ Capture::~Capture(){
   //---------------------------
 
   this->stop_thread();
-  this->thread.join();
 
   //---------------------------
 }
@@ -36,8 +35,6 @@ void Capture::start_thread(k4n::dev::Sensor* device){
 
   //---------------------------
 }
-
-//Subfunction
 void Capture::run_thread(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   k4n::dev::Master* master = sensor->master;
@@ -92,6 +89,8 @@ void Capture::stop_thread(){
 
   //---------------------------
 }
+
+//Subfunction
 void Capture::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 

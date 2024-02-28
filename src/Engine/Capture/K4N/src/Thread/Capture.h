@@ -24,12 +24,11 @@ public:
 
 public:
   //Main function
-  void run();
-
-  //Subfunction
   void start_thread(k4n::dev::Sensor* device);
   void run_thread(k4n::dev::Sensor* device);
   void stop_thread();
+
+  //Subfunction
   void manage_pause(k4n::dev::Sensor* sensor);
   void manage_recording(k4n::dev::Sensor* sensor, k4a::capture capture);
   void manage_color_setting(k4n::dev::Sensor* sensor);
