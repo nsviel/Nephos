@@ -23,10 +23,10 @@ Importer::~Importer(){}
 utl::file::Entity* Importer::import(std::string path){
   //---------------------------
 
-  data = new utl::file::Entity();
-  data->name = utl::fct::info::get_name_from_path(path);
-  data->path_data = path;
-  data->draw_type = utl::topology::POINT;
+  utl::file::Entity* entity = new utl::file::Entity();
+  entity->name = utl::fct::info::get_name_from_path(path);
+  entity->path_data = path;
+  entity->draw_type = utl::topology::POINT;
 
   //Initialization
   this->Loader_init();
@@ -49,19 +49,19 @@ utl::file::Entity* Importer::import(std::string path){
     }
 
     //Retrieve data
-    this->Loader_data(data, FILE_config);
+    this->Loader_data(entity, FILE_config);
   }
 
   //---------------------------
-  return data;
+  return entity;
 }
 utl::file::Entity* Importer::import(std::string path, int lmin, int lmax){
   //---------------------------
 
-  utl::file::Entity* data = new utl::file::Entity();
-  data->name = utl::fct::info::get_name_from_path(path);
-  data->path_data = path;
-  data->draw_type = utl::topology::POINT;
+  utl::file::Entity* entity = new utl::file::Entity();
+  entity->name = utl::fct::info::get_name_from_path(path);
+  entity->path_data = path;
+  entity->draw_type = utl::topology::POINT;
 
   //Initialization
   this->Loader_init();
@@ -88,15 +88,15 @@ utl::file::Entity* Importer::import(std::string path, int lmin, int lmax){
 
       //Retrieve data
       if(endParameters && endHeader){
-        this->Loader_data(data, FILE_config);
+        this->Loader_data(entity, FILE_config);
       }
     }
     cpt++;
   }
 
   //---------------------------
-  data->nb_element = cpt;
-  return data;
+  entity->nb_element = cpt;
+  return entity;
 }
 
 //Sub load functions

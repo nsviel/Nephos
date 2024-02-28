@@ -17,10 +17,10 @@ Importer::~Importer(){}
 utl::file::Entity* Importer::import(std::string path){
   //---------------------------
 
-  data = new utl::file::Entity();
-  data->name = utl::fct::info::get_name_from_path(path);
-  data->path_data = path;
-  data->draw_type = utl::topology::POINT;
+  utl::file::Entity* entity = new utl::file::Entity();
+  entity->name = utl::fct::info::get_name_from_path(path);
+  entity->path_data = path;
+  entity->draw_type = utl::topology::POINT;
   this->face_number = 0;
 
   //Get format type
@@ -38,9 +38,9 @@ utl::file::Entity* Importer::import(std::string path){
 
     //Read data
     if(face_number == 0){
-      this->Loader_ascii(file);
+      this->Loader_ascii(file, entity);
     }else{
-      this->Loader_ascii_withface(file);
+      this->Loader_ascii_withface(file, entity);
     }
 
     file.close();
@@ -55,9 +55,9 @@ utl::file::Entity* Importer::import(std::string path){
 
     //Read data
     if(face_number == 0){
-      this->Loader_bin_little_endian(file);
+      this->Loader_bin_little_endian(file, entity);
     }else{
-      this->Loader_bin_little_endian_withface(file);
+      this->Loader_bin_little_endian_withface(file, entity);
     }
 
     //Close file
@@ -72,9 +72,9 @@ utl::file::Entity* Importer::import(std::string path){
 
     //Read data
     if(face_number == 0){
-      this->Loader_bin_big_endian(file);
+      this->Loader_bin_big_endian(file, entity);
     }else{
-      this->Loader_bin_big_endian_withface(file);
+      this->Loader_bin_big_endian_withface(file, entity);
     }
 
     //Close file
@@ -82,7 +82,7 @@ utl::file::Entity* Importer::import(std::string path){
   }
 
   //---------------------------
-  return data;
+  return entity;
 }
 
 //Loader data
@@ -170,7 +170,7 @@ void Importer::Loader_header(std::ifstream& file){
 
   //---------------------------
 }
-void Importer::Loader_ascii(std::ifstream& file){
+void Importer::Loader_ascii(std::ifstream& file, utl::file::Entity* entity){
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -214,14 +214,14 @@ void Importer::Loader_ascii(std::ifstream& file){
     }
   }
 
-  data->xyz = vertex;
-  data->Nxyz = normal;
-  data->Is = intensity;
+  entity->xyz = vertex;
+  entity->Nxyz = normal;
+  entity->Is = intensity;
 
   //---------------------------
-  data->nb_element = data->xyz.size();
+  entity->nb_element = entity->xyz.size();
 }
-void Importer::Loader_ascii_withface(std::ifstream& file){
+void Importer::Loader_ascii_withface(std::ifstream& file, utl::file::Entity* entity){
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -277,28 +277,28 @@ void Importer::Loader_ascii_withface(std::ifstream& file){
 
     //Retrieve face data
     for(int i=0; i<nb_vertice; i++){
-      data->xyz.push_back(vertex[idx[i]]);
+      entity->xyz.push_back(vertex[idx[i]]);
       if(get_id_property("nx") != -1){
-        data->Nxyz.push_back(normal[idx[i]]);
+        entity->Nxyz.push_back(normal[idx[i]]);
       }
       if(get_id_property("intensity") != -1){
-        data->Is.push_back(intensity[idx[i]]);
+        entity->Is.push_back(intensity[idx[i]]);
       }
     }
 
     //Deduce drawing type
     if(nb_vertice == 3){
-      data->draw_type = utl::topology::TRIANGLE;
+      entity->draw_type = utl::topology::TRIANGLE;
     }
     else if(nb_vertice == 4){
-      data->draw_type = utl::topology::QUAD;
+      entity->draw_type = utl::topology::QUAD;
     }
   }
 
   //---------------------------
-  data->nb_element = data->xyz.size();
+  entity->nb_element = entity->xyz.size();
 }
-void Importer::Loader_bin_little_endian(std::ifstream& file){
+void Importer::Loader_bin_little_endian(std::ifstream& file, utl::file::Entity* entity){
   //---------------------------
 
   //Read data
@@ -340,12 +340,12 @@ void Importer::Loader_bin_little_endian(std::ifstream& file){
   }
 
   //Resize std::vectors accordingly
-  data->xyz.resize(point_number, glm::vec3(0,0,0));
-  if(is_timestamp) data->ts.resize(point_number, 0);
-  if(is_intensity) data->Is.resize(point_number, 0);
-  if(is_normal) data->Nxyz.resize(point_number, glm::vec3(0,0,0));
-  if(is_color) data->rgb.resize(point_number, glm::vec4(0,0,0,0));
-  data->nb_element = point_number;
+  entity->xyz.resize(point_number, glm::vec3(0,0,0));
+  if(is_timestamp) entity->ts.resize(point_number, 0);
+  if(is_intensity) entity->Is.resize(point_number, 0);
+  if(is_normal) entity->Nxyz.resize(point_number, glm::vec3(0,0,0));
+  if(is_color) entity->rgb.resize(point_number, glm::vec4(0,0,0,0));
+  entity->nb_element = point_number;
 
   //Insert data in the adequate std::vector
   //#pragma omp parallel for
@@ -354,13 +354,13 @@ void Importer::Loader_bin_little_endian(std::ifstream& file){
       //Location
       if(property_name[j] == "x"){
         glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-        data->xyz[i] = point;
+        entity->xyz[i] = point;
       }
 
       //Normal
       if(property_name[j] == "nx"){
         glm::vec3 normal = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-        data->Nxyz[i] = normal;
+        entity->Nxyz[i] = normal;
       }
 
       //Color
@@ -369,26 +369,26 @@ void Importer::Loader_bin_little_endian(std::ifstream& file){
         float green = block_vec[j+1][i] / 255;
         float blue = block_vec[j+2][i] / 255;
         glm::vec4 rgb = glm::vec4(red, green, blue, 1.0f);
-        data->rgb[i] = rgb;
+        entity->rgb[i] = rgb;
       }
 
       //Intensity
       if(property_name[j] == "scalar_Scalar_field" || property_name[j] == "intensity"){
         float Is = block_vec[j][i];
-        data->Is[i] = Is;
+        entity->Is[i] = Is;
       }
 
       //Timestamp
       if(property_name[j] == "timestamp"){
         float ts = block_vec[j][i];
-        data->ts[i] = ts;
+        entity->ts[i] = ts;
       }
     }
   }
 
   //---------------------------
 }
-void Importer::Loader_bin_little_endian_withface(std::ifstream& file){
+void Importer::Loader_bin_little_endian_withface(std::ifstream& file, utl::file::Entity* entity){
   //---------------------------
 
   //Read data
@@ -458,22 +458,22 @@ void Importer::Loader_bin_little_endian_withface(std::ifstream& file){
 
     //Location
     for(int j=0; j<idx.size(); j++){
-      data->xyz.push_back(vertex[idx[j]]);
+      entity->xyz.push_back(vertex[idx[j]]);
     }
   }
 
   //Deduce drawing type
   if(nb_vertice == 3){
-    data->draw_type = utl::topology::TRIANGLE;
+    entity->draw_type = utl::topology::TRIANGLE;
   }
   else if(nb_vertice == 4){
-    data->draw_type = utl::topology::QUAD;
+    entity->draw_type = utl::topology::QUAD;
   }
 
   //---------------------------
-  data->nb_element = data->xyz.size();
+  entity->nb_element = entity->xyz.size();
 }
-void Importer::Loader_bin_big_endian(std::ifstream& file){
+void Importer::Loader_bin_big_endian(std::ifstream& file, utl::file::Entity* entity){
   //---------------------------
 
   //Read data
@@ -493,10 +493,10 @@ void Importer::Loader_bin_big_endian(std::ifstream& file){
   }
 
   //Resize std::vectors accordingly
-  data->xyz.resize(point_number, glm::vec3(0,0,0));
-  if(is_timestamp) data->ts.resize(point_number, 0);
-  if(is_intensity) data->Is.resize(point_number, 0);
-  data->nb_element = point_number;
+  entity->xyz.resize(point_number, glm::vec3(0,0,0));
+  if(is_timestamp) entity->ts.resize(point_number, 0);
+  if(is_intensity) entity->Is.resize(point_number, 0);
+  entity->nb_element = point_number;
 
   //Insert data in the adequate std::vector
   #pragma omp parallel for
@@ -505,26 +505,26 @@ void Importer::Loader_bin_big_endian(std::ifstream& file){
       //Location
       if(property_name[j] == "x"){
         glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-        data->xyz[i] = point;
+        entity->xyz[i] = point;
       }
 
       //Intensity
       if(property_name[j] == "scalar_Scalar_field" || property_name[j] == "intensity"){
         float Is = block_vec[j][i];
-        data->Is[i] = Is;
+        entity->Is[i] = Is;
       }
 
       //Timestamp
       if(property_name[j] == "timestamp"){
         float ts = block_vec[j][i];
-        data->ts[i] = ts;
+        entity->ts[i] = ts;
       }
     }
   }
 
   //---------------------------
 }
-void Importer::Loader_bin_big_endian_withface(std::ifstream& file){
+void Importer::Loader_bin_big_endian_withface(std::ifstream& file, utl::file::Entity* entity){
   //---------------------------
 
   //Read data
@@ -594,20 +594,20 @@ void Importer::Loader_bin_big_endian_withface(std::ifstream& file){
 
     //Location
     for(int j=0; j<idx.size(); j++){
-      data->xyz.push_back(vertex[idx[j]]);
+      entity->xyz.push_back(vertex[idx[j]]);
     }
   }
 
   //Deduce drawing type
   if(nb_vertice == 3){
-    data->draw_type = utl::topology::TRIANGLE;
+    entity->draw_type = utl::topology::TRIANGLE;
   }
   else if(nb_vertice == 4){
-    data->draw_type = utl::topology::QUAD;
+    entity->draw_type = utl::topology::QUAD;
   }
 
   //---------------------------
-  data->nb_element = data->xyz.size();
+  entity->nb_element = entity->xyz.size();
 }
 
 //Loader subfunctions
@@ -637,31 +637,31 @@ int Importer::reverse_int(const int inInt){
 
    return retVal;
 }
-void Importer::reorder_by_timestamp(){
+void Importer::reorder_by_timestamp(utl::file::Entity* entity){
   std::vector<glm::vec3> pos;
   std::vector<float> ts;
   std::vector<float> Is;
   //---------------------------
 
-  if(data->ts.size() != 0){
+  if(entity->ts.size() != 0){
     //Check for non void and reorder by index
-    for (auto i: math::sort_by_indexes(data->ts)){
-      if(data->xyz[i] != glm::vec3(0, 0, 0)){
+    for (auto i: math::sort_by_indexes(entity->ts)){
+      if(entity->xyz[i] != glm::vec3(0, 0, 0)){
         //Location adn timestamp
-        ts.push_back(data->ts[i]);
-        pos.push_back(data->xyz[i]);
+        ts.push_back(entity->ts[i]);
+        pos.push_back(entity->xyz[i]);
 
         //Intensity
-        if(data->Is.size() != 0){
-          Is.push_back(data->Is[i]);
+        if(entity->Is.size() != 0){
+          Is.push_back(entity->Is[i]);
         }
       }
     }
 
     //Set new std::vectors
-    data->xyz = pos;
-    data->ts = ts;
-    data->Is = Is;
+    entity->xyz = pos;
+    entity->ts = ts;
+    entity->Is = Is;
   }
 
   //---------------------------

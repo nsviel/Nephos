@@ -29,8 +29,8 @@ Format::~Format(){
 }
 
 //Main functions
-utl::file::Entity* Format::import_from_path(std::string path){
-  utl::file::Entity* data;
+utl::file::Data* Format::import_from_path(std::string path){
+  utl::file::Data* data = nullptr;
   //---------------------------
 
   std::string format = utl::fct::info::get_format_from_path(path);

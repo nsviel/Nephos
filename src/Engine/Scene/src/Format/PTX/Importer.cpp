@@ -26,9 +26,9 @@ utl::file::Entity* Importer::import(std::string path){
   PTXCloud* cloud = new PTXCloud;
   //---------------------------
 
-  data = new utl::file::Entity();
-  data->name = utl::fct::info::get_name_from_path(path);
-  data->path_data = path;
+  utl::file::Entity* entity = new utl::file::Entity();
+  entity->name = utl::fct::info::get_name_from_path(path);
+  entity->path_data = path;
 
   //Open file
   std::ifstream infile(path);
@@ -70,11 +70,11 @@ utl::file::Entity* Importer::import(std::string path){
   }
 
   //Assemble all clouds
-  this->Loader_assembling();
+  this->Loader_assembling(entity);
 
   //---------------------------
-  data->nb_element = data->xyz.size();
-  return data;
+  entity->nb_element = entity->xyz.size();
+  return entity;
 }
 bool Importer::Exporter(std::string path){
   //---------------------------
@@ -215,7 +215,7 @@ void Importer::Loader_data(PTXCloud* cloud){
 
   //---------------------------
 }
-void Importer::Loader_assembling(){
+void Importer::Loader_assembling(utl::file::Entity* entity){
   //Assemble into an unique cloud
   //---------------------------
 
@@ -223,9 +223,9 @@ void Importer::Loader_assembling(){
     PTXCloud* cloud = *std::next(list_ptxCloud->begin(),i);
 
     for(int j=0; j<cloud->location.size(); j++){
-      data->xyz.push_back(cloud->location[j]);
-      data->Is.push_back(cloud->intensity[j]);
-      data->rgb.push_back(cloud->color[j]);
+      entity->xyz.push_back(cloud->location[j]);
+      entity->Is.push_back(cloud->intensity[j]);
+      entity->rgb.push_back(cloud->color[j]);
     }
   }
   //---------------------------

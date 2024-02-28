@@ -53,34 +53,37 @@ utl::type::Entity* Loader::load_entity(std::string path){
 
 //Subfunctions
 utl::entity::Object* Loader::load_object(string path){
+  utl::entity::Object* object = nullptr;
   //---------------------------
 
-  utl::file::Entity* data = sce_format->import_from_path(path);
+  utl::file::Data* data = sce_format->import_from_path(path);
   if(data == nullptr) return nullptr;
 
-  utl::entity::Object* object = new utl::entity::Object(node_engine);
-  object->data->path_data = path;
-  object->data->file_format = utl::fct::info::get_format_from_path(path);
-  object->data->has_texture = true;
-  object->name = data->name;
-  object->data->point.size = data->xyz.size();
-  object->data->draw_type = data->draw_type;
+  if(utl::file::Entity* entity = dynamic_cast<utl::file::Entity*>(data)){
+    utl::entity::Object* object = new utl::entity::Object(node_engine);
+    object->data->path_data = path;
+    object->data->file_format = utl::fct::info::get_format_from_path(path);
+    object->data->has_texture = true;
+    object->name = entity->name;
+    object->data->point.size = entity->xyz.size();
+    object->data->draw_type = entity->draw_type;
 
-  object->data->point.xyz = data->xyz;
-  object->data->point.rgb = data->rgb;
-  object->data->triangle.uv = data->uv;
+    object->data->point.xyz = entity->xyz;
+    object->data->point.rgb = entity->rgb;
+    object->data->triangle.uv = entity->uv;
 
-  //If no color, fill it with white
-  if(object->data->point.rgb.size() == 0){
-    for(int i=0; i<data->xyz.size(); i++){
-      object->data->point.rgb.push_back(vec4(1,1,1,1));
+    //If no color, fill it with white
+    if(object->data->point.rgb.size() == 0){
+      for(int i=0; i<entity->xyz.size(); i++){
+        object->data->point.rgb.push_back(vec4(1,1,1,1));
+      }
     }
+
+    sce_scene->init_entity(object);
   }
 
   //Delete raw data
   delete data;
-
-  sce_scene->init_entity(object);
 
   //---------------------------
   return object;

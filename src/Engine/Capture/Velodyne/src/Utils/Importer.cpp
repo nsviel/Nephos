@@ -63,7 +63,7 @@ utl::file::Entity* Importer::import(std::string path){
   file_packets.clear();
   //---------------------------
 
-  data = new utl::file::Entity();
+  utl::file::Entity* data = new utl::file::Entity();
   data->name = utl::fct::info::get_name_from_path(path);
   data->path_data = path;
 
@@ -71,7 +71,7 @@ utl::file::Entity* Importer::import(std::string path){
   loop_cpt = 0;
   loop_beg = 0;
   loop_end = get_file_length(path);
-say(loop_end);
+
   //Check if vlp16 or hdl32
   if(path.find("HDL32") != std::string::npos){
     this->LiDAR_model = "hdl32";

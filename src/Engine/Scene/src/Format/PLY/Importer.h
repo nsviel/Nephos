@@ -28,17 +28,17 @@ public:
 private:
   //Loader data
   void Loader_header(std::ifstream& file);
-  void Loader_ascii(std::ifstream& file);
-  void Loader_ascii_withface(std::ifstream& file);
-  void Loader_bin_little_endian(std::ifstream& file);
-  void Loader_bin_little_endian_withface(std::ifstream& file);
-  void Loader_bin_big_endian(std::ifstream& file);
-  void Loader_bin_big_endian_withface(std::ifstream& file);
+  void Loader_ascii(std::ifstream& file, utl::file::Entity* entity);
+  void Loader_ascii_withface(std::ifstream& file, utl::file::Entity* entity);
+  void Loader_bin_little_endian(std::ifstream& file, utl::file::Entity* entity);
+  void Loader_bin_little_endian_withface(std::ifstream& file, utl::file::Entity* entity);
+  void Loader_bin_big_endian(std::ifstream& file, utl::file::Entity* entity);
+  void Loader_bin_big_endian_withface(std::ifstream& file, utl::file::Entity* entity);
 
   //Loader subfunctions
   float reverse_float(const float inFloat);
   int reverse_int(const int inInt);
-  void reorder_by_timestamp();
+  void reorder_by_timestamp(utl::file::Entity* entity);
   int get_id_property(std::string name);
   float get_float_from_binary(char* data, int& offset);
   float get_double_from_binary(char* block_data, int& offset);

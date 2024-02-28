@@ -19,7 +19,7 @@ Importer::~Importer(){}
 //Main function
 utl::file::Entity* Importer::import(std::string pathFile){
   //---------------------------
-
+/*
   std::ifstream file(pathFile);
   std::vector<std::vector<std::string>> csvFile = readCSV(file);
 
@@ -73,9 +73,9 @@ utl::file::Entity* Importer::import(std::string pathFile){
     //End of row line
     data->vec_data.push_back(data_sub);
   }
-
+*/
   //---------------------------
-  return data;
+  return nullptr;
 }
 
 }
