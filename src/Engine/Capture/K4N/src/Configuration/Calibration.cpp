@@ -30,7 +30,7 @@ void Calibration::make_capture_calibration(k4n::dev::Sensor* k4n_sensor){
 void Calibration::find_playback_calibration(k4n::dev::Sensor* k4n_sensor){
   //---------------------------
 
-  k4n_sensor->param.calibration = k4n_sensor->param.playback->get_calibration();
+  k4n_sensor->param.calibration = k4n_sensor->param.playback.get_calibration();
 
   //---------------------------
 }

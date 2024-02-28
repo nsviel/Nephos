@@ -33,7 +33,7 @@ void Configuration::make_device_configuration(k4n::dev::Sensor* sensor){
 
 //Playback configuration
 void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
-  k4a_record_configuration_t configuration = sensor->param.playback->get_record_configuration();
+  k4a_record_configuration_t configuration = sensor->param.playback.get_record_configuration();
   //---------------------------
 
   this->find_config_fps(sensor, configuration);
@@ -99,7 +99,7 @@ void Configuration::find_config_depth(k4n::dev::Sensor* sensor, k4a_record_confi
 
   sensor->depth.config.enabled = configuration.depth_track_enabled;
   sensor->depth.config.mode = configuration.depth_mode;
-  sensor->param.playback->get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor->depth.config.firmware_version);
+  sensor->param.playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor->depth.config.firmware_version);
 
   switch (configuration.depth_mode){
     case K4A_DEPTH_MODE_OFF:{
@@ -135,12 +135,12 @@ void Configuration::find_config_color(k4n::dev::Sensor* sensor, k4a_record_confi
 
   //Ask for default color format
   k4a_image_format_t required_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  sensor->param.playback->set_color_conversion(required_format);
+  sensor->param.playback.set_color_conversion(required_format);
   configuration.color_format = required_format;
 
   sensor->color.config.enabled = configuration.color_track_enabled;
   sensor->color.config.resolution = configuration.color_resolution;
-  sensor->param.playback->get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor->color.config.firmware_version);
+  sensor->param.playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor->color.config.firmware_version);
 
   switch (configuration.color_resolution){
     case K4A_COLOR_RESOLUTION_OFF:{
@@ -218,7 +218,7 @@ void Configuration::find_config_device(k4n::dev::Sensor* sensor, k4a_record_conf
 
   sensor->ir.config.enabled = configuration.ir_track_enabled;
   sensor->imu.config.enabled = configuration.imu_track_enabled;
-  sensor->param.playback->get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
+  sensor->param.playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
 
   //---------------------------
 }
