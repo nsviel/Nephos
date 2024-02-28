@@ -17,6 +17,9 @@ struct Data{
   //---------------------------
 
   int type;
+  std::string name = "";
+  std::string path_data = "";
+
   virtual void hello(){}
 
   //---------------------------
@@ -30,8 +33,6 @@ struct Entity : public utl::file::Data{
   int draw_type = utl::topology::POINT;
   int type = utl::file::ENTITY;
 
-  std::string name = "";
-  std::string path_data = "";
   std::string path_transfo = "";
   std::string path_texture = "";
 
@@ -45,8 +46,6 @@ struct Entity : public utl::file::Data{
   std::vector<float> Is;
   std::vector<float> R;
   std::vector<float> A;
-
-  std::vector<utl::file::Entity*> vec_data;
 
   //---------------------------
 };

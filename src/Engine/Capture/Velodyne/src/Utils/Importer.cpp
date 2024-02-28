@@ -59,13 +59,13 @@ bool count_packets(const Tins::PDU &){
 }
 
 //Main function
-utl::file::Entity* Importer::import(std::string path){
+utl::file::Set* Importer::import(std::string path){
   file_packets.clear();
   //---------------------------
 
-  utl::file::Entity* data = new utl::file::Entity();
-  data->name = utl::fct::info::get_name_from_path(path);
-  data->path_data = path;
+  utl::file::Set* set = new utl::file::Set();
+  set->name = utl::fct::info::get_name_from_path(path);
+  set->path_data = path;
 
   //Set up parameters
   loop_cpt = 0;
@@ -85,75 +85,74 @@ utl::file::Entity* Importer::import(std::string path){
 
   //Parse data
   if(LiDAR_model == "vlp16"){
-    this->Loader_vlp16(data, path);
+    this->Loader_vlp16(set, path);
   }
   else if(LiDAR_model == "hdl32"){
-    this->Loader_hdl32(data, path);
+    this->Loader_hdl32(set, path);
   }
 
   //---------------------------
-  return data;
+  return set;
 }
 
 //Subfunction
-void Importer::Loader_vlp16(utl::file::Entity* data, std::string path){
+void Importer::Loader_vlp16(utl::file::Set* set, std::string path){
   velodyne::Frame velo_frame;
   velodyne::parser::VLP16 parser;
   //---------------------------
 
   int cpt = 0;
   for(int i=0; i<file_packets.size(); i++){
-
-    utl::file::Entity* cloud = parser.parse_packet(file_packets[i]);
-    bool frame_rev = velo_frame.build_frame(cloud);
+    utl::file::Entity* data = parser.parse_packet(file_packets[i]);
+    bool frame_rev = velo_frame.build_frame(data);
 
     if(frame_rev){
       utl::file::Entity* frame = velo_frame.get_endedFrame();
-      utl::file::Entity* frame_data = new utl::file::Entity();
+      utl::file::Entity* entity = new utl::file::Entity();
 
-      frame_data->name = "frame_" + std::to_string(cpt); cpt++;
-      frame_data->path_data = path;
-      frame_data->nb_element = frame->xyz.size();
+      entity->name = "frame_" + std::to_string(cpt); cpt++;
+      entity->path_data = path;
+      entity->nb_element = frame->xyz.size();
 
       for(int j=0; j<frame->xyz.size(); j++){
-        frame_data->xyz.push_back(frame->xyz[j]);
-        frame_data->Is.push_back(frame->Is[j]);
-        frame_data->ts.push_back(frame->ts[j]);
-        frame_data->A.push_back(frame->A[j]);
-        frame_data->R.push_back(frame->R[j]);
+        entity->xyz.push_back(frame->xyz[j]);
+        entity->Is.push_back(frame->Is[j]);
+        entity->ts.push_back(frame->ts[j]);
+        entity->A.push_back(frame->A[j]);
+        entity->R.push_back(frame->R[j]);
       }
 
-      data->vec_data.push_back(frame_data);
+      set->vec_data.push_back(entity);
     }
   }
 
   //---------------------------
 }
-void Importer::Loader_hdl32(utl::file::Entity* data, std::string path){
+void Importer::Loader_hdl32(utl::file::Set* set, std::string path){
   velodyne::Frame velo_frame;
   velodyne::parser::HDL32 parser;
   //---------------------------
 
   for(int i=0; i<file_packets.size(); i++){
-    utl::file::Entity* cloud = parser.parse_packet(file_packets[i]);
-    bool frame_rev = velo_frame.build_frame(cloud);
+    utl::file::Entity* data = parser.parse_packet(file_packets[i]);
+    bool frame_rev = velo_frame.build_frame(data);
 
     if(frame_rev){
       utl::file::Entity* frame = velo_frame.get_endedFrame();
-      utl::file::Entity* frame_data = new utl::file::Entity();
+      utl::file::Entity* entity = new utl::file::Entity();
 
-      frame_data->path_data = path;
-      frame_data->nb_element = frame->xyz.size();
+      entity->path_data = path;
+      entity->nb_element = frame->xyz.size();
 
       for(int j=0; j<frame->xyz.size(); j++){
-        frame_data->xyz.push_back(frame->xyz[j]);
-        frame_data->Is.push_back(frame->Is[j] / 255);
-        frame_data->ts.push_back(frame->ts[j]);
-        frame_data->A.push_back(frame->A[j]);
-        frame_data->R.push_back(frame->R[j]);
+        entity->xyz.push_back(frame->xyz[j]);
+        entity->Is.push_back(frame->Is[j] / 255);
+        entity->ts.push_back(frame->ts[j]);
+        entity->A.push_back(frame->A[j]);
+        entity->R.push_back(frame->R[j]);
       }
 
-      data->vec_data.push_back(frame_data);
+      set->vec_data.push_back(entity);
     }
   }
 

@@ -17,9 +17,9 @@ Importer::~Importer(){}
 utl::file::Entity* Importer::import(std::string path){
   //---------------------------
 
-  utl::file::Entity* data = new utl::file::Entity();
-  data->name = utl::fct::info::get_name_from_path(path);
-  data->path_data = path;
+  utl::file::Entity* entity = new utl::file::Entity();
+  entity->name = utl::fct::info::get_name_from_path(path);
+  entity->path_data = path;
 
   //Init
   this->init_params();
@@ -34,10 +34,10 @@ utl::file::Entity* Importer::import(std::string path){
   this->parse_mtl(path);
 
   // Fill output format with file data
-  this->fill_data_file(data, vertex_vec);
+  this->fill_data_file(entity, vertex_vec);
 
   //---------------------------
-  return data;
+  return entity;
 }
 
 //Subfunction

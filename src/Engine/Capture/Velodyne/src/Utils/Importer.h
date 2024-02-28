@@ -23,11 +23,11 @@ public:
 
 public:
   //Main function
-  utl::file::Entity* import(std::string pathFile);
+  utl::file::Set* import(std::string pathFile);
 
   //Subfunction
-  void Loader_vlp16(utl::file::Entity* data, std::string pathFile);
-  void Loader_hdl32(utl::file::Entity* data, std::string pathFile);
+  void Loader_vlp16(utl::file::Set* set, std::string pathFile);
+  void Loader_hdl32(utl::file::Set* set, std::string pathFile);
   int get_file_length(std::string pathFile);
 
   inline void set_lidar_model(std::string value){this->LiDAR_model = value;}

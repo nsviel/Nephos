@@ -60,7 +60,7 @@ utl::entity::Object* Loader::load_object(string path){
   if(data == nullptr) return nullptr;
 
   if(utl::file::Entity* entity = dynamic_cast<utl::file::Entity*>(data)){
-    utl::entity::Object* object = new utl::entity::Object(node_engine);
+    object = new utl::entity::Object(node_engine);
     object->data->path_data = path;
     object->data->file_format = utl::fct::info::get_format_from_path(path);
     object->data->has_texture = true;
