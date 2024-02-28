@@ -40,7 +40,7 @@ Node::~Node(){
 void Node::init(){
   //---------------------------
 
-  //gui_shader->init_panel();
+  gui_shader->init_panel();
   eng_renderpass->init();
 
   //---------------------------

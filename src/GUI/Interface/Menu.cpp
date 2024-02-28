@@ -27,7 +27,7 @@ Menu::~Menu(){}
 void Menu::menu(){
   //---------------------------
 
-  this->menu_option();
+  //this->menu_option();
   this->menu_demo();
   this->menu_git();
 
@@ -40,17 +40,6 @@ void Menu::menu_option(){
   if(ImGui::BeginMenu(ICON_FA_COG, "menu_option")){
     gui_font->combo_font_gui();
     gui_font->combo_font_editor();
-
-    Render* gui_render = gui->get_rnd_tab();
-    vk::Node* vulkan = gui_render->get_vulkan();
-    vk::main::Info* vk_info = vulkan->get_vk_info();
-
-
-    prf::Node* node_profiler = node_utility->get_node_profiler();
-    prf::Manager* prf_manager = node_profiler->get_prf_manager();
-    prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
-    prf::graph::Tasker* tasker_cpu = profiler->get_tasker("cpu");
-    ImGui::Text("%.2f", tasker_cpu->get_loop_fps());
     ImGui::EndMenu();
   }
 

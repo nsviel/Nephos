@@ -12,7 +12,7 @@ namespace eng::render::gui{
 //Constructor / Destructor
 Shader::Shader(eng::render::Node* node_render, bool* show_window){
   //---------------------------
-  
+
   vk::Node* node_vulkan = node_render->get_node_vulkan();
 
   this->vk_graphical = node_vulkan->get_vk_graphical();
@@ -56,7 +56,7 @@ void Shader::run_panel(){
 }
 void Shader::init_panel(){
   //---------------------------
-
+sayHello();
   vec_shader_class.push_back("Scene");
   vec_shader_class.push_back("EDL");
   vec_shader_class.push_back("Canvas");
@@ -77,10 +77,12 @@ void Shader::design_panel(){
   this->shader_tabs();
   this->shader_control();
 
-string message = LOG_shader::get_instance().get_shader_printf();
+  /*
+  string message = LOG_shader::get_instance().get_shader_printf();
   gui_console->add_log(message);
   gui_console->add_file("error", "output.txt");
   gui_console->draw_console("truc");
+  */
 
   //---------------------------
 }

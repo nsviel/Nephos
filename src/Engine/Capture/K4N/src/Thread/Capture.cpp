@@ -43,32 +43,42 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
 
   //Init elements
   sensor->param.index = 0;
-  sensor->param.device = k4a::device::open(sensor->param.index);
-  sensor->param.serial_number = sensor->param.device.get_serialnum();
-  sensor->param.version = sensor->param.device.get_version();
+  k4a::device device = k4a::device::open(static_cast<uint32_t>(sensor->param.index));
+  sensor->param.serial_number = device.get_serialnum();
+  sensor->param.version = device.get_version();
 
   //Configuration
   configuration->make_device_configuration(sensor);
-  k4n_calibration->make_capture_calibration(sensor);
+  k4n_calibration->make_capture_calibration(sensor, device);
   k4n_calibration->make_device_transformation(sensor);
 
   //Start camera
-  this->manage_color_setting(sensor);
-  sensor->param.device.start_cameras(&sensor->param.configuration);
+  this->manage_color_setting(sensor, device);
+  device.start_cameras(&sensor->param.configuration);
 
   //Start capture thread
-  k4a::capture capture;
   this->thread_running = true;
   while(thread_running && sensor){
     //Next capture
     tasker->loop_begin();
-    k4a::capture* capture = manage_capture(sensor);
-    if(!capture->is_valid()) continue;
-    delete capture;
-/*
+
+    k4a::capture capture;
+    bool ok = device.get_capture(&capture, std::chrono::milliseconds(2000));
+
+
+  /*  k4a::capture* capture = manage_capture(sensor);
+    if(!capture->is_valid()){
+      delete capture;
+      continue;
+    }
+
+    //Find data from capture
+    //k4a_data->run_thread(sensor, capture);
+  /*
     //Capture data
     //k4a_data->find_data_from_capture(sensor, capture);
     //k4a_cloud->convert_into_cloud(sensor);
+    //delete capture;
 
 
     //Manage event
@@ -145,18 +155,18 @@ void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
 */
   //---------------------------
 }
-void Capture::manage_color_setting(k4n::dev::Sensor* sensor){
+void Capture::manage_color_setting(k4n::dev::Sensor* sensor, k4a::device& device){
   //---------------------------
 
-  sensor->param.device.set_color_control(sensor->color.config.exposure.command, sensor->color.config.exposure.mode, sensor->color.config.exposure.value);
-  sensor->param.device.set_color_control(sensor->color.config.white_balance.command, sensor->color.config.white_balance.mode, sensor->color.config.white_balance.value);
-  sensor->param.device.set_color_control(sensor->color.config.brightness.command, sensor->color.config.brightness.mode, sensor->color.config.brightness.value);
-  sensor->param.device.set_color_control(sensor->color.config.contrast.command, sensor->color.config.contrast.mode, sensor->color.config.contrast.value);
-  sensor->param.device.set_color_control(sensor->color.config.saturation.command, sensor->color.config.saturation.mode, sensor->color.config.saturation.value);
-  sensor->param.device.set_color_control(sensor->color.config.sharpness.command, sensor->color.config.sharpness.mode, sensor->color.config.sharpness.value);
-  sensor->param.device.set_color_control(sensor->color.config.gain.command, sensor->color.config.gain.mode, sensor->color.config.gain.value);
-  sensor->param.device.set_color_control(sensor->color.config.backlight_compensation.command, sensor->color.config.backlight_compensation.mode, sensor->color.config.backlight_compensation.value);
-  sensor->param.device.set_color_control(sensor->color.config.power_frequency.command, sensor->color.config.power_frequency.mode, sensor->color.config.power_frequency.value);
+  device.set_color_control(sensor->color.config.exposure.command, sensor->color.config.exposure.mode, sensor->color.config.exposure.value);
+  device.set_color_control(sensor->color.config.white_balance.command, sensor->color.config.white_balance.mode, sensor->color.config.white_balance.value);
+  device.set_color_control(sensor->color.config.brightness.command, sensor->color.config.brightness.mode, sensor->color.config.brightness.value);
+  device.set_color_control(sensor->color.config.contrast.command, sensor->color.config.contrast.mode, sensor->color.config.contrast.value);
+  device.set_color_control(sensor->color.config.saturation.command, sensor->color.config.saturation.mode, sensor->color.config.saturation.value);
+  device.set_color_control(sensor->color.config.sharpness.command, sensor->color.config.sharpness.mode, sensor->color.config.sharpness.value);
+  device.set_color_control(sensor->color.config.gain.command, sensor->color.config.gain.mode, sensor->color.config.gain.value);
+  device.set_color_control(sensor->color.config.backlight_compensation.command, sensor->color.config.backlight_compensation.mode, sensor->color.config.backlight_compensation.value);
+  device.set_color_control(sensor->color.config.power_frequency.command, sensor->color.config.power_frequency.mode, sensor->color.config.power_frequency.value);
 
   //---------------------------
 }
