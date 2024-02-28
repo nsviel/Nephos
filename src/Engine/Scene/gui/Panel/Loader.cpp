@@ -34,6 +34,7 @@ void Loader::run_panel(){
 
   if(*show_window){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(400, FLT_MAX));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
       this->design_panel();
@@ -73,6 +74,7 @@ void Loader::design_panel(){
     ImGui::EndTabBar();
   }
 
+  ImGui::Separator();
   this->draw_footer();
 
   //---------------------------
@@ -343,36 +345,14 @@ void Loader::draw_bookmark_tab(){
 void Loader::draw_footer(){
   //---------------------------
 
-  ImVec2 window_pos = ImGui::GetWindowPos();
-  ImVec2 window_size = ImGui::GetWindowSize();
-  float padding = file_selection.Size != 0 ? 40 : 20;
-  ImGui::SetNextWindowPos(ImVec2(window_pos.x, window_size.y - padding), ImGuiCond_Always);
-  ImGui::SetNextWindowSize(ImVec2(window_size.x, 100), ImGuiCond_Always);
-
-  // Begin the footer window
-  ImGuiWindowFlags flags;
-  flags |= ImGuiWindowFlags_NoMove;
-  flags |= ImGuiWindowFlags_NoTitleBar;
-  flags |= ImGuiWindowFlags_NoResize;
-  flags |= ImGuiWindowFlags_AlwaysAutoResize;
-  flags |= ImGuiWindowFlags_NoSavedSettings;
-  flags |= ImGuiWindowFlags_NoFocusOnAppearing;
-  flags |= ImGuiWindowFlags_NoNav;
-  flags |= ImGuiWindowFlags_NoNavFocus;
-  flags |= ImGuiWindowFlags_NoScrollbar;
-  flags |= ImGuiWindowFlags_NoDocking;
-  ImGui::Begin("Footer", nullptr, flags);
-
   // Load button
-  if(file_selection.Size != 0){
-    if(ImGui::Button("Load##222")){
-      this->operation_selection();
-      this->file_selection.clear();
-    }
+  if(ImGui::Button("Load##222")){
+    this->operation_selection();
+    this->file_selection.clear();
   }
 
   // Scale new
-  ImGui::Separator();
+  ImGui::SameLine();
   ImGui::SetNextItemWidth(75);
   ImGui::DragFloat("Scale##4567", &param_scaling, 0.1, 0.1, 100, "%.2f x");
 
@@ -383,9 +363,6 @@ void Loader::draw_footer(){
   // Center new
   ImGui::SameLine();
   ImGui::Checkbox("Centered##222", &param_centered);
-
-  // End the footer window
-  ImGui::End();
 
   //---------------------------
 }

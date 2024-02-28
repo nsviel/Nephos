@@ -38,16 +38,18 @@ void Axis::update_glyph(int nb_cell){
   RGB.clear();
 
   //X axis
+  vec4 rgb_x = vec4(0.4f, 0.3f, 0.3f, 1.0f);
   XYZ.push_back(vec3(-nb_cell, 0, z));
   XYZ.push_back(vec3(nb_cell, 0, z));
-  RGB.push_back(color);
-  RGB.push_back(color);
+  RGB.push_back(rgb_x);
+  RGB.push_back(rgb_x);
 
   //Y axis
+  vec4 rgb_y = vec4(0.3f, 0.4f, 0.3f, 1.0f);
   XYZ.push_back(vec3(0, -nb_cell, z));
   XYZ.push_back(vec3(0, nb_cell, z));
-  RGB.push_back(color);
-  RGB.push_back(color);
+  RGB.push_back(rgb_y);
+  RGB.push_back(rgb_y);
 
   //---------------------------
 }
