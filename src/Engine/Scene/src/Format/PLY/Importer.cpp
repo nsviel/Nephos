@@ -24,12 +24,19 @@ utl::file::Entity* Importer::import(std::string path){
   this->face_number = 0;
 
   //Get format type
-  this->Loader_header(path);
+  std::ifstream file(path);
+  this->Loader_header(file);
 
   //Open data
   if (property_format == "ascii"){
-    //Read data
+
+    //Open file
     std::ifstream file(path);
+
+    //Read header
+    this->Loader_header(file);
+
+    //Read data
     if(face_number == 0){
       this->Loader_ascii(file, entity);
     }else{
@@ -40,8 +47,13 @@ utl::file::Entity* Importer::import(std::string path){
 
   }
   else if (property_format == "binary_little_endian"){
+    //Open file
+    std::ifstream file(path, std::ios::binary);
+
+    //Read header
+    this->Loader_header(file);
+
     //Read data
-    std::ifstream file(path);
     if(face_number == 0){
       this->Loader_bin_little_endian(file, entity);
     }else{
@@ -52,8 +64,13 @@ utl::file::Entity* Importer::import(std::string path){
     file.close();
   }
   else if (property_format == "binary_big_endian"){
+    //Open file
+    std::ifstream file(path, std::ios::binary);
+
+    //Read header
+    this->Loader_header(file);
+
     //Read data
-    std::ifstream file(path);
     if(face_number == 0){
       this->Loader_bin_big_endian(file, entity);
     }else{
@@ -69,7 +86,7 @@ utl::file::Entity* Importer::import(std::string path){
 }
 
 //Loader data
-void Importer::Loader_header(std::string path){
+void Importer::Loader_header(std::ifstream& file){
   this->property_name.clear();
   this->property_type.clear();
   this->property_size.clear();
@@ -79,8 +96,6 @@ void Importer::Loader_header(std::string path){
   this->is_normal = false;
   this->is_color = false;
   //---------------------------
-
-  std::ifstream file(path);
 
   // Separate the header
   std::string line, h1, h2, h3, h4;

@@ -27,7 +27,7 @@ public:
 
 private:
   //Loader data
-  void Loader_header(std::string path);
+  void Loader_header(std::ifstream& file);
   void Loader_ascii(std::ifstream& file, utl::file::Entity* entity);
   void Loader_ascii_withface(std::ifstream& file, utl::file::Entity* entity);
   void Loader_bin_little_endian(std::ifstream& file, utl::file::Entity* entity);
