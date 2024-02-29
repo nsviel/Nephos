@@ -19,8 +19,8 @@ Database::~Database(){}
 void Database::init_set(){
   //---------------------------
 
-  data_set->add_new_set("World");
-  data_set->add_new_set("Scene");
+  data_set->create_subset("World");
+  data_set->create_subset("Scene");
 
   //---------------------------
 }

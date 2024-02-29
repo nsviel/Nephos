@@ -70,7 +70,7 @@ void Scene::draw_button(){
   utl::type::Set* set = entity->set_parent;
   if(ImGui::Button(ICON_FA_TRASH "##supressionentity")){
     if(set->is_locked){
-      sce_scene->delete_set(set);
+      sce_scene->delete_subset(set);
     }else if(set->is_locked){
       sce_scene->delete_scene_entity(set->selected_entity);
     }

@@ -53,32 +53,6 @@ void Set::reset(){
   //---------------------------
 }
 
-//Set function
-void Set::add_set(utl::type::Set* set){
-  //---------------------------
-
-  set->set_parent = this;
-  list_subset.push_back(set);
-  this->nb_set++;
-  this->select_next_entity();
-  if(set->nb_entity != 0){
-    this->selected_set = set;
-  }
-
-  //---------------------------
-}
-void Set::add_new_set(std::string name){
-  //---------------------------
-
-  utl::type::Set* set = new utl::type::Set(name);
-  set->set_parent = this;
-  list_subset.push_back(set);
-  this->nb_set++;
-  this->selected_set = set;
-
-  //---------------------------
-}
-
 //Entity function
 void Set::insert_entity(utl::type::Entity* entity){
   if(entity == nullptr) return;
@@ -199,6 +173,80 @@ void Set::set_selected_entity(utl::type::Entity* entity_to_select){
 
   //---------------------------
 }
+utl::type::Entity* Set::get_entity(std::string name){
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(),i);
+    if(entity->name == name){
+      return entity;
+    }
+  }
+
+  std::cout<<"[error] Entity not found ["<<name<<"]"<<std::endl;
+
+  //---------------------------
+  return nullptr;
+}
+
+//Subset function
+void Set::add_subset(utl::type::Set* subset){
+  //---------------------------
+
+  subset->set_parent = this;
+  list_subset.push_back(subset);
+  this->nb_set++;
+  this->select_next_entity();
+  if(subset->nb_entity != 0){
+    this->selected_set = subset;
+  }
+
+  //---------------------------
+}
+utl::type::Set* Set::create_subset(std::string name){
+  //---------------------------
+
+  utl::type::Set* subset = new utl::type::Set(name);
+  subset->set_parent = this;
+  list_subset.push_back(subset);
+  this->nb_set++;
+  this->selected_set = subset;
+
+  //---------------------------
+  return subset;
+}
+utl::type::Set* Set::get_subset(std::string name){
+  //---------------------------
+
+  for(int i=0; i<list_subset.size(); i++){
+    utl::type::Set* subset = *next(list_subset.begin(),i);
+    if(subset->name == name){
+      return subset;
+    }
+  }
+
+  std::cout<<"[error] Set not found ["<<name<<"]"<<std::endl;
+
+  //---------------------------
+  return nullptr;
+}
+utl::type::Set* Set::get_or_create_subset(std::string name){
+  utl::type::Set* subset = nullptr;
+  //---------------------------
+
+  for(int i=0; i<list_subset.size(); i++){
+    utl::type::Set* subset_in_list = *next(list_subset.begin(),i);
+    if(subset_in_list->name == name){
+      subset = subset_in_list;
+      break;
+    }
+  }
+
+  subset = create_subset(name);
+
+  //---------------------------
+  return subset;
+}
 
 //Subfunction
 int Set::get_nb_entity(){
@@ -245,35 +293,7 @@ int Set::compute_number_point(){
   //---------------------------
   return nb_point;
 }
-utl::type::Set* Set::get_set(std::string name){
-  //---------------------------
 
-  for(int i=0; i<list_subset.size(); i++){
-    utl::type::Set* set = *next(list_subset.begin(),i);
-    if(set->name == name){
-      return set;
-    }
-  }
 
-  std::cout<<"[error] Set not found ["<<name<<"]"<<std::endl;
-
-  //---------------------------
-  return nullptr;
-}
-utl::type::Entity* Set::get_entity(std::string name){
-  //---------------------------
-
-  for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(),i);
-    if(entity->name == name){
-      return entity;
-    }
-  }
-
-  std::cout<<"[error] Entity not found ["<<name<<"]"<<std::endl;
-
-  //---------------------------
-  return nullptr;
-}
 
 }

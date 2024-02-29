@@ -20,10 +20,6 @@ public:
   void update();
   void reset();
 
-  //Set function
-  void add_set(utl::type::Set* set);
-  void add_new_set(std::string name);
-
   //Entity function
   void insert_entity(utl::type::Entity* entity);
   void delete_entity(utl::type::Entity* entity);
@@ -31,13 +27,18 @@ public:
   void delete_entity_selected();
   void select_next_entity();
   void set_selected_entity(utl::type::Entity* entity);
+  utl::type::Entity* get_entity(std::string name);
+
+  //Subset function
+  void add_subset(utl::type::Set* set);
+  utl::type::Set* create_subset(std::string name);
+  utl::type::Set* get_subset(std::string name);
+  utl::type::Set* get_or_create_subset(string name);
 
   //Subfunction
   void set_visibility(bool value);
   int get_nb_entity();
   int compute_number_point();
-  utl::type::Set* get_set(std::string name);
-  utl::type::Entity* get_entity(std::string name);
 
   inline bool is_selected_entity(utl::type::Entity* entity){return entity->UID == selected_entity->UID;}
   inline utl::type::Entity* get_selected_entity(){return selected_entity;}

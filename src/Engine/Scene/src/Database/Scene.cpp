@@ -26,10 +26,10 @@ Scene::~Scene(){}
 //Main function
 void Scene::init(){
   //---------------------------
-  
+
   //Get scene set
   utl::type::Set* data_set = sce_database->get_data_set();
-  this->set_scene = data_set->get_set("Scene");
+  this->set_scene = data_set->get_subset("Scene");
 
   //---------------------------
 }
@@ -108,7 +108,7 @@ void Scene::assign_entity_UID(utl::type::Entity* entity){
 }
 
 //Set function
-void Scene::delete_set(utl::type::Set* set){
+void Scene::delete_subset(utl::type::Set* set){
   if(set->is_suppressible == false) return;
   //---------------------------
 
@@ -117,6 +117,13 @@ void Scene::delete_set(utl::type::Set* set){
 
   //Delete it from database and engine
   //set_scene->delete_scene_entity(entity);
+
+  //---------------------------
+}
+utl::type::Set* Scene::get_or_create_subset(string name){
+  //---------------------------
+
+
 
   //---------------------------
 }
