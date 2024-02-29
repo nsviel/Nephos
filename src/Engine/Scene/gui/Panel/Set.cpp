@@ -9,6 +9,8 @@ namespace eng::scene::gui{
 Set::Set(bool* show_window){
   //---------------------------
 
+  this->sce_set = new eng::scene::Set();
+
   this->panel_show = show_window;
   this->panel_name = "Set";
   this->item_width = 100;
@@ -81,8 +83,9 @@ void Set::set_parameter(utl::type::Set* set){
     //Number of object
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Point No"); ImGui::TableNextColumn();
-    string nb_point = math::thousand_separator(set->compute_number_point());
-    ImGui::Text("%s", nb_point.c_str());
+    int nb_point = sce_set->compute_number_point(set);
+    string number = math::thousand_separator(nb_point);
+    ImGui::Text("%s", number.c_str());
 
     ImGui::EndTable();
   }

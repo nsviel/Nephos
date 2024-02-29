@@ -145,26 +145,6 @@ utl::type::Set* Set::get_or_create_subset(std::string name){
 }
 
 //Subfunction
-int Set::compute_number_point(){
-  int nb_point = 0;
-  //---------------------------
-
-  // Add the points in the current set
-  for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
-    utl::type::Data* data = entity->get_data();
-    nb_point += data->point.size;
-  }
-
-  // Recursively add points from nested subsets
-  for(int i=0; i<list_subset.size(); i++){
-    utl::type::Set* subset = *next(list_subset.begin(), i);
-    nb_point += subset->compute_number_point();
-  }
-
-  //---------------------------
-  return nb_point;
-}
 void Set::set_visibility(bool value){
   //---------------------------
 

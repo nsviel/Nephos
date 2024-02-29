@@ -30,7 +30,6 @@ public:
 
   //Subfunction
   void set_visibility(bool value);
-  int compute_number_point();
 
   inline bool is_selected_entity(utl::type::Entity* entity){return entity->UID == selected_entity->UID;}
   inline utl::type::Entity* get_selected_entity(){return selected_entity;}

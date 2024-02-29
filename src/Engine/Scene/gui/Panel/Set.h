@@ -2,6 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
+namespace eng::scene{class Set;}
+
 
 namespace eng::scene::gui{
 
@@ -23,6 +25,8 @@ public:
   inline void set_selected_set(utl::type::Set* set){this->set_selected = set;}
 
 private:
+  eng::scene::Set* sce_set;
+
   utl::type::Set* set_selected;
   string panel_name;
   bool* panel_show;;
