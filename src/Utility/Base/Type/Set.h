@@ -17,10 +17,9 @@ public:
 
 public:
   //Subset function
-  void add_subset(utl::type::Set* set);
-  utl::type::Set* create_subset(std::string name);
+
   utl::type::Set* get_subset(std::string name);
-  utl::type::Set* get_or_create_subset(string name);
+
 
   //Subfunction
   void set_visibility(bool value);
@@ -43,7 +42,7 @@ public:
   //Data
   utl::type::Pose pose;
   utl::type::Entity* selected_entity = nullptr;
-  utl::type::Set* selected_set = this;
+  utl::type::Set* selected_subset = this;
   utl::type::Set* set_parent = nullptr;
   std::list<utl::type::Entity*> list_entity;
   std::list<utl::type::Set*> list_subset;

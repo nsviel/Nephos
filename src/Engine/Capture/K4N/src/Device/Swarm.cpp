@@ -152,7 +152,7 @@ k4n::dev::Master* Swarm::get_or_create_master(string name){
   k4n::dev::Master* master = new k4n::dev::Master();
   master->name = name;
   master->is_lockable = true;
-  set_scene->add_subset(master);
+  sce_set->add_subset(set_scene, master);
   struct_k4n->list_master.push_back(master);
   struct_k4n->selected_master = master;
 

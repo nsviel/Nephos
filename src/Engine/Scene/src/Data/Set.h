@@ -17,6 +17,12 @@ public:
   void update_set(utl::type::Set* set);
   void reset_set(utl::type::Set* set);
 
+  //Subset function
+  void add_subset(utl::type::Set* set, utl::type::Set* subset);
+  utl::type::Set* create_subset(utl::type::Set* set, std::string name);
+  utl::type::Set* get_subset(utl::type::Set* set, std::string name);
+  utl::type::Set* get_or_create_subset(utl::type::Set* set, string name);
+
   //Entity function
   void insert_entity(utl::type::Set* set, utl::type::Entity* entity);
   void delete_entity(utl::type::Set* set, utl::type::Entity* entity);

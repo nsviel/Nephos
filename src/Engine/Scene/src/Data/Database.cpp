@@ -20,10 +20,10 @@ Database::~Database(){}
 void Database::init(){
   //---------------------------
 
-  set_world = set_main->create_subset("World");
+  set_world = sce_set->create_subset(set_main, "World");
   set_world->is_suppressible = false;
 
-  set_scene = set_main->create_subset("Scene");
+  set_scene = sce_set->create_subset(set_main, "Scene");
   set_scene->is_suppressible = false;
 
   //---------------------------

@@ -76,7 +76,7 @@ utl::type::Set* Loader::load_set(utl::file::Data* data){
   //---------------------------
 
   utl::type::Set* set_scene = sce_database->get_set_scene();
-  utl::type::Set* subset = set_scene->get_or_create_subset(set->name);
+  utl::type::Set* subset = sce_set->get_or_create_subset(set_scene, set->name);
 
   for(int i=0; i<set->vec_data.size(); i++){
     utl::entity::Object* object = create_object(set->vec_data[i]);

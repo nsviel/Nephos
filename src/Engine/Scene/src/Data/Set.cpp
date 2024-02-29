@@ -50,6 +50,67 @@ void Set::reset_set(utl::type::Set* set){
   //---------------------------
 }
 
+//Subset function
+void Set::add_subset(utl::type::Set* set, utl::type::Set* subset){
+  //---------------------------
+
+  subset->set_parent = set;
+  set->list_subset.push_back(subset);
+  set->nb_set++;
+
+  if(subset->nb_entity != 0){
+    set->selected_subset = subset;
+  }
+
+  //---------------------------
+}
+utl::type::Set* Set::create_subset(utl::type::Set* set, std::string name){
+  //---------------------------
+
+  utl::type::Set* subset = new utl::type::Set(name);
+  subset->set_parent = set;
+  subset->is_suppressible = true;
+
+  set->nb_set++;
+  set->selected_subset = subset;
+  set->list_subset.push_back(subset);
+
+  //---------------------------
+  return subset;
+}
+utl::type::Set* Set::get_subset(utl::type::Set* set, std::string name){
+  //---------------------------
+
+  for(int i=0; i<set->list_subset.size(); i++){
+    utl::type::Set* subset = *next(set->list_subset.begin(),i);
+    if(subset->name == name){
+      return subset;
+    }
+  }
+
+  std::cout<<"[error] Subset not found ["<<name<<"]"<<std::endl;
+
+  //---------------------------
+  return nullptr;
+}
+utl::type::Set* Set::get_or_create_subset(utl::type::Set* set, std::string name){
+  utl::type::Set* subset = nullptr;
+  //---------------------------
+
+  for(int i=0; i<set->list_subset.size(); i++){
+    utl::type::Set* subset_in_list = *next(set->list_subset.begin(),i);
+    if(subset_in_list->name == name){
+      subset = subset_in_list;
+      break;
+    }
+  }
+
+  subset = create_subset(set, name);
+
+  //---------------------------
+  return subset;
+}
+
 //Entity function
 void Set::insert_entity(utl::type::Set* set, utl::type::Entity* entity){
   if(entity == nullptr) return;
