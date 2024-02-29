@@ -72,7 +72,8 @@ void Scene::draw_button(){
     if(set->is_locked){
       sce_scene->delete_subset(set);
     }else if(set->is_locked){
-      sce_scene->delete_scene_entity(set->selected_entity);
+      utl::type::Set* set_scene = sce_scene->get_set_scene();
+      set_scene->delete_entity(set->selected_entity);
     }
   }
 
@@ -186,7 +187,7 @@ int Scene::tree_set(utl::type::Set* set) {
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
   if(set->is_suppressible && ImGui::SmallButton("X##tree_set")){
-  //  sce_scene->delete_scene_entity(entity);
+
   }
   ImGui::PopStyleColor(2);
 
@@ -270,7 +271,8 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
   if(entity->is_suppressible && ImGui::SmallButton("X##tree_entity")){
-    sce_scene->delete_scene_entity(entity);
+    utl::type::Set* set_scene = sce_scene->get_set_scene();
+    set_scene->delete_entity(entity);
   }
   ImGui::PopStyleColor(2);
 

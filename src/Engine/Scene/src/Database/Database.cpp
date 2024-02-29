@@ -19,11 +19,11 @@ Database::~Database(){}
 void Database::init_set(){
   //---------------------------
 
-  utl::type::Set* world = data_set->create_subset("World");
-  world->is_suppressible = false;
+  set_world = data_set->create_subset("World");
+  set_world->is_suppressible = false;
 
-  utl::type::Set* scene = data_set->create_subset("Scene");
-  scene->is_suppressible = false;
+  set_scene = data_set->create_subset("Scene");
+  set_scene->is_suppressible = false;
 
   //---------------------------
 }

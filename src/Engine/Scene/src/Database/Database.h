@@ -18,11 +18,13 @@ public:
   void init_set();
   void assign_UID(utl::type::Entity* entity);
   void assign_UID(utl::type::Data* entity);
-string name = "stfu";
+
   inline utl::type::Set* get_data_set(){return data_set;}
 
 private:
   utl::type::Set* data_set;
+  utl::type::Set* set_scene;
+  utl::type::Set* set_world;
 };
 
 }

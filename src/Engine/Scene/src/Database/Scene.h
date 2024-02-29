@@ -27,7 +27,6 @@ public:
   //Entity function
   void import_entity(utl::type::Entity* entity);
   void init_entity(utl::type::Entity* entity);
-  void delete_scene_entity(utl::type::Entity* entity);
   void assign_entity_UID(utl::type::Entity* entity);
 
   //Set function
