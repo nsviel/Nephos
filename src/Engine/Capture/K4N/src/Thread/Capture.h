@@ -11,6 +11,7 @@ namespace k4n::data{class Data;}
 namespace k4n::data{class Cloud;}
 namespace k4n::config{class Configuration;}
 namespace k4n::config{class Calibration;}
+namespace k4n::config{class USB;}
 
 
 namespace k4n::thread{
@@ -42,6 +43,7 @@ private:
   k4n::data::Cloud* k4a_cloud;
   k4n::config::Configuration* configuration;
   k4n::config::Calibration* k4n_calibration;
+  k4n::config::USB* k4n_usb;
 
   std::thread thread;
   bool thread_running = false;

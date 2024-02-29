@@ -1,0 +1,4 @@
+#Reset USB ports: 
+
+sudo rmmod usbcore
+sudo modprobe usbcore

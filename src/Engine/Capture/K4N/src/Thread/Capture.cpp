@@ -14,6 +14,7 @@ Capture::Capture(){
   this->k4a_cloud = new k4n::data::Cloud();
   this->configuration = new k4n::config::Configuration();
   this->k4n_calibration = new k4n::config::Calibration();
+  this->k4n_usb = new k4n::config::USB();
 
   //---------------------------
 }
@@ -43,60 +44,46 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
 
   //Init elements
   sensor->param.index = 0;
-  k4a::device device = k4a::device::open(sensor->param.index);
-  /*sensor->param.serial_number = device.get_serialnum();
-  sensor->param.version = device.get_version();
+  sensor->param.device = k4a::device::open(sensor->param.index);
+  sensor->param.serial_number = sensor->param.device.get_serialnum();
+  sensor->param.version = sensor->param.device.get_version();
 
   //Configuration
   configuration->make_device_configuration_initial(sensor);
-  k4n_calibration->make_capture_calibration(sensor, device);
+  k4n_calibration->make_capture_calibration(sensor, sensor->param.device);
   k4n_calibration->make_device_transformation(sensor);
 
   //Start camera
-  //this->manage_color_setting(sensor, device);*/
+//  this->manage_color_setting(sensor, device);
   k4a_device_configuration_t config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
   config.camera_fps = K4A_FRAMES_PER_SECOND_30;
   config.depth_mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
-  config.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  config.color_resolution = K4A_COLOR_RESOLUTION_720P;
-  device.start_cameras(&config);
-
-
-//PROBLEM DE USB -> maybe trouver un moyen de reset els port use / reinstaller usb / truc ?
+  // NE MARCHE QU'EN YUY2 !!!!!!!!!!!!!!
+  //En faite ne marche que dans certaine configurations
+  //du coup vérifier quelles config marchent pas et les empécher
+  
+  config.color_format = K4A_IMAGE_FORMAT_COLOR_YUY2;
+  config.color_resolution = K4A_COLOR_RESOLUTION_1080P;
+  sensor->param.device.start_cameras(&config);
 
   //Start capture thread
   this->thread_running = true;
   while(thread_running){
     //Next capture
-    //tasker->loop_begin();
-
-sayHello();
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-
-    //k4a::capture capture;
-    //bool ok = device.get_capture(&capture, std::chrono::milliseconds(2000));
-
-
-  /*  k4a::capture* capture = manage_capture(sensor);
+    tasker->loop_begin();
+    k4a::capture* capture = manage_capture(sensor);
     if(!capture->is_valid()){
       delete capture;
       continue;
     }
 
     //Find data from capture
-    //k4a_data->run_thread(sensor, capture);
-  /*
-    //Capture data
-    //k4a_data->find_data_from_capture(sensor, capture);
-    //k4a_cloud->convert_into_cloud(sensor);
-    //delete capture;
-
+    k4a_data->run_thread(sensor, capture);
 
     //Manage event
     this->manage_pause(sensor);
-    this->manage_recording(sensor, capture);*/
-    //tasker->loop_end();
+    this->manage_recording(sensor, capture);
+    tasker->loop_end();
   }
 
   //---------------------------

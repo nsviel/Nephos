@@ -17,7 +17,7 @@ void Configuration::make_device_configuration(k4n::dev::Sensor* sensor){
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
-  configuration.color_format = sensor->color.config.format;
+  configuration.color_format = K4A_IMAGE_FORMAT_COLOR_YUY2;//sensor->color.config.format;
   configuration.color_resolution = sensor->color.config.enabled ? sensor->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
   configuration.depth_mode = sensor->depth.config.enabled ? sensor->depth.config.mode : K4A_DEPTH_MODE_OFF;
   configuration.camera_fps = sensor->param.fps.mode;
