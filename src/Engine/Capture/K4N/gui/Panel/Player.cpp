@@ -188,7 +188,7 @@ void Player::player_close(k4n::dev::Master* master){
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
   if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-    sce_set->delete_entity_selected(master);
+    sce_set->delete_entity(master, master->selected_entity);
   }
   ImGui::PopStyleColor();
 

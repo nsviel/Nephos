@@ -392,7 +392,7 @@ void Loader::operation_selection(){
 
   for(int i=0; i<vec_path.size(); i++){
     utl::type::Set* set = sce_loader->load_data(vec_path[i]);
-    utl::type::Entity* entity = set->get_selected_entity();
+    utl::type::Entity* entity = set->selected_entity;
 
     if(entity != nullptr){
       this->operation_entity(entity);
@@ -423,7 +423,7 @@ void Loader::operation_selection(string path){
     }
 
     utl::type::Set* set = sce_loader->load_data(path);
-    utl::type::Entity* entity = set->get_selected_entity();
+    utl::type::Entity* entity = set->selected_entity;
     if(entity != nullptr){
       this->operation_entity(entity);
     }
