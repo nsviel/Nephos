@@ -15,6 +15,7 @@ Scene::Scene(eng::scene::Node* node_scene, bool* show_window){
 
   this->node_engine = node_scene->get_node_engine();
   this->sce_database = node_scene->get_scene_database();
+  this->sce_set = new eng::scene::Set();
   this->rnd_set = new eng::scene::gui::Set(&show_panel_set);
   this->rnd_object = new eng::scene::gui::Entity(node_scene, &show_panel_entity);
 
@@ -169,7 +170,8 @@ int Scene::tree_set(utl::type::Set* set) {
   int nb_row = 0;
   //---------------------------
 
-  if(set->is_suppressible && set->get_nb_entity() == 0) return 0;
+  int nb_entity = sce_set->compute_number_entity(set);
+  if(set->is_suppressible && nb_entity == 0) return 0;
 
   //Set node elements
   ImGuiTreeNodeFlags flag_node;

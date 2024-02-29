@@ -10,7 +10,7 @@ Database::Database(eng::scene::Node* node_scene){
   //---------------------------
 
   this->set_main = new utl::type::Set("Data");
-  this->sce_set = new eng::scene::Set(node_scene);
+  this->sce_set = new eng::scene::Set();
 
   //---------------------------
 }

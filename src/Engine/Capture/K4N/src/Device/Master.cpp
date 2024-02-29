@@ -2,6 +2,7 @@
 
 #include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace k4n::dev{
@@ -9,6 +10,8 @@ namespace k4n::dev{
 //Constructor / Destructor
 Master::Master(){
   //---------------------------
+
+  this->sce_set = new eng::scene::Set();
 
   //this->engine = engine;
   this->type = "k4n::device::Master";
@@ -80,7 +83,7 @@ void Master::manage_suppression(k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(is_locked){
-    this->delete_entity_all();
+    sce_set->delete_entity_all(this);
   }else{
     this->delete_entity(sensor);
   }

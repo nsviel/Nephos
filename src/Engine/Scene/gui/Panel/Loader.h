@@ -8,6 +8,7 @@ namespace eng::scene{class Database;}
 namespace eng::scene{class Loader;}
 namespace eng::scene{class Bookmark;}
 namespace eng::scene{class Format;}
+namespace eng::scene{class Set;}
 namespace ope{class Transformation;}
 namespace ope{class Operation;}
 
@@ -46,6 +47,7 @@ private:
   eng::scene::Loader* sce_loader;
   eng::scene::Bookmark* sce_bookmark;
   eng::scene::Format* sce_format;
+  eng::scene::Set* sce_set;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 

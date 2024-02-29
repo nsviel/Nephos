@@ -2,6 +2,7 @@
 
 #include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace k4n::gui{
@@ -12,6 +13,7 @@ Player::Player(k4n::Node* node_k4n, bool* show_window){
 
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
+  this->sce_set = new eng::scene::Set();
   this->gui_capture = new k4n::gui::Capture(node_k4n);
   this->gui_playback = new k4n::gui::Playback(node_k4n);
   this->gui_recorder = new k4n::gui::Recorder(node_k4n);
@@ -186,7 +188,7 @@ void Player::player_close(k4n::dev::Master* master){
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
   if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-    master->delete_entity_selected();
+    sce_set->delete_entity_selected(master);
   }
   ImGui::PopStyleColor();
 

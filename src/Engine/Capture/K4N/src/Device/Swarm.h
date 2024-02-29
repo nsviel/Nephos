@@ -5,6 +5,7 @@
 namespace prf{class Manager;}
 namespace eng{class Node;}
 namespace eng::scene{class Database;}
+namespace eng::scene{class Set;}
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Transformation;}
@@ -40,6 +41,7 @@ public:
 private:
   prf::Manager* profiler;
   eng::scene::Database* sce_database;
+  eng::scene::Set* sce_set;
   k4n::utils::Transformation* k4n_transfo;
   k4n::structure::Struct_k4n* struct_k4n;
 };

@@ -19,9 +19,6 @@ public:
   //Entity function
   void insert_entity(utl::type::Entity* entity);
   void delete_entity(utl::type::Entity* entity);
-  void delete_entity_all();
-  void delete_entity_selected();
-  void select_next_entity();
   void set_selected_entity(utl::type::Entity* entity);
   utl::type::Entity* get_entity(std::string name);
 
@@ -33,7 +30,6 @@ public:
 
   //Subfunction
   void set_visibility(bool value);
-  int get_nb_entity();
   int compute_number_point();
 
   inline bool is_selected_entity(utl::type::Entity* entity){return entity->UID == selected_entity->UID;}

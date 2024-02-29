@@ -14,6 +14,7 @@ Loader::Loader(eng::scene::Node* node_scene, bool* show_window){
 
   this->sce_database = node_scene->get_scene_database();
   this->sce_loader = node_scene->get_scene_loader();
+  this->sce_set = new eng::scene::Set();
   this->sce_format = node_scene->get_scene_format();
   this->sce_bookmark = node_scene->get_scene_bookmark();
   this->ope_transform = new ope::Transformation();
@@ -386,7 +387,7 @@ void Loader::operation_selection(){
   //Apply loading and operations
   if(param_remove_old){
     utl::type::Set* set_scene = sce_database->get_set_scene();
-    set_scene->delete_entity_all();
+    sce_set->delete_entity_all(set_scene);
   }
 
   for(int i=0; i<vec_path.size(); i++){
@@ -418,7 +419,7 @@ void Loader::operation_selection(string path){
     //Apply loading and operations
     if(param_remove_old){
       utl::type::Set* set_scene = sce_database->get_set_scene();
-      set_scene->delete_entity_all();
+      sce_set->delete_entity_all(set_scene);
     }
 
     utl::type::Set* set = sce_loader->load_data(path);

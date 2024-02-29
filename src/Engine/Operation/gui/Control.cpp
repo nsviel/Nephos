@@ -21,6 +21,7 @@ Control::Control(ope::Node* node_operation){
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
   this->sce_database = node_scene->get_scene_database();
+  this->sce_set = new eng::scene::Set();
   this->ope_operation = new ope::Operation();
   this->ope_wheel = node_operation->get_ope_wheel();
 
@@ -49,7 +50,7 @@ void Control::control_keyboard_oneAction(){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
       utl::type::Set* set_scene = sce_database->get_set_scene();
-      set_scene->select_next_entity();
+      sce_set->select_entity_next(set_scene);
       break;
     }
 

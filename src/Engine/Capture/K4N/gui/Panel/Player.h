@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+namespace eng::scene{class Set;}
 namespace eng{class Node;}
 namespace k4n{class Node;}
 namespace k4n::gui{class Capture;}
@@ -45,6 +46,8 @@ public:
   ImGuiTabItemFlags get_tab_flag(k4n::dev::Sensor* sensor);
 
 private:
+  eng::scene::Set* sce_set;
+  
   k4n::Node* node_k4n;
   k4n::gui::Capture* gui_capture;
   k4n::gui::Playback* gui_playback;

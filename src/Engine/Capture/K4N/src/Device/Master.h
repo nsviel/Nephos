@@ -3,6 +3,7 @@
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
 
+namespace eng::scene{class Set;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class Player;}
 namespace k4n::structure{class Operation;}
@@ -42,6 +43,8 @@ public:
   void visibility_normal();
 
 public:
+  eng::scene::Set* sce_set;
+
   k4n::structure::Player player;
   k4n::structure::Operation operation;
   k4n::structure::Recorder recorder;

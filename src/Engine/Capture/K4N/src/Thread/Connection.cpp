@@ -1,6 +1,7 @@
 #include "Connection.h"
 
 #include <Utility/Namespace.h>
+#include <Scene/Namespace.h>
 #include <K4N/Namespace.h>
 #include <chrono>
 
@@ -12,6 +13,7 @@ Connection::Connection(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_swarm = node_k4n->get_k4n_swarm();
+  this->sce_set = new eng::scene::Set();
 
   //---------------------------
 }
@@ -84,7 +86,7 @@ void Connection::manage_new_dev(int nb_new_dev){
 
   //If previsouly no device, we need to supress all default playback
   if(nb_dev == 0){
-    master->delete_entity_all();
+    sce_set->delete_entity_all(master);
   }
 
   //Create required number of new devices
@@ -100,7 +102,7 @@ void Connection::manage_less_dev(int nb_less_dev){
   k4n::dev::Master* master = k4n_swarm->get_master_by_name("capture");
 
   //Suppress all devices
-  master->delete_entity_all();
+  sce_set->delete_entity_all(master);
 
   //If no real device create virtual one
   uint32_t current_nb_dev = k4a_device_get_installed_count();

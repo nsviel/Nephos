@@ -18,6 +18,7 @@ Swarm::Swarm(k4n::structure::Struct_k4n* struct_k4n){
   this->struct_k4n = struct_k4n;
   this->profiler = node_profiler->get_prf_manager();
   this->sce_database = node_scene->get_scene_database();
+  this->sce_set = new eng::scene::Set();
   this->k4n_transfo = new k4n::utils::Transformation();
 
   //---------------------------
@@ -62,7 +63,7 @@ void Swarm::create_sensor_playback(utl::file::Entity& file){
 
   //Associated master
   k4n::dev::Master* master = struct_k4n->selected_master;
-  int index = master->get_nb_entity();
+  int index = sce_set->compute_number_entity(master);
 
   //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
@@ -88,7 +89,7 @@ void Swarm::create_sensor_capture(){
 
   //Associated master
   k4n::dev::Master* master = get_or_create_master("Capture");
-  int index = master->get_nb_entity();
+  int index = sce_set->compute_number_entity(master);
 
   //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
@@ -120,7 +121,7 @@ void Swarm::manage_resynchronization(){
 void Swarm::close_master(k4n::dev::Master* master){
   //---------------------------
 
-  master->delete_entity_all();
+  sce_set->delete_entity_all(master);
   struct_k4n->list_master.remove(master);
 
   //---------------------------
@@ -130,7 +131,7 @@ void Swarm::close_all_master(){
 
   for(int i=0; i<struct_k4n->list_master.size(); i++){
     k4n::dev::Master* master = *std::next(struct_k4n->list_master.begin(), i);
-    master->delete_entity_all();
+    sce_set->delete_entity_all(master);
   }
 
   //---------------------------

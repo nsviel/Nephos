@@ -4,6 +4,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::dev{class Swarm;}
+namespace eng::scene{class Set;}
 
 
 namespace k4n::thread{
@@ -27,6 +28,7 @@ public:
 
 private:
   k4n::dev::Swarm* k4n_swarm;
+  eng::scene::Set* sce_set;
 
   std::thread thread;
   bool thread_running = false;
