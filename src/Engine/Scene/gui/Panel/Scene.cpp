@@ -132,7 +132,7 @@ void Scene::draw_window_background(){
   //-------------------------------
 }
 void Scene::draw_file_tree(){
-  utl::type::Set* data_set = sce_database->get_data_set();
+  utl::type::Set* data_set = sce_database->get_set_main();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;

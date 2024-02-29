@@ -28,13 +28,13 @@ void Scene::init(){
   //---------------------------
 
   //Get scene set
-  utl::type::Set* data_set = sce_database->get_data_set();
+  utl::type::Set* data_set = sce_database->get_set_main();
   this->set_scene = data_set->get_subset("Scene");
 
   //---------------------------
 }
 void Scene::loop(){
-  utl::type::Set* data_set = sce_database->get_data_set();
+  utl::type::Set* data_set = sce_database->get_set_main();
   //----------------------------
 
   data_set->update();
@@ -42,7 +42,7 @@ void Scene::loop(){
   //----------------------------
 }
 void Scene::reset(){
-  utl::type::Set* data_set = sce_database->get_data_set();
+  utl::type::Set* data_set = sce_database->get_set_main();
   //---------------------------
 
   data_set->reset();

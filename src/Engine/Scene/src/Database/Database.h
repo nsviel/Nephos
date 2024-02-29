@@ -15,14 +15,18 @@ public:
   ~Database();
 
   //Main function
-  void init_set();
-  void assign_UID(utl::type::Entity* entity);
-  void assign_UID(utl::type::Data* entity);
+  void init();
 
-  inline utl::type::Set* get_data_set(){return data_set;}
+  //Subfunction
+  void assign_UID(utl::type::Entity* entity);
+  void assign_UID(utl::type::Data* data);
+
+  inline utl::type::Set* get_set_main(){return set_main;}
+  inline utl::type::Set* get_set_scene(){return set_scene;}
+  inline utl::type::Set* get_set_world(){return set_world;}
 
 private:
-  utl::type::Set* data_set;
+  utl::type::Set* set_main;
   utl::type::Set* set_scene;
   utl::type::Set* set_world;
 };

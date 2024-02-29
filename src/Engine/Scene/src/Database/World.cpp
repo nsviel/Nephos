@@ -26,7 +26,7 @@ void World::init(){
   //---------------------------
 
   //Get scene set
-  utl::type::Set* data_set = sce_database->get_data_set();
+  utl::type::Set* data_set = sce_database->get_set_main();
   this->set_world = data_set->get_subset("World");
 
   //---------------------------
