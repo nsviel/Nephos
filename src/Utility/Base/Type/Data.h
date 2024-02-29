@@ -74,7 +74,7 @@ struct Data{
 
   //Infos
   std::string name = "";
-  std::string path_data = "";
+  std::string path = "";
   std::string path_save = "";
   std::string path_texture = "";
   std::string file_format = "";

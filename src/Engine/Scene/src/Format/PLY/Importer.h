@@ -14,6 +14,13 @@
 
 namespace format::ply{
 
+enum Property{
+  ASCII = 0,
+  BINARY_LITTLE_ENDIAN = 1,
+  BINARY_BIG_ENDIAN = 2,
+  TREE = 3,
+};
+
 class Importer : public utl::type::Importer
 {
 public:
@@ -27,19 +34,21 @@ public:
 
 private:
   //Loader data
-  void Loader_header(std::ifstream& file);
-  void Loader_ascii(std::ifstream& file, utl::file::Entity* entity);
-  void Loader_ascii_withface(std::ifstream& file, utl::file::Entity* entity);
-  void Loader_bin_little_endian(std::ifstream& file, utl::file::Entity* entity);
-  void Loader_bin_little_endian_withface(std::ifstream& file, utl::file::Entity* entity);
-  void Loader_bin_big_endian(std::ifstream& file, utl::file::Entity* entity);
-  void Loader_bin_big_endian_withface(std::ifstream& file, utl::file::Entity* entity);
+  void parse_header(std::ifstream& file);
+  void parse_ascii(std::ifstream& file, utl::file::Entity* entity);
+  void parse_ascii_withface(std::ifstream& file, utl::file::Entity* entity);
+  void parse_bin_little_endian(std::ifstream& file, utl::file::Entity* entity);
+  void parse_bin_little_endian_withface(std::ifstream& file, utl::file::Entity* entity);
+  void parse_bin_big_endian(std::ifstream& file, utl::file::Entity* entity);
+  void parse_bin_big_endian_withface(std::ifstream& file, utl::file::Entity* entity);
 
   //Loader subfunctions
   float reverse_float(const float inFloat);
   int reverse_int(const int inInt);
   void reorder_by_timestamp(utl::file::Entity* entity);
   int get_id_property(std::string name);
+
+  //Binary to type
   float get_float_from_binary(char* data, int& offset);
   float get_double_from_binary(char* block_data, int& offset);
   float get_int_from_binary(char* data, int& offset);
@@ -52,11 +61,11 @@ private:
   std::vector<std::string> property_type;
   std::vector<std::string> property_name;
   std::vector<int> property_size;
-  std::string property_format;
   bool is_timestamp;
   bool is_intensity;
   bool is_normal;
   bool is_color;
+  int property_format;
   int point_data_idx;
   int point_number;
   int face_number;

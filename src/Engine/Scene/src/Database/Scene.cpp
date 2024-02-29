@@ -26,12 +26,7 @@ Scene::~Scene(){}
 //Main function
 void Scene::init(){
   //---------------------------
-
-  //Initial scene entities
-  //vector<string> vec_path;
-  //vec_path.push_back( "../media/point_cloud/dragon.ply");
-  //vector<utl::entity::Object*> vec_obj = eng_loader->load_entitys(vec_path);
-
+  
   //Get scene set
   utl::type::Set* data_set = sce_database->get_data_set();
   this->set_scene = data_set->get_set("Scene");

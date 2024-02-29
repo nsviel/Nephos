@@ -18,7 +18,7 @@ struct Data{
 
   int type;
   std::string name = "";
-  std::string path_data = "";
+  std::string path = "";
 
   virtual void hello(){}
 

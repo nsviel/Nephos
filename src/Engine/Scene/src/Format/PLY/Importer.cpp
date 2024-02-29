@@ -19,66 +19,70 @@ utl::file::Entity* Importer::import(std::string path){
 
   utl::file::Entity* entity = new utl::file::Entity();
   entity->name = utl::fct::info::get_name_from_path(path);
-  entity->path_data = path;
+  entity->path = path;
   entity->draw_type = utl::topology::POINT;
   this->face_number = 0;
 
   //Get format type
   std::ifstream file(path);
-  this->Loader_header(file);
+  this->parse_header(file);
 
   //Open data
-  if (property_format == "ascii"){
+  switch(property_format){
+    case ASCII:{
+      //Open file
+      std::ifstream file(path);
 
-    //Open file
-    std::ifstream file(path);
+      //Read header
+      this->parse_header(file);
 
-    //Read header
-    this->Loader_header(file);
+      //Read data
+      if(face_number == 0){
+        this->parse_ascii(file, entity);
+      }else{
+        this->parse_ascii_withface(file, entity);
+      }
 
-    //Read data
-    if(face_number == 0){
-      this->Loader_ascii(file, entity);
-    }else{
-      this->Loader_ascii_withface(file, entity);
+      file.close();
+
+      break;
     }
+    case BINARY_LITTLE_ENDIAN:{
+      //Open file
+      std::ifstream file(path, std::ios::binary);
 
-    file.close();
+      //Read header
+      this->parse_header(file);
 
-  }
-  else if (property_format == "binary_little_endian"){
-    //Open file
-    std::ifstream file(path, std::ios::binary);
+      //Read data
+      if(face_number == 0){
+        this->parse_bin_little_endian(file, entity);
+      }else{
+        this->parse_bin_little_endian_withface(file, entity);
+      }
 
-    //Read header
-    this->Loader_header(file);
-
-    //Read data
-    if(face_number == 0){
-      this->Loader_bin_little_endian(file, entity);
-    }else{
-      this->Loader_bin_little_endian_withface(file, entity);
+      //Close file
+      file.close();
+      break;
     }
+    case BINARY_BIG_ENDIAN:{
+      //Open file
+      std::ifstream file(path, std::ios::binary);
 
-    //Close file
-    file.close();
-  }
-  else if (property_format == "binary_big_endian"){
-    //Open file
-    std::ifstream file(path, std::ios::binary);
+      //Read header
+      this->parse_header(file);
 
-    //Read header
-    this->Loader_header(file);
+      //Read data
+      if(face_number == 0){
+        this->parse_bin_big_endian(file, entity);
+      }else{
+        this->parse_bin_big_endian_withface(file, entity);
+      }
 
-    //Read data
-    if(face_number == 0){
-      this->Loader_bin_big_endian(file, entity);
-    }else{
-      this->Loader_bin_big_endian_withface(file, entity);
+      //Close file
+      file.close();
+      break;
     }
-
-    //Close file
-    file.close();
   }
 
   //---------------------------
@@ -86,7 +90,7 @@ utl::file::Entity* Importer::import(std::string path){
 }
 
 //Loader data
-void Importer::Loader_header(std::ifstream& file){
+void Importer::parse_header(std::ifstream& file){
   this->property_name.clear();
   this->property_type.clear();
   this->property_size.clear();
@@ -106,7 +110,11 @@ void Importer::Loader_header(std::ifstream& file){
     iss >> h1 >> h2 >> h3 >> h4;
 
     //Retrieve format
-    if(h1 == "format") property_format = h2;
+    if(h1 == "format"){
+      if(h2 == "ascii") property_format = ASCII;
+      else if(h2 == "binary_little_endian") property_format = BINARY_LITTLE_ENDIAN;
+      else if(h2 == "binary_big_endian") property_format = BINARY_BIG_ENDIAN;
+    }
 
     //Retrieve number of point
     if(h1 + h2 == "elementvertex"){
@@ -170,7 +178,7 @@ void Importer::Loader_header(std::ifstream& file){
 
   //---------------------------
 }
-void Importer::Loader_ascii(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_ascii(std::ifstream& file, utl::file::Entity* entity){
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -221,7 +229,7 @@ void Importer::Loader_ascii(std::ifstream& file, utl::file::Entity* entity){
   //---------------------------
   entity->nb_element = entity->xyz.size();
 }
-void Importer::Loader_ascii_withface(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_ascii_withface(std::ifstream& file, utl::file::Entity* entity){
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -298,7 +306,7 @@ void Importer::Loader_ascii_withface(std::ifstream& file, utl::file::Entity* ent
   //---------------------------
   entity->nb_element = entity->xyz.size();
 }
-void Importer::Loader_bin_little_endian(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Entity* entity){
   //---------------------------
 
   //Read data
@@ -388,7 +396,7 @@ void Importer::Loader_bin_little_endian(std::ifstream& file, utl::file::Entity* 
 
   //---------------------------
 }
-void Importer::Loader_bin_little_endian_withface(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_bin_little_endian_withface(std::ifstream& file, utl::file::Entity* entity){
   //---------------------------
 
   //Read data
@@ -473,7 +481,7 @@ void Importer::Loader_bin_little_endian_withface(std::ifstream& file, utl::file:
   //---------------------------
   entity->nb_element = entity->xyz.size();
 }
-void Importer::Loader_bin_big_endian(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_bin_big_endian(std::ifstream& file, utl::file::Entity* entity){
   //---------------------------
 
   //Read data
@@ -524,7 +532,7 @@ void Importer::Loader_bin_big_endian(std::ifstream& file, utl::file::Entity* ent
 
   //---------------------------
 }
-void Importer::Loader_bin_big_endian_withface(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_bin_big_endian_withface(std::ifstream& file, utl::file::Entity* entity){
   //---------------------------
 
   //Read data
@@ -678,6 +686,8 @@ int Importer::get_id_property(std::string name){
   //---------------------------
   return -1;
 }
+
+//Binary to type
 float Importer::get_float_from_binary(char* block_data, int& offset){
   //---------------------------
 

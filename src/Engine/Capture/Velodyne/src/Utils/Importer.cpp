@@ -16,7 +16,7 @@ int loop_cpt(0);
 Importer::Importer(){
   //---------------------------
 
-  this->LiDAR_model = "vlp16";
+  this->lidar_model = VLP_16;
   this->packet_range_on = false;
   this->packet_beg = 0;
   this->packet_end = 0;
@@ -65,7 +65,7 @@ utl::file::Set* Importer::import(std::string path){
 
   utl::file::Set* set = new utl::file::Set();
   set->name = utl::fct::info::get_name_from_path(path);
-  set->path_data = path;
+  set->path = path;
 
   this->importer_init(path);
   this->importer_sniffing(path);
@@ -84,11 +84,9 @@ void Importer::importer_init(std::string path){
   loop_beg = 0;
   loop_end = get_file_length(path);
 
-  //Check if vlp16 or hdl32
+  //Check if hdl32 is present in name
   if(path.find("HDL32") != std::string::npos){
-    this->LiDAR_model = "hdl32";
-  }else{
-    this->LiDAR_model = "vlp16";
+    this->lidar_model = HDL_32;
   }
 
   //---------------------------
@@ -106,18 +104,22 @@ void Importer::importer_parsing(utl::file::Set* set, std::string path){
   //---------------------------
 
   //Parse data
-  if(LiDAR_model == "vlp16"){
-    this->loader_vlp16(set, path);
-  }
-  else if(LiDAR_model == "hdl32"){
-    this->loader_hdl32(set, path);
+  switch(lidar_model){
+    case VLP_16:{
+      this->parser_vlp16(set, path);
+      break;
+    }
+    case HDL_32:{
+      this->parser_hdl32(set, path);
+      break;
+    }
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Importer::loader_vlp16(utl::file::Set* set, std::string path){
+void Importer::parser_vlp16(utl::file::Set* set, std::string path){
   velodyne::Frame velo_frame;
   velodyne::parser::VLP16 parser;
   //---------------------------
@@ -132,7 +134,7 @@ void Importer::loader_vlp16(utl::file::Set* set, std::string path){
       utl::file::Entity* entity = new utl::file::Entity();
 
       entity->name = "frame_" + std::to_string(cpt); cpt++;
-      entity->path_data = path;
+      entity->path = path;
       entity->nb_element = frame->xyz.size();
 
       for(int j=0; j<frame->xyz.size(); j++){
@@ -149,7 +151,7 @@ void Importer::loader_vlp16(utl::file::Set* set, std::string path){
 
   //---------------------------
 }
-void Importer::loader_hdl32(utl::file::Set* set, std::string path){
+void Importer::parser_hdl32(utl::file::Set* set, std::string path){
   velodyne::Frame velo_frame;
   velodyne::parser::HDL32 parser;
   //---------------------------
@@ -162,7 +164,7 @@ void Importer::loader_hdl32(utl::file::Set* set, std::string path){
       utl::file::Entity* frame = velo_frame.get_endedFrame();
       utl::file::Entity* entity = new utl::file::Entity();
 
-      entity->path_data = path;
+      entity->path = path;
       entity->nb_element = frame->xyz.size();
 
       for(int j=0; j<frame->xyz.size(); j++){

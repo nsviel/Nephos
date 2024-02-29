@@ -20,10 +20,12 @@ public:
 
 public:
   //Main functions
-  utl::type::Entity* load_entity(std::string path);
+  utl::type::Entity* load_data(std::string path);
 
   //Subfunctions
-  utl::entity::Object* load_object(std::string path);
+  bool check_file_path(std::string path);
+  utl::entity::Object* load_object(utl::file::Entity* entity);
+  utl::type::Set* load_set(utl::file::Set* set);
 
 private:
   eng::Node* node_engine;

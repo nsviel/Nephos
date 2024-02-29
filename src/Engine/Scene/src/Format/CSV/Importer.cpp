@@ -26,7 +26,7 @@ utl::file::Entity* Importer::import(std::string pathFile){
   //At row level
   for(int i=0; i<csvFile.size(); i++){
     utl::file::Entity* data_sub = new utl::file::Entity();
-    data_sub->path_data = pathFile;
+    data_sub->path = pathFile;
 
     //At field level
     int cpt_field = -1;
