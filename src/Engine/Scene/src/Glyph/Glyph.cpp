@@ -18,6 +18,7 @@ Glyph::Glyph(eng::scene::Node* node_scene){
   this->vk_graphical = node_vulkan->get_vk_graphical();
   this->sce_database = node_scene->get_scene_database();
   this->sce_entity = node_scene->get_scene_entity();
+  this->sce_set = new eng::scene::Set();
 
   //---------------------------
 }
@@ -44,7 +45,7 @@ void Glyph::create_glyph_world(){
 
     glyph->create();
     utl::type::Set* set_world = sce_database->get_set_world();
-    set_world->insert_entity(glyph);
+    sce_set->insert_entity(set_world, glyph);
     sce_entity->init_entity(glyph);
   }
 

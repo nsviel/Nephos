@@ -17,6 +17,7 @@ Loader::Loader(eng::scene::Node* node_scene){
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_database = node_scene->get_scene_database();
   this->sce_format = node_scene->get_scene_format();
+  this->sce_set = new eng::scene::Set();
 
   //---------------------------
 }
@@ -65,7 +66,7 @@ utl::type::Set* Loader::load_object(utl::file::Data* data){
   utl::type::Set* set_scene = sce_database->get_set_scene();
   utl::entity::Object* object = create_object(data);
 
-  set_scene->insert_entity(object);
+  sce_set->insert_entity(set_scene, object);
 
   //---------------------------
   return set_scene;
@@ -79,7 +80,7 @@ utl::type::Set* Loader::load_set(utl::file::Data* data){
 
   for(int i=0; i<set->vec_data.size(); i++){
     utl::entity::Object* object = create_object(set->vec_data[i]);
-    subset->insert_entity(object);
+    sce_set->insert_entity(subset, object);
   }
 
   //---------------------------

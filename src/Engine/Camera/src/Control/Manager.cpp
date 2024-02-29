@@ -11,6 +11,7 @@ Manager::Manager(eng::cam::Node* node_camera){
   //---------------------------
 
   this->node_scene = node_camera->get_node_scene();
+  this->sce_set = new eng::scene::Set();
 
   this->camera_ID = 0;
 
@@ -32,7 +33,7 @@ void Manager::create_camera(){
   camera->is_suppressible = false;
   camera->is_movable = false;
   sce_glyph->create_glyph_camera(camera);
-  set_world->insert_entity(camera);
+  sce_set->insert_entity(set_world, camera);
 
   this->vec_camera.push_back(camera);
   this->current_camera = camera;

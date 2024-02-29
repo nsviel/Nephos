@@ -32,7 +32,7 @@ void Master::insert_sensor(k4n::dev::Sensor* sensor){
   }
   //---------------------------
 
-  this->insert_entity(sensor);
+  sce_set->insert_entity(this, sensor);
   this->player_update();
 
   //---------------------------

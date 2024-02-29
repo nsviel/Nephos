@@ -8,6 +8,7 @@ namespace eng::scene{class Database;}
 namespace eng::scene{class Format;}
 namespace eng::scene{class Node;}
 namespace eng::scene{class Parameter;}
+namespace eng::scene{class Set;}
 
 
 namespace eng::scene{
@@ -37,6 +38,7 @@ private:
   eng::scene::Entity* sce_entity;
   eng::scene::Database* sce_database;
   eng::scene::Parameter* sce_param;
+  eng::scene::Set* sce_set;
 };
 
 }
