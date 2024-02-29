@@ -57,7 +57,35 @@ utl::type::Set* Loader::load_data(std::string path){
   return set;
 }
 
-//Subfunctions
+//Data function
+utl::type::Set* Loader::load_object(utl::file::Data* data){
+  //---------------------------
+
+  utl::type::Set* set_scene = sce_scene->get_set_scene();
+  utl::entity::Object* object = create_object(data);
+
+  set_scene->insert_entity(object);
+
+  //---------------------------
+  return set_scene;
+}
+utl::type::Set* Loader::load_set(utl::file::Data* data){
+  utl::file::Set* set = dynamic_cast<utl::file::Set*>(data);
+  //---------------------------
+
+  utl::type::Set* set_scene = sce_scene->get_set_scene();
+  utl::type::Set* subset = set_scene->get_or_create_subset(set->name);
+
+  for(int i=0; i<set->vec_data.size(); i++){
+    utl::entity::Object* object = create_object(set->vec_data[i]);
+    subset->insert_entity(object);
+  }
+
+  //---------------------------
+  return subset;
+}
+
+//Subfunction
 bool Loader::check_file_path(std::string path){
   //---------------------------
 
@@ -77,13 +105,10 @@ bool Loader::check_file_path(std::string path){
   //---------------------------
   return true;
 }
-utl::type::Set* Loader::load_object(utl::file::Data* data){
+utl::entity::Object* Loader::create_object(utl::file::Data* data){
   utl::file::Entity* entity = dynamic_cast<utl::file::Entity*>(data);
   //---------------------------
 
-  utl::type::Set* set_scene = sce_scene->get_set_scene();
-
-  //Data is an entity
   utl::entity::Object* object = new utl::entity::Object(node_engine);
   object->data->path = entity->path;
   object->data->file_format = utl::fct::info::get_format_from_path(entity->path);
@@ -103,23 +128,10 @@ utl::type::Set* Loader::load_object(utl::file::Data* data){
     }
   }
 
-  set_scene->insert_entity(object);
-  set_scene->set_selected_entity(object);
   sce_scene->init_entity(object);
 
   //---------------------------
-  return set_scene;
+  return object;
 }
-utl::type::Set* Loader::load_set(utl::file::Data* data){
-  utl::file::Set* set = dynamic_cast<utl::file::Set*>(data);
-  //---------------------------
 
-
-
-
-  //---------------------------
-}
-  //---------------------------
-
-  //---------------------------
 }

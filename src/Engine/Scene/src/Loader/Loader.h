@@ -22,10 +22,13 @@ public:
   //Main functions
   utl::type::Set* load_data(std::string path);
 
-  //Subfunctions
-  bool check_file_path(std::string path);
+  //Data function
   utl::type::Set* load_object(utl::file::Data* data);
   utl::type::Set* load_set(utl::file::Data* data);
+
+  //Subfunction
+  bool check_file_path(std::string path);
+  utl::entity::Object* create_object(utl::file::Data* data);
 
 private:
   eng::Node* node_engine;

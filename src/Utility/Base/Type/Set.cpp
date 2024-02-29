@@ -59,10 +59,12 @@ void Set::insert_entity(utl::type::Entity* entity){
   //---------------------------
 
   entity->set_parent = this;
+  entity->update_pose();
+
   this->list_entity.push_back(entity);
   this->nb_entity++;
-
   this->selected_entity = entity;
+  
   set_parent->selected_entity = entity;
 
   //---------------------------
