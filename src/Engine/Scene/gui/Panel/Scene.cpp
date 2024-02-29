@@ -142,16 +142,14 @@ void Scene::draw_file_tree(){
   ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, 10);
   ImGui::SetNextWindowSize(ImVec2(400, 400));
   if(ImGui::BeginTable("data_view", 1)){
-    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch);
+    ImGui::TableSetupColumn("Name##scene_tree", ImGuiTableColumnFlags_WidthStretch);
+    ImGui::TableSetupColumn("Bin##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
 
     //Database
     for(int row_i=0; row_i<data_set->list_subset.size(); row_i++){
       utl::type::Set* set = *next(data_set->list_subset.begin(), row_i);
 
       if(set->nb_entity != 0 || set->nb_set != 0){
-        ImGui::TableNextRow();
-        ImGui::TableNextColumn();
-
         ImGui::PushID(set->name.c_str());
         this->tree_set(set);
         ImGui::PopID();
@@ -172,13 +170,15 @@ int Scene::tree_set(utl::type::Set* set) {
 
   if(set->get_nb_entity() == 0) return 0;
 
-  // Node flags
+  //Set node elements
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
   flag_node |= set->name != "World" ? ImGuiTreeNodeFlags_DefaultOpen : 0;
-
-  // Set nodes
   string name = set->icon + "   " + set->name;
+
+  //Set row
+  ImGui::TableNextRow();
+  ImGui::TableNextColumn();
   bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag_node);
   this->tree_set_double_click(set);
   if(is_node_open){
@@ -216,7 +216,7 @@ void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
   }
 
   // Recursive call for nested sets
-  for(utl::type::Set* subset : set->list_subset) {
+  for(utl::type::Set* subset : set->list_subset){
     nb_row += tree_set(subset);
   }
 
@@ -252,6 +252,11 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
     rnd_object->set_entity(entity);
     this->show_panel_entity = true;
+  }
+
+  ImGui::TableNextColumn();
+  if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
+    sce_scene->delete_scene_entity(entity);
   }
 
   //---------------------------
