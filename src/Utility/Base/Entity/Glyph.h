@@ -29,7 +29,6 @@ public:
   virtual void update_glyph(){}
   virtual void update_glyph(utl::type::Entity* entity){}
 
-  inline vector<utl::type::Data*> get_vec_data(){return vec_data;}
   inline utl::type::Pose* get_pose(){return pose;}
   inline vec4* get_color(){return &color;}
   inline bool is_need_update(){return need_update;}
@@ -41,7 +40,6 @@ protected:
   eng::cam::Node* node_camera;
 
   //Child
-  vector<utl::type::Data*> vec_data;
   utl::type::Pose* pose;
   bool need_update = false;
   vec4 color;

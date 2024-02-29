@@ -115,9 +115,8 @@ void Entity::entity_info(utl::type::Entity* entity){
   //Visibility
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Visibility"); ImGui::TableNextColumn();
-  bool is_visible = entity->get_visibility();
-  if(ImGui::Checkbox("##4555", &is_visible)){
-    entity->set_visibility(is_visible);
+  if(ImGui::Checkbox("##4555", &entity->is_visible)){
+    entity->set_visibility(entity->is_visible);
   }
 
   //Name

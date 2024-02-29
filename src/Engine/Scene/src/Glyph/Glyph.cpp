@@ -58,9 +58,8 @@ void Glyph::remove_glyph_world(){
   for(int i=0; i<set_world->list_entity.size(); i++){
     utl::entity::Glyph* glyph = (utl::entity::Glyph*)*next(set_world->list_entity.begin(), i);
 
-    vector<utl::type::Data*> vec_data = glyph->get_vec_data();
-    for(int j=0; j<vec_data.size(); j++){
-      vk_graphical->remove_data_in_engine(vec_data[j]);
+    for(int j=0; j<glyph->vec_data.size(); j++){
+      vk_graphical->remove_data_in_engine(glyph->vec_data[j]);
     }
 
     delete glyph;

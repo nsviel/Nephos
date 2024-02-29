@@ -18,13 +18,10 @@ public:
   void reset();
 
   inline Glyph* get_glyph(){return trajectory;}
-  inline bool* get_visibility(){return &visibility;}
-  inline void set_visibility(bool value){this->is_visible = value;}
 
 private:
   Glyph* trajectory;
 
-  bool visibility;
   vec4 color;
   int width;
 };

@@ -18,7 +18,6 @@ public:
   void create();
   void update_glyph(utl::type::Data* data);
 
-  inline bool* get_visibility(){return &is_visible;}
   inline int* get_level(){return &level;}
 
 private:

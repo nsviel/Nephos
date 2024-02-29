@@ -19,9 +19,6 @@ struct Entity
   virtual void set_visibility(bool value){}
   virtual utl::type::Pose* get_pose(){return nullptr;}
   virtual utl::type::Data* get_data(){return nullptr;}
-  virtual vector<utl::type::Data*> get_vec_data(){return vector<utl::type::Data*>();}
-
-  inline bool get_visibility(){return is_visible;}
 
   int UID = -1;
   bool is_suppressible = true;
@@ -31,6 +28,7 @@ struct Entity
   std::string name = "";
   std::string entity_type = "base";
   std::string icon = ICON_FA_FILE;
+  std::vector<utl::type::Data*> vec_data;
   utl::type::Set* set_parent = nullptr;
 
   //---------------------------

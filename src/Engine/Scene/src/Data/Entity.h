@@ -21,6 +21,7 @@ public:
 public:
   //Main function
   void init_entity(utl::type::Entity* entity);
+  void clear_entity(utl::type::Entity* entity);
 
 private:
   eng::scene::Node* node_scene;

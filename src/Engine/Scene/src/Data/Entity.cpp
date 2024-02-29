@@ -44,14 +44,21 @@ void Entity::init_entity(utl::type::Entity* entity){
   vk_graphical->insert_data_in_engine(data, pose);
 
   //Init entity vector data
-  vector<utl::type::Data*> vec_data = entity->get_vec_data();
-  for(int j=0; j<vec_data.size(); j++){
-    sce_database->assign_UID(vec_data[j]);
-    vk_graphical->insert_data_in_engine(vec_data[j], pose);
+  for(int j=0; j<entity->vec_data.size(); j++){
+    sce_database->assign_UID(entity->vec_data[j]);
+    vk_graphical->insert_data_in_engine(entity->vec_data[j], pose);
   }
 
   //---------------------------
 }
+void Entity::clear_entity(utl::type::Entity* entity){
+  //----------------------------
 
+  for(int i=0; i<entity->vec_data.size(); i++){
+    vk_graphical->remove_data_in_engine(entity->vec_data[i]);
+  }
+
+  //----------------------------
+}
 
 }
