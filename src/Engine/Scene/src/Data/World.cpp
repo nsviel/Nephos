@@ -33,14 +33,6 @@ void World::init(){
 }
 
 //Entity function
-void World::import_entity(utl::type::Entity* entity){
-  //---------------------------
-
-  set_world->insert_entity(entity);
-  this->init_entity(entity);
-
-  //---------------------------
-}
 void World::init_entity(utl::type::Entity* entity){
   //---------------------------
 

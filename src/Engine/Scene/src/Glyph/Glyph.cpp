@@ -43,7 +43,9 @@ void Glyph::create_glyph_world(){
     utl::entity::Glyph* glyph = vec_glyph[i];
 
     glyph->create();
-    sce_world->import_entity(glyph);
+    utl::type::Set* set_world = sce_database->get_set_world();
+    set_world->insert_entity(glyph);
+    sce_world->init_entity(glyph);
   }
 
   //---------------------------

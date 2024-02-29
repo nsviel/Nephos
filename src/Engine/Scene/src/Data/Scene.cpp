@@ -51,15 +51,6 @@ void Scene::reset(){
 }
 
 //Entity function
-void Scene::import_entity(utl::type::Entity* entity){
-  //---------------------------
-
-  //Entity importation stuff
-  set_scene->insert_entity(entity);
-  this->init_entity(entity);
-
-  //---------------------------
-}
 void Scene::init_entity(utl::type::Entity* entity){
   //---------------------------
 
