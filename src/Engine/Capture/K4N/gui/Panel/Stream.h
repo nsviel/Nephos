@@ -9,6 +9,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::dev{class Master;}
 namespace eng::render::gui{class Stream;}
 namespace k4n::structure{class Data;}
+namespace eng::scene{class Set;}
 
 
 namespace k4n::gui{
@@ -42,6 +43,7 @@ public:
 private:
   k4n::Node* node_k4n;
   k4n::dev::Swarm* k4n_swarm;
+  eng::scene::Set* sce_set;
 
   vector<eng::render::gui::Stream*> vec_gui_stream;
   ImVec2 hovered_pixel;

@@ -157,6 +157,14 @@ void Set::select_entity_next(utl::type::Set* set){
 
   //----------------------------
 }
+void Set::select_entity(utl::type::Set* set, utl::type::Entity* entity){
+  //---------------------------
+
+  set->selected_entity = entity;
+  set->set_parent->selected_entity = entity;
+
+  //---------------------------
+}
 
 //Subfunction
 int Set::compute_number_entity(utl::type::Set* set){

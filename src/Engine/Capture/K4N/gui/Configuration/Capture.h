@@ -6,6 +6,7 @@ namespace gui{class Node;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::dev{class Swarm;}
+namespace eng::scene{class Set;}
 
 
 namespace k4n::gui{
@@ -30,6 +31,7 @@ public:
 private:
   k4n::Node* node_k4n;
   k4n::dev::Swarm* k4n_swarm;
+  eng::scene::Set* sce_set;
 
   int item_width;
 };

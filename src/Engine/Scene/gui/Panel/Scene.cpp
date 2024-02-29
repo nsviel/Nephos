@@ -260,7 +260,7 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
 
   // If entity clicked
   if (ImGui::IsItemClicked()) {
-    set_scene->set_selected_entity(entity);
+    sce_set->select_entity(set_scene, entity);
   }
 
   // If entity double-clicked

@@ -22,9 +22,7 @@ public:
   void delete_entity(utl::type::Set* set, utl::type::Entity* entity);
   void delete_entity_all(utl::type::Set* set);
   void select_entity_next(utl::type::Set* set);
-
-  void set_selected_entity(utl::type::Set* set, utl::type::Entity* entity);
-  utl::type::Entity* get_entity(utl::type::Set* set, std::string name);
+  void select_entity(utl::type::Set* set, utl::type::Entity* entity);
 
   //Subfunction
   int compute_number_entity(utl::type::Set* set);

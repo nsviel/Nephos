@@ -16,10 +16,6 @@ public:
   ~Set(){}
 
 public:
-  //Entity function
-  void set_selected_entity(utl::type::Entity* entity);
-  utl::type::Entity* get_entity(std::string name);
-
   //Subset function
   void add_subset(utl::type::Set* set);
   utl::type::Set* create_subset(std::string name);

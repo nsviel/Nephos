@@ -1,6 +1,7 @@
 #include "Capture.h"
 
 #include <K4N/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace k4n::gui{
@@ -11,6 +12,7 @@ Capture::Capture(k4n::Node* node_k4n){
 
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
+  this->sce_set = new eng::scene::Set();
 
   this->item_width = 100;
 
@@ -74,7 +76,7 @@ void Capture::list_device(k4n::dev::Sensor* sensor){
           ImGui::Text("%d", sensor->param.index);
           ImGui::TableNextColumn();
           if (ImGui::Selectable(sensor->param.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
-            master->set_selected_entity(sensor);
+            sce_set->select_entity(master, sensor);
             selected_device = i;
           }
           ImGui::PopID();

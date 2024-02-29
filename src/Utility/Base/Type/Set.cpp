@@ -17,31 +17,6 @@ Set::Set(std::string name){
   //---------------------------
 }
 
-//Entity function
-void Set::set_selected_entity(utl::type::Entity* entity_to_select){
-  //---------------------------
-
-  this->selected_entity = entity_to_select;
-  set_parent->selected_entity = selected_entity;
-
-  //---------------------------
-}
-utl::type::Entity* Set::get_entity(std::string name){
-  //---------------------------
-
-  for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(),i);
-    if(entity->name == name){
-      return entity;
-    }
-  }
-
-  std::cout<<"[error] Entity not found ["<<name<<"]"<<std::endl;
-
-  //---------------------------
-  return nullptr;
-}
-
 //Subset function
 void Set::add_subset(utl::type::Set* subset){
   //---------------------------

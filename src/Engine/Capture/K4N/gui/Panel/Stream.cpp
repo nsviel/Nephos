@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <K4N/Namespace.h>
+#include <Scene/Namespace.h>
 #include <Render/Namespace.h>
 
 
@@ -16,6 +17,7 @@ Stream::Stream(k4n::Node* node_k4n, bool* show_window){
 
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
+  this->sce_set = new eng::scene::Set();
 
   this->vec_gui_stream.push_back(new eng::render::gui::Stream(node_engine));
   this->vec_gui_stream.push_back(new eng::render::gui::Stream(node_engine));
@@ -69,7 +71,7 @@ void Stream::vec_device_tab(k4n::dev::Master* master){
       if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
         string name = sensor->icon + "  " + sensor->name;
         if(ImGui::BeginTabItem(name.c_str(), NULL)){
-          master->set_selected_entity(sensor);
+          sce_set->select_entity(master, sensor);
           this->vec_stream_tab(sensor);
           ImGui::EndTabItem();
         }
