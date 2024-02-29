@@ -27,6 +27,20 @@ void Database::init(){
 
   //---------------------------
 }
+void Database::loop(){
+  //----------------------------
+
+  set_main->update();
+
+  //----------------------------
+}
+void Database::reset(){
+  //---------------------------
+
+  set_main->reset();
+
+  //---------------------------
+}
 
 //Subfunction
 void Database::assign_UID(utl::type::Entity* entity){

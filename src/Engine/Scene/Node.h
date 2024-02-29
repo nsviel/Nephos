@@ -5,7 +5,6 @@
 namespace vk{class Node;}
 namespace eng{class Node;}
 namespace eng::scene{class Parameter;}
-namespace eng::scene{class Scene;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class Loader;}
 namespace eng::scene{class Format;}
@@ -36,7 +35,6 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
   inline eng::scene::Parameter* get_scene_param(){return sce_param;}
-  inline eng::scene::Scene* get_scene(){return sce_scene;}
   inline eng::scene::Format* get_scene_format(){return sce_format;}
   inline eng::scene::Database* get_scene_database(){return sce_database;}
   inline eng::scene::Loader* get_scene_loader(){return sce_loader;}
@@ -51,7 +49,6 @@ private:
 
   //Child
   eng::scene::Parameter* sce_param;
-  eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
   eng::scene::Loader* sce_loader;

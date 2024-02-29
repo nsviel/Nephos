@@ -16,7 +16,9 @@ public:
 
   //Main function
   void init();
-
+  void loop();
+  void reset();
+  
   //Subfunction
   void assign_UID(utl::type::Entity* entity);
   void assign_UID(utl::type::Data* data);
