@@ -20,7 +20,6 @@ Node::Node(eng::Node* node_engine){
   //Child
   this->sce_param = new eng::scene::Parameter();
   this->sce_database = new eng::scene::Database(this);
-  this->sce_world = new eng::scene::World(this);
   this->sce_entity = new eng::scene::Entity(this);
   this->sce_glyph = new eng::scene::Glyph(this);
   this->sce_scene = new eng::scene::Scene(this);
@@ -49,7 +48,6 @@ void Node::init(){
   sce_bookmark->init();
   sce_database->init();
   sce_scene->init();
-  sce_world->init();
   sce_glyph->create_glyph_world();
 
   //---------------------------
