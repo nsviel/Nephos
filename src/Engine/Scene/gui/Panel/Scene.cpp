@@ -74,7 +74,7 @@ void Scene::draw_button(){
       //sce_scene->delete_subset(set);
     }else if(set->is_locked){
       utl::type::Set* set_scene = sce_database->get_set_scene();
-      set_scene->delete_entity(set->selected_entity);
+      sce_set->delete_entity(set_scene, set->selected_entity);
     }
   }
 
@@ -274,7 +274,7 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
   if(entity->is_suppressible && ImGui::SmallButton("X##tree_entity")){
     utl::type::Set* set_scene = sce_database->get_set_scene();
-    set_scene->delete_entity(entity);
+    sce_set->delete_entity(set_scene, entity);
   }
   ImGui::PopStyleColor(2);
 

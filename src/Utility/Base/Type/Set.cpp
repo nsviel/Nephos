@@ -18,32 +18,6 @@ Set::Set(std::string name){
 }
 
 //Entity function
-void Set::delete_entity(utl::type::Entity* entity){
-  if(entity == nullptr) return;
-  //---------------------------
-
-  // Check if the current set has the query entity
-  for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
-
-    if(selected_entity->UID == entity->UID){
-      this->list_entity.remove(entity);
-      this->nb_entity--;
-      entity->remove_entity();
-      //this->select_next_entity();
-      delete entity;
-      entity = nullptr;
-      return;
-    }
-  }
-
-  // Recursively call delete_entity for each nested set
-  for(utl::type::Set* subset : list_subset){
-    subset->delete_entity(entity);
-  }
-
-  //---------------------------
-}
 void Set::set_selected_entity(utl::type::Entity* entity_to_select){
   //---------------------------
 

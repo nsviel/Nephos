@@ -85,7 +85,7 @@ void Master::manage_suppression(k4n::dev::Sensor* sensor){
   if(is_locked){
     sce_set->delete_entity_all(this);
   }else{
-    this->delete_entity(sensor);
+    sce_set->delete_entity(this, sensor);
   }
 
   //---------------------------

@@ -12,6 +12,7 @@ Entity::Entity(eng::scene::Node* node_scene, bool* panel_show){
   //---------------------------
 
   this->sce_database = node_scene->get_scene_database();
+  this->sce_set = new eng::scene::Set();
   this->ope_location = new ope::attribut::Location();
   this->ope_operation = new ope::Operation();
 
@@ -75,7 +76,7 @@ void Entity::entity_button(utl::type::Entity* entity){
   //Suppression
   if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
     utl::type::Set* set_scene = sce_database->get_set_scene();
-    set_scene->delete_entity(entity);
+    sce_set->delete_entity(set_scene, entity);
     this->close_panel();
     return;
   }

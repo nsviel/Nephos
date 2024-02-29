@@ -17,7 +17,6 @@ public:
 
 public:
   //Entity function
-  void delete_entity(utl::type::Entity* entity);
   void set_selected_entity(utl::type::Entity* entity);
   utl::type::Entity* get_entity(std::string name);
 

@@ -4,6 +4,7 @@
 
 namespace eng::scene{class Node;}
 namespace eng::scene{class Database;}
+namespace eng::scene{class Set;}
 namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
 
@@ -42,6 +43,7 @@ private:
   ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
   eng::scene::Database* sce_database;
+  eng::scene::Set* sce_set;
 
   utl::type::Entity* entity;
   string panel_name;
