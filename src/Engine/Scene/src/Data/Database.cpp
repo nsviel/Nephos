@@ -9,7 +9,7 @@ namespace eng::scene{
 Database::Database(eng::scene::Node* node_scene){
   //---------------------------
 
-  this->set_main = new utl::type::Set("Data");
+  this->set_main = new utl::type::Set();
   this->sce_set = new eng::scene::Set();
 
   //---------------------------

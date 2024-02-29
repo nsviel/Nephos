@@ -133,7 +133,7 @@ void Scene::draw_window_background(){
   //-------------------------------
 }
 void Scene::draw_file_tree(){
-  utl::type::Set* data_set = sce_database->get_set_main();
+  utl::type::Set* set_main = sce_database->get_set_main();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;
@@ -148,8 +148,8 @@ void Scene::draw_file_tree(){
     ImGui::TableSetupColumn("Bin##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
 
     //Database
-    for(int row_i=0; row_i<data_set->list_subset.size(); row_i++){
-      utl::type::Set* set = *next(data_set->list_subset.begin(), row_i);
+    for(int row_i=0; row_i<set_main->list_subset.size(); row_i++){
+      utl::type::Set* set = *next(set_main->list_subset.begin(), row_i);
 
       if(set->nb_entity != 0 || set->nb_set != 0){
         ImGui::PushID(set->name.c_str());
@@ -243,13 +243,14 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   nb_row++;
 
   //Entity row element
+  bool is_selected = sce_set->is_selected_entity(set_scene, entity);
   ImGuiTreeNodeFlags flag_leaf;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
   flag_leaf |= ImGuiTreeNodeFlags_Leaf;
   flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
   flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
-  flag_leaf |= (set_scene->is_selected_entity(entity) && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
+  flag_leaf |= (is_selected && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
   string icon = ICON_FA_FILE_O;
   string name = icon + "   " + entity->name;
 

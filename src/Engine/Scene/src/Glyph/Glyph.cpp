@@ -32,8 +32,8 @@ Glyph::~Glyph(){
 
 //Glyph world
 void Glyph::create_glyph_world(){
-  utl::type::Set* data_set = sce_database->get_set_main();
-  utl::type::Set* set_world = data_set->get_subset("World");
+  utl::type::Set* set_main = sce_database->get_set_main();
+  utl::type::Set* set_world = sce_set->get_subset(set_main, "World");
   //---------------------------
 
   vector<utl::entity::Glyph*> vec_glyph;
@@ -52,8 +52,8 @@ void Glyph::create_glyph_world(){
   //---------------------------
 }
 void Glyph::remove_glyph_world(){
-  utl::type::Set* data_set = sce_database->get_set_main();
-  utl::type::Set* set_world = data_set->get_subset("World");
+  utl::type::Set* set_main = sce_database->get_set_main();
+  utl::type::Set* set_world = sce_set->get_subset(set_main, "World");
   //---------------------------
 
   for(int i=0; i<set_world->list_entity.size(); i++){

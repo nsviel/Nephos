@@ -45,7 +45,7 @@ void Control::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  utl::type::Set* data_set = sce_database->get_set_main();
+  utl::type::Set* set_main = sce_database->get_set_main();
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
@@ -74,7 +74,7 @@ void Control::control_keyboard_translation(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  utl::type::Set* data_set = sce_database->get_set_main();
+  utl::type::Set* set_main = sce_database->get_set_main();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
       utl::type::Set* set_scene = sce_database->get_set_scene();

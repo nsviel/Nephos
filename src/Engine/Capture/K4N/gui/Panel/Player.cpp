@@ -254,7 +254,7 @@ ImGuiTabItemFlags Player::get_tab_flag(k4n::dev::Sensor* sensor){
 
   ImGuiTabItemFlags flag = 0;
   /*static int UID = master->selected_entity->UID;
-  if(master->is_selected_entity(sensor) && sensor->UID != UID){
+  if(sce_set->is_selected_entity(master, sensor) && sensor->UID != UID){
     flag = ImGuiTabItemFlags_SetSelected;
     UID = master->selected_entity->UID;
   }*/

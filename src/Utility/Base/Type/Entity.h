@@ -7,8 +7,7 @@
 namespace utl::type{
 class Set;
 
-struct Entity
-{
+struct Entity{
   //---------------------------
 
   virtual ~Entity(){}

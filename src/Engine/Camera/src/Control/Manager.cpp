@@ -25,8 +25,8 @@ void Manager::create_camera(){
 
   eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
   eng::scene::Database* sce_database = node_scene->get_scene_database();
-  utl::type::Set* data_set = sce_database->get_set_main();
-  utl::type::Set* set_world = data_set->get_subset("World");
+  utl::type::Set* set_main = sce_database->get_set_main();
+  utl::type::Set* set_world = sce_set->get_subset(set_main, "World");
 
   utl::entity::Camera* camera = new utl::entity::Camera();
   camera->name = "camera_" + to_string(camera_ID++);

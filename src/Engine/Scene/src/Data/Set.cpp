@@ -49,6 +49,16 @@ void Set::reset_set(utl::type::Set* set){
 
   //---------------------------
 }
+void Set::visibility_set(utl::type::Set* set, bool value){
+  //---------------------------
+
+  for(int i=0; i<set->list_entity.size(); i++){
+    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+    entity->set_visibility(value);
+  }
+
+  //---------------------------
+}
 
 //Subset function
 void Set::add_subset(utl::type::Set* set, utl::type::Set* subset){
@@ -67,7 +77,8 @@ void Set::add_subset(utl::type::Set* set, utl::type::Set* subset){
 utl::type::Set* Set::create_subset(utl::type::Set* set, std::string name){
   //---------------------------
 
-  utl::type::Set* subset = new utl::type::Set(name);
+  utl::type::Set* subset = new utl::type::Set();
+  subset->name = name;
   subset->set_parent = set;
   subset->is_suppressible = true;
 
@@ -225,6 +236,9 @@ void Set::select_entity(utl::type::Set* set, utl::type::Entity* entity){
   set->set_parent->selected_entity = entity;
 
   //---------------------------
+}
+bool Set::is_selected_entity(utl::type::Set* set, utl::type::Entity* entity){
+  return entity->UID == set->selected_entity->UID;
 }
 
 //Subfunction

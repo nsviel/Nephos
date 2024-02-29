@@ -8,25 +8,9 @@ namespace utl::type{class Entity;}
 
 namespace utl::type{
 
-class Set
-{
-public:
-  Set();
-  Set(std::string name);
-  ~Set(){}
+struct Set{
+  //---------------------------
 
-public:
-  //Subset function
-
-  utl::type::Set* get_subset(std::string name);
-
-
-  //Subfunction
-  void set_visibility(bool value);
-
-  inline bool is_selected_entity(utl::type::Entity* entity){return entity->UID == selected_entity->UID;}
-
-public:
   //Info
   int UID = 0;
   int nb_entity = 0;
@@ -46,6 +30,8 @@ public:
   utl::type::Set* set_parent = nullptr;
   std::list<utl::type::Entity*> list_entity;
   std::list<utl::type::Set*> list_subset;
+
+  //---------------------------
 };
 
 }
