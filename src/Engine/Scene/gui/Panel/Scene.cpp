@@ -141,7 +141,7 @@ void Scene::draw_file_tree(){
 
   ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, 10);
   ImGui::SetNextWindowSize(ImVec2(400, 400));
-  if(ImGui::BeginTable("data_view", 1)){
+  if(ImGui::BeginTable("data_view", 2)){
     ImGui::TableSetupColumn("Name##scene_tree", ImGuiTableColumnFlags_WidthStretch);
     ImGui::TableSetupColumn("Bin##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
 
@@ -168,7 +168,7 @@ int Scene::tree_set(utl::type::Set* set) {
   int nb_row = 0;
   //---------------------------
 
-  if(set->get_nb_entity() == 0) return 0;
+  if(set->is_suppressible && set->get_nb_entity() == 0) return 0;
 
   //Set node elements
   ImGuiTreeNodeFlags flag_node;
@@ -180,6 +180,17 @@ int Scene::tree_set(utl::type::Set* set) {
   ImGui::TableNextRow();
   ImGui::TableNextColumn();
   bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag_node);
+
+  //Bin button
+  ImGui::TableNextColumn();
+  ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+  ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+  if(set->is_suppressible && ImGui::SmallButton("X##tree_set")){
+  //  sce_scene->delete_scene_entity(entity);
+  }
+  ImGui::PopStyleColor(2);
+
+  //Set sub elements
   this->tree_set_double_click(set);
   if(is_node_open){
     this->tree_set_open(set, nb_row);
@@ -226,10 +237,9 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   utl::type::Set* set_scene = sce_scene->get_set_scene();
   //---------------------------
 
-  ImGui::TableNextRow();
-  ImGui::TableNextColumn();
   nb_row++;
 
+  //Entity row element
   ImGuiTreeNodeFlags flag_leaf;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
@@ -237,10 +247,12 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
   flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
   flag_leaf |= (set_scene->is_selected_entity(entity) && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
-
-  // Display leaf
   string icon = ICON_FA_FILE_O;
   string name = icon + "   " + entity->name;
+
+  // Display leaf
+  ImGui::TableNextRow();
+  ImGui::TableNextColumn();
   ImGui::TreeNodeEx(name.c_str(), flag_leaf);
 
   // If entity clicked
@@ -255,9 +267,12 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   }
 
   ImGui::TableNextColumn();
-  if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
+  ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+  ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+  if(entity->is_suppressible && ImGui::SmallButton("X##tree_entity")){
     sce_scene->delete_scene_entity(entity);
   }
+  ImGui::PopStyleColor(2);
 
   //---------------------------
 }

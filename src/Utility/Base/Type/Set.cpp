@@ -64,7 +64,7 @@ void Set::insert_entity(utl::type::Entity* entity){
   this->list_entity.push_back(entity);
   this->nb_entity++;
   this->selected_entity = entity;
-  
+
   set_parent->selected_entity = entity;
 
   //---------------------------
@@ -210,9 +210,11 @@ utl::type::Set* Set::create_subset(std::string name){
 
   utl::type::Set* subset = new utl::type::Set(name);
   subset->set_parent = this;
-  list_subset.push_back(subset);
+  subset->is_suppressible = true;
+
   this->nb_set++;
   this->selected_set = subset;
+  this->list_subset.push_back(subset);
 
   //---------------------------
   return subset;
