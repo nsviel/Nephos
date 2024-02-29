@@ -16,7 +16,7 @@ Wheel::Wheel(ope::Node* node_operation){
   eng::cam::Node* node_camera = node_operation->get_node_camera();
 
   this->cam_control = node_camera->get_camera_control();
-  this->sce_scene = node_scene->get_scene();
+  this->sce_database = node_scene->get_scene_database();
   this->ope_operation = new ope::Operation();
 
   this->mode = WHEEL_CAM_Z;
@@ -43,19 +43,22 @@ void Wheel::make_action(float direction){
 
   switch (mode) {
     case WHEEL_R_Z:{
-      utl::type::Entity* entity = sce_scene->get_selected_entity();
+      utl::type::Set* set_scene = sce_database->get_set_scene();
+      utl::type::Entity* entity = set_scene->selected_entity;
       R = vec3(0, 0, direction * radian);
       ope_operation->make_rotation(entity->set_parent, R);
       break;
     }
     case WHEEL_R_Y:{
-      utl::type::Entity* entity = sce_scene->get_selected_entity();
+      utl::type::Set* set_scene = sce_database->get_set_scene();
+      utl::type::Entity* entity = set_scene->selected_entity;
       R = vec3(0, direction * radian, 0);
       ope_operation->make_rotation(entity->set_parent, R);
       break;
     }
     case WHEEL_R_X:{
-      utl::type::Entity* entity = sce_scene->get_selected_entity();
+      utl::type::Set* set_scene = sce_database->get_set_scene();
+      utl::type::Entity* entity = set_scene->selected_entity;
       R = vec3(direction * radian, 0, 0);
       ope_operation->make_rotation(entity->set_parent, R);
       break;

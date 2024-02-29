@@ -4,7 +4,6 @@
 
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
-namespace eng::scene{class Scene;}
 namespace eng::scene{class Database;}
 namespace eng::scene::gui{class Entity;}
 namespace eng::scene::gui{class Set;}
@@ -44,7 +43,6 @@ private:
   eng::Node* node_engine;
   eng::scene::gui::Entity* rnd_object;
   eng::scene::gui::Set* rnd_set;
-  eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
   eng::cam::Control* cam_control;
   ope::Operation* ope_operation;

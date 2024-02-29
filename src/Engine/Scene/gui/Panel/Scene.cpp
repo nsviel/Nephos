@@ -15,7 +15,6 @@ Scene::Scene(eng::scene::Node* node_scene, bool* show_window){
 
   this->node_engine = node_scene->get_node_engine();
   this->sce_database = node_scene->get_scene_database();
-  this->sce_scene = node_scene->get_scene();
   this->rnd_set = new eng::scene::gui::Set(&show_panel_set);
   this->rnd_object = new eng::scene::gui::Entity(node_scene, &show_panel_entity);
 
@@ -60,7 +59,8 @@ void Scene::design_panel(){
 
 //Subfunction
 void Scene::draw_button(){
-  utl::type::Entity* entity = sce_scene->get_selected_entity();
+  utl::type::Set* set_scene = sce_database->get_set_scene();
+  utl::type::Entity* entity = set_scene->selected_entity;
   if(entity == nullptr) return;
   //-------------------------------
 

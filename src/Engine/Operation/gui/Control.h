@@ -6,7 +6,6 @@ namespace eng{class Node;}
 namespace ope{class Node;}
 namespace ope{class Operation;}
 namespace ope{class Wheel;}
-namespace eng::scene{class Scene;}
 namespace eng::scene{class Database;}
 namespace eng::cam{class Control;}
 namespace eng::cam{class Manager;}
@@ -36,7 +35,6 @@ public:
 private:
   eng::Node* node_engine;
   utl::element::Window* utl_window;
-  eng::scene::Scene* sce_scene;
   eng::scene::Database* sce_database;
   eng::cam::Control* cam_control;
   eng::cam::Manager* cam_manager;

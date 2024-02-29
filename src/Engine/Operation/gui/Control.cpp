@@ -20,7 +20,6 @@ Control::Control(ope::Node* node_operation){
   this->utl_window = utility->get_utl_window();
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
-  this->sce_scene = node_scene->get_scene();
   this->sce_database = node_scene->get_scene_database();
   this->ope_operation = new ope::Operation();
   this->ope_wheel = node_operation->get_ope_wheel();
@@ -57,7 +56,7 @@ void Control::control_keyboard_oneAction(){
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
       utl::type::Set* set_scene = sce_database->get_set_scene();
-      set_scene->delete_entity(set_scene->get_selected_entity());
+      set_scene->delete_entity(set_scene->selected_entity);
       break;
     }
 
@@ -77,7 +76,8 @@ void Control::control_keyboard_translation(){
   utl::type::Set* data_set = sce_database->get_set_main();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
-      utl::type::Entity* entity = sce_scene->get_selected_entity();
+      utl::type::Set* set_scene = sce_database->get_set_scene();
+      utl::type::Entity* entity = set_scene->selected_entity;
 
       //Shift speed up
       float translation_qtt = 0.01;
