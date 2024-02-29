@@ -10,6 +10,7 @@ Database::Database(eng::scene::Node* node_scene){
   //---------------------------
 
   this->set_main = new utl::type::Set("Data");
+  this->sce_set = new eng::scene::Set(node_scene);
 
   //---------------------------
 }
@@ -30,14 +31,14 @@ void Database::init(){
 void Database::loop(){
   //----------------------------
 
-  set_main->update();
+  sce_set->update_set(set_main);
 
   //----------------------------
 }
 void Database::reset(){
   //---------------------------
 
-  set_main->reset();
+  sce_set->reset_set(set_main);
 
   //---------------------------
 }

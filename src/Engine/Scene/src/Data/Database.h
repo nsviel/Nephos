@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng::scene{class Node;}
+namespace eng::scene{class Set;}
 
 
 namespace eng::scene{
@@ -18,7 +19,7 @@ public:
   void init();
   void loop();
   void reset();
-  
+
   //Subfunction
   void assign_UID(utl::type::Entity* entity);
   void assign_UID(utl::type::Data* data);
@@ -28,6 +29,8 @@ public:
   inline utl::type::Set* get_set_world(){return set_world;}
 
 private:
+  eng::scene::Set* sce_set;
+
   utl::type::Set* set_main;
   utl::type::Set* set_scene;
   utl::type::Set* set_world;

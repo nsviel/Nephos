@@ -17,42 +17,6 @@ Set::Set(std::string name){
   //---------------------------
 }
 
-//Main function
-void Set::update(){
-  //---------------------------
-
-  // Process entities within the current set
-  for (int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
-    entity->update_pose();
-  }
-
-  // Recursively process nested sets
-  for(int i=0; i<list_subset.size(); i++){
-    utl::type::Set* nested_set = *next(list_subset.begin(), i);
-    nested_set->update();
-  }
-
-  //---------------------------
-}
-void Set::reset(){
-  //---------------------------
-
-  //Reset all associated entities
-  for(int j=0; j<list_entity.size(); j++){
-    utl::type::Entity* entity = *next(list_entity.begin(), j);
-    entity->reset_entity();
-  }
-
-  //Reset all associated sets
-  for(int i=0; i<list_subset.size(); i++){
-    utl::type::Set* set = *next(list_subset.begin(), i);
-    set->reset();
-  }
-
-  //---------------------------
-}
-
 //Entity function
 void Set::insert_entity(utl::type::Entity* entity){
   if(entity == nullptr) return;
@@ -267,16 +231,6 @@ int Set::get_nb_entity(){
   //---------------------------
   return nb_entity;
 }
-void Set::set_visibility(bool value){
-  //---------------------------
-
-  for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
-    entity->set_visibility(value);
-  }
-
-  //---------------------------
-}
 int Set::compute_number_point(){
   int nb_point = 0;
   //---------------------------
@@ -297,6 +251,17 @@ int Set::compute_number_point(){
   //---------------------------
   return nb_point;
 }
+void Set::set_visibility(bool value){
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    entity->set_visibility(value);
+  }
+
+  //---------------------------
+}
+
 
 
 

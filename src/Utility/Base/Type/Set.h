@@ -16,10 +16,6 @@ public:
   ~Set(){}
 
 public:
-  //Main function
-  void update();
-  void reset();
-
   //Entity function
   void insert_entity(utl::type::Entity* entity);
   void delete_entity(utl::type::Entity* entity);
