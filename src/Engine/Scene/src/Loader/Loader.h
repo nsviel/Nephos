@@ -24,8 +24,8 @@ public:
 
   //Subfunctions
   bool check_file_path(std::string path);
-  utl::entity::Object* load_object(utl::file::Entity* entity);
-  utl::type::Set* load_set(utl::file::Set* set);
+  utl::entity::Object* load_object(utl::file::Data* data);
+  utl::type::Set* load_set(utl::file::Data* data);
 
 private:
   eng::Node* node_engine;

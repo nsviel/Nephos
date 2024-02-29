@@ -39,13 +39,15 @@ utl::type::Entity* Loader::load_data(std::string path){
   if(data == nullptr) return nullptr;
 
   //Data is an entity
-  if(utl::file::Entity* entity_data = dynamic_cast<utl::file::Entity*>(data)){
-    entity = load_object(entity_data);
-  }
-
-  //Data is a set
-  if(utl::file::Set* set_data = dynamic_cast<utl::file::Set*>(data)){
-    this->load_set(set_data);
+  switch(data->type){
+    case utl::file::ENTITY:{
+      entity = load_object(data);
+      break;
+    }
+    case utl::file::SET:{
+      this->load_set(data);
+      break;
+    }
   }
 
   //Delete raw data
@@ -75,7 +77,8 @@ bool Loader::check_file_path(std::string path){
   //---------------------------
   return true;
 }
-utl::entity::Object* Loader::load_object(utl::file::Entity* entity){
+utl::entity::Object* Loader::load_object(utl::file::Data* data){
+  utl::file::Entity* entity = dynamic_cast<utl::file::Entity*>(data);
   //---------------------------
 
   //Data is an entity
@@ -103,8 +106,10 @@ utl::entity::Object* Loader::load_object(utl::file::Entity* entity){
   //---------------------------
   return object;
 }
-utl::type::Set* Loader::load_set(utl::file::Set* set){
+utl::type::Set* Loader::load_set(utl::file::Data* data){
+  utl::file::Set* set = dynamic_cast<utl::file::Set*>(data);
   //---------------------------
+
 
 
 
