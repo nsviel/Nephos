@@ -43,27 +43,39 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
 
   //Init elements
   sensor->param.index = 0;
-  k4a::device device = k4a::device::open(static_cast<uint32_t>(sensor->param.index));
-  sensor->param.serial_number = device.get_serialnum();
+  k4a::device device = k4a::device::open(sensor->param.index);
+  /*sensor->param.serial_number = device.get_serialnum();
   sensor->param.version = device.get_version();
 
   //Configuration
-  configuration->make_device_configuration(sensor);
+  configuration->make_device_configuration_initial(sensor);
   k4n_calibration->make_capture_calibration(sensor, device);
   k4n_calibration->make_device_transformation(sensor);
 
   //Start camera
-  this->manage_color_setting(sensor, device);
-  device.start_cameras(&sensor->param.configuration);
+  //this->manage_color_setting(sensor, device);*/
+  k4a_device_configuration_t config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
+  config.camera_fps = K4A_FRAMES_PER_SECOND_30;
+  config.depth_mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
+  config.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+  config.color_resolution = K4A_COLOR_RESOLUTION_720P;
+  device.start_cameras(&config);
+
+
+//PROBLEM DE USB -> maybe trouver un moyen de reset els port use / reinstaller usb / truc ?
 
   //Start capture thread
   this->thread_running = true;
-  while(thread_running && sensor){
+  while(thread_running){
     //Next capture
-    tasker->loop_begin();
+    //tasker->loop_begin();
 
-    k4a::capture capture;
-    bool ok = device.get_capture(&capture, std::chrono::milliseconds(2000));
+sayHello();
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+
+    //k4a::capture capture;
+    //bool ok = device.get_capture(&capture, std::chrono::milliseconds(2000));
 
 
   /*  k4a::capture* capture = manage_capture(sensor);
@@ -84,7 +96,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     //Manage event
     this->manage_pause(sensor);
     this->manage_recording(sensor, capture);*/
-    tasker->loop_end();
+    //tasker->loop_end();
   }
 
   //---------------------------

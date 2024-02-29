@@ -11,7 +11,7 @@ struct Depth_config{
 
   bool enabled = true;
 
-  k4a_depth_mode_t mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
+  k4a_depth_mode_t mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
 
   std::string mode_str;
   std::string firmware_version;

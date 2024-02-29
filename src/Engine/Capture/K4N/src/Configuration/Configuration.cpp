@@ -30,6 +30,18 @@ void Configuration::make_device_configuration(k4n::dev::Sensor* sensor){
   //---------------------------
   sensor->param.configuration = configuration;
 }
+void Configuration::make_device_configuration_initial(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  k4a_device_configuration_t config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
+  config.camera_fps = K4A_FRAMES_PER_SECOND_30;
+  config.depth_mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
+  config.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+  config.color_resolution = K4A_COLOR_RESOLUTION_720P;
+
+  //---------------------------
+  sensor->param.configuration = config;
+}
 
 //Playback configuration
 void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
