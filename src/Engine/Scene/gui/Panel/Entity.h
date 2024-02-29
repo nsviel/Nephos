@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng::scene{class Node;}
-namespace eng::scene{class Scene;}
+namespace eng::scene{class Database;}
 namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
 
@@ -41,7 +41,7 @@ public:
 private:
   ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
-  eng::scene::Scene* sce_scene;
+  eng::scene::Database* sce_database;
 
   utl::type::Entity* entity;
   string panel_name;

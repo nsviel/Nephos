@@ -4,7 +4,7 @@
 
 class Item;
 namespace eng::scene{class Node;}
-namespace eng::scene{class Scene;}
+namespace eng::scene{class Database;}
 namespace eng::scene{class Loader;}
 namespace eng::scene{class Bookmark;}
 namespace eng::scene{class Format;}
@@ -42,7 +42,7 @@ public:
   void operation_entity(utl::type::Entity* entity);
 
 private:
-  eng::scene::Scene* sce_scene;
+  eng::scene::Database* sce_database;
   eng::scene::Loader* sce_loader;
   eng::scene::Bookmark* sce_bookmark;
   eng::scene::Format* sce_format;

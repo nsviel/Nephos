@@ -11,7 +11,7 @@ namespace eng::scene::gui{
 Entity::Entity(eng::scene::Node* node_scene, bool* panel_show){
   //---------------------------
 
-  this->sce_scene = node_scene->get_scene();
+  this->sce_database = node_scene->get_scene_database();
   this->ope_location = new ope::attribut::Location();
   this->ope_operation = new ope::Operation();
 
@@ -74,7 +74,7 @@ void Entity::entity_button(utl::type::Entity* entity){
 
   //Suppression
   if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
-    utl::type::Set* set_scene = sce_scene->get_set_scene();
+    utl::type::Set* set_scene = sce_database->get_set_scene();
     set_scene->delete_entity(entity);
     this->close_panel();
     return;

@@ -70,9 +70,9 @@ void Scene::draw_button(){
   utl::type::Set* set = entity->set_parent;
   if(ImGui::Button(ICON_FA_TRASH "##supressionentity")){
     if(set->is_locked){
-      sce_scene->delete_subset(set);
+      //sce_scene->delete_subset(set);
     }else if(set->is_locked){
-      utl::type::Set* set_scene = sce_scene->get_set_scene();
+      utl::type::Set* set_scene = sce_database->get_set_scene();
       set_scene->delete_entity(set->selected_entity);
     }
   }
@@ -235,7 +235,7 @@ void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
   //---------------------------
 }
 void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_row){
-  utl::type::Set* set_scene = sce_scene->get_set_scene();
+  utl::type::Set* set_scene = sce_database->get_set_scene();
   //---------------------------
 
   nb_row++;
@@ -271,7 +271,7 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
   if(entity->is_suppressible && ImGui::SmallButton("X##tree_entity")){
-    utl::type::Set* set_scene = sce_scene->get_set_scene();
+    utl::type::Set* set_scene = sce_database->get_set_scene();
     set_scene->delete_entity(entity);
   }
   ImGui::PopStyleColor(2);

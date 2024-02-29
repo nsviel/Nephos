@@ -49,14 +49,14 @@ void Control::control_keyboard_oneAction(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      utl::type::Set* set_scene = sce_scene->get_set_scene();
+      utl::type::Set* set_scene = sce_database->get_set_scene();
       set_scene->select_next_entity();
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      utl::type::Set* set_scene = sce_scene->get_set_scene();
+      utl::type::Set* set_scene = sce_database->get_set_scene();
       set_scene->delete_entity(set_scene->get_selected_entity());
       break;
     }

@@ -50,35 +50,5 @@ void Scene::reset(){
   //---------------------------
 }
 
-//Entity function
-void Scene::assign_entity_UID(utl::type::Entity* entity){
-  //---------------------------
-
-  sce_database->assign_UID(entity);
-
-  //---------------------------
-}
-
-//Set function
-void Scene::delete_subset(utl::type::Set* set){
-  if(set->is_suppressible == false) return;
-  //---------------------------
-
-  //Selected next entity
-  //set_scene->select_next_entity();
-
-  //Delete it from database and engine
-  //set_scene->delete_scene_entity(entity);
-
-  //---------------------------
-}
-utl::type::Set* Scene::get_or_create_subset(string name){
-  //---------------------------
-
-
-
-  //---------------------------
-}
-
 
 }

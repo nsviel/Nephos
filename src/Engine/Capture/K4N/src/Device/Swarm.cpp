@@ -17,7 +17,7 @@ Swarm::Swarm(k4n::structure::Struct_k4n* struct_k4n){
 
   this->struct_k4n = struct_k4n;
   this->profiler = node_profiler->get_prf_manager();
-  this->sce_scene = node_scene->get_scene();
+  this->sce_database = node_scene->get_scene_database();
   this->k4n_transfo = new k4n::utils::Transformation();
 
   //---------------------------
@@ -78,7 +78,7 @@ void Swarm::create_sensor_playback(utl::file::Entity& file){
   //Sensor initialization
   sensor->init();
   master->insert_sensor(sensor);
-  sce_scene->assign_entity_UID(sensor);
+  sce_database->assign_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, file.path_transfo);
 
   //---------------------------
@@ -100,7 +100,7 @@ void Swarm::create_sensor_capture(){
   //Sensor initialization
   sensor->init();
   master->insert_sensor(sensor);
-  sce_scene->assign_entity_UID(sensor);
+  sce_database->assign_UID(sensor);
   sensor->run_capture();
 
   //---------------------------
@@ -136,7 +136,7 @@ void Swarm::close_all_master(){
   //---------------------------
 }
 k4n::dev::Master* Swarm::get_or_create_master(string name){
-  utl::type::Set* set_scene = sce_scene->get_set_scene();
+  utl::type::Set* set_scene = sce_database->get_set_scene();
   //---------------------------
 
   //Check if already existing

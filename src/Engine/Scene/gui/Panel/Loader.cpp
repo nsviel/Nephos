@@ -12,7 +12,7 @@ namespace eng::scene::gui{
 Loader::Loader(eng::scene::Node* node_scene, bool* show_window){
   //---------------------------
 
-  this->sce_scene = node_scene->get_scene();
+  this->sce_database = node_scene->get_scene_database();
   this->sce_loader = node_scene->get_scene_loader();
   this->sce_format = node_scene->get_scene_format();
   this->sce_bookmark = node_scene->get_scene_bookmark();
@@ -385,7 +385,7 @@ void Loader::operation_selection(){
 
   //Apply loading and operations
   if(param_remove_old){
-    utl::type::Set* set_scene = sce_scene->get_set_scene();
+    utl::type::Set* set_scene = sce_database->get_set_scene();
     set_scene->delete_entity_all();
   }
 
@@ -417,7 +417,7 @@ void Loader::operation_selection(string path){
 
     //Apply loading and operations
     if(param_remove_old){
-      utl::type::Set* set_scene = sce_scene->get_set_scene();
+      utl::type::Set* set_scene = sce_database->get_set_scene();
       set_scene->delete_entity_all();
     }
 
