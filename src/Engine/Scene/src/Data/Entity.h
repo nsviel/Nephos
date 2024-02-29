@@ -23,6 +23,7 @@ public:
   void init_entity(utl::type::Entity* entity);
 
 private:
+  eng::scene::Node* node_scene;
   vk::main::Graphical* vk_graphical;
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;

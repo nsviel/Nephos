@@ -17,7 +17,7 @@ Glyph::Glyph(eng::scene::Node* node_scene){
   this->node_engine = node_scene->get_node_engine();
   this->vk_graphical = node_vulkan->get_vk_graphical();
   this->sce_database = node_scene->get_scene_database();
-  this->sce_world = node_scene->get_scene_world();
+  this->sce_entity = node_scene->get_scene_entity();
 
   //---------------------------
 }
@@ -45,7 +45,7 @@ void Glyph::create_glyph_world(){
     glyph->create();
     utl::type::Set* set_world = sce_database->get_set_world();
     set_world->insert_entity(glyph);
-    sce_world->init_entity(glyph);
+    sce_entity->init_entity(glyph);
   }
 
   //---------------------------
@@ -83,7 +83,7 @@ void Glyph::create_glyph_object(utl::entity::Object* object){
     utl::entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
 
     glyph->create();
-    sce_world->init_entity(glyph);
+    sce_entity->init_entity(glyph);
   }
 
   //---------------------------
@@ -102,7 +102,7 @@ void Glyph::create_glyph_camera(utl::entity::Camera* camera){
     //Glyph creation
     glyph->create();
     glyph->update_glyph(camera);
-    sce_world->init_entity(glyph);
+    sce_entity->init_entity(glyph);
   }
 
   //---------------------------

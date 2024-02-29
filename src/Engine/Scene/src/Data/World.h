@@ -20,9 +20,6 @@ public:
   //Main function
   void init();
 
-  //Entity function
-  void init_entity(utl::type::Entity* entity);
-
   inline utl::type::Set* get_set_world(){return set_world;}
 
 private:

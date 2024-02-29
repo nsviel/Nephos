@@ -32,27 +32,5 @@ void World::init(){
   //---------------------------
 }
 
-//Entity function
-void World::init_entity(utl::type::Entity* entity){
-  //---------------------------
-
-  //Init entity
-  sce_database->assign_UID(entity);
-  vk_graphical->insert_data_in_engine(entity->get_data(), entity->get_pose());
-
-  //Init entity data
-  utl::type::Data* data = entity->get_data();
-  sce_database->assign_UID(data);
-  vk_graphical->insert_data_in_engine(entity->get_data(), entity->get_pose());
-
-  //Init entity data vector
-  vector<utl::type::Data*> vec_data = entity->get_vec_data();
-  for(int j=0; j<vec_data.size(); j++){
-    sce_database->assign_UID(vec_data[j]);
-    vk_graphical->insert_data_in_engine(vec_data[j], entity->get_pose());
-  }
-
-  //---------------------------
-}
 
 }

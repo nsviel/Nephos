@@ -21,12 +21,12 @@ Node::Node(eng::Node* node_engine){
   this->sce_param = new eng::scene::Parameter();
   this->sce_database = new eng::scene::Database(this);
   this->sce_world = new eng::scene::World(this);
+  this->sce_entity = new eng::scene::Entity(this);
   this->sce_glyph = new eng::scene::Glyph(this);
   this->sce_scene = new eng::scene::Scene(this);
   this->sce_format = new eng::scene::Format();
   this->sce_loader = new eng::scene::Loader(this);
   this->sce_bookmark = new eng::scene::Bookmark(this);
-  this->sce_entity = new eng::scene::Entity(this);
   this->gui_loader = new eng::scene::gui::Loader(this, &ldr_panel->is_open);
   this->gui_scene = new eng::scene::gui::Scene(this, &sce_panel->is_open);
 
