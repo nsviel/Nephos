@@ -20,11 +20,11 @@ public:
 
 public:
   //Main functions
-  utl::type::Entity* load_data(std::string path);
+  utl::type::Set* load_data(std::string path);
 
   //Subfunctions
   bool check_file_path(std::string path);
-  utl::entity::Object* load_object(utl::file::Data* data);
+  utl::type::Set* load_object(utl::file::Data* data);
   utl::type::Set* load_set(utl::file::Data* data);
 
 private:

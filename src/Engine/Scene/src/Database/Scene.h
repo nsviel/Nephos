@@ -35,6 +35,7 @@ public:
 
   inline utl::type::Set* get_set_scene(){return set_scene;}
   inline utl::type::Entity* get_selected_entity(){return set_scene->selected_entity;}
+  inline void set_selected_entity(utl::type::Entity* entity){set_scene->selected_entity = entity;}
 
 private:
   vk::main::Graphical* vk_graphical;

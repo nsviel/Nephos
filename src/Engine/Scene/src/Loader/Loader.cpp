@@ -28,8 +28,8 @@ Loader::~Loader(){
 }
 
 //Main functions
-utl::type::Entity* Loader::load_data(std::string path){
-  utl::type::Entity* entity = nullptr;
+utl::type::Set* Loader::load_data(std::string path){
+  utl::type::Set* set = nullptr;
   //---------------------------
 
   if(!check_file_path(path)) return nullptr;
@@ -41,11 +41,11 @@ utl::type::Entity* Loader::load_data(std::string path){
   //Data is an entity
   switch(data->type){
     case utl::file::ENTITY:{
-      entity = load_object(data);
+      set = load_object(data);
       break;
     }
     case utl::file::SET:{
-      this->load_set(data);
+      set = load_set(data);
       break;
     }
   }
@@ -54,7 +54,7 @@ utl::type::Entity* Loader::load_data(std::string path){
   delete data;
 
   //---------------------------
-  return entity;
+  return set;
 }
 
 //Subfunctions
@@ -77,9 +77,11 @@ bool Loader::check_file_path(std::string path){
   //---------------------------
   return true;
 }
-utl::entity::Object* Loader::load_object(utl::file::Data* data){
+utl::type::Set* Loader::load_object(utl::file::Data* data){
   utl::file::Entity* entity = dynamic_cast<utl::file::Entity*>(data);
   //---------------------------
+
+  utl::type::Set* set_scene = sce_scene->get_set_scene();
 
   //Data is an entity
   utl::entity::Object* object = new utl::entity::Object(node_engine);
@@ -101,10 +103,12 @@ utl::entity::Object* Loader::load_object(utl::file::Data* data){
     }
   }
 
+  set_scene->insert_entity(object);
+  set_scene->set_selected_entity(object);
   sce_scene->init_entity(object);
 
   //---------------------------
-  return object;
+  return set_scene;
 }
 utl::type::Set* Loader::load_set(utl::file::Data* data){
   utl::file::Set* set = dynamic_cast<utl::file::Set*>(data);
