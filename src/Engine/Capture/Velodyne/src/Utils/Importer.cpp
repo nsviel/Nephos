@@ -66,6 +66,7 @@ utl::file::Set* Importer::import(std::string path){
   utl::file::Set* set = new utl::file::Set();
   set->name = utl::fct::info::get_name_from_path(path);
   set->path = path;
+  set->type = utl::file::SET;
 
   this->importer_init(path);
   this->importer_sniffing(path);

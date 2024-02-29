@@ -16,7 +16,7 @@ enum Type{
 struct Data{
   //---------------------------
 
-  int type;
+  int type = utl::file::ENTITY;
   std::string name = "";
   std::string path = "";
 
@@ -31,7 +31,6 @@ struct Entity : public utl::file::Data{
   //Info
   int nb_element = 0;
   int draw_type = utl::topology::POINT;
-  int type = utl::file::ENTITY;
 
   std::string path_transfo = "";
   std::string path_texture = "";
@@ -53,7 +52,6 @@ struct Entity : public utl::file::Data{
 struct Set : public utl::file::Data{
   //---------------------------
 
-  int type = utl::file::SET;
   std::vector<utl::file::Entity*> vec_data;
 
   //---------------------------
