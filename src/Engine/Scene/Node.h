@@ -13,6 +13,7 @@ namespace eng::scene{class Glyph;}
 namespace eng::scene{class Operation;}
 namespace eng::scene{class Bookmark;}
 namespace eng::scene{class World;}
+namespace eng::scene{class Entity;}
 namespace eng::scene::gui{class Scene;}
 namespace eng::scene::gui{class Loader;}
 
@@ -43,6 +44,7 @@ public:
   inline eng::scene::Glyph* get_scene_glyph(){return sce_glyph;}
   inline eng::scene::Bookmark* get_scene_bookmark(){return sce_bookmark;}
   inline eng::scene::World* get_scene_world(){return sce_world;}
+  inline eng::scene::Entity* get_scene_entity(){return sce_entity;}
 
 private:
   //Dependancy
@@ -60,6 +62,7 @@ private:
   eng::scene::World* sce_world;
   eng::scene::gui::Scene* gui_scene;
   eng::scene::gui::Loader* gui_loader;
+  eng::scene::Entity* sce_entity;
 
   bool show_scene = true;
   bool show_loader = true;

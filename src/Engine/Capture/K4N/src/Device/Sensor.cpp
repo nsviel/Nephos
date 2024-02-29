@@ -16,7 +16,7 @@ Sensor::Sensor(k4n::structure::Struct_k4n* struct_k4n){
   eng::scene::Node* node_scene = struct_k4n->node_scene;
 
   this->node_engine = struct_k4n->node_engine;
-  this->sce_scene = node_scene->get_scene();
+  this->sce_entity = node_scene->get_scene_entity();
   this->sce_glyph = node_scene->get_scene_glyph();
   this->k4n_capture = new k4n::thread::Capture();
   this->k4n_playback = new k4n::thread::Playback();
@@ -61,7 +61,7 @@ void Sensor::init(){
   object.name = param.name;
   object.data->draw_type = utl::topology::POINT;
   object.data->nb_data_max = 10000000;
-  sce_scene->init_entity(&object);
+  sce_entity->init_entity(&object);
 
   //---------------------------
 }

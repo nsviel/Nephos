@@ -26,6 +26,7 @@ Node::Node(eng::Node* node_engine){
   this->sce_format = new eng::scene::Format();
   this->sce_loader = new eng::scene::Loader(this);
   this->sce_bookmark = new eng::scene::Bookmark(this);
+  this->sce_entity = new eng::scene::Entity(this);
   this->gui_loader = new eng::scene::gui::Loader(this, &ldr_panel->is_open);
   this->gui_scene = new eng::scene::gui::Scene(this, &sce_panel->is_open);
 

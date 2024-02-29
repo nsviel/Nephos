@@ -3,7 +3,8 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
-namespace eng::scene{class Scene;}
+namespace eng::scene{class Entity;}
+namespace eng::scene{class Database;}
 namespace eng::scene{class Format;}
 namespace eng::scene{class Node;}
 namespace eng::scene{class Parameter;}
@@ -33,7 +34,8 @@ public:
 private:
   eng::Node* node_engine;
   eng::scene::Format* sce_format;
-  eng::scene::Scene* sce_scene;
+  eng::scene::Entity* sce_entity;
+  eng::scene::Database* sce_database;
   eng::scene::Parameter* sce_param;
 };
 

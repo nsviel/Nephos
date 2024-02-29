@@ -5,7 +5,7 @@
 #include <Utility/Specific/common.h>
 
 namespace eng{class Node;}
-namespace eng::scene{class Scene;}
+namespace eng::scene{class Entity;}
 namespace eng::scene{class Glyph;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
@@ -70,7 +70,7 @@ public:
 
 private:
   eng::Node* node_engine;
-  eng::scene::Scene* sce_scene;
+  eng::scene::Entity* sce_entity;
   eng::scene::Glyph* sce_glyph;
   k4n::thread::Capture* k4n_capture;
   k4n::thread::Playback* k4n_playback;

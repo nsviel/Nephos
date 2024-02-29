@@ -25,7 +25,6 @@ public:
   void reset();
 
   //Entity function
-  void init_entity(utl::type::Entity* entity);
   void assign_entity_UID(utl::type::Entity* entity);
 
   //Set function
