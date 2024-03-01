@@ -25,6 +25,7 @@ Node::Node(eng::Node* node_engine){
   this->sce_format = new eng::scene::Format();
   this->sce_loader = new eng::scene::Loader(this);
   this->sce_bookmark = new eng::scene::Bookmark(this);
+  this->sce_scene = new eng::scene::Scene(this);
   this->gui_loader = new eng::scene::gui::Loader(this, &ldr_panel->is_open);
   this->gui_scene = new eng::scene::gui::Scene(this, &sce_panel->is_open);
 
@@ -45,6 +46,7 @@ void Node::init(){
 
   sce_bookmark->init();
   sce_database->init();
+  sce_scene->init();
   sce_glyph->create_glyph_world();
 
   //---------------------------

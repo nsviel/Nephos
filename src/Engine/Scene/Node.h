@@ -12,6 +12,7 @@ namespace eng::scene{class Glyph;}
 namespace eng::scene{class Operation;}
 namespace eng::scene{class Bookmark;}
 namespace eng::scene{class Entity;}
+namespace eng::scene{class Scene;}
 namespace eng::scene::gui{class Scene;}
 namespace eng::scene::gui{class Loader;}
 
@@ -54,6 +55,7 @@ private:
   eng::scene::Loader* sce_loader;
   eng::scene::Format* sce_format;
   eng::scene::Bookmark* sce_bookmark;
+  eng::scene::Scene* sce_scene;
   eng::scene::gui::Scene* gui_scene;
   eng::scene::gui::Loader* gui_loader;
   eng::scene::Entity* sce_entity;
