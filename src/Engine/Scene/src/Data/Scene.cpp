@@ -19,6 +19,25 @@ Scene::~Scene(){}
 void Scene::init(){
   //----------------------------
 
+  utl::file::Entity file_1;
+  file_1.path = "/home/aether/Desktop/versaille_0.mkv";
+  file_1.path_transfo = "/home/aether/Desktop/versaille_0.json";
+
+  utl::file::Entity file_2;
+  file_2.path = "/home/aether/Desktop/versaille_2.mkv";
+  file_2.path_transfo = "/home/aether/Desktop/versaille_2.json";
+
+  utl::file::Entity file_3;
+  file_3.path = "/home/aether/Desktop/output.mkv";
+
+  utl::file::Entity file_4;
+  file_4.path = "/home/aether/Desktop/cerfav_3_1.mkv";
+
+  //Create playback list
+  sce_loader->load_data(&file_1);
+  //this->create_sensor_playback(file_1);
+  //this->create_sensor_playback(file_2);
+  //this->create_sensor_playback(file_4);
 
   //----------------------------
 }

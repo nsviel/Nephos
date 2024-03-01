@@ -58,6 +58,34 @@ utl::type::Set* Loader::load_data(std::string path){
   //---------------------------
   return set;
 }
+utl::type::Set* Loader::load_data(utl::file::Entity* entity){
+  utl::type::Set* set = nullptr;
+  //---------------------------
+
+  if(!check_file_path(entity->path)) return nullptr;
+
+  //Load data from path
+  utl::file::Data* data = sce_format->import_from_path(entity->path);
+  if(data == nullptr) return nullptr;
+
+  //Data is an entity
+  switch(data->type){
+    case utl::file::ENTITY:{
+      set = load_object(data);
+      break;
+    }
+    case utl::file::SET:{
+      set = load_set(data);
+      break;
+    }
+  }
+
+  //Delete raw data
+  delete data;
+
+  //---------------------------
+  return set;
+}
 
 //Data function
 utl::type::Set* Loader::load_object(utl::file::Data* data){
@@ -100,7 +128,8 @@ bool Loader::check_file_path(std::string path){
   //Check file format
   string format = utl::fct::info::get_format_from_path(path);
   if(!sce_format->is_format_supported(format)){
-    cout<<"[error] File format not supported -> "<<format<<endl;
+    cout<<"[error] '"<<format<<"' file format not supported"<<endl;
+    sce_format->display_supported_format();
     return false;
   }
 

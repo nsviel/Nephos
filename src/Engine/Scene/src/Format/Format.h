@@ -26,6 +26,7 @@ public:
   //Subfunction
   void insert_importer(utl::type::Importer* importer);
   bool is_format_supported(string format);
+  void display_supported_format();
 
 private:
   vector<utl::type::Importer*> vec_importer;

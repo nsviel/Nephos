@@ -68,5 +68,16 @@ bool Format::is_format_supported(string format){
   //---------------------------
   return false;
 }
+void Format::display_supported_format(){
+  //---------------------------
+
+  cout<<"Supported file formats:"<<endl;
+  for(int i=0; i<vec_importer.size(); i++){
+    utl::type::Importer* importer = vec_importer[i];
+    cout<<"o "<<importer->format<<endl;
+  }
+
+  //---------------------------
+}
 
 }

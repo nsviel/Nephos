@@ -23,6 +23,7 @@ public:
 public:
   //Main functions
   utl::type::Set* load_data(std::string path);
+  utl::type::Set* load_data(utl::file::Entity* entity);
 
   //Data function
   utl::type::Set* load_object(utl::file::Data* data);
