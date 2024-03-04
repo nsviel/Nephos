@@ -49,6 +49,9 @@ void Graphical::draw_frame(){
     struct_vulkan->profiler->tasker_main->task_end(name);
   }
 
+  struct_vulkan->queue.graphics->wait_for_idle();
+
+
   struct_vulkan->queue.presentation->image_presentation(semaphore->end);
 
   //---------------------------
