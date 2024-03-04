@@ -40,7 +40,7 @@ void Transfer::run_thread(){
   vec_thread.push_back(thread_prf);
 
   //Start thread
-  thread_running = true;
+  this->thread_running = true;
   while(thread_running){
     this->wait_for_command();
     this->prepare_submission();
@@ -112,13 +112,6 @@ void Transfer::queue_submission(){
     throw std::runtime_error("[error] command buffer queue submission");
   }
 
-/*
-  say("---");
-sayHello();
-
-std::thread::id threadId = std::this_thread::get_id();
-std::cout << "Thread ID: " << threadId << std::endl;
-*/
   vkWaitForFences(struct_vulkan->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
   vk_fence->reset_fence(fence);
 

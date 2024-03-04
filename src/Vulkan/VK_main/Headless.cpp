@@ -63,7 +63,6 @@ void Headless::loop(){
   //---------------------------
 
   vk_drawing->draw_frame();
-  vk_command_allocator->submit_commands();
   vk_semaphore->reset_pool();
 
   //---------------------------

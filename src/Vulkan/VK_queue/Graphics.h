@@ -24,6 +24,7 @@ public:
   void start_thread();
   void run_thread();
   void add_command(vk::structure::Command* command);
+  void add_command_thread(vk::structure::Command* command);
   void wait_for_idle();
 
   //Subfunction

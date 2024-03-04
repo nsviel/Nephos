@@ -64,24 +64,6 @@ void Command_buffer::clean_pool(vk::pool::Command_buffer* pool){
 
   //---------------------------
 }
-void Command_buffer::submit_pool(vk::pool::Command_buffer* pool){
-  //---------------------------
-
-  //Submit all recorder command buffer
-  vector<VkCommandBuffer> vec_command;
-  for(int i=0; i<pool->size; i++){
-    vk::structure::Command_buffer* command_buffer = &pool->tank[i];
-
-    if(command_buffer->is_recorded){
-      vk::structure::Command* command = new vk::structure::Command();
-      command->vec_command_buffer.push_back(command_buffer);
-
-      struct_vulkan->queue.graphics->add_command(command);
-    }
-  }
-
-  //---------------------------
-}
 
 //Command buffer function
 void Command_buffer::create_command_buffer_primary(vk::pool::Command_buffer* pool, vk::structure::Command_buffer* command_buffer){

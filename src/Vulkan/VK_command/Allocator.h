@@ -22,7 +22,6 @@ public:
   void init();
   void reset();
   void clean();
-  void submit_commands();
 
   //Subfunction
   vk::pool::Command_buffer* query_free_allocator_pool();

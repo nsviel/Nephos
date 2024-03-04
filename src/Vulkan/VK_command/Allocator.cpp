@@ -47,24 +47,6 @@ void Allocator::reset(){
 
   //---------------------------
 }
-void Allocator::submit_commands(){
-  vk::pool::Command* pool = &struct_vulkan->pools.command;
-  //---------------------------
-/*
-  for(int i=0; i<pool->tank.size(); i++){
-    vk::pool::Command_buffer* command_pool = &pool->tank[i];
-    vk_command_buffer->submit_pool(command_pool);
-    vk_command_buffer->reset_pool(command_pool);
-  }
-  */
-
-  //Submit man thread commands
-  vk::pool::Command_buffer* command_pool = &pool->tank[0];
-  vk_command_buffer->submit_pool(command_pool);
-  vk_command_buffer->reset_pool(command_pool);
-
-  //---------------------------
-}
 void Allocator::clean(){
   vk::pool::Command* pool = &struct_vulkan->pools.command;
   //---------------------------

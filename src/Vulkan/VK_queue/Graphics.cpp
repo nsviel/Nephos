@@ -14,6 +14,7 @@ Graphics::Graphics(vk::structure::Vulkan* struct_vulkan){
   this->vk_query = new vk::instance::Query(struct_vulkan);
 
   //---------------------------
+  this->start_thread();
 }
 Graphics::~Graphics(){}
 
@@ -30,7 +31,7 @@ void Graphics::start_thread(){
 void Graphics::run_thread(){
   //---------------------------
 
-  thread_running = true;
+  this->thread_running = true;
   while(thread_running){
     this->wait_for_command();
     this->reset_for_submission();
@@ -51,6 +52,13 @@ void Graphics::add_command(vk::structure::Command* command){
   this->prepare_submission();
   this->queue_submission();
   this->post_submission();
+
+  //---------------------------
+}
+void Graphics::add_command_thread(vk::structure::Command* command){
+  //---------------------------
+
+  vec_command_prepa.push_back(command);
 
   //---------------------------
 }
@@ -114,7 +122,7 @@ void Graphics::prepare_submission(){
     for(int i=0; i<command->vec_semaphore_done.size(); i++){
       this->vec_semaphore_done.push_back(command->vec_semaphore_done[i]);
     }
-    
+
     //Pipeline wait stage
     for(int i=0; i<command->vec_wait_stage.size(); i++){
       this->vec_wait_stage.push_back(command->vec_wait_stage[i]);
