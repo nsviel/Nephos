@@ -26,6 +26,8 @@ void Graphical::draw_frame(){
   struct_vulkan->queue.presentation->acquire_next_image(semaphore->end);
 
   //Renderpass
+  vector<vk::structure::Command*> vec_command;
+
   int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
     vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
@@ -34,6 +36,7 @@ void Graphical::draw_frame(){
 
     //Create command
     vk::structure::Command* command = new vk::structure::Command();
+    vec_command.push_back(command);
     command->vec_semaphore_processing.push_back(semaphore->end);
 
     //Run renderpass
@@ -44,9 +47,13 @@ void Graphical::draw_frame(){
     command->vec_command_buffer.push_back(renderpass->command_buffer);
     command->vec_semaphore_done.push_back(semaphore->end);
     command->vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-    struct_vulkan->queue.graphics->add_command(command);
 
     struct_vulkan->profiler->tasker_main->task_end(name);
+  }
+
+  for(int i=0; i<vec_command.size(); i++){
+    vk::structure::Command* command = vec_command[i];
+    struct_vulkan->queue.graphics->add_command(command);
   }
 
   struct_vulkan->queue.graphics->wait_for_idle();

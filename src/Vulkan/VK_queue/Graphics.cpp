@@ -46,8 +46,21 @@ void Graphics::add_command(vk::structure::Command* command){
   //---------------------------
 
   vec_command_prepa.push_back(command);
-  this->queue_idle = false;
 
+  //this->wait_for_command();
+  this->reset_for_submission();
+  this->prepare_submission();
+  this->queue_submission();
+  this->post_submission();
+
+  //---------------------------
+}
+void Graphics::add_command(vector<vk::structure::Command*> vec_command){
+  //---------------------------
+
+  vec_command_prepa = vec_command;
+
+  //this->wait_for_command();
   this->reset_for_submission();
   this->prepare_submission();
   this->queue_submission();
@@ -185,8 +198,6 @@ void Graphics::post_submission(){
       }
     }
   }
-
-  this->queue_idle = true;
 
   //---------------------------
 }
