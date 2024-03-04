@@ -52,10 +52,10 @@ void Texture::clean_texture(vk::structure::Object* vk_object){
 
   //---------------------------
 }
-void Texture::update_texture(utl::media::Image* utl_image, int UID){
+void Texture::update_texture(utl::media::Image* utl_image){
   //---------------------------
 
-  vk::structure::Texture* texture = query_texture(UID);
+  vk::structure::Texture* texture = query_texture(utl_image->texture_ID);
   if(texture == nullptr) return;
 
   texture->utl_image = utl_image;

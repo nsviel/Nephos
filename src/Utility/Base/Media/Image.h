@@ -18,7 +18,7 @@ struct Image{
 
   //Texture
   int texture_ID = -1;
-  void* gui_texture_ID;
+  void* gui_ID;
 
   //Data
   std::vector<uint8_t> data;

@@ -68,6 +68,14 @@ void Imgui::new_frame(){
 }
 
 //Imgui with vulkan function
+void Imgui::load_texture(utl::media::Image* utl_image){
+  //---------------------------
+
+  utl_image->texture_ID = vk_texture->load_texture(utl_image);
+  utl_image->gui_ID = create_imgui_texture(utl_image->texture_ID);
+
+  //---------------------------
+}
 ImTextureID Imgui::create_imgui_texture(int UID){
   //---------------------------
 

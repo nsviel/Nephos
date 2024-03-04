@@ -36,11 +36,10 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image){
 
   //Load texture into vulkan
   if(utl_image->texture_ID == -1){
-    utl_image->texture_ID = vk_texture->load_texture(utl_image);
-    utl_image->gui_texture_ID = vk_imgui->create_imgui_texture(utl_image->texture_ID);
+    vk_imgui->load_texture(utl_image);
   //update texture data
   }else if(utl_image->new_data){
-    vk_texture->update_texture(utl_image, utl_image->texture_ID);
+    vk_texture->update_texture(utl_image);
     utl_image->new_data = false;
   }
 
@@ -50,7 +49,7 @@ void Stream::render_image(utl::media::Image* utl_image, ImVec2& size){
   if(utl_image->texture_ID == -1) return;
   //---------------------------
 
-  ImGui::Image(utl_image->gui_texture_ID, size);
+  ImGui::Image(utl_image->gui_ID, size);
 
   //---------------------------
 }

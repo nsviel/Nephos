@@ -28,10 +28,14 @@ public:
   void render();
   void new_frame();
 
-  ImTextureID create_imgui_texture(int UID);
-  ImTextureID query_engine_texture();
+  //Context
   void create_context();
   bool check_window_resize();
+
+  //Texture
+  void load_texture(utl::media::Image* utl_image);
+  ImTextureID create_imgui_texture(int UID);
+  ImTextureID query_engine_texture();
 
   //Font
   void select_font();
