@@ -274,7 +274,7 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
   string tag = "X##" + entity->name;
-  if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){
+  if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){say("---");
     entity->remove_entity();
   }
   ImGui::PopStyleColor(2);
