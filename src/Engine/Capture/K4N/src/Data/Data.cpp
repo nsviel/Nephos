@@ -108,7 +108,6 @@ void Data::find_data_depth(k4n::dev::Sensor* sensor, k4a::capture* capture){
   sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
 
   //---------------------------
-  depth.reset();
 }
 void Data::find_data_color(k4n::dev::Sensor* sensor, k4a::capture* capture){
   //---------------------------
@@ -128,7 +127,6 @@ void Data::find_data_color(k4n::dev::Sensor* sensor, k4a::capture* capture){
   sensor->color.data.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
 
   //---------------------------
-  color.reset();
 }
 void Data::find_data_ir(k4n::dev::Sensor* sensor, k4a::capture* capture){
   //---------------------------
@@ -149,7 +147,6 @@ void Data::find_data_ir(k4n::dev::Sensor* sensor, k4a::capture* capture){
   sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
 
   //---------------------------
-  ir.reset();
 }
 
 //Transformed data
@@ -307,7 +304,7 @@ void Data::find_color_to_depth(k4n::dev::Sensor* sensor, k4a::capture* capture, 
   //Convert it into a depth POV representation
   k4a::image color_to_depth = transformation.color_image_to_depth_camera(sensor->depth.data.k4a_image, sensor->color.data.k4a_image);
   if(!color_to_depth.is_valid()) return;
-  
+
   //Fill data structure
   sensor->color.cloud.name = "color_to_depth";
   sensor->color.cloud.k4a_image = color_to_depth;

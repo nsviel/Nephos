@@ -1,6 +1,7 @@
 #include "Fence.h"
 
 #include <Vulkan/Namespace.h>
+#include <random>
 
 
 namespace vk::synchro{
@@ -71,7 +72,7 @@ void Fence::reset_fence(vk::structure::Fence* fence){
   //---------------------------
 
   VkResult result = vkResetFences(struct_vulkan->device.handle, 1, &fence->fence);
-  if (result != VK_SUCCESS) {
+  if(result != VK_SUCCESS){
     cout<<"[error] reseting fence"<<endl;
   }
 
@@ -85,15 +86,22 @@ vk::structure::Fence* Fence::query_free_fence(){
   std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.tank;
   //---------------------------
 
+  std::random_device rd;  // Seed for the random number generator
+  std::mt19937 gen(rd()); // Mersenne Twister PRNG
+  std::uniform_int_distribution<int> distr(0, pool.size() - 1);
+
   //Find the first free command buffer
-  for(int i=0; i<pool.size(); i++){
-    vk::structure::Fence* fence = &pool[i];
+  int index;
+  vk::structure::Fence* fence;
+  do{
+    index = distr(gen); // Generate a random index
+    fence = &pool[index];
 
     if(fence->is_available){
       fence->is_available = false;
       return fence;
     }
-  }
+  }while(true);
 
   //Error message
   cout<<"[error] not enough fence"<<endl;

@@ -167,12 +167,12 @@ void Graphics::queue_submission(){
   submit_info.pSignalSemaphores = vec_semaphore_done.data();
   submit_info.commandBufferCount = vec_command_buffer.size();
   submit_info.pCommandBuffers = vec_command_buffer.data();
-
+//say("graphics on");
   VkResult result = vkQueueSubmit(struct_vulkan->device.queue.graphics, 1, &submit_info, fence->fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }
-
+//say("graphics off");
   vkWaitForFences(struct_vulkan->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
   vk_fence->reset_fence(fence);
 

@@ -29,8 +29,6 @@ Sensor::Sensor(k4n::structure::Struct_k4n* struct_k4n){
 Sensor::~Sensor(){
   //---------------------------
 
-  this->remove_entity();
-
   delete k4n_capture;
   delete k4n_playback;
 
@@ -77,9 +75,6 @@ void Sensor::reset(){
 void Sensor::update_pose(){
   //----------------------------
 
-  //Retrieve capture data
-  //std::unique_lock<std::mutex> lock(object.data->mutex);
-  //object.update_data();
   object.update_pose();
 
   //----------------------------
@@ -87,16 +82,16 @@ void Sensor::update_pose(){
 void Sensor::remove_entity(){
   //---------------------------
 
+  //Remove tasker
+  prf::Node* node_profiler = node_engine->get_node_profiler();
+  prf::Manager* prf_manager = node_profiler->get_prf_manager();
+  prf_manager->remove_profiler(profiler);
+
   //Remove sensor elements
   this->stop_threads();
   this->param.transformation.destroy();
   this->object.remove_entity();
   this->master->manage_suppression(this);
-
-  //Remove tasker
-  prf::Node* node_profiler = node_engine->get_node_profiler();
-  prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  prf_manager->remove_profiler(profiler);
 
   //---------------------------
 }

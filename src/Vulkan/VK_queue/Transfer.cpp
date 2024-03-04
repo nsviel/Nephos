@@ -109,7 +109,10 @@ void Transfer::queue_submission(){
 
   VkResult result = vkQueueSubmit(struct_vulkan->device.queue.transfer, 1, &submit_info, fence->fence);
   if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] command buffer queue submission");
+    throw std::runtime_error("[error] graphics queue submission");
+  }
+  if(result == VK_TIMEOUT){
+    throw std::runtime_error("[error] graphics queue submission timeout");
   }
 
   vkWaitForFences(struct_vulkan->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);

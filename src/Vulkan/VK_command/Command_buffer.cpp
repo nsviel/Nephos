@@ -108,16 +108,24 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(){
   if(pool == nullptr) return nullptr;
   //---------------------------
 
-  //Find the first free command buffer
-  for(int i=0; i<pool->size; i++){
-    vk::structure::Command_buffer* command_buffer = &pool->tank[i];
+  // Random number generator setup
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> distr(0, pool->size - 1);
 
-    if(command_buffer->is_available && !command_buffer->is_recorded){
+  // Find a random available and unrecorded command buffer
+  int index;
+  vk::structure::Command_buffer* command_buffer;
+  do{
+    index = distr(gen);
+    command_buffer = &pool->tank[index];
+
+    if(command_buffer->is_available){
       vkResetCommandBuffer(command_buffer->command, 0);
       command_buffer->is_available = false;
       return command_buffer;
     }
-  }
+  }while(true);
 
   //Error message
   cout<<"[error] not enough free command buffer"<<endl;
