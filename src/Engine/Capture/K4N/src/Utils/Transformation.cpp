@@ -64,7 +64,7 @@ void Transformation::find_transformation_from_file(k4n::dev::Sensor* sensor, str
   //---------------------------
 }
 void Transformation::save_transformation_to_file(k4n::dev::Sensor* sensor){
-  string& path = sensor->param.path_transformation;
+  string& path = sensor->param.path.transformation;
   mat4& mat = sensor->get_pose()->model;
   //---------------------------
 

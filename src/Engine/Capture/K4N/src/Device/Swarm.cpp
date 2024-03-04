@@ -25,37 +25,6 @@ Swarm::Swarm(k4n::structure::Struct_k4n* struct_k4n){
 }
 Swarm::~Swarm(){}
 
-//Main function
-void Swarm::init_scene(){
-  //---------------------------
-
-  //If no real device create playback
-  k4n::dev::Master* master = get_or_create_master("Master");
-  uint32_t current_nb_dev = k4a_device_get_installed_count();
-  if(current_nb_dev != 0) return;
-
-  utl::file::Entity file_1;
-  file_1.path.data = "/home/aether/Desktop/versaille_0.mkv";
-  file_1.path.transformation = "/home/aether/Desktop/versaille_0.json";
-
-  utl::file::Entity file_2;
-  file_2.path.data = "/home/aether/Desktop/versaille_2.mkv";
-  file_2.path.transformation = "/home/aether/Desktop/versaille_2.json";
-
-  utl::file::Entity file_3;
-  file_3.path.data = "/home/aether/Desktop/output.mkv";
-
-  utl::file::Entity file_4;
-  file_4.path.data = "/home/aether/Desktop/cerfav_3_1.mkv";
-
-  //Create playback list
-  //this->create_sensor_playback(file_1);
-  //this->create_sensor_playback(file_2);
-  //this->create_sensor_playback(file_4);
-
-  //---------------------------
-}
-
 //Sensor function
 void Swarm::create_sensor_playback(utl::file::Path path){
   if(!utl::fct::file::is_file_exist(path.data)) return;
@@ -72,8 +41,7 @@ void Swarm::create_sensor_playback(utl::file::Path path){
   sensor->param.file_size = utl::fct::info::get_file_size(path.data);
   sensor->param.index = index;
   sensor->param.mode = k4n::mode::PLAYBACK;
-  sensor->param.path_file = path.data;
-  sensor->param.path_transformation = path.transformation;
+  sensor->param.path = path;
   sensor->master = master;
 
   //Sensor initialization

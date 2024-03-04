@@ -43,8 +43,8 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Init playback
-  if(sensor->param.path_file == "") return;
-  sensor->param.playback = k4a::playback::open(sensor->param.path_file.c_str());
+  if(sensor->param.path.data == "") return;
+  sensor->param.playback = k4a::playback::open(sensor->param.path.data.c_str());
   if(!sensor->param.playback) return;
 
   k4n_configuration->find_playback_configuration(sensor);

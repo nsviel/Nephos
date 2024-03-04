@@ -22,9 +22,6 @@ public:
   ~Swarm();
 
 public:
-  //Main function
-  void init_scene();
-
   //Sensor function
   void create_sensor_playback(utl::file::Path path);
   void create_sensor_capture();

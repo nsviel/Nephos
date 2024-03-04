@@ -44,7 +44,6 @@ void Node::config(){
 void Node::init(){
   //---------------------------
 
-  k4n_swarm->init_scene();
   k4n_connection->start_thread();
 
   //---------------------------

@@ -33,12 +33,11 @@ struct Param{
   int mode = k4n::mode::PLAYBACK;
   float file_size = 0;
   FPS fps;
+  utl::file::Path path;
 
   std::string name = "";
   std::string format = "";
   std::string serial_number = "";
-  std::string path_file = "";
-  std::string path_transformation = "";
 
   k4a::device device;
   k4a::playback playback;
