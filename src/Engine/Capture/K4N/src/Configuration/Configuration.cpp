@@ -17,7 +17,7 @@ void Configuration::make_device_configuration(k4n::dev::Sensor* sensor){
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
-  configuration.color_format = K4A_IMAGE_FORMAT_COLOR_YUY2;//sensor->color.config.format;
+  configuration.color_format = sensor->color.config.format;
   configuration.color_resolution = sensor->color.config.enabled ? sensor->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
   configuration.depth_mode = sensor->depth.config.enabled ? sensor->depth.config.mode : K4A_DEPTH_MODE_OFF;
   configuration.camera_fps = sensor->param.fps.mode;
@@ -33,14 +33,14 @@ void Configuration::make_device_configuration(k4n::dev::Sensor* sensor){
 void Configuration::make_device_configuration_initial(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  k4a_device_configuration_t config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
-  config.camera_fps = K4A_FRAMES_PER_SECOND_30;
-  config.depth_mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
-  config.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  config.color_resolution = K4A_COLOR_RESOLUTION_720P;
+  sensor->depth.config.enabled = true;
+  sensor->depth.config.mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
+  sensor->param.fps.mode = K4A_FRAMES_PER_SECOND_30;
+  sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+  sensor->color.config.enabled = true;
+  sensor->color.config.resolution = K4A_COLOR_RESOLUTION_1080P;
 
   //---------------------------
-  sensor->param.configuration = config;
 }
 
 //Playback configuration

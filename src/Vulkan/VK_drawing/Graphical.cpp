@@ -51,7 +51,11 @@ void Graphical::draw_frame(){
     struct_vulkan->profiler->tasker_main->task_end(name);
   }
 
-  struct_vulkan->queue.graphics->add_command(vec_command);
+  for(int i=0; i<vec_command.size(); i++){
+    vk::structure::Command* command = vec_command[i];
+    struct_vulkan->queue.graphics->add_command(command);
+  }
+  //struct_vulkan->queue.graphics->add_command(vec_command);
 
   struct_vulkan->queue.graphics->wait_for_idle();
 

@@ -50,21 +50,13 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
 
   //Configuration
   configuration->make_device_configuration_initial(sensor);
-  k4n_calibration->make_capture_calibration(sensor, sensor->param.device);
+  configuration->make_device_configuration(sensor);
+  k4n_calibration->make_capture_calibration(sensor);
   k4n_calibration->make_device_transformation(sensor);
 
   //Start camera
-//  this->manage_color_setting(sensor, device);
-  k4a_device_configuration_t config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
-  config.camera_fps = K4A_FRAMES_PER_SECOND_30;
-  config.depth_mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
-  // NE MARCHE QU'EN YUY2 !!!!!!!!!!!!!!
-  //En faite ne marche que dans certaine configurations
-  //du coup vérifier quelles config marchent pas et les empécher
-
-  config.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  config.color_resolution = K4A_COLOR_RESOLUTION_1080P;
-  sensor->param.device.start_cameras(&config);
+  this->manage_color_setting(sensor);
+  sensor->param.device.start_cameras(&sensor->param.configuration);
 
   //Start capture thread
   this->thread_running = true;
@@ -78,8 +70,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     }
 
     //Find data from capture
-    //k4a_data->run_thread(sensor, capture);
-    delete capture;
+    k4a_data->run_thread(sensor, capture);
 
     //Manage event
     this->manage_pause(sensor);
@@ -155,9 +146,10 @@ void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
 */
   //---------------------------
 }
-void Capture::manage_color_setting(k4n::dev::Sensor* sensor, k4a::device& device){
+void Capture::manage_color_setting(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  k4a::device& device = sensor->param.device;
   device.set_color_control(sensor->color.config.exposure.command, sensor->color.config.exposure.mode, sensor->color.config.exposure.value);
   device.set_color_control(sensor->color.config.white_balance.command, sensor->color.config.white_balance.mode, sensor->color.config.white_balance.value);
   device.set_color_control(sensor->color.config.brightness.command, sensor->color.config.brightness.mode, sensor->color.config.brightness.value);

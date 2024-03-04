@@ -13,24 +13,25 @@ Calibration::Calibration(){
 Calibration::~Calibration(){}
 
 //Main function
-void Calibration::make_device_transformation(k4n::dev::Sensor* k4n_sensor){
+void Calibration::make_device_transformation(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  k4n_sensor->param.transformation = k4a::transformation(k4n_sensor->param.calibration);
-
-  //---------------------------
-}
-void Calibration::make_capture_calibration(k4n::dev::Sensor* k4n_sensor, k4a::device& device){
-  //---------------------------
-
-  k4n_sensor->param.calibration = device.get_calibration(k4n_sensor->depth.config.mode, k4n_sensor->color.config.resolution);
+  sensor->param.transformation = k4a::transformation(sensor->param.calibration);
 
   //---------------------------
 }
-void Calibration::find_playback_calibration(k4n::dev::Sensor* k4n_sensor){
+void Calibration::make_capture_calibration(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  k4n_sensor->param.calibration = k4n_sensor->param.playback.get_calibration();
+  k4a::device& device = sensor->param.device;
+  sensor->param.calibration = device.get_calibration(sensor->depth.config.mode, sensor->color.config.resolution);
+
+  //---------------------------
+}
+void Calibration::find_playback_calibration(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  sensor->param.calibration = sensor->param.playback.get_calibration();
 
   //---------------------------
 }
