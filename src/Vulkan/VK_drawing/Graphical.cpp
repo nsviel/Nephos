@@ -44,7 +44,7 @@ void Graphical::draw_frame(){
     command->vec_command_buffer.push_back(renderpass->command_buffer);
     command->vec_semaphore_done.push_back(semaphore->end);
     command->vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-    struct_vulkan->queue.graphics->submit_command(command);
+    struct_vulkan->queue.graphics->add_command(command);
 
     struct_vulkan->profiler->tasker_main->task_end(name);
   }

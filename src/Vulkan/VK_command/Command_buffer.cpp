@@ -76,7 +76,7 @@ void Command_buffer::submit_pool(vk::pool::Command_buffer* pool){
       vk::structure::Command* command = new vk::structure::Command();
       command->vec_command_buffer.push_back(command_buffer);
 
-      struct_vulkan->queue.graphics->submit_command(command);
+      struct_vulkan->queue.graphics->add_command(command);
     }
   }
 

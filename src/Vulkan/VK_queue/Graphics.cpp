@@ -18,17 +18,39 @@ Graphics::Graphics(vk::structure::Vulkan* struct_vulkan){
 Graphics::~Graphics(){}
 
 //Main function
-void Graphics::submit_command(vk::structure::Command* command){
+void Graphics::start_thread(){
   //---------------------------
 
+  if(!thread_running){
+    this->thread = std::thread(&Graphics::run_thread, this);
+  }
+
+  //---------------------------
+}
+void Graphics::run_thread(){
+  //---------------------------
+
+  thread_running = true;
+  while(thread_running){
+  /*  this->wait_for_command();
+    this->reset_for_submission();
+    this->prepare_submission();
+    this->queue_submission();
+    this->post_submission();*/
+  }
+
+  //---------------------------
+}
+void Graphics::add_command(vk::structure::Command* command){
+  //---------------------------
+
+  vec_command_prepa.push_back(command);
   this->queue_idle = false;
 
   this->reset_for_submission();
-  this->prepare_submission(command);
+  this->prepare_submission();
   this->queue_submission();
-  this->post_submission(command);
-
-
+  this->post_submission();
 
   //---------------------------
 }
@@ -44,6 +66,20 @@ void Graphics::wait_for_idle(){
 }
 
 //Subfunction
+void Graphics::wait_for_command(){
+  //For internal thread to wait for to submit commands
+  //---------------------------
+
+  this->queue_idle = true;
+
+  while(vec_command_prepa.empty() || struct_vulkan->queue.standby){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  this->queue_idle = false;
+
+  //---------------------------
+}
 void Graphics::reset_for_submission(){
   //---------------------------
 
@@ -54,18 +90,24 @@ void Graphics::reset_for_submission(){
 
   //---------------------------
 }
-void Graphics::prepare_submission(vk::structure::Command* command){
+void Graphics::prepare_submission(){
   //---------------------------
 
-  //Command buffer
-  for(int i=0; i<command->vec_command_buffer.size(); i++){
-    vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
-    this->vec_command_buffer.push_back(command_buffer->command);
-  }
+  this->vec_command_onrun = vec_command_prepa;
+  this->vec_command_prepa.clear();
 
-  this->vec_semaphore_processing = command->vec_semaphore_processing;
-  this->vec_wait_stage = command->vec_wait_stage;
-  this->vec_semaphore_done = command->vec_semaphore_done;
+  for(int i=0; i<vec_command_onrun.size(); i++){
+    vk::structure::Command* command = vec_command_onrun[i];
+
+    for(int i=0; i<command->vec_command_buffer.size(); i++){
+      vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
+      this->vec_command_buffer.push_back(command_buffer->command);
+    }
+
+    this->vec_semaphore_processing = command->vec_semaphore_processing;
+    this->vec_wait_stage = command->vec_wait_stage;
+    this->vec_semaphore_done = command->vec_semaphore_done;
+  }
 
   //---------------------------
 }
@@ -94,21 +136,25 @@ void Graphics::queue_submission(){
 
   //---------------------------
 }
-void Graphics::post_submission(vk::structure::Command* command){
+void Graphics::post_submission(){
   //---------------------------
 
-  for(int i=0; i<command->vec_command_buffer.size(); i++){
-    vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
+  for(int i=0; i<vec_command_onrun.size(); i++){
+    vk::structure::Command* command = vec_command_onrun[i];
 
-    //Command buffer timestamp
-    vk_query->find_query_timestamp(command_buffer);
+    for(int i=0; i<command->vec_command_buffer.size(); i++){
+      vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
 
-    //Command buffer reset
-    if(command_buffer->is_resetable){
-      command_buffer->is_available = true;
-      command_buffer->is_recorded = false;
-      command_buffer->query.is_in_use = false;
+      //Command buffer timestamp
+      vk_query->find_query_timestamp(command_buffer);
 
+      //Command buffer reset
+      if(command_buffer->is_resetable){
+        command_buffer->is_available = true;
+        command_buffer->is_recorded = false;
+        command_buffer->query.is_in_use = false;
+
+      }
     }
   }
 
