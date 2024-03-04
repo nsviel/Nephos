@@ -25,12 +25,13 @@ void Image::start_thread(k4n::dev::Sensor* sensor){
   if(thread.joinable()){
     this->thread.join();
   }
-  this->thread = std::thread(&Image::make_images, this, sensor);
+  this->thread = std::thread(&Image::run_thread, this, sensor);
 
   //---------------------------
 }
-void Image::make_images(k4n::dev::Sensor* sensor){
+void Image::run_thread(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
+  this->thread_idle = false;
   //---------------------------
 
   prf::graph::Tasker* tasker = sensor->profiler->get_tasker("image");
@@ -52,6 +53,17 @@ void Image::make_images(k4n::dev::Sensor* sensor){
   tasker->task_end("infrared");
 
   tasker->loop_end();
+
+  //---------------------------
+  this->thread_idle = true;
+}
+void Image::wait_thread_idle(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
 
   //---------------------------
 }

@@ -35,6 +35,7 @@ void Processing::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Processing::run_thread(k4n::dev::Sensor* sensor){
+  this->thread_idle = false;
   //---------------------------
 
   prf::graph::Tasker* tasker = sensor->profiler->get_tasker("processing");
@@ -68,6 +69,17 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   tasker->task_end("update");
 
   tasker->loop_end();
+
+  //---------------------------
+  this->thread_idle = true;
+}
+void Processing::wait_thread_idle(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
 
   //---------------------------
 }

@@ -40,6 +40,7 @@ void Capture::start_thread(k4n::dev::Sensor* sensor){
 void Capture::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
   k4n::dev::Master* master = sensor->master;
+  this->thread_idle = false;
   //---------------------------
 
   //Init elements
@@ -79,6 +80,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   }
 
   //---------------------------
+  this->thread_idle = true;
 }
 void Capture::stop_thread(){
   //---------------------------
@@ -86,6 +88,16 @@ void Capture::stop_thread(){
   this->thread_running = false;
   if(thread.joinable()){
     thread.join();
+  }
+
+  //---------------------------
+}
+void Capture::wait_thread_idle(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
   //---------------------------

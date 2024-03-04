@@ -40,11 +40,12 @@ void Playback::start_thread(k4n::dev::Sensor* sensor){
 void Playback::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
   k4n::dev::Master* master = sensor->master;
+  this->thread_idle = false;
   //---------------------------
 
   //Init playback
   this->thread_running = true;
-  this->thread_ended = false;
+  this->thread_idle = false;
   if(sensor->param.path.data == "") return;
   sensor->param.playback = k4a::playback::open(sensor->param.path.data.c_str());
   if(!sensor->param.playback) return;
@@ -71,9 +72,9 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   }
 
   sensor->param.playback.close();
-  this->thread_ended = true;
 
   //---------------------------
+  this->thread_idle = true;
 }
 void Playback::stop_thread(){
   //---------------------------
@@ -81,6 +82,16 @@ void Playback::stop_thread(){
   this->thread_running = false;
   if(thread.joinable()){
     thread.join();
+  }
+
+  //---------------------------
+}
+void Playback::wait_thread_idle(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
   //---------------------------

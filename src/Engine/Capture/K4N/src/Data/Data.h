@@ -24,6 +24,7 @@ public:
   //Main function
   void start_thread(k4n::dev::Sensor* sensor, k4a::capture* capture);
   void run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture);
+  void wait_thread_idle();
 
   //Data function
   void find_data_from_capture(k4n::dev::Sensor* device, k4a::capture* capture);
@@ -51,6 +52,7 @@ private:
   k4n::data::Image* k4n_image;
 
   std::thread thread;
+  bool thread_idle = true;;
   tjhandle tj_handle;
 };
 

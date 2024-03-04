@@ -28,6 +28,7 @@ public:
   void start_thread(k4n::dev::Sensor* device);
   void run_thread(k4n::dev::Sensor* device);
   void stop_thread();
+  void wait_thread_idle();
 
   //Subfunction
   k4a::capture* manage_capture(k4n::dev::Sensor* sensor);
@@ -48,6 +49,7 @@ private:
   std::thread thread;
   bool thread_running = false;
   bool thread_pause = false;
+  bool thread_idle = true;
   bool is_recording = false;
 };
 

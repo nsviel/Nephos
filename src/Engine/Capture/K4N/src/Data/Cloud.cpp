@@ -32,6 +32,7 @@ void Cloud::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::run_thread(k4n::dev::Sensor* sensor){
+  this->thread_idle = false;
   //---------------------------
 
   //Convert data into a cloud
@@ -39,6 +40,17 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
 
   //Update object data
   k4n_processing->start_thread(sensor);
+
+  //---------------------------
+  this->thread_idle = true;
+}
+void Cloud::wait_thread_idle(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
 
   //---------------------------
 }

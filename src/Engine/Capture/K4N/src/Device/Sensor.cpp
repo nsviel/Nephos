@@ -134,7 +134,7 @@ void Sensor::run_playback(string path){
 }
 void Sensor::stop_threads(){
   //---------------------------
-say("---");
+
   this->k4n_capture->stop_thread();
   this->k4n_playback->stop_thread();
 
