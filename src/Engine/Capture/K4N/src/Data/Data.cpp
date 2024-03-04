@@ -59,6 +59,8 @@ void Data::wait_thread_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
+  k4a_cloud->wait_thread_idle();
+  k4n_image->wait_thread_idle();
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
