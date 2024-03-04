@@ -33,12 +33,17 @@ Node::Node(eng::capture::Node* node_capture){
 Node::~Node(){}
 
 //Main function
-void Node::init(){
-  eng::scene::Node* node_scene = node_engine->get_node_scene();
+void Node::config(){
   eng::scene::Format* sce_format = node_scene->get_scene_format();
   //---------------------------
 
   sce_format->insert_importer(new k4n::Importer(this));
+
+  //---------------------------
+}
+void Node::init(){
+  //---------------------------
+
   k4n_swarm->init_scene();
   k4n_connection->start_thread();
 

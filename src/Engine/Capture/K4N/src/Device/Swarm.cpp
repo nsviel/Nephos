@@ -49,7 +49,7 @@ void Swarm::init_scene(){
   file_4.path = "/home/aether/Desktop/cerfav_3_1.mkv";
 
   //Create playback list
-  this->create_sensor_playback(file_1);
+  //this->create_sensor_playback(file_1);
   //this->create_sensor_playback(file_2);
   //this->create_sensor_playback(file_4);
 

@@ -20,6 +20,7 @@ public:
   virtual void reset(){}
   virtual void clean(){}
   virtual void wait(){}
+  virtual void config(){}
 
   utl::gui::Panel* add_panel(string name, string icon, bool value){
     //---------------------------

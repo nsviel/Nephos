@@ -20,6 +20,7 @@ public:
 
 public:
   //Main function
+  void config();
   void init();
   void loop();
   void gui();

@@ -38,6 +38,7 @@ void App_main::init(){
   //---------------------------
 
   node_utility->init();
+  node_engine->config();
   node_engine->init();
   node_gui->init();
 
