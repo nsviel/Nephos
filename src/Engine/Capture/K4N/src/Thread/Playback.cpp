@@ -44,6 +44,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
 
   //Init playback
   this->thread_running = true;
+  this->thread_ended = false;
   if(sensor->param.path.data == "") return;
   sensor->param.playback = k4a::playback::open(sensor->param.path.data.c_str());
   if(!sensor->param.playback) return;
@@ -70,6 +71,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   }
 
   sensor->param.playback.close();
+  this->thread_ended = true;
 
   //---------------------------
 }

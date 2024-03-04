@@ -44,6 +44,7 @@ private:
 
   std::thread thread;
   bool thread_running = false;
+  bool thread_ended = true;
 };
 
 

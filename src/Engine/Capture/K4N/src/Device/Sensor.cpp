@@ -80,12 +80,14 @@ void Sensor::update_pose(){
   //----------------------------
 }
 void Sensor::remove_entity(){
+  if(profiler == nullptr) return;
   //---------------------------
 
   //Remove tasker
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   prf_manager->remove_profiler(profiler);
+  this->profiler = nullptr;
 
   //Remove sensor elements
   this->stop_threads();
@@ -132,7 +134,7 @@ void Sensor::run_playback(string path){
 }
 void Sensor::stop_threads(){
   //---------------------------
-
+say("---");
   this->k4n_capture->stop_thread();
   this->k4n_playback->stop_thread();
 
