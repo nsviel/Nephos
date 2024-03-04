@@ -101,11 +101,11 @@ void Graphics::wait_for_command(){
   //---------------------------
 
   this->queue_idle = true;
-
+say("graphics on");
   while(vec_command_prepa.empty() || struct_vulkan->queue.standby){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-
+say("graphics off");
   this->queue_idle = false;
 
   //---------------------------
