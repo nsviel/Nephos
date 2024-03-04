@@ -38,7 +38,7 @@ struct Param{
   std::string format = "";
   std::string serial_number = "";
   std::string path_file = "";
-  std::string path_transfo = "";
+  std::string path_transformation = "";
 
   k4a::device device;
   k4a::playback playback;

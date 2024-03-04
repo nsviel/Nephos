@@ -10,6 +10,7 @@ struct Importer{
   //---------------------------
 
   virtual utl::file::Data* import(std::string path){return nullptr;}
+  virtual utl::file::Data* import(utl::file::Data* file){return nullptr;}
 
   utl::file::Data* data = nullptr;
   std::string format = "";

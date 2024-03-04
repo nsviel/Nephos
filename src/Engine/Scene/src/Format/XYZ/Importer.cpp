@@ -19,7 +19,7 @@ utl::file::Entity* Importer::import(std::string path){
   //---------------------------
 
   data->name = utl::fct::info::get_name_from_path(path);
-  data->path = path;
+  data->path_data = path;
 
   //Open file
   std::ifstream infile(path);

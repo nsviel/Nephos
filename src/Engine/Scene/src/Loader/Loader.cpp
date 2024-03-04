@@ -62,10 +62,10 @@ utl::type::Set* Loader::load_data(utl::file::Entity* entity){
   utl::type::Set* set = nullptr;
   //---------------------------
 
-  if(!check_file_path(entity->path)) return nullptr;
+  if(!check_file_path(entity->path_data)) return nullptr;
 
   //Load data from path
-  utl::file::Data* data = sce_format->import_from_path(entity->path);
+  utl::file::Data* data = sce_format->import_from_path(entity->path_data);
   if(data == nullptr) return nullptr;
 
   //Data is an entity
@@ -141,8 +141,8 @@ utl::entity::Object* Loader::create_object(utl::file::Data* data){
   //---------------------------
 
   utl::entity::Object* object = new utl::entity::Object(node_engine);
-  object->data->path = entity->path;
-  object->data->file_format = utl::fct::info::get_format_from_path(entity->path);
+  object->data->path = entity->path_data;
+  object->data->file_format = utl::fct::info::get_format_from_path(entity->path_data);
   object->data->has_texture = true;
   object->name = entity->name;
   object->data->point.size = entity->xyz.size();

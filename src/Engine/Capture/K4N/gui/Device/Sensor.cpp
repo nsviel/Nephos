@@ -55,7 +55,7 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
     //Transformation matrix file path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Matrix"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->param.path_transfo.c_str());
+    ImGui::TextColored(color, "%s", sensor->param.path_transformation.c_str());
 
     ImGui::EndTable();
   }
