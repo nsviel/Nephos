@@ -43,7 +43,7 @@ public:
   inline prf::improfil::Manager* get_gui_graph(){return gui_graph;}
   inline std::string get_name(){return name;}
   inline bool is_empty(){return vec_task.empty();}
-  inline string get_thread_ID(){return (std::stringstream{} << thread_ID).str();}
+  inline string get_thread_ID(){return thread_ID;}
 
 private:
   prf::timer::Chrono timer;
@@ -55,9 +55,9 @@ private:
   vector<prf::graph::Task> vec_task_current;
   vector<prf::graph::Task> vec_task;
   string name;
+  string thread_ID;
   float loop_fps;
   bool is_fps_control;
-  std::thread::id thread_ID;
 };
 
 }

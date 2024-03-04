@@ -1,17 +1,19 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <Profiler/gui/Profiler/Struct_profiler.h>
 
 namespace prf{class Node;}
 namespace prf{class Manager;}
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
 namespace prf::improfil{class Manager;}
+namespace prf::gui{class Profiler;}
 
 
 namespace prf::gui{
 
-class Graph
+class Graph : public prf::gui::Profiler
 {
 public:
   //Constructor / Destructor

@@ -118,14 +118,15 @@ void Panel::draw_profiler(){
 
       ImGui::SetNextItemWidth(100);
       if(ImGui::BeginTabItem(profiler->get_name().c_str())){
-        this->selected_profiler = profiler;
 
         //Vulkan tab
         if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler)){
+          this->selected_profiler = gui_vulkan;
           gui_vulkan->draw_profiler(vulkan);
         }
         //Graph tab
         else if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
+          this->selected_profiler = gui_graph;
           gui_graph->draw_profiler(graph);
         }
         ImGui::EndTabItem();

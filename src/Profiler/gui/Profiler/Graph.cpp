@@ -22,6 +22,8 @@ Graph::~Graph(){}
 void Graph::draw_profiler(prf::graph::Profiler* profiler){
   //---------------------------
 
+  this->show_info();
+
   if(ImGui::BeginTabBar("tasker_gui##4567")){
     this->draw_graph_all(profiler);
     this->draw_graph_unique(profiler);
@@ -32,9 +34,9 @@ void Graph::draw_profiler(prf::graph::Profiler* profiler){
   //---------------------------
 }
 void Graph::show_info(){
-  if(selected_tasker == nullptr) return;
+  if(selected_tasker == nullptr) return;say("who");
   //---------------------------
-
+/*
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
 
   //Thread
@@ -52,7 +54,7 @@ void Graph::show_info(){
   ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", selected_tasker->get_loop_fps()); //io.Framerate
   ImGui::SameLine();
   ImGui::Text(" FPS ]");
-
+*/
   //---------------------------
 }
 

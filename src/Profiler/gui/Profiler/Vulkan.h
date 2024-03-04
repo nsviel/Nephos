@@ -1,14 +1,16 @@
 #pragma once
 
 #include <Utility/Specific/common.h>
+#include <Profiler/gui/Profiler/Struct_profiler.h>
 
 namespace prf{class Node;}
 namespace prf::vulkan{class Profiler;}
+namespace prf::gui{class Profiler;}
 
 
 namespace prf::gui{
 
-class Vulkan
+class Vulkan : public prf::gui::Profiler
 {
 public:
   //Constructor / Destructor
