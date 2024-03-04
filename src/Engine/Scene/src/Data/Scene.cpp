@@ -38,7 +38,7 @@ void Scene::init(){
 
   //Create playback list
   sce_loader->load_data(path_1);
-  sce_loader->load_data(path_5);
+  sce_loader->load_data(path_2);
 
   //----------------------------
 }

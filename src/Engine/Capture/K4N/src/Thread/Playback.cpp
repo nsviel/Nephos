@@ -43,6 +43,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Init playback
+  this->thread_running = true;
   if(sensor->param.path.data == "") return;
   sensor->param.playback = k4a::playback::open(sensor->param.path.data.c_str());
   if(!sensor->param.playback) return;
@@ -53,7 +54,6 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   k4n_calibration->make_device_transformation(sensor);
 
   //Playback thread
-  this->thread_running = true;
   while(thread_running){
     //Next capture
     tasker->loop_begin(master->operation.fps);
