@@ -68,6 +68,11 @@ void Panel::main_info(){
     string gpu = profiler_vulkan->get_info()->selected_gpu;
     ImGui::TextColored(color, "%s", gpu.c_str());
 
+    //Thread
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Thread"); ImGui::TableNextColumn();
+    //ImGui::TextColored(color, "%s", gpu.c_str());
+
     //Selected tasker
     if(selected_tasker != nullptr){
       //Type

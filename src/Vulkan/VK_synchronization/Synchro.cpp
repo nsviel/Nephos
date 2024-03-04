@@ -19,7 +19,6 @@ Synchro::~Synchro(){}
 void Synchro::wait_idle(){
   //---------------------------
 
-//say(struct_vulkan->queue.transfer->is_queue_idle());
   struct_vulkan->queue.standby = true;
   struct_vulkan->queue.transfer->wait_for_idle();
   vkDeviceWaitIdle(struct_vulkan->device.handle);
