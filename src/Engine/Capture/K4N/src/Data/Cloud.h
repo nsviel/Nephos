@@ -56,7 +56,6 @@ private:
   glm::vec4 rgb;
   float ir;
   float R;
-  bool thread_finished;
   bool goodness = true;
 };
 

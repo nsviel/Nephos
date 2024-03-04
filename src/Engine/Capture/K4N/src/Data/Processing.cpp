@@ -18,7 +18,6 @@ Processing::Processing(){
   this->ope_normal = new ope::attribut::Normal();
   this->k4n_operation = new k4n::utils::Operation();
   this->thread = std::thread([](){});
-  this->thread_finished = true;
 
   //---------------------------
 }
@@ -28,13 +27,9 @@ Processing::~Processing(){}
 void Processing::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  while(!thread_finished){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
   if(thread.joinable()){
     this->thread.join();
   }
-  this->thread_finished = false;
   this->thread = std::thread(&Processing::run_thread, this, sensor);
 
   //---------------------------
@@ -75,7 +70,6 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   tasker->loop_end();
 
   //---------------------------
-  this->thread_finished = true;
 }
 
 //Subfunction

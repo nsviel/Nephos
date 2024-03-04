@@ -56,6 +56,7 @@ void Swarm::create_sensor_capture(){
   //---------------------------
 
   //Associated master
+  this->close_master("Playback");
   k4n::dev::Master* master = get_or_create_master("Capture");
   int index = sce_set->compute_number_entity(master);
 
@@ -82,6 +83,19 @@ void Swarm::manage_resynchronization(){
   for(int i=0; i<struct_k4n->list_master.size(); i++){
     k4n::dev::Master* master = *std::next(struct_k4n->list_master.begin(), i);
     master->manage_resynchronization();
+  }
+
+  //---------------------------
+}
+void Swarm::close_master(string name){
+  //---------------------------
+
+  for(int i=0; i<struct_k4n->list_master.size(); i++){
+    k4n::dev::Master* master = *std::next(struct_k4n->list_master.begin(), i);
+    if(master->name == name){
+      this->close_master(master);
+      return;
+    }
   }
 
   //---------------------------

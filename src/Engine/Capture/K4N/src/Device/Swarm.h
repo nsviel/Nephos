@@ -29,6 +29,7 @@ public:
   //Master function
   void manage_resynchronization();
   void close_all_master();
+  void close_master(string name);
   void close_master(k4n::dev::Master* master);
   k4n::dev::Master* get_or_create_master(string name);
   k4n::dev::Master* get_master_by_name(string name);

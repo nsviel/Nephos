@@ -16,7 +16,6 @@ Data::Data(){
   this->k4a_cloud = new k4n::data::Cloud();
   this->k4n_image = new k4n::data::Image();
   this->thread = std::thread([](){});
-  this->thread_finished = true;
 
   //---------------------------
 }
@@ -32,13 +31,9 @@ Data::~Data(){
 void Data::start_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
   //---------------------------
 
-  while(!thread_finished){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
   if(thread.joinable()){
     this->thread.join();
   }
-  this->thread_finished = false;
   this->thread = std::thread(&Data::run_thread, this, sensor, capture);
 
   //---------------------------
@@ -57,7 +52,6 @@ void Data::run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
   k4n_image->start_thread(sensor);
 
   //---------------------------
-  this->thread_finished = true;
 }
 
 //Data function

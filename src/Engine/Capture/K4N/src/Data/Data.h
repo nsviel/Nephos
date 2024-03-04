@@ -51,7 +51,6 @@ private:
   k4n::data::Image* k4n_image;
 
   std::thread thread;
-  bool thread_finished;
   tjhandle tj_handle;
 };
 

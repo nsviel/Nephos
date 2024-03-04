@@ -61,8 +61,8 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   // NE MARCHE QU'EN YUY2 !!!!!!!!!!!!!!
   //En faite ne marche que dans certaine configurations
   //du coup vérifier quelles config marchent pas et les empécher
-  
-  config.color_format = K4A_IMAGE_FORMAT_COLOR_YUY2;
+
+  config.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
   config.color_resolution = K4A_COLOR_RESOLUTION_1080P;
   sensor->param.device.start_cameras(&config);
 
@@ -78,7 +78,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     }
 
     //Find data from capture
-    k4a_data->run_thread(sensor, capture);
+    //k4a_data->run_thread(sensor, capture);
 
     //Manage event
     this->manage_pause(sensor);

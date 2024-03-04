@@ -22,10 +22,9 @@ Image::~Image(){}
 void Image::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  while(!thread.joinable()){say("waiting");
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  if(thread.joinable()){
+    this->thread.join();
   }
-  thread.join();
   this->thread = std::thread(&Image::make_images, this, sensor);
 
   //---------------------------
