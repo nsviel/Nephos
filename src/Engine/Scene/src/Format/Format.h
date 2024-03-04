@@ -22,6 +22,7 @@ public:
 public:
   //Main function
   utl::file::Data* import_from_path(std::string path);
+  utl::file::Data* import_from_path(utl::file::Data* file);
 
   //Subfunction
   void insert_importer(utl::type::Importer* importer);

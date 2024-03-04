@@ -35,18 +35,18 @@ void Swarm::init_scene(){
   if(current_nb_dev != 0) return;
 
   utl::file::Entity file_1;
-  file_1.path_data = "/home/aether/Desktop/versaille_0.mkv";
-  file_1.path_transformation = "/home/aether/Desktop/versaille_0.json";
+  file_1.path.data = "/home/aether/Desktop/versaille_0.mkv";
+  file_1.path.transformation = "/home/aether/Desktop/versaille_0.json";
 
   utl::file::Entity file_2;
-  file_2.path_data = "/home/aether/Desktop/versaille_2.mkv";
-  file_2.path_transformation = "/home/aether/Desktop/versaille_2.json";
+  file_2.path.data = "/home/aether/Desktop/versaille_2.mkv";
+  file_2.path.transformation = "/home/aether/Desktop/versaille_2.json";
 
   utl::file::Entity file_3;
-  file_3.path_data = "/home/aether/Desktop/output.mkv";
+  file_3.path.data = "/home/aether/Desktop/output.mkv";
 
   utl::file::Entity file_4;
-  file_4.path_data = "/home/aether/Desktop/cerfav_3_1.mkv";
+  file_4.path.data = "/home/aether/Desktop/cerfav_3_1.mkv";
 
   //Create playback list
   //this->create_sensor_playback(file_1);
@@ -58,7 +58,7 @@ void Swarm::init_scene(){
 
 //Sensor function
 void Swarm::create_sensor_playback(utl::file::Entity& file){
-  if(!utl::fct::file::is_file_exist(file.path_data)) return;
+  if(!utl::fct::file::is_file_exist(file.path.data)) return;
   //---------------------------
 
   //Associated master
@@ -68,19 +68,19 @@ void Swarm::create_sensor_playback(utl::file::Entity& file){
   //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
   sensor->name = "playback_" + to_string(index);
-  sensor->param.format = utl::fct::info::get_format_from_path(file.path_data);
-  sensor->param.file_size = utl::fct::info::get_file_size(file.path_data);
+  sensor->param.format = utl::fct::info::get_format_from_path(file.path.data);
+  sensor->param.file_size = utl::fct::info::get_file_size(file.path.data);
   sensor->param.index = index;
   sensor->param.mode = k4n::mode::PLAYBACK;
-  sensor->param.path_file = file.path_data;
-  sensor->param.path_transformation = file.path_transformation;
+  sensor->param.path_file = file.path.data;
+  sensor->param.path_transformation = file.path.transformation;
   sensor->master = master;
 
   //Sensor initialization
   sensor->init();
   master->insert_sensor(sensor);
   sce_database->assign_UID(sensor);
-  k4n_transfo->find_transformation_from_file(sensor, file.path_transformation);
+  k4n_transfo->find_transformation_from_file(sensor, file.path.transformation);
 
   //---------------------------
 }

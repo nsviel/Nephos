@@ -13,13 +13,21 @@ enum Type{
 };
 
 
+struct Path{
+  //---------------------------
+
+  std::string data = "";
+  std::string transformation = "";
+
+  //---------------------------
+};
+
 struct Data{
   //---------------------------
 
   int type = utl::file::ENTITY;
   std::string name = "";
-  std::string path_data = "";
-  std::string path_transformation = "";
+  utl::file::Path path;
 
   virtual void hello(){}
 

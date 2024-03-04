@@ -19,7 +19,7 @@ utl::file::Entity* Importer::import(std::string path){
 
   utl::file::Entity* entity = new utl::file::Entity();
   entity->name = utl::fct::info::get_name_from_path(path);
-  entity->path_data = path;
+  entity->path.data = path;
   entity->draw_type = utl::topology::POINT;
   this->face_number = 0;
 

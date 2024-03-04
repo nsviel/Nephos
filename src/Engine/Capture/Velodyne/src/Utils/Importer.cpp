@@ -65,7 +65,7 @@ utl::file::Set* Importer::import(std::string path){
 
   utl::file::Set* set = new utl::file::Set();
   set->name = utl::fct::info::get_name_from_path(path);
-  set->path_data = path;
+  set->path.data = path;
   set->type = utl::file::SET;
 
   this->importer_init(path);
@@ -135,7 +135,7 @@ void Importer::parser_vlp16(utl::file::Set* set, std::string path){
       utl::file::Entity* entity = new utl::file::Entity();
 
       entity->name = "frame_" + std::to_string(cpt); cpt++;
-      entity->path_data = path;
+      entity->path.data = path;
       entity->nb_element = frame->xyz.size();
 
       for(int j=0; j<frame->xyz.size(); j++){
@@ -165,7 +165,7 @@ void Importer::parser_hdl32(utl::file::Set* set, std::string path){
       utl::file::Entity* frame = velo_frame.get_endedFrame();
       utl::file::Entity* entity = new utl::file::Entity();
 
-      entity->path_data = path;
+      entity->path.data = path;
       entity->nb_element = frame->xyz.size();
 
       for(int j=0; j<frame->xyz.size(); j++){

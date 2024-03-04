@@ -23,9 +23,9 @@ Importer::~Importer(){}
 utl::file::Entity* Importer::import(string path){
   //---------------------------
 
-  utl::file::Entity file;
-  file.path_data = path;
-  k4n_swarm->create_sensor_playback(file);
+  utl::file::Entity entity;
+  entity.path.data = path;
+  k4n_swarm->create_sensor_playback(entity);
 
   //---------------------------
   return nullptr;

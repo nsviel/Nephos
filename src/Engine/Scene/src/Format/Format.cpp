@@ -45,6 +45,22 @@ utl::file::Data* Format::import_from_path(std::string path){
   //---------------------------
   return data;
 }
+utl::file::Data* Format::import_from_path(utl::file::Data* file){
+  utl::file::Data* data = nullptr;
+  //---------------------------
+/*
+  std::string format = utl::fct::info::get_format_from_path(path);
+  for(int i=0; i<vec_importer.size(); i++){
+    utl::type::Importer* importer = vec_importer[i];
+
+    if(format == importer->format){
+      data = importer->import(path);
+    }
+  }*/
+
+  //---------------------------
+  return data;
+}
 
 //Subfunction
 void Format::insert_importer(utl::type::Importer* importer){
