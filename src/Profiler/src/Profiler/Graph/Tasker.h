@@ -55,7 +55,7 @@ private:
   vector<prf::graph::Task> vec_task_current;
   vector<prf::graph::Task> vec_task;
   string name;
-  string thread_ID;
+  string thread_ID = "";
   float loop_fps;
   bool is_fps_control;
 };
