@@ -4,6 +4,7 @@
 
 namespace prf{class Node;}
 namespace prf{class Manager;}
+namespace prf::type{class Profiler;}
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
 namespace prf::improfil{class Manager;}
@@ -33,7 +34,7 @@ public:
 
 private:
   prf::Manager* prf_manager;
-  prf::graph::Tasker* selected_tasker;
+  prf::type::Profiler* selected_profiler = nullptr;
   prf::gui::Vulkan* gui_vulkan;
   prf::gui::Graph* gui_graph;
 

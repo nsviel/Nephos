@@ -13,18 +13,16 @@ struct Profiler{
 
     this->name = name;
     this->type = type;
-    this->thread_ID = std::this_thread::get_id();
 
     //---------------------------
   }
-  virtual void clear(){}
+  virtual void show_info(){}
 
   inline std::string get_name(){return name;}
   inline std::string get_type(){return type;}
 
   string name;
   string type;
-  std::thread::id thread_ID;
 
   //---------------------------
 };

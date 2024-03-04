@@ -31,6 +31,30 @@ void Graph::draw_profiler(prf::graph::Profiler* profiler){
 
   //---------------------------
 }
+void Graph::show_info(){
+  if(selected_tasker == nullptr) return;
+  //---------------------------
+
+  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+
+  //Thread
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Thread"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%s", selected_tasker->get_thread_ID().c_str());
+
+  //FPS
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Loop"); ImGui::TableNextColumn();
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / selected_tasker->get_loop_fps());
+  ImGui::SameLine();
+  ImGui::Text(" ms/frame [");
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", selected_tasker->get_loop_fps()); //io.Framerate
+  ImGui::SameLine();
+  ImGui::Text(" FPS ]");
+
+  //---------------------------
+}
 
 //Subfunction
 void Graph::draw_graph_all(prf::graph::Profiler* profiler){
@@ -62,7 +86,6 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   ImGui::SetNextItemWidth(100);
   if(ImGui::BeginTabItem("All##4568", NULL, flag)){
     prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
-    this->selected_tasker = profiler->get_tasker("cpu");
     graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker_not_empty.size() - 3);
 
     for(int i=0; i<vec_tasker_not_empty.size(); i++){

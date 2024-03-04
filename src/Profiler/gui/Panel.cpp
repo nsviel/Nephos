@@ -68,28 +68,9 @@ void Panel::main_info(){
     string gpu = profiler_vulkan->get_info()->selected_gpu;
     ImGui::TextColored(color, "%s", gpu.c_str());
 
-    //Thread
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Thread"); ImGui::TableNextColumn();
-    //ImGui::TextColored(color, "%s", gpu.c_str());
-
     //Selected tasker
-    if(selected_tasker != nullptr){
-      //Type
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Type"); ImGui::TableNextColumn();
-      //ImGui::TextColored(color, "%s", selected_tasker->get_type().c_str());
-
-      //FPS
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Loop"); ImGui::TableNextColumn();
-      ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / selected_tasker->get_loop_fps());
-      ImGui::SameLine();
-      ImGui::Text(" ms/frame [");
-      ImGui::SameLine();
-      ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", selected_tasker->get_loop_fps()); //io.Framerate
-      ImGui::SameLine();
-      ImGui::Text(" FPS ]");
+    if(selected_profiler != nullptr){
+      selected_profiler->show_info();
     }
 
     ImGui::EndTable();
@@ -137,6 +118,8 @@ void Panel::draw_profiler(){
 
       ImGui::SetNextItemWidth(100);
       if(ImGui::BeginTabItem(profiler->get_name().c_str())){
+        this->selected_profiler = profiler;
+
         //Vulkan tab
         if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler)){
           gui_vulkan->draw_profiler(vulkan);
