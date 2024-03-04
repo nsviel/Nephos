@@ -33,8 +33,11 @@ void Scene::init(){
   utl::file::Entity file_4;
   file_4.path = "/home/aether/Desktop/cerfav_3_1.mkv";
 
+  utl::file::Entity file_5;
+  file_5.path = "/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply";
+
   //Create playback list
-  sce_loader->load_data(&file_1);
+  sce_loader->load_data(&file_5);
   //this->create_sensor_playback(file_1);
   //this->create_sensor_playback(file_2);
   //this->create_sensor_playback(file_4);
