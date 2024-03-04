@@ -32,11 +32,11 @@ void Graphics::run_thread(){
 
   thread_running = true;
   while(thread_running){
-  /*  this->wait_for_command();
+    this->wait_for_command();
     this->reset_for_submission();
     this->prepare_submission();
     this->queue_submission();
-    this->post_submission();*/
+    this->post_submission();
   }
 
   //---------------------------
@@ -99,14 +99,26 @@ void Graphics::prepare_submission(){
   for(int i=0; i<vec_command_onrun.size(); i++){
     vk::structure::Command* command = vec_command_onrun[i];
 
+    //Command buffer
     for(int i=0; i<command->vec_command_buffer.size(); i++){
       vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
       this->vec_command_buffer.push_back(command_buffer->command);
     }
 
-    this->vec_semaphore_processing = command->vec_semaphore_processing;
-    this->vec_wait_stage = command->vec_wait_stage;
-    this->vec_semaphore_done = command->vec_semaphore_done;
+    //Semaphore processing
+    for(int i=0; i<command->vec_semaphore_processing.size(); i++){
+      this->vec_semaphore_processing.push_back(command->vec_semaphore_processing[i]);
+    }
+
+    //Semaphore done
+    for(int i=0; i<command->vec_semaphore_done.size(); i++){
+      this->vec_semaphore_done.push_back(command->vec_semaphore_done[i]);
+    }
+    
+    //Pipeline wait stage
+    for(int i=0; i<command->vec_wait_stage.size(); i++){
+      this->vec_wait_stage.push_back(command->vec_wait_stage[i]);
+    }
   }
 
   //---------------------------
@@ -153,7 +165,6 @@ void Graphics::post_submission(){
         command_buffer->is_available = true;
         command_buffer->is_recorded = false;
         command_buffer->query.is_in_use = false;
-
       }
     }
   }
