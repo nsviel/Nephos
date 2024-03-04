@@ -55,6 +55,15 @@ void Graphics::add_command(vk::structure::Command* command){
 
   //---------------------------
 }
+void Graphics::add_command(vk::structure::Command_buffer* command_buffer){
+  //---------------------------
+
+  vk::structure::Command* command = new vk::structure::Command();
+  command->vec_command_buffer.push_back(command_buffer);
+  vec_command_prepa.push_back(command);
+
+  //---------------------------
+}
 void Graphics::add_command_thread(vk::structure::Command* command){
   //---------------------------
 

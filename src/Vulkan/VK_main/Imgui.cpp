@@ -124,7 +124,6 @@ void Imgui::create_context(){
   init_info.QueueFamily = struct_vulkan->device.physical_device.queue_family_graphics_idx;
   ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
 
-
   //---------------------------
 }
 bool Imgui::check_window_resize(){
@@ -196,17 +195,12 @@ void Imgui::load_font(){
   //---------------------------
 
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer();
-  command_buffer->name = "imgui";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   ImGui_ImplVulkan_CreateFontsTexture(command_buffer->command);
 
   vk_command_buffer->end_command_buffer(command_buffer);
-
-  //Submit command buffer -> A CHANGER
-  vk::structure::Command* command = new vk::structure::Command();
-  command->vec_command_buffer.push_back(command_buffer);
-  struct_vulkan->queue.graphics->add_command(command);
+  struct_vulkan->queue.graphics->add_command(command_buffer);
 
   //---------------------------
 }
