@@ -30,34 +30,6 @@ Loader::~Loader(){
 }
 
 //Main functions
-utl::type::Set* Loader::load_data(std::string path){
-  utl::type::Set* set = nullptr;
-  //---------------------------
-
-  if(!check_file_path(path)) return nullptr;
-
-  //Load data from path
-  utl::file::Data* data = sce_format->import_from_path(path);
-  if(data == nullptr) return nullptr;
-
-  //Data is an entity
-  switch(data->type){
-    case utl::file::ENTITY:{
-      set = load_object(data);
-      break;
-    }
-    case utl::file::SET:{
-      set = load_set(data);
-      break;
-    }
-  }
-
-  //Delete raw data
-  delete data;
-
-  //---------------------------
-  return set;
-}
 utl::type::Set* Loader::load_data(utl::file::Path path){
   utl::type::Set* set = nullptr;
   //---------------------------

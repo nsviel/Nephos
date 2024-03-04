@@ -30,7 +30,7 @@ public:
 
 public:
   //Main functions
-  utl::file::Entity* import(std::string path_file);
+  utl::file::Entity* import(utl::file::Path path);
 
 private:
   //Loader data

@@ -37,7 +37,7 @@ public:
 
 public:
   //Main function
-  utl::file::Entity* import(std::string filePath);
+  utl::file::Entity* import(utl::file::Path path);
 
   //Subfunction
   void init_params();

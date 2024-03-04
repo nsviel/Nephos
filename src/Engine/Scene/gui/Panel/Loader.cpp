@@ -391,7 +391,10 @@ void Loader::operation_selection(){
   }
 
   for(int i=0; i<vec_path.size(); i++){
-    utl::type::Set* set = sce_loader->load_data(vec_path[i]);
+    utl::file::Path path;
+    path.data = vec_path[i];
+
+    utl::type::Set* set = sce_loader->load_data(path);
     utl::type::Entity* entity = set->selected_entity;
 
     if(entity != nullptr){
@@ -401,19 +404,19 @@ void Loader::operation_selection(){
 
   //---------------------------
 }
-void Loader::operation_selection(string path){
+void Loader::operation_selection(string file_path){
   //---------------------------
 
   //If selection is a directory go display his content
-  if(utl::fct::directory::is_directory(path)){
-    this->current_dir = path;
+  if(utl::fct::directory::is_directory(file_path)){
+    this->current_dir = file_path;
     this->goto_file_tab = true;
   }
   //If selection is a file go load it
   else{
     //File check
-    string format = utl::fct::info::get_format_from_path(path);
-    if(!utl::fct::file::is_file_exist(path)) return;
+    string format = utl::fct::info::get_format_from_path(file_path);
+    if(!utl::fct::file::is_file_exist(file_path)) return;
     if(!sce_format->is_format_supported(format)) return;
 
     //Apply loading and operations
@@ -422,6 +425,8 @@ void Loader::operation_selection(string path){
       sce_set->delete_entity_all(set_scene);
     }
 
+    utl::file::Path path;
+    path.data = file_path;
     utl::type::Set* set = sce_loader->load_data(path);
     utl::type::Entity* entity = set->selected_entity;
     if(entity != nullptr){

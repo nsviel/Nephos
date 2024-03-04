@@ -14,24 +14,24 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main loader functions
-utl::file::Entity* Importer::import(std::string path){
+utl::file::Entity* Importer::import(utl::file::Path path){
   //---------------------------
 
   utl::file::Entity* entity = new utl::file::Entity();
-  entity->name = utl::fct::info::get_name_from_path(path);
-  entity->path.data = path;
+  entity->name = utl::fct::info::get_name_from_path(path.data);
+  entity->path = path;
   entity->draw_type = utl::topology::POINT;
   this->face_number = 0;
 
   //Get format type
-  std::ifstream file(path);
+  std::ifstream file(path.data);
   this->parse_header(file);
 
   //Open data
   switch(property_format){
     case ASCII:{
       //Open file
-      std::ifstream file(path);
+      std::ifstream file(path.data);
 
       //Read header
       this->parse_header(file);
@@ -49,7 +49,7 @@ utl::file::Entity* Importer::import(std::string path){
     }
     case BINARY_LITTLE_ENDIAN:{
       //Open file
-      std::ifstream file(path, std::ios::binary);
+      std::ifstream file(path.data, std::ios::binary);
 
       //Read header
       this->parse_header(file);
@@ -67,7 +67,7 @@ utl::file::Entity* Importer::import(std::string path){
     }
     case BINARY_BIG_ENDIAN:{
       //Open file
-      std::ifstream file(path, std::ios::binary);
+      std::ifstream file(path.data, std::ios::binary);
 
       //Read header
       this->parse_header(file);

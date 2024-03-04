@@ -39,7 +39,7 @@ public:
 
 public:
   //Main functions
-  utl::file::Entity* import(std::string pathFile);
+  utl::file::Entity* import(utl::file::Path path);
   bool Exporter(std::string pathFile);
 
   //Subfunctions

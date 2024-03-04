@@ -21,8 +21,8 @@ public:
 
 public:
   //Main functions
-  utl::file::Entity* import(std::string path);
-  utl::file::Entity* import(std::string path, int lmin, int lmax);
+  utl::file::Entity* import(utl::file::Path path);
+  utl::file::Entity* import(utl::file::Path path, int lmin, int lmax);
 
   bool Exporter(std::string path, utl::entity::Object* object);
 

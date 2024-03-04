@@ -21,17 +21,17 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main functions
-utl::file::Entity* Importer::import(std::string path){
+utl::file::Entity* Importer::import(utl::file::Path path){
   list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;
   //---------------------------
 
   utl::file::Entity* entity = new utl::file::Entity();
-  entity->name = utl::fct::info::get_name_from_path(path);
-  entity->path.data = path;
+  entity->name = utl::fct::info::get_name_from_path(path.data);
+  entity->path = path;
 
   //Open file
-  std::ifstream infile(path);
+  std::ifstream infile(path.data);
 
   //Data loop
   PC_line = 0;

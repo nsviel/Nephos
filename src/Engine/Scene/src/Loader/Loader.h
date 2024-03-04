@@ -22,7 +22,6 @@ public:
 
 public:
   //Main functions
-  utl::type::Set* load_data(std::string path);
   utl::type::Set* load_data(utl::file::Path path);
 
   //Data function

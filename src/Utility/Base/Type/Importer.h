@@ -9,7 +9,6 @@ namespace utl::type{
 struct Importer{
   //---------------------------
 
-  virtual utl::file::Data* import(std::string path){return nullptr;}
   virtual utl::file::Data* import(utl::file::Path path){return nullptr;}
 
   utl::file::Data* data = nullptr;

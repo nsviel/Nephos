@@ -14,15 +14,15 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::file::Entity* Importer::import(std::string path){
+utl::file::Entity* Importer::import(utl::file::Path path){
   utl::file::Entity* data = new utl::file::Entity();
   //---------------------------
 
-  data->name = utl::fct::info::get_name_from_path(path);
-  data->path.data = path;
+  data->name = utl::fct::info::get_name_from_path(path.data);
+  data->path = path;
 
   //Open file
-  std::ifstream infile(path);
+  std::ifstream infile(path.data);
 
   //Retrieve data
   std::string line;

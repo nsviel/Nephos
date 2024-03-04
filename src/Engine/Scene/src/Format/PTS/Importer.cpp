@@ -20,22 +20,22 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main load functions
-utl::file::Entity* Importer::import(std::string path){
+utl::file::Entity* Importer::import(utl::file::Path path){
   //---------------------------
 
   utl::file::Entity* entity = new utl::file::Entity();
-  entity->name = utl::fct::info::get_name_from_path(path);
-  entity->path.data = path;
+  entity->name = utl::fct::info::get_name_from_path(path.data);
+  entity->path = path;
   entity->draw_type = utl::topology::POINT;
 
   //Initialization
   this->Loader_init();
-  bool FILE_hasHeader = check_header(path);
-  int FILE_config = check_configuration(path);
-  int FILE_size = check_size(path, FILE_hasHeader);
+  bool FILE_hasHeader = check_header(path.data);
+  int FILE_config = check_configuration(path.data);
+  int FILE_size = check_size(path.data, FILE_hasHeader);
 
   //Read file
-  std::ifstream infile1(path);
+  std::ifstream infile1(path.data);
   while(std::getline(infile1, line)){
     //If line empty break the while
     if(line.empty()){
@@ -55,23 +55,23 @@ utl::file::Entity* Importer::import(std::string path){
   //---------------------------
   return entity;
 }
-utl::file::Entity* Importer::import(std::string path, int lmin, int lmax){
+utl::file::Entity* Importer::import(utl::file::Path path, int lmin, int lmax){
   //---------------------------
 
   utl::file::Entity* entity = new utl::file::Entity();
-  entity->name = utl::fct::info::get_name_from_path(path);
-  entity->path.data = path;
+  entity->name = utl::fct::info::get_name_from_path(path.data);
+  entity->path = path;
   entity->draw_type = utl::topology::POINT;
 
   //Initialization
   this->Loader_init();
-  bool FILE_hasHeader = check_header(path);
-  int FILE_config = check_configuration(path);
-  int FILE_size = check_size(path, FILE_hasHeader);
+  bool FILE_hasHeader = check_header(path.data);
+  int FILE_config = check_configuration(path.data);
+  int FILE_size = check_size(path.data, FILE_hasHeader);
 
   //Read file
   int cpt = 0;
-  std::ifstream infile1(path);
+  std::ifstream infile1(path.data);
   while (std::getline(infile1, line))
   {
     if(cpt >= lmin && cpt < lmax){

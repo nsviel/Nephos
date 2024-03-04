@@ -14,24 +14,24 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::file::Entity* Importer::import(std::string path){
+utl::file::Entity* Importer::import(utl::file::Path path){
   //---------------------------
 
   utl::file::Entity* entity = new utl::file::Entity();
-  entity->name = utl::fct::info::get_name_from_path(path);
-  entity->path.data = path;
+  entity->name = utl::fct::info::get_name_from_path(path.data);
+  entity->path = path;
 
   //Init
   this->init_params();
 
   // Open file and fill path info
-  std::ifstream file(path);
+  std::ifstream file(path.data);
 
   // Retrieve file data
   std::vector<Vertex> vertex_vec = get_data_from_file(file);
 
   //Parse MTL file
-  this->parse_mtl(path);
+  this->parse_mtl(path.data);
 
   // Fill output format with file data
   this->fill_data_file(entity, vertex_vec);

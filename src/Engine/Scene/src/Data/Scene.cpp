@@ -38,9 +38,7 @@ void Scene::init(){
 
   //Create playback list
   sce_loader->load_data(path_1);
-  //this->create_sensor_playback(path_1);
-  //this->create_sensor_playback(path_2);
-  //this->create_sensor_playback(path_4);
+  sce_loader->load_data(path_5);
 
   //----------------------------
 }
