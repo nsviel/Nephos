@@ -79,6 +79,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
 
     //Find data from capture
     //k4a_data->run_thread(sensor, capture);
+    delete capture;
 
     //Manage event
     this->manage_pause(sensor);
