@@ -19,28 +19,28 @@ Scene::~Scene(){}
 void Scene::init(){
   //----------------------------
 
-  utl::file::Entity file_1;
-  file_1.path.data = "/home/aether/Desktop/versaille_0.mkv";
-  file_1.path.transformation = "/home/aether/Desktop/versaille_0.json";
+  utl::file::Path path_1;
+  path_1.data = "/home/aether/Desktop/versaille_0.mkv";
+  path_1.transformation = "/home/aether/Desktop/versaille_0.json";
 
-  utl::file::Entity file_2;
-  file_2.path.data = "/home/aether/Desktop/versaille_2.mkv";
-  file_2.path.transformation = "/home/aether/Desktop/versaille_2.json";
+  utl::file::Path path_2;
+  path_2.data = "/home/aether/Desktop/versaille_2.mkv";
+  path_2.transformation = "/home/aether/Desktop/versaille_2.json";
 
-  utl::file::Entity file_3;
-  file_3.path.data = "/home/aether/Desktop/output.mkv";
+  utl::file::Path path_3;
+  path_3.data = "/home/aether/Desktop/output.mkv";
 
-  utl::file::Entity file_4;
-  file_4.path.data = "/home/aether/Desktop/cerfav_3_1.mkv";
+  utl::file::Path path_4;
+  path_4.data = "/home/aether/Desktop/cerfav_3_1.mkv";
 
-  utl::file::Entity file_5;
-  file_5.path.data = "/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply";
+  utl::file::Path path_5;
+  path_5.data = "/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply";
 
   //Create playback list
-  sce_loader->load_data(&file_1);
-  //this->create_sensor_playback(file_1);
-  //this->create_sensor_playback(file_2);
-  //this->create_sensor_playback(file_4);
+  sce_loader->load_data(path_1);
+  //this->create_sensor_playback(path_1);
+  //this->create_sensor_playback(path_2);
+  //this->create_sensor_playback(path_4);
 
   //----------------------------
 }

@@ -58,14 +58,14 @@ utl::type::Set* Loader::load_data(std::string path){
   //---------------------------
   return set;
 }
-utl::type::Set* Loader::load_data(utl::file::Data* file){
+utl::type::Set* Loader::load_data(utl::file::Path path){
   utl::type::Set* set = nullptr;
   //---------------------------
 
-  if(!check_file_path(file->path.data)) return nullptr;
+  if(!check_file_path(path.data)) return nullptr;
 
   //Load data from path
-  utl::file::Data* data = sce_format->import_from_path(file);
+  utl::file::Data* data = sce_format->import_from_path(path);
   if(data == nullptr) return nullptr;
 
   //Data is an entity

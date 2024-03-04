@@ -20,12 +20,10 @@ Importer::Importer(k4n::Node* node_k4n){
 Importer::~Importer(){}
 
 //Main function
-utl::file::Entity* Importer::import(string path){
+utl::file::Entity* Importer::import(utl::file::Path path){
   //---------------------------
 
-  utl::file::Entity entity;
-  entity.path.data = path;
-  k4n_swarm->create_sensor_playback(entity);
+  k4n_swarm->create_sensor_playback(path);
 
   //---------------------------
   return nullptr;

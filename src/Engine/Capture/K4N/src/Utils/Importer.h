@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  utl::file::Entity* import(string path);
+  utl::file::Entity* import(utl::file::Path path);
 
 private:
   eng::Node* node_engine;

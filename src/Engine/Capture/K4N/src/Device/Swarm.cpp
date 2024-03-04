@@ -57,8 +57,8 @@ void Swarm::init_scene(){
 }
 
 //Sensor function
-void Swarm::create_sensor_playback(utl::file::Entity& file){
-  if(!utl::fct::file::is_file_exist(file.path.data)) return;
+void Swarm::create_sensor_playback(utl::file::Path path){
+  if(!utl::fct::file::is_file_exist(path.data)) return;
   //---------------------------
 
   //Associated master
@@ -68,19 +68,19 @@ void Swarm::create_sensor_playback(utl::file::Entity& file){
   //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
   sensor->name = "playback_" + to_string(index);
-  sensor->param.format = utl::fct::info::get_format_from_path(file.path.data);
-  sensor->param.file_size = utl::fct::info::get_file_size(file.path.data);
+  sensor->param.format = utl::fct::info::get_format_from_path(path.data);
+  sensor->param.file_size = utl::fct::info::get_file_size(path.data);
   sensor->param.index = index;
   sensor->param.mode = k4n::mode::PLAYBACK;
-  sensor->param.path_file = file.path.data;
-  sensor->param.path_transformation = file.path.transformation;
+  sensor->param.path_file = path.data;
+  sensor->param.path_transformation = path.transformation;
   sensor->master = master;
 
   //Sensor initialization
   sensor->init();
   master->insert_sensor(sensor);
   sce_database->assign_UID(sensor);
-  k4n_transfo->find_transformation_from_file(sensor, file.path.transformation);
+  k4n_transfo->find_transformation_from_file(sensor, path.transformation);
 
   //---------------------------
 }
