@@ -47,6 +47,7 @@ void Swarm::create_sensor_playback(utl::file::Path path){
   //Sensor initialization
   sensor->init();
   master->insert_sensor(sensor);
+  master->player_update();
   sce_database->assign_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, path.transformation);
 

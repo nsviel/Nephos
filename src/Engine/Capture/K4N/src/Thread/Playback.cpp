@@ -29,6 +29,7 @@ Playback::~Playback(){
 //Main function
 void Playback::start_thread(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
+  if(sensor->param.path.data == "") return;
   //---------------------------
 
   if(!thread_running){
@@ -40,7 +41,6 @@ void Playback::start_thread(k4n::dev::Sensor* sensor){
 void Playback::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
   k4n::dev::Master* master = sensor->master;
-  this->thread_idle = false;
   //---------------------------
 
   //Init playback
