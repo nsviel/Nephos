@@ -94,7 +94,6 @@ void Sensor::remove_entity(){
   //Remove sensor elements
   this->param.transformation.destroy();
   this->object.remove_entity();
-  this->master->manage_suppression(this);
 
   //---------------------------
 }

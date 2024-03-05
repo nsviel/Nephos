@@ -86,6 +86,7 @@ void Capture::stop_thread(){
   //---------------------------
 
   this->thread_running = false;
+  this->wait_thread_idle();
   if(thread.joinable()){
     thread.join();
   }
@@ -96,6 +97,7 @@ void Capture::wait_thread_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
+  k4a_data->wait_thread_idle();
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }

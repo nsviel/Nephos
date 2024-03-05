@@ -79,17 +79,6 @@ void Master::manage_forward(){
 
   //---------------------------
 }
-void Master::manage_suppression(k4n::dev::Sensor* sensor){
-  //---------------------------
-
-  if(is_locked){
-    sce_set->delete_entity_all(this);
-  }else{
-    sce_set->delete_entity(this, sensor);
-  }
-
-  //---------------------------
-}
 void Master::manage_resynchronization(){
   if(list_entity.size() <= 1) return;
   //---------------------------

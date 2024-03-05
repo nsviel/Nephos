@@ -27,7 +27,6 @@ public:
   //Master function
   void manage_restart();
   void manage_forward();
-  void manage_suppression(k4n::dev::Sensor* sensor);
   void manage_resynchronization();
 
   //Player function

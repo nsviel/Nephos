@@ -138,6 +138,18 @@ void Set::insert_entity(utl::type::Set* set, utl::type::Entity* entity){
 
   //---------------------------
 }
+void Set::remove_entity(utl::type::Set* set, utl::type::Entity* entity){
+  if(entity == nullptr) return;
+  //---------------------------
+
+  if(set->is_locked){
+    this->delete_entity_all(set);
+  }else{
+    this->delete_entity(set, entity);
+  }
+
+  //---------------------------
+}
 void Set::delete_entity(utl::type::Set* set, utl::type::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
@@ -170,10 +182,11 @@ void Set::delete_entity_all(utl::type::Set* set){
   //---------------------------
 
   // Check if the current set has the query entity
-  for(int i=0; i<set->list_entity.size(); i++){
-    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+  auto it = set->list_entity.begin();
+  while (it != set->list_entity.end()) {
+    utl::type::Entity* entity = *it;
+    it = set->list_entity.erase(it); // erase() returns iterator to next element
 
-    set->list_entity.remove(entity);
     set->nb_entity--;
     entity->remove_entity();
   }
