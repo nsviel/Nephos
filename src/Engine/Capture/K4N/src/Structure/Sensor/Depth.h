@@ -23,6 +23,7 @@ struct Depth_config{
 };
 
 struct Depth{
+  //Structure for sensor depth field
   //---------------------------
 
   k4n::structure::Depth_config config;

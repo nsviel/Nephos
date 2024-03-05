@@ -15,6 +15,7 @@ struct Infrared_config{
 };
 
 struct Infrared{
+  //Structure for sensor infrared field
   //---------------------------
 
   k4n::structure::Infrared_config config;

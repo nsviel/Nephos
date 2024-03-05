@@ -17,8 +17,10 @@ enum Mode{
 namespace k4n::structure{
 
 struct Operation{
+  //Processing parameters structure
   //---------------------------
 
+  //Color / Depth transformation
   int transformation_mode = k4n::transformation::COLOR_TO_DEPTH;
 
   //Colorization

@@ -9,6 +9,7 @@ namespace k4n::dev{class Master;}
 namespace k4n::structure{
 
 struct Struct_k4n{
+  //General scene structure
   //---------------------------
 
   Struct_k4n(k4n::Node* node_k4n){
@@ -24,8 +25,6 @@ struct Struct_k4n{
   int UID = 0;
   k4n::dev::Master* selected_master = nullptr;
   std::list<k4n::dev::Master*> list_master;
-
-
 
   //---------------------------
 };

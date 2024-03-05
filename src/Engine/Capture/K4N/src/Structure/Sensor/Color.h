@@ -115,6 +115,7 @@ struct Color_config{
 };
 
 struct Color{
+  //Structure for sensor color field
   //---------------------------
 
   k4n::structure::Color_config config;

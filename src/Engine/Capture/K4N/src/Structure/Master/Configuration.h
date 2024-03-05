@@ -7,6 +7,7 @@
 namespace k4n::structure{
 
 struct Configuration{
+  //Structure for master configuration
   //---------------------------
 
   k4n::structure::Depth_config depth;

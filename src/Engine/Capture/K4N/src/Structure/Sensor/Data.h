@@ -6,18 +6,22 @@
 namespace k4n::structure{
 
 struct Data{
+  //Generic structure for sensor field data
   //---------------------------
 
-  k4a::image k4a_image;
+  //Sensor field info
   std::string name = "";
   std::string format = "";
-  uint8_t* buffer = nullptr;
 
+  //Sensor field data
+  k4a::image k4a_image;
   int width = 0;
   int height = 0;
   int size = 0;
+  uint8_t* buffer = nullptr;
   k4a_calibration_type_t calibration_type;
 
+  //Specific sensor field info
   float timestamp = -1;
   float temperature = -1;
   float hovered_pixel_x;
