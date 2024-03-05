@@ -46,6 +46,8 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   //Init elements
   sensor->param.index = 0;
   sensor->param.device = k4a::device::open(sensor->param.index);
+  if(!sensor->param.device.is_valid()) return;
+
   sensor->param.serial_number = sensor->param.device.get_serialnum();
   sensor->param.version = sensor->param.device.get_version();
 
@@ -65,19 +67,20 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     //Next capture
     tasker->loop_begin();
     k4a::capture* capture = manage_capture(sensor);
-    if(!capture->is_valid()){
-      delete capture;
+    if(capture == nullptr){
       continue;
     }
 
     //Find data from capture
-    k4a_data->run_thread(sensor, capture);
+    k4a_data->start_thread(sensor, capture);
 
     //Manage event
     this->manage_pause(sensor);
     this->manage_recording(sensor, capture);
     tasker->loop_end();
   }
+
+  sensor->param.device.close();
 
   //---------------------------
   this->thread_idle = true;
@@ -97,10 +100,10 @@ void Capture::wait_thread_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  k4a_data->wait_thread_idle();
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+  k4a_data->wait_thread_idle();
 
   //---------------------------
 }
@@ -114,6 +117,10 @@ k4a::capture* Capture::manage_capture(k4n::dev::Sensor* sensor){
 
   k4a::capture* capture = new k4a::capture();
   bool ok = sensor->param.device.get_capture(capture, std::chrono::milliseconds(2000));
+  if(!capture->is_valid()){
+    delete capture;
+    return nullptr;
+  }
 
   tasker->task_end("capture");
 

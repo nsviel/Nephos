@@ -39,6 +39,7 @@ void Data::start_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
   //---------------------------
 }
 void Data::run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
+  if(sensor->profiler == nullptr) return;
   this->thread_idle = false;
   //---------------------------
 
@@ -50,7 +51,7 @@ void Data::run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
   k4a_cloud->start_thread(sensor);
 
   //Encode image as texture
-  //k4n_image->start_thread(sensor);
+  k4n_image->start_thread(sensor);
 
   //---------------------------
   this->thread_idle = true;
@@ -64,7 +65,7 @@ void Data::wait_thread_idle(){
   }
   k4a_cloud->wait_thread_idle();
   k4n_image->wait_thread_idle();
-  
+
   //---------------------------
 }
 

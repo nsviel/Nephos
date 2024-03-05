@@ -35,6 +35,7 @@ void Processing::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Processing::run_thread(k4n::dev::Sensor* sensor){
+  if(sensor->profiler == nullptr) return;
   this->thread_idle = false;
   //---------------------------
 
