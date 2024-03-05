@@ -20,6 +20,7 @@ public:
   //Capture configuration
   void make_master_configuration_initial(k4n::dev::Master* master);
   void make_sensor_configuration(k4n::dev::Sensor* k4n_sensor);
+  void make_sensor_color_configuration(k4n::dev::Sensor* sensor);
   void find_playback_configuration(k4n::dev::Sensor* k4n_sensor);
 
   //Playback configuration

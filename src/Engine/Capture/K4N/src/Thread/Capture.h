@@ -34,7 +34,6 @@ public:
   k4a::capture* manage_capture(k4n::dev::Sensor* sensor);
   void manage_pause(k4n::dev::Sensor* sensor);
   void manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture);
-  void manage_color_setting(k4n::dev::Sensor* sensor);
 
   inline bool is_thread_running(){return thread_running;}
   inline bool* get_thread_pause(){return &thread_pause;}
@@ -42,7 +41,7 @@ public:
 private:
   k4n::data::Data* k4a_data;
   k4n::data::Cloud* k4a_cloud;
-  k4n::config::Configuration* configuration;
+  k4n::config::Configuration* k4n_config;
   k4n::config::Calibration* k4n_calibration;
   k4n::config::USB* k4n_usb;
 
