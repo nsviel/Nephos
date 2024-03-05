@@ -1,5 +1,7 @@
 #include "Configuration.h"
 
+#include <K4N/Namespace.h>
+
 
 namespace k4n::config{
 
@@ -13,7 +15,7 @@ Configuration::Configuration(){
 Configuration::~Configuration(){}
 
 //Capture configuration
-void Configuration::make_device_configuration(k4n::dev::Sensor* sensor){
+void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
@@ -30,15 +32,27 @@ void Configuration::make_device_configuration(k4n::dev::Sensor* sensor){
   //---------------------------
   sensor->param.configuration = configuration;
 }
-void Configuration::make_device_configuration_initial(k4n::dev::Sensor* sensor){
+void Configuration::make_sensor_configuration_initial(k4n::dev::Sensor* sensor){
   //---------------------------
 
   sensor->depth.config.enabled = true;
-  sensor->depth.config.mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
+  sensor->depth.config.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
   sensor->param.fps.mode = K4A_FRAMES_PER_SECOND_30;
   sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
   sensor->color.config.enabled = true;
   sensor->color.config.resolution = K4A_COLOR_RESOLUTION_1080P;
+
+  //---------------------------
+}
+void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
+  //---------------------------
+
+  master->config.depth.enabled = true;
+  master->config.depth.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
+  master->config.color.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+  master->config.color.enabled = true;
+  master->config.color.resolution = K4A_COLOR_RESOLUTION_1080P;
+  //master->param.fps.mode = K4A_FRAMES_PER_SECOND_30;
 
   //---------------------------
 }

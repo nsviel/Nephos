@@ -13,7 +13,6 @@ struct FPS{
 
   k4a_fps_t mode = K4A_FRAMES_PER_SECOND_30;
   std::string mode_str;
-  float current = 0;
   int query;
 
   //---------------------------
@@ -33,6 +32,7 @@ struct Param{
   int index = -1;
   bool data_ready = false;
   float file_size = 0;
+
   FPS fps;
 
   //K4A objects

@@ -1,8 +1,10 @@
 #pragma once
 
-#include <Engine/Capture/K4N/src/Device/Sensor.h>
 #include <Utility/Specific/common.h>
 #include <k4arecord/playback.hpp>
+
+namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Master;}
 
 
 namespace k4n::config{
@@ -16,8 +18,9 @@ public:
 
 public:
   //Capture configuration
-  void make_device_configuration(k4n::dev::Sensor* k4n_sensor);
-  void make_device_configuration_initial(k4n::dev::Sensor* k4n_sensor);
+  void make_master_configuration_initial(k4n::dev::Master* master);
+  void make_sensor_configuration(k4n::dev::Sensor* k4n_sensor);
+  void make_sensor_configuration_initial(k4n::dev::Sensor* k4n_sensor);
   void find_playback_configuration(k4n::dev::Sensor* k4n_sensor);
 
   //Playback configuration

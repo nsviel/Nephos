@@ -52,8 +52,8 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   sensor->param.version = sensor->param.device.get_version();
 
   //Configuration
-  configuration->make_device_configuration_initial(sensor);
-  configuration->make_device_configuration(sensor);
+  configuration->make_sensor_configuration_initial(sensor);
+  configuration->make_sensor_configuration(sensor);
   k4n_calibration->make_capture_calibration(sensor);
   k4n_calibration->make_device_transformation(sensor);
 

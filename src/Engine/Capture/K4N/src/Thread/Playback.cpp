@@ -52,7 +52,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
 
   k4n_configuration->find_playback_configuration(sensor);
   k4n_calibration->find_playback_calibration(sensor);
-  k4n_configuration->make_device_configuration(sensor);
+  k4n_configuration->make_sensor_configuration(sensor);
   k4n_calibration->make_device_transformation(sensor);
 
   //Playback thread
