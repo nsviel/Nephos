@@ -110,6 +110,9 @@ void Capture::configuration_depth(k4n::dev::Master* master){
       ImGui::SameLine();
       if(ImGui::RadioButton("WFOV Unbinned", &depth_mode, K4A_DEPTH_MODE_WFOV_UNBINNED)){
         master->config.depth.mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
+        if(master->config.fps.mode == K4A_FRAMES_PER_SECOND_30){
+          master->config.fps.mode = K4A_FRAMES_PER_SECOND_15;
+        }
       }
       if(ImGui::RadioButton("Passive IR", &depth_mode, K4A_DEPTH_MODE_PASSIVE_IR)){
         master->config.depth.mode = K4A_DEPTH_MODE_PASSIVE_IR;
@@ -135,6 +138,9 @@ void Capture::configuration_color(k4n::dev::Master* master){
       int color_format = master->config.color.format;
       if(ImGui::RadioButton("BGRA", &color_format, K4A_IMAGE_FORMAT_COLOR_BGRA32)){
         master->config.color.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+        if(master->config.color.resolution == K4A_COLOR_RESOLUTION_720P){
+          master->config.color.resolution = K4A_COLOR_RESOLUTION_1080P;
+        }
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("MJPG", &color_format, K4A_IMAGE_FORMAT_COLOR_MJPG)){
@@ -143,6 +149,11 @@ void Capture::configuration_color(k4n::dev::Master* master){
       ImGui::SameLine();
       if(ImGui::RadioButton("NV12", &color_format, K4A_IMAGE_FORMAT_COLOR_NV12)){
         master->config.color.format = K4A_IMAGE_FORMAT_COLOR_NV12;
+        if(master->config.color.resolution == K4A_COLOR_RESOLUTION_1080P ||
+          master->config.color.resolution == K4A_COLOR_RESOLUTION_1440P ||
+          master->config.color.resolution == K4A_COLOR_RESOLUTION_2160P){
+          master->config.color.resolution = K4A_COLOR_RESOLUTION_720P;
+        }
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("YUY2", &color_format, K4A_IMAGE_FORMAT_COLOR_YUY2)){
@@ -153,9 +164,16 @@ void Capture::configuration_color(k4n::dev::Master* master){
       ImGui::Text("Resolution [16:9]");
       ImGui::Indent();
       int color_resolution = master->config.color.resolution;
+
+      bool condition = (master->config.color.format == K4A_IMAGE_FORMAT_COLOR_BGRA32);
+      if(condition) ImGui::BeginDisabled();
       if(ImGui::RadioButton("720p", &color_resolution, K4A_COLOR_RESOLUTION_720P)){
         master->config.color.resolution = K4A_COLOR_RESOLUTION_720P;
       }
+      if(condition) ImGui::EndDisabled();
+
+      condition = (master->config.color.format == K4A_IMAGE_FORMAT_COLOR_NV12 || master->config.color.format == K4A_IMAGE_FORMAT_COLOR_YUY2);
+      if(condition) ImGui::BeginDisabled();
       ImGui::SameLine();
       if(ImGui::RadioButton("1080p", &color_resolution, K4A_COLOR_RESOLUTION_1080P)){
         master->config.color.resolution = K4A_COLOR_RESOLUTION_1080P;
@@ -177,9 +195,13 @@ void Capture::configuration_color(k4n::dev::Master* master){
       ImGui::SameLine();
       if(ImGui::RadioButton("3072p", &color_resolution, K4A_COLOR_RESOLUTION_3072P)){
         master->config.color.resolution = K4A_COLOR_RESOLUTION_3072P;
+        if(master->config.fps.mode == K4A_FRAMES_PER_SECOND_30){
+          master->config.fps.mode = K4A_FRAMES_PER_SECOND_15;
+        }
       }
-      ImGui::Unindent();
+      if(condition) ImGui::EndDisabled();
 
+      ImGui::Unindent();
       ImGui::TreePop();
     }
 
@@ -245,16 +267,21 @@ void Capture::configuration_color_control(k4n::dev::Master* master){
   //---------------------------
 }
 void Capture::configuration_fps(k4n::dev::Master* master){
+  int framerate = master->config.fps.mode;
   //---------------------------
 
-  int framerate = master->config.fps.mode;
+  bool condition = (master->config.depth.mode == K4A_DEPTH_MODE_WFOV_UNBINNED || master->config.color.resolution == K4A_COLOR_RESOLUTION_3072P);
+  if(condition) ImGui::BeginDisabled();
   if(ImGui::RadioButton("30 FPS", &framerate, K4A_FRAMES_PER_SECOND_30)){
     master->config.fps.mode = K4A_FRAMES_PER_SECOND_30;
   }
+  if(condition) ImGui::EndDisabled();
+
   ImGui::SameLine();
   if(ImGui::RadioButton("15 FPS", &framerate, K4A_FRAMES_PER_SECOND_15)){
     master->config.fps.mode = K4A_FRAMES_PER_SECOND_15;
   }
+
   ImGui::SameLine();
   if(ImGui::RadioButton("5 FPS", &framerate, K4A_FRAMES_PER_SECOND_5)){
     master->config.fps.mode = K4A_FRAMES_PER_SECOND_5;
@@ -275,11 +302,11 @@ void Capture::configuration_button(k4n::dev::Master* master){
   //---------------------------
 
   //Refresh / reset buttons
-  if (ImGui::Button("Restart")){
+  if(ImGui::Button("Restart")){
     master->reset();
   }
   ImGui::SameLine();
-  if (ImGui::Button("Reset to default##RGB")){
+  if(ImGui::Button("Reset to default##RGB")){
     k4n_config->make_master_configuration_initial(master);
   }
 
