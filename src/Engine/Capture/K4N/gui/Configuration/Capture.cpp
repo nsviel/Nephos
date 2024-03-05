@@ -42,6 +42,7 @@ void Capture::show_configuration(k4n::dev::Master* master){
 
 //Subfunction
 void Capture::list_device(k4n::dev::Master* master){
+  if(master->mode == k4n::dev::PLAYBACK) return;
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -64,8 +65,6 @@ void Capture::list_device(k4n::dev::Master* master){
         utl::type::Entity* entity = *next(master->list_entity.begin(), i);
 
         if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-          if(sensor->param.mode == k4n::mode::PLAYBACK) continue;
-
           ImGui::TableNextRow();
           ImGui::TableNextColumn();
 

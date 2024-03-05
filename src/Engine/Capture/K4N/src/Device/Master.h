@@ -11,6 +11,10 @@ namespace k4n::structure{class Recorder;}
 
 
 namespace k4n::dev{
+enum Mode{
+  CAPTURE = 0,
+  PLAYBACK = 1,
+};
 
 class Master : public utl::type::Set
 {
@@ -48,8 +52,7 @@ public:
   k4n::structure::Operation operation;
   k4n::structure::Recorder recorder;
 
-private:
-
+  int mode = k4n::dev::PLAYBACK;
 };
 
 }

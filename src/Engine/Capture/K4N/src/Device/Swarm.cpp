@@ -32,6 +32,7 @@ void Swarm::create_sensor_playback(utl::file::Path path){
 
   //Associated master
   k4n::dev::Master* master = get_or_create_master("Playback");
+  master->mode = k4n::dev::PLAYBACK;
   int index = sce_set->compute_number_entity(master);
 
   //Sensor creation
@@ -40,7 +41,6 @@ void Swarm::create_sensor_playback(utl::file::Path path){
   sensor->param.format = utl::fct::info::get_format_from_path(path.data);
   sensor->param.file_size = utl::fct::info::get_file_size(path.data);
   sensor->param.index = index;
-  sensor->param.mode = k4n::mode::PLAYBACK;
   sensor->param.path = path;
   sensor->master = master;
 
@@ -59,13 +59,13 @@ void Swarm::create_sensor_capture(){
   //Associated master
   this->close_master("Playback");
   k4n::dev::Master* master = get_or_create_master("Capture");
+  master->mode = k4n::dev::CAPTURE;
   int index = sce_set->compute_number_entity(master);
 
   //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
   sensor->name = "capture_" + to_string(index);
   sensor->param.index = index;
-  sensor->param.mode = k4n::mode::CAPTURE;
   sensor->master = master;
 
   //Sensor initialization
