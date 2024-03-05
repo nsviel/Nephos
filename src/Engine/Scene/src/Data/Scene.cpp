@@ -37,8 +37,8 @@ void Scene::init(){
   path_5.data = "/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply";
 
   //Create playback list
-  sce_loader->load_data(path_1);
-  sce_loader->load_data(path_2);
+  sce_loader->load_data(path_4);
+  //sce_loader->load_data(path_2);
 
   //----------------------------
 }

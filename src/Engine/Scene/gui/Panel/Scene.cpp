@@ -145,7 +145,7 @@ void Scene::draw_file_tree(){
   ImGui::SetNextWindowSize(ImVec2(400, 400));
   if(ImGui::BeginTable("data_view", 2)){
     ImGui::TableSetupColumn("Name##scene_tree", ImGuiTableColumnFlags_WidthStretch);
-    ImGui::TableSetupColumn("Bin##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
+    ImGui::TableSetupColumn("Bin##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 25);
 
     //Database
     for(int row_i=0; row_i<set_main->list_subset.size(); row_i++){
@@ -282,7 +282,7 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   ImGui::TableNextColumn();
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
-  string tag = "X##" + entity->name;
+  string tag = string(ICON_FA_XMARK) + "##" + entity->name;
   if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){
     sce_set->remove_entity(set, entity);
   }

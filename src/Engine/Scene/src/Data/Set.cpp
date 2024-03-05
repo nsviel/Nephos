@@ -259,8 +259,6 @@ void Set::select_entity(utl::type::Set* set, utl::type::Entity* entity){
     this->select_entity(subset, entity);
   }
 
-  sayHello();
-
   //---------------------------
 }
 bool Set::is_selected_entity(utl::type::Set* set, utl::type::Entity* entity){

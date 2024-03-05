@@ -32,6 +32,7 @@ void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
 
 //Subfunction
 void Stream::convert_data_into_texture(utl::media::Image* utl_image){
+  if(utl_image->format == "") return;
   //---------------------------
 
   //Load texture into vulkan

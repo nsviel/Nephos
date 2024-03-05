@@ -103,7 +103,7 @@ int Texture::load_texture(utl::media::Image* utl_image){
   //---------------------------
 
   if(utl_image->format == ""){
-    cout<<"[error] not texture format found"<<endl;
+    cout<<"[error] no texture format found"<<endl;
     return 0;
   }
 

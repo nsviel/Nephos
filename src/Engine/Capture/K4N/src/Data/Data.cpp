@@ -50,7 +50,7 @@ void Data::run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
   k4a_cloud->start_thread(sensor);
 
   //Encode image as texture
-  k4n_image->start_thread(sensor);
+  //k4n_image->start_thread(sensor);
 
   //---------------------------
   this->thread_idle = true;
@@ -59,12 +59,12 @@ void Data::wait_thread_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  k4a_cloud->wait_thread_idle();
-  k4n_image->wait_thread_idle();
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-
+  k4a_cloud->wait_thread_idle();
+  k4n_image->wait_thread_idle();
+  
   //---------------------------
 }
 
