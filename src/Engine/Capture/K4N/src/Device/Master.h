@@ -30,6 +30,7 @@ public:
   void reset();
 
   //Master function
+  void manage_restart_thread();
   void manage_restart();
   void manage_forward();
   void manage_resynchronization();

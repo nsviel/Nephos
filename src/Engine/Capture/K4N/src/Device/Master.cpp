@@ -39,12 +39,33 @@ void Master::insert_sensor(k4n::dev::Sensor* sensor){
 void Master::reset(){
   //---------------------------
 
-  this->manage_restart();
+  if(mode == k4n::dev::PLAYBACK){
+    this->manage_restart();
+  }
+  else if(mode == k4n::dev::CAPTURE){
+    this->manage_restart_thread();
+  }
 
   //---------------------------
 }
 
 //Master function
+void Master::manage_restart_thread(){
+  if(mode == k4n::dev::PLAYBACK) return;
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
+
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      sensor->stop_threads();
+      sensor->run_capture();
+    }
+  }
+
+  //---------------------------
+  player.ts_cur = player.ts_beg;
+}
 void Master::manage_restart(){
   if(mode == k4n::dev::CAPTURE) return;
   //---------------------------
