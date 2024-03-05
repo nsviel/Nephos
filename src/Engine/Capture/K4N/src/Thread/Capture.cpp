@@ -14,7 +14,6 @@ Capture::Capture(){
   this->k4a_cloud = new k4n::data::Cloud();
   this->k4n_config = new k4n::config::Configuration();
   this->k4n_calibration = new k4n::config::Calibration();
-  this->k4n_usb = new k4n::config::USB();
 
   //---------------------------
 }

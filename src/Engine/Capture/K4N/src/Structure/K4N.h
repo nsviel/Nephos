@@ -8,6 +8,15 @@ namespace k4n::dev{class Master;}
 
 namespace k4n::structure{
 
+enum Mode{
+  CAMERA = 0,
+  UNICOLOR = 1,
+  INTENSITY = 2,
+  HEATMAP = 3,
+  STRUCTURE = 4,
+};
+
+
 struct Struct_k4n{
   //General scene structure
   //---------------------------

@@ -89,5 +89,42 @@ void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
+void Sensor::show_firmware_info(k4n::dev::Sensor* sensor){
+  //---------------------------
+/*
+  if (ImGui::TreeNode("Device Firmware Version Info")){
+    k4a_hardware_version_t versionInfo = sensor->param.version;
+    ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
+    if(ImGui::BeginTable("device##firmware", 2)){
+      ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
+
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("RGB camera"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%u.%u.%u", versionInfo.rgb.major, versionInfo.rgb.minor, versionInfo.rgb.iteration);
+
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Depth camera"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%u.%u.%u", versionInfo.depth.major, versionInfo.depth.minor, versionInfo.depth.iteration);
+
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Audio"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%u.%u.%u", versionInfo.audio.major, versionInfo.audio.minor, versionInfo.audio.iteration);
+
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Build config"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%s", versionInfo.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug");
+
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Signature type"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%s", versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned");
+
+      ImGui::EndTable();
+    }
+
+    ImGui::TreePop();
+  }
+*/
+  //---------------------------
+}
 
 }

@@ -24,6 +24,7 @@ public:
   //Subfunction
   void show_sensor_info(k4n::dev::Sensor* sensor);
   void show_sensor_transfo(k4n::dev::Sensor* sensor);
+  void show_firmware_info(k4n::dev::Sensor* sensor);
 
 private:
   k4n::Node* node_k4n;
