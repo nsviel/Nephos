@@ -12,6 +12,7 @@ Master::Master(){
   //---------------------------
 
   this->sce_set = new eng::scene::Set();
+  this->k4n_config = new k4n::config::Configuration();
 
   //this->engine = engine;
   this->type = "k4n::device::Master";
@@ -51,6 +52,21 @@ void Master::reset(){
 
 //Master function
 void Master::manage_restart_thread(){
+  if(mode == k4n::dev::PLAYBACK) return;
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
+
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      k4n_config->make_sensor_color_configuration(sensor);
+    }
+  }
+
+  //---------------------------
+  player.ts_cur = player.ts_beg;
+}
+void Master::manage_color_control(){
   if(mode == k4n::dev::PLAYBACK) return;
   //---------------------------
 

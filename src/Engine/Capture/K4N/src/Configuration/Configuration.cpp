@@ -37,18 +37,19 @@ void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
   sensor->param.configuration = configuration;
 }
 void Configuration::make_sensor_color_configuration(k4n::dev::Sensor* sensor){
+  k4a::device& device = sensor->param.device;
+  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
-  k4a::device& device = sensor->param.device;
-  device.set_color_control(sensor->color.config.exposure.command, sensor->color.config.exposure.mode, sensor->color.config.exposure.value);
-  device.set_color_control(sensor->color.config.white_balance.command, sensor->color.config.white_balance.mode, sensor->color.config.white_balance.value);
-  device.set_color_control(sensor->color.config.brightness.command, sensor->color.config.brightness.mode, sensor->color.config.brightness.value);
-  device.set_color_control(sensor->color.config.contrast.command, sensor->color.config.contrast.mode, sensor->color.config.contrast.value);
-  device.set_color_control(sensor->color.config.saturation.command, sensor->color.config.saturation.mode, sensor->color.config.saturation.value);
-  device.set_color_control(sensor->color.config.sharpness.command, sensor->color.config.sharpness.mode, sensor->color.config.sharpness.value);
-  device.set_color_control(sensor->color.config.gain.command, sensor->color.config.gain.mode, sensor->color.config.gain.value);
-  device.set_color_control(sensor->color.config.backlight_compensation.command, sensor->color.config.backlight_compensation.mode, sensor->color.config.backlight_compensation.value);
-  device.set_color_control(sensor->color.config.power_frequency.command, sensor->color.config.power_frequency.mode, sensor->color.config.power_frequency.value);
+  device.set_color_control(master->config.color.exposure.command, master->config.color.exposure.mode, master->config.color.exposure.value);
+  device.set_color_control(master->config.color.white_balance.command, master->config.color.white_balance.mode, master->config.color.white_balance.value);
+  device.set_color_control(master->config.color.brightness.command, master->config.color.brightness.mode, master->config.color.brightness.value);
+  device.set_color_control(master->config.color.contrast.command, master->config.color.contrast.mode, master->config.color.contrast.value);
+  device.set_color_control(master->config.color.saturation.command, master->config.color.saturation.mode, master->config.color.saturation.value);
+  device.set_color_control(master->config.color.sharpness.command, master->config.color.sharpness.mode, master->config.color.sharpness.value);
+  device.set_color_control(master->config.color.gain.command, master->config.color.gain.mode, master->config.color.gain.value);
+  device.set_color_control(master->config.color.backlight_compensation.command, master->config.color.backlight_compensation.mode, master->config.color.backlight_compensation.value);
+  device.set_color_control(master->config.color.power_frequency.command, master->config.color.power_frequency.mode, master->config.color.power_frequency.value);
 
   //---------------------------
 }
@@ -61,6 +62,16 @@ void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
   master->config.color.enabled = true;
   master->config.color.resolution = K4A_COLOR_RESOLUTION_1080P;
   master->config.fps.mode = K4A_FRAMES_PER_SECOND_30;
+
+  master->config.color.exposure.value = 15625;
+  master->config.color.white_balance.value = 4500;
+  master->config.color.brightness.value = 128;
+  master->config.color.contrast.value = 5;
+  master->config.color.saturation.value = 32;
+  master->config.color.sharpness.value = 2;
+  master->config.color.gain.value = 0;
+  master->config.color.backlight_compensation.value = 0;
+  master->config.color.power_frequency.value = 2;
 
   //---------------------------
 }

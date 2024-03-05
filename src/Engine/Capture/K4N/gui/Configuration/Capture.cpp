@@ -218,31 +218,45 @@ void Capture::configuration_color_control(k4n::dev::Master* master){
     if(ImGui::TreeNode("Color control")){
       //Exposur time
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Exposure Time", &master->config.color.exposure.value, 488, 1000000, "%d us");
+      if(ImGui::SliderInt("Exposure Time", &master->config.color.exposure.value, 488, 1000000, "%d us")){
+        master->manage_color_control();
+      }
 
       //White Balance
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("White Balance", &master->config.color.white_balance.value, 2500, 12500, "%d K");
+      if(ImGui::SliderInt("White Balance", &master->config.color.white_balance.value, 2500, 12500, "%d K")){
+        master->manage_color_control();
+      }
 
       //Brightness
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Brightness", &master->config.color.brightness.value, 0, 255, "%d");
+      if(ImGui::SliderInt("Brightness", &master->config.color.brightness.value, 0, 255, "%d")){
+        master->manage_color_control();
+      }
 
       //Contrast
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Contrast", &master->config.color.contrast.value, 0, 10, "%d");
+      if(ImGui::SliderInt("Contrast", &master->config.color.contrast.value, 0, 10, "%d")){
+        master->manage_color_control();
+      }
 
       //Saturation
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Saturation", &master->config.color.saturation.value, 0, 63, "%d");
+      if(ImGui::SliderInt("Saturation", &master->config.color.saturation.value, 0, 63, "%d")){
+        master->manage_color_control();
+      }
 
       //Sharpness
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Sharpness", &master->config.color.sharpness.value, 0, 4, "%d");
+      if(ImGui::SliderInt("Sharpness", &master->config.color.sharpness.value, 0, 4, "%d")){
+        master->manage_color_control();
+      }
 
       //Gain
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Gain", &master->config.color.gain.value, 0, 255, "%d");
+      if(ImGui::SliderInt("Gain", &master->config.color.gain.value, 0, 255, "%d")){
+        master->manage_color_control();
+      }
 
       //Backlight Compensation
       ImGui::Checkbox("Backlight Compensation", &master->config.color.backlight_compensation.value);

@@ -5,6 +5,7 @@
 
 namespace eng::scene{class Set;}
 namespace k4n::dev{class Sensor;}
+namespace k4n::config{class Configuration;}
 namespace k4n::structure{class Player;}
 namespace k4n::structure{class Operation;}
 namespace k4n::structure{class Recorder;}
@@ -30,6 +31,7 @@ public:
   void reset();
 
   //Master function
+  void manage_color_control();
   void manage_restart_thread();
   void manage_restart();
   void manage_forward();
@@ -49,6 +51,7 @@ public:
 
 public:
   eng::scene::Set* sce_set;
+  k4n::config::Configuration* k4n_config;
 
   k4n::structure::Player player;
   k4n::structure::Operation operation;
