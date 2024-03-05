@@ -21,22 +21,22 @@ Capture::Capture(k4n::Node* node_k4n){
 Capture::~Capture(){}
 
 //Main function
-void Capture::show_configuration(k4n::dev::Master* master){
+void Capture::show_master_capture(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
   this->list_device(master);
   ImGui::Separator();
-/*  if(ImGui::TreeNode("Capture")){
+  if(ImGui::TreeNode("Capture")){
     this->configuration_depth(master);
     this->configuration_color(master);
-    this->configuration_device(master);
-    this->firmware_info(master);
+    /*this->configuration_device(master);
+    this->firmware_info(master);*/
 
     ImGui::Separator();
     ImGui::TreePop();
   }
-*/
+
   //---------------------------
 }
 

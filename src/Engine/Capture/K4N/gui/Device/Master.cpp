@@ -12,6 +12,7 @@ Master::Master(k4n::Node* node_k4n){
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->gui_capture = new k4n::gui::Capture(node_k4n);
+  this->gui_playback = new k4n::gui::Playback(node_k4n);
 
   this->item_width = 100;
 
@@ -24,7 +25,6 @@ void Master::show_master_info(k4n::dev::Master* master){
   //---------------------------
 
   this->show_info(master);
-  gui_capture->show_configuration(master);
   this->show_operation(master);
 
   //---------------------------
@@ -35,24 +35,16 @@ void Master::show_info(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
-    ImGui::Separator();
+  ImGui::Separator();
+  //Master general info
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   if(ImGui::BeginTable("master##info", 2)){
     //Type
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Type"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", master->type.c_str());
-
-    //Duration
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", master->player.duration);
-
-    //FPS
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("FPS"); ImGui::TableNextColumn();
-    ImGui::SetNextItemWidth(125);
-    ImGui::SliderInt("##56765", &master->operation.fps, 1, 120);
+    string mode = master->mode == k4n::dev::CAPTURE ? "capture" : "playback";
+    string type = master->type + "::" + mode;
+    ImGui::TextColored(color, "%s", type.c_str());
 
     //Recording time
     if(master->player.record){
@@ -64,8 +56,14 @@ void Master::show_info(k4n::dev::Master* master){
     ImGui::EndTable();
   }
 
+  //Master mode info
+  if(master->mode == k4n::dev::PLAYBACK){
+    gui_playback->show_master_playback(master);
+  }else{
+    gui_capture->show_master_capture(master);
+  }
+
   //---------------------------
-  ImGui::Separator();
 }
 
 void Master::show_operation(k4n::dev::Master* master){

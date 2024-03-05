@@ -1,14 +1,15 @@
 #pragma once
 
-#include <K4N/src/Structure/Struct_recorder.h>
-#include <K4N/src/Structure/Struct_image.h>
-#include <K4N/src/Structure/Struct_player.h>
-#include <K4N/src/Structure/Struct_operation.h>
-#include <K4N/src/Structure/Struct_param.h>
-#include <K4N/src/Structure/Struct_synchro.h>
-#include <K4N/src/Structure/Struct_data.h>
-#include <K4N/src/Structure/Struct_color.h>
-#include <K4N/src/Structure/Struct_depth.h>
-#include <K4N/src/Structure/Struct_infrared.h>
-#include <K4N/src/Structure/Struct_imu.h>
-#include <K4N/src/Structure/Struct_k4n.h>
+#include <K4N/src/Structure/Recorder.h>
+#include <K4N/src/Structure/Image.h>
+#include <K4N/src/Structure/Player.h>
+#include <K4N/src/Structure/Operation.h>
+#include <K4N/src/Structure/Parameter.h>
+#include <K4N/src/Structure/Synchronization.h>
+#include <K4N/src/Structure/Data.h>
+#include <K4N/src/Structure/Color.h>
+#include <K4N/src/Structure/Depth.h>
+#include <K4N/src/Structure/Infrared.h>
+#include <K4N/src/Structure/Configuration.h>
+#include <K4N/src/Structure/IMU.h>
+#include <K4N/src/Structure/K4N.h>

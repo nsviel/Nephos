@@ -4,6 +4,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Master;}
 namespace k4n::dev{class Swarm;}
 
 
@@ -17,6 +18,7 @@ public:
   ~Playback();
 
   //Main function
+  void show_master_playback(k4n::dev::Master* master);
   void show_sensor_configuration(k4n::dev::Sensor* sensor);
 
   //Subfunction

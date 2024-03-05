@@ -6,6 +6,7 @@ namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::gui{class Capture;}
+namespace k4n::gui{class Playback;}
 
 
 namespace k4n::gui{
@@ -34,7 +35,8 @@ private:
   k4n::Node* node_k4n;
   k4n::dev::Swarm* k4n_swarm;
   k4n::gui::Capture* gui_capture;
-
+  k4n::gui::Playback* gui_playback;
+  
   int item_width;
 };
 

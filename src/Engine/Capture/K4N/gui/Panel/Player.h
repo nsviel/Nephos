@@ -47,7 +47,7 @@ public:
 
 private:
   eng::scene::Set* sce_set;
-  
+
   k4n::Node* node_k4n;
   k4n::gui::Capture* gui_capture;
   k4n::gui::Playback* gui_playback;
