@@ -30,8 +30,9 @@ void Capture::show_master_capture(k4n::dev::Master* master){
   if(ImGui::TreeNode("Capture")){
     this->configuration_depth(master);
     this->configuration_color(master);
-    /*this->configuration_device(master);
-    this->firmware_info(master);*/
+    this->configuration_fps(master);
+    this->configuration_button(master);
+    //this->firmware_info(master);
 
     ImGui::Separator();
     ImGui::TreePop();
@@ -89,42 +90,42 @@ void Capture::list_device(k4n::dev::Master* master){
 }
 void Capture::configuration_depth(k4n::dev::Master* master){
   //---------------------------
-/*
-  ImGui::Checkbox("Depth enabled", &sensor->depth.config.enabled);
-  if(sensor->depth.config.enabled){
+
+  ImGui::Checkbox("Depth enabled", &master->config.depth.enabled);
+  if(master->config.depth.enabled){
     ImGui::Indent();
     if(ImGui::TreeNode("Depth configuration")){
       static int depth_mode = 1;
       if(ImGui::RadioButton("NFOV Binned", &depth_mode, 0)){
-        sensor->depth.config.mode = K4A_DEPTH_MODE_NFOV_2X2BINNED;
+        master->config.depth.mode = K4A_DEPTH_MODE_NFOV_2X2BINNED;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("NFOV Unbinned", &depth_mode, 1)){
-        sensor->depth.config.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
+        master->config.depth.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
       }
       if(ImGui::RadioButton("WFOV Binned", &depth_mode, 2)){
-        sensor->depth.config.mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
+        master->config.depth.mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("WFOV Unbinned", &depth_mode, 3)){
-        sensor->depth.config.mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
+        master->config.depth.mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
       }
       if(ImGui::RadioButton("Passive IR", &depth_mode, 4)){
-        sensor->depth.config.mode = K4A_DEPTH_MODE_PASSIVE_IR;
+        master->config.depth.mode = K4A_DEPTH_MODE_PASSIVE_IR;
       }
 
       ImGui::TreePop();
     }
     ImGui::Unindent();
   }
-*/
+
   //---------------------------
 }
 void Capture::configuration_color(k4n::dev::Master* master){
   //---------------------------
-/*
-  ImGui::Checkbox("Color enabled", &sensor->color.config.enabled);
-  if(sensor->color.config.enabled){
+
+  ImGui::Checkbox("Color enabled", &master->config.color.enabled);
+  if(master->config.color.enabled){
     ImGui::Indent();
     if(ImGui::TreeNode("Color configuration")){
 
@@ -132,19 +133,19 @@ void Capture::configuration_color(k4n::dev::Master* master){
       ImGui::Text("Format");
       static int color_format = 0;
       if(ImGui::RadioButton("BGRA", &color_format, 0)){
-        sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
+        master->config.color.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("MJPG", &color_format, 1)){
-        sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_MJPG;
+        master->config.color.format = K4A_IMAGE_FORMAT_COLOR_MJPG;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("NV12", &color_format, 2)){
-        sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_NV12;
+        master->config.color.format = K4A_IMAGE_FORMAT_COLOR_NV12;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("YUY2", &color_format, 3)){
-        sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_YUY2;
+        master->config.color.format = K4A_IMAGE_FORMAT_COLOR_YUY2;
       }
 
       //Resolution
@@ -152,29 +153,29 @@ void Capture::configuration_color(k4n::dev::Master* master){
       ImGui::Indent();
       static int color_resolution = 0;
       if(ImGui::RadioButton("720p", &color_resolution, 0)){
-        sensor->color.config.resolution = K4A_COLOR_RESOLUTION_720P;
+        master->config.color.resolution = K4A_COLOR_RESOLUTION_720P;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("1080p", &color_resolution, 1)){
-        sensor->color.config.resolution = K4A_COLOR_RESOLUTION_1080P;
+        master->config.color.resolution = K4A_COLOR_RESOLUTION_1080P;
       }
       if(ImGui::RadioButton("1440p", &color_resolution, 2)){
-        sensor->color.config.resolution = K4A_COLOR_RESOLUTION_1440P;
+        master->config.color.resolution = K4A_COLOR_RESOLUTION_1440P;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("2160p", &color_resolution, 3)){
-        sensor->color.config.resolution = K4A_COLOR_RESOLUTION_2160P;
+        master->config.color.resolution = K4A_COLOR_RESOLUTION_2160P;
       }
       ImGui::Unindent();
 
       ImGui::Text("Resolution [4:3]");
       ImGui::Indent();
       if(ImGui::RadioButton("1536p", &color_resolution, 4)){
-        sensor->color.config.resolution = K4A_COLOR_RESOLUTION_1536P;
+        master->config.color.resolution = K4A_COLOR_RESOLUTION_1536P;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("3072p", &color_resolution, 5)){
-        sensor->color.config.resolution = K4A_COLOR_RESOLUTION_3072P;
+        master->config.color.resolution = K4A_COLOR_RESOLUTION_3072P;
       }
       ImGui::Unindent();
 
@@ -184,53 +185,44 @@ void Capture::configuration_color(k4n::dev::Master* master){
     if(ImGui::TreeNode("Color control")){
       //Exposur time
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Exposure Time", &sensor->color.config.exposure.value, 488, 1000000, "%d us");
+      ImGui::SliderInt("Exposure Time", &master->config.color.exposure.value, 488, 1000000, "%d us");
 
       //White Balance
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("White Balance", &sensor->color.config.white_balance.value, 2500, 12500, "%d K");
+      ImGui::SliderInt("White Balance", &master->config.color.white_balance.value, 2500, 12500, "%d K");
 
       //Brightness
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Brightness", &sensor->color.config.brightness.value, 0, 255, "%d");
+      ImGui::SliderInt("Brightness", &master->config.color.brightness.value, 0, 255, "%d");
 
       //Contrast
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Contrast", &sensor->color.config.contrast.value, 0, 10, "%d");
+      ImGui::SliderInt("Contrast", &master->config.color.contrast.value, 0, 10, "%d");
 
       //Saturation
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Saturation", &sensor->color.config.saturation.value, 0, 63, "%d");
+      ImGui::SliderInt("Saturation", &master->config.color.saturation.value, 0, 63, "%d");
 
       //Sharpness
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Sharpness", &sensor->color.config.sharpness.value, 0, 4, "%d");
+      ImGui::SliderInt("Sharpness", &master->config.color.sharpness.value, 0, 4, "%d");
 
       //Gain
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Gain", &sensor->color.config.gain.value, 0, 255, "%d");
+      ImGui::SliderInt("Gain", &master->config.color.gain.value, 0, 255, "%d");
 
       //Backlight Compensation
-      ImGui::Checkbox("Backlight Compensation", &sensor->color.config.backlight_compensation.value);
+      ImGui::Checkbox("Backlight Compensation", &master->config.color.backlight_compensation.value);
 
       //Power frequency
       ImGui::Text("Power Frequency");
       static int power_frequency = 0;
       if(ImGui::RadioButton("50Hz", &power_frequency, 0)){
-        sensor->color.config.power_frequency.value = 1;
+        master->config.color.power_frequency.value = 1;
       }
       ImGui::SameLine();
       if(ImGui::RadioButton("60Hz", &power_frequency, 1)){
-        sensor->color.config.power_frequency.value = 2;
-      }
-
-      //Refresh / reset buttons
-      if (ImGui::Button("Restart")){
-        sensor->run_capture();
-      }
-      ImGui::SameLine();
-      if (ImGui::Button("Reset to default##RGB")){
-        sensor->reset_color_configuration();
+        master->config.color.power_frequency.value = 2;
       }
 
       ImGui::TreePop();
@@ -238,10 +230,10 @@ void Capture::configuration_color(k4n::dev::Master* master){
 
     ImGui::Unindent();
   }
-*/
+
   //---------------------------
 }
-void Capture::configuration_device(k4n::dev::Master* master){
+void Capture::configuration_fps(k4n::dev::Master* master){
   //---------------------------
 
   static int framerate = 0;
@@ -257,9 +249,28 @@ void Capture::configuration_device(k4n::dev::Master* master){
     master->config.fps.mode = K4A_FRAMES_PER_SECOND_5;
   }
 
+  //---------------------------
+}
+void Capture::configuration_synchro(k4n::dev::Master* master){
+  //---------------------------
+
   /*if(ImGui::Checkbox("Disable streaming LED", &sensor->synchro.disable_streaming_indicator)){
 
   }*/
+
+  //---------------------------
+}
+void Capture::configuration_button(k4n::dev::Master* master){
+  //---------------------------
+
+  //Refresh / reset buttons
+  if (ImGui::Button("Restart")){
+    //sensor->run_capture();
+  }
+  ImGui::SameLine();
+  if (ImGui::Button("Reset to default##RGB")){
+    //sensor->reset_color_configuration();
+  }
 
   //---------------------------
 }

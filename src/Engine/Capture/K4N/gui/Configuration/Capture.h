@@ -25,7 +25,9 @@ public:
   void list_device(k4n::dev::Master* master);
   void configuration_depth(k4n::dev::Master* master);
   void configuration_color(k4n::dev::Master* master);
-  void configuration_device(k4n::dev::Master* master);
+  void configuration_fps(k4n::dev::Master* master);
+  void configuration_synchro(k4n::dev::Master* master);
+  void configuration_button(k4n::dev::Master* master);
   void firmware_info(k4n::dev::Master* master);
 
 private:
