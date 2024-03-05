@@ -186,12 +186,22 @@ int Scene::tree_set(utl::type::Set* set) {
 
   //Bin button
   ImGui::TableNextColumn();
-  ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
-  ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
-  if(set->is_suppressible && ImGui::SmallButton("X##tree_set")){
+  if(set->is_suppressible){
+    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+    ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
 
+    if(set->is_locked){
+      if(ImGui::SmallButton(ICON_FA_LOCK "##tree_set")){
+        set->is_locked = false;
+      }
+    }else{
+      if(ImGui::SmallButton(ICON_FA_UNLOCK "##tree_set")){
+        set->is_locked = true;
+      }
+    }
+
+    ImGui::PopStyleColor(2);
   }
-  ImGui::PopStyleColor(2);
 
   //Set sub elements
   this->tree_set_double_click(set);
@@ -237,13 +247,12 @@ void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
   //---------------------------
 }
 void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_row){
-  utl::type::Set* set_scene = sce_database->get_set_scene();
   //---------------------------
 
   nb_row++;
 
   //Entity row element
-  bool is_selected = sce_set->is_selected_entity(set_scene, entity);
+  bool is_selected = sce_set->is_selected_entity(set, entity);
   ImGuiTreeNodeFlags flag_leaf;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
@@ -260,8 +269,8 @@ void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   ImGui::TreeNodeEx(name.c_str(), flag_leaf);
 
   // If entity clicked
-  if (ImGui::IsItemClicked()) {
-    sce_set->select_entity(set_scene, entity);
+  if(ImGui::IsItemClicked()){
+    sce_set->select_entity(set, entity);
   }
 
   // If entity double-clicked

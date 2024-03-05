@@ -246,7 +246,20 @@ void Set::select_entity(utl::type::Set* set, utl::type::Entity* entity){
   //---------------------------
 
   set->selected_entity = entity;
-  set->set_parent->selected_entity = entity;
+
+  // Propagate the selection to the parent sets
+  utl::type::Set* current_parent = set->set_parent;
+  while (current_parent != nullptr) {
+    current_parent->selected_entity = entity;
+    current_parent = current_parent->set_parent; // Move to the next parent set
+  }
+
+  // Recursively select the entity for all subsets
+  for (auto subset : set->list_subset) {
+    this->select_entity(subset, entity);
+  }
+
+  sayHello();
 
   //---------------------------
 }

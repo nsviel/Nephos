@@ -71,7 +71,6 @@ void Stream::vec_device_tab(k4n::dev::Master* master){
       if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
         string name = sensor->icon + "  " + sensor->name;
         if(ImGui::BeginTabItem(name.c_str(), NULL)){
-          sce_set->select_entity(master, sensor);
           this->vec_stream_tab(sensor);
           ImGui::EndTabItem();
         }
