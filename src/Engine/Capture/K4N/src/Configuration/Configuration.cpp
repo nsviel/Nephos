@@ -16,13 +16,14 @@ Configuration::~Configuration(){}
 
 //Capture configuration
 void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
+  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
   configuration.color_format = sensor->color.config.format;
   configuration.color_resolution = sensor->color.config.enabled ? sensor->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
   configuration.depth_mode = sensor->depth.config.enabled ? sensor->depth.config.mode : K4A_DEPTH_MODE_OFF;
-  configuration.camera_fps = sensor->param.fps.mode;
+  configuration.camera_fps = master->config.fps.mode;
   configuration.depth_delay_off_color_usec = sensor->synchro.depth_delay_off_color_us;
   configuration.wired_sync_mode = sensor->synchro.wired_sync_mode;
   configuration.subordinate_delay_off_master_usec = sensor->synchro.subordinate_delay_off_master_us;
@@ -37,7 +38,6 @@ void Configuration::make_sensor_configuration_initial(k4n::dev::Sensor* sensor){
 
   sensor->depth.config.enabled = true;
   sensor->depth.config.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
-  sensor->param.fps.mode = K4A_FRAMES_PER_SECOND_30;
   sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
   sensor->color.config.enabled = true;
   sensor->color.config.resolution = K4A_COLOR_RESOLUTION_1080P;
@@ -52,7 +52,7 @@ void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
   master->config.color.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
   master->config.color.enabled = true;
   master->config.color.resolution = K4A_COLOR_RESOLUTION_1080P;
-  //master->param.fps.mode = K4A_FRAMES_PER_SECOND_30;
+  master->config.fps.mode = K4A_FRAMES_PER_SECOND_30;
 
   //---------------------------
 }
@@ -74,21 +74,17 @@ void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
 void Configuration::find_config_fps(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
   //---------------------------
 
-  sensor->param.fps.mode = configuration.camera_fps;
   switch(configuration.camera_fps){
     case K4A_FRAMES_PER_SECOND_5:{
-      sensor->param.fps.mode_str = "5";
-      sensor->param.fps.query = 5;
+      sensor->param.fps_mode = "5";
       break;
     }
     case K4A_FRAMES_PER_SECOND_15:{
-      sensor->param.fps.mode_str = "15";
-      sensor->param.fps.query = 15;
+      sensor->param.fps_mode = "15";
       break;
     }
     case K4A_FRAMES_PER_SECOND_30:{
-      sensor->param.fps.mode_str = "30";
-      sensor->param.fps.query = 30;
+      sensor->param.fps_mode = "30";
       break;
     }
   }

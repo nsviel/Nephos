@@ -243,27 +243,24 @@ void Capture::configuration_color(k4n::dev::Master* master){
 }
 void Capture::configuration_device(k4n::dev::Master* master){
   //---------------------------
-/*
+
   static int framerate = 0;
   if(ImGui::RadioButton("30 FPS", &framerate, 0)){
-    sensor->param.fps.mode = K4A_FRAMES_PER_SECOND_30;
-    sensor->run_capture();
+    master->config.fps.mode = K4A_FRAMES_PER_SECOND_30;
   }
   ImGui::SameLine();
   if(ImGui::RadioButton("15 FPS", &framerate, 1)){
-    sensor->param.fps.mode = K4A_FRAMES_PER_SECOND_15;
-    sensor->run_capture();
+    master->config.fps.mode = K4A_FRAMES_PER_SECOND_15;
   }
   ImGui::SameLine();
   if(ImGui::RadioButton("5 FPS", &framerate, 2)){
-    sensor->param.fps.mode = K4A_FRAMES_PER_SECOND_5;
-    sensor->run_capture();
+    master->config.fps.mode = K4A_FRAMES_PER_SECOND_5;
   }
 
-  if(ImGui::Checkbox("Disable streaming LED", &sensor->synchro.disable_streaming_indicator)){
-    sensor->run_capture();
-  }
-*/
+  /*if(ImGui::Checkbox("Disable streaming LED", &sensor->synchro.disable_streaming_indicator)){
+
+  }*/
+
   //---------------------------
 }
 void Capture::firmware_info(k4n::dev::Master* master){

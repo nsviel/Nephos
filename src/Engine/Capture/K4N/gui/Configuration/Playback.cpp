@@ -76,7 +76,7 @@ void Playback::show_info_device(k4n::dev::Sensor* sensor){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Frame rate"); ImGui::TableNextColumn();
-    string fps_str = sensor->param.fps.mode_str + " fps";
+    string fps_str = sensor->param.fps_mode + " fps";
     ImGui::TextColored(color, "%s", fps_str.c_str());
 
     ImGui::EndTable();

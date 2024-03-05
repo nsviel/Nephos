@@ -8,16 +8,6 @@
 
 namespace k4n::structure{
 
-struct FPS{
-  //---------------------------
-
-  k4a_fps_t mode = K4A_FRAMES_PER_SECOND_30;
-  std::string mode_str;
-  int query;
-
-  //---------------------------
-};
-
 struct Param{
   //Sensor parameters and information
   //---------------------------
@@ -26,14 +16,13 @@ struct Param{
   std::string name = "";
   std::string format = "";
   std::string serial_number = "";
+  std::string fps_mode = "";
   utl::file::Path path;
 
   //General parameters
   int index = -1;
   bool data_ready = false;
   float file_size = 0;
-
-  FPS fps;
 
   //K4A objects
   k4a::device device;
