@@ -8,6 +8,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class Player;}
 namespace k4n::structure{class Operation;}
 namespace k4n::structure{class Recorder;}
+namespace k4n::structure{class Configuration;}
 
 
 namespace k4n::dev{
@@ -51,6 +52,7 @@ public:
   k4n::structure::Player player;
   k4n::structure::Operation operation;
   k4n::structure::Recorder recorder;
+  k4n::structure::Configuration config;
 
   int mode = k4n::dev::PLAYBACK;
 };
