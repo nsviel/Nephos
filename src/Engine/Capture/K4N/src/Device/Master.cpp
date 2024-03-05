@@ -52,6 +52,7 @@ void Master::manage_restart(){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      if(sensor->param.mode == k4n::mode::CAPTURE) continue;
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_beg));
       sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     }
@@ -67,6 +68,7 @@ void Master::manage_forward(){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      if(sensor->param.mode == k4n::mode::CAPTURE) continue;
       float ts_forward = player.ts_cur + 5 * player.ts_forward;
       if(ts_forward > player.ts_end) ts_forward = player.ts_end;
       if(ts_forward < player.ts_beg) ts_forward = player.ts_beg;
@@ -91,6 +93,7 @@ void Master::manage_resynchronization(){
       utl::type::Entity* entity = *next(list_entity.begin(), i);
 
       if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+        if(sensor->param.mode == k4n::mode::CAPTURE) continue;
         auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_seek));
         sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
       }
@@ -152,6 +155,7 @@ void Master::player_query_ts(float value){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      if(sensor->param.mode == k4n::mode::CAPTURE) continue;
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
       sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     }

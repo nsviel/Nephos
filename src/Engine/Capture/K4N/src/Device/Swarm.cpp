@@ -72,6 +72,7 @@ void Swarm::create_sensor_capture(){
   sensor->init();
   master->insert_sensor(sensor);
   sce_database->assign_UID(sensor);
+  k4n_transfo->apply_transformation_capture(sensor);
   sensor->run_capture();
 
   //---------------------------

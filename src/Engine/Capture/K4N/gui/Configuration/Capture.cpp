@@ -21,28 +21,27 @@ Capture::Capture(k4n::Node* node_k4n){
 Capture::~Capture(){}
 
 //Main function
-void Capture::show_sensor_configuration(k4n::dev::Sensor* sensor){
-  if(sensor == nullptr || sensor->param.mode == k4n::mode::CAPTURE) return;
-  //---configuration_device----
+void Capture::show_configuration(k4n::dev::Master* master){
+  if(master == nullptr) return;
+  //---------------------------
 
-  this->list_device(sensor);
+  this->list_device(master);
   ImGui::Separator();
-  if(ImGui::TreeNode("Configuration")){
-    this->configuration_depth(sensor);
-    this->configuration_color(sensor);
-    this->configuration_device(sensor);
-    this->firmware_info(sensor);
+/*  if(ImGui::TreeNode("Capture")){
+    this->configuration_depth(master);
+    this->configuration_color(master);
+    this->configuration_device(master);
+    this->firmware_info(master);
 
     ImGui::Separator();
     ImGui::TreePop();
   }
-
+*/
   //---------------------------
 }
 
 //Subfunction
-void Capture::list_device(k4n::dev::Sensor* sensor){
-  k4n::dev::Master* master = sensor->master;
+void Capture::list_device(k4n::dev::Master* master){
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -89,10 +88,9 @@ void Capture::list_device(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Capture::configuration_depth(k4n::dev::Sensor* sensor){
-  if(sensor == nullptr) return;
+void Capture::configuration_depth(k4n::dev::Master* master){
   //---------------------------
-
+/*
   ImGui::Checkbox("Depth enabled", &sensor->depth.config.enabled);
   if(sensor->depth.config.enabled){
     ImGui::Indent();
@@ -120,13 +118,12 @@ void Capture::configuration_depth(k4n::dev::Sensor* sensor){
     }
     ImGui::Unindent();
   }
-
+*/
   //---------------------------
 }
-void Capture::configuration_color(k4n::dev::Sensor* sensor){
-  if(sensor == nullptr) return;
+void Capture::configuration_color(k4n::dev::Master* master){
   //---------------------------
-
+/*
   ImGui::Checkbox("Color enabled", &sensor->color.config.enabled);
   if(sensor->color.config.enabled){
     ImGui::Indent();
@@ -242,13 +239,12 @@ void Capture::configuration_color(k4n::dev::Sensor* sensor){
 
     ImGui::Unindent();
   }
-
+*/
   //---------------------------
 }
-void Capture::configuration_device(k4n::dev::Sensor* sensor){
-  if(sensor == nullptr) return;
+void Capture::configuration_device(k4n::dev::Master* master){
   //---------------------------
-
+/*
   static int framerate = 0;
   if(ImGui::RadioButton("30 FPS", &framerate, 0)){
     sensor->param.fps.mode = K4A_FRAMES_PER_SECOND_30;
@@ -268,13 +264,12 @@ void Capture::configuration_device(k4n::dev::Sensor* sensor){
   if(ImGui::Checkbox("Disable streaming LED", &sensor->synchro.disable_streaming_indicator)){
     sensor->run_capture();
   }
-
+*/
   //---------------------------
 }
-void Capture::firmware_info(k4n::dev::Sensor* sensor){
-  if(sensor == nullptr) return;
+void Capture::firmware_info(k4n::dev::Master* master){
   //---------------------------
-
+/*
   if (ImGui::TreeNode("Device Firmware Version Info")){
     k4a_hardware_version_t versionInfo = sensor->param.version;
     ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
@@ -306,7 +301,7 @@ void Capture::firmware_info(k4n::dev::Sensor* sensor){
 
     ImGui::TreePop();
   }
-
+*/
   //---------------------------
 }
 

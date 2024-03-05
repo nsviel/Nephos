@@ -5,6 +5,7 @@
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Swarm;}
+namespace k4n::gui{class Capture;}
 
 
 namespace k4n::gui{
@@ -22,7 +23,7 @@ public:
   //Subfunction
   void show_info(k4n::dev::Master* master);
   void show_transformation(k4n::dev::Master* master);
-  void show_processing(k4n::dev::Master* master);
+  void show_operation(k4n::dev::Master* master);
 
   //Processing function
   void show_colorization(k4n::dev::Master* master);
@@ -32,6 +33,7 @@ public:
 private:
   k4n::Node* node_k4n;
   k4n::dev::Swarm* k4n_swarm;
+  k4n::gui::Capture* gui_capture;
 
   int item_width;
 };

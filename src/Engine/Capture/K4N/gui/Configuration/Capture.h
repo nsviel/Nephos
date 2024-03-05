@@ -4,7 +4,7 @@
 
 namespace gui{class Node;}
 namespace k4n{class Node;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Master;}
 namespace k4n::dev{class Swarm;}
 namespace eng::scene{class Set;}
 
@@ -19,14 +19,14 @@ public:
   ~Capture();
 
   //Main function
-  void show_sensor_configuration(k4n::dev::Sensor* sensor);
+  void show_configuration(k4n::dev::Master* master);
 
   //Subfunction
-  void list_device(k4n::dev::Sensor* sensor);
-  void configuration_depth(k4n::dev::Sensor* sensor);
-  void configuration_color(k4n::dev::Sensor* sensor);
-  void configuration_device(k4n::dev::Sensor* sensor);
-  void firmware_info(k4n::dev::Sensor* sensor);
+  void list_device(k4n::dev::Master* master);
+  void configuration_depth(k4n::dev::Master* master);
+  void configuration_color(k4n::dev::Master* master);
+  void configuration_device(k4n::dev::Master* master);
+  void firmware_info(k4n::dev::Master* master);
 
 private:
   k4n::Node* node_k4n;

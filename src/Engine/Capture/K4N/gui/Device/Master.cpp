@@ -11,6 +11,7 @@ Master::Master(k4n::Node* node_k4n){
 
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
+  this->gui_capture = new k4n::gui::Capture(node_k4n);
 
   this->item_width = 100;
 
@@ -23,8 +24,8 @@ void Master::show_master_info(k4n::dev::Master* master){
   //---------------------------
 
   this->show_info(master);
-  this->show_transformation(master);
-  this->show_processing(master);
+  gui_capture->show_configuration(master);
+  this->show_operation(master);
 
   //---------------------------
 }
@@ -66,6 +67,22 @@ void Master::show_info(k4n::dev::Master* master){
   //---------------------------
   ImGui::Separator();
 }
+
+void Master::show_operation(k4n::dev::Master* master){
+  //---------------------------
+
+  if(ImGui::TreeNode("Operation")){
+    this->show_transformation(master);
+    this->show_colorization(master);
+    this->show_voxelization(master);
+    this->show_normal(master);
+    ImGui::TreePop();
+  }
+
+  //---------------------------
+}
+
+//Processing function
 void Master::show_transformation(k4n::dev::Master* master){
   //---------------------------
 
@@ -79,17 +96,6 @@ void Master::show_transformation(k4n::dev::Master* master){
   //---------------------------
   ImGui::Separator();
 }
-void Master::show_processing(k4n::dev::Master* master){
-  //---------------------------
-
-  this->show_colorization(master);
-  this->show_voxelization(master);
-  this->show_normal(master);
-
-  //---------------------------
-}
-
-//Processing function
 void Master::show_colorization(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
