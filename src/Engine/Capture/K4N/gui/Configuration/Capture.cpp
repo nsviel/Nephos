@@ -95,22 +95,22 @@ void Capture::configuration_depth(k4n::dev::Master* master){
   if(master->config.depth.enabled){
     ImGui::Indent();
     if(ImGui::TreeNode("Depth configuration")){
-      static int depth_mode = 1;
-      if(ImGui::RadioButton("NFOV Binned", &depth_mode, 0)){
+      int depth_mode = master->config.depth.mode;
+      if(ImGui::RadioButton("NFOV Binned", &depth_mode, K4A_DEPTH_MODE_NFOV_2X2BINNED)){
         master->config.depth.mode = K4A_DEPTH_MODE_NFOV_2X2BINNED;
       }
       ImGui::SameLine();
-      if(ImGui::RadioButton("NFOV Unbinned", &depth_mode, 1)){
+      if(ImGui::RadioButton("NFOV Unbinned", &depth_mode, K4A_DEPTH_MODE_NFOV_UNBINNED)){
         master->config.depth.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
       }
-      if(ImGui::RadioButton("WFOV Binned", &depth_mode, 2)){
+      if(ImGui::RadioButton("WFOV Binned", &depth_mode, K4A_DEPTH_MODE_WFOV_2X2BINNED)){
         master->config.depth.mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
       }
       ImGui::SameLine();
-      if(ImGui::RadioButton("WFOV Unbinned", &depth_mode, 3)){
+      if(ImGui::RadioButton("WFOV Unbinned", &depth_mode, K4A_DEPTH_MODE_WFOV_UNBINNED)){
         master->config.depth.mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
       }
-      if(ImGui::RadioButton("Passive IR", &depth_mode, 4)){
+      if(ImGui::RadioButton("Passive IR", &depth_mode, K4A_DEPTH_MODE_PASSIVE_IR)){
         master->config.depth.mode = K4A_DEPTH_MODE_PASSIVE_IR;
       }
 

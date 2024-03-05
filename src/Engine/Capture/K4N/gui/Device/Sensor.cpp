@@ -26,6 +26,7 @@ void Sensor::show_sensor(k4n::dev::Sensor* sensor){
 
   this->show_sensor_info(sensor);
   this->show_sensor_transfo(sensor);
+  this->show_firmware_info(sensor);
 
   //---------------------------
 }
@@ -34,7 +35,6 @@ void Sensor::show_sensor(k4n::dev::Sensor* sensor){
 void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  ImGui::Separator();
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   if(ImGui::BeginTable("Kinect_info##general", 2)){
     //Type
@@ -44,7 +44,7 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
 
     //File path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("File"); ImGui::TableNextColumn();
+    ImGui::Text("Path data"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", sensor->param.path.data.c_str());
 
     //File size
@@ -54,7 +54,7 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
 
     //Transformation matrix file path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Matrix"); ImGui::TableNextColumn();
+    ImGui::Text("Path transfo"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", sensor->param.path.transformation.c_str());
 
     ImGui::EndTable();
@@ -88,10 +88,11 @@ void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
   }
 
   //---------------------------
+  ImGui::Separator();
 }
 void Sensor::show_firmware_info(k4n::dev::Sensor* sensor){
   //---------------------------
-/*
+
   if (ImGui::TreeNode("Device Firmware Version Info")){
     k4a_hardware_version_t versionInfo = sensor->param.version;
     ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
@@ -123,7 +124,7 @@ void Sensor::show_firmware_info(k4n::dev::Sensor* sensor){
 
     ImGui::TreePop();
   }
-*/
+
   //---------------------------
 }
 
