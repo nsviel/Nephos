@@ -20,6 +20,7 @@ Swarm::Swarm(k4n::structure::Struct_k4n* struct_k4n){
   this->sce_database = node_scene->get_scene_database();
   this->sce_set = new eng::scene::Set();
   this->k4n_transfo = new k4n::utils::Transformation();
+  this->k4n_config = new k4n::config::Configuration();
 
   //---------------------------
 }
@@ -31,8 +32,7 @@ void Swarm::create_sensor_playback(utl::file::Path path){
   //---------------------------
 
   //Associated master
-  k4n::dev::Master* master = get_or_create_master("Playback");
-  master->mode = k4n::dev::PLAYBACK;
+  k4n::dev::Master* master = get_or_create_playback_master("Playback");
   int index = sce_set->compute_number_entity(master);
 
   //Sensor creation
@@ -58,8 +58,7 @@ void Swarm::create_sensor_capture(){
 
   //Associated master
   this->close_master("Playback");
-  k4n::dev::Master* master = get_or_create_master("Capture");
-  master->mode = k4n::dev::CAPTURE;
+  k4n::dev::Master* master = get_or_create_capture_master("Capture");
   int index = sce_set->compute_number_entity(master);
 
   //Sensor creation
@@ -120,7 +119,7 @@ void Swarm::close_all_master(){
 
   //---------------------------
 }
-k4n::dev::Master* Swarm::get_or_create_master(string name){
+k4n::dev::Master* Swarm::get_or_create_playback_master(string name){
   utl::type::Set* set_scene = sce_database->get_set_scene();
   //---------------------------
 
@@ -136,6 +135,34 @@ k4n::dev::Master* Swarm::get_or_create_master(string name){
   k4n::dev::Master* master = new k4n::dev::Master();
   master->name = name;
   master->is_lockable = true;
+  master->mode = k4n::dev::PLAYBACK;
+
+  sce_set->add_subset(set_scene, master);
+  struct_k4n->list_master.push_back(master);
+  struct_k4n->selected_master = master;
+
+  //---------------------------
+  return master;
+}
+k4n::dev::Master* Swarm::get_or_create_capture_master(string name){
+  utl::type::Set* set_scene = sce_database->get_set_scene();
+  //---------------------------
+
+  //Check if already existing
+  for(int i=0; i<struct_k4n->list_master.size(); i++){
+    k4n::dev::Master* master = *std::next(struct_k4n->list_master.begin(), i);
+    if(name == master->name){
+      return master;
+    }
+  }
+
+  //Create the master
+  k4n::dev::Master* master = new k4n::dev::Master();
+  master->name = name;
+  master->is_lockable = true;
+  master->mode = k4n::dev::CAPTURE;
+
+  k4n_config->make_master_configuration_initial(master);
   sce_set->add_subset(set_scene, master);
   struct_k4n->list_master.push_back(master);
   struct_k4n->selected_master = master;

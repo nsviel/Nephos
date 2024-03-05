@@ -82,7 +82,7 @@ void Connection::stop_thread(){
 void Connection::manage_new_dev(int nb_new_dev){
   //---------------------------
 
-  k4n::dev::Master* master = k4n_swarm->get_or_create_master("capture");
+  k4n::dev::Master* master = k4n_swarm->get_or_create_capture_master("capture");
 
   //If previsouly no device, we need to supress all default playback
   if(nb_dev == 0){

@@ -20,9 +20,12 @@ void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
-  configuration.color_format = sensor->color.config.format;
-  configuration.color_resolution = sensor->color.config.enabled ? sensor->color.config.resolution : K4A_COLOR_RESOLUTION_OFF;
-  configuration.depth_mode = sensor->depth.config.enabled ? sensor->depth.config.mode : K4A_DEPTH_MODE_OFF;
+  //Field stuff
+  configuration.color_format = master->config.color.format;
+  configuration.color_resolution = master->config.color.enabled ? master->config.color.resolution : K4A_COLOR_RESOLUTION_OFF;
+  configuration.depth_mode = master->config.depth.enabled ? master->config.depth.mode : K4A_DEPTH_MODE_OFF;
+
+  //Synchro stuff
   configuration.camera_fps = master->config.fps.mode;
   configuration.depth_delay_off_color_usec = sensor->synchro.depth_delay_off_color_us;
   configuration.wired_sync_mode = sensor->synchro.wired_sync_mode;
@@ -32,17 +35,6 @@ void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
 
   //---------------------------
   sensor->param.configuration = configuration;
-}
-void Configuration::make_sensor_configuration_initial(k4n::dev::Sensor* sensor){
-  //---------------------------
-
-  sensor->depth.config.enabled = true;
-  sensor->depth.config.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
-  sensor->color.config.format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  sensor->color.config.enabled = true;
-  sensor->color.config.resolution = K4A_COLOR_RESOLUTION_1080P;
-
-  //---------------------------
 }
 void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
   //---------------------------

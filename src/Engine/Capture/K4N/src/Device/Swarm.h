@@ -10,6 +10,7 @@ namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Transformation;}
 namespace k4n::structure{class Struct_k4n;}
+namespace k4n::config{class Configuration;}
 
 
 namespace k4n::dev{
@@ -31,7 +32,8 @@ public:
   void close_all_master();
   void close_master(string name);
   void close_master(k4n::dev::Master* master);
-  k4n::dev::Master* get_or_create_master(string name);
+  k4n::dev::Master* get_or_create_playback_master(string name);
+  k4n::dev::Master* get_or_create_capture_master(string name);
   k4n::dev::Master* get_master_by_name(string name);
   k4n::dev::Master* get_selected_master();
   list<k4n::dev::Master*>& get_list_master();
@@ -42,6 +44,7 @@ private:
   eng::scene::Set* sce_set;
   k4n::utils::Transformation* k4n_transfo;
   k4n::structure::Struct_k4n* struct_k4n;
+  k4n::config::Configuration* k4n_config;
 };
 
 }

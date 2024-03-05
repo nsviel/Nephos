@@ -21,10 +21,11 @@ void Calibration::make_device_transformation(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Calibration::make_capture_calibration(k4n::dev::Sensor* sensor){
+  k4n::dev::Master* master = sensor->master;
+  k4a::device& device = sensor->param.device;
   //---------------------------
 
-  k4a::device& device = sensor->param.device;
-  sensor->param.calibration = device.get_calibration(sensor->depth.config.mode, sensor->color.config.resolution);
+  sensor->param.calibration = device.get_calibration(master->config.depth.mode, master->config.color.resolution);
 
   //---------------------------
 }
