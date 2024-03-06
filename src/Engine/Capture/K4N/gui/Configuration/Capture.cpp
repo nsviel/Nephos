@@ -392,9 +392,12 @@ void Capture::configuration_button(k4n::dev::Master* master){
   //---------------------------
 
   //Refresh / reset buttons
+  bool condition = (!master->config.color.enabled && !master->config.depth.enabled);
+  if(condition) ImGui::BeginDisabled();
   if(ImGui::Button("Restart")){
     master->reset();
   }
+  if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
   if(ImGui::Button("Reset to default##RGB")){
     k4n_config->make_master_configuration_initial(master);

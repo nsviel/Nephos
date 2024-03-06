@@ -49,14 +49,14 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
 
   sensor->param.serial_number = sensor->param.device.get_serialnum();
   sensor->param.version = sensor->param.device.get_version();
-say("----");
+
   //Configuration
   k4n_config->make_sensor_configuration(sensor);
   k4n_config->make_sensor_color_configuration(sensor);
   k4n_calibration->make_capture_calibration(sensor);
   k4n_calibration->make_transformation_from_calibration(sensor);sayHello();
   sensor->param.device.start_cameras(&sensor->param.configuration);
-sayHello();
+
   //Start capture thread
   this->thread_running = true;
   while(thread_running){
@@ -66,7 +66,7 @@ sayHello();
     if(capture == nullptr){
       continue;
     }
-sayHello();
+
     //Find data from capture
     k4a_data->start_thread(sensor, capture);
 
