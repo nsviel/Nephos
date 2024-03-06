@@ -63,8 +63,16 @@ void Panel::cam_parameter(){
   //Camera mode
   ImGui::Columns(2);
   ImGui::Text("Projection");
-  ImGui::RadioButton("Perspective", &camera->projection, CAMERA_PROJ_PERSPECTIVE);
-  ImGui::RadioButton("Orthographic", &camera->projection, CAMERA_PROJ_ORTHOGRAPHIC);
+  if(ImGui::RadioButton("Perspective", &camera->projection, CAMERA_PROJ_PERSPECTIVE)){
+    camera->reset_entity();
+    camera->projection = CAMERA_PROJ_PERSPECTIVE;
+  }
+  if(ImGui::RadioButton("Orthographic", &camera->projection, CAMERA_PROJ_ORTHOGRAPHIC)){
+    camera->reset_entity();
+    camera->projection = CAMERA_PROJ_ORTHOGRAPHIC;
+    camera->cam_P = glm::vec3(-20, -20, 10);
+    camera->clip_far = 1000.0;
+  }
 
   ImGui::NextColumn();
   ImGui::Text("Mode");
