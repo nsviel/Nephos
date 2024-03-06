@@ -51,7 +51,7 @@ void Master::reset(){
 }
 
 //Master function
-void Master::manage_restart_thread(){
+void Master::manage_color_control(){
   if(mode == k4n::dev::PLAYBACK) return;
   //---------------------------
 
@@ -66,7 +66,7 @@ void Master::manage_restart_thread(){
   //---------------------------
   player.ts_cur = player.ts_beg;
 }
-void Master::manage_color_control(){
+void Master::manage_restart_thread(){
   if(mode == k4n::dev::PLAYBACK) return;
   //---------------------------
 

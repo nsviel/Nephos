@@ -216,16 +216,57 @@ void Capture::configuration_color_control(k4n::dev::Master* master){
   if(master->config.color.enabled){
     ImGui::Indent();
     if(ImGui::TreeNode("Color control")){
-      //Exposur time
-      ImGui::SetNextItemWidth(100);
-      if(ImGui::SliderInt("Exposure Time", &master->config.color.exposure.value, 488, 1000000, "%d us")){
-        master->manage_color_control();
-      }
 
-      //White Balance
-      ImGui::SetNextItemWidth(100);
-      if(ImGui::SliderInt("White Balance", &master->config.color.white_balance.value, 2500, 12500, "%d K")){
-        master->manage_color_control();
+      if(ImGui::BeginTable("truc##color_control", 2)){
+        //Exposure time
+        ImGui::TableNextRow(); ImGui::TableNextColumn();
+        ImGui::SetNextItemWidth(100);
+        if(ImGui::SliderInt("Exposure Time", &master->config.color.exposure.value, 488, 1000000, "%d us")){
+          master->manage_color_control();
+        }
+        ImGui::TableNextColumn();
+        switch(master->config.color.exposure.mode){
+          case K4A_COLOR_CONTROL_MODE_MANUAL:{
+            if(ImGui::Button("M##Exposure")){
+              master->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_AUTO;
+              master->manage_color_control();
+            }
+            break;
+          }
+          case K4A_COLOR_CONTROL_MODE_AUTO:{
+            if(ImGui::Button("A##Exposure")){
+              master->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
+              master->manage_color_control();
+            }
+            break;
+          }
+        }
+
+        //White balance
+        ImGui::TableNextRow(); ImGui::TableNextColumn();
+        ImGui::SetNextItemWidth(100);
+        if(ImGui::SliderInt("White Balance", &master->config.color.white_balance.value, 2500, 12500, "%d K")){
+          master->manage_color_control();
+        }
+        ImGui::TableNextColumn();
+        switch(master->config.color.white_balance.mode){
+          case K4A_COLOR_CONTROL_MODE_MANUAL:{
+            if(ImGui::Button("M##Balance")){
+              master->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_AUTO;
+              master->manage_color_control();
+            }
+            break;
+          }
+          case K4A_COLOR_CONTROL_MODE_AUTO:{
+            if(ImGui::Button("A##Balance")){
+              master->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
+              master->manage_color_control();
+            }
+            break;
+          }
+        }
+
+        ImGui::EndTable();
       }
 
       //Brightness
@@ -259,17 +300,18 @@ void Capture::configuration_color_control(k4n::dev::Master* master){
       }
 
       //Backlight Compensation
-      ImGui::Checkbox("Backlight Compensation", &master->config.color.backlight_compensation.value);
+      if(ImGui::Checkbox("Backlight Compensation", &master->config.color.backlight_compensation.value)){
+        master->manage_color_control();
+      }
 
       //Power frequency
       ImGui::Text("Power Frequency");
-      static int power_frequency = 0;
-      if(ImGui::RadioButton("50Hz", &power_frequency, 0)){
-        master->config.color.power_frequency.value = 1;
+      if(ImGui::RadioButton("50Hz", &master->config.color.power_frequency.value, 1)){
+        master->manage_color_control();
       }
       ImGui::SameLine();
-      if(ImGui::RadioButton("60Hz", &power_frequency, 1)){
-        master->config.color.power_frequency.value = 2;
+      if(ImGui::RadioButton("60Hz", &master->config.color.power_frequency.value, 2)){
+        master->manage_color_control();
       }
 
       ImGui::TreePop();
