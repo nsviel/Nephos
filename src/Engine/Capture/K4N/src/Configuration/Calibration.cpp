@@ -13,7 +13,7 @@ Calibration::Calibration(){
 Calibration::~Calibration(){}
 
 //Main function
-void Calibration::make_device_transformation(k4n::dev::Sensor* sensor){
+void Calibration::make_transformation_from_calibration(k4n::dev::Sensor* sensor){
   //---------------------------
 
   sensor->param.transformation = k4a::transformation(sensor->param.calibration);

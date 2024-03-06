@@ -29,8 +29,8 @@ struct Param{
   k4a::playback playback;
   k4a::calibration calibration;
   k4a::transformation transformation;
-  k4a_device_configuration_t configuration;
-  k4a_hardware_version_t version;
+  k4a_device_configuration_t configuration = {0};
+  k4a_hardware_version_t version = {0};
 
   //---------------------------
 };

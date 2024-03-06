@@ -16,7 +16,7 @@ public:
 
 public:
   //Main function
-  void make_device_transformation(k4n::dev::Sensor* sensor);
+  void make_transformation_from_calibration(k4n::dev::Sensor* sensor);
   void make_capture_calibration(k4n::dev::Sensor* sensor);
   void find_playback_calibration(k4n::dev::Sensor* sensor);
 

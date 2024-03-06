@@ -54,7 +54,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   k4n_config->make_sensor_configuration(sensor);
   k4n_config->make_sensor_color_configuration(sensor);
   k4n_calibration->make_capture_calibration(sensor);
-  k4n_calibration->make_device_transformation(sensor);
+  k4n_calibration->make_transformation_from_calibration(sensor);
   sensor->param.device.start_cameras(&sensor->param.configuration);
 
   //Start capture thread
