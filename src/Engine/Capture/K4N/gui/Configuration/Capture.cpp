@@ -29,6 +29,7 @@ void Capture::show_master_capture(k4n::dev::Master* master){
   this->list_device(master);
   ImGui::Separator();
   if(ImGui::TreeNode("Capture")){
+    this->configuration_synchro(master);
     this->configuration_depth(master);
     this->configuration_color(master);
     this->configuration_color_control(master);
@@ -356,18 +357,34 @@ void Capture::configuration_fps(k4n::dev::Master* master){
 void Capture::configuration_synchro(k4n::dev::Master* master){
   //---------------------------
 
+  //Internal sync
+  if(ImGui::TreeNode("Synchronization")){
+    //Synchronized images only
+    bool condition = (!master->config.color.enabled || !master->config.depth.enabled);
+    if(condition) ImGui::BeginDisabled();
+    ImGui::Checkbox("Synchronized images only", &master->synchro.synchronized_images_only);
+    if(condition) ImGui::EndDisabled();
+
+    //Depth delay
+    ImGui::SetNextItemWidth(100);
+    ImGui::InputScalar("Depth delay (us)", ImGuiDataType_U32, &master->synchro.depth_delay_off_color_us, NULL, NULL, "%u");
+
+    ImGui::TreePop();
+  }
+
   /*if(ImGui::Checkbox("Disable streaming LED", &master->synchro.disable_streaming_indicator)){
 
   }*/
 
-  if(ImGui::TreeNode("Internal Sync")){
+  //External sync
+  /*if(ImGui::TreeNode("External Sync")){
     bool condition = (!master->config.color.enabled || !master->config.depth.enabled);
     if(condition) ImGui::BeginDisabled();
     ImGui::Checkbox("Synchronized images only", &master->synchro.synchronized_images_only);
     if(condition) ImGui::EndDisabled();
 
     ImGui::TreePop();
-  }
+  }*/
 
   //---------------------------
 }
