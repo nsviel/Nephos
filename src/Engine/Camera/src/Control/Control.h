@@ -34,7 +34,8 @@ public:
   //Camera parameter
   void set_camera(utl::entity::Camera* camera);
   void set_camera_COM(vec3 value);
-  void set_camera_mode();
+  void set_camera_mode(utl::entity::Camera* camera);
+  void set_camera_proj(utl::entity::Camera* camera, int projection);
   void set_next_camera_mode();
 
 private:

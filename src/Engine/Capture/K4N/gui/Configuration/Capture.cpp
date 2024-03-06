@@ -92,7 +92,11 @@ void Capture::list_device(k4n::dev::Master* master){
 void Capture::configuration_depth(k4n::dev::Master* master){
   //---------------------------
 
-  ImGui::Checkbox("Depth enabled", &master->config.depth.enabled);
+  if(ImGui::Checkbox("Depth enabled", &master->config.depth.enabled)){
+    if(!master->config.depth.enabled){
+      master->synchro.synchronized_images_only = false;
+    }
+  }
   if(master->config.depth.enabled){
     ImGui::Indent();
     if(ImGui::TreeNode("Depth configuration")){
@@ -128,7 +132,11 @@ void Capture::configuration_depth(k4n::dev::Master* master){
 void Capture::configuration_color(k4n::dev::Master* master){
   //---------------------------
 
-  ImGui::Checkbox("Color enabled", &master->config.color.enabled);
+  if(ImGui::Checkbox("Color enabled", &master->config.color.enabled)){
+    if(!master->config.color.enabled){
+      master->synchro.synchronized_images_only = false;
+    }
+  }
   if(master->config.color.enabled){
     ImGui::Indent();
     if(ImGui::TreeNode("Color configuration")){
@@ -348,9 +356,18 @@ void Capture::configuration_fps(k4n::dev::Master* master){
 void Capture::configuration_synchro(k4n::dev::Master* master){
   //---------------------------
 
-  /*if(ImGui::Checkbox("Disable streaming LED", &sensor->synchro.disable_streaming_indicator)){
+  /*if(ImGui::Checkbox("Disable streaming LED", &master->synchro.disable_streaming_indicator)){
 
   }*/
+
+  if(ImGui::TreeNode("Internal Sync")){
+    bool condition = (!master->config.color.enabled || !master->config.depth.enabled);
+    if(condition) ImGui::BeginDisabled();
+    ImGui::Checkbox("Synchronized images only", &master->synchro.synchronized_images_only);
+    if(condition) ImGui::EndDisabled();
+
+    ImGui::TreePop();
+  }
 
   //---------------------------
 }

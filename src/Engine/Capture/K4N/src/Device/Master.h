@@ -57,7 +57,8 @@ public:
   k4n::structure::Operation operation;
   k4n::structure::Recorder recorder;
   k4n::structure::Configuration config;
-
+  k4n::structure::Synchro synchro;
+  
   int mode = k4n::dev::PLAYBACK;
 };
 

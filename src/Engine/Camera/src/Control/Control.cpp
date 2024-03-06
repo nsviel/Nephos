@@ -168,7 +168,7 @@ void Control::set_camera(utl::entity::Camera* camera){
   //---------------------------
 
   this->camera = camera;
-  this->set_camera_mode();
+  this->set_camera_mode(camera);
 
   //---------------------------
 }
@@ -186,7 +186,7 @@ void Control::set_camera_COM(vec3 value){
 
   //---------------------------
 }
-void Control::set_camera_mode(){
+void Control::set_camera_mode(utl::entity::Camera* camera){
   //---------------------------
 
   switch(camera->mode){
@@ -196,6 +196,26 @@ void Control::set_camera_mode(){
     }
     case CAMERA_MODE_ARCBALL:{
       this->active_mode = vec_mode[1];
+      break;
+    }
+  }
+
+  //---------------------------
+}
+void Control::set_camera_proj(utl::entity::Camera* camera, int projection){
+  //---------------------------
+
+  switch(projection){
+    case CAMERA_PROJ_PERSPECTIVE:{
+      camera->reset_entity();
+      camera->projection = projection;
+      break;
+    }
+    case CAMERA_PROJ_ORTHOGRAPHIC:{
+      camera->reset_entity();
+      camera->projection = projection;
+      camera->cam_P = glm::vec3(-20, -20, 10);
+      camera->clip_far = 1000.0;
       break;
     }
   }
@@ -219,7 +239,7 @@ void Control::set_next_camera_mode(){
   }
 
   //---------------------------
-  this->set_camera_mode();
+  this->set_camera_mode(camera);
 }
 
 

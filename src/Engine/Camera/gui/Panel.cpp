@@ -64,14 +64,10 @@ void Panel::cam_parameter(){
   ImGui::Columns(2);
   ImGui::Text("Projection");
   if(ImGui::RadioButton("Perspective", &camera->projection, CAMERA_PROJ_PERSPECTIVE)){
-    camera->reset_entity();
-    camera->projection = CAMERA_PROJ_PERSPECTIVE;
+    cam_control->set_camera_proj(camera, camera->projection);
   }
   if(ImGui::RadioButton("Orthographic", &camera->projection, CAMERA_PROJ_ORTHOGRAPHIC)){
-    camera->reset_entity();
-    camera->projection = CAMERA_PROJ_ORTHOGRAPHIC;
-    camera->cam_P = glm::vec3(-20, -20, 10);
-    camera->clip_far = 1000.0;
+    cam_control->set_camera_proj(camera, camera->projection);
   }
 
   ImGui::NextColumn();
@@ -79,12 +75,12 @@ void Panel::cam_parameter(){
   if(ImGui::RadioButton("Player", &camera->mode, CAMERA_MODE_PLAYER)){
     camera->reset_entity();
     camera->mode = CAMERA_MODE_PLAYER;
-    cam_control->set_camera_mode();
+    cam_control->set_camera_mode(camera);
   }
   if(ImGui::RadioButton("Arcball", &camera->mode, CAMERA_MODE_ARCBALL)){
     camera->reset_entity();
     camera->mode = CAMERA_MODE_ARCBALL;
-    cam_control->set_camera_mode();
+    cam_control->set_camera_mode(camera);
   }
   ImGui::Columns(1);
   ImGui::Separator();
