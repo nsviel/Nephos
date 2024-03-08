@@ -48,6 +48,8 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 
   //---------------------------
 }
+
+//Subfunction
 bool Queue::suitability_for_presentation(vk::structure::Physical_device& physical_device){
   //---------------------------
 

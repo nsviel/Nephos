@@ -22,11 +22,14 @@ public:
   //Main function
   void draw_profiler(prf::vulkan::Profiler* prf_vulkan);
 
+  //Tab function
+  void draw_tab_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
+  void draw_tab_queue(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
+  void draw_tab_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
+
   //Subfunction
-  void draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
-  void draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
-  void draw_table_info(prf::vulkan::Device& device);
-  void draw_table_queue_families(prf::vulkan::Device& device);
+  void draw_device_info(prf::vulkan::Device& device);
+  void draw_device_queue_families(prf::vulkan::Device& device);
 
 private:
 };

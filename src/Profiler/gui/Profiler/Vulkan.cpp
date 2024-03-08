@@ -24,27 +24,35 @@ void Vulkan::draw_profiler(prf::vulkan::Profiler* prf_vulkan){
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
   if(ImGui::BeginTabBar("Vulkan##profiler_vulkan")){
-    //Thread tab
-    ImGui::SetNextItemWidth(100);
-    if(ImGui::BeginTabItem("Thread##profiler_vulkan", NULL)){
-      this->draw_thread(prf_vulkan, graph_dim);
-      ImGui::EndTabItem();
-    }
-
     //Device tab
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("Device##profiler_vulkan", NULL)){
-      this->draw_device(prf_vulkan, graph_dim);
+      this->draw_tab_device(prf_vulkan, graph_dim);
       ImGui::EndTabItem();
     }
+
+    //Queue tab
+    ImGui::SetNextItemWidth(100);
+    if(ImGui::BeginTabItem("Queue##profiler_vulkan", NULL)){
+      this->draw_tab_queue(prf_vulkan, graph_dim);
+      ImGui::EndTabItem();
+    }
+
+    //Thread tab
+    ImGui::SetNextItemWidth(100);
+    if(ImGui::BeginTabItem("Thread##profiler_vulkan", NULL)){
+      this->draw_tab_thread(prf_vulkan, graph_dim);
+      ImGui::EndTabItem();
+    }
+
     ImGui::EndTabBar();
   }
 
   //---------------------------
 }
 
-//Subfunction
-void Vulkan::draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
+//Tab function
+void Vulkan::draw_tab_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
   vector<prf::vulkan::Thread>& vec_thread = prf_vulkan->get_vec_thread();
   //---------------------------
 
@@ -74,7 +82,49 @@ void Vulkan::draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
 
   //---------------------------
 }
-void Vulkan::draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
+void Vulkan::draw_tab_queue(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
+  //---------------------------
+
+  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  static ImGuiTableFlags flags = ImGuiTableFlags_BordersV | ImGuiTableFlags_BordersOuterH | ImGuiTableFlags_RowBg | ImGuiTableFlags_ContextMenuInBody;
+  ImGui::BeginTable("vulkan_queue##table", 3, flags);
+
+  //Family index
+  ImGui::TableSetupColumn("");
+  ImGui::TableSetupColumn("Number");
+  ImGui::TableSetupColumn("Family");
+  ImGui::TableHeadersRow();
+
+  //Graphics
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Graphics");
+  ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", 0);
+  ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", 0);
+
+  //Presentation
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Presentation");
+  ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", 0);
+  ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", 0);
+
+  //Transfer
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Transfer");
+  ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", 0);
+  ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", 0);
+
+
+  ImGui::EndTable();
+
+  //---------------------------
+}
+void Vulkan::draw_tab_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
   vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
   //---------------------------
 
@@ -83,8 +133,8 @@ void Vulkan::draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
       prf::vulkan::Device& device = vec_device[i];
 
       if(ImGui::BeginTabItem(device.name.c_str(), NULL)){
-        this->draw_table_info(device);
-        this->draw_table_queue_families(device);
+        this->draw_device_info(device);
+        this->draw_device_queue_families(device);
 
         ImGui::EndTabItem();
       }
@@ -95,7 +145,9 @@ void Vulkan::draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
 
   //---------------------------
 }
-void Vulkan::draw_table_info(prf::vulkan::Device& device){
+
+//Subfunction
+void Vulkan::draw_device_info(prf::vulkan::Device& device){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
@@ -124,25 +176,11 @@ void Vulkan::draw_table_info(prf::vulkan::Device& device){
   ImGui::Text("Max image"); ImGui::TableNextColumn();
   ImGui::TextColored(color, "%d", device.max_image_dim);
 
-  //Queue stuff
-  ImGui::TableNextRow();
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Queue graphics ID"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", device.ID_family_graphics);
-
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Queue transfer ID"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", device.ID_family_transfer);
-
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Queue presentation ID"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", device.ID_family_presentation);
-
   ImGui::EndTable();
 
   //---------------------------
 }
-void Vulkan::draw_table_queue_families(prf::vulkan::Device& device){
+void Vulkan::draw_device_queue_families(prf::vulkan::Device& device){
   //---------------------------
 
   int size = device.vec_queue_family.size() + 1;
