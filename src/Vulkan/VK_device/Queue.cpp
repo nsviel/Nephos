@@ -56,8 +56,8 @@ void Queue::find_queue_graphics_idx(vk::structure::Physical_device& physical_dev
     vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
-    if(queue_family.property.queueFlags & VK_QUEUE_GRAPHICS_BIT){
-      physical_device.queue_family_graphics_idx = static_cast<uint32_t>(i);
+    if(queue_family.nb_queue_graphics > 0){
+      physical_device.queue_family_graphics_idx = i;
       return;
     }
   }
@@ -71,8 +71,8 @@ void Queue::find_queue_transfer_idx(vk::structure::Physical_device& physical_dev
     vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
 
     // Querying for transfer family
-    if(queue_family.property.queueFlags & VK_QUEUE_TRANSFER_BIT){
-      physical_device.queue_family_transfer_idx = static_cast<uint32_t>(i);
+    if(queue_family.nb_queue_transfer > 0){
+      physical_device.queue_family_transfer_idx = i;
       return;
     }
   }
@@ -86,10 +86,8 @@ void Queue::find_queue_presentation_idx(vk::structure::Physical_device& physical
     vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for presentation family
-    VkBool32 presentSupport = false;
-    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, static_cast<uint32_t>(i), struct_vulkan->window.surface, &presentSupport);
-    if(presentSupport){
-      physical_device.queue_family_presentation_idx = static_cast<uint32_t>(i);
+    if(queue_family.nb_queue_presentation > 0){
+      physical_device.queue_family_presentation_idx = i;
       return;
     }
   }
