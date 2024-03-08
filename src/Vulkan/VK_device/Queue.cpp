@@ -48,7 +48,7 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 
   //---------------------------
 }
-void Queue::find_queue_graphics_idx(vk::structure::Physical_device& physical_device){
+void Queue::find_queue_family_graphics(vk::structure::Physical_device& physical_device){
   //---------------------------
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){
@@ -63,7 +63,7 @@ void Queue::find_queue_graphics_idx(vk::structure::Physical_device& physical_dev
 
   //---------------------------
 }
-void Queue::find_queue_transfer_idx(vk::structure::Physical_device& physical_device){
+void Queue::find_queue_family_transfer(vk::structure::Physical_device& physical_device){
   //---------------------------
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){
@@ -78,7 +78,7 @@ void Queue::find_queue_transfer_idx(vk::structure::Physical_device& physical_dev
 
   //---------------------------
 }
-void Queue::find_queue_presentation_idx(vk::structure::Physical_device& physical_device){
+void Queue::find_queue_family_presentation(vk::structure::Physical_device& physical_device){
   //---------------------------
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){

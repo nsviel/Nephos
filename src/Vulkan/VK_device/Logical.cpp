@@ -50,14 +50,15 @@ void Logical::create_logical_device(){
   float queuePriority[3] = {1.0f, 1.0f, 1.0f};
   vector<VkDeviceQueueCreateInfo> vec_queue_info;
   for(int queue_family : set_queue){
-    if(queue_family != -1){
-      VkDeviceQueueCreateInfo queue_info{};
-      queue_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-      queue_info.queueFamilyIndex = static_cast<uint32_t>(queue_family);
-      queue_info.queueCount = 3;
-      queue_info.pQueuePriorities = queuePriority;
-      vec_queue_info.push_back(queue_info);
-    }
+    if(queue_family == -1) continue;
+
+    VkDeviceQueueCreateInfo queue_info{};
+    queue_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+    queue_info.queueFamilyIndex = static_cast<uint32_t>(queue_family);
+    queue_info.queueCount = 3;
+    queue_info.pQueuePriorities = queuePriority;
+    
+    vec_queue_info.push_back(queue_info);
   }
 
   //Specifying used device features
