@@ -25,7 +25,8 @@ public:
   //Subfunction
   void draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
   void draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
-  void draw_queue_families(prf::vulkan::Device& device);
+  void draw_table_info(prf::vulkan::Device& device);
+  void draw_table_queue_families(prf::vulkan::Device& device);
 
 private:
 };

@@ -78,55 +78,13 @@ void Vulkan::draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
   vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
   //---------------------------
 
-  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
   if(ImGui::BeginTabBar("vulkan_device##tab_bar")){
     for(int i=0; i< vec_device.size(); i++){
       prf::vulkan::Device& device = vec_device[i];
 
       if(ImGui::BeginTabItem(device.name.c_str(), NULL)){
-
-        if(ImGui::BeginTable("vulkan_device##table", 2)){
-          ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthStretch, 75.0f);
-
-          //GPU name
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("Name"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%s", device.name.c_str());
-
-          //Vendor ID
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("Vendor ID"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.vendorID);
-
-          //Extension support
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("Extension support"); ImGui::TableNextColumn();
-          const char* support = device.has_extension_support ? "true" : "false";
-          ImGui::TextColored(color, "%s", support);
-
-          //Max image
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("Max image"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.max_image_dim);
-
-          //Queue stuff
-          ImGui::TableNextRow();
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("Queue graphics ID"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.queue_family_graphics_idx);
-
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("Queue transfer ID"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.queue_family_transfer_idx);
-
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("Queue presentation ID"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.queue_family_presentation_idx);
-
-          this->draw_queue_families(device);
-
-          ImGui::EndTable();
-        }
+        this->draw_table_info(device);
+        this->draw_table_queue_families(device);
 
         ImGui::EndTabItem();
       }
@@ -137,39 +95,109 @@ void Vulkan::draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
 
   //---------------------------
 }
-void Vulkan::draw_queue_families(prf::vulkan::Device& device){
+void Vulkan::draw_table_info(prf::vulkan::Device& device){
   //---------------------------
-  /*
-  //Transformer ici en table
-  queue       family_0      family_1
-  graphics
-  presentation
-  ...
-*/
+
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  ImGui::BeginTable("vulkan_device##table", 2);
+
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthStretch, 75.0f);
+
+  //GPU name
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Name"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%s", device.name.c_str());
+
+  //Vendor ID
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Vendor ID"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", device.vendorID);
+
+  //Extension support
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Extension support"); ImGui::TableNextColumn();
+  const char* support = device.has_extension_support ? "true" : "false";
+  ImGui::TextColored(color, "%s", support);
+
+  //Max image
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Max image"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", device.max_image_dim);
+
+  //Queue stuff
+  ImGui::TableNextRow();
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Queue graphics ID"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", device.queue_family_graphics_idx);
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Queue transfer ID"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", device.queue_family_transfer_idx);
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Queue presentation ID"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", device.queue_family_presentation_idx);
+
+  ImGui::EndTable();
+
+  //---------------------------
+}
+void Vulkan::draw_table_queue_families(prf::vulkan::Device& device){
+  //---------------------------
+
+  int size = device.vec_queue_family.size() + 1;
+  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  static ImGuiTableFlags flags = ImGuiTableFlags_BordersV | ImGuiTableFlags_BordersOuterH | ImGuiTableFlags_RowBg | ImGuiTableFlags_ContextMenuInBody;
+  ImGui::BeginTable("vulkan_thread##table", size, flags);
+
+  //Family index
+  ImGui::TableSetupColumn("Family");
   for(int i=0; i<device.vec_queue_family.size(); i++){
-    prf::vulkan::Queue_family& queue_family = device.vec_queue_family[i];
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Queue - graphics"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", queue_family.nb_queue_graphics);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Queue - compute"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", queue_family.nb_queue_compute);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Queue - transfer"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", queue_family.nb_queue_transfer);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Queue - sparse binding"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", queue_family.nb_queue_sparseBinding);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Queue - presentation"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", queue_family.nb_queue_presentation);
+    ImGui::TableSetupColumn(std::to_string(i).c_str(), ImGuiTableColumnFlags_WidthFixed, 20.0f);
   }
+  ImGui::TableHeadersRow();
+
+  //Graphics queue
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Graphics");
+  for(int i=0; i<device.vec_queue_family.size(); i++){
+    ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue_graphics);
+  }
+
+  //Compute queue
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Compute");
+  for(int i=0; i<device.vec_queue_family.size(); i++){
+    ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue_compute);
+  }
+
+  //Transfer queue
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Transfer");
+  for(int i=0; i<device.vec_queue_family.size(); i++){
+    ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue_transfer);
+  }
+
+  //Sparse binding queue
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Sparse binding");
+  for(int i=0; i<device.vec_queue_family.size(); i++){
+    ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue_sparseBinding);
+  }
+
+  //Presentation queue
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Presentation");
+  for(int i=0; i<device.vec_queue_family.size(); i++){
+    ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue_presentation);
+  }
+
+  ImGui::EndTable();
 
   //---------------------------
 }
