@@ -71,6 +71,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     k4a_data->start_thread(sensor, capture);
 
     //Manage event
+    this->manage_recording(sensor, capture);
     this->manage_pause(sensor);
     this->manage_recording(sensor, capture);
     tasker->loop_end();
@@ -138,29 +139,29 @@ void Capture::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
-  //---------------------------
-/*
   k4a::record& recorder = sensor->recorder.recorder;
+  k4n::dev::Master* master = sensor->master;
+  //---------------------------
 
   //Start recording
-  if(sensor->player.record && !recorder.is_valid()){
-    recorder = k4a::record::create(sensor->recorder.path.c_str(), *sensor->param.device, sensor->param.configuration);
+  if(master->player.record && !recorder.is_valid()){
+    recorder = k4a::record::create(sensor->recorder.path.c_str(), sensor->param.device, sensor->param.configuration);
     recorder.write_header();
     sensor->recorder.ts_beg = sensor->master->player.ts_cur;
   }
 
   //Recording
-  if(sensor->player.record && recorder.is_valid()){
-    recorder.write_capture(capture);
+  if(master->player.record && recorder.is_valid()){
+    recorder.write_capture(*capture);
     sensor->recorder.ts_rec = sensor->master->player.ts_cur - sensor->recorder.ts_beg;
   }
 
   //Flush to file when finish
-  if(!sensor->player.record && recorder.is_valid()){
+  if(!master->player.record && recorder.is_valid()){
     recorder.flush();
     recorder.close();
   }
-*/
+
   //---------------------------
 }
 

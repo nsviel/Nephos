@@ -58,27 +58,29 @@ void Vulkan::draw_tab_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim
 
   ImVec4 green = ImVec4(0.5, 1, 0.5, 1);
   ImVec4 blue = ImVec4(0.5, 0.5, 1, 1);
-  if(ImGui::BeginTable("vulkan_thread##table", 2)){
+  static ImGuiTableFlags flags = ImGuiTableFlags_BordersV | ImGuiTableFlags_BordersOuterH | ImGuiTableFlags_RowBg | ImGuiTableFlags_ContextMenuInBody;
+  ImGui::BeginTable("vulkan_thread##table", 2, flags);
 
-    for(int i=0; i<vec_thread.size(); i++){
-      prf::vulkan::Thread& thread = vec_thread[i];
+  ImGui::TableSetupColumn("Name");
+  ImGui::TableSetupColumn("ID");
+  ImGui::TableHeadersRow();
 
-      //Thread name
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Name"); ImGui::TableNextColumn();
-      ImGui::TextColored(green, "%s", thread.name.c_str());
+  for(int i=0; i<vec_thread.size(); i++){
+    prf::vulkan::Thread& thread = vec_thread[i];
 
-      //Thread ID
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("ID"); ImGui::TableNextColumn();
-      std::stringstream ss;
-      ss << thread.ID;
-      ImGui::TextColored(blue, "%s", ss.str().c_str());
+    //Thread name
+    ImGui::TableNextRow();
+    ImGui::TableNextColumn();
+    ImGui::TextColored(green, "%s", thread.name.c_str());
 
-      ImGui::Separator();
-    }
-    ImGui::EndTable();
+    //Thread ID
+    ImGui::TableNextColumn();
+    std::stringstream ss;
+    ss << thread.ID;
+    ImGui::TextColored(blue, "%s", ss.str().c_str());
   }
+
+  ImGui::EndTable();
 
   //---------------------------
 }
@@ -118,7 +120,6 @@ void Vulkan::draw_tab_queue(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim)
   ImGui::TextColored(color, "%d", 0);
   ImGui::TableNextColumn();
   ImGui::TextColored(color, "%d", 0);
-
 
   ImGui::EndTable();
 

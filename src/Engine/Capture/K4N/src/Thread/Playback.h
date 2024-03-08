@@ -33,7 +33,6 @@ public:
   k4a::capture* manage_capture(k4n::dev::Sensor* sensor);
   void manage_pause(k4n::dev::Sensor* sensor);
   void manage_restart(k4n::dev::Sensor* sensor);
-  void manage_recording(k4n::dev::Sensor* sensor, k4a::capture capture);
 
   inline bool is_thread_running(){return thread_running;}
 

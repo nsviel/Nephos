@@ -138,32 +138,6 @@ void Playback::manage_restart(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::manage_recording(k4n::dev::Sensor* sensor, k4a::capture capture){
-  //---------------------------
-/*
-  k4a::record& recorder = sensor->recorder.recorder;
-
-  //Start recording
-  if(sensor->player.record && !recorder.is_valid()){
-    recorder = k4a::record::create(sensor->recorder.path.c_str(), *sensor->param.device, sensor->param.configuration);
-    recorder.write_header();
-    sensor->recorder.ts_beg = sensor->color.data.timestamp;
-  }
-
-  //Recording
-  if(sensor->player.record && recorder.is_valid()){
-    recorder.write_capture(capture);
-    sensor->recorder.ts_rec = sensor->color.data.timestamp - sensor->recorder.ts_beg;
-  }
-
-  //Flush to file when finish
-  if(!sensor->player.record && recorder.is_valid()){
-    recorder.flush();
-    recorder.close();
-  }
-*/
-  //---------------------------
-}
 
 
 }
