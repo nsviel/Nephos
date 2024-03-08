@@ -17,7 +17,7 @@ public:
 
 public:
   //Main functions
-  void find_queue_nb_family(vk::structure::Physical_device& dev_physical);
+  void find_queue_family_composition(vk::structure::Physical_device& dev_physical);
   void find_queue_graphics_idx(vk::structure::Physical_device& dev_physical);
   void find_queue_transfer_idx(vk::structure::Physical_device& dev_physical);
   void find_queue_presentation_idx(vk::structure::Physical_device& dev_physical);

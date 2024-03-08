@@ -5,6 +5,7 @@
 
 namespace prf{class Node;}
 namespace prf::vulkan{class Profiler;}
+namespace prf::vulkan{class Device;}
 namespace prf::gui{class Profiler;}
 
 
@@ -24,6 +25,7 @@ public:
   //Subfunction
   void draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
   void draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim);
+  void draw_queue_families(prf::vulkan::Device& device);
 
 private:
 };

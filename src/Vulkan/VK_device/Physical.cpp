@@ -147,7 +147,7 @@ bool Physical::device_suitability_onscreen(vk::structure::Physical_device& physi
   //---------------------------
 
   //Queue suitable
-  vk_dev_queue->find_queue_nb_family(physical_device);
+  vk_dev_queue->find_queue_family_composition(physical_device);
   vk_dev_queue->find_queue_graphics_idx(physical_device);
   if(physical_device.queue_family_graphics_idx == -1){
     return false;
@@ -195,7 +195,7 @@ bool Physical::device_suitability_offscreen(vk::structure::Physical_device& phys
   //---------------------------
 
   //Queue suitable
-  vk_dev_queue->find_queue_nb_family(physical_device);
+  vk_dev_queue->find_queue_family_composition(physical_device);
   vk_dev_queue->find_queue_graphics_idx(physical_device);
   if(physical_device.queue_family_graphics_idx == -1){
     return false;

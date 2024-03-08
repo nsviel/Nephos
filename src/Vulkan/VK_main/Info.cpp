@@ -51,12 +51,16 @@ void Info::fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan){
     device_info.queue_family_transfer_idx = physical_device.queue_family_transfer_idx;
     device_info.queue_family_presentation_idx = physical_device.queue_family_presentation_idx;
 
-    device_info.nb_queue_family = physical_device.nb_queue_family;
-    device_info.nb_queue_graphics = physical_device.nb_queue_graphics;
-    device_info.nb_queue_compute = physical_device.nb_queue_compute;
-    device_info.nb_queue_transfer = physical_device.nb_queue_transfer;
-    device_info.nb_queue_sparseBinding = physical_device.nb_queue_sparseBinding;
-    device_info.nb_queue_presentation = physical_device.nb_queue_presentation;
+    for(int i=0; i<physical_device.vec_queue_family.size(); i++){
+      prf::vulkan::Queue_family queue_family;
+      queue_family.nb_queue_graphics = physical_device.vec_queue_family[i].nb_queue_graphics;
+      queue_family.nb_queue_compute = physical_device.vec_queue_family[i].nb_queue_compute;
+      queue_family.nb_queue_transfer = physical_device.vec_queue_family[i].nb_queue_transfer;
+      queue_family.nb_queue_sparseBinding = physical_device.vec_queue_family[i].nb_queue_sparseBinding;
+      queue_family.nb_queue_presentation = physical_device.vec_queue_family[i].nb_queue_presentation;
+
+      device_info.vec_queue_family.push_back(queue_family);
+    }
 
     vec_device.push_back(device_info);
   }

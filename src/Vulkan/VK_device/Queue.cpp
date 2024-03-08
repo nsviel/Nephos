@@ -16,7 +16,7 @@ Queue::Queue(vk::structure::Vulkan* struct_vulkan){
 Queue::~Queue(){}
 
 //Main functions
-void Queue::find_queue_nb_family(vk::structure::Physical_device& physical_device){
+void Queue::find_queue_family_composition(vk::structure::Physical_device& physical_device){
   //---------------------------
 
   uint32_t nb_queue_family = 0;
@@ -30,49 +30,33 @@ void Queue::find_queue_nb_family(vk::structure::Physical_device& physical_device
   vkGetPhysicalDeviceQueueFamilyProperties(physical_device.handle, &nb_queue_family, queue_families.data());
 
   // Count the number of each type of queue
-  uint32_t nb_queue_graphics = 0;
-  uint32_t nb_queue_compute = 0;
-  uint32_t nb_queue_transfer = 0;
-  uint32_t nb_queue_sparseBinding = 0;
-  uint32_t nb_queue_presentation = 0;
+  for(uint32_t i=0; i<nb_queue_family; ++i){
+    vk::structure::Queue_family queue_family;
+    queue_family.property = queue_families[i];
+    queue_family.nb_queue_graphics = (queue_family.property.queueFlags & VK_QUEUE_GRAPHICS_BIT) ? queue_family.property.queueCount : 0;
+    queue_family.nb_queue_compute = (queue_family.property.queueFlags & VK_QUEUE_COMPUTE_BIT) ? queue_family.property.queueCount : 0;
+    queue_family.nb_queue_transfer = (queue_family.property.queueFlags & VK_QUEUE_TRANSFER_BIT) ? queue_family.property.queueCount : 0;
+    queue_family.nb_queue_sparseBinding = (queue_family.property.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? queue_family.property.queueCount : 0;
 
-  for (uint32_t i = 0; i < nb_queue_family; ++i) {
-    nb_queue_graphics += (queue_families[i].queueFlags & VK_QUEUE_GRAPHICS_BIT) ? queue_families[i].queueCount : 0;
-    nb_queue_compute += (queue_families[i].queueFlags & VK_QUEUE_COMPUTE_BIT) ? queue_families[i].queueCount : 0;
-    nb_queue_transfer += (queue_families[i].queueFlags & VK_QUEUE_TRANSFER_BIT) ? queue_families[i].queueCount : 0;
-    nb_queue_sparseBinding += (queue_families[i].queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? queue_families[i].queueCount : 0;
-
-    if(struct_vulkan->param.headless == false){
-      VkBool32 presentSupport = false;
-      vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, struct_vulkan->window.surface, &presentSupport);
-      if(presentSupport){
-        nb_queue_presentation += queue_families[i].queueCount;
-      }
+    VkBool32 presentSupport = false;
+    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, struct_vulkan->window.surface, &presentSupport);
+    if(presentSupport){
+      queue_family.nb_queue_presentation = queue_family.property.queueCount;
     }
-  }
 
-  physical_device.nb_queue_family = nb_queue_family;
-  physical_device.nb_queue_graphics = nb_queue_graphics;
-  physical_device.nb_queue_compute = nb_queue_compute;
-  physical_device.nb_queue_transfer = nb_queue_transfer;
-  physical_device.nb_queue_sparseBinding = nb_queue_sparseBinding;
-  physical_device.nb_queue_presentation = nb_queue_presentation;
+    physical_device.vec_queue_family.push_back(queue_family);
+  }
 
   //---------------------------
 }
 void Queue::find_queue_graphics_idx(vk::structure::Physical_device& physical_device){
   //---------------------------
 
-  //List queue families
-  std::vector<VkQueueFamilyProperties> vec_queueFamily(physical_device.nb_queue_family );
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device.handle, &physical_device.nb_queue_family , vec_queueFamily.data());
-
-  //Search for specific properties (e.g, graphics)
-  for(int i=0; i<vec_queueFamily.size(); i++){
-    const auto& queueFamily = vec_queueFamily[i];
+  for(int i=0; i<physical_device.vec_queue_family.size(); i++){
+    vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
-    if(queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT){
+    if(queue_family.property.queueFlags & VK_QUEUE_GRAPHICS_BIT){
       physical_device.queue_family_graphics_idx = static_cast<uint32_t>(i);
       return;
     }
@@ -83,16 +67,11 @@ void Queue::find_queue_graphics_idx(vk::structure::Physical_device& physical_dev
 void Queue::find_queue_transfer_idx(vk::structure::Physical_device& physical_device){
   //---------------------------
 
-  // List queue families
-  std::vector<VkQueueFamilyProperties> vec_queueFamily(physical_device.nb_queue_family);
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device.handle, &physical_device.nb_queue_family, vec_queueFamily.data());
-
-  // Search for specific properties (e.g., transfer)
-  for(int i=0; i<vec_queueFamily.size(); i++){
-    const auto& queueFamily = vec_queueFamily[i];
+  for(int i=0; i<physical_device.vec_queue_family.size(); i++){
+    vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
 
     // Querying for transfer family
-    if(queueFamily.queueFlags & VK_QUEUE_TRANSFER_BIT){
+    if(queue_family.property.queueFlags & VK_QUEUE_TRANSFER_BIT){
       physical_device.queue_family_transfer_idx = static_cast<uint32_t>(i);
       return;
     }
@@ -103,13 +82,8 @@ void Queue::find_queue_transfer_idx(vk::structure::Physical_device& physical_dev
 void Queue::find_queue_presentation_idx(vk::structure::Physical_device& physical_device){
   //---------------------------
 
-  //List queue families
-  std::vector<VkQueueFamilyProperties> vec_queueFamily(physical_device.nb_queue_family );
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device.handle, &physical_device.nb_queue_family , vec_queueFamily.data());
-
-  //Search for specific properties (e.g, graphics)
-  for(int i=0; i<vec_queueFamily.size(); i++){
-    const auto& queueFamily = vec_queueFamily[i];
+  for(int i=0; i<physical_device.vec_queue_family.size(); i++){
+    vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for presentation family
     VkBool32 presentSupport = false;

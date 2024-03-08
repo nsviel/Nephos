@@ -5,6 +5,19 @@
 
 namespace vk::structure{
 
+struct Queue_family{
+  //---------------------------
+
+  VkQueueFamilyProperties property;
+  uint32_t nb_queue_graphics = 0;
+  uint32_t nb_queue_compute = 0;
+  uint32_t nb_queue_transfer = 0;
+  uint32_t nb_queue_sparseBinding = 0;
+  uint32_t nb_queue_presentation = 0;
+
+  //---------------------------
+};
+
 struct Physical_device{
   //---------------------------
 
@@ -29,12 +42,7 @@ struct Physical_device{
   int vendorID;
 
   //Queue number
-  uint32_t nb_queue_family = 0;
-  uint32_t nb_queue_graphics = 0;
-  uint32_t nb_queue_compute = 0;
-  uint32_t nb_queue_transfer = 0;
-  uint32_t nb_queue_sparseBinding = 0;
-  uint32_t nb_queue_presentation = 0;
+  std::vector<Queue_family> vec_queue_family;
 
   //---------------------------
 };

@@ -5,6 +5,18 @@
 
 namespace prf::vulkan{
 
+struct Queue_family{
+  //---------------------------
+
+  uint32_t nb_queue_graphics = 0;
+  uint32_t nb_queue_compute = 0;
+  uint32_t nb_queue_transfer = 0;
+  uint32_t nb_queue_sparseBinding = 0;
+  uint32_t nb_queue_presentation = 0;
+
+  //---------------------------
+};
+
 struct Device{
   //---------------------------
 
@@ -18,12 +30,7 @@ struct Device{
   int queue_family_graphics_idx = -1;
   int queue_family_transfer_idx = -1;
   int queue_family_presentation_idx = -1;
-  uint32_t nb_queue_family = 0;
-  uint32_t nb_queue_graphics = 0;
-  uint32_t nb_queue_compute = 0;
-  uint32_t nb_queue_transfer = 0;
-  uint32_t nb_queue_sparseBinding = 0;
-  uint32_t nb_queue_presentation = 0;
+  std::vector<prf::vulkan::Queue_family> vec_queue_family;
 
   //---------------------------
 };

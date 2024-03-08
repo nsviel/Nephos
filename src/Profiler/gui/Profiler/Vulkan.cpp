@@ -66,7 +66,7 @@ void Vulkan::draw_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
       std::stringstream ss;
       ss << thread.ID;
       ImGui::TextColored(blue, "%s", ss.str().c_str());
-      
+
       ImGui::Separator();
     }
     ImGui::EndTable();
@@ -110,6 +110,7 @@ void Vulkan::draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
           ImGui::TextColored(color, "%d", device.max_image_dim);
 
           //Queue stuff
+          ImGui::TableNextRow();
           ImGui::TableNextRow(); ImGui::TableNextColumn();
           ImGui::Text("Queue graphics ID"); ImGui::TableNextColumn();
           ImGui::TextColored(color, "%d", device.queue_family_graphics_idx);
@@ -122,29 +123,7 @@ void Vulkan::draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
           ImGui::Text("Queue presentation ID"); ImGui::TableNextColumn();
           ImGui::TextColored(color, "%d", device.queue_family_presentation_idx);
 
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("No family queues"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.nb_queue_family);
-
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("No graphics queues"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.nb_queue_graphics);
-
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("No compute queues"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.nb_queue_compute);
-
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("No transfer queues"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.nb_queue_transfer);
-
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("No sparse binding queues"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.nb_queue_sparseBinding);
-
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("No presentation queues"); ImGui::TableNextColumn();
-          ImGui::TextColored(color, "%d", device.nb_queue_presentation);
+          this->draw_queue_families(device);
 
           ImGui::EndTable();
         }
@@ -154,6 +133,42 @@ void Vulkan::draw_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
 
     }
     ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
+void Vulkan::draw_queue_families(prf::vulkan::Device& device){
+  //---------------------------
+  /*
+  //Transformer ici en table
+  queue       family_0      family_1
+  graphics
+  presentation
+  ...
+*/
+  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  for(int i=0; i<device.vec_queue_family.size(); i++){
+    prf::vulkan::Queue_family& queue_family = device.vec_queue_family[i];
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Queue - graphics"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", queue_family.nb_queue_graphics);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Queue - compute"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", queue_family.nb_queue_compute);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Queue - transfer"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", queue_family.nb_queue_transfer);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Queue - sparse binding"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", queue_family.nb_queue_sparseBinding);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Queue - presentation"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", queue_family.nb_queue_presentation);
   }
 
   //---------------------------
