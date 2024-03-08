@@ -39,8 +39,8 @@ void Logical::clean(){
 void Logical::create_logical_device(){
   //---------------------------
 
-  //Get GPU queue families
-  std::set<int> set_queue = {
+  //Set of required queues
+  std::vector<int> set_queue = {
     struct_vulkan->device.physical_device.queue_family_graphics_idx,
     struct_vulkan->device.physical_device.queue_family_transfer_idx,
     struct_vulkan->device.physical_device.queue_family_presentation_idx
