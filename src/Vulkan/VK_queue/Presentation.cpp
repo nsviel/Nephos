@@ -56,7 +56,7 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
   presentation_info.pImageIndices = &swapchain->frame_presentation_ID;
   presentation_info.pResults = nullptr; // Optional
 
-  VkResult result = vkQueuePresentKHR(struct_vulkan->device.queue.presentation, &presentation_info);
+  VkResult result = vkQueuePresentKHR(struct_vulkan->device.queue.presentation.ID, &presentation_info);
 
   //Window resizing
   vk_surface->check_for_resizing();

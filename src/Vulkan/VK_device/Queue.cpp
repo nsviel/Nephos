@@ -31,7 +31,7 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 
   // Count the number of each type of queue
   for(uint32_t i=0; i<nb_queue_family; ++i){
-    vk::structure::Queue_family queue_family;
+    vk::structure::queue::family queue_family;
     queue_family.property = queue_families[i];
     queue_family.nb_queue = queue_family.property.queueCount;
     queue_family.graphics = (queue_family.property.queueFlags & VK_QUEUE_GRAPHICS_BIT) ? true : false;
@@ -52,7 +52,7 @@ void Queue::find_queue_family_graphics(vk::structure::Physical_device& physical_
   //---------------------------
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
+    vk::structure::queue::family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
     if(queue_family.graphics){
@@ -67,7 +67,7 @@ void Queue::find_queue_family_transfer(vk::structure::Physical_device& physical_
   //---------------------------
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
+    vk::structure::queue::family& queue_family = physical_device.vec_queue_family[i];
 
     // Querying for transfer family
     if(queue_family.transfer){
@@ -82,7 +82,7 @@ void Queue::find_queue_family_presentation(vk::structure::Physical_device& physi
   //---------------------------
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
+    vk::structure::queue::family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for presentation family
     if(queue_family.presentation){

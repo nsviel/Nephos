@@ -4,14 +4,41 @@
 #include <Utility/Specific/common.h>
 
 
-namespace vk::structure::queue{
+namespace vk::structure{
 
-struct ID{
+struct Queue{
   //---------------------------
 
-  VkQueue graphics;
-  VkQueue presentation;
-  VkQueue transfer;
+  VkQueue ID;
+  int ID_family = -1;
+
+  //---------------------------
+};
+
+}
+
+namespace vk::structure::queue{
+
+struct family{
+  //---------------------------
+
+  VkQueueFamilyProperties property;
+  int nb_queue = 0;
+  bool graphics = 0;
+  bool compute = 0;
+  bool transfer = 0;
+  bool sparseBinding = 0;
+  bool presentation = 0;
+
+  //---------------------------
+};
+
+struct Handle{
+  //---------------------------
+
+  vk::structure::Queue graphics;
+  vk::structure::Queue presentation;
+  vk::structure::Queue transfer;
 
   //---------------------------
 };

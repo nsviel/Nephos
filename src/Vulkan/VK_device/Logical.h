@@ -22,6 +22,8 @@ public:
 
   //Subfunction
   void create_logical_device();
+
+  //Queue stuff
   void find_device_queue();
 
 private:
