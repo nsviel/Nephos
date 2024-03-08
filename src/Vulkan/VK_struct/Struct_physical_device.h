@@ -9,11 +9,12 @@ struct Queue_family{
   //---------------------------
 
   VkQueueFamilyProperties property;
-  uint32_t nb_queue_graphics = 0;
-  uint32_t nb_queue_compute = 0;
-  uint32_t nb_queue_transfer = 0;
-  uint32_t nb_queue_sparseBinding = 0;
-  uint32_t nb_queue_presentation = 0;
+  int nb_queue = 0;
+  bool graphics = 0;
+  bool compute = 0;
+  bool transfer = 0;
+  bool sparseBinding = 0;
+  bool presentation = 0;
 
   //---------------------------
 };

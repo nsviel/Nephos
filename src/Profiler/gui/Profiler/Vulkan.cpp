@@ -157,12 +157,20 @@ void Vulkan::draw_table_queue_families(prf::vulkan::Device& device){
   }
   ImGui::TableHeadersRow();
 
+  //Queue count
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Queue");
+  for(int i=0; i<device.vec_queue_family.size(); i++){
+    ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue);
+  }
+
   //Graphics queue
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Graphics");
   for(int i=0; i<device.vec_queue_family.size(); i++){
     ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue_graphics);
+    if(device.vec_queue_family[i].graphics) ImGui::TextColored(color, "X");
   }
 
   //Compute queue
@@ -170,7 +178,7 @@ void Vulkan::draw_table_queue_families(prf::vulkan::Device& device){
   ImGui::Text("Compute");
   for(int i=0; i<device.vec_queue_family.size(); i++){
     ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue_compute);
+    if(device.vec_queue_family[i].compute) ImGui::TextColored(color, "X");
   }
 
   //Transfer queue
@@ -178,7 +186,7 @@ void Vulkan::draw_table_queue_families(prf::vulkan::Device& device){
   ImGui::Text("Transfer");
   for(int i=0; i<device.vec_queue_family.size(); i++){
     ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue_transfer);
+    if(device.vec_queue_family[i].transfer) ImGui::TextColored(color, "X");
   }
 
   //Sparse binding queue
@@ -186,7 +194,7 @@ void Vulkan::draw_table_queue_families(prf::vulkan::Device& device){
   ImGui::Text("Sparse binding");
   for(int i=0; i<device.vec_queue_family.size(); i++){
     ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue_sparseBinding);
+    if(device.vec_queue_family[i].sparseBinding) ImGui::TextColored(color, "X");
   }
 
   //Presentation queue
@@ -194,7 +202,7 @@ void Vulkan::draw_table_queue_families(prf::vulkan::Device& device){
   ImGui::Text("Presentation");
   for(int i=0; i<device.vec_queue_family.size(); i++){
     ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", device.vec_queue_family[i].nb_queue_presentation);
+    if(device.vec_queue_family[i].presentation) ImGui::TextColored(color, "X");
   }
 
   ImGui::EndTable();

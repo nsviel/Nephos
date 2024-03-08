@@ -33,16 +33,15 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
   for(uint32_t i=0; i<nb_queue_family; ++i){
     vk::structure::Queue_family queue_family;
     queue_family.property = queue_families[i];
-    queue_family.nb_queue_graphics = (queue_family.property.queueFlags & VK_QUEUE_GRAPHICS_BIT) ? queue_family.property.queueCount : 0;
-    queue_family.nb_queue_compute = (queue_family.property.queueFlags & VK_QUEUE_COMPUTE_BIT) ? queue_family.property.queueCount : 0;
-    queue_family.nb_queue_transfer = (queue_family.property.queueFlags & VK_QUEUE_TRANSFER_BIT) ? queue_family.property.queueCount : 0;
-    queue_family.nb_queue_sparseBinding = (queue_family.property.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? queue_family.property.queueCount : 0;
+    queue_family.nb_queue = queue_family.property.queueCount;
+    queue_family.graphics = (queue_family.property.queueFlags & VK_QUEUE_GRAPHICS_BIT) ? true : false;
+    queue_family.compute = (queue_family.property.queueFlags & VK_QUEUE_COMPUTE_BIT) ? true : false;
+    queue_family.transfer = (queue_family.property.queueFlags & VK_QUEUE_TRANSFER_BIT) ? true : false;
+    queue_family.sparseBinding = (queue_family.property.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? true : false;
 
-    VkBool32 presentSupport = false;
-    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, struct_vulkan->window.surface, &presentSupport);
-    if(presentSupport){
-      queue_family.nb_queue_presentation = queue_family.property.queueCount;
-    }
+    VkBool32 presentation_supported = false;
+    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, struct_vulkan->window.surface, &presentation_supported);
+    queue_family.presentation = presentation_supported;
 
     physical_device.vec_queue_family.push_back(queue_family);
   }
@@ -56,7 +55,7 @@ void Queue::find_queue_graphics_idx(vk::structure::Physical_device& physical_dev
     vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
-    if(queue_family.nb_queue_graphics > 0){
+    if(queue_family.graphics){
       physical_device.queue_family_graphics_idx = i;
       return;
     }
@@ -71,7 +70,7 @@ void Queue::find_queue_transfer_idx(vk::structure::Physical_device& physical_dev
     vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
 
     // Querying for transfer family
-    if(queue_family.nb_queue_transfer > 0){
+    if(queue_family.transfer){
       physical_device.queue_family_transfer_idx = i;
       return;
     }
@@ -86,7 +85,7 @@ void Queue::find_queue_presentation_idx(vk::structure::Physical_device& physical
     vk::structure::Queue_family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for presentation family
-    if(queue_family.nb_queue_presentation > 0){
+    if(queue_family.presentation){
       physical_device.queue_family_presentation_idx = i;
       return;
     }
