@@ -148,10 +148,8 @@ bool Physical::device_suitability_onscreen(vk::structure::Physical_device& physi
 
   //Queue suitability
   vk_dev_queue->find_queue_family_composition(physical_device);
-  vk_dev_queue->find_queue_family_graphics(physical_device);
-  vk_dev_queue->find_queue_family_transfer(physical_device);
-  vk_dev_queue->find_queue_family_presentation(physical_device);
-  if(vk_dev_queue->is_physical_device_queue_suitable(physical_device) == false) return false;
+  bool queue_ok = vk_dev_queue->suitability_for_presentation(physical_device);
+  if(queue_ok == false) return false;
 
   //Extension suitable
   this->find_physical_device_support(physical_device);
@@ -182,10 +180,8 @@ bool Physical::device_suitability_offscreen(vk::structure::Physical_device& phys
 
   //Queue suitable
   vk_dev_queue->find_queue_family_composition(physical_device);
-  vk_dev_queue->find_queue_family_graphics(physical_device);
-  if(physical_device.queue_family_graphics_idx == -1){
-    return false;
-  }
+  bool queue_ok = vk_dev_queue->suitability_for_graphics(physical_device);
+  if(queue_ok == false) return false;
 
   //Extension suitable
   this->find_physical_device_support(physical_device);

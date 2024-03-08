@@ -41,7 +41,7 @@ void Logical::create_logical_device(){
 
   struct_vulkan->device.queue.graphics.ID_family = 0;
   struct_vulkan->device.queue.presentation.ID_family = 0;
-  struct_vulkan->device.queue.transfer.ID_family = 2;
+  struct_vulkan->device.queue.transfer.ID_family = 0;
 
   //Set of required queues
   std::set<int> set_queue = {
@@ -94,21 +94,21 @@ void Logical::find_device_queue(){
   //---------------------------
 
   //Graphics
-  int& graphics_idx = struct_vulkan->device.physical_device.queue_family_graphics_idx;
-  if(graphics_idx != -1){
-    vkGetDeviceQueue(struct_vulkan->device.handle, graphics_idx, 0, &struct_vulkan->device.queue.graphics.ID);
+  vk::structure::Queue& queue_graphics = struct_vulkan->device.queue.graphics;
+  if(queue_graphics.ID_family != -1){
+    vkGetDeviceQueue(struct_vulkan->device.handle, queue_graphics.ID_family, 0, &queue_graphics.ID);
   }
 
   //Presentation
-  int& presentation_idx = struct_vulkan->device.physical_device.queue_family_presentation_idx;
-  if(presentation_idx != -1){
-    vkGetDeviceQueue(struct_vulkan->device.handle, presentation_idx, 1, &struct_vulkan->device.queue.presentation.ID);
+  vk::structure::Queue& queue_presentation = struct_vulkan->device.queue.presentation;
+  if(queue_presentation.ID_family != -1){
+    vkGetDeviceQueue(struct_vulkan->device.handle, queue_presentation.ID_family, 1, &queue_presentation.ID);
   }
 
   //Transfer
-  int& transfer_idx = struct_vulkan->device.physical_device.queue_family_transfer_idx;
-  if(transfer_idx != -1){
-    vkGetDeviceQueue(struct_vulkan->device.handle, transfer_idx, 2, &struct_vulkan->device.queue.transfer.ID);
+  vk::structure::Queue& queue_transfer = struct_vulkan->device.queue.transfer;
+  if(queue_transfer.ID_family != -1){
+    vkGetDeviceQueue(struct_vulkan->device.handle, queue_transfer.ID_family, 2, &queue_transfer.ID);
   }
 
   //---------------------------

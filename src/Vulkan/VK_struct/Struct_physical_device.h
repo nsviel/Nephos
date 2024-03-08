@@ -28,12 +28,6 @@ struct Physical_device{
   std::vector<VkPresentModeKHR> presentation_mode;
   std::vector<vk::structure::queue::family> vec_queue_family;
 
-
-
-  int queue_family_graphics_idx = -1;
-  int queue_family_transfer_idx = -1;
-  int queue_family_presentation_idx = -1;
-
   //---------------------------
 };
 

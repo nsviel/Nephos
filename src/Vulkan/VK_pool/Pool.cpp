@@ -93,7 +93,7 @@ void Pool::create_command_pool(vk::pool::Command_buffer* pool){
   VkCommandPoolCreateInfo pool_info{};
   pool_info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
   pool_info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
-  pool_info.queueFamilyIndex = struct_vulkan->device.physical_device.queue_family_graphics_idx;
+  pool_info.queueFamilyIndex = struct_vulkan->device.queue.graphics.ID_family;
 
   //Command pool creation
   VkResult result = vkCreateCommandPool(struct_vulkan->device.handle, &pool_info, nullptr, &pool->allocator);

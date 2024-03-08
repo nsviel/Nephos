@@ -128,15 +128,15 @@ void Vulkan::draw_table_info(prf::vulkan::Device& device){
   ImGui::TableNextRow();
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Queue graphics ID"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", device.queue_family_graphics_idx);
+  ImGui::TextColored(color, "%d", device.ID_family_graphics);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Queue transfer ID"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", device.queue_family_transfer_idx);
+  ImGui::TextColored(color, "%d", device.ID_family_transfer);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Queue presentation ID"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", device.queue_family_presentation_idx);
+  ImGui::TextColored(color, "%d", device.ID_family_presentation);
 
   ImGui::EndTable();
 

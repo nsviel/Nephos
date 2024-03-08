@@ -28,9 +28,9 @@ struct Device{
   int vendorID;
 
   //GPU queues
-  int queue_family_graphics_idx = -1;
-  int queue_family_transfer_idx = -1;
-  int queue_family_presentation_idx = -1;
+  int ID_family_graphics = -1;
+  int ID_family_transfer = -1;
+  int ID_family_presentation = -1;
   std::vector<prf::vulkan::Queue_family> vec_queue_family;
 
   //---------------------------

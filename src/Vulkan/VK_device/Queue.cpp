@@ -48,63 +48,61 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 
   //---------------------------
 }
-void Queue::find_queue_family_graphics(vk::structure::Physical_device& physical_device){
+bool Queue::suitability_for_presentation(vk::structure::Physical_device& physical_device){
   //---------------------------
+
+  bool is_device_suitable = false;
+  bool is_graphics_able = false;
+  bool is_transfer_able = false;
+
+  for(int i=0; i<physical_device.vec_queue_family.size(); i++){
+    vk::structure::queue::family& queue_family = physical_device.vec_queue_family[i];
+
+    //Querying for graphics family
+    if(queue_family.graphics && queue_family.presentation){
+      is_graphics_able = true;
+    }
+
+    //Querying for transfer family
+    if(queue_family.transfer){
+      is_transfer_able = true;
+    }
+  }
+
+  if(is_graphics_able && is_transfer_able){
+    is_device_suitable = true;
+  }
+
+  //---------------------------
+  return is_device_suitable;
+}
+bool Queue::suitability_for_graphics(vk::structure::Physical_device& physical_device){
+  //---------------------------
+
+  bool is_device_suitable = false;
+  bool is_graphics_able = false;
+  bool is_transfer_able = false;
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){
     vk::structure::queue::family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
     if(queue_family.graphics){
-      physical_device.queue_family_graphics_idx = i;
-      return;
+      is_graphics_able = true;
     }
-  }
 
-  //---------------------------
-}
-void Queue::find_queue_family_transfer(vk::structure::Physical_device& physical_device){
-  //---------------------------
-
-  for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::structure::queue::family& queue_family = physical_device.vec_queue_family[i];
-
-    // Querying for transfer family
+    //Querying for transfer family
     if(queue_family.transfer){
-      physical_device.queue_family_transfer_idx = i;
-      return;
+      is_transfer_able = true;
     }
   }
 
-  //---------------------------
-}
-void Queue::find_queue_family_presentation(vk::structure::Physical_device& physical_device){
-  //---------------------------
-
-  for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::structure::queue::family& queue_family = physical_device.vec_queue_family[i];
-
-    //Querying for presentation family
-    if(queue_family.presentation){
-      physical_device.queue_family_presentation_idx = i;
-      return;
-    }
+  if(is_graphics_able && is_transfer_able){
+    is_device_suitable = true;
   }
 
   //---------------------------
+  return is_device_suitable;
 }
-
-//Subfunction
-bool Queue::is_physical_device_queue_suitable(vk::structure::Physical_device& physical_device){
-  //---------------------------
-
-  if(physical_device.queue_family_graphics_idx == -1) return false;
-  if(physical_device.queue_family_transfer_idx == -1) return false;
-  if(physical_device.queue_family_presentation_idx == -1) return false;
-
-  //---------------------------
-  return true;
-}
-
 
 }
