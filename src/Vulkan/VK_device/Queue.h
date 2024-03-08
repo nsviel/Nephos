@@ -17,10 +17,13 @@ public:
 
 public:
   //Main functions
-  void find_queue_family_composition(vk::structure::Physical_device& dev_physical);
-  void find_queue_graphics_idx(vk::structure::Physical_device& dev_physical);
-  void find_queue_transfer_idx(vk::structure::Physical_device& dev_physical);
-  void find_queue_presentation_idx(vk::structure::Physical_device& dev_physical);
+  void find_queue_family_composition(vk::structure::Physical_device& physical_device);
+  void find_queue_graphics_idx(vk::structure::Physical_device& physical_device);
+  void find_queue_transfer_idx(vk::structure::Physical_device& physical_device);
+  void find_queue_presentation_idx(vk::structure::Physical_device& physical_device);
+
+  //Subfunction
+  bool is_physical_device_queue_suitable(vk::structure::Physical_device& physical_device);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

@@ -151,25 +151,18 @@ bool Physical::device_suitability_onscreen(vk::structure::Physical_device& physi
   vk_dev_queue->find_queue_graphics_idx(physical_device);
   vk_dev_queue->find_queue_transfer_idx(physical_device);
   vk_dev_queue->find_queue_presentation_idx(physical_device);
-
-  if(physical_device.queue_family_graphics_idx == -1) return false;
-  if(physical_device.queue_family_transfer_idx == -1) return false;
-  if(physical_device.queue_family_presentation_idx == -1) return false;
+  if(vk_dev_queue->is_physical_device_queue_suitable(physical_device) == false) return false;
 
   //Extension suitable
   this->find_physical_device_support(physical_device);
-  if(physical_device.has_extension_support == false){
-    return false;
-  }
+  if(physical_device.has_extension_support == false) return false;
 
   //Swap chain suitable
   this->find_surface_capability(physical_device);
   this->find_surface_format(physical_device);
   this->find_presentation_mode(physical_device);
   bool swapChain_ok = !physical_device.formats.empty() && !physical_device.presentation_mode.empty();
-  if(swapChain_ok == false){
-    return false;
-  }
+  if(swapChain_ok == false) return false;
 
   //Supported features
   this->find_physical_device_features(physical_device);

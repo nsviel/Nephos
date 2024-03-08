@@ -95,4 +95,17 @@ void Queue::find_queue_presentation_idx(vk::structure::Physical_device& physical
   //---------------------------
 }
 
+//Subfunction
+bool Queue::is_physical_device_queue_suitable(vk::structure::Physical_device& physical_device){
+  //---------------------------
+
+  if(physical_device.queue_family_graphics_idx == -1) return false;
+  if(physical_device.queue_family_transfer_idx == -1) return false;
+  if(physical_device.queue_family_presentation_idx == -1) return false;
+
+  //---------------------------
+  return true;
+}
+
+
 }
