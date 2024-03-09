@@ -23,11 +23,11 @@ void Allocator::init(){
 
   vk::pool::Command_buffer* pool;
   pool = &struct_vulkan->device.queue.graphics.command_buffer;
-  vk_pool->create_command_pool(pool);
+  vk_pool->create_command_pool(pool, struct_vulkan->device.queue.graphics.family_ID);
   vk_command_buffer->init_pool(pool);
 
   pool = &struct_vulkan->device.queue.transfer.command_buffer;
-  vk_pool->create_command_pool(pool);
+  vk_pool->create_command_pool(pool, struct_vulkan->device.queue.transfer.family_ID);
   vk_command_buffer->init_pool(pool);
 
   //---------------------------

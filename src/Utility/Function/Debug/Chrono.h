@@ -14,6 +14,9 @@ namespace{
   std::chrono::high_resolution_clock::time_point t1;
 
   //Time measurement
+  void wait(int milliseconds){
+    std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+  }
   auto timer_start(){
     auto start = std::chrono::high_resolution_clock::now();
   }

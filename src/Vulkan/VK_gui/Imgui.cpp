@@ -211,6 +211,8 @@ void Imgui::load_font(){
   vk_command_buffer->end_command_buffer(command_buffer);
   struct_vulkan->queue.graphics->add_command(command_buffer);
 
+  sayHello();
+
   //---------------------------
 }
 

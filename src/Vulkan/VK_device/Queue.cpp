@@ -86,7 +86,7 @@ void Queue::find_queue_family_assigment(){
     }
 
     //Transfer if discrete GPU
-    if(family.transfer && i != pool.graphics.family_ID){
+    if(family.transfer && i != pool.graphics.family_ID&& i==2){
       pool.transfer.family_ID = i;
       pool.transfer.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
       family.vec_queue.push_back(&pool.transfer);

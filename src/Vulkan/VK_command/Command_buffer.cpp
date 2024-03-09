@@ -84,7 +84,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::Command_buffer* poo
   //---------------------------
 }
 void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data){
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.graphics.command_buffer;
+  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.command_buffer;
   //---------------------------
 
   //Command buffer allocation

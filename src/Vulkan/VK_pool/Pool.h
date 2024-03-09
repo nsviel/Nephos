@@ -27,7 +27,7 @@ public:
   void clean_descriptor_pool();
 
   //Command pool
-  void create_command_pool(vk::pool::Command_buffer* pool);
+  void create_command_pool(vk::pool::Command_buffer* pool, int family_ID);
   void reset_command_pool(vk::pool::Command_buffer* pool);
   void clean_command_pool(vk::pool::Command_buffer* pool);
 
