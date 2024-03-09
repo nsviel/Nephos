@@ -25,8 +25,13 @@ void Sensor::show_sensor(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->show_sensor_info(sensor);
-  this->show_sensor_transfo(sensor);
-  this->show_firmware_info(sensor);
+
+  if(ImGui::BeginTabBar("master_option##tab")){
+    this->show_sensor_transfo(sensor);
+    this->show_firmware_info(sensor);
+
+    ImGui::EndTabBar();
+  }
 
   //---------------------------
 }
@@ -66,7 +71,7 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
 void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(ImGui::TreeNode("Matrix")){
+  if(ImGui::BeginTabItem("Matrix##3443", NULL)){
     //Object model matrix
     utl::entity::Object* object = sensor->get_object();
     mat4& model = object->pose->model;
@@ -89,7 +94,7 @@ void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
       k4n_transfo->make_transformation_identity(sensor);
     }
 
-    ImGui::TreePop();
+    ImGui::EndTabItem();
   }
 
   //---------------------------

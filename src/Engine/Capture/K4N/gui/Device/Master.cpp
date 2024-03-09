@@ -25,6 +25,7 @@ void Master::show_master_info(k4n::dev::Master* master){
   //---------------------------
 
   this->show_info(master);
+  gui_capture->list_device(master);
 
   if(ImGui::BeginTabBar("master_option##tab")){
     this->show_operation(master);

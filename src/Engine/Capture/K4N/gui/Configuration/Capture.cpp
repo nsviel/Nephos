@@ -26,9 +26,6 @@ void Capture::show_master_capture(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
-  this->list_device(master);
-  ImGui::Separator();
-
   if(ImGui::BeginTabItem("Capture##566", NULL)){
     this->configuration_synchro(master);
     this->configuration_depth(master);
@@ -40,7 +37,7 @@ void Capture::show_master_capture(k4n::dev::Master* master){
     ImGui::Separator();
     ImGui::EndTabItem();
   }
-  
+
   //---------------------------
 }
 
