@@ -17,11 +17,11 @@ Physical::Physical(vk::structure::Vulkan* struct_vulkan){
 Physical::~Physical(){}
 
 //Main functions
-void Physical::init(){
+void Physical::find_physical_device(){
   //---------------------------
 
-  this->find_physical_devices();
-  this->find_physical_device_best();
+  this->find_all_physical_device();
+  this->find_best_physical_device();
   this->compute_extent();
 
   //---------------------------
@@ -56,7 +56,7 @@ void Physical::compute_extent(){
 }
 
 //Device selection
-void Physical::find_physical_devices(){
+void Physical::find_all_physical_device(){
   //---------------------------
 
   //Find how many GPU are available
@@ -81,7 +81,7 @@ void Physical::find_physical_devices(){
 
   //---------------------------
 }
-void Physical::find_physical_device_best(){
+void Physical::find_best_physical_device(){
   //---------------------------
 
   // Use an ordered map to automatically sort candidates by increasing score

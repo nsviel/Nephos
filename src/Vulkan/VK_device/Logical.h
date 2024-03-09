@@ -4,6 +4,7 @@
 
 namespace vk::device{class Physical;}
 namespace vk::structure{class Vulkan;}
+namespace vk::device{class Queue;}
 
 
 namespace vk::device{
@@ -28,7 +29,8 @@ public:
 
 private:
   vk::structure::Vulkan* struct_vulkan;
-  vk::device::Physical* dev_physical;
+  vk::device::Physical* vk_dev_physical;
+  vk::device::Queue* vk_dev_queue;
 };
 
 }

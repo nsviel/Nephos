@@ -18,7 +18,7 @@ public:
 
 public:
   //Main functions
-  void init();
+  void find_physical_device();
   void compute_extent();
 
   //Device selection
@@ -27,8 +27,8 @@ public:
   bool device_suitability_offscreen(vk::structure::Physical_device& dev_physical);
 
   //Specific properties
-  void find_physical_devices();
-  void find_physical_device_best();
+  void find_all_physical_device();
+  void find_best_physical_device();
   void find_physical_device_limits(vk::structure::Physical_device& dev_physical);
   void find_physical_device_properties(vk::structure::Physical_device& dev_physical);
   void find_physical_device_features(vk::structure::Physical_device& dev_physical);
