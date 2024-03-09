@@ -26,19 +26,14 @@ void Master::show_master_info(k4n::dev::Master* master){
 
   this->show_info(master);
   gui_capture->list_device(master);
+  gui_playback->show_master_playback(master);
 
   ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
   ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(54, 112, 131, 255));
   ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
   if(ImGui::BeginTabBar("master_option##tab")){
     this->show_operation(master);
-
-    //Capture or playback
-    if(master->mode == k4n::dev::PLAYBACK){
-      gui_playback->show_master_playback(master);
-    }else{
-      gui_capture->show_master_capture(master);
-    }
+    gui_capture->show_master_capture(master);
 
     ImGui::EndTabBar();
   }
