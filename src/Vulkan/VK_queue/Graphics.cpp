@@ -14,7 +14,6 @@ Graphics::Graphics(vk::structure::Vulkan* struct_vulkan){
   this->vk_query = new vk::instance::Query(struct_vulkan);
 
   //---------------------------
-  this->start_thread();
 }
 Graphics::~Graphics(){}
 
@@ -174,14 +173,13 @@ void Graphics::queue_submission(){
   submit_info.pSignalSemaphores = vec_semaphore_done.data();
   submit_info.commandBufferCount = vec_command_buffer.size();
   submit_info.pCommandBuffers = vec_command_buffer.data();
-//say("graphics on");
 
   VkQueue queue = struct_vulkan->device.queue.graphics.handle;
   VkResult result = vkQueueSubmit(queue, 1, &submit_info, fence->fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }
-//say("graphics off");
+
   vkWaitForFences(struct_vulkan->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
   vk_fence->reset_fence(fence);
 
