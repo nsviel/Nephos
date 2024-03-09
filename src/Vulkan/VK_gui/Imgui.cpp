@@ -209,9 +209,7 @@ void Imgui::load_font(){
   ImGui_ImplVulkan_CreateFontsTexture(command_buffer->command);
 
   vk_command_buffer->end_command_buffer(command_buffer);
-  struct_vulkan->queue.graphics->add_command(command_buffer);
-
-  sayHello();
+  struct_vulkan->queue.graphics->add_command_thread(command_buffer);
 
   //---------------------------
 }

@@ -58,27 +58,28 @@ void Queue::find_queue_family_assigment(){
 
   for(int i=0; vec_queue_family.size(); i++){
     vk::structure::queue::Family& family = vec_queue_family[i];
+    bool several_queue = family.nb_queue > 1;
 
     //Select graphics and presentation, optionnaly transfer
     if(family.graphics && family.presentation){
       //Graphics
       if(pool.graphics.family_ID == -1){
         pool.graphics.family_ID = i;
-        pool.graphics.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
+        pool.graphics.family_index = several_queue ? family.current_index++ : 0;
         family.vec_queue.push_back(&pool.graphics);
       }
 
       //Presentation
       if(pool.presentation.family_ID == -1){
         pool.presentation.family_ID = i;
-        pool.presentation.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
+        pool.presentation.family_index = several_queue ? family.current_index++ : 0;
         family.vec_queue.push_back(&pool.presentation);
       }
 
       //Transfer if not discrete GPU
       if(family.transfer && !struct_vulkan->device.physical_device.discrete_gpu){
         pool.transfer.family_ID = i;
-        pool.transfer.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
+        pool.transfer.family_index = several_queue ? family.current_index++ : 0;
         family.vec_queue.push_back(&pool.transfer);
 
         break;
@@ -88,7 +89,7 @@ void Queue::find_queue_family_assigment(){
     //Transfer if discrete GPU
     if(family.transfer && i != pool.graphics.family_ID&& i==2){
       pool.transfer.family_ID = i;
-      pool.transfer.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
+      pool.transfer.family_index = several_queue ? family.current_index++ : 0;
       family.vec_queue.push_back(&pool.transfer);
 
       break;

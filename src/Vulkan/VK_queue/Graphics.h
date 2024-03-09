@@ -25,7 +25,7 @@ public:
   void run_thread();
   void add_command(vk::structure::Command* command);
   void add_command(vector<vk::structure::Command*> vec_command);
-  void add_command(vk::structure::Command_buffer* command_buffer);
+  void add_command_thread(vk::structure::Command_buffer* command_buffer);
   void add_command_thread(vk::structure::Command* command);
   void wait_for_idle();
 

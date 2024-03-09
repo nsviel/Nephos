@@ -72,7 +72,7 @@ void Graphics::add_command(vector<vk::structure::Command*> vec_command){
 
   //---------------------------
 }
-void Graphics::add_command(vk::structure::Command_buffer* command_buffer){
+void Graphics::add_command_thread(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
   vk::structure::Command* command = new vk::structure::Command();
