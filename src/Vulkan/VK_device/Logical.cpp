@@ -24,7 +24,7 @@ void Logical::init(){
   vk_dev_physical->find_physical_device();
   vk_dev_queue->assign_queue_family();
   this->create_logical_device();
-  this->find_device_queue();
+  this->create_device_queue();
 
   //---------------------------
 }
@@ -87,28 +87,16 @@ void Logical::create_logical_device(){
 }
 
 //Queue stuff
-void Logical::find_device_queue(){
+void Logical::create_device_queue(){
+  vk::structure::queue::Pool& pool = struct_vulkan->device.queue;
   //---------------------------
 
-  //Graphics
-  vk::structure::Queue& queue_graphics = struct_vulkan->device.queue.graphics;
-  if(queue_graphics.family_ID != -1){
-    vkGetDeviceQueue(struct_vulkan->device.handle, queue_graphics.family_ID, 0, &queue_graphics.handle);
-  }
-
-  //Presentation
-  vk::structure::Queue& queue_presentation = struct_vulkan->device.queue.presentation;
-  if(queue_presentation.family_ID != -1){
-    vkGetDeviceQueue(struct_vulkan->device.handle, queue_presentation.family_ID, 1, &queue_presentation.handle);
-  }
-
-  //Transfer
-  vk::structure::Queue& queue_transfer = struct_vulkan->device.queue.transfer;
-  if(queue_transfer.family_ID != -1){
-    vkGetDeviceQueue(struct_vulkan->device.handle, queue_transfer.family_ID, 2, &queue_transfer.handle);
-  }
+  vk_dev_queue->create_device_queue(pool.graphics);
+  vk_dev_queue->create_device_queue(pool.presentation);
+  vk_dev_queue->create_device_queue(pool.transfer);
 
   //---------------------------
 }
+
 
 }

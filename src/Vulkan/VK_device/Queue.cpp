@@ -91,13 +91,21 @@ void Queue::assign_queue_family(){
     }
   }
 
-  if(graphics_family_ID == -1 || presentation_family_ID == -1 || transfer_family_ID == -1){
+  if(pool.graphics.family_ID == -1 || pool.presentation.family_ID == -1 || pool.transfer.family_ID == -1){
     cout<<"[error] in queue family assigment"<<endl;
   }
 
   struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, pool.graphics.family_ID);
   struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, pool.presentation.family_ID);
   struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, pool.transfer.family_ID);
+
+  //---------------------------
+}
+void Queue::create_queue(vk::structure::Queue& queue){
+  if(queue.family_ID == -1) return;
+  //---------------------------
+
+  vkGetDeviceQueue(struct_vulkan->device.handle, queue.family_ID, queue.family_index, &queue.handle);
 
   //---------------------------
 }

@@ -4,6 +4,7 @@
 
 namespace vk::device{class Physical;}
 namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Queue;}
 namespace vk::device{class Queue;}
 
 
@@ -23,9 +24,7 @@ public:
 
   //Subfunction
   void create_logical_device();
-
-  //Queue stuff
-  void find_device_queue();
+  void create_device_queue();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

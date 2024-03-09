@@ -18,6 +18,7 @@ public:
 public:
   //Main functions
   void find_queue_family_composition(vk::structure::Physical_device& physical_device);
+  void create_queue(vk::structure::Queue& queue);
   void assign_queue_family();
 
   //Subfunction
