@@ -19,12 +19,12 @@ public:
 public:
   //Queue family
   void find_queue_family_composition(vk::structure::Physical_device& physical_device);
-  void assign_queue_family();
+  void find_queue_family_assigment();
 
   //Queue object
   void create_queue(vk::structure::Queue& queue);
   void create_queue_info(vector<VkDeviceQueueCreateInfo>& vec_queue_info);
-  
+
   //Subfunction
   bool suitability_for_presentation(vk::structure::Physical_device& physical_device);
   bool suitability_for_graphics(vk::structure::Physical_device& physical_device);

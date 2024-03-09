@@ -50,7 +50,7 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 
   //---------------------------
 }
-void Queue::assign_queue_family(){
+void Queue::find_queue_family_assigment(){
   //---------------------------
 
   std::vector<vk::structure::queue::Family>& vec_queue_family = struct_vulkan->device.physical_device.vec_queue_family;
@@ -61,28 +61,32 @@ void Queue::assign_queue_family(){
 
     //Select graphics and presentation, optionnaly transfer
     if(family.graphics && family.presentation){
+      //Graphics
+      if(pool.graphics.family_ID == -1){
+        pool.graphics.family_ID = i;
+        pool.graphics.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
+        family.vec_queue.push_back(&pool.graphics);
+      }
 
-      pool.graphics.family_ID = i;
-      pool.graphics.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
-      family.vec_queue.push_back(&pool.graphics);
+      //Presentation
+      if(pool.presentation.family_ID == -1){
+        pool.presentation.family_ID = i;
+        pool.presentation.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
+        family.vec_queue.push_back(&pool.presentation);
+      }
 
-      pool.presentation.family_ID = i;
-      pool.presentation.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
-      family.vec_queue.push_back(&pool.presentation);
-
-      if(family.transfer ){// && !struct_vulkan->device.physical_device.discrete_gpu){
+      //Transfer if not discrete GPU
+      if(family.transfer){// && !struct_vulkan->device.physical_device.discrete_gpu){
         pool.transfer.family_ID = i;
         pool.transfer.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
         family.vec_queue.push_back(&pool.transfer);
 
         break;
       }
-
-      continue;
     }
 
-    //Select transfer
-    if(family.transfer){
+    //Transfer if discrete GPU
+    if(family.transfer && i != pool.graphics.family_ID){
       pool.transfer.family_ID = i;
       pool.transfer.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
       family.vec_queue.push_back(&pool.transfer);

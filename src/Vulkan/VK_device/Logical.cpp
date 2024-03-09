@@ -22,7 +22,7 @@ void Logical::init(){
   //---------------------------
 
   vk_dev_physical->find_physical_device();
-  vk_dev_queue->assign_queue_family();
+  vk_dev_queue->find_queue_family_assigment();
   this->create_logical_device();
   this->create_device_queue();
 

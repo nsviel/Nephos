@@ -14,6 +14,8 @@ struct Queue{
   int family_ID = -1;
   int family_index = 0;
 
+  vk::pool::Command_buffer command_buffer;
+
   //---------------------------
 };
 
