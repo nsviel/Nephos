@@ -34,7 +34,7 @@ public:
   void create_command_buffer_secondary(vk::structure::Object* data);
 
   //Command buffer lifetime
-  vk::structure::Command_buffer* query_free_command_buffer();
+  vk::structure::Command_buffer* query_free_command_buffer(vk::pool::Command_buffer* pool);
   void start_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
   void start_command_buffer_secondary(vk::structure::Renderpass* renderpass);
   void end_command_buffer(vk::structure::Command_buffer* command_buffer);

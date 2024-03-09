@@ -23,9 +23,6 @@ public:
   void reset();
   void clean();
 
-  //Subfunction
-  vk::pool::Command_buffer* query_free_allocator_pool();
-
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::instance::Pool* vk_pool;

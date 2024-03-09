@@ -45,24 +45,13 @@ struct Descriptor{
   //---------------------------
 };
 
-struct Command{
-  //---------------------------
-
-  std::vector<vk::pool::Command_buffer> tank;
-  uint32_t size = 10;
-
-  //---------------------------
-};
-
 }
-
 
 namespace vk::structure{
 
 struct Pool{
   //---------------------------
 
-  vk::pool::Command command;
   vk::pool::Fence fence;
   vk::pool::Semaphore semaphore;
   vk::pool::Descriptor descriptor;
