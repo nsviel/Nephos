@@ -76,7 +76,7 @@ void Queue::find_queue_family_assigment(){
       }
 
       //Transfer if not discrete GPU
-      if(family.transfer){// && !struct_vulkan->device.physical_device.discrete_gpu){
+      if(family.transfer && !struct_vulkan->device.physical_device.discrete_gpu){
         pool.transfer.family_ID = i;
         pool.transfer.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
         family.vec_queue.push_back(&pool.transfer);
