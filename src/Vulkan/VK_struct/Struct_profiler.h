@@ -18,13 +18,7 @@ struct Profiler{
     this->tasker_main = profiler->get_tasker("cpu");
     this->tasker_gpu = profiler->get_tasker("gpu");
     this->prf_vulkan = prf_manager->get_profiler_vulkan();
-
-    //Save thread information
-    prf::vulkan::Thread thread_prf;
-    thread_prf.ID = std::this_thread::get_id();
-    thread_prf.name = "Main";
-    vector<prf::vulkan::Thread>& vec_thread = prf_vulkan->get_vec_thread();
-    vec_thread.push_back(thread_prf);
+    this->prf_vulkan->add_thread("Main");
   }
 
   prf::graph::Tasker* tasker_main;

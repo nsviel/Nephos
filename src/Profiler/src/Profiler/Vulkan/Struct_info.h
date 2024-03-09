@@ -14,6 +14,20 @@ struct Thread{
   //---------------------------
 };
 
+enum Queue_type{
+  GRAPHICS = 0,
+  PRESENTATION = 1,
+  TRANSFER = 2,
+};
+struct Queue{
+  //---------------------------
+
+  int type = -1;
+  int ID_family = -1;
+
+  //---------------------------
+};
+
 struct Info{
   //---------------------------
 

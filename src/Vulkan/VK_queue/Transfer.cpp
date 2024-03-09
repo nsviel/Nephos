@@ -33,11 +33,7 @@ void Transfer::run_thread(){
   //---------------------------
 
   //Save thread information
-  prf::vulkan::Thread thread_prf;
-  thread_prf.ID = std::this_thread::get_id();
-  thread_prf.name = "Transfer queue";
-  vector<prf::vulkan::Thread>& vec_thread = struct_vulkan->profiler->prf_vulkan->get_vec_thread();
-  vec_thread.push_back(thread_prf);
+  struct_vulkan->profiler->prf_vulkan->add_thread("Transfer queue");
 
   //Start thread
   this->thread_running = true;

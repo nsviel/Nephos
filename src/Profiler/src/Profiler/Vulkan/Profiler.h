@@ -7,6 +7,7 @@
 namespace prf::vulkan{class Device;}
 namespace prf::vulkan{class Info;}
 namespace prf::vulkan{class Thread;}
+namespace prf::vulkan{class Queue;}
 namespace prf::type{class Profiler;}
 
 
@@ -21,6 +22,8 @@ public:
 
 public:
   //Main function
+  void add_thread(string name);
+  void add_queue(int type, int ID_family);
 
   inline vector<prf::vulkan::Device>& get_info_device(){return vec_device;}
   inline vector<prf::vulkan::Thread>& get_vec_thread(){return vec_thread;}
@@ -29,6 +32,7 @@ public:
 private:
   vector<prf::vulkan::Device> vec_device;
   vector<prf::vulkan::Thread> vec_thread;
+  vector<prf::vulkan::Queue> vec_queue;
   prf::vulkan::Info* info;
 };
 
