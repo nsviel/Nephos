@@ -17,6 +17,7 @@ Profiler::~Profiler(){}
 
 //Main function
 void Profiler::add_thread(string name){
+  mutex.lock();
   //---------------------------
 
   prf::vulkan::Thread thread;
@@ -26,6 +27,7 @@ void Profiler::add_thread(string name){
   vec_thread.push_back(thread);
 
   //---------------------------
+  mutex.unlock();
 }
 void Profiler::add_queue(prf::vulkan::Queue_type type, int ID_family){
   //---------------------------

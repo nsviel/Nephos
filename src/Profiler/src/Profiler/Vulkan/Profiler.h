@@ -36,6 +36,8 @@ private:
   vector<prf::vulkan::Thread> vec_thread;
   map<prf::vulkan::Queue_type, prf::vulkan::Queue> map_queue;
   prf::vulkan::Info* info;
+
+  std::mutex mutex;
 };
 
 }

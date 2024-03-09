@@ -31,6 +31,10 @@ void Graphics::start_thread(){
 void Graphics::run_thread(){
   //---------------------------
 
+  //Save thread information
+  struct_vulkan->profiler->prf_vulkan->add_thread("Graphics queue");
+
+  //Start thread loop
   this->thread_running = true;
   while(thread_running){
     this->wait_for_command();

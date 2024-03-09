@@ -35,7 +35,7 @@ void Transfer::run_thread(){
   //Save thread information
   struct_vulkan->profiler->prf_vulkan->add_thread("Transfer queue");
 
-  //Start thread
+  //Start thread loop
   this->thread_running = true;
   while(thread_running){
     this->wait_for_command();
