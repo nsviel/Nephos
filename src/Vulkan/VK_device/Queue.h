@@ -4,6 +4,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Physical_device;}
+namespace vk::structure{class Queue;}
 
 
 namespace vk::device{
@@ -16,10 +17,12 @@ public:
   ~Queue();
 
 public:
-  //Main functions
+  //Queue family
   void find_queue_family_composition(vk::structure::Physical_device& physical_device);
-  void create_queue(vk::structure::Queue& queue);
   void assign_queue_family();
+
+  //Queue object
+  void create_queue(vk::structure::Queue& queue);
 
   //Subfunction
   bool suitability_for_presentation(vk::structure::Physical_device& physical_device);

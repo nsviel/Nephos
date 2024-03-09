@@ -91,9 +91,9 @@ void Logical::create_device_queue(){
   vk::structure::queue::Pool& pool = struct_vulkan->device.queue;
   //---------------------------
 
-  vk_dev_queue->create_device_queue(pool.graphics);
-  vk_dev_queue->create_device_queue(pool.presentation);
-  vk_dev_queue->create_device_queue(pool.transfer);
+  vk_dev_queue->create_queue(pool.graphics);
+  vk_dev_queue->create_queue(pool.presentation);
+  vk_dev_queue->create_queue(pool.transfer);
 
   //---------------------------
 }

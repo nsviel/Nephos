@@ -15,7 +15,7 @@ Queue::Queue(vk::structure::Vulkan* struct_vulkan){
 }
 Queue::~Queue(){}
 
-//Main functions
+//Queue family
 void Queue::find_queue_family_composition(vk::structure::Physical_device& physical_device){
   //---------------------------
 
@@ -101,6 +101,8 @@ void Queue::assign_queue_family(){
 
   //---------------------------
 }
+
+//Queue object
 void Queue::create_queue(vk::structure::Queue& queue){
   if(queue.family_ID == -1) return;
   //---------------------------

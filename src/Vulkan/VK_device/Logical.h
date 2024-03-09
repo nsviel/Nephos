@@ -4,7 +4,6 @@
 
 namespace vk::device{class Physical;}
 namespace vk::structure{class Vulkan;}
-namespace vk::structure{class Queue;}
 namespace vk::device{class Queue;}
 
 
