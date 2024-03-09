@@ -47,44 +47,49 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
     ImGui::Text("Path data"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", sensor->param.path.data.c_str());
 
-    //File size
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Size"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f Mo", sensor->param.file_size);
-
     //Transformation matrix file path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path transfo"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", sensor->param.path.transformation.c_str());
 
+    //File size
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Size"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.2f Mo", sensor->param.file_size);
+
     ImGui::EndTable();
   }
 
   //---------------------------
+  ImGui::Separator();
 }
 void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  //Object model matrix
-  utl::entity::Object* object = sensor->get_object();
-  mat4& model = object->pose->model;
-  ImGui::Columns(4, "ModelMat");
-  for(int i=0; i<4; i++){
-    ImGui::Separator();
-    for(int j=0;j<4;j++){
-      ImGui::Text("%.3f", model[i][j]);
-      ImGui::NextColumn();
+  if(ImGui::TreeNode("Matrix")){
+    //Object model matrix
+    utl::entity::Object* object = sensor->get_object();
+    mat4& model = object->pose->model;
+    ImGui::Columns(4, "ModelMat");
+    for(int i=0; i<4; i++){
+      ImGui::Separator();
+      for(int j=0;j<4;j++){
+        ImGui::Text("%.3f", model[i][j]);
+        ImGui::NextColumn();
+      }
     }
-  }
-  ImGui::Separator();
-  ImGui::Columns(1);
+    ImGui::Separator();
+    ImGui::Columns(1);
 
-  ImVec2 width = ImGui::GetContentRegionAvail();
-  if(ImGui::Button("Save##transfomatrix", ImVec2(width.x, 0))){
-    k4n_transfo->save_transformation_to_file(sensor);
-  }
-  if(ImGui::Button("Identity##transfomatrix", ImVec2(width.x, 0))){
-    k4n_transfo->make_transformation_identity(sensor);
+    ImVec2 width = ImGui::GetContentRegionAvail();
+    if(ImGui::Button("Save##transfomatrix", ImVec2(width.x, 0))){
+      k4n_transfo->save_transformation_to_file(sensor);
+    }
+    if(ImGui::Button("Identity##transfomatrix", ImVec2(width.x, 0))){
+      k4n_transfo->make_transformation_identity(sensor);
+    }
+
+    ImGui::TreePop();
   }
 
   //---------------------------
@@ -93,7 +98,7 @@ void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
 void Sensor::show_firmware_info(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if (ImGui::TreeNode("Device Firmware Version Info")){
+  if(ImGui::TreeNode("Device Firmware Version Info")){
     k4a_hardware_version_t versionInfo = sensor->param.version;
     ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
     if(ImGui::BeginTable("device##firmware", 2)){

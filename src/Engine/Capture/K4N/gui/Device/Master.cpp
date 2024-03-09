@@ -25,7 +25,19 @@ void Master::show_master_info(k4n::dev::Master* master){
   //---------------------------
 
   this->show_info(master);
-  this->show_operation(master);
+
+  if(ImGui::BeginTabBar("master_option##tab")){
+    this->show_operation(master);
+
+    //Capture or playback
+    if(master->mode == k4n::dev::PLAYBACK){
+      gui_playback->show_master_playback(master);
+    }else{
+      gui_capture->show_master_capture(master);
+    }
+
+    ImGui::EndTabBar();
+  }
 
   //---------------------------
 }
@@ -35,7 +47,6 @@ void Master::show_info(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
-  ImGui::Separator();
   //Master general info
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   if(ImGui::BeginTable("master##info", 2)){
@@ -56,25 +67,18 @@ void Master::show_info(k4n::dev::Master* master){
     ImGui::EndTable();
   }
 
-  //Master mode info
-  if(master->mode == k4n::dev::PLAYBACK){
-    gui_playback->show_master_playback(master);
-  }else{
-    gui_capture->show_master_capture(master);
-  }
-
   //---------------------------
 }
-
 void Master::show_operation(k4n::dev::Master* master){
+  if(master == nullptr) return;
   //---------------------------
 
-  if(ImGui::TreeNode("Operation")){
+  if(ImGui::BeginTabItem("Operation##3443", NULL)){
     this->show_transformation(master);
     this->show_colorization(master);
     this->show_voxelization(master);
     this->show_normal(master);
-    ImGui::TreePop();
+    ImGui::EndTabItem();
   }
 
   //---------------------------

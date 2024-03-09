@@ -23,10 +23,10 @@ public:
 
   //Subfunction
   void show_info(k4n::dev::Master* master);
-  void show_transformation(k4n::dev::Master* master);
   void show_operation(k4n::dev::Master* master);
 
   //Processing function
+  void show_transformation(k4n::dev::Master* master);
   void show_colorization(k4n::dev::Master* master);
   void show_voxelization(k4n::dev::Master* master);
   void show_normal(k4n::dev::Master* master);
@@ -36,7 +36,7 @@ private:
   k4n::dev::Swarm* k4n_swarm;
   k4n::gui::Capture* gui_capture;
   k4n::gui::Playback* gui_playback;
-  
+
   int item_width;
 };
 

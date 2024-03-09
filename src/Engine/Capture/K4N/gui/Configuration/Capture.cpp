@@ -28,7 +28,8 @@ void Capture::show_master_capture(k4n::dev::Master* master){
 
   this->list_device(master);
   ImGui::Separator();
-  if(ImGui::TreeNode("Capture")){
+
+  if(ImGui::BeginTabItem("Capture##566", NULL)){
     this->configuration_synchro(master);
     this->configuration_depth(master);
     this->configuration_color(master);
@@ -37,9 +38,9 @@ void Capture::show_master_capture(k4n::dev::Master* master){
     this->configuration_button(master);
 
     ImGui::Separator();
-    ImGui::TreePop();
+    ImGui::EndTabItem();
   }
-
+  
   //---------------------------
 }
 

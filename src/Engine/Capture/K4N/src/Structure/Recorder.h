@@ -10,8 +10,8 @@ namespace k4n::structure{
 struct Recorder{
   //---------------------------
 
-  std::string path = "(not defined)";
-  std::string folder = "(not defined)";
+  std::string path = "";
+  std::string folder = "";
   std::string format = ".mkv";
 
   float ts_rec = 0;
