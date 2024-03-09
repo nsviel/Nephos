@@ -44,12 +44,9 @@ void Info::fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan){
 
     device_info.name = physical_device.name;
     device_info.has_extension_support = physical_device.has_extension_support;
+    device_info.discrete_gpu = physical_device.discrete_gpu;
     device_info.max_image_dim = physical_device.max_image_dim;
     device_info.vendorID = physical_device.vendorID;
-
-    //device_info.ID_family_graphics = physical_device.queue_family_graphics_idx;
-    //device_info.ID_family_transfer = physical_device.queue_family_transfer_idx;
-    //device_info.ID_family_presentation = physical_device.queue_family_presentation_idx;
 
     for(int i=0; i<physical_device.vec_queue_family.size(); i++){
       prf::vulkan::Queue_family queue_family;

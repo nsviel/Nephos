@@ -24,6 +24,7 @@ struct Device{
   //GPU device
   string name;
   bool has_extension_support;
+  bool discrete_gpu;
   uint32_t max_image_dim;
   int vendorID;
 

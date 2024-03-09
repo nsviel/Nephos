@@ -11,6 +11,7 @@ struct Physical_device{
   //Information
   std::string name;
   bool has_extension_support;
+  bool discrete_gpu = false;
   uint32_t max_image_dim;
   uint64_t timestamp_period;
   int selection_score;

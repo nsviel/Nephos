@@ -167,6 +167,12 @@ void Vulkan::draw_device_info(prf::vulkan::Device& device){
   ImGui::Text("Vendor ID"); ImGui::TableNextColumn();
   ImGui::TextColored(color, "%d", device.vendorID);
 
+  //Discrete GPU
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Discrete GPU"); ImGui::TableNextColumn();
+  const char* discrete = device.discrete_gpu ? "true" : "false";
+  ImGui::TextColored(color, "%s", discrete);
+
   //Extension support
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Extension support"); ImGui::TableNextColumn();
