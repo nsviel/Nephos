@@ -9,8 +9,10 @@ namespace vk::structure{
 struct Queue{
   //---------------------------
 
-  VkQueue ID;
-  int ID_family = -1;
+  VkQueue handle;
+  float priority = 1.0f;
+  int family_ID = -1;
+  int family_index = -1;
 
   //---------------------------
 };
@@ -19,10 +21,13 @@ struct Queue{
 
 namespace vk::structure::queue{
 
-struct family{
+struct Family{
   //---------------------------
 
+  int ID = -1;
   VkQueueFamilyProperties property;
+  vector<float> vec_queue_priority;
+  int nb_queue_required = 0;
   int nb_queue = 0;
   bool graphics = 0;
   bool compute = 0;

@@ -12,7 +12,7 @@ Logical::Logical(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_dev_physical = new vk::device::Physical(struct_vulkan);
   this->vk_dev_queue = new vk::device::Queue(struct_vulkan);
-  
+
   //---------------------------
 }
 Logical::~Logical(){}
@@ -22,6 +22,7 @@ void Logical::init(){
   //---------------------------
 
   vk_dev_physical->find_physical_device();
+  vk_dev_queue->assign_queue_family();
   this->create_logical_device();
   this->find_device_queue();
 
@@ -40,32 +41,19 @@ void Logical::clean(){
 void Logical::create_logical_device(){
   //---------------------------
 
-  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, 0);
-  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, 0);
-  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, 2);
-
-  struct_vulkan->device.queue.graphics.ID_family = 0;
-  struct_vulkan->device.queue.presentation.ID_family = 0;
-  struct_vulkan->device.queue.transfer.ID_family = 0;
-
-  //Set of required queues
-  std::set<int> set_queue = {
-    struct_vulkan->device.queue.graphics.ID_family,
-    struct_vulkan->device.queue.presentation.ID_family,
-    struct_vulkan->device.queue.transfer.ID_family
-  };
-
-  //Create queue on device
-  float queuePriority[3] = {1.0f, 1.0f, 1.0f};
   vector<VkDeviceQueueCreateInfo> vec_queue_info;
-  for(int queue_family : set_queue){
-    if(queue_family == -1) continue;
+  std::vector<vk::structure::queue::Family>& vec_queue_family = struct_vulkan->device.physical_device.vec_queue_family;
+  for(int i=0; i<vec_queue_family.size(); i++){
+    vk::structure::queue::Family& family = vec_queue_family[i];
+    if(family.nb_queue_required == 0) continue;
+
+    family.vec_queue_priority = vector<float>(family.nb_queue_required, 1.0f);
 
     VkDeviceQueueCreateInfo queue_info{};
     queue_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-    queue_info.queueFamilyIndex = static_cast<uint32_t>(queue_family);
-    queue_info.queueCount = 3;
-    queue_info.pQueuePriorities = queuePriority;
+    queue_info.queueFamilyIndex = static_cast<uint32_t>(family.ID);
+    queue_info.queueCount = family.nb_queue_required;
+    queue_info.pQueuePriorities = family.vec_queue_priority.data();
 
     vec_queue_info.push_back(queue_info);
   }
@@ -100,20 +88,20 @@ void Logical::find_device_queue(){
 
   //Graphics
   vk::structure::Queue& queue_graphics = struct_vulkan->device.queue.graphics;
-  if(queue_graphics.ID_family != -1){
-    vkGetDeviceQueue(struct_vulkan->device.handle, queue_graphics.ID_family, 0, &queue_graphics.ID);
+  if(queue_graphics.family_ID != -1){
+    vkGetDeviceQueue(struct_vulkan->device.handle, queue_graphics.family_ID, 0, &queue_graphics.handle);
   }
 
   //Presentation
   vk::structure::Queue& queue_presentation = struct_vulkan->device.queue.presentation;
-  if(queue_presentation.ID_family != -1){
-    vkGetDeviceQueue(struct_vulkan->device.handle, queue_presentation.ID_family, 1, &queue_presentation.ID);
+  if(queue_presentation.family_ID != -1){
+    vkGetDeviceQueue(struct_vulkan->device.handle, queue_presentation.family_ID, 1, &queue_presentation.handle);
   }
 
   //Transfer
   vk::structure::Queue& queue_transfer = struct_vulkan->device.queue.transfer;
-  if(queue_transfer.ID_family != -1){
-    vkGetDeviceQueue(struct_vulkan->device.handle, queue_transfer.ID_family, 2, &queue_transfer.ID);
+  if(queue_transfer.family_ID != -1){
+    vkGetDeviceQueue(struct_vulkan->device.handle, queue_transfer.family_ID, 2, &queue_transfer.handle);
   }
 
   //---------------------------

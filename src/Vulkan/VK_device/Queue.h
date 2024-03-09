@@ -18,6 +18,7 @@ public:
 public:
   //Main functions
   void find_queue_family_composition(vk::structure::Physical_device& physical_device);
+  void assign_queue_family();
 
   //Subfunction
   bool suitability_for_presentation(vk::structure::Physical_device& physical_device);

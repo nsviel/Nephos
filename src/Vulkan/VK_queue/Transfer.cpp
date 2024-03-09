@@ -103,7 +103,8 @@ void Transfer::queue_submission(){
   submit_info.commandBufferCount = vec_command_buffer.size();
   submit_info.pCommandBuffers = vec_command_buffer.data();
 
-  VkResult result = vkQueueSubmit(struct_vulkan->device.queue.transfer.ID, 1, &submit_info, fence->fence);
+  VkQueue queue = struct_vulkan->device.queue.transfer.handle;
+  VkResult result = vkQueueSubmit(queue, 1, &submit_info, fence->fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] graphics queue submission");
   }

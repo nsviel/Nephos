@@ -122,14 +122,14 @@ void Imgui::create_context(){
   init_info.Instance = struct_vulkan->instance.instance;
   init_info.PhysicalDevice = struct_vulkan->device.physical_device.handle;
   init_info.Device = struct_vulkan->device.handle;
-  init_info.Queue = struct_vulkan->device.queue.graphics.ID;
+  init_info.Queue = struct_vulkan->device.queue.graphics.handle;
   init_info.DescriptorPool = struct_vulkan->pools.descriptor.memory;
   init_info.PipelineCache = VK_NULL_HANDLE;
   init_info.MinImageCount = 2;
   init_info.ImageCount = 2;
   init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
   init_info.Subpass = 0;
-  init_info.QueueFamily = struct_vulkan->device.queue.graphics.ID_family;
+  init_info.QueueFamily = struct_vulkan->device.queue.graphics.family_ID;
   ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
 
   //---------------------------

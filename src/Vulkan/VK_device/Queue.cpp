@@ -30,8 +30,10 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
   vkGetPhysicalDeviceQueueFamilyProperties(physical_device.handle, &nb_queue_family, queue_families.data());
 
   // Count the number of each type of queue
-  for(uint32_t i=0; i<nb_queue_family; ++i){
-    vk::structure::queue::family queue_family;
+  for(int i=0; i<nb_queue_family; i++){
+
+    vk::structure::queue::Family queue_family;
+    queue_family.ID = i;
     queue_family.property = queue_families[i];
     queue_family.nb_queue = queue_family.property.queueCount;
     queue_family.graphics = (queue_family.property.queueFlags & VK_QUEUE_GRAPHICS_BIT) ? true : false;
@@ -48,6 +50,60 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 
   //---------------------------
 }
+void Queue::assign_queue_family(){
+  //---------------------------
+
+  int graphics_family_ID = -1;
+  int presentation_family_ID = -1;
+  int transfer_family_ID = -1;
+
+  std::vector<vk::structure::queue::Family>& vec_queue_family = struct_vulkan->device.physical_device.vec_queue_family;
+  for(int i=0; vec_queue_family.size(); i++){
+    vk::structure::queue::Family& family = vec_queue_family[i];
+
+    //Select graphics and presentation, optionnaly transfer
+    if(family.graphics && family.presentation){
+      graphics_family_ID = i;
+      presentation_family_ID = i;
+
+      //If enough queue available, require 2 queues
+      family.nb_queue_required = (family.nb_queue >= 2) ? 2 : 1;
+
+      if(family.transfer ){// && !struct_vulkan->device.physical_device.discrete_gpu){
+        transfer_family_ID = i;
+
+        //If enough queue available, require 3 queues
+        family.nb_queue_required = (family.nb_queue >= 3) ? 3 : family.nb_queue_required;
+
+        break;
+      }
+
+      continue;
+    }
+
+    //Select transfer
+    if(family.transfer){
+      transfer_family_ID = i;
+      family.nb_queue_required = 1;
+
+      break;
+    }
+  }
+
+  if(graphics_family_ID == -1 || presentation_family_ID == -1 || transfer_family_ID == -1){
+    cout<<"[error] in queue family assigment"<<endl;
+  }
+
+  struct_vulkan->device.queue.graphics.family_ID = graphics_family_ID;
+  struct_vulkan->device.queue.presentation.family_ID = presentation_family_ID;
+  struct_vulkan->device.queue.transfer.family_ID = transfer_family_ID;
+
+  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, graphics_family_ID);
+  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, presentation_family_ID);
+  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, transfer_family_ID);
+
+  //---------------------------
+}
 
 //Subfunction
 bool Queue::suitability_for_presentation(vk::structure::Physical_device& physical_device){
@@ -58,7 +114,7 @@ bool Queue::suitability_for_presentation(vk::structure::Physical_device& physica
   bool is_transfer_able = false;
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::structure::queue::family& queue_family = physical_device.vec_queue_family[i];
+    vk::structure::queue::Family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
     if(queue_family.graphics && queue_family.presentation){
@@ -86,7 +142,7 @@ bool Queue::suitability_for_graphics(vk::structure::Physical_device& physical_de
   bool is_transfer_able = false;
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::structure::queue::family& queue_family = physical_device.vec_queue_family[i];
+    vk::structure::queue::Family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
     if(queue_family.graphics){

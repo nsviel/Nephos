@@ -27,7 +27,7 @@ struct Physical_device{
 
   std::vector<VkSurfaceFormatKHR> formats;
   std::vector<VkPresentModeKHR> presentation_mode;
-  std::vector<vk::structure::queue::family> vec_queue_family;
+  std::vector<vk::structure::queue::Family> vec_queue_family;
 
   //---------------------------
 };
