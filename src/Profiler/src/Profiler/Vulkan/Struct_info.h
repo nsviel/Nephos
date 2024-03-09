@@ -22,7 +22,7 @@ enum Queue_type{
 struct Queue{
   //---------------------------
 
-  int type = -1;
+  int number = 0;
   int ID_family = -1;
 
   //---------------------------

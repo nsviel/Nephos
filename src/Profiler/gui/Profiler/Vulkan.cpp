@@ -85,6 +85,7 @@ void Vulkan::draw_tab_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim
   //---------------------------
 }
 void Vulkan::draw_tab_queue(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
+  map<prf::vulkan::Queue_type, prf::vulkan::Queue>& map_queue = prf_vulkan->get_map_queue();
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
@@ -101,25 +102,25 @@ void Vulkan::draw_tab_queue(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim)
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Graphics");
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", 0);
+  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::GRAPHICS].number);
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", 0);
+  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::GRAPHICS].ID_family);
 
   //Presentation
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Presentation");
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", 0);
+  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::PRESENTATION].number);
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", 0);
+  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::PRESENTATION].ID_family);
 
   //Transfer
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Transfer");
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", 0);
+  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::TRANSFER].number);
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", 0);
+  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::TRANSFER].ID_family);
 
   ImGui::EndTable();
 

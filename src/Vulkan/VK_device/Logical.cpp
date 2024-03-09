@@ -41,7 +41,7 @@ void Logical::create_logical_device(){
 
   struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, 0);
   struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, 0);
-  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, 0);
+  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, 2);
 
   struct_vulkan->device.queue.graphics.ID_family = 0;
   struct_vulkan->device.queue.presentation.ID_family = 0;
