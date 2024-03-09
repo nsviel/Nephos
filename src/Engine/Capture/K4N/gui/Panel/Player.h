@@ -6,7 +6,6 @@ namespace eng::scene{class Set;}
 namespace eng{class Node;}
 namespace k4n{class Node;}
 namespace k4n::gui{class Capture;}
-namespace k4n::gui{class Playback;}
 namespace k4n::gui{class Recorder;}
 namespace k4n::gui{class Master;}
 namespace k4n::gui{class Sensor;}
@@ -50,7 +49,6 @@ private:
 
   k4n::Node* node_k4n;
   k4n::gui::Capture* gui_capture;
-  k4n::gui::Playback* gui_playback;
   k4n::gui::Recorder* gui_recorder;
   k4n::gui::Master* gui_master;
   k4n::gui::Sensor* gui_sensor;

@@ -27,6 +27,9 @@ void Master::show_master_info(k4n::dev::Master* master){
   this->show_info(master);
   gui_capture->list_device(master);
 
+  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(54, 112, 131, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
   if(ImGui::BeginTabBar("master_option##tab")){
     this->show_operation(master);
 
@@ -39,6 +42,7 @@ void Master::show_master_info(k4n::dev::Master* master){
 
     ImGui::EndTabBar();
   }
+  ImGui::PopStyleColor(3);
 
   //---------------------------
 }
@@ -74,6 +78,7 @@ void Master::show_operation(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
+  ImGui::SetNextItemWidth(75);
   if(ImGui::BeginTabItem("Operation##3443", NULL)){
     this->show_transformation(master);
     this->show_colorization(master);

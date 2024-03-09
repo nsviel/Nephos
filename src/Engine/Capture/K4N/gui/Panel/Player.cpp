@@ -15,7 +15,6 @@ Player::Player(k4n::Node* node_k4n, bool* show_window){
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->sce_set = new eng::scene::Set();
   this->gui_capture = new k4n::gui::Capture(node_k4n);
-  this->gui_playback = new k4n::gui::Playback(node_k4n);
   this->gui_recorder = new k4n::gui::Recorder(node_k4n);
   this->gui_master = new k4n::gui::Master(node_k4n);
   this->gui_sensor = new k4n::gui::Sensor(node_k4n);
@@ -220,6 +219,7 @@ void Player::show_master_tab(k4n::dev::Master* master){
   //---------------------------
 
   string name = master->icon + "  " + "Master";
+  ImGui::SetNextItemWidth(90);
   if(ImGui::BeginTabItem(name.c_str(), NULL)){
     gui_master->show_master_info(master);
     ImGui::EndTabItem();
@@ -234,10 +234,10 @@ void Player::show_sensor_tab(k4n::dev::Sensor* sensor){
   //Force tab open if another sensor selected
   ImGuiTabItemFlags flag = get_tab_flag(sensor);
   string name = sensor->icon + "  " + sensor->name;
+  ImGui::SetNextItemWidth(90);
   if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
 
     gui_sensor->show_sensor(sensor);
-    gui_playback->show_sensor_configuration(sensor);
     //gui_recorder->show_sensor_recorder(sensor);
 
     ImGui::EndTabItem();

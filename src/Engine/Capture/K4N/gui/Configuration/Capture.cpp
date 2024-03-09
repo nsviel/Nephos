@@ -26,6 +26,7 @@ void Capture::show_master_capture(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
+  ImGui::SetNextItemWidth(75);
   if(ImGui::BeginTabItem("Capture##566", NULL)){
     this->configuration_synchro(master);
     this->configuration_depth(master);

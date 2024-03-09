@@ -45,20 +45,16 @@ void Playback::show_master_playback(k4n::dev::Master* master){
 }
 void Playback::show_sensor_configuration(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
+  if(sensor->master->mode == k4n::dev::CAPTURE) return;
   //---------------------------
 
+  this->show_info_device(sensor);
+  this->show_info_color(sensor);
+  this->show_info_depth(sensor);
+  this->show_info_synch(sensor);
+
+  //---------------------------
   ImGui::Separator();
-  if(ImGui::TreeNode("Configuration")){
-    this->show_info_device(sensor);
-    this->show_info_color(sensor);
-    this->show_info_depth(sensor);
-    this->show_info_synch(sensor);
-
-    ImGui::Separator();
-    ImGui::TreePop();
-  }
-
-  //---------------------------
 }
 
 //Design function
