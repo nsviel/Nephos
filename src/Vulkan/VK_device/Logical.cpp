@@ -43,17 +43,21 @@ void Logical::create_logical_device(){
 
   vector<VkDeviceQueueCreateInfo> vec_queue_info;
   std::vector<vk::structure::queue::Family>& vec_queue_family = struct_vulkan->device.physical_device.vec_queue_family;
+
   for(int i=0; i<vec_queue_family.size(); i++){
     vk::structure::queue::Family& family = vec_queue_family[i];
-    if(family.nb_queue_required == 0) continue;
+    if(family.vec_queue.size() == 0) continue;
 
-    family.vec_queue_priority = vector<float>(family.nb_queue_required, 1.0f);
+    vector<float*> vec_priority;
+    for(int j=0; j<family.vec_queue.size(); j++){
+      vec_priority.push_back(&family.vec_queue[j]->priority);
+    }
 
     VkDeviceQueueCreateInfo queue_info{};
     queue_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
     queue_info.queueFamilyIndex = static_cast<uint32_t>(family.ID);
-    queue_info.queueCount = family.nb_queue_required;
-    queue_info.pQueuePriorities = family.vec_queue_priority.data();
+    queue_info.queueCount = family.vec_queue.size();
+    queue_info.pQueuePriorities = *vec_priority.data();
 
     vec_queue_info.push_back(queue_info);
   }

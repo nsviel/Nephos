@@ -12,7 +12,7 @@ struct Queue{
   VkQueue handle;
   float priority = 1.0f;
   int family_ID = -1;
-  int family_index = -1;
+  int family_index = 0;
 
   //---------------------------
 };
@@ -25,20 +25,22 @@ struct Family{
   //---------------------------
 
   int ID = -1;
-  VkQueueFamilyProperties property;
-  vector<float> vec_queue_priority;
-  int nb_queue_required = 0;
+  int current_index = 0;
   int nb_queue = 0;
+
   bool graphics = 0;
   bool compute = 0;
   bool transfer = 0;
   bool sparseBinding = 0;
   bool presentation = 0;
 
+  VkQueueFamilyProperties property;
+  vector<vk::structure::Queue*> vec_queue;
+
   //---------------------------
 };
 
-struct Handle{
+struct Pool{
   //---------------------------
 
   vk::structure::Queue graphics;

@@ -53,27 +53,27 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 void Queue::assign_queue_family(){
   //---------------------------
 
-  int graphics_family_ID = -1;
-  int presentation_family_ID = -1;
-  int transfer_family_ID = -1;
-
   std::vector<vk::structure::queue::Family>& vec_queue_family = struct_vulkan->device.physical_device.vec_queue_family;
+  vk::structure::queue::Pool& pool = struct_vulkan->device.queue;
+
   for(int i=0; vec_queue_family.size(); i++){
     vk::structure::queue::Family& family = vec_queue_family[i];
 
     //Select graphics and presentation, optionnaly transfer
     if(family.graphics && family.presentation){
-      graphics_family_ID = i;
-      presentation_family_ID = i;
 
-      //If enough queue available, require 2 queues
-      family.nb_queue_required = (family.nb_queue >= 2) ? 2 : 1;
+      pool.graphics.family_ID = i;
+      pool.graphics.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
+      family.vec_queue.push_back(&pool.graphics);
+
+      pool.presentation.family_ID = i;
+      pool.presentation.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
+      family.vec_queue.push_back(&pool.presentation);
 
       if(family.transfer ){// && !struct_vulkan->device.physical_device.discrete_gpu){
-        transfer_family_ID = i;
-
-        //If enough queue available, require 3 queues
-        family.nb_queue_required = (family.nb_queue >= 3) ? 3 : family.nb_queue_required;
+        pool.transfer.family_ID = i;
+        pool.transfer.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
+        family.vec_queue.push_back(&pool.transfer);
 
         break;
       }
@@ -83,8 +83,9 @@ void Queue::assign_queue_family(){
 
     //Select transfer
     if(family.transfer){
-      transfer_family_ID = i;
-      family.nb_queue_required = 1;
+      pool.transfer.family_ID = i;
+      pool.transfer.family_index = (family.nb_queue > 1) ? family.current_index++ : 0;
+      family.vec_queue.push_back(&pool.transfer);
 
       break;
     }
@@ -94,13 +95,9 @@ void Queue::assign_queue_family(){
     cout<<"[error] in queue family assigment"<<endl;
   }
 
-  struct_vulkan->device.queue.graphics.family_ID = graphics_family_ID;
-  struct_vulkan->device.queue.presentation.family_ID = presentation_family_ID;
-  struct_vulkan->device.queue.transfer.family_ID = transfer_family_ID;
-
-  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, graphics_family_ID);
-  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, presentation_family_ID);
-  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, transfer_family_ID);
+  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, pool.graphics.family_ID);
+  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, pool.presentation.family_ID);
+  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, pool.transfer.family_ID);
 
   //---------------------------
 }
