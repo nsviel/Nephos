@@ -23,7 +23,8 @@ public:
 
   //Queue object
   void create_queue(vk::structure::Queue& queue);
-
+  void create_queue_info(vector<VkDeviceQueueCreateInfo>& vec_queue_info);
+  
   //Subfunction
   bool suitability_for_presentation(vk::structure::Physical_device& physical_device);
   bool suitability_for_graphics(vk::structure::Physical_device& physical_device);

@@ -42,7 +42,7 @@ void Logical::create_logical_device(){
   //---------------------------
 
   vector<VkDeviceQueueCreateInfo> vec_queue_info;
-  this->create_queue_info(vec_queue_info);
+  vk_dev_queue->create_queue_info(vec_queue_info);
 
   //Specifying used device features
   VkPhysicalDeviceFeatures device_features{};
@@ -78,30 +78,7 @@ void Logical::create_device_queue(){
   //---------------------------
 }
 
-void Logical::create_queue_info(vector<VkDeviceQueueCreateInfo>& vec_queue_info){
-  std::vector<vk::structure::queue::Family>& vec_queue_family = struct_vulkan->device.physical_device.vec_queue_family;
-  //---------------------------
 
-  for(int i=0; i<vec_queue_family.size(); i++){
-    vk::structure::queue::Family& family = vec_queue_family[i];
-    if(family.vec_queue.size() == 0) continue;
-
-    vector<float*> vec_priority;
-    for(int j=0; j<family.vec_queue.size(); j++){
-      vec_priority.push_back(&family.vec_queue[j]->priority);
-    }
-
-    VkDeviceQueueCreateInfo queue_info{};
-    queue_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-    queue_info.queueFamilyIndex = static_cast<uint32_t>(family.ID);
-    queue_info.queueCount = family.vec_queue.size();
-    queue_info.pQueuePriorities = *vec_priority.data();
-
-    vec_queue_info.push_back(queue_info);
-  }
-
-  //---------------------------
-}
 
 
 }

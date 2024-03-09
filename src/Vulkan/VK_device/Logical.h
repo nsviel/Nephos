@@ -25,8 +25,6 @@ public:
   void create_logical_device();
   void create_device_queue();
 
-  void create_queue_info(vector<VkDeviceQueueCreateInfo>& vec_queue_info);
-
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::device::Physical* vk_dev_physical;
