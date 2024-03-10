@@ -3,6 +3,9 @@
 #include <Utility/Specific/common.h>
 #include <Vulkan/VK_struct/Struct_query.h>
 
+namespace vk::structure{struct Query;}
+namespace vk::structure{struct Fence;}
+
 
 namespace vk::structure{
 

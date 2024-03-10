@@ -84,25 +84,28 @@ void Allocator::clean_command_buffer_pool(vk::structure::Queue* queue){
 //Command buffer pool use
 vk::pool::Command_buffer* Allocator::query_free_pool(vk::structure::Queue* queue){
   vector<vk::pool::Command_buffer>& vec_pool = queue->vec_pool;
+  std::thread::id this_thread_ID = std::this_thread::get_id();
   //---------------------------
 
-  // Random number generator setup
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int> distr(0, vec_pool.size() - 1);
+  //Return pool associated with thread ID
+  for(int i=0; i<vec_pool.size(); i++){
+    vk::pool::Command_buffer* pool = &vec_pool[i];
 
-  // Find a random available and unrecorded command buffer
-  int index;
-  vk::pool::Command_buffer* pool;
-  do{
-    index = distr(gen);
-    pool = &vec_pool[index];
+    if(pool->is_available == false && pool->thread_ID == this_thread_ID){
+      return pool;
+    }
+  }
+
+  //Else give it a specific pool
+  for(int i=0; i<vec_pool.size(); i++){
+    vk::pool::Command_buffer* pool = &vec_pool[i];
 
     if(pool->is_available){
       pool->is_available = false;
+      pool->thread_ID = this_thread_ID;
       return pool;
     }
-  }while(true);
+  }
 
   cout<<"[error] Command buffer pool availbility problem"<<endl;
 
@@ -112,7 +115,7 @@ vk::pool::Command_buffer* Allocator::query_free_pool(vk::structure::Queue* queue
 void Allocator::free_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
-  pool->is_available = true;
+  //pool->is_available = true;
 
   //---------------------------
 }

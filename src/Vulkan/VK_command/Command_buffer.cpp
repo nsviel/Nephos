@@ -121,6 +121,7 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::poo
 
     if(command_buffer->is_available){
       command_buffer->is_available = false;
+      vkResetCommandBuffer(command_buffer->command, 0);
       return command_buffer;
     }
   }while(true);

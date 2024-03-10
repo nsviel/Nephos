@@ -9,7 +9,6 @@ struct Command_buffer{
   //---------------------------
 
   VkCommandPool allocator;
-  vk::pool::Command_buffer* pool;
   std::vector<vk::structure::Command_buffer> tank;
   uint32_t size = 100;
   bool is_available = true;
