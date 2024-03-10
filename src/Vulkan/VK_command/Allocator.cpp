@@ -29,46 +29,16 @@ void Allocator::init(){
 void Allocator::reset(){
   //---------------------------
 
-  //Graphics queue pool
-  {
-    vector<vk::pool::Command_buffer>& vec_pool = struct_vulkan->device.queue.graphics.vec_pool;
-    for(int i=0; i<vec_pool.size(); i++){
-      vk::pool::Command_buffer& pool = vec_pool[i];
-      vk_command_buffer->reset_pool(&pool);
-    }
-  }
-
-
-  //Transfer queue pool
-  vector<vk::pool::Command_buffer>& vec_pool = struct_vulkan->device.queue.transfer.vec_pool;
-  for(int i=0; i<vec_pool.size(); i++){
-    vk::pool::Command_buffer& pool = vec_pool[i];
-    vk_command_buffer->reset_pool(&pool);
-  }
+  this->reset_command_buffer_pool(&struct_vulkan->device.queue.graphics);
+  this->reset_command_buffer_pool(&struct_vulkan->device.queue.transfer);
 
   //---------------------------
 }
 void Allocator::clean(){
   //---------------------------
 
-  //Graphics queue pool
-  {
-    vector<vk::pool::Command_buffer>& vec_pool = struct_vulkan->device.queue.graphics.vec_pool;
-    for(int i=0; i<vec_pool.size(); i++){
-      vk::pool::Command_buffer& pool = vec_pool[i];
-      vk_command_buffer->clean_pool(&pool);
-      vk_pool->clean_command_pool(&pool);
-    }
-  }
-
-
-  //Transfer queue pool
-  vector<vk::pool::Command_buffer>& vec_pool = struct_vulkan->device.queue.transfer.vec_pool;
-  for(int i=0; i<vec_pool.size(); i++){
-    vk::pool::Command_buffer& pool = vec_pool[i];
-    vk_command_buffer->clean_pool(&pool);
-    vk_pool->clean_command_pool(&pool);
-  }
+  this->clean_command_buffer_pool(&struct_vulkan->device.queue.graphics);
+  this->clean_command_buffer_pool(&struct_vulkan->device.queue.transfer);
 
   //---------------------------
 }
@@ -83,6 +53,29 @@ void Allocator::create_command_buffer_pool(vk::structure::Queue* queue){
     vk_command_buffer->init_pool(&pool);
 
     queue->vec_pool.push_back(pool);
+  }
+
+  //---------------------------
+}
+void Allocator::reset_command_buffer_pool(vk::structure::Queue* queue){
+  vector<vk::pool::Command_buffer>& vec_pool = queue->vec_pool;
+  //---------------------------
+
+  for(int i=0; i<vec_pool.size(); i++){
+    vk::pool::Command_buffer& pool = vec_pool[i];
+    vk_command_buffer->reset_pool(&pool);
+  }
+
+  //---------------------------
+}
+void Allocator::clean_command_buffer_pool(vk::structure::Queue* queue){
+  vector<vk::pool::Command_buffer>& vec_pool = queue->vec_pool;
+  //---------------------------
+
+  for(int i=0; i<vec_pool.size(); i++){
+    vk::pool::Command_buffer& pool = vec_pool[i];
+    vk_command_buffer->clean_pool(&pool);
+    vk_pool->clean_command_pool(&pool);
   }
 
   //---------------------------
