@@ -25,6 +25,7 @@ public:
   void clean();
 
   //Subfunction
+  void create_command_buffer_pool(vk::structure::Queue* queue);
   vk::pool::Command_buffer* query_free_pool(vk::structure::Queue* queue);
   void free_pool(vk::pool::Command_buffer* pool);
 
