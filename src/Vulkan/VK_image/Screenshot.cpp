@@ -12,12 +12,12 @@ Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
-  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
   this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_texture = new vk::main::Texture(struct_vulkan);
-  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
+  this->vk_command_allocator = new vk::command::Allocator(struct_vulkan);
   this->vk_mem_transfer = new vk::memory::Transfer(struct_vulkan);
+  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
 
   //---------------------------
 }
@@ -36,7 +36,7 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
 
 
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.pool;
+  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&struct_vulkan->device.queue.transfer);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "Screenshot";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
@@ -46,6 +46,7 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
 
   vk_command_buffer->end_command_buffer(command_buffer);
   struct_vulkan->queue.transfer->add_command(command_buffer);
+  vk_command_allocator->free_pool(pool);
 
 
 
@@ -80,7 +81,7 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.pool;
+  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&struct_vulkan->device.queue.transfer);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "Screenshot";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
@@ -90,6 +91,7 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
 
   vk_command_buffer->end_command_buffer(command_buffer);
   struct_vulkan->queue.transfer->add_command(command_buffer);
+  vk_command_allocator->free_pool(pool);
 
 
 
