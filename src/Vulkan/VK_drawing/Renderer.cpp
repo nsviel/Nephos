@@ -21,7 +21,7 @@ Renderer::~Renderer(){}
 void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.graphics.command_buffer;
+  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.graphics.pool;
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   renderpass->command_buffer = command_buffer;
   command_buffer->name = renderpass->name;

@@ -202,7 +202,7 @@ void Imgui::select_font(){
 void Imgui::load_font(){
   //---------------------------
 
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.graphics.command_buffer;
+  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.graphics.pool;
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 

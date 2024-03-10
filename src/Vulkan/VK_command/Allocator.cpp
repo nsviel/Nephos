@@ -22,13 +22,21 @@ void Allocator::init(){
   //---------------------------
 
   vk::pool::Command_buffer* pool;
-  pool = &struct_vulkan->device.queue.graphics.command_buffer;
+  pool = &struct_vulkan->device.queue.graphics.pool;
   vk_pool->create_command_pool(pool, struct_vulkan->device.queue.graphics.family_ID);
   vk_command_buffer->init_pool(pool);
 
-  pool = &struct_vulkan->device.queue.transfer.command_buffer;
+  pool = &struct_vulkan->device.queue.transfer.pool;
   vk_pool->create_command_pool(pool, struct_vulkan->device.queue.transfer.family_ID);
   vk_command_buffer->init_pool(pool);
+
+  for(int i=0; i<100; i++){
+    vk::pool::Command_buffer pool;
+    vk_pool->create_command_pool(&pool, struct_vulkan->device.queue.transfer.family_ID);
+    vk_command_buffer->init_pool(&pool);
+
+    struct_vulkan->device.queue.transfer.vec_pool.push_back(pool);
+  }
 
   //---------------------------
 }
@@ -36,11 +44,17 @@ void Allocator::reset(){
   //---------------------------
 
   vk::pool::Command_buffer* pool;
-  pool = &struct_vulkan->device.queue.graphics.command_buffer;
+  pool = &struct_vulkan->device.queue.graphics.pool;
   vk_command_buffer->reset_pool(pool);
 
-  pool = &struct_vulkan->device.queue.transfer.command_buffer;
+  pool = &struct_vulkan->device.queue.transfer.pool;
   vk_command_buffer->reset_pool(pool);
+
+  vector<vk::pool::Command_buffer>& vec_pool = struct_vulkan->device.queue.transfer.vec_pool;
+  for(int i=0; i<vec_pool.size(); i++){
+    vk::pool::Command_buffer& pool = vec_pool[i];
+    vk_command_buffer->reset_pool(&pool);
+  }
 
   //---------------------------
 }
@@ -48,13 +62,20 @@ void Allocator::clean(){
   //---------------------------
 
   vk::pool::Command_buffer* pool;
-  pool = &struct_vulkan->device.queue.graphics.command_buffer;
+  pool = &struct_vulkan->device.queue.graphics.pool;
   vk_command_buffer->clean_pool(pool);
   vk_pool->clean_command_pool(pool);
 
-  pool = &struct_vulkan->device.queue.transfer.command_buffer;
+  pool = &struct_vulkan->device.queue.transfer.pool;
   vk_command_buffer->clean_pool(pool);
   vk_pool->clean_command_pool(pool);
+
+  vector<vk::pool::Command_buffer>& vec_pool = struct_vulkan->device.queue.transfer.vec_pool;
+  for(int i=0; i<vec_pool.size(); i++){
+    vk::pool::Command_buffer& pool = vec_pool[i];
+    vk_command_buffer->clean_pool(&pool);
+    vk_pool->clean_command_pool(&pool);
+  }
 
   //---------------------------
 }

@@ -84,7 +84,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::Command_buffer* poo
   //---------------------------
 }
 void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data){
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.command_buffer;
+  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.pool;
   //---------------------------
 
   //Command buffer allocation
@@ -120,7 +120,6 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::poo
     command_buffer = &pool->tank[index];
 
     if(command_buffer->is_available){
-      vkResetCommandBuffer(command_buffer->command, 0);
       command_buffer->is_available = false;
       return command_buffer;
     }

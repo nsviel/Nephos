@@ -74,11 +74,20 @@ void Image::copy_image_color(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  image->color.data = std::vector<uint8_t>(sensor->color.cloud.buffer, sensor->color.cloud.buffer + sensor->color.cloud.size);
+  //If color resolution is too big, display transformed color image - to be changed
+  if(sensor->color.config.resolution_str == "2160p" || sensor->color.config.resolution_str == "3072p"){
+    sensor->color.data.buffer = sensor->color.cloud.buffer;
+    sensor->color.data.size = sensor->color.cloud.size;
+    sensor->color.data.width = sensor->color.cloud.width;
+    sensor->color.data.height = sensor->color.cloud.height;
+    sensor->color.data.format = sensor->color.cloud.format;
+  }
+
+  image->color.data = std::vector<uint8_t>(sensor->color.data.buffer, sensor->color.data.buffer + sensor->color.data.size);
   image->color.size = image->color.data.size();
-  image->color.width = sensor->color.cloud.width;
-  image->color.height = sensor->color.cloud.height;
-  image->color.format = sensor->color.cloud.format;
+  image->color.width = sensor->color.data.width;
+  image->color.height = sensor->color.data.height;
+  image->color.format = sensor->color.data.format;
   image->color.new_data = true;
 
   //---------------------------

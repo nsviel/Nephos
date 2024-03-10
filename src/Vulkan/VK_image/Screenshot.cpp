@@ -36,7 +36,7 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
 
 
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.command_buffer;
+  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.pool;
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "Screenshot";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
@@ -80,7 +80,7 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.command_buffer;
+  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.pool;
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "Screenshot";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
