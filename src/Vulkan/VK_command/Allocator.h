@@ -31,7 +31,6 @@ public:
 
   //Command buffer pool use
   vk::pool::Command_buffer* query_free_pool(vk::structure::Queue* queue);
-  void free_pool(vk::pool::Command_buffer* pool);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

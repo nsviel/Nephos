@@ -46,7 +46,6 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
 
   vk_command_buffer->end_command_buffer(command_buffer);
   struct_vulkan->queue.transfer->add_command(command_buffer);
-  vk_command_allocator->free_pool(pool);
 
 
 
@@ -91,7 +90,6 @@ void Screenshot::save_to_bin(vk::structure::Image* image){
 
   vk_command_buffer->end_command_buffer(command_buffer);
   struct_vulkan->queue.transfer->add_command(command_buffer);
-  vk_command_allocator->free_pool(pool);
 
 
 

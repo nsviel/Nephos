@@ -44,8 +44,7 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
   vk_image->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   vk_command_buffer->end_command_buffer(command_buffer);
   struct_vulkan->queue.graphics->add_command_thread(command_buffer);
-  vk_allocator->free_pool(pool);
-
+  
   //---------------------------
 }
 void Transfer::copy_buffer_to_image(vk::structure::Command_buffer* command_buffer, vk::structure::Image* image, VkBuffer buffer){
@@ -123,7 +122,6 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Bu
 
   vk_command_buffer->end_command_buffer(command_buffer);
   struct_vulkan->queue.transfer->add_command(command_buffer);
-  vk_allocator->free_pool(pool);
 
   //---------------------------
 }

@@ -32,7 +32,6 @@ void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
   this->stop_renderpass(renderpass);
 
   vk_command_buffer->end_command_buffer(command_buffer);
-  vk_allocator->free_pool(pool);
 
   //---------------------------
 }

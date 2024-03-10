@@ -213,7 +213,6 @@ void Imgui::load_font(){
   vk::structure::Command* command = new vk::structure::Command();
   command->vec_command_buffer.push_back(command_buffer);
   struct_vulkan->queue.graphics->add_command(command);
-  vk_allocator->free_pool(pool);
 
   //---------------------------
 }

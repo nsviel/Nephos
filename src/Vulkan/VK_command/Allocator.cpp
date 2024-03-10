@@ -112,12 +112,5 @@ vk::pool::Command_buffer* Allocator::query_free_pool(vk::structure::Queue* queue
   //---------------------------
   return nullptr;
 }
-void Allocator::free_pool(vk::pool::Command_buffer* pool){
-  //---------------------------
-
-  //pool->is_available = true;
-
-  //---------------------------
-}
 
 }
