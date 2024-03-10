@@ -51,8 +51,7 @@ void Capture::list_device(k4n::dev::Master* master){
   ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_Borders;
   flags |= ImGuiTableFlags_RowBg;
-  static int selected_device = -1;
-  if(ImGui::BeginTable("database_view", 3, flags)){
+  if(ImGui::BeginTable("database_view", 4, flags)){
     if(k4n_swarm->get_list_master().size() == 0){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
@@ -62,24 +61,46 @@ void Capture::list_device(k4n::dev::Master* master){
     else{
       ImGui::TableSetupColumn("");
       ImGui::TableSetupColumn("ID");
-      ImGui::TableSetupColumn("Serial number");
+      ImGui::TableSetupColumn("Serial number", ImGuiTableColumnFlags_WidthStretch);
+      ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
       ImGui::TableHeadersRow();
       for(int i=0; i<master->list_entity.size(); i++){
         utl::type::Entity* entity = *next(master->list_entity.begin(), i);
 
         if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-          ImGui::TableNextRow();
-          ImGui::TableNextColumn();
-
           ImGui::PushID(sensor->param.serial_number.c_str());
+
+          //Sensor type
+          ImGui::TableNextRow(); ImGui::TableNextColumn();
           ImGui::Text("Azur Kinect");
+
+          //Sensor ID
           ImGui::TableNextColumn();
           ImGui::Text("%d", sensor->param.index);
+
+          //Sensor serial number
           ImGui::TableNextColumn();
-          if (ImGui::Selectable(sensor->param.serial_number.c_str(), selected_device == i, ImGuiSelectableFlags_SpanAllColumns)){
-            sce_set->select_entity(master, sensor);
-            selected_device = i;
+          ImGui::Text("%s", sensor->param.serial_number.c_str());
+
+          //Sensor capture or not
+          ImGui::TableNextColumn();
+          if(sensor->param.is_capturing){
+            ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
+            ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(180, 100, 100, 255));
+            if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
+              sce_set->delete_entity(master, sensor);
+            }
+            ImGui::PopStyleColor(2);
+          }else{
+            ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 133, 100, 255));
+            ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 180, 100, 255));
+            if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
+              //sce_set->delete_entity(master, sensor);
+            }
+            ImGui::PopStyleColor(2);
           }
+
+
           ImGui::PopID();
         }
       }

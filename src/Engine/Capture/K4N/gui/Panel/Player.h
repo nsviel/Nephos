@@ -12,6 +12,7 @@ namespace k4n::gui{class Sensor;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
+namespace k4n::structure{class Struct_k4n;}
 
 
 namespace k4n::gui{
@@ -53,6 +54,7 @@ private:
   k4n::gui::Master* gui_master;
   k4n::gui::Sensor* gui_sensor;
   k4n::dev::Swarm* k4n_swarm;
+  k4n::structure::Struct_k4n* struct_k4n;
 
   bool* show_window;
   string name;

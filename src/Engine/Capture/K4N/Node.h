@@ -36,6 +36,7 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
+  inline k4n::structure::Struct_k4n* get_struct_k4n(){return struct_k4n;}
 
 private:
   //Dependancy

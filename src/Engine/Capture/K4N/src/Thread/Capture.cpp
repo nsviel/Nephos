@@ -54,10 +54,11 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   k4n_config->make_sensor_configuration(sensor);
   k4n_config->make_sensor_color_configuration(sensor);
   k4n_calibration->make_capture_calibration(sensor);
-  k4n_calibration->make_transformation_from_calibration(sensor);sayHello();
+  k4n_calibration->make_transformation_from_calibration(sensor);
   sensor->param.device.start_cameras(&sensor->param.configuration);
 
   //Start capture thread
+  sensor->param.is_capturing = true;
   this->thread_running = true;
   while(thread_running){
     //Next capture
@@ -78,6 +79,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   }
 
   sensor->param.device.close();
+  sensor->param.is_capturing = false;
 
   //---------------------------
   this->thread_idle = true;

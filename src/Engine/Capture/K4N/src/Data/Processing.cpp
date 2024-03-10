@@ -60,7 +60,11 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   //Triangulation
   tasker->task_begin("normal");
   utl::type::Data* data = sensor->get_data();
-  ope_normal->compute_normal_with_neighbors(data, sensor->master->operation.normal_knn);
+  // 3 bug :
+  // - start segmentation fault
+  // - depth to color transformation change
+  // - color heatmap (est parfois remplacer par rgb) / normal qui bug time to time
+  //ope_normal->compute_normal_with_neighbors(data, sensor->master->operation.normal_knn);
   //k4n_operation->compute_normal_from_depth_image(sensor);
   tasker->task_end("normal");
 

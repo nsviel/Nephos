@@ -22,6 +22,7 @@ struct Param{
   //General parameters
   int index = -1;
   bool data_ready = false;
+  bool is_capturing = false;
   float file_size = 0;
 
   //K4A objects

@@ -32,6 +32,7 @@ struct Struct_k4n{
   prf::Node* node_profiler;
 
   int UID = 0;
+  int nb_connected_sensor = 0;
   k4n::dev::Master* selected_master = nullptr;
   std::list<k4n::dev::Master*> list_master;
 
