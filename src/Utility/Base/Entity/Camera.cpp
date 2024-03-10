@@ -32,7 +32,7 @@ void Camera::reset_entity(){
   this->angle_elevation = -M_PI/6;
   this->fov = 65;
   this->velocity = 3;
-  this->clip_far = 100.0;
+  this->clip_far = 1000.0;
   this->clip_near = 0.01;
 
   this->player_mouse_sensibility = glm::vec2(0.003, 0.003);

@@ -52,12 +52,12 @@ void Panel::cam_parameter(){
   //Camera parameters
   ImGui::SliderFloat("FOV (°)", &camera->fov, 100.0f, 1.0f);
   if(camera->mode == CAMERA_MODE_PLAYER){
-    ImGui::DragFloatRange2("Sensibility", &camera->player_mouse_sensibility.x, &camera->arcball_mouse_sensibility.y, 0.01f, 0.01f, 10.0f, "%.2f", "%.2f", ImGuiSliderFlags_AlwaysClamp);
+    ImGui::DragFloatRange2("Sensibility", &camera->player_mouse_sensibility.x, &camera->arcball_mouse_sensibility.y, 0.01f, 0.01f, 10.0f, "X: %.2f", "Y: %.2f", ImGuiSliderFlags_AlwaysClamp);
   }
   if(camera->mode == CAMERA_MODE_ARCBALL){
-    ImGui::DragFloatRange2("Sensibility", &camera->arcball_mouse_sensibility.x, &camera->arcball_mouse_sensibility.y, 0.01f, 0.01f, 10.0f, "%.2f", "%.2f", ImGuiSliderFlags_AlwaysClamp);
+    ImGui::DragFloatRange2("Sensibility", &camera->arcball_mouse_sensibility.x, &camera->arcball_mouse_sensibility.y, 0.01f, 0.01f, 10.0f, "X: %.2f", "Y: %.2f", ImGuiSliderFlags_AlwaysClamp);
   }
-  ImGui::DragFloatRange2("Clip", &camera->clip_near, &camera->clip_far, 0.01f, 0.01f, 1000.0f, "%.2f", "%.2f", ImGuiSliderFlags_AlwaysClamp);
+  ImGui::DragFloatRange2("Clip", &camera->clip_near, &camera->clip_far, 0.01f, 0.01f, 1000.0f, "Near: %.2f", "Far: %.2f", ImGuiSliderFlags_AlwaysClamp);
   ImGui::Separator();
 
   //Camera mode
