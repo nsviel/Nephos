@@ -11,7 +11,7 @@ Command_buffer::Command_buffer(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
-  this->vk_thread = new vk::command::Allocator(struct_vulkan);
+  this->vk_allocator = new vk::command::Allocator(struct_vulkan);
   this->vk_uid = new vk::instance::UID(struct_vulkan);
   this->vk_query = new vk::instance::Query(struct_vulkan);
 
@@ -84,7 +84,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::Command_buffer* poo
   //---------------------------
 }
 void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data){
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.pool;
+  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&struct_vulkan->device.queue.transfer);
   //---------------------------
 
   //Command buffer allocation

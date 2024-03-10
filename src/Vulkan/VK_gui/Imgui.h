@@ -5,6 +5,7 @@
 
 namespace vk::instance{class Pool;}
 namespace vk::command{class Command_buffer;}
+namespace vk::command{class Allocator;}
 namespace vk::presentation{class Surface;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command_buffer;}
@@ -44,6 +45,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::structure::Command_buffer* command_buffer;
+  vk::command::Allocator* vk_allocator;
   vk::command::Command_buffer* vk_command_buffer;
   vk::instance::Pool* vk_pool;
   vk::presentation::Surface* vk_surface;

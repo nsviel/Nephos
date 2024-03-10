@@ -12,6 +12,7 @@ Imgui::Imgui(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_pool = new vk::instance::Pool(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
+  this->vk_allocator = new vk::command::Allocator(struct_vulkan);
   this->vk_surface = new vk::presentation::Surface(struct_vulkan);
   this->vk_texture = new vk::main::Texture(struct_vulkan);
 
@@ -202,7 +203,7 @@ void Imgui::select_font(){
 void Imgui::load_font(){
   //---------------------------
 
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.graphics.pool;
+  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&struct_vulkan->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
@@ -212,6 +213,7 @@ void Imgui::load_font(){
   vk::structure::Command* command = new vk::structure::Command();
   command->vec_command_buffer.push_back(command_buffer);
   struct_vulkan->queue.graphics->add_command(command);
+  vk_allocator->free_pool(pool);
 
   //---------------------------
 }

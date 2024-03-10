@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace vk::structure{class Vulkan;}
+namespace vk::structure{class Queue;}
 namespace vk::pool{class Command_buffer;}
 namespace vk::command{class Command_buffer;}
 namespace vk::instance{class Pool;}
@@ -22,6 +23,10 @@ public:
   void init();
   void reset();
   void clean();
+
+  //Subfunction
+  vk::pool::Command_buffer* query_free_pool(vk::structure::Queue* queue);
+  void free_pool(vk::pool::Command_buffer* pool);
 
 private:
   vk::structure::Vulkan* struct_vulkan;

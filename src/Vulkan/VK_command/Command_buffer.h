@@ -42,7 +42,7 @@ public:
 private:
   vk::structure::Vulkan* struct_vulkan;
   vk::synchro::Fence* vk_fence;
-  vk::command::Allocator* vk_thread;
+  vk::command::Allocator* vk_allocator;
   vk::instance::Query* vk_query;
   vk::instance::UID* vk_uid;
 };

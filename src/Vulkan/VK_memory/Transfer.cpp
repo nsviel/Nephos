@@ -12,6 +12,7 @@ Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
   this->vk_image = new vk::image::Image(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
+  this->vk_allocator = new vk::command::Allocator(struct_vulkan);
 
   //---------------------------
 }
@@ -33,7 +34,7 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
   vkUnmapMemory(struct_vulkan->device.handle, buffer->mem);
 
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.graphics.pool;
+  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&struct_vulkan->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "transfer::texture";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
@@ -43,6 +44,7 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
   vk_image->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   vk_command_buffer->end_command_buffer(command_buffer);
   struct_vulkan->queue.graphics->add_command_thread(command_buffer);
+  vk_allocator->free_pool(pool);
 
   //---------------------------
 }
@@ -108,7 +110,7 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Bu
   vkUnmapMemory(struct_vulkan->device.handle, stagger->mem);
 
   // Create command buffer to cpy on gpu
-  vk::pool::Command_buffer* pool = &struct_vulkan->device.queue.transfer.pool;
+  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&struct_vulkan->device.queue.transfer);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "transfer::data";
   if(command_buffer == nullptr) return;
@@ -121,6 +123,7 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Bu
 
   vk_command_buffer->end_command_buffer(command_buffer);
   struct_vulkan->queue.transfer->add_command(command_buffer);
+  vk_allocator->free_pool(pool);
 
   //---------------------------
 }

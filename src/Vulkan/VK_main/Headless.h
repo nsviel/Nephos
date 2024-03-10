@@ -79,7 +79,7 @@ private:
   vk::main::Imgui* vk_imgui;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;
-  vk::command::Allocator* vk_command_allocator;
+  vk::command::Allocator* vk_allocator;
   vk::queue::Manager* vk_queue;
 };
 

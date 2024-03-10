@@ -30,7 +30,7 @@ Graphical::Graphical(vk::structure::Vulkan* struct_vulkan){
   this->vk_imgui = new vk::main::Imgui(struct_vulkan);
   this->vk_fence = new vk::synchro::Fence(struct_vulkan);
   this->vk_semaphore = new vk::synchro::Semaphore(struct_vulkan);
-  this->vk_command_allocator = new vk::command::Allocator(struct_vulkan);
+  this->vk_allocator = new vk::command::Allocator(struct_vulkan);
   this->vk_queue = new vk::queue::Manager(struct_vulkan);
 
   //---------------------------
@@ -46,7 +46,7 @@ void Graphical::init(){
   vk_instance->init();
   vk_surface->init();
   vk_device->init();
-  vk_command_allocator->init();
+  vk_allocator->init();
   vk_queue->init();
   vk_pool->init();
   vk_fence->init_pool();
@@ -80,7 +80,7 @@ void Graphical::clean(){
   vk_data->clean();
   vk_fence->clean_pool();
   vk_semaphore->clean_pool();
-  vk_command_allocator->clean();
+  vk_allocator->clean();
   vk_pool->clean();
   vk_device->clean();
   vk_surface->clean();
