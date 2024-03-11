@@ -16,6 +16,7 @@ Texture::Texture(vk::structure::Vulkan* struct_vulkan){
   this->vk_buffer = new vk::data::Buffer(struct_vulkan);
   this->vk_mem_transfer = new vk::memory::Transfer(struct_vulkan);
   this->vk_uid = new vk::instance::UID(struct_vulkan);
+  this->vk_screenshot = new vk::image::Screenshot(struct_vulkan);
 
   //---------------------------
 }
@@ -67,37 +68,19 @@ void Texture::update_texture(utl::media::Image* utl_image){
   }
 
   vk_mem_transfer->copy_texture_to_gpu(texture);
+  vk_screenshot->export_image_to_jpeg(&texture->vk_image);
 
   //---------------------------
 }
-VkFormat Texture::find_texture_format(utl::media::Image* image){
-  VkFormat format;
+void Texture::export_texture(utl::media::Image* utl_image){
   //---------------------------
 
-  if(image->format == "R8G8B8A8_SRGB" || image->format == "MJPEG"){
-    format = VK_FORMAT_R8G8B8A8_SRGB;
-  }
-  else if(image->format == "B8G8R8A8_SRGB"){
-    format = VK_FORMAT_B8G8R8A8_SRGB;
-  }
-  else if(image->format == "R16_UNORM"){
-    format = VK_FORMAT_R16_UNORM;
-  }
-  else if(image->format == "R16_UINT"){
-    format = VK_FORMAT_R16_UINT;
-  }
-  else if(image->format == "R32_UINT"){
-    format = VK_FORMAT_R32_UINT;
-  }
-  else if(image->format == "R16UI"){
-    format = VK_FORMAT_R16_UINT;
-  }
-  else{
-    cout<<"[error] texture format not recognized [-> "<<image->format<<"]"<<endl;
-  }
+  vk::structure::Texture* texture = query_texture(utl_image->texture_ID);
+  if(texture == nullptr) return;
+
+  vk_screenshot->export_image_to_jpeg(&texture->vk_image);
 
   //---------------------------
-  return format;
 }
 int Texture::load_texture(utl::media::Image* utl_image){
   //---------------------------
@@ -132,6 +115,37 @@ int Texture::load_texture(utl::media::Image* utl_image){
 
   //---------------------------
   return texture->UID;
+}
+
+//Subfunction
+VkFormat Texture::find_texture_format(utl::media::Image* image){
+  VkFormat format;
+  //---------------------------
+
+  if(image->format == "R8G8B8A8_SRGB" || image->format == "MJPEG"){
+    format = VK_FORMAT_R8G8B8A8_SRGB;
+  }
+  else if(image->format == "B8G8R8A8_SRGB"){
+    format = VK_FORMAT_B8G8R8A8_SRGB;
+  }
+  else if(image->format == "R16_UNORM"){
+    format = VK_FORMAT_R16_UNORM;
+  }
+  else if(image->format == "R16_UINT"){
+    format = VK_FORMAT_R16_UINT;
+  }
+  else if(image->format == "R32_UINT"){
+    format = VK_FORMAT_R32_UINT;
+  }
+  else if(image->format == "R16UI"){
+    format = VK_FORMAT_R16_UINT;
+  }
+  else{
+    cout<<"[error] texture format not recognized [-> "<<image->format<<"]"<<endl;
+  }
+
+  //---------------------------
+  return format;
 }
 vk::structure::Texture* Texture::query_texture(int UID){
   list<vk::structure::Texture*>& list_vk_texture = struct_vulkan->data.list_vk_texture;

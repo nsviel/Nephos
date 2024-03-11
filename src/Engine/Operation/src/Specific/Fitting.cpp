@@ -1,6 +1,8 @@
 #include "Fitting.h"
 
 
+namespace ope::attribut{
+
 //Constructor / Destructor
 Fitting::Fitting(){
   //---------------------------
@@ -38,7 +40,7 @@ void Fitting::find_sphere(utl::type::Entity* entity, vec3& center, float& radius
     M22 += Y2Y2;
     R += (Y0Y0 + Y1Y1 + Y2Y2) * Y;
   }
-  R *= 0.5;
+  R *= 0.5f;
 
   // Solve the linear system M*(C-A) = R for the center C.
   float cof00 = M11 * M22 - M12 * M12;
@@ -49,22 +51,27 @@ void Fitting::find_sphere(utl::type::Entity* entity, vec3& center, float& radius
     float cof11 = M00 * M22 - M02 * M02;
     float cof12 = M01 * M02 - M00 * M12;
     float cof22 = M00 * M11 - M01 * M01;
-    center[0] = COM[0] + (cof00 * R[0] + cof01 * R[1] + cof02 * R[2]) / det;
-    center[1] = COM[1] + (cof01 * R[0] + cof11 * R[1] + cof12 * R[2]) / det;
-    center[2] = COM[2] + (cof02 * R[0] + cof12 * R[1] + cof22 * R[2]) / det;
+
+    vec3 temp_center;
+    temp_center[0] = COM[0] + (cof00 * R[0] + cof01 * R[1] + cof02 * R[2]) / det;
+    temp_center[1] = COM[1] + (cof01 * R[0] + cof11 * R[1] + cof12 * R[2]) / det;
+    temp_center[2] = COM[2] + (cof02 * R[0] + cof12 * R[1] + cof22 * R[2]) / det;
 
     float rsqr = 0.0f;
     for (int i=0; i<xyz.size(); i++){
-      vec3 delta = xyz[i] - center;
+      vec3 delta = xyz[i] - temp_center;
       rsqr += math::dot_product(delta, delta);
     }
-    rsqr *= (1/xyz.size());
+    rsqr *= (1.0f / xyz.size());
     radius = std::sqrt(rsqr);
+    center = temp_center;
   }
   else{
-     center = {0, 0, 0};
-     radius = 0;
+    center = {0, 0, 0};
+    radius = 0;
   }
 
   //------------------------
+}
+
 }

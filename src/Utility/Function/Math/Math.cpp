@@ -4,6 +4,16 @@
 namespace math{
 
 //Basic functions
+float distance(glm::vec3 pt1){
+  //Euclidean distance
+  float dist;
+  //---------------------------
+
+  dist = sqrt(pow(pt1.x, 2) + pow(pt1.y, 2) + pow(pt1.z, 2));
+
+  //---------------------------
+  return dist;
+}
 float compute_distance(glm::vec3 pt1, glm::vec3 pt2){
   //Euclidean distance
   float dist;

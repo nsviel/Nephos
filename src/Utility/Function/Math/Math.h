@@ -22,6 +22,7 @@ float compute_distance_origin(glm::vec3 pt1);
 float compute_distance(Eigen::Vector3f pt1, Eigen::Vector3f pt2);
 float dot_product(glm::vec3 vec_A, glm::vec3 vec_B);
 float compute_sum(std::vector<float>& vec);
+float distance(glm::vec3 point);
 double compute_distance_origin(Eigen::Vector3d pt1);
 double compute_distance(Eigen::Vector3d pt1, Eigen::Vector3d pt2);
 double compute_distance(Eigen::Vector4d pt1, Eigen::Vector4d pt2);

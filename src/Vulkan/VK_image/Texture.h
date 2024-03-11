@@ -10,6 +10,7 @@ namespace vk::structure{class Texture;}
 namespace vk::structure{class Object;}
 namespace vk::data{class Buffer;}
 namespace vk::instance{class UID;}
+namespace vk::image{class Screenshot;}
 
 
 namespace vk::main{
@@ -28,8 +29,11 @@ public:
   //Texture function
   void clean_texture(vk::structure::Object* vk_object);
   void update_texture(utl::media::Image* utl_image);
-  VkFormat find_texture_format(utl::media::Image* image);
+  void export_texture(utl::media::Image* utl_image);
   int load_texture(utl::media::Image* texture);
+  
+  //Subfunction
+  VkFormat find_texture_format(utl::media::Image* image);
   vk::structure::Texture* query_texture(int UID);
 
 private:
@@ -39,6 +43,7 @@ private:
   vk::data::Buffer* vk_buffer;
   vk::image::Image* vk_image;
   vk::instance::UID* vk_uid;
+  vk::image::Screenshot* vk_screenshot;
 };
 
 }

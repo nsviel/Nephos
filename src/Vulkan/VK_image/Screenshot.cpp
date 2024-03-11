@@ -13,7 +13,6 @@ Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
 
   this->struct_vulkan = struct_vulkan;
   this->vk_image = new vk::image::Image(struct_vulkan);
-  this->vk_texture = new vk::main::Texture(struct_vulkan);
   this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
   this->vk_command_allocator = new vk::command::Allocator(struct_vulkan);
   this->vk_mem_transfer = new vk::memory::Transfer(struct_vulkan);
@@ -24,7 +23,7 @@ Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
 Screenshot::~Screenshot(){}
 
 //Main function
-void Screenshot::make_screenshot(vk::structure::Image* image){
+void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   //---------------------------
 
   //Create stagging buffer
@@ -52,6 +51,7 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
 
   VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
   VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
+  if(bufferSize == 0) return;
 
   // 3. Save staging buffer data to file
   void* mappedData;
@@ -60,7 +60,7 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
   std::string filename = "output.jpg";  // Adjust the file name and format as needed
   if (stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
     throw std::runtime_error("Failed to write PNG file!");
-}
+  }
   vkUnmapMemory(struct_vulkan->device.handle, staging_mem);
 
   //Free memory
@@ -69,7 +69,7 @@ void Screenshot::make_screenshot(vk::structure::Image* image){
 
   //---------------------------
 }
-void Screenshot::save_to_bin(vk::structure::Image* image){
+void Screenshot::export_image_to_binary(vk::structure::Image* image){
   //---------------------------
 
   //Create stagging buffer
@@ -161,10 +161,19 @@ VkDeviceSize Screenshot::calculate_image_size(VkFormat format, VkExtent3D extent
     case VK_FORMAT_R8G8B8A8_UNORM:
       bytesPerPixel = 4;
       break;
-    // Add more cases for other formats as needed
+    case VK_FORMAT_B8G8R8A8_UNORM:
+      bytesPerPixel = 4;
+      break;
+    case VK_FORMAT_B8G8R8A8_SRGB:
+      bytesPerPixel = 4;
+      break;
+    case VK_FORMAT_R8G8B8A8_SRGB:
+      bytesPerPixel = 4;
+      break;
 
     default:
       throw std::runtime_error("Unsupported image format");
+      return 0;
   }
 
   // Calculate the size of the image buffer

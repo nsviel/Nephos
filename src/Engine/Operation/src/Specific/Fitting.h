@@ -3,6 +3,8 @@
 #include <Utility/Specific/common.h>
 
 
+namespace ope::attribut{
+
 class Fitting
 {
 public:
@@ -15,3 +17,5 @@ public:
 
 private:
 };
+
+}
