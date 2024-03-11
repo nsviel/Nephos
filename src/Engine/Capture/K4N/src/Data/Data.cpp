@@ -45,7 +45,6 @@ void Data::run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
 
   //Retrieve data from capture
   this->find_data_from_capture(sensor, capture);
-  delete capture;
 
   //Convert data into cloud
   k4a_cloud->start_thread(sensor);
@@ -105,6 +104,7 @@ void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture* captur
   //---------------------------
 }
 void Data::find_data_depth(k4n::dev::Sensor* sensor, k4a::capture* capture){
+  sensor->depth.data = {};
   //---------------------------
 
   //Get k4a image
@@ -125,6 +125,7 @@ void Data::find_data_depth(k4n::dev::Sensor* sensor, k4a::capture* capture){
   //---------------------------
 }
 void Data::find_data_color(k4n::dev::Sensor* sensor, k4a::capture* capture){
+  sensor->color.data = {};
   //---------------------------
 
   //Get k4a image
@@ -144,6 +145,7 @@ void Data::find_data_color(k4n::dev::Sensor* sensor, k4a::capture* capture){
   //---------------------------
 }
 void Data::find_data_ir(k4n::dev::Sensor* sensor, k4a::capture* capture){
+  sensor->ir.data = {};
   //---------------------------
 
   //Get k4a image
@@ -166,6 +168,9 @@ void Data::find_data_ir(k4n::dev::Sensor* sensor, k4a::capture* capture){
 
 //Transformed data
 void Data::find_data_cloud(k4n::dev::Sensor* sensor, k4a::capture* capture){
+  sensor->color.cloud = {};
+  sensor->ir.cloud = {};
+  sensor->depth.cloud = {};
   //---------------------------
 
   switch(sensor->master->operation.transformation_mode){

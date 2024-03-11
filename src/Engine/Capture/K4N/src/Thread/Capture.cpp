@@ -64,6 +64,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     //Next capture
     tasker->loop_begin();
     k4a::capture* capture = manage_capture(sensor);
+    this->manage_capture(capture);
     if(capture == nullptr){
       continue;
     }
@@ -163,6 +164,16 @@ void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
     recorder.flush();
     recorder.close();
   }
+
+  //---------------------------
+}
+void Capture::manage_capture(k4a::capture* capture){
+  static k4a::capture* capture_old = nullptr;
+  //---------------------------
+
+  k4a_data->wait_thread_idle();
+  delete capture_old;
+  capture_old = capture;
 
   //---------------------------
 }
