@@ -88,14 +88,15 @@ void Capture::list_device(k4n::dev::Master* master){
             ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
             ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(180, 100, 100, 255));
             if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-              sce_set->delete_entity(master, sensor);
+              sensor->stop_threads();
+              sensor->reset_entity();
             }
             ImGui::PopStyleColor(2);
           }else{
             ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 133, 100, 255));
             ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 180, 100, 255));
             if(ImGui::Button(ICON_FA_CIRCLE "##399")){
-              //sce_set->delete_entity(master, sensor);
+              sensor->run_capture();
             }
             ImGui::PopStyleColor(2);
           }

@@ -109,7 +109,8 @@ void Sensor::set_visibility(bool value){
 void Sensor::reset_entity(){
   //---------------------------
 
-  object.reset_entity();
+  this->remove_entity();
+  this->init();
 
   //---------------------------
 }

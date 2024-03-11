@@ -50,21 +50,22 @@ void Swarm::create_sensor_playback(utl::file::Path path){
   master->player_update();
   sce_database->assign_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, path.transformation);
+  struct_k4n->list_sensor.push_back(sensor);
 
   //---------------------------
 }
-void Swarm::create_sensor_capture(){
+void Swarm::create_sensor_capture(string serial_number, int index){
   //---------------------------
 
   //Associated master
   this->close_master("Playback");
   k4n::dev::Master* master = get_or_create_capture_master("Capture");
-  int index = sce_set->compute_number_entity(master);
 
   //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
   sensor->name = "capture_" + to_string(index);
   sensor->param.index = index;
+  sensor->param.serial_number = serial_number;
   sensor->master = master;
 
   //Sensor initialization
@@ -73,6 +74,7 @@ void Swarm::create_sensor_capture(){
   sce_database->assign_UID(sensor);
   k4n_transfo->apply_transformation_capture(sensor);
   sensor->run_capture();
+  struct_k4n->list_sensor.push_back(sensor);
 
   //---------------------------
 }

@@ -25,7 +25,7 @@ public:
 public:
   //Sensor function
   void create_sensor_playback(utl::file::Path path);
-  void create_sensor_capture();
+  void create_sensor_capture(string serial_number, int index);
 
   //Master function
   void manage_resynchronization();
