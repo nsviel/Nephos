@@ -73,7 +73,7 @@ void Swarm::create_sensor_capture(string serial_number, int index){
   master->insert_sensor(sensor);
   sce_database->assign_UID(sensor);
   k4n_transfo->apply_transformation_capture(sensor);
-  sensor->run_capture();
+  sensor->run_thread_capture();
   struct_k4n->list_sensor.push_back(sensor);
 
   //---------------------------
@@ -189,8 +189,19 @@ k4n::dev::Master* Swarm::get_master_by_name(string name){
 k4n::dev::Master* Swarm::get_selected_master(){
   return struct_k4n->selected_master;
 }
-list<k4n::dev::Master*>& Swarm::get_list_master(){
-  return struct_k4n->list_master;
+int Swarm::get_number_running_thread(){
+  int nb_thread = 0;
+  //---------------------------
+
+  for(int i=0; i<struct_k4n->list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *std::next(struct_k4n->list_sensor.begin(), i);
+    if(sensor->is_thread_running()){
+      nb_thread++;
+    }
+  }
+
+  //---------------------------
+  return nb_thread;
 }
 
 }

@@ -32,11 +32,11 @@ public:
   void close_all_master();
   void close_master(string name);
   void close_master(k4n::dev::Master* master);
+  int get_number_running_thread();
   k4n::dev::Master* get_or_create_playback_master(string name);
   k4n::dev::Master* get_or_create_capture_master(string name);
   k4n::dev::Master* get_master_by_name(string name);
   k4n::dev::Master* get_selected_master();
-  list<k4n::dev::Master*>& get_list_master();
 
 private:
   prf::Manager* profiler;

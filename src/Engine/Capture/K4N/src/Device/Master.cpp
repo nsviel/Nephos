@@ -75,7 +75,7 @@ void Master::manage_restart_thread(){
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       sensor->stop_threads();
-      sensor->run_capture();
+      sensor->run_thread_capture();
     }
   }
 
@@ -170,7 +170,7 @@ void Master::player_update(){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      sensor->run_playback(sensor->param.path.data);
+      sensor->run_thread_playback(sensor->param.path.data);
     }
   }
 

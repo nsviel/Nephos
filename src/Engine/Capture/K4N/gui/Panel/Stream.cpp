@@ -36,7 +36,7 @@ void Stream::run_panel(){
   k4n::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
-  if(*show_window && master != nullptr && master->nb_entity != 0){
+  if(*show_window && master != nullptr && k4n_swarm->get_number_running_thread() != 0){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::SetNextWindowSizeConstraints(ImVec2(100, 400), ImVec2(FLT_MAX, FLT_MAX));

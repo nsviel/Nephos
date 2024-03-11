@@ -13,6 +13,7 @@ Capture::Capture(k4n::Node* node_k4n){
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->k4n_config = new k4n::config::Configuration();
+  this->k4n_struct = node_k4n->get_struct_k4n();
   this->sce_set = new eng::scene::Set();
 
   this->item_width = 100;
@@ -52,7 +53,7 @@ void Capture::list_device(k4n::dev::Master* master){
   flags |= ImGuiTableFlags_Borders;
   flags |= ImGuiTableFlags_RowBg;
   if(ImGui::BeginTable("database_view", 4, flags)){
-    if(k4n_swarm->get_list_master().size() == 0){
+    if(k4n_struct->list_master.size() == 0){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       ImGui::TableNextColumn();
@@ -88,7 +89,6 @@ void Capture::list_device(k4n::dev::Master* master){
             ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
             ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(180, 100, 100, 255));
             if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-              sensor->stop_threads();
               sensor->reset_entity();
             }
             ImGui::PopStyleColor(2);
@@ -96,7 +96,7 @@ void Capture::list_device(k4n::dev::Master* master){
             ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 133, 100, 255));
             ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 180, 100, 255));
             if(ImGui::Button(ICON_FA_CIRCLE "##399")){
-              sensor->run_capture();
+              sensor->run_thread_capture();
             }
             ImGui::PopStyleColor(2);
           }
