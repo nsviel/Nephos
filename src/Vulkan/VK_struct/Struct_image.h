@@ -11,7 +11,7 @@ struct Image{
   //---------------------------
 
   //General info
-  std::string name;
+  std::string name = "";
   int channel_nb = 4;
   int channel_byte = 1;
 

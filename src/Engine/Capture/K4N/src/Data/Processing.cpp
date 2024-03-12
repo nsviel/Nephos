@@ -49,6 +49,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   tasker->task_end("colorization");
 
   //Sphere fitting
+  /*
   tasker->task_begin("fitting::sphere");
   vec3 center;
   float radius;
@@ -57,6 +58,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   say(radius);
   say(math::distance(center));
   tasker->task_end("fitting::sphere");
+  */
 
   //Voxelization filtering
   tasker->task_begin("voxel");

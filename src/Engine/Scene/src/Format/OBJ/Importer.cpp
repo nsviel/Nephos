@@ -189,7 +189,6 @@ void Importer::fill_data_file(utl::file::Entity* data, std::vector<Vertex>& vert
     data->draw_type = utl::topology::POINT;
   }
 
-
   //---------------------------
 }
 

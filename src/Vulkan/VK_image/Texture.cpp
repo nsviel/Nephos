@@ -38,37 +38,33 @@ void Texture::clean(){
 }
 
 //Texture function
-void Texture::clean_texture(vk::structure::Object* vk_object){
+void Texture::import_texture(utl::media::Image* utl_image){
   //---------------------------
 
-  for(auto it = vk_object->list_vk_texture.begin(); it != vk_object->list_vk_texture.end();){
-    vk::structure::Texture* texture = *it;
-
-    vk_image->clean_image(&texture->vk_image);
-    vk_buffer->clean_buffer(&texture->stagger);
-
-    //delete texture;
-    //it = vk_object->list_vk_texture.erase(it);
+  //Input image checks
+  if(utl_image->format == ""){
+    cout<<"[error] no texture format found"<<endl;
+    return;
   }
-
-  //---------------------------
-}
-void Texture::update_texture(utl::media::Image* utl_image){
-  //---------------------------
-
-  vk::structure::Texture* texture = query_texture(utl_image->texture_ID);
-  if(texture == nullptr) return;
-
-  texture->utl_image = utl_image;
-
-  //Check if size hasn't changed
-  if(texture->stagger.size != texture->utl_image->size){
-    texture = nullptr;
+  if(utl_image->width == 0 || utl_image->height == 0){
+    cout<<"[error] texture width or height: "<<utl_image->width<<"/"<<utl_image->height<<endl;
     return;
   }
 
-  vk_mem_transfer->copy_texture_to_gpu(texture);
-  vk_screenshot->export_image_to_jpeg(&texture->vk_image);
+  //Check if texture already exists
+  vk::structure::Texture* texture = query_texture(utl_image->texture_ID);
+
+  //If the texture doesn't exists, create it
+  if(texture == nullptr){
+    texture = new vk::structure::Texture();
+    texture->utl_image = utl_image;
+    this->create_texture(texture);
+  }
+  //Else update it
+  else{
+    texture->utl_image = utl_image;
+    this->update_texture(texture);
+  }
 
   //---------------------------
 }
@@ -82,42 +78,66 @@ void Texture::export_texture(utl::media::Image* utl_image){
 
   //---------------------------
 }
-int Texture::load_texture(utl::media::Image* utl_image){
+void Texture::clean_texture(vk::structure::Texture* texture){
   //---------------------------
 
-  if(utl_image->format == ""){
-    cout<<"[error] no texture format found"<<endl;
-    return 0;
+  vk_image->clean_image(&texture->vk_image);
+  vk_buffer->clean_buffer(&texture->stagger);
+  texture = {};
+  delete texture;
+
+  //---------------------------
+}
+
+//Texture subfunction
+void Texture::update_texture(vk::structure::Texture* texture){
+  //---------------------------
+
+  //Check if size hasn't changed
+  if(texture->stagger.size < texture->utl_image->size){
+    this->clean_texture(texture);
+    return;
   }
 
+  vk_mem_transfer->copy_texture_to_gpu(texture);
+
+  //---------------------------
+}
+void Texture::create_texture(vk::structure::Texture* texture){
+  //---------------------------
+
   //Create texture container
-  vk::structure::Texture* texture = new vk::structure::Texture();
-  texture->utl_image = utl_image;
   texture->UID = vk_uid->query_free_UID();
+  texture->utl_image->texture_ID = texture->UID;
 
   //Create associated vk_image
   vk::structure::Image* image = &texture->vk_image;
-  image->width = utl_image->width;
-  image->height = utl_image->height;
-  image->format = find_texture_format(utl_image);
+  image->width = texture->utl_image->width;
+  image->height = texture->utl_image->height;
+  image->format = find_texture_format(texture->utl_image);
   image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
-
   vk_image->create_image(image);
 
-  //Create associated buffer
-  vk::structure::Buffer* buffer = &texture->stagger;
-  vk_mem_allocator->allocate_empty_stagger_buffer(buffer, utl_image->size);
-
-  //Fill and store
+  //Make associated operation
+  vk_mem_allocator->allocate_empty_stagger_buffer(&texture->stagger, texture->utl_image->size);
   vk_mem_transfer->copy_texture_to_gpu(texture);
   struct_vulkan->data.list_vk_texture.push_back(texture);
 
   //---------------------------
-  return texture->UID;
 }
 
 //Subfunction
+void Texture::clean_texture(vk::structure::Object* vk_object){
+  //---------------------------
+
+  for(auto it = vk_object->list_vk_texture.begin(); it != vk_object->list_vk_texture.end();){
+    vk::structure::Texture* texture = *it;
+    this->clean_texture(texture);
+  }
+
+  //---------------------------
+}
 VkFormat Texture::find_texture_format(utl::media::Image* image){
   VkFormat format;
   //---------------------------

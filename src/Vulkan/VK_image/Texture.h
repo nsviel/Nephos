@@ -27,11 +27,15 @@ public:
   void clean();
 
   //Texture function
-  void clean_texture(vk::structure::Object* vk_object);
-  void update_texture(utl::media::Image* utl_image);
+  void import_texture(utl::media::Image* utl_image);
   void export_texture(utl::media::Image* utl_image);
-  int load_texture(utl::media::Image* texture);
-  
+  void clean_texture(vk::structure::Texture* texture);
+
+  //Texture subfunction
+  void clean_texture(vk::structure::Object* vk_object);
+  void update_texture(vk::structure::Texture* texture);
+  void create_texture(vk::structure::Texture* texture);
+
   //Subfunction
   VkFormat find_texture_format(utl::media::Image* image);
   vk::structure::Texture* query_texture(int UID);
