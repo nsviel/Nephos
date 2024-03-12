@@ -32,13 +32,18 @@ struct Operation{
   glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
 
   //Voxelization
-  bool voxelization = false;
+  bool voxel = false;
   float voxel_size = 0.25;
   int voxel_min_point = 100;
 
   //Normal
+  bool normal = false;
   bool normal_visible = false;
   int normal_knn = 2;
+
+  //Export
+  bool export_cloud = false;
+  string export_dir_path = "";
 
   //---------------------------
 };

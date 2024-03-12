@@ -28,8 +28,10 @@ public:
   //Processing function
   void show_transformation(k4n::dev::Master* master);
   void show_colorization(k4n::dev::Master* master);
+  void show_possible_ope(k4n::dev::Master* master);
   void show_voxelization(k4n::dev::Master* master);
   void show_normal(k4n::dev::Master* master);
+  void show_exportation(k4n::dev::Master* master);
 
 private:
   k4n::Node* node_k4n;

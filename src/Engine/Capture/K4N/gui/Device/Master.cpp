@@ -74,11 +74,13 @@ void Master::show_operation(k4n::dev::Master* master){
   //---------------------------
 
   ImGui::SetNextItemWidth(75);
-  if(ImGui::BeginTabItem("Operation##3443", NULL)){
+  if(ImGui::BeginTabItem("Operation##tab_item", NULL)){
     this->show_transformation(master);
     this->show_colorization(master);
+    this->show_possible_ope(master);
     this->show_voxelization(master);
     this->show_normal(master);
+    this->show_exportation(master);
     ImGui::EndTabItem();
   }
 
@@ -153,18 +155,33 @@ void Master::show_colorization(k4n::dev::Master* master){
   //---------------------------
   ImGui::Separator();
 }
-void Master::show_voxelization(k4n::dev::Master* master){
+void Master::show_possible_ope(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
-  if(!master->operation.voxelization) return;
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Operation");
+  ImGui::Checkbox("Normal##34", &master->operation.normal);
+  ImGui::SameLine();
+  ImGui::Checkbox("Voxel##33", &master->operation.voxel);
+  ImGui::SameLine();
+  ImGui::Checkbox("Export##35", &master->operation.export_cloud);
+
+  //---------------------------
+  ImGui::Separator();
+}
+void Master::show_voxelization(k4n::dev::Master* master){
+  if(master == nullptr) return;
+  if(!master->operation.voxel) return;
+  //---------------------------
+
+  //Activated
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Voxel");
 
-  //Voxel size
+  //Parameter: Voxel size
   ImGui::SetNextItemWidth(100);
   ImGui::SliderFloat("Size", &master->operation.voxel_size, 0.1, 5, "%.2f");
 
-  //Voxel minimal number of points
+  //Parameter: Voxel minimal number of points
   ImGui::SetNextItemWidth(100);
   ImGui::SliderInt("Minimum point", &master->operation.voxel_min_point, 1, 1000);
 
@@ -173,17 +190,39 @@ void Master::show_voxelization(k4n::dev::Master* master){
 }
 void Master::show_normal(k4n::dev::Master* master){
   if(master == nullptr) return;
+  if(!master->operation.normal) return;
   //---------------------------
 
+  //Activated
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
 
+  //Visibility
   if(ImGui::Checkbox("Visible##2242", &master->operation.normal_visible)){
     master->visibility_normal();
   }
-  ImGui::SameLine();
 
+  //Parameter: kNN
+  ImGui::SameLine();
   ImGui::SetNextItemWidth(100);
   ImGui::SliderInt("kNN", &master->operation.normal_knn, 1, 10);
+
+  //---------------------------
+  ImGui::Separator();
+}
+void Master::show_exportation(k4n::dev::Master* master){
+  if(master == nullptr) return;
+  if(!master->operation.export_cloud) return;
+  //---------------------------
+
+  //Activated
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Export");
+
+  //Directory path
+  ImGui::Text("Directory path");
+  ImGui::SameLine();
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+  string path = (master->operation.export_dir_path != "") ? master->operation.export_dir_path : "(not defined)";
+  ImGui::TextColored(color, "%s", path.c_str());
 
   //---------------------------
   ImGui::Separator();
