@@ -51,19 +51,17 @@ void Texture::import_texture(utl::media::Image* utl_image){
     return;
   }
 
-  //Check if texture already exists
+  //If the texture exists, update it
   vk::structure::Texture* texture = query_texture(utl_image->texture_ID);
-
-  //If the texture doesn't exists, create it
-  if(texture == nullptr){
+  if(texture != nullptr){
+    texture->utl_image = utl_image;
+    this->update_texture(texture);
+  }
+  //Else create it
+  else{
     texture = new vk::structure::Texture();
     texture->utl_image = utl_image;
     this->create_texture(texture);
-  }
-  //Else update it
-  else{
-    texture->utl_image = utl_image;
-    this->update_texture(texture);
   }
 
   //---------------------------
