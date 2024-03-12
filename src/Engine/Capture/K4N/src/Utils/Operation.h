@@ -19,7 +19,6 @@ public:
 public:
   //Data operation
   void make_normal_from_depth_image(k4n::dev::Sensor* sensor);
-  void make_cloud_export(k4n::dev::Sensor* sensor);
 
   //Player operation
   float find_mkv_ts_beg(string path);

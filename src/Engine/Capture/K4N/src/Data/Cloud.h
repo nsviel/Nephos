@@ -8,6 +8,7 @@ namespace k4n{class Node;}
 namespace k4n::data{class Processing;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
+namespace k4n::structure{class Struct_k4n;}
 
 
 namespace k4n::data{
@@ -16,7 +17,7 @@ class Cloud
 {
 public:
   //Constructor / Destructor
-  Cloud();
+  Cloud(k4n::structure::Struct_k4n* struct_k4n);
   ~Cloud();
 
 public:

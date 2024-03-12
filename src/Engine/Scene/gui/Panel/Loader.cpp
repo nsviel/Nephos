@@ -135,7 +135,7 @@ void Loader::draw_file_header(){
   //---------------------------
 }
 void Loader::draw_file_content(){
-  vector<string> vec_current_files = utl::fct::directory::list_all_path(current_dir);
+  vector<string> vec_current_files = directory::list_all_path(current_dir);
   //---------------------------
 
   static ImGuiTableFlags flags;
@@ -166,7 +166,7 @@ void Loader::draw_file_content(){
 
       //Get file info
       item.ID = ID++;
-      item.type = utl::fct::directory::is_dir_or_file(file);
+      item.type = directory::is_dir_or_file(file);
       if(item.type == "directory"){
         item.name = utl::fct::info::get_filename_from_path(file);
         item.path = file;
@@ -408,7 +408,7 @@ void Loader::operation_selection(string file_path){
   //---------------------------
 
   //If selection is a directory go display his content
-  if(utl::fct::directory::is_directory(file_path)){
+  if(directory::is_directory(file_path)){
     this->current_dir = file_path;
     this->goto_file_tab = true;
   }

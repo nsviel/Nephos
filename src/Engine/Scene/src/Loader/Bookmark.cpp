@@ -42,8 +42,8 @@ void Bookmark::add_abs_path(string path){
   Item item;
   item.path = path;
   item.name = utl::fct::info::get_name_from_path(path);
-  item.icon = utl::fct::directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
-  item.color_icon = utl::fct::directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+  item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
+  item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = true;
 
   this->list_bookmark.push_back(item);
@@ -57,8 +57,8 @@ void Bookmark::add_relative_path(string path){
   Item item;
   item.path = utl::fct::file::get_absolute_path(path);
   item.name = utl::fct::info::get_name_from_path(path);
-  item.icon = utl::fct::directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
-  item.color_icon = utl::fct::directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+  item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
+  item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = false;
 
   this->list_bookmark.push_back(item);

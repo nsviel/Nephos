@@ -9,7 +9,7 @@
 namespace k4n::data{
 
 //Constructor / Destructor
-Processing::Processing(){
+Processing::Processing(k4n::structure::Struct_k4n* struct_k4n){
   //---------------------------
 
   this->ope_voxelizer = new ope::Voxelizer();
@@ -18,6 +18,7 @@ Processing::Processing(){
   this->ope_normal = new ope::attribut::Normal();
   this->ope_fitting = new ope::attribut::Fitting();
   this->k4n_operation = new k4n::utils::Operation();
+  this->k4n_recorder = new k4n::utils::Recorder(struct_k4n);
   this->thread = std::thread([](){});
 
   //---------------------------
@@ -91,7 +92,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   //Export
   if(master->operation.export_cloud){
     tasker->task_begin("export");
-    k4n_operation->make_cloud_export(sensor);
+    k4n_recorder->make_cloud_export(sensor);
     tasker->task_end("export");
   }
 

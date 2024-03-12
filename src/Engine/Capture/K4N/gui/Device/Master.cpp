@@ -233,7 +233,7 @@ void Master::show_exportation(k4n::dev::Master* master){
   //Filename
   ImGui::Text("Count");
   ImGui::SameLine();
-  int nb_file = utl::fct::directory::get_number_file(master->operation.export_path_dir);
+  int nb_file = directory::get_number_file(master->operation.export_path_dir);
   ImGui::TextColored(color, "%d", nb_file);
 
   //---------------------------

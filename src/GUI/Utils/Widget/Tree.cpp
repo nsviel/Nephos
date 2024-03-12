@@ -99,7 +99,7 @@ void Tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>& nod
   //---------------------------
 }
 void Tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* parent){
-  vector<string> list_path = utl::fct::directory::list_all_path(path);
+  vector<string> list_path = directory::list_all_path(path);
   //---------------------------
 
   bool is_sub_folder = false;

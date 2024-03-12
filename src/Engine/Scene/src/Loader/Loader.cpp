@@ -43,7 +43,7 @@ utl::type::Set* Loader::load_data(utl::file::Path path){
   //Data is an entity
   switch(data->type){
     case utl::file::ENTITY:{
-      set = load_object(data);
+      set = load_entity(data);
       break;
     }
     case utl::file::SET:{
@@ -60,7 +60,7 @@ utl::type::Set* Loader::load_data(utl::file::Path path){
 }
 
 //Data function
-utl::type::Set* Loader::load_object(utl::file::Data* data){
+utl::type::Set* Loader::load_entity(utl::file::Data* data){
   //---------------------------
 
   utl::type::Set* set_scene = sce_database->get_set_scene();

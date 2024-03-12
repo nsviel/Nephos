@@ -11,6 +11,7 @@ namespace k4n::data{class Data;}
 namespace k4n::config{class Configuration;}
 namespace k4n::config{class Calibration;}
 namespace k4n::utils{class Operation;}
+namespace k4n::structure{class Struct_k4n;}
 
 
 namespace k4n::thread{
@@ -19,7 +20,7 @@ class Playback
 {
 public:
   //Constructor / Destructor
-  Playback();
+  Playback(k4n::structure::Struct_k4n* struct_k4n);
   ~Playback();
 
 public:

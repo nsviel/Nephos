@@ -25,7 +25,7 @@ public:
   utl::type::Set* load_data(utl::file::Path path);
 
   //Data function
-  utl::type::Set* load_object(utl::file::Data* data);
+  utl::type::Set* load_entity(utl::file::Data* data);
   utl::type::Set* load_set(utl::file::Data* data);
 
   //Subfunction

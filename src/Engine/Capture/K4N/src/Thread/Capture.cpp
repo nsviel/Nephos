@@ -7,11 +7,10 @@
 namespace k4n::thread{
 
 //Constructor / Destructor
-Capture::Capture(){
+Capture::Capture(k4n::structure::Struct_k4n* struct_k4n){
   //---------------------------
 
-  this->k4a_data = new k4n::data::Data();
-  this->k4a_cloud = new k4n::data::Cloud();
+  this->k4a_data = new k4n::data::Data(struct_k4n);
   this->k4n_config = new k4n::config::Configuration();
   this->k4n_calibration = new k4n::config::Calibration();
 

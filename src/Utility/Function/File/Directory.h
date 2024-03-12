@@ -18,7 +18,7 @@
 #include <experimental/filesystem>
 
 
-namespace utl::fct::directory{
+namespace directory{
   //---------------------------
 
   //Directory operations

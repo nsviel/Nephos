@@ -73,19 +73,6 @@ data->Nxyz = Nxyz;
 */
   //---------------------------
 }
-void Operation::make_cloud_export(k4n::dev::Sensor* sensor){
-  string& path_dir = sensor->master->operation.export_path_dir;
-  //---------------------------
-
-  //Check if directory exists, if not create it
-  if(!utl::fct::directory::is_dir_exist(path_dir)){
-    utl::fct::directory::create_new(path_dir);
-  }
-
-
-
-  //---------------------------
-}
 
 //Player operation
 float Operation::find_mkv_ts_beg(string path){

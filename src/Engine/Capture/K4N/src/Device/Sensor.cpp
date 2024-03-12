@@ -18,8 +18,8 @@ Sensor::Sensor(k4n::structure::Struct_k4n* struct_k4n){
   this->node_engine = struct_k4n->node_engine;
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_glyph = node_scene->get_scene_glyph();
-  this->k4n_capture = new k4n::thread::Capture();
-  this->k4n_playback = new k4n::thread::Playback();
+  this->k4n_capture = new k4n::thread::Capture(struct_k4n);
+  this->k4n_playback = new k4n::thread::Playback(struct_k4n);
 
   this->entity_type = "k4n::device::Sensor";
   this->icon = ICON_FA_CAMERA_RETRO;

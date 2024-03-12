@@ -9,11 +9,11 @@
 namespace k4n::data{
 
 //Constructor / Destructor
-Cloud::Cloud(){
+Cloud::Cloud(k4n::structure::Struct_k4n* struct_k4n){
   //---------------------------
 
   this->k4n_operation = new k4n::utils::Operation();
-  this->k4n_processing = new k4n::data::Processing();
+  this->k4n_processing = new k4n::data::Processing(struct_k4n);
   this->thread = std::thread([](){});
 
   //---------------------------
