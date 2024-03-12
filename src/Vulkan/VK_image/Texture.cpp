@@ -81,6 +81,7 @@ void Texture::clean_texture(vk::structure::Texture* texture){
 
   vk_image->clean_image(&texture->vk_image);
   vk_buffer->clean_buffer(&texture->stagger);
+  texture->utl_image->texture_ID = -1;
   texture = {};
   delete texture;
 

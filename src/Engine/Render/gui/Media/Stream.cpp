@@ -41,8 +41,8 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image){
     vk_imgui->load_texture(utl_image);
   //update texture data
   }else if(utl_image->new_data){
-    //vk_texture->import_texture(utl_image);
-    //utl_image->new_data = false;
+    vk_texture->import_texture(utl_image);
+    utl_image->new_data = false;
   }
 
   //---------------------------
@@ -51,7 +51,7 @@ void Stream::render_image(utl::media::Image* utl_image, ImVec2& size){
   if(utl_image->texture_ID == -1) return;
   //---------------------------
 
-  ImGui::Image(utl_image->gui_ID, size);
+  ImGui::Image(utl_image->gui_texture_ID, size);
 
   //---------------------------
 }
