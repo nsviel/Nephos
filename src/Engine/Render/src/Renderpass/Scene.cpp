@@ -117,7 +117,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
 
     if(is_visible && has_topology && has_xyz && has_rgb){
       vk_uniform->update_uniform("mvp", &vk_object->binding, vk_object->pose->mvp);
-      vk_uniform->update_uniform("point_size", &vk_object->binding, vk_object->data->width);
+      vk_uniform->update_uniform("point_size", &vk_object->binding, vk_object->data->topology.width);
 
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, vk_object->binding.descriptor.set);
       vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_object);

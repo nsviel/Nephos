@@ -217,19 +217,19 @@ void Entity::primitive_line(utl::type::Data* data){
   ImGui::Text("Line width"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    data->width--;
+    data->topology.width--;
 
-    if(data->width <= 1){
-      data->width = 1;
+    if(data->topology.width <= 1){
+      data->topology.width = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    data->width++;
+    data->topology.width++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", data->width);
+  ImGui::Text("%d", data->topology.width);
 
   //---------------------------
 }
@@ -253,19 +253,19 @@ void Entity::primitive_point(utl::type::Data* data){
   ImGui::Text("Point size"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    data->width--;
+    data->topology.width--;
 
-    if(data->width <= 1){
-      data->width = 1;
+    if(data->topology.width <= 1){
+      data->topology.width = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    data->width++;
+    data->topology.width++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", data->width);
+  ImGui::Text("%d", data->topology.width);
 
   //---------------------------
 }

@@ -57,7 +57,13 @@ void Data::update_data(utl::type::Data* data, vk::structure::Object* vk_object){
 
   vk_object->data = data;
   this->check_data(vk_object);
-  vk_buffer->update_buffer(vk_object);
+
+  //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
+  if(vk_object->buffer.xyz.mem == 0){
+    vk_buffer->create_buffers(vk_object);
+  }else{
+    vk_buffer->update_buffer(vk_object);
+  }
 
   //---------------------------
 }
