@@ -45,13 +45,13 @@ namespace utl::fct::directory{
     dp = opendir (path.c_str());
 
     if (dp != NULL){
-     while (ep = readdir (dp)){
-       i++;
-     }
-     (void) closedir (dp);
+      while (ep = readdir (dp)){
+        i++;
+      }
+      (void) closedir (dp);
     }
     else{
-     perror ("Couldn't open the directory");
+      return -1;
     }
 
     //Since ./ and ../ are counted

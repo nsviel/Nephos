@@ -43,7 +43,11 @@ struct Operation{
 
   //Export
   bool export_cloud = false;
-  string export_dir_path = "";
+  string export_path_dir = "../media/record/ply";
+  string export_filname = "";
+
+  //Triangulation
+  bool triangulation = false;
 
   //---------------------------
 };

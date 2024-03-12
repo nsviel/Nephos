@@ -15,8 +15,8 @@ Operation::Operation(){
 }
 Operation::~Operation(){}
 
-//Main function
-void Operation::compute_normal_from_depth_image(k4n::dev::Sensor* sensor){
+//Data operation
+void Operation::make_normal_from_depth_image(k4n::dev::Sensor* sensor){
   uint8_t* depth = sensor->depth.data.buffer;
   //---------------------------
 
@@ -73,6 +73,21 @@ data->Nxyz = Nxyz;
 */
   //---------------------------
 }
+void Operation::make_cloud_export(k4n::dev::Sensor* sensor){
+  string& path_dir = sensor->master->operation.export_path_dir;
+  //---------------------------
+
+  if(!utl::fct::directory::is_dir_exist(path_dir)){
+    utl::fct::directory::create_new(path_dir);
+    sayHello();
+  }
+
+
+
+  //---------------------------
+}
+
+//Player operation
 float Operation::find_mkv_ts_beg(string path){
   //---------------------------
 

@@ -11,7 +11,7 @@ struct Recorder{
   //---------------------------
 
   std::string path = "";
-  std::string folder = "";
+  std::string folder = "../media/record/mkv";
   std::string format = ".mkv";
 
   float ts_rec = 0;

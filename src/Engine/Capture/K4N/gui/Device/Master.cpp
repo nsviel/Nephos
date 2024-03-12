@@ -214,15 +214,27 @@ void Master::show_exportation(k4n::dev::Master* master){
   if(!master->operation.export_cloud) return;
   //---------------------------
 
-  //Activated
+  //Intro
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Export");
 
   //Directory path
   ImGui::Text("Directory path");
   ImGui::SameLine();
-  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  string path = (master->operation.export_dir_path != "") ? master->operation.export_dir_path : "(not defined)";
+  string path = (master->operation.export_path_dir != "") ? master->operation.export_path_dir : "(not defined)";
   ImGui::TextColored(color, "%s", path.c_str());
+
+  //Filename
+  ImGui::Text("Filename");
+  ImGui::SameLine();
+  string filename = (master->operation.export_filname != "") ? master->operation.export_filname : "(not defined)";
+  ImGui::TextColored(color, "%s", filename.c_str());
+
+  //Filename
+  ImGui::Text("Count");
+  ImGui::SameLine();
+  int nb_file = utl::fct::directory::get_number_file(master->operation.export_path_dir);
+  ImGui::TextColored(color, "%d", nb_file);
 
   //---------------------------
   ImGui::Separator();

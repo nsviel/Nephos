@@ -4,6 +4,7 @@
 #include <k4arecord/playback.hpp>
 
 namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Master;}
 
 
 namespace k4n::utils{
@@ -16,8 +17,11 @@ public:
   ~Operation();
 
 public:
-  //Main function
-  void compute_normal_from_depth_image(k4n::dev::Sensor* sensor);
+  //Data operation
+  void make_normal_from_depth_image(k4n::dev::Sensor* sensor);
+  void make_cloud_export(k4n::dev::Sensor* sensor);
+
+  //Player operation
   float find_mkv_ts_beg(string path);
   float find_mkv_ts_end(string path);
 
