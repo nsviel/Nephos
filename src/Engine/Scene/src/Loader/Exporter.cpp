@@ -16,5 +16,12 @@ Exporter::Exporter(eng::scene::Node* node_scene){
 Exporter::~Exporter(){}
 
 //Main functions
+void Exporter::export_data(utl::type::Data* data){
+  //---------------------------
+
+
+
+  //---------------------------
+}
 
 }

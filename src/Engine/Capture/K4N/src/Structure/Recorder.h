@@ -5,6 +5,15 @@
 #include <string>
 
 
+namespace k4n::recorder{
+
+enum Mode{
+  MKV = 0,
+  PLY = 1,
+};
+
+}
+
 namespace k4n::structure{
 
 struct Recorder{

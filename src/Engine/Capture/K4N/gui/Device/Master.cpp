@@ -80,7 +80,7 @@ void Master::show_operation(k4n::dev::Master* master){
     this->show_possible_ope(master);
     this->show_voxelization(master);
     this->show_normal(master);
-    this->show_exportation(master);
+    this->show_recorder(master);
     ImGui::EndTabItem();
   }
 
@@ -93,7 +93,6 @@ void Master::show_transformation(k4n::dev::Master* master){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
 
-  int transformation_mode = 0;
   ImGui::RadioButton("Depth to color", &master->operation.transformation_mode, k4n::transformation::DEPTH_TO_COLOR);
   ImGui::SameLine();
   ImGui::RadioButton("Color to depth", &master->operation.transformation_mode, k4n::transformation::COLOR_TO_DEPTH);
@@ -164,7 +163,7 @@ void Master::show_possible_ope(k4n::dev::Master* master){
   ImGui::SameLine();
   ImGui::Checkbox("Voxel##33", &master->operation.voxel);
   ImGui::SameLine();
-  ImGui::Checkbox("Export##35", &master->operation.export_cloud);
+  ImGui::Checkbox("Record##35", &master->operation.record);
 
   //---------------------------
   ImGui::Separator();
@@ -209,31 +208,36 @@ void Master::show_normal(k4n::dev::Master* master){
   //---------------------------
   ImGui::Separator();
 }
-void Master::show_exportation(k4n::dev::Master* master){
+void Master::show_recorder(k4n::dev::Master* master){
   if(master == nullptr) return;
-  if(!master->operation.export_cloud) return;
+  if(!master->operation.record) return;
   //---------------------------
 
   //Intro
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Export");
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Record");
+
+  //Mode
+  ImGui::RadioButton("MKV", &master->operation.record_mode, k4n::recorder::MKV);
+  ImGui::SameLine();
+  ImGui::RadioButton("PLY", &master->operation.record_mode, k4n::recorder::PLY);
 
   //Directory path
   ImGui::Text("Directory path");
   ImGui::SameLine();
-  string path = (master->operation.export_path_dir != "") ? master->operation.export_path_dir : "(not defined)";
+  string path = (master->operation.record_path_dir != "") ? master->operation.record_path_dir : "(not defined)";
   ImGui::TextColored(color, "%s", path.c_str());
 
   //Filename
   ImGui::Text("Filename");
   ImGui::SameLine();
-  string filename = (master->operation.export_filname != "") ? master->operation.export_filname : "(not defined)";
+  string filename = (master->operation.record_filname != "") ? master->operation.record_filname : "(not defined)";
   ImGui::TextColored(color, "%s", filename.c_str());
 
   //Filename
   ImGui::Text("Count");
   ImGui::SameLine();
-  int nb_file = directory::get_number_file(master->operation.export_path_dir);
+  int nb_file = directory::get_number_file(master->operation.record_path_dir);
   ImGui::TextColored(color, "%d", nb_file);
 
   //---------------------------

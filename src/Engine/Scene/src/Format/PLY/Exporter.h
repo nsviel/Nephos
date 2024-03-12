@@ -18,7 +18,13 @@ public:
 
 public:
   //Main functions
-  bool export_cloud(utl::entity::Object* object, std::string path_dir, std::string ply_format);
+  void export(utl::type::Data* data, std::string path);
+  void export_ascii(utl::type::Data* data, std::string path);
+
+  //Subfunction
+  void write_header(std::ofstream& file, std::string format, utl::type::Data* data);
+  void write_data_ascii(std::ofstream& file, utl::type::Data* data);
+  void write_data_binary(std::ofstream& file, utl::type::Data* data);
 
 private:
   std::vector<std::string> property_type;

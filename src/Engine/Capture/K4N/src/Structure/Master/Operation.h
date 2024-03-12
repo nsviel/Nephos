@@ -2,16 +2,19 @@
 
 #include <Utility/Specific/common.h>
 #include <Operation/Namespace.h>
+#include <K4N/src/Structure/Recorder.h>
 
 #include <k4a/k4a.hpp>
 #include <cstdint>
 
 
 namespace k4n::transformation{
+
 enum Mode{
   DEPTH_TO_COLOR = 0,
   COLOR_TO_DEPTH = 1,
 };
+
 }
 
 namespace k4n::structure{
@@ -42,9 +45,10 @@ struct Operation{
   int normal_knn = 2;
 
   //Export
-  bool export_cloud = false;
-  string export_path_dir = "../media/record/ply";
-  string export_filname = "";
+  bool record = false;
+  string record_path_dir = "../media/record/ply";
+  string record_filname = "";
+  int record_mode = k4n::recorder::PLY;
 
   //Triangulation
   bool triangulation = false;

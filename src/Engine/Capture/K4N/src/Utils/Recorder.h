@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  void make_cloud_export(k4n::dev::Sensor* sensor);
+  void make_export_to_ply(k4n::dev::Sensor* sensor);
 
 private:
   k4n::structure::Struct_k4n* struct_k4n;

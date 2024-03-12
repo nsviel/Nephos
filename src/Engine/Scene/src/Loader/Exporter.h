@@ -17,7 +17,7 @@ public:
 
 public:
   //Main functions
-
+  void export_data(utl::type::Data* data);
 
 private:
   eng::scene::Format* sce_format;
