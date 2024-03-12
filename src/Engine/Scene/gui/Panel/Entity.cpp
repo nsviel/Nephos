@@ -165,6 +165,10 @@ void Entity::data_info(utl::type::Entity* entity){
       this->primitive_line(data);
       break;
     }
+    case utl::topology::TRIANGLE:{
+      this->primitive_triangle(data);
+      break;
+    }
   }
 
   //---------------------------
@@ -197,6 +201,17 @@ void Entity::primitive_line(utl::type::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
+  //Draw type
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Topology"); ImGui::TableNextColumn();
+  ImGui::Text("line");
+
+  //Number of points
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Count"); ImGui::TableNextColumn();
+  string nb_point = math::thousand_separator(data->point.size / 2);
+  ImGui::Text("%s", nb_point.c_str());
+
   //Line width
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Line width"); ImGui::TableNextColumn();
@@ -222,9 +237,14 @@ void Entity::primitive_point(utl::type::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
+  //Draw type
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Topology"); ImGui::TableNextColumn();
+  ImGui::Text("point");
+
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Point No"); ImGui::TableNextColumn();
+  ImGui::Text("Count"); ImGui::TableNextColumn();
   string nb_point = math::thousand_separator(data->point.size);
   ImGui::Text("%s", nb_point.c_str());
 
@@ -246,6 +266,23 @@ void Entity::primitive_point(utl::type::Data* data){
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
   ImGui::Text("%d", data->point.width);
+
+  //---------------------------
+}
+void Entity::primitive_triangle(utl::type::Data* data){
+  ImGuiStyle& style = ImGui::GetStyle();
+  //---------------------------
+
+  //Draw type
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Topology"); ImGui::TableNextColumn();
+  ImGui::Text("triangle");
+
+  //Number of points
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Count"); ImGui::TableNextColumn();
+  string nb_point = math::thousand_separator(data->point.size / 3);
+  ImGui::Text("%s", nb_point.c_str());
 
   //---------------------------
 }

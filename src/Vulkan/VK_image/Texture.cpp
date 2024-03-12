@@ -42,14 +42,8 @@ void Texture::import_texture(utl::media::Image* utl_image){
   //---------------------------
 
   //Input image checks
-  if(utl_image->format == ""){
-    cout<<"[error] no texture format found"<<endl;
-    return;
-  }
-  if(utl_image->width == 0 || utl_image->height == 0){
-    cout<<"[error] texture width or height: "<<utl_image->width<<"/"<<utl_image->height<<endl;
-    return;
-  }
+  if(utl_image->format == "") return;
+  if(utl_image->width == 0 || utl_image->height == 0) return;
 
   //If the texture exists, update it
   vk::structure::Texture* texture = query_texture(utl_image->texture_ID);

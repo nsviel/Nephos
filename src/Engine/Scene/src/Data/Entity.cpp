@@ -29,21 +29,18 @@ void Entity::init_entity(utl::type::Entity* entity){
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  //Init entity
-  sce_database->assign_UID(entity);
-  vk_graphical->insert_data_in_engine(data, pose);
-
   //If object; create dedicated glyphs
   if(utl::entity::Object* object = dynamic_cast<utl::entity::Object*>(entity)){
     this->sce_glyph = node_scene->get_scene_glyph();
     sce_glyph->create_glyph_object(object);
   }
 
-  //Init entity data
+  //Init entity
+  sce_database->assign_UID(entity);
   sce_database->assign_UID(data);
   vk_graphical->insert_data_in_engine(data, pose);
 
-  //Init entity vector data
+  //Init entity subdata
   for(int j=0; j<entity->vec_data.size(); j++){
     sce_database->assign_UID(entity->vec_data[j]);
     vk_graphical->insert_data_in_engine(entity->vec_data[j], pose);

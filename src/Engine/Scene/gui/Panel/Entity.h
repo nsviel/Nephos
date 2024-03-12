@@ -36,6 +36,7 @@ public:
   //Primitive
   void primitive_line(utl::type::Data* data);
   void primitive_point(utl::type::Data* data);
+  void primitive_triangle(utl::type::Data* data);
 
   inline void set_entity(utl::type::Entity* entity){this->entity = entity;}
 

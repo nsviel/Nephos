@@ -59,6 +59,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
     //Next capture
     tasker->loop_begin(master->operation.fps);
     k4a::capture* capture = manage_capture(sensor);
+    this->manage_capture_endlife(capture);
     if(!capture->is_valid()) continue;
 
     //Find data from capture
@@ -135,6 +136,16 @@ void Playback::manage_restart(k4n::dev::Sensor* sensor){
   if(sensor->color.data.timestamp >= sensor->master->player.ts_end){
     sensor->master->manage_restart();
   }
+
+  //---------------------------
+}
+void Playback::manage_capture_endlife(k4a::capture* capture){
+  static k4a::capture* capture_old = nullptr;
+  //---------------------------
+
+  k4a_data->wait_thread_idle();
+  delete capture_old;
+  capture_old = capture;
 
   //---------------------------
 }

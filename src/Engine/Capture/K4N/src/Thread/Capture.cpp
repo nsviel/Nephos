@@ -64,7 +64,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     //Next capture
     tasker->loop_begin();
     k4a::capture* capture = manage_capture(sensor);
-    this->manage_capture(capture);
+    this->manage_capture_endlife(capture);
     if(capture == nullptr){
       continue;
     }
@@ -167,7 +167,7 @@ void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
 
   //---------------------------
 }
-void Capture::manage_capture(k4a::capture* capture){
+void Capture::manage_capture_endlife(k4a::capture* capture){
   static k4a::capture* capture_old = nullptr;
   //---------------------------
 
