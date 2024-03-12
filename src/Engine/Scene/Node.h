@@ -7,6 +7,7 @@ namespace eng{class Node;}
 namespace eng::scene{class Parameter;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class Loader;}
+namespace eng::scene{class Exporter;}
 namespace eng::scene{class Format;}
 namespace eng::scene{class Glyph;}
 namespace eng::scene{class Operation;}
@@ -39,6 +40,7 @@ public:
   inline eng::scene::Format* get_scene_format(){return sce_format;}
   inline eng::scene::Database* get_scene_database(){return sce_database;}
   inline eng::scene::Loader* get_scene_loader(){return sce_loader;}
+  inline eng::scene::Exporter* get_scene_exporter(){return sce_exporter;}
   inline eng::scene::Glyph* get_scene_glyph(){return sce_glyph;}
   inline eng::scene::Bookmark* get_scene_bookmark(){return sce_bookmark;}
   inline eng::scene::Entity* get_scene_entity(){return sce_entity;}
@@ -53,6 +55,7 @@ private:
   eng::scene::Database* sce_database;
   eng::scene::Glyph* sce_glyph;
   eng::scene::Loader* sce_loader;
+  eng::scene::Exporter* sce_exporter;
   eng::scene::Format* sce_format;
   eng::scene::Bookmark* sce_bookmark;
   eng::scene::Scene* sce_scene;

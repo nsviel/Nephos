@@ -14,7 +14,7 @@ Recorder::Recorder(k4n::structure::Struct_k4n* struct_k4n){
   eng::scene::Node* node_scene = struct_k4n->node_scene;
 
   this->struct_k4n = struct_k4n;
-  this->sce_loader = node_scene->get_scene_loader();
+  this->sce_exporter = node_scene->get_scene_exporter();
 
   //---------------------------
 }

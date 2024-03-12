@@ -3,7 +3,8 @@
 #include <Utility/Specific/common.h>
 
 namespace k4n::structure{class Struct_k4n;}
-namespace eng::scene{class Loader;}
+namespace k4n::dev{class Sensor;}
+namespace eng::scene{class Exporter;}
 
 
 namespace k4n::utils{
@@ -21,7 +22,7 @@ public:
 
 private:
   k4n::structure::Struct_k4n* struct_k4n;
-  eng::scene::Loader* sce_loader;
+  eng::scene::Exporter* sce_exporter;
 };
 
 }

@@ -1,0 +1,26 @@
+#pragma once
+
+#include <Utility/Specific/common.h>
+
+namespace eng::scene{class Node;}
+namespace eng::scene{class Format;}
+
+
+namespace eng::scene{
+
+class Exporter
+{
+public:
+  //Constructor / Destructor
+  Exporter(eng::scene::Node* node_scene);
+  ~Exporter();
+
+public:
+  //Main functions
+
+
+private:
+  eng::scene::Format* sce_format;
+};
+
+}
