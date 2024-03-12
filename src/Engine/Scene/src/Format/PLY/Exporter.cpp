@@ -4,31 +4,37 @@
 namespace format::ply{
 
 //Constructor / Destructor
-Exporter::Exporter(){}
+Exporter::Exporter(){
+  //---------------------------
+
+  this->format = "ply";
+
+  //---------------------------
+}
 Exporter::~Exporter(){}
 
 //Main exporter functions
-void Exporter::export(utl::type::Data* data, std::string path){
-  string format = "binary_little_endian";
+void Exporter::export_ascii(utl::type::Data* data, std::string path){
+  string format = "ascii";
   //---------------------------
 
-  std::ofstream file(path, ios::binary);
+  std::ofstream file(path);
 
-  this->Exporter_header(file, format, data);
-  this->Exporter_data_binary(file, data);
+  this->write_header(file, format, data);
+  this->write_data_ascii(file, data);
 
   file.close();
 
   //---------------------------
 }
-void Exporter::export_ascii(utl::type::Data* data, std::string path){
-  string format == "ascii";
+void Exporter::export_binary(utl::type::Data* data, std::string path){
+  string format = "binary_little_endian";
   //---------------------------
 
-  std::ofstream file(filePath);
+  std::ofstream file(path, ios::binary);
 
-  this->Exporter_header(file, format, data);
-  this->Exporter_data_ascii(file, data);
+  this->write_header(file, format, data);
+  this->write_data_binary(file, data);
 
   file.close();
 
@@ -39,8 +45,7 @@ void Exporter::export_ascii(utl::type::Data* data, std::string path){
 void Exporter::write_header(std::ofstream& file, std::string format, utl::type::Data* data){
   //---------------------------
 
-  int property_number = 3;
-  vector<string> property_name;
+  this->vec_property.clear();
 
   //Write header
   file << "ply" << endl;
@@ -50,40 +55,41 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::type::
   file << "property float32 x" << endl;
   file << "property float32 y" << endl;
   file << "property float32 z" << endl;
-  property_name.push_back("x");
-  property_name.push_back("y");
-  property_name.push_back("z");
+  vec_property.push_back(format::ply::XYZ);
+  vec_property.push_back(format::ply::EMPTY);
+  vec_property.push_back(format::ply::EMPTY);
+  this->property_number = 3;
 
   if(data->rgb.size() != 0){
     file << "property uchar red" << endl;
     file << "property uchar green" << endl;
     file << "property uchar blue" << endl;
 
-    property_name.push_back("r");
-    property_name.push_back("g");
-    property_name.push_back("b");
-    property_number += 3;
+    vec_property.push_back(format::ply::RGB);
+    vec_property.push_back(format::ply::EMPTY);
+    vec_property.push_back(format::ply::EMPTY);
+    this->property_number += 3;
   }
   if(data->Nxyz.size() != 0){
     file << "property float32 nx" << endl;
     file << "property float32 ny" << endl;
     file << "property float32 nz" << endl;
 
-    property_name.push_back("nx");
-    property_name.push_back("ny");
-    property_name.push_back("nz");
-    property_number += 3;
+    vec_property.push_back(format::ply::N);
+    vec_property.push_back(format::ply::EMPTY);
+    vec_property.push_back(format::ply::EMPTY);
+    this->property_number += 3;
   }
   if(data->Is.size() != 0){
     file << "property float32 scalar_field" << endl;
 
-    property_name.push_back("I");
+    vec_property.push_back(format::ply::I);
     property_number++;
   }
   if(data->ts.size() != 0){
     file << "property float32 timestamp" << endl;
 
-    property_name.push_back("ts");
+    vec_property.push_back(format::ply::TS);
     property_number++;
   }
   file << "end_header" <<endl;
@@ -118,7 +124,7 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::type::Data* data){
 
     //Intensity
     if(Is.size() != 0){
-      file << setprecision(precision) << Is << " ";
+      file << setprecision(precision) << Is[i] << " ";
     }
 
     file << endl;
@@ -145,42 +151,51 @@ void Exporter::write_data_binary(std::ofstream& file, utl::type::Data* data){
   int cpt_property = 0;
   for(int i=0; i<xyz.size(); i++){
     for (int j=0; j<property_number; j++){
-      //Location
-      if(property_name[j] == "x"){
-        for(int k=0; k<3; k++){
-          memcpy(block_data + offset, &xyz[i][k], sizeof(float));
+
+      switch(vec_property[j]){
+        //Location
+        case format::ply::XYZ:{
+          for(int k=0; k<3; k++){
+            memcpy(block_data + offset, &xyz[i][k], sizeof(float));
+            offset += sizeof(float);
+          }
+          break;
+        }
+
+        //Color
+        case format::ply::RGB:{
+          for(int k=0; k<3; k++){
+            int color_int = rgb[i][k] * 255;
+            memcpy(block_data + offset, &color_int, sizeof(u_char));
+            offset += sizeof(u_char);
+          }
+          break;
+        }
+
+        //Intensity
+        case format::ply::I:{
+          memcpy(block_data + offset, &Is[i], sizeof(float));
           offset += sizeof(float);
+          break;
         }
-      }
 
-      //Color
-      if(property_name[j] == "r"){
-        for(int k=0; k<3; k++){
-          int color_int = rgb[i][k] * 255;
-          memcpy(block_data + offset, &color_int, sizeof(u_char));
-          offset += sizeof(u_char);
+        //Normal
+        case format::ply::N:{
+          for(int k=0; k<3; k++){
+            memcpy(block_data + offset, &Nxyz[i][k], sizeof(float));
+            offset += sizeof(float);
+          }
+          break;
         }
-      }
 
-      //Intensity
-      if(property_name[j] == "I"){
-        memcpy(block_data + offset, &Is[i], sizeof(float));
-        offset += sizeof(float);
-      }
-
-      //Normal
-      if(property_name[j] == "nx"){
-        for(int k=0; k<3; k++){
-          memcpy(block_data + offset, &Nxyz[i][k], sizeof(float));
+        //Timestamp
+        case format::ply::TS:{
+          memcpy(block_data + offset, &ts[i], sizeof(float));
           offset += sizeof(float);
+          break;
         }
       }
 
-      //Timestamp
-      if(property_name[j] == "ts"){
-        memcpy(block_data + offset, &ts[i], sizeof(float));
-        offset += sizeof(float);
-      }
     }
   }
 

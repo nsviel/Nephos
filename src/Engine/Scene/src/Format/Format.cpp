@@ -16,6 +16,8 @@ Format::Format(){
   this->insert_importer(new format::ptx::Importer());
   this->insert_importer(new format::xyz::Importer());
 
+  this->insert_exporter(new format::ply::Exporter());
+
   //---------------------------
 }
 Format::~Format(){
@@ -51,6 +53,13 @@ void Format::insert_importer(utl::type::Importer* importer){
   //---------------------------
 
   this->vec_importer.push_back(importer);
+
+  //---------------------------
+}
+void Format::insert_exporter(utl::type::Exporter* exporter){
+  //---------------------------
+
+  this->vec_exporter.push_back(exporter);
 
   //---------------------------
 }

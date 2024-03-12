@@ -90,7 +90,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   }
 
   //Export
-  if(master->operation.record && master->operation.record_mode == k4n::recorder::PLY){
+  if(master->player.record && master->operation.record_mode == k4n::recorder::PLY){
     tasker->task_begin("export");
     k4n_recorder->make_export_to_ply(sensor);
     tasker->task_end("export");

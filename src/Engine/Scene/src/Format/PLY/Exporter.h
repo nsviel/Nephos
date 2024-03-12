@@ -9,7 +9,16 @@
 
 namespace format::ply{
 
-class Exporter
+enum Attribut{
+  EMPTY = 0,
+  XYZ = 1,
+  RGB = 2,
+  N = 3,
+  I = 4,
+  TS = 5,
+};
+
+class Exporter : public utl::type::Exporter
 {
 public:
   //Constructor / Destructor
@@ -18,8 +27,8 @@ public:
 
 public:
   //Main functions
-  void export(utl::type::Data* data, std::string path);
   void export_ascii(utl::type::Data* data, std::string path);
+  void export_binary(utl::type::Data* data, std::string path);
 
   //Subfunction
   void write_header(std::ofstream& file, std::string format, utl::type::Data* data);
@@ -27,19 +36,8 @@ public:
   void write_data_binary(std::ofstream& file, utl::type::Data* data);
 
 private:
-  std::vector<std::string> property_type;
-  std::vector<std::string> property_name;
-  std::vector<int> property_size;
-  std::string format;
-  bool is_timestamp;
-  bool is_intensity;
-  bool is_normal;
-  bool is_color;
-  int point_data_idx;
-  int point_number;
-  int face_number;
-  int property_number;
-  int header_size;
+  int property_number = 3;
+  vector<int> vec_property;
 };
 
 }
