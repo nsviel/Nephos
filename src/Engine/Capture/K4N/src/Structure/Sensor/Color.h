@@ -96,8 +96,8 @@ struct Color_config{
   k4a_image_format_t format = K4A_IMAGE_FORMAT_COLOR_YUY2;
   k4a_color_resolution_t resolution = K4A_COLOR_RESOLUTION_720P;
 
-  std::string format_str;
-  std::string resolution_str;
+  std::string format_str = "";
+  std::string resolution_str = "";
   std::string firmware_version;
 
   //Control

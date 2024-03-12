@@ -73,7 +73,9 @@ void Image::wait_thread_idle(){
 void Image::copy_image_color(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
-/*
+
+  if(sensor->color.config.resolution_str == "") return;
+
   //If color resolution is too big, display transformed color image - to be changed
   if(sensor->color.config.resolution_str == "2160p" || sensor->color.config.resolution_str == "3072p"){
     sensor->color.data.buffer = sensor->color.cloud.buffer;
@@ -94,7 +96,7 @@ void Image::copy_image_color(k4n::dev::Sensor* sensor){
   }else{
     image->color.new_data = true;
   }
-*/
+
   //---------------------------
 }
 void Image::copy_image_depth(k4n::dev::Sensor* sensor){

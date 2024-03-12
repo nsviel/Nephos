@@ -36,7 +36,7 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image){
   //---------------------------
 
   //Load texture into vulkan
-  if(utl_image->texture_ID == -1){
+  if(utl_image->new_data && utl_image->texture_ID == -1){
     vk_texture->import_texture(utl_image);
     vk_imgui->load_texture(utl_image);
   //update texture data
