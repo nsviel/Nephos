@@ -29,9 +29,9 @@ void Tree::create(){
 
   //Create glyph
   utl::type::Data* data = new utl::type::Data();
-  data->line.width = 2;
+  data->width = 2;
   data->is_visible = is_visible;
-  data->draw_type = utl::topology::LINE;
+  data->topology.type = utl::topology::LINE;
   data->unicolor = color;
   this->vec_data.push_back(data);
 
@@ -42,7 +42,7 @@ void Tree::update_glyph(utl::type::Data* data){
 
   if(is_visible){
     //octreeManager->create_octree(cloud, level);
-    vec_data[0]->point.xyz = data->point.xyz;
+    vec_data[0]->xyz = data->xyz;
   }
 
   //---------------------------

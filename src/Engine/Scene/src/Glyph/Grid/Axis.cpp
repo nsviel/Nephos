@@ -19,17 +19,17 @@ void Axis::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
-  data->line.width = 2;
+  data->width = 2;
   data->is_visible = true;
-  data->draw_type = utl::topology::LINE;
+  data->topology.type = utl::topology::LINE;
   data->unicolor = color;
   this->vec_data.push_back(data);
 
   //---------------------------
 }
 void Axis::update_glyph(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->line.xyz;
-  vector<vec4>& RGB = vec_data[0]->line.rgb;
+  vector<vec3>& XYZ = vec_data[0]->xyz;
+  vector<vec4>& RGB = vec_data[0]->rgb;
   float z = -0.001;
   //---------------------------
 

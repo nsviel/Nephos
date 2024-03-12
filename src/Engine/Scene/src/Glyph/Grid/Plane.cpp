@@ -21,15 +21,15 @@ void Plane::create(){
 
   utl::type::Data* data = new utl::type::Data();
   data->is_visible = true;
-  data->draw_type = utl::topology::TRIANGLE;
+  data->topology.type = utl::topology::TRIANGLE;
   data->unicolor = color;
   this->vec_data.push_back(data);
 
   //---------------------------
 }
 void Plane::update_glyph(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->triangle.xyz;
-  vector<vec4>& RGB = vec_data[0]->triangle.rgb;
+  vector<vec3>& XYZ = vec_data[0]->xyz;
+  vector<vec4>& RGB = vec_data[0]->rgb;
   float z = -0.004;
   //---------------------------
 

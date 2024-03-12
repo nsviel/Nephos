@@ -20,13 +20,13 @@ void AABB::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
-  data->line.width = 1;
+  data->width = 1;
   data->is_visible = false;
-  data->draw_type = utl::topology::LINE;
+  data->topology.type = utl::topology::LINE;
   data->unicolor = color;
 
   for(int i=0; i<24; i++){
-    data->point.rgb.push_back(color);
+    data->rgb.push_back(color);
   }
 
   this->vec_data.push_back(data);
@@ -38,7 +38,7 @@ void AABB::update_glyph(utl::type::Pose* pose){
 
   vec3 min = pose->min;
   vec3 max = pose->max;
-  vec_data[0]->line.xyz = build_box(min, max);
+  vec_data[0]->xyz = build_box(min, max);
 
   //---------------------------
 }

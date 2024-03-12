@@ -17,12 +17,12 @@ Normal::~Normal(){}
 
 //Main function
 void Normal::compute_normal_from_grid(utl::type::Data* data){
-  if(data->point.xyz.size() == 0) return;
+  if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
 
   //Prepare data
-  vector<vec3> Nxyz(data->point.xyz.size(), vec3(0.0f));
+  vector<vec3> Nxyz(data->xyz.size(), vec3(0.0f));
   vec3 empty = vec3(0, 0, 0);
   float threshold = 0.5f;
 
@@ -43,9 +43,9 @@ void Normal::compute_normal_from_grid(utl::type::Data* data){
         index_3 = (i - 1) * data->width + j + 1;
       }
 
-      const vec3& point_1 = data->point.xyz[index_1];
-      const vec3& point_2 = data->point.xyz[index_2];
-      const vec3& point_3 = data->point.xyz[index_3];
+      const vec3& point_1 = data->xyz[index_1];
+      const vec3& point_2 = data->xyz[index_2];
+      const vec3& point_3 = data->xyz[index_3];
 
       float distance_1_2 = glm::distance(point_1, point_2);
       float distance_1_3 = glm::distance(point_1, point_3);
@@ -65,17 +65,17 @@ void Normal::compute_normal_from_grid(utl::type::Data* data){
     toggle = !toggle;
   }
 
-  data->point.Nxyz = Nxyz;
+  data->Nxyz = Nxyz;
 
   //---------------------------
 }
 void Normal::compute_normal_with_neighbors(utl::type::Data* data, int knn){
-  if(data->point.xyz.size() == 0) return;
+  if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
 
   //Prepare data
-  vector<vec3> Nxyz(data->point.xyz.size(), vec3(0.0f));
+  vector<vec3> Nxyz(data->xyz.size(), vec3(0.0f));
   vec3 empty = vec3(0, 0, 0);
   float threshold = 0.1f;
 
@@ -86,7 +86,7 @@ void Normal::compute_normal_with_neighbors(utl::type::Data* data, int knn){
       // Calculate the indices of the neighbor points
       vector<vec3> vec_nn;
       vector<int> vec_idx;
-      vec3& point = data->point.xyz[i * data->width + j];
+      vec3& point = data->xyz[i * data->width + j];
       if(point == empty || Nxyz[i * data->width + j] != empty) continue;
 
       this->compute_knn(point, vec_nn, vec_idx, knn, data, i, j, threshold);
@@ -101,7 +101,7 @@ void Normal::compute_normal_with_neighbors(utl::type::Data* data, int knn){
     }
   }
 
-  data->point.Nxyz = Nxyz;
+  data->Nxyz = Nxyz;
 
   //---------------------------
 }
@@ -118,7 +118,7 @@ void Normal::compute_knn(vec3& point, vector<vec3>& vec_nn, vector<int>& vec_idx
       int j_neighbor = j + l;
       if(j_neighbor < 0) continue;
 
-      vec3& nn = data->point.xyz[i_neighbor + j_neighbor];
+      vec3& nn = data->xyz[i_neighbor + j_neighbor];
 
       if(nn != vec3(0, 0, 0)){
         float dist = glm::distance(point, nn);

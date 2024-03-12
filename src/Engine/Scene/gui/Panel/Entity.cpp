@@ -156,7 +156,7 @@ void Entity::data_info(utl::type::Entity* entity){
   }
 
   //Primitive size
-  switch(data->draw_type){
+  switch(data->topology.type){
     case utl::topology::POINT:{
       this->primitive_point(data);
       break;
@@ -209,7 +209,7 @@ void Entity::primitive_line(utl::type::Data* data){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
-  string nb_point = math::thousand_separator(data->point.size / 2);
+  string nb_point = math::thousand_separator(data->size / 2);
   ImGui::Text("%s", nb_point.c_str());
 
   //Line width
@@ -217,19 +217,19 @@ void Entity::primitive_line(utl::type::Data* data){
   ImGui::Text("Line width"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    data->line.width--;
+    data->width--;
 
-    if(data->line.width <= 1){
-      data->line.width = 1;
+    if(data->width <= 1){
+      data->width = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    data->line.width++;
+    data->width++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", data->line.width);
+  ImGui::Text("%d", data->width);
 
   //---------------------------
 }
@@ -245,7 +245,7 @@ void Entity::primitive_point(utl::type::Data* data){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
-  string nb_point = math::thousand_separator(data->point.size);
+  string nb_point = math::thousand_separator(data->size);
   ImGui::Text("%s", nb_point.c_str());
 
   //Point size
@@ -253,19 +253,19 @@ void Entity::primitive_point(utl::type::Data* data){
   ImGui::Text("Point size"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    data->point.width--;
+    data->width--;
 
-    if(data->point.width <= 1){
-      data->point.width = 1;
+    if(data->width <= 1){
+      data->width = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    data->point.width++;
+    data->width++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", data->point.width);
+  ImGui::Text("%d", data->width);
 
   //---------------------------
 }
@@ -281,7 +281,7 @@ void Entity::primitive_triangle(utl::type::Data* data){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
-  string nb_point = math::thousand_separator(data->point.size / 3);
+  string nb_point = math::thousand_separator(data->size / 3);
   ImGui::Text("%s", nb_point.c_str());
 
   //---------------------------

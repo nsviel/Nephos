@@ -50,7 +50,7 @@ void Operation::compute_normal_from_depth_image(k4n::dev::Sensor* sensor){
     }
   }
 
-data->point.Nxyz = Nxyz;
+data->Nxyz = Nxyz;
 
 /*
   for(int x = 0; x < depth.rows; ++x)

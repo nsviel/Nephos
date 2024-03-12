@@ -117,17 +117,17 @@ utl::entity::Object* Loader::create_object(utl::file::Data* data){
   object->data->file_format = utl::fct::info::get_format_from_path(entity->path.data);
   object->data->has_texture = true;
   object->name = entity->name;
-  object->data->point.size = entity->xyz.size();
-  object->data->draw_type = entity->draw_type;
+  object->data->size = entity->xyz.size();
+  object->data->topology.type = entity->draw_type;
 
-  object->data->point.xyz = entity->xyz;
-  object->data->point.rgb = entity->rgb;
-  object->data->triangle.uv = entity->uv;
+  object->data->xyz = entity->xyz;
+  object->data->rgb = entity->rgb;
+  object->data->uv = entity->uv;
 
   //If no color, fill it with white
-  if(object->data->point.rgb.size() == 0){
+  if(object->data->rgb.size() == 0){
     for(int i=0; i<entity->xyz.size(); i++){
-      object->data->point.rgb.push_back(vec4(1,1,1,1));
+      object->data->rgb.push_back(vec4(1,1,1,1));
     }
   }
 

@@ -42,8 +42,9 @@ void Entity::init_entity(utl::type::Entity* entity){
 
   //Init entity subdata
   for(int j=0; j<entity->vec_data.size(); j++){
-    sce_database->assign_UID(entity->vec_data[j]);
-    vk_graphical->insert_data_in_engine(entity->vec_data[j], pose);
+    utl::type::Data* entity_data = entity->vec_data[j];
+    sce_database->assign_UID(entity_data);
+    vk_graphical->insert_data_in_engine(entity_data, pose);
   }
 
   //---------------------------

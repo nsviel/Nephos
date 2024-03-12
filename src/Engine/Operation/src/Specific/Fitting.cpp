@@ -17,7 +17,7 @@ void Fitting::find_sphere(utl::type::Entity* entity, vec3& center, float& radius
   utl::type::Pose* pose = entity->get_pose();
   //------------------------
 
-  vector<vec3>& xyz = data->point.xyz;
+  vector<vec3>& xyz = data->xyz;
   vec3& COM = pose->COM;
 
   // Compute the covariance matrix M of the Y[i] = X[i]-A and the

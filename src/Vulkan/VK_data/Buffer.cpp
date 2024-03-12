@@ -44,22 +44,21 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
 }
 void Buffer::update_buffer(vk::structure::Object* vk_object){
   utl::type::Data* data = vk_object->data;
-  utl::type::Vertice* vertice = data->get_vertice();
   //---------------------------
 
-  if(vertice->xyz.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec3) * vertice->xyz.size();
-    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, vertice->xyz.data(), data_size);
+  if(data->xyz.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec3) * data->xyz.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, data->xyz.data(), data_size);
   }
 
-  if(vertice->rgb.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec4) * vertice->rgb.size();
-    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgb, &vk_object->buffer.rgb_stagger, vertice->rgb.data(), data_size);
+  if(data->rgb.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec4) * data->rgb.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgb, &vk_object->buffer.rgb_stagger, data->rgb.data(), data_size);
   }
 
-  if(vertice->uv.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec2) * vertice->uv.size();
-    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, vertice->uv.data(), data_size);
+  if(data->uv.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec2) * data->uv.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, data->uv.data(), data_size);
   }
 
   //---------------------------
@@ -95,10 +94,9 @@ void Buffer::clean_buffer(vk::structure::Buffer* buffer){
 //Subfunction
 int Buffer::get_size_buffer(vk::structure::Object* vk_object){
   utl::type::Data* data = vk_object->data;
-  utl::type::Vertice* vertice = data->get_vertice();
   //---------------------------
 
-  int max_data = (data->nb_data_max != -1) ? data->nb_data_max : vertice->xyz.size();
+  int max_data = (data->nb_data_max != -1) ? data->nb_data_max : data->xyz.size();
 
   //---------------------------
   return max_data;

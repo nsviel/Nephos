@@ -41,10 +41,10 @@ void Canvas::init(){
   uv.push_back(vec2(1.0f,  0.0f));
   uv.push_back(vec2(0.0f,  1.0f));
 
-  data->triangle.xyz = xyz;
-  data->triangle.uv = uv;
-  data->triangle.size = xyz.size();
-  data->draw_type = utl::topology::TRIANGLE;
+  data->xyz = xyz;
+  data->uv = uv;
+  data->size = xyz.size();
+  data->topology.type = utl::topology::TRIANGLE;
 
   struct_vulkan->data.canvas.data = data;
 

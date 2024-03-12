@@ -28,10 +28,10 @@ void Normal::create(){
 
   //Create glyph
   utl::type::Data* data = new utl::type::Data();
-  data->line.width = width;
+  data->width = width;
   data->is_visible = is_visible;
   data->nb_data_max = 1000000;
-  data->draw_type = utl::topology::LINE;
+  data->topology.type = utl::topology::LINE;
   data->unicolor = vec4(0, 0.7, 0.7, 1);
   this->vec_data.push_back(data);
 
@@ -65,14 +65,14 @@ void Normal::construct(utl::type::Entity* entity){
   vector<vec3> xyz_g;
   vector<vec4> rgb_g;
 
-  xyz_g.reserve(data_glyph->line.xyz.size());
-  rgb_g.reserve(data_glyph->line.rgb.size());
+  xyz_g.reserve(data_glyph->xyz.size());
+  rgb_g.reserve(data_glyph->rgb.size());
 
   //Data entity
   utl::type::Pose* pose_entity = entity->get_pose();
   utl::type::Data* data_entity = entity->get_data();
-  vector<vec3>& xyz_e = data_entity->point.xyz;
-  vector<vec3>& Nxyz_e = data_entity->point.Nxyz;
+  vector<vec3>& xyz_e = data_entity->xyz;
+  vector<vec3>& Nxyz_e = data_entity->Nxyz;
 
   //Check vector length
   if(xyz_e.size() == 0 || Nxyz_e.size() == 0 || Nxyz_e.size() != xyz_e.size()) return;
@@ -96,8 +96,8 @@ void Normal::construct(utl::type::Entity* entity){
     rgb_g.push_back(rgb_n);
   }
 
-  data_glyph->line.xyz = xyz_g;
-  data_glyph->line.rgb = rgb_g;
+  data_glyph->xyz = xyz_g;
+  data_glyph->rgb = rgb_g;
 
   //---------------------------
 }

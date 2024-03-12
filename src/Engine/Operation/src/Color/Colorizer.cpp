@@ -47,7 +47,7 @@ void Colorizer::colorization_unicolor(utl::type::Entity* entity, ope::color::Con
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
-  data->point.rgb = vector<vec4>(data->point.rgb.size(), config.unicolor);
+  data->rgb = vector<vec4>(data->rgb.size(), config.unicolor);
 
   //---------------------------
 }
@@ -55,9 +55,9 @@ void Colorizer::colorization_intensity(utl::type::Entity* entity, ope::color::Co
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
-  for(int i=0; i<data->point.xyz.size(); i++){
-    float Is = data->point.Is[i] / config.intensity_division;
-    data->point.rgb[i] = vec4(Is, Is, Is, 1);
+  for(int i=0; i<data->xyz.size(); i++){
+    float Is = data->Is[i] / config.intensity_division;
+    data->rgb[i] = vec4(Is, Is, Is, 1);
   }
 
   //---------------------------
@@ -120,7 +120,7 @@ void Colorizer::colorization_structure(utl::type::Entity* entity){
           vec3 final_color = (interpolated_color_row + interpolated_color_col) * 0.5f;
 
           // Add the final color to the vector
-          data->point.rgb[index] = vec4(final_color, 1.0f);
+          data->rgb[index] = vec4(final_color, 1.0f);
           ++index;
       }
   }

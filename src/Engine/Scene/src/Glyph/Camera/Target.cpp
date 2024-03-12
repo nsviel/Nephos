@@ -23,9 +23,9 @@ void Target::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
-  data->line.width = 2;
+  data->width = 2;
   data->is_visible = true;
-  data->draw_type = utl::topology::LINE;
+  data->topology.type = utl::topology::LINE;
   data->unicolor = vec4(1, 1, 1, 0.2f);
   this->vec_data.push_back(data);
   this->construct(data);
@@ -53,8 +53,8 @@ void Target::update_pose(utl::type::Entity* entity){
   //---------------------------
 }
 void Target::construct(utl::type::Data* data){
-  vector<vec3>& XYZ = data->line.xyz;
-  vector<vec4>& RGB = data->line.rgb;
+  vector<vec3>& XYZ = data->xyz;
+  vector<vec4>& RGB = data->rgb;
   //---------------------------
 
   XYZ.clear();

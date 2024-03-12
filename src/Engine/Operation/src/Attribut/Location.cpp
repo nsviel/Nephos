@@ -35,7 +35,7 @@ vec3 Location::compute_centroid(utl::type::Entity* entity){
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  vector<vec3>& XYZ = data->point.xyz;
+  vector<vec3>& XYZ = data->xyz;
   vec3 centroid = vec3(0, 0, 0);
 
   for(int i=0; i<XYZ.size(); i++){
@@ -88,7 +88,7 @@ void Location::compute_MinMax(utl::type::Entity* entity){
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  vector<vec3>& XYZ = data->point.xyz;
+  vector<vec3>& XYZ = data->xyz;
   if(XYZ.size() == 0) return;
 
   vec3 centroid = vec3(0, 0, 0);
@@ -120,8 +120,8 @@ void Location::set_unicolor(utl::type::Entity* entity){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
-  for(int i=0; i<data->point.rgb.size(); i++){
-    data->point.rgb[i] = data->unicolor;
+  for(int i=0; i<data->rgb.size(); i++){
+    data->rgb[i] = data->unicolor;
   }
 
   //---------------------------
@@ -131,7 +131,7 @@ void Location::retrieve_z_vector(utl::type::Entity* entity, vector<float>& z_vec
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  vector<vec3>& xyz = data->point.xyz;
+  vector<vec3>& xyz = data->xyz;
   z_vec = vector<float>(xyz.size());
 
   #pragma omp parallel for

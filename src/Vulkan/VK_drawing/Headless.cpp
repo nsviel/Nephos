@@ -65,7 +65,7 @@ void Headless::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Obj
   }
   if(vk_object->buffer.xyz.vbo != VK_NULL_HANDLE){
     vkCmdBindVertexBuffers(command_buffer, 0, 1, &vk_object->buffer.xyz.vbo, offsets);
-    vkCmdDraw(command_buffer, vk_object->data->point.xyz.size(), 1, 0, 0);
+    vkCmdDraw(command_buffer, vk_object->data->xyz.size(), 1, 0, 0);
   }
 
   //---------------------------
@@ -73,7 +73,7 @@ void Headless::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Obj
 void Headless::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* vk_object){
   //---------------------------
 
-  vkCmdSetLineWidth(command_buffer, vk_object->data->line.width);
+  vkCmdSetLineWidth(command_buffer, vk_object->data->width);
 
   //---------------------------
 }

@@ -23,9 +23,9 @@ void Axis::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
-  data->line.width = 4;
+  data->width = 4;
   data->is_visible = true;
-  data->draw_type = utl::topology::LINE;
+  data->topology.type = utl::topology::LINE;
   this->vec_data.push_back(data);
   this->update_glyph();
 
@@ -41,8 +41,8 @@ void Axis::update_glyph(){
 
 //Subfunction
 void Axis::construct(){
-  vector<vec3>& XYZ = vec_data[0]->line.xyz;
-  vector<vec4>& RGB = vec_data[0]->line.rgb;
+  vector<vec3>& XYZ = vec_data[0]->xyz;
+  vector<vec4>& RGB = vec_data[0]->rgb;
   float z = 0;
   //---------------------------
 
