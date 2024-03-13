@@ -13,6 +13,7 @@ file(GLOB_RECURSE ALL_SOURCES
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
+find_package( OpenCV REQUIRED )
 
 #-----------------
 # Dependencies
@@ -23,6 +24,8 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_VULKAN
   LIBRARY_ENGINE
   LIBRARY_CAMERA
+
+  ${OpenCV_LIBS}
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

@@ -1,5 +1,7 @@
 #include "Fitting.h"
 
+#include <opencv2/opencv.hpp>
+
 
 namespace ope::attribut{
 
@@ -73,9 +75,51 @@ void Fitting::find_sphere_in_cloud(utl::type::Entity* entity, vec3& center, floa
 
   //------------------------
 }
-void Fitting::find_sphere_in_image(utl::type::Entity* entity, vec3& center, float& radius){
+void Fitting::find_sphere_in_image(utl::media::Image* image, vec3& center, float& radius){
   //------------------------
-  
+
+  // Create an OpenCV Mat object from the image data
+  cv::Mat cv_image(image->height, image->width, CV_8UC1, image->data.data());
+
+  // Perform edge detection (you may need to adjust parameters for your specific image)
+  cv::Mat edges;
+  cv::Canny(cv_image, edges, 50, 150);
+
+  // Perform Hough Transform to detect lines
+  std::vector<cv::Vec3f> circles;
+  int ratio = 1;
+  //modes:
+  // - cv::HOUGH_GRADIENT
+  // - cv::HOUGH_STANDARD
+  // - cv::HOUGH_PROBABILISTIC
+  int mode = cv::HOUGH_GRADIENT;
+  float min_dist = edges.rows / 8;
+  float min_radius = 10;
+  float max_radius = 10;
+  float param_1, param_2;
+  if(mode == cv::HOUGH_GRADIENT){
+    param_1 = 100; //higher threshold for the Canny edge detector
+    param_2 = 30; //accumulator threshold for the circle centers at the detection stage
+  }
+  cv::HoughCircles(edges, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
+
+  // Draw the detected circles on the original image
+  cv::Mat result;
+  cv::cvtColor(edges, result, cv::COLOR_GRAY2BGR); // Convert edges to BGR for drawing
+  for(size_t i=0; i<circles.size(); i++){
+    cv::Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+    int radius = cvRound(circles[i][2]);
+
+    // Draw the circle center
+    cv::circle(result, center, 3, cv::Scalar(0, 255, 0), -1, cv::LINE_AA);
+
+    // Draw the circle outline
+    cv::circle(result, center, radius, cv::Scalar(0, 0, 255), 3, cv::LINE_AA);
+  }
+
+  // Display the result
+  cv::imshow("Hough Circles", result);
+  cv::waitKey(0);
 
   //------------------------
 }
