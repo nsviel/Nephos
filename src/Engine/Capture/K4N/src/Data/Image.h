@@ -6,6 +6,7 @@
 namespace k4n::dev{class Sensor;}
 namespace k4n::data{class Depth;}
 namespace k4n::data{class Infrared;}
+namespace ope::attribut{class Fitting;}
 
 
 namespace k4n::data{
@@ -31,6 +32,7 @@ public:
 private:
   k4n::data::Depth* k4a_depth;
   k4n::data::Infrared* k4a_infrared;
+  ope::attribut::Fitting* ope_fitting;
 
   std::thread thread;
   bool thread_idle = true;

@@ -2,6 +2,7 @@
 
 #include <K4N/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Operation/Namespace.h>
 
 
 namespace k4n::data{
@@ -12,7 +13,7 @@ Image::Image(){
 
   this->k4a_depth = new k4n::data::Depth();
   this->k4a_infrared = new k4n::data::Infrared();
-  this->thread = std::thread([](){});
+  this->ope_fitting = new ope::attribut::Fitting();
 
   //---------------------------
 }
@@ -52,6 +53,8 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   tasker->task_begin("infrared");
   this->copy_image_ir(sensor);
   tasker->task_end("infrared");
+
+  ope_fitting->find_sphere_in_image(&sensor->image.color);
 
   tasker->loop_end();
 

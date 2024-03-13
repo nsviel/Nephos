@@ -55,12 +55,14 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   tasker->task_begin("fitting::sphere");
   vec3 center;
   float radius;
-  ope_fitting->find_sphere(sensor, center, radius);
+  ope_fitting->find_sphere_in_cloud(sensor, center, radius);
   say("---");
   say(radius);
   say(math::distance(center));
   tasker->task_end("fitting::sphere");
   */
+
+
 
   //Voxelization filtering
   if(master->operation.voxel){
