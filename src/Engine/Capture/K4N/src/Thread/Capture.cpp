@@ -86,6 +86,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
 void Capture::stop_thread(){
   //---------------------------
 
+  this->thread_running = false;
   this->wait_thread();
   if(thread.joinable()){
     thread.join();

@@ -78,10 +78,8 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
 void Playback::stop_thread(){
   //---------------------------
 
+  this->thread_running = false;
   this->wait_thread();
-  if(thread.joinable()){
-    thread.join();
-  }
 
   //---------------------------
   this->thread_idle = true;
@@ -90,8 +88,8 @@ void Playback::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  if(thread.joinable()){
+    thread.join();
   }
   k4a_data->wait_thread();
 

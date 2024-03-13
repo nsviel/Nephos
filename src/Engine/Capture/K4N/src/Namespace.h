@@ -6,3 +6,4 @@
 #include <K4N/src/Device/Namespace.h>
 #include <K4N/src/Thread/Namespace.h>
 #include <K4N/src/Utils/Namespace.h>
+#include <K4N/src/Processing/Namespace.h>
