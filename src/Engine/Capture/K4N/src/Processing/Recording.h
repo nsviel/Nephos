@@ -10,12 +10,12 @@ namespace format::ply{class Exporter;}
 
 namespace k4n::thread{
 
-class Recorder
+class Recording
 {
 public:
   //Constructor / Destructor
-  Recorder(k4n::structure::Struct_k4n* struct_k4n);
-  ~Recorder();
+  Recording(k4n::structure::Struct_k4n* struct_k4n);
+  ~Recording();
 
 public:
   //Main function

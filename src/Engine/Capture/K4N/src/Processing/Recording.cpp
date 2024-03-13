@@ -1,4 +1,4 @@
-#include "Recorder.h"
+#include "Recording.h"
 
 #include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,7 +8,7 @@
 namespace k4n::thread{
 
 //Constructor / Destructor
-Recorder::Recorder(k4n::structure::Struct_k4n* struct_k4n){
+Recording::Recording(k4n::structure::Struct_k4n* struct_k4n){
   //---------------------------
 
   eng::scene::Node* node_scene = struct_k4n->node_scene;
@@ -19,27 +19,27 @@ Recorder::Recorder(k4n::structure::Struct_k4n* struct_k4n){
 
   //---------------------------
 }
-Recorder::~Recorder(){}
+Recording::~Recording(){}
 
 //Main function
-void Recorder::start_thread(){
+void Recording::start_thread(){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&Recorder::run_thread, this);
+    this->thread = std::thread(&Recording::run_thread, this);
   }
 
   //---------------------------
   this->thread_running = true;
   this->thread_idle = false;
 }
-void Recorder::run_thread(){
+void Recording::run_thread(){
   //---------------------------
 
 
   //---------------------------
 }
-void Recorder::stop_thread(){
+void Recording::stop_thread(){
   //---------------------------
 
   if(thread.joinable()){
@@ -51,7 +51,7 @@ void Recorder::stop_thread(){
 }
 
 //Subfunction
-void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
+void Recording::make_export_to_ply(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Check if directory exists, if not create it
