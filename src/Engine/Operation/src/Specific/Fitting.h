@@ -13,7 +13,8 @@ public:
 
 public:
   //Sphere fitting
-  void find_sphere(utl::type::Entity* entity, vec3& center, float& radius);
+  void find_sphere_in_cloud(utl::type::Entity* entity, vec3& center, float& radius);
+  void find_sphere_in_image(utl::type::Entity* entity, vec3& center, float& radius);
 
 private:
 };

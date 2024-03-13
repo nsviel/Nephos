@@ -12,7 +12,7 @@ Fitting::Fitting(){
 Fitting::~Fitting(){}
 
 //Sphere fitting
-void Fitting::find_sphere(utl::type::Entity* entity, vec3& center, float& radius){
+void Fitting::find_sphere_in_cloud(utl::type::Entity* entity, vec3& center, float& radius){
   utl::type::Data* data = entity->get_data();
   utl::type::Pose* pose = entity->get_pose();
   //------------------------
@@ -70,6 +70,12 @@ void Fitting::find_sphere(utl::type::Entity* entity, vec3& center, float& radius
     center = {0, 0, 0};
     radius = 0;
   }
+
+  //------------------------
+}
+void Fitting::find_sphere_in_image(utl::type::Entity* entity, vec3& center, float& radius){
+  //------------------------
+  
 
   //------------------------
 }
