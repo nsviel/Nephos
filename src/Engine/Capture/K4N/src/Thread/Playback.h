@@ -37,6 +37,7 @@ public:
   void manage_capture_endlife(k4a::capture* capture);
 
   inline bool is_thread_running(){return thread_running;}
+  inline bool is_thread_paused(){return thread_paused;}
 
 private:
   k4n::data::Data* k4a_data;

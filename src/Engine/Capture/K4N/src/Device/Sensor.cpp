@@ -163,5 +163,6 @@ void Sensor::reset_color_configuration(){
 
 bool Sensor::is_capture_running(){return k4n_capture->is_thread_running();}
 bool Sensor::is_playback_running(){return k4n_playback->is_thread_running();}
+bool Sensor::is_playback_paused(){return k4n_playback->is_thread_paused();}
 
 }

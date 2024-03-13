@@ -90,6 +90,7 @@ void Master::manage_restart(){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      //Set playback to begin
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_beg));
       sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
       sensor->param.index_cloud = 0;
@@ -221,7 +222,7 @@ void Master::player_stop(){
   this->manage_restart();
 
   //Set play state
-
+say(player.ts_cur);
 
   //---------------------------
 }
