@@ -46,9 +46,6 @@ struct Operation{
 
   //Export
   bool record = false;
-  string record_path_dir = "../media/record/ply";
-  string record_filname = "";
-  int record_mode = k4n::recorder::PLY;
 
   //Triangulation
   bool triangulation = false;

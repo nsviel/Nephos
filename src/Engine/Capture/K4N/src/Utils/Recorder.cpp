@@ -26,18 +26,23 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Check if directory exists, if not create it
-  string& path_dir = sensor->master->operation.record_path_dir;
+  string path_dir = sensor->master->recorder.folder;
   if(!directory::is_dir_exist(path_dir)){
     directory::create_new(path_dir);
   }
 
-  string filename = sensor->master->operation.record_filname;
+  //Sensor parameter
+  sensor->recorder.folder = path_dir;
+  sensor->recorder.mode = k4n::recorder::PLY;
+
+  //Path
+  string filename = sensor->name;
   if(filename == "") filename = "test.ply";
   string path = path_dir + "/" + filename;
 
-  tic();
+  //Export to ply
   ply_exporter->export_binary(sensor->get_data(), path);
-toc_ms("1");
+
   //---------------------------
 }
 

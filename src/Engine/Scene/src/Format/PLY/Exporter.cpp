@@ -155,10 +155,8 @@ void Exporter::write_data_binary(std::ofstream& file, utl::type::Data* data){
       switch(vec_property[j]){
         //Location
         case format::ply::XYZ:{
-          for(int k=0; k<3; k++){
-            memcpy(block_data + offset, &xyz[i][k], sizeof(float));
-            offset += sizeof(float);
-          }
+          memcpy(block_data + offset, &xyz[i], sizeof(vec3));
+          offset += sizeof(vec3);
           break;
         }
 
@@ -181,10 +179,8 @@ void Exporter::write_data_binary(std::ofstream& file, utl::type::Data* data){
 
         //Normal
         case format::ply::N:{
-          for(int k=0; k<3; k++){
-            memcpy(block_data + offset, &Nxyz[i][k], sizeof(float));
-            offset += sizeof(float);
-          }
+          memcpy(block_data + offset, &Nxyz[i], sizeof(vec3));
+          offset += sizeof(vec3);
           break;
         }
 

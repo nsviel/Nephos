@@ -218,26 +218,26 @@ void Master::show_recorder(k4n::dev::Master* master){
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Record");
 
   //Mode
-  ImGui::RadioButton("MKV", &master->operation.record_mode, k4n::recorder::MKV);
+  ImGui::RadioButton("MKV", &master->recorder.mode, k4n::recorder::MKV);
   ImGui::SameLine();
-  ImGui::RadioButton("PLY", &master->operation.record_mode, k4n::recorder::PLY);
+  ImGui::RadioButton("PLY", &master->recorder.mode, k4n::recorder::PLY);
 
   //Directory path
   ImGui::Text("Directory path");
   ImGui::SameLine();
-  string path = (master->operation.record_path_dir != "") ? master->operation.record_path_dir : "(not defined)";
+  string path = (master->recorder.folder != "") ? master->recorder.folder : "(not defined)";
   ImGui::TextColored(color, "%s", path.c_str());
 
   //Filename
   ImGui::Text("Filename");
   ImGui::SameLine();
-  string filename = (master->operation.record_filname != "") ? master->operation.record_filname : "(not defined)";
+  string filename = (master->recorder.filename != "") ? master->recorder.filename : "(not defined)";
   ImGui::TextColored(color, "%s", filename.c_str());
 
   //Filename
   ImGui::Text("Count");
   ImGui::SameLine();
-  int nb_file = directory::get_number_file(master->operation.record_path_dir);
+  int nb_file = directory::get_number_file(master->recorder.folder);
   ImGui::TextColored(color, "%d", nb_file);
 
   //---------------------------

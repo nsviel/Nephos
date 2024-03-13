@@ -21,6 +21,7 @@ struct Param{
 
   //General parameters
   int index = -1;
+  int index_cloud = 0;
   bool data_ready = false;
   bool is_capturing = false;
   float file_size = 0;
