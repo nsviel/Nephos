@@ -5,13 +5,13 @@
 
 namespace prf::graph{class Tasker;}
 namespace k4n{class Node;}
-namespace k4n::data{class Processing;}
+namespace k4n::processing{class Operation;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
 namespace k4n::structure{class Struct_k4n;}
 
 
-namespace k4n::data{
+namespace k4n::processing{
 
 class Cloud
 {
@@ -42,7 +42,7 @@ public:
 
 private:
   k4n::utils::Operation* k4n_operation;
-  k4n::data::Processing* k4n_processing;
+  k4n::processing::Operation* k4n_processing;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgb;

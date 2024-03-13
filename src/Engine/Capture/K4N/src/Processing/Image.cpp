@@ -5,7 +5,7 @@
 #include <Operation/Namespace.h>
 
 
-namespace k4n::data{
+namespace k4n::processing{
 
 //Constructor / Destructor
 Image::Image(){

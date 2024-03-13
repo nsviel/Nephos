@@ -8,14 +8,14 @@ namespace eng::scene{class Exporter;}
 namespace format::ply{class Exporter;}
 
 
-namespace k4n::thread{
+namespace k4n::processing{
 
-class Recording
+class Recorder
 {
 public:
   //Constructor / Destructor
-  Recording(k4n::structure::Struct_k4n* struct_k4n);
-  ~Recording();
+  Recorder(k4n::structure::Struct_k4n* struct_k4n);
+  ~Recorder();
 
 public:
   //Main function

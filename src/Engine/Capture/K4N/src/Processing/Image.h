@@ -9,7 +9,7 @@ namespace k4n::data{class Infrared;}
 namespace ope::attribut{class Fitting;}
 
 
-namespace k4n::data{
+namespace k4n::processing{
 
 class Image
 {

@@ -1,4 +1,4 @@
-#include "Processing.h"
+#include "Operation.h"
 
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
@@ -6,10 +6,10 @@
 #include <K4N/Namespace.h>
 
 
-namespace k4n::data{
+namespace k4n::processing{
 
 //Constructor / Destructor
-Processing::Processing(k4n::structure::Struct_k4n* struct_k4n){
+Operation::Operation(k4n::structure::Struct_k4n* struct_k4n){
   //---------------------------
 
   this->ope_voxelizer = new ope::Voxelizer();
@@ -18,26 +18,26 @@ Processing::Processing(k4n::structure::Struct_k4n* struct_k4n){
   this->ope_normal = new ope::attribut::Normal();
   this->ope_fitting = new ope::attribut::Fitting();
   this->k4n_operation = new k4n::utils::Operation();
-  this->k4n_recording = new k4n::thread::Recording(struct_k4n);
+  this->k4n_recorder = new k4n::processing::Recorder(struct_k4n);
   this->thread = std::thread([](){});
 
   //---------------------------
 }
-Processing::~Processing(){}
+Operation::~Operation(){}
 
 //Main function
-void Processing::start_thread(k4n::dev::Sensor* sensor){
+void Operation::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(thread.joinable()){
     this->thread.join();
   }
-  this->thread = std::thread(&Processing::run_thread, this, sensor);
+  this->thread = std::thread(&Operation::run_thread, this, sensor);
 
   //---------------------------
   this->thread_idle = false;
 }
-void Processing::run_thread(k4n::dev::Sensor* sensor){
+void Operation::run_thread(k4n::dev::Sensor* sensor){
   if(sensor->profiler == nullptr) return;
   //---------------------------
 
@@ -94,7 +94,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   //Export
   if(master->player.record && master->recorder.mode == k4n::recorder::PLY){
     tasker->task_begin("export");
-    k4n_recording->make_export_to_ply(sensor);
+    k4n_recorder->make_export_to_ply(sensor);
     tasker->task_end("export");
   }
 
@@ -108,7 +108,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
   this->thread_idle = true;
 }
-void Processing::wait_thread(){
+void Operation::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
@@ -120,7 +120,7 @@ void Processing::wait_thread(){
 }
 
 //Subfunction
-void Processing::colorize_object(k4n::dev::Sensor* sensor){
+void Operation::colorize_object(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ope::color::Configuration config;
@@ -134,7 +134,7 @@ void Processing::colorize_object(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Processing::voxelize_object(k4n::dev::Sensor* sensor){
+void Operation::voxelize_object(k4n::dev::Sensor* sensor){
   //---------------------------
 
   utl::type::Data* data = sensor->get_data();
@@ -147,7 +147,7 @@ void Processing::voxelize_object(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Processing::triangularize_object(k4n::dev::Sensor* sensor){
+void Operation::triangularize_object(k4n::dev::Sensor* sensor){
   //---------------------------
 
   utl::type::Data* data = sensor->get_data();
@@ -156,7 +156,7 @@ void Processing::triangularize_object(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Processing::update_object(k4n::dev::Sensor* sensor){
+void Operation::update_object(k4n::dev::Sensor* sensor){
   //---------------------------
 
   utl::entity::Object* object = sensor->get_object();

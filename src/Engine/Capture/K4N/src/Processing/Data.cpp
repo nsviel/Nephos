@@ -4,7 +4,7 @@
 #include <Profiler/Namespace.h>
 
 
-namespace k4n::data{
+namespace k4n::processing{
 
 //Constructor / Destructor
 Data::Data(k4n::structure::Struct_k4n* struct_k4n){
@@ -13,8 +13,8 @@ Data::Data(k4n::structure::Struct_k4n* struct_k4n){
   this->tj_handle = tjInitDecompress();
   this->k4a_depth = new k4n::data::Depth();
   this->k4a_infrared = new k4n::data::Infrared();
-  this->k4a_cloud = new k4n::data::Cloud(struct_k4n);
-  this->k4n_image = new k4n::data::Image();
+  this->k4a_cloud = new k4n::processing::Cloud(struct_k4n);
+  this->k4n_image = new k4n::processing::Image();
   this->thread = std::thread([](){});
 
   //---------------------------

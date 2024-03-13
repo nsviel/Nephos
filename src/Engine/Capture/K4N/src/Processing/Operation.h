@@ -4,7 +4,7 @@
 
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
-namespace k4n::thread{class Recording;}
+namespace k4n::processing{class Recorder;}
 namespace k4n::structure{class Struct_k4n;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
@@ -13,14 +13,14 @@ namespace ope::attribut{class Normal;}
 namespace ope::attribut{class Fitting;}
 
 
-namespace k4n::data{
+namespace k4n::processing{
 
-class Processing
+class Operation
 {
 public:
   //Constructor / Destructor
-  Processing(k4n::structure::Struct_k4n* struct_k4n);
-  ~Processing();
+  Operation(k4n::structure::Struct_k4n* struct_k4n);
+  ~Operation();
 
 public:
   //Main function
@@ -41,7 +41,7 @@ private:
   ope::attribut::Normal* ope_normal;
   ope::attribut::Fitting* ope_fitting;
   k4n::utils::Operation* k4n_operation;
-  k4n::thread::Recording* k4n_recording;
+  k4n::processing::Recorder* k4n_recorder;
 
   std::thread thread;
   bool thread_idle = true;
