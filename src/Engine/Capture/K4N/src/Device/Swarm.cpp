@@ -54,7 +54,7 @@ void Swarm::create_sensor_playback(utl::file::Path path){
 
   //---------------------------
 }
-void Swarm::create_sensor_capture(string serial_number, int index){
+void Swarm::create_sensor_capture(int index){
   //---------------------------
 
   //Associated master
@@ -65,7 +65,6 @@ void Swarm::create_sensor_capture(string serial_number, int index){
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
   sensor->name = "capture_" + to_string(index);
   sensor->param.index = index;
-  sensor->param.serial_number = serial_number;
   sensor->master = master;
 
   //Sensor initialization
@@ -80,16 +79,6 @@ void Swarm::create_sensor_capture(string serial_number, int index){
 }
 
 //Master function
-void Swarm::manage_resynchronization(){
-  //---------------------------
-
-  for(int i=0; i<struct_k4n->list_master.size(); i++){
-    k4n::dev::Master* master = *std::next(struct_k4n->list_master.begin(), i);
-    master->manage_resynchronization();
-  }
-
-  //---------------------------
-}
 void Swarm::close_master(string name){
   //---------------------------
 
@@ -188,6 +177,35 @@ k4n::dev::Master* Swarm::get_master_by_name(string name){
 }
 k4n::dev::Master* Swarm::get_selected_master(){
   return struct_k4n->selected_master;
+}
+
+//Subfunction
+void Swarm::manage_resynchronization(){
+  //---------------------------
+
+  for(int i=0; i<struct_k4n->list_master.size(); i++){
+    k4n::dev::Master* master = *std::next(struct_k4n->list_master.begin(), i);
+    master->manage_resynchronization();
+  }
+
+  //---------------------------
+}
+void Swarm::manage_connected_device(){
+  if(!struct_k4n->connected_device_change) return;
+  //---------------------------
+
+  //Suppress all devices
+  k4n::dev::Master* master = get_or_create_capture_master("capture");
+  if(master == nullptr) return;
+  sce_set->delete_entity_all(master);
+
+  //Create required number of new devices
+  for(int i=0; i<struct_k4n->nb_connected_sensor; i++){
+    this->create_sensor_capture(i);
+  }
+
+  //---------------------------
+  struct_k4n->connected_device_change = false;
 }
 int Swarm::get_number_running_thread(){
   int nb_thread = 0;

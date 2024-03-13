@@ -25,10 +25,9 @@ public:
 public:
   //Sensor function
   void create_sensor_playback(utl::file::Path path);
-  void create_sensor_capture(string serial_number, int index);
+  void create_sensor_capture(int index);
 
   //Master function
-  void manage_resynchronization();
   void close_all_master();
   void close_master(string name);
   void close_master(k4n::dev::Master* master);
@@ -37,6 +36,10 @@ public:
   k4n::dev::Master* get_or_create_capture_master(string name);
   k4n::dev::Master* get_master_by_name(string name);
   k4n::dev::Master* get_selected_master();
+
+  //Subfunction
+  void manage_resynchronization();
+  void manage_connected_device();
 
 private:
   prf::Manager* profiler;

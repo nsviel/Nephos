@@ -10,15 +10,6 @@ namespace eng::scene{class Set;}
 
 namespace k4n::thread{
 
-struct Connected_device{
-  //---------------------------
-
-  string serial_number;
-  int index;
-
-  //---------------------------
-};
-
 class Connection
 {
 public:
@@ -31,9 +22,6 @@ public:
   void start_thread();
   void run_thread();
   void stop_thread();
-
-  //Subfunction
-  void manage_new_dev();
 
 private:
   k4n::structure::Struct_k4n* struct_k4n;

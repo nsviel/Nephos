@@ -25,7 +25,7 @@ struct Recorder{
   int mode = k4n::recorder::PLY;
   float ts_rec = 0;
   float ts_beg;
-  k4a::record recorder;
+  k4a::record handle;
 
   //---------------------------
 };

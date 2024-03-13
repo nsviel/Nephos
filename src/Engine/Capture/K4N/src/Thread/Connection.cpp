@@ -50,7 +50,7 @@ void Connection::run_thread(){
 
     //Action on changement
     if(current_nb_dev != nb_dev_old){
-      this->manage_new_dev();
+      struct_k4n->connected_device_change = true;
       nb_dev_old = current_nb_dev;
     }
 
@@ -71,49 +71,5 @@ void Connection::stop_thread(){
   //---------------------------
 }
 
-//Subfunction
-void Connection::manage_new_dev(){
-  //---------------------------
-
-  //Suppress all devices
-  k4n::dev::Master* master = k4n_swarm->get_or_create_capture_master("capture");
-  if(master == nullptr) return;
-  sce_set->delete_entity_all(master);
-
-  //Retrieve all serial number
-  list<Connected_device> list_connected;
-  for(int i=0; i<struct_k4n->list_sensor.size(); i++){
-    k4a::device device = k4a::device::open(i);
-
-    Connected_device dev_connected;
-    dev_connected.serial_number = device.get_serialnum();
-    dev_connected.index = i;
-    list_connected.push_back(dev_connected);
-
-    device.close();
-  }
-
-  //Find those that were not connected
-  for(auto sensor : struct_k4n->list_sensor){
-    auto it = list_connected.begin();
-    while (it != list_connected.end()) {
-      Connected_device& dev_connected = *it;
-
-      if(sensor->param.serial_number == dev_connected.serial_number){
-        it = list_connected.erase(it); // Remove the element and advance the iterator
-      } else {
-        ++it; // Move to the next element
-      }
-    }
-  }
-
-  //Create required number of new devices
-  for(int i=0; i<list_connected.size(); i++){
-    Connected_device& dev_connected = *std::next(list_connected.begin(), i);
-    k4n_swarm->create_sensor_capture(dev_connected.serial_number, dev_connected.index);
-  }
-
-  //---------------------------
-}
 
 }

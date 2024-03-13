@@ -74,7 +74,6 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     //Manage event
     this->manage_recording(sensor, capture);
     this->manage_pause(sensor);
-    this->manage_recording(sensor, capture);
     tasker->loop_end();
   }
 
@@ -141,7 +140,7 @@ void Capture::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
-  k4a::record& recorder = sensor->recorder.recorder;
+  k4a::record& recorder = sensor->recorder.handle;
   k4n::dev::Master* master = sensor->master;
   //---------------------------
 
@@ -149,10 +148,18 @@ void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
 
   //Start recording
   if(master->player.record && !recorder.is_valid()){
-    string path = master->recorder.folder + "/" + sensor->name + ".mkv";
+    //Check if directory exists, if not create it
+    string path_dir = sensor->master->recorder.folder;
+    if(!directory::is_dir_exist(path_dir)){
+      directory::create_new(path_dir);
+    }
+
+    //Create recorder and file, and write header
+    string path = path_dir + "/" + sensor->name + ".mkv";
     recorder = k4a::record::create(path.c_str(), sensor->param.device, sensor->param.configuration);
     recorder.write_header();
 
+    //Set sensor info
     sensor->recorder.folder = master->recorder.folder;
     sensor->recorder.ts_beg = sensor->master->player.ts_cur;
   }
