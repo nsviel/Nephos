@@ -216,13 +216,12 @@ void Master::player_stop(){
   //---------------------------
 
   //Restart playbacks
-  player.play = true;
-  player.pause = false;
+  player.play = false;
+  player.pause = true;
   this->manage_restart();
 
   //Set play state
-  player.play = false;
-  player.pause = true;
+
 
   //---------------------------
 }

@@ -4,6 +4,7 @@
 #include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
 
+
 namespace eng{class Node;}
 namespace eng::scene{class Entity;}
 namespace eng::scene{class Glyph;}
@@ -48,10 +49,12 @@ public:
   void stop_threads();
   void reset_color_configuration();
 
+  bool is_capture_running();
+  bool is_playback_running();
+  
   inline utl::entity::Object* get_object(){return &object;}
   inline utl::type::Data* get_data(){return object.data;}
   inline utl::type::Pose* get_pose(){return object.pose;}
-  inline bool is_thread_running(){return thread_running;}
 
 public:
   prf::graph::Profiler* profiler;

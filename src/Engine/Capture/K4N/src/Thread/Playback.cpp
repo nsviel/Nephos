@@ -122,10 +122,12 @@ void Playback::manage_pause(k4n::dev::Sensor* sensor){
   //If pause, wait until end pause or end thread
   bool& is_paused = sensor->master->player.pause;
   if(is_paused || !sensor->master->player.play){
+    this->thread_paused = true;
     sensor->profiler->clear();
     while(is_paused && thread_running){
-      std::this_thread::sleep_for(std::chrono::milliseconds(33));
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
+    this->thread_paused = false;
   }
 
   //---------------------------
