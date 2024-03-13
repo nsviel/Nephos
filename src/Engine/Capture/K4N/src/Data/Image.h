@@ -22,7 +22,7 @@ public:
   //Main function
   void start_thread(k4n::dev::Sensor* sensor);
   void run_thread(k4n::dev::Sensor* sensor);
-  void wait_thread_idle();
+  void wait_thread();
 
   //Subfunction
   void copy_image_color(k4n::dev::Sensor* sensor);

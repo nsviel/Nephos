@@ -31,6 +31,7 @@ void Recorder::start_thread(){
 
   //---------------------------
   this->thread_running = true;
+  this->thread_idle = false;
 }
 void Recorder::run_thread(){
   //---------------------------
@@ -41,12 +42,12 @@ void Recorder::run_thread(){
 void Recorder::stop_thread(){
   //---------------------------
 
-  this->thread_running = false;
   if(thread.joinable()){
     thread.join();
   }
 
   //---------------------------
+  this->thread_idle = true;
 }
 
 //Subfunction

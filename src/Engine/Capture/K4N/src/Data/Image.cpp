@@ -29,10 +29,10 @@ void Image::start_thread(k4n::dev::Sensor* sensor){
   this->thread = std::thread(&Image::run_thread, this, sensor);
 
   //---------------------------
+  this->thread_idle = false;
 }
 void Image::run_thread(k4n::dev::Sensor* sensor){
   if(sensor->profiler == nullptr) return;
-  this->thread_idle = false;
   //---------------------------
 
   k4n::structure::Image* image = &sensor->image;
@@ -61,7 +61,7 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
   this->thread_idle = true;
 }
-void Image::wait_thread_idle(){
+void Image::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 

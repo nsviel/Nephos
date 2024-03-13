@@ -35,10 +35,10 @@ void Processing::start_thread(k4n::dev::Sensor* sensor){
   this->thread = std::thread(&Processing::run_thread, this, sensor);
 
   //---------------------------
+  this->thread_idle = false;
 }
 void Processing::run_thread(k4n::dev::Sensor* sensor){
   if(sensor->profiler == nullptr) return;
-  this->thread_idle = false;
   //---------------------------
 
   k4n::dev::Master* master = sensor->master;
@@ -108,7 +108,7 @@ void Processing::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
   this->thread_idle = true;
 }
-void Processing::wait_thread_idle(){
+void Processing::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 

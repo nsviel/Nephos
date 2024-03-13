@@ -35,11 +35,11 @@ void Capture::start_thread(k4n::dev::Sensor* sensor){
 
   //---------------------------
   this->thread_running = true;
+  this->thread_idle = false;
 }
 void Capture::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
   k4n::dev::Master* master = sensor->master;
-  this->thread_idle = false;
   //---------------------------
 
   //Init elements
@@ -81,27 +81,27 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   sensor->param.is_capturing = false;
 
   //---------------------------
-  this->thread_idle = true;
+
 }
 void Capture::stop_thread(){
   //---------------------------
 
-  this->thread_running = false;
-  this->wait_thread_idle();
+  this->wait_thread();
   if(thread.joinable()){
     thread.join();
   }
 
   //---------------------------
+  this->thread_idle = true;
 }
-void Capture::wait_thread_idle(){
+void Capture::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  k4a_data->wait_thread_idle();
+  k4a_data->wait_thread();
 
   //---------------------------
 }
@@ -180,7 +180,7 @@ void Capture::manage_capture_endlife(k4a::capture* capture){
   static k4a::capture* capture_old = nullptr;
   //---------------------------
 
-  k4a_data->wait_thread_idle();
+  k4a_data->wait_thread();
   say("delete");
   delete capture_old;
   capture_old = capture;

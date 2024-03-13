@@ -38,6 +38,7 @@ void Playback::start_thread(k4n::dev::Sensor* sensor){
 
   //---------------------------
   this->thread_running = true;
+  this->thread_idle = false;
 }
 void Playback::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
@@ -45,7 +46,6 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Init playback
-  this->thread_idle = false;
   if(sensor->param.path.data == "") return;
   sensor->param.playback = k4a::playback::open(sensor->param.path.data.c_str());
   if(!sensor->param.playback) return;
@@ -74,27 +74,26 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   sensor->param.playback.close();
 
   //---------------------------
-  this->thread_idle = true;
 }
 void Playback::stop_thread(){
   //---------------------------
 
-  this->thread_running = false;
-  this->wait_thread_idle();
+  this->wait_thread();
   if(thread.joinable()){
     thread.join();
   }
 
   //---------------------------
+  this->thread_idle = true;
 }
-void Playback::wait_thread_idle(){
+void Playback::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  k4a_data->wait_thread_idle();
+  k4a_data->wait_thread();
 
   //---------------------------
 }
@@ -125,7 +124,7 @@ void Playback::manage_pause(k4n::dev::Sensor* sensor){
     //Clear thread profiler and wait subthread fulfillment
     sensor->profiler->clear();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    k4a_data->wait_thread_idle();
+    k4a_data->wait_thread();
 
     //Pause loop
     this->thread_paused = true;
@@ -150,7 +149,7 @@ void Playback::manage_capture_endlife(k4a::capture* capture){
   static k4a::capture* capture_old = nullptr;
   //---------------------------
 
-  k4a_data->wait_thread_idle();
+  k4a_data->wait_thread();
   delete capture_old;
   capture_old = capture;
 

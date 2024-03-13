@@ -25,7 +25,7 @@ public:
   //Main function
   void start_thread(k4n::dev::Sensor* sensor, k4a::capture* capture);
   void run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture);
-  void wait_thread_idle();
+  void wait_thread();
 
   //Data function
   void find_data_from_capture(k4n::dev::Sensor* device, k4a::capture* capture);

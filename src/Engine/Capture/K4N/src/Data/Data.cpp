@@ -37,12 +37,12 @@ void Data::start_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
   this->thread = std::thread(&Data::run_thread, this, sensor, capture);
 
   //---------------------------
+  this->thread_idle = false;
 }
 void Data::run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
   if(sensor->profiler == nullptr) return;
-  this->thread_idle = false;
-  //---------------------------
 
+  //---------------------------
   //Retrieve data from capture
   this->find_data_from_capture(sensor, capture);
 
@@ -55,15 +55,15 @@ void Data::run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture){
   //---------------------------
   this->thread_idle = true;
 }
-void Data::wait_thread_idle(){
+void Data::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  k4a_cloud->wait_thread_idle();
-  k4n_image->wait_thread_idle();
+  k4a_cloud->wait_thread();
+  k4n_image->wait_thread();
 
   //---------------------------
 }
