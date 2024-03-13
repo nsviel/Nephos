@@ -37,6 +37,7 @@ void Playback::start_thread(k4n::dev::Sensor* sensor){
   }
 
   //---------------------------
+  this->thread_running = true;
 }
 void Playback::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
@@ -44,7 +45,6 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Init playback
-  this->thread_running = true;
   this->thread_idle = false;
   if(sensor->param.path.data == "") return;
   sensor->param.playback = k4a::playback::open(sensor->param.path.data.c_str());

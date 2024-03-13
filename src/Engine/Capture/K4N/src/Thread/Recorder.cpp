@@ -5,7 +5,7 @@
 #include <Scene/Namespace.h>
 
 
-namespace k4n::utils{
+namespace k4n::thread{
 
 //Constructor / Destructor
 Recorder::Recorder(k4n::structure::Struct_k4n* struct_k4n){
@@ -22,6 +22,34 @@ Recorder::Recorder(k4n::structure::Struct_k4n* struct_k4n){
 Recorder::~Recorder(){}
 
 //Main function
+void Recorder::start_thread(){
+  //---------------------------
+
+  if(!thread_running){
+    this->thread = std::thread(&Recorder::run_thread, this);
+  }
+
+  //---------------------------
+  this->thread_running = true;
+}
+void Recorder::run_thread(){
+  //---------------------------
+
+
+  //---------------------------
+}
+void Recorder::stop_thread(){
+  //---------------------------
+
+  this->thread_running = false;
+  if(thread.joinable()){
+    thread.join();
+  }
+
+  //---------------------------
+}
+
+//Subfunction
 void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
   //---------------------------
 

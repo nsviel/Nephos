@@ -36,13 +36,13 @@ void Connection::start_thread(){
   }
 
   //---------------------------
+  this->thread_running = true;
 }
 void Connection::run_thread(){
   static int nb_dev_old = 0;
   //---------------------------
 
   //Refresh connected sensors
-  this->thread_running = true;
   while(thread_running){
     //Get number of connected devices
     int current_nb_dev = k4a_device_get_installed_count();

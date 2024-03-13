@@ -34,6 +34,7 @@ void Capture::start_thread(k4n::dev::Sensor* sensor){
   }
 
   //---------------------------
+  this->thread_running = true;
 }
 void Capture::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
@@ -58,7 +59,6 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
 
   //Start capture thread
   sensor->param.is_capturing = true;
-  this->thread_running = true;
   while(thread_running){
     //Next capture
     tasker->loop_begin();
@@ -181,6 +181,7 @@ void Capture::manage_capture_endlife(k4a::capture* capture){
   //---------------------------
 
   k4a_data->wait_thread_idle();
+  say("delete");
   delete capture_old;
   capture_old = capture;
 
