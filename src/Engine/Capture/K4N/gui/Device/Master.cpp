@@ -1,6 +1,7 @@
 #include "Master.h"
 
 #include <K4N/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace k4n::gui{
@@ -58,7 +59,7 @@ void Master::show_info(k4n::dev::Master* master){
     ImGui::TextColored(color, "%s", type.c_str());
 
     //Recording time
-    if(master->player.record){
+    if(master->player.record && master->recorder.mode == k4n::recorder::MKV){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Record"); ImGui::TableNextColumn();
       ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
@@ -218,27 +219,36 @@ void Master::show_recorder(k4n::dev::Master* master){
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Record");
 
   //Mode
-  ImGui::RadioButton("MKV", &master->recorder.mode, k4n::recorder::MKV);
+  if(ImGui::RadioButton("MKV", &master->recorder.mode, k4n::recorder::MKV)){
+    master->recorder.folder = "../media/record/mkv";
+  }
   ImGui::SameLine();
-  ImGui::RadioButton("PLY", &master->recorder.mode, k4n::recorder::PLY);
+  if(ImGui::RadioButton("PLY", &master->recorder.mode, k4n::recorder::PLY)){
+    master->recorder.folder = "../media/record/ply";
+  }
+
+  ImGui::BeginTable("recorder##parameters", 3);
 
   //Directory path
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Directory path");
-  ImGui::SameLine();
+  ImGui::TableNextColumn();
   string path = (master->recorder.folder != "") ? master->recorder.folder : "(not defined)";
   ImGui::TextColored(color, "%s", path.c_str());
+  ImGui::TableNextColumn();
+  if(ImGui::Button("...##folder_path")){
+    zenity::selection_directory(master->recorder.folder);
+    say(master->recorder.folder);
+  }
 
   //Filename
-  ImGui::Text("Filename");
-  ImGui::SameLine();
-  string filename = (master->recorder.filename != "") ? master->recorder.filename : "(not defined)";
-  ImGui::TextColored(color, "%s", filename.c_str());
-
-  //Filename
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count");
-  ImGui::SameLine();
+  ImGui::TableNextColumn();
   int nb_file = directory::get_number_file(master->recorder.folder);
   ImGui::TextColored(color, "%d", nb_file);
+
+  ImGui::EndTable();
 
   //---------------------------
   ImGui::Separator();

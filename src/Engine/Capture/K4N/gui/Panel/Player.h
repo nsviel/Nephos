@@ -42,9 +42,6 @@ public:
   void show_master_tab(k4n::dev::Master* master);
   void show_sensor_tab(k4n::dev::Sensor* sensor);
 
-  //Subfunction
-  ImGuiTabItemFlags get_tab_flag(k4n::dev::Sensor* sensor);
-
 private:
   eng::scene::Set* sce_set;
 

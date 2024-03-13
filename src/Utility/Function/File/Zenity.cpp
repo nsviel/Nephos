@@ -6,7 +6,7 @@
 namespace zenity{
   //---------------------------
 
-  std::vector<std::string> zenity_file_vec(std::string title, std::string& path_dir){
+  std::vector<std::string> selection_file_vec(std::string title, std::string& path_dir){
     //---------------------------
 
     //Open zenity file manager
@@ -49,7 +49,7 @@ namespace zenity{
     //---------------------------
     return path_vec;
   }
-  std::vector<std::string> zenity_file_vec(std::string title){
+  std::vector<std::string> selection_file_vec(std::string title){
     //---------------------------
 
     //Open zenity file manager
@@ -90,7 +90,7 @@ namespace zenity{
     //---------------------------
     return path_vec;
   }
-  std::string zenity_directory(std::string title, std::string& path_dir){
+  std::string selection_directory(std::string title, std::string& path_dir){
     std::string path_directory = "";
     //---------------------------
 
@@ -115,7 +115,7 @@ namespace zenity{
     //---------------------------
     return path_directory;
   }
-  void zenity_file(std::string& path_file){
+  void selection_file(std::string& path_file){
     std::string path_saving = "";
     //---------------------------
 
@@ -139,7 +139,7 @@ namespace zenity{
 
     //---------------------------
   }
-  std::string zenity_file(){
+  std::string selection_file(){
     std::string path_saving = "";
     //---------------------------
 
@@ -164,11 +164,11 @@ namespace zenity{
     //---------------------------
     return path_saving;
   }
-  void zenity_directory(std::string& path_dir){
+  void selection_directory(std::string& path_dir){
     //---------------------------
 
     //Get absolute executable location
-    std::string zenity = "zenity --file-selection --directory --title='Select directory' --filename=" + path_dir;
+    std::string zenity = "zenity --file-selection --directory --title='Select directory' --filename=" + path_dir + "/";
 
     //Retrieve dir path
     FILE *file = popen(zenity.c_str(), "r");
@@ -184,12 +184,12 @@ namespace zenity{
         path_str.erase(std::remove(path_str.begin(), path_str.end(), '\n'), path_str.end());
       }
 
-      path_dir = path_str + "/";
+      path_dir = path_str;
     }
 
     //---------------------------
   }
-  std::string zenity_saving(std::string& dir, std::string filename){
+  std::string selection_saving(std::string& dir, std::string filename){
     //---------------------------
 
     std::string path = dir + filename;

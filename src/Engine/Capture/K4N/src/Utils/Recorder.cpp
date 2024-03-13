@@ -36,9 +36,8 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
   sensor->recorder.mode = k4n::recorder::PLY;
 
   //Path
-  string filename = sensor->name;
-  if(filename == "") filename = "test.ply";
-  string path = path_dir + "/" + filename;
+  string filename = sensor->name + "_f" + to_string(sensor->param.index_cloud);
+  string path = path_dir + "/" + filename + ".ply";
 
   //Export to ply
   ply_exporter->export_binary(sensor->get_data(), path);

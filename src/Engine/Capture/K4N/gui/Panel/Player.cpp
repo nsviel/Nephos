@@ -237,10 +237,9 @@ void Player::show_sensor_tab(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Force tab open if another sensor selected
-  ImGuiTabItemFlags flag = get_tab_flag(sensor);
   string name = sensor->icon + "  " + sensor->name;
   ImGui::SetNextItemWidth(90);
-  if(ImGui::BeginTabItem(name.c_str(), NULL, flag)){
+  if(ImGui::BeginTabItem(name.c_str(), NULL)){
 
     gui_sensor->show_sensor(sensor);
     //gui_recorder->show_sensor_recorder(sensor);
@@ -249,22 +248,6 @@ void Player::show_sensor_tab(k4n::dev::Sensor* sensor){
   }
 
   //---------------------------
-}
-
-//Subfunction
-ImGuiTabItemFlags Player::get_tab_flag(k4n::dev::Sensor* sensor){
-  k4n::dev::Master* master = sensor->master;
-  //---------------------------
-
-  ImGuiTabItemFlags flag = 0;
-  /*static int UID = master->selected_entity->UID;
-  if(sce_set->is_selected_entity(master, sensor) && sensor->UID != UID){
-    flag = ImGuiTabItemFlags_SetSelected;
-    UID = master->selected_entity->UID;
-  }*/
-
-  //---------------------------
-  return flag;
 }
 
 }

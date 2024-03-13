@@ -149,10 +149,11 @@ void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
 
   //Start recording
   if(master->player.record && !recorder.is_valid()){
-    sensor->recorder.folder = "../media/record/mkv";
-    string path = sensor->recorder.folder + sensor->recorder.filename;
+    string path = master->recorder.folder + "/" + sensor->name + ".mkv";
     recorder = k4a::record::create(path.c_str(), sensor->param.device, sensor->param.configuration);
     recorder.write_header();
+
+    sensor->recorder.folder = master->recorder.folder;
     sensor->recorder.ts_beg = sensor->master->player.ts_cur;
   }
   //Recording
