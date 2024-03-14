@@ -49,18 +49,10 @@ public:
   void set_visibility(bool value);
   utl::entity::Glyph* get_glyph(int type);
 
-  inline utl::type::Data* get_data(){return data;}
-  inline utl::type::Pose* get_pose(){return pose;}
-
 public:
   //Dependancy
   vk::Node* node_vulkan;
   eng::cam::Node* node_camera;
-
-  //Child
-  utl::type::Data* data;
-  utl::type::Pose* pose;
-  std::list<utl::entity::Glyph*> list_glyph;
 };
 
 }
