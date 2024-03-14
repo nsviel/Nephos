@@ -10,7 +10,7 @@ namespace glyph::object{
 Normal::Normal(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
-  this->name = "Normal";
+  this->name = "object::normal";
   this->width = 2;
   this->size = 1;
   this->is_visible = false;
@@ -29,7 +29,7 @@ void Normal::create(){
 
   //Create glyph
   utl::type::Data* data = new utl::type::Data();
-  data->name = "Normal";
+  data->name = "object::normal::data";
   data->width = width;
   data->is_visible = is_visible;
   data->nb_data_max = 1000000;

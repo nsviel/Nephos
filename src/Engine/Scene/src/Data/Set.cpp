@@ -150,6 +150,30 @@ void Set::remove_entity(utl::type::Set* set, utl::type::Entity* entity){
 
   //---------------------------
 }
+void Set::supress_entity(utl::type::Set* set, utl::type::Entity* entity){
+  if(entity == nullptr) return;
+  //---------------------------
+
+  // Check if the current set has the query entity
+  for(int i=0; i<set->list_entity.size(); i++){
+    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+
+    if(set->selected_entity->UID == entity->UID){
+      set->list_entity.remove(entity);
+      set->nb_entity--;
+      this->select_entity_next(set);
+
+      return;
+    }
+  }
+
+  // Recursively call delete_entity for each nested set
+  for(utl::type::Set* subset : set->list_subset){
+    this->supress_entity(subset, entity);
+  }
+
+  //---------------------------
+}
 void Set::delete_entity(utl::type::Set* set, utl::type::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------

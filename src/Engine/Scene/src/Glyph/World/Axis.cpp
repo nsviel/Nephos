@@ -7,7 +7,7 @@ namespace glyph::world{
 Axis::Axis(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
-  this->name = "axis";
+  this->name = "world::axis";
   this->is_visible = true;
   this->is_suppressible = false;
   this->is_movable = false;
@@ -23,6 +23,7 @@ void Axis::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
+  data->name = "world::axis::data";
   data->width = 4;
   data->is_visible = true;
   data->topology.type = utl::topology::LINE;

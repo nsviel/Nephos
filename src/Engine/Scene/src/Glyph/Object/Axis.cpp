@@ -9,7 +9,7 @@ namespace glyph::object{
 Axis::Axis(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
-  this->name = "Axis";
+  this->name = "object::axis";
   this->is_permanent = true;
   this->is_visible = true;
   this->ope_transform = new ope::Transformation();
@@ -26,7 +26,7 @@ void Axis::create(){
 
   //Create glyph
   utl::type::Data* data = new utl::type::Data();
-  data->name = "Axis";
+  data->name = "object::axis::data";
   data->width = 3;
   data->is_visible = is_visible;
   data->topology.type = utl::topology::LINE;

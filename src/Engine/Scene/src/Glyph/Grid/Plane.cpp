@@ -7,8 +7,8 @@ namespace glyph::grid{
 Plane::Plane(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
+  this->name = "grid::plane";
   this->is_permanent = true;
-  this->name = "grid_plane";
   this->color = vec4(0.2f, 0.2f, 0.2f, 1.0f);
 
   //---------------------------
@@ -20,6 +20,7 @@ void Plane::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
+  data->name = "grid::plane::data";
   data->is_visible = true;
   data->topology.type = utl::topology::TRIANGLE;
   data->unicolor = color;

@@ -7,8 +7,8 @@ namespace glyph::grid{
 Mesh::Mesh(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
+  this->name = "grid::mesh";
   this->is_permanent = true;
-  this->name = "grid";
   this->color_mesh = vec4(0.3f, 0.3f, 0.3f, 1.0f);
   this->color_submesh = vec4(0.24f, 0.24f, 0.24f, 1.0f);
   this->nb_subcell = 10;
@@ -23,6 +23,7 @@ void Mesh::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
+  data->name = "grid::mesh::data";
   data->width = 1;
   data->is_visible = true;
   data->topology.type = utl::topology::LINE;

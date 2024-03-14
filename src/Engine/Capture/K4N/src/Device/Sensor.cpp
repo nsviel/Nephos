@@ -96,7 +96,7 @@ void Sensor::remove_entity(){
   this->param.transformation.destroy();
   this->object.remove_entity();
   this->image = {};
-  sce_set->remove_entity(master, this);
+  sce_set->supress_entity(master, this);
 
   //---------------------------
 }

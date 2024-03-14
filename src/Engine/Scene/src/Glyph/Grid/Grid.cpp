@@ -9,7 +9,7 @@ namespace glyph::grid{
 Grid::Grid(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
-  this->name = "grid";
+  this->name = "grid::main";
   this->nb_cell = 10;
   this->is_suppressible = false;
   this->is_movable = false;

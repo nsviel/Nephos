@@ -9,6 +9,7 @@ namespace glyph::camera{
 Target::Target(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
+  this->name = "cam::target";
   this->is_permanent = true;
   this->color = vec4(1.0f, 1.0f, 1.0f, 0.5f);
   this->scale = 0.025;
@@ -23,6 +24,7 @@ void Target::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
+  data->name = "cam::target::data";
   data->width = 2;
   data->is_visible = true;
   data->topology.type = utl::topology::LINE;

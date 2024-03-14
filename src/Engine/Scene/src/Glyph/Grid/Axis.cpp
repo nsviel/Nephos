@@ -7,6 +7,7 @@ namespace glyph::grid{
 Axis::Axis(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
+  this->name = "grid::axis";
   this->is_permanent = true;
   this->color = vec4(0.4f, 0.4f, 0.4f, 1.0f);
 
@@ -19,6 +20,7 @@ void Axis::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
+  data->name = "grid::axis::data";
   data->width = 2;
   data->is_visible = true;
   data->topology.type = utl::topology::LINE;
