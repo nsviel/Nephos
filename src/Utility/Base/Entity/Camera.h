@@ -68,9 +68,6 @@ public:
   glm::mat4 mat_proj = glm::mat4(1);
   glm::mat4 mat_view = glm::mat4(1);
   glm::mat4 mat_vp = glm::mat4(1);
-
-  //Glyph
-  std::list<utl::entity::Glyph*> list_glyph;
 };
 
 

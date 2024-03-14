@@ -46,37 +46,16 @@ void Glyph::create_glyph_world(){
 void Glyph::create_glyph_object(utl::entity::Object* object){
   //---------------------------
 
-
-
-
-  if(object->list_glyph.size() != 0) return;
-  object->list_glyph.push_back(new glyph::object::Axis(node_engine));
-  object->list_glyph.push_back(new glyph::object::AABB(node_engine));
-  object->list_glyph.push_back(new glyph::object::Normal(node_engine));
-
-  for(int i=0; i<object->list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(object->list_glyph.begin(), i);
-
-    glyph->create();
-    sce_entity->init_entity(glyph);
-  }
+  this->create_glyph(object, new glyph::object::Axis(node_engine));
+  this->create_glyph(object, new glyph::object::AABB(node_engine));
+  this->create_glyph(object, new glyph::object::Normal(node_engine));
 
   //---------------------------
 }
 void Glyph::create_glyph_camera(utl::entity::Camera* camera){
   //---------------------------
 
-  if(camera->list_glyph.size() != 0) return;
-  camera->list_glyph.push_back(new glyph::camera::Target(node_engine));
-
-  for(int i=0; i<camera->list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(camera->list_glyph.begin(), i);
-
-    //Glyph creation
-    glyph->create();
-    glyph->update_glyph(camera);
-    sce_entity->init_entity(glyph);
-  }
+  this->create_glyph(camera, new glyph::camera::Target(node_engine));
 
   //---------------------------
 }
@@ -95,6 +74,7 @@ void Glyph::create_glyph(utl::type::Entity* entity, utl::entity::Glyph* glyph){
   //---------------------------
 
   glyph->create();
+  glyph->update_glyph(entity);
   sce_entity->init_entity(glyph);
   entity->list_glyph.push_back(glyph);
 
