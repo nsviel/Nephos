@@ -3,9 +3,12 @@
 #include <Utility/Specific/common.h>
 #include <image/IconsFontAwesome6.h>
 
+namespace utl::entity{class Glyph;}
+namespace utl::type{struct Set;}
+namespace utl::type{struct Pose;}
+
 
 namespace utl::type{
-class Set;
 
 struct Entity{
   //---------------------------
@@ -19,6 +22,7 @@ struct Entity{
   virtual utl::type::Pose* get_pose(){return nullptr;}
   virtual utl::type::Data* get_data(){return nullptr;}
 
+  //Info
   int UID = -1;
   bool is_suppressible = true;
   bool is_permanent = false;
@@ -27,8 +31,12 @@ struct Entity{
   std::string name = "";
   std::string entity_type = "base";
   std::string icon = ICON_FA_FILE;
-  std::vector<utl::type::Data*> vec_data;
   utl::type::Set* set_parent = nullptr;
+
+  //Data
+  utl::type::Pose* pose;
+  std::vector<utl::type::Data*> vec_data;
+  std::list<utl::entity::Glyph*> list_glyph;
 
   //---------------------------
 };

@@ -35,27 +35,19 @@ void Glyph::init(){
 
 //Glyph function
 void Glyph::create_glyph_world(){
-  utl::type::Set* set_main = sce_database->get_set_main();
-  utl::type::Set* set_world = sce_set->get_subset(set_main, "World");
+  utl::type::Set* set_world = sce_database->get_set_world();
   //---------------------------
 
-  vector<utl::entity::Glyph*> vec_glyph;
-  vec_glyph.push_back(new glyph::grid::Grid(node_engine));
-  vec_glyph.push_back(new glyph::world::Axis(node_engine));
-
-  for(int i=0; i<vec_glyph.size(); i++){
-    utl::entity::Glyph* glyph = vec_glyph[i];
-
-    glyph->create();
-    utl::type::Set* set_world = sce_database->get_set_world();
-    sce_set->insert_entity(set_world, glyph);
-    sce_entity->init_entity(glyph);
-  }
+  this->create_glyph(set_world, new glyph::grid::Grid(node_engine));
+  this->create_glyph(set_world, new glyph::world::Axis(node_engine));
 
   //---------------------------
 }
 void Glyph::create_glyph_object(utl::entity::Object* object){
   //---------------------------
+
+
+
 
   if(object->list_glyph.size() != 0) return;
   object->list_glyph.push_back(new glyph::object::Axis(node_engine));
@@ -85,6 +77,26 @@ void Glyph::create_glyph_camera(utl::entity::Camera* camera){
     glyph->update_glyph(camera);
     sce_entity->init_entity(glyph);
   }
+
+  //---------------------------
+}
+
+//Subfunction
+void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
+  //---------------------------
+
+  glyph->create();
+  sce_set->insert_entity(set, glyph);
+  sce_entity->init_entity(glyph);
+
+  //---------------------------
+}
+void Glyph::create_glyph(utl::type::Entity* entity, utl::entity::Glyph* glyph){
+  //---------------------------
+
+  glyph->create();
+  sce_entity->init_entity(glyph);
+  entity->list_glyph.push_back(glyph);
 
   //---------------------------
 }

@@ -28,6 +28,10 @@ public:
   void create_glyph_object(utl::entity::Object* object);
   void create_glyph_camera(utl::entity::Camera* camera);
 
+  //Subfunction
+  void create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph);
+  void create_glyph(utl::type::Entity* entity, utl::entity::Glyph* glyph);
+
 private:
   eng::Node* node_engine;
   vk::main::Graphical* vk_graphical;
