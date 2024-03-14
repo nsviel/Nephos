@@ -102,6 +102,7 @@ void Node::clean(){
   //---------------------------
 
   node_capture->clean();
+  node_scene->clean();
   node_vulkan->clean();
 
   //---------------------------

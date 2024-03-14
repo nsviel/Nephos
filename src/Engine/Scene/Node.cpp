@@ -48,7 +48,7 @@ void Node::init(){
   sce_bookmark->init();
   sce_database->init();
   sce_scene->init();
-  sce_glyph->create_glyph_world();
+  sce_glyph->init();
 
   //---------------------------
 }
@@ -56,6 +56,13 @@ void Node::loop(){
   //---------------------------
 
   sce_database->loop();
+
+  //---------------------------
+}
+void Node::clean(){
+  //---------------------------
+
+  sce_database->clean();
 
   //---------------------------
 }

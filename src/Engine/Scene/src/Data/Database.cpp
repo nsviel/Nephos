@@ -42,6 +42,13 @@ void Database::reset(){
 
   //---------------------------
 }
+void Database::clean(){
+  //---------------------------
+
+  sce_set->delete_entity_all(set_main);
+
+  //---------------------------
+}
 
 //Subfunction
 void Database::assign_UID(utl::type::Entity* entity){

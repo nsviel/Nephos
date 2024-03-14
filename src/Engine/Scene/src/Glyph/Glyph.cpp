@@ -22,15 +22,18 @@ Glyph::Glyph(eng::scene::Node* node_scene){
 
   //---------------------------
 }
-Glyph::~Glyph(){
+Glyph::~Glyph(){}
+
+//Main function
+void Glyph::init(){
   //---------------------------
 
-  this->remove_glyph_world();
+  this->create_glyph_world();
 
   //---------------------------
 }
 
-//Glyph world
+//Glyph function
 void Glyph::create_glyph_world(){
   utl::type::Set* set_main = sce_database->get_set_main();
   utl::type::Set* set_world = sce_set->get_subset(set_main, "World");
@@ -51,26 +54,6 @@ void Glyph::create_glyph_world(){
 
   //---------------------------
 }
-void Glyph::remove_glyph_world(){
-  utl::type::Set* set_main = sce_database->get_set_main();
-  utl::type::Set* set_world = sce_set->get_subset(set_main, "World");
-  //---------------------------
-
-  for(int i=0; i<set_world->list_entity.size(); i++){
-    utl::entity::Glyph* glyph = (utl::entity::Glyph*)*next(set_world->list_entity.begin(), i);
-
-    for(int j=0; j<glyph->vec_data.size(); j++){
-      vk_graphical->remove_data_in_engine(glyph->vec_data[j]);
-    }
-
-    delete glyph;
-  }
-
-  //---------------------------
-  set_world->list_entity.clear();
-}
-
-//Glyph object
 void Glyph::create_glyph_object(utl::entity::Object* object){
   //---------------------------
 
@@ -88,8 +71,6 @@ void Glyph::create_glyph_object(utl::entity::Object* object){
 
   //---------------------------
 }
-
-//Glyph camera
 void Glyph::create_glyph_camera(utl::entity::Camera* camera){
   //---------------------------
 

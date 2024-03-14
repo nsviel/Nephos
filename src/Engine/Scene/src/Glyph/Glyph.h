@@ -20,14 +20,12 @@ public:
   ~Glyph();
 
 public:
-  //Glyph world
+  //Main function
+  void init();
+
+  //Glyph function
   void create_glyph_world();
-  void remove_glyph_world();
-
-  //Glyph object
   void create_glyph_object(utl::entity::Object* object);
-
-  //Glyph camera
   void create_glyph_camera(utl::entity::Camera* camera);
 
 private:

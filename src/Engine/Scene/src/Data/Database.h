@@ -19,6 +19,7 @@ public:
   void init();
   void loop();
   void reset();
+  void clean();
 
   //Subfunction
   void assign_UID(utl::type::Entity* entity);
