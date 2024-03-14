@@ -127,20 +127,17 @@ void Master::manage_forward(){
   //---------------------------
 }
 void Master::manage_resynchronization(){
-  if(list_entity.size() <= 1) return;
+  if(list_entity.size() == 0) player.ts_cur = 0;
+  if(list_entity.size() < 2) return;
   if(mode == k4n::dev::CAPTURE) return;
   //---------------------------
 
-  //We take the first sensor color timestamp as a reference
-  if(auto sensor = dynamic_cast<k4n::dev::Sensor*>(*next(list_entity.begin(), 0))){
-    //And apply it to all other sensor
-    for(int i=1; i<list_entity.size(); i++){
-      utl::type::Entity* entity = *next(list_entity.begin(), i);
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
 
-      if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-        auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_cur));
-        sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-      }
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_cur));
+      sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     }
   }
 

@@ -17,6 +17,7 @@ Sensor::Sensor(k4n::structure::Struct_k4n* struct_k4n){
 
   this->node_engine = struct_k4n->node_engine;
   this->sce_entity = node_scene->get_scene_entity();
+  this->sce_set = new eng::scene::Set();
   this->sce_glyph = node_scene->get_scene_glyph();
   this->k4n_capture = new k4n::thread::Capture(struct_k4n);
   this->k4n_playback = new k4n::thread::Playback(struct_k4n);
@@ -95,6 +96,7 @@ void Sensor::remove_entity(){
   this->param.transformation.destroy();
   this->object.remove_entity();
   this->image = {};
+  sce_set->remove_entity(master, this);
 
   //---------------------------
 }

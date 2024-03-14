@@ -84,7 +84,7 @@ void Object::remove_entity(){
 
   //Remove glyph data
   for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);say(glyph->get_name());
     glyph->clear();
   }
 

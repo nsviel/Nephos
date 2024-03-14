@@ -6,6 +6,7 @@ namespace glyph::object{
 AABB::AABB(eng::Node* engine) : Glyph(engine){
   //---------------------------
 
+  this->name = "AABB";
   this->is_permanent = true;
   this->color = vec4(1.0f, 1.0f, 1.0f, 0.5f);
   this->type = utl::entity::object::AABB;
@@ -20,6 +21,7 @@ void AABB::create(){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
+  data->name = "AABB";
   data->width = 1;
   data->is_visible = false;
   data->topology.type = utl::topology::LINE;
