@@ -49,8 +49,8 @@ void Cloud::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  if(thread.joinable()){
-    thread.join();
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_processing->wait_thread();
 

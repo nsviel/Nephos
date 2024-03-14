@@ -30,7 +30,7 @@ class Sensor : public utl::type::Entity
 {
 public:
   //Constructor / Destructor
-  Sensor(k4n::structure::Struct_k4n* struct_k4n);
+  Sensor(k4n::structure::Struct_k4n* k4n_struct);
   ~Sensor();
 
 public:
@@ -81,6 +81,7 @@ private:
   eng::scene::Glyph* sce_glyph;
   k4n::thread::Capture* k4n_capture;
   k4n::thread::Playback* k4n_playback;
+  k4n::structure::Struct_k4n* k4n_struct;
 
   bool thread_running = false;
 };

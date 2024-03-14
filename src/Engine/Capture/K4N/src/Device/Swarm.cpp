@@ -213,6 +213,7 @@ int Swarm::get_number_running_thread(){
 
   for(int i=0; i<struct_k4n->list_sensor.size(); i++){
     k4n::dev::Sensor* sensor = *std::next(struct_k4n->list_sensor.begin(), i);
+
     if(sensor->is_playback_running()){
       nb_thread++;
     }

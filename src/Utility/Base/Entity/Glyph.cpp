@@ -30,7 +30,7 @@ void Glyph::clear(){
   //----------------------------
 
   for(int j=0; j<vec_data.size(); j++){
-    utl::type::Data* data = vec_data[j];say(data->name);
+    utl::type::Data* data = vec_data[j];
     vk_graphical->remove_data_in_engine(data);
   }
 

@@ -182,7 +182,6 @@ void Capture::manage_capture_endlife(k4a::capture* capture){
   //---------------------------
 
   k4a_data->wait_thread();
-  say("delete");
   delete capture_old;
   capture_old = capture;
 

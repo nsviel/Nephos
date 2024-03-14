@@ -35,6 +35,9 @@ public:
   void cmd_draw_line(vk::structure::Subpass* subpass);
   void cmd_draw_triangle(vk::structure::Subpass* subpass);
 
+  //Subfunction
+  bool check_data(utl::type::Data* data, int typology);
+
 private:
   eng::render::Node* node_render;
   vk::structure::Vulkan* struct_vulkan;

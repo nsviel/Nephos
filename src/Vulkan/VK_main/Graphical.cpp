@@ -126,13 +126,15 @@ void Graphical::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* po
   //---------------------------
 }
 void Graphical::remove_data_in_engine(utl::type::Data* data){
+  std::list<vk::structure::Object*>& list_vk_object = struct_vulkan->data.list_vk_object;
   //---------------------------
 
   bool is_in_list = false;
-  for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
-    vk::structure::Object* vk_object = *next(struct_vulkan->data.list_vk_object.begin(),i);
+  for(int i=0; i<list_vk_object.size(); i++){
+    vk::structure::Object* vk_object = *next(list_vk_object.begin(),i);
+
     if(data->UID == vk_object->data->UID){
-      struct_vulkan->data.list_vk_object.remove(vk_object);
+      list_vk_object.remove(vk_object);
       vk_data->clean_vk_object(vk_object);
     }
   }

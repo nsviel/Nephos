@@ -238,7 +238,6 @@ void Master::show_recorder(k4n::dev::Master* master){
   ImGui::TableNextColumn();
   if(ImGui::Button("...##folder_path")){
     zenity::selection_directory(master->recorder.folder);
-    say(master->recorder.folder);
   }
 
   //Filename

@@ -29,6 +29,7 @@ void Tree::create(){
 
   //Create glyph
   utl::type::Data* data = new utl::type::Data();
+  data->name = "tree::data";
   data->width = 2;
   data->is_visible = is_visible;
   data->topology.type = utl::topology::LINE;

@@ -112,16 +112,9 @@ void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
     utl::type::Data* data = vk_object->data;
     utl::type::Pose* pose = vk_object->pose;
 
-    bool is_visible = data->is_visible;
-    bool has_topology = data->topology.type == utl::topology::POINT;
-    bool has_xyz = data->xyz.size() != 0;
-    bool has_rgb = data->rgb.size() != 0;
-    bool same_length = data->rgb.size() == data->xyz.size();
-
-    if(is_visible && has_topology && has_xyz && has_rgb){
+    if(check_data(data, utl::topology::POINT)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
       vk_uniform->update_uniform("point_size", &vk_object->binding, data->topology.width);
-
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, vk_object->binding.descriptor.set);
       vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_object);
     }
@@ -142,17 +135,8 @@ void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
     utl::type::Data* data = vk_object->data;
     utl::type::Pose* pose = vk_object->pose;
 
-    bool& is_visible = data->is_visible;
-    bool has_topology = data->topology.type == utl::topology::LINE;
-    bool has_xyz = data->xyz.size() != 0;
-    bool has_rgb = data->rgb.size() != 0;
-    bool same_length = data->rgb.size() == data->xyz.size();
-
-    if(is_visible && has_topology && has_xyz && has_rgb && same_length){
+    if(check_data(data, utl::topology::LINE)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
-
-      say(data->name);
-
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, vk_object->binding.descriptor.set);
       vk_drawing->cmd_line_with(subpass->command_buffer->command, vk_object);
       vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_object);
@@ -174,15 +158,8 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
     utl::type::Data* data = vk_object->data;
     utl::type::Pose* pose = vk_object->pose;
 
-    bool& is_visible = data->is_visible;
-    bool has_topology = data->topology.type == utl::topology::TRIANGLE;
-    bool has_xyz = data->xyz.size() != 0;
-    bool has_rgb = data->rgb.size() != 0;
-    bool same_length = data->rgb.size() == data->xyz.size();
-
-    if(is_visible && has_topology && has_xyz && has_rgb && same_length){
+    if(check_data(data, utl::topology::TRIANGLE)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
-
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, vk_object->binding.descriptor.set);
       vk_drawing->cmd_line_with(subpass->command_buffer->command, vk_object);
       vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_object);
@@ -190,6 +167,25 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
   }
 
   //---------------------------
+}
+
+//Subfunction
+bool Scene::check_data(utl::type::Data* data, int topology){
+  bool data_ok = false;
+  //---------------------------
+
+  bool& is_visible = data->is_visible;
+  bool has_topology = data->topology.type == topology;
+  bool has_xyz = data->xyz.size() != 0;
+  bool has_rgb = data->rgb.size() != 0;
+  bool same_length = data->rgb.size() == data->xyz.size();
+
+  if(is_visible && has_topology && has_xyz && has_rgb && same_length){
+    data_ok = true;
+  }
+
+  //---------------------------
+  return data_ok;
 }
 
 }
