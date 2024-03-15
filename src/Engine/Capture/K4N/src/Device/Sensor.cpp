@@ -140,10 +140,10 @@ void Sensor::run_thread_playback(string path){
 }
 void Sensor::stop_threads(){
   //---------------------------
-
+say("---");
   this->k4n_capture->stop_thread();
   this->k4n_playback->stop_thread();
-  this->thread_running = false;
+  this->thread_running = false;sayHello();
 
   //---------------------------
 }
