@@ -359,6 +359,9 @@ void Capture::configuration_synchro(k4n::dev::Master* master){
 
   //Internal sync
   if(ImGui::TreeNode("Synchronization")){
+    //Streaming front LED
+    ImGui::Checkbox("Disable streaming LED", &master->synchro.disable_streaming_indicator);
+
     //Synchronized images only
     ImGui::Checkbox("Synchronized images only", &master->synchro.synchronized_images_only);
 
@@ -368,16 +371,6 @@ void Capture::configuration_synchro(k4n::dev::Master* master){
 
     ImGui::TreePop();
   }
-
-  /*if(ImGui::Checkbox("Disable streaming LED", &master->synchro.disable_streaming_indicator)){
-
-  }*/
-
-  //External sync
-  /*if(ImGui::TreeNode("External Sync")){
-
-    ImGui::TreePop();
-  }*/
 
   //---------------------------
 }

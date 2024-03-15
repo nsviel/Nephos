@@ -46,6 +46,7 @@ public:
   void player_stop();
   void player_restart();
   void player_record();
+  void player_close();
 
   //Subfunction
   void visibility_normal();
