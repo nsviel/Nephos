@@ -17,7 +17,7 @@ struct Synchro{
   uint32_t depth_delay_off_color_us = 0;
   uint32_t start_timestamp_offset_us = 0;
 
-  bool disable_streaming_indicator = false;
+  bool disable_streaming_indicator = true;
   bool synchronized_images_only = true;
 
   //---------------------------

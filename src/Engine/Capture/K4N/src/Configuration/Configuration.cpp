@@ -64,7 +64,7 @@ void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
   master->synchro.depth_delay_off_color_us = 0;
   master->synchro.wired_sync_mode = K4A_WIRED_SYNC_MODE_STANDALONE;
   master->synchro.subordinate_delay_off_master_us = 0;
-  master->synchro.disable_streaming_indicator = false;
+  master->synchro.disable_streaming_indicator = true;
   master->synchro.synchronized_images_only = true;
 
   master->config.color.exposure.value = 15625;

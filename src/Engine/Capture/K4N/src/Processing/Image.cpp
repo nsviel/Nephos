@@ -78,6 +78,7 @@ void Image::copy_image_color(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
+  /*
   string resolution = k4n_config->find_mode_color_resolution(sensor->color.config.resolution);
 
   //If color resolution is too big, display transformed color image - to be changed
@@ -88,6 +89,7 @@ void Image::copy_image_color(k4n::dev::Sensor* sensor){
     sensor->color.data.height = sensor->color.cloud.height;
     sensor->color.data.format = sensor->color.cloud.format;
   }
+  */
 
   image->color.data = std::vector<uint8_t>(sensor->color.data.buffer, sensor->color.data.buffer + sensor->color.data.size);
   image->color.size = image->color.data.size();

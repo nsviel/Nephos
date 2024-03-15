@@ -36,11 +36,14 @@ void Scene::init(){
   utl::file::Path path_5;
   path_5.data = "/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply";
 
+  utl::file::Path path_6;
+  path_6.data = "/home/aether/Desktop/sphere_test.mkv";
+
   //Create playback list
   //sce_loader->load_data(path_1);
   //sce_loader->load_data(path_2);
   //sce_loader->load_data(path_3);
-  sce_loader->load_data(path_4);
+  sce_loader->load_data(path_6);
 
   //----------------------------
 }

@@ -117,16 +117,19 @@ void Capture::configuration_depth(k4n::dev::Master* master){
 
   if(ImGui::TreeNode("Depth configuration")){
     int depth_mode = master->config.depth.mode;
-    if(ImGui::RadioButton("NFOV Binned", &depth_mode, K4A_DEPTH_MODE_NFOV_2X2BINNED)){
+    if(ImGui::RadioButton("NFOV Binned 2x2", &depth_mode, K4A_DEPTH_MODE_NFOV_2X2BINNED)){
       master->config.depth.mode = K4A_DEPTH_MODE_NFOV_2X2BINNED;
     }
+    ImGui::SetItemTooltip("[320 x 288] resolution");
     ImGui::SameLine();
     if(ImGui::RadioButton("NFOV Unbinned", &depth_mode, K4A_DEPTH_MODE_NFOV_UNBINNED)){
       master->config.depth.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
     }
-    if(ImGui::RadioButton("WFOV Binned", &depth_mode, K4A_DEPTH_MODE_WFOV_2X2BINNED)){
+    ImGui::SetItemTooltip("[640 x 576] resolution");
+    if(ImGui::RadioButton("WFOV Binned 2x2", &depth_mode, K4A_DEPTH_MODE_WFOV_2X2BINNED)){
       master->config.depth.mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
     }
+    ImGui::SetItemTooltip("[512 x 512] resolution");
     ImGui::SameLine();
     if(ImGui::RadioButton("WFOV Unbinned", &depth_mode, K4A_DEPTH_MODE_WFOV_UNBINNED)){
       master->config.depth.mode = K4A_DEPTH_MODE_WFOV_UNBINNED;
@@ -134,9 +137,11 @@ void Capture::configuration_depth(k4n::dev::Master* master){
         master->config.fps.mode = K4A_FRAMES_PER_SECOND_15;
       }
     }
+    ImGui::SetItemTooltip("[1024 x 1024] resolution");
     if(ImGui::RadioButton("Passive IR", &depth_mode, K4A_DEPTH_MODE_PASSIVE_IR)){
       master->config.depth.mode = K4A_DEPTH_MODE_PASSIVE_IR;
     }
+    ImGui::SetItemTooltip("[1024 x 1024] resolution");
 
     ImGui::TreePop();
   }
