@@ -217,16 +217,24 @@ void Loader::draw_file_content(){
 
       //Selection stuff
       ImGui::SameLine();
+      const bool item_is_selected = file_selection.contains(item.ID);
       string name = "##" + to_string(item.ID);
-      if(ImGui::Selectable(name.c_str(), false, flags) && ImGui::IsMouseDoubleClicked(0)){
-        if(item.name == ".."){
-          std::filesystem::path path = this->current_dir;
-          this->current_dir = path.parent_path();
-          this->file_selection.clear();
+      if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
+
+        if(ImGui::IsMouseDoubleClicked(0)){
+          if(item.name == ".."){
+            std::filesystem::path path = this->current_dir;
+            this->current_dir = path.parent_path();
+            this->file_selection.clear();
+          }else{
+            this->current_dir += "/" + item.name;
+            this->file_selection.clear();
+          }
         }else{
-          this->current_dir += "/" + item.name;
-          this->file_selection.clear();
+          file_selection.clear();
+          file_selection.push_back(item.ID);
         }
+
       }
     }
 
@@ -252,13 +260,13 @@ void Loader::draw_file_content(){
       string name = "##" + to_string(item.ID);
       if (ImGui::Selectable(name.c_str(), item_is_selected, flags)){
         //Add selection to list
-        if (ImGui::GetIO().KeyCtrl){
-            if (item_is_selected){
-              file_selection.find_erase_unsorted(item.ID);
-            }
-            else{
-              file_selection.push_back(item.ID);
-            }
+        if(ImGui::GetIO().KeyCtrl){
+          if (item_is_selected){
+            file_selection.find_erase_unsorted(item.ID);
+          }
+          else{
+            file_selection.push_back(item.ID);
+          }
         }else{
           file_selection.clear();
           file_selection.push_back(item.ID);
