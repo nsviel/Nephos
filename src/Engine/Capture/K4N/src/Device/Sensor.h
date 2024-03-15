@@ -41,7 +41,6 @@ public:
   //Entity function
   void update_pose();
   void remove_entity();
-  void reset_entity();
   void set_visibility(bool value);
 
   //Capture function

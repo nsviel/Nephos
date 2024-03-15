@@ -92,7 +92,6 @@ void Sensor::remove_entity(){
   //Remove sensor elements
   this->param.transformation.destroy();
   this->object.remove_entity();
-  this->image = {};
 
   //Supress this sensor from lists
   sce_set->supress_entity(master, this);
@@ -106,14 +105,6 @@ void Sensor::set_visibility(bool value){
   this->is_visible = value;
   object.data->is_visible = value;
   object.set_visibility(value);
-
-  //---------------------------
-}
-void Sensor::reset_entity(){
-  //---------------------------
-
-  //this->remove_entity();
-  //this->init();
 
   //---------------------------
 }
@@ -144,6 +135,8 @@ void Sensor::stop_threads(){
   this->k4n_capture->stop_thread();
   this->k4n_playback->stop_thread();
   this->thread_running = false;
+  this->object.clear_data();
+  this->image = {};
 
   //---------------------------
 }

@@ -348,7 +348,7 @@ bool Importer::Exporter(std::string path, utl::entity::Object* object){
     }
 
     //Color
-    if(object->data->has_color){
+    if(object->data->rgb.size() != 0){
       file << std::setprecision(0) <<" "<< RGB[i].x * 255 <<" "<< RGB[i].y * 255 <<" "<< RGB[i].z * 255;
     }
 

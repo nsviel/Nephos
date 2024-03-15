@@ -23,28 +23,6 @@ Capture::Capture(k4n::Node* node_k4n){
 Capture::~Capture(){}
 
 //Main function
-void Capture::show_master_capture(k4n::dev::Master* master){
-  if(master == nullptr) return;
-  if(master->mode == k4n::dev::PLAYBACK) return;
-  //---------------------------
-
-  ImGui::SetNextItemWidth(75);
-  if(ImGui::BeginTabItem("Capture##566", NULL)){
-    this->configuration_synchro(master);
-    this->configuration_depth(master);
-    this->configuration_color(master);
-    this->configuration_color_control(master);
-    this->configuration_fps(master);
-    this->configuration_button(master);
-
-    ImGui::Separator();
-    ImGui::EndTabItem();
-  }
-
-  //---------------------------
-}
-
-//Subfunction
 void Capture::list_device(k4n::dev::Master* master){
   if(master->mode == k4n::dev::PLAYBACK) return;
   //---------------------------
@@ -89,7 +67,7 @@ void Capture::list_device(k4n::dev::Master* master){
             ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
             ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(180, 100, 100, 255));
             if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-              sensor->reset_entity();
+              sensor->stop_threads();
             }
             ImGui::PopStyleColor(2);
           }else{
@@ -112,6 +90,28 @@ void Capture::list_device(k4n::dev::Master* master){
 
   //---------------------------
 }
+void Capture::show_master_capture(k4n::dev::Master* master){
+  if(master == nullptr) return;
+  if(master->mode == k4n::dev::PLAYBACK) return;
+  //---------------------------
+
+  ImGui::SetNextItemWidth(75);
+  if(ImGui::BeginTabItem("Capture##566", NULL)){
+    this->configuration_synchro(master);
+    this->configuration_depth(master);
+    this->configuration_color(master);
+    this->configuration_color_control(master);
+    this->configuration_fps(master);
+    this->configuration_button(master);
+
+    ImGui::Separator();
+    ImGui::EndTabItem();
+  }
+
+  //---------------------------
+}
+
+//Subfunction
 void Capture::configuration_depth(k4n::dev::Master* master){
   //---------------------------
 

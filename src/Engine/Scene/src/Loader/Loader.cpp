@@ -113,10 +113,9 @@ utl::entity::Object* Loader::create_object(utl::file::Data* data){
   //---------------------------
 
   utl::entity::Object* object = new utl::entity::Object(node_engine);
+  object->name = entity->name;
   object->data->path = entity->path.data;
   object->data->file_format = utl::fct::info::get_format_from_path(entity->path.data);
-  object->data->has_texture = true;
-  object->name = entity->name;
   object->data->size = entity->xyz.size();
   object->data->topology.type = entity->draw_type;
 

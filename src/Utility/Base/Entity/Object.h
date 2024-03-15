@@ -39,6 +39,7 @@ public:
   ~Object();
 
   //Main function
+  void clear_data();
   void update_data();
   void update_pose();
   void update_glyph();

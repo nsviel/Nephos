@@ -42,6 +42,7 @@ struct Data{
   int width = -1;
   int height = -1;
   int size = -1;
+  bool is_visible = true;
 
   //Infos
   std::string name = "";
@@ -53,13 +54,6 @@ struct Data{
   utl::type::Topology topology;
 
   //Data
-  bool has_color;
-  bool has_intensity;
-  bool has_normal;
-  bool has_texture;
-  bool has_timestamp;
-  bool is_visible = true;
-
   std::vector<glm::vec3> xyz;
   std::vector<glm::vec4> rgb;
   std::vector<glm::vec3> Nxyz;

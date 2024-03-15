@@ -42,6 +42,19 @@ Object::~Object(){
 }
 
 //Main function
+void Object::clear_data(){
+  //----------------------------
+
+  this->data->xyz.clear();
+  this->data->rgb.clear();
+  this->data->uv.clear();
+  this->data->Nxyz.clear();
+  this->data->ts.clear();
+  this->data->Is.clear();
+
+  //----------------------------
+  this->update_data();
+}
 void Object::update_data(){
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
