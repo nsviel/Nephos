@@ -166,8 +166,8 @@ void Loader::draw_file_content(){
 
       //Get file info
       item.ID = ID++;
-      item.type = directory::is_dir_or_file(file);
-      if(item.type == "directory"){
+      item.type = directory::is_directory(file) ? eng::loader::FOLDER : eng::loader::FILE;
+      if(item.type == eng::loader::FOLDER){
         item.name = utl::fct::info::get_filename_from_path(file);
         item.path = file;
         item.icon = string(ICON_FA_FOLDER);
@@ -177,7 +177,7 @@ void Loader::draw_file_content(){
         item.color_icon = ImVec4(0.5f, 0.63f, 0.75f, 0.9f);
         item.color_text = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_item_folder.push_back(item);
-      }else if(item.type == "file"){
+      }else if(item.type == eng::loader::FILE){
         item.path = file;
         item.name = utl::fct::info::get_name_from_path(file);
         item.icon = string(ICON_FA_FILE);

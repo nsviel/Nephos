@@ -26,6 +26,7 @@ public:
 
   //Subfunction
   bool is_path_bookmarked(string path);
+  void sort_list_bookmark();
   void save_on_file();
 
   inline list<eng::loader::Item> get_list_bookmark(){return list_bookmark;}

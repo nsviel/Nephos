@@ -42,14 +42,13 @@ void Bookmark::add_abs_path(string path){
   eng::loader::Item item;
   item.path = path;
   item.name = utl::fct::info::get_name_from_path(path);
+  item.type = directory::is_directory(path) ? eng::loader::FOLDER : eng::loader::FILE;
   item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
   item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = true;
 
   this->list_bookmark.push_back(item);
-  this->list_bookmark.sort([](const eng::loader::Item& a, const eng::loader::Item& b) {
-    return a.name < b.name;
-});
+  this->sort_list_bookmark();
 
   //---------------------------
 }
@@ -65,6 +64,7 @@ void Bookmark::add_relative_path(string path){
   item.is_supressible = false;
 
   this->list_bookmark.push_back(item);
+  this->sort_list_bookmark();
 
   //---------------------------
 }
@@ -108,6 +108,35 @@ bool Bookmark::is_path_bookmarked(string path){
 
   //---------------------------
   return false;
+}
+void Bookmark::sort_list_bookmark(){
+  //---------------------------
+
+  this->list_bookmark.sort([](const eng::loader::Item& a, const eng::loader::Item& b){
+    switch(a.type){
+      case eng::loader::FOLDER:{
+        if(b.type == eng::loader::FOLDER){
+          return a.name < b.name;
+        }else{
+          return true;
+        }
+        break;
+      }
+      case eng::loader::FILE:{
+        if(b.type == eng::loader::FOLDER){
+          return false;
+        }else{
+          return a.name < b.name;
+        }
+        break;
+      }
+      default:{
+        return a.name < b.name;
+      }
+    }
+  });
+
+  //---------------------------
 }
 
 

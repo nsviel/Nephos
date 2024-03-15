@@ -20,17 +20,18 @@ struct Item{
   //---------------------------
 
   //Item stuff
-  string path;
-  string name;
-  string type;
-  string format;
-  string size;
-  string icon;
+  int ID = -1;
+  int type = eng::loader::FILE;
+  std::string path = "";
+  std::string name = "";
+  std::string format = "";
+  std::string size = "";
+  std::string icon = "";
   ImVec4 color_icon;
   ImVec4 color_text;
   bool is_supressible = true;
-  float weight;
-  int ID;
+  float weight = 0;
+
 
   //Sorting stuff
   static const ImGuiTableSortSpecs* current_sort_specs;
