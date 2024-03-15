@@ -92,9 +92,7 @@ void Operation::run_thread(k4n::dev::Sensor* sensor){
   }
 
   //Export in ply
-  if(master->player.record && master->recorder.mode == k4n::recorder::PLY){
-    k4n_recorder->start_thread(sensor);
-  }
+  k4n_recorder->start_thread(sensor);
 
   //Update object data
   tasker->task_begin("update");

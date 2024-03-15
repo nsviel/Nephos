@@ -2,13 +2,13 @@
 
 #include <Utility/Specific/common.h>
 
-class Item;
 namespace eng::scene{class Node;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class Loader;}
 namespace eng::scene{class Bookmark;}
 namespace eng::scene{class Format;}
 namespace eng::scene{class Set;}
+namespace eng::loader{class Item;}
 namespace ope{class Transformation;}
 namespace ope{class Operation;}
 
@@ -33,9 +33,9 @@ public:
   void draw_file_content();
 
   //Other stuff
-  void draw_bookmark_button(Item& item);
+  void draw_header();
+  void draw_bookmark_button(eng::loader::Item& item);
   void draw_bookmark_tab();
-  void draw_footer();
 
   //Subfunction
   void operation_selection();
@@ -51,8 +51,8 @@ private:
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 
-  vector<Item> vec_item_folder;
-  vector<Item> vec_item_file;
+  vector<eng::loader::Item> vec_item_folder;
+  vector<eng::loader::Item> vec_item_file;
   ImVector<int> file_selection;
   string default_dir;
   string current_dir;

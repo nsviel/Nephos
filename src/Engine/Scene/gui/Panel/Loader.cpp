@@ -56,6 +56,9 @@ void Loader::design_panel(){
     this->goto_file_tab = false;
   }
 
+  this->draw_header();
+  ImGui::Separator();
+
   ImVec2 size = ImGui::GetContentRegionAvail();
   if(ImGui::BeginTabBar("Loader_tab##4567")){
     //File manager loader
@@ -74,9 +77,6 @@ void Loader::design_panel(){
 
     ImGui::EndTabBar();
   }
-
-  ImGui::Separator();
-  this->draw_footer();
 
   //---------------------------
 }
@@ -147,9 +147,9 @@ void Loader::draw_file_content(){
   flags |= ImGuiTableFlags_Sortable;
   if (ImGui::BeginTable("init_tree", 4, flags)){
     // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
-    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ColumnID_name);
-    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, ColumnID_format);
-    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, ColumnID_weight);
+    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, eng::loader::NAME);
+    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, eng::loader::FORMAT);
+    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, eng::loader::WEIGHT);
     ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
     ImGui::TableHeadersRow();
 
@@ -158,7 +158,7 @@ void Loader::draw_file_content(){
     vec_item_folder.clear();
     vec_item_file.clear();
     for(int i=0; i<vec_current_files.size(); i++){
-      Item item;
+      eng::loader::Item item;
       string file = vec_current_files[i];
       string filename = utl::fct::info::get_filename_from_path(file);
       //Remove hidden files
@@ -192,8 +192,8 @@ void Loader::draw_file_content(){
 
     // Sort data
     if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-      Item::sort_item_by_specs(sort_specs, vec_item_folder);
-      Item::sort_item_by_specs(sort_specs, vec_item_file);
+      eng::loader::Item::sort_item_by_specs(sort_specs, vec_item_folder);
+      eng::loader::Item::sort_item_by_specs(sort_specs, vec_item_file);
     }
 
     // Populate the table - Folder
@@ -202,7 +202,7 @@ void Loader::draw_file_content(){
     flags |= ImGuiSelectableFlags_AllowOverlap;
     flags |= ImGuiSelectableFlags_AllowDoubleClick;
     for(int i=0; i<vec_item_folder.size(); i++){
-      Item& item = vec_item_folder[i];
+      eng::loader::Item& item = vec_item_folder[i];
 
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
@@ -232,7 +232,7 @@ void Loader::draw_file_content(){
 
     // Populate the table - File
     for(int i=0; i<vec_item_file.size(); i++){
-      Item& item = vec_item_file[i];
+      eng::loader::Item& item = vec_item_file[i];
 
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
@@ -280,7 +280,7 @@ void Loader::draw_file_content(){
 }
 
 //Other stuff
-void Loader::draw_bookmark_button(Item& item){
+void Loader::draw_bookmark_button(eng::loader::Item& item){
   //---------------------------
 
   //Button background if already bookmarked
@@ -307,11 +307,11 @@ void Loader::draw_bookmark_button(Item& item){
   //---------------------------
 }
 void Loader::draw_bookmark_tab(){
-  list<Item> list_bookmark = sce_bookmark->get_list_bookmark();
+  list<eng::loader::Item> list_bookmark = sce_bookmark->get_list_bookmark();
   //---------------------------
 
   for(int i=0; i<list_bookmark.size(); i++){
-    Item& item = *next(list_bookmark.begin(), i);
+    eng::loader::Item& item = *next(list_bookmark.begin(), i);
 
     //File type icon
     ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
@@ -343,7 +343,7 @@ void Loader::draw_bookmark_tab(){
 
   //---------------------------
 }
-void Loader::draw_footer(){
+void Loader::draw_header(){
   //---------------------------
 
   // Load button
@@ -375,7 +375,7 @@ void Loader::operation_selection(){
   //Retrieve all good selected files to load
   vector<string> vec_path;
   for(int i=0; i<vec_item_file.size(); i++){
-    Item& item = vec_item_file[i];
+    eng::loader::Item& item = vec_item_file[i];
     if(file_selection.contains(item.ID)){
       if(sce_format->is_format_supported(item.format)){
         vec_path.push_back(item.path);

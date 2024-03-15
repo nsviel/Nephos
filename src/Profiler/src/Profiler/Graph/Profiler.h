@@ -26,10 +26,10 @@ public:
   void new_tasker(prf::graph::Tasker* tasker);
   void remove_tasker(prf::graph::Tasker* tasker);
 
-  inline std::vector<prf::graph::Tasker*> get_vec_tasker(){return vec_tasker;}
+  inline std::list<prf::graph::Tasker*> get_list_tasker(){return list_tasker;}
 
 private:
-  std::vector<prf::graph::Tasker*> vec_tasker;
+  std::list<prf::graph::Tasker*> list_tasker;
 };
 
 }

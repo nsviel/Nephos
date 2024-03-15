@@ -62,17 +62,17 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   //---------------------------
 
   //Find not empty taskers
-  vector<prf::graph::Tasker*> vec_tasker = profiler->get_vec_tasker();
-  vector<prf::graph::Tasker*> vec_tasker_not_empty;
+  list<prf::graph::Tasker*> list_tasker = profiler->get_list_tasker();
+  vector<prf::graph::Tasker*> vec_tasker;
 
-  for(int i=0; i<vec_tasker.size(); i++){
-    prf::graph::Tasker* tasker = vec_tasker[i];
+  for(int i=0; i<list_tasker.size(); i++){
+    prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
 
     if(!tasker->is_empty()){
-      vec_tasker_not_empty.push_back(tasker);
+      vec_tasker.push_back(tasker);
     }
   }
-  if(vec_tasker_not_empty.size() < 2) return;
+  if(vec_tasker.size() < 2) return;
 
   //Stuff to force first-opened tab
   static bool first_tab_open = true;
@@ -86,10 +86,10 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   ImGui::SetNextItemWidth(100);
   if(ImGui::BeginTabItem("All##4568", NULL, flag)){
     prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
-    graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker_not_empty.size() - 3);
+    graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker.size() - 3);
 
-    for(int i=0; i<vec_tasker_not_empty.size(); i++){
-      this->draw_tasker_graph(vec_tasker_not_empty[i], graph_dim);
+    for(int i=0; i<vec_tasker.size(); i++){
+      this->draw_tasker_graph(vec_tasker[i], graph_dim);
     }
     ImGui::EndTabItem();
   }
@@ -100,9 +100,9 @@ void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
 
-  vector<prf::graph::Tasker*> vec_tasker = profiler->get_vec_tasker();
-  for(int i=0; i<vec_tasker.size(); i++){
-    prf::graph::Tasker* tasker = vec_tasker[i];
+  list<prf::graph::Tasker*> list_tasker = profiler->get_list_tasker();
+  for(int i=0; i<list_tasker.size(); i++){
+    prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
 
     //Improfil graphs
     ImGui::SetNextItemWidth(100);
@@ -155,10 +155,10 @@ void Graph::set_graphs_max_time(int value){
     prf::type::Profiler* profiler = *next(list_profiler.begin(), i);
 
     if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
-      vector<prf::graph::Tasker*> vec_tasker = graph->get_vec_tasker();
+      list<prf::graph::Tasker*> list_tasker = graph->get_list_tasker();
 
-      for(int i=0; i<vec_tasker.size(); i++){
-        prf::graph::Tasker* tasker = vec_tasker[i];
+      for(int i=0; i<list_tasker.size(); i++){
+        prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
         prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
 
         gui_graph->set_time_max(value);

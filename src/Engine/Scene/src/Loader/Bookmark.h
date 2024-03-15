@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-class Item;
+namespace eng::loader{class Item;}
 namespace eng::scene{class Node;}
 
 
@@ -28,10 +28,10 @@ public:
   bool is_path_bookmarked(string path);
   void save_on_file();
 
-  inline list<Item> get_list_bookmark(){return list_bookmark;}
+  inline list<eng::loader::Item> get_list_bookmark(){return list_bookmark;}
 
 private:
-  list<Item> list_bookmark;
+  list<eng::loader::Item> list_bookmark;
   string path_bookmark_file;
 };
 

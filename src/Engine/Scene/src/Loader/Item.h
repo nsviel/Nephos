@@ -3,14 +3,17 @@
 #include <Utility/Specific/common.h>
 
 
+namespace eng::loader{
+
 enum ColumnID{
-  //---------------------------
+  NAME,
+  WEIGHT,
+  FORMAT
+};
 
-  ColumnID_name,
-  ColumnID_weight,
-  ColumnID_format
-
-  //---------------------------
+enum type{
+  FOLDER = 0,
+  FILE = 1,
 };
 
 struct Item{
@@ -36,3 +39,5 @@ struct Item{
 
   //---------------------------
 };
+
+}

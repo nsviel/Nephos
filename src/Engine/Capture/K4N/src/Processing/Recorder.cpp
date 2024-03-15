@@ -25,6 +25,13 @@ Recorder::~Recorder(){}
 void Recorder::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  k4n::dev::Master* master = sensor->master;
+  if(!master->player.record || master->recorder.mode != k4n::recorder::PLY){
+    prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("recorder");
+    tasker->clear();
+    return;
+  }
+  
   if(thread.joinable()){
     this->thread.join();
   }

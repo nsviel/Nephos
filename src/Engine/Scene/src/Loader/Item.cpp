@@ -1,6 +1,8 @@
 #include "Item.h"
 
 
+namespace eng::loader{
+
 const ImGuiTableSortSpecs* Item::current_sort_specs = nullptr;
 
 bool Item::compare_with_specs(const Item& a, const Item& b){
@@ -17,9 +19,9 @@ bool Item::compare_with_specs(const Item& a, const Item& b){
     const ImGuiTableColumnSortSpecs* sort_spec = &current_sort_specs->Specs[n];
     int delta = 0;
     switch (sort_spec->ColumnUserID) {
-      case ColumnID_name: delta = a.name.compare(b.name); break;
-      case ColumnID_weight: delta = (a.weight > b.weight) ? 1 : (a.weight < b.weight) ? -1 : 0; break;
-      case ColumnID_format: delta = a.format.compare(b.format); break;
+      case eng::loader::NAME: delta = a.name.compare(b.name); break;
+      case eng::loader::WEIGHT: delta = (a.weight > b.weight) ? 1 : (a.weight < b.weight) ? -1 : 0; break;
+      case eng::loader::FORMAT: delta = a.format.compare(b.format); break;
       default: std::cerr << "Unhandled column ID: " << sort_spec->ColumnUserID << std::endl; break;
     }
     if (delta > 0)
@@ -41,4 +43,6 @@ void Item::sort_item_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<Item>
   current_sort_specs = nullptr;
 
   //---------------------------
+}
+
 }

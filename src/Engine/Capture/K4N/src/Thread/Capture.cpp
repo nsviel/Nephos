@@ -81,7 +81,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   sensor->param.is_capturing = false;
 
   //---------------------------
-
+  this->thread_idle = true;
 }
 void Capture::stop_thread(){
   //---------------------------
@@ -93,7 +93,7 @@ void Capture::stop_thread(){
   }
 
   //---------------------------
-  this->thread_idle = true;
+
 }
 void Capture::wait_thread(){
   //For external thread to wait this queue thread idle

@@ -39,7 +39,7 @@ void Bookmark::add_abs_path(string path){
   if(!utl::fct::file::is_file_exist_silent(path)) return;
   //---------------------------
 
-  Item item;
+  eng::loader::Item item;
   item.path = path;
   item.name = utl::fct::info::get_name_from_path(path);
   item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
@@ -47,6 +47,9 @@ void Bookmark::add_abs_path(string path){
   item.is_supressible = true;
 
   this->list_bookmark.push_back(item);
+  this->list_bookmark.sort([](const eng::loader::Item& a, const eng::loader::Item& b) {
+    return a.name < b.name;
+});
 
   //---------------------------
 }
@@ -54,7 +57,7 @@ void Bookmark::add_relative_path(string path){
   if(!utl::fct::file::is_file_exist_silent(path)) return;
   //---------------------------
 
-  Item item;
+  eng::loader::Item item;
   item.path = utl::fct::file::get_absolute_path(path);
   item.name = utl::fct::info::get_name_from_path(path);
   item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
@@ -68,7 +71,7 @@ void Bookmark::add_relative_path(string path){
 void Bookmark::remove_path(string path){
   //---------------------------
 
-  auto it = std::find_if(list_bookmark.begin(), list_bookmark.end(), [&](const Item& item) { return item.path == path; });
+  auto it = std::find_if(list_bookmark.begin(), list_bookmark.end(), [&](const eng::loader::Item& item) { return item.path == path; });
   if(it != list_bookmark.end()){
     list_bookmark.erase(it);
   }
@@ -82,7 +85,7 @@ void Bookmark::save_on_file(){
 
   vector<string> vec_path;
   for(int i=0; i<list_bookmark.size(); i++){
-    Item& item = *next(list_bookmark.begin(), i);
+    eng::loader::Item& item = *next(list_bookmark.begin(), i);
     if(item.is_supressible){
       vec_path.push_back(item.path);
     }
@@ -96,7 +99,7 @@ bool Bookmark::is_path_bookmarked(string path){
   //---------------------------
 
   for(int i=0; i<list_bookmark.size(); i++){
-    Item& item = *next(list_bookmark.begin(), i);
+    eng::loader::Item& item = *next(list_bookmark.begin(), i);
 
     if(path == item.path){
       return true;
