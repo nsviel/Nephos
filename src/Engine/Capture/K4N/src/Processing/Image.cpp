@@ -76,7 +76,7 @@ void Image::wait_thread(){
 void Image::copy_image_color(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
-
+//say(sensor->color.config.resolution_str);
   if(sensor->color.config.resolution_str == "") return;
 
   //If color resolution is too big, display transformed color image - to be changed

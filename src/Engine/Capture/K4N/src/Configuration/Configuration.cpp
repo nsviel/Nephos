@@ -85,61 +85,71 @@ void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
   k4a_record_configuration_t configuration = sensor->param.playback.get_record_configuration();
   //---------------------------
 
-  this->find_config_fps(sensor, configuration);
-  this->find_config_synchro(sensor, configuration);
-  this->find_config_depth(sensor, configuration);
-  this->find_config_color(sensor, configuration);
-  this->find_config_format(sensor, configuration);
-  this->find_config_device(sensor, configuration);
+  //FPS
+  sensor->param.fps_mode = find_mode_fps(configuration.camera_fps);
 
-  //---------------------------
-}
-void Configuration::find_config_fps(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
-  //---------------------------
-
-  switch(configuration.camera_fps){
-    case K4A_FRAMES_PER_SECOND_5:{
-      sensor->param.fps_mode = "5";
-      break;
-    }
-    case K4A_FRAMES_PER_SECOND_15:{
-      sensor->param.fps_mode = "15";
-      break;
-    }
-    case K4A_FRAMES_PER_SECOND_30:{
-      sensor->param.fps_mode = "30";
-      break;
-    }
-  }
-
-  //---------------------------
-}
-void Configuration::find_config_synchro(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
-  //---------------------------
-
+  //Synchro
+  sensor->synchro.wired_sync_mode_str = find_mode_synchro(configuration.wired_sync_mode);
   sensor->synchro.wired_sync_mode = configuration.wired_sync_mode;
   sensor->synchro.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
   sensor->synchro.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
   sensor->synchro.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
 
-  switch (configuration.wired_sync_mode){
-    case K4A_WIRED_SYNC_MODE_STANDALONE:{
-      sensor->synchro.wired_sync_mode_str = "Standalone";
+  this->find_mode_depth(sensor, configuration);
+  this->find_mode_color(sensor, configuration);
+  this->find_mode_format(sensor, configuration);
+  this->find_mode_device(sensor, configuration);
+
+  //---------------------------
+}
+
+//Subfunction
+string Configuration::find_mode_fps(int mode){
+  string mode_str = "";
+  //---------------------------
+
+  switch(mode){
+    case K4A_FRAMES_PER_SECOND_5:{
+      mode_str = "5";
       break;
     }
-    case K4A_WIRED_SYNC_MODE_MASTER:{
-      sensor->synchro.wired_sync_mode_str = "Master";
+    case K4A_FRAMES_PER_SECOND_15:{
+      mode_str = "15";
       break;
     }
-    case K4A_WIRED_SYNC_MODE_SUBORDINATE:{
-      sensor->synchro.wired_sync_mode_str = "Subordinate";
+    case K4A_FRAMES_PER_SECOND_30:{
+      mode_str = "30";
       break;
     }
   }
 
   //---------------------------
+  return mode_str;
 }
-void Configuration::find_config_depth(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
+string Configuration::find_mode_synchro(int mode){
+  string mode_str = "";
+  //---------------------------
+
+  switch(mode){
+    case K4A_WIRED_SYNC_MODE_STANDALONE:{
+      mode_str = "Standalone";
+      break;
+    }
+    case K4A_WIRED_SYNC_MODE_MASTER:{
+      mode_str = "Master";
+      break;
+    }
+    case K4A_WIRED_SYNC_MODE_SUBORDINATE:{
+      mode_str = "Subordinate";
+      break;
+    }
+  }
+
+  //---------------------------
+  return mode_str;
+}
+string Configuration::find_mode_depth(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
+  string mode_str = "";
   //---------------------------
 
   sensor->depth.config.enabled = configuration.depth_track_enabled;
@@ -174,8 +184,10 @@ void Configuration::find_config_depth(k4n::dev::Sensor* sensor, k4a_record_confi
   }
 
   //---------------------------
+  return mode_str;
 }
-void Configuration::find_config_color(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
+string Configuration::find_mode_color(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
+  string mode_str = "";
   //---------------------------
 
   //Ask for default color format
@@ -219,8 +231,10 @@ void Configuration::find_config_color(k4n::dev::Sensor* sensor, k4a_record_confi
   }
 
   //---------------------------
+  return mode_str;
 }
-void Configuration::find_config_format(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
+string Configuration::find_mode_format(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
+  string mode_str = "";
   //---------------------------
 
   sensor->color.config.format = configuration.color_format;
@@ -257,8 +271,10 @@ void Configuration::find_config_format(k4n::dev::Sensor* sensor, k4a_record_conf
   }
 
   //---------------------------
+  return mode_str;
 }
-void Configuration::find_config_device(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
+string Configuration::find_mode_device(k4n::dev::Sensor* sensor, k4a_record_configuration_t& configuration){
+  string mode_str = "";
   //---------------------------
 
   sensor->ir.config.enabled = configuration.ir_track_enabled;
@@ -266,6 +282,7 @@ void Configuration::find_config_device(k4n::dev::Sensor* sensor, k4a_record_conf
   sensor->param.playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
 
   //---------------------------
+  return mode_str;
 }
 
 
