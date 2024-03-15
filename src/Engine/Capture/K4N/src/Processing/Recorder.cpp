@@ -34,21 +34,26 @@ void Recorder::start_thread(k4n::dev::Sensor* sensor){
   this->thread_idle = false;
 }
 void Recorder::run_thread(k4n::dev::Sensor* sensor){
+  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("recorder");
+  tasker->loop_begin();
   //---------------------------
 
+  tasker->task_begin("recorder::ply");
   this->make_export_to_ply(sensor);
+  tasker->task_end("recorder::ply");
 
   //---------------------------
+  tasker->loop_end();
+  this->thread_idle = true;
 }
-void Recorder::stop_thread(){
+void Recorder::wait_thread(){
   //---------------------------
 
-  if(thread.joinable()){
-    thread.join();
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
   //---------------------------
-  this->thread_idle = true;
 }
 
 //Subfunction

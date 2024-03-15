@@ -22,7 +22,7 @@ public:
 
   //Tasker function
   prf::graph::Tasker* new_tasker(string name);
-  prf::graph::Tasker* get_tasker(string name);
+  prf::graph::Tasker* get_or_create_tasker(string name);
   void new_tasker(prf::graph::Tasker* tasker);
   void remove_tasker(prf::graph::Tasker* tasker);
 

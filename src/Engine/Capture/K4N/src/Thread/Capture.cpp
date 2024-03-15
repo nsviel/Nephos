@@ -38,7 +38,7 @@ void Capture::start_thread(k4n::dev::Sensor* sensor){
   this->thread_idle = false;
 }
 void Capture::run_thread(k4n::dev::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
+  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("capture");
   k4n::dev::Master* master = sensor->master;
   //---------------------------
 
@@ -109,7 +109,7 @@ void Capture::wait_thread(){
 
 //Subfunction
 k4a::capture* Capture::manage_capture(k4n::dev::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("capture");
+  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("capture");
   //---------------------------
 
   tasker->task_begin("capture");

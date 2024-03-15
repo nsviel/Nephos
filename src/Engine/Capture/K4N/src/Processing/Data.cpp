@@ -70,7 +70,7 @@ void Data::wait_thread(){
 
 //Data function
 void Data::find_data_from_capture(k4n::dev::Sensor* sensor, k4a::capture* capture){
-  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("data");
+  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("data");
   //---------------------------
 
   tasker->loop_begin();

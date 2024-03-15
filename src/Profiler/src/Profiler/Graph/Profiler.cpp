@@ -46,7 +46,7 @@ void Profiler::new_tasker(prf::graph::Tasker* tasker){
 
   //---------------------------
 }
-prf::graph::Tasker* Profiler::get_tasker(string name){
+prf::graph::Tasker* Profiler::get_or_create_tasker(string name){
   //---------------------------
 
   for(int i=0; i<vec_tasker.size(); i++){
@@ -56,10 +56,10 @@ prf::graph::Tasker* Profiler::get_tasker(string name){
     }
   }
 
-  cout<<"[error] tasker with name "<<name<<" doesn't exists"<<endl;
+  prf::graph::Tasker* tasker = new_tasker(name);
 
   //---------------------------
-  return nullptr;
+  return tasker;
 }
 
 void Profiler::remove_tasker(prf::graph::Tasker* tasker){

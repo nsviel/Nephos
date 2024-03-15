@@ -42,7 +42,7 @@ void Operation::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   k4n::dev::Master* master = sensor->master;
-  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("processing");
+  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("processing");
   tasker->loop_begin();
 
   //Colorizer
@@ -91,11 +91,9 @@ void Operation::run_thread(k4n::dev::Sensor* sensor){
     tasker->task_end("normal");
   }
 
-  //Export
+  //Export in ply
   if(master->player.record && master->recorder.mode == k4n::recorder::PLY){
-    tasker->task_begin("export");
-    k4n_recorder->make_export_to_ply(sensor);
-    tasker->task_end("export");
+    k4n_recorder->start_thread(sensor);
   }
 
   //Update object data
@@ -115,6 +113,7 @@ void Operation::wait_thread(){
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+  k4n_recorder->wait_thread();
 
   //---------------------------
 }

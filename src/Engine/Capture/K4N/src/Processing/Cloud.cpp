@@ -65,7 +65,7 @@ void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
   if(sensor->color.cloud.size != sensor->depth.cloud.size * 2) return;
   //---------------------------
 
-  prf::graph::Tasker* tasker = sensor->profiler->get_tasker("cloud");
+  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("cloud");
   tasker->loop_begin();
 
   this->loop_init(sensor);

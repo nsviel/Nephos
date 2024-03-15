@@ -21,7 +21,7 @@ public:
   //Main function
   void start_thread(k4n::dev::Sensor* sensor);
   void run_thread(k4n::dev::Sensor* sensor);
-  void stop_thread();
+  void wait_thread();
 
   //Subfunction
   void make_export_to_ply(k4n::dev::Sensor* sensor);
