@@ -23,6 +23,7 @@ namespace directory{
 
   //Directory operations
   void clean_file(const char *path);
+  void clean_folder(const std::string& path);
   void create_new(std::string path);
   int get_number_file(std::string path);
 

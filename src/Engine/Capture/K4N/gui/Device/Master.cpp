@@ -231,18 +231,22 @@ void Master::show_recorder(k4n::dev::Master* master){
 
   //Directory path
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Directory path");
+  ImGui::Text("Dir path");
+  ImGui::TableNextColumn();
+  if(ImGui::Button("...##folder_path", ImVec2(20, 0))){
+    zenity::selection_directory(master->recorder.folder);
+  }
   ImGui::TableNextColumn();
   string path = (master->recorder.folder != "") ? master->recorder.folder : "(not defined)";
   ImGui::TextColored(color, "%s", path.c_str());
-  ImGui::TableNextColumn();
-  if(ImGui::Button("...##folder_path")){
-    zenity::selection_directory(master->recorder.folder);
-  }
 
   //Filename
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count");
+  ImGui::TableNextColumn();
+  if(ImGui::Button("R##folder_file", ImVec2(20, 0))){
+    directory::clean_folder(master->recorder.folder);
+  }
   ImGui::TableNextColumn();
   int nb_file = directory::get_number_file(master->recorder.folder);
   ImGui::TextColored(color, "%d", nb_file);

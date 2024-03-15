@@ -19,8 +19,8 @@ public:
 
 public:
   //Main function
-  void start_thread();
-  void run_thread();
+  void start_thread(k4n::dev::Sensor* sensor);
+  void run_thread(k4n::dev::Sensor* sensor);
   void stop_thread();
 
   //Subfunction
@@ -32,7 +32,6 @@ private:
   format::ply::Exporter* ply_exporter;
 
   std::thread thread;
-  bool thread_running = false;
   bool thread_idle = true;
 };
 

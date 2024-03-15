@@ -51,7 +51,6 @@ private:
   std::vector<bool> vec_goodness;
 
   std::thread thread;
-  bool thread_running = false;
   bool thread_idle = true;
   int16_t* point_cloud_data;
   int point_cloud_size;

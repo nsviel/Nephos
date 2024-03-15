@@ -22,20 +22,21 @@ Recorder::Recorder(k4n::structure::Struct_k4n* struct_k4n){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::start_thread(){
+void Recorder::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(!thread_running){
-    this->thread = std::thread(&Recorder::run_thread, this);
+  if(thread.joinable()){
+    this->thread.join();
   }
+  this->thread = std::thread(&Recorder::run_thread, this, sensor);
 
   //---------------------------
-  this->thread_running = true;
   this->thread_idle = false;
 }
-void Recorder::run_thread(){
+void Recorder::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  this->make_export_to_ply(sensor);
 
   //---------------------------
 }

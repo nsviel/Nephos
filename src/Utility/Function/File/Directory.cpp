@@ -36,6 +36,18 @@ namespace directory{
 
     //---------------------------
   }
+  void clean_folder(const std::string& path){
+    if(!is_dir_exist(path)) return;
+    //---------------------------
+
+    for (const auto& entry : std::filesystem::directory_iterator(path)) {
+      if (std::filesystem::is_regular_file(entry)) {
+        std::filesystem::remove(entry.path());
+      }
+    }
+
+    //---------------------------
+  }
   int get_number_file(std::string path){
     DIR *dp;
     //---------------------------
