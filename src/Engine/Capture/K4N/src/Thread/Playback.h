@@ -29,6 +29,7 @@ public:
   void run_thread(k4n::dev::Sensor* sensor);
   void stop_thread();
   void wait_thread();
+  void wait_pause();
 
   //Subfunction
   k4a::capture* manage_capture(k4n::dev::Sensor* sensor);

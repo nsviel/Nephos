@@ -90,13 +90,6 @@ void Master::manage_restart(){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      //Wait until pause is effective
-      if(sensor->is_playback_running()){
-        while(sensor->is_playback_paused() == false){
-          std::this_thread::sleep_for(std::chrono::milliseconds(1));
-        }
-      }
-
       //Set playback to begin
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_beg));
       sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
@@ -218,13 +211,20 @@ void Master::player_play(){
 void Master::player_stop(){
   //---------------------------
 
-  //Restart playbacks
+  //Pause playback thread
   player.play = false;
   player.pause = true;
+
+  //Wait for pause 
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
+
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      sensor->wait_pause();
+    }
+  }
+
   this->manage_restart();
-
-  //Set play state
-
 
   //---------------------------
 }

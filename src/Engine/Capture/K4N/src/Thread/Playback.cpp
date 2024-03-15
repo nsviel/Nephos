@@ -67,7 +67,6 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
 
     //Manage event
     this->manage_pause(sensor);
-    this->manage_restart(sensor);
     tasker->loop_end();
   }
 
@@ -95,6 +94,17 @@ void Playback::wait_thread(){
 
   //---------------------------
 }
+void Playback::wait_pause(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  k4a_data->wait_thread();
+  while(thread_paused == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  //---------------------------
+}
 
 //Subfunction
 k4a::capture* Playback::manage_capture(k4n::dev::Sensor* sensor){
@@ -105,8 +115,10 @@ k4a::capture* Playback::manage_capture(k4n::dev::Sensor* sensor){
   tasker->task_begin("capture");
 
   k4a::capture* capture = new k4a::capture();
-  bool ok = sensor->param.playback.get_next_capture(capture);
-  if(!ok) sensor->master->manage_restart();
+  bool capture_left = sensor->param.playback.get_next_capture(capture);
+  if(capture_left == false){
+    this->manage_restart(sensor);
+  }
 
   tasker->task_end("capture");
 
@@ -137,8 +149,11 @@ void Playback::manage_pause(k4n::dev::Sensor* sensor){
 void Playback::manage_restart(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(sensor->color.data.timestamp >= sensor->master->player.ts_end){
+  if(sensor->color.data.timestamp == sensor->master->player.ts_end){
+    k4a_data->wait_thread();
     sensor->master->manage_restart();
+    sensor->master->player.play = true;
+    sensor->master->player.pause = false;
   }
 
   //---------------------------

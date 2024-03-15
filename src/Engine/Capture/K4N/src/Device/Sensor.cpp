@@ -152,6 +152,26 @@ void Sensor::stop_threads(){
 
   //---------------------------
 }
+void Sensor::wait_threads(){
+  //---------------------------
+
+  if(k4n_capture->is_thread_running()){
+    k4n_capture->wait_thread();
+  }else if(k4n_playback->is_thread_running()){
+    k4n_playback->wait_thread();
+  }
+
+  //---------------------------
+}
+void Sensor::wait_pause(){
+  //---------------------------
+
+  if(k4n_playback->is_thread_running()){
+    k4n_playback->wait_pause();
+  }
+
+  //---------------------------
+}
 void Sensor::reset_color_configuration(){
   //---------------------------
 
