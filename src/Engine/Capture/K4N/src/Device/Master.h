@@ -36,6 +36,7 @@ public:
   void manage_restart();
   void manage_forward();
   void manage_resynchronization();
+  void manage_configuration();
 
   //Player function
   void player_update();

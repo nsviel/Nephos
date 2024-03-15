@@ -15,3 +15,4 @@
 #include <K4N/src/Structure/Recorder.h>
 #include <K4N/src/Structure/IMU.h>
 #include <K4N/src/Structure/K4N.h>
+#include <K4N/src/Structure/enum.h>

@@ -11,8 +11,9 @@ namespace k4n::processing{
 Image::Image(){
   //---------------------------
 
-  this->k4a_depth = new k4n::data::Depth();
-  this->k4a_infrared = new k4n::data::Infrared();
+  this->k4n_depth = new k4n::data::Depth();
+  this->k4n_infrared = new k4n::data::Infrared();
+  this->k4n_config = new k4n::config::Configuration();
   this->ope_fitting = new ope::attribut::Fitting();
 
   //---------------------------
@@ -77,6 +78,8 @@ void Image::copy_image_color(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 //say(sensor->color.config.resolution_str);
+  string resolution = k4n_config->find_mode_color_resolution(sensor->color.config.resolution);
+  say(resolution);
   if(sensor->color.config.resolution_str == "") return;
 
   //If color resolution is too big, display transformed color image - to be changed
@@ -106,7 +109,7 @@ void Image::copy_image_depth(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  image->depth.data = k4a_depth->convert_depth_into_color(sensor);
+  image->depth.data = k4n_depth->convert_depth_into_color(sensor);
   image->depth.size = image->depth.data.size();
   image->depth.width = sensor->depth.data.width;
   image->depth.height = sensor->depth.data.height;
@@ -119,7 +122,7 @@ void Image::copy_image_ir(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  image->ir.data = k4a_infrared->convert_ir_into_color(sensor);
+  image->ir.data = k4n_infrared->convert_ir_into_color(sensor);
   image->ir.size = image->ir.data.size();
   image->ir.width = sensor->ir.data.width;
   image->ir.height = sensor->ir.data.height;

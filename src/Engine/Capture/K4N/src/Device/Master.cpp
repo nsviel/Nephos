@@ -26,12 +26,13 @@ Master::~Master(){}
 
 //Main function
 void Master::insert_sensor(k4n::dev::Sensor* sensor){
+  //---------------------------
+
   if(sensor == nullptr) return;
   if(sensor->profiler == nullptr){
     cout<<"[error] sensor must be initialized before added to master"<<endl;
     return;
   }
-  //---------------------------
 
   sce_set->insert_entity(this, sensor);
 
@@ -136,6 +137,22 @@ void Master::manage_resynchronization(){
 
   //---------------------------
 }
+void Master::manage_configuration(){
+  if(mode == k4n::dev::PLAYBACK) return;
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    utl::type::Entity* entity = *next(list_entity.begin(), i);
+
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      sensor->color.config = config.color;
+      sensor->depth.config = config.depth;
+      sensor->ir.config = config.ir;
+    }
+  }
+
+  //---------------------------
+}
 
 //Player function
 void Master::player_update(){
@@ -215,7 +232,7 @@ void Master::player_stop(){
   player.play = false;
   player.pause = true;
 
-  //Wait for pause 
+  //Wait for pause
   for(int i=0; i<list_entity.size(); i++){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 

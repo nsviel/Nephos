@@ -6,7 +6,7 @@
 
 namespace k4n::structure{
 
-struct FPS_{
+struct FPS{
   //---------------------------
 
   k4a_fps_t mode = K4A_FRAMES_PER_SECOND_30;
@@ -23,7 +23,7 @@ struct Configuration{
   k4n::structure::Depth_config depth;
   k4n::structure::Color_config color;
   k4n::structure::Infrared_config ir;
-  k4n::structure::FPS_ fps;
+  k4n::structure::FPS fps;
 
   //---------------------------
 };

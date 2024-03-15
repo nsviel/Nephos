@@ -6,6 +6,7 @@
 namespace k4n::dev{class Sensor;}
 namespace k4n::data{class Depth;}
 namespace k4n::data{class Infrared;}
+namespace k4n::config{class Configuration;}
 namespace ope::attribut{class Fitting;}
 
 
@@ -30,8 +31,9 @@ public:
   void copy_image_ir(k4n::dev::Sensor* sensor);
 
 private:
-  k4n::data::Depth* k4a_depth;
-  k4n::data::Infrared* k4a_infrared;
+  k4n::data::Depth* k4n_depth;
+  k4n::data::Infrared* k4n_infrared;
+  k4n::config::Configuration* k4n_config;
   ope::attribut::Fitting* ope_fitting;
 
   std::thread thread;
