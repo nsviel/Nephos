@@ -28,10 +28,9 @@ public:
   //Playback configuration
   string find_mode_fps(int mode);
   string find_mode_synchro(int mode);
-  string find_mode_depth(k4n::dev::Sensor* k4n_sensor, k4a_record_configuration_t& configuration);
-  string find_mode_color(k4n::dev::Sensor* k4n_sensor, k4a_record_configuration_t& configuration);
-  string find_mode_format(k4n::dev::Sensor* k4n_sensor, k4a_record_configuration_t& configuration);
-  string find_mode_device(k4n::dev::Sensor* k4n_sensor, k4a_record_configuration_t& configuration);
+  string find_mode_depth(int mode);
+  string find_mode_color_resolution(int mode);
+  string find_mode_color_format(int mode);
 
 private:
 
