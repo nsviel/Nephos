@@ -23,22 +23,22 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor, k4a::capture* capture);
-  void run_thread(k4n::dev::Sensor* sensor, k4a::capture* capture);
+  void start_thread(k4n::dev::Sensor* sensor);
+  void run_thread(k4n::dev::Sensor* sensor);
   void wait_thread();
 
   //Data function
-  void find_data_from_capture(k4n::dev::Sensor* device, k4a::capture* capture);
-  void find_data_depth(k4n::dev::Sensor* sensor, k4a::capture* capture);
-  void find_data_color(k4n::dev::Sensor* sensor, k4a::capture* capture);
-  void find_data_ir(k4n::dev::Sensor* sensor, k4a::capture* capture);
+  void find_data_from_capture(k4n::dev::Sensor* device);
+  void find_data_depth(k4n::dev::Sensor* sensor);
+  void find_data_color(k4n::dev::Sensor* sensor);
+  void find_data_ir(k4n::dev::Sensor* sensor);
 
   //Transformed data
-  void find_data_cloud(k4n::dev::Sensor* sensor, k4a::capture* capture);
-  void find_depth_to_color(k4n::dev::Sensor* sensor, k4a::capture* capture, k4a::transformation& transformation);
-  void find_depth_and_ir_to_color(k4n::dev::Sensor* sensor, k4a::capture* capture, k4a::transformation& transformation);
-  void find_ir_to_color(k4n::dev::Sensor* sensor, k4a::capture* capture, k4a::transformation& transformation);
-  void find_color_to_depth(k4n::dev::Sensor* sensor, k4a::capture* capture, k4a::transformation& transformation);
+  void find_data_cloud(k4n::dev::Sensor* sensor);
+  void find_depth_to_color(k4n::dev::Sensor* sensor);
+  void find_depth_and_ir_to_color(k4n::dev::Sensor* sensor);
+  void find_ir_to_color(k4n::dev::Sensor* sensor);
+  void find_color_to_depth(k4n::dev::Sensor* sensor);
 
   //Subfunction
   string retrieve_format_from_k4a(k4a_image_format_t color_format);
