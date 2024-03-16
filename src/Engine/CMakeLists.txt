@@ -10,8 +10,7 @@ add_subdirectory(Capture)
 
 file(GLOB_RECURSE ALL_SOURCES
   Scene/*.cpp
-  Shader/*.cpp
-  Profiler/*cpp
+  Thread/*.cpp
   gui/*cpp
   Node.cpp
 )

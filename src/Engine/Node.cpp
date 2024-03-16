@@ -22,6 +22,7 @@ Node::Node(App_main* node_app){
   this->node_utility = node_app->get_node_utility();
 
   //Child
+  this->pool_thread = new eng::thread::Pool(this);
   this->node_vulkan = new vk::Node(node_utility);
   this->node_scene = new eng::scene::Node(this);
   this->node_camera = new eng::cam::Node(this);
