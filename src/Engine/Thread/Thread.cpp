@@ -8,38 +8,40 @@
 namespace eng::thread{
 
 //Constructor / Destructor
-Thread::Thread(){
+Thread::Thread(bool* running){
   //---------------------------
+
+  this->running = running;
 
   //---------------------------
 }
 Thread::~Thread(){}
 
 //Main function
-void Thread::start_thread(){
+void Thread::start(){
   //---------------------------
 
-  this->thread = std::thread(&Thread::run_thread, this);
-
-  //---------------------------
-  this->thread_running = true;
-}
-void Thread::run_thread(){
-  //---------------------------
-
-
+  this->thread = std::thread(&Thread::run, this);
 
   //---------------------------
 }
-void Thread::stop_thread(){
+void Thread::run(){
   //---------------------------
 
-  this->thread_running = false;
-  this->wait_thread();
+  while(*running){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
 
   //---------------------------
 }
-void Thread::wait_thread(){
+void Thread::stop(){
+  //---------------------------
+
+  this->wait();
+
+  //---------------------------
+}
+void Thread::wait(){
   //---------------------------
 
   if(thread.joinable()){

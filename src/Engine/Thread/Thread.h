@@ -9,19 +9,19 @@ class Thread
 {
 public:
   //Constructor / Destructor
-  Thread();
+  Thread(bool* running);
   ~Thread();
 
 public:
   //Main function
-  void start_thread();
-  void run_thread();
-  void stop_thread();
-  void wait_thread();
+  void start();
+  void run();
+  void stop();
+  void wait();
 
 private:
   std::thread thread;
-  bool thread_running = false;
+  bool* running;
   bool thread_idle = true;
 };
 

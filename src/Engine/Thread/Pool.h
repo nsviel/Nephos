@@ -17,10 +17,14 @@ public:
 
 public:
   //Main function
-
+  void init();
+  void clean();
 
 private:
-  vector<eng::thread::Thread*> vec_thread;
+  vector<eng::thread::Thread> vec_thread;
+
+  bool running;
+  int size;
 };
 
 
