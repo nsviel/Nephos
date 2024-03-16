@@ -124,16 +124,25 @@ void Queue::create_queue_info(vector<VkDeviceQueueCreateInfo>& vec_queue_info){
     vk::structure::queue::Family& family = vec_queue_family[i];
     if(family.vec_queue.size() == 0) continue;
 
-    vector<float*> vec_priority;
+    //Get set of queue index
+    set<int> set_index;
     for(int j=0; j<family.vec_queue.size(); j++){
-      vec_priority.push_back(&family.vec_queue[j]->priority);
+      vk::structure::Queue* queue = family.vec_queue[j];
+      set_index.insert(queue->family_index);
     }
 
+    //Get associated priority vector
+    vector<float> vec_priority;
+    for(const auto& element : set_index){
+      vec_priority.push_back(1.0f);
+    }
+
+    //Create queue info accordingly
     VkDeviceQueueCreateInfo queue_info{};
     queue_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
     queue_info.queueFamilyIndex = static_cast<uint32_t>(family.ID);
-    queue_info.queueCount = family.vec_queue.size();
-    queue_info.pQueuePriorities = *vec_priority.data();
+    queue_info.queueCount = set_index.size();
+    queue_info.pQueuePriorities = vec_priority.data();
 
     vec_queue_info.push_back(queue_info);
   }
