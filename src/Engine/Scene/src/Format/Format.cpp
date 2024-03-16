@@ -48,6 +48,7 @@ utl::file::Data* Format::import_from_path(utl::file::Path path){
     if(importer->format == format){
       //Check for discrete gpu requirement
       if(importer->require_discrete_gpu && vk_info->is_gpu_discrete() == false){
+        cout<<"[error] no discrete GPU - could not load " + importer->format + " file"<<endl;
         continue;
       }
 

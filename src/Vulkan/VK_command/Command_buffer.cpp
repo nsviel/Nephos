@@ -23,7 +23,12 @@ Command_buffer::~Command_buffer(){}
 void Command_buffer::init_pool(vk::pool::Command_buffer* pool){
   //---------------------------
 
-  for(int i=0; i<pool->size; i++){
+  //Number of command buffer
+  int number = struct_vulkan->device.physical_device.discrete_gpu ? 100 : 10;
+  pool->size = number;
+
+  //Create a pool of command buffer number
+  for(int i=0; i<number; i++){
     vk::structure::Command_buffer command_buffer;
     command_buffer.is_available = true;
     command_buffer.is_recorded = false;

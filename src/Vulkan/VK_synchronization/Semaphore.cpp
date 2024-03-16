@@ -17,37 +17,42 @@ Semaphore::~Semaphore(){}
 
 //Pool function
 void Semaphore::init_pool(){
-  std::vector<vk::structure::Semaphore>& pool = struct_vulkan->pools.semaphore.tank;
+  vk::pool::Semaphore* pool = &struct_vulkan->pools.semaphore;
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->pools.semaphore.size; i++){
+  //Number of semaphore
+  int number = struct_vulkan->device.physical_device.discrete_gpu ? 100 : 10;
+  pool->size = number;
+
+  //Create a pool of semaphore number
+  for(int i=0; i<number; i++){
     vk::structure::Semaphore vk_semaphore;
 
     this->create_semaphore(&vk_semaphore);
     vk_semaphore.is_available = true;
 
-    pool.push_back(vk_semaphore);
+    pool->tank.push_back(vk_semaphore);
   }
 
   //---------------------------
 }
 void Semaphore::clean_pool(){
-  std::vector<vk::structure::Semaphore>& pool = struct_vulkan->pools.semaphore.tank;
+  vk::pool::Semaphore* pool = &struct_vulkan->pools.semaphore;
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->pools.semaphore.size; i++){
-    vk::structure::Semaphore* vk_semaphore = &pool[i];
+  for(int i=0; i<pool->size; i++){
+    vk::structure::Semaphore* vk_semaphore = &pool->tank[i];
     this->clean_semaphore(vk_semaphore);
   }
 
   //---------------------------
 }
 void Semaphore::reset_pool(){
-  std::vector<vk::structure::Semaphore>& pool = struct_vulkan->pools.semaphore.tank;
+  vk::pool::Semaphore* pool = &struct_vulkan->pools.semaphore;
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->pools.semaphore.size; i++){
-    vk::structure::Semaphore* vk_semaphore = &pool[i];
+  for(int i=0; i<pool->size; i++){
+    vk::structure::Semaphore* vk_semaphore = &pool->tank[i];
     vk_semaphore->is_available = true;
   }
 
@@ -85,12 +90,12 @@ void Semaphore::clean_semaphore(vk::structure::Semaphore* semaphore){
 
 //Subfunction
 vk::structure::Semaphore* Semaphore::query_free_semaphore(){
-  std::vector<vk::structure::Semaphore>& pool = struct_vulkan->pools.semaphore.tank;
+  vk::pool::Semaphore* pool = &struct_vulkan->pools.semaphore;
   //---------------------------
 
   //Find the first free command buffer
-  for(int i=0; i<pool.size(); i++){
-    vk::structure::Semaphore* vk_semaphore = &pool[i];
+  for(int i=0; i<pool->tank.size(); i++){
+    vk::structure::Semaphore* vk_semaphore = &pool->tank[i];
 
     if(vk_semaphore->is_available){
       vk_semaphore->is_available = false;

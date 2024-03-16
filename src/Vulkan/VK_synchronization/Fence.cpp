@@ -18,16 +18,21 @@ Fence::~Fence(){}
 
 //Pool function
 void Fence::init_pool(){
-  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.tank;
+  vk::pool::Fence* pool = &struct_vulkan->pools.fence;
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->pools.fence.size; i++){
+  //Number of fence
+  int number = struct_vulkan->device.physical_device.discrete_gpu ? 100 : 10;
+  pool->size = number;
+
+  //Create a pool of fence number
+  for(int i=0; i<number; i++){
     vk::structure::Fence vk_fence;
 
     this->create_fence(&vk_fence);
     this->reset_fence(&vk_fence);
 
-    pool.push_back(vk_fence);
+    pool->tank.push_back(vk_fence);
   }
 
   //---------------------------
@@ -83,19 +88,19 @@ void Fence::reset_fence(vk::structure::Fence* fence){
 
 //Subfunction
 vk::structure::Fence* Fence::query_free_fence(){
-  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.tank;
+  vk::pool::Fence* pool = &struct_vulkan->pools.fence;
   //---------------------------
 
   std::random_device rd;  // Seed for the random number generator
   std::mt19937 gen(rd()); // Mersenne Twister PRNG
-  std::uniform_int_distribution<int> distr(0, pool.size() - 1);
+  std::uniform_int_distribution<int> distr(0, pool->tank.size() - 1);
 
   //Find the first free command buffer
   int index;
   vk::structure::Fence* fence;
   do{
     index = distr(gen); // Generate a random index
-    fence = &pool[index];
+    fence = &pool->tank[index];
 
     if(fence->is_available){
       fence->is_available = false;
