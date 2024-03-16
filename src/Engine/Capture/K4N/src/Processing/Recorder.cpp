@@ -25,16 +25,7 @@ Recorder::~Recorder(){}
 void Recorder::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  k4n::dev::Master* master = sensor->master;
-  if(!master->player.record || master->recorder.mode != k4n::recorder::PLY){
-    prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("recorder");
-    tasker->clear();
-    return;
-  }
-
-  if(thread.joinable()){
-    this->thread.join();
-  }
+  this->wait_thread();
   this->thread = std::thread(&Recorder::run_thread, this, sensor);
 
   //---------------------------
@@ -45,7 +36,8 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
   tasker->loop_begin();
   //---------------------------
 
-  switch(sensor->master->recorder.mode){
+  k4n::dev::Master* master = sensor->master;
+  switch(master->recorder.mode){
     case k4n::recorder::MKV:{
       tasker->task_begin("recorder::mkv");
       this->make_export_to_mkv(sensor);
@@ -60,6 +52,10 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
     }
   }
 
+  if(!master->player.record){
+    tasker->clear();
+  }
+
   //---------------------------
   tasker->loop_end();
   this->thread_idle = true;
@@ -67,8 +63,8 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
 void Recorder::wait_thread(){
   //---------------------------
 
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  if(thread.joinable()){
+    this->thread.join();
   }
 
   //---------------------------
@@ -77,6 +73,7 @@ void Recorder::wait_thread(){
 //Subfunction
 void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
   k4n::dev::Master* master = sensor->master;
+  if(!master->player.record) return;
   //---------------------------
 
   //Check if directory exists, if not create it
@@ -106,6 +103,8 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
   k4n::dev::Master* master = sensor->master;
   k4a::capture* capture = sensor->param.capture;
   //---------------------------
+
+  if(master->mode == k4n::dev::PLAYBACK) return;
 
   //Start recording
   if(master->player.record && !recorder.is_valid()){

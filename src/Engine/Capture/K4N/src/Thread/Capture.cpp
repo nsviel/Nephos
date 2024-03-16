@@ -69,7 +69,6 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     k4a_data->start_thread(sensor);
 
     //Manage event
-    this->manage_recording(sensor);
     this->manage_pause(sensor);
     tasker->loop_end();
   }
@@ -147,48 +146,6 @@ void Capture::manage_pause(k4n::dev::Sensor* sensor){
     }
   }
 
-  //---------------------------
-}
-void Capture::manage_recording(k4n::dev::Sensor* sensor){
-  k4a::record& recorder = sensor->recorder.handle;
-  k4n::dev::Master* master = sensor->master;
-  k4a::capture* capture = sensor->param.capture;
-  //---------------------------
-tic();
-  if(master->recorder.mode != k4n::recorder::MKV) return;
-
-  //Start recording
-  if(master->player.record && !recorder.is_valid()){
-    //Check if directory exists, if not create it
-    string path_dir = sensor->master->recorder.folder;
-    if(!directory::is_dir_exist(path_dir)){
-      directory::create_new(path_dir);
-    }
-
-    //Create recorder and file, and write header
-    string master_name = master->recorder.filename;
-    string sensor_idx = to_string(sensor->param.index);
-    string filename = master_name + "_" + sensor_idx;
-    string path = path_dir + "/" + filename + ".mkv";
-
-    recorder = k4a::record::create(path.c_str(), sensor->param.device, sensor->param.configuration);
-    recorder.write_header();
-
-    //Set sensor info
-    sensor->recorder.folder = master->recorder.folder;
-    sensor->recorder.ts_beg = sensor->master->player.ts_cur;
-  }
-  //Recording
-  else if(master->player.record && recorder.is_valid()){
-    recorder.write_capture(*capture);
-    sensor->recorder.ts_rec = sensor->master->player.ts_cur - sensor->recorder.ts_beg;
-  }
-  //Flush to file when finish
-  else if(!master->player.record && recorder.is_valid()){
-    recorder.flush();
-    recorder.close();
-  }
-toc_ms("hey");
   //---------------------------
 }
 

@@ -24,9 +24,7 @@ Image::~Image(){}
 void Image::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(thread.joinable()){
-    this->thread.join();
-  }
+  this->wait_thread();
   this->thread = std::thread(&Image::run_thread, this, sensor);
 
   //---------------------------
@@ -66,8 +64,8 @@ void Image::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  if(thread.joinable()){
+    this->thread.join();
   }
 
   //---------------------------
