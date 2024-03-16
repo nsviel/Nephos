@@ -59,6 +59,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
     //Next capture
     tasker->loop_begin(master->operation.fps);
     k4a::capture* capture = manage_new_capture(sensor);
+    if(capture == nullptr) continue;
     this->manage_old_capture(sensor, capture);
 
     //Find data from capture
@@ -115,6 +116,7 @@ k4a::capture* Playback::manage_new_capture(k4n::dev::Sensor* sensor){
   k4a::capture* capture = new k4a::capture();
   bool capture_left = sensor->param.playback.get_next_capture(capture);
   if(capture_left == false){
+    capture = nullptr;
     this->manage_restart(sensor);
   }
 

@@ -25,18 +25,22 @@ Recorder::~Recorder(){}
 void Recorder::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  //Join previous thread
   if(thread_idle && thread.joinable()){
     thread.join();
   }
+
+  //Start new thread
+  this->thread_idle = false;
   this->thread = std::thread(&Recorder::run_thread, this, sensor);
 
   //---------------------------
-  this->thread_idle = false;
 }
 void Recorder::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("recorder");
-  tasker->loop_begin();
   //---------------------------
+
+  tasker->loop_begin();
 
   k4n::dev::Master* master = sensor->master;
   switch(master->recorder.mode){
@@ -54,18 +58,18 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
     }
   }
 
+  tasker->loop_end();
   if(!master->player.record){
     tasker->clear();
   }
 
   //---------------------------
-  tasker->loop_end();
   this->thread_idle = true;
 }
 void Recorder::wait_thread(){
   //---------------------------
 
-  while(thread_idle == false){
+  while(thread_idle == false){say("wait");
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 

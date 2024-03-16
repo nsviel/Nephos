@@ -31,13 +31,16 @@ Data::~Data(){
 void Data::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  //Join previous thread
   if(thread_idle && thread.joinable()){
     thread.join();
   }
+
+  //Start new thread
+  this->thread_idle = false;
   this->thread = std::thread(&Data::run_thread, this, sensor);
 
   //---------------------------
-  this->thread_idle = false;
 }
 void Data::run_thread(k4n::dev::Sensor* sensor){
   if(sensor->profiler == nullptr) return;

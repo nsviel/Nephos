@@ -29,13 +29,16 @@ Operation::~Operation(){}
 void Operation::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  //Join previous thread
   if(thread_idle && thread.joinable()){
     thread.join();
   }
+
+  //Start new thread
+  this->thread_idle = false;
   this->thread = std::thread(&Operation::run_thread, this, sensor);
 
   //---------------------------
-  this->thread_idle = false;
 }
 void Operation::run_thread(k4n::dev::Sensor* sensor){
   if(sensor->profiler == nullptr) return;
