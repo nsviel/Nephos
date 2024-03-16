@@ -31,9 +31,7 @@ Data::~Data(){
 void Data::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(thread.joinable()){
-    thread.join();
-  }
+  this->wait_thread();
   this->thread = std::thread(&Data::run_thread, this, sensor);
 
   //---------------------------
@@ -61,6 +59,9 @@ void Data::wait_thread(){
 
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+  if(thread.joinable()){
+    thread.join();
   }
   k4a_cloud->wait_thread();
   k4n_image->wait_thread();

@@ -63,6 +63,9 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
 void Recorder::wait_thread(){
   //---------------------------
 
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
   if(thread.joinable()){
     this->thread.join();
   }

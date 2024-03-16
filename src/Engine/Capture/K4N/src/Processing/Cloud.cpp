@@ -24,9 +24,7 @@ Cloud::~Cloud(){}
 void Cloud::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(thread.joinable()){
-    this->thread.join();
-  }
+  this->wait_thread();
   this->thread = std::thread(&Cloud::run_thread, this, sensor);
 
   //---------------------------
@@ -51,6 +49,9 @@ void Cloud::wait_thread(){
 
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+  if(thread.joinable()){
+    thread.join();
   }
   k4n_processing->wait_thread();
 

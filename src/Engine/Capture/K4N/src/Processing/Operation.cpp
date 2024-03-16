@@ -106,6 +106,9 @@ void Operation::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
   if(thread.joinable()){
     this->thread.join();
   }
