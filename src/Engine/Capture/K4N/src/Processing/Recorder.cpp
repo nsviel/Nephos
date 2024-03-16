@@ -127,6 +127,7 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
 
     //Set info
     master->recorder.path = path;
+    master->recorder.file_size = 0;
     master->recorder.ts_beg = master->player.ts_cur;
     sensor->recorder.folder = master->recorder.folder;
   }
@@ -135,6 +136,7 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
   else if(master->player.record && recorder.is_valid()){
     recorder.write_capture(*capture);
     master->recorder.ts_rec = master->player.ts_cur - master->recorder.ts_beg;
+    master->recorder.file_size = utl::fct::info::get_file_size(master->recorder.path);
   }
 
   //Flush to file when finish

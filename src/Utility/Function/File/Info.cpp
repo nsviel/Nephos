@@ -110,11 +110,22 @@ int get_file_nbPoint(std::string path){
   //---------------------------
   return cpt;
 }
-float get_file_size(std::string path){
+double get_file_size(std::string path){
   //---------------------------
 
-  std::ifstream in(path.c_str(), std::ifstream::ate | std::ifstream::binary);
-  float result = (float)in.tellg() / 1000000.0f;
+  // Open the file and move the file pointer to the end
+  std::ifstream in(path, std::ifstream::ate | std::ifstream::binary);
+  if (!in.is_open()) {
+    throw std::runtime_error("Failed to open file.");
+  }
+
+  // Get the file size in bytes
+  std::streamoff fileSize = in.tellg();
+  if (fileSize == -1) {
+    throw std::runtime_error("Failed to get file size.");
+  }
+
+  double result = static_cast<double>(fileSize) / (1024 * 1024);
 
   //---------------------------
   return result;

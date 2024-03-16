@@ -24,6 +24,7 @@ struct Recorder{
   std::string path = "";
 
   int mode = k4n::recorder::PLY;
+  double file_size = 0;
   float ts_rec = 0;
   float ts_beg;
   k4a::record handle;

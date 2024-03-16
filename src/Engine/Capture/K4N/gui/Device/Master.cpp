@@ -60,9 +60,15 @@ void Master::show_info(k4n::dev::Master* master){
 
     //Recording time
     if(master->player.record && master->recorder.mode == k4n::recorder::MKV){
+      //Recording time
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Record"); ImGui::TableNextColumn();
       ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
+
+      //Recording file size
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Size"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%.2f Mo", master->recorder.file_size);
     }
 
     ImGui::EndTable();
