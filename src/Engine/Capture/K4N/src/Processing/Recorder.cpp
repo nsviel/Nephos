@@ -125,15 +125,16 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
     recorder = k4a::record::create(path.c_str(), sensor->param.device, sensor->param.configuration);
     recorder.write_header();
 
-    //Set sensor info
+    //Set info
+    master->recorder.path = path;
+    master->recorder.ts_beg = master->player.ts_cur;
     sensor->recorder.folder = master->recorder.folder;
-    sensor->recorder.ts_beg = sensor->master->player.ts_cur;
   }
 
   //Recording
   else if(master->player.record && recorder.is_valid()){
     recorder.write_capture(*capture);
-    sensor->recorder.ts_rec = sensor->master->player.ts_cur - sensor->recorder.ts_beg;
+    master->recorder.ts_rec = master->player.ts_cur - master->recorder.ts_beg;
   }
 
   //Flush to file when finish
