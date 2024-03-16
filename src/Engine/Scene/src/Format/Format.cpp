@@ -1,13 +1,19 @@
 #include "Format.h"
 
 #include <Scene/Namespace.h>
+#include <Vulkan/Namespace.h>
+#include <Engine/Namespace.h>
 
 
 namespace eng::scene{
 
 //Constructor / Destructor
-Format::Format(){
+Format::Format(eng::scene::Node* node_scene){
   //---------------------------
+
+  eng::Node* node_engine = node_scene->get_node_engine();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  this->vk_info = node_vulkan->get_vk_info();
 
   this->insert_importer(new format::ply::Importer());
   this->insert_importer(new format::obj::Importer());
@@ -39,7 +45,12 @@ utl::file::Data* Format::import_from_path(utl::file::Path path){
   for(int i=0; i<vec_importer.size(); i++){
     utl::type::Importer* importer = vec_importer[i];
 
-    if(format == importer->format){
+    if(importer->format == format){
+      //Check for discrete gpu requirement
+      if(importer->require_discrete_gpu && vk_info->is_gpu_discrete() == false){
+        continue;
+      }
+
       data = importer->import(path);
     }
   }

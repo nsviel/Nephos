@@ -13,6 +13,7 @@ struct Importer{
 
   utl::file::Data* data = nullptr;
   std::string format = "";
+  bool require_discrete_gpu = false;
 
   //---------------------------
 };

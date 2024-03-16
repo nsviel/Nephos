@@ -14,6 +14,7 @@ Importer::Importer(k4n::Node* node_k4n){
   this->k4n_swarm = node_k4n->get_k4n_swarm();
 
   this->format = "mkv";
+  this->require_discrete_gpu = true;
 
   //---------------------------
 }

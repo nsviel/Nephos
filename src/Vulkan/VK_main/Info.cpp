@@ -73,6 +73,8 @@ string Info::get_gpu_name(){
 vec4* Info::get_color_background(){
   return &struct_vulkan->param.background_color;
 }
-
+bool Info::is_gpu_discrete(){
+  return struct_vulkan->device.physical_device.discrete_gpu;
+}
 
 }

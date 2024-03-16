@@ -26,6 +26,7 @@ public:
   //Subfunction
   string get_gpu_name();
   vec4* get_color_background();
+  bool is_gpu_discrete();
 
 private:
   vk::structure::Vulkan* struct_vulkan;

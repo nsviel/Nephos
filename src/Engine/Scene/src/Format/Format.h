@@ -2,6 +2,8 @@
 
 #include <Utility/Specific/common.h>
 
+namespace eng::scene{class Node;}
+namespace vk::main{class Info;}
 namespace format::obj{class Importer;}
 namespace format::csv{class Importer;}
 namespace format::ply{class Importer;}
@@ -17,7 +19,7 @@ class Format
 {
 public:
   //Constructor / Destructor
-  Format();
+  Format(eng::scene::Node* node_scene);
   ~Format();
 
 public:
@@ -31,6 +33,8 @@ public:
   void display_supported_format();
 
 private:
+  vk::main::Info* vk_info;
+
   vector<utl::type::Importer*> vec_importer;
   vector<utl::type::Exporter*> vec_exporter;
 };
