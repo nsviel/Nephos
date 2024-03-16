@@ -47,7 +47,11 @@ void Allocator::clean(){
 void Allocator::create_command_buffer_pool(vk::structure::Queue* queue){
   //---------------------------
 
-  for(int i=0; i<100; i++){
+  //Number of command buffer
+  int number = struct_vulkan->device.physical_device.discrete_gpu ? 100 : 10;
+
+  //Create a pool of command buffer number
+  for(int i=0; i<number; i++){
     vk::pool::Command_buffer pool;
     vk_pool->create_command_pool(&pool, queue->family_ID);
     vk_command_buffer->init_pool(&pool);
