@@ -58,12 +58,11 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
   while(thread_running){
     //Next capture
     tasker->loop_begin(master->operation.fps);
-    k4a::capture* capture = manage_capture(sensor);
-    this->manage_capture_endlife(capture);
-    if(!capture->is_valid()) continue;
+    this->manage_new_capture(sensor);
+    this->manage_old_capture(sensor);
 
     //Find data from capture
-    k4a_data->start_thread(sensor, capture);
+    k4a_data->start_thread(sensor, sensor->param.capture);
 
     //Manage event
     this->manage_pause(sensor);
@@ -107,15 +106,14 @@ void Playback::wait_pause(){
 }
 
 //Subfunction
-k4a::capture* Playback::manage_capture(k4n::dev::Sensor* sensor){
+void Playback::manage_new_capture(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("capture");
-  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   tasker->task_begin("capture");
 
-  k4a::capture* capture = new k4a::capture();
-  bool capture_left = sensor->param.playback.get_next_capture(capture);
+  sensor->param.capture = new k4a::capture();
+  bool capture_left = sensor->param.playback.get_next_capture(sensor->param.capture);
   if(capture_left == false){
     this->manage_restart(sensor);
   }
@@ -123,7 +121,16 @@ k4a::capture* Playback::manage_capture(k4n::dev::Sensor* sensor){
   tasker->task_end("capture");
 
   //---------------------------
-  return capture;
+}
+void Playback::manage_old_capture(k4n::dev::Sensor* sensor){
+  static k4a::capture* capture_old = nullptr;
+  //---------------------------
+
+  k4a_data->wait_thread();
+  delete capture_old;
+  capture_old = sensor->param.capture;
+
+  //---------------------------
 }
 void Playback::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
@@ -158,16 +165,7 @@ void Playback::manage_restart(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::manage_capture_endlife(k4a::capture* capture){
-  static k4a::capture* capture_old = nullptr;
-  //---------------------------
 
-  k4a_data->wait_thread();
-  delete capture_old;
-  capture_old = capture;
-
-  //---------------------------
-}
 
 
 }
