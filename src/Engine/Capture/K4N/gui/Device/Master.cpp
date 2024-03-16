@@ -229,6 +229,18 @@ void Master::show_recorder(k4n::dev::Master* master){
 
   ImGui::BeginTable("recorder##parameters", 3);
 
+  //filename
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Filename");
+  ImGui::TableNextColumn();
+  ImGui::TableNextColumn();
+  static char str_n[256];
+  strcpy(str_n, master->recorder.filename.c_str());
+  ImGui::SetNextItemWidth(125);
+  if(ImGui::InputText("##filename", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
+    master->recorder.filename = str_n;
+  }
+
   //Directory path
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Dir path");
@@ -240,7 +252,7 @@ void Master::show_recorder(k4n::dev::Master* master){
   string path = (master->recorder.folder != "") ? master->recorder.folder : "(not defined)";
   ImGui::TextColored(color, "%s", path.c_str());
 
-  //Filename
+  //Directory file count
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count");
   ImGui::TableNextColumn();

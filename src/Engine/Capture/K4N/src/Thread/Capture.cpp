@@ -62,17 +62,14 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   while(thread_running){
     //Next capture
     tasker->loop_begin();
-    k4a::capture* capture = manage_capture(sensor);
-    this->manage_capture_endlife(capture);
-    if(capture == nullptr){
-      continue;
-    }
+    this->manage_new_capture(sensor);
+    this->manage_old_capture(sensor);
 
     //Find data from capture
-    k4a_data->start_thread(sensor, capture);
+    k4a_data->start_thread(sensor, sensor->param.capture);
 
     //Manage event
-    this->manage_recording(sensor, capture);
+    this->manage_recording(sensor);
     this->manage_pause(sensor);
     tasker->loop_end();
   }
@@ -108,23 +105,32 @@ void Capture::wait_thread(){
 }
 
 //Subfunction
-k4a::capture* Capture::manage_capture(k4n::dev::Sensor* sensor){
+void Capture::manage_new_capture(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("capture");
   //---------------------------
 
   tasker->task_begin("capture");
 
-  k4a::capture* capture = new k4a::capture();
-  bool ok = sensor->param.device.get_capture(capture, std::chrono::milliseconds(2000));
-  if(!capture->is_valid()){
-    delete capture;
-    return nullptr;
+  sensor->param.capture = new k4a::capture();
+  bool ok = sensor->param.device.get_capture(sensor->param.capture, std::chrono::milliseconds(2000));
+  if(!sensor->param.capture->is_valid()){
+    delete sensor->param.capture;
+    sensor->param.capture = nullptr;
   }
 
   tasker->task_end("capture");
 
   //---------------------------
-  return capture;
+}
+void Capture::manage_old_capture(k4n::dev::Sensor* sensor){
+  static k4a::capture* capture_old = nullptr;
+  //---------------------------
+
+  k4a_data->wait_thread();
+  delete capture_old;
+  capture_old = sensor->param.capture;
+
+  //---------------------------
 }
 void Capture::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
@@ -140,11 +146,12 @@ void Capture::manage_pause(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
+void Capture::manage_recording(k4n::dev::Sensor* sensor){
   k4a::record& recorder = sensor->recorder.handle;
   k4n::dev::Master* master = sensor->master;
+  k4a::capture* capture = sensor->param.capture;
   //---------------------------
-
+tic();
   if(master->recorder.mode != k4n::recorder::MKV) return;
 
   //Start recording
@@ -156,7 +163,11 @@ void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
     }
 
     //Create recorder and file, and write header
-    string path = path_dir + "/" + sensor->name + ".mkv";
+    string master_name = master->recorder.filename;
+    string sensor_idx = to_string(sensor->param.index);
+    string filename = master_name + "_" + sensor_idx;
+    string path = path_dir + "/" + filename + ".mkv";
+
     recorder = k4a::record::create(path.c_str(), sensor->param.device, sensor->param.configuration);
     recorder.write_header();
 
@@ -174,17 +185,7 @@ void Capture::manage_recording(k4n::dev::Sensor* sensor, k4a::capture* capture){
     recorder.flush();
     recorder.close();
   }
-
-  //---------------------------
-}
-void Capture::manage_capture_endlife(k4a::capture* capture){
-  static k4a::capture* capture_old = nullptr;
-  //---------------------------
-
-  k4a_data->wait_thread();
-  delete capture_old;
-  capture_old = capture;
-
+toc_ms("hey");
   //---------------------------
 }
 

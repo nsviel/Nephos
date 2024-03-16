@@ -31,7 +31,7 @@ void Recorder::start_thread(k4n::dev::Sensor* sensor){
     tasker->clear();
     return;
   }
-  
+
   if(thread.joinable()){
     this->thread.join();
   }
@@ -45,9 +45,20 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
   tasker->loop_begin();
   //---------------------------
 
-  tasker->task_begin("recorder::ply");
-  this->make_export_to_ply(sensor);
-  tasker->task_end("recorder::ply");
+  switch(sensor->master->recorder.mode){
+    case k4n::recorder::MKV:{
+      tasker->task_begin("recorder::mkv");
+      this->make_export_to_mkv(sensor);
+      tasker->task_end("recorder::mkv");
+      break;
+    }
+    case k4n::recorder::PLY:{
+      tasker->task_begin("recorder::ply");
+      this->make_export_to_ply(sensor);
+      tasker->task_end("recorder::ply");
+      break;
+    }
+  }
 
   //---------------------------
   tasker->loop_end();
@@ -65,6 +76,7 @@ void Recorder::wait_thread(){
 
 //Subfunction
 void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
+  k4n::dev::Master* master = sensor->master;
   //---------------------------
 
   //Check if directory exists, if not create it
@@ -78,11 +90,56 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
   sensor->recorder.mode = k4n::recorder::PLY;
 
   //Path
-  string filename = sensor->name + "_f" + to_string(sensor->param.index_cloud);
+  string master_name = master->recorder.filename;
+  string sensor_idx = to_string(sensor->param.index);
+  string cloud_idx = to_string(sensor->param.index_cloud);
+  string filename = master_name + "_" + sensor_idx + "_" + cloud_idx;
   string path = path_dir + "/" + filename + ".ply";
 
   //Export to ply
   ply_exporter->export_binary(sensor->get_data(), path);
+
+  //---------------------------
+}
+void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
+  k4a::record& recorder = sensor->recorder.handle;
+  k4n::dev::Master* master = sensor->master;
+  k4a::capture* capture = sensor->param.capture;
+  //---------------------------
+
+  //Start recording
+  if(master->player.record && !recorder.is_valid()){
+    //Check if directory exists, if not create it
+    string path_dir = sensor->master->recorder.folder;
+    if(!directory::is_dir_exist(path_dir)){
+      directory::create_new(path_dir);
+    }
+
+    //Create recorder and file, and write header
+    string master_name = master->recorder.filename;
+    string sensor_idx = to_string(sensor->param.index);
+    string filename = master_name + "_" + sensor_idx;
+    string path = path_dir + "/" + filename + ".mkv";
+
+    recorder = k4a::record::create(path.c_str(), sensor->param.device, sensor->param.configuration);
+    recorder.write_header();
+
+    //Set sensor info
+    sensor->recorder.folder = master->recorder.folder;
+    sensor->recorder.ts_beg = sensor->master->player.ts_cur;
+  }
+
+  //Recording
+  else if(master->player.record && recorder.is_valid()){
+    recorder.write_capture(*capture);
+    sensor->recorder.ts_rec = sensor->master->player.ts_cur - sensor->recorder.ts_beg;
+  }
+
+  //Flush to file when finish
+  else if(!master->player.record && recorder.is_valid()){
+    recorder.flush();
+    recorder.close();
+  }
 
   //---------------------------
 }

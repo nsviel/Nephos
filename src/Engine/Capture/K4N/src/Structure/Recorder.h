@@ -20,7 +20,7 @@ struct Recorder{
   //---------------------------
 
   std::string folder = "../media/record/ply";
-  std::string filename = "";
+  std::string filename = "capture";
 
   int mode = k4n::recorder::PLY;
   float ts_rec = 0;
