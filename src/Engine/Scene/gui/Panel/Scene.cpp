@@ -111,7 +111,7 @@ void Scene::draw_window_background(){
   float item_spacing_y = ImGui::GetStyle().ItemSpacing.y;
   float item_offset_y = -item_spacing_y * 0.1f;
   float line_height = ImGui::GetTextLineHeight() + item_spacing_y;
-  int row_count = 50;
+  int row_count = 100;
   ImU32 col_even = IM_COL32(35, 35, 35, 255);
   ImU32 col_odd = IM_COL32(25, 25, 25, 255);
 
