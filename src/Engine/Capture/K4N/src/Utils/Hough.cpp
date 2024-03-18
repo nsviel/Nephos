@@ -9,6 +9,7 @@ Hough::Hough(){
 
 
   //---------------------------
+  this->find_mode_parameter();
 }
 Hough::~Hough(){}
 
@@ -24,10 +25,6 @@ void Hough::sphere_detection(utl::media::Image* image, utl::media::Image* result
   //Pre processing
   cv::Mat pre_image;
   this->preprocessing(raw_image, pre_image);
-
-  //Parameter
-  this->min_dist = pre_image.rows / 8;
-  this->find_mode_parameter();
 
   // Perform Hough Transform to detect lines
   std::vector<cv::Vec3f> vec_circle;

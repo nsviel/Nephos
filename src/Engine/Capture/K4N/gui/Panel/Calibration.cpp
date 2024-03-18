@@ -97,9 +97,13 @@ void Calibration::hough_parameter(){
 
   //Mode
   int* mode = k4n_hough->get_mode();
-  ImGui::RadioButton("Gradient", mode, k4n::hough::GRADIENT);
+  if(ImGui::RadioButton("Gradient", mode, k4n::hough::GRADIENT)){
+    k4n_hough->find_mode_parameter();
+  }
   ImGui::SameLine();
-  ImGui::RadioButton("Gradient Alt", mode, k4n::hough::GRADIENT_ALT);
+  if(ImGui::RadioButton("Gradient Alt", mode, k4n::hough::GRADIENT_ALT)){
+    k4n_hough->find_mode_parameter();
+  }
 
   {
     ImGui::Indent();
@@ -107,12 +111,12 @@ void Calibration::hough_parameter(){
     //Lower threshold
     float* param_1 = k4n_hough->get_param_1();
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderFloat("Parameter 1", param_1, 1.0f, 100.0f, "%.1f");
+    ImGui::SliderFloat("Parameter 1", param_1, 0.1f, 500.0f, "%.1f");
 
     //Upper threshold
     float* param_2 = k4n_hough->get_param_2();
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderFloat("Parameter 2", param_2, 1.0f, 100.0f, "%.1f");
+    ImGui::SliderFloat("Parameter 2", param_2, 0.1f, 500.0f, "%.1f");
 
     ImGui::Unindent();
   }
@@ -121,11 +125,12 @@ void Calibration::hough_parameter(){
   int* ratio = k4n_hough->get_ratio();
   ImGui::SetNextItemWidth(150);
   ImGui::SliderInt("Ratio", ratio, 1, 100);
+  ImGui::SetItemTooltip("This parameter affects the spacing of the accumulator cells, which in turn affects the sensitivity of the circle detection algorithm.");
 
   //Min distance
   int* min_dist = k4n_hough->get_min_dist();
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderInt("Min distance", min_dist, 0, 100);
+  ImGui::SliderInt("Min distance", min_dist, 1, 100);
 
   //Min radius
   int* min_radius = k4n_hough->get_min_radius();

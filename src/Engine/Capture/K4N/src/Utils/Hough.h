@@ -47,13 +47,13 @@ private:
   int mode = k4n::hough::GRADIENT;
   int hough_mode = cv::HOUGH_GRADIENT;
   int ratio = 1;
-  int min_dist = 0;
+  int min_dist = 72;
   int min_radius = 5;
   int max_radius = 50;
   int canny_thres_lower = 50;
   int canny_thres_upper = 150;
-  float param_1 = 0;
-  float param_2 = 0;
+  float param_1 = -1;
+  float param_2 = -1;
   bool apply_canny = false;
 };
 
