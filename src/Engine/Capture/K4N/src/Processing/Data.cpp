@@ -66,7 +66,6 @@ void Data::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4a_cloud->wait_thread();
-  k4n_image->wait_thread();
 
   //---------------------------
 }

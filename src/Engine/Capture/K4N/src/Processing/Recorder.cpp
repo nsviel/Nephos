@@ -16,7 +16,7 @@ Recorder::Recorder(k4n::Node* node_k4n){
   this->struct_k4n = node_k4n->get_struct_k4n();
   this->sce_exporter = node_scene->get_scene_exporter();
   this->ply_exporter = new format::ply::Exporter();
-//k4n::thread::Pool* get_thread_pool(){return thread_pool;}
+
   //---------------------------
 }
 Recorder::~Recorder(){}

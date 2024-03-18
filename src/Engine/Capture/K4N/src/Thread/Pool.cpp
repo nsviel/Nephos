@@ -32,18 +32,30 @@ Pool::~Pool(){
 }
 
 //Main function
-void Pool::add_task(std::function<void()> task, bool* taskDone = nullptr){
+void Pool::add_task(std::function<void()> task){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mutex);
-  queue_task.push([task, taskDone]() {
+  queue_task.push([task](){
+    // Execute the original task
+    task();
+  });
+
+  // Notify one thread to pick up the task
+  condition.notify_one();
+
+  //---------------------------
+}
+void Pool::add_task(std::function<void()> task, bool& done){
+  //---------------------------
+
+  std::unique_lock<std::mutex> lock(mutex);
+  queue_task.push([task, &done](){
     // Execute the original task
     task();
 
     // Set the taskDone flag to true when the task is done
-    if(taskDone != nullptr){
-      *taskDone = true;
-    }
+    done = true;
   });
 
   // Notify one thread to pick up the task

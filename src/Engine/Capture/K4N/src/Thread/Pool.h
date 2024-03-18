@@ -14,7 +14,8 @@ public:
 
 public:
   //Main function
-  void add_task(std::function<void()> task, bool* taskDone);
+  void add_task(std::function<void()> task);
+  void add_task(std::function<void()> task, bool& done);
 
 private:
   //Subfunction
