@@ -127,28 +127,34 @@ void Stream::vec_stream_tab(k4n::dev::Sensor* sensor){
 
 //Device capture windows
 void Stream::draw_camera_color(k4n::dev::Sensor* sensor, ImVec2 image_size){
+  utl::media::Image* utl_image = &sensor->image.color;
   //---------------------------
 
+  if(utl_image->size == 0) return;
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[0]->draw_stream(&sensor->image.color, image_size);
+  vec_gui_stream[0]->draw_stream(utl_image, image_size);
   this->overlay_capture(sensor, &sensor->color.data, image_size, image_pose);
 
   //---------------------------
 }
 void Stream::draw_camera_depth(k4n::dev::Sensor* sensor, ImVec2 image_size){
+  utl::media::Image* utl_image = &sensor->image.depth;
   //---------------------------
 
+  if(utl_image->size == 0) return;
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[1]->draw_stream(&sensor->image.depth, image_size);
+  vec_gui_stream[1]->draw_stream(utl_image, image_size);
   this->overlay_capture(sensor, &sensor->depth.data, image_size, image_pose);
 
   //---------------------------
 }
 void Stream::draw_camera_ir(k4n::dev::Sensor* sensor, ImVec2 image_size){
+  utl::media::Image* utl_image = &sensor->image.ir;
   //---------------------------
 
+  if(utl_image->size == 0) return;
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_gui_stream[2]->draw_stream(&sensor->image.ir, image_size);
+  vec_gui_stream[2]->draw_stream(utl_image, image_size);
   this->overlay_capture(sensor, &sensor->ir.data, image_size, image_pose);
 
   //---------------------------

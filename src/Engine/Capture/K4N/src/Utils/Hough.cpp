@@ -13,7 +13,9 @@ Hough::Hough(){
 Hough::~Hough(){}
 
 //Main function
-void Hough::sphere_detection(utl::media::Image* image){
+void Hough::sphere_detection(utl::media::Image* image, utl::media::Image* result){
+  if(image == nullptr) return;
+  if(image->data.size() == 0) return;
   //------------------------
 
   // Create an Hough Mat object from the image data
@@ -29,8 +31,11 @@ void Hough::sphere_detection(utl::media::Image* image){
 
   // Perform Hough Transform to detect lines
   std::vector<cv::Vec3f> vec_circle;
-  cv::HoughCircles(pre_image, vec_circle, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
-  this->draw_result(pre_image, vec_circle);
+  cv::HoughCircles(pre_image, vec_circle, hough_mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
+
+  //Final step
+  //this->draw_result(pre_image, vec_circle);
+  this->convert_to_utl_image(pre_image, vec_circle, result);
 
   //------------------------
 }
@@ -40,19 +45,22 @@ void Hough::find_mode_parameter(){
   //---------------------------
 
   switch(mode){
-    case cv::HOUGH_GRADIENT:{
+    case k4n::hough::GRADIENT:{
       this->param_1 = 100; //higher threshold for the Canny edge detector
       this->param_2 = 40; //accumulator threshold for the circle centers at the detection stage
+      this->hough_mode = cv::HOUGH_GRADIENT;
       break;
     }
-    case cv::HOUGH_STANDARD:{
+    case k4n::hough::STANDARD:{
       this->param_1 = 0; //not used
       this->param_2 = 30; //minimum number of intersections to "detect" a circle
+      this->hough_mode = cv::HOUGH_STANDARD;
       break;
     }
-    case cv::HOUGH_PROBABILISTIC:{
+    case k4n::hough::PROBABILISTIC:{
       this->param_1 = 10; //minimum distance between the centers of the detected vec_circle
       this->param_2 = 30; //minimum radius of the vec_circle to detect
+      this->hough_mode = cv::HOUGH_PROBABILISTIC;
       break;
     }
   }
@@ -103,7 +111,6 @@ void Hough::preprocessing(cv::Mat& input, cv::Mat& output){
 
   //---------------------------
 }
-
 void Hough::draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle){
   //---------------------------
 
@@ -122,13 +129,44 @@ void Hough::draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle){
   }
 
   // Display the result
-  say(vec_circle.size());
   cv::imshow("Hough Circles", result);
   cv::waitKey(0);
 
   //---------------------------
 }
+void Hough::convert_to_utl_image(cv::Mat& image_raw, std::vector<cv::Vec3f>& vec_circle, utl::media::Image* image){
+  //------------------------
 
+  // Draw the detected vec_circle on the original image
+  cv::Mat result;
+  cv::cvtColor(image_raw, result, cv::COLOR_RGBA2BGRA); // Convert edges to BGR for drawing
+  for(size_t i=0; i<vec_circle.size(); i++){
+    cv::Point center(cvRound(vec_circle[i][0]), cvRound(vec_circle[i][1]));
+    int radius = cvRound(vec_circle[i][2]);
+
+    // Draw the circle center
+    cv::circle(result, center, 3, cv::Scalar(44, 250, 44), -1, cv::LINE_AA);
+
+    // Draw the circle outline
+    cv::circle(result, center, radius, cv::Scalar(44, 44, 250), 1, cv::LINE_AA);
+  }
+
+  // Set the dimensions of the utl::media::Image
+  image->width = result.cols;
+  image->height = result.rows;
+  image->channel_nb = result.channels(); // Assuming result is in BGRA format
+  image->format = "R8G8B8A8_SRGB";
+
+  // Calculate the size of the pixel data
+  size_t data_size = result.cols * result.rows * result.channels();
+  image->data.resize(data_size);
+  image->size = data_size;
+
+  // Copy the pixel data from the OpenCV image to the utl::media::Image
+  std::memcpy(image->data.data(), result.data, data_size);
+
+  //------------------------
+}
 
 
 

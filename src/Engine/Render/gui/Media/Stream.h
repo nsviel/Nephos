@@ -22,6 +22,7 @@ public:
   void draw_stream(utl::media::Image* utl_image, ImVec2 size);
 
   //Subfunction
+  bool check_image(utl::media::Image* utl_image);
   void convert_data_into_texture(utl::media::Image* utl_image);
   void render_image(utl::media::Image* utl_image, ImVec2& size);
 

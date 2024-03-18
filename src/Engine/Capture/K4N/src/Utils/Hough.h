@@ -24,13 +24,14 @@ public:
 
 public:
   //Main function
-  void sphere_detection(utl::media::Image* image);
+  void sphere_detection(utl::media::Image* image, utl::media::Image* result);
 
   //Subfunction
   void find_mode_parameter();
   void find_sphere_data(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
   void preprocessing(cv::Mat& input, cv::Mat& output);
   void draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
+  void convert_to_utl_image(cv::Mat& image_raw, std::vector<cv::Vec3f>& vec_circle, utl::media::Image* image);
 
   inline int* get_mode(){return &mode;}
   inline int* get_ratio(){return &ratio;}
@@ -45,6 +46,7 @@ public:
 
 private:
   int mode = k4n::hough::GRADIENT;
+  int hough_mode = cv::HOUGH_GRADIENT;
   int ratio = 1;
   int min_dist = 0;
   int min_radius = 5;

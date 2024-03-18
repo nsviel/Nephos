@@ -33,6 +33,7 @@ private:
   k4n::calibration::Model* k4n_model;
   k4n::dev::Swarm* k4n_swarm;
   eng::render::gui::Stream* stream;
+  utl::media::Image* utl_image = nullptr;
 
   string name;
   bool* show_window;

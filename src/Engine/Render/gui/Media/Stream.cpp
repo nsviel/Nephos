@@ -21,7 +21,7 @@ Stream::~Stream(){}
 
 //Main function
 void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
-  if(utl_image->size == 0) return;
+  if(!check_image(utl_image)) return;
   //---------------------------
 
   this->convert_data_into_texture(utl_image);
@@ -31,8 +31,22 @@ void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
 }
 
 //Subfunction
+bool Stream::check_image(utl::media::Image* utl_image){
+  //---------------------------
+
+  if(utl_image->size == 0){
+    cout<<"[error] stream image should have size not at 0"<<endl;
+    return false;
+  }
+  if(utl_image->format == ""){
+    cout<<"[error] stream image should have format specified"<<endl;
+    return false;
+  }
+
+  //---------------------------
+  return true;
+}
 void Stream::convert_data_into_texture(utl::media::Image* utl_image){
-  if(utl_image->format == "") return;
   //---------------------------
 
   //Load texture into vulkan

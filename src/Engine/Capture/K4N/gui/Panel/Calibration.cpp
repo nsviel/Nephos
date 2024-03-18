@@ -20,6 +20,7 @@ Calibration::Calibration(k4n::Node* node_k4n, bool* show_window){
 
   this->show_window = show_window;
   this->name = "Calibration";
+  this->utl_image = new utl::media::Image();
 
   //---------------------------
 }
@@ -147,8 +148,11 @@ void Calibration::draw_result(){
   //---------------------------
 
   if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+    k4n_hough->sphere_detection(&sensor->image.ir, utl_image);
+
+    if(utl_image->size == 0) return;
     ImVec2 image_size = ImGui::GetContentRegionAvail();
-    stream->draw_stream(&sensor->image.ir, image_size);
+    stream->draw_stream(utl_image, image_size);
   }
 
   //---------------------------
