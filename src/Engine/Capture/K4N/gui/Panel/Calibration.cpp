@@ -13,9 +13,8 @@ Calibration::Calibration(k4n::Node* node_k4n, bool* show_window){
 
   eng::Node* node_engine = node_k4n->get_node_engine();
 
-  this->k4n_hough = new k4n::utils::Hough();
   this->k4n_model = node_k4n->get_k4n_model();
-  this->k4n_swarm = node_k4n->get_k4n_swarm();
+  this->k4n_hough = k4n_model->get_k4n_hough();
   this->stream = new eng::render::gui::Stream(node_engine);
 
   this->show_window = show_window;
@@ -146,17 +145,13 @@ void Calibration::hough_parameter(){
   ImGui::Separator();
 }
 void Calibration::draw_result(){
-  k4n::dev::Master* master = k4n_swarm->get_selected_master();
-  utl::type::Entity* entity = master->selected_entity;
   //---------------------------
 
-  if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-    k4n_hough->sphere_detection(&sensor->image.ir, utl_image);
+  k4n_model->detect_sphere(utl_image);
 
-    if(utl_image->size == 0) return;
-    ImVec2 image_size = ImGui::GetContentRegionAvail();
-    stream->draw_stream(utl_image, image_size);
-  }
+  if(utl_image->size == 0) return;
+  ImVec2 image_size = ImGui::GetContentRegionAvail();
+  stream->draw_stream(utl_image, image_size);
 
   //---------------------------
   ImGui::Separator();
