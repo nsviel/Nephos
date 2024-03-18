@@ -38,7 +38,7 @@ public:
   inline bool* get_thread_pause(){return &thread_pause;}
 
 private:
-  k4n::processing::Data* k4a_data;
+  k4n::processing::Data* k4n_data;
   k4n::config::Configuration* k4n_config;
   k4n::config::Calibration* k4n_calibration;
 

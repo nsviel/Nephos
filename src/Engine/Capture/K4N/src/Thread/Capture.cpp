@@ -10,7 +10,7 @@ namespace k4n::thread{
 Capture::Capture(k4n::Node* node_k4n){
   //---------------------------
 
-  this->k4a_data = new k4n::processing::Data(node_k4n);
+  this->k4n_data = new k4n::processing::Data(node_k4n);
   this->k4n_config = new k4n::config::Configuration();
   this->k4n_calibration = new k4n::config::Calibration();
 
@@ -60,16 +60,22 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   //Start capture thread
   sensor->param.is_capturing = true;
   while(thread_running){
-    //Next capture
     tasker->loop_begin();
+
+    //Next capture
+    tasker->task_begin("capture");
     k4a::capture* capture = manage_new_capture(sensor);
     this->manage_old_capture(sensor, capture);
+    tasker->task_end("capture");
 
-    //Find data from capture
-    k4a_data->start_thread(sensor);
+    //Capture processing
+    k4n_data->start_thread(sensor);
 
-    //Manage event
+    //Loop sleeping
+    tasker->task_begin("pause");
     this->manage_pause(sensor);
+    tasker->task_end("pause");
+
     tasker->loop_end();
   }
 
@@ -104,10 +110,7 @@ void Capture::wait_thread(){
 
 //Subfunction
 k4a::capture* Capture::manage_new_capture(k4n::dev::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("capture");
   //---------------------------
-
-  tasker->task_begin("capture");
 
   k4a::capture* capture = new k4a::capture();
   bool ok = sensor->param.device.get_capture(capture, std::chrono::milliseconds(2000));
@@ -115,8 +118,6 @@ k4a::capture* Capture::manage_new_capture(k4n::dev::Sensor* sensor){
     delete capture;
     return nullptr;
   }
-
-  tasker->task_end("capture");
 
   //---------------------------
   return capture;
@@ -129,6 +130,7 @@ void Capture::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture
   capture_queue.push(capture);
 
   // Check if the queue size exceeds 5
+  k4n_data->wait_thread();
   if(capture_queue.size() > 5){
     // Delete the oldest capture
     delete capture_queue.front();

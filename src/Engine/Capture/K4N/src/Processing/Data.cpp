@@ -95,16 +95,19 @@ void Data::find_data_from_capture(k4n::dev::Sensor* sensor){
   this->find_data_cloud(sensor);
   tasker->task_end("transformation");
 
-  //Finish
+  tasker->loop_end();
+
+  //End
+  float fps = tasker->get_loop_fps();
+  sensor->color.data.fps = fps;
+  sensor->depth.data.fps = fps;
+  sensor->ir.data.fps = fps;
   sensor->master->player.ts_cur = sensor->color.data.timestamp;
   sensor->param.data_ready = true;
-
-  tasker->loop_end();
 
   //---------------------------
 }
 void Data::find_data_depth(k4n::dev::Sensor* sensor){
-  sensor->depth.data = {};
   //---------------------------
 
   //Get k4a image
@@ -125,7 +128,6 @@ void Data::find_data_depth(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Data::find_data_color(k4n::dev::Sensor* sensor){
-  sensor->color.data = {};
   //---------------------------
 
   //Get k4a image
@@ -145,7 +147,6 @@ void Data::find_data_color(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Data::find_data_ir(k4n::dev::Sensor* sensor){
-  sensor->ir.data = {};
   //---------------------------
 
   //Get k4a image

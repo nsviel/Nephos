@@ -56,17 +56,23 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
 
   //Playback thread
   while(thread_running){
-    //Next capture
     tasker->loop_begin(master->operation.fps);
+
+    //Next capture
+    tasker->task_begin("capture");
     k4a::capture* capture = manage_new_capture(sensor);
     if(capture == nullptr) continue;
     this->manage_old_capture(sensor, capture);
+    tasker->task_end("capture");
 
-    //Find data from capture
+    //Capture processing
     k4n_data->start_thread(sensor);
 
-    //Manage event
+    //Loop sleeping
+    tasker->task_begin("pause");
     this->manage_pause(sensor);
+    tasker->task_end("pause");
+
     tasker->loop_end();
   }
 
@@ -99,10 +105,7 @@ void Playback::wait_thread(){
 
 //Subfunction
 k4a::capture* Playback::manage_new_capture(k4n::dev::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("capture");
   //---------------------------
-
-  tasker->task_begin("capture");
 
   k4a::capture* capture = new k4a::capture();
   bool capture_left = sensor->param.playback.get_next_capture(capture);
@@ -110,8 +113,6 @@ k4a::capture* Playback::manage_new_capture(k4n::dev::Sensor* sensor){
     capture = nullptr;
     this->manage_restart(sensor);
   }
-
-  tasker->task_end("capture");
 
   //---------------------------
   return capture;
@@ -124,6 +125,7 @@ void Playback::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* captur
   capture_queue.push(capture);
 
   // Check if the queue size exceeds 5
+  k4n_data->wait_thread();
   if(capture_queue.size() > 5){
     // Delete the oldest capture
     delete capture_queue.front();
