@@ -65,10 +65,15 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
     //Next capture
     tasker->task_begin("capture");
     k4a::capture* capture = manage_new_capture(sensor);
-    this->manage_old_capture(sensor, capture);
+    if(capture == nullptr) continue;
     tasker->task_end("capture");
 
-    //Capture processing
+    //Wait previous threads to finish
+    tasker->task_begin("wait");
+    this->manage_old_capture(sensor, capture);
+    tasker->task_end("wait");
+
+    //Run processing
     k4n_data->start_thread(sensor);
 
     //Loop sleeping

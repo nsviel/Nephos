@@ -62,10 +62,14 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
     tasker->task_begin("capture");
     k4a::capture* capture = manage_new_capture(sensor);
     if(capture == nullptr) continue;
-    this->manage_old_capture(sensor, capture);
     tasker->task_end("capture");
 
-    //Capture processing
+    //Wait previous threads to finish
+    tasker->task_begin("wait");
+    this->manage_old_capture(sensor, capture);
+    tasker->task_end("wait");
+
+    //Run processing
     k4n_data->start_thread(sensor);
 
     //Loop sleeping
