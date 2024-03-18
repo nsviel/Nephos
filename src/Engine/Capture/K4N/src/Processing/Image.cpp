@@ -104,6 +104,7 @@ void Image::copy_image_color(k4n::dev::Sensor* sensor){
     image->color.new_data = true;
   }
 
+
   //---------------------------
 }
 void Image::copy_image_depth(k4n::dev::Sensor* sensor){

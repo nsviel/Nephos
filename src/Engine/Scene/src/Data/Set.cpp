@@ -207,7 +207,7 @@ void Set::delete_entity_all(utl::type::Set* set){
 
   // Check if the current set has the query entity
   auto it = set->list_entity.begin();
-  while (it != set->list_entity.end()) {
+  while(it != set->list_entity.end()){
     utl::type::Entity* entity = *it;
     it = set->list_entity.erase(it); // erase() returns iterator to next element
 

@@ -125,7 +125,8 @@ void Master::manage_resynchronization(){
   if(list_entity.size() < 2) return;
   if(mode == k4n::dev::CAPTURE) return;
   //---------------------------
-
+  //Should be set into another dedicated thread
+/*
   for(int i=0; i<list_entity.size(); i++){
     utl::type::Entity* entity = *next(list_entity.begin(), i);
 
@@ -133,7 +134,7 @@ void Master::manage_resynchronization(){
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_cur));
       sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     }
-  }
+  }*/
 
   //---------------------------
 }

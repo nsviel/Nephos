@@ -94,7 +94,6 @@ void Sensor::remove_entity(){
   this->object.remove_entity();
 
   //Supress this sensor from lists
-  sce_set->supress_entity(master, this);
   k4n_struct->list_sensor.remove(this);
 
   //---------------------------

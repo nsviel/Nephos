@@ -27,6 +27,7 @@ Operation::~Operation(){}
 
 //Main function
 void Operation::start_thread(k4n::dev::Sensor* sensor){
+  if(sensor->profiler == nullptr) return;
   //---------------------------
 
   this->idle = false;
@@ -38,11 +39,10 @@ void Operation::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Operation::run_thread(k4n::dev::Sensor* sensor){
-  if(sensor->profiler == nullptr) return;
-  //---------------------------
-
   k4n::dev::Master* master = sensor->master;
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("processing");
+  //---------------------------
+
   tasker->loop_begin();
 
   //Colorizer

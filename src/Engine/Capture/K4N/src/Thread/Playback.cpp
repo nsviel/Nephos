@@ -117,11 +117,20 @@ k4a::capture* Playback::manage_new_capture(k4n::dev::Sensor* sensor){
   return capture;
 }
 void Playback::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture){
-  static k4a::capture* capture_old = nullptr;
+  static std::queue<k4a::capture*> capture_queue;
   //---------------------------
 
-  delete capture_old;
-  capture_old = capture;
+  // Add the new capture to the queue
+  capture_queue.push(capture);
+
+  // Check if the queue size exceeds 5
+  if(capture_queue.size() > 5){
+    // Delete the oldest capture
+    delete capture_queue.front();
+    capture_queue.pop();
+  }
+
+  // Update the sensor parameter
   sensor->param.capture = capture;
 
   //---------------------------
