@@ -14,7 +14,7 @@ Hough::Hough(){
 Hough::~Hough(){}
 
 //Main function
-void Hough::sphere_detection(utl::media::Image* image, utl::media::Image* result){
+vector<vec3> Hough::sphere_detection(utl::media::Image* image, utl::media::Image* result){
   if(image == nullptr) return;
   if(image->data.size() == 0) return;
   //------------------------
@@ -29,11 +29,8 @@ void Hough::sphere_detection(utl::media::Image* image, utl::media::Image* result
   // Perform Hough Transform to detect lines
   vector<vec3> vec_circle = compute_hough_circle(pre_image);
 
-  //Final step
-  //this->draw_result(pre_image, vec_circle);
-  this->convert_to_utl_image(pre_image, vec_circle, result);
-
   //------------------------
+  return vec_circle;
 }
 
 //Algo function
@@ -157,6 +154,36 @@ void Hough::convert_to_utl_image(cv::Mat& image_raw, vector<vec3>& vec_circle, u
     // Draw the circle outline
     cv::circle(result, center, radius, cv::Scalar(44, 44, 255, 255), 1, cv::LINE_AA);
   }
+
+  // Set the dimensions of the utl::media::Image
+  image->width = result.cols;
+  image->height = result.rows;
+  image->channel_nb = result.channels(); // Assuming result is in BGRA format
+  image->format = "B8G8R8A8_SRGB";
+  image->new_data = true;
+
+  // Calculate the size of the pixel data
+  size_t data_size = result.cols * result.rows * result.channels();
+  image->data.resize(data_size);
+  image->size = data_size;
+
+  // Copy the pixel data from the OpenCV image to the utl::media::Image
+  std::memcpy(image->data.data(), result.data, data_size);
+
+  //------------------------
+}
+void Hough::convert_to_utl_image(cv::Mat& image_raw, vec3& circle, utl::media::Image* image){
+  //------------------------
+
+  // Draw the detected vec_circle on the original image
+  cv::Mat result;
+  cv::cvtColor(image_raw, result, cv::COLOR_RGBA2BGRA); // Convert edges to BGR for drawing
+
+  //Draw circle
+  cv::Point center(cvRound(circle[0]), cvRound(circle[1]));
+  int radius = cvRound(circle[2]);
+  cv::circle(result, center, 3, cv::Scalar(44, 255, 44, 255), -1, cv::LINE_AA);
+  cv::circle(result, center, radius, cv::Scalar(44, 44, 255, 255), 1, cv::LINE_AA);
 
   // Set the dimensions of the utl::media::Image
   image->width = result.cols;
