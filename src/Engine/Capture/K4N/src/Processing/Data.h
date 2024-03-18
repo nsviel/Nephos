@@ -11,6 +11,7 @@ namespace k4n::data{class Depth;}
 namespace k4n::data{class Infrared;}
 namespace k4n::processing{class Cloud;}
 namespace k4n::processing{class Image;}
+namespace k4n::thread{class Pool;}
 
 
 namespace k4n::processing{
@@ -26,7 +27,6 @@ public:
   //Main function
   void start_thread(k4n::dev::Sensor* sensor);
   void run_thread(k4n::dev::Sensor* sensor);
-  void wait_thread();
 
   //Data function
   void find_data_from_capture(k4n::dev::Sensor* device);
@@ -52,9 +52,8 @@ private:
   k4n::data::Infrared* k4a_infrared;
   k4n::processing::Cloud* k4a_cloud;
   k4n::processing::Image* k4n_image;
+  k4n::thread::Pool* thread_pool;
 
-  std::thread thread;
-  bool thread_idle = true;;
   tjhandle tj_handle;
 };
 

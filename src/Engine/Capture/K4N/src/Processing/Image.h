@@ -37,9 +37,6 @@ private:
   k4n::data::Infrared* k4n_infrared;
   k4n::config::Configuration* k4n_config;
   ope::attribut::Fitting* ope_fitting;
-
-  std::thread thread;
-  bool thread_idle = true;
 };
 
 }

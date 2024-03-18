@@ -79,7 +79,6 @@ void Playback::stop_thread(){
   //---------------------------
 
   this->thread_running = false;
-  this->wait_thread();
 
   //---------------------------
 }
@@ -90,7 +89,6 @@ void Playback::wait_thread(){
   if(thread.joinable()){
     thread.join();
   }
-  k4a_data->wait_thread();
 
   //---------------------------
 }
@@ -98,7 +96,6 @@ void Playback::wait_pause(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  k4a_data->wait_thread();
   while(thread_paused == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
@@ -129,7 +126,6 @@ void Playback::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* captur
   static k4a::capture* capture_old = nullptr;
   //---------------------------
 
-  k4a_data->wait_thread();
   delete capture_old;
   capture_old = capture;
   sensor->param.capture = capture;
@@ -145,7 +141,6 @@ void Playback::manage_pause(k4n::dev::Sensor* sensor){
     //Clear thread profiler and wait subthread fulfillment
     sensor->profiler->clear();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    k4a_data->wait_thread();
 
     //Pause loop
     this->thread_paused = true;
@@ -161,7 +156,6 @@ void Playback::manage_restart(k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(sensor->color.data.timestamp == sensor->master->player.ts_end){
-    k4a_data->wait_thread();
     sensor->master->manage_restart();
     sensor->master->player.play = true;
     sensor->master->player.pause = false;

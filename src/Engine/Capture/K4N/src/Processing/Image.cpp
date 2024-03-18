@@ -60,7 +60,6 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   tasker->loop_end();
 
   //---------------------------
-  this->thread_idle = true;
 }
 
 //Subfunction

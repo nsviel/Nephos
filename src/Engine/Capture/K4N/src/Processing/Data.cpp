@@ -15,7 +15,7 @@ Data::Data(k4n::Node* node_k4n){
   this->k4a_infrared = new k4n::data::Infrared();
   this->k4a_cloud = new k4n::processing::Cloud(node_k4n);
   this->k4n_image = new k4n::processing::Image(node_k4n);
-  this->thread = std::thread([](){});
+  this->thread_pool = node_k4n->get_thread_pool();
 
   //---------------------------
 }
@@ -31,14 +31,10 @@ Data::~Data(){
 void Data::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  //Join previous thread
-  if(thread_idle && thread.joinable()){
-    thread.join();
-  }
-
-  //Start new thread
-  this->thread_idle = false;
-  this->thread = std::thread(&Data::run_thread, this, sensor);
+  auto task_function = [this, sensor](){
+    this->run_thread(sensor);
+  };
+  thread_pool->add_task(task_function);
 
   //---------------------------
 }
@@ -54,18 +50,6 @@ void Data::run_thread(k4n::dev::Sensor* sensor){
 
   //Encode image as texture
   k4n_image->start_thread(sensor);
-
-  //---------------------------
-  this->thread_idle = true;
-}
-void Data::wait_thread(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-  k4a_cloud->wait_thread();
 
   //---------------------------
 }

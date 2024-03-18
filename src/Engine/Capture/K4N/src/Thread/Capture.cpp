@@ -98,7 +98,6 @@ void Capture::wait_thread(){
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  k4a_data->wait_thread();
 
   //---------------------------
 }
@@ -127,7 +126,6 @@ void Capture::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture
   static k4a::capture* capture_old = nullptr;
   //---------------------------
 
-  k4a_data->wait_thread();
   delete capture_old;
   capture_old = capture;
   sensor->param.capture = capture;

@@ -7,6 +7,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
 namespace k4n::processing{class Recorder;}
 namespace k4n::structure{class Struct_k4n;}
+namespace k4n::thread{class Pool;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
@@ -27,7 +28,6 @@ public:
   //Main function
   void start_thread(k4n::dev::Sensor* sensor);
   void run_thread(k4n::dev::Sensor* sensor);
-  void wait_thread();
 
   //Subfunction
   void colorize_object(k4n::dev::Sensor* sensor);
@@ -43,9 +43,7 @@ private:
   ope::attribut::Fitting* ope_fitting;
   k4n::utils::Operation* k4n_operation;
   k4n::processing::Recorder* k4n_recorder;
-
-  std::thread thread;
-  bool thread_idle = true;
+  k4n::thread::Pool* thread_pool;
 };
 
 }

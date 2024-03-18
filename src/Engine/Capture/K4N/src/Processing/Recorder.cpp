@@ -16,6 +16,7 @@ Recorder::Recorder(k4n::Node* node_k4n){
   this->struct_k4n = node_k4n->get_struct_k4n();
   this->sce_exporter = node_scene->get_scene_exporter();
   this->ply_exporter = new format::ply::Exporter();
+  this->thread_pool = node_k4n->get_thread_pool();
 
   //---------------------------
 }
@@ -25,14 +26,10 @@ Recorder::~Recorder(){}
 void Recorder::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  //Join previous thread
-  if(thread_idle && thread.joinable()){
-    thread.join();
-  }
-
-  //Start new thread
-  this->thread_idle = false;
-  this->thread = std::thread(&Recorder::run_thread, this, sensor);
+  auto task_function = [this, sensor](){
+    this->run_thread(sensor);
+  };
+  thread_pool->add_task(task_function);
 
   //---------------------------
 }
@@ -58,20 +55,11 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
     }
   }
 
-  tasker->loop_end();
   if(!master->player.record){
     tasker->clear();
   }
 
-  //---------------------------
-  this->thread_idle = true;
-}
-void Recorder::wait_thread(){
-  //---------------------------
-
-  while(thread_idle == false){say("wait");
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
+  tasker->loop_end();
 
   //---------------------------
 }

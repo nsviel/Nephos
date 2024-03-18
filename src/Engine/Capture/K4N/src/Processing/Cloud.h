@@ -9,6 +9,7 @@ namespace k4n::processing{class Operation;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
 namespace k4n::structure{class Struct_k4n;}
+namespace k4n::thread{class Pool;}
 
 
 namespace k4n::processing{
@@ -24,7 +25,6 @@ public:
   //Main function
   void start_thread(k4n::dev::Sensor* sensor);
   void run_thread(k4n::dev::Sensor* sensor);
-  void wait_thread();
 
   //Cloud function
   void convert_into_cloud(k4n::dev::Sensor* sensor);
@@ -43,6 +43,7 @@ public:
 private:
   k4n::utils::Operation* k4n_operation;
   k4n::processing::Operation* k4n_processing;
+  k4n::thread::Pool* thread_pool;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgb;
@@ -50,8 +51,6 @@ private:
   std::vector<float> vec_r;
   std::vector<bool> vec_goodness;
 
-  std::thread thread;
-  bool thread_idle = true;
   int16_t* point_cloud_data;
   int point_cloud_size;
   glm::vec3 xyz;

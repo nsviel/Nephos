@@ -19,7 +19,7 @@ Operation::Operation(k4n::Node* node_k4n){
   this->ope_fitting = new ope::attribut::Fitting();
   this->k4n_operation = new k4n::utils::Operation();
   this->k4n_recorder = new k4n::processing::Recorder(node_k4n);
-  this->thread = std::thread([](){});
+  this->thread_pool = node_k4n->get_thread_pool();
 
   //---------------------------
 }
@@ -29,14 +29,10 @@ Operation::~Operation(){}
 void Operation::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  //Join previous thread
-  if(thread_idle && thread.joinable()){
-    thread.join();
-  }
-
-  //Start new thread
-  this->thread_idle = false;
-  this->thread = std::thread(&Operation::run_thread, this, sensor);
+  auto task_function = [this, sensor](){
+    this->run_thread(sensor);
+  };
+  thread_pool->add_task(task_function);
 
   //---------------------------
 }
@@ -103,18 +99,6 @@ void Operation::run_thread(k4n::dev::Sensor* sensor){
   tasker->task_end("update");
 
   tasker->loop_end();
-
-  //---------------------------
-  this->thread_idle = true;
-}
-void Operation::wait_thread(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-  k4n_recorder->wait_thread();
 
   //---------------------------
 }
