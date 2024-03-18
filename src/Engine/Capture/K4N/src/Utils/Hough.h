@@ -25,12 +25,15 @@ public:
   //Main function
   void sphere_detection(utl::media::Image* image, utl::media::Image* result);
 
+  //Algo function
+  void preprocessing(cv::Mat& input, cv::Mat& output);
+  vector<vec3> compute_hough_circle(cv::Mat& image);
+
   //Subfunction
   void find_mode_parameter();
   void find_sphere_data(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
-  void preprocessing(cv::Mat& input, cv::Mat& output);
   void draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
-  void convert_to_utl_image(cv::Mat& image_raw, std::vector<cv::Vec3f>& vec_circle, utl::media::Image* image);
+  void convert_to_utl_image(cv::Mat& image_raw, vector<vec3>& vec_circle, utl::media::Image* image);
 
   inline int* get_mode(){return &mode;}
   inline int* get_ratio(){return &ratio;}
@@ -39,6 +42,7 @@ public:
   inline int* get_max_radius(){return &max_radius;}
   inline int* get_canny_thres_lower(){return &canny_thres_lower;}
   inline int* get_canny_thres_upper(){return &canny_thres_upper;}
+  inline int get_nb_detection(){return nb_detection;}
   inline float* get_param_1(){return &param_1;}
   inline float* get_param_2(){return &param_2;}
   inline bool* get_apply_canny(){return &apply_canny;}
@@ -46,6 +50,7 @@ public:
 private:
   int mode = k4n::hough::GRADIENT;
   int hough_mode = cv::HOUGH_GRADIENT;
+  int nb_detection = 0;
   int ratio = 1;
   int min_dist = 72;
   int min_radius = 5;

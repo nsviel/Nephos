@@ -149,6 +149,13 @@ void Calibration::draw_result(){
 
   k4n_model->detect_sphere(utl_image);
 
+  //Display number of detected spheres
+  string nb_detection = to_string(k4n_hough->get_nb_detection());
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
+
+  //Display image with detected spheres
   if(utl_image->size == 0) return;
   ImVec2 image_size = ImGui::GetContentRegionAvail();
   stream->draw_stream(utl_image, image_size);

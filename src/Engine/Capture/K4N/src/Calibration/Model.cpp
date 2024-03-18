@@ -25,7 +25,8 @@ void Model::detect_sphere(utl::media::Image* utl_image){
   //---------------------------
 
   if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-    k4n_hough->sphere_detection(&sensor->image.ir, utl_image);
+    utl::media::Image* raw_image = &sensor->image.ir;
+    k4n_hough->sphere_detection(raw_image, utl_image);
   }
 
   //---------------------------

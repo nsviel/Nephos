@@ -27,14 +27,44 @@ void Hough::sphere_detection(utl::media::Image* image, utl::media::Image* result
   this->preprocessing(raw_image, pre_image);
 
   // Perform Hough Transform to detect lines
-  std::vector<cv::Vec3f> vec_circle;
-  cv::HoughCircles(pre_image, vec_circle, hough_mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
+  vector<vec3> vec_circle = compute_hough_circle(pre_image);
 
   //Final step
   //this->draw_result(pre_image, vec_circle);
   this->convert_to_utl_image(pre_image, vec_circle, result);
 
   //------------------------
+}
+
+//Algo function
+void Hough::preprocessing(cv::Mat& input, cv::Mat& output){
+  //---------------------------
+
+  if(apply_canny){
+    // Perform canny edge detection
+    cv::Canny(input, output, canny_thres_lower, canny_thres_upper);
+  }else{
+    // Convert the image to grayscale
+    cv::Mat gray_image;
+    cv::cvtColor(input, output, cv::COLOR_RGBA2GRAY);
+  }
+
+  //---------------------------
+}
+vector<vec3> Hough::compute_hough_circle(cv::Mat& image){
+  //---------------------------
+
+  std::vector<cv::Vec3f> circles;
+  cv::HoughCircles(image, circles, hough_mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
+  this->nb_detection = circles.size();
+
+  vector<vec3> vec_circle;
+  for(int i=0; i<circles.size(); i++){
+    vec_circle.push_back(vec3(circles[i][0], circles[i][1], circles[i][2]));
+  }
+
+  //---------------------------
+  return vec_circle;
 }
 
 //Subfunction
@@ -88,20 +118,6 @@ void Hough::find_sphere_data(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle)
 
   //---------------------------
 }
-void Hough::preprocessing(cv::Mat& input, cv::Mat& output){
-  //---------------------------
-
-  if(apply_canny){
-    // Perform canny edge detection
-    cv::Canny(input, output, canny_thres_lower, canny_thres_upper);
-  }else{
-    // Convert the image to grayscale
-    cv::Mat gray_image;
-    cv::cvtColor(input, output, cv::COLOR_RGBA2GRAY);
-  }
-
-  //---------------------------
-}
 void Hough::draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle){
   //---------------------------
 
@@ -125,7 +141,7 @@ void Hough::draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle){
 
   //---------------------------
 }
-void Hough::convert_to_utl_image(cv::Mat& image_raw, std::vector<cv::Vec3f>& vec_circle, utl::media::Image* image){
+void Hough::convert_to_utl_image(cv::Mat& image_raw, vector<vec3>& vec_circle, utl::media::Image* image){
   //------------------------
 
   // Draw the detected vec_circle on the original image
