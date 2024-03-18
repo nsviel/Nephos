@@ -46,6 +46,7 @@ private:
   prf::Manager* profiler;
   eng::scene::Database* sce_database;
   eng::scene::Set* sce_set;
+  k4n::Node* node_k4n;
   k4n::utils::Transformation* k4n_transfo;
   k4n::structure::Struct_k4n* struct_k4n;
   k4n::config::Configuration* k4n_config;

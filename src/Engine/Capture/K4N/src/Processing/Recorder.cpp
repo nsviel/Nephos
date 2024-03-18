@@ -8,15 +8,15 @@
 namespace k4n::processing{
 
 //Constructor / Destructor
-Recorder::Recorder(k4n::structure::Struct_k4n* struct_k4n){
+Recorder::Recorder(k4n::Node* node_k4n){
   //---------------------------
 
-  eng::scene::Node* node_scene = struct_k4n->node_scene;
+  eng::scene::Node* node_scene = node_k4n->get_node_scene();
 
-  this->struct_k4n = struct_k4n;
+  this->struct_k4n = node_k4n->get_struct_k4n();
   this->sce_exporter = node_scene->get_scene_exporter();
   this->ply_exporter = new format::ply::Exporter();
-
+//k4n::thread::Pool* get_thread_pool(){return thread_pool;}
   //---------------------------
 }
 Recorder::~Recorder(){}

@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 #include <k4a/k4a.hpp>
 
+namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::data{class Depth;}
 namespace k4n::data{class Infrared;}
@@ -16,7 +17,7 @@ class Image
 {
 public:
   //Constructor / Destructor
-  Image();
+  Image(k4n::Node* node_k4n);
   ~Image();
 
 public:

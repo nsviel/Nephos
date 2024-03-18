@@ -5,6 +5,7 @@
 #include <k4a/k4a.hpp>
 
 namespace k4n::structure{class Struct_k4n;}
+namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::data{class Depth;}
 namespace k4n::data{class Infrared;}
@@ -18,7 +19,7 @@ class Data
 {
 public:
   //Constructor / Destructor
-  Data(k4n::structure::Struct_k4n* struct_k4n);
+  Data(k4n::Node* node_k4n);
   ~Data();
 
 public:

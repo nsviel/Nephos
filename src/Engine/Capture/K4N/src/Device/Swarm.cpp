@@ -15,6 +15,7 @@ Swarm::Swarm(k4n::Node* node_k4n){
   eng::scene::Node* node_scene = node_k4n->get_node_scene();
   prf::Node* node_profiler = node_k4n->get_node_profiler();
 
+  this->node_k4n = node_k4n;
   this->struct_k4n = node_k4n->get_struct_k4n();
   this->profiler = node_profiler->get_prf_manager();
   this->sce_database = node_scene->get_scene_database();
@@ -36,7 +37,7 @@ void Swarm::create_sensor_playback(utl::file::Path path){
   int index = sce_set->compute_number_entity(master);
 
   //Sensor creation
-  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
+  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
   sensor->name = "playback_" + to_string(index);
   sensor->param.format = utl::fct::info::get_format_from_path(path.data);
   sensor->param.file_size = utl::fct::info::get_file_size(path.data);
@@ -62,7 +63,7 @@ void Swarm::create_sensor_capture(int index){
   k4n::dev::Master* master = get_or_create_capture_master("Capture");
 
   //Sensor creation
-  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(struct_k4n);
+  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
   sensor->name = "capture_" + to_string(index);
   sensor->param.index = index;
   sensor->master = master;

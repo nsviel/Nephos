@@ -9,7 +9,7 @@
 namespace k4n::processing{
 
 //Constructor / Destructor
-Operation::Operation(k4n::structure::Struct_k4n* struct_k4n){
+Operation::Operation(k4n::Node* node_k4n){
   //---------------------------
 
   this->ope_voxelizer = new ope::Voxelizer();
@@ -18,7 +18,7 @@ Operation::Operation(k4n::structure::Struct_k4n* struct_k4n){
   this->ope_normal = new ope::attribut::Normal();
   this->ope_fitting = new ope::attribut::Fitting();
   this->k4n_operation = new k4n::utils::Operation();
-  this->k4n_recorder = new k4n::processing::Recorder(struct_k4n);
+  this->k4n_recorder = new k4n::processing::Recorder(node_k4n);
   this->thread = std::thread([](){});
 
   //---------------------------

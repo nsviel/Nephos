@@ -8,7 +8,7 @@
 namespace k4n::processing{
 
 //Constructor / Destructor
-Image::Image(){
+Image::Image(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_depth = new k4n::data::Depth();

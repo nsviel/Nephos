@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
 namespace k4n::processing{class Recorder;}
@@ -19,7 +20,7 @@ class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(k4n::structure::Struct_k4n* struct_k4n);
+  Operation(k4n::Node* node_k4n);
   ~Operation();
 
 public:

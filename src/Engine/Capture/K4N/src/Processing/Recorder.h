@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
+namespace k4n{class Node;}
 namespace k4n::structure{class Struct_k4n;}
 namespace k4n::dev{class Sensor;}
 namespace eng::scene{class Exporter;}
@@ -14,7 +15,7 @@ class Recorder
 {
 public:
   //Constructor / Destructor
-  Recorder(k4n::structure::Struct_k4n* struct_k4n);
+  Recorder(k4n::Node* node_k4n);
   ~Recorder();
 
 public:
