@@ -27,28 +27,32 @@ public:
   void sphere_detection(utl::media::Image* image);
 
   //Subfunction
-  void find_mode_parameter(float& param_1, float& param_2);
-  void find_sphere_data(std::vector<cv::Vec3f>& vec_circle);
+  void find_mode_parameter();
+  void find_sphere_data(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
   void preprocessing(cv::Mat& input, cv::Mat& output);
   void draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
 
   inline int* get_mode(){return &mode;}
   inline int* get_ratio(){return &ratio;}
-  inline float* get_min_dist(){return &min_dist;}
-  inline float* get_min_radius(){return &min_radius;}
-  inline float* get_max_radius(){return &max_radius;}
-  inline float* get_canny_thres_lower(){return &canny_thres_lower;}
-  inline float* get_canny_thres_upper(){return &canny_thres_upper;}
+  inline int* get_min_dist(){return &min_dist;}
+  inline int* get_min_radius(){return &min_radius;}
+  inline int* get_max_radius(){return &max_radius;}
+  inline int* get_canny_thres_lower(){return &canny_thres_lower;}
+  inline int* get_canny_thres_upper(){return &canny_thres_upper;}
+  inline float* get_param_1(){return &param_1;}
+  inline float* get_param_2(){return &param_2;}
   inline bool* get_apply_canny(){return &apply_canny;}
 
 private:
   int mode = k4n::hough::GRADIENT;
   int ratio = 1;
-  float min_dist = 0;
-  float min_radius = 5;
-  float max_radius = 50;
-  float canny_thres_lower = 50;
-  float canny_thres_upper = 150;
+  int min_dist = 0;
+  int min_radius = 5;
+  int max_radius = 50;
+  int canny_thres_lower = 50;
+  int canny_thres_upper = 150;
+  float param_1 = 0;
+  float param_2 = 0;
   bool apply_canny = false;
 };
 

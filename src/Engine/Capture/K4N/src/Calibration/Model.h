@@ -6,7 +6,7 @@ namespace k4n{class Node;}
 namespace ope::attribut{class Fitting;}
 
 
-namespace k4n::processing{
+namespace k4n::calibration{
 
 class Model
 {
@@ -18,9 +18,11 @@ public:
 public:
   //Main function
 
+  inline float* get_sphere_diameter(){return &sphere_diameter;}
 
 private:
   ope::attribut::Fitting* ope_fitting;
+  float sphere_diameter = 10;
 };
 
 }

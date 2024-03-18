@@ -13,6 +13,7 @@ namespace k4n::gui{class Control;}
 namespace k4n::gui{class Calibration;}
 namespace k4n::structure{class Struct_k4n;}
 namespace k4n::thread{class Pool;}
+namespace k4n::calibration{class Model;}
 
 
 namespace k4n{
@@ -38,6 +39,7 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
+  inline k4n::calibration::Model* get_k4n_model(){return k4n_model;}
   inline k4n::thread::Pool* get_thread_pool(){return thread_pool;}
   inline k4n::structure::Struct_k4n* get_struct_k4n(){return struct_k4n;}
 
@@ -52,6 +54,7 @@ private:
   k4n::structure::Struct_k4n* struct_k4n;
   k4n::dev::Swarm* k4n_swarm;
   k4n::thread::Connection* k4n_connection;
+  k4n::calibration::Model* k4n_model;
   k4n::gui::Player* gui_device;
   k4n::gui::Stream* gui_stream;
   k4n::gui::Control* gui_control;

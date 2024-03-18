@@ -25,8 +25,7 @@ void Hough::sphere_detection(utl::media::Image* image){
 
   //Parameter
   this->min_dist = pre_image.rows / 8;
-  float param_1, param_2;
-  this->find_mode_parameter(param_1, param_2);
+  this->find_mode_parameter();
 
   // Perform Hough Transform to detect lines
   std::vector<cv::Vec3f> vec_circle;
@@ -37,30 +36,30 @@ void Hough::sphere_detection(utl::media::Image* image){
 }
 
 //Subfunction
-void Hough::find_mode_parameter(float& param_1, float& param_2){
+void Hough::find_mode_parameter(){
   //---------------------------
 
   switch(mode){
     case cv::HOUGH_GRADIENT:{
-      param_1 = 100; //higher threshold for the Canny edge detector
-      param_2 = 40; //accumulator threshold for the circle centers at the detection stage
+      this->param_1 = 100; //higher threshold for the Canny edge detector
+      this->param_2 = 40; //accumulator threshold for the circle centers at the detection stage
       break;
     }
     case cv::HOUGH_STANDARD:{
-      param_1 = 0; //not used
-      param_2 = 30; //minimum number of intersections to "detect" a circle
+      this->param_1 = 0; //not used
+      this->param_2 = 30; //minimum number of intersections to "detect" a circle
       break;
     }
     case cv::HOUGH_PROBABILISTIC:{
-      param_1 = 10; //minimum distance between the centers of the detected vec_circle
-      param_2 = 30; //minimum radius of the vec_circle to detect
+      this->param_1 = 10; //minimum distance between the centers of the detected vec_circle
+      this->param_2 = 30; //minimum radius of the vec_circle to detect
       break;
     }
   }
 
   //---------------------------
 }
-void Hough::find_sphere_data(std::vector<cv::Vec3f>& vec_circle){
+void Hough::find_sphere_data(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle){
   //---------------------------
 
   // Ensure at least one circle is detected
@@ -79,7 +78,7 @@ void Hough::find_sphere_data(std::vector<cv::Vec3f>& vec_circle){
         // Check if the pixel lies within the circle
         if (distance <= radius) {
           // Retrieve the pixel value at (x, y)
-          cv::Scalar pixel_value = gray_image.at<uchar>(y, x);
+          cv::Scalar pixel_value = image.at<uchar>(y, x);
           // Do something with the pixel value
           // For example, print the pixel value
           std::cout << "Pixel value at (" << x << ", " << y << "): " << pixel_value << std::endl;

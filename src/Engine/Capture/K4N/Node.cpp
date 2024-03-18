@@ -26,6 +26,7 @@ Node::Node(eng::capture::Node* node_capture){
   this->struct_k4n = new k4n::structure::Struct_k4n(this);
   this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::thread::Connection(this);
+  this->k4n_model = new k4n::calibration::Model(this);
   this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);
   this->gui_device = new k4n::gui::Player(this, &ply_panel->is_open);
   this->gui_calibration = new k4n::gui::Calibration(this, &cal_panel->is_open);
