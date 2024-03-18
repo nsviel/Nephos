@@ -3,26 +3,31 @@
 #include <Utility/Specific/common.h>
 
 
-namespace ope::attribut{
+namespace k4n::hough{
 
-enum Type{
-  ENTITY = 0,
-  SET = 1,
+enum Mode{
+  GRADIENT = 0,
+  STANDARD = 1,
+  PROBABILISTIC = 2,
 };
 
-class Fitting
+}
+
+namespace k4n::utils{
+
+class Hough
 {
 public:
-  Fitting();
-  ~Fitting();
+  Hough();
+  ~Hough();
 
 public:
   //Sphere fitting
-  void find_sphere_in_cloud(utl::type::Entity* entity, vec3& center, float& radius);
   void find_sphere_in_image(utl::media::Image* image);
   void find_sphere_in_image_with_canny(utl::media::Image* image);
 
 private:
+  int mode = k4n::hough::GRADIENT;
 };
 
 }

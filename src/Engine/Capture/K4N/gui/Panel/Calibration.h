@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 
-namespace eng{class Node;}
+namespace k4n{class Node;}
 
 
 namespace k4n::gui{
@@ -16,7 +16,7 @@ public:
 
   //Main function
   void run_panel();
-  void design_panel(k4n::dev::Master* master);
+  void design_panel();
 
 private:
   string name;
