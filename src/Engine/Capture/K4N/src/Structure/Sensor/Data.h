@@ -22,6 +22,7 @@ struct Data{
   k4a_calibration_type_t calibration_type;
 
   //Specific sensor field info
+  float fps = 0;
   float timestamp = -1;
   float temperature = -1;
   float hovered_pixel_x;

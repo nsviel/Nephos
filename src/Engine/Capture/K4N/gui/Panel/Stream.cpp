@@ -177,7 +177,7 @@ void Stream::overlay_capture(k4n::dev::Sensor* sensor, k4n::structure::Data* ima
   flags |= ImGuiWindowFlags_NoScrollbar;
   flags |= ImGuiWindowFlags_NoDocking;
 
-  if (ImGui::Begin(image->name.c_str(), nullptr, flags)){
+  if(ImGui::Begin(image->name.c_str(), nullptr, flags)){
     this->overlay_information(sensor, image);
     this->overlay_pixel(image, image_size);
   }
@@ -188,7 +188,7 @@ void Stream::overlay_capture(k4n::dev::Sensor* sensor, k4n::structure::Data* ima
 void Stream::overlay_information(k4n::dev::Sensor* sensor, k4n::structure::Data* image){
   //---------------------------
 
-  //ImGui::Text("Frame rate: %.2f fps", sensor->param.fps.current);
+  ImGui::Text("Frame rate: %.2f fps", image->fps);
   ImGui::Text("Timestamp: %.2f s", image->timestamp);
   if(image->temperature != -1){
     ImGui::Text("Temperature: %.2f°", image->temperature);
