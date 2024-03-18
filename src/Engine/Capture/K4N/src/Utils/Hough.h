@@ -23,7 +23,7 @@ public:
 
 public:
   //Main function
-  vector<vec3> sphere_detection(utl::media::Image* image, utl::media::Image* result);
+  vector<vec3> sphere_detection(utl::media::Image* image);
 
   //Algo function
   void preprocessing(cv::Mat& input, cv::Mat& output);
@@ -33,8 +33,8 @@ public:
   void find_mode_parameter();
   void find_sphere_data(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
   void draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
-  void convert_to_utl_image(cv::Mat& image_raw, vector<vec3>& vec_circle, utl::media::Image* image);
-  void convert_to_utl_image(cv::Mat& image_raw, vec3& circle, utl::media::Image* image);
+  void draw_all_sphere(cv::Mat& image_raw, vector<vec3>& vec_circle, utl::media::Image* image);
+  void draw_best_sphere(utl::media::Image* image_raw, vector<vec3>& vec_circle, utl::media::Image* image);
 
   inline int* get_mode(){return &mode;}
   inline int* get_ratio(){return &ratio;}

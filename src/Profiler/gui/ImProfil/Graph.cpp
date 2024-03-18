@@ -9,7 +9,7 @@ namespace prf::improfil{
 Graph::Graph(){
   //---------------------------
 
-  this->bar_max_nb = 200;
+  this->bar_max_nb = 400;
   this->bar_width = 4;
   this->bar_gap = 0;
   this->bar_max_nb_task = 100;

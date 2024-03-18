@@ -26,8 +26,8 @@ void Model::detect_sphere(utl::media::Image* utl_image){
 
   if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
     utl::media::Image* raw_image = &sensor->image.ir;
-    vector<vec3> vec_circle = k4n_hough->sphere_detection(raw_image, utl_image);
-    k4n_hough->convert_to_utl_image(raw_image, vec_circle[0], utl_image);
+    vector<vec3> vec_circle = k4n_hough->sphere_detection(raw_image);
+    k4n_hough->draw_best_sphere(raw_image, vec_circle, utl_image);
   }
 
   //---------------------------

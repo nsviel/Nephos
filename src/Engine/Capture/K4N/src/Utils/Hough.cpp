@@ -14,17 +14,17 @@ Hough::Hough(){
 Hough::~Hough(){}
 
 //Main function
-vector<vec3> Hough::sphere_detection(utl::media::Image* image, utl::media::Image* result){
-  if(image == nullptr) return;
-  if(image->data.size() == 0) return;
+vector<vec3> Hough::sphere_detection(utl::media::Image* image){
+  if(image == nullptr) return vector<vec3>();
+  if(image->data.size() == 0) return vector<vec3>();
   //------------------------
 
   // Create an Hough Mat object from the image data
-  cv::Mat raw_image(image->height, image->width, CV_8UC4, image->data.data());
+  cv::Mat image_raw(image->height, image->width, CV_8UC4, image->data.data());
 
   //Pre processing
   cv::Mat pre_image;
-  this->preprocessing(raw_image, pre_image);
+  this->preprocessing(image_raw, pre_image);
 
   // Perform Hough Transform to detect lines
   vector<vec3> vec_circle = compute_hough_circle(pre_image);
@@ -138,7 +138,7 @@ void Hough::draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle){
 
   //---------------------------
 }
-void Hough::convert_to_utl_image(cv::Mat& image_raw, vector<vec3>& vec_circle, utl::media::Image* image){
+void Hough::draw_all_sphere(cv::Mat& image_raw, vector<vec3>& vec_circle, utl::media::Image* image){
   //------------------------
 
   // Draw the detected vec_circle on the original image
@@ -172,33 +172,40 @@ void Hough::convert_to_utl_image(cv::Mat& image_raw, vector<vec3>& vec_circle, u
 
   //------------------------
 }
-void Hough::convert_to_utl_image(cv::Mat& image_raw, vec3& circle, utl::media::Image* image){
+void Hough::draw_best_sphere(utl::media::Image* input, vector<vec3>& vec_circle, utl::media::Image* output){
+  if(input == nullptr) return;
+  if(input->data.size() == 0) return;
   //------------------------
 
-  // Draw the detected vec_circle on the original image
+  // Create an Hough Mat object from the image data
   cv::Mat result;
+  cv::Mat image_raw(input->height, input->width, CV_8UC4, input->data.data());
   cv::cvtColor(image_raw, result, cv::COLOR_RGBA2BGRA); // Convert edges to BGR for drawing
 
   //Draw circle
-  cv::Point center(cvRound(circle[0]), cvRound(circle[1]));
-  int radius = cvRound(circle[2]);
-  cv::circle(result, center, 3, cv::Scalar(44, 255, 44, 255), -1, cv::LINE_AA);
-  cv::circle(result, center, radius, cv::Scalar(44, 44, 255, 255), 1, cv::LINE_AA);
+  if(vec_circle.size() > 0){
+    vec3 circle = vec_circle[0];
+
+    cv::Point center(cvRound(circle[0]), cvRound(circle[1]));
+    int radius = cvRound(circle[2]);
+    cv::circle(result, center, 3, cv::Scalar(44, 255, 44, 255), -1, cv::LINE_AA);
+    cv::circle(result, center, radius, cv::Scalar(44, 44, 255, 255), 1, cv::LINE_AA);
+  }
 
   // Set the dimensions of the utl::media::Image
-  image->width = result.cols;
-  image->height = result.rows;
-  image->channel_nb = result.channels(); // Assuming result is in BGRA format
-  image->format = "B8G8R8A8_SRGB";
-  image->new_data = true;
+  output->width = result.cols;
+  output->height = result.rows;
+  output->channel_nb = result.channels(); // Assuming result is in BGRA format
+  output->format = "B8G8R8A8_SRGB";
+  output->new_data = true;
 
   // Calculate the size of the pixel data
   size_t data_size = result.cols * result.rows * result.channels();
-  image->data.resize(data_size);
-  image->size = data_size;
+  output->data.resize(data_size);
+  output->size = data_size;
 
   // Copy the pixel data from the OpenCV image to the utl::media::Image
-  std::memcpy(image->data.data(), result.data, data_size);
+  std::memcpy(output->data.data(), result.data, data_size);
 
   //------------------------
 }
