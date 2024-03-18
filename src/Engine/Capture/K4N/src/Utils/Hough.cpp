@@ -51,16 +51,10 @@ void Hough::find_mode_parameter(){
       this->hough_mode = cv::HOUGH_GRADIENT;
       break;
     }
-    case k4n::hough::STANDARD:{
-      this->param_1 = 0; //not used
-      this->param_2 = 30; //minimum number of intersections to "detect" a circle
-      this->hough_mode = cv::HOUGH_STANDARD;
-      break;
-    }
-    case k4n::hough::PROBABILISTIC:{
-      this->param_1 = 10; //minimum distance between the centers of the detected vec_circle
-      this->param_2 = 30; //minimum radius of the vec_circle to detect
-      this->hough_mode = cv::HOUGH_PROBABILISTIC;
+    case k4n::hough::GRADIENT_ALT:{
+      this->param_1 = 300;
+      this->param_2 = 0.9;
+      this->hough_mode = cv::HOUGH_GRADIENT_ALT;
       break;
     }
   }
@@ -145,17 +139,18 @@ void Hough::convert_to_utl_image(cv::Mat& image_raw, std::vector<cv::Vec3f>& vec
     int radius = cvRound(vec_circle[i][2]);
 
     // Draw the circle center
-    cv::circle(result, center, 3, cv::Scalar(44, 250, 44), -1, cv::LINE_AA);
+    cv::circle(result, center, 3, cv::Scalar(44, 255, 44, 255), -1, cv::LINE_AA);
 
     // Draw the circle outline
-    cv::circle(result, center, radius, cv::Scalar(44, 44, 250), 1, cv::LINE_AA);
+    cv::circle(result, center, radius, cv::Scalar(44, 44, 255, 255), 1, cv::LINE_AA);
   }
 
   // Set the dimensions of the utl::media::Image
   image->width = result.cols;
   image->height = result.rows;
   image->channel_nb = result.channels(); // Assuming result is in BGRA format
-  image->format = "R8G8B8A8_SRGB";
+  image->format = "B8G8R8A8_SRGB";
+  image->new_data = true;
 
   // Calculate the size of the pixel data
   size_t data_size = result.cols * result.rows * result.channels();

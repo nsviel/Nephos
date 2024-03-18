@@ -8,8 +8,7 @@ namespace k4n::hough{
 
 enum Mode{
   GRADIENT = 0,
-  STANDARD = 1,
-  PROBABILISTIC = 2,
+  GRADIENT_ALT = 1,
 };
 
 }

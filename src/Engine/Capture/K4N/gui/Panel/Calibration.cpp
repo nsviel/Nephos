@@ -99,9 +99,7 @@ void Calibration::hough_parameter(){
   int* mode = k4n_hough->get_mode();
   ImGui::RadioButton("Gradient", mode, k4n::hough::GRADIENT);
   ImGui::SameLine();
-  ImGui::RadioButton("Standard", mode, k4n::hough::STANDARD);
-  ImGui::SameLine();
-  ImGui::RadioButton("Probabilistic", mode, k4n::hough::PROBABILISTIC);
+  ImGui::RadioButton("Gradient Alt", mode, k4n::hough::GRADIENT_ALT);
 
   {
     ImGui::Indent();
