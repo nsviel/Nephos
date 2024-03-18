@@ -36,6 +36,8 @@ public:
   inline float* get_min_dist(){return &min_dist;}
   inline float* get_min_radius(){return &min_radius;}
   inline float* get_max_radius(){return &max_radius;}
+  inline float* get_canny_thres_lower(){return &canny_thres_lower;}
+  inline float* get_canny_thres_upper(){return &canny_thres_upper;}
   inline bool* get_apply_canny(){return &apply_canny;}
 
 private:
@@ -44,6 +46,8 @@ private:
   float min_dist = 0;
   float min_radius = 5;
   float max_radius = 50;
+  float canny_thres_lower = 50;
+  float canny_thres_upper = 150;
   bool apply_canny = false;
 };
 

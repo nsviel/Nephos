@@ -64,10 +64,8 @@ void Hough::preprocessing(cv::Mat& input, cv::Mat& output){
   //---------------------------
 
   if(apply_canny){
-    // Perform edge detection
-    float threshold_lower = 50;
-    float threshold_upper = 150;
-    cv::Canny(input, output, threshold_lower, threshold_upper);
+    // Perform canny edge detection
+    cv::Canny(input, output, canny_thres_lower, canny_thres_upper);
   }else{
     // Convert the image to grayscale
     cv::Mat gray_image;
