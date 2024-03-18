@@ -9,11 +9,11 @@
 namespace k4n::thread{
 
 //Constructor / Destructor
-Connection::Connection(k4n::structure::Struct_k4n* struct_k4n){
+Connection::Connection(k4n::Node* node_k4n){
   //---------------------------
 
-  this->struct_k4n = struct_k4n;
-  this->k4n_swarm = new k4n::dev::Swarm(struct_k4n);
+  this->struct_k4n = node_k4n->get_struct_k4n();
+  this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->sce_set = new eng::scene::Set();
 
   //---------------------------

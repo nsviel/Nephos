@@ -6,6 +6,7 @@ namespace prf{class Manager;}
 namespace eng{class Node;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class Set;}
+namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Transformation;}
@@ -19,7 +20,7 @@ class Swarm
 {
 public:
   //Constructor / Destructor
-  Swarm(k4n::structure::Struct_k4n* struct_k4n);
+  Swarm(k4n::Node* node_k4n);
   ~Swarm();
 
 public:

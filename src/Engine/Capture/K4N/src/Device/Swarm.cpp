@@ -9,13 +9,13 @@
 namespace k4n::dev{
 
 //Constructor / Destructor
-Swarm::Swarm(k4n::structure::Struct_k4n* struct_k4n){
+Swarm::Swarm(k4n::Node* node_k4n){
   //---------------------------
 
-  eng::scene::Node* node_scene = struct_k4n->node_scene;
-  prf::Node* node_profiler = struct_k4n->node_profiler;
+  eng::scene::Node* node_scene = node_k4n->get_node_scene();
+  prf::Node* node_profiler = node_k4n->get_node_profiler();
 
-  this->struct_k4n = struct_k4n;
+  this->struct_k4n = node_k4n->get_struct_k4n();
   this->profiler = node_profiler->get_prf_manager();
   this->sce_database = node_scene->get_scene_database();
   this->sce_set = new eng::scene::Set();

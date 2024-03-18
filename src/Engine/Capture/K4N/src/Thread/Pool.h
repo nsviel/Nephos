@@ -9,12 +9,12 @@ namespace k4n::thread{
 class Pool
 {
 public:
-  Pool(size_t numThreads);
+  Pool(int nb_thread);
   ~Pool();
 
 public:
   //Main function
-  void add_task(std::function<void()> task, bool* taskDone = nullptr);
+  void add_task(std::function<void()> task, bool* taskDone);
 
 private:
   //Subfunction

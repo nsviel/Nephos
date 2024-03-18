@@ -4,9 +4,10 @@
 namespace k4n::thread{
 
 //Constructor / Destructor
-Pool::Pool(int nb_thread) : running(true{
+Pool::Pool(int nb_thread){
   //---------------------------
 
+  this->running = true;
   for(size_t i=0; i<nb_thread; i++){
     vec_thread.emplace_back(&Pool::worker_thread, this);
   }
@@ -71,4 +72,6 @@ void Pool::worker_thread(){
   }
 
   //---------------------------
+}
+
 }
