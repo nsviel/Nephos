@@ -28,6 +28,7 @@ public:
 
   //Subfunction
   void find_mode_parameter(float& param_1, float& param_2);
+  void find_sphere_data(std::vector<cv::Vec3f>& vec_circle);
   void preprocessing(cv::Mat& input, cv::Mat& output);
   void draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
 
