@@ -29,7 +29,6 @@ public:
   void run_thread(k4n::dev::Sensor* sensor);
   void stop_thread();
   void wait_thread();
-  void wait_pause();
 
   //Subfunction
   k4a::capture* manage_new_capture(k4n::dev::Sensor* sensor);
@@ -41,7 +40,7 @@ public:
   inline bool is_thread_paused(){return thread_paused;}
 
 private:
-  k4n::processing::Data* k4a_data;
+  k4n::processing::Data* k4n_data;
   k4n::config::Configuration* k4n_configuration;
   k4n::config::Calibration* k4n_calibration;
   k4n::utils::Operation* k4n_operation;

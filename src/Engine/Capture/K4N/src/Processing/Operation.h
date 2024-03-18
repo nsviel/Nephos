@@ -28,6 +28,7 @@ public:
   //Main function
   void start_thread(k4n::dev::Sensor* sensor);
   void run_thread(k4n::dev::Sensor* sensor);
+  void wait_thread();
 
   //Subfunction
   void colorize_object(k4n::dev::Sensor* sensor);
@@ -44,6 +45,8 @@ private:
   k4n::utils::Operation* k4n_operation;
   k4n::processing::Recorder* k4n_recorder;
   k4n::thread::Pool* thread_pool;
+
+  bool idle = true;
 };
 
 }

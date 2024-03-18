@@ -27,6 +27,7 @@ public:
   //Main function
   void start_thread(k4n::dev::Sensor* sensor);
   void run_thread(k4n::dev::Sensor* sensor);
+  void wait_thread();
 
   //Data function
   void find_data_from_capture(k4n::dev::Sensor* device);
@@ -48,13 +49,14 @@ public:
   uint8_t* retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height);
 
 private:
-  k4n::data::Depth* k4a_depth;
-  k4n::data::Infrared* k4a_infrared;
-  k4n::processing::Cloud* k4a_cloud;
+  k4n::data::Depth* k4n_depth;
+  k4n::data::Infrared* k4n_infrared;
+  k4n::processing::Cloud* k4n_cloud;
   k4n::processing::Image* k4n_image;
   k4n::thread::Pool* thread_pool;
 
   tjhandle tj_handle;
+  bool idle = true;
 };
 
 }

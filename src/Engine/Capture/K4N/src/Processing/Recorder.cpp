@@ -26,6 +26,7 @@ Recorder::~Recorder(){}
 void Recorder::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  this->idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
@@ -60,6 +61,17 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
   }
 
   tasker->loop_end();
+
+  //---------------------------
+  this->idle = true;
+}
+void Recorder::wait_thread(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
 
   //---------------------------
 }

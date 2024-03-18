@@ -48,7 +48,6 @@ public:
   void run_thread_playback(string path);
   void stop_threads();
   void wait_threads();
-  void wait_pause();
   void reset_color_configuration();
 
   bool is_capture_running();

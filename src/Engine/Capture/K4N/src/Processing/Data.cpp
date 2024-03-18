@@ -11,9 +11,9 @@ Data::Data(k4n::Node* node_k4n){
   //---------------------------
 
   this->tj_handle = tjInitDecompress();
-  this->k4a_depth = new k4n::data::Depth();
-  this->k4a_infrared = new k4n::data::Infrared();
-  this->k4a_cloud = new k4n::processing::Cloud(node_k4n);
+  this->k4n_depth = new k4n::data::Depth();
+  this->k4n_infrared = new k4n::data::Infrared();
+  this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->k4n_image = new k4n::processing::Image(node_k4n);
   this->thread_pool = node_k4n->get_thread_pool();
 
@@ -31,6 +31,7 @@ Data::~Data(){
 void Data::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  this->idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
@@ -46,10 +47,23 @@ void Data::run_thread(k4n::dev::Sensor* sensor){
   this->find_data_from_capture(sensor);
 
   //Convert data into cloud
-  k4a_cloud->start_thread(sensor);
+  k4n_cloud->start_thread(sensor);
 
   //Encode image as texture
   k4n_image->start_thread(sensor);
+
+  //---------------------------
+  this->idle = true;
+}
+void Data::wait_thread(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+  k4n_image->wait_thread();
+  k4n_cloud->wait_thread();
 
   //---------------------------
 }

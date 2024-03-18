@@ -26,6 +26,7 @@ void Image::start_thread(k4n::dev::Sensor* sensor){
   if(sensor->profiler == nullptr) return;
   //---------------------------
 
+  this->idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
@@ -58,6 +59,17 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   //ope_fitting->find_sphere_in_image(&sensor->image.ir);
 
   tasker->loop_end();
+
+  //---------------------------
+  this->idle = true;
+}
+void Image::wait_thread(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
 
   //---------------------------
 }

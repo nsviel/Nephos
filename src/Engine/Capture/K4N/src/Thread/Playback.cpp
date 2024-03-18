@@ -11,7 +11,7 @@ namespace k4n::thread{
 Playback::Playback(k4n::Node* node_k4n){
   //---------------------------
 
-  this->k4a_data = new k4n::processing::Data(node_k4n);
+  this->k4n_data = new k4n::processing::Data(node_k4n);
   this->k4n_configuration = new k4n::config::Configuration();
   this->k4n_calibration = new k4n::config::Calibration();
   this->k4n_operation= new k4n::utils::Operation();
@@ -63,7 +63,7 @@ void Playback::run_thread(k4n::dev::Sensor* sensor){
     this->manage_old_capture(sensor, capture);
 
     //Find data from capture
-    k4a_data->start_thread(sensor);
+    k4n_data->start_thread(sensor);
 
     //Manage event
     this->manage_pause(sensor);
@@ -79,6 +79,9 @@ void Playback::stop_thread(){
   //---------------------------
 
   this->thread_running = false;
+  if(thread.joinable()){
+    thread.join();
+  }
 
   //---------------------------
 }
@@ -86,19 +89,10 @@ void Playback::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  if(thread.joinable()){
-    thread.join();
-  }
-
-  //---------------------------
-}
-void Playback::wait_pause(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
   while(thread_paused == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+  k4n_data->wait_thread();
 
   //---------------------------
 }
