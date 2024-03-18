@@ -56,7 +56,7 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   this->copy_image_ir(sensor);
   tasker->task_end("infrared");
 
-  //ope_fitting->find_sphere_in_image(&sensor->image.ir);
+  ope_fitting->find_sphere_in_image(&sensor->image.ir);
 
   tasker->loop_end();
 
