@@ -12,7 +12,7 @@ namespace k4n{
 //Constructor / Destructor
 Node::Node(eng::capture::Node* node_capture){
   utl::gui::Panel* ply_panel = add_panel("Player", ICON_FA_PLAY, true);
-  utl::gui::Panel* str_panel = add_panel("Stream", ICON_FA_FILM, true);
+  utl::gui::Panel* str_panel = add_panel("Stream", ICON_FA_FILM, false);
   utl::gui::Panel* cal_panel = add_panel("Calibration", ICON_FA_FILM, true);
   //---------------------------
 

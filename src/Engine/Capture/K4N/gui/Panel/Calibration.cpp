@@ -1,6 +1,8 @@
 #include "Calibration.h"
 
 #include <K4N/Namespace.h>
+#include <Render/Namespace.h>
+#include <Engine/Namespace.h>
 
 
 namespace k4n::gui{
@@ -9,8 +11,12 @@ namespace k4n::gui{
 Calibration::Calibration(k4n::Node* node_k4n, bool* show_window){
   //---------------------------
 
+  eng::Node* node_engine = node_k4n->get_node_engine();
+
   this->k4n_hough = new k4n::utils::Hough();
   this->k4n_model = node_k4n->get_k4n_model();
+  this->k4n_swarm = node_k4n->get_k4n_swarm();
+  this->stream = new eng::render::gui::Stream(node_engine);
 
   this->show_window = show_window;
   this->name = "Calibration";
@@ -44,6 +50,7 @@ void Calibration::design_panel(){
 
   this->model_parameter();
   this->hough_parameter();
+  this->draw_result();
 
   //---------------------------
 }
@@ -134,6 +141,18 @@ void Calibration::hough_parameter(){
   //---------------------------
   ImGui::Separator();
 }
+void Calibration::draw_result(){
+  k4n::dev::Master* master = k4n_swarm->get_selected_master();
+  utl::type::Entity* entity = master->selected_entity;
+  //---------------------------
 
+  if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+    ImVec2 image_size = ImGui::GetContentRegionAvail();
+    stream->draw_stream(&sensor->image.ir, image_size);
+  }
+
+  //---------------------------
+  ImGui::Separator();
+}
 
 }

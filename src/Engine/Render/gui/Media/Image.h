@@ -29,7 +29,7 @@ public:
 
 private:
   vk::main::Texture* vk_texture;
-  ImTextureID imgui_texture;
+  utl::media::Image* utl_image;
 };
 
 }

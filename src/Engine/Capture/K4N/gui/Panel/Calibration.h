@@ -5,6 +5,8 @@
 namespace k4n{class Node;}
 namespace k4n::utils{class Hough;}
 namespace k4n::calibration{class Model;}
+namespace k4n::dev{class Swarm;}
+namespace eng::render::gui{class Stream;}
 
 
 namespace k4n::gui{
@@ -24,10 +26,13 @@ public:
   //Subfunction
   void model_parameter();
   void hough_parameter();
+  void draw_result();
 
 private:
   k4n::utils::Hough* k4n_hough;
   k4n::calibration::Model* k4n_model;
+  k4n::dev::Swarm* k4n_swarm;
+  eng::render::gui::Stream* stream;
 
   string name;
   bool* show_window;

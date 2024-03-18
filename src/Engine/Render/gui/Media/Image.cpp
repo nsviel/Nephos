@@ -14,6 +14,8 @@ Image::Image(eng::Node* engine){
   vk::Node* vulkan = engine->get_node_vulkan();
   this->vk_texture = vulkan->get_vk_texture();
 
+  this->utl_image = nullptr;
+
   //---------------------------
 }
 Image::~Image(){}
@@ -88,10 +90,10 @@ void Image::load_image_bin(string path){
 }
 void Image::display_image(){
   //---------------------------
-
+/*
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(imgui_texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
-
+*/
   //---------------------------
 }
 
