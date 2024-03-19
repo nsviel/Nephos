@@ -128,7 +128,7 @@ void Set::insert_entity(utl::type::Set* set, utl::type::Entity* entity){
 
   //Check before insertion
   if(entity == nullptr) return;
-  //if(entity->get_data()->UID == -1) return;
+  if(entity->get_data()->UID == -1) return;
 
   //Set entity info & first update
   entity->set_parent = set;
