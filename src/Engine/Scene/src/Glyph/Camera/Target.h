@@ -9,7 +9,7 @@ class Target : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Target(eng::Node* engine);
+  Target(eng::Node* node_engine);
   ~Target();
 
 public:

@@ -4,7 +4,7 @@
 namespace glyph::camera{
 
 //Constructor / destructor
-Camera::Camera(eng::Node* engine) : Glyph(engine){
+Camera::Camera(eng::Node* node_engine) : Glyph(node_engine){
   //---------------------------
 
   this->name = "cam::object";

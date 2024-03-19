@@ -9,7 +9,7 @@ namespace glyph::object{
 class AABB : public utl::entity::Glyph
 {
 public:
-  AABB(eng::Node* engine);
+  AABB(eng::Node* node_engine);
   ~AABB();
 
 public:

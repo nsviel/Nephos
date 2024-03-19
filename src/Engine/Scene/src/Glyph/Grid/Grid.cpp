@@ -6,7 +6,7 @@
 namespace glyph::grid{
 
 //Constructor / destructor
-Grid::Grid(eng::Node* engine) : Glyph(engine){
+Grid::Grid(eng::Node* node_engine) : Glyph(node_engine){
   //---------------------------
 
   this->name = "grid::main";
@@ -14,9 +14,9 @@ Grid::Grid(eng::Node* engine) : Glyph(engine){
   this->is_suppressible = false;
   this->is_movable = false;
 
-  this->mesh = new glyph::grid::Mesh(engine);
-  this->axis = new glyph::grid::Axis(engine);
-  this->plane = new glyph::grid::Plane(engine);
+  this->mesh = new glyph::grid::Mesh(node_engine);
+  this->axis = new glyph::grid::Axis(node_engine);
+  this->plane = new glyph::grid::Plane(node_engine);
 
   //---------------------------
 }

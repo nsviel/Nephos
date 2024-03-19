@@ -7,7 +7,7 @@
 namespace glyph::object{
 
 //Constructor / destructor
-Normal::Normal(eng::Node* engine) : Glyph(engine){
+Normal::Normal(eng::Node* node_engine) : Glyph(node_engine){
   //---------------------------
 
   this->name = "object::normal";

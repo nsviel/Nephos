@@ -1,11 +1,16 @@
 #include "Sphere.h"
 
+#include <Scene/Namespace.h>
+#include <Engine/Namespace.h>
+
 
 namespace glyph::scene{
 
 //Constructor / destructor
-Sphere::Sphere(eng::Node* engine) : Glyph(engine){
+Sphere::Sphere(eng::Node* node_engine) : Glyph(node_engine){
   //---------------------------
+
+  eng::scene::Node* node_scene = node_engine->get_node_scene();
 
   this->name = "world::sphere";
   this->is_visible = true;

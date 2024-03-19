@@ -6,7 +6,7 @@
 namespace glyph::camera{
 
 //Constructor / destructor
-Target::Target(eng::Node* engine) : Glyph(engine){
+Target::Target(eng::Node* node_engine) : Glyph(node_engine){
   //---------------------------
 
   this->name = "cam::target";

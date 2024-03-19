@@ -9,7 +9,7 @@ class Sphere : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Sphere(eng::Node* engine);
+  Sphere(eng::Node* node_engine);
   ~Sphere();
 
 public:

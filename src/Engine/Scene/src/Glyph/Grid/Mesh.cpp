@@ -4,7 +4,7 @@
 namespace glyph::grid{
 
 //Constructor / destructor
-Mesh::Mesh(eng::Node* engine) : Glyph(engine){
+Mesh::Mesh(eng::Node* node_engine) : Glyph(node_engine){
   //---------------------------
 
   this->name = "grid::mesh";

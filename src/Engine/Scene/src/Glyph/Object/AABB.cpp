@@ -3,7 +3,7 @@
 
 namespace glyph::object{
 
-AABB::AABB(eng::Node* engine) : Glyph(engine){
+AABB::AABB(eng::Node* node_engine) : Glyph(node_engine){
   //---------------------------
 
   this->name = "object::AABB";
