@@ -1,7 +1,7 @@
 #include "Hough.h"
 
 
-namespace k4n::utils{
+namespace k4n::calibration{
 
 //Constructor / Destructor
 Hough::Hough(){
@@ -138,12 +138,24 @@ void Hough::draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle){
 
   //---------------------------
 }
-void Hough::draw_all_sphere(cv::Mat& image_raw, vector<vec3>& vec_circle, utl::media::Image* image){
+void Hough::draw_all_sphere(utl::media::Image* input, vector<vec3>& vec_circle, utl::media::Image* output){
+  if(input == nullptr) return;
+  if(input->data.size() == 0) return;
   //------------------------
 
-  // Draw the detected vec_circle on the original image
+  // Create an Hough Mat object from the image data
+  cv::Mat image_raw(input->height, input->width, CV_8UC4, input->data.data());
+
+  //Pre processing
+  cv::Mat pre_image;
+  this->preprocessing(image_raw, pre_image);
+
+  //Convert to RGBA
   cv::Mat result;
-  cv::cvtColor(image_raw, result, cv::COLOR_RGBA2BGRA); // Convert edges to BGR for drawing
+  cv::cvtColor(pre_image, result, cv::COLOR_RGBA2BGRA);
+
+  // Draw the detected vec_circle on the original image
+  cv::cvtColor(pre_image, result, cv::COLOR_RGBA2BGRA); // Convert edges to BGR for drawing
   for(size_t i=0; i<vec_circle.size(); i++){
     cv::Point center(cvRound(vec_circle[i][0]), cvRound(vec_circle[i][1]));
     int radius = cvRound(vec_circle[i][2]);
@@ -156,19 +168,19 @@ void Hough::draw_all_sphere(cv::Mat& image_raw, vector<vec3>& vec_circle, utl::m
   }
 
   // Set the dimensions of the utl::media::Image
-  image->width = result.cols;
-  image->height = result.rows;
-  image->channel_nb = result.channels(); // Assuming result is in BGRA format
-  image->format = "B8G8R8A8_SRGB";
-  image->new_data = true;
+  output->width = result.cols;
+  output->height = result.rows;
+  output->channel_nb = result.channels(); // Assuming result is in BGRA format
+  output->format = "B8G8R8A8_SRGB";
+  output->new_data = true;
 
   // Calculate the size of the pixel data
   size_t data_size = result.cols * result.rows * result.channels();
-  image->data.resize(data_size);
-  image->size = data_size;
+  output->data.resize(data_size);
+  output->size = data_size;
 
   // Copy the pixel data from the OpenCV image to the utl::media::Image
-  std::memcpy(image->data.data(), result.data, data_size);
+  std::memcpy(output->data.data(), result.data, data_size);
 
   //------------------------
 }
@@ -178,9 +190,15 @@ void Hough::draw_best_sphere(utl::media::Image* input, vector<vec3>& vec_circle,
   //------------------------
 
   // Create an Hough Mat object from the image data
-  cv::Mat result;
   cv::Mat image_raw(input->height, input->width, CV_8UC4, input->data.data());
-  cv::cvtColor(image_raw, result, cv::COLOR_RGBA2BGRA); // Convert edges to BGR for drawing
+
+  //Pre processing
+  cv::Mat pre_image;
+  this->preprocessing(image_raw, pre_image);
+
+  //Convert to RGBA
+  cv::Mat result;
+  cv::cvtColor(pre_image, result, cv::COLOR_RGBA2BGRA);
 
   //Draw circle
   if(vec_circle.size() > 0){

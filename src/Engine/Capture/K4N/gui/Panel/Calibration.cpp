@@ -147,7 +147,13 @@ void Calibration::hough_parameter(){
 void Calibration::draw_result(){
   //---------------------------
 
-  k4n_model->detect_sphere(utl_image);
+  k4n_model->determine_model(utl_image);
+
+  //Circle drawing mode
+  int* mode = k4n_model->get_drawing_mode();
+  ImGui::RadioButton("All sphere", mode, k4n::hough::ALL);
+  ImGui::SameLine();
+  ImGui::RadioButton("Best sphere", mode, k4n::hough::BEST);
 
   //Display number of detected spheres
   string nb_detection = to_string(k4n_hough->get_nb_detection());

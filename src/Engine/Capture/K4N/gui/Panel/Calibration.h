@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace k4n{class Node;}
-namespace k4n::utils{class Hough;}
+namespace k4n::calibration{class Hough;}
 namespace k4n::calibration{class Model;}
 namespace eng::render::gui{class Stream;}
 
@@ -28,7 +28,7 @@ public:
   void draw_result();
 
 private:
-  k4n::utils::Hough* k4n_hough;
+  k4n::calibration::Hough* k4n_hough;
   k4n::calibration::Model* k4n_model;
   eng::render::gui::Stream* stream;
   utl::media::Image* utl_image = nullptr;
