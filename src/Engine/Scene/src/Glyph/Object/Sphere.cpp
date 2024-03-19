@@ -62,7 +62,7 @@ void Sphere::reset_glyph(){
 }
 
 //Subfunction
-void Sphere::move_one_sphere(vec3 coordinate){
+void Sphere::move_sphere(vec3 coordinate){
   //---------------------------
 
   data.is_visible = true;
@@ -75,6 +75,9 @@ void Sphere::move_one_sphere(vec3 coordinate){
   truc[1][3] = coordinate.y;
   truc[2][3] = coordinate.z;
   pose.model = truc;
+
+  this->update_data();
+  this->update_pose();
 
   //---------------------------
 }

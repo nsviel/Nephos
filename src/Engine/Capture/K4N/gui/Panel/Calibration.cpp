@@ -110,12 +110,12 @@ void Calibration::hough_parameter(){
     //Lower threshold
     float* param_1 = k4n_hough->get_param_1();
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderFloat("Detector threshold", param_1, 0.1f, 500.0f, "%.1f");
+    ImGui::SliderFloat("Detector threshold", param_1, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
     //Upper threshold
     float* param_2 = k4n_hough->get_param_2();
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderFloat("Accumulator threshold", param_2, 0.1f, 500.0f, "%.1f");
+    ImGui::SliderFloat("Accumulator threshold", param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
     ImGui::Unindent();
   }

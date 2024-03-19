@@ -22,7 +22,7 @@ public:
   void reset_glyph();
 
   //Subfunction
-  void move_one_sphere(vec3 pose);
+  void move_sphere(vec3 pose);
 
 private:
   eng::scene::Loader* sce_loader;
