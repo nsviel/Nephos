@@ -115,7 +115,6 @@ void Graphical::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* po
     }
   }
 
-
   //If not, insert it
   if(is_in_list){
     vk_data->update_data(data, vk_object);

@@ -18,9 +18,11 @@ public:
 
 public:
   //Main function
+  void init();
   void create();
   void construct();
   void update_data();
+  void update_pose();
   void set_visibility(bool value);
 
 private:

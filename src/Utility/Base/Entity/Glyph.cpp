@@ -1,9 +1,10 @@
 #include "Glyph.h"
 
 #include <Engine/Namespace.h>
-#include <Engine/Camera/Namespace.h>
+#include <Camera/Namespace.h>
+#include <Scene/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Utility/Function/Math/Math.h>
+#include <Utility/Namespace.h>
 
 
 namespace utl::entity{
@@ -18,12 +19,21 @@ Glyph::Glyph(eng::Node* node_engine){
 
   this->node_vulkan = node_engine->get_node_vulkan();
   this->node_camera = node_engine->get_node_camera();
+  this->node_scene = node_engine->get_node_scene();
 
   //---------------------------
 }
 Glyph::~Glyph(){}
 
 //Main function
+void Glyph::init(){
+  eng::scene::Entity* sce_entity = node_scene->get_scene_entity();
+  //----------------------------
+
+  sce_entity->init_entity(this);
+
+  //----------------------------
+}
 void Glyph::clear(){
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
@@ -32,6 +42,8 @@ void Glyph::clear(){
 
   //----------------------------
 }
+
+//Subfunction
 void Glyph::update_data(){
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------

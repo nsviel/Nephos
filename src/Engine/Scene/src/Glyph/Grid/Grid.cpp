@@ -22,6 +22,16 @@ Grid::Grid(eng::Node* node_engine) : Glyph(node_engine){
 }
 Grid::~Grid(){}
 
+//Main function
+void Grid::init(){
+  //----------------------------
+
+  mesh->init();
+  axis->init();
+  plane->init();
+
+  //----------------------------
+}
 void Grid::create(){
   //---------------------------
 
@@ -48,6 +58,15 @@ void Grid::update_data(){
   mesh->update_data();
   axis->update_data();
   plane->update_data();
+
+  //----------------------------
+}
+void Grid::update_pose(){
+  //----------------------------
+
+  mesh->update_pose();
+  axis->update_pose();
+  plane->update_pose();
 
   //----------------------------
 }

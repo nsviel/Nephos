@@ -6,6 +6,7 @@
 namespace vk{class Node;}
 namespace eng{class Node;}
 namespace eng::cam{class Node;}
+namespace eng::scene{class Node;}
 
 
 namespace utl::entity{
@@ -17,18 +18,21 @@ public:
   Glyph(eng::Node* node_engine);
   ~Glyph();
 
+public:
   //Main function
-  void clear();
-  void update_data();
-  void update_pose();
-  void set_visibility(bool value);
-
+  virtual void init();
   virtual void create(){}
   virtual void reset(){}
   virtual void construct(){}
+  virtual void clear();
+
+  //Subfunction
+  virtual void update_data();
+  virtual void update_pose();
   virtual void update_pose(utl::type::Entity* entity);
   virtual void update_glyph(){}
   virtual void update_glyph(utl::type::Entity* entity){}
+  virtual void set_visibility(bool value);
 
   inline vec4* get_color(){return &color;}
   inline bool is_need_update(){return need_update;}
@@ -40,6 +44,7 @@ protected:
   //Dependancy
   vk::Node* node_vulkan;
   eng::cam::Node* node_camera;
+  eng::scene::Node* node_scene;
 
   //Child
   string path = "";

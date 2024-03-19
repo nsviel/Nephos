@@ -62,7 +62,10 @@ void Database::assign_UID(utl::type::Entity* entity){
   //----------------------------
 }
 void Database::assign_UID(utl::type::Data* data){
-  if(data == nullptr) return;
+  if(data == nullptr){
+    cout<<"[error] data is nullptr"<<endl;
+    return;
+  }
   //----------------------------
 
   if(data->UID == -1){
