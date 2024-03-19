@@ -40,6 +40,8 @@ void Data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
     vk_object->binding.vec_required_binding.push_back(size);
   }
 
+
+
   //Apply adequat init functions
   this->check_data(vk_object);
   vk_buffer->create_buffers(vk_object);

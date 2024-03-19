@@ -19,7 +19,7 @@ void Set::update_set(utl::type::Set* set){
   //---------------------------
 
   // Process entities within the current set
-  for (int i=0; i<set->list_entity.size(); i++){
+  for(int i=0; i<set->list_entity.size(); i++){
     utl::type::Entity* entity = *next(set->list_entity.begin(), i);
     entity->update_pose();
   }
@@ -128,7 +128,6 @@ void Set::insert_entity(utl::type::Set* set, utl::type::Entity* entity){
 
   //Check before insertion
   if(entity == nullptr) return;
-  if(entity->get_data()->UID == -1) return;
 
   //Set entity info & first update
   entity->set_parent = set;

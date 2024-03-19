@@ -110,17 +110,13 @@ void Graphical::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* po
     vk_object = *next(struct_vulkan->data.list_vk_object.begin(), i);
 
     if(data->UID == vk_object->data->UID){
-      is_in_list = true;
-      break;
+      vk_data->update_data(data, vk_object);
+      return;
     }
   }
 
   //If not, insert it
-  if(is_in_list){
-    vk_data->update_data(data, vk_object);
-  }else{
-    vk_data->insert_data(data, pose);
-  }
+  vk_data->insert_data(data, pose);
 
   //---------------------------
 }

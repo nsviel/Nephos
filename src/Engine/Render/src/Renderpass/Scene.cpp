@@ -161,7 +161,6 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
     if(check_data(data, utl::topology::TRIANGLE)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, vk_object->binding.descriptor.set);
-      vk_drawing->cmd_line_with(subpass->command_buffer->command, vk_object);
       vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_object);
     }
   }

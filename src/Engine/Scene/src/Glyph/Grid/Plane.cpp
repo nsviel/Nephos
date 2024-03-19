@@ -25,7 +25,7 @@ void Plane::create(){
   data.unicolor = color;
 
   this->init();
-  
+
   //---------------------------
 }
 
