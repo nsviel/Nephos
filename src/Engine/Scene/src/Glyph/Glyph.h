@@ -24,13 +24,10 @@ public:
   //Main function
   void init();
 
-  //Glyph init 
+  //Glyph init
   void create_glyph_world();
   void create_glyph_object(utl::entity::Object* object);
   void create_glyph_camera(utl::entity::Camera* camera);
-
-  //Glyph insertion
-  void insert_glyph_object(utl::entity::Object* object, utl::entity::Glyph* glyph);
 
   //Glyph creation
   void create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph);

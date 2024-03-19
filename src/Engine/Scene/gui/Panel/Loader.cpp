@@ -402,11 +402,10 @@ void Loader::operation_selection(){
     utl::file::Path path;
     path.data = vec_path[i];
 
-    utl::type::Set* set = sce_loader->load_data(path);
-    utl::type::Entity* entity = set->selected_entity;
+    utl::entity::Object* object = sce_loader->load_object(path);
 
-    if(entity != nullptr){
-      this->operation_entity(entity);
+    if(object != nullptr){
+      this->operation_entity(object);
     }
   }
 
@@ -435,10 +434,10 @@ void Loader::operation_selection(string file_path){
 
     utl::file::Path path;
     path.data = file_path;
-    utl::type::Set* set = sce_loader->load_data(path);
-    utl::type::Entity* entity = set->selected_entity;
-    if(entity != nullptr){
-      this->operation_entity(entity);
+    utl::entity::Object* object = sce_loader->load_object(path);
+
+    if(object != nullptr){
+      this->operation_entity(object);
     }
   }
 

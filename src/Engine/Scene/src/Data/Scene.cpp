@@ -40,11 +40,11 @@ void Scene::init(){
   path_6.data = "/home/aether/Desktop/sphere_test.mkv";
 
   //Create playback list
-  //sce_loader->load_data(path_1);
-  //sce_loader->load_data(path_2);
-  //sce_loader->load_data(path_3);
-  //sce_loader->load_data(path_4);
-  sce_loader->load_data(path_6);
+  //sce_loader->load_object(path_1);
+  //sce_loader->load_object(path_2);
+  //sce_loader->load_object(path_3);
+  //sce_loader->load_object(path_4);
+  sce_loader->load_object(path_6);
 
   //----------------------------
 }

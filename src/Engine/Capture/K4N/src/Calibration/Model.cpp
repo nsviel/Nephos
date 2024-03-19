@@ -108,10 +108,10 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
     pose = pose + dir * sphere_diameter;
 
 
-    k4n::dev::Master* master = k4n_swarm->get_selected_master();
-    sce_glyph->create_glyph(sensor->get_object(), glyph_sphere);
+    //k4n::dev::Master* master = k4n_swarm->get_selected_master();
+    //sce_glyph->create_glyph(sensor->get_object(), glyph_sphere);
 
-    glyph_sphere->move_one_sphere(pose);
+    //glyph_sphere->move_one_sphere(pose);
 
 
     //say(xyzw);

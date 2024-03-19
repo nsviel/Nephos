@@ -52,7 +52,7 @@ utl::type::Data* Loader::load_data(string path){
   //---------------------------
   return data;
 }
-utl::type::Set* Loader::load_data(utl::file::Path file_path){
+utl::type::Set* Loader::load_set(utl::file::Path file_path){
   utl::type::Set* set = nullptr;
   //---------------------------
 
@@ -61,17 +61,18 @@ utl::type::Set* Loader::load_data(utl::file::Path file_path){
   //Load data from path
   utl::file::Data* file_data = sce_format->import_from_path(file_path);
   if(file_data == nullptr) return nullptr;
+  if(file_data->type != utl::file::SET){
+    cout<<"[error] could only load set"<<endl;
+    return nullptr;
+  }
 
-  //Data is an entity
-  switch(file_data->type){
-    case utl::file::ENTITY:{
-      set = load_entity(file_data);
-      break;
-    }
-    case utl::file::SET:{
-      set = load_set(file_data);
-      break;
-    }
+  //Data is a set
+  utl::type::Set* set_scene = sce_database->get_set_scene();
+  utl::file::Set* file_set = dynamic_cast<utl::file::Set*>(file_data);
+  utl::type::Set* subset = sce_set->get_or_create_subset(set_scene, file_set->name);
+  for(int i=0; i<file_set->vec_data.size(); i++){
+    utl::entity::Object* object = create_object(file_set->vec_data[i]);
+    sce_set->insert_entity(subset, object);
   }
 
   //Delete raw data
@@ -80,33 +81,30 @@ utl::type::Set* Loader::load_data(utl::file::Path file_path){
   //---------------------------
   return set;
 }
-
-//Data function
-utl::type::Set* Loader::load_entity(utl::file::Data* file_data){
+utl::entity::Object* Loader::load_object(utl::file::Path file_path){
   //---------------------------
 
-  utl::type::Set* set_scene = sce_database->get_set_scene();
-  utl::entity::Object* object = create_object(file_data);
+  if(!check_file_path(file_path.data)) return nullptr;
 
-  sce_set->insert_entity(set_scene, object);
-
-  //---------------------------
-  return set_scene;
-}
-utl::type::Set* Loader::load_set(utl::file::Data* file_data){
-  utl::file::Set* set = dynamic_cast<utl::file::Set*>(file_data);
-  //---------------------------
-
-  utl::type::Set* set_scene = sce_database->get_set_scene();
-  utl::type::Set* subset = sce_set->get_or_create_subset(set_scene, set->name);
-
-  for(int i=0; i<set->vec_data.size(); i++){
-    utl::entity::Object* object = create_object(set->vec_data[i]);
-    sce_set->insert_entity(subset, object);
+  //Load data from path
+  utl::file::Data* file_data = sce_format->import_from_path(file_path);
+  if(file_data == nullptr) return nullptr;
+  if(file_data->type != utl::file::ENTITY){
+    cout<<"[error] could only load entity"<<endl;
+    return nullptr;
   }
 
+  //Data is an entity
+  utl::type::Set* set_scene = sce_database->get_set_scene();
+  utl::file::Entity* file_entity = dynamic_cast<utl::file::Entity*>(file_data);
+  utl::entity::Object* object = create_object(file_data);
+  sce_set->insert_entity(set_scene, object);
+
+  //Delete raw data
+  delete file_data;
+
   //---------------------------
-  return subset;
+  return object;
 }
 
 //Subfunction

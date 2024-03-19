@@ -61,25 +61,6 @@ void Glyph::create_glyph_camera(utl::entity::Camera* camera){
   //---------------------------
 }
 
-//Glyph insertion
-void Glyph::insert_glyph_object(utl::entity::Object* object, utl::entity::Glyph* glyph){
-  //---------------------------
-  /*
-  //Check if the glyph
-  for(int i=0; i<object->list_glyph.size(); i++){
-
-  }
-
-  utl::file::Path path;
-  path.data = glyph_sphere->get_path();
-  sce_loader->load_data(path);
-  sce_glyph->create_glyph(set_scene, glyph);
-
-  this->create_glyph(object, glyph);
-*/
-  //---------------------------
-}
-
 //Glyph creation
 void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
   //---------------------------
@@ -92,17 +73,9 @@ void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
 void Glyph::create_glyph(utl::type::Entity* entity, utl::entity::Glyph* glyph){
   //---------------------------
 
-  //Check if the glyph already exists
-  for(int i=0; i<entity->list_glyph.size(); i++){
-    utl::entity::Glyph* entity_glyph = *next(entity->list_glyph.begin(), i);
-    if(entity_glyph->UID == glyph->UID){
-      return;
-    }
-  }
-
   glyph->create();
   glyph->update_glyph(entity);
-  sce_entity->init_entity(glyph);
+
   entity->list_glyph.push_back(glyph);
 
   //---------------------------
