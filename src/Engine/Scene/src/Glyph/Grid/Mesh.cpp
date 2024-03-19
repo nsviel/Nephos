@@ -27,6 +27,8 @@ void Mesh::create(){
   data.topology.type = utl::topology::LINE;
   data.unicolor = color_mesh;
 
+  this->init();
+
   //---------------------------
 }
 

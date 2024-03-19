@@ -23,15 +23,6 @@ Grid::Grid(eng::Node* node_engine) : Glyph(node_engine){
 Grid::~Grid(){}
 
 //Main function
-void Grid::init(){
-  //----------------------------
-
-  mesh->init();
-  axis->init();
-  plane->init();
-
-  //----------------------------
-}
 void Grid::create(){
   //---------------------------
 

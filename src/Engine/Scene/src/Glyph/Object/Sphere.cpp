@@ -41,6 +41,8 @@ void Sphere::create(){
     rgb[j] = color;
   }
 
+  this->init();
+
   //---------------------------
 }
 void Sphere::update_glyph(){

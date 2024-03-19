@@ -34,6 +34,8 @@ void Normal::create(){
   data.topology.type = utl::topology::LINE;
   data.unicolor = vec4(0, 0.7, 0.7, 1);
 
+  this->init();
+
   //---------------------------
 }
 void Normal::update_pose(utl::type::Entity* entity){

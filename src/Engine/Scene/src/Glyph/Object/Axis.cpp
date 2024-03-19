@@ -28,8 +28,10 @@ void Axis::create(){
   data.width = 3;
   data.is_visible = is_visible;
   data.topology.type = utl::topology::LINE;
-  this->construct();
 
+  this->construct();
+  this->init();
+  
   //---------------------------
 }
 void Axis::update_pose(utl::type::Entity* entity){

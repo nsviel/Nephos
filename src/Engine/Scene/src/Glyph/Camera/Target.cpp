@@ -28,6 +28,8 @@ void Target::create(){
   data.topology.type = utl::topology::LINE;
   data.unicolor = vec4(1, 1, 1, 0.2f);
 
+  this->init();
+
   //---------------------------
 }
 void Target::update_pose(utl::type::Entity* entity){

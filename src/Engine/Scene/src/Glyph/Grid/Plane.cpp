@@ -24,6 +24,8 @@ void Plane::create(){
   data.topology.type = utl::topology::TRIANGLE;
   data.unicolor = color;
 
+  this->init();
+  
   //---------------------------
 }
 

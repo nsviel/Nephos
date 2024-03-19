@@ -18,7 +18,6 @@ public:
 
 public:
   //Main function
-  void init();
   void create();
   void construct();
   void update_data();

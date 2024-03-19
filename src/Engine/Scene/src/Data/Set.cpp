@@ -124,16 +124,21 @@ utl::type::Set* Set::get_or_create_subset(utl::type::Set* set, std::string name)
 
 //Entity function
 void Set::insert_entity(utl::type::Set* set, utl::type::Entity* entity){
-  if(entity == nullptr) return;
   //---------------------------
 
+  //Check before insertion
+  if(entity == nullptr) return;
+  //if(entity->get_data()->UID == -1) return;
+
+  //Set entity info & first update
   entity->set_parent = set;
   entity->update_pose();
+  entity->update_data();
 
+  //Set set info
   set->list_entity.push_back(entity);
   set->nb_entity++;
   set->selected_entity = entity;
-
   set->set_parent->selected_entity = entity;
 
   //---------------------------

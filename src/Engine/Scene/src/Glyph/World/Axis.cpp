@@ -25,7 +25,9 @@ void Axis::create(){
   data.width = 4;
   data.is_visible = true;
   data.topology.type = utl::topology::LINE;
+  
   this->construct();
+  this->init();
 
   //---------------------------
 }
