@@ -1,7 +1,7 @@
 #include "Sphere.h"
 
 
-namespace glyph::world{
+namespace glyph::scene{
 
 //Constructor / destructor
 Sphere::Sphere(eng::Node* engine) : Glyph(engine){
@@ -12,6 +12,7 @@ Sphere::Sphere(eng::Node* engine) : Glyph(engine){
   this->is_suppressible = false;
   this->is_movable = false;
   this->is_permanent = true;
+  this->path = "../media/glyph/sphere.obj";
 
   //---------------------------
 }
@@ -45,6 +46,7 @@ void Sphere::construct(){
   vector<vec4>& RGB = vec_data[0]->rgb;
   float z = 0;
   //---------------------------
+
 
 
   //---------------------------

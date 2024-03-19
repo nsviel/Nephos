@@ -2,6 +2,8 @@
 
 #include <K4N/Namespace.h>
 #include <Operation/Namespace.h>
+#include <Scene/Namespace.h>
+#include <Engine/Namespace.h>
 
 
 namespace k4n::calibration{
@@ -10,9 +12,14 @@ namespace k4n::calibration{
 Model::Model(k4n::Node* node_k4n){
   //---------------------------
 
+  eng::Node* node_engine = node_k4n->get_node_engine();
+  eng::scene::Node* node_scene = node_k4n->get_node_scene();
+
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->k4n_hough = new k4n::calibration::Hough();
   this->ope_fitting = new ope::attribut::Fitting();
+  this->sce_glyph = node_scene->get_scene_glyph();
+  this->glyph_sphere = new glyph::scene::Sphere(node_engine);
 
   this->drawing_mode = k4n::hough::ALL;
 
@@ -84,6 +91,14 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
     xyzw.y = -xyzw.y * inv_scale;
     xyzw.z = xyzw.z * inv_scale;
     xyzw = xyzw * sensor->object.get_pose()->model;
+
+
+    /*
+    utl::file::Path path;
+    path.data = glyph_sphere->get_path();
+    sce_loader->load_data(path);
+    sce_glyph->create_glyph(set_scene, glyph);
+    */
 
     //say(xyzw);
   }

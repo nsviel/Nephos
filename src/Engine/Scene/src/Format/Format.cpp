@@ -41,9 +41,13 @@ utl::file::Data* Format::import_from_path(utl::file::Path path){
   utl::file::Data* data = nullptr;
   //---------------------------
 
+say(path.data);
   std::string format = utl::fct::info::get_format_from_path(path.data);
+  say(format);
   for(int i=0; i<vec_importer.size(); i++){
     utl::type::Importer* importer = vec_importer[i];
+
+
 
     if(importer->format == format){
       //Check for discrete gpu requirement

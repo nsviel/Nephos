@@ -7,6 +7,8 @@ namespace k4n::dev{class Swarm;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::calibration{class Hough;}
 namespace ope::attribut{class Fitting;}
+namespace eng::scene{class Glyph;}
+namespace glyph::scene{class Sphere;}
 
 
 namespace k4n::calibration{
@@ -35,6 +37,8 @@ private:
   k4n::dev::Swarm* k4n_swarm;
   k4n::calibration::Hough* k4n_hough;
   ope::attribut::Fitting* ope_fitting;
+  eng::scene::Glyph* sce_glyph;
+  glyph::scene::Sphere* glyph_sphere;
 
   vector<vec3> vec_circle;
   float sphere_diameter = 10;

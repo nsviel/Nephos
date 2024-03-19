@@ -46,7 +46,7 @@ utl::type::Set* Loader::load_data(utl::file::Path path){
       set = load_entity(data);
       break;
     }
-    case utl::file::SET:{
+    case utl::file::SET:{sayHello();
       set = load_set(data);
       break;
     }

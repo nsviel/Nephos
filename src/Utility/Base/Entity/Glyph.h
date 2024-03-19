@@ -32,6 +32,7 @@ public:
   inline vec4* get_color(){return &color;}
   inline bool is_need_update(){return need_update;}
   inline std::string get_name(){return name;}
+  inline std::string get_path(){return path;}
   inline int get_type(){return type;}
 
 protected:
@@ -40,6 +41,7 @@ protected:
   eng::cam::Node* node_camera;
 
   //Child
+  string path = "";
   bool need_update = false;
   vec4 color = vec4(1, 1, 1, 1);
   int type = -1;

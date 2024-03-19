@@ -18,6 +18,7 @@ Glyph::Glyph(eng::scene::Node* node_scene){
   this->vk_graphical = node_vulkan->get_vk_graphical();
   this->sce_database = node_scene->get_scene_database();
   this->sce_entity = node_scene->get_scene_entity();
+  this->sce_loader = node_scene->get_scene_loader();
   this->sce_set = new eng::scene::Set();
 
   //---------------------------
@@ -33,17 +34,8 @@ void Glyph::init(){
   //---------------------------
 }
 
-//Glyph function
+//Glyph init 
 void Glyph::create_glyph_world(){
-  utl::type::Set* set_world = sce_database->get_set_world();
-  //---------------------------
-
-  this->create_glyph(set_world, new glyph::grid::Grid(node_engine));
-  this->create_glyph(set_world, new glyph::world::Axis(node_engine));
-
-  //---------------------------
-}
-void Glyph::create_glyph_scene(){
   utl::type::Set* set_world = sce_database->get_set_world();
   //---------------------------
 
@@ -69,7 +61,26 @@ void Glyph::create_glyph_camera(utl::entity::Camera* camera){
   //---------------------------
 }
 
-//Subfunction
+//Glyph insertion
+void Glyph::insert_glyph_object(utl::entity::Object* object, utl::entity::Glyph* glyph){
+  //---------------------------
+  /*
+  //Check if the glyph
+  for(int i=0; i<object->list_glyph.size(); i++){
+
+  }
+
+  utl::file::Path path;
+  path.data = glyph_sphere->get_path();
+  sce_loader->load_data(path);
+  sce_glyph->create_glyph(set_scene, glyph);
+
+  this->create_glyph(object, glyph);
+*/
+  //---------------------------
+}
+
+//Glyph creation
 void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
   //---------------------------
 

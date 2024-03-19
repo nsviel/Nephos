@@ -3,7 +3,7 @@
 #include <Utility/Base/Entity/Glyph.h>
 
 
-namespace glyph::world{
+namespace glyph::scene{
 
 class Sphere : public utl::entity::Glyph
 {
