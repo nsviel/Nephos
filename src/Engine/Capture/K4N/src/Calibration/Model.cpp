@@ -12,14 +12,13 @@ namespace k4n::calibration{
 Model::Model(k4n::Node* node_k4n){
   //---------------------------
 
-  eng::Node* node_engine = node_k4n->get_node_engine();
   eng::scene::Node* node_scene = node_k4n->get_node_scene();
 
+  this->node_engine = node_k4n->get_node_engine();
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->k4n_hough = new k4n::calibration::Hough();
   this->ope_fitting = new ope::attribut::Fitting();
   this->sce_glyph = node_scene->get_scene_glyph();
-  this->glyph_sphere = new glyph::scene::Sphere(node_engine);
 
   this->drawing_mode = k4n::hough::ALL;
 
@@ -30,7 +29,6 @@ Model::~Model(){}
 //Main function
 void Model::init(){
   //---------------------------
-
 
 
   //---------------------------
@@ -73,10 +71,20 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
   if(vec_circle.size() == 0) return;
   //---------------------------
 
+  static bool a = true;
+  if(a)
+  for(int i=0; i<10; i++){
+    glyph::scene::Sphere sphere(node_engine);
+    vec_sphere.push_back(sphere);
+    sce_glyph->create_glyph(sensor->get_object(), &sphere);
+  }
+  a = false;
+
+
   uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
   int width = sensor->depth.data.width;
 
-  glyph_sphere->reset_glyph();
+  //vec_sphere[0].reset_glyph();
 
   for(int i=0; i<vec_circle.size(); i++){
     vec3& circle = vec_circle[i];
@@ -108,13 +116,9 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
     pose = pose + dir * sphere_diameter;
 
 
-    //k4n::dev::Master* master = k4n_swarm->get_selected_master();
-    //sce_glyph->create_glyph(sensor->get_object(), glyph_sphere);
-
-    //glyph_sphere->move_one_sphere(pose);
+    //vec_sphere[0].move_one_sphere(pose);
 
 
-    //say(xyzw);
   }
 
 

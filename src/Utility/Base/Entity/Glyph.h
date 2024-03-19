@@ -29,7 +29,7 @@ public:
   //Subfunction
   virtual void update_data();
   virtual void update_pose();
-  virtual void update_pose(utl::type::Entity* entity);
+  virtual void update_pose(utl::type::Entity* entity){}
   virtual void update_glyph(){}
   virtual void update_glyph(utl::type::Entity* entity){}
   virtual void set_visibility(bool value);

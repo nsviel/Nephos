@@ -66,13 +66,13 @@ void Object::update_pose(){
 
   //Update own pose
   cam_control->compute_camera_mvp(&pose);
-
+say("----");
   //Update own glyph pose
   for(int i=0; i<list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_pose(this);
   }
-
+sayHello();
   //----------------------------
 }
 void Object::update_glyph(){

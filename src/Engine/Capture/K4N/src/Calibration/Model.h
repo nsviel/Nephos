@@ -8,6 +8,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::calibration{class Hough;}
 namespace ope::attribut{class Fitting;}
 namespace eng::scene{class Glyph;}
+namespace eng{class Node;}
 namespace glyph::scene{class Sphere;}
 
 
@@ -35,12 +36,13 @@ public:
   inline k4n::calibration::Hough* get_k4n_hough(){return k4n_hough;}
 
 private:
+  eng::Node* node_engine;
   k4n::dev::Swarm* k4n_swarm;
   k4n::calibration::Hough* k4n_hough;
   ope::attribut::Fitting* ope_fitting;
   eng::scene::Glyph* sce_glyph;
-  glyph::scene::Sphere* glyph_sphere;
 
+  vector<glyph::scene::Sphere> vec_sphere;
   vector<vec3> vec_circle;
   float sphere_diameter = 0.1;
   int drawing_mode;

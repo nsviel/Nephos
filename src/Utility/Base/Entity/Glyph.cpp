@@ -60,14 +60,6 @@ void Glyph::update_pose(){
 
   //----------------------------
 }
-void Glyph::update_pose(utl::type::Entity* entity){
-  //----------------------------
-
-  //Virtual function, by defaut make:
-  this->update_pose();
-
-  //----------------------------
-}
 void Glyph::set_visibility(bool value){
   //---------------------------
 
