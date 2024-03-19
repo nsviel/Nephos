@@ -55,32 +55,31 @@ void Model::detect_sphere(utl::media::Image* input, utl::media::Image* gui_image
   //---------------------------
 }
 void Model::retrieve_sphere_data(utl::media::Image* input){
+  if(vec_circle.size() == 0) return;
   //---------------------------
-/*
-  // Ensure at least one circle is detected
-  if(vec_circle.size() > 0){
-    // Retrieve the parameters of the detected circle
-    float center_x = vec_circle[0][0];
-    float center_y = vec_circle[0][1];
-    float radius = vec_circle[0][2];
 
-    // Iterate over the bounding box of the circle
-    for (int y = center_y - radius; y <= center_y + radius; y++) {
-      for (int x = center_x - radius; x <= center_x + radius; x++) {
-        // Calculate the distance from the center of the circle
-        float distance = sqrt(pow(x - center_x, 2) + pow(y - center_y, 2));
+  cv::Mat cv_image(input->height, input->width, CV_8UC4, input->data.data());
 
-        // Check if the pixel lies within the circle
-        if (distance <= radius) {
-          // Retrieve the pixel value at (x, y)
-          cv::Scalar pixel_value = gray_image.at<uchar>(y, x);
-          // Do something with the pixel value
-          // For example, print the pixel value
-          std::cout << "Pixel value at (" << x << ", " << y << "): " << pixel_value << std::endl;
-        }
+  // Retrieve the parameters of the detected circle
+  float center_x = vec_circle[0][0];
+  float center_y = vec_circle[0][1];
+  float radius = vec_circle[0][2];
+
+  // Iterate over the bounding box of the circle
+  for(int y = center_y - radius; y <= center_y + radius; y++){
+    for(int x = center_x - radius; x <= center_x + radius; x++){
+      // Calculate the distance from the center of the circle
+      float distance = sqrt(pow(x - center_x, 2) + pow(y - center_y, 2));
+
+      // Check if the pixel lies within the circle
+      if(distance <= radius){
+        // Retrieve the pixel value at (x, y)
+        cv::Scalar pixel_value = cv_image.at<uchar>(y, x);
+
+
       }
     }
-  }*/
+  }
 
   //---------------------------
 }
