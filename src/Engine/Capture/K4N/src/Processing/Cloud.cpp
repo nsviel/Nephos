@@ -166,8 +166,8 @@ void Cloud::retrieve_location(int i, const int16_t* data_xyz){
 
   int depth_idx = i * 3;
   int x = data_xyz[depth_idx];
-  int y = data_xyz[depth_idx+1];
-  int z = data_xyz[depth_idx+2];
+  int y = data_xyz[depth_idx + 1];
+  int z = data_xyz[depth_idx + 2];
 
   //coordinate in meter and X axis oriented.
   float inv_scale = 1.0f / 1000.0f;

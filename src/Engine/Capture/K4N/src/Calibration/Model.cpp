@@ -59,7 +59,7 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
   if(vec_circle.size() == 0) return;
   //---------------------------
 
-  uint8_t* buffer = sensor->depth.data.buffer;
+  uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
   int width = sensor->depth.data.width;
 
   for(int i=0; i<vec_circle.size(); i++){
@@ -76,9 +76,16 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
     // Call the convert_2d_to_3d function
     k4a_float3_t target_xyz;
     bool success = sensor->param.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
-    vec3 xyz = vec3(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z);
+    vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
 
-    say(xyz);
+    //coordinate in meter and X axis oriented.
+    float inv_scale = 1.0f / 1000.0f;
+    xyzw.x = -xyzw.x * inv_scale;
+    xyzw.y = -xyzw.y * inv_scale;
+    xyzw.z = xyzw.z * inv_scale;
+    xyzw = xyzw * sensor->object.get_pose()->model;
+
+    say(xyzw);
   }
 
 
