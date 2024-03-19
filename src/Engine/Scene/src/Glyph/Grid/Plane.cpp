@@ -29,26 +29,26 @@ void Plane::create(){
 
 //Subfunction
 void Plane::construct(int nb_cell){
-  vector<vec3>& XYZ = data.xyz;
-  vector<vec4>& RGB = data.rgb;
+  vector<vec3>& xyz = data.xyz;
+  vector<vec4>& rgb = data.rgb;
   float z = -0.004;
   //---------------------------
 
-  XYZ.clear();
-  RGB.clear();
+  xyz.clear();
+  rgb.clear();
 
   //Location
-  XYZ.push_back(vec3(nb_cell, nb_cell, z));
-  XYZ.push_back(vec3(-nb_cell, nb_cell, z));
-  XYZ.push_back(vec3(-nb_cell, -nb_cell, z));
+  xyz.push_back(vec3(nb_cell, nb_cell, z));
+  xyz.push_back(vec3(-nb_cell, nb_cell, z));
+  xyz.push_back(vec3(-nb_cell, -nb_cell, z));
 
-  XYZ.push_back(vec3(-nb_cell, -nb_cell, z));
-  XYZ.push_back(vec3(nb_cell, -nb_cell, z));
-  XYZ.push_back(vec3(nb_cell, nb_cell, z));
+  xyz.push_back(vec3(-nb_cell, -nb_cell, z));
+  xyz.push_back(vec3(nb_cell, -nb_cell, z));
+  xyz.push_back(vec3(nb_cell, nb_cell, z));
 
   //Color
-  for(int j=0; j<XYZ.size(); j++){
-    RGB.push_back(vec4(color.x, color.y, color.z, 1.0f));
+  for(int j=0; j<xyz.size(); j++){
+    rgb.push_back(vec4(color.x, color.y, color.z, 1.0f));
   }
 
   //---------------------------

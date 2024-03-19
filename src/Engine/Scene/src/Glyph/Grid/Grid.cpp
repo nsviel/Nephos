@@ -51,15 +51,6 @@ void Grid::update_data(){
 
   //----------------------------
 }
-void Grid::update_pose(){
-  //----------------------------
-
-  mesh->update_pose();
-  axis->update_pose();
-  plane->update_pose();
-
-  //----------------------------
-}
 void Grid::set_visibility(bool value){
   //---------------------------
 

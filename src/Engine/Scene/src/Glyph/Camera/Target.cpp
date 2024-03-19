@@ -50,24 +50,24 @@ void Target::update_pose(utl::type::Entity* entity){
   //---------------------------
 }
 void Target::construct(){
-  vector<vec3>& XYZ = data.xyz;
-  vector<vec4>& RGB = data.rgb;
+  vector<vec3>& xyz = data.xyz;
+  vector<vec4>& rgb = data.rgb;
   //---------------------------
 
-  XYZ.clear();
-  RGB.clear();
+  xyz.clear();
+  rgb.clear();
 
   //X axis
-  XYZ.push_back(vec3(-1*scale, 0, 0));
-  XYZ.push_back(vec3(1*scale, 0, 0));
-  RGB.push_back(color);
-  RGB.push_back(color);
+  xyz.push_back(vec3(-1*scale, 0, 0));
+  xyz.push_back(vec3(1*scale, 0, 0));
+  rgb.push_back(color);
+  rgb.push_back(color);
 
   //Y axis
-  XYZ.push_back(vec3(0, -1*scale, 0));
-  XYZ.push_back(vec3(0, 1*scale, 0));
-  RGB.push_back(color);
-  RGB.push_back(color);
+  xyz.push_back(vec3(0, -1*scale, 0));
+  xyz.push_back(vec3(0, 1*scale, 0));
+  rgb.push_back(color);
+  rgb.push_back(color);
 
   //---------------------------
 }

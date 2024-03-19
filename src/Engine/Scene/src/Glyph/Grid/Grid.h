@@ -20,7 +20,6 @@ public:
   //Main function
   void create();
   void construct();
-  void update_pose();
   void update_data();
   void set_visibility(bool value);
 

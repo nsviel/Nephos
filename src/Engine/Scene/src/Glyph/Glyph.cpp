@@ -85,6 +85,8 @@ void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
   //---------------------------
 
   glyph->create();
+  glyph->update_data();
+  glyph->update_pose();
   sce_set->insert_entity(set, glyph);
   sce_entity->init_entity(glyph);
 

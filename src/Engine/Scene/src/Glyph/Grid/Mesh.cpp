@@ -42,49 +42,49 @@ void Mesh::construct(int nb_cell){
   //---------------------------
 }
 void Mesh::construct_mesh(int nb_cell){
-  vector<vec3>& XYZ = data.xyz;
-  vector<vec4>& RGB = data.rgb;
+  vector<vec3>& xyz = data.xyz;
+  vector<vec4>& rgb = data.rgb;
   float z = -0.002;
   //---------------------------
 
   int cpt = 0;
   for(int i=-nb_cell; i<=nb_cell; i++){
-    XYZ.push_back(vec3((float)i, -(float)nb_cell, z));
-    XYZ.push_back(vec3((float)i, (float)nb_cell, z));
+    xyz.push_back(vec3((float)i, -(float)nb_cell, z));
+    xyz.push_back(vec3((float)i, (float)nb_cell, z));
 
-    XYZ.push_back(vec3(-(float)nb_cell, (float)i, z));
-    XYZ.push_back(vec3((float)nb_cell, (float)i, z));
+    xyz.push_back(vec3(-(float)nb_cell, (float)i, z));
+    xyz.push_back(vec3((float)nb_cell, (float)i, z));
 
     cpt++;
   }
 
   for(int i=0; i<(cpt*4); i++){
-    RGB.push_back(color_mesh);
+    rgb.push_back(color_mesh);
   }
 
   //---------------------------
 }
 void Mesh::construct_submesh(int nb_cell){
-  vector<vec3>& XYZ = data.xyz;
-  vector<vec4>& RGB = data.rgb;
+  vector<vec3>& xyz = data.xyz;
+  vector<vec4>& rgb = data.rgb;
   float z = -0.003;
   //---------------------------
 
   int cpt = 0;
   for(int i=-nb_cell; i<=nb_cell-1; i++){
     for(int j=1; j<nb_subcell; j++){
-      XYZ.push_back(vec3((float)i+(float)j/nb_subcell, (float)-nb_cell, z));
-      XYZ.push_back(vec3((float)i+(float)j/nb_subcell, (float)nb_cell, z));
+      xyz.push_back(vec3((float)i+(float)j/nb_subcell, (float)-nb_cell, z));
+      xyz.push_back(vec3((float)i+(float)j/nb_subcell, (float)nb_cell, z));
 
-      XYZ.push_back(vec3((float)-nb_cell, (float)i+(float)j/nb_subcell, z));
-      XYZ.push_back(vec3((float)nb_cell, (float)i+(float)j/nb_subcell, z));
+      xyz.push_back(vec3((float)-nb_cell, (float)i+(float)j/nb_subcell, z));
+      xyz.push_back(vec3((float)nb_cell, (float)i+(float)j/nb_subcell, z));
 
       cpt++;
     }
   }
 
   for(int i=0; i<(cpt*4); i++){
-    RGB.push_back(color_submesh);
+    rgb.push_back(color_submesh);
   }
 
   //---------------------------

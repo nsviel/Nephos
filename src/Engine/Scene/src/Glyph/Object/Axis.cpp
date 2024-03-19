@@ -46,8 +46,8 @@ void Axis::update_pose(utl::type::Entity* entity){
 
 //Subfunction
 void Axis::construct(){
-  vector<vec4>& RGB = data.rgb;
-  vector<vec3>& XYZ = data.xyz;
+  vector<vec4>& rgb = data.rgb;
+  vector<vec3>& xyz = data.xyz;
   //---------------------------
 
   //Location
@@ -55,20 +55,20 @@ void Axis::construct(){
   vec3 x = vec3(0.1,0,0);
   vec3 y = vec3(0,0.1,0);
   vec3 z = vec3(0,0,0.1);
-  XYZ.push_back(root);
-  XYZ.push_back(x);
-  XYZ.push_back(root);
-  XYZ.push_back(y);
-  XYZ.push_back(root);
-  XYZ.push_back(z);
+  xyz.push_back(root);
+  xyz.push_back(x);
+  xyz.push_back(root);
+  xyz.push_back(y);
+  xyz.push_back(root);
+  xyz.push_back(z);
 
   //Color
-  RGB.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
-  RGB.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
-  RGB.push_back(vec4(0.2f, 0.9f, 0.2f, 1.0f));
-  RGB.push_back(vec4(0.2f, 0.9f, 0.2f, 1.0f));
-  RGB.push_back(vec4(0.2f, 0.2f, 0.9f, 1.0f));
-  RGB.push_back(vec4(0.2f, 0.2f, 0.9f, 1.0f));
+  rgb.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
+  rgb.push_back(vec4(0.9f, 0.2f, 0.2f, 1.0f));
+  rgb.push_back(vec4(0.2f, 0.9f, 0.2f, 1.0f));
+  rgb.push_back(vec4(0.2f, 0.9f, 0.2f, 1.0f));
+  rgb.push_back(vec4(0.2f, 0.2f, 0.9f, 1.0f));
+  rgb.push_back(vec4(0.2f, 0.2f, 0.9f, 1.0f));
 
   //---------------------------
 }

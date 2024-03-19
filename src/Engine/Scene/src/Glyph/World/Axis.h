@@ -15,7 +15,6 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph();
 
   //Subfunction
   void construct();
