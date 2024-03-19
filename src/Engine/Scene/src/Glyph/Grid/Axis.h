@@ -15,7 +15,9 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph(int nb_cell);
+
+  //Subfunction
+  void construct(int nb_cell);
 
 private:
   vec4 color;

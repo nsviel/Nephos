@@ -29,7 +29,9 @@ void Mesh::create(){
 
   //---------------------------
 }
-void Mesh::update_glyph(int nb_cell){
+
+//Subfunction
+void Mesh::construct(int nb_cell){
   data.xyz.clear();
   data.rgb.clear();
   //---------------------------
@@ -39,8 +41,6 @@ void Mesh::update_glyph(int nb_cell){
 
   //---------------------------
 }
-
-//Subfunction
 void Mesh::construct_mesh(int nb_cell){
   vector<vec3>& XYZ = data.xyz;
   vector<vec4>& RGB = data.rgb;

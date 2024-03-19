@@ -15,9 +15,9 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph(int nb_cell);
 
   //Subfunction
+  void construct(int nb_cell);
   void construct_mesh(int nb_cell);
   void construct_submesh(int nb_cell);
 

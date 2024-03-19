@@ -29,18 +29,46 @@ void Grid::create(){
   axis->create();
   plane->create();
 
-  this->update_glyph();
+  this->construct();
 
   //---------------------------
 }
-void Grid::update_glyph(){
+void Grid::construct(){
   //---------------------------
 
-  mesh->update_glyph(nb_cell);
-  axis->update_glyph(nb_cell);
-  plane->update_glyph(nb_cell);
+  mesh->construct(nb_cell);
+  axis->construct(nb_cell);
+  plane->construct(nb_cell);
 
   //---------------------------
 }
+void Grid::update_data(){
+  //----------------------------
+
+  mesh->update_data();
+  axis->update_data();
+  plane->update_data();
+
+  //----------------------------
+}
+void Grid::update_pose(){
+  //----------------------------
+
+  mesh->update_pose();
+  axis->update_pose();
+  plane->update_pose();
+
+  //----------------------------
+}
+void Grid::set_visibility(bool value){
+  //---------------------------
+
+  mesh->set_visibility(value);
+  axis->set_visibility(value);
+  plane->set_visibility(value);
+
+  //---------------------------
+}
+
 
 }

@@ -19,7 +19,10 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph();
+  void construct();
+  void update_pose();
+  void update_data();
+  void set_visibility(bool value);
 
 private:
   glyph::grid::Mesh* mesh;

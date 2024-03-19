@@ -15,6 +15,7 @@ Plane::Plane(eng::Node* node_engine) : Glyph(node_engine){
 }
 Plane::~Plane(){}
 
+//Main function
 void Plane::create(){
   //---------------------------
 
@@ -25,7 +26,9 @@ void Plane::create(){
 
   //---------------------------
 }
-void Plane::update_glyph(int nb_cell){
+
+//Subfunction
+void Plane::construct(int nb_cell){
   vector<vec3>& XYZ = data.xyz;
   vector<vec4>& RGB = data.rgb;
   float z = -0.004;

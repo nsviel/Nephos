@@ -25,6 +25,7 @@ public:
 
   virtual void create(){}
   virtual void reset(){}
+  virtual void construct(){}
   virtual void update_pose(utl::type::Entity* entity);
   virtual void update_glyph(){}
   virtual void update_glyph(utl::type::Entity* entity){}
