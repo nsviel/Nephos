@@ -4,6 +4,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::dev{class Swarm;}
+namespace k4n::dev{class Sensor;}
 namespace k4n::calibration{class Hough;}
 namespace ope::attribut{class Fitting;}
 
@@ -23,6 +24,7 @@ public:
 
   //Subfunction
   void detect_sphere(utl::media::Image* input, utl::media::Image* gui_image);
+  void draw_glyph_in_cloud(k4n::dev::Sensor* sensor);
   void retrieve_sphere_data(utl::media::Image* utl_image);
 
   inline float* get_sphere_diameter(){return &sphere_diameter;}

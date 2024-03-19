@@ -30,6 +30,7 @@ void Model::determine_model(utl::media::Image* gui_image){
     utl::media::Image* raw_image = &sensor->image.ir;
     this->detect_sphere(raw_image, gui_image);
     this->retrieve_sphere_data(raw_image);
+    this->draw_glyph_in_cloud(sensor);
   }
 
   //---------------------------
@@ -51,6 +52,35 @@ void Model::detect_sphere(utl::media::Image* input, utl::media::Image* gui_image
       break;
     }
   }
+
+  //---------------------------
+}
+void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
+  if(vec_circle.size() == 0) return;
+  //---------------------------
+
+  uint8_t* buffer = sensor->depth.data.buffer;
+  int width = sensor->depth.data.width;
+
+  for(int i=0; i<vec_circle.size(); i++){
+    vec3& circle = vec_circle[i];
+
+    // Map depth image pixel to camera space
+    int x = circle[0];
+    int y = circle[1];
+    k4a_float2_t source_xy = { static_cast<float>(x), static_cast<float>(y) };
+
+    int index = y * width + x;
+    float source_z = static_cast<float>(buffer[index]);
+
+    // Call the convert_2d_to_3d function
+    k4a_float3_t target_xyz;
+    bool success = sensor->param.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
+    vec3 xyz = vec3(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z);
+
+    say(xyz);
+  }
+
 
   //---------------------------
 }
