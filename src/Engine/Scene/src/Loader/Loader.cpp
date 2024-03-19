@@ -132,23 +132,10 @@ utl::entity::Object* Loader::create_object(utl::file::Data* file_data){
   utl::file::Entity* file_entity = dynamic_cast<utl::file::Entity*>(file_data);
   //---------------------------
 
+  utl::type::Data* data = create_data(file_data);
   utl::entity::Object* object = new utl::entity::Object(node_engine);
   object->name = file_entity->name;
-  object->data.path = file_entity->path.data;
-  object->data.file_format = utl::fct::info::get_format_from_path(file_entity->path.data);
-  object->data.size = file_entity->xyz.size();
-  object->data.topology.type = file_entity->draw_type;
-
-  object->data.xyz = file_entity->xyz;
-  object->data.rgb = file_entity->rgb;
-  object->data.uv = file_entity->uv;
-
-  //If no color, fill it with white
-  if(object->data.rgb.size() == 0){
-    for(int i=0; i<file_entity->xyz.size(); i++){
-      object->data.rgb.push_back(vec4(1,1,1,1));
-    }
-  }
+  object->data = *data;
 
   sce_entity->init_entity(object);
 
