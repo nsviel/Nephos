@@ -43,6 +43,15 @@ void Glyph::create_glyph_world(){
 
   //---------------------------
 }
+void Glyph::create_glyph_scene(){
+  utl::type::Set* set_world = sce_database->get_set_world();
+  //---------------------------
+
+  this->create_glyph(set_world, new glyph::grid::Grid(node_engine));
+  this->create_glyph(set_world, new glyph::world::Axis(node_engine));
+
+  //---------------------------
+}
 void Glyph::create_glyph_object(utl::entity::Object* object){
   //---------------------------
 

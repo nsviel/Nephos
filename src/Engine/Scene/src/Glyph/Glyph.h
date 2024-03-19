@@ -25,6 +25,7 @@ public:
 
   //Glyph function
   void create_glyph_world();
+  void create_glyph_scene();
   void create_glyph_object(utl::entity::Object* object);
   void create_glyph_camera(utl::entity::Camera* camera);
 

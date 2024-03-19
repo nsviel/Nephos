@@ -5,3 +5,4 @@
 #include <Scene/src/Glyph/Object/Namespace.h>
 #include <Scene/src/Glyph/Camera/Namespace.h>
 #include <Scene/src/Glyph/World/Namespace.h>
+#include <Scene/src/Glyph/Scene/Namespace.h>

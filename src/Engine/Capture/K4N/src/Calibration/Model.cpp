@@ -85,7 +85,7 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
     xyzw.z = xyzw.z * inv_scale;
     xyzw = xyzw * sensor->object.get_pose()->model;
 
-    say(xyzw);
+    //say(xyzw);
   }
 
 
