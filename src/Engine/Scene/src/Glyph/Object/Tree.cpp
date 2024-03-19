@@ -24,27 +24,20 @@ Tree::~Tree(){}
 
 //Main function
 void Tree::create(){
-  if(vec_data.size() != 0) return;
   //---------------------------
 
   //Create glyph
-  utl::type::Data* data = new utl::type::Data();
-  data->name = "tree::data";
-  data->width = 2;
-  data->is_visible = is_visible;
-  data->topology.type = utl::topology::LINE;
-  data->unicolor = color;
-  this->vec_data.push_back(data);
+  data.name = "tree::data";
+  data.width = 2;
+  data.is_visible = is_visible;
+  data.topology.type = utl::topology::LINE;
+  data.unicolor = color;
 
   //---------------------------
 }
 void Tree::update_glyph(utl::type::Data* data){
   //---------------------------
 
-  if(is_visible){
-    //octreeManager->create_octree(cloud, level);
-    vec_data[0]->xyz = data->xyz;
-  }
 
   //---------------------------
 }

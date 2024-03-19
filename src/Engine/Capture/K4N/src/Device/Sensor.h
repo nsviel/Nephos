@@ -55,8 +55,8 @@ public:
   bool is_playback_paused();
 
   inline utl::entity::Object* get_object(){return &object;}
-  inline utl::type::Data* get_data(){return object.data;}
-  inline utl::type::Pose* get_pose(){return object.pose;}
+  inline utl::type::Data* get_data(){return &object.data;}
+  inline utl::type::Pose* get_pose(){return &object.pose;}
 
 public:
   prf::graph::Profiler* profiler;

@@ -2,6 +2,9 @@
 
 #include <Utility/Base/Entity/Glyph.h>
 
+namespace ope{class Transformation;}
+namespace eng::scene{class Loader;}
+
 
 namespace glyph::scene{
 
@@ -16,11 +19,16 @@ public:
   //Main function
   void create();
   void update_glyph();
+  void reset_glyph();
 
   //Subfunction
-  void construct();
+  void move_one_sphere(vec3 pose);
 
 private:
+  eng::scene::Loader* sce_loader;
+  ope::Transformation* ope_transform;
+
+  int size = 20;
 };
 
 }

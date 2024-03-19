@@ -20,7 +20,6 @@ public:
   //Main function
   void create();
   void update_glyph();
-  void insert_object_from_glyph(utl::entity::Glyph* glyph);
 
 private:
   glyph::grid::Mesh* mesh;

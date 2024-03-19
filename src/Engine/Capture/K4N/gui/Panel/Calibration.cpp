@@ -64,7 +64,7 @@ void Calibration::model_parameter(){
   //Max radius
   float* sphere_diameter = k4n_model->get_sphere_diameter();
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderFloat("Sphere diameter", sphere_diameter, 1.0f, 50.0f, "%.1f");
+  ImGui::SliderFloat("Sphere diameter", sphere_diameter, 0.001, 0.5f, "%.3f m");
 
   //---------------------------
   ImGui::Separator();

@@ -13,9 +13,7 @@ Object::Object(){
   //---------------------------
 
   this->entity_type = "entity::Object";
-  this->pose = new utl::type::Pose();
-  this->data = new utl::type::Data();
-  this->data->unicolor = math::random_color();
+  this->data.unicolor = math::random_color();
 
   //---------------------------
 }
@@ -23,9 +21,7 @@ Object::Object(eng::Node* node_engine){
   //---------------------------
 
   this->entity_type = "entity::Object";
-  this->pose = new utl::type::Pose();
-  this->data = new utl::type::Data();
-  this->data->unicolor = math::random_color();
+  this->data.unicolor = math::random_color();
 
   this->node_vulkan = node_engine->get_node_vulkan();
   this->node_camera = node_engine->get_node_camera();
@@ -45,12 +41,12 @@ Object::~Object(){
 void Object::clear_data(){
   //----------------------------
 
-  this->data->xyz.clear();
-  this->data->rgb.clear();
-  this->data->uv.clear();
-  this->data->Nxyz.clear();
-  this->data->ts.clear();
-  this->data->Is.clear();
+  this->data.xyz.clear();
+  this->data.rgb.clear();
+  this->data.uv.clear();
+  this->data.Nxyz.clear();
+  this->data.ts.clear();
+  this->data.Is.clear();
 
   //----------------------------
   this->update_data();
@@ -60,7 +56,7 @@ void Object::update_data(){
   //----------------------------
 
   //Update own data
-  vk_graphical->insert_data_in_engine(data, pose);
+  vk_graphical->insert_data_in_engine(&data, &pose);
 
   //----------------------------
 }
@@ -69,7 +65,7 @@ void Object::update_pose(){
   //----------------------------
 
   //Update own pose
-  cam_control->compute_camera_mvp(pose);
+  cam_control->compute_camera_mvp(&pose);
 
   //Update own glyph pose
   for(int i=0; i<list_glyph.size(); i++){
@@ -102,23 +98,23 @@ void Object::remove_entity(){
   }
 
   //Remove this data
-  vk_graphical->remove_data_in_engine(this->data);
+  vk_graphical->remove_data_in_engine(&data);
 
   //----------------------------
 }
 void Object::reset_entity(){
   //---------------------------
 
-  pose->min = glm::vec3(0.0f);
-  pose->max = glm::vec3(0.0f);
-  pose->root = glm::vec3(0.0f);
-  pose->COM = glm::vec3(0.0f);
+  pose.min = glm::vec3(0.0f);
+  pose.max = glm::vec3(0.0f);
+  pose.root = glm::vec3(0.0f);
+  pose.COM = glm::vec3(0.0f);
 
-  pose->rotat = glm::mat4(1.0f);
-  pose->trans = glm::mat4(1.0f);
-  pose->scale = glm::mat4(1.0f);
-  pose->model = pose->model_init;
-  pose->mvp = glm::mat4(1.0f);
+  pose.rotat = glm::mat4(1.0f);
+  pose.trans = glm::mat4(1.0f);
+  pose.scale = glm::mat4(1.0f);
+  pose.model = pose.model_init;
+  pose.mvp = glm::mat4(1.0f);
 
   //---------------------------
 }
@@ -128,7 +124,7 @@ void Object::set_visibility(bool value){
   //---------------------------
 
   this->is_visible = value;
-  data->is_visible = value;
+  data.is_visible = value;
 
   for(int i=0; i<list_glyph.size(); i++){
     utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);

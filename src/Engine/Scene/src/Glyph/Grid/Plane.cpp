@@ -16,21 +16,18 @@ Plane::Plane(eng::Node* node_engine) : Glyph(node_engine){
 Plane::~Plane(){}
 
 void Plane::create(){
-  if(vec_data.size() != 0) return;
   //---------------------------
 
-  utl::type::Data* data = new utl::type::Data();
-  data->name = "grid::plane::data";
-  data->is_visible = true;
-  data->topology.type = utl::topology::TRIANGLE;
-  data->unicolor = color;
-  this->vec_data.push_back(data);
+  data.name = "grid::plane::data";
+  data.is_visible = true;
+  data.topology.type = utl::topology::TRIANGLE;
+  data.unicolor = color;
 
   //---------------------------
 }
 void Plane::update_glyph(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->xyz;
-  vector<vec4>& RGB = vec_data[0]->rgb;
+  vector<vec3>& XYZ = data.xyz;
+  vector<vec4>& RGB = data.rgb;
   float z = -0.004;
   //---------------------------
 

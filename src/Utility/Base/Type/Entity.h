@@ -19,9 +19,8 @@ struct Entity{
   virtual void remove_entity(){}
   virtual void reset_entity(){}
   virtual void set_visibility(bool value){}
-  virtual utl::type::Pose* get_pose(){return pose;}
-  virtual utl::type::Data* get_data(){return data;}
-  virtual std::vector<utl::type::Data*> get_vec_data(){return vec_data;}
+  virtual utl::type::Pose* get_pose(){return &pose;}
+  virtual utl::type::Data* get_data(){return &data;}
 
   //Info
   int UID = -1;
@@ -35,9 +34,8 @@ struct Entity{
   utl::type::Set* set_parent = nullptr;
 
   //Data
-  utl::type::Pose* pose = nullptr;
-  utl::type::Data* data = nullptr;
-  std::vector<utl::type::Data*> vec_data;
+  utl::type::Pose pose;
+  utl::type::Data data;
   std::list<utl::entity::Glyph*> list_glyph;
 
   //---------------------------

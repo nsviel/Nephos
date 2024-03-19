@@ -28,6 +28,13 @@ Model::Model(k4n::Node* node_k4n){
 Model::~Model(){}
 
 //Main function
+void Model::init(){
+  //---------------------------
+
+
+
+  //---------------------------
+}
 void Model::determine_model(utl::media::Image* gui_image){
   k4n::dev::Master* master = k4n_swarm->get_selected_master();
   utl::type::Entity* entity = master->selected_entity;
@@ -69,6 +76,8 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
   uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
   int width = sensor->depth.data.width;
 
+  glyph_sphere->reset_glyph();
+
   for(int i=0; i<vec_circle.size(); i++){
     vec3& circle = vec_circle[i];
 
@@ -90,15 +99,20 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
     xyzw.x = -xyzw.x * inv_scale;
     xyzw.y = -xyzw.y * inv_scale;
     xyzw.z = xyzw.z * inv_scale;
+    xyzw = vec4(xyzw.z, xyzw.x, xyzw.y, 1);
     xyzw = xyzw * sensor->object.get_pose()->model;
+    vec3 pose = vec3(xyzw.x, xyzw.y, xyzw.z);
+
+    //Add sphere radius to the detected circle center
+    vec3 dir = glm::normalize(pose);
+    pose = pose + dir * sphere_diameter;
 
 
-    /*
-    utl::file::Path path;
-    path.data = glyph_sphere->get_path();
-    sce_loader->load_data(path);
-    sce_glyph->create_glyph(set_scene, glyph);
-    */
+    k4n::dev::Master* master = k4n_swarm->get_selected_master();
+    sce_glyph->create_glyph(sensor->get_object(), glyph_sphere);
+
+    glyph_sphere->move_one_sphere(pose);
+
 
     //say(xyzw);
   }

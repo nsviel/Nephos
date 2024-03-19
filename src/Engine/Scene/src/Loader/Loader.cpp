@@ -30,49 +30,71 @@ Loader::~Loader(){
 }
 
 //Main functions
-utl::type::Set* Loader::load_data(utl::file::Path path){
+utl::type::Data* Loader::load_data(string path){
   utl::type::Set* set = nullptr;
   //---------------------------
 
-  if(!check_file_path(path.data)) return nullptr;
+  if(!check_file_path(path)) return nullptr;
+
+  utl::file::Path utl_path;
+  utl_path.data = path;
 
   //Load data from path
-  utl::file::Data* data = sce_format->import_from_path(path);
-  if(data == nullptr) return nullptr;
+  utl::file::Data* file_data = sce_format->import_from_path(utl_path);
+  if(file_data == nullptr) return nullptr;
+  if(file_data->type != utl::file::ENTITY) return nullptr;
+
+  utl::type::Data* data = create_data(file_data);
+
+  //Delete raw data
+  delete file_data;
+
+  //---------------------------
+  return data;
+}
+utl::type::Set* Loader::load_data(utl::file::Path file_path){
+  utl::type::Set* set = nullptr;
+  //---------------------------
+
+  if(!check_file_path(file_path.data)) return nullptr;
+
+  //Load data from path
+  utl::file::Data* file_data = sce_format->import_from_path(file_path);
+  if(file_data == nullptr) return nullptr;
 
   //Data is an entity
-  switch(data->type){
+  switch(file_data->type){
     case utl::file::ENTITY:{
-      set = load_entity(data);
+      set = load_entity(file_data);
       break;
     }
-    case utl::file::SET:{sayHello();
-      set = load_set(data);
+    case utl::file::SET:{
+      set = load_set(file_data);
       break;
     }
   }
 
   //Delete raw data
-  delete data;
+  delete file_data;
 
   //---------------------------
   return set;
 }
 
 //Data function
-utl::type::Set* Loader::load_entity(utl::file::Data* data){
+utl::type::Set* Loader::load_entity(utl::file::Data* file_data){
   //---------------------------
 
   utl::type::Set* set_scene = sce_database->get_set_scene();
-  utl::entity::Object* object = create_object(data);
+  utl::entity::Object* object = create_object(file_data);
 
   sce_set->insert_entity(set_scene, object);
 
   //---------------------------
   return set_scene;
 }
-utl::type::Set* Loader::load_set(utl::file::Data* data){
-  utl::file::Set* set = dynamic_cast<utl::file::Set*>(data);
+utl::type::Set* Loader::load_set(utl::file::Data* file_data){
+  utl::file::Set* set = dynamic_cast<utl::file::Set*>(file_data);
   //---------------------------
 
   utl::type::Set* set_scene = sce_database->get_set_scene();
@@ -108,25 +130,25 @@ bool Loader::check_file_path(std::string path){
   //---------------------------
   return true;
 }
-utl::entity::Object* Loader::create_object(utl::file::Data* data){
-  utl::file::Entity* entity = dynamic_cast<utl::file::Entity*>(data);
+utl::entity::Object* Loader::create_object(utl::file::Data* file_data){
+  utl::file::Entity* file_entity = dynamic_cast<utl::file::Entity*>(file_data);
   //---------------------------
 
   utl::entity::Object* object = new utl::entity::Object(node_engine);
-  object->name = entity->name;
-  object->data->path = entity->path.data;
-  object->data->file_format = utl::fct::info::get_format_from_path(entity->path.data);
-  object->data->size = entity->xyz.size();
-  object->data->topology.type = entity->draw_type;
+  object->name = file_entity->name;
+  object->data.path = file_entity->path.data;
+  object->data.file_format = utl::fct::info::get_format_from_path(file_entity->path.data);
+  object->data.size = file_entity->xyz.size();
+  object->data.topology.type = file_entity->draw_type;
 
-  object->data->xyz = entity->xyz;
-  object->data->rgb = entity->rgb;
-  object->data->uv = entity->uv;
+  object->data.xyz = file_entity->xyz;
+  object->data.rgb = file_entity->rgb;
+  object->data.uv = file_entity->uv;
 
   //If no color, fill it with white
-  if(object->data->rgb.size() == 0){
-    for(int i=0; i<entity->xyz.size(); i++){
-      object->data->rgb.push_back(vec4(1,1,1,1));
+  if(object->data.rgb.size() == 0){
+    for(int i=0; i<file_entity->xyz.size(); i++){
+      object->data.rgb.push_back(vec4(1,1,1,1));
     }
   }
 
@@ -134,6 +156,31 @@ utl::entity::Object* Loader::create_object(utl::file::Data* data){
 
   //---------------------------
   return object;
+}
+utl::type::Data* Loader::create_data(utl::file::Data* file_data){
+  utl::file::Entity* file_entity = dynamic_cast<utl::file::Entity*>(file_data);
+  //---------------------------
+
+  utl::type::Data* data = new utl::type::Data();
+  data->name = file_entity->name;
+  data->path = file_entity->path.data;
+  data->file_format = utl::fct::info::get_format_from_path(file_entity->path.data);
+  data->size = file_entity->xyz.size();
+  data->topology.type = file_entity->draw_type;
+
+  data->xyz = file_entity->xyz;
+  data->rgb = file_entity->rgb;
+  data->uv = file_entity->uv;
+
+  //If no color, fill it with white
+  if(data->rgb.size() == 0){
+    for(int i=0; i<file_entity->xyz.size(); i++){
+      data->rgb.push_back(vec4(1,1,1,1));
+    }
+  }
+
+  //---------------------------
+  return data;
 }
 
 }

@@ -54,9 +54,9 @@ void Sensor::init(){
   //Sensor cloud
   object = utl::entity::Object(node_engine);
   object.name = param.name;
-  object.data->name = "sensor::object::data";
-  object.data->topology.type = utl::topology::POINT;
-  object.data->nb_data_max = 10000000;
+  object.data.name = "sensor::object::data";
+  object.data.topology.type = utl::topology::POINT;
+  object.data.nb_data_max = 10000000;
   sce_entity->init_entity(&object);
 
   //---------------------------
@@ -102,7 +102,7 @@ void Sensor::set_visibility(bool value){
   //---------------------------
 
   this->is_visible = value;
-  object.data->is_visible = value;
+  object.data.is_visible = value;
   object.set_visibility(value);
 
   //---------------------------

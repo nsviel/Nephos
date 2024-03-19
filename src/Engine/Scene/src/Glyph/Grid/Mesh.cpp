@@ -19,22 +19,19 @@ Mesh::~Mesh(){}
 
 //Main function
 void Mesh::create(){
-  if(vec_data.size() != 0) return;
   //---------------------------
 
-  utl::type::Data* data = new utl::type::Data();
-  data->name = "grid::mesh::data";
-  data->width = 1;
-  data->is_visible = true;
-  data->topology.type = utl::topology::LINE;
-  data->unicolor = color_mesh;
-  this->vec_data.push_back(data);
+  data.name = "grid::mesh::data";
+  data.width = 1;
+  data.is_visible = true;
+  data.topology.type = utl::topology::LINE;
+  data.unicolor = color_mesh;
 
   //---------------------------
 }
 void Mesh::update_glyph(int nb_cell){
-  vec_data[0]->xyz.clear();
-  vec_data[0]->rgb.clear();
+  data.xyz.clear();
+  data.rgb.clear();
   //---------------------------
 
   this->construct_mesh(nb_cell);
@@ -45,8 +42,8 @@ void Mesh::update_glyph(int nb_cell){
 
 //Subfunction
 void Mesh::construct_mesh(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->xyz;
-  vector<vec4>& RGB = vec_data[0]->rgb;
+  vector<vec3>& XYZ = data.xyz;
+  vector<vec4>& RGB = data.rgb;
   float z = -0.002;
   //---------------------------
 
@@ -68,8 +65,8 @@ void Mesh::construct_mesh(int nb_cell){
   //---------------------------
 }
 void Mesh::construct_submesh(int nb_cell){
-  vector<vec3>& XYZ = vec_data[0]->xyz;
-  vector<vec4>& RGB = vec_data[0]->rgb;
+  vector<vec3>& XYZ = data.xyz;
+  vector<vec4>& RGB = data.rgb;
   float z = -0.003;
   //---------------------------
 

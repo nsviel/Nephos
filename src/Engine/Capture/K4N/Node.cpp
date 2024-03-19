@@ -49,6 +49,7 @@ void Node::init(){
   //---------------------------
 
   k4n_connection->start_thread();
+  k4n_model->init();
 
   //---------------------------
 }

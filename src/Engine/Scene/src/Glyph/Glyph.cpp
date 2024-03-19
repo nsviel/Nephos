@@ -34,7 +34,7 @@ void Glyph::init(){
   //---------------------------
 }
 
-//Glyph init 
+//Glyph init
 void Glyph::create_glyph_world(){
   utl::type::Set* set_world = sce_database->get_set_world();
   //---------------------------
@@ -92,6 +92,14 @@ void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
 }
 void Glyph::create_glyph(utl::type::Entity* entity, utl::entity::Glyph* glyph){
   //---------------------------
+
+  //Check if the glyph already exists
+  for(int i=0; i<entity->list_glyph.size(); i++){
+    utl::entity::Glyph* entity_glyph = *next(entity->list_glyph.begin(), i);
+    if(entity_glyph->UID == glyph->UID){
+      return;
+    }
+  }
 
   glyph->create();
   glyph->update_glyph(entity);

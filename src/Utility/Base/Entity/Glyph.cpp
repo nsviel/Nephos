@@ -12,7 +12,6 @@ namespace utl::entity{
 Glyph::Glyph(eng::Node* node_engine){
   //---------------------------
 
-  this->pose = new utl::type::Pose();
   this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
   this->is_visible = true;
   this->entity_type = "entity::Glyph";
@@ -29,10 +28,7 @@ void Glyph::clear(){
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
 
-  for(int j=0; j<vec_data.size(); j++){
-    utl::type::Data* data = vec_data[j];
-    vk_graphical->remove_data_in_engine(data);
-  }
+  vk_graphical->remove_data_in_engine(&data);
 
   //----------------------------
 }
@@ -40,9 +36,7 @@ void Glyph::update_data(){
   vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
   //----------------------------
 
-  for(int i=0; i<vec_data.size(); i++){
-    vk_graphical->insert_data_in_engine(vec_data[i], pose);
-  }
+  vk_graphical->insert_data_in_engine(&data, &pose);
 
   //----------------------------
 }
@@ -50,7 +44,7 @@ void Glyph::update_pose(){
   eng::cam::Control* cam_control = node_camera->get_camera_control();
   //----------------------------
 
-  cam_control->compute_camera_mvp(pose);
+  cam_control->compute_camera_mvp(&pose);
 
   //----------------------------
 }
@@ -58,7 +52,7 @@ void Glyph::update_pose(utl::type::Entity* entity){
   eng::cam::Control* cam_control = node_camera->get_camera_control();
   //----------------------------
 
-  cam_control->compute_camera_mvp(pose);
+  cam_control->compute_camera_mvp(&pose);
 
   //----------------------------
 }
@@ -66,10 +60,7 @@ void Glyph::set_visibility(bool value){
   //---------------------------
 
   this->is_visible = value;
-  for(int i=0; i<vec_data.size(); i++){
-    utl::type::Data* data = vec_data[i];
-    data->is_visible = value;
-  }
+  data.is_visible = value;
 
   //---------------------------
 }

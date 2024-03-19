@@ -22,15 +22,17 @@ public:
 
 public:
   //Main functions
-  utl::type::Set* load_data(utl::file::Path path);
+  utl::type::Data* load_data(string path);
+  utl::type::Set* load_data(utl::file::Path file_path);
 
   //Data function
-  utl::type::Set* load_entity(utl::file::Data* data);
-  utl::type::Set* load_set(utl::file::Data* data);
+  utl::type::Set* load_entity(utl::file::Data* file_data);
+  utl::type::Set* load_set(utl::file::Data* file_data);
 
   //Subfunction
   bool check_file_path(std::string path);
-  utl::entity::Object* create_object(utl::file::Data* data);
+  utl::entity::Object* create_object(utl::file::Data* file_data);
+  utl::type::Data* create_data(utl::file::Data* file_data);
 
 private:
   eng::Node* node_engine;

@@ -15,7 +15,7 @@ public:
 public:
   void create();
   void update_pose(utl::type::Entity* entity);
-  void construct(utl::type::Data* object);
+  void construct();
 
 private:
   float scale;

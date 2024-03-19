@@ -21,16 +21,13 @@ Axis::~Axis(){}
 
 //Main function
 void Axis::create(){
-  if(vec_data.size() != 0) return;
   //---------------------------
 
   //Create glyph
-  utl::type::Data* data = new utl::type::Data();
-  data->name = "object::axis::data";
-  data->width = 3;
-  data->is_visible = is_visible;
-  data->topology.type = utl::topology::LINE;
-  this->vec_data.push_back(data);
+  data.name = "object::axis::data";
+  data.width = 3;
+  data.is_visible = is_visible;
+  data.topology.type = utl::topology::LINE;
   this->construct();
 
   //---------------------------
@@ -39,18 +36,18 @@ void Axis::update_pose(utl::type::Entity* entity){
   //---------------------------
 
   utl::type::Pose* entity_pose = entity->get_pose();
-  pose->model = entity_pose->model;
+  pose.model = entity_pose->model;
 
   eng::cam::Control* cam_control = node_camera->get_camera_control();
-  cam_control->compute_camera_mvp(pose);
+  cam_control->compute_camera_mvp(&pose);
 
   //---------------------------
 }
 
 //Subfunction
 void Axis::construct(){
-  vector<vec4>& RGB = vec_data[0]->rgb;
-  vector<vec3>& XYZ = vec_data[0]->xyz;
+  vector<vec4>& RGB = data.rgb;
+  vector<vec3>& XYZ = data.xyz;
   //---------------------------
 
   //Location

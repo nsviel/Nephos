@@ -24,18 +24,15 @@ Normal::~Normal(){}
 
 //Main function
 void Normal::create(){
-  if(vec_data.size() != 0) return;
   //---------------------------
 
   //Create glyph
-  utl::type::Data* data = new utl::type::Data();
-  data->name = "object::normal::data";
-  data->width = width;
-  data->is_visible = is_visible;
-  data->nb_data_max = 1000000;
-  data->topology.type = utl::topology::LINE;
-  data->unicolor = vec4(0, 0.7, 0.7, 1);
-  this->vec_data.push_back(data);
+  data.name = "object::normal::data";
+  data.width = width;
+  data.is_visible = is_visible;
+  data.nb_data_max = 1000000;
+  data.topology.type = utl::topology::LINE;
+  data.unicolor = vec4(0, 0.7, 0.7, 1);
 
   //---------------------------
 }
@@ -43,10 +40,10 @@ void Normal::update_pose(utl::type::Entity* entity){
   //---------------------------
 
   utl::type::Pose* entity_pose = entity->get_pose();
-  pose->model = entity_pose->model;
+  pose.model = entity_pose->model;
 
   eng::cam::Control* cam_control = node_camera->get_camera_control();
-  cam_control->compute_camera_mvp(pose);
+  cam_control->compute_camera_mvp(&pose);
 
   //---------------------------
 }
@@ -63,12 +60,11 @@ void Normal::construct(utl::type::Entity* entity){
   //---------------------------
 
   //Data glyph
-  utl::type::Data* data_glyph = vec_data[0];
   vector<vec3> xyz_g;
   vector<vec4> rgb_g;
 
-  xyz_g.reserve(data_glyph->xyz.size());
-  rgb_g.reserve(data_glyph->rgb.size());
+  xyz_g.reserve(data.xyz.size());
+  rgb_g.reserve(data.rgb.size());
 
   //Data entity
   utl::type::Pose* pose_entity = entity->get_pose();
@@ -98,8 +94,8 @@ void Normal::construct(utl::type::Entity* entity){
     rgb_g.push_back(rgb_n);
   }
 
-  data_glyph->xyz = xyz_g;
-  data_glyph->rgb = rgb_g;
+  data.xyz = xyz_g;
+  data.rgb = rgb_g;
 
   //---------------------------
 }

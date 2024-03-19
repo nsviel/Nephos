@@ -20,22 +20,17 @@ Target::~Target(){}
 
 //Main function
 void Target::create(){
-  if(vec_data.size() != 0) return;
   //---------------------------
 
-  utl::type::Data* data = new utl::type::Data();
-  data->name = "cam::target::data";
-  data->width = 2;
-  data->is_visible = true;
-  data->topology.type = utl::topology::LINE;
-  data->unicolor = vec4(1, 1, 1, 0.2f);
-  this->vec_data.push_back(data);
-  this->construct(data);
+  data.name = "cam::target::data";
+  data.width = 2;
+  data.is_visible = true;
+  data.topology.type = utl::topology::LINE;
+  data.unicolor = vec4(1, 1, 1, 0.2f);
 
   //---------------------------
 }
 void Target::update_pose(utl::type::Entity* entity){
-  utl::type::Data* data = vec_data[0];
   //---------------------------
 
   if(utl::entity::Camera* camera = dynamic_cast<utl::entity::Camera*>(entity)){
@@ -45,18 +40,18 @@ void Target::update_pose(utl::type::Entity* entity){
     translation[0][3] = camera->cam_COM.x;
     translation[1][3] = camera->cam_COM.y;
     translation[2][3] = camera->cam_COM.z;
-    pose->model = translation;
-    data->is_visible = is_visible;
+    pose.model = translation;
+    data.is_visible = is_visible;
 
     eng::cam::Control* cam_control = node_camera->get_camera_control();
-    cam_control->compute_camera_mvp(pose);
+    cam_control->compute_camera_mvp(&pose);
   }
 
   //---------------------------
 }
-void Target::construct(utl::type::Data* data){
-  vector<vec3>& XYZ = data->xyz;
-  vector<vec4>& RGB = data->rgb;
+void Target::construct(){
+  vector<vec3>& XYZ = data.xyz;
+  vector<vec4>& RGB = data.rgb;
   //---------------------------
 
   XYZ.clear();

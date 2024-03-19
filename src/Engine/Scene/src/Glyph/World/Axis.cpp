@@ -19,15 +19,12 @@ Axis::~Axis(){}
 
 //Main function
 void Axis::create(){
-  if(vec_data.size() != 0) return;
   //---------------------------
 
-  utl::type::Data* data = new utl::type::Data();
-  data->name = "world::axis::data";
-  data->width = 4;
-  data->is_visible = true;
-  data->topology.type = utl::topology::LINE;
-  this->vec_data.push_back(data);
+  data.name = "world::axis::data";
+  data.width = 4;
+  data.is_visible = true;
+  data.topology.type = utl::topology::LINE;
   this->update_glyph();
 
   //---------------------------
@@ -42,8 +39,8 @@ void Axis::update_glyph(){
 
 //Subfunction
 void Axis::construct(){
-  vector<vec3>& XYZ = vec_data[0]->xyz;
-  vector<vec4>& RGB = vec_data[0]->rgb;
+  vector<vec3>& XYZ = data.xyz;
+  vector<vec4>& RGB = data.rgb;
   float z = 0;
   //---------------------------
 

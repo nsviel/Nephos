@@ -22,6 +22,7 @@ public:
 
 public:
   //Main function
+  void init();
   void determine_model(utl::media::Image* utl_image);
 
   //Subfunction
@@ -41,7 +42,7 @@ private:
   glyph::scene::Sphere* glyph_sphere;
 
   vector<vec3> vec_circle;
-  float sphere_diameter = 10;
+  float sphere_diameter = 0.1;
   int drawing_mode;
 };
 
