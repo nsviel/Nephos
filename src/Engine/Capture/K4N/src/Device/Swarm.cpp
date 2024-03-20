@@ -16,7 +16,7 @@ Swarm::Swarm(k4n::Node* node_k4n){
   prf::Node* node_profiler = node_k4n->get_node_profiler();
 
   this->node_k4n = node_k4n;
-  this->struct_k4n = node_k4n->get_struct_k4n();
+  this->struct_k4n = node_k4n->get_k4n_struct();
   this->profiler = node_profiler->get_prf_manager();
   this->sce_database = node_scene->get_scene_database();
   this->sce_set = new eng::scene::Set();

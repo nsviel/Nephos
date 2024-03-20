@@ -16,6 +16,7 @@ Calibration::Calibration(k4n::Node* node_k4n, bool* show_window){
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->k4n_model = node_k4n->get_k4n_model();
   this->k4n_hough = k4n_model->get_k4n_hough();
+  this->k4n_struct = node_k4n->get_k4n_struct();
   this->stream = new eng::render::gui::Stream(node_engine);
 
   this->show_window = show_window;
@@ -100,7 +101,7 @@ void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
   }
 
   //Mode
-  int& mode = sensor->calibration.hough_mode;
+  int& mode = k4n_struct->hough.mode;
   if(ImGui::RadioButton("Gradient", &mode, k4n::hough::GRADIENT)){
     k4n_hough->find_mode_parameter(mode);
   }
@@ -148,9 +149,9 @@ void Calibration::draw_result(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Circle drawing mode
-  ImGui::RadioButton("All sphere", &sensor->calibration.drawing_mode, k4n::hough::ALL);
+  ImGui::RadioButton("All sphere", &k4n_struct->hough.drawing_mode, k4n::hough::ALL);
   ImGui::SameLine();
-  ImGui::RadioButton("Best sphere", &sensor->calibration.drawing_mode, k4n::hough::BEST);
+  ImGui::RadioButton("Best sphere", &k4n_struct->hough.drawing_mode, k4n::hough::BEST);
 
   //Display number of detected spheres
   string nb_detection = to_string(k4n_hough->get_nb_detection());

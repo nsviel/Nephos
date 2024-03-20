@@ -15,7 +15,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
 
   eng::scene::Node* node_scene = node_k4n->get_node_scene();
 
-  this->k4n_struct = node_k4n->get_struct_k4n();
+  this->k4n_struct = node_k4n->get_k4n_struct();
   this->node_engine = node_k4n->get_node_engine();
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_set = new eng::scene::Set();
@@ -61,7 +61,7 @@ void Sensor::init(){
   sce_entity->init_entity(&object);
 
   //Sensor glyph
-  for(int i=0; i<10; i++){
+  for(int i=0; i<20; i++){
     glyph::scene::Sphere* sphere = new glyph::scene::Sphere(node_engine);
     sce_glyph->create_glyph(&object, sphere);
     vec4 color = math::random_color(i);

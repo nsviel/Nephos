@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/common.h>
 #include <Operation/Namespace.h>
-#include <K4N/src/Structure/Recorder.h>
+#include <K4N/src/Structure/K4N/Recorder.h>
 
 #include <k4a/k4a.hpp>
 #include <cstdint>

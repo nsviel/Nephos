@@ -22,22 +22,28 @@ struct Struct_k4n{
   //General scene structure
   //---------------------------
 
+  //Constructor
   Struct_k4n(k4n::Node* node_k4n){
     this->node_engine = node_k4n->get_node_engine();
     this->node_scene = node_k4n->get_node_scene();
     this->node_profiler = node_k4n->get_node_profiler();
   }
 
+  //Dependancies
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
   prf::Node* node_profiler;
 
+  //Device
   int UID = 0;
   int nb_connected_sensor = 0;
   bool connected_device_change = false;
   k4n::dev::Master* selected_master = nullptr;
   std::list<k4n::dev::Master*> list_master;
   std::list<k4n::dev::Sensor*> list_sensor;
+
+  //Structure
+  k4n::structure::Hough hough;
 
   //---------------------------
 };

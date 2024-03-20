@@ -6,6 +6,7 @@ namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::dev{class Sensor;}
+namespace k4n::structure{class Struct_k4n;}
 namespace k4n::calibration{class Hough;}
 namespace k4n::calibration{class Model;}
 namespace eng::render::gui{class Stream;}
@@ -32,6 +33,7 @@ public:
 
 private:
   k4n::dev::Swarm* k4n_swarm;
+  k4n::structure::Struct_k4n* k4n_struct;
   k4n::calibration::Hough* k4n_hough;
   k4n::calibration::Model* k4n_model;
   eng::render::gui::Stream* stream;

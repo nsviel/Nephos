@@ -41,7 +41,7 @@ public:
   inline k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
   inline k4n::calibration::Model* get_k4n_model(){return k4n_model;}
   inline k4n::thread::Pool* get_thread_pool(){return thread_pool;}
-  inline k4n::structure::Struct_k4n* get_struct_k4n(){return struct_k4n;}
+  inline k4n::structure::Struct_k4n* get_k4n_struct(){return struct_k4n;}
 
 private:
   //Dependancy
