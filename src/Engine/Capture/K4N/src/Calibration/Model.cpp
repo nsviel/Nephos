@@ -17,6 +17,7 @@ Model::Model(k4n::Node* node_k4n){
   this->node_engine = node_k4n->get_node_engine();
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->k4n_hough = new k4n::calibration::Hough();
+  this->k4n_image = new k4n::calibration::Image();
   this->ope_fitting = new ope::attribut::Fitting();
   this->sce_glyph = node_scene->get_scene_glyph();
 
@@ -48,11 +49,11 @@ void Model::detect_sphere(k4n::dev::Sensor* sensor){
 
   switch(drawing_mode){
     case k4n::hough::ALL:{
-      k4n_hough->draw_all_sphere(input, vec_circle, output);
+      k4n_image->draw_all_sphere(input, vec_circle, output);
       break;
     }
     case k4n::hough::BEST:{
-      k4n_hough->draw_best_sphere(input, vec_circle, output);
+      k4n_image->draw_best_sphere(input, vec_circle, output);
       break;
     }
   }

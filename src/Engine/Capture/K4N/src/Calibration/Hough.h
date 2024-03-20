@@ -11,11 +11,6 @@ enum Mode{
   GRADIENT_ALT = 1,
 };
 
-enum Drawing{
-  ALL = 0,
-  BEST = 1,
-};
-
 }
 
 namespace k4n::calibration{
@@ -37,9 +32,6 @@ public:
   //Subfunction
   void find_mode_parameter();
   void find_sphere_data(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
-  void draw_result(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
-  void draw_all_sphere(utl::media::Image* input, vector<vec3>& vec_circle, utl::media::Image* output);
-  void draw_best_sphere(utl::media::Image* input, vector<vec3>& vec_circle, utl::media::Image* output);
 
   inline int* get_mode(){return &mode;}
   inline int* get_ratio(){return &ratio;}

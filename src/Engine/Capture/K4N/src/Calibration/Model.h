@@ -6,6 +6,7 @@ namespace k4n{class Node;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::calibration{class Hough;}
+namespace k4n::calibration{class Image;}
 namespace ope::attribut{class Fitting;}
 namespace eng::scene{class Glyph;}
 namespace eng{class Node;}
@@ -38,6 +39,7 @@ private:
   eng::Node* node_engine;
   k4n::dev::Swarm* k4n_swarm;
   k4n::calibration::Hough* k4n_hough;
+  k4n::calibration::Image* k4n_image;
   ope::attribut::Fitting* ope_fitting;
   eng::scene::Glyph* sce_glyph;
 
