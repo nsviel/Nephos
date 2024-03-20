@@ -13,7 +13,7 @@ Player::Player(k4n::Node* node_k4n, bool* show_window){
 
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
-  this->struct_k4n = node_k4n->get_k4n_struct();
+  this->k4n_struct = node_k4n->get_k4n_struct();
   this->sce_set = new eng::scene::Set();
   this->gui_capture = new k4n::gui::Capture(node_k4n);
   this->gui_recorder = new k4n::gui::Recorder(node_k4n);

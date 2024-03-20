@@ -10,7 +10,7 @@ namespace k4n::processing{
 Calibration::Calibration(k4n::Node* node_k4n){
   //---------------------------
 
-  this->struct_k4n = node_k4n->get_k4n_struct();
+  this->k4n_struct = node_k4n->get_k4n_struct();
   this->thread_pool = node_k4n->get_thread_pool();
   this->k4n_model = node_k4n->get_k4n_model();
 

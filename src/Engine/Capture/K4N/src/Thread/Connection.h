@@ -24,7 +24,7 @@ public:
   void stop_thread();
 
 private:
-  k4n::structure::Struct_k4n* struct_k4n;
+  k4n::structure::Struct_k4n* k4n_struct;
   k4n::dev::Swarm* k4n_swarm;
   eng::scene::Set* sce_set;
 

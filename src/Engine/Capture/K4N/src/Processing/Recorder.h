@@ -31,7 +31,7 @@ public:
 
 private:
   k4n::thread::Pool* thread_pool;
-  k4n::structure::Struct_k4n* struct_k4n;
+  k4n::structure::Struct_k4n* k4n_struct;
   eng::scene::Exporter* sce_exporter;
   format::ply::Exporter* ply_exporter;
 

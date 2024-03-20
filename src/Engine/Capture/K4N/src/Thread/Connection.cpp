@@ -12,7 +12,7 @@ namespace k4n::thread{
 Connection::Connection(k4n::Node* node_k4n){
   //---------------------------
 
-  this->struct_k4n = node_k4n->get_k4n_struct();
+  this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->sce_set = new eng::scene::Set();
 
@@ -46,11 +46,11 @@ void Connection::run_thread(){
   while(thread_running){
     //Get number of connected devices
     int current_nb_dev = k4a_device_get_installed_count();
-    struct_k4n->nb_connected_sensor = current_nb_dev;
+    k4n_struct->device.nb_connected_sensor = current_nb_dev;
 
     //Action on changement
     if(current_nb_dev != nb_dev_old){
-      struct_k4n->connected_device_change = true;
+      k4n_struct->device.connected_device_change = true;
       nb_dev_old = current_nb_dev;
     }
 

@@ -48,7 +48,7 @@ private:
   eng::scene::Set* sce_set;
   k4n::Node* node_k4n;
   k4n::utils::Transformation* k4n_transfo;
-  k4n::structure::Struct_k4n* struct_k4n;
+  k4n::structure::Struct_k4n* k4n_struct;
   k4n::config::Configuration* k4n_config;
 };
 
