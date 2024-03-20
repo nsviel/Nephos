@@ -6,11 +6,13 @@
 namespace k4n::calibration{
 
 //Constructor / Destructor
-Hough::Hough(){
+Hough::Hough(k4n::Node* node_k4n){
   //---------------------------
 
+  this->k4n_struct = node_k4n->get_k4n_struct();
+
   this->find_mode_parameter(k4n::hough::ALL);
-  
+
   //---------------------------
 }
 Hough::~Hough(){}
@@ -34,9 +36,11 @@ vector<vec3> Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
 void Hough::preprocessing(cv::Mat& input, cv::Mat& output){
   //---------------------------
 
-  if(apply_canny){
+  if(k4n_struct->hough.apply_canny){
     // Perform canny edge detection
-    cv::Canny(input, output, canny_thres_lower, canny_thres_upper);
+    int& thresh_lower = k4n_struct->hough.canny_thres_lower;
+    int& thresh_upper = k4n_struct->hough.canny_thres_upper;
+    cv::Canny(input, output, thresh_lower, thresh_upper);
   }else{
     // Convert the image to grayscale
     cv::Mat gray_image;
@@ -49,8 +53,16 @@ vector<vec3> Hough::compute_hough_circle(cv::Mat& image){
   //---------------------------
 
   std::vector<cv::Vec3f> circles;
-  cv::HoughCircles(image, circles, hough_mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
-  this->nb_detection = circles.size();
+  int& mode = k4n_struct->hough.cv_mode;
+  int& ratio = k4n_struct->hough.ratio;
+  int& min_dist = k4n_struct->hough.min_dist;
+  int& min_radius = k4n_struct->hough.min_radius;
+  int& max_radius = k4n_struct->hough.max_radius;
+  float& param_1 = k4n_struct->hough.param_1;
+  float& param_2 = k4n_struct->hough.param_2;
+
+  cv::HoughCircles(image, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
+   k4n_struct->hough.nb_detection = circles.size();
 
   vector<vec3> vec_circle;
   for(int i=0; i<circles.size(); i++){
@@ -67,15 +79,15 @@ void Hough::find_mode_parameter(int mode){
 
   switch(mode){
     case k4n::hough::GRADIENT:{
-      this->param_1 = 100; //higher threshold for the Canny edge detector
-      this->param_2 = 40; //accumulator threshold for the circle centers at the detection stage
-      this->hough_mode = cv::HOUGH_GRADIENT;
+      k4n_struct->hough.param_1 = 100; //higher threshold for the Canny edge detector
+      k4n_struct->hough.param_2 = 40; //accumulator threshold for the circle centers at the detection stage
+      k4n_struct->hough.cv_mode = cv::HOUGH_GRADIENT;
       break;
     }
     case k4n::hough::GRADIENT_ALT:{
-      this->param_1 = 300;
-      this->param_2 = 0.9;
-      this->hough_mode = cv::HOUGH_GRADIENT_ALT;
+      k4n_struct->hough.param_1 = 300;
+      k4n_struct->hough.param_2 = 0.9;
+      k4n_struct->hough.cv_mode = cv::HOUGH_GRADIENT_ALT;
       break;
     }
   }

@@ -81,21 +81,18 @@ void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Hough parameter");
 
   //Canny
-  bool* apply_canny = k4n_hough->get_apply_canny();
-  ImGui::Checkbox("Canny", apply_canny);
+  ImGui::Checkbox("Canny", &k4n_struct->hough.apply_canny);
 
-  if(*apply_canny){
+  if(k4n_struct->hough.apply_canny){
     ImGui::Indent();
 
     //Lower threshold
-    int* threshold_lower = k4n_hough->get_canny_thres_lower();
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderInt("Lower threshold", threshold_lower, 0, 200);
+    ImGui::SliderInt("Lower threshold", &k4n_struct->hough.canny_thres_lower, 0, 200);
 
     //Upper threshold
-    int* threshold_upper = k4n_hough->get_canny_thres_upper();
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderInt("Upper threshold", threshold_upper, 0, 200);
+    ImGui::SliderInt("Upper threshold", &k4n_struct->hough.canny_thres_upper, 0, 200);
 
     ImGui::Unindent();
   }
@@ -114,32 +111,28 @@ void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
     ImGui::Indent();
 
     //Lower threshold
-    float* param_1 = k4n_hough->get_param_1();
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderFloat("Detector threshold", param_1, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
+    ImGui::SliderFloat("Detector threshold", &k4n_struct->hough.param_1, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
     //Upper threshold
-    float* param_2 = k4n_hough->get_param_2();
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderFloat("Accumulator threshold", param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
+    ImGui::SliderFloat("Accumulator threshold", &k4n_struct->hough.param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
     ImGui::Unindent();
   }
 
   //Ratio
-  int* ratio = k4n_hough->get_ratio();
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderInt("Ratio", ratio, 1, 100);
+  ImGui::SliderInt("Ratio", &k4n_struct->hough.ratio, 1, 100);
   ImGui::SetItemTooltip("This parameter affects the spacing of the accumulator cells, which in turn affects the sensitivity of the circle detection algorithm.");
 
   //Min distance
-  int* min_dist = k4n_hough->get_min_dist();
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderInt("Min distance", min_dist, 1, 100);
+  ImGui::SliderInt("Min distance", &k4n_struct->hough.min_dist, 1, 100);
 
   //Radius range
-  int* min_radius = k4n_hough->get_min_radius();
-  int* max_radius = k4n_hough->get_max_radius();
+  int* min_radius = &k4n_struct->hough.min_radius;
+  int* max_radius = &k4n_struct->hough.max_radius;
   ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 100, "Min: %d px", "Max: %d px");
 
   //---------------------------
@@ -154,7 +147,7 @@ void Calibration::draw_result(k4n::dev::Sensor* sensor){
   ImGui::RadioButton("Best sphere", &k4n_struct->hough.drawing_mode, k4n::hough::BEST);
 
   //Display number of detected spheres
-  string nb_detection = to_string(k4n_hough->get_nb_detection());
+  string nb_detection = to_string(k4n_struct->hough.nb_detection);
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
