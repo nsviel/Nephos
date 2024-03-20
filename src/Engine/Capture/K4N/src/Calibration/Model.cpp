@@ -45,8 +45,6 @@ void Model::detect_sphere(k4n::dev::Sensor* sensor){
   utl::media::Image* input = &sensor->image.ir;
   cv::Mat cv_input;
   k4n_image->convert_into_cv_image(input, cv_input);
-  if(cv_input.empty() == false)
-  cv_input = cv_input / 2;
   sensor->calibration.vec_circle = k4n_hough->sphere_detection(cv_input, sensor->calibration.cv_image);
 
   switch(drawing_mode){

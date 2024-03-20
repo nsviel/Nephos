@@ -56,7 +56,7 @@ void Colorizer::colorization_intensity(utl::type::Entity* entity, ope::color::Co
   //---------------------------
 
   for(int i=0; i<data->xyz.size(); i++){
-    float Is = data->Is[i] / config.intensity_division;
+    float Is = data->Is[i] / config.intensity_diviser;
     data->rgb[i] = vec4(Is, Is, Is, 1);
   }
 
@@ -67,7 +67,7 @@ void Colorizer::colorization_heatmap(utl::type::Entity* entity, ope::color::Conf
 
   switch(config.heatmap_mode){
     case ope::color::heatmap::INTENSITY:{
-      ope_heatmap->heatmap_intensity(entity, config.intensity_division);
+      ope_heatmap->heatmap_intensity(entity, config.intensity_diviser);
       break;
     }
     case ope::color::heatmap::HEIGHT:{

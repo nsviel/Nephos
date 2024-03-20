@@ -68,9 +68,8 @@ void Calibration::model_parameter(k4n::dev::Master* master){
   ImGui::SliderFloat("Sphere diameter", sphere_diameter, 0.001, 0.5f, "%.3f m");
 
   //Pixel diviser
-  int* pixel_diviser = k4n_model->get_pixel_diviser();
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderInt("Pixel diviser", pixel_diviser, 1, 5000);
+  ImGui::SliderInt("Pixel diviser", &master->operation.intensity_diviser, 1, 5000);
 
   //---------------------------
   ImGui::Separator();

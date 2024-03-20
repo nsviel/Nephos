@@ -13,7 +13,7 @@ struct Configuration{
 
   vec4 unicolor;
   vec2 heatmap_range_height;
-  float intensity_division;
+  float intensity_diviser;
   int color_mode;
   int heatmap_mode;
 

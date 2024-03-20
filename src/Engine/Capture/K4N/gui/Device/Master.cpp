@@ -130,7 +130,7 @@ void Master::show_colorization(k4n::dev::Master* master){
   //Intensity cursor
   if(master->operation.color_mode == ope::color::INTENSITY){
     ImGui::SetNextItemWidth(100);
-    ImGui::SliderInt("Intensity division", &master->operation.intensity_division, 1, 5000);
+    ImGui::SliderInt("Intensity division", &master->operation.intensity_diviser, 1, 5000);
   }
 
   //Heatmap mode
@@ -145,7 +145,7 @@ void Master::show_colorization(k4n::dev::Master* master){
     //Intensity heatmap
     if(master->operation.heatmap_mode == ope::color::heatmap::INTENSITY){
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("I diviser", &master->operation.intensity_division, 1, 5000);
+      ImGui::SliderInt("I diviser", &master->operation.intensity_diviser, 1, 5000);
     }
 
     //Height heatmap

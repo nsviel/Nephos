@@ -123,7 +123,7 @@ void Operation::colorize_object(k4n::dev::Sensor* sensor){
   ope::color::Configuration config;
   config.color_mode = sensor->master->operation.color_mode;
   config.heatmap_mode = sensor->master->operation.heatmap_mode;
-  config.intensity_division = sensor->master->operation.intensity_division;
+  config.intensity_diviser = sensor->master->operation.intensity_diviser;
   config.heatmap_range_height = sensor->master->operation.range_height;
   config.unicolor = sensor->master->operation.unicolor;
 
