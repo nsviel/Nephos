@@ -11,6 +11,7 @@ struct Calibration{
   //---------------------------
 
   cv::Mat cv_image;
+  cv::Mat cv_subimage;
   cv::Point cv_center;
   float cv_BB_scale = 2;
   int cv_radius = 0;

@@ -23,7 +23,7 @@ public:
 
 public:
   //Main function
-  vector<vec3> sphere_detection(utl::media::Image* input, cv::Mat& output);
+  vector<vec3> sphere_detection(cv::Mat& input, cv::Mat& output);
 
   //Algo function
   void preprocessing(cv::Mat& input, cv::Mat& output);

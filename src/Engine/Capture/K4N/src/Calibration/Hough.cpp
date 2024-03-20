@@ -14,16 +14,12 @@ Hough::Hough(){
 Hough::~Hough(){}
 
 //Main function
-vector<vec3> Hough::sphere_detection(utl::media::Image* input, cv::Mat& output){
-  if(input == nullptr) return vector<vec3>();
-  if(input->data.size() == 0) return vector<vec3>();
+vector<vec3> Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
+  if(input.empty()) return vector<vec3>();
   //------------------------
 
-  // Create an Hough Mat object from the image data
-  cv::Mat image_raw(input->height, input->width, CV_8UC4, input->data.data());
-
   //Pre processing
-  this->preprocessing(image_raw, output);
+  this->preprocessing(input, output);
 
   // Perform Hough Transform to detect lines
   vector<vec3> vec_circle = compute_hough_circle(output);

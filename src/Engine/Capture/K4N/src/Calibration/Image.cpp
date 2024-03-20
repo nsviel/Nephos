@@ -23,6 +23,7 @@ void Image::draw_all_sphere(k4n::dev::Sensor* sensor){
   this->convert_into_rgba(sensor->calibration.cv_image, result);
   this->draw_circle(result, sensor->calibration.vec_circle);
   this->draw_boundingbox(result, sensor);
+  this->convert_into_subimage(result, sensor);
   this->convert_into_utl_image(result, &sensor->image.hough);
 
   //------------------------
@@ -72,11 +73,43 @@ void Image::draw_best_sphere(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
+void Image::convert_into_cv_image(utl::media::Image* input, cv::Mat& output){
+  //------------------------
+
+  output.release();
+  if(input == nullptr) return;
+  if(input->data.size() == 0) return;
+
+  output = cv::Mat(input->height, input->width, CV_8UC4, input->data.data());
+
+  //------------------------
+}
 void Image::convert_into_rgba(cv::Mat& input, cv::Mat& output){
   //------------------------
 
   // Convert edges to BGR for drawing
   cv::cvtColor(input, output, cv::COLOR_RGBA2BGRA);
+
+  //------------------------
+}
+void Image::convert_into_subimage(cv::Mat& image, k4n::dev::Sensor* sensor){
+  //------------------------
+
+  cv::Point& center = sensor->calibration.cv_center;
+  float radius = (float)sensor->calibration.cv_radius * sensor->calibration.cv_BB_scale;
+
+  // Calculate the top-left corner coordinates of the bounding box
+  int x = center.x - radius;
+  int y = center.y - radius;
+
+  //Check if coordinate are within image bounds
+  if(x >= 0 && y >= 0 && x + radius*2 <= image.cols && y + radius*2 <= image.rows){
+    // Create a Rect object representing the bounding box
+    cv::Rect bounding_box(x, y, radius * 2, radius * 2);
+
+    // Extract the subimage from the original image using the bounding box
+    sensor->calibration.cv_subimage = image(bounding_box).clone();
+  }
 
   //------------------------
 }
@@ -125,7 +158,7 @@ void Image::draw_boundingbox(cv::Mat& image, k4n::dev::Sensor* sensor){
   sensor->calibration.cv_radius = cvRound(sensor->calibration.vec_circle[0][2]);
 
   cv::Point& center = sensor->calibration.cv_center;
-  int& radius = sensor->calibration.cv_radius * sensor->calibration.cv_BB_scale;
+  float radius = (float)sensor->calibration.cv_radius * sensor->calibration.cv_BB_scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size
