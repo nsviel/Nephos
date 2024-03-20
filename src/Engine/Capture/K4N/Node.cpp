@@ -23,7 +23,7 @@ Node::Node(eng::capture::Node* node_capture){
 
   //Child
   this->thread_pool = new k4n::thread::Pool(50);
-  this->k4n_struct = new k4n::structure::Struct_k4n(this);
+  this->k4n_struct = new k4n::structure::K4N(this);
   this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::thread::Connection(this);
   this->k4n_model = new k4n::calibration::Model(this);

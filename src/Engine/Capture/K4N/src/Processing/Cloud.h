@@ -8,7 +8,7 @@ namespace k4n{class Node;}
 namespace k4n::processing{class Operation;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
-namespace k4n::structure{class Struct_k4n;}
+namespace k4n::structure{class K4N;}
 namespace k4n::thread{class Pool;}
 
 

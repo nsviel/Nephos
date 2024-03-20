@@ -3,7 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace k4n{class Node;}
-namespace k4n::structure{class Struct_k4n;}
+namespace k4n::structure{class K4N;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::thread{class Pool;}
 namespace k4n::calibration{class Model;}
@@ -31,7 +31,7 @@ public:
 
 private:
   k4n::thread::Pool* thread_pool;
-  k4n::structure::Struct_k4n* k4n_struct;
+  k4n::structure::K4N* k4n_struct;
   k4n::calibration::Model* k4n_model;
 
   bool idle = true;

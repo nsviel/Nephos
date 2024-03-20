@@ -18,12 +18,12 @@ enum Mode{
 };
 
 
-struct Struct_k4n{
+struct K4N{
   //General scene structure
   //---------------------------
 
   //Constructor
-  Struct_k4n(k4n::Node* node_k4n){
+  K4N(k4n::Node* node_k4n){
     this->node_engine = node_k4n->get_node_engine();
     this->node_scene = node_k4n->get_node_scene();
     this->node_profiler = node_k4n->get_node_profiler();

@@ -11,7 +11,7 @@ namespace k4n::gui{class Player;}
 namespace k4n::gui{class Stream;}
 namespace k4n::gui{class Control;}
 namespace k4n::gui{class Calibration;}
-namespace k4n::structure{class Struct_k4n;}
+namespace k4n::structure{class K4N;}
 namespace k4n::thread{class Pool;}
 namespace k4n::calibration{class Model;}
 
@@ -41,7 +41,7 @@ public:
   inline k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
   inline k4n::calibration::Model* get_k4n_model(){return k4n_model;}
   inline k4n::thread::Pool* get_thread_pool(){return thread_pool;}
-  inline k4n::structure::Struct_k4n* get_k4n_struct(){return k4n_struct;}
+  inline k4n::structure::K4N* get_k4n_struct(){return k4n_struct;}
 
 private:
   //Dependancy
@@ -51,7 +51,7 @@ private:
 
   //Child
   k4n::thread::Pool* thread_pool;
-  k4n::structure::Struct_k4n* k4n_struct;
+  k4n::structure::K4N* k4n_struct;
   k4n::dev::Swarm* k4n_swarm;
   k4n::thread::Connection* k4n_connection;
   k4n::calibration::Model* k4n_model;

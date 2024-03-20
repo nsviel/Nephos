@@ -83,7 +83,7 @@ private:
   eng::scene::Glyph* sce_glyph;
   k4n::thread::Capture* k4n_capture;
   k4n::thread::Playback* k4n_playback;
-  k4n::structure::Struct_k4n* k4n_struct;
+  k4n::structure::K4N* k4n_struct;
 
   bool thread_running = false;
 };
