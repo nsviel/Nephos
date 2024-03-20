@@ -13,7 +13,7 @@ Model::Model(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->k4n_hough = new k4n::calibration::Hough(node_k4n);
-  this->k4n_image = new k4n::calibration::Image();
+  this->k4n_image = new k4n::calibration::Image(node_k4n);
   this->k4n_glyph = new k4n::calibration::Glyph(node_k4n);
   this->ope_fitting = new ope::attribut::Fitting();
 
@@ -40,6 +40,7 @@ void Model::detect_sphere(k4n::dev::Sensor* sensor){
   cv::Mat cv_input;
   k4n_image->convert_into_cv_image(input, cv_input);
   sensor->calibration.vec_circle = k4n_hough->sphere_detection(cv_input, sensor->calibration.cv_image);
+  sensor->calibration.nb_detection = sensor->calibration.vec_circle.size();
 
   switch(k4n_struct->hough.drawing_mode){
     case k4n::hough::ALL:{

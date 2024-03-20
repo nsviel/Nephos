@@ -62,7 +62,6 @@ vector<vec3> Hough::compute_hough_circle(cv::Mat& image){
   float& param_2 = k4n_struct->hough.param_2;
 
   cv::HoughCircles(image, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
-   k4n_struct->hough.nb_detection = circles.size();
 
   vector<vec3> vec_circle;
   for(int i=0; i<circles.size(); i++){

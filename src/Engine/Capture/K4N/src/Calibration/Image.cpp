@@ -6,9 +6,10 @@
 namespace k4n::calibration{
 
 //Constructor / Destructor
-Image::Image(){
+Image::Image(k4n::Node* node_k4n){
   //---------------------------
 
+  this->k4n_struct = node_k4n->get_k4n_struct();
 
   //---------------------------
 }
@@ -22,7 +23,7 @@ void Image::draw_all_sphere(k4n::dev::Sensor* sensor){
   cv::Mat result;
   this->convert_into_rgba(sensor->calibration.cv_image, result);
   this->draw_circle(result, sensor->calibration.vec_circle);
-  this->draw_boundingbox(result, sensor);
+  this->draw_bounding_box(result, sensor);
   this->convert_into_subimage(result, sensor);
   this->convert_into_utl_image(result, &sensor->image.hough);
 
@@ -96,7 +97,7 @@ void Image::convert_into_subimage(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
   cv::Point& center = sensor->calibration.cv_center;
-  float radius = (float)sensor->calibration.cv_radius * sensor->calibration.cv_BB_scale;
+  float radius = (float)sensor->calibration.cv_radius * k4n_struct->hough.scale_bounding_box;
 
   // Calculate the top-left corner coordinates of the bounding box
   int x = center.x - radius;
@@ -150,7 +151,7 @@ void Image::draw_circle(cv::Mat& image, vector<vec3>& vec_circle){
 
   //------------------------
 }
-void Image::draw_boundingbox(cv::Mat& image, k4n::dev::Sensor* sensor){
+void Image::draw_bounding_box(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
   if(sensor->calibration.vec_circle.size() == 0) return;
@@ -158,7 +159,7 @@ void Image::draw_boundingbox(cv::Mat& image, k4n::dev::Sensor* sensor){
   sensor->calibration.cv_radius = cvRound(sensor->calibration.vec_circle[0][2]);
 
   cv::Point& center = sensor->calibration.cv_center;
-  float radius = (float)sensor->calibration.cv_radius * sensor->calibration.cv_BB_scale;
+  float radius = (float)sensor->calibration.cv_radius * k4n_struct->hough.scale_bounding_box;
 
   //Draw cross marker
   int markerSize = 10; // Marker size

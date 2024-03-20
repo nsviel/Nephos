@@ -69,6 +69,10 @@ void Calibration::model_parameter(k4n::dev::Sensor* sensor){
   ImGui::SetNextItemWidth(150);
   ImGui::SliderFloat("Sphere diameter", &sensor->calibration.sphere_diameter, 0.001, 0.5f, "%.3f m");
 
+  //Calibration sphere radius
+  ImGui::SetNextItemWidth(150);
+  ImGui::SliderFloat("Bounding box factor", &k4n_struct->hough.scale_bounding_box, 1.0f, 10.0f, "%.2fx");
+
   //Pixel diviser
   ImGui::SetNextItemWidth(150);
   ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
@@ -153,7 +157,7 @@ void Calibration::draw_result(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Display number of detected spheres
-  string nb_detection = to_string(k4n_struct->hough.nb_detection);
+  string nb_detection = to_string(sensor->calibration.nb_detection);
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
