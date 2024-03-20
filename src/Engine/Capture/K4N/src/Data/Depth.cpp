@@ -14,14 +14,16 @@ Depth::Depth(){
 Depth::~Depth(){}
 
 //Main function
-std::vector<uint8_t> Depth::convert_depth_into_color(k4n::dev::Sensor* sensor){
+void Depth::convert_depth_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_t>& output){
   k4n::structure::Data* data = &sensor->depth.data;
   uint8_t* inputBuffer = data->buffer;
   uint16_t range_min = sensor->depth.config.range_min;
   uint16_t range_max = sensor->depth.config.range_max;
   //---------------------------
 
-  std::vector<uint8_t> outputBuffer(data->size * 4, 0);
+  output.clear();
+  output = std::vector<uint8_t>(data->size * 4, 0);
+
   for(int i=0, j=0; i<data->size; i+=2, j+=4){
     uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
 
@@ -41,14 +43,13 @@ std::vector<uint8_t> Depth::convert_depth_into_color(k4n::dev::Sensor* sensor){
       ImGui::ColorConvertHSVtoRGB(hue, 1.f, 1.f, R, G, B);
     }
 
-    outputBuffer[j] = static_cast<uint8_t>(R * 255);
-    outputBuffer[j + 1] = static_cast<uint8_t>(G * 255);
-    outputBuffer[j + 2] = static_cast<uint8_t>(B * 255);
-    outputBuffer[j + 3] = 255;
+    output[j] = static_cast<uint8_t>(R * 255);
+    output[j + 1] = static_cast<uint8_t>(G * 255);
+    output[j + 2] = static_cast<uint8_t>(B * 255);
+    output[j + 3] = 255;
   }
 
   //---------------------------
-  return outputBuffer;
 }
 void Depth::convert_depth_into_color_(k4n::dev::Sensor* sensor){
   k4n::structure::Data* data = &sensor->depth.data;

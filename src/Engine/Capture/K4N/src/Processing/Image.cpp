@@ -112,7 +112,7 @@ void Image::copy_image_depth(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  image->depth.data = k4n_depth->convert_depth_into_color(sensor);
+  k4n_depth->convert_depth_into_color(sensor, image->depth.data);
   image->depth.size = image->depth.data.size();
   image->depth.width = sensor->depth.data.width;
   image->depth.height = sensor->depth.data.height;
@@ -125,7 +125,7 @@ void Image::copy_image_ir(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  image->ir.data = k4n_infrared->convert_ir_into_color(sensor);
+  k4n_infrared->convert_ir_into_color(sensor, image->ir.data);
   image->ir.size = image->ir.data.size();
   image->ir.width = sensor->ir.data.width;
   image->ir.height = sensor->ir.data.height;

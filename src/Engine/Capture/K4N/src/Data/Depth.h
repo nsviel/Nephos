@@ -16,7 +16,7 @@ public:
 
 public:
   //Main function
-  std::vector<uint8_t> convert_depth_into_color(k4n::dev::Sensor* sensor);
+  void convert_depth_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_t>& output);
   void convert_depth_into_color_(k4n::dev::Sensor* sensor);
   void find_depth_mode_range(k4n::dev::Sensor* sensor);
 
