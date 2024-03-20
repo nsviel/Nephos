@@ -13,13 +13,13 @@ Calibration::Calibration(k4n::Node* node_k4n, bool* show_window){
 
   eng::Node* node_engine = node_k4n->get_node_engine();
 
+  this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->k4n_model = node_k4n->get_k4n_model();
   this->k4n_hough = k4n_model->get_k4n_hough();
   this->stream = new eng::render::gui::Stream(node_engine);
 
   this->show_window = show_window;
   this->name = "Calibration";
-  this->utl_image = new utl::media::Image();
 
   //---------------------------
 }
@@ -27,6 +27,7 @@ Calibration::~Calibration(){}
 
 //Main function
 void Calibration::run_panel(){
+  k4n::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
   if(*show_window){
@@ -35,7 +36,7 @@ void Calibration::run_panel(){
     ImGui::SetNextWindowSizeConstraints(ImVec2(100, 400), ImVec2(FLT_MAX, FLT_MAX));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel();
+      this->design_panel(master);
 
       ImGui::End();
     }
@@ -45,18 +46,18 @@ void Calibration::run_panel(){
 
   //---------------------------
 }
-void Calibration::design_panel(){
+void Calibration::design_panel(k4n::dev::Master* master){
   //---------------------------
 
-  this->model_parameter();
-  this->hough_parameter();
-  this->draw_result();
+  this->model_parameter(master);
+  this->hough_parameter(master);
+  this->draw_result(master);
 
   //---------------------------
 }
 
 //Subfunction
-void Calibration::model_parameter(){
+void Calibration::model_parameter(k4n::dev::Master* master){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
@@ -69,7 +70,7 @@ void Calibration::model_parameter(){
   //---------------------------
   ImGui::Separator();
 }
-void Calibration::hough_parameter(){
+void Calibration::hough_parameter(k4n::dev::Master* master){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Hough parameter");
@@ -139,10 +140,8 @@ void Calibration::hough_parameter(){
   //---------------------------
   ImGui::Separator();
 }
-void Calibration::draw_result(){
+void Calibration::draw_result(k4n::dev::Master* master){
   //---------------------------
-
-  k4n_model->determine_model(utl_image);
 
   //Circle drawing mode
   int* mode = k4n_model->get_drawing_mode();
@@ -157,9 +156,12 @@ void Calibration::draw_result(){
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
 
   //Display image with detected spheres
-  if(utl_image->size == 0) return;
-  ImVec2 image_size = ImGui::GetContentRegionAvail();
-  stream->draw_stream(utl_image, image_size);
+  utl::type::Entity* entity = master->selected_entity;
+  if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->selected_entity)){
+    if(sensor->image.hough.size == 0) return;
+    ImVec2 image_size = ImGui::GetContentRegionAvail();
+    stream->draw_stream(&sensor->image.hough, image_size);
+  }
 
   //---------------------------
   ImGui::Separator();

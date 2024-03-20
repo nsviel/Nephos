@@ -23,8 +23,7 @@ public:
 
 public:
   //Main function
-  void init();
-  void determine_model(utl::media::Image* utl_image);
+  void determine_model(k4n::dev::Sensor* sensor);
 
   //Subfunction
   void detect_sphere(utl::media::Image* input, utl::media::Image* gui_image);

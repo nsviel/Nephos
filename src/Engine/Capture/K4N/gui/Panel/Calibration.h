@@ -3,6 +3,8 @@
 #include <Utility/Specific/common.h>
 
 namespace k4n{class Node;}
+namespace k4n::dev{class Master;}
+namespace k4n::dev{class Swarm;}
 namespace k4n::calibration{class Hough;}
 namespace k4n::calibration{class Model;}
 namespace eng::render::gui{class Stream;}
@@ -20,18 +22,18 @@ public:
 public:
   //Main function
   void run_panel();
-  void design_panel();
+  void design_panel(k4n::dev::Master* master);
 
   //Subfunction
-  void model_parameter();
-  void hough_parameter();
-  void draw_result();
+  void model_parameter(k4n::dev::Master* master);
+  void hough_parameter(k4n::dev::Master* master);
+  void draw_result(k4n::dev::Master* master);
 
 private:
+  k4n::dev::Swarm* k4n_swarm;
   k4n::calibration::Hough* k4n_hough;
   k4n::calibration::Model* k4n_model;
   eng::render::gui::Stream* stream;
-  utl::media::Image* utl_image = nullptr;
 
   string name;
   bool* show_window;

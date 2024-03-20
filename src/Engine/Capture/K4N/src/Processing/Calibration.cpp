@@ -12,6 +12,7 @@ Calibration::Calibration(k4n::Node* node_k4n){
 
   this->struct_k4n = node_k4n->get_struct_k4n();
   this->thread_pool = node_k4n->get_thread_pool();
+  this->k4n_model = node_k4n->get_k4n_model();
 
   //---------------------------
 }
@@ -36,7 +37,7 @@ void Calibration::run_thread(k4n::dev::Sensor* sensor){
   tasker->loop_begin();
 
   tasker->task_begin("hough");
-
+  k4n_model->determine_model(sensor);
   tasker->task_end("hough");
 
   tasker->loop_end();

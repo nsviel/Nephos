@@ -27,20 +27,14 @@ Model::Model(k4n::Node* node_k4n){
 Model::~Model(){}
 
 //Main function
-void Model::init(){
-  //---------------------------
-
-
-  //---------------------------
-}
-void Model::determine_model(utl::media::Image* gui_image){
+void Model::determine_model(k4n::dev::Sensor* sensor){
   k4n::dev::Master* master = k4n_swarm->get_selected_master();
   utl::type::Entity* entity = master->selected_entity;
   //---------------------------
 
   if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
     utl::media::Image* raw_image = &sensor->image.ir;
-    this->detect_sphere(raw_image, gui_image);
+    this->detect_sphere(raw_image, &sensor->image.hough);
     this->retrieve_sphere_data(raw_image);
     this->draw_glyph_in_cloud(sensor);
   }
