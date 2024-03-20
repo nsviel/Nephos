@@ -41,7 +41,6 @@ private:
   ope::attribut::Fitting* ope_fitting;
   eng::scene::Glyph* sce_glyph;
 
-  vector<glyph::scene::Sphere*> vec_sphere;
   vector<vec3> vec_circle;
   float sphere_diameter = 0.1;
   int drawing_mode;

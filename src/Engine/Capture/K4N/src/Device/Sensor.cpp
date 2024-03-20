@@ -57,8 +57,16 @@ void Sensor::init(){
   object.data.name = "sensor::object::data";
   object.data.topology.type = utl::topology::POINT;
   object.data.nb_data_max = 10000000;
-  object.pose.model[2][3] = 1; 
+  object.pose.model[2][3] = 1;
   sce_entity->init_entity(&object);
+
+  //Sensor glyph
+  for(int i=0; i<10; i++){
+    glyph::scene::Sphere* sphere = new glyph::scene::Sphere(node_engine);
+    sce_glyph->create_glyph(&object, sphere);
+
+    calibration.vec_sphere_glyph.push_back(sphere);
+  }
 
   //---------------------------
 }

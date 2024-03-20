@@ -64,20 +64,13 @@ void Model::detect_sphere(utl::media::Image* input, utl::media::Image* gui_image
 void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  static bool a = true;
-  if(a)
-  for(int i=0; i<10; i++){
-    glyph::scene::Sphere* sphere = new glyph::scene::Sphere(node_engine);
-    vec_sphere.push_back(sphere);
-    sce_glyph->create_glyph(sensor->get_object(), sphere);
-  }
-  a = false;
+
 
 
   uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
   int width = sensor->depth.data.width;
 
-  vec_sphere[0]->reset_glyph();
+  sensor->calibration.vec_sphere_glyph[0]->reset_glyph();
 
   for(int i=0; i<vec_circle.size(); i++){
     vec3& circle = vec_circle[i];
@@ -109,7 +102,7 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
     pose = pose + dir * sphere_diameter;
 
 
-    vec_sphere[0]->move_sphere(pose);
+    sensor->calibration.vec_sphere_glyph[0]->move_sphere(pose);
 
 
   }
