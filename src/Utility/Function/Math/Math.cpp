@@ -1,5 +1,7 @@
 #include "Math.h"
 
+#include <random>
+
 
 namespace math{
 
@@ -752,6 +754,22 @@ glm::vec4 random_color(){
   float G = float(rand()) / RAND_MAX;
   float B = float(rand()) / RAND_MAX;
   glm::vec4 color = glm::vec4(R, G, B, 1.0f);
+
+  //---------------------------
+  return color;
+}
+glm::vec4 random_color(int seed){
+  //---------------------------
+
+  //Assign a specific random color
+  std::mt19937 rng(seed);
+
+  // Generate random values for R, G, and B channels
+  std::uniform_real_distribution<double> dist(0.0f, 1.0f);
+  float r = dist(rng);
+  float g = dist(rng);
+  float b = dist(rng);
+  glm::vec4 color = glm::vec4(r, g, b, 1);
 
   //---------------------------
   return color;

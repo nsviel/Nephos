@@ -22,6 +22,8 @@ public:
   void reset_glyph();
 
   //Subfunction
+  void construct();
+  void assign_color(vec4 color);
   void move_sphere(vec3 pose);
 
 private:

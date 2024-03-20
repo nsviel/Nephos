@@ -64,6 +64,8 @@ void Sensor::init(){
   for(int i=0; i<10; i++){
     glyph::scene::Sphere* sphere = new glyph::scene::Sphere(node_engine);
     sce_glyph->create_glyph(&object, sphere);
+    vec4 color = math::random_color(i);
+    sphere->assign_color(color);
 
     calibration.vec_sphere_glyph.push_back(sphere);
   }

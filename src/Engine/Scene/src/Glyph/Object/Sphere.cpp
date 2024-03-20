@@ -31,16 +31,11 @@ Sphere::~Sphere(){}
 void Sphere::create(){
   //---------------------------
 
-  data = *sce_loader->load_data(path);
   data.name = "world::sphere::data";
   data.is_visible = true;
   data.topology.type = utl::topology::TRIANGLE;
 
-  vector<vec4>& rgb = data.rgb;
-  for(int j=0; j<data.xyz.size(); j++){
-    rgb[j] = color;
-  }
-
+  this->construct();
   this->init();
 
   //---------------------------
@@ -62,6 +57,30 @@ void Sphere::reset_glyph(){
 }
 
 //Subfunction
+void Sphere::construct(){
+  //---------------------------
+
+  //Retrieve data from file
+  data = *sce_loader->load_data(path);
+
+  //Assign color
+  vector<vec4>& rgb = data.rgb;
+  for(int j=0; j<data.xyz.size(); j++){
+    rgb[j] = color;
+  }
+
+  //---------------------------
+}
+void Sphere::assign_color(vec4 color){
+  //---------------------------
+
+  vector<vec4>& rgb = data.rgb;
+  for(int j=0; j<data.xyz.size(); j++){
+    rgb[j] = color;
+  }
+
+  //---------------------------
+}
 void Sphere::move_sphere(vec3 coordinate){
   //---------------------------
 
