@@ -14,7 +14,7 @@ namespace k4n::dev{class Master;}
 namespace k4n::thread{class Capture;}
 namespace k4n::thread{class Playback;}
 namespace k4n::structure{class Param;}
-namespace k4n::structure{class Synchro;}
+namespace k4n::structure{class Playback;}
 namespace k4n::structure{class Recorder;}
 namespace k4n::structure{class Color;}
 namespace k4n::structure{class Depth;}
@@ -67,8 +67,7 @@ public:
   k4n::structure::Image image;
 
   k4n::structure::Param param;
-  k4n::structure::Synchro synchro;
-  k4n::structure::Recorder recorder;
+  k4n::structure::Playback playback;
   k4n::structure::Calibration calibration;
 
   k4n::structure::Color color;

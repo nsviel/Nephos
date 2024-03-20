@@ -89,8 +89,8 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
   }
 
   //Sensor parameter
-  sensor->recorder.folder = path_dir;
-  sensor->recorder.mode = k4n::recorder::PLY;
+  sensor->master->recorder.folder = path_dir;
+  sensor->master->recorder.mode = k4n::recorder::PLY;
 
   //Path
   string master_name = master->recorder.filename;
@@ -105,7 +105,7 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
-  k4a::record& recorder = sensor->recorder.handle;
+  k4a::record& recorder = sensor->param.recorder;
   k4n::dev::Master* master = sensor->master;
   k4a::capture* capture = sensor->param.capture;
   //---------------------------
@@ -132,8 +132,6 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
     //Set info
     master->recorder.path = path;
     master->recorder.file_size = 0;
-    master->recorder.ts_beg = master->player.ts_cur;
-    sensor->recorder.folder = master->recorder.folder;
   }
 
   //Recording

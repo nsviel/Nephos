@@ -3,6 +3,7 @@
 #include <Utility/Namespace.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
+#include <k4arecord/record.hpp>
 #include <string>
 
 
@@ -32,6 +33,7 @@ struct Param{
   k4a::calibration calibration;
   k4a::transformation transformation;
   k4a::capture* capture;
+  k4a::record recorder;
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
   k4a_hardware_version_t version = {0};
 

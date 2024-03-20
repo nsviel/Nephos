@@ -43,7 +43,7 @@ void Recorder::recorder_path(k4n::dev::Sensor* sensor){
 
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->recorder.folder.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.folder.c_str());
 
     //File
     ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -52,7 +52,7 @@ void Recorder::recorder_path(k4n::dev::Sensor* sensor){
 
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->recorder.filename.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.filename.c_str());
 
     ImGui::EndTable();
   }

@@ -89,11 +89,11 @@ void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
   sensor->param.fps_mode = find_mode_fps(configuration.camera_fps);
 
   //Synchro
-  sensor->synchro.wired_sync_mode_str = find_mode_synchro(configuration.wired_sync_mode);
-  sensor->synchro.wired_sync_mode = configuration.wired_sync_mode;
-  sensor->synchro.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
-  sensor->synchro.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
-  sensor->synchro.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
+  sensor->playback.wired_sync_mode_str = find_mode_synchro(configuration.wired_sync_mode);
+  sensor->playback.wired_sync_mode = configuration.wired_sync_mode;
+  sensor->playback.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
+  sensor->playback.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
+  sensor->playback.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
 
   //Depth
   sensor->depth.config.mode_str = find_mode_depth(configuration.depth_mode);

@@ -149,15 +149,15 @@ void Playback::show_info_synch(k4n::dev::Sensor* sensor){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth/color delay (us)"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", sensor->synchro.depth_delay_off_color_us);
+    ImGui::TextColored(color, "%d", sensor->playback.depth_delay_off_color_us);
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Sync mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->synchro.wired_sync_mode_str.c_str());
+    ImGui::TextColored(color, "%s", sensor->playback.wired_sync_mode_str.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d", sensor->synchro.start_timestamp_offset_us);
+    ImGui::TextColored(color, "%d", sensor->playback.start_timestamp_offset_us);
 
     ImGui::EndTable();
   }
