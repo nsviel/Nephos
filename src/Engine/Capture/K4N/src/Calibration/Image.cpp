@@ -125,7 +125,7 @@ void Image::draw_boundingbox(cv::Mat& image, k4n::dev::Sensor* sensor){
   sensor->calibration.cv_radius = cvRound(sensor->calibration.vec_circle[0][2]);
 
   cv::Point& center = sensor->calibration.cv_center;
-  int& radius = sensor->calibration.cv_radius;
+  int& radius = sensor->calibration.cv_radius * sensor->calibration.cv_BB_scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size

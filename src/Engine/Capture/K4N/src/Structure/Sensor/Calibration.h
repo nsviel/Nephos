@@ -12,7 +12,8 @@ struct Calibration{
 
   cv::Mat cv_image;
   cv::Point cv_center;
-  int cv_radius;
+  float cv_BB_scale = 2;
+  int cv_radius = 0;
 
   vector<vec3> vec_circle;
   vector<glyph::scene::Sphere*> vec_sphere_glyph;
