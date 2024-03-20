@@ -76,7 +76,6 @@ void Sphere::move_sphere(vec3 coordinate){
   truc[2][3] = coordinate.z;
   pose.model = truc;
 
-  this->update_data();
   this->update_pose();
 
   //---------------------------

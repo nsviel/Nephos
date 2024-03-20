@@ -21,6 +21,7 @@ namespace k4n::structure{class Depth;}
 namespace k4n::structure{class Infrared;}
 namespace k4n::structure{class IMU;}
 namespace k4n::structure{class Image;}
+namespace k4n::structure{class Calibration;}
 namespace prf::graph{class Profiler;}
 
 
@@ -68,6 +69,7 @@ public:
   k4n::structure::Param param;
   k4n::structure::Synchro synchro;
   k4n::structure::Recorder recorder;
+  k4n::structure::Calibration calibration;
 
   k4n::structure::Color color;
   k4n::structure::Depth depth;

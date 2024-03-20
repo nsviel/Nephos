@@ -57,6 +57,7 @@ void Sensor::init(){
   object.data.name = "sensor::object::data";
   object.data.topology.type = utl::topology::POINT;
   object.data.nb_data_max = 10000000;
+  object.pose.model[2][3] = 1; 
   sce_entity->init_entity(&object);
 
   //---------------------------

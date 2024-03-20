@@ -6,6 +6,7 @@
 #include <K4N/src/Structure/Sensor/Color.h>
 #include <K4N/src/Structure/Sensor/Depth.h>
 #include <K4N/src/Structure/Sensor/Infrared.h>
+#include <K4N/src/Structure/Sensor/Calibration.h>
 
 #include <K4N/src/Structure/Master/Player.h>
 #include <K4N/src/Structure/Master/Operation.h>

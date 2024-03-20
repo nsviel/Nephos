@@ -5,3 +5,4 @@
 #include <K4N/src/Processing/Image.h>
 #include <K4N/src/Processing/Operation.h>
 #include <K4N/src/Processing/Recorder.h>
+#include <K4N/src/Processing/Calibration.h>

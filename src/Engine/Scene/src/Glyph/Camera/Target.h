@@ -15,6 +15,8 @@ public:
 public:
   void create();
   void update_pose(utl::type::Entity* entity);
+
+  //Subfunction
   void construct();
 
 private:
