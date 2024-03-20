@@ -35,7 +35,9 @@ void Calibration::run_thread(k4n::dev::Sensor* sensor){
 
   tasker->loop_begin();
 
+  tasker->task_begin("hough");
 
+  tasker->task_end("hough");
 
   tasker->loop_end();
 

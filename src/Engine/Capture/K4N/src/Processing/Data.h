@@ -11,6 +11,7 @@ namespace k4n::data{class Depth;}
 namespace k4n::data{class Infrared;}
 namespace k4n::processing{class Cloud;}
 namespace k4n::processing{class Image;}
+namespace k4n::processing{class Calibration;}
 namespace k4n::thread{class Pool;}
 
 
@@ -53,6 +54,7 @@ private:
   k4n::data::Infrared* k4n_infrared;
   k4n::processing::Cloud* k4n_cloud;
   k4n::processing::Image* k4n_image;
+  k4n::processing::Calibration* k4n_calibration;
   k4n::thread::Pool* thread_pool;
 
   tjhandle tj_handle;
