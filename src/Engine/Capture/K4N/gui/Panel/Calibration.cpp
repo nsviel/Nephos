@@ -52,6 +52,7 @@ void Calibration::design_panel(k4n::dev::Master* master){
   //---------------------------
 
   this->model_parameter(sensor);
+  this->canny_parameter(sensor);
   this->hough_parameter(sensor);
   this->draw_result(sensor);
 
@@ -75,7 +76,7 @@ void Calibration::model_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
+void Calibration::canny_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Hough parameter");
@@ -83,7 +84,8 @@ void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
   //Canny
   ImGui::Checkbox("Canny", &k4n_struct->hough.apply_canny);
 
-  if(k4n_struct->hough.apply_canny){
+  ImGui::SameLine();
+  if(ImGui::TreeNode("Parameter##Canny")){
     ImGui::Indent();
 
     //Lower threshold
@@ -95,20 +97,29 @@ void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
     ImGui::SliderInt("Upper threshold", &k4n_struct->hough.canny_thres_upper, 0, 200);
 
     ImGui::Unindent();
+    ImGui::TreePop();
   }
 
-  //Mode
-  int& mode = k4n_struct->hough.mode;
-  if(ImGui::RadioButton("Gradient", &mode, k4n::hough::GRADIENT)){
-    k4n_hough->find_mode_parameter(mode);
-  }
+  //---------------------------
+}
+void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  ImGui::Checkbox("Hough", &k4n_struct->hough.apply_hough);
+
   ImGui::SameLine();
-  if(ImGui::RadioButton("Gradient Alt", &mode, k4n::hough::GRADIENT_ALT)){
-    k4n_hough->find_mode_parameter(mode);
-  }
-
-  {
+  if(ImGui::TreeNode("Parameter##Hough")){
     ImGui::Indent();
+
+    //Mode
+    int& mode = k4n_struct->hough.mode;
+    if(ImGui::RadioButton("Gradient", &mode, k4n::hough::GRADIENT)){
+      k4n_hough->find_mode_parameter(mode);
+    }
+    ImGui::SameLine();
+    if(ImGui::RadioButton("Gradient Alt", &mode, k4n::hough::GRADIENT_ALT)){
+      k4n_hough->find_mode_parameter(mode);
+    }
 
     //Lower threshold
     ImGui::SetNextItemWidth(125);
@@ -118,22 +129,22 @@ void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
     ImGui::SetNextItemWidth(125);
     ImGui::SliderFloat("Accumulator threshold", &k4n_struct->hough.param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
+    //Ratio
+    ImGui::SetNextItemWidth(150);
+    ImGui::SliderInt("Ratio", &k4n_struct->hough.ratio, 1, 100);
+    ImGui::SetItemTooltip("This parameter affects the spacing of the accumulator cells, which in turn affects the sensitivity of the circle detection algorithm.");
+
+    //Min distance
+    ImGui::SetNextItemWidth(150);
+    ImGui::SliderInt("Min distance", &k4n_struct->hough.min_dist, 1, 100);
+
+    //Radius range
+    int* min_radius = &k4n_struct->hough.min_radius;
+    int* max_radius = &k4n_struct->hough.max_radius;
+    ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 100, "Min: %d px", "Max: %d px");
+
     ImGui::Unindent();
   }
-
-  //Ratio
-  ImGui::SetNextItemWidth(150);
-  ImGui::SliderInt("Ratio", &k4n_struct->hough.ratio, 1, 100);
-  ImGui::SetItemTooltip("This parameter affects the spacing of the accumulator cells, which in turn affects the sensitivity of the circle detection algorithm.");
-
-  //Min distance
-  ImGui::SetNextItemWidth(150);
-  ImGui::SliderInt("Min distance", &k4n_struct->hough.min_dist, 1, 100);
-
-  //Radius range
-  int* min_radius = &k4n_struct->hough.min_radius;
-  int* max_radius = &k4n_struct->hough.max_radius;
-  ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 100, "Min: %d px", "Max: %d px");
 
   //---------------------------
   ImGui::Separator();
@@ -141,20 +152,22 @@ void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
 void Calibration::draw_result(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  //Circle drawing mode
-  ImGui::RadioButton("All sphere", &k4n_struct->hough.drawing_mode, k4n::hough::ALL);
-  ImGui::SameLine();
-  ImGui::RadioButton("Best sphere", &k4n_struct->hough.drawing_mode, k4n::hough::BEST);
-
   //Display number of detected spheres
   string nb_detection = to_string(k4n_struct->hough.nb_detection);
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
 
+  //Circle drawing mode
+  ImGui::SameLine();
+  ImGui::RadioButton("All sphere", &k4n_struct->hough.drawing_mode, k4n::hough::ALL);
+  ImGui::SameLine();
+  ImGui::RadioButton("Best sphere", &k4n_struct->hough.drawing_mode, k4n::hough::BEST);
+
   //Display image with detected spheres
   if(sensor->image.hough.size == 0) return;
   ImVec2 image_size = ImGui::GetContentRegionAvail();
+  image_size.y -= 5;
   stream->draw_stream(&sensor->image.hough, image_size);
 
   //---------------------------

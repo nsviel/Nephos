@@ -28,6 +28,7 @@ public:
 
   //Subfunction
   void model_parameter(k4n::dev::Sensor* sensor);
+  void canny_parameter(k4n::dev::Sensor* sensor);
   void hough_parameter(k4n::dev::Sensor* sensor);
   void draw_result(k4n::dev::Sensor* sensor);
 
