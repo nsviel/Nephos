@@ -21,8 +21,6 @@ Model::Model(k4n::Node* node_k4n){
   this->ope_fitting = new ope::attribut::Fitting();
   this->sce_glyph = node_scene->get_scene_glyph();
 
-  this->drawing_mode = k4n::hough::ALL;
-
   //---------------------------
 }
 Model::~Model(){}
@@ -47,7 +45,7 @@ void Model::detect_sphere(k4n::dev::Sensor* sensor){
   k4n_image->convert_into_cv_image(input, cv_input);
   sensor->calibration.vec_circle = k4n_hough->sphere_detection(cv_input, sensor->calibration.cv_image);
 
-  switch(drawing_mode){
+  switch(sensor->calibration.drawing_mode){
     case k4n::hough::ALL:{
       k4n_image->draw_all_sphere(sensor);
       break;
@@ -65,14 +63,13 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
 
 
 
-
   uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
   int width = sensor->depth.data.width;
 
   sensor->calibration.vec_sphere_glyph[0]->reset_glyph();
 
-  for(int i=0; i<vec_circle.size(); i++){
-    vec3& circle = vec_circle[i];
+  for(int i=0; i<sensor->calibration.vec_circle.size(); i++){
+    vec3& circle = sensor->calibration.vec_circle[i];
 
     // Map depth image pixel to camera space
     int x = circle[0];
@@ -98,10 +95,11 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
 
     //Add sphere radius to the detected circle center
     vec3 dir = glm::normalize(pose);
-    pose = pose + dir * sphere_diameter;
+    pose = pose + dir * sensor->calibration.sphere_diameter;
 
 
     sensor->calibration.vec_sphere_glyph[0]->move_sphere(pose);
+
 
 
   }
@@ -110,7 +108,7 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Model::retrieve_sphere_data(k4n::dev::Sensor* sensor){
-  if(vec_circle.size() == 0) return;
+  if(sensor->calibration.vec_circle.size() == 0) return;
   //---------------------------
 
   utl::media::Image* input = &sensor->image.ir;
@@ -118,9 +116,9 @@ void Model::retrieve_sphere_data(k4n::dev::Sensor* sensor){
   cv::Mat cv_image(input->height, input->width, CV_8UC4, input->data.data());
 
   // Retrieve the parameters of the detected circle
-  float center_x = vec_circle[0][0];
-  float center_y = vec_circle[0][1];
-  float radius = vec_circle[0][2];
+  float center_x = sensor->calibration.vec_circle[0][0];
+  float center_y = sensor->calibration.vec_circle[0][1];
+  float radius = sensor->calibration.vec_circle[0][2];
 
   // Iterate over the bounding box of the circle
   for(int y = center_y - radius; y <= center_y + radius; y++){

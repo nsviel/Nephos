@@ -6,15 +6,6 @@
 namespace k4n::dev{class Sensor;}
 
 
-namespace k4n::hough{
-
-enum Drawing{
-  ALL = 0,
-  BEST = 1,
-};
-
-}
-
 namespace k4n::calibration{
 
 class Image

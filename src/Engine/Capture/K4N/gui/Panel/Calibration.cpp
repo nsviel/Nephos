@@ -47,34 +47,34 @@ void Calibration::run_panel(){
   //---------------------------
 }
 void Calibration::design_panel(k4n::dev::Master* master){
+  k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->selected_entity);
   //---------------------------
 
-  this->model_parameter(master);
-  this->hough_parameter(master);
-  this->draw_result(master);
+  this->model_parameter(sensor);
+  this->hough_parameter(sensor);
+  this->draw_result(sensor);
 
   //---------------------------
 }
 
 //Subfunction
-void Calibration::model_parameter(k4n::dev::Master* master){
+void Calibration::model_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
 
-  //Max radius
-  float* sphere_diameter = k4n_model->get_sphere_diameter();
+  //Calibration sphere radius
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderFloat("Sphere diameter", sphere_diameter, 0.001, 0.5f, "%.3f m");
+  ImGui::SliderFloat("Sphere diameter", &sensor->calibration.sphere_diameter, 0.001, 0.5f, "%.3f m");
 
   //Pixel diviser
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderInt("Pixel diviser", &master->operation.intensity_diviser, 1, 5000);
+  ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
 
   //---------------------------
   ImGui::Separator();
 }
-void Calibration::hough_parameter(k4n::dev::Master* master){
+void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Hough parameter");
@@ -100,13 +100,13 @@ void Calibration::hough_parameter(k4n::dev::Master* master){
   }
 
   //Mode
-  int* mode = k4n_hough->get_mode();
-  if(ImGui::RadioButton("Gradient", mode, k4n::hough::GRADIENT)){
-    k4n_hough->find_mode_parameter();
+  int& mode = sensor->calibration.hough_mode;
+  if(ImGui::RadioButton("Gradient", &mode, k4n::hough::GRADIENT)){
+    k4n_hough->find_mode_parameter(mode);
   }
   ImGui::SameLine();
-  if(ImGui::RadioButton("Gradient Alt", mode, k4n::hough::GRADIENT_ALT)){
-    k4n_hough->find_mode_parameter();
+  if(ImGui::RadioButton("Gradient Alt", &mode, k4n::hough::GRADIENT_ALT)){
+    k4n_hough->find_mode_parameter(mode);
   }
 
   {
@@ -144,14 +144,13 @@ void Calibration::hough_parameter(k4n::dev::Master* master){
   //---------------------------
   ImGui::Separator();
 }
-void Calibration::draw_result(k4n::dev::Master* master){
+void Calibration::draw_result(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Circle drawing mode
-  int* mode = k4n_model->get_drawing_mode();
-  ImGui::RadioButton("All sphere", mode, k4n::hough::ALL);
+  ImGui::RadioButton("All sphere", &sensor->calibration.drawing_mode, k4n::hough::ALL);
   ImGui::SameLine();
-  ImGui::RadioButton("Best sphere", mode, k4n::hough::BEST);
+  ImGui::RadioButton("Best sphere", &sensor->calibration.drawing_mode, k4n::hough::BEST);
 
   //Display number of detected spheres
   string nb_detection = to_string(k4n_hough->get_nb_detection());
@@ -160,12 +159,9 @@ void Calibration::draw_result(k4n::dev::Master* master){
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
 
   //Display image with detected spheres
-  utl::type::Entity* entity = master->selected_entity;
-  if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->selected_entity)){
-    if(sensor->image.hough.size == 0) return;
-    ImVec2 image_size = ImGui::GetContentRegionAvail();
-    stream->draw_stream(&sensor->image.hough, image_size);
-  }
+  if(sensor->image.hough.size == 0) return;
+  ImVec2 image_size = ImGui::GetContentRegionAvail();
+  stream->draw_stream(&sensor->image.hough, image_size);
 
   //---------------------------
   ImGui::Separator();

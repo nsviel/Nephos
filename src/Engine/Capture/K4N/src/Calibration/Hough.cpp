@@ -1,5 +1,7 @@
 #include "Hough.h"
 
+#include <K4N/Namespace.h>
+
 
 namespace k4n::calibration{
 
@@ -7,9 +9,9 @@ namespace k4n::calibration{
 Hough::Hough(){
   //---------------------------
 
-
+  this->find_mode_parameter(k4n::hough::ALL);
+  
   //---------------------------
-  this->find_mode_parameter();
 }
 Hough::~Hough(){}
 
@@ -60,7 +62,7 @@ vector<vec3> Hough::compute_hough_circle(cv::Mat& image){
 }
 
 //Subfunction
-void Hough::find_mode_parameter(){
+void Hough::find_mode_parameter(int mode){
   //---------------------------
 
   switch(mode){

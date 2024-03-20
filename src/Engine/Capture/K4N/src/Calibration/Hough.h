@@ -4,15 +4,6 @@
 #include <opencv2/opencv.hpp>
 
 
-namespace k4n::hough{
-
-enum Mode{
-  GRADIENT = 0,
-  GRADIENT_ALT = 1,
-};
-
-}
-
 namespace k4n::calibration{
 
 class Hough
@@ -30,10 +21,9 @@ public:
   vector<vec3> compute_hough_circle(cv::Mat& image);
 
   //Subfunction
-  void find_mode_parameter();
+  void find_mode_parameter(int mode);
   void find_sphere_data(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
 
-  inline int* get_mode(){return &mode;}
   inline int* get_ratio(){return &ratio;}
   inline int* get_min_dist(){return &min_dist;}
   inline int* get_min_radius(){return &min_radius;}
@@ -46,7 +36,6 @@ public:
   inline bool* get_apply_canny(){return &apply_canny;}
 
 private:
-  int mode = k4n::hough::GRADIENT;
   int hough_mode = cv::HOUGH_GRADIENT;
   int nb_detection = 0;
   int ratio = 1;

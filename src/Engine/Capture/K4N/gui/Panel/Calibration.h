@@ -5,6 +5,7 @@
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Swarm;}
+namespace k4n::dev{class Sensor;}
 namespace k4n::calibration{class Hough;}
 namespace k4n::calibration{class Model;}
 namespace eng::render::gui{class Stream;}
@@ -25,9 +26,9 @@ public:
   void design_panel(k4n::dev::Master* master);
 
   //Subfunction
-  void model_parameter(k4n::dev::Master* master);
-  void hough_parameter(k4n::dev::Master* master);
-  void draw_result(k4n::dev::Master* master);
+  void model_parameter(k4n::dev::Sensor* sensor);
+  void hough_parameter(k4n::dev::Sensor* sensor);
+  void draw_result(k4n::dev::Sensor* sensor);
 
 private:
   k4n::dev::Swarm* k4n_swarm;

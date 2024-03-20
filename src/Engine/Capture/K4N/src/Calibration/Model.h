@@ -31,8 +31,6 @@ public:
   void draw_glyph_in_cloud(k4n::dev::Sensor* sensor);
   void retrieve_sphere_data(k4n::dev::Sensor* sensor);
 
-  inline float* get_sphere_diameter(){return &sphere_diameter;}
-  inline int* get_drawing_mode(){return &drawing_mode;}
   inline k4n::calibration::Hough* get_k4n_hough(){return k4n_hough;}
 
 private:
@@ -42,10 +40,6 @@ private:
   k4n::calibration::Image* k4n_image;
   ope::attribut::Fitting* ope_fitting;
   eng::scene::Glyph* sce_glyph;
-
-  vector<vec3> vec_circle;
-  float sphere_diameter = 0.1;
-  int drawing_mode;
 };
 
 }
