@@ -43,17 +43,16 @@ void Model::detect_sphere(k4n::dev::Sensor* sensor){
   //---------------------------
 
   utl::media::Image* input = &sensor->image.ir;
-  utl::media::Image* output = &sensor->image.hough;
 
-  this->vec_circle = k4n_hough->sphere_detection(input);
+  sensor->calibration.vec_circle = k4n_hough->sphere_detection(input, sensor->calibration.cv_image);
 
   switch(drawing_mode){
     case k4n::hough::ALL:{
-      k4n_image->draw_all_sphere(input, vec_circle, output);
+      k4n_image->draw_all_sphere(sensor);
       break;
     }
     case k4n::hough::BEST:{
-      k4n_image->draw_best_sphere(input, vec_circle, output);
+      k4n_image->draw_best_sphere(sensor);
       break;
     }
   }
