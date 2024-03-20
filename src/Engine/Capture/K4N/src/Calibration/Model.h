@@ -26,9 +26,9 @@ public:
   void determine_model(k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void detect_sphere(utl::media::Image* input, utl::media::Image* gui_image);
+  void detect_sphere(k4n::dev::Sensor* sensor);
   void draw_glyph_in_cloud(k4n::dev::Sensor* sensor);
-  void retrieve_sphere_data(utl::media::Image* utl_image);
+  void retrieve_sphere_data(k4n::dev::Sensor* sensor);
 
   inline float* get_sphere_diameter(){return &sphere_diameter;}
   inline int* get_drawing_mode(){return &drawing_mode;}

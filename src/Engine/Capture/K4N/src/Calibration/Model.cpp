@@ -28,33 +28,31 @@ Model::~Model(){}
 
 //Main function
 void Model::determine_model(k4n::dev::Sensor* sensor){
-  k4n::dev::Master* master = k4n_swarm->get_selected_master();
-  utl::type::Entity* entity = master->selected_entity;
   //---------------------------
 
-  if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-    utl::media::Image* raw_image = &sensor->image.ir;
-    this->detect_sphere(raw_image, &sensor->image.hough);
-    this->retrieve_sphere_data(raw_image);
-    this->draw_glyph_in_cloud(sensor);
-  }
+  this->detect_sphere(sensor);
+  this->retrieve_sphere_data(sensor);
+  this->draw_glyph_in_cloud(sensor);
 
   //---------------------------
 }
 
 //Subfunction
-void Model::detect_sphere(utl::media::Image* input, utl::media::Image* gui_image){
+void Model::detect_sphere(k4n::dev::Sensor* sensor){
   //---------------------------
+
+  utl::media::Image* input = &sensor->image.ir;
+  utl::media::Image* output = &sensor->image.hough;
 
   this->vec_circle = k4n_hough->sphere_detection(input);
 
   switch(drawing_mode){
     case k4n::hough::ALL:{
-      k4n_hough->draw_all_sphere(input, vec_circle, gui_image);
+      k4n_hough->draw_all_sphere(input, vec_circle, output);
       break;
     }
     case k4n::hough::BEST:{
-      k4n_hough->draw_best_sphere(input, vec_circle, gui_image);
+      k4n_hough->draw_best_sphere(input, vec_circle, output);
       break;
     }
   }
@@ -110,9 +108,11 @@ void Model::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Model::retrieve_sphere_data(utl::media::Image* input){
+void Model::retrieve_sphere_data(k4n::dev::Sensor* sensor){
   if(vec_circle.size() == 0) return;
   //---------------------------
+
+  utl::media::Image* input = &sensor->image.ir;
 
   cv::Mat cv_image(input->height, input->width, CV_8UC4, input->data.data());
 
