@@ -16,15 +16,13 @@ Image::~Image(){}
 
 //Main function
 void Image::draw_all_sphere(k4n::dev::Sensor* sensor){
+  if(sensor->calibration.cv_image.empty()) return;
   //------------------------
-
-  vector<vec3>& vec_circle = sensor->calibration.vec_circle;
-  if(vec_circle.size() == 0) return;
 
   cv::Mat result;
   this->convert_into_rgba(sensor->calibration.cv_image, result);
-  this->draw_circle(result, vec_circle);
-  this->draw_boundingbox(result);
+  this->draw_circle(result, sensor->calibration.vec_circle);
+  this->draw_boundingbox(result, sensor);
   this->convert_into_utl_image(result, &sensor->image.hough);
 
   //------------------------
@@ -103,6 +101,7 @@ void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
   //------------------------
 }
 void Image::draw_circle(cv::Mat& image, vector<vec3>& vec_circle){
+  if(vec_circle.size() == 0) return;
   //------------------------
 
   for(size_t i=0; i<vec_circle.size(); i++){
@@ -118,31 +117,24 @@ void Image::draw_circle(cv::Mat& image, vector<vec3>& vec_circle){
 
   //------------------------
 }
-void Image::draw_boundingbox(cv::Mat& image){
+void Image::draw_boundingbox(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
-  // Draw marker on the result image
-  cv::Point center(250, 160); // Coordinates of the marker center
-  cv::Scalar color(0, 0, 0); // Marker color in BGR format
-  int thickness = 10; // Thickness of the marker
-  int markerType = cv::MARKER_CROSS; // Marker type
-  int markerSize = 100; // Marker size
-  int lineType = cv::LINE_AA; // Line type
+  if(sensor->calibration.vec_circle.size() == 0) return;
+  sensor->calibration.cv_center = cv::Point(cvRound(sensor->calibration.vec_circle[0][0]), cvRound(sensor->calibration.vec_circle[0][1]));
+  sensor->calibration.cv_radius = cvRound(sensor->calibration.vec_circle[0][2]);
 
-  // Draw marker on the result image
-  int width = 100; // Width of the rectangle
-  int height = 50; // Height of the rectangle
+  cv::Point& center = sensor->calibration.cv_center;
+  int& radius = sensor->calibration.cv_radius;
 
-  // Calculate the coordinates of the top-left corner of the rectangle
-  cv::Point tl(center.x - width / 2, center.y - height / 2);
+  //Draw cross marker
+  int markerSize = 10; // Marker size
+  cv::drawMarker(image, center, cv::Scalar(44, 150, 255, 255), cv::MARKER_CROSS, markerSize, 2, cv::LINE_AA);
 
-  // Calculate the coordinates of the bottom-right corner of the rectangle
-  cv::Point br(center.x + width / 2, center.y + height / 2);
-
-  // Draw the rectangle on the result image
-  cv::rectangle(image, tl, br, color, thickness, lineType);
-
-  cv::drawMarker(image, center, color, markerType, markerSize, thickness, lineType);
+  //Draw rectangle marker
+  cv::Point tl(center.x - radius, center.y - radius);
+  cv::Point br(center.x + radius, center.y + radius);
+  cv::rectangle(image, tl, br, cv::Scalar(255, 150, 44, 255), 2, cv::LINE_AA);
 
   //------------------------
 }

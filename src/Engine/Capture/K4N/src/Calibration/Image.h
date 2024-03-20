@@ -32,7 +32,7 @@ public:
   void convert_into_rgba(cv::Mat& input, cv::Mat& output);
   void convert_into_utl_image(cv::Mat& input, utl::media::Image* output);
   void draw_circle(cv::Mat& image, vector<vec3>& vec_circle);
-  void draw_boundingbox(cv::Mat& image);
+  void draw_boundingbox(cv::Mat& image, k4n::dev::Sensor* sensor);
 
 private:
 

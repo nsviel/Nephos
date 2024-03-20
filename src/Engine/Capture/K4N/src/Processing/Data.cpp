@@ -68,6 +68,7 @@ void Data::wait_thread(){
   }
   k4n_image->wait_thread();
   k4n_cloud->wait_thread();
+  k4n_calibration->wait_thread();
 
   //---------------------------
 }
