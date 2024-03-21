@@ -7,6 +7,4 @@
 #include <K4N/src/Thread/Namespace.h>
 #include <K4N/src/Utils/Namespace.h>
 #include <K4N/src/Processing/Namespace.h>
-#include <K4N/src/Calibration/Namespace.h>
-#include <K4N/src/Registration/Namespace.h>
-#include <K4N/src/Detection/Namespace.h>
+#include <K4N/src/Sphere/Namespace.h>
