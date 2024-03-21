@@ -97,7 +97,7 @@ void Image::convert_into_subimage(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
   cv::Point& center = sensor->sphere.cv_center;
-  float radius = (float)sensor->sphere.cv_radius * k4n_struct->calibration.hough.scale_bounding_box;
+  float radius = (float)sensor->sphere.cv_radius * k4n_struct->calibration.bbox.scale;
 
   // Calculate the top-left corner coordinates of the bounding box
   int x = center.x - radius;
@@ -159,7 +159,7 @@ void Image::draw_bounding_box(cv::Mat& image, k4n::dev::Sensor* sensor){
   sensor->sphere.cv_radius = cvRound(sensor->sphere.vec_circle[0][2]);
 
   cv::Point& center = sensor->sphere.cv_center;
-  float radius = (float)sensor->sphere.cv_radius * k4n_struct->calibration.hough.scale_bounding_box;
+  float radius = (float)sensor->sphere.cv_radius * k4n_struct->calibration.bbox.scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size

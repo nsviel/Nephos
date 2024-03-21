@@ -71,7 +71,7 @@ void Calibration::model_parameter(k4n::dev::Sensor* sensor){
 
   //Calibration sphere radius
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderFloat("Bounding box factor", &k4n_struct->calibration.hough.scale_bounding_box, 1.0f, 10.0f, "%.2fx");
+  ImGui::SliderFloat("Bounding box factor", &k4n_struct->calibration.bbox.scale, 1.0f, 10.0f, "%.2fx");
 
   //Pixel diviser
   ImGui::SetNextItemWidth(150);
@@ -109,7 +109,7 @@ void Calibration::canny_parameter(k4n::dev::Sensor* sensor){
 void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  ImGui::Checkbox("Hough", &k4n_struct->calibration.hough.apply_hough);
+  ImGui::Checkbox("Hough", &k4n_struct->calibration.hough.apply);
 
   ImGui::SameLine();
   if(ImGui::TreeNode("Parameter##Hough")){

@@ -3,12 +3,10 @@
 
 namespace k4n::structure{
 
-struct Calibration{
+struct Bbox{
   //---------------------------
 
-  k4n::structure::Hough hough;
-  k4n::structure::Canny canny;
-  k4n::structure::Bbox bbox;
+  float scale = 2;
 
   //---------------------------
 };

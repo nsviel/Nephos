@@ -24,7 +24,7 @@ namespace k4n::structure{
 struct Hough{
   //---------------------------
 
-  bool apply_hough = true;
+  bool apply = true;
   int drawing_mode = k4n::hough::ALL;
   int mode = k4n::hough::GRADIENT;
   int cv_mode = cv::HOUGH_GRADIENT;
@@ -35,9 +35,6 @@ struct Hough{
   int min_dist = 72;
   int min_radius = 5;
   int max_radius = 50;
-
-  //Other
-  float scale_bounding_box = 2;
 
   //---------------------------
 };
