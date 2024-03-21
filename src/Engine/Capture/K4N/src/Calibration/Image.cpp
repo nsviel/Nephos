@@ -17,12 +17,12 @@ Image::~Image(){}
 
 //Main function
 void Image::draw_all_sphere(k4n::dev::Sensor* sensor){
-  if(sensor->sphere.cv_image.empty()) return;
+  if(sensor->detection.cv_image.empty()) return;
   //------------------------
 
   cv::Mat result;
-  this->convert_into_rgba(sensor->sphere.cv_image, result);
-  this->draw_circle(result, sensor->sphere.vec_circle);
+  this->convert_into_rgba(sensor->detection.cv_image, result);
+  this->draw_circle(result, sensor->detection.vec_circle);
   this->draw_bounding_box(result, sensor);
   this->convert_into_subimage(result, sensor);
   this->convert_into_utl_image(result, &sensor->image.hough);
@@ -96,8 +96,8 @@ void Image::convert_into_rgba(cv::Mat& input, cv::Mat& output){
 void Image::convert_into_subimage(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
-  cv::Point& center = sensor->sphere.cv_center;
-  float radius = (float)sensor->sphere.cv_radius * k4n_struct->calibration.bbox.scale;
+  cv::Point& center = sensor->detection.cv_center;
+  float radius = (float)sensor->detection.cv_radius * k4n_struct->calibration.bbox.scale;
 
   // Calculate the top-left corner coordinates of the bounding box
   int x = center.x - radius;
@@ -109,7 +109,7 @@ void Image::convert_into_subimage(cv::Mat& image, k4n::dev::Sensor* sensor){
     cv::Rect bounding_box(x, y, radius * 2, radius * 2);
 
     // Extract the subimage from the original image using the bounding box
-    sensor->sphere.cv_subimage = image(bounding_box).clone();
+    sensor->detection.cv_subimage = image(bounding_box).clone();
   }
 
   //------------------------
@@ -154,12 +154,12 @@ void Image::draw_circle(cv::Mat& image, vector<vec3>& vec_circle){
 void Image::draw_bounding_box(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
-  if(sensor->sphere.vec_circle.size() == 0) return;
-  sensor->sphere.cv_center = cv::Point(cvRound(sensor->sphere.vec_circle[0][0]), cvRound(sensor->sphere.vec_circle[0][1]));
-  sensor->sphere.cv_radius = cvRound(sensor->sphere.vec_circle[0][2]);
+  if(sensor->detection.vec_circle.size() == 0) return;
+  sensor->detection.cv_center = cv::Point(cvRound(sensor->detection.vec_circle[0][0]), cvRound(sensor->detection.vec_circle[0][1]));
+  sensor->detection.cv_radius = cvRound(sensor->detection.vec_circle[0][2]);
 
-  cv::Point& center = sensor->sphere.cv_center;
-  float radius = (float)sensor->sphere.cv_radius * k4n_struct->calibration.bbox.scale;
+  cv::Point& center = sensor->detection.cv_center;
+  float radius = (float)sensor->detection.cv_radius * k4n_struct->calibration.bbox.scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size

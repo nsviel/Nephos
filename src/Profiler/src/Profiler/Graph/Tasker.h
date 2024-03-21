@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  void clear();
+  void reset();
 
   //Loop function
   void loop_begin();

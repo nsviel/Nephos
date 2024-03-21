@@ -7,7 +7,7 @@
 
 namespace k4n::structure{
 
-struct Sphere{
+struct Detection{
   //---------------------------
 
   cv::Mat cv_image;

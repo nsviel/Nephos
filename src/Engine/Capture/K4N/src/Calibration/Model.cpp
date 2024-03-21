@@ -39,8 +39,8 @@ void Model::detect_sphere(k4n::dev::Sensor* sensor){
   utl::media::Image* input = &sensor->image.ir;
   cv::Mat cv_input;
   k4n_image->convert_into_cv_image(input, cv_input);
-  sensor->sphere.vec_circle = k4n_hough->sphere_detection(cv_input, sensor->sphere.cv_image);
-  sensor->sphere.nb_detection = sensor->sphere.vec_circle.size();
+  sensor->detection.vec_circle = k4n_hough->sphere_detection(cv_input, sensor->detection.cv_image);
+  sensor->detection.nb_detection = sensor->detection.vec_circle.size();
 
   switch(k4n_struct->calibration.hough.drawing_mode){
     case k4n::hough::ALL:{
@@ -56,7 +56,7 @@ void Model::detect_sphere(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Model::retrieve_sphere_data(k4n::dev::Sensor* sensor){
-  if(sensor->sphere.vec_circle.size() == 0) return;
+  if(sensor->detection.vec_circle.size() == 0) return;
   //---------------------------
 
   utl::media::Image* input = &sensor->image.ir;
@@ -64,9 +64,9 @@ void Model::retrieve_sphere_data(k4n::dev::Sensor* sensor){
   cv::Mat cv_image(input->height, input->width, CV_8UC4, input->data.data());
 
   // Retrieve the parameters of the detected circle
-  float center_x = sensor->sphere.vec_circle[0][0];
-  float center_y = sensor->sphere.vec_circle[0][1];
-  float radius = sensor->sphere.vec_circle[0][2];
+  float center_x = sensor->detection.vec_circle[0][0];
+  float center_y = sensor->detection.vec_circle[0][1];
+  float radius = sensor->detection.vec_circle[0][2];
 
   // Iterate over the bounding box of the circle
   for(int y = center_y - radius; y <= center_y + radius; y++){

@@ -92,6 +92,7 @@ void Playback::stop_thread(){
   if(thread.joinable()){
     thread.join();
   }
+  k4n_data->wait_thread();
 
   //---------------------------
 }

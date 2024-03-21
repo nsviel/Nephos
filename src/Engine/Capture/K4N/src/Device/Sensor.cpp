@@ -67,7 +67,7 @@ void Sensor::init(){
     vec4 color = math::random_color(i);
     sphere->assign_color(color);
 
-    this->sphere.vec_sphere_glyph.push_back(sphere);
+    this->detection.vec_sphere_glyph.push_back(sphere);
   }
 
   //---------------------------

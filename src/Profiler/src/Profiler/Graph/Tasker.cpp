@@ -28,7 +28,7 @@ Tasker::~Tasker(){
 }
 
 //Main function
-void Tasker::clear(){
+void Tasker::reset(){
   //---------------------------
 
   this->vec_task_current.clear();

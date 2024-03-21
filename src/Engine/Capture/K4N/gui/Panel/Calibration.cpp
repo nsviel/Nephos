@@ -67,7 +67,7 @@ void Calibration::model_parameter(k4n::dev::Sensor* sensor){
 
   //Calibration sphere radius
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderFloat("Sphere diameter", &sensor->sphere.sphere_diameter, 0.001, 0.5f, "%.3f m");
+  ImGui::SliderFloat("Sphere diameter", &sensor->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
 
   //Calibration sphere radius
   ImGui::SetNextItemWidth(150);
@@ -157,7 +157,7 @@ void Calibration::draw_result(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Display number of detected spheres
-  string nb_detection = to_string(sensor->sphere.nb_detection);
+  string nb_detection = to_string(sensor->detection.nb_detection);
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());

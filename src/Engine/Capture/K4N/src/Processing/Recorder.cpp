@@ -57,7 +57,7 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
   }
 
   if(!master->player.record){
-    tasker->clear();
+    tasker->reset();
   }
 
   tasker->loop_end();

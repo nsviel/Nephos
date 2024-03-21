@@ -23,7 +23,7 @@ void Profiler::reset(){
 
   for(int i=0; i<list_tasker.size(); i++){
     prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
-    tasker->clear();
+    tasker->reset();
   }
 
   //---------------------------
