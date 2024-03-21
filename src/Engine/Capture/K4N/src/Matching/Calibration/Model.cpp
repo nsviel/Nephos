@@ -25,22 +25,15 @@ Model::~Model(){}
 void Model::determine_model(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  this->detect_sphere(sensor);
+  this->draw_calibration_image(sensor);
   this->retrieve_sphere_data(sensor);
-  k4n_glyph->draw_glyph(sensor);
 
   //---------------------------
 }
 
 //Subfunction
-void Model::detect_sphere(k4n::dev::Sensor* sensor){
+void Model::draw_calibration_image(k4n::dev::Sensor* sensor){
   //---------------------------
-
-  utl::media::Image* input = &sensor->image.ir;
-  cv::Mat cv_input;
-  k4n_image->convert_into_cv_image(input, cv_input);
-  sensor->detection.vec_circle = k4n_hough->sphere_detection(cv_input, sensor->detection.cv_image);
-  sensor->detection.nb_detection = sensor->detection.vec_circle.size();
 
   switch(k4n_struct->calibration.hough.drawing_mode){
     case k4n::hough::ALL:{
