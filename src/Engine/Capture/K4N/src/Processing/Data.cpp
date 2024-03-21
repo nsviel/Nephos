@@ -16,7 +16,7 @@ Data::Data(k4n::Node* node_k4n){
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->k4n_image = new k4n::processing::Image(node_k4n);
   this->k4n_calibration = new k4n::processing::Calibration(node_k4n);
-  this->thread_pool = node_k4n->get_thread_pool();
+  this->k4n_pool = node_k4n->get_k4n_pool();
 
   //---------------------------
 }
@@ -36,7 +36,7 @@ void Data::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  thread_pool->add_task(task_function);
+  k4n_pool->add_task(task_function);
 
   //---------------------------
 }

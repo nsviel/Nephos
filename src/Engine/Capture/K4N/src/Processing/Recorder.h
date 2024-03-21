@@ -30,7 +30,7 @@ public:
   void make_export_to_mkv(k4n::dev::Sensor* sensor);
 
 private:
-  k4n::thread::Pool* thread_pool;
+  k4n::thread::Pool* k4n_pool;
   k4n::structure::K4N* k4n_struct;
   eng::scene::Exporter* sce_exporter;
   format::ply::Exporter* ply_exporter;

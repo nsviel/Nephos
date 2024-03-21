@@ -1,4 +1,4 @@
-#include "Detection.h"
+#include "Detector.h"
 
 #include <K4N/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace k4n::detection{
 
 //Constructor / Destructor
-Detection::Detection(k4n::Node* node_k4n){
+Detector::Detector(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_glyph = new k4n::detection::Glyph(node_k4n);
@@ -15,10 +15,10 @@ Detection::Detection(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Detection::~Detection(){}
+Detector::~Detector(){}
 
 //Main function
-void Detection::make_sphere_detection(k4n::dev::Sensor* sensor){
+void Detector::make_sphere_detection(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->detect_circle_in_image(sensor);
@@ -28,7 +28,7 @@ void Detection::make_sphere_detection(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Detection::detect_circle_in_image(k4n::dev::Sensor* sensor){
+void Detector::detect_circle_in_image(k4n::dev::Sensor* sensor){
   //---------------------------
 
   utl::media::Image* input = &sensor->image.ir;

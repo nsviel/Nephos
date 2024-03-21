@@ -11,8 +11,8 @@ Calibration::Calibration(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_struct = node_k4n->get_k4n_struct();
-  this->thread_pool = node_k4n->get_thread_pool();
-  this->k4n_model = node_k4n->get_k4n_model();
+  this->k4n_pool = node_k4n->get_k4n_pool();
+  this->k4n_detector = new k4n::detection::Detector(node_k4n);
 
   //---------------------------
 }
@@ -26,7 +26,7 @@ void Calibration::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  thread_pool->add_task(task_function);
+  k4n_pool->add_task(task_function);
 
   //---------------------------
 }
@@ -37,7 +37,7 @@ void Calibration::run_thread(k4n::dev::Sensor* sensor){
   tasker->loop_begin();
 
   tasker->task_begin("hough");
-  k4n_model->determine_model(sensor);
+  k4n_detector->make_sphere_detection(sensor);
   tasker->task_end("hough");
 
   tasker->loop_end();

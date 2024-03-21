@@ -55,7 +55,7 @@ private:
   k4n::processing::Cloud* k4n_cloud;
   k4n::processing::Image* k4n_image;
   k4n::processing::Calibration* k4n_calibration;
-  k4n::thread::Pool* thread_pool;
+  k4n::thread::Pool* k4n_pool;
 
   tjhandle tj_handle;
   bool idle = true;

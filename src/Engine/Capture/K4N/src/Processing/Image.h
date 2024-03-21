@@ -33,7 +33,7 @@ public:
   void copy_image_ir(k4n::dev::Sensor* sensor);
 
 private:
-  k4n::thread::Pool* thread_pool;
+  k4n::thread::Pool* k4n_pool;
   k4n::data::Depth* k4n_depth;
   k4n::data::Infrared* k4n_infrared;
   k4n::config::Configuration* k4n_config;

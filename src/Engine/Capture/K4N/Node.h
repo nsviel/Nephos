@@ -40,7 +40,7 @@ public:
 
   inline k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
   inline k4n::calibration::Model* get_k4n_model(){return k4n_model;}
-  inline k4n::thread::Pool* get_thread_pool(){return thread_pool;}
+  inline k4n::thread::Pool* get_k4n_pool(){return k4n_pool;}
   inline k4n::structure::K4N* get_k4n_struct(){return k4n_struct;}
 
 private:
@@ -50,7 +50,7 @@ private:
   prf::Node* node_profiler;
 
   //Child
-  k4n::thread::Pool* thread_pool;
+  k4n::thread::Pool* k4n_pool;
   k4n::structure::K4N* k4n_struct;
   k4n::dev::Swarm* k4n_swarm;
   k4n::thread::Connection* k4n_connection;

@@ -19,7 +19,7 @@ Operation::Operation(k4n::Node* node_k4n){
   this->ope_fitting = new ope::attribut::Fitting();
   this->k4n_operation = new k4n::utils::Operation();
   this->k4n_recorder = new k4n::processing::Recorder(node_k4n);
-  this->thread_pool = node_k4n->get_thread_pool();
+  this->k4n_pool = node_k4n->get_k4n_pool();
 
   //---------------------------
 }
@@ -34,7 +34,7 @@ void Operation::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  thread_pool->add_task(task_function);
+  k4n_pool->add_task(task_function);
 
   //---------------------------
 }

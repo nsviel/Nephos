@@ -11,12 +11,12 @@ namespace k4n::matching{class Image;}
 
 namespace k4n::detection{
 
-class Detection
+class Detector
 {
 public:
   //Constructor / Destructor
-  Detection(k4n::Node* node_k4n);
-  ~Detection();
+  Detector(k4n::Node* node_k4n);
+  ~Detector();
 
 public:
   //Main function

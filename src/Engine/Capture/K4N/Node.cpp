@@ -22,7 +22,7 @@ Node::Node(eng::capture::Node* node_capture){
   this->node_profiler = node_capture->get_node_profiler();
 
   //Child
-  this->thread_pool = new k4n::thread::Pool(50);
+  this->k4n_pool = new k4n::thread::Pool(50);
   this->k4n_struct = new k4n::structure::K4N(this);
   this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::thread::Connection(this);

@@ -44,7 +44,7 @@ public:
 private:
   k4n::utils::Operation* k4n_operation;
   k4n::processing::Operation* k4n_processing;
-  k4n::thread::Pool* thread_pool;
+  k4n::thread::Pool* k4n_pool;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgb;

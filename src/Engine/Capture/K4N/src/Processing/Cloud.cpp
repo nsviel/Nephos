@@ -14,7 +14,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
 
   this->k4n_operation = new k4n::utils::Operation();
   this->k4n_processing = new k4n::processing::Operation(node_k4n);
-  this->thread_pool = node_k4n->get_thread_pool();
+  this->k4n_pool = node_k4n->get_k4n_pool();
 
   //---------------------------
 }
@@ -28,7 +28,7 @@ void Cloud::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  thread_pool->add_task(task_function);
+  k4n_pool->add_task(task_function);
 
   //---------------------------
 }
