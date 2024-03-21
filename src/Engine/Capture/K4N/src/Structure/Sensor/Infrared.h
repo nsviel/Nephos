@@ -1,5 +1,7 @@
 #pragma once
 
+#include <K4N/src/Structure/Sensor/Data.h>
+
 
 namespace k4n::structure{
 

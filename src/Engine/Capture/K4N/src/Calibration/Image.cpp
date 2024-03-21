@@ -134,13 +134,14 @@ void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
 
   //------------------------
 }
-void Image::draw_circle(cv::Mat& image, vector<vec3>& vec_circle){
+void Image::draw_circle(cv::Mat& image, vector<k4n::structure::Circle>& vec_circle){
   if(vec_circle.size() == 0) return;
   //------------------------
 
   for(size_t i=0; i<vec_circle.size(); i++){
-    cv::Point center(cvRound(vec_circle[i][0]), cvRound(vec_circle[i][1]));
-    int radius = cvRound(vec_circle[i][2]);
+    k4n::structure::Circle& circle = vec_circle[i];
+    cv::Point center(cvRound(circle.pose.x), cvRound(circle.pose.y));
+    int radius = cvRound(circle.radius);
 
     // Draw the circle center
     cv::circle(image, center, 3, cv::Scalar(44, 255, 44, 255), -1, cv::LINE_AA);
@@ -154,9 +155,12 @@ void Image::draw_circle(cv::Mat& image, vector<vec3>& vec_circle){
 void Image::draw_bounding_box(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
-  if(sensor->detection.vec_circle.size() == 0) return;
-  sensor->detection.cv_center = cv::Point(cvRound(sensor->detection.vec_circle[0][0]), cvRound(sensor->detection.vec_circle[0][1]));
-  sensor->detection.cv_radius = cvRound(sensor->detection.vec_circle[0][2]);
+  vector<k4n::structure::Circle>& vec_circle = sensor->detection.vec_circle;
+  if(vec_circle.size() == 0) return;
+
+  k4n::structure::Circle& circle = vec_circle[0];
+  sensor->detection.cv_center = cv::Point(cvRound(circle.pose.x), cvRound(circle.pose.y));
+  sensor->detection.cv_radius = cvRound(circle.radius);
 
   cv::Point& center = sensor->detection.cv_center;
   float radius = (float)sensor->detection.cv_radius * k4n_struct->calibration.bbox.scale;

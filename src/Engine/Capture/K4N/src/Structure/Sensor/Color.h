@@ -1,7 +1,11 @@
 #pragma once
 
+#include <K4N/src/Structure/Sensor/Data.h>
 #include <k4a/k4a.hpp>
 #include <string>
+
+namespace k4n::structure{struct Data;}
+
 
 namespace k4n::image{
 

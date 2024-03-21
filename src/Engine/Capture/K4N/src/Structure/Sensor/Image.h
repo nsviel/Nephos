@@ -2,8 +2,7 @@
 
 #include <Utility/Namespace.h>
 
-#include <string>
-#include <mutex>
+namespace utl::media{struct Image;}
 
 
 namespace k4n::structure{

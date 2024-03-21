@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
+#include <K4N/src/Structure/Master/Namespace.h>
 
 namespace eng::scene{class Set;}
 namespace k4n::dev{class Sensor;}

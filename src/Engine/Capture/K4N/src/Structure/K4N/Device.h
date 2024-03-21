@@ -1,6 +1,7 @@
 #pragma once
 
 #include <K4N/Namespace.h>
+#include <list>
 
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}

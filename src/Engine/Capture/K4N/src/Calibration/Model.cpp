@@ -56,17 +56,20 @@ void Model::detect_sphere(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Model::retrieve_sphere_data(k4n::dev::Sensor* sensor){
-  if(sensor->detection.vec_circle.size() == 0) return;
   //---------------------------
+
+  vector<k4n::structure::Circle>& vec_circle = sensor->detection.vec_circle;
+  if(vec_circle.size() == 0) return;
 
   utl::media::Image* input = &sensor->image.ir;
 
   cv::Mat cv_image(input->height, input->width, CV_8UC4, input->data.data());
 
   // Retrieve the parameters of the detected circle
-  float center_x = sensor->detection.vec_circle[0][0];
-  float center_y = sensor->detection.vec_circle[0][1];
-  float radius = sensor->detection.vec_circle[0][2];
+  k4n::structure::Circle& circle = vec_circle[0];
+  float center_x = circle.pose.x;
+  float center_y = circle.pose.y;
+  float radius = circle.radius;
 
   // Iterate over the bounding box of the circle
   for(int y = center_y - radius; y <= center_y + radius; y++){

@@ -1,8 +1,9 @@
 #pragma once
 
+#include <K4N/src/Structure/Calibration/Sphere.h>
+#include <K4N/src/Structure/Calibration/Circle.h>
 #include <Scene/Namespace.h>
 #include <opencv2/opencv.hpp>
-#include <string>
 
 
 namespace k4n::structure{
@@ -17,7 +18,8 @@ struct Detection{
   int cv_radius = 0;
   int nb_detection = 0;
 
-  vector<vec3> vec_circle;
+  vector<k4n::structure::Circle> vec_circle;
+  vector<k4n::structure::Sphere> vec_sphere;
   vector<glyph::scene::Sphere*> vec_sphere_glyph;
 
   //---------------------------

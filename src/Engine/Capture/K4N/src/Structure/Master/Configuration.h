@@ -1,5 +1,8 @@
 #pragma once
 
+#include <K4N/src/Structure/Sensor/Color.h>
+#include <K4N/src/Structure/Sensor/Depth.h>
+#include <K4N/src/Structure/Sensor/Infrared.h>
 #include <k4a/k4a.hpp>
 #include <string>
 

@@ -5,6 +5,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::structure{class K4N;}
+namespace k4n::structure{class Circle;}
 
 
 namespace k4n::calibration{
@@ -17,11 +18,11 @@ public:
 
 public:
   //Main function
-  vector<vec3> sphere_detection(cv::Mat& input, cv::Mat& output);
+  vector<k4n::structure::Circle> sphere_detection(cv::Mat& input, cv::Mat& output);
 
   //Algo function
   void preprocessing(cv::Mat& input, cv::Mat& output);
-  vector<vec3> compute_hough_circle(cv::Mat& image);
+  void compute_hough_circle(cv::Mat& image);
 
   //Subfunction
   void find_mode_parameter(int mode);
@@ -29,6 +30,8 @@ public:
 
 private:
   k4n::structure::K4N* k4n_struct;
+
+  vector<k4n::structure::Circle> vec_circle;
 };
 
 }

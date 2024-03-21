@@ -42,7 +42,7 @@ void Glyph::reset_all_sphere(k4n::dev::Sensor* sensor){
 }
 void Glyph::draw_all_sphere(k4n::dev::Sensor* sensor){
   vector<glyph::scene::Sphere*>& vec_sphere_glyph = sensor->detection.vec_sphere_glyph;
-  vector<vec3>& vec_circle = sensor->detection.vec_circle;
+  vector<k4n::structure::Circle>& vec_circle = sensor->detection.vec_circle;
   //---------------------------
 
   uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
@@ -50,12 +50,12 @@ void Glyph::draw_all_sphere(k4n::dev::Sensor* sensor){
 
   for(int i=0; i<vec_circle.size(); i++){
     if(i >= vec_sphere_glyph.size()) return;
-    
-    vec3& circle = vec_circle[i];
+
+    k4n::structure::Circle& circle = vec_circle[i];
 
     //Retrieve image coordinates
-    int x = circle[0];
-    int y = circle[1];
+    int x = circle.pose[0];
+    int y = circle.pose[1];
     k4a_float2_t source_xy = { static_cast<float>(x), static_cast<float>(y) };
     float source_z = static_cast<float>(buffer[y * width + x]);
 

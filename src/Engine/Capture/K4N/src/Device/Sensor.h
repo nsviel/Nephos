@@ -1,9 +1,7 @@
 #pragma once
 
-#include <Profiler/Namespace.h>
-#include <Engine/Capture/K4N/src/Structure/Namespace.h>
 #include <Utility/Specific/common.h>
-
+#include <K4N/src/Structure/Namespace.h>
 
 namespace eng{class Node;}
 namespace eng::scene{class Entity;}

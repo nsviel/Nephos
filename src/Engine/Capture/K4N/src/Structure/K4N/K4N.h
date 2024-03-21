@@ -1,10 +1,11 @@
 #pragma once
 
+#include <K4N/src/Structure/K4N/Device.h>
+#include <K4N/src/Structure/Calibration/Calibration.h>
 #include <Utility/Specific/common.h>
-#include <K4N/Namespace.h>
-
-namespace k4n::structure{struct Device;}
-namespace k4n::structure{struct Hough;}
+#include <Profiler/Namespace.h>
+#include <Engine/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace k4n::structure{

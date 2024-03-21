@@ -2,8 +2,6 @@
 
 #include <Utility/Specific/common.h>
 #include <Operation/Namespace.h>
-
-#include <k4a/k4a.hpp>
 #include <cstdint>
 
 

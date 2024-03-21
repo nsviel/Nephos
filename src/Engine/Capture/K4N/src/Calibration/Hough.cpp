@@ -18,16 +18,16 @@ Hough::Hough(k4n::Node* node_k4n){
 Hough::~Hough(){}
 
 //Main function
-vector<vec3> Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
-  if(input.empty()) return vector<vec3>();
+vector<k4n::structure::Circle> Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
+  vec_circle.clear();
+  if(input.empty()) return vec_circle;
   //------------------------
 
   //Pre processing
   this->preprocessing(input, output);
 
   // Perform Hough Transform to detect lines
-  vector<vec3> vec_circle;
-  vec_circle = compute_hough_circle(output);
+  this->compute_hough_circle(output);
 
   //------------------------
   return vec_circle;
@@ -50,7 +50,7 @@ void Hough::preprocessing(cv::Mat& input, cv::Mat& output){
 
   //---------------------------
 }
-vector<vec3> Hough::compute_hough_circle(cv::Mat& image){
+void Hough::compute_hough_circle(cv::Mat& image){
   //---------------------------
 
   std::vector<cv::Vec3f> circles;
@@ -64,13 +64,14 @@ vector<vec3> Hough::compute_hough_circle(cv::Mat& image){
 
   cv::HoughCircles(image, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
 
-  vector<vec3> vec_circle;
   for(int i=0; i<circles.size(); i++){
-    vec_circle.push_back(vec3(circles[i][0], circles[i][1], circles[i][2]));
+    k4n::structure::Circle circle;
+    circle.pose = glm::ivec2(circles[i][0], circles[i][1]);
+    circle.radius = circles[i][2];
+    vec_circle.push_back(circle);
   }
 
   //---------------------------
-  return vec_circle;
 }
 
 //Subfunction
