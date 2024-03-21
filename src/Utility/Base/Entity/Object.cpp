@@ -121,6 +121,7 @@ void Object::reset_entity(){
 
 //Subfunction
 void Object::set_visibility(bool value){
+  if(data.is_visible == value) return;
   //---------------------------
 
   this->is_visible = value;

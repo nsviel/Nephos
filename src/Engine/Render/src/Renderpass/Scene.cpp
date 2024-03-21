@@ -173,7 +173,7 @@ bool Scene::check_data(utl::type::Data* data, int topology){
   bool data_ok = false;
   //---------------------------
 
-  bool& is_visible = data->is_visible;
+  bool is_visible = data->is_visible;
   bool has_topology = data->topology.type == topology;
   bool has_xyz = data->xyz.size() != 0;
   bool has_rgb = data->rgb.size() != 0;
