@@ -3,6 +3,7 @@
 #include <K4N/Namespace.h>
 #include <Render/Namespace.h>
 #include <Engine/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace k4n::gui{
@@ -17,6 +18,7 @@ Calibration::Calibration(k4n::Node* node_k4n, bool* show_window){
   this->k4n_model = node_k4n->get_k4n_model();
   this->k4n_hough = new k4n::detection::Hough(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_struct();
+  this->utl_plot = new utl::implot::Plot();
   this->stream = new eng::render::gui::Stream(node_engine);
 
   this->show_window = show_window;
@@ -55,6 +57,7 @@ void Calibration::design_panel(k4n::dev::Master* master){
   this->canny_parameter(sensor);
   this->hough_parameter(sensor);
   this->draw_result(sensor);
+  this->plot_IfR(sensor);
 
   //---------------------------
 }
@@ -176,6 +179,13 @@ void Calibration::draw_result(k4n::dev::Sensor* sensor){
 
   //---------------------------
   ImGui::Separator();
+}
+void Calibration::plot_IfR(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  utl_plot->plot_scatter_2d();
+
+  //---------------------------
 }
 
 }

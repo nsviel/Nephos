@@ -50,7 +50,6 @@ void Glyph::draw_all_sphere(k4n::dev::Sensor* sensor){
 
   for(int i=0; i<vec_circle.size(); i++){
     if(i >= vec_sphere_glyph.size()) return;
-
     k4n::structure::Circle& circle = vec_circle[i];
 
     //Retrieve image coordinates

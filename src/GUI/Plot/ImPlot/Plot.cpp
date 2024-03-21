@@ -1,19 +1,48 @@
-#include "TimeSerie.h"
+#include "Plot.h"
+#include "Namespace.h"
 
 #include <imgui/implot/implot.h>
 
 
-namespace utl::gui::plot{
+namespace utl::implot{
 
-TimeSerie::TimeSerie(){
+Plot::Plot(){
   //---------------------------
+
+  this->implot_style = new utl::implot::Style();
 
   //---------------------------
 }
-TimeSerie::~TimeSerie(){}
+Plot::~Plot(){}
 
 //Main function
-void TimeSerie::plot_constant_in_time(){
+void Plot::plot_scatter_2d(){
+  //---------------------------
+  implot_style->make_style();
+
+  // Generate random data
+  static std::vector<double> x_data, y_data;
+  const int num_points = 100;
+  if(x_data.size() == 0){
+    for (int i = 0; i < num_points; ++i) {
+      x_data.push_back((double)i);
+      y_data.push_back((double)rand() / RAND_MAX);
+    }
+  }
+
+  // Create a window
+  ImPlot::SetNextAxisLimits(0, num_points, 0, 1);
+  if(ImPlot::BeginPlot("Scatter Plot", ImVec2(-1, -1))){
+    // Plot the data
+    ImPlot::PlotScatter("Random Data", x_data.data(), y_data.data(), num_points);
+
+    // End the plot
+    ImPlot::EndPlot();
+  }
+
+  //---------------------------
+}
+void Plot::plot_constant_in_time(){
   //---------------------------
 
   static vector<float> vec_c;
