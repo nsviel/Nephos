@@ -3,6 +3,7 @@
 #include <Scene/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Operation/Namespace.h>
+#include <Camera/Namespace.h>
 
 
 namespace glyph::scene{
@@ -40,10 +41,14 @@ void Sphere::create(){
 
   //---------------------------
 }
-void Sphere::update_glyph(){
+void Sphere::update_pose(utl::type::Entity* entity){
   //---------------------------
 
+  utl::type::Pose* entity_pose = entity->get_pose();
+  pose.model = truc * entity_pose->model;
 
+  eng::cam::Control* cam_control = node_camera->get_camera_control();
+  cam_control->compute_camera_mvp(&pose);
 
   //---------------------------
 }
@@ -84,18 +89,18 @@ void Sphere::assign_color(vec4 color){
 void Sphere::move_sphere(vec3 coordinate){
   //---------------------------
 
+  //Set visibility
   data.is_visible = true;
 
-  mat4 truc = glm::mat4(1.0f);
+  //Set scale (original sphere is 1m diameter)
+  truc = glm::mat4(1.0f);
   float scaleFactor = 0.1f;
   truc = glm::scale(truc, glm::vec3(scaleFactor));
 
+  //Set detected sphere coordinate
   truc[0][3] = coordinate.x;
   truc[1][3] = coordinate.y;
   truc[2][3] = coordinate.z;
-  pose.model = truc;
-
-  this->update_pose();
 
   //---------------------------
 }

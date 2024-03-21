@@ -1,4 +1,4 @@
 #pragma once
 
-#include <K4N/src/Detection/Hough.h>
-#include <K4N/src/Detection/Glyph.h>
+#include <K4N/src/Sphere/Detection/Hough.h>
+#include <K4N/src/Sphere/Detection/Glyph.h>

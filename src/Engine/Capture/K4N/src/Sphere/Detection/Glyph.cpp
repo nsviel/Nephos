@@ -69,9 +69,7 @@ void Glyph::draw_all_sphere(k4n::dev::Sensor* sensor){
     xyzw.x = -xyzw.x * inv_scale;
     xyzw.y = -xyzw.y * inv_scale;
     xyzw.z = xyzw.z * inv_scale;
-    xyzw = vec4(xyzw.z, xyzw.x, xyzw.y, 1);
-    xyzw = xyzw * sensor->object.get_pose()->model;
-    vec3 pose = vec3(xyzw.x, xyzw.y, xyzw.z);
+    vec3 pose = vec3(xyzw.z, xyzw.x, xyzw.y);
 
     //Add sphere radius to the detected circle center
     vec3 dir = glm::normalize(pose);

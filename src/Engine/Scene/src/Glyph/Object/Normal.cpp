@@ -1,6 +1,6 @@
 #include "Normal.h"
 
-#include <Engine/Camera/Namespace.h>
+#include <Camera/Namespace.h>
 #include <Utility/Function/Math/Math.h>
 
 

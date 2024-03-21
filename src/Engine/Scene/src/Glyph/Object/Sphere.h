@@ -18,7 +18,7 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph();
+  void update_pose(utl::type::Entity* entity);
   void reset_glyph();
 
   //Subfunction
@@ -31,6 +31,7 @@ private:
   ope::Transformation* ope_transform;
 
   int size = 20;
+  mat4 truc = mat4(1);
 };
 
 }
