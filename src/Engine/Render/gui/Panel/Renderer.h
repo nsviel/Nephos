@@ -5,7 +5,7 @@
 namespace vk::main{class Imgui;}
 namespace vk::main{class Info;}
 namespace eng::render{class Node;}
-namespace eng::cam{class Node;}
+namespace eng::cam::gui{class Control;}
 namespace ope{class Node;}
 namespace utl::element{class Window;}
 
@@ -29,7 +29,7 @@ public:
   void resize();
 
 private:
-  eng::cam::Node* node_camera;
+  eng::cam::gui::Control* cam_control;
   ope::Node* node_operation;
   utl::element::Window* utl_window;
   vk::main::Imgui* vk_imgui;

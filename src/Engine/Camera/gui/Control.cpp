@@ -96,19 +96,10 @@ void Control::control_mouse(){
   utl_window->set_window_center(vec2(center.x, center.y));
 
   //Right click - Camera movement
-  static vec2 cursorPos;
-  if(ImGui::IsMouseClicked(1)){
-    cursorPos = utl_window->get_mouse_pose();
+  this->enable_camera_view(center);
 
-    ImGui::GetIO().MouseDrawCursor = false;
-    utl_window->set_mouse_pose(vec2(center.x, center.y));
-    camera->cam_move = true;
-  }
   //Release - back to normal
-  if(ImGui::IsMouseReleased(1) && camera->cam_move){
-    utl_window->set_mouse_pose(cursorPos);
-    camera->cam_move = false;
-  }
+  this->disable_camera_view();
 
   //---------------------------
 }
@@ -120,6 +111,33 @@ void Control::control_mouse_wheel(){
   //Wheel + right clicked - Camera zoom
   if(io.MouseWheel && io.MouseDownDuration[1] >= 0.0f){
     cam_control->control_zoom(io.MouseWheel);
+  }
+
+  //----------------------------
+}
+
+//Subfunction
+void Control::enable_camera_view( ImVec2 center){
+  utl::entity::Camera* camera = cam_manager->get_current_camera();
+  //----------------------------
+
+  if(ImGui::IsMouseClicked(1)){
+    cursor_pose = utl_window->get_mouse_pose();
+
+    ImGui::GetIO().MouseDrawCursor = false;
+    utl_window->set_mouse_pose(vec2(center.x, center.y));
+    camera->cam_move = true;
+  }
+
+  //----------------------------
+}
+void Control::disable_camera_view(){
+  utl::entity::Camera* camera = cam_manager->get_current_camera();
+  //----------------------------
+
+  if(ImGui::IsMouseReleased(1) && camera->cam_move){
+    utl_window->set_mouse_pose(cursor_pose);
+    camera->cam_move = false;
   }
 
   //----------------------------

@@ -18,9 +18,10 @@ Renderer::Renderer(eng::render::Node* node_render){
 
   utl::Node* node_utility = node_render->get_node_utility();
   vk::Node* node_vulkan = node_render->get_node_vulkan();
+  eng::cam::Node* node_camera = node_render->get_node_camera();
 
   this->node_operation = node_render->get_node_operation();
-  this->node_camera = node_render->get_node_camera();
+  this->cam_control = node_camera->get_gui_control();
   this->utl_window = node_utility->get_utl_window();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_info = node_vulkan->get_vk_info();
@@ -64,7 +65,9 @@ void Renderer::engine_texture(){
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
   if(ImGui::IsItemHovered()){
     node_operation->control();
-    node_camera->control();
+    cam_control->run_control();
+  }else{
+    cam_control->disable_camera_view();
   }
 
   //---------------------------
