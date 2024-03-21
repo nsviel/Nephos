@@ -32,7 +32,16 @@ void Plot::plot_scatter_2d(){
 
   // Create a window
   ImPlot::SetNextAxisLimits(0, num_points, 0, 1);
-  if(ImPlot::BeginPlot("Scatter Plot", ImVec2(-1, -1))){
+  ImPlotFlags flag;
+  flag |= ImPlotFlags_NoBoxSelect;
+  flag |= ImPlotAxisFlags_AutoFit;
+  flag |= ImPlotFlags_NoMouseText;
+  flag |= ImPlotFlags_NoLegend;
+  if(ImPlot::BeginPlot("##scatter_plot", ImVec2(-1, -1), flag)){
+    ImPlotAxisFlags axis_flag;
+    axis_flag |= ImPlotAxisFlags_AutoFit;
+    ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
+
     // Plot the data
     ImPlot::PlotScatter("Random Data", x_data.data(), y_data.data(), num_points);
 
@@ -59,14 +68,7 @@ void Plot::plot_constant_in_time(){
 
   if(ImPlot::BeginPlot("##plot", ImVec2(-1, -1), ImPlotFlags_NoMouseText)){
 
-    ImPlot::PushStyleVar(ImPlotStyleVar_FillAlpha, 0.5f);
-    ImPlot::PushStyleVar(ImPlotStyleVar_PlotMinSize, ImVec2(10, 10));
-    ImPlot::PushStyleVar(ImPlotStyleVar_PlotPadding, ImVec2(10, 10));
-    ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 2);
 
-    ImPlot::PushStyleColor(ImPlotCol_PlotBg, ImVec4(0, 0, 0, 1));
-    ImPlot::PushStyleColor(ImPlotCol_AxisBg, ImVec4(0.1, 0.1, 0.1, 1));
-        ImPlot::PushStyleColor(ImPlotCol_PlotBorder, ImVec4(0.1, 0.1, 0.1, 1));
 
     ImPlot::SetupAxisLimitsConstraints(ImAxis_Y1, 0, 60);
     ImPlot::SetupAxisZoomConstraints(ImAxis_Y1, 0, 60);
@@ -79,7 +81,6 @@ void Plot::plot_constant_in_time(){
     ImPlot::PlotLine("", vec_c.data(), vec_d.data(), vec_d.size());
     ImPlot::PlotShaded("", vec_c.data(), vec_d.data(), vec_d.size(), -INFINITY, 0);
 
-    ImPlot::PopStyleVar(4);
     ImPlot::PopStyleColor();
 
     ImPlot::EndPlot();
