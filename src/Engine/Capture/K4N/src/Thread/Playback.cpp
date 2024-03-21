@@ -148,7 +148,7 @@ void Playback::manage_pause(k4n::dev::Sensor* sensor){
   bool& is_paused = sensor->master->player.pause;
   if(is_paused || !sensor->master->player.play){
     //Clear thread profiler and wait subthread fulfillment
-    sensor->profiler->clear();
+    sensor->profiler->reset();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
     //Pause loop

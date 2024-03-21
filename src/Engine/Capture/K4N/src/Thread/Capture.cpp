@@ -153,7 +153,7 @@ void Capture::manage_pause(k4n::dev::Sensor* sensor){
   //If pause, wait until end pause or end thread
   bool& is_paused = sensor->master->player.pause;
   if(is_paused || !sensor->master->player.play){
-    sensor->profiler->clear();
+    sensor->profiler->reset();
     while(is_paused && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }

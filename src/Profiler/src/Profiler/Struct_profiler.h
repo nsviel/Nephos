@@ -16,6 +16,7 @@ struct Profiler{
 
     //---------------------------
   }
+  virtual void clean(){}
   virtual void show_info(){}
 
   inline std::string get_name(){return name;}

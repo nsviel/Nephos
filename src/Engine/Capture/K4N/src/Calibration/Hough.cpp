@@ -26,7 +26,8 @@ vector<vec3> Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
   this->preprocessing(input, output);
 
   // Perform Hough Transform to detect lines
-  vector<vec3> vec_circle = compute_hough_circle(output);
+  vector<vec3> vec_circle;
+  vec_circle = compute_hough_circle(output);
 
   //------------------------
   return vec_circle;

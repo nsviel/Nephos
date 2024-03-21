@@ -18,7 +18,8 @@ public:
 
 public:
   //Main function
-  void clear();
+  void reset();
+  void clean();
 
   //Tasker function
   prf::graph::Tasker* new_tasker(string name);

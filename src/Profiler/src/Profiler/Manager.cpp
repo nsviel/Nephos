@@ -31,6 +31,7 @@ void Manager::add_profiler(prf::type::Profiler* profiler){
 void Manager::remove_profiler(prf::type::Profiler* profiler){
   //---------------------------
 
+  profiler->clean();
   this->list_profiler.remove(profiler);
   delete profiler;
 
