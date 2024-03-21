@@ -73,10 +73,10 @@ void Glyph::draw_all_sphere(k4n::dev::Sensor* sensor){
 
     //Add sphere radius to the detected circle center
     vec3 dir = glm::normalize(pose);
-    pose = pose + dir * sensor->detection.sphere_diameter;
+    pose = pose + dir * (sensor->detection.sphere_diameter / 2);
 
     //Position sphere
-    vec_sphere_glyph[i]->move_sphere(pose);
+    vec_sphere_glyph[i]->move_sphere(pose, sensor->detection.sphere_diameter);
   }
 
   //---------------------------

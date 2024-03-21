@@ -23,7 +23,7 @@ public:
 
   //Subfunction
   void construct(vec4& color);
-  void move_sphere(vec3 pose);
+  void move_sphere(vec3 pose, float diameter);
 
 private:
   eng::scene::Loader* sce_loader;
