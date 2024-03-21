@@ -24,12 +24,6 @@ namespace k4n::structure{
 struct Hough{
   //---------------------------
 
-  //Canny
-  bool apply_canny = false;
-  int canny_thres_lower = 50;
-  int canny_thres_upper = 150;
-
-  //Hough
   bool apply_hough = true;
   int drawing_mode = k4n::hough::ALL;
   int mode = k4n::hough::GRADIENT;

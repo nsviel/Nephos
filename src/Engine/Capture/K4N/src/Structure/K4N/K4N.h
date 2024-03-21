@@ -36,7 +36,7 @@ struct K4N{
 
   //Structure
   k4n::structure::Device device;
-  k4n::structure::Hough hough;
+  k4n::structure::Calibration calibration;
 
   //---------------------------
 };

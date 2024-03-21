@@ -7,7 +7,7 @@
 
 namespace k4n::structure{
 
-struct Calibration{
+struct Sphere{
   //---------------------------
 
   cv::Mat cv_image;

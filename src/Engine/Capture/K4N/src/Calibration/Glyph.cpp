@@ -30,7 +30,7 @@ void Glyph::draw_glyph(k4n::dev::Sensor* sensor){
 
 //Subfunction
 void Glyph::reset_all_sphere(k4n::dev::Sensor* sensor){
-  vector<glyph::scene::Sphere*>& vec_sphere_glyph = sensor->calibration.vec_sphere_glyph;
+  vector<glyph::scene::Sphere*>& vec_sphere_glyph = sensor->sphere.vec_sphere_glyph;
   //---------------------------
 
   for(int i=0; i<vec_sphere_glyph.size(); i++){
@@ -41,8 +41,8 @@ void Glyph::reset_all_sphere(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Glyph::draw_all_sphere(k4n::dev::Sensor* sensor){
-  vector<glyph::scene::Sphere*>& vec_sphere_glyph = sensor->calibration.vec_sphere_glyph;
-  vector<vec3>& vec_circle = sensor->calibration.vec_circle;
+  vector<glyph::scene::Sphere*>& vec_sphere_glyph = sensor->sphere.vec_sphere_glyph;
+  vector<vec3>& vec_circle = sensor->sphere.vec_circle;
   //---------------------------
 
   uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
@@ -75,7 +75,7 @@ void Glyph::draw_all_sphere(k4n::dev::Sensor* sensor){
 
     //Add sphere radius to the detected circle center
     vec3 dir = glm::normalize(pose);
-    pose = pose + dir * sensor->calibration.sphere_diameter;
+    pose = pose + dir * sensor->sphere.sphere_diameter;
 
     //Position sphere
     vec_sphere_glyph[i]->move_sphere(pose);
