@@ -8,7 +8,7 @@ namespace k4n::structure{class K4N;}
 namespace k4n::structure{class Circle;}
 
 
-namespace k4n::calibration{
+namespace k4n::detection{
 
 class Hough
 {

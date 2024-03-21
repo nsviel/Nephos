@@ -4,12 +4,12 @@
 
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
-namespace k4n::calibration{class Glyph;}
-namespace k4n::calibration{class Hough;}
-namespace k4n::calibration{class Image;}
+namespace k4n::detection{class Glyph;}
+namespace k4n::detection{class Hough;}
+namespace k4n::matching{class Image;}
 
 
-namespace k4n::registration{
+namespace k4n::detection{
 
 class Detection
 {
@@ -26,9 +26,9 @@ public:
   void detect_circle_in_image(k4n::dev::Sensor* sensor);
 
 private:
-  k4n::calibration::Glyph* k4n_glyph;
-  k4n::calibration::Hough* k4n_hough;
-  k4n::calibration::Image* k4n_image;
+  k4n::detection::Glyph* k4n_glyph;
+  k4n::detection::Hough* k4n_hough;
+  k4n::matching::Image* k4n_image;
 };
 
 }

@@ -5,15 +5,15 @@
 namespace k4n{class Node;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::dev{class Sensor;}
-namespace k4n::calibration{class Hough;}
-namespace k4n::calibration{class Image;}
+namespace k4n::detection{class Hough;}
+namespace k4n::matching{class Image;}
 namespace ope::attribut{class Fitting;}
 namespace eng::scene{class Glyph;}
 namespace eng{class Node;}
 namespace glyph::scene{class Sphere;}
 
 
-namespace k4n::calibration{
+namespace k4n::detection{
 
 class Glyph
 {

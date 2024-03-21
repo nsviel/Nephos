@@ -9,7 +9,7 @@ namespace k4n::structure{class Circle;}
 namespace k4n::dev{class Sensor;}
 
 
-namespace k4n::calibration{
+namespace k4n::matching{
 
 class Image
 {

@@ -3,7 +3,7 @@
 #include <K4N/Namespace.h>
 
 
-namespace k4n::calibration{
+namespace k4n::matching{
 
 //Constructor / Destructor
 Image::Image(k4n::Node* node_k4n){

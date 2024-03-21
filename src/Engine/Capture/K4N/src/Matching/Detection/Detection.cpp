@@ -3,16 +3,16 @@
 #include <K4N/Namespace.h>
 
 
-namespace k4n::registration{
+namespace k4n::detection{
 
 //Constructor / Destructor
 Detection::Detection(k4n::Node* node_k4n){
   //---------------------------
 
-  this->k4n_glyph = new k4n::calibration::Glyph(node_k4n);
-  this->k4n_image = new k4n::calibration::Image(node_k4n);
-  this->k4n_hough = new k4n::calibration::Hough(node_k4n);
-  
+  this->k4n_glyph = new k4n::detection::Glyph(node_k4n);
+  this->k4n_image = new k4n::matching::Image(node_k4n);
+  this->k4n_hough = new k4n::detection::Hough(node_k4n);
+
   //---------------------------
 }
 Detection::~Detection(){}
