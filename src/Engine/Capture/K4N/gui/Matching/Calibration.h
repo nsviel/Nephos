@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace k4n{class Node;}
+namespace k4n::structure{class K4N;}
 
 
 namespace k4n::gui{
