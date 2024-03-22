@@ -94,7 +94,11 @@ void Matching::tab_calibration(k4n::dev::Sensor* sensor){
 void Matching::tab_registration(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  if(ImGui::BeginTabItem("Registration##matching")){
+    gui_registration->draw_registration(sensor);
 
+    ImGui::EndTabItem();
+  }
 
   //---------------------------
 }
