@@ -10,6 +10,8 @@ namespace k4n::structure{
 struct Calibration{
   //---------------------------
 
+  bool activated = false;
+  
   k4n::structure::Hough hough;
   k4n::structure::Canny canny;
   k4n::structure::Bbox bbox;

@@ -15,12 +15,12 @@ namespace eng::render::gui{class Stream;}
 
 namespace k4n::gui{
 
-class Calibration
+class Matching
 {
 public:
   //Constructor / Destructor
-  Calibration(k4n::Node* node_k4n, bool* show_window);
-  ~Calibration();
+  Matching(k4n::Node* node_k4n, bool* show_window);
+  ~Matching();
 
 public:
   //Main function

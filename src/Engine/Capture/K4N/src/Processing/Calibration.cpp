@@ -36,9 +36,13 @@ void Calibration::run_thread(k4n::dev::Sensor* sensor){
 
   tasker->loop_begin();
 
-  tasker->task_begin("hough");
+  tasker->task_begin("detection");
   k4n_detector->make_sphere_detection(sensor);
-  tasker->task_end("hough");
+  tasker->task_end("detection");
+
+  tasker->task_begin("detection");
+  k4n_detector->make_sphere_detection(sensor);
+  tasker->task_end("detection");
 
   tasker->loop_end();
 

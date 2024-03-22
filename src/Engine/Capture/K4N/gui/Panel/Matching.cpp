@@ -1,4 +1,4 @@
-#include "Calibration.h"
+#include "Matching.h"
 
 #include <K4N/Namespace.h>
 #include <Render/Namespace.h>
@@ -9,7 +9,7 @@
 namespace k4n::gui{
 
 //Constructor / Destructor
-Calibration::Calibration(k4n::Node* node_k4n, bool* show_window){
+Matching::Matching(k4n::Node* node_k4n, bool* show_window){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
@@ -22,18 +22,20 @@ Calibration::Calibration(k4n::Node* node_k4n, bool* show_window){
   this->stream = new eng::render::gui::Stream(node_engine);
 
   this->show_window = show_window;
-  this->name = "Calibration";
+  this->name = "Matching";
 
   //---------------------------
 }
-Calibration::~Calibration(){}
+Matching::~Matching(){}
 
 //Main function
-void Calibration::run_panel(){
+void Matching::run_panel(){
   k4n::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
   if(*show_window && master != nullptr){
+    k4n_struct->calibration.activated = true;
+
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::SetNextWindowSizeConstraints(ImVec2(100, 400), ImVec2(FLT_MAX, FLT_MAX));
@@ -45,11 +47,13 @@ void Calibration::run_panel(){
     }
     ImGui::PopStyleVar();
     ImGui::PopStyleColor();
+  }else{
+    k4n_struct->calibration.activated = false;
   }
 
   //---------------------------
 }
-void Calibration::design_panel(k4n::dev::Master* master){
+void Matching::design_panel(k4n::dev::Master* master){
   k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->selected_entity);
   //---------------------------
 
@@ -63,16 +67,16 @@ void Calibration::design_panel(k4n::dev::Master* master){
 }
 
 //Subfunction
-void Calibration::model_parameter(k4n::dev::Sensor* sensor){
+void Matching::model_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
 
-  //Calibration sphere radius
+  //Matching sphere radius
   ImGui::SetNextItemWidth(150);
   ImGui::SliderFloat("Sphere diameter", &sensor->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
 
-  //Calibration sphere radius
+  //Matching sphere radius
   ImGui::SetNextItemWidth(150);
   ImGui::SliderFloat("Bounding box factor", &k4n_struct->calibration.bbox.scale, 1.0f, 10.0f, "%.2fx");
 
@@ -83,7 +87,7 @@ void Calibration::model_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Calibration::canny_parameter(k4n::dev::Sensor* sensor){
+void Matching::canny_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Hough parameter");
@@ -109,7 +113,7 @@ void Calibration::canny_parameter(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
+void Matching::hough_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::Checkbox("Hough", &k4n_struct->calibration.hough.apply);
@@ -156,7 +160,7 @@ void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Calibration::draw_result(k4n::dev::Sensor* sensor){
+void Matching::draw_result(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Display number of detected spheres
@@ -180,7 +184,7 @@ void Calibration::draw_result(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Calibration::plot_IfR(k4n::dev::Sensor* sensor){
+void Matching::plot_IfR(k4n::dev::Sensor* sensor){
   //---------------------------
 
   vector<float> x;
