@@ -57,6 +57,26 @@ void Matching::design_panel(k4n::dev::Master* master){
 }
 
 //Subfunction
+void Matching::tab_detection(k4n::dev::Sensor* sensor){
+  //---------------------------
 
+  gui_detection->draw_detection(sensor);
+
+  //---------------------------
+}
+void Matching::tab_calibration(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  gui_calibration->draw_calibration(sensor);
+
+  //---------------------------
+}
+void Matching::tab_registration(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+
+
+  //---------------------------
+}
 
 }

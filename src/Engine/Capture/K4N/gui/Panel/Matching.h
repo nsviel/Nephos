@@ -25,6 +25,9 @@ public:
   void design_panel(k4n::dev::Master* master);
 
   //Subfunction
+  void tab_detection(k4n::dev::Sensor* sensor);
+  void tab_calibration(k4n::dev::Sensor* sensor);
+  void tab_registration(k4n::dev::Sensor* sensor);
 
 private:
   k4n::dev::Swarm* k4n_swarm;
