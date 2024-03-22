@@ -653,7 +653,7 @@ void Importer::reorder_by_timestamp(utl::file::Entity* entity){
 
   if(entity->ts.size() != 0){
     //Check for non void and reorder by index
-    for (auto i: math::sort_by_indexes(entity->ts)){
+    for (auto i: math::sort_by_index(entity->ts)){
       if(entity->xyz[i] != glm::vec3(0, 0, 0)){
         //Location adn timestamp
         ts.push_back(entity->ts[i]);

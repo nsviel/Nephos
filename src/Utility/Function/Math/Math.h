@@ -26,8 +26,6 @@ void normalize(std::vector<float>& vec);
 void normalize(std::vector<float>& vec, glm::vec2 range);
 void normalize(std::vector<float>& vec, float value_to_avoid);
 std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid);
-std::vector<float> normalize(std::vector<float>& vec);
-std::vector<double> normalize(std::vector<double>& vec);
 
 //Conversion
 float degree_to_radian(float degree);

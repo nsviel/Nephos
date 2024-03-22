@@ -1,7 +1,6 @@
 #include "Octree.h"
 
 #include <Operation/Namespace.h>
-#include <Utility/Function/Math/Math.h>
 #include <Utility/Specific/color.h>
 
 
@@ -109,7 +108,7 @@ void Octree::build_root(utl::entity::Object* object){
   //Apply color to each level
   if(with_rdm_color){
     for(int i=0; i<nb_level; i++){
-      vec4 rgb = random_color();
+      vec4 rgb = random();
       root->level_rgb.push_back(rgb);
     }
   }else{

@@ -15,7 +15,7 @@ public:
 public:
   void init();
   void choose(string name);
-  vec4 random_color();
+  vec4 random();
 
   inline vector<vec3>& get_colormap_selected(){return colormap_selected;}
 

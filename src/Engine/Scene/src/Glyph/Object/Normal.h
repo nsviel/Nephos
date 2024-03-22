@@ -20,7 +20,7 @@ public:
 
   //Construct
   void construct(utl::type::Entity* entity);
-  glm::vec4 generate_random_color();
+  glm::vec4 generate_random();
 
   inline int* get_size(){return &size;}
 

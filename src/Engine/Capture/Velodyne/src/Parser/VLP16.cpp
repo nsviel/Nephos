@@ -258,7 +258,7 @@ void VLP16::reorder_by_azimuth(utl::file::Entity* cloud){
   vector<float> I_b;
   vector<float> A_b;
   vector<float> t_b;
-  for (auto i: math::sort_by_indexes(packet_A)){
+  for (auto i: math::sort_by_index(packet_A)){
     xyz_b.push_back(packet_xyz[i]);
     t_b.push_back(packet_t[i]);
     R_b.push_back(packet_R[i]);

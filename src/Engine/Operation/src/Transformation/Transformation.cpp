@@ -1,7 +1,5 @@
 #include "Transformation.h"
 
-#include <Utility/Function/Math/Math.h>
-
 
 namespace ope{
 

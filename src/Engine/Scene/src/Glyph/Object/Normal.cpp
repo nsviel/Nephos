@@ -1,7 +1,6 @@
 #include "Normal.h"
 
 #include <Camera/Namespace.h>
-#include <Utility/Function/Math/Math.h>
 
 
 namespace glyph::object{
@@ -101,7 +100,7 @@ void Normal::construct(utl::type::Entity* entity){
 
   //---------------------------
 }
-glm::vec4 Normal::generate_random_color(){
+glm::vec4 Normal::generate_random(){
   //---------------------------
 
   float Red = float(rand()%101)/100;

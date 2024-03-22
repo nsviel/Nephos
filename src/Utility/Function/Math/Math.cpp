@@ -20,7 +20,7 @@ void divise(std::vector<float>& vec, int diviser){
 std::vector<size_t> sort_by_index(const std::vector<float> &v){
   /*Sorting functions
     --->Sort by order, keeping trace of indices
-    Use with for (auto i: math::sort_by_indexes(v)) {
+    Use with for (auto i: math::sort_by_index(v)) {
                 cout << v[i] << endl;
               }
   */
@@ -39,7 +39,7 @@ std::vector<size_t> sort_by_index(const std::vector<float> &v){
 std::vector<size_t> sort_by_index_greater(const std::vector<float> &v){
   /*Sorting functions
     --->Sort by order, keeping trace of indices
-    Use with for (auto i: math::sort_by_indexes(v)) {
+    Use with for (auto i: math::sort_by_index(v)) {
                 cout << v[i] << endl;
               }
   */
@@ -168,48 +168,6 @@ std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid){
     }else{
       vec_out[i] = vec[i];
     }
-  }
-
-  //-----------------------------
-  return vec_out;
-}
-std::vector<float> normalize(std::vector<float>& vec){
-  std::vector<float> vec_out(vec);
-  int size = vec.size();
-  //-----------------------------
-
-  //Retrieve min & max
-  float min = 1;
-  float max = 0;
-  for(int i=0; i<size; i++){
-    if(vec[i] > max) max = vec[i];
-    if(vec[i] < min && vec[i] >= 0) min = vec[i];
-  }
-
-  //Normalization
-  for(int i=0; i<size; i++){
-    vec_out[i] = (vec[i] - min) / (max - min);
-  }
-
-  //-----------------------------
-  return vec_out;
-}
-std::vector<double> normalize(std::vector<double>& vec){
-  std::vector<double> vec_out(vec);
-  int size = vec.size();
-  //-----------------------------
-
-  //Retrieve min & max
-  double min = vec[0];
-  double max = vec[0];
-  for(int i=0; i<size; i++){
-    if(vec[i] > max) max = vec[i];
-    if(vec[i] < min) min = vec[i];
-  }
-
-  //Normalization
-  for(int i=0; i<size; i++){
-    vec_out[i] = (vec[i] - min) / (max - min);
   }
 
   //-----------------------------

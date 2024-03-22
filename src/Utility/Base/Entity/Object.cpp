@@ -1,9 +1,8 @@
 #include "Object.h"
 
 #include <Engine/Namespace.h>
-#include <Engine/Camera/Namespace.h>
+#include <Camera/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Utility/Function/Math/Math.h>
 
 
 namespace utl::entity{
@@ -13,7 +12,7 @@ Object::Object(){
   //---------------------------
 
   this->entity_type = "entity::Object";
-  this->data.unicolor = math::random_color();
+  this->data.unicolor = math::random();
 
   //---------------------------
 }
@@ -21,7 +20,7 @@ Object::Object(eng::Node* node_engine){
   //---------------------------
 
   this->entity_type = "entity::Object";
-  this->data.unicolor = math::random_color();
+  this->data.unicolor = math::random();
 
   this->node_vulkan = node_engine->get_node_vulkan();
   this->node_camera = node_engine->get_node_camera();

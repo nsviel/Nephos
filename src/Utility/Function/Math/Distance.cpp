@@ -1,7 +1,5 @@
 #include "Math.h"
 
-#include <random>
-
 
 namespace math{
 
@@ -69,16 +67,6 @@ double distance(Eigen::Vector4d pt1, Eigen::Vector3d pt2){
   return dist;
 }
 
-double distance_from_origin(Eigen::Vector3d pt1){
-  //Euclidean distance
-  double dist;
-  //---------------------------
-
-  dist = sqrt(pow(pt1(0), 2) + pow(pt1(1), 2) + pow(pt1(2), 2));
-
-  //---------------------------
-  return dist;
-}
 float distance_from_origin(Eigen::Vector3f pt1){
   //Euclidean distance
   float dist;
@@ -95,6 +83,16 @@ float distance_from_origin(glm::vec3 pt1){
   //---------------------------
 
   dist = sqrt(pow(pt1.x, 2) + pow(pt1.y, 2) + pow(pt1.z, 2));
+
+  //---------------------------
+  return dist;
+}
+double distance_from_origin(Eigen::Vector3d pt1){
+  //Euclidean distance
+  double dist;
+  //---------------------------
+
+  dist = sqrt(pow(pt1(0), 2) + pow(pt1(1), 2) + pow(pt1(2), 2));
 
   //---------------------------
   return dist;

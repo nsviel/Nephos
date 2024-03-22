@@ -1,5 +1,6 @@
 #include "Fitting.h"
 
+#include <Utility/Function/Math/Statistic.h>
 #include <opencv2/opencv.hpp>
 
 

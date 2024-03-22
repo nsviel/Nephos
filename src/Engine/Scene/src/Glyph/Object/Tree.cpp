@@ -1,7 +1,5 @@
 #include "Tree.h"
 
-#include <Utility/Function/Math/Math.h>
-
 
 namespace glyph::object{
 

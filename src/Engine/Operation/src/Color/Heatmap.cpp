@@ -1,6 +1,5 @@
 #include "Heatmap.h"
 
-#include <Utility/Function/Math/Math.h>
 #include <Operation/Namespace.h>
 
 
@@ -35,8 +34,8 @@ void Heatmap::heatmap_intensity(utl::type::Entity* entity, int diviser){
 
   //Prepare data
   vector<float> Is = data->Is;
-  math::divise_vec(Is, diviser);
-  math::Normalize(Is, range_intensity);
+  math::divise(Is, diviser);
+  math::normalize(Is, range_intensity);
 
   //Compute heatmap
   this->compute_heatmap(Is, data->rgb);
@@ -50,7 +49,7 @@ void Heatmap::heatmap_height(utl::type::Entity* entity){
   //Prepare data
   vector<float> z_vec;
   ope_location->retrieve_z_vector(entity, z_vec);
-  math::Normalize(z_vec, range_height);
+  math::normalize(z_vec, range_height);
 
   //Compute heatmap
   this->compute_heatmap(z_vec, data->rgb);
@@ -64,7 +63,7 @@ void Heatmap::heatmap_height(utl::type::Entity* entity, vec2 range){
   //Prepare data
   vector<float> z_vec;
   ope_location->retrieve_z_vector(entity, z_vec);
-  math::Normalize(z_vec, range);
+  math::normalize(z_vec, range);
 
   //Compute heatmap
   this->compute_heatmap(z_vec, data->rgb);
@@ -77,7 +76,7 @@ void Heatmap::heatmap_range(utl::type::Entity* entity){
 
   //Prepare data
   vector<float> R = data->R;
-  math::Normalize(R);
+  math::normalize(R);
 
   //Compute heatmap
   this->compute_heatmap(R, data->rgb);
@@ -91,7 +90,7 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
 
   //Normalization of the input vector
   if(is_normalization){
-    math::Normalize(v_in, -1);
+    math::normalize(v_in, -1);
   }
 
   //Compute heatmap from input vector
@@ -127,7 +126,7 @@ void Heatmap::heatmap_set(utl::type::Entity* entity, vector<float>& v_in){
 
   //Normalization of the input vector
   if(is_normalization){
-    math::Normalize(v_in, -1);
+    math::normalize(v_in, -1);
   }
 
   //Compute heatmap from input vector

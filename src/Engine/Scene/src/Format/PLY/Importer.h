@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/common.h>
 #include <Utility/Function/File/Info.h>
-#include <Utility/Function/Math/Math.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>

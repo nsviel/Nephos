@@ -1,7 +1,5 @@
 #include "Colormap.h"
 
-#include <Utility/Function/Math/Math.h>
-
 
 namespace ope::color{
 
@@ -91,7 +89,7 @@ void Colormap::choose(string name){
 
   //---------------------------
 }
-glm::vec4 Colormap::random_color(){
+glm::vec4 Colormap::random(){
   //---------------------------
 
   float Red = float(rand()%101)/100;

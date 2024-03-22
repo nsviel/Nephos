@@ -1,4 +1,4 @@
-#include "Math.h"
+#include "Statistic.h"
 
 #include <random>
 
@@ -150,7 +150,7 @@ float sum(std::vector<float>& vec){
   //---------------------------
   return out;
 }
-float dot_product(glm::vec3 vec_A, glm::vec3 vec_B){
+float dot_product(glm::vec3& vec_A, glm::vec3& vec_B){
   float product = 0;
   //---------------------------
 
@@ -192,7 +192,7 @@ std::vector<float> cross_product(std::vector<float>& vec_A, std::vector<float>& 
   //---------------------------
   return vec_cross;
 }
-
+/*
 glm::vec3 centroid(std::vector<glm::vec3>& vec){
   glm::vec3 centroid = glm::vec3(0, 0, 0);
   //---------------------------
@@ -349,7 +349,7 @@ float cv(std::vector<float>& vec){
   //Coefficient of variation
   //---------------------------
 
-  float std = std(vec);
+  float std = math::std(vec);
   float CV = (std / mean(vec)) * 100;
 
   //---------------------------
@@ -371,5 +371,5 @@ float R2(std::vector<float>& data_X, std::vector<float>& data_Y, std::vector<flo
   //---------------------------
   return R_2;
 }
-
+*/
 }
