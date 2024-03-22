@@ -9,9 +9,6 @@
 #include <Eigen/Dense>
 #include <math.h>
 
-/**
- * \brief Basic math functions
- */
 
 namespace math{
 
