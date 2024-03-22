@@ -20,13 +20,10 @@ public:
   //Main function
   vector<k4n::structure::Circle> sphere_detection(cv::Mat& input, cv::Mat& output);
 
-  //Algo function
+  //Subfunction
   void preprocessing(cv::Mat& input, cv::Mat& output);
   void compute_hough_circle(cv::Mat& image);
-
-  //Subfunction
   void find_mode_parameter(int mode);
-  void find_sphere_data(cv::Mat& image, std::vector<cv::Vec3f>& vec_circle);
 
 private:
   k4n::structure::K4N* k4n_struct;

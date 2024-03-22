@@ -6,3 +6,4 @@
 #include <K4N/src/Structure/Matching/Matching.h>
 #include <K4N/src/Structure/Matching/Sphere.h>
 #include <K4N/src/Structure/Matching/Circle.h>
+#include <K4N/src/Structure/Matching/Model.h>

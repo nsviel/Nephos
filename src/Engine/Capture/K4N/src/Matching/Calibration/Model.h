@@ -28,6 +28,7 @@ public:
   //Subfunction
   void draw_calibration_image(k4n::dev::Sensor* sensor);
   void retrieve_sphere_data(k4n::dev::Sensor* sensor);
+  void retrieve_bbox_data(k4n::dev::Sensor* sensor);
 
 private:
   k4n::dev::Swarm* k4n_swarm;

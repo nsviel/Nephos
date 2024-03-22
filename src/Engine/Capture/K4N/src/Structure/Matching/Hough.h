@@ -25,7 +25,7 @@ struct Hough{
 
   bool apply = true;
   int drawing_mode = k4n::hough::ALL;
-  int mode = k4n::hough::GRADIENT;
+  int mode = k4n::hough::GRADIENT_ALT;
   int cv_mode = cv::HOUGH_GRADIENT;
 
   float param_1 = -1;
