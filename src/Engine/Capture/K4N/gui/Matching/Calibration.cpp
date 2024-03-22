@@ -19,17 +19,18 @@ Calibration::~Calibration(){}
 
 //Main function
 void Calibration::draw_calibration(k4n::dev::Sensor* sensor){
+  float height = ImGui::GetContentRegionAvail().y / 3-3.33;
   //---------------------------
 
-  this->plot_IfR(sensor);
-  this->plot_IfIt(sensor);
-  this->plot_IfItR(sensor);
+  this->plot_IfR(sensor, height);
+  this->plot_IfIt(sensor, height);
+  this->plot_IfItR(sensor, height);
 
   //---------------------------
 }
 
 //Subfunction
-void Calibration::plot_IfR(k4n::dev::Sensor* sensor){
+void Calibration::plot_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   vector<float> x;
@@ -42,11 +43,11 @@ void Calibration::plot_IfR(k4n::dev::Sensor* sensor){
 
   y[50] = 5;
 
-  utl_plot->plot_scatter_2d(x, y);
+  utl_plot->plot_scatter_2d(x, y, height);
 
   //---------------------------
 }
-void Calibration::plot_IfIt(k4n::dev::Sensor* sensor){
+void Calibration::plot_IfIt(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   vector<float> x;
@@ -59,11 +60,11 @@ void Calibration::plot_IfIt(k4n::dev::Sensor* sensor){
 
   y[50] = 5;
 
-  utl_plot->plot_scatter_2d(x, y);
+  utl_plot->plot_scatter_2d(x, y, height);
 
   //---------------------------
 }
-void Calibration::plot_IfItR(k4n::dev::Sensor* sensor){
+void Calibration::plot_IfItR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   vector<float> x;
@@ -76,7 +77,7 @@ void Calibration::plot_IfItR(k4n::dev::Sensor* sensor){
 
   y[50] = 5;
 
-  utl_plot->plot_scatter_2d(x, y);
+  utl_plot->plot_scatter_2d(x, y, height);
 
   //---------------------------
 }

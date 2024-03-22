@@ -22,9 +22,9 @@ public:
   void draw_calibration(k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void plot_IfR(k4n::dev::Sensor* sensor);
-  void plot_IfIt(k4n::dev::Sensor* sensor);
-  void plot_IfItR(k4n::dev::Sensor* sensor);
+  void plot_IfR(k4n::dev::Sensor* sensor, float height);
+  void plot_IfIt(k4n::dev::Sensor* sensor, float height);
+  void plot_IfItR(k4n::dev::Sensor* sensor, float height);
 
 private:
   k4n::structure::K4N* k4n_struct;
