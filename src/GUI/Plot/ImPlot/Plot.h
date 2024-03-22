@@ -16,7 +16,8 @@ public:
 
 public:
   //Main function
-  void plot_scatter_2d();
+  void plot_scatter_2d(std::vector<float>& x, std::vector<float>& y);
+  void plot_scatter_2d_rdm();
   void plot_constant_in_time();
 
 private:

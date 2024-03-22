@@ -183,7 +183,17 @@ void Calibration::draw_result(k4n::dev::Sensor* sensor){
 void Calibration::plot_IfR(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  utl_plot->plot_scatter_2d();
+  vector<float> x;
+  vector<float> y;
+
+  for(int i=0; i<100; i++){
+    x.push_back(i);
+    y.push_back(i+1);
+  }
+
+  y[50] = 5;
+
+  utl_plot->plot_scatter_2d(x, y);
 
   //---------------------------
 }

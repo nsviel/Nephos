@@ -22,7 +22,7 @@ void Detector::make_sphere_detection(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->detect_circle_in_image(sensor);
-  k4n_glyph->draw_glyph(sensor);
+  k4n_glyph->draw_glyph_in_cloud(sensor);
 
   //---------------------------
 }

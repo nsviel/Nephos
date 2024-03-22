@@ -24,7 +24,7 @@ public:
 
 public:
   //Main function
-  void draw_glyph(k4n::dev::Sensor* sensor);
+  void draw_glyph_in_cloud(k4n::dev::Sensor* sensor);
 
   //Subfunction
   void reset_all_sphere(k4n::dev::Sensor* sensor);

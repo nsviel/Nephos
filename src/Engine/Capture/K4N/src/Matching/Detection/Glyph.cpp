@@ -19,7 +19,7 @@ Glyph::Glyph(k4n::Node* node_k4n){
 Glyph::~Glyph(){}
 
 //Main function
-void Glyph::draw_glyph(k4n::dev::Sensor* sensor){
+void Glyph::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->reset_all_sphere(sensor);
