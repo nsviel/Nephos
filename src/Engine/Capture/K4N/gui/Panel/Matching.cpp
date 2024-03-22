@@ -72,6 +72,7 @@ void Matching::design_panel(k4n::dev::Master* master){
 void Matching::tab_detection(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
   if(ImGui::BeginTabItem("Detection##matching")){
     gui_detection->draw_detection(sensor);
 
@@ -83,6 +84,7 @@ void Matching::tab_detection(k4n::dev::Sensor* sensor){
 void Matching::tab_calibration(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
   if(ImGui::BeginTabItem("Calibration##matching")){
     gui_calibration->draw_calibration(sensor);
 
@@ -94,6 +96,7 @@ void Matching::tab_calibration(k4n::dev::Sensor* sensor){
 void Matching::tab_registration(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
   if(ImGui::BeginTabItem("Registration##matching")){
     gui_registration->draw_registration(sensor);
 
