@@ -10,7 +10,7 @@ namespace k4n::structure{
 struct Matching{
   //---------------------------
 
-  bool activated = false;
+  bool panel_open = false;
 
   k4n::structure::Hough hough;
   k4n::structure::Canny canny;

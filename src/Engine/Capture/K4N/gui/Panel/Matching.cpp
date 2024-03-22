@@ -34,7 +34,7 @@ void Matching::run_panel(){
   //---------------------------
 
   if(*show_window && master != nullptr){
-    k4n_struct->matching.activated = true;
+    k4n_struct->matching.panel_open = true;
 
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
@@ -48,7 +48,7 @@ void Matching::run_panel(){
     ImGui::PopStyleVar();
     ImGui::PopStyleColor();
   }else{
-    k4n_struct->matching.activated = false;
+    k4n_struct->matching.panel_open = false;
   }
 
   //---------------------------

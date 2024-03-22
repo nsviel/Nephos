@@ -13,6 +13,7 @@ Matching::Matching(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_pool = node_k4n->get_k4n_pool();
   this->k4n_detector = new k4n::detection::Detector(node_k4n);
+  this->k4n_model = new k4n::calibration::Model(node_k4n);
 
   //---------------------------
 }
@@ -40,9 +41,9 @@ void Matching::run_thread(k4n::dev::Sensor* sensor){
   k4n_detector->make_sphere_detection(sensor);
   tasker->task_end("detection");
 
-  tasker->task_begin("detection");
-  k4n_detector->make_sphere_detection(sensor);
-  tasker->task_end("detection");
+  tasker->task_begin("calibration");
+  k4n_model->determine_model(sensor);
+  tasker->task_end("calibration");
 
   tasker->loop_end();
 
