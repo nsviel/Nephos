@@ -50,8 +50,19 @@ void Matching::design_panel(k4n::dev::Master* master){
   k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->selected_entity);
   //---------------------------
 
-  gui_detection->draw_detection(sensor);
-  gui_calibration->draw_calibration(sensor);
+  this->sensor_parameter(sensor);
+  
+  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(54, 112, 131, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
+  ImGui::BeginTabBar("devices_tab##4567");
+
+  this->tab_detection(sensor);
+  this->tab_calibration(sensor);
+  this->tab_registration(sensor);
+
+  ImGui::EndTabBar();
+  ImGui::PopStyleColor(3);
 
   //---------------------------
 }
@@ -60,14 +71,22 @@ void Matching::design_panel(k4n::dev::Master* master){
 void Matching::tab_detection(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  gui_detection->draw_detection(sensor);
+  if(ImGui::BeginTabItem("Detection##matching")){
+    gui_detection->draw_detection(sensor);
+
+    ImGui::EndTabItem();
+  }
 
   //---------------------------
 }
 void Matching::tab_calibration(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  gui_calibration->draw_calibration(sensor);
+  if(ImGui::BeginTabItem("Calibration##matching")){
+    gui_calibration->draw_calibration(sensor);
+
+    ImGui::EndTabItem();
+  }
 
   //---------------------------
 }
@@ -77,6 +96,26 @@ void Matching::tab_registration(k4n::dev::Sensor* sensor){
 
 
   //---------------------------
+}
+void Matching::sensor_parameter(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
+
+  //Matching sphere radius
+  ImGui::SetNextItemWidth(150);
+  ImGui::SliderFloat("Sphere diameter", &sensor->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
+
+  //Matching sphere radius
+  ImGui::SetNextItemWidth(150);
+  ImGui::SliderFloat("Bounding box factor", &k4n_struct->matching.bbox.scale, 1.0f, 10.0f, "%.2fx");
+
+  //Pixel diviser
+  ImGui::SetNextItemWidth(150);
+  ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
+
+  //---------------------------
+  ImGui::Separator();
 }
 
 }
