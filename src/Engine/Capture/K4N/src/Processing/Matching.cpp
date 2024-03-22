@@ -1,4 +1,4 @@
-#include "Calibration.h"
+#include "Matching.h"
 
 #include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace k4n::processing{
 
 //Constructor / Destructor
-Calibration::Calibration(k4n::Node* node_k4n){
+Matching::Matching(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_struct = node_k4n->get_k4n_struct();
@@ -16,10 +16,10 @@ Calibration::Calibration(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Calibration::~Calibration(){}
+Matching::~Matching(){}
 
 //Main function
-void Calibration::start_thread(k4n::dev::Sensor* sensor){
+void Matching::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->idle = false;
@@ -30,7 +30,7 @@ void Calibration::start_thread(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Calibration::run_thread(k4n::dev::Sensor* sensor){
+void Matching::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("calibration");
   //---------------------------
 
@@ -49,7 +49,7 @@ void Calibration::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
   this->idle = true;
 }
-void Calibration::wait_thread(){
+void Matching::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 

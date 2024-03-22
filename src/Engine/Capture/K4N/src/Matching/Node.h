@@ -5,14 +5,14 @@
 namespace k4n{class Node;}
 
 
-namespace k4n::detection{
+namespace k4n::matching{
 
-class Matching
+class Node
 {
 public:
   //Constructor / Destructor
-  Matching(k4n::Node* node_k4n);
-  ~Matching();
+  Node(k4n::Node* node_k4n);
+  ~Node();
 
 public:
   //Main function

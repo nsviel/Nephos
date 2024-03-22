@@ -4,3 +4,4 @@
 #include <K4N/src/Matching/Registration/Namespace.h>
 #include <K4N/src/Matching/Detection/Namespace.h>
 #include <K4N/src/Matching/Image.h>
+#include <K4N/src/Matching/Node.h>

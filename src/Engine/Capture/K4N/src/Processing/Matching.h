@@ -13,12 +13,12 @@ namespace format::ply{class Exporter;}
 
 namespace k4n::processing{
 
-class Calibration
+class Matching
 {
 public:
   //Constructor / Destructor
-  Calibration(k4n::Node* node_k4n);
-  ~Calibration();
+  Matching(k4n::Node* node_k4n);
+  ~Matching();
 
 public:
   //Main function

@@ -15,7 +15,7 @@ Data::Data(k4n::Node* node_k4n){
   this->k4n_infrared = new k4n::data::Infrared();
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->k4n_image = new k4n::processing::Image(node_k4n);
-  this->k4n_calibration = new k4n::processing::Calibration(node_k4n);
+  this->k4n_matching = new k4n::processing::Matching(node_k4n);
   this->k4n_pool = node_k4n->get_k4n_pool();
 
   //---------------------------
@@ -54,7 +54,7 @@ void Data::run_thread(k4n::dev::Sensor* sensor){
   k4n_image->start_thread(sensor);
 
   //Clibration stuff
-  k4n_calibration->start_thread(sensor);
+  k4n_matching->start_thread(sensor);
 
   //---------------------------
   this->idle = true;
@@ -68,7 +68,7 @@ void Data::wait_thread(){
   }
   k4n_image->wait_thread();
   k4n_cloud->wait_thread();
-  k4n_calibration->wait_thread();
+  k4n_matching->wait_thread();
 
   //---------------------------
 }

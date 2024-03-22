@@ -1,18 +1,18 @@
-#include "Matching.h"
+#include "Node.h"
 
 #include <K4N/Namespace.h>
 
 
-namespace k4n::detection{
+namespace k4n::matching{
 
 //Constructor / Destructor
-Matching::Matching(k4n::Node* node_k4n){
+Node::Node(k4n::Node* node_k4n){
   //---------------------------
 
 
   //---------------------------
 }
-Matching::~Matching(){}
+Node::~Node(){}
 
 //Main function
 
