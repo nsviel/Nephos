@@ -1,7 +1,7 @@
 #pragma once
 
 #include <K4N/src/Structure/K4N/Device.h>
-#include <K4N/src/Structure/Calibration/Calibration.h>
+#include <K4N/src/Structure/Matching/Matching.h>
 #include <Utility/Specific/common.h>
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
@@ -37,7 +37,7 @@ struct K4N{
 
   //Structure
   k4n::structure::Device device;
-  k4n::structure::Calibration calibration;
+  k4n::structure::Matching matching;
 
   //---------------------------
 };

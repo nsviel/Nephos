@@ -1,7 +1,7 @@
 #pragma once
 
-#include <K4N/src/Structure/Calibration/Sphere.h>
-#include <K4N/src/Structure/Calibration/Circle.h>
+#include <K4N/src/Structure/Matching/Sphere.h>
+#include <K4N/src/Structure/Matching/Circle.h>
 #include <Scene/Namespace.h>
 #include <opencv2/opencv.hpp>
 

@@ -34,7 +34,7 @@ void Matching::run_panel(){
   //---------------------------
 
   if(*show_window && master != nullptr){
-    k4n_struct->calibration.activated = true;
+    k4n_struct->matching.activated = true;
 
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
@@ -48,7 +48,7 @@ void Matching::run_panel(){
     ImGui::PopStyleVar();
     ImGui::PopStyleColor();
   }else{
-    k4n_struct->calibration.activated = false;
+    k4n_struct->matching.activated = false;
   }
 
   //---------------------------
@@ -78,7 +78,7 @@ void Matching::model_parameter(k4n::dev::Sensor* sensor){
 
   //Matching sphere radius
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderFloat("Bounding box factor", &k4n_struct->calibration.bbox.scale, 1.0f, 10.0f, "%.2fx");
+  ImGui::SliderFloat("Bounding box factor", &k4n_struct->matching.bbox.scale, 1.0f, 10.0f, "%.2fx");
 
   //Pixel diviser
   ImGui::SetNextItemWidth(150);
@@ -93,7 +93,7 @@ void Matching::canny_parameter(k4n::dev::Sensor* sensor){
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Hough parameter");
 
   //Canny
-  ImGui::Checkbox("Canny", &k4n_struct->calibration.canny.apply);
+  ImGui::Checkbox("Canny", &k4n_struct->matching.canny.apply);
 
   ImGui::SameLine();
   if(ImGui::TreeNode("Parameter##Canny")){
@@ -101,11 +101,11 @@ void Matching::canny_parameter(k4n::dev::Sensor* sensor){
 
     //Lower threshold
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderInt("Lower threshold", &k4n_struct->calibration.canny.lower_threshold, 0, 200);
+    ImGui::SliderInt("Lower threshold", &k4n_struct->matching.canny.lower_threshold, 0, 200);
 
     //Upper threshold
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderInt("Upper threshold", &k4n_struct->calibration.canny.upper_threshold, 0, 200);
+    ImGui::SliderInt("Upper threshold", &k4n_struct->matching.canny.upper_threshold, 0, 200);
 
     ImGui::Unindent();
     ImGui::TreePop();
@@ -116,14 +116,14 @@ void Matching::canny_parameter(k4n::dev::Sensor* sensor){
 void Matching::hough_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  ImGui::Checkbox("Hough", &k4n_struct->calibration.hough.apply);
+  ImGui::Checkbox("Hough", &k4n_struct->matching.hough.apply);
 
   ImGui::SameLine();
   if(ImGui::TreeNode("Parameter##Hough")){
     ImGui::Indent();
 
     //Mode
-    int& mode = k4n_struct->calibration.hough.mode;
+    int& mode = k4n_struct->matching.hough.mode;
     if(ImGui::RadioButton("Gradient", &mode, k4n::hough::GRADIENT)){
       k4n_hough->find_mode_parameter(mode);
     }
@@ -134,24 +134,24 @@ void Matching::hough_parameter(k4n::dev::Sensor* sensor){
 
     //Lower threshold
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderFloat("Detector threshold", &k4n_struct->calibration.hough.param_1, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
+    ImGui::SliderFloat("Detector threshold", &k4n_struct->matching.hough.param_1, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
     //Upper threshold
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderFloat("Accumulator threshold", &k4n_struct->calibration.hough.param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
+    ImGui::SliderFloat("Accumulator threshold", &k4n_struct->matching.hough.param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
     //Ratio
     ImGui::SetNextItemWidth(150);
-    ImGui::SliderInt("Ratio", &k4n_struct->calibration.hough.ratio, 1, 100);
+    ImGui::SliderInt("Ratio", &k4n_struct->matching.hough.ratio, 1, 100);
     ImGui::SetItemTooltip("This parameter affects the spacing of the accumulator cells, which in turn affects the sensitivity of the circle detection algorithm.");
 
     //Min distance
     ImGui::SetNextItemWidth(150);
-    ImGui::SliderInt("Min distance", &k4n_struct->calibration.hough.min_dist, 1, 100);
+    ImGui::SliderInt("Min distance", &k4n_struct->matching.hough.min_dist, 1, 100);
 
     //Radius range
-    int* min_radius = &k4n_struct->calibration.hough.min_radius;
-    int* max_radius = &k4n_struct->calibration.hough.max_radius;
+    int* min_radius = &k4n_struct->matching.hough.min_radius;
+    int* max_radius = &k4n_struct->matching.hough.max_radius;
     ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 100, "Min: %d px", "Max: %d px");
 
     ImGui::Unindent();
@@ -171,9 +171,9 @@ void Matching::draw_result(k4n::dev::Sensor* sensor){
 
   //Circle drawing mode
   ImGui::SameLine();
-  ImGui::RadioButton("All sphere", &k4n_struct->calibration.hough.drawing_mode, k4n::hough::ALL);
+  ImGui::RadioButton("All sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::ALL);
   ImGui::SameLine();
-  ImGui::RadioButton("Best sphere", &k4n_struct->calibration.hough.drawing_mode, k4n::hough::BEST);
+  ImGui::RadioButton("Best sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::BEST);
 
   //Display image with detected spheres
   if(sensor->image.hough.size == 0) return;

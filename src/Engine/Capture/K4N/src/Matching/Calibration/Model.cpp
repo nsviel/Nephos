@@ -35,7 +35,7 @@ void Model::determine_model(k4n::dev::Sensor* sensor){
 void Model::draw_calibration_image(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  switch(k4n_struct->calibration.hough.drawing_mode){
+  switch(k4n_struct->matching.hough.drawing_mode){
     case k4n::hough::ALL:{
       k4n_image->draw_all_sphere(sensor);
       break;
