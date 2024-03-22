@@ -13,6 +13,7 @@ Matching::Matching(k4n::Node* node_k4n, bool* show_window){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->gui_detection = new k4n::gui::Detection(node_k4n);
   this->gui_calibration = new k4n::gui::Calibration(node_k4n);
+  this->gui_registration = new k4n::gui::Registration(node_k4n);
 
   this->show_window = show_window;
   this->name = "Matching";
@@ -51,7 +52,7 @@ void Matching::design_panel(k4n::dev::Master* master){
   //---------------------------
 
   this->sensor_parameter(sensor);
-  
+
   ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
   ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(54, 112, 131, 255));
   ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
