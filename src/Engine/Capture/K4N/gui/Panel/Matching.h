@@ -9,6 +9,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
 namespace k4n::detection{class Hough;}
 namespace k4n::calibration{class Model;}
+namespace k4n::gui{class Detection;}
 namespace utl::implot{class Plot;}
 namespace eng::render::gui{class Stream;}
 
@@ -29,9 +30,6 @@ public:
 
   //Subfunction
   void model_parameter(k4n::dev::Sensor* sensor);
-  void canny_parameter(k4n::dev::Sensor* sensor);
-  void hough_parameter(k4n::dev::Sensor* sensor);
-  void draw_result(k4n::dev::Sensor* sensor);
   void plot_IfR(k4n::dev::Sensor* sensor);
 
 private:
@@ -41,6 +39,7 @@ private:
   k4n::calibration::Model* k4n_model;
   utl::implot::Plot* utl_plot;
   eng::render::gui::Stream* stream;
+  k4n::gui::Detection* gui_detection;
 
   string name;
   bool* show_window;
