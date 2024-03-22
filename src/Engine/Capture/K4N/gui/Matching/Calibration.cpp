@@ -1,28 +1,22 @@
-#include "Detection.h"
+#include "Calibration.h"
 
 #include <K4N/Namespace.h>
-#include <Render/Namespace.h>
-#include <Engine/Namespace.h>
 
 
 namespace k4n::gui{
 
 //Constructor / Destructor
-Detection::Detection(k4n::Node* node_k4n){
+Calibration::Calibration(k4n::Node* node_k4n){
   //---------------------------
 
-  eng::Node* node_engine = node_k4n->get_node_engine();
-
-  this->k4n_hough = new k4n::detection::Hough(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_struct();
-  this->stream = new eng::render::gui::Stream(node_engine);
 
   //---------------------------
 }
-Detection::~Detection(){}
+Calibration::~Calibration(){}
 
 //Main function
-void Detection::draw_detection(k4n::dev::Sensor* sensor){
+void Calibration::draw_detection(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->canny_parameter(sensor);
@@ -33,16 +27,16 @@ void Detection::draw_detection(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Detection::model_parameter(k4n::dev::Sensor* sensor){
+void Calibration::model_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
 
-  //Detection sphere radius
+  //Calibration sphere radius
   ImGui::SetNextItemWidth(150);
   ImGui::SliderFloat("Sphere diameter", &sensor->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
 
-  //Detection sphere radius
+  //Calibration sphere radius
   ImGui::SetNextItemWidth(150);
   ImGui::SliderFloat("Bounding box factor", &k4n_struct->matching.bbox.scale, 1.0f, 10.0f, "%.2fx");
 
@@ -53,7 +47,7 @@ void Detection::model_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Detection::canny_parameter(k4n::dev::Sensor* sensor){
+void Calibration::canny_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Hough parameter");
@@ -79,7 +73,7 @@ void Detection::canny_parameter(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::hough_parameter(k4n::dev::Sensor* sensor){
+void Calibration::hough_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::Checkbox("Hough", &k4n_struct->matching.hough.apply);
@@ -126,12 +120,12 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Detection::draw_result(k4n::dev::Sensor* sensor){
+void Calibration::draw_result(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Display number of detected spheres
   string nb_detection = to_string(sensor->detection.nb_detection);
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Calibration");
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
 
