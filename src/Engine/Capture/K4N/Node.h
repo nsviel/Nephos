@@ -42,6 +42,7 @@ public:
   inline k4n::calibration::Model* get_k4n_model(){return k4n_model;}
   inline k4n::thread::Pool* get_k4n_pool(){return k4n_pool;}
   inline k4n::structure::K4N* get_k4n_struct(){return k4n_struct;}
+  inline k4n::gui::Player* get_k4n_gui_player(){return gui_player;}
 
 private:
   //Dependancy
@@ -55,7 +56,7 @@ private:
   k4n::dev::Swarm* k4n_swarm;
   k4n::thread::Connection* k4n_connection;
   k4n::calibration::Model* k4n_model;
-  k4n::gui::Player* gui_device;
+  k4n::gui::Player* gui_player;
   k4n::gui::Stream* gui_stream;
   k4n::gui::Control* gui_control;
   k4n::gui::Matching* gui_matching;

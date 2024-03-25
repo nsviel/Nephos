@@ -16,6 +16,7 @@ Detection::Detection(k4n::Node* node_k4n){
   this->k4n_hough = new k4n::detection::Hough(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->stream = new eng::render::gui::Stream(node_engine);
+  this->gui_player = node_k4n->get_k4n_gui_player();
 
   //---------------------------
 }
@@ -140,6 +141,15 @@ void Detection::draw_result(k4n::dev::Sensor* sensor){
   ImGui::RadioButton("All sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::ALL);
   ImGui::SameLine();
   ImGui::RadioButton("Best sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::BEST);
+
+  //Player & validation
+  gui_player->player_start(sensor->master);
+  ImGui::SameLine();
+  if(ImGui::Button("Validate")){
+
+  }
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", k4n_struct->matching.calibration.state.c_str());
 
   //Display image with detected spheres
   if(sensor->image.hough.size == 0) return;

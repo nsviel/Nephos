@@ -28,7 +28,7 @@ Node::Node(eng::capture::Node* node_capture){
   this->k4n_connection = new k4n::thread::Connection(this);
   this->k4n_model = new k4n::calibration::Model(this);
   this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);
-  this->gui_device = new k4n::gui::Player(this, &ply_panel->is_open);
+  this->gui_player = new k4n::gui::Player(this, &ply_panel->is_open);
   this->gui_matching = new k4n::gui::Matching(this, &cal_panel->is_open);
   this->gui_control = new k4n::gui::Control(this);
 
@@ -63,7 +63,7 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-  gui_device->run_panel();
+  gui_player->run_panel();
   gui_stream->run_panel();
   gui_matching->run_panel();
 

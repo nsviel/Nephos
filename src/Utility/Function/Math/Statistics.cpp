@@ -1,4 +1,4 @@
-#include "Statistic.h"
+#include "Statistics.h"
 
 #include <random>
 
@@ -192,7 +192,7 @@ std::vector<float> cross_product(std::vector<float>& vec_A, std::vector<float>& 
   //---------------------------
   return vec_cross;
 }
-/*
+
 glm::vec3 centroid(std::vector<glm::vec3>& vec){
   glm::vec3 centroid = glm::vec3(0, 0, 0);
   //---------------------------
@@ -257,12 +257,11 @@ Eigen::Vector3d centroid(std::vector<Eigen::Vector3d>& XYZ){
   //---------------------------
   return centroid;
 }
-
 Eigen::Matrix3f covariance(std::vector<Eigen::Vector3f>& vec){
   //---------------------------
 
   // Centroide
-  Eigen::Vector3f centroid = centroid(vec);
+  Eigen::Vector3f centroid = math::centroid(vec);
 
   //Covariance matrix
   Eigen::Matrix3f covMat = Eigen::Matrix3f::Zero();
@@ -285,7 +284,7 @@ Eigen::Matrix3d covariance(std::vector<Eigen::Vector3d>& vec){
   //---------------------------
 
   // Centroide
-  Eigen::Vector3d centroid = centroid(vec);
+  Eigen::Vector3d centroid = math::centroid(vec);
 
   //Covariance matrix
   Eigen::Matrix3d covMat = Eigen::Matrix3d::Zero();
@@ -371,5 +370,6 @@ float R2(std::vector<float>& data_X, std::vector<float>& data_Y, std::vector<flo
   //---------------------------
   return R_2;
 }
-*/
+
+
 }

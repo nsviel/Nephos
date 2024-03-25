@@ -107,18 +107,20 @@ void Player::player_start(k4n::dev::Master* master){
   //Play button -> if paused or not playing
   if(master->player.pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(46, 100, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##player_start")){
       master->player_play();
     }
-    ImGui::PopStyleColor();
+    ImGui::PopStyleColor(2);
   }
   //Pause button -> if not paused and playing
   else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(45, 100, 100, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##player_pause")){
       master->player_pause(true);
     }
-    ImGui::PopStyleColor();
+    ImGui::PopStyleColor(2);
   }
 
   //---------------------------

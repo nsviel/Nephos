@@ -1,6 +1,6 @@
 #include "Fitting.h"
 
-#include <Utility/Function/Math/Statistic.h>
+#include <Utility/Function/Math/Statistics.h>
 #include <opencv2/opencv.hpp>
 
 
@@ -61,10 +61,11 @@ void Fitting::find_sphere_in_cloud(utl::type::Entity* entity, vec3& center, floa
     temp_center[2] = COM[2] + (cof02 * R[0] + cof12 * R[1] + cof22 * R[2]) / det;
 
     float rsqr = 0.0f;
-    for (int i=0; i<xyz.size(); i++){
+/*    for (int i=0; i<xyz.size(); i++){
       vec3 delta = xyz[i] - temp_center;
       rsqr += math::dot_product(delta, delta);
-    }
+    }*/
+    float a = math::distance_from_origin(xyz[0]);
     rsqr *= (1.0f / xyz.size());
     radius = std::sqrt(rsqr);
     center = temp_center;

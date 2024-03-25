@@ -7,3 +7,4 @@
 #include <K4N/src/Structure/Matching/Sphere.h>
 #include <K4N/src/Structure/Matching/Circle.h>
 #include <K4N/src/Structure/Matching/Model.h>
+#include <K4N/src/Structure/Matching/Calibration.h>
