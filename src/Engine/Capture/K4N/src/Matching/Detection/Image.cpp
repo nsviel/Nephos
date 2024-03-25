@@ -30,46 +30,21 @@ void Image::draw_all_sphere(k4n::dev::Sensor* sensor){
   //------------------------
 }
 void Image::draw_best_sphere(k4n::dev::Sensor* sensor){
-  /*if(input == nullptr) return;
-  if(input->data.size() == 0) return;
+  if(sensor->detection.cv_image.empty()) return;
   //------------------------
 
-  // Create an Image Mat object from the image data
-  cv::Mat image_raw(input->height, input->width, CV_8UC4, input->data.data());
-
-  //Pre processing
-  cv::Mat pre_image;
-  this->preprocessing(image_raw, pre_image);
-
-  //Convert to RGBA
-  cv::Mat result;
-  cv::cvtColor(pre_image, result, cv::COLOR_RGBA2BGRA);
-
-  //Draw circle
-  if(vec_circle.size() > 0){
-    vec3 circle = vec_circle[0];
-
-    cv::Point center(cvRound(circle[0]), cvRound(circle[1]));
-    int radius = cvRound(circle[2]);
-    cv::circle(result, center, 3, cv::Scalar(44, 255, 44, 255), -1, cv::LINE_AA);
-    cv::circle(result, center, radius, cv::Scalar(44, 44, 255, 255), 1, cv::LINE_AA);
+  vector<k4n::structure::Circle> vec_circle;
+  if(sensor->detection.vec_circle.size() > 0){
+    vec_circle.push_back(sensor->detection.vec_circle[0]);
   }
 
-  // Set the dimensions of the utl::media::Image
-  output->width = result.cols;
-  output->height = result.rows;
-  output->channel_nb = result.channels(); // Assuming result is in BGRA format
-  output->format = "B8G8R8A8_SRGB";
-  output->new_data = true;
+  cv::Mat result;
+  this->convert_into_rgba(sensor->detection.cv_image, result);
+  this->draw_circle(result, vec_circle);
+  this->draw_bounding_box(result, sensor);
+  this->convert_into_subimage(result, sensor);
+  this->convert_into_utl_image(result, &sensor->image.hough);
 
-  // Calculate the size of the pixel data
-  size_t data_size = result.cols * result.rows * result.channels();
-  output->data.resize(data_size);
-  output->size = data_size;
-
-  // Copy the pixel data from the OpenCV image to the utl::media::Image
-  std::memcpy(output->data.data(), result.data, data_size);
-*/
   //------------------------
 }
 

@@ -19,11 +19,26 @@ Glyph::Glyph(k4n::Node* node_k4n){
 Glyph::~Glyph(){}
 
 //Main function
-void Glyph::draw_glyph_in_cloud(k4n::dev::Sensor* sensor){
+void Glyph::draw_all_sphere_glyph(k4n::dev::Sensor* sensor){
+  vector<k4n::structure::Circle>& vec_circle = sensor->detection.vec_circle;
   //---------------------------
 
   this->reset_all_sphere(sensor);
-  this->draw_all_sphere(sensor);
+  this->draw_sphere_from_circle(sensor, vec_circle);
+
+  //---------------------------
+}
+void Glyph::draw_best_sphere_glyph(k4n::dev::Sensor* sensor){
+  vector<k4n::structure::Circle>& vec_circle = sensor->detection.vec_circle;
+  //---------------------------
+
+  vector<k4n::structure::Circle> best_circle;
+  if(sensor->detection.vec_circle.size() > 0){
+    best_circle.push_back(sensor->detection.vec_circle[0]);
+  }
+
+  this->reset_all_sphere(sensor);
+  this->draw_sphere_from_circle(sensor, best_circle);
 
   //---------------------------
 }
@@ -40,9 +55,8 @@ void Glyph::reset_all_sphere(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Glyph::draw_all_sphere(k4n::dev::Sensor* sensor){
+void Glyph::draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<k4n::structure::Circle>& vec_circle){
   vector<glyph::scene::Sphere*>& vec_sphere_glyph = sensor->detection.vec_sphere_glyph;
-  vector<k4n::structure::Circle>& vec_circle = sensor->detection.vec_circle;
   //---------------------------
 
   uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);

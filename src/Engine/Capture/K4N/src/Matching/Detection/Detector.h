@@ -24,8 +24,9 @@ public:
   void make_sphere_detection(k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void draw_detection_image(k4n::dev::Sensor* sensor);
   void detect_circle_in_image(k4n::dev::Sensor* sensor);
+  void draw_detection_image(k4n::dev::Sensor* sensor);
+  void draw_detection_glyph(k4n::dev::Sensor* sensor);
 
 private:
   k4n::structure::K4N* k4n_struct;
