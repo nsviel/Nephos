@@ -26,7 +26,6 @@ public:
   void determine_model(k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void draw_calibration_image(k4n::dev::Sensor* sensor);
   void retrieve_sphere_data(k4n::dev::Sensor* sensor);
   void retrieve_bbox_data(k4n::dev::Sensor* sensor);
 

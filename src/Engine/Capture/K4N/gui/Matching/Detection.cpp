@@ -146,7 +146,9 @@ void Detection::draw_result(k4n::dev::Sensor* sensor){
   gui_player->player_start(sensor->master);
   ImGui::SameLine();
   if(ImGui::Button("Validate")){
+    if(sensor->detection.nb_detection > 0){
 
+    }
   }
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", k4n_struct->matching.calibration.state.c_str());

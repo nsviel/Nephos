@@ -9,6 +9,7 @@ namespace k4n::detection{
 Detector::Detector(k4n::Node* node_k4n){
   //---------------------------
 
+  this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_glyph = new k4n::detection::Glyph(node_k4n);
   this->k4n_image = new k4n::matching::Image(node_k4n);
   this->k4n_hough = new k4n::detection::Hough(node_k4n);
@@ -22,12 +23,29 @@ void Detector::make_sphere_detection(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->detect_circle_in_image(sensor);
+  this->draw_detection_image(sensor);
   k4n_glyph->draw_glyph_in_cloud(sensor);
 
   //---------------------------
 }
 
 //Subfunction
+void Detector::draw_detection_image(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  switch(k4n_struct->matching.hough.drawing_mode){
+    case k4n::hough::ALL:{
+      k4n_image->draw_all_sphere(sensor);
+      break;
+    }
+    case k4n::hough::BEST:{
+      k4n_image->draw_best_sphere(sensor);
+      break;
+    }
+  }
+
+  //---------------------------
+}
 void Detector::detect_circle_in_image(k4n::dev::Sensor* sensor){
   //---------------------------
 
