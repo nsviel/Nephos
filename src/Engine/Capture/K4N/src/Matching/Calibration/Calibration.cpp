@@ -19,6 +19,14 @@ Calibration::Calibration(k4n::Node* node_k4n){
 Calibration::~Calibration(){}
 
 //Main function
+void Calibration::validate_bbox(k4n::dev::Sensor* sensor){
+  if(sensor->detection.nb_detection == 0) return;
+  //---------------------------
+
+  this->step++;
+
+  //---------------------------
+}
 
 
 }

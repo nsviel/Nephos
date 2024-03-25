@@ -3,6 +3,7 @@
 #include <Utility/Specific/common.h>
 
 namespace k4n{class Node;}
+namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
 
 
@@ -22,7 +23,7 @@ public:
 
 public:
   //Main function
-
+  void validate_bbox(k4n::dev::Sensor* sensor);
 
   inline string get_step_str(){return map_step[step];}
 

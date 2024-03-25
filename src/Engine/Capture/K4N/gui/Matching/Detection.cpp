@@ -15,6 +15,7 @@ Detection::Detection(k4n::Node* node_k4n){
   k4n::matching::Node* node_matching = node_k4n->get_node_matching();
 
   this->k4n_hough = node_matching->get_k4n_hough();
+  this->k4n_calibration = node_matching->get_k4n_calibration();
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->stream = new eng::render::gui::Stream(node_engine);
   this->gui_player = node_k4n->get_k4n_gui_player();
@@ -147,12 +148,11 @@ void Detection::draw_result(k4n::dev::Sensor* sensor){
   gui_player->player_start(sensor->master);
   ImGui::SameLine();
   if(ImGui::Button("Validate")){
-    if(sensor->detection.nb_detection > 0){
-
-    }
+    k4n_calibration->validate_bbox(sensor);
   }
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", k4n_struct->matching.calibration.state.c_str());
+  string step = k4n_calibration->get_step_str();
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", step.c_str());
 
   //Display image with detected spheres
   if(sensor->image.hough.size == 0) return;
