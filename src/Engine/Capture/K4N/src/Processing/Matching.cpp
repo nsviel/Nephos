@@ -10,10 +10,12 @@ namespace k4n::processing{
 Matching::Matching(k4n::Node* node_k4n){
   //---------------------------
 
+  k4n::matching::Node* node_matching = node_k4n->get_node_matching();
+  
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_pool = node_k4n->get_k4n_pool();
-  this->k4n_detector = new k4n::detection::Detector(node_k4n);
-  this->k4n_model = new k4n::calibration::Model(node_k4n);
+  this->k4n_detector = node_matching->get_k4n_detector();
+  this->k4n_model = node_matching->get_k4n_model();
 
   //---------------------------
 }

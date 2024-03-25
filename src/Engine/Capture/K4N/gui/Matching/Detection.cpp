@@ -12,8 +12,9 @@ Detection::Detection(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
+  k4n::matching::Node* node_matching = node_k4n->get_node_matching();
 
-  this->k4n_hough = new k4n::detection::Hough(node_k4n);
+  this->k4n_hough = node_matching->get_k4n_hough();
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->stream = new eng::render::gui::Stream(node_engine);
   this->gui_player = node_k4n->get_k4n_gui_player();

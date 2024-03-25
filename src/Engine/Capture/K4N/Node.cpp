@@ -24,9 +24,9 @@ Node::Node(eng::capture::Node* node_capture){
   //Child
   this->k4n_pool = new k4n::thread::Pool(50);
   this->k4n_struct = new k4n::structure::K4N(this);
+  this->node_matching = new k4n::matching::Node(this);
   this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::thread::Connection(this);
-  this->k4n_model = new k4n::calibration::Model(this);
   this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);
   this->gui_player = new k4n::gui::Player(this, &ply_panel->is_open);
   this->gui_matching = new k4n::gui::Matching(this, &cal_panel->is_open);
