@@ -16,7 +16,7 @@ Ransac::Ransac(){
 Ransac::~Ransac(){}
 
 //Ransac fitting
-void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, float& best_radius, int num_iter, float inlier_threshold, float radius_to_find){
+void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, float& best_radius, float radius_to_find){
   if(xyz.size() == 0) return;
   //------------------------
 
@@ -54,9 +54,9 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
       float distance_to_center = glm::distance(center, best_center);
       float distance_to_radius = glm::distance(radius, radius_to_find);
 
-      bool dist_sphere = abs(distance_to_sphere) < 0.005;
-      bool dist_center = distance_to_center < 0.1;
-      bool dist_radius = distance_to_radius < 0.02;
+      bool dist_sphere = abs(distance_to_sphere) < threshold_sphere;
+      bool dist_center = distance_to_center < threshold_pose;
+      bool dist_radius = distance_to_radius < threshold_radius;
 
       if(dist_sphere) nb_dist_sphere++;
       if(dist_center) nb_dist_center++;
@@ -74,16 +74,6 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
       best_radius = radius;
     }
   }
-/*
-  say("-----");
-  say(best_num_inliers);
-  say(nb_dist_sphere);
-  say(nb_dist_center);
-  say(nb_dist_radius);*/
-
-say("-----");
-  say(best_radius);
-    say(radius_to_find);
 
   //------------------------
 }
