@@ -1,6 +1,5 @@
 #include "Fitting.h"
 
-#include <Utility/Function/Math/Statistics.h>
 #include <opencv2/opencv.hpp>
 
 
@@ -15,19 +14,15 @@ Fitting::Fitting(){
 Fitting::~Fitting(){}
 
 //Sphere fitting
-void Fitting::find_sphere_in_cloud(utl::type::Entity* entity, vec3& center, float& radius){
-  utl::type::Data* data = entity->get_data();
-  utl::type::Pose* pose = entity->get_pose();
+void Fitting::find_sphere_in_cloud(vector<vec3>& xyz, vec3& center, float& radius){
+  vec3 COM = math::centroid(xyz);
   //------------------------
-
-  vector<vec3>& xyz = data->xyz;
-  vec3& COM = pose->COM;
 
   // Compute the covariance matrix M of the Y[i] = X[i]-A and the
   // right-hand side R of the linear system M*(C-A) = R.
   float M00 = 0, M01 = 0, M02 = 0, M11 = 0, M12 = 0, M22 = 0;
   vec3 R = {0, 0, 0};
-  for (int i=0; i<xyz.size(); i++){
+  for(int i=0; i<xyz.size(); i++){
     vec3 Y = xyz[i] - COM;
     float Y0Y0 = Y[0] * Y[0];
     float Y0Y1 = Y[0] * Y[1];
@@ -61,10 +56,10 @@ void Fitting::find_sphere_in_cloud(utl::type::Entity* entity, vec3& center, floa
     temp_center[2] = COM[2] + (cof02 * R[0] + cof12 * R[1] + cof22 * R[2]) / det;
 
     float rsqr = 0.0f;
-/*    for (int i=0; i<xyz.size(); i++){
+    for(int i=0; i<xyz.size(); i++){
       vec3 delta = xyz[i] - temp_center;
       rsqr += math::dot_product(delta, delta);
-    }*/
+    }
     float a = math::distance_from_origin(xyz[0]);
     rsqr *= (1.0f / xyz.size());
     radius = std::sqrt(rsqr);

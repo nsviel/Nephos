@@ -17,6 +17,8 @@ void divise(std::vector<float>& vec, int diviser);
 std::vector<size_t> sort_by_index(const std::vector<float> &v);
 std::vector<size_t> sort_by_index_greater(const std::vector<float> &v);
 std::vector<float> inv(std::vector<float>& vec);
+glm::vec3 centroid(std::vector<glm::vec3>& vec);
+float dot_product(glm::vec3& vec_A, glm::vec3& vec_B);
 
 //Normalization
 void normalize(std::vector<float>& vec);

@@ -20,7 +20,8 @@ struct Detection{
 
   vector<k4n::structure::Circle> vec_circle;
   vector<k4n::structure::Sphere> vec_sphere;
-  vector<glyph::scene::Sphere*> vec_sphere_glyph;
+  vector<glyph::scene::Sphere*> vec_glyph_sphere;
+  glyph::scene::Sphere* glyph_calibration;
 
   //---------------------------
 };

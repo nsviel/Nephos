@@ -6,6 +6,7 @@ namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
 namespace k4n::utils{class Transformation;}
+namespace ope::attribut{class Fitting;}
 
 
 namespace k4n::calibration{
@@ -30,6 +31,7 @@ public:
   inline string get_step_str(){return map_step[step];}
 
 private:
+  ope::attribut::Fitting* ope_fitting;
   k4n::utils::Transformation* k4n_transfo;
   k4n::structure::K4N* k4n_struct;
   std::map<int, std::string> map_step;

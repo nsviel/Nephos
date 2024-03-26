@@ -31,6 +31,7 @@ private:
 
   int size = 20;
   mat4 truc = mat4(1);
+  bool is_available = true;
 };
 
 }

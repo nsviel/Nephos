@@ -46,23 +46,24 @@ void Glyph::draw_best_sphere_glyph(k4n::dev::Sensor* sensor){
 
 //Subfunction
 void Glyph::reset_all_sphere(k4n::dev::Sensor* sensor){
-  vector<glyph::scene::Sphere*>& vec_sphere_glyph = sensor->detection.vec_sphere_glyph;
+  vector<glyph::scene::Sphere*>& vec_glyph_sphere = sensor->detection.vec_glyph_sphere;
   //---------------------------
 
-  for(int i=0; i<vec_sphere_glyph.size(); i++){
-    glyph::scene::Sphere* sphere = vec_sphere_glyph[i];
+  for(int i=0; i<vec_glyph_sphere.size(); i++){
+    glyph::scene::Sphere* sphere = vec_glyph_sphere[i];
     sphere->reset_glyph();
   }
 
   //---------------------------
 }
 void Glyph::draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<k4n::structure::Circle>& vec_circle){
-  vector<glyph::scene::Sphere*>& vec_sphere_glyph = sensor->detection.vec_sphere_glyph;
+  vector<glyph::scene::Sphere*>& vec_glyph_sphere = sensor->detection.vec_glyph_sphere;
   //---------------------------
 
   for(int i=0; i<vec_circle.size(); i++){
-    if(i >= vec_sphere_glyph.size()) return;
+    if(i >= vec_glyph_sphere.size()) return;
     k4n::structure::Circle& circle = vec_circle[i];
+    if(circle.is_available == false) continue;
 
     //Add sphere radius to the detected circle center
     vec3 pose = k4n_transfo->convert_depth_2d_to_3d(sensor, circle.center);
@@ -70,7 +71,7 @@ void Glyph::draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<k4n::struct
     pose = pose + dir * (sensor->detection.sphere_diameter / 2);
 
     //Position sphere
-    vec_sphere_glyph[i]->move_sphere(pose, sensor->detection.sphere_diameter);
+    vec_glyph_sphere[i]->move_sphere(pose, sensor->detection.sphere_diameter);
   }
 
   //---------------------------

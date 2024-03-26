@@ -68,6 +68,35 @@ std::vector<float> inv(std::vector<float>& vec){
   //---------------------------
   return vec_out;
 }
+glm::vec3 centroid(std::vector<glm::vec3>& vec){
+  glm::vec3 centroid = glm::vec3(0, 0, 0);
+  //---------------------------
+
+  for(int i=0; i<vec.size(); i++){
+    for(int j=0; j<3; j++){
+      centroid[j] += vec[i][j];
+    }
+  }
+
+  for(int j=0;j<3;j++){
+    centroid[j] /= vec.size();
+  }
+
+  //---------------------------
+  return centroid;
+}
+float dot_product(glm::vec3& vec_A, glm::vec3& vec_B){
+  float product = 0;
+  //---------------------------
+
+  // Loop for calculate cot product
+  for(int i=0; i<3; i++){
+    product = product + vec_A[i] * vec_B[i];
+  }
+
+  //---------------------------
+  return product;
+}
 
 //Normalization
 void normalize(std::vector<float>& vec){
