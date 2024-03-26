@@ -16,7 +16,7 @@ Plot::Plot(){
 Plot::~Plot(){}
 
 //Main function
-void Plot::plot_scatter_2d(std::vector<float>& x, std::vector<float>& y, float height){
+void Plot::plot_scatter_2d(std::vector<float>& x, std::vector<float>& y, float height, string title){
   //---------------------------
 
   implot_style->make_style();
@@ -29,13 +29,14 @@ void Plot::plot_scatter_2d(std::vector<float>& x, std::vector<float>& y, float h
   flag |= ImPlotFlags_NoMouseText;
   flag |= ImPlotFlags_NoLegend;
   flag |= ImPlotFlags_CanvasOnly;*/
-  if(ImPlot::BeginPlot("##scatter_plot", ImVec2(-1, height), flag)){
+  if(ImPlot::BeginPlot(title.c_str(), ImVec2(-1, height), flag)){
     ImPlotAxisFlags axis_flag;
     //axis_flag |= ImPlotAxisFlags_AutoFit;
     //ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
 
     // Plot the data
-    ImPlot::PlotScatter("##scatter", x.data(), y.data(), x.size());
+    string truc = title + "##scatter";
+    ImPlot::PlotScatter(truc.c_str(), x.data(), y.data(), x.size());
 
     // End the plot
     ImPlot::EndPlot();

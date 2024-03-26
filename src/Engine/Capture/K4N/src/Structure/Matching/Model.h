@@ -12,6 +12,7 @@ struct Model{
   std::vector<float> vec_R;
   std::vector<float> vec_I;
 
+  float It_resolution = 1.0f;
   std::vector<float> vec_It;
   std::vector<float> vec_I_It;
 

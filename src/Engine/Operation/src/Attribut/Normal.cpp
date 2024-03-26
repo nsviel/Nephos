@@ -197,7 +197,7 @@ float Normal::compute_cosIt(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
 
   //Compute cosIt
   float cIt = 0;
-  float dist = math::distance_from_origin(xyz)
+  float dist = math::distance(xyz, root);
   for(int j=0; j<3; j++){
     cIt = cIt + ( -Nxyz[j] * ( (xyz[j] - root[j]) / dist ));
   }
@@ -219,7 +219,7 @@ float Normal::compute_It(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
 
   //Compute cosIt
   float cIt = 0;
-  float dist = math::distance_from_origin(xyz)
+  float dist = math::distance(xyz, root);
   for(int j=0; j<3; j++){
     cIt = cIt + ( -Nxyz[j] * ( (xyz[j] - root[j]) / dist ));
   }

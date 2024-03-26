@@ -131,26 +131,27 @@ void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   float It = 1000.0f;
   float I = 0;
   vec3 Nxyz;
+  vec3 root = vec3(0, 0, 0);
   for(int i=0; i<sphere_xyz.size(); i++){
     vec3& xyz = sphere_xyz[i];
     float distance = math::distance(xyz, current_pose) - radius;
 
     if(distance <= k4n_struct->matching.calibration.ransac_thres_sphere){
-      R = distance;
       I = sphere_i[i];
       Nxyz = normalize(xyz - current_pose);
+      It = ope_normal->compute_It(xyz, Nxyz, root);
+
+
+      //ADdd into model data vector
+      int index = static_cast<int>(std::round(It / k4n_struct->matching.model.It_resolution));
+      if(index >= 0 && index < k4n_struct->matching.model.vec_It.size()){
+        k4n_struct->matching.model.vec_I_It[index] = I;
+        k4n_struct->matching.model.vec_It[index] = It;
+      }
     }
   }
 
-  //ADdd into model data vector
-  int index = static_cast<int>(std::round(R / k4n_struct->matching.model.resolution));
-  if(index >= 0 && index < k4n_struct->matching.model.vec_R.size()){
-    k4n_struct->matching.model.vec_R[index] = R;
-    k4n_struct->matching.model.vec_I[index] = I;
-  }else{
-    // Handle out-of-range case
-    //std::cerr << "Error: R value is out of range.\n";
-  }
+
 
   //---------------------------
 }
