@@ -8,6 +8,7 @@ namespace k4n::structure{class K4N;}
 namespace k4n::calibration{class Glyph;}
 namespace k4n::utils{class Transformation;}
 namespace ope::fitting{class Sphere;}
+namespace ope::fitting{class Ransac;}
 
 
 namespace k4n::calibration{
@@ -36,6 +37,7 @@ public:
 
 private:
   ope::fitting::Sphere* ope_fitting;
+  ope::fitting::Ransac* ope_ransac;
   k4n::calibration::Glyph* k4n_glyph;
   k4n::utils::Transformation* k4n_transfo;
   k4n::structure::K4N* k4n_struct;
