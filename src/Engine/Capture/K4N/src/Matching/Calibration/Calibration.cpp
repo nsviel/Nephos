@@ -91,6 +91,19 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
   k4n_glyph->draw_sphere_glyph(sensor, current_pose, radius);
 
 
+  float min_dist = 1000.0f;
+  float I;
+  for(int i=0; i<sphere_xyz.size(); i++){
+    vec3& xyz = sphere_xyz[i];
+    float distance = math::distance(xyz, current_pose);
+
+    if(distance < min_dist){
+      min_dist = distance;
+      I = sphere_i[i];
+    }
+  }
+
+
   //---------------------------
 }
 
