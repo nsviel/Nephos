@@ -21,17 +21,15 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
   //------------------------
 
   // Initialize best sphere parameters
+  float best_distance = 1000;
   int best_num_inliers = 0;
   best_radius = 0.0f;
 
   // Seed random number generator
   srand(time(nullptr));
 
-  int nb_dist_sphere = 0;
-  int nb_dist_center = 0;
-  int nb_dist_radius = 0;
-
   // Perform RANSAC iters
+  vector<Sphere> vec_sphere;
   for(int iter=0; iter<num_iter; ++iter){
     // Randomly select three points
     std::vector<vec3> sample_points;
@@ -49,29 +47,29 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
 
     // Count inliers
     int num_inliers = 0;
+    float distance = 0;
     for(const auto& point : xyz){
-      float distance_to_sphere = glm::distance(point, center) - radius;
+      float distance_to_sphere = abs(glm::distance(point, center) - radius);
       float distance_to_center = glm::distance(center, best_center);
-      float distance_to_radius = glm::distance(radius, radius_to_find);
+      float distance_to_radius = abs(radius - radius_to_find);
 
-      bool dist_sphere = abs(distance_to_sphere) < threshold_sphere;
+      bool dist_sphere = distance_to_sphere < threshold_sphere;
       bool dist_center = distance_to_center < threshold_pose;
       bool dist_radius = distance_to_radius < threshold_radius;
 
-      if(dist_sphere) nb_dist_sphere++;
-      if(dist_center) nb_dist_center++;
-      if(dist_radius) nb_dist_radius++;
-
       if(dist_sphere && dist_center && dist_radius){
         ++num_inliers;
+        distance += distance_to_sphere + distance_to_center + distance_to_radius;
       }
     }
 
     // Update best model if current model has more inliers
-    if(num_inliers > best_num_inliers){
+    if(num_inliers > best_num_inliers && distance < best_distance){
       best_num_inliers = num_inliers;
       best_center = center;
       best_radius = radius;
+      best_distance = distance;
+      say(distance);
     }
   }
 

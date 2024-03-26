@@ -57,6 +57,7 @@ void Cloud::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_processing->wait_thread();
+  k4n_calibration->wait_thread();
 
   //---------------------------
 }

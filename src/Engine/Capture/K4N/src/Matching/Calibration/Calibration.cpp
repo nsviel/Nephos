@@ -71,7 +71,7 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
     vec3& xyz = vec_xyz[i];
     float distance = math::distance(xyz, current_pose);
 
-    if(distance <= sensor->detection.sphere_diameter){
+    if(distance <= sensor->detection.sphere_diameter * k4n_struct->matching.calibration.ransac_search_diameter_x){
       sphere_xyz.push_back(xyz);
       sphere_i.push_back(vec_i[i]);
     }
@@ -81,7 +81,11 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
   //ope_fitting->find_sphere_in_cloud(sphere_xyz, current_pose, radius);
 
 
-  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, 10000, 0.01, sensor->detection.sphere_diameter/2);
+  ope_ransac->set_num_iteration(k4n_struct->matching.calibration.ransac_nb_iter);
+  ope_ransac->set_threshold_sphere(k4n_struct->matching.calibration.ransac_thres_sphere);
+  ope_ransac->set_threshold_pose(k4n_struct->matching.calibration.ransac_thres_pose);
+  ope_ransac->set_threshold_radius(k4n_struct->matching.calibration.ransac_thres_radius);
+  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, sensor->detection.sphere_diameter/2);
 
 
   k4n_glyph->draw_sphere_glyph(sensor, current_pose, radius);

@@ -15,12 +15,12 @@ public:
 
 public:
   //Ransac fitting
-  void ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, float& best_radius, float radius_to_find);
+  void ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& center, float& radius, float radius_to_find);
 
-  inline int* get_num_iteration(){return num_iter;}
-  inline float* get_threshold_sphere(){return threshold_sphere;}
-  inline float* get_threshold_pose(){return threshold_pose;}
-  inline float* get_threshold_radius(){return threshold_radius;}
+  inline void set_num_iteration(int value){this->num_iter = value;}
+  inline void set_threshold_sphere(float value){this->threshold_sphere = value;}
+  inline void set_threshold_pose(float value){this->threshold_pose = value;}
+  inline void set_threshold_radius(float value){this->threshold_radius = value;}
 
 private:
   ope::fitting::Sphere* ope_sphere;
