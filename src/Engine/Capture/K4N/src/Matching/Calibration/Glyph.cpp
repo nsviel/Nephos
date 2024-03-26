@@ -42,11 +42,6 @@ void Glyph::draw_glyph(k4n::dev::Sensor* sensor, vec3 pose, float radius){
   glyph::scene::Sphere* glyph_sphere = sensor->detection.glyph_calibration;
   //---------------------------
 
-  //Add sphere radius to the detected circle center
-  vec3 dir = glm::normalize(pose);
-  pose = pose + dir * radius;
-
-  //Position sphere
   glyph_sphere->move_sphere(pose, radius * 2);
 
   //---------------------------

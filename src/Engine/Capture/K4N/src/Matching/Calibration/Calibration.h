@@ -26,6 +26,9 @@ public:
 
 public:
   //Main function
+  void next_step(k4n::dev::Sensor* sensor);
+
+  //Subfunction
   void validate_bbox(k4n::dev::Sensor* sensor);
   void ransac_sphere(k4n::dev::Sensor* sensor);
 
@@ -39,8 +42,7 @@ private:
   std::map<int, std::string> map_step;
 
   int step;
-  ivec2 point_2d;
-  vec3 point_3d;
+  vec3 current_pose;
   float radius;
 };
 

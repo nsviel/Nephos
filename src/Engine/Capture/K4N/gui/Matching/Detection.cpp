@@ -148,7 +148,7 @@ void Detection::draw_result(k4n::dev::Sensor* sensor){
   gui_player->player_start(sensor->master);
   ImGui::SameLine();
   if(ImGui::Button("Validate")){
-    k4n_calibration->validate_bbox(sensor);
+    k4n_calibration->next_step(sensor);
   }
   ImGui::SameLine();
   string step = k4n_calibration->get_step_str();
