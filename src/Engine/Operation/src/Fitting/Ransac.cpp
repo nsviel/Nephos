@@ -27,6 +27,10 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
   // Seed random number generator
   srand(time(nullptr));
 
+  int nb_dist_sphere = 0;
+  int nb_dist_center = 0;
+  int nb_dist_radius = 0;
+
   // Perform RANSAC iters
   for(int iter=0; iter<num_iter; ++iter){
     // Randomly select three points
@@ -41,12 +45,24 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
     vec3 center;
     float radius;
     ope_sphere->find_sphere_in_cloud(sample_points, center, radius);
+    if(center == vec3(0, 0, 0) || radius == 0) continue;
 
     // Count inliers
     int num_inliers = 0;
     for(const auto& point : xyz){
-      float distance_to_sphere = glm::distance(point, center) - radius_to_find;
-      if(abs(distance_to_sphere) < inlier_threshold){
+      float distance_to_sphere = glm::distance(point, center) - radius;
+      float distance_to_center = glm::distance(center, best_center);
+      float distance_to_radius = glm::distance(radius, radius_to_find);
+
+      bool dist_sphere = abs(distance_to_sphere) < 0.01;
+      bool dist_center = distance_to_center < 0.01;
+      bool dist_radius = distance_to_radius < 0.01;
+
+      if(dist_sphere) nb_dist_sphere++;
+      if(dist_center) nb_dist_center++;
+      if(dist_radius) nb_dist_radius++;
+
+      if(dist_sphere && dist_center && dist_radius){
         ++num_inliers;
       }
     }
@@ -58,6 +74,12 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
       best_radius = radius;
     }
   }
+
+  say("-----");
+  say(best_num_inliers);
+  say(nb_dist_sphere);
+  say(nb_dist_center);
+  say(nb_dist_radius);
 
   //------------------------
 }

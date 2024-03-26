@@ -71,7 +71,7 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
     vec3& xyz = vec_xyz[i];
     float distance = math::distance(xyz, current_pose);
 
-    if(distance <= sensor->detection.sphere_diameter){
+    if(distance <= 0.5){
       sphere_xyz.push_back(xyz);
       sphere_i.push_back(vec_i[i]);
     }
