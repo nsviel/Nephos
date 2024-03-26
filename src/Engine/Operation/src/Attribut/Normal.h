@@ -23,6 +23,10 @@ public:
   glm::vec3 compute_normal_from_covariance(const glm::mat3& covariance);
   void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point);
 
+  //Incidence angle
+  float compute_cosIt(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root);
+  float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root);
+
 private:
 
 };

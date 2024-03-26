@@ -9,6 +9,7 @@ namespace k4n::calibration{class Glyph;}
 namespace k4n::utils{class Transformation;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
+namespace ope::attribut{class Normal;}
 
 
 namespace k4n::calibration{
@@ -32,12 +33,15 @@ public:
   //Subfunction
   void validate_bbox(k4n::dev::Sensor* sensor);
   void ransac_sphere(k4n::dev::Sensor* sensor);
+  void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
+  void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
 
   inline string get_step_str(){return map_step[step];}
 
 private:
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
+  ope::attribut::Normal* ope_normal;
   k4n::calibration::Glyph* k4n_glyph;
   k4n::utils::Transformation* k4n_transfo;
   k4n::structure::K4N* k4n_struct;

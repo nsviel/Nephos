@@ -14,6 +14,7 @@ Calibration::Calibration(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
+  this->ope_normal = new ope::attribut::Normal();
   this->map_step[k4n::calibration::WAIT_VALIDATION] = "Validate";
   this->map_step[k4n::calibration::PROCESSING] = "Processing";
   this->step = k4n::calibration::WAIT_VALIDATION;
@@ -78,9 +79,6 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
   }
 
   //Apply least square fitting
-  //ope_fitting->find_sphere_in_cloud(sphere_xyz, current_pose, radius);
-
-
   ope_ransac->set_num_iteration(k4n_struct->matching.calibration.ransac_nb_iter);
   ope_ransac->set_threshold_sphere(k4n_struct->matching.calibration.ransac_thres_sphere);
   ope_ransac->set_threshold_pose(k4n_struct->matching.calibration.ransac_thres_pose);
@@ -90,9 +88,20 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
 
   k4n_glyph->draw_sphere_glyph(sensor, current_pose, radius);
 
+  this->data_IfR(sphere_xyz, sphere_i);
+  this->data_IfIt(sphere_xyz, sphere_i);
+
+
+
+  //---------------------------
+}
+
+void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  //---------------------------
+
   //Search for closest point
   float R = 1000.0f;
-  float I;
+  float I = 0;
   for(int i=0; i<sphere_xyz.size(); i++){
     vec3& xyz = sphere_xyz[i];
     float distance = math::distance_from_origin(xyz);
@@ -105,13 +114,52 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
 
   //ADdd into model data vector
   int index = static_cast<int>(std::round(R / k4n_struct->matching.model.resolution));
-  k4n_struct->matching.model.vec_R[index] = I;
-
-  say(R);
-
+  if(index >= 0 && index < k4n_struct->matching.model.vec_R.size()){
+    k4n_struct->matching.model.vec_R[index] = R;
+    k4n_struct->matching.model.vec_I[index] = I;
+  }else{
+    // Handle out-of-range case
+    //std::cerr << "Error: R value is out of range.\n";
+  }
 
   //---------------------------
 }
+void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  //---------------------------
+
+  //Search for closest point
+  float It = 1000.0f;
+  float I = 0;
+  vec3 Nxyz;
+  for(int i=0; i<sphere_xyz.size(); i++){
+    vec3& xyz = sphere_xyz[i];
+    float distance = math::distance(xyz, current_pose) - radius;
+
+    if(distance <= k4n_struct->matching.calibration.ransac_thres_sphere){
+      R = distance;
+      I = sphere_i[i];
+      Nxyz = normalize(xyz - current_pose);
+    }
+  }
+
+  //ADdd into model data vector
+  int index = static_cast<int>(std::round(R / k4n_struct->matching.model.resolution));
+  if(index >= 0 && index < k4n_struct->matching.model.vec_R.size()){
+    k4n_struct->matching.model.vec_R[index] = R;
+    k4n_struct->matching.model.vec_I[index] = I;
+  }else{
+    // Handle out-of-range case
+    //std::cerr << "Error: R value is out of range.\n";
+  }
+
+  //---------------------------
+}
+
+
+
+
+
+
 
 
 }

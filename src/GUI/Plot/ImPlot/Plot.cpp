@@ -22,20 +22,20 @@ void Plot::plot_scatter_2d(std::vector<float>& x, std::vector<float>& y, float h
   implot_style->make_style();
 
   // Create a window
-  ImPlot::SetNextAxisLimits(0, x.size(), 0, 1);
+  ImPlot::SetNextAxisLimits(0, 3, 0, 10000);
   ImPlotFlags flag;
-  flag |= ImPlotFlags_NoBoxSelect;
+  /*flag |= ImPlotFlags_NoBoxSelect;
   flag |= ImPlotAxisFlags_AutoFit;
   flag |= ImPlotFlags_NoMouseText;
   flag |= ImPlotFlags_NoLegend;
-  flag |= ImPlotFlags_CanvasOnly;
+  flag |= ImPlotFlags_CanvasOnly;*/
   if(ImPlot::BeginPlot("##scatter_plot", ImVec2(-1, height), flag)){
     ImPlotAxisFlags axis_flag;
-    axis_flag |= ImPlotAxisFlags_AutoFit;
-    ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
+    //axis_flag |= ImPlotAxisFlags_AutoFit;
+    //ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
 
     // Plot the data
-    ImPlot::PlotScatter("Random Data", x.data(), y.data(), x.size());
+    ImPlot::PlotScatter("##scatter", x.data(), y.data(), x.size());
 
     // End the plot
     ImPlot::EndPlot();

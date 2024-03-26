@@ -191,6 +191,54 @@ void Normal::compute_normal_orientation(glm::vec3& normal, const glm::vec3& poin
   //---------------------------
 }
 
+//Incidence angle
+float Normal::compute_cosIt(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
+  //---------------------------
+
+  //Compute cosIt
+  float cIt = 0;
+  float dist = math::distance_from_origin(xyz)
+  for(int j=0; j<3; j++){
+    cIt = cIt + ( -Nxyz[j] * ( (xyz[j] - root[j]) / dist ));
+  }
+
+  //Check for orientation
+  if(cIt < 0){
+    cIt = -cIt;
+  }
+  //Check for computability
+  if(cIt >= 1){
+    cIt = 0.9999;
+  }
+
+  //---------------------------
+  return cIt;
+}
+float Normal::compute_It(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
+  //---------------------------
+
+  //Compute cosIt
+  float cIt = 0;
+  float dist = math::distance_from_origin(xyz)
+  for(int j=0; j<3; j++){
+    cIt = cIt + ( -Nxyz[j] * ( (xyz[j] - root[j]) / dist ));
+  }
+
+  //Check for orientation
+  if(cIt < 0){
+    cIt = -cIt;
+  }
+  //Check for computability
+  if(cIt >= 1){
+    cIt = 0.9999;
+  }
+
+  float It = acos(cIt) * 180 / M_PI;
+
+  //---------------------------
+  return It;
+}
+
 
 
 }

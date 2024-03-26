@@ -33,15 +33,8 @@ void Calibration::draw_calibration(k4n::dev::Sensor* sensor){
 void Calibration::plot_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
-  vector<float> x;
-  vector<float> y;
-
-  for(int i=0; i<100; i++){
-    x.push_back(i);
-    y.push_back(i);
-  }
-
-  y[50] = 5;
+  vector<float>& x = k4n_struct->matching.model.vec_R;
+  vector<float>& y = k4n_struct->matching.model.vec_I;
 
   utl_plot->plot_scatter_2d(x, y, height);
 

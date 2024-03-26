@@ -18,10 +18,10 @@ public:
 
 public:
   //Main function
-  void init_model();
+  void init();
 
   //Subfunction
-
+  void add_element();
 
 private:
   k4n::structure::K4N* k4n_struct;

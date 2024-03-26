@@ -40,7 +40,7 @@ void Scene::init(){
   path_6.data = "/home/aether/Desktop/sphere_test.mkv";
 
   utl::file::Path path_7;
-  path_7.data = "/home/aether/Desktop/bench_ground.mkv";
+  path_7.data = "/home/aether/Desktop/bench_ground_2.mkv";
 
   //Create playback list
   //sce_loader->load_object(path_1);
