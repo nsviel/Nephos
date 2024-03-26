@@ -81,7 +81,8 @@ void Sphere::move_sphere(vec3 coordinate, float diameter){
 
   //Set scale (original sphere is 1m diameter)
   truc = glm::mat4(1.0f);
-  truc = glm::scale(truc, glm::vec3(diameter / 2));
+  truc = glm::scale(truc, glm::vec3(diameter));
+  say(diametre);
 
   //Set detected sphere coordinate
   truc[0][3] = coordinate.x;

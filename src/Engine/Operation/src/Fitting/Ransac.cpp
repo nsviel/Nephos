@@ -16,7 +16,8 @@ Ransac::Ransac(){
 Ransac::~Ransac(){}
 
 //Ransac fitting
-void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, float& best_radius, int num_iter, float inlier_threshold){
+void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, float& best_radius, int num_iter, float inlier_threshold, float radius_to_find){
+  if(xyz.size() == 0) return;
   //------------------------
 
   // Initialize best sphere parameters
@@ -30,8 +31,8 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
   for(int iter=0; iter<num_iter; ++iter){
     // Randomly select three points
     std::vector<vec3> sample_points;
-    sample_points.reserve(3);
-    for (int i = 0; i < 3; ++i) {
+    sample_points.reserve(10);
+    for(int i=0; i<10; ++i){
       int random_index = rand() % xyz.size();
       sample_points.push_back(xyz[random_index]);
     }
@@ -44,8 +45,8 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
     // Count inliers
     int num_inliers = 0;
     for(const auto& point : xyz){
-      float distance_to_sphere = glm::distance(point, center) - radius;
-      if(distance_to_sphere < inlier_threshold){
+      float distance_to_sphere = glm::distance(point, center) - radius_to_find;
+      if(abs(distance_to_sphere) < inlier_threshold){
         ++num_inliers;
       }
     }

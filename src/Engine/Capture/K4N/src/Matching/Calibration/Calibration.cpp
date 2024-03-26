@@ -78,11 +78,13 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
   }
 
   //Apply least square fitting
-  ope_fitting->find_sphere_in_cloud(sphere_xyz, current_pose, radius);
+  //ope_fitting->find_sphere_in_cloud(sphere_xyz, current_pose, radius);
+
+
+  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, 1000, 0.01, sensor->detection.sphere_diameter/2);
+
 
   k4n_glyph->draw_sphere_glyph(sensor, current_pose, radius);
-
-  //ransac_find_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, float& best_radius, int num_iter, float inlier_threshold)
 
 
   //---------------------------

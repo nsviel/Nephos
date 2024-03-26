@@ -15,7 +15,7 @@ public:
 
 public:
   //Ransac fitting
-  void ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, float& best_radius, int num_iter, float inlier_threshold);
+  void ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, float& best_radius, int num_iter, float inlier_threshold, float radius_to_find);
 
 private:
   ope::fitting::Sphere* ope_sphere;
