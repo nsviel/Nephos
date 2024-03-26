@@ -32,6 +32,7 @@ private:
   std::map<int, std::string> map_step;
 
   int step;
+  ivec2 point_2D;
 };
 
 }

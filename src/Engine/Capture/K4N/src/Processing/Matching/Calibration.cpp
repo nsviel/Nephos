@@ -14,8 +14,7 @@ Calibration::Calibration(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_pool = node_k4n->get_k4n_pool();
-  this->k4n_detector = node_matching->get_k4n_detector();
-  this->k4n_model = node_matching->get_k4n_model();
+  this->k4n_calibration = node_matching->get_k4n_calibration();
 
   //---------------------------
 }

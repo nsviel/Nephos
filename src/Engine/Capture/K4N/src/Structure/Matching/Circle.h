@@ -8,7 +8,6 @@ struct Circle{
 
   int radius;
   glm::ivec2 center;
-  glm::ivec2 pose;
 
   //---------------------------
 };

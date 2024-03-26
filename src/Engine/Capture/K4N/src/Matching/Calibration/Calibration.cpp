@@ -24,6 +24,7 @@ void Calibration::validate_bbox(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->step++;
+  this->point_2D = sensor->detection.vec_circle[0].center;
 
   //---------------------------
 }
