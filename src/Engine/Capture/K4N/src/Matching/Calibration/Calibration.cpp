@@ -81,6 +81,8 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
 
   k4n_glyph->draw_sphere_glyph(sensor, current_pose, radius);
 
+  //ransac_find_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, float& best_radius, int num_iter, float inlier_threshold)
+
 
   //---------------------------
 }
