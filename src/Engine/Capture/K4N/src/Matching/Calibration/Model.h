@@ -9,7 +9,6 @@ namespace k4n::structure{class K4N;}
 namespace k4n::detection{class Hough;}
 namespace k4n::matching{class Image;}
 namespace k4n::detection{class Glyph;}
-namespace ope::attribut{class Fitting;}
 
 
 namespace k4n::calibration{
@@ -35,7 +34,6 @@ private:
   k4n::detection::Hough* k4n_hough;
   k4n::matching::Image* k4n_image;
   k4n::detection::Glyph* k4n_glyph;
-  ope::attribut::Fitting* ope_fitting;
 };
 
 }

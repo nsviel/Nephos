@@ -16,7 +16,6 @@ Operation::Operation(k4n::Node* node_k4n){
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::attribut::Normal();
-  this->ope_fitting = new ope::attribut::Fitting();
   this->k4n_operation = new k4n::utils::Operation();
   this->k4n_recorder = new k4n::processing::Recorder(node_k4n);
   this->k4n_pool = node_k4n->get_k4n_pool();
@@ -49,20 +48,6 @@ void Operation::run_thread(k4n::dev::Sensor* sensor){
   tasker->task_begin("colorization");
   this->colorize_object(sensor);
   tasker->task_end("colorization");
-
-  //Sphere fitting
-  /*
-  tasker->task_begin("fitting::sphere");
-  vec3 center;
-  float radius;
-  ope_fitting->find_sphere_in_cloud(sensor, center, radius);
-  say("---");
-  say(radius);
-  say(math::distance(center));
-  tasker->task_end("fitting::sphere");
-  */
-
-
 
   //Voxelization filtering
   if(master->operation.voxel){

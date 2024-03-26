@@ -12,7 +12,6 @@ namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
 namespace ope::attribut{class Normal;}
-namespace ope::attribut{class Fitting;}
 
 
 namespace k4n::processing{
@@ -41,7 +40,6 @@ private:
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
   ope::attribut::Normal* ope_normal;
-  ope::attribut::Fitting* ope_fitting;
   k4n::utils::Operation* k4n_operation;
   k4n::processing::Recorder* k4n_recorder;
   k4n::thread::Pool* k4n_pool;

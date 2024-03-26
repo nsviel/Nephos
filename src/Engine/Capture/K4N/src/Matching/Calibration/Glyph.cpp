@@ -31,9 +31,9 @@ void Glyph::draw_sphere_glyph(k4n::dev::Sensor* sensor, vec3 pose, float radius)
 
 //Subfunction
 void Glyph::reset_glyph(k4n::dev::Sensor* sensor){
+  glyph::scene::Sphere* sphere = sensor->detection.glyph_calibration;
   //---------------------------
 
-  glyph::scene::Sphere* sphere = sensor->detection.glyph_calibration;
   sphere->reset_glyph();
 
   //---------------------------
