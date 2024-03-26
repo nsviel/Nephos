@@ -4,6 +4,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::structure{class K4N;}
+namespace k4n::dev{class Sensor;}
 
 
 namespace k4n::calibration{
@@ -17,7 +18,7 @@ public:
 
 public:
   //Main function
-  void determine_model(k4n::dev::Sensor* sensor);
+  void init_model();
 
   //Subfunction
 
