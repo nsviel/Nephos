@@ -5,3 +5,4 @@
 #include <Operation/src/Color/Namespace.h>
 #include <Operation/src/Tree/Namespace.h>
 #include <Operation/src/Specific/Namespace.h>
+#include <Operation/src/Fitting/Namespace.h>

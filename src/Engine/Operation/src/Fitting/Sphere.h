@@ -5,11 +5,11 @@
 
 namespace ope::attribut{
 
-class Fitting
+class Sphere
 {
 public:
-  Fitting();
-  ~Fitting();
+  Sphere();
+  ~Sphere();
 
 public:
   //Sphere fitting

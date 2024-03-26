@@ -1,4 +1,4 @@
-#include "Fitting.h"
+#include "Sphere.h"
 
 #include <opencv2/opencv.hpp>
 
@@ -6,15 +6,15 @@
 namespace ope::attribut{
 
 //Constructor / Destructor
-Fitting::Fitting(){
+Sphere::Sphere(){
   //---------------------------
 
   //---------------------------
 }
-Fitting::~Fitting(){}
+Sphere::~Sphere(){}
 
 //Sphere fitting
-void Fitting::find_sphere_in_cloud(vector<vec3>& xyz, vec3& center, float& radius){
+void Sphere::find_sphere_in_cloud(vector<vec3>& xyz, vec3& center, float& radius){
   vec3 COM = math::centroid(xyz);
   //------------------------
 
@@ -72,7 +72,7 @@ void Fitting::find_sphere_in_cloud(vector<vec3>& xyz, vec3& center, float& radiu
 
   //------------------------
 }
-void Fitting::find_sphere_in_image(utl::media::Image* image){
+void Sphere::find_sphere_in_image(utl::media::Image* image){
   //------------------------
 
   // Create an OpenCV Mat object from the image data
@@ -139,7 +139,7 @@ void Fitting::find_sphere_in_image(utl::media::Image* image){
 
   //------------------------
 }
-void Fitting::find_sphere_in_image_with_canny(utl::media::Image* image){
+void Sphere::find_sphere_in_image_with_canny(utl::media::Image* image){
   //------------------------
 
   // Create an OpenCV Mat object from the image data
