@@ -13,7 +13,7 @@ Calibration::Calibration(k4n::Node* node_k4n){
   this->k4n_glyph = new k4n::calibration::Glyph(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->ope_fitting = new ope::attribut::Fitting();
-  this->map_step[k4n::calibration::WAIT_VALIDATION] = "Wait validation";
+  this->map_step[k4n::calibration::WAIT_VALIDATION] = "Validate";
   this->map_step[k4n::calibration::PROCESSING] = "Processing";
   this->step = k4n::calibration::WAIT_VALIDATION;
 
@@ -30,7 +30,6 @@ void Calibration::next_step(k4n::dev::Sensor* sensor){
   switch(step){
     case k4n::calibration::WAIT_VALIDATION:{
       this->validate_bbox(sensor);
-      this->step++;
       break;
     }
     case k4n::calibration::PROCESSING:{
@@ -48,6 +47,7 @@ void Calibration::validate_bbox(k4n::dev::Sensor* sensor){
   if(step != k4n::calibration::WAIT_VALIDATION) return;
   //---------------------------
 
+  this->step++;
   ivec2 point_2d = sensor->detection.vec_circle[0].center;
   vec3 truc = k4n_transfo->convert_depth_2d_to_3d(sensor, point_2d);
   vec4 machin = vec4(truc.x, truc.y, truc.z, 1);
