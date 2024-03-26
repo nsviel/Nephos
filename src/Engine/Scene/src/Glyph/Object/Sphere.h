@@ -22,7 +22,7 @@ public:
   void reset_glyph();
 
   //Subfunction
-  void construct(vec4& color);
+  void construct(vec4 color);
   void move_sphere(vec3 pose, float diameter);
 
 private:
@@ -31,7 +31,6 @@ private:
 
   int size = 20;
   mat4 truc = mat4(1);
-  bool is_available = true;
 };
 
 }

@@ -59,7 +59,6 @@ void Sphere::update_pose(utl::type::Entity* entity){
 void Sphere::reset_glyph(){
   //---------------------------
 
-  this->is_available = true;
   data.is_visible = false;
   pose.model = mat4(1.0f);
 
@@ -67,7 +66,7 @@ void Sphere::reset_glyph(){
 }
 
 //Subfunction
-void Sphere::construct(vec4& color){
+void Sphere::construct(vec4 color){
   //---------------------------
 
   vector<vec4>& rgb = data.rgb;
@@ -78,7 +77,6 @@ void Sphere::construct(vec4& color){
   //---------------------------
 }
 void Sphere::move_sphere(vec3 coordinate, float diameter){
-  this->is_available = false;
   //---------------------------
 
   //Set scale (original sphere is 1m diameter)

@@ -63,7 +63,6 @@ void Glyph::draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<k4n::struct
   for(int i=0; i<vec_circle.size(); i++){
     if(i >= vec_glyph_sphere.size()) return;
     k4n::structure::Circle& circle = vec_circle[i];
-    if(circle.is_available == false) continue;
 
     //Add sphere radius to the detected circle center
     vec3 pose = k4n_transfo->convert_depth_2d_to_3d(sensor, circle.center);
