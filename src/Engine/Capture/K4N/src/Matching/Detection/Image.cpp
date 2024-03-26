@@ -115,7 +115,7 @@ void Image::draw_circle(cv::Mat& image, vector<k4n::structure::Circle>& vec_circ
 
   for(size_t i=0; i<vec_circle.size(); i++){
     k4n::structure::Circle& circle = vec_circle[i];
-    cv::Point center(cvRound(circle.pose.x), cvRound(circle.pose.y));
+    cv::Point center(cvRound(circle.center.x), cvRound(circle.center.y));
     int radius = cvRound(circle.radius);
 
     // Draw the circle center
@@ -134,7 +134,7 @@ void Image::draw_bounding_box(cv::Mat& image, k4n::dev::Sensor* sensor){
   if(vec_circle.size() == 0) return;
 
   k4n::structure::Circle& circle = vec_circle[0];
-  sensor->detection.cv_center = cv::Point(cvRound(circle.pose.x), cvRound(circle.pose.y));
+  sensor->detection.cv_center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
   sensor->detection.cv_radius = cvRound(circle.radius);
 
   cv::Point& center = sensor->detection.cv_center;

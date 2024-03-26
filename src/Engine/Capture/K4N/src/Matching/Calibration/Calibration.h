@@ -5,6 +5,7 @@
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
+namespace k4n::utils{class Transformation;}
 
 
 namespace k4n::calibration{
@@ -24,15 +25,19 @@ public:
 public:
   //Main function
   void validate_bbox(k4n::dev::Sensor* sensor);
+  void ransac_sphere(k4n::dev::Sensor* sensor);
 
   inline string get_step_str(){return map_step[step];}
 
 private:
+  k4n::utils::Transformation* k4n_transfo;
   k4n::structure::K4N* k4n_struct;
   std::map<int, std::string> map_step;
 
   int step;
-  ivec2 point_2D;
+  ivec2 point_2d;
+  vec3 point_3d;
+  float radius;
 };
 
 }

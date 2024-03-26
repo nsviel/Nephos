@@ -46,8 +46,8 @@ void Model::retrieve_sphere_data(k4n::dev::Sensor* sensor){
 
   // Retrieve the parameters of the detected circle
   k4n::structure::Circle& circle = vec_circle[0];
-  int x = circle.pose.x;
-  int y = circle.pose.y;
+  int x = circle.center.x;
+  int y = circle.center.y;
 
   float value_ir = static_cast<float>(buffer_ir[y * width + x]);
   float value_depth = static_cast<float>(buffer_depth[y * width + x]);
@@ -80,8 +80,8 @@ void Model::retrieve_bbox_data(k4n::dev::Sensor* sensor){
 
   // Retrieve the parameters of the detected circle
   k4n::structure::Circle& circle = vec_circle[0];
-  float center_x = circle.pose.x;
-  float center_y = circle.pose.y;
+  float center_x = circle.center.x;
+  float center_y = circle.center.y;
   float radius = circle.radius;
 
   // Iterate over the bounding box of the circle

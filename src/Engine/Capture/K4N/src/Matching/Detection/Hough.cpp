@@ -66,7 +66,7 @@ void Hough::compute_hough_circle(cv::Mat& image){
 
   for(int i=0; i<circles.size(); i++){
     k4n::structure::Circle circle;
-    circle.pose = glm::ivec2(circles[i][0], circles[i][1]);
+    circle.center = glm::ivec2(circles[i][0], circles[i][1]);
     circle.radius = circles[i][2];
     vec_circle.push_back(circle);
   }
