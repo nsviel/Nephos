@@ -14,7 +14,6 @@ Cloud::Cloud(k4n::Node* node_k4n){
 
   this->k4n_operation = new k4n::utils::Operation();
   this->k4n_processing = new k4n::processing::Operation(node_k4n);
-  this->k4n_matching = new k4n::processing::Matching(node_k4n);
   this->k4n_pool = node_k4n->get_k4n_pool();
 
   //---------------------------
@@ -43,9 +42,6 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   //Update object data
   k4n_processing->start_thread(sensor);
 
-  //Matching stuff
-  //k4n_matching->start_thread(sensor);
-
   //---------------------------
   this->idle = true;
 }
@@ -57,7 +53,6 @@ void Cloud::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_processing->wait_thread();
-  k4n_matching->wait_thread();
 
   //---------------------------
 }

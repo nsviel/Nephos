@@ -24,6 +24,9 @@ public:
   void run_thread(k4n::dev::Sensor* sensor);
   void wait_thread();
 
+  //Subfunction
+  void make_detection(k4n::dev::Sensor* sensor);
+
 private:
   k4n::thread::Pool* k4n_pool;
   k4n::structure::K4N* k4n_struct;

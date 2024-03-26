@@ -59,32 +59,12 @@ void Glyph::draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<k4n::struct
   vector<glyph::scene::Sphere*>& vec_sphere_glyph = sensor->detection.vec_sphere_glyph;
   //---------------------------
 
-  uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
-  int width = sensor->depth.data.width;
-
   for(int i=0; i<vec_circle.size(); i++){
     if(i >= vec_sphere_glyph.size()) return;
     k4n::structure::Circle& circle = vec_circle[i];
 
-    //Retrieve image coordinates
-    int x = circle.pose[0];
-    int y = circle.pose[1];
-    k4a_float2_t source_xy = { static_cast<float>(x), static_cast<float>(y) };
-    float source_z = static_cast<float>(buffer[y * width + x]);
-
-    //Convert it into 3D coordinate
-    k4a_float3_t target_xyz;
-    bool success = sensor->param.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
-    vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
-
-    //Apply transformation
-    float inv_scale = 1.0f / 1000.0f;
-    xyzw.x = -xyzw.x * inv_scale;
-    xyzw.y = -xyzw.y * inv_scale;
-    xyzw.z = xyzw.z * inv_scale;
-    vec3 pose = vec3(xyzw.z, xyzw.x, xyzw.y);
-
     //Add sphere radius to the detected circle center
+    vec3 pose = convert_2d_to_3d(sensor, circle);
     vec3 dir = glm::normalize(pose);
     pose = pose + dir * (sensor->detection.sphere_diameter / 2);
 
@@ -93,6 +73,33 @@ void Glyph::draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<k4n::struct
   }
 
   //---------------------------
+}
+vec3 Glyph::convert_2d_to_3d(k4n::dev::Sensor* sensor, k4n::structure::Circle& circle){
+  //---------------------------
+
+  uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
+  int width = sensor->depth.data.width;
+
+  //Retrieve image coordinates
+  int x = circle.pose[0];
+  int y = circle.pose[1];
+  k4a_float2_t source_xy = { static_cast<float>(x), static_cast<float>(y) };
+  float source_z = static_cast<float>(buffer[y * width + x]);
+
+  //Convert it into 3D coordinate
+  k4a_float3_t target_xyz;
+  bool success = sensor->param.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
+  vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
+
+  //Apply transformation
+  float inv_scale = 1.0f / 1000.0f;
+  xyzw.x = -xyzw.x * inv_scale;
+  xyzw.y = -xyzw.y * inv_scale;
+  xyzw.z = xyzw.z * inv_scale;
+  vec3 pose = vec3(xyzw.z, xyzw.x, xyzw.y);
+
+  //---------------------------
+  return pose;
 }
 
 }

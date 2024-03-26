@@ -28,6 +28,7 @@ void Plot::plot_scatter_2d(std::vector<float>& x, std::vector<float>& y, float h
   flag |= ImPlotAxisFlags_AutoFit;
   flag |= ImPlotFlags_NoMouseText;
   flag |= ImPlotFlags_NoLegend;
+  flag |= ImPlotFlags_CanvasOnly;
   if(ImPlot::BeginPlot("##scatter_plot", ImVec2(-1, height), flag)){
     ImPlotAxisFlags axis_flag;
     axis_flag |= ImPlotAxisFlags_AutoFit;

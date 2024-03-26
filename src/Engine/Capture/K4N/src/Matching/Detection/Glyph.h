@@ -25,6 +25,7 @@ public:
   //Subfunction
   void reset_all_sphere(k4n::dev::Sensor* sensor);
   void draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<k4n::structure::Circle>& vec_circle);
+  vec3 convert_2d_to_3d(k4n::dev::Sensor* sensor, k4n::structure::Circle& circle);
 
 private:
   eng::scene::Glyph* sce_glyph;
