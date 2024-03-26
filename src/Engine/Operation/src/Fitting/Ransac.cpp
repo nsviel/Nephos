@@ -33,8 +33,8 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
   for(int iter=0; iter<num_iter; ++iter){
     // Randomly select three points
     std::vector<vec3> sample_points;
-    sample_points.reserve(3);
-    for(int i=0; i<3; ++i){
+    sample_points.reserve(50);
+    for(int i=0; i<50; ++i){
       int random_index = rand() % xyz.size();
       sample_points.push_back(xyz[random_index]);
     }
@@ -69,7 +69,6 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
       best_center = center;
       best_radius = radius;
       best_distance = distance;
-      say(distance);
     }
   }
 

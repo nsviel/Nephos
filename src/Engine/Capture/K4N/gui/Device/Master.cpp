@@ -246,7 +246,7 @@ void Master::show_recorder(k4n::dev::Master* master){
   static char str_n[256];
   strcpy(str_n, master->recorder.filename.c_str());
   ImGui::SetNextItemWidth(125);
-  if(ImGui::InputText("##filename", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
+  if(ImGui::InputText("##filename", str_n, IM_ARRAYSIZE(str_n))){
     master->recorder.filename = str_n;
   }
 
