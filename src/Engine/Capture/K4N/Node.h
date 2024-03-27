@@ -9,7 +9,6 @@ namespace k4n::dev{class Swarm;}
 namespace k4n::thread{class Connection;}
 namespace k4n::gui{class Player;}
 namespace k4n::gui{class Stream;}
-namespace k4n::gui{class Control;}
 namespace k4n::gui{class Matching;}
 namespace k4n::structure{class K4N;}
 namespace k4n::thread{class Pool;}
@@ -32,7 +31,6 @@ public:
   void init();
   void loop();
   void gui();
-  void control();
   void clean();
 
   inline eng::scene::Node* get_node_scene(){return node_scene;}
@@ -59,7 +57,6 @@ private:
   k4n::thread::Connection* k4n_connection;
   k4n::gui::Player* gui_player;
   k4n::gui::Stream* gui_stream;
-  k4n::gui::Control* gui_control;
   k4n::gui::Matching* gui_matching;
 };
 

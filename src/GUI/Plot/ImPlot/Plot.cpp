@@ -17,15 +17,14 @@ Plot::~Plot(){}
 
 //Main function
 void Plot::plot_heatmap(utl::type::Plot* utl_plot){
-  //---------------------------
-
   implot_style->make_style();
+  //---------------------------
 
   // Generate random data for the heatmap
   int size = 100;
   std::vector<double> data(size * size);
   for (int i = 0; i < size * size; ++i) {
-      data[i] = static_cast<double>(rand()) / RAND_MAX * 100; // Random value between 0 and 100
+    data[i] = static_cast<double>(rand()) / RAND_MAX * 100; // Random value between 0 and 100
   }
 
   // Begin a new plot
@@ -50,9 +49,8 @@ void Plot::plot_heatmap(utl::type::Plot* utl_plot){
   //---------------------------
 }
 void Plot::plot_scatter(utl::type::Plot* utl_plot){
-  //---------------------------
-
   implot_style->make_style();
+  //---------------------------
 
   // Create a window
   ImPlotFlags flag;
@@ -87,8 +85,8 @@ void Plot::plot_scatter(utl::type::Plot* utl_plot){
   //---------------------------
 }
 void Plot::plot_scatter_rdm(){
-  //---------------------------
   implot_style->make_style();
+  //---------------------------
 
   // Generate random data
   static std::vector<double> x_data, y_data;

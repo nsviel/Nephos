@@ -19,6 +19,7 @@ Player::Player(k4n::Node* node_k4n, bool* show_window){
   this->gui_recorder = new k4n::gui::Recorder(node_k4n);
   this->gui_master = new k4n::gui::Master(node_k4n);
   this->gui_sensor = new k4n::gui::Sensor(node_k4n);
+  this->gui_control = new k4n::gui::Control(node_k4n);
 
   this->show_window = show_window;
   this->name = "Player";
@@ -73,7 +74,6 @@ void Player::design_panel(k4n::dev::Master* master){
 void Player::draw_player(k4n::dev::Master* master){
   //---------------------------
 
-  node_k4n->control();
   this->player_slider(master);
 
   this->player_start(master);
@@ -103,6 +103,9 @@ void Player::player_slider(k4n::dev::Master* master){
 }
 void Player::player_start(k4n::dev::Master* master){
   //---------------------------
+
+  //If player start / pause button is appearing, allow keyboard control
+  gui_control->run_control();
 
   //Play button -> if paused or not playing
   if(master->player.pause){

@@ -30,7 +30,6 @@ Node::Node(eng::capture::Node* node_capture){
   this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);
   this->gui_player = new k4n::gui::Player(this, &ply_panel->is_open);
   this->gui_matching = new k4n::gui::Matching(this, &cal_panel->is_open);
-  this->gui_control = new k4n::gui::Control(this);
 
   //---------------------------
 }
@@ -66,13 +65,6 @@ void Node::gui(){
   gui_player->run_panel();
   gui_stream->run_panel();
   gui_matching->run_panel();
-
-  //---------------------------
-}
-void Node::control(){
-  //---------------------------
-
-  gui_control->run_control();
 
   //---------------------------
 }

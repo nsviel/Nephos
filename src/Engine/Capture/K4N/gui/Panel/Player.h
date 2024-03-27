@@ -9,6 +9,7 @@ namespace k4n::gui{class Capture;}
 namespace k4n::gui{class Recorder;}
 namespace k4n::gui{class Master;}
 namespace k4n::gui{class Sensor;}
+namespace k4n::gui{class Control;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
@@ -50,6 +51,7 @@ private:
   k4n::gui::Recorder* gui_recorder;
   k4n::gui::Master* gui_master;
   k4n::gui::Sensor* gui_sensor;
+  k4n::gui::Control* gui_control;
   k4n::dev::Swarm* k4n_swarm;
   k4n::structure::K4N* k4n_struct;
 
