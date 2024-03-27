@@ -86,7 +86,7 @@ void Matching::tab_calibration(k4n::dev::Sensor* sensor){
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
   if(ImGui::BeginTabItem("Calibration##matching")){
-    gui_calibration->draw_calibration(sensor);
+    gui_calibration->draw_calibration_plot(sensor);
 
     ImGui::EndTabItem();
   }

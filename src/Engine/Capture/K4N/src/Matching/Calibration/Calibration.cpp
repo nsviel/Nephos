@@ -97,6 +97,7 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
 }
 
 void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  utl::type::Plot* plot = &k4n_struct->matching.model.IfR;
   //---------------------------
 
   //Search for closest point
@@ -113,15 +114,17 @@ void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   }
 
   //ADdd into model data vector
-  int index = static_cast<int>(std::round(R / k4n_struct->matching.model.IfR.x_resolution));
-  if(index >= 0 && index < k4n_struct->matching.model.IfR.vec_x.size()){
-    k4n_struct->matching.model.IfR.vec_x[index] = R;
-    k4n_struct->matching.model.IfR.vec_y[index] = I;
+  int index = static_cast<int>(std::round(R / plot->x_resolution));
+  if(index >= 0 && index < plot->vec_x.size()){
+    plot->vec_x[index] = R;
+    plot->vec_y[index] = I;
+    plot->highlight = vec2(R, I);
   }
 
   //---------------------------
 }
 void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  utl::type::Plot* plot = &k4n_struct->matching.model.IfIt;
   //---------------------------
 
   //Search for closest point
@@ -140,10 +143,10 @@ void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 
 
       //ADdd into model data vector
-      int index = static_cast<int>(std::round(It / k4n_struct->matching.model.IfIt.x_resolution));
-      if(index >= 0 && index < k4n_struct->matching.model.IfIt.vec_x.size()){
-        k4n_struct->matching.model.IfIt.vec_x[index] = I;
-        k4n_struct->matching.model.IfIt.vec_y[index] = It;
+      int index = static_cast<int>(std::round(It / plot->x_resolution));
+      if(index >= 0 && index < plot->vec_x.size()){
+        plot->vec_x[index] = It;
+        plot->vec_y[index] = I;
       }
     }
   }

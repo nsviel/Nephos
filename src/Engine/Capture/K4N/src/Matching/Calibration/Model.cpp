@@ -21,30 +21,24 @@ void Model::init(){
   //---------------------------
 
   //I(R)
-  float& IfR_resolution = k4n_struct->matching.model.IfR.x_resolution;
-  float& IfR_min_R = k4n_struct->matching.model.IfR.x_min;
-  float& IfR_max_R = k4n_struct->matching.model.IfR.x_max;
-
-  IfR_resolution = 0.01f;
-  IfR_min_R = 0.0f;
-  IfR_max_R = 3.0f;
-
-  int IfR_nb_element = static_cast<int>((IfR_max_R - IfR_min_R) / IfR_resolution) + 1;
-  k4n_struct->matching.model.IfR.vec_x = vector<float>(IfR_nb_element, 0.0f);
-  k4n_struct->matching.model.IfR.vec_y = vector<float>(IfR_nb_element, 0.0f);
+  utl::type::Plot* plot_ifr = &k4n_struct->matching.model.IfR;
+  plot_ifr->title = "I(R)";
+  plot_ifr->x_resolution = 0.01f;
+  plot_ifr->x_min = 0.0f;
+  plot_ifr->x_max = 3.0f;
+  plot_ifr->size = static_cast<int>((plot_ifr->x_max - plot_ifr->x_min) / plot_ifr->x_resolution) + 1;
+  plot_ifr->vec_x = vector<float>(plot_ifr->size, 0.0f);
+  plot_ifr->vec_y = vector<float>(plot_ifr->size, 0.0f);
 
   //I(It)
-  float& IfIt_resolution = k4n_struct->matching.model.IfIt.x_resolution;
-  float& IfIt_min_It = k4n_struct->matching.model.IfIt.x_min;
-  float& IfIt_max_It = k4n_struct->matching.model.IfIt.x_max;
-
-  IfIt_resolution = 1.0f;
-  IfIt_min_It = 0.0f;
-  IfIt_max_It = 90.0f;
-
-  int IfIt_nb_element = static_cast<int>((IfIt_max_It - IfIt_min_It) / IfIt_resolution) + 1;
-  k4n_struct->matching.model.IfIt.vec_x = vector<float>(IfIt_nb_element, 0.0f);
-  k4n_struct->matching.model.IfIt.vec_y = vector<float>(IfIt_nb_element, 0.0f);
+  utl::type::Plot* plot_ifit = &k4n_struct->matching.model.IfIt;
+  plot_ifit->title = "I(It)";
+  plot_ifit->x_resolution = 1.0f;
+  plot_ifit->x_min = 0.0f;
+  plot_ifit->x_max = 90.0f;
+  plot_ifit->size = static_cast<int>((plot_ifit->x_max - plot_ifit->x_min) / plot_ifit->x_resolution) + 1;
+  plot_ifit->vec_x = vector<float>(plot_ifit->size, 0.0f);
+  plot_ifit->vec_y = vector<float>(plot_ifit->size, 0.0f);
 
   //---------------------------
 }

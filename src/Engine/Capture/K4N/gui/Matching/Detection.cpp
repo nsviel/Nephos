@@ -15,10 +15,8 @@ Detection::Detection(k4n::Node* node_k4n){
   k4n::matching::Node* node_matching = node_k4n->get_node_matching();
 
   this->k4n_hough = node_matching->get_k4n_hough();
-  this->k4n_calibration = node_matching->get_k4n_calibration();
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->stream = new eng::render::gui::Stream(node_engine);
-  this->gui_player = node_k4n->get_k4n_gui_player();
 
   //---------------------------
 }
@@ -30,7 +28,6 @@ void Detection::draw_detection(k4n::dev::Sensor* sensor){
 
   this->canny_parameter(sensor);
   this->hough_parameter(sensor);
-  this->calib_parameter(sensor);
   this->draw_result(sensor);
 
   //---------------------------
@@ -127,12 +124,6 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
     ImGui::Unindent();
   }
 
-  //---------------------------
-  ImGui::Separator();
-}
-void Detection::calib_parameter(k4n::dev::Sensor* sensor){
-  //---------------------------
-
   //Display number of detected spheres
   string nb_detection = to_string(sensor->detection.nb_detection);
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
@@ -144,25 +135,6 @@ void Detection::calib_parameter(k4n::dev::Sensor* sensor){
   ImGui::RadioButton("All sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::ALL);
   ImGui::SameLine();
   ImGui::RadioButton("Best sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::BEST);
-
-  //Player & validation
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Calibration");
-  gui_player->player_start(sensor->master);
-  ImGui::SameLine();
-  if(ImGui::Button("Validate")){
-    k4n_calibration->next_step(sensor);
-  }
-  ImGui::SameLine();
-  string step = k4n_calibration->get_step_str();
-  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", step.c_str());
-
-  //Ransac
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "RANSAC");
-  ImGui::SliderInt("Num iteration", &k4n_struct->matching.calibration.ransac_nb_iter, 1, 10000);
-  ImGui::SliderFloat("Threshold sphere", &k4n_struct->matching.calibration.ransac_thres_sphere, 0.01f, 0.1f, "%.2f m");
-  ImGui::SliderFloat("Threshold pose", &k4n_struct->matching.calibration.ransac_thres_pose, 0.01f, 1.0f, "%.2f m");
-  ImGui::SliderFloat("Threshold radius", &k4n_struct->matching.calibration.ransac_thres_radius, 0.01f, 0.1f, "%.2f m");
-  ImGui::SliderFloat("Diamter x area", &k4n_struct->matching.calibration.ransac_search_diameter_x, 0.5f, 5.0f, "%.1f m");
 
   //---------------------------
   ImGui::Separator();

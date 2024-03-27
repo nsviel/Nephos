@@ -10,15 +10,54 @@ namespace k4n::gui{
 Calibration::Calibration(k4n::Node* node_k4n){
   //---------------------------
 
+  k4n::matching::Node* node_matching = node_k4n->get_node_matching();
+  
   this->k4n_struct = node_k4n->get_k4n_struct();
+  this->k4n_calibration = node_matching->get_k4n_calibration();
   this->utl_plot = new utl::implot::Plot();
+  this->gui_player = node_k4n->get_k4n_gui_player();
 
   //---------------------------
 }
 Calibration::~Calibration(){}
 
 //Main function
-void Calibration::draw_calibration(k4n::dev::Sensor* sensor){
+void Calibration::draw_calibration_player(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  //Player
+  gui_player->player_start(sensor->master);
+  ImGui::SameLine();
+
+  //Detection validation
+  int step = k4n_calibration->get_step();
+  if(step == k4n::calibration::WAIT_VALIDATION){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(46, 100, 45, 255));
+    ImGui::SetNextItemWidth(100);
+    if(ImGui::Button("Validate##calibration")){
+      k4n_calibration->next_step(sensor);
+    }
+    ImGui::PopStyleColor(2);
+  }else{
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
+    ImGui::SetNextItemWidth(100);
+    if(ImGui::Button("Stop##calibration")){
+      k4n_calibration->next_step(sensor);
+    }
+    ImGui::PopStyleColor(2);
+  }
+  ImGui::SameLine();
+
+  //Calibration step
+  string step_str = k4n_calibration->get_step_str();
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", step_str.c_str());
+
+  //---------------------------
+  ImGui::Separator();
+}
+void Calibration::draw_calibration_plot(k4n::dev::Sensor* sensor){
   float height = ImGui::GetContentRegionAvail().y / 3-3.33;
   //---------------------------
 
@@ -28,25 +67,37 @@ void Calibration::draw_calibration(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
+void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Calibration");
+
+  //Ransac
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "RANSAC");
+  ImGui::SliderInt("Num iteration", &k4n_struct->matching.calibration.ransac_nb_iter, 1, 10000);
+  ImGui::SliderFloat("Threshold sphere", &k4n_struct->matching.calibration.ransac_thres_sphere, 0.01f, 0.1f, "%.2f m");
+  ImGui::SliderFloat("Threshold pose", &k4n_struct->matching.calibration.ransac_thres_pose, 0.01f, 1.0f, "%.2f m");
+  ImGui::SliderFloat("Threshold radius", &k4n_struct->matching.calibration.ransac_thres_radius, 0.01f, 0.1f, "%.2f m");
+  ImGui::SliderFloat("Diamter x area", &k4n_struct->matching.calibration.ransac_search_diameter_x, 0.5f, 5.0f, "%.1f m");
+
+  //---------------------------
+  ImGui::Separator();
+}
 
 //Subfunction
 void Calibration::plot_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
-  vector<float>& x = k4n_struct->matching.model.IfR.vec_x;
-  vector<float>& y = k4n_struct->matching.model.IfR.vec_y;
-
-  utl_plot->plot_scatter_2d(x, y, height, "I(R)");
+  k4n_struct->matching.model.IfR.dimension = ivec2(-1, height);
+  utl_plot->plot_scatter_2d(&k4n_struct->matching.model.IfR);
 
   //---------------------------
 }
 void Calibration::plot_IfIt(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
-  vector<float>& x = k4n_struct->matching.model.IfIt.vec_x;
-  vector<float>& y = k4n_struct->matching.model.IfIt.vec_y;
-
-  utl_plot->plot_scatter_2d(x, y, height, "I(It)");
+  k4n_struct->matching.model.IfIt.dimension = ivec2(-1, height);
+  utl_plot->plot_scatter_2d(&k4n_struct->matching.model.IfIt);
 
   //---------------------------
 }
@@ -63,7 +114,7 @@ void Calibration::plot_IfItR(k4n::dev::Sensor* sensor, float height){
 
   y[50] = 5;
 
-  utl_plot->plot_scatter_2d(x, y, height, "I(R, It)");
+  //utl_plot->plot_scatter_2d(x, y, height, "I(R, It)");
 
   //---------------------------
 }

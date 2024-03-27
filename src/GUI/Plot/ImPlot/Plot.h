@@ -16,8 +16,7 @@ public:
 
 public:
   //Main function
-  void plot_scatter_2d(std::vector<float>& x, std::vector<float>& y, float height, string title);
-  void plot_scatter_2d_last_pt_highlighted(std::vector<float>& x, std::vector<float>& y, float height, string title);
+  void plot_scatter_2d(utl::type::Plot* utl_plot);
   void plot_scatter_2d_rdm();
   void plot_constant_in_time();
 

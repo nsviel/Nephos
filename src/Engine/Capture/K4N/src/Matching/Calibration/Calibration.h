@@ -37,6 +37,7 @@ public:
   void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
 
   inline string get_step_str(){return map_step[step];}
+  inline int get_step(){return step;}
 
 private:
   ope::fitting::Sphere* ope_fitting;

@@ -20,15 +20,14 @@ void Style::make_style(){
 
   //Style
   style.PlotMinSize = ImVec2(10, 10);
-  style.PlotPadding = ImVec2(0,0);
+  style.PlotPadding = ImVec2(0, 0);
   style.LineWeight = 2;
-  style.FillAlpha = 0.5f;
   style.PlotMinSize = ImVec2(10, 10);
   style.PlotPadding = ImVec2(10, 10);
   style.Marker = ImPlotMarker_Circle;
   style.MarkerSize = 2;
   style.MarkerWeight = 1;
-  style.FillAlpha = 1;
+  style.FillAlpha = 1.0f;
 
   //Color
   style.Colors[ImPlotCol_PlotBg] = ImVec4(0, 0, 0, 1);

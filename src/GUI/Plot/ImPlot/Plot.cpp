@@ -16,60 +16,36 @@ Plot::Plot(){
 Plot::~Plot(){}
 
 //Main function
-void Plot::plot_scatter_2d(std::vector<float>& x, std::vector<float>& y, float height, string title){
+void Plot::plot_scatter_2d(utl::type::Plot* utl_plot){
   //---------------------------
 
   implot_style->make_style();
 
   // Create a window
-  ImPlot::SetNextAxisLimits(0, 3, 0, 10000);
   ImPlotFlags flag;
   flag |= ImPlotFlags_NoBoxSelect;
   flag |= ImPlotFlags_NoMouseText;
   flag |= ImPlotFlags_NoLegend;
   flag |= ImPlotFlags_CanvasOnly;
-  if(ImPlot::BeginPlot(title.c_str(), ImVec2(-1, height), flag)){
+  if(ImPlot::BeginPlot(utl_plot->title.c_str(), ImVec2(-1, utl_plot->dimension.y), flag)){
     ImPlotAxisFlags axis_flag;
     axis_flag |= ImPlotAxisFlags_AutoFit;
-    ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
+    axis_flag |= ImPlotAxisFlags_Foreground;
+    ImPlot::SetupAxes(utl_plot->x_axis_name.c_str(), utl_plot->x_axis_name.c_str(), axis_flag, axis_flag);
 
     // Plot the data
-    string truc = title + "##scatter";
-    ImPlot::PlotScatter(truc.c_str(), x.data(), y.data(), x.size());
-
-    // End the plot
-    ImPlot::EndPlot();
-  }
-
-  //---------------------------
-}
-void Plot::plot_scatter_2d_last_pt_highlighted(std::vector<float>& x, std::vector<float>& y, float height, string title){
-  //---------------------------
-
-  implot_style->make_style();
-
-  // Create a window
-  ImPlot::SetNextAxisLimits(0, 3, 0, 10000);
-  ImPlotFlags flag;
-  flag |= ImPlotFlags_NoBoxSelect;
-  flag |= ImPlotFlags_NoMouseText;
-  flag |= ImPlotFlags_NoLegend;
-  flag |= ImPlotFlags_CanvasOnly;
-  if(ImPlot::BeginPlot(title.c_str(), ImVec2(-1, height), flag)){
-    ImPlotAxisFlags axis_flag;
-    axis_flag |= ImPlotAxisFlags_AutoFit;
-    ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
-
-    // Plot the data
-    string truc = title + "##scatter";
-    ImPlot::PlotScatter(truc.c_str(), x.data(), y.data(), x.size());
+    string truc = utl_plot->title + "##scatter";
+    ImPlot::PlotScatter(truc.c_str(), utl_plot->vec_x.data(), utl_plot->vec_y.data(), utl_plot->vec_x.size());
 
     // Plot an additional point in a different color
-    ImVec4 point_color = ImPlot::GetColormapColor(ImPlotColormap_Jet, 1); // Color index 1 from the default colormap (change as needed)
-    ImPlot::PushStyleColor(ImPlotCol_MarkerFill, point_color);
-    string machin = title + "##scatter_last_point";
-    ImPlot::PlotScatter(machin.c_str(), &x.back(), &y.back(), 1); // Plot the last point in the vectors
-    ImPlot::PopStyleColor(); // Reset the marker fill color
+    if(utl_plot->highlight != vec2(-1, -1)){
+      ImVec4 color = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
+      ImPlot::PushStyleColor(ImPlotCol_MarkerFill, color);
+      ImPlot::PushStyleColor(ImPlotCol_MarkerOutline, color);
+      string machin = utl_plot->title + "##highlight";
+      ImPlot::PlotScatter(machin.c_str(), &utl_plot->highlight.x, &utl_plot->highlight.y, 1);
+      ImPlot::PopStyleColor(2);
+    }
 
     // End the plot
     ImPlot::EndPlot();
