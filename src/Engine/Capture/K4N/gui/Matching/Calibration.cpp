@@ -2,6 +2,7 @@
 
 #include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
+#include <python/matplotlibcpp.h>
 
 
 namespace k4n::gui{
@@ -14,6 +15,7 @@ Calibration::Calibration(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_calibration = node_matching->get_k4n_calibration();
+  this->k4n_model = node_matching->get_k4n_model();
   this->utl_plot = new utl::implot::Plot();
   this->gui_player = node_k4n->get_k4n_gui_player();
 
@@ -58,17 +60,7 @@ void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->draw_calibration_parameter(sensor);
-
-  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(30, 70, 80, 255));
-  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(50, 110, 120, 255));
-  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(40, 90, 120, 255));
-  ImGui::BeginTabBar("calibration_tab##4567");
-
-  this->tab_measure(sensor);
-  this->tab_model(sensor);
-
-  ImGui::EndTabBar();
-  ImGui::PopStyleColor(3);
+  this->draw_measure(sensor);
 
   //---------------------------
 }
@@ -92,26 +84,62 @@ void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
   }
 
   //Heatmap scale
-  ImGui::DragFloatRange2("Heatmap scale",&k4n_struct->matching.model.IfRIt.z_min, &k4n_struct->matching.model.IfRIt.z_max, 100, 0, 60000);
+  ImGui::DragFloatRange2("Heatmap scale",&k4n_struct->matching.model.IfRIt.z_min, &k4n_struct->matching.model.IfRIt.z_max, 100, 0, 60000, "%.0f");
+
+  if(ImGui::Button("Model##calibration", ImVec2(120, 0))){
+    this->draw_model(sensor);
+  }
 
   //---------------------------
   ImGui::Separator();
 }
 
-//Measure function
-void Calibration::tab_measure(k4n::dev::Sensor* sensor){
+//Subfunction
+void Calibration::draw_model(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2-2);
-  if(ImGui::BeginTabItem("Measure##calibration")){
-    float height = ImGui::GetContentRegionAvail().y / 3-3.33;
+  k4n_model->make_model();
 
-    this->plot_IfR(sensor, height);
-    this->plot_IfIt(sensor, height);
-    this->plot_IfItR(sensor, height);
+  std::vector<std::vector<double>> x, y, z;
 
-    ImGui::EndTabItem();
+  // Generate values for x and y
+  std::vector<double> x_values;
+  for (double i = 0.0; i <= 5.0; i += 0.1) {
+      x_values.push_back(i);
   }
+
+  std::vector<double> y_values;
+  for (double i = 0.0; i <= 90.0; i += 1.0) {
+      y_values.push_back(i);
+  }
+
+  // Compute z values and fill x, y, and z vectors
+  for (double x_val : x_values) {
+      std::vector<double> row_x, row_y, row_z;
+      for (double y_val : y_values) {
+          row_x.push_back(x_val);
+          row_y.push_back(y_val);
+          row_z.push_back(k4n_model->apply_model(x_val, y_val));
+      }
+      x.push_back(row_x);
+      y.push_back(row_y);
+      z.push_back(row_z);
+  }
+
+
+  matplotlibcpp::plot_surface(x, y, z);
+  matplotlibcpp::show();
+
+  //---------------------------
+}
+void Calibration::draw_measure(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  float height = ImGui::GetContentRegionAvail().y / 3-3.33;
+
+  this->plot_IfR(sensor, height);
+  this->plot_IfIt(sensor, height);
+  this->plot_IfItR(sensor, height);
 
   //---------------------------
 }
@@ -139,22 +167,6 @@ void Calibration::plot_IfItR(k4n::dev::Sensor* sensor, float height){
   utl::type::Plot* plot = &k4n_struct->matching.model.IfRIt;
   plot->dimension = ivec2(-1, height);
   utl_plot->plot_heatmap(plot);
-
-  //---------------------------
-}
-
-//Model function
-void Calibration::tab_model(k4n::dev::Sensor* sensor){
-  //---------------------------
-
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2-2);
-  if(ImGui::BeginTabItem("Model##calibration")){
-    float height = ImGui::GetContentRegionAvail().y / 3-3.33;
-
-
-
-    ImGui::EndTabItem();
-  }
 
   //---------------------------
 }

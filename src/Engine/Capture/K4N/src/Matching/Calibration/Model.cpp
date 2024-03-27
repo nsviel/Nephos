@@ -10,6 +10,7 @@ Model::Model(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_struct = node_k4n->get_k4n_struct();
+  this->ope_polyfit = new ope::fitting::Polyfit();
 
   //---------------------------
   this->init();
@@ -66,12 +67,18 @@ void Model::init(){
 }
 
 //Subfunction
-void Model::add_element(){
+void Model::make_model(){
   //---------------------------
 
+  ope_polyfit->compute(k4n_struct->matching.model.vec_data, 3);
 
+  //---------------------------
+}
+float Model::apply_model(float x, float y){
+  //---------------------------
 
-
+  float z = ope_polyfit->evaluate(x, y);
+return z;
   //---------------------------
 }
 

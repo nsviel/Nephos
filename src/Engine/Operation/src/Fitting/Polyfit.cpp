@@ -42,7 +42,7 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree = 3){
   }
 
   this->coef = A.colPivHouseholderQr().solve(b); // Solve the system using QR decomposition
-
+say(coef);
   //---------------------------
 }
 double Polyfit::evaluate(double x, double y){
@@ -56,7 +56,7 @@ double Polyfit::evaluate(double x, double y){
       z += coef(k++) * pow(x, i - j) * pow(y, j); // Sum of parameters * X^i * Y^(j-i)
     }
   }
-
+say(z);
   //---------------------------
   return z;
 }

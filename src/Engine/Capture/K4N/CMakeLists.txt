@@ -16,12 +16,19 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
+find_package(Python REQUIRED COMPONENTS Interpreter Development)
+
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
   LIBRARY_UTILITY
   LIBRARY_VULKAN
   LIBRARY_ENGINE
 
+  ${Python_LIBRARIES}
+
+  Python::Python
+  python3.10
+  -lpython3.10
   -lturbojpeg   # Convertion JPEG -> BRGA
 )
 
