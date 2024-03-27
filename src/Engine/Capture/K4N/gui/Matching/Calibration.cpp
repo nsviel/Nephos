@@ -94,7 +94,7 @@ void Calibration::plot_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   k4n_struct->matching.model.IfR.dimension = ivec2(-1, height);
-  utl_plot->plot_scatter_2d(&k4n_struct->matching.model.IfR);
+  utl_plot->plot_scatter(&k4n_struct->matching.model.IfR);
 
   //---------------------------
 }
@@ -102,24 +102,16 @@ void Calibration::plot_IfIt(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   k4n_struct->matching.model.IfIt.dimension = ivec2(-1, height);
-  utl_plot->plot_scatter_2d(&k4n_struct->matching.model.IfIt);
+  utl_plot->plot_scatter(&k4n_struct->matching.model.IfIt);
 
   //---------------------------
 }
 void Calibration::plot_IfItR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
-  vector<float> x;
-  vector<float> y;
-
-  for(int i=0; i<100; i++){
-    x.push_back(i);
-    y.push_back(100);
-  }
-
-  y[50] = 5;
-
-  //utl_plot->plot_scatter_2d(x, y, height, "I(R, It)");
+  utl::type::Plot plot;
+  plot.dimension = ivec2(-1, height);
+  utl_plot->plot_heatmap(&plot);
 
   //---------------------------
 }

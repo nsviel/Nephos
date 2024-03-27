@@ -16,8 +16,9 @@ public:
 
 public:
   //Main function
-  void plot_scatter_2d(utl::type::Plot* utl_plot);
-  void plot_scatter_2d_rdm();
+  void plot_heatmap(utl::type::Plot* utl_plot);
+  void plot_scatter(utl::type::Plot* utl_plot);
+  void plot_scatter_rdm();
   void plot_constant_in_time();
 
 private:

@@ -14,6 +14,7 @@ Style::~Style(){}
 
 //Main function
 void Style::make_style(){
+  if(applied) return;
   //---------------------------
 
   ImPlotStyle& style = ImPlot::GetStyle();
@@ -39,6 +40,7 @@ void Style::make_style(){
   style.Colors[ImPlotCol_PlotBorder] = ImVec4(0.1, 0.1, 0.1, 1);
 
   //---------------------------
+  this->applied = true;
 }
 
 }

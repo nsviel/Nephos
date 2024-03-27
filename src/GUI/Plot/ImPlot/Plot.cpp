@@ -16,7 +16,40 @@ Plot::Plot(){
 Plot::~Plot(){}
 
 //Main function
-void Plot::plot_scatter_2d(utl::type::Plot* utl_plot){
+void Plot::plot_heatmap(utl::type::Plot* utl_plot){
+  //---------------------------
+
+  implot_style->make_style();
+
+  // Generate random data for the heatmap
+  int size = 100;
+  std::vector<double> data(size * size);
+  for (int i = 0; i < size * size; ++i) {
+      data[i] = static_cast<double>(rand()) / RAND_MAX * 100; // Random value between 0 and 100
+  }
+
+  // Begin a new plot
+  ImPlotFlags flag;
+  flag |= ImPlotFlags_NoBoxSelect;
+  flag |= ImPlotFlags_NoMouseText;
+  flag |= ImPlotFlags_NoLegend;
+  flag |= ImPlotFlags_CanvasOnly;
+  if(ImPlot::BeginPlot("Heatmap", ImVec2(-1, utl_plot->dimension.y), flag)){
+    ImPlotAxisFlags axis_flag;
+    axis_flag |= ImPlotAxisFlags_AutoFit;
+    axis_flag |= ImPlotAxisFlags_Foreground;
+    ImPlot::SetupAxes(utl_plot->x_axis_name.c_str(), utl_plot->x_axis_name.c_str(), axis_flag, axis_flag);
+
+    // Plot the heatmap
+    ImPlot::PlotHeatmap("Heatmap", data.data(), size, size);
+
+    // End the plot
+    ImPlot::EndPlot();
+  }
+
+  //---------------------------
+}
+void Plot::plot_scatter(utl::type::Plot* utl_plot){
   //---------------------------
 
   implot_style->make_style();
@@ -53,7 +86,7 @@ void Plot::plot_scatter_2d(utl::type::Plot* utl_plot){
 
   //---------------------------
 }
-void Plot::plot_scatter_2d_rdm(){
+void Plot::plot_scatter_rdm(){
   //---------------------------
   implot_style->make_style();
 

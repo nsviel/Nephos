@@ -18,6 +18,7 @@ public:
   void make_style();
 
 private:
+  bool applied = false;
 };
 
 }
