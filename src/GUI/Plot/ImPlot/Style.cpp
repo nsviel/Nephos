@@ -60,13 +60,8 @@ void Style::make_custom_colormap(){
   //---------------------------
 
   if(heatmap == -1){
-    std::vector<ImU32> data = {
-      4282515870,
-      4282609140,
-      4287357182,
-      4294630301,
-      4294945280,
-      4294921472};
+    std::vector<ImU32> data = transtypage::vec_vec3_to_ImU32(utl::colormap::viridis_long);
+
     heatmap = ImPlot::AddColormap("Heatmap", data.data(), data.size());
   }
 

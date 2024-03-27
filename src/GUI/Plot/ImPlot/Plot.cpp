@@ -23,10 +23,7 @@ void Plot::plot_heatmap(utl::type::Plot* utl_plot){
   // Push the custom colormap onto the colormap stack
   ImPlot::PushColormap(implot_style->get_colormap_heatmap());
 
-  static float scale_min = 1;
-  static float scale_max = 20000;
-  ImGui::DragFloatRange2("Scale",&scale_min, &scale_max, 100, 0, 60000);
-  ImPlot::ColormapScale("##HeatScale",scale_min, scale_max, ImVec2(60,225));
+  ImPlot::ColormapScale("##HeatScale",utl_plot->z_min, utl_plot->z_max, ImVec2(60, utl_plot->dimension.y));
   ImGui::SameLine();
 
   // Begin a new plot
@@ -43,7 +40,7 @@ void Plot::plot_heatmap(utl::type::Plot* utl_plot){
 
     // Plot the heatmap
     string truc = utl_plot->title + "##heatmap";
-    ImPlot::PlotHeatmap(truc.c_str(), utl_plot->vec_z.data(), utl_plot->y_size, utl_plot->x_size, scale_min, scale_max, nullptr, ImPlotPoint(utl_plot->x_min, utl_plot->y_min), ImPlotPoint(utl_plot->x_max, utl_plot->y_max));
+    ImPlot::PlotHeatmap(truc.c_str(), utl_plot->vec_z.data(), utl_plot->y_size, utl_plot->x_size, utl_plot->z_min, utl_plot->z_max, nullptr, ImPlotPoint(utl_plot->x_min, utl_plot->y_min), ImPlotPoint(utl_plot->x_max, utl_plot->y_max));
 
     // End the plot
     ImPlot::EndPlot();

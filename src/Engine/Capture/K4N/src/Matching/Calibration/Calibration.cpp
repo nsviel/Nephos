@@ -178,14 +178,9 @@ void Calibration::data_IfRIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       int index = j * plot->x_size + i;
       if(index >= 0 && index < plot->z_size){
         plot->vec_z[index] = I;
-        say(plot->vec_z[index]);
       }
     }
   }
-
-
-
-
 
   //---------------------------
 }

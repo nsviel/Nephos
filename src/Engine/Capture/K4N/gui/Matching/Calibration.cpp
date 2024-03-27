@@ -87,6 +87,9 @@ void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
     ImGui::TreePop();
   }
 
+  //Heatmap scale
+  ImGui::DragFloatRange2("Heatmap scale",&k4n_struct->matching.model.IfRIt.z_min, &k4n_struct->matching.model.IfRIt.z_max, 100, 0, 60000);
+
   //---------------------------
   ImGui::Separator();
 }

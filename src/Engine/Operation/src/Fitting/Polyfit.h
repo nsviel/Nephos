@@ -13,11 +13,12 @@ public:
 
 public:
   //Main function
-  Eigen::VectorXd compute(const Eigen::MatrixXd& data, int degree);
-  double evaluate(const Eigen::VectorXd& params, double x, double y, int degree);
-  
-private:
+  void compute(const std::vector<float>& x, const std::vector<float>& y, const std::vector<float>& z, int degree);
+  double evaluate(double x, double y);
 
+private:
+  Eigen::VectorXd coef;
+  ine degree = 0;
 };
 
 }

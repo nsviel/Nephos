@@ -54,6 +54,8 @@ void Model::init(){
   plot_ifrit->y_max = 90.0f;
   plot_ifrit->y_size = static_cast<int>((plot_ifrit->y_max - plot_ifrit->y_min) / plot_ifrit->y_resolution) + 1;
 
+  plot_ifrit->z_min = 0.0f;
+  plot_ifrit->z_max = 2500.0f;
   plot_ifrit->z_size = plot_ifrit->x_size * plot_ifrit->y_size;
   plot_ifrit->vec_z = vector<float>(plot_ifrit->z_size, 0.0f);
 

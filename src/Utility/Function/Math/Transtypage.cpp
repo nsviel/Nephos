@@ -261,6 +261,29 @@ std::vector<float> vec_double_to_float(std::vector<double> vec){
   //---------------------------
   return vec_out;
 }
+std::vector<ImU32> vec_vec3_to_ImU32(std::vector<glm::vec3> vec){
+  //---------------------------
+
+  // Initialize the vector to hold the converted ImU32 color values
+  std::vector<ImU32> vec_imu32(vec.size());
+
+  // Convert each vec3 color value to ImU32 format
+  for(size_t i = 0; i < vec.size(); ++i){
+    // Extract RGB components from vec3
+    float r = vec[i].r;
+    float g = vec[i].g;
+    float b = vec[i].b;
+
+    // Convert RGB components to ImU32 format
+    ImU32 color = IM_COL32(static_cast<int>(r * 255), static_cast<int>(g * 255), static_cast<int>(b * 255), 255);
+
+    // Store the ImU32 color value in the vector
+    vec_imu32[i] = color;
+  }
+
+  //---------------------------
+  return vec_imu32;
+}
 bool string_to_bool(std::string const& s){
   bool sucess = false;
   //---------------------------

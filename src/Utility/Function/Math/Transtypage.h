@@ -1,5 +1,6 @@
 #pragma once
 
+#include <imgui/core/imgui.h>
 #include <Eigen/Dense>
 #include <glm/glm.hpp>
 #include <vector>
@@ -37,6 +38,7 @@ glm::mat4 char_to_glm_mat4(char* mat_char);
 
 //Specific
 std::vector<float> vec_double_to_float(std::vector<double> vec);
+std::vector<ImU32> vec_vec3_to_ImU32(std::vector<glm::vec3> vec);
 bool string_to_bool(std::string const& s);
 
 }
