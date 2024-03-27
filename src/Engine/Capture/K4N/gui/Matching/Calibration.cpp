@@ -59,15 +59,19 @@ void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
 
   this->draw_calibration_parameter(sensor);
 
-  float height = ImGui::GetContentRegionAvail().y / 3-3.33;
-  this->plot_IfR(sensor, height);
-  this->plot_IfIt(sensor, height);
-  this->plot_IfItR(sensor, height);
+  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(30, 70, 80, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(50, 110, 120, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(40, 90, 120, 255));
+  ImGui::BeginTabBar("calibration_tab##4567");
+
+  this->tab_measure(sensor);
+  this->tab_model(sensor);
+
+  ImGui::EndTabBar();
+  ImGui::PopStyleColor(3);
 
   //---------------------------
 }
-
-//Subfunction
 void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
@@ -93,6 +97,24 @@ void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
+
+//Measure function
+void Calibration::tab_measure(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2-2);
+  if(ImGui::BeginTabItem("Measure##calibration")){
+    float height = ImGui::GetContentRegionAvail().y / 3-3.33;
+
+    this->plot_IfR(sensor, height);
+    this->plot_IfIt(sensor, height);
+    this->plot_IfItR(sensor, height);
+
+    ImGui::EndTabItem();
+  }
+
+  //---------------------------
+}
 void Calibration::plot_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
@@ -117,6 +139,22 @@ void Calibration::plot_IfItR(k4n::dev::Sensor* sensor, float height){
   utl::type::Plot* plot = &k4n_struct->matching.model.IfRIt;
   plot->dimension = ivec2(-1, height);
   utl_plot->plot_heatmap(plot);
+
+  //---------------------------
+}
+
+//Model function
+void Calibration::tab_model(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2-2);
+  if(ImGui::BeginTabItem("Model##calibration")){
+    float height = ImGui::GetContentRegionAvail().y / 3-3.33;
+
+
+
+    ImGui::EndTabItem();
+  }
 
   //---------------------------
 }

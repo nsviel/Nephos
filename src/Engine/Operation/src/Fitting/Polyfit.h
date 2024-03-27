@@ -13,12 +13,12 @@ public:
 
 public:
   //Main function
-  void compute(const std::vector<float>& x, const std::vector<float>& y, const std::vector<float>& z, int degree);
+  void compute(const std::vector<glm::vec3>& points, int degree);
   double evaluate(double x, double y);
 
 private:
   Eigen::VectorXd coef;
-  ine degree = 0;
+  int degree = 0;
 };
 
 }

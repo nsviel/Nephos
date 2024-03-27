@@ -25,11 +25,15 @@ public:
   void draw_calibration_tab(k4n::dev::Sensor* sensor);
   void draw_calibration_parameter(k4n::dev::Sensor* sensor);
 
-  //Subfunction
+  //Measure function
+  void tab_measure(k4n::dev::Sensor* sensor);
   void plot_IfR(k4n::dev::Sensor* sensor, float height);
   void plot_IfIt(k4n::dev::Sensor* sensor, float height);
   void plot_IfItR(k4n::dev::Sensor* sensor, float height);
 
+  //Model function
+  void tab_model(k4n::dev::Sensor* sensor);
+  
 private:
   k4n::gui::Player* gui_player;
   k4n::calibration::Calibration* k4n_calibration;

@@ -34,7 +34,8 @@ public:
   void validate_bbox(k4n::dev::Sensor* sensor);
   void ransac_sphere(k4n::dev::Sensor* sensor);
 
-  //Data plot function
+  //Data function
+  void data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
   void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
   void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
   void data_IfRIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);

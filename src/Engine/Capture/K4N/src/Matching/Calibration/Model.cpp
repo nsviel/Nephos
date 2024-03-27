@@ -59,6 +59,9 @@ void Model::init(){
   plot_ifrit->z_size = plot_ifrit->x_size * plot_ifrit->y_size;
   plot_ifrit->vec_z = vector<float>(plot_ifrit->z_size, 0.0f);
 
+  //Model
+  k4n_struct->matching.model.vec_data = vector<vec3>(plot_ifrit->z_size, vec3(-1, -1, -1));
+
   //---------------------------
 }
 

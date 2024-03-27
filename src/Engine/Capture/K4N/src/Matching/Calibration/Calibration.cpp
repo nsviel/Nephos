@@ -94,7 +94,40 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 
-//Data plot function
+//Data function
+void Calibration::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  utl::type::Plot* plot = &k4n_struct->matching.model.IfRIt;
+  //---------------------------
+
+  //Search for closest point
+  float It = 1000.0f;
+  float I = 0;
+  float R = 0;
+  vec3 Nxyz;
+  vec3 root = vec3(0, 0, 0);
+  for(int i=0; i<sphere_xyz.size(); i++){
+    vec3& xyz = sphere_xyz[i];
+    float distance = math::distance(xyz, current_pose) - radius;
+
+    if(distance <= k4n_struct->matching.calibration.ransac_thres_sphere){
+      I = sphere_i[i];
+      Nxyz = normalize(xyz - current_pose);
+      It = ope_normal->compute_It(xyz, Nxyz, root);
+      R = math::distance_from_origin(xyz);
+
+      // Calculate the index of the cell in the data grid
+      int i = static_cast<int>((R - plot->x_min) / (plot->x_max - plot->x_min) * plot->x_size);
+      int j = static_cast<int>((It - plot->y_min) / (plot->y_max - plot->y_min) * plot->y_size);
+      int index = j * plot->x_size + i;
+      if(index >= 0 && index < plot->z_size){
+        k4n_struct->matching.model.vec_data[index] = vec3(R, It, I);
+      }
+
+    }
+  }
+
+  //---------------------------
+}
 void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   utl::type::Plot* plot = &k4n_struct->matching.model.IfR;
   //---------------------------
@@ -174,7 +207,7 @@ void Calibration::data_IfRIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 
       // Calculate the index of the cell in the heatmap grid
       int i = static_cast<int>((R - plot->x_min) / (plot->x_max - plot->x_min) * plot->x_size);
-      int j = static_cast<int>((It - plot->y_min) / (plot->y_max - plot->y_min) * plot->y_size);
+      int j = static_cast<int>((It - plot->y_max) / (plot->y_min - plot->y_max) * plot->y_size);
       int index = j * plot->x_size + i;
       if(index >= 0 && index < plot->z_size){
         plot->vec_z[index] = I;
