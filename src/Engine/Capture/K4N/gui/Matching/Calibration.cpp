@@ -11,7 +11,7 @@ Calibration::Calibration(k4n::Node* node_k4n){
   //---------------------------
 
   k4n::matching::Node* node_matching = node_k4n->get_node_matching();
-  
+
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_calibration = node_matching->get_k4n_calibration();
   this->utl_plot = new utl::implot::Plot();
@@ -32,18 +32,16 @@ void Calibration::draw_calibration_player(k4n::dev::Sensor* sensor){
   //Detection validation
   int step = k4n_calibration->get_step();
   if(step == k4n::calibration::WAIT_VALIDATION){
-    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(46, 100, 45, 255));
-    ImGui::SetNextItemWidth(100);
-    if(ImGui::Button("Validate##calibration")){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+    if(ImGui::Button("Validate##calibration", ImVec2(100, 0))){
       k4n_calibration->next_step(sensor);
     }
     ImGui::PopStyleColor(2);
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
-    ImGui::SetNextItemWidth(100);
-    if(ImGui::Button("Stop##calibration")){
+    if(ImGui::Button("Stop##calibration", ImVec2(100, 0))){
       k4n_calibration->next_step(sensor);
     }
     ImGui::PopStyleColor(2);
@@ -55,36 +53,41 @@ void Calibration::draw_calibration_player(k4n::dev::Sensor* sensor){
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", step_str.c_str());
 
   //---------------------------
-  ImGui::Separator();
 }
-void Calibration::draw_calibration_plot(k4n::dev::Sensor* sensor){
-  float height = ImGui::GetContentRegionAvail().y / 3-3.33;
+void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  this->draw_calibration_parameter(sensor);
+
+  float height = ImGui::GetContentRegionAvail().y / 3-3.33;
   this->plot_IfR(sensor, height);
   this->plot_IfIt(sensor, height);
   this->plot_IfItR(sensor, height);
 
   //---------------------------
 }
+
+//Subfunction
 void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Calibration");
+  //Canny
+  ImGui::Text("RANSAC");
 
-  //Ransac
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "RANSAC");
-  ImGui::SliderInt("Num iteration", &k4n_struct->matching.calibration.ransac_nb_iter, 1, 10000);
-  ImGui::SliderFloat("Threshold sphere", &k4n_struct->matching.calibration.ransac_thres_sphere, 0.01f, 0.1f, "%.2f m");
-  ImGui::SliderFloat("Threshold pose", &k4n_struct->matching.calibration.ransac_thres_pose, 0.01f, 1.0f, "%.2f m");
-  ImGui::SliderFloat("Threshold radius", &k4n_struct->matching.calibration.ransac_thres_radius, 0.01f, 0.1f, "%.2f m");
-  ImGui::SliderFloat("Diamter x area", &k4n_struct->matching.calibration.ransac_search_diameter_x, 0.5f, 5.0f, "%.1f m");
+  ImGui::SameLine();
+  if(ImGui::TreeNode("Parameter##Ransac")){
+    ImGui::SliderInt("Num iteration", &k4n_struct->matching.calibration.ransac_nb_iter, 1, 10000);
+    ImGui::SliderFloat("Threshold sphere", &k4n_struct->matching.calibration.ransac_thres_sphere, 0.01f, 0.1f, "%.2f m");
+    ImGui::SliderFloat("Threshold pose", &k4n_struct->matching.calibration.ransac_thres_pose, 0.01f, 1.0f, "%.2f m");
+    ImGui::SliderFloat("Threshold radius", &k4n_struct->matching.calibration.ransac_thres_radius, 0.01f, 0.1f, "%.2f m");
+    ImGui::SliderFloat("Diamter x area", &k4n_struct->matching.calibration.ransac_search_diameter_x, 0.5f, 5.0f, "%.1f m");
+
+    ImGui::TreePop();
+  }
 
   //---------------------------
   ImGui::Separator();
 }
-
-//Subfunction
 void Calibration::plot_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 

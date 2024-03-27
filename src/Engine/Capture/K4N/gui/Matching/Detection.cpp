@@ -26,6 +26,7 @@ Detection::~Detection(){}
 void Detection::draw_detection(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  this->detection_parameter(sensor);
   this->canny_parameter(sensor);
   this->hough_parameter(sensor);
   this->draw_result(sensor);
@@ -34,25 +35,14 @@ void Detection::draw_detection(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Detection::model_parameter(k4n::dev::Sensor* sensor){
+void Detection::detection_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
-
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
-
-  //Detection sphere radius
-  ImGui::SetNextItemWidth(150);
-  ImGui::SliderFloat("Sphere diameter", &sensor->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
-
-  //Detection sphere radius
-  ImGui::SetNextItemWidth(150);
-  ImGui::SliderFloat("Bounding box factor", &k4n_struct->matching.bbox.scale, 1.0f, 10.0f, "%.2fx");
 
   //Pixel diviser
   ImGui::SetNextItemWidth(150);
   ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
 
   //---------------------------
-  ImGui::Separator();
 }
 void Detection::canny_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
@@ -64,8 +54,6 @@ void Detection::canny_parameter(k4n::dev::Sensor* sensor){
 
   ImGui::SameLine();
   if(ImGui::TreeNode("Parameter##Canny")){
-    ImGui::Indent();
-
     //Lower threshold
     ImGui::SetNextItemWidth(125);
     ImGui::SliderInt("Lower threshold", &k4n_struct->matching.canny.lower_threshold, 0, 200);
@@ -74,7 +62,6 @@ void Detection::canny_parameter(k4n::dev::Sensor* sensor){
     ImGui::SetNextItemWidth(125);
     ImGui::SliderInt("Upper threshold", &k4n_struct->matching.canny.upper_threshold, 0, 200);
 
-    ImGui::Unindent();
     ImGui::TreePop();
   }
 
@@ -87,8 +74,6 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
 
   ImGui::SameLine();
   if(ImGui::TreeNode("Parameter##Hough")){
-    ImGui::Indent();
-
     //Mode
     int& mode = k4n_struct->matching.hough.mode;
     if(ImGui::RadioButton("Gradient", &mode, k4n::hough::GRADIENT)){
@@ -121,7 +106,7 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
     int* max_radius = &k4n_struct->matching.hough.max_radius;
     ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 100, "Min: %d px", "Max: %d px");
 
-    ImGui::Unindent();
+    ImGui::TreePop();
   }
 
   //Display number of detected spheres

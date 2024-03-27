@@ -22,7 +22,7 @@ public:
 public:
   //Main function
   void draw_calibration_player(k4n::dev::Sensor* sensor);
-  void draw_calibration_plot(k4n::dev::Sensor* sensor);
+  void draw_calibration_tab(k4n::dev::Sensor* sensor);
   void draw_calibration_parameter(k4n::dev::Sensor* sensor);
 
   //Subfunction
