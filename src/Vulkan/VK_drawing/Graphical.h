@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 
 namespace vk::draw{class Renderer;}
 namespace vk::synchro{class Fence;}

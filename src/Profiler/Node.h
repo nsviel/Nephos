@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 
 namespace prf::gui{class Panel;}
 namespace prf{class Manager;}

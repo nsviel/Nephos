@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/VK_struct/VK_typedef.h>
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 
 //Consistent attribut binding:
 //  -position -> 0

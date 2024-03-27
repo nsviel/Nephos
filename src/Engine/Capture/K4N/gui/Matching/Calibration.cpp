@@ -71,7 +71,7 @@ void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
 void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Calibration parameter");
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Parameter");
 
   //Canny
   ImGui::Text("RANSAC");
@@ -93,25 +93,27 @@ void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
 void Calibration::plot_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
-  k4n_struct->matching.model.IfR.dimension = ivec2(-1, height);
-  utl_plot->plot_scatter(&k4n_struct->matching.model.IfR);
+  utl::type::Plot* plot = &k4n_struct->matching.model.IfR;
+  plot->dimension = ivec2(-1, height);
+  utl_plot->plot_scatter(plot);
 
   //---------------------------
 }
 void Calibration::plot_IfIt(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
-  k4n_struct->matching.model.IfIt.dimension = ivec2(-1, height);
-  utl_plot->plot_scatter(&k4n_struct->matching.model.IfIt);
+  utl::type::Plot* plot = &k4n_struct->matching.model.IfIt;
+  plot->dimension = ivec2(-1, height);
+  utl_plot->plot_scatter(plot);
 
   //---------------------------
 }
 void Calibration::plot_IfItR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
-  utl::type::Plot plot;
-  plot.dimension = ivec2(-1, height);
-  utl_plot->plot_heatmap(&plot);
+  utl::type::Plot* plot = &k4n_struct->matching.model.IfRIt;
+  plot->dimension = ivec2(-1, height);
+  utl_plot->plot_heatmap(plot);
 
   //---------------------------
 }

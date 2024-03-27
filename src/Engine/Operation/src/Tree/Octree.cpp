@@ -1,7 +1,7 @@
 #include "Octree.h"
 
 #include <Operation/Namespace.h>
-#include <Utility/Specific/color.h>
+#include <Utility/Specific/Color.h>
 
 
 namespace ope::tree{

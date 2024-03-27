@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 
 namespace vk::renderpass{class Attachment;}
 namespace vk::structure{class Vulkan;}

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 
 namespace eng::scene{class Node;}
 namespace eng::scene{class Format;}

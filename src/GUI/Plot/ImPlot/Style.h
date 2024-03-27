@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 #include <imgui/implot/implot.h>
 
 
@@ -17,7 +17,14 @@ public:
   //Main function
   void make_style();
 
+  //Subfunction
+  void make_style_parameter();
+  void make_custom_colormap();
+
+  inline ImPlotColormap get_colormap_heatmap(){return heatmap;}
+
 private:
+  ImPlotColormap heatmap = -1;
   bool applied = false;
 };
 

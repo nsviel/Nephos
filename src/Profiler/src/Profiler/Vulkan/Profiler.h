@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 #include <Profiler/src/Timer/Chrono.h>
 #include <Profiler/src/Profiler/Struct_profiler.h>
 #include <Profiler/src/Profiler/Vulkan/Struct_info.h>

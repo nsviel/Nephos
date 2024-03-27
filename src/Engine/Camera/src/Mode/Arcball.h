@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Camera/src/Mode/Base.h>
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 #include <Utility/Element/Namespace.h>
 
 namespace eng::cam{class Node;}

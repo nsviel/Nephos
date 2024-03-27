@@ -1,11 +1,14 @@
 #include "Style.h"
 
+#include <Utility/Specific/Colormap.h>
+
 
 namespace utl::implot{
 
 //Constructor / Destructor
 Style::Style(){
   //---------------------------
+
 
 
   //---------------------------
@@ -15,6 +18,17 @@ Style::~Style(){}
 //Main function
 void Style::make_style(){
   if(applied) return;
+  //---------------------------
+
+  this->make_style_parameter();
+  this->make_custom_colormap();
+
+  //---------------------------
+  this->applied = true;
+}
+
+//Subfunction
+void Style::make_style_parameter(){
   //---------------------------
 
   ImPlotStyle& style = ImPlot::GetStyle();
@@ -29,6 +43,7 @@ void Style::make_style(){
   style.MarkerSize = 2;
   style.MarkerWeight = 1;
   style.FillAlpha = 1.0f;
+  //style.Colormap = ImPlotColormap_Viridis;
 
   //Color
   style.Colors[ImPlotCol_PlotBg] = ImVec4(0, 0, 0, 1);
@@ -40,7 +55,22 @@ void Style::make_style(){
   style.Colors[ImPlotCol_PlotBorder] = ImVec4(0.1, 0.1, 0.1, 1);
 
   //---------------------------
-  this->applied = true;
+}
+void Style::make_custom_colormap(){
+  //---------------------------
+
+  if(heatmap == -1){
+    std::vector<ImU32> data = {
+      4282515870,
+      4282609140,
+      4287357182,
+      4294630301,
+      4294945280,
+      4294921472};
+    heatmap = ImPlot::AddColormap("Heatmap", data.data(), data.size());
+  }
+
+  //---------------------------
 }
 
 }

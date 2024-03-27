@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GUI/Plot/Namespace.h>
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 
 namespace prf::improfil{class Bar;}
 namespace prf::improfil{class Stat;}

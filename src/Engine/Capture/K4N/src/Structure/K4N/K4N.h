@@ -2,7 +2,7 @@
 
 #include <K4N/src/Structure/K4N/Device.h>
 #include <K4N/src/Structure/Matching/Matching.h>
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>

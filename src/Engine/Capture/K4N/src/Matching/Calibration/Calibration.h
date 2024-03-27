@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
@@ -33,8 +33,11 @@ public:
   //Subfunction
   void validate_bbox(k4n::dev::Sensor* sensor);
   void ransac_sphere(k4n::dev::Sensor* sensor);
+
+  //Data plot function
   void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
   void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
+  void data_IfRIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
 
   inline string get_step_str(){return map_step[step];}
   inline int get_step(){return step;}

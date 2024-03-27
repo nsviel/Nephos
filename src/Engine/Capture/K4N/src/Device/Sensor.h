@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 #include <K4N/src/Structure/Namespace.h>
 
 namespace eng{class Node;}

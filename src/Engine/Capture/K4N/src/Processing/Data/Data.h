@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 #include <image/turbojpeg.h>
 #include <k4a/k4a.hpp>
 

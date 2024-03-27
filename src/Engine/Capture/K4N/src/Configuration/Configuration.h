@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 #include <k4arecord/playback.hpp>
 
 namespace k4n::dev{class Sensor;}

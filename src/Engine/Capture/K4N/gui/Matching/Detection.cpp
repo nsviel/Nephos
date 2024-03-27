@@ -38,7 +38,7 @@ void Detection::draw_detection(k4n::dev::Sensor* sensor){
 void Detection::detection_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection parameter");
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Parameter");
 
   //Pixel diviser
   ImGui::SetNextItemWidth(150);

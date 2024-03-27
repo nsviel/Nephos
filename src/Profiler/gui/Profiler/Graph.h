@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 #include <Profiler/gui/Profiler/Struct_profiler.h>
 
 namespace prf{class Node;}

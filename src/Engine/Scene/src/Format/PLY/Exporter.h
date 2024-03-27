@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 #include <Utility/Function/File/Info.h>
 #include <glm/glm.hpp>
 #include <string>

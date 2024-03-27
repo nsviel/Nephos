@@ -20,12 +20,14 @@ void Plot::plot_heatmap(utl::type::Plot* utl_plot){
   implot_style->make_style();
   //---------------------------
 
-  // Generate random data for the heatmap
-  int size = 100;
-  std::vector<double> data(size * size);
-  for (int i = 0; i < size * size; ++i) {
-    data[i] = static_cast<double>(rand()) / RAND_MAX * 100; // Random value between 0 and 100
-  }
+  // Push the custom colormap onto the colormap stack
+  ImPlot::PushColormap(implot_style->get_colormap_heatmap());
+
+  static float scale_min = 1;
+  static float scale_max = 20000;
+  ImGui::DragFloatRange2("Scale",&scale_min, &scale_max, 100, 0, 60000);
+  ImPlot::ColormapScale("##HeatScale",scale_min, scale_max, ImVec2(60,225));
+  ImGui::SameLine();
 
   // Begin a new plot
   ImPlotFlags flag;
@@ -33,18 +35,21 @@ void Plot::plot_heatmap(utl::type::Plot* utl_plot){
   flag |= ImPlotFlags_NoMouseText;
   flag |= ImPlotFlags_NoLegend;
   flag |= ImPlotFlags_CanvasOnly;
-  if(ImPlot::BeginPlot("Heatmap", ImVec2(-1, utl_plot->dimension.y), flag)){
+  if(ImPlot::BeginPlot(utl_plot->title.c_str(), ImVec2(-1, utl_plot->dimension.y), flag)){
     ImPlotAxisFlags axis_flag;
     axis_flag |= ImPlotAxisFlags_AutoFit;
     axis_flag |= ImPlotAxisFlags_Foreground;
-    ImPlot::SetupAxes(utl_plot->x_axis_name.c_str(), utl_plot->x_axis_name.c_str(), axis_flag, axis_flag);
+    ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
 
     // Plot the heatmap
-    ImPlot::PlotHeatmap("Heatmap", data.data(), size, size);
+    string truc = utl_plot->title + "##heatmap";
+    ImPlot::PlotHeatmap(truc.c_str(), utl_plot->vec_z.data(), utl_plot->y_size, utl_plot->x_size, scale_min, scale_max, nullptr, ImPlotPoint(utl_plot->x_min, utl_plot->y_min), ImPlotPoint(utl_plot->x_max, utl_plot->y_max));
 
     // End the plot
     ImPlot::EndPlot();
   }
+
+  ImPlot::PopColormap();
 
   //---------------------------
 }

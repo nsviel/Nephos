@@ -2,7 +2,7 @@
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 
 
 //Binding requirement -> Name, Type size, binding, desriptor type, shader stage

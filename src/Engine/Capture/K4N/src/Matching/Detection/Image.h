@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/common.h>
+#include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
 namespace k4n{class Node;}
