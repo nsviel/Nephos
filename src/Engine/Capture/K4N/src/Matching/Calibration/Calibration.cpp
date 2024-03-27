@@ -15,7 +15,7 @@ Calibration::Calibration(k4n::Node* node_k4n){
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();
-  this->map_step[k4n::calibration::WAIT_VALIDATION] = "Validate";
+  this->map_step[k4n::calibration::WAIT_VALIDATION] = "Wait validation";
   this->map_step[k4n::calibration::PROCESSING] = "Processing";
   this->step = k4n::calibration::WAIT_VALIDATION;
 

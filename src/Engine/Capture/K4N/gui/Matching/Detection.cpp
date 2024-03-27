@@ -38,6 +38,8 @@ void Detection::draw_detection(k4n::dev::Sensor* sensor){
 void Detection::detection_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection parameter");
+
   //Pixel diviser
   ImGui::SetNextItemWidth(150);
   ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
@@ -46,8 +48,6 @@ void Detection::detection_parameter(k4n::dev::Sensor* sensor){
 }
 void Detection::canny_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
-
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Hough parameter");
 
   //Canny
   ImGui::Checkbox("Canny", &k4n_struct->matching.canny.apply);
@@ -109,13 +109,8 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
     ImGui::TreePop();
   }
 
-  //Display number of detected spheres
-  string nb_detection = to_string(sensor->detection.nb_detection);
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
-
   //Circle drawing mode
+  ImGui::Text("Draw");
   ImGui::SameLine();
   ImGui::RadioButton("All sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::ALL);
   ImGui::SameLine();
@@ -126,6 +121,12 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
 }
 void Detection::draw_result(k4n::dev::Sensor* sensor){
   //---------------------------
+
+  //Display number of detected spheres
+  string nb_detection = to_string(sensor->detection.nb_detection);
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
 
   //Display image with detected spheres
   if(sensor->image.hough.size == 0) return;

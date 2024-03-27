@@ -34,14 +34,14 @@ void Calibration::draw_calibration_player(k4n::dev::Sensor* sensor){
   if(step == k4n::calibration::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-    if(ImGui::Button("Validate##calibration", ImVec2(100, 0))){
+    if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
       k4n_calibration->next_step(sensor);
     }
     ImGui::PopStyleColor(2);
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
-    if(ImGui::Button("Stop##calibration", ImVec2(100, 0))){
+    if(ImGui::Button("Stop##calibration", ImVec2(120, 0))){
       k4n_calibration->next_step(sensor);
     }
     ImGui::PopStyleColor(2);
@@ -70,6 +70,8 @@ void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
 //Subfunction
 void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Calibration parameter");
 
   //Canny
   ImGui::Text("RANSAC");

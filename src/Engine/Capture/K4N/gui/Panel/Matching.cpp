@@ -78,10 +78,6 @@ void Matching::matching_parameter(k4n::dev::Sensor* sensor){
   ImGui::SetNextItemWidth(150);
   ImGui::SliderFloat("Sphere diameter", &sensor->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
 
-  //Pixel diviser
-  ImGui::SetNextItemWidth(150);
-  ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
-
   gui_calibration->draw_calibration_player(sensor);
 
   //---------------------------
