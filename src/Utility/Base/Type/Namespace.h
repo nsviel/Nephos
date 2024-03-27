@@ -8,3 +8,4 @@
 #include <Utility/Base/Type/Importer.h>
 #include <Utility/Base/Type/Exporter.h>
 #include <Utility/Base/Type/Parameter.h>
+#include <Utility/Base/Type/Plot.h>

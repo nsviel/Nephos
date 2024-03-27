@@ -113,13 +113,10 @@ void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   }
 
   //ADdd into model data vector
-  int index = static_cast<int>(std::round(R / k4n_struct->matching.model.resolution));
-  if(index >= 0 && index < k4n_struct->matching.model.vec_R.size()){
-    k4n_struct->matching.model.vec_R[index] = R;
-    k4n_struct->matching.model.vec_I[index] = I;
-  }else{
-    // Handle out-of-range case
-    //std::cerr << "Error: R value is out of range.\n";
+  int index = static_cast<int>(std::round(R / k4n_struct->matching.model.IfR.x_resolution));
+  if(index >= 0 && index < k4n_struct->matching.model.IfR.vec_x.size()){
+    k4n_struct->matching.model.IfR.vec_x[index] = R;
+    k4n_struct->matching.model.IfR.vec_y[index] = I;
   }
 
   //---------------------------
@@ -143,10 +140,10 @@ void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 
 
       //ADdd into model data vector
-      int index = static_cast<int>(std::round(It / k4n_struct->matching.model.It_resolution));
-      if(index >= 0 && index < k4n_struct->matching.model.vec_It.size()){
-        k4n_struct->matching.model.vec_I_It[index] = I;
-        k4n_struct->matching.model.vec_It[index] = It;
+      int index = static_cast<int>(std::round(It / k4n_struct->matching.model.IfIt.x_resolution));
+      if(index >= 0 && index < k4n_struct->matching.model.IfIt.vec_x.size()){
+        k4n_struct->matching.model.IfIt.vec_x[index] = I;
+        k4n_struct->matching.model.IfIt.vec_y[index] = It;
       }
     }
   }
