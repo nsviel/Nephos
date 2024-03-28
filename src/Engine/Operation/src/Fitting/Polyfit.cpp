@@ -18,31 +18,42 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree = 3){
   //---------------------------
 
   int numPoints = xyz.size();
-  int numParams = (degree + 1) * (degree + 2) / 2; // Number of parameters for polynomial of degree "degree"
-  Eigen::MatrixXd A(numPoints, numParams);
-  Eigen::VectorXd b(numPoints);
+  int numParams = (degree + 1) * (degree + 2) / 2;
+  Eigen::MatrixXd A;
+  Eigen::VectorXd b;
 
   for(int i = 0; i < numPoints; ++i){
     if(xyz[i] == vec3(-1, -1, -1)){
       continue;
     }
 
-    int k = 0;
     float x = xyz[i].x;
     float y = xyz[i].y;
     float z = xyz[i].z;
 
-    for(int j = 0; j <= degree; ++j){
-      for(int l = 0; l <= j; ++l){
-        A(i, k++) = pow(x, j - l) * pow(y, l); // X^i * Y^(j-i)
+    Eigen::VectorXd row(numParams);
+    int k = 0;
+    for (int j = 0; j <= degree; ++j) {
+      for (int l = 0; l <= j; ++l) {
+        row(k++) = pow(x, j - l) * pow(y, l); // X^i * Y^(j-i)
       }
     }
 
-    b(i) = z; // Z
+    if (A.rows() == 0) {
+      A.resize(1, numParams);
+      b.resize(1);
+      A.row(0) = row;
+      b(0) = z;
+    } else {
+      A.conservativeResize(A.rows() + 1, numParams);
+      b.conservativeResize(b.size() + 1);
+      A.row(A.rows() - 1) = row;
+      b(b.size() - 1) = z;
+    }
   }
 
   this->coef = A.colPivHouseholderQr().solve(b); // Solve the system using QR decomposition
-say(coef);
+
   //---------------------------
 }
 double Polyfit::evaluate(double x, double y){
@@ -56,7 +67,7 @@ double Polyfit::evaluate(double x, double y){
       z += coef(k++) * pow(x, i - j) * pow(y, j); // Sum of parameters * X^i * Y^(j-i)
     }
   }
-say(z);
+
   //---------------------------
   return z;
 }

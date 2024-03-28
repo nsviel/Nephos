@@ -87,6 +87,7 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
 
   //Apply post-processing stuff
   k4n_glyph->draw_sphere_glyph(sensor, current_pose, radius);
+  this->data_model(sphere_xyz, sphere_i);
   this->data_IfR(sphere_xyz, sphere_i);
   this->data_IfIt(sphere_xyz, sphere_i);
   this->data_IfRIt(sphere_xyz, sphere_i);

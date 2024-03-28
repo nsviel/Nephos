@@ -60,6 +60,7 @@ void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->draw_calibration_parameter(sensor);
+  this->draw_calibration_model(sensor);
   this->draw_measure(sensor);
 
   //---------------------------
@@ -86,7 +87,23 @@ void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
   //Heatmap scale
   ImGui::DragFloatRange2("Heatmap scale",&k4n_struct->matching.model.IfRIt.z_min, &k4n_struct->matching.model.IfRIt.z_max, 100, 0, 60000, "%.0f");
 
-  if(ImGui::Button("Model##calibration", ImVec2(120, 0))){
+  //---------------------------
+  ImGui::Separator();
+}
+void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model");
+
+  if(ImGui::Button("3D plot##model", ImVec2(120, 0))){
+    this->draw_model(sensor);
+  }
+  ImGui::SameLine();
+  if(ImGui::Button("Export##model", ImVec2(120, 0))){
+    this->draw_model(sensor);
+  }
+  ImGui::SameLine();
+  if(ImGui::Button("Import##model", ImVec2(120, 0))){
     this->draw_model(sensor);
   }
 

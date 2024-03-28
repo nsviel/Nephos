@@ -70,7 +70,7 @@ void Model::init(){
 void Model::make_model(){
   //---------------------------
 
-  ope_polyfit->compute(k4n_struct->matching.model.vec_data, 3);
+  ope_polyfit->compute(k4n_struct->matching.model.vec_data, k4n_struct->matching.model.degree);
 
   //---------------------------
 }
@@ -78,8 +78,9 @@ float Model::apply_model(float x, float y){
   //---------------------------
 
   float z = ope_polyfit->evaluate(x, y);
-return z;
+
   //---------------------------
+  return z;
 }
 
 
