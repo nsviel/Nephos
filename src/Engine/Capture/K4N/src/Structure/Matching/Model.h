@@ -12,8 +12,8 @@ struct Model{
   //Model stuff
   std::string path = "../media/record/calibration.data";
   std::vector<glm::vec3> vec_data;
-  float min_R = 1000;
-  float max_R = -1;
+  utl::type::Axis x;
+  utl::type::Axis y;
   int degree = 5;
 
   //Plot stuff

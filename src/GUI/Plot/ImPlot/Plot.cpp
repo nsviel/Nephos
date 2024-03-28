@@ -50,7 +50,7 @@ void Plot::plot_heatmap(utl::type::Plot* plot){
 
   //---------------------------
 }
-void Plot::plot_heatmap(utl::type::Plot* plot, vec2 x_limit, float& x_current){
+void Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis){
   implot_style->make_style();
   //---------------------------
 
@@ -73,13 +73,10 @@ void Plot::plot_heatmap(utl::type::Plot* plot, vec2 x_limit, float& x_current){
     ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
 
     //Dragging line
-    static float drag_pose[2] = {0, 0};
     if (ImPlot::IsPlotHovered() && ImGui::IsMouseDragging(ImGuiMouseButton_Left)){
       float pose = ImPlot::GetPlotMousePos().x;
-      if(pose > x_limit[0] && pose < x_limit[1]){
-        drag_pose[0] = pose;
-        drag_pose[1] = pose;
-        x_current = pose;
+      if(pose > x_axis->bound[0] && pose < x_axis->bound[1]){
+        x_axis->current = pose;
       }
     }
 
@@ -88,15 +85,16 @@ void Plot::plot_heatmap(utl::type::Plot* plot, vec2 x_limit, float& x_current){
     ImPlot::PlotHeatmap(truc.c_str(), plot->z.data.data(), plot->y.size, plot->x.size, plot->z.min, plot->z.max, nullptr, ImPlotPoint(plot->x.min, plot->y.min), ImPlotPoint(plot->x.max, plot->y.max));
 
     // Draw straight lines over the heatmap
-    float min_x[2] = {x_limit[0], x_limit[0]};
-    float max_x[2] = {x_limit[1], x_limit[1]};
-    float height[2] = {0, plot->y.max};
+    float x_bound_min[2] = {x_axis->bound[0], x_axis->bound[0]};
+    float x_bound_max[2] = {x_axis->bound[1], x_axis->bound[1]};
+    float x_current[2] = {x_axis->current, x_axis->current};
+    float y_height[2] = {0, plot->y.max};
     ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f)); // Red color
-    ImPlot::PlotLine("Data Min", min_x, height, 2);
+    ImPlot::PlotLine("Data Min", x_bound_min, y_height, 2);
     ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f)); // Green color
-    ImPlot::PlotLine("Data Min", max_x, height, 2);
+    ImPlot::PlotLine("Data Min", x_bound_max, y_height, 2);
     ImPlot::SetNextLineStyle(ImVec4(1.0f, 0.1f, 0.1f, 1.0f)); // Green color
-    ImPlot::PlotLine("Data current", drag_pose, height, 2);
+    ImPlot::PlotLine("Data current", x_current, y_height, 2);
 
     // End the plot
     ImPlot::EndPlot();

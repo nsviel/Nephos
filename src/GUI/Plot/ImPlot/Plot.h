@@ -17,7 +17,7 @@ public:
 public:
   //Main function
   void plot_heatmap(utl::type::Plot* utl_plot);
-  void plot_heatmap(utl::type::Plot* utl_plot, vec2 x_limit, float& x_current);
+  void plot_heatmap(utl::type::Plot* utl_plot, utl::type::Axis* x_axis);
   void plot_scatter(utl::type::Plot* utl_plot);
   void plot_scatter_rdm();
   void plot_constant_in_time();

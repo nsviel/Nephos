@@ -19,51 +19,46 @@ Model::~Model(){}
 
 //Main function
 void Model::init(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
   //I(R)
-  utl::type::Plot* plot_ifr = &k4n_struct->matching.model.IfR;
-  plot_ifr->title = "I(R)";
-  plot_ifr->x.resolution = 0.01f;
-  plot_ifr->x.min = 0.0f;
-  plot_ifr->x.max = 5.0f;
-  plot_ifr->x.size = static_cast<int>((plot_ifr->x.max - plot_ifr->x.min) / plot_ifr->x.resolution) + 1;
-  plot_ifr->x.data = vector<float>(plot_ifr->x.size, 0.0f);
-  plot_ifr->y.data = vector<float>(plot_ifr->x.size, 0.0f);
+  model->IfR.title = "I(R)";
+  model->IfR.x.resolution = 0.01f;
+  model->IfR.x.min = 0.0f;
+  model->IfR.x.max = 5.0f;
+  model->IfR.x.size = static_cast<int>((model->IfR.x.max - model->IfR.x.min) / model->IfR.x.resolution) + 1;
+  model->IfR.x.data = vector<float>(model->IfR.x.size, 0.0f);
+  model->IfR.y.data = vector<float>(model->IfR.x.size, 0.0f);
 
   //I(It)
-  utl::type::Plot* plot_ifit = &k4n_struct->matching.model.IfIt;
-  plot_ifit->title = "I(It)";
-  plot_ifit->x.resolution = 1.0f;
-  plot_ifit->x.min = 0.0f;
-  plot_ifit->x.max = 90.0f;
-  plot_ifit->x.size = static_cast<int>((plot_ifit->x.max - plot_ifit->x.min) / plot_ifit->x.resolution) + 1;
-  plot_ifit->x.data = vector<float>(plot_ifit->x.size, 0.0f);
-  plot_ifit->y.data = vector<float>(plot_ifit->x.size, 0.0f);
+  model->IfIt.title = "I(It)";
+  model->IfIt.x.resolution = 1.0f;
+  model->IfIt.x.min = 0.0f;
+  model->IfIt.x.max = 90.0f;
+  model->IfIt.x.size = static_cast<int>((model->IfIt.x.max - model->IfIt.x.min) / model->IfIt.x.resolution) + 1;
+  model->IfIt.x.data = vector<float>(model->IfIt.x.size, 0.0f);
+  model->IfIt.y.data = vector<float>(model->IfIt.x.size, 0.0f);
 
   //I(R, It)
-  utl::type::Plot* plot_ifrit = &k4n_struct->matching.model.IfRIt;
-  plot_ifrit->title = "I(R, It)";
-
-  plot_ifrit->x.resolution = 0.01f;
-  plot_ifrit->x.min = 0.0f;
-  plot_ifrit->x.max = 5.0f;
-  plot_ifrit->x.size = static_cast<int>((plot_ifrit->x.max - plot_ifrit->x.min) / plot_ifrit->x.resolution) + 1;
-
-  plot_ifrit->y.resolution = 1.0f;
-  plot_ifrit->y.min = 0.0f;
-  plot_ifrit->y.max = 90.0f;
-  plot_ifrit->y.size = static_cast<int>((plot_ifrit->y.max - plot_ifrit->y.min) / plot_ifrit->y.resolution) + 1;
-
-  plot_ifrit->z.min = 0.0f;
-  plot_ifrit->z.max = 2500.0f;
-  plot_ifrit->z.size = plot_ifrit->x.size * plot_ifrit->y.size;
-  plot_ifrit->z.data = vector<float>(plot_ifrit->z.size, 0.0f);
+  model->IfRIt.title = "I(R, It)";
+  model->IfRIt.x.resolution = 0.01f;
+  model->IfRIt.x.min = 0.0f;
+  model->IfRIt.x.max = 5.0f;
+  model->IfRIt.x.size = static_cast<int>((model->IfRIt.x.max - model->IfRIt.x.min) / model->IfRIt.x.resolution) + 1;
+  model->IfRIt.y.resolution = 1.0f;
+  model->IfRIt.y.min = 0.0f;
+  model->IfRIt.y.max = 90.0f;
+  model->IfRIt.y.size = static_cast<int>((model->IfRIt.y.max - model->IfRIt.y.min) / model->IfRIt.y.resolution) + 1;
+  model->IfRIt.z.min = 0.0f;
+  model->IfRIt.z.max = 2500.0f;
+  model->IfRIt.z.size = model->IfRIt.x.size * model->IfRIt.y.size;
+  model->IfRIt.z.data = vector<float>(model->IfRIt.z.size, 0.0f);
 
   //Model
-  k4n_struct->matching.model.vec_data = vector<vec3>(plot_ifrit->z.size, vec3(-1, -1, -1));
-  k4n_struct->matching.model.min_R = 1000;
-  k4n_struct->matching.model.max_R = -1;
+  model->vec_data = vector<vec3>(model->IfRIt.z.size, vec3(-1, -1, -1));
+  model->x.bound = vec2(1000, -1);
+  model->y.bound = vec2(1000, -1);
 
   //---------------------------
 }
@@ -88,14 +83,15 @@ void Model::import_model(){
     float& R = model->vec_data[i].x;
     float& It = model->vec_data[i].y;
     float& I = model->vec_data[i].z;
+    if(R == -1) continue;
 
     model->IfRIt.z.data[i] = I;
 
     //Search for R limite validity
-    if(R > model->max_R) model->max_R = R;
-    if(R < model->min_R && R != -1) model->min_R = R;
+    if(R < model->x.bound[0]) model->x.bound[0] = R;
+    if(R > model->x.bound[1]) model->x.bound[1] = R;
 
-    //I(It)
+    //I(R)
     if(It < 5 && It > 0){
       int index = static_cast<int>(std::round(R / model->IfR.x.resolution));
       model->IfR.x.data[index] = R;

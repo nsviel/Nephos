@@ -174,8 +174,8 @@ void Calibration::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       R = math::distance_from_origin(xyz);
 
       //Search for R limite validity
-      if(R > model->max_R) model->max_R = R;
-      if(R < model->min_R) model->min_R = R;
+      if(R < model->x.bound[0]) model->x.bound[0] = R;
+      if(R > model->x.bound[1]) model->x.bound[1] = R;
 
       // Calculate the index of the cell in the heatmap grid
       int i = static_cast<int>((R - plot->x.min) / (plot->x.max - plot->x.min) * plot->x.size);

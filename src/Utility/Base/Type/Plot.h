@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace utl::plot{
+namespace utl::type{
 
 struct Axis{
   //---------------------------
@@ -18,10 +18,6 @@ struct Axis{
   //---------------------------
 };
 
-}
-
-namespace utl::type{
-
 struct Plot{
   //---------------------------
 
@@ -33,9 +29,9 @@ struct Plot{
   glm::vec2 highlight = vec2(-1, -1);
 
   //Data
-  utl::plot::Axis x;
-  utl::plot::Axis y;
-  utl::plot::Axis z;
+  utl::type::Axis x;
+  utl::type::Axis y;
+  utl::type::Axis z;
 
   //---------------------------
 };
