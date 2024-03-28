@@ -180,6 +180,40 @@ uint8_t* load_binary(std::string path){
   //---------------------------
   return buffer;
 }
+
+//Export / import
+void write_vec_path(const std::string& path, const std::vector<std::string>& vec_path){
+  //---------------------------
+
+  std::ofstream outputFile(path);
+
+  if(outputFile.is_open()){
+    for(const std::string& path : vec_path){
+      outputFile << path << '\n';
+    }
+    outputFile.close();
+  }else{
+    std::cerr << "Unable to open file for writing: " << path << std::endl;
+  }
+
+  //---------------------------
+}
+void write_vector(const std::vector<glm::vec3>& vec, const std::string& path){
+  //---------------------------
+
+  std::ofstream file(path);
+  if (!file.is_open()) {
+    std::cerr << "Error: Failed to open file for writing." << std::endl;
+    return;
+  }
+
+  for (const auto& v : vec) {
+    file << v.x << ' ' << v.y << ' ' << v.z << '\n';
+  }
+
+  //---------------------------
+  file.close();
+}
 std::vector<std::string> read_vec_path(const std::string& path){
   //---------------------------
 
@@ -199,21 +233,29 @@ std::vector<std::string> read_vec_path(const std::string& path){
   //---------------------------
   return vec_path;
 }
-void write_vec_path(const std::string& path, const std::vector<std::string>& vec_path){
+std::vector<glm::vec3> read_vector(const std::string& path){
   //---------------------------
 
-  std::ofstream outputFile(path);
-
-  if(outputFile.is_open()){
-    for(const std::string& path : vec_path){
-      outputFile << path << '\n';
-    }
-    outputFile.close();
-  }else{
-    std::cerr << "Unable to open file for writing: " << path << std::endl;
+  std::vector<glm::vec3> vec;
+  std::ifstream file(path);
+  if (!file.is_open()) {
+    std::cerr << "Error: Failed to open file for reading." << std::endl;
+    return vec;
   }
 
-  //---------------------------
-}
+  std::string line;
+  while (std::getline(file, line)) {
+    std::istringstream iss(line);
+    glm::vec3 v;
+    if (!(iss >> v.x >> v.y >> v.z)) {
+      std::cerr << "Error: Failed to read line from file." << std::endl;
+      return vec;
+    }
+    vec.push_back(v);
+  }
 
+  file.close();
+
+  //---------------------------
+  return vec;
 }

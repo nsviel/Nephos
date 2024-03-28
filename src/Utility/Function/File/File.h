@@ -19,7 +19,11 @@ std::string formatted_size(std::string path);
 void clear(std::string path);
 void check_or_create(std::string path);
 uint8_t* load_binary(std::string path);
-std::vector<std::string> read_vec_path(const std::string& filePath);
-void write_vec_path(const std::string& filePath, const std::vector<std::string>& vec_path);
+
+//Export / import
+void write_vec_path(const std::string& path, const std::vector<std::string>& vec_path);
+void write_vector(const std::vector<glm::vec3>& vec, const std::string& path);
+std::vector<std::string> read_vec_path(const std::string& path);
+std::vector<glm::vec3> read_vector(const std::string& path);
 
 }
