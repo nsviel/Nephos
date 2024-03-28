@@ -1,5 +1,27 @@
 #include "Path.h"
 
+#include <Utility/Function/File/Directory.h>
+#include <Utility/Function/File/File.h>
+#include <iomanip>
+#include <vector>
+#include <cstring>
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <random>
+#include <fstream>
+#include <unistd.h>
+#include <filesystem>
+#include <iostream>
+#include <algorithm>
+#include <fcntl.h>
+#include <experimental/filesystem>
+
+namespace fs = std::experimental::filesystem;
+
 
 namespace utl::path{
 
@@ -120,7 +142,7 @@ std::string get_absolute_path(const std::string& relativePath){
   fs::path absolutePath = currentPath / relativePath;
 
   // Resolve ".." and its parent folder
-  if(is_file_exist(absolutePath)){
+  if(utl::file::is_exist(absolutePath)){
     absolutePath = fs::canonical(absolutePath);
   }else{
     return "";
@@ -154,7 +176,7 @@ std::vector<std::string> list_all_file(std::string path){
   DIR* directory = opendir(path.c_str());
   std::vector<std::string> path_vec;
 
-  if(is_dir_exist(path) == false || is_dir_or_file(path) == "file"){
+  if(utl::directory::is_exist(path) == false || is_dir_or_file(path) == "file"){
     std::cout<<"[error] Directory does not exists: "<<path<<std::endl;
     return path_vec;
   }
@@ -185,7 +207,7 @@ std::vector<std::string> list_all_path(std::string path_dir){
   std::vector<std::string> path_vec;
 
   //Check if directory exists
-  if(is_dir_exist(path_dir) == false || is_dir_or_file(path_dir) == "file"){
+  if(utl::directory::is_exist(path_dir) == false || is_dir_or_file(path_dir) == "file"){
     return path_vec;
   }
 
@@ -221,7 +243,7 @@ std::vector<std::string> list_all_dir(std::string path){
   std::vector<std::string> list;
 
   //Check if directory exists
-  if(is_dir_exist(path) == false || is_dir_or_file(path) == "file"){
+  if(utl::directory::is_exist(path) == false || is_dir_or_file(path) == "file"){
     return list;
   }
 

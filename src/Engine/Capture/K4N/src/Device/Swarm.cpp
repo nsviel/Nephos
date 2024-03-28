@@ -29,7 +29,7 @@ Swarm::~Swarm(){}
 
 //Sensor function
 void Swarm::create_sensor_playback(utl::file::Path path){
-  if(!utl::fct::file::is_file_exist(path.data)) return;
+  if(!utl::file::is_exist(path.data)) return;
   //---------------------------
 
   //Associated master
@@ -40,7 +40,7 @@ void Swarm::create_sensor_playback(utl::file::Path path){
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
   sensor->name = "playback_" + to_string(index);
   sensor->param.format = utl::path::get_format_from_path(path.data);
-  sensor->param.file_size = utl::path::get_file_size(path.data);
+  sensor->param.file_size = utl::file::size(path.data);
   sensor->param.index = index;
   sensor->param.path = path;
   sensor->master = master;

@@ -20,7 +20,7 @@ Loader::Loader(eng::scene::Node* node_scene, bool* show_window){
   this->ope_transform = new ope::Transformation();
   this->ope_operation = new ope::Operation();
 
-  this->default_dir = utl::fct::file::get_current_parent_path_abs();
+  this->default_dir = utl::path::get_current_parent_path_abs();
   this->current_dir = default_dir;
   this->name = "Loader";
   this->show_window = show_window;
@@ -135,7 +135,7 @@ void Loader::draw_file_header(){
   //---------------------------
 }
 void Loader::draw_file_content(){
-  vector<string> vec_current_files = directory::list_all_path(current_dir);
+  vector<string> vec_current_files = utl::path::list_all_path(current_dir);
   //---------------------------
 
   static ImGuiTableFlags flags;
@@ -166,7 +166,7 @@ void Loader::draw_file_content(){
 
       //Get file info
       item.ID = ID++;
-      item.type = directory::is_directory(file) ? eng::loader::FOLDER : eng::loader::FILE;
+      item.type = utl::directory::is_directory(file) ? eng::loader::FOLDER : eng::loader::FILE;
       if(item.type == eng::loader::FOLDER){
         item.name = utl::path::get_filename_from_path(file);
         item.path = file;
@@ -181,8 +181,8 @@ void Loader::draw_file_content(){
         item.path = file;
         item.name = utl::path::get_name_from_path(file);
         item.icon = string(ICON_FA_FILE);
-        item.size = utl::path::get_file_formatted_size(file);
-        item.weight = utl::path::get_file_size(file);
+        item.size = utl::file::formatted_size(file);
+        item.weight = utl::file::size(file);
         item.format = utl::path::get_format_from_path(file);
         item.color_icon = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         item.color_text = sce_format->is_format_supported(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
@@ -415,7 +415,7 @@ void Loader::operation_selection(string file_path){
   //---------------------------
 
   //If selection is a directory go display his content
-  if(directory::is_directory(file_path)){
+  if(utl::directory::is_directory(file_path)){
     this->current_dir = file_path;
     this->goto_file_tab = true;
   }
@@ -423,7 +423,7 @@ void Loader::operation_selection(string file_path){
   else{
     //File check
     string format = utl::path::get_format_from_path(file_path);
-    if(!utl::fct::file::is_file_exist(file_path)) return;
+    if(!utl::file::is_exist(file_path)) return;
     if(!sce_format->is_format_supported(format)) return;
 
     //Apply loading and operations

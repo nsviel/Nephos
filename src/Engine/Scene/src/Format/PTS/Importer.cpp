@@ -1,5 +1,7 @@
 #include "Importer.h"
 
+#include <Utility/Function/File/File.h>
+
 
 namespace format::pts{
 
@@ -575,7 +577,7 @@ int Importer::check_configuration(std::string path){
 int Importer::check_size(std::string path, bool FILE_hasHeader){
   //---------------------------
 
-  int FILE_size = utl::path::get_file_nbPoint(path);
+  int FILE_size = utl::file::number_point(path);
   if(FILE_size > nbptMax){
     std::cout << "Too much points : "<< FILE_size << ">"<< nbptMax << std::endl;
   }

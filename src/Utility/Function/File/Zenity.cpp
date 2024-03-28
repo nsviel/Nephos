@@ -1,6 +1,8 @@
 #include "Zenity.h"
-#include "Directory.h"
-#include "File.h"
+
+#include <Utility/Function/File/Directory.h>
+#include <Utility/Function/File/File.h>
+#include <algorithm>
 
 
 namespace zenity{

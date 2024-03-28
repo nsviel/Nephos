@@ -14,7 +14,7 @@ Shader::Shader(vk::structure::Vulkan* struct_vulkan){
   this->struct_vulkan = struct_vulkan;
 
   this->path_output = "output.txt";
-  utl::fct::file::clear_file(path_output);
+  utl::file::clear(path_output);
 
   //---------------------------
 }

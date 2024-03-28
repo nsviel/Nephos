@@ -1,10 +1,26 @@
 #include "Directory.h"
 
+#include <Utility/Function/File/Path.h>
+#include <vector>
+#include <cstring>
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <random>
+#include <fstream>
+#include <unistd.h>
+#include <filesystem>
+#include <iostream>
+#include <algorithm>
+
 
 namespace utl::directory{
 
 //Operation
-void create_new(std::string path){
+void create(std::string path){
   //---------------------------
 
   //If path dir end with a / (/path/dir_to_create/)
@@ -16,18 +32,18 @@ void create_new(std::string path){
   std::string parent = path.substr(0, path.find_last_of("/"));
 
   //If the parent exist and dir_to_create not
-  if(is_dir_exist(parent) == true && is_dir_exist(path) == false){
+  if(utl::directory::is_exist(parent) == true && utl::directory::is_exist(path) == false){
     std::filesystem::create_directory(path);
   }
 
   //---------------------------
 }
-void clean_file(const char *path){
+void clean(const char *path){
   struct stat buffer;
   if(stat (path, &buffer) != 0) return;
   //---------------------------
 
-  std::vector<std::string> path_vec = list_all_file(path);
+  std::vector<std::string> path_vec = utl::path::list_all_file(path);
   for(int i=0; i<path_vec.size(); i++){
     std::string path_full = path + path_vec[i];
     std::remove (path_full.c_str());
@@ -35,8 +51,8 @@ void clean_file(const char *path){
 
   //---------------------------
 }
-void clean_folder(const std::string& path){
-  if(!is_dir_exist(path)) return;
+void remove(const std::string& path){
+  if(!utl::directory::is_exist(path)) return;
   //---------------------------
 
   for (const auto& entry : std::filesystem::directory_iterator(path)) {
@@ -47,7 +63,7 @@ void clean_folder(const std::string& path){
 
   //---------------------------
 }
-int get_number_file(std::string path){
+int size(std::string path){
   DIR *dp;
   //---------------------------
 
@@ -73,7 +89,7 @@ int get_number_file(std::string path){
 }
 
 //Check
-bool is_dir_exist(std::string path){
+bool is_exist(std::string path){
   //---------------------------
 
   if(std::filesystem::exists(path)){

@@ -41,7 +41,7 @@ void Camera::find_video_context(string path){
   //---------------------------
 
   //Check if device exists
-  if(!utl::fct::file::is_device_connected(path_stream)) return;
+  if(!utl::file::is_device_connected(path_stream)) return;
 
   avdevice_register_all(); // for device
 
@@ -336,7 +336,7 @@ bool Camera::check_device_connection(){
   bool connected = true;
   //---------------------------
 
-  bool device_connected = utl::fct::file::is_device_connected(path_stream);
+  bool device_connected = utl::file::is_device_connected(path_stream);
   if(stream_loaded && stream_active && !device_connected){
     this->clean_video();
     connected = false;

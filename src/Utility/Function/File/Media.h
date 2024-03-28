@@ -3,7 +3,6 @@
 #include <Utility/Specific/Common.h>
 
 
-
 namespace utl::media{
 
 utl::media::Image load_image(std::string path);

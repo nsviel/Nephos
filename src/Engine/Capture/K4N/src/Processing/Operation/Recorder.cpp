@@ -84,8 +84,8 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
 
   //Check if directory exists, if not create it
   string path_dir = sensor->master->recorder.folder;
-  if(!directory::is_dir_exist(path_dir)){
-    directory::create_new(path_dir);
+  if(!utl::directory::is_exist(path_dir)){
+    utl::directory::create(path_dir);
   }
 
   //Sensor parameter
@@ -116,8 +116,8 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
   if(master->player.record && !recorder.is_valid()){
     //Check if directory exists, if not create it
     string path_dir = sensor->master->recorder.folder;
-    if(!directory::is_dir_exist(path_dir)){
-      directory::create_new(path_dir);
+    if(!utl::directory::is_exist(path_dir)){
+      utl::directory::create(path_dir);
     }
 
     //Create recorder and file, and write header
@@ -139,7 +139,7 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
   else if(master->player.record && recorder.is_valid()){
     recorder.write_capture(*capture);
     master->recorder.ts_rec = master->player.ts_cur - master->recorder.ts_beg;
-    master->recorder.file_size = utl::path::get_file_size(master->recorder.path);
+    master->recorder.file_size = utl::file::size(master->recorder.path);
   }
 
   //Flush to file when finish

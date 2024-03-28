@@ -112,7 +112,7 @@ bool Loader::check_file_path(std::string path){
   //---------------------------
 
   //Check file existence
-  if(utl::fct::file::is_file_exist(path) == false){
+  if(utl::file::is_exist(path) == false){
     cout<<"[error] File doesn't exists at "<<path<<endl;
     return false;
   }

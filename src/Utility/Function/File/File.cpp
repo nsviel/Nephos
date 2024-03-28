@@ -1,12 +1,30 @@
 #include "File.h"
 
+#include <iomanip>
+#include <vector>
+#include <cstring>
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <random>
+#include <fstream>
+#include <unistd.h>
+#include <filesystem>
+#include <iostream>
+#include <algorithm>
+#include <fcntl.h>
+#include <experimental/filesystem>
+
 namespace fs = std::experimental::filesystem;
 
 
 namespace utl::file{
 
 //Check
-bool is_file_exist(std::string path){
+bool is_exist(std::string path){
   bool is_exists;
   //---------------------------
 
@@ -20,7 +38,7 @@ bool is_file_exist(std::string path){
   //---------------------------
   return is_exists;
 }
-bool is_file_exist_silent(std::string path){
+bool is_exist_silent(std::string path){
   bool is_exists;
   //---------------------------
 
@@ -32,7 +50,7 @@ bool is_file_exist_silent(std::string path){
 }
 
 //Info
-int get_file_nbPoint(std::string path){
+int number_point(std::string path){
   //---------------------------
 
   int cpt=0;
@@ -45,7 +63,7 @@ int get_file_nbPoint(std::string path){
   //---------------------------
   return cpt;
 }
-double get_file_size(std::string path){
+double size(std::string path){
   //---------------------------
 
   // Open the file and move the file pointer to the end
@@ -65,7 +83,7 @@ double get_file_size(std::string path){
   //---------------------------
   return result;
 }
-std::string get_file_formatted_size(std::string path){
+std::string formatted_size(std::string path){
   const char* sizeUnits[] = {"bytes", "kB", "MB", "GB"};
   int unitIndex = 0;
   //---------------------------
@@ -90,7 +108,7 @@ std::string get_file_formatted_size(std::string path){
 }
 
 //Operation
-void check_or_create_file(std::string path){
+void check_or_create(std::string path){
     bool is_exists;
     //---------------------------
 
@@ -105,7 +123,7 @@ void check_or_create_file(std::string path){
 
     //---------------------------
   }
-void clear_file(std::string path){
+void clear(std::string path){
   //---------------------------
 
   // Open the file in the output mode (out), which will clear the file
@@ -119,7 +137,7 @@ void clear_file(std::string path){
 
   //---------------------------
 }
-uint8_t* load_file_binary(std::string path){
+uint8_t* load_binary(std::string path){
   //---------------------------
 
   FILE* file = fopen(path.c_str(), "rb"); // Open the file for reading in binary mode
@@ -162,40 +180,40 @@ uint8_t* load_file_binary(std::string path){
   //---------------------------
   return buffer;
 }
-std::vector<std::string> read_paths_from_file(const std::string& filePath){
+std::vector<std::string> read_vec_path(const std::string& path){
   //---------------------------
 
-  std::vector<std::string> paths;
-  std::ifstream inputFile(filePath);
+  std::vector<std::string> vec_path;
+  std::ifstream inputFile(path);
 
-  if (inputFile.is_open()) {
+  if(inputFile.is_open()){
     std::string line;
-    while (std::getline(inputFile, line)) {
-      paths.push_back(line);
+    while(std::getline(inputFile, line)){
+      vec_path.push_back(line);
     }
     inputFile.close();
-  } else {
-    std::cerr << "Unable to open file: " << filePath << std::endl;
+  }else{
+    std::cerr << "Unable to open file: " << path << std::endl;
   }
 
   //---------------------------
-  return paths;
+  return vec_path;
 }
-void write_paths_to_file(const std::string& filePath, const std::vector<std::string>& paths){
-    //---------------------------
+void write_vec_path(const std::string& path, const std::vector<std::string>& vec_path){
+  //---------------------------
 
-    std::ofstream outputFile(filePath);
+  std::ofstream outputFile(path);
 
-    if (outputFile.is_open()) {
-      for (const std::string& path : paths) {
-        outputFile << path << '\n';
-      }
-      outputFile.close();
-    } else {
-      std::cerr << "Unable to open file for writing: " << filePath << std::endl;
+  if(outputFile.is_open()){
+    for(const std::string& path : vec_path){
+      outputFile << path << '\n';
     }
+    outputFile.close();
+  }else{
+    std::cerr << "Unable to open file for writing: " << path << std::endl;
+  }
 
-    //---------------------------
+  //---------------------------
 }
 
 }
