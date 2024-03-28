@@ -18,24 +18,16 @@
 #include <experimental/filesystem>
 
 
-namespace directory{
-  //---------------------------
+namespace utl::directory{
 
-  //Directory operations
-  void clean_file(const char *path);
-  void clean_folder(const std::string& path);
-  void create_new(std::string path);
-  int get_number_file(std::string path);
+//Directory operations
+void clean_file(const char *path);
+void clean_folder(const std::string& path);
+void create_new(std::string path);
+int get_number_file(std::string path);
 
-  //Check existence
-  bool is_dir_exist(std::string path);
-  bool is_directory(std::string path);
-  std::string is_dir_or_file(std::string path);
+//Check existence
+bool is_dir_exist(std::string path);
+bool is_directory(std::string path);
 
-  //List files & paths
-  std::vector<std::string> list_all_file(std::string path);
-  std::vector<std::string> list_all_path(std::string path);
-  std::vector<std::string> list_all_dir(std::string path);
-
-  //---------------------------
 }

@@ -118,7 +118,7 @@ bool Loader::check_file_path(std::string path){
   }
 
   //Check file format
-  string format = utl::fct::info::get_format_from_path(path);
+  string format = utl::path::get_format_from_path(path);
   if(!sce_format->is_format_supported(format)){
     cout<<"[error] '"<<format<<"' file format not supported"<<endl;
     sce_format->display_supported_format();
@@ -149,7 +149,7 @@ utl::type::Data* Loader::create_data(utl::file::Data* file_data){
   utl::type::Data* data = new utl::type::Data();
   data->name = file_entity->name;
   data->path = file_entity->path.data;
-  data->file_format = utl::fct::info::get_format_from_path(file_entity->path.data);
+  data->file_format = utl::path::get_format_from_path(file_entity->path.data);
   data->size = file_entity->xyz.size();
   data->topology.type = file_entity->draw_type;
 

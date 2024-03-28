@@ -27,7 +27,7 @@ utl::file::Entity* Importer::import(utl::file::Path path){
   //---------------------------
 
   utl::file::Entity* entity = new utl::file::Entity();
-  entity->name = utl::fct::info::get_name_from_path(path.data);
+  entity->name = utl::path::get_name_from_path(path.data);
   entity->path = path;
 
   //Open file

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
-#include <Utility/Function/File/Info.h>
+#include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>

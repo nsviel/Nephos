@@ -8,22 +8,22 @@
 #include <experimental/filesystem>
 
 
-namespace utl::fct::file{
-  //---------------------------
+namespace utl::file{
 
-  bool is_file_exist(std::string fileName);
-  bool is_file_exist_silent(std::string fileName);
-  bool is_device_connected(const std::string& devicePath);
+//Check
+bool is_file_exist(std::string path);
+bool is_file_exist_silent(std::string path);
 
-  std::string get_current_path_abs();
-  std::string get_absolute_path(const std::string& relativePath);
-  std::string get_current_parent_path_abs();
+//Info
+int get_file_nbPoint(std::string pathFile);
+double get_file_size(std::string path);
+std::string get_file_formatted_size(std::string path);
 
-  void clear_file(std::string path);
-  void check_or_create_file(std::string fileName);
-  uint8_t* load_file_binary(std::string path);
-  std::vector<std::string> read_paths_from_file(const std::string& filePath);
-  void write_paths_to_file(const std::string& filePath, const std::vector<std::string>& paths);
+//Operation
+void clear_file(std::string path);
+void check_or_create_file(std::string path);
+uint8_t* load_file_binary(std::string path);
+std::vector<std::string> read_paths_from_file(const std::string& filePath);
+void write_paths_to_file(const std::string& filePath, const std::vector<std::string>& paths);
 
-  //---------------------------
 }

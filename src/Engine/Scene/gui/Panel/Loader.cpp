@@ -160,7 +160,7 @@ void Loader::draw_file_content(){
     for(int i=0; i<vec_current_files.size(); i++){
       eng::loader::Item item;
       string file = vec_current_files[i];
-      string filename = utl::fct::info::get_filename_from_path(file);
+      string filename = utl::path::get_filename_from_path(file);
       //Remove hidden files
       if(filename[0] == '.' && filename[1] != '.') continue;
 
@@ -168,7 +168,7 @@ void Loader::draw_file_content(){
       item.ID = ID++;
       item.type = directory::is_directory(file) ? eng::loader::FOLDER : eng::loader::FILE;
       if(item.type == eng::loader::FOLDER){
-        item.name = utl::fct::info::get_filename_from_path(file);
+        item.name = utl::path::get_filename_from_path(file);
         item.path = file;
         item.icon = string(ICON_FA_FOLDER);
         item.size = "---";
@@ -179,11 +179,11 @@ void Loader::draw_file_content(){
         vec_item_folder.push_back(item);
       }else if(item.type == eng::loader::FILE){
         item.path = file;
-        item.name = utl::fct::info::get_name_from_path(file);
+        item.name = utl::path::get_name_from_path(file);
         item.icon = string(ICON_FA_FILE);
-        item.size = utl::fct::info::get_file_formatted_size(file);
-        item.weight = utl::fct::info::get_file_size(file);
-        item.format = utl::fct::info::get_format_from_path(file);
+        item.size = utl::path::get_file_formatted_size(file);
+        item.weight = utl::path::get_file_size(file);
+        item.format = utl::path::get_format_from_path(file);
         item.color_icon = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         item.color_text = sce_format->is_format_supported(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_item_file.push_back(item);
@@ -422,7 +422,7 @@ void Loader::operation_selection(string file_path){
   //If selection is a file go load it
   else{
     //File check
-    string format = utl::fct::info::get_format_from_path(file_path);
+    string format = utl::path::get_format_from_path(file_path);
     if(!utl::fct::file::is_file_exist(file_path)) return;
     if(!sce_format->is_format_supported(format)) return;
 

@@ -18,7 +18,7 @@ utl::file::Entity* Importer::import(utl::file::Path path){
   //---------------------------
 
   utl::file::Entity* entity = new utl::file::Entity();
-  entity->name = utl::fct::info::get_name_from_path(path.data);
+  entity->name = utl::path::get_name_from_path(path.data);
   entity->path = path;
 
   //Init
@@ -146,7 +146,7 @@ void Importer::parse_mtl(std::string path_obj){
   //---------------------------
 
   // Retrieve mtl file path
-  std::string path = utl::fct::info::get_path_from_filepath(path_obj);
+  std::string path = utl::path::get_path_from_filepath(path_obj);
   std::string path_mtl = path + file_mtl;
 
   //Open mtl file

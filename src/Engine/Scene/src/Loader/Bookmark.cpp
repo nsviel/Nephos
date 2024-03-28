@@ -41,7 +41,7 @@ void Bookmark::add_abs_path(string path){
 
   eng::loader::Item item;
   item.path = path;
-  item.name = utl::fct::info::get_name_from_path(path);
+  item.name = utl::path::get_name_from_path(path);
   item.type = directory::is_directory(path) ? eng::loader::FOLDER : eng::loader::FILE;
   item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
   item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
@@ -58,7 +58,7 @@ void Bookmark::add_relative_path(string path){
 
   eng::loader::Item item;
   item.path = utl::fct::file::get_absolute_path(path);
-  item.name = utl::fct::info::get_name_from_path(path);
+  item.name = utl::path::get_name_from_path(path);
   item.icon = directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
   item.color_icon = directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = false;
