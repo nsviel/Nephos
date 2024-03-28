@@ -113,10 +113,10 @@ void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   }
 
   //ADdd into model data vector
-  int index = static_cast<int>(std::round(R / plot->x_resolution));
-  if(index >= 0 && index < plot->vec_x.size()){
-    plot->vec_x[index] = R;
-    plot->vec_y[index] = I;
+  int index = static_cast<int>(std::round(R / plot->x.resolution));
+  if(index >= 0 && index < plot->x.data.size()){
+    plot->x.data[index] = R;
+    plot->y.data[index] = I;
     plot->highlight = vec2(R, I);
   }
 
@@ -142,10 +142,10 @@ void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 
 
       //ADdd into model data vector
-      int index = static_cast<int>(std::round(It / plot->x_resolution));
-      if(index >= 0 && index < plot->vec_x.size()){
-        plot->vec_x[index] = It;
-        plot->vec_y[index] = I;
+      int index = static_cast<int>(std::round(It / plot->x.resolution));
+      if(index >= 0 && index < plot->x.data.size()){
+        plot->x.data[index] = It;
+        plot->y.data[index] = I;
       }
     }
   }
@@ -178,11 +178,11 @@ void Calibration::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       if(R < model->min_R) model->min_R = R;
 
       // Calculate the index of the cell in the heatmap grid
-      int i = static_cast<int>((R - plot->x_min) / (plot->x_max - plot->x_min) * plot->x_size);
-      int j = static_cast<int>((It - plot->y_max) / (plot->y_min - plot->y_max) * plot->y_size);
-      int index = j * plot->x_size + i;
-      if(index >= 0 && index < plot->z_size){
-        plot->vec_z[index] = I;
+      int i = static_cast<int>((R - plot->x.min) / (plot->x.max - plot->x.min) * plot->x.size);
+      int j = static_cast<int>((It - plot->y.max) / (plot->y.min - plot->y.max) * plot->y.size);
+      int index = j * plot->x.size + i;
+      if(index >= 0 && index < plot->z.size){
+        plot->z.data[index] = I;
         model->vec_data[index] = vec3(R, It, I);
       }
     }

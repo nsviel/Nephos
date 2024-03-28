@@ -16,14 +16,14 @@ Plot::Plot(){
 Plot::~Plot(){}
 
 //Main function
-void Plot::plot_heatmap(utl::type::Plot* utl_plot){
+void Plot::plot_heatmap(utl::type::Plot* plot){
   implot_style->make_style();
   //---------------------------
 
   // Push the custom colormap onto the colormap stack
   ImPlot::PushColormap(implot_style->get_colormap_heatmap());
 
-  ImPlot::ColormapScale("##HeatScale",utl_plot->z_min, utl_plot->z_max, ImVec2(60, utl_plot->dimension.y));
+  ImPlot::ColormapScale("##HeatScale", plot->z.min, plot->z.max, ImVec2(60, plot->dimension[1]));
   ImGui::SameLine();
 
   // Begin a new plot
@@ -32,15 +32,15 @@ void Plot::plot_heatmap(utl::type::Plot* utl_plot){
   flag |= ImPlotFlags_NoMouseText;
   flag |= ImPlotFlags_NoLegend;
   flag |= ImPlotFlags_CanvasOnly;
-  if(ImPlot::BeginPlot(utl_plot->title.c_str(), ImVec2(-1, utl_plot->dimension.y), flag)){
+  if(ImPlot::BeginPlot(plot->title.c_str(), ImVec2(-1, plot->dimension[1]), flag)){
     ImPlotAxisFlags axis_flag;
     axis_flag |= ImPlotAxisFlags_AutoFit;
     axis_flag |= ImPlotAxisFlags_Foreground;
     ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
 
     // Plot the heatmap
-    string truc = utl_plot->title + "##heatmap";
-    ImPlot::PlotHeatmap(truc.c_str(), utl_plot->vec_z.data(), utl_plot->y_size, utl_plot->x_size, utl_plot->z_min, utl_plot->z_max, nullptr, ImPlotPoint(utl_plot->x_min, utl_plot->y_min), ImPlotPoint(utl_plot->x_max, utl_plot->y_max));
+    string truc = plot->title + "##heatmap";
+    ImPlot::PlotHeatmap(truc.c_str(), plot->z.data.data(), plot->y.size, plot->x.size, plot->z.min, plot->z.max, nullptr, ImPlotPoint(plot->x.min, plot->y.min), ImPlotPoint(plot->x.max, plot->y.max));
 
     // End the plot
     ImPlot::EndPlot();
@@ -50,14 +50,14 @@ void Plot::plot_heatmap(utl::type::Plot* utl_plot){
 
   //---------------------------
 }
-void Plot::plot_heatmap(utl::type::Plot* utl_plot, float data_min, float data_max){
+void Plot::plot_heatmap(utl::type::Plot* plot, vec2 x_limit, float& x_current){
   implot_style->make_style();
   //---------------------------
 
   // Push the custom colormap onto the colormap stack
   ImPlot::PushColormap(implot_style->get_colormap_heatmap());
 
-  ImPlot::ColormapScale("##HeatScale",utl_plot->z_min, utl_plot->z_max, ImVec2(60, utl_plot->dimension.y));
+  ImPlot::ColormapScale("##HeatScale",plot->z.min, plot->z.max, ImVec2(60, plot->dimension[1]));
   ImGui::SameLine();
 
   // Begin a new plot
@@ -66,28 +66,37 @@ void Plot::plot_heatmap(utl::type::Plot* utl_plot, float data_min, float data_ma
   flag |= ImPlotFlags_NoMouseText;
   flag |= ImPlotFlags_NoLegend;
   flag |= ImPlotFlags_CanvasOnly;
-  if(ImPlot::BeginPlot(utl_plot->title.c_str(), ImVec2(-1, utl_plot->dimension.y), flag)){
+  if(ImPlot::BeginPlot(plot->title.c_str(), ImVec2(-1, plot->dimension[1]), flag)){
     ImPlotAxisFlags axis_flag;
     axis_flag |= ImPlotAxisFlags_AutoFit;
     axis_flag |= ImPlotAxisFlags_Foreground;
     ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
 
+    //Dragging line
+    static float drag_pose[2] = {0, 0};
+    if (ImPlot::IsPlotHovered() && ImGui::IsMouseDragging(ImGuiMouseButton_Left)){
+      float pose = ImPlot::GetPlotMousePos().x;
+      if(pose > x_limit[0] && pose < x_limit[1]){
+        drag_pose[0] = pose;
+        drag_pose[1] = pose;
+        x_current = pose;
+      }
+    }
+
     // Plot the heatmap
-    string truc = utl_plot->title + "##heatmap";
-    ImPlot::PlotHeatmap(truc.c_str(), utl_plot->vec_z.data(), utl_plot->y_size, utl_plot->x_size, utl_plot->z_min, utl_plot->z_max, nullptr, ImPlotPoint(utl_plot->x_min, utl_plot->y_min), ImPlotPoint(utl_plot->x_max, utl_plot->y_max));
+    string truc = plot->title + "##heatmap";
+    ImPlot::PlotHeatmap(truc.c_str(), plot->z.data.data(), plot->y.size, plot->x.size, plot->z.min, plot->z.max, nullptr, ImPlotPoint(plot->x.min, plot->y.min), ImPlotPoint(plot->x.max, plot->y.max));
 
     // Draw straight lines over the heatmap
-    ImPlot::PlotLine("Data Min", &data_min, 1);
-    ImPlot::PlotLine("Data Max", &data_max, 1);
-
-    // Draw straight lines over the heatmap
-    float min_x[2] = {data_min, data_min};
-    float max_x[2] = {data_max, data_max};
-    float min_y[2] = {0, utl_plot->y_max};
+    float min_x[2] = {x_limit[0], x_limit[0]};
+    float max_x[2] = {x_limit[1], x_limit[1]};
+    float height[2] = {0, plot->y.max};
     ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f)); // Red color
-    ImPlot::PlotLine("Data Min", min_x, min_y, 2);
+    ImPlot::PlotLine("Data Min", min_x, height, 2);
     ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f)); // Green color
-    ImPlot::PlotLine("Data Min", max_x, min_y, 2);
+    ImPlot::PlotLine("Data Min", max_x, height, 2);
+    ImPlot::SetNextLineStyle(ImVec4(1.0f, 0.1f, 0.1f, 1.0f)); // Green color
+    ImPlot::PlotLine("Data current", drag_pose, height, 2);
 
     // End the plot
     ImPlot::EndPlot();
@@ -97,7 +106,7 @@ void Plot::plot_heatmap(utl::type::Plot* utl_plot, float data_min, float data_ma
 
   //---------------------------
 }
-void Plot::plot_scatter(utl::type::Plot* utl_plot){
+void Plot::plot_scatter(utl::type::Plot* plot){
   implot_style->make_style();
   //---------------------------
 
@@ -107,23 +116,23 @@ void Plot::plot_scatter(utl::type::Plot* utl_plot){
   flag |= ImPlotFlags_NoMouseText;
   flag |= ImPlotFlags_NoLegend;
   flag |= ImPlotFlags_CanvasOnly;
-  if(ImPlot::BeginPlot(utl_plot->title.c_str(), ImVec2(-1, utl_plot->dimension.y), flag)){
+  if(ImPlot::BeginPlot(plot->title.c_str(), ImVec2(-1, plot->dimension[1]), flag)){
     ImPlotAxisFlags axis_flag;
     axis_flag |= ImPlotAxisFlags_AutoFit;
     axis_flag |= ImPlotAxisFlags_Foreground;
-    ImPlot::SetupAxes(utl_plot->x_axis_name.c_str(), utl_plot->x_axis_name.c_str(), axis_flag, axis_flag);
+    ImPlot::SetupAxes(plot->x_axis_name.c_str(), plot->x_axis_name.c_str(), axis_flag, axis_flag);
 
     // Plot the data
-    string truc = utl_plot->title + "##scatter";
-    ImPlot::PlotScatter(truc.c_str(), utl_plot->vec_x.data(), utl_plot->vec_y.data(), utl_plot->vec_x.size());
+    string truc = plot->title + "##scatter";
+    ImPlot::PlotScatter(truc.c_str(), plot->x.data.data(), plot->y.data.data(), plot->x.data.size());
 
     // Plot an additional point in a different color
-    if(utl_plot->highlight != vec2(-1, -1)){
+    if(plot->highlight != vec2(-1, -1)){
       ImVec4 color = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
       ImPlot::PushStyleColor(ImPlotCol_MarkerFill, color);
       ImPlot::PushStyleColor(ImPlotCol_MarkerOutline, color);
-      string machin = utl_plot->title + "##highlight";
-      ImPlot::PlotScatter(machin.c_str(), &utl_plot->highlight.x, &utl_plot->highlight.y, 1);
+      string machin = plot->title + "##highlight";
+      ImPlot::PlotScatter(machin.c_str(), &plot->highlight.x, &plot->highlight.y, 1);
       ImPlot::PopStyleColor(2);
     }
 

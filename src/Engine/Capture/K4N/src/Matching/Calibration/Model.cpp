@@ -24,44 +24,44 @@ void Model::init(){
   //I(R)
   utl::type::Plot* plot_ifr = &k4n_struct->matching.model.IfR;
   plot_ifr->title = "I(R)";
-  plot_ifr->x_resolution = 0.01f;
-  plot_ifr->x_min = 0.0f;
-  plot_ifr->x_max = 5.0f;
-  plot_ifr->x_size = static_cast<int>((plot_ifr->x_max - plot_ifr->x_min) / plot_ifr->x_resolution) + 1;
-  plot_ifr->vec_x = vector<float>(plot_ifr->x_size, 0.0f);
-  plot_ifr->vec_y = vector<float>(plot_ifr->x_size, 0.0f);
+  plot_ifr->x.resolution = 0.01f;
+  plot_ifr->x.min = 0.0f;
+  plot_ifr->x.max = 5.0f;
+  plot_ifr->x.size = static_cast<int>((plot_ifr->x.max - plot_ifr->x.min) / plot_ifr->x.resolution) + 1;
+  plot_ifr->x.data = vector<float>(plot_ifr->x.size, 0.0f);
+  plot_ifr->y.data = vector<float>(plot_ifr->x.size, 0.0f);
 
   //I(It)
   utl::type::Plot* plot_ifit = &k4n_struct->matching.model.IfIt;
   plot_ifit->title = "I(It)";
-  plot_ifit->x_resolution = 1.0f;
-  plot_ifit->x_min = 0.0f;
-  plot_ifit->x_max = 90.0f;
-  plot_ifit->x_size = static_cast<int>((plot_ifit->x_max - plot_ifit->x_min) / plot_ifit->x_resolution) + 1;
-  plot_ifit->vec_x = vector<float>(plot_ifit->x_size, 0.0f);
-  plot_ifit->vec_y = vector<float>(plot_ifit->x_size, 0.0f);
+  plot_ifit->x.resolution = 1.0f;
+  plot_ifit->x.min = 0.0f;
+  plot_ifit->x.max = 90.0f;
+  plot_ifit->x.size = static_cast<int>((plot_ifit->x.max - plot_ifit->x.min) / plot_ifit->x.resolution) + 1;
+  plot_ifit->x.data = vector<float>(plot_ifit->x.size, 0.0f);
+  plot_ifit->y.data = vector<float>(plot_ifit->x.size, 0.0f);
 
   //I(R, It)
   utl::type::Plot* plot_ifrit = &k4n_struct->matching.model.IfRIt;
   plot_ifrit->title = "I(R, It)";
 
-  plot_ifrit->x_resolution = 0.01f;
-  plot_ifrit->x_min = 0.0f;
-  plot_ifrit->x_max = 5.0f;
-  plot_ifrit->x_size = static_cast<int>((plot_ifrit->x_max - plot_ifrit->x_min) / plot_ifrit->x_resolution) + 1;
+  plot_ifrit->x.resolution = 0.01f;
+  plot_ifrit->x.min = 0.0f;
+  plot_ifrit->x.max = 5.0f;
+  plot_ifrit->x.size = static_cast<int>((plot_ifrit->x.max - plot_ifrit->x.min) / plot_ifrit->x.resolution) + 1;
 
-  plot_ifrit->y_resolution = 1.0f;
-  plot_ifrit->y_min = 0.0f;
-  plot_ifrit->y_max = 90.0f;
-  plot_ifrit->y_size = static_cast<int>((plot_ifrit->y_max - plot_ifrit->y_min) / plot_ifrit->y_resolution) + 1;
+  plot_ifrit->y.resolution = 1.0f;
+  plot_ifrit->y.min = 0.0f;
+  plot_ifrit->y.max = 90.0f;
+  plot_ifrit->y.size = static_cast<int>((plot_ifrit->y.max - plot_ifrit->y.min) / plot_ifrit->y.resolution) + 1;
 
-  plot_ifrit->z_min = 0.0f;
-  plot_ifrit->z_max = 2500.0f;
-  plot_ifrit->z_size = plot_ifrit->x_size * plot_ifrit->y_size;
-  plot_ifrit->vec_z = vector<float>(plot_ifrit->z_size, 0.0f);
+  plot_ifrit->z.min = 0.0f;
+  plot_ifrit->z.max = 2500.0f;
+  plot_ifrit->z.size = plot_ifrit->x.size * plot_ifrit->y.size;
+  plot_ifrit->z.data = vector<float>(plot_ifrit->z.size, 0.0f);
 
   //Model
-  k4n_struct->matching.model.vec_data = vector<vec3>(plot_ifrit->z_size, vec3(-1, -1, -1));
+  k4n_struct->matching.model.vec_data = vector<vec3>(plot_ifrit->z.size, vec3(-1, -1, -1));
   k4n_struct->matching.model.min_R = 1000;
   k4n_struct->matching.model.max_R = -1;
 
@@ -83,27 +83,24 @@ void Model::import_model(){
   //Import file model data
   model->vec_data = utl::file::read_vector(model->path);
 
-  //Fill model heatmap plot data
+  //Fill model plot data
   for(int i=0; i<model->vec_data.size(); i++){
     float& R = model->vec_data[i].x;
     float& It = model->vec_data[i].y;
     float& I = model->vec_data[i].z;
 
-    model->IfRIt.vec_z[i] = I;
+    model->IfRIt.z.data[i] = I;
 
     //Search for R limite validity
     if(R > model->max_R) model->max_R = R;
     if(R < model->min_R && R != -1) model->min_R = R;
 
-/*
     //I(It)
     if(It < 5 && It > 0){
-      int index = i;
-      if(i > model->IfR.x_size) index = i - model->IfR.x_size;
-
-      model->IfR.vec_x[index] = R;
-      model->IfR.vec_y[index] = I;
-    }*/
+      int index = static_cast<int>(std::round(R / model->IfR.x.resolution));
+      model->IfR.x.data[index] = R;
+      model->IfR.y.data[index] = I;
+    }
   }
 
   //---------------------------

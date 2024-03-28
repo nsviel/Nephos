@@ -85,7 +85,7 @@ void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
   }
 
   //Heatmap scale
-  ImGui::DragFloatRange2("Heatmap scale",&k4n_struct->matching.model.IfRIt.z_min, &k4n_struct->matching.model.IfRIt.z_max, 100, 0, 60000, "%.0f");
+  ImGui::DragFloatRange2("Heatmap scale",&k4n_struct->matching.model.IfRIt.z.min, &k4n_struct->matching.model.IfRIt.z.max, 100, 0, 60000, "%.0f");
 
   //---------------------------
   ImGui::Separator();
@@ -117,6 +117,7 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
 
 //Subfunction
 void Calibration::draw_model(k4n::dev::Sensor* sensor){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
   k4n_model->make_model();
@@ -125,26 +126,26 @@ void Calibration::draw_model(k4n::dev::Sensor* sensor){
 
   // Generate values for x and y
   std::vector<double> x_values;
-  for (double i = 0.0; i <= 5.0; i += 0.1) {
-      x_values.push_back(i);
+  for(double i = model->min_R; i <= model->max_R; i += 0.1){
+    x_values.push_back(i);
   }
 
   std::vector<double> y_values;
-  for (double i = 0.0; i <= 90.0; i += 1.0) {
-      y_values.push_back(i);
+  for(double i = 0.0; i <= 90.0; i += 1.0){
+    y_values.push_back(i);
   }
 
   // Compute z values and fill x, y, and z vectors
   for (double x_val : x_values) {
-      std::vector<double> row_x, row_y, row_z;
-      for (double y_val : y_values) {
-          row_x.push_back(x_val);
-          row_y.push_back(y_val);
-          row_z.push_back(k4n_model->apply_model(x_val, y_val));
-      }
-      x.push_back(row_x);
-      y.push_back(row_y);
-      z.push_back(row_z);
+    std::vector<double> row_x, row_y, row_z;
+    for (double y_val : y_values) {
+      row_x.push_back(x_val);
+      row_y.push_back(y_val);
+      row_z.push_back(k4n_model->apply_model(x_val, y_val));
+    }
+    x.push_back(row_x);
+    y.push_back(row_y);
+    z.push_back(row_z);
   }
 
   matplotlibcpp::plot_surface(x, y, z);
@@ -183,10 +184,10 @@ void Calibration::plot_measure_IfIt(k4n::dev::Sensor* sensor, float height){
 }
 void Calibration::plot_model_heatmap(k4n::dev::Sensor* sensor, float height){
   //---------------------------
-
+float R_current = 0;
   utl::type::Plot* plot = &k4n_struct->matching.model.IfRIt;
   plot->dimension = ivec2(-1, height);
-  utl_plot->plot_heatmap(plot, k4n_struct->matching.model.min_R, k4n_struct->matching.model.max_R);
+  utl_plot->plot_heatmap(plot, vec2(k4n_struct->matching.model.min_R, k4n_struct->matching.model.max_R), R_current);
 
   //---------------------------
 }
