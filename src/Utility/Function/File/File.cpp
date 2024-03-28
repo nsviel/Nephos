@@ -198,7 +198,7 @@ void write_vec_path(const std::string& path, const std::vector<std::string>& vec
 
   //---------------------------
 }
-void write_vector(const std::vector<glm::vec3>& vec, const std::string& path){
+void write_vector(const std::string& path, const std::vector<glm::vec3>& vec){
   //---------------------------
 
   std::ofstream file(path);
@@ -258,4 +258,6 @@ std::vector<glm::vec3> read_vector(const std::string& path){
 
   //---------------------------
   return vec;
+}
+
 }

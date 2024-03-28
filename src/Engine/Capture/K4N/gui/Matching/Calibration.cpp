@@ -100,11 +100,11 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
   }
   ImGui::SameLine();
   if(ImGui::Button("Export##model", ImVec2(120, 0))){
-    this->draw_model(sensor);
+    utl::file::write_vector(k4n_struct->matching.model.path, k4n_struct->matching.model.vec_data);
   }
   ImGui::SameLine();
   if(ImGui::Button("Import##model", ImVec2(120, 0))){
-    this->draw_model(sensor);
+    k4n_struct->matching.model.vec_data = utl::file::read_vector(k4n_struct->matching.model.path);
   }
 
   //---------------------------

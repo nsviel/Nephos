@@ -79,6 +79,8 @@ float Model::apply_model(float x, float y){
 
   float z = ope_polyfit->evaluate(x, y);
 
+  if(z < 0) z = 0;
+
   //---------------------------
   return z;
 }

@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <glm/glm.hpp>
 
 
 namespace utl::file{
@@ -22,7 +23,7 @@ uint8_t* load_binary(std::string path);
 
 //Export / import
 void write_vec_path(const std::string& path, const std::vector<std::string>& vec_path);
-void write_vector(const std::vector<glm::vec3>& vec, const std::string& path);
+void write_vector(const std::string& path, const std::vector<glm::vec3>& vec);
 std::vector<std::string> read_vec_path(const std::string& path);
 std::vector<glm::vec3> read_vector(const std::string& path);
 

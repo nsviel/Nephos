@@ -9,7 +9,7 @@ namespace k4n::structure{
 struct Model{
   //---------------------------
 
-  std::string path = "";
+  std::string path = "../media/calibration.data";
   std::vector<glm::vec3> vec_data;
   int degree = 5;
 
