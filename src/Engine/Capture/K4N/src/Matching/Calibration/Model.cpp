@@ -62,11 +62,52 @@ void Model::init(){
 
   //Model
   k4n_struct->matching.model.vec_data = vector<vec3>(plot_ifrit->z_size, vec3(-1, -1, -1));
+  k4n_struct->matching.model.min_R = 1000;
+  k4n_struct->matching.model.max_R = -1;
 
   //---------------------------
 }
 
 //Subfunction
+void Model::export_model(){
+  //---------------------------
+
+  utl::file::write_vector(k4n_struct->matching.model.path, k4n_struct->matching.model.vec_data);
+
+  //---------------------------
+}
+void Model::import_model(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
+  //---------------------------
+
+  //Import file model data
+  model->vec_data = utl::file::read_vector(model->path);
+
+  //Fill model heatmap plot data
+  for(int i=0; i<model->vec_data.size(); i++){
+    float& R = model->vec_data[i].x;
+    float& It = model->vec_data[i].y;
+    float& I = model->vec_data[i].z;
+
+    model->IfRIt.vec_z[i] = I;
+
+    //Search for R limite validity
+    if(R > model->max_R) model->max_R = R;
+    if(R < model->min_R && R != -1) model->min_R = R;
+
+/*
+    //I(It)
+    if(It < 5 && It > 0){
+      int index = i;
+      if(i > model->IfR.x_size) index = i - model->IfR.x_size;
+
+      model->IfR.vec_x[index] = R;
+      model->IfR.vec_y[index] = I;
+    }*/
+  }
+
+  //---------------------------
+}
 void Model::make_model(){
   //---------------------------
 

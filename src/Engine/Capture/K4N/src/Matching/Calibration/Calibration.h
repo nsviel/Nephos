@@ -35,10 +35,9 @@ public:
   void ransac_sphere(k4n::dev::Sensor* sensor);
 
   //Data function
-  void data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
   void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
   void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
-  void data_IfRIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
+  void data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
 
   inline string get_step_str(){return map_step[step];}
   inline int get_step(){return step;}

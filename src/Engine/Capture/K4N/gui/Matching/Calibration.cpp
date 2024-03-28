@@ -100,11 +100,15 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
   }
   ImGui::SameLine();
   if(ImGui::Button("Export##model", ImVec2(120, 0))){
-    utl::file::write_vector(k4n_struct->matching.model.path, k4n_struct->matching.model.vec_data);
+    k4n_model->export_model();
   }
   ImGui::SameLine();
   if(ImGui::Button("Import##model", ImVec2(120, 0))){
-    k4n_struct->matching.model.vec_data = utl::file::read_vector(k4n_struct->matching.model.path);
+    k4n_model->import_model();
+  }
+  ImGui::SameLine();
+  if(ImGui::Button("Clear##model", ImVec2(120, 0))){
+    k4n_model->init();
   }
 
   //---------------------------
@@ -143,7 +147,6 @@ void Calibration::draw_model(k4n::dev::Sensor* sensor){
       z.push_back(row_z);
   }
 
-
   matplotlibcpp::plot_surface(x, y, z);
   matplotlibcpp::show();
 
@@ -154,13 +157,13 @@ void Calibration::draw_measure(k4n::dev::Sensor* sensor){
 
   float height = ImGui::GetContentRegionAvail().y / 3-3.33;
 
-  this->plot_IfR(sensor, height);
-  this->plot_IfIt(sensor, height);
-  this->plot_IfItR(sensor, height);
+  this->plot_measure_IfR(sensor, height);
+  this->plot_measure_IfIt(sensor, height);
+  this->plot_model_heatmap(sensor, height);
 
   //---------------------------
 }
-void Calibration::plot_IfR(k4n::dev::Sensor* sensor, float height){
+void Calibration::plot_measure_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   utl::type::Plot* plot = &k4n_struct->matching.model.IfR;
@@ -169,7 +172,7 @@ void Calibration::plot_IfR(k4n::dev::Sensor* sensor, float height){
 
   //---------------------------
 }
-void Calibration::plot_IfIt(k4n::dev::Sensor* sensor, float height){
+void Calibration::plot_measure_IfIt(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   utl::type::Plot* plot = &k4n_struct->matching.model.IfIt;
@@ -178,12 +181,12 @@ void Calibration::plot_IfIt(k4n::dev::Sensor* sensor, float height){
 
   //---------------------------
 }
-void Calibration::plot_IfItR(k4n::dev::Sensor* sensor, float height){
+void Calibration::plot_model_heatmap(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   utl::type::Plot* plot = &k4n_struct->matching.model.IfRIt;
   plot->dimension = ivec2(-1, height);
-  utl_plot->plot_heatmap(plot);
+  utl_plot->plot_heatmap(plot, k4n_struct->matching.model.min_R, k4n_struct->matching.model.max_R);
 
   //---------------------------
 }

@@ -30,9 +30,9 @@ public:
   //Subfunction
   void draw_model(k4n::dev::Sensor* sensor);
   void draw_measure(k4n::dev::Sensor* sensor);
-  void plot_IfR(k4n::dev::Sensor* sensor, float height);
-  void plot_IfIt(k4n::dev::Sensor* sensor, float height);
-  void plot_IfItR(k4n::dev::Sensor* sensor, float height);
+  void plot_measure_IfR(k4n::dev::Sensor* sensor, float height);
+  void plot_measure_IfIt(k4n::dev::Sensor* sensor, float height);
+  void plot_model_heatmap(k4n::dev::Sensor* sensor, float height);
 
 private:
   k4n::gui::Player* gui_player;

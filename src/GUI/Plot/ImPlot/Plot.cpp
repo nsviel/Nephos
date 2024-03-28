@@ -50,6 +50,53 @@ void Plot::plot_heatmap(utl::type::Plot* utl_plot){
 
   //---------------------------
 }
+void Plot::plot_heatmap(utl::type::Plot* utl_plot, float data_min, float data_max){
+  implot_style->make_style();
+  //---------------------------
+
+  // Push the custom colormap onto the colormap stack
+  ImPlot::PushColormap(implot_style->get_colormap_heatmap());
+
+  ImPlot::ColormapScale("##HeatScale",utl_plot->z_min, utl_plot->z_max, ImVec2(60, utl_plot->dimension.y));
+  ImGui::SameLine();
+
+  // Begin a new plot
+  ImPlotFlags flag;
+  flag |= ImPlotFlags_NoBoxSelect;
+  flag |= ImPlotFlags_NoMouseText;
+  flag |= ImPlotFlags_NoLegend;
+  flag |= ImPlotFlags_CanvasOnly;
+  if(ImPlot::BeginPlot(utl_plot->title.c_str(), ImVec2(-1, utl_plot->dimension.y), flag)){
+    ImPlotAxisFlags axis_flag;
+    axis_flag |= ImPlotAxisFlags_AutoFit;
+    axis_flag |= ImPlotAxisFlags_Foreground;
+    ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
+
+    // Plot the heatmap
+    string truc = utl_plot->title + "##heatmap";
+    ImPlot::PlotHeatmap(truc.c_str(), utl_plot->vec_z.data(), utl_plot->y_size, utl_plot->x_size, utl_plot->z_min, utl_plot->z_max, nullptr, ImPlotPoint(utl_plot->x_min, utl_plot->y_min), ImPlotPoint(utl_plot->x_max, utl_plot->y_max));
+
+    // Draw straight lines over the heatmap
+    ImPlot::PlotLine("Data Min", &data_min, 1);
+    ImPlot::PlotLine("Data Max", &data_max, 1);
+
+    // Draw straight lines over the heatmap
+    float min_x[2] = {data_min, data_min};
+    float max_x[2] = {data_max, data_max};
+    float min_y[2] = {0, utl_plot->y_max};
+    ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f)); // Red color
+    ImPlot::PlotLine("Data Min", min_x, min_y, 2);
+    ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f)); // Green color
+    ImPlot::PlotLine("Data Min", max_x, min_y, 2);
+
+    // End the plot
+    ImPlot::EndPlot();
+  }
+
+  ImPlot::PopColormap();
+
+  //---------------------------
+}
 void Plot::plot_scatter(utl::type::Plot* utl_plot){
   implot_style->make_style();
   //---------------------------
