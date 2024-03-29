@@ -96,7 +96,7 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
 
 //Data function
 void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  utl::type::Plot* plot = &k4n_struct->matching.model.IfR;
+  k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
   //Search for closest point
@@ -113,17 +113,18 @@ void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   }
 
   //ADdd into model data vector
-  int index = static_cast<int>(std::round(R / plot->x.resolution));
-  if(index >= 0 && index < plot->x.data.size()){
-    plot->x.data[index] = R;
-    plot->y.data[index] = I;
-    plot->highlight = vec2(R, I);
+  int index = static_cast<int>(std::round(R / model->IfR.x.resolution));
+  if(index >= 0 && index < model->IfR.x.data.size()){
+    model->IfR.x.data[index] = R;
+    model->IfR.y.data[index] = I;
+    model->IfR.highlight = vec2(R, I);
+    model->x.current = R;
   }
 
   //---------------------------
 }
 void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  utl::type::Plot* plot = &k4n_struct->matching.model.IfIt;
+  k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
   //Search for closest point
@@ -142,11 +143,9 @@ void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 
 
       //ADdd into model data vector
-      int index = static_cast<int>(std::round(It / plot->x.resolution));
-      if(index >= 0 && index < plot->x.data.size()){
-        plot->x.data[index] = It;
-        plot->y.data[index] = I;
-      }
+      int index = static_cast<int>(std::round(It / model->IfIt.x.resolution));
+      model->IfIt.x.data[index] = It;
+      model->IfIt.y.data[index] = I;
     }
   }
 
@@ -154,7 +153,6 @@ void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 }
 void Calibration::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   k4n::structure::Model* model = &k4n_struct->matching.model;
-  utl::type::Plot* plot = &model->IfRIt;
   //---------------------------
 
   //Search for closest point
@@ -178,11 +176,11 @@ void Calibration::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       if(R > model->x.bound[1]) model->x.bound[1] = R;
 
       // Calculate the index of the cell in the heatmap grid
-      int i = static_cast<int>((R - plot->x.min) / (plot->x.max - plot->x.min) * plot->x.size);
-      int j = static_cast<int>((It - plot->y.max) / (plot->y.min - plot->y.max) * plot->y.size);
-      int index = j * plot->x.size + i;
-      if(index >= 0 && index < plot->z.size){
-        plot->z.data[index] = I;
+      int i = static_cast<int>((R - model->IfRIt.x.min) / (model->IfRIt.x.max - model->IfRIt.x.min) * model->IfRIt.x.size);
+      int j = static_cast<int>((It - model->IfRIt.y.max) / (model->IfRIt.y.min - model->IfRIt.y.max) * model->IfRIt.y.size);
+      int index = j * model->IfRIt.x.size + i;
+      if(index >= 0 && index < model->IfRIt.z.size){
+        model->IfRIt.z.data[index] = I;
         model->vec_data[index] = vec3(R, It, I);
       }
     }

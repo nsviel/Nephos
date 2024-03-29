@@ -95,7 +95,7 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model");
 
-  if(ImGui::Button("3D plot##model", ImVec2(120, 0))){
+  if(ImGui::Button("Plot##model", ImVec2(120, 0))){
     this->draw_model(sensor);
   }
   ImGui::SameLine();
@@ -187,7 +187,10 @@ void Calibration::plot_model_heatmap(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   model->IfRIt.dimension = ivec2(-1, height);
-  utl_plot->plot_heatmap(&model->IfRIt, &model->x);
+  bool need_update = utl_plot->plot_heatmap(&model->IfRIt, &model->x, &model->y);
+  if(need_update){
+    k4n_model->update_plot();
+  }
 
   //---------------------------
 }

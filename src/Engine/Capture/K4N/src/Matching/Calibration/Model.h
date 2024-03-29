@@ -24,6 +24,7 @@ public:
   //Subfunction
   void export_model();
   void import_model();
+  void update_plot();
   void make_model();
   float apply_model(float x, float y);
 

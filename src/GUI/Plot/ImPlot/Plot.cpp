@@ -50,7 +50,8 @@ void Plot::plot_heatmap(utl::type::Plot* plot){
 
   //---------------------------
 }
-void Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis){
+bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::type::Axis* y_axis){
+  bool dragged = false;
   implot_style->make_style();
   //---------------------------
 
@@ -72,29 +73,47 @@ void Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis){
     axis_flag |= ImPlotAxisFlags_Foreground;
     ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
 
-    //Dragging line
-    if (ImPlot::IsPlotHovered() && ImGui::IsMouseDragging(ImGuiMouseButton_Left)){
-      float pose = ImPlot::GetPlotMousePos().x;
-      if(pose > x_axis->bound[0] && pose < x_axis->bound[1]){
-        x_axis->current = pose;
-      }
-    }
-
     // Plot the heatmap
     string truc = plot->title + "##heatmap";
     ImPlot::PlotHeatmap(truc.c_str(), plot->z.data.data(), plot->y.size, plot->x.size, plot->z.min, plot->z.max, nullptr, ImPlotPoint(plot->x.min, plot->y.min), ImPlotPoint(plot->x.max, plot->y.max));
 
-    // Draw straight lines over the heatmap
+    // Draw x bounds
     float x_bound_min[2] = {x_axis->bound[0], x_axis->bound[0]};
     float x_bound_max[2] = {x_axis->bound[1], x_axis->bound[1]};
-    float x_current[2] = {x_axis->current, x_axis->current};
     float y_height[2] = {0, plot->y.max};
     ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f)); // Red color
     ImPlot::PlotLine("Data Min", x_bound_min, y_height, 2);
     ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f)); // Green color
     ImPlot::PlotLine("Data Min", x_bound_max, y_height, 2);
-    ImPlot::SetNextLineStyle(ImVec4(1.0f, 0.1f, 0.1f, 1.0f)); // Green color
-    ImPlot::PlotLine("Data current", x_current, y_height, 2);
+
+    //Dragging line
+    if(ImPlot::IsPlotHovered() && ImGui::IsMouseDragging(ImGuiMouseButton_Left)){
+      if(x_axis->current < x_axis->bound[0]) x_axis->current = x_axis->bound[0];
+      if(x_axis->current > x_axis->bound[1]) x_axis->current = x_axis->bound[1];
+      ImPlotPoint mouse = ImPlot::GetPlotMousePos();
+
+      //X current
+      if(mouse.x > x_axis->bound[0] && mouse.x < x_axis->bound[1]){
+        x_axis->current = mouse.x;
+        dragged = true;
+      }
+
+      //Y current
+      if(mouse.y > y_axis->bound[0] && mouse.y < y_axis->bound[1]){
+        y_axis->current = mouse.y;
+        dragged = true;
+      }
+    }
+    float x_current[2] = {x_axis->current, x_axis->current};
+    ImPlot::SetNextLineStyle(ImVec4(1.0f, 0.1f, 0.1f, 0.8f));
+    ImPlot::PlotLine("X current", x_current, y_height, 2);
+    float x_width[2] = {x_axis->bound[0], x_axis->bound[1]};
+    float y_current[2] = {y_axis->current, y_axis->current};
+    ImPlot::SetNextLineStyle(ImVec4(0.1f, 1.0f, 0.1f, 0.8f));
+    ImPlot::PlotLine("Y current", x_width, y_current, 2);
+
+    //Line floating text
+    ImPlot::PlotText("seg 1", x_axis->current, plot->y.max, ImVec2(5, 30), ImPlotTextFlags_Vertical);
 
     // End the plot
     ImPlot::EndPlot();
@@ -103,6 +122,7 @@ void Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis){
   ImPlot::PopColormap();
 
   //---------------------------
+  return dragged;
 }
 void Plot::plot_scatter(utl::type::Plot* plot){
   implot_style->make_style();
