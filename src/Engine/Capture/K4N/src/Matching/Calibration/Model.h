@@ -21,14 +21,18 @@ public:
   //Main function
   void init();
 
-  //Subfunction
+  //Measure function
+  void import_measure();
+  void export_measure();
+  void update_plot();
+  void find_model_bounds();
+
+  //Model function
   void export_model();
   void import_model();
-  void update_plot();
   void make_model();
   float apply_model(float x, float y);
   float validation_model();
-  void find_model_bounds();
 
 private:
   k4n::structure::K4N* k4n_struct;

@@ -65,15 +65,15 @@ void Model::init(){
   //---------------------------
 }
 
-//Subfunction
-void Model::export_model(){
+//Measure function
+void Model::export_measure(){
   //---------------------------
 
   utl::file::write_vector(k4n_struct->matching.model.path, k4n_struct->matching.model.vec_data);
 
   //---------------------------
 }
-void Model::import_model(){
+void Model::import_measure(){
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
@@ -118,26 +118,6 @@ void Model::update_plot(){
 
   //---------------------------
 }
-void Model::make_model(){
-  //---------------------------
-
-  ope_polyfit->compute(k4n_struct->matching.model.vec_data, k4n_struct->matching.model.degree);
-
-
-/*
-potential fitting systems
-Local Regression (LOESS/LOWESS):
-    LOESS (Locally Weighted Scatterplot Smoothing) and LOWESS (Locally Weighted Scatterplot Smoothing) are non-parametric regression methods that fit smooth curves to data by locally fitting a polynomial regression model.
-    These methods use a moving window to fit regression models to subsets of the data, with weights assigned based on the distance of each point from the point being estimated.
-    LOESS and LOWESS can capture local variations in the data well and provide flexible surface fitting without assuming a specific global function form.
-
-Kernel Smoothing:
-    Kernel smoothing methods estimate the underlying surface by averaging nearby data points, weighted by a kernel function.
-    Common kernel functions include Gaussian, Epanechnikov, and Triangular kernels, which determine the weight of each data point based on its distance from the point being evaluated.
-    Kernel smoothing can provide a smooth estimate of the surface while preserving local features in the data.
-    */
-  //---------------------------
-}
 void Model::find_model_bounds(){
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
@@ -154,6 +134,50 @@ void Model::find_model_bounds(){
     if(It > model->y.bound[1]) model->y.bound[1] = It;
   }
 
+  //---------------------------
+}
+
+//Model measure
+void Model::export_model(){
+  //---------------------------
+
+  utl::file::write_vector(k4n_struct->matching.model.path, k4n_struct->matching.model.vec_data);
+
+  //---------------------------
+}
+void Model::import_model(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
+  //---------------------------
+
+  //Import file model data
+  model->vec_data = utl::file::read_vector(model->path);
+  this->update_plot();
+  this->find_model_bounds();
+
+  //---------------------------
+}
+void Model::make_model(){
+  //---------------------------
+
+  vector<vec3>& vec_data = k4n_struct->matching.model.vec_data;
+  vec2& x_bound = k4n_struct->matching.model.x.bound;
+  vec2& y_bound = k4n_struct->matching.model.y.bound;
+  int& degree = k4n_struct->matching.model.degree;
+  ope_polyfit->compute(vec_data, degree, x_bound, y_bound);
+
+
+/*
+potential fitting systems
+Local Regression (LOESS/LOWESS):
+    LOESS (Locally Weighted Scatterplot Smoothing) and LOWESS (Locally Weighted Scatterplot Smoothing) are non-parametric regression methods that fit smooth curves to data by locally fitting a polynomial regression model.
+    These methods use a moving window to fit regression models to subsets of the data, with weights assigned based on the distance of each point from the point being estimated.
+    LOESS and LOWESS can capture local variations in the data well and provide flexible surface fitting without assuming a specific global function form.
+
+Kernel Smoothing:
+    Kernel smoothing methods estimate the underlying surface by averaging nearby data points, weighted by a kernel function.
+    Common kernel functions include Gaussian, Epanechnikov, and Triangular kernels, which determine the weight of each data point based on its distance from the point being evaluated.
+    Kernel smoothing can provide a smooth estimate of the surface while preserving local features in the data.
+    */
   //---------------------------
 }
 float Model::apply_model(float x, float y){
@@ -173,6 +197,8 @@ float Model::validation_model(){
   float sum = 0;
   for(int i=0; i<vec_data.size(); i++){
     vec3& data = vec_data[i];
+    if(data.x < k4n_struct->matching.model.x.bound[0] || data.x > k4n_struct->matching.model.x.bound[1]) continue;
+    if(data.y < k4n_struct->matching.model.y.bound[0] || data.y > k4n_struct->matching.model.y.bound[1]) continue;
     float z = apply_model(data.x, data.y);
     sum += z - data.z;
   }
@@ -184,6 +210,5 @@ float Model::validation_model(){
   //---------------------------
   return error;
 }
-
 
 }

@@ -14,6 +14,7 @@ public:
 public:
   //Main function
   void compute(const std::vector<glm::vec3>& points, int degree);
+  void compute(const std::vector<glm::vec3>& xyz, int degree, vec2 x_bound, vec2 y_bound);
   double evaluate(double x, double y);
 
 private:

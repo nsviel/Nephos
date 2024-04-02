@@ -26,6 +26,7 @@ public:
   void detection_parameter(k4n::dev::Sensor* sensor);
   void canny_parameter(k4n::dev::Sensor* sensor);
   void hough_parameter(k4n::dev::Sensor* sensor);
+  void ransac_parameter(k4n::dev::Sensor* sensor);
   void draw_result(k4n::dev::Sensor* sensor);
 
 private:

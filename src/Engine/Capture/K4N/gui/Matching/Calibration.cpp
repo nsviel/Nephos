@@ -59,30 +59,38 @@ void Calibration::draw_calibration_player(k4n::dev::Sensor* sensor){
 void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  this->draw_calibration_parameter(sensor);
+  this->draw_calibration_measure(sensor);
   this->draw_calibration_model(sensor);
   this->draw_measure(sensor);
 
   //---------------------------
 }
-void Calibration::draw_calibration_parameter(k4n::dev::Sensor* sensor){
+void Calibration::draw_calibration_measure(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Parameter");
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Measure");
 
-  //Canny
-  ImGui::Text("RANSAC");
-
-  ImGui::SameLine();
-  if(ImGui::TreeNode("Parameter##Ransac")){
-    ImGui::SliderInt("Num iteration", &k4n_struct->matching.calibration.ransac_nb_iter, 1, 10000);
-    ImGui::SliderFloat("Threshold sphere", &k4n_struct->matching.calibration.ransac_thres_sphere, 0.01f, 0.1f, "%.2f m");
-    ImGui::SliderFloat("Threshold pose", &k4n_struct->matching.calibration.ransac_thres_pose, 0.01f, 1.0f, "%.2f m");
-    ImGui::SliderFloat("Threshold radius", &k4n_struct->matching.calibration.ransac_thres_radius, 0.01f, 0.1f, "%.2f m");
-    ImGui::SliderFloat("Diamter x area", &k4n_struct->matching.calibration.ransac_search_diameter_x, 0.5f, 5.0f, "%.1f m");
-
-    ImGui::TreePop();
+  //Import / export / clear
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+  if(ImGui::Button("Import##measure", ImVec2(120, 0))){
+    k4n_model->import_measure();
   }
+  ImGui::PopStyleColor(2);
+  ImGui::SameLine();
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
+  if(ImGui::Button("Export##measure", ImVec2(120, 0))){
+    k4n_model->export_measure();
+  }
+  ImGui::PopStyleColor(2);
+  ImGui::SameLine();
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
+  if(ImGui::Button("Clear##measure", ImVec2(120, 0))){
+    k4n_model->init();
+  }
+  ImGui::PopStyleColor(2);
 
   //Heatmap scale
   ImGui::DragFloatRange2("Heatmap scale",&k4n_struct->matching.model.IfRIt.z.min, &k4n_struct->matching.model.IfRIt.z.max, 100, 0, 60000, "%.0f");
@@ -95,28 +103,25 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model");
 
-  //Import / export / clear
-  if(ImGui::Button("Export##model", ImVec2(120, 0))){
-    k4n_model->export_model();
-  }
-  ImGui::SameLine();
-  if(ImGui::Button("Import##model", ImVec2(120, 0))){
-    k4n_model->import_model();
-  }
-  ImGui::SameLine();
-  if(ImGui::Button("Clear##model", ImVec2(120, 0))){
-    k4n_model->init();
-  }
-
-  //Model fitting & plotting
-  if(ImGui::Button("Plot##model", ImVec2(120, 0))){
-    this->draw_model(sensor);
-  }
-  ImGui::SameLine();
   ImGui::SetNextItemWidth(100);
   ImGui::SliderInt("Degree", &k4n_struct->matching.model.degree, 1, 10);
   ImGui::DragFloatRange2("Range x",&k4n_struct->matching.model.x.bound[0], &k4n_struct->matching.model.x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm");
   ImGui::DragFloatRange2("Range y",&k4n_struct->matching.model.y.bound[0], &k4n_struct->matching.model.y.bound[1], 1, 0, 90, "%.0f°", "%.0f°");
+
+  //Model fitting & plotting
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+  if(ImGui::Button("Plot##model", ImVec2(120, 0))){
+    this->draw_model(sensor);
+  }
+  ImGui::PopStyleColor(2);
+  ImGui::SameLine();
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
+  if(ImGui::Button("Export##model", ImVec2(120, 0))){
+    k4n_model->export_model();
+  }
+  ImGui::PopStyleColor(2);
 
   //---------------------------
   ImGui::Separator();
@@ -139,7 +144,7 @@ void Calibration::draw_model(k4n::dev::Sensor* sensor){
   }
 
   std::vector<double> y_values;
-  for(double i = 0.0; i <= 90.0; i += 1.0){
+  for(double i = model->y.bound[0]; i <= model->y.bound[1]; i += 1.0){
     y_values.push_back(i);
   }
 

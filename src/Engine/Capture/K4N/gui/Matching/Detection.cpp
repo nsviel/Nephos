@@ -70,7 +70,7 @@ void Detection::canny_parameter(k4n::dev::Sensor* sensor){
 void Detection::hough_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  ImGui::Checkbox("Hough", &k4n_struct->matching.hough.apply);
+  ImGui::Text("Hough");
 
   ImGui::SameLine();
   if(ImGui::TreeNode("Parameter##Hough")){
@@ -115,6 +115,24 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
   ImGui::RadioButton("All sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::ALL);
   ImGui::SameLine();
   ImGui::RadioButton("Best sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::BEST);
+
+  //---------------------------
+}
+void Detection::ransac_parameter(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  ImGui::Text("RANSAC");
+
+  ImGui::SameLine();
+  if(ImGui::TreeNode("Parameter##Ransac")){
+    ImGui::SliderInt("Num iteration", &k4n_struct->matching.calibration.ransac_nb_iter, 1, 10000);
+    ImGui::SliderFloat("Threshold sphere", &k4n_struct->matching.calibration.ransac_thres_sphere, 0.01f, 0.1f, "%.2f m");
+    ImGui::SliderFloat("Threshold pose", &k4n_struct->matching.calibration.ransac_thres_pose, 0.01f, 1.0f, "%.2f m");
+    ImGui::SliderFloat("Threshold radius", &k4n_struct->matching.calibration.ransac_thres_radius, 0.01f, 0.1f, "%.2f m");
+    ImGui::SliderFloat("Diamter x area", &k4n_struct->matching.calibration.ransac_search_diameter_x, 0.5f, 5.0f, "%.1f m");
+
+    ImGui::TreePop();
+  }
 
   //---------------------------
   ImGui::Separator();
