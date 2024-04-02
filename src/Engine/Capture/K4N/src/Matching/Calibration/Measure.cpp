@@ -10,7 +10,6 @@ Measure::Measure(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_struct = node_k4n->get_k4n_struct();
-  this->ope_polyfit = new ope::fitting::Polyfit();
 
   //---------------------------
   this->init();
@@ -19,7 +18,7 @@ Measure::~Measure(){}
 
 //Main function
 void Measure::init(){
-  k4n::structure::Measure* model = &k4n_struct->matching.model;
+  k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
   //I(R)
@@ -64,17 +63,8 @@ void Measure::init(){
 
   //---------------------------
 }
-
-//Measure function
-void Measure::export_measure(){
-  //---------------------------
-
-  utl::file::write_vector(k4n_struct->matching.model.path, k4n_struct->matching.model.vec_data);
-
-  //---------------------------
-}
-void Measure::import_measure(){
-  k4n::structure::Measure* model = &k4n_struct->matching.model;
+void Measure::import(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
   //Import file model data
@@ -84,8 +74,15 @@ void Measure::import_measure(){
 
   //---------------------------
 }
-void Measure::update_plot(){
-  k4n::structure::Measure* model = &k4n_struct->matching.model;
+void Measure::export(){
+  //---------------------------
+
+  utl::file::write_vector(k4n_struct->matching.model.path, k4n_struct->matching.model.vec_data);
+
+  //---------------------------
+}
+void Measure::update(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
   //Fill model plot data
@@ -118,8 +115,10 @@ void Measure::update_plot(){
 
   //---------------------------
 }
-void Measure::find_model_bounds(){
-  k4n::structure::Measure* model = &k4n_struct->matching.model;
+
+//Subfunction
+void Measure::find_bounds(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
   for(int i=0; i<model->vec_data.size(); i++){

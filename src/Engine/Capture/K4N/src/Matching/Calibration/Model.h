@@ -19,17 +19,10 @@ public:
 
 public:
   //Main function
-  void init();
+  void export();
+  void import();
 
-  //Measure function
-  void import_measure();
-  void export_measure();
-  void update_plot();
-  void find_model_bounds();
-
-  //Model function
-  void export_model();
-  void import_model();
+  //Subfunction
   void make_model();
   float apply_model(float x, float y);
   float validation_model();
