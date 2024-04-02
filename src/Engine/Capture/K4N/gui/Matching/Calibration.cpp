@@ -95,10 +95,7 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model");
 
-  if(ImGui::Button("Plot##model", ImVec2(120, 0))){
-    this->draw_model(sensor);
-  }
-  ImGui::SameLine();
+  //Import / export / clear
   if(ImGui::Button("Export##model", ImVec2(120, 0))){
     k4n_model->export_model();
   }
@@ -111,6 +108,16 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
     k4n_model->init();
   }
 
+  //Model fitting & plotting
+  if(ImGui::Button("Plot##model", ImVec2(120, 0))){
+    this->draw_model(sensor);
+  }
+  ImGui::SameLine();
+  ImGui::SetNextItemWidth(100);
+  ImGui::SliderInt("Degree", &k4n_struct->matching.model.degree, 1, 10);
+  ImGui::DragFloatRange2("Range x",&k4n_struct->matching.model.x.min, &k4n_struct->matching.model.x.max, 0.1, 0, 10, "%.2fm", "%.2fm");
+  ImGui::DragFloatRange2("Range y",&k4n_struct->matching.model.y.min, &k4n_struct->matching.model.y.max, 1, 0, 90, "%.0f°", "%.0f°");
+
   //---------------------------
   ImGui::Separator();
 }
@@ -121,6 +128,7 @@ void Calibration::draw_model(k4n::dev::Sensor* sensor){
   //---------------------------
 
   k4n_model->make_model();
+  k4n_model->validation_model();
 
   std::vector<std::vector<double>> x, y, z;
 

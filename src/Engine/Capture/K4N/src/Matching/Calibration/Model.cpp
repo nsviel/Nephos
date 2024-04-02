@@ -58,7 +58,7 @@ void Model::init(){
   //Model
   model->vec_data = vector<vec3>(model->IfRIt.z.size, vec3(-1, -1, -1));
   model->x.bound = vec2(1000, -1);
-  model->x.current = 0;
+  model->x.current = 1;
   model->y.bound = vec2(0, 90);
   model->y.current = 40;
 
@@ -150,6 +150,24 @@ float Model::apply_model(float x, float y){
 
   //---------------------------
   return z;
+}
+float Model::validation_model(){
+  vector<vec3>& vec_data = k4n_struct->matching.model.vec_data;
+  //---------------------------
+
+  float sum = 0;
+  for(int i=0; i<vec_data.size(); i++){
+    vec3& data = vec_data[i];
+    float z = apply_model(data.x, data.y);
+    sum += z - data.z;
+  }
+
+  float error = sum / vec_data.size();
+
+  cout<<"Model mean error = "<<error<<endl;
+
+  //---------------------------
+  return error;
 }
 
 

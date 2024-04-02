@@ -31,6 +31,10 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree = 3){
     float y = xyz[i].y;
     float z = xyz[i].z;
 
+    if(x < 0.5 || x > 4){
+      continue;
+    }
+
     Eigen::VectorXd row(numParams);
     int k = 0;
     for (int j = 0; j <= degree; ++j) {

@@ -14,7 +14,7 @@ struct Model{
   std::vector<glm::vec3> vec_data;
   utl::type::Axis x;
   utl::type::Axis y;
-  int degree = 5;
+  int degree = 2;
 
   //Plot stuff
   utl::type::Plot IfR;
