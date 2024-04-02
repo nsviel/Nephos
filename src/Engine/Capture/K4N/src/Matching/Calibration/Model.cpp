@@ -31,12 +31,24 @@ void Model::export_model(){
 
   //---------------------------
 }
-void Model::draw_model(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
+void Model::compute_model(){
   //---------------------------
 
   this->make_model();
   this->validation_model();
+
+  //---------------------------
+}
+
+
+//Subfunction
+void Model::draw_model(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
+  //---------------------------
+
+  if(ope_polyfit->has_been_computed() == false){
+    this->compute_model();
+  }
 
   std::vector<std::vector<double>> x, y, z;
 
@@ -69,9 +81,6 @@ void Model::draw_model(){
 
   //---------------------------
 }
-
-
-//Subfunction
 void Model::make_model(){
   k4n::structure::Model* model = &k4n_struct->matching.model;
   k4n::structure::Measure* measure = &k4n_struct->matching.measure;
@@ -109,21 +118,21 @@ float Model::validation_model(){
   k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
-  float sum = 0;
-  for(int i=0; i<measure->vec_data.size(); i++){
+  int N = measure->vec_data.size();
+  float E = 0;
+  for(int i=0; i<N; i++){
     vec3& data = measure->vec_data[i];
     if(data.x < model->x.bound[0] || data.x > model->x.bound[1]) continue;
     if(data.y < model->y.bound[0] || data.y > model->y.bound[1]) continue;
     float z = apply_model(data.x, data.y);
-    sum += z - data.z;
+    E += pow(z - data.z, 2);
   }
 
-  float error = sum / measure->vec_data.size();
-
-  cout<<"Model mean error = "<<error<<endl;
+  float RMSE = sqrt(E / N);
+  model->rmse = RMSE;
 
   //---------------------------
-  return error;
+  return RMSE;
 }
 
 }

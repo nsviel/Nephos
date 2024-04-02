@@ -66,19 +66,20 @@ void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Calibration::draw_calibration_measure(k4n::dev::Sensor* sensor){
+  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Measure");
 
   //Path
   if(ImGui::Button("...##path_measure")){
-
+    zenity::selection_file(measure->path);
   }
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.filename.c_str());
+  ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", measure->path.c_str());
 
   //Heatmap scale
-  ImGui::DragFloatRange2("Heatmap scale",&k4n_struct->matching.measure.IfRIt.z.min, &k4n_struct->matching.measure.IfRIt.z.max, 100, 0, 60000, "%.0f");
+  ImGui::DragFloatRange2("Heatmap scale",&measure->IfRIt.z.min, &measure->IfRIt.z.max, 100, 0, 60000, "%.0f");
 
   //Import / export / clear
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
@@ -113,7 +114,7 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
 
   //Path
   if(ImGui::Button("...##path_model")){
-
+    zenity::selection_file(model->path);
   }
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", model->path.c_str());
@@ -121,8 +122,22 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
   //Model parameter
   ImGui::SetNextItemWidth(100);
   ImGui::SliderInt("Degree", &model->degree, 1, 10);
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", model->rmse);
   ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm");
   ImGui::DragFloatRange2("Range y",&model->y.bound[0], &model->y.bound[1], 1, 0, 90, "%.0f°", "%.0f°");
+
+  //Model function
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
+  if(ImGui::Button("Compute##model", ImVec2(120, 0))){
+    k4n_model->compute_model();
+  }
+  ImGui::SameLine();
+  if(ImGui::Button("Plot##model", ImVec2(120, 0))){
+    k4n_model->draw_model();
+  }
+  ImGui::PopStyleColor(2);
 
   //Model fitting & plotting
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
@@ -136,13 +151,6 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
   if(ImGui::Button("Export##model", ImVec2(120, 0))){
     k4n_model->export_model();
-  }
-  ImGui::PopStyleColor(2);
-  ImGui::SameLine();
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
-  if(ImGui::Button("Plot##model", ImVec2(120, 0))){
-    k4n_model->draw_model();
   }
   ImGui::PopStyleColor(2);
 
@@ -163,20 +171,20 @@ void Calibration::draw_measure(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Calibration::plot_measure_IfR(k4n::dev::Sensor* sensor, float height){
+  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
-  utl::type::Plot* plot = &k4n_struct->matching.measure.IfR;
-  plot->dimension = ivec2(-1, height);
-  utl_plot->plot_scatter(plot);
+  measure->IfR.dimension = ivec2(-1, height);
+  utl_plot->plot_scatter(&measure->IfR);
 
   //---------------------------
 }
 void Calibration::plot_measure_IfIt(k4n::dev::Sensor* sensor, float height){
+  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
-  utl::type::Plot* plot = &k4n_struct->matching.measure.IfIt;
-  plot->dimension = ivec2(-1, height);
-  utl_plot->plot_scatter(plot);
+  measure->IfIt.dimension = ivec2(-1, height);
+  utl_plot->plot_scatter(&measure->IfIt);
 
   //---------------------------
 }

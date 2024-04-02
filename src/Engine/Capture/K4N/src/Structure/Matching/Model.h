@@ -10,10 +10,11 @@ struct Model{
   //---------------------------
 
   //Model stuff
-  std::string path = "../media/record/calibration_model.data";
+  std::string path = "../media/record/calibration/model.data";
   utl::type::Axis x;
   utl::type::Axis y;
-  int degree = 2;
+  float rmse = 0;
+  int degree = 6;
 
   //---------------------------
 };
