@@ -10,16 +10,10 @@ struct Model{
   //---------------------------
 
   //Model stuff
-  std::string path = "../media/record/calibration.data";
-  std::vector<glm::vec3> vec_data;
+  std::string path = "../media/record/calibration_model.data";
   utl::type::Axis x;
   utl::type::Axis y;
   int degree = 2;
-
-  //Plot stuff
-  utl::type::Plot IfR;
-  utl::type::Plot IfIt;
-  utl::type::Plot IfRIt;
 
   //---------------------------
 };

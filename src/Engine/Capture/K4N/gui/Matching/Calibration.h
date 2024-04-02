@@ -29,7 +29,6 @@ public:
   void draw_calibration_model(k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void draw_model(k4n::dev::Sensor* sensor);
   void draw_measure(k4n::dev::Sensor* sensor);
   void plot_measure_IfR(k4n::dev::Sensor* sensor, float height);
   void plot_measure_IfIt(k4n::dev::Sensor* sensor, float height);

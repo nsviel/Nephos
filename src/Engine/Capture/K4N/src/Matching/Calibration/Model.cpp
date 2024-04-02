@@ -1,6 +1,7 @@
 #include "Model.h"
 
 #include <K4N/Namespace.h>
+#include <python/matplotlibcpp.h>
 
 
 namespace k4n::calibration{
@@ -30,17 +31,53 @@ void Model::export_model(){
 
   //---------------------------
 }
+void Model::draw_model(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
+  //---------------------------
+
+  this->make_model();
+  this->validation_model();
+
+  std::vector<std::vector<double>> x, y, z;
+
+  // Generate values for x and y
+  std::vector<double> x_values;
+  for(double i = model->x.bound[0]; i <= model->x.bound[1]; i += 0.1){
+    x_values.push_back(i);
+  }
+
+  std::vector<double> y_values;
+  for(double i = model->y.bound[0]; i <= model->y.bound[1]; i += 1.0){
+    y_values.push_back(i);
+  }
+
+  // Compute z values and fill x, y, and z vectors
+  for (double x_val : x_values) {
+    std::vector<double> row_x, row_y, row_z;
+    for (double y_val : y_values) {
+      row_x.push_back(x_val);
+      row_y.push_back(y_val);
+      row_z.push_back(this->apply_model(x_val, y_val));
+    }
+    x.push_back(row_x);
+    y.push_back(row_y);
+    z.push_back(row_z);
+  }
+
+  matplotlibcpp::plot_surface(x, y, z);
+  matplotlibcpp::show();
+
+  //---------------------------
+}
 
 
 //Subfunction
 void Model::make_model(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
+  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
-  vector<vec3>& vec_data = k4n_struct->matching.model.vec_data;
-  vec2& x_bound = k4n_struct->matching.model.x.bound;
-  vec2& y_bound = k4n_struct->matching.model.y.bound;
-  int& degree = k4n_struct->matching.model.degree;
-  ope_polyfit->compute(vec_data, degree, x_bound, y_bound);
+  ope_polyfit->compute(measure->vec_data, model->degree, model->x.bound, model->y.bound);
 
 
 /*
@@ -68,19 +105,20 @@ float Model::apply_model(float x, float y){
   return z;
 }
 float Model::validation_model(){
-  vector<vec3>& vec_data = k4n_struct->matching.model.vec_data;
+  k4n::structure::Model* model = &k4n_struct->matching.model;
+  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
   float sum = 0;
-  for(int i=0; i<vec_data.size(); i++){
-    vec3& data = vec_data[i];
-    if(data.x < k4n_struct->matching.model.x.bound[0] || data.x > k4n_struct->matching.model.x.bound[1]) continue;
-    if(data.y < k4n_struct->matching.model.y.bound[0] || data.y > k4n_struct->matching.model.y.bound[1]) continue;
+  for(int i=0; i<measure->vec_data.size(); i++){
+    vec3& data = measure->vec_data[i];
+    if(data.x < model->x.bound[0] || data.x > model->x.bound[1]) continue;
+    if(data.y < model->y.bound[0] || data.y > model->y.bound[1]) continue;
     float z = apply_model(data.x, data.y);
     sum += z - data.z;
   }
 
-  float error = sum / vec_data.size();
+  float error = sum / measure->vec_data.size();
 
   cout<<"Model mean error = "<<error<<endl;
 

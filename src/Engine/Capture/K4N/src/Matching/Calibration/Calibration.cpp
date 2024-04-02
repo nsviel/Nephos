@@ -97,6 +97,7 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
 //Data function
 void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   k4n::structure::Model* model = &k4n_struct->matching.model;
+  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
   //Search for closest point
@@ -113,18 +114,18 @@ void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   }
 
   //ADdd into model data vector
-  int index = static_cast<int>(std::round(R / model->IfR.x.resolution));
-  if(index >= 0 && index < model->IfR.x.data.size()){
-    model->IfR.x.data[index] = R;
-    model->IfR.y.data[index] = I;
-    model->IfR.highlight = vec2(R, I);
+  int index = static_cast<int>(std::round(R / measure->IfR.x.resolution));
+  if(index >= 0 && index < measure->IfR.x.data.size()){
+    measure->IfR.x.data[index] = R;
+    measure->IfR.y.data[index] = I;
+    measure->IfR.highlight = vec2(R, I);
     model->x.current = R;
   }
 
   //---------------------------
 }
 void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
+  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
   //Search for closest point
@@ -141,11 +142,10 @@ void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       Nxyz = normalize(xyz - current_pose);
       It = ope_normal->compute_It(xyz, Nxyz, root);
 
-
       //ADdd into model data vector
-      int index = static_cast<int>(std::round(It / model->IfIt.x.resolution));
-      model->IfIt.x.data[index] = It;
-      model->IfIt.y.data[index] = I;
+      int index = static_cast<int>(std::round(It / measure->IfIt.x.resolution));
+      measure->IfIt.x.data[index] = It;
+      measure->IfIt.y.data[index] = I;
     }
   }
 
@@ -153,6 +153,7 @@ void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 }
 void Calibration::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   k4n::structure::Model* model = &k4n_struct->matching.model;
+  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
   //Search for closest point
@@ -176,12 +177,12 @@ void Calibration::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       if(R > model->x.bound[1]) model->x.bound[1] = R;
 
       // Calculate the index of the cell in the heatmap grid
-      int i = static_cast<int>((R - model->IfRIt.x.min) / (model->IfRIt.x.max - model->IfRIt.x.min) * model->IfRIt.x.size);
-      int j = static_cast<int>((It - model->IfRIt.y.max) / (model->IfRIt.y.min - model->IfRIt.y.max) * model->IfRIt.y.size);
-      int index = j * model->IfRIt.x.size + i;
-      if(index >= 0 && index < model->IfRIt.z.size){
-        model->IfRIt.z.data[index] = I;
-        model->vec_data[index] = vec3(R, It, I);
+      int i = static_cast<int>((R - measure->IfRIt.x.min) / (measure->IfRIt.x.max - measure->IfRIt.x.min) * measure->IfRIt.x.size);
+      int j = static_cast<int>((It - measure->IfRIt.y.max) / (measure->IfRIt.y.min - measure->IfRIt.y.max) * measure->IfRIt.y.size);
+      int index = j * measure->IfRIt.x.size + i;
+      if(index >= 0 && index < measure->IfRIt.z.size){
+        measure->IfRIt.z.data[index] = I;
+        measure->vec_data[index] = vec3(R, It, I);
       }
     }
   }

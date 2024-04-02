@@ -19,8 +19,9 @@ public:
 
 public:
   //Main function
-  void export_model();
   void import_model();
+  void export_model();
+  void draw_model();
 
   //Subfunction
   void make_model();

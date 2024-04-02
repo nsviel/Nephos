@@ -29,6 +29,7 @@ void Detection::draw_detection(k4n::dev::Sensor* sensor){
   this->detection_parameter(sensor);
   this->canny_parameter(sensor);
   this->hough_parameter(sensor);
+  this->ransac_parameter(sensor);
   this->draw_result(sensor);
 
   //---------------------------
@@ -106,22 +107,22 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
     int* max_radius = &k4n_struct->matching.hough.max_radius;
     ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 100, "Min: %d px", "Max: %d px");
 
+    //Circle drawing mode
+    ImGui::Text("Draw");
+    ImGui::SameLine();
+    ImGui::RadioButton("All sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::ALL);
+    ImGui::SameLine();
+    ImGui::RadioButton("Best sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::BEST);
+
     ImGui::TreePop();
   }
-
-  //Circle drawing mode
-  ImGui::Text("Draw");
-  ImGui::SameLine();
-  ImGui::RadioButton("All sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::ALL);
-  ImGui::SameLine();
-  ImGui::RadioButton("Best sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::BEST);
 
   //---------------------------
 }
 void Detection::ransac_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  ImGui::Text("RANSAC");
+  ImGui::Text("Ransac");
 
   ImGui::SameLine();
   if(ImGui::TreeNode("Parameter##Ransac")){

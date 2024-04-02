@@ -19,6 +19,7 @@ public:
   //Measure function
   void import_measure();
   void export_measure();
+  void clear_measure();
   void find_measure_bound();
 
   //Plot function

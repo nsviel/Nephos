@@ -2,7 +2,6 @@
 
 #include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
-#include <python/matplotlibcpp.h>
 
 
 namespace k4n::gui{
@@ -71,6 +70,16 @@ void Calibration::draw_calibration_measure(k4n::dev::Sensor* sensor){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Measure");
 
+  //Path
+  if(ImGui::Button("...##path_measure")){
+
+  }
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.filename.c_str());
+
+  //Heatmap scale
+  ImGui::DragFloatRange2("Heatmap scale",&k4n_struct->matching.measure.IfRIt.z.min, &k4n_struct->matching.measure.IfRIt.z.max, 100, 0, 60000, "%.0f");
+
   //Import / export / clear
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
@@ -89,31 +98,37 @@ void Calibration::draw_calibration_measure(k4n::dev::Sensor* sensor){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
   if(ImGui::Button("Clear##measure", ImVec2(120, 0))){
-    k4n_measure->init_plot();
+    k4n_measure->clear_measure();
   }
   ImGui::PopStyleColor(2);
-
-  //Heatmap scale
-  ImGui::DragFloatRange2("Heatmap scale",&k4n_struct->matching.model.IfRIt.z.min, &k4n_struct->matching.model.IfRIt.z.max, 100, 0, 60000, "%.0f");
 
   //---------------------------
   ImGui::Separator();
 }
 void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model");
 
+  //Path
+  if(ImGui::Button("...##path_model")){
+
+  }
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", model->path.c_str());
+
+  //Model parameter
   ImGui::SetNextItemWidth(100);
-  ImGui::SliderInt("Degree", &k4n_struct->matching.model.degree, 1, 10);
-  ImGui::DragFloatRange2("Range x",&k4n_struct->matching.model.x.bound[0], &k4n_struct->matching.model.x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm");
-  ImGui::DragFloatRange2("Range y",&k4n_struct->matching.model.y.bound[0], &k4n_struct->matching.model.y.bound[1], 1, 0, 90, "%.0f°", "%.0f°");
+  ImGui::SliderInt("Degree", &model->degree, 1, 10);
+  ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm");
+  ImGui::DragFloatRange2("Range y",&model->y.bound[0], &model->y.bound[1], 1, 0, 90, "%.0f°", "%.0f°");
 
   //Model fitting & plotting
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-  if(ImGui::Button("Plot##model", ImVec2(120, 0))){
-    this->draw_model(sensor);
+  if(ImGui::Button("Import##model", ImVec2(120, 0))){
+    k4n_model->import_model();
   }
   ImGui::PopStyleColor(2);
   ImGui::SameLine();
@@ -123,50 +138,19 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
     k4n_model->export_model();
   }
   ImGui::PopStyleColor(2);
+  ImGui::SameLine();
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
+  if(ImGui::Button("Plot##model", ImVec2(120, 0))){
+    k4n_model->draw_model();
+  }
+  ImGui::PopStyleColor(2);
 
   //---------------------------
   ImGui::Separator();
 }
 
 //Subfunction
-void Calibration::draw_model(k4n::dev::Sensor* sensor){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  //---------------------------
-
-  k4n_model->make_model();
-  k4n_model->validation_model();
-
-  std::vector<std::vector<double>> x, y, z;
-
-  // Generate values for x and y
-  std::vector<double> x_values;
-  for(double i = model->x.bound[0]; i <= model->x.bound[1]; i += 0.1){
-    x_values.push_back(i);
-  }
-
-  std::vector<double> y_values;
-  for(double i = model->y.bound[0]; i <= model->y.bound[1]; i += 1.0){
-    y_values.push_back(i);
-  }
-
-  // Compute z values and fill x, y, and z vectors
-  for (double x_val : x_values) {
-    std::vector<double> row_x, row_y, row_z;
-    for (double y_val : y_values) {
-      row_x.push_back(x_val);
-      row_y.push_back(y_val);
-      row_z.push_back(k4n_model->apply_model(x_val, y_val));
-    }
-    x.push_back(row_x);
-    y.push_back(row_y);
-    z.push_back(row_z);
-  }
-
-  matplotlibcpp::plot_surface(x, y, z);
-  matplotlibcpp::show();
-
-  //---------------------------
-}
 void Calibration::draw_measure(k4n::dev::Sensor* sensor){
   //---------------------------
 
@@ -181,7 +165,7 @@ void Calibration::draw_measure(k4n::dev::Sensor* sensor){
 void Calibration::plot_measure_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
-  utl::type::Plot* plot = &k4n_struct->matching.model.IfR;
+  utl::type::Plot* plot = &k4n_struct->matching.measure.IfR;
   plot->dimension = ivec2(-1, height);
   utl_plot->plot_scatter(plot);
 
@@ -190,18 +174,19 @@ void Calibration::plot_measure_IfR(k4n::dev::Sensor* sensor, float height){
 void Calibration::plot_measure_IfIt(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
-  utl::type::Plot* plot = &k4n_struct->matching.model.IfIt;
+  utl::type::Plot* plot = &k4n_struct->matching.measure.IfIt;
   plot->dimension = ivec2(-1, height);
   utl_plot->plot_scatter(plot);
 
   //---------------------------
 }
 void Calibration::plot_model_heatmap(k4n::dev::Sensor* sensor, float height){
+  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
-  model->IfRIt.dimension = ivec2(-1, height);
-  bool need_update = utl_plot->plot_heatmap(&model->IfRIt, &model->x, &model->y);
+  measure->IfRIt.dimension = ivec2(-1, height);
+  bool need_update = utl_plot->plot_heatmap(&measure->IfRIt, &model->x, &model->y);
   if(need_update){
     k4n_measure->update_plot();
   }
