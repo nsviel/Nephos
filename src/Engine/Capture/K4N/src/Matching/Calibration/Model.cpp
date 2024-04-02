@@ -13,19 +13,18 @@ Model::Model(k4n::Node* node_k4n){
   this->ope_polyfit = new ope::fitting::Polyfit();
 
   //---------------------------
-  this->init();
 }
 Model::~Model(){}
 
 //Main function
-void Model::import(){
+void Model::import_model(){
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
 
   //---------------------------
 }
-void Model::export(){
+void Model::export_model(){
   //---------------------------
 
 

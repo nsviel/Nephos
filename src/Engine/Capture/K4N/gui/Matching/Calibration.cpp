@@ -15,6 +15,7 @@ Calibration::Calibration(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_calibration = node_matching->get_k4n_calibration();
+  this->k4n_measure = node_matching->get_k4n_measure();
   this->k4n_model = node_matching->get_k4n_model();
   this->utl_plot = new utl::implot::Plot();
   this->gui_player = node_k4n->get_k4n_gui_player();
@@ -74,21 +75,21 @@ void Calibration::draw_calibration_measure(k4n::dev::Sensor* sensor){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Import##measure", ImVec2(120, 0))){
-    k4n_model->import_measure();
+    k4n_measure->import_measure();
   }
   ImGui::PopStyleColor(2);
   ImGui::SameLine();
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
   if(ImGui::Button("Export##measure", ImVec2(120, 0))){
-    k4n_model->export_measure();
+    k4n_measure->export_measure();
   }
   ImGui::PopStyleColor(2);
   ImGui::SameLine();
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
   if(ImGui::Button("Clear##measure", ImVec2(120, 0))){
-    k4n_model->init();
+    k4n_measure->init_plot();
   }
   ImGui::PopStyleColor(2);
 
@@ -202,7 +203,7 @@ void Calibration::plot_model_heatmap(k4n::dev::Sensor* sensor, float height){
   model->IfRIt.dimension = ivec2(-1, height);
   bool need_update = utl_plot->plot_heatmap(&model->IfRIt, &model->x, &model->y);
   if(need_update){
-    k4n_model->update_plot();
+    k4n_measure->update_plot();
   }
 
   //---------------------------

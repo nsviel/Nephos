@@ -16,14 +16,14 @@ public:
   ~Measure();
 
 public:
-  //Main function
-  void init();
-  void import();
-  void export();
-  void update();
+  //Measure function
+  void import_measure();
+  void export_measure();
+  void find_measure_bound();
 
-  //Subfunction
-  void find_bounds();
+  //Plot function
+  void init_plot();
+  void update_plot();
 
 private:
   k4n::structure::K4N* k4n_struct;

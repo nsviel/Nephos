@@ -12,17 +12,56 @@ Measure::Measure(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_struct();
 
   //---------------------------
-  this->init();
+  this->init_plot();
 }
 Measure::~Measure(){}
 
-//Main function
-void Measure::init(){
+//Measure function
+void Measure::import_measure(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
+  //---------------------------
+
+  //Import file model data
+  model->vec_data = utl::file::read_vector(model->path);
+  this->find_measure_bound();
+  this->update_plot();
+
+  //---------------------------
+}
+void Measure::export_measure(){
+  //---------------------------
+
+  utl::file::write_vector(k4n_struct->matching.model.path, k4n_struct->matching.model.vec_data);
+
+  //---------------------------
+}
+void Measure::find_measure_bound(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
+  //---------------------------
+
+  for(int i=0; i<model->vec_data.size(); i++){
+    float& R = model->vec_data[i].x;
+    if(R == -1) continue;
+    if(R < model->x.bound[0]) model->x.bound[0] = R;
+    if(R > model->x.bound[1]) model->x.bound[1] = R;
+
+    float& It = model->vec_data[i].y;
+    if(It == -1) continue;
+    if(It < model->y.bound[0]) model->y.bound[0] = It;
+    if(It > model->y.bound[1]) model->y.bound[1] = It;
+  }
+
+  //---------------------------
+}
+
+//Plot function
+void Measure::init_plot(){
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
   //I(R)
   model->IfR.title = "I(R)";
+  model->IfR.highlight = vec2(0, 0);
   model->IfR.x.resolution = 0.01f;
   model->IfR.x.min = 0.0f;
   model->IfR.x.max = 5.0f;
@@ -63,25 +102,7 @@ void Measure::init(){
 
   //---------------------------
 }
-void Measure::import(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  //---------------------------
-
-  //Import file model data
-  model->vec_data = utl::file::read_vector(model->path);
-  this->update_plot();
-  this->find_model_bounds();
-
-  //---------------------------
-}
-void Measure::export(){
-  //---------------------------
-
-  utl::file::write_vector(k4n_struct->matching.model.path, k4n_struct->matching.model.vec_data);
-
-  //---------------------------
-}
-void Measure::update(){
+void Measure::update_plot(){
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
@@ -116,24 +137,5 @@ void Measure::update(){
   //---------------------------
 }
 
-//Subfunction
-void Measure::find_bounds(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  //---------------------------
-
-  for(int i=0; i<model->vec_data.size(); i++){
-    float& R = model->vec_data[i].x;
-    if(R == -1) continue;
-    if(R < model->x.bound[0]) model->x.bound[0] = R;
-    if(R > model->x.bound[1]) model->x.bound[1] = R;
-
-    float& It = model->vec_data[i].y;
-    if(It == -1) continue;
-    if(It < model->y.bound[0]) model->y.bound[0] = It;
-    if(It > model->y.bound[1]) model->y.bound[1] = It;
-  }
-
-  //---------------------------
-}
 
 }

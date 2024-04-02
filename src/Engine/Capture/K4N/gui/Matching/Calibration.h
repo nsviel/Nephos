@@ -7,6 +7,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::gui{class Player;}
 namespace k4n::structure{class K4N;}
 namespace k4n::calibration{class Calibration;}
+namespace k4n::calibration{class Measure;}
 namespace k4n::calibration{class Model;}
 namespace utl::implot{class Plot;}
 
@@ -37,6 +38,7 @@ public:
 private:
   k4n::gui::Player* gui_player;
   k4n::calibration::Calibration* k4n_calibration;
+  k4n::calibration::Measure* k4n_measure;
   k4n::calibration::Model* k4n_model;
   k4n::structure::K4N* k4n_struct;
   utl::implot::Plot* utl_plot;
