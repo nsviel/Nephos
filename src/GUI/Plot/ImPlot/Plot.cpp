@@ -78,13 +78,22 @@ bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::typ
     ImPlot::PlotHeatmap(truc.c_str(), plot->z.data.data(), plot->y.size, plot->x.size, plot->z.min, plot->z.max, nullptr, ImPlotPoint(plot->x.min, plot->y.min), ImPlotPoint(plot->x.max, plot->y.max));
 
     // Draw x bounds
+    float y_height[2] = {y_axis->bound[0], y_axis->bound[1]};
     float x_bound_min[2] = {x_axis->bound[0], x_axis->bound[0]};
+    ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), 2.0f);
+    ImPlot::PlotLine("X bound min", x_bound_min, y_height, 2);
     float x_bound_max[2] = {x_axis->bound[1], x_axis->bound[1]};
-    float y_height[2] = {0, plot->y.max};
-    ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f)); // Red color
-    ImPlot::PlotLine("Data Min", x_bound_min, y_height, 2);
-    ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f)); // Green color
-    ImPlot::PlotLine("Data Min", x_bound_max, y_height, 2);
+    ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), 2.0f);
+    ImPlot::PlotLine("X bound max", x_bound_max, y_height, 2);
+
+    // Draw y bounds
+    float x_width[2] = {x_axis->bound[0], x_axis->bound[1]};
+    float y_bound_min[2] = {y_axis->bound[0], y_axis->bound[0]};
+    ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), 2.0f);
+    ImPlot::PlotLine("Y bound min", x_width, y_bound_min, 2);
+    float y_bound_max[2] = {y_axis->bound[1], y_axis->bound[1]};
+    ImPlot::SetNextLineStyle(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), 2.0f);
+    ImPlot::PlotLine("Y bound max", x_width, y_bound_max, 2);
 
     //Dragging line
     if(ImPlot::IsPlotHovered() && ImGui::IsMouseDragging(ImGuiMouseButton_Left)){
@@ -105,11 +114,10 @@ bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::typ
       }
     }
     float x_current[2] = {x_axis->current, x_axis->current};
-    ImPlot::SetNextLineStyle(ImVec4(1.0f, 0.1f, 0.1f, 0.8f));
+    ImPlot::SetNextLineStyle(ImVec4(1.0f, 0.1f, 0.1f, 0.8f), 1.0f);
     ImPlot::PlotLine("X current", x_current, y_height, 2);
-    float x_width[2] = {x_axis->bound[0], x_axis->bound[1]};
     float y_current[2] = {y_axis->current, y_axis->current};
-    ImPlot::SetNextLineStyle(ImVec4(0.1f, 1.0f, 0.1f, 0.8f));
+    ImPlot::SetNextLineStyle(ImVec4(0.1f, 1.0f, 0.1f, 0.8f), 1.0f);
     ImPlot::PlotLine("Y current", x_width, y_current, 2);
 
     //Line floating text

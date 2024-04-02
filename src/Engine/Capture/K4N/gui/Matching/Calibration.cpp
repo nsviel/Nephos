@@ -115,8 +115,8 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
   ImGui::SameLine();
   ImGui::SetNextItemWidth(100);
   ImGui::SliderInt("Degree", &k4n_struct->matching.model.degree, 1, 10);
-  ImGui::DragFloatRange2("Range x",&k4n_struct->matching.model.x.min, &k4n_struct->matching.model.x.max, 0.1, 0, 10, "%.2fm", "%.2fm");
-  ImGui::DragFloatRange2("Range y",&k4n_struct->matching.model.y.min, &k4n_struct->matching.model.y.max, 1, 0, 90, "%.0f°", "%.0f°");
+  ImGui::DragFloatRange2("Range x",&k4n_struct->matching.model.x.bound[0], &k4n_struct->matching.model.x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm");
+  ImGui::DragFloatRange2("Range y",&k4n_struct->matching.model.y.bound[0], &k4n_struct->matching.model.y.bound[1], 1, 0, 90, "%.0f°", "%.0f°");
 
   //---------------------------
   ImGui::Separator();

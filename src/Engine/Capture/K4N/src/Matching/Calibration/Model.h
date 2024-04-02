@@ -28,6 +28,7 @@ public:
   void make_model();
   float apply_model(float x, float y);
   float validation_model();
+  void find_model_bounds();
 
 private:
   k4n::structure::K4N* k4n_struct;

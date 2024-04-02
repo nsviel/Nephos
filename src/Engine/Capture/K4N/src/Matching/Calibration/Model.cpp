@@ -80,6 +80,7 @@ void Model::import_model(){
   //Import file model data
   model->vec_data = utl::file::read_vector(model->path);
   this->update_plot();
+  this->find_model_bounds();
 
   //---------------------------
 }
@@ -95,10 +96,6 @@ void Model::update_plot(){
     if(R == -1) continue;
 
     model->IfRIt.z.data[i] = I;
-
-    //Search for R limite validity
-    if(R < model->x.bound[0]) model->x.bound[0] = R;
-    if(R > model->x.bound[1]) model->x.bound[1] = R;
 
     //I(R)
     if(It > model->y.current && It < model->y.current + 5){
@@ -139,6 +136,24 @@ Kernel Smoothing:
     Common kernel functions include Gaussian, Epanechnikov, and Triangular kernels, which determine the weight of each data point based on its distance from the point being evaluated.
     Kernel smoothing can provide a smooth estimate of the surface while preserving local features in the data.
     */
+  //---------------------------
+}
+void Model::find_model_bounds(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
+  //---------------------------
+
+  for(int i=0; i<model->vec_data.size(); i++){
+    float& R = model->vec_data[i].x;
+    if(R == -1) continue;
+    if(R < model->x.bound[0]) model->x.bound[0] = R;
+    if(R > model->x.bound[1]) model->x.bound[1] = R;
+
+    float& It = model->vec_data[i].y;
+    if(It == -1) continue;
+    if(It < model->y.bound[0]) model->y.bound[0] = It;
+    if(It > model->y.bound[1]) model->y.bound[1] = It;
+  }
+
   //---------------------------
 }
 float Model::apply_model(float x, float y){
