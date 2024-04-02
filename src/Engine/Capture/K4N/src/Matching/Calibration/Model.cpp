@@ -2,6 +2,7 @@
 
 #include <K4N/Namespace.h>
 #include <python/matplotlibcpp.h>
+#include <Utility/Function/File/Json.cpp>
 
 
 namespace k4n::calibration{
@@ -26,8 +27,13 @@ void Model::import_model(){
   //---------------------------
 }
 void Model::export_model(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
+  utl::json::write_value(model->path, "x_bound.min", model->x.bound[0]);
+  utl::json::write_value(model->path, "x_bound.max", model->x.bound[1]);
+  utl::json::write_value(model->path, "y_bound.min", model->y.bound[0]);
+  utl::json::write_value(model->path, "y_bound.max", model->y.bound[1]);
 
   //---------------------------
 }
