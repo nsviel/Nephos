@@ -121,7 +121,7 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
 
   //Model parameter
   ImGui::SetNextItemWidth(100);
-  ImGui::SliderInt("Degree", &model->degree, 1, 10);
+  ImGui::DragIntRange2("Degree", &model->degree_x, &model->degree_y, 1, 1, 10);
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", model->rmse);
   ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm");

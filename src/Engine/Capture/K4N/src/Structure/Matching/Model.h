@@ -9,13 +9,16 @@ namespace k4n::structure{
 struct Model{
   //---------------------------
 
-  //Model stuff
   std::string path = "../media/record/calibration/model.json";
   std::string serial_number = "";
+  std::string method = "";
+
   utl::type::Axis x;
   utl::type::Axis y;
+
   float rmse = 0;
-  int degree = 6;
+  int degree_x = 6;
+  int degree_y = 2;
 
   //---------------------------
 };

@@ -25,11 +25,12 @@ void Model::import_model(){
   //---------------------------
 
   model->serial_number = utl::json::read_value<string>(model->path, "serial_number");
-  model->degree = utl::json::read_value<int>(model->path, "degree");
-  model->x.bound[0] = utl::json::read_value<float>(model->path, "x_bound.min");
-  model->x.bound[1] = utl::json::read_value<float>(model->path, "x_bound.max");
-  model->y.bound[0] = utl::json::read_value<float>(model->path, "y_bound.min");
-  model->y.bound[1] = utl::json::read_value<float>(model->path, "y_bound.max");
+  model->degree_x = utl::json::read_value<int>(model->path, "x.degree");
+  model->x.bound[0] = utl::json::read_value<float>(model->path, "x.bound_min");
+  model->x.bound[1] = utl::json::read_value<float>(model->path, "x.bound_max");
+  model->degree_y = utl::json::read_value<int>(model->path, "y.degree");
+  model->y.bound[0] = utl::json::read_value<float>(model->path, "y.bound_min");
+  model->y.bound[1] = utl::json::read_value<float>(model->path, "y.bound_max");
 
   //---------------------------
 }
@@ -38,11 +39,12 @@ void Model::export_model(){
   //---------------------------
 
   utl::json::write_value(model->path, "serial_number", model->serial_number);
-  utl::json::write_value(model->path, "degree", model->degree);
-  utl::json::write_value(model->path, "x_bound.min", model->x.bound[0]);
-  utl::json::write_value(model->path, "x_bound.max", model->x.bound[1]);
-  utl::json::write_value(model->path, "y_bound.min", model->y.bound[0]);
-  utl::json::write_value(model->path, "y_bound.max", model->y.bound[1]);
+  utl::json::write_value(model->path, "x.degree", model->degree_x);
+  utl::json::write_value(model->path, "x.bound_min", model->x.bound[0]);
+  utl::json::write_value(model->path, "x.bound_max", model->x.bound[1]);
+  utl::json::write_value(model->path, "y.degree", model->degree_y);
+  utl::json::write_value(model->path, "y.bound_min", model->y.bound[0]);
+  utl::json::write_value(model->path, "y.bound_max", model->y.bound[1]);
 
   vector<float> vec_coef = ope_surface->get_coefficient();
   for(int i=0; i<vec_coef.size(); i++){
