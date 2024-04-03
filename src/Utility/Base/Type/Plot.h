@@ -13,6 +13,7 @@ struct Axis{
   float current = 0;
   float resolution = 0.01f;
   std::vector<float> data;
+  std::vector<float> fitting;
   glm::vec2 bound = vec2(0, 0);
 
   //---------------------------

@@ -11,6 +11,7 @@ struct Model{
 
   //Model stuff
   std::string path = "../media/record/calibration/model.json";
+  std::string serial_number = "";
   utl::type::Axis x;
   utl::type::Axis y;
   float rmse = 0;

@@ -23,6 +23,12 @@ void Model::import_model(){
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
+  model->serial_number = utl::json::read_value<string>(model->path, "serial_number");
+  model->degree = utl::json::read_value<int>(model->path, "degree");
+  model->x.bound[0] = utl::json::read_value<float>(model->path, "x_bound.min");
+  model->x.bound[1] = utl::json::read_value<float>(model->path, "x_bound.max");
+  model->y.bound[0] = utl::json::read_value<float>(model->path, "y_bound.min");
+  model->y.bound[1] = utl::json::read_value<float>(model->path, "y_bound.max");
 
   //---------------------------
 }
@@ -30,10 +36,17 @@ void Model::export_model(){
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
+  utl::json::write_value(model->path, "serial_number", model->serial_number);
+  utl::json::write_value(model->path, "degree", model->degree);
   utl::json::write_value(model->path, "x_bound.min", model->x.bound[0]);
   utl::json::write_value(model->path, "x_bound.max", model->x.bound[1]);
   utl::json::write_value(model->path, "y_bound.min", model->y.bound[0]);
   utl::json::write_value(model->path, "y_bound.max", model->y.bound[1]);
+
+  vector<double> vec_coef = ope_polyfit->get_coefficient();
+  for(int i=0; i<vec_coef.size(); i++){
+    utl::json::write_value(model->path, "coefficient." + to_string(i), vec_coef[i]);
+  }
 
   //---------------------------
 }

@@ -17,6 +17,10 @@ public:
   void compute(const std::vector<glm::vec3>& xyz, int degree, vec2 x_bound, vec2 y_bound);
   double evaluate(double x, double y);
 
+  //Subfunction
+  vector<double> get_coefficient();
+  void set_coefficients(const std::vector<double>& value);
+  
   inline bool has_been_computed(){return (degree != 0);}
 
 private:

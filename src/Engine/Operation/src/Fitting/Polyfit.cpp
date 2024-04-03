@@ -126,4 +126,24 @@ double Polyfit::evaluate(double x, double y){
   return z;
 }
 
+//Subfunction
+vector<double> Polyfit::get_coefficient(){
+  std::vector<double> result(coef.size());
+  //---------------------------
+
+  for(int i = 0; i < coef.size(); ++i){
+    result[i] = static_cast<double>(coef[i]);
+  }
+
+  //---------------------------
+  return result;
+}
+void Polyfit::set_coefficients(const std::vector<double>& value){
+  //---------------------------
+
+  this->coef = Eigen::Map<const Eigen::VectorXd>(value.data(), value.size());
+
+  //---------------------------
+}
+
 }

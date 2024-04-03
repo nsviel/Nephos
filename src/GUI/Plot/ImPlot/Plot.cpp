@@ -132,6 +132,45 @@ bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::typ
   //---------------------------
   return dragged;
 }
+void Plot::plot_regression(utl::type::Plot* plot){
+  implot_style->make_style();
+  //---------------------------
+
+  // Create a window
+  ImPlotFlags flag;
+  flag |= ImPlotFlags_NoBoxSelect;
+  flag |= ImPlotFlags_NoMouseText;
+  flag |= ImPlotFlags_NoLegend;
+  flag |= ImPlotFlags_CanvasOnly;
+  if(ImPlot::BeginPlot(plot->title.c_str(), ImVec2(-1, plot->dimension[1]), flag)){
+    ImPlotAxisFlags axis_flag;
+    axis_flag |= ImPlotAxisFlags_AutoFit;
+    axis_flag |= ImPlotAxisFlags_Foreground;
+    ImPlot::SetupAxes(plot->x_axis_name.c_str(), plot->x_axis_name.c_str(), axis_flag, axis_flag);
+
+    // Plot the data
+    string truc = plot->title + "##scatter";
+    ImPlot::PlotScatter(truc.c_str(), plot->x.data.data(), plot->y.data.data(), plot->x.data.size());
+
+    // Plot an additional point in a different color
+    if(plot->highlight != vec2(-1, -1)){
+      ImVec4 color = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
+      ImPlot::PushStyleColor(ImPlotCol_MarkerFill, color);
+      ImPlot::PushStyleColor(ImPlotCol_MarkerOutline, color);
+      string machin = plot->title + "##highlight";
+      ImPlot::PlotScatter(machin.c_str(), &plot->highlight.x, &plot->highlight.y, 1);
+      ImPlot::PopStyleColor(2);
+    }
+
+    // Plot the regression line
+    ImPlot::PlotLine("Regression Line", plot->x.fitting.data(), plot->y.fitting.data(), plot->x.fitting.size());
+
+    // End the plot
+    ImPlot::EndPlot();
+  }
+
+  //---------------------------
+}
 void Plot::plot_scatter(utl::type::Plot* plot){
   implot_style->make_style();
   //---------------------------
