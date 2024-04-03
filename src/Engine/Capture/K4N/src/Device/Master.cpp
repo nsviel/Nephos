@@ -121,9 +121,9 @@ void Master::manage_forward(){
   //---------------------------
 }
 void Master::manage_resynchronization(){
-  if(list_entity.size() == 0) player.ts_cur = 0;
-  if(list_entity.size() < 2) return;
-  if(mode == k4n::dev::CAPTURE) return;
+  //if(list_entity.size() == 0) player.ts_cur = 0;sayHello();
+  //if(list_entity.size() < 2) return;sayHello();
+  //if(mode == k4n::dev::CAPTURE) return;sayHello();
   //---------------------------
   //Should be set into another dedicated thread
 /*

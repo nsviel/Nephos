@@ -23,10 +23,13 @@ public:
 
   //Subfunction
   void draw_menu();
+  void menu_panel();
+  void menu_loader();
+  void menu_screenshot();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline ope::Node* get_node_operation(){return node_operation;}
-  
+
 private:
   //Dependancy
   eng::Node* node_engine;

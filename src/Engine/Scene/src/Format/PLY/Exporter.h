@@ -28,12 +28,12 @@ public:
 public:
   //Main functions
   void export_ascii(utl::type::Data* data, std::string path);
-  void export_binary(utl::type::Data* data, std::string path);
+  void export_binary(utl::type::Data* data, utl::type::Pose* pose, std::string path);
 
   //Subfunction
   void write_header(std::ofstream& file, std::string format, utl::type::Data* data);
   void write_data_ascii(std::ofstream& file, utl::type::Data* data);
-  void write_data_binary(std::ofstream& file, utl::type::Data* data);
+  void write_data_binary(std::ofstream& file, utl::type::Data* data, utl::type::Pose* pose);
 
 private:
   int property_number = 3;

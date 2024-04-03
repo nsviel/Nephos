@@ -2,6 +2,7 @@
 
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -40,23 +41,48 @@ void Node::draw_menu(){
 
   ImGui::BeginMainMenuBar();
   if(ImGui::BeginMenu("Panel##111")){
-    vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
-    for(int i=0; i<vec_panel.size(); i++){
-      utl::gui::Panel* panel = vec_panel[i];
-      string title = panel->icon + " " + panel->name;
-      ImGui::Checkbox(title.c_str(), &panel->is_open);
-    }
+    this->menu_panel();
     ImGui::EndMenu();
   }
   if(ImGui::MenuItem("Loader")){
-    vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
-    for(int i=0; i<vec_panel.size(); i++){
-      if(vec_panel[i]->name == "Loader"){
-        vec_panel[i]->is_open = !vec_panel[i]->is_open;
-      }
-    }
+    this->menu_loader();
+  }
+  if(ImGui::MenuItem(ICON_FA_CAMERA)){
+    this->menu_screenshot();
   }
   ImGui::EndMainMenuBar();
+
+  //---------------------------
+}
+void Node::menu_panel(){
+  vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
+  //---------------------------
+
+  for(int i=0; i<vec_panel.size(); i++){
+    utl::gui::Panel* panel = vec_panel[i];
+    string title = panel->icon + " " + panel->name;
+    ImGui::Checkbox(title.c_str(), &panel->is_open);
+  }
+
+  //---------------------------
+}
+void Node::menu_loader(){
+  vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
+  //---------------------------
+
+  for(int i=0; i<vec_panel.size(); i++){
+    if(vec_panel[i]->name == "Loader"){
+      vec_panel[i]->is_open = !vec_panel[i]->is_open;
+    }
+  }
+
+  //---------------------------
+}
+void Node::menu_screenshot(){
+  vk::image::Screenshot* vk_screenshot = node_vulkan->get_vk_screenshot();
+  //---------------------------
+
+  vk_screenshot->make_screenshot();
 
   //---------------------------
 }

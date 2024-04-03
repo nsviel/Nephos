@@ -100,7 +100,7 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
   string path = path_dir + "/" + filename + ".ply";
 
   //Export to ply
-  ply_exporter->export_binary(sensor->get_data(), path);
+  ply_exporter->export_binary(sensor->get_data(), sensor->get_pose(), path);
 
   //---------------------------
 }

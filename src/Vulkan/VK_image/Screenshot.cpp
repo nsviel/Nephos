@@ -23,6 +23,14 @@ Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
 Screenshot::~Screenshot(){}
 
 //Main function
+void Screenshot::make_screenshot(){
+  //---------------------------
+
+  vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[1];
+  this->export_image_to_jpeg(&renderpass->framebuffer->color);
+
+  //---------------------------
+}
 void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   //---------------------------
 

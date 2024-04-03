@@ -13,8 +13,8 @@ struct Frame{
   VkFramebuffer fbo;
 
   //Attachment
-  Image color;
-  Image depth;
+  vk::structure::Image color;
+  vk::structure::Image depth;
 
   //---------------------------
 };

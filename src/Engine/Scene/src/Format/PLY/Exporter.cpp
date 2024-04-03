@@ -27,14 +27,14 @@ void Exporter::export_ascii(utl::type::Data* data, std::string path){
 
   //---------------------------
 }
-void Exporter::export_binary(utl::type::Data* data, std::string path){
+void Exporter::export_binary(utl::type::Data* data, utl::type::Pose* pose, std::string path){
   string format = "binary_little_endian";
   //---------------------------
 
   std::ofstream file(path, ios::binary);
 
   this->write_header(file, format, data);
-  this->write_data_binary(file, data);
+  this->write_data_binary(file, data, pose);
 
   file.close();
 
@@ -132,7 +132,7 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::type::Data* data){
 
   //---------------------------
 }
-void Exporter::write_data_binary(std::ofstream& file, utl::type::Data* data){
+void Exporter::write_data_binary(std::ofstream& file, utl::type::Data* data, utl::type::Pose* pose){
   //---------------------------
 
   vector<vec3>& xyz = data->xyz;
@@ -155,7 +155,8 @@ void Exporter::write_data_binary(std::ofstream& file, utl::type::Data* data){
       switch(vec_property[j]){
         //Location
         case format::ply::XYZ:{
-          memcpy(block_data + offset, &xyz[i], sizeof(vec3));
+          vec4 xyzw = vec4(xyz[i], 1.0) * pose->model;
+          memcpy(block_data + offset, &xyzw, sizeof(vec3));
           offset += sizeof(vec3);
           break;
         }

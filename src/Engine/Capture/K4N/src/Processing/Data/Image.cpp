@@ -40,7 +40,7 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   this->copy_image(sensor);
 
   //Encode image as texture
-  k4n_detection->start_thread(sensor);
+  //k4n_detection->start_thread(sensor);
 
   //---------------------------
   this->idle = true;
@@ -52,7 +52,7 @@ void Image::wait_thread(){
   while(idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  k4n_detection->wait_thread();
+  //k4n_detection->wait_thread();
 
   //---------------------------
 }

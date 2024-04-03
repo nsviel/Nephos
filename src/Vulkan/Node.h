@@ -10,6 +10,7 @@ namespace vk::main{class Info;}
 namespace vk::main{class Texture;}
 namespace vk::structure{class Vulkan;}
 namespace vk::synchro{class Synchro;}
+namespace vk::image{class Screenshot;}
 
 
 namespace vk{
@@ -32,6 +33,7 @@ public:
   inline vk::main::Imgui* get_vk_imgui(){return vk_imgui;}
   inline vk::main::Info* get_vk_info(){return vk_info;}
   inline vk::main::Texture* get_vk_texture(){return vk_texture;}
+  inline vk::image::Screenshot* get_vk_screenshot(){return vk_screenshot;}
 
 private:
   vk::structure::Vulkan* struct_vulkan;
@@ -40,6 +42,7 @@ private:
   vk::main::Info* vk_info;
   vk::main::Texture* vk_texture;
   vk::synchro::Synchro* vk_synchro;
+  vk::image::Screenshot* vk_screenshot;
 };
 
 }
