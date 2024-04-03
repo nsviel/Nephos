@@ -19,8 +19,8 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree = 3){
 
   int numPoints = xyz.size();
   int numParams = (degree + 1) * (degree + 2) / 2;
-  Eigen::MatrixXd A;
-  Eigen::VectorXd b;
+  Eigen::MatrixXf A;
+  Eigen::VectorXf b;
 
   for(int i = 0; i < numPoints; ++i){
     if(xyz[i] == vec3(-1, -1, -1)){
@@ -35,7 +35,7 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree = 3){
       continue;
     }
 
-    Eigen::VectorXd row(numParams);
+    Eigen::VectorXf row(numParams);
     int k = 0;
     for (int j = 0; j <= degree; ++j) {
       for (int l = 0; l <= j; ++l) {
@@ -56,7 +56,7 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree = 3){
     }
   }
 
-  this->coef = A.colPivHouseholderQr().solve(b); // Solve the system using QR decomposition
+  this->P = A.colPivHouseholderQr().solve(b); // Solve the system using QR decomposition
 
   //---------------------------
 }
@@ -66,8 +66,8 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree, vec2 x_boun
 
   int numPoints = xyz.size();
   int numParams = (degree + 1) * (degree + 2) / 2;
-  Eigen::MatrixXd A;
-  Eigen::VectorXd b;
+  Eigen::MatrixXf A;
+  Eigen::VectorXf b;
 
   for(int i = 0; i < numPoints; ++i){
     if(xyz[i] == vec3(-1, -1, -1)){
@@ -85,7 +85,7 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree, vec2 x_boun
       continue;
     }
 
-    Eigen::VectorXd row(numParams);
+    Eigen::VectorXf row(numParams);
     int k = 0;
     for (int j = 0; j <= degree; ++j) {
       for (int l = 0; l <= j; ++l) {
@@ -106,19 +106,19 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree, vec2 x_boun
     }
   }
 
-  this->coef = A.colPivHouseholderQr().solve(b); // Solve the system using QR decomposition
+  this->P = A.colPivHouseholderQr().solve(b); // Solve the system using QR decomposition
 
   //---------------------------
 }
-double Polyfit::evaluate(double x, double y){
+float Polyfit::evaluate(float x, float y){
   if(degree == 0) return -1;
   //---------------------------
 
   int k = 0;
-  double z = 0.0;
+  float z = 0.0;
   for(int i = 0; i <= degree; ++i){
     for(int j = 0; j <= i; ++j){
-      z += coef(k++) * pow(x, i - j) * pow(y, j); // Sum of parameters * X^i * Y^(j-i)
+      z += P(k++) * pow(x, i - j) * pow(y, j); // Sum of parameters * X^i * Y^(j-i)
     }
   }
 
@@ -127,21 +127,21 @@ double Polyfit::evaluate(double x, double y){
 }
 
 //Subfunction
-vector<double> Polyfit::get_coefficient(){
-  std::vector<double> result(coef.size());
+vector<float> Polyfit::get_coefficient(){
+  std::vector<float> result(P.size());
   //---------------------------
 
-  for(int i = 0; i < coef.size(); ++i){
-    result[i] = static_cast<double>(coef[i]);
+  for(int i = 0; i < P.size(); ++i){
+    result[i] = static_cast<float>(P[i]);
   }
 
   //---------------------------
   return result;
 }
-void Polyfit::set_coefficients(const std::vector<double>& value){
+void Polyfit::set_coefficients(const std::vector<float>& value){
   //---------------------------
 
-  this->coef = Eigen::Map<const Eigen::VectorXd>(value.data(), value.size());
+  this->P = Eigen::Map<const Eigen::VectorXf>(value.data(), value.size());
 
   //---------------------------
 }

@@ -13,6 +13,7 @@ Model::Model(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->ope_polyfit = new ope::fitting::Polyfit();
+  this->ope_surface = new ope::fitting::Surface();
 
   //---------------------------
 }
@@ -43,7 +44,7 @@ void Model::export_model(){
   utl::json::write_value(model->path, "y_bound.min", model->y.bound[0]);
   utl::json::write_value(model->path, "y_bound.max", model->y.bound[1]);
 
-  vector<double> vec_coef = ope_polyfit->get_coefficient();
+  vector<float> vec_coef = ope_surface->get_coefficient();
   for(int i=0; i<vec_coef.size(); i++){
     utl::json::write_value(model->path, "coefficient." + to_string(i), vec_coef[i]);
   }
@@ -65,27 +66,27 @@ void Model::draw_model(){
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
-  if(ope_polyfit->has_been_computed() == false){
+  //if(ope_surface->has_been_computed() == false){
     this->compute_model();
-  }
+  //}
 
-  std::vector<std::vector<double>> x, y, z;
+  std::vector<std::vector<float>> x, y, z;
 
   // Generate values for x and y
-  std::vector<double> x_values;
-  for(double i = model->x.bound[0]; i <= model->x.bound[1]; i += 0.1){
+  std::vector<float> x_values;
+  for(float i = model->x.bound[0]; i <= model->x.bound[1]; i += 0.1){
     x_values.push_back(i);
   }
 
-  std::vector<double> y_values;
-  for(double i = model->y.bound[0]; i <= model->y.bound[1]; i += 1.0){
+  std::vector<float> y_values;
+  for(float i = model->y.bound[0]; i <= model->y.bound[1]; i += 1.0){
     y_values.push_back(i);
   }
 
   // Compute z values and fill x, y, and z vectors
-  for (double x_val : x_values) {
-    std::vector<double> row_x, row_y, row_z;
-    for (double y_val : y_values) {
+  for (float x_val : x_values) {
+    std::vector<float> row_x, row_y, row_z;
+    for (float y_val : y_values) {
       row_x.push_back(x_val);
       row_y.push_back(y_val);
       row_z.push_back(this->apply_model(x_val, y_val));
@@ -105,27 +106,14 @@ void Model::make_model(){
   k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
-  ope_polyfit->compute(measure->vec_data, model->degree, model->x.bound, model->y.bound);
+  ope_surface->compute(measure->vec_data, model->x.bound, model->y.bound);
 
-
-/*
-potential fitting systems
-Local Regression (LOESS/LOWESS):
-    LOESS (Locally Weighted Scatterplot Smoothing) and LOWESS (Locally Weighted Scatterplot Smoothing) are non-parametric regression methods that fit smooth curves to data by locally fitting a polynomial regression model.
-    These methods use a moving window to fit regression models to subsets of the data, with weights assigned based on the distance of each point from the point being estimated.
-    LOESS and LOWESS can capture local variations in the data well and provide flexible surface fitting without assuming a specific global function form.
-
-Kernel Smoothing:
-    Kernel smoothing methods estimate the underlying surface by averaging nearby data points, weighted by a kernel function.
-    Common kernel functions include Gaussian, Epanechnikov, and Triangular kernels, which determine the weight of each data point based on its distance from the point being evaluated.
-    Kernel smoothing can provide a smooth estimate of the surface while preserving local features in the data.
-    */
   //---------------------------
 }
 float Model::apply_model(float x, float y){
   //---------------------------
 
-  float z = ope_polyfit->evaluate(x, y);
+  float z = ope_surface->evaluate(x, y);
 
   if(z < 0) z = 0;
 
