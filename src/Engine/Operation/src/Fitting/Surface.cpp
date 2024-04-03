@@ -7,7 +7,7 @@ namespace ope::fitting{
 Surface::Surface(){
   //---------------------------
 
-  this->m = 2;
+  this->m = 3;
   this->n = 2;
   this->find_number_parameter();
 
@@ -107,13 +107,13 @@ Eigen::MatrixXf Surface::jacobian(vector<vec3>& data){
   //--------------------------
 
   for(int k=0; k<data.size(); k++){
-    float y = data[k].x;
-    float x = data[k].y;
+    float x = data[k].x;
+    float y = data[k].y;
 
     int cpt = 0;
     for(int i=0; i<=m; i++){
       for(int j=0; j<=n; j++){
-        J(k, cpt) = std::pow(x,i) * std::pow(y,j);
+        J(k, cpt) = std::pow(x, i) * std::pow(y, j);
         cpt++;
       }
     }
@@ -149,6 +149,15 @@ void Surface::set_coefficients(const std::vector<float>& value){
   //---------------------------
 
   this->P = Eigen::Map<const Eigen::VectorXf>(value.data(), value.size());
+
+  //---------------------------
+}
+void Surface::set_degree(int degree_x, int degree_y){
+  //---------------------------
+
+  this->m = degree_x;
+  this->n = degree_y;
+  this->find_number_parameter();
 
   //---------------------------
 }

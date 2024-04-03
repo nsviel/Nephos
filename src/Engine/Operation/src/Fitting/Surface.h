@@ -22,6 +22,7 @@ public:
   vector<float> get_coefficient();
   void find_number_parameter();
   void set_coefficients(const std::vector<float>& value);
+  void set_degree(int degree_x, int degree_y);
 
 private:
   Eigen::VectorXf P;
