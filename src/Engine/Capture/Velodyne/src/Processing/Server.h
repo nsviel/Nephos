@@ -4,7 +4,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng::socket{class Server;}
+namespace utl::network{class Server;}
 
 
 namespace velodyne{
@@ -23,7 +23,7 @@ public:
   vector<int> capture();
 
 private:
-  eng::socket::Server* sock_server;
+  utl::network::Server* sock_server;
 };
 
 }

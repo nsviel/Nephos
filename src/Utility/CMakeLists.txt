@@ -8,6 +8,7 @@ file(GLOB_RECURSE ALL_SOURCES
   Element/*.cpp
   Function/*.cpp
   Specific/*.cpp
+  Network/*.cpp
   Node.cpp
 )
 

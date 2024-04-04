@@ -1,6 +1,7 @@
 #include "Server.h"
 
 #include <Capture/Namespace.h>
+#include <Utility/Namespace.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +20,7 @@ namespace velodyne{
 Server::Server(){
   //---------------------------
 
-  this->sock_server = new eng::socket::Server();
+  this->sock_server = new utl::network::Server();
 
   //---------------------------
 }
