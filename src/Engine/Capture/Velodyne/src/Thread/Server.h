@@ -3,7 +3,10 @@
 #include <Utility/Specific/Common.h>
 
 namespace vld::structure{class Main;}
-namespace vld{class Player;}
+namespace vld::processing{class Player;}
+namespace vld::processing{class Frame;}
+namespace vld::utils{class Server;}
+namespace vld::parser{class VLP16;}
 
 
 namespace vld::thread{
@@ -23,8 +26,12 @@ public:
 
 private:
   vld::structure::Main* vld_struct;
-  vld::Player* vld_player;
+  vld::processing::Player* vld_player;
+  vld::processing::Frame* vld_frame;
+  vld::utils::Server* vld_server;
+  vld::parser::VLP16* vld_parser_vlp16;
 
+  utl::file::Entity utl_file;
   std::thread thread;
   bool thread_running = false;
   bool thread_idle = true;

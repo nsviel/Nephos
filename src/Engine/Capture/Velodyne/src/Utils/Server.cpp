@@ -1,6 +1,6 @@
 #include "Server.h"
 
-#include <Capture/Namespace.h>
+#include <Velodyne/Namespace.h>
 #include <Utility/Namespace.h>
 
 #include <stdio.h>
@@ -14,7 +14,7 @@
 #include <bitset>
 
 
-namespace vld{
+namespace vld::utils{
 
 //Constructor / Destructor
 Server::Server(){

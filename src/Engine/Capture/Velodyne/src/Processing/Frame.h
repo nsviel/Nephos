@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace vld{
+namespace vld::processing{
 
 class Frame
 {

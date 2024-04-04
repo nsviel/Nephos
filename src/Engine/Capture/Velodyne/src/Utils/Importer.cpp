@@ -3,7 +3,7 @@
 #include <Velodyne/Namespace.h>
 
 
-namespace vld{
+namespace vld::utils{
 
 std::vector<std::vector<int>> file_packets;
 size_t lenght(0);
@@ -17,7 +17,7 @@ Importer::Importer(vld::structure::Main* vld_struct){
   //---------------------------
 
   this->vld_struct = vld_struct;
-  this->vld_player = new vld::Player(vld_struct);
+  this->vld_player = new vld::processing::Player(vld_struct);
 
   this->lidar_model = VLP_16;
   this->packet_range_on = false;
@@ -134,17 +134,17 @@ void Importer::importer_parsing(utl::file::Set* set, std::string path){
 
 //Subfunction
 void Importer::parser_vlp16(utl::file::Set* set, std::string path){
-  vld::Frame velo_frame;
+  vld::processing::Frame vld_frame;
   vld::parser::VLP16 parser;
   //---------------------------
 
   int cpt = 0;
   for(int i=0; i<file_packets.size(); i++){
     utl::file::Entity* data = parser.parse_packet(file_packets[i]);
-    bool frame_rev = velo_frame.build_frame(data);
+    bool frame_rev = vld_frame.build_frame(data);
 
     if(frame_rev){
-      utl::file::Entity* frame = velo_frame.get_endedFrame();
+      utl::file::Entity* frame = vld_frame.get_endedFrame();
       utl::file::Entity* entity = new utl::file::Entity();
 
       entity->name = "frame_" + std::to_string(cpt); cpt++;
@@ -166,16 +166,16 @@ void Importer::parser_vlp16(utl::file::Set* set, std::string path){
   //---------------------------
 }
 void Importer::parser_hdl32(utl::file::Set* set, std::string path){
-  vld::Frame velo_frame;
+  vld::processing::Frame vld_frame;
   vld::parser::HDL32 parser;
   //---------------------------
 
   for(int i=0; i<file_packets.size(); i++){
     utl::file::Entity* data = parser.parse_packet(file_packets[i]);
-    bool frame_rev = velo_frame.build_frame(data);
+    bool frame_rev = vld_frame.build_frame(data);
 
     if(frame_rev){
-      utl::file::Entity* frame = velo_frame.get_endedFrame();
+      utl::file::Entity* frame = vld_frame.get_endedFrame();
       utl::file::Entity* entity = new utl::file::Entity();
 
       entity->path.data = path;

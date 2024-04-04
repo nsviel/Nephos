@@ -5,7 +5,7 @@
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::capture{class Node;}
-namespace vld{class Player;}
+namespace vld::processing{class Player;}
 namespace vld::gui{class Player;}
 namespace vld::structure{class Main;}
 
@@ -33,7 +33,7 @@ private:
   eng::scene::Node* node_scene;
   vld::gui::Player* gui_player;
   vld::structure::Main* vld_struct;
-  vld::Player* vld_player;
+  vld::processing::Player* vld_player;
 };
 
 }

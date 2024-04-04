@@ -16,7 +16,7 @@ Node::Node(eng::capture::Node* node_capture){
 
   this->vld_struct = new vld::structure::Main();
   vld_struct->thread.playback = new vld::thread::Playback(vld_struct);
-  this->vld_player = new vld::Player(vld_struct);
+  this->vld_player = new vld::processing::Player(vld_struct);
   this->node_engine = node_capture->get_node_engine();
   this->node_scene = node_engine->get_node_scene();
   //this->velo_capture = new vld::Capture();
@@ -31,7 +31,7 @@ void Node::config(){
   eng::scene::Format* sce_format = node_scene->get_scene_format();
   //---------------------------
 
-  sce_format->insert_importer(new vld::Importer(vld_struct));
+  sce_format->insert_importer(new vld::utils::Importer(vld_struct));
 
   //---------------------------
 }

@@ -5,7 +5,7 @@
 namespace vld::structure{class Main;}
 
 
-namespace vld{
+namespace vld::processing{
 
 class Player
 {

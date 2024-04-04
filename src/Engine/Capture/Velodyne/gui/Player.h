@@ -4,7 +4,7 @@
 
 namespace eng{class Node;}
 namespace vld{class Node;}
-namespace vld{class Player;}
+namespace vld::processing{class Player;}
 namespace vld::structure{class Main;}
 
 
@@ -32,7 +32,7 @@ public:
 
 private:
   vld::structure::Main* vld_struct;
-  vld::Player* vld_player;
+  vld::processing::Player* vld_player;
 
   bool* show_window;
   string name;

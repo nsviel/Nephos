@@ -7,7 +7,7 @@
 namespace utl::network{class Server;}
 
 
-namespace vld{
+namespace vld::utils{
 
 class Server
 {

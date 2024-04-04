@@ -10,7 +10,7 @@ Playback::Playback(vld::structure::Main* vld_struct){
   //---------------------------
 
   this->vld_struct = vld_struct;
-  this->vld_player = new vld::Player(vld_struct);
+  this->vld_player = new vld::processing::Player(vld_struct);
 
   //---------------------------
 }

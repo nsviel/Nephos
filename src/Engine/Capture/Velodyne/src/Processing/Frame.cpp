@@ -1,7 +1,7 @@
 #include "Frame.h"
 
 
-namespace vld{
+namespace vld::processing{
 
 //Constructor / Destructor
 Frame::Frame(){

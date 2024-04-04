@@ -11,11 +11,11 @@
 #include <stddef.h>
 #include <bitset>
 
-namespace vld{class Player;}
+namespace vld::processing{class Player;}
 namespace vld::structure{class Main;}
 
 
-namespace vld{
+namespace vld::utils{
 
 enum Lidar{
   VLP_16 = 0,
@@ -50,7 +50,7 @@ public:
 
 private:
   vld::structure::Main* vld_struct;
-  vld::Player* vld_player;
+  vld::processing::Player* vld_player;
 
   bool packet_range_on;
   int lidar_model;
