@@ -35,13 +35,13 @@ void Server::design_server(){
       ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
       ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
       ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
-      ImGui::Button("##socket_is_listening", ImVec2(20, 0));
+      ImGui::Button("##socket_is_listening", ImVec2(15, 15));
       ImGui::PopStyleColor(3);
     }else{
       ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.4f, 0.4f, 1.0f));
       ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(1.0f, 0.4f, 0.4f, 1.0f));
       ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(1.0f, 0.4f, 0.4f, 1.0f));
-      ImGui::Button("##socket_is_listening", ImVec2(20, 0));
+      ImGui::Button("##socket_is_listening", ImVec2(15, 15));
       ImGui::PopStyleColor(3);
     }
 

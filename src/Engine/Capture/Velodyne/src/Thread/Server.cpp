@@ -39,31 +39,9 @@ void Server::run_thread(){
   vld_struct->server.is_listening = true;
 
   //Data capture loop
-  bool is_first_run = true;
   this->thread_running = true;
   while(thread_running){
-    //Receive data
-    vector<int> packet_dec = vld_server->capture();
-    if(packet_dec.size() == 0) continue;
-
-    //Parse decimal packet into point cloud
-    utl::file::Entity* data_capture = vld_vlp16->parse_packet(packet_dec);
-
-    //Iteratively build a complete frame
-    bool frame_rev = vld_frame->build_frame(data_capture);
-
-    // If frame revolution, make some ope
-    if(frame_rev){
-      utl::file::Entity* frame = vld_frame->get_endedFrame();
-      this->utl_file = *frame;
-
-      //Do not record the first frame
-      if(is_first_run == false){
-        //this->is_newSubset = true;
-      }else{
-        is_first_run = false;
-      }
-    }
+    this->capture_data();
   }
 
   vld_struct->server.is_listening = false;
@@ -84,6 +62,27 @@ void Server::stop_thread(){
 }
 
 //Subfunction
+void Server::capture_data(){
+  //---------------------------
+
+  //Receive data
+  vector<int> packet_dec = vld_server->capture();
+  if(packet_dec.size() == 0) return;
+
+  //Parse decimal packet into point cloud
+  utl::file::Entity* data = vld_vlp16->parse_packet(packet_dec);
+
+  //Iteratively build a complete frame
+  bool frame_rev = vld_frame->build_frame(data);
+
+  // If frame revolution, make some ope
+  if(frame_rev){
+    this->utl_file = *vld_frame->get_endedFrame();
+    this->new_data = true;
+  }
+
+  //---------------------------
+}
 
 
 }

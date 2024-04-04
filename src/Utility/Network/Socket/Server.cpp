@@ -25,35 +25,44 @@ Server::~Server(){}
 
 //Socket function
 void Server::binding(int port_server, int packet_size_max){
+  if(is_binded) return;
   //---------------------------
 
-  if(is_binded == false){
-    this->port = port_server;
-    this->packet_size = packet_size_max;
+  this->port = port_server;
+  this->packet_size = packet_size_max;
 
-    // Creating socket file descriptor
-    this->sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-    if(sock < 0){
-      cout << "socket creation failed" << endl;
-      exit(EXIT_FAILURE);
-    }
+  // Creating socket file descriptor
+  this->sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+  if(sock < 0){
+    cout << "socket creation failed" << endl;
+    exit(EXIT_FAILURE);
+  }
 
-    // Filling server information
-    sockaddr_in addr;
-    addr.sin_family       = AF_INET; // IPv4
-    addr.sin_addr.s_addr  = INADDR_ANY;
-    addr.sin_port         = htons(port);
+  // Filling server information
+  sockaddr_in addr;
+  addr.sin_family       = AF_INET; // IPv4
+  addr.sin_addr.s_addr  = INADDR_ANY;
+  addr.sin_port         = htons(port);
 
-    // Bind the socket with the server address
-    int binding = bind(sock, reinterpret_cast<sockaddr*>(&addr), sizeof(addr));
+  // Set timeout value (5 seconds in this example)
+  struct timeval timeout;
+  timeout.tv_sec = 0;  // Seconds
+  timeout.tv_usec = 500000; // Microseconds
+  if (setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) == -1) {
+    std::cerr << "Error setting socket timeout: " << strerror(errno) << std::endl;
+    close(sock);
+    return;
+  }
 
-    //Check final success
-    if(binding == 0){
-      this->is_binded = true;
-    }else{
-      cout << "[error] Socket binding failed for port [" << port << "]" << endl;
-      this->is_binded = false;
-    }
+  // Bind the socket with the server address
+  int binding = bind(sock, reinterpret_cast<sockaddr*>(&addr), sizeof(addr));
+
+  //Check final success
+  if(binding == 0){
+    this->is_binded = true;
+  }else{
+    cout << "[error] Socket binding failed for port [" << port << "]" << endl;
+    this->is_binded = false;
   }
 
   //---------------------------

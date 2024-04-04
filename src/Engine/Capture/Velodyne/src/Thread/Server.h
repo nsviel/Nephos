@@ -24,6 +24,9 @@ public:
   void run_thread();
   void stop_thread();
 
+  //Subfunction
+  void capture_data();
+
 private:
   vld::structure::Main* vld_struct;
   vld::processing::Player* vld_player;
@@ -36,6 +39,7 @@ private:
   bool thread_running = false;
   bool thread_idle = true;
   bool thread_paused = false;
+  bool new_data = false;
 };
 
 }

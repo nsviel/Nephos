@@ -50,7 +50,6 @@ void Server::disconnect(){
 
   if(sock_server->get_is_binded()){
     sock_server->disconnect();
-    sock_server->disconnect();
   }
 
   //---------------------------
