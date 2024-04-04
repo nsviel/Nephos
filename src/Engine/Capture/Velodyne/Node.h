@@ -5,11 +5,12 @@
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::capture{class Node;}
+namespace velodyne::gui{class Player;}
 
 
 namespace velodyne{
 
-class Node
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
@@ -24,7 +25,7 @@ public:
 private:
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
-  //velodyne::Capture* velo_capture;
+  velodyne::gui::Player* gui_player;
 };
 
 }
