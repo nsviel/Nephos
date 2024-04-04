@@ -11,7 +11,7 @@ namespace vld{
 
 //Constructor / Destructor
 Node::Node(eng::capture::Node* node_capture){
-  utl::gui::Panel* panel_player = add_panel("Player", ICON_FA_PLAY, true);
+  utl::gui::Panel* panel = add_panel("Velodyne", ICON_FA_PLAY, true);
   //---------------------------
 
   this->vld_struct = new vld::structure::Main();
@@ -20,7 +20,7 @@ Node::Node(eng::capture::Node* node_capture){
   this->node_engine = node_capture->get_node_engine();
   this->node_scene = node_engine->get_node_scene();
   //this->velo_capture = new vld::Capture();
-  this->gui_player = new vld::gui::Player(this, &panel_player->is_open);
+  this->gui_velodyne = new vld::gui::Velodyne(vld_struct, &panel->is_open);
 
   //---------------------------
 }
@@ -45,7 +45,7 @@ void Node::init(){
 void Node::gui(){
   //---------------------------
 
-  gui_player->run_panel();
+  gui_velodyne->run_panel();
 
   //---------------------------
 }

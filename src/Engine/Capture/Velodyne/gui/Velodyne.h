@@ -1,0 +1,35 @@
+#pragma once
+
+#include <Utility/Specific/Common.h>
+
+namespace eng{class Node;}
+namespace vld{class Node;}
+namespace vld::processing{class Velodyne;}
+namespace vld::structure{class Main;}
+namespace vld::gui{class Player;}
+
+
+namespace vld::gui{
+
+class Velodyne
+{
+public:
+  //Constructor / Destructor
+  Velodyne(vld::structure::Main* vld_struct, bool* show_window);
+  ~Velodyne();
+
+public:
+  //Main function
+  void run_panel();
+  void design_panel();
+
+private:
+  vld::structure::Main* vld_struct;
+  vld::gui::Player* gui_player;
+
+  bool* show_window;
+  string name;
+  string open_tab = "";
+};
+
+}

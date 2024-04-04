@@ -14,15 +14,14 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(vld::Node* node_velodyne, bool* show_window);
+  Player(vld::structure::Main* vld_struct);
   ~Player();
 
+public:
   //Main function
-  void run_panel();
-  void design_panel();
-
-  //Player function
   void draw_player();
+
+  //Subfunction
   void player_slider();
   void player_start();
   void player_stop();
@@ -33,10 +32,6 @@ public:
 private:
   vld::structure::Main* vld_struct;
   vld::processing::Player* vld_player;
-
-  bool* show_window;
-  string name;
-  string open_tab = "";
 };
 
 }

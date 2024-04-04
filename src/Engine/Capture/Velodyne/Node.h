@@ -6,8 +6,8 @@ namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::capture{class Node;}
 namespace vld::processing{class Player;}
-namespace vld::gui{class Player;}
 namespace vld::structure{class Main;}
+namespace vld::gui{class Velodyne;}
 
 
 namespace vld{
@@ -31,7 +31,7 @@ public:
 private:
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
-  vld::gui::Player* gui_player;
+  vld::gui::Velodyne* gui_velodyne;
   vld::structure::Main* vld_struct;
   vld::processing::Player* vld_player;
 };
