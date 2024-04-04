@@ -16,6 +16,9 @@ int loop_cpt(0);
 Importer::Importer(velodyne::structure::Main* velo_struct){
   //---------------------------
 
+  this->velo_struct = velo_struct;
+  this->vd_player = new velodyne::Player(velo_struct);
+
   this->lidar_model = VLP_16;
   this->packet_range_on = false;
   this->packet_beg = 0;
@@ -74,6 +77,15 @@ utl::file::Data* Importer::import(utl::file::Path path){
 
   //---------------------------
   return set;
+}
+void Importer::insert(utl::type::Set* set){
+  //---------------------------
+
+  velo_struct->data.vec_set.push_back(set);
+  velo_struct->data.current_set = set;
+  vd_player->determine_range();
+
+  //---------------------------
 }
 
 //Importer function

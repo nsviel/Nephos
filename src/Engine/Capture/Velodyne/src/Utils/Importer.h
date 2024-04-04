@@ -11,6 +11,7 @@
 #include <stddef.h>
 #include <bitset>
 
+namespace velodyne{class Player;}
 namespace velodyne::structure{class Main;}
 
 
@@ -31,6 +32,7 @@ public:
 public:
   //Main function
   utl::file::Data* import(utl::file::Path path);
+  void insert(utl::type::Set* set);
 
   //Subfunction
   void importer_init(std::string path);
@@ -47,6 +49,9 @@ public:
   inline int* get_packet_end(){return &packet_end;}
 
 private:
+  velodyne::structure::Main* velo_struct;
+  velodyne::Player* vd_player;
+
   bool packet_range_on;
   int lidar_model;
   int packet_beg;

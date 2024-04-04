@@ -70,6 +70,7 @@ utl::type::Set* Loader::load_set(utl::file::Path file_path){
   utl::file::Set* file_set = dynamic_cast<utl::file::Set*>(file_data);
   utl::type::Set* set = sce_set->get_or_create_subset(set_scene, file_set->name);
   set->is_locked = true;
+  sce_format->insert_from_path(file_path, set);
 
   //Insert all set objects into engine
   for(int i=0; i<file_set->vec_data.size(); i++){

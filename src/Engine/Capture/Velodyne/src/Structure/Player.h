@@ -10,9 +10,9 @@ struct Player{
   bool pause = false;
   bool restart = true;
 
-  int idx_beg = 0;
-  int idx_cur = 0;
-  int idx_end = 100;
+  int idx_beg = -1;
+  int idx_cur = -1;
+  int idx_end = -1;
 
   //---------------------------
 };

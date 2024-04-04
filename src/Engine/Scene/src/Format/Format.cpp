@@ -60,6 +60,21 @@ utl::file::Data* Format::import_from_path(utl::file::Path path){
   //---------------------------
   return data;
 }
+void Format::insert_from_path(utl::file::Path path, utl::type::Set* set){
+  //---------------------------
+
+  std::string format = utl::path::get_format_from_path(path.data);
+
+  for(int i=0; i<vec_importer.size(); i++){
+    utl::type::Importer* importer = vec_importer[i];
+
+    if(importer->format == format){
+      importer->insert(set);
+    }
+  }
+
+  //---------------------------
+}
 
 //Subfunction
 void Format::insert_importer(utl::type::Importer* importer){
