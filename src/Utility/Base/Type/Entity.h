@@ -18,7 +18,7 @@ struct Entity{
   virtual void update_pose(){}
   virtual void remove_entity(){}
   virtual void reset_entity(){}
-  virtual void set_visibility(bool value){}
+  virtual void set_visibility(bool value){data.is_visible = value;}
   virtual utl::type::Pose* get_pose(){return &pose;}
   virtual utl::type::Data* get_data(){return &data;}
 

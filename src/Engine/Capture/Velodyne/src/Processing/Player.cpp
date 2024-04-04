@@ -37,9 +37,9 @@ void Player::compute_visibility(){
     utl::type::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(i >= vld_struct->player.idx_cur - vld_struct->player.idx_rng + 1 && i <= vld_struct->player.idx_cur){
-      entity->is_visible = true;
+      entity->set_visibility(true);
     }else{
-      entity->is_visible = false;
+      entity->set_visibility(false);
     }
   }
 
