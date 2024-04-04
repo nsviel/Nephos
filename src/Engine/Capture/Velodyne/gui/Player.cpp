@@ -5,10 +5,10 @@
 #include <Scene/Namespace.h>
 
 
-namespace velodyne::gui{
+namespace vld::gui{
 
 //Constructor / Destructor
-Player::Player(velodyne::Node* node_velodyne, bool* show_window){
+Player::Player(vld::Node* node_velodyne, bool* show_window){
   //---------------------------
 
   this->velo_struct = node_velodyne->get_velo_struct();

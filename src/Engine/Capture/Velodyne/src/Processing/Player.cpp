@@ -3,10 +3,10 @@
 #include <Velodyne/Namespace.h>
 
 
-namespace velodyne{
+namespace vld{
 
 //Constructor / Destructor
-Player::Player(velodyne::structure::Main* velo_struct){
+Player::Player(vld::structure::Main* velo_struct){
   //---------------------------
 
   this->velo_struct = velo_struct;

@@ -5,12 +5,12 @@
 #include <Utility/Specific/Common.h>
 #include <thread>
 
-namespace velodyne{class Frame;}
-namespace velodyne{class Server;}
-namespace velodyne::parser{class VLP16;}
+namespace vld{class Frame;}
+namespace vld{class Server;}
+namespace vld::parser{class VLP16;}
 
 
-namespace velodyne{
+namespace vld{
 
 class Capture
 {
@@ -28,9 +28,9 @@ public:
   inline string* get_lidar_ip(){return &lidar_ip;}
 
 private:
-  velodyne::Frame* velo_frame;
-  velodyne::Server* velo_server;
-  velodyne::parser::VLP16* parser_vlp16;
+  vld::Frame* velo_frame;
+  vld::Server* velo_server;
+  vld::parser::VLP16* parser_vlp16;
 
   utl::entity::Object* object;
   utl::file::Entity utl_file;

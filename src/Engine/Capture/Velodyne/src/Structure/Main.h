@@ -4,13 +4,13 @@
 #include <Velodyne/src/Structure/Data.h>
 
 
-namespace velodyne::structure{
+namespace vld::structure{
 
 struct Main{
   //---------------------------
 
-  velodyne::structure::Data data;
-  velodyne::structure::Player player;
+  vld::structure::Data data;
+  vld::structure::Player player;
 
   //---------------------------
 };

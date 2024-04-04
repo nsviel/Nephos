@@ -12,15 +12,15 @@
 using namespace std::chrono;
 
 
-namespace velodyne{
+namespace vld{
 
 //Constructor / Destructor
 Capture::Capture(){
   //---------------------------
 
-  this->velo_server = new velodyne::Server();
-  this->velo_frame = new velodyne::Frame();
-  this->parser_vlp16 = new velodyne::parser::VLP16();
+  this->velo_server = new vld::Server();
+  this->velo_frame = new vld::Frame();
+  this->parser_vlp16 = new vld::parser::VLP16();
 
   this->lidar_ip = "192.168.1.201";
   this->thread_running = false;

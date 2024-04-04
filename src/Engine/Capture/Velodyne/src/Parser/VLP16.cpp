@@ -11,7 +11,7 @@
 */
 
 
-namespace velodyne::parser{
+namespace vld::parser{
 
 //Constructor / Destructor
 VLP16::VLP16(){

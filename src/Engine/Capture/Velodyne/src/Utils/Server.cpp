@@ -14,7 +14,7 @@
 #include <bitset>
 
 
-namespace velodyne{
+namespace vld{
 
 //Constructor / Destructor
 Server::Server(){

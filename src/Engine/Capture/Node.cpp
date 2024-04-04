@@ -18,7 +18,7 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->node_k4n = new k4n::Node(this);
-  this->node_velodyne = new velodyne::Node(this);
+  this->node_velodyne = new vld::Node(this);
 
   this->add_node_panel(node_k4n);
 

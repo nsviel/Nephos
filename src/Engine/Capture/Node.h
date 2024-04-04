@@ -6,7 +6,7 @@ namespace prf{class Node;}
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace k4n{class Node;}
-namespace velodyne{class Node;}
+namespace vld{class Node;}
 
 
 namespace eng::capture{
@@ -40,7 +40,7 @@ private:
 
   //Child
   k4n::Node* node_k4n;
-  velodyne::Node* node_velodyne;
+  vld::Node* node_velodyne;
 };
 
 }

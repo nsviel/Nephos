@@ -9,7 +9,7 @@
 */
 
 
-namespace velodyne::parser{
+namespace vld::parser{
 
 //Constructor / Destructor
 HDL32::HDL32(){

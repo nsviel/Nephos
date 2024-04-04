@@ -2,16 +2,16 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace velodyne::structure{class Main;}
+namespace vld::structure{class Main;}
 
 
-namespace velodyne{
+namespace vld{
 
 class Player
 {
 public:
   //Constructor / Destructor
-  Player(velodyne::structure::Main* velo_struct);
+  Player(vld::structure::Main* velo_struct);
   ~Player();
 
 public:
@@ -19,7 +19,7 @@ public:
   void determine_range();
 
 private:
-  velodyne::structure::Main* velo_struct;
+  vld::structure::Main* velo_struct;
 };
 
 }

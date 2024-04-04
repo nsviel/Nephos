@@ -3,17 +3,17 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace velodyne{class Node;}
-namespace velodyne::structure{class Main;}
+namespace vld{class Node;}
+namespace vld::structure{class Main;}
 
 
-namespace velodyne::gui{
+namespace vld::gui{
 
 class Player
 {
 public:
   //Constructor / Destructor
-  Player(velodyne::Node* node_velodyne, bool* show_window);
+  Player(vld::Node* node_velodyne, bool* show_window);
   ~Player();
 
   //Main function
@@ -30,7 +30,7 @@ public:
   void player_lock();
 
 private:
-  velodyne::structure::Main* velo_struct;
+  vld::structure::Main* velo_struct;
 
   bool* show_window;
   string name;

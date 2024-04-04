@@ -1,7 +1,7 @@
 #include "Frame.h"
 
 
-namespace velodyne{
+namespace vld{
 
 //Constructor / Destructor
 Frame::Frame(){

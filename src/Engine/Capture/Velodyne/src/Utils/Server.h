@@ -7,7 +7,7 @@
 namespace utl::network{class Server;}
 
 
-namespace velodyne{
+namespace vld{
 
 class Server
 {

@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace velodyne{
+namespace vld{
 
 class Frame
 {

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace velodyne::structure{
+namespace vld::structure{
 
 struct Data{
   //---------------------------

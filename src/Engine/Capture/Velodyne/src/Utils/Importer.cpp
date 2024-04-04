@@ -3,7 +3,7 @@
 #include <Velodyne/Namespace.h>
 
 
-namespace velodyne{
+namespace vld{
 
 std::vector<std::vector<int>> file_packets;
 size_t lenght(0);
@@ -13,11 +13,11 @@ int loop_cpt(0);
 
 
 //Constructor / Destructor
-Importer::Importer(velodyne::structure::Main* velo_struct){
+Importer::Importer(vld::structure::Main* velo_struct){
   //---------------------------
 
   this->velo_struct = velo_struct;
-  this->vd_player = new velodyne::Player(velo_struct);
+  this->vd_player = new vld::Player(velo_struct);
 
   this->lidar_model = VLP_16;
   this->packet_range_on = false;
@@ -133,8 +133,8 @@ void Importer::importer_parsing(utl::file::Set* set, std::string path){
 
 //Subfunction
 void Importer::parser_vlp16(utl::file::Set* set, std::string path){
-  velodyne::Frame velo_frame;
-  velodyne::parser::VLP16 parser;
+  vld::Frame velo_frame;
+  vld::parser::VLP16 parser;
   //---------------------------
 
   int cpt = 0;
@@ -165,8 +165,8 @@ void Importer::parser_vlp16(utl::file::Set* set, std::string path){
   //---------------------------
 }
 void Importer::parser_hdl32(utl::file::Set* set, std::string path){
-  velodyne::Frame velo_frame;
-  velodyne::parser::HDL32 parser;
+  vld::Frame velo_frame;
+  vld::parser::HDL32 parser;
   //---------------------------
 
   for(int i=0; i<file_packets.size(); i++){

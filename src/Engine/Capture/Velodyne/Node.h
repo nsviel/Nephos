@@ -5,11 +5,11 @@
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::capture{class Node;}
-namespace velodyne::gui{class Player;}
-namespace velodyne::structure{class Main;}
+namespace vld::gui{class Player;}
+namespace vld::structure{class Main;}
 
 
-namespace velodyne{
+namespace vld{
 
 class Node : public utl::type::Node
 {
@@ -24,13 +24,13 @@ public:
   void init();
   void gui();
 
-  inline velodyne::structure::Main* get_velo_struct(){return velo_struct;}
+  inline vld::structure::Main* get_velo_struct(){return velo_struct;}
 
 private:
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
-  velodyne::gui::Player* gui_player;
-  velodyne::structure::Main* velo_struct;
+  vld::gui::Player* gui_player;
+  vld::structure::Main* velo_struct;
 };
 
 }

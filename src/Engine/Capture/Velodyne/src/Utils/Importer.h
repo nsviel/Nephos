@@ -11,11 +11,11 @@
 #include <stddef.h>
 #include <bitset>
 
-namespace velodyne{class Player;}
-namespace velodyne::structure{class Main;}
+namespace vld{class Player;}
+namespace vld::structure{class Main;}
 
 
-namespace velodyne{
+namespace vld{
 
 enum Lidar{
   VLP_16 = 0,
@@ -26,7 +26,7 @@ class Importer : public utl::type::Importer
 {
 public:
   //Constructor / Destructor
-  Importer(velodyne::structure::Main* velo_struct);
+  Importer(vld::structure::Main* velo_struct);
   ~Importer();
 
 public:
@@ -49,8 +49,8 @@ public:
   inline int* get_packet_end(){return &packet_end;}
 
 private:
-  velodyne::structure::Main* velo_struct;
-  velodyne::Player* vd_player;
+  vld::structure::Main* velo_struct;
+  vld::Player* vd_player;
 
   bool packet_range_on;
   int lidar_model;

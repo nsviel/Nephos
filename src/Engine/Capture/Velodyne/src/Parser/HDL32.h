@@ -5,7 +5,7 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace velodyne::parser{
+namespace vld::parser{
 
 class HDL32
 {
