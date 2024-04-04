@@ -20,6 +20,9 @@ public:
   void start_thread();
   void run_thread();
   void stop_thread();
+  
+  //Subfunction
+  void manage_pause();
 
 private:
   vld::structure::Main* vld_struct;
@@ -28,6 +31,7 @@ private:
   std::thread thread;
   bool thread_running = false;
   bool thread_idle = true;
+  bool thread_paused = false;
 };
 
 }

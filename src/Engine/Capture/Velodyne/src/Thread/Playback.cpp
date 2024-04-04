@@ -28,12 +28,15 @@ void Playback::start_thread(){
   this->thread_idle = false;
 }
 void Playback::run_thread(){
+  this->thread_running = true;
   //---------------------------
 
   //Playback thread
   while(thread_running){
     vld_player->forward_index(vld_struct->player.idx_cur + 1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(33));
+    std::this_thread::sleep_for(std::chrono::milliseconds(60));
+
+    this->manage_pause();
   }
 
   //---------------------------
@@ -50,5 +53,22 @@ void Playback::stop_thread(){
   //---------------------------
 }
 
+//Subfunction
+void Playback::manage_pause(){
+  //---------------------------
+
+  //If pause, wait until end pause or end thread
+  bool& is_paused = vld_struct->player.pause;
+  if(is_paused || !vld_struct->player.play){
+    //Pause loop
+    this->thread_paused = true;
+    while(is_paused && thread_running){
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+    this->thread_paused = false;
+  }
+
+  //---------------------------
+}
 
 }

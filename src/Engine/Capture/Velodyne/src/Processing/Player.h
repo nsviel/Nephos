@@ -22,6 +22,13 @@ public:
   void compute_visibility();
   void forward_index(int index);
 
+  //Player function
+  void player_pause(bool value);
+  void player_play();
+  void player_stop();
+  void player_restart();
+  void player_close();
+
 private:
   vld::structure::Main* vld_struct;
 };
