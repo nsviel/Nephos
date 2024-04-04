@@ -11,6 +11,8 @@ namespace velodyne::gui{
 Player::Player(velodyne::Node* node_velodyne, bool* show_window){
   //---------------------------
 
+  this->velo_struct = node_velodyne->get_velo_struct();
+
   this->show_window = show_window;
   this->name = "Player";
 
@@ -64,6 +66,11 @@ void Player::draw_player(){
 void Player::player_slider(){
   //---------------------------
 
+  ImVec2 width = ImGui::GetContentRegionAvail();
+  ImGui::SetNextItemWidth(width.x);
+  if(ImGui::SliderInt("##player_slider", &velo_struct->player.idx_cur, velo_struct->player.idx_beg, velo_struct->player.idx_end, "%d", ImGuiSliderFlags_NoInput)){
+    
+  }
 
   //---------------------------
 }

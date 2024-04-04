@@ -14,6 +14,7 @@ Node::Node(eng::capture::Node* node_capture){
   utl::gui::Panel* panel_player = add_panel("Player", ICON_FA_PLAY, true);
   //---------------------------
 
+  this->velo_struct = new velodyne::structure::Velodyne();
   this->node_engine = node_capture->get_node_engine();
   this->node_scene = node_engine->get_node_scene();
   //this->velo_capture = new velodyne::Capture();
