@@ -59,18 +59,18 @@ bool count_packets(const Tins::PDU &){
 }
 
 //Main function
-utl::file::Set* Importer::import(std::string path){
+utl::file::Data* Importer::import(utl::file::Path path){
   file_packets.clear();
   //---------------------------
-sayHello();
+
   utl::file::Set* set = new utl::file::Set();
-  set->name = utl::path::get_name_from_path(path);
-  set->path.data = path;
+  set->name = utl::path::get_name_from_path(path.data);
+  set->path.data = path.data;
   set->type = utl::file::SET;
 
-  this->importer_init(path);
-  this->importer_sniffing(path);
-  this->importer_parsing(set, path);
+  this->importer_init(path.data);
+  this->importer_sniffing(path.data);
+  this->importer_parsing(set, path.data);
 
   //---------------------------
   return set;

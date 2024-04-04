@@ -53,7 +53,6 @@ utl::type::Data* Loader::load_data(string path){
   return data;
 }
 utl::type::Set* Loader::load_set(utl::file::Path file_path){
-  utl::type::Set* set = nullptr;
   //---------------------------
 
   if(!check_file_path(file_path.data)) return nullptr;
@@ -66,13 +65,16 @@ utl::type::Set* Loader::load_set(utl::file::Path file_path){
     return nullptr;
   }
 
-  //Data is a set
+  //Insert loaded set into scene
   utl::type::Set* set_scene = sce_database->get_set_scene();
   utl::file::Set* file_set = dynamic_cast<utl::file::Set*>(file_data);
-  utl::type::Set* subset = sce_set->get_or_create_subset(set_scene, file_set->name);
+  utl::type::Set* set = sce_set->get_or_create_subset(set_scene, file_set->name);
+  set->is_locked = true;
+
+  //Insert all set objects into engine
   for(int i=0; i<file_set->vec_data.size(); i++){
     utl::entity::Object* object = create_object(file_set->vec_data[i]);
-    sce_set->insert_entity(subset, object);
+    sce_set->insert_entity(set, object);
   }
 
   //Delete raw data

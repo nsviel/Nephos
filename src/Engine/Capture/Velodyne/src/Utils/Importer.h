@@ -28,7 +28,7 @@ public:
 
 public:
   //Main function
-  utl::file::Set* import(std::string pathFile);
+  utl::file::Data* import(utl::file::Path path);
 
   //Subfunction
   void importer_init(std::string path);
