@@ -50,7 +50,7 @@ public:
 
 private:
   vld::structure::Main* vld_struct;
-  vld::Player* vd_player;
+  vld::Player* vld_player;
 
   bool packet_range_on;
   int lidar_model;

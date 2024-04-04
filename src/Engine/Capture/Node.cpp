@@ -62,6 +62,7 @@ void Node::clean(){
   //---------------------------
 
   node_k4n->clean();
+  node_velodyne->clean();
 
   //---------------------------
 }

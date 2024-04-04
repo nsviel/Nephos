@@ -5,6 +5,7 @@
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::capture{class Node;}
+namespace vld{class Player;}
 namespace vld::gui{class Player;}
 namespace vld::structure{class Main;}
 
@@ -23,6 +24,7 @@ public:
   void config();
   void init();
   void gui();
+  void clean();
 
   inline vld::structure::Main* get_vld_struct(){return vld_struct;}
 
@@ -31,6 +33,7 @@ private:
   eng::scene::Node* node_scene;
   vld::gui::Player* gui_player;
   vld::structure::Main* vld_struct;
+  vld::Player* vld_player;
 };
 
 }

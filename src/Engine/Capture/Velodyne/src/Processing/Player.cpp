@@ -16,6 +16,22 @@ Player::Player(vld::structure::Main* vld_struct){
 Player::~Player(){}
 
 //Main function
+void Player::start_playback(){
+  if(vld_struct->data.current_set == nullptr) return;
+  utl::type::Set* set = vld_struct->data.current_set;
+  //---------------------------
+
+  vld_struct->thread.playback->start_thread();
+
+  //---------------------------
+}
+void Player::stop_playback(){
+  //---------------------------
+
+  vld_struct->thread.playback->stop_thread();
+
+  //---------------------------
+}
 void Player::determine_range(){
   if(vld_struct->data.current_set == nullptr) return;
   utl::type::Set* set = vld_struct->data.current_set;
@@ -45,5 +61,19 @@ void Player::compute_visibility(){
 
   //---------------------------
 }
+void Player::forward_index(int index){
+  //---------------------------
+
+  if(index > vld_struct->player.idx_end){
+    vld_struct->player.idx_cur = vld_struct->player.idx_beg;
+  }else if(index < vld_struct->player.idx_beg){
+    vld_struct->player.idx_cur = vld_struct->player.idx_beg;
+  }else{
+    vld_struct->player.idx_cur = index;
+  }
+
+  //---------------------------
+}
+
 
 }
