@@ -1,14 +1,12 @@
 #pragma once
 
-#include <Velodyne/src/Structure/Player.h>
-
 
 namespace velodyne::structure{
 
-struct Velodyne{
+struct Data{
   //---------------------------
 
-  velodyne::structure::Player player;
+  vector<utl::type::Set*> vec_set;
 
   //---------------------------
 };

@@ -11,6 +11,8 @@
 #include <stddef.h>
 #include <bitset>
 
+namespace velodyne::structure{class Main;}
+
 
 namespace velodyne{
 
@@ -23,7 +25,7 @@ class Importer : public utl::type::Importer
 {
 public:
   //Constructor / Destructor
-  Importer();
+  Importer(velodyne::structure::Main* velo_struct);
   ~Importer();
 
 public:

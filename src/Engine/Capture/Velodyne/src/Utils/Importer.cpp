@@ -13,7 +13,7 @@ int loop_cpt(0);
 
 
 //Constructor / Destructor
-Importer::Importer(){
+Importer::Importer(velodyne::structure::Main* velo_struct){
   //---------------------------
 
   this->lidar_model = VLP_16;

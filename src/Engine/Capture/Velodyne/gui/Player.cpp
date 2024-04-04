@@ -69,7 +69,7 @@ void Player::player_slider(){
   ImVec2 width = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(width.x);
   if(ImGui::SliderInt("##player_slider", &velo_struct->player.idx_cur, velo_struct->player.idx_beg, velo_struct->player.idx_end, "%d", ImGuiSliderFlags_NoInput)){
-    
+
   }
 
   //---------------------------

@@ -4,7 +4,7 @@
 
 namespace eng{class Node;}
 namespace velodyne{class Node;}
-namespace velodyne::structure{class Velodyne;}
+namespace velodyne::structure{class Main;}
 
 
 namespace velodyne::gui{
@@ -30,7 +30,7 @@ public:
   void player_lock();
 
 private:
-  velodyne::structure::Velodyne* velo_struct;
+  velodyne::structure::Main* velo_struct;
 
   bool* show_window;
   string name;
