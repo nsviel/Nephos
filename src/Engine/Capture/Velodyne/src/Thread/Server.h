@@ -29,7 +29,7 @@ private:
   vld::processing::Player* vld_player;
   vld::processing::Frame* vld_frame;
   vld::utils::Server* vld_server;
-  vld::parser::VLP16* vld_parser_vlp16;
+  vld::parser::VLP16* vld_vlp16;
 
   utl::file::Entity utl_file;
   std::thread thread;

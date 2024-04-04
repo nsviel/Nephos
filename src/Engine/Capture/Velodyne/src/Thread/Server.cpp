@@ -13,7 +13,7 @@ Server::Server(vld::structure::Main* vld_struct){
   this->vld_server = new vld::utils::Server();
   this->vld_player = new vld::processing::Player(vld_struct);
   this->vld_frame = new vld::processing::Frame();
-  this->vld_parser_vlp16 = new vld::parser::VLP16();
+  this->vld_vlp16 = new vld::parser::VLP16();
 
   //---------------------------
 }
@@ -34,37 +34,39 @@ void Server::run_thread(){
   this->thread_running = true;
   //---------------------------
 
+  //First, bind socket server
+  vld_server->binding(vld_struct->server.port, vld_struct->server.mtu);
+  vld_struct->server.is_listening = true;
+
+  //Data capture loop
   bool is_first_run = true;
-  int size_max = 1248;
-
-  vld_server->binding(vld_struct->server.port, size_max);
-
   this->thread_running = true;
   while(thread_running){
+    //Receive data
     vector<int> packet_dec = vld_server->capture();
+    if(packet_dec.size() == 0) continue;
 
     //Parse decimal packet into point cloud
-    if(packet_dec.size() != 0){
-      utl::file::Entity* data_cap = vld_parser_vlp16->parse_packet(packet_dec);
+    utl::file::Entity* data_capture = vld_vlp16->parse_packet(packet_dec);
 
-      //Iteratively build a complete frame
-      bool frame_rev = vld_frame->build_frame(data_cap);
+    //Iteratively build a complete frame
+    bool frame_rev = vld_frame->build_frame(data_capture);
 
-      // If frame revolution, make some ope
-      if(frame_rev){
-        utl::file::Entity* frame = vld_frame->get_endedFrame();
-        this->utl_file = *frame;
+    // If frame revolution, make some ope
+    if(frame_rev){
+      utl::file::Entity* frame = vld_frame->get_endedFrame();
+      this->utl_file = *frame;
 
-        //Do not record the first frame
-        if(is_first_run == false){
-          //this->is_newSubset = true;
-        }else{
-          is_first_run = false;
-        }
+      //Do not record the first frame
+      if(is_first_run == false){
+        //this->is_newSubset = true;
+      }else{
+        is_first_run = false;
       }
     }
   }
 
+  vld_struct->server.is_listening = false;
   vld_server->disconnect();
 
   //---------------------------

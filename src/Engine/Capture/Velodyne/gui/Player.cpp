@@ -19,7 +19,7 @@ Player::Player(vld::structure::Main* vld_struct){
 Player::~Player(){}
 
 //Main function
-void Player::draw_player(){
+void Player::design_player(){
   //---------------------------
 
   this->player_slider();
@@ -35,6 +35,7 @@ void Player::draw_player(){
   this->player_lock();
 
   //---------------------------
+  ImGui::Separator();
 }
 
 //Subfunction

@@ -2,8 +2,6 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng{class Node;}
-namespace vld{class Node;}
 namespace vld::processing{class Player;}
 namespace vld::structure{class Main;}
 
@@ -19,7 +17,7 @@ public:
 
 public:
   //Main function
-  void draw_player();
+  void design_player();
 
   //Subfunction
   void player_slider();

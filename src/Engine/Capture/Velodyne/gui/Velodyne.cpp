@@ -13,6 +13,7 @@ Velodyne::Velodyne(vld::structure::Main* vld_struct, bool* show_window){
 
   this->vld_struct = vld_struct;
   this->gui_player = new vld::gui::Player(vld_struct);
+  this->gui_server = new vld::gui::Server(vld_struct);
 
   this->show_window = show_window;
   this->name = "Velodyne";
@@ -41,7 +42,8 @@ void Velodyne::run_panel(){
 void Velodyne::design_panel(){
   //---------------------------
 
-  gui_player->draw_player();
+  gui_player->design_player();
+  gui_server->design_server();
 
   //---------------------------
 }

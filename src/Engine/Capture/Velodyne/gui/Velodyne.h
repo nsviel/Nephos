@@ -7,6 +7,7 @@ namespace vld{class Node;}
 namespace vld::processing{class Velodyne;}
 namespace vld::structure{class Main;}
 namespace vld::gui{class Player;}
+namespace vld::gui{class Server;}
 
 
 namespace vld::gui{
@@ -26,6 +27,7 @@ public:
 private:
   vld::structure::Main* vld_struct;
   vld::gui::Player* gui_player;
+  vld::gui::Server* gui_server;
 
   bool* show_window;
   string name;
