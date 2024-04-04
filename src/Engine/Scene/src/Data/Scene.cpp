@@ -42,14 +42,18 @@ void Scene::init(){
   utl::file::Path path_7;
   path_7.data = "/home/aether/Desktop/bench_1.mkv";
 
+  utl::file::Path path_8;
+  path_8.data = "/home/aether/Desktop/pcap_test.pcap";
+
   //Create playback list
-  sce_loader->load_object(path_1);
-  sce_loader->load_object(path_2);
+  //sce_loader->load_object(path_1);
+  //sce_loader->load_object(path_2);
 
   //sce_loader->load_object(path_3);
   //sce_loader->load_object(path_4);
   //sce_loader->load_object(path_6);
   //sce_loader->load_object(path_7);
+  sce_loader->load_object(path_8);
 
   //----------------------------
 }

@@ -31,6 +31,7 @@ void Node::config(){
   //---------------------------
 
   node_k4n->config();
+  node_velodyne->config();
 
   //---------------------------
 }
