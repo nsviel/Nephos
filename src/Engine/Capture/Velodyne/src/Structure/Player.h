@@ -13,6 +13,7 @@ struct Player{
   int idx_beg = -1;
   int idx_cur = -1;
   int idx_end = -1;
+  int idx_rng = 1;
 
   //---------------------------
 };

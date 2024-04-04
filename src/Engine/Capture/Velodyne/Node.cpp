@@ -14,7 +14,7 @@ Node::Node(eng::capture::Node* node_capture){
   utl::gui::Panel* panel_player = add_panel("Player", ICON_FA_PLAY, true);
   //---------------------------
 
-  this->velo_struct = new vld::structure::Main();
+  this->vld_struct = new vld::structure::Main();
   this->node_engine = node_capture->get_node_engine();
   this->node_scene = node_engine->get_node_scene();
   //this->velo_capture = new vld::Capture();
@@ -29,7 +29,7 @@ void Node::config(){
   eng::scene::Format* sce_format = node_scene->get_scene_format();
   //---------------------------
 
-  sce_format->insert_importer(new vld::Importer(velo_struct));
+  sce_format->insert_importer(new vld::Importer(vld_struct));
 
   //---------------------------
 }

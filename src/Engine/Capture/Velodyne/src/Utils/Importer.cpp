@@ -13,11 +13,11 @@ int loop_cpt(0);
 
 
 //Constructor / Destructor
-Importer::Importer(vld::structure::Main* velo_struct){
+Importer::Importer(vld::structure::Main* vld_struct){
   //---------------------------
 
-  this->velo_struct = velo_struct;
-  this->vd_player = new vld::Player(velo_struct);
+  this->vld_struct = vld_struct;
+  this->vd_player = new vld::Player(vld_struct);
 
   this->lidar_model = VLP_16;
   this->packet_range_on = false;
@@ -81,8 +81,8 @@ utl::file::Data* Importer::import(utl::file::Path path){
 void Importer::insert(utl::type::Set* set){
   //---------------------------
 
-  velo_struct->data.vec_set.push_back(set);
-  velo_struct->data.current_set = set;
+  vld_struct->data.vec_set.push_back(set);
+  vld_struct->data.current_set = set;
   vd_player->determine_range();
 
   //---------------------------

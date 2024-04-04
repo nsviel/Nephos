@@ -24,13 +24,13 @@ public:
   void init();
   void gui();
 
-  inline vld::structure::Main* get_velo_struct(){return velo_struct;}
+  inline vld::structure::Main* get_vld_struct(){return vld_struct;}
 
 private:
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
   vld::gui::Player* gui_player;
-  vld::structure::Main* velo_struct;
+  vld::structure::Main* vld_struct;
 };
 
 }

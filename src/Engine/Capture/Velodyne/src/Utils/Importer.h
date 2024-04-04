@@ -26,7 +26,7 @@ class Importer : public utl::type::Importer
 {
 public:
   //Constructor / Destructor
-  Importer(vld::structure::Main* velo_struct);
+  Importer(vld::structure::Main* vld_struct);
   ~Importer();
 
 public:
@@ -49,7 +49,7 @@ public:
   inline int* get_packet_end(){return &packet_end;}
 
 private:
-  vld::structure::Main* velo_struct;
+  vld::structure::Main* vld_struct;
   vld::Player* vd_player;
 
   bool packet_range_on;

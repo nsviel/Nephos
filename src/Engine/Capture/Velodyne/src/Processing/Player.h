@@ -11,15 +11,16 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(vld::structure::Main* velo_struct);
+  Player(vld::structure::Main* vld_struct);
   ~Player();
 
 public:
   //Main function
   void determine_range();
-
+  void compute_visibility();
+  
 private:
-  vld::structure::Main* velo_struct;
+  vld::structure::Main* vld_struct;
 };
 
 }

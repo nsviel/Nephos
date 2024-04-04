@@ -4,6 +4,7 @@
 
 namespace eng{class Node;}
 namespace vld{class Node;}
+namespace vld{class Player;}
 namespace vld::structure{class Main;}
 
 
@@ -30,7 +31,8 @@ public:
   void player_lock();
 
 private:
-  vld::structure::Main* velo_struct;
+  vld::structure::Main* vld_struct;
+  vld::Player* vld_player;
 
   bool* show_window;
   string name;

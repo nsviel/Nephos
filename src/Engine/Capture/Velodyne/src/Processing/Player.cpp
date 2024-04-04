@@ -6,10 +6,10 @@
 namespace vld{
 
 //Constructor / Destructor
-Player::Player(vld::structure::Main* velo_struct){
+Player::Player(vld::structure::Main* vld_struct){
   //---------------------------
 
-  this->velo_struct = velo_struct;
+  this->vld_struct = vld_struct;
 
   //---------------------------
 }
@@ -17,12 +17,31 @@ Player::~Player(){}
 
 //Main function
 void Player::determine_range(){
-  if(velo_struct->data.current_set == nullptr) return;
+  if(vld_struct->data.current_set == nullptr) return;
+  utl::type::Set* set = vld_struct->data.current_set;
   //---------------------------
 
-  velo_struct->player.idx_beg = 0;
-  velo_struct->player.idx_cur = 0;
-  velo_struct->player.idx_end = velo_struct->data.current_set->list_entity.size() - 1;
+  vld_struct->player.idx_beg = 0;
+  vld_struct->player.idx_cur = 0;
+  vld_struct->player.idx_end = set->list_entity.size() - 1;
+
+  //---------------------------
+}
+void Player::compute_visibility(){
+  if(vld_struct->data.current_set == nullptr) return;
+  utl::type::Set* set = vld_struct->data.current_set;
+  //---------------------------
+
+  //Set visibility just for wanted subsets
+  for(int i=0; i<set->list_entity.size(); i++){
+    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+
+    if(i >= vld_struct->player.idx_cur - vld_struct->player.idx_rng + 1 && i <= vld_struct->player.idx_cur){
+      entity->is_visible = true;
+    }else{
+      entity->is_visible = false;
+    }
+  }
 
   //---------------------------
 }

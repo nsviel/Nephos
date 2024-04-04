@@ -11,7 +11,8 @@ namespace vld::gui{
 Player::Player(vld::Node* node_velodyne, bool* show_window){
   //---------------------------
 
-  this->velo_struct = node_velodyne->get_velo_struct();
+  this->vld_struct = node_velodyne->get_vld_struct();
+  this->vld_player = new vld::Player(vld_struct);
 
   this->show_window = show_window;
   this->name = "Player";
@@ -68,8 +69,8 @@ void Player::player_slider(){
 
   ImVec2 width = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(width.x);
-  if(ImGui::SliderInt("##player_slider", &velo_struct->player.idx_cur, velo_struct->player.idx_beg, velo_struct->player.idx_end, "%d", ImGuiSliderFlags_NoInput)){
-
+  if(ImGui::SliderInt("##player_slider", &vld_struct->player.idx_cur, vld_struct->player.idx_beg, vld_struct->player.idx_end, "%d", ImGuiSliderFlags_NoInput)){
+    vld_player->compute_visibility();
   }
 
   //---------------------------
