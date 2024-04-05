@@ -20,6 +20,8 @@ public:
   void init();
   void loop();
   void clean();
+
+private:
 };
 
 }
